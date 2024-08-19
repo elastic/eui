@@ -1391,14 +1391,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 281,
+        "line": 280,
         "column": 18,
-        "index": 10032
+        "index": 9968
       },
       "end": {
-        "line": 284,
+        "line": 283,
         "column": 20,
-        "index": 10156
+        "index": 10092
       }
     },
     "filepath": "src/components/datagrid/controls/column_selector.tsx"
@@ -1409,14 +1409,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 294,
+        "line": 293,
         "column": 18,
-        "index": 10516
+        "index": 10452
       },
       "end": {
-        "line": 297,
+        "line": 296,
         "column": 20,
-        "index": 10638
+        "index": 10574
       }
     },
     "filepath": "src/components/datagrid/controls/column_selector.tsx"
@@ -4793,14 +4793,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 104,
+        "line": 105,
         "column": 49,
-        "index": 2946
+        "index": 2960
       },
       "end": {
-        "line": 110,
+        "line": 111,
         "column": 3,
-        "index": 3167
+        "index": 3181
       }
     },
     "filepath": "src/components/form/field_password/field_password.tsx"
@@ -4811,17 +4811,35 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 104,
+        "line": 105,
         "column": 49,
-        "index": 2946
+        "index": 2960
       },
       "end": {
-        "line": 110,
+        "line": 111,
         "column": 3,
-        "index": 3167
+        "index": 3181
       }
     },
     "filepath": "src/components/form/field_password/field_password.tsx"
+  },
+  {
+    "token": "euiFieldSearch.clearSearchButtonLabel",
+    "defString": "Clear search input",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 260,
+        "column": 6,
+        "index": 7437
+      },
+      "end": {
+        "line": 263,
+        "column": 7,
+        "index": 7544
+      }
+    },
+    "filepath": "src/components/form/field_search/field_search.tsx"
   },
   {
     "token": "euiFilePicker.promptText",
@@ -4901,14 +4919,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 38,
-        "column": 4,
-        "index": 1180
+        "line": 34,
+        "column": 20,
+        "index": 1321
       },
       "end": {
-        "line": 41,
-        "column": 5,
-        "index": 1274
+        "line": 37,
+        "column": 3,
+        "index": 1399
       }
     },
     "filepath": "src/components/form/form_control_layout/form_control_layout_clear_button.tsx"
@@ -4919,14 +4937,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 82,
+        "line": 121,
         "column": 27,
-        "index": 2237
+        "index": 3395
       },
       "end": {
-        "line": 85,
+        "line": 124,
         "column": 3,
-        "index": 2313
+        "index": 3471
       }
     },
     "filepath": "src/components/form/form_control_layout/form_control_layout_delimited.tsx"
@@ -4937,14 +4955,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 94,
+        "line": 97,
         "column": 8,
-        "index": 2536
+        "index": 2581
       },
       "end": {
-        "line": 97,
+        "line": 100,
         "column": 9,
-        "index": 2657
+        "index": 2702
       }
     },
     "filepath": "src/components/form/form.tsx"
