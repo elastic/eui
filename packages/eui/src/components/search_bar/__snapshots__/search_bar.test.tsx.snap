@@ -119,7 +119,7 @@ exports[`SearchBar render - provided query, filters 1`] = `
           class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-absolute-right"
         >
           <button
-            aria-label="Clear input"
+            aria-label="Clear search input"
             class="euiFormControlLayoutClearButton emotion-euiFormControlLayoutClearButton"
             data-test-subj="clearSearchButton"
             type="button"
