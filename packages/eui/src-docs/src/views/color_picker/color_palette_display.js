@@ -188,7 +188,7 @@ export default () => {
                   Display <EuiCode>fixed</EuiCode>
                 </span>
               }
-              display="columnCompressedSwitch"
+              display="columnCompressed"
             >
               <EuiSwitch
                 checked={selectionType}
