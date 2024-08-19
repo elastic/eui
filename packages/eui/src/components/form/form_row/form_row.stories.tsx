@@ -67,6 +67,9 @@ export default meta;
 type Story = StoryObj<EuiFormRowProps>;
 
 export const Playground: Story = {
+  argTypes: {
+    hasEmptyLabelSpace: { if: { arg: 'label', truthy: false } },
+  },
   args: {
     children: <EuiFieldText />,
     label: 'Text field label',
