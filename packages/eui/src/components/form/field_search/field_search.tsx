@@ -8,15 +8,15 @@
 
 import React, { Component, InputHTMLAttributes, KeyboardEvent } from 'react';
 import classNames from 'classnames';
-import { EuiI18n } from '../../i18n';
 
-import { Browser } from '../../../services/browser';
-import { CommonProps } from '../../common';
 import {
   keys,
   withEuiStylesMemoizer,
   WithEuiStylesMemoizerProps,
 } from '../../../services';
+import { Browser } from '../../../services/browser';
+import { CommonProps } from '../../common';
+import { EuiI18n } from '../../i18n';
 
 import {
   EuiFormControlLayout,
