@@ -88,6 +88,9 @@ export const euiSwitchStyles = (euiThemeContext: UseEuiTheme) => {
       position: relative;
       display: inline-flex;
       align-items: flex-start;
+      /* Required for inline-flex CSS to not render an extra 2-3px of strut height
+       * @see https://stackoverflow.com/a/27536461/4294462 */
+      vertical-align: middle;
     `,
     // Skip css`` to avoid generating an extra Emotion className
     enabled: `
