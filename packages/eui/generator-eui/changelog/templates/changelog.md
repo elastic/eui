@@ -1,5 +1,5 @@
 <%_ if (features) { -%>
-- Added semantic text token [#7971](https://github.com/elastic/eui/pull/7971)
+- Added/Updated ...
 
 <%_ } -%>
 <%_ if (bugFixes) { -%>
