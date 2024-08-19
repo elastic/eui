@@ -393,7 +393,7 @@ export const euiFormCustomControlStyles = (euiThemeContext: UseEuiTheme) => {
         }
 
         &:has(input:focus-visible) {
-          outline-style: auto;
+          outline: ${euiTheme.focus.width} solid ${controlVars.colors.selected};
           outline-offset: ${euiTheme.focus.width};
         }
 

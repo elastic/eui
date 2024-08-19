@@ -263,7 +263,7 @@ describe('euiFormCustomControlStyles', () => {
               }
 
               &:has(input:focus-visible) {
-                outline-style: auto;
+                outline: 2px solid #07C;
                 outline-offset: 2px;
               }
 
