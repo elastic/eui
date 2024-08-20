@@ -128,9 +128,8 @@ const parseQuery = (
   if (props.box?.schema && typeof props.box?.schema === 'object') {
     schema = props.box.schema;
   }
-  const recognizedFields = schema?.recognizedFields;
   const dateFormat = props.dateFormat;
-  const parseOptions = { schema, dateFormat, recognizedFields };
+  const parseOptions = { schema, dateFormat };
   if (!query) {
     return Query.parse('', parseOptions);
   }
