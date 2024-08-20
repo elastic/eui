@@ -357,10 +357,10 @@ exports[`EuiSelectable search value supports inheriting initialSearchValue from 
       style="--euiFormControlLeftIconsCount: 1; --euiFormControlRightIconsCount: 1;"
     >
       <div
-        class="euiFormControlLayoutIcons euiFormControlLayoutIcons--left euiFormControlLayoutIcons--absolute"
+        class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-absolute-left"
       >
         <span
-          class="euiFormControlLayoutCustomIcon"
+          class="euiFormControlLayoutCustomIcon emotion-euiFormControlLayoutCustomIcon"
         >
           <span
             aria-hidden="true"
@@ -382,16 +382,16 @@ exports[`EuiSelectable search value supports inheriting initialSearchValue from 
         value="default value"
       />
       <div
-        class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right euiFormControlLayoutIcons--absolute"
+        class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-absolute-right"
       >
         <button
-          aria-label="Clear input"
-          class="euiFormControlLayoutClearButton"
+          aria-label="Clear search input"
+          class="euiFormControlLayoutClearButton emotion-euiFormControlLayoutClearButton"
           data-test-subj="clearSearchButton"
           type="button"
         >
           <span
-            class="euiFormControlLayoutClearButton__icon"
+            class="euiFormControlLayoutClearButton__icon emotion-euiFormControlLayoutClearButton__icon-m"
             data-euiicon-type="cross"
           />
         </button>

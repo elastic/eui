@@ -22,21 +22,21 @@ export type EuiHeaderLinkProps = EuiButtonEmptyProps & {
 export const EuiHeaderLink: FunctionComponent<EuiHeaderLinkProps> = ({
   isActive,
   className,
+  size = 's',
   ...rest
 }) => {
   const classes = classNames(
     'euiHeaderLink',
-    {
-      'euiHeaderLink-isActive': isActive,
-    },
+    { 'euiHeaderLink-isActive': isActive },
     className
   );
 
-  const props = {
-    color: isActive ? 'primary' : 'text',
-    ...rest,
-    className: classes,
-  };
-
-  return <EuiButtonEmpty {...(props as EuiButtonEmptyProps)} />;
+  return (
+    <EuiButtonEmpty
+      className={classes}
+      color={isActive ? 'primary' : 'text'}
+      size={size}
+      {...rest}
+    />
+  );
 };

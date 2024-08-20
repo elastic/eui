@@ -351,6 +351,7 @@ export class EuiComboBoxInput<T> extends Component<
               inputId={id}
               isLoading={isLoading}
               isInvalid={isInvalid}
+              isDisabled={isDisabled}
               compressed={compressed}
               fullWidth={fullWidth}
               prepend={prepend}

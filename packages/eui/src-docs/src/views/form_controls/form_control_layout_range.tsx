@@ -19,15 +19,15 @@ export default () => (
       fullWidth
       startControl={
         <EuiFieldNumber
+          controlOnly
           placeholder="0"
-          className="euiFieldNumber"
           aria-label="Use aria labels when no actual label is in use"
         />
       }
       endControl={
         <EuiFieldNumber
+          controlOnly
           placeholder="100"
-          className="euiFieldNumber"
           aria-label="Use aria labels when no actual label is in use"
         />
       }
@@ -36,15 +36,15 @@ export default () => (
     <EuiFormControlLayoutDelimited
       startControl={
         <EuiFieldNumber
+          controlOnly
           placeholder="0"
-          className="euiFieldNumber"
           aria-label="Use aria labels when no actual label is in use"
         />
       }
       endControl={
         <EuiFieldNumber
+          controlOnly
           placeholder="100"
-          className="euiFieldNumber"
           aria-label="Use aria labels when no actual label is in use"
         />
       }
@@ -54,15 +54,15 @@ export default () => (
       append={<EuiFormLabel>px</EuiFormLabel>}
       startControl={
         <EuiFieldNumber
+          controlOnly
           placeholder="0"
-          className="euiFieldNumber"
           aria-label="Use aria labels when no actual label is in use"
         />
       }
       endControl={
         <EuiFieldNumber
+          controlOnly
           placeholder="100"
-          className="euiFieldNumber"
           aria-label="Use aria labels when no actual label is in use"
         />
       }
@@ -73,14 +73,14 @@ export default () => (
       startControl={
         <EuiFieldNumber
           placeholder="0"
-          className="euiFieldNumber"
+          controlOnly
           aria-label="Use aria labels when no actual label is in use"
         />
       }
       endControl={
         <EuiFieldNumber
+          controlOnly
           placeholder="100"
-          className="euiFieldNumber"
           aria-label="Use aria labels when no actual label is in use"
         />
       }
@@ -91,15 +91,15 @@ export default () => (
       isLoading
       startControl={
         <EuiFieldNumber
+          controlOnly
           placeholder="0"
-          className="euiFieldNumber"
           aria-label="Use aria labels when no actual label is in use"
         />
       }
       endControl={
         <EuiFieldNumber
+          controlOnly
           placeholder="100"
-          className="euiFieldNumber"
           aria-label="Use aria labels when no actual label is in use"
         />
       }
@@ -109,15 +109,15 @@ export default () => (
       isLoading
       startControl={
         <EuiFieldNumber
+          controlOnly
           placeholder="0"
-          className="euiFieldNumber"
           aria-label="Use aria labels when no actual label is in use"
         />
       }
       endControl={
         <EuiFieldNumber
+          controlOnly
           placeholder="100"
-          className="euiFieldNumber"
           aria-label="Use aria labels when no actual label is in use"
         />
       }
@@ -127,15 +127,15 @@ export default () => (
       compressed
       startControl={
         <EuiFieldNumber
+          controlOnly
           placeholder="0"
-          className="euiFieldNumber"
           aria-label="Use aria labels when no actual label is in use"
         />
       }
       endControl={
         <EuiFieldNumber
+          controlOnly
           placeholder="100"
-          className="euiFieldNumber"
           aria-label="Use aria labels when no actual label is in use"
         />
       }
@@ -145,16 +145,16 @@ export default () => (
       prepend={<EuiFormLabel>Add</EuiFormLabel>}
       startControl={
         <EuiFieldNumber
+          controlOnly
           placeholder="0"
-          className="euiFieldNumber"
           aria-label="Use aria labels when no actual label is in use"
         />
       }
       delimiter="+"
       endControl={
         <EuiFieldNumber
+          controlOnly
           placeholder="100"
-          className="euiFieldNumber"
           aria-label="Use aria labels when no actual label is in use"
         />
       }
@@ -164,16 +164,16 @@ export default () => (
       prepend={<EuiFormLabel>Merge</EuiFormLabel>}
       startControl={
         <EuiFieldNumber
+          controlOnly
           placeholder="0"
-          className="euiFieldNumber"
           aria-label="Use aria labels when no actual label is in use"
         />
       }
       delimiter={<EuiIcon type="merge" />}
       endControl={
         <EuiFieldNumber
+          controlOnly
           placeholder="100"
-          className="euiFieldNumber"
           aria-label="Use aria labels when no actual label is in use"
         />
       }
@@ -184,16 +184,16 @@ export default () => (
       prepend={<EuiFormLabel>Read only</EuiFormLabel>}
       startControl={
         <EuiFieldNumber
+          controlOnly
           placeholder="0"
-          className="euiFieldNumber"
           readOnly
           aria-label="Use aria labels when no actual label is in use"
         />
       }
       endControl={
         <EuiFieldNumber
+          controlOnly
           placeholder="100"
-          className="euiFieldNumber"
           readOnly
           aria-label="Use aria labels when no actual label is in use"
         />
@@ -205,16 +205,16 @@ export default () => (
       prepend={<EuiFormLabel>Disabled</EuiFormLabel>}
       startControl={
         <EuiFieldNumber
+          controlOnly
           placeholder="0"
-          className="euiFieldNumber"
           disabled
           aria-label="Use aria labels when no actual label is in use"
         />
       }
       endControl={
         <EuiFieldNumber
+          controlOnly
           placeholder="100"
-          className="euiFieldNumber"
           disabled
           aria-label="Use aria labels when no actual label is in use"
         />

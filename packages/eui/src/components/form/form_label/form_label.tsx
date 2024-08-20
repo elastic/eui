@@ -12,7 +12,11 @@ import React, {
   HTMLAttributes,
 } from 'react';
 import classNames from 'classnames';
+
+import { useEuiMemoizedStyles } from '../../../services';
 import { CommonProps, ExclusiveUnion } from '../../common';
+
+import { euiFormLabelStyles } from './form_label.styles';
 
 interface EuiFormLabelCommonProps {
   isFocused?: boolean;
@@ -54,6 +58,14 @@ export const EuiFormLabel: FunctionComponent<EuiFormLabelProps> = ({
   className,
   ...rest
 }: EuiFormLabelProps) => {
+  const styles = useEuiMemoizedStyles(euiFormLabelStyles);
+  const cssStyles = [
+    styles.euiFormLabel,
+    !isDisabled && styles.notDisabled,
+    isInvalid && styles.invalid,
+    isFocused && styles.focused,
+  ];
+
   const classes = classNames('euiFormLabel', className, {
     'euiFormLabel-isFocused': isFocused,
     'euiFormLabel-isInvalid': isInvalid,
@@ -63,6 +75,7 @@ export const EuiFormLabel: FunctionComponent<EuiFormLabelProps> = ({
   if (type === 'legend') {
     return (
       <legend
+        css={cssStyles}
         className={classes}
         {...(rest as HTMLAttributes<HTMLLegendElement>)}
       >
@@ -72,6 +85,7 @@ export const EuiFormLabel: FunctionComponent<EuiFormLabelProps> = ({
   } else {
     return (
       <label
+        css={cssStyles}
         className={classes}
         {...(rest as LabelHTMLAttributes<HTMLLabelElement>)}
       >

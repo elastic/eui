@@ -13,13 +13,14 @@ import React, {
   InputHTMLAttributes,
   LabelHTMLAttributes,
   useCallback,
-  useMemo,
 } from 'react';
-import { css } from '@emotion/react';
 import classNames from 'classnames';
 
-import { useCombinedRefs } from '../../../services';
+import { useCombinedRefs, useEuiMemoizedStyles } from '../../../services';
 import { CommonProps } from '../../common';
+import { EuiIcon } from '../../icon';
+
+import { euiCheckboxStyles } from './checkbox.styles';
 
 export interface EuiCheckboxProps
   extends CommonProps,
@@ -39,43 +40,45 @@ export interface EuiCheckboxProps
 
 export const EuiCheckbox: FunctionComponent<EuiCheckboxProps> = ({
   className,
-  css: customCss,
   id,
   checked = false,
   label,
   onChange,
   type,
   disabled = false,
+  readOnly = false,
   indeterminate = false,
   inputRef,
   labelProps,
   ...rest
 }) => {
-  const classes = classNames(
-    'euiCheckbox',
-    {
-      'euiCheckbox--noLabel': !label,
-    },
-    className
-  );
+  const classes = classNames('euiCheckbox', className);
 
-  const styles = { euiCheckbox: css`` }; // TODO: Emotion conversion
-  const cssStyles = [styles.euiCheckbox, customCss];
+  const styles = useEuiMemoizedStyles(euiCheckboxStyles);
+  const inputStyles = [
+    styles.input.euiCheckbox__square,
+    disabled
+      ? checked || indeterminate
+        ? styles.input.disabled.selected
+        : styles.input.disabled.unselected
+      : checked || indeterminate
+      ? styles.input.enabled.selected
+      : styles.input.enabled.unselected,
+    readOnly && styles.input.readOnly,
+  ];
 
-  const optionalLabel = useMemo(() => {
-    if (!label) return;
+  const labelClasses = classNames('euiCheckbox__label', labelProps?.className);
+  const labelStyles = [
+    styles.label.euiCheckbox__label,
+    disabled ? styles.label.disabled : styles.label.enabled,
+    readOnly && styles.label.readOnly,
+    labelProps?.css,
+  ];
 
-    const labelClasses = classNames(
-      'euiCheckbox__label',
-      labelProps?.className
-    );
-
-    return (
-      <label {...labelProps} className={labelClasses} htmlFor={id}>
-        {label}
-      </label>
-    );
-  }, [label, labelProps, id]);
+  const iconStyles = [
+    styles.input.icon.euiCheckbox__icon,
+    indeterminate ? styles.input.icon.indeterminate : styles.input.icon.check,
+  ];
 
   // @see https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/checkbox#indeterminate_state_checkboxes
   const setIndeterminateState = useCallback(
@@ -87,21 +90,36 @@ export const EuiCheckbox: FunctionComponent<EuiCheckboxProps> = ({
   const refs = useCombinedRefs([inputRef, setIndeterminateState]);
 
   return (
-    <div css={cssStyles} className={classes}>
-      <input
-        className="euiCheckbox__input"
-        type="checkbox"
-        id={id}
-        checked={checked}
-        onChange={onChange}
-        disabled={disabled}
-        ref={refs}
-        {...rest}
-      />
+    <div css={styles.euiCheckbox} className={classes}>
+      <div css={inputStyles} className="euiCheckbox__square">
+        <EuiIcon
+          css={iconStyles}
+          type={indeterminate ? 'stopFilled' : checked ? 'check' : 'empty'}
+        />
+        <input
+          css={styles.input.euiCheckbox__input}
+          className="euiCheckbox__input"
+          type="checkbox"
+          id={id}
+          checked={checked}
+          onChange={onChange}
+          disabled={disabled}
+          readOnly={readOnly}
+          ref={refs}
+          {...rest}
+        />
+      </div>
 
-      <div className="euiCheckbox__square" />
-
-      {optionalLabel}
+      {label && (
+        <label
+          {...labelProps}
+          css={labelStyles}
+          className={labelClasses}
+          htmlFor={id}
+        >
+          {label}
+        </label>
+      )}
     </div>
   );
 };

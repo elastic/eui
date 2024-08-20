@@ -5,10 +5,10 @@ exports[`EuiDatePicker localization accepts the locale prop 1`] = `
   class="euiDatePicker testClass1 testClass2 emotion-euiDatePicker-inline-shadow-euiTestCss"
 >
   <div
-    class="euiFormControlLayout euiFormControlLayoutDelimited emotion-euiFormControlLayout"
+    class="euiFormControlLayout emotion-euiFormControlLayout-group"
   >
     <div
-      class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper"
+      class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper-inGroup-prependOnly-appendOnly"
     >
       <div
         class="react-datepicker emotion-euiReactDatePicker"
@@ -484,10 +484,10 @@ exports[`EuiDatePicker localization inherits locale from context 1`] = `
   class="euiDatePicker testClass1 testClass2 emotion-euiDatePicker-inline-shadow-euiTestCss"
 >
   <div
-    class="euiFormControlLayout euiFormControlLayoutDelimited emotion-euiFormControlLayout"
+    class="euiFormControlLayout emotion-euiFormControlLayout-group"
   >
     <div
-      class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper"
+      class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper-inGroup-prependOnly-appendOnly"
     >
       <div
         class="react-datepicker emotion-euiReactDatePicker"
@@ -970,10 +970,10 @@ exports[`EuiDatePicker renders 1`] = `
       style="--euiFormControlLeftIconsCount: 1;"
     >
       <div
-        class="euiFormControlLayoutIcons euiFormControlLayoutIcons--left euiFormControlLayoutIcons--absolute"
+        class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-absolute-left"
       >
         <span
-          class="euiFormControlLayoutCustomIcon"
+          class="euiFormControlLayoutCustomIcon emotion-euiFormControlLayoutCustomIcon"
         >
           <span
             aria-hidden="true"

@@ -2,7 +2,7 @@
 
 exports[`EuiHeaderLink can render as specific color 1`] = `
 <button
-  class="euiButtonEmpty euiHeaderLink emotion-euiButtonDisplay-euiButtonEmpty-m-empty-danger"
+  class="euiButtonEmpty euiHeaderLink emotion-euiButtonDisplay-euiButtonEmpty-s-empty-danger"
   type="button"
 >
   <span
@@ -18,7 +18,7 @@ exports[`EuiHeaderLink can render as specific color 1`] = `
 exports[`EuiHeaderLink is rendered 1`] = `
 <button
   aria-label="aria-label"
-  class="euiButtonEmpty euiHeaderLink testClass1 testClass2 emotion-euiButtonDisplay-euiButtonEmpty-m-empty-text-euiTestCss"
+  class="euiButtonEmpty euiHeaderLink testClass1 testClass2 emotion-euiButtonDisplay-euiButtonEmpty-s-empty-text-euiTestCss"
   data-test-subj="test subject string"
   type="button"
 >
@@ -34,7 +34,7 @@ exports[`EuiHeaderLink is rendered 1`] = `
 
 exports[`EuiHeaderLink is rendered as active 1`] = `
 <button
-  class="euiButtonEmpty euiHeaderLink euiHeaderLink-isActive emotion-euiButtonDisplay-euiButtonEmpty-m-empty-primary"
+  class="euiButtonEmpty euiHeaderLink euiHeaderLink-isActive emotion-euiButtonDisplay-euiButtonEmpty-s-empty-primary"
   type="button"
 >
   <span
