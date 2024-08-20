@@ -2,31 +2,45 @@
 
 exports[`EuiDatePicker localization accepts the locale prop 1`] = `
 <span
-  class="euiDatePicker euiDatePicker--inline euiDatePicker--shadow"
+  class="euiDatePicker testClass1 testClass2 emotion-euiDatePicker-inline-shadow-euiTestCss"
 >
   <div
-    class="euiFormControlLayout euiFormControlLayoutDelimited"
+    class="euiFormControlLayout emotion-euiFormControlLayout-group"
   >
     <div
-      class="euiFormControlLayout__childrenWrapper"
+      class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper-inGroup-prependOnly-appendOnly"
     >
       <div
-        class="react-datepicker"
+        class="react-datepicker emotion-euiReactDatePicker"
       >
         <div
           class="react-datepicker__triangle"
         />
         <button
-          class="react-datepicker__navigation react-datepicker__navigation--previous"
+          aria-label="Previous Month"
+          class="euiButtonIcon react-datepicker__navigation react-datepicker__navigation--previous emotion-euiButtonIcon-s-empty-text"
+          title="Previous Month"
           type="button"
         >
-          Previous Month
+          <span
+            aria-hidden="true"
+            class="euiButtonIcon__icon"
+            color="inherit"
+            data-euiicon-type="sortLeft"
+          />
         </button>
         <button
-          class="react-datepicker__navigation react-datepicker__navigation--next"
+          aria-label="Next month"
+          class="euiButtonIcon react-datepicker__navigation react-datepicker__navigation--next emotion-euiButtonIcon-s-empty-text"
+          title="Next month"
           type="button"
         >
-          Next month
+          <span
+            aria-hidden="true"
+            class="euiButtonIcon__icon"
+            color="inherit"
+            data-euiicon-type="sortRight"
+          />
         </button>
         <div
           class="react-datepicker__month-container"
@@ -34,11 +48,6 @@ exports[`EuiDatePicker localization accepts the locale prop 1`] = `
           <div
             class="react-datepicker__header"
           >
-            <div
-              class="react-datepicker__current-month react-datepicker__current-month--hasYearDropdown react-datepicker__current-month--hasMonthDropdown"
-            >
-              7월 2019
-            </div>
             <div
               class="react-datepicker__header__dropdown react-datepicker__header__dropdown--scroll"
             >
@@ -52,13 +61,15 @@ exports[`EuiDatePicker localization accepts the locale prop 1`] = `
                   tabindex="0"
                 >
                   <span
-                    class="react-datepicker__month-read-view--down-arrow"
-                  />
-                  <span
                     class="react-datepicker__month-read-view--selected-month"
                   >
                     7월
                   </span>
+                  <span
+                    class="react-datepicker__month-read-view--down-arrow"
+                    color="subdued"
+                    data-euiicon-type="arrowDown"
+                  />
                 </div>
               </div>
               <div
@@ -71,13 +82,15 @@ exports[`EuiDatePicker localization accepts the locale prop 1`] = `
                   tabindex="0"
                 >
                   <span
-                    class="react-datepicker__year-read-view--down-arrow"
-                  />
-                  <span
                     class="react-datepicker__year-read-view--selected-year"
                   >
                     2019
                   </span>
+                  <span
+                    class="react-datepicker__year-read-view--down-arrow"
+                    color="subdued"
+                    data-euiicon-type="arrowDown"
+                  />
                 </div>
               </div>
             </div>
@@ -468,31 +481,45 @@ exports[`EuiDatePicker localization accepts the locale prop 1`] = `
 
 exports[`EuiDatePicker localization inherits locale from context 1`] = `
 <span
-  class="euiDatePicker euiDatePicker--inline euiDatePicker--shadow"
+  class="euiDatePicker testClass1 testClass2 emotion-euiDatePicker-inline-shadow-euiTestCss"
 >
   <div
-    class="euiFormControlLayout euiFormControlLayoutDelimited"
+    class="euiFormControlLayout emotion-euiFormControlLayout-group"
   >
     <div
-      class="euiFormControlLayout__childrenWrapper"
+      class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper-inGroup-prependOnly-appendOnly"
     >
       <div
-        class="react-datepicker"
+        class="react-datepicker emotion-euiReactDatePicker"
       >
         <div
           class="react-datepicker__triangle"
         />
         <button
-          class="react-datepicker__navigation react-datepicker__navigation--previous"
+          aria-label="Previous Month"
+          class="euiButtonIcon react-datepicker__navigation react-datepicker__navigation--previous emotion-euiButtonIcon-s-empty-text"
+          title="Previous Month"
           type="button"
         >
-          Previous Month
+          <span
+            aria-hidden="true"
+            class="euiButtonIcon__icon"
+            color="inherit"
+            data-euiicon-type="sortLeft"
+          />
         </button>
         <button
-          class="react-datepicker__navigation react-datepicker__navigation--next"
+          aria-label="Next month"
+          class="euiButtonIcon react-datepicker__navigation react-datepicker__navigation--next emotion-euiButtonIcon-s-empty-text"
+          title="Next month"
           type="button"
         >
-          Next month
+          <span
+            aria-hidden="true"
+            class="euiButtonIcon__icon"
+            color="inherit"
+            data-euiicon-type="sortRight"
+          />
         </button>
         <div
           class="react-datepicker__month-container"
@@ -500,11 +527,6 @@ exports[`EuiDatePicker localization inherits locale from context 1`] = `
           <div
             class="react-datepicker__header"
           >
-            <div
-              class="react-datepicker__current-month react-datepicker__current-month--hasYearDropdown react-datepicker__current-month--hasMonthDropdown"
-            >
-              juillet 2019
-            </div>
             <div
               class="react-datepicker__header__dropdown react-datepicker__header__dropdown--scroll"
             >
@@ -518,13 +540,15 @@ exports[`EuiDatePicker localization inherits locale from context 1`] = `
                   tabindex="0"
                 >
                   <span
-                    class="react-datepicker__month-read-view--down-arrow"
-                  />
-                  <span
                     class="react-datepicker__month-read-view--selected-month"
                   >
                     juillet
                   </span>
+                  <span
+                    class="react-datepicker__month-read-view--down-arrow"
+                    color="subdued"
+                    data-euiicon-type="arrowDown"
+                  />
                 </div>
               </div>
               <div
@@ -537,13 +561,15 @@ exports[`EuiDatePicker localization inherits locale from context 1`] = `
                   tabindex="0"
                 >
                   <span
-                    class="react-datepicker__year-read-view--down-arrow"
-                  />
-                  <span
                     class="react-datepicker__year-read-view--selected-year"
                   >
                     2019
                   </span>
+                  <span
+                    class="react-datepicker__year-read-view--down-arrow"
+                    color="subdued"
+                    data-euiicon-type="arrowDown"
+                  />
                 </div>
               </div>
             </div>
@@ -934,19 +960,20 @@ exports[`EuiDatePicker localization inherits locale from context 1`] = `
 
 exports[`EuiDatePicker renders 1`] = `
 <span
-  class="euiDatePicker"
+  class="euiDatePicker testClass1 testClass2 emotion-euiDatePicker-euiTestCss"
 >
   <div
-    class="euiFormControlLayout"
+    class="euiFormControlLayout emotion-euiFormControlLayout"
   >
     <div
-      class="euiFormControlLayout__childrenWrapper"
+      class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper"
+      style="--euiFormControlLeftIconsCount: 1;"
     >
       <div
-        class="euiFormControlLayoutIcons euiFormControlLayoutIcons--left euiFormControlLayoutIcons--absolute"
+        class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-absolute-left"
       >
         <span
-          class="euiFormControlLayoutCustomIcon"
+          class="euiFormControlLayoutCustomIcon emotion-euiFormControlLayoutCustomIcon"
         >
           <span
             aria-hidden="true"
@@ -963,7 +990,7 @@ exports[`EuiDatePicker renders 1`] = `
         >
           <input
             aria-label="Press the down key to open a popover containing a calendar."
-            class="euiDatePicker euiFieldText euiFieldText--withIcon testClass1 testClass2 emotion-euiTestCss"
+            class="euiFieldText euiDatePicker testClass1 testClass2 emotion-euiFieldText-controlOnly-euiTestCss"
             type="text"
             value=""
           />

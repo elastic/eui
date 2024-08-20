@@ -10,10 +10,55 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 
 import { moveStorybookControlsToCategory } from '../../../.storybook/utils';
+import { EuiStepHorizontalProps } from './step_horizontal';
 import {
   EuiStepsHorizontal,
   EuiStepsHorizontalProps,
 } from './steps_horizontal';
+
+const onClick = action('onClick');
+
+const steps: EuiStepHorizontalProps[] = [
+  {
+    title: 'Step 1',
+    onClick,
+  },
+  {
+    title: 'Step 2',
+    status: 'current',
+    onClick,
+  },
+  {
+    title: 'Step 3',
+    status: 'complete',
+    onClick,
+  },
+  {
+    title: 'Step 4',
+    status: 'incomplete',
+    onClick,
+  },
+  {
+    title: 'Step 5',
+    status: 'warning',
+    onClick,
+  },
+  {
+    title: 'Step 6',
+    status: 'danger',
+    onClick,
+  },
+  {
+    title: 'Step 7',
+    status: 'loading',
+    onClick,
+  },
+  {
+    title: 'Step 8',
+    status: 'disabled',
+    onClick,
+  },
+];
 
 const meta: Meta<EuiStepsHorizontalProps> = {
   title: 'Navigation/EuiSteps/EuiStepsHorizontal',
@@ -27,50 +72,21 @@ moveStorybookControlsToCategory(meta, ['size'], 'EuiStepHorizontal props');
 export default meta;
 type Story = StoryObj<EuiStepsHorizontalProps>;
 
-const onClick = action('onClick');
-
 export const Playground: Story = {
   args: {
-    steps: [
-      {
-        title: 'Step 1',
-        onClick,
-      },
-      {
-        title: 'Step 2',
-        status: 'current',
-        onClick,
-      },
-      {
-        title: 'Step 3',
-        status: 'complete',
-        onClick,
-      },
-      {
-        title: 'Step 4',
-        status: 'incomplete',
-        onClick,
-      },
-      {
-        title: 'Step 5',
-        status: 'warning',
-        onClick,
-      },
-      {
-        title: 'Step 6',
-        status: 'danger',
-        onClick,
-      },
-      {
-        title: 'Step 7',
-        status: 'loading',
-        onClick,
-      },
-      {
-        title: 'Step 8',
-        status: 'disabled',
-        onClick,
-      },
-    ],
+    steps,
+  },
+};
+
+export const UnorderedSteps: Story = {
+  tags: ['vrt-only'],
+  parameters: {
+    controls: {
+      include: ['steps', 'size'],
+    },
+  },
+  args: {
+    steps,
+    size: 'xs',
   },
 };

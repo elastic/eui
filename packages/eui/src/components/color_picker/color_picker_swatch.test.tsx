@@ -8,11 +8,14 @@
 
 import React from 'react';
 import { requiredProps } from '../../test';
+import { shouldRenderCustomStyles } from '../../test/internal';
 import { render } from '../../test/rtl';
 
 import { EuiColorPickerSwatch } from './color_picker_swatch';
 
 describe('EuiColorPickerSwatch', () => {
+  shouldRenderCustomStyles(<EuiColorPickerSwatch />);
+
   test('is rendered', () => {
     const { container } = render(<EuiColorPickerSwatch {...requiredProps} />);
 

@@ -29,8 +29,9 @@ import { resolveWidthAsStyle } from './utils';
 import { useEuiTableIsResponsive } from './mobile/responsive_context';
 import { EuiTableCellContent } from './_table_cell_content';
 import { euiTableHeaderFooterCellStyles } from './table_cells_shared.styles';
+import { HEADER_CELL_SCOPE } from './table_header_cell_shared';
 
-export type TableHeaderCellScope = 'col' | 'row' | 'colgroup' | 'rowgroup';
+export type TableHeaderCellScope = (typeof HEADER_CELL_SCOPE)[number];
 
 export type EuiTableHeaderCellProps = CommonProps &
   Omit<ThHTMLAttributes<HTMLTableHeaderCellElement>, 'align' | 'scope'> & {

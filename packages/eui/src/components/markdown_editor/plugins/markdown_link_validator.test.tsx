@@ -71,7 +71,7 @@ describe('mutateLinkToText', () => {
         children: [{ value: 'Cats' }],
       })
     ).toMatchInlineSnapshot(`
-      Object {
+      {
         "type": "text",
         "value": "[Cats](https://cats.com)",
       }
@@ -84,7 +84,7 @@ describe('mutateLinkToText', () => {
         children: [],
       })
     ).toMatchInlineSnapshot(`
-      Object {
+      {
         "type": "text",
         "value": "[](https://cats.com)",
       }
@@ -99,7 +99,7 @@ describe('mutateLinkToText', () => {
         children: [{ value: 'ftp://www.example.com' }],
       })
     ).toMatchInlineSnapshot(`
-      Object {
+      {
         "type": "text",
         "value": "ftp://www.example.com",
       }
@@ -114,7 +114,7 @@ describe('mutateLinkToText', () => {
         children: [{ value: 'someone@elastic.co' }],
       })
     ).toMatchInlineSnapshot(`
-      Object {
+      {
         "type": "text",
         "value": "[someone@elastic.co](mailto:someone@elastic.co)",
       }

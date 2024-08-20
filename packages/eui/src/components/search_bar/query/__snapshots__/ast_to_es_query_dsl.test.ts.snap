@@ -1,34 +1,34 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`astToEsQueryDsl ast - '' 1`] = `
-Object {
-  "match_all": Object {},
+{
+  "match_all": {},
 }
 `;
 
 exports[`astToEsQueryDsl ast - '(john OR -mary)' 1`] = `
-Object {
-  "bool": Object {
-    "must": Array [
-      Object {
-        "bool": Object {
-          "should": Array [
-            Object {
-              "bool": Object {
-                "must": Array [
-                  Object {
-                    "simple_query_string": Object {
+{
+  "bool": {
+    "must": [
+      {
+        "bool": {
+          "should": [
+            {
+              "bool": {
+                "must": [
+                  {
+                    "simple_query_string": {
                       "query": "+john",
                     },
                   },
                 ],
               },
             },
-            Object {
-              "bool": Object {
-                "must_not": Array [
-                  Object {
-                    "simple_query_string": Object {
+            {
+              "bool": {
+                "must_not": [
+                  {
+                    "simple_query_string": {
                       "query": "+mary",
                     },
                   },
@@ -44,23 +44,23 @@ Object {
 `;
 
 exports[`astToEsQueryDsl ast - '-group:es group:kibana -group:beats group:logstash' 1`] = `
-Object {
-  "bool": Object {
-    "must": Array [
-      Object {
-        "bool": Object {
-          "must": Array [
-            Object {
-              "match": Object {
-                "group": Object {
+{
+  "bool": {
+    "must": [
+      {
+        "bool": {
+          "must": [
+            {
+              "match": {
+                "group": {
                   "operator": "and",
                   "query": "kibana",
                 },
               },
             },
-            Object {
-              "match": Object {
-                "group": Object {
+            {
+              "match": {
+                "group": {
                   "operator": "and",
                   "query": "logstash",
                 },
@@ -70,21 +70,21 @@ Object {
         },
       },
     ],
-    "must_not": Array [
-      Object {
-        "bool": Object {
-          "must": Array [
-            Object {
-              "match": Object {
-                "group": Object {
+    "must_not": [
+      {
+        "bool": {
+          "must": [
+            {
+              "match": {
+                "group": {
                   "operator": "and",
                   "query": "es",
                 },
               },
             },
-            Object {
-              "match": Object {
-                "group": Object {
+            {
+              "match": {
+                "group": {
                   "operator": "and",
                   "query": "beats",
                 },
@@ -99,24 +99,24 @@ Object {
 `;
 
 exports[`astToEsQueryDsl ast - 'is:online group:kibana john' 1`] = `
-Object {
-  "bool": Object {
-    "must": Array [
-      Object {
-        "simple_query_string": Object {
+{
+  "bool": {
+    "must": [
+      {
+        "simple_query_string": {
           "query": "+john",
         },
       },
-      Object {
-        "match": Object {
-          "group": Object {
+      {
+        "match": {
+          "group": {
             "operator": "and",
             "query": "kibana",
           },
         },
       },
-      Object {
-        "term": Object {
+      {
+        "term": {
           "online": true,
         },
       },
@@ -126,28 +126,28 @@ Object {
 `;
 
 exports[`astToEsQueryDsl ast - 'john -doe is:online group:eng group:es -group:kibana -is:active' 1`] = `
-Object {
-  "bool": Object {
-    "must": Array [
-      Object {
-        "simple_query_string": Object {
+{
+  "bool": {
+    "must": [
+      {
+        "simple_query_string": {
           "query": "+john",
         },
       },
-      Object {
-        "bool": Object {
-          "must": Array [
-            Object {
-              "match": Object {
-                "group": Object {
+      {
+        "bool": {
+          "must": [
+            {
+              "match": {
+                "group": {
                   "operator": "and",
                   "query": "eng",
                 },
               },
             },
-            Object {
-              "match": Object {
-                "group": Object {
+            {
+              "match": {
+                "group": {
                   "operator": "and",
                   "query": "es",
                 },
@@ -156,26 +156,26 @@ Object {
           ],
         },
       },
-      Object {
-        "term": Object {
+      {
+        "term": {
           "online": true,
         },
       },
-      Object {
-        "term": Object {
+      {
+        "term": {
           "active": false,
         },
       },
     ],
-    "must_not": Array [
-      Object {
-        "simple_query_string": Object {
+    "must_not": [
+      {
+        "simple_query_string": {
           "query": "+doe",
         },
       },
-      Object {
-        "match": Object {
-          "group": Object {
+      {
+        "match": {
+          "group": {
             "operator": "and",
             "query": "kibana",
           },
@@ -187,18 +187,18 @@ Object {
 `;
 
 exports[`astToEsQueryDsl ast - 'john -sales' 1`] = `
-Object {
-  "bool": Object {
-    "must": Array [
-      Object {
-        "simple_query_string": Object {
+{
+  "bool": {
+    "must": [
+      {
+        "simple_query_string": {
           "query": "+john",
         },
       },
     ],
-    "must_not": Array [
-      Object {
-        "simple_query_string": Object {
+    "must_not": [
+      {
+        "simple_query_string": {
           "query": "+sales",
         },
       },
@@ -208,27 +208,27 @@ Object {
 `;
 
 exports[`astToEsQueryDsl ast - 'john group:(eng or "marketing org") -group:"kibana team" 1`] = `
-Object {
-  "bool": Object {
-    "must": Array [
-      Object {
-        "simple_query_string": Object {
+{
+  "bool": {
+    "must": [
+      {
+        "simple_query_string": {
           "query": "+john",
         },
       },
-      Object {
-        "bool": Object {
-          "should": Array [
-            Object {
-              "match": Object {
-                "group": Object {
+      {
+        "bool": {
+          "should": [
+            {
+              "match": {
+                "group": {
                   "operator": "or",
                   "query": "eng",
                 },
               },
             },
-            Object {
-              "match_phrase": Object {
+            {
+              "match_phrase": {
                 "group": "marketing org",
               },
             },
@@ -236,9 +236,9 @@ Object {
         },
       },
     ],
-    "must_not": Array [
-      Object {
-        "match_phrase": Object {
+    "must_not": [
+      {
+        "match_phrase": {
           "group": "kibana team",
         },
       },
@@ -248,28 +248,28 @@ Object {
 `;
 
 exports[`astToEsQueryDsl ast - 'john group:(eng or es) -group:kibana' 1`] = `
-Object {
-  "bool": Object {
-    "must": Array [
-      Object {
-        "simple_query_string": Object {
+{
+  "bool": {
+    "must": [
+      {
+        "simple_query_string": {
           "query": "+john",
         },
       },
-      Object {
-        "bool": Object {
-          "should": Array [
-            Object {
-              "match": Object {
-                "group": Object {
+      {
+        "bool": {
+          "should": [
+            {
+              "match": {
+                "group": {
                   "operator": "or",
                   "query": "eng",
                 },
               },
             },
-            Object {
-              "match": Object {
-                "group": Object {
+            {
+              "match": {
+                "group": {
                   "operator": "or",
                   "query": "es",
                 },
@@ -279,10 +279,10 @@ Object {
         },
       },
     ],
-    "must_not": Array [
-      Object {
-        "match": Object {
-          "group": Object {
+    "must_not": [
+      {
+        "match": {
+          "group": {
             "operator": "and",
             "query": "kibana",
           },
@@ -294,18 +294,18 @@ Object {
 `;
 
 exports[`astToEsQueryDsl ast - (name:john OR name:fred) 1`] = `
-Object {
-  "bool": Object {
-    "must": Array [
-      Object {
-        "bool": Object {
-          "should": Array [
-            Object {
-              "bool": Object {
-                "must": Array [
-                  Object {
-                    "match": Object {
-                      "name": Object {
+{
+  "bool": {
+    "must": [
+      {
+        "bool": {
+          "should": [
+            {
+              "bool": {
+                "must": [
+                  {
+                    "match": {
+                      "name": {
                         "operator": "and",
                         "query": "john",
                       },
@@ -314,12 +314,12 @@ Object {
                 ],
               },
             },
-            Object {
-              "bool": Object {
-                "must": Array [
-                  Object {
-                    "match": Object {
-                      "name": Object {
+            {
+              "bool": {
+                "must": [
+                  {
+                    "match": {
+                      "name": {
                         "operator": "and",
                         "query": "fred",
                       },
@@ -337,18 +337,18 @@ Object {
 `;
 
 exports[`astToEsQueryDsl ast - (name:john) 1`] = `
-Object {
-  "bool": Object {
-    "must": Array [
-      Object {
-        "bool": Object {
-          "should": Array [
-            Object {
-              "bool": Object {
-                "must": Array [
-                  Object {
-                    "match": Object {
-                      "name": Object {
+{
+  "bool": {
+    "must": [
+      {
+        "bool": {
+          "should": [
+            {
+              "bool": {
+                "must": [
+                  {
+                    "match": {
+                      "name": {
                         "operator": "and",
                         "query": "john",
                       },
@@ -366,35 +366,35 @@ Object {
 `;
 
 exports[`astToEsQueryDsl ast - -count<=4 size<5 age>=3 -number>9 1`] = `
-Object {
-  "bool": Object {
-    "must": Array [
-      Object {
-        "range": Object {
-          "size": Object {
+{
+  "bool": {
+    "must": [
+      {
+        "range": {
+          "size": {
             "lt": 5,
           },
         },
       },
-      Object {
-        "range": Object {
-          "age": Object {
+      {
+        "range": {
+          "age": {
             "gte": 3,
           },
         },
       },
     ],
-    "must_not": Array [
-      Object {
-        "range": Object {
-          "count": Object {
+    "must_not": [
+      {
+        "range": {
+          "count": {
             "lte": 4,
           },
         },
       },
-      Object {
-        "range": Object {
-          "number": Object {
+      {
+        "range": {
+          "number": {
             "gt": 9,
           },
         },
@@ -405,12 +405,12 @@ Object {
 `;
 
 exports[`astToEsQueryDsl ast - count>3 1`] = `
-Object {
-  "bool": Object {
-    "must": Array [
-      Object {
-        "range": Object {
-          "count": Object {
+{
+  "bool": {
+    "must": [
+      {
+        "range": {
+          "count": {
             "gt": 3,
           },
         },
@@ -421,19 +421,19 @@ Object {
 `;
 
 exports[`astToEsQueryDsl ast - date:'2004-03' -date<'2004-03-10' 1`] = `
-Object {
-  "bool": Object {
-    "must": Array [
-      Object {
-        "match": Object {
+{
+  "bool": {
+    "must": [
+      {
+        "match": {
           "date": "2004-03-01T00:00:00Z||/M",
         },
       },
     ],
-    "must_not": Array [
-      Object {
-        "range": Object {
-          "date": Object {
+    "must_not": [
+      {
+        "range": {
+          "date": {
             "lt": "2004-03-10T00:00:00Z||/d",
           },
         },
@@ -444,21 +444,21 @@ Object {
 `;
 
 exports[`astToEsQueryDsl ast - date>'2004-02' -otherDate>='2004-03-10' 1`] = `
-Object {
-  "bool": Object {
-    "must": Array [
-      Object {
-        "range": Object {
-          "date": Object {
+{
+  "bool": {
+    "must": [
+      {
+        "range": {
+          "date": {
             "gte": "2004-02-01T00:00:00Z||+1M/M",
           },
         },
       },
     ],
-    "must_not": Array [
-      Object {
-        "range": Object {
-          "date": Object {
+    "must_not": [
+      {
+        "range": {
+          "date": {
             "gte": "2004-03-10T00:00:00Z||/d",
           },
         },
@@ -469,12 +469,12 @@ Object {
 `;
 
 exports[`astToEsQueryDsl ast - date>='2004-03-22' 1`] = `
-Object {
-  "bool": Object {
-    "must": Array [
-      Object {
-        "range": Object {
-          "date": Object {
+{
+  "bool": {
+    "must": [
+      {
+        "range": {
+          "date": {
             "gte": "2004-03-22T00:00:00Z||/d",
           },
         },
@@ -485,12 +485,12 @@ Object {
 `;
 
 exports[`astToEsQueryDsl ast - name:"First \\"Nickname\\" Last" 1`] = `
-Object {
-  "bool": Object {
-    "must": Array [
-      Object {
-        "match_phrase": Object {
-          "name": "First \\"Nickname\\" Last",
+{
+  "bool": {
+    "must": [
+      {
+        "match_phrase": {
+          "name": "First "Nickname" Last",
         },
       },
     ],
@@ -499,15 +499,15 @@ Object {
 `;
 
 exports[`astToEsQueryDsl ast - name:john (is:enrolled OR Teacher) 1`] = `
-Object {
-  "bool": Object {
-    "must": Array [
-      Object {
-        "bool": Object {
-          "must": Array [
-            Object {
-              "match": Object {
-                "name": Object {
+{
+  "bool": {
+    "must": [
+      {
+        "bool": {
+          "must": [
+            {
+              "match": {
+                "name": {
                   "operator": "and",
                   "query": "john",
                 },
@@ -516,25 +516,25 @@ Object {
           ],
         },
       },
-      Object {
-        "bool": Object {
-          "should": Array [
-            Object {
-              "bool": Object {
-                "must": Array [
-                  Object {
-                    "term": Object {
+      {
+        "bool": {
+          "should": [
+            {
+              "bool": {
+                "must": [
+                  {
+                    "term": {
                       "enrolled": true,
                     },
                   },
                 ],
               },
             },
-            Object {
-              "bool": Object {
-                "must": Array [
-                  Object {
-                    "simple_query_string": Object {
+            {
+              "bool": {
+                "must": [
+                  {
+                    "simple_query_string": {
                       "query": "+Teacher",
                     },
                   },
@@ -550,19 +550,19 @@ Object {
 `;
 
 exports[`astToEsQueryDsl ast·-·'"john·smith"·-"sales team"' 1`] = `
-Object {
-  "bool": Object {
-    "must": Array [
-      Object {
-        "simple_query_string": Object {
-          "query": "+\\"john smith\\"",
+{
+  "bool": {
+    "must": [
+      {
+        "simple_query_string": {
+          "query": "+"john smith"",
         },
       },
     ],
-    "must_not": Array [
-      Object {
-        "simple_query_string": Object {
-          "query": "+\\"sales team\\"",
+    "must_not": [
+      {
+        "simple_query_string": {
+          "query": "+"sales team"",
         },
       },
     ],

@@ -6,10 +6,10 @@
  * Side Public License, v 1.
  */
 
+import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import {
   disableStorybookControls,
-  hideStorybookControls,
   moveStorybookControlsToCategory,
 } from '../../../../.storybook/utils';
 
@@ -23,6 +23,7 @@ const meta: Meta<EuiFieldTextProps> = {
     icon: { control: 'text' },
     prepend: { control: 'text' },
     append: { control: 'text' },
+    value: { control: 'text' },
   },
   args: {
     // Component defaults
@@ -35,6 +36,8 @@ const meta: Meta<EuiFieldTextProps> = {
     controlOnly: false,
     // Added for easier testing
     placeholder: 'EuiFieldText',
+    id: '',
+    name: '',
   },
 };
 
@@ -45,6 +48,21 @@ disableStorybookControls(meta, ['inputRef']);
 export const Playground: Story = {};
 
 export const IconShape: Story = {
+  parameters: {
+    controls: {
+      include: [
+        'icon',
+        'compressed',
+        'fullWidth',
+        'prepend',
+        'append',
+        'isInvalid',
+        'isLoading',
+        'disabled',
+        'readOnly',
+      ],
+    },
+  },
   argTypes: { icon: { control: 'object' } },
   args: { icon: { type: 'warning', color: 'warning', side: 'left' } },
 };
@@ -56,9 +74,27 @@ moveStorybookControlsToCategory(IconShape, [
   'isLoading',
   'disabled',
   'readOnly',
-  'placeholder',
   'prepend',
   'append',
 ]);
-// Hide props that remove or won't affect the icon or its positioning
-hideStorybookControls(IconShape, ['controlOnly', 'inputRef']);
+
+export const AutoFill: Story = {
+  parameters: {
+    controls: { include: ['name', 'isInvalid'] },
+    loki: { skip: true },
+  },
+  decorators: [
+    (Story) => (
+      <form action="#">
+        In Chrome: Type any text, press Enter, then go back and select the
+        autofill suggestion. Test light+dark mode as well as invalid state
+        <br />
+        <br />
+        <Story />
+      </form>
+    ),
+  ],
+  args: {
+    name: 'autofill-test',
+  },
+};

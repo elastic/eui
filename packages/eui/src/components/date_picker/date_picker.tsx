@@ -16,20 +16,18 @@ import React, {
   RefCallback,
 } from 'react';
 import classNames from 'classnames';
+import type { Moment } from 'moment';
 
-import { Moment } from 'moment'; // eslint-disable-line import/named
-
-import { EuiFormControlLayout, useEuiValidatableControl } from '../form';
-import { EuiFormControlLayoutIconsProps } from '../form/form_control_layout/form_control_layout_icons';
-import { getFormControlClassNameForIconCount } from '../form/form_control_layout/_num_icons';
-
-import { useCombinedRefs } from '../../services';
+import { useCombinedRefs, useEuiMemoizedStyles } from '../../services';
 import { EuiI18nConsumer } from '../context';
 import { CommonProps } from '../common';
-
 import { PopoverAnchorPosition } from '../popover';
+import { EuiFormControlLayout, useEuiValidatableControl } from '../form';
+import { EuiFormControlLayoutIconsProps } from '../form/form_control_layout/form_control_layout_icons';
 
 import { ReactDatePicker, ReactDatePickerProps } from './react-datepicker';
+import { euiReactDatePickerStyles } from './react_date_picker.styles';
+import { euiDatePickerStyles } from './date_picker.styles';
 
 export const euiDatePickerDefaultDateFormat = 'MM/DD/YYYY';
 export const euiDatePickerDefaultTimeFormat = 'hh:mm A';
@@ -60,6 +58,8 @@ const unsupportedProps = [
   'showMonthYearDropdown',
   // We overridde this with `popoverPlacement`
   'popperPlacement',
+  // An internal EUI styling concern that consumers shouldn't need to access
+  'defaultInputProps',
 ] as const;
 
 type UnsupportedProps = (typeof unsupportedProps)[number];
@@ -164,7 +164,7 @@ export const EuiDatePicker: FunctionComponent<EuiDatePickerProps> = ({
   injectTimes,
   inline,
   inputRef,
-  isInvalid,
+  isInvalid: _isInvalid,
   isLoading,
   locale,
   maxDate,
@@ -188,42 +188,30 @@ export const EuiDatePicker: FunctionComponent<EuiDatePickerProps> = ({
   utcOffset,
   ...rest
 }) => {
-  const classes = classNames('euiDatePicker', {
-    'euiDatePicker--inline': inline,
-    'euiDatePicker--shadow': inline && shadow,
-  });
+  // Check for whether the passed `selected` moment date is valid
+  const isInvalid =
+    _isInvalid || (selected?.isValid() === false ? true : undefined);
 
-  const numIconsClass = controlOnly
-    ? false
-    : getFormControlClassNameForIconCount({
-        isInvalid,
-        isLoading,
-      });
+  const styles = useEuiMemoizedStyles(euiDatePickerStyles);
+  const cssStyles = [
+    styles.euiDatePicker,
+    ...(inline
+      ? [
+          styles.inline.inline,
+          isInvalid && !(disabled || readOnly) && styles.inline.invalid,
+          shadow ? styles.inline.shadow : styles.inline.noShadow,
+          disabled && styles.inline.disabled,
+          readOnly && styles.inline.readOnly,
+        ]
+      : []),
+  ];
+  const calendarStyles = useEuiMemoizedStyles(euiReactDatePickerStyles);
 
-  const datePickerClasses = classNames(
-    'euiDatePicker',
-    'euiFieldText',
-    numIconsClass,
-    !inline && {
-      'euiFieldText--fullWidth': fullWidth,
-      'euiFieldText-isLoading': isLoading,
-      'euiFieldText--compressed': compressed,
-      'euiFieldText--withIcon': showIcon,
-      'euiFieldText--isClearable': selected && onClear,
-    },
-    className
-  );
+  const classes = classNames('euiDatePicker', className);
 
-  let optionalIcon: EuiFormControlLayoutIconsProps['icon'];
-  if (inline || customInput || !showIcon) {
-    optionalIcon = undefined;
-  } else if (iconType) {
-    optionalIcon = iconType;
-  } else if (showTimeSelectOnly) {
-    optionalIcon = 'clock';
-  } else {
-    optionalIcon = 'calendar';
-  }
+  // Passed to the default EuiFieldText input, not passed to custom inputs
+  const defaultInputProps =
+    !inline && !customInput ? { compressed, fullWidth } : undefined;
 
   // In case the consumer did not alter the default date format but wants
   // to add the time select, we append the default time format
@@ -249,8 +237,12 @@ export const EuiDatePicker: FunctionComponent<EuiDatePickerProps> = ({
         return (
           <ReactDatePicker
             adjustDateOnChange={adjustDateOnChange}
-            calendarClassName={calendarClassName}
-            className={datePickerClasses}
+            calendarClassName={classNames(
+              calendarClassName,
+              calendarStyles.euiReactDatePicker
+            )}
+            className={classes}
+            defaultInputProps={defaultInputProps}
             customInput={customInput}
             dateFormat={fullDateFormat}
             dayClassName={dayClassName}
@@ -290,8 +282,19 @@ export const EuiDatePicker: FunctionComponent<EuiDatePickerProps> = ({
 
   if (controlOnly) return control;
 
+  let optionalIcon: EuiFormControlLayoutIconsProps['icon'];
+  if (inline || customInput || !showIcon) {
+    optionalIcon = undefined;
+  } else if (iconType) {
+    optionalIcon = iconType;
+  } else if (showTimeSelectOnly) {
+    optionalIcon = 'clock';
+  } else {
+    optionalIcon = 'calendar';
+  }
+
   return (
-    <span className={classes}>
+    <span css={cssStyles} className={classes}>
       <EuiFormControlLayout
         icon={optionalIcon}
         fullWidth={!inline && fullWidth}
@@ -301,12 +304,7 @@ export const EuiDatePicker: FunctionComponent<EuiDatePickerProps> = ({
         isInvalid={isInvalid}
         isDisabled={disabled}
         readOnly={readOnly}
-        className={classNames({
-          // Take advantage of `euiFormControlLayoutDelimited`'s replacement input styling
-          euiFormControlLayoutDelimited: inline,
-          'euiFormControlLayoutDelimited--isInvalid':
-            inline && isInvalid && !disabled && !readOnly,
-        })}
+        isDelimited={inline} // Styling shortcut for inline calendars
         iconsPosition={inline ? 'static' : undefined}
       >
         {control}

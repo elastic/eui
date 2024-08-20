@@ -7,9 +7,13 @@
  */
 
 import React, { HTMLAttributes, FunctionComponent, ReactNode } from 'react';
-import { CommonProps } from '../../common';
 import classNames from 'classnames';
+
+import { useEuiMemoizedStyles } from '../../../services';
+import { CommonProps } from '../../common';
 import { EuiScreenReaderOnly } from '../../accessibility';
+
+import { euiFormLegendStyles } from './form_legend.styles';
 
 export type EuiFormLegendProps = HTMLAttributes<HTMLLegendElement> &
   CommonProps & {
@@ -32,17 +36,21 @@ export const EuiFormLegend: FunctionComponent<EuiFormLegendProps> = ({
   ...rest
 }) => {
   const isLegendHidden = display === 'hidden';
+
+  const styles = useEuiMemoizedStyles(euiFormLegendStyles);
+  const cssStyles = [
+    styles.euiFormLegend,
+    !isLegendHidden && (compressed ? styles.compressed : styles.uncompressed),
+  ];
+
   const classes = classNames(
     'euiFormLegend',
-    {
-      'euiFormLegend-isHidden': isLegendHidden,
-      'euiFormLegend--compressed': compressed,
-    },
+    { 'euiFormLegend-isHidden': isLegendHidden },
     className
   );
 
   return (
-    <legend className={classes} {...rest}>
+    <legend css={cssStyles} className={classes} {...rest}>
       {isLegendHidden ? (
         <EuiScreenReaderOnly>
           <span>{children}</span>

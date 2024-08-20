@@ -3,12 +3,12 @@
 exports[`EuiProvider customizes CacheProvider when configured with a cache 1`] = `
 <ContextProvider
   value={
-    Object {
+    {
       "insert": [Function],
-      "inserted": Object {},
+      "inserted": {},
       "key": "testing",
       "nonce": undefined,
-      "registered": Object {},
+      "registered": {},
       "sheet": StyleSheet {
         "_insertTag": [Function],
         "before": null,
@@ -19,7 +19,7 @@ exports[`EuiProvider customizes CacheProvider when configured with a cache 1`] =
         "key": "testing",
         "nonce": undefined,
         "prepend": undefined,
-        "tags": Array [],
+        "tags": [],
       },
     }
   }

@@ -7,7 +7,7 @@
  */
 
 import React from 'react';
-import { shallow } from 'enzyme';
+import { render } from '../../test/rtl';
 import { CustomItemAction, CustomItemActionProps } from './custom_item_action';
 
 describe('CustomItemAction', () => {
@@ -21,8 +21,8 @@ describe('CustomItemAction', () => {
       className: 'test',
     };
 
-    const component = shallow(<CustomItemAction {...props} />);
+    const { container } = render(<CustomItemAction {...props} />);
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 });

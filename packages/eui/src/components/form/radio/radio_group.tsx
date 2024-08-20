@@ -9,6 +9,7 @@
 import React, { FunctionComponent, HTMLAttributes } from 'react';
 import classNames from 'classnames';
 
+import { useEuiMemoizedStyles } from '../../../services';
 import { CommonProps, ExclusiveUnion } from '../../common';
 
 import {
@@ -16,7 +17,9 @@ import {
   EuiFormLegendProps,
   EuiFormFieldset,
 } from '../form_fieldset';
+
 import { EuiRadio, EuiRadioProps } from './radio';
+import { euiRadioGroupStyles } from './radio_group.styles';
 
 export interface EuiRadioGroupOption
   extends Omit<EuiRadioProps, 'checked' | 'onChange'> {
@@ -37,10 +40,12 @@ type WithLegendProps = Omit<EuiFormFieldsetProps, 'onChange'> & {
 };
 
 export type EuiRadioGroupProps = CommonProps & {
+  /**
+   * Passed down to all child `EuiCheckbox`es
+   */
   disabled?: boolean;
   /**
-   * Tightens up the spacing between radio rows and sends down the
-   * compressed prop to the radio itself
+   * Tightens up the spacing between radio rows
    */
   compressed?: boolean;
   name?: string;
@@ -60,6 +65,14 @@ export const EuiRadioGroup: FunctionComponent<EuiRadioGroupProps> = ({
   legend,
   ...rest
 }) => {
+  const classes = classNames('euiRadioGroup', className);
+
+  const styles = useEuiMemoizedStyles(euiRadioGroupStyles);
+  const cssStyles = [
+    styles.euiRadioGroup,
+    compressed ? styles.compressed : styles.uncompressed,
+  ];
+
   const radios = options.map((option, index) => {
     const {
       disabled: isOptionDisabled,
@@ -76,7 +89,6 @@ export const EuiRadioGroup: FunctionComponent<EuiRadioGroupProps> = ({
         checked={id === idSelected}
         disabled={disabled || isOptionDisabled}
         onChange={onChange.bind(null, id, option.value)}
-        compressed={compressed}
         id={id}
         label={label}
         {...optionRest}
@@ -90,7 +102,8 @@ export const EuiRadioGroup: FunctionComponent<EuiRadioGroupProps> = ({
 
     return (
       <EuiFormFieldset
-        className={className}
+        css={cssStyles}
+        className={classes}
         legend={legend}
         {...(rest as EuiFormFieldsetProps)}
       >
@@ -100,7 +113,11 @@ export const EuiRadioGroup: FunctionComponent<EuiRadioGroupProps> = ({
   }
 
   return (
-    <div className={className} {...(rest as HTMLAttributes<HTMLDivElement>)}>
+    <div
+      css={cssStyles}
+      className={classes}
+      {...(rest as HTMLAttributes<HTMLDivElement>)}
+    >
       {radios}
     </div>
   );

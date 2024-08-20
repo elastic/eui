@@ -2,24 +2,24 @@
 
 exports[`EuiHue accepts a hex value 1`] = `
 <div>
-  <label
-    class="emotion-euiScreenReaderOnly"
-    for="undefined-hue"
-  >
-    Select the HSV color mode 'hue' value
-  </label>
-  <p
-    aria-live="polite"
-    class="emotion-euiScreenReaderOnly"
-  >
-    #00FFFF
-  </p>
   <div
-    class="euiHue testClass1 testClass2 emotion-euiTestCss"
+    class="euiHue testClass1 testClass2 emotion-euiHue-euiTestCss"
   >
+    <label
+      class="emotion-euiScreenReaderOnly"
+      for="undefined-hue"
+    >
+      Select the HSV color mode 'hue' value
+    </label>
+    <p
+      aria-live="polite"
+      class="emotion-euiScreenReaderOnly"
+    >
+      #00FFFF
+    </p>
     <input
       aria-label="aria-label"
-      class="euiHue__range"
+      class="euiHue__range emotion-euiHue__range"
       data-test-subj="test subject string"
       id="undefined-hue"
       max="359"
@@ -34,22 +34,22 @@ exports[`EuiHue accepts a hex value 1`] = `
 
 exports[`EuiHue accepts a hue value 1`] = `
 <div>
-  <label
-    class="emotion-euiScreenReaderOnly"
-    for="undefined-hue"
-  >
-    Select the HSV color mode 'hue' value
-  </label>
-  <p
-    aria-live="polite"
-    class="emotion-euiScreenReaderOnly"
-  />
   <div
-    class="euiHue testClass1 testClass2 emotion-euiTestCss"
+    class="euiHue testClass1 testClass2 emotion-euiHue-euiTestCss"
   >
+    <label
+      class="emotion-euiScreenReaderOnly"
+      for="undefined-hue"
+    >
+      Select the HSV color mode 'hue' value
+    </label>
+    <p
+      aria-live="polite"
+      class="emotion-euiScreenReaderOnly"
+    />
     <input
       aria-label="aria-label"
-      class="euiHue__range"
+      class="euiHue__range emotion-euiHue__range"
       data-test-subj="test subject string"
       id="undefined-hue"
       max="359"
@@ -64,22 +64,22 @@ exports[`EuiHue accepts a hue value 1`] = `
 
 exports[`EuiHue is rendered 1`] = `
 <div>
-  <label
-    class="emotion-euiScreenReaderOnly"
-    for="undefined-hue"
-  >
-    Select the HSV color mode 'hue' value
-  </label>
-  <p
-    aria-live="polite"
-    class="emotion-euiScreenReaderOnly"
-  />
   <div
-    class="euiHue testClass1 testClass2 emotion-euiTestCss"
+    class="euiHue testClass1 testClass2 emotion-euiHue-euiTestCss"
   >
+    <label
+      class="emotion-euiScreenReaderOnly"
+      for="undefined-hue"
+    >
+      Select the HSV color mode 'hue' value
+    </label>
+    <p
+      aria-live="polite"
+      class="emotion-euiScreenReaderOnly"
+    />
     <input
       aria-label="aria-label"
-      class="euiHue__range"
+      class="euiHue__range emotion-euiHue__range"
       data-test-subj="test subject string"
       id="undefined-hue"
       max="359"

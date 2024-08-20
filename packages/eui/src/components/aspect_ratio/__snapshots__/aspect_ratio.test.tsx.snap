@@ -9,7 +9,7 @@ exports[`EuiAspectRatio renders 1`] = `
   data-test-subj="test subject string"
   height="315"
   src="https://www.youtube.com/embed/yJarWSLRM24"
-  style="block-size: auto; inline-size: 100%;"
+  style="aspect-ratio: 9 / 4; block-size: auto; inline-size: 100%;"
   title="Elastic is a search company"
   width="560"
 />

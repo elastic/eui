@@ -2,23 +2,24 @@
 
 exports[`EuiSelectableTemplateSitewide is rendered 1`] = `
 <div
-  class="euiSelectable euiSelectableTemplateSitewide testClass1 testClass2 emotion-euiTestCss"
+  class="euiSelectable euiSelectableTemplateSitewide testClass1 testClass2 emotion-euiSelectable-euiSelectableTemplateSitewide-euiTestCss"
   data-test-subj="test subject string"
 >
   <div
     class="euiPopover emotion-euiPopover-block"
   >
     <div
-      class="euiFormControlLayout euiFormControlLayout--fullWidth"
+      class="euiFormControlLayout emotion-euiFormControlLayout-fullWidth"
     >
       <div
-        class="euiFormControlLayout__childrenWrapper"
+        class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper"
+        style="--euiFormControlLeftIconsCount: 1;"
       >
         <div
-          class="euiFormControlLayoutIcons euiFormControlLayoutIcons--left euiFormControlLayoutIcons--absolute"
+          class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-absolute-left"
         >
           <span
-            class="euiFormControlLayoutCustomIcon"
+            class="euiFormControlLayoutCustomIcon emotion-euiFormControlLayoutCustomIcon"
           >
             <span
               aria-hidden="true"
@@ -33,7 +34,7 @@ exports[`EuiSelectableTemplateSitewide is rendered 1`] = `
           aria-haspopup="listbox"
           aria-label="aria-label"
           autocomplete="off"
-          class="euiFieldSearch euiFieldSearch--fullWidth euiSelectableSearch euiSelectableTemplateSitewide__search"
+          class="euiFieldSearch euiSelectableSearch euiSelectableTemplateSitewide__search emotion-euiFieldSearch-fullWidth"
           placeholder="Search for anything..."
           type="search"
           value=""
@@ -53,7 +54,7 @@ exports[`EuiSelectableTemplateSitewide is rendered 1`] = `
 
 exports[`EuiSelectableTemplateSitewide props popoverButton is rendered 1`] = `
 <div
-  class="euiSelectable euiSelectableTemplateSitewide"
+  class="euiSelectable euiSelectableTemplateSitewide emotion-euiSelectable-euiSelectableTemplateSitewide"
 >
   <div
     class="euiPopover emotion-euiPopover-inline-block"
@@ -73,22 +74,23 @@ exports[`EuiSelectableTemplateSitewide props popoverButton is rendered 1`] = `
 
 exports[`EuiSelectableTemplateSitewide props popoverFooter is rendered 1`] = `
 <div
-  class="euiSelectable euiSelectableTemplateSitewide"
+  class="euiSelectable euiSelectableTemplateSitewide emotion-euiSelectable-euiSelectableTemplateSitewide"
 >
   <div
     class="euiPopover emotion-euiPopover-block"
   >
     <div
-      class="euiFormControlLayout euiFormControlLayout--fullWidth"
+      class="euiFormControlLayout emotion-euiFormControlLayout-fullWidth"
     >
       <div
-        class="euiFormControlLayout__childrenWrapper"
+        class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper"
+        style="--euiFormControlLeftIconsCount: 1;"
       >
         <div
-          class="euiFormControlLayoutIcons euiFormControlLayoutIcons--left euiFormControlLayoutIcons--absolute"
+          class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-absolute-left"
         >
           <span
-            class="euiFormControlLayoutCustomIcon"
+            class="euiFormControlLayoutCustomIcon emotion-euiFormControlLayoutCustomIcon"
           >
             <span
               aria-hidden="true"
@@ -103,7 +105,7 @@ exports[`EuiSelectableTemplateSitewide props popoverFooter is rendered 1`] = `
           aria-haspopup="listbox"
           aria-label="Filter options"
           autocomplete="off"
-          class="euiFieldSearch euiFieldSearch--fullWidth euiSelectableSearch euiSelectableTemplateSitewide__search"
+          class="euiFieldSearch euiSelectableSearch euiSelectableTemplateSitewide__search emotion-euiFieldSearch-fullWidth"
           placeholder="Search for anything..."
           type="search"
           value=""
@@ -123,22 +125,23 @@ exports[`EuiSelectableTemplateSitewide props popoverFooter is rendered 1`] = `
 
 exports[`EuiSelectableTemplateSitewide props popoverProps is rendered 1`] = `
 <div
-  class="euiSelectable euiSelectableTemplateSitewide"
+  class="euiSelectable euiSelectableTemplateSitewide emotion-euiSelectable-euiSelectableTemplateSitewide"
 >
   <div
     class="euiPopover customPopoverClass emotion-euiPopover-block"
   >
     <div
-      class="euiFormControlLayout euiFormControlLayout--fullWidth"
+      class="euiFormControlLayout emotion-euiFormControlLayout-fullWidth"
     >
       <div
-        class="euiFormControlLayout__childrenWrapper"
+        class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper"
+        style="--euiFormControlLeftIconsCount: 1;"
       >
         <div
-          class="euiFormControlLayoutIcons euiFormControlLayoutIcons--left euiFormControlLayoutIcons--absolute"
+          class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-absolute-left"
         >
           <span
-            class="euiFormControlLayoutCustomIcon"
+            class="euiFormControlLayoutCustomIcon emotion-euiFormControlLayoutCustomIcon"
           >
             <span
               aria-hidden="true"
@@ -153,7 +156,7 @@ exports[`EuiSelectableTemplateSitewide props popoverProps is rendered 1`] = `
           aria-haspopup="listbox"
           aria-label="Filter options"
           autocomplete="off"
-          class="euiFieldSearch euiFieldSearch--fullWidth euiSelectableSearch euiSelectableTemplateSitewide__search"
+          class="euiFieldSearch euiSelectableSearch euiSelectableTemplateSitewide__search emotion-euiFieldSearch-fullWidth"
           placeholder="Search for anything..."
           type="search"
           value=""
@@ -173,22 +176,23 @@ exports[`EuiSelectableTemplateSitewide props popoverProps is rendered 1`] = `
 
 exports[`EuiSelectableTemplateSitewide props popoverTitle is rendered 1`] = `
 <div
-  class="euiSelectable euiSelectableTemplateSitewide"
+  class="euiSelectable euiSelectableTemplateSitewide emotion-euiSelectable-euiSelectableTemplateSitewide"
 >
   <div
     class="euiPopover emotion-euiPopover-block"
   >
     <div
-      class="euiFormControlLayout euiFormControlLayout--fullWidth"
+      class="euiFormControlLayout emotion-euiFormControlLayout-fullWidth"
     >
       <div
-        class="euiFormControlLayout__childrenWrapper"
+        class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper"
+        style="--euiFormControlLeftIconsCount: 1;"
       >
         <div
-          class="euiFormControlLayoutIcons euiFormControlLayoutIcons--left euiFormControlLayoutIcons--absolute"
+          class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-absolute-left"
         >
           <span
-            class="euiFormControlLayoutCustomIcon"
+            class="euiFormControlLayoutCustomIcon emotion-euiFormControlLayoutCustomIcon"
           >
             <span
               aria-hidden="true"
@@ -203,7 +207,7 @@ exports[`EuiSelectableTemplateSitewide props popoverTitle is rendered 1`] = `
           aria-haspopup="listbox"
           aria-label="Filter options"
           autocomplete="off"
-          class="euiFieldSearch euiFieldSearch--fullWidth euiSelectableSearch euiSelectableTemplateSitewide__search"
+          class="euiFieldSearch euiSelectableSearch euiSelectableTemplateSitewide__search emotion-euiFieldSearch-fullWidth"
           placeholder="Search for anything..."
           type="search"
           value=""

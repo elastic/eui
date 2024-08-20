@@ -113,14 +113,32 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 702,
+        "line": 708,
         "column": 6,
-        "index": 18420
+        "index": 18588
       },
       "end": {
-        "line": 702,
-        "column": 77,
-        "index": 18491
+        "line": 711,
+        "column": 7,
+        "index": 18739
+      }
+    },
+    "filepath": "src/components/basic_table/basic_table.tsx"
+  },
+  {
+    "token": "euiBasicTable.deselectRows",
+    "defString": "Deselect rows",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 708,
+        "column": 6,
+        "index": 18588
+      },
+      "end": {
+        "line": 711,
+        "column": 7,
+        "index": 18739
       }
     },
     "filepath": "src/components/basic_table/basic_table.tsx"
@@ -131,14 +149,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 1109,
+        "line": 1118,
         "column": 8,
-        "index": 30781
+        "index": 31036
       },
       "end": {
-        "line": 1113,
+        "line": 1122,
         "column": 9,
-        "index": 30936
+        "index": 31191
       }
     },
     "filepath": "src/components/basic_table/basic_table.tsx"
@@ -149,14 +167,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 1339,
+        "line": 1347,
         "column": 8,
-        "index": 37681
+        "index": 37908
       },
       "end": {
-        "line": 1343,
+        "line": 1351,
         "column": 9,
-        "index": 37840
+        "index": 38067
       }
     },
     "filepath": "src/components/basic_table/basic_table.tsx"
@@ -635,14 +653,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 32,
+        "line": 37,
         "column": 20,
-        "index": 1153
+        "index": 1352
       },
       "end": {
-        "line": 36,
+        "line": 41,
         "column": 3,
-        "index": 1255
+        "index": 1454
       }
     },
     "filepath": "src/components/color_picker/color_picker_swatch.tsx"
@@ -653,14 +671,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 217,
+        "line": 220,
         "column": 6,
-        "index": 5932
+        "index": 5890
       },
       "end": {
-        "line": 236,
+        "line": 239,
         "column": 3,
-        "index": 6490
+        "index": 6448
       }
     },
     "filepath": "src/components/color_picker/color_picker.tsx"
@@ -671,14 +689,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 217,
+        "line": 220,
         "column": 6,
-        "index": 5932
+        "index": 5890
       },
       "end": {
-        "line": 236,
+        "line": 239,
         "column": 3,
-        "index": 6490
+        "index": 6448
       }
     },
     "filepath": "src/components/color_picker/color_picker.tsx"
@@ -689,14 +707,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 217,
+        "line": 220,
         "column": 6,
-        "index": 5932
+        "index": 5890
       },
       "end": {
-        "line": 236,
+        "line": 239,
         "column": 3,
-        "index": 6490
+        "index": 6448
       }
     },
     "filepath": "src/components/color_picker/color_picker.tsx"
@@ -707,14 +725,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 217,
+        "line": 220,
         "column": 6,
-        "index": 5932
+        "index": 5890
       },
       "end": {
-        "line": 236,
+        "line": 239,
         "column": 3,
-        "index": 6490
+        "index": 6448
       }
     },
     "filepath": "src/components/color_picker/color_picker.tsx"
@@ -725,14 +743,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 217,
+        "line": 220,
         "column": 6,
-        "index": 5932
+        "index": 5890
       },
       "end": {
-        "line": 236,
+        "line": 239,
         "column": 3,
-        "index": 6490
+        "index": 6448
       }
     },
     "filepath": "src/components/color_picker/color_picker.tsx"
@@ -743,14 +761,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 217,
+        "line": 220,
         "column": 6,
-        "index": 5932
+        "index": 5890
       },
       "end": {
-        "line": 236,
+        "line": 239,
         "column": 3,
-        "index": 6490
+        "index": 6448
       }
     },
     "filepath": "src/components/color_picker/color_picker.tsx"
@@ -761,14 +779,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 217,
+        "line": 220,
         "column": 6,
-        "index": 5932
+        "index": 5890
       },
       "end": {
-        "line": 236,
+        "line": 239,
         "column": 3,
-        "index": 6490
+        "index": 6448
       }
     },
     "filepath": "src/components/color_picker/color_picker.tsx"
@@ -779,14 +797,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 48,
+        "line": 54,
         "column": 10,
-        "index": 1226
+        "index": 1411
       },
       "end": {
-        "line": 51,
+        "line": 57,
         "column": 12,
-        "index": 1340
+        "index": 1525
       }
     },
     "filepath": "src/components/color_picker/hue.tsx"
@@ -797,14 +815,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 62,
+        "line": 77,
         "column": 49,
-        "index": 1604
+        "index": 2089
       },
       "end": {
-        "line": 68,
+        "line": 83,
         "column": 5,
-        "index": 2018
+        "index": 2503
       }
     },
     "filepath": "src/components/color_picker/saturation.tsx"
@@ -815,14 +833,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 62,
+        "line": 77,
         "column": 49,
-        "index": 1604
+        "index": 2089
       },
       "end": {
-        "line": 68,
+        "line": 83,
         "column": 5,
-        "index": 2018
+        "index": 2503
       }
     },
     "filepath": "src/components/color_picker/saturation.tsx"
@@ -833,14 +851,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 77,
-        "column": 8,
-        "index": 2121
+        "line": 67,
+        "column": 6,
+        "index": 2037
       },
       "end": {
-        "line": 81,
-        "column": 9,
-        "index": 2288
+        "line": 71,
+        "column": 7,
+        "index": 2196
       }
     },
     "filepath": "src/components/combo_box/combo_box_input/combo_box_pill.tsx"
@@ -851,14 +869,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 335,
+        "line": 347,
         "column": 12,
-        "index": 9517
+        "index": 9757
       },
       "end": {
-        "line": 338,
+        "line": 350,
         "column": 14,
-        "index": 9640
+        "index": 9880
       }
     },
     "filepath": "src/components/combo_box/combo_box_options_list/combo_box_options_list.tsx"
@@ -869,14 +887,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 348,
+        "line": 360,
         "column": 16,
-        "index": 10079
+        "index": 10319
       },
       "end": {
-        "line": 352,
+        "line": 364,
         "column": 18,
-        "index": 10310
+        "index": 10550
       }
     },
     "filepath": "src/components/combo_box/combo_box_options_list/combo_box_options_list.tsx"
@@ -887,14 +905,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 367,
+        "line": 379,
         "column": 16,
-        "index": 10739
+        "index": 10979
       },
       "end": {
-        "line": 373,
+        "line": 385,
         "column": 18,
-        "index": 11012
+        "index": 11252
       }
     },
     "filepath": "src/components/combo_box/combo_box_options_list/combo_box_options_list.tsx"
@@ -905,14 +923,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 402,
+        "line": 414,
         "column": 20,
-        "index": 12003
+        "index": 12243
       },
       "end": {
-        "line": 408,
+        "line": 420,
         "column": 22,
-        "index": 12301
+        "index": 12541
       }
     },
     "filepath": "src/components/combo_box/combo_box_options_list/combo_box_options_list.tsx"
@@ -923,14 +941,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 419,
+        "line": 431,
         "column": 12,
-        "index": 12505
+        "index": 12745
       },
       "end": {
-        "line": 423,
+        "line": 435,
         "column": 14,
-        "index": 12726
+        "index": 12966
       }
     },
     "filepath": "src/components/combo_box/combo_box_options_list/combo_box_options_list.tsx"
@@ -941,14 +959,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 430,
+        "line": 442,
         "column": 10,
-        "index": 12845
+        "index": 13085
       },
       "end": {
-        "line": 433,
+        "line": 445,
         "column": 12,
-        "index": 12985
+        "index": 13225
       }
     },
     "filepath": "src/components/combo_box/combo_box_options_list/combo_box_options_list.tsx"
@@ -959,14 +977,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 439,
+        "line": 451,
         "column": 10,
-        "index": 13098
+        "index": 13338
       },
       "end": {
-        "line": 442,
+        "line": 454,
         "column": 12,
-        "index": 13241
+        "index": 13481
       }
     },
     "filepath": "src/components/combo_box/combo_box_options_list/combo_box_options_list.tsx"
@@ -977,14 +995,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 792,
+        "line": 791,
         "column": 8,
-        "index": 23108
+        "index": 23154
       },
       "end": {
-        "line": 795,
+        "line": 794,
         "column": 9,
-        "index": 23227
+        "index": 23273
       }
     },
     "filepath": "src/components/combo_box/combo_box.tsx"
@@ -1373,14 +1391,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 281,
+        "line": 280,
         "column": 18,
-        "index": 10032
+        "index": 9968
       },
       "end": {
-        "line": 284,
+        "line": 283,
         "column": 20,
-        "index": 10156
+        "index": 10092
       }
     },
     "filepath": "src/components/datagrid/controls/column_selector.tsx"
@@ -1391,14 +1409,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 294,
+        "line": 293,
         "column": 18,
-        "index": 10516
+        "index": 10452
       },
       "end": {
-        "line": 297,
+        "line": 296,
         "column": 20,
-        "index": 10638
+        "index": 10574
       }
     },
     "filepath": "src/components/datagrid/controls/column_selector.tsx"
@@ -2669,14 +2687,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 219,
+        "line": 221,
         "column": 6,
-        "index": 5824
+        "index": 5894
       },
       "end": {
-        "line": 226,
+        "line": 228,
         "column": 8,
-        "index": 6054
+        "index": 6124
       }
     },
     "filepath": "src/components/date_picker/auto_refresh/refresh_interval.tsx"
@@ -2687,32 +2705,86 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 228,
+        "line": 230,
         "column": 6,
-        "index": 6071
+        "index": 6141
       },
       "end": {
-        "line": 235,
+        "line": 237,
         "column": 8,
-        "index": 6299
+        "index": 6369
       }
     },
     "filepath": "src/components/date_picker/auto_refresh/refresh_interval.tsx"
   },
   {
-    "token": "euiRefreshInterval.legend",
+    "token": "euiRefreshInterval.toggleLabel",
     "defString": "Refresh every",
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 268,
-        "column": 22,
-        "index": 7280
+        "line": 252,
+        "column": 6,
+        "index": 6639
       },
       "end": {
-        "line": 271,
-        "column": 24,
-        "index": 7419
+        "line": 265,
+        "column": 7,
+        "index": 7028
+      }
+    },
+    "filepath": "src/components/date_picker/auto_refresh/refresh_interval.tsx"
+  },
+  {
+    "token": "euiRefreshInterval.toggleAriaLabel",
+    "defString": "Toggle refresh",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 252,
+        "column": 6,
+        "index": 6639
+      },
+      "end": {
+        "line": 265,
+        "column": 7,
+        "index": 7028
+      }
+    },
+    "filepath": "src/components/date_picker/auto_refresh/refresh_interval.tsx"
+  },
+  {
+    "token": "euiRefreshInterval.valueAriaLabel",
+    "defString": "Refresh interval value",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 252,
+        "column": 6,
+        "index": 6639
+      },
+      "end": {
+        "line": 265,
+        "column": 7,
+        "index": 7028
+      }
+    },
+    "filepath": "src/components/date_picker/auto_refresh/refresh_interval.tsx"
+  },
+  {
+    "token": "euiRefreshInterval.unitsAriaLabel",
+    "defString": "Refresh interval units",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 252,
+        "column": 6,
+        "index": 6639
+      },
+      "end": {
+        "line": 265,
+        "column": 7,
+        "index": 7028
       }
     },
     "filepath": "src/components/date_picker/auto_refresh/refresh_interval.tsx"
@@ -2723,14 +2795,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 169,
-        "column": 8,
-        "index": 4887
+        "line": 79,
+        "column": 28,
+        "index": 2489
       },
       "end": {
-        "line": 179,
-        "column": 9,
-        "index": 5249
+        "line": 82,
+        "column": 3,
+        "index": 2565
       }
     },
     "filepath": "src/components/date_picker/super_date_picker/date_popover/absolute_tab.tsx"
@@ -2741,14 +2813,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 169,
-        "column": 8,
-        "index": 4887
+        "line": 83,
+        "column": 26,
+        "index": 2593
       },
       "end": {
-        "line": 179,
-        "column": 9,
-        "index": 5249
+        "line": 87,
+        "column": 3,
+        "index": 2775
       }
     },
     "filepath": "src/components/date_picker/super_date_picker/date_popover/absolute_tab.tsx"
@@ -2759,14 +2831,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 94,
+        "line": 100,
         "column": 23,
-        "index": 2558
+        "index": 2832
       },
       "end": {
-        "line": 98,
+        "line": 104,
         "column": 3,
-        "index": 2657
+        "index": 2931
       }
     },
     "filepath": "src/components/date_picker/super_date_picker/date_popover/date_popover_button.tsx"
@@ -2777,14 +2849,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 99,
+        "line": 105,
         "column": 24,
-        "index": 2683
+        "index": 2957
       },
       "end": {
-        "line": 103,
+        "line": 109,
         "column": 3,
-        "index": 2784
+        "index": 3058
       }
     },
     "filepath": "src/components/date_picker/super_date_picker/date_popover/date_popover_button.tsx"
@@ -2795,14 +2867,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 66,
+        "line": 70,
         "column": 25,
-        "index": 1837
+        "index": 2070
       },
       "end": {
-        "line": 69,
+        "line": 73,
         "column": 3,
-        "index": 1913
+        "index": 2146
       }
     },
     "filepath": "src/components/date_picker/super_date_picker/date_popover/date_popover_content.tsx"
@@ -2813,14 +2885,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 70,
+        "line": 74,
         "column": 23,
-        "index": 1938
+        "index": 2171
       },
       "end": {
-        "line": 73,
+        "line": 77,
         "column": 3,
-        "index": 2010
+        "index": 2243
       }
     },
     "filepath": "src/components/date_picker/super_date_picker/date_popover/date_popover_content.tsx"
@@ -2831,14 +2903,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 76,
+        "line": 80,
         "column": 24,
-        "index": 2113
+        "index": 2346
       },
       "end": {
-        "line": 79,
+        "line": 83,
         "column": 3,
-        "index": 2189
+        "index": 2422
       }
     },
     "filepath": "src/components/date_picker/super_date_picker/date_popover/date_popover_content.tsx"
@@ -2849,14 +2921,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 80,
+        "line": 84,
         "column": 24,
-        "index": 2215
+        "index": 2448
       },
       "end": {
-        "line": 83,
+        "line": 87,
         "column": 3,
-        "index": 2291
+        "index": 2524
       }
     },
     "filepath": "src/components/date_picker/super_date_picker/date_popover/date_popover_content.tsx"
@@ -2867,32 +2939,32 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 84,
+        "line": 88,
         "column": 19,
-        "index": 2312
+        "index": 2545
       },
       "end": {
-        "line": 84,
+        "line": 88,
         "column": 73,
-        "index": 2366
+        "index": 2599
       }
     },
     "filepath": "src/components/date_picker/super_date_picker/date_popover/date_popover_content.tsx"
   },
   {
     "token": "euiDatePopoverContent.nowTabContent",
-    "defString": "Setting the time to \"now\" means that on every refresh this\n            time will be set to the time of the refresh.",
+    "defString": "Setting the time to \"now\" means that on every refresh this time will be set to the time of the refresh.",
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 136,
+        "line": 134,
         "column": 12,
-        "index": 3705
+        "index": 3817
       },
       "end": {
-        "line": 140,
+        "line": 137,
         "column": 14,
-        "index": 3926
+        "index": 4026
       }
     },
     "filepath": "src/components/date_picker/super_date_picker/date_popover/date_popover_content.tsx"
@@ -2903,14 +2975,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 152,
+        "line": 149,
         "column": 14,
-        "index": 4216
+        "index": 4316
       },
       "end": {
-        "line": 155,
+        "line": 152,
         "column": 16,
-        "index": 4362
+        "index": 4462
       }
     },
     "filepath": "src/components/date_picker/super_date_picker/date_popover/date_popover_content.tsx"
@@ -2921,35 +2993,17 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 157,
+        "line": 154,
         "column": 14,
-        "index": 4395
+        "index": 4495
       },
       "end": {
-        "line": 160,
+        "line": 157,
         "column": 16,
-        "index": 4537
+        "index": 4637
       }
     },
     "filepath": "src/components/date_picker/super_date_picker/date_popover/date_popover_content.tsx"
-  },
-  {
-    "token": "euiRelativeTab.numberInputError",
-    "defString": "Must be >= 0",
-    "highlighting": "string",
-    "loc": {
-      "start": {
-        "line": 142,
-        "column": 14,
-        "index": 3947
-      },
-      "end": {
-        "line": 153,
-        "column": 15,
-        "index": 4335
-      }
-    },
-    "filepath": "src/components/date_picker/super_date_picker/date_popover/relative_tab.tsx"
   },
   {
     "token": "euiRelativeTab.numberInputLabel",
@@ -2957,14 +3011,32 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 142,
-        "column": 14,
-        "index": 3947
+        "line": 118,
+        "column": 26,
+        "index": 3640
       },
       "end": {
-        "line": 153,
-        "column": 15,
-        "index": 4335
+        "line": 121,
+        "column": 3,
+        "index": 3717
+      }
+    },
+    "filepath": "src/components/date_picker/super_date_picker/date_popover/relative_tab.tsx"
+  },
+  {
+    "token": "euiRelativeTab.numberInputError",
+    "defString": "Must be >= 0",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 122,
+        "column": 27,
+        "index": 3746
+      },
+      "end": {
+        "line": 125,
+        "column": 3,
+        "index": 3819
       }
     },
     "filepath": "src/components/date_picker/super_date_picker/date_popover/relative_tab.tsx"
@@ -2975,14 +3047,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 142,
-        "column": 14,
-        "index": 3947
+        "line": 126,
+        "column": 25,
+        "index": 3846
       },
       "end": {
-        "line": 153,
-        "column": 15,
-        "index": 4335
+        "line": 129,
+        "column": 3,
+        "index": 3926
       }
     },
     "filepath": "src/components/date_picker/super_date_picker/date_popover/relative_tab.tsx"
@@ -2993,14 +3065,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 182,
-        "column": 14,
-        "index": 5365
+        "line": 130,
+        "column": 30,
+        "index": 3958
       },
       "end": {
-        "line": 185,
-        "column": 15,
-        "index": 5488
+        "line": 133,
+        "column": 3,
+        "index": 4035
       }
     },
     "filepath": "src/components/date_picker/super_date_picker/date_popover/relative_tab.tsx"
@@ -3011,14 +3083,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 210,
-        "column": 14,
-        "index": 6352
+        "line": 181,
+        "column": 12,
+        "index": 5535
       },
       "end": {
-        "line": 214,
-        "column": 16,
-        "index": 6541
+        "line": 185,
+        "column": 14,
+        "index": 5716
       }
     },
     "filepath": "src/components/date_picker/super_date_picker/date_popover/relative_tab.tsx"
@@ -3623,14 +3695,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 50,
-        "column": 10,
-        "index": 1728
+        "line": 27,
+        "column": 16,
+        "index": 995
       },
       "end": {
-        "line": 53,
-        "column": 12,
-        "index": 1838
+        "line": 27,
+        "column": 79,
+        "index": 1058
       }
     },
     "filepath": "src/components/date_picker/super_date_picker/quick_select_popover/commonly_used_time_ranges.tsx"
@@ -3641,35 +3713,17 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 87,
+        "line": 90,
         "column": 22,
-        "index": 2775
+        "index": 2948
       },
       "end": {
-        "line": 90,
+        "line": 93,
         "column": 3,
-        "index": 2855
+        "index": 3028
       }
     },
     "filepath": "src/components/date_picker/super_date_picker/quick_select_popover/quick_select_popover.tsx"
-  },
-  {
-    "token": "euiQuickSelect.legendText",
-    "defString": "Quick select a time range",
-    "highlighting": "string",
-    "loc": {
-      "start": {
-        "line": 162,
-        "column": 8,
-        "index": 4733
-      },
-      "end": {
-        "line": 165,
-        "column": 9,
-        "index": 4841
-      }
-    },
-    "filepath": "src/components/date_picker/super_date_picker/quick_select_popover/quick_select.tsx"
   },
   {
     "token": "euiQuickSelect.quickSelectTitle",
@@ -3677,14 +3731,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 183,
-        "column": 12,
-        "index": 5482
+        "line": 166,
+        "column": 10,
+        "index": 4766
       },
       "end": {
-        "line": 186,
-        "column": 13,
-        "index": 5595
+        "line": 169,
+        "column": 12,
+        "index": 4874
       }
     },
     "filepath": "src/components/date_picker/super_date_picker/quick_select_popover/quick_select.tsx"
@@ -3695,14 +3749,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 197,
-        "column": 16,
-        "index": 6002
+        "line": 188,
+        "column": 12,
+        "index": 5456
       },
       "end": {
-        "line": 200,
-        "column": 17,
-        "index": 6132
+        "line": 191,
+        "column": 13,
+        "index": 5574
       }
     },
     "filepath": "src/components/date_picker/super_date_picker/quick_select_popover/quick_select.tsx"
@@ -3713,14 +3767,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 213,
-        "column": 16,
-        "index": 6616
+        "line": 204,
+        "column": 12,
+        "index": 6006
       },
       "end": {
-        "line": 216,
-        "column": 17,
-        "index": 6738
+        "line": 207,
+        "column": 13,
+        "index": 6116
       }
     },
     "filepath": "src/components/date_picker/super_date_picker/quick_select_popover/quick_select.tsx"
@@ -3731,14 +3785,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 234,
+        "line": 222,
         "column": 12,
-        "index": 7354
+        "index": 6604
       },
       "end": {
-        "line": 234,
+        "line": 222,
         "column": 76,
-        "index": 7418
+        "index": 6668
       }
     },
     "filepath": "src/components/date_picker/super_date_picker/quick_select_popover/quick_select.tsx"
@@ -3749,14 +3803,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 249,
+        "line": 237,
         "column": 12,
-        "index": 7940
+        "index": 7190
       },
       "end": {
-        "line": 249,
+        "line": 237,
         "column": 76,
-        "index": 8004
+        "index": 7254
       }
     },
     "filepath": "src/components/date_picker/super_date_picker/quick_select_popover/quick_select.tsx"
@@ -3767,14 +3821,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 263,
+        "line": 251,
         "column": 12,
-        "index": 8486
+        "index": 7736
       },
       "end": {
-        "line": 263,
+        "line": 251,
         "column": 74,
-        "index": 8548
+        "index": 7798
       }
     },
     "filepath": "src/components/date_picker/super_date_picker/quick_select_popover/quick_select.tsx"
@@ -3785,14 +3839,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 285,
+        "line": 274,
         "column": 14,
-        "index": 9359
+        "index": 8681
       },
       "end": {
-        "line": 285,
+        "line": 274,
         "column": 76,
-        "index": 9421
+        "index": 8743
       }
     },
     "filepath": "src/components/date_picker/super_date_picker/quick_select_popover/quick_select.tsx"
@@ -3803,14 +3857,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 291,
+        "line": 280,
         "column": 12,
-        "index": 9578
+        "index": 8900
       },
       "end": {
-        "line": 299,
+        "line": 288,
         "column": 14,
-        "index": 9852
+        "index": 9174
       }
     },
     "filepath": "src/components/date_picker/super_date_picker/quick_select_popover/quick_select.tsx"
@@ -3821,14 +3875,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 62,
-        "column": 10,
-        "index": 1886
+        "line": 33,
+        "column": 16,
+        "index": 1123
       },
       "end": {
-        "line": 65,
-        "column": 12,
-        "index": 1998
+        "line": 36,
+        "column": 3,
+        "index": 1200
       }
     },
     "filepath": "src/components/date_picker/super_date_picker/quick_select_popover/recently_used.tsx"
@@ -4739,14 +4793,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 101,
+        "line": 105,
         "column": 49,
-        "index": 2920
+        "index": 2960
       },
       "end": {
-        "line": 107,
+        "line": 111,
         "column": 3,
-        "index": 3141
+        "index": 3181
       }
     },
     "filepath": "src/components/form/field_password/field_password.tsx"
@@ -4757,17 +4811,35 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 101,
+        "line": 105,
         "column": 49,
-        "index": 2920
+        "index": 2960
       },
       "end": {
-        "line": 107,
+        "line": 111,
         "column": 3,
-        "index": 3141
+        "index": 3181
       }
     },
     "filepath": "src/components/form/field_password/field_password.tsx"
+  },
+  {
+    "token": "euiFieldSearch.clearSearchButtonLabel",
+    "defString": "Clear search input",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 260,
+        "column": 6,
+        "index": 7437
+      },
+      "end": {
+        "line": 263,
+        "column": 7,
+        "index": 7544
+      }
+    },
+    "filepath": "src/components/form/field_search/field_search.tsx"
   },
   {
     "token": "euiFilePicker.promptText",
@@ -4775,14 +4847,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 72,
+        "line": 76,
         "column": 6,
-        "index": 2191
+        "index": 2335
       },
       "end": {
-        "line": 75,
+        "line": 79,
         "column": 8,
-        "index": 2298
+        "index": 2442
       }
     },
     "filepath": "src/components/form/file_picker/file_picker.tsx"
@@ -4793,32 +4865,32 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 96,
+        "line": 100,
         "column": 10,
-        "index": 2696
+        "index": 2840
       },
       "end": {
-        "line": 100,
+        "line": 104,
         "column": 12,
-        "index": 2878
+        "index": 3022
       }
     },
     "filepath": "src/components/form/file_picker/file_picker.tsx"
   },
   {
-    "token": "euiFilePicker.clearSelectedFiles",
-    "defString": "Clear selected files",
+    "token": "euiFilePicker.removeSelectedAriaLabel",
+    "defString": "Remove selected files",
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 142,
+        "line": 146,
         "column": 6,
-        "index": 3741
+        "index": 3885
       },
       "end": {
-        "line": 145,
+        "line": 149,
         "column": 7,
-        "index": 3845
+        "index": 3995
       }
     },
     "filepath": "src/components/form/file_picker/file_picker.tsx"
@@ -4829,14 +4901,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 208,
+        "line": 263,
         "column": 18,
-        "index": 6011
+        "index": 7934
       },
       "end": {
-        "line": 211,
+        "line": 266,
         "column": 20,
-        "index": 6134
+        "index": 8057
       }
     },
     "filepath": "src/components/form/file_picker/file_picker.tsx"
@@ -4847,14 +4919,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 38,
-        "column": 4,
-        "index": 1180
+        "line": 34,
+        "column": 20,
+        "index": 1321
       },
       "end": {
-        "line": 41,
-        "column": 5,
-        "index": 1274
+        "line": 37,
+        "column": 3,
+        "index": 1399
       }
     },
     "filepath": "src/components/form/form_control_layout/form_control_layout_clear_button.tsx"
@@ -4865,14 +4937,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 82,
+        "line": 121,
         "column": 27,
-        "index": 2237
+        "index": 3395
       },
       "end": {
-        "line": 85,
+        "line": 124,
         "column": 3,
-        "index": 2313
+        "index": 3471
       }
     },
     "filepath": "src/components/form/form_control_layout/form_control_layout_delimited.tsx"
@@ -4883,14 +4955,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 94,
+        "line": 97,
         "column": 8,
-        "index": 2536
+        "index": 2581
       },
       "end": {
-        "line": 97,
+        "line": 100,
         "column": 9,
-        "index": 2657
+        "index": 2702
       }
     },
     "filepath": "src/components/form/form.tsx"
@@ -4937,14 +5009,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 355,
+        "line": 341,
         "column": 12,
-        "index": 9717
+        "index": 9588
       },
       "end": {
-        "line": 359,
+        "line": 345,
         "column": 14,
-        "index": 9963
+        "index": 9834
       }
     },
     "filepath": "src/components/form/super_select/super_select.tsx"
@@ -4955,14 +5027,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 362,
+        "line": 348,
         "column": 8,
-        "index": 10018
+        "index": 9889
       },
       "end": {
-        "line": 362,
+        "line": 348,
         "column": 75,
-        "index": 10085
+        "index": 9956
       }
     },
     "filepath": "src/components/form/super_select/super_select.tsx"
@@ -5513,14 +5585,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 101,
+        "line": 107,
         "column": 10,
-        "index": 3007
+        "index": 3169
       },
       "end": {
-        "line": 104,
+        "line": 110,
         "column": 11,
-        "index": 3114
+        "index": 3276
       }
     },
     "filepath": "src/components/modal/modal.tsx"
@@ -5783,14 +5855,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 693,
+        "line": 698,
         "column": 16,
-        "index": 20529
+        "index": 20714
       },
       "end": {
-        "line": 696,
+        "line": 701,
         "column": 18,
-        "index": 20723
+        "index": 20908
       }
     },
     "filepath": "src/components/popover/popover.tsx"
@@ -5927,14 +5999,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 213,
+        "line": 224,
         "column": 10,
-        "index": 6354
+        "index": 6703
       },
       "end": {
-        "line": 216,
+        "line": 227,
         "column": 12,
-        "index": 6469
+        "index": 6818
       }
     },
     "filepath": "src/components/selectable/selectable_list/selectable_list_item.tsx"
@@ -5945,14 +6017,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 219,
+        "line": 230,
         "column": 10,
-        "index": 6515
+        "index": 6864
       },
       "end": {
-        "line": 222,
+        "line": 233,
         "column": 12,
-        "index": 6659
+        "index": 7008
       }
     },
     "filepath": "src/components/selectable/selectable_list/selectable_list_item.tsx"
@@ -5963,14 +6035,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 227,
+        "line": 238,
         "column": 10,
-        "index": 6733
+        "index": 7082
       },
       "end": {
-        "line": 230,
+        "line": 241,
         "column": 12,
-        "index": 6881
+        "index": 7230
       }
     },
     "filepath": "src/components/selectable/selectable_list/selectable_list_item.tsx"
@@ -5981,14 +6053,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 235,
+        "line": 246,
         "column": 10,
-        "index": 6947
+        "index": 7296
       },
       "end": {
-        "line": 238,
+        "line": 249,
         "column": 12,
-        "index": 7064
+        "index": 7413
       }
     },
     "filepath": "src/components/selectable/selectable_list/selectable_list_item.tsx"
@@ -5999,14 +6071,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 241,
+        "line": 252,
         "column": 10,
-        "index": 7110
+        "index": 7459
       },
       "end": {
-        "line": 244,
+        "line": 255,
         "column": 12,
-        "index": 7258
+        "index": 7607
       }
     },
     "filepath": "src/components/selectable/selectable_list/selectable_list_item.tsx"
@@ -6017,14 +6089,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 249,
+        "line": 260,
         "column": 10,
-        "index": 7321
+        "index": 7670
       },
       "end": {
-        "line": 252,
+        "line": 263,
         "column": 12,
-        "index": 7448
+        "index": 7797
       }
     },
     "filepath": "src/components/selectable/selectable_list/selectable_list_item.tsx"
@@ -6035,14 +6107,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 255,
+        "line": 266,
         "column": 10,
-        "index": 7494
+        "index": 7843
       },
       "end": {
-        "line": 258,
+        "line": 269,
         "column": 12,
-        "index": 7651
+        "index": 8000
       }
     },
     "filepath": "src/components/selectable/selectable_list/selectable_list_item.tsx"
@@ -6053,14 +6125,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 261,
+        "line": 272,
         "column": 10,
-        "index": 7704
+        "index": 8053
       },
       "end": {
-        "line": 264,
+        "line": 275,
         "column": 12,
-        "index": 7871
+        "index": 8220
       }
     },
     "filepath": "src/components/selectable/selectable_list/selectable_list_item.tsx"
@@ -6071,14 +6143,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 267,
+        "line": 278,
         "column": 10,
-        "index": 7924
+        "index": 8273
       },
       "end": {
-        "line": 270,
+        "line": 281,
         "column": 12,
-        "index": 8091
+        "index": 8440
       }
     },
     "filepath": "src/components/selectable/selectable_list/selectable_list_item.tsx"
@@ -6089,14 +6161,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 86,
+        "line": 93,
         "column": 30,
-        "index": 2700
+        "index": 2824
       },
       "end": {
-        "line": 89,
+        "line": 96,
         "column": 3,
-        "index": 2803
+        "index": 2927
       }
     },
     "filepath": "src/components/selectable/selectable_templates/selectable_template_sitewide.tsx"
@@ -6107,14 +6179,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 168,
+        "line": 179,
         "column": 8,
-        "index": 4752
+        "index": 4981
       },
       "end": {
-        "line": 171,
+        "line": 182,
         "column": 10,
-        "index": 4870
+        "index": 5099
       }
     },
     "filepath": "src/components/selectable/selectable_templates/selectable_template_sitewide.tsx"
@@ -6125,14 +6197,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 179,
+        "line": 190,
         "column": 8,
-        "index": 5013
+        "index": 5242
       },
       "end": {
-        "line": 182,
+        "line": 193,
         "column": 10,
-        "index": 5131
+        "index": 5360
       }
     },
     "filepath": "src/components/selectable/selectable_templates/selectable_template_sitewide.tsx"
@@ -6143,14 +6215,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 235,
+        "line": 247,
         "column": 12,
-        "index": 6824
+        "index": 6991
       },
       "end": {
-        "line": 238,
+        "line": 250,
         "column": 14,
-        "index": 6946
+        "index": 7113
       }
     },
     "filepath": "src/components/selectable/selectable_templates/selectable_template_sitewide.tsx"
@@ -6161,14 +6233,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 626,
+        "line": 627,
         "column": 16,
-        "index": 20193
+        "index": 20279
       },
       "end": {
-        "line": 629,
+        "line": 630,
         "column": 18,
-        "index": 20319
+        "index": 20405
       }
     },
     "filepath": "src/components/selectable/selectable.tsx"
@@ -6179,14 +6251,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 648,
+        "line": 649,
         "column": 14,
-        "index": 20807
+        "index": 20893
       },
       "end": {
-        "line": 652,
+        "line": 653,
         "column": 16,
-        "index": 21027
+        "index": 21113
       }
     },
     "filepath": "src/components/selectable/selectable.tsx"
@@ -6197,14 +6269,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 667,
+        "line": 668,
         "column": 14,
-        "index": 21438
+        "index": 21524
       },
       "end": {
-        "line": 670,
+        "line": 671,
         "column": 16,
-        "index": 21567
+        "index": 21653
       }
     },
     "filepath": "src/components/selectable/selectable.tsx"
@@ -6215,14 +6287,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 732,
+        "line": 733,
         "column": 6,
-        "index": 23232
+        "index": 23318
       },
       "end": {
-        "line": 741,
+        "line": 742,
         "column": 7,
-        "index": 23560
+        "index": 23646
       }
     },
     "filepath": "src/components/selectable/selectable.tsx"
@@ -6233,14 +6305,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 732,
+        "line": 733,
         "column": 6,
-        "index": 23232
+        "index": 23318
       },
       "end": {
-        "line": 741,
+        "line": 742,
         "column": 7,
-        "index": 23560
+        "index": 23646
       }
     },
     "filepath": "src/components/selectable/selectable.tsx"
@@ -6251,14 +6323,14 @@
     "highlighting": "code",
     "loc": {
       "start": {
-        "line": 779,
+        "line": 780,
         "column": 6,
-        "index": 24998
+        "index": 25084
       },
       "end": {
-        "line": 785,
+        "line": 786,
         "column": 8,
-        "index": 25223
+        "index": 25309
       }
     },
     "filepath": "src/components/selectable/selectable.tsx"
@@ -6269,14 +6341,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 797,
+        "line": 798,
         "column": 6,
-        "index": 25517
+        "index": 25603
       },
       "end": {
-        "line": 797,
+        "line": 798,
         "column": 78,
-        "index": 25589
+        "index": 25675
       }
     },
     "filepath": "src/components/selectable/selectable.tsx"
@@ -6341,14 +6413,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 128,
-        "column": 10,
-        "index": 3326
+        "line": 94,
+        "column": 32,
+        "index": 2304
       },
       "end": {
-        "line": 128,
-        "column": 80,
-        "index": 3396
+        "line": 97,
+        "column": 3,
+        "index": 2373
       }
     },
     "filepath": "src/components/stat/stat.tsx"
@@ -6665,14 +6737,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 77,
+        "line": 78,
         "column": 10,
-        "index": 2359
+        "index": 2418
       },
       "end": {
-        "line": 81,
+        "line": 82,
         "column": 11,
-        "index": 2533
+        "index": 2592
       }
     },
     "filepath": "src/components/table/table_header_cell.tsx"
@@ -6847,12 +6919,12 @@
       "start": {
         "line": 65,
         "column": 27,
-        "index": 1855
+        "index": 1862
       },
       "end": {
         "line": 65,
         "column": 76,
-        "index": 1904
+        "index": 1911
       }
     },
     "filepath": "src/components/tool_tip/icon_tip.tsx"

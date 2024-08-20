@@ -113,10 +113,18 @@ const euiOverflowShadowStyles = (
     }
   }
 
+  // Chrome+Edge has a very bizarre edge case bug where `mask-image` stops working
+  // This workaround forces a stacking context on the scrolling container, which
+  // hopefully addresses the bug. @see:
+  // - https://issues.chromium.org/issues/40778541
+  // - https://github.com/elastic/kibana/issues/180828
+  // - https://github.com/elastic/eui/pull/6343#issuecomment-1302732021
+  const chromiumMaskWorkaround = 'transform: translateZ(0);';
+
   if (direction === 'y') {
-    return `mask-image: linear-gradient(to bottom, ${gradient});`;
+    return `mask-image: linear-gradient(to bottom, ${gradient}); ${chromiumMaskWorkaround}`;
   } else {
-    return `mask-image: linear-gradient(to right, ${gradient});`;
+    return `mask-image: linear-gradient(to right, ${gradient}); ${chromiumMaskWorkaround}`;
   }
 };
 

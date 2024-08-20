@@ -22,7 +22,8 @@
 import * as React from 'react';
 import * as moment from 'moment';
 
-import { EuiPopoverProps, PopoverAnchorPosition } from '../../../popover';
+import type { EuiPopoverProps, PopoverAnchorPosition } from '../../../popover';
+import type { EuiFieldTextProps } from '../../../form/field_text';
 
 export interface ReactDatePickerProps {
   /**
@@ -44,6 +45,7 @@ export interface ReactDatePickerProps {
    * Added to the actual input of the calendar
    */
   className?: string;
+  defaultInputProps?: Partial<EuiFieldTextProps>;
 
   /**
    * Replaces the input with any node, like a button
@@ -192,6 +194,10 @@ export interface ReactDatePickerProps {
   value?: string;
   weekLabel?: string;
   withPortal?: boolean;
+  
+  /**
+   * The total number of years to show as options in years selection dropdown
+   */
   yearDropdownItemNumber?: number;
 }
 declare const ReactDatePicker: React.ClassicComponentClass<ReactDatePickerProps>;

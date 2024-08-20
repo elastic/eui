@@ -7,8 +7,7 @@
  */
 
 import React from 'react';
-import { mount } from 'enzyme';
-import { fireEvent } from '@testing-library/react';
+import { fireEvent, createEvent } from '@testing-library/react';
 import { render } from '../../../test/rtl';
 import { requiredProps } from '../../../test';
 
@@ -34,14 +33,18 @@ describe('EuiSkipLink', () => {
         const focusSpy = jest.fn();
         mockElement.focus = focusSpy;
 
-        const component = mount(
-          <EuiSkipLink destinationId="somewhere" overrideLinkBehavior />
+        const { getByTestSubject } = render(
+          <EuiSkipLink
+            destinationId="somewhere"
+            overrideLinkBehavior
+            data-test-subj="skip-link"
+          />
         );
 
-        const preventDefault = jest.fn();
-        component.find('a').simulate('click', { preventDefault });
+        const event = createEvent.click(getByTestSubject('skip-link'));
+        fireEvent(getByTestSubject('skip-link'), event);
 
-        expect(preventDefault).toHaveBeenCalled();
+        expect(event.defaultPrevented).toBe(true);
         expect(focusSpy).toHaveBeenCalled();
       });
 
@@ -49,14 +52,18 @@ describe('EuiSkipLink', () => {
         const scrollSpy = jest.fn();
         mockElement.scrollIntoView = scrollSpy;
 
-        const component = mount(
-          <EuiSkipLink destinationId="somewhere" overrideLinkBehavior />
+        const { getByTestSubject } = render(
+          <EuiSkipLink
+            destinationId="somewhere"
+            overrideLinkBehavior
+            data-test-subj="skip-link"
+          />
         );
-        component.find('a').simulate('click');
+        fireEvent.click(getByTestSubject('skip-link'));
         expect(scrollSpy).not.toHaveBeenCalled();
 
         mockElement.getBoundingClientRect = () => ({ top: 1000 } as any);
-        component.find('a').simulate('click');
+        fireEvent.click(getByTestSubject('skip-link'));
         expect(scrollSpy).toHaveBeenCalled();
       });
 

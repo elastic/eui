@@ -205,6 +205,12 @@ const RenderCellValue = ({
 const meta: Meta<EuiDataGridProps> = {
   title: 'Tabular Content/EuiDataGrid',
   component: EuiDataGrid,
+  parameters: {
+    codeSnippet: {
+      // TODO: enable once render functions are supported
+      skip: true,
+    },
+  },
   argTypes: {
     width: { control: 'text' },
     height: { control: 'text' },
@@ -213,7 +219,6 @@ const meta: Meta<EuiDataGridProps> = {
     minSizeForControls: MINIMUM_WIDTH_FOR_GRID_CONTROLS,
   },
 };
-enableFunctionToggleControls(meta, ['onColumnResize']);
 
 export default meta;
 type Story = StoryObj<EuiDataGridProps>;
@@ -293,6 +298,162 @@ export const Playground: Story = {
     rowHeightsOptions: {
       defaultHeight: DEFAULT_ROW_HEIGHT,
       rowHeights: {},
+      lineHeight: undefined,
+      scrollAnchorRow: undefined,
+    },
+  },
+  render: (args: EuiDataGridProps) => <StatefulDataGrid {...args} />,
+};
+enableFunctionToggleControls<EuiDataGridProps>(Playground, ['onColumnResize']);
+
+export const HeightLineCount: Story = {
+  parameters: {
+    controls: {
+      include: ['gridStyle', 'rowHeightsOptions', 'width', 'height'],
+    },
+  },
+  args: {
+    columns,
+    rowCount: 5,
+    renderCellValue: RenderCellValue,
+    // setup for easier testing/QA
+    columnVisibility: {
+      visibleColumns: [
+        'name',
+        'email',
+        'account',
+        'location',
+        'date',
+        'amount',
+        'phone',
+        'version',
+      ],
+      setVisibleColumns: () => {},
+    },
+    gridStyle: {
+      fontSize: 's',
+      cellPadding: 'm',
+      border: 'all',
+      stripes: false,
+      header: 'shade',
+      footer: 'overline',
+      stickyFooter: true,
+      rowHover: 'highlight',
+      rowClasses: {},
+    },
+    width: '700px',
+    height: '',
+    toolbarVisibility: false,
+    rowHeightsOptions: {
+      defaultHeight: {
+        lineCount: 1,
+      },
+      lineHeight: undefined,
+      scrollAnchorRow: undefined,
+    },
+  },
+  render: (args: EuiDataGridProps) => <StatefulDataGrid {...args} />,
+};
+
+export const RowHeight: Story = {
+  parameters: {
+    controls: {
+      include: ['gridStyle', 'rowHeightsOptions', 'width', 'height'],
+    },
+  },
+  args: {
+    columns,
+    rowCount: 5,
+    renderCellValue: RenderCellValue,
+    // setup for easier testing/QA
+    columnVisibility: {
+      visibleColumns: [
+        'name',
+        'email',
+        'account',
+        'location',
+        'date',
+        'amount',
+        'phone',
+        'version',
+      ],
+      setVisibleColumns: () => {},
+    },
+    gridStyle: {
+      fontSize: 's',
+      cellPadding: 'm',
+      border: 'all',
+      stripes: false,
+      header: 'shade',
+      footer: 'overline',
+      stickyFooter: true,
+      rowHover: 'highlight',
+      rowClasses: {},
+    },
+    width: '',
+    height: '',
+    toolbarVisibility: false,
+    rowHeightsOptions: {
+      defaultHeight: {
+        height: 48,
+      },
+      rowHeights: {},
+      lineHeight: undefined,
+      scrollAnchorRow: undefined,
+    },
+  },
+  render: (args: EuiDataGridProps) => <StatefulDataGrid {...args} />,
+};
+
+export const CustomRowHeights: Story = {
+  parameters: {
+    controls: {
+      include: ['gridStyle', 'rowHeightsOptions', 'width', 'height'],
+    },
+  },
+  args: {
+    columns,
+    rowCount: 5,
+    renderCellValue: RenderCellValue,
+    // setup for easier testing/QA
+    columnVisibility: {
+      visibleColumns: [
+        'name',
+        'email',
+        'account',
+        'location',
+        'date',
+        'amount',
+        'phone',
+        'version',
+      ],
+      setVisibleColumns: () => {},
+    },
+    gridStyle: {
+      fontSize: 's',
+      cellPadding: 'm',
+      border: 'all',
+      stripes: false,
+      header: 'shade',
+      footer: 'overline',
+      stickyFooter: true,
+      rowHover: 'highlight',
+      rowClasses: {},
+    },
+    width: '700px',
+    height: '',
+    toolbarVisibility: false,
+    rowHeightsOptions: {
+      defaultHeight: {
+        lineCount: 1,
+      },
+      rowHeights: {
+        2: 'auto',
+        3: 48,
+        4: {
+          height: 48,
+        },
+      },
       lineHeight: undefined,
       scrollAnchorRow: undefined,
     },

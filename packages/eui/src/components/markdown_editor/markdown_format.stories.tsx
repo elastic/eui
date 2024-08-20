@@ -13,10 +13,6 @@ import {
   moveStorybookControlsToCategory,
 } from '../../../.storybook/utils';
 import { EuiMarkdownFormat, EuiMarkdownFormatProps } from './markdown_format';
-import {
-  defaultParsingPlugins,
-  defaultProcessingPlugins,
-} from './plugins/markdown_default_plugins';
 import { ALIGNMENTS } from '../text/text_align';
 
 const initialContent = `## Hello world!
@@ -35,7 +31,7 @@ And it can render !{tooltip[tooltips like this](Look! I'm a very helpful tooltip
 `;
 
 const meta: Meta<EuiMarkdownFormatProps> = {
-  title: 'Editors & Syntax/EuiMarkdownEditor/EuiMarkdownFormat',
+  title: 'Editors & Syntax/EuiMarkdownFormat',
   component: EuiMarkdownFormat,
   argTypes: {
     color: { control: { type: 'text' } },
@@ -48,8 +44,6 @@ const meta: Meta<EuiMarkdownFormatProps> = {
   // Component defaults
   args: {
     textSize: 'm',
-    parsingPluginList: defaultParsingPlugins,
-    processingPluginList: defaultProcessingPlugins,
   },
 };
 moveStorybookControlsToCategory(

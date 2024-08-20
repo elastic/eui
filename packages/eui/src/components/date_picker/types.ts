@@ -58,7 +58,8 @@ export interface RelativeOption {
   value: TimeUnitAllId;
 }
 
-export type RefreshUnitsOptions = 's' | 'm' | 'h';
+export const REFRESH_UNIT_OPTIONS = ['s', 'm', 'h'] as const;
+export type RefreshUnitsOptions = (typeof REFRESH_UNIT_OPTIONS)[number];
 
 export type OnRefreshChangeProps = {
   isPaused: boolean;

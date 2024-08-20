@@ -64,7 +64,7 @@ export const euiTableRowStyles = (euiThemeContext: UseEuiTheme) => {
       // Offset expanded & selectable rows by the checkbox width to line up content with the 2nd column
       // Set on the `<td>` because padding can't be applied to `<tr>` elements directly
       checkboxOffset: css`
-        .euiTableRowCell:first-child {
+        & > .euiTableRowCell:first-child {
           ${logicalCSS('padding-left', checkboxSize)}
         }
       `,
@@ -124,7 +124,7 @@ export const euiTableRowStyles = (euiThemeContext: UseEuiTheme) => {
         ${logicalCSS('border-top-left-radius', 0)}
         ${logicalCSS('border-top-right-radius', 0)}
 
-        .euiTableRowCell {
+        > .euiTableRowCell {
           ${logicalCSS('width', '100%')}
         }
 

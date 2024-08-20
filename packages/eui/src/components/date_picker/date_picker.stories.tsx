@@ -8,6 +8,7 @@
 
 import React, { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
+import moment from 'moment';
 
 import {
   disableStorybookControls,
@@ -124,12 +125,75 @@ export default meta;
 type Story = StoryObj<EuiDatePickerProps>;
 
 export const Playground: Story = {
+  parameters: {
+    codeSnippet: {
+      args: {
+        selected: "#{moment('Tue Mar 19 2024 18:54:51 GMT+0100')}",
+      },
+    },
+  },
   args: {
     // NOTE: loki play interactions won't work in CLI somehow
     // TODO: exchange with loki play() interactions once fixed
     autoFocus: true,
+    // setting a selected date to ensure VRT does not
+    // automatically updated based on the current date
+    selected: moment('Tue Mar 19 2024 18:54:51 GMT+0100'),
   },
   render: (args) => <StatefulDatePicker {...args} />,
+};
+
+export const TimeSelect: Story = {
+  parameters: {
+    controls: {
+      include: [
+        'showTimeSelect',
+        'showTimeSelectOnly',
+        'timeFormat',
+        'timeIntervals',
+        'includeTimes',
+        'excludeTimes',
+        'injectTimes',
+        'minTime',
+        'maxTime',
+      ],
+    },
+  },
+  args: {
+    autoFocus: true, // Open the datepicker automatically for Loki VRT
+    showTimeSelect: true,
+    showTimeSelectOnly: false,
+    selected: moment('01/01/1970').hours(23).minutes(0),
+    excludeTimes: [moment('01/01/1970').hours(23).minutes(30)],
+    injectTimes: [moment('01/01/1970').hours(23).minutes(59)],
+    timeIntervals: 30,
+  },
+};
+
+export const TimeSelectOnly: Story = {
+  tags: ['vrt-only'],
+  args: { ...TimeSelect.args, showTimeSelectOnly: true },
+};
+
+export const RestrictedDaySelect: Story = {
+  parameters: {
+    controls: {
+      include: [
+        'minDate',
+        'maxDate',
+        'includeDates',
+        'excludeDates',
+        'filterDate',
+        'highlightDates',
+      ],
+    },
+  },
+  args: {
+    autoFocus: true, // Open the datepicker automatically for Lok VRT,
+    selected: moment('01/02/1970'),
+    maxDate: moment('01/01/1970'),
+    minDate: moment('12/31/1969'),
+  },
 };
 
 const StatefulDatePicker = ({

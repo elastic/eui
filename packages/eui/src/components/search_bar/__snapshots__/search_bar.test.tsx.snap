@@ -8,16 +8,17 @@ exports[`SearchBar render - box 1`] = `
     class="euiFlexItem euiSearchBar__searchHolder emotion-euiFlexItem-grow-1-euiSearchBar__searchHolder"
   >
     <div
-      class="euiFormControlLayout euiFormControlLayout--fullWidth"
+      class="euiFormControlLayout emotion-euiFormControlLayout-fullWidth"
     >
       <div
-        class="euiFormControlLayout__childrenWrapper"
+        class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper"
+        style="--euiFormControlLeftIconsCount: 1;"
       >
         <div
-          class="euiFormControlLayoutIcons euiFormControlLayoutIcons--left euiFormControlLayoutIcons--absolute"
+          class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-absolute-left"
         >
           <span
-            class="euiFormControlLayoutCustomIcon"
+            class="euiFormControlLayoutCustomIcon emotion-euiFormControlLayoutCustomIcon"
           >
             <span
               aria-hidden="true"
@@ -28,7 +29,7 @@ exports[`SearchBar render - box 1`] = `
         </div>
         <input
           aria-label="aria-label"
-          class="euiFieldSearch euiFieldSearch--fullWidth testClass1 testClass2 emotion-euiTestCss"
+          class="euiFieldSearch testClass1 testClass2 emotion-euiFieldSearch-fullWidth-euiTestCss"
           data-test-subj="test subject string"
           placeholder="find something..."
           type="search"
@@ -48,16 +49,17 @@ exports[`SearchBar render - no config, no query 1`] = `
     class="euiFlexItem euiSearchBar__searchHolder emotion-euiFlexItem-grow-1-euiSearchBar__searchHolder"
   >
     <div
-      class="euiFormControlLayout euiFormControlLayout--fullWidth"
+      class="euiFormControlLayout emotion-euiFormControlLayout-fullWidth"
     >
       <div
-        class="euiFormControlLayout__childrenWrapper"
+        class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper"
+        style="--euiFormControlLeftIconsCount: 1;"
       >
         <div
-          class="euiFormControlLayoutIcons euiFormControlLayoutIcons--left euiFormControlLayoutIcons--absolute"
+          class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-absolute-left"
         >
           <span
-            class="euiFormControlLayoutCustomIcon"
+            class="euiFormControlLayoutCustomIcon emotion-euiFormControlLayoutCustomIcon"
           >
             <span
               aria-hidden="true"
@@ -68,7 +70,7 @@ exports[`SearchBar render - no config, no query 1`] = `
         </div>
         <input
           aria-label="This is a search bar. After typing your query, hit enter to filter the results lower in the page."
-          class="euiFieldSearch euiFieldSearch--fullWidth"
+          class="euiFieldSearch emotion-euiFieldSearch-fullWidth"
           placeholder="Search..."
           type="search"
           value=""
@@ -87,16 +89,17 @@ exports[`SearchBar render - provided query, filters 1`] = `
     class="euiFlexItem euiSearchBar__searchHolder emotion-euiFlexItem-grow-1-euiSearchBar__searchHolder"
   >
     <div
-      class="euiFormControlLayout euiFormControlLayout--fullWidth"
+      class="euiFormControlLayout emotion-euiFormControlLayout-fullWidth"
     >
       <div
-        class="euiFormControlLayout__childrenWrapper"
+        class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper"
+        style="--euiFormControlLeftIconsCount: 1; --euiFormControlRightIconsCount: 1;"
       >
         <div
-          class="euiFormControlLayoutIcons euiFormControlLayoutIcons--left euiFormControlLayoutIcons--absolute"
+          class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-absolute-left"
         >
           <span
-            class="euiFormControlLayoutCustomIcon"
+            class="euiFormControlLayoutCustomIcon emotion-euiFormControlLayoutCustomIcon"
           >
             <span
               aria-hidden="true"
@@ -107,22 +110,22 @@ exports[`SearchBar render - provided query, filters 1`] = `
         </div>
         <input
           aria-label="This is a search bar. After typing your query, hit enter to filter the results lower in the page."
-          class="euiFieldSearch euiFormControlLayout--1icons euiFieldSearch--fullWidth euiFieldSearch-isClearable"
+          class="euiFieldSearch euiFieldSearch-isClearable emotion-euiFieldSearch-fullWidth"
           placeholder="Search..."
           type="search"
           value="this is a query"
         />
         <div
-          class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right euiFormControlLayoutIcons--absolute"
+          class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-absolute-right"
         >
           <button
-            aria-label="Clear input"
-            class="euiFormControlLayoutClearButton"
+            aria-label="Clear search input"
+            class="euiFormControlLayoutClearButton emotion-euiFormControlLayoutClearButton"
             data-test-subj="clearSearchButton"
             type="button"
           >
             <span
-              class="euiFormControlLayoutClearButton__icon"
+              class="euiFormControlLayoutClearButton__icon emotion-euiFormControlLayoutClearButton__icon-m"
               data-euiicon-type="cross"
             />
           </button>
@@ -197,16 +200,17 @@ exports[`SearchBar render - tools 1`] = `
     class="euiFlexItem euiSearchBar__searchHolder emotion-euiFlexItem-grow-1-euiSearchBar__searchHolder"
   >
     <div
-      class="euiFormControlLayout euiFormControlLayout--fullWidth"
+      class="euiFormControlLayout emotion-euiFormControlLayout-fullWidth"
     >
       <div
-        class="euiFormControlLayout__childrenWrapper"
+        class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper"
+        style="--euiFormControlLeftIconsCount: 1;"
       >
         <div
-          class="euiFormControlLayoutIcons euiFormControlLayoutIcons--left euiFormControlLayoutIcons--absolute"
+          class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-absolute-left"
         >
           <span
-            class="euiFormControlLayoutCustomIcon"
+            class="euiFormControlLayoutCustomIcon emotion-euiFormControlLayoutCustomIcon"
           >
             <span
               aria-hidden="true"
@@ -217,7 +221,7 @@ exports[`SearchBar render - tools 1`] = `
         </div>
         <input
           aria-label="This is a search bar. After typing your query, hit enter to filter the results lower in the page."
-          class="euiFieldSearch euiFieldSearch--fullWidth"
+          class="euiFieldSearch emotion-euiFieldSearch-fullWidth"
           placeholder="Search..."
           type="search"
           value=""

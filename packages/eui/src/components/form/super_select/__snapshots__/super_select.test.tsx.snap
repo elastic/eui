@@ -9,21 +9,22 @@ exports[`EuiSuperSelect props compressed 1`] = `
     value=""
   />
   <div
-    class="euiFormControlLayout euiFormControlLayout--compressed"
+    class="euiFormControlLayout emotion-euiFormControlLayout-compressed"
   >
     <div
-      class="euiFormControlLayout__childrenWrapper"
+      class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper"
+      style="--euiFormControlRightIconsCount: 1;"
     >
       <button
         aria-haspopup="listbox"
-        class="euiSuperSelectControl euiFormControlLayout--1icons euiSuperSelectControl--compressed"
+        class="euiSuperSelectControl emotion-euiSuperSelect__control-compressed"
         type="button"
       />
       <div
-        class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right euiFormControlLayoutIcons--absolute"
+        class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-compressed-absolute-right"
       >
         <span
-          class="euiFormControlLayoutCustomIcon"
+          class="euiFormControlLayoutCustomIcon emotion-euiFormControlLayoutCustomIcon"
         >
           <span
             aria-hidden="true"
@@ -46,21 +47,22 @@ exports[`EuiSuperSelect props fullWidth 1`] = `
     value=""
   />
   <div
-    class="euiFormControlLayout euiFormControlLayout--fullWidth"
+    class="euiFormControlLayout emotion-euiFormControlLayout-fullWidth"
   >
     <div
-      class="euiFormControlLayout__childrenWrapper"
+      class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper"
+      style="--euiFormControlRightIconsCount: 1;"
     >
       <button
         aria-haspopup="listbox"
-        class="euiSuperSelectControl euiFormControlLayout--1icons euiSuperSelectControl--fullWidth"
+        class="euiSuperSelectControl emotion-euiSuperSelect__control-fullWidth"
         type="button"
       />
       <div
-        class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right euiFormControlLayoutIcons--absolute"
+        class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-absolute-right"
       >
         <span
-          class="euiFormControlLayoutCustomIcon"
+          class="euiFormControlLayoutCustomIcon emotion-euiFormControlLayoutCustomIcon"
         >
           <span
             aria-hidden="true"
@@ -83,26 +85,31 @@ exports[`EuiSuperSelect props prepend and append 1`] = `
     value=""
   />
   <div
-    class="euiFormControlLayout euiFormControlLayout--group"
+    class="euiFormControlLayout euiFormControlLayout--group emotion-euiFormControlLayout-group"
   >
-    <label
-      class="euiFormLabel euiFormControlLayout__prepend"
-    >
-      prepend
-    </label>
     <div
-      class="euiFormControlLayout__childrenWrapper"
+      class="euiFormControlLayout__prepend emotion-euiFormControlLayout__side-prepend"
+    >
+      <label
+        class="euiFormLabel emotion-euiFormLabel"
+      >
+        prepend
+      </label>
+    </div>
+    <div
+      class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper-inGroup"
+      style="--euiFormControlRightIconsCount: 1;"
     >
       <button
         aria-haspopup="listbox"
-        class="euiSuperSelectControl euiFormControlLayout--1icons euiSuperSelectControl--inGroup"
+        class="euiSuperSelectControl emotion-euiSuperSelect__control-inGroup"
         type="button"
       />
       <div
-        class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right euiFormControlLayoutIcons--absolute"
+        class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-absolute-right"
       >
         <span
-          class="euiFormControlLayoutCustomIcon"
+          class="euiFormControlLayoutCustomIcon emotion-euiFormControlLayoutCustomIcon"
         >
           <span
             aria-hidden="true"
@@ -112,11 +119,15 @@ exports[`EuiSuperSelect props prepend and append 1`] = `
         </span>
       </div>
     </div>
-    <label
-      class="euiFormLabel euiFormControlLayout__append"
+    <div
+      class="euiFormControlLayout__append emotion-euiFormControlLayout__side-append"
     >
-      append
-    </label>
+      <label
+        class="euiFormLabel emotion-euiFormLabel"
+      >
+        append
+      </label>
+    </div>
   </div>
 </div>
 `;
@@ -132,23 +143,24 @@ exports[`EuiSuperSelect renders 1`] = `
         value=""
       />
       <div
-        class="euiFormControlLayout"
+        class="euiFormControlLayout emotion-euiFormControlLayout"
       >
         <div
-          class="euiFormControlLayout__childrenWrapper"
+          class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper"
+          style="--euiFormControlRightIconsCount: 1;"
         >
           <button
             aria-haspopup="listbox"
             aria-label="aria-label"
-            class="euiSuperSelectControl euiFormControlLayout--1icons euiSuperSelect--isOpen__button testClass1 testClass2 emotion-euiTestCss"
+            class="euiSuperSelectControl testClass1 testClass2 emotion-euiSuperSelect__control-open-euiTestCss"
             data-test-subj="test subject string"
             type="button"
           />
           <div
-            class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right euiFormControlLayoutIcons--absolute"
+            class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-absolute-right"
           >
             <span
-              class="euiFormControlLayoutCustomIcon"
+              class="euiFormControlLayoutCustomIcon emotion-euiFormControlLayoutCustomIcon"
             >
               <span
                 aria-hidden="true"
@@ -198,13 +210,13 @@ exports[`EuiSuperSelect renders 1`] = `
             <div
               aria-describedby="euiSuperSelect__generated-id__screenreaderDescribeId"
               aria-label="Select listbox"
-              class="euiSuperSelect__listbox"
+              class="euiSuperSelect__listbox eui-scrollBar emotion-euiSuperSelect__listbox"
               role="listbox"
               tabindex="0"
             >
               <button
                 aria-selected="false"
-                class="euiContextMenuItem euiSuperSelect__item emotion-euiContextMenuItem-m-center"
+                class="euiContextMenuItem euiSuperSelect__item emotion-euiContextMenuItem-m-center-euiSuperSelect__item"
                 id="1"
                 role="option"
                 type="button"
@@ -222,7 +234,7 @@ exports[`EuiSuperSelect renders 1`] = `
               </button>
               <button
                 aria-selected="false"
-                class="euiContextMenuItem euiSuperSelect__item emotion-euiContextMenuItem-m-center"
+                class="euiContextMenuItem euiSuperSelect__item emotion-euiContextMenuItem-m-center-euiSuperSelect__item"
                 id="2"
                 role="option"
                 type="button"

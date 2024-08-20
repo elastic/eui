@@ -2,35 +2,31 @@
 
 exports[`EuiDescribedFormGroup props description is not rendered when it's not provided 1`] = `
 <div
-  class="euiDescribedFormGroup"
+  class="euiFlexGroup euiDescribedFormGroup emotion-euiFlexGroup-responsive-l-flexStart-baseline-row-euiDescribedFormGroup"
   role="group"
 >
   <div
-    class="euiFlexGroup emotion-euiFlexGroup-responsive-l-flexStart-baseline-row"
+    class="euiFlexItem euiDescribedFormGroup__descriptionColumn emotion-euiFlexItem-grow-1-euiDescribedFormGroup__descriptionColumn"
+  >
+    <h3
+      class="euiTitle euiDescribedFormGroup__title emotion-euiTitle-xs"
+    >
+      Title
+    </h3>
+  </div>
+  <div
+    class="euiFlexItem euiDescribedFormGroup__fields emotion-euiFlexItem-grow-1-euiDescribedFormGroup__fields"
   >
     <div
-      class="euiFlexItem euiDescribedFormGroup__descriptionColumn emotion-euiFlexItem-grow-1"
-    >
-      <h3
-        class="euiTitle euiDescribedFormGroup__title emotion-euiTitle-xs"
-      >
-        Title
-      </h3>
-    </div>
-    <div
-      class="euiFlexItem euiDescribedFormGroup__fields emotion-euiFlexItem-grow-1"
+      class="euiFormRow emotion-euiFormRow"
+      id="generated-id-row"
     >
       <div
-        class="euiFormRow"
-        id="generated-id-row"
+        class="euiFormRow__fieldWrapper"
       >
-        <div
-          class="euiFormRow__fieldWrapper"
-        >
-          <input
-            id="generated-id"
-          />
-        </div>
+        <input
+          id="generated-id"
+        />
       </div>
     </div>
   </div>
@@ -39,42 +35,38 @@ exports[`EuiDescribedFormGroup props description is not rendered when it's not p
 
 exports[`EuiDescribedFormGroup props fullWidth is rendered 1`] = `
 <div
-  class="euiDescribedFormGroup euiDescribedFormGroup--fullWidth"
+  class="euiFlexGroup euiDescribedFormGroup emotion-euiFlexGroup-responsive-l-flexStart-baseline-row-euiDescribedFormGroup-fullWidth"
   role="group"
 >
   <div
-    class="euiFlexGroup emotion-euiFlexGroup-responsive-l-flexStart-baseline-row"
+    class="euiFlexItem euiDescribedFormGroup__descriptionColumn emotion-euiFlexItem-grow-1-euiDescribedFormGroup__descriptionColumn"
+  >
+    <h3
+      class="euiTitle euiDescribedFormGroup__title emotion-euiTitle-xs"
+    >
+      Title
+    </h3>
+    <div
+      class="euiText euiDescribedFormGroup__description emotion-euiText-s-euiTextColor-subdued-euiDescribedFormGroup__description"
+    >
+      <p>
+        Test description
+      </p>
+    </div>
+  </div>
+  <div
+    class="euiFlexItem euiDescribedFormGroup__fields emotion-euiFlexItem-grow-1-euiDescribedFormGroup__fields"
   >
     <div
-      class="euiFlexItem euiDescribedFormGroup__descriptionColumn emotion-euiFlexItem-grow-1"
-    >
-      <h3
-        class="euiTitle euiDescribedFormGroup__title emotion-euiTitle-xs"
-      >
-        Title
-      </h3>
-      <div
-        class="euiText euiDescribedFormGroup__description emotion-euiText-s-euiTextColor-subdued"
-      >
-        <p>
-          Test description
-        </p>
-      </div>
-    </div>
-    <div
-      class="euiFlexItem euiDescribedFormGroup__fields emotion-euiFlexItem-grow-1"
+      class="euiFormRow emotion-euiFormRow-fullWidth"
+      id="generated-id-row"
     >
       <div
-        class="euiFormRow euiFormRow--fullWidth"
-        id="generated-id-row"
+        class="euiFormRow__fieldWrapper"
       >
-        <div
-          class="euiFormRow__fieldWrapper"
-        >
-          <input
-            id="generated-id"
-          />
-        </div>
+        <input
+          id="generated-id"
+        />
       </div>
     </div>
   </div>
@@ -83,42 +75,38 @@ exports[`EuiDescribedFormGroup props fullWidth is rendered 1`] = `
 
 exports[`EuiDescribedFormGroup props gutterSize is rendered 1`] = `
 <div
-  class="euiDescribedFormGroup"
+  class="euiFlexGroup euiDescribedFormGroup emotion-euiFlexGroup-responsive-s-flexStart-baseline-row-euiDescribedFormGroup"
   role="group"
 >
   <div
-    class="euiFlexGroup emotion-euiFlexGroup-responsive-s-flexStart-baseline-row"
+    class="euiFlexItem euiDescribedFormGroup__descriptionColumn emotion-euiFlexItem-grow-1-euiDescribedFormGroup__descriptionColumn"
+  >
+    <h3
+      class="euiTitle euiDescribedFormGroup__title emotion-euiTitle-xs"
+    >
+      Title
+    </h3>
+    <div
+      class="euiText euiDescribedFormGroup__description emotion-euiText-s-euiTextColor-subdued-euiDescribedFormGroup__description"
+    >
+      <p>
+        Test description
+      </p>
+    </div>
+  </div>
+  <div
+    class="euiFlexItem euiDescribedFormGroup__fields emotion-euiFlexItem-grow-1-euiDescribedFormGroup__fields"
   >
     <div
-      class="euiFlexItem euiDescribedFormGroup__descriptionColumn emotion-euiFlexItem-grow-1"
-    >
-      <h3
-        class="euiTitle euiDescribedFormGroup__title emotion-euiTitle-xs"
-      >
-        Title
-      </h3>
-      <div
-        class="euiText euiDescribedFormGroup__description emotion-euiText-s-euiTextColor-subdued"
-      >
-        <p>
-          Test description
-        </p>
-      </div>
-    </div>
-    <div
-      class="euiFlexItem euiDescribedFormGroup__fields emotion-euiFlexItem-grow-1"
+      class="euiFormRow emotion-euiFormRow"
+      id="generated-id-row"
     >
       <div
-        class="euiFormRow"
-        id="generated-id-row"
+        class="euiFormRow__fieldWrapper"
       >
-        <div
-          class="euiFormRow__fieldWrapper"
-        >
-          <input
-            id="generated-id"
-          />
-        </div>
+        <input
+          id="generated-id"
+        />
       </div>
     </div>
   </div>
@@ -127,86 +115,78 @@ exports[`EuiDescribedFormGroup props gutterSize is rendered 1`] = `
 
 exports[`EuiDescribedFormGroup props props for the flex item containers are passed down 1`] = `
 <div
-  class="euiDescribedFormGroup"
+  class="euiFlexGroup euiDescribedFormGroup emotion-euiFlexGroup-responsive-l-flexStart-baseline-row-euiDescribedFormGroup"
   role="group"
 >
   <div
-    class="euiFlexGroup emotion-euiFlexGroup-responsive-l-flexStart-baseline-row"
+    class="euiFlexItem euiDescribedFormGroup__descriptionColumn emotion-euiFlexItem-grow-2-euiDescribedFormGroup__descriptionColumn"
+  >
+    <h3
+      class="euiTitle euiDescribedFormGroup__title emotion-euiTitle-xs"
+    >
+      Title
+    </h3>
+    <div
+      class="euiText euiDescribedFormGroup__description emotion-euiText-s-euiTextColor-subdued-euiDescribedFormGroup__description"
+    >
+      <p>
+        Test description
+      </p>
+    </div>
+  </div>
+  <section
+    class="euiFlexItem euiDescribedFormGroup__fields emotion-euiFlexItem-grow-1-euiDescribedFormGroup__fields"
   >
     <div
-      class="euiFlexItem euiDescribedFormGroup__descriptionColumn emotion-euiFlexItem-grow-2"
+      class="euiFormRow emotion-euiFormRow"
+      id="generated-id-row"
     >
-      <h3
-        class="euiTitle euiDescribedFormGroup__title emotion-euiTitle-xs"
-      >
-        Title
-      </h3>
       <div
-        class="euiText euiDescribedFormGroup__description emotion-euiText-s-euiTextColor-subdued"
+        class="euiFormRow__fieldWrapper"
       >
-        <p>
-          Test description
-        </p>
+        <input
+          id="generated-id"
+        />
       </div>
     </div>
-    <section
-      class="euiFlexItem euiDescribedFormGroup__fields emotion-euiFlexItem-grow-1"
-    >
-      <div
-        class="euiFormRow"
-        id="generated-id-row"
-      >
-        <div
-          class="euiFormRow__fieldWrapper"
-        >
-          <input
-            id="generated-id"
-          />
-        </div>
-      </div>
-    </section>
-  </div>
+  </section>
 </div>
 `;
 
 exports[`EuiDescribedFormGroup props third is rendered 1`] = `
 <div
-  class="euiDescribedFormGroup"
+  class="euiFlexGroup euiDescribedFormGroup emotion-euiFlexGroup-responsive-l-flexStart-baseline-row-euiDescribedFormGroup"
   role="group"
 >
   <div
-    class="euiFlexGroup emotion-euiFlexGroup-responsive-l-flexStart-baseline-row"
+    class="euiFlexItem euiDescribedFormGroup__descriptionColumn emotion-euiFlexItem-grow-1-euiDescribedFormGroup__descriptionColumn"
+  >
+    <h3
+      class="euiTitle euiDescribedFormGroup__title emotion-euiTitle-xs"
+    >
+      Title
+    </h3>
+    <div
+      class="euiText euiDescribedFormGroup__description emotion-euiText-s-euiTextColor-subdued-euiDescribedFormGroup__description"
+    >
+      <p>
+        Test description
+      </p>
+    </div>
+  </div>
+  <div
+    class="euiFlexItem euiDescribedFormGroup__fields emotion-euiFlexItem-grow-2-euiDescribedFormGroup__fields"
   >
     <div
-      class="euiFlexItem euiDescribedFormGroup__descriptionColumn emotion-euiFlexItem-grow-1"
-    >
-      <h3
-        class="euiTitle euiDescribedFormGroup__title emotion-euiTitle-xs"
-      >
-        Title
-      </h3>
-      <div
-        class="euiText euiDescribedFormGroup__description emotion-euiText-s-euiTextColor-subdued"
-      >
-        <p>
-          Test description
-        </p>
-      </div>
-    </div>
-    <div
-      class="euiFlexItem euiDescribedFormGroup__fields emotion-euiFlexItem-grow-2"
+      class="euiFormRow emotion-euiFormRow-fullWidth"
+      id="generated-id-row"
     >
       <div
-        class="euiFormRow euiFormRow--fullWidth"
-        id="generated-id-row"
+        class="euiFormRow__fieldWrapper"
       >
-        <div
-          class="euiFormRow__fieldWrapper"
-        >
-          <input
-            id="generated-id"
-          />
-        </div>
+        <input
+          id="generated-id"
+        />
       </div>
     </div>
   </div>
@@ -215,42 +195,38 @@ exports[`EuiDescribedFormGroup props third is rendered 1`] = `
 
 exports[`EuiDescribedFormGroup props titleSize is rendered 1`] = `
 <div
-  class="euiDescribedFormGroup"
+  class="euiFlexGroup euiDescribedFormGroup emotion-euiFlexGroup-responsive-l-flexStart-baseline-row-euiDescribedFormGroup"
   role="group"
 >
   <div
-    class="euiFlexGroup emotion-euiFlexGroup-responsive-l-flexStart-baseline-row"
+    class="euiFlexItem euiDescribedFormGroup__descriptionColumn emotion-euiFlexItem-grow-1-euiDescribedFormGroup__descriptionColumn"
+  >
+    <h3
+      class="euiTitle euiDescribedFormGroup__title emotion-euiTitle-l"
+    >
+      Title
+    </h3>
+    <div
+      class="euiText euiDescribedFormGroup__description emotion-euiText-s-euiTextColor-subdued-euiDescribedFormGroup__description"
+    >
+      <p>
+        Test description
+      </p>
+    </div>
+  </div>
+  <div
+    class="euiFlexItem euiDescribedFormGroup__fields emotion-euiFlexItem-grow-1-euiDescribedFormGroup__fields"
   >
     <div
-      class="euiFlexItem euiDescribedFormGroup__descriptionColumn emotion-euiFlexItem-grow-1"
-    >
-      <h3
-        class="euiTitle euiDescribedFormGroup__title emotion-euiTitle-l"
-      >
-        Title
-      </h3>
-      <div
-        class="euiText euiDescribedFormGroup__description emotion-euiText-s-euiTextColor-subdued"
-      >
-        <p>
-          Test description
-        </p>
-      </div>
-    </div>
-    <div
-      class="euiFlexItem euiDescribedFormGroup__fields emotion-euiFlexItem-grow-1"
+      class="euiFormRow emotion-euiFormRow"
+      id="generated-id-row"
     >
       <div
-        class="euiFormRow"
-        id="generated-id-row"
+        class="euiFormRow__fieldWrapper"
       >
-        <div
-          class="euiFormRow__fieldWrapper"
-        >
-          <input
-            id="generated-id"
-          />
-        </div>
+        <input
+          id="generated-id"
+        />
       </div>
     </div>
   </div>
@@ -260,43 +236,39 @@ exports[`EuiDescribedFormGroup props titleSize is rendered 1`] = `
 exports[`EuiDescribedFormGroup renders 1`] = `
 <div
   aria-label="aria-label"
-  class="euiDescribedFormGroup testClass1 testClass2 emotion-euiTestCss"
+  class="euiFlexGroup euiDescribedFormGroup testClass1 testClass2 emotion-euiFlexGroup-responsive-l-flexStart-baseline-row-euiDescribedFormGroup-euiTestCss"
   data-test-subj="test subject string"
   role="group"
 >
   <div
-    class="euiFlexGroup emotion-euiFlexGroup-responsive-l-flexStart-baseline-row"
+    class="euiFlexItem euiDescribedFormGroup__descriptionColumn emotion-euiFlexItem-grow-1-euiDescribedFormGroup__descriptionColumn"
+  >
+    <h3
+      class="euiTitle euiDescribedFormGroup__title emotion-euiTitle-xs"
+    >
+      Title
+    </h3>
+    <div
+      class="euiText euiDescribedFormGroup__description emotion-euiText-s-euiTextColor-subdued-euiDescribedFormGroup__description"
+    >
+      <p>
+        Test description
+      </p>
+    </div>
+  </div>
+  <div
+    class="euiFlexItem euiDescribedFormGroup__fields emotion-euiFlexItem-grow-1-euiDescribedFormGroup__fields"
   >
     <div
-      class="euiFlexItem euiDescribedFormGroup__descriptionColumn emotion-euiFlexItem-grow-1"
-    >
-      <h3
-        class="euiTitle euiDescribedFormGroup__title emotion-euiTitle-xs"
-      >
-        Title
-      </h3>
-      <div
-        class="euiText euiDescribedFormGroup__description emotion-euiText-s-euiTextColor-subdued"
-      >
-        <p>
-          Test description
-        </p>
-      </div>
-    </div>
-    <div
-      class="euiFlexItem euiDescribedFormGroup__fields emotion-euiFlexItem-grow-1"
+      class="euiFormRow emotion-euiFormRow"
+      id="generated-id-row"
     >
       <div
-        class="euiFormRow"
-        id="generated-id-row"
+        class="euiFormRow__fieldWrapper"
       >
-        <div
-          class="euiFormRow__fieldWrapper"
-        >
-          <input
-            id="generated-id"
-          />
-        </div>
+        <input
+          id="generated-id"
+        />
       </div>
     </div>
   </div>
@@ -305,74 +277,70 @@ exports[`EuiDescribedFormGroup renders 1`] = `
 
 exports[`EuiDescribedFormGroup ties together parts for accessibility 1`] = `
 <div
-  class="euiDescribedFormGroup"
+  class="euiFlexGroup euiDescribedFormGroup emotion-euiFlexGroup-responsive-l-flexStart-baseline-row-euiDescribedFormGroup"
   role="group"
 >
   <div
-    class="euiFlexGroup emotion-euiFlexGroup-responsive-l-flexStart-baseline-row"
+    class="euiFlexItem euiDescribedFormGroup__descriptionColumn emotion-euiFlexItem-grow-1-euiDescribedFormGroup__descriptionColumn"
+  >
+    <h3
+      class="euiTitle euiDescribedFormGroup__title emotion-euiTitle-xs"
+    >
+      Title
+    </h3>
+    <div
+      class="euiText euiDescribedFormGroup__description emotion-euiText-s-euiTextColor-subdued-euiDescribedFormGroup__description"
+    >
+      <p>
+        Test description
+      </p>
+    </div>
+  </div>
+  <div
+    class="euiFlexItem euiDescribedFormGroup__fields emotion-euiFlexItem-grow-1-euiDescribedFormGroup__fields"
   >
     <div
-      class="euiFlexItem euiDescribedFormGroup__descriptionColumn emotion-euiFlexItem-grow-1"
-    >
-      <h3
-        class="euiTitle euiDescribedFormGroup__title emotion-euiTitle-xs"
-      >
-        Title
-      </h3>
-      <div
-        class="euiText euiDescribedFormGroup__description emotion-euiText-s-euiTextColor-subdued"
-      >
-        <p>
-          Test description
-        </p>
-      </div>
-    </div>
-    <div
-      class="euiFlexItem euiDescribedFormGroup__fields emotion-euiFlexItem-grow-1"
+      class="euiFormRow euiFormRow--hasLabel emotion-euiFormRow"
+      id="generated-id-row"
     >
       <div
-        class="euiFormRow euiFormRow--hasLabel"
-        id="generated-id-row"
+        class="euiFormRow__labelWrapper"
       >
-        <div
-          class="euiFormRow__labelWrapper"
+        <label
+          aria-invalid="true"
+          class="euiFormLabel euiFormRow__label euiFormLabel-isInvalid emotion-euiFormLabel-invalid"
+          for="generated-id"
+          id="generated-id-label"
         >
-          <label
-            aria-invalid="true"
-            class="euiFormLabel euiFormRow__label euiFormLabel-isInvalid"
-            for="generated-id"
-            id="generated-id-label"
-          >
-            Label
-          </label>
+          Label
+        </label>
+      </div>
+      <div
+        class="euiFormRow__fieldWrapper"
+      >
+        <input
+          aria-describedby="generated-id-help-0 generated-id-error-0 generated-id-error-1"
+          id="generated-id"
+        />
+        <div
+          aria-live="polite"
+          class="euiFormErrorText euiFormRow__text emotion-euiFormErrorText"
+          id="generated-id-error-0"
+        >
+          Error one
         </div>
         <div
-          class="euiFormRow__fieldWrapper"
+          aria-live="polite"
+          class="euiFormErrorText euiFormRow__text emotion-euiFormErrorText"
+          id="generated-id-error-1"
         >
-          <input
-            aria-describedby="generated-id-help-0 generated-id-error-0 generated-id-error-1"
-            id="generated-id"
-          />
-          <div
-            aria-live="polite"
-            class="euiFormErrorText euiFormRow__text"
-            id="generated-id-error-0"
-          >
-            Error one
-          </div>
-          <div
-            aria-live="polite"
-            class="euiFormErrorText euiFormRow__text"
-            id="generated-id-error-1"
-          >
-            Error two
-          </div>
-          <div
-            class="euiFormHelpText euiFormRow__text"
-            id="generated-id-help-0"
-          >
-            Help text
-          </div>
+          Error two
+        </div>
+        <div
+          class="euiFormHelpText euiFormRow__text emotion-euiFormHelpText"
+          id="generated-id-help-0"
+        >
+          Help text
         </div>
       </div>
     </div>

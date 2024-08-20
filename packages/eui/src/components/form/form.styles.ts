@@ -15,10 +15,18 @@ import {
   makeHighContrastColor,
 } from '../../services';
 import {
+  logicalCSS,
   mathWithUnits,
   euiCanAnimate,
   euiFontSize,
 } from '../../global_styling';
+import { euiButtonColor } from '../../themes/amsterdam/global_styling/mixins';
+
+// There are multiple components that only need the form max-width size &
+// don't need the extra overhead/color computing expense of every form var.
+// For microperf, we're making this its own util
+export const euiFormMaxWidth = ({ euiTheme }: UseEuiTheme) =>
+  mathWithUnits(euiTheme.size.base, (x) => x * 25);
 
 export const euiFormVariables = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme, colorMode } = euiThemeContext;
@@ -31,40 +39,36 @@ export const euiFormVariables = (euiThemeContext: UseEuiTheme) => {
   const controlCompressedHeight = euiTheme.size.xl;
 
   const sizes = {
-    maxWidth: mathWithUnits(euiTheme.size.base, (x) => x * 25),
+    maxWidth: euiFormMaxWidth(euiThemeContext),
     controlHeight: controlHeight,
     controlCompressedHeight: controlCompressedHeight,
     controlPadding: euiTheme.size.m,
     controlCompressedPadding: euiTheme.size.s,
     controlBorderRadius: euiTheme.border.radius.medium,
     controlCompressedBorderRadius: euiTheme.border.radius.small,
+    iconAffordance: mathWithUnits(euiTheme.size.base, (x) => x * 1.5),
+    iconCompressedAffordance: mathWithUnits(euiTheme.size.m, (x) => x * 1.5),
   };
 
   const colors = {
+    textColor: euiTheme.colors.text,
     backgroundColor: backgroundColor,
-    backgroundDisabledColor: darken(euiTheme.colors.lightestShade, 0.1),
+    backgroundDisabledColor: darken(euiTheme.colors.lightestShade, 0.05),
     backgroundReadOnlyColor: euiTheme.colors.emptyShade,
-    borderColor: transparentize(euiTheme.border.color, 0.9),
-    borderDisabledColor: transparentize(euiTheme.border.color, 0.9),
+    borderColor: transparentize(
+      colorMode === 'DARK'
+        ? euiTheme.colors.ghost
+        : darken(euiTheme.border.color, 4),
+      0.1
+    ),
     controlDisabledColor: euiTheme.colors.mediumShade,
     controlBoxShadow: '0 0 transparent',
     controlPlaceholderText: makeHighContrastColor(euiTheme.colors.subduedText)(
       backgroundColor
     ),
-    inputGroupLabelBackground: isColorDark
+    appendPrependBackground: isColorDark
       ? shade(euiTheme.colors.lightShade, 0.15)
       : tint(euiTheme.colors.lightShade, 0.5),
-    inputGroupBorder: 'none',
-  };
-
-  // Colors - specific to checkboxes, radios, switches, and range thumbs
-  const customControlColors = {
-    customControlDisabledIconColor: isColorDark
-      ? shade(euiTheme.colors.mediumShade, 0.38)
-      : tint(euiTheme.colors.mediumShade, 0.485),
-    customControlBorderColor: isColorDark
-      ? shade(euiTheme.colors.lightestShade, 0.4)
-      : tint(euiTheme.colors.lightestShade, 0.31),
   };
 
   const controlLayout = {
@@ -89,117 +93,144 @@ export const euiFormVariables = (euiThemeContext: UseEuiTheme) => {
   return {
     ...sizes,
     ...colors,
-    ...customControlColors,
     ...iconSizes,
     ...controlLayout,
     animationTiming: `${euiTheme.animation.fast} ease-in`,
   };
 };
 
-export const euiFormControlSize = (
-  euiThemeContext: UseEuiTheme,
-  options: {
-    height?: string;
-    fullWidth?: boolean;
-    compressed?: boolean;
-    inGroup?: boolean;
-  } = {}
-) => {
+export const euiFormControlStyles = (euiThemeContext: UseEuiTheme) => {
   const form = euiFormVariables(euiThemeContext);
 
-  const width = '100%';
+  return {
+    shared: `
+      ${euiFormControlText(euiThemeContext)}
+      ${euiFormControlDefaultShadow(euiThemeContext)}
+    `,
 
-  let maxWidth = form.maxWidth;
-  if (options.fullWidth) maxWidth = '100%';
+    // Sizes
+    uncompressed: `
+      ${logicalCSS('height', form.controlHeight)}
+      ${logicalCSS('padding-vertical', form.controlPadding)}
+      ${logicalCSS(
+        'padding-left',
+        `calc(${form.controlPadding} + (${form.iconAffordance} * var(--euiFormControlLeftIconsCount, 0)))`
+      )}
+      ${logicalCSS(
+        'padding-right',
+        `calc(${form.controlPadding} + (${form.iconAffordance} * var(--euiFormControlRightIconsCount, 0)))`
+      )}
+      border-radius: ${form.controlBorderRadius};
+    `,
+    compressed: `
+      ${logicalCSS('height', form.controlCompressedHeight)}
+      ${logicalCSS('padding-vertical', form.controlCompressedPadding)}
+      ${logicalCSS(
+        'padding-left',
+        `calc(${form.controlCompressedPadding} + (${form.iconCompressedAffordance} * var(--euiFormControlLeftIconsCount, 0)))`
+      )}
+      ${logicalCSS(
+        'padding-right',
+        `calc(${form.controlCompressedPadding} + (${form.iconCompressedAffordance} * var(--euiFormControlRightIconsCount, 0)))`
+      )}
+      border-radius: ${form.controlCompressedBorderRadius};
+    `,
 
-  let height = options.height || form.controlHeight;
-  if (options.compressed) height = form.controlCompressedHeight;
-  if (options.inGroup) height = '100%';
+    // In group
+    inGroup: `
+      ${logicalCSS('height', '100%')}
+      box-shadow: none;
+      border-radius: 0;
+    `,
 
-  return `
-    max-inline-size: ${maxWidth};
-    inline-size: ${width};
-    block-size: ${height};
-  `;
-};
+    // Widths
+    formWidth: `
+      ${logicalCSS('max-width', form.maxWidth)}
+      ${logicalCSS('width', '100%')}
+    `,
+    fullWidth: `
+      ${logicalCSS('max-width', '100%')}
+      ${logicalCSS('width', '100%')}
+    `,
 
-export const euiCustomControl = (
-  euiThemeContext: UseEuiTheme,
-  options: {
-    type?: 'round' | 'square';
-    size?: string;
-  } = {}
-) => {
-  const euiTheme = euiThemeContext.euiTheme;
-  const form = euiFormVariables(euiThemeContext);
-  const { type, size = euiTheme.size.base } = options;
-
-  let padddingStyle = '';
-  let borderRadiusStyle = '';
-
-  if (size) {
-    const borderSize = parseFloat(String(euiTheme.border.width.thin));
-    const paddingSize = mathWithUnits(size, (x) => (x - borderSize * 2) / 2);
-    padddingStyle = `padding: ${paddingSize};`;
-  }
-
-  if (type === 'round') {
-    borderRadiusStyle = `border-radius: ${size};`;
-  } else if (type === 'square') {
-    borderRadiusStyle = `border-radius: ${form.controlCompressedBorderRadius};`;
-  }
-
-  return `
-    ${padddingStyle}
-    ${borderRadiusStyle}
-    border: ${euiTheme.border.width.thin} solid ${form.customControlBorderColor};
-    background: ${euiTheme.colors.emptyShade} no-repeat center;
-
-    ${euiCanAnimate} {
-      transition: background-color ${form.animationTiming},
-        border-color ${form.animationTiming};
-    }
-  `;
+    // States
+    invalid: euiFormControlInvalidStyles(euiThemeContext),
+    focus: euiFormControlFocusStyles(euiThemeContext),
+    disabled: euiFormControlDisabledStyles(euiThemeContext),
+    readOnly: euiFormControlReadOnlyStyles(euiThemeContext),
+    autoFill: euiFormControlAutoFillStyles(euiThemeContext),
+  };
 };
 
 export const euiFormControlText = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
   const { fontSize } = euiFontSize(euiThemeContext, 's');
-  const { controlPlaceholderText } = euiFormVariables(euiThemeContext);
+  const form = euiFormVariables(euiThemeContext);
 
   return `
     font-family: ${euiTheme.font.family};
     font-size: ${fontSize};
-    color: ${euiTheme.colors.text};
+    color: ${form.textColor};
 
-    ${euiPlaceholderPerBrowser(`color: ${controlPlaceholderText}`)}
+    ${euiPlaceholderPerBrowser(`
+      color: ${form.controlPlaceholderText};
+      opacity: 1;
+    `)}
   `;
 };
 
-export const euiFormControlDefaultShadow = (euiThemeContext: UseEuiTheme) => {
+export const euiFormControlDefaultShadow = (
+  euiThemeContext: UseEuiTheme,
+  {
+    withBorder = true,
+    withBackground = true,
+    withBackgroundColor = withBackground,
+    withBackgroundAnimation = withBackground,
+  }: {
+    withBorder?: boolean;
+    withBackground?: boolean;
+    withBackgroundColor?: boolean;
+    withBackgroundAnimation?: boolean;
+  } = {}
+) => {
   const { euiTheme } = euiThemeContext;
   const form = euiFormVariables(euiThemeContext);
 
-  return `
-    box-shadow: inset 0 0 0 1px ${form.borderColor};
-    background-color: ${form.backgroundColor};
+  // We use inset box-shadow instead of border to skip extra height calculations
+  const border = `
+    border: none;
+    box-shadow: inset 0 0 0 ${euiTheme.border.width.thin} ${form.borderColor};
+  `.trim();
 
+  const backgroundColor = `
+    background-color: ${form.backgroundColor};
+  `.trim();
+
+  const backgroundGradient = `
     background-repeat: no-repeat;
     background-size: 0% 100%;
     background-image: linear-gradient(to top,
-      var(--euiFormStateColor),
-      var(--euiFormStateColor) ${euiTheme.border.width.thick},
+      var(--euiFormControlStateColor),
+      var(--euiFormControlStateColor) ${euiTheme.border.width.thick},
       transparent ${euiTheme.border.width.thick},
       transparent 100%
     );
+  `.trim();
 
+  const backgroundAnimation = `
     ${euiCanAnimate} {
       transition:
-        box-shadow ${form.animationTiming},
         background-image ${form.animationTiming},
         background-size ${form.animationTiming},
         background-color ${form.animationTiming};
     }
+  `.trim();
+
+  return `
+    ${withBorder ? border : ''}
+    ${withBackgroundColor ? backgroundColor : ''}
+    ${withBackground ? backgroundGradient : ''}
+    ${withBackgroundAnimation ? backgroundAnimation : ''}
   `;
 };
 
@@ -207,7 +238,7 @@ export const euiFormControlFocusStyles = ({
   euiTheme,
   colorMode,
 }: UseEuiTheme) => `
-  --euiFormStateColor: ${euiTheme.colors.primary};
+  --euiFormControlStateColor: ${euiTheme.colors.primary};
   background-color: ${
     colorMode === 'DARK'
       ? shade(euiTheme.colors.emptyShade, 0.4)
@@ -217,10 +248,221 @@ export const euiFormControlFocusStyles = ({
   outline: none; /* Remove all outlines and rely on our own bottom border gradient */
 `;
 
-const euiPlaceholderPerBrowser = (content: string) => `
-  &::-webkit-input-placeholder { ${content}; opacity: 1; }
-  &::-moz-placeholder { ${content}; opacity: 1; }
-  &:-ms-input-placeholder { ${content}; opacity: 1; }
-  &:-moz-placeholder { ${content}; opacity: 1; }
-  &::placeholder { ${content}; opacity: 1; }
+export const euiFormControlInvalidStyles = ({ euiTheme }: UseEuiTheme) => `
+  --euiFormControlStateColor: ${euiTheme.colors.danger};
+  background-size: 100% 100%;
 `;
+
+export const euiFormControlDisabledStyles = (euiThemeContext: UseEuiTheme) => {
+  const form = euiFormVariables(euiThemeContext);
+
+  return `
+    color: ${form.controlDisabledColor};
+    /* Required for Safari */
+    -webkit-text-fill-color: ${form.controlDisabledColor};
+    background-color: ${form.backgroundDisabledColor};
+    cursor: not-allowed;
+    --euiFormControlStateColor: transparent;
+
+    ${euiPlaceholderPerBrowser(`
+      color: ${form.controlDisabledColor};
+      opacity: 1;
+    `)}
+  `;
+};
+
+export const euiFormControlReadOnlyStyles = (euiThemeContext: UseEuiTheme) => {
+  const form = euiFormVariables(euiThemeContext);
+
+  return `
+    cursor: default;
+    color: ${form.textColor};
+    -webkit-text-fill-color: ${form.textColor}; /* Required for Safari */
+
+    background-color: ${form.backgroundReadOnlyColor};
+    --euiFormControlStateColor: transparent;
+  `;
+};
+
+export const euiFormControlAutoFillStyles = (euiThemeContext: UseEuiTheme) => {
+  const { euiTheme, colorMode } = euiThemeContext;
+
+  // Make the text color slightly less prominent than the default colors.text
+  const textColor = euiTheme.colors.darkestShade;
+
+  const { backgroundColor } = euiButtonColor(euiThemeContext, 'primary');
+  const tintedBackgroundColor =
+    colorMode === 'DARK'
+      ? shade(backgroundColor, 0.5)
+      : tint(backgroundColor, 0.7);
+  // Hacky workaround to background-color, since Chrome doesn't normally allow overriding its styles
+  // @see https://developer.mozilla.org/en-US/docs/Web/CSS/:autofill#sect1
+  const backgroundShadow = `inset 0 0 0 100vw ${tintedBackgroundColor}`;
+
+  // Re-create the border, since the above webkit box shadow overrides the default border box-shadow
+  // + change the border color to match states, since the underline background gradient no longer works
+  const borderColor = transparentize(euiTheme.colors.primaryText, 0.2);
+  const invalidBorder = euiTheme.colors.danger;
+  const borderShadow = (color: string) =>
+    `inset 0 0 0 ${euiTheme.border.width.thin} ${color}`;
+
+  // These styles only apply/override Chrome/webkit browsers - Firefox does not set autofill styles
+  return `
+    &:-webkit-autofill {
+      -webkit-text-fill-color: ${textColor};
+      -webkit-box-shadow: ${borderShadow(borderColor)}, ${backgroundShadow};
+
+      &:invalid {
+        -webkit-box-shadow: ${borderShadow(invalidBorder)}, ${backgroundShadow};
+      }
+    }
+  `;
+};
+
+const euiPlaceholderPerBrowser = (content: string) => `
+  &::-webkit-input-placeholder { ${content} }
+  &::-moz-placeholder { ${content} }
+  &:-ms-input-placeholder { ${content} }
+  &:-moz-placeholder { ${content} }
+  &::placeholder { ${content} }
+`;
+
+/**
+ * Selection custom controls - checkboxes, radios, and switches
+ */
+
+export const euiFormCustomControlVariables = (euiThemeContext: UseEuiTheme) => {
+  const { euiTheme, colorMode } = euiThemeContext;
+
+  const sizes = {
+    control: euiTheme.size.base,
+    lineHeight: euiTheme.size.l,
+    labelGap: euiTheme.size.s,
+  };
+
+  const colors = {
+    unselected: euiTheme.colors.emptyShade,
+    unselectedBorder:
+      colorMode === 'DARK'
+        ? tint(euiTheme.colors.lightestShade, 0.31) // WCAG AA requirements
+        : shade(euiTheme.colors.lightestShade, 0.4),
+    selected: euiTheme.colors.primary,
+    selectedIcon: euiTheme.colors.emptyShade,
+    disabled: euiTheme.colors.lightShade,
+    disabledIcon: euiTheme.colors.darkShade,
+    disabledLabel: euiTheme.colors.disabledText, // Lighter than formVars.disabledColor because it typically doesn't have as dark a background
+  };
+
+  const animation = {
+    speed: euiTheme.animation.fast,
+    easing: 'ease-in',
+  };
+
+  return {
+    sizes,
+    colors,
+    animation,
+  };
+};
+
+export const euiFormCustomControlStyles = (euiThemeContext: UseEuiTheme) => {
+  const { euiTheme } = euiThemeContext;
+  const controlVars = euiFormCustomControlVariables(euiThemeContext);
+
+  const centerWithLabel = mathWithUnits(
+    [controlVars.sizes.lineHeight, controlVars.sizes.control],
+    (x, y) => (x - y) / 2
+  );
+
+  return {
+    wrapper: `
+      display: flex;
+      align-items: flex-start;
+    `,
+    input: {
+      fauxInput: `
+        position: relative;
+        ${logicalCSS('height', controlVars.sizes.control)}
+        ${logicalCSS('width', controlVars.sizes.control)}
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        &:has(+ label) {
+          ${logicalCSS('margin-top', centerWithLabel)}
+        }
+
+        &:has(input:focus-visible) {
+          outline: ${euiTheme.focus.width} solid ${controlVars.colors.selected};
+          outline-offset: ${euiTheme.focus.width};
+        }
+
+        ${euiCanAnimate} {
+          transition-property: background-color, color;
+          transition-duration: ${controlVars.animation.speed};
+          transition-timing-function: ${controlVars.animation.easing};
+        }
+      `,
+      enabled: {
+        selected: `
+          color: ${controlVars.colors.selectedIcon};
+          background-color: ${controlVars.colors.selected};
+        `,
+        unselected: `
+          color: transparent;
+          background-color: ${controlVars.colors.unselected};
+          border: ${euiTheme.border.width.thin} solid ${controlVars.colors.unselectedBorder};
+
+          &:has(input:focus) {
+            border-color: ${controlVars.colors.selected};
+          }
+        `,
+      },
+      disabled: {
+        selected: `
+          label: disabled;
+          color: ${controlVars.colors.disabledIcon};
+          background-color: ${controlVars.colors.disabled};
+        `,
+        unselected: `
+          label: disabled;
+          color: ${controlVars.colors.disabled};
+          background-color: ${controlVars.colors.disabled};
+          cursor: not-allowed;
+        `,
+      },
+
+      // Looks better centered at different zoom levels than just <EuiIcon size="s" />
+      icon: `
+        transform: scale(0.75);
+      `,
+
+      // Hidden input sits on top of the visible element
+      hiddenInput: `
+        position: absolute;
+        inset: 0;
+        opacity: 0 !important;
+        cursor: pointer;
+
+        &:disabled {
+          cursor: not-allowed;
+        }
+      `,
+    },
+    label: {
+      label: `
+        /* Needs to use padding and not flex gap for extra mouse click area */
+        ${logicalCSS('padding-left', controlVars.sizes.labelGap)}
+        line-height: ${controlVars.sizes.lineHeight};
+        font-size: ${euiFontSize(euiThemeContext, 's').fontSize};
+      `,
+      enabled: `
+        cursor: pointer;
+      `,
+      disabled: `
+        cursor: not-allowed;
+        color: ${controlVars.colors.disabledLabel};
+      `,
+    },
+  };
+};

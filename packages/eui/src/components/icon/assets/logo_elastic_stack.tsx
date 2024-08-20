@@ -28,15 +28,15 @@ const EuiIconLogoElasticStack = ({
     {...props}
   >
     {title ? <title id={titleId}>{title}</title> : null}
-    <g fill="none" fillRule="evenodd">
-      <path
-        fill="#F04E98"
-        d="M32 9V2.5A2.5 2.5 0 0 0 29.5 0h-27A2.5 2.5 0 0 0 0 2.5V9h32Z"
-      />
-      <path fill="#00BFB3" d="M0 20h32v-8H0z" />
-      <path fill="#0080D5" d="M14.5 23H0v6.5A2.5 2.5 0 0 0 2.5 32h12v-9Z" />
-      <path fill="#FEC514" d="M17.5 23v9h12a2.5 2.5 0 0 0 2.5-2.5V23H17.5Z" />
-    </g>
+    <path
+      fill="#F04E98"
+      d="M0 2.37A2.37 2.37 0 0 1 2.37 0h27.26A2.37 2.37 0 0 1 32 2.37v6.52H0V2.37Z"
+    />
+    <path fill="#00BFB3" d="M0 20.148h32v-8.296H0v8.296Z" />
+    <path
+      fill="#07C"
+      d="M0 23.111h32v6.519A2.37 2.37 0 0 1 29.63 32H2.37A2.37 2.37 0 0 1 0 29.63v-6.52Z"
+    />
   </svg>
 );
 export const icon = EuiIconLogoElasticStack;

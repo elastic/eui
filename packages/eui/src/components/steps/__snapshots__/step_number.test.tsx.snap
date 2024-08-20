@@ -18,24 +18,6 @@ exports[`EuiStepNumber is rendered 1`] = `
 </span>
 `;
 
-exports[`EuiStepNumber props has titleSize is rendered 1`] = `
-<span
-  class="euiStepNumber emotion-euiStepNumber-xs"
->
-  <span
-    class="emotion-euiScreenReaderOnly"
-  >
-    Step 1
-  </span>
-  <span
-    aria-hidden="true"
-    class="euiStepNumber__number emotion-euiStepNumber__number"
-  >
-    1
-  </span>
-</span>
-`;
-
 exports[`EuiStepNumber props status complete is rendered 1`] = `
 <span
   class="euiStepNumber emotion-euiStepNumber-s-complete"
@@ -142,6 +124,24 @@ exports[`EuiStepNumber props status warning is rendered 1`] = `
     data-euiicon-type="warning"
   >
     Step 1 has warnings
+  </span>
+</span>
+`;
+
+exports[`EuiStepNumber props titleSize is rendered 1`] = `
+<span
+  class="euiStepNumber emotion-euiStepNumber-xs"
+>
+  <span
+    class="emotion-euiScreenReaderOnly"
+  >
+    Step 1
+  </span>
+  <span
+    aria-hidden="true"
+    class="euiStepNumber__number emotion-euiStepNumber__number"
+  >
+    1
   </span>
 </span>
 `;

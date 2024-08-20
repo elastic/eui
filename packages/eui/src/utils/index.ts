@@ -8,3 +8,4 @@
 
 export * from './prop_types';
 export * from './is_jest';
+export * from './type_guards';

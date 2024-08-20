@@ -54,7 +54,7 @@ describe('EuiDataGridHeaderCellWrapper', () => {
           data-test-subj="dataGridHeaderCell-someColumn"
           onFocus={[Function]}
           role="columnheader"
-          style={Object {}}
+          style={{}}
           tabIndex={0}
         >
           <HandleInteractiveChildren
@@ -104,7 +104,7 @@ describe('EuiDataGridHeaderCellWrapper', () => {
         onFocus={[Function]}
         role="columnheader"
         style={
-          Object {
+          {
             "width": "30px",
           }
         }

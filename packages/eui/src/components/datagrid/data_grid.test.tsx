@@ -11,10 +11,10 @@ import { mount, ReactWrapper } from 'enzyme';
 import { EuiDataGrid } from './';
 import type { EuiDataGridProps, RenderCellValue } from './data_grid_types';
 import { findTestSubject, requiredProps } from '../../test';
-import { render } from '../../test/rtl';
+import { getAllByTestSubject, render } from '../../test/rtl';
 import { EuiDataGridColumnResizer } from './body/header/data_grid_column_resizer';
 import { keys } from '../../services';
-import { act } from '@testing-library/react';
+import { act, fireEvent } from '@testing-library/react';
 
 // Mock the cell popover (TODO: Move failing tests to Cypress and remove need for mock?)
 jest.mock('../popover', () => ({
@@ -29,6 +29,20 @@ function getFocusableCell(component: ReactWrapper) {
   return headerCell.length
     ? headerCell
     : findTestSubject(component, 'dataGridRowCell').find('[tabIndex=0]');
+}
+
+function getFocusableCellRTL(element: HTMLElement) {
+  const headerCell = element.querySelector(
+    '[role="columnheader"][tabindex="0"]'
+  );
+
+  // console.log(element.querySelector('[data-test-subj="dataGridRowCell"]'));
+
+  const rowCell = getAllByTestSubject(element, 'dataGridRowCell').find(
+    (el) => el.getAttribute('tabindex') === '0'
+  );
+
+  return headerCell ?? rowCell;
 }
 
 function extractGridData(datagrid: ReactWrapper<EuiDataGridProps>) {
@@ -560,8 +574,8 @@ describe('EuiDataGrid', () => {
           return props;
         })
       ).toMatchInlineSnapshot(`
-        Array [
-          Object {
+        [
+          {
             "aria-rowindex": 1,
             "className": "euiDataGridRowCell euiDataGridRowCell--alignLeft euiDataGridRowCell--firstColumn customClass",
             "data-gridcell-column-id": "A",
@@ -573,7 +587,7 @@ describe('EuiDataGrid', () => {
             "onMouseEnter": [Function],
             "onMouseLeave": [Function],
             "role": "gridcell",
-            "style": Object {
+            "style": {
               "color": "red",
               "height": 34,
               "left": 0,
@@ -585,7 +599,7 @@ describe('EuiDataGrid', () => {
             },
             "tabIndex": -1,
           },
-          Object {
+          {
             "aria-rowindex": 1,
             "className": "euiDataGridRowCell euiDataGridRowCell--alignLeft euiDataGridRowCell--lastColumn customClass",
             "data-gridcell-column-id": "B",
@@ -597,7 +611,7 @@ describe('EuiDataGrid', () => {
             "onMouseEnter": [Function],
             "onMouseLeave": [Function],
             "role": "gridcell",
-            "style": Object {
+            "style": {
               "color": "blue",
               "height": 34,
               "left": 100,
@@ -609,7 +623,7 @@ describe('EuiDataGrid', () => {
             },
             "tabIndex": -1,
           },
-          Object {
+          {
             "aria-rowindex": 2,
             "className": "euiDataGridRowCell euiDataGridRowCell--alignLeft euiDataGridRowCell--firstColumn customClass",
             "data-gridcell-column-id": "A",
@@ -621,7 +635,7 @@ describe('EuiDataGrid', () => {
             "onMouseEnter": [Function],
             "onMouseLeave": [Function],
             "role": "gridcell",
-            "style": Object {
+            "style": {
               "color": "red",
               "height": 34,
               "left": 0,
@@ -633,7 +647,7 @@ describe('EuiDataGrid', () => {
             },
             "tabIndex": -1,
           },
-          Object {
+          {
             "aria-rowindex": 2,
             "className": "euiDataGridRowCell euiDataGridRowCell--alignLeft euiDataGridRowCell--lastColumn customClass",
             "data-gridcell-column-id": "B",
@@ -645,7 +659,7 @@ describe('EuiDataGrid', () => {
             "onMouseEnter": [Function],
             "onMouseLeave": [Function],
             "role": "gridcell",
-            "style": Object {
+            "style": {
               "color": "blue",
               "height": 34,
               "left": 100,
@@ -788,7 +802,7 @@ describe('EuiDataGrid', () => {
           .find('[className*="euiDataGridRowCell--"]')
           .map((x) => x.props().className);
         expect(gridCellClassNames).toMatchInlineSnapshot(`
-          Array [
+          [
             "euiDataGridRowCell--firstColumn",
             "euiDataGridRowCell euiDataGridRowCell--alignRight euiDataGridRowCell--numeric euiDataGridRowCell--firstColumn",
             "euiDataGridRowCell--lastColumn",
@@ -824,7 +838,7 @@ describe('EuiDataGrid', () => {
           .find('[className~="euiDataGridRowCell"]')
           .map((x) => x.props().className);
         expect(gridCellClassNames).toMatchInlineSnapshot(`
-          Array [
+          [
             "euiDataGridRowCell euiDataGridRowCell--alignLeft euiDataGridRowCell--numeric euiDataGridRowCell--firstColumn",
             "euiDataGridRowCell euiDataGridRowCell--alignLeft euiDataGridRowCell--boolean",
             "euiDataGridRowCell euiDataGridRowCell--alignLeft euiDataGridRowCell--lastColumn",
@@ -854,7 +868,7 @@ describe('EuiDataGrid', () => {
           .find('[className~="euiDataGridRowCell"]')
           .map((x) => x.props().className);
         expect(gridCellClassNames).toMatchInlineSnapshot(`
-          Array [
+          [
             "euiDataGridRowCell euiDataGridRowCell--alignLeft euiDataGridRowCell--numeric euiDataGridRowCell--firstColumn",
             "euiDataGridRowCell euiDataGridRowCell--alignLeft euiDataGridRowCell--alphanumeric euiDataGridRowCell--lastColumn",
             "euiDataGridRowCell euiDataGridRowCell--alignLeft euiDataGridRowCell--numeric euiDataGridRowCell--firstColumn",
@@ -893,7 +907,7 @@ describe('EuiDataGrid', () => {
           .find('[className~="euiDataGridRowCell"]')
           .map((x) => x.props().className);
         expect(gridCellClassNames).toMatchInlineSnapshot(`
-          Array [
+          [
             "euiDataGridRowCell euiDataGridRowCell--alignLeft euiDataGridRowCell--numeric euiDataGridRowCell--firstColumn",
             "euiDataGridRowCell euiDataGridRowCell--alignLeft euiDataGridRowCell--boolean",
             "euiDataGridRowCell euiDataGridRowCell--alignLeft euiDataGridRowCell--currency",
@@ -944,7 +958,7 @@ describe('EuiDataGrid', () => {
           .find('[className~="euiDataGridRowCell"]')
           .map((x) => x.props().className);
         expect(gridCellClassNames).toMatchInlineSnapshot(`
-          Array [
+          [
             "euiDataGridRowCell euiDataGridRowCell--alignLeft euiDataGridRowCell--numeric euiDataGridRowCell--firstColumn",
             "euiDataGridRowCell euiDataGridRowCell--alignLeft euiDataGridRowCell--ipaddress euiDataGridRowCell--lastColumn",
           ]
@@ -975,16 +989,16 @@ describe('EuiDataGrid', () => {
         />
       );
       expect(extractGridData(component)).toMatchInlineSnapshot(`
-        Array [
-          Array [
+        [
+          [
             "Column 1",
             "Column 2",
           ],
-          Array [
+          [
             "Hello, Row 0-Column 1!",
             "Hello, Row 0-Column 2!",
           ],
-          Array [
+          [
             "Hello, Row 1-Column 1!",
             "Hello, Row 1-Column 2!",
           ],
@@ -2334,12 +2348,29 @@ describe('EuiDataGrid', () => {
             ...pagination,
             pageIndex,
           };
-          component.setProps({ pagination });
+
+          rerender(
+            <EuiDataGrid
+              {...requiredProps}
+              columns={[
+                { id: 'A', actions: false },
+                { id: 'B', actions: false },
+                { id: 'C', actions: false },
+              ]}
+              columnVisibility={{
+                visibleColumns: ['A', 'B', 'C'],
+                setVisibleColumns: () => {},
+              }}
+              rowCount={8}
+              renderCellValue={renderCellValueRowAndColumnCount}
+              pagination={pagination}
+            />
+          );
         },
         onChangeItemsPerPage: () => {},
       };
 
-      const component = mount(
+      const { container, rerender } = render(
         <EuiDataGrid
           {...requiredProps}
           columns={[
@@ -2358,182 +2389,119 @@ describe('EuiDataGrid', () => {
       );
 
       // enable the grid to accept focus
-      act(() =>
-        component.find('div [data-test-subj="euiDataGridBody"]').props()
-          .onKeyUp!({ key: keys.TAB } as React.KeyboardEvent)
-      );
-      component.update();
+      act(() => {
+        // component.find('div [data-test-subj="euiDataGridBody"]').props()
+        //   .onKeyUp!({ key: keys.TAB } as React.KeyboardEvent)
+
+        fireEvent.keyUp(
+          container.querySelector('div [data-test-subj="euiDataGridBody"]')!,
+          { key: 'Tab' }
+        );
+      });
+      // component.update();
 
       // focus should begin at the first header cell
-      let focusableCell = getFocusableCell(component);
-      expect(focusableCell.length).toEqual(1);
-      expect(
-        focusableCell.find('.euiDataGridHeaderCell__content').text()
-      ).toEqual('A');
+      let focusableCell = getFocusableCellRTL(container)!;
+      expect(focusableCell).toBeInTheDocument();
+      expect(focusableCell).toHaveTextContent('A');
 
       // focus should not move when up against the left edge
-      focusableCell
-        .simulate('focus')
-        .simulate('keydown', { key: keys.ARROW_LEFT });
-      focusableCell = getFocusableCell(component);
-      expect(
-        focusableCell.find('.euiDataGridHeaderCell__content').text()
-      ).toEqual('A');
+      fireEvent.focus(focusableCell);
+      fireEvent.keyDown(focusableCell, { key: keys.ARROW_LEFT });
+      focusableCell = getFocusableCellRTL(container)!;
+      expect(focusableCell).toHaveTextContent('A');
 
       // focus should not move when up against the top edge
-      focusableCell.simulate('keydown', { key: keys.ARROW_UP });
-      expect(
-        focusableCell.find('.euiDataGridHeaderCell__content').text()
-      ).toEqual('A');
+      fireEvent.keyDown(focusableCell, { key: keys.ARROW_UP });
+      focusableCell = getFocusableCellRTL(container)!;
+      expect(focusableCell).toHaveTextContent('A');
 
       // move down
-      focusableCell.simulate('keydown', { key: keys.ARROW_DOWN });
-      focusableCell.simulate('keydown', { key: keys.ARROW_DOWN });
-      focusableCell = getFocusableCell(component);
-      expect(
-        focusableCell.find('[data-test-subj="cell-content"]').text()
-      ).toEqual('1, A');
+      fireEvent.keyDown(focusableCell, { key: keys.ARROW_DOWN });
+      fireEvent.keyDown(focusableCell, { key: keys.ARROW_DOWN });
+      focusableCell = getFocusableCellRTL(container)!;
+      expect(focusableCell).toHaveTextContent('1, A');
 
       // move right
-      focusableCell.simulate('keydown', { key: keys.ARROW_RIGHT });
-      focusableCell = getFocusableCell(component);
-      expect(
-        focusableCell.find('[data-test-subj="cell-content"]').text()
-      ).toEqual('1, B');
+      fireEvent.keyDown(focusableCell, { key: keys.ARROW_RIGHT });
+      focusableCell = getFocusableCellRTL(container)!;
+      expect(focusableCell).toHaveTextContent('1, B');
 
       // move up
-      focusableCell.simulate('keydown', { key: keys.ARROW_UP });
-      focusableCell = getFocusableCell(component);
-      expect(
-        focusableCell.find('[data-test-subj="cell-content"]').text()
-      ).toEqual('0, B');
+      fireEvent.keyDown(focusableCell, { key: keys.ARROW_UP });
+      focusableCell = getFocusableCellRTL(container)!;
+      expect(focusableCell).toHaveTextContent('0, B');
 
       // move left
-      focusableCell.simulate('keydown', { key: keys.ARROW_LEFT });
-      focusableCell = getFocusableCell(component);
-      expect(
-        focusableCell.find('[data-test-subj="cell-content"]').text()
-      ).toEqual('0, A');
+      fireEvent.keyDown(focusableCell, { key: keys.ARROW_LEFT });
+      focusableCell = getFocusableCellRTL(container)!;
+      expect(focusableCell).toHaveTextContent('0, A');
 
       // move down and to the end of the row
-      focusableCell.simulate('keydown', { key: keys.ARROW_DOWN });
-      focusableCell = getFocusableCell(component);
-      focusableCell.simulate('keydown', { key: keys.END });
-      focusableCell = getFocusableCell(component);
-      expect(
-        focusableCell.find('[data-test-subj="cell-content"]').text()
-      ).toEqual('1, C');
+      fireEvent.keyDown(focusableCell, { key: keys.ARROW_DOWN });
+      fireEvent.keyDown(focusableCell, { key: keys.END });
+      focusableCell = getFocusableCellRTL(container)!;
+      expect(focusableCell).toHaveTextContent('1, C');
 
       // move up and to the beginning of the row
-      focusableCell
-        .simulate('keydown', { key: keys.ARROW_UP })
-        .simulate('keydown', { key: keys.HOME });
-      focusableCell = getFocusableCell(component);
-      expect(
-        focusableCell.find('[data-test-subj="cell-content"]').text()
-      ).toEqual('0, A');
+      fireEvent.keyDown(focusableCell, { key: keys.ARROW_UP });
+      fireEvent.keyDown(focusableCell, { key: keys.HOME });
+      focusableCell = getFocusableCellRTL(container)!;
+      expect(focusableCell).toHaveTextContent('0, A');
 
       // jump to the last cell
-      focusableCell.simulate('keydown', {
-        ctrlKey: true,
-        key: keys.END,
-      });
-      focusableCell = getFocusableCell(component);
-      expect(
-        focusableCell.find('[data-test-subj="cell-content"]').text()
-      ).toEqual('2, C');
+      fireEvent.keyDown(focusableCell, { key: keys.END, ctrlKey: true });
+      focusableCell = getFocusableCellRTL(container)!;
+      expect(focusableCell).toHaveTextContent('2, C');
 
       // jump to the first cell
-      focusableCell.simulate('keydown', {
-        ctrlKey: true,
-        key: keys.HOME,
-      });
-      focusableCell = getFocusableCell(component);
-      expect(
-        focusableCell.find('[data-test-subj="cell-content"]').text()
-      ).toEqual('0, A');
+      fireEvent.keyDown(focusableCell, { key: keys.HOME, ctrlKey: true });
+      focusableCell = getFocusableCellRTL(container)!;
+      expect(focusableCell).toHaveTextContent('0, A');
 
       // page should not change when moving before the first entry
       // but the last row should remain focused
-      focusableCell.simulate('keydown', {
-        key: keys.PAGE_UP,
-      });
-      focusableCell = getFocusableCell(component);
-      expect(
-        focusableCell.find('[data-test-subj="cell-content"]').text()
-      ).toEqual('2, A');
+      fireEvent.keyDown(focusableCell, { key: keys.PAGE_UP });
+      focusableCell = getFocusableCellRTL(container)!;
+      expect(focusableCell).toHaveTextContent('2, A');
 
       // advance to the next page
-      focusableCell.simulate('keydown', {
-        key: keys.PAGE_DOWN,
-      });
-      focusableCell = getFocusableCell(component);
-      expect(
-        focusableCell.find('[data-test-subj="cell-content"]').text()
-      ).toEqual('3, A');
+      fireEvent.keyDown(focusableCell, { key: keys.PAGE_DOWN });
+      focusableCell = getFocusableCellRTL(container)!;
+      expect(focusableCell).toHaveTextContent('3, A');
 
       // move over one column and advance one more page
-      focusableCell
-        .simulate('keydown', { key: keys.ARROW_RIGHT }) // 3, B
-        .simulate('keydown', {
-          key: keys.PAGE_DOWN,
-        }); // 6, B
-      focusableCell = getFocusableCell(component);
-      expect(
-        focusableCell.find('[data-test-subj="cell-content"]').text()
-      ).toEqual('6, B');
+      fireEvent.keyDown(focusableCell, { key: keys.ARROW_RIGHT }); // 3, B
+      fireEvent.keyDown(focusableCell, { key: keys.PAGE_DOWN }); // 6, B
+      focusableCell = getFocusableCellRTL(container)!;
+      expect(focusableCell).toHaveTextContent('6, B');
 
       // does not advance beyond the last page
-      focusableCell.simulate('keydown', {
-        key: keys.PAGE_DOWN,
-      });
-      focusableCell = getFocusableCell(component);
-      expect(
-        focusableCell.find('[data-test-subj="cell-content"]').text()
-      ).toEqual('6, B');
+      fireEvent.keyDown(focusableCell, { key: keys.PAGE_DOWN });
+      focusableCell = getFocusableCellRTL(container)!;
+      expect(focusableCell).toHaveTextContent('6, B');
 
       // move left one column, return to the previous page
-      focusableCell
-        .simulate('keydown', { key: keys.ARROW_LEFT }) // 6, A
-        .simulate('keydown', {
-          key: keys.PAGE_UP,
-        }); // 5, A
-      focusableCell = getFocusableCell(component);
-      expect(
-        focusableCell.find('[data-test-subj="cell-content"]').text()
-      ).toEqual('5, A');
+      fireEvent.keyDown(focusableCell, { key: keys.ARROW_LEFT }); // 6, A
+      fireEvent.keyDown(focusableCell, { key: keys.PAGE_UP }); // 5, A
+      focusableCell = getFocusableCellRTL(container)!;
+      expect(focusableCell).toHaveTextContent('5, A');
 
       // return to the previous (first) page
-      focusableCell.simulate('keydown', {
-        key: keys.PAGE_UP,
-      });
-      focusableCell = getFocusableCell(component);
-      expect(
-        focusableCell.find('[data-test-subj="cell-content"]').text()
-      ).toEqual('2, A');
+      fireEvent.keyDown(focusableCell, { key: keys.PAGE_UP });
+      focusableCell = getFocusableCellRTL(container)!;
+      expect(focusableCell).toHaveTextContent('2, A');
 
       // move to the last cell of the page then advance one page
-      focusableCell
-        .simulate('keydown', {
-          ctrlKey: true,
-          key: keys.END,
-        }) // 2, C (last cell of the first page)
-        .simulate('keydown', {
-          key: keys.PAGE_DOWN,
-        }); // 3, C (first cell of the second page, same cell position as previous page)
-      focusableCell = getFocusableCell(component);
-      expect(
-        focusableCell.find('[data-test-subj="cell-content"]').text()
-      ).toEqual('3, C');
+      fireEvent.keyDown(focusableCell, { key: keys.END, ctrlKey: true }); // 2, C (last cell of the first page)
+      fireEvent.keyDown(focusableCell, { key: keys.PAGE_DOWN }); // 3, C (first cell of the second page, same cell position as previous page)
+      focusableCell = getFocusableCellRTL(container)!;
+      expect(focusableCell).toHaveTextContent('3, C');
 
       // advance to the final page
-      focusableCell.simulate('keydown', {
-        key: keys.PAGE_DOWN,
-      }); // 6, C
-      focusableCell = getFocusableCell(component);
-      expect(
-        focusableCell.find('[data-test-subj="cell-content"]').text()
-      ).toEqual('6, C');
+      fireEvent.keyDown(focusableCell, { key: keys.PAGE_DOWN }); // 6, C
+      focusableCell = getFocusableCellRTL(container)!;
+      expect(focusableCell).toHaveTextContent('6, C');
     });
 
     // Maximum call stack reached

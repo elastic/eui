@@ -14,14 +14,15 @@ import React, {
   ReactNode,
 } from 'react';
 import classNames from 'classnames';
+
+import { useEuiMemoizedStyles } from '../../../services';
 import { CommonProps, ExclusiveUnion } from '../../common';
+import { EuiIcon } from '../../icon';
+
+import { euiRadioStyles } from './radio.styles';
 
 export interface RadioProps {
   autoFocus?: boolean;
-  /**
-   * When `true` creates a shorter height radio row
-   */
-  compressed?: boolean;
   name?: string;
   value?: string;
   checked?: boolean;
@@ -55,46 +56,59 @@ export const EuiRadio: FunctionComponent<EuiRadioProps> = ({
   value,
   onChange,
   disabled,
-  compressed,
   autoFocus,
   labelProps,
   ...rest
 }) => {
-  const classes = classNames(
-    'euiRadio',
-    {
-      'euiRadio--noLabel': !label,
-      'euiRadio--compressed': compressed,
-    },
-    className
-  );
-  const labelClasses = classNames('euiRadio__label', labelProps?.className);
-  let optionalLabel;
+  const classes = classNames('euiRadio', className);
 
-  if (label) {
-    optionalLabel = (
-      <label {...labelProps} className={labelClasses} htmlFor={id}>
-        {label}
-      </label>
-    );
-  }
+  const styles = useEuiMemoizedStyles(euiRadioStyles);
+  const inputStyles = [
+    styles.input.euiRadio__circle,
+    disabled
+      ? checked
+        ? styles.input.disabled.selected
+        : styles.input.disabled.unselected
+      : checked
+      ? styles.input.enabled.selected
+      : styles.input.enabled.unselected,
+  ];
+
+  const labelClasses = classNames('euiRadio__label', labelProps?.className);
+  const labelStyles = [
+    styles.label.euiRadio__label,
+    disabled ? styles.label.disabled : styles.label.enabled,
+    labelProps?.css,
+  ];
 
   return (
-    <div className={classes} {...rest}>
-      <input
-        className="euiRadio__input"
-        type="radio"
-        id={id}
-        name={name}
-        value={value}
-        checked={checked}
-        onChange={onChange}
-        disabled={disabled}
-        autoFocus={autoFocus}
-      />
-      <div className="euiRadio__circle" />
+    <div css={styles.euiRadio} className={classes} {...rest}>
+      <div css={inputStyles} className="euiRadio__circle">
+        <EuiIcon css={styles.input.euiRadio__icon} type="dot" />
+        <input
+          css={styles.input.euiRadio__input}
+          className="euiRadio__input"
+          type="radio"
+          id={id}
+          name={name}
+          value={value}
+          checked={checked}
+          onChange={onChange}
+          disabled={disabled}
+          autoFocus={autoFocus}
+        />
+      </div>
 
-      {optionalLabel}
+      {label && (
+        <label
+          {...labelProps}
+          css={labelStyles}
+          className={labelClasses}
+          htmlFor={id}
+        >
+          {label}
+        </label>
+      )}
     </div>
   );
 };

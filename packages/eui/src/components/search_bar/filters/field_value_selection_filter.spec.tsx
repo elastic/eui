@@ -225,6 +225,119 @@ describe('FieldValueSelectionFilter', () => {
     });
   });
 
+  describe('auto-close testing', () => {
+    const FieldValueSelectionFilterWithState = ({
+      autoClose,
+      multiSelect,
+    }: {
+      autoClose: undefined | boolean;
+      multiSelect: 'or' | boolean;
+    }) => {
+      const [query, setQuery] = useState(Query.parse(''));
+      const onChange = (newQuery: Query) => setQuery(newQuery);
+
+      const props: FieldValueSelectionFilterProps = {
+        ...requiredProps,
+        index: 0,
+        onChange,
+        query,
+        config: {
+          type: 'field_value_selection',
+          field: 'tag',
+          name: 'Tag',
+          multiSelect,
+          autoClose,
+          options: staticOptions,
+        },
+      };
+
+      return <FieldValueSelectionFilter {...props} />;
+    };
+    const selectFilter = () => {
+      // Open popover
+      cy.get('button').click();
+      cy.get('.euiPopover__panel').should('exist');
+
+      // Select filter option
+      cy.get('li[role="option"][title="feature"]')
+        .should('have.attr', 'aria-checked', 'false')
+        .click();
+    };
+
+    describe('undefined', () => {
+      it('multi select: does not close popover', () => {
+        cy.mount(
+          <FieldValueSelectionFilterWithState
+            autoClose={undefined}
+            multiSelect={true}
+          />
+        );
+        selectFilter();
+        cy.get('.euiPopover__panel').should('exist');
+      });
+
+      it('single select: closes popover', () => {
+        cy.mount(
+          <FieldValueSelectionFilterWithState
+            autoClose={undefined}
+            multiSelect={false}
+          />
+        );
+        selectFilter();
+        cy.get('.euiPopover__panel').should('not.exist');
+      });
+    });
+
+    describe('false', () => {
+      it('multi select: never closes popover', () => {
+        cy.mount(
+          <FieldValueSelectionFilterWithState
+            autoClose={false}
+            multiSelect={true}
+          />
+        );
+        selectFilter();
+        cy.get('.euiPopover__panel').should('exist');
+      });
+
+      it('single select: never closes popover', () => {
+        cy.mount(
+          <FieldValueSelectionFilterWithState
+            autoClose={false}
+            multiSelect={false}
+          />
+        );
+        selectFilter();
+        cy.get('.euiPopover__panel').should('exist');
+      });
+    });
+
+    describe('true', () => {
+      it('multi select: always closes popover', () => {
+        cy.mount(
+          <FieldValueSelectionFilterWithState
+            autoClose={true}
+            multiSelect={true}
+          />
+        );
+        selectFilter();
+        cy.get('.euiPopover__panel').should('not.exist');
+      });
+
+      it('single select: always closes popover', () => {
+        cy.mount(
+          <FieldValueSelectionFilterWithState
+            autoClose={true}
+            multiSelect={false}
+          />
+        );
+
+        selectFilter();
+        cy.get('.euiPopover__panel').should('not.exist');
+      });
+    });
+  });
+
   it('has inactive filters, field is global', () => {
     const props: FieldValueSelectionFilterProps = {
       ...requiredProps,

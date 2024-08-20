@@ -688,10 +688,16 @@ export class EuiBasicTable<T extends object = any> extends Component<
       selectableItems.length > 0 &&
       this.state.selection.length === selectableItems.length;
 
+    const indeterminate =
+      !checked &&
+      this.state.selection &&
+      selectableItems.length > 0 &&
+      this.state.selection.length > 0;
+
     const disabled = selectableItems.length === 0;
 
     const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-      if (event.target.checked) {
+      if (event.target.checked && !indeterminate) {
         this.changeSelection(selectableItems);
       } else {
         this.changeSelection([]);
@@ -699,17 +705,20 @@ export class EuiBasicTable<T extends object = any> extends Component<
     };
 
     return (
-      <EuiI18n token="euiBasicTable.selectAllRows" default="Select all rows">
-        {(selectAllRows: string) => (
+      <EuiI18n
+        tokens={['euiBasicTable.selectAllRows', 'euiBasicTable.deselectRows']}
+        defaults={['Select all rows', 'Deselect rows']}
+      >
+        {([selectAllRows, deselectRows]: string[]) => (
           <EuiCheckbox
-            id={this.selectAllIdGenerator(isMobile ? 'mobile' : 'desktop')}
-            type={isMobile ? undefined : 'inList'}
+            id={this.selectAllIdGenerator()}
             checked={checked}
+            indeterminate={indeterminate}
             disabled={disabled}
             onChange={onChange}
-            // Only add data-test-subj to one of the checkboxes
-            data-test-subj={isMobile ? undefined : 'checkboxSelectAll'}
-            aria-label={selectAllRows}
+            data-test-subj="checkboxSelectAll"
+            aria-label={checked || indeterminate ? deselectRows : selectAllRows}
+            title={checked || indeterminate ? deselectRows : selectAllRows}
             label={isMobile ? selectAllRows : null}
           />
         )}
@@ -1114,7 +1123,6 @@ export class EuiBasicTable<T extends object = any> extends Component<
           {(selectThisRow: string) => (
             <EuiCheckbox
               id={`${this.tableId}${key}-checkbox`}
-              type="inList"
               disabled={disabled}
               checked={checked}
               onChange={onChange}

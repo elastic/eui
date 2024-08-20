@@ -39,8 +39,8 @@ describe('EuiTextTruncate', () => {
   });
 
   describe('calculationDelayMs', () => {
-    beforeAll(jest.useFakeTimers);
-    afterAll(jest.useRealTimers);
+    beforeAll(() => jest.useFakeTimers());
+    afterAll(() => jest.useRealTimers());
 
     it('allows delaying truncation calculation by the specified duration', () => {
       const { queryByTestSubject } = render(

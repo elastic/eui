@@ -31,8 +31,7 @@ export const euiModalStyles = (euiThemeContext: UseEuiTheme) => {
       z-index: ${euiTheme.levels.modal};
       min-inline-size: ${euiFormVariables(euiThemeContext).maxWidth};
       max-inline-size: calc(100vw - ${euiTheme.size.base});
-      /* TODO: Consider restoring this once https://bugs.chromium.org/p/chromium/issues/detail?id=1229700 is resolved */
-      /* overflow: hidden; Ensure long, non-breaking text doesn't expand beyond the modal bounds */
+      overflow: hidden; /* Ensure long, non-breaking text doesn't expand beyond the modal bounds */
 
       ${euiCanAnimate} {
         animation: ${euiAnimSlideInUp(euiTheme.size.xxl)}

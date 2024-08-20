@@ -13,8 +13,8 @@ import { EuiProvider } from '../provider';
 
 import {
   euiFormVariables,
-  euiFormControlSize,
-  euiCustomControl,
+  euiFormControlStyles,
+  euiFormCustomControlStyles,
 } from './form.styles';
 
 const darkModeWrapper: FunctionComponent<PropsWithChildren> = ({
@@ -25,13 +25,13 @@ describe('euiFormVariables', () => {
   it('outputs an object of reusable form vars', () => {
     const { result } = renderHook(() => euiFormVariables(useEuiTheme()));
     expect(result.current).toMatchInlineSnapshot(`
-      Object {
+      {
         "animationTiming": "150ms ease-in",
+        "appendPrependBackground": "#e9edf3",
         "backgroundColor": "#f9fbfd",
-        "backgroundDisabledColor": "#eceff5",
+        "backgroundDisabledColor": "#eef1f7",
         "backgroundReadOnlyColor": "#FFF",
-        "borderColor": "rgba(211,218,230,0.9)",
-        "borderDisabledColor": "rgba(211,218,230,0.9)",
+        "borderColor": "rgba(32,38,47,0.1)",
         "controlBorderRadius": "6px",
         "controlBoxShadow": "0 0 transparent",
         "controlCompressedBorderRadius": "4px",
@@ -39,7 +39,7 @@ describe('euiFormVariables', () => {
         "controlCompressedPadding": "8px",
         "controlDisabledColor": "#98A2B3",
         "controlHeight": "40px",
-        "controlIconSize": Object {
+        "controlIconSize": {
           "l": "24px",
           "m": "16px",
           "s": "12px",
@@ -51,11 +51,10 @@ describe('euiFormVariables', () => {
         "controlLayoutGroupInputHeight": "38px",
         "controlPadding": "12px",
         "controlPlaceholderText": "#646a77",
-        "customControlBorderColor": "#f5f7fc",
-        "customControlDisabledIconColor": "#cacfd8",
-        "inputGroupBorder": "none",
-        "inputGroupLabelBackground": "#e9edf3",
+        "iconAffordance": "24px",
+        "iconCompressedAffordance": "18px",
         "maxWidth": "400px",
+        "textColor": "#343741",
       }
     `);
   });
@@ -67,206 +66,247 @@ describe('euiFormVariables', () => {
     // Check custom dark-mode logic
     expect(result.current.backgroundColor).toEqual('#16171c');
     expect(result.current.controlPlaceholderText).toEqual('#878b95');
-    expect(result.current.inputGroupLabelBackground).toEqual('#2c2f37');
-    expect(result.current.customControlDisabledIconColor).toEqual('#33373f');
-    expect(result.current.customControlBorderColor).toEqual('#16171c');
   });
 });
 
-describe('euiFormControlSize', () => {
-  it('outputs the logical properties for height, width, and max-width', () => {
-    const { result } = renderHook(() => euiFormControlSize(useEuiTheme()));
-    expect(result.current.trim()).toMatchInlineSnapshot(`
-      "max-inline-size: 400px;
-          inline-size: 100%;
-          block-size: 40px;"
-    `);
-  });
+describe('euiFormControlStyles', () => {
+  it('outputs an object of control states and modifiers', () => {
+    const { result } = renderHook(() => euiFormControlStyles(useEuiTheme()));
+    expect(result.current).toMatchInlineSnapshot(`
+      {
+        "autoFill": "
+          &:-webkit-autofill {
+            -webkit-text-fill-color: #343741;
+            -webkit-box-shadow: inset 0 0 0 1px rgba(0,107,184,0.2), inset 0 0 0 100vw #f0f7fc;
 
-  it('allows passing in a custom height', () => {
-    const { result } = renderHook(() =>
-      euiFormControlSize(useEuiTheme(), { height: '100px' })
-    );
-    expect(result.current.trim()).toMatchInlineSnapshot(`
-      "max-inline-size: 400px;
-          inline-size: 100%;
-          block-size: 100px;"
-    `);
-  });
+            &:invalid {
+              -webkit-box-shadow: inset 0 0 0 1px #BD271E, inset 0 0 0 100vw #f0f7fc;
+            }
+          }
+        ",
+        "compressed": "
+            block-size: 32px;
+            padding-block: 8px;
+            padding-inline-start: calc(8px + (18px * var(--euiFormControlLeftIconsCount, 0)));
+            padding-inline-end: calc(8px + (18px * var(--euiFormControlRightIconsCount, 0)));
+            border-radius: 4px;
+          ",
+        "disabled": "
+          color: #98A2B3;
+          /* Required for Safari */
+          -webkit-text-fill-color: #98A2B3;
+          background-color: #eef1f7;
+          cursor: not-allowed;
+          --euiFormControlStateColor: transparent;
 
-  test('fullWidth', () => {
-    const { result } = renderHook(() =>
-      euiFormControlSize(useEuiTheme(), { fullWidth: true })
-    );
-    expect(result.current.trim()).toMatchInlineSnapshot(`
-      "max-inline-size: 100%;
-          inline-size: 100%;
-          block-size: 40px;"
-    `);
-  });
+          
+        &::-webkit-input-placeholder { 
+            color: #98A2B3;
+            opacity: 1;
+           }
+        &::-moz-placeholder { 
+            color: #98A2B3;
+            opacity: 1;
+           }
+        &:-ms-input-placeholder { 
+            color: #98A2B3;
+            opacity: 1;
+           }
+        &:-moz-placeholder { 
+            color: #98A2B3;
+            opacity: 1;
+           }
+        &::placeholder { 
+            color: #98A2B3;
+            opacity: 1;
+           }
 
-  test('compressed', () => {
-    const { result } = renderHook(() =>
-      euiFormControlSize(useEuiTheme(), { compressed: true })
-    );
-    expect(result.current.trim()).toMatchInlineSnapshot(`
-      "max-inline-size: 400px;
-          inline-size: 100%;
-          block-size: 32px;"
-    `);
-  });
+        ",
+        "focus": "
+        --euiFormControlStateColor: #07C;
+        background-color: #FFF;
+        background-size: 100% 100%;
+        outline: none; /* Remove all outlines and rely on our own bottom border gradient */
+      ",
+        "formWidth": "
+            max-inline-size: 400px;
+            inline-size: 100%;
+          ",
+        "fullWidth": "
+            max-inline-size: 100%;
+            inline-size: 100%;
+          ",
+        "inGroup": "
+            block-size: 100%;
+            box-shadow: none;
+            border-radius: 0;
+          ",
+        "invalid": "
+        --euiFormControlStateColor: #BD271E;
+        background-size: 100% 100%;
+      ",
+        "readOnly": "
+          cursor: default;
+          color: #343741;
+          -webkit-text-fill-color: #343741; /* Required for Safari */
 
-  test('compressed & fullWidth', () => {
-    const { result } = renderHook(() =>
-      euiFormControlSize(useEuiTheme(), { compressed: true, fullWidth: true })
-    );
-    expect(result.current.trim()).toMatchInlineSnapshot(`
-      "max-inline-size: 100%;
-          inline-size: 100%;
-          block-size: 32px;"
-    `);
-  });
+          background-color: #FFF;
+          --euiFormControlStateColor: transparent;
+        ",
+        "shared": "
+            
+          font-family: 'Inter', BlinkMacSystemFont, Helvetica, Arial, sans-serif;
+          font-size: 1.0000rem;
+          color: #343741;
 
-  test('inGroup', () => {
-    const { result } = renderHook(() =>
-      euiFormControlSize(useEuiTheme(), { inGroup: true })
-    );
-    expect(result.current.trim()).toMatchInlineSnapshot(`
-      "max-inline-size: 400px;
-          inline-size: 100%;
-          block-size: 100%;"
-    `);
-  });
+          
+        &::-webkit-input-placeholder { 
+            color: #646a77;
+            opacity: 1;
+           }
+        &::-moz-placeholder { 
+            color: #646a77;
+            opacity: 1;
+           }
+        &:-ms-input-placeholder { 
+            color: #646a77;
+            opacity: 1;
+           }
+        &:-moz-placeholder { 
+            color: #646a77;
+            opacity: 1;
+           }
+        &::placeholder { 
+            color: #646a77;
+            opacity: 1;
+           }
 
-  test('inGroup & fullWidth', () => {
-    const { result } = renderHook(() =>
-      euiFormControlSize(useEuiTheme(), { inGroup: true, fullWidth: true })
-    );
-    expect(result.current.trim()).toMatchInlineSnapshot(`
-      "max-inline-size: 100%;
-          inline-size: 100%;
-          block-size: 100%;"
-    `);
-  });
-
-  test('compressed overrides custom height', () => {
-    const { result } = renderHook(() =>
-      euiFormControlSize(useEuiTheme(), { height: '500px', compressed: true })
-    );
-    expect(result.current.trim()).toMatchInlineSnapshot(`
-      "max-inline-size: 400px;
-          inline-size: 100%;
-          block-size: 32px;"
-    `);
-  });
-
-  test('inGroup overrides compressed and custom height', () => {
-    const { result } = renderHook(() =>
-      euiFormControlSize(useEuiTheme(), {
-        height: '500px',
-        compressed: true,
-        inGroup: true,
-      })
-    );
-    expect(result.current.trim()).toMatchInlineSnapshot(`
-      "max-inline-size: 400px;
-          inline-size: 100%;
-          block-size: 100%;"
+        
+            
+          border: none;
+          box-shadow: inset 0 0 0 1px rgba(32,38,47,0.1);
+          background-color: #f9fbfd;
+          background-repeat: no-repeat;
+          background-size: 0% 100%;
+          background-image: linear-gradient(to top,
+            var(--euiFormControlStateColor),
+            var(--euiFormControlStateColor) 2px,
+            transparent 2px,
+            transparent 100%
+          );
+          @media screen and (prefers-reduced-motion: no-preference) {
+            transition:
+              background-image 150ms ease-in,
+              background-size 150ms ease-in,
+              background-color 150ms ease-in;
+          }
+        
+          ",
+        "uncompressed": "
+            block-size: 40px;
+            padding-block: 12px;
+            padding-inline-start: calc(12px + (24px * var(--euiFormControlLeftIconsCount, 0)));
+            padding-inline-end: calc(12px + (24px * var(--euiFormControlRightIconsCount, 0)));
+            border-radius: 6px;
+          ",
+      }
     `);
   });
 });
 
-describe('euiCustomControl', () => {
-  it('returns CSS styles for padding, borders, backgrounds', () => {
-    const { result } = renderHook(() => euiCustomControl(useEuiTheme()));
-    expect(result.current).toMatchInlineSnapshot(`
-      "
-          padding: 7px;
-          
-          border: 1px solid #f5f7fc;
-          background: #FFF no-repeat center;
-
-          @media screen and (prefers-reduced-motion: no-preference) {
-            transition: background-color 150ms ease-in,
-              border-color 150ms ease-in;
-          }
-        "
-    `);
-  });
-
-  it('allows passing custom padding size', () => {
+describe('euiFormCustomControlStyles', () => {
+  it('outputs an object of styles and child element styles', () => {
     const { result } = renderHook(() =>
-      euiCustomControl(useEuiTheme(), { size: '32px' })
+      euiFormCustomControlStyles(useEuiTheme())
     );
     expect(result.current).toMatchInlineSnapshot(`
-      "
-          padding: 15px;
-          
-          border: 1px solid #f5f7fc;
-          background: #FFF no-repeat center;
+      {
+        "input": {
+          "disabled": {
+            "selected": "
+                label: disabled;
+                color: #69707D;
+                background-color: #D3DAE6;
+              ",
+            "unselected": "
+                label: disabled;
+                color: #D3DAE6;
+                background-color: #D3DAE6;
+                cursor: not-allowed;
+              ",
+          },
+          "enabled": {
+            "selected": "
+                color: #FFF;
+                background-color: #07C;
+              ",
+            "unselected": "
+                color: transparent;
+                background-color: #FFF;
+                border: 1px solid #919296;
 
-          @media screen and (prefers-reduced-motion: no-preference) {
-            transition: background-color 150ms ease-in,
-              border-color 150ms ease-in;
-          }
-        "
-    `);
-  });
+                &:has(input:focus) {
+                  border-color: #07C;
+                }
+              ",
+          },
+          "fauxInput": "
+              position: relative;
+              block-size: 16px;
+              inline-size: 16px;
+              display: flex;
+              justify-content: center;
+              align-items: center;
 
-  test('type.round', () => {
-    const { result } = renderHook(() =>
-      euiCustomControl(useEuiTheme(), { type: 'round' })
-    );
-    expect(result.current).toMatchInlineSnapshot(`
-      "
-          padding: 7px;
-          border-radius: 16px;
-          border: 1px solid #f5f7fc;
-          background: #FFF no-repeat center;
+              &:has(+ label) {
+                margin-block-start: 4px;
+              }
 
-          @media screen and (prefers-reduced-motion: no-preference) {
-            transition: background-color 150ms ease-in,
-              border-color 150ms ease-in;
-          }
-        "
-    `);
-  });
+              &:has(input:focus-visible) {
+                outline: 2px solid #07C;
+                outline-offset: 2px;
+              }
 
-  test('size and type.round changes both padding and border-radius', () => {
-    const { result } = renderHook(() =>
-      euiCustomControl(useEuiTheme(), { size: '6px', type: 'round' })
-    );
-    expect(result.current).toMatchInlineSnapshot(`
-      "
-          padding: 2px;
-          border-radius: 6px;
-          border: 1px solid #f5f7fc;
-          background: #FFF no-repeat center;
+              @media screen and (prefers-reduced-motion: no-preference) {
+                transition-property: background-color, color;
+                transition-duration: 150ms;
+                transition-timing-function: ease-in;
+              }
+            ",
+          "hiddenInput": "
+              position: absolute;
+              inset: 0;
+              opacity: 0 !important;
+              cursor: pointer;
 
-          @media screen and (prefers-reduced-motion: no-preference) {
-            transition: background-color 150ms ease-in,
-              border-color 150ms ease-in;
-          }
-        "
-    `);
-  });
-
-  test('type.square', () => {
-    const { result } = renderHook(() =>
-      euiCustomControl(useEuiTheme(), { type: 'square' })
-    );
-    expect(result.current).toMatchInlineSnapshot(`
-      "
-          padding: 7px;
-          border-radius: 4px;
-          border: 1px solid #f5f7fc;
-          background: #FFF no-repeat center;
-
-          @media screen and (prefers-reduced-motion: no-preference) {
-            transition: background-color 150ms ease-in,
-              border-color 150ms ease-in;
-          }
-        "
+              &:disabled {
+                cursor: not-allowed;
+              }
+            ",
+          "icon": "
+              transform: scale(0.75);
+            ",
+        },
+        "label": {
+          "disabled": "
+              cursor: not-allowed;
+              color: #a2abba;
+            ",
+          "enabled": "
+              cursor: pointer;
+            ",
+          "label": "
+              /* Needs to use padding and not flex gap for extra mouse click area */
+              padding-inline-start: 8px;
+              line-height: 24px;
+              font-size: 1.0000rem;
+            ",
+        },
+        "wrapper": "
+            display: flex;
+            align-items: flex-start;
+          ",
+      }
     `);
   });
 });

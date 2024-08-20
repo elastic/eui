@@ -15,8 +15,6 @@ import {
   ResponderProvided,
 } from '@hello-pangea/dnd';
 
-// export interface EuiDragDropContextProps extends DragDropContextProps {}
-
 type EuiDraggingType = string | null;
 
 export interface EuiDragDropContextProps {

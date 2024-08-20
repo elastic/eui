@@ -8,7 +8,6 @@
 
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
-import { hideStorybookControls } from '../../../../.storybook/utils';
 
 import { EuiSkeletonText } from '../../skeleton';
 import { EuiPageSection } from '../page_section';
@@ -60,6 +59,7 @@ export const Playground: Story = {
 };
 
 export const StickyOffset: Story = {
+  parameters: { controls: { include: ['sticky'] } },
   args: {
     sticky: { offset: 50 },
   },
@@ -98,10 +98,3 @@ export const StickyOffset: Story = {
     </EuiPage>
   ),
 };
-// This story demos the sticky functionality; removing other props to prevent confusion
-hideStorybookControls(StickyOffset, [
-  'minWidth',
-  'paddingSize',
-  'hasEmbellish',
-  'responsive',
-]);

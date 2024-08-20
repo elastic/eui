@@ -100,4 +100,9 @@
   } @else {
     @warn "euiOverflowShadow() expects direction to be 'y' or 'x' but got '#{$direction}'";
   }
+
+  // Chrome+Edge has a very bizarre edge case bug where `mask-image` stops working
+  // This workaround forces a stacking context on the scrolling container, which
+  // hopefully addresses the bug. @see https://github.com/elastic/eui/pull/7855
+  transform: translateZ(0);
 }

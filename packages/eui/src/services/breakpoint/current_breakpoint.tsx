@@ -21,7 +21,7 @@ import {
   _EuiThemeBreakpoint,
   _EuiThemeBreakpoints,
 } from '../../global_styling/variables/breakpoint';
-import { useEuiTheme } from '../theme';
+import { useEuiTheme } from '../theme/hooks';
 import { throttle } from '../throttle';
 import { sortMapByLargeToSmallValues } from './_sorting';
 
@@ -31,8 +31,10 @@ export const CurrentEuiBreakpointContext =
   createContext<CurrentEuiBreakpoint>(undefined);
 
 /**
- * Top level provider (nested within EuiProvider) which provides a single
- * resize listener that returns the current breakpoint based on window width
+ * Returns the current breakpoint based on window width.
+ * Typically only called by the top-level `EuiProvider` (to reduce the number
+ * of window resize listeners on the page). Also conditionally called if a
+ * nested `EuiThemeProvider` defines a `modify.breakpoint` override
  */
 export const CurrentEuiBreakpointProvider: FunctionComponent<
   PropsWithChildren

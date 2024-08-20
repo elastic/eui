@@ -8,7 +8,6 @@
 
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
-import { hideStorybookControls } from '../../../.storybook/utils';
 
 import { EuiFlexGroup } from '../flex';
 import { EuiSkeletonText } from '../skeleton';
@@ -51,13 +50,12 @@ export const Playground: Story = {
 };
 
 export const RestrictWidth: Story = {
+  parameters: { controls: { include: ['restrictWidth'] } },
   args: {
     restrictWidth: '80vw',
   },
   render: ({ ...args }) => <EuiPage {...args}>{_pageContent}</EuiPage>,
 };
-// This story displays the restrictWidth functionality; removing other props to prevent confusion
-hideStorybookControls(RestrictWidth, ['grow', 'direction', 'paddingSize']);
 
 // Shared page children
 const _pageContent = (

@@ -19,6 +19,11 @@ import React, {
 import classNames from 'classnames';
 import chroma, { ColorSpaces } from 'chroma-js';
 
+import {
+  useEuiMemoizedStyles,
+  VISUALIZATION_COLORS,
+  keys,
+} from '../../services';
 import { CommonProps } from '../common';
 import {
   EuiFieldText,
@@ -28,11 +33,8 @@ import {
   EuiRange,
   EuiRangeProps,
 } from '../form';
-import { getFormControlClassNameForIconCount } from '../form/form_control_layout/_num_icons';
 import { useEuiI18n } from '../i18n';
 import { EuiPopover } from '../popover';
-import { EuiSpacer } from '../spacer';
-import { VISUALIZATION_COLORS, keys } from '../../services';
 
 import { EuiColorPickerSwatch } from './color_picker_swatch';
 import { EuiHue } from './hue';
@@ -45,6 +47,7 @@ import {
   RGB_FALLBACK,
   RGB_JOIN,
 } from './utils';
+import { euiColorPickerStyles } from './color_picker.styles';
 
 type EuiColorPickerDisplay = 'default' | 'inline';
 type EuiColorPickerMode = 'default' | 'swatch' | 'picker' | 'secondaryInput';
@@ -280,26 +283,7 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
   };
 
   const classes = classNames('euiColorPicker', className);
-  const popoverClass = 'euiColorPicker__popoverAnchor';
-  const panelClasses = classNames('euiColorPicker__popoverPanel', {
-    'euiColorPicker__popoverPanel--pickerOnly':
-      mode === 'picker' && secondaryInputDisplay !== 'bottom',
-    'euiColorPicker__popoverPanel--customButton': button,
-  });
-  const swatchClass = 'euiColorPicker__swatchSelect';
-
-  const numIconsClass = getFormControlClassNameForIconCount({
-    isDropdown: true,
-    clear: isClearable,
-    isInvalid,
-  });
-  const inputClasses = classNames(
-    'euiColorPicker__input',
-    { 'euiColorPicker__input--inGroup': prepend || append },
-    // Manually account for input padding, since `controlOnly` disables that logic
-    'euiFieldText--withIcon',
-    numIconsClass
-  );
+  const styles = useEuiMemoizedStyles(euiColorPickerStyles);
 
   const handleOnChange = (text: string) => {
     const output = getOutput(text, showAlpha);
@@ -468,7 +452,9 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
     }
   };
 
-  const inlineInput = secondaryInputDisplay !== 'none' && (
+  const showSecondaryInput =
+    mode === 'secondaryInput' || secondaryInputDisplay !== 'none';
+  const inlineInput = showSecondaryInput && (
     <EuiFormRow
       display="rowCompressed"
       isInvalid={isInvalid}
@@ -481,10 +467,13 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
             : undefined
         }
         readOnly={readOnly}
-        compressed={compressed}
+        isDisabled={disabled}
+        isInvalid={isInvalid}
+        compressed={display === 'inline' ? compressed : true}
       >
         <EuiFieldText
-          compressed={true}
+          controlOnly={true}
+          compressed={display === 'inline' ? compressed : true}
           value={color ? color.toUpperCase() : HEX_FALLBACK}
           placeholder={!color ? placeholder || transparent : undefined}
           onChange={handleColorInput}
@@ -505,35 +494,34 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
 
   const composite = (
     <>
-      {secondaryInputDisplay === 'top' && (
-        <>
-          {inlineInput}
-          <EuiSpacer size="s" />
-        </>
-      )}
+      {secondaryInputDisplay === 'top' && inlineInput}
       {showPicker && (
-        <div onKeyDown={handleOnKeyDown}>
+        <>
           <EuiSaturation
             id={id}
             color={usableHsv}
             hex={chromaColor ? chromaColor.hex() : undefined}
             onChange={handleColorSelection}
             ref={saturationRef}
+            onKeyDown={handleOnKeyDown}
           />
           <EuiHue
             id={id}
             hue={usableHsv[0]}
             hex={chromaColor ? chromaColor.hex() : undefined}
             onChange={handleHueSelection}
+            onKeyDown={handleOnKeyDown}
           />
-        </div>
+        </>
       )}
       {showSwatches && (
-        <ul className="euiColorPicker__swatches">
+        <ul
+          css={styles.euiColorPicker__swatches}
+          className="euiColorPicker__swatches"
+        >
           {swatches.map((swatch, index) => (
-            <li className="euiColorPicker__swatch-item" key={swatch}>
+            <li key={swatch}>
               <EuiColorPickerSwatch
-                className={swatchClass}
                 color={swatch}
                 onClick={() => handleSwatchSelection(swatch)}
                 ref={index === 0 ? swatchRef : undefined}
@@ -542,29 +530,21 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
           ))}
         </ul>
       )}
-      {secondaryInputDisplay === 'bottom' && (
-        <>
-          {mode !== 'picker' && <EuiSpacer size="s" />}
-          {inlineInput}
-        </>
-      )}
+      {secondaryInputDisplay === 'bottom' && inlineInput}
       {showAlpha && (
-        <>
-          <EuiSpacer size="s" />
-
-          <EuiRange
-            className="euiColorPicker__alphaRange"
-            data-test-subj="euiColorPickerAlpha"
-            compressed={true}
-            showInput={true}
-            max={100}
-            min={0}
-            value={alphaRangeValue}
-            append="%"
-            onChange={handleAlphaSelection}
-            aria-label={alphaLabel}
-          />
-        </>
+        <EuiRange
+          css={styles.euiColorPicker__alphaRange}
+          className="euiColorPicker__alphaRange"
+          data-test-subj="euiColorPickerAlpha"
+          compressed={true}
+          showInput={true}
+          max={100}
+          min={0}
+          value={alphaRangeValue}
+          append="%"
+          onChange={handleAlphaSelection}
+          aria-label={alphaLabel}
+        />
       )}
     </>
   );
@@ -587,6 +567,7 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
                 type: 'swatchInput',
                 side: 'left',
                 color: colorStyle,
+                css: styles.euiColorPicker__swatchInputIcon,
               }
             : {
                 type: 'stopSlash',
@@ -610,14 +591,13 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
         isDropdown
       >
         <EuiFieldText
-          className={inputClasses}
+          className="euiColorPicker__input"
           onClick={handleInputActivity}
           onKeyDown={handleInputActivity}
           onBlur={handleOnBlur}
           value={color ? color.toUpperCase() : HEX_FALLBACK}
           placeholder={!color ? placeholder || transparent : undefined}
           id={id}
-          icon="empty" // Required to make space (left padding) for the color swatch icon
           onChange={handleColorInput}
           inputRef={setInputRef}
           isInvalid={isInvalid}
@@ -635,7 +615,9 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
   }
 
   return display === 'inline' ? (
-    <div className={classes}>{composite}</div>
+    <div css={styles.euiColorPicker} className={classes}>
+      {composite}
+    </div>
   ) : (
     <EuiPopover
       initialFocus={inputRef ?? undefined}
@@ -643,8 +625,8 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
       isOpen={isColorSelectorShown}
       closePopover={handleFinalSelection}
       zIndex={popoverZIndex}
-      className={popoverClass}
-      panelClassName={panelClasses}
+      className="euiColorPicker__popoverAnchor"
+      panelClassName="euiColorPicker__popoverPanel"
       display={button ? 'inline-block' : 'block'}
       attachToAnchor={button ? false : true}
       anchorPosition="downLeft"
@@ -653,7 +635,11 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
       aria-label={popoverLabel}
       focusTrapProps={inputRef ? { shards: [inputRef] } : undefined}
     >
-      <div className={classes} data-test-subj="euiColorPickerPopover">
+      <div
+        css={styles.euiColorPicker}
+        className={classes}
+        data-test-subj="euiColorPickerPopover"
+      >
         {composite}
       </div>
     </EuiPopover>

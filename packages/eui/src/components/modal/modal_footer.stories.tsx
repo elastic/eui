@@ -18,9 +18,9 @@ const meta: Meta<EuiModalFooterProps> = {
   title: 'Layout/EuiModal/EuiModalFooter',
   component: EuiModalFooter,
   decorators: [
-    (Story) => (
+    (Story, { args }) => (
       <EuiModal onClose={action('onClose')}>
-        <Story />
+        <Story {...args} />
       </EuiModal>
     ),
   ],

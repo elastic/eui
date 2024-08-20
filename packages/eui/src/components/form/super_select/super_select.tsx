@@ -9,22 +9,22 @@
 import React, { Component, FocusEvent, ReactNode, createRef } from 'react';
 import classNames from 'classnames';
 
-import { CommonProps } from '../../common';
-
-import { EuiScreenReaderOnly } from '../../accessibility';
 import { htmlIdGenerator, keys } from '../../../services';
+import { CommonProps } from '../../common';
+import { EuiI18n } from '../../i18n';
+import { EuiScreenReaderOnly } from '../../accessibility';
+import { EuiInputPopover, type EuiInputPopoverProps } from '../../popover';
+import { type EuiContextMenuItemLayoutAlignment } from '../../context_menu';
+
 import {
   EuiSuperSelectControl,
-  EuiSuperSelectControlProps,
-  EuiSuperSelectOption,
+  type EuiSuperSelectControlProps,
 } from './super_select_control';
-import { EuiInputPopover, EuiInputPopoverProps } from '../../popover';
 import {
-  EuiContextMenuItem,
-  EuiContextMenuItemLayoutAlignment,
-} from '../../context_menu';
-
-import { EuiI18n } from '../../i18n';
+  EuiSuperSelectItem,
+  type EuiSuperSelectOption,
+} from './super_select_item';
+import { euiSuperSelectStyles as styles } from './super_select.styles';
 
 enum ShiftDirection {
   BACK = 'back',
@@ -283,21 +283,6 @@ export class EuiSuperSelect<T = string> extends Component<
       popoverProps?.className
     );
 
-    const buttonClasses = classNames(
-      {
-        'euiSuperSelect--isOpen__button': this.state.isPopoverOpen,
-      },
-      className
-    );
-
-    const itemClasses = classNames(
-      'euiSuperSelect__item',
-      {
-        'euiSuperSelect__item--hasDividers': hasDividers,
-      },
-      itemClassName
-    );
-
     const button = (
       <EuiSuperSelectControl
         options={options}
@@ -307,12 +292,13 @@ export class EuiSuperSelect<T = string> extends Component<
           this.state.isPopoverOpen ? this.closePopover : this.openPopover
         }
         onKeyDown={this.onSelectKeyDown}
-        className={buttonClasses}
+        className={className}
         fullWidth={fullWidth}
         isInvalid={isInvalid}
         compressed={compressed}
         {...rest}
         buttonRef={this.controlButtonRef}
+        isDropdownOpen={this.state.isPopoverOpen}
       />
     );
 
@@ -321,21 +307,21 @@ export class EuiSuperSelect<T = string> extends Component<
       if (value == null) return;
 
       return (
-        <EuiContextMenuItem
+        <EuiSuperSelectItem
           key={index}
-          className={itemClasses}
+          id={String(value)}
+          className={itemClassName}
+          hasDividers={hasDividers}
+          layoutAlign={itemLayoutAlign}
           icon={valueOfSelected === value ? 'check' : 'empty'}
           onClick={() => this.itemClicked(value)}
           onKeyDown={this.onItemKeyDown}
-          layoutAlign={itemLayoutAlign}
           buttonRef={(node) => this.setItemNode(node, index)}
-          role="option"
-          id={String(value)}
           aria-selected={valueOfSelected === value}
           {...optionRest}
         >
           {dropdownDisplay || inputDisplay}
-        </EuiContextMenuItem>
+        </EuiSuperSelectItem>
       );
     });
 
@@ -364,7 +350,8 @@ export class EuiSuperSelect<T = string> extends Component<
             <div
               aria-label={ariaLabel}
               aria-describedby={this.describedById}
-              className="euiSuperSelect__listbox"
+              css={styles.euiSuperSelect__listbox}
+              className="euiSuperSelect__listbox eui-scrollBar"
               role="listbox"
               aria-activedescendant={
                 valueOfSelected != null ? String(valueOfSelected) : undefined

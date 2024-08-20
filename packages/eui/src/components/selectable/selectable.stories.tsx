@@ -68,6 +68,12 @@ const options: EuiSelectableOption[] = [
 const meta: Meta<EuiSelectableProps> = {
   title: 'Forms/EuiSelectable',
   component: EuiSelectable,
+  parameters: {
+    codeSnippet: {
+      // TODO: enable once render functions are supported
+      skip: true,
+    },
+  },
   argTypes: {
     singleSelection: { control: 'radio', options: [true, false, 'always'] },
     emptyMessage: { control: 'text' },
@@ -96,13 +102,26 @@ export const Playground: Story = {
     loadingMessage: '',
     noMatchesMessage: '',
     selectableScreenReaderText: '',
+    listProps: {
+      bordered: true,
+    },
+    searchable: false, // required for typing
+  },
+  render: ({ ...args }: EuiSelectableProps) => <StatefulSelectable {...args} />,
+};
+enableFunctionToggleControls(Playground, ['onChange', 'onActiveOptionChange']);
+
+export const WithSearch: Story = {
+  args: {
+    options,
+    searchable: true,
+    // setting up for easier testing/QA
     searchProps: {
       'data-test-subj': 'selectableSearchHere',
     },
   },
   render: ({ ...args }: EuiSelectableProps) => <StatefulSelectable {...args} />,
 };
-enableFunctionToggleControls(Playground, ['onChange', 'onActiveOptionChange']);
 
 export const WithTooltip: Story = {
   parameters: {
@@ -111,7 +130,11 @@ export const WithTooltip: Story = {
     },
   },
   args: {
-    options: options.map((option) => ({ ...option, ...toolTipProps })),
+    options: options.map((option, idx) => ({
+      ...option,
+      ...toolTipProps,
+      value: idx,
+    })),
     searchable: false,
   },
   render: ({ ...args }: EuiSelectableProps) => <StatefulSelectable {...args} />,

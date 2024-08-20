@@ -7,18 +7,25 @@ exports[`EuiInMemoryTable behavior mobile header 1`] = `
   <div
     class="euiCheckbox emotion-euiCheckbox"
   >
-    <input
-      aria-label="Select all rows"
-      class="euiCheckbox__input"
-      id="_selection_column-checkbox_generated-id_mobile"
-      type="checkbox"
-    />
     <div
-      class="euiCheckbox__square"
-    />
+      class="euiCheckbox__square emotion-euiCheckbox__square-unselected"
+    >
+      <span
+        class="emotion-euiCheckbox__icon-check"
+        data-euiicon-type="empty"
+      />
+      <input
+        aria-label="Select all rows"
+        class="euiCheckbox__input emotion-euiCheckbox__input"
+        data-test-subj="checkboxSelectAll"
+        id="_selection_column-checkbox_generated-id"
+        title="Select all rows"
+        type="checkbox"
+      />
+    </div>
     <label
-      class="euiCheckbox__label"
-      for="_selection_column-checkbox_generated-id_mobile"
+      class="euiCheckbox__label emotion-euiCheckbox__label"
+      for="_selection_column-checkbox_generated-id"
     >
       Select all rows
     </label>
@@ -212,32 +219,6 @@ exports[`EuiInMemoryTable empty array 1`] = `
     </tbody>
   </table>
 </div>
-`;
-
-exports[`EuiInMemoryTable with executeQueryOptions 1`] = `
-<EuiBasicTable
-  aria-label="aria-label"
-  className="testClass1 testClass2 emotion-euiTestCss"
-  columns={
-    Array [
-      Object {
-        "description": "description",
-        "field": "name",
-        "name": "Name",
-      },
-    ]
-  }
-  data-test-subj="test subject string"
-  items={Array []}
-  noItemsMessage={
-    <EuiI18n
-      default="No items found"
-      token="euiBasicTable.noItemsMessage"
-    />
-  }
-  onChange={[Function]}
-  tableLayout="fixed"
-/>
 `;
 
 exports[`EuiInMemoryTable with items 1`] = `

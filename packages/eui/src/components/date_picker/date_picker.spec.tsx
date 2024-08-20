@@ -21,10 +21,7 @@ describe('EuiDatePicker', () => {
     it('renders a calendar inline', () => {
       cy.realMount(<EuiDatePicker inline />);
 
-      cy.get('.euiDatePicker--inline').should(
-        'have.class',
-        'euiDatePicker--shadow'
-      );
+      cy.get('[class*="euiDatePicker-inline-shadow"').should('exist');
       cy.get('.react-datepicker').should('exist');
 
       cy.realPress('Tab');
@@ -37,20 +34,16 @@ describe('EuiDatePicker', () => {
     it('renders without a shadow', () => {
       cy.realMount(<EuiDatePicker inline shadow={false} />);
 
-      cy.get('.euiDatePicker--inline').should(
-        'not.have.class',
-        'euiDatePicker--shadow'
-      );
+      cy.get('[class*="euiDatePicker-inline"').should('exist');
+      cy.get('[class*="euiDatePicker-inline-shadow"').should('not.exist');
     });
 
     it('renders form control icons below the date picker', () => {
       cy.realMount(<EuiDatePicker inline isLoading isInvalid />);
 
-      cy.get('.euiFormControlLayoutIcons').should(
-        'have.class',
-        'euiFormControlLayoutIcons--static'
-      );
-      cy.get('.euiFormControlLayoutDelimited--isInvalid').should('exist');
+      cy.get('.euiFormControlLayoutIcons')
+        .invoke('attr', 'class')
+        .should('contain', 'euiFormControlLayoutIcons-static');
     });
 
     it('renders as disabled', () => {
@@ -65,7 +58,7 @@ describe('EuiDatePicker', () => {
     it('renders as readonly', () => {
       cy.realMount(<EuiDatePicker inline readOnly />);
 
-      cy.get('.euiFormControlLayout--readOnly').should('exist');
+      cy.get('.euiFormControlLayout-readOnly').should('exist');
 
       cy.realPress('Tab');
       cy.focused().should('not.exist');

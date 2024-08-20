@@ -8,22 +8,18 @@
 
 import React, { useCallback, useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
-import { action } from '@storybook/addon-actions';
 import { userEvent, waitFor, within, expect } from '@storybook/test';
 
+import {
+  enableFunctionToggleControls,
+  hideStorybookControls,
+} from '../../../.storybook/utils';
 import { LOKI_SELECTORS, lokiPlayDecorator } from '../../../.storybook/loki';
-import { EuiComboBox, EuiComboBoxProps } from './combo_box';
-import { EuiComboBoxOptionMatcher } from './types';
 import { EuiCode } from '../code';
+import { EuiFlexItem } from '../flex';
 
-const toolTipProps = {
-  toolTipContent: 'This is a tooltip!',
-  toolTipProps: {
-    position: 'left' as const,
-    ['data-test-subj']: 'tooltip',
-  },
-  value: 4,
-};
+import { EuiComboBoxOptionMatcher } from './types';
+import { EuiComboBox, EuiComboBoxProps } from './combo_box';
 
 const options = [
   { label: 'Item 1' },
@@ -70,6 +66,7 @@ const meta: Meta<EuiComboBoxProps<{}>> = {
     onCreateOption: undefined, // Override Storybook's default callback
   },
 };
+enableFunctionToggleControls(meta, ['onChange', 'onCreateOption']);
 
 export default meta;
 type Story = StoryObj<EuiComboBoxProps<{}>>;
@@ -81,15 +78,21 @@ export const Playground: Story = {
 export const WithTooltip: Story = {
   parameters: {
     controls: {
-      include: ['fullWidth', 'options', 'selectedOptions'],
+      include: ['fullWidth', 'options', 'selectedOptions', 'onChange'],
     },
-    loki: {
-      // popover and tooltip are rendered in a portal
-      chromeSelector: LOKI_SELECTORS.portal,
-    },
+    // This story is flaky in VRT and always takes a new screenshot - skipping it
+    loki: { skip: true },
   },
   args: {
-    options: options.map((option) => ({ ...option, ...toolTipProps })),
+    options: options.map((option, idx) => ({
+      ...option,
+      toolTipContent: 'This is a tooltip!',
+      toolTipProps: {
+        position: 'left' as const,
+        ['data-test-subj']: 'tooltip',
+      },
+      value: idx,
+    })),
   },
   render: (args) => <StatefulComboBox {...args} />,
   play: lokiPlayDecorator(async (context) => {
@@ -117,58 +120,91 @@ export const WithTooltip: Story = {
     );
   }),
 };
+// manually hide onChange as it's not important as control but needs to be included
+// to use the defined control (via enableFunctionToggleControls) in the stateful wrapper
+hideStorybookControls(WithTooltip, ['onChange']);
 
 export const CustomMatcher: Story = {
-  render: function Render({ singleSelection, onCreateOption, ...args }) {
-    const [selectedOptions, setSelectedOptions] = useState(
-      args.selectedOptions
-    );
-    const onChange: EuiComboBoxProps<{}>['onChange'] = (options, ...args) => {
-      setSelectedOptions(options);
-      action('onChange')(options, ...args);
-    };
-
-    const optionMatcher = useCallback<EuiComboBoxOptionMatcher<unknown>>(
-      ({ option, searchValue }) => {
-        return option.label.startsWith(searchValue);
-      },
-      []
-    );
-
-    return (
-      <>
-        <p>
-          This matcher example uses <EuiCode>option.label.startsWith()</EuiCode>
-          . Only options that start exactly like the given search string will be
-          matched.
-        </p>
-        <br />
-        <EuiComboBox
-          singleSelection={
-            // @ts-ignore Specific to Storybook control
-            singleSelection === 'asPlainText'
-              ? { asPlainText: true }
-              : Boolean(singleSelection)
-          }
-          {...args}
-          selectedOptions={selectedOptions}
-          onChange={onChange}
-          optionMatcher={optionMatcher}
-        />
-      </>
-    );
+  parameters: {
+    codeSnippet: {
+      resolveStoryElementOnly: true,
+    },
   },
+  render: (args) => <StoryCustomMatcher {...args} />,
+};
+
+export const Groups: Story = {
+  parameters: {
+    controls: {
+      include: ['options'],
+    },
+    loki: {
+      chromeSelector: LOKI_SELECTORS.body,
+    },
+  },
+  args: {
+    options: [
+      { label: 'Group 1', isGroupLabelOption: true },
+      ...[...options].splice(0, 3),
+      {
+        label: 'Group 2',
+        isGroupLabelOption: true,
+        prepend: '#prepend ',
+        append: (
+          <EuiFlexItem css={{ alignItems: 'flex-end' }}>(append)</EuiFlexItem>
+        ),
+      },
+      ...[...options].splice(3, options.length),
+    ],
+    autoFocus: true,
+  },
+  render: (args) => <StatefulComboBox {...args} />,
+};
+
+export const NestedOptionsGroups: Story = {
+  parameters: {
+    controls: {
+      include: ['options'],
+    },
+    loki: {
+      chromeSelector: LOKI_SELECTORS.body,
+    },
+  },
+  args: {
+    options: [
+      {
+        label: 'Group 1',
+        isGroupLabelOption: true,
+        options: [...options].splice(0, 3),
+      },
+      {
+        label: 'Group 2',
+        isGroupLabelOption: true,
+        prepend: '#prepend ',
+        append: (
+          <EuiFlexItem css={{ alignItems: 'flex-end' }}>(append)</EuiFlexItem>
+        ),
+        options: [...options].splice(3, options.length),
+      },
+    ],
+    autoFocus: true,
+  },
+  render: (args) => <StatefulComboBox {...args} />,
 };
 
 const StatefulComboBox = ({
   singleSelection,
   onCreateOption,
+  onChange,
   ...args
 }: EuiComboBoxProps<{}>) => {
   const [selectedOptions, setSelectedOptions] = useState(args.selectedOptions);
-  const onChange: EuiComboBoxProps<{}>['onChange'] = (options, ...args) => {
+  const handleOnChange: EuiComboBoxProps<{}>['onChange'] = (
+    options,
+    ...args
+  ) => {
     setSelectedOptions(options);
-    action('onChange')(options, ...args);
+    onChange?.(options, ...args);
   };
   const _onCreateOption: EuiComboBoxProps<{}>['onCreateOption'] = (
     searchValue,
@@ -180,7 +216,7 @@ const StatefulComboBox = ({
         ? [createdOption]
         : [...prevState, createdOption]
     );
-    action('onCreateOption')(searchValue, ...args);
+    onCreateOption?.(searchValue, ...args);
   };
   return (
     <EuiComboBox
@@ -192,8 +228,53 @@ const StatefulComboBox = ({
       }
       {...args}
       selectedOptions={selectedOptions}
-      onChange={onChange}
+      onChange={handleOnChange}
       onCreateOption={onCreateOption ? _onCreateOption : undefined}
     />
+  );
+};
+
+const StoryCustomMatcher = ({
+  singleSelection,
+  onChange,
+  ...args
+}: EuiComboBoxProps<{}>) => {
+  const [selectedOptions, setSelectedOptions] = useState(args.selectedOptions);
+  const handleOnChange: EuiComboBoxProps<{}>['onChange'] = (
+    options,
+    ...args
+  ) => {
+    setSelectedOptions(options);
+    onChange?.(options, ...args);
+  };
+
+  const optionMatcher = useCallback<EuiComboBoxOptionMatcher<unknown>>(
+    ({ option, searchValue }) => {
+      return option.label.startsWith(searchValue);
+    },
+    []
+  );
+
+  return (
+    <>
+      <p>
+        This matcher example uses <EuiCode>option.label.startsWith()</EuiCode>.
+        Only options that start exactly like the given search string will be
+        matched.
+      </p>
+      <br />
+      <EuiComboBox
+        singleSelection={
+          // @ts-ignore Specific to Storybook control
+          singleSelection === 'asPlainText'
+            ? { asPlainText: true }
+            : Boolean(singleSelection)
+        }
+        {...args}
+        selectedOptions={selectedOptions}
+        onChange={handleOnChange}
+        optionMatcher={optionMatcher}
+      />
+    </>
   );
 };

@@ -9,7 +9,6 @@
 import React, { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
-import { hideStorybookControls } from '../../../.storybook/utils';
 
 import { EuiButton, EuiText, EuiTitle } from '../index';
 
@@ -95,6 +94,19 @@ export const Playground: Story = {
 };
 
 export const PushFlyouts: Story = {
+  parameters: {
+    controls: {
+      include: ['pushAnimation', 'pushMinBreakpoint', 'side', 'size', 'type'],
+    },
+    loki: {
+      chromeSelector: LOKI_SELECTORS.default,
+    },
+  },
+  args: {
+    type: 'push',
+    pushAnimation: false,
+    pushMinBreakpoint: 'xs',
+  },
   render: ({ ...args }) => {
     const fillerText = (
       <EuiText>
@@ -123,30 +135,4 @@ export const PushFlyouts: Story = {
       </>
     );
   },
-  args: {
-    type: 'push',
-    pushAnimation: false,
-    pushMinBreakpoint: 'xs',
-  },
-  parameters: {
-    loki: {
-      chromeSelector: LOKI_SELECTORS.default,
-    },
-  },
 };
-hideStorybookControls(PushFlyouts, [
-  'onClose',
-  'aria-label',
-  'as',
-  'closeButtonPosition',
-  'closeButtonProps',
-  'focusTrapProps',
-  'hideCloseButton',
-  'includeFixedHeadersInFocusTrap',
-  'maskProps',
-  'maxWidth',
-  'outsideClickCloses',
-  'ownFocus',
-  'paddingSize',
-  'style',
-]);

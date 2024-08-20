@@ -64,7 +64,8 @@ import {
   getMonth
 } from "./date_utils";
 
-import {EuiPopover, popoverAnchorPosition} from '../../../popover/popover';
+import { EuiPopover, popoverAnchorPosition } from '../../../popover/popover';
+import { EuiFieldText } from '../../../form/field_text';
 
 export { default as CalendarContainer } from "./calendar_container";
 
@@ -83,6 +84,9 @@ function hasPreSelectionChanged(date1, date2) {
 
 function hasSelectionChanged(date1, date2) {
   if (date1 && date2) {
+    if (date1._isValid === false && date2._isValid === false) {
+      return false;
+    }
     return !equals(date1, date2);
   }
 
@@ -288,7 +292,7 @@ export default class DatePicker extends React.Component {
     return {
       open: this.props.startOpen || false,
       preventFocus: false,
-      preSelection: this.props.selected
+      preSelection: this.props.selected?._isValid
         ? newDate(this.props.selected)
         : boundedPreSelection,
       // transforming highlighted days (perhaps nested array)
@@ -693,7 +697,7 @@ export default class DatePicker extends React.Component {
         useWeekdaysShort={this.props.useWeekdaysShort}
         formatWeekDay={this.props.formatWeekDay}
         dropdownMode={this.props.dropdownMode}
-        selected={this.props.selected}
+        selected={this.props.selected?._isValid ? this.props.selected : undefined}
         preSelection={this.state.preSelection}
         onSelect={this.handleSelect}
         onWeekSelect={this.props.onWeekSelect}
@@ -769,8 +773,12 @@ export default class DatePicker extends React.Component {
       [outsideClickIgnoreClass]: this.state.open
     });
 
-    const customInput = this.props.customInput || <input type="text" />;
-    const customInputRef = this.props.customInputRef || "ref";
+    const customInput = this.props.customInput || (
+      <EuiFieldText controlOnly {...this.props.defaultInputProps} />
+    );
+    const customInputRef =
+      this.props.customInputRef ??
+      (this.props.customInput ? 'ref' : 'inputRef');
     const inputValue =
       typeof this.props.value === "string"
         ? this.props.value

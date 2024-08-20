@@ -9,10 +9,12 @@
 import React, { ButtonHTMLAttributes, forwardRef, useMemo } from 'react';
 import classNames from 'classnames';
 
+import { useEuiMemoizedStyles } from '../../services';
 import { CommonProps } from '../common';
+import { useEuiI18n } from '../i18n';
 
 import { getChromaColor } from './utils';
-import { useEuiI18n } from '../i18n';
+import { euiColorPickerSwatchStyles } from './color_picker_swatch.styles';
 
 export type EuiColorPickerSwatchProps = CommonProps &
   Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'color'> & {
@@ -24,11 +26,14 @@ export const EuiColorPickerSwatch = forwardRef<
   EuiColorPickerSwatchProps
 >(({ className, color, style, ...rest }, ref) => {
   const classes = classNames('euiColorPickerSwatch', className);
+  const styles = useEuiMemoizedStyles(euiColorPickerSwatchStyles);
+
   const chromaColor = useMemo(() => getChromaColor(color, true), [color]);
   const background = useMemo(
     () => (chromaColor ? chromaColor.css() : 'transparent'),
     [chromaColor]
   );
+
   const ariaLabel = useEuiI18n(
     'euiColorPickerSwatch.ariaLabel',
     'Select {color} as the color',
@@ -38,6 +43,7 @@ export const EuiColorPickerSwatch = forwardRef<
   return (
     <button
       type="button"
+      css={styles.euiColorPickerSwatch}
       className={classes}
       aria-label={ariaLabel}
       ref={ref}

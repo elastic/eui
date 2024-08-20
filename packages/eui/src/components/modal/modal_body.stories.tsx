@@ -18,9 +18,9 @@ const meta: Meta<EuiModalBodyProps> = {
   title: 'Layout/EuiModal/EuiModalBody',
   component: EuiModalBody,
   decorators: [
-    (Story) => (
+    (Story, { args }) => (
       <EuiModal onClose={action('onClose')}>
-        <Story />
+        <Story {...args} />
       </EuiModal>
     ),
   ],

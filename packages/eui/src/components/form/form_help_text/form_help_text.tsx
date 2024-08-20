@@ -7,9 +7,12 @@
  */
 
 import React, { FunctionComponent, HTMLAttributes } from 'react';
-
 import classNames from 'classnames';
+
+import { useEuiMemoizedStyles } from '../../../services';
 import { CommonProps } from '../../common';
+
+import { euiFormHelpTextStyles } from './form_help_text.styles';
 
 export type EuiFormHelpTextProps = CommonProps & HTMLAttributes<HTMLDivElement>;
 
@@ -19,9 +22,10 @@ export const EuiFormHelpText: FunctionComponent<EuiFormHelpTextProps> = ({
   ...rest
 }) => {
   const classes = classNames('euiFormHelpText', className);
+  const styles = useEuiMemoizedStyles(euiFormHelpTextStyles);
 
   return (
-    <div className={classes} {...rest}>
+    <div css={styles.euiFormHelpText} className={classes} {...rest}>
       {children}
     </div>
   );

@@ -100,12 +100,7 @@ export default () => {
       <EuiFormControlLayout
         prepend={<EuiFormLabel htmlFor={labelInputId}>Label</EuiFormLabel>}
       >
-        <EuiFieldText
-          type="text"
-          className="euiFieldText--inGroup"
-          controlOnly
-          id={labelInputId}
-        />
+        <EuiFieldText type="text" controlOnly id={labelInputId} />
       </EuiFormControlLayout>
 
       <EuiFormControlLayout
@@ -115,13 +110,7 @@ export default () => {
         }
         append={<EuiButtonEmpty size="xs">Button</EuiButtonEmpty>}
       >
-        <EuiFieldText
-          type="text"
-          className="euiFieldText--inGroup"
-          id={readOnlyInputId}
-          controlOnly
-          readOnly
-        />
+        <EuiFieldText type="text" id={readOnlyInputId} controlOnly readOnly />
       </EuiFormControlLayout>
 
       <EuiFormControlLayout
@@ -133,7 +122,6 @@ export default () => {
       >
         <EuiFieldText
           type="number"
-          className="euiFieldNumber--inGroup"
           controlOnly
           aria-label="Use aria labels when no actual label is in use"
         />
@@ -150,7 +138,6 @@ export default () => {
       >
         <EuiFieldText
           type="text"
-          className="euiFieldText--inGroup"
           controlOnly
           aria-label="Use aria labels when no actual label is in use"
         />

@@ -2,16 +2,17 @@
 
 exports[`EuiSelectableSearch is rendered 1`] = `
 <div
-  class="euiFormControlLayout euiFormControlLayout--fullWidth"
+  class="euiFormControlLayout emotion-euiFormControlLayout-fullWidth"
 >
   <div
-    class="euiFormControlLayout__childrenWrapper"
+    class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper"
+    style="--euiFormControlLeftIconsCount: 1;"
   >
     <div
-      class="euiFormControlLayoutIcons euiFormControlLayoutIcons--left euiFormControlLayoutIcons--absolute"
+      class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-absolute-left"
     >
       <span
-        class="euiFormControlLayoutCustomIcon"
+        class="euiFormControlLayoutCustomIcon emotion-euiFormControlLayoutCustomIcon"
       >
         <span
           aria-hidden="true"
@@ -24,7 +25,7 @@ exports[`EuiSelectableSearch is rendered 1`] = `
       aria-haspopup="listbox"
       aria-label="aria-label"
       autocomplete="off"
-      class="euiFieldSearch euiFieldSearch--fullWidth euiSelectableSearch testClass1 testClass2 emotion-euiTestCss"
+      class="euiFieldSearch euiSelectableSearch testClass1 testClass2 emotion-euiFieldSearch-fullWidth-euiTestCss"
       data-test-subj="test subject string"
       type="search"
       value=""
@@ -35,16 +36,17 @@ exports[`EuiSelectableSearch is rendered 1`] = `
 
 exports[`EuiSelectableSearch renders aria props if a listId is present 1`] = `
 <div
-  class="euiFormControlLayout euiFormControlLayout--fullWidth"
+  class="euiFormControlLayout emotion-euiFormControlLayout-fullWidth"
 >
   <div
-    class="euiFormControlLayout__childrenWrapper"
+    class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper"
+    style="--euiFormControlLeftIconsCount: 1;"
   >
     <div
-      class="euiFormControlLayoutIcons euiFormControlLayoutIcons--left euiFormControlLayoutIcons--absolute"
+      class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-absolute-left"
     >
       <span
-        class="euiFormControlLayoutCustomIcon"
+        class="euiFormControlLayoutCustomIcon emotion-euiFormControlLayoutCustomIcon"
       >
         <span
           aria-hidden="true"
@@ -61,7 +63,7 @@ exports[`EuiSelectableSearch renders aria props if a listId is present 1`] = `
       aria-label="aria-label"
       aria-owns="list"
       autocomplete="off"
-      class="euiFieldSearch euiFieldSearch--fullWidth euiSelectableSearch testClass1 testClass2 emotion-euiTestCss"
+      class="euiFieldSearch euiSelectableSearch testClass1 testClass2 emotion-euiFieldSearch-fullWidth-euiTestCss"
       data-test-subj="test subject string"
       role="combobox"
       type="search"
@@ -73,16 +75,17 @@ exports[`EuiSelectableSearch renders aria props if a listId is present 1`] = `
 
 exports[`EuiSelectableSearch renders placeholder, value, name, and other remaining EuiFieldSearch props 1`] = `
 <div
-  class="euiFormControlLayout euiFormControlLayout--fullWidth"
+  class="euiFormControlLayout emotion-euiFormControlLayout-fullWidth"
 >
   <div
-    class="euiFormControlLayout__childrenWrapper"
+    class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper"
+    style="--euiFormControlLeftIconsCount: 1; --euiFormControlRightIconsCount: 1;"
   >
     <div
-      class="euiFormControlLayoutIcons euiFormControlLayoutIcons--left euiFormControlLayoutIcons--absolute"
+      class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-absolute-left"
     >
       <span
-        class="euiFormControlLayoutCustomIcon"
+        class="euiFormControlLayoutCustomIcon emotion-euiFormControlLayoutCustomIcon"
       >
         <span
           aria-hidden="true"
@@ -95,7 +98,7 @@ exports[`EuiSelectableSearch renders placeholder, value, name, and other remaini
       aria-haspopup="listbox"
       aria-label="aria-label"
       autocomplete="off"
-      class="euiFieldSearch euiFormControlLayout--1icons euiFieldSearch--fullWidth euiFieldSearch-isClearable euiSelectableSearch testClass emotion-euiTestCss"
+      class="euiFieldSearch euiFieldSearch-isClearable euiSelectableSearch testClass emotion-euiFieldSearch-fullWidth-euiTestCss"
       data-test-subj="test subject string"
       id="testId"
       name="testName"
@@ -104,16 +107,16 @@ exports[`EuiSelectableSearch renders placeholder, value, name, and other remaini
       value="typed"
     />
     <div
-      class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right euiFormControlLayoutIcons--absolute"
+      class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-absolute-right"
     >
       <button
-        aria-label="Clear input"
-        class="euiFormControlLayoutClearButton"
+        aria-label="Clear search input"
+        class="euiFormControlLayoutClearButton emotion-euiFormControlLayoutClearButton"
         data-test-subj="clearSearchButton"
         type="button"
       >
         <span
-          class="euiFormControlLayoutClearButton__icon"
+          class="euiFormControlLayoutClearButton__icon emotion-euiFormControlLayoutClearButton__icon-m"
           data-euiicon-type="cross"
         />
       </button>

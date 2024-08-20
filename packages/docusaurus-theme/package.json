@@ -1,0 +1,52 @@
+{
+  "name": "@elastic/eui-docusaurus-theme",
+  "version": "0.1.0",
+  "description": "EUI theme for Docusaurus",
+  "private": true,
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc --build",
+    "start": "tsc --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tkajtoch/eui.git",
+    "directory": "packages/docusaurus-theme"
+  },
+  "devDependencies": {
+    "@docusaurus/types": "^3.4.0",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "@types/react-is": "^18",
+    "typescript": "~5.5.4"
+  },
+  "main": "lib/index.js",
+  "exports": {
+    "./lib/*": "./lib/*",
+    ".": {
+      "default": "./lib/index.js"
+    }
+  },
+  "dependencies": {
+    "@docusaurus/core": "^3.4.0",
+    "@docusaurus/module-type-aliases": "^3.4.0",
+    "@docusaurus/theme-common": "^3.4.0",
+    "@docusaurus/utils-validation": "^3.4.0",
+    "@elastic/datemath": "^5.0.3",
+    "@elastic/eui": "94.5.0",
+    "@elastic/eui-docgen": "workspace:^",
+    "@emotion/css": "^11.11.2",
+    "@emotion/react": "^11.11.4",
+    "@types/react-window": "^1.8.8",
+    "clsx": "^2.1.1",
+    "moment": "^2.30.1",
+    "prism-react-renderer": "^2.3.1",
+    "react-is": "^18.3.1",
+    "react-live": "patch:react-live@npm%3A4.1.7#~/.yarn/patches/react-live-npm-4.1.7-7b41625faa.patch",
+    "react-window": "^1.8.10"
+  },
+  "peerDependencies": {
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
+  }
+}

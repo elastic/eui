@@ -184,7 +184,7 @@ export const CardExample = {
       },
       snippet: `<EuiCard
   textAlign="left"
-  image="https://source.unsplash.com/400x200/?Nature"
+  image="https://picsum.photos/400/200"
   title="title"
   description="description"
   onClick={handleClick}

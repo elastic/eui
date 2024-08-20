@@ -25,6 +25,9 @@
 
 import React from "react";
 import PropTypes from "prop-types";
+
+import { EuiIcon } from "../../../icon";
+
 import YearDropdownOptions from "./year_dropdown_options";
 import { getYear } from "./date_utils";
 
@@ -131,10 +134,15 @@ export default class YearDropdown extends React.Component {
         this.props.year
       } is currently selected.`}
     >
-      <span className="react-datepicker__year-read-view--down-arrow" />
       <span className="react-datepicker__year-read-view--selected-year">
         {this.props.year}
       </span>
+      <EuiIcon
+        type="arrowDown"
+        size="s"
+        color="subdued"
+        className="react-datepicker__year-read-view--down-arrow"
+      />
     </div>
   );
 

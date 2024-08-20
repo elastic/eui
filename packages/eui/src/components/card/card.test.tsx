@@ -7,7 +7,7 @@
  */
 
 import React from 'react';
-import { mount } from 'enzyme';
+import { fireEvent } from '@testing-library/react';
 import { requiredProps } from '../../test';
 import { shouldRenderCustomStyles } from '../../test/internal';
 import { render } from '../../test/rtl';
@@ -126,33 +126,33 @@ describe('EuiCard', () => {
     describe('onClick', () => {
       it('supports onClick as a link', () => {
         const handler = jest.fn();
-        const component = mount(
+        const { getByRole } = render(
           <EuiCard title="Hoi" description="There" href="#" onClick={handler} />
         );
-        component.find('a').simulate('click');
-        expect(handler.mock.calls.length).toEqual(1);
+        fireEvent.click(getByRole('link'));
+        expect(handler).toHaveBeenCalledTimes(1);
       });
 
       it('supports onClick as a button', () => {
         const handler = jest.fn();
-        const component = mount(
+        const { getByRole } = render(
           <EuiCard title="Hoi" description="There" onClick={handler} />
         );
-        component.find('button').simulate('click');
-        expect(handler.mock.calls.length).toEqual(1);
+        fireEvent.click(getByRole('button'));
+        expect(handler).toHaveBeenCalledTimes(1);
       });
 
       it('should only call onClick once when title is a React node', () => {
         const handler = jest.fn();
-        const component = mount(
+        const { getByTestSubject } = render(
           <EuiCard
             title={<span data-test-subj="click">Hoi</span>}
             description="There"
             onClick={handler}
           />
         );
-        component.find('[data-test-subj="click"]').simulate('click');
-        expect(handler.mock.calls.length).toEqual(1);
+        fireEvent.click(getByTestSubject('click'));
+        expect(handler).toHaveBeenCalledTimes(1);
       });
     });
 

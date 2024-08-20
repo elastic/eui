@@ -14,7 +14,7 @@ import {
 } from './selectable_message';
 
 const meta: Meta<EuiSelectableMessageProps> = {
-  title: 'Forms/EuiSelectable/EuiSelectableMessage',
+  title: 'Forms/EuiSelectable/Subcomponents/EuiSelectableMessage',
   component: EuiSelectableMessage,
   args: {
     bordered: false,

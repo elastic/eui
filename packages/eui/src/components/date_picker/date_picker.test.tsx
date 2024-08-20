@@ -7,24 +7,50 @@
  */
 
 import React from 'react';
-import { render } from '../../test/rtl';
-import { requiredProps } from '../../test';
 import moment from 'moment';
+import { fireEvent } from '@testing-library/react';
+import { render, waitForEuiPopoverOpen } from '../../test/rtl';
+import { shouldRenderCustomStyles } from '../../test/internal';
+import { requiredProps } from '../../test';
 
 import { EuiDatePicker } from './date_picker';
 import { EuiContext } from '../context';
 
 describe('EuiDatePicker', () => {
+  shouldRenderCustomStyles(<EuiDatePicker />, { skip: { style: true } }); // style is spread to another element than className
+
   it('renders', () => {
     const { container } = render(<EuiDatePicker {...requiredProps} />);
 
     expect(container.firstChild).toMatchSnapshot();
   });
 
+  it('handles invalid `selected` dates', async () => {
+    // Silence the console warning from the invalid moment date
+    jest.spyOn(console, 'warn').mockImplementation(() => {});
+    const { container } = render(
+      <EuiDatePicker selected={moment('invalid')} />
+    );
+    const datepickerInput = container.querySelector('input.euiDatePicker');
+
+    expect(datepickerInput).toHaveValue('Invalid date');
+    expect(datepickerInput).toBeInvalid();
+
+    // The calendar date picker should load in a popover, but no date should be selected
+    fireEvent.focus(datepickerInput!);
+    await waitForEuiPopoverOpen();
+    const calendar = document.querySelector('.react-datepicker__month');
+    expect(calendar).toBeInTheDocument();
+    const selected = document.querySelector('.react-datepicker__day--selected');
+    expect(selected).not.toBeInTheDocument();
+
+    jest.restoreAllMocks();
+  });
+
   test('compressed', () => {
     const { container } = render(<EuiDatePicker compressed />);
     // TODO: Should probably be a visual snapshot test
-    expect(container.innerHTML).toContain('--compressed');
+    expect(container.innerHTML).toContain('-compressed');
   });
 
   // TODO: These tests/snapshots don't really do anything in Jest without

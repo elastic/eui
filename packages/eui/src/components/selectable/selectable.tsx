@@ -16,27 +16,30 @@ import React, {
   MouseEvent,
   FocusEvent,
 } from 'react';
+import { Align } from 'react-window';
 import classNames from 'classnames';
+
+import { keys, htmlIdGenerator } from '../../services';
 import { CommonProps, ExclusiveUnion } from '../common';
+import { EuiLoadingSpinner } from '../loading';
+import { EuiSpacer } from '../spacer';
+import { EuiScreenReaderLive, EuiScreenReaderOnly } from '../accessibility';
+import { EuiI18n } from '../i18n';
+
 import { EuiSelectableSearch } from './selectable_search';
+import { EuiSelectableSearchProps } from './selectable_search/selectable_search';
 import { EuiSelectableMessage } from './selectable_message';
 import {
   EuiSelectableList,
   EuiSelectableOptionsListVirtualizedProps,
 } from './selectable_list';
-import { EuiLoadingSpinner } from '../loading';
-import { EuiSpacer } from '../spacer';
+import { EuiSelectableOptionsListProps } from './selectable_list/selectable_list';
+import { EuiSelectableOption } from './selectable_option';
 import {
   createPartialStringEqualityOptionMatcher,
   getMatchingOptions,
 } from './matching_options';
-import { keys, htmlIdGenerator } from '../../services';
-import { EuiScreenReaderLive, EuiScreenReaderOnly } from '../accessibility';
-import { EuiI18n } from '../i18n';
-import { EuiSelectableOption } from './selectable_option';
-import { EuiSelectableOptionsListProps } from './selectable_list/selectable_list';
-import { EuiSelectableSearchProps } from './selectable_search/selectable_search';
-import { Align } from 'react-window';
+import { euiSelectableStyles as styles } from './selectable.styles';
 
 export type EuiSelectableOnChangeEvent = KeyboardEvent | MouseEvent;
 
@@ -602,13 +605,11 @@ export class EuiSelectable<T = {}> extends Component<
       };
     }
 
-    const classes = classNames(
-      'euiSelectable',
-      {
-        'euiSelectable-fullHeight': height === 'full',
-      },
-      className
-    );
+    const classes = classNames('euiSelectable', className);
+    const cssStyles = [
+      styles.euiSelectable,
+      height === 'full' && styles.fullHeight,
+    ];
 
     /** Create message content that replaces the list if no options are available (yet) */
     let messageContent: ReactNode | undefined;
@@ -849,6 +850,7 @@ export class EuiSelectable<T = {}> extends Component<
     return (
       <div
         ref={this.containerRef}
+        css={cssStyles}
         className={classes}
         onKeyDown={this.onKeyDown}
         onBlur={this.onContainerBlur}

@@ -1,5 +1,5 @@
-const getCacheDirectory =
-  require('jest-config/build/getCacheDirectory').default;
+const jestConfig = require('jest-config');
+const getCacheDirectory = () => jestConfig.defaults.cacheDirectory;
 
 // Set REACT_VERSION env variable to latest if empty or invalid
 if (!['16', '17', '18'].includes(process.env.REACT_VERSION)) {
@@ -32,6 +32,7 @@ const config = {
     '\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$':
       '<rootDir>/scripts/jest/mocks/file_mock.js',
     '\\.(css|less|scss)$': '<rootDir>/scripts/jest/mocks/style_mock.js',
+    '^uuid$': require.resolve('uuid'),
   },
   setupFiles: [
     '<rootDir>/scripts/jest/setup/enzyme.js',
@@ -45,14 +46,13 @@ const config = {
   coverageDirectory: '<rootDir>/reports/jest-coverage',
   coverageReporters: ['json', 'html'],
   moduleFileExtensions: ['ts', 'tsx', 'js', 'json'],
+  testEnvironment: 'jsdom',
   testMatch: ['**/*.test.js', '**/*.test.ts', '**/*.test.tsx'],
   transform: {
     '^.+\\.(js|tsx?)$': 'babel-jest',
   },
   snapshotSerializers: [
-    // enzyme-to-json is installed in the root node_modules and needs
-    // an exact path to be provided here
-    '<rootDir>/../../node_modules/enzyme-to-json/serializer',
+    '<rootDir>/node_modules/enzyme-to-json/serializer',
     '<rootDir>/scripts/jest/setup/emotion',
   ],
   // react version and user permissions aware cache directory

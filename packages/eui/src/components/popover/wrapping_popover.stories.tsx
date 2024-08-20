@@ -11,6 +11,7 @@ import { css } from '@emotion/react';
 import type { Meta, StoryObj } from '@storybook/react';
 
 import {
+  disableStorybookControls,
   enableFunctionToggleControls,
   hideStorybookControls,
   moveStorybookControlsToCategory,
@@ -50,7 +51,8 @@ const meta: Meta<EuiWrappingPopoverProps> = {
     buffer: 16,
   },
 };
-enableFunctionToggleControls(meta, ['closePopover', 'onPositionChange']);
+disableStorybookControls(meta, ['closePopover']);
+enableFunctionToggleControls(meta, ['onPositionChange']);
 moveStorybookControlsToCategory(
   meta,
   [

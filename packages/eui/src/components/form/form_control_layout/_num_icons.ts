@@ -11,43 +11,45 @@ import {
   type EuiFormControlLayoutIconsProps,
 } from './form_control_layout_icons';
 
-/**
- * The `getFormControlClassNameForIconCount` function helps setup the className appendum
- * depending on the form control's current settings/state.
- *
- * @param icon {boolean} Does it contain a static icon like arrowDown
- * @param clear {boolean} Is it currently clearable
- * @param isLoading {boolean} Is is currently loading
- * @param isInvalid {boolean} It is currently invalid
- * @param isDropdown {boolean} It is as dropdown
- * @returns {string | undefined} Returns the string to append to the base className of the form control; or `undefined` if all evaluate to false
- */
-
-export type _EuiFormControlLayoutNumIcons = {
-  icon?: boolean;
-  clear?: boolean;
-  isLoading?: boolean;
-  isInvalid?: boolean;
-  isDropdown?: boolean;
+export const isRightSideIcon = (
+  icon?: EuiFormControlLayoutIconsProps['icon']
+): boolean => {
+  return !!icon && isIconShape(icon) && icon.side === 'right';
 };
 
-export const getFormControlClassNameForIconCount = ({
+export const getIconAffordanceStyles = ({
   icon,
   clear,
   isLoading,
   isInvalid,
   isDropdown,
-}: _EuiFormControlLayoutNumIcons): string | undefined => {
-  const numIcons = [icon, clear, isInvalid, isLoading, isDropdown].filter(
-    (item) => item === true
-  ).length;
+}: {
+  icon?: EuiFormControlLayoutIconsProps['icon'];
+  clear?: EuiFormControlLayoutIconsProps['clear'] | boolean;
+  isLoading?: boolean;
+  isInvalid?: boolean;
+  isDropdown?: boolean;
+}) => {
+  const cssVariables = {
+    '--euiFormControlLeftIconsCount': 0,
+    '--euiFormControlRightIconsCount': 0,
+  };
 
-  // This className is also specifically used in `src/global_styling/mixins/_form.scss`
-  return numIcons > 0 ? `euiFormControlLayout--${numIcons}icons` : undefined;
-};
+  if (icon) {
+    if (isRightSideIcon(icon)) {
+      cssVariables['--euiFormControlRightIconsCount']++;
+    } else {
+      cssVariables['--euiFormControlLeftIconsCount']++;
+    }
+  }
 
-export const isRightSideIcon = (
-  icon?: EuiFormControlLayoutIconsProps['icon']
-): boolean => {
-  return !!icon && isIconShape(icon) && icon.side === 'right';
+  if (clear) cssVariables['--euiFormControlRightIconsCount']++;
+  if (isLoading) cssVariables['--euiFormControlRightIconsCount']++;
+  if (isInvalid) cssVariables['--euiFormControlRightIconsCount']++;
+  if (isDropdown) cssVariables['--euiFormControlRightIconsCount']++;
+
+  const filtered = Object.entries(cssVariables).filter(
+    ([, count]) => count > 0
+  );
+  return filtered.length ? Object.fromEntries(filtered) : undefined;
 };

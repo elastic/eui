@@ -169,6 +169,8 @@ export const getMatchingOptions = <T>({
           key: option.key,
           label: option.label,
           isGroupLabelOption: true,
+          append: option.append,
+          prepend: option.prepend,
         });
         // Add matching options for group
         // use concat over spreading to support large arrays - https://mathiasbynens.be/demo/javascript-argument-count

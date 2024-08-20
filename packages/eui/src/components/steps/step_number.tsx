@@ -10,8 +10,12 @@ import classNames from 'classnames';
 import React, { FunctionComponent, HTMLAttributes, ReactNode } from 'react';
 import { EuiScreenReaderOnly } from '../accessibility';
 import { CommonProps } from '../common';
-import { EuiIcon } from '../icon';
-import { EuiStepProps } from './step';
+import { EuiIcon, IconSize } from '../icon';
+import { EuiLoadingSpinner } from '../loading';
+import { EuiLoadingSpinnerSize } from '../loading/loading_spinner';
+import { EuiTitleProps } from '../title';
+import { useEuiTheme } from '../../services';
+
 import {
   useI18nCompleteStep,
   useI18nDisabledStep,
@@ -22,9 +26,6 @@ import {
   useI18nLoadingStep,
   useI18nCurrentStep,
 } from './step_strings';
-import { EuiLoadingSpinner } from '../loading';
-
-import { useEuiTheme } from '../../services';
 import {
   euiStepNumberStyles,
   euiStepNumberContentStyles,
@@ -51,9 +52,11 @@ export interface EuiStepNumberProps
   status?: EuiStepStatus;
   number?: number;
   /**
-   * Title sizing equivalent to EuiTitle, but only `m`, `s` and `xs`. Defaults to `s`
+   * Title sizing equivalent to EuiTitle, but only `m`, `s`, `xs`.
+   * `none` indicates no step number should be rendered.
+   * @default s
    */
-  titleSize?: EuiStepProps['titleSize'];
+  titleSize?: Extract<EuiTitleProps['size'], 'xs' | 's' | 'm'> | 'none';
 }
 
 export const EuiStepNumber: FunctionComponent<EuiStepNumberProps> = ({
@@ -90,50 +93,72 @@ export const EuiStepNumber: FunctionComponent<EuiStepNumberProps> = ({
 
   switch (status) {
     // Loading spinner
-    case 'loading':
+    case 'loading': {
+      const iconSizeMap: Record<string, EuiLoadingSpinnerSize> = {
+        none: 'm',
+        xs: 'l',
+        s: 'xl',
+        m: 'xl',
+      };
       screenReaderText = ariaLabelsMap.loading;
       content = (
         <EuiLoadingSpinner
           className="euiStepNumber__loader"
-          size={titleSize === 'xs' ? 'l' : 'xl'}
+          size={iconSizeMap[titleSize]}
         />
       );
       break;
+    }
     // Statuses with icons
     case 'danger':
     case 'warning':
-    case 'complete':
+    case 'complete': {
       const cssIconStyles = [
         contentStyles.euiStepNumber__icon,
         contentStyles[status],
+        // EuiIcon does not support a xxs size so far,
+        // we use custom sizing here instead
+        titleSize === 'none' && contentStyles[titleSize],
       ];
       const iconTypeMap = {
         danger: 'cross',
         warning: 'warning',
         complete: 'check',
       };
+      const iconSizeMap: Record<string, IconSize> = {
+        xxs: 's',
+        xs: 's',
+        s: 'm',
+        m: 'm',
+      };
 
       content = (
         <EuiIcon
           type={iconTypeMap[status]}
           aria-label={ariaLabelsMap[status]}
-          size={titleSize === 'xs' ? 's' : 'm'}
+          size={iconSizeMap[titleSize]}
           className="euiStepNumber__icon"
           css={cssIconStyles}
         />
       );
       break;
+    }
     // Statuses with numbers
     case 'incomplete':
     case 'current':
     case 'disabled':
     default:
+      screenReaderText = ariaLabelsMap[status || 'step'];
+
+      if (titleSize === 'none') {
+        break;
+      }
+
       const cssNumberStyles = [
         contentStyles.euiStepNumber__number,
         status && contentStyles[status],
       ];
 
-      screenReaderText = ariaLabelsMap[status || 'step'];
       content = (
         <span
           aria-hidden="true"

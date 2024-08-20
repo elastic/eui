@@ -6,8 +6,8 @@
  * Side Public License, v 1.
  */
 
-import React from 'react';
-import { mount } from 'enzyme';
+import { renderHook } from '../../test/rtl';
+
 import { useDependentState } from './useDependentState';
 
 describe('useDependentState', () => {
@@ -19,25 +19,20 @@ describe('useDependentState', () => {
       return sourceValue * 2;
     });
 
-    function Foo() {
-      const [value] = useDependentState(doubler, [sourceValue]);
-
-      return <div>{value}</div>;
-    }
-
-    // mount the component verify the state function was called with no previous state value
-    const component = mount(<Foo />);
+    const { result, rerender } = renderHook(() =>
+      useDependentState(doubler, [sourceValue])
+    );
     expect(doubler).toHaveBeenCalledTimes(1);
     expect(doubler).toHaveBeenCalledWith();
-    expect(component.text()).toBe('4'); // 2 * 2
+    expect(result.current[0]).toEqual(4); // 2 * 2
 
     doubler.mockClear();
 
     // update the source value, force a re-render, and run checks
     sourceValue = 4;
-    component.setProps({});
+    rerender();
     expect(doubler).toHaveBeenCalledTimes(1);
     expect(doubler).toHaveBeenCalledWith(4); // check previous state value
-    expect(component.text()).toBe('8'); // new value should be 4 * 2
+    expect(result.current[0]).toEqual(8); // new value should be 4 * 2
   });
 });

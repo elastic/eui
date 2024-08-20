@@ -16,6 +16,12 @@
     &--autoHeight {
       height: auto;
     }
+
+    // Workaround to trim line-clamp and padding - @see https://github.com/elastic/eui/issues/7780
+    &--lineCountHeight {
+      padding-bottom: 0;
+      border-bottom: $euiDataGridCellPaddingM solid transparent;
+    }
   }
 
   // Hack to allow focus trap to still stretch to full row height on defined heights
@@ -259,6 +265,11 @@
   @include euiDataGridRowCell {
     .euiDataGridRowCell__content {
       padding: $euiDataGridCellPaddingS;
+
+      &--lineCountHeight {
+        padding-bottom: 0;
+        border-bottom: $euiDataGridCellPaddingS solid transparent;
+      }
     }
   }
 }
@@ -267,6 +278,11 @@
   @include euiDataGridRowCell {
     .euiDataGridRowCell__content {
       padding: $euiDataGridCellPaddingL;
+
+      &--lineCountHeight {
+        padding-bottom: 0;
+        border-bottom: $euiDataGridCellPaddingL solid transparent;
+      }
     }
   }
 }

@@ -15,7 +15,7 @@ import {
 } from './timeline_item_icon';
 
 const meta: Meta<EuiTimelineItemIconProps> = {
-  title: 'Display/EuiTimeline/EuiTimelineItem/EuiTimelineItemIcon',
+  title: 'Display/EuiTimeline/Subcomponents/EuiTimelineItemIcon',
   component: EuiTimelineItemIcon,
   decorators: [
     (Story, { args }) => (

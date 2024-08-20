@@ -17,7 +17,7 @@ Find and replace all instances of the old Node version in EUI (e.g., `16.18.1`).
 
 ### Updating the Docker image version
 
-Once all references to the old Node version have been updated in CI-related files, you'll need to build and publish a new Docker image with the new Node version for CI to use. The steps for this is documented in [`scripts/docker-ci`](https://github.com/elastic/eui/tree/main/scripts/docker-ci#using-with-the-elastic-container-library).
+Once all references to the old Node version have been updated in CI-related files, you'll need to build and publish a new Docker image with the new Node version for CI to use. The steps for this is documented in [`scripts/docker-ci`](https://github.com/elastic/eui/tree/main/packages/eui/scripts/docker-ci#using-with-the-elastic-container-library).
 
 #### Updating references to Docker image versions
 
@@ -28,7 +28,7 @@ Find all instances of `docker.elastic.co/eui/ci:` in EUI. You will want to chang
 
 #### When upgrading to a minor or patch Node version
 
-For non-major Node upgrades, you will likely only need to follow the [Build a new image](https://github.com/elastic/eui/tree/main/scripts/docker-ci#build-a-new-image) step and [Publish a built image](https://github.com/elastic/eui/tree/main/scripts/docker-ci#publish-a-built-image) step.
+For non-major Node upgrades, you will likely only need to follow the [Build a new image](https://github.com/elastic/eui/tree/main/packages/eui/scripts/docker-ci#build-a-new-image) step and [Publish a built image](https://github.com/elastic/eui/tree/main/packages/eui/scripts/docker-ci#publish-a-built-image) step.
 
 #### When upgrading to major Node versions
 

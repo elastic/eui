@@ -36,13 +36,10 @@ export default () => (
 
     <EuiComment
       username="cat"
-      timelineAvatarAriaLabel="Beatiful cat"
+      timelineAvatarAriaLabel="Beautiful cat"
       event="is using a custom avatar"
       timelineAvatar={
-        <EuiAvatar
-          name="cat"
-          imageUrl="https://source.unsplash.com/64x64/?cat"
-        />
+        <EuiAvatar name="Cat" imageUrl="https://picsum.photos/id/40/64" />
       }
     >
       <EuiText size="s">

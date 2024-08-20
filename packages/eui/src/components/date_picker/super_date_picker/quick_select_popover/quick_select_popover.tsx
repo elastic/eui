@@ -15,13 +15,14 @@ import React, {
   ReactElement,
 } from 'react';
 
+import { useEuiMemoizedStyles } from '../../../../services';
+import { useEuiI18n } from '../../../i18n';
 import { EuiButtonEmpty } from '../../../button';
 import { EuiIcon } from '../../../icon';
 import { EuiPopover } from '../../../popover';
-import { EuiTitle } from '../../../title';
-import { EuiText } from '../../../text';
-import { useEuiI18n } from '../../../i18n';
 
+import { euiQuickSelectPopoverStyles } from './quick_select_popover.styles';
+import { EuiQuickSelectPanel } from './quick_select_panel';
 import { EuiQuickSelect } from './quick_select';
 import { EuiCommonlyUsedTimeRanges } from './commonly_used_time_ranges';
 import { EuiRecentlyUsed } from './recently_used';
@@ -34,6 +35,7 @@ import {
   ApplyTime,
   QuickSelect,
   QuickSelectPanel,
+  Milliseconds,
 } from '../../types';
 
 export type CustomQuickSelectRenderOptions = {
@@ -57,7 +59,8 @@ export interface EuiQuickSelectPopoverProps {
   isDisabled: boolean;
   isPaused: boolean;
   recentlyUsedRanges: DurationRange[];
-  refreshInterval: number;
+  refreshInterval: Milliseconds;
+  refreshMinInterval?: Milliseconds;
   intervalUnits?: RefreshUnitsOptions;
   start: string;
   timeOptions: TimeOptions;
@@ -89,10 +92,12 @@ export const EuiQuickSelectPopover: FunctionComponent<
     'Date quick select'
   );
 
+  const styles = useEuiMemoizedStyles(euiQuickSelectPopoverStyles);
+
   const quickSelectButton = (
     <EuiButtonEmpty
-      className="euiFormControlLayout__prepend"
-      contentProps={{ className: 'euiQuickSelectPopover__buttonContent' }}
+      css={styles.euiQuickSelectPopoverButton}
+      contentProps={{ css: styles.euiQuickSelectPopoverButton__content }}
       onClick={togglePopover}
       aria-label={buttonlabel}
       title={buttonlabel}
@@ -137,11 +142,14 @@ export const EuiQuickSelectPanels: FunctionComponent<
   customQuickSelectRender,
   isPaused,
   refreshInterval,
+  refreshMinInterval,
   intervalUnits,
   applyRefreshInterval,
   applyTime,
   prevQuickSelect,
 }) => {
+  const styles = useEuiMemoizedStyles(euiQuickSelectPopoverStyles);
+
   const quickSelectElement = (
     <EuiQuickSelect
       applyTime={applyTime}
@@ -173,6 +181,7 @@ export const EuiQuickSelectPanels: FunctionComponent<
       onRefreshChange={applyRefreshInterval}
       isPaused={isPaused}
       refreshInterval={refreshInterval}
+      minInterval={refreshMinInterval}
       intervalUnits={intervalUnits}
     />
   );
@@ -183,21 +192,17 @@ export const EuiQuickSelectPanels: FunctionComponent<
     }
     return customQuickSelectPanels.map(({ title, content }) => {
       return (
-        <div key={title} className="euiQuickSelectPopover__panel">
-          <EuiTitle size="xxxs">
-            <span>{title}</span>
-          </EuiTitle>
-          <EuiText size="s" className="euiQuickSelectPopover__section">
-            {React.cloneElement(content, { applyTime })}
-          </EuiText>
-        </div>
+        <EuiQuickSelectPanel key={title} title={title}>
+          {React.cloneElement(content, { applyTime })}
+        </EuiQuickSelectPanel>
       );
     });
   }, [customQuickSelectPanels, applyTime]);
 
   return (
     <div
-      className="euiQuickSelectPopover__content"
+      css={styles.euiQuickSelectPopover}
+      className="euiQuickSelectPopover"
       data-test-subj="superDatePickerQuickMenu"
     >
       {customQuickSelectRender ? (

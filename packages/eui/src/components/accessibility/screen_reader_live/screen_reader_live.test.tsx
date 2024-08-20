@@ -7,9 +7,7 @@
  */
 
 import React, { useState } from 'react';
-import { mount } from 'enzyme';
-
-import { findTestSubject } from '../../../test';
+import { fireEvent } from '@testing-library/react';
 import { render } from '../../../test/rtl';
 
 import { EuiScreenReaderLive } from './screen_reader_live';
@@ -94,25 +92,23 @@ describe('EuiScreenReaderLive', () => {
     });
 
     it('alternates rendering screen reader content into the second live region when changed/toggled', () => {
-      const component = mount(<Component />);
+      const { container, getByTestSubject } = render(<Component />);
 
-      findTestSubject(component, 'increment').simulate('click');
+      fireEvent.click(getByTestSubject('increment'));
 
-      expect(component.render()).toMatchSnapshot();
+      expect(container.firstChild).toMatchSnapshot();
     });
   });
 
   describe('with focus behavior', () => {
     it('sets focus correctly', () => {
-      const component = mount(
+      const { container } = render(
         <EuiScreenReaderLive focusRegionOnTextChange={true}>
           {content}
         </EuiScreenReaderLive>
       );
 
-      const focusableDiv = component.find('div').at(0);
-
-      expect(focusableDiv.is(':focus')).toBe(true);
+      expect(container.firstChild).toHaveFocus();
     });
   });
 });

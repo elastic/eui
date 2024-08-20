@@ -14,7 +14,12 @@ import React, {
   MouseEventHandler,
 } from 'react';
 import { CommonProps } from '../common';
-import { EuiStepNumber, EuiStepStatus } from './step_number';
+import { useEuiTheme } from '../../services';
+import {
+  EuiStepNumber,
+  EuiStepNumberProps,
+  EuiStepStatus,
+} from './step_number';
 import { EuiStepsHorizontalSizes } from './steps_horizontal';
 import {
   useI18nCompleteStep,
@@ -26,7 +31,6 @@ import {
   useI18nErrorsStep,
   useI18nLoadingStep,
 } from './step_strings';
-import { useEuiTheme } from '../../services';
 import {
   euiStepHorizontalStyles,
   euiStepHorizontalNumberStyles,
@@ -54,6 +58,13 @@ export interface EuiStepHorizontalProps
   status?: EuiStepStatus;
   size?: EuiStepsHorizontalSizes;
 }
+
+// The titleSize map is not 1 to 1; small == xs on the titleSize map
+const stepNumberSizeMap: Record<string, EuiStepNumberProps['titleSize']> = {
+  xs: 'none',
+  s: 'xs',
+  m: 'm',
+};
 
 export const EuiStepHorizontal: FunctionComponent<EuiStepHorizontalProps> = ({
   className,
@@ -119,7 +130,7 @@ export const EuiStepHorizontal: FunctionComponent<EuiStepHorizontalProps> = ({
         className="euiStepHorizontal__number"
         status={status}
         number={step}
-        titleSize={size === 's' ? 'xs' : 'm'} // The titleSize map is not 1 to 1; small == xs on the titleSize map
+        titleSize={stepNumberSizeMap[size]}
         css={cssNumberStyles}
       />
 

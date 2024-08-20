@@ -26,6 +26,9 @@ export const Playground: Story = {
     docs: {
       source: { language: 'tsx' },
     },
+    codeSnippet: {
+      skip: true,
+    },
   },
   argTypes: {
     children: { control: { type: 'text' } },

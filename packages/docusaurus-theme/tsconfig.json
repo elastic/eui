@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "references": [{"path": "./tsconfig.client.json"}],
+  "compilerOptions": {
+    "target": "ES2020",
+    "lib": ["ESNext", "DOM"],
+    "declaration": true,
+    "sourceMap": true,
+    "jsx": "react-jsx",
+    "jsxImportSource": "@emotion/react",
+    "noEmitHelpers": true,
+    "incremental": true,
+    "tsBuildInfoFile": "lib/.tsbuildinfo",
+    "rootDir": "src",
+    "outDir": "lib",
+    "esModuleInterop": true,
+    "strict": true,
+    "skipLibCheck": true,
+    "moduleResolution": "Node",
+    "types": [
+      "@docusaurus/module-type-aliases"
+    ]
+  },
+  "include": ["src/**/*"],
+  "exclude": ["src/client", "src/theme", "**/__tests__/**"]
+}

@@ -1,4 +1,4 @@
-import React, { useState, Fragment } from 'react';
+import React, { useState } from 'react';
 
 import { EuiCheckbox, EuiSpacer } from '../../../../src/components';
 
@@ -26,7 +26,7 @@ export default () => {
   };
 
   return (
-    <Fragment>
+    <>
       <EuiCheckbox
         id={basicCheckboxId}
         label="I am a checkbox"
@@ -57,11 +57,11 @@ export default () => {
 
       <EuiCheckbox
         id={compressedCheckboxId}
-        label="I am a compressed checkbox"
+        label="I am a readonly checkbox"
         checked={checked}
-        onChange={(e) => onChange(e)}
-        compressed
+        onChange={() => {}}
+        readOnly
       />
-    </Fragment>
+    </>
   );
 };

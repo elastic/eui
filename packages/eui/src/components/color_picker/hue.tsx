@@ -12,10 +12,13 @@ import React, {
   FunctionComponent,
 } from 'react';
 import classNames from 'classnames';
-import { CommonProps } from '../common';
 
+import { useEuiMemoizedStyles } from '../../services';
+import { CommonProps } from '../common';
 import { EuiScreenReaderOnly } from '../accessibility';
 import { EuiI18n } from '../i18n';
+
+import { euiHueStyles } from './hue.styles';
 
 const HUE_RANGE = 359;
 
@@ -37,12 +40,15 @@ export const EuiHue: FunctionComponent<EuiHueProps> = ({
   onChange,
   ...rest
 }) => {
+  const classes = classNames('euiHue', className);
+  const styles = useEuiMemoizedStyles(euiHueStyles);
+
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     onChange(Number(e.target.value));
   };
-  const classes = classNames('euiHue', className);
+
   return (
-    <React.Fragment>
+    <div css={styles.euiHue} className={classes}>
       <EuiScreenReaderOnly>
         <label htmlFor={`${id}-hue`}>
           <EuiI18n
@@ -54,19 +60,18 @@ export const EuiHue: FunctionComponent<EuiHueProps> = ({
       <EuiScreenReaderOnly>
         <p aria-live="polite">{hex}</p>
       </EuiScreenReaderOnly>
-      <div className={classes}>
-        <input
-          id={`${id}-hue`}
-          min={0}
-          max={HUE_RANGE}
-          step={1}
-          type="range"
-          className="euiHue__range"
-          value={hue}
-          onChange={handleChange}
-          {...rest}
-        />
-      </div>
-    </React.Fragment>
+      <input
+        id={`${id}-hue`}
+        min={0}
+        max={HUE_RANGE}
+        step={1}
+        type="range"
+        css={styles.euiHue__range}
+        className="euiHue__range"
+        value={hue}
+        onChange={handleChange}
+        {...rest}
+      />
+    </div>
   );
 };

@@ -14,6 +14,7 @@ import React, {
 import classNames from 'classnames';
 import { LocaleSpecifier } from 'moment'; // eslint-disable-line import/named
 
+import { useEuiMemoizedStyles } from '../../../../services';
 import { CommonProps } from '../../../common';
 import { useEuiI18n } from '../../../i18n';
 import { EuiPopover, EuiPopoverProps } from '../../../popover';
@@ -24,6 +25,8 @@ import {
   EuiDatePopoverContent,
   EuiDatePopoverContentProps,
 } from './date_popover_content';
+
+import { euiDatePopoverButtonStyles } from './date_popover_button.styles';
 
 export interface EuiDatePopoverButtonProps {
   className?: string;
@@ -84,6 +87,9 @@ export const EuiDatePopoverButton: FunctionComponent<
     },
   ]);
 
+  const styles = useEuiMemoizedStyles(euiDatePopoverButtonStyles);
+  const cssStyles = [styles.euiDatePopoverButton, buttonProps?.css];
+
   const formattedValue = useFormatTimeString(value, dateFormat, {
     roundUp,
     locale,
@@ -117,6 +123,7 @@ export const EuiDatePopoverButton: FunctionComponent<
       disabled={isDisabled}
       data-test-subj={`superDatePicker${position}DatePopoverButton`}
       {...buttonProps}
+      css={cssStyles}
     >
       {formattedValue}
     </button>

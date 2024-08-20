@@ -10,19 +10,16 @@ import { css } from '@emotion/react';
 import { logicalCSS } from '../../global_styling';
 import { euiShadowMedium } from '../../themes/amsterdam/global_styling/mixins';
 import { UseEuiTheme } from '../../services';
-import { euiFormVariables } from '../form/form.styles';
 
-export const euiDatePickerRangeStyles = (euiThemeContext: UseEuiTheme) => {
-  const { controlLayoutGroupInputHeight } = euiFormVariables(euiThemeContext);
-
-  return {
-    euiDatePickerRange: css`
-      .euiFieldText.euiDatePicker {
-        /* Needed for correct focus/invalid box-shadow styles */
-        ${logicalCSS('height', controlLayoutGroupInputHeight)}
-      }
-    `,
-  };
+export const euiDatePickerRangeStyles = {
+  euiDatePickerRange: css`
+    /* Needed for correct focus/invalid underline/linear-gradient styles */
+    .euiPopover,
+    .react-datepicker__input-container,
+    .euiDatePicker {
+      ${logicalCSS('height', '100%')}
+    }
+  `,
 };
 
 export const euiDatePickerRangeInlineStyles = (
@@ -47,7 +44,7 @@ export const euiDatePickerRangeInlineStyles = (
         display: block !important;
 
         /* Center and point the default delimiter arrow downwards */
-        & > .euiText > [data-icon-type='sortRight'] {
+        .euiFormControlLayoutDelimited__delimiter .euiIcon {
           transform: rotate(90deg);
           margin-inline: auto;
         }
@@ -55,13 +52,12 @@ export const euiDatePickerRangeInlineStyles = (
     }`;
 
   return {
-    inline: css`
+    euiDatePickerRangeInline: css`
       .euiFormControlLayoutDelimited {
         /* Reset form control styling */
         ${logicalCSS('height', 'auto')}
         ${logicalCSS('width', 'fit-content')}
         ${logicalCSS('max-width', '100%')}
-        background-color: transparent;
         box-shadow: none;
         padding: 0;
 
@@ -73,14 +69,6 @@ export const euiDatePickerRangeInlineStyles = (
           background-color: transparent;
         }
 
-        /* Fix --group height when append/prepend are present */
-        &.euiFormControlLayout--group {
-          & > *,
-          .euiFormControlLayoutDelimited__delimiter {
-            ${logicalCSS('height', 'auto')}
-          }
-        }
-
         /* Display form control icons below both date pickers */
         .euiFormControlLayoutIcons {
           justify-content: center;
@@ -90,30 +78,32 @@ export const euiDatePickerRangeInlineStyles = (
         }
       }
 
-      /* Make sure the inline date picker sets is absolute positioning based off the correct parent */
+      /* Make sure the inline date picker sets its absolute positioning based off the correct parent */
       .react-datepicker {
         position: relative;
-      }
-
-      /* The time list creates some weird spacing when inline. Remove its padding to make it less horizontally unbalanced */
-      .react-datepicker__time-list {
-        padding: 0;
       }
     `,
     responsive: css`
       ${containerQuery(268)}
     `,
     responsiveWithTimeSelect: css`
-      ${containerQuery(350)}
+      ${containerQuery(374)}
     `,
     shadow: css`
       .euiFormControlLayoutDelimited {
         ${euiShadowMedium(euiThemeContext)}
-
-        .euiFormControlLayout__childrenWrapper {
-          background-color: ${euiTheme.colors.emptyShade};
-        }
       }
     `,
+
+    // Applied directly to EuiFormControlLayout so we can check if `disabled`
+    // and allow the disabled background-color to take precedence
+    formLayout: {
+      noShadow: css`
+        background-color: transparent;
+      `,
+      shadow: css`
+        background-color: ${euiTheme.colors.emptyShade};
+      `,
+    },
   };
 };

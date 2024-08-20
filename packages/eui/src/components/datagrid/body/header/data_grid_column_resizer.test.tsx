@@ -28,7 +28,7 @@ describe('EuiDataGridHeaderResizer', () => {
         data-test-subj="dataGridColumnResizer"
         onMouseDown={[Function]}
         style={
-          Object {
+          {
             "marginRight": "0px",
           }
         }

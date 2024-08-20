@@ -15,7 +15,7 @@ import {
 } from './timeline_item_event';
 
 const meta: Meta<EuiTimelineItemEventProps> = {
-  title: 'Display/EuiTimeline/EuiTimelineItem/EuiTimelineItemEvent',
+  title: 'Display/EuiTimeline/Subcomponents/EuiTimelineItemEvent',
   component: EuiTimelineItemEvent,
   decorators: [
     (Story, { args }) => (

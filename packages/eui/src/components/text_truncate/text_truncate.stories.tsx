@@ -9,10 +9,7 @@
 import React, { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { css } from '@emotion/react';
-import {
-  hideStorybookControls,
-  disableStorybookControls,
-} from '../../../.storybook/utils';
+import { enableFunctionToggleControls } from '../../../.storybook/utils';
 
 import { EuiHighlight, EuiMark } from '../../components';
 
@@ -48,6 +45,9 @@ export const Playground: Story = {
 };
 
 export const ResizeObserver: Story = {
+  parameters: {
+    controls: { include: ['onResize'] },
+  },
   render: (props) => (
     <>
       <i>
@@ -68,15 +68,17 @@ export const ResizeObserver: Story = {
       </div>
     </>
   ),
-  args: {
-    onResize: console.log,
-  },
 };
-disableStorybookControls(ResizeObserver, ['width']);
+enableFunctionToggleControls(ResizeObserver, ['onResize']);
 
 export const StartEndAnchorForSearch: Story = {
-  render: (props) => {
-    // eslint-disable-next-line react-hooks/rules-of-hooks
+  parameters: {
+    controls: { include: ['text', 'calculationDelayMs', 'ellipsis', 'width'] },
+    codeSnippet: {
+      resolveStoryElementOnly: true,
+    },
+  },
+  render: function Render(props) {
     const [highlight, setHighlight] = useState('');
     const highlightStartPosition = props.text
       .toLowerCase()
@@ -121,12 +123,3 @@ export const StartEndAnchorForSearch: Story = {
     truncationPosition: 30,
   },
 };
-hideStorybookControls(StartEndAnchorForSearch, [
-  // Disable uncontrollable props
-  'truncation',
-  'truncationPosition',
-  // Disable props that aren't useful for this this demo
-  'truncationOffset',
-  'children',
-  'onResize',
-]);

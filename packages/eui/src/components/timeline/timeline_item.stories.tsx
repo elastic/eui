@@ -11,7 +11,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { EuiTimelineItem, EuiTimelineItemProps } from './timeline_item';
 
 const meta: Meta<EuiTimelineItemProps> = {
-  title: 'Display/EuiTimeline/EuiTimelineItem/EuiTimelineItem',
+  title: 'Display/EuiTimeline/EuiTimelineItem',
   component: EuiTimelineItem,
   argTypes: {
     // re-adding type descriptions that are not resolved (removed in Omit<> type)

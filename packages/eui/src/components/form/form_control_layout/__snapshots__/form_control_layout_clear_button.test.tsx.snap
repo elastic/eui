@@ -3,12 +3,12 @@
 exports[`EuiFormControlLayoutClearButton is rendered 1`] = `
 <button
   aria-label="aria-label"
-  class="euiFormControlLayoutClearButton testClass1 testClass2 emotion-euiTestCss"
+  class="euiFormControlLayoutClearButton testClass1 testClass2 emotion-euiFormControlLayoutClearButton-euiTestCss"
   data-test-subj="test subject string"
   type="button"
 >
   <span
-    class="euiFormControlLayoutClearButton__icon"
+    class="euiFormControlLayoutClearButton__icon emotion-euiFormControlLayoutClearButton__icon-m"
     data-euiicon-type="cross"
   />
 </button>
@@ -17,11 +17,11 @@ exports[`EuiFormControlLayoutClearButton is rendered 1`] = `
 exports[`EuiFormControlLayoutClearButton size is rendered 1`] = `
 <button
   aria-label="Clear input"
-  class="euiFormControlLayoutClearButton euiFormControlLayoutClearButton--small"
+  class="euiFormControlLayoutClearButton emotion-euiFormControlLayoutClearButton"
   type="button"
 >
   <span
-    class="euiFormControlLayoutClearButton__icon"
+    class="euiFormControlLayoutClearButton__icon emotion-euiFormControlLayoutClearButton__icon-s"
     data-euiicon-type="cross"
   />
 </button>

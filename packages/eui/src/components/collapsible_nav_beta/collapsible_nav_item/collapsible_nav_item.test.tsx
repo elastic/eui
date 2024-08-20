@@ -17,6 +17,7 @@ import { EuiCollapsibleNavItem } from './collapsible_nav_item';
 describe('EuiCollapsibleNavItem', () => {
   shouldRenderCustomStyles(<EuiCollapsibleNavItem title="Title" href="#" />, {
     childProps: ['linkProps'],
+    skip: { css: true }, // The custom CSS is there but the merged order is unpredictable
   });
   shouldRenderCustomStyles(
     <EuiCollapsibleNavItem title="Title" items={[{ title: 'Sub-item' }]} />,

@@ -13,6 +13,7 @@ import {
   euiFontSizeFromScale,
   euiCanAnimate,
   euiAnimScale,
+  logicalSizeCSS,
 } from '../../global_styling';
 import { UseEuiTheme } from '../../services';
 import { euiStepVariables } from './step.styles';
@@ -57,6 +58,12 @@ export const euiStepNumberStyles = (euiThemeContext: UseEuiTheme) => {
     xs: css`
       ${createStepsNumber(
         euiStep.numberXSSize,
+        euiFontSizeFromScale('xs', euiTheme)
+      )}
+    `,
+    none: css`
+      ${createStepsNumber(
+        euiStep.numberXXSSize,
         euiFontSizeFromScale('xs', euiTheme)
       )}
     `,
@@ -141,5 +148,6 @@ export const euiStepNumberContentStyles = ({ euiTheme }: UseEuiTheme) => {
       display: inline-block;
       transform: translateY(-${euiTheme.border.width.thick});
     `,
+    none: css(logicalSizeCSS(euiTheme.size.s)),
   };
 };

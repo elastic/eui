@@ -129,15 +129,28 @@ const hasStep = (step) => {
     await updateTokenChangelog(versionTarget);
 
     // Update version switcher data and changelog
-    if (!isSpecialRelease) updateDocsVersionSwitcher(versionTarget);
+    if (!isSpecialRelease) {
+      updateDocsVersionSwitcher(versionTarget);
+
+      // TODO: Remove this once EUI is fully on the new website and src-docs has been removed
+      const oldEuiDocsVersions = cwd + '/src-docs/src/components/guide_page/versions.json';
+      updateDocsVersionSwitcher(versionTarget, oldEuiDocsVersions);
+    }
     updateChangelog(changelog, versionTarget);
     execSync('git commit -m "Updated changelog" -n');
 
-    // update package.json version, git commit, git tag
-    execSync(`yarn version --new-version ${versionTarget} --version-tag-prefix=v --version-git-tag=true --version-commit-hooks=false`, execOptions);
+    // Update version number
+    execSync(`yarn version ${versionTarget}`, execOptions);
+
+    // Commit version number update
+    execSync('git add package.json', execOptions);
+    execSync(`git commit --no-verify -m "${versionTarget}"`, execOptions);
   }
 
   if (hasStep('tag') && !isDryRun) {
+    // Create a tag
+    execSync(`git tag -a -m "v${versionTarget}" "v${versionTarget}"`, execOptions);
+
     // Skip prepush test hook on all pushes - we should have already tested previously,
     // or we skipped the test step for a reason
     if (isSpecialRelease) {

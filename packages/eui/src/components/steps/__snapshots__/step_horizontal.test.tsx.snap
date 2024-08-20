@@ -83,6 +83,27 @@ exports[`EuiStepHorizontal props size s is rendered 1`] = `
 </button>
 `;
 
+exports[`EuiStepHorizontal props size xs is rendered 1`] = `
+<button
+  class="euiStepHorizontal emotion-euiStepHorizontal-enabled"
+  data-step-status="incomplete"
+  title="Step 1 is incomplete"
+>
+  <span
+    class="euiStepNumber euiStepHorizontal__number emotion-euiStepNumber-none-incomplete-euiStepHorizontal__number"
+  >
+    <span
+      class="emotion-euiScreenReaderOnly"
+    >
+      Step 1 is incomplete
+    </span>
+  </span>
+  <span
+    class="euiStepHorizontal__title emotion-euiStepHorizontal__title"
+  />
+</button>
+`;
+
 exports[`EuiStepHorizontal props status complete is rendered 1`] = `
 <button
   class="euiStepHorizontal emotion-euiStepHorizontal-enabled"

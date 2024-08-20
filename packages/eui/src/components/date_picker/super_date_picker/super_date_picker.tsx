@@ -16,6 +16,7 @@ import classNames from 'classnames';
 import moment, { LocaleSpecifier } from 'moment'; // eslint-disable-line import/named
 import dateMath from '@elastic/datemath';
 
+import { useEuiMemoizedStyles } from '../../../services';
 import { isObject } from '../../../services/predicate';
 import { EuiI18nConsumer } from '../../context';
 import { CommonProps } from '../../common';
@@ -51,6 +52,8 @@ import {
   EuiAutoRefresh,
   EuiAutoRefreshButton,
 } from '../auto_refresh/auto_refresh';
+
+import { euiSuperDatePickerStyles } from './super_date_picker.styles';
 
 export interface OnTimeChangeProps extends DurationRange {
   isInvalid: boolean;
@@ -205,6 +208,7 @@ export type EuiSuperDatePickerProps = CommonProps & {
 };
 
 type EuiSuperDatePickerInternalProps = EuiSuperDatePickerProps & {
+  memoizedStyles: ReturnType<typeof euiSuperDatePickerStyles>;
   timeOptions: TimeOptions;
   // The below options are marked as required because they have default fallbacks
   commonlyUsedRanges: DurationRange[];
@@ -457,6 +461,7 @@ export class EuiSuperDatePickerInternal extends Component<
       onRefreshChange,
       recentlyUsedRanges,
       refreshInterval,
+      refreshMinInterval,
       refreshIntervalUnits,
       isPaused,
       isDisabled,
@@ -477,6 +482,7 @@ export class EuiSuperDatePickerInternal extends Component<
         isPaused={isPaused}
         recentlyUsedRanges={recentlyUsedRanges}
         refreshInterval={refreshInterval}
+        refreshMinInterval={refreshMinInterval}
         intervalUnits={refreshIntervalUnits}
         start={start}
         timeOptions={timeOptions}
@@ -512,6 +518,7 @@ export class EuiSuperDatePickerInternal extends Component<
       utcOffset,
       compressed,
       onFocus,
+      memoizedStyles: styles,
     } = this.props;
 
     const autoRefreshAppend: EuiFormControlLayoutProps['append'] = !isPaused ? (
@@ -530,9 +537,20 @@ export class EuiSuperDatePickerInternal extends Component<
       compressed,
       isInvalid,
       isLoading: isLoading && !showUpdateButton,
-      disabled: !!isDisabled,
+      isDisabled: !!isDisabled,
       prepend: this.renderQuickSelect(),
       append: autoRefreshAppend,
+      fullWidth: true,
+      css: [
+        styles.states.euiSuperDatePicker__formControlLayout,
+        isDisabled
+          ? styles.states.disabled
+          : isInvalid
+          ? styles.states.invalid
+          : hasChanged
+          ? styles.states.needsUpdating
+          : styles.states.default,
+      ],
     };
 
     if (isQuickSelectOnly) {
@@ -554,6 +572,7 @@ export class EuiSuperDatePickerInternal extends Component<
         <EuiFormControlLayout {...formControlLayoutProps}>
           <button
             type="button"
+            css={styles.euiSuperDatePicker__prettyFormat}
             className={classNames('euiSuperDatePicker__prettyFormat', {
               'euiSuperDatePicker__prettyFormat--disabled': isDisabled,
             })}
@@ -577,15 +596,29 @@ export class EuiSuperDatePickerInternal extends Component<
       );
     }
 
+    const rangeCssStyles = [
+      styles.euiSuperDatePicker__range,
+      formControlLayoutProps.css,
+    ];
+
+    // EuiFormControlLayout wants `isDisabled`, EuiDatePickerRange wants `disabled` :T
+    const { isDisabled: _, ..._rangeProps } = formControlLayoutProps;
+    const rangeProps = {
+      ..._rangeProps,
+      disabled: formControlLayoutProps.isDisabled,
+    };
+
     return (
       <EuiI18nConsumer>
         {({ locale: contextLocale }) => (
           <EuiDatePickerRange
-            {...formControlLayoutProps}
+            {...rangeProps}
+            css={rangeCssStyles}
             isCustom={true}
             iconType={false}
             startDateControl={
               <EuiDatePopoverButton
+                css={styles.euiSuperDatePicker__rangeInput}
                 className="euiSuperDatePicker__startPopoverButton"
                 compressed={compressed}
                 position="start"
@@ -608,6 +641,7 @@ export class EuiSuperDatePickerInternal extends Component<
             }
             endDateControl={
               <EuiDatePopoverButton
+                css={styles.euiSuperDatePicker__rangeInput}
                 position="end"
                 compressed={compressed}
                 needsUpdating={hasChanged}
@@ -686,24 +720,28 @@ export class EuiSuperDatePickerInternal extends Component<
       isQuickSelectOnly,
       compressed,
       className,
+      memoizedStyles: styles,
     } = this.props;
     const { hasChanged, isInvalid } = this.state;
-
-    // Force reduction in width if showing quick select only
-    const width = isQuickSelectOnly ? 'auto' : _width;
 
     const classes = classNames('euiSuperDatePicker', className, {
       'euiSuperDatePicker--needsUpdating':
         hasChanged && !isDisabled && !isInvalid,
-      'euiSuperDatePicker--noUpdateButton': !showUpdateButton,
-      'euiSuperDatePicker--isAutoRefreshOnly': isAutoRefreshOnly,
-      'euiSuperDatePicker--isQuickSelectOnly': isQuickSelectOnly,
-      'euiSuperDatePicker--fullWidth': width === 'full',
-      'euiSuperDatePicker--autoWidth': width === 'auto',
     });
 
+    // Force reduction in width if showing quick select only
+    const width = isQuickSelectOnly ? 'auto' : _width ?? 'restricted';
+
+    const cssStyles = [
+      styles.euiSuperDatePicker,
+      styles.widths[width],
+      !showUpdateButton && styles.noUpdateButton[width],
+      isAutoRefreshOnly && styles.isAutoRefreshOnly[width],
+      isQuickSelectOnly && styles.isQuickSelectOnly,
+    ];
+
     return (
-      <div className={classes} data-test-subj={dataTestSubj}>
+      <div css={cssStyles} className={classes} data-test-subj={dataTestSubj}>
         {isAutoRefreshOnly && onRefreshChange ? (
           <EuiAutoRefresh
             isPaused={isPaused}
@@ -733,16 +771,20 @@ export class EuiSuperDatePickerInternal extends Component<
 // EuiSuperDatePicker to an FC, we can likely get rid of this wrapper.
 export const EuiSuperDatePicker: FunctionComponent<EuiSuperDatePickerProps> = (
   props
-) => (
-  <RenderI18nTimeOptions>
-    {(timeOptions) => (
-      <EuiSuperDatePickerInternal
-        {...props}
-        timeOptions={timeOptions}
-        commonlyUsedRanges={
-          props.commonlyUsedRanges || timeOptions.commonDurationRanges
-        }
-      />
-    )}
-  </RenderI18nTimeOptions>
-);
+) => {
+  const styles = useEuiMemoizedStyles(euiSuperDatePickerStyles);
+  return (
+    <RenderI18nTimeOptions>
+      {(timeOptions) => (
+        <EuiSuperDatePickerInternal
+          {...props}
+          timeOptions={timeOptions}
+          commonlyUsedRanges={
+            props.commonlyUsedRanges || timeOptions.commonDurationRanges
+          }
+          memoizedStyles={styles}
+        />
+      )}
+    </RenderI18nTimeOptions>
+  );
+};

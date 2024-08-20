@@ -1,189 +1,189 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`euiFontSize handles the optional customScale property by multiplying it against the passed scale: l scale with xxs customScale 1`] = `
-Object {
+{
   "fontSize": "1.0804rem",
   "lineHeight": "1.4286rem",
 }
 `;
 
 exports[`euiFontSize handles the optional customScale property by multiplying it against the passed scale: m scale with xs customScale 1`] = `
-Object {
+{
   "fontSize": "0.8571rem",
   "lineHeight": "1.1429rem",
 }
 `;
 
 exports[`euiFontSize handles the optional customScale property by multiplying it against the passed scale: s scale with xl customScale 1`] = `
-Object {
+{
   "fontSize": "1.6875rem",
   "lineHeight": "2.0000rem",
 }
 `;
 
 exports[`euiFontSize returns an object of font-size and line-height for each scale em l 1`] = `
-Object {
+{
   "fontSize": "1.375em",
   "lineHeight": "1.2495",
 }
 `;
 
 exports[`euiFontSize returns an object of font-size and line-height for each scale em m 1`] = `
-Object {
+{
   "fontSize": "1em",
   "lineHeight": "1.5000",
 }
 `;
 
 exports[`euiFontSize returns an object of font-size and line-height for each scale em s 1`] = `
-Object {
+{
   "fontSize": "0.875em",
   "lineHeight": "1.5000",
 }
 `;
 
 exports[`euiFontSize returns an object of font-size and line-height for each scale em xl 1`] = `
-Object {
+{
   "fontSize": "1.6875em",
   "lineHeight": "1.2495",
 }
 `;
 
 exports[`euiFontSize returns an object of font-size and line-height for each scale em xs 1`] = `
-Object {
+{
   "fontSize": "0.75em",
   "lineHeight": "1.5000",
 }
 `;
 
 exports[`euiFontSize returns an object of font-size and line-height for each scale em xxl 1`] = `
-Object {
+{
   "fontSize": "2.125em",
   "lineHeight": "1.2495",
 }
 `;
 
 exports[`euiFontSize returns an object of font-size and line-height for each scale em xxs 1`] = `
-Object {
+{
   "fontSize": "0.6875em",
   "lineHeight": "1.5000",
 }
 `;
 
 exports[`euiFontSize returns an object of font-size and line-height for each scale em xxxs 1`] = `
-Object {
+{
   "fontSize": "0.5625em",
   "lineHeight": "1.5000",
 }
 `;
 
 exports[`euiFontSize returns an object of font-size and line-height for each scale px l 1`] = `
-Object {
+{
   "fontSize": "22px",
   "lineHeight": "24px",
 }
 `;
 
 exports[`euiFontSize returns an object of font-size and line-height for each scale px m 1`] = `
-Object {
+{
   "fontSize": "16px",
   "lineHeight": "24px",
 }
 `;
 
 exports[`euiFontSize returns an object of font-size and line-height for each scale px s 1`] = `
-Object {
+{
   "fontSize": "14px",
   "lineHeight": "20px",
 }
 `;
 
 exports[`euiFontSize returns an object of font-size and line-height for each scale px xl 1`] = `
-Object {
+{
   "fontSize": "27px",
   "lineHeight": "32px",
 }
 `;
 
 exports[`euiFontSize returns an object of font-size and line-height for each scale px xs 1`] = `
-Object {
+{
   "fontSize": "12px",
   "lineHeight": "16px",
 }
 `;
 
 exports[`euiFontSize returns an object of font-size and line-height for each scale px xxl 1`] = `
-Object {
+{
   "fontSize": "34px",
   "lineHeight": "40px",
 }
 `;
 
 exports[`euiFontSize returns an object of font-size and line-height for each scale px xxs 1`] = `
-Object {
+{
   "fontSize": "11px",
   "lineHeight": "16px",
 }
 `;
 
 exports[`euiFontSize returns an object of font-size and line-height for each scale px xxxs 1`] = `
-Object {
+{
   "fontSize": "9px",
   "lineHeight": "12px",
 }
 `;
 
 exports[`euiFontSize returns an object of font-size and line-height for each scale rem l 1`] = `
-Object {
+{
   "fontSize": "1.5714rem",
   "lineHeight": "1.7143rem",
 }
 `;
 
 exports[`euiFontSize returns an object of font-size and line-height for each scale rem m 1`] = `
-Object {
+{
   "fontSize": "1.1429rem",
   "lineHeight": "1.7143rem",
 }
 `;
 
 exports[`euiFontSize returns an object of font-size and line-height for each scale rem s 1`] = `
-Object {
+{
   "fontSize": "1.0000rem",
   "lineHeight": "1.4286rem",
 }
 `;
 
 exports[`euiFontSize returns an object of font-size and line-height for each scale rem xl 1`] = `
-Object {
+{
   "fontSize": "1.9286rem",
   "lineHeight": "2.2857rem",
 }
 `;
 
 exports[`euiFontSize returns an object of font-size and line-height for each scale rem xs 1`] = `
-Object {
+{
   "fontSize": "0.8571rem",
   "lineHeight": "1.1429rem",
 }
 `;
 
 exports[`euiFontSize returns an object of font-size and line-height for each scale rem xxl 1`] = `
-Object {
+{
   "fontSize": "2.4286rem",
   "lineHeight": "2.8571rem",
 }
 `;
 
 exports[`euiFontSize returns an object of font-size and line-height for each scale rem xxs 1`] = `
-Object {
+{
   "fontSize": "0.7857rem",
   "lineHeight": "1.1429rem",
 }
 `;
 
 exports[`euiFontSize returns an object of font-size and line-height for each scale rem xxxs 1`] = `
-Object {
+{
   "fontSize": "0.6429rem",
   "lineHeight": "0.8571rem",
 }

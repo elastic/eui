@@ -2,20 +2,21 @@
 
 exports[`EuiComboBox renders 1`] = `
 <div
-  class="euiComboBox testClass1 testClass2 emotion-euiTestCss"
+  class="euiComboBox testClass1 testClass2 emotion-euiComboBox-euiTestCss"
   data-test-subj="test subject string"
 >
   <div
     class="euiPopover euiInputPopover emotion-euiPopover-block-EuiInputPopover"
   >
     <div
-      class="euiFormControlLayout"
+      class="euiFormControlLayout emotion-euiFormControlLayout-euiComboBox__formControlLayout-multiSelect"
     >
       <div
-        class="euiFormControlLayout__childrenWrapper"
+        class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper"
+        style="--euiFormControlRightIconsCount: 1;"
       >
         <div
-          class="euiComboBox__inputWrap euiFormControlLayout--1icons"
+          class="euiComboBox__inputWrap emotion-euiComboBoxInputWrapper-multiSelect"
           data-test-subj="comboBoxInput"
           tabindex="-1"
         >
@@ -25,7 +26,8 @@ exports[`EuiComboBox renders 1`] = `
             aria-expanded="false"
             aria-invalid="false"
             aria-label="aria-label"
-            class="euiComboBox__input"
+            autocomplete="off"
+            class="euiComboBox__input emotion-euiComboBoxInput"
             data-test-subj="comboBoxSearchInput"
             id="generated-id__eui-combobox-id"
             role="combobox"
@@ -34,11 +36,11 @@ exports[`EuiComboBox renders 1`] = `
           />
         </div>
         <div
-          class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right euiFormControlLayoutIcons--absolute"
+          class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-absolute-right"
         >
           <button
             aria-label="Open list of options"
-            class="euiFormControlLayoutCustomIcon euiFormControlLayoutCustomIcon--clickable"
+            class="euiFormControlLayoutCustomIcon emotion-euiFormControlLayoutCustomIcon-clickable"
             data-test-subj="comboBoxToggleListButton"
             tabindex="-1"
             type="button"
@@ -60,20 +62,21 @@ exports[`EuiComboBox renders the options list dropdown 1`] = `
 <body>
   <div>
     <div
-      class="euiComboBox euiComboBox-isOpen"
+      class="euiComboBox euiComboBox-isOpen emotion-euiComboBox"
       data-test-subj="alsoGetsAppliedToOptionsList"
     >
       <div
         class="euiPopover euiPopover-isOpen euiInputPopover emotion-euiPopover-block-EuiInputPopover"
       >
         <div
-          class="euiFormControlLayout"
+          class="euiFormControlLayout emotion-euiFormControlLayout-euiComboBox__formControlLayout-multiSelect"
         >
           <div
-            class="euiFormControlLayout__childrenWrapper"
+            class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper"
+            style="--euiFormControlRightIconsCount: 1;"
           >
             <div
-              class="euiComboBox__inputWrap euiFormControlLayout--1icons"
+              class="euiComboBox__inputWrap emotion-euiComboBoxInputWrapper-multiSelect-open"
               data-test-subj="comboBoxInput"
               tabindex="-1"
             >
@@ -82,20 +85,28 @@ exports[`EuiComboBox renders the options list dropdown 1`] = `
                 aria-controls="generated-id_listbox"
                 aria-expanded="true"
                 aria-invalid="false"
-                class="euiComboBox__input"
+                autocomplete="off"
+                class="euiComboBox__input emotion-euiComboBoxInput"
                 data-test-subj="comboBoxSearchInput"
                 id="generated-id__eui-combobox-id"
                 role="combobox"
                 style="inline-size: 2px;"
                 value=""
               />
+              <span
+                aria-live="polite"
+                class="emotion-euiScreenReaderOnly"
+                id="generated-id_removeOptionMessage"
+              >
+                Combo box. Selected. Combo box input.  Type some text or, to display a list of choices, press Down Arrow. To exit the list of choices, press Escape.
+              </span>
             </div>
             <div
-              class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right euiFormControlLayoutIcons--absolute"
+              class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-absolute-right"
             >
               <button
                 aria-label="Close list of options"
-                class="euiFormControlLayoutCustomIcon euiFormControlLayoutCustomIcon--clickable"
+                class="euiFormControlLayoutCustomIcon emotion-euiFormControlLayoutCustomIcon-clickable"
                 data-test-subj="comboBoxToggleListButton"
                 tabindex="-1"
                 type="button"
@@ -142,11 +153,11 @@ exports[`EuiComboBox renders the options list dropdown 1`] = `
             data-focus-lock-disabled="disabled"
           >
             <div
-              class="euiComboBoxOptionsList"
+              class="euiComboBoxOptionsList emotion-euiComboBoxOptionList"
               data-test-subj="comboBoxOptionsList alsoGetsAppliedToOptionsList-optionsList"
             >
               <div
-                class="euiComboBoxOptionsList__virtualization"
+                class="euiComboBoxOptionsList__virtualization emotion-euiComboBoxOptionList__virtualization"
                 style="position: relative; height: 200px; width: 0px; overflow: auto; will-change: transform; direction: ltr;"
               >
                 <div

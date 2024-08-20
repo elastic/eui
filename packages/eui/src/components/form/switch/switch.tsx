@@ -13,12 +13,13 @@ import React, {
   ReactNode,
   useCallback,
 } from 'react';
-import { css } from '@emotion/react';
 import classNames from 'classnames';
 
+import { useGeneratedHtmlId, useEuiMemoizedStyles } from '../../../services';
 import { CommonProps } from '../../common';
-import { useGeneratedHtmlId } from '../../../services/accessibility';
 import { EuiIcon } from '../../icon';
+
+import { euiSwitchStyles } from './switch.styles';
 
 export type EuiSwitchEvent = React.BaseSyntheticEvent<
   React.MouseEvent<HTMLButtonElement>,
@@ -29,12 +30,9 @@ export type EuiSwitchEvent = React.BaseSyntheticEvent<
 >;
 
 export type EuiSwitchProps = CommonProps &
-  Omit<
-    ButtonHTMLAttributes<HTMLButtonElement>,
-    'onChange' | 'type' | 'disabled'
-  > & {
+  Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'onChange' | 'disabled'> & {
     /**
-     * Whether to render the render the text label
+     * Whether to render the text label
      */
     showLabel?: boolean;
     /**
@@ -44,23 +42,33 @@ export type EuiSwitchProps = CommonProps &
     checked: boolean;
     onChange: (event: EuiSwitchEvent) => void;
     disabled?: boolean;
-    compressed?: boolean;
-    type?: 'submit' | 'reset' | 'button';
     /**
-     * Object of props passed to the label's <span/>
+     * Compressed switches are smaller and contain no icon signifiers
+     */
+    compressed?: boolean;
+    /**
+     * Object of props passed to the label's `<span />`
      */
     labelProps?: CommonProps & HTMLAttributes<HTMLSpanElement>;
   };
 
-export const EuiSwitch: FunctionComponent<EuiSwitchProps> = ({
+export const EuiSwitch: FunctionComponent<
+  EuiSwitchProps & {
+    /**
+     * Mini styling is similar to compressed, but even smaller.
+     * It's undocumented because it has very specific uses.
+     */
+    mini?: boolean;
+  }
+> = ({
   label,
   id,
   checked,
   disabled,
   compressed,
+  mini,
   onChange,
   className,
-  css: customCss,
   showLabel = true,
   type = 'button',
   labelProps,
@@ -82,13 +90,7 @@ export const EuiSwitch: FunctionComponent<EuiSwitchProps> = ({
     [checked, disabled, onChange]
   );
 
-  const classes = classNames(
-    'euiSwitch',
-    {
-      'euiSwitch--compressed': compressed,
-    },
-    className
-  );
+  const classes = classNames('euiSwitch', className);
   const labelClasses = classNames('euiSwitch__label', labelProps?.className);
   if (showLabel === false && typeof label !== 'string') {
     console.warn(
@@ -96,14 +98,47 @@ export const EuiSwitch: FunctionComponent<EuiSwitchProps> = ({
     );
   }
 
-  const styles = { euiSwitch: css`` }; // TODO: Emotion conversion
-  const cssStyles = [styles.euiSwitch, customCss];
+  const size = mini ? 'mini' : compressed ? 'compressed' : 'uncompressed';
+
+  const styles = useEuiMemoizedStyles(euiSwitchStyles);
+  const cssStyles = [
+    styles.euiSwitch,
+    disabled ? styles.disabled : styles.enabled,
+  ];
+  const buttonStyles = [styles.button.euiSwitch__button, styles.button[size]];
+  const bodyStyles = [
+    styles.body.euiSwitch__body,
+    disabled
+      ? styles.body.disabled[size]
+      : checked
+      ? styles.body.on
+      : styles.body.off,
+  ];
+  const iconsStyles = [
+    styles.icons.euiSwitch__icons,
+    checked ? styles.icons.on : styles.icons.off,
+    disabled ? styles.icons.disabled : styles.icons.enabled,
+  ];
+  const thumbStyles = [
+    styles.thumb.euiSwitch__thumb,
+    checked ? styles.thumb.on[size] : styles.thumb.off,
+    ...(disabled
+      ? [styles.thumb.disabled.disabled, styles.thumb.disabled[size]]
+      : [styles.thumb.enabled.enabled, styles.thumb.enabled[size]]),
+  ];
+  const labelStyles = [
+    styles.label.euiSwitch__label,
+    styles.label[size],
+    disabled && styles.label.disabled,
+    labelProps?.css,
+  ];
 
   return (
     <div css={cssStyles} className={classes}>
       <button
         id={switchId}
         aria-checked={checked || false}
+        css={buttonStyles}
         className="euiSwitch__button"
         role="switch"
         type={type}
@@ -113,22 +148,15 @@ export const EuiSwitch: FunctionComponent<EuiSwitchProps> = ({
         aria-labelledby={showLabel ? labelId : undefined}
         {...rest}
       >
-        <span className="euiSwitch__body">
-          <span className="euiSwitch__thumb" />
-          <span className="euiSwitch__track">
-            {!compressed && (
-              <React.Fragment>
-                <EuiIcon type="cross" size="m" className="euiSwitch__icon" />
-
-                <EuiIcon
-                  type="check"
-                  size="m"
-                  className="euiSwitch__icon euiSwitch__icon--checked"
-                />
-              </React.Fragment>
-            )}
-          </span>
+        <span css={bodyStyles} className="euiSwitch__body">
+          {!(compressed || mini) && (
+            <span css={iconsStyles} className="euiSwitch__icons">
+              <EuiIcon type="check" size="m" />
+              <EuiIcon type="cross" size="m" />
+            </span>
+          )}
         </span>
+        <span css={thumbStyles} className="euiSwitch__thumb" />
       </button>
 
       {showLabel && (
@@ -137,6 +165,7 @@ export const EuiSwitch: FunctionComponent<EuiSwitchProps> = ({
         // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
         <span
           {...labelProps}
+          css={labelStyles}
           className={labelClasses}
           id={labelId}
           onClick={onClick}

@@ -9,6 +9,7 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 
+import { SPREAD_STORY_ARGS_MARKER } from '../../../.storybook/addons/code-snippet/constants';
 import { EuiProvider, EuiProviderProps } from './provider';
 
 const meta: Meta<EuiProviderProps<{}>> = {
@@ -30,6 +31,16 @@ export default meta;
 type Story = StoryObj<EuiProviderProps<{}>>;
 
 export const FontDefaultUnits: Story = {
+  parameters: {
+    codeSnippet: {
+      snippet: `
+      <EuiProvider ${SPREAD_STORY_ARGS_MARKER} />
+      `,
+    },
+  },
+  args: {
+    modify: { font: { defaultUnits: 'rem' } },
+  },
   render: () => (
     <>
       Change <strong>`modify.font.defaultUnits`</strong> to{' '}
@@ -37,7 +48,4 @@ export const FontDefaultUnits: Story = {
       CSS
     </>
   ),
-  args: {
-    modify: { font: { defaultUnits: 'rem' } },
-  },
 };

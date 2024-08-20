@@ -21,8 +21,14 @@ import { EuiResizablePanel, EuiResizablePanelProps } from './resizable_panel';
 faker.seed(42);
 
 const meta: Meta<EuiResizablePanelProps> = {
-  title: 'Layout/EuiResizableContainer/EuiResizablePanel',
+  title: 'Layout/EuiResizableContainer/Subcomponents/EuiResizablePanel',
   component: EuiResizablePanel,
+  parameters: {
+    codeSnippet: {
+      // TODO: enable once render functions are supported
+      skip: true,
+    },
+  },
   argTypes: {
     mode: {
       control: 'radio',

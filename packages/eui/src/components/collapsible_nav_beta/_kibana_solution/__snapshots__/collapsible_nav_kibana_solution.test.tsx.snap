@@ -161,7 +161,7 @@ exports[`KibanaCollapsibleNavSolution renders with a solution switcher 1`] = `
   </div>
   <div
     aria-label="Some solution"
-    class="euiCollapsibleNavItem__items emotion-euiCollapsibleNavItem__items-isGroup"
+    class="euiCollapsibleNavItem__items emotion-euiCollapsibleNavItem__items-isTopItem"
     role="group"
   >
     <span

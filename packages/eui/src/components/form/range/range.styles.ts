@@ -111,6 +111,7 @@ export const euiRangeThumbStyle = (euiThemeContext: UseEuiTheme) => {
   return `
     ${euiRangeThumbBoxShadow(euiThemeContext)};
     ${euiRangeThumbBorder(euiThemeContext)};
+    border-radius: 50%;
     cursor: pointer;
     background-color: ${range.thumbBackgroundColor};
     padding: 0;
@@ -123,7 +124,7 @@ export const euiRangeThumbStyle = (euiThemeContext: UseEuiTheme) => {
 export const euiRangeThumbPerBrowser = (content: string) => {
   return `
     &::-webkit-slider-thumb { ${content}; }
-    &::-moz-range-thumb  { ${content}; }
+    &::-moz-range-thumb { ${content}; }
     &::-ms-thumb {${content}; }
   `;
 };

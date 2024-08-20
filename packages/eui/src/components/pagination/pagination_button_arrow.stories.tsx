@@ -20,7 +20,7 @@ import {
 } from './pagination_button_arrow';
 
 const meta: Meta<EuiPaginationButtonArrowProps> = {
-  title: 'Navigation/EuiPagination/EuiPaginationButtonArrow',
+  title: 'Navigation/EuiPagination/Subcomponents/EuiPaginationButtonArrow',
   component: EuiPaginationButtonArrow,
 };
 enableFunctionToggleControls(meta, ['onClick']);

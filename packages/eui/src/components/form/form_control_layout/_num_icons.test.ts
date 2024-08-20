@@ -6,48 +6,64 @@
  * Side Public License, v 1.
  */
 
-import {
-  getFormControlClassNameForIconCount,
-  isRightSideIcon,
-} from './_num_icons';
+import { isRightSideIcon, getIconAffordanceStyles } from './_num_icons';
 
-describe('getFormControlClassNameForIconCount', () => {
-  it('should return undefined if object is empty', () => {
-    const numberClass = getFormControlClassNameForIconCount({});
-    expect(numberClass).toEqual(undefined);
+describe('getIconAffordanceStyles', () => {
+  const noIcons = {
+    icon: undefined,
+    clear: false,
+    isLoading: false,
+    isInvalid: false,
+    isDropdown: false,
+  };
+  const allIcons = {
+    icon: { type: 'search', side: 'right' as const },
+    clear: true,
+    isLoading: true,
+    isInvalid: true,
+    isDropdown: true,
+  };
+
+  test('empty object', () => {
+    const styles = getIconAffordanceStyles({});
+    expect(styles).toEqual(undefined);
   });
 
-  it('should return undefined if all are false', () => {
-    const numberClass = getFormControlClassNameForIconCount({
-      icon: false,
-      clear: false,
-      isLoading: false,
-      isInvalid: false,
-      isDropdown: false,
-    });
-    expect(numberClass).toEqual(undefined);
+  test('false values', () => {
+    const styles = getIconAffordanceStyles(noIcons);
+    expect(styles).toEqual(undefined);
   });
 
-  it('should return 2 if 2 are true', () => {
-    const numberClass = getFormControlClassNameForIconCount({
-      icon: false,
-      clear: true,
-      isLoading: true,
-      isInvalid: false,
-      isDropdown: false,
-    });
-    expect(numberClass).toEqual('euiFormControlLayout--2icons');
+  test('all icons', () => {
+    const styles = getIconAffordanceStyles(allIcons);
+    expect(styles).toMatchInlineSnapshot(`
+      {
+        "--euiFormControlRightIconsCount": 5,
+      }
+    `);
   });
 
-  it('should return 5 if all are true', () => {
-    const numberClass = getFormControlClassNameForIconCount({
-      icon: true,
-      clear: true,
+  test('some icons', () => {
+    const styles = getIconAffordanceStyles({
       isLoading: true,
       isInvalid: true,
-      isDropdown: true,
     });
-    expect(numberClass).toEqual('euiFormControlLayout--5icons');
+    expect(styles).toMatchInlineSnapshot(`
+      {
+        "--euiFormControlRightIconsCount": 2,
+      }
+    `);
+  });
+
+  test('left icon', () => {
+    const styles = getIconAffordanceStyles({
+      icon: 'search',
+    });
+    expect(styles).toMatchInlineSnapshot(`
+      {
+        "--euiFormControlLeftIconsCount": 1,
+      }
+    `);
   });
 });
 

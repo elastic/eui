@@ -1,0 +1,64 @@
+import React, { useEffect, useState } from 'react';
+import { css } from '@emotion/react';
+import { useDocsSidebar } from '@docusaurus/theme-common/internal';
+import useIsBrowser from '@docusaurus/useIsBrowser';
+import BackToTopButton from '@theme-original/BackToTopButton';
+import type { Props } from '@theme-original/DocRoot/Layout';
+import DocRootLayoutSidebar from '@theme-original/DocRoot/Layout/Sidebar';
+
+import DocRootLayoutMain from './Main';
+
+// converted from css modules to Emotion
+const styles = {
+  docRoot: css`
+    display: flex;
+    width: 100%;
+  `,
+  docsWrapper: css`
+    display: flex;
+    flex: 1 0 auto;
+  `,
+};
+
+export default function DocRootLayout({ children }: Props): JSX.Element {
+  const isBrowser = useIsBrowser();
+  const sidebar = useDocsSidebar();
+  const [hiddenSidebarContainer, setHiddenSidebarContainer] = useState(false);
+
+  // Replicate browser hash scroll behavior to trigger it after the MDX content
+  // is rendered. Timeout = 0 should do the job here just fine as the effect
+  // will get executed at next render cycle when all elements are (hopefully)
+  // already in the DOM.
+  useEffect(() => {
+    if (!isBrowser) {
+      return;
+    }
+
+    if (window.location.hash) {
+      setTimeout(() => {
+        const element = document.getElementById(
+          window.location.hash.substring(1),
+        );
+        element?.scrollIntoView(true);
+      }, 0);
+    }
+  }, [isBrowser]);
+
+  return (
+    <div css={styles.docsWrapper}>
+      <BackToTopButton />
+      <div css={styles.docRoot}>
+        {sidebar && (
+          <DocRootLayoutSidebar
+            sidebar={sidebar.items}
+            hiddenSidebarContainer={hiddenSidebarContainer}
+            setHiddenSidebarContainer={setHiddenSidebarContainer}
+          />
+        )}
+        <DocRootLayoutMain hiddenSidebarContainer={hiddenSidebarContainer}>
+          {children}
+        </DocRootLayoutMain>
+      </div>
+    </div>
+  );
+}

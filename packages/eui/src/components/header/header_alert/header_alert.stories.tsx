@@ -8,7 +8,6 @@
 
 import React, { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
-
 import {
   EuiLink,
   EuiBadge,
@@ -63,7 +62,7 @@ export const Playground: Story = {};
  * Flyout example
  */
 const Flyout = (props: EuiHeaderAlertProps) => {
-  const [isFlyoutVisible, setIsFlyoutVisible] = useState(false);
+  const [isFlyoutVisible, setIsFlyoutVisible] = useState(true);
   const closeFlyout = () => setIsFlyoutVisible(false);
 
   const flyout = isFlyoutVisible && (
@@ -118,7 +117,12 @@ const Flyout = (props: EuiHeaderAlertProps) => {
   );
 };
 export const FlyoutExample: Story = {
-  render: ({ ...args }) => <Flyout {...args} />,
+  parameters: {
+    codeSnippet: {
+      resolveChildren: true,
+    },
+  },
+  render: (args) => <Flyout {...args} />,
 };
 
 /**
@@ -178,5 +182,10 @@ const Popover = (props: any) => {
   );
 };
 export const PopoverExample: Story = {
-  render: ({ ...args }) => <Popover {...args} />,
+  parameters: {
+    codeSnippet: {
+      resolveChildren: true,
+    },
+  },
+  render: (args) => <Popover {...args} />,
 };

@@ -10,12 +10,22 @@ import React, { ReactElement } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { hideStorybookControls } from '../../../.storybook/utils';
+import { STORY_ARGS_MARKER } from '../../../.storybook/addons/code-snippet/constants';
 import { useEuiTextDiff, EuiTextDiffProps } from './text_diff';
 
 const meta: Meta<EuiTextDiffProps> = {
   title: 'Utilities/useEuiTextDiff',
   // casting here to match story output while preserving component docgen information
   component: useEuiTextDiff as unknown as () => ReactElement,
+  parameters: {
+    codeSnippet: {
+      // the story returns a component but the actual code is a hook pattern
+      // we can provide a manual snippet instead
+      snippet: `
+      const [rendered, textDiffObject] = useTextDiff(${STORY_ARGS_MARKER})
+      `,
+    },
+  },
   argTypes: {
     insertComponent: { control: 'text' },
     deleteComponent: { control: 'text' },
