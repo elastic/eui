@@ -498,8 +498,7 @@ export const defaultSyntax: Syntax = Object.freeze({
   parse: (query: string, options: ParseOptions = {}) => {
     const dateFormat = options.dateFormat || defaultDateFormat;
     const parseDate = dateValueParser(dateFormat);
-    const schema = options.schema || {};
-    const recognizedFields = schema.recognizedFields;
+    const { recognizedFields, ...schema } = options.schema || {};
     const clauses = parser.parse(query, {
       AST,
       Exp,
