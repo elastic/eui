@@ -110,7 +110,7 @@ exports[`EuiSelectableSearch renders placeholder, value, name, and other remaini
       class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-absolute-right"
     >
       <button
-        aria-label="Clear input"
+        aria-label="Clear search input"
         class="euiFormControlLayoutClearButton emotion-euiFormControlLayoutClearButton"
         data-test-subj="clearSearchButton"
         type="button"

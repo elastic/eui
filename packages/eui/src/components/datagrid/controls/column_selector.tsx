@@ -216,8 +216,7 @@ export const useDataGridColumnSelector = (
                               label={displayValues[id] || id}
                               showLabel={false}
                               checked={visibleColumnIds.has(id)}
-                              compressed
-                              className="euiSwitch--mini"
+                              mini
                               onChange={(event) => {
                                 const {
                                   target: { checked },

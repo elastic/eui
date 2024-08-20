@@ -74,15 +74,11 @@ export default () => {
   };
   return (
     <EuiPanel style={{ maxWidth: 300 }}>
-      <EuiFormRow
-        label="Text field"
-        helpText="I am some friendly help text."
-        display="rowCompressed"
-      >
+      <EuiFormRow label="Text field" helpText="I am some friendly help text.">
         <EuiFieldText name="first" isLoading compressed />
       </EuiFormRow>
 
-      <EuiFormRow label="Select" display="rowCompressed">
+      <EuiFormRow label="Select">
         <EuiSelect
           options={[
             { value: 'option_one', text: 'Option one' },
@@ -93,11 +89,11 @@ export default () => {
         />
       </EuiFormRow>
 
-      <EuiFormRow label="File picker" display="rowCompressed">
+      <EuiFormRow label="File picker">
         <EuiFilePicker compressed display="default" />
       </EuiFormRow>
 
-      <EuiFormRow label="Combobox" display="rowCompressed">
+      <EuiFormRow label="Combobox">
         <EuiComboBox
           options={[
             { label: 'Option one' },
@@ -112,7 +108,7 @@ export default () => {
         />
       </EuiFormRow>
 
-      <EuiFormRow label="Range" display="rowCompressed">
+      <EuiFormRow label="Range">
         <EuiRange
           min={0}
           max={100}
@@ -125,7 +121,7 @@ export default () => {
         />
       </EuiFormRow>
 
-      <EuiFormRow label="Switch" display="rowCompressed" hasChildLabel={false}>
+      <EuiFormRow label="Switch" hasChildLabel={false}>
         <EuiSwitch
           label="Setting name"
           name="switch"

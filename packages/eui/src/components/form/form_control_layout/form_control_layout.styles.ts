@@ -126,6 +126,8 @@ export const euiFormControlLayoutSideNodeStyles = (
       ${text} {
         /* Override .euiFormLabel CSS */
         cursor: default;
+        overflow: hidden;
+        text-overflow: ellipsis;
       }
 
       /* Account for button padding when spacing children */
@@ -152,6 +154,7 @@ export const euiFormControlLayoutSideNodeStyles = (
       }
 
       .euiButtonIcon {
+        flex-shrink: 0;
         ${logicalCSS('width', euiTheme.size.xl)}
       }
     `,
@@ -166,6 +169,7 @@ export const euiFormControlLayoutSideNodeStyles = (
       }
 
       .euiButtonIcon {
+        flex-shrink: 0;
         ${logicalCSS('width', euiTheme.size.xl)}
       }
     `,

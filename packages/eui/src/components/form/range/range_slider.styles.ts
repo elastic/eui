@@ -9,7 +9,6 @@
 import { css } from '@emotion/react';
 
 import { UseEuiTheme, transparentize } from '../../../services';
-import { euiCustomControl } from '../form.styles';
 
 import {
   euiRangeThumbStyle,
@@ -34,7 +33,6 @@ export const euiRangeSliderStyles = (euiThemeContext: UseEuiTheme) => {
       z-index: ${range.thumbZIndex};
 
       ${euiRangeThumbPerBrowser(`
-        ${euiCustomControl(euiThemeContext, { type: 'round' })}
         ${euiRangeThumbStyle(euiThemeContext)}
       `)}
 
