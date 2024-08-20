@@ -258,8 +258,11 @@ interface ValueExpression {
 
 export interface ParseOptions {
   dateFormat?: any;
-  schema?: any;
-  recognizedFields?: string[];
+  schema?: {
+    strict?: boolean;
+    fields?: string[] | Record<string, any>;
+    recognizedFields?: string[];
+  };
   escapeValue?: (value: any) => string;
 }
 
@@ -496,7 +499,7 @@ export const defaultSyntax: Syntax = Object.freeze({
     const dateFormat = options.dateFormat || defaultDateFormat;
     const parseDate = dateValueParser(dateFormat);
     const schema = options.schema || {};
-    const recognizedFields = options.recognizedFields;
+    const recognizedFields = schema.recognizedFields;
     const clauses = parser.parse(query, {
       AST,
       Exp,

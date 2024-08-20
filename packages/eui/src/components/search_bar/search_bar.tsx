@@ -44,6 +44,8 @@ export interface SchemaType {
   strict?: boolean;
   fields?: any;
   flags?: string[];
+  // Controls which phrases will be parsed as field clauses
+  recognizedFields?: string[];
 }
 
 export type EuiSearchBarOnChangeArgs = ArgsWithQuery | ArgsWithError;
@@ -87,9 +89,6 @@ export interface EuiSearchBarProps extends CommonProps {
     // components can use e.g. a true value to mean "auto-derive a schema". See EuiInMemoryTable.
     // Admittedly, this is a bit of a hack.
     schema?: SchemaType | boolean;
-
-    // Controls which phrases will be parsed as field clauses
-    recognizedFields?: string[];
   };
 
   /**
@@ -129,10 +128,7 @@ const parseQuery = (
   if (props.box?.schema && typeof props.box?.schema === 'object') {
     schema = props.box.schema;
   }
-  let recognizedFields: string[] | undefined;
-  if (props.box?.recognizedFields) {
-    recognizedFields = props.box.recognizedFields;
-  }
+  const recognizedFields = schema?.recognizedFields;
   const dateFormat = props.dateFormat;
   const parseOptions = { schema, dateFormat, recognizedFields };
   if (!query) {
