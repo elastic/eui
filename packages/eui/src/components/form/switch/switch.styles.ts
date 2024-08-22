@@ -160,6 +160,7 @@ const bodyStyles = ({ colorMode }: UseEuiTheme, { colors }: EuiSwitchVars) => {
       inset: 0;
       overflow: hidden;
       border-radius: inherit;
+      pointer-events: none; /* Required for Kibana's Selenium driver to be able to click switches in FTR tests */
     `,
     on: css`
       background-color: ${colors.on};
@@ -242,6 +243,7 @@ const thumbStyles = ({ euiTheme }: UseEuiTheme, switchVars: EuiSwitchVars) => {
       ${logicalCSS('width', 'fit-content')}
       ${logicalCSS('height', '100%')}
       border-radius: 50%;
+      pointer-events: none; /* Required for Kibana's Selenium driver to be able to click switches in FTR tests */
 
       ${euiCanAnimate} {
         transition-property: inset-inline-start, transform, background-color,
