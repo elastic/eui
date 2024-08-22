@@ -8,6 +8,19 @@ if (!['16', '17', '18'].includes(process.env.REACT_VERSION)) {
 
 const reactVersion = process.env.REACT_VERSION;
 
+/**
+ * Buildkite reporter requires a token to be set and this token is only
+ * available when jest is running in our CI pipeline.
+ */
+const buildkiteTestReporterToken = process.env.BUILDKITE_ANALYTICS_TOKEN;
+const isBuildkiteTestReporterAvailable =
+  typeof buildkiteTestReporterToken === 'string' &&
+  buildkiteTestReporterToken !== '';
+
+if (isBuildkiteTestReporterAvailable) {
+  console.log('Buildkite Test Analytics reporter available');
+}
+
 console.log(`Running tests on React v${reactVersion}`);
 
 /** @type {import('jest').Config} */
@@ -57,6 +70,17 @@ const config = {
   ],
   // react version and user permissions aware cache directory
   cacheDirectory: `${getCacheDirectory()}_react-${reactVersion}`,
+  reporters: [
+    'default',
+    !!isBuildkiteTestReporterAvailable && [
+      'buildkite-test-collector/jest/reporter',
+      {
+        token: buildkiteTestReporterToken,
+      },
+    ],
+  ].filter(Boolean),
+  // Include test location in test results for buildkite-test-collector
+  testLocationInResults: true,
 };
 
 if (['16', '17'].includes(reactVersion)) {
