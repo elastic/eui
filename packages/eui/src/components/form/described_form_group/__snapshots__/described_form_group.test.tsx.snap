@@ -18,7 +18,7 @@ exports[`EuiDescribedFormGroup props description is not rendered when it's not p
     class="euiFlexItem euiDescribedFormGroup__fields emotion-euiFlexItem-grow-1-euiDescribedFormGroup__fields"
   >
     <div
-      class="euiFormRow"
+      class="euiFormRow emotion-euiFormRow"
       id="generated-id-row"
     >
       <div
@@ -58,7 +58,7 @@ exports[`EuiDescribedFormGroup props fullWidth is rendered 1`] = `
     class="euiFlexItem euiDescribedFormGroup__fields emotion-euiFlexItem-grow-1-euiDescribedFormGroup__fields"
   >
     <div
-      class="euiFormRow euiFormRow--fullWidth"
+      class="euiFormRow emotion-euiFormRow-fullWidth"
       id="generated-id-row"
     >
       <div
@@ -98,7 +98,7 @@ exports[`EuiDescribedFormGroup props gutterSize is rendered 1`] = `
     class="euiFlexItem euiDescribedFormGroup__fields emotion-euiFlexItem-grow-1-euiDescribedFormGroup__fields"
   >
     <div
-      class="euiFormRow"
+      class="euiFormRow emotion-euiFormRow"
       id="generated-id-row"
     >
       <div
@@ -138,7 +138,7 @@ exports[`EuiDescribedFormGroup props props for the flex item containers are pass
     class="euiFlexItem euiDescribedFormGroup__fields emotion-euiFlexItem-grow-1-euiDescribedFormGroup__fields"
   >
     <div
-      class="euiFormRow"
+      class="euiFormRow emotion-euiFormRow"
       id="generated-id-row"
     >
       <div
@@ -178,7 +178,7 @@ exports[`EuiDescribedFormGroup props third is rendered 1`] = `
     class="euiFlexItem euiDescribedFormGroup__fields emotion-euiFlexItem-grow-2-euiDescribedFormGroup__fields"
   >
     <div
-      class="euiFormRow euiFormRow--fullWidth"
+      class="euiFormRow emotion-euiFormRow-fullWidth"
       id="generated-id-row"
     >
       <div
@@ -218,7 +218,7 @@ exports[`EuiDescribedFormGroup props titleSize is rendered 1`] = `
     class="euiFlexItem euiDescribedFormGroup__fields emotion-euiFlexItem-grow-1-euiDescribedFormGroup__fields"
   >
     <div
-      class="euiFormRow"
+      class="euiFormRow emotion-euiFormRow"
       id="generated-id-row"
     >
       <div
@@ -260,7 +260,7 @@ exports[`EuiDescribedFormGroup renders 1`] = `
     class="euiFlexItem euiDescribedFormGroup__fields emotion-euiFlexItem-grow-1-euiDescribedFormGroup__fields"
   >
     <div
-      class="euiFormRow"
+      class="euiFormRow emotion-euiFormRow"
       id="generated-id-row"
     >
       <div
@@ -300,7 +300,7 @@ exports[`EuiDescribedFormGroup ties together parts for accessibility 1`] = `
     class="euiFlexItem euiDescribedFormGroup__fields emotion-euiFlexItem-grow-1-euiDescribedFormGroup__fields"
   >
     <div
-      class="euiFormRow euiFormRow--hasLabel"
+      class="euiFormRow euiFormRow--hasLabel emotion-euiFormRow"
       id="generated-id-row"
     >
       <div

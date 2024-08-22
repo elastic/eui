@@ -30,9 +30,11 @@ export const Playground: Story = {
       { id: 'checkbox-1', label: 'Checkbox 1' },
       { id: 'checkbox-2', label: 'Checkbox 2' },
       { id: 'checkbox-3', label: 'Checkbox 3', disabled: true },
+      { id: 'checkbox-4', label: 'Checkbox 4', disabled: true },
     ],
     idToSelectedMap: {
       'checkbox-2': true,
+      'checkbox-4': true,
     },
     // set up for easier testing/QA
     legend: {

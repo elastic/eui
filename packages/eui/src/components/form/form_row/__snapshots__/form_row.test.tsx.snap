@@ -3,7 +3,7 @@
 exports[`EuiFormRow is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="euiFormRow testClass1 testClass2 emotion-euiTestCss"
+  class="euiFormRow testClass1 testClass2 emotion-euiFormRow-euiTestCss"
   data-test-subj="test subject string"
   id="generated-id-row"
 >
@@ -19,7 +19,7 @@ exports[`EuiFormRow is rendered 1`] = `
 
 exports[`EuiFormRow props describedByIds is rendered 1`] = `
 <div
-  class="euiFormRow"
+  class="euiFormRow emotion-euiFormRow"
   id="generated-id-row"
 >
   <div
@@ -35,11 +35,11 @@ exports[`EuiFormRow props describedByIds is rendered 1`] = `
 
 exports[`EuiFormRow props display type center is rendered 1`] = `
 <div
-  class="euiFormRow"
+  class="euiFormRow emotion-euiFormRow-center"
   id="generated-id-row"
 >
   <div
-    class="euiFormRow__fieldWrapper euiFormRow__fieldWrapperDisplayOnly"
+    class="euiFormRow__fieldWrapper"
   >
     <input
       id="generated-id"
@@ -50,11 +50,11 @@ exports[`EuiFormRow props display type center is rendered 1`] = `
 
 exports[`EuiFormRow props display type centerCompressed is rendered 1`] = `
 <div
-  class="euiFormRow euiFormRow--compressed"
+  class="euiFormRow emotion-euiFormRow-centerCompressed"
   id="generated-id-row"
 >
   <div
-    class="euiFormRow__fieldWrapper euiFormRow__fieldWrapperDisplayOnly"
+    class="euiFormRow__fieldWrapper"
   >
     <input
       id="generated-id"
@@ -65,7 +65,7 @@ exports[`EuiFormRow props display type centerCompressed is rendered 1`] = `
 
 exports[`EuiFormRow props display type columnCompressed is rendered 1`] = `
 <div
-  class="euiFormRow euiFormRow--compressed euiFormRow--horizontal"
+  class="euiFormRow emotion-euiFormRow-columnCompressed"
   id="generated-id-row"
 >
   <div
@@ -80,7 +80,7 @@ exports[`EuiFormRow props display type columnCompressed is rendered 1`] = `
 
 exports[`EuiFormRow props display type columnCompressedSwitch is rendered 1`] = `
 <div
-  class="euiFormRow euiFormRow--compressed euiFormRow--horizontal euiFormRow--hasSwitch"
+  class="euiFormRow emotion-euiFormRow-columnCompressed"
   id="generated-id-row"
 >
   <div
@@ -95,7 +95,7 @@ exports[`EuiFormRow props display type columnCompressedSwitch is rendered 1`] = 
 
 exports[`EuiFormRow props display type row is rendered 1`] = `
 <div
-  class="euiFormRow"
+  class="euiFormRow emotion-euiFormRow"
   id="generated-id-row"
 >
   <div
@@ -110,7 +110,7 @@ exports[`EuiFormRow props display type row is rendered 1`] = `
 
 exports[`EuiFormRow props display type rowCompressed is rendered 1`] = `
 <div
-  class="euiFormRow euiFormRow--compressed"
+  class="euiFormRow emotion-euiFormRow"
   id="generated-id-row"
 >
   <div
@@ -125,7 +125,7 @@ exports[`EuiFormRow props display type rowCompressed is rendered 1`] = `
 
 exports[`EuiFormRow props error as array is rendered 1`] = `
 <div
-  class="euiFormRow"
+  class="euiFormRow emotion-euiFormRow"
   id="generated-id-row"
 >
   <div
@@ -155,7 +155,7 @@ exports[`EuiFormRow props error as array is rendered 1`] = `
 
 exports[`EuiFormRow props error as string is rendered 1`] = `
 <div
-  class="euiFormRow"
+  class="euiFormRow emotion-euiFormRow"
   id="generated-id-row"
 >
   <div
@@ -178,7 +178,7 @@ exports[`EuiFormRow props error as string is rendered 1`] = `
 
 exports[`EuiFormRow props error is not rendered if isInvalid is false 1`] = `
 <div
-  class="euiFormRow"
+  class="euiFormRow emotion-euiFormRow"
   id="generated-id-row"
 >
   <div
@@ -193,7 +193,7 @@ exports[`EuiFormRow props error is not rendered if isInvalid is false 1`] = `
 
 exports[`EuiFormRow props fullWidth is rendered 1`] = `
 <div
-  class="euiFormRow euiFormRow--fullWidth"
+  class="euiFormRow emotion-euiFormRow-fullWidth"
   id="generated-id-row"
 >
   <div
@@ -208,9 +208,12 @@ exports[`EuiFormRow props fullWidth is rendered 1`] = `
 
 exports[`EuiFormRow props hasEmptyLabelSpace is rendered 1`] = `
 <div
-  class="euiFormRow euiFormRow--hasEmptyLabelSpace"
+  class="euiFormRow euiFormRow--hasEmptyLabelSpace emotion-euiFormRow"
   id="generated-id-row"
 >
+  <div
+    class="euiSpacer euiSpacer--m euiFormRow__labelWrapper emotion-euiSpacer-m"
+  />
   <div
     class="euiFormRow__fieldWrapper"
   >
@@ -223,7 +226,7 @@ exports[`EuiFormRow props hasEmptyLabelSpace is rendered 1`] = `
 
 exports[`EuiFormRow props helpText is rendered 1`] = `
 <div
-  class="euiFormRow"
+  class="euiFormRow emotion-euiFormRow"
   id="generated-id-row"
 >
   <div
@@ -247,7 +250,7 @@ exports[`EuiFormRow props helpText is rendered 1`] = `
 
 exports[`EuiFormRow props id is rendered 1`] = `
 <div
-  class="euiFormRow"
+  class="euiFormRow emotion-euiFormRow"
   id="id-row"
 >
   <div
@@ -262,7 +265,7 @@ exports[`EuiFormRow props id is rendered 1`] = `
 
 exports[`EuiFormRow props isDisabled allows a child to still be disabled manually 1`] = `
 <div
-  class="euiFormRow"
+  class="euiFormRow emotion-euiFormRow"
   id="generated-id-row"
 >
   <div
@@ -278,7 +281,7 @@ exports[`EuiFormRow props isDisabled allows a child to still be disabled manuall
 
 exports[`EuiFormRow props isDisabled allows a child's disabled to override 1`] = `
 <div
-  class="euiFormRow"
+  class="euiFormRow emotion-euiFormRow"
   id="generated-id-row"
 >
   <div
@@ -293,7 +296,7 @@ exports[`EuiFormRow props isDisabled allows a child's disabled to override 1`] =
 
 exports[`EuiFormRow props isDisabled is passed as disabled to child 1`] = `
 <div
-  class="euiFormRow"
+  class="euiFormRow emotion-euiFormRow"
   id="generated-id-row"
 >
   <div
@@ -309,7 +312,7 @@ exports[`EuiFormRow props isDisabled is passed as disabled to child 1`] = `
 
 exports[`EuiFormRow props isInvalid is rendered 1`] = `
 <div
-  class="euiFormRow euiFormRow--hasLabel"
+  class="euiFormRow euiFormRow--hasLabel emotion-euiFormRow"
   id="generated-id-row"
 >
   <div
@@ -336,7 +339,7 @@ exports[`EuiFormRow props isInvalid is rendered 1`] = `
 
 exports[`EuiFormRow props label append is rendered 1`] = `
 <div
-  class="euiFormRow euiFormRow--hasLabel"
+  class="euiFormRow euiFormRow--hasLabel emotion-euiFormRow"
   id="generated-id-row"
 >
   <div
@@ -364,7 +367,7 @@ exports[`EuiFormRow props label append is rendered 1`] = `
 
 exports[`EuiFormRow props label is rendered 1`] = `
 <div
-  class="euiFormRow euiFormRow--hasLabel"
+  class="euiFormRow euiFormRow--hasLabel emotion-euiFormRow"
   id="generated-id-row"
 >
   <div
@@ -390,7 +393,7 @@ exports[`EuiFormRow props label is rendered 1`] = `
 
 exports[`EuiFormRow props label renders as a legend and subsquently a fieldset wrapper 1`] = `
 <fieldset
-  class="euiFormRow euiFormRow--hasLabel"
+  class="euiFormRow euiFormRow--hasLabel emotion-euiFormRow"
   id="generated-id-row"
 >
   <div
