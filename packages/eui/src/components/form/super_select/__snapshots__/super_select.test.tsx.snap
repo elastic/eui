@@ -9,10 +9,10 @@ exports[`EuiSuperSelect props compressed 1`] = `
     value=""
   />
   <div
-    class="euiFormControlLayout euiFormControlLayout--compressed"
+    class="euiFormControlLayout emotion-euiFormControlLayout-compressed"
   >
     <div
-      class="euiFormControlLayout__childrenWrapper"
+      class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper"
       style="--euiFormControlRightIconsCount: 1;"
     >
       <button
@@ -21,10 +21,10 @@ exports[`EuiSuperSelect props compressed 1`] = `
         type="button"
       />
       <div
-        class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right euiFormControlLayoutIcons--absolute"
+        class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-compressed-absolute-right"
       >
         <span
-          class="euiFormControlLayoutCustomIcon"
+          class="euiFormControlLayoutCustomIcon emotion-euiFormControlLayoutCustomIcon"
         >
           <span
             aria-hidden="true"
@@ -47,10 +47,10 @@ exports[`EuiSuperSelect props fullWidth 1`] = `
     value=""
   />
   <div
-    class="euiFormControlLayout euiFormControlLayout--fullWidth"
+    class="euiFormControlLayout emotion-euiFormControlLayout-fullWidth"
   >
     <div
-      class="euiFormControlLayout__childrenWrapper"
+      class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper"
       style="--euiFormControlRightIconsCount: 1;"
     >
       <button
@@ -59,10 +59,10 @@ exports[`EuiSuperSelect props fullWidth 1`] = `
         type="button"
       />
       <div
-        class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right euiFormControlLayoutIcons--absolute"
+        class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-absolute-right"
       >
         <span
-          class="euiFormControlLayoutCustomIcon"
+          class="euiFormControlLayoutCustomIcon emotion-euiFormControlLayoutCustomIcon"
         >
           <span
             aria-hidden="true"
@@ -85,15 +85,19 @@ exports[`EuiSuperSelect props prepend and append 1`] = `
     value=""
   />
   <div
-    class="euiFormControlLayout euiFormControlLayout--group"
+    class="euiFormControlLayout euiFormControlLayout--group emotion-euiFormControlLayout-group"
   >
-    <label
-      class="euiFormLabel euiFormControlLayout__prepend"
-    >
-      prepend
-    </label>
     <div
-      class="euiFormControlLayout__childrenWrapper"
+      class="euiFormControlLayout__prepend emotion-euiFormControlLayout__side-prepend"
+    >
+      <label
+        class="euiFormLabel emotion-euiFormLabel"
+      >
+        prepend
+      </label>
+    </div>
+    <div
+      class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper-inGroup"
       style="--euiFormControlRightIconsCount: 1;"
     >
       <button
@@ -102,10 +106,10 @@ exports[`EuiSuperSelect props prepend and append 1`] = `
         type="button"
       />
       <div
-        class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right euiFormControlLayoutIcons--absolute"
+        class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-absolute-right"
       >
         <span
-          class="euiFormControlLayoutCustomIcon"
+          class="euiFormControlLayoutCustomIcon emotion-euiFormControlLayoutCustomIcon"
         >
           <span
             aria-hidden="true"
@@ -115,11 +119,15 @@ exports[`EuiSuperSelect props prepend and append 1`] = `
         </span>
       </div>
     </div>
-    <label
-      class="euiFormLabel euiFormControlLayout__append"
+    <div
+      class="euiFormControlLayout__append emotion-euiFormControlLayout__side-append"
     >
-      append
-    </label>
+      <label
+        class="euiFormLabel emotion-euiFormLabel"
+      >
+        append
+      </label>
+    </div>
   </div>
 </div>
 `;
@@ -135,10 +143,10 @@ exports[`EuiSuperSelect renders 1`] = `
         value=""
       />
       <div
-        class="euiFormControlLayout"
+        class="euiFormControlLayout emotion-euiFormControlLayout"
       >
         <div
-          class="euiFormControlLayout__childrenWrapper"
+          class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper"
           style="--euiFormControlRightIconsCount: 1;"
         >
           <button
@@ -149,10 +157,10 @@ exports[`EuiSuperSelect renders 1`] = `
             type="button"
           />
           <div
-            class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right euiFormControlLayoutIcons--absolute"
+            class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-absolute-right"
           >
             <span
-              class="euiFormControlLayoutCustomIcon"
+              class="euiFormControlLayoutCustomIcon emotion-euiFormControlLayoutCustomIcon"
             >
               <span
                 aria-hidden="true"

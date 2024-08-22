@@ -154,7 +154,7 @@ export const EuiHeaderLinks: FunctionComponent<EuiHeaderLinksProps> = ({
               isOpen={mobileMenuIsOpen}
               anchorPosition="downRight"
               closePopover={closeMenu}
-              panelPaddingSize="none"
+              panelPaddingSize="s"
               repositionOnScroll
               {...popoverProps}
             >

@@ -22,6 +22,12 @@ import {
 } from '../../global_styling';
 import { euiButtonColor } from '../../themes/amsterdam/global_styling/mixins';
 
+// There are multiple components that only need the form max-width size &
+// don't need the extra overhead/color computing expense of every form var.
+// For microperf, we're making this its own util
+export const euiFormMaxWidth = ({ euiTheme }: UseEuiTheme) =>
+  mathWithUnits(euiTheme.size.base, (x) => x * 25);
+
 export const euiFormVariables = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme, colorMode } = euiThemeContext;
   const isColorDark = colorMode === 'DARK';
@@ -33,7 +39,7 @@ export const euiFormVariables = (euiThemeContext: UseEuiTheme) => {
   const controlCompressedHeight = euiTheme.size.xl;
 
   const sizes = {
-    maxWidth: mathWithUnits(euiTheme.size.base, (x) => x * 25),
+    maxWidth: euiFormMaxWidth(euiThemeContext),
     controlHeight: controlHeight,
     controlCompressedHeight: controlCompressedHeight,
     controlPadding: euiTheme.size.m,
@@ -60,20 +66,9 @@ export const euiFormVariables = (euiThemeContext: UseEuiTheme) => {
     controlPlaceholderText: makeHighContrastColor(euiTheme.colors.subduedText)(
       backgroundColor
     ),
-    inputGroupLabelBackground: isColorDark
+    appendPrependBackground: isColorDark
       ? shade(euiTheme.colors.lightShade, 0.15)
       : tint(euiTheme.colors.lightShade, 0.5),
-    inputGroupBorder: 'none',
-  };
-
-  // Colors - specific to checkboxes, radios, switches, and range thumbs
-  const customControlColors = {
-    customControlDisabledIconColor: isColorDark
-      ? shade(euiTheme.colors.mediumShade, 0.38)
-      : tint(euiTheme.colors.mediumShade, 0.485),
-    customControlBorderColor: isColorDark
-      ? shade(euiTheme.colors.lightestShade, 0.4)
-      : tint(euiTheme.colors.lightestShade, 0.31),
   };
 
   const controlLayout = {
@@ -98,7 +93,6 @@ export const euiFormVariables = (euiThemeContext: UseEuiTheme) => {
   return {
     ...sizes,
     ...colors,
-    ...customControlColors,
     ...iconSizes,
     ...controlLayout,
     animationTiming: `${euiTheme.animation.fast} ease-in`,
@@ -168,45 +162,6 @@ export const euiFormControlStyles = (euiThemeContext: UseEuiTheme) => {
   };
 };
 
-export const euiCustomControl = (
-  euiThemeContext: UseEuiTheme,
-  options: {
-    type?: 'round' | 'square';
-    size?: string;
-  } = {}
-) => {
-  const euiTheme = euiThemeContext.euiTheme;
-  const form = euiFormVariables(euiThemeContext);
-  const { type, size = euiTheme.size.base } = options;
-
-  let padddingStyle = '';
-  let borderRadiusStyle = '';
-
-  if (size) {
-    const borderSize = parseFloat(String(euiTheme.border.width.thin));
-    const paddingSize = mathWithUnits(size, (x) => (x - borderSize * 2) / 2);
-    padddingStyle = `padding: ${paddingSize};`;
-  }
-
-  if (type === 'round') {
-    borderRadiusStyle = `border-radius: ${size};`;
-  } else if (type === 'square') {
-    borderRadiusStyle = `border-radius: ${form.controlCompressedBorderRadius};`;
-  }
-
-  return `
-    ${padddingStyle}
-    ${borderRadiusStyle}
-    border: ${euiTheme.border.width.thin} solid ${form.customControlBorderColor};
-    background: ${euiTheme.colors.emptyShade} no-repeat center;
-
-    ${euiCanAnimate} {
-      transition: background-color ${form.animationTiming},
-        border-color ${form.animationTiming};
-    }
-  `;
-};
-
 export const euiFormControlText = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
   const { fontSize } = euiFontSize(euiThemeContext, 's');
@@ -224,16 +179,34 @@ export const euiFormControlText = (euiThemeContext: UseEuiTheme) => {
   `;
 };
 
-export const euiFormControlDefaultShadow = (euiThemeContext: UseEuiTheme) => {
+export const euiFormControlDefaultShadow = (
+  euiThemeContext: UseEuiTheme,
+  {
+    withBorder = true,
+    withBackground = true,
+    withBackgroundColor = withBackground,
+    withBackgroundAnimation = withBackground,
+  }: {
+    withBorder?: boolean;
+    withBackground?: boolean;
+    withBackgroundColor?: boolean;
+    withBackgroundAnimation?: boolean;
+  } = {}
+) => {
   const { euiTheme } = euiThemeContext;
   const form = euiFormVariables(euiThemeContext);
 
-  return `
-    /* We use inset box-shadow instead of border to skip extra hight calculations */
+  // We use inset box-shadow instead of border to skip extra height calculations
+  const border = `
     border: none;
     box-shadow: inset 0 0 0 ${euiTheme.border.width.thin} ${form.borderColor};
-    background-color: ${form.backgroundColor};
+  `.trim();
 
+  const backgroundColor = `
+    background-color: ${form.backgroundColor};
+  `.trim();
+
+  const backgroundGradient = `
     background-repeat: no-repeat;
     background-size: 0% 100%;
     background-image: linear-gradient(to top,
@@ -242,14 +215,22 @@ export const euiFormControlDefaultShadow = (euiThemeContext: UseEuiTheme) => {
       transparent ${euiTheme.border.width.thick},
       transparent 100%
     );
+  `.trim();
 
+  const backgroundAnimation = `
     ${euiCanAnimate} {
       transition:
-        box-shadow ${form.animationTiming},
         background-image ${form.animationTiming},
         background-size ${form.animationTiming},
         background-color ${form.animationTiming};
     }
+  `.trim();
+
+  return `
+    ${withBorder ? border : ''}
+    ${withBackgroundColor ? backgroundColor : ''}
+    ${withBackground ? backgroundGradient : ''}
+    ${withBackgroundAnimation ? backgroundAnimation : ''}
   `;
 };
 
@@ -281,6 +262,7 @@ export const euiFormControlDisabledStyles = (euiThemeContext: UseEuiTheme) => {
     -webkit-text-fill-color: ${form.controlDisabledColor};
     background-color: ${form.backgroundDisabledColor};
     cursor: not-allowed;
+    --euiFormControlStateColor: transparent;
 
     ${euiPlaceholderPerBrowser(`
       color: ${form.controlDisabledColor};
@@ -344,3 +326,143 @@ const euiPlaceholderPerBrowser = (content: string) => `
   &:-moz-placeholder { ${content} }
   &::placeholder { ${content} }
 `;
+
+/**
+ * Selection custom controls - checkboxes, radios, and switches
+ */
+
+export const euiFormCustomControlVariables = (euiThemeContext: UseEuiTheme) => {
+  const { euiTheme, colorMode } = euiThemeContext;
+
+  const sizes = {
+    control: euiTheme.size.base,
+    lineHeight: euiTheme.size.l,
+    labelGap: euiTheme.size.s,
+  };
+
+  const colors = {
+    unselected: euiTheme.colors.emptyShade,
+    unselectedBorder:
+      colorMode === 'DARK'
+        ? tint(euiTheme.colors.lightestShade, 0.31) // WCAG AA requirements
+        : shade(euiTheme.colors.lightestShade, 0.4),
+    selected: euiTheme.colors.primary,
+    selectedIcon: euiTheme.colors.emptyShade,
+    disabled: euiTheme.colors.lightShade,
+    disabledIcon: euiTheme.colors.darkShade,
+    disabledLabel: euiTheme.colors.disabledText, // Lighter than formVars.disabledColor because it typically doesn't have as dark a background
+  };
+
+  const animation = {
+    speed: euiTheme.animation.fast,
+    easing: 'ease-in',
+  };
+
+  return {
+    sizes,
+    colors,
+    animation,
+  };
+};
+
+export const euiFormCustomControlStyles = (euiThemeContext: UseEuiTheme) => {
+  const { euiTheme } = euiThemeContext;
+  const controlVars = euiFormCustomControlVariables(euiThemeContext);
+
+  const centerWithLabel = mathWithUnits(
+    [controlVars.sizes.lineHeight, controlVars.sizes.control],
+    (x, y) => (x - y) / 2
+  );
+
+  return {
+    wrapper: `
+      display: flex;
+      align-items: flex-start;
+    `,
+    input: {
+      fauxInput: `
+        position: relative;
+        ${logicalCSS('height', controlVars.sizes.control)}
+        ${logicalCSS('width', controlVars.sizes.control)}
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        &:has(+ label) {
+          ${logicalCSS('margin-top', centerWithLabel)}
+        }
+
+        &:has(input:focus-visible) {
+          outline: ${euiTheme.focus.width} solid ${controlVars.colors.selected};
+          outline-offset: ${euiTheme.focus.width};
+        }
+
+        ${euiCanAnimate} {
+          transition-property: background-color, color;
+          transition-duration: ${controlVars.animation.speed};
+          transition-timing-function: ${controlVars.animation.easing};
+        }
+      `,
+      enabled: {
+        selected: `
+          color: ${controlVars.colors.selectedIcon};
+          background-color: ${controlVars.colors.selected};
+        `,
+        unselected: `
+          color: transparent;
+          background-color: ${controlVars.colors.unselected};
+          border: ${euiTheme.border.width.thin} solid ${controlVars.colors.unselectedBorder};
+
+          &:has(input:focus) {
+            border-color: ${controlVars.colors.selected};
+          }
+        `,
+      },
+      disabled: {
+        selected: `
+          label: disabled;
+          color: ${controlVars.colors.disabledIcon};
+          background-color: ${controlVars.colors.disabled};
+        `,
+        unselected: `
+          label: disabled;
+          color: ${controlVars.colors.disabled};
+          background-color: ${controlVars.colors.disabled};
+          cursor: not-allowed;
+        `,
+      },
+
+      // Looks better centered at different zoom levels than just <EuiIcon size="s" />
+      icon: `
+        transform: scale(0.75);
+      `,
+
+      // Hidden input sits on top of the visible element
+      hiddenInput: `
+        position: absolute;
+        inset: 0;
+        opacity: 0 !important;
+        cursor: pointer;
+
+        &:disabled {
+          cursor: not-allowed;
+        }
+      `,
+    },
+    label: {
+      label: `
+        /* Needs to use padding and not flex gap for extra mouse click area */
+        ${logicalCSS('padding-left', controlVars.sizes.labelGap)}
+        line-height: ${controlVars.sizes.lineHeight};
+        font-size: ${euiFontSize(euiThemeContext, 's').fontSize};
+      `,
+      enabled: `
+        cursor: pointer;
+      `,
+      disabled: `
+        cursor: not-allowed;
+        color: ${controlVars.colors.disabledLabel};
+      `,
+    },
+  };
+};

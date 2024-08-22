@@ -9,11 +9,11 @@
 import { css } from '@emotion/react';
 import { logicalCSS } from '../../global_styling';
 import { UseEuiTheme } from '../../services';
-import { euiFormVariables } from '../form/form.styles';
+import { euiFormMaxWidth } from '../form/form.styles';
 
 export const euiListGroupStyles = (euiThemeContext: UseEuiTheme) => {
   const euiTheme = euiThemeContext.euiTheme;
-  const form = euiFormVariables(euiThemeContext);
+  const formMaxWidth = euiFormMaxWidth(euiThemeContext);
 
   return {
     // Base
@@ -36,7 +36,7 @@ export const euiListGroupStyles = (euiThemeContext: UseEuiTheme) => {
       border: ${euiTheme.border.thin};
     `,
     maxWidthDefault: css`
-      ${logicalCSS('max-width', form.maxWidth)}
+      ${logicalCSS('max-width', formMaxWidth)}
     `,
     // Gutter sizes
     none: css``,

@@ -96,7 +96,7 @@ describe('EuiComboBox', () => {
       );
       cy.get('[data-test-subj="comboBoxSearchInput"]')
         .invoke('width')
-        .should('be.eq', 354);
+        .should('be.eq', 356);
     });
   });
 

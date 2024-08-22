@@ -34,6 +34,9 @@ exports[`EuiForm renders with error callout when isInvalid is "true" 1`] = `
       Please address the highlighted errors.
     </p>
   </div>
+  <div
+    class="euiSpacer euiSpacer--m emotion-euiSpacer-m"
+  />
 </div>
 `;
 
@@ -78,6 +81,9 @@ exports[`EuiForm renders with error callout when isInvalid is "true" and has mul
       </ul>
     </div>
   </div>
+  <div
+    class="euiSpacer euiSpacer--m emotion-euiSpacer-m"
+  />
 </div>
 `;
 
@@ -115,6 +121,9 @@ exports[`EuiForm renders with error callout when isInvalid is "true" and has one
       </ul>
     </div>
   </div>
+  <div
+    class="euiSpacer euiSpacer--m emotion-euiSpacer-m"
+  />
 </div>
 `;
 

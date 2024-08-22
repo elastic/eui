@@ -188,19 +188,26 @@ export const EuiDatePicker: FunctionComponent<EuiDatePickerProps> = ({
   utcOffset,
   ...rest
 }) => {
+  // Check for whether the passed `selected` moment date is valid
+  const isInvalid =
+    _isInvalid || (selected?.isValid() === false ? true : undefined);
+
   const styles = useEuiMemoizedStyles(euiDatePickerStyles);
   const cssStyles = [
     styles.euiDatePicker,
-    inline && styles.inline,
-    inline && shadow && styles.shadow,
+    ...(inline
+      ? [
+          styles.inline.inline,
+          isInvalid && !(disabled || readOnly) && styles.inline.invalid,
+          shadow ? styles.inline.shadow : styles.inline.noShadow,
+          disabled && styles.inline.disabled,
+          readOnly && styles.inline.readOnly,
+        ]
+      : []),
   ];
   const calendarStyles = useEuiMemoizedStyles(euiReactDatePickerStyles);
 
   const classes = classNames('euiDatePicker', className);
-
-  // Check for whether the passed `selected` moment date is valid
-  const isInvalid =
-    _isInvalid || (selected?.isValid() === false ? true : undefined);
 
   // Passed to the default EuiFieldText input, not passed to custom inputs
   const defaultInputProps =
@@ -297,12 +304,7 @@ export const EuiDatePicker: FunctionComponent<EuiDatePickerProps> = ({
         isInvalid={isInvalid}
         isDisabled={disabled}
         readOnly={readOnly}
-        className={classNames({
-          // Take advantage of `euiFormControlLayoutDelimited`'s replacement input styling
-          euiFormControlLayoutDelimited: inline,
-          'euiFormControlLayoutDelimited--isInvalid':
-            inline && isInvalid && !disabled && !readOnly,
-        })}
+        isDelimited={inline} // Styling shortcut for inline calendars
         iconsPosition={inline ? 'static' : undefined}
       >
         {control}

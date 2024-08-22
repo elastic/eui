@@ -184,6 +184,7 @@ export const EuiFieldNumber: FunctionComponent<EuiFieldNumberProps> = (
       fullWidth={fullWidth}
       isLoading={isLoading}
       isInvalid={isInvalid || isNativelyInvalid}
+      isDisabled={rest.disabled}
       compressed={compressed}
       readOnly={readOnly}
       prepend={prepend}

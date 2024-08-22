@@ -41,11 +41,9 @@ describe('EuiDatePicker', () => {
     it('renders form control icons below the date picker', () => {
       cy.realMount(<EuiDatePicker inline isLoading isInvalid />);
 
-      cy.get('.euiFormControlLayoutIcons').should(
-        'have.class',
-        'euiFormControlLayoutIcons--static'
-      );
-      cy.get('.euiFormControlLayoutDelimited--isInvalid').should('exist');
+      cy.get('.euiFormControlLayoutIcons')
+        .invoke('attr', 'class')
+        .should('contain', 'euiFormControlLayoutIcons-static');
     });
 
     it('renders as disabled', () => {
@@ -60,7 +58,7 @@ describe('EuiDatePicker', () => {
     it('renders as readonly', () => {
       cy.realMount(<EuiDatePicker inline readOnly />);
 
-      cy.get('.euiFormControlLayout--readOnly').should('exist');
+      cy.get('.euiFormControlLayout-readOnly').should('exist');
 
       cy.realPress('Tab');
       cy.focused().should('not.exist');

@@ -66,12 +66,6 @@ export const euiSuperDatePickerStyles = (euiThemeContext: UseEuiTheme) => {
       ${euiMaxBreakpoint(euiThemeContext, 'm')} {
         ${logicalCSS('width', '100%')}
       }
-
-      /* Fix border radius clipping, but only if the auto refresh append item isn't rendered */
-      .euiFormControlLayout__childrenWrapper:last-child {
-        ${logicalCSS('border-top-right-radius', 'inherit')}
-        ${logicalCSS('border-bottom-right-radius', 'inherit')}
-      }
     `,
 
     widths: {
@@ -121,6 +115,11 @@ export const euiSuperDatePickerStyles = (euiThemeContext: UseEuiTheme) => {
     // isQuickSelectOnly forces `width` to be `auto`
     isQuickSelectOnly: css`
       ${logicalCSS('min-width', 0)}
+
+      /* Override default EuiFormControlLayout styles that prevents side nodes from overwhelming the main control */
+      .euiFormControlLayout__prepend {
+        ${logicalCSS('max-width', 'none')}
+      }
     `,
 
     euiSuperDatePicker__range: css`
@@ -129,8 +128,7 @@ export const euiSuperDatePickerStyles = (euiThemeContext: UseEuiTheme) => {
     `,
     euiSuperDatePicker__rangeInput: css`
       flex-grow: 1;
-      /* Needs !important to override EuiFormControlLayoutDelimited's fullWidth CSS */
-      ${logicalCSS('width', 'auto !important')}
+      ${logicalCSS('width', 'auto')}
     `,
     euiSuperDatePicker__prettyFormat: css`
       ${_buttonStyles(euiThemeContext)}
@@ -176,8 +174,7 @@ export const euiSuperDatePickerStyles = (euiThemeContext: UseEuiTheme) => {
         }
       `,
       needsUpdating: css`
-        /* Extra specificity needed to override default delimited styles */
-        .euiFormControlLayoutDelimited .euiFormControlLayout__childrenWrapper {
+        .euiFormControlLayout__childrenWrapper {
           color: ${needsUpdatingTextColor};
           background-color: ${needsUpdatingBackgroundColor};
         }

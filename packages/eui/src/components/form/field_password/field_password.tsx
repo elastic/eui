@@ -83,6 +83,7 @@ export const EuiFieldPassword: FunctionComponent<EuiFieldPasswordProps> = (
     name,
     placeholder,
     value,
+    disabled,
     isInvalid,
     fullWidth = defaultFullWidth,
     isLoading = false,
@@ -134,7 +135,7 @@ export const EuiFieldPassword: FunctionComponent<EuiFieldPasswordProps> = (
           iconType={isVisible ? 'eyeClosed' : 'eye'}
           aria-label={isVisible ? maskPasswordLabel : showPasswordLabel}
           title={isVisible ? maskPasswordLabel : showPasswordLabel}
-          disabled={rest.disabled}
+          disabled={disabled}
           {...dualToggleProps}
           onClick={(e) => handleToggle(e, isVisible)}
         />
@@ -147,7 +148,7 @@ export const EuiFieldPassword: FunctionComponent<EuiFieldPasswordProps> = (
     showPasswordLabel,
     dualToggleProps,
     handleToggle,
-    rest.disabled,
+    disabled,
   ]);
 
   const finalAppend = useMemo(() => {
@@ -186,6 +187,7 @@ export const EuiFieldPassword: FunctionComponent<EuiFieldPasswordProps> = (
       fullWidth={fullWidth}
       isLoading={isLoading}
       isInvalid={isInvalid}
+      isDisabled={disabled}
       compressed={compressed}
       prepend={prepend}
       append={finalAppend}
@@ -199,6 +201,7 @@ export const EuiFieldPassword: FunctionComponent<EuiFieldPasswordProps> = (
           className={classes}
           css={cssStyles}
           value={value}
+          disabled={disabled}
           ref={setInputRef}
           {...rest}
         />
