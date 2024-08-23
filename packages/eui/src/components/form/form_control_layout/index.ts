@@ -10,3 +10,7 @@ export type { EuiFormControlLayoutProps } from './form_control_layout';
 export { EuiFormControlLayout } from './form_control_layout';
 export type { EuiFormControlLayoutDelimitedProps } from './form_control_layout_delimited';
 export { EuiFormControlLayoutDelimited } from './form_control_layout_delimited';
+export {
+  EuiFormControlLayoutIcons,
+  type EuiFormControlLayoutIconsProps,
+} from './form_control_layout_icons';
