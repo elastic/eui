@@ -1,3 +1,11 @@
+## [`v95.8.0-backport.1`](https://github.com/elastic/eui/releases/v95.8.0-backport.1)
+
+**This is a backport release only intended for use by Kibana.**
+
+**Bug fixes**
+
+- Fixed `EuiSelectableTemplateSitewide` styles when used within a dark-themed `EuiHeader` ([#7977](https://github.com/elastic/eui/pull/7977))
+
 ## [`v95.8.0`](https://github.com/elastic/eui/releases/v95.8.0)
 
 - Updated `EuiHeaderLinks`'s mobile menu to set a slight popover padding by default ([#7961](https://github.com/elastic/eui/pull/7961))
