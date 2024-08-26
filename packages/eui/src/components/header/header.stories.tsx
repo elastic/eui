@@ -8,12 +8,14 @@
 
 import React, { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
+import { LOKI_SELECTORS } from '../../../.storybook/loki';
 
 import {
   EuiHeaderLogo,
   EuiHeaderSectionItemButton,
   EuiHeaderLinks,
   EuiHeaderLink,
+  EuiSelectableTemplateSitewide,
   EuiIcon,
   EuiAvatar,
   EuiButton,
@@ -77,6 +79,74 @@ export const Sections: Story = {
             aria-label="Apps menu with 1 new app"
           >
             <EuiIcon type="apps" size="m" />
+          </EuiHeaderSectionItemButton>,
+        ],
+      },
+    ],
+  },
+};
+
+export const DarkThemeWithSitewideSearch: Story = {
+  parameters: {
+    layout: 'fullscreen',
+    controls: { include: ['theme'] },
+    loki: { chromeSelector: LOKI_SELECTORS.body }, // Required to capture the open popover
+  },
+  args: {
+    theme: 'dark',
+    position: 'fixed',
+    sections: [
+      {
+        items: [
+          <EuiHeaderLogo iconType="logoElastic" href="">
+            Elastic
+          </EuiHeaderLogo>,
+        ],
+      },
+      {
+        items: [
+          <EuiSelectableTemplateSitewide
+            options={[
+              {
+                label: 'Welcome dashboards',
+                icon: {
+                  type: 'clock',
+                  color: 'subdued',
+                },
+                avatar: { name: 'Default Space' },
+                meta: [
+                  {
+                    text: 'Dashboard',
+                    type: 'application',
+                    highlightSearchString: true,
+                  },
+                ],
+              },
+            ]}
+            searchProps={{
+              append: '⌘K',
+              compressed: true,
+            }}
+            popoverButton={
+              <EuiHeaderSectionItemButton aria-label="Sitewide search">
+                <EuiIcon type="search" size="m" />
+              </EuiHeaderSectionItemButton>
+            }
+            popoverButtonBreakpoints={['xs', 's']}
+            popoverProps={{
+              isOpen: true,
+              repositionOnScroll: true, // Necessary when placing search in a fixed component
+            }}
+          />,
+        ],
+      },
+      {
+        items: [
+          <EuiHeaderSectionItemButton
+            notification={true}
+            aria-label="Notifications: Updates available"
+          >
+            <EuiIcon type="cheer" size="m" />
           </EuiHeaderSectionItemButton>,
         ],
       },

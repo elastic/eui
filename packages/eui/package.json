@@ -159,6 +159,7 @@
     "babel-plugin-istanbul": "^6.1.1",
     "babel-plugin-pegjs-inline-precompile": "^0.1.1",
     "buffer": "^6.0.3",
+    "buildkite-test-collector": "^1.7.2",
     "cache-loader": "^4.1.0",
     "chalk": "^4.1.0",
     "chokidar": "^3.4.2",
