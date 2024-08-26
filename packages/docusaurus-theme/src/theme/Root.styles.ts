@@ -117,13 +117,5 @@ export const getGlobalStyles = (theme: UseEuiTheme) => {
 
         --ifm-global-radius: ${euiTheme.border.radius.small};
       }
-
-      /* base styles & resets */
-      h1, h2, h3, h4, h5, h6 {
-        margin-block-start: ${size.l};
-        margin-block-end: ${size.m};
-
-        font-weight: ${font.weight.bold};
-      }
   `;
 };
