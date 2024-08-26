@@ -64,6 +64,47 @@ describe('EuiCollapsibleNavBeta', () => {
     expect(onCollapseToggle).toHaveBeenLastCalledWith(true);
   });
 
+  it('lets the consumer control the collapsed state', () => {
+    const spyOnCollapseToggle = jest.fn();
+
+    const Parent = () => {
+      const [isCollapsed, setIsCollapsed] = React.useState(false);
+      const onCollapseToggle = (isCollapsed: boolean) => {
+        spyOnCollapseToggle(isCollapsed);
+        setIsCollapsed(isCollapsed);
+      };
+
+      return (
+        <>
+          <button
+            onClick={() => setIsCollapsed(!isCollapsed)}
+            data-test-subj="parentToggleCollapse"
+          >
+            Toggle
+          </button>
+          <EuiCollapsibleNavBeta
+            isCollapsed={isCollapsed}
+            onCollapseToggle={onCollapseToggle}
+            data-test-subj="nav"
+          >
+            Nav content
+          </EuiCollapsibleNavBeta>
+        </>
+      );
+    };
+    const { getByTestSubject } = render(<Parent />);
+
+    expect(getByTestSubject('nav')).toHaveStyle({ 'inline-size': '248px' }); // initially expanded
+
+    fireEvent.click(getByTestSubject('parentToggleCollapse')); // collapse the nav from the parent
+    expect(spyOnCollapseToggle).not.toHaveBeenCalled();
+    expect(getByTestSubject('nav')).toHaveStyle({ 'inline-size': '48px' }); // collapsed from the parent
+
+    fireEvent.click(getByTestSubject('euiCollapsibleNavButton')); // expand from the child
+    expect(spyOnCollapseToggle).toHaveBeenLastCalledWith(false);
+    expect(getByTestSubject('nav')).toHaveStyle({ 'inline-size': '248px' }); // expanded from the child
+  });
+
   describe('responsive behavior', () => {
     const mockWindowResize = (width: number) => {
       window.innerWidth = width;

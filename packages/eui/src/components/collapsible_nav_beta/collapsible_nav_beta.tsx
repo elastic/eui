@@ -51,6 +51,11 @@ export type EuiCollapsibleNavBetaProps = CommonProps &
      */
     initialIsCollapsed?: boolean;
     /**
+     * Whether the navigation flyout should be collapsed or expanded. If set, the collapsed state
+     * is **controlled** by the parent component. This prop superseeds `initialIsCollapsed`.
+     */
+    isCollapsed?: boolean;
+    /**
      * Optional callback that fires when the user toggles the nav between
      * collapsed and uncollapsed states
      */
@@ -87,6 +92,7 @@ const _EuiCollapsibleNavBeta: FunctionComponent<EuiCollapsibleNavBetaProps> = ({
   children,
   className,
   initialIsCollapsed = false,
+  isCollapsed: propsIsCollapsed,
   onCollapseToggle,
   width: _width = 248,
   side = 'left',
@@ -99,16 +105,29 @@ const _EuiCollapsibleNavBeta: FunctionComponent<EuiCollapsibleNavBetaProps> = ({
   /**
    * Collapsed state
    */
-  const [isCollapsed, setIsCollapsed] = useState(initialIsCollapsed);
-  const toggleCollapsed = useCallback(
-    () =>
-      setIsCollapsed((isCollapsed) => {
-        onCollapseToggle?.(!isCollapsed);
-        return !isCollapsed;
-      }),
-    [onCollapseToggle]
-  );
-  const onClose = useCallback(() => setIsCollapsed(true), []);
+  const [stateIsCollapsed, setIsCollapsed] = useState(initialIsCollapsed);
+  const isCollapsedControlled = propsIsCollapsed !== undefined;
+  const isCollapsed = isCollapsedControlled
+    ? propsIsCollapsed
+    : stateIsCollapsed;
+
+  const toggleCollapsed = useCallback(() => {
+    if (isCollapsedControlled) {
+      onCollapseToggle?.(!isCollapsed);
+    } else {
+      setIsCollapsed((prev) => {
+        onCollapseToggle?.(!prev);
+        return !prev;
+      });
+    }
+  }, [isCollapsed, isCollapsedControlled, onCollapseToggle]);
+
+  const onClose = useCallback(() => {
+    setIsCollapsed(true);
+    if (isCollapsedControlled) {
+      onCollapseToggle?.(true);
+    }
+  }, [isCollapsedControlled, onCollapseToggle]);
 
   /**
    * Responsive behavior
