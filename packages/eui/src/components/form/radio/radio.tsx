@@ -65,6 +65,7 @@ export const EuiRadio: FunctionComponent<EuiRadioProps> = ({
   const styles = useEuiMemoizedStyles(euiRadioStyles);
   const inputStyles = [
     styles.input.euiRadio__circle,
+    !!label && styles.input.hasLabel,
     disabled
       ? checked
         ? styles.input.disabled.selected

@@ -22,6 +22,7 @@ export const euiRadioStyles = (euiThemeContext: UseEuiTheme) => {
         ${controlStyles.input.fauxInput}
         border-radius: 50%;
       `,
+      hasLabel: controlStyles.input.hasLabel, // Skip css`` className generation
       enabled: {
         selected: css(controlStyles.input.enabled.selected),
         unselected: css(controlStyles.input.enabled.unselected),

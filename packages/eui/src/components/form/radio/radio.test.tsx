@@ -7,6 +7,7 @@
  */
 
 import React from 'react';
+import { fireEvent } from '@testing-library/react';
 import { requiredProps } from '../../../test';
 import { shouldRenderCustomStyles } from '../../../test/internal';
 import { render } from '../../../test/rtl';
@@ -71,6 +72,16 @@ describe('EuiRadio', () => {
       );
 
       expect(container.firstChild).toMatchSnapshot();
+    });
+
+    test('onChange is fired', () => {
+      const onChange = jest.fn();
+      const { getByRole } = render(
+        <EuiRadio id="id" onChange={onChange} label="test" />
+      );
+      fireEvent.click(getByRole('radio', { name: 'test' }));
+
+      expect(onChange).toHaveBeenCalledTimes(1);
     });
   });
 });
