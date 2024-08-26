@@ -57,6 +57,7 @@ export const EuiCheckbox: FunctionComponent<EuiCheckboxProps> = ({
   const styles = useEuiMemoizedStyles(euiCheckboxStyles);
   const inputStyles = [
     styles.input.euiCheckbox__square,
+    !!label && styles.input.hasLabel,
     disabled
       ? checked || indeterminate
         ? styles.input.disabled.selected

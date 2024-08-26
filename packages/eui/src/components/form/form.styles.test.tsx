@@ -258,10 +258,6 @@ describe('euiFormCustomControlStyles', () => {
               justify-content: center;
               align-items: center;
 
-              &:has(+ label) {
-                margin-block-start: 4px;
-              }
-
               &:has(input:focus-visible) {
                 outline: 2px solid #07C;
                 outline-offset: 2px;
@@ -272,6 +268,9 @@ describe('euiFormCustomControlStyles', () => {
                 transition-duration: 150ms;
                 transition-timing-function: ease-in;
               }
+            ",
+          "hasLabel": "
+              margin-block-start: 4px;
             ",
           "hiddenInput": "
               position: absolute;
