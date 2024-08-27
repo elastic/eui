@@ -105,29 +105,26 @@ const _EuiCollapsibleNavBeta: FunctionComponent<EuiCollapsibleNavBetaProps> = ({
   /**
    * Collapsed state
    */
-  const [stateIsCollapsed, setIsCollapsed] = useState(initialIsCollapsed);
-  const isCollapsedControlled = propsIsCollapsed !== undefined;
-  const isCollapsed = isCollapsedControlled
-    ? propsIsCollapsed
-    : stateIsCollapsed;
-
-  const toggleCollapsed = useCallback(() => {
-    if (isCollapsedControlled) {
-      onCollapseToggle?.(!isCollapsed);
-    } else {
-      setIsCollapsed((prev) => {
-        onCollapseToggle?.(!prev);
-        return !prev;
-      });
-    }
-  }, [isCollapsed, isCollapsedControlled, onCollapseToggle]);
-
+  const [isCollapsed, setIsCollapsed] = useState(initialIsCollapsed);
+  const toggleCollapsed = useCallback(
+    () =>
+      setIsCollapsed((isCollapsed) => {
+        onCollapseToggle?.(!isCollapsed);
+        return !isCollapsed;
+      }),
+    [onCollapseToggle]
+  );
   const onClose = useCallback(() => {
     setIsCollapsed(true);
-    if (isCollapsedControlled) {
-      onCollapseToggle?.(true);
+    onCollapseToggle?.(true);
+  }, [onCollapseToggle]);
+
+  // Controlled state
+  useEffect(() => {
+    if (propsIsCollapsed !== undefined) {
+      setIsCollapsed(propsIsCollapsed);
     }
-  }, [isCollapsedControlled, onCollapseToggle]);
+  }, [propsIsCollapsed]);
 
   /**
    * Responsive behavior
