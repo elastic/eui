@@ -7,8 +7,8 @@ const locationPathname = location.pathname;
 
 export const markdownContent = `**Links starting with http:, https:, mailto:, and / are valid:**
 
-* https://elastic.com
-* http://elastic.com
+* https://elastic.co
+* http://elastic.co
 * https link to [elastic.co](https://elastic.co)
 * http link to [elastic.co](http://elastic.co)
 * relative link to [eui doc's homepage](${locationPathname})
@@ -21,5 +21,5 @@ export const markdownContent = `**Links starting with http:, https:, mailto:, an
 `;
 
 export default () => {
-  return <EuiMarkdownFormat>{markdownContent}</EuiMarkdownFormat>;
+  return <EuiMarkdownFormat linkTarget='_blank'>{markdownContent}</EuiMarkdownFormat>;
 };
