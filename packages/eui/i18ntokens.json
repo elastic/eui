@@ -545,14 +545,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 162,
+        "line": 180,
         "column": 27,
-        "index": 5418
+        "index": 5946
       },
       "end": {
-        "line": 165,
+        "line": 183,
         "column": 3,
-        "index": 5488
+        "index": 6016
       }
     },
     "filepath": "src/components/collapsible_nav_beta/collapsible_nav_beta.tsx"
