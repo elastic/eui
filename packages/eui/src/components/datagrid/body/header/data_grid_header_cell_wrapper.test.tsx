@@ -76,7 +76,6 @@ describe('EuiDataGridHeaderCellWrapper', () => {
     expect(getByTestSubject('dataGridHeaderCell-someColumn'))
       .toMatchInlineSnapshot(`
       <div
-        aria-label="test"
         class="euiDataGridHeaderCell euiDataGridHeaderCell--test"
         data-gridcell-column-id="someColumn"
         data-gridcell-column-index="0"

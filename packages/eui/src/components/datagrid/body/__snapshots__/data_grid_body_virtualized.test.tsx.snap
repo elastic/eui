@@ -15,7 +15,6 @@ exports[`EuiDataGridBodyVirtualized renders 1`] = `
     >
       <div
         aria-describedby="euiDataGridCellHeader_generated-id_sorting"
-        aria-labelledby="euiDataGridCellHeader_generated-id_content"
         class="euiDataGridHeaderCell euiDataGridHeaderCell--boolean euiDataGridHeaderCell--hasColumnActions"
         data-gridcell-column-id="columnA"
         data-gridcell-column-index="0"
@@ -32,17 +31,11 @@ exports[`EuiDataGridBodyVirtualized renders 1`] = `
           style="margin-right: 0px;"
         />
         <div
-          aria-hidden="true"
           class="euiDataGridHeaderCell__content"
-          id="euiDataGridCellHeader_generated-id_content"
           title="columnA"
         >
           columnA
         </div>
-        <p
-          hidden=""
-          id="euiDataGridCellHeader_generated-id_sorting"
-        />
         <div
           class="euiPopover emotion-euiPopover-block-EuiDataGridHeaderCell"
         >
@@ -66,7 +59,6 @@ exports[`EuiDataGridBodyVirtualized renders 1`] = `
       </div>
       <div
         aria-describedby="euiDataGridCellHeader_generated-id_sorting"
-        aria-labelledby="euiDataGridCellHeader_generated-id_content"
         class="euiDataGridHeaderCell euiDataGridHeaderCell--string euiDataGridHeaderCell--hasColumnActions"
         data-gridcell-column-id="columnB"
         data-gridcell-column-index="1"
@@ -83,17 +75,11 @@ exports[`EuiDataGridBodyVirtualized renders 1`] = `
           style="margin-right: 0px;"
         />
         <div
-          aria-hidden="true"
           class="euiDataGridHeaderCell__content"
-          id="euiDataGridCellHeader_generated-id_content"
           title="columnB"
         >
           columnB
         </div>
-        <p
-          hidden=""
-          id="euiDataGridCellHeader_generated-id_sorting"
-        />
         <div
           class="euiPopover emotion-euiPopover-block-EuiDataGridHeaderCell"
         >
