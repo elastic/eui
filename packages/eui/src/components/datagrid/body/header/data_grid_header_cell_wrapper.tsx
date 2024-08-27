@@ -37,6 +37,7 @@ export const EuiDataGridHeaderCellWrapper: FunctionComponent<
   children,
   hasActionsPopover,
   openActionsPopover,
+  'aria-label': ariaLabel,
   ...rest
 }) => {
   const classes = classnames('euiDataGridHeaderCell', className);
@@ -100,6 +101,7 @@ export const EuiDataGridHeaderCellWrapper: FunctionComponent<
       data-gridcell-row-index="-1"
       data-gridcell-visible-row-index="-1"
       style={width != null ? { width: `${width}px` } : {}}
+      aria-label={renderFocusTrap ? ariaLabel : undefined}
       {...rest}
     >
       <HandleInteractiveChildren

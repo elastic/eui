@@ -114,6 +114,8 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
       const clickActionsButton = useCallback(() => {
         actionsButtonRef.current?.click();
       }, []);
+      const [isActionsButtonFocused, setIsActionsButtonFocused] =
+        useState(false);
 
       const { sortingArrow, ariaSort, sortingScreenReaderText } =
         useSortingUtils({
@@ -122,10 +124,6 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
           showColumnActions,
         });
 
-      const contentAriaId = useGeneratedHtmlId({
-        prefix: 'euiDataGridCellHeader',
-        suffix: 'content',
-      });
       const sortingAriaId = useGeneratedHtmlId({
         prefix: 'euiDataGridCellHeader',
         suffix: 'sorting',
@@ -165,7 +163,7 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
           aria-sort={ariaSort}
           hasActionsPopover={showColumnActions}
           openActionsPopover={clickActionsButton}
-          aria-labelledby={contentAriaId}
+          aria-label={displayAsText && `${displayAsText}, `} // ensure cell text content is read first, if available
           aria-describedby={sortingAriaId}
         >
           {(hasFocusTrap) => (
@@ -179,17 +177,20 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
               ) : null}
 
               <CellContent
+                // `title` will sometimes be read as content by screen readers even with aria-hidden
                 title={title}
                 arrow={sortingArrow}
-                id={contentAriaId}
-                aria-hidden // VO reads out the content twice without this :T
+                // enable content to be read if no `displayAsText` is available as `aria-label`
+                aria-hidden={hasFocusTrap && displayAsText ? 'true' : undefined}
               >
                 {children}
               </CellContent>
 
-              <p id={sortingAriaId} hidden>
-                {sortingScreenReaderText}
-              </p>
+              {sortingScreenReaderText && (
+                <p id={sortingAriaId} hidden>
+                  {sortingScreenReaderText}
+                </p>
+              )}
 
               {showColumnActions && (
                 <EuiPopover
@@ -204,6 +205,13 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
                       className="euiDataGridHeaderCell__button"
                       css={emptyHoverStyles.text}
                       onClick={togglePopover}
+                      onFocus={() => setIsActionsButtonFocused(true)}
+                      onBlur={() => setIsActionsButtonFocused(false)}
+                      aria-hidden={
+                        hasFocusTrap && !isActionsButtonFocused
+                          ? 'true' // prevent the actions button from being read on cell focus
+                          : undefined
+                      }
                       aria-label={
                         hasFocusTrap
                           ? actionsButtonAriaLabel

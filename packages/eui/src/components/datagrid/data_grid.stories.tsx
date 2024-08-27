@@ -485,6 +485,7 @@ export const CustomHeaderContent: Story = {
     columns: [
       {
         id: 'name',
+        displayAsText: 'Name',
         display: CustomHeaderCell,
         defaultSortDirection: 'asc' as const,
         cellActions: [
