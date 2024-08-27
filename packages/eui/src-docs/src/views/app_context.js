@@ -36,6 +36,12 @@ export const AppContext = ({ children }) => {
   const { theme } = useContext(ThemeContext);
   const locale = useSelector((state) => getLocale(state));
 
+  // NOTE: temp. override solution
+  // TODO: remove once not needed for testing
+  const overrides = JSON.parse(
+    localStorage.getItem('eui-theme-overrides') || '{}'
+  );
+
   const mappingFuncs = {
     'en-xa': translateUsingPseudoLocale,
   };
@@ -57,6 +63,7 @@ export const AppContext = ({ children }) => {
       }}
       theme={EUI_THEMES.find((t) => t.value === theme)?.provider}
       colorMode={theme.includes('light') ? 'light' : 'dark'}
+      modify={overrides}
     >
       <Helmet>
         <link
