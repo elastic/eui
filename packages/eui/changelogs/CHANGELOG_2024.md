@@ -1,3 +1,13 @@
+## [`v95.9.0`](https://github.com/elastic/eui/releases/v95.9.0)
+
+- Updated `EuiSearchBar`'s optional `box.schema` prop with a new `recognizedFields` configuration. This allows specifying the phrases that will be parsed as field clauses ([#7960](https://github.com/elastic/eui/pull/7960))
+- Updated `EuiIcon` with a new `tokenSemanticText` glyph ([#7971](https://github.com/elastic/eui/pull/7971))
+- Added support for TypeScript 5 ([#7980](https://github.com/elastic/eui/pull/7980))
+
+**Bug fixes**
+
+- Fixed `EuiSelectableTemplateSitewide` styles when used within a dark-themed `EuiHeader` ([#7977](https://github.com/elastic/eui/pull/7977))
+
 ## [`v95.8.0`](https://github.com/elastic/eui/releases/v95.8.0)
 
 - Updated `EuiHeaderLinks`'s mobile menu to set a slight popover padding by default ([#7961](https://github.com/elastic/eui/pull/7961))
