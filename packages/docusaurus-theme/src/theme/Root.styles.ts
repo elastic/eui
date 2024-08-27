@@ -102,6 +102,8 @@ export const getGlobalStyles = (theme: UseEuiTheme) => {
 
         --eui-border-color-primary: ${euiBorderColor(theme, 'primary')};
 
+        --eui-theme-content-vertical-spacing: ${euiTheme.size.base};
+
         /* Docusaurus theme variables */
         --ifm-font-family-base: ${fontBase.fontFamily};
         --ifm-font-size-base: var(--eui-font-size-base);
