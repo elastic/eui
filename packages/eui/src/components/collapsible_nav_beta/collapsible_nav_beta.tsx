@@ -47,12 +47,14 @@ export type EuiCollapsibleNavBetaProps = CommonProps &
      */
     children?: ReactNode;
     /**
-     * Whether the navigation flyout should default to initially collapsed or expanded
+     * Whether the navigation flyout should default to initially collapsed or expanded.
+     * Used for **uncontrolled** state.
      */
     initialIsCollapsed?: boolean;
     /**
-     * Whether the navigation flyout should be collapsed or expanded. If set, the collapsed state
-     * is **controlled** by the parent component. This prop superseeds `initialIsCollapsed`.
+     * If defined, the navigation collapsed/expanded state is **controlled**
+     * by the consumer and `onCollapseToggle` must be passed as well.
+     * This prop supercedes `initialIsCollapsed`.
      */
     isCollapsed?: boolean;
     /**
