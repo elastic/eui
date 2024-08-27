@@ -75,5 +75,14 @@ export const euiDatePickerStyles = (euiThemeContext: UseEuiTheme) => {
         }
       `,
     },
+
+    inGroup: css`
+      .euiFormControlLayout__childrenWrapper {
+        .euiPopover,
+        .react-datepicker__input-container {
+          ${logicalCSS('height', '100%')}
+        }
+      }
+    `,
   };
 };
