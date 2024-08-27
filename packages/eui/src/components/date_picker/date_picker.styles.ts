@@ -31,7 +31,7 @@ export const euiDatePickerStyles = (euiThemeContext: UseEuiTheme) => {
         .euiFormControlLayout {
           ${logicalCSS('height', 'auto')}
           ${logicalCSS('width', 'fit-content')}
-          box-shadow: none;
+          border: none;
           padding: 0;
         }
 
