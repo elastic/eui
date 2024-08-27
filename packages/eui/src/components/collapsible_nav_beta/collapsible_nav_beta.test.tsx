@@ -65,22 +65,21 @@ describe('EuiCollapsibleNavBeta', () => {
   });
 
   it('lets the consumer control the collapsed state', () => {
-    const spyOnCollapseToggle = jest.fn();
+    const onCollapseToggle = jest.fn();
 
-    const Parent = () => {
+    const Controlled = () => {
       const [isCollapsed, setIsCollapsed] = React.useState(false);
-      const onCollapseToggle = (isCollapsed: boolean) => {
-        spyOnCollapseToggle(isCollapsed);
+      onCollapseToggle.mockImplementation((isCollapsed: boolean) => {
         setIsCollapsed(isCollapsed);
-      };
+      });
 
       return (
         <>
           <button
             onClick={() => setIsCollapsed(!isCollapsed)}
-            data-test-subj="parentToggleCollapse"
+            data-test-subj="controlledToggle"
           >
-            Toggle
+            Control nav
           </button>
           <EuiCollapsibleNavBeta
             isCollapsed={isCollapsed}
@@ -92,17 +91,18 @@ describe('EuiCollapsibleNavBeta', () => {
         </>
       );
     };
-    const { getByTestSubject } = render(<Parent />);
+    const { getByTestSubject } = render(<Controlled />);
 
     expect(getByTestSubject('nav')).toHaveStyle({ 'inline-size': '248px' }); // initially expanded
 
-    fireEvent.click(getByTestSubject('parentToggleCollapse')); // collapse the nav from the parent
-    expect(spyOnCollapseToggle).not.toHaveBeenCalled();
-    expect(getByTestSubject('nav')).toHaveStyle({ 'inline-size': '48px' }); // collapsed from the parent
+    fireEvent.click(getByTestSubject('controlledToggle')); // controlled toggle
+    expect(onCollapseToggle).toHaveBeenCalledTimes(0); // should not have triggered callback
+    expect(getByTestSubject('nav')).toHaveStyle({ 'inline-size': '48px' }); // collapsed state
 
-    fireEvent.click(getByTestSubject('euiCollapsibleNavButton')); // expand from the child
-    expect(spyOnCollapseToggle).toHaveBeenLastCalledWith(false);
-    expect(getByTestSubject('nav')).toHaveStyle({ 'inline-size': '248px' }); // expanded from the child
+    fireEvent.click(getByTestSubject('euiCollapsibleNavButton')); // uncontrolled toggle
+    expect(onCollapseToggle).toHaveBeenCalledTimes(1);
+    expect(onCollapseToggle).toHaveBeenCalledWith(false);
+    expect(getByTestSubject('nav')).toHaveStyle({ 'inline-size': '248px' }); // expanded state
   });
 
   describe('responsive behavior', () => {
