@@ -18,7 +18,6 @@ import * as Props from '@theme-original/DocItem/Layout';
 import {
   EuiHorizontalRule,
   useEuiMemoizedStyles,
-  UseEuiTheme,
 } from '@elastic/eui';
 
 import DocBreadcrumbs from '../../DocBreadcrumbs';
@@ -28,7 +27,7 @@ import DocItemTOCDesktop from '../TOC/Desktop';
 import DocItemFooter from '../Footer';
 
 // converted from css modules to emotion
-const getDocItemLayoutStyles = (theme: UseEuiTheme) => ({
+const getDocItemLayoutStyles = () => ({
   docItemContainer: css`
     & header + *,
     & article > *:first-child {
