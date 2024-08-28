@@ -17,7 +17,8 @@ const cardNodes = icons.map(function (item, index) {
         title={`Elastic ${item}`}
         isDisabled={item === 'Kibana' ? true : false}
         description="Example of a card's description. Stick to one or two sentences."
-        onClick={() => {}}
+        href="http://www.example.com"
+        onClick={() => {console.log('hi')}}
       />
     </EuiFlexItem>
   );
