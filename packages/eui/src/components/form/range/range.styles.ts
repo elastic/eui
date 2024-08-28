@@ -111,6 +111,7 @@ export const euiRangeThumbStyle = (euiThemeContext: UseEuiTheme) => {
   return `
     ${euiRangeThumbBoxShadow(euiThemeContext)};
     ${euiRangeThumbBorder(euiThemeContext)};
+    border-radius: 50%;
     cursor: pointer;
     background-color: ${range.thumbBackgroundColor};
     padding: 0;

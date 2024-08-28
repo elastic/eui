@@ -22,7 +22,11 @@ import { useCombinedRefs, useEuiMemoizedStyles } from '../../services';
 import { EuiI18nConsumer } from '../context';
 import { CommonProps } from '../common';
 import { PopoverAnchorPosition } from '../popover';
-import { EuiFormControlLayout, useEuiValidatableControl } from '../form';
+import {
+  EuiFormControlLayout,
+  EuiFormControlLayoutProps,
+  useEuiValidatableControl,
+} from '../form';
 import { EuiFormControlLayoutIconsProps } from '../form/form_control_layout/form_control_layout_icons';
 
 import { ReactDatePicker, ReactDatePickerProps } from './react-datepicker';
@@ -139,8 +143,25 @@ interface EuiExtendedDatePickerProps
   popoverPlacement?: PopoverAnchorPosition;
 
   /**
+   * Creates an input group with element(s) coming before the input.
+   * `string` | `ReactElement` or an array of these
+   *
+   * Ignored if `inline` or `controlOnly` are true.
+   */
+  append?: EuiFormControlLayoutProps['append'];
+  /**
+   * Creates an input group with element(s) coming before the input.
+   * `string` | `ReactElement` or an array of these
+   *
+   * Ignored if `inline` or `controlOnly` are true.
+   */
+  prepend?: EuiFormControlLayoutProps['prepend'];
+
+  /**
    * Completely removes form control layout wrapper and ignores
-   * iconType. Best used inside EuiFormControlLayoutDelimited.
+   * `iconType`, `prepend`, and `append`.
+   *
+   * Best used inside EuiFormControlLayoutDelimited.
    */
   controlOnly?: boolean;
 }
@@ -149,6 +170,7 @@ export type EuiDatePickerProps = CommonProps & EuiExtendedDatePickerProps;
 
 export const EuiDatePicker: FunctionComponent<EuiDatePickerProps> = ({
   adjustDateOnChange = true,
+  append,
   calendarClassName,
   className,
   compressed,
@@ -177,6 +199,7 @@ export const EuiDatePicker: FunctionComponent<EuiDatePickerProps> = ({
   placeholder,
   popperClassName,
   popoverPlacement = 'downLeft',
+  prepend,
   readOnly,
   selected,
   shadow = true,
@@ -188,19 +211,26 @@ export const EuiDatePicker: FunctionComponent<EuiDatePickerProps> = ({
   utcOffset,
   ...rest
 }) => {
+  // Check for whether the passed `selected` moment date is valid
+  const isInvalid =
+    _isInvalid || (selected?.isValid() === false ? true : undefined);
+
   const styles = useEuiMemoizedStyles(euiDatePickerStyles);
   const cssStyles = [
     styles.euiDatePicker,
-    inline && styles.inline,
-    inline && shadow && styles.shadow,
+    ...(inline
+      ? [
+          styles.inline.inline,
+          isInvalid && !(disabled || readOnly) && styles.inline.invalid,
+          shadow ? styles.inline.shadow : styles.inline.noShadow,
+          disabled && styles.inline.disabled,
+          readOnly && styles.inline.readOnly,
+        ]
+      : []),
   ];
   const calendarStyles = useEuiMemoizedStyles(euiReactDatePickerStyles);
 
   const classes = classNames('euiDatePicker', className);
-
-  // Check for whether the passed `selected` moment date is valid
-  const isInvalid =
-    _isInvalid || (selected?.isValid() === false ? true : undefined);
 
   // Passed to the default EuiFieldText input, not passed to custom inputs
   const defaultInputProps =
@@ -290,20 +320,23 @@ export const EuiDatePicker: FunctionComponent<EuiDatePickerProps> = ({
     <span css={cssStyles} className={classes}>
       <EuiFormControlLayout
         icon={optionalIcon}
-        fullWidth={!inline && fullWidth}
-        compressed={!inline && compressed}
         clear={selected && onClear ? { onClick: onClear } : undefined}
         isLoading={isLoading}
         isInvalid={isInvalid}
         isDisabled={disabled}
         readOnly={readOnly}
-        className={classNames({
-          // Take advantage of `euiFormControlLayoutDelimited`'s replacement input styling
-          euiFormControlLayoutDelimited: inline,
-          'euiFormControlLayoutDelimited--isInvalid':
-            inline && isInvalid && !disabled && !readOnly,
-        })}
-        iconsPosition={inline ? 'static' : undefined}
+        {...(inline
+          ? {
+              isDelimited: true,
+              iconsPosition: 'static',
+            }
+          : {
+              fullWidth,
+              compressed,
+              append,
+              prepend,
+              css: (append || prepend) && styles.inGroup,
+            })}
       >
         {control}
       </EuiFormControlLayout>

@@ -87,7 +87,14 @@ export const Playground: Story = {
 export const IconShape: Story = {
   parameters: {
     controls: {
-      include: ['icon', 'isInvalid', 'isLoading', 'iconsPosition', 'clear'],
+      include: [
+        'icon',
+        'isInvalid',
+        'isLoading',
+        'isDisabled',
+        'iconsPosition',
+        'clear',
+      ],
     },
   },
   args: {

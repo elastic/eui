@@ -537,7 +537,7 @@ export class EuiSuperDatePickerInternal extends Component<
       compressed,
       isInvalid,
       isLoading: isLoading && !showUpdateButton,
-      disabled: !!isDisabled,
+      isDisabled: !!isDisabled,
       prepend: this.renderQuickSelect(),
       append: autoRefreshAppend,
       fullWidth: true,
@@ -601,11 +601,18 @@ export class EuiSuperDatePickerInternal extends Component<
       formControlLayoutProps.css,
     ];
 
+    // EuiFormControlLayout wants `isDisabled`, EuiDatePickerRange wants `disabled` :T
+    const { isDisabled: _, ..._rangeProps } = formControlLayoutProps;
+    const rangeProps = {
+      ..._rangeProps,
+      disabled: formControlLayoutProps.isDisabled,
+    };
+
     return (
       <EuiI18nConsumer>
         {({ locale: contextLocale }) => (
           <EuiDatePickerRange
-            {...formControlLayoutProps}
+            {...rangeProps}
             css={rangeCssStyles}
             isCustom={true}
             iconType={false}

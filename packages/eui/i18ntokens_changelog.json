@@ -1,5 +1,15 @@
 [
   {
+    "version": "95.8.0",
+    "changes": [
+      {
+        "token": "euiFieldSearch.clearSearchButtonLabel",
+        "changeType": "added",
+        "value": "Clear search input"
+      }
+    ]
+  },
+  {
     "version": "95.5.0",
     "changes": [
       {

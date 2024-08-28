@@ -36,11 +36,11 @@ exports[`EuiComboBox renders 1`] = `
           />
         </div>
         <div
-          class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right euiFormControlLayoutIcons--absolute"
+          class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-absolute-right"
         >
           <button
             aria-label="Open list of options"
-            class="euiFormControlLayoutCustomIcon euiFormControlLayoutCustomIcon--clickable"
+            class="euiFormControlLayoutCustomIcon emotion-euiFormControlLayoutCustomIcon-clickable"
             data-test-subj="comboBoxToggleListButton"
             tabindex="-1"
             type="button"
@@ -102,11 +102,11 @@ exports[`EuiComboBox renders the options list dropdown 1`] = `
               </span>
             </div>
             <div
-              class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right euiFormControlLayoutIcons--absolute"
+              class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-absolute-right"
             >
               <button
                 aria-label="Close list of options"
-                class="euiFormControlLayoutCustomIcon euiFormControlLayoutCustomIcon--clickable"
+                class="euiFormControlLayoutCustomIcon emotion-euiFormControlLayoutCustomIcon-clickable"
                 data-test-subj="comboBoxToggleListButton"
                 tabindex="-1"
                 type="button"

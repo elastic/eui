@@ -101,4 +101,50 @@ describe('cloneElementWithCss', () => {
     `);
     expect(container.firstChild).not.toHaveStyleRule('color', 'red');
   });
+
+  it('does not error with or without `key` props', () => {
+    const cloned = <div />;
+    const KeyTest = () => (
+      <>
+        {cloneElementWithCss(cloned, { css: { color: 'red' } })}
+        {cloneElementWithCss(cloned, { css: { color: 'blue' } })}
+        {cloneElementWithCss(cloned, { key: 'someKey' })}
+      </>
+    );
+    const { container } = render(<KeyTest />);
+
+    expect(container.children[0]).toHaveStyleRule('color', 'red');
+    expect(container.children[1]).toHaveStyleRule('color', 'blue');
+    expect(container.children[2]).not.toHaveStyleRule('color');
+  });
+
+  describe('cssOrder', () => {
+    it('after', () => {
+      const { container } = render(
+        <>
+          {cloneElementWithCss(
+            <div css={{ label: 'foo' }} />,
+            { css: { label: 'bar' } },
+            'after'
+          )}
+        </>
+      );
+
+      expect(container.firstElementChild!.className).toContain('foo-bar');
+    });
+
+    it('before', () => {
+      const { container } = render(
+        <>
+          {cloneElementWithCss(
+            <div css={{ label: 'foo' }} />,
+            { css: { label: 'bar' } },
+            'before'
+          )}
+        </>
+      );
+
+      expect(container.firstElementChild!.className).toContain('bar-foo');
+    });
+  });
 });

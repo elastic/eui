@@ -100,6 +100,8 @@ const meta: Meta<EuiDatePickerProps> = {
     isInvalid: false,
     isLoading: false,
     placeholder: '',
+    append: '',
+    prepend: '',
     // manually adding non-resolved prop types (extended from react-date-picker)
     calendarClassName: '',
     customInput: undefined,

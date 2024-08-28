@@ -21,8 +21,8 @@ export default () => {
 
   return (
     /* DisplayToggles wrapper for Docs only */
-    <div>
-      <DisplayToggles>
+    <>
+      <DisplayToggles canPrepend={true} canAppend={true}>
         <EuiDatePicker
           showTimeSelect
           selected={startDate}
@@ -52,6 +52,6 @@ export default () => {
           placeholder="Example of an error"
         />
       </EuiFormRow>
-    </div>
+    </>
   );
 };

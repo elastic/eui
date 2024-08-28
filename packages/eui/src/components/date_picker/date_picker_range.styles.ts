@@ -58,8 +58,7 @@ export const euiDatePickerRangeInlineStyles = (
         ${logicalCSS('height', 'auto')}
         ${logicalCSS('width', 'fit-content')}
         ${logicalCSS('max-width', '100%')}
-        background-color: transparent;
-        box-shadow: none;
+        border: none;
         padding: 0;
 
         .euiFormControlLayout__childrenWrapper {
@@ -68,14 +67,6 @@ export const euiDatePickerRangeInlineStyles = (
           grid-template-rows: auto;
           align-items: stretch;
           background-color: transparent;
-        }
-
-        /* Fix --group height when append/prepend are present */
-        &.euiFormControlLayout--group {
-          & > *,
-          .euiFormControlLayoutDelimited__delimiter {
-            ${logicalCSS('height', 'auto')}
-          }
         }
 
         /* Display form control icons below both date pickers */
@@ -101,11 +92,18 @@ export const euiDatePickerRangeInlineStyles = (
     shadow: css`
       .euiFormControlLayoutDelimited {
         ${euiShadowMedium(euiThemeContext)}
-
-        .euiFormControlLayout__childrenWrapper {
-          background-color: ${euiTheme.colors.emptyShade};
-        }
       }
     `,
+
+    // Applied directly to EuiFormControlLayout so we can check if `disabled`
+    // and allow the disabled background-color to take precedence
+    formLayout: {
+      noShadow: css`
+        background-color: transparent;
+      `,
+      shadow: css`
+        background-color: ${euiTheme.colors.emptyShade};
+      `,
+    },
   };
 };

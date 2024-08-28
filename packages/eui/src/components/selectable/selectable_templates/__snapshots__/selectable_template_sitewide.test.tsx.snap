@@ -16,10 +16,10 @@ exports[`EuiSelectableTemplateSitewide is rendered 1`] = `
         style="--euiFormControlLeftIconsCount: 1;"
       >
         <div
-          class="euiFormControlLayoutIcons euiFormControlLayoutIcons--left euiFormControlLayoutIcons--absolute"
+          class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-absolute-left"
         >
           <span
-            class="euiFormControlLayoutCustomIcon"
+            class="euiFormControlLayoutCustomIcon emotion-euiFormControlLayoutCustomIcon"
           >
             <span
               aria-hidden="true"
@@ -87,10 +87,10 @@ exports[`EuiSelectableTemplateSitewide props popoverFooter is rendered 1`] = `
         style="--euiFormControlLeftIconsCount: 1;"
       >
         <div
-          class="euiFormControlLayoutIcons euiFormControlLayoutIcons--left euiFormControlLayoutIcons--absolute"
+          class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-absolute-left"
         >
           <span
-            class="euiFormControlLayoutCustomIcon"
+            class="euiFormControlLayoutCustomIcon emotion-euiFormControlLayoutCustomIcon"
           >
             <span
               aria-hidden="true"
@@ -138,10 +138,10 @@ exports[`EuiSelectableTemplateSitewide props popoverProps is rendered 1`] = `
         style="--euiFormControlLeftIconsCount: 1;"
       >
         <div
-          class="euiFormControlLayoutIcons euiFormControlLayoutIcons--left euiFormControlLayoutIcons--absolute"
+          class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-absolute-left"
         >
           <span
-            class="euiFormControlLayoutCustomIcon"
+            class="euiFormControlLayoutCustomIcon emotion-euiFormControlLayoutCustomIcon"
           >
             <span
               aria-hidden="true"
@@ -189,10 +189,10 @@ exports[`EuiSelectableTemplateSitewide props popoverTitle is rendered 1`] = `
         style="--euiFormControlLeftIconsCount: 1;"
       >
         <div
-          class="euiFormControlLayoutIcons euiFormControlLayoutIcons--left euiFormControlLayoutIcons--absolute"
+          class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-absolute-left"
         >
           <span
-            class="euiFormControlLayoutCustomIcon"
+            class="euiFormControlLayoutCustomIcon emotion-euiFormControlLayoutCustomIcon"
           >
             <span
               aria-hidden="true"
