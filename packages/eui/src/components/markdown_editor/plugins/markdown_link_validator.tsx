@@ -16,10 +16,18 @@ interface LinkOrTextNode {
   children?: Array<{ value: string }>;
 }
 
-export interface EuiMarkdownLinkValidatorOptions {
+export type EuiMarkdownLinkValidatorOptions = {
+  /**
+   * Allow or disallow relative links (links that begin with a `/`)
+   * @default true
+   */
   allowRelative?: boolean;
+  /**
+   * Allow or disallow specific [URL protocols or schemes](https://developer.mozilla.org/en-US/docs/Web/URI/Schemes)
+   * @default ['https:', 'http:', 'mailto:']
+   */
   allowProtocols?: string[];
-}
+};
 
 export const DEFAULT_OPTIONS = {
   allowRelative: true,

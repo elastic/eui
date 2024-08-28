@@ -37,12 +37,16 @@ import type { ExcludableDefaultPlugins, DefaultPluginsConfig } from './plugins';
 
 export type DefaultEuiMarkdownParsingPlugins = PluggableList;
 
-export type DefaultParsingPluginsConfig = Partial<
-  // We may eventually add more optional configuration options for more default plugins
-  Record<ExcludableDefaultPlugins, unknown>
-> & {
-  // But for now, these are the ones that have typed configurations
+export type DefaultParsingPluginsConfig = {
+  /**
+   * Allows enabling emoji rendering for emoticons such as :) and :(
+   * @default { emoticon: false }
+   */
   emoji?: { emoticon?: boolean };
+  /**
+   * Allows configuring the `allowRelative` and `allowProtocols` of
+   * #EuiMarkdownLinkValidatorOptions
+   */
   linkValidator?: EuiMarkdownLinkValidatorOptions;
 };
 
