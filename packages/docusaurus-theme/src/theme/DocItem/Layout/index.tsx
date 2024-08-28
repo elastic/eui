@@ -7,6 +7,7 @@
  */
 
 import React from 'react';
+import { EuiHorizontalRule } from '@elastic/eui';
 import { css } from '@emotion/react';
 import { useWindowSize } from '@docusaurus/theme-common';
 import { useDoc } from '@docusaurus/theme-common/internal';
@@ -15,19 +16,15 @@ import Unlisted from '@theme-original/Unlisted';
 import DocVersionBanner from '@theme-original/DocVersionBanner';
 import DocVersionBadge from '@theme-original/DocVersionBadge';
 import * as Props from '@theme-original/DocItem/Layout';
-import {
-  EuiHorizontalRule,
-  useEuiMemoizedStyles,
-} from '@elastic/eui';
 
 import DocBreadcrumbs from '../../DocBreadcrumbs';
-import DocItemContent from '../Content';
 import DocItemTOCMobile from '../TOC/Mobile';
 import DocItemTOCDesktop from '../TOC/Desktop';
+import DocItemContent from '../Content';
 import DocItemFooter from '../Footer';
 
 // converted from css modules to emotion
-const getDocItemLayoutStyles = () => ({
+const styles = {
   docItemContainer: css`
     & header + *,
     & article > *:first-child {
@@ -42,7 +39,7 @@ const getDocItemLayoutStyles = () => ({
       max-width: 830px;
     }
   `,
-});
+};
 
 /**
  * Decide if the toc should be rendered, on mobile or desktop viewports
@@ -69,8 +66,6 @@ function useDocTOC() {
 }
 
 export default function DocItemLayout({ children }: typeof Props): JSX.Element {
-  const styles = useEuiMemoizedStyles(getDocItemLayoutStyles);
-
   const docTOC = useDocTOC();
   const {
     metadata: { unlisted },
