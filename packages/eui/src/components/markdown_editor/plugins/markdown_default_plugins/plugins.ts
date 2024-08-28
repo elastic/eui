@@ -31,13 +31,28 @@ export type DefaultPluginsConfig =
   | { exclude?: ExcludableDefaultPlugins[] };
 
 export const getDefaultEuiMarkdownPlugins = (
-  config?: DefaultPluginsConfig
+  config: DefaultPluginsConfig & {
+    // TODO
+    processingConfig?: {};
+    parsingConfig?: {};
+    uiConfig?: {};
+  } = {}
 ): {
   parsingPlugins: DefaultEuiMarkdownParsingPlugins;
   processingPlugins: DefaultEuiMarkdownProcessingPlugins;
   uiPlugins: DefaultEuiMarkdownUiPlugins;
-} => ({
-  parsingPlugins: getDefaultEuiMarkdownParsingPlugins(config),
-  processingPlugins: getDefaultEuiMarkdownProcessingPlugins(config),
-  uiPlugins: getDefaultEuiMarkdownUiPlugins(config),
-});
+} => {
+  const { exclude, processingConfig, parsingConfig, uiConfig } = config;
+
+  return {
+    parsingPlugins: getDefaultEuiMarkdownParsingPlugins({
+      exclude,
+      ...parsingConfig,
+    }),
+    processingPlugins: getDefaultEuiMarkdownProcessingPlugins({
+      exclude,
+      ...processingConfig,
+    }),
+    uiPlugins: getDefaultEuiMarkdownUiPlugins({ exclude, ...uiConfig }),
+  };
+};
