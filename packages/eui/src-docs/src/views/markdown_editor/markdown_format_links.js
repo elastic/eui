@@ -21,5 +21,5 @@ export const markdownContent = `**Links starting with http:, https:, mailto:, an
 `;
 
 export default () => {
-  return <EuiMarkdownFormat linkTarget='_blank'>{markdownContent}</EuiMarkdownFormat>;
+  return <EuiMarkdownFormat>{markdownContent}</EuiMarkdownFormat>;
 };

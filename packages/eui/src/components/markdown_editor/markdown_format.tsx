@@ -31,28 +31,7 @@ export type EuiMarkdownFormatProps = CommonProps &
      * Determines the text size. Choose `relative` to control the `font-size` based on the value of a parent container.
      */
     textSize?: EuiTextProps['size'];
-    /**
-     * Links target attribute. Set to `_blank` to open links in a new tab. Other values can be _blank|_self|_parent|_top|framename
-     */
-    linkTarget: string;
   };
-
-const openLinkToNewTab = (target: string) => {
-  return () => {
-    return (tree: any) => {
-      const visit = (node: any) => {
-        if (node.tagName === 'a') {
-          node.properties = node.properties || {};
-          node.properties.target = target;
-        }
-        if (node.children) {
-          node.children.forEach(visit);
-        }
-      };
-      visit(tree);
-    };
-  }
-};
 
 export const EuiMarkdownFormat: FunctionComponent<EuiMarkdownFormatProps> = ({
   children,
@@ -61,14 +40,10 @@ export const EuiMarkdownFormat: FunctionComponent<EuiMarkdownFormatProps> = ({
   processingPluginList = defaultProcessingPlugins,
   textSize = 'm',
   color = 'default',
-  linkTarget = '',
   ...rest
 }) => {
   const processor = useMemo(
-    () => {
-      const result = unified().use(parsingPluginList).use(processingPluginList)
-      return (linkTarget === '') ? result : result.use(openLinkToNewTab(linkTarget));
-    },
+    () => unified().use(parsingPluginList).use(processingPluginList),
     [parsingPluginList, processingPluginList]
   );
   const result = useMemo(() => {
