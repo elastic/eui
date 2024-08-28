@@ -147,5 +147,18 @@ describe('EuiMarkdownFormat', () => {
         });
       });
     });
+
+    describe('processingConfig', () => {
+      test('linkProps', () => {
+        assertMarkdownBeforeAndAfter({
+          markdown: '[link](https://elastic.co)',
+          config: {
+            processingConfig: { linkProps: { target: '_blank' } },
+          },
+          before: () => expect(getLink()).not.toHaveAttribute('target'),
+          after: () => expect(getLink()).toHaveAttribute('target', '_blank'),
+        });
+      });
+    });
   });
 });

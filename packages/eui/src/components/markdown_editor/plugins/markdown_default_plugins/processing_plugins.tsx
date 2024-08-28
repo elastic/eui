@@ -29,7 +29,7 @@ import all from 'mdast-util-to-hast/lib/all';
 import rehype2react from 'rehype-react';
 import remark2rehype from 'remark-rehype';
 
-import { EuiLink } from '../../../link';
+import { EuiLink, EuiLinkProps } from '../../../link';
 import { EuiCodeBlock, EuiCode } from '../../../code';
 import { EuiHorizontalRule } from '../../../horizontal_rule';
 
@@ -53,6 +53,15 @@ export type DefaultEuiMarkdownProcessingPlugins = [
   ...PluggableList // any additional are generic
 ];
 
+export type DefaultProcessingPluginsConfig = {
+  /**
+   * Allows customizing all formatted links.
+   * Accepts any prop that [EuiLink](/#/navigation/link) or any anchor link tag accepts.
+   * Useful for, e.g. setting `target="_blank"` on all links
+   */
+  linkProps?: Partial<EuiLinkProps>;
+};
+
 const DEFAULT_COMPONENT_RENDERERS: Partial<
   Record<ExcludableDefaultPlugins, React.ComponentType<any>>
 > = {
@@ -62,7 +71,9 @@ const DEFAULT_COMPONENT_RENDERERS: Partial<
 
 export const getDefaultEuiMarkdownProcessingPlugins = ({
   exclude,
-}: DefaultPluginsConfig = {}): DefaultEuiMarkdownProcessingPlugins => {
+  linkProps,
+}: DefaultPluginsConfig &
+  DefaultProcessingPluginsConfig = {}): DefaultEuiMarkdownProcessingPlugins => {
   const componentPluginsWithExclusions: Rehype2ReactOptions['components'] = {};
 
   Object.entries(DEFAULT_COMPONENT_RENDERERS).forEach(
@@ -89,7 +100,9 @@ export const getDefaultEuiMarkdownProcessingPlugins = ({
         createElement,
         Fragment,
         components: {
-          a: EuiLink,
+          a: (props: any) => {
+            return <EuiLink {...props} {...linkProps} />;
+          },
           code: (props: any) =>
             // If there are linebreaks use codeblock, otherwise code
             /\r|\n/.exec(props.children) ||

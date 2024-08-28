@@ -17,6 +17,7 @@ import {
 import {
   getDefaultEuiMarkdownProcessingPlugins,
   DefaultEuiMarkdownProcessingPlugins,
+  type DefaultProcessingPluginsConfig,
 } from './processing_plugins';
 
 export type ExcludableDefaultPlugins =
@@ -32,8 +33,7 @@ export type DefaultPluginsConfig =
 
 export const getDefaultEuiMarkdownPlugins = (
   config: DefaultPluginsConfig & {
-    // TODO
-    processingConfig?: {};
+    processingConfig?: DefaultProcessingPluginsConfig;
     parsingConfig?: {};
     uiConfig?: {};
   } = {}
