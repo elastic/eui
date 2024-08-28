@@ -160,5 +160,31 @@ describe('EuiMarkdownFormat', () => {
         });
       });
     });
+
+    describe('parsingConfig', () => {
+      it('emoji', () => {
+        assertMarkdownBeforeAndAfter({
+          markdown: ':)',
+          config: {
+            parsingConfig: { emoji: { emoticon: true } },
+          },
+          before: () => expect(getComponent()).toHaveTextContent(':)'),
+          after: () => expect(getComponent()).toHaveTextContent('😃'),
+        });
+      });
+
+      it('linkValidator', () => {
+        assertMarkdownBeforeAndAfter({
+          markdown: '[relative](/), [protocol](ftp://test)',
+          config: {
+            parsingConfig: {
+              linkValidator: { allowRelative: false, allowProtocols: ['ftp:'] },
+            },
+          },
+          before: () => expect(getLink()).toHaveTextContent('relative'),
+          after: () => expect(getLink()).toHaveTextContent('protocol'),
+        });
+      });
+    });
   });
 });

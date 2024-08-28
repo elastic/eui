@@ -13,6 +13,7 @@ import {
 import {
   getDefaultEuiMarkdownParsingPlugins,
   DefaultEuiMarkdownParsingPlugins,
+  type DefaultParsingPluginsConfig,
 } from './parsing_plugins';
 import {
   getDefaultEuiMarkdownProcessingPlugins,
@@ -34,8 +35,8 @@ export type DefaultPluginsConfig =
 export const getDefaultEuiMarkdownPlugins = (
   config: DefaultPluginsConfig & {
     processingConfig?: DefaultProcessingPluginsConfig;
-    parsingConfig?: {};
-    uiConfig?: {};
+    parsingConfig?: DefaultParsingPluginsConfig;
+    uiConfig?: {}; // No customizations currently supported, but we may add this in the future
   } = {}
 ): {
   parsingPlugins: DefaultEuiMarkdownParsingPlugins;
