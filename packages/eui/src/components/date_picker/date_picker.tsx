@@ -325,17 +325,17 @@ export const EuiDatePicker: FunctionComponent<EuiDatePickerProps> = ({
         isInvalid={isInvalid}
         isDisabled={disabled}
         readOnly={readOnly}
-        {...(!inline
+        {...(inline
           ? {
+              isDelimited: true,
+              iconsPosition: 'static',
+            }
+          : {
               fullWidth,
               compressed,
               append,
               prepend,
               css: (append || prepend) && styles.inGroup,
-            }
-          : {
-              isDelimited: true,
-              iconsPosition: 'static',
             })}
       >
         {control}
