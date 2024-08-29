@@ -76,8 +76,8 @@ interface State {
   popoverOpen: boolean;
   error: string | null;
   options: {
-    all: FieldValueOptionType[];
-    shown: FieldValueOptionType[];
+    unsorted: FieldValueOptionType[];
+    sorted: FieldValueOptionType[];
   } | null;
   cachedOptions?: FieldValueOptionType[] | null;
   activeItems: FieldValueOptionType[];
@@ -93,8 +93,8 @@ export class FieldValueSelectionFilter extends Component<
 
     const preloadedOptions = isArray(options)
       ? {
-          all: options,
-          shown: options,
+          unsorted: options,
+          sorted: options,
         }
       : null;
     this.state = {
@@ -134,12 +134,10 @@ export class FieldValueSelectionFilter extends Component<
           on: FieldValueOptionType[];
           off: FieldValueOptionType[];
           rest: FieldValueOptionType[];
-          all: FieldValueOptionType[];
         } = {
           on: [],
           off: [],
           rest: [],
-          all: [],
         };
 
         const { query, config } = this.props;
@@ -162,25 +160,17 @@ export class FieldValueSelectionFilter extends Component<
               } else {
                 items.off.push(op);
               }
-              items.all.push(op);
             }
             return;
           });
         }
 
-        const autoSortOptions =
-          this.props.config.autoSortOptions === undefined
-            ? defaults.config.autoSortOptions
-            : this.props.config.autoSortOptions;
-
         this.setState({
           error: null,
           activeItems: items.on,
           options: {
-            all: options,
-            shown: autoSortOptions
-              ? [...items.on, ...items.off, ...items.rest]
-              : [...items.all],
+            unsorted: options,
+            sorted: [...items.on, ...items.off, ...items.rest],
           },
         });
       })
@@ -317,9 +307,15 @@ export class FieldValueSelectionFilter extends Component<
     const { query, config } = this.props;
     const multiSelect = this.resolveMultiSelect();
 
+    const autoSortOptions =
+      config.autoSortOptions ?? defaults.config.autoSortOptions;
+    const options = autoSortOptions
+      ? this.state.options?.sorted
+      : this.state.options?.unsorted;
+
     const activeTop = this.isActiveField(config.field);
-    const activeItem = this.state.options
-      ? this.state.options.all.some((item) => this.isActiveField(item.field))
+    const activeItem = options
+      ? options.some((item) => this.isActiveField(item.field))
       : false;
 
     const activeItemsCount = this.state.activeItems.length;
@@ -338,8 +334,8 @@ export class FieldValueSelectionFilter extends Component<
       </EuiFilterButton>
     );
 
-    const items = this.state.options
-      ? this.state.options.shown.map((option) => {
+    const items = options
+      ? options.map((option) => {
           const optionField = option.field || config.field;
 
           if (optionField == null) {
@@ -369,8 +365,7 @@ export class FieldValueSelectionFilter extends Component<
       : [];
 
     const threshold = config.searchThreshold || defaults.config.searchThreshold;
-    const isOverSearchThreshold =
-      this.state.options && this.state.options.all.length >= threshold;
+    const isOverSearchThreshold = options && options.length >= threshold;
 
     let searchProps: ExclusiveUnion<
       { searchable: false },
@@ -411,7 +406,7 @@ export class FieldValueSelectionFilter extends Component<
               aria-label={config.name}
               options={items}
               renderOption={(option) => option.view}
-              isLoading={isNil(this.state.options)}
+              isLoading={isNil(options)}
               loadingMessage={config.loadingMessage}
               emptyMessage={config.noOptionsMessage}
               errorMessage={this.state.error}
