@@ -80,7 +80,7 @@ interface State {
     sorted: FieldValueOptionType[];
   } | null;
   cachedOptions?: FieldValueOptionType[] | null;
-  activeItems: FieldValueOptionType[];
+  activeItemsCount: number;
 }
 
 export class FieldValueSelectionFilter extends Component<
@@ -101,7 +101,7 @@ export class FieldValueSelectionFilter extends Component<
       popoverOpen: false,
       error: null,
       options: preloadedOptions,
-      activeItems: [],
+      activeItemsCount: 0,
     };
   }
 
@@ -142,14 +142,12 @@ export class FieldValueSelectionFilter extends Component<
 
         const { query, config } = this.props;
 
-        const multiSelect = this.resolveMultiSelect();
-
         if (options) {
           options.forEach((op) => {
             const optionField = op.field || config.field;
             if (optionField) {
               const clause =
-                multiSelect === 'or'
+                this.multiSelect === 'or'
                   ? query.getOrFieldClause(optionField, op.value)
                   : query.getSimpleFieldClause(optionField, op.value);
               const checked = this.resolveChecked(clause);
@@ -167,7 +165,7 @@ export class FieldValueSelectionFilter extends Component<
 
         this.setState({
           error: null,
-          activeItems: items.on,
+          activeItemsCount: items.on.length,
           options: {
             unsorted: options,
             sorted: [...items.on, ...items.off, ...items.rest],
@@ -215,7 +213,6 @@ export class FieldValueSelectionFilter extends Component<
     value: Value,
     checked?: Omit<EuiSelectableOptionCheckedType, 'mixed'>
   ) {
-    const multiSelect = this.resolveMultiSelect();
     const {
       config: { autoClose, operator = Operator.EQ },
     } = this.props;
@@ -223,12 +220,12 @@ export class FieldValueSelectionFilter extends Component<
     // If the consumer explicitly sets `autoClose`, always defer to that.
     // Otherwise, default to auto-closing for single selections and leaving the
     // popover open for multi-select (so users can continue selecting options)
-    const shouldClosePopover = autoClose ?? !multiSelect;
+    const shouldClosePopover = autoClose ?? !this.multiSelect;
     if (shouldClosePopover) {
       this.closePopover();
     }
 
-    if (!multiSelect) {
+    if (!this.multiSelect) {
       const query = checked
         ? this.props.query
             .removeSimpleFieldClauses(field)
@@ -236,7 +233,7 @@ export class FieldValueSelectionFilter extends Component<
         : this.props.query.removeSimpleFieldClauses(field);
 
       this.props.onChange(query);
-    } else if (multiSelect === 'or') {
+    } else if (this.multiSelect === 'or') {
       const query = checked
         ? this.props.query.addOrFieldValue(field, value, true, operator)
         : this.props.query.removeOrFieldValue(field, value);
@@ -251,11 +248,12 @@ export class FieldValueSelectionFilter extends Component<
     }
   }
 
-  resolveMultiSelect(): MultiSelect {
-    const { config } = this.props;
-    return !isNil(config.multiSelect)
-      ? config.multiSelect
-      : defaults.config.multiSelect;
+  get autoSortOptions() {
+    return this.props.config.autoSortOptions ?? defaults.config.autoSortOptions;
+  }
+
+  get multiSelect(): MultiSelect {
+    return this.props.config.multiSelect ?? defaults.config.multiSelect;
   }
 
   componentDidMount() {
@@ -268,11 +266,8 @@ export class FieldValueSelectionFilter extends Component<
 
   render() {
     const { query, config } = this.props;
-    const multiSelect = this.resolveMultiSelect();
 
-    const autoSortOptions =
-      config.autoSortOptions ?? defaults.config.autoSortOptions;
-    const options = autoSortOptions
+    const options = this.autoSortOptions
       ? this.state.options?.sorted
       : this.state.options?.unsorted;
 
@@ -281,7 +276,7 @@ export class FieldValueSelectionFilter extends Component<
       ? options.some((item) => this.isActiveField(item.field))
       : false;
 
-    const activeItemsCount = this.state.activeItems.length;
+    const { activeItemsCount } = this.state;
     const active = (activeTop || activeItem) && activeItemsCount > 0;
 
     const button = (
@@ -308,7 +303,7 @@ export class FieldValueSelectionFilter extends Component<
           }
 
           const clause =
-            multiSelect === 'or'
+            this.multiSelect === 'or'
               ? query.getOrFieldClause(optionField, option.value)
               : query.getSimpleFieldClause(optionField, option.value);
 
@@ -365,7 +360,7 @@ export class FieldValueSelectionFilter extends Component<
             }}
           >
             <EuiSelectable<Partial<(typeof items)[number]['data']>>
-              singleSelection={!multiSelect}
+              singleSelection={!this.multiSelect}
               aria-label={config.name}
               options={items}
               renderOption={(option) => option.view}
@@ -415,9 +410,8 @@ export class FieldValueSelectionFilter extends Component<
     }
 
     const { query } = this.props;
-    const multiSelect = this.resolveMultiSelect();
 
-    if (multiSelect === 'or') {
+    if (this.multiSelect === 'or') {
       return query.hasOrFieldClause(field);
     }
 
