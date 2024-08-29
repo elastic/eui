@@ -13,10 +13,12 @@ import {
 import {
   getDefaultEuiMarkdownParsingPlugins,
   DefaultEuiMarkdownParsingPlugins,
+  type DefaultParsingPluginsConfig,
 } from './parsing_plugins';
 import {
   getDefaultEuiMarkdownProcessingPlugins,
   DefaultEuiMarkdownProcessingPlugins,
+  type DefaultProcessingPluginsConfig,
 } from './processing_plugins';
 
 export type ExcludableDefaultPlugins =
@@ -31,13 +33,27 @@ export type DefaultPluginsConfig =
   | { exclude?: ExcludableDefaultPlugins[] };
 
 export const getDefaultEuiMarkdownPlugins = (
-  config?: DefaultPluginsConfig
+  config: DefaultPluginsConfig & {
+    processingConfig?: DefaultProcessingPluginsConfig;
+    parsingConfig?: DefaultParsingPluginsConfig;
+    uiConfig?: {}; // No customizations currently supported, but we may add this in the future
+  } = {}
 ): {
   parsingPlugins: DefaultEuiMarkdownParsingPlugins;
   processingPlugins: DefaultEuiMarkdownProcessingPlugins;
   uiPlugins: DefaultEuiMarkdownUiPlugins;
-} => ({
-  parsingPlugins: getDefaultEuiMarkdownParsingPlugins(config),
-  processingPlugins: getDefaultEuiMarkdownProcessingPlugins(config),
-  uiPlugins: getDefaultEuiMarkdownUiPlugins(config),
-});
+} => {
+  const { exclude, processingConfig, parsingConfig, uiConfig } = config;
+
+  return {
+    parsingPlugins: getDefaultEuiMarkdownParsingPlugins({
+      exclude,
+      ...parsingConfig,
+    }),
+    processingPlugins: getDefaultEuiMarkdownProcessingPlugins({
+      exclude,
+      ...processingConfig,
+    }),
+    uiPlugins: getDefaultEuiMarkdownUiPlugins({ exclude, ...uiConfig }),
+  };
+};
