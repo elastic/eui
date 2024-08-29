@@ -179,43 +179,6 @@ export class FieldValueSelectionFilter extends Component<
       });
   }
 
-  filterOptions(q = '') {
-    this.setState((prevState) => {
-      if (isNil(prevState.options)) {
-        return {};
-      }
-
-      const predicate = this.getOptionFilter();
-
-      return {
-        ...prevState,
-        options: {
-          ...prevState.options,
-          shown: prevState.options.all.filter((option, i, options) => {
-            const name = this.resolveOptionName(option).toLowerCase();
-            const query = q.toLowerCase();
-            return predicate(name, query, options);
-          }),
-        },
-      };
-    });
-  }
-
-  getOptionFilter(): OptionsFilter {
-    const filterWith =
-      this.props.config.filterWith || defaults.config.filterWith;
-
-    if (typeof filterWith === 'function') {
-      return filterWith;
-    }
-
-    if (filterWith === 'includes') {
-      return (name, query) => name.includes(query);
-    }
-
-    return (name, query) => name.startsWith(query);
-  }
-
   resolveOptionsLoader: () => OptionsLoader = () => {
     const options = this.props.config.options;
     if (isArray(options)) {
