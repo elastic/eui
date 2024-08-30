@@ -224,6 +224,12 @@ export const propsInfo = {
           required: true,
           type: { name: '#FieldValueOption[] | () => #FieldValueOption[]' },
         },
+        available: {
+          description:
+            'A callback that defines whether this filter is currently available',
+          required: false,
+          type: { name: '() => boolean' },
+        },
         filterWith: {
           description:
             'Specify how user input in the option dropdown will filter the available options.',
@@ -249,19 +255,12 @@ export const propsInfo = {
           defaultValue: { value: 'true ("and")' },
           type: { name: 'boolean | "or" | "and"' },
         },
-        loadingMessage: {
+        operator: {
           description:
-            'The message that will be shown while loading the options',
+            'What operator should be used when adding selection to the search bar.',
           required: false,
-          defaultValue: { value: 'Loading...' },
-          type: { name: 'string' },
-        },
-        noOptionsMessage: {
-          description:
-            'The message that will be shown when no options are found',
-          required: false,
-          defaultValue: { value: 'No options found' },
-          type: { name: 'string' },
+          defaultValue: { value: 'eq' },
+          type: { name: 'eq | exact | gt | gte | lt | lte' },
         },
         searchThreshold: {
           description:
@@ -271,25 +270,33 @@ export const propsInfo = {
           defaultValue: { value: '10' },
           type: { name: 'number' },
         },
-        available: {
+        noOptionsMessage: {
           description:
-            'A callback that defines whether this filter is currently available',
+            'The message that will be shown when no options are found',
           required: false,
-          type: { name: '() => boolean' },
+          defaultValue: { value: 'No options found' },
+          type: { name: 'string' },
+        },
+        loadingMessage: {
+          description:
+            'The message that will be shown while loading the options',
+          required: false,
+          defaultValue: { value: 'Loading...' },
+          type: { name: 'string' },
         },
         autoClose: {
           description:
-            'Should the dropdown close after the user selects a value. If not explicitly passed, will auto-close for single selection and remain open for multi-selection.',
+            'Whether the dropdown should close after the user selects a value. If not explicitly passed, will auto-close for single selection and remain open for multi-selection.',
           required: false,
           defaultValue: { value: 'true' },
           type: { name: 'boolean' },
         },
-        operator: {
+        autoSortOptions: {
           description:
-            'What operator should be used when adding selection to the search bar.',
+            'Whether selected options (on and off) should be shown at the top of the filters list',
           required: false,
-          defaultValue: { value: 'eq' },
-          type: { name: 'eq | exact | gt | gte | lt | lte' },
+          defaultValue: { value: 'true' },
+          type: { name: 'boolean' },
         },
       },
     },

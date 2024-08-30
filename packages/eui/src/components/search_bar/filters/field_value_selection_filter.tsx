@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { Component, ReactNode } from 'react';
+import React, { Component, ReactNode, createRef } from 'react';
 
 import { RenderWithEuiTheme } from '../../../services';
 import { isArray, isNil } from '../../../services/predicate';
@@ -53,6 +53,7 @@ export interface FieldValueSelectionFilterConfigType {
   available?: () => boolean;
   autoClose?: boolean;
   operator?: OperatorType;
+  autoSortOptions?: boolean;
 }
 
 export interface FieldValueSelectionFilterProps {
@@ -67,6 +68,7 @@ const defaults = {
     multiSelect: true,
     filterWith: 'prefix',
     searchThreshold: 10,
+    autoSortOptions: true,
   },
 };
 
@@ -74,32 +76,36 @@ interface State {
   popoverOpen: boolean;
   error: string | null;
   options: {
-    all: FieldValueOptionType[];
-    shown: FieldValueOptionType[];
+    unsorted: FieldValueOptionType[];
+    sorted: FieldValueOptionType[];
   } | null;
   cachedOptions?: FieldValueOptionType[] | null;
-  activeItems: FieldValueOptionType[];
+  activeItemsCount: number;
+  lastCheckedValue?: Value;
 }
 
 export class FieldValueSelectionFilter extends Component<
   FieldValueSelectionFilterProps,
   State
 > {
+  selectableClassRef = createRef<EuiSelectable>();
+  cacheTimeout: ReturnType<typeof setTimeout> | undefined;
+
   constructor(props: FieldValueSelectionFilterProps) {
     super(props);
     const { options } = props.config;
 
     const preloadedOptions = isArray(options)
       ? {
-          all: options,
-          shown: options,
+          unsorted: options,
+          sorted: options,
         }
       : null;
     this.state = {
       popoverOpen: false,
       error: null,
       options: preloadedOptions,
-      activeItems: [],
+      activeItemsCount: 0,
     };
   }
 
@@ -123,122 +129,89 @@ export class FieldValueSelectionFilter extends Component<
     });
   }
 
-  loadOptions() {
-    const loader = this.resolveOptionsLoader();
+  loadOptions = async () => {
+    let loadedOptions: FieldValueOptionType[];
     this.setState({ options: null, error: null });
-    loader()
-      .then((options) => {
-        const items: {
-          on: FieldValueOptionType[];
-          off: FieldValueOptionType[];
-          rest: FieldValueOptionType[];
-        } = {
-          on: [],
-          off: [],
-          rest: [],
-        };
 
-        const { query, config } = this.props;
+    const { options, cache } = this.props.config;
+    try {
+      if (isArray(options)) {
+        // Synchronous options, already loaded
+        loadedOptions = options;
+      } else {
+        // Async options loader fn, potentially with a cache
+        loadedOptions = this.state.cachedOptions ?? (await options());
 
-        const multiSelect = this.resolveMultiSelect();
-
-        if (options) {
-          options.forEach((op) => {
-            const optionField = op.field || config.field;
-            if (optionField) {
-              const clause =
-                multiSelect === 'or'
-                  ? query.getOrFieldClause(optionField, op.value)
-                  : query.getSimpleFieldClause(optionField, op.value);
-              const checked = this.resolveChecked(clause);
-              if (!checked) {
-                items.rest.push(op);
-              } else if (checked === 'on') {
-                items.on.push(op);
-              } else {
-                items.off.push(op);
-              }
-            }
-            return;
-          });
-        }
-
-        this.setState({
-          error: null,
-          activeItems: items.on,
-          options: {
-            all: options,
-            shown: [...items.on, ...items.off, ...items.rest],
-          },
-        });
-      })
-      .catch(() => {
-        this.setState({ options: null, error: 'Could not load options' });
-      });
-  }
-
-  filterOptions(q = '') {
-    this.setState((prevState) => {
-      if (isNil(prevState.options)) {
-        return {};
-      }
-
-      const predicate = this.getOptionFilter();
-
-      return {
-        ...prevState,
-        options: {
-          ...prevState.options,
-          shown: prevState.options.all.filter((option, i, options) => {
-            const name = this.resolveOptionName(option).toLowerCase();
-            const query = q.toLowerCase();
-            return predicate(name, query, options);
-          }),
-        },
-      };
-    });
-  }
-
-  getOptionFilter(): OptionsFilter {
-    const filterWith =
-      this.props.config.filterWith || defaults.config.filterWith;
-
-    if (typeof filterWith === 'function') {
-      return filterWith;
-    }
-
-    if (filterWith === 'includes') {
-      return (name, query) => name.includes(query);
-    }
-
-    return (name, query) => name.startsWith(query);
-  }
-
-  resolveOptionsLoader: () => OptionsLoader = () => {
-    const options = this.props.config.options;
-    if (isArray(options)) {
-      return () => Promise.resolve(options);
-    }
-
-    return () => {
-      const cachedOptions = this.state.cachedOptions;
-      if (cachedOptions) {
-        return Promise.resolve(cachedOptions);
-      }
-
-      return (options as OptionsLoader)().then((opts) => {
-        // If a cache time is set, populate the cache and also schedule a
-        // cache reset.
-        if (this.props.config.cache != null && this.props.config.cache > 0) {
-          this.setState({ cachedOptions: opts });
-          setTimeout(() => {
+        // If a cache time is set, populate the cache and schedule a cache reset
+        if (cache != null && cache > 0) {
+          this.setState({ cachedOptions: loadedOptions });
+          this.cacheTimeout = setTimeout(() => {
             this.setState({ cachedOptions: null });
-          }, this.props.config.cache);
+          }, cache);
         }
+      }
+    } catch {
+      return this.setState({ options: null, error: 'Could not load options' });
+    }
 
-        return opts;
-      });
+    const items: Record<string, FieldValueOptionType[]> = {
+      on: [],
+      off: [],
+      rest: [],
     };
+
+    const { query, config } = this.props;
+
+    if (loadedOptions) {
+      loadedOptions.forEach((op) => {
+        const optionField = op.field || config.field;
+        if (optionField) {
+          const clause =
+            this.multiSelect === 'or'
+              ? query.getOrFieldClause(optionField, op.value)
+              : query.getSimpleFieldClause(optionField, op.value);
+          const checked = this.resolveChecked(clause);
+          if (!checked) {
+            items.rest.push(op);
+          } else if (checked === 'on') {
+            items.on.push(op);
+          } else {
+            items.off.push(op);
+          }
+        }
+        return;
+      });
+    }
+
+    this.setState(
+      {
+        error: null,
+        activeItemsCount: items.on.length,
+        options: {
+          unsorted: loadedOptions,
+          sorted: [...items.on, ...items.off, ...items.rest],
+        },
+      },
+      this.scrollToAutoSortedOption
+    );
+  };
+
+  scrollToAutoSortedOption = () => {
+    if (!this.autoSortOptions) return;
+
+    const { lastCheckedValue, options } = this.state;
+    if (lastCheckedValue) {
+      const sortedIndex = options!.sorted.findIndex(
+        (option) => option.value === lastCheckedValue
+      );
+      if (sortedIndex >= 0) {
+        // EuiSelectable should automatically handle scrolling its list to the new index
+        this.selectableClassRef.current?.setState({
+          activeOptionIndex: sortedIndex,
+        });
+      }
+      this.setState({ lastCheckedValue: undefined });
+    }
   };
 
   resolveOptionName(option: FieldValueOptionType) {
@@ -250,20 +223,23 @@ export class FieldValueSelectionFilter extends Component<
     value: Value,
     checked?: Omit<EuiSelectableOptionCheckedType, 'mixed'>
   ) {
-    const multiSelect = this.resolveMultiSelect();
     const {
       config: { autoClose, operator = Operator.EQ },
     } = this.props;
 
+    if (checked && this.autoSortOptions) {
+      this.setState({ lastCheckedValue: value });
+    }
+
     // If the consumer explicitly sets `autoClose`, always defer to that.
     // Otherwise, default to auto-closing for single selections and leaving the
     // popover open for multi-select (so users can continue selecting options)
-    const shouldClosePopover = autoClose ?? !multiSelect;
+    const shouldClosePopover = autoClose ?? !this.multiSelect;
     if (shouldClosePopover) {
       this.closePopover();
     }
 
-    if (!multiSelect) {
+    if (!this.multiSelect) {
       const query = checked
         ? this.props.query
             .removeSimpleFieldClauses(field)
@@ -271,7 +247,7 @@ export class FieldValueSelectionFilter extends Component<
         : this.props.query.removeSimpleFieldClauses(field);
 
       this.props.onChange(query);
-    } else if (multiSelect === 'or') {
+    } else if (this.multiSelect === 'or') {
       const query = checked
         ? this.props.query.addOrFieldValue(field, value, true, operator)
         : this.props.query.removeOrFieldValue(field, value);
@@ -286,11 +262,12 @@ export class FieldValueSelectionFilter extends Component<
     }
   }
 
-  resolveMultiSelect(): MultiSelect {
-    const { config } = this.props;
-    return !isNil(config.multiSelect)
-      ? config.multiSelect
-      : defaults.config.multiSelect;
+  get autoSortOptions() {
+    return this.props.config.autoSortOptions ?? defaults.config.autoSortOptions;
+  }
+
+  get multiSelect(): MultiSelect {
+    return this.props.config.multiSelect ?? defaults.config.multiSelect;
   }
 
   componentDidMount() {
@@ -301,16 +278,23 @@ export class FieldValueSelectionFilter extends Component<
     if (this.props.query !== prevProps.query) this.loadOptions();
   }
 
+  componentWillUnmount() {
+    clearTimeout(this.cacheTimeout);
+  }
+
   render() {
     const { query, config } = this.props;
-    const multiSelect = this.resolveMultiSelect();
+
+    const options = this.autoSortOptions
+      ? this.state.options?.sorted
+      : this.state.options?.unsorted;
 
     const activeTop = this.isActiveField(config.field);
-    const activeItem = this.state.options
-      ? this.state.options.all.some((item) => this.isActiveField(item.field))
+    const activeItem = options
+      ? options.some((item) => this.isActiveField(item.field))
       : false;
 
-    const activeItemsCount = this.state.activeItems.length;
+    const { activeItemsCount } = this.state;
     const active = (activeTop || activeItem) && activeItemsCount > 0;
 
     const button = (
@@ -326,8 +310,8 @@ export class FieldValueSelectionFilter extends Component<
       </EuiFilterButton>
     );
 
-    const items = this.state.options
-      ? this.state.options.shown.map((option) => {
+    const items = options
+      ? options.map((option) => {
           const optionField = option.field || config.field;
 
           if (optionField == null) {
@@ -337,7 +321,7 @@ export class FieldValueSelectionFilter extends Component<
           }
 
           const clause =
-            multiSelect === 'or'
+            this.multiSelect === 'or'
               ? query.getOrFieldClause(optionField, option.value)
               : query.getSimpleFieldClause(optionField, option.value);
 
@@ -357,8 +341,7 @@ export class FieldValueSelectionFilter extends Component<
       : [];
 
     const threshold = config.searchThreshold || defaults.config.searchThreshold;
-    const isOverSearchThreshold =
-      this.state.options && this.state.options.all.length >= threshold;
+    const isOverSearchThreshold = options && options.length >= threshold;
 
     let searchProps: ExclusiveUnion<
       { searchable: false },
@@ -395,11 +378,12 @@ export class FieldValueSelectionFilter extends Component<
             }}
           >
             <EuiSelectable<Partial<(typeof items)[number]['data']>>
-              singleSelection={!multiSelect}
+              ref={this.selectableClassRef}
+              singleSelection={!this.multiSelect}
               aria-label={config.name}
               options={items}
               renderOption={(option) => option.view}
-              isLoading={isNil(this.state.options)}
+              isLoading={isNil(options)}
               loadingMessage={config.loadingMessage}
               emptyMessage={config.noOptionsMessage}
               errorMessage={this.state.error}
@@ -445,9 +429,8 @@ export class FieldValueSelectionFilter extends Component<
     }
 
     const { query } = this.props;
-    const multiSelect = this.resolveMultiSelect();
 
-    if (multiSelect === 'or') {
+    if (this.multiSelect === 'or') {
       return query.hasOrFieldClause(field);
     }
 
