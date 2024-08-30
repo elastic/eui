@@ -471,6 +471,7 @@ export interface EuiDataGridBodyProps {
   gridRef: MutableRefObject<Grid | null>;
   gridItemsRendered: MutableRefObject<GridOnItemsRenderedProps | null>;
   wrapperRef: MutableRefObject<HTMLDivElement | null>;
+  className?: string;
 }
 
 export interface EuiDataGridCustomBodyProps {

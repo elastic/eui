@@ -583,7 +583,7 @@ exports[`EuiDataGrid rendering renders additional toolbar controls 1`] = `
         tabindex="0"
       >
         <div
-          class="euiDataGrid__virtualized"
+          class="euiDataGrid__virtualized emotion-euiDataGridBody-virtualized"
           style="position: relative; height: 9007199254740991px; width: 9007199254740991px; overflow: auto; will-change: transform; direction: ltr;"
         >
           <div
@@ -992,7 +992,7 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
         tabindex="0"
       >
         <div
-          class="euiDataGrid__virtualized"
+          class="euiDataGrid__virtualized emotion-euiDataGridBody-virtualized"
           style="position: relative; height: 9007199254740991px; width: 9007199254740991px; overflow: auto; will-change: transform; direction: ltr;"
         >
           <div
@@ -1592,7 +1592,7 @@ exports[`EuiDataGrid rendering renders custom column headers 1`] = `
         tabindex="0"
       >
         <div
-          class="euiDataGrid__virtualized"
+          class="euiDataGrid__virtualized emotion-euiDataGridBody-virtualized"
           style="position: relative; height: 9007199254740991px; width: 9007199254740991px; overflow: auto; will-change: transform; direction: ltr;"
         >
           <div
@@ -2000,7 +2000,7 @@ exports[`EuiDataGrid rendering renders with common and div attributes 1`] = `
         tabindex="0"
       >
         <div
-          class="euiDataGrid__virtualized"
+          class="euiDataGrid__virtualized emotion-euiDataGridBody-virtualized"
           style="position: relative; height: 9007199254740991px; width: 9007199254740991px; overflow: auto; will-change: transform; direction: ltr;"
         >
           <div

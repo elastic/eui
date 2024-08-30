@@ -8,9 +8,11 @@
 
 import React, { FunctionComponent } from 'react';
 
+import { useEuiMemoizedStyles } from '../../../services';
 import { EuiDataGridBodyProps } from '../data_grid_types';
 import { EuiDataGridBodyVirtualized } from './data_grid_body_virtualized';
 import { EuiDataGridBodyCustomRender } from './data_grid_body_custom';
+import { euiDataGridBodyStyles } from './data_grid_body.styles';
 
 export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = ({
   renderCustomGridBody,
@@ -21,12 +23,19 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = ({
    * + virtualization library for rendering content, or if consumers have
    * passed their own custom renderer
    */
+  const styles = useEuiMemoizedStyles(euiDataGridBodyStyles);
+  const cssStyles = [
+    styles.euiDataGridBody,
+    renderCustomGridBody ? styles.customRender : styles.virtualized,
+  ];
+
   return renderCustomGridBody ? (
     <EuiDataGridBodyCustomRender
       renderCustomGridBody={renderCustomGridBody}
+      css={cssStyles}
       {...props}
     />
   ) : (
-    <EuiDataGridBodyVirtualized {...props} />
+    <EuiDataGridBodyVirtualized css={cssStyles} {...props} />
   );
 };
