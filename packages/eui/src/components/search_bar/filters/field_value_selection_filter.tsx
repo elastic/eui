@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { Component, ReactNode } from 'react';
+import React, { Component, ReactNode, createRef } from 'react';
 
 import { RenderWithEuiTheme } from '../../../services';
 import { isArray, isNil } from '../../../services/predicate';
@@ -81,12 +81,14 @@ interface State {
   } | null;
   cachedOptions?: FieldValueOptionType[] | null;
   activeItemsCount: number;
+  lastCheckedValue?: Value;
 }
 
 export class FieldValueSelectionFilter extends Component<
   FieldValueSelectionFilterProps,
   State
 > {
+  selectableClassRef = createRef<EuiSelectable>();
   cacheTimeout: ReturnType<typeof setTimeout> | undefined;
 
   constructor(props: FieldValueSelectionFilterProps) {
@@ -181,14 +183,35 @@ export class FieldValueSelectionFilter extends Component<
       });
     }
 
-    this.setState({
-      error: null,
-      activeItemsCount: items.on.length,
-      options: {
-        unsorted: loadedOptions,
-        sorted: [...items.on, ...items.off, ...items.rest],
+    this.setState(
+      {
+        error: null,
+        activeItemsCount: items.on.length,
+        options: {
+          unsorted: loadedOptions,
+          sorted: [...items.on, ...items.off, ...items.rest],
+        },
       },
-    });
+      this.scrollToAutoSortedOption
+    );
+  };
+
+  scrollToAutoSortedOption = () => {
+    if (!this.autoSortOptions) return;
+
+    const { lastCheckedValue, options } = this.state;
+    if (lastCheckedValue) {
+      const sortedIndex = options!.sorted.findIndex(
+        (option) => option.value === lastCheckedValue
+      );
+      if (sortedIndex >= 0) {
+        // EuiSelectable should automatically handle scrolling its list to the new index
+        this.selectableClassRef.current?.setState({
+          activeOptionIndex: sortedIndex,
+        });
+      }
+      this.setState({ lastCheckedValue: undefined });
+    }
   };
 
   resolveOptionName(option: FieldValueOptionType) {
@@ -203,6 +226,10 @@ export class FieldValueSelectionFilter extends Component<
     const {
       config: { autoClose, operator = Operator.EQ },
     } = this.props;
+
+    if (checked && this.autoSortOptions) {
+      this.setState({ lastCheckedValue: value });
+    }
 
     // If the consumer explicitly sets `autoClose`, always defer to that.
     // Otherwise, default to auto-closing for single selections and leaving the
@@ -351,6 +378,7 @@ export class FieldValueSelectionFilter extends Component<
             }}
           >
             <EuiSelectable<Partial<(typeof items)[number]['data']>>
+              ref={this.selectableClassRef}
               singleSelection={!this.multiSelect}
               aria-label={config.name}
               options={items}

@@ -15,6 +15,7 @@ import { requiredProps } from '../../../test';
 import {
   FieldValueSelectionFilter,
   FieldValueSelectionFilterProps,
+  FieldValueSelectionFilterConfigType,
 } from './field_value_selection_filter';
 import { Query } from '../query';
 
@@ -34,6 +35,29 @@ const staticOptions = [
 ];
 
 describe('FieldValueSelectionFilter', () => {
+  const FieldValueSelectionFilterWithState = (
+    config: Partial<FieldValueSelectionFilterConfigType>
+  ) => {
+    const [query, setQuery] = useState(Query.parse(''));
+    const onChange = (newQuery: Query) => setQuery(newQuery);
+
+    const props: FieldValueSelectionFilterProps = {
+      ...requiredProps,
+      index: 0,
+      onChange,
+      query,
+      config: {
+        type: 'field_value_selection',
+        field: 'tag',
+        name: 'Tag',
+        options: staticOptions,
+        ...config,
+      },
+    };
+
+    return <FieldValueSelectionFilter {...props} />;
+  };
+
   it('allows options as a function', () => {
     const props: FieldValueSelectionFilterProps = {
       ...requiredProps,
@@ -140,31 +164,6 @@ describe('FieldValueSelectionFilter', () => {
   });
 
   describe('multi-select testing', () => {
-    const FieldValueSelectionFilterWithState = ({
-      multiSelect,
-    }: {
-      multiSelect: 'or' | boolean;
-    }) => {
-      const [query, setQuery] = useState(Query.parse(''));
-      const onChange = (newQuery: Query) => setQuery(newQuery);
-
-      const props: FieldValueSelectionFilterProps = {
-        ...requiredProps,
-        index: 0,
-        onChange,
-        query,
-        config: {
-          type: 'field_value_selection',
-          field: 'tag',
-          name: 'Tag',
-          multiSelect,
-          options: staticOptions,
-        },
-      };
-
-      return <FieldValueSelectionFilter {...props} />;
-    };
-
     it('uses multi-select OR', () => {
       cy.mount(<FieldValueSelectionFilterWithState multiSelect="or" />);
       cy.get('button').click();
@@ -226,33 +225,6 @@ describe('FieldValueSelectionFilter', () => {
   });
 
   describe('auto-close testing', () => {
-    const FieldValueSelectionFilterWithState = ({
-      autoClose,
-      multiSelect,
-    }: {
-      autoClose: undefined | boolean;
-      multiSelect: 'or' | boolean;
-    }) => {
-      const [query, setQuery] = useState(Query.parse(''));
-      const onChange = (newQuery: Query) => setQuery(newQuery);
-
-      const props: FieldValueSelectionFilterProps = {
-        ...requiredProps,
-        index: 0,
-        onChange,
-        query,
-        config: {
-          type: 'field_value_selection',
-          field: 'tag',
-          name: 'Tag',
-          multiSelect,
-          autoClose,
-          options: staticOptions,
-        },
-      };
-
-      return <FieldValueSelectionFilter {...props} />;
-    };
     const selectFilter = () => {
       // Open popover
       cy.get('button').click();
@@ -339,51 +311,33 @@ describe('FieldValueSelectionFilter', () => {
   });
 
   describe('autoSortOptions', () => {
+    const getOptions = () => cy.get('.euiSelectableListItem');
+
     it('sorts selected options to the top by default', () => {
-      const props: FieldValueSelectionFilterProps = {
-        index: 0,
-        onChange: () => {},
-        query: Query.parse('tag:bug'),
-        config: {
-          type: 'field_value_selection',
-          field: 'tag',
-          name: 'Tag',
-          options: staticOptions,
-        },
-      };
-      cy.mount(<FieldValueSelectionFilter {...props} />);
-      cy.get('.euiNotificationBadge').should('exist');
-
+      cy.mount(<FieldValueSelectionFilterWithState />);
       cy.get('button').click();
-      const getOptions = () => cy.get('.euiSelectableListItem');
-
       getOptions().should('have.length', 3);
-      getOptions().eq(0).should('have.attr', 'title', 'Bug');
-      getOptions().eq(1).should('have.attr', 'title', 'feature');
+
+      getOptions().last().should('have.attr', 'title', 'Bug').click();
+      // Should have moved to the top of the list and retained active focus
+      getOptions()
+        .first()
+        .should('have.attr', 'title', 'Bug')
+        .should('have.attr', 'aria-checked', 'true')
+        .should('have.attr', 'aria-selected', 'true');
     });
 
     it('does not sort selected options to the top when set to false', () => {
-      const props: FieldValueSelectionFilterProps = {
-        index: 0,
-        onChange: () => {},
-        query: Query.parse('tag:bug'),
-        config: {
-          type: 'field_value_selection',
-          field: 'tag',
-          name: 'Tag',
-          options: staticOptions,
-          autoSortOptions: false,
-        },
-      };
-      cy.mount(<FieldValueSelectionFilter {...props} />);
-      cy.get('.euiNotificationBadge').should('exist');
-
+      cy.mount(<FieldValueSelectionFilterWithState autoSortOptions={false} />);
       cy.get('button').click();
-      const getOptions = () => cy.get('.euiSelectableListItem');
-
       getOptions().should('have.length', 3);
-      getOptions().eq(2).should('have.attr', 'title', 'Bug');
-      getOptions().eq(0).should('have.attr', 'title', 'feature');
+
+      getOptions().last().should('have.attr', 'title', 'Bug').click();
+      getOptions()
+        .last()
+        .should('have.attr', 'title', 'Bug')
+        .should('have.attr', 'aria-checked', 'true')
+        .should('have.attr', 'aria-selected', 'true');
     });
   });
 
