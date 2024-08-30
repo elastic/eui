@@ -230,7 +230,7 @@ export const matrixColors = Object.keys(COLOR_MATRIX).reduce((acc, cur) => {
 
     const semanticGroup = MATRIX_TO_SEMANTIC_COLOR_NAME_MAP[group];
     const semanticColorName =
-      `${semanticGroup}${shade}` as keyof _EuiThemeSemanticMatrixColors;
+      `${semanticGroup}${shade}` as unknown as keyof _EuiThemeSemanticMatrixColors;
 
     semanticColors[semanticColorName] = color;
 
