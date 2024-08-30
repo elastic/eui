@@ -9,10 +9,37 @@
 import { css } from '@emotion/react';
 
 import { UseEuiTheme, tintOrShade } from '../../services';
-import { logicalCSS, logicalSizeCSS } from '../../global_styling';
+import {
+  euiFontSize,
+  logicalCSS,
+  logicalSizeCSS,
+  mathWithUnits,
+} from '../../global_styling';
+
+export const euiDataGridVariables = (euiThemeContext: UseEuiTheme) => {
+  const { euiTheme } = euiThemeContext;
+
+  return {
+    cellPadding: {
+      s: euiTheme.size.xs,
+      m: mathWithUnits(euiTheme.size.m, (x) => x / 2),
+      l: euiTheme.size.s,
+    },
+    lineHeight: {
+      s: euiFontSize(euiThemeContext, 'xs').lineHeight,
+      m: euiFontSize(euiThemeContext, 'm').lineHeight,
+    },
+    fontSize: {
+      s: euiFontSize(euiThemeContext, 'xs').fontSize,
+      m: euiFontSize(euiThemeContext, 's').fontSize,
+    },
+  };
+};
 
 export const euiDataGridStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme, colorMode } = euiThemeContext;
+  const { cellPadding, lineHeight, fontSize } =
+    euiDataGridVariables(euiThemeContext);
 
   return {
     euiDataGrid: css`
@@ -39,9 +66,56 @@ export const euiDataGridStyles = (euiThemeContext: UseEuiTheme) => {
         background-color: ${euiTheme.colors.highlight};
       }
     `,
+    cellPadding: {
+      cellPadding: (size: 's' | 'm' | 'l') => css`
+        .euiDataGridHeaderCell,
+        .euiDataGridRowCell__content {
+          padding: ${cellPadding[size]};
+        }
+
+        /* Workaround to trim line-clamp and padding - @see https://github.com/elastic/eui/issues/7780 */
+        .euiDataGridRowCell__content--lineCountHeight {
+          ${logicalCSS('padding-bottom', 0)}
+          ${logicalCSS(
+            'border-bottom',
+            `${cellPadding[size]} solid transparent`
+          )}
+        }
+      `,
+      get s() {
+        return css(this.cellPadding('s'));
+      },
+      get m() {
+        return css(this.cellPadding('m'));
+      },
+      get l() {
+        return css(this.cellPadding('l'));
+      },
+    },
+    fontSize: {
+      fontSize: (size: 's' | 'm') => css`
+        .euiDataGridHeaderCell,
+        .euiDataGridRowCell {
+          font-size: ${fontSize[size]};
+          line-height: ${lineHeight[size]};
+        }
+      `,
+      get s() {
+        return css(this.fontSize('s'));
+      },
+      get m() {
+        return css(this.fontSize('m'));
+      },
+      get l() {
+        // On the Amsterdam theme, the l fontSize is the same as m
+        return css(this.fontSize('m'));
+      },
+    },
     borders: {
       none: null,
       horizontal: css`
+        label: borders;
+
         .euiDataGridRowCell {
           ${logicalCSS('border-bottom', euiTheme.border.thin)}
         }
@@ -52,6 +126,8 @@ export const euiDataGridStyles = (euiThemeContext: UseEuiTheme) => {
         }
       `,
       all: css`
+        label: borders;
+
         .euiDataGridRowCell {
           ${logicalCSS('border-bottom', euiTheme.border.thin)}
           ${logicalCSS(

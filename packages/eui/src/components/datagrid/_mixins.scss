@@ -2,15 +2,10 @@ $euiDataGridPrefix: '.euiDataGrid--';
 
 // Things can get nesty so it's nice to have an approved list that match our typings
 $euiDataGridStyles: (
-  'paddingSmall'
-  'paddingMedium'
-  'paddingLarge'
   'headerShade'
   'headerUnderline'
   'footerShade'
   'footerOverline'
-  'fontSizeSmall'
-  'fontSizeLarge'
   'noControls'
   'stickyFooter'
 );

@@ -429,7 +429,12 @@ export const EuiDataGrid = memo(
     );
 
     const styles = useEuiMemoizedStyles(euiDataGridStyles);
-    const cssStyles = [styles.euiDataGrid, styles.borders[gridStyles.border!]];
+    const cssStyles = [
+      styles.euiDataGrid,
+      styles.cellPadding[gridStyles.cellPadding!],
+      styles.fontSize[gridStyles.fontSize!],
+      styles.borders[gridStyles.border!],
+    ];
 
     return (
       <DataGridFocusContext.Provider value={focusContext}>

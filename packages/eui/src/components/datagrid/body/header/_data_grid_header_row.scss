@@ -8,13 +8,10 @@
 }
 
 @include euiDataGridHeaderCell {
-  @include euiFontSizeS;
-
   position: relative;
   display: flex;
   flex: 0 0 auto;
   align-items: center;
-  padding: $euiDataGridCellPaddingM;
   font-weight: $euiFontWeightBold;
 
   // Workaround for focus trap
@@ -129,31 +126,5 @@
 @include euiDataGridStyles(headerShade) {
   @include euiDataGridHeaderCell {
     background: tintOrShade($euiColorLightestShade, 0%, 10%);
-  }
-}
-
-// Font alternates
-@include euiDataGridStyles(fontSizeSmall) {
-  @include euiDataGridHeaderCell {
-    @include euiFontSizeXS;
-  }
-}
-
-@include euiDataGridStyles(fontSizeLarge) {
-  @include euiDataGridHeaderCell {
-    @include euiFontSize;
-  }
-}
-
-// Padding alternates
-@include euiDataGridStyles(paddingSmall) {
-  @include euiDataGridHeaderCell {
-    padding: $euiDataGridCellPaddingS;
-  }
-}
-
-@include euiDataGridStyles(paddingLarge) {
-  @include euiDataGridHeaderCell {
-    padding: $euiDataGridCellPaddingL;
   }
 }
