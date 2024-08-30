@@ -61,13 +61,6 @@ export interface EuiDataGridCustomToolbarProps {
   columnSortingControl: ReactNode;
 }
 
-export interface EuiDataGridPaginationRendererProps
-  extends EuiDataGridPaginationProps {
-  rowCount: number;
-  controls: string;
-  'aria-label'?: AriaAttributes['aria-label'];
-}
-
 export interface EuiDataGridInMemoryRendererProps {
   inMemory: EuiDataGridInMemory;
   columns: EuiDataGridColumn[];

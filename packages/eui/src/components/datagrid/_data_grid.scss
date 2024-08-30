@@ -15,12 +15,6 @@
   bottom: 0;
   z-index: $euiZDataGrid;
   background: $euiColorEmptyShade;
-
-  .euiDataGrid__pagination {
-    padding-bottom: $euiSizeXS;
-    background: $euiColorLightestShade;
-    box-shadow: $euiBorderWidthThin 0 0 $euiBorderWidthThin $euiBorderColor; // Use box-shadow instead of border-top to avoid duplicating the border-bottom on grid cells
-  }
 }
 
 .euiDataGrid__content {
@@ -40,12 +34,6 @@
   height: 100%;
   width: 100%;
   overflow: auto;
-}
-
-.euiDataGrid__pagination {
-  z-index: 2; // Sits above the content above it
-  padding-top: $euiSizeXS;
-  flex-grow: 0;
 }
 
 // This is used to remove extra scrollbars on the body when fullscreen is enabled

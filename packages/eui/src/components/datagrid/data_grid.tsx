@@ -36,6 +36,7 @@ import {
   checkOrDefaultToolBarDisplayOptions,
   EuiDataGridToolbar,
 } from './controls';
+import { EuiDataGridPagination, shouldRenderPagination } from './pagination';
 import { DataGridSortedContext, useSorting } from './utils/sorting';
 import {
   DataGridFocusContext,
@@ -49,7 +50,6 @@ import {
 } from './utils/in_memory';
 import { DataGridCellPopoverContext, useCellPopover } from './body/cell';
 import { computeVisibleRows } from './utils/row_count';
-import { EuiDataGridPaginationRenderer } from './utils/data_grid_pagination';
 import {
   schemaDetectors as providedSchemaDetectors,
   useMergedSchema,
@@ -152,6 +152,8 @@ export const EuiDataGrid = memo(
           }
         : _pagination;
     }, [_pagination, paginationDefaults]);
+    const showPagination =
+      pagination && shouldRenderPagination(rowCount, pagination);
 
     const gridStyleWithDefaults = useMemo(
       () => ({ ...startingStyles, ...gridStyle }),
@@ -510,13 +512,13 @@ export const EuiDataGrid = memo(
                     renderCustomGridBody={renderCustomGridBody}
                   />
                 </div>
-                {pagination && props['aria-labelledby'] && (
+                {showPagination && props['aria-labelledby'] && (
                   <p id={ariaLabelledById} hidden>
                     {ariaLabelledBy}
                   </p>
                 )}
-                {pagination && (
-                  <EuiDataGridPaginationRenderer
+                {showPagination && (
+                  <EuiDataGridPagination
                     {...pagination}
                     rowCount={rowCount}
                     controls={gridId}
