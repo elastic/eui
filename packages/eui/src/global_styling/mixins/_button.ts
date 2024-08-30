@@ -7,17 +7,8 @@
  */
 
 import { css, keyframes, type SerializedStyles } from '@emotion/react';
-import {
-  _EuiThemeSemanticMatrixColors,
-  euiBackgroundColor,
-  euiCanAnimate,
-} from '../../../../global_styling';
-import {
-  hexToRgb,
-  isColorDark,
-  UseEuiTheme,
-  useEuiMemoizedStyles,
-} from '../../../../services';
+import { _EuiThemeButtonColors, euiCanAnimate } from '../index';
+import { UseEuiTheme, useEuiMemoizedStyles } from '../../services';
 
 export const BUTTON_COLORS = [
   'text',
@@ -31,16 +22,6 @@ export type _EuiButtonColor = (typeof BUTTON_COLORS)[number];
 
 export const BUTTON_DISPLAYS = ['base', 'fill', 'empty'] as const;
 export type _EuiButtonDisplay = (typeof BUTTON_DISPLAYS)[number];
-
-const BUTTON_COLOR_TO_MATRIX_COLOR_MAP: Record<string, string> = {
-  text: 'shade',
-  accent: 'accent',
-  primary: 'primary',
-  success: 'success',
-  warning: 'warning',
-  danger: 'danger',
-  disabled: 'shade',
-};
 
 export interface _EuiButtonOptions {
   display?: _EuiButtonDisplay;
@@ -56,40 +37,17 @@ export const euiButtonColor = (
   euiThemeContext: UseEuiTheme,
   color: _EuiButtonColor | 'disabled'
 ) => {
-  const { euiTheme, colorMode } = euiThemeContext;
+  const { euiTheme } = euiThemeContext;
 
-  let foreground;
-  let background;
-
-  switch (color) {
-    case 'disabled':
-      return {
-        color: euiTheme.colors.textDisabled,
-        backgroundColor: euiTheme.colors.backgroundDisabled,
-      };
-    case 'text':
-      foreground = euiTheme.colors[color];
-      background =
-        colorMode === 'DARK'
-          ? euiTheme.colors.shade90
-          : euiTheme.colors.shade20;
-      break;
-    default: {
-      const shade = colorMode === 'DARK' ? 120 : 20;
-      const mappedColor = BUTTON_COLOR_TO_MATRIX_COLOR_MAP[color];
-      const semanticColorName =
-        `${mappedColor}${shade}` as keyof _EuiThemeSemanticMatrixColors;
-
-      foreground = euiTheme.colors[`${color}Text`];
-      background = euiTheme.colors[semanticColorName];
-
-      break;
-    }
-  }
+  const colorName = color.charAt(0).toUpperCase() + color.slice(1);
+  const backgroundToken =
+    `buttonSecondaryBackground${colorName}` as keyof _EuiThemeButtonColors;
+  const colorToken =
+    `buttonSecondaryColor${colorName}` as keyof _EuiThemeButtonColors;
 
   return {
-    color: foreground,
-    backgroundColor: background,
+    color: euiTheme.colors[colorToken],
+    backgroundColor: euiTheme.colors[backgroundToken],
   };
 };
 
@@ -105,29 +63,14 @@ export const euiButtonFillColor = (
 ) => {
   const { euiTheme } = euiThemeContext;
 
-  const getForegroundColor = (background: string) => {
-    return isColorDark(...hexToRgb(background))
-      ? euiTheme.colors.ghost
-      : euiTheme.colors.ink;
-  };
-
-  let background;
-  let foreground;
-
-  switch (color) {
-    case 'disabled':
-      background = euiButtonColor(euiThemeContext, color).backgroundColor;
-      foreground = euiButtonColor(euiThemeContext, color).color;
-      break;
-    default:
-      background = euiTheme.colors[color];
-      foreground = getForegroundColor(background);
-      break;
-  }
+  const colorName = color.charAt(0).toUpperCase() + color.slice(1);
+  const backgroundToken =
+    `buttonBackground${colorName}` as keyof _EuiThemeButtonColors;
+  const colorToken = `buttonColor${colorName}` as keyof _EuiThemeButtonColors;
 
   return {
-    color: foreground,
-    backgroundColor: background,
+    color: euiTheme.colors[colorToken],
+    backgroundColor: euiTheme.colors[backgroundToken],
   };
 };
 
@@ -141,31 +84,17 @@ export const euiButtonEmptyColor = (
   euiThemeContext: UseEuiTheme,
   color: _EuiButtonColor | 'disabled'
 ) => {
-  let foreground;
-  let background;
+  const { euiTheme } = euiThemeContext;
 
-  switch (color) {
-    case 'disabled':
-      foreground = euiButtonColor(euiThemeContext, color).color;
-      background = 'transparent';
-      break;
-    case 'text':
-      foreground = euiButtonColor(euiThemeContext, color).color;
-      background = euiBackgroundColor(euiThemeContext, 'subdued', {
-        method: 'transparent',
-      });
-      break;
-    default:
-      foreground = euiButtonColor(euiThemeContext, color).color;
-      background = euiBackgroundColor(euiThemeContext, color, {
-        method: 'transparent',
-      });
-      break;
-  }
+  const colorName = color.charAt(0).toUpperCase() + color.slice(1);
+  const backgroundToken =
+    `buttonEmptyBackground${colorName}` as keyof _EuiThemeButtonColors;
+  const colorToken =
+    `buttonEmptyColor${colorName}` as keyof _EuiThemeButtonColors;
 
   return {
-    color: foreground,
-    backgroundColor: background,
+    color: euiTheme.colors[colorToken],
+    backgroundColor: euiTheme.colors[backgroundToken],
   };
 };
 

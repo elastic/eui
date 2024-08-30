@@ -332,6 +332,58 @@ export type _EuiThemeFormColors = {
   formAutofillBorderColor: ColorModeSwitch;
 };
 
+export type _EuiThemeButtonColors = {
+  buttonBackgroundPrimary: ColorModeSwitch;
+  buttonBackgroundAccent: ColorModeSwitch;
+  buttonBackgroundSuccess: ColorModeSwitch;
+  buttonBackgroundWarning: ColorModeSwitch;
+  buttonBackgroundDanger: ColorModeSwitch;
+  buttonBackgroundText: ColorModeSwitch;
+  buttonBackgroundDisabled: ColorModeSwitch;
+
+  buttonSecondaryBackgroundPrimary: ColorModeSwitch;
+  buttonSecondaryBackgroundAccent: ColorModeSwitch;
+  buttonSecondaryBackgroundSuccess: ColorModeSwitch;
+  buttonSecondaryBackgroundWarning: ColorModeSwitch;
+  buttonSecondaryBackgroundDanger: ColorModeSwitch;
+  buttonSecondaryBackgroundText: ColorModeSwitch;
+  buttonSecondaryBackgroundDisabled: ColorModeSwitch;
+
+  buttonEmptyBackgroundPrimary: ColorModeSwitch;
+  buttonEmptyBackgroundAccent: ColorModeSwitch;
+  buttonEmptyBackgroundSuccess: ColorModeSwitch;
+  buttonEmptyBackgroundWarning: ColorModeSwitch;
+  buttonEmptyBackgroundDanger: ColorModeSwitch;
+  buttonEmptyBackgroundText: ColorModeSwitch;
+  buttonEmptyBackgroundDisabled: ColorModeSwitch;
+
+  buttonColorPrimary: ColorModeSwitch;
+  buttonColorAccent: ColorModeSwitch;
+  buttonColorSuccess: ColorModeSwitch;
+  buttonColorWarning: ColorModeSwitch;
+  buttonColorDanger: ColorModeSwitch;
+  buttonColorText: ColorModeSwitch;
+  buttonColorDisabled: ColorModeSwitch;
+
+  buttonSecondaryColorPrimary: ColorModeSwitch;
+  buttonSecondaryColorAccent: ColorModeSwitch;
+  buttonSecondaryColorSuccess: ColorModeSwitch;
+  buttonSecondaryColorWarning: ColorModeSwitch;
+  buttonSecondaryColorDanger: ColorModeSwitch;
+  buttonSecondaryColorText: ColorModeSwitch;
+  buttonSecondaryColorDisabled: ColorModeSwitch;
+
+  buttonEmptyColorPrimary: ColorModeSwitch;
+  buttonEmptyColorAccent: ColorModeSwitch;
+  buttonEmptyColorSuccess: ColorModeSwitch;
+  buttonEmptyColorWarning: ColorModeSwitch;
+  buttonEmptyColorDanger: ColorModeSwitch;
+  buttonEmptyColorText: ColorModeSwitch;
+  buttonEmptyColorDisabled: ColorModeSwitch;
+
+  buttonBorderColorPrimary: ColorModeSwitch;
+};
+
 export type _EuiThemeColorsMode = _EuiThemeBrandColors &
   _EuiThemeSemanticColors &
   _EuiThemeBrandTextColors &
@@ -341,7 +393,8 @@ export type _EuiThemeColorsMode = _EuiThemeBrandColors &
   _EuiThemeBackgroundColors &
   _EuiThemeTransparentBackgroundColors &
   _EuiThemeBorderColors &
-  _EuiThemeFormColors;
+  _EuiThemeFormColors &
+  _EuiThemeButtonColors;
 
 export type _EuiThemeColors = StrictColorModeSwitch<_EuiThemeColorsMode> &
   _EuiThemeConstantColors;
