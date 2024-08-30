@@ -26,44 +26,44 @@ import { COLOR_MATRIX, getColorMatrixValue } from './_color_matrix';
 const matrix_colors = { matrix: COLOR_MATRIX };
 
 export const brand_colors: _EuiThemeBrandColors = {
-  primary: getColorMatrixValue('blue', 9),
-  accent: getColorMatrixValue('pink', 5),
-  success: getColorMatrixValue('teal', 4),
-  warning: getColorMatrixValue('yellow', 4),
-  danger: getColorMatrixValue('red', 9),
+  primary: getColorMatrixValue('blue', 90),
+  accent: getColorMatrixValue('pink', 50),
+  success: getColorMatrixValue('green', 40),
+  warning: getColorMatrixValue('yellow', 40),
+  danger: getColorMatrixValue('red', 90),
 };
 
 export const brand_text_colors: _EuiThemeBrandTextColors = {
-  primaryText: getColorMatrixValue('blue', 10),
-  accentText: getColorMatrixValue('pink', 10),
-  successText: getColorMatrixValue('teal', 10),
-  warningText: getColorMatrixValue('yellow', 10),
-  dangerText: getColorMatrixValue('red', 10),
+  primaryText: getColorMatrixValue('blue', 100),
+  accentText: getColorMatrixValue('pink', 100),
+  successText: getColorMatrixValue('green', 100),
+  warningText: getColorMatrixValue('yellow', 100),
+  dangerText: getColorMatrixValue('red', 100),
 };
 
 export const shade_colors: _EuiThemeShadeColors = {
   emptyShade: '#FFF',
-  lightestShade: getColorMatrixValue('neutralGrey', 1),
-  lightShade: getColorMatrixValue('neutralGrey', 3),
-  mediumShade: getColorMatrixValue('neutralGrey', 5),
-  darkShade: getColorMatrixValue('neutralGrey', 9),
-  darkestShade: getColorMatrixValue('neutralGrey', 12),
+  lightestShade: getColorMatrixValue('blueGrey', 10),
+  lightShade: getColorMatrixValue('blueGrey', 30),
+  mediumShade: getColorMatrixValue('blueGrey', 50),
+  darkShade: getColorMatrixValue('blueGrey', 90),
+  darkestShade: getColorMatrixValue('blueGrey', 120),
   fullShade: '#000',
 };
 
 export const special_colors: _EuiThemeSpecialColors = {
-  body: getColorMatrixValue('neutralGrey', 1),
-  highlight: getColorMatrixValue('yellow', 1),
-  disabled: getColorMatrixValue('neutralGrey', 5),
-  disabledText: getColorMatrixValue('neutralGrey', 5),
+  body: getColorMatrixValue('blueGrey', 10),
+  highlight: getColorMatrixValue('yellow', 10),
+  disabled: getColorMatrixValue('blueGrey', 50),
+  disabledText: getColorMatrixValue('blueGrey', 50),
   shadow: computed(({ colors }) => colors.ink),
 };
 
 export const text_colors: _EuiThemeTextColors = {
-  text: getColorMatrixValue('neutralGrey', 12),
-  title: getColorMatrixValue('neutralGrey', 14),
-  subduedText: getColorMatrixValue('neutralGrey', 10),
-  link: getColorMatrixValue('blue', 10),
+  text: getColorMatrixValue('blueGrey', 120),
+  title: getColorMatrixValue('blueGrey', 140),
+  subduedText: getColorMatrixValue('blueGrey', 100),
+  link: getColorMatrixValue('blue', 100),
 };
 
 export const light_colors: _EuiThemeColorsMode = {
@@ -81,12 +81,12 @@ export const light_colors: _EuiThemeColorsMode = {
  */
 
 export const dark_shades: _EuiThemeShadeColors = {
-  emptyShade: getColorMatrixValue('neutralGrey', 14),
-  lightestShade: getColorMatrixValue('neutralGrey', 13),
-  lightShade: getColorMatrixValue('neutralGrey', 12),
-  mediumShade: getColorMatrixValue('neutralGrey', 10),
-  darkShade: getColorMatrixValue('neutralGrey', 6),
-  darkestShade: getColorMatrixValue('neutralGrey', 3),
+  emptyShade: getColorMatrixValue('blueGrey', 140),
+  lightestShade: getColorMatrixValue('blueGrey', 130),
+  lightShade: getColorMatrixValue('blueGrey', 120),
+  mediumShade: getColorMatrixValue('blueGrey', 100),
+  darkShade: getColorMatrixValue('blueGrey', 60),
+  darkestShade: getColorMatrixValue('blueGrey', 30),
   fullShade: '#FFF',
 };
 
@@ -94,34 +94,34 @@ export const dark_colors_ams: _EuiThemeColorsMode = {
   ...matrix_colors,
 
   // Brand
-  primary: getColorMatrixValue('blue', 6),
-  accent: getColorMatrixValue('pink', 5),
-  success: getColorMatrixValue('teal', 4),
-  warning: getColorMatrixValue('yellow', 4),
-  danger: getColorMatrixValue('red', 6),
+  primary: getColorMatrixValue('blue', 60),
+  accent: getColorMatrixValue('pink', 50),
+  success: getColorMatrixValue('green', 40),
+  warning: getColorMatrixValue('yellow', 40),
+  danger: getColorMatrixValue('red', 60),
 
   // Shades
   ...dark_shades,
 
   // Special
-  body: getColorMatrixValue('neutralGrey', 14),
-  highlight: getColorMatrixValue('yellow', 13),
-  disabled: getColorMatrixValue('neutralGrey', 10),
-  disabledText: getColorMatrixValue('neutralGrey', 10),
+  body: getColorMatrixValue('blueGrey', 140),
+  highlight: getColorMatrixValue('yellow', 130),
+  disabled: getColorMatrixValue('blueGrey', 100),
+  disabledText: getColorMatrixValue('blueGrey', 100),
   shadow: computed(({ colors }) => colors.ink),
 
   // Need to come after special colors so they can react to `body`
-  primaryText: getColorMatrixValue('blue', 6),
-  accentText: getColorMatrixValue('pink', 5),
-  successText: getColorMatrixValue('teal', 4),
-  warningText: getColorMatrixValue('yellow', 4),
-  dangerText: getColorMatrixValue('red', 6),
+  primaryText: getColorMatrixValue('blue', 60),
+  accentText: getColorMatrixValue('pink', 50),
+  successText: getColorMatrixValue('green', 40),
+  warningText: getColorMatrixValue('yellow', 40),
+  dangerText: getColorMatrixValue('red', 60),
 
   // Text
-  text: getColorMatrixValue('neutralGrey', 2),
-  title: getColorMatrixValue('neutralGrey', 2),
-  subduedText: getColorMatrixValue('neutralGrey', 7),
-  link: getColorMatrixValue('blue', 6),
+  text: getColorMatrixValue('blueGrey', 20),
+  title: getColorMatrixValue('blueGrey', 20),
+  subduedText: getColorMatrixValue('blueGrey', 70),
+  link: getColorMatrixValue('blue', 60),
 };
 
 /*

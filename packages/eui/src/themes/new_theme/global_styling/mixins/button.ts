@@ -18,6 +18,11 @@ import {
   UseEuiTheme,
   useEuiMemoizedStyles,
 } from '../../../../services';
+import {
+  _ColorMatrix,
+  getColorMatrixValue,
+} from '../../../../themes/new_theme/global_styling/variables/_color_matrix';
+import { isNewTheme } from '../../../flags';
 
 export const BUTTON_COLORS = [
   'text',
@@ -35,6 +40,19 @@ export interface _EuiButtonOptions {
   display?: _EuiButtonDisplay;
 }
 
+const BUTTON_COLOR_TO_MATRIX_COLOR_MAP: Record<string, keyof _ColorMatrix> = {
+  text: 'blueGrey',
+  accent: 'pink',
+  primary: 'blue',
+  success: 'green',
+  warning: 'yellow',
+  danger: 'red',
+  disabled: 'blueGrey',
+};
+
+const getButtonMatrixColor = (color: string, shade: number) =>
+  getColorMatrixValue(BUTTON_COLOR_TO_MATRIX_COLOR_MAP[color], shade);
+
 /**
  * Creates the `base` version of button styles with proper text contrast.
  * @param euiThemeContext
@@ -46,12 +64,41 @@ export const euiButtonColor = (
   color: _EuiButtonColor | 'disabled'
 ) => {
   const { euiTheme, colorMode } = euiThemeContext;
+  const isDarkMode = colorMode === 'DARK';
+
   function tintOrShade(color: string) {
-    return colorMode === 'DARK' ? shade(color, 0.7) : tint(color, 0.8);
+    return isDarkMode ? shade(color, 0.7) : tint(color, 0.8);
   }
 
   let foreground;
   let background;
+
+  if (isNewTheme()) {
+    switch (color) {
+      case 'disabled':
+        return {
+          color: euiTheme.colors.disabledText,
+          backgroundColor: isDarkMode
+            ? getButtonMatrixColor(color, 130)
+            : getButtonMatrixColor(color, 20),
+        };
+      default:
+        foreground = isDarkMode
+          ? getButtonMatrixColor(color, 50)
+          : getButtonMatrixColor(color, 100);
+        background = isDarkMode
+          ? getButtonMatrixColor(color, 120)
+          : getButtonMatrixColor(color, 20);
+        break;
+    }
+
+    const colors = {
+      color: foreground,
+      backgroundColor: background,
+    };
+
+    return colors;
+  }
 
   switch (color) {
     case 'disabled':
@@ -99,6 +146,33 @@ export const euiButtonFillColor = (
   let background;
   let foreground;
 
+  if (isNewTheme()) {
+    switch (color) {
+      case 'disabled':
+        background = euiButtonColor(euiThemeContext, color).backgroundColor;
+        foreground = euiButtonColor(euiThemeContext, color).color;
+        break;
+      case 'text':
+        background =
+          colorMode === 'DARK'
+            ? getButtonMatrixColor(color, 20)
+            : getButtonMatrixColor(color, 90);
+        foreground = getForegroundColor(background);
+        break;
+      default:
+        background = euiTheme.colors[color];
+        foreground = getForegroundColor(background);
+        break;
+    }
+
+    const colors = {
+      color: foreground,
+      backgroundColor: background,
+    };
+
+    return colors;
+  }
+
   switch (color) {
     case 'disabled':
       background = euiButtonColor(euiThemeContext, color).backgroundColor;
@@ -144,6 +218,26 @@ export const euiButtonEmptyColor = (
 ) => {
   let foreground;
   let background;
+
+  if (isNewTheme()) {
+    switch (color) {
+      case 'disabled':
+        foreground = euiButtonColor(euiThemeContext, color).color;
+        background = 'transparent';
+        break;
+      default:
+        foreground = euiButtonColor(euiThemeContext, color).color;
+        background = 'transparent';
+        break;
+    }
+
+    const colors = {
+      color: foreground,
+      backgroundColor: background,
+    };
+
+    return colors;
+  }
 
   switch (color) {
     case 'disabled':

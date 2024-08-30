@@ -68,8 +68,8 @@ export const euiBackgroundColor = (
           return euiTheme.colors.emptyShade;
         default:
           return colorMode === 'DARK'
-            ? getMatrixBackgroundColor(color, 13)
-            : getMatrixBackgroundColor(color, 1);
+            ? getMatrixBackgroundColor(color, 130)
+            : getMatrixBackgroundColor(color, 10);
       }
     }
 
@@ -95,7 +95,7 @@ const BACKGROUND_COLOR_TO_MATRIX_COLOR_MAP: Record<string, keyof _ColorMatrix> =
     success: 'teal',
     warning: 'yellow',
     danger: 'red',
-    subdued: 'neutralGrey',
+    subdued: 'blueGrey',
   };
 
 const getMatrixBackgroundColor = (color: string, shade: number) => {

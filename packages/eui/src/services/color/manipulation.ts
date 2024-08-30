@@ -26,17 +26,19 @@ const getColorFromMatrix = (
   if (!colorData) return undefined;
 
   const { group, shade } = colorData;
-  const step = Math.round(ratio * COLOR_SHADES_COUNT);
-  const colorStep =
+  const hasLargeScale = group === 'blueGrey';
+  const ratioStep = Math.round(ratio * COLOR_SHADES_COUNT) * 10;
+  const step = hasLargeScale ? ratioStep / 2 : ratioStep;
+  const colorShade =
     direction === 'lighten'
-      ? Math.max(shade - step, 1)
-      : Math.min(shade + step, COLOR_SHADES_COUNT);
+      ? Math.max(shade - step, 10)
+      : Math.min(shade + step, COLOR_SHADES_COUNT * 10);
 
-  if (shade === colorStep) {
+  if (shade === colorShade) {
     return color;
   }
 
-  const newColor = getColorMatrixValue(group, colorStep);
+  const newColor = getColorMatrixValue(group, colorShade);
 
   return inOriginalFormat(color, chroma(newColor));
 };
@@ -61,6 +63,8 @@ export const transparentize = (color: string, alpha: number) =>
 export const tint = (color: string, ratio: number) => {
   if (isNewTheme()) {
     const matrixColor = getColorFromMatrix(color, ratio, 'lighten');
+
+    console.log('matrixColor', matrixColor);
 
     if (matrixColor) return matrixColor;
   }

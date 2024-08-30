@@ -13,7 +13,6 @@ export type _ColorData = string[];
 export type _ColorMatrix = {
   blue: _ColorData;
   blueGrey: _ColorData;
-  neutralGrey: _ColorData;
   teal: _ColorData;
   pink: _ColorData;
   green: _ColorData;
@@ -39,37 +38,51 @@ export const COLOR_MATRIX: _ColorMatrix = {
     '#09182f',
   ],
   blueGrey: [
-    '#f5f9ff',
-    '#dee7f4',
-    '#c7d5e9',
-    '#b1c3de',
-    '#9cb1d3',
-    '#86a0c8',
-    '#718fbc',
-    '#617eaa',
-    '#516d99',
-    '#405b85',
-    '#33496b',
-    '#283851',
-    '#1d283a',
-    '#121923',
+    '#f6f9fc',
+    '#ebeff6',
+    '#e0e6f1',
+    '#d4ddeb',
+    '#c9d4e6',
+    '#becce0',
+    '#b3c3da',
+    '#a9bad5',
+    '#9eb1cf',
+    '#93a8c9',
+    '#89a0c4',
+    '#7e97be',
+    '#748fb8',
+    '#6c86af',
+    '#647ea7',
+    '#5c759e',
+    '#546d95',
+    '#4c658c',
+    '#445c83',
+    '#3d5479',
+    '#364c6f',
+    '#2f4466',
+    '#283c5c',
+    '#223553',
+    '#1b2d49',
+    '#152640',
+    '#0f1f38',
+    '#09182F',
   ],
-  neutralGrey: [
-    '#f5f9fe',
-    '#e1e6ee',
-    '#ced4de',
-    '#bac2ce',
-    '#a7b0bf',
-    '#959faf',
-    '#838ea0',
-    '#727d8f',
-    '#626d7e',
-    '#505b6b',
-    '#404958',
-    '#303845',
-    '#212833',
-    '#131922',
-  ],
+  // neutralGrey: [
+  //   '#f5f9fe',
+  //   '#e1e6ee',
+  //   '#ced4de',
+  //   '#bac2ce',
+  //   '#a7b0bf',
+  //   '#959faf',
+  //   '#838ea0',
+  //   '#727d8f',
+  //   '#626d7e',
+  //   '#505b6b',
+  //   '#404958',
+  //   '#303845',
+  //   '#212833',
+  //   '#131922',
+  // ],
   teal: [
     '#eafdfc',
     '#c0f1ee',
@@ -162,8 +175,13 @@ export const COLOR_MATRIX_MAP = new Map<
 
 if (COLOR_MATRIX_MAP.size === 0) {
   for (const [key, value] of Object.entries<_ColorData>(COLOR_MATRIX)) {
+    let largeScaleIndex = 0;
+
     for (const [index, colorValue] of value.entries()) {
-      const position = index + 1;
+      const hasLargeScale = key === 'blueGrey';
+      largeScaleIndex = index === 0 ? 1 : largeScaleIndex + 0.5;
+
+      const position = hasLargeScale ? largeScaleIndex * 10 : (index + 1) * 10;
 
       COLOR_MATRIX_MAP.set(colorValue.toLowerCase(), {
         group: key as keyof _ColorMatrix,
@@ -177,6 +195,10 @@ export const getColorMatrixValue = (
   group: keyof _ColorMatrix,
   shade: number
 ) => {
-  const position = shade > 0 ? shade - 1 : shade;
+  const hasLargeScale = group === 'blueGrey';
+
+  const step = hasLargeScale ? (shade / 10) * 2 - 1 : shade / 10;
+  const position = step > 0 ? step - 1 : step;
+
   return COLOR_MATRIX[group][position].toLowerCase();
 };

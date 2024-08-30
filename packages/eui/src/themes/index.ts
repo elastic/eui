@@ -15,3 +15,4 @@ export { EuiThemeNew } from './new_theme/theme';
 export { isDefaultTheme, isNewTheme } from './flags';
 
 export * from './amsterdam';
+// export * from './new_theme';
