@@ -319,6 +319,7 @@ export const EuiDataGrid = memo(
       setIsFullScreen,
       fullScreenSelector,
       handleGridKeyDown,
+      fullScreenStyles,
     } = useDataGridFullScreenSelector();
 
     /**
@@ -356,6 +357,7 @@ export const EuiDataGrid = memo(
       },
       {
         'euiDataGrid--fullScreen': isFullScreen,
+        [fullScreenStyles]: isFullScreen,
       },
       {
         'euiDataGrid--noControls': !toolbarVisibility,
