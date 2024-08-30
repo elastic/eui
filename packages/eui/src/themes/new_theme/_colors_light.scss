@@ -1,0 +1,49 @@
+// stylelint-disable color-no-hex
+
+// This extra import allows any variables that are created via functions to work when loaded into JS
+@import '../../global_styling/functions/index';
+
+// These colors stay the same no matter the theme
+$euiColorGhost: #FFF !default;
+$euiColorInk: #000 !default;
+
+// Core
+$euiColorPrimary: #0b64dd !default;
+$euiColorAccent: #f588b3 !default;
+
+// Status
+$euiColorSuccess: #7ed8a9 !default;
+$euiColorWarning: #ddbf6a !default;
+$euiColorDanger: #c61e25 !default;
+
+// Grays
+$euiColorEmptyShade: #FFF !default;
+$euiColorLightestShade: #f6f9fc !default;
+$euiColorLightShade: #c9d4e6 !default;
+$euiColorMediumShade: #9eb1cf !default;
+$euiColorDarkShade: #546d95 !default;
+$euiColorDarkestShade: #283c5c !default;
+$euiColorFullShade: #000 !default;
+
+// Backgrounds
+$euiPageBackgroundColor: $euiColorLightestShade !default;
+$euiColorHighlight: #fef8ea !default;
+
+// Every color below must be based mathematically on the set above and in a particular order.
+$euiTextColor: #0f1f38 !default;
+$euiTitleColor: $euiTextColor !default;
+$euiTextSubduedColor: #445c83 !default;
+$euiColorDisabled: #ebeff6 !default;
+
+// Contrasty text variants
+$euiColorPrimaryText: #004fc7 !default;
+$euiColorSuccessText: #00782d !default;
+$euiColorAccentText: #a6005e !default;
+$euiColorWarningText: #854d00 !default;
+$euiColorDangerText: #af000e !default;
+$euiColorDisabledText: #647ea7 !default;
+$euiLinkColor: $euiColorPrimaryText !default;
+
+// Charts
+$euiColorChartLines: shade($euiColorLightestShade, 3%) !default;
+$euiColorChartBand: $euiColorLightestShade !default;

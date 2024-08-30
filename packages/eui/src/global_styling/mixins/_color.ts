@@ -7,14 +7,12 @@
  */
 
 import { css, SerializedStyles } from '@emotion/react';
+import { UseEuiTheme, useEuiMemoizedStyles } from '../../services';
 import {
-  shade,
-  tint,
-  tintOrShade,
-  transparentize,
-  UseEuiTheme,
-  useEuiMemoizedStyles,
-} from '../../services';
+  _EuiThemeBackgroundColors,
+  _EuiThemeBorderColors,
+  _EuiThemeTransparentBackgroundColors,
+} from '../variables';
 
 export const BACKGROUND_COLORS = [
   'transparent',
@@ -40,34 +38,31 @@ export interface _EuiBackgroundColorOptions {
  * @returns A single background color with optional alpha transparency
  */
 export const euiBackgroundColor = (
-  { euiTheme, colorMode }: UseEuiTheme,
+  { euiTheme }: UseEuiTheme,
   color: _EuiBackgroundColor,
   { method }: _EuiBackgroundColorOptions = {}
 ) => {
   if (color === 'transparent') return 'transparent';
 
   if (method === 'transparent') {
-    if (color === 'plain') {
-      return transparentize(euiTheme.colors.ghost, 0.2);
-    } else if (color === 'subdued') {
-      return colorMode === 'DARK'
-        ? transparentize(euiTheme.colors.lightShade, 0.4)
-        : transparentize(euiTheme.colors.lightShade, 0.2);
-    } else {
-      return transparentize(euiTheme.colors[color], 0.1);
-    }
-  } else {
-    function tintOrShade(color: string) {
-      return colorMode === 'DARK' ? shade(color, 0.8) : tint(color, 0.9);
-    }
+    const colorName = color.charAt(0).toUpperCase() + color.slice(1);
+    const colorToken =
+      `background${colorName}Transparent` as keyof _EuiThemeTransparentBackgroundColors;
 
+    return euiTheme.colors[colorToken];
+  } else {
     switch (color) {
       case 'plain':
         return euiTheme.colors.emptyShade;
       case 'subdued':
         return euiTheme.colors.body;
-      default:
-        return tintOrShade(euiTheme.colors[color]);
+      default: {
+        const colorName = color.charAt(0).toUpperCase() + color.slice(1);
+        const colorToken =
+          `background${colorName}` as keyof _EuiThemeBackgroundColors;
+
+        return euiTheme.colors[colorToken];
+      }
     }
   }
 };
@@ -131,18 +126,17 @@ export const useEuiBackgroundColorCSS = () =>
  */
 
 export const euiBorderColor = (
-  { euiTheme, colorMode }: UseEuiTheme,
+  { euiTheme }: UseEuiTheme,
   color: _EuiBackgroundColor
 ) => {
   switch (color) {
     case 'transparent':
-    case 'plain':
-    case 'subdued':
       return euiTheme.border.color;
-    case 'warning':
-      return tintOrShade(euiTheme.colors.warning, 0.4, colorMode);
-    default:
-      return tintOrShade(euiTheme.colors[color], 0.6, colorMode);
+    default: {
+      const colorName = color.charAt(0).toUpperCase() + color.slice(1);
+      const colorToken = `border${colorName}` as keyof _EuiThemeBorderColors;
+      return euiTheme.colors[colorToken];
+    }
   }
 };
 
