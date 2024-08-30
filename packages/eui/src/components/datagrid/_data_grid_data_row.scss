@@ -1,7 +1,5 @@
 @include euiDataGridRowCell {
   position: relative; // Needed for .euiDataGridRowCell__actions
-  border-right: $euiDataGridVerticalBorder;
-  border-bottom: $euiBorderThin;
 
   .euiDataGridRowCell__content {
     @include euiFontSizeS;
@@ -23,14 +21,6 @@
   // Hack to allow focus trap to still stretch to full row height on defined heights
   > [data-focus-lock-disabled] {
     height: 100%;
-  }
-
-  &.euiDataGridRowCell--firstColumn {
-    border-left: $euiBorderThin;
-  }
-
-  &.euiDataGridRowCell--lastColumn {
-    border-right-color: $euiBorderColor;
   }
 
   --euiDataGridCellOutlineColor: #{$euiColorPrimary};
@@ -213,20 +203,6 @@
   &.euiDataGridRowCell__expandCell .euiIcon {
     width: 120%;
     height: 100%;
-  }
-}
-
-// Border alternates
-@include euiDataGridStyles(bordersNone) {
-  @include euiDataGridRowCell {
-    border-color: transparent !important; // stylelint-disable-line declaration-no-important
-  }
-}
-
-@include euiDataGridStyles(bordersHorizontal) {
-  @include euiDataGridRowCell {
-    border-right-color: transparent;
-    border-left-color: transparent;
   }
 }
 

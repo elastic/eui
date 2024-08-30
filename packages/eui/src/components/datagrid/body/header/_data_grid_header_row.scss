@@ -119,66 +119,16 @@
 // Header alternates
 // Often these need extra specificity because they need to gracefully clash with the border settings
 
-@include euiDataGridStyles(bordersNone, bordersHorizontal) {
-  .euiDataGridHeader {
-    background: $euiColorEmptyShade;
-  }
-}
-
 @include euiDataGridStyles(headerUnderline) {
   @include euiDataGridHeaderCell {
-    border-top: none;
-    border-left: none;
-    border-right: none;
     border-bottom: $euiBorderThick;
     border-bottom-color: $euiTextColor;
-  }
-}
-
-@include euiDataGridStyles(bordersNone, headerUnderline) {
-  @include euiDataGridHeaderCell {
-    border-bottom: $euiBorderThick;
-    border-color: $euiTextColor;
   }
 }
 
 @include euiDataGridStyles(headerShade) {
   @include euiDataGridHeaderCell {
     background: tintOrShade($euiColorLightestShade, 0%, 10%);
-  }
-}
-
-@include euiDataGridStyles(headerShade, bordersAll) {
-  @include euiDataGridHeaderCell {
-    border-right: $euiBorderThin;
-    border-bottom: $euiBorderThin;
-    border-left: none;
-
-    &:first-of-type {
-      border-left: $euiBorderThin;
-    }
-  }
-}
-
-@include euiDataGridStyles(headerShade, bordersHorizontal) {
-  @include euiDataGridHeaderCell {
-    border-top: none;
-    border-bottom: $euiBorderThin;
-  }
-}
-
-// Border alternates
-@include euiDataGridStyles(bordersNone) {
-  @include euiDataGridHeaderCell {
-    border: none;
-  }
-}
-
-@include euiDataGridStyles(borderhorizontal) {
-  @include euiDataGridHeaderCell {
-    border-top: none;
-    border-right: none;
-    border-left: none;
   }
 }
 
@@ -205,17 +155,5 @@
 @include euiDataGridStyles(paddingLarge) {
   @include euiDataGridHeaderCell {
     padding: $euiDataGridCellPaddingL;
-  }
-}
-
-@include euiDataGridStyles(noControls, bordersAll) {
-  @include euiDataGridHeaderCell {
-    border-top: $euiBorderThin;
-  }
-}
-
-@include euiDataGridStyles(noControls, bordersHorizontal) {
-  @include euiDataGridHeaderCell {
-    border-top: $euiBorderThin;
   }
 }

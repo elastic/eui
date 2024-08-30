@@ -8,11 +8,11 @@
 
 import { css } from '@emotion/react';
 
-import { UseEuiTheme } from '../../services';
+import { UseEuiTheme, tintOrShade } from '../../services';
 import { logicalCSS, logicalSizeCSS } from '../../global_styling';
 
 export const euiDataGridStyles = (euiThemeContext: UseEuiTheme) => {
-  const { euiTheme } = euiThemeContext;
+  const { euiTheme, colorMode } = euiThemeContext;
 
   return {
     euiDataGrid: css`
@@ -39,6 +39,59 @@ export const euiDataGridStyles = (euiThemeContext: UseEuiTheme) => {
         background-color: ${euiTheme.colors.highlight};
       }
     `,
+    borders: {
+      none: null,
+      horizontal: css`
+        .euiDataGridRowCell {
+          ${logicalCSS('border-bottom', euiTheme.border.thin)}
+        }
+
+        .euiDataGridHeaderCell {
+          ${logicalCSS('border-top', euiTheme.border.thin)}
+          ${logicalCSS('border-bottom', euiTheme.border.thin)}
+        }
+      `,
+      all: css`
+        .euiDataGridRowCell {
+          ${logicalCSS('border-bottom', euiTheme.border.thin)}
+          ${logicalCSS(
+            'border-right',
+            // Visually lighten vertical borders
+            `${euiTheme.border.width.thin} solid ${tintOrShade(
+              euiTheme.border.color,
+              0.3,
+              colorMode
+            )}`
+          )}
+
+          &--firstColumn {
+            ${logicalCSS('border-left', euiTheme.border.thin)}
+          }
+
+          &--lastColumn {
+            ${logicalCSS('border-right-color', euiTheme.border.color)}
+          }
+        }
+
+        .euiDataGridFooterCell:first-of-type {
+          ${logicalCSS('border-left', euiTheme.border.thin)}
+        }
+
+        .euiDataGridHeaderCell {
+          ${logicalCSS('border-bottom', euiTheme.border.thin)}
+          ${logicalCSS('border-right', euiTheme.border.thin)}
+
+          &:first-of-type {
+            ${logicalCSS('border-left', euiTheme.border.thin)}
+          }
+        }
+
+        .euiDataGrid__controls {
+          border: ${euiTheme.border.thin};
+          background-color: ${euiTheme.colors.body};
+        }
+      `,
+    },
     // Sits below the controls above it and pagination below it
     euiDataGrid__content: css`
       z-index: 1;

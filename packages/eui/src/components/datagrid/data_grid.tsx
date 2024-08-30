@@ -429,6 +429,7 @@ export const EuiDataGrid = memo(
     );
 
     const styles = useEuiMemoizedStyles(euiDataGridStyles);
+    const cssStyles = [styles.euiDataGrid, styles.borders[gridStyles.border!]];
 
     return (
       <DataGridFocusContext.Provider value={focusContext}>
@@ -440,7 +441,7 @@ export const EuiDataGrid = memo(
               css={styles.euiDataGrid__focusWrap}
             >
               <div
-                css={styles.euiDataGrid}
+                css={cssStyles}
                 className={classes}
                 onKeyDown={handleGridKeyDown}
                 style={isFullScreen ? undefined : { width, height }}
