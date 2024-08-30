@@ -64,8 +64,6 @@ export const tint = (color: string, ratio: number) => {
   if (isNewTheme()) {
     const matrixColor = getColorFromMatrix(color, ratio, 'lighten');
 
-    console.log('matrixColor', matrixColor);
-
     if (matrixColor) return matrixColor;
   }
 
