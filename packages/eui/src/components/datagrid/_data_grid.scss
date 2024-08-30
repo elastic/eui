@@ -1,32 +1,8 @@
-.euiDataGrid {
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  overflow: hidden;
-  height: 100%;
-}
-
-.euiDataGrid__content {
-  flex-grow: 1;
-  height: 100%;
-  max-width: 100%;
-  width: 100%;
-  overflow: hidden;
-  z-index: 1; // Sits below the controls above it and pagination below it
-  position: relative;
-  background: $euiPageBackgroundColor;
-  font-feature-settings: 'tnum' 1; // Tabular numbers
-}
-
 .euiDataGrid__customRenderBody {
   @include euiScrollBar($euiColorDarkShade, $euiColorEmptyShade);
   height: 100%;
   width: 100%;
   overflow: auto;
-}
-
-.euiDataGrid__focusWrap {
-  height: 100%;
 }
 
 .euiDataGrid__virtualized {

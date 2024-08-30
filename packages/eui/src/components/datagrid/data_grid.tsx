@@ -19,7 +19,7 @@ import {
   VariableSizeGrid as Grid,
   GridOnItemsRenderedProps,
 } from 'react-window';
-import { useGeneratedHtmlId } from '../../services';
+import { useGeneratedHtmlId, useEuiMemoizedStyles } from '../../services';
 import { useEuiTablePaginationDefaults } from '../table/table_pagination';
 import { EuiFocusTrap } from '../focus_trap';
 import { EuiI18n, useEuiI18n } from '../i18n';
@@ -67,6 +67,7 @@ import {
   EuiDataGridStyleHeader,
   EuiDataGridStyleRowHover,
 } from './data_grid_types';
+import { euiDataGridStyles } from './data_grid.styles';
 
 // Each gridStyle object above sets a specific CSS select to .euiGrid
 const fontSizesToClassMap: { [size in EuiDataGridStyleFontSizes]: string } = {
@@ -427,6 +428,8 @@ export const EuiDataGrid = memo(
       ]
     );
 
+    const styles = useEuiMemoizedStyles(euiDataGridStyles);
+
     return (
       <DataGridFocusContext.Provider value={focusContext}>
         <DataGridCellPopoverContext.Provider value={cellPopoverContext}>
@@ -434,8 +437,10 @@ export const EuiDataGrid = memo(
             <EuiFocusTrap
               disabled={!isFullScreen}
               className="euiDataGrid__focusWrap"
+              css={styles.euiDataGrid__focusWrap}
             >
               <div
+                css={styles.euiDataGrid}
                 className={classes}
                 onKeyDown={handleGridKeyDown}
                 style={isFullScreen ? undefined : { width, height }}
@@ -475,6 +480,7 @@ export const EuiDataGrid = memo(
                   ref={contentRef}
                   onKeyDown={onKeyDown}
                   data-test-subj="euiDataGridBody"
+                  css={styles.euiDataGrid__content}
                   className="euiDataGrid__content"
                   role="grid"
                   aria-rowcount={rowCount}
