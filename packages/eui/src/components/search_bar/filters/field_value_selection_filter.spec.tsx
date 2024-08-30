@@ -502,4 +502,66 @@ describe('FieldValueSelectionFilter', () => {
       .eq(0)
       .should('have.attr', 'title', 'Bug');
   });
+
+  it('caches options if options is a function and config.cache is set', () => {
+    // Note: cy.clock()/cy.tick() doesn't currently work in Cypress component testing :T
+    // We should use that instead of cy.wait once https://github.com/cypress-io/cypress/issues/28846 is fixed
+    const props: FieldValueSelectionFilterProps = {
+      index: 0,
+      onChange: () => {},
+      query: Query.parse(''),
+      config: {
+        type: 'field_value_selection',
+        field: 'tag',
+        name: 'Tag',
+        cache: 5000, // Cache the loaded tags for 5 seconds
+        options: () =>
+          new Promise((resolve) => {
+            setTimeout(() => {
+              resolve(staticOptions);
+            }, 1000); // Spoof 1 second load time
+          }),
+      },
+    };
+    cy.spy(props.config, 'options');
+
+    const reducedTimeout = { timeout: 10 };
+    const assertIsLoading = (expected?: Function) => {
+      cy.get('.euiSelectableListItem', reducedTimeout).should('have.length', 0);
+      cy.get('[data-test-subj="euiSelectableMessage"]', reducedTimeout)
+        .should('have.text', 'Loading options')
+        .then(() => {
+          expected?.();
+        });
+    };
+    const assertIsLoaded = (expected?: Function) => {
+      cy.get('.euiSelectableListItem', reducedTimeout).should('have.length', 3);
+      cy.get('[data-test-subj="euiSelectableMessage"]', reducedTimeout)
+        .should('not.exist')
+        .then(() => {
+          expected?.();
+        });
+    };
+
+    cy.mount(<FieldValueSelectionFilter {...props} />);
+    cy.get('button').click();
+    assertIsLoading();
+
+    // Wait out the async options loader
+    cy.wait(1000);
+    assertIsLoaded(() => expect(props.config.options).to.be.calledOnce);
+
+    // Close and re-open the popover
+    cy.get('button').click();
+    cy.get('button').click();
+
+    // Cached options should immediately repopulate
+    assertIsLoaded(() => expect(props.config.options).to.be.calledOnce);
+
+    // Wait out the remainder of the cache, loading state should initiate again
+    cy.get('button').click();
+    cy.wait(5000);
+    cy.get('button').click();
+    assertIsLoading(() => expect(props.config.options).to.be.calledTwice);
+  });
 });

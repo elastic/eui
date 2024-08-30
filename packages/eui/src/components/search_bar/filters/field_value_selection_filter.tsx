@@ -87,6 +87,8 @@ export class FieldValueSelectionFilter extends Component<
   FieldValueSelectionFilterProps,
   State
 > {
+  cacheTimeout: ReturnType<typeof setTimeout> | undefined;
+
   constructor(props: FieldValueSelectionFilterProps) {
     super(props);
     const { options } = props.config;
@@ -125,83 +127,68 @@ export class FieldValueSelectionFilter extends Component<
     });
   }
 
-  loadOptions() {
-    const loader = this.resolveOptionsLoader();
+  loadOptions = async () => {
+    let loadedOptions: FieldValueOptionType[];
     this.setState({ options: null, error: null });
-    loader()
-      .then((options) => {
-        const items: {
-          on: FieldValueOptionType[];
-          off: FieldValueOptionType[];
-          rest: FieldValueOptionType[];
-        } = {
-          on: [],
-          off: [],
-          rest: [],
-        };
 
-        const { query, config } = this.props;
+    const { options, cache } = this.props.config;
+    try {
+      if (isArray(options)) {
+        // Synchronous options, already loaded
+        loadedOptions = options;
+      } else {
+        // Async options loader fn, potentially with a cache
+        loadedOptions = this.state.cachedOptions ?? (await options());
 
-        if (options) {
-          options.forEach((op) => {
-            const optionField = op.field || config.field;
-            if (optionField) {
-              const clause =
-                this.multiSelect === 'or'
-                  ? query.getOrFieldClause(optionField, op.value)
-                  : query.getSimpleFieldClause(optionField, op.value);
-              const checked = this.resolveChecked(clause);
-              if (!checked) {
-                items.rest.push(op);
-              } else if (checked === 'on') {
-                items.on.push(op);
-              } else {
-                items.off.push(op);
-              }
-            }
-            return;
-          });
+        // If a cache time is set, populate the cache and schedule a cache reset
+        if (cache != null && cache > 0) {
+          this.setState({ cachedOptions: loadedOptions });
+          this.cacheTimeout = setTimeout(() => {
+            this.setState({ cachedOptions: null });
+          }, cache);
         }
-
-        this.setState({
-          error: null,
-          activeItemsCount: items.on.length,
-          options: {
-            unsorted: options,
-            sorted: [...items.on, ...items.off, ...items.rest],
-          },
-        });
-      })
-      .catch(() => {
-        this.setState({ options: null, error: 'Could not load options' });
-      });
-  }
-
-  resolveOptionsLoader: () => OptionsLoader = () => {
-    const options = this.props.config.options;
-    if (isArray(options)) {
-      return () => Promise.resolve(options);
+      }
+    } catch {
+      return this.setState({ options: null, error: 'Could not load options' });
     }
 
-    return () => {
-      const cachedOptions = this.state.cachedOptions;
-      if (cachedOptions) {
-        return Promise.resolve(cachedOptions);
-      }
-
-      return (options as OptionsLoader)().then((opts) => {
-        // If a cache time is set, populate the cache and also schedule a
-        // cache reset.
-        if (this.props.config.cache != null && this.props.config.cache > 0) {
-          this.setState({ cachedOptions: opts });
-          setTimeout(() => {
-            this.setState({ cachedOptions: null });
-          }, this.props.config.cache);
-        }
-
-        return opts;
-      });
+    const items: Record<string, FieldValueOptionType[]> = {
+      on: [],
+      off: [],
+      rest: [],
     };
+
+    const { query, config } = this.props;
+
+    if (loadedOptions) {
+      loadedOptions.forEach((op) => {
+        const optionField = op.field || config.field;
+        if (optionField) {
+          const clause =
+            this.multiSelect === 'or'
+              ? query.getOrFieldClause(optionField, op.value)
+              : query.getSimpleFieldClause(optionField, op.value);
+          const checked = this.resolveChecked(clause);
+          if (!checked) {
+            items.rest.push(op);
+          } else if (checked === 'on') {
+            items.on.push(op);
+          } else {
+            items.off.push(op);
+          }
+        }
+        return;
+      });
+    }
+
+    this.setState({
+      error: null,
+      activeItemsCount: items.on.length,
+      options: {
+        unsorted: loadedOptions,
+        sorted: [...items.on, ...items.off, ...items.rest],
+      },
+    });
   };
 
   resolveOptionName(option: FieldValueOptionType) {
@@ -262,6 +249,10 @@ export class FieldValueSelectionFilter extends Component<
 
   componentDidUpdate(prevProps: FieldValueSelectionFilterProps) {
     if (this.props.query !== prevProps.query) this.loadOptions();
+  }
+
+  componentWillUnmount() {
+    clearTimeout(this.cacheTimeout);
   }
 
   render() {
