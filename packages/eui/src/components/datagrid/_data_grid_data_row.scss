@@ -1,7 +1,3 @@
-.euiDataGridRow {
-  background-color: $euiColorEmptyShade;
-}
-
 @include euiDataGridRowCell {
   position: relative; // Needed for .euiDataGridRowCell__actions
   border-right: $euiDataGridVerticalBorder;
@@ -217,20 +213,6 @@
   &.euiDataGridRowCell__expandCell .euiIcon {
     width: 120%;
     height: 100%;
-  }
-}
-
-// Row stripes
-@include euiDataGridStyles(stripes) {
-  .euiDataGridRow--striped {
-    background-color: $euiColorLightestShade;
-  }
-}
-
-// Row highlights
-@include euiDataGridStyles(rowHoverHighlight) {
-  .euiDataGridRow:hover {
-    background-color: $euiColorHighlight;
   }
 }
 

@@ -21,6 +21,23 @@ export const euiDataGridStyles = (euiThemeContext: UseEuiTheme) => {
       align-items: stretch;
       ${logicalCSS('height', '100%')}
       overflow: hidden;
+
+      /* Note: Several Kibana custom renderers are using the .euiDataGridRow classes
+       * directly for styles, hence why we're defining it here as opposed to applying
+       * it directly on the row element via Emotion. However, we also need to use
+       * :where to reduce specificity / allow easier overrides via rowClasses */
+
+      *:where(& .euiDataGridRow) {
+        background-color: ${euiTheme.colors.emptyShade};
+      }
+
+      *:where(&.euiDataGrid--stripes .euiDataGridRow--striped) {
+        background-color: ${euiTheme.colors.lightestShade};
+      }
+
+      *:where(&.euiDataGrid--rowHoverHighlight .euiDataGridRow:hover) {
+        background-color: ${euiTheme.colors.highlight};
+      }
     `,
     // Sits below the controls above it and pagination below it
     euiDataGrid__content: css`
