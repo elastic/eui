@@ -28,42 +28,6 @@
     outline: none;
   }
 
-  // On hover
-  &:hover:not(:focus, :focus-within, .euiDataGridRowCell--open) {
-    // Color the actions and focus ring grayscale on hover
-    // (Actions look odd without the ring on grids without cell borders)
-    --euiDataGridCellOutlineColor: #{$euiColorDarkShade};
-
-    .euiDataGridRowCell__actions {
-      // Delay the actions showing on hover
-      // (Note: the focus ring show instantly on hover & the actions show instantly on focus)
-      animation-delay: $euiAnimSpeedSlow;
-    }
-  }
-
-  // On hover & focus, show cell action buttons
-  &:hover,
-  &:focus,
-  &:focus-within,
-  // Always make the cell actions visible when the cell popover is open
-  &.euiDataGridRowCell--open,
-  // Prevents the animation from replaying when keyboard focus is moved from the popover back to the cell
-  &[data-keyboard-closing] {
-    .euiDataGridRowCell__actions {
-      animation-duration: $euiAnimSpeedExtraFast;
-      animation-name: euiDataGridCellActionsSlideIn;
-      animation-iteration-count: 1;
-      animation-fill-mode: forwards;
-    }
-  }
-
-  // if a cell is not hovered nor focused nor open via popover, don't show buttons in general
-  &:not(:hover):not(:focus):not(.euiDataGridRowCell--open):not([data-keyboard-closing]) {
-    .euiDataGridRowCell__actions {
-      display: none;
-    }
-  }
-
   &.euiDataGridRowCell--numeric {
     text-align: right;
   }
@@ -94,71 +58,4 @@
   &.euiDataGridRowCell__content--defaultHeight {
     height: 100%;
   }
-}
-
-// Positioning for cell actions & the cell expansion popover
-.euiDataGridRowCell__actions,
-.euiDataGridRowCell__actions + [data-euiportal] > .euiPopover {
-  position: absolute;
-  left: 0;
-  bottom: 100%;
-}
-
-.euiDataGridRowCell__actions {
-  z-index: $euiZDataGridCellPopover - 2; // Sit below sticky column headers
-  margin-bottom: -$euiBorderWidthThin; // Vertical alignment
-  display: flex;
-  gap: $euiSizeXS / 2;
-  padding-inline: $euiSizeXS / 2;
-  background-color: var(--euiDataGridCellOutlineColor);
-  color: $euiColorEmptyShade;
-  border: $euiBorderWidthThin solid var(--euiDataGridCellOutlineColor);
-  border-radius: $euiBorderRadius / 2;
-  border-bottom-left-radius: 0;
-  transform: scaleY(0);
-  transform-origin: bottom;
-
-  // The first row of cell actions need to be visible above the cell headers,
-  // but other cell actions that scroll past the sticky headers should not
-  .euiDataGridRowCell[data-gridcell-visible-row-index='0'] > & {
-    z-index: $euiZDataGridCellPopover - 1;
-  }
-
-  // Visual trickery - fill in the gap between the cell outline border-radius & the actions
-  &::after {
-    content: '';
-    position: absolute;
-    top: 100%;
-    left: -$euiBorderWidthThin;
-    height: $euiBorderWidthThick;
-    width: $euiBorderWidthThick;
-    background-color: var(--euiDataGridCellOutlineColor);
-  }
-}
-
-.euiDataGridRowCell__actionButtonIcon {
-  height: $euiSize + $euiSizeXS;
-  width: $euiSize;
-  border-radius: 0;
-
-  /* Force all cell action buttons to match EUI colors */
-  &,
-  svg {
-    // stylelint-disable declaration-no-important
-    background-color: transparent !important;
-    color: currentColor !important;
-    fill: currentColor !important;
-    // stylelint-enable declaration-no-important
-  }
-
-  /* Manually increase the size of the expand cell icon - it's a bit small by default */
-  &.euiDataGridRowCell__expandCell .euiIcon {
-    width: 120%;
-    height: 100%;
-  }
-}
-
-@keyframes euiDataGridCellActionsSlideIn {
-  from { transform: scaleY(0); }
-  to { transform: scaleY(1); }
 }

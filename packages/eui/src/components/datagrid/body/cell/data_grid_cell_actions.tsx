@@ -7,12 +7,8 @@
  */
 
 import React, { JSXElementConstructor, Ref, useMemo, useCallback } from 'react';
-import {
-  EuiDataGridColumn,
-  EuiDataGridColumnCellAction,
-  EuiDataGridColumnCellActionProps,
-} from '../../data_grid_types';
 
+import { useEuiMemoizedStyles } from '../../../../services';
 import { EuiI18n } from '../../../i18n';
 import { EuiButtonIcon, EuiButtonIconProps } from '../../../button/button_icon';
 import {
@@ -21,6 +17,13 @@ import {
 } from '../../../button/button_empty';
 import { EuiFlexGroup, EuiFlexItem } from '../../../flex';
 import { EuiPopoverFooter } from '../../../popover';
+
+import {
+  EuiDataGridColumn,
+  EuiDataGridColumnCellAction,
+  EuiDataGridColumnCellActionProps,
+} from '../../data_grid_types';
+import { euiDataGridCellActionsStyles } from './data_grid_cell_actions.styles';
 
 export const EuiDataGridCellActions = ({
   onExpandClick,
@@ -35,6 +38,9 @@ export const EuiDataGridCellActions = ({
   rowIndex: number;
   colIndex: number;
 }) => {
+  const styles = useEuiMemoizedStyles(euiDataGridCellActionsStyles);
+  const cssStyles = [styles.euiDataGridRowCell__actions, styles.visibility];
+
   // Note: The cell expand button/expansion popover is *always* rendered if
   // column.cellActions is present (regardless of column.isExpandable).
   // This is because cell actions are not otherwise accessible to keyboard
@@ -48,6 +54,7 @@ export const EuiDataGridCellActions = ({
       >
         {(expandButtonTitle: string) => (
           <EuiButtonIcon
+            css={styles.euiDataGridRowCell__actionButtonIcon}
             className="euiDataGridRowCell__actionButtonIcon euiDataGridRowCell__expandCell"
             data-test-subj="euiDataGridCellExpandButton"
             display="fill"
@@ -61,7 +68,7 @@ export const EuiDataGridCellActions = ({
         )}
       </EuiI18n>
     ),
-    [onExpandClick]
+    [onExpandClick, styles]
   );
 
   const additionalButtons = useMemo(() => {
@@ -71,6 +78,7 @@ export const EuiDataGridCellActions = ({
       <EuiButtonIcon
         {...props}
         aria-hidden
+        css={styles.euiDataGridRowCell__actionButtonIcon}
         className="euiDataGridRowCell__actionButtonIcon"
         // Don't allow consumers to override sizes or colors for cell actions on hover/focus
         size="xs"
@@ -101,11 +109,11 @@ export const EuiDataGridCellActions = ({
         );
       }
     );
-  }, [column, colIndex, rowIndex]);
+  }, [column, colIndex, rowIndex, styles]);
 
   return (
     <>
-      <div className="euiDataGridRowCell__actions">
+      <div css={cssStyles} className="euiDataGridRowCell__actions">
         {[...additionalButtons, expandButton]}
       </div>
       {/* The cell expansion popover needs a separate div/ref - otherwise the

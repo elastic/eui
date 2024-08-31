@@ -7,7 +7,7 @@
  */
 
 import React from 'react';
-import { shallow } from 'enzyme';
+import { render } from '../../../../test/rtl';
 
 import { EuiDataGridColumnCellAction } from '../../data_grid_types';
 import {
@@ -29,104 +29,71 @@ describe('EuiDataGridCellActions', () => {
   };
 
   it('renders an expand button', () => {
-    const component = shallow(<EuiDataGridCellActions {...requiredProps} />);
+    const { getByTestSubject } = render(
+      <EuiDataGridCellActions {...requiredProps} />
+    );
 
-    expect(component).toMatchInlineSnapshot(`
-      <Fragment>
-        <div
-          className="euiDataGridRowCell__actions"
-        >
-          <EuiI18n
-            default="Click or hit enter to interact with cell content"
-            key="expand"
-            token="euiDataGridCellActions.expandButtonTitle"
-          >
-            <Component />
-          </EuiI18n>
-        </div>
-        <div
-          data-test-subject="cellPopoverAnchor"
-        />
-      </Fragment>
-    `);
-
-    const button: Function = component.find('EuiI18n').renderProp('children');
-    expect(button('expandButtonTitle')).toMatchInlineSnapshot(`
-      <EuiButtonIcon
-        aria-hidden={true}
-        className="euiDataGridRowCell__actionButtonIcon euiDataGridRowCell__expandCell"
-        color="primary"
+    expect(getByTestSubject('euiDataGridCellExpandButton'))
+      .toMatchInlineSnapshot(`
+      <button
+        aria-hidden="true"
+        class="euiButtonIcon euiDataGridRowCell__actionButtonIcon euiDataGridRowCell__expandCell emotion-euiButtonIcon-xs-fill-primary-euiDataGridRowCell__actionButtonIcon"
         data-test-subj="euiDataGridCellExpandButton"
-        display="fill"
-        iconSize="m"
-        iconType="expandMini"
-        onClick={[MockFunction]}
-        title="expandButtonTitle"
-      />
+        tabindex="-1"
+        title="Click or hit enter to interact with cell content"
+        type="button"
+      >
+        <span
+          aria-hidden="true"
+          class="euiButtonIcon__icon"
+          color="inherit"
+          data-euiicon-type="expandMini"
+        />
+      </button>
     `);
   });
 
   it('renders cell actions as `EuiButtonIcon`s', () => {
-    const component = shallow(
+    const { getByTestSubject } = render(
       <EuiDataGridCellActions
         {...requiredProps}
         column={{ id: 'someId', cellActions: [MockAction] }}
       />
     );
 
-    const button = component.childAt(0).childAt(0).renderProp('Component');
-    expect(button({ iconType: 'eye' })).toMatchInlineSnapshot(`
-      <EuiButtonIcon
-        aria-hidden={true}
-        className="euiDataGridRowCell__actionButtonIcon"
-        color="primary"
-        display="fill"
-        iconSize="s"
-        iconType="eye"
-        size="xs"
-      />
+    expect(getByTestSubject('mockCellAction')).toMatchInlineSnapshot(`
+      <button
+        aria-hidden="true"
+        class="euiButtonIcon euiDataGridRowCell__actionButtonIcon emotion-euiButtonIcon-xs-fill-primary-euiDataGridRowCell__actionButtonIcon"
+        data-test-subj="mockCellAction"
+        tabindex="-1"
+        type="button"
+      >
+        <span
+          aria-hidden="true"
+          class="euiButtonIcon__icon"
+          color="inherit"
+          data-euiicon-type="starEmpty"
+        />
+      </button>
     `);
   });
 
   it('renders both cell actions and expand button', () => {
-    const component = shallow(
+    const { getByTestSubject } = render(
       <EuiDataGridCellActions
         {...requiredProps}
         column={{ id: 'someId', cellActions: [MockAction] }}
       />
     );
 
-    expect(component).toMatchInlineSnapshot(`
-      <Fragment>
-        <div
-          className="euiDataGridRowCell__actions"
-        >
-          <MockAction
-            Component={[Function]}
-            colIndex={0}
-            columnId="someId"
-            isExpanded={false}
-            key="0"
-            rowIndex={0}
-          />
-          <EuiI18n
-            default="Click or hit enter to interact with cell content"
-            key="expand"
-            token="euiDataGridCellActions.expandButtonTitle"
-          >
-            <Component />
-          </EuiI18n>
-        </div>
-        <div
-          data-test-subject="cellPopoverAnchor"
-        />
-      </Fragment>
-    `);
+    expect(getByTestSubject('euiDataGridCellExpandButton')).toBeInTheDocument();
+    expect(getByTestSubject('mockCellAction')).toBeInTheDocument();
   });
 
   describe('visible cell actions limit', () => {
     it('by default, does not render more than the first two primary cell actions', () => {
-      const component = shallow(
+      const { getAllByTestSubject } = render(
         <EuiDataGridCellActions
           {...requiredProps}
           column={{
@@ -136,11 +103,11 @@ describe('EuiDataGridCellActions', () => {
         />
       );
 
-      expect(component.find('MockAction')).toHaveLength(2);
+      expect(getAllByTestSubject('mockCellAction')).toHaveLength(2);
     });
 
     it('allows configuring the default number of visible cell actions', () => {
-      const component = shallow(
+      const { getAllByTestSubject } = render(
         <EuiDataGridCellActions
           {...requiredProps}
           column={{
@@ -151,14 +118,14 @@ describe('EuiDataGridCellActions', () => {
         />
       );
 
-      expect(component.find('MockAction')).toHaveLength(3);
+      expect(getAllByTestSubject('mockCellAction')).toHaveLength(3);
     });
   });
 });
 
 describe('EuiDataGridCellPopoverActions', () => {
   it('renders column cell actions as `EuiButtonEmpty`s', () => {
-    const component = shallow(
+    const { getByTestSubject } = render(
       <EuiDataGridCellPopoverActions
         colIndex={0}
         rowIndex={0}
@@ -166,44 +133,29 @@ describe('EuiDataGridCellPopoverActions', () => {
       />
     );
 
-    expect(component).toMatchInlineSnapshot(`
-      <Fragment>
-        <EuiPopoverFooter>
-          <EuiFlexGroup
-            gutterSize="s"
-            responsive={false}
-            wrap={true}
-          >
-            <EuiFlexItem
-              key="0"
-            >
-              <div>
-                <MockAction
-                  Component={[Function]}
-                  colIndex={0}
-                  columnId="someId"
-                  isExpanded={true}
-                  rowIndex={0}
-                />
-              </div>
-            </EuiFlexItem>
-          </EuiFlexGroup>
-        </EuiPopoverFooter>
-      </Fragment>
-    `);
-
-    const action = component.find('MockAction') as any;
-    const button = action.renderProp('Component');
-    expect(button({ iconType: 'function' })).toMatchInlineSnapshot(`
-      <EuiButtonEmpty
-        iconType="function"
-        size="s"
-      />
+    expect(getByTestSubject('mockCellAction')).toMatchInlineSnapshot(`
+      <button
+        class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-s-empty-primary"
+        data-test-subj="mockCellAction"
+        type="button"
+      >
+        <span
+          class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
+        >
+          <span
+            color="inherit"
+            data-euiicon-type="starEmpty"
+          />
+          <span
+            class="eui-textTruncate euiButtonEmpty__text"
+          />
+        </span>
+      </button>
     `);
   });
 
   it('renders primary actions in their own footer, and all remaining secondary actions in a column footer', () => {
-    const component = shallow(
+    const { container } = render(
       <EuiDataGridCellPopoverActions
         colIndex={0}
         rowIndex={0}
@@ -214,69 +166,11 @@ describe('EuiDataGridCellPopoverActions', () => {
       />
     );
 
-    expect(component).toMatchInlineSnapshot(`
-      <Fragment>
-        <EuiPopoverFooter>
-          <EuiFlexGroup
-            gutterSize="s"
-            responsive={false}
-            wrap={true}
-          >
-            <EuiFlexItem
-              key="0"
-            >
-              <div>
-                <MockAction
-                  Component={[Function]}
-                  colIndex={0}
-                  columnId="someId"
-                  isExpanded={true}
-                  rowIndex={0}
-                />
-              </div>
-            </EuiFlexItem>
-            <EuiFlexItem
-              key="1"
-            >
-              <div>
-                <MockAction
-                  Component={[Function]}
-                  colIndex={0}
-                  columnId="someId"
-                  isExpanded={true}
-                  rowIndex={0}
-                />
-              </div>
-            </EuiFlexItem>
-          </EuiFlexGroup>
-        </EuiPopoverFooter>
-        <EuiPopoverFooter>
-          <EuiFlexGroup
-            alignItems="flexStart"
-            direction="column"
-            gutterSize="s"
-          >
-            <EuiFlexItem
-              key="0"
-            >
-              <div>
-                <MockAction
-                  Component={[Function]}
-                  colIndex={0}
-                  columnId="someId"
-                  isExpanded={true}
-                  rowIndex={0}
-                />
-              </div>
-            </EuiFlexItem>
-          </EuiFlexGroup>
-        </EuiPopoverFooter>
-      </Fragment>
-    `);
+    expect(container.querySelectorAll('.euiPopoverFooter')).toHaveLength(2);
   });
 
   it('uses visibleCellActions to configure the number of primary vs. secondary actions', () => {
-    const component = shallow(
+    const { container } = render(
       <EuiDataGridCellPopoverActions
         colIndex={0}
         rowIndex={0}
@@ -288,16 +182,13 @@ describe('EuiDataGridCellPopoverActions', () => {
       />
     );
 
-    expect(
-      component.find('EuiPopoverFooter').first().find('MockAction')
-    ).toHaveLength(3);
-    expect(
-      component.find('EuiPopoverFooter').last().find('MockAction')
-    ).toHaveLength(1);
+    const footers = container.querySelectorAll('.euiPopoverFooter');
+    expect(footers[0].querySelectorAll('button')).toHaveLength(3);
+    expect(footers[1].querySelectorAll('button')).toHaveLength(1);
   });
 
   it('does not render anything if the column has no cell actions', () => {
-    const component = shallow(
+    const { container } = render(
       <EuiDataGridCellPopoverActions
         colIndex={0}
         rowIndex={0}
@@ -305,6 +196,6 @@ describe('EuiDataGridCellPopoverActions', () => {
       />
     );
 
-    expect(component).toMatchInlineSnapshot('<Fragment />');
+    expect(container).toBeEmptyDOMElement();
   });
 });
