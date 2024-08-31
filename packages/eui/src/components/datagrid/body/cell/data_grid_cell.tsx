@@ -175,7 +175,6 @@ export class EuiDataGridCell extends Component<
     cellProps: {},
     isFocused: false,
     isHovered: false,
-    cellTextAlign: 'Left',
   };
   unsubscribeCell?: Function;
   style = null;
@@ -415,30 +414,6 @@ export class EuiDataGridCell extends Component<
     } else if (this.contentObserver) {
       this.contentObserver.disconnect();
     }
-    this.setCellTextAlign();
-  };
-
-  setCellTextAlign = () => {
-    if (this.cellContentsRef) {
-      const { columnType } = this.props;
-      if (!columnType) {
-        // If no schema was set, this is likely a left aligned column
-        this.setState({ cellTextAlign: 'Left' });
-      } else if (columnType === 'numeric' || columnType === 'currency') {
-        // Default EUI schemas that we know set right text align
-        this.setState({ cellTextAlign: 'Right' });
-      } else {
-        // If the consumer is using a custom schema, it may have custom text alignment
-        const textAlign = window
-          .getComputedStyle(this.cellContentsRef)
-          .getPropertyValue('text-align');
-
-        this.setState({
-          cellTextAlign:
-            textAlign === 'right' || textAlign === 'end' ? 'Right' : 'Left',
-        });
-      }
-    }
   };
 
   isExpandable = () => {
@@ -474,7 +449,9 @@ export class EuiDataGridCell extends Component<
       // Set popover anchor
       const cellAnchorEl = this.popoverAnchorRef.current!;
       setPopoverAnchor(cellAnchorEl);
-      setPopoverAnchorPosition(`down${this.state.cellTextAlign}`);
+      // TODO: Potentially switch to `topLeft` based on occlusion with sticky header
+      // @see https://github.com/elastic/eui/issues/7828
+      setPopoverAnchorPosition('downLeft');
 
       // Set popover contents with cell content
       const {
@@ -582,7 +559,6 @@ export class EuiDataGridCell extends Component<
 
     const cellClasses = classNames(
       'euiDataGridRowCell',
-      `euiDataGridRowCell--align${this.state.cellTextAlign}`,
       {
         [`euiDataGridRowCell--${columnType}`]: columnType,
         'euiDataGridRowCell--open': popoverIsOpen,

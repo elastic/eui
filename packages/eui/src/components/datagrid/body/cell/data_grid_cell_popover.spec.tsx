@@ -17,11 +17,11 @@ const baseProps: EuiDataGridProps = {
   'aria-label': 'Grid cell popover test',
   height: 300,
   width: 400,
-  columns: [{ id: 'A' }, { id: 'B' }, { id: 'C', schema: 'numeric' }],
+  columns: [{ id: 'A' }, { id: 'B' }],
   rowCount: 2,
   renderCellValue: ({ rowIndex, columnId }) => `${columnId}, ${rowIndex}`,
   columnVisibility: {
-    visibleColumns: ['A', 'B', 'C'],
+    visibleColumns: ['A', 'B'],
     setVisibleColumns: () => {},
   },
 };
@@ -206,8 +206,6 @@ describe('EuiDataGridCellPopover', () => {
             return 'short text';
           case 'B':
             return 'Very long text that should get cut off because it is so long, lorem ipsum dolor sit amet words words words';
-          case 'C':
-            return 'right aligned text';
         }
       },
     };
@@ -237,21 +235,6 @@ describe('EuiDataGridCellPopover', () => {
         .should('have.css', 'left', '109px')
         .should('have.css', 'top', '80px')
         .should('have.css', 'width', '375px');
-    });
-
-    it('right aligned popover', () => {
-      cy.realMount(<EuiDataGrid {...props} />);
-
-      openCellPopover('C');
-
-      // Matchers used due to subpixel rendering shenanigans
-      cy.get('[data-test-subj="euiDataGridExpansionPopover"]')
-        .should('have.css', 'top', '80px')
-        .should('have.css', 'left')
-        .and('match', /^255[.\d]+px$/);
-      cy.get('[data-test-subj="euiDataGridExpansionPopover"]')
-        .should('have.css', 'width')
-        .and('match', /^143[.\d]+px$/);
     });
 
     describe('max popover dimensions', () => {

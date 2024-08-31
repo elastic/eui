@@ -47,7 +47,7 @@ export const useCellPopover = (): {
   // Popover anchor & content are passed by individual `EuiDataGridCell`s
   const [popoverAnchor, setPopoverAnchor] = useState<HTMLElement | null>(null);
   const [popoverAnchorPosition, setPopoverAnchorPosition] = useState<
-    'downLeft' | 'downRight'
+    'downLeft' | 'upLeft'
   >('downLeft');
   const [popoverContent, setPopoverContent] = useState<ReactNode>();
   // Allow customization of most (not all) popover props by consumers
