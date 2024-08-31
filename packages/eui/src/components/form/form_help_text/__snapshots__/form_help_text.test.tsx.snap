@@ -3,7 +3,7 @@
 exports[`EuiFormHelpText is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="euiFormHelpText testClass1 testClass2 emotion-euiTestCss"
+  class="euiFormHelpText testClass1 testClass2 emotion-euiFormHelpText-euiTestCss"
   data-test-subj="test subject string"
 >
   This is help text.

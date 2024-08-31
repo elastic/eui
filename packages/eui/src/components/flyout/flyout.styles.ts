@@ -17,7 +17,7 @@ import {
 } from '../../global_styling';
 import { UseEuiTheme } from '../../services';
 import { euiShadowXLarge } from '../../themes/amsterdam/global_styling/mixins';
-import { euiFormVariables } from '../form/form.styles';
+import { euiFormMaxWidth } from '../form/form.styles';
 
 export const FLYOUT_BREAKPOINT = 'm' as const;
 
@@ -150,7 +150,7 @@ const composeFlyoutSizing = (
   size: EuiFlyoutSize
 ) => {
   const euiTheme = euiThemeContext.euiTheme;
-  const form = euiFormVariables(euiThemeContext);
+  const formMaxWidth = euiFormMaxWidth(euiThemeContext);
 
   // 1. Calculating the minimum width based on the screen takeover breakpoint
   const flyoutSizes = {
@@ -162,7 +162,7 @@ const composeFlyoutSizing = (
 
     m: {
       // Calculated for forms plus padding
-      min: `${mathWithUnits(form.maxWidth, (x) => x + 24)}`,
+      min: `${mathWithUnits(formMaxWidth, (x) => x + 24)}`,
       width: '50vw',
       max: `${euiTheme.breakpoint.m}px`,
     },

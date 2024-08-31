@@ -7,10 +7,10 @@
  */
 
 import React from 'react';
-import { shallow } from 'enzyme';
+import { render } from '../../../../test/rtl';
+import { RenderI18nTimeOptions } from '../time_options';
 
 import { EuiQuickSelect } from './quick_select';
-import { RenderI18nTimeOptions } from '../time_options';
 
 const noop = () => {};
 const defaultProps = {
@@ -21,19 +21,19 @@ const defaultProps = {
 
 describe('EuiQuickSelect', () => {
   test('is rendered', () => {
-    const component = shallow(
+    const { container } = render(
       <RenderI18nTimeOptions>
         {(timeOptions) => (
           <EuiQuickSelect {...defaultProps} timeOptions={timeOptions} />
         )}
       </RenderI18nTimeOptions>
-    ).dive();
+    );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   test('prevQuickSelect', () => {
-    const component = shallow(
+    const { container } = render(
       <RenderI18nTimeOptions>
         {(timeOptions) => (
           <EuiQuickSelect
@@ -47,8 +47,8 @@ describe('EuiQuickSelect', () => {
           />
         )}
       </RenderI18nTimeOptions>
-    ).dive();
+    );
 
-    expect(component).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
   });
 });

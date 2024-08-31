@@ -8,10 +8,14 @@
 
 import React from 'react';
 import { requiredProps } from '../../../test';
+import { shouldRenderCustomStyles } from '../../../test/internal';
 import { render } from '../../../test/rtl';
+
 import { EuiFormControlLayoutClearButton } from './form_control_layout_clear_button';
 
 describe('EuiFormControlLayoutClearButton', () => {
+  shouldRenderCustomStyles(<EuiFormControlLayoutClearButton />);
+
   test('is rendered', () => {
     const { container } = render(
       <EuiFormControlLayoutClearButton

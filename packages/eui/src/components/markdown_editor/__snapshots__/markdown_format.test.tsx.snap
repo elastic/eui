@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiMarkdownFormat renders 1`] = `
+<div
+  aria-label="aria-label"
+  class="euiText euiMarkdownFormat testClass1 testClass2 emotion-euiText-m-euiTextColor-default-euiMarkdownFormat-m-default-euiTestCss"
+  data-test-subj="test subject string"
+>
+  <p>
+    <strong>
+      Hello world
+    </strong>
+  </p>
+</div>
+`;

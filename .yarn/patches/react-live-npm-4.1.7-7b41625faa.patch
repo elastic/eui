@@ -1,0 +1,26 @@
+diff --git a/dist/index.js b/dist/index.js
+index 7bcfee33d9cfaa6c5f9d7da40335ec2551f932b6..4c29438cb94412d25aed193f9c86f20ccebb9009 100644
+--- a/dist/index.js
++++ b/dist/index.js
+@@ -168,7 +168,7 @@ var import_sucrase = require("sucrase");
+ var defaultTransforms = ["jsx", "imports"];
+ function transform(opts = {}) {
+   const transforms = Array.isArray(opts.transforms) ? opts.transforms.filter(Boolean) : defaultTransforms;
+-  return (code) => (0, import_sucrase.transform)(code, { transforms }).code;
++  return (code) => (0, import_sucrase.transform)(code, { transforms, jsxPragma: 'jsx' }).code;
+ }
+ 
+ // src/utils/transpile/errorBoundary.tsx
+diff --git a/dist/index.mjs b/dist/index.mjs
+index 44a3fbed4fc0545b75235add7369a262e8ee5220..6cfad17b4ce81553bac1243b7421f5f75ade43fc 100644
+--- a/dist/index.mjs
++++ b/dist/index.mjs
+@@ -127,7 +127,7 @@ import { transform as _transform } from "sucrase";
+ var defaultTransforms = ["jsx", "imports"];
+ function transform(opts = {}) {
+   const transforms = Array.isArray(opts.transforms) ? opts.transforms.filter(Boolean) : defaultTransforms;
+-  return (code) => _transform(code, { transforms }).code;
++  return (code) => _transform(code, { transforms, jsxPragma: 'jsx' }).code;
+ }
+ 
+ // src/utils/transpile/errorBoundary.tsx

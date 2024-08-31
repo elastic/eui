@@ -7,33 +7,31 @@ exports[`EuiSwitch assigns automatically generated ID to label 1`] = `
   <button
     aria-checked="false"
     aria-labelledby="generated-id"
-    class="euiSwitch__button"
+    class="euiSwitch__button emotion-euiSwitch__button"
     id="generated-id"
     role="switch"
     type="button"
   >
     <span
-      class="euiSwitch__body"
+      class="euiSwitch__body emotion-euiSwitch__body-off"
     >
       <span
-        class="euiSwitch__thumb"
-      />
-      <span
-        class="euiSwitch__track"
+        class="euiSwitch__icons emotion-euiSwitch__icons-off-enabled"
       >
         <span
-          class="euiSwitch__icon"
-          data-euiicon-type="cross"
+          data-euiicon-type="check"
         />
         <span
-          class="euiSwitch__icon euiSwitch__icon--checked"
-          data-euiicon-type="check"
+          data-euiicon-type="cross"
         />
       </span>
     </span>
+    <span
+      class="euiSwitch__thumb emotion-euiSwitch__thumb-off"
+    />
   </button>
   <span
-    class="euiSwitch__label"
+    class="euiSwitch__label emotion-euiSwitch__label"
     id="generated-id"
   >
     Label
@@ -49,34 +47,32 @@ exports[`EuiSwitch is rendered 1`] = `
     aria-checked="false"
     aria-label="aria-label"
     aria-labelledby="generated-id"
-    class="euiSwitch__button"
+    class="euiSwitch__button emotion-euiSwitch__button"
     data-test-subj="test subject string"
     id="test"
     role="switch"
     type="button"
   >
     <span
-      class="euiSwitch__body"
+      class="euiSwitch__body emotion-euiSwitch__body-off"
     >
       <span
-        class="euiSwitch__thumb"
-      />
-      <span
-        class="euiSwitch__track"
+        class="euiSwitch__icons emotion-euiSwitch__icons-off-enabled"
       >
         <span
-          class="euiSwitch__icon"
-          data-euiicon-type="cross"
+          data-euiicon-type="check"
         />
         <span
-          class="euiSwitch__icon euiSwitch__icon--checked"
-          data-euiicon-type="check"
+          data-euiicon-type="cross"
         />
       </span>
     </span>
+    <span
+      class="euiSwitch__thumb emotion-euiSwitch__thumb-off"
+    />
   </button>
   <span
-    class="euiSwitch__label"
+    class="euiSwitch__label emotion-euiSwitch__label"
     id="generated-id"
   >
     Label
@@ -91,34 +87,32 @@ exports[`EuiSwitch labelProps is rendered 1`] = `
   <button
     aria-checked="false"
     aria-labelledby="generated-id"
-    class="euiSwitch__button"
+    class="euiSwitch__button emotion-euiSwitch__button"
     id="generated-id"
     role="switch"
     type="button"
   >
     <span
-      class="euiSwitch__body"
+      class="euiSwitch__body emotion-euiSwitch__body-off"
     >
       <span
-        class="euiSwitch__thumb"
-      />
-      <span
-        class="euiSwitch__track"
+        class="euiSwitch__icons emotion-euiSwitch__icons-off-enabled"
       >
         <span
-          class="euiSwitch__icon"
-          data-euiicon-type="cross"
+          data-euiicon-type="check"
         />
         <span
-          class="euiSwitch__icon euiSwitch__icon--checked"
-          data-euiicon-type="check"
+          data-euiicon-type="cross"
         />
       </span>
     </span>
+    <span
+      class="euiSwitch__thumb emotion-euiSwitch__thumb-off"
+    />
   </button>
   <span
     aria-label="aria-label"
-    class="euiSwitch__label testClass1 testClass2 emotion-euiTestCss"
+    class="euiSwitch__label testClass1 testClass2 emotion-euiSwitch__label-euiTestCss"
     data-test-subj="test subject string"
     id="generated-id"
   >

@@ -11,18 +11,23 @@ import React, {
   FocusEventHandler,
   KeyboardEventHandler,
   RefCallback,
+  ReactNode,
 } from 'react';
 import classNames from 'classnames';
 
 import { CommonProps } from '../../common';
-import { htmlIdGenerator, keys, CanvasTextUtils } from '../../../services';
+import {
+  htmlIdGenerator,
+  keys,
+  CanvasTextUtils,
+  RenderWithEuiStylesMemoizer,
+} from '../../../services';
 import { EuiScreenReaderOnly } from '../../accessibility';
 import {
   EuiFormControlLayout,
   EuiFormControlLayoutProps,
 } from '../../form/form_control_layout';
 import { EuiFormControlLayoutIconsProps } from '../../form/form_control_layout/form_control_layout_icons';
-import { getFormControlClassNameForIconCount } from '../../form/form_control_layout/_num_icons';
 
 import {
   EuiComboBoxOptionOption,
@@ -31,6 +36,7 @@ import {
 } from '../types';
 import { EuiComboBoxOptionAppendPrepend } from '../utils';
 import { EuiComboBoxPill } from './combo_box_pill';
+import { euiComboBoxInputStyles } from './combo_box_input.styles';
 
 export interface EuiComboBoxInputProps<T> extends CommonProps {
   compressed: boolean;
@@ -245,7 +251,7 @@ export class EuiComboBoxInput<T> extends Component<
       'aria-labelledby': ariaLabelledby,
     } = this.props;
 
-    let removeOptionMessage;
+    let removeOptionMessage: ReactNode;
     let removeOptionMessageId;
 
     if (this.state.hasFocus) {
@@ -277,6 +283,7 @@ export class EuiComboBoxInput<T> extends Component<
       );
     }
 
+    const isInGroup = singleSelection && (prepend || append);
     const showPlaceholder =
       placeholder && !selectedOptions?.length && !searchValue;
 
@@ -303,79 +310,106 @@ export class EuiComboBoxInput<T> extends Component<
       };
     }
 
-    const numIconsClass = getFormControlClassNameForIconCount({
-      isDropdown: !noIcon,
-      clear: !!clickProps.clear,
-      isInvalid,
-      isLoading,
-    });
-
-    const wrapClasses = classNames('euiComboBox__inputWrap', numIconsClass, {
-      'euiComboBox__inputWrap--compressed': compressed,
-      'euiComboBox__inputWrap--fullWidth': fullWidth,
-      'euiComboBox__inputWrap--noWrap': singleSelection,
-      'euiComboBox__inputWrap--plainText': this.asPlainText || showPlaceholder,
-      'euiComboBox__inputWrap--inGroup': prepend || append,
+    const wrapClasses = classNames('euiComboBox__inputWrap', {
+      'euiComboBox__inputWrap--plainText': this.asPlainText,
     });
 
     return (
-      <EuiFormControlLayout
-        icon={icon}
-        {...clickProps}
-        inputId={id}
-        isLoading={isLoading}
-        isInvalid={isInvalid}
-        compressed={compressed}
-        fullWidth={fullWidth}
-        prepend={prepend}
-        append={append}
-      >
-        <div
-          className={wrapClasses}
-          data-test-subj="comboBoxInput"
-          onClick={onClick}
-          tabIndex={-1} // becomes onBlur event's relatedTarget, otherwise relatedTarget is null when clicking on this div
-        >
-          {this.renderPills()}
-          <EuiComboBoxOptionAppendPrepend
-            option={this.asPlainText ? selectedOptions?.[0] : undefined}
-            classNamePrefix="euiComboBoxPlainTextSelection"
-          >
-            <input
-              aria-activedescendant={focusedOptionId}
-              aria-autocomplete="list"
-              aria-controls={isListOpen ? rootId('listbox') : ''}
-              aria-expanded={isListOpen}
-              aria-label={ariaLabel}
-              aria-labelledby={ariaLabelledby}
-              aria-invalid={isInvalid}
-              className="euiComboBox__input"
-              data-test-subj="comboBoxSearchInput"
-              disabled={isDisabled}
-              id={id}
-              onBlur={this.onBlur}
-              onChange={(event) => onChange(event.target.value)}
-              onFocus={this.onFocus}
-              onKeyDown={this.onKeyDown}
-              ref={this.inputRefCallback}
-              role="combobox"
-              style={{
-                inlineSize:
-                  this.asPlainText || showPlaceholder
-                    ? '100%'
-                    : this.state.inputWidth,
-              }}
-              placeholder={showPlaceholder ? placeholder : undefined}
-              value={this.searchValue}
-              autoFocus={autoFocus}
-              autoComplete="off"
-              // Force the menu to re-open on every input click - only necessary when plain text
-              onClick={this.asPlainText ? (onFocus as any) : undefined} // Type shenanigans - event should be mostly the same
-            />
-          </EuiComboBoxOptionAppendPrepend>
-          {removeOptionMessage}
-        </div>
-      </EuiFormControlLayout>
+      <RenderWithEuiStylesMemoizer>
+        {(stylesMemoizer) => {
+          const styles = stylesMemoizer(euiComboBoxInputStyles);
+          const cssStyles = [
+            styles.euiComboBoxInputWrapper,
+            !singleSelection && styles.multiSelect,
+            compressed ? styles.compressed : styles.uncompressed,
+            ...(this.asPlainText || showPlaceholder
+              ? [
+                  styles.plainText.plainText,
+                  compressed
+                    ? styles.plainText.compressed
+                    : styles.plainText.uncompressed,
+                ]
+              : []),
+            isDisabled
+              ? styles.disabled
+              : isInvalid
+              ? styles.invalid
+              : isListOpen
+              ? styles.open
+              : undefined,
+            isInGroup && styles.inGroup,
+          ];
+          const formLayoutStyles = [
+            styles.formLayout.euiComboBox__formControlLayout,
+            !singleSelection && styles.formLayout.multiSelect,
+          ];
+
+          return (
+            <EuiFormControlLayout
+              icon={icon}
+              {...clickProps}
+              inputId={id}
+              isLoading={isLoading}
+              isInvalid={isInvalid}
+              isDisabled={isDisabled}
+              compressed={compressed}
+              fullWidth={fullWidth}
+              prepend={prepend}
+              append={append}
+              css={formLayoutStyles}
+            >
+              <div
+                css={cssStyles}
+                className={wrapClasses}
+                data-test-subj="comboBoxInput"
+                onClick={onClick}
+                tabIndex={-1} // becomes onBlur event's relatedTarget, otherwise relatedTarget is null when clicking on this div
+              >
+                {this.renderPills()}
+                <EuiComboBoxOptionAppendPrepend
+                  option={this.asPlainText ? selectedOptions?.[0] : undefined}
+                  classNamePrefix="euiComboBoxPlainTextSelection"
+                  marginSize="xxs"
+                >
+                  <input
+                    aria-activedescendant={focusedOptionId}
+                    aria-autocomplete="list"
+                    aria-controls={isListOpen ? rootId('listbox') : ''}
+                    aria-expanded={isListOpen}
+                    aria-label={ariaLabel}
+                    aria-labelledby={ariaLabelledby}
+                    aria-invalid={isInvalid}
+                    css={styles.euiComboBoxInput}
+                    className="euiComboBox__input"
+                    data-test-subj="comboBoxSearchInput"
+                    disabled={isDisabled}
+                    id={id}
+                    onBlur={this.onBlur}
+                    onChange={(event) => onChange(event.target.value)}
+                    onFocus={this.onFocus}
+                    onKeyDown={this.onKeyDown}
+                    ref={this.inputRefCallback}
+                    role="combobox"
+                    style={{
+                      inlineSize:
+                        this.asPlainText || showPlaceholder
+                          ? '100%'
+                          : this.state.inputWidth,
+                    }}
+                    placeholder={showPlaceholder ? placeholder : undefined}
+                    value={this.searchValue}
+                    autoFocus={autoFocus}
+                    autoComplete="off"
+                    // Force the menu to re-open on every input click - only necessary when plain text
+                    onClick={this.asPlainText ? (onFocus as any) : undefined} // Type shenanigans - event should be mostly the same
+                  />
+                </EuiComboBoxOptionAppendPrepend>
+                {removeOptionMessage}
+              </div>
+            </EuiFormControlLayout>
+          );
+        }}
+      </RenderWithEuiStylesMemoizer>
     );
   }
 }

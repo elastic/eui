@@ -7,7 +7,6 @@
  */
 
 import React from 'react';
-import { mount, ReactWrapper } from 'enzyme';
 import { fireEvent } from '@testing-library/react';
 import { render } from '../../../test/rtl';
 import { requiredProps } from '../../../test';
@@ -16,20 +15,9 @@ import { shouldRenderCustomStyles } from '../../../test/internal';
 import {
   EuiSuperDatePicker,
   EuiSuperDatePickerProps,
-  EuiSuperDatePickerInternal,
 } from './super_date_picker';
-import { EuiButton } from '../../button';
 
 const noop = () => {};
-
-// Test utils to handle diving into EuiSuperDatePickerInternal
-const findInternalInstance = (
-  wrapper: ReactWrapper
-): [EuiSuperDatePickerInternal, ReactWrapper] => {
-  const component = wrapper.find('EuiSuperDatePickerInternal');
-  const instance = component.instance() as EuiSuperDatePickerInternal;
-  return [instance, component];
-};
 
 describe('EuiSuperDatePicker', () => {
   // RTL doesn't automatically clean up portals/datepicker popovers between tests
@@ -62,46 +50,26 @@ describe('EuiSuperDatePicker', () => {
   });
 
   test('refresh is disabled by default', () => {
-    // By default we expect `asyncInterval` to be not set.
-    const component = mount(<EuiSuperDatePicker onTimeChange={noop} />);
-    const [instancePaused, componentPaused] = findInternalInstance(component);
+    const { container } = render(<EuiSuperDatePicker onTimeChange={noop} />);
 
-    expect(instancePaused.asyncInterval).toBe(undefined);
-    expect(componentPaused.prop('isPaused')).toBe(true);
+    expect(
+      container.querySelector('.euiAutoRefreshButton')
+    ).not.toBeInTheDocument();
   });
 
   test('updates refresh interval on isPaused prop update', () => {
-    // If refresh is enabled via `isPaused/onRefresh` we expect
-    // `asyncInterval` to be present and `asyncInterval.isStopped` to be `false`.
     const onRefresh = jest.fn();
-    const component = mount(
+    const { container } = render(
       <EuiSuperDatePicker
         onTimeChange={noop}
         isPaused={false}
         onRefresh={onRefresh}
       />
     );
-    const [instanceRefresh, componentRefresh] = findInternalInstance(component);
+    const refreshButton = container.querySelector('.euiAutoRefreshButton');
 
-    expect(typeof instanceRefresh.asyncInterval).toBe('object');
-    expect(instanceRefresh.asyncInterval!.isStopped).toBe(false);
-    expect(componentRefresh.prop('isPaused')).toBe(false);
-
-    // If we update the prop `isPaused` we expect the interval to be stopped too.
-    component.setProps({ isPaused: true });
-    const [instanceUpdatedPaused, componentUpdatedPaused] =
-      findInternalInstance(component);
-    expect(typeof instanceUpdatedPaused.asyncInterval).toBe('object');
-    expect(instanceUpdatedPaused.asyncInterval!.isStopped).toBe(true);
-    expect(componentUpdatedPaused.prop('isPaused')).toBe(true);
-
-    // Let's start refresh again for a final sanity check.
-    component.setProps({ isPaused: false });
-    const [instanceUpdatedRefresh, componentUpdatedRefresh] =
-      findInternalInstance(component);
-    expect(typeof instanceUpdatedRefresh.asyncInterval).toBe('object');
-    expect(instanceUpdatedRefresh.asyncInterval!.isStopped).toBe(false);
-    expect(componentUpdatedRefresh.prop('isPaused')).toBe(false);
+    expect(refreshButton).toBeInTheDocument();
+    expect(refreshButton).toHaveTextContent('1 s');
   });
 
   test('Listen for consecutive super date picker refreshes', async () => {
@@ -109,7 +77,7 @@ describe('EuiSuperDatePicker', () => {
 
     const onRefresh = jest.fn();
 
-    const component = mount(
+    render(
       <EuiSuperDatePicker
         onTimeChange={noop}
         isPaused={false}
@@ -117,16 +85,14 @@ describe('EuiSuperDatePicker', () => {
         refreshInterval={10}
       />
     );
-    const [instanceRefresh] = findInternalInstance(component);
-
-    expect(typeof instanceRefresh.asyncInterval).toBe('object');
 
     jest.advanceTimersByTime(10);
-    await instanceRefresh.asyncInterval!.__pendingFn;
-    jest.advanceTimersByTime(10);
-    await instanceRefresh.asyncInterval!.__pendingFn;
+    await jest.runAllTicks();
+    expect(onRefresh).toHaveBeenCalledTimes(1);
 
-    expect(onRefresh).toBeCalledTimes(2);
+    jest.advanceTimersByTime(10);
+    await jest.runAllTicks();
+    expect(onRefresh).toHaveBeenCalledTimes(2);
 
     jest.useRealTimers();
   });
@@ -136,24 +102,31 @@ describe('EuiSuperDatePicker', () => {
 
     const onRefresh = jest.fn();
 
-    const component = mount(
+    const { rerender } = render(
       <EuiSuperDatePicker
         onTimeChange={noop}
-        isPaused={false}
         onRefresh={onRefresh}
+        isPaused={false}
         refreshInterval={10}
       />
     );
-    const [instanceRefresh] = findInternalInstance(component);
 
     jest.advanceTimersByTime(10);
-    expect(typeof instanceRefresh.asyncInterval).toBe('object');
-    await instanceRefresh.asyncInterval!.__pendingFn;
-    component.setProps({ isPaused: true, refreshInterval: 0 });
-    jest.advanceTimersByTime(10);
-    await instanceRefresh.asyncInterval!.__pendingFn;
+    await jest.runAllTicks();
+    expect(onRefresh).toHaveBeenCalledTimes(1);
 
-    expect(onRefresh).toBeCalledTimes(1);
+    rerender(
+      <EuiSuperDatePicker
+        onTimeChange={noop}
+        onRefresh={onRefresh}
+        isPaused={true}
+        refreshInterval={0}
+      />
+    );
+
+    jest.advanceTimersByTime(10);
+    await jest.runAllTicks();
+    expect(onRefresh).toHaveBeenCalledTimes(1);
 
     jest.useRealTimers();
   });
@@ -165,20 +138,20 @@ describe('EuiSuperDatePicker', () => {
         color: 'danger',
       };
 
-      const component = mount(
+      const { container } = render(
         <EuiSuperDatePicker
           onTimeChange={noop}
           updateButtonProps={updateButtonProps}
         />
       );
-      expect(component.find(EuiButton).last().props()).toMatchObject(
-        updateButtonProps
-      );
+      const updateButton = container.querySelector('.euiSuperUpdateButton')!;
+      expect(updateButton.className).not.toContain('fill');
+      expect(updateButton.className).toContain('danger');
     });
 
     it('invokes onFocus callbacks on the date popover buttons', () => {
       const focusMock = jest.fn();
-      const component = mount(
+      const { getByTestSubject } = render(
         <EuiSuperDatePicker
           onTimeChange={noop}
           showUpdateButton={false}
@@ -186,24 +159,18 @@ describe('EuiSuperDatePicker', () => {
         />
       );
 
-      component
-        .find('button[data-test-subj="superDatePickerShowDatesButton"]')
-        .simulate('focus');
-      expect(focusMock).toBeCalledTimes(1);
+      fireEvent.focus(getByTestSubject('superDatePickerShowDatesButton'));
+      expect(focusMock).toHaveBeenCalledTimes(1);
 
-      component
-        .find('button[data-test-subj="superDatePickerShowDatesButton"]')
-        .simulate('click');
+      fireEvent.click(getByTestSubject('superDatePickerShowDatesButton'));
 
-      component
-        .find('button[data-test-subj="superDatePickerstartDatePopoverButton"]')
-        .simulate('focus');
-      expect(focusMock).toBeCalledTimes(2);
+      fireEvent.focus(
+        getByTestSubject('superDatePickerstartDatePopoverButton')
+      );
+      expect(focusMock).toHaveBeenCalledTimes(2);
 
-      component
-        .find('button[data-test-subj="superDatePickerstartDatePopoverButton"]')
-        .simulate('focus');
-      expect(focusMock).toBeCalledTimes(3);
+      fireEvent.focus(getByTestSubject('superDatePickerendDatePopoverButton'));
+      expect(focusMock).toHaveBeenCalledTimes(3);
     });
 
     describe('showUpdateButton', () => {

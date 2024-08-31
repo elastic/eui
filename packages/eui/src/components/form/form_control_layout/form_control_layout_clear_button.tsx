@@ -7,52 +7,50 @@
  */
 
 import React, { FunctionComponent, ButtonHTMLAttributes } from 'react';
-
 import classNames from 'classnames';
-import { CommonProps, keysOf } from '../../common';
+
+import { useEuiMemoizedStyles } from '../../../services';
+import { CommonProps } from '../../common';
 import { EuiIcon } from '../../icon';
-import { EuiI18n } from '../../i18n';
+import { useEuiI18n } from '../../i18n';
 
-const sizeToClassNameMap = {
-  s: 'euiFormControlLayoutClearButton--small',
-  m: null,
-};
-
-export const SIZES = keysOf(sizeToClassNameMap);
+import { EuiFormControlLayoutClearButtonStyles } from './form_control_layout_clear_button.styles';
 
 export type EuiFormControlLayoutClearButtonProps = CommonProps &
   ButtonHTMLAttributes<HTMLButtonElement> & {
-    size?: (typeof SIZES)[number];
+    size?: 's' | 'm';
   };
 
 export const EuiFormControlLayoutClearButton: FunctionComponent<
   EuiFormControlLayoutClearButtonProps
 > = ({ className, onClick, size = 'm', ...rest }) => {
-  const classes = classNames(
-    'euiFormControlLayoutClearButton',
-    sizeToClassNameMap[size],
-    className
+  const classes = classNames('euiFormControlLayoutClearButton', className);
+  const styles = useEuiMemoizedStyles(EuiFormControlLayoutClearButtonStyles);
+  const iconStyles = [
+    styles.euiFormControlLayoutClearButton__icon,
+    styles.size[size],
+  ];
+
+  const ariaLabel = useEuiI18n(
+    'euiFormControlLayoutClearButton.label',
+    'Clear input'
   );
 
   return (
-    <EuiI18n
-      token="euiFormControlLayoutClearButton.label"
-      default="Clear input"
+    <button
+      type="button"
+      css={styles.euiFormControlLayoutClearButton}
+      className={classes}
+      onClick={onClick}
+      aria-label={ariaLabel}
+      {...rest}
     >
-      {(label: string) => (
-        <button
-          type="button"
-          className={classes}
-          onClick={onClick}
-          aria-label={label}
-          {...rest}
-        >
-          <EuiIcon
-            className="euiFormControlLayoutClearButton__icon"
-            type="cross"
-          />
-        </button>
-      )}
-    </EuiI18n>
+      <EuiIcon
+        css={iconStyles}
+        className="euiFormControlLayoutClearButton__icon"
+        type="cross"
+        size={size}
+      />
+    </button>
   );
 };

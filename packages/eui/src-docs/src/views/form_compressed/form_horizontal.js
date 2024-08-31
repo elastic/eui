@@ -82,7 +82,7 @@ export default () => {
         />
       </EuiFormRow>
 
-      <EuiFormRow display="columnCompressedSwitch" label="Switch">
+      <EuiFormRow display="columnCompressed" label="Switch">
         <EuiSwitch
           showLabel={false}
           label="Switch"

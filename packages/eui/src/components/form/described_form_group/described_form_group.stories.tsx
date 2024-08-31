@@ -57,3 +57,15 @@ export const Playground: Story = {
     ),
   },
 };
+
+export const ImplicitTitles: Story = {
+  args: {
+    title: <h2 id="titleId">Implicit titles</h2>,
+    description: 'Use this pattern if the title and label are the same.',
+    children: (
+      <EuiFormRow helpText="Make sure to use aria-labelledby pointed at the title element">
+        <EuiFieldText aria-labelledby="titleId" />
+      </EuiFormRow>
+    ),
+  },
+};

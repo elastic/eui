@@ -62,10 +62,10 @@ exports[`useDataGridColumnSelector columnSelector [React 16] renders a toolbar b
       class="euiPopoverTitle emotion-euiPopoverTitle-s-s"
     >
       <div
-        class="euiFormControlLayout euiFormControlLayout--compressed"
+        class="euiFormControlLayout emotion-euiFormControlLayout-compressed"
       >
         <div
-          class="euiFormControlLayout__childrenWrapper"
+          class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper"
         >
           <input
             aria-label="Search columns"
@@ -102,12 +102,12 @@ exports[`useDataGridColumnSelector columnSelector [React 16] renders a toolbar b
               class="euiFlexItem emotion-euiFlexItem-growZero"
             >
               <div
-                class="euiSwitch euiSwitch--compressed euiSwitch--mini emotion-euiSwitch"
+                class="euiSwitch emotion-euiSwitch"
               >
                 <button
                   aria-checked="true"
                   aria-label="columnA"
-                  class="euiSwitch__button"
+                  class="euiSwitch__button emotion-euiSwitch__button-mini"
                   data-test-subj="dataGridColumnSelectorToggleColumnVisibility-columnA"
                   id="generated-id"
                   name="columnA"
@@ -115,15 +115,11 @@ exports[`useDataGridColumnSelector columnSelector [React 16] renders a toolbar b
                   type="button"
                 >
                   <span
-                    class="euiSwitch__body"
-                  >
-                    <span
-                      class="euiSwitch__thumb"
-                    />
-                    <span
-                      class="euiSwitch__track"
-                    />
-                  </span>
+                    class="euiSwitch__body emotion-euiSwitch__body-on"
+                  />
+                  <span
+                    class="euiSwitch__thumb emotion-euiSwitch__thumb-on"
+                  />
                 </button>
               </div>
             </div>
@@ -179,12 +175,12 @@ exports[`useDataGridColumnSelector columnSelector [React 16] renders a toolbar b
               class="euiFlexItem emotion-euiFlexItem-growZero"
             >
               <div
-                class="euiSwitch euiSwitch--compressed euiSwitch--mini emotion-euiSwitch"
+                class="euiSwitch emotion-euiSwitch"
               >
                 <button
                   aria-checked="true"
                   aria-label="columnB"
-                  class="euiSwitch__button"
+                  class="euiSwitch__button emotion-euiSwitch__button-mini"
                   data-test-subj="dataGridColumnSelectorToggleColumnVisibility-columnB"
                   id="generated-id"
                   name="columnB"
@@ -192,15 +188,11 @@ exports[`useDataGridColumnSelector columnSelector [React 16] renders a toolbar b
                   type="button"
                 >
                   <span
-                    class="euiSwitch__body"
-                  >
-                    <span
-                      class="euiSwitch__thumb"
-                    />
-                    <span
-                      class="euiSwitch__track"
-                    />
-                  </span>
+                    class="euiSwitch__body emotion-euiSwitch__body-on"
+                  />
+                  <span
+                    class="euiSwitch__thumb emotion-euiSwitch__thumb-on"
+                  />
                 </button>
               </div>
             </div>
@@ -354,10 +346,10 @@ exports[`useDataGridColumnSelector columnSelector [React 17] renders a toolbar b
       class="euiPopoverTitle emotion-euiPopoverTitle-s-s"
     >
       <div
-        class="euiFormControlLayout euiFormControlLayout--compressed"
+        class="euiFormControlLayout emotion-euiFormControlLayout-compressed"
       >
         <div
-          class="euiFormControlLayout__childrenWrapper"
+          class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper"
         >
           <input
             aria-label="Search columns"
@@ -394,12 +386,12 @@ exports[`useDataGridColumnSelector columnSelector [React 17] renders a toolbar b
               class="euiFlexItem emotion-euiFlexItem-growZero"
             >
               <div
-                class="euiSwitch euiSwitch--compressed euiSwitch--mini emotion-euiSwitch"
+                class="euiSwitch emotion-euiSwitch"
               >
                 <button
                   aria-checked="true"
                   aria-label="columnA"
-                  class="euiSwitch__button"
+                  class="euiSwitch__button emotion-euiSwitch__button-mini"
                   data-test-subj="dataGridColumnSelectorToggleColumnVisibility-columnA"
                   id="generated-id"
                   name="columnA"
@@ -407,15 +399,11 @@ exports[`useDataGridColumnSelector columnSelector [React 17] renders a toolbar b
                   type="button"
                 >
                   <span
-                    class="euiSwitch__body"
-                  >
-                    <span
-                      class="euiSwitch__thumb"
-                    />
-                    <span
-                      class="euiSwitch__track"
-                    />
-                  </span>
+                    class="euiSwitch__body emotion-euiSwitch__body-on"
+                  />
+                  <span
+                    class="euiSwitch__thumb emotion-euiSwitch__thumb-on"
+                  />
                 </button>
               </div>
             </div>
@@ -471,12 +459,12 @@ exports[`useDataGridColumnSelector columnSelector [React 17] renders a toolbar b
               class="euiFlexItem emotion-euiFlexItem-growZero"
             >
               <div
-                class="euiSwitch euiSwitch--compressed euiSwitch--mini emotion-euiSwitch"
+                class="euiSwitch emotion-euiSwitch"
               >
                 <button
                   aria-checked="true"
                   aria-label="columnB"
-                  class="euiSwitch__button"
+                  class="euiSwitch__button emotion-euiSwitch__button-mini"
                   data-test-subj="dataGridColumnSelectorToggleColumnVisibility-columnB"
                   id="generated-id"
                   name="columnB"
@@ -484,15 +472,11 @@ exports[`useDataGridColumnSelector columnSelector [React 17] renders a toolbar b
                   type="button"
                 >
                   <span
-                    class="euiSwitch__body"
-                  >
-                    <span
-                      class="euiSwitch__thumb"
-                    />
-                    <span
-                      class="euiSwitch__track"
-                    />
-                  </span>
+                    class="euiSwitch__body emotion-euiSwitch__body-on"
+                  />
+                  <span
+                    class="euiSwitch__thumb emotion-euiSwitch__thumb-on"
+                  />
                 </button>
               </div>
             </div>
@@ -646,10 +630,10 @@ exports[`useDataGridColumnSelector columnSelector [React 18] renders a toolbar b
       class="euiPopoverTitle emotion-euiPopoverTitle-s-s"
     >
       <div
-        class="euiFormControlLayout euiFormControlLayout--compressed"
+        class="euiFormControlLayout emotion-euiFormControlLayout-compressed"
       >
         <div
-          class="euiFormControlLayout__childrenWrapper"
+          class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper"
         >
           <input
             aria-label="Search columns"
@@ -686,12 +670,12 @@ exports[`useDataGridColumnSelector columnSelector [React 18] renders a toolbar b
               class="euiFlexItem emotion-euiFlexItem-growZero"
             >
               <div
-                class="euiSwitch euiSwitch--compressed euiSwitch--mini emotion-euiSwitch"
+                class="euiSwitch emotion-euiSwitch"
               >
                 <button
                   aria-checked="true"
                   aria-label="columnA"
-                  class="euiSwitch__button"
+                  class="euiSwitch__button emotion-euiSwitch__button-mini"
                   data-test-subj="dataGridColumnSelectorToggleColumnVisibility-columnA"
                   id="generated-id"
                   name="columnA"
@@ -699,15 +683,11 @@ exports[`useDataGridColumnSelector columnSelector [React 18] renders a toolbar b
                   type="button"
                 >
                   <span
-                    class="euiSwitch__body"
-                  >
-                    <span
-                      class="euiSwitch__thumb"
-                    />
-                    <span
-                      class="euiSwitch__track"
-                    />
-                  </span>
+                    class="euiSwitch__body emotion-euiSwitch__body-on"
+                  />
+                  <span
+                    class="euiSwitch__thumb emotion-euiSwitch__thumb-on"
+                  />
                 </button>
               </div>
             </div>
@@ -763,12 +743,12 @@ exports[`useDataGridColumnSelector columnSelector [React 18] renders a toolbar b
               class="euiFlexItem emotion-euiFlexItem-growZero"
             >
               <div
-                class="euiSwitch euiSwitch--compressed euiSwitch--mini emotion-euiSwitch"
+                class="euiSwitch emotion-euiSwitch"
               >
                 <button
                   aria-checked="true"
                   aria-label="columnB"
-                  class="euiSwitch__button"
+                  class="euiSwitch__button emotion-euiSwitch__button-mini"
                   data-test-subj="dataGridColumnSelectorToggleColumnVisibility-columnB"
                   id="generated-id"
                   name="columnB"
@@ -776,15 +756,11 @@ exports[`useDataGridColumnSelector columnSelector [React 18] renders a toolbar b
                   type="button"
                 >
                   <span
-                    class="euiSwitch__body"
-                  >
-                    <span
-                      class="euiSwitch__thumb"
-                    />
-                    <span
-                      class="euiSwitch__track"
-                    />
-                  </span>
+                    class="euiSwitch__body emotion-euiSwitch__body-on"
+                  />
+                  <span
+                    class="euiSwitch__thumb emotion-euiSwitch__thumb-on"
+                  />
                 </button>
               </div>
             </div>

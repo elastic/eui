@@ -10,7 +10,11 @@ const styles = {
   mobileSidebar: css`
     --ifm-navbar-sidebar-width: 100vw;
 
-    @media (min-width: 26rem) {
+    @media (min-width: 400px) {
+      --ifm-navbar-sidebar-width: 75vw;
+    }
+
+    @media (min-width: 600px) {
       --ifm-navbar-sidebar-width: 50vw;
     }
 

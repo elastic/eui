@@ -9,12 +9,16 @@
 import React from 'react';
 import { requiredProps } from '../../../test';
 import { render } from '../../../test/rtl';
+import { shouldRenderCustomStyles } from '../../../test/internal';
+
 import {
   EuiFormControlLayoutCustomIcon,
   EuiFormControlLayoutCustomIconProps,
 } from './form_control_layout_custom_icon';
 
 describe('EuiFormControlLayoutCustomIcon', () => {
+  shouldRenderCustomStyles(<EuiFormControlLayoutCustomIcon type="faceHappy" />);
+
   test('is rendered as button', () => {
     const props: EuiFormControlLayoutCustomIconProps = {
       onClick: () => null,

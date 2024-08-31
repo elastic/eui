@@ -7,8 +7,7 @@
  */
 
 import React from 'react';
-import { mount } from 'enzyme';
-import { act } from '@testing-library/react';
+import { fireEvent } from '@testing-library/react';
 import { requiredProps } from '../../test';
 import { shouldRenderCustomStyles } from '../../test/internal';
 import { render } from '../../test/rtl';
@@ -52,7 +51,7 @@ describe('EuiSelectable', () => {
   });
 
   test('should not reset the activeOptionIndex nor isFocused when EuiSelectable is blurred in favour of its search/listbox', () => {
-    const component = mount(
+    const { container } = render(
       <EuiSelectable options={options} searchable>
         {(list, search) => (
           <>
@@ -63,21 +62,15 @@ describe('EuiSelectable', () => {
       </EuiSelectable>
     );
 
-    act(() => {
-      component.setState({
-        activeOptionIndex: 0,
-        isFocused: true,
-      });
-    });
+    const option = container.querySelector(
+      '.euiSelectableListItem[aria-posinset="2"]'
+    )!;
+    fireEvent.click(option);
+    expect(option).toHaveClass('euiSelectableListItem-isFocused');
 
-    expect(component.state()).toMatchSnapshot();
-
-    const listBox = component.find('div.euiSelectableList__list').getDOMNode();
-    component
-      .find('.euiSelectable')
-      .simulate('blur', { relatedTarget: listBox });
-    component.update();
-    expect(component.state()).toMatchSnapshot();
+    const searchbox = container.querySelector('.euiSelectableSearch')!;
+    fireEvent.focus(searchbox);
+    expect(option).toHaveClass('euiSelectableListItem-isFocused');
   });
 
   describe('props', () => {
@@ -190,7 +183,7 @@ describe('EuiSelectable', () => {
         value: 'first value',
         'data-test-subj': 'searchInput',
       };
-      const component = mount(
+      const { rerender, getByTestSubject } = render(
         <EuiSelectable options={options} searchable searchProps={searchProps}>
           {(list, search) => (
             <>
@@ -200,25 +193,32 @@ describe('EuiSelectable', () => {
           )}
         </EuiSelectable>
       );
-      expect(
-        component.find('input[data-test-subj="searchInput"]').prop('value')
-      ).toEqual('first value');
+      expect(getByTestSubject('searchInput')).toHaveValue('first value');
 
-      component.setProps({
-        searchProps: { ...searchProps, value: 'second value' },
-      });
-      expect(
-        component.find('input[data-test-subj="searchInput"]').prop('value')
-      ).toEqual('second value');
+      rerender(
+        <EuiSelectable
+          options={options}
+          searchable
+          searchProps={{ ...searchProps, value: 'second value' }}
+        >
+          {(list, search) => (
+            <>
+              {list}
+              {search}
+            </>
+          )}
+        </EuiSelectable>
+      );
+      expect(getByTestSubject('searchInput')).toHaveValue('second value');
     });
 
     it('updates options list when searchValue state is controlled by searchProps.value', () => {
-      const searchProps = {
-        value: 'Enceladus',
-        'data-test-subj': 'searchInput',
-      };
-      const component = mount(
-        <EuiSelectable options={options} searchable searchProps={searchProps}>
+      const { rerender, queryAllByRole, queryByRole } = render(
+        <EuiSelectable
+          options={options}
+          searchable
+          searchProps={{ value: 'Enceladus' }}
+        >
           {(list, search) => (
             <>
               {list}
@@ -227,29 +227,43 @@ describe('EuiSelectable', () => {
           )}
         </EuiSelectable>
       );
+      expect(queryByRole('listbox')).toBeInTheDocument();
+      expect(queryAllByRole('option')).toHaveLength(1);
 
-      expect(
-        (component.find('EuiSelectableList').props() as any).visibleOptions
-      ).toHaveLength(1);
+      rerender(
+        <EuiSelectable
+          options={options}
+          searchable
+          searchProps={{ value: 'value not in list' }}
+        >
+          {(list, search) => (
+            <>
+              {list}
+              {search}
+            </>
+          )}
+        </EuiSelectable>
+      );
+      expect(queryByRole('listbox')).not.toBeInTheDocument();
+      expect(queryAllByRole('option')).toHaveLength(0);
 
-      component.setProps({
-        searchProps: { ...searchProps, value: 'value not in list' },
-      });
-
-      expect(component.find('EuiSelectableList').exists()).toBeFalsy();
-
-      component.setProps({
-        searchProps: { ...searchProps, value: '' },
-      });
-
-      expect(
-        (component.find('EuiSelectableList').props() as any).visibleOptions
-      ).toEqual(options);
+      rerender(
+        <EuiSelectable options={options} searchable searchProps={{ value: '' }}>
+          {(list, search) => (
+            <>
+              {list}
+              {search}
+            </>
+          )}
+        </EuiSelectable>
+      );
+      expect(queryByRole('listbox')).toBeInTheDocument();
+      expect(queryAllByRole('option')).toHaveLength(options.length);
     });
 
     it('calls the searchProps.onChange callback on mount', () => {
       const onChange = jest.fn();
-      mount(
+      render(
         <EuiSelectable
           options={options}
           searchable
@@ -295,15 +309,13 @@ describe('EuiSelectable', () => {
         },
       ];
 
-      const component = mount(
-        <EuiSelectable<OptionalOption> options={options}>
-          {(list) => list}
-        </EuiSelectable>
-      );
-
-      expect(
-        (component.find('EuiSelectableList').props() as any).visibleOptions
-      ).toEqual(options);
+      expect(() =>
+        render(
+          <EuiSelectable<OptionalOption> options={options}>
+            {(list) => list}
+          </EuiSelectable>
+        )
+      ).not.toThrow();
     });
 
     test('required properties', () => {
@@ -325,17 +337,19 @@ describe('EuiSelectable', () => {
         },
       ];
 
-      const component = mount(
+      const { rerender } = render(
         <EuiSelectable<ExtendedOption> options={options}>
           {(list) => list}
         </EuiSelectable>
       );
 
-      component.update();
-
-      expect(
-        (component.find('EuiSelectableList').props() as any).visibleOptions
-      ).toEqual(options);
+      expect(() =>
+        rerender(
+          <EuiSelectable<ExtendedOption> options={options}>
+            {(list) => list}
+          </EuiSelectable>
+        )
+      ).not.toThrow();
     });
 
     test('with data', () => {
@@ -385,14 +399,13 @@ describe('EuiSelectable', () => {
   describe('onChange', () => {
     it('calls onChange with selected options array, click/keyboard event, and the clicked option', () => {
       const onChange = jest.fn();
-      const component = mount(
+      const { container, getAllByRole } = render(
         <EuiSelectable options={options} onChange={onChange}>
           {(list) => list}
         </EuiSelectable>
       );
-      const target = component.find('div.euiSelectableList__list').getDOMNode();
 
-      component.find('[role="option"]').first().simulate('click');
+      fireEvent.click(getAllByRole('option')[0]);
       expect(onChange).toHaveBeenCalledTimes(1);
       expect(onChange.mock.calls[0][0][0].checked).toEqual('on');
       expect(onChange.mock.calls[0][1].type).toEqual('click');
@@ -401,7 +414,8 @@ describe('EuiSelectable', () => {
         checked: 'on',
       });
 
-      component.simulate('keydown', { key: 'Enter', target });
+      const target = container.querySelector('.euiSelectableList__list')!;
+      fireEvent.keyDown(target, { key: 'Enter' });
       expect(onChange).toHaveBeenCalledTimes(2);
       expect(onChange.mock.calls[1][0][0].checked).toEqual('on');
       expect(onChange.mock.calls[1][1].type).toEqual('keydown');
@@ -413,7 +427,7 @@ describe('EuiSelectable', () => {
 
     it('does not call onChange on keydown when focus is not on the search/listbox', () => {
       const onChange = jest.fn();
-      const component = mount(
+      const { container } = render(
         <EuiSelectable options={options} onChange={onChange}>
           {(list) => (
             <>
@@ -423,9 +437,8 @@ describe('EuiSelectable', () => {
           )}
         </EuiSelectable>
       );
-      const target = component.find('#test').getDOMNode();
-
-      component.simulate('keydown', { key: 'Enter', target });
+      const target = container.querySelector('#test')!;
+      fireEvent.keyDown(target, { key: 'Enter' });
       expect(onChange).toHaveBeenCalledTimes(0);
     });
   });
@@ -433,23 +446,23 @@ describe('EuiSelectable', () => {
   describe('onActiveOptionChange', () => {
     it('calls the optional callback whenever the internal activeOptionIndex state changes', () => {
       const callback = jest.fn();
-      const component = mount(
+      const { container } = render(
         <EuiSelectable options={options} onActiveOptionChange={callback}>
           {(list) => list}
         </EuiSelectable>
       );
-      const target = component.find('div.euiSelectableList__list').getDOMNode();
+      const target = container.querySelector('.euiSelectableList__list')!;
 
-      component.simulate('keydown', { key: 'ArrowDown', target });
+      fireEvent.keyDown(target, { key: 'ArrowDown' });
       expect(callback).toHaveBeenCalledWith(options[0]);
 
-      component.simulate('keydown', { key: 'ArrowUp', target });
+      fireEvent.keyDown(target, { key: 'ArrowUp' });
       expect(callback).toHaveBeenCalledWith(options[2]);
     });
 
     it('does not change internal activeOptionIndex state on keydown when focus is not on the search/listbox', () => {
       const callback = jest.fn();
-      const component = mount(
+      const { container } = render(
         <EuiSelectable options={options} onActiveOptionChange={callback}>
           {(list) => (
             <>
@@ -459,16 +472,16 @@ describe('EuiSelectable', () => {
           )}
         </EuiSelectable>
       );
-      const target = component.find('#test').getDOMNode();
+      const target = container.querySelector('#test')!;
 
-      component.simulate('keydown', { key: 'ArrowDown', target });
-      component.simulate('keydown', { key: 'ArrowUp', target });
+      fireEvent.keyDown(target, { key: 'ArrowDown' });
+      fireEvent.keyDown(target, { key: 'ArrowUp' });
       expect(callback).toHaveBeenCalledTimes(0);
     });
 
     it('handles the active option changing due to searching', () => {
       const callback = jest.fn();
-      const component = mount(
+      const { getByRole } = render(
         <EuiSelectable
           options={options}
           searchable
@@ -483,9 +496,9 @@ describe('EuiSelectable', () => {
           )}
         </EuiSelectable>
       );
-      const target = component.find('input[type="search"]').getDOMNode();
+      const target = getByRole('searchbox');
 
-      component.simulate('keydown', { key: 'ArrowDown', target });
+      fireEvent.keyDown(target, { key: 'ArrowDown' });
       expect(callback).toHaveBeenCalledWith(options[2]); // Pandora
     });
   });
@@ -531,7 +544,7 @@ describe('EuiSelectable', () => {
         value: 'Enceladus',
         'data-test-subj': 'searchInput',
       };
-      const component = mount(
+      const { container } = render(
         <EuiSelectable options={options} searchable searchProps={searchProps}>
           {(list, search) => (
             <>
@@ -542,8 +555,10 @@ describe('EuiSelectable', () => {
         </EuiSelectable>
       );
 
-      expect(component.find('p#generated-id_instructions').text()).toEqual(
-        ' Use the Up and Down arrow keys to move focus over options. Press Enter to select. Press Escape to collapse options.'
+      expect(
+        container.querySelector('p#generated-id_instructions')
+      ).toHaveTextContent(
+        'Use the Up and Down arrow keys to move focus over options. Press Enter to select. Press Escape to collapse options.'
       );
     });
 
@@ -552,7 +567,7 @@ describe('EuiSelectable', () => {
         value: 'Enceladus',
         'data-test-subj': 'searchInput',
       };
-      const component = mount(
+      const { container } = render(
         <EuiSelectable
           selectableScreenReaderText="Custom screenreader instructions."
           options={options}
@@ -568,7 +583,9 @@ describe('EuiSelectable', () => {
         </EuiSelectable>
       );
 
-      expect(component.find('p#generated-id_instructions').text()).toEqual(
+      expect(
+        container.querySelector('p#generated-id_instructions')
+      ).toHaveTextContent(
         'Custom screenreader instructions. Use the Up and Down arrow keys to move focus over options. Press Enter to select. Press Escape to collapse options.'
       );
     });

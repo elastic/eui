@@ -12,7 +12,7 @@ exports[`EuiKeyPadMenu checkable is rendered as with a legend 1`] = `
 >
   <legend
     aria-label="aria-label"
-    class="euiFormLabel testClass1 testClass2 emotion-euiKeyPadMenu__legend-euiTestCss"
+    class="euiFormLabel testClass1 testClass2 emotion-euiFormLabel-euiKeyPadMenu__legend-euiTestCss"
     data-test-subj="test subject string"
   >
     Legend

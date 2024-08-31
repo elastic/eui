@@ -7,14 +7,21 @@
  */
 
 import React from 'react';
-import { mount } from 'enzyme';
-import { requiredProps } from '../../../test';
+import { fireEvent } from '@testing-library/react';
 import { render } from '../../../test/rtl';
+import { shouldRenderCustomStyles } from '../../../test/internal';
+import { requiredProps } from '../../../test';
 
 import { EuiForm } from '../form';
 import { EuiFormRow, DISPLAYS } from './form_row';
 
 describe('EuiFormRow', () => {
+  shouldRenderCustomStyles(
+    <EuiFormRow>
+      <input />
+    </EuiFormRow>
+  );
+
   test('is rendered', () => {
     const { container } = render(
       <EuiFormRow {...requiredProps}>
@@ -33,27 +40,28 @@ describe('EuiFormRow', () => {
       error: ['Error one', 'Error two'],
     };
 
-    const tree = mount(
+    const { container } = render(
       <EuiFormRow {...requiredProps} {...props}>
         <input />
       </EuiFormRow>
     );
 
+    const input = container.querySelector('input')!;
+    const label = container.querySelector('label')!;
+
     // Input is labeled by the label.
-    expect(tree.find('input').prop('id')).toEqual('generated-id');
-    expect(tree.find('EuiFormLabel').prop('htmlFor')).toEqual('generated-id');
+    expect(input).toHaveAttribute('id', 'generated-id');
+    expect(label).toHaveAttribute('for', 'generated-id');
+
+    const helpText = container.querySelector('.euiFormHelpText')!;
+    const errorText = container.querySelectorAll('.euiFormErrorText');
 
     // Input is described by help and error text.
-    expect(tree.find('EuiFormHelpText').prop('id')).toEqual(
-      'generated-id-help-0'
-    );
-    expect(tree.find('EuiFormErrorText').at(0).prop('id')).toEqual(
-      'generated-id-error-0'
-    );
-    expect(tree.find('EuiFormErrorText').at(1).prop('id')).toEqual(
-      'generated-id-error-1'
-    );
-    expect(tree.find('input').prop('aria-describedby')).toEqual(
+    expect(helpText).toHaveAttribute('id', 'generated-id-help-0');
+    expect(errorText[0]).toHaveAttribute('id', 'generated-id-error-0');
+    expect(errorText[1]).toHaveAttribute('id', 'generated-id-error-1');
+    expect(input).toHaveAttribute(
+      'aria-describedby',
       'generated-id-help-0 generated-id-error-0 generated-id-error-1'
     );
   });
@@ -227,72 +235,24 @@ describe('EuiFormRow', () => {
   });
 
   describe('behavior', () => {
-    describe('onFocus', () => {
-      test('is called in child', () => {
-        const focusMock = jest.fn();
+    it('onFocus and onBlur', () => {
+      const focusMock = jest.fn();
+      const blurMock = jest.fn();
 
-        const component = mount(
-          <EuiFormRow label={<span>Label</span>}>
-            <input onFocus={focusMock} />
-          </EuiFormRow>
-        );
+      const { getByRole, container } = render(
+        <EuiFormRow label={<span>Label</span>}>
+          <input onFocus={focusMock} onBlur={blurMock} />
+        </EuiFormRow>
+      );
+      const label = container.querySelector('.euiFormLabel')!;
 
-        component.find('input').simulate('focus');
+      fireEvent.focus(getByRole('textbox'));
+      expect(focusMock).toHaveBeenCalledTimes(1);
+      expect(label.className).toContain('isFocused');
 
-        expect(focusMock).toBeCalledTimes(1);
-
-        // Ensure the focus event is properly fired on the parent
-        // which will pass down to the EuiFormLabel
-        expect(component).toMatchSnapshot();
-      });
-
-      test('works in parent even if not in child', () => {
-        const component = mount(
-          <EuiFormRow label={<span>Label</span>}>
-            <input />
-          </EuiFormRow>
-        );
-
-        component.find('input').simulate('focus');
-
-        // Ensure the focus event is properly fired on the parent
-        // which will pass down to the EuiFormLabel
-        expect(component).toMatchSnapshot();
-      });
-    });
-
-    describe('onBlur', () => {
-      test('is called in child', () => {
-        const blurMock = jest.fn();
-
-        const component = mount(
-          <EuiFormRow label={<span>Label</span>}>
-            <input onBlur={blurMock} />
-          </EuiFormRow>
-        );
-
-        component.find('input').simulate('blur');
-
-        expect(blurMock).toBeCalledTimes(1);
-
-        // Ensure the blur event is properly fired on the parent
-        // which will pass down to the EuiFormLabel
-        expect(component).toMatchSnapshot();
-      });
-
-      test('works in parent even if not in child', () => {
-        const component = mount(
-          <EuiFormRow label={<span>Label</span>}>
-            <input />
-          </EuiFormRow>
-        );
-
-        component.find('input').simulate('blur');
-
-        // Ensure the blur event is properly fired on the parent
-        // which will pass down to the EuiFormLabel
-        expect(component).toMatchSnapshot();
-      });
+      fireEvent.blur(getByRole('textbox'));
+      expect(blurMock).toHaveBeenCalledTimes(1);
+      expect(label.className).not.toContain('isFocused');
     });
   });
 
@@ -307,7 +267,7 @@ describe('EuiFormRow', () => {
       );
 
       const row = container.querySelector('.euiFormRow');
-      expect(row).toHaveClass('euiFormRow--fullWidth');
+      expect(row!.className).toContain('fullWidth');
     });
   });
 });

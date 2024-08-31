@@ -28,7 +28,7 @@ describe('Truncation utils', () => {
     start: '...t, consectetur adipiscing elit',
     end: 'Lorem ipsum dolor sit amet, ...',
     startEnd: '...lor sit amet, consectetur a...',
-    middle: 'Lorem ipsum d...adipiscing elit',
+    middle: 'Lorem ipsum d...dipiscing elit',
   };
 
   describe('truncation types logic', () => {

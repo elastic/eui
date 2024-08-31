@@ -35,6 +35,7 @@ import CalendarContainer from "./calendar_container";
 
 import { EuiFocusTrap } from '../../../focus_trap';
 import { EuiScreenReaderOnly } from '../../../accessibility/screen_reader_only';
+import { EuiButtonIcon } from "../../../button";
 import {
   now,
   setMonth,
@@ -421,14 +422,16 @@ export default class Calendar extends React.Component {
     }
 
     return (
-      <button
-        type="button"
+      <EuiButtonIcon
+        iconType="sortLeft"
+        size="s"
+        color="text"
         className={classes.join(" ")}
         onClick={clickHandler}
         disabled={!this.props.accessibleMode}
-      >
-        {this.props.previousMonthButtonLabel}
-      </button>
+        aria-label={this.props.previousMonthButtonLabel}
+        title={this.props.previousMonthButtonLabel}
+      />
     );
   };
 
@@ -471,33 +474,16 @@ export default class Calendar extends React.Component {
     }
 
     return (
-      <button
-        type="button"
+      <EuiButtonIcon
+        iconType="sortRight"
+        size="s"
+        color="text"
         className={classes.join(" ")}
         onClick={clickHandler}
         disabled={!this.props.accessibleMode}
-      >
-        {this.props.nextMonthButtonLabel}
-      </button>
-    );
-  };
-
-  renderCurrentMonth = (date = this.state.date) => {
-    const classes = ["react-datepicker__current-month"];
-
-    if (this.props.showYearDropdown) {
-      classes.push("react-datepicker__current-month--hasYearDropdown");
-    }
-    if (this.props.showMonthDropdown) {
-      classes.push("react-datepicker__current-month--hasMonthDropdown");
-    }
-    if (this.props.showMonthYearDropdown) {
-      classes.push("react-datepicker__current-month--hasMonthYearDropdown");
-    }
-    return (
-      <div className={classes.join(" ")}>
-        {formatDate(date, this.props.dateFormat)}
-      </div>
+        aria-label={this.props.nextMonthButtonLabel}
+        title={this.props.nextMonthButtonLabel}
+      />
     );
   };
 
@@ -581,7 +567,6 @@ export default class Calendar extends React.Component {
 
   renderDefaultHeader = ({ monthDate, i }) => (
     <div className="react-datepicker__header">
-      {this.renderCurrentMonth(monthDate)}
       <div
         className={`react-datepicker__header__dropdown react-datepicker__header__dropdown--${
           this.props.dropdownMode

@@ -59,9 +59,8 @@ export const FormCompressedExample = {
       text: (
         <p>
           To use compressed forms, pass{' '}
-          <EuiCode language="js">display=&quot;rowCompressed&quot;</EuiCode> to
-          the EuiFormRows and <EuiCode language="js">compressed=true</EuiCode>{' '}
-          to the form controls themselves.
+          <EuiCode language="js">{'compressed={true}'}</EuiCode> to all form
+          controls.
         </p>
       ),
       props: {
@@ -69,10 +68,7 @@ export const FormCompressedExample = {
       },
       demo: <FormCompressed />,
       snippet: [
-        `<EuiFormRow
-  label="Text field"
-  display="rowCompressed"
->
+        `<EuiFormRow label="Text field">
   <EuiFieldText compressed />
 </EuiFormRow>`,
       ],
@@ -86,21 +82,12 @@ export const FormCompressedExample = {
         },
       ],
       text: (
-        <Fragment>
-          <p>
-            Editor-style controls can be displayed in a two column layout for
-            even better use of limited space, just pass{' '}
-            <EuiCode language="js">
-              display=&quot;columnCompressed&quot;
-            </EuiCode>{' '}
-            to align the labels and inputs side by side.
-          </p>
-          <p>
-            <strong>EuiSwitches</strong> are a special case in which so you must
-            pass <EuiCode language="js">{'"columnCompressedSwitch"'}</EuiCode>{' '}
-            to the EuiFormRow as the display property.
-          </p>
-        </Fragment>
+        <p>
+          Editor-style controls can be displayed in a two column layout for even
+          better use of limited space, just pass{' '}
+          <EuiCode language="js">display=&quot;columnCompressed&quot;</EuiCode>{' '}
+          to align the labels and inputs side by side.
+        </p>
       ),
       props: {
         EuiFormRow,

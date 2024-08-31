@@ -58,6 +58,7 @@ const tokens: EuiTokenMapType[] = [
   'tokenRankFeatures',
   'tokenRepo',
   'tokenSearchType',
+  'tokenSemanticText',
   'tokenShape',
   'tokenString',
   'tokenStruct',

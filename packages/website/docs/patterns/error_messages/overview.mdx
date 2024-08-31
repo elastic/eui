@@ -14,27 +14,27 @@ We should do everything we can to [help users to avoid errors](./help_users_avoi
 
 Missing or badly written error messages can be frustrating, time consuming and difficult to recover from. They can also make the user believe the task is more complex than it is, and can give the impression that our product is low quality.
 
-We have written guidance on <a id="patternsErrorsWriting">how to write good error messages</a>.
+We have written guidance on [how to write good error messages](./error_writing.mdx).
 
 ### Primary errors
 Primary errors are as bad as it gets. They block the user from completing the current task, and we can’t even show them the page they expected. For example, when a user does not have permission to view a page, error code 403. A primary error should redirect the user to an error page.
 
-Read more about the <a id="patternsErrorPage">error page pattern</a>.
+Read more about the [error page pattern](./error_pages.mdx).
 
 ### Secondary errors
 Secondary errors happen when there is an error which blocks the current task, but we can still show them the page they expected. For example, an API or cluster that is not responding, error code `504`. A secondary error should reload the page without the user losing any information, and display an error banner.
 
-Read more about the <a id="patternsErrorBanner">error banner pattern</a>.
+Read more about the [error banner pattern](./error_banners.mdx).
 
 ### Validation errors
 Validation errors happen when the user enters information in a different format than expected, blocking the current task, error code `400`. Validation errors should reload the page without the user losing any information, display an error summary, and highlight any fields which caused errors.
 
-Read more about the <a id="patternsErrorValidation">validation errors pattern</a>.
+Read more about the [validation errors pattern](./error_validation.mdx).
 
 ### Unrelated errors (Warnings)
 Unrelated errors are warnings. They don’t impact the user right now, but they’re useful to know. For example, there may be an error in another part of the application, but it’s not blocking the current task.
 
-Read more about the <a id="patternsErrorWarning">error warning pattern</a>.
+Read more about the [error warning pattern](./error_warning.mdx).
 
 ## Error codes
 When an error happens, there is usually an error code provided by the client (browser) or the server, which can help us to explain to the user what went wrong.
@@ -59,5 +59,5 @@ See examples for common error codes:
 You can read in-depth about all the different [client errors](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status#client_error_responses) and [server errors](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status#server_error_responses) on [MDN Web Docs](https://developer.mozilla.org/en-US/).
 
 ## Related patterns and documentation
-- <a id="patternsConfirmationPrompts">Confirmation prompts</a>
-- <a id="patternsHelpContent" section="fields-and-settings">Content patterns</a>
+- [Confirmation prompts](./overview.mdx)
+- [Content patterns](./overview.mdx)

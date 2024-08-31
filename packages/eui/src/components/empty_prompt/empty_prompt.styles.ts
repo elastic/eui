@@ -8,7 +8,7 @@
 
 import { css } from '@emotion/react';
 import {
-  euiBreakpoint,
+  euiMinBreakpoint,
   euiPaddingSize,
   euiBorderColor,
   logicalCSS,
@@ -45,14 +45,14 @@ export const euiEmptyPromptStyles = (euiThemeContext: UseEuiTheme) => {
       text-align: center;
       margin: auto;
 
-      ${euiBreakpoint(euiThemeContext, ['l', 'xl'])} {
+      ${euiMinBreakpoint(euiThemeContext, 'l')} {
         /* the width becomes as wide as necessary to contain all of its contents */
         ${logicalCSS('max-width', 'max-content')}
       }
     `,
     vertical: css``,
     horizontal: css`
-      ${euiBreakpoint(euiThemeContext, ['l', 'xl'])} {
+      ${euiMinBreakpoint(euiThemeContext, 'l')} {
         justify-content: flex-start;
         text-align: start;
       }
@@ -68,7 +68,7 @@ export const euiEmptyPromptStyles = (euiThemeContext: UseEuiTheme) => {
       horizontal: css`
         align-items: center;
 
-        ${euiBreakpoint(euiThemeContext, ['l', 'xl'])} {
+        ${euiMinBreakpoint(euiThemeContext, 'l')} {
           flex-direction: row-reverse;
         }
       `,
@@ -83,7 +83,7 @@ export const euiEmptyPromptStyles = (euiThemeContext: UseEuiTheme) => {
         margin: auto;
       `,
       horizontal: css`
-        ${euiBreakpoint(euiThemeContext, ['l', 'xl'])} {
+        ${euiMinBreakpoint(euiThemeContext, 'l')} {
           padding-block: ${euiTheme.size.l};
           padding-inline: 0;
         }
@@ -105,7 +105,7 @@ export const euiEmptyPromptStyles = (euiThemeContext: UseEuiTheme) => {
         ${logicalCSS('margin-bottom', euiTheme.size.base)}
       `,
       horizontal: css`
-        ${euiBreakpoint(euiThemeContext, ['l', 'xl'])} {
+        ${euiMinBreakpoint(euiThemeContext, 'l')} {
           ${logicalCSS('min-width', '40%')}
           ${logicalCSS('max-width', '50%')}
 
@@ -123,7 +123,7 @@ export const euiEmptyPromptStyles = (euiThemeContext: UseEuiTheme) => {
       euiEmptyPrompt__actions: css``,
       vertical: css``,
       horizontal: css`
-        ${euiBreakpoint(euiThemeContext, ['l', 'xl'])} {
+        ${euiMinBreakpoint(euiThemeContext, 'l')} {
           justify-content: flex-start;
         }
       `,

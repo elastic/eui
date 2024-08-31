@@ -9,18 +9,23 @@ exports[`EuiCheckableCard is rendered 1`] = `
   >
     <div
       aria-label="aria-label"
-      class="euiRadio euiRadio--noLabel"
+      class="euiRadio emotion-euiRadio"
       data-test-subj="test subject string"
     >
-      <input
-        class="euiRadio__input"
-        id="id"
-        type="radio"
-        value=""
-      />
       <div
-        class="euiRadio__circle"
-      />
+        class="euiRadio__circle emotion-euiRadio__circle-unselected"
+      >
+        <span
+          class="emotion-euiRadio__icon"
+          data-euiicon-type="dot"
+        />
+        <input
+          class="euiRadio__input emotion-euiRadio__input"
+          id="id"
+          type="radio"
+          value=""
+        />
+      </div>
     </div>
   </div>
   <div
@@ -44,18 +49,23 @@ exports[`EuiCheckableCard renders a checkbox when specified 1`] = `
     class="euiPanel euiPanel--subdued euiPanel--paddingMedium euiSplitPanel__inner emotion-euiPanel-none-m-subdued-isClickable-euiSplitPanelInner"
   >
     <div
-      class="euiCheckbox euiCheckbox--noLabel emotion-euiCheckbox"
+      class="euiCheckbox emotion-euiCheckbox"
     >
-      <input
-        aria-label="aria-label"
-        class="euiCheckbox__input"
-        data-test-subj="test subject string"
-        id="id"
-        type="checkbox"
-      />
       <div
-        class="euiCheckbox__square"
-      />
+        class="euiCheckbox__square emotion-euiCheckbox__square-unselected"
+      >
+        <span
+          class="emotion-euiCheckbox__icon-check"
+          data-euiicon-type="empty"
+        />
+        <input
+          aria-label="aria-label"
+          class="euiCheckbox__input emotion-euiCheckbox__input"
+          data-test-subj="test subject string"
+          id="id"
+          type="checkbox"
+        />
+      </div>
     </div>
   </div>
   <div
@@ -79,17 +89,22 @@ exports[`EuiCheckableCard renders children 1`] = `
     class="euiPanel euiPanel--subdued euiPanel--paddingMedium euiSplitPanel__inner emotion-euiPanel-none-m-subdued-isClickable-euiSplitPanelInner"
   >
     <div
-      class="euiRadio euiRadio--noLabel"
+      class="euiRadio emotion-euiRadio"
     >
-      <input
-        class="euiRadio__input"
-        id="id"
-        type="radio"
-        value=""
-      />
       <div
-        class="euiRadio__circle"
-      />
+        class="euiRadio__circle emotion-euiRadio__circle-unselected"
+      >
+        <span
+          class="emotion-euiRadio__icon"
+          data-euiicon-type="dot"
+        />
+        <input
+          class="euiRadio__input emotion-euiRadio__input"
+          id="id"
+          type="radio"
+          value=""
+        />
+      </div>
     </div>
   </div>
   <div
@@ -120,18 +135,23 @@ exports[`EuiCheckableCard renders disabled 1`] = `
     class="euiPanel euiPanel--subdued euiPanel--paddingMedium euiSplitPanel__inner emotion-euiPanel-none-m-subdued-euiSplitPanelInner"
   >
     <div
-      class="euiRadio euiRadio--noLabel"
+      class="euiRadio emotion-euiRadio"
     >
-      <input
-        class="euiRadio__input"
-        disabled=""
-        id="id"
-        type="radio"
-        value=""
-      />
       <div
-        class="euiRadio__circle"
-      />
+        class="euiRadio__circle emotion-euiRadio__circle-disabled-unselected"
+      >
+        <span
+          class="emotion-euiRadio__icon"
+          data-euiicon-type="dot"
+        />
+        <input
+          class="euiRadio__input emotion-euiRadio__input"
+          disabled=""
+          id="id"
+          type="radio"
+          value=""
+        />
+      </div>
     </div>
   </div>
   <div
@@ -155,17 +175,22 @@ exports[`EuiCheckableCard renders panel props 1`] = `
     class="euiPanel euiPanel--subdued euiPanel--paddingMedium euiSplitPanel__inner emotion-euiPanel-none-m-subdued-isClickable-euiSplitPanelInner"
   >
     <div
-      class="euiRadio euiRadio--noLabel"
+      class="euiRadio emotion-euiRadio"
     >
-      <input
-        class="euiRadio__input"
-        id="id"
-        type="radio"
-        value=""
-      />
       <div
-        class="euiRadio__circle"
-      />
+        class="euiRadio__circle emotion-euiRadio__circle-unselected"
+      >
+        <span
+          class="emotion-euiRadio__icon"
+          data-euiicon-type="dot"
+        />
+        <input
+          class="euiRadio__input emotion-euiRadio__input"
+          id="id"
+          type="radio"
+          value=""
+        />
+      </div>
     </div>
   </div>
   <div

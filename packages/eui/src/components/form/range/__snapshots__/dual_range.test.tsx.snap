@@ -149,10 +149,10 @@ exports[`EuiDualRange props maxInputProps allows overriding default props 1`] = 
   class="euiRangeWrapper euiDualRange emotion-euiRangeWrapper-euiDualRange"
 >
   <div
-    class="euiFormControlLayout"
+    class="euiFormControlLayout emotion-euiFormControlLayout"
   >
     <div
-      class="euiFormControlLayout__childrenWrapper"
+      class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper"
     >
       <input
         class="euiFieldNumber euiRangeInput euiRangeInput--min emotion-euiFieldNumber-euiRangeInput"
@@ -218,10 +218,10 @@ exports[`EuiDualRange props maxInputProps allows overriding default props 1`] = 
     class="euiRange__horizontalSpacer emotion-euiRange__horizontalSpacer"
   />
   <div
-    class="euiFormControlLayout"
+    class="euiFormControlLayout emotion-euiFormControlLayout"
   >
     <div
-      class="euiFormControlLayout__childrenWrapper"
+      class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper"
       style="--euiFormControlRightIconsCount: 1;"
     >
       <input
@@ -236,7 +236,7 @@ exports[`EuiDualRange props maxInputProps allows overriding default props 1`] = 
         value="123"
       />
       <div
-        class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right euiFormControlLayoutIcons--absolute"
+        class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-absolute-right"
       >
         <span
           color="danger"
@@ -253,10 +253,10 @@ exports[`EuiDualRange props maxInputProps applies passed props to max input 1`] 
   class="euiRangeWrapper euiDualRange emotion-euiRangeWrapper-euiDualRange"
 >
   <div
-    class="euiFormControlLayout"
+    class="euiFormControlLayout emotion-euiFormControlLayout"
   >
     <div
-      class="euiFormControlLayout__childrenWrapper"
+      class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper"
     >
       <input
         class="euiFieldNumber euiRangeInput euiRangeInput--min emotion-euiFieldNumber-euiRangeInput"
@@ -322,10 +322,10 @@ exports[`EuiDualRange props maxInputProps applies passed props to max input 1`] 
     class="euiRange__horizontalSpacer emotion-euiRange__horizontalSpacer"
   />
   <div
-    class="euiFormControlLayout"
+    class="euiFormControlLayout emotion-euiFormControlLayout"
   >
     <div
-      class="euiFormControlLayout__childrenWrapper"
+      class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper"
     >
       <input
         aria-label="Max value"
@@ -348,10 +348,10 @@ exports[`EuiDualRange props minInputProps allows overriding default props 1`] = 
   class="euiRangeWrapper euiDualRange emotion-euiRangeWrapper-euiDualRange"
 >
   <div
-    class="euiFormControlLayout"
+    class="euiFormControlLayout emotion-euiFormControlLayout"
   >
     <div
-      class="euiFormControlLayout__childrenWrapper"
+      class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper"
       style="--euiFormControlRightIconsCount: 1;"
     >
       <input
@@ -366,7 +366,7 @@ exports[`EuiDualRange props minInputProps allows overriding default props 1`] = 
         value="123"
       />
       <div
-        class="euiFormControlLayoutIcons euiFormControlLayoutIcons--right euiFormControlLayoutIcons--absolute"
+        class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-absolute-right"
       >
         <span
           color="danger"
@@ -427,10 +427,10 @@ exports[`EuiDualRange props minInputProps allows overriding default props 1`] = 
     class="euiRange__horizontalSpacer emotion-euiRange__horizontalSpacer"
   />
   <div
-    class="euiFormControlLayout"
+    class="euiFormControlLayout emotion-euiFormControlLayout"
   >
     <div
-      class="euiFormControlLayout__childrenWrapper"
+      class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper"
     >
       <input
         class="euiFieldNumber euiRangeInput euiRangeInput--max emotion-euiFieldNumber-euiRangeInput"
@@ -452,10 +452,10 @@ exports[`EuiDualRange props minInputProps applies passed props to min input 1`] 
   class="euiRangeWrapper euiDualRange emotion-euiRangeWrapper-euiDualRange"
 >
   <div
-    class="euiFormControlLayout"
+    class="euiFormControlLayout emotion-euiFormControlLayout"
   >
     <div
-      class="euiFormControlLayout__childrenWrapper"
+      class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper"
     >
       <input
         aria-label="Min value"
@@ -522,10 +522,10 @@ exports[`EuiDualRange props minInputProps applies passed props to min input 1`] 
     class="euiRange__horizontalSpacer emotion-euiRange__horizontalSpacer"
   />
   <div
-    class="euiFormControlLayout"
+    class="euiFormControlLayout emotion-euiFormControlLayout"
   >
     <div
-      class="euiFormControlLayout__childrenWrapper"
+      class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper"
     >
       <input
         class="euiFieldNumber euiRangeInput euiRangeInput--max emotion-euiFieldNumber-euiRangeInput"

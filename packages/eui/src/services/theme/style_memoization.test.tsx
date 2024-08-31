@@ -20,6 +20,7 @@ import {
   useEuiMemoizedStyles,
   withEuiStylesMemoizer,
   WithEuiStylesMemoizerProps,
+  RenderWithEuiStylesMemoizer,
 } from './style_memoization';
 
 describe('useEuiMemoizedStyles', () => {
@@ -144,6 +145,75 @@ describe('withEuiStylesMemoizer', () => {
     );
     expect(componentStyles).toHaveBeenCalledTimes(2);
     expect(getByRole('button')).toHaveStyleRule('color', '#f86b63');
+
+    // Should not recompute styles if no theme changes
+    rerender(
+      <EuiThemeProvider colorMode="dark">
+        <Component />
+      </EuiThemeProvider>
+    );
+    expect(componentStyles).toHaveBeenCalledTimes(2);
+  });
+});
+
+describe('RenderWithEuiStylesMemoizer', () => {
+  beforeEach(jest.clearAllMocks);
+
+  const componentStyles = jest.fn(({ euiTheme }: UseEuiTheme) => ({
+    someComponent: css`
+      color: ${euiTheme.colors.successText};
+    `,
+  }));
+
+  class Component<T extends object> extends React.Component<{ someProp?: T }> {
+    state = {
+      rerender: false,
+    };
+
+    rerender = () => {
+      this.setState({ rerender: !this.state.rerender });
+    };
+
+    render() {
+      return (
+        <RenderWithEuiStylesMemoizer>
+          {(stylesMemoizer) => {
+            const styles = stylesMemoizer(componentStyles);
+            return (
+              <button css={styles.someComponent} onClick={this.rerender} />
+            );
+          }}
+        </RenderWithEuiStylesMemoizer>
+      );
+    }
+  }
+
+  it('memoizes the passed fn, only computing the styles once regardless of other rerenders', () => {
+    const { getByRole } = render(<Component<{ type: string }> />);
+
+    expect(componentStyles).toHaveBeenCalledTimes(1);
+    expect(getByRole('button')).toHaveStyleRule('color', '#007871');
+
+    fireEvent.click(getByRole('button'));
+    expect(componentStyles).toHaveBeenCalledTimes(1);
+  });
+
+  it('recomputes styles if the upstream theme changes', () => {
+    const { rerender, getByRole } = render(
+      <EuiThemeProvider colorMode="light">
+        <Component />
+      </EuiThemeProvider>
+    );
+    expect(componentStyles).toHaveBeenCalledTimes(1);
+    expect(getByRole('button')).toHaveStyleRule('color', '#007871');
+
+    rerender(
+      <EuiThemeProvider colorMode="dark">
+        <Component />
+      </EuiThemeProvider>
+    );
+    expect(componentStyles).toHaveBeenCalledTimes(2);
+    expect(getByRole('button')).toHaveStyleRule('color', '#7dded8');
 
     // Should not recompute styles if no theme changes
     rerender(

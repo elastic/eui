@@ -9,6 +9,7 @@
 import React from 'react';
 import { fireEvent } from '@testing-library/react';
 import { render } from '../../../test/rtl';
+import { shouldRenderCustomStyles } from '../../../test/internal';
 import { requiredProps } from '../../../test/required_props';
 
 import { EuiSelectableSearch } from './selectable_search';
@@ -26,6 +27,8 @@ describe('EuiSelectableSearch', () => {
   };
 
   beforeEach(() => jest.clearAllMocks());
+
+  shouldRenderCustomStyles(<EuiSelectableSearch {...baseProps} />);
 
   test('is rendered', () => {
     const { container } = render(<EuiSelectableSearch {...baseProps} />);

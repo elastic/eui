@@ -10,14 +10,13 @@ import { css } from '@emotion/react';
 
 import { UseEuiTheme } from '../../services';
 import { euiBreakpoint, logicalCSS, mathWithUnits } from '../../global_styling';
-import { euiFormVariables } from '../form/form.styles';
+import { euiFormMaxWidth } from '../form/form.styles';
 
 export const euiSearchBar__searchHolder = (euiThemeContext: UseEuiTheme) => {
-  const { maxWidth } = euiFormVariables(euiThemeContext);
   return css`
     ${logicalCSS(
       'min-width',
-      mathWithUnits(maxWidth, (x) => x / 2)
+      mathWithUnits(euiFormMaxWidth(euiThemeContext), (x) => x / 2)
     )}
   `;
 };

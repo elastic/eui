@@ -1,3 +1,123 @@
+## [`v95.9.0`](https://github.com/elastic/eui/releases/v95.9.0)
+
+- Updated `EuiSearchBar`'s optional `box.schema` prop with a new `recognizedFields` configuration. This allows specifying the phrases that will be parsed as field clauses ([#7960](https://github.com/elastic/eui/pull/7960))
+- Updated `EuiIcon` with a new `tokenSemanticText` glyph ([#7971](https://github.com/elastic/eui/pull/7971))
+- Added support for TypeScript 5 ([#7980](https://github.com/elastic/eui/pull/7980))
+
+**Bug fixes**
+
+- Fixed `EuiSelectableTemplateSitewide` styles when used within a dark-themed `EuiHeader` ([#7977](https://github.com/elastic/eui/pull/7977))
+
+## [`v95.8.0`](https://github.com/elastic/eui/releases/v95.8.0)
+
+- Updated `EuiHeaderLinks`'s mobile menu to set a slight popover padding by default ([#7961](https://github.com/elastic/eui/pull/7961))
+  - This can be overridden via `popoverProps.panelPaddingSize` if needed.
+- Updated `EuiHeaderLink` to default to a size of `s` (down from `m`) ([#7961](https://github.com/elastic/eui/pull/7961))
+
+**Bug fixes**
+
+- Fixed a visual bug with `<EuiDualRange showInput="inputWithPopover" />` form controls ([#7957](https://github.com/elastic/eui/pull/7957))
+
+**Deprecations**
+
+- Deprecated `EuiFormRow`'s `columnCompressedSwitch` display prop. Use `columnCompressed` instead, which will automatically account for child `EuiSwitch`es ([#7968](https://github.com/elastic/eui/pull/7968))
+- Deprecated `EuiFormRow`'s `rowCompressed` display prop. Use `row` instead for vertical forms, or `centerCompressed` for inline forms ([#7968](https://github.com/elastic/eui/pull/7968))
+- (Styling) Updated `EuiFormRow`'s `hasEmptySpaceLabel` prop to no longer attempt to automatically align its content to a vertical center. Use the `display="center"` prop for that instead ([#7968](https://github.com/elastic/eui/pull/7968))
+
+**CSS-in-JS conversions**
+
+- Converted `EuiFormControlLayout` to Emotion ([#7954](https://github.com/elastic/eui/pull/7954))
+  - Removed `.euiFormControlLayout--*icons` classNames and `--eui-form-control-layout-icons-padding` CSS var. Use `--euiFormControlRightIconsCount` or `--euiFormControlLeftIconsCount` instead
+- Converted `EuiFormLayoutDelimited` to Emotion ([#7957](https://github.com/elastic/eui/pull/7957))
+- Fixed `cloneElementWithCss` throwing an error when used multiple times without a `key` prop ([#7957](https://github.com/elastic/eui/pull/7957))
+- Updated `cloneElementWithCss` utility to support a third argument that allows prepending vs. appending the cloned Emotion css className ([#7957](https://github.com/elastic/eui/pull/7957))
+- Removed `@euiFormControlLayoutClearIcon` Sass mixin ([#7959](https://github.com/elastic/eui/pull/7959))
+- Converted `EuiDescribedFormGroup` to Emotion ([#7964](https://github.com/elastic/eui/pull/7964))
+- Converted `EuiForm`, `EuiFormHelpText`, and `EuiFormErrorText` to Emotion ([#7966](https://github.com/elastic/eui/pull/7966))
+- Converted `EuiFormLabel` and `EuiFormLegend` to Emotion; Removed `@euiFormLabel` mixin ([#7967](https://github.com/elastic/eui/pull/7967))
+- Converted `EuiFormRow` to Emotion ([#7968](https://github.com/elastic/eui/pull/7968))
+- Converted `EuiCheckbox` to Emotion ([#7969](https://github.com/elastic/eui/pull/7969))
+- Converted `EuiRadio` to Emotion ([#7969](https://github.com/elastic/eui/pull/7969))
+- Converted `EuiSwitch` to Emotion ([#7969](https://github.com/elastic/eui/pull/7969))
+- Removed the following Sass variables: ([#7969](https://github.com/elastic/eui/pull/7969))
+  - `$euiFormCustomControlDisabledIconColor`
+  - `$euiFormCustomControlBorderColor`
+  - `$euiRadioSize`
+  - `$euiCheckBoxSize`
+  - `$euiCheckboxBorderRadius`
+  - `$euiSwitchHeight` (and compressed/mini variants)
+  - `$euiSwitchWidth` (and compressed/mini variants)
+  - `$euiSwitchThumbSize` (and compressed/mini variants)
+  - `$euiSwitchIconHeight`
+  - `$euiSwitchOffColor`
+- Removed the following Sass mixins: ([#7969](https://github.com/elastic/eui/pull/7969))
+  - `euiIconBackground`
+  - `euiCustomControl`
+  - `euiCustomControlSelected`
+  - `euiCustomControlDisabled`
+  - `euiCustomControlFocused`
+
+**Accessibility**
+
+- Updated the `aria-label` attribute for the `EuiFieldSearch` clear button ([#7970](https://github.com/elastic/eui/pull/7970))
+
+## [`v95.7.0`](https://github.com/elastic/eui/releases/v95.7.0)
+
+**CSS-in-JS conversions**
+
+- Converted `EuiSelectable` to Emotion ([#7940](https://github.com/elastic/eui/pull/7940))
+  - Removed `$euiSelectableListItemBorder`
+  - Removed `$euiSelectableListItemPadding`
+- Converted `EuiSelectableTemplateSitewide` to Emotion ([#7944](https://github.com/elastic/eui/pull/7944))
+  - Removed `$euiSelectableTemplateFocusBackgroundLight`
+  - Removed `$euiSelectableTemplateFocusBackgroundDark`
+  - Removed `$euiSelectableTemplateSitewideTypes`
+- Converted `EuiComboBox` to Emotion ([#7950](https://github.com/elastic/eui/pull/7950))
+
+## [`v95.6.0`](https://github.com/elastic/eui/releases/v95.6.0)
+
+- Updated `EuiIcon` with a new `crossInCircle` glyph ([#7924](https://github.com/elastic/eui/pull/7924))
+
+**Bug fixes**
+
+- Fixed `EuiEmptyPrompt` to correctly collapse and expand responsively when used with custom breakpoints larger than the default `xl` breakpoint ([#7935](https://github.com/elastic/eui/pull/7935))
+
+**CSS-in-JS conversions**
+
+- Converted `EuiDatePicker` to Emotion ([#7937](https://github.com/elastic/eui/pull/7937))
+  - Removed `$euiDatePickerCalendarWidth`
+  - Removed `$euiDatePickerPadding`
+  - Removed `$euiDatePickerGap`
+  - Removed `$euiDatePickerCalendarColumns`
+  - Removed `$euiDatePickerButtonSize`
+  - Removed `$euiDatePickerMinControlWidth`
+  - Removed `$euiDatePickerMaxControlWidth`
+  - Removed `@mixin datePickerCaret`
+  - Removed `@mixin datePickerArrow`
+
+**Accessibility**
+
+- Improved the experience of `EuiModal` by ensuring nested `EuiPopover` closes on `Escape` keypress instead of the modal ([#7939](https://github.com/elastic/eui/pull/7939))
+
+## [`v95.5.0`](https://github.com/elastic/eui/releases/v95.5.0)
+
+- Added `minusInSquare` and `plusInSquare` glyphs to `EuiIcon`. ([#7875](https://github.com/elastic/eui/pull/7875))
+
+**Bug fixes**
+
+- Fixed `EuiSuperDatePicker` not correctly passing `refreshMinInterval` from the quick select popover ([#7905](https://github.com/elastic/eui/pull/7905))
+
+**CSS-in-JS conversions**
+
+- Converted `EuiSuperDatePicker`'s form control to Emotion; ([#7904](https://github.com/elastic/eui/pull/7904))
+  - Removed `$euiSuperDatePickerWidth`
+  - Removed `$euiSuperDatePickerButtonWidth`
+  - Removed `$euiSuperDatePickerNeedsUpdatingBackgroundColor`
+  - Removed `$euiSuperDatePickerNeedsUpdatingTextColor`
+  - Removed `@euiSuperDatePickerText` mixin
+- Converted `EuiSuperDatePicker`'s date popover content to Emotion ([#7908](https://github.com/elastic/eui/pull/7908))
+- Converted `EuiSuperDatePicker`'s quick select to Emotion ([#7909](https://github.com/elastic/eui/pull/7909))
+
 ## [`v95.4.0`](https://github.com/elastic/eui/releases/v95.4.0)
 
 - Added `anomalyChart`, `anomalySwimLane`, `changePointDetection`, `fieldStatistics`, `logPatternAnalysis`, `logRateAnalysis`  and `singleMetricViewer` glyph to `EuiIcon` ([#7873](https://github.com/elastic/eui/pull/7873))

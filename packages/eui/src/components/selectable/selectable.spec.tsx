@@ -296,7 +296,7 @@ describe('EuiSelectable', () => {
         cy.get('.euiTextTruncate').should('exist');
         cy.get('[data-test-subj="truncatedText"]').should(
           'have.text',
-          'Lorem ipsum d…ipiscing elit.'
+          'Lorem ipsum d…piscing elit.'
         );
       });
 
@@ -354,7 +354,7 @@ describe('EuiSelectable', () => {
         cy.viewport(100, 100);
         cy.get('[data-test-subj="truncatedText"]').should(
           'have.text',
-          'Lor…lit.'
+          'Lor…it.'
         );
       });
 

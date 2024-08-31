@@ -13,17 +13,19 @@ import React, {
 } from 'react';
 import moment from 'moment';
 import dateMath from '@elastic/datemath';
+
 import { htmlIdGenerator } from '../../../../services';
-import { EuiButton, EuiButtonIcon } from '../../../button';
-import { EuiFlexGroup, EuiFlexItem } from '../../../flex';
-import { EuiSpacer } from '../../../spacer';
-import { EuiSelect, EuiFieldNumber } from '../../../form';
-import { EuiToolTip } from '../../../tool_tip';
 import { EuiI18n } from '../../../i18n';
 import { EuiScreenReaderOnly } from '../../../accessibility';
+import { EuiButton, EuiButtonIcon } from '../../../button';
+import { EuiFlexGroup, EuiFlexItem } from '../../../flex';
+import { EuiSelect, EuiFieldNumber } from '../../../form';
+import { EuiToolTip } from '../../../tool_tip';
+
 import { ApplyTime, QuickSelect, TimeUnitId } from '../../types';
 import { TimeOptions, NEXT } from '../time_options';
 import { parseTimeParts } from './quick_select_utils';
+import { EuiQuickSelectPanel } from './quick_select_panel';
 
 type EuiQuickSelectState = QuickSelect;
 
@@ -158,77 +160,63 @@ export class EuiQuickSelect extends Component<
     const timeUnit = matchedTimeUnit ? matchedTimeUnit.text : '';
 
     return (
-      <fieldset className="euiQuickSelectPopover__panel">
-        <EuiI18n
-          token="euiQuickSelect.legendText"
-          default="Quick select a time range"
-        >
-          {(legendText: string) => (
-            // Legend needs to be the first thing in a fieldset, but we want the visible title within the flex.
-            // So we hide it, but allow screen readers to see it
-            <EuiScreenReaderOnly>
-              <legend id={this.legendId} className="euiFormLabel">
-                {legendText}
-              </legend>
-            </EuiScreenReaderOnly>
-          )}
-        </EuiI18n>
+      <EuiQuickSelectPanel
+        component="fieldset"
+        title={
+          <EuiI18n
+            token="euiQuickSelect.quickSelectTitle"
+            default="Quick select"
+          />
+        }
+        titleId={this.legendId}
+        aria-describedby={this.timeSelectionId}
+        css={{ '> div': { position: 'relative', overflow: 'visible' } }}
+      >
+        {/* Absolutely position the prev/next arrows in the top right hand corner */}
         <EuiFlexGroup
-          responsive={false}
+          css={{
+            position: 'absolute',
+            right: '0',
+            bottom: '100%',
+            transform: 'translateY(-33%)',
+          }}
           alignItems="center"
-          justifyContent="spaceBetween"
           gutterSize="s"
+          responsive={false}
         >
           <EuiFlexItem grow={false}>
             <EuiI18n
-              token="euiQuickSelect.quickSelectTitle"
-              default="Quick select"
+              token="euiQuickSelect.previousLabel"
+              default="Previous time window"
             >
-              {(quickSelectTitle: string) => (
-                <div aria-hidden className="euiFormLabel">
-                  {quickSelectTitle}
-                </div>
+              {(previousLabel: string) => (
+                <EuiToolTip content={previousLabel}>
+                  <EuiButtonIcon
+                    aria-label={previousLabel}
+                    iconType="arrowLeft"
+                    onClick={this.stepBackward}
+                  />
+                </EuiToolTip>
               )}
             </EuiI18n>
           </EuiFlexItem>
           <EuiFlexItem grow={false}>
-            <EuiFlexGroup alignItems="center" gutterSize="s" responsive={false}>
-              <EuiFlexItem grow={false}>
-                <EuiI18n
-                  token="euiQuickSelect.previousLabel"
-                  default="Previous time window"
-                >
-                  {(previousLabel: string) => (
-                    <EuiToolTip content={previousLabel}>
-                      <EuiButtonIcon
-                        aria-label={previousLabel}
-                        iconType="arrowLeft"
-                        onClick={this.stepBackward}
-                      />
-                    </EuiToolTip>
-                  )}
-                </EuiI18n>
-              </EuiFlexItem>
-              <EuiFlexItem grow={false}>
-                <EuiI18n
-                  token="euiQuickSelect.nextLabel"
-                  default="Next time window"
-                >
-                  {(nextLabel: string) => (
-                    <EuiToolTip content={nextLabel}>
-                      <EuiButtonIcon
-                        aria-label={nextLabel}
-                        iconType="arrowRight"
-                        onClick={this.stepForward}
-                      />
-                    </EuiToolTip>
-                  )}
-                </EuiI18n>
-              </EuiFlexItem>
-            </EuiFlexGroup>
+            <EuiI18n
+              token="euiQuickSelect.nextLabel"
+              default="Next time window"
+            >
+              {(nextLabel: string) => (
+                <EuiToolTip content={nextLabel}>
+                  <EuiButtonIcon
+                    aria-label={nextLabel}
+                    iconType="arrowRight"
+                    onClick={this.stepForward}
+                  />
+                </EuiToolTip>
+              )}
+            </EuiI18n>
           </EuiFlexItem>
         </EuiFlexGroup>
-        <EuiSpacer size="s" />
         <EuiFlexGroup gutterSize="s" responsive={false}>
           <EuiFlexItem>
             <EuiI18n token="euiQuickSelect.tenseLabel" default="Time tense">
@@ -277,7 +265,8 @@ export class EuiQuickSelect extends Component<
           <EuiFlexItem grow={false}>
             <EuiButton
               aria-describedby={`${this.timeSelectionId} ${this.legendId}`}
-              className="euiQuickSelect__applyButton"
+              data-test-subj="superDatePickerQuickSelectApplyButton"
+              minWidth={0} // Allow the button to shrink
               size="s"
               onClick={this.applyQuickSelect}
               disabled={timeValue <= 0}
@@ -299,7 +288,7 @@ export class EuiQuickSelect extends Component<
             />
           </p>
         </EuiScreenReaderOnly>
-      </fieldset>
+      </EuiQuickSelectPanel>
     );
   }
 }

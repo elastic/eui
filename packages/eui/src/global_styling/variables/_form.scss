@@ -7,24 +7,6 @@ $euiFormControlCompressedPadding: $euiSizeS !default;
 $euiFormControlBorderRadius: $euiBorderRadius !default;
 $euiFormControlCompressedBorderRadius: $euiBorderRadiusSmall !default;
 
-$euiRadioSize: $euiSize !default;
-$euiCheckBoxSize: $euiSize !default;
-$euiCheckboxBorderRadius: $euiBorderRadiusSmall !default;
-
-// Switch
-$euiSwitchHeight: $euiSize * 1.25 !default;
-$euiSwitchWidth: ($euiSize * 2.5) + $euiSizeXS !default;
-$euiSwitchThumbSize: $euiSwitchHeight !default;
-$euiSwitchIconHeight: $euiSize !default;
-
-$euiSwitchHeightCompressed: $euiSize !default;
-$euiSwitchWidthCompressed: $euiSize * 1.75 !default;
-$euiSwitchThumbSizeCompressed: $euiSwitchHeightCompressed !default;
-
-$euiSwitchHeightMini: $euiSwitchHeight * .5 !default;
-$euiSwitchWidthMini: $euiSwitchWidth * .5 !default;
-$euiSwitchThumbSizeMini: $euiSwitchHeightMini !default;
-
 // Coloring
 $euiFormBackgroundColor: tintOrShade($euiColorLightestShade, 60%, 40%) !default;
 $euiFormBackgroundDisabledColor: darken($euiColorLightestShade, 2%) !default;
@@ -32,14 +14,11 @@ $euiFormBackgroundReadOnlyColor: $euiColorEmptyShade !default;
 $euiFormBorderOpaqueColor: shadeOrTint(desaturate(adjust-hue($euiColorPrimary, 22), 22.95), 26%, 100%) !default;
 $euiFormBorderColor: transparentize($euiFormBorderOpaqueColor, .9) !default;
 $euiFormBorderDisabledColor: transparentize($euiFormBorderOpaqueColor, .9) !default;
-$euiFormCustomControlDisabledIconColor: shadeOrTint($euiColorMediumShade, 38%, 48.5%) !default; // exact 508c foreground for $euiColorLightShade
-$euiFormCustomControlBorderColor: shadeOrTint($euiColorLightestShade, 40%, 31%) !default;
 $euiFormControlDisabledColor: $euiColorMediumShade !default;
 $euiFormControlBoxShadow: 0 0 transparent !default;
 $euiFormControlPlaceholderText: makeHighContrastColor($euiTextSubduedColor, $euiFormBackgroundColor) !default;
 $euiFormInputGroupLabelBackground: tintOrShade($euiColorLightShade, 50%, 15%) !default;
 $euiFormInputGroupBorder: none !default;
-$euiSwitchOffColor: lightOrDarkTheme(transparentize($euiColorDarkShade, .25), transparentize($euiColorDarkShade, .4)) !default;
 
 // Icons sizes
 $euiFormControlIconSizes: (

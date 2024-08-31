@@ -11,12 +11,15 @@ import React, {
   HTMLAttributes,
   FormHTMLAttributes,
   useCallback,
+  useMemo,
   forwardRef,
 } from 'react';
 import classNames from 'classnames';
+
+import { CommonProps, ExclusiveUnion } from '../common';
 import { EuiCallOut } from '../call_out';
 import { EuiI18n } from '../i18n';
-import { CommonProps, ExclusiveUnion } from '../common';
+import { EuiSpacer } from '../spacer';
 
 import { FormContext, FormContextValue } from './eui_form_context';
 
@@ -59,7 +62,7 @@ export const EuiForm = forwardRef<HTMLElement, EuiFormProps>(
     },
     ref
   ) => {
-    const formContext = React.useMemo(
+    const formContext = useMemo(
       (): FormContextValue => ({
         defaultFullWidth: fullWidth ?? false,
       }),
@@ -96,17 +99,20 @@ export const EuiForm = forwardRef<HTMLElement, EuiFormProps>(
           default="Please address the highlighted errors."
         >
           {(addressFormErrors: string) => (
-            <EuiCallOut
-              tabIndex={-1}
-              ref={handleFocus}
-              className="euiForm__errors"
-              title={addressFormErrors}
-              color="danger"
-              role="alert"
-              aria-live="assertive"
-            >
-              {optionalErrors}
-            </EuiCallOut>
+            <>
+              <EuiCallOut
+                tabIndex={-1}
+                ref={handleFocus}
+                className="euiForm__errors"
+                title={addressFormErrors}
+                color="danger"
+                role="alert"
+                aria-live="assertive"
+              >
+                {optionalErrors}
+              </EuiCallOut>
+              <EuiSpacer size="m" />
+            </>
           )}
         </EuiI18n>
       );

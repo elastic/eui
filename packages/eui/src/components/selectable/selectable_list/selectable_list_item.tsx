@@ -16,7 +16,8 @@ import React, {
   useMemo,
 } from 'react';
 
-import { CommonProps, keysOf } from '../../common';
+import { useEuiMemoizedStyles } from '../../../services';
+import { CommonProps } from '../../common';
 import { EuiI18n } from '../../i18n';
 import { EuiIcon, IconColor, IconType } from '../../icon';
 import { EuiScreenReaderOnly } from '../../accessibility';
@@ -27,6 +28,7 @@ import type {
   EuiSelectableOption,
   EuiSelectableOptionCheckedType,
 } from '../selectable_option';
+import { euiSelectableListItemStyles } from './selectable_list_item.styles';
 
 function resolveIconAndColor(checked: EuiSelectableOptionCheckedType): {
   icon: IconType;
@@ -45,11 +47,7 @@ function resolveIconAndColor(checked: EuiSelectableOptionCheckedType): {
   }
 }
 
-const paddingSizeToClassNameMap = {
-  none: null,
-  s: 'euiSelectableListItem--paddingSmall',
-};
-export const PADDING_SIZES = keysOf(paddingSizeToClassNameMap);
+export const PADDING_SIZES = ['none', 's'] as const;
 export type EuiSelectablePaddingSize = (typeof PADDING_SIZES)[number];
 
 export type EuiSelectableListItemProps = LiHTMLAttributes<HTMLLIElement> &
@@ -133,32 +131,42 @@ export const EuiSelectableListItem: FunctionComponent<
   const classes = classNames(
     'euiSelectableListItem',
     { 'euiSelectableListItem-isFocused': isFocused },
-    paddingSizeToClassNameMap[paddingSize],
     className
   );
 
-  const textClasses = classNames('euiSelectableListItem__text', {
-    [`euiSelectableListItem__text--${textWrap}`]: textWrap,
-  });
+  const styles = useEuiMemoizedStyles(euiSelectableListItemStyles);
+  const cssStyles = [styles.euiSelectableListItem, styles.padding[paddingSize]];
+  const textStyles = [
+    styles.euiSelectableListItem__text,
+    styles.textWrap[textWrap],
+  ];
 
   const optionIcon = useMemo(() => {
     if (showIcons) {
       const { icon, color } = resolveIconAndColor(checked);
       return (
         <EuiIcon
+          css={styles.euiSelectableListItem__icon}
           className="euiSelectableListItem__icon"
           color={color}
           type={icon}
         />
       );
     }
-  }, [showIcons, checked]);
+  }, [showIcons, checked, styles]);
 
   const prependNode = useMemo(() => {
     if (prepend) {
-      return <span className="euiSelectableListItem__prepend">{prepend}</span>;
+      return (
+        <span
+          css={styles.euiSelectableListItem__prepend}
+          className="euiSelectableListItem__prepend"
+        >
+          {prepend}
+        </span>
+      );
     }
-  }, [prepend]);
+  }, [prepend, styles]);
 
   const onFocusBadgeNode = useMemo(() => {
     const defaultOnFocusBadgeProps: EuiBadgeProps = {
@@ -196,12 +204,15 @@ export const EuiSelectableListItem: FunctionComponent<
   const appendNode = useMemo(() => {
     if (append || showOnFocusBadge) {
       return (
-        <span className="euiSelectableListItem__append">
+        <span
+          css={styles.euiSelectableListItem__append}
+          className="euiSelectableListItem__append"
+        >
           {append} {showOnFocusBadge ? onFocusBadgeNode : null}
         </span>
       );
     }
-  }, [append, showOnFocusBadge, onFocusBadgeNode]);
+  }, [append, showOnFocusBadge, onFocusBadgeNode, styles]);
 
   const screenReaderText = useMemo(() => {
     let state: React.ReactNode;
@@ -370,10 +381,13 @@ export const EuiSelectableListItem: FunctionComponent<
   }, [tooltipRef, _ariaDescribedBy]);
 
   const content: ReactElement = (
-    <span className="euiSelectableListItem__content">
+    <span
+      css={styles.euiSelectableListItem__content}
+      className="euiSelectableListItem__content"
+    >
       {optionIcon}
       {prependNode}
-      <span className={textClasses}>
+      <span css={textStyles} className="euiSelectableListItem__text">
         {children}
         {screenReaderText}
       </span>
@@ -387,6 +401,7 @@ export const EuiSelectableListItem: FunctionComponent<
       aria-disabled={disabled}
       aria-checked={ariaChecked} // Whether the item is "checked"
       aria-selected={!disabled && isFocused} // Whether the item has keyboard focus per W3 spec
+      css={cssStyles}
       className={classes}
       {...rest}
       aria-describedby={ariaDescribedBy}
@@ -395,7 +410,7 @@ export const EuiSelectableListItem: FunctionComponent<
         <EuiToolTip
           ref={setTooltipRef}
           content={toolTipContent}
-          anchorClassName="euiSelectableListItem__tooltipAnchor"
+          anchorClassName="eui-fullWidth"
           position="left"
           {...toolTipProps}
         >

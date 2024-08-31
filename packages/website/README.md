@@ -27,7 +27,7 @@ yarn
 Before you run scripts, it's mandatory to build all local dependency packages:
 
 ```shell
-yarn workspaces foreach -Rpt --from @elastic/eui-website run build
+yarn workspaces foreach -Rpti --from @elastic/eui-website run build
 ```
 
 ### Running the development server

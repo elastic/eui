@@ -7,11 +7,10 @@
  */
 
 import React, { FunctionComponent, ReactNode, HTMLAttributes } from 'react';
-
 import classNames from 'classnames';
 
+import { useEuiMemoizedStyles } from '../../../services';
 import { CommonProps, PropsOf } from '../../common';
-
 import { EuiTitle, EuiTitleSize, EuiTitleProps } from '../../title';
 import { EuiText } from '../../text';
 import {
@@ -20,7 +19,9 @@ import {
   EuiFlexGroupGutterSize,
   EuiFlexItemProps,
 } from '../../flex';
+
 import { useFormContext } from '../eui_form_context';
+import { euiDescribedFormGroupStyles } from './described_form_group.styles';
 
 export type EuiDescribedFormGroupProps = CommonProps &
   Omit<HTMLAttributes<HTMLDivElement>, 'title'> & {
@@ -74,7 +75,6 @@ export const EuiDescribedFormGroup: FunctionComponent<
   EuiDescribedFormGroupProps
 > = (props) => {
   const { defaultFullWidth } = useFormContext();
-
   const {
     children,
     className,
@@ -88,13 +88,22 @@ export const EuiDescribedFormGroup: FunctionComponent<
     fieldFlexItemProps,
     ...rest
   } = props;
-  const classes = classNames(
-    'euiDescribedFormGroup',
-    {
-      'euiDescribedFormGroup--fullWidth': fullWidth,
-    },
-    className
-  );
+
+  const styles = useEuiMemoizedStyles(euiDescribedFormGroupStyles);
+  const cssStyles = [
+    styles.euiDescribedFormGroup,
+    fullWidth ? styles.fullWidth : styles.formWidth,
+  ];
+  const descriptionColumnStyles = [
+    styles.euiDescribedFormGroup__descriptionColumn,
+    descriptionFlexItemProps?.css,
+  ];
+  const fieldColumnStyles = [
+    styles.euiDescribedFormGroup__fields,
+    fieldFlexItemProps?.css,
+  ];
+
+  const classes = classNames('euiDescribedFormGroup', className);
 
   const fieldClasses = classNames(
     'euiDescribedFormGroup__fields',
@@ -108,6 +117,7 @@ export const EuiDescribedFormGroup: FunctionComponent<
       <EuiText
         size="s"
         color="subdued"
+        css={styles.euiDescribedFormGroup__description}
         className="euiDescribedFormGroup__description"
       >
         {
@@ -135,31 +145,38 @@ export const EuiDescribedFormGroup: FunctionComponent<
   }
 
   return (
-    <div role="group" className={classes} {...rest}>
-      <EuiFlexGroup alignItems="baseline" gutterSize={gutterSize}>
-        <EuiFlexItem
-          grow={1}
-          {...descriptionFlexItemProps}
-          className={classNames(
-            'euiDescribedFormGroup__descriptionColumn',
-            descriptionFlexItemProps?.className
-          )}
-        >
-          <EuiTitle size={titleSize} className="euiDescribedFormGroup__title">
-            {title}
-          </EuiTitle>
+    <EuiFlexGroup
+      role="group"
+      {...rest}
+      css={cssStyles}
+      className={classes}
+      alignItems="baseline"
+      gutterSize={gutterSize}
+    >
+      <EuiFlexItem
+        grow={1}
+        {...descriptionFlexItemProps}
+        css={descriptionColumnStyles}
+        className={classNames(
+          'euiDescribedFormGroup__descriptionColumn',
+          descriptionFlexItemProps?.className
+        )}
+      >
+        <EuiTitle size={titleSize} className="euiDescribedFormGroup__title">
+          {title}
+        </EuiTitle>
 
-          {renderedDescription}
-        </EuiFlexItem>
+        {renderedDescription}
+      </EuiFlexItem>
 
-        <EuiFlexItem
-          grow={fieldGrowth}
-          {...fieldFlexItemProps}
-          className={fieldClasses}
-        >
-          {children}
-        </EuiFlexItem>
-      </EuiFlexGroup>
-    </div>
+      <EuiFlexItem
+        grow={fieldGrowth}
+        {...fieldFlexItemProps}
+        css={fieldColumnStyles}
+        className={fieldClasses}
+      >
+        {children}
+      </EuiFlexItem>
+    </EuiFlexGroup>
   );
 };

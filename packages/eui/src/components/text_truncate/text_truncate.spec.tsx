@@ -42,7 +42,7 @@ describe('EuiTextTruncate', () => {
   });
 
   describe('truncation', () => {
-    const expectedMiddleOutput = 'Lorem ipsum d…adipiscing elit';
+    const expectedMiddleOutput = 'Lorem ipsum d…dipiscing elit';
     const expectedStartOutput = '…t, consectetur adipiscing elit';
     const expectedEndOutput = 'Lorem ipsum dolor sit amet, …';
     const expectedStartEndOutput = '…lor sit amet, consectetur a…';

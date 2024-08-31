@@ -3,7 +3,7 @@
 exports[`EuiFormLegend is rendered 1`] = `
 <legend
   aria-label="aria-label"
-  class="euiFormLegend testClass1 testClass2 emotion-euiTestCss"
+  class="euiFormLegend testClass1 testClass2 emotion-euiFormLegend-euiTestCss"
   data-test-subj="test subject string"
 >
   Legend
@@ -12,7 +12,7 @@ exports[`EuiFormLegend is rendered 1`] = `
 
 exports[`EuiFormLegend props compressed is rendered 1`] = `
 <legend
-  class="euiFormLegend euiFormLegend--compressed"
+  class="euiFormLegend emotion-euiFormLegend-compressed"
 >
   Legend
 </legend>
@@ -20,7 +20,7 @@ exports[`EuiFormLegend props compressed is rendered 1`] = `
 
 exports[`EuiFormLegend props hidden is rendered 1`] = `
 <legend
-  class="euiFormLegend euiFormLegend-isHidden"
+  class="euiFormLegend euiFormLegend-isHidden emotion-euiFormLegend"
 >
   <span
     class="emotion-euiScreenReaderOnly"

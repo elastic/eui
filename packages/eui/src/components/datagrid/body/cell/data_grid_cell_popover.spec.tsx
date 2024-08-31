@@ -248,10 +248,10 @@ describe('EuiDataGridCellPopover', () => {
       cy.get('[data-test-subj="euiDataGridExpansionPopover"]')
         .should('have.css', 'top', '73px')
         .should('have.css', 'left')
-        .and('match', /^254[.\d]+px$/);
+        .and('match', /^255[.\d]+px$/);
       cy.get('[data-test-subj="euiDataGridExpansionPopover"]')
         .should('have.css', 'width')
-        .and('match', /^144[.\d]+px$/);
+        .and('match', /^143[.\d]+px$/);
     });
 
     describe('max popover dimensions', () => {

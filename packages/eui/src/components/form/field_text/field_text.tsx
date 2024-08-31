@@ -117,6 +117,7 @@ export const EuiFieldText: FunctionComponent<EuiFieldTextProps> = (props) => {
       fullWidth={fullWidth}
       isLoading={isLoading}
       isInvalid={isInvalid}
+      isDisabled={rest.disabled}
       compressed={compressed}
       readOnly={readOnly}
       prepend={prepend}

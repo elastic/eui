@@ -216,6 +216,13 @@ export const EuiDatePickerRange: FunctionComponent<EuiDatePickerRangeProps> = ({
         isLoading={isLoading}
         append={inline ? undefined : append}
         prepend={inline ? undefined : prepend}
+        css={
+          inline &&
+          !disabled &&
+          (shadow
+            ? inlineStyles.formLayout.shadow
+            : inlineStyles.formLayout.noShadow)
+        }
       />
     </span>
   );

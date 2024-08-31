@@ -16,7 +16,7 @@ import { EuiDatePopoverButton } from './date_popover_button';
 
 const noop = () => {};
 
-describe('EuiSuperUpdateButton', () => {
+describe('EuiDatePopoverButton', () => {
   const props = {
     ...requiredProps,
     value: '',

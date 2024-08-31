@@ -21,6 +21,7 @@ import {
   areEqual,
 } from 'react-window';
 
+import { RenderWithEuiStylesMemoizer } from '../../../services';
 import { CommonProps, ExclusiveUnion } from '../../common';
 import {
   EuiAutoSizer,
@@ -40,6 +41,7 @@ import {
   EuiSelectableListItem,
   EuiSelectableListItemProps,
 } from './selectable_list_item';
+import { euiSelectableListStyles } from './selectable_list.styles';
 
 interface ListChildComponentProps<T>
   extends Omit<ReactWindowListChildComponentProps, 'style'> {
@@ -405,17 +407,24 @@ export class EuiSelectableList<T> extends Component<
 
     if (isGroupLabel) {
       return (
-        <li
-          role="presentation"
-          className="euiSelectableList__groupLabel"
-          style={style}
-          // @ts-ignore complex
-          {...(optionRest as HTMLAttributes<HTMLLIElement>)}
-        >
-          {prepend}
-          {label}
-          {append}
-        </li>
+        <RenderWithEuiStylesMemoizer>
+          {(stylesMemoizer) => {
+            const styles = stylesMemoizer(euiSelectableListStyles);
+            return (
+              <li
+                role="presentation"
+                css={styles.euiSelectableList__groupLabel}
+                className="euiSelectableList__groupLabel"
+                style={style}
+                {...(optionRest as HTMLAttributes<HTMLLIElement>)}
+              >
+                {prepend}
+                {label}
+                {append}
+              </li>
+            );
+          }}
+        </RenderWithEuiStylesMemoizer>
       );
     }
 
@@ -467,6 +476,7 @@ export class EuiSelectableList<T> extends Component<
         paddingSize={paddingSize}
         searchable={searchable}
         textWrap={textWrap}
+        // @ts-ignore complex
         {...(optionRest as EuiSelectableListItemProps)}
       >
         {renderOption
@@ -484,7 +494,7 @@ export class EuiSelectableList<T> extends Component<
     );
   }, areEqual);
 
-  renderVirtualizedList = () => {
+  renderVirtualizedList = (listClasses: string) => {
     if (!this.props.isVirtualized) return null;
 
     const { optionArray, itemData } = this.state;
@@ -492,7 +502,7 @@ export class EuiSelectableList<T> extends Component<
     const heightIsFull = forcedHeight === 'full';
 
     const virtualizationProps = {
-      className: 'euiSelectableList__list',
+      className: listClasses,
       ref: this.setListRef,
       outerRef: this.removeScrollableTabStop,
       innerRef: this.setListBoxRef,
@@ -709,41 +719,53 @@ export class EuiSelectableList<T> extends Component<
 
     const heightIsFull = forcedHeight === 'full';
 
-    const classes = classNames(
-      'euiSelectableList',
-      {
-        'euiSelectableList-fullHeight': heightIsFull,
-        'euiSelectableList-bordered': bordered,
-      },
-      className
-    );
+    const classes = classNames('euiSelectableList', className);
 
     return (
-      <div className={classes} {...rest}>
-        {isVirtualized ? (
-          this.renderVirtualizedList()
-        ) : (
-          <div
-            className="euiSelectableList__list"
-            style={!heightIsFull ? { blockSize: forcedHeight } : undefined}
-            ref={this.removeScrollableTabStop}
-          >
-            <ul ref={this.setListBoxRef}>
-              {this.state.optionArray.map((_, index) =>
-                React.createElement(
-                  this.ListRow,
-                  {
-                    key: `${index}-${this.listRowRerender}`,
-                    data: this.state.optionArray,
-                    index,
-                  },
-                  null
-                )
+      <RenderWithEuiStylesMemoizer>
+        {(stylesMemoizer) => {
+          const styles = stylesMemoizer(euiSelectableListStyles);
+          const cssStyles = [
+            styles.euiSelectableList,
+            heightIsFull && styles.fullHeight,
+            bordered && styles.bordered,
+          ];
+          const listClasses = classNames(
+            'euiSelectableList__list',
+            styles.euiSelectableList__list
+          );
+
+          return (
+            <div css={cssStyles} className={classes} {...rest}>
+              {isVirtualized ? (
+                this.renderVirtualizedList(listClasses)
+              ) : (
+                <div
+                  className={listClasses}
+                  style={
+                    !heightIsFull ? { blockSize: forcedHeight } : undefined
+                  }
+                  ref={this.removeScrollableTabStop}
+                >
+                  <ul ref={this.setListBoxRef}>
+                    {this.state.optionArray.map((_, index) =>
+                      React.createElement(
+                        this.ListRow,
+                        {
+                          key: `${index}-${this.listRowRerender}`,
+                          data: this.state.optionArray,
+                          index,
+                        },
+                        null
+                      )
+                    )}
+                  </ul>
+                </div>
               )}
-            </ul>
-          </div>
-        )}
-      </div>
+            </div>
+          );
+        }}
+      </RenderWithEuiStylesMemoizer>
     );
   }
 

@@ -7,14 +7,14 @@
  */
 
 import React, { FunctionComponent } from 'react';
+import { LocaleSpecifier } from 'moment';
 
+import { useEuiMemoizedStyles } from '../../../../services';
+import { useEuiPaddingCSS } from '../../../../global_styling';
 import { EuiI18n, useEuiI18n } from '../../../i18n';
 import { EuiTabbedContent, EuiTabbedContentProps } from '../../../tabs';
 import { EuiText } from '../../../text';
 import { EuiButton } from '../../../button';
-
-import { EuiAbsoluteTab } from './absolute_tab';
-import { EuiRelativeTab } from './relative_tab';
 
 import { TimeOptions } from '../time_options';
 import {
@@ -23,7 +23,9 @@ import {
   toAbsoluteString,
   toRelativeString,
 } from '../date_modes';
-import { LocaleSpecifier } from 'moment'; // eslint-disable-line import/named
+import { EuiAbsoluteTab } from './absolute_tab';
+import { EuiRelativeTab } from './relative_tab';
+import { euiDatePopoverContentStyles } from './date_popover_content.styles';
 
 export interface EuiDatePopoverContentProps {
   value: string;
@@ -52,6 +54,8 @@ export const EuiDatePopoverContent: FunctionComponent<
   utcOffset,
   timeOptions,
 }) => {
+  const styles = useEuiMemoizedStyles(euiDatePopoverContentStyles);
+
   const onTabClick: EuiTabbedContentProps['onTabClick'] = (selectedTab) => {
     switch (selectedTab.id) {
       case DATE_MODES.ABSOLUTE:
@@ -95,7 +99,6 @@ export const EuiDatePopoverContent: FunctionComponent<
           value={value}
           onChange={onChange}
           roundUp={roundUp}
-          position={position}
           labelPrefix={labelPrefix}
           utcOffset={utcOffset}
         />
@@ -115,7 +118,6 @@ export const EuiDatePopoverContent: FunctionComponent<
           }
           onChange={onChange}
           roundUp={roundUp}
-          position={position}
           labelPrefix={labelPrefix}
           timeOptions={timeOptions}
         />
@@ -127,16 +129,11 @@ export const EuiDatePopoverContent: FunctionComponent<
       id: DATE_MODES.NOW,
       name: nowLabel,
       content: (
-        <EuiText
-          size="s"
-          color="subdued"
-          className="euiDatePopoverContent__padded--large"
-        >
+        <EuiText size="s" color="subdued" css={useEuiPaddingCSS().m}>
           <p>
             <EuiI18n
               token="euiDatePopoverContent.nowTabContent"
-              default='Setting the time to "now" means that on every refresh this
-            time will be set to the time of the refresh.'
+              default='Setting the time to "now" means that on every refresh this time will be set to the time of the refresh.'
             />
           </p>
           <EuiButton
@@ -173,6 +170,7 @@ export const EuiDatePopoverContent: FunctionComponent<
 
   return (
     <EuiTabbedContent
+      css={styles.euiDatePopoverContent}
       className="euiDatePopoverContent"
       tabs={renderTabs}
       autoFocus="selected"

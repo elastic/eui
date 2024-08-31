@@ -9,16 +9,21 @@ exports[`EuiKeyPadMenuItem checkable renders as checkbox 1`] = `
     class="euiKeyPadMenuItem__inner emotion-euiKeyPadMenuItem__inner"
   >
     <div
-      class="euiCheckbox euiCheckbox--noLabel euiKeyPadMenuItem__checkableInput emotion-euiCheckbox-euiKeyPadMenuItem__checkableInput-showCheckableInputOnInteraction"
+      class="euiCheckbox euiKeyPadMenuItem__checkableInput emotion-euiCheckbox-euiKeyPadMenuItem__checkableInput-showCheckableInputOnInteraction"
     >
-      <input
-        class="euiCheckbox__input"
-        id="generated-id"
-        type="checkbox"
-      />
       <div
-        class="euiCheckbox__square"
-      />
+        class="euiCheckbox__square emotion-euiCheckbox__square-unselected"
+      >
+        <span
+          class="emotion-euiCheckbox__icon-check"
+          data-euiicon-type="empty"
+        />
+        <input
+          class="euiCheckbox__input emotion-euiCheckbox__input"
+          id="generated-id"
+          type="checkbox"
+        />
+      </div>
     </div>
     <span
       class="euiKeyPadMenuItem__icon emotion-euiKeyPadMenuItem__icon"
@@ -43,18 +48,23 @@ exports[`EuiKeyPadMenuItem checkable renders as radio 1`] = `
     class="euiKeyPadMenuItem__inner emotion-euiKeyPadMenuItem__inner"
   >
     <div
-      class="euiRadio euiRadio--noLabel euiKeyPadMenuItem__checkableInput emotion-euiKeyPadMenuItem__checkableInput-showCheckableInputOnInteraction"
+      class="euiRadio euiKeyPadMenuItem__checkableInput emotion-euiRadio-euiKeyPadMenuItem__checkableInput-showCheckableInputOnInteraction"
     >
-      <input
-        class="euiRadio__input"
-        id="generated-id"
-        name="single"
-        type="radio"
-        value=""
-      />
       <div
-        class="euiRadio__circle"
-      />
+        class="euiRadio__circle emotion-euiRadio__circle-unselected"
+      >
+        <span
+          class="emotion-euiRadio__icon"
+          data-euiicon-type="dot"
+        />
+        <input
+          class="euiRadio__input emotion-euiRadio__input"
+          id="generated-id"
+          name="single"
+          type="radio"
+          value=""
+        />
+      </div>
     </div>
     <span
       class="euiKeyPadMenuItem__icon emotion-euiKeyPadMenuItem__icon"

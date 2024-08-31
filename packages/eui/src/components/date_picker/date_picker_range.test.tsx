@@ -7,15 +7,23 @@
  */
 
 import React from 'react';
-import { mount } from 'enzyme';
+import moment from 'moment';
+import { fireEvent } from '@testing-library/react';
 import { requiredProps } from '../../test';
 import { render } from '../../test/rtl';
-import moment from 'moment';
+import { shouldRenderCustomStyles } from '../../test/internal';
 
 import { EuiDatePickerRange } from './date_picker_range';
 import { EuiDatePicker } from './date_picker';
 
 describe('EuiDatePickerRange', () => {
+  shouldRenderCustomStyles(
+    <EuiDatePickerRange
+      startDateControl={<EuiDatePicker />}
+      endDateControl={<EuiDatePicker />}
+    />
+  );
+
   it('is rendered', () => {
     const { container } = render(
       <EuiDatePickerRange
@@ -162,7 +170,7 @@ describe('EuiDatePickerRange', () => {
     const endControlOnBlurMock = jest.fn();
     const endControlOnFocusMock = jest.fn();
 
-    const component = mount(
+    const { container } = render(
       <EuiDatePickerRange
         onBlur={rangeControlOnBlurMock}
         onFocus={rangeControlOnFocusMock}
@@ -181,22 +189,22 @@ describe('EuiDatePickerRange', () => {
       />
     );
 
-    const startControl = component.find('EuiDatePicker').at(0);
-    const endControl = component.find('EuiDatePicker').at(1);
+    const startControl = container.querySelector('.euiDatePickerRange__start')!;
+    const endControl = container.querySelector('.euiDatePickerRange__end')!;
 
-    startControl.props().onFocus?.({} as React.FocusEvent);
+    fireEvent.focus(startControl);
     expect(startControlOnFocusMock).toHaveBeenCalledTimes(1);
     expect(rangeControlOnFocusMock).toHaveBeenCalledTimes(1);
 
-    startControl.props().onBlur?.({} as React.FocusEvent);
+    fireEvent.blur(startControl);
     expect(startControlOnBlurMock).toHaveBeenCalledTimes(1);
     expect(rangeControlOnBlurMock).toHaveBeenCalledTimes(1);
 
-    endControl.props().onFocus?.({} as React.FocusEvent);
+    fireEvent.focus(endControl);
     expect(endControlOnFocusMock).toHaveBeenCalledTimes(1);
     expect(rangeControlOnFocusMock).toHaveBeenCalledTimes(2);
 
-    endControl.props().onBlur?.({} as React.FocusEvent);
+    fireEvent.blur(endControl);
     expect(endControlOnBlurMock).toHaveBeenCalledTimes(1);
     expect(rangeControlOnBlurMock).toHaveBeenCalledTimes(2);
   });

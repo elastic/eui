@@ -7,9 +7,12 @@
  */
 
 import React, { FunctionComponent, HTMLAttributes } from 'react';
-import { CommonProps } from '../../common';
 import classNames from 'classnames';
+import { useEuiMemoizedStyles } from '../../../services';
+import { CommonProps } from '../../common';
 import { EuiText } from '../../text';
+
+import { euiSelectableMessageStyles } from './selectable_message.styles';
 
 export type EuiSelectableMessageProps = Omit<
   HTMLAttributes<HTMLDivElement>,
@@ -25,16 +28,18 @@ export type EuiSelectableMessageProps = Omit<
 export const EuiSelectableMessage: FunctionComponent<
   EuiSelectableMessageProps
 > = ({ children, className, bordered = false, ...rest }) => {
-  const classes = classNames(
-    'euiSelectableMessage',
-    {
-      'euiSelectableMessage--bordered': bordered,
-    },
-    className
-  );
+  const classes = classNames('euiSelectableMessage', className);
+  const styles = useEuiMemoizedStyles(euiSelectableMessageStyles);
+  const cssStyles = [styles.euiSelectableMessage, bordered && styles.bordered];
 
   return (
-    <EuiText color="subdued" size="xs" className={classes} {...rest}>
+    <EuiText
+      color="subdued"
+      size="xs"
+      css={cssStyles}
+      className={classes}
+      {...rest}
+    >
       {children}
     </EuiText>
   );

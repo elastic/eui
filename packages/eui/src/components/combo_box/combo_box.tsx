@@ -19,11 +19,13 @@ import React, {
 } from 'react';
 import classNames from 'classnames';
 
-import { htmlIdGenerator, keys } from '../../services';
+import { RenderWithEuiTheme, htmlIdGenerator, keys } from '../../services';
+import { logicalStyle } from '../../global_styling';
 import { CommonProps } from '../common';
 import { EuiInputPopover, EuiInputPopoverProps } from '../popover';
 import { EuiI18n } from '../i18n';
 import { EuiFormControlLayoutProps } from '../form';
+import { euiFormMaxWidth } from '../form/form.styles';
 import type { EuiTextTruncateProps } from '../text_truncate';
 
 import {
@@ -47,6 +49,7 @@ import {
   EuiComboBoxOptionMatcher,
 } from './types';
 import { EuiComboBoxOptionsList } from './combo_box_options_list';
+import { euiComboBoxStyles as styles } from './combo_box.styles';
 
 type DrillProps<T> = Pick<
   EuiComboBoxOptionsListProps<T>,
@@ -768,10 +771,6 @@ export class EuiComboBox<T> extends Component<
     );
 
     const classes = classNames('euiComboBox', className, {
-      'euiComboBox--compressed': compressed,
-      'euiComboBox--fullWidth': fullWidth,
-      'euiComboBox--prepended': prepend,
-      'euiComboBox--appended': append,
       'euiComboBox-isDisabled': isDisabled,
       'euiComboBox-isInvalid': markAsInvalid,
       'euiComboBox-isOpen': isListOpen,
@@ -781,7 +780,7 @@ export class EuiComboBox<T> extends Component<
       .map((selectedOption) => selectedOption.label)
       .join(', ');
 
-    let optionsList;
+    let optionsList: React.ReactElement;
 
     if (!noSuggestions && isListOpen) {
       const optionsListDataTestSubj = dataTestSubj
@@ -835,67 +834,80 @@ export class EuiComboBox<T> extends Component<
        *
        * https://www.w3.org/TR/wai-aria-practices-1.2/examples/combobox/combobox-autocomplete-list.html
        */
-      <div
-        {...rest}
-        className={classes}
-        data-test-subj={dataTestSubj}
-        onKeyDown={this.onKeyDown}
-        onBlur={this.onContainerBlur}
-        ref={this.comboBoxRefCallback}
-      >
-        <EuiInputPopover
-          fullWidth={fullWidth}
-          panelPaddingSize="none"
-          disableFocusTrap={true}
-          closeOnScroll={true}
-          {...inputPopoverProps}
-          isOpen={isListOpen}
-          closePopover={this.closeList}
-          input={
-            <EuiComboBoxInput
-              compressed={compressed}
-              focusedOptionId={
-                this.hasActiveOption()
-                  ? this.rootId(`_option-${this.state.activeOptionIndex}`)
-                  : undefined
-              }
-              fullWidth={fullWidth}
-              hasSelectedOptions={selectedOptions.length > 0}
-              id={inputId}
-              inputRef={this.searchInputRefCallback}
-              isDisabled={isDisabled}
-              isListOpen={isListOpen}
-              noIcon={!!noSuggestions}
-              onChange={this.onSearchChange}
-              onClear={
-                isClearable && !isDisabled
-                  ? this.clearSelectedOptions
-                  : undefined
-              }
-              onClick={this.onComboBoxClick}
-              onCloseListClick={this.closeList}
-              onFocus={this.onComboBoxFocus}
-              onOpenListClick={this.onOpenListClick}
-              onRemoveOption={this.onRemoveOption}
-              placeholder={placeholder}
-              rootId={this.rootId}
-              searchValue={searchValue}
-              selectedOptions={selectedOptions}
-              singleSelection={singleSelection}
-              value={value}
-              append={singleSelection ? append : undefined}
-              prepend={singleSelection ? prepend : undefined}
-              isLoading={isLoading}
-              isInvalid={markAsInvalid}
-              autoFocus={autoFocus}
-              aria-label={ariaLabel}
-              aria-labelledby={ariaLabelledby}
-            />
-          }
-        >
-          {optionsList}
-        </EuiInputPopover>
-      </div>
+      <RenderWithEuiTheme>
+        {(euiTheme) => {
+          const cssStyles = [
+            styles.euiComboBox,
+            fullWidth
+              ? styles.fullWidth
+              : logicalStyle('max-width', euiFormMaxWidth(euiTheme)),
+          ];
+          return (
+            <div
+              css={cssStyles}
+              {...rest}
+              className={classes}
+              data-test-subj={dataTestSubj}
+              onKeyDown={this.onKeyDown}
+              onBlur={this.onContainerBlur}
+              ref={this.comboBoxRefCallback}
+            >
+              <EuiInputPopover
+                fullWidth={fullWidth}
+                panelPaddingSize="none"
+                disableFocusTrap={true}
+                closeOnScroll={true}
+                {...inputPopoverProps}
+                isOpen={isListOpen}
+                closePopover={this.closeList}
+                input={
+                  <EuiComboBoxInput
+                    compressed={compressed}
+                    focusedOptionId={
+                      this.hasActiveOption()
+                        ? this.rootId(`_option-${this.state.activeOptionIndex}`)
+                        : undefined
+                    }
+                    fullWidth={fullWidth}
+                    hasSelectedOptions={selectedOptions.length > 0}
+                    id={inputId}
+                    inputRef={this.searchInputRefCallback}
+                    isDisabled={isDisabled}
+                    isListOpen={isListOpen}
+                    noIcon={!!noSuggestions}
+                    onChange={this.onSearchChange}
+                    onClear={
+                      isClearable && !isDisabled
+                        ? this.clearSelectedOptions
+                        : undefined
+                    }
+                    onClick={this.onComboBoxClick}
+                    onCloseListClick={this.closeList}
+                    onFocus={this.onComboBoxFocus}
+                    onOpenListClick={this.onOpenListClick}
+                    onRemoveOption={this.onRemoveOption}
+                    placeholder={placeholder}
+                    rootId={this.rootId}
+                    searchValue={searchValue}
+                    selectedOptions={selectedOptions}
+                    singleSelection={singleSelection}
+                    value={value}
+                    append={singleSelection ? append : undefined}
+                    prepend={singleSelection ? prepend : undefined}
+                    isLoading={isLoading}
+                    isInvalid={markAsInvalid}
+                    autoFocus={autoFocus}
+                    aria-label={ariaLabel}
+                    aria-labelledby={ariaLabelledby}
+                  />
+                }
+              >
+                {optionsList}
+              </EuiInputPopover>
+            </div>
+          );
+        }}
+      </RenderWithEuiTheme>
     );
   }
 }

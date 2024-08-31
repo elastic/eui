@@ -58,7 +58,7 @@ describe('EuiComboBox', () => {
       cy.get('[data-test-subj="comboBoxSearchInput"]').should(
         'have.attr',
         'style',
-        'inline-size: 121px;'
+        'inline-size: 122px;'
       );
     });
 
@@ -70,7 +70,7 @@ describe('EuiComboBox', () => {
       cy.get('[data-test-subj="comboBoxSearchInput"]').should(
         'have.attr',
         'style',
-        'inline-size: 67px;'
+        'inline-size: 65px;'
       );
 
       cy.realPress('{downarrow}');
@@ -92,11 +92,11 @@ describe('EuiComboBox', () => {
       cy.get('[data-test-subj="comboBoxSearchInput"]').should(
         'have.attr',
         'style',
-        'inline-size: 387px;'
+        'inline-size: 388px;'
       );
       cy.get('[data-test-subj="comboBoxSearchInput"]')
         .invoke('width')
-        .should('be.eq', 354);
+        .should('be.eq', 356);
     });
   });
 
@@ -156,7 +156,7 @@ describe('EuiComboBox', () => {
       cy.get('.euiTextTruncate').should('exist');
       cy.get('[data-test-subj="truncatedText"]').should(
         'have.text',
-        'Lorem ipsum …piscing elit.'
+        'Lorem ipsum …iscing elit.'
       );
     });
 

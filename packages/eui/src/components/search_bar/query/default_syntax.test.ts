@@ -1240,4 +1240,76 @@ describe('defaultSyntax', () => {
     const printedQuery = defaultSyntax.print(ast);
     expect(printedQuery).toBe(query);
   });
+
+  describe('recognizedFields', () => {
+    test('parse field clauses from a query only for recognized fields', () => {
+      const query = 'remote:test type:dataview happiness';
+      const ast = defaultSyntax.parse(query, {
+        schema: {
+          recognizedFields: ['tag', 'type'],
+        },
+      });
+      expect(ast).toBeDefined();
+      expect(ast.clauses).toHaveLength(3);
+      expect(ast.getFieldClauses()).toMatchObject([
+        { field: 'type', match: 'must', value: 'dataview' },
+      ]);
+      expect(ast.getTermClauses()).toEqual([
+        { match: 'must', type: 'term', value: 'remote:test' },
+        { match: 'must', type: 'term', value: 'happiness' },
+      ]);
+
+      const printedQuery = defaultSyntax.print(ast);
+      expect(printedQuery).toBe('remote\\:test type:dataview happiness');
+    });
+
+    test('combined with "is" clause', () => {
+      const query = 'remote:test is:pending';
+      const ast = defaultSyntax.parse(query, {
+        schema: {
+          recognizedFields: ['tag', 'type'],
+        },
+      });
+      expect(ast).toBeDefined();
+      expect(ast.clauses).toHaveLength(2);
+      expect(ast.getFieldClauses()).toHaveLength(0);
+      expect(ast.getIsClauses()).toEqual([
+        { flag: 'pending', match: 'must', type: 'is' },
+      ]);
+      expect(ast.getTermClauses()).toEqual([
+        { match: 'must', type: 'term', value: 'remote:test' },
+      ]);
+
+      const printedQuery = defaultSyntax.print(ast);
+      expect(printedQuery).toBe('remote\\:test is:pending');
+    });
+
+    test('parse complex terms from a query', () => {
+      const query =
+        'my-remote-cluster:my-remote-index type:data-view tag:really-nice-content';
+      const ast = defaultSyntax.parse(query, {
+        schema: {
+          recognizedFields: ['tag', 'type'],
+        },
+      });
+      expect(ast).toBeDefined();
+      expect(ast.clauses).toHaveLength(3);
+      expect(ast.getFieldClauses()).toMatchObject([
+        { field: 'type', match: 'must', value: 'data-view' },
+        { field: 'tag', match: 'must', value: 'really-nice-content' },
+      ]);
+      expect(ast.getTermClauses()).toEqual([
+        {
+          match: 'must',
+          type: 'term',
+          value: 'my-remote-cluster:my-remote-index',
+        },
+      ]);
+
+      const printedQuery = defaultSyntax.print(ast);
+      expect(printedQuery).toBe(
+        'my\\-remote\\-cluster\\:my\\-remote\\-index type:data-view tag:really-nice-content'
+      );
+    });
+  });
 });

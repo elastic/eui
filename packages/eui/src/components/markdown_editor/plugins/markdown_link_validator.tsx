@@ -16,10 +16,23 @@ interface LinkOrTextNode {
   children?: Array<{ value: string }>;
 }
 
-export interface EuiMarkdownLinkValidatorOptions {
-  allowRelative: boolean;
-  allowProtocols: string[];
-}
+export type EuiMarkdownLinkValidatorOptions = {
+  /**
+   * Allow or disallow relative links (links that begin with a `/`)
+   * @default true
+   */
+  allowRelative?: boolean;
+  /**
+   * Allow or disallow specific [URL protocols or schemes](https://developer.mozilla.org/en-US/docs/Web/URI/Schemes)
+   * @default ['https:', 'http:', 'mailto:']
+   */
+  allowProtocols?: string[];
+};
+
+export const DEFAULT_OPTIONS = {
+  allowRelative: true,
+  allowProtocols: ['https:', 'http:', 'mailto:'],
+};
 
 export function euiMarkdownLinkValidator(
   options: EuiMarkdownLinkValidatorOptions
@@ -57,7 +70,10 @@ export function mutateLinkToText(node: LinkOrTextNode) {
 
 export function validateUrl(
   url: string,
-  { allowRelative, allowProtocols }: EuiMarkdownLinkValidatorOptions
+  {
+    allowRelative = DEFAULT_OPTIONS.allowRelative,
+    allowProtocols = DEFAULT_OPTIONS.allowProtocols,
+  }: EuiMarkdownLinkValidatorOptions
 ) {
   // relative captures both relative paths `/` and protocols `//`
   const isRelative = url.startsWith('/');

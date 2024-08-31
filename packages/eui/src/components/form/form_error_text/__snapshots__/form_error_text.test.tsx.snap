@@ -4,7 +4,7 @@ exports[`EuiFormErrorText is rendered 1`] = `
 <div
   aria-label="aria-label"
   aria-live="polite"
-  class="euiFormErrorText testClass1 testClass2 emotion-euiTestCss"
+  class="euiFormErrorText testClass1 testClass2 emotion-euiFormErrorText-euiTestCss"
   data-test-subj="test subject string"
 >
   This is an error.

@@ -14,8 +14,8 @@ export const euiRangeInputStyles = ({ euiTheme }: UseEuiTheme) => ({
     inline-size: auto;
     min-inline-size: ${euiTheme.base * 4}px;
 
-    .euiRange__popover & {
-      margin: 0;
+    .euiRange__popover &,
+    .euiDualRange__popover & {
       inline-size: 100%;
     }
   `,

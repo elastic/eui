@@ -6,11 +6,12 @@
  * Side Public License, v 1.
  */
 
-import {themes as prismThemes} from 'prism-react-renderer';
-import type {Config} from '@docusaurus/types';
+import { themes as prismThemes } from 'prism-react-renderer';
+import type { Config } from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 
 const baseUrl = process.env.DOCS_BASE_URL || '/';
+const googleTagManagerId = process.env.DOCS_GOOGLE_TAG_MANAGER_ID || undefined;
 
 const config: Config = {
   title: 'Elastic UI Framework',
@@ -35,9 +36,7 @@ const config: Config = {
     locales: ['en'],
   },
 
-  themes: [
-    '@elastic/eui-docusaurus-theme',
-  ],
+  themes: ['@elastic/eui-docusaurus-theme'],
 
   presets: [
     [
@@ -45,22 +44,26 @@ const config: Config = {
       {
         docs: {
           sidebarPath: './sidebars.ts',
-          editUrl:
-            'https://github.com/elastic/eui/tree/main/website/',
+          editUrl: 'https://github.com/elastic/eui/tree/main/website/',
         },
         blog: {
           showReadingTime: true,
-          editUrl:
-            'https://github.com/elastic/eui/tree/main/website/',
+          editUrl: 'https://github.com/elastic/eui/tree/main/website/',
+        },
+        googleTagManager: googleTagManagerId && {
+          containerId: googleTagManagerId,
         },
       } satisfies Preset.Options,
     ],
   ],
 
   plugins: [
-    ['docusaurus-lunr-search', {
-      disableVersioning: true, // We don't use docusaurus docs versioning
-    }]
+    [
+      'docusaurus-lunr-search',
+      {
+        disableVersioning: true, // We don't use docusaurus docs versioning
+      },
+    ],
   ],
 
   themeConfig: {
@@ -84,9 +87,34 @@ const config: Config = {
           label: 'Patterns',
         },
         {
+          type: 'docSidebar',
+          sidebarId: 'contentSidebar',
+          position: 'left',
+          label: 'Content',
+        },
+        {
+          type: 'docSidebar',
+          sidebarId: 'datavizSidebar',
+          position: 'left',
+          label: 'Data visualization',
+        },
+        {
+          href: 'https://github.com/elastic/eui/tree/main/packages/eui/changelogs',
+          label: 'EUI Changelog',
+          position: 'right',
+          component: 'changelog',
+        },
+        {
           href: 'https://github.com/elastic/eui',
           label: 'GitHub',
           position: 'right',
+          component: 'github',
+        },
+        {
+          href: 'https://www.figma.com/community/file/964536385682658129',
+          label: 'Figma',
+          position: 'right',
+          component: 'figma',
         },
       ],
     },

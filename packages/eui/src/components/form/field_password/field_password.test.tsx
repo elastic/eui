@@ -120,7 +120,7 @@ describe('EuiFieldPassword', () => {
         expect(getByTestSubject('toggleButton')).toMatchInlineSnapshot(`
           <button
             aria-label="Show password as plain text. Note: this will visually expose your password on the screen."
-            class="euiButtonIcon euiFormControlLayout__append emotion-euiButtonIcon-xs-empty-primary"
+            class="euiButtonIcon emotion-euiButtonIcon-xs-empty-primary"
             data-test-subj="toggleButton"
             title="Show password as plain text. Note: this will visually expose your password on the screen."
             type="button"
@@ -138,7 +138,7 @@ describe('EuiFieldPassword', () => {
         expect(getByTestSubject('toggleButton')).toMatchInlineSnapshot(`
           <button
             aria-label="Mask password"
-            class="euiButtonIcon euiFormControlLayout__append emotion-euiButtonIcon-xs-empty-primary"
+            class="euiButtonIcon emotion-euiButtonIcon-xs-empty-primary"
             data-test-subj="toggleButton"
             title="Mask password"
             type="button"

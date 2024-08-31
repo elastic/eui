@@ -204,6 +204,7 @@ export const SearchBarFilters = () => {
           value: tag.name,
           view: <EuiHealth color={tag.color}>{tag.name}</EuiHealth>,
         })),
+        autoSortOptions: false,
       },
       {
         type: 'custom_component',

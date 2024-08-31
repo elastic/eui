@@ -23,7 +23,6 @@ const EuiIconFieldStatistics = ({
     xmlns="http://www.w3.org/2000/svg"
     width={16}
     height={16}
-    fill="currentColor"
     viewBox="0 0 16 16"
     aria-labelledby={titleId}
     {...props}
@@ -34,7 +33,6 @@ const EuiIconFieldStatistics = ({
     <path
       fillRule="evenodd"
       d="M15 10.5a4.5 4.5 0 1 1-9 0 4.5 4.5 0 0 1 9 0Zm-2.146-2.354a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708l4-4a.5.5 0 0 1 .708 0ZM9 10a1 1 0 1 0 0-2 1 1 0 0 0 0 2Zm4 2a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z"
-      clipRule="evenodd"
     />
   </svg>
 );

@@ -9,13 +9,14 @@
 import React, { Component, InputHTMLAttributes, KeyboardEvent } from 'react';
 import classNames from 'classnames';
 
-import { Browser } from '../../../services/browser';
-import { CommonProps } from '../../common';
 import {
   keys,
   withEuiStylesMemoizer,
   WithEuiStylesMemoizerProps,
 } from '../../../services';
+import { Browser } from '../../../services/browser';
+import { CommonProps } from '../../common';
+import { EuiI18n } from '../../i18n';
 
 import {
   EuiFormControlLayout,
@@ -216,6 +217,7 @@ export class EuiFieldSearchClass extends Component<
       name,
       placeholder,
       isInvalid,
+      disabled,
       fullWidth = defaultFullWidth,
       isLoading,
       inputRef,
@@ -233,7 +235,7 @@ export class EuiFieldSearchClass extends Component<
 
     // Set actual value of isClearable if value exists as well
     const isClearable = Boolean(
-      _isClearable && value && !rest.readOnly && !rest.disabled
+      _isClearable && value && !rest.readOnly && !disabled
     );
 
     const classes = classNames(
@@ -255,34 +257,47 @@ export class EuiFieldSearchClass extends Component<
     ];
 
     return (
-      <EuiFormControlLayout
-        icon="search"
-        fullWidth={fullWidth}
-        isLoading={isLoading}
-        isInvalid={isInvalid}
-        clear={
-          isClearable
-            ? { onClick: this.onClear, 'data-test-subj': 'clearSearchButton' }
-            : undefined
-        }
-        compressed={compressed}
-        append={append}
-        prepend={prepend}
+      <EuiI18n
+        token="euiFieldSearch.clearSearchButtonLabel"
+        default="Clear search input"
       >
-        <EuiValidatableControl isInvalid={isInvalid}>
-          <input
-            type="search"
-            id={id}
-            name={name}
-            placeholder={placeholder}
-            className={classes}
-            css={cssStyles}
-            onKeyUp={(e) => this.onKeyUp(e, incremental, onSearch)}
-            ref={this.setRef}
-            {...rest}
-          />
-        </EuiValidatableControl>
-      </EuiFormControlLayout>
+        {(clearSearchButtonLabel: string) => (
+          <EuiFormControlLayout
+            icon="search"
+            fullWidth={fullWidth}
+            isLoading={isLoading}
+            isInvalid={isInvalid}
+            isDisabled={disabled}
+            clear={
+              isClearable
+                ? {
+                    onClick: this.onClear,
+                    'aria-label': clearSearchButtonLabel,
+                    'data-test-subj': 'clearSearchButton',
+                  }
+                : undefined
+            }
+            compressed={compressed}
+            append={append}
+            prepend={prepend}
+          >
+            <EuiValidatableControl isInvalid={isInvalid}>
+              <input
+                type="search"
+                id={id}
+                name={name}
+                placeholder={placeholder}
+                className={classes}
+                css={cssStyles}
+                onKeyUp={(e) => this.onKeyUp(e, incremental, onSearch)}
+                disabled={disabled}
+                ref={this.setRef}
+                {...rest}
+              />
+            </EuiValidatableControl>
+          </EuiFormControlLayout>
+        )}
+      </EuiI18n>
     );
   }
 }

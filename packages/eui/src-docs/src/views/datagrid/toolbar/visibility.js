@@ -194,7 +194,7 @@ const DataGrid = () => {
                 : undefined
             }
           >
-            <EuiFormRow display="rowCompressed" label="toolbarVisibility">
+            <EuiFormRow label="toolbarVisibility">
               <EuiButtonGroup
                 isFullWidth
                 buttonSize="compressed"

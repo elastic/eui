@@ -31,10 +31,24 @@ import * as MarkdownCheckbox from '../markdown_checkbox';
 import {
   euiMarkdownLinkValidator,
   EuiMarkdownLinkValidatorOptions,
+  DEFAULT_OPTIONS as LINK_VALIDATOR_DEFAULTS,
 } from '../markdown_link_validator';
 import type { ExcludableDefaultPlugins, DefaultPluginsConfig } from './plugins';
 
 export type DefaultEuiMarkdownParsingPlugins = PluggableList;
+
+export type DefaultParsingPluginsConfig = {
+  /**
+   * Allows enabling emoji rendering for emoticons such as :) and :(
+   * @default { emoticon: false }
+   */
+  emoji?: { emoticon?: boolean };
+  /**
+   * Allows configuring the `allowRelative` and `allowProtocols` of
+   * #EuiMarkdownLinkValidatorOptions
+   */
+  linkValidator?: EuiMarkdownLinkValidatorOptions;
+};
 
 const DEFAULT_PARSING_PLUGINS: Record<
   ExcludableDefaultPlugins,
@@ -42,28 +56,33 @@ const DEFAULT_PARSING_PLUGINS: Record<
 > = {
   emoji: [emoji, { emoticon: false }],
   lineBreaks: [breaks, {}],
-  linkValidator: [
-    euiMarkdownLinkValidator,
-    {
-      allowRelative: true,
-      allowProtocols: ['https:', 'http:', 'mailto:'],
-    } as EuiMarkdownLinkValidatorOptions,
-  ],
+  linkValidator: [euiMarkdownLinkValidator, LINK_VALIDATOR_DEFAULTS],
   checkbox: [MarkdownCheckbox.parser, {}],
   tooltip: [MarkdownTooltip.parser, {}],
 };
 
 export const getDefaultEuiMarkdownParsingPlugins = ({
   exclude,
-}: DefaultPluginsConfig = {}): DefaultEuiMarkdownParsingPlugins => {
+  ...parsingConfig
+}: DefaultPluginsConfig &
+  DefaultParsingPluginsConfig = {}): DefaultEuiMarkdownParsingPlugins => {
   const parsingPlugins: PluggableList = [
     [markdown, {}],
     [highlight, {}],
   ];
 
   Object.entries(DEFAULT_PARSING_PLUGINS).forEach(([pluginName, plugin]) => {
+    // Check for plugin exclusions
     if (!exclude?.includes(pluginName as ExcludableDefaultPlugins)) {
-      parsingPlugins.push(plugin);
+      // Check for plugin configuration overrides
+      if (pluginName in parsingConfig) {
+        parsingPlugins.push([
+          (plugin as any[])[0],
+          parsingConfig[pluginName as keyof DefaultParsingPluginsConfig],
+        ]);
+      } else {
+        parsingPlugins.push(plugin);
+      }
     }
   });
 

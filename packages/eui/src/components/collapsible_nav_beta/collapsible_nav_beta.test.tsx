@@ -64,6 +64,47 @@ describe('EuiCollapsibleNavBeta', () => {
     expect(onCollapseToggle).toHaveBeenLastCalledWith(true);
   });
 
+  it('lets the consumer control the collapsed state', () => {
+    const onCollapseToggle = jest.fn();
+
+    const Controlled = () => {
+      const [isCollapsed, setIsCollapsed] = React.useState(false);
+      onCollapseToggle.mockImplementation((isCollapsed: boolean) => {
+        setIsCollapsed(isCollapsed);
+      });
+
+      return (
+        <>
+          <button
+            onClick={() => setIsCollapsed(!isCollapsed)}
+            data-test-subj="controlledToggle"
+          >
+            Control nav
+          </button>
+          <EuiCollapsibleNavBeta
+            isCollapsed={isCollapsed}
+            onCollapseToggle={onCollapseToggle}
+            data-test-subj="nav"
+          >
+            Nav content
+          </EuiCollapsibleNavBeta>
+        </>
+      );
+    };
+    const { getByTestSubject } = render(<Controlled />);
+
+    expect(getByTestSubject('nav')).toHaveStyle({ 'inline-size': '248px' }); // initially expanded
+
+    fireEvent.click(getByTestSubject('controlledToggle')); // controlled toggle
+    expect(onCollapseToggle).toHaveBeenCalledTimes(0); // should not have triggered callback
+    expect(getByTestSubject('nav')).toHaveStyle({ 'inline-size': '48px' }); // collapsed state
+
+    fireEvent.click(getByTestSubject('euiCollapsibleNavButton')); // uncontrolled toggle
+    expect(onCollapseToggle).toHaveBeenCalledTimes(1);
+    expect(onCollapseToggle).toHaveBeenCalledWith(false);
+    expect(getByTestSubject('nav')).toHaveStyle({ 'inline-size': '248px' }); // expanded state
+  });
+
   describe('responsive behavior', () => {
     const mockWindowResize = (width: number) => {
       window.innerWidth = width;

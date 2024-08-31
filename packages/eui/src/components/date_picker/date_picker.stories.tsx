@@ -100,6 +100,8 @@ const meta: Meta<EuiDatePickerProps> = {
     isInvalid: false,
     isLoading: false,
     placeholder: '',
+    append: '',
+    prepend: '',
     // manually adding non-resolved prop types (extended from react-date-picker)
     calendarClassName: '',
     customInput: undefined,
@@ -141,6 +143,59 @@ export const Playground: Story = {
     selected: moment('Tue Mar 19 2024 18:54:51 GMT+0100'),
   },
   render: (args) => <StatefulDatePicker {...args} />,
+};
+
+export const TimeSelect: Story = {
+  parameters: {
+    controls: {
+      include: [
+        'showTimeSelect',
+        'showTimeSelectOnly',
+        'timeFormat',
+        'timeIntervals',
+        'includeTimes',
+        'excludeTimes',
+        'injectTimes',
+        'minTime',
+        'maxTime',
+      ],
+    },
+  },
+  args: {
+    autoFocus: true, // Open the datepicker automatically for Loki VRT
+    showTimeSelect: true,
+    showTimeSelectOnly: false,
+    selected: moment('01/01/1970').hours(23).minutes(0),
+    excludeTimes: [moment('01/01/1970').hours(23).minutes(30)],
+    injectTimes: [moment('01/01/1970').hours(23).minutes(59)],
+    timeIntervals: 30,
+  },
+};
+
+export const TimeSelectOnly: Story = {
+  tags: ['vrt-only'],
+  args: { ...TimeSelect.args, showTimeSelectOnly: true },
+};
+
+export const RestrictedDaySelect: Story = {
+  parameters: {
+    controls: {
+      include: [
+        'minDate',
+        'maxDate',
+        'includeDates',
+        'excludeDates',
+        'filterDate',
+        'highlightDates',
+      ],
+    },
+  },
+  args: {
+    autoFocus: true, // Open the datepicker automatically for Lok VRT,
+    selected: moment('01/02/1970'),
+    maxDate: moment('01/01/1970'),
+    minDate: moment('12/31/1969'),
+  },
 };
 
 const StatefulDatePicker = ({

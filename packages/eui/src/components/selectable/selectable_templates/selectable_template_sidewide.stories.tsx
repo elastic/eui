@@ -8,6 +8,7 @@
 
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
+import { LOKI_SELECTORS } from '../../../../.storybook/loki';
 
 import { EuiButton } from '../../button';
 import {
@@ -104,5 +105,17 @@ export const Playground: Story = {
     popoverTitle: false,
     popoverFooter: false,
     popoverButtonBreakpoints: ['xs', 's', 'm', 'l', 'xl'],
+  },
+};
+
+export const VRT: Story = {
+  tags: ['vrt-only'],
+  args: {
+    options,
+    popoverProps: { isOpen: true },
+  },
+  parameters: {
+    // the options is rendered in an options portal
+    loki: { chromeSelector: LOKI_SELECTORS.portal },
   },
 };

@@ -8,12 +8,15 @@
 
 import React from 'react';
 import { render, waitForEuiToolTipVisible } from '../../../test/rtl';
+import { shouldRenderCustomStyles } from '../../../test/internal';
 import { requiredProps } from '../../../test/required_props';
 
 import { EuiSelectableListItem, PADDING_SIZES } from './selectable_list_item';
 import { fireEvent } from '@testing-library/react';
 
 describe('EuiSelectableListItem', () => {
+  shouldRenderCustomStyles(<EuiSelectableListItem />);
+
   test('is rendered', () => {
     const { container } = render(<EuiSelectableListItem {...requiredProps} />);
 
@@ -179,9 +182,7 @@ describe('EuiSelectableListItem', () => {
         </EuiSelectableListItem>
       );
 
-      const tooltipAnchor = baseElement.querySelector(
-        '.euiSelectableListItem__tooltipAnchor'
-      );
+      const tooltipAnchor = baseElement.querySelector('.euiToolTipAnchor');
       fireEvent.mouseOver(tooltipAnchor!);
       await waitForEuiToolTipVisible();
 

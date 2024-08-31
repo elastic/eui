@@ -6,6 +6,7 @@
  * Side Public License, v 1.
  */
 
+import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { enableFunctionToggleControls } from '../../../../.storybook/utils';
@@ -16,6 +17,8 @@ const meta: Meta<EuiSwitchProps> = {
   component: EuiSwitch,
   argTypes: {
     label: { control: 'text' },
+    // @ts-expect-error - disabling hidden internal-only prop
+    mini: { table: { disable: true } },
   },
   args: {
     showLabel: true,
@@ -37,17 +40,33 @@ export const Playground: Story = {
   },
 };
 
-// adding a specific story for VRT only as the component is controlled
-// it's excluded from the sidebar via the added tag (filtering is set up in the manager.ts file)
-export const Checked: Story = {
+// adding a specific story for VRT permutation testing, excluded
+// from the sidebar via the added tag (filtering is set up in the manager.ts file)
+export const KitchenSink: Story = {
   tags: ['vrt-only'],
-  parameters: {
-    controls: {
-      include: ['checked'],
-    },
-  },
-  args: {
-    checked: true,
-    label: 'Switch label',
+  render: () => {
+    const sizes = ['uncompressed', 'compressed', 'mini'] as const;
+    const disabledStates = [false, true];
+    const checkedStates = [true, false];
+    return (
+      <div style={{ display: 'flex', gap: 20 }}>
+        {sizes.map((size) => (
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+            {disabledStates.map((disabled) =>
+              checkedStates.map((checked) => (
+                <EuiSwitch
+                  disabled={disabled}
+                  checked={checked}
+                  onChange={() => {}}
+                  label="Label"
+                  compressed={size === 'compressed'}
+                  mini={size === 'mini'}
+                />
+              ))
+            )}
+          </div>
+        ))}
+      </div>
+    );
   },
 };

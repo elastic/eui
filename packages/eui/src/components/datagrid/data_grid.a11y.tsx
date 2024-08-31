@@ -190,7 +190,7 @@ describe('EuiDataGrid', () => {
         'button[data-test-subj="dataGridColumnSelectorButton"]'
       ).realClick();
       cy.get('input[data-test-subj="dataGridColumnSelectorSearch"]').type('a');
-      cy.get('div.euiSwitch--compressed').should(($s) => {
+      cy.get('.euiSwitch').should(($s) => {
         expect($s).to.have.length(5);
       });
       cy.checkAxe();
@@ -203,7 +203,7 @@ describe('EuiDataGrid', () => {
       cy.get('input[data-test-subj="dataGridColumnSelectorSearch"]').type(
         'favorite'
       );
-      cy.get('div.euiSwitch--compressed').should(($s) => {
+      cy.get('.euiSwitch').should(($s) => {
         expect($s).to.have.length(1);
       });
       cy.checkAxe();

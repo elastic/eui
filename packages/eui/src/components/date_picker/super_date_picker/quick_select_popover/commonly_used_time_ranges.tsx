@@ -7,12 +7,14 @@
  */
 
 import React, { FunctionComponent } from 'react';
-import { EuiI18n } from '../../../i18n';
-import { EuiFlexGrid, EuiFlexItem } from '../../../flex';
-import { EuiTitle } from '../../../title';
-import { EuiLink } from '../../../link';
+
 import { useGeneratedHtmlId } from '../../../../services';
+import { useEuiI18n } from '../../../i18n';
+import { EuiFlexGrid, EuiFlexItem } from '../../../flex';
+import { EuiLink } from '../../../link';
+
 import { DurationRange, ApplyTime } from '../../types';
+import { EuiQuickSelectPanel } from './quick_select_panel';
 
 export interface EuiCommonlyUsedTimeRangesProps {
   applyTime: ApplyTime;
@@ -22,7 +24,9 @@ export interface EuiCommonlyUsedTimeRangesProps {
 export const EuiCommonlyUsedTimeRanges: FunctionComponent<
   EuiCommonlyUsedTimeRangesProps
 > = ({ applyTime, commonlyUsedRanges }) => {
+  const title = useEuiI18n('euiCommonlyUsedTimeRanges.legend', 'Commonly used');
   const legendId = useGeneratedHtmlId();
+
   const links = commonlyUsedRanges.map(({ start, end, label }) => {
     const applyCommonlyUsed = () => {
       applyTime({ start, end });
@@ -31,11 +35,7 @@ export const EuiCommonlyUsedTimeRanges: FunctionComponent<
       ? `superDatePickerCommonlyUsed_${label.replace(' ', '_')}`
       : undefined;
     return (
-      <EuiFlexItem
-        key={label}
-        component="li"
-        className="euiQuickSelectPopover__sectionItem"
-      >
+      <EuiFlexItem key={label} component="li">
         <EuiLink onClick={applyCommonlyUsed} data-test-subj={dataTestSubj}>
           {label}
         </EuiLink>
@@ -44,28 +44,18 @@ export const EuiCommonlyUsedTimeRanges: FunctionComponent<
   });
 
   return (
-    <fieldset className="euiQuickSelectPopover__panel">
-      <EuiTitle size="xxxs">
-        <legend id={legendId} className="euiQuickSelectPopover__panelTitle">
-          <EuiI18n
-            token="euiCommonlyUsedTimeRanges.legend"
-            default="Commonly used"
-          />
-        </legend>
-      </EuiTitle>
-      <div className="euiQuickSelectPopover__section">
-        <EuiFlexGrid
-          aria-labelledby={legendId}
-          gutterSize="s"
-          columns={2}
-          direction="column"
-          responsive={false}
-          component="ul"
-        >
-          {links}
-        </EuiFlexGrid>
-      </div>
-    </fieldset>
+    <EuiQuickSelectPanel component="fieldset" titleId={legendId} title={title}>
+      <EuiFlexGrid
+        aria-labelledby={legendId}
+        gutterSize="s"
+        columns={2}
+        direction="column"
+        responsive={false}
+        component="ul"
+      >
+        {links}
+      </EuiFlexGrid>
+    </EuiQuickSelectPanel>
   );
 };
 

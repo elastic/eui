@@ -148,6 +148,7 @@ export const Playground: Story = {
               );
             }, 2000);
           }),
+        autoSortOptions: true,
       },
     ],
     // casting to any to allow for easier teasting/QA via toggle switch

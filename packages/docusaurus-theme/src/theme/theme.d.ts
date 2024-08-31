@@ -1,3 +1,6 @@
+// Docusaurus static asset alias
+declare module '@site/*';
+
 // Prop types are declared for @theme scope in @docusaurus/theme-classic
 // but when using swizzle --eject the type import is not available.
 // we re-declare the needed types here to ensure type checking
@@ -116,6 +119,31 @@ declare module '@theme-original/EditThisPage' {
     readonly editUrl: string;
   }
   export default function EditThisPage(props: Props): JSX.Element;
+}
+
+// original: https://github.com/facebook/docusaurus/blob/fa743c81defd24e22eae45c81bd79eb8ec2c4ef0/packages/docusaurus-theme-classic/src/theme-classic.d.ts#L364
+declare module '@theme/CodeBlock' {
+  import type { ReactNode } from 'react';
+
+  export interface Props {
+    readonly children: ReactNode;
+    readonly className?: string;
+    readonly metastring?: string;
+    readonly title?: string;
+    readonly language?: string;
+    readonly showLineNumbers?: boolean;
+  }
+
+  export default function CodeBlock(props: Props): JSX.Element;
+}
+
+// original: https://github.com/facebook/docusaurus/blob/8b877d27d4b1bcd5c2ee13dde8332407a1c26447/packages/docusaurus-theme-classic/src/theme-classic.d.ts#L510
+declare module '@theme/MDXComponents/Code' {
+  import type {ComponentProps} from 'react';
+
+  export interface Props extends ComponentProps<'code'> {}
+
+  export default function MDXCode(props: Props): JSX.Element;
 }
 
 // original: https://github.com/facebook/docusaurus/blob/fa743c81defd24e22eae45c81bd79eb8ec2c4ef0/packages/docusaurus-theme-classic/src/theme-classic.d.ts#L563
@@ -252,6 +280,33 @@ declare module '@theme-original/NavbarItem/DefaultNavbarItem' {
   }
 
   export default function DefaultNavbarItem(props: Props): JSX.Element;
+}
+
+// original: https://github.com/facebook/docusaurus/blob/a6de0f2725c68854bb37acab25705c4a7709f230/packages/docusaurus-theme-classic/src/theme-classic.d.ts#L1407
+declare module '@theme-original/ColorModeToggle' {
+  import type { ColorMode } from '@docusaurus/theme-common';
+
+  export interface Props {
+    readonly className?: string;
+    readonly buttonClassName?: string;
+    readonly value: ColorMode;
+    /**
+     * The parameter represents the "to-be" value. For example, if currently in
+     * dark mode, clicking the button should call `onChange("light")`
+     */
+    readonly onChange: (colorMode: ColorMode) => void;
+  }
+
+  export default function ColorModeToggle(props: Props): JSX.Element;
+}
+
+// original: https://github.com/facebook/docusaurus/blob/026a317fc4300e6ae1817404519d229d2ca684a4/packages/docusaurus-theme-classic/src/theme-classic.d.ts#L1014
+declare module '@theme-original/Navbar/Layout' {
+  export interface Props {
+    readonly children: React.ReactNode;
+  }
+
+  export default function NavbarLayout(props: Props): JSX.Element;
 }
 
 // original: https://github.com/facebook/docusaurus/blob/fa743c81defd24e22eae45c81bd79eb8ec2c4ef0/packages/docusaurus-theme-classic/src/theme-classic.d.ts#L1067
@@ -461,4 +516,16 @@ declare module '@theme-original/TOCCollapsible/CollapseButton' {
   export default function TOCCollapsibleCollapseButton(
     props: Props
   ): JSX.Element;
+}
+
+// original: https://github.com/facebook/docusaurus/blob/a6de0f2725c68854bb37acab25705c4a7709f230/packages/docusaurus-theme-classic/src/theme-classic.d.ts#L1424
+declare module '@theme-original/Logo' {
+  import type { ComponentProps } from 'react';
+
+  export interface Props extends ComponentProps<'a'> {
+    readonly imageClassName?: string;
+    readonly titleClassName?: string;
+  }
+
+  export default function Logo(props: Props): JSX.Element;
 }

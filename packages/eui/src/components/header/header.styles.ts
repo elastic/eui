@@ -128,10 +128,8 @@ const euiHeaderDarkStyles = (
     .euiSelectableTemplateSitewide .euiFormControlLayout {
       background-color: transparent;
 
-      &--group,
-      input {
-        box-shadow: inset 0 0 0 ${euiTheme.border.width.thin}
-          ${transparentize(euiTheme.colors.ghost, 0.3)};
+      &--group {
+        border-color: ${transparentize(euiTheme.colors.ghost, 0.3)};
       }
 
       &:not(:focus-within) {
@@ -152,8 +150,12 @@ const euiHeaderDarkStyles = (
           background-color: transparent;
         }
 
-        .euiFormControlLayout__append {
+        .euiFormControlLayout__append,
+        .euiFormControlLayout__prepend {
           background-color: transparent;
+        }
+
+        .euiFormLabel {
           color: inherit;
         }
       }

@@ -142,15 +142,9 @@ describe('EuiDescribedFormGroup', () => {
         </EuiForm>
       );
 
-      if (
-        !container
-          .querySelector('.euiDescribedFormGroup')
-          ?.classList.contains('euiDescribedFormGroup--fullWidth')
-      ) {
-        throw new Error(
-          'expected EuiDescribedFormGroup to inherit fullWidth from EuiForm'
-        );
-      }
+      expect(
+        container.querySelector('.euiDescribedFormGroup')?.className
+      ).toContain('euiDescribedFormGroup-fullWidth');
     });
   });
 });
