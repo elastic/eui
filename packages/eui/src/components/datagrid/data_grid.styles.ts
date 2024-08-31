@@ -122,29 +122,37 @@ export const euiDataGridStyles = (euiThemeContext: UseEuiTheme) => {
       horizontal: css`
         label: borders;
 
-        .euiDataGridRowCell {
+        .euiDataGridRowCell:not(.euiDataGridFooterCell),
+        .euiDataGridFooter,
+        &:not(.euiDataGrid--headerUnderline) .euiDataGridHeader {
           ${logicalCSS('border-bottom', euiTheme.border.thin)}
         }
 
-        .euiDataGridHeaderCell {
+        &:not(.euiDataGrid--footerOverline) .euiDataGridFooter {
           ${logicalCSS('border-top', euiTheme.border.thin)}
-          ${logicalCSS('border-bottom', euiTheme.border.thin)}
+          ${logicalCSS('margin-top', `-${euiTheme.border.width.thin}`)}
+        }
+
+        .euiDataGridHeader {
+          ${logicalCSS('border-top', euiTheme.border.thin)}
         }
       `,
       all: css`
         label: borders;
 
         .euiDataGridRowCell {
-          ${logicalCSS('border-bottom', euiTheme.border.thin)}
-          ${logicalCSS(
-            'border-right',
-            // Visually lighten vertical borders
-            `${euiTheme.border.width.thin} solid ${tintOrShade(
-              euiTheme.border.color,
-              0.3,
-              colorMode
-            )}`
-          )}
+          &:not(.euiDataGridFooterCell) {
+            ${logicalCSS('border-bottom', euiTheme.border.thin)}
+            ${logicalCSS(
+              'border-right',
+              // Visually lighten vertical borders
+              `${euiTheme.border.width.thin} solid ${tintOrShade(
+                euiTheme.border.color,
+                0.3,
+                colorMode
+              )}`
+            )}
+          }
 
           &--firstColumn {
             ${logicalCSS('border-left', euiTheme.border.thin)}
@@ -155,17 +163,30 @@ export const euiDataGridStyles = (euiThemeContext: UseEuiTheme) => {
           }
         }
 
-        .euiDataGridFooterCell:first-of-type {
-          ${logicalCSS('border-left', euiTheme.border.thin)}
-        }
-
+        .euiDataGridFooterCell,
         .euiDataGridHeaderCell {
-          ${logicalCSS('border-bottom', euiTheme.border.thin)}
           ${logicalCSS('border-right', euiTheme.border.thin)}
 
           &:first-of-type {
             ${logicalCSS('border-left', euiTheme.border.thin)}
           }
+        }
+
+        .euiDataGridFooter {
+          ${logicalCSS('border-bottom', euiTheme.border.thin)}
+        }
+
+        &:not(.euiDataGrid--footerOverline) .euiDataGridFooter {
+          ${logicalCSS('border-top', euiTheme.border.thin)}
+          ${logicalCSS('margin-top', `-${euiTheme.border.width.thin}`)}
+        }
+
+        &:not(.euiDataGrid--headerUnderline) .euiDataGridHeader {
+          ${logicalCSS('border-bottom', euiTheme.border.thin)}
+        }
+
+        &:is(.euiDataGrid--noControls) .euiDataGridHeader {
+          ${logicalCSS('border-top', euiTheme.border.thin)}
         }
 
         .euiDataGrid__controls {
