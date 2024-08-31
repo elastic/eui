@@ -15,12 +15,15 @@ import React, {
 } from 'react';
 import classNames from 'classnames';
 
-import { keys } from '../../../../services';
+import { keys, useEuiMemoizedStyles } from '../../../../services';
 import { EuiWrappingPopover, EuiPopoverProps } from '../../../popover';
+
 import {
   DataGridCellPopoverContextShape,
   EuiDataGridCellPopoverElementProps,
 } from '../../data_grid_types';
+import { euiDataGridVariables } from '../../data_grid.styles';
+import { euiDataGridCellPopoverStyles } from './data_grid_cell_popover.styles';
 
 export const DataGridCellPopoverContext =
   createContext<DataGridCellPopoverContextShape>({
@@ -125,6 +128,9 @@ export const useCellPopover = (): {
     };
   }, [popoverIsOpen, closeCellPopover, openCellPopover, cellLocation]);
 
+  const styles = useEuiMemoizedStyles(euiDataGridCellPopoverStyles);
+  const { levels } = useEuiMemoizedStyles(euiDataGridVariables);
+
   const cellPopover = useMemo(() => {
     if (!popoverIsOpen || !popoverAnchor) return null;
 
@@ -134,14 +140,17 @@ export const useCellPopover = (): {
         isOpen={popoverIsOpen}
         display="block"
         hasArrow={false}
+        attachToAnchor={true} // required for https://github.com/elastic/eui/issues/6151
         panelPaddingSize="s"
         anchorPosition={popoverAnchorPosition}
         repositionToCrossAxis={false}
+        zIndex={levels.cellPopover}
         {...cellPopoverProps}
         focusTrapProps={{ onClickOutside, clickOutsideDisables: false }}
         panelProps={{
           'data-test-subj': 'euiDataGridExpansionPopover',
           ...(cellPopoverProps.panelProps || {}),
+          css: [styles.euiDataGridRowCell__popover, cellPopoverProps.css],
         }}
         panelClassName={classNames(
           'euiDataGridRowCell__popover',
@@ -162,6 +171,8 @@ export const useCellPopover = (): {
       </EuiWrappingPopover>
     );
   }, [
+    styles,
+    levels.cellPopover,
     popoverIsOpen,
     popoverAnchor,
     popoverContent,
