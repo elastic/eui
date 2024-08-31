@@ -142,6 +142,7 @@ export interface EuiDataGridHeaderRowPropsSpecificProps {
   setColumnWidth: (columnId: string, width: number) => void;
   setVisibleColumns: (columnId: string[]) => void;
   switchColumnPos: (colFromId: string, colToId: string) => void;
+  gridStyles: EuiDataGridStyle;
 }
 
 export type EuiDataGridHeaderRowProps = CommonProps &
@@ -151,7 +152,7 @@ export type EuiDataGridHeaderRowProps = CommonProps &
 export interface EuiDataGridHeaderCellProps
   extends Omit<
     EuiDataGridHeaderRowPropsSpecificProps,
-    'leadingControlColumns'
+    'leadingControlColumns' | 'gridStyles'
   > {
   column: EuiDataGridColumn;
   index: number;
@@ -186,6 +187,7 @@ export type EuiDataGridFooterRowProps = CommonProps &
     renderCellPopover?: EuiDataGridCellProps['renderCellPopover'];
     interactiveCellId: EuiDataGridCellProps['interactiveCellId'];
     visibleRowIndex?: number;
+    gridStyles: EuiDataGridStyle;
   };
 
 export interface EuiDataGridVisibleRows {

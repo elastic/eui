@@ -104,6 +104,7 @@ export const EuiDataGridBodyCustomRender: FunctionComponent<
     sorting,
     schema,
     schemaDetectors,
+    gridStyles,
   });
 
   const { footerRow } = useDataGridFooter({
@@ -118,6 +119,7 @@ export const EuiDataGridBodyCustomRender: FunctionComponent<
     columnWidths,
     defaultColumnWidth,
     schema,
+    gridStyles,
   });
 
   /**

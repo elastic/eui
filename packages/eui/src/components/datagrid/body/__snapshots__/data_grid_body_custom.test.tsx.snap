@@ -5,7 +5,7 @@ exports[`EuiDataGridBodyCustomRender treats \`renderCustomGridBody\` as a render
   class="euiDataGrid__customRenderBody"
 >
   <div
-    class="euiDataGridHeader"
+    class="euiDataGridHeader emotion-euiDataGridHeader"
     data-test-subj="dataGridHeader"
     role="row"
   >

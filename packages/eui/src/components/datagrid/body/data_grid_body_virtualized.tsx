@@ -199,6 +199,7 @@ export const EuiDataGridBodyVirtualized: FunctionComponent<EuiDataGridBodyProps>
         sorting,
         schema,
         schemaDetectors,
+        gridStyles,
       });
 
       const { footerRow, footerRowHeight } = useDataGridFooter({
@@ -213,6 +214,7 @@ export const EuiDataGridBodyVirtualized: FunctionComponent<EuiDataGridBodyProps>
         columnWidths,
         defaultColumnWidth,
         schema,
+        gridStyles,
       });
 
       /**

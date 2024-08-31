@@ -1,12 +1,3 @@
-.euiDataGridHeader {
-  display: flex;
-  z-index: $euiZDataGridCellPopover - 1; // Needs to sit above the content and focused cells
-  background: $euiColorEmptyShade;
-  position: sticky;
-  top: 0;
-  width: fit-content;
-}
-
 @include euiDataGridHeaderCell {
   position: relative;
   display: flex;
@@ -111,20 +102,4 @@
 .euiDataGridHeader__action--selected {
   // stylelint-disable-next-line declaration-no-important
   font-weight: $euiFontWeightBold !important;
-}
-
-// Header alternates
-// Often these need extra specificity because they need to gracefully clash with the border settings
-
-@include euiDataGridStyles(headerUnderline) {
-  @include euiDataGridHeaderCell {
-    border-bottom: $euiBorderThick;
-    border-bottom-color: $euiTextColor;
-  }
-}
-
-@include euiDataGridStyles(headerShade) {
-  @include euiDataGridHeaderCell {
-    background: tintOrShade($euiColorLightestShade, 0%, 10%);
-  }
 }

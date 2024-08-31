@@ -33,6 +33,12 @@ export const euiDataGridVariables = (euiThemeContext: UseEuiTheme) => {
       s: euiFontSize(euiThemeContext, 'xs').fontSize,
       m: euiFontSize(euiThemeContext, 's').fontSize,
     },
+    levels: {
+      cellPopover: Number(euiTheme.levels.header), // Same z-index as EuiFlyout mask overlays - cell popovers should be under both modal and flyout overlays
+      get stickyHeader() {
+        return this.cellPopover - 1; // Needs to sit above the content + cell focus outlines/actions, but below actual popovers
+      },
+    },
   };
 };
 

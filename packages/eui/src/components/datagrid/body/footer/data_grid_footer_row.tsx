@@ -6,10 +6,13 @@
  * Side Public License, v 1.
  */
 
-import classnames from 'classnames';
 import React, { forwardRef, memo, useContext } from 'react';
-import { EuiDataGridCell, DataGridCellPopoverContext } from '../cell';
+import classnames from 'classnames';
+
+import { useEuiMemoizedStyles } from '../../../../services';
 import { EuiDataGridFooterRowProps } from '../../data_grid_types';
+import { EuiDataGridCell, DataGridCellPopoverContext } from '../cell';
+import { euiDataGridFooterStyles } from './data_grid_footer.styles';
 
 const renderEmpty = () => null;
 
@@ -30,16 +33,21 @@ const EuiDataGridFooterRow = memo(
         interactiveCellId,
         'data-test-subj': _dataTestSubj,
         visibleRowIndex = rowIndex,
+        gridStyles,
         ...rest
       },
       ref
     ) => {
-      const classes = classnames(
-        'euiDataGridRow',
-        { 'euiDataGridRow--striped': visibleRowIndex % 2 !== 0 },
-        'euiDataGridFooter',
-        className
-      );
+      const styles = useEuiMemoizedStyles(euiDataGridFooterStyles);
+      const cssStyles = [
+        styles.euiDataGridFooter,
+        gridStyles.stickyFooter && styles.sticky,
+        gridStyles.footer === 'striped'
+          ? visibleRowIndex % 2 !== 0 && styles.striped
+          : styles[gridStyles.footer!],
+      ];
+
+      const classes = classnames('euiDataGridFooter', className);
       const dataTestSubj = classnames(
         'dataGridRow',
         'dataGridFooterRow',
@@ -48,6 +56,7 @@ const EuiDataGridFooterRow = memo(
 
       const popoverContext = useContext(DataGridCellPopoverContext);
       const sharedCellProps = {
+        css: styles.euiDataGridFooterCell,
         rowIndex,
         visibleRowIndex,
         interactiveCellId,
@@ -58,6 +67,7 @@ const EuiDataGridFooterRow = memo(
         <div
           ref={ref}
           role="row"
+          css={cssStyles}
           className={classes}
           data-test-subj={dataTestSubj}
           {...rest}

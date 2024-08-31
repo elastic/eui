@@ -590,7 +590,7 @@ exports[`EuiDataGrid rendering renders additional toolbar controls 1`] = `
             style="height: 202px; width: 200px;"
           >
             <div
-              class="euiDataGridHeader"
+              class="euiDataGridHeader emotion-euiDataGridHeader-shade"
               data-test-subj="dataGridHeader"
               role="row"
             >
@@ -999,7 +999,7 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
             style="height: 202px; width: 300px;"
           >
             <div
-              class="euiDataGridHeader"
+              class="euiDataGridHeader emotion-euiDataGridHeader-shade"
               data-test-subj="dataGridHeader"
               role="row"
             >
@@ -1599,7 +1599,7 @@ exports[`EuiDataGrid rendering renders custom column headers 1`] = `
             style="height: 202px; width: 200px;"
           >
             <div
-              class="euiDataGridHeader"
+              class="euiDataGridHeader emotion-euiDataGridHeader-shade"
               data-test-subj="dataGridHeader"
               role="row"
             >
@@ -2007,7 +2007,7 @@ exports[`EuiDataGrid rendering renders with common and div attributes 1`] = `
             style="height: 202px; width: 200px;"
           >
             <div
-              class="euiDataGridHeader"
+              class="euiDataGridHeader emotion-euiDataGridHeader-shade"
               data-test-subj="dataGridHeader"
               role="row"
             >
