@@ -607,9 +607,8 @@ exports[`EuiDataGrid rendering renders additional toolbar controls 1`] = `
                 tabindex="-1"
               >
                 <div
-                  class="euiDataGridColumnResizer"
+                  class="euiDataGridColumnResizer emotion-euiDataGridColumnResizer"
                   data-test-subj="dataGridColumnResizer"
-                  style="margin-right: 0px;"
                 />
                 <div
                   class="euiDataGridHeaderCell__content emotion-euiDataGridHeaderCell__content-left"
@@ -650,9 +649,8 @@ exports[`EuiDataGrid rendering renders additional toolbar controls 1`] = `
                 tabindex="-1"
               >
                 <div
-                  class="euiDataGridColumnResizer"
+                  class="euiDataGridColumnResizer emotion-euiDataGridColumnResizer"
                   data-test-subj="dataGridColumnResizer"
-                  style="margin-right: 0px;"
                 />
                 <div
                   class="euiDataGridHeaderCell__content emotion-euiDataGridHeaderCell__content-left"
@@ -1029,9 +1027,8 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
                 tabindex="-1"
               >
                 <div
-                  class="euiDataGridColumnResizer"
+                  class="euiDataGridColumnResizer emotion-euiDataGridColumnResizer"
                   data-test-subj="dataGridColumnResizer"
-                  style="margin-right: 0px;"
                 />
                 <div
                   class="euiDataGridHeaderCell__content emotion-euiDataGridHeaderCell__content-left"
@@ -1072,9 +1069,8 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
                 tabindex="-1"
               >
                 <div
-                  class="euiDataGridColumnResizer"
+                  class="euiDataGridColumnResizer emotion-euiDataGridColumnResizer"
                   data-test-subj="dataGridColumnResizer"
-                  style="margin-right: 0px;"
                 />
                 <div
                   class="euiDataGridHeaderCell__content emotion-euiDataGridHeaderCell__content-left"
@@ -1604,9 +1600,8 @@ exports[`EuiDataGrid rendering renders custom column headers 1`] = `
                 tabindex="-1"
               >
                 <div
-                  class="euiDataGridColumnResizer"
+                  class="euiDataGridColumnResizer emotion-euiDataGridColumnResizer"
                   data-test-subj="dataGridColumnResizer"
-                  style="margin-right: 0px;"
                 />
                 <div
                   class="euiDataGridHeaderCell__content emotion-euiDataGridHeaderCell__content-left"
@@ -1647,9 +1642,8 @@ exports[`EuiDataGrid rendering renders custom column headers 1`] = `
                 tabindex="-1"
               >
                 <div
-                  class="euiDataGridColumnResizer"
+                  class="euiDataGridColumnResizer emotion-euiDataGridColumnResizer"
                   data-test-subj="dataGridColumnResizer"
-                  style="margin-right: 0px;"
                 />
                 <div
                   class="euiDataGridHeaderCell__content emotion-euiDataGridHeaderCell__content-left"
@@ -2010,9 +2004,8 @@ exports[`EuiDataGrid rendering renders with common and div attributes 1`] = `
                 tabindex="-1"
               >
                 <div
-                  class="euiDataGridColumnResizer"
+                  class="euiDataGridColumnResizer emotion-euiDataGridColumnResizer"
                   data-test-subj="dataGridColumnResizer"
-                  style="margin-right: 0px;"
                 />
                 <div
                   class="euiDataGridHeaderCell__content emotion-euiDataGridHeaderCell__content-left"
@@ -2053,9 +2046,8 @@ exports[`EuiDataGrid rendering renders with common and div attributes 1`] = `
                 tabindex="-1"
               >
                 <div
-                  class="euiDataGridColumnResizer"
+                  class="euiDataGridColumnResizer emotion-euiDataGridColumnResizer"
                   data-test-subj="dataGridColumnResizer"
-                  style="margin-right: 0px;"
                 />
                 <div
                   class="euiDataGridHeaderCell__content emotion-euiDataGridHeaderCell__content-left"
