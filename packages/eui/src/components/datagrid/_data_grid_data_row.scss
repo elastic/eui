@@ -1,6 +1,4 @@
 @include euiDataGridRowCell {
-  position: relative; // Needed for .euiDataGridRowCell__actions
-
   .euiDataGridRowCell__content {
     height: 100%;
     overflow: hidden;
@@ -13,19 +11,6 @@
   // Hack to allow focus trap to still stretch to full row height on defined heights
   > [data-focus-lock-disabled] {
     height: 100%;
-  }
-
-  --euiDataGridCellOutlineColor: #{$euiColorPrimary};
-
-  &:hover,
-  &:focus,
-  &.euiDataGridRowCell--open {
-    @include euiDataGridCellFocus;
-  }
-
-  // needed to override global style
-  &:focus:focus-visible {
-    outline: none;
   }
 
   &.euiDataGridRowCell--numeric {

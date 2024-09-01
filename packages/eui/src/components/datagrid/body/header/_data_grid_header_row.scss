@@ -13,17 +13,6 @@
     width: 100%;
   }
 
-  &:focus,
-  &--hasColumnActions:focus-within,
-  &--isActionsPopoverOpen {
-    @include euiDataGridCellFocus;
-  }
-
-  // needed to override global style
-  &:focus:focus-visible {
-    outline: none;
-  }
-
   .euiDataGridHeaderCell__content {
     flex-grow: 1; // ensures content stretches and allows for manual layout styles to apply
   }

@@ -17,22 +17,13 @@ import {
 } from '../../../../global_styling';
 
 import { euiDataGridVariables } from '../../data_grid.styles';
+import { euiDataGridCellOutlineStyles } from './data_grid_cell.styles';
 
 export const euiDataGridCellActionsStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
   const { levels } = euiDataGridVariables(euiThemeContext);
-
+  const cellOutline = euiDataGridCellOutlineStyles(euiThemeContext);
   const borderWidth = euiTheme.border.width.thin;
-  const borderRadius = mathWithUnits(
-    euiTheme.border.radius.medium,
-    (x) => x / 2
-  );
-
-  const hasFocus = [
-    ':focus', // cell has been clicked or keyboard navigated to
-    '.euiDataGridRowCell--open', // always show when the cell expansion popover is open
-    '[data-keyboard-closing]', // prevents the animation from replaying when keyboard focus is moved from the popover back to the cell
-  ].join(', ');
 
   return {
     euiDataGridRowCell__actions: css`
@@ -42,10 +33,10 @@ export const euiDataGridCellActionsStyles = (euiThemeContext: UseEuiTheme) => {
       padding-inline: ${euiTheme.size.xxs};
       ${logicalCSS('margin-bottom', `-${borderWidth}`)}
 
-      background-color: var(--euiDataGridCellOutlineColor);
+      background-color: ${cellOutline.focusColor};
       color: ${euiTheme.colors.emptyShade};
-      border: ${borderWidth} solid var(--euiDataGridCellOutlineColor);
-      border-radius: ${borderRadius};
+      border: ${borderWidth} solid ${cellOutline.focusColor};
+      border-radius: ${cellOutline.borderRadius};
       ${logicalCSS('border-bottom-left-radius', 0)}
 
       /* The first row of cell actions need to be visible above the cell headers,
@@ -69,12 +60,12 @@ export const euiDataGridCellActionsStyles = (euiThemeContext: UseEuiTheme) => {
         ${logicalCSS('top', '100%')}
         ${logicalCSS('left', `-${borderWidth}`)}
         ${logicalSizeCSS(mathWithUnits(borderWidth, (x) => x * 2))}
-        background-color: var(--euiDataGridCellOutlineColor);
+        background-color: ${cellOutline.focusColor};
       }
     `,
     visibility: css`
       /* If a cell is not hovered nor focused nor open via popover, don't show the actions */
-      .euiDataGridRowCell:not(:hover, ${hasFocus}) & {
+      .euiDataGridRowCell:not(:hover, ${cellOutline.rowCellFocusSelectors}) & {
         display: none;
       }
 
@@ -82,7 +73,7 @@ export const euiDataGridCellActionsStyles = (euiThemeContext: UseEuiTheme) => {
         transform: scaleY(0);
         transform-origin: bottom;
 
-        .euiDataGridRowCell:is(:hover, ${hasFocus}) & {
+        .euiDataGridRowCell:is(:hover, ${cellOutline.rowCellFocusSelectors}) & {
           animation-duration: ${euiTheme.animation.fast};
           animation-name: ${slideUp};
           animation-iteration-count: 1;
@@ -90,8 +81,14 @@ export const euiDataGridCellActionsStyles = (euiThemeContext: UseEuiTheme) => {
         }
 
         /* Delay the actions showing on hover only, show instantly otherwise */
-        .euiDataGridRowCell:hover:not(${hasFocus}) & {
+        .euiDataGridRowCell:hover:not(${cellOutline.rowCellFocusSelectors}) & {
           animation-delay: ${euiTheme.animation.slow}; /* 2 */
+          background-color: ${cellOutline.hoverColor};
+          border-color: ${cellOutline.hoverColor};
+
+          &::after {
+            background-color: ${cellOutline.hoverColor};
+          }
         }
       }
     `,

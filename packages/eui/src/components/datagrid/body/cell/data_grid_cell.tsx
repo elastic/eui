@@ -22,7 +22,7 @@ import React, {
 import { createPortal } from 'react-dom';
 
 import { IS_JEST_ENVIRONMENT } from '../../../../utils';
-import { keys } from '../../../../services';
+import { keys, RenderWithEuiStylesMemoizer } from '../../../../services';
 import { EuiScreenReaderOnly } from '../../../accessibility';
 import { EuiI18n } from '../../../i18n';
 import { EuiTextBlockTruncate } from '../../../text_truncate';
@@ -45,6 +45,7 @@ import {
 } from './data_grid_cell_actions';
 import { DefaultCellPopover } from './data_grid_cell_popover';
 import { HandleInteractiveChildren } from './focus_utils';
+import { euiDataGridRowCellStyles } from './data_grid_cell.styles';
 
 const EuiDataGridCellContent: FunctionComponent<
   EuiDataGridCellValueProps & {
@@ -609,50 +610,59 @@ export class EuiDataGridCell extends Component<
 
     return (
       <RenderCellInRow row={row}>
-        <div
-          role="gridcell"
-          aria-rowindex={ariaRowIndex}
-          tabIndex={this.state.isFocused ? 0 : -1}
-          ref={this.cellRef}
-          {...cellProps}
-          data-test-subj="dataGridRowCell"
-          // Data attributes to help target specific cells by either data or current cell location
-          data-gridcell-column-id={this.props.columnId} // Static column ID name, not affected by column order
-          data-gridcell-column-index={this.props.colIndex} // Affected by column reordering
-          data-gridcell-row-index={this.props.rowIndex} // Index from data, not affected by sorting or pagination
-          data-gridcell-visible-row-index={this.props.visibleRowIndex} // Affected by sorting & pagination
-          onKeyDown={this.handleCellKeyDown}
-          onMouseEnter={this.onMouseEnter}
-          onMouseLeave={this.onMouseLeave}
-        >
-          <HandleInteractiveChildren
-            cellEl={this.cellRef.current}
-            updateCellFocusContext={this.updateCellFocusContext}
-            renderFocusTrap={!isExpandable}
-          >
-            <EuiDataGridCellContent
-              {...rest}
-              setCellProps={this.setCellProps}
-              column={column}
-              columnType={columnType}
-              isExpandable={isExpandable}
-              isExpanded={popoverIsOpen}
-              onExpandClick={this.handleCellExpansionClick}
-              popoverAnchorRef={this.popoverAnchorRef}
-              showCellActions={showCellActions}
-              isFocused={this.state.isFocused}
-              setCellContentsRef={this.setCellContentsRef}
-              rowHeight={rowHeight}
-              rowHeightUtils={rowHeightUtils}
-              isControlColumn={cellClasses.includes(
-                'euiDataGridRowCell--controlColumn'
-              )}
-              ariaRowIndex={ariaRowIndex}
-              rowIndex={rowIndex}
-              colIndex={colIndex}
-            />
-          </HandleInteractiveChildren>
-        </div>
+        <RenderWithEuiStylesMemoizer>
+          {(stylesMemoizer) => {
+            const styles = stylesMemoizer(euiDataGridRowCellStyles);
+            const cssStyles = [styles.euiDataGridRowCell, cellProps?.css];
+            return (
+              <div
+                role="gridcell"
+                aria-rowindex={ariaRowIndex}
+                tabIndex={this.state.isFocused ? 0 : -1}
+                ref={this.cellRef}
+                {...cellProps}
+                css={cssStyles}
+                data-test-subj="dataGridRowCell"
+                // Data attributes to help target specific cells by either data or current cell location
+                data-gridcell-column-id={this.props.columnId} // Static column ID name, not affected by column order
+                data-gridcell-column-index={this.props.colIndex} // Affected by column reordering
+                data-gridcell-row-index={this.props.rowIndex} // Index from data, not affected by sorting or pagination
+                data-gridcell-visible-row-index={this.props.visibleRowIndex} // Affected by sorting & pagination
+                onKeyDown={this.handleCellKeyDown}
+                onMouseEnter={this.onMouseEnter}
+                onMouseLeave={this.onMouseLeave}
+              >
+                <HandleInteractiveChildren
+                  cellEl={this.cellRef.current}
+                  updateCellFocusContext={this.updateCellFocusContext}
+                  renderFocusTrap={!isExpandable}
+                >
+                  <EuiDataGridCellContent
+                    {...rest}
+                    setCellProps={this.setCellProps}
+                    column={column}
+                    columnType={columnType}
+                    isExpandable={isExpandable}
+                    isExpanded={popoverIsOpen}
+                    onExpandClick={this.handleCellExpansionClick}
+                    popoverAnchorRef={this.popoverAnchorRef}
+                    showCellActions={showCellActions}
+                    isFocused={this.state.isFocused}
+                    setCellContentsRef={this.setCellContentsRef}
+                    rowHeight={rowHeight}
+                    rowHeightUtils={rowHeightUtils}
+                    isControlColumn={cellClasses.includes(
+                      'euiDataGridRowCell--controlColumn'
+                    )}
+                    ariaRowIndex={ariaRowIndex}
+                    rowIndex={rowIndex}
+                    colIndex={colIndex}
+                  />
+                </HandleInteractiveChildren>
+              </div>
+            );
+          }}
+        </RenderWithEuiStylesMemoizer>
       </RenderCellInRow>
     );
   }
