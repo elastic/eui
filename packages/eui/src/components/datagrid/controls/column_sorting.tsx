@@ -189,7 +189,6 @@ export const DataGridSortingControl: FunctionComponent<ColumnSortingProps> =
           <EuiDragDropContext onDragEnd={onDragEnd}>
             <EuiDroppable
               droppableId="columnSorting"
-              className="euiDataGrid__controlScroll"
             >
               <>
                 {sorting.columns.map(({ id, direction }, index) => {

@@ -184,7 +184,6 @@ export const useDataGridColumnSelector = (
           <EuiDroppable
             droppableId="columnOrder"
             isDropDisabled={!isDragEnabled}
-            className="euiDataGrid__controlScroll"
           >
             <>
               {filteredColumns.map((id, index) => (
