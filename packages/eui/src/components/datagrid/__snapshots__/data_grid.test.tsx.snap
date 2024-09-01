@@ -465,11 +465,11 @@ exports[`EuiDataGrid rendering renders additional toolbar controls 1`] = `
       data-test-subj="test subject string"
     >
       <div
-        class="euiDataGrid__controls"
+        class="euiDataGrid__controls emotion-euiDataGrid__controls"
         data-test-subj="dataGridControls"
       >
         <div
-          class="euiDataGrid__leftControls"
+          class="euiDataGrid__leftControls emotion-euiDataGrid__leftControls"
         >
           <div
             class="euiPopover emotion-euiPopover-inline-block"
@@ -507,7 +507,7 @@ exports[`EuiDataGrid rendering renders additional toolbar controls 1`] = `
           </button>
         </div>
         <div
-          class="euiDataGrid__rightControls"
+          class="euiDataGrid__rightControls emotion-euiDataGrid__rightControls"
         >
           <div
             class="euiPopover emotion-euiPopover-inline-block"
@@ -874,11 +874,11 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
       data-test-subj="test subject string"
     >
       <div
-        class="euiDataGrid__controls"
+        class="euiDataGrid__controls emotion-euiDataGrid__controls"
         data-test-subj="dataGridControls"
       >
         <div
-          class="euiDataGrid__leftControls"
+          class="euiDataGrid__leftControls emotion-euiDataGrid__leftControls"
         >
           <div
             class="euiPopover emotion-euiPopover-inline-block"
@@ -916,7 +916,7 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
           </button>
         </div>
         <div
-          class="euiDataGrid__rightControls"
+          class="euiDataGrid__rightControls emotion-euiDataGrid__rightControls"
         >
           <div
             class="euiPopover emotion-euiPopover-inline-block"
@@ -1477,11 +1477,11 @@ exports[`EuiDataGrid rendering renders custom column headers 1`] = `
       data-test-subj="test subject string"
     >
       <div
-        class="euiDataGrid__controls"
+        class="euiDataGrid__controls emotion-euiDataGrid__controls"
         data-test-subj="dataGridControls"
       >
         <div
-          class="euiDataGrid__leftControls"
+          class="euiDataGrid__leftControls emotion-euiDataGrid__leftControls"
         >
           <div
             class="euiPopover emotion-euiPopover-inline-block"
@@ -1516,7 +1516,7 @@ exports[`EuiDataGrid rendering renders custom column headers 1`] = `
           </div>
         </div>
         <div
-          class="euiDataGrid__rightControls"
+          class="euiDataGrid__rightControls emotion-euiDataGrid__rightControls"
         >
           <div
             class="euiPopover emotion-euiPopover-inline-block"
@@ -1885,11 +1885,11 @@ exports[`EuiDataGrid rendering renders with common and div attributes 1`] = `
       data-test-subj="test subject string"
     >
       <div
-        class="euiDataGrid__controls"
+        class="euiDataGrid__controls emotion-euiDataGrid__controls"
         data-test-subj="dataGridControls"
       >
         <div
-          class="euiDataGrid__leftControls"
+          class="euiDataGrid__leftControls emotion-euiDataGrid__leftControls"
         >
           <div
             class="euiPopover emotion-euiPopover-inline-block"
@@ -1924,7 +1924,7 @@ exports[`EuiDataGrid rendering renders with common and div attributes 1`] = `
           </div>
         </div>
         <div
-          class="euiDataGrid__rightControls"
+          class="euiDataGrid__rightControls emotion-euiDataGrid__rightControls"
         >
           <div
             class="euiPopover emotion-euiPopover-inline-block"
