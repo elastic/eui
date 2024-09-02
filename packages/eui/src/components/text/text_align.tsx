@@ -21,6 +21,10 @@ export type TextAlignment = (typeof ALIGNMENTS)[number];
 
 export type EuiTextAlignProps = CommonProps &
   HTMLAttributes<HTMLDivElement> & {
+    /**
+     * Determines the root element
+     */
+    component?: 'div' | 'span' | 'p';
     textAlign?: TextAlignment;
     /**
      * Applies text styling to the child element instead of rendering a parent wrapper `div`.
@@ -31,6 +35,7 @@ export type EuiTextAlignProps = CommonProps &
 
 export const EuiTextAlign: FunctionComponent<EuiTextAlignProps> = ({
   children,
+  component: Component = 'div',
   textAlign = 'left',
   cloneElement = false,
   ...rest
@@ -42,6 +47,6 @@ export const EuiTextAlign: FunctionComponent<EuiTextAlignProps> = ({
   if (isValidElement(children) && cloneElement) {
     return cloneElementWithCss(children, props);
   } else {
-    return <div {...props}>{children}</div>;
+    return <Component {...props}>{children}</Component>;
   }
 };

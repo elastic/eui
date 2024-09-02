@@ -22,6 +22,10 @@ export type TextSize = (typeof TEXT_SIZES)[number];
 
 export type EuiTextProps = CommonProps &
   Omit<HTMLAttributes<HTMLDivElement>, 'color'> & {
+    /**
+     * Determines the root element
+     */
+    component?: 'div' | 'span' | 'p';
     textAlign?: TextAlignment;
     /**
      * Determines the text size. Choose `relative` to control the `font-size` based on the value of a parent container.
@@ -36,6 +40,7 @@ export type EuiTextProps = CommonProps &
   };
 
 export const EuiText: FunctionComponent<EuiTextProps> = ({
+  component = 'div',
   size = 'm',
   color,
   grow = true,
@@ -52,16 +57,22 @@ export const EuiText: FunctionComponent<EuiTextProps> = ({
   ];
 
   const classes = classNames('euiText', className);
+  const Component = component;
 
   let text = (
-    <div css={cssStyles} className={classes} {...rest}>
+    <Component css={cssStyles} className={classes} {...rest}>
       {children}
-    </div>
+    </Component>
   );
 
   if (color) {
     text = (
-      <EuiTextColor color={color} className={classes} cloneElement>
+      <EuiTextColor
+        component={component}
+        color={color}
+        className={classes}
+        cloneElement
+      >
         {text}
       </EuiTextColor>
     );
@@ -69,7 +80,12 @@ export const EuiText: FunctionComponent<EuiTextProps> = ({
 
   if (textAlign) {
     text = (
-      <EuiTextAlign textAlign={textAlign} className={classes} cloneElement>
+      <EuiTextAlign
+        component={component}
+        textAlign={textAlign}
+        className={classes}
+        cloneElement
+      >
         {text}
       </EuiTextAlign>
     );

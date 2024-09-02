@@ -44,7 +44,7 @@ export type EuiTextColorProps = CommonProps &
     /**
      * Determines the root element
      */
-    component?: 'div' | 'span';
+    component?: 'div' | 'span' | 'p';
     /**
      * Applies text styling to the child element instead of rendering a parent wrapper `span`/`div`.
      * Can only be used when wrapping a *single* child element/tag, and not raw text.
@@ -55,7 +55,7 @@ export type EuiTextColorProps = CommonProps &
 export const EuiTextColor: FunctionComponent<EuiTextColorProps> = ({
   children,
   color = 'default',
-  component = 'span',
+  component: Component = 'span',
   cloneElement = false,
   style,
   ...rest
@@ -84,7 +84,6 @@ export const EuiTextColor: FunctionComponent<EuiTextColorProps> = ({
     const childrenStyle = { ...children.props.style, ...euiTextStyle };
     return cloneElementWithCss(children, { ...props, style: childrenStyle });
   } else {
-    const Component = component;
     return <Component {...props}>{children}</Component>;
   }
 };
