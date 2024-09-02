@@ -121,8 +121,14 @@ describe('EuiDataGridHeaderCellWrapper', () => {
           Mock column actions
         </button>
         <p
-          aria-live="assertive"
+          aria-hidden="true"
           class="emotion-euiScreenReaderOnly"
+          id="euiDataGridCellHeader_generated-id_exited"
+        />
+        <p
+          aria-hidden="true"
+          class="emotion-euiScreenReaderOnly"
+          id="euiDataGridCellHeader_generated-id_keyboardHint"
         >
           Press the Enter key to interact with this cell's contents.
         </p>
