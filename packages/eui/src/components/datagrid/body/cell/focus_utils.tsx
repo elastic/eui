@@ -16,6 +16,7 @@ import React, {
 import { FocusableElement, tabbable } from 'tabbable';
 
 import { keys } from '../../../../services';
+import { useGeneratedHtmlId } from '../../../../services/accessibility';
 import { isDOMNode } from '../../../../utils';
 import { EuiFocusTrap } from '../../../focus_trap';
 import { EuiScreenReaderOnly } from '../../../accessibility';
@@ -90,6 +91,26 @@ export const FocusTrappedChildren: FunctionComponent<
   const [isCellEntered, setIsCellEntered] = useState(false);
   const [isExited, setExited] = useState(false);
 
+  const keyboardHintAriaId = useGeneratedHtmlId({
+    prefix: 'euiDataGridCellHeader',
+    suffix: 'keyboardHint',
+  });
+
+  const exitedHintAriaId = useGeneratedHtmlId({
+    prefix: 'euiDataGridCellHeader',
+    suffix: 'exited',
+  });
+
+  // direct DOM manipulation as workaround to attach required hints
+  useEffect(() => {
+    const currentAriaDescribedbyId = cellEl.getAttribute('aria-describedby');
+
+    cellEl.setAttribute(
+      'aria-describedby',
+      `${currentAriaDescribedbyId} ${exitedHintAriaId} ${keyboardHintAriaId} `
+    );
+  }, [cellEl, keyboardHintAriaId, exitedHintAriaId]);
+
   useEffect(() => {
     if (isCellEntered) {
       enableAndFocusInteractives(cellEl);
@@ -152,14 +173,28 @@ export const FocusTrappedChildren: FunctionComponent<
       {children}
 
       <EuiScreenReaderOnly>
-        <p aria-live="assertive">
-          {isExited ? (
+        {/**
+         * Hints use aria-hidden to prevent them from being read as regular content.
+         * They are still read in JAWS and NVDA via the linking with aria-describedby.
+         * VoiceOver does generally not read the column on re-focus after exiting a cell,
+         * which mean the exited hint is not read.
+         * VoiceOver does react to aria-live (without aria-hidden) but that would causes
+         * duplicate output in JAWS/NVDA (reading content & live announcement).
+         * Optimizing for Windows screen readers as they have a larger usages.
+         */}
+        <p id={exitedHintAriaId} aria-hidden="true">
+          {isExited && (
             <EuiI18n
               // eslint-disable-next-line local/i18n
               token="euiDataGridCell.focusTrapExitPrompt"
               default="Exited cell content."
             />
-          ) : (
+          )}
+        </p>
+      </EuiScreenReaderOnly>
+      <EuiScreenReaderOnly>
+        <p id={keyboardHintAriaId} aria-hidden="true">
+          {!isCellEntered && (
             <EuiI18n
               // eslint-disable-next-line local/i18n
               token="euiDataGridCell.focusTrapEnterPrompt"

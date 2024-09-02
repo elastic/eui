@@ -462,9 +462,9 @@ export const CustomRowHeights: Story = {
   render: (args: EuiDataGridProps) => <StatefulDataGrid {...args} />,
 };
 
-const CustomHeaderCell = (
+const CustomHeaderCell = ({ title }: { title: string }) => (
   <>
-    <span>Name</span>
+    <span>{title}</span>
     <EuiToolTip content="tooltip content">
       <EuiButtonIcon
         iconType="questionInCircle"
@@ -486,7 +486,7 @@ export const CustomHeaderContent: Story = {
       {
         id: 'name',
         displayAsText: 'Name',
-        display: CustomHeaderCell,
+        display: <CustomHeaderCell title="Name" />,
         defaultSortDirection: 'asc' as const,
         cellActions: [
           ({ rowIndex, Component }: EuiDataGridColumnCellActionProps) => {
@@ -504,7 +504,27 @@ export const CustomHeaderContent: Story = {
           },
         ],
       },
-      ...[...columns].slice(1),
+      {
+        id: 'email',
+        display: <CustomHeaderCell title="Email" />,
+        initialWidth: 130,
+        cellActions: [
+          ({ rowIndex, Component }: EuiDataGridColumnCellActionProps) => {
+            const data = raw_data;
+            const value = data[rowIndex].email.raw;
+            return (
+              <Component
+                onClick={() => alert(value)}
+                iconType="email"
+                aria-label={`Send email to ${value}`}
+              >
+                Send email
+              </Component>
+            );
+          },
+        ],
+      },
+      ...[...columns].slice(2),
     ],
     rowCount: 10,
     renderCellValue: RenderCellValue,

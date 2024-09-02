@@ -176,13 +176,7 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
                 />
               ) : null}
 
-              <CellContent
-                // `title` will sometimes be read as content by screen readers even with aria-hidden
-                title={title}
-                arrow={sortingArrow}
-                // enable content to be read if no `displayAsText` is available as `aria-label`
-                aria-hidden={hasFocusTrap && displayAsText ? 'true' : undefined}
-              >
+              <CellContent title={title} arrow={sortingArrow}>
                 {children}
               </CellContent>
 
