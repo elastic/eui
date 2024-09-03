@@ -22,7 +22,7 @@ export type TextAlignment = (typeof ALIGNMENTS)[number];
 export type EuiTextAlignProps = CommonProps &
   HTMLAttributes<HTMLDivElement> & {
     /**
-     * Determines the root element
+     * The HTML element/tag to render
      */
     component?: 'div' | 'span' | 'p';
     textAlign?: TextAlignment;

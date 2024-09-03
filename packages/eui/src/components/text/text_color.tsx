@@ -42,7 +42,7 @@ export type EuiTextColorProps = CommonProps &
      */
     color?: TextColor | CSSProperties['color'];
     /**
-     * Determines the root element
+     * The HTML element/tag to render
      */
     component?: 'div' | 'span' | 'p';
     /**

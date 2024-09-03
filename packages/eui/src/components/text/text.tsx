@@ -23,7 +23,7 @@ export type TextSize = (typeof TEXT_SIZES)[number];
 export type EuiTextProps = CommonProps &
   Omit<HTMLAttributes<HTMLDivElement>, 'color'> & {
     /**
-     * Determines the root element
+     * The HTML element/tag to render
      */
     component?: 'div' | 'span' | 'p';
     textAlign?: TextAlignment;
