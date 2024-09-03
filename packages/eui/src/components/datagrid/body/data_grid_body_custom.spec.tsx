@@ -135,6 +135,7 @@ describe('EuiDataGridBodyCustomRender', () => {
       '[data-gridcell-row-index="0"][data-gridcell-column-index="1"]'
     ).contains('B,0');
 
+    cy.get('[data-test-subj="dataGridHeaderCellActionButton-A"]').realHover();
     cy.get('[data-test-subj="dataGridHeaderCellActionButton-A"]').click();
     cy.contains('Move right').click();
 
@@ -160,6 +161,7 @@ describe('EuiDataGridBodyCustomRender', () => {
     cy.realMount(<DataGridTest />);
     cy.get('[role="gridcell"]').first().contains('A,0');
 
+    cy.get('[data-test-subj="dataGridHeaderCellActionButton-A"]').realHover();
     cy.get('[data-test-subj="dataGridHeaderCellActionButton-A"]').click();
     cy.contains('Sort High-Low').click();
 

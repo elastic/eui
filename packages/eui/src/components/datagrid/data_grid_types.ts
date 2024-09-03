@@ -17,7 +17,6 @@ import {
   MutableRefObject,
   Ref,
   Component,
-  PropsWithChildren,
   ComponentClass,
 } from 'react';
 import {
@@ -170,14 +169,15 @@ export interface EuiDataGridControlHeaderCellProps {
   controlColumn: EuiDataGridControlColumn;
 }
 
-export interface EuiDataGridHeaderCellWrapperProps extends PropsWithChildren {
+export interface EuiDataGridHeaderCellWrapperProps {
+  children: ReactNode | ((renderFocusTrap: boolean) => ReactNode);
   id: string;
   index: number;
   width?: number | null;
   className?: string;
+  'aria-label'?: AriaAttributes['aria-label'];
   hasActionsPopover?: boolean;
-  isActionsButtonFocused?: boolean;
-  focusActionsButton?: () => void;
+  openActionsPopover?: () => void;
 }
 
 export type EuiDataGridFooterRowProps = CommonProps &
@@ -702,6 +702,7 @@ export interface EuiDataGridColumn {
    * This can be used to display a readable column name in column hiding/sorting, where `display` won't be used.
    * This will also be used as a `title` attribute that will display on mouseover (useful if the display text is being truncated by the column width).
    * If not passed, `id` will be shown as the column name.
+   * Passing this together with `display` is useful to ensure an accessible label is added to the column.
    */
   displayAsText?: string;
   /**
