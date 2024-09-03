@@ -6,10 +6,15 @@
  * Side Public License, v 1.
  */
 
-import Heading, { Props as HeadingProps } from '@theme/Heading';
+import { HTMLAttributes } from 'react';
+import { EuiText } from '@elastic/eui';
 
-const MDXHeading = (props: HeadingProps): JSX.Element => (
-  <Heading {...props} />
-);
-
-export default MDXHeading;
+export const ListItem = ({ children, ...props }: HTMLAttributes<HTMLLIElement>) => {
+  return (
+    <li>
+      <EuiText size="m">
+        {children}
+      </EuiText>
+    </li>
+  );
+};
