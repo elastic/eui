@@ -68,12 +68,17 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
       schemaDetectors,
     }) => {
       const { id, display, displayAsText, displayHeaderCellProps } = column;
+      const title = displayAsText || id;
+      const children = display || displayAsText || id;
       const width = columnWidths[id] || defaultColumnWidth;
       const columnType = schema[id] ? schema[id].columnType : null;
 
       const { setFocusedCell, focusFirstVisibleInteractiveCell } =
         useContext(DataGridFocusContext);
 
+      /*
+       * Column actions
+       */
       const [isPopoverOpen, setIsPopoverOpen] = useState(false);
       const togglePopover = useCallback(() => {
         setIsPopoverOpen((isOpen) => !isOpen);
@@ -117,6 +122,19 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
       const [isActionsButtonFocused, setIsActionsButtonFocused] =
         useState(false);
 
+      const actionsButtonAriaLabel = useEuiI18n(
+        'euiDataGridHeaderCell.actionsButtonAriaLabel',
+        '{title}. Click to view column header actions.',
+        { title }
+      );
+      const actionsEnterKeyInstructions = useEuiI18n(
+        'euiDataGridHeaderCell.actionsEnterKeyInstructions',
+        "Press the Enter key to view this column's actions"
+      );
+
+      /*
+       * Column sorting
+       */
       const { sortingArrow, ariaSort, sortingScreenReaderText } =
         useSortingUtils({
           sorting,
@@ -129,6 +147,9 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
         suffix: 'sorting',
       });
 
+      /*
+       * Rendering
+       */
       const classes = classnames(
         {
           [`euiDataGridHeaderCell--${columnType}`]: columnType,
@@ -139,19 +160,6 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
       );
 
       const emptyHoverStyles = useEuiMemoizedStyles(_emptyHoverStyles);
-
-      const title = displayAsText || id;
-      const children = display || displayAsText || id;
-
-      const actionsButtonAriaLabel = useEuiI18n(
-        'euiDataGridHeaderCell.actionsButtonAriaLabel',
-        '{title}. Click to view column header actions.',
-        { title }
-      );
-      const actionsEnterKeyInstructions = useEuiI18n(
-        'euiDataGridHeaderCell.actionsEnterKeyInstructions',
-        "Press the Enter key to view this column's actions"
-      );
 
       return (
         <EuiDataGridHeaderCellWrapper
