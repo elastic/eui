@@ -1,3 +1,23 @@
+## [`v95.10.0`](https://github.com/elastic/eui/releases/v95.10.0)
+
+- Updated `EuiDataGrid` to support interactive header cell content ([#7898](https://github.com/elastic/eui/pull/7898))
+- Updated `EuiSearchBar`'s `field_value_selection` filter type with a new `autoSortOptions` config, allowing consumers to configure whether or not selected options are automatically sorted to the top of the filter list ([#7958](https://github.com/elastic/eui/pull/7958))
+- Updated `getDefaultEuiMarkdownPlugins` to support the following new default plugin configurations: ([#7985](https://github.com/elastic/eui/pull/7985))
+  - `parsingConfig.linkValidator`, which allows configuring `allowRelative` and `allowProtocols`
+  - `parsingConfig.emoji`, which allows configuring emoticon parsing
+  - `processingConfig.linkProps`, which allows configuring rendered links with any props that `EuiLink` accepts
+  - See our **Markdown plugins** documentation for example `EuiMarkdownFormat` and `EuiMarkdownEditor` usage
+- Updated `EuiDatePicker` to support `append` and `prepend` nodes in its form control layout ([#7987](https://github.com/elastic/eui/pull/7987))
+
+**Bug fixes**
+
+- Fixed border rendering bug with inline `EuiDatePicker`s with `shadow={false}` ([#7987](https://github.com/elastic/eui/pull/7987))
+- Fixed `EuiSuperSelect`'s placeholder text color to match other form controls ([#7995](https://github.com/elastic/eui/pull/7995))
+
+**Accessibility**
+
+- Improved the keyboard navigation and screen reader output for `EuiDataGrid` header cells ([#7898](https://github.com/elastic/eui/pull/7898))
+
 ## [`v95.9.0`](https://github.com/elastic/eui/releases/v95.9.0)
 
 - Updated `EuiSearchBar`'s optional `box.schema` prop with a new `recognizedFields` configuration. This allows specifying the phrases that will be parsed as field clauses ([#7960](https://github.com/elastic/eui/pull/7960))
