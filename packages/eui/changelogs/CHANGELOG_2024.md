@@ -1,3 +1,9 @@
+## [`v95.10.1`](https://github.com/elastic/eui/releases/v95.10.1)
+
+**Bug fixes**
+
+- Fixed a visual bug in compact density `EuiDataGrid`s, where the header cell height would increase when the actions button became visible ([#7999](https://github.com/elastic/eui/pull/7999))
+
 ## [`v95.10.0`](https://github.com/elastic/eui/releases/v95.10.0)
 
 - Updated `EuiDataGrid` to support interactive header cell content ([#7898](https://github.com/elastic/eui/pull/7898))
