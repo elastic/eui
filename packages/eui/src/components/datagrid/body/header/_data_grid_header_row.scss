@@ -91,6 +91,8 @@
     .euiPopover-isOpen {
       .euiDataGridHeaderCell__button {
         padding: $euiSizeXS;
+        // balance out additional button target size in header height, prevents increased header cell height
+        margin-block: -$euiSizeXS;
       }
 
       .euiDataGridHeaderCell__icon {
