@@ -43,6 +43,9 @@ export type EuiTextColorProps = CommonProps &
     color?: TextColor | CSSProperties['color'];
     /**
      * The HTML element/tag to render
+     * Use with care when nesting multiple components to ensure valid html.
+     * Block elements can't be nested inside inline elements. (<p> and <div> are not valid inside <span>)
+     * Additionally <div> is not valid to use inside <p>.
      */
     component?: 'div' | 'span' | 'p';
     /**
