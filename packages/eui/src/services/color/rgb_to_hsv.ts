@@ -6,22 +6,22 @@
  * Side Public License, v 1.
  */
 
-import type { HSV, RGB } from "./color_types";
-import { rgb, valid } from "chroma-js";
+import type { HSV, RGB } from './color_types';
+import { rgb, valid } from 'chroma-js';
 
 export function rgbToHsv({ r, g, b }: RGB): HSV {
-	//Create a new chroma-js color from RGB provided
-	const color = rgb(r, g, b);
+  //Create a new chroma-js color from RGB provided
+  const color = rgb(r, g, b);
 
-	//If color valid convert RGB to HSV
-	if (valid(color)) {
-		let [h, s, v] = color.hsv();
+  //If color valid convert RGB to HSV
+  if (valid(color)) {
+    let [h, s, v] = color.hsv();
 
-		h = Number.isNaN(h) ? 0 : h;
+    h = Number.isNaN(h) ? 0 : h;
 
-		return { h, s, v };
-	}
+    return { h, s, v };
+  }
 
-	// fallback to prevent errors
-	return { h: Number.NaN, s: Number.NaN, v: Number.NaN };
+  // fallback to prevent errors
+  return { h: Number.NaN, s: Number.NaN, v: Number.NaN };
 }

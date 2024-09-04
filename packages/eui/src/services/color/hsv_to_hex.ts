@@ -6,18 +6,18 @@
  * Side Public License, v 1.
  */
 
-import type { HEX, HSV } from "./color_types";
-import { hsv, valid } from "chroma-js";
+import type { HEX, HSV } from './color_types';
+import { hsv, valid } from 'chroma-js';
 
 export function hsvToHex({ h, s, v }: HSV): HEX {
-	//Create a new chroma-js color from HSV provided
-	const color = hsv(h, s, v);
+  //Create a new chroma-js color from HSV provided
+  const color = hsv(h, s, v);
 
-	//If color valid convert HSV to HEX
-	if (valid(color)) {
-		return color.hex();
-	}
+  //If color valid convert HSV to HEX
+  if (valid(color)) {
+    return color.hex();
+  }
 
-	// fallback to prevent errors
-	return "";
+  // fallback to prevent errors
+  return '';
 }
