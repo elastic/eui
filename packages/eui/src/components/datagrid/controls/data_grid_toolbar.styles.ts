@@ -22,6 +22,15 @@ export const euiDataGridToolbarStyles = ({ euiTheme }: UseEuiTheme) => {
       gap: ${euiTheme.size.base};
       ${logicalCSS('padding-vertical', euiTheme.size.xs)}
       background-color: ${euiTheme.colors.emptyShade};
+
+      .euiDataGrid--bordersHorizontal & {
+        ${logicalCSS('border-bottom', euiTheme.border.thin)}
+      }
+
+      .euiDataGrid--bordersAll & {
+        border: ${euiTheme.border.thin};
+        background-color: ${euiTheme.colors.body};
+      }
     `,
     euiDataGrid__rightControls: css`
       display: flex;
