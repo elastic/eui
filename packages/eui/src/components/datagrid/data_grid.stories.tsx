@@ -226,6 +226,7 @@ type Story = StoryObj<EuiDataGridProps>;
 
 export const Playground: Story = {
   args: {
+    'aria-label': 'EuiDataGrid',
     columns,
     rowCount: 10,
     renderCellValue: RenderCellValue,
@@ -306,6 +307,15 @@ export const Playground: Story = {
   render: (args: EuiDataGridProps) => <StatefulDataGrid {...args} />,
 };
 enableFunctionToggleControls<EuiDataGridProps>(Playground, ['onColumnResize']);
+
+export const Virtualization: Story = {
+  args: {
+    ...Playground.args,
+    width: 300,
+    height: 300,
+  },
+  render: (args: EuiDataGridProps) => <StatefulDataGrid {...args} />,
+};
 
 export const HeightLineCount: Story = {
   parameters: {
