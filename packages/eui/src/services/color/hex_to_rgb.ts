@@ -9,23 +9,19 @@
 // Convert hexadecimal color into an array of RGB integer values
 // Modified from https://stackoverflow.com/questions/5623838/rgb-to-hex-and-hex-to-rgb
 
-import { rgbDef } from './color_types';
+import type { rgbDef } from "./color_types";
+import { hex, valid } from "chroma-js";
 
-export function hexToRgb(hex: string): rgbDef {
-  // Expand shorthand form (e.g. "03F") to full form (e.g. "0033FF")
-  const shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
-  hex = hex.replace(
-    shorthandRegex,
-    (m, r1, g1, b1) => r1 + r1 + g1 + g1 + b1 + b1
-  );
+export function hexToRgb(hexCode: string): rgbDef {
+	//Create a new chroma-js color from hexCode provided
+	const color = hex(hexCode);
 
-  const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex)!;
+	//If color valid convert from HEX to RGB
+	if (valid(color)) {
+		const rgb = color.rgb();
+		return rgb;
+	}
 
-  if (result) {
-    const [, r, g, b] = result;
-    return [parseInt(r, 16), parseInt(g, 16), parseInt(b, 16)];
-  }
-
-  // fallback to prevent errors
-  return [0, 0, 0];
+	// fallback to prevent errors
+	return [0, 0, 0];
 }

@@ -6,11 +6,18 @@
  * Side Public License, v 1.
  */
 
-import { hsvToRgb } from './hsv_to_rgb';
-import { rgbToHex } from './rgb_to_hex';
-import { HEX, HSV } from './color_types';
+import type { HEX, HSV } from "./color_types";
+import { hsv, valid } from "chroma-js";
 
 export function hsvToHex({ h, s, v }: HSV): HEX {
-  const { r, g, b } = hsvToRgb({ h, s, v });
-  return rgbToHex(`rgb(${r}, ${g}, ${b})`);
+	//Create a new chroma-js color from HSV provided
+	const color = hsv(h, s, v);
+
+	//If color valid convert HSV to HEX
+	if (valid(color)) {
+		return color.hex();
+	}
+
+	// fallback to prevent errors
+	return "";
 }
