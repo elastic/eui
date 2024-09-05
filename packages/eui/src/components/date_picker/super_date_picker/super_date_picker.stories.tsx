@@ -8,8 +8,11 @@
 
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
-
+import { expect } from '@storybook/test';
+import { within } from '../../../../.storybook/test';
+import { LOKI_SELECTORS } from '../../../../.storybook/loki';
 import { enableFunctionToggleControls } from '../../../../.storybook/utils';
+
 import { EuiLink } from '../../link';
 import { ApplyTime, REFRESH_UNIT_OPTIONS } from '../types';
 
@@ -21,12 +24,6 @@ import {
 const meta: Meta<EuiSuperDatePickerProps> = {
   title: 'Forms/EuiSuperDatePicker/EuiSuperDatePicker',
   component: EuiSuperDatePicker,
-  parameters: {
-    loki: {
-      // TODO: uncomment once loki CLI is fixed for portal component stories
-      //   chromeSelector: LOKI_SELECTORS.portal,
-    },
-  },
   argTypes: {
     refreshIntervalUnits: {
       control: 'radio',
@@ -70,6 +67,9 @@ export const CustomQuickSelectPanel: Story = {
     controls: {
       include: ['customQuickSelectPanels', 'onTimeChange'],
     },
+    loki: {
+      chromeSelector: LOKI_SELECTORS.portal,
+    },
   },
   args: {
     customQuickSelectPanels: [
@@ -79,18 +79,14 @@ export const CustomQuickSelectPanel: Story = {
       },
     ],
   },
-  // TODO: uncomment once loki CLI is fixed for portal component stories
-  //   play: lokiPlayDecorator(async (context) => {
-  //     const { bodyElement, step } = context;
-  //     const canvas = within(bodyElement);
-  //     await step('show popover on click of the quick select button', async () => {
-  //       await userEvent.click(canvas.getByLabelText('Date quick select'));
-  //       await waitFor(() => {
-  //         expect(canvas.getByRole('dialog')).toBeVisible();
-  //         expect(canvas.getByText('Custom quick select panel')).toBeVisible();
-  //       });
-  //     });
-  //   }),
+  play: async ({ canvasElement, step }) => {
+    const canvas = within(canvasElement);
+    await step('show popover on click of the quick select button', async () => {
+      canvas.waitForAndClick('superDatePickerToggleQuickMenuButton');
+      await canvas.waitForEuiPopoverVisible();
+      expect(canvas.getByText('Custom quick select panel')).toBeVisible();
+    });
+  },
 };
 
 function CustomPanel({ applyTime }: { applyTime?: ApplyTime }) {
