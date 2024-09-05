@@ -56,7 +56,6 @@ const EuiDataGridFooterRow = memo(
 
       const popoverContext = useContext(DataGridCellPopoverContext);
       const sharedCellProps = {
-        css: styles.euiDataGridFooterCell,
         rowIndex,
         visibleRowIndex,
         interactiveCellId,
