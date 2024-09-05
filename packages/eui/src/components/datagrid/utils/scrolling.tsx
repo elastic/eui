@@ -16,9 +16,12 @@ import React, {
 } from 'react';
 import { VariableSizeGrid as Grid } from 'react-window';
 
+import { useEuiMemoizedStyles } from '../../../services';
+import { logicalStyles } from '../../../global_styling';
 import { DataGridCellPopoverContext } from '../body/cell';
 import { EuiDataGridStyle } from '../data_grid_types';
 import { DataGridFocusContext } from './focus';
+import { euiDataGridScrollBarStyles } from './scrolling.styles';
 
 interface ScrollCellIntoView {
   rowIndex: number;
@@ -227,6 +230,7 @@ export const useScrollBars = (
   // If the grid scrolls or has scrollbars, we add custom border overlays
   // (since borders are normally set by cells) to ensure our grid body has
   // ending borders regardless of scroll position
+  const styles = useEuiMemoizedStyles(euiDataGridScrollBarStyles);
   const scrollBorderOverlay = useMemo(() => {
     if (!hasHorizontalScroll && !hasVerticalScroll) {
       return null; // Nothing to render if the grid doesn't scroll
@@ -235,17 +239,27 @@ export const useScrollBars = (
       return null; // Nothing to render if the grid doesn't use borders
     }
     return (
-      <div className="euiDataGrid__scrollOverlay" role="presentation">
+      <div
+        css={styles.euiDataGrid__scrollOverlay}
+        className="euiDataGrid__scrollOverlay"
+        role="presentation"
+      >
         {scrollBarHeight > 0 && (
           <div
+            css={styles.euiDataGrid__scrollBarOverlayBottom}
             className="euiDataGrid__scrollBarOverlayBottom"
-            style={{ bottom: scrollBarHeight, right: 0 }}
+            style={logicalStyles({ bottom: scrollBarHeight })}
           />
         )}
         {scrollBarWidth > 0 && (
           <div
+            css={styles.euiDataGrid__scrollBarOverlayRight}
             className="euiDataGrid__scrollBarOverlayRight"
-            style={{ bottom: scrollBarHeight, right: scrollBarWidth }}
+            style={logicalStyles({
+              top: 0,
+              bottom: scrollBarHeight,
+              right: scrollBarWidth,
+            })}
           />
         )}
       </div>
@@ -256,6 +270,7 @@ export const useScrollBars = (
     scrollBarHeight,
     scrollBarWidth,
     borderStyle,
+    styles,
   ]);
 
   return {

@@ -106,4 +106,14 @@ describe('useDataGridFullScreenSelector', () => {
       ).toBe(false);
     });
   });
+
+  describe('fullScreenStyles', () => {
+    it('returns an Emotion fullscreen className to apply to the EuiDataGrid', () => {
+      const { fullScreenStyles } = renderHook(() =>
+        useDataGridFullScreenSelector()
+      ).result.current;
+
+      expect(fullScreenStyles).toContain('euiDataGrid--fullScreen');
+    });
+  });
 });

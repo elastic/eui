@@ -457,11 +457,11 @@ exports[`EuiDataGrid rendering renders additional toolbar controls 1`] = `
     tabindex="-1"
   />
   <div
-    class="euiDataGrid__focusWrap"
+    class="euiDataGrid__focusWrap emotion-euiDataGrid__focusWrap"
     data-focus-lock-disabled="disabled"
   >
     <div
-      class="euiDataGrid euiDataGrid--bordersAll euiDataGrid--headerShade euiDataGrid--footerOverline euiDataGrid--rowHoverHighlight euiDataGrid--stickyFooter testClass1 testClass2 emotion-euiTestCss"
+      class="euiDataGrid euiDataGrid--bordersAll euiDataGrid--headerShade euiDataGrid--footerOverline euiDataGrid--rowHoverHighlight euiDataGrid--stickyFooter testClass1 testClass2 emotion-euiDataGrid-euiTestCss"
       data-test-subj="test subject string"
     >
       <div
@@ -576,14 +576,14 @@ exports[`EuiDataGrid rendering renders additional toolbar controls 1`] = `
       <div
         aria-label="aria-label"
         aria-rowcount="3"
-        class="euiDataGrid__content"
+        class="euiDataGrid__content emotion-euiDataGrid__content"
         data-test-subj="euiDataGridBody"
         id="generated-id"
         role="grid"
         tabindex="0"
       >
         <div
-          class="euiDataGrid__virtualized"
+          class="euiDataGrid__virtualized emotion-euiDataGridBody-virtualized"
           style="position: relative; height: 9007199254740991px; width: 9007199254740991px; overflow: auto; will-change: transform; direction: ltr;"
         >
           <div
@@ -866,11 +866,11 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
     tabindex="-1"
   />
   <div
-    class="euiDataGrid__focusWrap"
+    class="euiDataGrid__focusWrap emotion-euiDataGrid__focusWrap"
     data-focus-lock-disabled="disabled"
   >
     <div
-      class="euiDataGrid euiDataGrid--bordersAll euiDataGrid--headerShade euiDataGrid--footerOverline euiDataGrid--rowHoverHighlight euiDataGrid--stickyFooter testClass1 testClass2 emotion-euiTestCss"
+      class="euiDataGrid euiDataGrid--bordersAll euiDataGrid--headerShade euiDataGrid--footerOverline euiDataGrid--rowHoverHighlight euiDataGrid--stickyFooter testClass1 testClass2 emotion-euiDataGrid-euiTestCss"
       data-test-subj="test subject string"
     >
       <div
@@ -985,14 +985,14 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
       <div
         aria-label="aria-label"
         aria-rowcount="3"
-        class="euiDataGrid__content"
+        class="euiDataGrid__content emotion-euiDataGrid__content"
         data-test-subj="euiDataGridBody"
         id="generated-id"
         role="grid"
         tabindex="0"
       >
         <div
-          class="euiDataGrid__virtualized"
+          class="euiDataGrid__virtualized emotion-euiDataGridBody-virtualized"
           style="position: relative; height: 9007199254740991px; width: 9007199254740991px; overflow: auto; will-change: transform; direction: ltr;"
         >
           <div
@@ -1469,11 +1469,11 @@ exports[`EuiDataGrid rendering renders custom column headers 1`] = `
     tabindex="-1"
   />
   <div
-    class="euiDataGrid__focusWrap"
+    class="euiDataGrid__focusWrap emotion-euiDataGrid__focusWrap"
     data-focus-lock-disabled="disabled"
   >
     <div
-      class="euiDataGrid euiDataGrid--bordersAll euiDataGrid--headerShade euiDataGrid--footerOverline euiDataGrid--rowHoverHighlight euiDataGrid--stickyFooter testClass1 testClass2 emotion-euiTestCss"
+      class="euiDataGrid euiDataGrid--bordersAll euiDataGrid--headerShade euiDataGrid--footerOverline euiDataGrid--rowHoverHighlight euiDataGrid--stickyFooter testClass1 testClass2 emotion-euiDataGrid-euiTestCss"
       data-test-subj="test subject string"
     >
       <div
@@ -1585,14 +1585,14 @@ exports[`EuiDataGrid rendering renders custom column headers 1`] = `
       <div
         aria-label="aria-label"
         aria-rowcount="3"
-        class="euiDataGrid__content"
+        class="euiDataGrid__content emotion-euiDataGrid__content"
         data-test-subj="euiDataGridBody"
         id="generated-id"
         role="grid"
         tabindex="0"
       >
         <div
-          class="euiDataGrid__virtualized"
+          class="euiDataGrid__virtualized emotion-euiDataGridBody-virtualized"
           style="position: relative; height: 9007199254740991px; width: 9007199254740991px; overflow: auto; will-change: transform; direction: ltr;"
         >
           <div
@@ -1877,11 +1877,11 @@ exports[`EuiDataGrid rendering renders with common and div attributes 1`] = `
     tabindex="-1"
   />
   <div
-    class="euiDataGrid__focusWrap"
+    class="euiDataGrid__focusWrap emotion-euiDataGrid__focusWrap"
     data-focus-lock-disabled="disabled"
   >
     <div
-      class="euiDataGrid euiDataGrid--bordersAll euiDataGrid--headerShade euiDataGrid--footerOverline euiDataGrid--rowHoverHighlight euiDataGrid--stickyFooter testClass1 testClass2 emotion-euiTestCss"
+      class="euiDataGrid euiDataGrid--bordersAll euiDataGrid--headerShade euiDataGrid--footerOverline euiDataGrid--rowHoverHighlight euiDataGrid--stickyFooter testClass1 testClass2 emotion-euiDataGrid-euiTestCss"
       data-test-subj="test subject string"
     >
       <div
@@ -1993,14 +1993,14 @@ exports[`EuiDataGrid rendering renders with common and div attributes 1`] = `
       <div
         aria-label="aria-label"
         aria-rowcount="3"
-        class="euiDataGrid__content"
+        class="euiDataGrid__content emotion-euiDataGrid__content"
         data-test-subj="euiDataGridBody"
         id="generated-id"
         role="grid"
         tabindex="0"
       >
         <div
-          class="euiDataGrid__virtualized"
+          class="euiDataGrid__virtualized emotion-euiDataGridBody-virtualized"
           style="position: relative; height: 9007199254740991px; width: 9007199254740991px; overflow: auto; will-change: transform; direction: ltr;"
         >
           <div
