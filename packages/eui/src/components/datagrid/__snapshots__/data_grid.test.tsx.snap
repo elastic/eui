@@ -465,18 +465,18 @@ exports[`EuiDataGrid rendering renders additional toolbar controls 1`] = `
       data-test-subj="test subject string"
     >
       <div
-        class="euiDataGrid__controls"
+        class="euiDataGrid__controls emotion-euiDataGrid__controls"
         data-test-subj="dataGridControls"
       >
         <div
-          class="euiDataGrid__leftControls"
+          class="euiDataGrid__leftControls emotion-euiDataGrid__leftControls"
         >
           <div
             class="euiPopover emotion-euiPopover-inline-block"
             data-test-subj="dataGridColumnSelectorPopover"
           >
             <button
-              class="euiButtonEmpty euiDataGridToolbarControl emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-text-EuiDataGridToolbarControl"
+              class="euiButtonEmpty euiDataGridToolbarControl emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-text-underlineStyles"
               data-test-subj="dataGridColumnSelectorButton"
               type="button"
             >
@@ -494,7 +494,7 @@ exports[`EuiDataGrid rendering renders additional toolbar controls 1`] = `
                 </span>
                 <span
                   aria-label="- Active: 2"
-                  class="euiNotificationBadge euiDataGridToolbarControl__badge emotion-euiNotificationBadge-s-subdued-EuiDataGridToolbarControl"
+                  class="euiNotificationBadge euiDataGridToolbarControl__badge emotion-euiNotificationBadge-s-subdued-badgeStyles"
                   role="marquee"
                 >
                   2
@@ -507,7 +507,7 @@ exports[`EuiDataGrid rendering renders additional toolbar controls 1`] = `
           </button>
         </div>
         <div
-          class="euiDataGrid__rightControls"
+          class="euiDataGrid__rightControls emotion-euiDataGrid__rightControls"
         >
           <div
             class="euiPopover emotion-euiPopover-inline-block"
@@ -874,18 +874,18 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
       data-test-subj="test subject string"
     >
       <div
-        class="euiDataGrid__controls"
+        class="euiDataGrid__controls emotion-euiDataGrid__controls"
         data-test-subj="dataGridControls"
       >
         <div
-          class="euiDataGrid__leftControls"
+          class="euiDataGrid__leftControls emotion-euiDataGrid__leftControls"
         >
           <div
             class="euiPopover emotion-euiPopover-inline-block"
             data-test-subj="dataGridColumnSelectorPopover"
           >
             <button
-              class="euiButtonEmpty euiDataGridToolbarControl emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-text-EuiDataGridToolbarControl"
+              class="euiButtonEmpty euiDataGridToolbarControl emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-text-underlineStyles"
               data-test-subj="dataGridColumnSelectorButton"
               type="button"
             >
@@ -903,7 +903,7 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
                 </span>
                 <span
                   aria-label="- Active: 2"
-                  class="euiNotificationBadge euiDataGridToolbarControl__badge emotion-euiNotificationBadge-s-subdued-EuiDataGridToolbarControl"
+                  class="euiNotificationBadge euiDataGridToolbarControl__badge emotion-euiNotificationBadge-s-subdued-badgeStyles"
                   role="marquee"
                 >
                   2
@@ -916,7 +916,7 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
           </button>
         </div>
         <div
-          class="euiDataGrid__rightControls"
+          class="euiDataGrid__rightControls emotion-euiDataGrid__rightControls"
         >
           <div
             class="euiPopover emotion-euiPopover-inline-block"
@@ -1477,18 +1477,18 @@ exports[`EuiDataGrid rendering renders custom column headers 1`] = `
       data-test-subj="test subject string"
     >
       <div
-        class="euiDataGrid__controls"
+        class="euiDataGrid__controls emotion-euiDataGrid__controls"
         data-test-subj="dataGridControls"
       >
         <div
-          class="euiDataGrid__leftControls"
+          class="euiDataGrid__leftControls emotion-euiDataGrid__leftControls"
         >
           <div
             class="euiPopover emotion-euiPopover-inline-block"
             data-test-subj="dataGridColumnSelectorPopover"
           >
             <button
-              class="euiButtonEmpty euiDataGridToolbarControl emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-text-EuiDataGridToolbarControl"
+              class="euiButtonEmpty euiDataGridToolbarControl emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-text-underlineStyles"
               data-test-subj="dataGridColumnSelectorButton"
               type="button"
             >
@@ -1506,7 +1506,7 @@ exports[`EuiDataGrid rendering renders custom column headers 1`] = `
                 </span>
                 <span
                   aria-label="- Active: 2"
-                  class="euiNotificationBadge euiDataGridToolbarControl__badge emotion-euiNotificationBadge-s-subdued-EuiDataGridToolbarControl"
+                  class="euiNotificationBadge euiDataGridToolbarControl__badge emotion-euiNotificationBadge-s-subdued-badgeStyles"
                   role="marquee"
                 >
                   2
@@ -1516,7 +1516,7 @@ exports[`EuiDataGrid rendering renders custom column headers 1`] = `
           </div>
         </div>
         <div
-          class="euiDataGrid__rightControls"
+          class="euiDataGrid__rightControls emotion-euiDataGrid__rightControls"
         >
           <div
             class="euiPopover emotion-euiPopover-inline-block"
@@ -1885,18 +1885,18 @@ exports[`EuiDataGrid rendering renders with common and div attributes 1`] = `
       data-test-subj="test subject string"
     >
       <div
-        class="euiDataGrid__controls"
+        class="euiDataGrid__controls emotion-euiDataGrid__controls"
         data-test-subj="dataGridControls"
       >
         <div
-          class="euiDataGrid__leftControls"
+          class="euiDataGrid__leftControls emotion-euiDataGrid__leftControls"
         >
           <div
             class="euiPopover emotion-euiPopover-inline-block"
             data-test-subj="dataGridColumnSelectorPopover"
           >
             <button
-              class="euiButtonEmpty euiDataGridToolbarControl emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-text-EuiDataGridToolbarControl"
+              class="euiButtonEmpty euiDataGridToolbarControl emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-text-underlineStyles"
               data-test-subj="dataGridColumnSelectorButton"
               type="button"
             >
@@ -1914,7 +1914,7 @@ exports[`EuiDataGrid rendering renders with common and div attributes 1`] = `
                 </span>
                 <span
                   aria-label="- Active: 2"
-                  class="euiNotificationBadge euiDataGridToolbarControl__badge emotion-euiNotificationBadge-s-subdued-EuiDataGridToolbarControl"
+                  class="euiNotificationBadge euiDataGridToolbarControl__badge emotion-euiNotificationBadge-s-subdued-badgeStyles"
                   role="marquee"
                 >
                   2
@@ -1924,7 +1924,7 @@ exports[`EuiDataGrid rendering renders with common and div attributes 1`] = `
           </div>
         </div>
         <div
-          class="euiDataGrid__rightControls"
+          class="euiDataGrid__rightControls emotion-euiDataGrid__rightControls"
         >
           <div
             class="euiPopover emotion-euiPopover-inline-block"
