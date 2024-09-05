@@ -8,13 +8,15 @@
 
 import React, { useState, useMemo, ReactNode } from 'react';
 
-import { useGeneratedHtmlId } from '../../../services';
+import { useGeneratedHtmlId, useEuiMemoizedStyles } from '../../../services';
 import { EuiButtonIcon } from '../../button';
 import { EuiToolTip } from '../../tool_tip';
 import { EuiPopover, EuiPopoverTitle } from '../../popover';
 import { EuiDescriptionList } from '../../description_list';
 import { EuiText } from '../../text';
 import { useEuiI18n, EuiI18n } from '../../i18n';
+
+import { euiDataGridKeyboardShortcutsStyles } from './keyboard_shortcuts.styles';
 
 export const useDataGridKeyboardShortcuts = (): {
   keyboardShortcuts: ReactNode;
@@ -24,6 +26,8 @@ export const useDataGridKeyboardShortcuts = (): {
   const title = useEuiI18n('euiKeyboardShortcuts.title', 'Keyboard shortcuts');
   const titleId = useGeneratedHtmlId();
 
+  const styles = useEuiMemoizedStyles(euiDataGridKeyboardShortcutsStyles);
+
   const keyboardShortcuts = useMemo(
     () => (
       <EuiPopover
@@ -31,6 +35,7 @@ export const useDataGridKeyboardShortcuts = (): {
         isOpen={isOpen}
         closePopover={() => setIsOpen(false)}
         anchorPosition="downRight"
+        panelPaddingSize="none"
         button={
           <EuiToolTip content={title} delay="long">
             <EuiButtonIcon
@@ -47,11 +52,15 @@ export const useDataGridKeyboardShortcuts = (): {
         <EuiPopoverTitle paddingSize="s">
           <h2 id={titleId}>{title}</h2>
         </EuiPopoverTitle>
-        <EuiText className="euiDataGrid__keyboardShortcuts" size="xs">
+        <EuiText
+          css={styles.euiDataGrid__keyboardShortcuts}
+          className="euiDataGrid__keyboardShortcuts"
+          size="xs"
+        >
           <EuiDescriptionList
             aria-labelledby={titleId}
             type="column"
-            columnWidths={[1, 3]}
+            columnWidths={['auto', 'auto']}
             align="center"
             compressed
             listItems={[
@@ -268,7 +277,7 @@ export const useDataGridKeyboardShortcuts = (): {
         </EuiText>
       </EuiPopover>
     ),
-    [isOpen, title, titleId]
+    [isOpen, title, titleId, styles]
   );
 
   return { keyboardShortcuts };

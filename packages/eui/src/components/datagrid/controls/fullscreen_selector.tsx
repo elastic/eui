@@ -16,10 +16,12 @@ import React, {
   KeyboardEventHandler,
 } from 'react';
 
-import { keys } from '../../../services';
+import { keys, useEuiMemoizedStyles } from '../../../services';
 import { EuiToolTip } from '../../tool_tip';
 import { EuiButtonIcon } from '../../button';
 import { useEuiI18n } from '../../i18n';
+
+import { euiDataGridFullScreenStyles } from './fullscreen_selector.styles';
 
 const GRID_IS_FULLSCREEN_CLASSNAME = 'euiDataGrid__restrictBody';
 
@@ -28,6 +30,7 @@ export const useDataGridFullScreenSelector = (): {
   setIsFullScreen: (isFullScreen: boolean) => void;
   fullScreenSelector: ReactNode;
   handleGridKeyDown: KeyboardEventHandler<HTMLDivElement>;
+  fullScreenStyles: string;
 } => {
   const [isFullScreen, setIsFullScreen] = useState(false);
 
@@ -80,21 +83,30 @@ export const useDataGridFullScreenSelector = (): {
     [isFullScreen]
   );
 
+  const styles = useEuiMemoizedStyles(euiDataGridFullScreenStyles);
+
   useEffect(() => {
     // When the data grid is fullscreen, we add a class to the body to remove the extra scrollbar and stay above any fixed headers
     if (isFullScreen) {
-      document.body.classList.add(GRID_IS_FULLSCREEN_CLASSNAME);
+      document.body.classList.add(
+        GRID_IS_FULLSCREEN_CLASSNAME,
+        styles.euiDataGrid__restrictBody
+      );
 
       return () => {
-        document.body.classList.remove(GRID_IS_FULLSCREEN_CLASSNAME);
+        document.body.classList.remove(
+          GRID_IS_FULLSCREEN_CLASSNAME,
+          styles.euiDataGrid__restrictBody
+        );
       };
     }
-  }, [isFullScreen]);
+  }, [isFullScreen, styles.euiDataGrid__restrictBody]);
 
   return {
     isFullScreen,
     setIsFullScreen,
     fullScreenSelector,
     handleGridKeyDown,
+    fullScreenStyles: styles['euiDataGrid--fullScreen'],
   };
 };

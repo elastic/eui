@@ -465,7 +465,7 @@ describe('useScrollBars', () => {
 
         expect(container.firstChild).toMatchInlineSnapshot(`
           <div
-            class="euiDataGrid__scrollOverlay"
+            class="euiDataGrid__scrollOverlay emotion-euiDataGrid__scrollOverlay"
             role="presentation"
           />
         `);
@@ -491,12 +491,12 @@ describe('useScrollBars', () => {
 
         expect(container.firstChild).toMatchInlineSnapshot(`
           <div
-            class="euiDataGrid__scrollOverlay"
+            class="euiDataGrid__scrollOverlay emotion-euiDataGrid__scrollOverlay"
             role="presentation"
           >
             <div
-              class="euiDataGrid__scrollBarOverlayBottom"
-              style="bottom: 10px; right: 0px;"
+              class="euiDataGrid__scrollBarOverlayBottom emotion-euiDataGrid__scrollBarOverlayBottom"
+              style="inset-block-end: 10px;"
             />
           </div>
         `);
@@ -520,12 +520,12 @@ describe('useScrollBars', () => {
 
         expect(container.firstChild).toMatchInlineSnapshot(`
           <div
-            class="euiDataGrid__scrollOverlay"
+            class="euiDataGrid__scrollOverlay emotion-euiDataGrid__scrollOverlay"
             role="presentation"
           >
             <div
-              class="euiDataGrid__scrollBarOverlayRight"
-              style="bottom: 0px; right: 10px;"
+              class="euiDataGrid__scrollBarOverlayRight emotion-euiDataGrid__scrollBarOverlayRight"
+              style="inset-block-start: 0; inset-block-end: 0; inset-inline-end: 10px;"
             />
           </div>
         `);
