@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { useState } from 'react';
+import React from 'react';
 import { fireEvent } from '@storybook/test';
 import type { Meta, StoryObj, ReactRenderer } from '@storybook/react';
 import type { PlayFunctionContext } from '@storybook/csf';
@@ -17,63 +17,179 @@ import { EuiButtonEmpty, EuiButtonIcon } from '../../button';
 import { EuiFlexGroup, EuiFlexItem } from '../../flex';
 import { EuiToolTip } from '../../tool_tip';
 
-import { EuiDataGrid } from '../data_grid';
-import { EuiDataGridProps } from '../data_grid_types';
+import type {
+  EuiDataGridProps,
+  EuiDataGridToolBarVisibilityOptions,
+  EuiDataGridToolBarAdditionalControlsOptions,
+} from '../data_grid_types';
+import {
+  EuiDataGridToolbarPropsComponent,
+  StatefulDataGrid,
+  defaultStorybookArgs,
+} from '../data_grid.stories.utils';
 
-const meta: Meta<EuiDataGridProps> = {
+const meta: Meta = {
   title: 'Tabular Content/EuiDataGrid/Toolbar Controls',
-  component: EuiDataGrid,
+  component: EuiDataGridToolbarPropsComponent,
 };
 
 export default meta;
 type Story = StoryObj<EuiDataGridProps>;
 
-export const AdditionalControls: Story = {
-  parameters: {
-    controls: { include: ['toolbarVisibility'] },
-  },
-  args: {
-    toolbarVisibility: {
-      additionalControls: {
-        left: {
-          prepend: (
-            <EuiButtonEmpty size="xs" iconType="document" color="text">
-              12 results
-            </EuiButtonEmpty>
-          ),
-          append: (
-            <EuiButtonEmpty size="xs" iconType="download" color="primary">
-              Download
-            </EuiButtonEmpty>
-          ),
-        },
-        right: (
-          <>
-            <EuiToolTip title="Updated 3 min ago" content="Click to refresh">
-              <EuiButtonIcon
-                aria-label="Refresh grid data"
-                size="xs"
-                iconType="refresh"
-              />
-            </EuiToolTip>
-            <EuiToolTip content="Inspect grid data">
-              <EuiButtonIcon
-                aria-label="Inspect grid data"
-                size="xs"
-                iconType="inspect"
-              />
-            </EuiToolTip>
-          </>
-        ),
+export const NoToolbar: StoryObj<Pick<EuiDataGridProps, 'toolbarVisibility'>> =
+  {
+    parameters: {
+      codeSnippet: {
+        snippet: `<EuiDataGrid toolbarVisibility={{{STORY_ARGS}}} />`,
+      },
+      controls: { include: ['toolbarVisibility'] },
+    },
+    argTypes: {
+      toolbarVisibility: { control: { type: 'boolean' } },
+    },
+    args: {
+      toolbarVisibility: false,
+    },
+    render: (args: Pick<EuiDataGridProps, 'toolbarVisibility'>) => (
+      <StatefulDataGrid {...defaultStorybookArgs} {...args} />
+    ),
+  };
+
+export const ToolbarVisibilityOptions: StoryObj<EuiDataGridToolBarVisibilityOptions> =
+  {
+    parameters: {
+      codeSnippet: {
+        snippet: `<EuiDataGrid toolbarVisibility={{{STORY_ARGS}}} />`,
+      },
+      controls: {
+        include: [
+          'showColumnSelector',
+          'showSortSelector',
+          'showDisplaySelector',
+          'showFullScreenSelector',
+          'showKeyboardShortcuts',
+          'additionalControls',
+        ],
+        sort: 'none',
       },
     },
-  },
-  render: (args: EuiDataGridProps) => <StatefulDataGrid {...args} />,
-};
+    argTypes: {
+      additionalControls: {
+        control: { type: 'boolean' },
+        mapping: {
+          true: <EuiButtonEmpty size="xs">Additional control</EuiButtonEmpty>,
+          false: undefined,
+        },
+      },
+    },
+    args: {
+      showColumnSelector: {
+        allowHide: true,
+        allowReorder: true,
+      },
+      showSortSelector: true,
+      showDisplaySelector: {
+        allowDensity: true,
+        allowRowHeight: true,
+        allowResetButton: true,
+        additionalDisplaySettings: '',
+      },
+      showFullScreenSelector: false,
+      showKeyboardShortcuts: false,
+      additionalControls: false,
+    },
+    render: (toolbarVisibility: EuiDataGridToolBarVisibilityOptions) => (
+      <StatefulDataGrid
+        {...defaultStorybookArgs}
+        toolbarVisibility={toolbarVisibility}
+      />
+    ),
+  };
 
-export const RenderCustomToolbar: Story = {
+export const AdditionalControlsOptions: StoryObj<EuiDataGridToolBarAdditionalControlsOptions> =
+  {
+    parameters: {
+      controls: { include: ['left', 'right'] },
+      codeSnippet: {
+        /* eslint-disable local/css-logical-properties */
+        snippet: `<EuiDataGrid
+  toolbarVisibility={{
+    additionalControls: {
+      left: {
+        prepend: <EuiButtonEmpty size="xs" iconType="document" color="text" />,
+        append: <EuiButtonEmpty size="xs" iconType="download" color="primary" />,
+      },
+      right: (
+        <EuiToolTip title="Updated 3 min ago" content="Click to refresh">
+          <EuiButtonIcon
+            aria-label="Refresh grid data"
+            size="xs"
+            iconType="refresh"
+          />
+        </EuiToolTip>
+      ),
+    },
+  }}
+/>`,
+      },
+    },
+    args: {
+      left: {
+        prepend: (
+          <EuiButtonEmpty size="xs" iconType="document" color="text">
+            12 results
+          </EuiButtonEmpty>
+        ),
+        append: (
+          <EuiButtonEmpty size="xs" iconType="download" color="primary">
+            Download
+          </EuiButtonEmpty>
+        ),
+      },
+      right: (
+        <>
+          <EuiToolTip title="Updated 3 min ago" content="Click to refresh">
+            <EuiButtonIcon
+              aria-label="Refresh grid data"
+              size="xs"
+              iconType="refresh"
+            />
+          </EuiToolTip>
+          <EuiToolTip content="Inspect grid data">
+            <EuiButtonIcon
+              aria-label="Inspect grid data"
+              size="xs"
+              iconType="inspect"
+            />
+          </EuiToolTip>
+        </>
+      ),
+    },
+    render: (
+      additionalControls: EuiDataGridToolBarAdditionalControlsOptions
+    ) => (
+      <StatefulDataGrid
+        {...vrtProps}
+        toolbarVisibility={{ additionalControls }}
+      />
+    ),
+  };
+
+export const RenderCustomToolbar: StoryObj<
+  Pick<EuiDataGridProps, 'renderCustomToolbar'>
+> = {
   parameters: {
     controls: { include: ['renderCustomToolbar'] },
+    codeSnippet: {
+      snippet: `<EuiDataGrid renderCustomToolbar={({
+    hasRoomForGridControls,
+    columnControl,
+    columnSortingControl,
+    displayControl,
+    fullScreenControl,
+    keyboardShortcutsControl,
+  }) => <>...</>} />`,
+    },
   },
   args: {
     renderCustomToolbar: ({
@@ -123,19 +239,32 @@ export const RenderCustomToolbar: Story = {
       );
     },
   },
-  render: (args: EuiDataGridProps) => <StatefulDataGrid {...args} />,
+  render: (args: Pick<EuiDataGridProps, 'renderCustomToolbar'>) => (
+    <StatefulDataGrid {...defaultStorybookArgs} {...args} />
+  ),
 };
 
 /**
  * VRT tests only
  */
 
+const vrtProps = {
+  'aria-label': 'VRT only',
+  columns: [{ id: 'Test' }],
+  columnVisibility: {
+    visibleColumns: ['Test'],
+    setVisibleColumns: () => {},
+  },
+  renderCellValue: () => 'Test',
+  rowCount: 2,
+};
+
 export const ColumnSelector: Story = {
   tags: ['vrt-only'],
   parameters: {
     loki: { chromeSelector: LOKI_SELECTORS.portal },
   },
-  render: () => <StatefulDataGrid minSizeForControls={1} />, // Column sorting is hidden on mobile otherwise
+  render: () => <StatefulDataGrid {...vrtProps} minSizeForControls={1} />, // Column sorting is hidden on mobile otherwise
   play: async ({ canvasElement, step }: PlayFunctionContext<ReactRenderer>) => {
     const canvas = within(canvasElement);
 
@@ -156,7 +285,7 @@ export const ColumnSorting: Story = {
   parameters: {
     loki: { chromeSelector: LOKI_SELECTORS.portal },
   },
-  render: () => <StatefulDataGrid minSizeForControls={1} />, // Column sorting is hidden on mobile otherwise
+  render: () => <StatefulDataGrid {...vrtProps} minSizeForControls={1} />, // Column sorting is hidden on mobile otherwise
   play: async ({ canvasElement, step }: PlayFunctionContext<ReactRenderer>) => {
     const canvas = within(canvasElement);
 
@@ -182,7 +311,7 @@ export const KeyboardShortcuts: Story = {
   parameters: {
     loki: { chromeSelector: LOKI_SELECTORS.portal },
   },
-  render: () => <StatefulDataGrid />,
+  render: () => <StatefulDataGrid {...vrtProps} />,
   play: async ({ canvasElement }: PlayFunctionContext<ReactRenderer>) => {
     const canvas = within(canvasElement);
     await canvas.waitForAndClick('dataGridKeyboardShortcutsButton');
@@ -194,7 +323,7 @@ export const DisplaySelector: Story = {
   parameters: {
     loki: { chromeSelector: LOKI_SELECTORS.portal },
   },
-  render: () => <StatefulDataGrid />,
+  render: () => <StatefulDataGrid {...vrtProps} />,
   play: async ({ canvasElement, step }: PlayFunctionContext<ReactRenderer>) => {
     const canvas = within(canvasElement);
 
@@ -214,34 +343,9 @@ export const FullScreenToggle: Story = {
   parameters: {
     loki: { chromeSelector: LOKI_SELECTORS.portal },
   },
-  render: () => <StatefulDataGrid />,
+  render: () => <StatefulDataGrid {...vrtProps} />,
   play: async ({ canvasElement }: PlayFunctionContext<ReactRenderer>) => {
     const canvas = within(canvasElement);
     await canvas.waitForAndClick('dataGridFullScreenButton');
   },
-};
-
-const StatefulDataGrid = (
-  props: Partial<Omit<EuiDataGridProps, 'aria-labelledby'>>
-) => {
-  const [visibleColumns, setVisibleColumns] = useState(['Test']);
-  const [sortingColumns, setSortingColumns] = useState<any[]>([]);
-
-  return (
-    <EuiDataGrid
-      aria-label="Test"
-      renderCellValue={() => 'Test'}
-      rowCount={2}
-      columns={[{ id: 'Test' }]}
-      columnVisibility={{ visibleColumns, setVisibleColumns }}
-      sorting={{
-        columns: sortingColumns,
-        onSort: (sortingColumns) => {
-          setSortingColumns(sortingColumns);
-        },
-      }}
-      inMemory={{ level: 'sorting' }}
-      {...props}
-    />
-  );
 };

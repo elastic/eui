@@ -905,6 +905,7 @@ export interface EuiDataGridToolBarVisibilityDisplaySelectorOptions {
 export interface EuiDataGridToolBarVisibilityOptions {
   /**
    * Allows the ability for the user to hide fields and sort columns, boolean or a #EuiDataGridToolBarVisibilityColumnSelectorOptions
+   * @default true
    */
   showColumnSelector?:
     | boolean
@@ -912,21 +913,25 @@ export interface EuiDataGridToolBarVisibilityOptions {
   /**
    * Allows the ability for the user to customize display settings such as grid density and row heights.
    * User changes will override what is provided in #EuiDataGridStyle and #EuiDataGridRowHeightsOptions
+   * @default true
    */
   showDisplaySelector?:
     | boolean
     | EuiDataGridToolBarVisibilityDisplaySelectorOptions;
   /**
    * Allows the ability for the user to sort rows based upon column values
+   * @default true
    */
   showSortSelector?: boolean;
   /**
    * Displays a popover listing all keyboard controls and shortcuts for the data grid.
    * If set to `false`, the toggle will be visually hidden, but still focusable by keyboard and screen reader users.
+   * @default true
    */
   showKeyboardShortcuts?: boolean;
   /**
    * Allows user to be able to fullscreen the data grid. If set to `false` make sure your grid fits within a large enough panel to still show the other controls.
+   * @default true
    */
   showFullScreenSelector?: boolean;
   /**
