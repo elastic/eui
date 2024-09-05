@@ -26,6 +26,7 @@ import type {
   EuiDataGridColumnCellActionProps,
   EuiDataGridColumnSortingConfig,
   EuiDataGridProps,
+  EuiDataGridStyle,
   EuiDataGridToolBarVisibilityOptions,
   EuiDataGridToolBarAdditionalControlsOptions,
 } from './data_grid_types';
@@ -376,4 +377,8 @@ export const EuiDataGridToolbarPropsComponent: FunctionComponent<
   EuiDataGridProps & // We really just want toolbarVisibility and renderCustomToolbar from here, but typescript-docgen is unhappy if we Pick<>
     EuiDataGridToolBarVisibilityOptions &
     EuiDataGridToolBarAdditionalControlsOptions
+> = () => <></>;
+
+export const EuiDataGridStylePropsComponent: FunctionComponent<
+  EuiDataGridStyle
 > = () => <></>;

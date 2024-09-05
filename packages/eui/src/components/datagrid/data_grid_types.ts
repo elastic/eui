@@ -631,7 +631,7 @@ export interface EuiDataGridCellProps {
     | ((props: EuiDataGridCellPopoverElementProps) => ReactNode);
   setRowHeight?: (height: number) => void;
   getRowHeight?: (rowIndex: number) => number;
-  style?: React.CSSProperties;
+  style?: CSSProperties;
   rowHeightsOptions?: EuiDataGridRowHeightsOptions;
   rowHeightUtils?: RowHeightUtilsType;
   rowManager?: EuiDataGridRowManager;
@@ -831,34 +831,42 @@ export type EuiDataGridStyleCellPaddings = 's' | 'm' | 'l';
 export interface EuiDataGridStyle {
   /**
    * Size of fonts used within the row and column cells
+   * @default m
    */
   fontSize?: EuiDataGridStyleFontSizes;
   /**
    * Defines the padding with the row and column cells
+   * @default m
    */
   cellPadding?: EuiDataGridStyleCellPaddings;
   /**
-   * Border uses for the row and column cells
+   * Border used for the row and column cells
+   * @default all
    */
   border?: EuiDataGridStyleBorders;
   /**
    * If set to true, rows will alternate zebra striping for clarity
+   * @default false
    */
   stripes?: boolean;
   /**
    * Visual style for the column headers. Recommendation is to use the `underline` style in times when #EuiDataGrid `toolbarVisibility` is set to `false`.
+   * @default shade
    */
   header?: EuiDataGridStyleHeader;
   /**
    * Visual style for the column footers.
+   * @default overline
    */
   footer?: EuiDataGridStyleFooter;
   /**
    * If set to true, the footer row will be sticky
+   * @default true
    */
   stickyFooter?: boolean;
   /**
    * Will define what visual style to show on row hover
+   * @default hover
    */
   rowHover?: EuiDataGridStyleRowHover;
   /**
