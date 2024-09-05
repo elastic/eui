@@ -15,6 +15,7 @@ import { requiredProps } from '../../../test';
 import {
   FieldValueSelectionFilter,
   FieldValueSelectionFilterProps,
+  FieldValueSelectionFilterConfigType,
 } from './field_value_selection_filter';
 import { Query } from '../query';
 
@@ -34,6 +35,29 @@ const staticOptions = [
 ];
 
 describe('FieldValueSelectionFilter', () => {
+  const FieldValueSelectionFilterWithState = (
+    config: Partial<FieldValueSelectionFilterConfigType>
+  ) => {
+    const [query, setQuery] = useState(Query.parse(''));
+    const onChange = (newQuery: Query) => setQuery(newQuery);
+
+    const props: FieldValueSelectionFilterProps = {
+      ...requiredProps,
+      index: 0,
+      onChange,
+      query,
+      config: {
+        type: 'field_value_selection',
+        field: 'tag',
+        name: 'Tag',
+        options: staticOptions,
+        ...config,
+      },
+    };
+
+    return <FieldValueSelectionFilter {...props} />;
+  };
+
   it('allows options as a function', () => {
     const props: FieldValueSelectionFilterProps = {
       ...requiredProps,
@@ -140,31 +164,6 @@ describe('FieldValueSelectionFilter', () => {
   });
 
   describe('multi-select testing', () => {
-    const FieldValueSelectionFilterWithState = ({
-      multiSelect,
-    }: {
-      multiSelect: 'or' | boolean;
-    }) => {
-      const [query, setQuery] = useState(Query.parse(''));
-      const onChange = (newQuery: Query) => setQuery(newQuery);
-
-      const props: FieldValueSelectionFilterProps = {
-        ...requiredProps,
-        index: 0,
-        onChange,
-        query,
-        config: {
-          type: 'field_value_selection',
-          field: 'tag',
-          name: 'Tag',
-          multiSelect,
-          options: staticOptions,
-        },
-      };
-
-      return <FieldValueSelectionFilter {...props} />;
-    };
-
     it('uses multi-select OR', () => {
       cy.mount(<FieldValueSelectionFilterWithState multiSelect="or" />);
       cy.get('button').click();
@@ -226,33 +225,6 @@ describe('FieldValueSelectionFilter', () => {
   });
 
   describe('auto-close testing', () => {
-    const FieldValueSelectionFilterWithState = ({
-      autoClose,
-      multiSelect,
-    }: {
-      autoClose: undefined | boolean;
-      multiSelect: 'or' | boolean;
-    }) => {
-      const [query, setQuery] = useState(Query.parse(''));
-      const onChange = (newQuery: Query) => setQuery(newQuery);
-
-      const props: FieldValueSelectionFilterProps = {
-        ...requiredProps,
-        index: 0,
-        onChange,
-        query,
-        config: {
-          type: 'field_value_selection',
-          field: 'tag',
-          name: 'Tag',
-          multiSelect,
-          autoClose,
-          options: staticOptions,
-        },
-      };
-
-      return <FieldValueSelectionFilter {...props} />;
-    };
     const selectFilter = () => {
       // Open popover
       cy.get('button').click();
@@ -335,6 +307,37 @@ describe('FieldValueSelectionFilter', () => {
         selectFilter();
         cy.get('.euiPopover__panel').should('not.exist');
       });
+    });
+  });
+
+  describe('autoSortOptions', () => {
+    const getOptions = () => cy.get('.euiSelectableListItem');
+
+    it('sorts selected options to the top by default', () => {
+      cy.mount(<FieldValueSelectionFilterWithState />);
+      cy.get('button').click();
+      getOptions().should('have.length', 3);
+
+      getOptions().last().should('have.attr', 'title', 'Bug').click();
+      // Should have moved to the top of the list and retained active focus
+      getOptions()
+        .first()
+        .should('have.attr', 'title', 'Bug')
+        .should('have.attr', 'aria-checked', 'true')
+        .should('have.attr', 'aria-selected', 'true');
+    });
+
+    it('does not sort selected options to the top when set to false', () => {
+      cy.mount(<FieldValueSelectionFilterWithState autoSortOptions={false} />);
+      cy.get('button').click();
+      getOptions().should('have.length', 3);
+
+      getOptions().last().should('have.attr', 'title', 'Bug').click();
+      getOptions()
+        .last()
+        .should('have.attr', 'title', 'Bug')
+        .should('have.attr', 'aria-checked', 'true')
+        .should('have.attr', 'aria-selected', 'true');
     });
   });
 
@@ -452,5 +455,67 @@ describe('FieldValueSelectionFilter', () => {
     cy.get('[data-test-subj="euiSelectableList"] li')
       .eq(0)
       .should('have.attr', 'title', 'Bug');
+  });
+
+  it('caches options if options is a function and config.cache is set', () => {
+    // Note: cy.clock()/cy.tick() doesn't currently work in Cypress component testing :T
+    // We should use that instead of cy.wait once https://github.com/cypress-io/cypress/issues/28846 is fixed
+    const props: FieldValueSelectionFilterProps = {
+      index: 0,
+      onChange: () => {},
+      query: Query.parse(''),
+      config: {
+        type: 'field_value_selection',
+        field: 'tag',
+        name: 'Tag',
+        cache: 5000, // Cache the loaded tags for 5 seconds
+        options: () =>
+          new Promise((resolve) => {
+            setTimeout(() => {
+              resolve(staticOptions);
+            }, 1000); // Spoof 1 second load time
+          }),
+      },
+    };
+    cy.spy(props.config, 'options');
+
+    const reducedTimeout = { timeout: 10 };
+    const assertIsLoading = (expected?: Function) => {
+      cy.get('.euiSelectableListItem', reducedTimeout).should('have.length', 0);
+      cy.get('[data-test-subj="euiSelectableMessage"]', reducedTimeout)
+        .should('have.text', 'Loading options')
+        .then(() => {
+          expected?.();
+        });
+    };
+    const assertIsLoaded = (expected?: Function) => {
+      cy.get('.euiSelectableListItem', reducedTimeout).should('have.length', 3);
+      cy.get('[data-test-subj="euiSelectableMessage"]', reducedTimeout)
+        .should('not.exist')
+        .then(() => {
+          expected?.();
+        });
+    };
+
+    cy.mount(<FieldValueSelectionFilter {...props} />);
+    cy.get('button').click();
+    assertIsLoading();
+
+    // Wait out the async options loader
+    cy.wait(1000);
+    assertIsLoaded(() => expect(props.config.options).to.be.calledOnce);
+
+    // Close and re-open the popover
+    cy.get('button').click();
+    cy.get('button').click();
+
+    // Cached options should immediately repopulate
+    assertIsLoaded(() => expect(props.config.options).to.be.calledOnce);
+
+    // Wait out the remainder of the cache, loading state should initiate again
+    cy.get('button').click();
+    cy.wait(5000);
+    cy.get('button').click();
+    assertIsLoading(() => expect(props.config.options).to.be.calledTwice);
   });
 });

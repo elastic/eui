@@ -1,5 +1,29 @@
 [
   {
+    "version": "95.10.0",
+    "changes": [
+      {
+        "token": "euiDataGridHeaderCell.headerActions",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiDataGridCell.focusTrapExitPrompt",
+        "changeType": "added",
+        "value": "Exited cell content."
+      },
+      {
+        "token": "euiDataGridHeaderCell.actionsButtonAriaLabel",
+        "changeType": "added",
+        "value": "{title}. Click to view column header actions."
+      },
+      {
+        "token": "euiDataGridHeaderCell.actionsEnterKeyInstructions",
+        "changeType": "added",
+        "value": "Press the Enter key to view this column's actions"
+      }
+    ]
+  },
+  {
     "version": "95.8.0",
     "changes": [
       {

@@ -1,7 +1,7 @@
 {
   "name": "@elastic/eui",
   "description": "Elastic UI Component Library",
-  "version": "95.8.0",
+  "version": "95.10.1",
   "license": "SEE LICENSE IN LICENSE.txt",
   "main": "lib",
   "module": "es",
@@ -160,6 +160,7 @@
     "babel-plugin-istanbul": "^6.1.1",
     "babel-plugin-pegjs-inline-precompile": "^0.1.1",
     "buffer": "^6.0.3",
+    "buildkite-test-collector": "^1.7.2",
     "cache-loader": "^4.1.0",
     "chalk": "^4.1.0",
     "chokidar": "^3.4.2",
@@ -260,7 +261,7 @@
     "moment": "^2.13.0",
     "react": "^16.12 || ^17.0 || ^18.0",
     "react-dom": "^16.12 || ^17.0 || ^18.0",
-    "typescript": "~4.5.3"
+    "typescript": "~4.5.3 || ^5"
   },
   "files": [
     "dist",

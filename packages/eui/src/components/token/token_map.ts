@@ -54,6 +54,7 @@ export type EuiTokenMapType =
   | 'tokenRankFeatures'
   | 'tokenRepo'
   | 'tokenSearchType'
+  | 'tokenSemanticText'
   | 'tokenShape'
   | 'tokenString'
   | 'tokenStruct'
@@ -254,6 +255,10 @@ export const TOKEN_MAP: {
   tokenSearchType: {
     shape: 'square',
     color: 'euiColorVis5',
+  },
+  tokenSemanticText: {
+    shape: 'square',
+    color: 'euiColorVis0',
   },
   tokenShape: {
     shape: 'circle',

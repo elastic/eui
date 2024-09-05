@@ -88,6 +88,7 @@ export const Playground: Story = {
               );
             }, 2000);
           }),
+        autoSortOptions: true,
       },
     ],
     // setting up props for easier testing/QA

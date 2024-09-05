@@ -545,14 +545,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 162,
+        "line": 180,
         "column": 27,
-        "index": 5418
+        "index": 5946
       },
       "end": {
-        "line": 165,
+        "line": 183,
         "column": 3,
-        "index": 5488
+        "index": 6016
       }
     },
     "filepath": "src/components/collapsible_nav_beta/collapsible_nav_beta.tsx"
@@ -1062,19 +1062,37 @@
     "filepath": "src/components/datagrid/body/cell/data_grid_cell.tsx"
   },
   {
+    "token": "euiDataGridCell.focusTrapExitPrompt",
+    "defString": "Exited cell content.",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 187,
+        "column": 12,
+        "index": 6538
+      },
+      "end": {
+        "line": 191,
+        "column": 14,
+        "index": 6717
+      }
+    },
+    "filepath": "src/components/datagrid/body/cell/focus_utils.tsx"
+  },
+  {
     "token": "euiDataGridCell.focusTrapEnterPrompt",
     "defString": "Press the Enter key to interact with this cell's contents.",
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 129,
-        "column": 10,
-        "index": 4308
+        "line": 198,
+        "column": 12,
+        "index": 6899
       },
       "end": {
-        "line": 133,
-        "column": 12,
-        "index": 4518
+        "line": 202,
+        "column": 14,
+        "index": 7117
       }
     },
     "filepath": "src/components/datagrid/body/cell/focus_utils.tsx"
@@ -1170,19 +1188,37 @@
     "filepath": "src/components/datagrid/body/header/column_actions.tsx"
   },
   {
-    "token": "euiDataGridHeaderCell.headerActions",
-    "defString": "Click to view column header actions",
+    "token": "euiDataGridHeaderCell.actionsButtonAriaLabel",
+    "defString": "{title}. Click to view column header actions.",
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 227,
-        "column": 16,
-        "index": 7525
+        "line": 125,
+        "column": 37,
+        "index": 3889
       },
       "end": {
-        "line": 230,
-        "column": 18,
-        "index": 7678
+        "line": 129,
+        "column": 7,
+        "index": 4039
+      }
+    },
+    "filepath": "src/components/datagrid/body/header/data_grid_header_cell.tsx"
+  },
+  {
+    "token": "euiDataGridHeaderCell.actionsEnterKeyInstructions",
+    "defString": "Press the Enter key to view this column's actions",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 130,
+        "column": 42,
+        "index": 4083
+      },
+      "end": {
+        "line": 133,
+        "column": 7,
+        "index": 4223
       }
     },
     "filepath": "src/components/datagrid/body/header/data_grid_header_cell.tsx"
@@ -1193,14 +1229,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 298,
+        "line": 306,
         "column": 16,
-        "index": 9695
+        "index": 9972
       },
       "end": {
-        "line": 302,
+        "line": 310,
         "column": 18,
-        "index": 9869
+        "index": 10146
       }
     },
     "filepath": "src/components/datagrid/body/header/data_grid_header_cell.tsx"
@@ -1211,14 +1247,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 306,
+        "line": 314,
         "column": 16,
-        "index": 9947
+        "index": 10224
       },
       "end": {
-        "line": 310,
+        "line": 318,
         "column": 18,
-        "index": 10123
+        "index": 10400
       }
     },
     "filepath": "src/components/datagrid/body/header/data_grid_header_cell.tsx"
@@ -1229,14 +1265,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 316,
+        "line": 324,
         "column": 16,
-        "index": 10269
+        "index": 10546
       },
       "end": {
-        "line": 321,
+        "line": 329,
         "column": 18,
-        "index": 10497
+        "index": 10774
       }
     },
     "filepath": "src/components/datagrid/body/header/data_grid_header_cell.tsx"
@@ -1247,14 +1283,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 325,
+        "line": 333,
         "column": 16,
-        "index": 10575
+        "index": 10852
       },
       "end": {
-        "line": 330,
+        "line": 338,
         "column": 18,
-        "index": 10805
+        "index": 11082
       }
     },
     "filepath": "src/components/datagrid/body/header/data_grid_header_cell.tsx"
@@ -1265,14 +1301,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 336,
+        "line": 344,
         "column": 16,
-        "index": 10934
+        "index": 11211
       },
       "end": {
-        "line": 341,
+        "line": 349,
         "column": 18,
-        "index": 11172
+        "index": 11449
       }
     },
     "filepath": "src/components/datagrid/body/header/data_grid_header_cell.tsx"
@@ -1283,14 +1319,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 345,
+        "line": 353,
         "column": 16,
-        "index": 11250
+        "index": 11527
       },
       "end": {
-        "line": 350,
+        "line": 358,
         "column": 18,
-        "index": 11490
+        "index": 11767
       }
     },
     "filepath": "src/components/datagrid/body/header/data_grid_header_cell.tsx"
@@ -1301,14 +1337,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 415,
+        "line": 423,
         "column": 6,
-        "index": 13336
+        "index": 13613
       },
       "end": {
-        "line": 418,
+        "line": 426,
         "column": 8,
-        "index": 13529
+        "index": 13806
       }
     },
     "filepath": "src/components/datagrid/body/header/data_grid_header_cell.tsx"

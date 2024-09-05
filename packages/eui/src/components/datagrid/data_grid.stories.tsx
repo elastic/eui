@@ -24,6 +24,7 @@ import type {
   EuiDataGridProps,
 } from './data_grid_types';
 import { EuiDataGrid } from './data_grid';
+import { EuiToolTip } from '../tool_tip';
 
 faker.seed(42);
 
@@ -461,6 +462,85 @@ export const CustomRowHeights: Story = {
   render: (args: EuiDataGridProps) => <StatefulDataGrid {...args} />,
 };
 
+const CustomHeaderCell = ({ title }: { title: string }) => (
+  <>
+    <span>{title}</span>
+    <EuiToolTip content="tooltip content">
+      <EuiButtonIcon
+        iconType="questionInCircle"
+        aria-label="Additional information"
+        color="primary"
+      />
+    </EuiToolTip>
+  </>
+);
+
+export const CustomHeaderContent: Story = {
+  parameters: {
+    controls: {
+      include: ['columns', 'rowCount'],
+    },
+  },
+  args: {
+    columns: [
+      {
+        id: 'name',
+        displayAsText: 'Name',
+        display: <CustomHeaderCell title="Name" />,
+        defaultSortDirection: 'asc' as const,
+        cellActions: [
+          ({ rowIndex, Component }: EuiDataGridColumnCellActionProps) => {
+            const data = raw_data;
+            const value = data[rowIndex].name.raw;
+            return (
+              <Component
+                onClick={() => alert(`Hi ${value}`)}
+                iconType="heart"
+                aria-label={`Say hi to ${value}!`}
+              >
+                Say hi
+              </Component>
+            );
+          },
+        ],
+      },
+      {
+        id: 'email',
+        display: <CustomHeaderCell title="Email" />,
+        initialWidth: 130,
+        cellActions: [
+          ({ rowIndex, Component }: EuiDataGridColumnCellActionProps) => {
+            const data = raw_data;
+            const value = data[rowIndex].email.raw;
+            return (
+              <Component
+                onClick={() => alert(value)}
+                iconType="email"
+                aria-label={`Send email to ${value}`}
+              >
+                Send email
+              </Component>
+            );
+          },
+        ],
+      },
+      ...[...columns].slice(2),
+    ],
+    rowCount: 10,
+    renderCellValue: RenderCellValue,
+    inMemory: { level: 'sorting' },
+    toolbarVisibility: {
+      showColumnSelector: true,
+      showDisplaySelector: true,
+      showSortSelector: true,
+      showKeyboardShortcuts: true,
+      showFullScreenSelector: true,
+      additionalControls: null,
+    },
+  },
+  render: (args: EuiDataGridProps) => <StatefulDataGrid {...args} />,
+};
+
 const StatefulDataGrid = (props: EuiDataGridProps) => {
   const { pagination, sorting, columnVisibility, ...rest } = props;
 
@@ -500,8 +580,9 @@ const StatefulDataGrid = (props: EuiDataGridProps) => {
   const onSort = useCallback(
     (sortingColumns: EuiDataGridColumnSortingConfig[]) => {
       setSortingColumns(sortingColumns);
+      sorting?.onSort?.(sortingColumns);
     },
-    [setSortingColumns]
+    [setSortingColumns, sorting]
   );
 
   useEffect(() => {

@@ -503,6 +503,7 @@ export const typeToPathMap = {
   tokenRankFeatures: 'tokenRankFeatures',
   tokenRepo: 'tokenRepo',
   tokenSearchType: 'tokenSearchType',
+  tokenSemanticText: 'tokenSemanticText',
   tokenShape: 'tokenShape',
   tokenString: 'tokenString',
   tokenStruct: 'tokenStruct',

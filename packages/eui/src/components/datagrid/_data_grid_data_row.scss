@@ -45,6 +45,11 @@
     @include euiDataGridCellFocus;
   }
 
+  // needed to override global style
+  &:focus:focus-visible {
+    outline: none;
+  }
+
   // On hover
   &:hover:not(:focus, :focus-within, .euiDataGridRowCell--open) {
     // Color the actions and focus ring grayscale on hover
