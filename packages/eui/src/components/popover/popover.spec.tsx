@@ -206,4 +206,62 @@ describe('EuiPopover', () => {
         });
     });
   });
+
+  describe('insert', () => {
+    const sibling = document.createElement('div');
+    sibling.id = 'sibling';
+    const componentDefaults = {
+      EuiPortal: { insert: { sibling, position: 'before' as const } },
+    };
+
+    const Wrapper: FC<PropsWithChildren> = ({ children }) => {
+      const [mounted, setMounted] = useState(false);
+
+      useEffect(() => {
+        document.body.appendChild(sibling);
+        setMounted(true);
+      }, []);
+
+      return <>{mounted && children}</>;
+    };
+
+    it('inherits from componentDefaults.EuiPortal', () => {
+      cy.mount(
+        <Wrapper>
+          <PopoverComponent isOpen={true} />
+        </Wrapper>,
+        { providerProps: { componentDefaults } }
+      );
+
+      // verify the popover was appended before the sibling
+      cy.get('div[data-euiportal]').then((portal) => {
+        cy.get('div#sibling').then((sibling) => {
+          expect(portal).to.have.lengthOf(1);
+          expect(sibling).to.have.lengthOf(1);
+          expect(sibling.get(0).previousElementSibling).to.equal(portal.get(0));
+        });
+      });
+    });
+
+    it('still allows overriding defaults via component props', () => {
+      cy.mount(
+        <Wrapper>
+          <PopoverComponent
+            isOpen={true}
+            insert={{ sibling, position: 'after' }}
+          />
+        </Wrapper>,
+        { providerProps: { componentDefaults } }
+      );
+
+      // verify portal elements were appended before and after the sibling
+      cy.get('div[data-euiportal]').then((portal) => {
+        cy.get('div#sibling').then((sibling) => {
+          expect(portal).to.have.lengthOf(1);
+          expect(sibling).to.have.lengthOf(1);
+          expect(sibling.get(0).nextElementSibling).to.equal(portal.get(0));
+        });
+        });
+    });
+  });
 });
