@@ -19,6 +19,7 @@
     "build-docs": "cross-env BABEL_MODULES=false cross-env NODE_ENV=production NODE_OPTIONS=--max-old-space-size=4096 webpack --config=src-docs/webpack.config.js",
     "build": "yarn extract-i18n-strings && node ./scripts/compile-clean.js && node ./scripts/compile-eui.js && yarn compile-scss",
     "build-pack": "yarn build && npm pack",
+    "build-publish": "yarn build && yalc publish",
     "compile-icons": "node ./scripts/compile-icons.js && prettier --write --loglevel=warn \"./src/components/icon/assets/**/*.tsx\"",
     "compile-scss": "node ./scripts/compile-scss.js",
     "extract-i18n-strings": "node ./scripts/babel/fetch-i18n-strings",
