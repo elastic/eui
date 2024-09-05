@@ -8,6 +8,8 @@
 
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
+import { fireEvent, waitFor } from '@storybook/test';
+import { within } from '../../../../.storybook/test';
 import { LOKI_SELECTORS } from '../../../../.storybook/loki';
 
 import { EuiHeader, EuiHeaderSection, EuiHeaderSectionItem } from '../';
@@ -22,11 +24,9 @@ const meta: Meta<EuiHeaderLinksProps> = {
     // Component defaults
     gutterSize: 's',
     popoverBreakpoints: ['xs', 's'],
-    // VRT
-    popoverProps: { isOpen: true },
   },
   // Required to capture mobile popover
-  parameters: { loki: { chromeSelector: LOKI_SELECTORS.body } },
+  parameters: { loki: { chromeSelector: LOKI_SELECTORS.portal } },
 };
 
 export default meta;
@@ -46,4 +46,11 @@ export const Playground: Story = {
       </EuiHeaderSection>
     </EuiHeader>
   ),
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    await waitFor(async () => {
+      await fireEvent.click(canvas.getByLabelText('Open menu'));
+    });
+    await canvas.waitForEuiPopoverVisible();
+  },
 };
