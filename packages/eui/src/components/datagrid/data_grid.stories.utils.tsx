@@ -27,6 +27,7 @@ import type {
   EuiDataGridColumnSortingConfig,
   EuiDataGridProps,
   EuiDataGridStyle,
+  EuiDataGridRowHeightsOptions,
   EuiDataGridToolBarVisibilityOptions,
   EuiDataGridToolBarAdditionalControlsOptions,
 } from './data_grid_types';
@@ -381,4 +382,8 @@ export const EuiDataGridToolbarPropsComponent: FunctionComponent<
 
 export const EuiDataGridStylePropsComponent: FunctionComponent<
   EuiDataGridStyle
+> = () => <></>;
+
+export const EuiDataGridRowHeightsPropsComponent: FunctionComponent<
+  EuiDataGridRowHeightsOptions
 > = () => <></>;
