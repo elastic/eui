@@ -98,7 +98,7 @@ export const euiSuperSelectControlStyles = (euiThemeContext: UseEuiTheme) => {
 
     // Children
     euiSuperSelect__placeholder: css`
-      color: ${formVariables.controlDisabledColor};
+      color: ${formVariables.controlPlaceholderText};
     `,
   };
 };

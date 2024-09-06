@@ -33,31 +33,13 @@ describe('Cell focus utils', () => {
   );
 
   describe('does not render a focus trap', () => {
-    const props = {
-      ...baseProps,
-      columns: [{ id: 'column', isExpandable: true, actions: {} }],
-    };
-
-    it('when header cells have actions', () => {
-      cy.mount(<EuiDataGrid {...props} />);
-
-      const headerCell = '[data-test-subj="dataGridHeaderCell-column"]';
-      const headerCellPopover =
-        '[data-test-subj="dataGridHeaderCellActionGroup-column"]';
-
-      // Should toggle the actions popover instead
-      cy.get(headerCell).click();
-      cy.get(headerCellPopover).should('be.visible');
-
-      // Keyboard behavior
-      cy.realPress('Escape');
-      cy.get(headerCellPopover).should('not.exist');
-      cy.realPress('Enter');
-      cy.get(headerCellPopover).should('exist');
-    });
-
     it('when body cells are expandable', () => {
-      cy.mount(<EuiDataGrid {...props} />);
+      cy.mount(
+        <EuiDataGrid
+          {...baseProps}
+          columns={[{ id: 'column', isExpandable: true, actions: {} }]}
+        />
+      );
 
       const cell = '[data-test-subj="dataGridRowCell"]';
       const cellAction = '[data-test-subj="euiDataGridCellExpandButton"]';
@@ -75,10 +57,76 @@ describe('Cell focus utils', () => {
       cy.realPress('Enter');
       cy.get(cellPopover).should('exist');
     });
+
+    it('when header cells have actions but no other interactive content', () => {
+      cy.mount(
+        <EuiDataGrid
+          {...baseProps}
+          columns={[{ id: 'column', isExpandable: true, actions: {} }]}
+        />
+      );
+
+      const headerCell = '[data-test-subj="dataGridHeaderCell-column"]';
+      const headerCellActionsButton =
+        '[data-test-subj="dataGridHeaderCellActionButton-column"]';
+      const headerCellPopover =
+        '[data-test-subj="dataGridHeaderCellActionGroup-column"]';
+
+      // click behavior
+      // Should toggle the actions popover on actions button
+      cy.get(headerCell).click();
+      cy.get(headerCellPopover).should('not.exist');
+      cy.get(headerCellActionsButton).click();
+      cy.get(headerCellPopover).should('exist');
+
+      // Keyboard behavior
+      cy.realPress('Escape');
+      cy.get(headerCellPopover).should('not.exist');
+      cy.realPress('Enter');
+      cy.get(headerCellPopover).should('exist');
+    });
   });
 
   describe('renders a focus trap', () => {
-    it('when header cells do not have actions', () => {
+    it('when header cells have actions and interactive content', () => {
+      cy.mount(
+        <EuiDataGrid
+          {...baseProps}
+          columns={[
+            { id: 'column', actions: {}, display: interactiveChildren },
+          ]}
+        />
+      );
+
+      // For some reason the header click doesn't register in Cypress until the body is clicked
+      cy.get('[data-test-subj="dataGridRowCell"]').realClick();
+      cy.wait(50);
+
+      // Enter the trap
+      cy.get('[data-test-subj="dataGridHeaderCell-column"]').realClick();
+      cy.realPress('Enter');
+
+      // Should cycle through focus trap
+      cy.focused().should('have.attr', 'data-test-subj', 'interactiveChildA');
+      cy.realPress('Tab');
+      cy.focused().should('have.attr', 'data-test-subj', 'interactiveChildB');
+      cy.realPress('Tab');
+      cy.focused().should(
+        'have.attr',
+        'data-test-subj',
+        'dataGridHeaderCellActionButton-column'
+      );
+
+      // Exit the trap
+      cy.realPress('Escape');
+      cy.focused().should(
+        'have.attr',
+        'data-test-subj',
+        'dataGridHeaderCell-column'
+      );
+    });
+
+    it('when header cells do not have actions but interactive content', () => {
       cy.mount(
         <EuiDataGrid
           {...baseProps}
@@ -166,7 +214,6 @@ describe('Cell focus utils', () => {
 
       cy.repeatRealPress('Tab', 4);
       cy.focused()
-        .parent()
         .should('have.attr', 'data-gridcell-row-index', '-1')
         .should('have.attr', 'data-gridcell-column-index', '0');
 
@@ -195,10 +242,9 @@ describe('Cell focus utils', () => {
       cy.focused().should(
         'have.attr',
         'data-test-subj',
-        'dataGridHeaderCellActionButton-column'
+        'dataGridHeaderCell-column'
       );
-      cy.focused()
-        .parent()
+      cy.get('[data-test-subj="dataGridHeaderCell-column"]')
         .should('have.attr', 'data-gridcell-row-index', '-1')
         .should('have.attr', 'data-gridcell-column-index', '0');
     };
@@ -215,6 +261,7 @@ describe('Cell focus utils', () => {
 
     cy.repeatRealPress('Tab', 4);
     assertFocusedHeaderActions();
+    cy.realPress('Enter');
     assertCanToggleActionsPopover();
 
     cy.realPress(['Shift', 'Tab']);

@@ -14,11 +14,13 @@ import React, {
   useEffect,
 } from 'react';
 
-import { useUpdateEffect } from '../../../services';
+import { logicalStyle, mathWithUnits } from '../../../global_styling';
+import { useUpdateEffect, useEuiTheme } from '../../../services';
 import { EuiI18n, useEuiI18n } from '../../i18n';
 import { EuiPopover, EuiPopoverFooter } from '../../popover';
 import { EuiButtonIcon, EuiButtonGroup, EuiButtonEmpty } from '../../button';
 import { EuiFormRow, EuiRange, EuiRangeProps } from '../../form';
+import { euiFormMaxWidth } from '../../form/form.styles';
 import { EuiFlexGroup, EuiFlexItem } from '../../flex';
 import { EuiToolTip } from '../../tool_tip';
 
@@ -232,7 +234,16 @@ export const useDataGridDisplaySelector = (
     'Reset to default'
   );
 
+  const euiTheme = useEuiTheme();
+
   const displaySelector = useMemo(() => {
+    const paddingSize = 's';
+    const formMaxWidth = euiFormMaxWidth(euiTheme);
+    const popoverWidth = mathWithUnits(
+      [formMaxWidth, euiTheme.euiTheme.size[paddingSize]],
+      (x, y) => x + y * 2
+    );
+
     return showDensityControls ||
       showRowHeightControls ||
       additionalDisplaySettings ? (
@@ -241,7 +252,8 @@ export const useDataGridDisplaySelector = (
         isOpen={isOpen}
         closePopover={() => setIsOpen(false)}
         anchorPosition="downRight"
-        panelPaddingSize="s"
+        panelPaddingSize={paddingSize}
+        panelProps={{ css: logicalStyle('width', popoverWidth) }}
         panelClassName="euiDataGrid__displayPopoverPanel"
         button={
           <EuiToolTip content={buttonLabel} delay="long">
@@ -390,6 +402,7 @@ export const useDataGridDisplaySelector = (
       </EuiPopover>
     ) : null;
   }, [
+    euiTheme,
     additionalDisplaySettings,
     buttonLabel,
     isOpen,

@@ -6,32 +6,47 @@
  * Side Public License, v 1.
  */
 
-import React, { useCallback, useContext } from 'react';
+import React, { useCallback, useContext, AriaAttributes } from 'react';
 
-import { useEuiI18n } from '../../i18n'; // Note: this file must be named data_grid_pagination to match i18n tokens
-import {
-  EuiTablePagination,
-  useEuiTablePaginationDefaults,
-} from '../../table/table_pagination';
-import {
-  EuiDataGridPaginationProps,
-  EuiDataGridPaginationRendererProps,
-} from '../data_grid_types';
-import { DataGridFocusContext } from './focus';
+import { useEuiMemoizedStyles } from '../../../services';
+import { useEuiI18n } from '../../i18n';
+import { EuiTablePagination } from '../../table/table_pagination';
+import { EuiDataGridPaginationProps } from '../data_grid_types';
+import { DataGridFocusContext } from '../utils/focus';
 
-export const EuiDataGridPaginationRenderer = ({
+import { euiDataGridPaginationStyles } from './data_grid_pagination.styles';
+
+type _EuiDataGridPaginationProps = Required<EuiDataGridPaginationProps> & {
+  // Internal EUI props
+  rowCount: number;
+  controls: string;
+  'aria-label'?: AriaAttributes['aria-label'];
+};
+
+/**
+ * Do not render the pagination when:
+ * 1. Rows count is less than min pagination option (rows per page)
+ * 2. Rows count is less than pageSize (the case when there are no pageSizeOptions provided)
+ */
+export const shouldRenderPagination = (
+  rowCount: number,
+  { pageSize, pageSizeOptions }: Required<EuiDataGridPaginationProps>
+) => {
+  const minSizeOption = [...pageSizeOptions].sort((a, b) => a - b)[0];
+  return !(rowCount < (minSizeOption || pageSize));
+};
+
+export const EuiDataGridPagination = ({
   pageIndex,
-  pageSize: _pageSize,
-  pageSizeOptions: _pageSizeOptions,
+  pageSize,
+  pageSizeOptions,
   onChangePage: _onChangePage,
   onChangeItemsPerPage,
   rowCount,
   controls,
   'aria-label': ariaLabel,
-}: EuiDataGridPaginationRendererProps) => {
-  const defaults = useEuiTablePaginationDefaults();
-  const pageSize = _pageSize ?? defaults.itemsPerPage;
-  const pageSizeOptions = _pageSizeOptions ?? defaults.itemsPerPageOptions;
+}: _EuiDataGridPaginationProps) => {
+  const styles = useEuiMemoizedStyles(euiDataGridPaginationStyles);
 
   const detailedPaginationLabel = useEuiI18n(
     'euiDataGridPagination.detailedPaginationLabel',
@@ -54,28 +69,18 @@ export const EuiDataGridPaginationRenderer = ({
   );
 
   const pageCount = pageSize ? Math.ceil(rowCount / pageSize) : 1;
-  const minSizeOption = [...pageSizeOptions].sort((a, b) => a - b)[0];
-
-  if (rowCount < (minSizeOption || pageSize)) {
-    /**
-     * Do not render the pagination when:
-     * 1. Rows count is less than min pagination option (rows per page)
-     * 2. Rows count is less than pageSize (the case when there are no pageSizeOptions provided)
-     */
-    return null;
-  }
-
-  // Hide select rows per page if pageSizeOptions is an empty array
-  const hidePerPageOptions = pageSizeOptions.length === 0;
 
   return (
-    <div className="euiDataGrid__pagination">
+    <div
+      css={styles.euiDataGrid__pagination}
+      className="euiDataGrid__pagination"
+    >
       <EuiTablePagination
         aria-controls={controls}
         activePage={pageIndex}
-        showPerPageOptions={!hidePerPageOptions}
         itemsPerPage={pageSize}
         itemsPerPageOptions={pageSizeOptions}
+        showPerPageOptions={pageSizeOptions.length > 0}
         pageCount={pageCount}
         onChangePage={onChangePage}
         onChangeItemsPerPage={onChangeItemsPerPage}

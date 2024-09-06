@@ -183,7 +183,7 @@ function getColumnSortDirection(
 
     // find button to enable this column and click it
     const selectColumnButton = datagrid.find(
-      `[data-test-subj="dataGridColumnSortingPopoverColumnSelection-${columnId}"]`
+      `button[data-test-subj="dataGridColumnSortingPopoverColumnSelection-${columnId}"]`
     );
     expect(selectColumnButton.length).toBe(1);
     // @ts-ignore onClick is known to exist, and does not require an argument in this usage
@@ -1902,7 +1902,7 @@ describe('EuiDataGrid', () => {
       let popover = openColumnSorterSelection(component);
       expect(
         popover
-          .find('.euiDataGridColumnSorting__field')
+          .find('button.euiDataGridColumnSorting__field')
           .map((item) => item.text())
       ).toEqual(['A', 'B']);
       closeColumnSorterSelection(component);
@@ -1922,7 +1922,7 @@ describe('EuiDataGrid', () => {
       popover = openColumnSorterSelection(component);
       expect(
         popover
-          .find('.euiDataGridColumnSorting__field')
+          .find('button.euiDataGridColumnSorting__field')
           .map((item) => item.text())
       ).toEqual(['A', 'C']);
       closeColumnSorterSelection(component);

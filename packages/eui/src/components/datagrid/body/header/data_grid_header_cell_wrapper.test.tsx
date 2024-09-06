@@ -7,7 +7,7 @@
  */
 
 import React from 'react';
-import { mount } from 'enzyme';
+import { render } from '../../../../test/rtl';
 
 import { DataGridFocusContext } from '../../utils/focus';
 import { mockFocusContext } from '../../utils/__mocks__/focus_context';
@@ -19,14 +19,19 @@ describe('EuiDataGridHeaderCellWrapper', () => {
     id: 'someColumn',
     index: 0,
     hasActionsPopover: true,
-    children: <button />,
+    children: (
+      <>
+        Some Column
+        <button>Mock column actions</button>
+      </>
+    ),
   };
 
-  const mountWithContext = (props = {}, isFocused = true) => {
+  const renderWithContext = (props = {}, isFocused = true) => {
     (mockFocusContext.onFocusUpdate as jest.Mock).mockImplementation(
       (_, callback) => callback(isFocused) // allows us to mock isFocused state
     );
-    return mount(
+    return render(
       <DataGridFocusContext.Provider value={mockFocusContext}>
         <EuiDataGridHeaderCellWrapper {...requiredProps} {...props} />
       </DataGridFocusContext.Provider>
@@ -38,103 +43,95 @@ describe('EuiDataGridHeaderCellWrapper', () => {
   });
 
   it('renders', () => {
-    const component = mountWithContext();
-    expect(component).toMatchInlineSnapshot(`
-      <EuiDataGridHeaderCellWrapper
-        hasActionsPopover={true}
-        id="someColumn"
-        index={0}
+    const { container } = renderWithContext();
+    expect(container.firstChild).toMatchInlineSnapshot(`
+      <div
+        class="euiDataGridHeaderCell"
+        data-gridcell-column-id="someColumn"
+        data-gridcell-column-index="0"
+        data-gridcell-row-index="-1"
+        data-gridcell-visible-row-index="-1"
+        data-test-subj="dataGridHeaderCell-someColumn"
+        role="columnheader"
+        tabindex="0"
       >
-        <div
-          className="euiDataGridHeaderCell"
-          data-gridcell-column-id="someColumn"
-          data-gridcell-column-index={0}
-          data-gridcell-row-index="-1"
-          data-gridcell-visible-row-index="-1"
-          data-test-subj="dataGridHeaderCell-someColumn"
-          onFocus={[Function]}
-          role="columnheader"
-          style={{}}
-          tabIndex={0}
+        Some Column
+        <button
+          data-euigrid-tab-managed="true"
+          tabindex="-1"
         >
-          <HandleInteractiveChildren
-            cellEl={
-              <div
-                class="euiDataGridHeaderCell"
-                data-gridcell-column-id="someColumn"
-                data-gridcell-column-index="0"
-                data-gridcell-row-index="-1"
-                data-gridcell-visible-row-index="-1"
-                data-test-subj="dataGridHeaderCell-someColumn"
-                role="columnheader"
-                tabindex="0"
-              >
-                <button
-                  data-euigrid-tab-managed="true"
-                  tabindex="-1"
-                />
-              </div>
-            }
-            renderFocusTrap={false}
-            updateCellFocusContext={[Function]}
-          >
-            <button />
-          </HandleInteractiveChildren>
-        </div>
-      </EuiDataGridHeaderCellWrapper>
+          Mock column actions
+        </button>
+      </div>
     `);
   });
 
   it('renders width, className, and arbitrary props', () => {
-    const component = mountWithContext({
+    const { getByTestSubject } = renderWithContext({
       width: 30,
       className: 'euiDataGridHeaderCell--test',
       'aria-label': 'test',
+      children: 'No column actions',
     });
-    expect(component.find('[data-test-subj="dataGridHeaderCell-someColumn"]'))
+    expect(getByTestSubject('dataGridHeaderCell-someColumn'))
       .toMatchInlineSnapshot(`
       <div
-        aria-label="test"
-        className="euiDataGridHeaderCell euiDataGridHeaderCell--test"
+        class="euiDataGridHeaderCell euiDataGridHeaderCell--test"
         data-gridcell-column-id="someColumn"
-        data-gridcell-column-index={0}
+        data-gridcell-column-index="0"
         data-gridcell-row-index="-1"
         data-gridcell-visible-row-index="-1"
         data-test-subj="dataGridHeaderCell-someColumn"
-        onFocus={[Function]}
         role="columnheader"
-        style={
-          {
-            "width": "30px",
-          }
-        }
-        tabIndex={0}
+        style="width: 30px;"
+        tabindex="0"
       >
-        <HandleInteractiveChildren
-          cellEl={
-            <div
-              aria-label="test"
-              class="euiDataGridHeaderCell euiDataGridHeaderCell--test"
-              data-gridcell-column-id="someColumn"
-              data-gridcell-column-index="0"
-              data-gridcell-row-index="-1"
-              data-gridcell-visible-row-index="-1"
-              data-test-subj="dataGridHeaderCell-someColumn"
-              role="columnheader"
-              style="width: 30px;"
-              tabindex="0"
-            >
-              <button
-                data-euigrid-tab-managed="true"
-                tabindex="-1"
-              />
-            </div>
-          }
-          renderFocusTrap={false}
-          updateCellFocusContext={[Function]}
+        No column actions
+      </div>
+    `);
+  });
+
+  it('renders a focus trap if the cell contains interactive children', () => {
+    const { container } = renderWithContext({
+      children: (
+        <>
+          Some Column
+          <button>Custom interactive child</button>
+          <button>Mock column actions</button>
+        </>
+      ),
+    });
+    expect(container.querySelectorAll('[data-focus-guard]')).toHaveLength(2);
+    expect(container.querySelector('[data-focus-lock-disabled]'))
+      .toMatchInlineSnapshot(`
+      <div
+        data-focus-lock-disabled="disabled"
+      >
+        Some Column
+        <button
+          data-euigrid-tab-managed="true"
+          tabindex="-1"
         >
-          <button />
-        </HandleInteractiveChildren>
+          Custom interactive child
+        </button>
+        <button
+          data-euigrid-tab-managed="true"
+          tabindex="-1"
+        >
+          Mock column actions
+        </button>
+        <p
+          aria-hidden="true"
+          class="emotion-euiScreenReaderOnly"
+          id="euiDataGridCellHeader_generated-id_exited"
+        />
+        <p
+          aria-hidden="true"
+          class="emotion-euiScreenReaderOnly"
+          id="euiDataGridCellHeader_generated-id_keyboardHint"
+        >
+          Press the Enter key to interact with this cell's contents.
+        </p>
       </div>
     `);
   });

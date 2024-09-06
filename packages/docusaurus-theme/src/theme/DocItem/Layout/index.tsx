@@ -1,4 +1,13 @@
+/*
+ * Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
+ * or more contributor license agreements. Licensed under the Elastic License
+ * 2.0 and the Server Side Public License, v 1; you may not use this file except
+ * in compliance with, at your election, the Elastic License 2.0 or the Server
+ * Side Public License, v 1.
+ */
+
 import React from 'react';
+import { EuiHorizontalRule } from '@elastic/eui';
 import { css } from '@emotion/react';
 import { useWindowSize } from '@docusaurus/theme-common';
 import { useDoc } from '@docusaurus/theme-common/internal';
@@ -7,25 +16,27 @@ import Unlisted from '@theme-original/Unlisted';
 import DocVersionBanner from '@theme-original/DocVersionBanner';
 import DocVersionBadge from '@theme-original/DocVersionBadge';
 import * as Props from '@theme-original/DocItem/Layout';
-import { EuiHorizontalRule } from '@elastic/eui';
 
 import DocBreadcrumbs from '../../DocBreadcrumbs';
-import DocItemContent from '../Content';
 import DocItemTOCMobile from '../TOC/Mobile';
 import DocItemTOCDesktop from '../TOC/Desktop';
+import DocItemContent from '../Content';
 import DocItemFooter from '../Footer';
 
 // converted from css modules to emotion
-const layoutStyles = {
+const styles = {
   docItemContainer: css`
     & header + *,
     & article > *:first-child {
       margin-top: 0;
     }
   `,
+  docItemRow: css`
+    justify-content: center;
+  `,
   docItemCol: css`
     @media (min-width: 997px) {
-      max-width: 764px;
+      max-width: 830px;
     }
   `,
 };
@@ -60,11 +71,11 @@ export default function DocItemLayout({ children }: typeof Props): JSX.Element {
     metadata: { unlisted },
   } = useDoc();
   return (
-    <div className="row">
-      <div className="col" css={layoutStyles.docItemCol}>
+    <div className="row" css={styles.docItemRow}>
+      <div className="col" css={styles.docItemCol}>
         {unlisted && <Unlisted />}
         <DocVersionBanner />
-        <div css={layoutStyles.docItemContainer}>
+        <div css={styles.docItemContainer}>
           <article>
             <DocBreadcrumbs />
             <DocVersionBadge />

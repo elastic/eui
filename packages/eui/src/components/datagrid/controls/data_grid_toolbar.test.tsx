@@ -7,7 +7,7 @@
  */
 
 import React from 'react';
-import { shallow } from 'enzyme';
+import { render } from '../../../test/rtl';
 
 import {
   EuiDataGridToolbar,
@@ -29,15 +29,15 @@ describe('EuiDataGridToolbar', () => {
   };
 
   it('renders', () => {
-    const component = shallow(<EuiDataGridToolbar {...requiredProps} />);
+    const { container } = render(<EuiDataGridToolbar {...requiredProps} />);
 
-    expect(component).toMatchInlineSnapshot(`
+    expect(container.firstChild).toMatchInlineSnapshot(`
       <div
-        className="euiDataGrid__controls"
+        class="euiDataGrid__controls emotion-euiDataGrid__controls"
         data-test-subj="dataGridControls"
       >
         <div
-          className="euiDataGrid__leftControls"
+          class="euiDataGrid__leftControls emotion-euiDataGrid__leftControls"
         >
           <div>
             mock column selector
@@ -47,7 +47,7 @@ describe('EuiDataGridToolbar', () => {
           </div>
         </div>
         <div
-          className="euiDataGrid__rightControls"
+          class="euiDataGrid__rightControls emotion-euiDataGrid__rightControls"
         >
           <div>
             mock keyboard shortcuts
@@ -64,37 +64,35 @@ describe('EuiDataGridToolbar', () => {
   });
 
   it('does not render children when toolbar visibility is false', () => {
-    const component = shallow(
+    const { container } = render(
       <EuiDataGridToolbar {...requiredProps} toolbarVisibility={false} />
     );
 
-    expect(component).toMatchInlineSnapshot(`
+    expect(container.firstChild).toMatchInlineSnapshot(`
       <div
-        className="euiDataGrid__controls"
+        class="euiDataGrid__controls emotion-euiDataGrid__controls"
         data-test-subj="dataGridControls"
       >
         <div
-          className="euiDataGrid__leftControls"
+          class="euiDataGrid__leftControls emotion-euiDataGrid__leftControls"
         />
         <div
-          className="euiDataGrid__rightControls"
+          class="euiDataGrid__rightControls emotion-euiDataGrid__rightControls"
         >
-          <EuiScreenReaderOnly
-            showOnFocus={true}
+          <span
+            class="emotion-euiScreenReaderOnly-showOnFocus"
           >
-            <span>
-              <div>
-                mock keyboard shortcuts
-              </div>
-            </span>
-          </EuiScreenReaderOnly>
+            <div>
+              mock keyboard shortcuts
+            </div>
+          </span>
         </div>
       </div>
     `);
   });
 
   it('renders when individual toolbar visibility properties are passed', () => {
-    const component = shallow(
+    const { container } = render(
       <EuiDataGridToolbar
         {...requiredProps}
         toolbarVisibility={{
@@ -110,20 +108,20 @@ describe('EuiDataGridToolbar', () => {
       />
     );
 
-    expect(component).toMatchInlineSnapshot(`
+    expect(container.firstChild).toMatchInlineSnapshot(`
       <div
-        className="euiDataGrid__controls"
+        class="euiDataGrid__controls emotion-euiDataGrid__controls"
         data-test-subj="dataGridControls"
       >
         <div
-          className="euiDataGrid__leftControls"
+          class="euiDataGrid__leftControls emotion-euiDataGrid__leftControls"
         >
           <div>
             hello
           </div>
         </div>
         <div
-          className="euiDataGrid__rightControls"
+          class="euiDataGrid__rightControls emotion-euiDataGrid__rightControls"
         >
           <div>
             world
@@ -140,14 +138,14 @@ describe('EuiDataGridToolbar', () => {
     const mockRenderCustomToolbar = jest.fn(() => (
       <div data-test-subj="test">Custom</div>
     ));
-    const component = shallow(
+    const { container } = render(
       <EuiDataGridToolbar
         {...requiredProps}
         renderCustomToolbar={mockRenderCustomToolbar}
       />
     );
 
-    expect(component).toMatchInlineSnapshot(`
+    expect(container.firstChild).toMatchInlineSnapshot(`
       <div
         data-test-subj="test"
       >

@@ -140,6 +140,7 @@ export const EuiDataGridBodyVirtualized: FunctionComponent<EuiDataGridBodyProps>
       gridRef,
       gridItemsRendered,
       wrapperRef,
+      className,
     }) => {
       /**
        * Grid refs & observers
@@ -367,6 +368,7 @@ export const EuiDataGridBodyVirtualized: FunctionComponent<EuiDataGridBodyProps>
             ref={gridRef}
             className={classNames(
               'euiDataGrid__virtualized',
+              className,
               virtualizationOptions?.className
             )}
             onItemsRendered={onItemsRendered}

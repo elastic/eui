@@ -6,125 +6,110 @@
  * Side Public License, v 1.
  */
 
-import React from 'react';
-import { act } from '@testing-library/react';
-import { shallow, mount, ReactWrapper } from 'enzyme';
-import { findTestSubject } from '../../../test';
-import { testByReactVersion } from '../../../test/internal';
+import React, { useState } from 'react';
+import { fireEvent } from '@testing-library/react';
+import { render, screen, waitForEuiPopoverOpen } from '../../../test/rtl';
+import { testOnReactVersion } from '../../../test/internal';
 
 import { EuiDataGridToolBarVisibilityOptions } from '../data_grid_types';
 
 import { useDataGridColumnSelector } from './column_selector';
 
 describe('useDataGridColumnSelector', () => {
-  const availableColumns = [{ id: 'columnA' }, { id: 'columnB' }];
-  const setVisibleColumns = jest.fn();
-  const defaultVisibleColumns = ['columnA', 'columnB'];
-  const columnVisibility = {
-    setVisibleColumns,
-    visibleColumns: defaultVisibleColumns,
+  const requiredProps = {
+    availableColumns: [{ id: 'columnA' }, { id: 'columnB' }],
+    visibleColumns: ['columnA', 'columnB'],
+    showColumnSelector: {
+      allowHide: true,
+      allowReorder: true,
+    } as EuiDataGridToolBarVisibilityOptions['showColumnSelector'],
+    displayValues: {},
   };
-  setVisibleColumns.mockImplementation(
-    (newColumns) => (columnVisibility.visibleColumns = newColumns)
-  );
-  const showColumnSelector = {
-    allowHide: false,
-    allowReorder: false,
-  } as EuiDataGridToolBarVisibilityOptions['showColumnSelector'];
-  const displayValues = {};
 
-  const requiredArgs = [
-    availableColumns,
-    columnVisibility,
-    showColumnSelector,
-    displayValues,
-  ] as const;
+  // Hooks can only be called inside function components
+  const MockComponent = ({
+    renderedReturn = 'columnSelector',
+    availableColumns = requiredProps.availableColumns,
+    visibleColumns = requiredProps.visibleColumns,
+    showColumnSelector = requiredProps.showColumnSelector,
+    displayValues = requiredProps.displayValues,
+    children = null as any,
+  }) => {
+    const [_visibleColumns, _setVisibleColumns] = useState(visibleColumns);
 
-  beforeEach(() => {
-    jest.clearAllMocks();
-    columnVisibility.visibleColumns = defaultVisibleColumns;
-  });
+    const [
+      columnSelector,
+      orderedVisibleColumns,
+      setVisibleColumns,
+      switchColumnPos,
+    ] = useDataGridColumnSelector(
+      availableColumns,
+      {
+        visibleColumns: _visibleColumns,
+        setVisibleColumns: _setVisibleColumns,
+      },
+      showColumnSelector,
+      displayValues
+    );
+
+    switch (renderedReturn) {
+      case 'switchColumnPos':
+      case 'setVisibleColumns':
+        return children({
+          switchColumnPos,
+          setVisibleColumns,
+          orderedVisibleColumns,
+        });
+      case 'orderedVisibleColumns':
+        return <>{JSON.stringify(orderedVisibleColumns)}</>;
+      case 'columnSelector':
+      default:
+        return <>{columnSelector}</>;
+    }
+  };
 
   describe('columnSelector', () => {
-    // Hooks can only be called inside function components
-    const MockComponent = ({
-      availableColumns = requiredArgs[0],
-      columnVisibility = requiredArgs[1],
-      showColumnSelector = requiredArgs[2],
-      displayValues = requiredArgs[3],
-    }) => {
-      const [columnSelector] = useDataGridColumnSelector(
-        availableColumns,
-        columnVisibility,
-        showColumnSelector,
-        displayValues
-      );
-      return <>{columnSelector}</>;
-    };
-    const openPopover = (component: ReactWrapper) => {
-      findTestSubject(component, 'dataGridColumnSelectorButton').simulate(
-        'click'
-      );
-    };
-    const closePopover = (component: ReactWrapper) => {
-      const closeFn = component
-        .find('[data-test-subj="dataGridColumnSelectorPopover"]')
-        .first()
-        .prop('closePopover') as Function;
-      act(() => closeFn());
-    };
-    const forceUpdate = (component: ReactWrapper) => {
-      component.setProps({});
+    const openPopover = () => {
+      fireEvent.click(screen.getByTestSubject('dataGridColumnSelectorButton'));
+      waitForEuiPopoverOpen();
     };
 
-    testByReactVersion(
+    testOnReactVersion(['18'])(
       'renders a toolbar button/popover allowing users to set column visibility and order',
       () => {
-        const component = mount(<MockComponent showColumnSelector={true} />);
-        openPopover(component);
-        expect(component.render()).toMatchSnapshot();
-        expect(
-          component.find('[data-popover-panel]').first().render()
-        ).toMatchSnapshot();
-        closePopover(component);
+        const { baseElement } = render(
+          <MockComponent showColumnSelector={true} />
+        );
+        openPopover();
+        expect(baseElement).toMatchSnapshot();
       }
     );
 
     it('does not render if all valid sub-options are disabled', () => {
-      const component = shallow(
+      const { container } = render(
         <MockComponent
-          showColumnSelector={{
-            allowHide: false,
-            allowReorder: false,
-          }}
+          showColumnSelector={{ allowHide: false, allowReorder: false }}
         />
       );
-      expect(component.text()).toEqual('');
+      expect(container).toBeEmptyDOMElement();
     });
 
     describe('column filtering', () => {
       const showColumnSelector = { allowHide: true, allowReorder: true };
 
       it('renders a searchbar that filters displayed columns', () => {
-        const component = mount(
+        const { getByTestSubject, getAllByRole } = render(
           <MockComponent showColumnSelector={showColumnSelector} />
         );
-        openPopover(component);
+        openPopover();
 
-        expect(
-          findTestSubject(component, 'dataGridColumnSelectorColumnItem', '^=')
-        ).toHaveLength(2);
+        expect(getAllByRole('switch')).toHaveLength(2);
 
-        const searchInput = findTestSubject(
-          component,
-          'dataGridColumnSelectorSearch'
-        );
-        (searchInput.getDOMNode() as HTMLInputElement).value = 'A';
-        searchInput.simulate('change');
+        fireEvent.change(getByTestSubject('dataGridColumnSelectorSearch'), {
+          target: { value: 'A' },
+        });
 
-        expect(
-          findTestSubject(component, 'dataGridColumnSelectorColumnItem', '^=')
-        ).toHaveLength(1);
+        expect(getAllByRole('switch')).toHaveLength(1);
       });
     });
 
@@ -132,176 +117,170 @@ describe('useDataGridColumnSelector', () => {
       const showColumnSelector = { allowHide: false, allowReorder: true };
 
       it('renders draggable handles', () => {
-        const component = mount(
-          <MockComponent showColumnSelector={showColumnSelector} />
-        );
-        openPopover(component);
+        render(<MockComponent showColumnSelector={showColumnSelector} />);
+        openPopover();
 
-        expect(component.find('EuiDraggable')).toHaveLength(2);
-        expect(component.find('EuiIcon[type="grab"]')).toHaveLength(2);
+        expect(
+          document.querySelectorAll('[data-euiicon-type="grab"]')
+        ).toHaveLength(2);
       });
 
       it('calls setColumns on drag end', () => {
-        const component = mount(
+        const { getByTestSubject, getAllByLabelText } = render(
           <MockComponent showColumnSelector={showColumnSelector} />
         );
-        openPopover(component);
+        fireEvent.click(getByTestSubject('dataGridColumnSelectorButton'));
+        waitForEuiPopoverOpen();
+        const getDragHandles = () => getAllByLabelText('Drag handle');
 
-        const getFirstColumn = () => component.find('EuiDraggable').first();
-        expect(getFirstColumn().prop('draggableId')).toEqual('columnA');
-
-        act(() => {
-          (component.find('EuiDragDropContext').prop('onDragEnd') as Function)({
-            source: { index: 1 },
-            destination: { index: 0 },
-          });
-        });
-        forceUpdate(component);
-
-        expect(getFirstColumn().prop('draggableId')).toEqual('columnB');
-      });
-
-      it('handles invalid drags outside the valid droppable area', () => {
-        const component = mount(
-          <MockComponent showColumnSelector={showColumnSelector} />
+        const columnA = getDragHandles()[0]!;
+        expect(columnA).toHaveAttribute(
+          'data-rfd-drag-handle-draggable-id',
+          'columnA'
         );
-        openPopover(component);
 
-        act(() => {
-          (component.find('EuiDragDropContext').prop('onDragEnd') as Function)({
-            source: { index: 0 },
-            destination: null,
-          });
-        });
-        forceUpdate(component);
+        // our react dnd library listens for the `keyCode` property in keyboard events, not `key`
+        const dndKeyCodes = { space: 32, arrowDown: 40 };
+        fireEvent.keyDown(columnA, { keyCode: dndKeyCodes.space });
+        fireEvent.keyDown(columnA, { keyCode: dndKeyCodes.arrowDown });
+        fireEvent.keyDown(columnA, { keyCode: dndKeyCodes.space });
 
-        expect(
-          component.find('EuiDraggable').first().prop('draggableId')
-        ).toEqual('columnA');
+        expect(getDragHandles()[0]).toHaveAttribute(
+          'data-rfd-drag-handle-draggable-id',
+          'columnB'
+        );
       });
     });
 
     describe('column visibility', () => {
       const showColumnSelector = { allowHide: true, allowReorder: false };
 
-      const getButtonText = (component: ReactWrapper) => {
-        return component.find('span.euiDataGridToolbarControl__text').text();
+      const getButtonText = () => {
+        return document.querySelector('.euiDataGridToolbarControl__text')
+          ?.textContent;
       };
-      const getBadgeText = (component: ReactWrapper) => {
-        return component.find('span.euiDataGridToolbarControl__badge').text();
+      const getBadgeText = () => {
+        return document.querySelector('.euiDataGridToolbarControl__badge')
+          ?.textContent;
       };
 
       it('shows the number of columns hidden as the toolbar button text', () => {
-        const component = mount(
+        render(
           <MockComponent
             showColumnSelector={showColumnSelector}
-            columnVisibility={{ ...columnVisibility, visibleColumns: [] }}
+            visibleColumns={[]}
           />
         );
 
-        expect(getButtonText(component)).toEqual('Columns');
-        expect(getBadgeText(component)).toEqual('0/2');
+        expect(getButtonText()).toEqual('Columns');
+        expect(getBadgeText()).toEqual('0/2');
       });
 
       it('toggles column visibility on switch interaction', () => {
-        const component = mount(
+        const { getByTestSubject } = render(
           <MockComponent showColumnSelector={showColumnSelector} />
         );
-        openPopover(component);
+        openPopover();
+        expect(getBadgeText()).toEqual('2');
 
-        findTestSubject(
-          component,
-          'dataGridColumnSelectorToggleColumnVisibility-columnB'
-        ).simulate('click');
-        forceUpdate(component);
+        fireEvent.click(
+          getByTestSubject(
+            'dataGridColumnSelectorToggleColumnVisibility-columnB'
+          )
+        );
+        expect(getBadgeText()).toEqual('1/2');
 
-        expect(getBadgeText(component)).toEqual('1/2');
-
-        findTestSubject(
-          component,
-          'dataGridColumnSelectorToggleColumnVisibility-columnB'
-        ).simulate('click');
-        forceUpdate(component);
-
-        expect(getBadgeText(component)).toEqual('2');
+        fireEvent.click(
+          getByTestSubject(
+            'dataGridColumnSelectorToggleColumnVisibility-columnB'
+          )
+        );
+        expect(getBadgeText()).toEqual('2');
       });
 
       it('toggles all column visibility with the show/hide all buttons', () => {
-        const component = mount(
+        const { getByTestSubject } = render(
           <MockComponent showColumnSelector={showColumnSelector} />
         );
-        openPopover(component);
+        openPopover();
 
-        findTestSubject(
-          component,
-          'dataGridColumnSelectorHideAllButton'
-        ).simulate('click');
-        forceUpdate(component);
+        fireEvent.click(
+          getByTestSubject('dataGridColumnSelectorHideAllButton')
+        );
+        expect(getBadgeText()).toEqual('0/2');
 
-        expect(getBadgeText(component)).toEqual('0/2');
-
-        findTestSubject(
-          component,
-          'dataGridColumnSelectorShowAllButton'
-        ).simulate('click');
-        forceUpdate(component);
-
-        expect(getBadgeText(component)).toEqual('2');
+        fireEvent.click(
+          getByTestSubject('dataGridColumnSelectorShowAllButton')
+        );
+        expect(getBadgeText()).toEqual('2');
       });
     });
   });
 
   describe('orderedVisibleColumns', () => {
     it('returns an array of ordered visible columns', () => {
-      const MockComponent = () => {
-        const [, orderedVisibleColumns] = useDataGridColumnSelector(
-          ...requiredArgs
-        );
-        return <>{JSON.stringify(orderedVisibleColumns)}</>;
-      };
-      const component = mount(<MockComponent />);
+      const { container } = render(
+        <MockComponent renderedReturn="orderedVisibleColumns" />
+      );
 
-      expect(component).toMatchInlineSnapshot(`
-        <MockComponent>
-          [{"id":"columnA"},{"id":"columnB"}]
-        </MockComponent>
-      `);
+      expect(container.firstChild).toMatchInlineSnapshot(
+        `[{"id":"columnA"},{"id":"columnB"}]`
+      );
     });
   });
 
-  describe('setVisibleColumns', () => {
+  describe('setVisibleColumns & switchColumnPos', () => {
+    const RenderProp = ({
+      switchColumnPos,
+      setVisibleColumns,
+      orderedVisibleColumns,
+    }: any) => {
+      return (
+        <>
+          {JSON.stringify(orderedVisibleColumns)}
+          <button
+            data-test-subj="setVisibleColumns"
+            onClick={() => setVisibleColumns([])}
+          />
+          <button
+            data-test-subj="switchColumnPos"
+            onClick={() => switchColumnPos?.('columnA', 'columnB')}
+          />
+          <button
+            data-test-subj="switchColumnPos-invalid"
+            onClick={() => switchColumnPos?.('columnB', undefined)}
+          />
+        </>
+      );
+    };
+
     it('exposes the passed setVisibleColumns fn', () => {
-      const MockComponent = () => {
-        const [, , setVisibleColumns] = useDataGridColumnSelector(
-          ...requiredArgs
-        );
-        setVisibleColumns([]);
-        return <></>;
-      };
-      shallow(<MockComponent />);
+      const { getByTestSubject, container } = render(
+        <MockComponent renderedReturn="setVisibleColumns">
+          {(props: any) => <RenderProp {...props} />}
+        </MockComponent>
+      );
+      fireEvent.click(getByTestSubject('setVisibleColumns'));
 
-      expect(setVisibleColumns).toHaveBeenCalledTimes(1);
+      expect(container.firstChild).toMatchInlineSnapshot(`[]`);
     });
-  });
 
-  describe('switchColumnPos', () => {
     it('exposes the switchColumnPos fn', () => {
-      const MockComponent = () => {
-        const [, , , switchColumnPos] = useDataGridColumnSelector(
-          ...requiredArgs
-        );
+      const { getByTestSubject, container } = render(
+        <MockComponent renderedReturn="switchColumnPos">
+          {(props: any) => <RenderProp {...props} />}
+        </MockComponent>
+      );
 
-        try {
-          switchColumnPos('columnA', 'columnB');
-        } catch {
-          // not sure why this is throwing rerender errors :|
-        }
-        // Invalid indices
-        switchColumnPos('columnA', 'undefined');
-        switchColumnPos('undefined', 'columnA');
-        return <></>;
-      };
-      shallow(<MockComponent />);
+      fireEvent.click(getByTestSubject('switchColumnPos-invalid'));
+      expect(container.firstChild).toMatchInlineSnapshot(
+        `[{"id":"columnA"},{"id":"columnB"}]`
+      );
+
+      fireEvent.click(getByTestSubject('switchColumnPos'));
+      expect(container.firstChild).toMatchInlineSnapshot(
+        `[{"id":"columnB"},{"id":"columnA"}]`
+      );
     });
   });
 });

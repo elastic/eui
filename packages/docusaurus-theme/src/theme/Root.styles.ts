@@ -14,6 +14,7 @@ import {
   useEuiFocusRing,
   UseEuiTheme,
 } from '@elastic/eui';
+import { css } from '@emotion/react';
 
 // override docusaurus variables as needed
 // NOTE: we use define variables with style calculations here
@@ -46,7 +47,7 @@ export const getGlobalStyles = (theme: UseEuiTheme) => {
   const lineHeightXS = '1.33rem';
   const lineHeightXXS = euiLineHeightFromBaseline('xxs', euiTheme);
 
-  return `
+  return css`
       // color theme related variables
       :root,
       [data-theme='dark']:root {
@@ -101,6 +102,8 @@ export const getGlobalStyles = (theme: UseEuiTheme) => {
 
         --eui-border-color-primary: ${euiBorderColor(theme, 'primary')};
 
+        --eui-theme-content-vertical-spacing: ${euiTheme.size.base};
+
         /* Docusaurus theme variables */
         --ifm-font-family-base: ${fontBase.fontFamily};
         --ifm-font-size-base: var(--eui-font-size-base);
@@ -115,45 +118,6 @@ export const getGlobalStyles = (theme: UseEuiTheme) => {
         --ifm-h6-font-size: var(--eui-font-size-xxs);
 
         --ifm-global-radius: ${euiTheme.border.radius.small};
-      }
-
-      /* base styles & resets */
-      h1, h2, h3, h4, h5, h6 {
-        margin-block-start: ${size.l};
-        margin-block-end: ${size.m};
-
-        font-weight: ${font.weight.bold};
-      }
-
-      button {
-        background: none;
-        border: none;
-        padding: 0;
-        margin: 0;
-        color: inherit;
-        border-radius: 0;
-        font-size: inherit;
-        font-family: inherit;
-      }
-
-      input,
-      textarea,
-      select {
-        fontSize: 1rem; // Inherit from html root
-        font-family: inherit;
-      }
-
-      dd {
-        margin: 0;
-      }
-
-      figure {
-        margin: 0;
-      }
-
-      /* global styles */
-      * {
-        ${useEuiFocusRing('outset', euiTheme.colors.primary)};
       }
   `;
 };

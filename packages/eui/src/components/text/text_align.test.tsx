@@ -50,5 +50,15 @@ describe('EuiTextAlign', () => {
 
       shouldRenderCustomStyles(<EuiTextAlign cloneElement textAlign="right" />);
     });
+
+    test('component', () => {
+      const { container } = render(
+        <EuiTextAlign {...requiredProps} component="span">
+          Content
+        </EuiTextAlign>
+      );
+
+      expect(container.firstChild?.nodeName).toBe('SPAN');
+    });
   });
 });

@@ -7,6 +7,9 @@
  */
 
 import React, { isValidElement, ReactNode } from 'react';
+import { IS_JEST_ENVIRONMENT } from '../../../utils';
+import { useEuiMemoizedStyles } from '../../../services';
+import { EuiScreenReaderOnly } from '../../accessibility';
 import {
   EuiDataGridProps,
   EuiDataGridToolbarProps,
@@ -14,8 +17,7 @@ import {
   EuiDataGridToolBarAdditionalControlsOptions,
   EuiDataGridToolBarAdditionalControlsLeftOptions,
 } from '../data_grid_types';
-import { EuiScreenReaderOnly } from '../../accessibility';
-import { IS_JEST_ENVIRONMENT } from '../../../utils';
+import { euiDataGridToolbarStyles } from './data_grid_toolbar.styles';
 
 // When below this number the grid only shows the right control icon buttons
 export const MINIMUM_WIDTH_FOR_GRID_CONTROLS = 479;
@@ -32,6 +34,8 @@ export const EuiDataGridToolbar = ({
   columnSorting,
   renderCustomToolbar,
 }: EuiDataGridToolbarProps) => {
+  const styles = useEuiMemoizedStyles(euiDataGridToolbarStyles);
+
   // Enables/disables grid controls based on available width
   const hasRoomForGridControls = IS_JEST_ENVIRONMENT
     ? true
@@ -84,16 +88,26 @@ export const EuiDataGridToolbar = ({
   }
 
   return (
-    <div className="euiDataGrid__controls" data-test-subj="dataGridControls">
+    <div
+      css={styles.euiDataGrid__controls}
+      className="euiDataGrid__controls"
+      data-test-subj="dataGridControls"
+    >
       {hasRoomForGridControls && (
-        <div className="euiDataGrid__leftControls">
+        <div
+          css={styles.euiDataGrid__leftControls}
+          className="euiDataGrid__leftControls"
+        >
           {renderAdditionalControls(toolbarVisibility, 'left.prepend')}
           {columnControl}
           {columnSortingControl}
           {renderAdditionalControls(toolbarVisibility, 'left.append')}
         </div>
       )}
-      <div className="euiDataGrid__rightControls">
+      <div
+        css={styles.euiDataGrid__rightControls}
+        className="euiDataGrid__rightControls"
+      >
         {renderAdditionalControls(toolbarVisibility, 'right')}
         {keyboardShortcutsControl}
         {displayControl}

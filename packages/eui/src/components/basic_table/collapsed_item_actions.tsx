@@ -6,19 +6,13 @@
  * Side Public License, v 1.
  */
 
-import React, {
-  useState,
-  useCallback,
-  useMemo,
-  ReactNode,
-  ReactElement,
-} from 'react';
+import React, { useState, useCallback, useMemo, ReactElement } from 'react';
 
 import { EuiContextMenuItem, EuiContextMenuPanel } from '../context_menu';
 import { EuiPopover } from '../popover';
 import { EuiButtonIcon } from '../button';
 import { EuiToolTip } from '../tool_tip';
-import { EuiI18n } from '../i18n';
+import { useEuiI18n } from '../i18n';
 
 import {
   Action,
@@ -33,6 +27,7 @@ export interface CollapsedItemActionsProps<T extends object> {
   item: T;
   itemId: ItemIdResolved;
   actionsDisabled: boolean;
+  displayedRowIndex: number;
   className?: string;
 }
 
@@ -41,10 +36,29 @@ export const CollapsedItemActions = <T extends {}>({
   itemId,
   item,
   actionsDisabled,
+  displayedRowIndex,
   className,
 }: CollapsedItemActionsProps<T>) => {
   const [popoverOpen, setPopoverOpen] = useState(false);
   const closePopover = useCallback(() => setPopoverOpen(false), []);
+
+  const allActionsTooltip = useEuiI18n(
+    'euiCollapsedItemActions.allActionsTooltip',
+    'All actions'
+  );
+
+  const allActionsButtonAriaLabel = useEuiI18n(
+    'euiCollapsedItemActions.allActions',
+    'All actions, row {index}',
+    {
+      index: displayedRowIndex + 1,
+    }
+  );
+
+  const allActionsButtonDisabledAriaLabel = useEuiI18n(
+    'euiCollapsedItemActions.allActionsDisabled',
+    'Individual item actions are disabled when rows are being selected.'
+  );
 
   const controls = useMemo(() => {
     return actions.reduce<ReactElement[]>((controls, action, index) => {
@@ -107,39 +121,26 @@ export const CollapsedItemActions = <T extends {}>({
   }, [actions, actionsDisabled, item, closePopover]);
 
   const popoverButton = (
-    <EuiI18n
-      tokens={[
-        'euiCollapsedItemActions.allActions',
-        'euiCollapsedItemActions.allActionsDisabled',
-      ]}
-      defaults={[
-        'All actions',
-        'Individual item actions are disabled when rows are being selected.',
-      ]}
-    >
-      {([allActions, allActionsDisabled]: string[]) => (
-        <EuiButtonIcon
-          className={className}
-          aria-label={actionsDisabled ? allActionsDisabled : allActions}
-          title={actionsDisabled ? allActionsDisabled : undefined}
-          iconType="boxesHorizontal"
-          color="text"
-          isDisabled={actionsDisabled}
-          onClick={() => setPopoverOpen((isOpen) => !isOpen)}
-          data-test-subj="euiCollapsedItemActionsButton"
-        />
-      )}
-    </EuiI18n>
+    <EuiButtonIcon
+      className={className}
+      aria-label={
+        actionsDisabled
+          ? allActionsButtonDisabledAriaLabel
+          : allActionsButtonAriaLabel
+      }
+      title={actionsDisabled ? allActionsButtonDisabledAriaLabel : undefined}
+      iconType="boxesHorizontal"
+      color="text"
+      isDisabled={actionsDisabled}
+      onClick={() => setPopoverOpen((isOpen) => !isOpen)}
+      data-test-subj="euiCollapsedItemActionsButton"
+    />
   );
 
   const withTooltip = !actionsDisabled && (
-    <EuiI18n token="euiCollapsedItemActions.allActions" default="All actions">
-      {(allActions: ReactNode) => (
-        <EuiToolTip content={allActions} delay="long">
-          {popoverButton}
-        </EuiToolTip>
-      )}
-    </EuiI18n>
+    <EuiToolTip content={allActionsTooltip} delay="long">
+      {popoverButton}
+    </EuiToolTip>
   );
 
   return (

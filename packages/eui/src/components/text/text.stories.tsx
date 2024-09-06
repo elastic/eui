@@ -25,6 +25,7 @@ const meta: Meta<EuiTextProps> = {
     grow: true,
     color: 'default',
     textAlign: 'left',
+    component: 'div',
   },
 };
 moveStorybookControlsToCategory(meta, ['color'], 'EuiTextColor props');

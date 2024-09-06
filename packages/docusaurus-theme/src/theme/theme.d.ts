@@ -529,3 +529,16 @@ declare module '@theme-original/Logo' {
 
   export default function Logo(props: Props): JSX.Element;
 }
+
+// original: https://github.com/facebook/docusaurus/blob/a6de0f2725c68854bb37acab25705c4a7709f230/packages/docusaurus-theme-classic/src/theme-classic.d.ts#L805C1-L814C3
+declare module '@theme/Heading' {
+  import type {ComponentProps} from 'react';
+
+  type HeadingType = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
+
+  export interface Props extends ComponentProps<HeadingType> {
+    readonly as: HeadingType;
+  }
+
+  export default function Heading(props: Props): JSX.Element;
+}

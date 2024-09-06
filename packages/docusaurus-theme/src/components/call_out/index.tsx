@@ -1,5 +1,10 @@
 import { css } from '@emotion/react';
-import { EuiText, useEuiMemoizedStyles, UseEuiTheme } from '@elastic/eui';
+import {
+  EuiText,
+  useEuiMemoizedStyles,
+  UseEuiTheme,
+  euiFontSize,
+} from '@elastic/eui';
 import { FunctionComponent, PropsWithChildren } from 'react';
 
 type VARIANTS = 'info' | 'tip' | 'note' | 'danger' | 'warning';
@@ -31,7 +36,8 @@ const VARIANT_TO_COLOR_MAP: Record<
   },
 };
 
-const getStyles = ({ euiTheme }: UseEuiTheme, variant: VARIANTS) => {
+const getStyles = (theme: UseEuiTheme, variant: VARIANTS) => {
+  const { euiTheme } = theme;
   const colorKey = VARIANT_TO_COLOR_MAP[variant].colorKey;
   const color = euiTheme.colors[colorKey];
 
@@ -50,12 +56,17 @@ const getStyles = ({ euiTheme }: UseEuiTheme, variant: VARIANTS) => {
         --ifm-alert-border-width: ${euiTheme.border.width.thin};
         --ifm-alert-border-left-width: ${euiTheme.border.width.thin};
         --ifm-alert-border-color: ${color};
+        --ifm-alert-shadow: none;
 
         [class^='admonitionHeading'] {
           --ifm-alert-foreground-color: ${color};
 
           color: var(--ifm-alert-foreground-color);
         }
+      }
+
+      p {
+        ${euiFontSize(theme, 's')}
       }
     `,
   };

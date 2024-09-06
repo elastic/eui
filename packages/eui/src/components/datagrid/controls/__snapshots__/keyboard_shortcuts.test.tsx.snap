@@ -45,7 +45,7 @@ exports[`useDataGridKeyboardShortcuts [React 16] returns a popover containing a 
         aria-describedby="generated-id"
         aria-live="off"
         aria-modal="true"
-        class="euiPanel euiPanel--plain euiPanel--paddingMedium euiPopover__panel emotion-euiPanel-grow-m-m-plain-euiPopover__panel-light-isOpen-hasTransform-bottom"
+        class="euiPanel euiPanel--plain euiPopover__panel emotion-euiPanel-grow-m-plain-euiPopover__panel-light-isOpen-hasTransform-bottom"
         data-autofocus="true"
         data-popover-open="true"
         data-popover-panel="true"
@@ -66,7 +66,7 @@ exports[`useDataGridKeyboardShortcuts [React 16] returns a popover containing a 
         </p>
         <div>
           <div
-            class="euiPopoverTitle emotion-euiPopoverTitle-m-s"
+            class="euiPopoverTitle emotion-euiPopoverTitle-none-s"
           >
             <h2
               id="generated-id"
@@ -75,13 +75,13 @@ exports[`useDataGridKeyboardShortcuts [React 16] returns a popover containing a 
             </h2>
           </div>
           <div
-            class="euiText euiDataGrid__keyboardShortcuts emotion-euiText-xs"
+            class="euiText euiDataGrid__keyboardShortcuts emotion-euiText-xs-euiDataGrid__keyboardShortcuts"
           >
             <dl
               aria-labelledby="generated-id"
               class="euiDescriptionList emotion-euiDescriptionList-column-center-s-s"
               data-type="column"
-              style="grid-template-columns: 1fr 3fr;"
+              style="grid-template-columns: auto auto;"
             >
               <dt
                 class="euiDescriptionList__title emotion-euiDescriptionList__title-column-compressed-right"
@@ -294,7 +294,7 @@ exports[`useDataGridKeyboardShortcuts [React 17] returns a popover containing a 
         aria-describedby="generated-id"
         aria-live="off"
         aria-modal="true"
-        class="euiPanel euiPanel--plain euiPanel--paddingMedium euiPopover__panel emotion-euiPanel-grow-m-m-plain-euiPopover__panel-light-isOpen-hasTransform-bottom"
+        class="euiPanel euiPanel--plain euiPopover__panel emotion-euiPanel-grow-m-plain-euiPopover__panel-light-isOpen-hasTransform-bottom"
         data-autofocus="true"
         data-popover-open="true"
         data-popover-panel="true"
@@ -315,7 +315,7 @@ exports[`useDataGridKeyboardShortcuts [React 17] returns a popover containing a 
         </p>
         <div>
           <div
-            class="euiPopoverTitle emotion-euiPopoverTitle-m-s"
+            class="euiPopoverTitle emotion-euiPopoverTitle-none-s"
           >
             <h2
               id="generated-id"
@@ -324,13 +324,13 @@ exports[`useDataGridKeyboardShortcuts [React 17] returns a popover containing a 
             </h2>
           </div>
           <div
-            class="euiText euiDataGrid__keyboardShortcuts emotion-euiText-xs"
+            class="euiText euiDataGrid__keyboardShortcuts emotion-euiText-xs-euiDataGrid__keyboardShortcuts"
           >
             <dl
               aria-labelledby="generated-id"
               class="euiDescriptionList emotion-euiDescriptionList-column-center-s-s"
               data-type="column"
-              style="grid-template-columns: 1fr 3fr;"
+              style="grid-template-columns: auto auto;"
             >
               <dt
                 class="euiDescriptionList__title emotion-euiDescriptionList__title-column-compressed-right"
@@ -544,7 +544,7 @@ exports[`useDataGridKeyboardShortcuts [React 18] returns a popover containing a 
         aria-describedby="generated-id"
         aria-live="off"
         aria-modal="true"
-        class="euiPanel euiPanel--plain euiPanel--paddingMedium euiPopover__panel emotion-euiPanel-grow-m-m-plain-euiPopover__panel-light-isOpen-hasTransform-bottom"
+        class="euiPanel euiPanel--plain euiPopover__panel emotion-euiPanel-grow-m-plain-euiPopover__panel-light-isOpen-hasTransform-bottom"
         data-autofocus="true"
         data-popover-open="true"
         data-popover-panel="true"
@@ -565,7 +565,7 @@ exports[`useDataGridKeyboardShortcuts [React 18] returns a popover containing a 
         </p>
         <div>
           <div
-            class="euiPopoverTitle emotion-euiPopoverTitle-m-s"
+            class="euiPopoverTitle emotion-euiPopoverTitle-none-s"
           >
             <h2
               id="generated-id"
@@ -574,13 +574,13 @@ exports[`useDataGridKeyboardShortcuts [React 18] returns a popover containing a 
             </h2>
           </div>
           <div
-            class="euiText euiDataGrid__keyboardShortcuts emotion-euiText-xs"
+            class="euiText euiDataGrid__keyboardShortcuts emotion-euiText-xs-euiDataGrid__keyboardShortcuts"
           >
             <dl
               aria-labelledby="generated-id"
               class="euiDescriptionList emotion-euiDescriptionList-column-center-s-s"
               data-type="column"
-              style="grid-template-columns: 1fr 3fr;"
+              style="grid-template-columns: auto auto;"
             >
               <dt
                 class="euiDescriptionList__title emotion-euiDescriptionList__title-column-compressed-right"

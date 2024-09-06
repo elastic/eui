@@ -40,17 +40,7 @@ export const EuiDataGridToolbarControl: FunctionComponent<
       size="xs"
       color="text"
       textProps={false}
-      // Underline actual text, but not the badge
-      css={css`
-        &:focus,
-        &:hover:not(:disabled) {
-          text-decoration: none;
-
-          .euiDataGridToolbarControl__text {
-            text-decoration: underline;
-          }
-        }
-      `}
+      css={underlineStyles}
       {...rest}
     >
       <span
@@ -67,9 +57,7 @@ export const EuiDataGridToolbarControl: FunctionComponent<
       {Boolean(badgeContent) && (
         <EuiNotificationBadge
           className="euiDataGridToolbarControl__badge"
-          css={css`
-            cursor: inherit;
-          `}
+          css={badgeStyles}
           color="subdued"
           aria-label={`- ${badgeAriaLabel}`} // Punctuation helps add pauses for screen readers
           role="marquee" // https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/marquee_role
@@ -85,3 +73,18 @@ export const EuiDataGridToolbarControl: FunctionComponent<
 // are being hidden. We can make this a bit more legible to SRs with this quick util
 const betterScreenReaderSlashes = (badgeContent: string) =>
   badgeContent.replaceAll('/', ' out of ');
+
+// Underline actual text, but not the badge
+const underlineStyles = css`
+  &:focus,
+  &:hover:not(:disabled) {
+    text-decoration: none;
+
+    .euiDataGridToolbarControl__text {
+      text-decoration: underline;
+    }
+  }
+`;
+const badgeStyles = css`
+  cursor: inherit;
+`;

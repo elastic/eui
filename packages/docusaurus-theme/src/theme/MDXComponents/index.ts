@@ -12,9 +12,20 @@ import { Icon } from '../../components/icon';
 import { FigmaEmbed } from '../../components/figma_embed';
 import { Demo, DemoSource } from '../../components/demo';
 import { PropTable } from '../../components/prop_table';
+import { ListItem } from './ListItem';
+import { Paragraph } from './Paragraph';
+import { UnorderedList } from './UnorderedList';
+import { OrderedList } from './OrderedList';
 
 const MDXComponents = {
   ...OriginalMDXComponents,
+  // Base content components
+  p: Paragraph,
+  li: ListItem,
+  ul: UnorderedList,
+  ol: OrderedList,
+
+  // Custom components
   Badge,
   FigmaEmbed,
   Icon,

@@ -19,7 +19,7 @@ import {
   VariableSizeGrid as Grid,
   GridOnItemsRenderedProps,
 } from 'react-window';
-import { useGeneratedHtmlId } from '../../services';
+import { useGeneratedHtmlId, useEuiMemoizedStyles } from '../../services';
 import { useEuiTablePaginationDefaults } from '../table/table_pagination';
 import { EuiFocusTrap } from '../focus_trap';
 import { EuiI18n, useEuiI18n } from '../i18n';
@@ -36,6 +36,7 @@ import {
   checkOrDefaultToolBarDisplayOptions,
   EuiDataGridToolbar,
 } from './controls';
+import { EuiDataGridPagination, shouldRenderPagination } from './pagination';
 import { DataGridSortedContext, useSorting } from './utils/sorting';
 import {
   DataGridFocusContext,
@@ -49,7 +50,6 @@ import {
 } from './utils/in_memory';
 import { DataGridCellPopoverContext, useCellPopover } from './body/cell';
 import { computeVisibleRows } from './utils/row_count';
-import { EuiDataGridPaginationRenderer } from './utils/data_grid_pagination';
 import {
   schemaDetectors as providedSchemaDetectors,
   useMergedSchema,
@@ -67,6 +67,7 @@ import {
   EuiDataGridStyleHeader,
   EuiDataGridStyleRowHover,
 } from './data_grid_types';
+import { euiDataGridStyles } from './data_grid.styles';
 
 // Each gridStyle object above sets a specific CSS select to .euiGrid
 const fontSizesToClassMap: { [size in EuiDataGridStyleFontSizes]: string } = {
@@ -152,6 +153,8 @@ export const EuiDataGrid = memo(
           }
         : _pagination;
     }, [_pagination, paginationDefaults]);
+    const showPagination =
+      pagination && shouldRenderPagination(rowCount, pagination);
 
     const gridStyleWithDefaults = useMemo(
       () => ({ ...startingStyles, ...gridStyle }),
@@ -317,6 +320,7 @@ export const EuiDataGrid = memo(
       setIsFullScreen,
       fullScreenSelector,
       handleGridKeyDown,
+      fullScreenStyles,
     } = useDataGridFullScreenSelector();
 
     /**
@@ -354,6 +358,7 @@ export const EuiDataGrid = memo(
       },
       {
         'euiDataGrid--fullScreen': isFullScreen,
+        [fullScreenStyles]: isFullScreen,
       },
       {
         'euiDataGrid--noControls': !toolbarVisibility,
@@ -423,6 +428,8 @@ export const EuiDataGrid = memo(
       ]
     );
 
+    const styles = useEuiMemoizedStyles(euiDataGridStyles);
+
     return (
       <DataGridFocusContext.Provider value={focusContext}>
         <DataGridCellPopoverContext.Provider value={cellPopoverContext}>
@@ -430,8 +437,10 @@ export const EuiDataGrid = memo(
             <EuiFocusTrap
               disabled={!isFullScreen}
               className="euiDataGrid__focusWrap"
+              css={styles.euiDataGrid__focusWrap}
             >
               <div
+                css={styles.euiDataGrid}
                 className={classes}
                 onKeyDown={handleGridKeyDown}
                 style={isFullScreen ? undefined : { width, height }}
@@ -471,6 +480,7 @@ export const EuiDataGrid = memo(
                   ref={contentRef}
                   onKeyDown={onKeyDown}
                   data-test-subj="euiDataGridBody"
+                  css={styles.euiDataGrid__content}
                   className="euiDataGrid__content"
                   role="grid"
                   aria-rowcount={rowCount}
@@ -510,13 +520,13 @@ export const EuiDataGrid = memo(
                     renderCustomGridBody={renderCustomGridBody}
                   />
                 </div>
-                {pagination && props['aria-labelledby'] && (
+                {showPagination && props['aria-labelledby'] && (
                   <p id={ariaLabelledById} hidden>
                     {ariaLabelledBy}
                   </p>
                 )}
-                {pagination && (
-                  <EuiDataGridPaginationRenderer
+                {showPagination && (
+                  <EuiDataGridPagination
                     {...pagination}
                     rowCount={rowCount}
                     controls={gridId}

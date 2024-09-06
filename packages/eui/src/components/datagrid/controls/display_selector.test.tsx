@@ -8,10 +8,10 @@
 
 import React from 'react';
 import { act, fireEvent, waitFor } from '@testing-library/react';
-import { shallow, ShallowWrapper } from 'enzyme';
 import {
   renderHook,
   render,
+  screen,
   waitForEuiPopoverClose,
   waitForEuiPopoverOpen,
 } from '../../../test/rtl';
@@ -69,12 +69,13 @@ describe('useDataGridDisplaySelector', () => {
     };
 
     it('renders a toolbar button/popover allowing users to customize display settings', () => {
-      const component = shallow(<MockComponent />);
-      expect(component).toMatchSnapshot();
+      const { getByTestSubject, baseElement } = render(<MockComponent />);
+      fireEvent.click(getByTestSubject('dataGridDisplaySelectorButton'));
+      expect(baseElement).toMatchSnapshot();
     });
 
     it('does not render if all valid sub-options are disabled', () => {
-      const component = shallow(
+      const { container } = render(
         <MockComponent
           showDisplaySelector={{
             allowDensity: false,
@@ -82,7 +83,7 @@ describe('useDataGridDisplaySelector', () => {
           }}
         />
       );
-      expect(component.text()).toEqual('');
+      expect(container).toBeEmptyDOMElement();
     });
 
     describe('density', () => {
@@ -653,22 +654,17 @@ describe('useDataGridDisplaySelector', () => {
         </>
       );
     };
-    const diveIntoEuiI18n = (component: ShallowWrapper) => {
-      return (
-        component.find('EuiI18n').last().renderProp('children') as Function
-      )(['', '', '', '']);
+    const setRowHeight = (buttonGroupId: string) => {
+      fireEvent.click(screen.getByTestSubject('dataGridDisplaySelectorButton'));
+      waitForEuiPopoverOpen();
+      fireEvent.click(screen.getByTestSubject(buttonGroupId));
     };
-    const setRowHeight = (component: ShallowWrapper, selection = '') => {
-      diveIntoEuiI18n(component)
-        .find('[data-test-subj="rowHeightButtonGroup"]')
-        .simulate('change', selection);
-    };
-    const getOutput = (component: ShallowWrapper) => {
-      return JSON.parse(component.find('[data-test-subj="output"]').text());
+    const getOutput = () => {
+      return JSON.parse(screen.getByTestSubject('output').textContent!);
     };
     describe('returns an object of rowHeightsOptions with user overrides', () => {
       it('overrides `rowHeights` and `defaultHeight`', () => {
-        const component = shallow(
+        render(
           <MockComponent
             initialRowHeightsOptions={{
               rowHeights: { 0: 100 },
@@ -676,18 +672,18 @@ describe('useDataGridDisplaySelector', () => {
             }}
           />
         );
-        setRowHeight(component, 'undefined');
-        expect(getOutput(component)).toEqual({
+        setRowHeight('undefined');
+        expect(getOutput()).toEqual({
           rowHeights: {},
           defaultHeight: undefined,
         });
       });
       it('does not override other rowHeightsOptions properties', () => {
-        const component = shallow(
+        render(
           <MockComponent initialRowHeightsOptions={{ lineHeight: '2em' }} />
         );
-        setRowHeight(component, 'lineCount');
-        expect(getOutput(component)).toEqual({
+        setRowHeight('lineCount');
+        expect(getOutput()).toEqual({
           lineHeight: '2em',
           defaultHeight: { lineCount: 2 },
           rowHeights: {},
@@ -696,14 +692,12 @@ describe('useDataGridDisplaySelector', () => {
     });
 
     it('handles undefined initialRowHeightsOptions', () => {
-      const component = shallow(
-        <MockComponent initialRowHeightsOptions={undefined} />
-      );
-      expect(getOutput(component)).toEqual({});
+      render(<MockComponent initialRowHeightsOptions={undefined} />);
+      expect(getOutput()).toEqual({});
 
-      setRowHeight(component, 'auto');
+      setRowHeight('auto');
 
-      expect(getOutput(component)).toEqual({
+      expect(getOutput()).toEqual({
         defaultHeight: 'auto',
         rowHeights: {},
       });
