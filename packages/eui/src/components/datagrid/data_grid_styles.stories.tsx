@@ -26,6 +26,13 @@ const meta: Meta = {
 export default meta;
 type Story = StoryObj<EuiDataGridStyle>;
 
+const storyArgs = {
+  ...defaultStorybookArgs,
+  renderFooterCellValue: ({ columnId }: { columnId: string }) =>
+    columnId === 'account' ? '5 accounts' : null,
+  height: 400, // to more easily test sticky footers
+};
+
 export const Playground: Story = {
   parameters: {
     codeSnippet: {
@@ -50,14 +57,59 @@ export const Playground: Story = {
     },
   },
   render: (gridStyle: EuiDataGridStyle) => (
-    <StatefulDataGrid
-      {...defaultStorybookArgs}
-      gridStyle={gridStyle}
-      renderFooterCellValue={({ columnId }) =>
-        columnId === 'account' ? '5 accounts' : null
-      }
-      height={400}
-    />
+    <StatefulDataGrid {...storyArgs} gridStyle={gridStyle} />
   ),
 };
 enableFunctionToggleControls(Playground, ['onChange']);
+
+/**
+ * VRT only
+ */
+
+export const HorizontalLines: Story = {
+  tags: ['vrt-only'],
+  args: {
+    border: 'horizontal',
+    header: 'shade',
+    footer: 'shade',
+  },
+  render: (gridStyle) => (
+    <StatefulDataGrid {...storyArgs} gridStyle={gridStyle} />
+  ),
+};
+
+export const Minimal: Story = {
+  tags: ['vrt-only'],
+  args: {
+    border: 'none',
+    header: 'underline',
+    footer: 'overline',
+    rowHover: 'none',
+    stickyFooter: false,
+  },
+  render: (gridStyle) => (
+    <StatefulDataGrid {...storyArgs} gridStyle={gridStyle} height="auto" />
+  ),
+};
+
+export const Compact: Story = {
+  tags: ['vrt-only'],
+  args: {
+    fontSize: 's',
+    cellPadding: 's',
+  },
+  render: (gridStyle) => (
+    <StatefulDataGrid {...storyArgs} gridStyle={gridStyle} />
+  ),
+};
+
+export const Expanded: Story = {
+  tags: ['vrt-only'],
+  args: {
+    fontSize: 'l',
+    cellPadding: 'l',
+  },
+  render: (gridStyle) => (
+    <StatefulDataGrid {...storyArgs} gridStyle={gridStyle} />
+  ),
+};
