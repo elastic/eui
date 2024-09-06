@@ -149,14 +149,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 1119,
+        "line": 1118,
         "column": 8,
-        "index": 31058
+        "index": 31036
       },
       "end": {
-        "line": 1123,
+        "line": 1122,
         "column": 9,
-        "index": 31213
+        "index": 31191
       }
     },
     "filepath": "src/components/basic_table/basic_table.tsx"
@@ -167,50 +167,32 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 1350,
+        "line": 1347,
         "column": 8,
-        "index": 37993
+        "index": 37908
       },
       "end": {
-        "line": 1354,
+        "line": 1351,
         "column": 9,
-        "index": 38152
+        "index": 38067
       }
     },
     "filepath": "src/components/basic_table/basic_table.tsx"
   },
   {
-    "token": "euiCollapsedItemActions.allActionsTooltip",
+    "token": "euiCollapsedItemActions.allActions",
     "defString": "All actions",
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 45,
-        "column": 28,
-        "index": 1373
+        "line": 110,
+        "column": 4,
+        "index": 3586
       },
       "end": {
-        "line": 48,
-        "column": 3,
-        "index": 1455
-      }
-    },
-    "filepath": "src/components/basic_table/collapsed_item_actions.tsx"
-  },
-  {
-    "token": "euiCollapsedItemActions.allActions",
-    "defString": "All actions, row {index}",
-    "highlighting": "string",
-    "loc": {
-      "start": {
-        "line": 50,
-        "column": 36,
-        "index": 1494
-      },
-      "end": {
-        "line": 56,
-        "column": 3,
-        "index": 1631
+        "line": 119,
+        "column": 5,
+        "index": 3853
       }
     },
     "filepath": "src/components/basic_table/collapsed_item_actions.tsx"
@@ -221,14 +203,32 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 58,
-        "column": 44,
-        "index": 1678
+        "line": 110,
+        "column": 4,
+        "index": 3586
       },
       "end": {
-        "line": 61,
-        "column": 3,
-        "index": 1816
+        "line": 119,
+        "column": 5,
+        "index": 3853
+      }
+    },
+    "filepath": "src/components/basic_table/collapsed_item_actions.tsx"
+  },
+  {
+    "token": "euiCollapsedItemActions.allActions",
+    "defString": "All actions",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 136,
+        "column": 4,
+        "index": 4413
+      },
+      "end": {
+        "line": 136,
+        "column": 78,
+        "index": 4487
       }
     },
     "filepath": "src/components/basic_table/collapsed_item_actions.tsx"
