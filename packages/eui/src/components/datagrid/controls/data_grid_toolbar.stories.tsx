@@ -40,7 +40,7 @@ export const NoToolbar: StoryObj<Pick<EuiDataGridProps, 'toolbarVisibility'>> =
   {
     parameters: {
       codeSnippet: {
-        snippet: `<EuiDataGrid toolbarVisibility={{{STORY_ARGS}}} />`,
+        snippet: `<EuiDataGrid {{...STORY_ARGS}} />`,
       },
       controls: { include: ['toolbarVisibility'] },
     },
@@ -60,6 +60,7 @@ export const ToolbarVisibilityOptions: StoryObj<EuiDataGridToolBarVisibilityOpti
     parameters: {
       codeSnippet: {
         snippet: `<EuiDataGrid toolbarVisibility={{{STORY_ARGS}}} />`,
+        removeDefaultProps: false,
       },
       controls: {
         include: [

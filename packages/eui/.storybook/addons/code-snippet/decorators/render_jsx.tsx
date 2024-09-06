@@ -20,11 +20,7 @@ import { getDocgenSection } from '@storybook/docs-tools';
 import { logger } from '@storybook/client-logger';
 
 import { UseEuiTheme } from '../../../../src/services';
-import {
-  ADDON_PARAMETER_KEY,
-  EXCLUDED_PROPS,
-  PRESERVED_FALSE_VALUE_PROPS,
-} from '../constants';
+import { ADDON_PARAMETER_KEY, EXCLUDED_PROPS } from '../constants';
 import {
   getStoryComponentDisplayName,
   getEmotionComponentDisplayName,
@@ -135,6 +131,7 @@ export const renderJsx = (
     sortProps: true,
     // using any type here as component props can have any type
     filterProps: (value: any, key: string) => {
+      // Note that false values should be allowed, and handled by `removeDefaultProps`
       if (
         EXCLUDED_PROPS.has(key) ||
         value == null ||
@@ -142,12 +139,6 @@ export const renderJsx = (
         // empty objects/arrays that we set up for easier testing
         (typeof value === 'object' && isEmpty(value))
       ) {
-        return false;
-      }
-
-      // manually filter props with `false` values as this allows us to preserve
-      // `false` values where required e.g. grow={false}
-      if (value === false && !PRESERVED_FALSE_VALUE_PROPS.has(key)) {
         return false;
       }
 
