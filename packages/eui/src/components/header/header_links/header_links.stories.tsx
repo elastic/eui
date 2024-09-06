@@ -46,11 +46,18 @@ export const Playground: Story = {
       </EuiHeaderSection>
     </EuiHeader>
   ),
-  play: async ({ canvasElement }) => {
+  play: async ({ canvasElement, step }) => {
     const canvas = within(canvasElement);
-    await waitFor(async () => {
-      await fireEvent.click(canvas.getByLabelText('Open menu'));
+    await waitFor(() => canvas.getByLabelText('App menu')); // Wait for rendering to finish
+
+    step('Open mobile popover', async () => {
+      await waitFor(async () => {
+        const mobilePopover = canvas.queryByLabelText('Open menu');
+        if (mobilePopover) {
+          await fireEvent.click(mobilePopover);
+          await canvas.waitForEuiPopoverVisible();
+        }
+      });
     });
-    await canvas.waitForEuiPopoverVisible();
   },
 };
