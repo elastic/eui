@@ -42,7 +42,11 @@ export const Auto: Story = {
     defaultHeight: 'auto',
   },
   render: (rowHeightsOptions) => (
-    <StatefulDataGrid {...storyArgs} rowHeightsOptions={rowHeightsOptions} />
+    <StatefulDataGrid
+      {...storyArgs}
+      rowHeightsOptions={rowHeightsOptions}
+      height={419} // Required by webkit browsers to not render with 0 height. TODO: Investigate why, this is likely a bug
+    />
   ),
 };
 
