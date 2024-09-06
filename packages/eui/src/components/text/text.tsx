@@ -6,39 +6,26 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent, HTMLAttributes, CSSProperties } from 'react';
+import React, { FunctionComponent } from 'react';
 import classNames from 'classnames';
-import { CommonProps } from '../common';
 
 import { useEuiMemoizedStyles } from '../../services';
+
+import type { SharedTextProps, EuiTextColors, EuiTextAlignment } from './types';
+import { EuiTextColor } from './text_color';
+import { EuiTextAlign } from './text_align';
 import { euiTextStyles } from './text.styles';
-
-import { TextColor, EuiTextColor } from './text_color';
-
-import { EuiTextAlign, TextAlignment } from './text_align';
 
 export const TEXT_SIZES = ['xs', 's', 'm', 'relative'] as const;
 export type TextSize = (typeof TEXT_SIZES)[number];
 
-export type EuiTextProps = CommonProps &
-  Omit<HTMLAttributes<HTMLDivElement>, 'color'> & {
-    /**
-     * The HTML element/tag to render.
-     * Use with care when nesting multiple components to ensure valid html.
-     * Block elements can't be nested inside inline elements: `<p>` and `<div>` are not valid inside `<span>`.
-     * Additionally `<div>` is not valid to use inside `<p>`.
-     */
-    component?: 'div' | 'span' | 'p';
-    textAlign?: TextAlignment;
+export type EuiTextProps = SharedTextProps &
+  EuiTextColors &
+  EuiTextAlignment & {
     /**
      * Determines the text size. Choose `relative` to control the `font-size` based on the value of a parent container.
      */
     size?: TextSize;
-    /**
-     * Any of our named colors or a `hex`, `rgb` or `rgba` value.
-     * @default inherit
-     */
-    color?: TextColor | CSSProperties['color'];
     grow?: boolean;
   };
 

@@ -6,16 +6,9 @@
  * Side Public License, v 1.
  */
 
-import React, {
-  FunctionComponent,
-  HTMLAttributes,
-  CSSProperties,
-  isValidElement,
-} from 'react';
-
-import { CommonProps } from '../common';
+import React, { FunctionComponent, isValidElement } from 'react';
 import { useEuiMemoizedStyles, cloneElementWithCss } from '../../services';
-
+import type { SharedTextProps, CloneElement, EuiTextColors } from './types';
 import { euiTextColorStyles } from './text_color.styles';
 
 export const COLORS = [
@@ -32,28 +25,7 @@ export type TextColor = (typeof COLORS)[number];
 export const _isNamedColor = (color: any): color is TextColor =>
   COLORS.includes(color);
 
-export type EuiTextColorProps = CommonProps &
-  Omit<
-    HTMLAttributes<HTMLDivElement> & HTMLAttributes<HTMLSpanElement>,
-    'color'
-  > & {
-    /**
-     * Any of our named colors or a `hex`, `rgb` or `rgba` value.
-     */
-    color?: TextColor | CSSProperties['color'];
-    /**
-     * The HTML element/tag to render
-     * Use with care when nesting multiple components to ensure valid html.
-     * Block elements can't be nested inside inline elements. (<p> and <div> are not valid inside <span>)
-     * Additionally <div> is not valid to use inside <p>.
-     */
-    component?: 'div' | 'span' | 'p';
-    /**
-     * Applies text styling to the child element instead of rendering a parent wrapper `span`/`div`.
-     * Can only be used when wrapping a *single* child element/tag, and not raw text.
-     */
-    cloneElement?: boolean;
-  };
+export type EuiTextColorProps = SharedTextProps & CloneElement & EuiTextColors;
 
 export const EuiTextColor: FunctionComponent<EuiTextColorProps> = ({
   children,
