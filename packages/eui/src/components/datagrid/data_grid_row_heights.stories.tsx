@@ -18,7 +18,7 @@ import {
 import type { EuiDataGridRowHeightsOptions } from './data_grid_types';
 
 const meta: Meta<EuiDataGridRowHeightsOptions> = {
-  title: 'Tabular Content/EuiDataGrid/Row Heights',
+  title: 'Tabular Content/EuiDataGrid/rowHeightsOptions (prop)',
   component: EuiDataGridRowHeightsPropsComponent,
   parameters: {
     codeSnippet: {

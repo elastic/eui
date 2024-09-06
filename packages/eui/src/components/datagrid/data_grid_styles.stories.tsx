@@ -19,7 +19,7 @@ import {
 import type { EuiDataGridStyle } from './data_grid_types';
 
 const meta: Meta = {
-  title: 'Tabular Content/EuiDataGrid/Grid Styles',
+  title: 'Tabular Content/EuiDataGrid/gridStyle (prop)',
   component: EuiDataGridStylePropsComponent,
 };
 

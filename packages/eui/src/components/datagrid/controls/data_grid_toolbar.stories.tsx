@@ -29,7 +29,7 @@ import {
 } from '../data_grid.stories.utils';
 
 const meta: Meta = {
-  title: 'Tabular Content/EuiDataGrid/Toolbar Controls',
+  title: 'Tabular Content/EuiDataGrid/toolbarVisibility (prop)',
   component: EuiDataGridToolbarPropsComponent,
 };
 
