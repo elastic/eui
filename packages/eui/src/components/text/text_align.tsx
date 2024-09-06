@@ -6,31 +6,21 @@
  * Side Public License, v 1.
  */
 
-import React, {
-  FunctionComponent,
-  HTMLAttributes,
-  isValidElement,
-} from 'react';
-import { CommonProps } from '../common';
+import React, { FunctionComponent, isValidElement } from 'react';
 import { cloneElementWithCss } from '../../services';
-
+import type { SharedTextProps, CloneElement, EuiTextAlignment } from './types';
 import { euiTextAlignStyles as styles } from './text_align.styles';
 
 export const ALIGNMENTS = ['left', 'right', 'center'] as const;
 export type TextAlignment = (typeof ALIGNMENTS)[number];
 
-export type EuiTextAlignProps = CommonProps &
-  HTMLAttributes<HTMLDivElement> & {
-    textAlign?: TextAlignment;
-    /**
-     * Applies text styling to the child element instead of rendering a parent wrapper `div`.
-     * Can only be used when wrapping a *single* child element/tag, and not raw text.
-     */
-    cloneElement?: boolean;
-  };
+export type EuiTextAlignProps = SharedTextProps &
+  CloneElement &
+  EuiTextAlignment;
 
 export const EuiTextAlign: FunctionComponent<EuiTextAlignProps> = ({
   children,
+  component: Component = 'div',
   textAlign = 'left',
   cloneElement = false,
   ...rest
@@ -42,6 +32,6 @@ export const EuiTextAlign: FunctionComponent<EuiTextAlignProps> = ({
   if (isValidElement(children) && cloneElement) {
     return cloneElementWithCss(children, props);
   } else {
-    return <div {...props}>{children}</div>;
+    return <Component {...props}>{children}</Component>;
   }
 };

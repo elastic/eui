@@ -64,5 +64,15 @@ describe('EuiText', () => {
 
       expect(container.firstChild).toMatchSnapshot();
     });
+
+    test('component', () => {
+      const { container } = render(
+        <EuiText {...requiredProps} component="span">
+          Content
+        </EuiText>
+      );
+
+      expect(container.firstChild?.nodeName).toBe('SPAN');
+    });
   });
 });
