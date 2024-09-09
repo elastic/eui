@@ -622,7 +622,6 @@ export class EuiDataGridCell extends Component<
                 ref={this.cellRef}
                 {...cellProps}
                 css={cssStyles}
-                data-test-subj="dataGridRowCell"
                 // Data attributes to help target specific cells by either data or current cell location
                 data-gridcell-column-id={this.props.columnId} // Static column ID name, not affected by column order
                 data-gridcell-column-index={this.props.colIndex} // Affected by column reordering
