@@ -1,8 +1,7 @@
-import { ReactNode } from 'react';
 import clsx from 'clsx';
 import { css } from '@emotion/react';
 import { ThemeClassNames } from '@docusaurus/theme-common';
-import { useDoc } from '@docusaurus/theme-common/internal';
+import { useDoc } from '@docusaurus/plugin-content-docs/client';
 import MDXContent from '@theme-original/MDXContent';
 import {
   EuiHorizontalRule,
