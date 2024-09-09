@@ -143,6 +143,7 @@ describe('useCellPopover', () => {
 
       // Mock a focusable cell parent
       const mockCell = document.createElement('div');
+      mockCell.className = 'euiDataGridRowCell';
       mockCell.tabIndex = 0;
 
       const renderCellPopover = () => {

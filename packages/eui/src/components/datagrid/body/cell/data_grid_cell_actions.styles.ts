@@ -26,10 +26,37 @@ export const euiDataGridCellActionsStyles = (euiThemeContext: UseEuiTheme) => {
   const borderWidth = euiTheme.border.width.thin;
 
   return {
+    euiDataGridRowCell__actionsWrapper: css`
+      position: absolute;
+      ${logicalCSS('left', 0)}
+      ${logicalCSS('bottom', '100%')}
+
+      /* Sit below sticky column headers */
+      z-index: ${levels.stickyHeader - 1};
+
+      /* The first row of cell actions need to be visible above the cell headers,
+       * but other cell actions that scroll past the sticky headers should not */
+      .euiDataGridRowCell[data-gridcell-visible-row-index='0'] > & {
+        z-index: ${levels.stickyHeader + 1};
+      }
+
+      /* If a cell is not hovered nor focused nor open via popover, don't show the actions */
+      .euiDataGridRowCell:not(:hover, ${cellOutline.rowCellFocusSelectors}) & {
+        display: none;
+      }
+
+      /* Increase non-visible hitbox of cell on hover, to reduce UX friction
+       * for users mousing from the cell diagonally over to the actions */
+      .euiDataGridRowCell:hover:not(${cellOutline.rowCellFocusSelectors}) & {
+        ${logicalCSS('min-width', '50%')}
+        ${logicalCSS('padding-right', euiTheme.size.base)}
+      }
+    `,
+
     euiDataGridRowCell__actions: css`
-      z-index: ${levels.stickyHeader - 1}; /* Sit below sticky column headers */
       display: flex;
       gap: ${euiTheme.size.xxs};
+      ${logicalCSS('width', 'fit-content')}
       padding-inline: ${euiTheme.size.xxs};
       ${logicalCSS('margin-bottom', `-${borderWidth}`)}
 
@@ -39,20 +66,6 @@ export const euiDataGridCellActionsStyles = (euiThemeContext: UseEuiTheme) => {
       border-radius: ${cellOutline.borderRadius};
       ${logicalCSS('border-bottom-left-radius', 0)}
 
-      /* The first row of cell actions need to be visible above the cell headers,
-       * but other cell actions that scroll past the sticky headers should not */
-      .euiDataGridRowCell[data-gridcell-visible-row-index='0'] > & {
-        z-index: ${levels.stickyHeader + 1};
-      }
-
-      /* Positioning for cell actions & the cell expansion popover */
-      &,
-      & + [data-euiportal] > .euiPopover {
-        position: absolute;
-        ${logicalCSS('left', 0)}
-        ${logicalCSS('bottom', '100%')}
-      }
-
       /* Visual trickery - fill in the gap between the cell outline border-radius & the actions */
       &::after {
         content: '';
@@ -61,12 +74,6 @@ export const euiDataGridCellActionsStyles = (euiThemeContext: UseEuiTheme) => {
         ${logicalCSS('left', `-${borderWidth}`)}
         ${logicalSizeCSS(mathWithUnits(borderWidth, (x) => x * 2))}
         background-color: ${cellOutline.focusColor};
-      }
-    `,
-    visibility: css`
-      /* If a cell is not hovered nor focused nor open via popover, don't show the actions */
-      .euiDataGridRowCell:not(:hover, ${cellOutline.rowCellFocusSelectors}) & {
-        display: none;
       }
 
       ${euiCanAnimate} {

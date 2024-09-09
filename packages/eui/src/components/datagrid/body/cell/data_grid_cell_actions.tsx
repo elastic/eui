@@ -39,7 +39,6 @@ export const EuiDataGridCellActions = ({
   colIndex: number;
 }) => {
   const styles = useEuiMemoizedStyles(euiDataGridCellActionsStyles);
-  const cssStyles = [styles.euiDataGridRowCell__actions, styles.visibility];
 
   // Note: The cell expand button/expansion popover is *always* rendered if
   // column.cellActions is present (regardless of column.isExpandable).
@@ -112,15 +111,21 @@ export const EuiDataGridCellActions = ({
   }, [column, colIndex, rowIndex, styles]);
 
   return (
-    <>
-      <div css={cssStyles} className="euiDataGridRowCell__actions">
+    <div
+      css={styles.euiDataGridRowCell__actionsWrapper}
+      className="euiDataGridRowCell__actionsWrapper"
+    >
+      <div
+        css={styles.euiDataGridRowCell__actions}
+        className="euiDataGridRowCell__actions"
+      >
         {[...additionalButtons, expandButton]}
       </div>
       {/* The cell expansion popover needs a separate div/ref - otherwise the
           extra popover wrappers mess up the absolute positioning and cause
           animation stuttering on the cell actions */}
       <div ref={popoverAnchorRef} data-test-subject="cellPopoverAnchor" />
-    </>
+    </div>
   );
 };
 

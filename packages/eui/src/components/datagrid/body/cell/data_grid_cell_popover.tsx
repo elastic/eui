@@ -86,8 +86,9 @@ export const useCellPopover = (): {
   // clicking the expansion cell action triggers an outside click
   const onClickOutside = useCallback(
     (event: Event) => {
-      const cellActions =
-        popoverAnchor?.parentElement?.parentElement?.previousElementSibling;
+      const cellActions = popoverAnchor?.closest(
+        '.euiDataGridRowCell__actionsWrapper'
+      );
       if (!cellActions?.contains(event.target as Node)) {
         closeCellPopover();
       }
@@ -101,13 +102,13 @@ export const useCellPopover = (): {
         event.preventDefault();
         event.stopPropagation();
         closeCellPopover();
-        const cell = popoverAnchor?.parentElement?.parentElement?.parentElement;
+        const cell = popoverAnchor?.closest<HTMLElement>('.euiDataGridRowCell');
 
         // Prevent cell animation flash while focus is being shifted between popover and cell
         cell?.setAttribute('data-keyboard-closing', 'true');
         // Ensure focus is returned to the parent cell, and remove animation stopgap
         requestAnimationFrame(() => {
-          popoverAnchor?.parentElement!.focus();
+          cell?.focus();
           cell?.removeAttribute('data-keyboard-closing');
         });
       }
@@ -134,6 +135,8 @@ export const useCellPopover = (): {
   const cellPopover = useMemo(() => {
     if (!popoverIsOpen || !popoverAnchor) return null;
 
+    const cell = popoverAnchor.closest<HTMLElement>('.euiDataGridRowCell');
+
     // Note that this popover is rendered once at the top grid level, rather than one popover per cell
     return (
       <EuiWrappingPopover
@@ -158,9 +161,7 @@ export const useCellPopover = (): {
           cellPopoverProps.panelProps?.className
         )}
         panelStyle={{
-          maxInlineSize: `min(75vw, max(${
-            popoverAnchor.parentElement!.offsetWidth
-          }px, 400px))`,
+          maxInlineSize: `min(75vw, max(${cell?.offsetWidth ?? 0}px, 400px))`,
           maxBlockSize: '50vh',
         }}
         onKeyDown={onKeyDown}
