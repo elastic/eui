@@ -11,7 +11,7 @@ exports[`EuiDataGridBodyCustomRender treats \`renderCustomGridBody\` as a render
   >
     <div
       aria-describedby="euiDataGridCellHeader_generated-id_sorting"
-      class="euiDataGridHeaderCell euiDataGridHeaderCell--boolean euiDataGridHeaderCell--hasColumnActions"
+      class="euiDataGridHeaderCell euiDataGridHeaderCell--boolean euiDataGridHeaderCell--hasColumnActions emotion-euiDataGridHeaderCell"
       data-gridcell-column-id="columnA"
       data-gridcell-column-index="0"
       data-gridcell-row-index="-1"
@@ -55,7 +55,7 @@ exports[`EuiDataGridBodyCustomRender treats \`renderCustomGridBody\` as a render
     </div>
     <div
       aria-describedby="euiDataGridCellHeader_generated-id_sorting"
-      class="euiDataGridHeaderCell euiDataGridHeaderCell--string euiDataGridHeaderCell--hasColumnActions"
+      class="euiDataGridHeaderCell euiDataGridHeaderCell--string euiDataGridHeaderCell--hasColumnActions emotion-euiDataGridHeaderCell"
       data-gridcell-column-id="columnB"
       data-gridcell-column-index="1"
       data-gridcell-row-index="-1"
@@ -103,7 +103,7 @@ exports[`EuiDataGridBodyCustomRender treats \`renderCustomGridBody\` as a render
   >
     <div
       aria-rowindex="1"
-      class="euiDataGridRowCell euiDataGridRowCell--boolean euiDataGridRowCell--firstColumn"
+      class="euiDataGridRowCell euiDataGridRowCell--boolean euiDataGridRowCell--firstColumn emotion-euiDataGridRowCell"
       data-gridcell-column-id="columnA"
       data-gridcell-column-index="0"
       data-gridcell-row-index="0"
@@ -129,7 +129,7 @@ exports[`EuiDataGridBodyCustomRender treats \`renderCustomGridBody\` as a render
     </div>
     <div
       aria-rowindex="1"
-      class="euiDataGridRowCell euiDataGridRowCell--string euiDataGridRowCell--lastColumn"
+      class="euiDataGridRowCell euiDataGridRowCell--string euiDataGridRowCell--lastColumn emotion-euiDataGridRowCell"
       data-gridcell-column-id="columnB"
       data-gridcell-column-index="1"
       data-gridcell-row-index="0"
@@ -159,7 +159,7 @@ exports[`EuiDataGridBodyCustomRender treats \`renderCustomGridBody\` as a render
   >
     <div
       aria-rowindex="2"
-      class="euiDataGridRowCell euiDataGridRowCell--boolean euiDataGridRowCell--firstColumn"
+      class="euiDataGridRowCell euiDataGridRowCell--boolean euiDataGridRowCell--firstColumn emotion-euiDataGridRowCell"
       data-gridcell-column-id="columnA"
       data-gridcell-column-index="0"
       data-gridcell-row-index="1"
@@ -185,7 +185,7 @@ exports[`EuiDataGridBodyCustomRender treats \`renderCustomGridBody\` as a render
     </div>
     <div
       aria-rowindex="2"
-      class="euiDataGridRowCell euiDataGridRowCell--string euiDataGridRowCell--lastColumn"
+      class="euiDataGridRowCell euiDataGridRowCell--string euiDataGridRowCell--lastColumn emotion-euiDataGridRowCell"
       data-gridcell-column-id="columnB"
       data-gridcell-column-index="1"
       data-gridcell-row-index="1"

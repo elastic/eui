@@ -53,7 +53,7 @@ describe('EuiDataGridHeaderRow', () => {
       >
         <div
           aria-describedby="euiDataGridCellHeader_generated-id_sorting"
-          class="euiDataGridHeaderCell euiDataGridHeaderCell--string euiDataGridHeaderCell--hasColumnActions"
+          class="euiDataGridHeaderCell euiDataGridHeaderCell--string euiDataGridHeaderCell--hasColumnActions emotion-euiDataGridHeaderCell"
           data-gridcell-column-id="someColumn"
           data-gridcell-column-index="0"
           data-gridcell-row-index="-1"
