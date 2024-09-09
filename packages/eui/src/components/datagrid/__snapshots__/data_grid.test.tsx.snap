@@ -696,7 +696,7 @@ exports[`EuiDataGrid rendering renders additional toolbar controls 1`] = `
               tabindex="-1"
             >
               <div
-                class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight eui-textTruncate"
+                class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight eui-textTruncate emotion-euiDataGridRowCell__content-defaultHeight"
                 data-datagrid-cellcontent="true"
               >
                 0, A
@@ -722,7 +722,7 @@ exports[`EuiDataGrid rendering renders additional toolbar controls 1`] = `
               tabindex="-1"
             >
               <div
-                class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight eui-textTruncate"
+                class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight eui-textTruncate emotion-euiDataGridRowCell__content-defaultHeight"
                 data-datagrid-cellcontent="true"
               >
                 0, B
@@ -748,7 +748,7 @@ exports[`EuiDataGrid rendering renders additional toolbar controls 1`] = `
               tabindex="-1"
             >
               <div
-                class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight eui-textTruncate"
+                class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight eui-textTruncate emotion-euiDataGridRowCell__content-defaultHeight"
                 data-datagrid-cellcontent="true"
               >
                 1, A
@@ -774,7 +774,7 @@ exports[`EuiDataGrid rendering renders additional toolbar controls 1`] = `
               tabindex="-1"
             >
               <div
-                class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight eui-textTruncate"
+                class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight eui-textTruncate emotion-euiDataGridRowCell__content-defaultHeight"
                 data-datagrid-cellcontent="true"
               >
                 1, B
@@ -800,7 +800,7 @@ exports[`EuiDataGrid rendering renders additional toolbar controls 1`] = `
               tabindex="-1"
             >
               <div
-                class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight eui-textTruncate"
+                class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight eui-textTruncate emotion-euiDataGridRowCell__content-defaultHeight"
                 data-datagrid-cellcontent="true"
               >
                 2, A
@@ -826,7 +826,7 @@ exports[`EuiDataGrid rendering renders additional toolbar controls 1`] = `
               tabindex="-1"
             >
               <div
-                class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight eui-textTruncate"
+                class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight eui-textTruncate emotion-euiDataGridRowCell__content-defaultHeight"
                 data-datagrid-cellcontent="true"
               >
                 2, B
@@ -1143,7 +1143,7 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
               tabindex="-1"
             >
               <div
-                class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight"
+                class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight emotion-euiDataGridRowCell__content-controlColumn-defaultHeight"
                 data-datagrid-cellcontent="true"
               >
                 0
@@ -1169,7 +1169,7 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
               tabindex="-1"
             >
               <div
-                class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight eui-textTruncate"
+                class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight eui-textTruncate emotion-euiDataGridRowCell__content-defaultHeight"
                 data-datagrid-cellcontent="true"
               >
                 0, A
@@ -1195,7 +1195,7 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
               tabindex="-1"
             >
               <div
-                class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight eui-textTruncate"
+                class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight eui-textTruncate emotion-euiDataGridRowCell__content-defaultHeight"
                 data-datagrid-cellcontent="true"
               >
                 0, B
@@ -1221,7 +1221,7 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
               tabindex="-1"
             >
               <div
-                class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight"
+                class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight emotion-euiDataGridRowCell__content-controlColumn-defaultHeight"
                 data-datagrid-cellcontent="true"
               >
                 0
@@ -1247,7 +1247,7 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
               tabindex="-1"
             >
               <div
-                class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight"
+                class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight emotion-euiDataGridRowCell__content-controlColumn-defaultHeight"
                 data-datagrid-cellcontent="true"
               >
                 1
@@ -1273,7 +1273,7 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
               tabindex="-1"
             >
               <div
-                class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight eui-textTruncate"
+                class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight eui-textTruncate emotion-euiDataGridRowCell__content-defaultHeight"
                 data-datagrid-cellcontent="true"
               >
                 1, A
@@ -1299,7 +1299,7 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
               tabindex="-1"
             >
               <div
-                class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight eui-textTruncate"
+                class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight eui-textTruncate emotion-euiDataGridRowCell__content-defaultHeight"
                 data-datagrid-cellcontent="true"
               >
                 1, B
@@ -1325,7 +1325,7 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
               tabindex="-1"
             >
               <div
-                class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight"
+                class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight emotion-euiDataGridRowCell__content-controlColumn-defaultHeight"
                 data-datagrid-cellcontent="true"
               >
                 1
@@ -1351,7 +1351,7 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
               tabindex="-1"
             >
               <div
-                class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight"
+                class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight emotion-euiDataGridRowCell__content-controlColumn-defaultHeight"
                 data-datagrid-cellcontent="true"
               >
                 2
@@ -1377,7 +1377,7 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
               tabindex="-1"
             >
               <div
-                class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight eui-textTruncate"
+                class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight eui-textTruncate emotion-euiDataGridRowCell__content-defaultHeight"
                 data-datagrid-cellcontent="true"
               >
                 2, A
@@ -1403,7 +1403,7 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
               tabindex="-1"
             >
               <div
-                class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight eui-textTruncate"
+                class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight eui-textTruncate emotion-euiDataGridRowCell__content-defaultHeight"
                 data-datagrid-cellcontent="true"
               >
                 2, B
@@ -1429,7 +1429,7 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
               tabindex="-1"
             >
               <div
-                class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight"
+                class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight emotion-euiDataGridRowCell__content-controlColumn-defaultHeight"
                 data-datagrid-cellcontent="true"
               >
                 2
@@ -1707,7 +1707,7 @@ exports[`EuiDataGrid rendering renders custom column headers 1`] = `
               tabindex="-1"
             >
               <div
-                class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight eui-textTruncate"
+                class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight eui-textTruncate emotion-euiDataGridRowCell__content-defaultHeight"
                 data-datagrid-cellcontent="true"
               >
                 0, A
@@ -1733,7 +1733,7 @@ exports[`EuiDataGrid rendering renders custom column headers 1`] = `
               tabindex="-1"
             >
               <div
-                class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight eui-textTruncate"
+                class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight eui-textTruncate emotion-euiDataGridRowCell__content-defaultHeight"
                 data-datagrid-cellcontent="true"
               >
                 0, B
@@ -1759,7 +1759,7 @@ exports[`EuiDataGrid rendering renders custom column headers 1`] = `
               tabindex="-1"
             >
               <div
-                class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight eui-textTruncate"
+                class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight eui-textTruncate emotion-euiDataGridRowCell__content-defaultHeight"
                 data-datagrid-cellcontent="true"
               >
                 1, A
@@ -1785,7 +1785,7 @@ exports[`EuiDataGrid rendering renders custom column headers 1`] = `
               tabindex="-1"
             >
               <div
-                class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight eui-textTruncate"
+                class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight eui-textTruncate emotion-euiDataGridRowCell__content-defaultHeight"
                 data-datagrid-cellcontent="true"
               >
                 1, B
@@ -1811,7 +1811,7 @@ exports[`EuiDataGrid rendering renders custom column headers 1`] = `
               tabindex="-1"
             >
               <div
-                class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight eui-textTruncate"
+                class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight eui-textTruncate emotion-euiDataGridRowCell__content-defaultHeight"
                 data-datagrid-cellcontent="true"
               >
                 2, A
@@ -1837,7 +1837,7 @@ exports[`EuiDataGrid rendering renders custom column headers 1`] = `
               tabindex="-1"
             >
               <div
-                class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight eui-textTruncate"
+                class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight eui-textTruncate emotion-euiDataGridRowCell__content-defaultHeight"
                 data-datagrid-cellcontent="true"
               >
                 2, B
@@ -2113,7 +2113,7 @@ exports[`EuiDataGrid rendering renders with common and div attributes 1`] = `
               tabindex="-1"
             >
               <div
-                class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight eui-textTruncate"
+                class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight eui-textTruncate emotion-euiDataGridRowCell__content-defaultHeight"
                 data-datagrid-cellcontent="true"
               >
                 0, A
@@ -2139,7 +2139,7 @@ exports[`EuiDataGrid rendering renders with common and div attributes 1`] = `
               tabindex="-1"
             >
               <div
-                class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight eui-textTruncate"
+                class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight eui-textTruncate emotion-euiDataGridRowCell__content-defaultHeight"
                 data-datagrid-cellcontent="true"
               >
                 0, B
@@ -2165,7 +2165,7 @@ exports[`EuiDataGrid rendering renders with common and div attributes 1`] = `
               tabindex="-1"
             >
               <div
-                class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight eui-textTruncate"
+                class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight eui-textTruncate emotion-euiDataGridRowCell__content-defaultHeight"
                 data-datagrid-cellcontent="true"
               >
                 1, A
@@ -2191,7 +2191,7 @@ exports[`EuiDataGrid rendering renders with common and div attributes 1`] = `
               tabindex="-1"
             >
               <div
-                class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight eui-textTruncate"
+                class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight eui-textTruncate emotion-euiDataGridRowCell__content-defaultHeight"
                 data-datagrid-cellcontent="true"
               >
                 1, B
@@ -2217,7 +2217,7 @@ exports[`EuiDataGrid rendering renders with common and div attributes 1`] = `
               tabindex="-1"
             >
               <div
-                class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight eui-textTruncate"
+                class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight eui-textTruncate emotion-euiDataGridRowCell__content-defaultHeight"
                 data-datagrid-cellcontent="true"
               >
                 2, A
@@ -2243,7 +2243,7 @@ exports[`EuiDataGrid rendering renders with common and div attributes 1`] = `
               tabindex="-1"
             >
               <div
-                class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight eui-textTruncate"
+                class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight eui-textTruncate emotion-euiDataGridRowCell__content-defaultHeight"
                 data-datagrid-cellcontent="true"
               >
                 2, B

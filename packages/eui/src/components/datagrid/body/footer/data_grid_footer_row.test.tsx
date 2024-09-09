@@ -46,7 +46,7 @@ describe('EuiDataGridFooterRow', () => {
           tabindex="-1"
         >
           <div
-            class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight eui-textTruncate"
+            class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight eui-textTruncate emotion-euiDataGridRowCell__content-defaultHeight"
             data-datagrid-cellcontent="true"
           >
             <div />
@@ -71,7 +71,7 @@ describe('EuiDataGridFooterRow', () => {
           tabindex="-1"
         >
           <div
-            class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight eui-textTruncate"
+            class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight eui-textTruncate emotion-euiDataGridRowCell__content-defaultHeight"
             data-datagrid-cellcontent="true"
           >
             <div />
