@@ -35,7 +35,7 @@ describe('EuiDataGridFooterRow', () => {
       >
         <div
           aria-rowindex="11"
-          class="euiDataGridRowCell euiDataGridRowCell--string euiDataGridFooterCell emotion-euiDataGridRowCell"
+          class="euiDataGridRowCell euiDataGridRowCell--string euiDataGridFooterCell emotion-euiDataGridRowCell-euiDataGridFooterCell"
           data-gridcell-column-id="someColumn"
           data-gridcell-column-index="0"
           data-gridcell-row-index="10"
@@ -61,7 +61,7 @@ describe('EuiDataGridFooterRow', () => {
         </div>
         <div
           aria-rowindex="11"
-          class="euiDataGridRowCell euiDataGridFooterCell emotion-euiDataGridRowCell"
+          class="euiDataGridRowCell euiDataGridFooterCell emotion-euiDataGridRowCell-euiDataGridFooterCell"
           data-gridcell-column-id="someColumnWithoutSchema"
           data-gridcell-column-index="1"
           data-gridcell-row-index="10"
