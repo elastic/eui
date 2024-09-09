@@ -9,7 +9,7 @@ exports[`EuiDataGridBodyVirtualized renders 1`] = `
     style="height: 34px; width: 200px;"
   >
     <div
-      class="euiDataGridHeader"
+      class="euiDataGridHeader emotion-euiDataGridHeader"
       data-test-subj="dataGridHeader"
       role="row"
     >

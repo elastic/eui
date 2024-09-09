@@ -461,7 +461,7 @@ exports[`EuiDataGrid rendering renders additional toolbar controls 1`] = `
     data-focus-lock-disabled="disabled"
   >
     <div
-      class="euiDataGrid euiDataGrid--bordersAll euiDataGrid--headerShade euiDataGrid--footerOverline euiDataGrid--rowHoverHighlight euiDataGrid--stickyFooter testClass1 testClass2 emotion-euiDataGrid-euiTestCss"
+      class="euiDataGrid euiDataGrid--bordersAll euiDataGrid--headerShade euiDataGrid--footerOverline euiDataGrid--rowHoverHighlight euiDataGrid--stickyFooter testClass1 testClass2 emotion-euiDataGrid-cellPadding-m-fontSize-m-borders-all-euiTestCss"
       data-test-subj="test subject string"
     >
       <div
@@ -590,7 +590,7 @@ exports[`EuiDataGrid rendering renders additional toolbar controls 1`] = `
             style="height: 202px; width: 200px;"
           >
             <div
-              class="euiDataGridHeader"
+              class="euiDataGridHeader emotion-euiDataGridHeader-shade"
               data-test-subj="dataGridHeader"
               role="row"
             >
@@ -870,7 +870,7 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
     data-focus-lock-disabled="disabled"
   >
     <div
-      class="euiDataGrid euiDataGrid--bordersAll euiDataGrid--headerShade euiDataGrid--footerOverline euiDataGrid--rowHoverHighlight euiDataGrid--stickyFooter testClass1 testClass2 emotion-euiDataGrid-euiTestCss"
+      class="euiDataGrid euiDataGrid--bordersAll euiDataGrid--headerShade euiDataGrid--footerOverline euiDataGrid--rowHoverHighlight euiDataGrid--stickyFooter testClass1 testClass2 emotion-euiDataGrid-cellPadding-m-fontSize-m-borders-all-euiTestCss"
       data-test-subj="test subject string"
     >
       <div
@@ -999,7 +999,7 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
             style="height: 202px; width: 300px;"
           >
             <div
-              class="euiDataGridHeader"
+              class="euiDataGridHeader emotion-euiDataGridHeader-shade"
               data-test-subj="dataGridHeader"
               role="row"
             >
@@ -1473,7 +1473,7 @@ exports[`EuiDataGrid rendering renders custom column headers 1`] = `
     data-focus-lock-disabled="disabled"
   >
     <div
-      class="euiDataGrid euiDataGrid--bordersAll euiDataGrid--headerShade euiDataGrid--footerOverline euiDataGrid--rowHoverHighlight euiDataGrid--stickyFooter testClass1 testClass2 emotion-euiDataGrid-euiTestCss"
+      class="euiDataGrid euiDataGrid--bordersAll euiDataGrid--headerShade euiDataGrid--footerOverline euiDataGrid--rowHoverHighlight euiDataGrid--stickyFooter testClass1 testClass2 emotion-euiDataGrid-cellPadding-m-fontSize-m-borders-all-euiTestCss"
       data-test-subj="test subject string"
     >
       <div
@@ -1599,7 +1599,7 @@ exports[`EuiDataGrid rendering renders custom column headers 1`] = `
             style="height: 202px; width: 200px;"
           >
             <div
-              class="euiDataGridHeader"
+              class="euiDataGridHeader emotion-euiDataGridHeader-shade"
               data-test-subj="dataGridHeader"
               role="row"
             >
@@ -1881,7 +1881,7 @@ exports[`EuiDataGrid rendering renders with common and div attributes 1`] = `
     data-focus-lock-disabled="disabled"
   >
     <div
-      class="euiDataGrid euiDataGrid--bordersAll euiDataGrid--headerShade euiDataGrid--footerOverline euiDataGrid--rowHoverHighlight euiDataGrid--stickyFooter testClass1 testClass2 emotion-euiDataGrid-euiTestCss"
+      class="euiDataGrid euiDataGrid--bordersAll euiDataGrid--headerShade euiDataGrid--footerOverline euiDataGrid--rowHoverHighlight euiDataGrid--stickyFooter testClass1 testClass2 emotion-euiDataGrid-cellPadding-m-fontSize-m-borders-all-euiTestCss"
       data-test-subj="test subject string"
     >
       <div
@@ -2007,7 +2007,7 @@ exports[`EuiDataGrid rendering renders with common and div attributes 1`] = `
             style="height: 202px; width: 200px;"
           >
             <div
-              class="euiDataGridHeader"
+              class="euiDataGridHeader emotion-euiDataGridHeader-shade"
               data-test-subj="dataGridHeader"
               role="row"
             >

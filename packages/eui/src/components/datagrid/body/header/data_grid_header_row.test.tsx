@@ -7,7 +7,7 @@
  */
 
 import React from 'react';
-import { shallow } from 'enzyme';
+import { render } from '../../../../test/rtl';
 
 import { EuiDataGridHeaderRow } from './data_grid_header_row';
 
@@ -20,14 +20,15 @@ describe('EuiDataGridHeaderRow', () => {
     setColumnWidth: jest.fn(),
     setVisibleColumns: jest.fn(),
     switchColumnPos: jest.fn(),
+    gridStyles: { header: 'shade' as const },
   };
 
   it('renders', () => {
-    const component = shallow(<EuiDataGridHeaderRow {...requiredProps} />);
+    const { container } = render(<EuiDataGridHeaderRow {...requiredProps} />);
 
-    expect(component).toMatchInlineSnapshot(`
+    expect(container.firstChild).toMatchInlineSnapshot(`
       <div
-        className="euiDataGridHeader"
+        class="euiDataGridHeader emotion-euiDataGridHeader-shade"
         data-test-subj="dataGridHeader"
         role="row"
       />
@@ -35,7 +36,7 @@ describe('EuiDataGridHeaderRow', () => {
   });
 
   it('renders columns', () => {
-    const component = shallow(
+    const { container } = render(
       <EuiDataGridHeaderRow
         {...requiredProps}
         columns={[{ id: 'someColumn' }]}
@@ -44,51 +45,62 @@ describe('EuiDataGridHeaderRow', () => {
         defaultColumnWidth={20}
       />
     );
-    expect(component).toMatchInlineSnapshot(`
+    expect(container.firstChild).toMatchInlineSnapshot(`
       <div
-        className="euiDataGridHeader"
+        class="euiDataGridHeader emotion-euiDataGridHeader-shade"
         data-test-subj="dataGridHeader"
         role="row"
       >
-        <EuiDataGridHeaderCell
-          column={
-            {
-              "id": "someColumn",
-            }
-          }
-          columnWidths={
-            {
-              "someColumn": 30,
-            }
-          }
-          columns={
-            [
-              {
-                "id": "someColumn",
-              },
-            ]
-          }
-          defaultColumnWidth={20}
-          index={0}
-          key="someColumn"
-          schema={
-            {
-              "someColumn": {
-                "columnType": "string",
-              },
-            }
-          }
-          schemaDetectors={[]}
-          setColumnWidth={[MockFunction]}
-          setVisibleColumns={[MockFunction]}
-          switchColumnPos={[MockFunction]}
-        />
+        <div
+          aria-describedby="euiDataGridCellHeader_generated-id_sorting"
+          class="euiDataGridHeaderCell euiDataGridHeaderCell--string euiDataGridHeaderCell--hasColumnActions"
+          data-gridcell-column-id="someColumn"
+          data-gridcell-column-index="0"
+          data-gridcell-row-index="-1"
+          data-gridcell-visible-row-index="-1"
+          data-test-subj="dataGridHeaderCell-someColumn"
+          role="columnheader"
+          style="width: 30px;"
+          tabindex="-1"
+        >
+          <div
+            class="euiDataGridColumnResizer"
+            data-test-subj="dataGridColumnResizer"
+            style="margin-right: 0px;"
+          />
+          <div
+            class="euiDataGridHeaderCell__content"
+            title="someColumn"
+          >
+            someColumn
+          </div>
+          <div
+            class="euiPopover emotion-euiPopover-block-EuiDataGridHeaderCell"
+          >
+            <button
+              aria-label="Press the Enter key to view this column's actions"
+              class="euiDataGridHeaderCell__button css-wvewty"
+              data-euigrid-tab-managed="true"
+              data-test-subj="dataGridHeaderCellActionButton-someColumn"
+              tabindex="-1"
+            >
+              <div
+                class="euiDataGridHeaderCell__icon"
+              >
+                <span
+                  color="text"
+                  data-euiicon-type="boxesVertical"
+                />
+              </div>
+            </button>
+          </div>
+        </div>
       </div>
     `);
   });
 
   it('renders leading control columns', () => {
-    const component = shallow(
+    const { container } = render(
       <EuiDataGridHeaderRow
         {...requiredProps}
         leadingControlColumns={[
@@ -102,30 +114,13 @@ describe('EuiDataGridHeaderRow', () => {
       />
     );
 
-    expect(component).toMatchInlineSnapshot(`
-      <div
-        className="euiDataGridHeader"
-        data-test-subj="dataGridHeader"
-        role="row"
-      >
-        <EuiDataGridControlHeaderCell
-          controlColumn={
-            {
-              "headerCellRender": [Function],
-              "id": "someLeadingColumn",
-              "rowCellRender": [Function],
-              "width": 25,
-            }
-          }
-          index={0}
-          key="someLeadingColumn"
-        />
-      </div>
-    `);
+    expect(
+      container.querySelector('.euiDataGridHeaderCell--controlColumn')
+    ).toBeInTheDocument();
   });
 
   it('renders trailing control columns', () => {
-    const component = shallow(
+    const { container } = render(
       <EuiDataGridHeaderRow
         {...requiredProps}
         trailingControlColumns={[
@@ -139,25 +134,8 @@ describe('EuiDataGridHeaderRow', () => {
       />
     );
 
-    expect(component).toMatchInlineSnapshot(`
-      <div
-        className="euiDataGridHeader"
-        data-test-subj="dataGridHeader"
-        role="row"
-      >
-        <EuiDataGridControlHeaderCell
-          controlColumn={
-            {
-              "headerCellRender": [Function],
-              "id": "someTrailingColumn",
-              "rowCellRender": [Function],
-              "width": 50,
-            }
-          }
-          index={0}
-          key="someTrailingColumn"
-        />
-      </div>
-    `);
+    expect(
+      container.querySelector('.euiDataGridHeaderCell--controlColumn')
+    ).toBeInTheDocument();
   });
 });

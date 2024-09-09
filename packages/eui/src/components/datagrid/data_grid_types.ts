@@ -142,6 +142,7 @@ export interface EuiDataGridHeaderRowPropsSpecificProps {
   setColumnWidth: (columnId: string, width: number) => void;
   setVisibleColumns: (columnId: string[]) => void;
   switchColumnPos: (colFromId: string, colToId: string) => void;
+  gridStyles: EuiDataGridStyle;
 }
 
 export type EuiDataGridHeaderRowProps = CommonProps &
@@ -151,7 +152,7 @@ export type EuiDataGridHeaderRowProps = CommonProps &
 export interface EuiDataGridHeaderCellProps
   extends Omit<
     EuiDataGridHeaderRowPropsSpecificProps,
-    'leadingControlColumns'
+    'leadingControlColumns' | 'gridStyles'
   > {
   column: EuiDataGridColumn;
   index: number;
@@ -186,6 +187,7 @@ export type EuiDataGridFooterRowProps = CommonProps &
     renderCellPopover?: EuiDataGridCellProps['renderCellPopover'];
     interactiveCellId: EuiDataGridCellProps['interactiveCellId'];
     visibleRowIndex?: number;
+    gridStyles: EuiDataGridStyle;
   };
 
 export interface EuiDataGridVisibleRows {
@@ -629,7 +631,7 @@ export interface EuiDataGridCellProps {
     | ((props: EuiDataGridCellPopoverElementProps) => ReactNode);
   setRowHeight?: (height: number) => void;
   getRowHeight?: (rowIndex: number) => number;
-  style?: React.CSSProperties;
+  style?: CSSProperties;
   rowHeightsOptions?: EuiDataGridRowHeightsOptions;
   rowHeightUtils?: RowHeightUtilsType;
   rowManager?: EuiDataGridRowManager;
@@ -829,34 +831,42 @@ export type EuiDataGridStyleCellPaddings = 's' | 'm' | 'l';
 export interface EuiDataGridStyle {
   /**
    * Size of fonts used within the row and column cells
+   * @default m
    */
   fontSize?: EuiDataGridStyleFontSizes;
   /**
    * Defines the padding with the row and column cells
+   * @default m
    */
   cellPadding?: EuiDataGridStyleCellPaddings;
   /**
-   * Border uses for the row and column cells
+   * Border used for the row and column cells
+   * @default all
    */
   border?: EuiDataGridStyleBorders;
   /**
    * If set to true, rows will alternate zebra striping for clarity
+   * @default false
    */
   stripes?: boolean;
   /**
    * Visual style for the column headers. Recommendation is to use the `underline` style in times when #EuiDataGrid `toolbarVisibility` is set to `false`.
+   * @default shade
    */
   header?: EuiDataGridStyleHeader;
   /**
    * Visual style for the column footers.
+   * @default overline
    */
   footer?: EuiDataGridStyleFooter;
   /**
    * If set to true, the footer row will be sticky
+   * @default true
    */
   stickyFooter?: boolean;
   /**
    * Will define what visual style to show on row hover
+   * @default hover
    */
   rowHover?: EuiDataGridStyleRowHover;
   /**
@@ -903,6 +913,7 @@ export interface EuiDataGridToolBarVisibilityDisplaySelectorOptions {
 export interface EuiDataGridToolBarVisibilityOptions {
   /**
    * Allows the ability for the user to hide fields and sort columns, boolean or a #EuiDataGridToolBarVisibilityColumnSelectorOptions
+   * @default true
    */
   showColumnSelector?:
     | boolean
@@ -910,21 +921,25 @@ export interface EuiDataGridToolBarVisibilityOptions {
   /**
    * Allows the ability for the user to customize display settings such as grid density and row heights.
    * User changes will override what is provided in #EuiDataGridStyle and #EuiDataGridRowHeightsOptions
+   * @default true
    */
   showDisplaySelector?:
     | boolean
     | EuiDataGridToolBarVisibilityDisplaySelectorOptions;
   /**
    * Allows the ability for the user to sort rows based upon column values
+   * @default true
    */
   showSortSelector?: boolean;
   /**
    * Displays a popover listing all keyboard controls and shortcuts for the data grid.
    * If set to `false`, the toggle will be visually hidden, but still focusable by keyboard and screen reader users.
+   * @default true
    */
   showKeyboardShortcuts?: boolean;
   /**
    * Allows user to be able to fullscreen the data grid. If set to `false` make sure your grid fits within a large enough panel to still show the other controls.
+   * @default true
    */
   showFullScreenSelector?: boolean;
   /**

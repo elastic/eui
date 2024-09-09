@@ -12,7 +12,6 @@ import { renderHook } from '../../../test/rtl';
 import { startingStyles } from '../controls';
 import type { ImperativeGridApi } from '../data_grid_types';
 import {
-  cellPaddingsMap,
   RowHeightUtils,
   RowHeightVirtualizationUtils,
   useRowHeightUtils,
@@ -162,20 +161,35 @@ describe('RowHeightUtils', () => {
 
   describe('styles utils', () => {
     describe('cacheStyles', () => {
-      it('stores a styles instance variable based on the grid density', () => {
-        Object.entries(cellPaddingsMap).forEach(([densitySize, padding]) => {
-          rowHeightUtils.cacheStyles({ cellPadding: densitySize as any });
+      const mockCellPaddingsMap = {
+        s: '4px',
+        m: '6px',
+        l: '8px',
+      };
 
-          // @ts-ignore this var is private, but we're inspecting it for the sake of the unit test
-          expect(rowHeightUtils.styles).toEqual({
-            paddingTop: padding,
-            paddingBottom: padding,
-          });
-        });
+      it('stores a styles instance variable based on the grid density', () => {
+        Object.entries(mockCellPaddingsMap).forEach(
+          ([densitySize, paddingStyle]) => {
+            const expectedPadding = parseFloat(paddingStyle);
+
+            rowHeightUtils.cacheStyles(
+              { cellPadding: densitySize as any },
+              mockCellPaddingsMap
+            );
+            // @ts-ignore this var is private, but we're inspecting it for the sake of the unit test
+            expect(rowHeightUtils.styles).toEqual({
+              paddingTop: expectedPadding,
+              paddingBottom: expectedPadding,
+            });
+          }
+        );
       });
 
       it('falls back to m-sized cellPadding if gridStyle.cellPadding is undefined', () => {
-        rowHeightUtils.cacheStyles({ cellPadding: undefined });
+        rowHeightUtils.cacheStyles(
+          { cellPadding: undefined },
+          mockCellPaddingsMap
+        );
 
         // @ts-ignore this var is private, but we're inspecting it for the sake of the unit test
         expect(rowHeightUtils.styles).toEqual({
@@ -220,9 +234,10 @@ describe('RowHeightUtils', () => {
     describe('calculateHeightForLineCount', () => {
       let getComputedStyleSpy: jest.SpyInstance;
       const cell = document.createElement('div');
+      const mockCellPaddingsMap = { s: '', m: '6px', l: '' };
 
       beforeEach(() => {
-        rowHeightUtils.cacheStyles({ cellPadding: 'm' });
+        rowHeightUtils.cacheStyles({ cellPadding: 'm' }, mockCellPaddingsMap);
         getComputedStyleSpy = jest
           .spyOn(window, 'getComputedStyle')
           .mockReturnValue({ lineHeight: '24px' } as CSSStyleDeclaration);
