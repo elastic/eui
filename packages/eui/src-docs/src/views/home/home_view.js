@@ -211,14 +211,15 @@ export const HomeView = () => (
       <div>
         <EuiText size="xs" textAlign="center" color="subdued">
           <p>
-            EUI is dual-licensed under{' '}
-            <EuiLink href="https://github.com/elastic/eui/blob/main/licenses/ELASTIC-LICENSE-2.0.md">
-              Elastic License 2.0
-            </EuiLink>{' '}
-            and{' '}
-            <EuiLink href="https://github.com/elastic/eui/blob/main/licenses/SSPL-LICENSE.md">
+            EUI is triple licensed under{' '}
+            <EuiLink href={ELASTIC_LICENSE_URL}>Elastic License 2.0</EuiLink>
+            {', '}
+            <EuiLink href={AGPL3_LICENSE_URL}>GNU Affero General Public License v3.0 only</EuiLink>
+            {' and '}
+            <EuiLink href={SSPL_LICENSE_URL}>
               Server Side Public License, v 1
-            </EuiLink>{' '}
+            </EuiLink>
+            {' | '}
             | Crafted with{' '}
             <span
               role="img"

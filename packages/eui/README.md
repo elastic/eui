@@ -62,7 +62,7 @@ Our wiki docs contain instructions and guidelines on multiple areas of EUI usage
 
 ## License
 
-[Dual-licensed under Elastic v2 and Server Side Public License, v1][license]. See Elastic's [licensing FAQ][licensing-faq] for details.
+See [LICENSE.txt](./LICENSE.TXT) and Elastic's [licensing FAQ][licensing-faq] for details.
 
 [license]: LICENSE.txt
 [licensing-faq]: https://www.elastic.co/pricing/faq/licensing#im-using-eui-or-elastic-charts-in-my-application-outside-of-kibana-how-does-this-affect-me
