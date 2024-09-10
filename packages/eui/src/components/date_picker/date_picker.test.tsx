@@ -53,6 +53,29 @@ describe('EuiDatePicker', () => {
     expect(container.innerHTML).toContain('-compressed');
   });
 
+  test('append/prepend', () => {
+    const { container, rerender } = render(
+      <EuiDatePicker append="hello" prepend="world" />
+    );
+    const getAppend = () =>
+      container.querySelector('.euiFormControlLayout__append');
+    const getPrepend = () =>
+      container.querySelector('.euiFormControlLayout__prepend');
+
+    expect(getAppend()).toHaveTextContent('hello');
+    expect(getPrepend()).toHaveTextContent('world');
+
+    // Does not render if controlOnly
+    rerender(<EuiDatePicker append="hello" prepend="world" controlOnly />);
+    expect(getAppend()).not.toBeInTheDocument();
+    expect(getPrepend()).not.toBeInTheDocument();
+
+    // Does not render if inline
+    rerender(<EuiDatePicker append="hello" prepend="world" inline />);
+    expect(getAppend()).not.toBeInTheDocument();
+    expect(getPrepend()).not.toBeInTheDocument();
+  });
+
   // TODO: These tests/snapshots don't really do anything in Jest without
   // the corresponding popover opening. Should be switched to an E2E test instead
   describe.skip('popoverPlacement', () => {

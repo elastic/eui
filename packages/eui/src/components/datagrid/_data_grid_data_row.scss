@@ -1,26 +1,12 @@
-.euiDataGridRow {
-  background-color: $euiColorEmptyShade;
-}
-
 @include euiDataGridRowCell {
   position: relative; // Needed for .euiDataGridRowCell__actions
-  border-right: $euiDataGridVerticalBorder;
-  border-bottom: $euiBorderThin;
 
   .euiDataGridRowCell__content {
-    @include euiFontSizeS;
-    padding: $euiDataGridCellPaddingM;
     height: 100%;
     overflow: hidden;
 
     &--autoHeight {
       height: auto;
-    }
-
-    // Workaround to trim line-clamp and padding - @see https://github.com/elastic/eui/issues/7780
-    &--lineCountHeight {
-      padding-bottom: 0;
-      border-bottom: $euiDataGridCellPaddingM solid transparent;
     }
   }
 
@@ -29,20 +15,17 @@
     height: 100%;
   }
 
-  &.euiDataGridRowCell--firstColumn {
-    border-left: $euiBorderThin;
-  }
-
-  &.euiDataGridRowCell--lastColumn {
-    border-right-color: $euiBorderColor;
-  }
-
   --euiDataGridCellOutlineColor: #{$euiColorPrimary};
 
   &:hover,
   &:focus,
   &.euiDataGridRowCell--open {
     @include euiDataGridCellFocus;
+  }
+
+  // needed to override global style
+  &:focus:focus-visible {
+    outline: none;
   }
 
   // On hover
@@ -212,78 +195,6 @@
   &.euiDataGridRowCell__expandCell .euiIcon {
     width: 120%;
     height: 100%;
-  }
-}
-
-// Row stripes
-@include euiDataGridStyles(stripes) {
-  .euiDataGridRow--striped {
-    background-color: $euiColorLightestShade;
-  }
-}
-
-// Row highlights
-@include euiDataGridStyles(rowHoverHighlight) {
-  .euiDataGridRow:hover {
-    background-color: $euiColorHighlight;
-  }
-}
-
-// Border alternates
-@include euiDataGridStyles(bordersNone) {
-  @include euiDataGridRowCell {
-    border-color: transparent !important; // stylelint-disable-line declaration-no-important
-  }
-}
-
-@include euiDataGridStyles(bordersHorizontal) {
-  @include euiDataGridRowCell {
-    border-right-color: transparent;
-    border-left-color: transparent;
-  }
-}
-
-// Font alternates
-@include euiDataGridStyles(fontSizeSmall) {
-  @include euiDataGridRowCell {
-    .euiDataGridRowCell__content {
-      @include euiFontSizeXS;
-    }
-  }
-}
-
-@include euiDataGridStyles(fontSizeLarge) {
-  @include euiDataGridRowCell {
-    .euiDataGridRowCell__content {
-      @include euiFontSize;
-    }
-  }
-}
-
-// Padding alternates
-@include euiDataGridStyles(paddingSmall) {
-  @include euiDataGridRowCell {
-    .euiDataGridRowCell__content {
-      padding: $euiDataGridCellPaddingS;
-
-      &--lineCountHeight {
-        padding-bottom: 0;
-        border-bottom: $euiDataGridCellPaddingS solid transparent;
-      }
-    }
-  }
-}
-
-@include euiDataGridStyles(paddingLarge) {
-  @include euiDataGridRowCell {
-    .euiDataGridRowCell__content {
-      padding: $euiDataGridCellPaddingL;
-
-      &--lineCountHeight {
-        padding-bottom: 0;
-        border-bottom: $euiDataGridCellPaddingL solid transparent;
-      }
-    }
   }
 }
 

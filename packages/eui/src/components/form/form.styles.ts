@@ -388,10 +388,6 @@ export const euiFormCustomControlStyles = (euiThemeContext: UseEuiTheme) => {
         justify-content: center;
         align-items: center;
 
-        &:has(+ label) {
-          ${logicalCSS('margin-top', centerWithLabel)}
-        }
-
         &:has(input:focus-visible) {
           outline: ${euiTheme.focus.width} solid ${controlVars.colors.selected};
           outline-offset: ${euiTheme.focus.width};
@@ -402,6 +398,12 @@ export const euiFormCustomControlStyles = (euiThemeContext: UseEuiTheme) => {
           transition-duration: ${controlVars.animation.speed};
           transition-timing-function: ${controlVars.animation.easing};
         }
+      `,
+      // TODO: Revert https://github.com/elastic/eui/pull/7981
+      // once https://github.com/dperini/nwsapi/issues/123
+      // has been fixed, and restore `&:has(+ label)` selector
+      hasLabel: `
+        ${logicalCSS('margin-top', centerWithLabel)}
       `,
       enabled: {
         selected: `

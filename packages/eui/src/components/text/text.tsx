@@ -6,36 +6,31 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent, HTMLAttributes, CSSProperties } from 'react';
+import React, { FunctionComponent } from 'react';
 import classNames from 'classnames';
-import { CommonProps } from '../common';
 
 import { useEuiMemoizedStyles } from '../../services';
+
+import type { SharedTextProps, EuiTextColors, EuiTextAlignment } from './types';
+import { EuiTextColor } from './text_color';
+import { EuiTextAlign } from './text_align';
 import { euiTextStyles } from './text.styles';
-
-import { TextColor, EuiTextColor } from './text_color';
-
-import { EuiTextAlign, TextAlignment } from './text_align';
 
 export const TEXT_SIZES = ['xs', 's', 'm', 'relative'] as const;
 export type TextSize = (typeof TEXT_SIZES)[number];
 
-export type EuiTextProps = CommonProps &
-  Omit<HTMLAttributes<HTMLDivElement>, 'color'> & {
-    textAlign?: TextAlignment;
+export type EuiTextProps = SharedTextProps &
+  EuiTextColors &
+  EuiTextAlignment & {
     /**
      * Determines the text size. Choose `relative` to control the `font-size` based on the value of a parent container.
      */
     size?: TextSize;
-    /**
-     * Any of our named colors or a `hex`, `rgb` or `rgba` value.
-     * @default inherit
-     */
-    color?: TextColor | CSSProperties['color'];
     grow?: boolean;
   };
 
 export const EuiText: FunctionComponent<EuiTextProps> = ({
+  component = 'div',
   size = 'm',
   color,
   grow = true,
@@ -52,16 +47,22 @@ export const EuiText: FunctionComponent<EuiTextProps> = ({
   ];
 
   const classes = classNames('euiText', className);
+  const Component = component;
 
   let text = (
-    <div css={cssStyles} className={classes} {...rest}>
+    <Component css={cssStyles} className={classes} {...rest}>
       {children}
-    </div>
+    </Component>
   );
 
   if (color) {
     text = (
-      <EuiTextColor color={color} className={classes} cloneElement>
+      <EuiTextColor
+        component={component}
+        color={color}
+        className={classes}
+        cloneElement
+      >
         {text}
       </EuiTextColor>
     );
@@ -69,7 +70,12 @@ export const EuiText: FunctionComponent<EuiTextProps> = ({
 
   if (textAlign) {
     text = (
-      <EuiTextAlign textAlign={textAlign} className={classes} cloneElement>
+      <EuiTextAlign
+        component={component}
+        textAlign={textAlign}
+        className={classes}
+        cloneElement
+      >
         {text}
       </EuiTextAlign>
     );

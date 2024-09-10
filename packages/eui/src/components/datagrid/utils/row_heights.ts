@@ -15,7 +15,11 @@ import {
   useState,
 } from 'react';
 import { GridOnItemsRenderedProps } from 'react-window';
-import { useForceRender, useLatest } from '../../../services';
+import {
+  useForceRender,
+  useLatest,
+  useEuiMemoizedStyles,
+} from '../../../services';
 import { isNumber, isObject } from '../../../services/predicate';
 import {
   EuiDataGridColumn,
@@ -23,17 +27,10 @@ import {
   EuiDataGridRowHeightsOptions,
   EuiDataGridScrollAnchorRow,
   EuiDataGridStyle,
-  EuiDataGridStyleCellPaddings,
   ImperativeGridApi,
 } from '../data_grid_types';
+import { euiDataGridVariables } from '../data_grid.styles';
 import { DataGridSortedContext } from './sorting';
-
-// TODO: Once JS variables are available, use them here instead of hard-coded maps
-export const cellPaddingsMap: Record<EuiDataGridStyleCellPaddings, number> = {
-  s: 4,
-  m: 6,
-  l: 8,
-};
 
 export const AUTO_HEIGHT = 'auto';
 export const DEFAULT_ROW_HEIGHT = 34;
@@ -99,10 +96,16 @@ export class RowHeightUtils {
     paddingBottom: 0,
   };
 
-  cacheStyles(gridStyles: EuiDataGridStyle) {
+  cacheStyles(
+    gridStyles: EuiDataGridStyle,
+    cellPaddingsMap: ReturnType<typeof euiDataGridVariables>['cellPadding']
+  ) {
+    const paddingSize = gridStyles.cellPadding ?? 'm';
+    const padding = parseFloat(cellPaddingsMap[paddingSize]);
+
     this.styles = {
-      paddingTop: cellPaddingsMap[gridStyles.cellPadding || 'm'],
-      paddingBottom: cellPaddingsMap[gridStyles.cellPadding || 'm'],
+      paddingTop: padding,
+      paddingBottom: padding,
     };
   }
 
@@ -378,11 +381,13 @@ export const useRowHeightUtils = ({
   ]);
 
   // Re-cache styles whenever grid density changes
+  const styleVars = useEuiMemoizedStyles(euiDataGridVariables);
   useEffect(() => {
-    rowHeightUtils.cacheStyles({
-      cellPadding: gridStyles.cellPadding,
-    });
-  }, [gridStyles.cellPadding, rowHeightUtils]);
+    rowHeightUtils.cacheStyles(
+      { cellPadding: gridStyles.cellPadding },
+      styleVars.cellPadding
+    );
+  }, [gridStyles.cellPadding, rowHeightUtils, styleVars.cellPadding]);
 
   // Update row heights map to remove hidden columns whenever orderedVisibleColumns change
   useEffect(() => {

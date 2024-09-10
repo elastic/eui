@@ -40,13 +40,21 @@ export const EuiFlyoutResizable = forwardRef(
       onResize,
       side = 'right',
       type = 'overlay',
+      ownFocus = true,
       children,
       ...rest
     }: EuiFlyoutResizableProps,
     ref
   ) => {
+    const hasOverlay = type === 'overlay' && ownFocus;
+
     const styles = useEuiMemoizedStyles(euiFlyoutResizableButtonStyles);
-    const cssStyles = [styles.euiFlyoutResizableButton, styles[type][side]];
+    const cssStyles = [
+      styles.euiFlyoutResizableButton,
+      styles[type][side],
+      !hasOverlay && styles.noOverlay.noOverlay,
+      !hasOverlay && styles.noOverlay[side],
+    ];
 
     const getFlyoutMinMaxWidth = useCallback(
       (width: number) => {
@@ -169,6 +177,7 @@ export const EuiFlyoutResizable = forwardRef(
         maxWidth={maxWidth}
         side={side}
         type={type}
+        ownFocus={ownFocus}
         ref={setRefs}
       >
         <EuiResizableButton

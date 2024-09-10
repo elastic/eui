@@ -29,6 +29,7 @@ export const euiCheckboxStyles = (euiThemeContext: UseEuiTheme) => {
         ${controlStyles.input.fauxInput}
         border-radius: ${euiTheme.border.radius.small};
       `,
+      hasLabel: controlStyles.input.hasLabel, // Skip css`` className generation
       enabled: {
         selected: css(controlStyles.input.enabled.selected),
         unselected: css(controlStyles.input.enabled.unselected),

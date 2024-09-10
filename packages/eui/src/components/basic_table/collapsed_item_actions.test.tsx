@@ -37,6 +37,7 @@ describe('CollapsedItemActions', () => {
       itemId: 'id',
       item: { id: '1' },
       actionsDisabled: false,
+      displayedRowIndex: 0,
     };
 
     const { container } = render(<CollapsedItemActions {...props} />);
@@ -64,6 +65,7 @@ describe('CollapsedItemActions', () => {
       itemId: 'id',
       item: { id: 'xyz' },
       actionsDisabled: false,
+      displayedRowIndex: 0,
     };
 
     const { getByTestSubject, getByText, baseElement } = render(
@@ -108,6 +110,7 @@ describe('CollapsedItemActions', () => {
       itemId: 'id',
       item: { id: 'xyz' },
       actionsDisabled: false,
+      displayedRowIndex: 0,
     };
 
     const { getByTestSubject } = render(<CollapsedItemActions {...props} />);
@@ -135,6 +138,7 @@ describe('CollapsedItemActions', () => {
       itemId: 'id',
       item: { id: 'xyz' },
       actionsDisabled: false,
+      displayedRowIndex: 0,
     };
 
     const { getByTestSubject, baseElement } = render(

@@ -58,7 +58,7 @@ export const euiDatePickerRangeInlineStyles = (
         ${logicalCSS('height', 'auto')}
         ${logicalCSS('width', 'fit-content')}
         ${logicalCSS('max-width', '100%')}
-        box-shadow: none;
+        border: none;
         padding: 0;
 
         .euiFormControlLayout__childrenWrapper {

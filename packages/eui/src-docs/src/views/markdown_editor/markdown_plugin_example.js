@@ -1,4 +1,5 @@
-import React, { Fragment } from 'react';
+import React from 'react';
+import { Link } from 'react-router-dom';
 
 import { GuideSectionTypes } from '../../components';
 
@@ -14,13 +15,18 @@ import {
   EuiLink,
 } from '../../../../src/components';
 
-import { Link } from 'react-router-dom';
+import {
+  DefaultPluginsConfig,
+  DefaultParsingPluginsConfig,
+  DefaultProcessingPluginsConfig,
+  EuiMarkdownLinkValidatorOptions,
+} from './markdown_plugin_props';
 
 import MarkdownEditorWithPlugins from './markdown_editor_with_plugins';
 const markdownEditorWithPluginsSource = require('!!raw-loader!./markdown_editor_with_plugins');
 
-const linkValidationSource = require('!!raw-loader!./markdown_link_validation');
-import LinkValidation from './markdown_link_validation';
+const pluginConfigSource = require('!!raw-loader!./markdown_plugin_config');
+import PluginConfig from './markdown_plugin_config';
 
 const pluginSnippet = `<EuiMarkdownEditor
   uiPlugin={myPluginUI}
@@ -293,11 +299,7 @@ export const MarkdownPluginExample = {
             These plugin definitions can be obtained by calling{' '}
             <EuiCode>getDefaultEuiMarkdownParsingPlugins</EuiCode>,{' '}
             <EuiCode>getDefaultEuiMarkdownProcessingPlugins</EuiCode>, and{' '}
-            <EuiCode>getDefaultEuiMarkdownUiPlugins</EuiCode> respectively. Each
-            of these three functions take an optional configuration object with
-            an <EuiCode>exclude</EuiCode> key, an array of EUI-defaulted plugins
-            to disable. Currently the only option this configuration can take is{' '}
-            <EuiCode>&apos;tooltip&apos;</EuiCode>.
+            <EuiCode>getDefaultEuiMarkdownUiPlugins</EuiCode> respectively.
           </p>
         </>
       ),
@@ -306,56 +308,73 @@ export const MarkdownPluginExample = {
       source: [
         {
           type: GuideSectionTypes.JS,
-          code: linkValidationSource,
+          code: pluginConfigSource,
         },
       ],
-      title: 'Link validation & security',
+      title: 'Configuring the default plugins',
       text: (
-        <Fragment>
+        <>
           <p>
-            To enhance user and application security, the default behavior
-            removes links to URLs that aren&apos;t relative (beginning with{' '}
-            <EuiCode>/</EuiCode>) and don&apos;t use the{' '}
-            <EuiCode>https:</EuiCode>, <EuiCode>http:</EuiCode>, or{' '}
-            <EuiCode>mailto:</EuiCode> protocols. This validation can be further
-            configured or removed altogether.
+            The above plugin utils, as well as{' '}
+            <EuiCode>getDefaultEuiMarkdownPlugins</EuiCode>, accept an optional
+            configuration object of:
+            <ul>
+              <li>
+                <EuiCode>exclude</EuiCode>: an array of default plugins to{' '}
+                <Link to="/editors-syntax/markdown-editor#unregistering-plugins">
+                  unregister
+                </Link>
+              </li>
+              <li>
+                <EuiCode>parsingConfig</EuiCode>: allows overriding the
+                configuration of any default parsing plugin
+              </li>
+              <li>
+                <EuiCode>processingConfig</EuiCode>: currently only accepts a{' '}
+                <EuiCode>linkProps</EuiCode> key, which accepts any prop that{' '}
+                <Link to="/navigation/link">EuiLink</Link> accepts
+              </li>
+            </ul>
           </p>
           <p>
-            In this example only <EuiCode>https:</EuiCode> and{' '}
-            <EuiCode>mailto:</EuiCode> links are allowed.
+            The below example has the <EuiCode>emoji</EuiCode> plugin excluded,
+            and custom configuration on the link validator parsing plugin and
+            link processing plugin. See the <strong>Props</strong> table for all
+            plugin config options.
           </p>
-        </Fragment>
+        </>
       ),
-      snippet: [
-        `// customize what link protocols are allowed
-const parsingPlugins = [
-  ...getDefaultEuiMarkdownParsingPlugins({
-    // Exclude the default validation plugin - we're configuring our own
-    exclude: ['linkValidator'],
-  }),
-  [
-    euiMarkdownLinkValidator,
-    {
-      // Customize what link protocols are allowed
-      allowProtocols: ['https:', 'mailto:'],
-    },
-  ]
-];
+      snippet: `const { parsingPlugins, processingPlugins } = getDefaultEuiMarkdownPlugins({
+  // Exclude plugins as necessary
+  exclude: ['emoji'],
+  parsingConfig: {
+    // Customize what link protocols are allowed
+    linkValidator: { allowProtocols: ['https:', 'mailto:'] },
+  },
+  processingConfig: {
+    // Configure all links to open in new tabs/windows
+    linkProps: { target: '_blank' },
+  },
+});
 
-// Pass the customized parsing plugins to your markdown component
-<EuiMarkdownFormat parsingPlugins={parsingPlugins} />
-`,
-      ],
-      demo: <LinkValidation />,
+// Pass the customized plugins to your markdown component
+<EuiMarkdownFormat
+  parsingPluginList={parsingPlugins}
+  processingPluginList={processingPlugins}
+/>`,
+      demo: <PluginConfig />,
+      props: {
+        DefaultPluginsConfig,
+        DefaultParsingPluginsConfig,
+        DefaultProcessingPluginsConfig,
+        EuiMarkdownLinkValidatorOptions,
+      },
     },
     {
+      title: 'Plugin development',
       wrapText: false,
       text: (
         <>
-          <EuiTitle>
-            <h2>Plugin development</h2>
-          </EuiTitle>
-          <EuiSpacer size="m" />
           <EuiText>
             <p>
               An <strong>EuiMarkdown plugin</strong> is comprised of three major
@@ -374,7 +393,7 @@ const parsingPlugins = [
           />
           <EuiHorizontalRule margin="xl" />
           <EuiTitle>
-            <h3>uiPlugin</h3>
+            <h3 id="uiPlugin">uiPlugin</h3>
           </EuiTitle>
           <EuiSpacer />
           <EuiCodeBlock size="s" language="javascript">
@@ -388,11 +407,11 @@ const parsingPlugins = [
           />
           <EuiHorizontalRule margin="xl" />
           <EuiTitle>
-            <h3>parsingPluginList</h3>
+            <h3 id="parsingPluginList">parsingPluginList</h3>
           </EuiTitle>
           <EuiSpacer />
           <EuiText>
-            <Fragment>
+            <>
               <p>
                 <a
                   href="https://www.npmjs.com/package/remark-parse"
@@ -440,7 +459,7 @@ const parsingPlugins = [
                 elements, and do not have a locate method. They can consume as
                 much input text as desired, across multiple lines.
               </p>
-            </Fragment>
+            </>
           </EuiText>
           <EuiSpacer />
           <EuiCodeBlock
@@ -495,7 +514,7 @@ const parsingList = getDefaultEuiMarkdownParsingPlugins();
 parsingList.push(EmojiMarkdownParser);`}</EuiCodeBlock>
           <EuiHorizontalRule margin="xl" />
           <EuiTitle>
-            <h3>processingPluginList</h3>
+            <h3 id="processingPluginList">processingPluginList</h3>
           </EuiTitle>
           <EuiSpacer />
           <EuiText>
@@ -533,7 +552,7 @@ processingList[1][1].components.emojiPlugin = EmojiMarkdownRenderer;`}
       ],
       title: 'Putting it all together: a simple chart plugin',
       text: (
-        <Fragment>
+        <>
           <p>
             The below example takes the concepts from above to construct a
             simple chart embed that is initiated from a new button in the editor
@@ -545,7 +564,7 @@ processingList[1][1].components.emojiPlugin = EmojiMarkdownRenderer;`}
             list. The editor manages additional controls through the{' '}
             <EuiCode>uiPlugins</EuiCode> prop.
           </p>
-        </Fragment>
+        </>
       ),
       props: {
         EuiMarkdownEditor,

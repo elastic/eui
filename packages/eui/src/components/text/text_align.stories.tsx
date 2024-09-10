@@ -21,6 +21,7 @@ const meta: Meta<EuiTextAlignProps> = {
   args: {
     textAlign: 'left',
     cloneElement: false,
+    component: 'div',
   },
 };
 hideStorybookControls(meta, ['aria-label']);

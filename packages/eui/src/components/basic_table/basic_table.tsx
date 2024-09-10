@@ -1004,6 +1004,7 @@ export class EuiBasicTable<T extends object = any> extends Component<
             item,
             column as EuiTableActionsColumnType<T>,
             columnIndex,
+            rowIndex,
             hasCustomActions
           )
         );
@@ -1142,6 +1143,7 @@ export class EuiBasicTable<T extends object = any> extends Component<
     item: T,
     column: EuiTableActionsColumnType<T>,
     columnIndex: number,
+    rowIndex: number,
     hasCustomActions: boolean
   ) {
     // Disable all actions if any row(s) are selected
@@ -1181,6 +1183,7 @@ export class EuiBasicTable<T extends object = any> extends Component<
             actionsDisabled={allDisabled}
             itemId={itemId}
             item={item}
+            displayedRowIndex={rowIndex}
           />
         ),
       });
