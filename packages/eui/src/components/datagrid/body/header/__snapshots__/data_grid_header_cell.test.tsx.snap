@@ -19,7 +19,7 @@ exports[`EuiDataGridHeaderCell renders 1`] = `
     style="margin-right: 0px;"
   />
   <div
-    class="euiDataGridHeaderCell__content"
+    class="euiDataGridHeaderCell__content emotion-euiDataGridHeaderCell__content-right"
     title="someColumn"
   >
     someColumn

@@ -37,6 +37,7 @@ import {
 import { getColumnActions } from './column_actions';
 import { EuiDataGridColumnResizer } from './data_grid_column_resizer';
 import { EuiDataGridHeaderCellWrapper } from './data_grid_header_cell_wrapper';
+import { euiDataGridHeaderCellStyles } from './data_grid_header_cell.styles';
 
 export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps> =
   memo(
@@ -145,6 +146,13 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
         displayHeaderCellProps?.className
       );
 
+      const styles = useEuiMemoizedStyles(euiDataGridHeaderCellStyles);
+      const contentStyles = [
+        styles.euiDataGridHeaderCell__content,
+        columnType === 'numeric' || columnType === 'currency'
+          ? styles.right
+          : styles.left,
+      ];
       const emptyHoverStyles = useEuiMemoizedStyles(_emptyHoverStyles);
 
       return (
@@ -171,6 +179,7 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
               ) : null}
 
               <div
+                css={contentStyles}
                 className="euiDataGridHeaderCell__content"
                 title={title}
               >

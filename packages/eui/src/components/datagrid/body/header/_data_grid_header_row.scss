@@ -1,8 +1,4 @@
 @include euiDataGridHeaderCell {
-  .euiDataGridHeaderCell__content {
-    flex-grow: 1; // ensures content stretches and allows for manual layout styles to apply
-  }
-
   // We only truncate if the cell is not a control column.
   &:not(.euiDataGridHeaderCell--controlColumn) {
     .euiDataGridHeaderCell__button {
@@ -23,16 +19,6 @@
     [data-focus-lock-disabled='false'] .euiDataGridHeaderCell__button {
       @include euiFocusRing;
       color: $euiFocusRingColor;
-    }
-
-    .euiDataGridHeaderCell__content {
-      @include euiTextTruncate;
-
-      text-align: left; // overwrites inherited 'center' styles from button
-    }
-
-    .euiDataGridHeaderCell__sortingArrow {
-      flex: 0 0 auto; // Ensure icon doesn't shrink
     }
 
     .euiDataGridHeaderCell__icon {
@@ -62,14 +48,6 @@
         width: $euiSize;
         opacity: 1;
       }
-    }
-  }
-
-  // Align numeric and currency schemas to the right
-  &.euiDataGridHeaderCell--numeric,
-  &.euiDataGridHeaderCell--currency {
-    .euiDataGridHeaderCell__content {
-      text-align: right;
     }
   }
 }
