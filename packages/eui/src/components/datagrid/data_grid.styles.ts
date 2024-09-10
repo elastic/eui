@@ -105,6 +105,10 @@ export const euiDataGridStyles = (euiThemeContext: UseEuiTheme) => {
           font-size: ${fontSize[size]};
           line-height: ${lineHeight[size]};
         }
+
+        .euiDataGridHeaderCell__button {
+          ${logicalSizeCSS(lineHeight[size])}
+        }
       `,
       get s() {
         return css(this.fontSize('s'));

@@ -2,51 +2,17 @@
   // We only truncate if the cell is not a control column.
   &:not(.euiDataGridHeaderCell--controlColumn) {
     .euiDataGridHeaderCell__button {
-      position: relative;
-      display: flex;
-      align-items: center;
-      gap: $euiSizeXS;
-      width: 100%;
-      border-radius: $euiBorderRadiusSmall;
-      font-weight: $euiFontWeightBold;
-      outline: none;
-
-      &:focus-visible {
-        outline: none;
-      }
-    }
-
-    [data-focus-lock-disabled='false'] .euiDataGridHeaderCell__button {
-      @include euiFocusRing;
-      color: $euiFocusRingColor;
-    }
-
-    .euiDataGridHeaderCell__icon {
-      flex: 0 0 auto; // Ensure icon doesn't shrink
-      margin-left: auto; // Aligns the icon to the right
-      // Center the icon
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 0;
-      height: $euiSize;
       overflow: hidden;
-      opacity: 0;
+
       transition: width $euiAnimSpeedFast ease-in, opacity $euiAnimSpeedSlow ease-in;
+      transform: none !important; // Unset EuiButtonIcon animations
+      animation: none;
     }
 
-    &:focus-within,
-    &:hover,
-    .euiPopover-isOpen {
+    &:not(:hover, :focus-within, .euiDataGridHeaderCell--isActionsPopoverOpen) {
       .euiDataGridHeaderCell__button {
-        padding: $euiSizeXS;
-        // balance out additional button target size in header height, prevents increased header cell height
-        margin-block: -$euiSizeXS;
-      }
-
-      .euiDataGridHeaderCell__icon {
-        width: $euiSize;
-        opacity: 1;
+        width: 0;
+        opacity: 0;
       }
     }
   }

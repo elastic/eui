@@ -29,19 +29,18 @@ exports[`EuiDataGridHeaderCell renders 1`] = `
   >
     <button
       aria-label="Press the Enter key to view this column's actions"
-      class="euiDataGridHeaderCell__button css-wvewty"
+      class="euiButtonIcon euiDataGridHeaderCell__button emotion-euiButtonIcon-xs-empty-text"
       data-euigrid-tab-managed="true"
       data-test-subj="dataGridHeaderCellActionButton-someColumn"
       tabindex="-1"
+      type="button"
     >
-      <div
-        class="euiDataGridHeaderCell__icon"
-      >
-        <span
-          color="text"
-          data-euiicon-type="boxesVertical"
-        />
-      </div>
+      <span
+        aria-hidden="true"
+        class="euiButtonIcon__icon"
+        color="inherit"
+        data-euiicon-type="boxesVertical"
+      />
     </button>
   </div>
 </div>

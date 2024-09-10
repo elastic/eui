@@ -27,13 +27,13 @@ import { EuiI18n, useEuiI18n } from '../../../i18n';
 import { EuiIcon } from '../../../icon';
 import { EuiListGroup } from '../../../list_group';
 import { EuiPopover } from '../../../popover';
-import { _emptyHoverStyles } from '../../../button/button_icon/button_icon.styles';
+import { EuiButtonIcon } from '../../../button';
+
 import { DataGridFocusContext } from '../../utils/focus';
 import {
   EuiDataGridHeaderCellProps,
   EuiDataGridSorting,
 } from '../../data_grid_types';
-
 import { getColumnActions } from './column_actions';
 import { EuiDataGridColumnResizer } from './data_grid_column_resizer';
 import { EuiDataGridHeaderCellWrapper } from './data_grid_header_cell_wrapper';
@@ -153,7 +153,6 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
           ? styles.right
           : styles.left,
       ];
-      const emptyHoverStyles = useEuiMemoizedStyles(_emptyHoverStyles);
 
       return (
         <EuiDataGridHeaderCellWrapper
@@ -201,13 +200,16 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
                   anchorPosition="downRight"
                   css={{ marginInlineStart: 'auto' }} // Align to right
                   button={
-                    <button
-                      ref={actionsButtonRef}
+                    <EuiButtonIcon
+                      iconType="boxesVertical"
+                      iconSize="s"
+                      color="text"
                       className="euiDataGridHeaderCell__button"
-                      css={emptyHoverStyles.text}
+                      buttonRef={actionsButtonRef}
                       onClick={togglePopover}
                       onFocus={() => setIsActionsButtonFocused(true)}
                       onBlur={() => setIsActionsButtonFocused(false)}
+                      tabIndex={0} // Override EuiButtonIcon's conditional tabindex based on aria-hidden
                       aria-hidden={
                         hasFocusTrap && !isActionsButtonFocused
                           ? 'true' // prevent the actions button from being read on cell focus
@@ -219,11 +221,7 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
                           : actionsEnterKeyInstructions
                       }
                       data-test-subj={`dataGridHeaderCellActionButton-${id}`}
-                    >
-                      <div className="euiDataGridHeaderCell__icon">
-                        <EuiIcon type="boxesVertical" size="s" color="text" />
-                      </div>
-                    </button>
+                    />
                   }
                   isOpen={isPopoverOpen}
                   closePopover={closePopover}
