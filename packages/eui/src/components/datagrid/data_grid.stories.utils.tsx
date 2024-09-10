@@ -12,7 +12,6 @@ import React, {
   useCallback,
   useEffect,
   useState,
-  forwardRef,
   FunctionComponent,
 } from 'react';
 import { faker } from '@faker-js/faker';
@@ -27,7 +26,6 @@ import type {
   EuiDataGridColumnCellActionProps,
   EuiDataGridColumnSortingConfig,
   EuiDataGridProps,
-  EuiDataGridRefProps,
   EuiDataGridStyle,
   EuiDataGridRowHeightsOptions,
   EuiDataGridToolBarVisibilityOptions,
@@ -293,10 +291,7 @@ export const defaultStorybookArgs = {
   } as const,
 };
 
-export const StatefulDataGrid = forwardRef<
-  EuiDataGridRefProps,
-  EuiDataGridProps
->((props, ref) => {
+export const StatefulDataGrid = (props: EuiDataGridProps) => {
   const { pagination, sorting, columnVisibility, ...rest } = props;
 
   // Pagination
@@ -360,7 +355,6 @@ export const StatefulDataGrid = forwardRef<
   return (
     <EuiDataGrid
       {...rest}
-      ref={ref}
       columnVisibility={{ visibleColumns, setVisibleColumns }}
       sorting={{ columns: sortingColumns, onSort }}
       pagination={{
@@ -370,8 +364,7 @@ export const StatefulDataGrid = forwardRef<
       }}
     />
   );
-});
-StatefulDataGrid.displayName = 'StatefulDataGrid';
+};
 
 /*
  * Components that exist purely for allowing Storybook to parse certain nested

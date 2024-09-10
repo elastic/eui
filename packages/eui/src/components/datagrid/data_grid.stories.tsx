@@ -146,7 +146,7 @@ export const CellActions: Story = {
       dataGridRef.current?.setFocusedCell({ rowIndex: 2, colIndex: 2 });
     }, []);
 
-    return <StatefulDataGrid {...defaultStorybookArgs} ref={dataGridRef} />;
+    return <EuiDataGrid {...defaultStorybookArgs} ref={dataGridRef} />;
   },
 };
 
@@ -160,7 +160,7 @@ export const CellExpansionPopover: Story = {
       dataGridRef.current?.openCellPopover({ rowIndex: 1, colIndex: 1 });
     }, []);
 
-    return <StatefulDataGrid {...defaultStorybookArgs} ref={dataGridRef} />;
+    return <EuiDataGrid {...defaultStorybookArgs} ref={dataGridRef} />;
   },
 };
 
