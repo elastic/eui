@@ -18,7 +18,6 @@ const argv = yargs(hideBin(process.argv))
   })
   .options({
     'node-options': { type: 'string', default: '' },
-    'skip-css': { type: 'boolean' },
     dev: { type: 'boolean' },
     theme: { type: 'string', default: 'light', choices: ['light', 'dark'] },
     a11y: { type: 'boolean' },
@@ -32,22 +31,11 @@ const argv = yargs(hideBin(process.argv))
 const nodeOptions = argv['node-options'];
 const isDev = argv.hasOwnProperty('dev');
 const isA11y = argv.hasOwnProperty('a11y');
-const skipScss = argv.hasOwnProperty('skip-css');
 const theme = argv.theme;
 const reactVersion = argv['react-version'];
 
 const info = chalk.white;
 const log = chalk.grey;
-
-// compile scss -> css so tests can render correctly
-if (!skipScss) {
-  console.log(info('Compiling SCSS'));
-  execSync(`TARGET_THEME=${theme} yarn compile-scss`, {
-    stdio: 'inherit',
-  });
-} else {
-  console.log(info('Not compiling SCSS, disabled by --skip-css'));
-}
 
 // compile dev and a11y options for how to run tests (headless, local UI)
 // and whether to run component tests or axe checks.

@@ -30,5 +30,3 @@ Cypress.on('uncaught:exception', (err) => {
     return false;
   }
 });
-
-require(THEME_IMPORT); // defined by DefinePlugin in the cypress webpack config
