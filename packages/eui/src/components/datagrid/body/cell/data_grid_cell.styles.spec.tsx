@@ -270,7 +270,7 @@ describe('Cell outline styles', () => {
       getActions()
         .realMouseMove(16, 0, { position: 'right' })
         .should('be.visible')
-        .realMouseMove(70, 0, { position: 'right' }) // ~50% of cell width
+        .realMouseMove(80, 0, { position: 'right' }) // ~50% of cell width
         .should('not.exist');
     });
   });
