@@ -22,7 +22,11 @@ import React, {
 import { createPortal } from 'react-dom';
 
 import { IS_JEST_ENVIRONMENT } from '../../../../utils';
-import { keys, RenderWithEuiStylesMemoizer } from '../../../../services';
+import {
+  keys,
+  useEuiMemoizedStyles,
+  RenderWithEuiStylesMemoizer,
+} from '../../../../services';
 import { EuiScreenReaderOnly } from '../../../accessibility';
 import { EuiI18n } from '../../../i18n';
 import { EuiTextBlockTruncate } from '../../../text_truncate';
@@ -100,6 +104,27 @@ const EuiDataGridCellContent: FunctionComponent<
       [cellHeightType, isControlColumn]
     );
 
+    const styles = useEuiMemoizedStyles(euiDataGridRowCellStyles);
+    const cssStyles = [
+      styles.content.euiDataGridRowCell__content,
+      ...(isControlColumn
+        ? [
+            // Control column cells should not be vertically centered (defaultHeight) except
+            // on single rows. They should be top-aligned for auto and lineCount heights
+            styles.content.controlColumn,
+            cellHeightType === 'default'
+              ? styles.content.defaultHeight
+              : styles.content.autoHeight,
+          ]
+        : [
+            // Regular data cells should always inherit height from the row wrapper,
+            // except for auto height
+            cellHeightType === 'auto'
+              ? styles.content.autoHeight
+              : styles.content.defaultHeight,
+          ]),
+    ];
+
     return (
       <>
         <RenderTruncatedCellContent
@@ -112,6 +137,7 @@ const EuiDataGridCellContent: FunctionComponent<
             ref={setCellContentsRef}
             data-datagrid-cellcontent
             className={classes}
+            css={cssStyles}
           >
             <CellElement
               isDetails={false}

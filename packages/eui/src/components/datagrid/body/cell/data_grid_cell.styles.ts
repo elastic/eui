@@ -139,5 +139,22 @@ export const euiDataGridRowCellStyles = (euiThemeContext: UseEuiTheme) => {
         text-transform: capitalize;
       }
     `,
+
+    content: {
+      euiDataGridRowCell__content: css`
+        overflow: hidden;
+      `,
+      controlColumn: css`
+        ${logicalCSS('max-height', '100%')}
+        display: flex;
+        align-items: center;
+      `,
+      autoHeight: css`
+        ${logicalCSS('height', 'auto')}
+      `,
+      defaultHeight: css`
+        ${logicalCSS('height', '100%')}
+      `,
+    },
   };
 };
