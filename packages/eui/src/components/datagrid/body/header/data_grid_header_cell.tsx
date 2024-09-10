@@ -10,19 +10,19 @@ import classnames from 'classnames';
 import React, {
   AriaAttributes,
   FunctionComponent,
-  PropsWithChildren,
-  ReactNode,
   useContext,
   useState,
   useRef,
   useCallback,
   useMemo,
   memo,
-  HTMLAttributes,
 } from 'react';
 import { tabbable, FocusableElement } from 'tabbable';
-import { keys, useEuiMemoizedStyles } from '../../../../services';
-import { useGeneratedHtmlId } from '../../../../services/accessibility';
+import {
+  keys,
+  useGeneratedHtmlId,
+  useEuiMemoizedStyles,
+} from '../../../../services';
 import { EuiI18n, useEuiI18n } from '../../../i18n';
 import { EuiIcon } from '../../../icon';
 import { EuiListGroup } from '../../../list_group';
@@ -37,20 +37,6 @@ import {
 import { getColumnActions } from './column_actions';
 import { EuiDataGridColumnResizer } from './data_grid_column_resizer';
 import { EuiDataGridHeaderCellWrapper } from './data_grid_header_cell_wrapper';
-
-const CellContent: FunctionComponent<
-  PropsWithChildren &
-    HTMLAttributes<HTMLDivElement> & { title: string; arrow?: ReactNode }
-> = ({ children, title, arrow, ...rest }) => {
-  return (
-    <>
-      <div {...rest} title={title} className="euiDataGridHeaderCell__content">
-        {children}
-      </div>
-      {arrow}
-    </>
-  );
-};
 
 export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps> =
   memo(
@@ -184,9 +170,13 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
                 />
               ) : null}
 
-              <CellContent title={title} arrow={sortingArrow}>
+              <div
+                className="euiDataGridHeaderCell__content"
+                title={title}
+              >
                 {children}
-              </CellContent>
+              </div>
+              {sortingArrow}
 
               {sortingScreenReaderText && (
                 <p id={sortingAriaId} hidden>
