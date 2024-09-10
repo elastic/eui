@@ -1428,6 +1428,33 @@ describe('EuiDataGrid', () => {
       expect(getByTestSubject('display')).toBeInTheDocument();
       expect(getByTitle('displayAsText')).toBeInTheDocument();
     });
+
+    describe('columnDragDrop', () => {
+      it('should render draggable header columns cells', () => {
+        const columnVisibility = {
+          visibleColumns: ['ColumnA', 'ColumnB'],
+          setVisibleColumns: () => {},
+        };
+
+        const { getByTestSubject } = render(
+          <EuiDataGrid
+            aria-labelledby="#test"
+            columns={[{ id: 'ColumnA' }, { id: 'ColumnB' }]}
+            columnVisibility={columnVisibility}
+            rowCount={2}
+            renderCellValue={renderCellValueRowAndColumnCount}
+            columnDragDrop
+          />
+        );
+
+        expect(
+          getByTestSubject('euiDataGridHeaderDroppable')
+        ).toBeInTheDocument();
+        expect(
+          getByTestSubject('dataGridHeaderCell-ColumnA').parentElement
+        ).toHaveClass('euiDraggable');
+      });
+    });
   });
 
   describe('column sorting', () => {

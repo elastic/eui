@@ -10,7 +10,7 @@
 /// <reference types="cypress-real-events" />
 /// <reference types="../../../cypress/support" />
 
-import React, { ReactNode } from 'react';
+import React, { ReactNode, useState } from 'react';
 import {
   EuiDataGrid,
   EuiDataGridColumn,
@@ -538,6 +538,104 @@ describe('EuiDataGrid', () => {
           .should('have.attr', 'data-gridcell-column-index', '1')
           .should('have.attr', 'data-gridcell-row-index', '-1');
       });
+    });
+  });
+
+  describe('column drag behavior', () => {
+    const StatefulDataGrid = (props) => {
+      const [visibleColumns, setVisibleColumns] = useState(['a', 'b']);
+
+      return (
+        <EuiDataGrid
+          {...props}
+          columnDragDrop
+          columnVisibility={{
+            visibleColumns,
+            setVisibleColumns,
+          }}
+        />
+      );
+    };
+    it('should reorder columns on header cell drag and drop', () => {
+      cy.mount(<StatefulDataGrid {...baseProps} columnDragDrop />);
+
+      cy.wait(50);
+
+      cy.get('[data-test-subj=dataGridHeaderCell-a]')
+        .realHover()
+        .realMouseDown({ position: 'center' })
+        .realMouseMove(0, 0) // start drag
+        .realMouseMove(200, 0) // move
+        .realMouseUp();
+
+      cy.get('[data-test-subj=dataGridHeaderCell-a]').should(
+        'have.attr',
+        'data-gridcell-column-index',
+        '1'
+      );
+      cy.get('[data-test-subj=dataGridHeaderCell-b]').should(
+        'have.attr',
+        'data-gridcell-column-index',
+        '0'
+      );
+
+      cy.get('[data-test-subj=dataGridHeaderCell-a]')
+        .realHover()
+        .realMouseDown({ position: 'center' })
+        .realMouseMove(0, 0) // start drag
+        .realMouseMove(-200, 0) // move
+        .realMouseUp();
+
+      cy.get('[data-test-subj=dataGridHeaderCell-a]').should(
+        'have.attr',
+        'data-gridcell-column-index',
+        '0'
+      );
+      cy.get('[data-test-subj=dataGridHeaderCell-b]').should(
+        'have.attr',
+        'data-gridcell-column-index',
+        '1'
+      );
+    });
+
+    it('should reorder columns on header cell drag and drop with keyboard', () => {
+      cy.mount(<StatefulDataGrid {...baseProps} columnDragDrop />);
+
+      cy.wait(50);
+
+      cy.get('[data-test-subj=dataGridHeaderCell-a]')
+        .focus()
+        .realPress('Space')
+        .realPress('ArrowRight')
+        .realPress('Space');
+
+      cy.get('[data-test-subj=dataGridHeaderCell-a]').should(
+        'have.attr',
+        'data-gridcell-column-index',
+        '1'
+      );
+      cy.get('[data-test-subj=dataGridHeaderCell-b]').should(
+        'have.attr',
+        'data-gridcell-column-index',
+        '0'
+      );
+
+      cy.get('[data-test-subj=dataGridHeaderCell-a]')
+        .focus()
+        .realPress('Space')
+        .realPress('ArrowLeft')
+        .realPress('Space');
+
+      cy.get('[data-test-subj=dataGridHeaderCell-a]').should(
+        'have.attr',
+        'data-gridcell-column-index',
+        '0'
+      );
+      cy.get('[data-test-subj=dataGridHeaderCell-b]').should(
+        'have.attr',
+        'data-gridcell-column-index',
+        '1'
+      );
     });
   });
 
