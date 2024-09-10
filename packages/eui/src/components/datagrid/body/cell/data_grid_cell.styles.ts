@@ -73,6 +73,7 @@ export const euiDataGridCellOutlineSelectors = (parentSelector = '&') => {
   // Utils
   const selectors = (...args: string[]) => [...args].join(', ');
   const is = (selectors: string) => `${parentSelector}:is(${selectors})`;
+  const not = (selectors: string) => `${parentSelector}:not(${selectors})`;
   const hoverNot = (selectors: string) =>
     `${parentSelector}:hover:not(${selectors})`;
   const _ = (selectors: string) => `${parentSelector}${selectors}`;
@@ -94,6 +95,7 @@ export const euiDataGridCellOutlineSelectors = (parentSelector = '&') => {
     header: {
       focus: is(selectors(focus, focusWithin, headerActionsOpen)), // :focus-within here is primarily intended for when the column actions button has been clicked twice
       focusTrapped: _(isEntered),
+      hideActions: not(selectors(hover, focusWithin, headerActionsOpen)),
     },
   };
 };

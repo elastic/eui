@@ -198,12 +198,13 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
                   panelPaddingSize="none"
                   offset={7}
                   anchorPosition="downRight"
-                  css={{ marginInlineStart: 'auto' }} // Align to right
+                  css={styles.euiDataGridHeaderCell__popover}
                   button={
                     <EuiButtonIcon
                       iconType="boxesVertical"
                       iconSize="s"
                       color="text"
+                      css={styles.euiDataGridHeaderCell__button}
                       className="euiDataGridHeaderCell__button"
                       buttonRef={actionsButtonRef}
                       onClick={togglePopover}
