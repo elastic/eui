@@ -46,7 +46,7 @@ describe('EuiDataGridHeaderCellWrapper', () => {
     const { container } = renderWithContext();
     expect(container.firstChild).toMatchInlineSnapshot(`
       <div
-        class="euiDataGridHeaderCell"
+        class="euiDataGridHeaderCell emotion-euiDataGridHeaderCell"
         data-gridcell-column-id="someColumn"
         data-gridcell-column-index="0"
         data-gridcell-row-index="-1"
@@ -76,7 +76,7 @@ describe('EuiDataGridHeaderCellWrapper', () => {
     expect(getByTestSubject('dataGridHeaderCell-someColumn'))
       .toMatchInlineSnapshot(`
       <div
-        class="euiDataGridHeaderCell euiDataGridHeaderCell--test"
+        class="euiDataGridHeaderCell euiDataGridHeaderCell--test emotion-euiDataGridHeaderCell"
         data-gridcell-column-id="someColumn"
         data-gridcell-column-index="0"
         data-gridcell-row-index="-1"

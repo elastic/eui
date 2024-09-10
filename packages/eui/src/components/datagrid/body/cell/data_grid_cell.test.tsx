@@ -54,7 +54,7 @@ describe('EuiDataGridCell', () => {
   });
 
   it("renders the cell's `aria-rowindex` correctly when paginated on a different page", () => {
-    const component = mount(
+    const { getByTestSubject } = render(
       <EuiDataGridCell
         {...requiredProps}
         pagination={{
@@ -66,9 +66,11 @@ describe('EuiDataGridCell', () => {
         }}
       />
     );
-    expect(
-      component.find('[data-test-subj="dataGridRowCell"]').prop('aria-rowindex')
-    ).toEqual(61);
+
+    expect(getByTestSubject('dataGridRowCell')).toHaveAttribute(
+      'aria-rowindex',
+      '61'
+    );
   });
 
   it('renders cell actions', () => {

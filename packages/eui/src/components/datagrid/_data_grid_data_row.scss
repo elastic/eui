@@ -1,6 +1,4 @@
 @include euiDataGridRowCell {
-  position: relative; // Needed for .euiDataGridRowCell__actions
-
   .euiDataGridRowCell__content {
     height: 100%;
     overflow: hidden;
@@ -13,55 +11,6 @@
   // Hack to allow focus trap to still stretch to full row height on defined heights
   > [data-focus-lock-disabled] {
     height: 100%;
-  }
-
-  --euiDataGridCellOutlineColor: #{$euiColorPrimary};
-
-  &:hover,
-  &:focus,
-  &.euiDataGridRowCell--open {
-    @include euiDataGridCellFocus;
-  }
-
-  // needed to override global style
-  &:focus:focus-visible {
-    outline: none;
-  }
-
-  // On hover
-  &:hover:not(:focus, :focus-within, .euiDataGridRowCell--open) {
-    // Color the actions and focus ring grayscale on hover
-    // (Actions look odd without the ring on grids without cell borders)
-    --euiDataGridCellOutlineColor: #{$euiColorDarkShade};
-
-    .euiDataGridRowCell__actions {
-      // Delay the actions showing on hover
-      // (Note: the focus ring show instantly on hover & the actions show instantly on focus)
-      animation-delay: $euiAnimSpeedSlow;
-    }
-  }
-
-  // On hover & focus, show cell action buttons
-  &:hover,
-  &:focus,
-  &:focus-within,
-  // Always make the cell actions visible when the cell popover is open
-  &.euiDataGridRowCell--open,
-  // Prevents the animation from replaying when keyboard focus is moved from the popover back to the cell
-  &[data-keyboard-closing] {
-    .euiDataGridRowCell__actions {
-      animation-duration: $euiAnimSpeedExtraFast;
-      animation-name: euiDataGridCellActionsSlideIn;
-      animation-iteration-count: 1;
-      animation-fill-mode: forwards;
-    }
-  }
-
-  // if a cell is not hovered nor focused nor open via popover, don't show buttons in general
-  &:not(:hover):not(:focus):not(.euiDataGridRowCell--open):not([data-keyboard-closing]) {
-    .euiDataGridRowCell__actions {
-      display: none;
-    }
   }
 
   &.euiDataGridRowCell--numeric {
@@ -85,24 +34,6 @@
   }
 }
 
-.euiDataGridRowCell__popover {
-  @include euiScrollBar;
-  overflow: auto;
-  z-index: $euiZDataGridCellPopover !important; // stylelint-disable-line declaration-no-important
-  // Workaround for a Safari CSS bug when using both `overflow: auto` & `filter: drop-shadow`
-  // (see https://github.com/elastic/eui/issues/6151)
-  // Disables the default EuiPopover filter drop-shadow and uses box-shadow instead,
-  // since we don't use the popover arrow in any case for cell popovers
-  filter: none;
-  @include euiBottomShadow; // TODO: Convert to euiShadowMedium() in Emotion
-
-  // For some reason, the normal popover opacity transition doesn't work for datagrid popovers
-  // so we'll force it via an animation. If we don't, cells constrained by the inline max-width
-  // style that we set will see a flash of unwanted content before repositioning
-  animation-duration: $euiAnimSpeedNormal;
-  animation-name: euiDataGridCellPopover;
-}
-
 .euiDataGridRowCell--controlColumn .euiDataGridRowCell__content {
   max-height: 100%;
   height: auto;
@@ -112,98 +43,4 @@
   &.euiDataGridRowCell__content--defaultHeight {
     height: 100%;
   }
-}
-
-// Positioning for cell actions & the cell expansion popover
-.euiDataGridRowCell__actions,
-.euiDataGridRowCell__actions + [data-euiportal] > .euiPopover {
-  position: absolute;
-  bottom: 100%;
-
-  .euiDataGridRowCell--alignLeft & {
-    left: 0;
-  }
-
-  .euiDataGridRowCell--alignRight & {
-    right: 0;
-  }
-}
-
-.euiDataGridRowCell__actions {
-  z-index: $euiZDataGridCellPopover - 2; // Sit below sticky column headers
-  margin-bottom: -$euiBorderWidthThin; // Vertical alignment
-  display: flex;
-  gap: $euiSizeXS / 2;
-  padding-inline: $euiSizeXS / 2;
-  background-color: var(--euiDataGridCellOutlineColor);
-  color: $euiColorEmptyShade;
-  border: $euiBorderWidthThin solid var(--euiDataGridCellOutlineColor);
-  border-top-left-radius: $euiBorderRadius / 2;
-  border-top-right-radius: $euiBorderRadius / 2;
-  transform: scaleY(0);
-  transform-origin: bottom;
-
-  // The first row of cell actions need to be visible above the cell headers,
-  // but other cell actions that scroll past the sticky headers should not
-  .euiDataGridRowCell[data-gridcell-visible-row-index='0'] > & {
-    z-index: $euiZDataGridCellPopover - 1;
-  }
-
-  .euiDataGridRowCell--alignLeft & {
-    border-bottom-right-radius: $euiBorderRadius / 2;
-  }
-
-  .euiDataGridRowCell--alignRight & {
-    border-bottom-left-radius: $euiBorderRadius / 2;
-  }
-
-  // Visual trickery - fill in the gap between the cell outline border-radius & the actions
-  &::after {
-    content: '';
-    position: absolute;
-    top: 100%;
-    height: $euiBorderWidthThick;
-    width: $euiBorderWidthThick;
-    background-color: var(--euiDataGridCellOutlineColor);
-
-    .euiDataGridRowCell--alignLeft & {
-      left: -$euiBorderWidthThin;
-    }
-
-    .euiDataGridRowCell--alignRight & {
-      right: -$euiBorderWidthThin;
-    }
-  }
-}
-
-.euiDataGridRowCell__actionButtonIcon {
-  height: $euiSize + $euiSizeXS;
-  width: $euiSize;
-  border-radius: 0;
-
-  /* Force all cell action buttons to match EUI colors */
-  &,
-  svg {
-    // stylelint-disable declaration-no-important
-    background-color: transparent !important;
-    color: currentColor !important;
-    fill: currentColor !important;
-    // stylelint-enable declaration-no-important
-  }
-
-  /* Manually increase the size of the expand cell icon - it's a bit small by default */
-  &.euiDataGridRowCell__expandCell .euiIcon {
-    width: 120%;
-    height: 100%;
-  }
-}
-
-@keyframes euiDataGridCellActionsSlideIn {
-  from { transform: scaleY(0); }
-  to { transform: scaleY(1); }
-}
-
-@keyframes euiDataGridCellPopover {
-  from { opacity: 0; }
-  to { opacity: 1; }
 }

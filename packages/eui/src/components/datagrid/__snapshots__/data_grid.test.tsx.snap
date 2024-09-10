@@ -596,7 +596,7 @@ exports[`EuiDataGrid rendering renders additional toolbar controls 1`] = `
             >
               <div
                 aria-describedby="euiDataGridCellHeader_generated-id_sorting"
-                class="euiDataGridHeaderCell euiDataGridHeaderCell--hasColumnActions"
+                class="euiDataGridHeaderCell euiDataGridHeaderCell--hasColumnActions emotion-euiDataGridHeaderCell"
                 data-gridcell-column-id="A"
                 data-gridcell-column-index="0"
                 data-gridcell-row-index="-1"
@@ -640,7 +640,7 @@ exports[`EuiDataGrid rendering renders additional toolbar controls 1`] = `
               </div>
               <div
                 aria-describedby="euiDataGridCellHeader_generated-id_sorting"
-                class="euiDataGridHeaderCell euiDataGridHeaderCell--hasColumnActions"
+                class="euiDataGridHeaderCell euiDataGridHeaderCell--hasColumnActions emotion-euiDataGridHeaderCell"
                 data-gridcell-column-id="B"
                 data-gridcell-column-index="1"
                 data-gridcell-row-index="-1"
@@ -685,7 +685,7 @@ exports[`EuiDataGrid rendering renders additional toolbar controls 1`] = `
             </div>
             <div
               aria-rowindex="1"
-              class="euiDataGridRowCell euiDataGridRowCell--alignLeft euiDataGridRowCell--firstColumn"
+              class="euiDataGridRowCell euiDataGridRowCell--firstColumn emotion-euiDataGridRowCell"
               data-gridcell-column-id="A"
               data-gridcell-column-index="0"
               data-gridcell-row-index="0"
@@ -711,7 +711,7 @@ exports[`EuiDataGrid rendering renders additional toolbar controls 1`] = `
             </div>
             <div
               aria-rowindex="1"
-              class="euiDataGridRowCell euiDataGridRowCell--alignLeft euiDataGridRowCell--lastColumn"
+              class="euiDataGridRowCell euiDataGridRowCell--lastColumn emotion-euiDataGridRowCell"
               data-gridcell-column-id="B"
               data-gridcell-column-index="1"
               data-gridcell-row-index="0"
@@ -737,7 +737,7 @@ exports[`EuiDataGrid rendering renders additional toolbar controls 1`] = `
             </div>
             <div
               aria-rowindex="2"
-              class="euiDataGridRowCell euiDataGridRowCell--alignLeft euiDataGridRowCell--firstColumn"
+              class="euiDataGridRowCell euiDataGridRowCell--firstColumn emotion-euiDataGridRowCell"
               data-gridcell-column-id="A"
               data-gridcell-column-index="0"
               data-gridcell-row-index="1"
@@ -763,7 +763,7 @@ exports[`EuiDataGrid rendering renders additional toolbar controls 1`] = `
             </div>
             <div
               aria-rowindex="2"
-              class="euiDataGridRowCell euiDataGridRowCell--alignLeft euiDataGridRowCell--lastColumn"
+              class="euiDataGridRowCell euiDataGridRowCell--lastColumn emotion-euiDataGridRowCell"
               data-gridcell-column-id="B"
               data-gridcell-column-index="1"
               data-gridcell-row-index="1"
@@ -789,7 +789,7 @@ exports[`EuiDataGrid rendering renders additional toolbar controls 1`] = `
             </div>
             <div
               aria-rowindex="3"
-              class="euiDataGridRowCell euiDataGridRowCell--alignLeft euiDataGridRowCell--firstColumn"
+              class="euiDataGridRowCell euiDataGridRowCell--firstColumn emotion-euiDataGridRowCell"
               data-gridcell-column-id="A"
               data-gridcell-column-index="0"
               data-gridcell-row-index="2"
@@ -815,7 +815,7 @@ exports[`EuiDataGrid rendering renders additional toolbar controls 1`] = `
             </div>
             <div
               aria-rowindex="3"
-              class="euiDataGridRowCell euiDataGridRowCell--alignLeft euiDataGridRowCell--lastColumn"
+              class="euiDataGridRowCell euiDataGridRowCell--lastColumn emotion-euiDataGridRowCell"
               data-gridcell-column-id="B"
               data-gridcell-column-index="1"
               data-gridcell-row-index="2"
@@ -1004,7 +1004,7 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
               role="row"
             >
               <div
-                class="euiDataGridHeaderCell euiDataGridHeaderCell--controlColumn leadingControlCol"
+                class="euiDataGridHeaderCell euiDataGridHeaderCell--controlColumn leadingControlCol emotion-euiDataGridHeaderCell"
                 data-gridcell-column-id="leading"
                 data-gridcell-column-index="0"
                 data-gridcell-row-index="-1"
@@ -1024,7 +1024,7 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
               </div>
               <div
                 aria-describedby="euiDataGridCellHeader_generated-id_sorting"
-                class="euiDataGridHeaderCell euiDataGridHeaderCell--hasColumnActions"
+                class="euiDataGridHeaderCell euiDataGridHeaderCell--hasColumnActions emotion-euiDataGridHeaderCell"
                 data-gridcell-column-id="A"
                 data-gridcell-column-index="1"
                 data-gridcell-row-index="-1"
@@ -1068,7 +1068,7 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
               </div>
               <div
                 aria-describedby="euiDataGridCellHeader_generated-id_sorting"
-                class="euiDataGridHeaderCell euiDataGridHeaderCell--hasColumnActions"
+                class="euiDataGridHeaderCell euiDataGridHeaderCell--hasColumnActions emotion-euiDataGridHeaderCell"
                 data-gridcell-column-id="B"
                 data-gridcell-column-index="2"
                 data-gridcell-row-index="-1"
@@ -1111,7 +1111,7 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
                 </div>
               </div>
               <div
-                class="euiDataGridHeaderCell euiDataGridHeaderCell--controlColumn trailingControlCol"
+                class="euiDataGridHeaderCell euiDataGridHeaderCell--controlColumn trailingControlCol emotion-euiDataGridHeaderCell"
                 data-gridcell-column-id="trailing"
                 data-gridcell-column-index="3"
                 data-gridcell-row-index="-1"
@@ -1132,7 +1132,7 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
             </div>
             <div
               aria-rowindex="1"
-              class="euiDataGridRowCell euiDataGridRowCell--alignLeft euiDataGridRowCell--firstColumn euiDataGridRowCell--controlColumn"
+              class="euiDataGridRowCell euiDataGridRowCell--firstColumn euiDataGridRowCell--controlColumn emotion-euiDataGridRowCell"
               data-gridcell-column-id="leading"
               data-gridcell-column-index="0"
               data-gridcell-row-index="0"
@@ -1158,7 +1158,7 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
             </div>
             <div
               aria-rowindex="1"
-              class="euiDataGridRowCell euiDataGridRowCell--alignLeft"
+              class="euiDataGridRowCell emotion-euiDataGridRowCell"
               data-gridcell-column-id="A"
               data-gridcell-column-index="1"
               data-gridcell-row-index="0"
@@ -1184,7 +1184,7 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
             </div>
             <div
               aria-rowindex="1"
-              class="euiDataGridRowCell euiDataGridRowCell--alignLeft"
+              class="euiDataGridRowCell emotion-euiDataGridRowCell"
               data-gridcell-column-id="B"
               data-gridcell-column-index="2"
               data-gridcell-row-index="0"
@@ -1210,7 +1210,7 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
             </div>
             <div
               aria-rowindex="1"
-              class="euiDataGridRowCell euiDataGridRowCell--alignLeft euiDataGridRowCell--lastColumn euiDataGridRowCell--controlColumn"
+              class="euiDataGridRowCell euiDataGridRowCell--lastColumn euiDataGridRowCell--controlColumn emotion-euiDataGridRowCell"
               data-gridcell-column-id="trailing"
               data-gridcell-column-index="3"
               data-gridcell-row-index="0"
@@ -1236,7 +1236,7 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
             </div>
             <div
               aria-rowindex="2"
-              class="euiDataGridRowCell euiDataGridRowCell--alignLeft euiDataGridRowCell--firstColumn euiDataGridRowCell--controlColumn"
+              class="euiDataGridRowCell euiDataGridRowCell--firstColumn euiDataGridRowCell--controlColumn emotion-euiDataGridRowCell"
               data-gridcell-column-id="leading"
               data-gridcell-column-index="0"
               data-gridcell-row-index="1"
@@ -1262,7 +1262,7 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
             </div>
             <div
               aria-rowindex="2"
-              class="euiDataGridRowCell euiDataGridRowCell--alignLeft"
+              class="euiDataGridRowCell emotion-euiDataGridRowCell"
               data-gridcell-column-id="A"
               data-gridcell-column-index="1"
               data-gridcell-row-index="1"
@@ -1288,7 +1288,7 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
             </div>
             <div
               aria-rowindex="2"
-              class="euiDataGridRowCell euiDataGridRowCell--alignLeft"
+              class="euiDataGridRowCell emotion-euiDataGridRowCell"
               data-gridcell-column-id="B"
               data-gridcell-column-index="2"
               data-gridcell-row-index="1"
@@ -1314,7 +1314,7 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
             </div>
             <div
               aria-rowindex="2"
-              class="euiDataGridRowCell euiDataGridRowCell--alignLeft euiDataGridRowCell--lastColumn euiDataGridRowCell--controlColumn"
+              class="euiDataGridRowCell euiDataGridRowCell--lastColumn euiDataGridRowCell--controlColumn emotion-euiDataGridRowCell"
               data-gridcell-column-id="trailing"
               data-gridcell-column-index="3"
               data-gridcell-row-index="1"
@@ -1340,7 +1340,7 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
             </div>
             <div
               aria-rowindex="3"
-              class="euiDataGridRowCell euiDataGridRowCell--alignLeft euiDataGridRowCell--firstColumn euiDataGridRowCell--controlColumn"
+              class="euiDataGridRowCell euiDataGridRowCell--firstColumn euiDataGridRowCell--controlColumn emotion-euiDataGridRowCell"
               data-gridcell-column-id="leading"
               data-gridcell-column-index="0"
               data-gridcell-row-index="2"
@@ -1366,7 +1366,7 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
             </div>
             <div
               aria-rowindex="3"
-              class="euiDataGridRowCell euiDataGridRowCell--alignLeft"
+              class="euiDataGridRowCell emotion-euiDataGridRowCell"
               data-gridcell-column-id="A"
               data-gridcell-column-index="1"
               data-gridcell-row-index="2"
@@ -1392,7 +1392,7 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
             </div>
             <div
               aria-rowindex="3"
-              class="euiDataGridRowCell euiDataGridRowCell--alignLeft"
+              class="euiDataGridRowCell emotion-euiDataGridRowCell"
               data-gridcell-column-id="B"
               data-gridcell-column-index="2"
               data-gridcell-row-index="2"
@@ -1418,7 +1418,7 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
             </div>
             <div
               aria-rowindex="3"
-              class="euiDataGridRowCell euiDataGridRowCell--alignLeft euiDataGridRowCell--lastColumn euiDataGridRowCell--controlColumn"
+              class="euiDataGridRowCell euiDataGridRowCell--lastColumn euiDataGridRowCell--controlColumn emotion-euiDataGridRowCell"
               data-gridcell-column-id="trailing"
               data-gridcell-column-index="3"
               data-gridcell-row-index="2"
@@ -1605,7 +1605,7 @@ exports[`EuiDataGrid rendering renders custom column headers 1`] = `
             >
               <div
                 aria-describedby="euiDataGridCellHeader_generated-id_sorting"
-                class="euiDataGridHeaderCell euiDataGridHeaderCell--hasColumnActions"
+                class="euiDataGridHeaderCell euiDataGridHeaderCell--hasColumnActions emotion-euiDataGridHeaderCell"
                 data-gridcell-column-id="A"
                 data-gridcell-column-index="0"
                 data-gridcell-row-index="-1"
@@ -1649,7 +1649,7 @@ exports[`EuiDataGrid rendering renders custom column headers 1`] = `
               </div>
               <div
                 aria-describedby="euiDataGridCellHeader_generated-id_sorting"
-                class="euiDataGridHeaderCell euiDataGridHeaderCell--hasColumnActions"
+                class="euiDataGridHeaderCell euiDataGridHeaderCell--hasColumnActions emotion-euiDataGridHeaderCell"
                 data-gridcell-column-id="B"
                 data-gridcell-column-index="1"
                 data-gridcell-row-index="-1"
@@ -1696,7 +1696,7 @@ exports[`EuiDataGrid rendering renders custom column headers 1`] = `
             </div>
             <div
               aria-rowindex="1"
-              class="euiDataGridRowCell euiDataGridRowCell--alignLeft euiDataGridRowCell--firstColumn"
+              class="euiDataGridRowCell euiDataGridRowCell--firstColumn emotion-euiDataGridRowCell"
               data-gridcell-column-id="A"
               data-gridcell-column-index="0"
               data-gridcell-row-index="0"
@@ -1722,7 +1722,7 @@ exports[`EuiDataGrid rendering renders custom column headers 1`] = `
             </div>
             <div
               aria-rowindex="1"
-              class="euiDataGridRowCell euiDataGridRowCell--alignLeft euiDataGridRowCell--lastColumn"
+              class="euiDataGridRowCell euiDataGridRowCell--lastColumn emotion-euiDataGridRowCell"
               data-gridcell-column-id="B"
               data-gridcell-column-index="1"
               data-gridcell-row-index="0"
@@ -1748,7 +1748,7 @@ exports[`EuiDataGrid rendering renders custom column headers 1`] = `
             </div>
             <div
               aria-rowindex="2"
-              class="euiDataGridRowCell euiDataGridRowCell--alignLeft euiDataGridRowCell--firstColumn"
+              class="euiDataGridRowCell euiDataGridRowCell--firstColumn emotion-euiDataGridRowCell"
               data-gridcell-column-id="A"
               data-gridcell-column-index="0"
               data-gridcell-row-index="1"
@@ -1774,7 +1774,7 @@ exports[`EuiDataGrid rendering renders custom column headers 1`] = `
             </div>
             <div
               aria-rowindex="2"
-              class="euiDataGridRowCell euiDataGridRowCell--alignLeft euiDataGridRowCell--lastColumn"
+              class="euiDataGridRowCell euiDataGridRowCell--lastColumn emotion-euiDataGridRowCell"
               data-gridcell-column-id="B"
               data-gridcell-column-index="1"
               data-gridcell-row-index="1"
@@ -1800,7 +1800,7 @@ exports[`EuiDataGrid rendering renders custom column headers 1`] = `
             </div>
             <div
               aria-rowindex="3"
-              class="euiDataGridRowCell euiDataGridRowCell--alignLeft euiDataGridRowCell--firstColumn"
+              class="euiDataGridRowCell euiDataGridRowCell--firstColumn emotion-euiDataGridRowCell"
               data-gridcell-column-id="A"
               data-gridcell-column-index="0"
               data-gridcell-row-index="2"
@@ -1826,7 +1826,7 @@ exports[`EuiDataGrid rendering renders custom column headers 1`] = `
             </div>
             <div
               aria-rowindex="3"
-              class="euiDataGridRowCell euiDataGridRowCell--alignLeft euiDataGridRowCell--lastColumn"
+              class="euiDataGridRowCell euiDataGridRowCell--lastColumn emotion-euiDataGridRowCell"
               data-gridcell-column-id="B"
               data-gridcell-column-index="1"
               data-gridcell-row-index="2"
@@ -2013,7 +2013,7 @@ exports[`EuiDataGrid rendering renders with common and div attributes 1`] = `
             >
               <div
                 aria-describedby="euiDataGridCellHeader_generated-id_sorting"
-                class="euiDataGridHeaderCell euiDataGridHeaderCell--hasColumnActions"
+                class="euiDataGridHeaderCell euiDataGridHeaderCell--hasColumnActions emotion-euiDataGridHeaderCell"
                 data-gridcell-column-id="A"
                 data-gridcell-column-index="0"
                 data-gridcell-row-index="-1"
@@ -2057,7 +2057,7 @@ exports[`EuiDataGrid rendering renders with common and div attributes 1`] = `
               </div>
               <div
                 aria-describedby="euiDataGridCellHeader_generated-id_sorting"
-                class="euiDataGridHeaderCell euiDataGridHeaderCell--hasColumnActions"
+                class="euiDataGridHeaderCell euiDataGridHeaderCell--hasColumnActions emotion-euiDataGridHeaderCell"
                 data-gridcell-column-id="B"
                 data-gridcell-column-index="1"
                 data-gridcell-row-index="-1"
@@ -2102,7 +2102,7 @@ exports[`EuiDataGrid rendering renders with common and div attributes 1`] = `
             </div>
             <div
               aria-rowindex="1"
-              class="euiDataGridRowCell euiDataGridRowCell--alignLeft euiDataGridRowCell--firstColumn"
+              class="euiDataGridRowCell euiDataGridRowCell--firstColumn emotion-euiDataGridRowCell"
               data-gridcell-column-id="A"
               data-gridcell-column-index="0"
               data-gridcell-row-index="0"
@@ -2128,7 +2128,7 @@ exports[`EuiDataGrid rendering renders with common and div attributes 1`] = `
             </div>
             <div
               aria-rowindex="1"
-              class="euiDataGridRowCell euiDataGridRowCell--alignLeft euiDataGridRowCell--lastColumn"
+              class="euiDataGridRowCell euiDataGridRowCell--lastColumn emotion-euiDataGridRowCell"
               data-gridcell-column-id="B"
               data-gridcell-column-index="1"
               data-gridcell-row-index="0"
@@ -2154,7 +2154,7 @@ exports[`EuiDataGrid rendering renders with common and div attributes 1`] = `
             </div>
             <div
               aria-rowindex="2"
-              class="euiDataGridRowCell euiDataGridRowCell--alignLeft euiDataGridRowCell--firstColumn"
+              class="euiDataGridRowCell euiDataGridRowCell--firstColumn emotion-euiDataGridRowCell"
               data-gridcell-column-id="A"
               data-gridcell-column-index="0"
               data-gridcell-row-index="1"
@@ -2180,7 +2180,7 @@ exports[`EuiDataGrid rendering renders with common and div attributes 1`] = `
             </div>
             <div
               aria-rowindex="2"
-              class="euiDataGridRowCell euiDataGridRowCell--alignLeft euiDataGridRowCell--lastColumn"
+              class="euiDataGridRowCell euiDataGridRowCell--lastColumn emotion-euiDataGridRowCell"
               data-gridcell-column-id="B"
               data-gridcell-column-index="1"
               data-gridcell-row-index="1"
@@ -2206,7 +2206,7 @@ exports[`EuiDataGrid rendering renders with common and div attributes 1`] = `
             </div>
             <div
               aria-rowindex="3"
-              class="euiDataGridRowCell euiDataGridRowCell--alignLeft euiDataGridRowCell--firstColumn"
+              class="euiDataGridRowCell euiDataGridRowCell--firstColumn emotion-euiDataGridRowCell"
               data-gridcell-column-id="A"
               data-gridcell-column-index="0"
               data-gridcell-row-index="2"
@@ -2232,7 +2232,7 @@ exports[`EuiDataGrid rendering renders with common and div attributes 1`] = `
             </div>
             <div
               aria-rowindex="3"
-              class="euiDataGridRowCell euiDataGridRowCell--alignLeft euiDataGridRowCell--lastColumn"
+              class="euiDataGridRowCell euiDataGridRowCell--lastColumn emotion-euiDataGridRowCell"
               data-gridcell-column-id="B"
               data-gridcell-column-index="1"
               data-gridcell-row-index="2"

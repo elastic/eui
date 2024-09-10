@@ -408,22 +408,6 @@ const renderCellValueRowAndColumnCount: RenderCellValue = ({
   columnId,
 }) => `${rowIndex}, ${columnId}`;
 
-const RenderCellValueSetCellProps: RenderCellValue = ({
-  rowIndex,
-  columnId,
-  setCellProps,
-}) => {
-  useEffect(() => {
-    setCellProps({
-      className: 'customClass',
-      'data-test-subj': `cell-${rowIndex}-${columnId}`,
-      style: { color: columnId === 'A' ? 'red' : 'blue' },
-    });
-  }, [columnId, rowIndex, setCellProps]);
-
-  return `${rowIndex}, ${columnId}`;
-};
-
 const renderCellBasedOnColumnId: RenderCellValue = ({ columnId }) => {
   if (columnId === 'A') {
     return 5.5;
@@ -554,7 +538,23 @@ describe('EuiDataGrid', () => {
     });
 
     it('renders and applies custom props', () => {
-      const component = mount(
+      const RenderCellValueSetCellProps: RenderCellValue = ({
+        rowIndex,
+        columnId,
+        setCellProps,
+      }) => {
+        useEffect(() => {
+          setCellProps({
+            className: 'customClass',
+            'data-test-subj': `cell-${rowIndex}-${columnId}`,
+            style: { color: columnId === 'A' ? 'red' : 'blue' },
+          });
+        }, [columnId, rowIndex, setCellProps]);
+
+        return `${rowIndex}, ${columnId}`;
+      };
+
+      const { container, getByTestSubject } = render(
         <EuiDataGrid
           {...requiredProps}
           columns={[{ id: 'A' }, { id: 'B' }]}
@@ -567,112 +567,13 @@ describe('EuiDataGrid', () => {
         />
       );
 
-      expect(
-        component.find('.euiDataGridRowCell').map((cell) => {
-          const props = cell.props();
-          delete props.children;
-          return props;
-        })
-      ).toMatchInlineSnapshot(`
-        [
-          {
-            "aria-rowindex": 1,
-            "className": "euiDataGridRowCell euiDataGridRowCell--alignLeft euiDataGridRowCell--firstColumn customClass",
-            "data-gridcell-column-id": "A",
-            "data-gridcell-column-index": 0,
-            "data-gridcell-row-index": 0,
-            "data-gridcell-visible-row-index": 0,
-            "data-test-subj": "dataGridRowCell",
-            "onKeyDown": [Function],
-            "onMouseEnter": [Function],
-            "onMouseLeave": [Function],
-            "role": "gridcell",
-            "style": {
-              "color": "red",
-              "height": 34,
-              "left": 0,
-              "lineHeight": undefined,
-              "position": "absolute",
-              "right": undefined,
-              "top": 0,
-              "width": 100,
-            },
-            "tabIndex": -1,
-          },
-          {
-            "aria-rowindex": 1,
-            "className": "euiDataGridRowCell euiDataGridRowCell--alignLeft euiDataGridRowCell--lastColumn customClass",
-            "data-gridcell-column-id": "B",
-            "data-gridcell-column-index": 1,
-            "data-gridcell-row-index": 0,
-            "data-gridcell-visible-row-index": 0,
-            "data-test-subj": "dataGridRowCell",
-            "onKeyDown": [Function],
-            "onMouseEnter": [Function],
-            "onMouseLeave": [Function],
-            "role": "gridcell",
-            "style": {
-              "color": "blue",
-              "height": 34,
-              "left": 100,
-              "lineHeight": undefined,
-              "position": "absolute",
-              "right": undefined,
-              "top": 0,
-              "width": 100,
-            },
-            "tabIndex": -1,
-          },
-          {
-            "aria-rowindex": 2,
-            "className": "euiDataGridRowCell euiDataGridRowCell--alignLeft euiDataGridRowCell--firstColumn customClass",
-            "data-gridcell-column-id": "A",
-            "data-gridcell-column-index": 0,
-            "data-gridcell-row-index": 1,
-            "data-gridcell-visible-row-index": 1,
-            "data-test-subj": "dataGridRowCell",
-            "onKeyDown": [Function],
-            "onMouseEnter": [Function],
-            "onMouseLeave": [Function],
-            "role": "gridcell",
-            "style": {
-              "color": "red",
-              "height": 34,
-              "left": 0,
-              "lineHeight": undefined,
-              "position": "absolute",
-              "right": undefined,
-              "top": 0,
-              "width": 100,
-            },
-            "tabIndex": -1,
-          },
-          {
-            "aria-rowindex": 2,
-            "className": "euiDataGridRowCell euiDataGridRowCell--alignLeft euiDataGridRowCell--lastColumn customClass",
-            "data-gridcell-column-id": "B",
-            "data-gridcell-column-index": 1,
-            "data-gridcell-row-index": 1,
-            "data-gridcell-visible-row-index": 1,
-            "data-test-subj": "dataGridRowCell",
-            "onKeyDown": [Function],
-            "onMouseEnter": [Function],
-            "onMouseLeave": [Function],
-            "role": "gridcell",
-            "style": {
-              "color": "blue",
-              "height": 34,
-              "left": 100,
-              "lineHeight": undefined,
-              "position": "absolute",
-              "right": undefined,
-              "top": 0,
-              "width": 100,
-            },
-            "tabIndex": -1,
-          },
-        ]
-      `);
+      expect(container.querySelectorAll('.customClass')).toHaveLength(4);
+      expect(getByTestSubject('dataGridRowCell cell-0-A')).toHaveStyle(
+        'color: rgb(255, 0, 0)'
+      );
+      expect(getByTestSubject('dataGridRowCell cell-1-B')).toHaveStyle(
+        'color: rgb(0, 0, 255)'
+      );
     });
 
     it('renders additional toolbar controls', () => {
@@ -781,8 +682,13 @@ describe('EuiDataGrid', () => {
     });
 
     describe('schema classnames', () => {
+      const getCell = (id: string) =>
+        document.querySelector(
+          `.euiDataGridRowCell[data-gridcell-column-id="${id}"]`
+        );
+
       it('applies classnames from explicit schemas', () => {
-        const component = mount(
+        render(
           <EuiDataGrid
             {...requiredProps}
             columns={[
@@ -793,34 +699,19 @@ describe('EuiDataGrid', () => {
               visibleColumns: ['A', 'B'],
               setVisibleColumns: () => {},
             }}
-            rowCount={3}
+            rowCount={1}
             renderCellValue={renderCellValueRowAndColumnCount}
           />
         );
 
-        const gridCellClassNames = component
-          .find('[className*="euiDataGridRowCell--"]')
-          .map((x) => x.props().className);
-        expect(gridCellClassNames).toMatchInlineSnapshot(`
-          [
-            "euiDataGridRowCell--firstColumn",
-            "euiDataGridRowCell euiDataGridRowCell--alignRight euiDataGridRowCell--numeric euiDataGridRowCell--firstColumn",
-            "euiDataGridRowCell--lastColumn",
-            "euiDataGridRowCell euiDataGridRowCell--alignLeft euiDataGridRowCell--customFormatName euiDataGridRowCell--lastColumn",
-            "euiDataGridRowCell--firstColumn",
-            "euiDataGridRowCell euiDataGridRowCell--alignRight euiDataGridRowCell--numeric euiDataGridRowCell--firstColumn",
-            "euiDataGridRowCell--lastColumn",
-            "euiDataGridRowCell euiDataGridRowCell--alignLeft euiDataGridRowCell--customFormatName euiDataGridRowCell--lastColumn",
-            "euiDataGridRowCell--firstColumn",
-            "euiDataGridRowCell euiDataGridRowCell--alignRight euiDataGridRowCell--numeric euiDataGridRowCell--firstColumn",
-            "euiDataGridRowCell--lastColumn",
-            "euiDataGridRowCell euiDataGridRowCell--alignLeft euiDataGridRowCell--customFormatName euiDataGridRowCell--lastColumn",
-          ]
-        `);
+        expect(getCell('A')).toHaveClass('euiDataGridRowCell--numeric');
+        expect(getCell('B')).toHaveClass(
+          'euiDataGridRowCell--customFormatName'
+        );
       });
 
       it('automatically detects column types and applies classnames', () => {
-        const component = mount(
+        render(
           <EuiDataGrid
             {...requiredProps}
             columns={[{ id: 'A' }, { id: 'B' }, { id: 'C' }]}
@@ -833,24 +724,15 @@ describe('EuiDataGrid', () => {
             renderCellValue={renderCellBasedOnColumnId}
           />
         );
-
-        const gridCellClassNames = component
-          .find('[className~="euiDataGridRowCell"]')
-          .map((x) => x.props().className);
-        expect(gridCellClassNames).toMatchInlineSnapshot(`
-          [
-            "euiDataGridRowCell euiDataGridRowCell--alignLeft euiDataGridRowCell--numeric euiDataGridRowCell--firstColumn",
-            "euiDataGridRowCell euiDataGridRowCell--alignLeft euiDataGridRowCell--boolean",
-            "euiDataGridRowCell euiDataGridRowCell--alignLeft euiDataGridRowCell--lastColumn",
-            "euiDataGridRowCell euiDataGridRowCell--alignLeft euiDataGridRowCell--numeric euiDataGridRowCell--firstColumn",
-            "euiDataGridRowCell euiDataGridRowCell--alignLeft euiDataGridRowCell--boolean",
-            "euiDataGridRowCell euiDataGridRowCell--alignLeft euiDataGridRowCell--lastColumn",
-          ]
-        `);
+        expect(getCell('A')).toHaveClass('euiDataGridRowCell--numeric');
+        expect(getCell('B')).toHaveClass('euiDataGridRowCell--boolean');
+        expect(getCell('C')).not.toHaveClass(
+          'euiDataGridRowCell--numeric euiDataGridRowCell--boolean'
+        );
       });
 
       it('overrides automatically detected column types with supplied schema', () => {
-        const component = mount(
+        render(
           <EuiDataGrid
             {...requiredProps}
             columns={[{ id: 'A' }, { id: 'B', schema: 'alphanumeric' }]}
@@ -863,18 +745,8 @@ describe('EuiDataGrid', () => {
             renderCellValue={renderCellBasedOnColumnId}
           />
         );
-
-        const gridCellClassNames = component
-          .find('[className~="euiDataGridRowCell"]')
-          .map((x) => x.props().className);
-        expect(gridCellClassNames).toMatchInlineSnapshot(`
-          [
-            "euiDataGridRowCell euiDataGridRowCell--alignLeft euiDataGridRowCell--numeric euiDataGridRowCell--firstColumn",
-            "euiDataGridRowCell euiDataGridRowCell--alignLeft euiDataGridRowCell--alphanumeric euiDataGridRowCell--lastColumn",
-            "euiDataGridRowCell euiDataGridRowCell--alignLeft euiDataGridRowCell--numeric euiDataGridRowCell--firstColumn",
-            "euiDataGridRowCell euiDataGridRowCell--alignLeft euiDataGridRowCell--alphanumeric euiDataGridRowCell--lastColumn",
-          ]
-        `);
+        expect(getCell('A')).toHaveClass('euiDataGridRowCell--numeric');
+        expect(getCell('B')).toHaveClass('euiDataGridRowCell--alphanumeric');
       });
 
       it('detects all of the supported types', () => {
@@ -882,14 +754,14 @@ describe('EuiDataGrid', () => {
           A: '-5.80',
           B: 'false',
           C: '$-5.80',
-          E: '2019-09-18T12:31:28',
-          F: '2019-09-18T12:31:28Z',
-          G: '2019-09-18T12:31:28.234',
-          H: '2019-09-18T12:31:28.234+0300',
+          D: '2019-09-18T12:31:28',
+          E: '2019-09-18T12:31:28Z',
+          F: '2019-09-18T12:31:28.234',
+          G: '2019-09-18T12:31:28.234+0300',
         };
         const renderCellValue: RenderCellValue = ({ columnId }) =>
           values[columnId];
-        const component = mount(
+        render(
           <EuiDataGrid
             {...requiredProps}
             columns={Object.keys(values).map((id) => ({ id }))}
@@ -903,20 +775,13 @@ describe('EuiDataGrid', () => {
           />
         );
 
-        const gridCellClassNames = component
-          .find('[className~="euiDataGridRowCell"]')
-          .map((x) => x.props().className);
-        expect(gridCellClassNames).toMatchInlineSnapshot(`
-          [
-            "euiDataGridRowCell euiDataGridRowCell--alignLeft euiDataGridRowCell--numeric euiDataGridRowCell--firstColumn",
-            "euiDataGridRowCell euiDataGridRowCell--alignLeft euiDataGridRowCell--boolean",
-            "euiDataGridRowCell euiDataGridRowCell--alignLeft euiDataGridRowCell--currency",
-            "euiDataGridRowCell euiDataGridRowCell--alignLeft euiDataGridRowCell--datetime",
-            "euiDataGridRowCell euiDataGridRowCell--alignLeft euiDataGridRowCell--datetime",
-            "euiDataGridRowCell euiDataGridRowCell--alignLeft euiDataGridRowCell--datetime",
-            "euiDataGridRowCell euiDataGridRowCell--alignLeft euiDataGridRowCell--datetime euiDataGridRowCell--lastColumn",
-          ]
-        `);
+        expect(getCell('A')).toHaveClass('euiDataGridRowCell--numeric');
+        expect(getCell('B')).toHaveClass('euiDataGridRowCell--boolean');
+        expect(getCell('C')).toHaveClass('euiDataGridRowCell--currency');
+        expect(getCell('D')).toHaveClass('euiDataGridRowCell--datetime');
+        expect(getCell('E')).toHaveClass('euiDataGridRowCell--datetime');
+        expect(getCell('F')).toHaveClass('euiDataGridRowCell--datetime');
+        expect(getCell('G')).toHaveClass('euiDataGridRowCell--datetime');
       });
 
       it('accepts extra detectors', () => {
@@ -926,7 +791,7 @@ describe('EuiDataGrid', () => {
         };
         const renderCellValue: RenderCellValue = ({ columnId }) =>
           values[columnId];
-        const component = mount(
+        render(
           <EuiDataGrid
             {...requiredProps}
             columns={Object.keys(values).map((id) => ({ id }))}
@@ -954,15 +819,8 @@ describe('EuiDataGrid', () => {
           />
         );
 
-        const gridCellClassNames = component
-          .find('[className~="euiDataGridRowCell"]')
-          .map((x) => x.props().className);
-        expect(gridCellClassNames).toMatchInlineSnapshot(`
-          [
-            "euiDataGridRowCell euiDataGridRowCell--alignLeft euiDataGridRowCell--numeric euiDataGridRowCell--firstColumn",
-            "euiDataGridRowCell euiDataGridRowCell--alignLeft euiDataGridRowCell--ipaddress euiDataGridRowCell--lastColumn",
-          ]
-        `);
+        expect(getCell('A')).toHaveClass('euiDataGridRowCell--numeric');
+        expect(getCell('B')).toHaveClass('euiDataGridRowCell--ipaddress');
       });
     });
   });
@@ -1520,7 +1378,7 @@ describe('EuiDataGrid', () => {
 
       const getCellColorAt = (index: number) =>
         component
-          .find('[data-test-subj="dataGridRowCell"]')
+          .find('div[data-test-subj="dataGridRowCell"]')
           .at(index)
           .prop('style')?.color;
 
