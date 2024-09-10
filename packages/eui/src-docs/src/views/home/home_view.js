@@ -214,13 +214,14 @@ export const HomeView = () => (
             EUI is triple licensed under{' '}
             <EuiLink href={ELASTIC_LICENSE_URL}>Elastic License 2.0</EuiLink>
             {', '}
-            <EuiLink href={AGPL3_LICENSE_URL}>GNU Affero General Public License v3.0 only</EuiLink>
+            <EuiLink href={AGPL3_LICENSE_URL}>
+              GNU Affero General Public License v3.0 only
+            </EuiLink>
             {' and '}
             <EuiLink href={SSPL_LICENSE_URL}>
               Server Side Public License, v 1
             </EuiLink>
-            {' | '}
-            | Crafted with{' '}
+            {' | '}| Crafted with{' '}
             <span
               role="img"
               aria-label="love"
