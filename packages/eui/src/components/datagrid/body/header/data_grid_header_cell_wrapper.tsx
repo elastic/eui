@@ -44,6 +44,7 @@ export const EuiDataGridHeaderCellWrapper: FunctionComponent<
   isDragging,
   hasActionsPopover,
   openActionsPopover,
+  closeActionsPopover,
   'aria-label': ariaLabel,
   ...rest
 }) => {
@@ -82,6 +83,13 @@ export const EuiDataGridHeaderCellWrapper: FunctionComponent<
       }
     });
   }, [index, onFocusUpdate, headerEl]);
+
+  // close action popover when cell is being dragged
+  useEffect(() => {
+    if (isDragging) {
+      closeActionsPopover?.();
+    }
+  }, [isDragging, closeActionsPopover]);
 
   // For cell headers with only actions, auto-open the actions popover on enter keypress
   const onKeyDown: KeyboardEventHandler = useCallback(

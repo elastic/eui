@@ -177,6 +177,7 @@ export interface EuiDataGridHeaderCellWrapperProps {
   isDragging?: boolean;
   hasActionsPopover?: boolean;
   openActionsPopover?: () => void;
+  closeActionsPopover?: () => void;
 }
 
 export type EuiDataGridFooterRowProps = CommonProps &

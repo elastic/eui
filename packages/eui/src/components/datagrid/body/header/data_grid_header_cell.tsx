@@ -16,6 +16,7 @@ import React, {
   useCallback,
   useMemo,
   memo,
+  FocusEventHandler,
 } from 'react';
 import { tabbable, FocusableElement } from 'tabbable';
 import {
@@ -29,6 +30,7 @@ import { EuiListGroup } from '../../../list_group';
 import { EuiPopover } from '../../../popover';
 import { EuiButtonIcon } from '../../../button';
 import { EuiDraggable } from '../../../drag_and_drop';
+import { EuiFlexGroup } from '../../../flex';
 import { DataGridFocusContext } from '../../utils/focus';
 import {
   EuiDataGridHeaderCellProps,
@@ -72,8 +74,11 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
       const togglePopover = useCallback(() => {
         setIsPopoverOpen((isOpen) => !isOpen);
       }, []);
-      const closePopover = useCallback(() => setIsPopoverOpen(false), []);
-      const popoverArrowNavigationProps = usePopoverArrowNavigation();
+      const closePopover = useCallback(() => {
+        setIsPopoverOpen(false);
+      }, []);
+      const { popoverPanelRef, ...popoverArrowNavigationProps } =
+        usePopoverArrowNavigation();
 
       const columnActions = useMemo(() => {
         return getColumnActions({
@@ -136,6 +141,56 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
         suffix: 'sorting',
       });
 
+      /**
+       * Dragging
+       */
+      const columnDraggableId = useGeneratedHtmlId({
+        prefix: 'euiDataGridHeaderColumnContent',
+      });
+
+      // Draggable prevents FocusTrap onOutsideClick to be called.
+      // We manually close the popover for draggable cells and
+      // update the focus index onBlur to ensure execution order
+      // as closePopover() focuses its own cells first on close.
+      const handleOnBlur: FocusEventHandler = (e) => {
+        if (
+          !isPopoverOpen ||
+          popoverPanelRef.current == null ||
+          e.relatedTarget == null
+        )
+          return;
+
+        if (
+          !e.currentTarget.contains(e.relatedTarget) &&
+          e.relatedTarget !== popoverPanelRef.current &&
+          !popoverPanelRef.current.contains(e.relatedTarget)
+        ) {
+          closePopover();
+
+          const dataRowIndex = e.relatedTarget?.getAttribute(
+            'data-gridcell-row-index'
+          );
+          const dataNextIndex = e.relatedTarget?.getAttribute(
+            'data-gridcell-column-index'
+          );
+          const rowIndex = dataRowIndex ? parseInt(dataRowIndex) : undefined;
+          const nextIndex = dataNextIndex ? parseInt(dataNextIndex) : undefined;
+
+          if (nextIndex && rowIndex === -1) {
+            setTimeout(() => {
+              setFocusedCell([nextIndex, -1]);
+            });
+          }
+        }
+      };
+
+      // Draggable prevents the cell from receiving focus on click.
+      // We manually ensure focus is set on cell mouseDown which
+      // also includes setting focus before dragging
+      const handleOnMouseDown = () => {
+        setFocusedCell([index, -1]);
+      };
+
       /*
        * Rendering
        */
@@ -154,10 +209,6 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
         (columnType === 'numeric' || columnType === 'currency') && styles.right,
       ];
 
-      const columnDraggableId = useGeneratedHtmlId({
-        prefix: 'euiDataGridHeaderColumnContent',
-      });
-
       const contentProps = {
         ...displayHeaderCellProps,
         className: classes,
@@ -167,21 +218,24 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
         visibleColCount: visibleColCount,
         hasActionsPopover: showColumnActions,
         openActionsPopover: clickActionsButton,
+        closeActionsPopover: closePopover,
         'aria-sort': ariaSort,
         'aria-label': displayAsText && `${displayAsText}, `, // ensure cell text content is read first, if available
         'aria-describedby': sortingAriaId,
       };
 
+      const columnResizer =
+        column.isResizable !== false && width != null ? (
+          <EuiDataGridColumnResizer
+            columnId={id}
+            columnWidth={width}
+            setColumnWidth={setColumnWidth}
+          />
+        ) : null;
+
       const renderContent = (hasFocusTrap: boolean) => (
         <>
-          {column.isResizable !== false && width != null ? (
-            <EuiDataGridColumnResizer
-              columnId={id}
-              columnWidth={width}
-              setColumnWidth={setColumnWidth}
-            />
-          ) : null}
-
+          {!columnDragDrop && columnResizer}
           {columnDragDrop && (
             <span css={styles.euiDataGridHeaderCell__draggableIcon}>
               <EuiIcon type="grabOmnidirectional" size="s" />
@@ -250,23 +304,29 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
       );
 
       return columnDragDrop ? (
-        <EuiDraggable
-          draggableId={columnDraggableId}
-          className="euiDataGridHeaderDraggable"
-          index={index}
-          hasInteractiveChildren
-          // override internal styling from @hello-pangea/dnd
-          css={{ display: 'flex', top: '0 !important' }}
-        >
-          {(_, { isDragging }) => (
-            <EuiDataGridHeaderCellWrapper
-              isDragging={isDragging}
-              {...contentProps}
-            >
-              {renderContent}
-            </EuiDataGridHeaderCellWrapper>
-          )}
-        </EuiDraggable>
+        <EuiFlexGroup alignItems="center" css={{ position: 'relative' }}>
+          {/* keep the resizer outside of Draggable to ensure both working independently */}
+          {columnResizer}
+          <EuiDraggable
+            draggableId={columnDraggableId}
+            className="euiDataGridHeaderDraggable"
+            index={index}
+            hasInteractiveChildren
+            // override internal styling from @hello-pangea/dnd
+            css={{ display: 'flex', top: '0 !important' }}
+          >
+            {(_, { isDragging }) => (
+              <EuiDataGridHeaderCellWrapper
+                isDragging={isDragging}
+                onBlur={handleOnBlur}
+                onMouseDown={handleOnMouseDown}
+                {...contentProps}
+              >
+                {renderContent}
+              </EuiDataGridHeaderCellWrapper>
+            )}
+          </EuiDraggable>
+        </EuiFlexGroup>
       ) : (
         <EuiDataGridHeaderCellWrapper {...contentProps}>
           {renderContent}
@@ -449,6 +509,7 @@ export const usePopoverArrowNavigation = () => {
 
   return {
     panelRef,
+    popoverPanelRef,
     panelProps: { onKeyDown },
     popoverScreenReaderText: (
       <EuiI18n
