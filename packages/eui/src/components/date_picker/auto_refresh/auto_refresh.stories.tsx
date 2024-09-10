@@ -7,10 +7,12 @@
  */
 
 import type { Meta, StoryObj } from '@storybook/react';
-
+import { fireEvent, waitFor } from '@storybook/test';
+import { within } from '../../../../.storybook/test';
+import { LOKI_SELECTORS } from '../../../../.storybook/loki';
 import { enableFunctionToggleControls } from '../../../../.storybook/utils';
-import { REFRESH_UNIT_OPTIONS } from '../types';
 
+import { REFRESH_UNIT_OPTIONS } from '../types';
 import { EuiAutoRefresh, EuiAutoRefreshProps } from './auto_refresh';
 
 const meta: Meta<EuiAutoRefreshProps> = {
@@ -18,8 +20,7 @@ const meta: Meta<EuiAutoRefreshProps> = {
   component: EuiAutoRefresh,
   parameters: {
     loki: {
-      // TODO: uncomment once loki CLI is fixed for portal component stories
-      //   chromeSelector: LOKI_SELECTORS.portal,
+      chromeSelector: LOKI_SELECTORS.portal,
     },
   },
   argTypes: {
@@ -42,15 +43,13 @@ export default meta;
 type Story = StoryObj<EuiAutoRefreshProps>;
 
 export const Playground: Story = {
-  // TODO: uncomment once loki CLI is fixed for portal component stories
-  //   play: lokiPlayDecorator(async (context) => {
-  //     const { bodyElement, step } = context;
-  //     const canvas = within(bodyElement);
-  //     await step('show popover on click of the input', async () => {
-  //       await userEvent.click(canvas.getByLabelText('Auto refresh'));
-  //       await waitFor(() => {
-  //         expect(canvas.getByRole('dialog')).toBeVisible();
-  //       });
-  //     });
-  //   }),
+  play: async ({ canvasElement, step }) => {
+    const canvas = within(canvasElement);
+    await step('show popover on click', async () => {
+      await waitFor(async () => {
+        await fireEvent.click(canvas.getByLabelText('Auto refresh'));
+      });
+      await canvas.waitForEuiPopoverVisible();
+    });
+  },
 };

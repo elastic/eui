@@ -10,6 +10,7 @@
 
 import React from 'react';
 import type { Preview } from '@storybook/react';
+import { useState, useMemo } from '@storybook/preview-api';
 import { MINIMAL_VIEWPORTS } from '@storybook/addon-viewport';
 
 /*
@@ -57,24 +58,41 @@ import { hideStorybookControls } from './utils';
 const preview: Preview = {
   decorators: [
     customJsxDecorator,
-    (Story, context) => (
-      <EuiProvider
-        colorMode={context.globals.colorMode}
-        {...(context.componentId === 'theming-euiprovider' && context.args)}
-      >
-        <div
-          /* #story-wrapper should always be the element that wraps <Story /> */
-          id="story-wrapper"
-          css={[
-            writingModeStyles.writingMode,
-            // @ts-ignore - we're manually ensuring `writingMode` globals match our Emotion style keys
-            writingModeStyles[context.globals.writingMode],
-          ]}
+    (Story, context) => {
+      const [portalSibling, setPortalSibling] = useState<HTMLDivElement | null>(
+        null
+      );
+      const portalInsert = useMemo(() => {
+        if (portalSibling) {
+          return {
+            EuiPortal: {
+              insert: { sibling: portalSibling, position: 'after' as const },
+            },
+          };
+        }
+      }, [portalSibling]);
+
+      return (
+        <EuiProvider
+          colorMode={context.globals.colorMode}
+          componentDefaults={portalInsert}
+          {...(context.componentId === 'theming-euiprovider' && context.args)}
         >
-          <Story />
-        </div>
-      </EuiProvider>
-    ),
+          <div
+            ref={setPortalSibling}
+            /* #story-wrapper should always be the element that wraps <Story /> */
+            id="story-wrapper"
+            css={[
+              writingModeStyles.writingMode,
+              // @ts-ignore - we're manually ensuring `writingMode` globals match our Emotion style keys
+              writingModeStyles[context.globals.writingMode],
+            ]}
+          >
+            {portalInsert && <Story />}
+          </div>
+        </EuiProvider>
+      );
+    },
   ],
   globalTypes: {
     colorMode: {
