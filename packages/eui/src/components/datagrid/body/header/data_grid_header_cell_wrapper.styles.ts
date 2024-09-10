@@ -10,7 +10,10 @@ import { css } from '@emotion/react';
 
 import { UseEuiTheme } from '../../../../services';
 
-import { euiDataGridCellOutlineStyles } from '../cell/data_grid_cell.styles';
+import {
+  euiDataGridCellOutlineStyles,
+  euiDataGridCellOutlineSelectors,
+} from '../cell/data_grid_cell.styles';
 
 /**
  * Styles that apply to both control and non-control columns
@@ -18,14 +21,18 @@ import { euiDataGridCellOutlineStyles } from '../cell/data_grid_cell.styles';
 export const euiDataGridHeaderCellWrapperStyles = (
   euiThemeContext: UseEuiTheme
 ) => {
-  const { focusStyles } = euiDataGridCellOutlineStyles(euiThemeContext);
+  const { focusStyles, hoverStyles } =
+    euiDataGridCellOutlineStyles(euiThemeContext);
+  const { header: outlineSelectors } = euiDataGridCellOutlineSelectors();
 
   return {
     euiDataGridHeaderCell: css`
-      &:focus,
-      &:has(.euiDataGridHeaderCell__button:focus),
-      &.euiDataGridHeaderCell--isActionsPopoverOpen {
+      ${outlineSelectors.focus} {
         ${focusStyles}
+      }
+
+      ${outlineSelectors.focusTrapped} {
+        ${hoverStyles}
       }
     `,
   };

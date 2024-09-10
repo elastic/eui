@@ -17,13 +17,20 @@ import {
 } from '../../../../global_styling';
 
 import { euiDataGridVariables } from '../../data_grid.styles';
-import { euiDataGridCellOutlineStyles } from './data_grid_cell.styles';
+import {
+  euiDataGridCellOutlineStyles,
+  euiDataGridCellOutlineSelectors,
+} from './data_grid_cell.styles';
 
 export const euiDataGridCellActionsStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
   const { levels } = euiDataGridVariables(euiThemeContext);
-  const cellOutline = euiDataGridCellOutlineStyles(euiThemeContext);
   const borderWidth = euiTheme.border.width.thin;
+
+  const cellOutline = euiDataGridCellOutlineStyles(euiThemeContext);
+  const { actions: cellSelectors } = euiDataGridCellOutlineSelectors(
+    '.euiDataGridRowCell'
+  );
 
   return {
     euiDataGridRowCell__actionsWrapper: css`
@@ -40,20 +47,16 @@ export const euiDataGridCellActionsStyles = (euiThemeContext: UseEuiTheme) => {
         z-index: ${levels.stickyHeader + 1};
       }
 
-      /* If a cell is not hovered nor focused nor open via popover, don't show the actions */
-      .euiDataGridRowCell:not(:hover, ${cellOutline.rowCellFocusSelectors}) & {
-        display: none;
-      }
-
-      /* Increase non-visible hitbox of cell on hover, to reduce UX friction
-       * for users mousing from the cell diagonally over to the actions */
-      .euiDataGridRowCell:hover:not(${cellOutline.rowCellFocusSelectors}) & {
+      /* Increase non-visible hover zone, to reduce UX friction for
+       * users mousing from the cell diagonally over to the actions */
+      ${cellSelectors.hoverZone} & {
         ${logicalCSS('min-width', '50%')}
         ${logicalCSS('padding-right', euiTheme.size.base)}
       }
     `,
 
     euiDataGridRowCell__actions: css`
+      position: relative;
       display: flex;
       gap: ${euiTheme.size.xxs};
       ${logicalCSS('width', 'fit-content')}
@@ -73,14 +76,20 @@ export const euiDataGridCellActionsStyles = (euiThemeContext: UseEuiTheme) => {
         ${logicalCSS('top', '100%')}
         ${logicalCSS('left', `-${borderWidth}`)}
         ${logicalSizeCSS(mathWithUnits(borderWidth, (x) => x * 2))}
-        background-color: ${cellOutline.focusColor};
+        background-color: inherit;
+      }
+
+      /* When hovered and not focused, cell actions should match the gray focus outline */
+      ${cellSelectors.hoverColor} & {
+        background-color: ${cellOutline.hoverColor};
+        border-color: ${cellOutline.hoverColor};
       }
 
       ${euiCanAnimate} {
         transform: scaleY(0);
         transform-origin: bottom;
 
-        .euiDataGridRowCell:is(:hover, ${cellOutline.rowCellFocusSelectors}) & {
+        ${cellSelectors.showAnimation} & {
           animation-duration: ${euiTheme.animation.fast};
           animation-name: ${slideUp};
           animation-iteration-count: 1;
@@ -88,14 +97,8 @@ export const euiDataGridCellActionsStyles = (euiThemeContext: UseEuiTheme) => {
         }
 
         /* Delay the actions showing on hover only, show instantly otherwise */
-        .euiDataGridRowCell:hover:not(${cellOutline.rowCellFocusSelectors}) & {
-          animation-delay: ${euiTheme.animation.slow}; /* 2 */
-          background-color: ${cellOutline.hoverColor};
-          border-color: ${cellOutline.hoverColor};
-
-          &::after {
-            background-color: ${cellOutline.hoverColor};
-          }
+        ${cellSelectors.hoverAnimation} & {
+          animation-delay: ${euiTheme.animation.slow};
         }
       }
     `,

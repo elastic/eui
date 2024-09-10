@@ -28,7 +28,7 @@ export const euiDataGridCellOutlineStyles = ({ euiTheme }: UseEuiTheme) => {
     focusColor,
     focusStyles: `
       /* Remove outline as we're handling it manually. Needed to override global styles */
-      &:focus:focus-visible {
+      &:focus-visible {
         outline: none;
       }
 
@@ -49,27 +49,68 @@ export const euiDataGridCellOutlineStyles = ({ euiTheme }: UseEuiTheme) => {
         border-color: ${hoverColor};
       }
     `,
-    rowCellFocusSelectors: [
-      ':focus', // cell has been clicked or keyboard navigated to
-      '.euiDataGridRowCell--open', // always show when the cell expansion popover is open
-      '[data-keyboard-closing]', // prevents the animation from replaying when keyboard focus is moved from the popover back to the cell
-    ].join(', '),
+  };
+};
+
+export const euiDataGridCellOutlineSelectors = (parentSelector = '&') => {
+  // Focus selectors
+  const focus = ':focus'; // cell has been clicked or keyboard navigated to
+  const isOpen = '.euiDataGridRowCell--open'; // always show when the cell expansion popover is open
+  const isClosing = '[data-keyboard-closing]'; // prevents the animation from replaying when keyboard focus is moved from the popover back to the cell
+  const isEntered = ':has([data-focus-lock-disabled="false"])'; // cell focus trap has been entered - ideally show the outline still, but grayed out
+
+  // Hover selectors
+  const hover = ':hover'; // hover styles should not supercede focus styles
+  const focusWithin = ':focus-within'; // used by :hover:not() to prevent flash of gray when mouse users are opening/closing the expansion popover via cell action click
+
+  // Cell header specific selectors
+  const headerActionsOpen = '.euiDataGridHeaderCell--isActionsPopoverOpen';
+
+  // Utils
+  const selectors = (...args: string[]) => [...args].join(', ');
+  const is = (selectors: string) => `${parentSelector}:is(${selectors})`;
+  const hoverNot = (selectors: string) =>
+    `${parentSelector}:hover:not(${selectors})`;
+  const _ = (selectors: string) => `${parentSelector}${selectors}`;
+
+  return {
+    outline: {
+      show: is(selectors(hover, focus, isOpen, isEntered)),
+      hover: hoverNot(selectors(focus, focusWithin, isOpen)),
+      focusTrapped: _(isEntered),
+    },
+
+    actions: {
+      hoverZone: hoverNot(selectors(focus, isOpen)),
+      hoverColor: hoverNot(selectors(focus, focusWithin, isOpen)),
+      showAnimation: is(selectors(hover, focus, isOpen, isClosing)),
+      hoverAnimation: hoverNot(selectors(focus, isOpen, isClosing)),
+    },
+
+    header: {
+      focus: is(selectors(focus, focusWithin, headerActionsOpen)), // :focus-within here is primarily intended for when the column actions button has been clicked twice
+      focusTrapped: _(isEntered),
+    },
   };
 };
 
 export const euiDataGridRowCellStyles = (euiThemeContext: UseEuiTheme) => {
   const cellOutline = euiDataGridCellOutlineStyles(euiThemeContext);
+  const { outline: outlineSelectors } = euiDataGridCellOutlineSelectors();
 
   return {
     euiDataGridRowCell: css`
       position: relative; /* Needed for .euiDataGridRowCell__actions */
 
-      &:hover,
-      ${cellOutline.rowCellFocusSelectors} {
+      ${outlineSelectors.show} {
         ${cellOutline.focusStyles}
       }
 
-      &:hover:not(${cellOutline.rowCellFocusSelectors}) {
+      ${outlineSelectors.hover} {
+        ${cellOutline.hoverStyles}
+      }
+
+      ${outlineSelectors.focusTrapped} {
         ${cellOutline.hoverStyles}
       }
     `,
