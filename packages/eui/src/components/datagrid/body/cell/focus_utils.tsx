@@ -14,6 +14,7 @@ import React, {
   useMemo,
 } from 'react';
 import { FocusableElement, tabbable } from 'tabbable';
+import classNames from 'classnames';
 
 import { keys } from '../../../../services';
 import { useGeneratedHtmlId } from '../../../../services/accessibility';
@@ -107,7 +108,7 @@ export const FocusTrappedChildren: FunctionComponent<
 
     cellEl.setAttribute(
       'aria-describedby',
-      `${currentAriaDescribedbyId} ${exitedHintAriaId} ${keyboardHintAriaId} `
+      classNames(currentAriaDescribedbyId, exitedHintAriaId, keyboardHintAriaId)
     );
   }, [cellEl, keyboardHintAriaId, exitedHintAriaId]);
 

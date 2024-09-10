@@ -32,9 +32,7 @@ export const EuiDataGridControlHeaderCell: FunctionComponent<EuiDataGridControlH
         index={index}
         width={width}
       >
-        <div className="euiDataGridHeaderCell__content">
-          <HeaderCellRender />
-        </div>
+        <HeaderCellRender />
       </EuiDataGridHeaderCellWrapper>
     );
   });
