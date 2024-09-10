@@ -142,10 +142,6 @@ const columns = [
     ],
   },
   {
-    id: 'location',
-    displayAsText: 'Location',
-  },
-  {
     id: 'account',
     displayAsText: 'Account',
     actions: {
@@ -184,6 +180,10 @@ const columns = [
         );
       },
     ],
+  },
+  {
+    id: 'location',
+    displayAsText: 'Location',
   },
   {
     id: 'date',
