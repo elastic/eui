@@ -273,5 +273,43 @@ describe('Cell outline styles', () => {
         .realMouseMove(80, 0, { position: 'right' }) // ~50% of cell width
         .should('not.exist');
     });
+
+    it('shows column actions on cell header hover/focus', () => {
+      const getHeaderCell = () =>
+        cy.get('.euiDataGridHeaderCell[data-gridcell-column-id="expandable"]');
+      const getHeaderActions = () =>
+        cy.get('[data-test-subj="dataGridHeaderCellActionButton-expandable"]');
+      const getActionsWidth = () =>
+        getHeaderActions().then(($el) => {
+          const { width } = $el[0].getBoundingClientRect();
+          return width;
+        });
+
+      cy.realMount(<EuiDataGrid {...baseProps} />);
+      getActionsWidth().then((width) => expect(width).to.eq(0));
+
+      // Hovering over the header cell should slide in the actions from the right
+      getHeaderCell().realHover();
+      cy.wait(ANIMATION.DURATION + ANIMATION.BUFFER);
+      getActionsWidth().then((width) => expect(width).to.eq(24));
+
+      // Toggling the actions popover should render the focus outline
+      getHeaderCell().then(($el) => {
+        expect(getOutlineColor($el[0])).not.to.eq(EXPECTED_FOCUS_COLOR);
+      });
+      getHeaderActions().realClick();
+      getHeaderCell().then(($el) => {
+        expect(getOutlineColor($el[0])).to.eq(EXPECTED_FOCUS_COLOR);
+      });
+      getHeaderActions().realClick();
+
+      // Mousing off the cell should still show outline+actions since the button is still focused
+      getHeaderActions().realMouseMove(100, 0, { position: 'right' });
+      cy.wait(ANIMATION.DURATION + ANIMATION.BUFFER);
+      getActionsWidth().then((width) => expect(width).to.eq(24));
+      getHeaderCell().then(($el) => {
+        expect(getOutlineColor($el[0])).to.eq(EXPECTED_FOCUS_COLOR);
+      });
+    });
   });
 });

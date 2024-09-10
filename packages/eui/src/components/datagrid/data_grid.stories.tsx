@@ -7,9 +7,11 @@
  */
 
 import React, { useRef, useEffect } from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
-
+import type { Meta, StoryObj, ReactRenderer } from '@storybook/react';
+import type { PlayFunctionContext } from '@storybook/csf';
+import { within } from '../../../.storybook/test';
 import { enableFunctionToggleControls } from '../../../.storybook/utils';
+
 import { EuiButtonIcon } from '../button';
 import { EuiToolTip } from '../tool_tip';
 
@@ -159,5 +161,22 @@ export const CellExpansionPopover: Story = {
     }, []);
 
     return <StatefulDataGrid {...defaultStorybookArgs} ref={dataGridRef} />;
+  },
+};
+
+export const ColumnActions: Story = {
+  tags: ['vrt-only'],
+  args: defaultStorybookArgs,
+  render: () => (
+    <StatefulDataGrid
+      {...defaultStorybookArgs}
+      // Should correctly affect the actions button size
+      gridStyle={{ fontSize: 's', cellPadding: 's' }}
+    />
+  ),
+  play: async ({ canvasElement }: PlayFunctionContext<ReactRenderer>) => {
+    const canvas = within(canvasElement);
+    await canvas.waitForAndClick('dataGridHeaderCellActionButton-account');
+    await canvas.waitForEuiPopoverVisible();
   },
 };
