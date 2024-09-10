@@ -7,31 +7,6 @@
       height: auto;
     }
   }
-
-  // Hack to allow focus trap to still stretch to full row height on defined heights
-  > [data-focus-lock-disabled] {
-    height: 100%;
-  }
-
-  &.euiDataGridRowCell--numeric {
-    text-align: right;
-  }
-
-  &.euiDataGridRowCell--currency {
-    text-align: right;
-  }
-
-  &.euiDataGridRowCell--uppercase {
-    text-transform: uppercase;
-  }
-
-  &.euiDataGridRowCell--lowercase {
-    text-transform: lowercase;
-  }
-
-  &.euiDataGridRowCell--capitalize {
-    text-transform: capitalize;
-  }
 }
 
 .euiDataGridRowCell--controlColumn .euiDataGridRowCell__content {

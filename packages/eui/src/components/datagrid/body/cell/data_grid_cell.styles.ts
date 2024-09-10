@@ -9,7 +9,11 @@
 import { css } from '@emotion/react';
 
 import { UseEuiTheme } from '../../../../services';
-import { mathWithUnits } from '../../../../global_styling';
+import {
+  logicalCSS,
+  logicalTextAlignCSS,
+  mathWithUnits,
+} from '../../../../global_styling';
 
 export const euiDataGridCellOutlineStyles = ({ euiTheme }: UseEuiTheme) => {
   const focusColor = euiTheme.colors.primary;
@@ -112,6 +116,27 @@ export const euiDataGridRowCellStyles = (euiThemeContext: UseEuiTheme) => {
 
       ${outlineSelectors.focusTrapped} {
         ${cellOutline.hoverStyles}
+      }
+
+      /* Hack to allow focus trap to still stretch to full row height on defined heights */
+      & > [data-focus-lock-disabled] {
+        ${logicalCSS('height', '100%')}
+      }
+
+      &:where(.euiDataGridRowCell--numeric, .euiDataGridRowCell--currency) {
+        ${logicalTextAlignCSS('right')}
+      }
+
+      &:where(.euiDataGridRowCell--uppercase) {
+        text-transform: uppercase;
+      }
+
+      &:where(.euiDataGridRowCell--lowercase) {
+        text-transform: lowercase;
+      }
+
+      &:where(.euiDataGridRowCell--capitalize) {
+        text-transform: capitalize;
       }
     `,
   };
