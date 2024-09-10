@@ -41,12 +41,15 @@ export const EuiDataGridHeaderCellWrapper: FunctionComponent<
   width,
   className,
   children,
+  isDragging,
   hasActionsPopover,
   openActionsPopover,
   'aria-label': ariaLabel,
   ...rest
 }) => {
-  const classes = classnames('euiDataGridHeaderCell', className);
+  const classes = classnames('euiDataGridHeaderCell', className, {
+    'euiDataGridHeaderCell--isDragging': isDragging,
+  });
   const styles = useEuiMemoizedStyles(euiDataGridHeaderCellWrapperStyles);
 
   // Must be a state and not a ref to trigger a HandleInteractiveChildren rerender
@@ -83,7 +86,10 @@ export const EuiDataGridHeaderCellWrapper: FunctionComponent<
   // For cell headers with only actions, auto-open the actions popover on enter keypress
   const onKeyDown: KeyboardEventHandler = useCallback(
     (e) => {
-      if (
+      if (isDragging) {
+        e.preventDefault();
+        e.stopPropagation();
+      } else if (
         e.key === keys.ENTER &&
         hasActionsPopover &&
         !renderFocusTrap &&
@@ -92,7 +98,13 @@ export const EuiDataGridHeaderCellWrapper: FunctionComponent<
         openActionsPopover?.();
       }
     },
-    [hasActionsPopover, openActionsPopover, renderFocusTrap, headerEl]
+    [
+      hasActionsPopover,
+      openActionsPopover,
+      renderFocusTrap,
+      headerEl,
+      isDragging,
+    ]
   );
 
   const isLastColumn = index === visibleColCount - 1;

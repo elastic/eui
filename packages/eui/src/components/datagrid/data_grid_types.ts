@@ -144,6 +144,7 @@ export interface EuiDataGridHeaderRowPropsSpecificProps {
   setVisibleColumns: (columnId: string[]) => void;
   switchColumnPos: (colFromId: string, colToId: string) => void;
   gridStyles: EuiDataGridStyle;
+  columnDragDrop?: boolean;
 }
 
 export type EuiDataGridHeaderRowProps = CommonProps &
@@ -173,6 +174,7 @@ export interface EuiDataGridHeaderCellWrapperProps {
   width?: number | null;
   className?: string;
   'aria-label'?: AriaAttributes['aria-label'];
+  isDragging?: boolean;
   hasActionsPopover?: boolean;
   openActionsPopover?: () => void;
 }
@@ -386,6 +388,9 @@ export type CommonGridProps = CommonProps &
      * Settings provided may be overwritten or merged with user defined preferences if `toolbarVisibility.showDisplaySelector.allowRowHeight = true` (which is the default).
      */
     rowHeightsOptions?: EuiDataGridRowHeightsOptions;
+
+    /** Enables reordering grid columns on drag and drop via the headers cells */
+    columnDragDrop?: boolean;
   };
 
 // Force either aria-label or aria-labelledby to be defined
@@ -478,6 +483,7 @@ export interface EuiDataGridBodyProps {
   gridItemsRendered: MutableRefObject<GridOnItemsRenderedProps | null>;
   wrapperRef: MutableRefObject<HTMLDivElement | null>;
   className?: string;
+  columnDragDrop?: boolean;
 }
 
 export interface EuiDataGridCustomBodyProps {

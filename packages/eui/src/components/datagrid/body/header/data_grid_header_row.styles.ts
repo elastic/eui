@@ -25,6 +25,18 @@ export const euiDataGridHeaderStyles = (euiThemeContext: UseEuiTheme) => {
       ${logicalCSS('width', 'fit-content')}
       display: flex;
     `,
+    euiDataGridHeaderDroppable: css`
+      display: flex;
+      ${logicalCSS('width', '100%')}
+
+      &:not(:first-child) .euiDataGridHeaderDraggable:first-of-type .euiDataGridHeaderCell {
+        ${logicalCSS('border-left', 'none')}
+      }
+
+      .euiDataGridHeaderDraggable:not(:first-of-type) .euiDataGridHeaderCell {
+        ${logicalCSS('border-left', 'none')}
+      }
+    `,
     underline: css`
       background-color: ${euiTheme.colors.emptyShade};
       ${logicalCSS(

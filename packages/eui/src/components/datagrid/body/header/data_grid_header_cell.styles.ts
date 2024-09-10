@@ -57,5 +57,33 @@ export const euiDataGridHeaderCellStyles = (euiThemeContext: UseEuiTheme) => {
         animation: none !important; /* stylelint-disable-line declaration-no-important */
       }
     `,
+    euiDataGridHeaderCell__draggableIcon: css`
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: ${euiTheme.size.xs};
+      border-radius: ${euiTheme.border.radius.small};
+      // font-weight: $euiFontWeightBold;
+      outline: none;
+
+      svg {
+        flex: 0 0 auto; // Ensure icon doesn't shrink
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        ${logicalCSS('height', euiTheme.base)}
+
+        ${header.hideActions} & {
+          ${logicalCSS('width', 0)}
+          opacity: 0;
+        }
+
+        ${euiCanAnimate} {
+          transition: inline-size ${euiTheme.animation.fast} ease-in,
+            opacity ${euiTheme.animation.slow} ease-in;
+        }
+      }
+    `,
   };
 };

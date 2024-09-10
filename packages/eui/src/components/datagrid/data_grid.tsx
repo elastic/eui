@@ -141,6 +141,7 @@ export const EuiDataGrid = memo(
       virtualizationOptions,
       renderCustomGridBody,
       renderCustomToolbar,
+      columnDragDrop,
       ...rest
     } = props;
 
@@ -529,6 +530,7 @@ export const EuiDataGrid = memo(
                       gridItemsRendered={gridItemsRendered}
                       wrapperRef={contentRef}
                       renderCustomGridBody={renderCustomGridBody}
+                      columnDragDrop={columnDragDrop}
                     />
                   </OverrideCopiedTabularContent>
                 </div>

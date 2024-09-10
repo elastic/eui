@@ -7,9 +7,12 @@
  */
 
 import classnames from 'classnames';
-import React, { forwardRef, memo } from 'react';
+import React, { forwardRef, memo, useContext, useMemo } from 'react';
 
 import { useEuiMemoizedStyles } from '../../../../services';
+import { OnDragEndResponder } from '@hello-pangea/dnd';
+import { EuiDragDropContext, EuiDroppable } from '../../../drag_and_drop';
+import { DataGridFocusContext } from '../../utils/focus';
 import {
   emptyControlColumns,
   EuiDataGridHeaderRowProps,
@@ -36,6 +39,7 @@ const EuiDataGridHeaderRow = memo(
       schema,
       schemaDetectors,
       gridStyles,
+      columnDragDrop,
       ...rest
     } = props;
 
@@ -44,6 +48,60 @@ const EuiDataGridHeaderRow = memo(
 
     const classes = classnames('euiDataGridHeader', className);
     const dataTestSubj = classnames('dataGridHeader', _dataTestSubj);
+
+    const { setFocusedCell } = useContext(DataGridFocusContext);
+
+    const handleOnDragEnd: OnDragEndResponder = ({ source, destination }) => {
+      if (!source || !destination) return;
+
+      const indexOffset = leadingControlColumns?.length ?? 0;
+      const sourceColumn = columns[source.index - indexOffset];
+      const destinationColumn = columns[destination.index - indexOffset];
+
+      if (sourceColumn && destinationColumn) {
+        switchColumnPos?.(sourceColumn.id, destinationColumn.id);
+
+        // ensure updating focus last by using last stack execution
+        setTimeout(() => {
+          setFocusedCell([destination.index, -1]);
+        });
+      }
+    };
+
+    const content = useMemo(
+      () =>
+        columns.map((column, index) => (
+          <EuiDataGridHeaderCell
+            key={column.id}
+            index={index + leadingControlColumns.length}
+            column={column}
+            columns={columns}
+            columnWidths={columnWidths}
+            defaultColumnWidth={defaultColumnWidth}
+            setColumnWidth={setColumnWidth}
+            visibleColCount={visibleColCount}
+            setVisibleColumns={setVisibleColumns}
+            switchColumnPos={switchColumnPos}
+            sorting={sorting}
+            schema={schema}
+            schemaDetectors={schemaDetectors}
+            columnDragDrop={columnDragDrop}
+          />
+        )),
+      [
+        columnDragDrop,
+        columnWidths,
+        columns,
+        defaultColumnWidth,
+        leadingControlColumns,
+        schema,
+        schemaDetectors,
+        setColumnWidth,
+        setVisibleColumns,
+        sorting,
+        switchColumnPos,
+      ]
+    );
 
     return (
       <div
@@ -62,23 +120,21 @@ const EuiDataGridHeaderRow = memo(
             controlColumn={controlColumn}
           />
         ))}
-        {columns.map((column, index) => (
-          <EuiDataGridHeaderCell
-            key={column.id}
-            index={index + leadingControlColumns.length}
-            column={column}
-            columns={columns}
-            columnWidths={columnWidths}
-            defaultColumnWidth={defaultColumnWidth}
-            setColumnWidth={setColumnWidth}
-            visibleColCount={visibleColCount}
-            setVisibleColumns={setVisibleColumns}
-            switchColumnPos={switchColumnPos}
-            sorting={sorting}
-            schema={schema}
-            schemaDetectors={schemaDetectors}
-          />
-        ))}
+        {columnDragDrop ? (
+          <EuiDragDropContext onDragEnd={handleOnDragEnd}>
+            <EuiDroppable
+              droppableId="euiDataGridHeaderDroppable"
+              direction="horizontal"
+              className="euiDataGridHeaderDroppable"
+              css={styles.euiDataGridHeaderDroppable}
+              data-test-subj="euiDataGridHeaderDroppable"
+            >
+              {content}
+            </EuiDroppable>
+          </EuiDragDropContext>
+        ) : (
+          content
+        )}
         {trailingControlColumns.map((controlColumn, index) => (
           <EuiDataGridControlHeaderCell
             key={controlColumn.id}

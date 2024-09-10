@@ -40,6 +40,9 @@ const meta: Meta<EuiDataGridProps> = {
     width: { control: 'text' },
     height: { control: 'text' },
   },
+  args: {
+    columnDragDrop: false,
+  },
 };
 
 export default meta;

@@ -30,7 +30,6 @@ export const euiDataGridHeaderCellWrapperStyles = (
   const _sharedFlexCss = css`
     display: flex;
     align-items: center;
-    gap: ${euiTheme.size.xxs};
   `;
 
   return {
@@ -48,11 +47,18 @@ export const euiDataGridHeaderCellWrapperStyles = (
         ${hoverStyles}
       }
 
+      ${outlineSelectors.showActions} {
+        gap: ${euiTheme.size.xxs};
+      }
+
       /* Workaround for focus trap */
       & > [data-focus-lock-disabled] {
         ${_sharedFlexCss}
         ${logicalCSS('width', '100%')}
       }
+    `,
+    isDragging: css`
+      border-inline-start: none;
     `,
   };
 };
