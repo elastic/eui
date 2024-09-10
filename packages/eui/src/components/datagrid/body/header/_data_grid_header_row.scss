@@ -1,18 +1,4 @@
 @include euiDataGridHeaderCell {
-  position: relative;
-  display: flex;
-  flex: 0 0 auto;
-  align-items: center;
-  font-weight: $euiFontWeightBold;
-
-  // Workaround for focus trap
-  & > [data-focus-lock-disabled] {
-    display: flex;
-    align-items: center;
-    gap: $euiSizeXS;
-    width: 100%;
-  }
-
   .euiDataGridHeaderCell__content {
     flex-grow: 1; // ensures content stretches and allows for manual layout styles to apply
   }
