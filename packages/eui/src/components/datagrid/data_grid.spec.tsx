@@ -541,7 +541,7 @@ describe('EuiDataGrid', () => {
     });
   });
 
-  describe('column drag behavior', () => {
+  describe('draggable columns', () => {
     const StatefulDataGrid = (props) => {
       const [visibleColumns, setVisibleColumns] = useState(['a', 'b']);
 
@@ -556,6 +556,7 @@ describe('EuiDataGrid', () => {
         />
       );
     };
+
     it('should reorder columns on header cell drag and drop', () => {
       cy.mount(<StatefulDataGrid {...baseProps} columnDragDrop />);
 
@@ -636,6 +637,22 @@ describe('EuiDataGrid', () => {
         'data-gridcell-column-index',
         '1'
       );
+    });
+
+    it('should close the actions popover on click of another draggable cell', () => {
+      cy.mount(<StatefulDataGrid {...baseProps} columnDragDrop />);
+
+      cy.wait(50);
+
+      cy.get('[data-test-subj=dataGridHeaderCell-a]').realHover();
+      cy.get('[data-test-subj=dataGridHeaderCellActionButton-a]').realClick();
+
+      cy.get('.euiPanel').should('have.focus');
+
+      cy.get('[data-test-subj=dataGridHeaderCell-b]').realClick();
+
+      cy.get('[data-test-subj=dataGridHeaderCell-b]').should('have.focus');
+      cy.get('.euiPanel').should('not.be.visible');
     });
   });
 
