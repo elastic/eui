@@ -144,9 +144,6 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
       /**
        * Dragging
        */
-      const columnDraggableId = useGeneratedHtmlId({
-        prefix: 'euiDataGridHeaderColumnContent',
-      });
 
       // Draggable prevents FocusTrap onOutsideClick to be called.
       // We manually close the popover for draggable cells and
@@ -305,26 +302,40 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
 
       return columnDragDrop ? (
         <EuiFlexGroup alignItems="center" css={{ position: 'relative' }}>
-          {/* keep the resizer outside of Draggable to ensure both working independently */}
+          {/* keep the resizer outside of Draggable to ensure both are working independently */}
           {columnResizer}
           <EuiDraggable
-            draggableId={columnDraggableId}
+            draggableId={id}
             className="euiDataGridHeaderDraggable"
             index={index}
-            hasInteractiveChildren
+            customDragHandle="custom"
             // override internal styling from @hello-pangea/dnd
             css={{ display: 'flex', top: '0 !important' }}
           >
-            {(_, { isDragging }) => (
-              <EuiDataGridHeaderCellWrapper
-                isDragging={isDragging}
-                onBlur={handleOnBlur}
-                onMouseDown={handleOnMouseDown}
-                {...contentProps}
-              >
-                {renderContent}
-              </EuiDataGridHeaderCellWrapper>
-            )}
+            {({ dragHandleProps }, { isDragging }) => {
+              const {
+                role,
+                'aria-describedby': ariaDescribedby,
+                ...restDragHandleProps
+              } = dragHandleProps ?? {};
+
+              const dragContentProps = {
+                ...restDragHandleProps,
+                ...contentProps,
+                'aria-describedby': `${contentProps['aria-describedby']} ${ariaDescribedby}`,
+              };
+
+              return (
+                <EuiDataGridHeaderCellWrapper
+                  isDragging={isDragging}
+                  onBlur={handleOnBlur}
+                  onMouseDown={handleOnMouseDown}
+                  {...dragContentProps}
+                >
+                  {renderContent}
+                </EuiDataGridHeaderCellWrapper>
+              );
+            }}
           </EuiDraggable>
         </EuiFlexGroup>
       ) : (
