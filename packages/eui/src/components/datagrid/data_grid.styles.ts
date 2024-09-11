@@ -87,6 +87,13 @@ export const euiDataGridStyles = (euiThemeContext: UseEuiTheme) => {
             `${cellPadding[size]} solid transparent`
           )}
         }
+
+        /* Ensure the column actions button maintains its size for accessible click/tap targeting
+         * (see https://www.w3.org/WAI/WCAG22/Understanding/target-size-minimum.html)
+         * while not increasing the height of the header row at compact sizes. */
+        .euiDataGridHeaderCell__button {
+          margin-block: -${cellPadding[size]};
+        }
       `,
       get s() {
         return css(this.cellPadding('s'));
@@ -104,10 +111,6 @@ export const euiDataGridStyles = (euiThemeContext: UseEuiTheme) => {
         .euiDataGridRowCell {
           font-size: ${fontSize[size]};
           line-height: ${lineHeight[size]};
-        }
-
-        .euiDataGridHeaderCell__button {
-          ${logicalSizeCSS(lineHeight[size])}
         }
       `,
       get s() {
