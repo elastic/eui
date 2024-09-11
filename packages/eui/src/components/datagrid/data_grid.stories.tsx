@@ -82,7 +82,7 @@ const CustomHeaderCell = ({ title }: { title: string }) => (
 export const CustomHeaderContent: Story = {
   parameters: {
     controls: {
-      include: ['columns', 'rowCount'],
+      include: ['columns', 'rowCount', 'columnDragDrop'],
     },
   },
   args: {
