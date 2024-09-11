@@ -122,8 +122,7 @@ exports[`EuiDataGridBodyVirtualized renders 1`] = `
         class="emotion-euiScreenReaderOnly"
         hidden=""
       >
-        - 
-        columnA, column 1, row 1
+         - columnA, column 1, row 1
       </p>
     </div>
     <div
@@ -150,8 +149,7 @@ exports[`EuiDataGridBodyVirtualized renders 1`] = `
         class="emotion-euiScreenReaderOnly"
         hidden=""
       >
-        - 
-        columnB, column 2, row 1
+         - columnB, column 2, row 1
       </p>
     </div>
   </div>

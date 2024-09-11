@@ -55,8 +55,7 @@ describe('EuiDataGridFooterRow', () => {
             class="emotion-euiScreenReaderOnly"
             hidden=""
           >
-            - 
-            someColumn, column 1, row 11
+             - someColumn, column 1, row 11
           </p>
         </div>
         <div
@@ -80,8 +79,7 @@ describe('EuiDataGridFooterRow', () => {
             class="emotion-euiScreenReaderOnly"
             hidden=""
           >
-            - 
-            someColumnWithoutSchema, column 2, row 11
+             - someColumnWithoutSchema, column 2, row 11
           </p>
         </div>
       </div>

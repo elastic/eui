@@ -701,8 +701,7 @@ exports[`EuiDataGrid rendering renders additional toolbar controls 1`] = `
                 class="emotion-euiScreenReaderOnly"
                 hidden=""
               >
-                - 
-                A, column 1, row 1
+                 - A, column 1, row 1
               </p>
             </div>
             <div
@@ -727,8 +726,7 @@ exports[`EuiDataGrid rendering renders additional toolbar controls 1`] = `
                 class="emotion-euiScreenReaderOnly"
                 hidden=""
               >
-                - 
-                B, column 2, row 1
+                 - B, column 2, row 1
               </p>
             </div>
             <div
@@ -753,8 +751,7 @@ exports[`EuiDataGrid rendering renders additional toolbar controls 1`] = `
                 class="emotion-euiScreenReaderOnly"
                 hidden=""
               >
-                - 
-                A, column 1, row 2
+                 - A, column 1, row 2
               </p>
             </div>
             <div
@@ -779,8 +776,7 @@ exports[`EuiDataGrid rendering renders additional toolbar controls 1`] = `
                 class="emotion-euiScreenReaderOnly"
                 hidden=""
               >
-                - 
-                B, column 2, row 2
+                 - B, column 2, row 2
               </p>
             </div>
             <div
@@ -805,8 +801,7 @@ exports[`EuiDataGrid rendering renders additional toolbar controls 1`] = `
                 class="emotion-euiScreenReaderOnly"
                 hidden=""
               >
-                - 
-                A, column 1, row 3
+                 - A, column 1, row 3
               </p>
             </div>
             <div
@@ -831,8 +826,7 @@ exports[`EuiDataGrid rendering renders additional toolbar controls 1`] = `
                 class="emotion-euiScreenReaderOnly"
                 hidden=""
               >
-                - 
-                B, column 2, row 3
+                 - B, column 2, row 3
               </p>
             </div>
           </div>
@@ -1136,8 +1130,7 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
                 class="emotion-euiScreenReaderOnly"
                 hidden=""
               >
-                - 
-                leading, column 1, row 1
+                 - leading, column 1, row 1
               </p>
             </div>
             <div
@@ -1162,8 +1155,7 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
                 class="emotion-euiScreenReaderOnly"
                 hidden=""
               >
-                - 
-                A, column 2, row 1
+                 - A, column 2, row 1
               </p>
             </div>
             <div
@@ -1188,8 +1180,7 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
                 class="emotion-euiScreenReaderOnly"
                 hidden=""
               >
-                - 
-                B, column 3, row 1
+                 - B, column 3, row 1
               </p>
             </div>
             <div
@@ -1214,8 +1205,7 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
                 class="emotion-euiScreenReaderOnly"
                 hidden=""
               >
-                - 
-                trailing, column 4, row 1
+                 - trailing, column 4, row 1
               </p>
             </div>
             <div
@@ -1240,8 +1230,7 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
                 class="emotion-euiScreenReaderOnly"
                 hidden=""
               >
-                - 
-                leading, column 1, row 2
+                 - leading, column 1, row 2
               </p>
             </div>
             <div
@@ -1266,8 +1255,7 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
                 class="emotion-euiScreenReaderOnly"
                 hidden=""
               >
-                - 
-                A, column 2, row 2
+                 - A, column 2, row 2
               </p>
             </div>
             <div
@@ -1292,8 +1280,7 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
                 class="emotion-euiScreenReaderOnly"
                 hidden=""
               >
-                - 
-                B, column 3, row 2
+                 - B, column 3, row 2
               </p>
             </div>
             <div
@@ -1318,8 +1305,7 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
                 class="emotion-euiScreenReaderOnly"
                 hidden=""
               >
-                - 
-                trailing, column 4, row 2
+                 - trailing, column 4, row 2
               </p>
             </div>
             <div
@@ -1344,8 +1330,7 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
                 class="emotion-euiScreenReaderOnly"
                 hidden=""
               >
-                - 
-                leading, column 1, row 3
+                 - leading, column 1, row 3
               </p>
             </div>
             <div
@@ -1370,8 +1355,7 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
                 class="emotion-euiScreenReaderOnly"
                 hidden=""
               >
-                - 
-                A, column 2, row 3
+                 - A, column 2, row 3
               </p>
             </div>
             <div
@@ -1396,8 +1380,7 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
                 class="emotion-euiScreenReaderOnly"
                 hidden=""
               >
-                - 
-                B, column 3, row 3
+                 - B, column 3, row 3
               </p>
             </div>
             <div
@@ -1422,8 +1405,7 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
                 class="emotion-euiScreenReaderOnly"
                 hidden=""
               >
-                - 
-                trailing, column 4, row 3
+                 - trailing, column 4, row 3
               </p>
             </div>
           </div>
@@ -1696,8 +1678,7 @@ exports[`EuiDataGrid rendering renders custom column headers 1`] = `
                 class="emotion-euiScreenReaderOnly"
                 hidden=""
               >
-                - 
-                A, column 1, row 1
+                 - A, column 1, row 1
               </p>
             </div>
             <div
@@ -1722,8 +1703,7 @@ exports[`EuiDataGrid rendering renders custom column headers 1`] = `
                 class="emotion-euiScreenReaderOnly"
                 hidden=""
               >
-                - 
-                B, column 2, row 1
+                 - B, column 2, row 1
               </p>
             </div>
             <div
@@ -1748,8 +1728,7 @@ exports[`EuiDataGrid rendering renders custom column headers 1`] = `
                 class="emotion-euiScreenReaderOnly"
                 hidden=""
               >
-                - 
-                A, column 1, row 2
+                 - A, column 1, row 2
               </p>
             </div>
             <div
@@ -1774,8 +1753,7 @@ exports[`EuiDataGrid rendering renders custom column headers 1`] = `
                 class="emotion-euiScreenReaderOnly"
                 hidden=""
               >
-                - 
-                B, column 2, row 2
+                 - B, column 2, row 2
               </p>
             </div>
             <div
@@ -1800,8 +1778,7 @@ exports[`EuiDataGrid rendering renders custom column headers 1`] = `
                 class="emotion-euiScreenReaderOnly"
                 hidden=""
               >
-                - 
-                A, column 1, row 3
+                 - A, column 1, row 3
               </p>
             </div>
             <div
@@ -1826,8 +1803,7 @@ exports[`EuiDataGrid rendering renders custom column headers 1`] = `
                 class="emotion-euiScreenReaderOnly"
                 hidden=""
               >
-                - 
-                B, column 2, row 3
+                 - B, column 2, row 3
               </p>
             </div>
           </div>
@@ -2098,8 +2074,7 @@ exports[`EuiDataGrid rendering renders with common and div attributes 1`] = `
                 class="emotion-euiScreenReaderOnly"
                 hidden=""
               >
-                - 
-                A, column 1, row 1
+                 - A, column 1, row 1
               </p>
             </div>
             <div
@@ -2124,8 +2099,7 @@ exports[`EuiDataGrid rendering renders with common and div attributes 1`] = `
                 class="emotion-euiScreenReaderOnly"
                 hidden=""
               >
-                - 
-                B, column 2, row 1
+                 - B, column 2, row 1
               </p>
             </div>
             <div
@@ -2150,8 +2124,7 @@ exports[`EuiDataGrid rendering renders with common and div attributes 1`] = `
                 class="emotion-euiScreenReaderOnly"
                 hidden=""
               >
-                - 
-                A, column 1, row 2
+                 - A, column 1, row 2
               </p>
             </div>
             <div
@@ -2176,8 +2149,7 @@ exports[`EuiDataGrid rendering renders with common and div attributes 1`] = `
                 class="emotion-euiScreenReaderOnly"
                 hidden=""
               >
-                - 
-                B, column 2, row 2
+                 - B, column 2, row 2
               </p>
             </div>
             <div
@@ -2202,8 +2174,7 @@ exports[`EuiDataGrid rendering renders with common and div attributes 1`] = `
                 class="emotion-euiScreenReaderOnly"
                 hidden=""
               >
-                - 
-                A, column 1, row 3
+                 - A, column 1, row 3
               </p>
             </div>
             <div
@@ -2228,8 +2199,7 @@ exports[`EuiDataGrid rendering renders with common and div attributes 1`] = `
                 class="emotion-euiScreenReaderOnly"
                 hidden=""
               >
-                - 
-                B, column 2, row 3
+                 - B, column 2, row 3
               </p>
             </div>
           </div>

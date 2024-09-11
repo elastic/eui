@@ -26,7 +26,7 @@ import { createPortal } from 'react-dom';
 import { IS_JEST_ENVIRONMENT } from '../../../../utils';
 import { keys, useEuiMemoizedStyles } from '../../../../services';
 import { EuiScreenReaderOnly } from '../../../accessibility';
-import { EuiI18n } from '../../../i18n';
+import { useEuiI18n } from '../../../i18n';
 import { EuiTextBlockTruncate } from '../../../text_truncate';
 import { hasResizeObserver } from '../../../observer/resize_observer/resize_observer';
 
@@ -123,6 +123,20 @@ const EuiDataGridCellContent: FunctionComponent<
           ]),
     ];
 
+    const cellPosition = useEuiI18n(
+      'euiDataGridCell.position',
+      '{columnId}, column {col}, row {row}',
+      {
+        columnId: column?.displayAsText || rest.columnId,
+        col: colIndex + 1,
+        row: ariaRowIndex,
+      }
+    );
+    const enterKeyPrompt = useEuiI18n(
+      'euiDataGridCell.expansionEnterPrompt',
+      'Press the Enter key to expand this cell.'
+    );
+
     return (
       <>
         <RenderTruncatedCellContent
@@ -151,25 +165,9 @@ const EuiDataGridCellContent: FunctionComponent<
 
         <EuiScreenReaderOnly>
           <p hidden={!isFocused}>
-            {'- '}
-            <EuiI18n
-              token="euiDataGridCell.position"
-              default="{columnId}, column {col}, row {row}"
-              values={{
-                columnId: column?.displayAsText || rest.columnId,
-                col: colIndex + 1,
-                row: ariaRowIndex,
-              }}
-            />
-            {showCellActions && (
-              <>
-                {'. '}
-                <EuiI18n
-                  token="euiDataGridCell.expansionEnterPrompt"
-                  default="Press the Enter key to expand this cell."
-                />
-              </>
-            )}
+            {` - ${cellPosition}${
+              showCellActions ? `. ${enterKeyPrompt}` : ''
+            }`}
           </p>
         </EuiScreenReaderOnly>
 
