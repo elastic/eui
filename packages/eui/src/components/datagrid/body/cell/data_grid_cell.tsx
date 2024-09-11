@@ -16,17 +16,15 @@ import React, {
   KeyboardEvent,
   memo,
   useMemo,
+  forwardRef,
   MutableRefObject,
   ReactElement,
+  HTMLAttributes,
 } from 'react';
 import { createPortal } from 'react-dom';
 
 import { IS_JEST_ENVIRONMENT } from '../../../../utils';
-import {
-  keys,
-  useEuiMemoizedStyles,
-  RenderWithEuiStylesMemoizer,
-} from '../../../../services';
+import { keys, useEuiMemoizedStyles } from '../../../../services';
 import { EuiScreenReaderOnly } from '../../../accessibility';
 import { EuiI18n } from '../../../i18n';
 import { EuiTextBlockTruncate } from '../../../text_truncate';
@@ -636,58 +634,47 @@ export class EuiDataGridCell extends Component<
 
     return (
       <RenderCellInRow row={row}>
-        <RenderWithEuiStylesMemoizer>
-          {(stylesMemoizer) => {
-            const styles = stylesMemoizer(euiDataGridRowCellStyles);
-            const cssStyles = [styles.euiDataGridRowCell, cellProps?.css];
-            return (
-              <div
-                role="gridcell"
-                aria-rowindex={ariaRowIndex}
-                tabIndex={this.state.isFocused ? 0 : -1}
-                ref={this.cellRef}
-                {...cellProps}
-                css={cssStyles}
-                // Data attributes to help target specific cells by either data or current cell location
-                data-gridcell-column-id={this.props.columnId} // Static column ID name, not affected by column order
-                data-gridcell-column-index={this.props.colIndex} // Affected by column reordering
-                data-gridcell-row-index={this.props.rowIndex} // Index from data, not affected by sorting or pagination
-                data-gridcell-visible-row-index={this.props.visibleRowIndex} // Affected by sorting & pagination
-                onKeyDown={this.handleCellKeyDown}
-                onMouseEnter={this.onMouseEnter}
-                onMouseLeave={this.onMouseLeave}
-              >
-                <HandleInteractiveChildren
-                  cellEl={this.cellRef.current}
-                  updateCellFocusContext={this.updateCellFocusContext}
-                  renderFocusTrap={!isExpandable}
-                >
-                  <EuiDataGridCellContent
-                    {...rest}
-                    setCellProps={this.setCellProps}
-                    column={column}
-                    columnType={columnType}
-                    isExpandable={isExpandable}
-                    isExpanded={popoverIsOpen}
-                    onExpandClick={this.handleCellExpansionClick}
-                    popoverAnchorRef={this.popoverAnchorRef}
-                    showCellActions={showCellActions}
-                    isFocused={this.state.isFocused}
-                    setCellContentsRef={this.setCellContentsRef}
-                    rowHeight={rowHeight}
-                    rowHeightUtils={rowHeightUtils}
-                    isControlColumn={cellClasses.includes(
-                      'euiDataGridRowCell--controlColumn'
-                    )}
-                    ariaRowIndex={ariaRowIndex}
-                    rowIndex={rowIndex}
-                    colIndex={colIndex}
-                  />
-                </HandleInteractiveChildren>
-              </div>
-            );
-          }}
-        </RenderWithEuiStylesMemoizer>
+        <GridCellDiv
+          {...cellProps}
+          ref={this.cellRef}
+          columnId={this.props.columnId}
+          columnIndex={this.props.colIndex}
+          rowIndex={rowIndex}
+          visibleRowIndex={this.props.visibleRowIndex}
+          aria-rowindex={ariaRowIndex}
+          tabIndex={this.state.isFocused ? 0 : -1}
+          onKeyDown={this.handleCellKeyDown}
+          onMouseEnter={this.onMouseEnter}
+          onMouseLeave={this.onMouseLeave}
+        >
+          <HandleInteractiveChildren
+            cellEl={this.cellRef.current}
+            updateCellFocusContext={this.updateCellFocusContext}
+            renderFocusTrap={!isExpandable}
+          >
+            <EuiDataGridCellContent
+              {...rest}
+              setCellProps={this.setCellProps}
+              column={column}
+              columnType={columnType}
+              isExpandable={isExpandable}
+              isExpanded={popoverIsOpen}
+              onExpandClick={this.handleCellExpansionClick}
+              popoverAnchorRef={this.popoverAnchorRef}
+              showCellActions={showCellActions}
+              isFocused={this.state.isFocused}
+              setCellContentsRef={this.setCellContentsRef}
+              rowHeight={rowHeight}
+              rowHeightUtils={rowHeightUtils}
+              isControlColumn={cellClasses.includes(
+                'euiDataGridRowCell--controlColumn'
+              )}
+              ariaRowIndex={ariaRowIndex}
+              rowIndex={rowIndex}
+              colIndex={colIndex}
+            />
+          </HandleInteractiveChildren>
+        </GridCellDiv>
       </RenderCellInRow>
     );
   }
@@ -725,3 +712,35 @@ const RenderTruncatedCellContent: FunctionComponent<{
   );
 });
 RenderTruncatedCellContent.displayName = 'RenderTruncatedCellContent';
+
+/**
+ * Function component utilities for easier hook usage
+ */
+
+const GridCellDiv = memo(
+  forwardRef<
+    HTMLDivElement,
+    HTMLAttributes<HTMLDivElement> & {
+      columnId: string;
+      columnIndex: number;
+      rowIndex: number;
+      visibleRowIndex: number;
+    }
+  >(({ columnId, columnIndex, rowIndex, visibleRowIndex, ...props }, ref) => {
+    const styles = useEuiMemoizedStyles(euiDataGridRowCellStyles);
+    return (
+      <div
+        ref={ref}
+        css={styles.euiDataGridRowCell}
+        {...props}
+        role="gridcell"
+        // Data attributes to help target specific cells by either data or current cell location
+        data-gridcell-column-id={columnId} // Static column ID name, not affected by column order
+        data-gridcell-column-index={columnIndex} // Affected by column reordering
+        data-gridcell-row-index={rowIndex} // Index from data, not affected by sorting or pagination
+        data-gridcell-visible-row-index={visibleRowIndex} // Affected by sorting & pagination
+      />
+    );
+  })
+);
+GridCellDiv.displayName = 'GridCellDiv';
