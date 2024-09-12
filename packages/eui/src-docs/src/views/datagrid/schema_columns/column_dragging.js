@@ -6,12 +6,25 @@ import { EuiDataGrid, EuiAvatar } from '../../../../../src/components';
 const columns = [
   {
     id: 'avatar',
+    initialWidth: 40,
+    isResizable: false,
+    actions: false,
   },
   {
     id: 'name',
+    initialWidth: 100,
   },
   {
     id: 'email',
+  },
+  {
+    id: 'city',
+  },
+  {
+    id: 'country',
+  },
+  {
+    id: 'account',
   },
 ];
 
@@ -27,6 +40,9 @@ for (let i = 1; i < 5; i++) {
     ),
     name: `${faker.person.lastName()}, ${faker.person.firstName()} ${faker.person.suffix()}`,
     email: faker.internet.email(),
+    city: faker.location.city(),
+    country: faker.location.country(),
+    account: faker.finance.accountNumber(),
   });
 }
 
