@@ -9,6 +9,7 @@
 import { css } from '@emotion/react';
 
 import { UseEuiTheme } from '../../../../services';
+import { logicalCSS } from '../../../../global_styling';
 
 import {
   euiDataGridCellOutlineStyles,
@@ -21,18 +22,36 @@ import {
 export const euiDataGridHeaderCellWrapperStyles = (
   euiThemeContext: UseEuiTheme
 ) => {
+  const { euiTheme } = euiThemeContext;
   const { focusStyles, hoverStyles } =
     euiDataGridCellOutlineStyles(euiThemeContext);
   const { header: outlineSelectors } = euiDataGridCellOutlineSelectors();
 
+  const _sharedFlexCss = css`
+    display: flex;
+    align-items: center;
+    gap: ${euiTheme.size.xxs};
+  `;
+
   return {
     euiDataGridHeaderCell: css`
+      position: relative; /* Needed for cell outline */
+      ${_sharedFlexCss}
+      flex: 0 0 auto;
+      font-weight: ${euiTheme.font.weight.bold};
+
       ${outlineSelectors.focus} {
         ${focusStyles}
       }
 
       ${outlineSelectors.focusTrapped} {
         ${hoverStyles}
+      }
+
+      /* Workaround for focus trap */
+      & > [data-focus-lock-disabled] {
+        ${_sharedFlexCss}
+        ${logicalCSS('width', '100%')}
       }
     `,
   };

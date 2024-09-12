@@ -54,12 +54,6 @@ module.exports = class extends Generator {
         default: false,
       },
       {
-        message: 'Does your PR contain Emotion conversions?',
-        name: 'emotionConversions',
-        type: 'confirm',
-        default: false,
-      },
-      {
         message: 'Does your PR contain dependency updates?',
         name: 'dependencyUpdates',
         type: 'confirm',

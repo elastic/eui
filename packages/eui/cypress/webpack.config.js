@@ -10,8 +10,6 @@
 
 const { ProvidePlugin, DefinePlugin } = require('webpack');
 
-const THEME_IMPORT = `'../../dist/eui_theme_${process.env.THEME}.css'`;
-
 const alias = {};
 const reactVersion = process.env.REACT_VERSION || '18';
 
@@ -72,7 +70,6 @@ module.exports = {
     }),
 
     new DefinePlugin({
-      THEME_IMPORT, // allow cypress/support/component.tsx to require the correct css file
       'process.env.REACT_VERSION': JSON.stringify(reactVersion),
     }),
   ],

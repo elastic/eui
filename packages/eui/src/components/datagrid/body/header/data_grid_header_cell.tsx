@@ -10,47 +10,34 @@ import classnames from 'classnames';
 import React, {
   AriaAttributes,
   FunctionComponent,
-  PropsWithChildren,
-  ReactNode,
   useContext,
   useState,
   useRef,
   useCallback,
   useMemo,
   memo,
-  HTMLAttributes,
 } from 'react';
 import { tabbable, FocusableElement } from 'tabbable';
-import { keys, useEuiMemoizedStyles } from '../../../../services';
-import { useGeneratedHtmlId } from '../../../../services/accessibility';
+import {
+  keys,
+  useGeneratedHtmlId,
+  useEuiMemoizedStyles,
+} from '../../../../services';
 import { EuiI18n, useEuiI18n } from '../../../i18n';
 import { EuiIcon } from '../../../icon';
 import { EuiListGroup } from '../../../list_group';
 import { EuiPopover } from '../../../popover';
-import { _emptyHoverStyles } from '../../../button/button_icon/button_icon.styles';
+import { EuiButtonIcon } from '../../../button';
+
 import { DataGridFocusContext } from '../../utils/focus';
 import {
   EuiDataGridHeaderCellProps,
   EuiDataGridSorting,
 } from '../../data_grid_types';
-
 import { getColumnActions } from './column_actions';
 import { EuiDataGridColumnResizer } from './data_grid_column_resizer';
 import { EuiDataGridHeaderCellWrapper } from './data_grid_header_cell_wrapper';
-
-const CellContent: FunctionComponent<
-  PropsWithChildren &
-    HTMLAttributes<HTMLDivElement> & { title: string; arrow?: ReactNode }
-> = ({ children, title, arrow, ...rest }) => {
-  return (
-    <>
-      <div {...rest} title={title} className="euiDataGridHeaderCell__content">
-        {children}
-      </div>
-      {arrow}
-    </>
-  );
-};
+import { euiDataGridHeaderCellStyles } from './data_grid_header_cell.styles';
 
 export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps> =
   memo(
@@ -159,7 +146,13 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
         displayHeaderCellProps?.className
       );
 
-      const emptyHoverStyles = useEuiMemoizedStyles(_emptyHoverStyles);
+      const styles = useEuiMemoizedStyles(euiDataGridHeaderCellStyles);
+      const contentStyles = [
+        styles.euiDataGridHeaderCell__content,
+        columnType === 'numeric' || columnType === 'currency'
+          ? styles.right
+          : styles.left,
+      ];
 
       return (
         <EuiDataGridHeaderCellWrapper
@@ -184,9 +177,14 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
                 />
               ) : null}
 
-              <CellContent title={title} arrow={sortingArrow}>
+              <div
+                css={contentStyles}
+                className="euiDataGridHeaderCell__content"
+                title={title}
+              >
                 {children}
-              </CellContent>
+              </div>
+              {sortingArrow}
 
               {sortingScreenReaderText && (
                 <p id={sortingAriaId} hidden>
@@ -200,15 +198,19 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
                   panelPaddingSize="none"
                   offset={7}
                   anchorPosition="downRight"
-                  css={{ marginInlineStart: 'auto' }} // Align to right
+                  css={styles.euiDataGridHeaderCell__popover}
                   button={
-                    <button
-                      ref={actionsButtonRef}
+                    <EuiButtonIcon
+                      iconType="boxesVertical"
+                      iconSize="s"
+                      color="text"
+                      css={styles.euiDataGridHeaderCell__button}
                       className="euiDataGridHeaderCell__button"
-                      css={emptyHoverStyles.text}
+                      buttonRef={actionsButtonRef}
                       onClick={togglePopover}
                       onFocus={() => setIsActionsButtonFocused(true)}
                       onBlur={() => setIsActionsButtonFocused(false)}
+                      tabIndex={0} // Override EuiButtonIcon's conditional tabindex based on aria-hidden
                       aria-hidden={
                         hasFocusTrap && !isActionsButtonFocused
                           ? 'true' // prevent the actions button from being read on cell focus
@@ -220,11 +222,7 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
                           : actionsEnterKeyInstructions
                       }
                       data-test-subj={`dataGridHeaderCellActionButton-${id}`}
-                    >
-                      <div className="euiDataGridHeaderCell__icon">
-                        <EuiIcon type="boxesVertical" size="s" color="text" />
-                      </div>
-                    </button>
+                    />
                   }
                   isOpen={isPopoverOpen}
                   closePopover={closePopover}

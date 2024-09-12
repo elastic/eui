@@ -25,7 +25,7 @@ export const LOKI_SELECTORS = {
   /**
    * Portal element content selector
    */
-  portal: '#storybook-root',
+  portal: '#storybook-root > *',
 } as const;
 
 /**

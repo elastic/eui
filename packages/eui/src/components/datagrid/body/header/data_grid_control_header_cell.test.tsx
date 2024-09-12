@@ -7,7 +7,7 @@
  */
 
 import React from 'react';
-import { shallow } from 'enzyme';
+import { render } from '../../../../test/rtl';
 
 import { EuiDataGridControlHeaderCell } from './data_grid_control_header_cell';
 
@@ -23,20 +23,45 @@ describe('EuiDataGridControlHeaderCell', () => {
   };
 
   it('renders', () => {
-    const component = shallow(<EuiDataGridControlHeaderCell {...props} />);
-    expect(component).toMatchInlineSnapshot(`
-      <EuiDataGridHeaderCellWrapper
-        className="euiDataGridHeaderCell--controlColumn"
-        id="someControlColumn"
-        index={0}
-        width={50}
+    const { container } = render(<EuiDataGridControlHeaderCell {...props} />);
+    expect(container.firstChild).toMatchInlineSnapshot(`
+      <div
+        aria-describedby="generated-id_focusTrapHint"
+        class="euiDataGridHeaderCell euiDataGridHeaderCell--controlColumn emotion-euiDataGridHeaderCell"
+        data-gridcell-column-id="someControlColumn"
+        data-gridcell-column-index="0"
+        data-gridcell-row-index="-1"
+        data-gridcell-visible-row-index="-1"
+        data-test-subj="dataGridHeaderCell-someControlColumn"
+        role="columnheader"
+        style="width: 50px;"
+        tabindex="-1"
       >
         <div
-          className="euiDataGridHeaderCell__content"
+          data-focus-guard="true"
+          style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+          tabindex="-1"
+        />
+        <div
+          data-focus-lock-disabled="disabled"
         >
-          <headerCellRender />
+          <button
+            data-euigrid-tab-managed="true"
+            tabindex="-1"
+          />
+          <p
+            hidden=""
+            id="generated-id_focusTrapHint"
+          >
+            Press the Enter key to interact with this cell's contents.
+          </p>
         </div>
-      </EuiDataGridHeaderCellWrapper>
+        <div
+          data-focus-guard="true"
+          style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+          tabindex="-1"
+        />
+      </div>
     `);
   });
 });

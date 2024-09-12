@@ -64,34 +64,32 @@ describe('EuiDataGridHeaderRow', () => {
           tabindex="-1"
         >
           <div
-            class="euiDataGridColumnResizer"
+            class="euiDataGridColumnResizer emotion-euiDataGridColumnResizer"
             data-test-subj="dataGridColumnResizer"
-            style="margin-right: 0px;"
           />
           <div
-            class="euiDataGridHeaderCell__content"
+            class="euiDataGridHeaderCell__content emotion-euiDataGridHeaderCell__content-left"
             title="someColumn"
           >
             someColumn
           </div>
           <div
-            class="euiPopover emotion-euiPopover-block-EuiDataGridHeaderCell"
+            class="euiPopover emotion-euiPopover-block-euiDataGridHeaderCell__popover"
           >
             <button
               aria-label="Press the Enter key to view this column's actions"
-              class="euiDataGridHeaderCell__button css-wvewty"
+              class="euiButtonIcon euiDataGridHeaderCell__button emotion-euiButtonIcon-xs-empty-text-euiDataGridHeaderCell__button"
               data-euigrid-tab-managed="true"
               data-test-subj="dataGridHeaderCellActionButton-someColumn"
               tabindex="-1"
+              type="button"
             >
-              <div
-                class="euiDataGridHeaderCell__icon"
-              >
-                <span
-                  color="text"
-                  data-euiicon-type="boxesVertical"
-                />
-              </div>
+              <span
+                aria-hidden="true"
+                class="euiButtonIcon__icon"
+                color="inherit"
+                data-euiicon-type="boxesVertical"
+              />
             </button>
           </div>
         </div>

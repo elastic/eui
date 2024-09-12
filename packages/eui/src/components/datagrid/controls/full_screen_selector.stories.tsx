@@ -7,7 +7,7 @@
  */
 
 import React, { useState } from 'react';
-import { fireEvent, within } from '@storybook/test';
+import { fireEvent, waitFor, within } from '@storybook/test';
 import type { Meta, StoryObj, ReactRenderer } from '@storybook/react';
 import type { PlayFunctionContext } from '@storybook/csf';
 import { LOKI_SELECTORS } from '../../../../.storybook/loki';
@@ -47,7 +47,7 @@ const dataGridProps: EuiDataGridProps = {
 export const FullScreenWithHeader: Story = {
   tags: ['vrt-only'],
   parameters: {
-    loki: { chromeSelector: LOKI_SELECTORS.body },
+    loki: { chromeSelector: LOKI_SELECTORS.portal },
   },
   render: () => (
     <>
@@ -59,6 +59,7 @@ export const FullScreenWithHeader: Story = {
   ),
   play: async ({ canvasElement }: PlayFunctionContext<ReactRenderer>) => {
     const canvas = within(canvasElement);
+    await waitFor(() => canvas.getByLabelText('Enter fullscreen'));
     await fireEvent.click(canvas.getByLabelText('Enter fullscreen'));
   },
 };

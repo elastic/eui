@@ -143,14 +143,8 @@ describe('FocusTrappedChildren', () => {
         data-focus-lock-disabled="disabled"
       >
         <p
-          aria-hidden="true"
-          class="emotion-euiScreenReaderOnly"
-          id="euiDataGridCellHeader_generated-id_exited"
-        />
-        <p
-          aria-hidden="true"
-          class="emotion-euiScreenReaderOnly"
-          id="euiDataGridCellHeader_generated-id_keyboardHint"
+          hidden=""
+          id="generated-id_focusTrapHint"
         >
           Press the Enter key to interact with this cell's contents.
         </p>

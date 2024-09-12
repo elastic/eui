@@ -9,7 +9,11 @@
 import { css } from '@emotion/react';
 
 import { UseEuiTheme } from '../../../../services';
-import { mathWithUnits } from '../../../../global_styling';
+import {
+  logicalCSS,
+  logicalTextAlignCSS,
+  mathWithUnits,
+} from '../../../../global_styling';
 
 export const euiDataGridCellOutlineStyles = ({ euiTheme }: UseEuiTheme) => {
   const focusColor = euiTheme.colors.primary;
@@ -69,6 +73,7 @@ export const euiDataGridCellOutlineSelectors = (parentSelector = '&') => {
   // Utils
   const selectors = (...args: string[]) => [...args].join(', ');
   const is = (selectors: string) => `${parentSelector}:is(${selectors})`;
+  const not = (selectors: string) => `${parentSelector}:not(${selectors})`;
   const hoverNot = (selectors: string) =>
     `${parentSelector}:hover:not(${selectors})`;
   const _ = (selectors: string) => `${parentSelector}${selectors}`;
@@ -90,6 +95,7 @@ export const euiDataGridCellOutlineSelectors = (parentSelector = '&') => {
     header: {
       focus: is(selectors(focus, focusWithin, headerActionsOpen)), // :focus-within here is primarily intended for when the column actions button has been clicked twice
       focusTrapped: _(isEntered),
+      hideActions: not(selectors(hover, focusWithin, headerActionsOpen)),
     },
   };
 };
@@ -113,6 +119,44 @@ export const euiDataGridRowCellStyles = (euiThemeContext: UseEuiTheme) => {
       ${outlineSelectors.focusTrapped} {
         ${cellOutline.hoverStyles}
       }
+
+      /* Hack to allow focus trap to still stretch to full row height on defined heights */
+      & > [data-focus-lock-disabled] {
+        ${logicalCSS('height', '100%')}
+      }
+
+      &:where(.euiDataGridRowCell--numeric, .euiDataGridRowCell--currency) {
+        ${logicalTextAlignCSS('right')}
+      }
+
+      &:where(.euiDataGridRowCell--uppercase) {
+        text-transform: uppercase;
+      }
+
+      &:where(.euiDataGridRowCell--lowercase) {
+        text-transform: lowercase;
+      }
+
+      &:where(.euiDataGridRowCell--capitalize) {
+        text-transform: capitalize;
+      }
     `,
+
+    content: {
+      euiDataGridRowCell__content: css`
+        overflow: hidden;
+      `,
+      controlColumn: css`
+        ${logicalCSS('max-height', '100%')}
+        display: flex;
+        align-items: center;
+      `,
+      autoHeight: css`
+        ${logicalCSS('height', 'auto')}
+      `,
+      defaultHeight: css`
+        ${logicalCSS('height', '100%')}
+      `,
+    },
   };
 };

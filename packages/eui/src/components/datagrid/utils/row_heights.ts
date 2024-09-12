@@ -32,8 +32,8 @@ import {
 import { euiDataGridVariables } from '../data_grid.styles';
 import { DataGridSortedContext } from './sorting';
 
-export const AUTO_HEIGHT = 'auto';
-export const DEFAULT_ROW_HEIGHT = 34;
+const AUTO_HEIGHT = 'auto';
+const DEFAULT_ROW_HEIGHT = 34;
 
 export type RowHeightUtilsType = RowHeightUtils | RowHeightVirtualizationUtils;
 

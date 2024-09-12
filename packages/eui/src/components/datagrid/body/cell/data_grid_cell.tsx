@@ -16,15 +16,17 @@ import React, {
   KeyboardEvent,
   memo,
   useMemo,
+  forwardRef,
   MutableRefObject,
   ReactElement,
+  HTMLAttributes,
 } from 'react';
 import { createPortal } from 'react-dom';
 
 import { IS_JEST_ENVIRONMENT } from '../../../../utils';
-import { keys, RenderWithEuiStylesMemoizer } from '../../../../services';
+import { keys, useEuiMemoizedStyles } from '../../../../services';
 import { EuiScreenReaderOnly } from '../../../accessibility';
-import { EuiI18n } from '../../../i18n';
+import { useEuiI18n } from '../../../i18n';
 import { EuiTextBlockTruncate } from '../../../text_truncate';
 import { hasResizeObserver } from '../../../observer/resize_observer/resize_observer';
 
@@ -51,13 +53,8 @@ const EuiDataGridCellContent: FunctionComponent<
   EuiDataGridCellValueProps & {
     setCellProps: EuiDataGridCellValueElementProps['setCellProps'];
     setCellContentsRef: (ref: HTMLDivElement | null) => void;
-    showCellActions: boolean;
     isExpanded: boolean;
-    onExpandClick: () => void;
-    popoverAnchorRef: MutableRefObject<HTMLDivElement | null>;
     isControlColumn: boolean;
-    isFocused: boolean;
-    ariaRowIndex: number;
     rowHeight?: EuiDataGridRowHeightOption;
   }
 > = memo(
@@ -68,14 +65,9 @@ const EuiDataGridCellContent: FunctionComponent<
     setCellContentsRef,
     rowIndex,
     colIndex,
-    ariaRowIndex,
     rowHeight,
     rowHeightUtils,
     isControlColumn,
-    isFocused,
-    showCellActions,
-    onExpandClick,
-    popoverAnchorRef,
     ...rest
   }) => {
     // React is more permissive than the TS types indicate
@@ -100,65 +92,51 @@ const EuiDataGridCellContent: FunctionComponent<
       [cellHeightType, isControlColumn]
     );
 
+    const styles = useEuiMemoizedStyles(euiDataGridRowCellStyles);
+    const cssStyles = [
+      styles.content.euiDataGridRowCell__content,
+      ...(isControlColumn
+        ? [
+            // Control column cells should not be vertically centered (defaultHeight) except
+            // on single rows. They should be top-aligned for auto and lineCount heights
+            styles.content.controlColumn,
+            cellHeightType === 'default'
+              ? styles.content.defaultHeight
+              : styles.content.autoHeight,
+          ]
+        : [
+            // Regular data cells should always inherit height from the row wrapper,
+            // except for auto height
+            cellHeightType === 'auto'
+              ? styles.content.autoHeight
+              : styles.content.defaultHeight,
+          ]),
+    ];
+
     return (
-      <>
-        <RenderTruncatedCellContent
-          hasLineCountTruncation={
-            cellHeightType === 'lineCount' && !isControlColumn
-          }
-          rowHeight={rowHeight}
+      <RenderTruncatedCellContent
+        hasLineCountTruncation={
+          cellHeightType === 'lineCount' && !isControlColumn
+        }
+        rowHeight={rowHeight}
+      >
+        <div
+          ref={setCellContentsRef}
+          data-datagrid-cellcontent
+          className={classes}
+          css={cssStyles}
         >
-          <div
-            ref={setCellContentsRef}
-            data-datagrid-cellcontent
-            className={classes}
-          >
-            <CellElement
-              isDetails={false}
-              data-test-subj="cell-content"
-              rowIndex={rowIndex}
-              colIndex={colIndex}
-              schema={column?.schema || rest.columnType}
-              {...cellContext}
-              {...rest}
-            />
-          </div>
-        </RenderTruncatedCellContent>
-
-        <EuiScreenReaderOnly>
-          <p hidden={!isFocused}>
-            {'- '}
-            <EuiI18n
-              token="euiDataGridCell.position"
-              default="{columnId}, column {col}, row {row}"
-              values={{
-                columnId: column?.displayAsText || rest.columnId,
-                col: colIndex + 1,
-                row: ariaRowIndex,
-              }}
-            />
-            {showCellActions && (
-              <>
-                {'. '}
-                <EuiI18n
-                  token="euiDataGridCell.expansionEnterPrompt"
-                  default="Press the Enter key to expand this cell."
-                />
-              </>
-            )}
-          </p>
-        </EuiScreenReaderOnly>
-
-        {showCellActions && (
-          <EuiDataGridCellActions
+          <CellElement
+            isDetails={false}
+            data-test-subj="cell-content"
             rowIndex={rowIndex}
             colIndex={colIndex}
-            column={column}
-            onExpandClick={onExpandClick}
-            popoverAnchorRef={popoverAnchorRef}
+            schema={column?.schema || rest.columnType}
+            {...cellContext}
+            {...rest}
           />
-        )}
-      </>
+        </div>
+      </RenderTruncatedCellContent>
     );
   }
 );
@@ -610,58 +588,61 @@ export class EuiDataGridCell extends Component<
 
     return (
       <RenderCellInRow row={row}>
-        <RenderWithEuiStylesMemoizer>
-          {(stylesMemoizer) => {
-            const styles = stylesMemoizer(euiDataGridRowCellStyles);
-            const cssStyles = [styles.euiDataGridRowCell, cellProps?.css];
-            return (
-              <div
-                role="gridcell"
-                aria-rowindex={ariaRowIndex}
-                tabIndex={this.state.isFocused ? 0 : -1}
-                ref={this.cellRef}
-                {...cellProps}
-                css={cssStyles}
-                // Data attributes to help target specific cells by either data or current cell location
-                data-gridcell-column-id={this.props.columnId} // Static column ID name, not affected by column order
-                data-gridcell-column-index={this.props.colIndex} // Affected by column reordering
-                data-gridcell-row-index={this.props.rowIndex} // Index from data, not affected by sorting or pagination
-                data-gridcell-visible-row-index={this.props.visibleRowIndex} // Affected by sorting & pagination
-                onKeyDown={this.handleCellKeyDown}
-                onMouseEnter={this.onMouseEnter}
-                onMouseLeave={this.onMouseLeave}
-              >
-                <HandleInteractiveChildren
-                  cellEl={this.cellRef.current}
-                  updateCellFocusContext={this.updateCellFocusContext}
-                  renderFocusTrap={!isExpandable}
-                >
-                  <EuiDataGridCellContent
-                    {...rest}
-                    setCellProps={this.setCellProps}
-                    column={column}
-                    columnType={columnType}
-                    isExpandable={isExpandable}
-                    isExpanded={popoverIsOpen}
-                    onExpandClick={this.handleCellExpansionClick}
-                    popoverAnchorRef={this.popoverAnchorRef}
-                    showCellActions={showCellActions}
-                    isFocused={this.state.isFocused}
-                    setCellContentsRef={this.setCellContentsRef}
-                    rowHeight={rowHeight}
-                    rowHeightUtils={rowHeightUtils}
-                    isControlColumn={cellClasses.includes(
-                      'euiDataGridRowCell--controlColumn'
-                    )}
-                    ariaRowIndex={ariaRowIndex}
-                    rowIndex={rowIndex}
-                    colIndex={colIndex}
-                  />
-                </HandleInteractiveChildren>
-              </div>
-            );
-          }}
-        </RenderWithEuiStylesMemoizer>
+        <GridCellDiv
+          {...cellProps}
+          ref={this.cellRef}
+          columnId={this.props.columnId}
+          columnIndex={this.props.colIndex}
+          rowIndex={rowIndex}
+          visibleRowIndex={this.props.visibleRowIndex}
+          aria-rowindex={ariaRowIndex}
+          tabIndex={this.state.isFocused ? 0 : -1}
+          onKeyDown={this.handleCellKeyDown}
+          onMouseEnter={this.onMouseEnter}
+          onMouseLeave={this.onMouseLeave}
+        >
+          <HandleInteractiveChildren
+            cellEl={this.cellRef.current}
+            updateCellFocusContext={this.updateCellFocusContext}
+            renderFocusTrap={!isExpandable}
+          >
+            <EuiDataGridCellContent
+              {...rest}
+              setCellProps={this.setCellProps}
+              column={column}
+              columnType={columnType}
+              isExpandable={isExpandable}
+              isExpanded={popoverIsOpen}
+              setCellContentsRef={this.setCellContentsRef}
+              rowHeight={rowHeight}
+              rowHeightUtils={rowHeightUtils}
+              isControlColumn={cellClasses.includes(
+                'euiDataGridRowCell--controlColumn'
+              )}
+              rowIndex={rowIndex}
+              colIndex={colIndex}
+            />
+          </HandleInteractiveChildren>
+
+          {this.state.isFocused && (
+            <CellScreenReaderDescription
+              columnName={column?.displayAsText || this.props.columnId}
+              columnIndex={colIndex + 1}
+              rowIndex={ariaRowIndex}
+              canExpandCell={showCellActions}
+            />
+          )}
+
+          {showCellActions && (
+            <EuiDataGridCellActions
+              rowIndex={rowIndex}
+              colIndex={colIndex}
+              column={column}
+              onExpandClick={this.handleCellExpansionClick}
+              popoverAnchorRef={this.popoverAnchorRef}
+            />
+          )}
+        </GridCellDiv>
       </RenderCellInRow>
     );
   }
@@ -699,3 +680,59 @@ const RenderTruncatedCellContent: FunctionComponent<{
   );
 });
 RenderTruncatedCellContent.displayName = 'RenderTruncatedCellContent';
+
+/**
+ * Function component utilities for easier hook usage
+ */
+
+const GridCellDiv = memo(
+  forwardRef<
+    HTMLDivElement,
+    HTMLAttributes<HTMLDivElement> & {
+      columnId: string;
+      columnIndex: number;
+      rowIndex: number;
+      visibleRowIndex: number;
+    }
+  >(({ columnId, columnIndex, rowIndex, visibleRowIndex, ...props }, ref) => {
+    const styles = useEuiMemoizedStyles(euiDataGridRowCellStyles);
+    return (
+      <div
+        ref={ref}
+        css={styles.euiDataGridRowCell}
+        {...props}
+        role="gridcell"
+        // Data attributes to help target specific cells by either data or current cell location
+        data-gridcell-column-id={columnId} // Static column ID name, not affected by column order
+        data-gridcell-column-index={columnIndex} // Affected by column reordering
+        data-gridcell-row-index={rowIndex} // Index from data, not affected by sorting or pagination
+        data-gridcell-visible-row-index={visibleRowIndex} // Affected by sorting & pagination
+      />
+    );
+  })
+);
+GridCellDiv.displayName = 'GridCellDiv';
+
+const CellScreenReaderDescription: FunctionComponent<{
+  columnName: string;
+  columnIndex: number;
+  rowIndex: number;
+  canExpandCell: boolean;
+}> = memo(({ columnName, columnIndex, rowIndex, canExpandCell }) => {
+  const cellPosition = useEuiI18n(
+    'euiDataGridCell.position',
+    '{columnName}, column {columnIndex}, row {rowIndex}',
+    { columnName, columnIndex, rowIndex }
+  );
+  const enterKeyPrompt = useEuiI18n(
+    'euiDataGridCell.expansionEnterPrompt',
+    'Press the Enter key to expand this cell.'
+  );
+
+  return (
+    <EuiScreenReaderOnly>
+      <p>{` - ${cellPosition}${canExpandCell ? `. ${enterKeyPrompt}` : ''}`}</p>
+    </EuiScreenReaderOnly>
+  );
+});
+CellScreenReaderDescription.displayName = 'CellScreenReaderDescription';

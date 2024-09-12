@@ -546,7 +546,10 @@ interface SharedRenderCellElementProps {
 }
 
 export type EuiDataGridSetCellProps = CommonProps &
-  HTMLAttributes<HTMLDivElement> & {
+  Omit<
+    HTMLAttributes<HTMLDivElement>,
+    'role' | 'tabIndex' | 'aria-rowindex'
+  > & {
     isExpandable?: boolean;
   };
 

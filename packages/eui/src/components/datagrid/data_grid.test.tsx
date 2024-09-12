@@ -51,9 +51,7 @@ function extractGridData(datagrid: ReactWrapper<EuiDataGridProps>) {
   const headerCells = findTestSubject(datagrid, 'dataGridHeaderCell', '|=');
   const headerRow: string[] = [];
   headerCells.forEach((cell: any) =>
-    headerRow.push(
-      cell.find('[className~="euiDataGridHeaderCell__content"]').text()
-    )
+    headerRow.push(cell.find('div.euiDataGridHeaderCell__content').text())
   );
   rows.push(headerRow);
 

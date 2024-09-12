@@ -275,8 +275,17 @@ export const getSortColumnActions = ({
       sortBy('asc');
     };
 
+    const isSorted =
+      sortingIdx >= 0 && sorting.columns[sortingIdx].direction === 'asc';
+
     const action = {
-      label: (
+      label: isSorted ? (
+        <EuiI18n
+          token="euiColumnActions.unsort"
+          default="Unsort {schemaLabel}"
+          values={{ schemaLabel: label }}
+        />
+      ) : (
         <EuiI18n
           token="euiColumnActions.sort"
           default="Sort {schemaLabel}"
@@ -285,10 +294,6 @@ export const getSortColumnActions = ({
       ),
       onClick: onClickSortAsc,
       isDisabled: column.isSortable === false,
-      className:
-        sortingIdx >= 0 && sorting.columns[sortingIdx].direction === 'asc'
-          ? 'euiDataGridHeader__action--selected'
-          : '',
       iconType: 'sortUp',
       size: 'xs',
       color: 'text',
@@ -306,8 +311,17 @@ export const getSortColumnActions = ({
       sortBy('desc');
     };
 
+    const isSorted =
+      sortingIdx >= 0 && sorting.columns[sortingIdx].direction === 'desc';
+
     const action = {
-      label: (
+      label: isSorted ? (
+        <EuiI18n
+          token="euiColumnActions.unsort"
+          default="Unsort {schemaLabel}"
+          values={{ schemaLabel: label }}
+        />
+      ) : (
         <EuiI18n
           token="euiColumnActions.sort"
           default="Sort {schemaLabel}"
@@ -316,10 +330,6 @@ export const getSortColumnActions = ({
       ),
       onClick: onClickSortDesc,
       isDisabled: column.isSortable === false,
-      className:
-        sortingIdx >= 0 && sorting.columns[sortingIdx].direction === 'desc'
-          ? 'euiDataGridHeader__action--selected'
-          : '',
       iconType: 'sortDown',
       size: 'xs',
       color: 'text',

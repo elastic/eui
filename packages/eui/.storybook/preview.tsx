@@ -35,11 +35,6 @@ appendIconComponentCache(iconCache);
 import { EuiProvider } from '../src/components/provider';
 import { writingModeStyles } from './writing_mode.styles';
 
-// Import light theme for components still using Sass styling
-// TODO: Remove this import and the `yarn compile-scss &&` command
-// once all EUI components are converted to Emotion
-import '../dist/eui_theme_light.css';
-
 /**
  * Ensure that any provider errors throw & warn us early
  */

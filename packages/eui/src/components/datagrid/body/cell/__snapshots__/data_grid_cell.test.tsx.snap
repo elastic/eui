@@ -49,7 +49,7 @@ exports[`EuiDataGridCell renders 1`] = `
   tabindex="-1"
 >
   <div
-    class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight eui-textTruncate"
+    class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight eui-textTruncate emotion-euiDataGridRowCell__content-defaultHeight"
     data-datagrid-cellcontent="true"
   >
     <div>
@@ -65,12 +65,5 @@ exports[`EuiDataGridCell renders 1`] = `
       </button>
     </div>
   </div>
-  <p
-    class="emotion-euiScreenReaderOnly"
-    hidden=""
-  >
-    - 
-    someColumn, column 1, row 1
-  </p>
 </div>
 `;
