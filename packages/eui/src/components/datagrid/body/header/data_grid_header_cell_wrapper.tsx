@@ -48,10 +48,12 @@ export const EuiDataGridHeaderCellWrapper: FunctionComponent<
   'aria-label': ariaLabel,
   ...rest
 }) => {
-  const classes = classnames('euiDataGridHeaderCell', className, {
-    'euiDataGridHeaderCell--isDragging': isDragging,
-  });
+  const classes = classnames('euiDataGridHeaderCell', className);
   const styles = useEuiMemoizedStyles(euiDataGridHeaderCellWrapperStyles);
+  const cssStyles = [
+    styles.euiDataGridHeaderCell,
+    isDragging && styles.isDragging,
+  ];
 
   // Must be a state and not a ref to trigger a HandleInteractiveChildren rerender
   const [headerEl, setHeaderEl] = useState<HTMLDivElement | null>(null);
@@ -123,7 +125,7 @@ export const EuiDataGridHeaderCellWrapper: FunctionComponent<
       ref={setHeaderEl}
       tabIndex={isFocused ? 0 : -1}
       onKeyDown={onKeyDown}
-      css={styles.euiDataGridHeaderCell}
+      css={cssStyles}
       className={classes}
       data-test-subj={`dataGridHeaderCell-${id}`}
       data-gridcell-column-id={id}

@@ -29,7 +29,9 @@ export const euiDataGridHeaderStyles = (euiThemeContext: UseEuiTheme) => {
       display: flex;
       ${logicalCSS('width', '100%')}
 
-      &:not(:first-child) .euiDataGridHeaderDraggable:first-of-type .euiDataGridHeaderCell {
+      &:not(:first-child)
+        .euiDataGridHeaderDraggable:first-of-type
+        .euiDataGridHeaderCell {
         ${logicalCSS('border-left', 'none')}
       }
 

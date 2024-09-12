@@ -57,6 +57,13 @@ export const euiDataGridHeaderCellStyles = (euiThemeContext: UseEuiTheme) => {
         animation: none !important; /* stylelint-disable-line declaration-no-important */
       }
     `,
+    euiDataGridHeaderCellDraggable: css`
+      // override internal styling from @hello-pangea/dnd to ensure positioning
+      ${logicalCSS('top', '0 !important;')}
+      display: 'flex';
+      ${logicalCSS('height', '100%')}
+      background-color: ${euiTheme.colors.lightestShade};
+    `,
     euiDataGridHeaderCell__draggableIcon: css`
       position: relative;
       display: flex;

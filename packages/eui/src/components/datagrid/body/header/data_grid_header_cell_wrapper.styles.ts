@@ -58,7 +58,7 @@ export const euiDataGridHeaderCellWrapperStyles = (
       }
     `,
     isDragging: css`
-      border-inline-start: none;
+      background-color: ${euiTheme.colors.lightestShade};
     `,
   };
 };
