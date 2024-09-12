@@ -8,13 +8,15 @@
 
 import React, { useEffect, useState } from 'react';
 import { mount, ReactWrapper } from 'enzyme';
-import { EuiDataGrid } from './';
-import type { EuiDataGridProps, RenderCellValue } from './data_grid_types';
+import { act, fireEvent } from '@testing-library/react';
 import { findTestSubject, requiredProps } from '../../test';
 import { getAllByTestSubject, render } from '../../test/rtl';
-import { EuiDataGridColumnResizer } from './body/header/data_grid_column_resizer';
+import { shouldRenderCustomStyles } from '../../test/internal';
 import { keys } from '../../services';
-import { act, fireEvent } from '@testing-library/react';
+
+import { EuiDataGridColumnResizer } from './body/header/data_grid_column_resizer';
+import type { EuiDataGridProps, RenderCellValue } from './data_grid_types';
+import { EuiDataGrid } from './';
 
 // Mock the cell popover (TODO: Move failing tests to Cypress and remove need for mock?)
 jest.mock('../popover', () => ({
@@ -486,6 +488,16 @@ describe('EuiDataGrid', () => {
   jest
     .spyOn(window, 'requestAnimationFrame')
     .mockImplementation((cb: any) => cb());
+
+  shouldRenderCustomStyles(
+    <EuiDataGrid
+      aria-label=""
+      columns={[]}
+      columnVisibility={{ visibleColumns: [], setVisibleColumns: () => {} }}
+      rowCount={0}
+      renderCellValue={() => null}
+    />
+  );
 
   describe('rendering', () => {
     const getBoundingClientRect =
