@@ -19,6 +19,11 @@ import {
 const meta: Meta<EuiResizableButtonProps> = {
   title: 'Layout/EuiResizableContainer/Subcomponents/EuiResizableButton',
   component: EuiResizableButton,
+  argTypes: {
+    accountForScrollbars: {
+      options: [undefined, 'both', 'before', 'after'],
+    },
+  },
   args: {
     // Component defaults
     indicator: 'handle',
