@@ -100,7 +100,7 @@ export default () => {
               </EuiText>
             </EuiResizablePanel>
 
-            <EuiResizableButton />
+            <EuiResizableButton accountForScrollbars="before" />
 
             <EuiResizablePanel
               id={secondPanelId}

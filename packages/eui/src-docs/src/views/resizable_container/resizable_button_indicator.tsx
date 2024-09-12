@@ -18,7 +18,7 @@ export default () => (
           <EuiText>{text}</EuiText>
         </EuiResizablePanel>
 
-        <EuiResizableButton indicator="border" />
+        <EuiResizableButton indicator="border" accountForScrollbars="before" />
 
         <EuiResizablePanel
           initialSize={50}
@@ -33,10 +33,13 @@ export default () => (
             {(EuiResizablePanel, EuiResizableButton) => (
               <>
                 <EuiResizablePanel initialSize={50} minSize="50px" tabIndex={0}>
-                  <EuiText>{text}</EuiText>
+                  <EuiText style={{ width: '110%' }}>{text}</EuiText>
                 </EuiResizablePanel>
 
-                <EuiResizableButton indicator="border" />
+                <EuiResizableButton
+                  indicator="border"
+                  accountForScrollbars="both"
+                />
 
                 <EuiResizablePanel initialSize={50} minSize="50px" tabIndex={0}>
                   <EuiText>{text}</EuiText>
