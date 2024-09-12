@@ -306,16 +306,16 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
           {/* keep the resizer outside of Draggable to ensure both are working independently */}
           {columnResizer}
           <EuiDraggable
-            key={`draggable-${id}`}
+            key={id}
             draggableId={id}
-            className="euiDataGridHeaderDraggable"
+            className="euiDataGridHeaderCellDraggable"
             css={styles.euiDataGridHeaderCellDraggable}
             index={index}
             customDragHandle="custom"
           >
             {({ draggableProps, dragHandleProps }, { isDragging }) => {
               const {
-                role,
+                role, // extracting role to not pass it along
                 'aria-describedby': ariaDescribedby,
                 ...restDragHandleProps
               } = dragHandleProps ?? {};
@@ -330,7 +330,6 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
 
               const content = (
                 <EuiDataGridHeaderCellWrapper
-                  key={id}
                   isDragging={isDragging}
                   onBlur={handleOnBlur}
                   onMouseDown={handleOnMouseDown}

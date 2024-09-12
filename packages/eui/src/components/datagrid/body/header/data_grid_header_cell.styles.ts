@@ -61,8 +61,7 @@ export const euiDataGridHeaderCellStyles = (euiThemeContext: UseEuiTheme) => {
       // override internal styling from @hello-pangea/dnd to ensure positioning
       ${logicalCSS('top', '0 !important;')}
       display: 'flex';
-      ${logicalCSS('height', '100%')}
-      background-color: ${euiTheme.colors.lightestShade};
+      ${logicalCSS('width', '100%')}
     `,
     euiDataGridHeaderCell__draggableIcon: css`
       position: relative;

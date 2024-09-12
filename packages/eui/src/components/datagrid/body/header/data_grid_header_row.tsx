@@ -11,6 +11,8 @@ import React, { forwardRef, memo, useContext, useMemo } from 'react';
 
 import { useEuiMemoizedStyles } from '../../../../services';
 import { OnDragEndResponder } from '@hello-pangea/dnd';
+
+import { useGeneratedHtmlId } from '../../../../services';
 import { EuiDragDropContext, EuiDroppable } from '../../../drag_and_drop';
 import { DataGridFocusContext } from '../../utils/focus';
 import {
@@ -49,10 +51,18 @@ const EuiDataGridHeaderRow = memo(
     const classes = classnames('euiDataGridHeader', className);
     const dataTestSubj = classnames('dataGridHeader', _dataTestSubj);
 
+    const droppableId = useGeneratedHtmlId({
+      prefix: 'euiDataGridHeaderDroppable',
+    });
+
     const { setFocusedCell } = useContext(DataGridFocusContext);
 
     const handleOnDragEnd: OnDragEndResponder = ({ source, destination }) => {
       if (!source || !destination) return;
+
+      if (destination.index === source.index) {
+        return;
+      }
 
       const indexOffset = leadingControlColumns?.length ?? 0;
       const sourceColumn = columns[source.index - indexOffset];
@@ -123,7 +133,8 @@ const EuiDataGridHeaderRow = memo(
         {columnDragDrop ? (
           <EuiDragDropContext onDragEnd={handleOnDragEnd}>
             <EuiDroppable
-              droppableId="euiDataGridHeaderDroppable"
+              key={droppableId}
+              droppableId={droppableId}
               direction="horizontal"
               className="euiDataGridHeaderDroppable"
               css={styles.euiDataGridHeaderDroppable}

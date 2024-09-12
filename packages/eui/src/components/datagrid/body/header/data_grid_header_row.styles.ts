@@ -30,12 +30,13 @@ export const euiDataGridHeaderStyles = (euiThemeContext: UseEuiTheme) => {
       ${logicalCSS('width', '100%')}
 
       &:not(:first-child)
-        .euiDataGridHeaderDraggable:first-of-type
+        .euiDataGridHeaderCellDraggable:first-of-type
         .euiDataGridHeaderCell {
         ${logicalCSS('border-left', 'none')}
       }
 
-      .euiDataGridHeaderDraggable:not(:first-of-type) .euiDataGridHeaderCell {
+      .euiDataGridHeaderCellDraggable:not(:first-of-type)
+        .euiDataGridHeaderCell {
         ${logicalCSS('border-left', 'none')}
       }
     `,
@@ -48,6 +49,11 @@ export const euiDataGridHeaderStyles = (euiThemeContext: UseEuiTheme) => {
     `,
     shade: css`
       background-color: ${euiTheme.colors.lightestShade};
+
+      // ensure correct background on drag
+      .euiDataGridHeaderCellDraggable .euiDataGridHeaderCell {
+        background-color: ${euiTheme.colors.lightestShade};
+      }
     `,
   };
 };
