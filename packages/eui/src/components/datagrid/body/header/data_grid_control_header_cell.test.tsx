@@ -26,7 +26,7 @@ describe('EuiDataGridControlHeaderCell', () => {
     const { container } = render(<EuiDataGridControlHeaderCell {...props} />);
     expect(container.firstChild).toMatchInlineSnapshot(`
       <div
-        aria-describedby="euiDataGridCellHeader_generated-id_exited euiDataGridCellHeader_generated-id_keyboardHint"
+        aria-describedby="generated-id_focusTrapHint"
         class="euiDataGridHeaderCell euiDataGridHeaderCell--controlColumn emotion-euiDataGridHeaderCell"
         data-gridcell-column-id="someControlColumn"
         data-gridcell-column-index="0"
@@ -50,14 +50,8 @@ describe('EuiDataGridControlHeaderCell', () => {
             tabindex="-1"
           />
           <p
-            aria-hidden="true"
-            class="emotion-euiScreenReaderOnly"
-            id="euiDataGridCellHeader_generated-id_exited"
-          />
-          <p
-            aria-hidden="true"
-            class="emotion-euiScreenReaderOnly"
-            id="euiDataGridCellHeader_generated-id_keyboardHint"
+            hidden=""
+            id="generated-id_focusTrapHint"
           >
             Press the Enter key to interact with this cell's contents.
           </p>
