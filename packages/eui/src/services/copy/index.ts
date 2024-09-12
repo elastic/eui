@@ -7,3 +7,7 @@
  */
 
 export { copyToClipboard } from './copy_to_clipboard';
+export {
+  tabularCopyMarkers,
+  OverrideCopiedTabularContent,
+} from './tabular_copy';
