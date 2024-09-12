@@ -51,12 +51,6 @@ describe('EuiDataGridFooterRow', () => {
           >
             <div />
           </div>
-          <p
-            class="emotion-euiScreenReaderOnly"
-            hidden=""
-          >
-             - someColumn, column 1, row 11
-          </p>
         </div>
         <div
           aria-rowindex="11"
@@ -75,12 +69,6 @@ describe('EuiDataGridFooterRow', () => {
           >
             <div />
           </div>
-          <p
-            class="emotion-euiScreenReaderOnly"
-            hidden=""
-          >
-             - someColumnWithoutSchema, column 2, row 11
-          </p>
         </div>
       </div>
     `);

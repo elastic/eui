@@ -115,12 +115,6 @@ exports[`EuiDataGridBodyCustomRender treats \`renderCustomGridBody\` as a render
       >
         hello
       </div>
-      <p
-        class="emotion-euiScreenReaderOnly"
-        hidden=""
-      >
-         - columnA, column 1, row 1
-      </p>
     </div>
     <div
       aria-rowindex="1"
@@ -140,12 +134,6 @@ exports[`EuiDataGridBodyCustomRender treats \`renderCustomGridBody\` as a render
       >
         world
       </div>
-      <p
-        class="emotion-euiScreenReaderOnly"
-        hidden=""
-      >
-         - columnB, column 2, row 1
-      </p>
     </div>
   </div>
   <div
@@ -169,12 +157,6 @@ exports[`EuiDataGridBodyCustomRender treats \`renderCustomGridBody\` as a render
       >
         lorem
       </div>
-      <p
-        class="emotion-euiScreenReaderOnly"
-        hidden=""
-      >
-         - columnA, column 1, row 2
-      </p>
     </div>
     <div
       aria-rowindex="2"
@@ -194,12 +176,6 @@ exports[`EuiDataGridBodyCustomRender treats \`renderCustomGridBody\` as a render
       >
         ipsum
       </div>
-      <p
-        class="emotion-euiScreenReaderOnly"
-        hidden=""
-      >
-         - columnB, column 2, row 2
-      </p>
     </div>
   </div>
 </div>

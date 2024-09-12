@@ -697,12 +697,6 @@ exports[`EuiDataGrid rendering renders additional toolbar controls 1`] = `
               >
                 0, A
               </div>
-              <p
-                class="emotion-euiScreenReaderOnly"
-                hidden=""
-              >
-                 - A, column 1, row 1
-              </p>
             </div>
             <div
               aria-rowindex="1"
@@ -722,12 +716,6 @@ exports[`EuiDataGrid rendering renders additional toolbar controls 1`] = `
               >
                 0, B
               </div>
-              <p
-                class="emotion-euiScreenReaderOnly"
-                hidden=""
-              >
-                 - B, column 2, row 1
-              </p>
             </div>
             <div
               aria-rowindex="2"
@@ -747,12 +735,6 @@ exports[`EuiDataGrid rendering renders additional toolbar controls 1`] = `
               >
                 1, A
               </div>
-              <p
-                class="emotion-euiScreenReaderOnly"
-                hidden=""
-              >
-                 - A, column 1, row 2
-              </p>
             </div>
             <div
               aria-rowindex="2"
@@ -772,12 +754,6 @@ exports[`EuiDataGrid rendering renders additional toolbar controls 1`] = `
               >
                 1, B
               </div>
-              <p
-                class="emotion-euiScreenReaderOnly"
-                hidden=""
-              >
-                 - B, column 2, row 2
-              </p>
             </div>
             <div
               aria-rowindex="3"
@@ -797,12 +773,6 @@ exports[`EuiDataGrid rendering renders additional toolbar controls 1`] = `
               >
                 2, A
               </div>
-              <p
-                class="emotion-euiScreenReaderOnly"
-                hidden=""
-              >
-                 - A, column 1, row 3
-              </p>
             </div>
             <div
               aria-rowindex="3"
@@ -822,12 +792,6 @@ exports[`EuiDataGrid rendering renders additional toolbar controls 1`] = `
               >
                 2, B
               </div>
-              <p
-                class="emotion-euiScreenReaderOnly"
-                hidden=""
-              >
-                 - B, column 2, row 3
-              </p>
             </div>
           </div>
         </div>
@@ -1126,12 +1090,6 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
               >
                 0
               </div>
-              <p
-                class="emotion-euiScreenReaderOnly"
-                hidden=""
-              >
-                 - leading, column 1, row 1
-              </p>
             </div>
             <div
               aria-rowindex="1"
@@ -1151,12 +1109,6 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
               >
                 0, A
               </div>
-              <p
-                class="emotion-euiScreenReaderOnly"
-                hidden=""
-              >
-                 - A, column 2, row 1
-              </p>
             </div>
             <div
               aria-rowindex="1"
@@ -1176,12 +1128,6 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
               >
                 0, B
               </div>
-              <p
-                class="emotion-euiScreenReaderOnly"
-                hidden=""
-              >
-                 - B, column 3, row 1
-              </p>
             </div>
             <div
               aria-rowindex="1"
@@ -1201,12 +1147,6 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
               >
                 0
               </div>
-              <p
-                class="emotion-euiScreenReaderOnly"
-                hidden=""
-              >
-                 - trailing, column 4, row 1
-              </p>
             </div>
             <div
               aria-rowindex="2"
@@ -1226,12 +1166,6 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
               >
                 1
               </div>
-              <p
-                class="emotion-euiScreenReaderOnly"
-                hidden=""
-              >
-                 - leading, column 1, row 2
-              </p>
             </div>
             <div
               aria-rowindex="2"
@@ -1251,12 +1185,6 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
               >
                 1, A
               </div>
-              <p
-                class="emotion-euiScreenReaderOnly"
-                hidden=""
-              >
-                 - A, column 2, row 2
-              </p>
             </div>
             <div
               aria-rowindex="2"
@@ -1276,12 +1204,6 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
               >
                 1, B
               </div>
-              <p
-                class="emotion-euiScreenReaderOnly"
-                hidden=""
-              >
-                 - B, column 3, row 2
-              </p>
             </div>
             <div
               aria-rowindex="2"
@@ -1301,12 +1223,6 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
               >
                 1
               </div>
-              <p
-                class="emotion-euiScreenReaderOnly"
-                hidden=""
-              >
-                 - trailing, column 4, row 2
-              </p>
             </div>
             <div
               aria-rowindex="3"
@@ -1326,12 +1242,6 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
               >
                 2
               </div>
-              <p
-                class="emotion-euiScreenReaderOnly"
-                hidden=""
-              >
-                 - leading, column 1, row 3
-              </p>
             </div>
             <div
               aria-rowindex="3"
@@ -1351,12 +1261,6 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
               >
                 2, A
               </div>
-              <p
-                class="emotion-euiScreenReaderOnly"
-                hidden=""
-              >
-                 - A, column 2, row 3
-              </p>
             </div>
             <div
               aria-rowindex="3"
@@ -1376,12 +1280,6 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
               >
                 2, B
               </div>
-              <p
-                class="emotion-euiScreenReaderOnly"
-                hidden=""
-              >
-                 - B, column 3, row 3
-              </p>
             </div>
             <div
               aria-rowindex="3"
@@ -1401,12 +1299,6 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
               >
                 2
               </div>
-              <p
-                class="emotion-euiScreenReaderOnly"
-                hidden=""
-              >
-                 - trailing, column 4, row 3
-              </p>
             </div>
           </div>
         </div>
@@ -1674,12 +1566,6 @@ exports[`EuiDataGrid rendering renders custom column headers 1`] = `
               >
                 0, A
               </div>
-              <p
-                class="emotion-euiScreenReaderOnly"
-                hidden=""
-              >
-                 - A, column 1, row 1
-              </p>
             </div>
             <div
               aria-rowindex="1"
@@ -1699,12 +1585,6 @@ exports[`EuiDataGrid rendering renders custom column headers 1`] = `
               >
                 0, B
               </div>
-              <p
-                class="emotion-euiScreenReaderOnly"
-                hidden=""
-              >
-                 - B, column 2, row 1
-              </p>
             </div>
             <div
               aria-rowindex="2"
@@ -1724,12 +1604,6 @@ exports[`EuiDataGrid rendering renders custom column headers 1`] = `
               >
                 1, A
               </div>
-              <p
-                class="emotion-euiScreenReaderOnly"
-                hidden=""
-              >
-                 - A, column 1, row 2
-              </p>
             </div>
             <div
               aria-rowindex="2"
@@ -1749,12 +1623,6 @@ exports[`EuiDataGrid rendering renders custom column headers 1`] = `
               >
                 1, B
               </div>
-              <p
-                class="emotion-euiScreenReaderOnly"
-                hidden=""
-              >
-                 - B, column 2, row 2
-              </p>
             </div>
             <div
               aria-rowindex="3"
@@ -1774,12 +1642,6 @@ exports[`EuiDataGrid rendering renders custom column headers 1`] = `
               >
                 2, A
               </div>
-              <p
-                class="emotion-euiScreenReaderOnly"
-                hidden=""
-              >
-                 - A, column 1, row 3
-              </p>
             </div>
             <div
               aria-rowindex="3"
@@ -1799,12 +1661,6 @@ exports[`EuiDataGrid rendering renders custom column headers 1`] = `
               >
                 2, B
               </div>
-              <p
-                class="emotion-euiScreenReaderOnly"
-                hidden=""
-              >
-                 - B, column 2, row 3
-              </p>
             </div>
           </div>
         </div>
@@ -2070,12 +1926,6 @@ exports[`EuiDataGrid rendering renders with common and div attributes 1`] = `
               >
                 0, A
               </div>
-              <p
-                class="emotion-euiScreenReaderOnly"
-                hidden=""
-              >
-                 - A, column 1, row 1
-              </p>
             </div>
             <div
               aria-rowindex="1"
@@ -2095,12 +1945,6 @@ exports[`EuiDataGrid rendering renders with common and div attributes 1`] = `
               >
                 0, B
               </div>
-              <p
-                class="emotion-euiScreenReaderOnly"
-                hidden=""
-              >
-                 - B, column 2, row 1
-              </p>
             </div>
             <div
               aria-rowindex="2"
@@ -2120,12 +1964,6 @@ exports[`EuiDataGrid rendering renders with common and div attributes 1`] = `
               >
                 1, A
               </div>
-              <p
-                class="emotion-euiScreenReaderOnly"
-                hidden=""
-              >
-                 - A, column 1, row 2
-              </p>
             </div>
             <div
               aria-rowindex="2"
@@ -2145,12 +1983,6 @@ exports[`EuiDataGrid rendering renders with common and div attributes 1`] = `
               >
                 1, B
               </div>
-              <p
-                class="emotion-euiScreenReaderOnly"
-                hidden=""
-              >
-                 - B, column 2, row 2
-              </p>
             </div>
             <div
               aria-rowindex="3"
@@ -2170,12 +2002,6 @@ exports[`EuiDataGrid rendering renders with common and div attributes 1`] = `
               >
                 2, A
               </div>
-              <p
-                class="emotion-euiScreenReaderOnly"
-                hidden=""
-              >
-                 - A, column 1, row 3
-              </p>
             </div>
             <div
               aria-rowindex="3"
@@ -2195,12 +2021,6 @@ exports[`EuiDataGrid rendering renders with common and div attributes 1`] = `
               >
                 2, B
               </div>
-              <p
-                class="emotion-euiScreenReaderOnly"
-                hidden=""
-              >
-                 - B, column 2, row 3
-              </p>
             </div>
           </div>
         </div>

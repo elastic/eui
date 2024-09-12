@@ -624,12 +624,14 @@ export class EuiDataGridCell extends Component<
             />
           </HandleInteractiveChildren>
 
-          <CellScreenReaderDescription
-            columnName={column?.displayAsText || this.props.columnId}
-            columnIndex={colIndex + 1}
-            rowIndex={ariaRowIndex}
-            canExpandCell={showCellActions}
-          />
+          {this.state.isFocused && (
+            <CellScreenReaderDescription
+              columnName={column?.displayAsText || this.props.columnId}
+              columnIndex={colIndex + 1}
+              rowIndex={ariaRowIndex}
+              canExpandCell={showCellActions}
+            />
+          )}
 
           {showCellActions && (
             <EuiDataGridCellActions

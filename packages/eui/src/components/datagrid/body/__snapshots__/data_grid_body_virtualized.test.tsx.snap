@@ -118,12 +118,6 @@ exports[`EuiDataGridBodyVirtualized renders 1`] = `
           cell content
         </span>
       </div>
-      <p
-        class="emotion-euiScreenReaderOnly"
-        hidden=""
-      >
-         - columnA, column 1, row 1
-      </p>
     </div>
     <div
       aria-rowindex="1"
@@ -145,12 +139,6 @@ exports[`EuiDataGridBodyVirtualized renders 1`] = `
           cell content
         </span>
       </div>
-      <p
-        class="emotion-euiScreenReaderOnly"
-        hidden=""
-      >
-         - columnB, column 2, row 1
-      </p>
     </div>
   </div>
 </div>
