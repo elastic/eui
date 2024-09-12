@@ -51,6 +51,13 @@ describe('EuiDataGridFooterRow', () => {
           >
             <div />
           </div>
+          <span
+            aria-hidden="true"
+            class="euiScreenReaderOnly"
+            data-tabular-copy-marker="true"
+          >
+            ↦
+          </span>
         </div>
         <div
           aria-rowindex="11"
@@ -69,6 +76,13 @@ describe('EuiDataGridFooterRow', () => {
           >
             <div />
           </div>
+          <span
+            aria-hidden="true"
+            class="euiScreenReaderOnly"
+            data-tabular-copy-marker="true"
+          >
+            ↦
+          </span>
         </div>
       </div>
     `);

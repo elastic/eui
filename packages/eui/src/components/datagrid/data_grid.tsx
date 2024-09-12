@@ -19,7 +19,11 @@ import {
   VariableSizeGrid as Grid,
   GridOnItemsRenderedProps,
 } from 'react-window';
-import { useGeneratedHtmlId, useEuiMemoizedStyles } from '../../services';
+import {
+  useGeneratedHtmlId,
+  useEuiMemoizedStyles,
+  OverrideCopiedTabularContent,
+} from '../../services';
 import { useEuiTablePaginationDefaults } from '../table/table_pagination';
 import { EuiFocusTrap } from '../focus_trap';
 import { EuiI18n, useEuiI18n } from '../i18n';
@@ -494,37 +498,39 @@ export const EuiDataGrid = memo(
                   {...wrappingDivFocusProps} // re: above jsx-a11y - tabIndex is handled by these props, but the linter isn't smart enough to know that
                   {...gridAriaProps}
                 >
-                  <EuiDataGridBody
-                    columns={orderedVisibleColumns}
-                    visibleColCount={visibleColCount}
-                    leadingControlColumns={leadingControlColumns}
-                    schema={mergedSchema}
-                    trailingControlColumns={trailingControlColumns}
-                    setVisibleColumns={setVisibleColumns}
-                    switchColumnPos={switchColumnPos}
-                    onColumnResize={onColumnResize}
-                    schemaDetectors={allSchemaDetectors}
-                    sorting={sorting}
-                    pagination={pagination}
-                    renderCellValue={renderCellValue}
-                    cellContext={cellContext}
-                    renderCellPopover={renderCellPopover}
-                    renderFooterCellValue={renderFooterCellValue}
-                    rowCount={rowCount}
-                    visibleRows={visibleRows}
-                    interactiveCellId={interactiveCellId}
-                    rowHeightsOptions={rowHeightsOptions}
-                    virtualizationOptions={
-                      virtualizationOptions || emptyVirtualizationOptions
-                    }
-                    isFullScreen={isFullScreen}
-                    gridStyles={gridStyles}
-                    gridWidth={gridWidth}
-                    gridRef={gridRef}
-                    gridItemsRendered={gridItemsRendered}
-                    wrapperRef={contentRef}
-                    renderCustomGridBody={renderCustomGridBody}
-                  />
+                  <OverrideCopiedTabularContent>
+                    <EuiDataGridBody
+                      columns={orderedVisibleColumns}
+                      visibleColCount={visibleColCount}
+                      leadingControlColumns={leadingControlColumns}
+                      schema={mergedSchema}
+                      trailingControlColumns={trailingControlColumns}
+                      setVisibleColumns={setVisibleColumns}
+                      switchColumnPos={switchColumnPos}
+                      onColumnResize={onColumnResize}
+                      schemaDetectors={allSchemaDetectors}
+                      sorting={sorting}
+                      pagination={pagination}
+                      renderCellValue={renderCellValue}
+                      cellContext={cellContext}
+                      renderCellPopover={renderCellPopover}
+                      renderFooterCellValue={renderFooterCellValue}
+                      rowCount={rowCount}
+                      visibleRows={visibleRows}
+                      interactiveCellId={interactiveCellId}
+                      rowHeightsOptions={rowHeightsOptions}
+                      virtualizationOptions={
+                        virtualizationOptions || emptyVirtualizationOptions
+                      }
+                      isFullScreen={isFullScreen}
+                      gridStyles={gridStyles}
+                      gridWidth={gridWidth}
+                      gridRef={gridRef}
+                      gridItemsRendered={gridItemsRendered}
+                      wrapperRef={contentRef}
+                      renderCustomGridBody={renderCustomGridBody}
+                    />
+                  </OverrideCopiedTabularContent>
                 </div>
                 {showPagination && props['aria-labelledby'] && (
                   <p id={ariaLabelledById} hidden>

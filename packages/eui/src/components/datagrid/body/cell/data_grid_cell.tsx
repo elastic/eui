@@ -24,7 +24,11 @@ import React, {
 import { createPortal } from 'react-dom';
 
 import { IS_JEST_ENVIRONMENT } from '../../../../utils';
-import { keys, useEuiMemoizedStyles } from '../../../../services';
+import {
+  keys,
+  tabularCopyMarkers,
+  useEuiMemoizedStyles,
+} from '../../../../services';
 import { EuiScreenReaderOnly } from '../../../accessibility';
 import { useEuiI18n } from '../../../i18n';
 import { EuiTextBlockTruncate } from '../../../text_truncate';
@@ -545,6 +549,12 @@ export class EuiDataGridCell extends Component<
       className
     );
 
+    // classNames set by EuiDataGridCellWrapper
+    const isControlColumn = cellClasses.includes(
+      'euiDataGridRowCell--controlColumn'
+    );
+    const isLastColumn = cellClasses.includes('euiDataGridRowCell--lastColumn');
+
     const ariaRowIndex = pagination
       ? visibleRowIndex + 1 + pagination.pageSize * pagination.pageIndex
       : visibleRowIndex + 1;
@@ -616,13 +626,15 @@ export class EuiDataGridCell extends Component<
               setCellContentsRef={this.setCellContentsRef}
               rowHeight={rowHeight}
               rowHeightUtils={rowHeightUtils}
-              isControlColumn={cellClasses.includes(
-                'euiDataGridRowCell--controlColumn'
-              )}
+              isControlColumn={isControlColumn}
               rowIndex={rowIndex}
               colIndex={colIndex}
             />
           </HandleInteractiveChildren>
+
+          {isLastColumn
+            ? tabularCopyMarkers.hiddenNewline
+            : tabularCopyMarkers.hiddenTab}
 
           {this.state.isFocused && (
             <CellScreenReaderDescription
@@ -731,7 +743,11 @@ const CellScreenReaderDescription: FunctionComponent<{
 
   return (
     <EuiScreenReaderOnly>
-      <p>{` - ${cellPosition}${canExpandCell ? `. ${enterKeyPrompt}` : ''}`}</p>
+      <p>
+        {tabularCopyMarkers.ariaHiddenNoCopyBoundary}
+        {` - ${cellPosition}${canExpandCell ? `. ${enterKeyPrompt}` : ''}`}
+        {tabularCopyMarkers.ariaHiddenNoCopyBoundary}
+      </p>
     </EuiScreenReaderOnly>
   );
 });

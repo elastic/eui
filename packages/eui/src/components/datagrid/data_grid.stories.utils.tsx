@@ -224,7 +224,12 @@ export const defaultStorybookArgs = {
           <span>Trailing actions</span>
         </EuiScreenReaderOnly>
       ),
-      rowCellRender: () => <EuiButtonIcon iconType="boxesHorizontal" />,
+      rowCellRender: () => (
+        <EuiButtonIcon
+          iconType="boxesHorizontal"
+          aria-label="Open actions popover"
+        />
+      ),
     },
   ],
   leadingControlColumns: [
@@ -236,7 +241,12 @@ export const defaultStorybookArgs = {
           <span>Leading actions</span>
         </EuiScreenReaderOnly>
       ),
-      rowCellRender: () => <EuiButtonIcon iconType="boxesHorizontal" />,
+      rowCellRender: () => (
+        <EuiButtonIcon
+          iconType="boxesHorizontal"
+          aria-label="Open actions popover"
+        />
+      ),
     },
   ],
   // setup for easier testing/QA

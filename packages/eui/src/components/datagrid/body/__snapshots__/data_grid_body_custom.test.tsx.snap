@@ -115,6 +115,13 @@ exports[`EuiDataGridBodyCustomRender treats \`renderCustomGridBody\` as a render
       >
         hello
       </div>
+      <span
+        aria-hidden="true"
+        class="euiScreenReaderOnly"
+        data-tabular-copy-marker="true"
+      >
+        ↦
+      </span>
     </div>
     <div
       aria-rowindex="1"
@@ -134,6 +141,13 @@ exports[`EuiDataGridBodyCustomRender treats \`renderCustomGridBody\` as a render
       >
         world
       </div>
+      <span
+        aria-hidden="true"
+        class="euiScreenReaderOnly"
+        data-tabular-copy-marker="true"
+      >
+        ↵
+      </span>
     </div>
   </div>
   <div
@@ -157,6 +171,13 @@ exports[`EuiDataGridBodyCustomRender treats \`renderCustomGridBody\` as a render
       >
         lorem
       </div>
+      <span
+        aria-hidden="true"
+        class="euiScreenReaderOnly"
+        data-tabular-copy-marker="true"
+      >
+        ↦
+      </span>
     </div>
     <div
       aria-rowindex="2"
@@ -176,6 +197,13 @@ exports[`EuiDataGridBodyCustomRender treats \`renderCustomGridBody\` as a render
       >
         ipsum
       </div>
+      <span
+        aria-hidden="true"
+        class="euiScreenReaderOnly"
+        data-tabular-copy-marker="true"
+      >
+        ↵
+      </span>
     </div>
   </div>
 </div>

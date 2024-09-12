@@ -118,6 +118,13 @@ exports[`EuiDataGridBodyVirtualized renders 1`] = `
           cell content
         </span>
       </div>
+      <span
+        aria-hidden="true"
+        class="euiScreenReaderOnly"
+        data-tabular-copy-marker="true"
+      >
+        ↦
+      </span>
     </div>
     <div
       aria-rowindex="1"
@@ -139,6 +146,13 @@ exports[`EuiDataGridBodyVirtualized renders 1`] = `
           cell content
         </span>
       </div>
+      <span
+        aria-hidden="true"
+        class="euiScreenReaderOnly"
+        data-tabular-copy-marker="true"
+      >
+        ↵
+      </span>
     </div>
   </div>
 </div>
