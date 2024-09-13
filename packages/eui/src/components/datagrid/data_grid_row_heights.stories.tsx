@@ -66,6 +66,20 @@ export const LineCount: Story = {
   ),
 };
 
+// Visual regression test for https://github.com/elastic/eui/issues/7780#issuecomment-2183179080
+// lineCount: 1 should fall back to default/undefined height, and
+// overflowing content should *not* be cut off by 'padding'
+export const LineCount1: Story = {
+  tags: ['vrt-only'],
+  render: () => (
+    <StatefulDataGrid
+      {...storyArgs}
+      rowHeightsOptions={{ defaultHeight: { lineCount: 1 } }}
+      gridStyle={{ fontSize: 's', cellPadding: 's' }}
+    />
+  ),
+};
+
 export const StaticHeight: Story = {
   args: {
     defaultHeight: { height: 48 },
