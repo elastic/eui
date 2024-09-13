@@ -120,8 +120,9 @@ export class RowHeightUtils {
     if (option === AUTO_HEIGHT) {
       return 'auto';
     }
-    if (this.getLineCount(option) != null) {
-      return 'lineCount';
+    const lineCount = this.getLineCount(option);
+    if (lineCount != null) {
+      return lineCount > 1 ? 'lineCount' : 'default';
     }
     return 'numerical';
   };

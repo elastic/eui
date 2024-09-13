@@ -207,13 +207,21 @@ describe('RowHeightUtils', () => {
       expect(rowHeightUtils.getHeightType({ lineCount: 3 })).toEqual(
         'lineCount'
       );
-      expect(rowHeightUtils.getHeightType({ lineCount: 0 })).toEqual(
-        'lineCount'
-      );
       expect(rowHeightUtils.getHeightType({ height: 100 })).toEqual(
         'numerical'
       );
       expect(rowHeightUtils.getHeightType(100)).toEqual('numerical');
+    });
+
+    it("returns the default height type for lineCounts of 1, as they're functionally equivalent", () => {
+      expect(rowHeightUtils.getHeightType({ lineCount: 1 })).toEqual('default');
+    });
+
+    it('falls back to a default height type for invalid lineCounts', () => {
+      expect(rowHeightUtils.getHeightType({ lineCount: 0 })).toEqual('default');
+      expect(rowHeightUtils.getHeightType({ lineCount: -1 })).toEqual(
+        'default'
+      );
     });
   });
 
