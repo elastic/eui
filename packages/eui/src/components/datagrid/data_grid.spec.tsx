@@ -566,7 +566,7 @@ describe('EuiDataGrid', () => {
         .realHover()
         .realMouseDown({ position: 'center' })
         .realMouseMove(0, 0) // start drag
-        .realMouseMove(200, 0) // move
+        .realMouseMove(200, 34) // move (absolute coordinates)
         .realMouseUp();
 
       cy.get('[data-test-subj=dataGridHeaderCell-a]').should(
@@ -584,7 +584,7 @@ describe('EuiDataGrid', () => {
         .realHover()
         .realMouseDown({ position: 'center' })
         .realMouseMove(0, 0) // start drag
-        .realMouseMove(-200, 0) // move
+        .realMouseMove(0, 34) // move (absolute coordinates)
         .realMouseUp();
 
       cy.get('[data-test-subj=dataGridHeaderCell-a]').should(
@@ -645,6 +645,9 @@ describe('EuiDataGrid', () => {
       cy.wait(50);
 
       cy.get('[data-test-subj=dataGridHeaderCell-a]').realHover();
+
+      cy.wait(50); // wait until actions button transition is progressed enough for the button to be clickable
+
       cy.get('[data-test-subj=dataGridHeaderCellActionButton-a]').realClick();
 
       cy.get('.euiPanel').should('have.focus');
