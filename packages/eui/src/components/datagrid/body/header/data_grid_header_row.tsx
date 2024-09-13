@@ -8,11 +8,9 @@
 
 import classnames from 'classnames';
 import React, { forwardRef, memo, useContext, useMemo } from 'react';
-
-import { useEuiMemoizedStyles } from '../../../../services';
 import { OnDragEndResponder } from '@hello-pangea/dnd';
 
-import { useGeneratedHtmlId } from '../../../../services';
+import { useEuiMemoizedStyles, useGeneratedHtmlId } from '../../../../services';
 import { EuiDragDropContext, EuiDroppable } from '../../../drag_and_drop';
 import { DataGridFocusContext } from '../../utils/focus';
 import {
@@ -41,6 +39,7 @@ const EuiDataGridHeaderRow = memo(
       schema,
       schemaDetectors,
       gridStyles,
+      wrapperRef,
       columnDragDrop,
       ...rest
     } = props;
@@ -96,6 +95,7 @@ const EuiDataGridHeaderRow = memo(
             schema={schema}
             schemaDetectors={schemaDetectors}
             columnDragDrop={columnDragDrop}
+            wrapperRef={wrapperRef}
           />
         )),
       [
@@ -110,6 +110,7 @@ const EuiDataGridHeaderRow = memo(
         setVisibleColumns,
         sorting,
         switchColumnPos,
+        wrapperRef,
       ]
     );
 

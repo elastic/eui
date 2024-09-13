@@ -52,6 +52,7 @@ export const EuiDataGridBodyCustomRender: FunctionComponent<
   gridStyles,
   className,
   columnDragDrop,
+  wrapperRef,
 }) => {
   /**
    * Columns & widths
@@ -108,6 +109,7 @@ export const EuiDataGridBodyCustomRender: FunctionComponent<
     schemaDetectors,
     gridStyles,
     columnDragDrop,
+    wrapperRef,
   });
 
   const { footerRow } = useDataGridFooter({

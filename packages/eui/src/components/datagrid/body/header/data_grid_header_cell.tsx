@@ -58,6 +58,7 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
       schema,
       schemaDetectors,
       columnDragDrop,
+      wrapperRef,
     }) => {
       const { id, display, displayAsText, displayHeaderCellProps } = column;
       const title = displayAsText || id;
@@ -346,7 +347,18 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
                * code duplication, using our own portal in place is cleaner.
                * https://github.com/hello-pangea/dnd/blob/8f8cc785171bf67f660f7306d16666a1945e29a6/docs/guides/reparenting.md
                */
-              return isDragging ? <EuiPortal>{content}</EuiPortal> : content;
+              return isDragging ? (
+                <EuiPortal
+                  insert={{
+                    sibling: wrapperRef.current!, // using portal inside DataGrid to ensure styles are applied in scope
+                    position: 'after',
+                  }}
+                >
+                  {content}
+                </EuiPortal>
+              ) : (
+                content
+              );
             }}
           </EuiDraggable>
         </EuiFlexGroup>

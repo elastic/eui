@@ -50,7 +50,7 @@ export const euiDataGridHeaderStyles = (euiThemeContext: UseEuiTheme) => {
     shade: css`
       background-color: ${euiTheme.colors.lightestShade};
 
-      // ensure correct background on drag
+      /* ensure correct background on drag */
       .euiDataGridHeaderCellDraggable .euiDataGridHeaderCell {
         background-color: ${euiTheme.colors.lightestShade};
       }

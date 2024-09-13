@@ -143,6 +143,7 @@ export interface EuiDataGridHeaderRowPropsSpecificProps {
   visibleColCount: number;
   setVisibleColumns: (columnId: string[]) => void;
   switchColumnPos: (colFromId: string, colToId: string) => void;
+  wrapperRef: MutableRefObject<HTMLDivElement | null>;
   gridStyles: EuiDataGridStyle;
   columnDragDrop?: boolean;
 }

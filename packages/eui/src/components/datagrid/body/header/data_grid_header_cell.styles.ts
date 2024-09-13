@@ -58,8 +58,8 @@ export const euiDataGridHeaderCellStyles = (euiThemeContext: UseEuiTheme) => {
       }
     `,
     euiDataGridHeaderCellDraggable: css`
-      // override internal styling from @hello-pangea/dnd to ensure positioning
-      ${logicalCSS('top', '0 !important;')}
+      /* override internal styling from @hello-pangea/dnd to ensure positioning */
+      ${logicalCSS('top', '0 !important')}
       display: 'flex';
       ${logicalCSS('width', '100%')}
     `,
@@ -69,11 +69,10 @@ export const euiDataGridHeaderCellStyles = (euiThemeContext: UseEuiTheme) => {
       align-items: center;
       gap: ${euiTheme.size.xs};
       border-radius: ${euiTheme.border.radius.small};
-      // font-weight: $euiFontWeightBold;
       outline: none;
 
       svg {
-        flex: 0 0 auto; // Ensure icon doesn't shrink
+        flex: 0 0 auto; /* Ensure icon doesn't shrink */
         display: flex;
         align-items: center;
         justify-content: center;
