@@ -8,7 +8,7 @@
 
 /// <reference types="@emotion/react/types/css-prop" />
 
-import React, { useState, useMemo, FunctionComponent } from 'react';
+import React from 'react';
 import type { Preview } from '@storybook/react';
 import { MINIMAL_VIEWPORTS } from '@storybook/addon-viewport';
 
@@ -28,12 +28,6 @@ Object.entries(typeToPathMap).forEach(async ([iconType, iconFileName]) => {
 });
 appendIconComponentCache(iconCache);
 
-/*
- * Theming
- */
-import { EuiProvider, EuiProviderProps } from '../src/components/provider';
-import { writingModeStyles } from './writing_mode.styles';
-
 /**
  * Ensure that any provider errors throw & warn us early
  */
@@ -41,44 +35,10 @@ import { setEuiDevProviderWarning } from '../src/services';
 setEuiDevProviderWarning('error');
 
 /**
- * Prop controls
+ * Custom global decorators
  */
-
-import type { CommonProps } from '../src/components/common';
-
 import { customJsxDecorator } from './addons/code-snippet/decorators/jsx_decorator';
-import { hideStorybookControls } from './utils';
-
-const EuiProviderDecorator: FunctionComponent<
-  EuiProviderProps<{}> & {
-    writingMode: 'ltr' | 'rtl' | 'vertical-lr' | 'vertical-rl' | 'sideways';
-  }
-> = ({ children, writingMode, ...euiProviderProps }) => {
-  // Append portals into Storybook's root div (rather than <body>)
-  // so that loki correctly captures them for VRT screenshots
-  const [portalSibling, setPortalSibling] = useState<HTMLElement | null>(null);
-  const portalInsert = useMemo(() => {
-    if (portalSibling) {
-      return {
-        EuiPortal: {
-          insert: { sibling: portalSibling, position: 'after' as const },
-        },
-      };
-    }
-  }, [portalSibling]);
-
-  return (
-    <EuiProvider componentDefaults={portalInsert} {...euiProviderProps}>
-      <div
-        ref={setPortalSibling}
-        id="story-wrapper"
-        css={[writingModeStyles.writingMode, writingModeStyles[writingMode]]}
-      >
-        {portalInsert && children}
-      </div>
-    </EuiProvider>
-  );
-};
+import { EuiProviderDecorator, euiProviderDecoratorGlobals } from './decorator';
 
 const preview: Preview = {
   decorators: [
@@ -93,35 +53,7 @@ const preview: Preview = {
       </EuiProviderDecorator>
     ),
   ],
-  globalTypes: {
-    colorMode: {
-      description: 'Color mode for EuiProvider theme',
-      defaultValue: 'light',
-      toolbar: {
-        title: 'Color mode',
-        items: [
-          { value: 'light', title: 'Light mode', icon: 'circlehollow' },
-          { value: 'dark', title: 'Dark mode', icon: 'circle' },
-        ],
-        dynamicTitle: true,
-      },
-    },
-    writingMode: {
-      description: 'Writing mode for testing logical property directions',
-      defaultValue: 'ltr',
-      toolbar: {
-        title: 'Writing mode',
-        items: [
-          { value: 'ltr', title: 'LTR', icon: 'arrowleft' },
-          { value: 'rtl', title: 'RTL', icon: 'arrowright' },
-          { value: 'vertical-lr', title: 'Vertical LTR', icon: 'arrowup' },
-          { value: 'vertical-rl', title: 'Vertical RTL', icon: 'arrowdown' },
-          { value: 'sideways', title: 'Sideways LTR', icon: 'collapse' },
-        ],
-        dynamicTitle: true,
-      },
-    },
-  },
+  globalTypes: { ...euiProviderDecoratorGlobals },
   parameters: {
     backgrounds: { disable: true }, // Use colorMode instead
     options: {
@@ -158,10 +90,13 @@ const preview: Preview = {
     },
   },
 };
+
 // Due to CommonProps, these props appear on almost every Story, but generally
 // aren't super useful to test - let's disable them by default and (if needed)
 // individual stories can re-enable them, e.g. by passing
 // `argTypes: { 'data-test-subj': { table: { disable: false } } }`
+import type { CommonProps } from '../src/components/common';
+import { hideStorybookControls } from './utils';
 hideStorybookControls<CommonProps>(preview, [
   'css',
   'className',
