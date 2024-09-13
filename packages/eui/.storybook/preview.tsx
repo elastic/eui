@@ -8,9 +8,8 @@
 
 /// <reference types="@emotion/react/types/css-prop" />
 
-import React from 'react';
+import React, { useState, useMemo, FunctionComponent } from 'react';
 import type { Preview } from '@storybook/react';
-import { useState, useMemo } from '@storybook/preview-api';
 import { MINIMAL_VIEWPORTS } from '@storybook/addon-viewport';
 
 /*
@@ -32,7 +31,7 @@ appendIconComponentCache(iconCache);
 /*
  * Theming
  */
-import { EuiProvider } from '../src/components/provider';
+import { EuiProvider, EuiProviderProps } from '../src/components/provider';
 import { writingModeStyles } from './writing_mode.styles';
 
 /**
@@ -50,44 +49,49 @@ import type { CommonProps } from '../src/components/common';
 import { customJsxDecorator } from './addons/code-snippet/decorators/jsx_decorator';
 import { hideStorybookControls } from './utils';
 
+const EuiProviderDecorator: FunctionComponent<
+  EuiProviderProps<{}> & {
+    writingMode: 'ltr' | 'rtl' | 'vertical-lr' | 'vertical-rl' | 'sideways';
+  }
+> = ({ children, writingMode, ...euiProviderProps }) => {
+  // Append portals into Storybook's root div (rather than <body>)
+  // so that loki correctly captures them for VRT screenshots
+  const [portalSibling, setPortalSibling] = useState<HTMLElement | null>(null);
+  const portalInsert = useMemo(() => {
+    if (portalSibling) {
+      return {
+        EuiPortal: {
+          insert: { sibling: portalSibling, position: 'after' as const },
+        },
+      };
+    }
+  }, [portalSibling]);
+
+  return (
+    <EuiProvider componentDefaults={portalInsert} {...euiProviderProps}>
+      <div
+        ref={setPortalSibling}
+        id="story-wrapper"
+        css={[writingModeStyles.writingMode, writingModeStyles[writingMode]]}
+      >
+        {portalInsert && children}
+      </div>
+    </EuiProvider>
+  );
+};
+
 const preview: Preview = {
   decorators: [
     customJsxDecorator,
-    (Story, context) => {
-      const [portalSibling, setPortalSibling] = useState<HTMLDivElement | null>(
-        null
-      );
-      const portalInsert = useMemo(() => {
-        if (portalSibling) {
-          return {
-            EuiPortal: {
-              insert: { sibling: portalSibling, position: 'after' as const },
-            },
-          };
-        }
-      }, [portalSibling]);
-
-      return (
-        <EuiProvider
-          colorMode={context.globals.colorMode}
-          componentDefaults={portalInsert}
-          {...(context.componentId === 'theming-euiprovider' && context.args)}
-        >
-          <div
-            ref={setPortalSibling}
-            /* #story-wrapper should always be the element that wraps <Story /> */
-            id="story-wrapper"
-            css={[
-              writingModeStyles.writingMode,
-              // @ts-ignore - we're manually ensuring `writingMode` globals match our Emotion style keys
-              writingModeStyles[context.globals.writingMode],
-            ]}
-          >
-            {portalInsert && <Story />}
-          </div>
-        </EuiProvider>
-      );
-    },
+    (Story, context) => (
+      <EuiProviderDecorator
+        colorMode={context.globals.colorMode}
+        {...(context.componentId === 'theming-euiprovider' && context.args)}
+        writingMode={context.globals.writingMode}
+      >
+        <Story />
+      </EuiProviderDecorator>
+    ),
   ],
   globalTypes: {
     colorMode: {
