@@ -611,7 +611,7 @@ exports[`EuiDataGrid rendering renders additional toolbar controls 1`] = `
                   data-test-subj="dataGridColumnResizer"
                 />
                 <div
-                  class="euiDataGridHeaderCell__content emotion-euiDataGridHeaderCell__content-left"
+                  class="euiDataGridHeaderCell__content emotion-euiDataGridHeaderCell__content"
                   title="A"
                 >
                   A
@@ -653,7 +653,7 @@ exports[`EuiDataGrid rendering renders additional toolbar controls 1`] = `
                   data-test-subj="dataGridColumnResizer"
                 />
                 <div
-                  class="euiDataGridHeaderCell__content emotion-euiDataGridHeaderCell__content-left"
+                  class="euiDataGridHeaderCell__content emotion-euiDataGridHeaderCell__content"
                   title="B"
                 >
                   B
@@ -989,7 +989,7 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
                   data-test-subj="dataGridColumnResizer"
                 />
                 <div
-                  class="euiDataGridHeaderCell__content emotion-euiDataGridHeaderCell__content-left"
+                  class="euiDataGridHeaderCell__content emotion-euiDataGridHeaderCell__content"
                   title="A"
                 >
                   A
@@ -1031,7 +1031,7 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
                   data-test-subj="dataGridColumnResizer"
                 />
                 <div
-                  class="euiDataGridHeaderCell__content emotion-euiDataGridHeaderCell__content-left"
+                  class="euiDataGridHeaderCell__content emotion-euiDataGridHeaderCell__content"
                   title="B"
                 >
                   B
@@ -1478,7 +1478,7 @@ exports[`EuiDataGrid rendering renders custom column headers 1`] = `
                   data-test-subj="dataGridColumnResizer"
                 />
                 <div
-                  class="euiDataGridHeaderCell__content emotion-euiDataGridHeaderCell__content-left"
+                  class="euiDataGridHeaderCell__content emotion-euiDataGridHeaderCell__content"
                   title="A"
                 >
                   Column A
@@ -1520,7 +1520,7 @@ exports[`EuiDataGrid rendering renders custom column headers 1`] = `
                   data-test-subj="dataGridColumnResizer"
                 />
                 <div
-                  class="euiDataGridHeaderCell__content emotion-euiDataGridHeaderCell__content-left"
+                  class="euiDataGridHeaderCell__content emotion-euiDataGridHeaderCell__content"
                   title="B"
                 >
                   <div>
@@ -1840,7 +1840,7 @@ exports[`EuiDataGrid rendering renders with common and div attributes 1`] = `
                   data-test-subj="dataGridColumnResizer"
                 />
                 <div
-                  class="euiDataGridHeaderCell__content emotion-euiDataGridHeaderCell__content-left"
+                  class="euiDataGridHeaderCell__content emotion-euiDataGridHeaderCell__content"
                   title="A"
                 >
                   A
@@ -1882,7 +1882,7 @@ exports[`EuiDataGrid rendering renders with common and div attributes 1`] = `
                   data-test-subj="dataGridColumnResizer"
                 />
                 <div
-                  class="euiDataGridHeaderCell__content emotion-euiDataGridHeaderCell__content-left"
+                  class="euiDataGridHeaderCell__content emotion-euiDataGridHeaderCell__content"
                   title="B"
                 >
                   B

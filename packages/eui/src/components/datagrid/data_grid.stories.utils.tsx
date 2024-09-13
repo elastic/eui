@@ -227,7 +227,7 @@ export const defaultStorybookArgs = {
   'aria-label': 'EuiDataGrid',
   css: css`
     .euiDataGridRowCell--version,
-    .euiDataGridHeaderCell--version .euiDataGridHeaderCell__content {
+    .euiDataGridHeaderCell--version {
       text-align: center;
     }
   `,
