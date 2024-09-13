@@ -114,7 +114,9 @@ export const EuiDraggable: FunctionComponent<EuiDraggableProps> = ({
         const content = (
           <>
             <div
-              {...provided.draggableProps}
+              {...(customDragHandle === 'custom' && isDragging
+                ? {}
+                : provided.draggableProps)}
               {...(!hasCustomDragHandle ? provided.dragHandleProps : {})}
               ref={provided.innerRef}
               data-test-subj={dataTestSubj}
