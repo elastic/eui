@@ -1,0 +1,32 @@
+{
+  "name": "@elastic/eui-theme-rainbow",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tkajtoch/eui.git",
+    "directory": "packages/eui-theme-rainbow"
+  },
+  "private": true,
+  "devDependencies": {
+    "typescript": "^5.6.2"
+  },
+  "peerDependencies": {
+    "@elastic/eui": "^95.10.1"
+  },
+  "main": "lib/index.js",
+  "exports": {
+    "./lib/*": "./lib/*",
+    ".": {
+      "default": "./lib/index.js"
+    }
+  },
+  "files": [
+    "lib/",
+    "README.md"
+  ]
+}
