@@ -283,7 +283,11 @@ export class EuiDataGridCell extends Component<
 
     if (
       this.props.rowHeightsOptions?.defaultHeight !==
-      prevProps.rowHeightsOptions?.defaultHeight
+        prevProps.rowHeightsOptions?.defaultHeight ||
+      this.props.rowHeightsOptions?.lineHeight !==
+        prevProps.rowHeightsOptions?.lineHeight ||
+      this.props.gridStyles?.fontSize !== prevProps.gridStyles?.fontSize ||
+      this.props.gridStyles?.cellPadding !== prevProps.gridStyles?.cellPadding
     ) {
       this.recalculateLineHeight();
     }
@@ -337,6 +341,12 @@ export class EuiDataGridCell extends Component<
     if (nextProps.columnType !== this.props.columnType) return true;
     if (nextProps.width !== this.props.width) return true;
     if (nextProps.rowHeightsOptions !== this.props.rowHeightsOptions)
+      return true;
+    if (nextProps.gridStyles?.fontSize !== this.props.gridStyles?.fontSize)
+      return true;
+    if (
+      nextProps.gridStyles?.cellPadding !== this.props.gridStyles?.cellPadding
+    )
       return true;
     if (nextProps.renderCellValue !== this.props.renderCellValue) return true;
     if (nextProps.renderCellPopover !== this.props.renderCellPopover)
