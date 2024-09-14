@@ -93,15 +93,16 @@ export const CustomRowHeights: Story = {
   parameters: { controls: { include: ['rowHeights'] } },
   args: {
     rowHeights: {
-      2: 'auto',
-      3: 48,
-      4: {
+      1: 'auto',
+      2: 48,
+      3: {
         height: 56,
       },
-      5: {
+      4: {
         lineCount: 2,
       },
     },
+    onChange: undefined,
   },
   render: (rowHeightsOptions) => (
     <StatefulDataGrid {...storyArgs} rowHeightsOptions={rowHeightsOptions} />
@@ -112,6 +113,7 @@ export const CustomLineHeight: Story = {
   parameters: { controls: { include: ['lineHeight'] } },
   args: {
     lineHeight: '40px',
+    onChange: undefined,
   },
   render: (rowHeightsOptions) => (
     <StatefulDataGrid {...storyArgs} rowHeightsOptions={rowHeightsOptions} />
