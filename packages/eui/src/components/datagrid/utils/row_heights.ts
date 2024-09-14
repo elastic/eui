@@ -135,18 +135,12 @@ export class RowHeightUtils {
     return isObject(option) ? option.lineCount : undefined;
   }
 
-  calculateHeightForLineCount(
-    cellRef: HTMLElement,
-    lineCount: number,
-    excludePadding?: boolean
-  ) {
+  calculateHeightForLineCount(cellRef: HTMLElement, lineCount: number) {
     const computedStyles = window.getComputedStyle(cellRef, null);
     const lineHeight = parseInt(computedStyles.lineHeight, 10);
     const contentHeight = Math.ceil(lineCount * lineHeight);
 
-    return excludePadding
-      ? contentHeight
-      : contentHeight + this.styles.paddingTop + this.styles.paddingBottom;
+    return contentHeight + this.styles.paddingTop + this.styles.paddingBottom;
   }
 
   /**

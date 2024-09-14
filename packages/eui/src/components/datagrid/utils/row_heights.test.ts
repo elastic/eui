@@ -262,20 +262,6 @@ describe('RowHeightUtils', () => {
           132
         ); // 5 * 24 + 6 + 6
       });
-
-      it('excludes padding calculations when the excludePadding flag is true', () => {
-        // This is primarily used for rowHeight lineCount overrides that use the height cache,
-        // which already has padding calculations built in
-        expect(
-          rowHeightUtils.calculateHeightForLineCount(cell, 1, true)
-        ).toEqual(24); // 1 * 24
-        expect(
-          rowHeightUtils.calculateHeightForLineCount(cell, 3, true)
-        ).toEqual(72); // 3 * 24
-        expect(
-          rowHeightUtils.calculateHeightForLineCount(cell, 5, true)
-        ).toEqual(120); // 5 * 24
-      });
     });
   });
 

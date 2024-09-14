@@ -210,8 +210,7 @@ export class EuiDataGridCell extends Component<
 
       const height = rowHeightUtils!.calculateHeightForLineCount(
         this.cellContentsRef,
-        lineCount,
-        shouldUseHeightsCache
+        lineCount
       );
 
       if (shouldUseHeightsCache) {
