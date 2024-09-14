@@ -15,11 +15,7 @@ import {
   useState,
 } from 'react';
 import { GridOnItemsRenderedProps } from 'react-window';
-import {
-  useForceRender,
-  useLatest,
-  useEuiMemoizedStyles,
-} from '../../../services';
+import { useForceRender, useLatest } from '../../../services';
 import { isNumber, isObject } from '../../../services/predicate';
 import {
   EuiDataGridColumn,
@@ -29,7 +25,6 @@ import {
   EuiDataGridStyle,
   ImperativeGridApi,
 } from '../data_grid_types';
-import { euiDataGridVariables } from '../data_grid.styles';
 import { DataGridSortedContext } from './sorting';
 
 const AUTO_HEIGHT = 'auto';
@@ -85,31 +80,6 @@ export class RowHeightUtils {
   }
 
   /**
-   * Styles utils
-   */
-
-  private styles: {
-    paddingTop: number;
-    paddingBottom: number;
-  } = {
-    paddingTop: 0,
-    paddingBottom: 0,
-  };
-
-  cacheStyles(
-    gridStyles: EuiDataGridStyle,
-    cellPaddingsMap: ReturnType<typeof euiDataGridVariables>['cellPadding']
-  ) {
-    const paddingSize = gridStyles.cellPadding ?? 'm';
-    const padding = parseFloat(cellPaddingsMap[paddingSize]);
-
-    this.styles = {
-      paddingTop: padding,
-      paddingBottom: padding,
-    };
-  }
-
-  /**
    * Height types
    */
 
@@ -139,8 +109,10 @@ export class RowHeightUtils {
     const computedStyles = window.getComputedStyle(cellRef, null);
     const lineHeight = parseInt(computedStyles.lineHeight, 10);
     const contentHeight = Math.ceil(lineCount * lineHeight);
+    const padding = parseInt(computedStyles.paddingTop, 10);
 
-    return contentHeight + this.styles.paddingTop + this.styles.paddingBottom;
+    // Assumes both padding-top and bottom are the same
+    return contentHeight + padding * 2;
   }
 
   /**
@@ -328,7 +300,6 @@ export class RowHeightVirtualizationUtils extends RowHeightUtils {
 export const useRowHeightUtils = ({
   virtualization,
   rowHeightsOptions,
-  gridStyles,
   columns,
 }: {
   virtualization?:
@@ -374,15 +345,6 @@ export const useRowHeightUtils = ({
     rowHeightUtils,
     forceRenderRef,
   ]);
-
-  // Re-cache styles whenever grid density changes
-  const styleVars = useEuiMemoizedStyles(euiDataGridVariables);
-  useEffect(() => {
-    rowHeightUtils.cacheStyles(
-      { cellPadding: gridStyles.cellPadding },
-      styleVars.cellPadding
-    );
-  }, [gridStyles.cellPadding, rowHeightUtils, styleVars.cellPadding]);
 
   // Update row heights map to remove hidden columns whenever orderedVisibleColumns change
   useEffect(() => {

@@ -159,47 +159,6 @@ describe('RowHeightUtils', () => {
     });
   });
 
-  describe('styles utils', () => {
-    describe('cacheStyles', () => {
-      const mockCellPaddingsMap = {
-        s: '4px',
-        m: '6px',
-        l: '8px',
-      };
-
-      it('stores a styles instance variable based on the grid density', () => {
-        Object.entries(mockCellPaddingsMap).forEach(
-          ([densitySize, paddingStyle]) => {
-            const expectedPadding = parseFloat(paddingStyle);
-
-            rowHeightUtils.cacheStyles(
-              { cellPadding: densitySize as any },
-              mockCellPaddingsMap
-            );
-            // @ts-ignore this var is private, but we're inspecting it for the sake of the unit test
-            expect(rowHeightUtils.styles).toEqual({
-              paddingTop: expectedPadding,
-              paddingBottom: expectedPadding,
-            });
-          }
-        );
-      });
-
-      it('falls back to m-sized cellPadding if gridStyle.cellPadding is undefined', () => {
-        rowHeightUtils.cacheStyles(
-          { cellPadding: undefined },
-          mockCellPaddingsMap
-        );
-
-        // @ts-ignore this var is private, but we're inspecting it for the sake of the unit test
-        expect(rowHeightUtils.styles).toEqual({
-          paddingTop: 6,
-          paddingBottom: 6,
-        });
-      });
-    });
-  });
-
   describe('getHeightType', () => {
     it('returns a string enum based on rowHeightsOptions', () => {
       expect(rowHeightUtils.getHeightType(undefined)).toEqual('default');
@@ -242,13 +201,14 @@ describe('RowHeightUtils', () => {
     describe('calculateHeightForLineCount', () => {
       let getComputedStyleSpy: jest.SpyInstance;
       const cell = document.createElement('div');
-      const mockCellPaddingsMap = { s: '', m: '6px', l: '' };
 
       beforeEach(() => {
-        rowHeightUtils.cacheStyles({ cellPadding: 'm' }, mockCellPaddingsMap);
         getComputedStyleSpy = jest
           .spyOn(window, 'getComputedStyle')
-          .mockReturnValue({ lineHeight: '24px' } as CSSStyleDeclaration);
+          .mockReturnValue({
+            lineHeight: '24px',
+            paddingTop: '6px',
+          } as CSSStyleDeclaration);
       });
 
       afterEach(() => {
@@ -641,23 +601,6 @@ describe('useRowHeightUtils', () => {
       rowHeightsOptions: { defaultHeight: 300, rowHeights: { 0: 200 } },
     });
     expect(requestAnimationFrameSpy).toHaveBeenCalledTimes(3);
-  });
-
-  it('updates internal cached styles whenever gridStyle.cellPadding changes', () => {
-    const { result, rerender } = renderHook(useRowHeightUtils, {
-      initialProps: mockArgs,
-    });
-
-    rerender({
-      ...mockArgs,
-      gridStyles: { ...startingStyles, cellPadding: 's' },
-    });
-
-    // @ts-ignore - intentionally inspecting private var for test
-    expect(result.current.styles).toEqual({
-      paddingTop: 4,
-      paddingBottom: 4,
-    });
   });
 
   it('prunes columns from the row heights cache if a column is hidden', () => {
