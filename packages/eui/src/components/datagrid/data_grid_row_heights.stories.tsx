@@ -117,3 +117,16 @@ export const CustomLineHeight: Story = {
     <StatefulDataGrid {...storyArgs} rowHeightsOptions={rowHeightsOptions} />
   ),
 };
+
+// Visual regression test for https://github.com/elastic/eui/issues/7897
+// Control column checkboxes & buttons should vertically align with the first
+// line of text for both single and multiple lines of text
+export const CustomLineHeightControlColumn: Story = {
+  tags: ['vrt-only'],
+  render: () => (
+    <StatefulDataGrid
+      {...storyArgs}
+      rowHeightsOptions={{ lineHeight: '3', defaultHeight: { lineCount: 2 } }}
+    />
+  ),
+};

@@ -1085,7 +1085,7 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
               tabindex="-1"
             >
               <div
-                class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight emotion-euiDataGridRowCell__content-controlColumn-defaultHeight"
+                class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight emotion-euiDataGridRowCell__content-controlColumn-autoHeight"
                 data-datagrid-cellcontent="true"
               >
                 0
@@ -1142,7 +1142,7 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
               tabindex="-1"
             >
               <div
-                class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight emotion-euiDataGridRowCell__content-controlColumn-defaultHeight"
+                class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight emotion-euiDataGridRowCell__content-controlColumn-autoHeight"
                 data-datagrid-cellcontent="true"
               >
                 0
@@ -1161,7 +1161,7 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
               tabindex="-1"
             >
               <div
-                class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight emotion-euiDataGridRowCell__content-controlColumn-defaultHeight"
+                class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight emotion-euiDataGridRowCell__content-controlColumn-autoHeight"
                 data-datagrid-cellcontent="true"
               >
                 1
@@ -1218,7 +1218,7 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
               tabindex="-1"
             >
               <div
-                class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight emotion-euiDataGridRowCell__content-controlColumn-defaultHeight"
+                class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight emotion-euiDataGridRowCell__content-controlColumn-autoHeight"
                 data-datagrid-cellcontent="true"
               >
                 1
@@ -1237,7 +1237,7 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
               tabindex="-1"
             >
               <div
-                class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight emotion-euiDataGridRowCell__content-controlColumn-defaultHeight"
+                class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight emotion-euiDataGridRowCell__content-controlColumn-autoHeight"
                 data-datagrid-cellcontent="true"
               >
                 2
@@ -1294,7 +1294,7 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
               tabindex="-1"
             >
               <div
-                class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight emotion-euiDataGridRowCell__content-controlColumn-defaultHeight"
+                class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight emotion-euiDataGridRowCell__content-controlColumn-autoHeight"
                 data-datagrid-cellcontent="true"
               >
                 2

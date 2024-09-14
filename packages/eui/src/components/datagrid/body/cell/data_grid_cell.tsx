@@ -96,14 +96,7 @@ const EuiDataGridCellContent: FunctionComponent<
     const cssStyles = [
       styles.content.euiDataGridRowCell__content,
       ...(isControlColumn
-        ? [
-            // Control column cells should not be vertically centered (defaultHeight) except
-            // on single rows. They should be top-aligned for auto and lineCount heights
-            styles.content.controlColumn,
-            cellHeightType === 'default'
-              ? styles.content.defaultHeight
-              : styles.content.autoHeight,
-          ]
+        ? [styles.content.controlColumn, styles.content.autoHeight]
         : [
             // Regular data cells should always inherit height from the row wrapper,
             // except for auto height
