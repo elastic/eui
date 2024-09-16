@@ -32,14 +32,14 @@ const defaultState = {
   themeLanguage: THEME_LANGS[0],
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   changeThemeLanguage: (language: THEME_LANGUAGES['id']) => {},
-  theme: THEME_NAMES[0],
+  theme: undefined as string | undefined,
   changeTheme: (themeValue: EUI_THEME['value']) => {
     applyTheme(themeValue);
   },
 };
 
 interface State {
-  theme: EUI_THEME['value'];
+  theme?: EUI_THEME['value'];
   themeLanguage: THEME_LANGUAGES['id'];
 }
 
@@ -49,9 +49,8 @@ export class ThemeProvider extends React.Component<PropsWithChildren, State> {
   constructor(props: object) {
     super(props);
 
-    let theme = localStorage.getItem('theme');
-    if (!theme || !THEME_NAMES.includes(theme)) theme = defaultState.theme;
-    applyTheme(theme);
+    const theme = localStorage.getItem('theme') || undefined;
+    applyTheme(theme && THEME_NAMES.includes(theme) ? theme : THEME_NAMES[0]);
 
     const themeLanguage = this.getThemeLanguage();
 
