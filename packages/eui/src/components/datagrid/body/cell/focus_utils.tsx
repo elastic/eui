@@ -104,17 +104,21 @@ export const FocusTrappedChildren: FunctionComponent<
 
     cellEl.setAttribute(
       'aria-describedby',
-      classNames(sortingId, ariaDescribedById, currentAriaDescribedbyId)
+      classNames(
+        sortingId,
+        ariaDescribedById,
+        !isCellEntered && currentAriaDescribedbyId
+      )
     );
 
     return () => {
       if (currentAriaDescribedbyId) {
-        cellEl.setAttribute('aria-descibedby', currentAriaDescribedbyId);
+        cellEl.setAttribute('aria-describedby', currentAriaDescribedbyId);
       } else {
         cellEl.removeAttribute('aria-describedby');
       }
     };
-  }, [cellEl, ariaDescribedById]);
+  }, [cellEl, ariaDescribedById, isCellEntered]);
 
   useEffect(() => {
     if (isCellEntered) {
