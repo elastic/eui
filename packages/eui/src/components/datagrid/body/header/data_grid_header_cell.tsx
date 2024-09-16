@@ -317,6 +317,7 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
             {({ draggableProps, dragHandleProps }, { isDragging }) => {
               const {
                 role, // extracting role to not pass it along
+                tabIndex, // we want to use the columnheader rowing tabindex instead
                 'aria-describedby': ariaDescribedby,
                 ...restDragHandleProps
               } = dragHandleProps ?? {};

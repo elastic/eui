@@ -93,6 +93,7 @@ export const EuiDraggable: FunctionComponent<EuiDraggableProps> = ({
     >
       {(provided, snapshot, rubric) => {
         const { isDragging } = snapshot;
+        const isFullyCustomDragHandle = customDragHandle === 'custom';
 
         const cssStyles = [
           styles.euiDraggable,
@@ -114,7 +115,7 @@ export const EuiDraggable: FunctionComponent<EuiDraggableProps> = ({
         const content = (
           <>
             <div
-              {...(customDragHandle === 'custom' && isDragging
+              {...(isFullyCustomDragHandle && isDragging
                 ? {}
                 : provided.draggableProps)}
               {...(!hasCustomDragHandle ? provided.dragHandleProps : {})}
@@ -132,14 +133,14 @@ export const EuiDraggable: FunctionComponent<EuiDraggableProps> = ({
               role={
                 hasInteractiveChildren
                   ? 'group'
-                  : customDragHandle === 'custom'
+                  : isFullyCustomDragHandle
                   ? undefined // prevent wrapper role from removing semantics of the children
                   : provided.dragHandleProps?.role
               }
               // If the container includes an interactive element, we remove the tabindex=0
               // because [role="group"] does not permit or warrant a tab stop
               tabIndex={
-                hasInteractiveChildren
+                hasInteractiveChildren || isFullyCustomDragHandle
                   ? undefined
                   : provided.dragHandleProps?.tabIndex
               }
