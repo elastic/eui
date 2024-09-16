@@ -103,7 +103,9 @@ const storybookToolbarWritingModes: Array<
 export const euiProviderDecoratorGlobals: Preview['globalTypes'] = {
   colorMode: {
     description: 'Color mode for EuiProvider theme',
-    defaultValue: 'light',
+    defaultValue: window?.matchMedia?.('(prefers-color-scheme: dark)').matches
+      ? 'dark'
+      : 'light',
     toolbar: {
       title: 'Color mode',
       items: storybookToolbarColorModes,
