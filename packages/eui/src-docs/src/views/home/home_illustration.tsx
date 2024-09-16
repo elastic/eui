@@ -1,17 +1,17 @@
-import React, { useContext } from 'react';
-import { ThemeContext } from '../../components/with_theme';
+import React from 'react';
 import illustrationDarkMode from '../../images/illustration-eui-hero-500-darkmode-shadow.svg';
 import illustrationLightMode from '../../images/illustration-eui-hero-500-shadow.svg';
-import { EuiImage } from '../../../../src/components/image';
+import { EuiImage, useEuiTheme } from '../../../../src';
 
 function Icon() {
-  const themeContext: any = useContext(ThemeContext);
+  const { colorMode } = useEuiTheme();
 
-  const illustration = themeContext.theme.includes('dark') ? (
-    <EuiImage alt="Elastic UI" url={illustrationDarkMode} />
-  ) : (
-    <EuiImage alt="Elastic UI" url={illustrationLightMode} />
-  );
+  const illustration =
+    colorMode === 'DARK' ? (
+      <EuiImage alt="Elastic UI" url={illustrationDarkMode} />
+    ) : (
+      <EuiImage alt="Elastic UI" url={illustrationLightMode} />
+    );
 
   return (
     <div className="guideHomePage__illustration">
