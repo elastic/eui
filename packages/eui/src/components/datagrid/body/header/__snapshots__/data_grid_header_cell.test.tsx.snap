@@ -42,5 +42,12 @@ exports[`EuiDataGridHeaderCell renders 1`] = `
       />
     </button>
   </div>
+  <span
+    aria-hidden="true"
+    class="euiScreenReaderOnly"
+    data-tabular-copy-marker="true"
+  >
+    ↵
+  </span>
 </div>
 `;

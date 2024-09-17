@@ -642,6 +642,13 @@ exports[`EuiDataGrid rendering renders additional toolbar controls 1`] = `
                     />
                   </button>
                 </div>
+                <span
+                  aria-hidden="true"
+                  class="euiScreenReaderOnly"
+                  data-tabular-copy-marker="true"
+                >
+                  ↦
+                </span>
               </div>
               <div
                 aria-describedby="euiDataGridCellHeader_generated-id_sorting"
@@ -684,6 +691,13 @@ exports[`EuiDataGrid rendering renders additional toolbar controls 1`] = `
                     />
                   </button>
                 </div>
+                <span
+                  aria-hidden="true"
+                  class="euiScreenReaderOnly"
+                  data-tabular-copy-marker="true"
+                >
+                  ↵
+                </span>
               </div>
             </div>
             <div
@@ -1034,6 +1048,13 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
                 <span>
                   leading heading
                 </span>
+                <span
+                  aria-hidden="true"
+                  class="euiScreenReaderOnly"
+                  data-tabular-copy-marker="true"
+                >
+                  ↦
+                </span>
               </div>
               <div
                 aria-describedby="euiDataGridCellHeader_generated-id_sorting"
@@ -1076,6 +1097,13 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
                     />
                   </button>
                 </div>
+                <span
+                  aria-hidden="true"
+                  class="euiScreenReaderOnly"
+                  data-tabular-copy-marker="true"
+                >
+                  ↦
+                </span>
               </div>
               <div
                 aria-describedby="euiDataGridCellHeader_generated-id_sorting"
@@ -1118,6 +1146,13 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
                     />
                   </button>
                 </div>
+                <span
+                  aria-hidden="true"
+                  class="euiScreenReaderOnly"
+                  data-tabular-copy-marker="true"
+                >
+                  ↦
+                </span>
               </div>
               <div
                 class="euiDataGridHeaderCell euiDataGridHeaderCell--controlColumn trailingControlCol emotion-euiDataGridHeaderCell"
@@ -1132,6 +1167,13 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
               >
                 <span>
                   trailing heading
+                </span>
+                <span
+                  aria-hidden="true"
+                  class="euiScreenReaderOnly"
+                  data-tabular-copy-marker="true"
+                >
+                  ↵
                 </span>
               </div>
             </div>
@@ -1663,6 +1705,13 @@ exports[`EuiDataGrid rendering renders custom column headers 1`] = `
                     />
                   </button>
                 </div>
+                <span
+                  aria-hidden="true"
+                  class="euiScreenReaderOnly"
+                  data-tabular-copy-marker="true"
+                >
+                  ↦
+                </span>
               </div>
               <div
                 aria-describedby="euiDataGridCellHeader_generated-id_sorting"
@@ -1707,6 +1756,13 @@ exports[`EuiDataGrid rendering renders custom column headers 1`] = `
                     />
                   </button>
                 </div>
+                <span
+                  aria-hidden="true"
+                  class="euiScreenReaderOnly"
+                  data-tabular-copy-marker="true"
+                >
+                  ↵
+                </span>
               </div>
             </div>
             <div
@@ -2081,6 +2137,13 @@ exports[`EuiDataGrid rendering renders with common and div attributes 1`] = `
                     />
                   </button>
                 </div>
+                <span
+                  aria-hidden="true"
+                  class="euiScreenReaderOnly"
+                  data-tabular-copy-marker="true"
+                >
+                  ↦
+                </span>
               </div>
               <div
                 aria-describedby="euiDataGridCellHeader_generated-id_sorting"
@@ -2123,6 +2186,13 @@ exports[`EuiDataGrid rendering renders with common and div attributes 1`] = `
                     />
                   </button>
                 </div>
+                <span
+                  aria-hidden="true"
+                  class="euiScreenReaderOnly"
+                  data-tabular-copy-marker="true"
+                >
+                  ↵
+                </span>
               </div>
             </div>
             <div

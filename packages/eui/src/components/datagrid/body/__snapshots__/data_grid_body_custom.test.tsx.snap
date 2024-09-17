@@ -50,6 +50,13 @@ exports[`EuiDataGridBodyCustomRender treats \`renderCustomGridBody\` as a render
           />
         </button>
       </div>
+      <span
+        aria-hidden="true"
+        class="euiScreenReaderOnly"
+        data-tabular-copy-marker="true"
+      >
+        ↦
+      </span>
     </div>
     <div
       aria-describedby="euiDataGridCellHeader_generated-id_sorting"
@@ -92,6 +99,13 @@ exports[`EuiDataGridBodyCustomRender treats \`renderCustomGridBody\` as a render
           />
         </button>
       </div>
+      <span
+        aria-hidden="true"
+        class="euiScreenReaderOnly"
+        data-tabular-copy-marker="true"
+      >
+        ↵
+      </span>
     </div>
   </div>
   <div

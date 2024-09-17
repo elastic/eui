@@ -99,6 +99,7 @@ export const EuiDataGridBodyCustomRender: FunctionComponent<
     columnWidths,
     defaultColumnWidth,
     setColumnWidth,
+    visibleColCount,
     setVisibleColumns,
     switchColumnPos,
     sorting,

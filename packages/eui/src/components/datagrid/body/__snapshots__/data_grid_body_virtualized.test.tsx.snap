@@ -54,6 +54,13 @@ exports[`EuiDataGridBodyVirtualized renders 1`] = `
             />
           </button>
         </div>
+        <span
+          aria-hidden="true"
+          class="euiScreenReaderOnly"
+          data-tabular-copy-marker="true"
+        >
+          ↦
+        </span>
       </div>
       <div
         aria-describedby="euiDataGridCellHeader_generated-id_sorting"
@@ -96,6 +103,13 @@ exports[`EuiDataGridBodyVirtualized renders 1`] = `
             />
           </button>
         </div>
+        <span
+          aria-hidden="true"
+          class="euiScreenReaderOnly"
+          data-tabular-copy-marker="true"
+        >
+          ↵
+        </span>
       </div>
     </div>
     <div

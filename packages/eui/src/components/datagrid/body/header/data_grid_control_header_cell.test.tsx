@@ -14,6 +14,7 @@ import { EuiDataGridControlHeaderCell } from './data_grid_control_header_cell';
 describe('EuiDataGridControlHeaderCell', () => {
   const props = {
     index: 0,
+    visibleColCount: 1,
     controlColumn: {
       id: 'someControlColumn',
       headerCellRender: () => <button data-euigrid-tab-managed="true" />,
@@ -61,6 +62,13 @@ describe('EuiDataGridControlHeaderCell', () => {
           style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
           tabindex="-1"
         />
+        <span
+          aria-hidden="true"
+          class="euiScreenReaderOnly"
+          data-tabular-copy-marker="true"
+        >
+          ↵
+        </span>
       </div>
     `);
   });

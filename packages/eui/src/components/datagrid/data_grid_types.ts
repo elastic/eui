@@ -140,6 +140,7 @@ export interface EuiDataGridHeaderRowPropsSpecificProps {
   schemaDetectors: EuiDataGridSchemaDetector[];
   defaultColumnWidth?: number | null;
   setColumnWidth: (columnId: string, width: number) => void;
+  visibleColCount: number;
   setVisibleColumns: (columnId: string[]) => void;
   switchColumnPos: (colFromId: string, colToId: string) => void;
   gridStyles: EuiDataGridStyle;
@@ -160,6 +161,7 @@ export interface EuiDataGridHeaderCellProps
 
 export interface EuiDataGridControlHeaderCellProps {
   index: number;
+  visibleColCount: number;
   controlColumn: EuiDataGridControlColumn;
 }
 
@@ -167,6 +169,7 @@ export interface EuiDataGridHeaderCellWrapperProps {
   children: ReactNode | ((renderFocusTrap: boolean) => ReactNode);
   id: string;
   index: number;
+  visibleColCount: number;
   width?: number | null;
   className?: string;
   'aria-label'?: AriaAttributes['aria-label'];

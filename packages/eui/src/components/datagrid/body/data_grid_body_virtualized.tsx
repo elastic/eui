@@ -194,6 +194,7 @@ export const EuiDataGridBodyVirtualized: FunctionComponent<EuiDataGridBodyProps>
         columnWidths,
         defaultColumnWidth,
         setColumnWidth,
+        visibleColCount,
         setVisibleColumns,
         switchColumnPos,
         sorting,
