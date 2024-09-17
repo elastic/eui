@@ -208,6 +208,7 @@ export const EuiDataGridBodyVirtualized: FunctionComponent<EuiDataGridBodyProps>
         renderCellPopover,
         rowIndex: visibleRowCount,
         visibleRowIndex: visibleRowCount,
+        visibleColCount,
         interactiveCellId,
         leadingControlColumns,
         trailingControlColumns,

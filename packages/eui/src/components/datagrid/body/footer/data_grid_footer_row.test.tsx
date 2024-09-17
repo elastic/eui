@@ -17,6 +17,7 @@ describe('EuiDataGridFooterRow', () => {
     leadingControlColumns: [],
     trailingControlColumns: [],
     columns: [{ id: 'someColumn' }, { id: 'someColumnWithoutSchema' }],
+    visibleColCount: 2,
     schema: { someColumn: { columnType: 'string' } },
     columnWidths: { someColumn: 30 },
     renderCellValue: () => <div />,
@@ -35,7 +36,7 @@ describe('EuiDataGridFooterRow', () => {
       >
         <div
           aria-rowindex="11"
-          class="euiDataGridRowCell euiDataGridRowCell--string euiDataGridFooterCell emotion-euiDataGridRowCell-euiDataGridFooterCell"
+          class="euiDataGridRowCell euiDataGridRowCell--string euiDataGridFooterCell euiDataGridRowCell--firstColumn emotion-euiDataGridRowCell-euiDataGridFooterCell"
           data-gridcell-column-id="someColumn"
           data-gridcell-column-index="0"
           data-gridcell-row-index="10"
@@ -61,7 +62,7 @@ describe('EuiDataGridFooterRow', () => {
         </div>
         <div
           aria-rowindex="11"
-          class="euiDataGridRowCell euiDataGridFooterCell emotion-euiDataGridRowCell-euiDataGridFooterCell"
+          class="euiDataGridRowCell euiDataGridFooterCell euiDataGridRowCell--lastColumn emotion-euiDataGridRowCell-euiDataGridFooterCell"
           data-gridcell-column-id="someColumnWithoutSchema"
           data-gridcell-column-index="1"
           data-gridcell-row-index="10"
@@ -81,7 +82,7 @@ describe('EuiDataGridFooterRow', () => {
             class="euiScreenReaderOnly"
             data-tabular-copy-marker="true"
           >
-            ↦
+            ↵
           </span>
         </div>
       </div>

@@ -113,6 +113,7 @@ export const EuiDataGridBodyCustomRender: FunctionComponent<
     renderCellPopover,
     rowIndex: visibleRows.visibleRowCount,
     visibleRowIndex: visibleRows.visibleRowCount,
+    visibleColCount,
     interactiveCellId,
     leadingControlColumns,
     trailingControlColumns,

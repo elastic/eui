@@ -190,6 +190,7 @@ export type EuiDataGridFooterRowProps = CommonProps &
     renderCellPopover?: EuiDataGridCellProps['renderCellPopover'];
     interactiveCellId: EuiDataGridCellProps['interactiveCellId'];
     visibleRowIndex?: number;
+    visibleColCount: number;
     gridStyles: EuiDataGridStyle;
   };
 
