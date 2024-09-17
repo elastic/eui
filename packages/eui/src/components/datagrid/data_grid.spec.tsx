@@ -720,6 +720,23 @@ describe('EuiDataGrid', () => {
       });
     });
   });
+
+  describe('copying tabular content', () => {
+    it('renders one newline per-row and renders horizontal tab characters between cells', () => {
+      cy.realMount(<EuiDataGrid {...baseProps} />);
+
+      cy.selectAndCopy('.euiDataGrid__content').then((copiedText) => {
+        expect(copiedText).to.eq(
+          `First\tSecond
+a, 0\tb, 0
+a, 1\tb, 1
+a, 2\tb, 2
+a, footer\tb, footer
+`
+        );
+      });
+    });
+  });
 });
 
 function getGridData() {
