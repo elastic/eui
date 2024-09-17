@@ -26,6 +26,8 @@ import {
   RIGHT_ALIGNMENT,
   SortDirection,
   RenderWithEuiTheme,
+  OverrideCopiedTabularContent,
+  tabularCopyMarkers,
 } from '../../services';
 import { CommonProps } from '../common';
 import { isFunction } from '../../services/predicate';
@@ -547,18 +549,20 @@ export class EuiBasicTable<T extends object = any> extends Component<
           {this.renderSelectAll(true)}
           {this.renderTableMobileSort()}
         </EuiTableHeaderMobile>
-        <EuiTable
-          id={this.tableId}
-          tableLayout={tableLayout}
-          responsiveBreakpoint={responsiveBreakpoint}
-          compressed={compressed}
-          css={loading && safariLoadingWorkaround}
-        >
-          {this.renderTableCaption()}
-          {this.renderTableHead()}
-          {this.renderTableBody()}
-          {this.renderTableFooter()}
-        </EuiTable>
+        <OverrideCopiedTabularContent>
+          <EuiTable
+            id={this.tableId}
+            tableLayout={tableLayout}
+            responsiveBreakpoint={responsiveBreakpoint}
+            compressed={compressed}
+            css={loading && safariLoadingWorkaround}
+          >
+            {this.renderTableCaption()}
+            {this.renderTableHead()}
+            {this.renderTableBody()}
+            {this.renderTableFooter()}
+          </EuiTable>
+        </OverrideCopiedTabularContent>
       </>
     );
   }
@@ -664,7 +668,9 @@ export class EuiBasicTable<T extends object = any> extends Component<
     return (
       <EuiScreenReaderOnly>
         <caption css={euiTableCaptionStyles} className="euiTableCaption">
+          {tabularCopyMarkers.ariaHiddenNoCopyBoundary}
           <EuiDelayRender>{captionElement}</EuiDelayRender>
+          {tabularCopyMarkers.ariaHiddenNoCopyBoundary}
         </caption>
       </EuiScreenReaderOnly>
     );
@@ -733,7 +739,10 @@ export class EuiBasicTable<T extends object = any> extends Component<
 
     if (selection) {
       headers.push(
-        <EuiTableHeaderCellCheckbox key="_selection_column_h">
+        <EuiTableHeaderCellCheckbox
+          key="_selection_column_h"
+          append={this.renderCopyChar(-1)}
+        >
           {this.renderSelectAll(false)}
         </EuiTableHeaderCellCheckbox>
       );
@@ -754,15 +763,21 @@ export class EuiBasicTable<T extends object = any> extends Component<
 
       const columnAlign = align || this.getAlignForDataType(dataType);
 
+      const sharedProps = {
+        width,
+        description,
+        mobileOptions,
+        align: columnAlign,
+        append: this.renderCopyChar(index),
+      };
+
       // actions column
       if ((column as EuiTableActionsColumnType<T>).actions) {
         headers.push(
           <EuiTableHeaderCell
+            {...sharedProps}
             key={`_actions_h_${index}`}
             align="right"
-            width={width}
-            description={description}
-            mobileOptions={mobileOptions}
           >
             {name}
           </EuiTableHeaderCell>
@@ -785,14 +800,11 @@ export class EuiBasicTable<T extends object = any> extends Component<
         }
         headers.push(
           <EuiTableHeaderCell
+            {...sharedProps}
             key={`_computed_column_h_${index}`}
-            align={columnAlign}
-            width={width}
-            mobileOptions={mobileOptions}
             data-test-subj={`tableHeaderCell_${
               typeof name === 'string' ? name : ''
             }_${index}`}
-            description={description}
             {...sorting}
           >
             {name}
@@ -829,12 +841,9 @@ export class EuiBasicTable<T extends object = any> extends Component<
       }
       headers.push(
         <EuiTableHeaderCell
+          {...sharedProps}
           key={`_data_h_${String(field)}_${index}`}
-          align={columnAlign}
-          width={width}
-          mobileOptions={mobileOptions}
           data-test-subj={`tableHeaderCell_${String(field)}_${index}`}
-          description={description}
           {...sorting}
         >
           {name}
@@ -1056,7 +1065,11 @@ export class EuiBasicTable<T extends object = any> extends Component<
         isExpandedRow={true}
         hasSelection={!!selection}
       >
-        <EuiTableRowCell colSpan={expandedRowColSpan} textOnly={false}>
+        <EuiTableRowCell
+          colSpan={expandedRowColSpan}
+          textOnly={false}
+          append={tabularCopyMarkers.hiddenNewline}
+        >
           {itemIdToExpandedRowMap![itemId]}
         </EuiTableRowCell>
       </EuiTableRow>
@@ -1115,7 +1128,7 @@ export class EuiBasicTable<T extends object = any> extends Component<
       }
     };
     return [
-      <EuiTableRowCellCheckbox key={key}>
+      <EuiTableRowCellCheckbox key={key} append={this.renderCopyChar(-1)}>
         <EuiI18n
           token="euiBasicTable.selectThisRow"
           default="Select row {index}"
@@ -1196,6 +1209,7 @@ export class EuiBasicTable<T extends object = any> extends Component<
         align="right"
         textOnly={false}
         hasActions={hasCustomActions ? 'custom' : true}
+        append={this.renderCopyChar(columnIndex)}
       >
         <ExpandedItemActions
           actions={actualActions}
@@ -1221,7 +1235,14 @@ export class EuiBasicTable<T extends object = any> extends Component<
     const value = get(item, field as string);
     const content = contentRenderer(value, item);
 
-    return this.renderItemCell(item, column, key, content, setScopeRow);
+    return this.renderItemCell(
+      item,
+      column,
+      columnIndex,
+      key,
+      content,
+      setScopeRow
+    );
   }
 
   renderItemComputedCell(
@@ -1236,12 +1257,13 @@ export class EuiBasicTable<T extends object = any> extends Component<
     const contentRenderer = render || this.getRendererForDataType();
     const content = contentRenderer(item);
 
-    return this.renderItemCell(item, column, key, content, false);
+    return this.renderItemCell(item, column, columnIndex, key, content, false);
   }
 
   renderItemCell(
     item: T,
     column: EuiBasicTableColumn<T>,
+    columnIndex: number,
     key: string | number,
     content: ReactNode,
     setScopeRow: boolean
@@ -1277,18 +1299,25 @@ export class EuiBasicTable<T extends object = any> extends Component<
         setScopeRow={setScopeRow}
         mobileOptions={{
           ...mobileOptions,
-          render:
-            mobileOptions && mobileOptions.render && mobileOptions.render(item),
-          header:
-            mobileOptions && mobileOptions.header === false ? false : name,
+          render: mobileOptions?.render?.(item),
+          header: mobileOptions?.header ?? name,
         }}
         {...cellProps}
         {...rest}
+        append={this.renderCopyChar(columnIndex)}
       >
         {content}
       </EuiTableRowCell>
     );
   }
+
+  renderCopyChar = (columnIndex: number) => {
+    const isLastColumn = columnIndex === this.props.columns.length - 1;
+
+    return isLastColumn
+      ? tabularCopyMarkers.hiddenNewline
+      : tabularCopyMarkers.hiddenTab;
+  };
 
   resolveColumnSortDirection = (column: EuiBasicTableColumn<T>) => {
     const { sorting } = this.props;

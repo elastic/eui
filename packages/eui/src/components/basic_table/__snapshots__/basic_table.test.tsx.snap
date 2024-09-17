@@ -20,6 +20,13 @@ exports[`EuiBasicTable actions custom item actions 1`] = `
         </button>
       </div>
     </div>
+    <span
+      aria-hidden="true"
+      class="euiScreenReaderOnly"
+      data-tabular-copy-marker="true"
+    >
+      ↵
+    </span>
   </td>
 </tr>
 `;
@@ -30,6 +37,13 @@ exports[`EuiBasicTable renders (bare-bones) 1`] = `
   class="euiBasicTable testClass1 testClass2 emotion-euiTestCss"
   data-test-subj="test subject string"
 >
+  <span
+    aria-hidden="true"
+    class="euiScreenReaderOnly"
+    data-tabular-copy-marker="true"
+  >
+    ⁣
+  </span>
   <table
     class="euiTable emotion-euiTable-fixed-uncompressed-desktop"
     id="__table_generated-id"
@@ -37,7 +51,18 @@ exports[`EuiBasicTable renders (bare-bones) 1`] = `
   >
     <caption
       class="euiTableCaption emotion-euiTableCaptionStyles-euiScreenReaderOnly"
-    />
+    >
+      <span
+        aria-hidden="true"
+      >
+        ⁢
+      </span>
+      <span
+        aria-hidden="true"
+      >
+        ⁢
+      </span>
+    </caption>
     <thead>
       <tr>
         <th
@@ -61,6 +86,13 @@ exports[`EuiBasicTable renders (bare-bones) 1`] = `
               description
             </span>
           </div>
+          <span
+            aria-hidden="true"
+            class="euiScreenReaderOnly"
+            data-tabular-copy-marker="true"
+          >
+            ↵
+          </span>
         </th>
       </tr>
     </thead>
@@ -82,6 +114,13 @@ exports[`EuiBasicTable renders (bare-bones) 1`] = `
               name1
             </span>
           </div>
+          <span
+            aria-hidden="true"
+            class="euiScreenReaderOnly"
+            data-tabular-copy-marker="true"
+          >
+            ↵
+          </span>
         </td>
       </tr>
       <tr
@@ -99,6 +138,13 @@ exports[`EuiBasicTable renders (bare-bones) 1`] = `
               name2
             </span>
           </div>
+          <span
+            aria-hidden="true"
+            class="euiScreenReaderOnly"
+            data-tabular-copy-marker="true"
+          >
+            ↵
+          </span>
         </td>
       </tr>
       <tr
@@ -116,10 +162,24 @@ exports[`EuiBasicTable renders (bare-bones) 1`] = `
               name3
             </span>
           </div>
+          <span
+            aria-hidden="true"
+            class="euiScreenReaderOnly"
+            data-tabular-copy-marker="true"
+          >
+            ↵
+          </span>
         </td>
       </tr>
     </tbody>
   </table>
+  <span
+    aria-hidden="true"
+    class="euiScreenReaderOnly"
+    data-tabular-copy-marker="true"
+  >
+    ⁣
+  </span>
 </div>
 `;
 
@@ -127,6 +187,13 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
 <div
   class="euiBasicTable"
 >
+  <span
+    aria-hidden="true"
+    class="euiScreenReaderOnly"
+    data-tabular-copy-marker="true"
+  >
+    ⁣
+  </span>
   <table
     class="euiTable emotion-euiTable-fixed-uncompressed-desktop"
     id="__table_generated-id"
@@ -134,7 +201,18 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
   >
     <caption
       class="euiTableCaption emotion-euiTableCaptionStyles-euiScreenReaderOnly"
-    />
+    >
+      <span
+        aria-hidden="true"
+      >
+        ⁢
+      </span>
+      <span
+        aria-hidden="true"
+      >
+        ⁢
+      </span>
+    </caption>
     <thead>
       <tr>
         <th
@@ -165,6 +243,13 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
               </div>
             </div>
           </div>
+          <span
+            aria-hidden="true"
+            class="euiScreenReaderOnly"
+            data-tabular-copy-marker="true"
+          >
+            ↦
+          </span>
         </th>
         <th
           aria-sort="ascending"
@@ -198,6 +283,13 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
               />
             </div>
           </button>
+          <span
+            aria-hidden="true"
+            class="euiScreenReaderOnly"
+            data-tabular-copy-marker="true"
+          >
+            ↦
+          </span>
         </th>
         <th
           class="euiTableHeaderCell emotion-euiTableHeaderCell"
@@ -220,6 +312,13 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
               your id
             </span>
           </div>
+          <span
+            aria-hidden="true"
+            class="euiScreenReaderOnly"
+            data-tabular-copy-marker="true"
+          >
+            ↦
+          </span>
         </th>
         <th
           class="euiTableHeaderCell emotion-euiTableHeaderCell"
@@ -242,6 +341,13 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
               your age
             </span>
           </div>
+          <span
+            aria-hidden="true"
+            class="euiScreenReaderOnly"
+            data-tabular-copy-marker="true"
+          >
+            ↦
+          </span>
         </th>
         <th
           class="euiTableHeaderCell emotion-euiTableHeaderCell"
@@ -258,6 +364,13 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
               Actions
             </span>
           </div>
+          <span
+            aria-hidden="true"
+            class="euiScreenReaderOnly"
+            data-tabular-copy-marker="true"
+          >
+            ↵
+          </span>
         </th>
       </tr>
     </thead>
@@ -294,6 +407,13 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
               </div>
             </div>
           </div>
+          <span
+            aria-hidden="true"
+            class="euiScreenReaderOnly"
+            data-tabular-copy-marker="true"
+          >
+            ↦
+          </span>
         </td>
         <td
           class="euiTableRowCell emotion-euiTableRowCell-middle-desktop"
@@ -303,6 +423,13 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
           >
             NAME1
           </div>
+          <span
+            aria-hidden="true"
+            class="euiScreenReaderOnly"
+            data-tabular-copy-marker="true"
+          >
+            ↦
+          </span>
         </td>
         <td
           class="euiTableRowCell emotion-euiTableRowCell-middle-desktop"
@@ -316,6 +443,13 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
               1
             </span>
           </div>
+          <span
+            aria-hidden="true"
+            class="euiScreenReaderOnly"
+            data-tabular-copy-marker="true"
+          >
+            ↦
+          </span>
         </td>
         <td
           class="euiTableRowCell emotion-euiTableRowCell-middle-desktop"
@@ -329,6 +463,13 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
               20
             </span>
           </div>
+          <span
+            aria-hidden="true"
+            class="euiScreenReaderOnly"
+            data-tabular-copy-marker="true"
+          >
+            ↦
+          </span>
         </td>
         <td
           class="euiTableRowCell euiTableRowCell--hasActions emotion-euiTableRowCell-hasActions-middle-desktop-actions"
@@ -373,6 +514,13 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
               </button>
             </span>
           </div>
+          <span
+            aria-hidden="true"
+            class="euiScreenReaderOnly"
+            data-tabular-copy-marker="true"
+          >
+            ↵
+          </span>
         </td>
       </tr>
       <tr
@@ -405,6 +553,13 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
               </div>
             </div>
           </div>
+          <span
+            aria-hidden="true"
+            class="euiScreenReaderOnly"
+            data-tabular-copy-marker="true"
+          >
+            ↦
+          </span>
         </td>
         <td
           class="euiTableRowCell emotion-euiTableRowCell-middle-desktop"
@@ -414,6 +569,13 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
           >
             NAME2
           </div>
+          <span
+            aria-hidden="true"
+            class="euiScreenReaderOnly"
+            data-tabular-copy-marker="true"
+          >
+            ↦
+          </span>
         </td>
         <td
           class="euiTableRowCell emotion-euiTableRowCell-middle-desktop"
@@ -427,6 +589,13 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
               2
             </span>
           </div>
+          <span
+            aria-hidden="true"
+            class="euiScreenReaderOnly"
+            data-tabular-copy-marker="true"
+          >
+            ↦
+          </span>
         </td>
         <td
           class="euiTableRowCell emotion-euiTableRowCell-middle-desktop"
@@ -440,6 +609,13 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
               21
             </span>
           </div>
+          <span
+            aria-hidden="true"
+            class="euiScreenReaderOnly"
+            data-tabular-copy-marker="true"
+          >
+            ↦
+          </span>
         </td>
         <td
           class="euiTableRowCell euiTableRowCell--hasActions emotion-euiTableRowCell-hasActions-middle-desktop-actions"
@@ -484,6 +660,13 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
               </button>
             </span>
           </div>
+          <span
+            aria-hidden="true"
+            class="euiScreenReaderOnly"
+            data-tabular-copy-marker="true"
+          >
+            ↵
+          </span>
         </td>
       </tr>
       <tr
@@ -516,6 +699,13 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
               </div>
             </div>
           </div>
+          <span
+            aria-hidden="true"
+            class="euiScreenReaderOnly"
+            data-tabular-copy-marker="true"
+          >
+            ↦
+          </span>
         </td>
         <td
           class="euiTableRowCell emotion-euiTableRowCell-middle-desktop"
@@ -525,6 +715,13 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
           >
             NAME3
           </div>
+          <span
+            aria-hidden="true"
+            class="euiScreenReaderOnly"
+            data-tabular-copy-marker="true"
+          >
+            ↦
+          </span>
         </td>
         <td
           class="euiTableRowCell emotion-euiTableRowCell-middle-desktop"
@@ -538,6 +735,13 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
               3
             </span>
           </div>
+          <span
+            aria-hidden="true"
+            class="euiScreenReaderOnly"
+            data-tabular-copy-marker="true"
+          >
+            ↦
+          </span>
         </td>
         <td
           class="euiTableRowCell emotion-euiTableRowCell-middle-desktop"
@@ -551,6 +755,13 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
               22
             </span>
           </div>
+          <span
+            aria-hidden="true"
+            class="euiScreenReaderOnly"
+            data-tabular-copy-marker="true"
+          >
+            ↦
+          </span>
         </td>
         <td
           class="euiTableRowCell euiTableRowCell--hasActions emotion-euiTableRowCell-hasActions-middle-desktop-actions"
@@ -595,6 +806,13 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
               </button>
             </span>
           </div>
+          <span
+            aria-hidden="true"
+            class="euiScreenReaderOnly"
+            data-tabular-copy-marker="true"
+          >
+            ↵
+          </span>
         </td>
       </tr>
     </tbody>
@@ -663,6 +881,13 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
       </tr>
     </tfoot>
   </table>
+  <span
+    aria-hidden="true"
+    class="euiScreenReaderOnly"
+    data-tabular-copy-marker="true"
+  >
+    ⁣
+  </span>
   <div>
     <div
       class="euiSpacer euiSpacer--m emotion-euiSpacer-m"

@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent, TdHTMLAttributes } from 'react';
+import React, { FunctionComponent, TdHTMLAttributes, ReactNode } from 'react';
 import classNames from 'classnames';
 
 import { useEuiMemoizedStyles } from '../../services';
@@ -16,8 +16,8 @@ import { useEuiTableIsResponsive } from './mobile/responsive_context';
 import { euiTableCellCheckboxStyles } from './table_cells_shared.styles';
 
 export const EuiTableRowCellCheckbox: FunctionComponent<
-  CommonProps & TdHTMLAttributes<HTMLTableCellElement>
-> = ({ children, className, ...rest }) => {
+  CommonProps & TdHTMLAttributes<HTMLTableCellElement> & { append?: ReactNode }
+> = ({ children, className, append, ...rest }) => {
   const isResponsive = useEuiTableIsResponsive();
 
   const styles = useEuiMemoizedStyles(euiTableCellCheckboxStyles);
@@ -31,6 +31,7 @@ export const EuiTableRowCellCheckbox: FunctionComponent<
   return (
     <td css={cssStyles} className={classes} {...rest}>
       <div className="euiTableCellContent">{children}</div>
+      {append}
     </td>
   );
 };

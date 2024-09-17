@@ -161,6 +161,13 @@ exports[`EuiInMemoryTable empty array 1`] = `
   class="euiBasicTable testClass1 testClass2 emotion-euiTestCss"
   data-test-subj="test subject string"
 >
+  <span
+    aria-hidden="true"
+    class="euiScreenReaderOnly"
+    data-tabular-copy-marker="true"
+  >
+    ⁣
+  </span>
   <table
     class="euiTable emotion-euiTable-fixed-uncompressed-desktop"
     id="__table_generated-id"
@@ -168,7 +175,18 @@ exports[`EuiInMemoryTable empty array 1`] = `
   >
     <caption
       class="euiTableCaption emotion-euiTableCaptionStyles-euiScreenReaderOnly"
-    />
+    >
+      <span
+        aria-hidden="true"
+      >
+        ⁢
+      </span>
+      <span
+        aria-hidden="true"
+      >
+        ⁢
+      </span>
+    </caption>
     <thead>
       <tr>
         <th
@@ -192,6 +210,13 @@ exports[`EuiInMemoryTable empty array 1`] = `
               description
             </span>
           </div>
+          <span
+            aria-hidden="true"
+            class="euiScreenReaderOnly"
+            data-tabular-copy-marker="true"
+          >
+            ↵
+          </span>
         </th>
       </tr>
     </thead>
@@ -218,6 +243,13 @@ exports[`EuiInMemoryTable empty array 1`] = `
       </tr>
     </tbody>
   </table>
+  <span
+    aria-hidden="true"
+    class="euiScreenReaderOnly"
+    data-tabular-copy-marker="true"
+  >
+    ⁣
+  </span>
 </div>
 `;
 
@@ -227,6 +259,13 @@ exports[`EuiInMemoryTable with items 1`] = `
   class="euiBasicTable testClass1 testClass2 emotion-euiTestCss"
   data-test-subj="test subject string"
 >
+  <span
+    aria-hidden="true"
+    class="euiScreenReaderOnly"
+    data-tabular-copy-marker="true"
+  >
+    ⁣
+  </span>
   <table
     class="euiTable emotion-euiTable-fixed-uncompressed-desktop"
     id="__table_generated-id"
@@ -234,7 +273,18 @@ exports[`EuiInMemoryTable with items 1`] = `
   >
     <caption
       class="euiTableCaption emotion-euiTableCaptionStyles-euiScreenReaderOnly"
-    />
+    >
+      <span
+        aria-hidden="true"
+      >
+        ⁢
+      </span>
+      <span
+        aria-hidden="true"
+      >
+        ⁢
+      </span>
+    </caption>
     <thead>
       <tr>
         <th
@@ -258,6 +308,13 @@ exports[`EuiInMemoryTable with items 1`] = `
               description
             </span>
           </div>
+          <span
+            aria-hidden="true"
+            class="euiScreenReaderOnly"
+            data-tabular-copy-marker="true"
+          >
+            ↵
+          </span>
         </th>
       </tr>
     </thead>
@@ -279,6 +336,13 @@ exports[`EuiInMemoryTable with items 1`] = `
               name1
             </span>
           </div>
+          <span
+            aria-hidden="true"
+            class="euiScreenReaderOnly"
+            data-tabular-copy-marker="true"
+          >
+            ↵
+          </span>
         </td>
       </tr>
       <tr
@@ -296,6 +360,13 @@ exports[`EuiInMemoryTable with items 1`] = `
               name2
             </span>
           </div>
+          <span
+            aria-hidden="true"
+            class="euiScreenReaderOnly"
+            data-tabular-copy-marker="true"
+          >
+            ↵
+          </span>
         </td>
       </tr>
       <tr
@@ -313,9 +384,23 @@ exports[`EuiInMemoryTable with items 1`] = `
               name3
             </span>
           </div>
+          <span
+            aria-hidden="true"
+            class="euiScreenReaderOnly"
+            data-tabular-copy-marker="true"
+          >
+            ↵
+          </span>
         </td>
       </tr>
     </tbody>
   </table>
+  <span
+    aria-hidden="true"
+    class="euiScreenReaderOnly"
+    data-tabular-copy-marker="true"
+  >
+    ⁣
+  </span>
 </div>
 `;
