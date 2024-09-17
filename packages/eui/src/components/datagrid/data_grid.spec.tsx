@@ -111,8 +111,7 @@ describe('EuiDataGrid', () => {
 
       const virtualizedContainer = cy
         .get('[data-test-subj=euiDataGridBody]')
-        .children()
-        .first();
+        .find('.euiDataGrid__virtualized');
 
       // make sure the horizontal scrollbar is present
       virtualizedContainer.then(([outerContainer]) => {
