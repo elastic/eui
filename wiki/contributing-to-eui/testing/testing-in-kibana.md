@@ -28,7 +28,7 @@ yarn kbn bootstrap --no-validate && yarn start
 
 ### Deploying local EUI in Kibana
 
-If you want to deploy a local EUI package in Kibana you can do the following:
+Elastic engineers have the option to deploy a local EUI package in Kibana. To do so, do the following:
 
 #### Generate and link a local EUI package
 
@@ -38,6 +38,7 @@ If you want to deploy a local EUI package in Kibana you can do the following:
 - Run `yarn kbn bootstrap`
 - Commit the changed files (`package.json`. `yarn.lock` and EUI `.tgz` package) and push your branch
 - Create a Kibana (draft) pull request
+  - Kibana CI will run tests on this instance with your custom EUI package
 
 #### Deploy the custom EUI package
 
@@ -47,11 +48,3 @@ There are two ways you can deploy your local EUI package in Kibana.
   - after the pipelines finish the "Build" information will have a link to the cloud deployment and access information ([vault access](https://docs.elastic.dev/vault/infra-vault/accessing) is required)
 2. use [Kibana-a-la-carte](https://kibana-a-la-carte.kbndev.co/) to deploy your PR
 
-
-
-## Testing in the cloud
-
-Elastic engineers have the option of deploying a specific branch of EUI against a specific branch of Kibana in the cloud in a development environment. For more information, see:
-
-- https://github.com/lukeelmers/terraform-kibana-dev
-- The `#kibana-a-la-carte` Slack channel
