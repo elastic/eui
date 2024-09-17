@@ -92,7 +92,7 @@ export const OverrideCopiedTabularContent = ({
     // Chrome and webkit browsers work perfectly when passing `onTabularCopy` to a React
     // `onCopy` prop, but sadly Firefox does not if copying more than just the table/grid
     // (e.g. Ctrl+A). So we have to set up a global window event listener
-    window.addEventListener('copy', onTabularCopy);
+    window.document.addEventListener('copy', onTabularCopy);
     // Note: Since onCopy is static, we don't have to worry about duplicate
     // event listeners - it's automatically handled by the browser. See:
     // https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener#Multiple_identical_event_listeners
