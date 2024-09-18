@@ -163,6 +163,7 @@ export const EuiDataGridBodyCustomRender: FunctionComponent<
   const Cell = useCallback<EuiDataGridCustomBodyProps['Cell']>(
     ({ colIndex, visibleRowIndex, ...rest }) => {
       const style = {
+        ...rest.style,
         height: rowHeightUtils.isAutoHeight(visibleRowIndex, rowHeightsOptions)
           ? 'auto'
           : getRowHeight(visibleRowIndex),
@@ -190,14 +191,14 @@ export const EuiDataGridBodyCustomRender: FunctionComponent<
         customGridBodyProps?.className
       )}
     >
-      {headerRow}
       {renderCustomGridBody!({
         visibleColumns,
         visibleRowData: visibleRows,
         Cell,
         setCustomGridBodyProps,
+        headerRow,
+        footerRow,
       })}
-      {footerRow}
     </div>
   );
 };

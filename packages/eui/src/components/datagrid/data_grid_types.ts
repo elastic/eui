@@ -516,6 +516,9 @@ export interface EuiDataGridCustomBodyProps {
    * It's best to wrap calls to `setCustomGridBodyProps` in a `useEffect` hook
    */
   setCustomGridBodyProps: (props: EuiDataGridSetCustomGridBodyProps) => void;
+
+  headerRow?: ReactElement;
+  footerRow?: ReactElement | null;
 }
 
 export type EuiDataGridSetCustomGridBodyProps = CommonProps &
