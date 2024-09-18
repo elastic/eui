@@ -19,6 +19,8 @@ import { ThemeProvider } from './components/with_theme/theme_context';
 
 registerTheme('light', [themeLight]);
 registerTheme('dark', [themeDark]);
+registerTheme('new_light', [themeLight]);
+registerTheme('new_dark', [themeDark]);
 
 // Set up app
 

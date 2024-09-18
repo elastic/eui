@@ -8,6 +8,7 @@
 
 import { EuiThemeSystem } from '../services';
 import { EuiThemeAmsterdam, AMSTERDAM_NAME_KEY } from './amsterdam/theme';
+import { EuiThemeNew } from './new_theme/theme';
 
 export interface EUI_THEME {
   text: string;
@@ -25,6 +26,16 @@ export const EUI_THEMES: EUI_THEME[] = [
     text: 'Dark',
     value: 'dark',
     provider: EuiThemeAmsterdam,
+  },
+  {
+    text: 'New Theme: Light',
+    value: `new_light`,
+    provider: EuiThemeNew,
+  },
+  {
+    text: 'New Theme: Dark',
+    value: `new_dark`,
+    provider: EuiThemeNew,
   },
 ];
 

@@ -6,10 +6,16 @@
  * Side Public License, v 1.
  */
 
-export type { EUI_THEME } from './themes';
-export { EUI_THEMES } from './themes';
+import { _EuiThemeLevels } from '../../../../global_styling/variables';
 
-export { EuiThemeAmsterdam } from './amsterdam/theme';
-export { EuiThemeNew } from './new_theme/theme';
-
-export * from './amsterdam';
+export const levels: _EuiThemeLevels = {
+  toast: 9000,
+  modal: 8000,
+  mask: 6000,
+  navigation: 6000,
+  menu: 2000,
+  header: 1000,
+  flyout: 1000,
+  maskBelowHeader: 1000,
+  content: 0,
+};

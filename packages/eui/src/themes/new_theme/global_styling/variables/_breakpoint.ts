@@ -6,10 +6,12 @@
  * Side Public License, v 1.
  */
 
-export type { EUI_THEME } from './themes';
-export { EUI_THEMES } from './themes';
+import { _EuiThemeBreakpoints } from '../../../../global_styling/variables';
 
-export { EuiThemeAmsterdam } from './amsterdam/theme';
-export { EuiThemeNew } from './new_theme/theme';
-
-export * from './amsterdam';
+export const breakpoint: _EuiThemeBreakpoints = {
+  xl: 1200,
+  l: 992,
+  m: 768,
+  s: 575,
+  xs: 0,
+};

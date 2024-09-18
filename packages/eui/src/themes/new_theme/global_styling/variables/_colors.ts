@@ -6,10 +6,13 @@
  * Side Public License, v 1.
  */
 
-export type { EUI_THEME } from './themes';
-export { EUI_THEMES } from './themes';
+import { _EuiThemeColors } from '../../../../global_styling/variables/colors';
+import { light_colors } from './_colors_light';
+import { dark_colors } from './_colors_dark';
 
-export { EuiThemeAmsterdam } from './amsterdam/theme';
-export { EuiThemeNew } from './new_theme/theme';
-
-export * from './amsterdam';
+export const colors: _EuiThemeColors = {
+  ghost: '#FFF',
+  ink: '#000',
+  LIGHT: light_colors,
+  DARK: dark_colors,
+};

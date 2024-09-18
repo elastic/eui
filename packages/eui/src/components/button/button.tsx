@@ -21,7 +21,7 @@ import {
   useEuiButtonColorCSS,
   useEuiButtonFocusCSS,
   _EuiButtonColor,
-} from '../../themes/amsterdam/global_styling/mixins/button';
+} from '../../global_styling/mixins/_button';
 import {
   EuiButtonDisplay,
   EuiButtonDisplayCommonProps,
