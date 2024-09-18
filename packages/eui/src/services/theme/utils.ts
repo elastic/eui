@@ -204,6 +204,16 @@ export function computed<T>(
 }
 
 /**
+ * Type guard to check for a Computed object based on object shape
+ * without relying on the Computed class directly
+ */
+const isComputedLike = <T>(key: object): key is Computed<T> => {
+  if (typeof key !== 'object' || Array.isArray(key)) return false;
+
+  return key.hasOwnProperty('dependencies') && key.hasOwnProperty('computer');
+};
+
+/**
  * Takes an uncomputed theme, and computes and returns all values taking
  * into consideration value overrides and configured color mode.
  * Overrides take precedence, and only values in the current color mode
@@ -217,7 +227,7 @@ export const getComputed = <T = EuiThemeShape>(
   over: Partial<EuiThemeSystem<T>>,
   colorMode: EuiThemeColorModeStandard
 ): EuiThemeComputed<T> => {
-  const output = { themeName: base.key };
+  const output: Partial<EuiThemeComputed> = { themeName: base.key };
 
   function loop(
     base: { [key: string]: any },
@@ -240,12 +250,14 @@ export const getComputed = <T = EuiThemeShape>(
       }
       const existing = checkExisting && getOn(output, newPath);
       if (!existing || isObject(existing)) {
+        // NOTE: the class type check for Computed is not true for themes created externally;
+        // we additionally check on the object shape to confirm a Computed value
         const baseValue =
-          base[key] instanceof Computed
+          base[key] instanceof Computed || isComputedLike<T>(base[key])
             ? base[key].getValue(base.root, over.root, output, colorMode)
             : base[key];
         const overValue =
-          over[key] instanceof Computed
+          over[key] instanceof Computed || isComputedLike<T>(over[key])
             ? over[key].getValue(base.root, over.root, output, colorMode)
             : over[key];
         if (isObject(baseValue) && !Array.isArray(baseValue)) {
