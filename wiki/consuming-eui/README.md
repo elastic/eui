@@ -51,16 +51,15 @@ import { findByTestSubject, render, screen } from '@elastic/eui/lib/test/rtl'; /
 
 ### Theming
 
-As of April 2022 EUI is in the process of [migrating to Emotion JS for the CSS and theming layer](https://github.com/elastic/eui/issues/3912). While EUI is in the process of this conversion, we require that both the EuiProvider and the compiled CSS (or raw Sass) files be imported during this transition.
+EUI uses CSS-in-JS (specifically [Emotion](https://emotion.sh)) for its styles and theming. As such, we require an `<EuiProvider>` wrapper around your application in order for various theme-related UI & UX (such as dark/light mode switching) to work as expected.
 
 ```jsx
 import React from 'react';
-import '@elastic/eui/dist/eui_theme_light.css';
 
 import { EuiProvider, EuiText } from '@elastic/eui';
 
 const MyApp = () => (
-  <EuiProvider colorMode="light">
+  <EuiProvider>
     <EuiText><p>Hello World!</p></EuiText>
   </EuiProvider>
 );
