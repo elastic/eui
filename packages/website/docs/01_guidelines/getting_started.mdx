@@ -65,56 +65,42 @@ For more configuration options of the provider, see the
 
 ## Styling your application
 
-To build your custom components using EUI theme variables, functions, and mixins, you will need to consume them
-through one of the [Sass](https://eui.elastic.co/#/theming/sass),
-[Emotion](https://eui.elastic.co/#/theming/theme-provider),
-or [JSON import](https://github.com/elastic/eui/blob/main/wiki/consuming-eui/README.md#a-not-recommended-legacy-method-to-consume-theming-variables-from-sass) methods.
+You can build custom components using EUI's theme tokens, consumed via `useEuiTheme()`. The below example uses Emotion's `css` prop, but any CSS-in-JS library should be able to interpolate the JS variables.
 
-<Tabs>
-  <TabItem value="sass" label="Sass">
-    ```scss title="This will require style, css, postcss, and sass loaders."
-    // index.scss
-    @import '@elastic/eui/src/themes/amsterdam/colors_light';
-    @import '@elastic/eui/src/themes/amsterdam/globals';
+For more ways to consume EUI's theme, see the [**EuiThemeProvider** documentation](https://eui.elastic.co/#/theming/theme-provider#consuming-with-the-react-hook).
 
-    @import 'your/custom/styles';
-    ```
-  </TabItem>
-  <TabItem value="css-in-js" label="CSS-in-JS">
-    ```jsx title="As long as you have wrapped your application with EuiProvider, you have access to the JS theme tokens via useEuiTheme() and Emotion's css prop."
-    import React from 'react';
-    import { EuiIcon, EuiCode, EuiText, useEuiTheme } from '@elastic/eui';
-    import { css } from '@emotion/react';
+```jsx
+import React from 'react';
+import { EuiIcon, EuiCode, EuiText, useEuiTheme } from '@elastic/eui';
+import { css } from '@emotion/react';
 
-    export default () => {
-      const { euiTheme } = useEuiTheme();
-      return (
-        <EuiText>
-          <p>
-            <EuiIcon
-              type="stopFilled"
-              size="xxl"
-              css={{ color: euiTheme.colors.primary }}
-            />{' '}
-            This primary color will adjust based on the light or dark theme value
-          </p>
+export default () => {
+  const { euiTheme } = useEuiTheme();
+  return (
+    <EuiText>
+      <p>
+        <EuiIcon
+          type="stopFilled"
+          size="xxl"
+          css={{ color: euiTheme.colors.primary }}
+        />{' '}
+        This primary color will adjust based on the light or dark theme value
+      </p>
 
-          <p
-            css={css`
-              background: ${euiTheme.colors.lightShade};
-              padding: calc(${euiTheme.size.base} * 2);
-            `}
-          >
-            The padding of this box is created using <EuiCode>calc()</EuiCode>{' '}
-            because EUI&apos;s theme sizes are string pixel values that are
-            calculated off the theme&apos;s <EuiCode>base</EuiCode>
-          </p>
-        </EuiText>
-      );
-    };
-    ```
-  </TabItem>
-</Tabs>
+      <p
+        css={css`
+          background: ${euiTheme.colors.lightShade};
+          padding: calc(${euiTheme.size.base} * 2);
+        `}
+      >
+        The padding of this box is created using <EuiCode>calc()</EuiCode>{' '}
+        because EUI's theme sizes are string pixel values that are
+        calculated off the theme's <EuiCode>base</EuiCode>
+      </p>
+    </EuiText>
+  );
+};
+```
 
 ### Customizing the style tokens
 

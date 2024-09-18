@@ -1,12 +1,19 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import { EuiCodeBlock, EuiCode, EuiText, EuiSpacer } from '../../../../../src';
+import {
+  EuiCodeBlock,
+  EuiCode,
+  EuiText,
+  EuiSpacer,
+  EuiPanel,
+} from '../../../../../src';
 
 import { AppSetup } from './_app_setup';
-import { Tokens } from './_tokens';
 import { Customizing } from './_customizing';
 import { ThemeNotice } from '../../../views/theme/_components/_theme_notice.tsx';
+import { GuideSectionExampleCode } from '../../../components/guide_section/guide_section_parts/guide_section_code';
+const consumingSource = require('!!raw-loader!../../theme/consuming');
 import { euiProviderComponentDefaultsSnippet } from '../../provider/provider_component_defaults';
 
 export const GettingStarted = {
@@ -72,18 +79,23 @@ export const GettingStarted = {
         <>
           <EuiText grow={false}>
             <p>
-              To build your custom components using EUI theme variables,
-              functions, and mixins, you will need to consume them through one
-              of the <Link to="/theming/sass">Sass</Link>,{' '}
-              <Link to="/theming/theme-provider">Emotion</Link>, or{' '}
-              <a href="https://github.com/elastic/eui/blob/main/wiki/consuming-eui/README.md#a-not-recommended-legacy-method-to-consume-theming-variables-from-sass">
-                JSON import
-              </a>{' '}
-              methods.
+              You can build custom components using EUI's theme tokens, consumed
+              via <EuiCode>useEuiTheme()</EuiCode>. The below example uses
+              Emotion's <EuiCode>css</EuiCode> prop, but any CSS-in-JS library
+              should be able to interpolate the JS variables.
+            </p>
+            <p>
+              For more ways to consume EUI's theme, see the{' '}
+              <Link to="/theming/theme-provider#consuming-with-the-react-hook">
+                <strong>EuiThemeProvider</strong> documentation
+              </Link>
+              .
             </p>
           </EuiText>
           <EuiSpacer />
-          <Tokens />
+          <EuiPanel paddingSize="none" hasBorder css={{ overflow: 'hidden' }}>
+            <GuideSectionExampleCode code={consumingSource} />
+          </EuiPanel>
           <EuiSpacer />
 
           <EuiText grow={false}>
