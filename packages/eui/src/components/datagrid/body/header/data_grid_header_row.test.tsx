@@ -81,7 +81,7 @@ describe('EuiDataGridHeaderRow', () => {
           >
             <button
               aria-label="Press the Enter key to view this column's actions"
-              class="euiButtonIcon euiDataGridHeaderCell__button emotion-euiButtonIcon-xs-empty-text-euiDataGridHeaderCell__button"
+              class="euiButtonIcon euiDataGridHeaderCell__button emotion-euiButtonIcon-xs-empty-text-euiDataGridHeaderCell__actions"
               data-euigrid-tab-managed="true"
               data-test-subj="dataGridHeaderCellActionButton-someColumn"
               tabindex="-1"
