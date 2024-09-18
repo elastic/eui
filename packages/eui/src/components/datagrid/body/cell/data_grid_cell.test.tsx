@@ -661,6 +661,35 @@ describe('EuiDataGridCell', () => {
           expect(mockRowHeightUtils.setRowHeight).toHaveBeenCalled();
           expect(setRowHeight).not.toHaveBeenCalled();
         });
+
+        it('recalculates when the override for the row changes', () => {
+          const component = mount(
+            <EuiDataGridCell {...requiredProps} setRowHeight={setRowHeight} />
+          );
+
+          component.setProps({
+            rowHeightsOptions: {
+              rowHeights: {
+                0: { lineCount: 2 },
+              },
+            },
+          });
+          expect(mockRowHeightUtils.setRowHeight).toHaveBeenCalledTimes(1);
+
+          // Handle row index changes as well
+          component.setProps({
+            rowHeightsOptions: {
+              rowHeights: {
+                0: { lineCount: 2 },
+                2: { lineCount: 4 },
+              },
+            },
+            rowIndex: 2,
+          });
+          expect(mockRowHeightUtils.setRowHeight).toHaveBeenCalledTimes(2);
+
+          expect(setRowHeight).not.toHaveBeenCalled();
+        });
       });
 
       it('recalculates when props that affect row/line height change', () => {

@@ -284,6 +284,8 @@ export class EuiDataGridCell extends Component<
     if (
       this.props.rowHeightsOptions?.defaultHeight !==
         prevProps.rowHeightsOptions?.defaultHeight ||
+      this.props.rowHeightsOptions?.rowHeights?.[this.props.rowIndex] !==
+        prevProps.rowHeightsOptions?.rowHeights?.[prevProps.rowIndex] ||
       this.props.rowHeightsOptions?.lineHeight !==
         prevProps.rowHeightsOptions?.lineHeight ||
       this.props.gridStyles?.fontSize !== prevProps.gridStyles?.fontSize ||
