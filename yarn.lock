@@ -5748,6 +5748,16 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@elastic/eui-theme-berlin@workspace:packages/eui-theme-berlin":
+  version: 0.0.0-use.local
+  resolution: "@elastic/eui-theme-berlin@workspace:packages/eui-theme-berlin"
+  dependencies:
+    typescript: "npm:^5.6.2"
+  peerDependencies:
+    "@elastic/eui": ^95.10.1
+  languageName: unknown
+  linkType: soft
+
 "@elastic/eui-website@workspace:packages/website":
   version: 0.0.0-use.local
   resolution: "@elastic/eui-website@workspace:packages/website"
@@ -36582,6 +36592,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"typescript@npm:^5.6.2":
+  version: 5.6.2
+  resolution: "typescript@npm:5.6.2"
+  bin:
+    tsc: bin/tsc
+    tsserver: bin/tsserver
+  checksum: 10c0/3ed8297a8c7c56b7fec282532503d1ac795239d06e7c4966b42d4330c6cf433a170b53bcf93a130a7f14ccc5235de5560df4f1045eb7f3550b46ebed16d3c5e5
+  languageName: node
+  linkType: hard
+
 "typescript@npm:~5.5.4":
   version: 5.5.4
   resolution: "typescript@npm:5.5.4"
@@ -36599,6 +36619,16 @@ __metadata:
     tsc: bin/tsc
     tsserver: bin/tsserver
   checksum: 10c0/b1912ff8dcae3c5a8739dc5a3f12422d3bf5f8a6a5642b1d537ee18873de0bb7346e83c7de3b146291e93f6493ac9843c7bbbbb12ec6393b8e07a0a2dc88550f
+  languageName: node
+  linkType: hard
+
+"typescript@patch:typescript@npm%3A^5.6.2#optional!builtin<compat/typescript>":
+  version: 5.6.2
+  resolution: "typescript@patch:typescript@npm%3A5.6.2#optional!builtin<compat/typescript>::version=5.6.2&hash=b45daf"
+  bin:
+    tsc: bin/tsc
+    tsserver: bin/tsserver
+  checksum: 10c0/e6c1662e4852e22fe4bbdca471dca3e3edc74f6f1df043135c44a18a7902037023ccb0abdfb754595ca9028df8920f2f8492c00fc3cbb4309079aae8b7de71cd
   languageName: node
   linkType: hard
 
