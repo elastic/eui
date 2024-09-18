@@ -49,6 +49,10 @@ export const euiDataGridHeaderCellWrapperStyles = (
 
       ${outlineSelectors.showActions} {
         gap: ${euiTheme.size.xxs};
+
+        & > [data-focus-lock-disabled] {
+          gap: ${euiTheme.size.xxs};
+        }
       }
 
       /* Workaround for focus trap */

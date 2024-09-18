@@ -40,8 +40,9 @@ export const euiDataGridHeaderCellStyles = (euiThemeContext: UseEuiTheme) => {
       /* Remove inline struts from EuiButtonIcon */
       line-height: 0;
     `,
-    euiDataGridHeaderCell__button: css`
+    euiDataGridHeaderCell__actions: css`
       overflow: hidden;
+      display: flex;
 
       ${header.hideActions} & {
         ${logicalCSS('width', 0)}
@@ -62,33 +63,6 @@ export const euiDataGridHeaderCellStyles = (euiThemeContext: UseEuiTheme) => {
 
       display: flex;
       ${logicalCSS('width', '100%')}
-    `,
-    euiDataGridHeaderCell__draggableIcon: css`
-      position: relative;
-      display: flex;
-      align-items: center;
-      gap: ${euiTheme.size.xs};
-      border-radius: ${euiTheme.border.radius.small};
-      outline: none;
-
-      svg {
-        flex: 0 0 auto; /* Ensure icon doesn't shrink */
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        overflow: hidden;
-        ${logicalCSS('height', euiTheme.base)}
-
-        ${header.hideActions} & {
-          ${logicalCSS('width', 0)}
-          opacity: 0;
-        }
-
-        ${euiCanAnimate} {
-          transition: inline-size ${euiTheme.animation.fast} ease-in,
-            opacity ${euiTheme.animation.slow} ease-in;
-        }
-      }
     `,
   };
 };

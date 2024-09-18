@@ -153,37 +153,37 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
       // as closePopover() focuses its own cells first on close.
       const handleOnBlur: FocusEventHandler = useCallback(
         (e) => {
-        if (
-          !isPopoverOpen ||
-          popoverPanelRef.current == null ||
-          e.relatedTarget == null
-        )
-          return;
+          if (
+            !isPopoverOpen ||
+            popoverPanelRef.current == null ||
+            e.relatedTarget == null
+          )
+            return;
 
-        if (
-          !e.currentTarget.contains(e.relatedTarget) &&
-          e.relatedTarget !== popoverPanelRef.current &&
-          !popoverPanelRef.current.contains(e.relatedTarget)
-        ) {
-          closePopover();
+          if (
+            !e.currentTarget.contains(e.relatedTarget) &&
+            e.relatedTarget !== popoverPanelRef.current &&
+            !popoverPanelRef.current.contains(e.relatedTarget)
+          ) {
+            closePopover();
 
-          const dataRowIndex = e.relatedTarget?.getAttribute(
-            'data-gridcell-row-index'
-          );
-          const dataNextIndex = e.relatedTarget?.getAttribute(
-            'data-gridcell-column-index'
-          );
-          const rowIndex = dataRowIndex ? parseInt(dataRowIndex) : undefined;
+            const dataRowIndex = e.relatedTarget?.getAttribute(
+              'data-gridcell-row-index'
+            );
+            const dataNextIndex = e.relatedTarget?.getAttribute(
+              'data-gridcell-column-index'
+            );
+            const rowIndex = dataRowIndex ? parseInt(dataRowIndex) : undefined;
             const nextIndex = dataNextIndex
               ? parseInt(dataNextIndex)
               : undefined;
 
-          if (nextIndex && rowIndex === -1) {
-            setTimeout(() => {
-              setFocusedCell([nextIndex, -1]);
-            });
+            if (nextIndex && rowIndex === -1) {
+              setTimeout(() => {
+                setFocusedCell([nextIndex, -1]);
+              });
+            }
           }
-        }
         },
         [isPopoverOpen, popoverPanelRef, closePopover, setFocusedCell]
       );
@@ -241,8 +241,12 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
         <>
           {!columnDragDrop && columnResizer}
           {columnDragDrop && (
-            <span css={styles.euiDataGridHeaderCell__draggableIcon}>
-              <EuiIcon type="grabOmnidirectional" size="s" />
+            <span className="euiDataGridHeaderCell__draggableIcon">
+              <EuiIcon
+                type="grabOmnidirectional"
+                size="s"
+                css={[styles.euiDataGridHeaderCell__actions]}
+              />
             </span>
           )}
 
@@ -273,7 +277,7 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
                   iconType="boxesVertical"
                   iconSize="s"
                   color="text"
-                  css={styles.euiDataGridHeaderCell__button}
+                  css={styles.euiDataGridHeaderCell__actions}
                   className="euiDataGridHeaderCell__button"
                   buttonRef={actionsButtonRef}
                   onClick={togglePopover}
