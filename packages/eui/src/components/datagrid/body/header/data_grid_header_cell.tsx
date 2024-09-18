@@ -151,7 +151,8 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
       // We manually close the popover for draggable cells and
       // update the focus index onBlur to ensure execution order
       // as closePopover() focuses its own cells first on close.
-      const handleOnBlur: FocusEventHandler = (e) => {
+      const handleOnBlur: FocusEventHandler = useCallback(
+        (e) => {
         if (
           !isPopoverOpen ||
           popoverPanelRef.current == null ||
@@ -173,7 +174,9 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
             'data-gridcell-column-index'
           );
           const rowIndex = dataRowIndex ? parseInt(dataRowIndex) : undefined;
-          const nextIndex = dataNextIndex ? parseInt(dataNextIndex) : undefined;
+            const nextIndex = dataNextIndex
+              ? parseInt(dataNextIndex)
+              : undefined;
 
           if (nextIndex && rowIndex === -1) {
             setTimeout(() => {
@@ -181,7 +184,9 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
             });
           }
         }
-      };
+        },
+        [isPopoverOpen, popoverPanelRef, closePopover, setFocusedCell]
+      );
 
       // Draggable prevents the cell from receiving focus on click.
       // We manually ensure focus is set on cell mouseDown which
