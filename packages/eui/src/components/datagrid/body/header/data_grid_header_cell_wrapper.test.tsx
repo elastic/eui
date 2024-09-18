@@ -66,7 +66,7 @@ describe('EuiDataGridHeaderCellWrapper', () => {
         <span
           aria-hidden="true"
           class="euiScreenReaderOnly"
-          data-tabular-copy-marker="true"
+          data-tabular-copy-marker="newline"
         >
           ↵
         </span>
@@ -98,7 +98,7 @@ describe('EuiDataGridHeaderCellWrapper', () => {
         <span
           aria-hidden="true"
           class="euiScreenReaderOnly"
-          data-tabular-copy-marker="true"
+          data-tabular-copy-marker="newline"
         >
           ↵
         </span>

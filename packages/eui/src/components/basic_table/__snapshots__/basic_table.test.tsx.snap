@@ -23,7 +23,7 @@ exports[`EuiBasicTable actions custom item actions 1`] = `
     <span
       aria-hidden="true"
       class="euiScreenReaderOnly"
-      data-tabular-copy-marker="true"
+      data-tabular-copy-marker="newline"
     >
       ↵
     </span>
@@ -40,9 +40,9 @@ exports[`EuiBasicTable renders (bare-bones) 1`] = `
   <span
     aria-hidden="true"
     class="euiScreenReaderOnly"
-    data-tabular-copy-marker="true"
+    data-tabular-copy-marker="boundary"
   >
-    ⁣
+    𐘂𐘂
   </span>
   <table
     class="euiTable emotion-euiTable-fixed-uncompressed-desktop"
@@ -54,13 +54,17 @@ exports[`EuiBasicTable renders (bare-bones) 1`] = `
     >
       <span
         aria-hidden="true"
+        class="euiScreenReaderOnly"
+        data-tabular-copy-marker="no-copy"
       >
-        ⁢
+        ✄𐘗
       </span>
       <span
         aria-hidden="true"
+        class="euiScreenReaderOnly"
+        data-tabular-copy-marker="no-copy"
       >
-        ⁢
+        ✄𐘗
       </span>
     </caption>
     <thead>
@@ -89,7 +93,7 @@ exports[`EuiBasicTable renders (bare-bones) 1`] = `
           <span
             aria-hidden="true"
             class="euiScreenReaderOnly"
-            data-tabular-copy-marker="true"
+            data-tabular-copy-marker="newline"
           >
             ↵
           </span>
@@ -117,7 +121,7 @@ exports[`EuiBasicTable renders (bare-bones) 1`] = `
           <span
             aria-hidden="true"
             class="euiScreenReaderOnly"
-            data-tabular-copy-marker="true"
+            data-tabular-copy-marker="newline"
           >
             ↵
           </span>
@@ -141,7 +145,7 @@ exports[`EuiBasicTable renders (bare-bones) 1`] = `
           <span
             aria-hidden="true"
             class="euiScreenReaderOnly"
-            data-tabular-copy-marker="true"
+            data-tabular-copy-marker="newline"
           >
             ↵
           </span>
@@ -165,7 +169,7 @@ exports[`EuiBasicTable renders (bare-bones) 1`] = `
           <span
             aria-hidden="true"
             class="euiScreenReaderOnly"
-            data-tabular-copy-marker="true"
+            data-tabular-copy-marker="newline"
           >
             ↵
           </span>
@@ -176,9 +180,9 @@ exports[`EuiBasicTable renders (bare-bones) 1`] = `
   <span
     aria-hidden="true"
     class="euiScreenReaderOnly"
-    data-tabular-copy-marker="true"
+    data-tabular-copy-marker="boundary"
   >
-    ⁣
+    𐘂𐘂
   </span>
 </div>
 `;
@@ -190,9 +194,9 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
   <span
     aria-hidden="true"
     class="euiScreenReaderOnly"
-    data-tabular-copy-marker="true"
+    data-tabular-copy-marker="boundary"
   >
-    ⁣
+    𐘂𐘂
   </span>
   <table
     class="euiTable emotion-euiTable-fixed-uncompressed-desktop"
@@ -204,13 +208,17 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
     >
       <span
         aria-hidden="true"
+        class="euiScreenReaderOnly"
+        data-tabular-copy-marker="no-copy"
       >
-        ⁢
+        ✄𐘗
       </span>
       <span
         aria-hidden="true"
+        class="euiScreenReaderOnly"
+        data-tabular-copy-marker="no-copy"
       >
-        ⁢
+        ✄𐘗
       </span>
     </caption>
     <thead>
@@ -246,7 +254,7 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
           <span
             aria-hidden="true"
             class="euiScreenReaderOnly"
-            data-tabular-copy-marker="true"
+            data-tabular-copy-marker="tab"
           >
             ↦
           </span>
@@ -286,7 +294,7 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
           <span
             aria-hidden="true"
             class="euiScreenReaderOnly"
-            data-tabular-copy-marker="true"
+            data-tabular-copy-marker="tab"
           >
             ↦
           </span>
@@ -315,7 +323,7 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
           <span
             aria-hidden="true"
             class="euiScreenReaderOnly"
-            data-tabular-copy-marker="true"
+            data-tabular-copy-marker="tab"
           >
             ↦
           </span>
@@ -344,7 +352,7 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
           <span
             aria-hidden="true"
             class="euiScreenReaderOnly"
-            data-tabular-copy-marker="true"
+            data-tabular-copy-marker="tab"
           >
             ↦
           </span>
@@ -367,7 +375,7 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
           <span
             aria-hidden="true"
             class="euiScreenReaderOnly"
-            data-tabular-copy-marker="true"
+            data-tabular-copy-marker="newline"
           >
             ↵
           </span>
@@ -410,7 +418,7 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
           <span
             aria-hidden="true"
             class="euiScreenReaderOnly"
-            data-tabular-copy-marker="true"
+            data-tabular-copy-marker="tab"
           >
             ↦
           </span>
@@ -426,7 +434,7 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
           <span
             aria-hidden="true"
             class="euiScreenReaderOnly"
-            data-tabular-copy-marker="true"
+            data-tabular-copy-marker="tab"
           >
             ↦
           </span>
@@ -446,7 +454,7 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
           <span
             aria-hidden="true"
             class="euiScreenReaderOnly"
-            data-tabular-copy-marker="true"
+            data-tabular-copy-marker="tab"
           >
             ↦
           </span>
@@ -466,7 +474,7 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
           <span
             aria-hidden="true"
             class="euiScreenReaderOnly"
-            data-tabular-copy-marker="true"
+            data-tabular-copy-marker="tab"
           >
             ↦
           </span>
@@ -517,7 +525,7 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
           <span
             aria-hidden="true"
             class="euiScreenReaderOnly"
-            data-tabular-copy-marker="true"
+            data-tabular-copy-marker="newline"
           >
             ↵
           </span>
@@ -556,7 +564,7 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
           <span
             aria-hidden="true"
             class="euiScreenReaderOnly"
-            data-tabular-copy-marker="true"
+            data-tabular-copy-marker="tab"
           >
             ↦
           </span>
@@ -572,7 +580,7 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
           <span
             aria-hidden="true"
             class="euiScreenReaderOnly"
-            data-tabular-copy-marker="true"
+            data-tabular-copy-marker="tab"
           >
             ↦
           </span>
@@ -592,7 +600,7 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
           <span
             aria-hidden="true"
             class="euiScreenReaderOnly"
-            data-tabular-copy-marker="true"
+            data-tabular-copy-marker="tab"
           >
             ↦
           </span>
@@ -612,7 +620,7 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
           <span
             aria-hidden="true"
             class="euiScreenReaderOnly"
-            data-tabular-copy-marker="true"
+            data-tabular-copy-marker="tab"
           >
             ↦
           </span>
@@ -663,7 +671,7 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
           <span
             aria-hidden="true"
             class="euiScreenReaderOnly"
-            data-tabular-copy-marker="true"
+            data-tabular-copy-marker="newline"
           >
             ↵
           </span>
@@ -702,7 +710,7 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
           <span
             aria-hidden="true"
             class="euiScreenReaderOnly"
-            data-tabular-copy-marker="true"
+            data-tabular-copy-marker="tab"
           >
             ↦
           </span>
@@ -718,7 +726,7 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
           <span
             aria-hidden="true"
             class="euiScreenReaderOnly"
-            data-tabular-copy-marker="true"
+            data-tabular-copy-marker="tab"
           >
             ↦
           </span>
@@ -738,7 +746,7 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
           <span
             aria-hidden="true"
             class="euiScreenReaderOnly"
-            data-tabular-copy-marker="true"
+            data-tabular-copy-marker="tab"
           >
             ↦
           </span>
@@ -758,7 +766,7 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
           <span
             aria-hidden="true"
             class="euiScreenReaderOnly"
-            data-tabular-copy-marker="true"
+            data-tabular-copy-marker="tab"
           >
             ↦
           </span>
@@ -809,7 +817,7 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
           <span
             aria-hidden="true"
             class="euiScreenReaderOnly"
-            data-tabular-copy-marker="true"
+            data-tabular-copy-marker="newline"
           >
             ↵
           </span>
@@ -884,9 +892,9 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
   <span
     aria-hidden="true"
     class="euiScreenReaderOnly"
-    data-tabular-copy-marker="true"
+    data-tabular-copy-marker="boundary"
   >
-    ⁣
+    𐘂𐘂
   </span>
   <div>
     <div

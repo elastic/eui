@@ -17,10 +17,11 @@ import React, { PropsWithChildren, useEffect } from 'react';
 export const CHARS = {
   NEWLINE: '↵',
   TAB: '↦',
-  TABULAR_CONTENT_BOUND: '⁣', // U+2063 - invisible separator
-  NO_COPY_BOUND: '⁢', // U+2062 - invisible times
+  // Use multiple characters to reduce the chances of consumers also using these characters
+  TABULAR_CONTENT_BOUND: '𐘂𐘂',
+  NO_COPY_BOUND: '✄𐘗',
 };
-// This regex finds all content between two bound characters
+// This regex finds all content between two bounds
 const noCopyBoundsRegex = new RegExp(
   `${CHARS.NO_COPY_BOUND}[^${CHARS.NO_COPY_BOUND}]*${CHARS.NO_COPY_BOUND}`,
   'gs'
@@ -63,22 +64,30 @@ export const onTabularCopy = (event: ClipboardEvent | React.ClipboardEvent) => {
  * JSX utils for rendering the hidden marker characters
  */
 
-const VisuallyHide = ({ children }: PropsWithChildren) => (
+const VisuallyHide = ({
+  children,
+  type = 'true',
+}: PropsWithChildren<{ type?: string }>) => (
   // Hides the characters to both sighted user and screen readers
   // Sadly, we can't use `hidden` as that hides the chars from the clipboard as well
-  <span className="euiScreenReaderOnly" aria-hidden data-tabular-copy-marker>
+  <span
+    className="euiScreenReaderOnly"
+    aria-hidden
+    data-tabular-copy-marker={type}
+  >
     {children}
   </span>
 );
 
 export const tabularCopyMarkers = {
-  hiddenTab: <VisuallyHide>{CHARS.TAB}</VisuallyHide>,
-  hiddenNewline: <VisuallyHide>{CHARS.NEWLINE}</VisuallyHide>,
+  hiddenTab: <VisuallyHide type="tab">{CHARS.TAB}</VisuallyHide>,
+  hiddenNewline: <VisuallyHide type="newline">{CHARS.NEWLINE}</VisuallyHide>,
   hiddenWrapperBoundary: (
-    <VisuallyHide>{CHARS.TABULAR_CONTENT_BOUND}</VisuallyHide>
+    <VisuallyHide type="boundary">{CHARS.TABULAR_CONTENT_BOUND}</VisuallyHide>
   ),
-  // Should be used within existing <EuiScreenReaderOnly>, ideally to avoid generating extra DOM
-  ariaHiddenNoCopyBoundary: <span aria-hidden>{CHARS.NO_COPY_BOUND}</span>,
+  ariaHiddenNoCopyBoundary: (
+    <VisuallyHide type="no-copy">{CHARS.NO_COPY_BOUND}</VisuallyHide>
+  ),
 };
 
 /**

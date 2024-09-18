@@ -164,9 +164,9 @@ exports[`EuiInMemoryTable empty array 1`] = `
   <span
     aria-hidden="true"
     class="euiScreenReaderOnly"
-    data-tabular-copy-marker="true"
+    data-tabular-copy-marker="boundary"
   >
-    ⁣
+    𐘂𐘂
   </span>
   <table
     class="euiTable emotion-euiTable-fixed-uncompressed-desktop"
@@ -178,13 +178,17 @@ exports[`EuiInMemoryTable empty array 1`] = `
     >
       <span
         aria-hidden="true"
+        class="euiScreenReaderOnly"
+        data-tabular-copy-marker="no-copy"
       >
-        ⁢
+        ✄𐘗
       </span>
       <span
         aria-hidden="true"
+        class="euiScreenReaderOnly"
+        data-tabular-copy-marker="no-copy"
       >
-        ⁢
+        ✄𐘗
       </span>
     </caption>
     <thead>
@@ -213,7 +217,7 @@ exports[`EuiInMemoryTable empty array 1`] = `
           <span
             aria-hidden="true"
             class="euiScreenReaderOnly"
-            data-tabular-copy-marker="true"
+            data-tabular-copy-marker="newline"
           >
             ↵
           </span>
@@ -246,9 +250,9 @@ exports[`EuiInMemoryTable empty array 1`] = `
   <span
     aria-hidden="true"
     class="euiScreenReaderOnly"
-    data-tabular-copy-marker="true"
+    data-tabular-copy-marker="boundary"
   >
-    ⁣
+    𐘂𐘂
   </span>
 </div>
 `;
@@ -262,9 +266,9 @@ exports[`EuiInMemoryTable with items 1`] = `
   <span
     aria-hidden="true"
     class="euiScreenReaderOnly"
-    data-tabular-copy-marker="true"
+    data-tabular-copy-marker="boundary"
   >
-    ⁣
+    𐘂𐘂
   </span>
   <table
     class="euiTable emotion-euiTable-fixed-uncompressed-desktop"
@@ -276,13 +280,17 @@ exports[`EuiInMemoryTable with items 1`] = `
     >
       <span
         aria-hidden="true"
+        class="euiScreenReaderOnly"
+        data-tabular-copy-marker="no-copy"
       >
-        ⁢
+        ✄𐘗
       </span>
       <span
         aria-hidden="true"
+        class="euiScreenReaderOnly"
+        data-tabular-copy-marker="no-copy"
       >
-        ⁢
+        ✄𐘗
       </span>
     </caption>
     <thead>
@@ -311,7 +319,7 @@ exports[`EuiInMemoryTable with items 1`] = `
           <span
             aria-hidden="true"
             class="euiScreenReaderOnly"
-            data-tabular-copy-marker="true"
+            data-tabular-copy-marker="newline"
           >
             ↵
           </span>
@@ -339,7 +347,7 @@ exports[`EuiInMemoryTable with items 1`] = `
           <span
             aria-hidden="true"
             class="euiScreenReaderOnly"
-            data-tabular-copy-marker="true"
+            data-tabular-copy-marker="newline"
           >
             ↵
           </span>
@@ -363,7 +371,7 @@ exports[`EuiInMemoryTable with items 1`] = `
           <span
             aria-hidden="true"
             class="euiScreenReaderOnly"
-            data-tabular-copy-marker="true"
+            data-tabular-copy-marker="newline"
           >
             ↵
           </span>
@@ -387,7 +395,7 @@ exports[`EuiInMemoryTable with items 1`] = `
           <span
             aria-hidden="true"
             class="euiScreenReaderOnly"
-            data-tabular-copy-marker="true"
+            data-tabular-copy-marker="newline"
           >
             ↵
           </span>
@@ -398,9 +406,9 @@ exports[`EuiInMemoryTable with items 1`] = `
   <span
     aria-hidden="true"
     class="euiScreenReaderOnly"
-    data-tabular-copy-marker="true"
+    data-tabular-copy-marker="boundary"
   >
-    ⁣
+    𐘂𐘂
   </span>
 </div>
 `;
