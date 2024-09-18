@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import { isDefaultTheme } from './themes';
+import { isDefaultTheme } from './flags';
 
 describe('isDefaultTheme', () => {
   it('returns true for the default name', () => {

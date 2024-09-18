@@ -18,10 +18,12 @@ import {
 
 import {
   BUTTON_COLORS,
-  useEuiButtonColorCSS,
+  useEuiButtonColorCSS as useEuiButtonColorCSSCurrentTheme,
   useEuiButtonFocusCSS,
   _EuiButtonColor,
 } from '../../themes/amsterdam/global_styling/mixins/button';
+import { useEuiButtonColorCSS as useEuiButtonColorCSSNewTheme } from '../../themes/new_theme/global_styling/mixins/button';
+import { isNewTheme } from '../../themes/flags';
 import {
   EuiButtonDisplay,
   EuiButtonDisplayCommonProps,
@@ -97,6 +99,10 @@ export const EuiButton: FunctionComponent<Props> = ({
     isDisabled: rest.isDisabled || rest.disabled,
     isLoading: rest.isLoading,
   });
+
+  const useEuiButtonColorCSS = isNewTheme()
+    ? useEuiButtonColorCSSNewTheme
+    : useEuiButtonColorCSSCurrentTheme;
 
   const buttonColorStyles = useEuiButtonColorCSS({
     display: fill ? 'fill' : 'base',

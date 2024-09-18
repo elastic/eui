@@ -32,7 +32,7 @@ const defaultState = {
   themeLanguage: THEME_LANGS[0],
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   changeThemeLanguage: (language: THEME_LANGUAGES['id']) => {},
-  theme: THEME_NAMES[0],
+  theme: THEME_NAMES[2],
   changeTheme: (themeValue: EUI_THEME['value']) => {
     applyTheme(themeValue);
   },

@@ -58,9 +58,21 @@ Background: ${background}`
 
     while (contrast < ratio) {
       if (brightness > 50) {
-        highContrastTextColor = shade(highContrastTextColor, 0.05);
+        const newColor = shade(highContrastTextColor, 0.05);
+
+        if (newColor === highContrastTextColor) {
+          return newColor;
+        }
+
+        highContrastTextColor = newColor;
       } else {
-        highContrastTextColor = tint(highContrastTextColor, 0.05);
+        const newColor = tint(highContrastTextColor, 0.05);
+
+        if (newColor === highContrastTextColor) {
+          return newColor;
+        }
+
+        highContrastTextColor = newColor;
       }
 
       contrast = chroma.contrast(highContrastTextColor, background);

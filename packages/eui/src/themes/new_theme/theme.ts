@@ -17,11 +17,11 @@ import { border } from './global_styling/variables/_borders';
 import { levels } from './global_styling/variables/_levels';
 import { font } from './global_styling/variables/_typography';
 import { focus } from './global_styling/variables/_states';
-import { AMSTERDAM_NAME_KEY } from './constants';
+import { NEW_THEME_KEY } from './constants';
 
-// export const AMSTERDAM_NAME_KEY = 'EUI_THEME_AMSTERDAM';
+// export const NEW_THEME_KEY = 'EUI_THEME_NEW';
 
-export const euiThemeAmsterdam: EuiThemeShape = {
+export const euiThemeNew: EuiThemeShape = {
   colors,
   base,
   size,
@@ -33,7 +33,4 @@ export const euiThemeAmsterdam: EuiThemeShape = {
   focus,
 };
 
-export const EuiThemeAmsterdam = buildTheme(
-  euiThemeAmsterdam,
-  AMSTERDAM_NAME_KEY
-);
+export const EuiThemeNew = buildTheme(euiThemeNew, NEW_THEME_KEY);
