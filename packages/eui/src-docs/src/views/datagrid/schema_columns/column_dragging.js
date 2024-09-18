@@ -1,7 +1,25 @@
 import React, { useState } from 'react';
 import { faker } from '@faker-js/faker';
 
-import { EuiDataGrid, EuiAvatar } from '../../../../../src/components';
+import {
+  EuiDataGrid,
+  EuiAvatar,
+  EuiToolTip,
+  EuiButtonIcon,
+} from '../../../../../src/components';
+
+const CustomHeaderCell = ({ title }) => (
+  <>
+    <span>{title}</span>
+    <EuiToolTip content="tooltip content">
+      <EuiButtonIcon
+        iconType="questionInCircle"
+        aria-label="Additional information"
+        color="primary"
+      />
+    </EuiToolTip>
+  </>
+);
 
 const columns = [
   {
@@ -12,10 +30,12 @@ const columns = [
   },
   {
     id: 'name',
-    initialWidth: 100,
+    displayAsText: 'Name',
+    display: <CustomHeaderCell title="Name" />,
   },
   {
     id: 'email',
+    display: <CustomHeaderCell title="Email" />,
   },
   {
     id: 'city',
