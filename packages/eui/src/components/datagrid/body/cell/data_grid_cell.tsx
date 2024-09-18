@@ -744,9 +744,9 @@ const CellScreenReaderDescription: FunctionComponent<{
   return (
     <EuiScreenReaderOnly>
       <p>
-        {tabularCopyMarkers.ariaHiddenNoCopyBoundary}
+        {tabularCopyMarkers.hiddenNoCopyBoundary}
         {` - ${cellPosition}${canExpandCell ? `. ${enterKeyPrompt}` : ''}`}
-        {tabularCopyMarkers.ariaHiddenNoCopyBoundary}
+        {tabularCopyMarkers.hiddenNoCopyBoundary}
       </p>
     </EuiScreenReaderOnly>
   );

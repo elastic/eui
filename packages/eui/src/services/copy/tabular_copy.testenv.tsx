@@ -13,7 +13,7 @@ export const tabularCopyMarkers = {
   hiddenTab: <></>,
   hiddenNewline: <></>,
   hiddenWrapperBoundary: <></>,
-  ariaHiddenNoCopyBoundary: <></>,
+  hiddenNoCopyBoundary: <></>,
 };
 
 // Don't bother initializing in Kibana Jest either

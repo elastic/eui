@@ -668,9 +668,9 @@ export class EuiBasicTable<T extends object = any> extends Component<
     return (
       <EuiScreenReaderOnly>
         <caption css={euiTableCaptionStyles} className="euiTableCaption">
-          {tabularCopyMarkers.ariaHiddenNoCopyBoundary}
+          {tabularCopyMarkers.hiddenNoCopyBoundary}
           <EuiDelayRender>{captionElement}</EuiDelayRender>
-          {tabularCopyMarkers.ariaHiddenNoCopyBoundary}
+          {tabularCopyMarkers.hiddenNoCopyBoundary}
         </caption>
       </EuiScreenReaderOnly>
     );

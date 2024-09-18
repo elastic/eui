@@ -85,7 +85,7 @@ export const tabularCopyMarkers = {
   hiddenWrapperBoundary: (
     <VisuallyHide type="boundary">{CHARS.TABULAR_CONTENT_BOUND}</VisuallyHide>
   ),
-  ariaHiddenNoCopyBoundary: (
+  hiddenNoCopyBoundary: (
     <VisuallyHide type="no-copy">{CHARS.NO_COPY_BOUND}</VisuallyHide>
   ),
 };
