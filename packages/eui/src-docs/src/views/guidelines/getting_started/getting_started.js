@@ -7,13 +7,13 @@ import {
   EuiText,
   EuiSpacer,
   EuiPanel,
+  EuiCallOut,
 } from '../../../../../src';
 
 import { AppSetup } from './_app_setup';
-import { Customizing } from './_customizing';
-import { ThemeNotice } from '../../../views/theme/_components/_theme_notice.tsx';
 import { GuideSectionExampleCode } from '../../../components/guide_section/guide_section_parts/guide_section_code';
 const consumingSource = require('!!raw-loader!../../theme/consuming');
+const overrideSimpleSource = require('!!raw-loader!../../theme/override_simple');
 import { euiProviderComponentDefaultsSnippet } from '../../provider/provider_component_defaults';
 
 export const GettingStarted = {
@@ -102,29 +102,35 @@ export const GettingStarted = {
             <h3>Customizing the style tokens</h3>
             <p>
               EUI can be slightly customized to fit your branding needs by
-              altering the base tokens like color and typography. Simply declare
-              your token overrides before importing the whole EUI theme. This
-              will re-compile all of the EUI components with your colors.
+              altering the base tokens like color and typography. You can pass a
+              full or partial list of override tokens to the{' '}
+              <strong>EuiProvider</strong>'s <EuiCode>modify</EuiCode> prop.
             </p>
+            <EuiCallOut
+              title="Touch the least amount of variables possible"
+              color="warning"
+            >
+              By nature, EUI is very rigid. You shouldn't need much to make
+              drastic changes to color. Most themes are less then a dozen
+              variable overwrites in total.
+            </EuiCallOut>
+            <EuiSpacer />
             <p>
-              For a full list of global tokens visit{' '}
-              <Link to="/theming/customizing-themes">Customizing theme</Link>.
+              For a full list of global tokens, visit{' '}
+              <Link to="/theming/customizing-themes">Customizing themes</Link>.
+              For more examples of the <EuiCode>modify</EuiCode> prop, see the{' '}
+              <Link to="/theming/theme-provider#simple-instance-overrides">
+                <strong>EuiThemeProvider</strong> docs
+              </Link>
+              .
             </p>
           </EuiText>
           <EuiSpacer />
-          <ThemeNotice />
-          <EuiSpacer />
-          <Customizing />
+          <EuiPanel paddingSize="none" hasBorder css={{ overflow: 'hidden' }}>
+            <GuideSectionExampleCode code={overrideSimpleSource} />
+          </EuiPanel>
           <EuiSpacer />
           <EuiText grow={false}>
-            <h4>Do not use in conjunction with the compiled CSS.</h4>
-            <p>If you provide both, it will duplicate the imported styles.</p>
-            <h4>Touch the least amount of variables possible.</h4>
-            <p>
-              By nature EUI is very rigid. You shouldn&apos;t need much to make
-              drastic changes to color. Most themes are less then a dozen
-              variable overwrites in total.
-            </p>
             <h4>
               Do not overwrite individual component variables or{' '}
               <EuiCode>.eui</EuiCode> class names.

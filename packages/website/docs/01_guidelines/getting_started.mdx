@@ -104,79 +104,51 @@ export default () => {
 
 ### Customizing the style tokens
 
-EUI can be slightly customized to fit your branding needs by altering the base tokens like color and typography.
-Simply declare your token overrides before importing the whole EUI theme. This will re-compile
-all of the EUI components with your colors.
+EUI can be slightly customized to fit your branding needs by altering the base tokens like color and typography. You can pass a full or partial list of override tokens to the **EuiProvider**'s `modify` prop.
 
-For a full list of global tokens visit Customizing theme.
-
-:::warning Partial component support
-EUI is transitioning to a CSS-in-JS solution for theming and requires consuming/customizing global variables
-in **both the Sass and CSS-in-JS** methods. To track this effort,
-subscribe to the [Meta ticket](https://github.com/elastic/eui/issues/3912).
+:::warning Touch the least amount of variables possible
+By nature, EUI is very rigid. You shouldn't need much to make drastic changes to color. Most themes are less then a dozen variable overwrites in total.
 :::
 
-<Tabs>
-  <TabItem value="sass" label="Sass">
-    ```scss title="This will require style, css, postcss, and sass loaders and a full re-compile of all EUI component styles."
-    $euiColorPrimary: #7B61FF;
+For a full list of global tokens visit [Customizing themes](https://eui.elastic.co/#/theming/customizing-themes). For more examples of the modify prop, see the [**EuiThemeProvider** docs](https://eui.elastic.co/#/theming/theme-provider#simple-instance-overrides).
 
-    // The following rebuilds the entire EUI component styles
-    @import '@elastic/eui/src/themes/amsterdam/theme_light';
+```jsx
+import React, { FunctionComponent, ReactNode } from 'react';
+import { EuiCode, EuiText, EuiThemeProvider, useEuiTheme } from '@elastic/eui';
 
-    @import 'your/custom/styles';
-    ```
-  </TabItem>
-  <TabItem value="css-in-js" label="CSS-in-JS">
-    ```jsx title="You can pass along a full or partial list of global overrides to the EuiProvider which will update the EUI components that are currently using the Emotion method of theming."
-    import React, { FunctionComponent, ReactNode } from 'react';
-    import { EuiCode, EuiText, EuiThemeProvider, useEuiTheme } from '@elastic/eui';
+const Box: FunctionComponent<{ children: ReactNode }> = ({ children }) => {
+  const { euiTheme } = useEuiTheme();
 
-    const Box: FunctionComponent<{ children: ReactNode }> = ({ children }) => {
-      const { euiTheme } = useEuiTheme();
+  return (
+    <EuiText
+      css={{
+        background: euiTheme.colors.lightShade,
+        padding: euiTheme.size.xl,
+      }}
+    >
+      <p>{children}</p>
+    </EuiText>
+  );
+};
 
-      return (
-        <EuiText
-          css={{
-            background: euiTheme.colors.lightShade,
-            padding: euiTheme.size.xl,
-          }}
-        >
-          <p>{children}</p>
-        </EuiText>
-      );
-    };
+export default () => {
+  const overrides = {
+    colors: {
+      LIGHT: { lightShade: '#d3e6df' },
+      DARK: { lightShade: '#394c4b' },
+    },
+  };
 
-    export default () => {
-      const overrides = {
-        colors: {
-          LIGHT: { lightShade: '#d3e6df' },
-          DARK: { lightShade: '#394c4b' },
-        },
-      };
-
-      return (
-        <div>
-          <EuiThemeProvider modify={overrides}>
-            <Box>
-              The background of this box is using the locally overridden value of{' '}
-              <EuiCode>euiTheme.colors.lightShade</EuiCode>
-            </Box>
-          </EuiThemeProvider>
-        </div>
-      );
-    };
-    ```
-</TabItem>
-</Tabs>
-
-#### Do not use in conjunction with the compiled CSS.
-
-If you provide both, it will duplicate the imported styles.
-
-#### Touch the least amount of variables possible.
-
-By nature EUI is very rigid. You shouldn't need much to make drastic changes to color. Most themes are less then a dozen variable overwrites in total.
+  return (
+    <EuiThemeProvider modify={overrides}>
+      <Box>
+        The background of this box is using the locally overridden value of{' '}
+        <EuiCode>euiTheme.colors.lightShade</EuiCode>
+      </Box>
+    </EuiThemeProvider>
+  );
+};
+```
 
 #### Do not overwrite individual component variables or .eui class names.
 
