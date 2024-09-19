@@ -5,7 +5,8 @@ import {
   EuiThemeProvider,
   useIsWithinBreakpoints,
 } from '../../../../src/services';
-import { EUI_THEME, EUI_THEMES } from '../../../../src/themes';
+import { EUI_THEME } from '../../../../src/themes';
+import { AVAILABLE_THEMES } from '../with_theme/theme_context';
 
 import { ThemeContext } from '../with_theme';
 // @ts-ignore Not TS
@@ -52,13 +53,14 @@ const GuideThemeSelectorComponent: React.FunctionComponent<
   };
 
   const currentTheme: EUI_THEME =
-    EUI_THEMES.find((theme) => theme.value === context.theme) || EUI_THEMES[0];
+    AVAILABLE_THEMES.find((theme) => theme.value === context.theme) ||
+    AVAILABLE_THEMES[0];
 
   const getIconType = (value: EUI_THEME['value']) => {
     return value === currentTheme.value ? 'check' : 'empty';
   };
 
-  const items = EUI_THEMES.map((theme) => {
+  const items = AVAILABLE_THEMES.map((theme) => {
     return (
       <EuiContextMenuItem
         key={theme.value}
