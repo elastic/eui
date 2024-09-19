@@ -29,10 +29,6 @@ export const euiDataGridHeaderCellStyles = (euiThemeContext: UseEuiTheme) => {
       flex-grow: 1; /* ensures content stretches and allows for manual layout styles to apply */
       ${euiTextTruncate()}
     `,
-    // Overwrite inherited 'center' styles from <button>
-    left: css`
-      ${logicalTextAlignCSS('left')}
-    `,
     // Numeric and currency schemas are aligned to the right
     right: css`
       ${logicalTextAlignCSS('right')}

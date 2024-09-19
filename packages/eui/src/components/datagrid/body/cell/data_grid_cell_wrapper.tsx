@@ -29,6 +29,7 @@ export type CellProps = Pick<
   | 'cellContext'
   | 'renderCellPopover'
   | 'interactiveCellId'
+  | 'gridStyles'
   | 'rowHeightsOptions'
   | 'rowHeightUtils'
   | 'rowManager'

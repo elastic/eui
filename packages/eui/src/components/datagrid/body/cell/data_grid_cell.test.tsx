@@ -45,6 +45,7 @@ describe('EuiDataGridCell', () => {
     ),
     popoverContext: mockPopoverContext,
     rowHeightUtils: mockRowHeightUtils,
+    gridStyles: {},
   };
 
   beforeEach(() => jest.clearAllMocks());
@@ -202,6 +203,12 @@ describe('EuiDataGridCell', () => {
         it('rowHeightsOptions', () => {
           component.setProps({ rowHeightsOptions: { defaultHeight: 'auto' } });
         });
+        it('gridStyles.fontSize', () => {
+          component.setProps({ gridStyles: { fontSize: 's' } });
+        });
+        it('gridStyles.cellPadding', () => {
+          component.setProps({ gridStyles: { cellPadding: 'l' } });
+        });
         it('renderCellValue', () => {
           component.setProps({ renderCellValue: () => <div>test</div> });
         });
@@ -254,7 +261,10 @@ describe('EuiDataGridCell', () => {
     });
 
     it('should not update for prop/state changes not specified above', () => {
-      component.setProps({ className: 'test' });
+      component.setProps({
+        className: 'test',
+        gridStyles: { header: 'underline' },
+      });
       expect(shouldComponentUpdate).toHaveReturnedWith(false);
     });
   });
@@ -625,7 +635,7 @@ describe('EuiDataGridCell', () => {
           callMethod(component);
           expect(
             mockRowHeightUtils.calculateHeightForLineCount
-          ).toHaveBeenCalledWith(expect.any(HTMLElement), 3, false);
+          ).toHaveBeenCalledWith(expect.any(HTMLElement), 3);
           expect(setRowHeight).toHaveBeenCalled();
         });
       });
@@ -647,25 +657,76 @@ describe('EuiDataGridCell', () => {
           callMethod(component);
           expect(
             mockRowHeightUtils.calculateHeightForLineCount
-          ).toHaveBeenCalledWith(expect.any(HTMLElement), 10, true);
+          ).toHaveBeenCalledWith(expect.any(HTMLElement), 10);
           expect(mockRowHeightUtils.setRowHeight).toHaveBeenCalled();
+          expect(setRowHeight).not.toHaveBeenCalled();
+        });
+
+        it('recalculates when the override for the row changes', () => {
+          const component = mount(
+            <EuiDataGridCell {...requiredProps} setRowHeight={setRowHeight} />
+          );
+
+          component.setProps({
+            rowHeightsOptions: {
+              rowHeights: {
+                0: { lineCount: 2 },
+              },
+            },
+          });
+          expect(mockRowHeightUtils.setRowHeight).toHaveBeenCalledTimes(1);
+
+          // Handle row index changes as well
+          component.setProps({
+            rowHeightsOptions: {
+              rowHeights: {
+                0: { lineCount: 2 },
+                2: { lineCount: 4 },
+              },
+            },
+            rowIndex: 2,
+          });
+          expect(mockRowHeightUtils.setRowHeight).toHaveBeenCalledTimes(2);
+
           expect(setRowHeight).not.toHaveBeenCalled();
         });
       });
 
-      it('recalculates when rowHeightsOptions.defaultHeight.lineCount changes', () => {
+      it('recalculates when props that affect row/line height change', () => {
         const component = mount(
           <EuiDataGridCell
             {...requiredProps}
-            rowHeightsOptions={{ defaultHeight: { lineCount: 7 } }}
+            rowHeightsOptions={{ defaultHeight: { lineCount: 4 } }}
             setRowHeight={setRowHeight}
           />
         );
+        component.setProps({
+          rowHeightsOptions: { defaultHeight: { lineCount: 2 } },
+        });
+        expect(setRowHeight).toHaveBeenCalledTimes(1);
+
+        // Other props that can affect row heights
+
+        const rowHeightsOptionsWithLineHeight = {
+          defaultHeight: { lineCount: 2 },
+          lineHeight: '3',
+        };
+        component.setProps({
+          rowHeightsOptions: rowHeightsOptionsWithLineHeight,
+        });
+        expect(setRowHeight).toHaveBeenCalledTimes(2);
 
         component.setProps({
-          rowHeightsOptions: { defaultHeight: { lineCount: 6 } },
+          rowHeightsOptions: rowHeightsOptionsWithLineHeight,
+          gridStyles: { cellPadding: 'l' },
         });
-        expect(setRowHeight).toHaveBeenCalled();
+        expect(setRowHeight).toHaveBeenCalledTimes(3);
+
+        component.setProps({
+          rowHeightsOptions: rowHeightsOptionsWithLineHeight,
+          gridStyles: { cellPadding: 'l', fontSize: 'l' },
+        });
+        expect(setRowHeight).toHaveBeenCalledTimes(4);
       });
 
       it('calculates undefined heights as single rows with a lineCount of 1', () => {
@@ -680,7 +741,7 @@ describe('EuiDataGridCell', () => {
         callMethod(component);
         expect(
           mockRowHeightUtils.calculateHeightForLineCount
-        ).toHaveBeenCalledWith(expect.any(HTMLElement), 1, false);
+        ).toHaveBeenCalledWith(expect.any(HTMLElement), 1);
         expect(setRowHeight).toHaveBeenCalled();
       });
 
