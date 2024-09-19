@@ -3,7 +3,6 @@ import {
   EuiButtonEmpty,
   EuiCard,
   EuiIcon,
-  EuiImage,
   EuiText,
   EuiTextAlign,
   useEuiMemoizedStyles,
@@ -12,8 +11,6 @@ import {
 } from '@elastic/eui';
 import { HomepageContainer, HomepageSection } from '../layout';
 import { css } from '@emotion/react';
-import { useContext } from 'react';
-import { AppThemeContext } from '@elastic/eui-docusaurus-theme/lib/components/theme_context/index.js';
 
 import SvgFlex from './svg/flex.svg';
 import SvgSpacer from './svg/spacer.svg';
@@ -223,10 +220,7 @@ const getStyles = ({ euiTheme, colorMode }: UseEuiTheme) => ({
 });
 
 export const HomepageHighlights = () => {
-  const { theme } = useContext(AppThemeContext);
   const styles = useEuiMemoizedStyles(getStyles);
-  const isDarkMode = theme === 'dark';
-
   const headingId = useGeneratedHtmlId();
 
   return (

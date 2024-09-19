@@ -62,8 +62,8 @@ function LogoThemedImage({
   alt: string;
   imageClassName?: string;
 }) {
-  const { theme } = useContext(AppThemeContext);
-  const isDarkMode = theme === 'dark';
+  const { colorMode } = useContext(AppThemeContext);
+  const isDarkMode = colorMode === 'dark';
 
   const styles = useEuiMemoizedStyles(getStyles);
 
