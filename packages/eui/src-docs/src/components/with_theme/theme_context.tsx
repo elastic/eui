@@ -1,5 +1,10 @@
 import React, { PropsWithChildren } from 'react';
-import { EUI_THEMES, EUI_THEME } from '../../../../src/themes';
+import {
+  EUI_THEMES,
+  EUI_THEME,
+  isExperimentalThemeEnabled,
+  EuiThemeBerlin,
+} from '../../../../src/themes';
 // @ts-ignore importing from a JS file
 import { applyTheme } from '../../services';
 
@@ -25,7 +30,24 @@ export const theme_languages: THEME_LANGUAGES[] = [
   },
 ];
 
-const THEME_NAMES = EUI_THEMES.map(({ value }) => value);
+const EXPERIMENTAL_THEMES: EUI_THEME[] = isExperimentalThemeEnabled()
+  ? [
+      {
+        text: 'Berlin (Light)',
+        value: `${EuiThemeBerlin.key}_LIGHT`,
+        provider: EuiThemeBerlin,
+      },
+      {
+        text: 'Berlin (Dark)',
+        value: `${EuiThemeBerlin.key}_DARK`,
+        provider: EuiThemeBerlin,
+      },
+    ]
+  : [];
+
+export const AVAILABLE_THEMES = [...EUI_THEMES, ...EXPERIMENTAL_THEMES];
+
+const THEME_NAMES = AVAILABLE_THEMES.map(({ value }) => value);
 const THEME_LANGS = theme_languages.map(({ id }) => id);
 
 const defaultState = {
