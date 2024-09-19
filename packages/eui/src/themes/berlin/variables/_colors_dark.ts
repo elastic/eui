@@ -13,7 +13,6 @@ import {
   makeDisabledContrastColor,
 } from '../../../services/color/contrast';
 import {
-  _EuiThemeColors,
   _EuiThemeBrandColors,
   _EuiThemeBrandTextColors,
   _EuiThemeShadeColors,
