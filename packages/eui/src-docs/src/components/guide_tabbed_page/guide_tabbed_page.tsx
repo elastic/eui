@@ -190,7 +190,7 @@ export const GuideTabbedPage: FunctionComponent<GuideTabbedPageProps> = ({
   };
 
   const renderNotice = () => {
-    if (!showSass && notice) {
+    if (showSass && notice) {
       return (
         <GuideSection>
           <div role="region" aria-label="Notice">
