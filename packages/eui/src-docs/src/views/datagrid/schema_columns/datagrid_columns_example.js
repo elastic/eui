@@ -253,8 +253,8 @@ schemaDetectors={[
           <p>
             To reorder columns directly instead of via the actions menu popover,
             you can enable draggable <strong>EuiDataGrid</strong> header columns
-            via the <EuiCode>columnDragDrop</EuiCode> prop. This will allow you
-            to reorder the column by dragging them.
+            via the <EuiCode>columnVisibility.canDragAndDropColumns</EuiCode>{' '}
+            prop. This will allow you to reorder the column by dragging them.
           </p>
         </Fragment>
       ),

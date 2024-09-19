@@ -57,7 +57,7 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
       sorting,
       schema,
       schemaDetectors,
-      columnDragDrop,
+      canDragAndDropColumns,
       wrapperRef,
     }) => {
       const { id, display, displayAsText, displayHeaderCellProps } = column;
@@ -239,8 +239,8 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
 
       const renderContent = (hasFocusTrap: boolean) => (
         <>
-          {!columnDragDrop && columnResizer}
-          {columnDragDrop && (
+          {!canDragAndDropColumns && columnResizer}
+          {canDragAndDropColumns && (
             <span className="euiDataGridHeaderCell__draggableIcon">
               <EuiIcon
                 type="grabOmnidirectional"
@@ -311,7 +311,7 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
         </>
       );
 
-      return columnDragDrop ? (
+      return canDragAndDropColumns ? (
         <EuiFlexGroup alignItems="center" css={{ position: 'relative' }}>
           {/* keep the resizer outside of Draggable to ensure both are working independently */}
           {columnResizer}

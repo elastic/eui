@@ -287,6 +287,7 @@ export const defaultStorybookArgs = {
       'version',
     ],
     setVisibleColumns: () => {},
+    canDragAndDropColumns: false,
   },
   inMemory: { level: 'sorting' } as const,
   pagination: {
@@ -390,7 +391,11 @@ export const StatefulDataGrid = (props: EuiDataGridProps) => {
   return (
     <EuiDataGrid
       {...rest}
-      columnVisibility={{ visibleColumns, setVisibleColumns }}
+      columnVisibility={{
+        visibleColumns,
+        setVisibleColumns,
+        canDragAndDropColumns: columnVisibility.canDragAndDropColumns,
+      }}
       sorting={{ columns: sortingColumns, onSort }}
       pagination={{
         ..._pagination,

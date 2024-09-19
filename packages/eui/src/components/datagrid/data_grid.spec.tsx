@@ -548,17 +548,17 @@ describe('EuiDataGrid', () => {
       return (
         <EuiDataGrid
           {...props}
-          columnDragDrop
           columnVisibility={{
             visibleColumns,
             setVisibleColumns,
+            canDragAndDropColumns: true,
           }}
         />
       );
     };
 
     it('should reorder columns on header cell drag and drop', () => {
-      cy.mount(<StatefulDataGrid {...baseProps} columnDragDrop />);
+      cy.mount(<StatefulDataGrid {...baseProps} />);
 
       cy.wait(50);
 
@@ -600,7 +600,7 @@ describe('EuiDataGrid', () => {
     });
 
     it('should reorder columns on header cell drag and drop with keyboard', () => {
-      cy.mount(<StatefulDataGrid {...baseProps} columnDragDrop />);
+      cy.mount(<StatefulDataGrid {...baseProps} />);
 
       cy.wait(50);
 
@@ -640,7 +640,7 @@ describe('EuiDataGrid', () => {
     });
 
     it('should close the actions popover on click of another draggable cell', () => {
-      cy.mount(<StatefulDataGrid {...baseProps} columnDragDrop />);
+      cy.mount(<StatefulDataGrid {...baseProps} />);
 
       cy.wait(50);
 

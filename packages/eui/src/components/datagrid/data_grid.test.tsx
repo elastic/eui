@@ -1429,11 +1429,12 @@ describe('EuiDataGrid', () => {
       expect(getByTitle('displayAsText')).toBeInTheDocument();
     });
 
-    describe('columnDragDrop', () => {
+    describe('canDragAndDropColumns', () => {
       it('should render draggable header columns cells', () => {
         const columnVisibility = {
           visibleColumns: ['ColumnA', 'ColumnB'],
           setVisibleColumns: () => {},
+          canDragAndDropColumns: true,
         };
 
         const { getByTestSubject } = render(
@@ -1443,7 +1444,6 @@ describe('EuiDataGrid', () => {
             columnVisibility={columnVisibility}
             rowCount={2}
             renderCellValue={renderCellValueRowAndColumnCount}
-            columnDragDrop
           />
         );
 

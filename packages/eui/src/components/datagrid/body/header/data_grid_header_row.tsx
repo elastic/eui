@@ -46,7 +46,7 @@ const EuiDataGridHeaderRow = memo(
       schemaDetectors,
       gridStyles,
       wrapperRef,
-      columnDragDrop,
+      canDragAndDropColumns,
       ...rest
     } = props;
 
@@ -103,12 +103,12 @@ const EuiDataGridHeaderRow = memo(
             sorting={sorting}
             schema={schema}
             schemaDetectors={schemaDetectors}
-            columnDragDrop={columnDragDrop}
+            canDragAndDropColumns={canDragAndDropColumns}
             wrapperRef={wrapperRef}
           />
         )),
       [
-        columnDragDrop,
+        canDragAndDropColumns,
         columnWidths,
         columns,
         defaultColumnWidth,
@@ -140,7 +140,7 @@ const EuiDataGridHeaderRow = memo(
             controlColumn={controlColumn}
           />
         ))}
-        {columnDragDrop ? (
+        {canDragAndDropColumns ? (
           <EuiDragDropContext onDragEnd={handleOnDragEnd}>
             <EuiDroppable
               key={droppableId}

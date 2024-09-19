@@ -141,7 +141,7 @@ export const EuiDataGridBodyVirtualized: FunctionComponent<EuiDataGridBodyProps>
       gridItemsRendered,
       wrapperRef,
       className,
-      columnDragDrop,
+      canDragAndDropColumns,
     }) => {
       /**
        * Grid refs & observers
@@ -202,7 +202,7 @@ export const EuiDataGridBodyVirtualized: FunctionComponent<EuiDataGridBodyProps>
         schema,
         schemaDetectors,
         gridStyles,
-        columnDragDrop,
+        canDragAndDropColumns,
         wrapperRef,
       });
 

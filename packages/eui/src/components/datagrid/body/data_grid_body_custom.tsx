@@ -51,7 +51,7 @@ export const EuiDataGridBodyCustomRender: FunctionComponent<
   gridWidth,
   gridStyles,
   className,
-  columnDragDrop,
+  canDragAndDropColumns,
   wrapperRef,
 }) => {
   /**
@@ -108,7 +108,7 @@ export const EuiDataGridBodyCustomRender: FunctionComponent<
     schema,
     schemaDetectors,
     gridStyles,
-    columnDragDrop,
+    canDragAndDropColumns,
     wrapperRef,
   });
 
