@@ -19,17 +19,3 @@ $euiFormControlBoxShadow: 0 0 transparent !default;
 $euiFormControlPlaceholderText: makeHighContrastColor($euiTextSubduedColor, $euiFormBackgroundColor) !default;
 $euiFormInputGroupLabelBackground: tintOrShade($euiColorLightShade, 50%, 15%) !default;
 $euiFormInputGroupBorder: none !default;
-
-// Icons sizes
-$euiFormControlIconSizes: (
-  small: $euiSizeM,
-  medium: $euiSize,
-  large: $euiSizeL,
-  xLarge: $euiSizeXL,
-  xxLarge: $euiSizeXXL
-);
-
-// Control Layout
-$euiFormControlLayoutGroupInputHeight: $euiFormControlHeight - 2px !default;
-$euiFormControlLayoutGroupInputCompressedHeight: $euiFormControlCompressedHeight - 2px !default;
-$euiFormControlLayoutGroupInputCompressedBorderRadius: $euiFormControlCompressedBorderRadius / 2 !default;
