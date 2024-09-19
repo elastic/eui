@@ -12,11 +12,12 @@ import React, {
   ReactNode,
   MouseEvent as ReactMouseEvent,
   HTMLAttributes,
+  ContextType,
 } from 'react';
 import classNames from 'classnames';
 
 import { CommonProps } from '../common';
-import { findPopoverPosition, htmlIdGenerator, keys } from '../../services';
+import { EuiWindowContext, findPopoverPosition, htmlIdGenerator, keys } from '../../services';
 import { enqueueStateChange } from '../../services/react';
 import { EuiResizeObserver } from '../observer/resize_observer';
 import { EuiPortal } from '../portal';
@@ -142,6 +143,9 @@ export class EuiToolTip extends Component<EuiToolTipProps, State> {
     display: 'inlineBlock',
   };
 
+  static contextType = EuiWindowContext;
+  declare context: ContextType<typeof EuiWindowContext>;
+
   clearAnimationTimeout = () => {
     if (this.timeoutId) {
       this.timeoutId = clearTimeout(this.timeoutId) as undefined;
@@ -151,14 +155,14 @@ export class EuiToolTip extends Component<EuiToolTipProps, State> {
   componentDidMount() {
     this._isMounted = true;
     if (this.props.repositionOnScroll) {
-      window.addEventListener('scroll', this.positionToolTip, true);
+      (this.context.window ?? window).addEventListener('scroll', this.positionToolTip, true);
     }
   }
 
   componentWillUnmount() {
     this.clearAnimationTimeout();
     this._isMounted = false;
-    window.removeEventListener('scroll', this.positionToolTip, true);
+    (this.context.window ?? window).removeEventListener('scroll', this.positionToolTip, true);
   }
 
   componentDidUpdate(prevProps: EuiToolTipProps, prevState: State) {
@@ -169,9 +173,9 @@ export class EuiToolTip extends Component<EuiToolTipProps, State> {
     // update scroll listener
     if (prevProps.repositionOnScroll !== this.props.repositionOnScroll) {
       if (this.props.repositionOnScroll) {
-        window.addEventListener('scroll', this.positionToolTip, true);
+        (this.context.window ?? window).addEventListener('scroll', this.positionToolTip, true);
       } else {
-        window.removeEventListener('scroll', this.positionToolTip, true);
+        (this.context.window ?? window).removeEventListener('scroll', this.positionToolTip, true);
       }
     }
   }
@@ -180,7 +184,7 @@ export class EuiToolTip extends Component<EuiToolTipProps, State> {
     // when the tooltip is visible, this checks if the anchor is still part of document
     // this fixes when the react root is removed from the dom without unmounting
     // https://github.com/elastic/eui/issues/1105
-    if (document.body.contains(this.anchor) === false) {
+    if ((this.context.window?.document ?? document).body.contains(this.anchor) === false) {
       // the anchor is no longer part of `document`
       this.hideToolTip();
     } else {
@@ -231,7 +235,7 @@ export class EuiToolTip extends Component<EuiToolTipProps, State> {
     // To prevent this, we can orient from the right so that text line wrapping does not occur, negating
     // the second resizeObserver callback call.
     const windowWidth =
-      document.documentElement.clientWidth || window.innerWidth;
+    (this.context.window?.document ?? document).documentElement.clientWidth || window.innerWidth;
     const useRightValue = windowWidth / 2 < left;
 
     const toolTipStyles: ToolTipStyles = {

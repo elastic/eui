@@ -16,7 +16,7 @@ import React, {
 } from 'react';
 import classNames from 'classnames';
 import { CommonProps } from '../common';
-import { useEuiTheme } from '../../services';
+import { useEuiTheme, useEuiWindow } from '../../services';
 import { euiToolTipStyles } from './tool_tip.styles';
 
 export type ToolTipPositions = 'top' | 'right' | 'bottom' | 'left';
@@ -42,6 +42,7 @@ export const EuiToolTipPopover: FunctionComponent<Props> = ({
   const popover = useRef<HTMLDivElement>();
 
   const euiTheme = useEuiTheme();
+  const currentWindow = useEuiWindow();
   const styles = euiToolTipStyles(euiTheme);
   const cssStyles = [
     styles.euiToolTip,
@@ -64,12 +65,12 @@ export const EuiToolTipPopover: FunctionComponent<Props> = ({
   };
 
   useEffect(() => {
-    document.body.classList.add('euiBody-hasPortalContent');
-    window.addEventListener('resize', updateDimensions);
+    (currentWindow?.document ?? document).body.classList.add('euiBody-hasPortalContent');
+    (currentWindow ?? window).addEventListener('resize', updateDimensions);
 
     return () => {
-      document.body.classList.remove('euiBody-hasPortalContent');
-      window.removeEventListener('resize', updateDimensions);
+      (currentWindow?.document ?? document).body.classList.remove('euiBody-hasPortalContent');
+      (currentWindow ?? window).removeEventListener('resize', updateDimensions);
     };
   }, [updateDimensions]);
 
