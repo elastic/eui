@@ -7,10 +7,13 @@
  */
 
 import React, { Component } from 'react';
+import { RenderWithEuiStylesMemoizer } from '../../../../services';
+import { logicalStyle } from '../../../../global_styling';
 import {
   EuiDataGridColumnResizerProps,
   EuiDataGridColumnResizerState,
 } from '../../data_grid_types';
+import { euiDataGridColumnResizerStyles } from './data_grid_column_resizer.styles';
 
 const MINIMUM_COLUMN_WIDTH = 40;
 
@@ -65,12 +68,28 @@ export class EuiDataGridColumnResizer extends Component<
     const { offset } = this.state;
 
     return (
-      <div
-        className="euiDataGridColumnResizer"
-        data-test-subj="dataGridColumnResizer"
-        style={{ marginRight: `${-offset}px` }}
-        onMouseDown={this.onMouseDown}
-      />
+      <RenderWithEuiStylesMemoizer>
+        {(stylesMemoizer) => {
+          const styles = stylesMemoizer(euiDataGridColumnResizerStyles);
+          const cssStyles = [
+            styles.euiDataGridColumnResizer,
+            offset && styles.isDragging,
+          ];
+          return (
+            <div
+              css={cssStyles}
+              className="euiDataGridColumnResizer"
+              data-test-subj="dataGridColumnResizer"
+              style={
+                offset
+                  ? logicalStyle('margin-right', `${-offset}px`)
+                  : undefined
+              }
+              onMouseDown={this.onMouseDown}
+            />
+          );
+        }}
+      </RenderWithEuiStylesMemoizer>
     );
   }
 }

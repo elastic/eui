@@ -255,6 +255,7 @@ describe('EuiDataGrid', () => {
 
     it('has zero violations on sort and when the columns sorting menu is open', () => {
       cy.get('.euiDataGridHeaderCell').last().realHover();
+      cy.wait(200); // Wait for transition
       cy.get('button.euiDataGridHeaderCell__button').last().realClick();
       cy.get('button.euiListGroupItem__button')
         .contains('Sort Alma to Debian')

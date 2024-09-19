@@ -709,7 +709,7 @@ export class EuiPopover extends Component<Props, State> {
       const returnFocus = this.state.isOpenStable ? returnFocusConfig : false;
 
       panel = (
-        <EuiPortal insert={insert}>
+        <EuiPortal {...(insert && { insert })}>
           <EuiFocusTrap
             clickOutsideDisables={true}
             onClickOutside={this.onClickOutside}

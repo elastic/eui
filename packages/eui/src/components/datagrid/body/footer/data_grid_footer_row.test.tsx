@@ -35,7 +35,7 @@ describe('EuiDataGridFooterRow', () => {
       >
         <div
           aria-rowindex="11"
-          class="euiDataGridRowCell euiDataGridRowCell--alignLeft euiDataGridRowCell--string euiDataGridFooterCell"
+          class="euiDataGridRowCell euiDataGridRowCell--string euiDataGridFooterCell emotion-euiDataGridRowCell-euiDataGridFooterCell"
           data-gridcell-column-id="someColumn"
           data-gridcell-column-index="0"
           data-gridcell-row-index="10"
@@ -46,22 +46,15 @@ describe('EuiDataGridFooterRow', () => {
           tabindex="-1"
         >
           <div
-            class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight eui-textTruncate"
+            class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight eui-textTruncate emotion-euiDataGridRowCell__content-defaultHeight"
             data-datagrid-cellcontent="true"
           >
             <div />
           </div>
-          <p
-            class="emotion-euiScreenReaderOnly"
-            hidden=""
-          >
-            - 
-            someColumn, column 1, row 11
-          </p>
         </div>
         <div
           aria-rowindex="11"
-          class="euiDataGridRowCell euiDataGridRowCell--alignLeft euiDataGridFooterCell"
+          class="euiDataGridRowCell euiDataGridFooterCell emotion-euiDataGridRowCell-euiDataGridFooterCell"
           data-gridcell-column-id="someColumnWithoutSchema"
           data-gridcell-column-index="1"
           data-gridcell-row-index="10"
@@ -71,18 +64,11 @@ describe('EuiDataGridFooterRow', () => {
           tabindex="-1"
         >
           <div
-            class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight eui-textTruncate"
+            class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight eui-textTruncate emotion-euiDataGridRowCell__content-defaultHeight"
             data-datagrid-cellcontent="true"
           >
             <div />
           </div>
-          <p
-            class="emotion-euiScreenReaderOnly"
-            hidden=""
-          >
-            - 
-            someColumnWithoutSchema, column 2, row 11
-          </p>
         </div>
       </div>
     `);

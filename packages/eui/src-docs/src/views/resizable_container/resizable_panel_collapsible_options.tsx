@@ -46,7 +46,7 @@ export default () => {
   ));
   return (
     <EuiPage paddingSize="none">
-      <EuiResizableContainer style={{ height: '320px' }}>
+      <EuiResizableContainer>
         {(EuiResizablePanel, EuiResizableButton) => (
           <>
             <EuiResizablePanel

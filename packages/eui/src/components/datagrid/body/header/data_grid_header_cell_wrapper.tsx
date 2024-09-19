@@ -17,10 +17,11 @@ import React, {
 import classnames from 'classnames';
 import { FocusableElement } from 'tabbable';
 
-import { keys } from '../../../../services';
+import { keys, useEuiMemoizedStyles } from '../../../../services';
 import { EuiDataGridHeaderCellWrapperProps } from '../../data_grid_types';
 import { DataGridFocusContext } from '../../utils/focus';
 import { HandleInteractiveChildren } from '../cell/focus_utils';
+import { euiDataGridHeaderCellWrapperStyles } from './data_grid_header_cell_wrapper.styles';
 
 /**
  * This is a wrapper that handles repeated concerns between control &
@@ -41,6 +42,7 @@ export const EuiDataGridHeaderCellWrapper: FunctionComponent<
   ...rest
 }) => {
   const classes = classnames('euiDataGridHeaderCell', className);
+  const styles = useEuiMemoizedStyles(euiDataGridHeaderCellWrapperStyles);
 
   // Must be a state and not a ref to trigger a HandleInteractiveChildren rerender
   const [headerEl, setHeaderEl] = useState<HTMLDivElement | null>(null);
@@ -94,6 +96,7 @@ export const EuiDataGridHeaderCellWrapper: FunctionComponent<
       ref={setHeaderEl}
       tabIndex={isFocused ? 0 : -1}
       onKeyDown={onKeyDown}
+      css={styles.euiDataGridHeaderCell}
       className={classes}
       data-test-subj={`dataGridHeaderCell-${id}`}
       data-gridcell-column-id={id}

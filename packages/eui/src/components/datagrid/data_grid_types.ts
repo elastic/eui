@@ -223,7 +223,7 @@ export interface DataGridCellPopoverContextShape {
   openCellPopover(args: { rowIndex: number; colIndex: number }): void;
   closeCellPopover(): void;
   setPopoverAnchor(anchor: HTMLElement): void;
-  setPopoverAnchorPosition(position: 'downLeft' | 'downRight'): void;
+  setPopoverAnchorPosition(position: 'downLeft' | 'upLeft'): void;
   setPopoverContent(content: ReactNode): void;
   setCellPopoverProps: EuiDataGridCellPopoverElementProps['setCellPopoverProps'];
 }
@@ -546,7 +546,10 @@ interface SharedRenderCellElementProps {
 }
 
 export type EuiDataGridSetCellProps = CommonProps &
-  HTMLAttributes<HTMLDivElement> & {
+  Omit<
+    HTMLAttributes<HTMLDivElement>,
+    'role' | 'tabIndex' | 'aria-rowindex'
+  > & {
     isExpandable?: boolean;
   };
 
@@ -642,7 +645,6 @@ export interface EuiDataGridCellState {
   cellProps: EuiDataGridSetCellProps;
   isFocused: boolean; // tracks if this cell has focus or not, used to enable tabIndex on the cell
   isHovered: boolean; // tracks if this cell is hovered, used to conditionally render cell actions
-  cellTextAlign: 'Left' | 'Right'; // determines the cell actions and cell popover expansion position
 }
 
 export type EuiDataGridCellValueProps = Omit<

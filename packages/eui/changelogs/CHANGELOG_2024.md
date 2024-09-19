@@ -1,3 +1,44 @@
+## [`v95.11.0`](https://github.com/elastic/eui/releases/v95.11.0)
+
+- Updated `EuiText`, `EuiTextColor`, and `EuiTextAlign` with a new `component` prop that allows changing the default rendered `<div>` wrapper to a `<span>` or `<p>` tag. ([#7993](https://github.com/elastic/eui/pull/7993))
+- Updated `EuiDataGrid`'s cell actions to always consistently be left-aligned, regardless of text content alignment ([#8011](https://github.com/elastic/eui/pull/8011))
+- Increased `EuiDataGrid`'s cell actions hover zone to reduce UX friction when mousing over from the grid cell to its actions ([#8011](https://github.com/elastic/eui/pull/8011))
+
+**Bug fixes**
+
+- Fixed `EuiPopover` to correctly inherit from `EuiProvider`'s `componentDefaults.EuiPortal.insert` ([#8003](https://github.com/elastic/eui/pull/8003))
+- Fixed push `EuiFlyoutResizable`s to not potentially block scrollbars on outside content ([#8010](https://github.com/elastic/eui/pull/8010))
+- Fixed an `EuiDataGrid` bug where the `setCellProps` callback passed by `renderCellValue` was not correctly applying custom `data-test-subj`s ([#8011](https://github.com/elastic/eui/pull/8011))
+
+**Accessibility**
+
+- Updated the `EuiBasicTable` actions button's `aria-label` by adding a reference to the current row ([#7994](https://github.com/elastic/eui/pull/7994))
+
+**CSS-in-JS conversions**
+
+- Converted `EuiDataGrid`'s toolbar controls to Emotion ([#7997](https://github.com/elastic/eui/pull/7997))
+  - Removed `$euiDataGridPopoverMaxHeight`
+- Converted `EuiDataGrid` to Emotion ([#7998](https://github.com/elastic/eui/pull/7998))
+  - Removed `$euiZDataGrid`
+  - Removed `$euiZHeaderBelowDataGrid`
+- Converted `EuiDataGrid`'s `gridStyle`s to Emotion; Removed the following Sass variables and mixins: ([#8006](https://github.com/elastic/eui/pull/8006))
+  - `$euiDataGridCellPaddingS`
+  - `$euiDataGridCellPaddingM`
+  - `$euiDataGridCellPaddingL`
+  - `$euiDataGridVerticalBorder`
+  - `$euiDataGridPrefix`
+  - `$euiDataGridStyles`
+  - `@euiDataGridSelector`
+  - `@euiDataGridStyles`
+- Converted `EuiDataGrid`'s cell popover, actions, and focus outline to Emotion; Removed the following Sass variables and mixins: ([#8011](https://github.com/elastic/eui/pull/8011))
+  - `$euiZDataGridCellPopover`
+  - `@euiDataGridCellFocus`
+- Converted `EuiDataGrid`'s row, header, and footer cells to Emotion; Removed the following Sass variables and mixins: ([#8013](https://github.com/elastic/eui/pull/8013))
+  - `$euiDataGridColumnResizerWidth`
+  - `@euiDataGridRowCell`
+  - `@euiDataGridHeaderCell`
+  - `@euiDataGridFooterCell`
+
 ## [`v95.10.1`](https://github.com/elastic/eui/releases/v95.10.1)
 
 **Bug fixes**

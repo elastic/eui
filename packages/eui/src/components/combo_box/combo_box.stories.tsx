@@ -139,7 +139,7 @@ export const Groups: Story = {
       include: ['options'],
     },
     loki: {
-      chromeSelector: LOKI_SELECTORS.body,
+      chromeSelector: LOKI_SELECTORS.portal,
     },
   },
   args: {
@@ -167,7 +167,7 @@ export const NestedOptionsGroups: Story = {
       include: ['options'],
     },
     loki: {
-      chromeSelector: LOKI_SELECTORS.body,
+      chromeSelector: LOKI_SELECTORS.portal,
     },
   },
   args: {

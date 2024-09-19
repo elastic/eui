@@ -320,7 +320,9 @@ export const EuiDatePicker: FunctionComponent<EuiDatePickerProps> = ({
     <span css={cssStyles} className={classes}>
       <EuiFormControlLayout
         icon={optionalIcon}
-        clear={selected && onClear ? { onClick: onClear } : undefined}
+        clear={
+          selected && !disabled && onClear ? { onClick: onClear } : undefined
+        }
         isLoading={isLoading}
         isInvalid={isInvalid}
         isDisabled={disabled}

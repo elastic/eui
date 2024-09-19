@@ -47,6 +47,25 @@ describe('EuiDatePicker', () => {
     jest.restoreAllMocks();
   });
 
+  test('onClear', () => {
+    const onClear = () => {};
+    const selected = moment();
+
+    const { queryByLabelText, rerender } = render(
+      <EuiDatePicker onClear={onClear} selected={selected} />
+    );
+    // Should render the clear button
+    expect(queryByLabelText('Clear input')).toBeInTheDocument();
+
+    // Should not render the clear button if the input is disabled
+    rerender(<EuiDatePicker onClear={onClear} selected={selected} disabled />);
+    expect(queryByLabelText('Clear input')).not.toBeInTheDocument();
+
+    // Should not render the clear button if no date is selected
+    rerender(<EuiDatePicker onClear={onClear} />);
+    expect(queryByLabelText('Clear input')).not.toBeInTheDocument();
+  });
+
   test('compressed', () => {
     const { container } = render(<EuiDatePicker compressed />);
     // TODO: Should probably be a visual snapshot test

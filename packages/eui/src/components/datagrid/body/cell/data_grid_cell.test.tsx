@@ -13,6 +13,7 @@ import { render } from '../../../../test/rtl';
 import { RowHeightUtils } from '../../utils/__mocks__/row_heights';
 import { mockFocusContext } from '../../utils/__mocks__/focus_context';
 import { DataGridFocusContext } from '../../utils/focus';
+import type { EuiDataGridProps } from '../../data_grid_types';
 
 import { EuiDataGridCell } from './data_grid_cell';
 
@@ -54,7 +55,7 @@ describe('EuiDataGridCell', () => {
   });
 
   it("renders the cell's `aria-rowindex` correctly when paginated on a different page", () => {
-    const component = mount(
+    const { getByTestSubject } = render(
       <EuiDataGridCell
         {...requiredProps}
         pagination={{
@@ -66,9 +67,11 @@ describe('EuiDataGridCell', () => {
         }}
       />
     );
-    expect(
-      component.find('[data-test-subj="dataGridRowCell"]').prop('aria-rowindex')
-    ).toEqual(61);
+
+    expect(getByTestSubject('dataGridRowCell')).toHaveAttribute(
+      'aria-rowindex',
+      '61'
+    );
   });
 
   it('renders cell actions', () => {
@@ -100,6 +103,61 @@ describe('EuiDataGridCell', () => {
     });
     (getCellActions().prop('onExpandClick') as Function)();
     expect(mockPopoverContext.closeCellPopover).toHaveBeenCalledTimes(1);
+  });
+
+  describe('setCellProps', () => {
+    it('correctly merges props that also have EUI values', () => {
+      const RenderCellValue: EuiDataGridProps['renderCellValue'] = ({
+        setCellProps,
+      }) => {
+        useEffect(() => {
+          setCellProps({
+            style: { backgroundColor: 'black' },
+            css: { color: 'white' },
+            'data-test-subj': 'test',
+            className: 'helloWorld',
+          });
+        }, [setCellProps]);
+        return 'cell render';
+      };
+
+      const { getByTestSubject } = render(
+        <EuiDataGridCell {...requiredProps} renderCellValue={RenderCellValue} />
+      );
+
+      const cell = getByTestSubject('dataGridRowCell test'); // should have merged `data-test-subj` correctly
+      expect(cell).toHaveClass('euiDataGridRowCell helloWorld'); // should have merged `className` correctly
+      expect(cell).toHaveStyle('background-color: rgb(0, 0, 0)'); // should have merged `style` correctly
+      expect(cell).toHaveStyle('color: rgb(255, 255, 255)'); // should have applied consumer `css`
+      expect(cell.className).toMatch(/css-[\w\d]+-euiDataGridRowCell/); // should not have overridden EUI `css`
+    });
+
+    it('does not allow overriding certain EUI props/values', () => {
+      const RenderCellValue: EuiDataGridProps['renderCellValue'] = ({
+        setCellProps,
+      }) => {
+        useEffect(() => {
+          setCellProps({
+            // @ts-expect-error - deliberately passing omitted props
+            role: 'ignored',
+            tabIndex: 2,
+            'aria-rowindex': 99,
+            'data-gridcell-visible-row-index': -200,
+          });
+        }, [setCellProps]);
+        return 'cell render';
+      };
+
+      const { container } = render(
+        <EuiDataGridCell {...requiredProps} renderCellValue={RenderCellValue} />
+      );
+
+      const cell = container.firstElementChild;
+      expect(cell).toHaveAttribute('role', 'gridcell');
+      expect(cell).toHaveAttribute('tabIndex', '-1');
+      expect(cell).toHaveAttribute('aria-rowindex', '1');
+      expect(cell).toHaveAttribute('data-gridcell-visible-row-index', '0');
+    });
   });
 
   describe('shouldComponentUpdate', () => {
@@ -487,7 +545,9 @@ describe('EuiDataGridCell', () => {
     });
 
     it('allows overriding column.isExpandable with setCellProps({ isExpandable })', () => {
-      const RenderCellValue = ({ setCellProps }: any) => {
+      const RenderCellValue: EuiDataGridProps['renderCellValue'] = ({
+        setCellProps,
+      }) => {
         useEffect(() => {
           setCellProps({ isExpandable: false });
         }, [setCellProps]);

@@ -17,11 +17,11 @@ const baseProps: EuiDataGridProps = {
   'aria-label': 'Grid cell popover test',
   height: 300,
   width: 400,
-  columns: [{ id: 'A' }, { id: 'B' }, { id: 'C', schema: 'numeric' }],
+  columns: [{ id: 'A' }, { id: 'B' }],
   rowCount: 2,
   renderCellValue: ({ rowIndex, columnId }) => `${columnId}, ${rowIndex}`,
   columnVisibility: {
-    visibleColumns: ['A', 'B', 'C'],
+    visibleColumns: ['A', 'B'],
     setVisibleColumns: () => {},
   },
 };
@@ -51,7 +51,7 @@ describe('EuiDataGridCellPopover', () => {
       cy.realMount(<EuiDataGrid {...baseProps} />);
       cy.get(
         '[data-gridcell-row-index="0"][data-gridcell-column-index="0"]'
-      ).realClick();
+      ).realHover();
 
       cy.get('[data-test-subj="euiDataGridCellExpandButton"]').click();
       cy.focused().should(
@@ -71,7 +71,7 @@ describe('EuiDataGridCellPopover', () => {
       cy.realMount(<EuiDataGrid {...baseProps} />);
       cy.get(
         '[data-gridcell-row-index="1"][data-gridcell-column-index="1"]'
-      ).realClick();
+      ).realHover();
 
       cy.get('[data-test-subj="euiDataGridCellExpandButton"]').click();
       cy.focused().should(
@@ -146,14 +146,10 @@ describe('EuiDataGridCellPopover', () => {
     cy.realPress('Enter');
     cy.get('[data-test-subj="euiDataGridExpansionPopover"]').should('exist');
 
-    cy.get('[data-test-subj="cellActionA"]').first().realClick();
+    cy.get('[data-test-subj="cellActionA"]').first().click();
     cy.get('[data-test-subj="euiDataGridExpansionPopover"]').should('exist');
 
-    // Close and re-open the cell popover by clicking
-    cy.get('[data-test-subj="euiDataGridCellExpandButton"]').click();
-    cy.get('[data-test-subj="euiDataGridCellExpandButton"]').click();
-
-    cy.get('[data-test-subj="cellActionB"]').first().realClick();
+    cy.get('[data-test-subj="cellActionB"]').first().click();
     cy.get('[data-test-subj="euiDataGridExpansionPopover"]').should('exist');
 
     // Clicking the cell actions outside the popover should not have disabled the focus trap
@@ -190,7 +186,7 @@ describe('EuiDataGridCellPopover', () => {
     );
     cy.get(
       '[data-gridcell-row-index="0"][data-gridcell-column-index="0"]'
-    ).realClick();
+    ).realHover();
     cy.get('[data-test-subj="euiDataGridCellExpandButton"]').click();
 
     cy.get('.euiDataGridRowCell__popover.hello.world').should('exist');
@@ -206,8 +202,6 @@ describe('EuiDataGridCellPopover', () => {
             return 'short text';
           case 'B':
             return 'Very long text that should get cut off because it is so long, lorem ipsum dolor sit amet words words words';
-          case 'C':
-            return 'right aligned text';
         }
       },
     };
@@ -225,7 +219,7 @@ describe('EuiDataGridCellPopover', () => {
       openCellPopover('A');
       cy.get('[data-test-subj="euiDataGridExpansionPopover"]')
         .should('have.css', 'left', '1px')
-        .should('have.css', 'top', '80px')
+        .should('have.css', 'top', '72px')
         .should('have.css', 'width', '112px');
     });
 
@@ -235,29 +229,17 @@ describe('EuiDataGridCellPopover', () => {
       openCellPopover('B');
       cy.get('[data-test-subj="euiDataGridExpansionPopover"]')
         .should('have.css', 'left', '109px')
-        .should('have.css', 'top', '80px')
+        .should('have.css', 'top', '72px')
         .should('have.css', 'width', '375px');
-    });
-
-    it('right aligned popover', () => {
-      cy.realMount(<EuiDataGrid {...props} />);
-
-      openCellPopover('C');
-
-      // Matchers used due to subpixel rendering shenanigans
-      cy.get('[data-test-subj="euiDataGridExpansionPopover"]')
-        .should('have.css', 'top', '80px')
-        .should('have.css', 'left')
-        .and('match', /^255[.\d]+px$/);
-      cy.get('[data-test-subj="euiDataGridExpansionPopover"]')
-        .should('have.css', 'width')
-        .and('match', /^143[.\d]+px$/);
     });
 
     describe('max popover dimensions', () => {
       it('never exceeds 75% of the viewport width or 50% of the viewport height', () => {
         cy.viewport(300, 200);
-        cy.realMount(<EuiDataGrid {...props} />);
+        // Popover renders correctly when the Cypress viewport is scrolled to the left
+        // but not if it's scrolled to the right, hence this column workaround.
+        // I can't reproduce this bug in Storybook or production datagrids 🤷
+        cy.realMount(<EuiDataGrid {...props} columns={[{ id: 'B' }]} />);
 
         openCellPopover('B');
         cy.get('[data-test-subj="euiDataGridExpansionPopover"]')

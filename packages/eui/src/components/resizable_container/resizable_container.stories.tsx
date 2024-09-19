@@ -36,7 +36,7 @@ const TwoColumns: EuiResizableContainerProps['children'] = (
       <EuiText>{placeholderText}</EuiText>
     </EuiResizablePanel>
 
-    <EuiResizableButton />
+    <EuiResizableButton accountForScrollbars="both" />
 
     <EuiResizablePanel initialSize={50} tabIndex={0}>
       <EuiText>{placeholderText}</EuiText>
@@ -53,13 +53,13 @@ const ThreeColumns: EuiResizableContainerProps['children'] = (
       <EuiText>{placeholderText}</EuiText>
     </EuiResizablePanel>
 
-    <EuiResizableButton />
+    <EuiResizableButton accountForScrollbars="both" />
 
     <EuiResizablePanel initialSize={40} tabIndex={0}>
       <EuiText>{placeholderText}</EuiText>
     </EuiResizablePanel>
 
-    <EuiResizableButton />
+    <EuiResizableButton accountForScrollbars="both" />
 
     <EuiResizablePanel initialSize={20} tabIndex={0}>
       <EuiText>{placeholderText}</EuiText>
@@ -80,7 +80,7 @@ const WithMinSize: EuiResizableContainerProps['children'] = (
       </EuiText>
     </EuiResizablePanel>
 
-    <EuiResizableButton alignIndicator="center" />
+    <EuiResizableButton accountForScrollbars="both" />
 
     <EuiResizablePanel initialSize={50} minSize="200px" tabIndex={0}>
       <EuiText>
@@ -105,7 +105,7 @@ const SingleCollapsible: EuiResizableContainerProps['children'] = (
       </EuiText>
     </EuiResizablePanel>
 
-    <EuiResizableButton alignIndicator="center" />
+    <EuiResizableButton accountForScrollbars="both" />
 
     <EuiResizablePanel initialSize={70} mode="main">
       <EuiText>
@@ -130,7 +130,7 @@ const MultiCollapsible: EuiResizableContainerProps['children'] = (
       </EuiText>
     </EuiResizablePanel>
 
-    <EuiResizableButton />
+    <EuiResizableButton accountForScrollbars="both" />
 
     <EuiResizablePanel initialSize={60} mode="main">
       <EuiText>
@@ -140,7 +140,7 @@ const MultiCollapsible: EuiResizableContainerProps['children'] = (
       </EuiText>
     </EuiResizablePanel>
 
-    <EuiResizableButton />
+    <EuiResizableButton accountForScrollbars="both" />
 
     <EuiResizablePanel initialSize={20} mode="collapsible">
       <EuiText>

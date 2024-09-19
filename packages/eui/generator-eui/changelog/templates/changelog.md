@@ -26,11 +26,6 @@
 - Removed ...
 
 <%_ } -%>
-<%_ if (emotionConversions) { -%>
-**CSS-in-JS conversions**
-
-- Converted `EuiComponent` to Emotion; Removed `$euiComponentSassVariable`
-<%_ } -%>
 <%_ if (dependencyUpdates) { -%>
 **Dependency updates**
 

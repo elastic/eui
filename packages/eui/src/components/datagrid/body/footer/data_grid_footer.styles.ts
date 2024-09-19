@@ -42,5 +42,10 @@ export const euiDataGridFooterStyles = (euiThemeContext: UseEuiTheme) => {
         background-color: ${euiTheme.colors.lightestShade};
       }
     `,
+
+    euiDataGridFooterCell: css`
+      flex: 0 0 auto;
+      font-weight: ${euiTheme.font.weight.bold};
+    `,
   };
 };

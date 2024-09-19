@@ -48,6 +48,12 @@ export type EuiResizableButtonProps = ButtonHTMLAttributes<HTMLButtonElement> &
      */
     alignIndicator?: 'center' | 'start' | 'end';
     /**
+     * By default, EuiResizableButton will overlap into the panels before/after it.
+     * This can occasionally occlude interactive elements like scrollbars. To prevent
+     * this overlap, use this prop to remove the overlap for the specified side.
+     */
+    accountForScrollbars?: 'before' | 'after' | 'both';
+    /**
      * When disabled, the resizer button will be completely hidden
      */
     disabled?: boolean;
@@ -66,6 +72,7 @@ export const EuiResizableButton = forwardRef<
       isHorizontal,
       indicator = 'handle',
       alignIndicator = 'center',
+      accountForScrollbars,
       className,
       ...rest
     },
@@ -82,6 +89,9 @@ export const EuiResizableButton = forwardRef<
       styles[`${indicator}Direction`][resizeDirection],
       styles[resizeDirection],
       indicator === 'handle' && styles.alignIndicator[alignIndicator],
+      styles.accountForScrollbars[resizeDirection][
+        accountForScrollbars ?? 'none'
+      ],
     ];
 
     return (

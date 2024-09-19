@@ -6,10 +6,12 @@
  * Side Public License, v 1.
  */
 
-import React from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
-
+import React, { useRef, useEffect } from 'react';
+import type { Meta, StoryObj, ReactRenderer } from '@storybook/react';
+import type { PlayFunctionContext } from '@storybook/csf';
+import { within } from '../../../.storybook/test';
 import { enableFunctionToggleControls } from '../../../.storybook/utils';
+
 import { EuiButtonIcon } from '../button';
 import { EuiToolTip } from '../tool_tip';
 
@@ -18,9 +20,10 @@ import {
   defaultStorybookArgs,
   raw_data,
 } from './data_grid.stories.utils';
-import type {
-  EuiDataGridColumnCellActionProps,
-  EuiDataGridProps,
+import {
+  EuiDataGridRefProps,
+  type EuiDataGridColumnCellActionProps,
+  type EuiDataGridProps,
 } from './data_grid_types';
 import { EuiDataGrid } from './data_grid';
 
@@ -127,4 +130,53 @@ export const CustomHeaderContent: Story = {
     ],
   },
   render: (args: EuiDataGridProps) => <StatefulDataGrid {...args} />,
+};
+
+/**
+ * VRT only
+ */
+
+export const CellActions: Story = {
+  tags: ['vrt-only'],
+  args: defaultStorybookArgs,
+  render: function Render() {
+    const dataGridRef = useRef<EuiDataGridRefProps | null>(null);
+
+    useEffect(() => {
+      dataGridRef.current?.setFocusedCell({ rowIndex: 2, colIndex: 2 });
+    }, []);
+
+    return <EuiDataGrid {...defaultStorybookArgs} ref={dataGridRef} />;
+  },
+};
+
+export const CellExpansionPopover: Story = {
+  tags: ['vrt-only'],
+  args: defaultStorybookArgs,
+  render: function Render() {
+    const dataGridRef = useRef<EuiDataGridRefProps | null>(null);
+
+    useEffect(() => {
+      dataGridRef.current?.openCellPopover({ rowIndex: 1, colIndex: 1 });
+    }, []);
+
+    return <EuiDataGrid {...defaultStorybookArgs} ref={dataGridRef} />;
+  },
+};
+
+export const ColumnActions: Story = {
+  tags: ['vrt-only'],
+  args: defaultStorybookArgs,
+  render: () => (
+    <StatefulDataGrid
+      {...defaultStorybookArgs}
+      // Should correctly affect the actions button size
+      gridStyle={{ fontSize: 's', cellPadding: 's' }}
+    />
+  ),
+  play: async ({ canvasElement }: PlayFunctionContext<ReactRenderer>) => {
+    const canvas = within(canvasElement);
+    await canvas.waitForAndClick('dataGridHeaderCellActionButton-account');
+    await canvas.waitForEuiPopoverVisible();
+  },
 };

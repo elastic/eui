@@ -25,12 +25,7 @@ export const LOKI_SELECTORS = {
   /**
    * Portal element content selector
    */
-  portal: '[data-euiportal="true"]',
-  /**
-   * Body selector
-   * TODO: remove when LOKI_SELECTORS.portal selector works as expected again
-   */
-  body: 'body',
+  portal: '#storybook-root > *',
 } as const;
 
 /**

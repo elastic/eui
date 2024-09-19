@@ -1,5 +1,30 @@
 [
   {
+    "version": "95.11.0",
+    "changes": [
+      {
+        "token": "euiCollapsedItemActions.allActions",
+        "changeType": "modified",
+        "value": "All actions, row {index}"
+      },
+      {
+        "token": "euiDataGridCell.position",
+        "changeType": "modified",
+        "value": "{columnName}, column {columnIndex}, row {rowIndex}"
+      },
+      {
+        "token": "euiCollapsedItemActions.allActionsTooltip",
+        "changeType": "added",
+        "value": "All actions"
+      },
+      {
+        "token": "euiColumnActions.unsort",
+        "changeType": "added",
+        "value": "Unsort {schemaLabel}"
+      }
+    ]
+  },
+  {
     "version": "95.10.0",
     "changes": [
       {
