@@ -235,7 +235,7 @@ export class EuiToolTip extends Component<EuiToolTipProps, State> {
     // To prevent this, we can orient from the right so that text line wrapping does not occur, negating
     // the second resizeObserver callback call.
     const windowWidth =
-    (this.context.window?.document ?? document).documentElement.clientWidth || window.innerWidth;
+    (this.context.window?.document ?? document).documentElement.clientWidth || (this.context.window ?? window).innerWidth;
     const useRightValue = windowWidth / 2 < left;
 
     const toolTipStyles: ToolTipStyles = {
