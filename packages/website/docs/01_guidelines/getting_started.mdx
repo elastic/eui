@@ -102,6 +102,34 @@ export default () => {
 };
 ```
 
+### Customizing with classes
+
+For consumers using vanilla or preprocessed CSS, all components allow you to pass a custom `className` prop, which will be appended onto the component.
+
+:::warning Avoid overwriting `.eui` class names
+EUI's class names are not a guaranteed API and are prone to change, which will risk breaking your theme. Target your custom classNames instead.
+:::
+
+While EUI's styles are generally low in [specificity](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity) due to our usage of CSS-in-JS, you may need to ensure that your CSS is defined after ours in your `<head>`. See [EuiProvider's cache customization](https://eui.elastic.co/#/utilities/provider#cache-customization) for more style injection options.
+
+```jsx
+import React from 'react';
+import { EuiButton } from '@elastic/eui';
+
+const myCustomCSS = `
+  .myCustomButton {
+    background-color: pink;
+  }
+`;
+
+export default () => (
+  <>
+    <style>{myCustomCSS}</style>
+    <EuiButton className="myCustomButton">Hello world!</EuiButton>
+  </>
+);
+```
+
 ### Customizing the style tokens
 
 EUI can be slightly customized to fit your branding needs by altering the base tokens like color and typography. You can pass a full or partial list of override tokens to the **EuiProvider**'s `modify` prop.
@@ -149,10 +177,6 @@ export default () => {
   );
 };
 ```
-
-#### Do not overwrite individual component variables or .eui class names.
-
-Although this may be possible, components are much more prone to change and you'll risk breaking your theme. All EUI components accept custom a className which you can use to append your custom styles.
 
 ## Fonts
 
@@ -219,23 +243,6 @@ Test utilities are published from the lib/test directory.
 ```jsx
 import { findTestSubject } from '@elastic/eui/lib/test'; // Enzyme
 import { findByTestSubject, render, screen } from '@elastic/eui/lib/test/rtl'; // React Testing Library
-```
-
-## Customizing with classes
-
-We do not recommend customizing EUI components by applying styles directly to EUI classes, eg. `.euiButton`.
-All components allow you to pass a custom `className` prop directly to the component which will then append this
-to the class list. Utilizing the cascade feature of CSS, you can then customize by overriding styles
-so long as your styles are imported `after` the EUI import.
-
-```jsx
-<EuiButton className="myCustomClass__button" />
-```
-
-Renders as:
-
-```jsx
-<button class="euiButton myCustomClass__button" />
 ```
 
 ## Customizing component defaults

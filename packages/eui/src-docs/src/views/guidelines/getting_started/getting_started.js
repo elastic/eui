@@ -8,6 +8,7 @@ import {
   EuiSpacer,
   EuiPanel,
   EuiCallOut,
+  EuiLink,
 } from '../../../../../src';
 
 import { AppSetup } from './_app_setup';
@@ -99,6 +100,67 @@ export const GettingStarted = {
           <EuiSpacer />
 
           <EuiText grow={false}>
+            <h3>Customizing with classes</h3>
+            <p>
+              For consumers using vanilla or preprocessed CSS, all components
+              allow you to pass a custom <EuiCode>className</EuiCode> prop,
+              which will be appended onto the component.
+            </p>
+            <EuiCallOut
+              color="warning"
+              title={
+                <>
+                  Avoid overwriting <EuiCode>.eui</EuiCode> class names
+                </>
+              }
+            >
+              EUI's class names are not a guaranteed API and are prone to
+              change, which will risk breaking your theme. Target your custom
+              classNames instead.
+            </EuiCallOut>
+            <EuiSpacer />
+            <p>
+              While EUI's styles are generally low in{' '}
+              <EuiLink
+                href="https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity"
+                target="_blank"
+              >
+                specificity
+              </EuiLink>{' '}
+              due to our usage of CSS-in-JS, you may need to ensure that your
+              CSS is defined after ours in your <EuiCode>{'<head>'}</EuiCode>.{' '}
+              See{' '}
+              <Link to="/utilities/provider#cache-customization">
+                <strong>EuiProvider</strong>'s cache customization
+              </Link>{' '}
+              for more style injection options.
+            </p>
+          </EuiText>
+          <EuiSpacer />
+          <EuiPanel paddingSize="none" hasBorder css={{ overflow: 'hidden' }}>
+            <GuideSectionExampleCode
+              code={{
+                default: `import React from 'react';
+import { EuiButton } from '@elastic/eui';
+
+const myCustomCSS = \`
+  .myCustomButton {
+    background-color: pink;
+  }
+\`;
+
+export default () => (
+  <>
+    <style>{myCustomCSS}</style>
+    <EuiButton className="myCustomButton">Hello world!</EuiButton>
+  </>
+);`,
+              }}
+            />
+          </EuiPanel>
+          <EuiSpacer />
+
+          <EuiText grow={false}>
             <h3>Customizing the style tokens</h3>
             <p>
               EUI can be slightly customized to fit your branding needs by
@@ -129,19 +191,6 @@ export const GettingStarted = {
           <EuiPanel paddingSize="none" hasBorder css={{ overflow: 'hidden' }}>
             <GuideSectionExampleCode code={overrideSimpleSource} />
           </EuiPanel>
-          <EuiSpacer />
-          <EuiText grow={false}>
-            <h4>
-              Do not overwrite individual component variables or{' '}
-              <EuiCode>.eui</EuiCode> class names.
-            </h4>
-            <p>
-              Although this may be possible, components are much more prone to
-              change and you&apos;ll risk breaking your theme. All EUI
-              components accept custom a <EuiCode>className</EuiCode> which you
-              can use to append your custom styles.
-            </p>
-          </EuiText>
         </>
       ),
     },
@@ -255,34 +304,6 @@ import { Timer } from '@elastic/eui/lib/services/time';`}
           <EuiCodeBlock language="jsx" isCopyable fontSize="m">
             {`import { findTestSubject } from '@elastic/eui/lib/test'; // Enzyme
 import { findByTestSubject, render, screen } from '@elastic/eui/lib/test/rtl'; // React Testing Library`}
-          </EuiCodeBlock>
-        </>
-      ),
-    },
-    {
-      title: 'Customizing with classes',
-      wrapText: false,
-      text: (
-        <>
-          <EuiText grow={false}>
-            <p>
-              We do not recommend customizing EUI components by applying styles
-              directly to EUI classes, eg. <EuiCode>.euiButton</EuiCode>. All
-              components allow you to pass a custom <EuiCode>className</EuiCode>{' '}
-              prop directly to the component which will then append this to the
-              class list. Utilizing the cascade feature of CSS, you can then
-              customize by overriding styles so long as your styles are imported{' '}
-              <strong>after</strong> the EUI import.
-            </p>
-          </EuiText>
-          <EuiSpacer />
-          <EuiCodeBlock language="jsx" isCopyable fontSize="m">
-            {'<EuiButton className="myCustomClass__button" />'}
-          </EuiCodeBlock>
-          <EuiSpacer />
-          <p>Renders as:</p>
-          <EuiCodeBlock language="html" isCopyable fontSize="m">
-            {'<button class="euiButton myCustomClass__button" />'}
           </EuiCodeBlock>
         </>
       ),
