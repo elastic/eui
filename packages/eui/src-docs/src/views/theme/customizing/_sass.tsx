@@ -1,9 +1,13 @@
 import React from 'react';
-import { EuiSpacer, EuiText } from '../../../../../src';
-
-import { CustomizeTokens } from '../../guidelines/getting_started/_customizing';
+import {
+  EuiSpacer,
+  EuiText,
+  EuiCodeBlock,
+  useEuiTheme,
+} from '../../../../../src';
 
 export default () => {
+  const { colorMode } = useEuiTheme();
   return (
     <>
       <EuiText>
@@ -20,7 +24,20 @@ export default () => {
       </EuiText>
 
       <EuiSpacer />
-      <CustomizeTokens />
+
+      <EuiCodeBlock language="scss" fontSize="m" isCopyable>
+        {`// mytheme.scss
+$euiColorPrimary: #7B61FF;
+
+// The following rebuilds the entire EUI component styles
+${
+  colorMode === 'DARK'
+    ? "@import '@elastic/eui/src/themes/amsterdam/theme_dark';"
+    : "@import '@elastic/eui/src/themes/amsterdam/theme_light';"
+}
+
+@import 'your/custom/styles';`}
+      </EuiCodeBlock>
     </>
   );
 };
