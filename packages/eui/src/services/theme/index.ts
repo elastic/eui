@@ -12,6 +12,7 @@ export {
   EuiNestedThemeContext,
   EuiModificationsContext,
   EuiColorModeContext,
+  EuiHighContrastModeContext,
 } from './context';
 export type { UseEuiTheme, WithEuiThemeProps } from './hooks';
 export {

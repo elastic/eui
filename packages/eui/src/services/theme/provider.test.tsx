@@ -60,6 +60,29 @@ describe('EuiThemeProvider', () => {
     });
   });
 
+  describe('highContrastMode', () => {
+    it('sets `highContrastMode`', () => {
+      const { getByText } = render(
+        <EuiThemeProvider highContrastMode={true}>
+          <div css={({ euiTheme }) => ({ border: euiTheme.border.thin })}>
+            High contrast mode
+            <EuiThemeProvider highContrastMode={true}>
+              <div css={({ euiTheme }) => ({ border: euiTheme.border.thin })}>
+                Not high contrast mode
+              </div>
+            </EuiThemeProvider>
+          </div>
+        </EuiThemeProvider>
+      );
+
+      expect(getByText('High contrast mode')).toHaveStyleRule('border', 'TODO');
+      expect(getByText('Not high contrast mode')).toHaveStyleRule(
+        'border',
+        'TODO'
+      );
+    });
+  });
+
   describe('modify', () => {
     it('allows overriding theme tokens', () => {
       const { getByText } = render(

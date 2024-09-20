@@ -22,6 +22,7 @@ export const EuiSystemContext =
 export const EuiModificationsContext = createContext<EuiThemeModifications>({});
 export const EuiColorModeContext =
   createContext<EuiThemeColorModeStandard>(DEFAULT_COLOR_MODE);
+export const EuiHighContrastModeContext = createContext<boolean>(false);
 export const defaultComputedTheme = getComputed(
   EuiThemeAmsterdam,
   {},
