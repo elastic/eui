@@ -76,6 +76,7 @@ interface FindPopoverPositionArgs {
   container?: HTMLElement;
   arrowConfig?: { arrowWidth: number; arrowBuffer: number };
   returnBoundingBox?: boolean;
+  currentWindow: Window;
 }
 
 interface FindPopoverPositionResult {
@@ -129,6 +130,7 @@ export function findPopoverPosition({
   container,
   arrowConfig,
   returnBoundingBox,
+  currentWindow,
 }: FindPopoverPositionArgs): FindPopoverPositionResult {
   // find the screen-relative bounding boxes of the anchor, popover, and container
   const anchorBoundingBox = getElementBoundingBox(anchor);
@@ -138,9 +140,9 @@ export function findPopoverPosition({
   // window.(innerWidth|innerHeight) do not account for scrollbars
   // so prefer the clientWidth/clientHeight of the DOM if available
   const documentWidth =
-    document.documentElement.clientWidth || window.innerWidth;
+    (currentWindow ?? window).document.documentElement.clientWidth || (currentWindow ?? window).innerWidth;
   const documentHeight =
-    document.documentElement.clientHeight || window.innerHeight;
+    (currentWindow ?? window).document.documentElement.clientHeight || (currentWindow ?? window).innerHeight;
   const windowBoundingBox: EuiClientRect = {
     top: 0,
     right: documentWidth,
@@ -224,8 +226,8 @@ export function findPopoverPosition({
       bestPosition = {
         fit: screenCoordinates.fit,
         position: iterationPosition,
-        top: screenCoordinates.top + window.pageYOffset,
-        left: screenCoordinates.left + window.pageXOffset,
+        top: screenCoordinates.top + (currentWindow ?? window).pageYOffset,
+        left: screenCoordinates.left + (currentWindow ?? window).pageXOffset,
         arrow: screenCoordinates.arrow,
       };
 
@@ -738,7 +740,8 @@ export function intersectBoundingBoxes(
  */
 export function getElementZIndex(
   element: HTMLElement,
-  cousin: HTMLElement
+  cousin: HTMLElement,
+  currentWindow: Window
 ): number {
   /**
    * finding the z-index of `element` is not the full story
@@ -785,7 +788,7 @@ export function getElementZIndex(
 
   for (const node of nodesToInspect) {
     // get this node's z-index css value
-    const zIndex = window.document
+    const zIndex = (currentWindow ?? window).document
       .defaultView!.getComputedStyle(node)
       .getPropertyValue('z-index');
 

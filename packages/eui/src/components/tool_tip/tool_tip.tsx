@@ -226,6 +226,7 @@ export class EuiToolTip extends Component<EuiToolTipProps, State> {
         arrowWidth: 12,
         arrowBuffer: 4,
       },
+      currentWindow: this.context.window ?? window
     });
 
     // If encroaching the right edge of the window:

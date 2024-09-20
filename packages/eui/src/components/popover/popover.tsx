@@ -15,6 +15,7 @@ import React, {
   Ref,
   RefCallback,
   PropsWithChildren,
+  ContextType,
 } from 'react';
 import classNames from 'classnames';
 import { focusable } from 'tabbable';
@@ -28,6 +29,7 @@ import {
   getWaitDuration,
   performOnFrame,
   htmlIdGenerator,
+  EuiWindowContext,
 } from '../../services';
 import { setMultipleRefs } from '../../services/hooks/useCombinedRefs';
 
@@ -299,6 +301,9 @@ export class EuiPopover extends Component<Props, State> {
     display: 'inline-block',
   };
 
+  static contextType = EuiWindowContext;
+  declare context: ContextType<typeof EuiWindowContext>;
+
   static getDerivedStateFromProps(
     nextProps: Props,
     prevState: State
@@ -546,6 +551,7 @@ export class EuiPopover extends Component<Props, State> {
       returnBoundingBox: this.props.attachToAnchor,
       allowCrossAxis: this.props.repositionToCrossAxis,
       buffer: this.props.buffer,
+      currentWindow: this.context.window ?? window
     });
 
     // the popover's z-index must inherit from the button
@@ -554,7 +560,7 @@ export class EuiPopover extends Component<Props, State> {
     const { zIndex: zIndexProp } = this.props;
     const zIndex =
       zIndexProp == null
-        ? getElementZIndex(this.button, this.panel) + 2000
+        ? getElementZIndex(this.button, this.panel, this.context.window ?? window) + 2000
         : zIndexProp;
 
     const popoverStyles = {
