@@ -90,7 +90,6 @@ export default () => {
   return (
     <GuideTabbedPage
       title="Borders"
-      isBeta={!showSass}
       notice={<ThemeNotice />}
       description="The border tokens contain both individual border property values and full shorthand border properties."
       showThemeLanguageToggle

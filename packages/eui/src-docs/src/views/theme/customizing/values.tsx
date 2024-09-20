@@ -81,7 +81,6 @@ export default () => {
   return (
     <EuiThemeProvider modify={overrides}>
       <GuideTabbedPage
-        isBeta
         title="Customizing theme"
         notice={<ThemeNotice />}
         showThemeLanguageToggle
