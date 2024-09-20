@@ -76,7 +76,7 @@ export class EuiPortalClass extends Component<EuiPortalProps, EuiPortalState> {
   componentDidMount() {
     const { insert, currentWindow } = this.props;
 
-    const portalNode = document.createElement('div');
+    const portalNode = (currentWindow?.document ?? document).createElement('div');
     portalNode.dataset.euiportal = 'true';
 
     if (insert == null) {

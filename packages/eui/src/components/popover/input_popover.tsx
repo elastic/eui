@@ -22,7 +22,7 @@ import classnames from 'classnames';
 import { tabbable } from 'tabbable';
 
 import { logicalCSS } from '../../global_styling';
-import { keys, useCombinedRefs, useEuiTheme } from '../../services';
+import { keys, useCombinedRefs, useEuiTheme, useEuiWindow } from '../../services';
 import { CommonProps } from '../common';
 import { useResizeObserver } from '../observer/resize_observer';
 import { EuiFocusTrap } from '../focus_trap';
@@ -84,6 +84,7 @@ export const EuiInputPopover: FunctionComponent<EuiInputPopoverProps> = ({
   const classes = classnames('euiInputPopover', className);
   const euiTheme = useEuiTheme();
   const formMaxWidth = euiFormMaxWidth(euiTheme);
+  const currentWindow = useEuiWindow();
 
   /**
    * Ref setup
@@ -151,7 +152,7 @@ export const EuiInputPopover: FunctionComponent<EuiInputPopoverProps> = ({
           if (!tabbableItems.length) return;
 
           const tabbingFromLastItemInPopover =
-            document.activeElement === tabbableItems[tabbableItems.length - 1];
+            (currentWindow ?? window).document.activeElement === tabbableItems[tabbableItems.length - 1];
 
           if (tabbingFromLastItemInPopover) {
             closePopover();
@@ -193,14 +194,14 @@ export const EuiInputPopover: FunctionComponent<EuiInputPopoverProps> = ({
       // Kibana Cypress tests trigger a scroll event in many common situations when the options list div is appended
       // to the DOM; in testing it was always within 100ms, but setting a timeout here for 500ms to be safe
       const timeoutId = setTimeout(() => {
-        window.addEventListener('scroll', closePopoverOnScroll, {
+        (currentWindow ?? window).addEventListener('scroll', closePopoverOnScroll, {
           passive: true, // for better performance as we won't call preventDefault
           capture: true, // scroll events don't bubble, they must be captured instead
         });
       }, 500);
 
       return () => {
-        window.removeEventListener('scroll', closePopoverOnScroll, {
+        (currentWindow ?? window).removeEventListener('scroll', closePopoverOnScroll, {
           capture: true,
         });
         clearTimeout(timeoutId);

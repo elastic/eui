@@ -24,6 +24,7 @@ import {
   EuiWrappingPopover,
   EuiWrappingPopoverProps,
 } from './wrapping_popover';
+import { useEuiWindow } from 'src/services';
 
 // NOTE: extended EuiPopoverProps are not resolved for some reason
 // so we are currently manually adding them back
@@ -87,6 +88,7 @@ const StatefulPopover = ({
   ...rest
 }: EuiWrappingPopoverProps) => {
   const [isOpen, setOpen] = useState(_isOpen);
+  const currentWindow = useEuiWindow();
 
   const handleOnClose = () => {
     setOpen(false);
@@ -115,7 +117,7 @@ const StatefulPopover = ({
       {isOpen && (
         <EuiWrappingPopover
           isOpen={true}
-          button={document.getElementById('popover-anchor')!}
+          button={(currentWindow ?? window).document.getElementById('popover-anchor')!}
           closePopover={handleOnClose}
           {...rest}
         />
