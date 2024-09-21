@@ -117,7 +117,9 @@ const StatefulPopover = ({
       {isOpen && (
         <EuiWrappingPopover
           isOpen={true}
-          button={(currentWindow ?? window).document.getElementById('popover-anchor')!}
+          button={
+            (currentWindow ?? window).document.getElementById('popover-anchor')!
+          }
           closePopover={handleOnClose}
           {...rest}
         />

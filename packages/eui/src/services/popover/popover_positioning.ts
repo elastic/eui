@@ -140,9 +140,11 @@ export function findPopoverPosition({
   // window.(innerWidth|innerHeight) do not account for scrollbars
   // so prefer the clientWidth/clientHeight of the DOM if available
   const documentWidth =
-    (currentWindow ?? window).document.documentElement.clientWidth || (currentWindow ?? window).innerWidth;
+    (currentWindow ?? window).document.documentElement.clientWidth ||
+    (currentWindow ?? window).innerWidth;
   const documentHeight =
-    (currentWindow ?? window).document.documentElement.clientHeight || (currentWindow ?? window).innerHeight;
+    (currentWindow ?? window).document.documentElement.clientHeight ||
+    (currentWindow ?? window).innerHeight;
   const windowBoundingBox: EuiClientRect = {
     top: 0,
     right: documentWidth,
