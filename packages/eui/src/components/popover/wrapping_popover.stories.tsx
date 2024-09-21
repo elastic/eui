@@ -24,7 +24,7 @@ import {
   EuiWrappingPopover,
   EuiWrappingPopoverProps,
 } from './wrapping_popover';
-import { useEuiWindow } from 'src/services';
+import { useEuiWindow } from '../../services';
 
 // NOTE: extended EuiPopoverProps are not resolved for some reason
 // so we are currently manually adding them back
