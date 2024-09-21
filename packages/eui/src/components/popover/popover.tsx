@@ -371,7 +371,7 @@ export class EuiPopover extends Component<Props, State> {
   };
 
   handleStrandedFocus = () => {
-    const currentWindow = (this.context.window ?? window);
+    const currentWindow = this.context.window ?? window;
     this.strandedFocusTimeout = currentWindow.setTimeout(() => {
       // If `returnFocus` failed and focus was stranded,
       // attempt to manually restore focus to the toggle button.
@@ -415,7 +415,9 @@ export class EuiPopover extends Component<Props, State> {
     }
     // We need to set this state a beat after the render takes place, so that the CSS
     // transition can take effect.
-    this.closingTransitionAnimationFrame = (this.context.window ?? window).requestAnimationFrame(() => {
+    this.closingTransitionAnimationFrame = (
+      this.context.window ?? window
+    ).requestAnimationFrame(() => {
       this.setState({
         isOpening: true,
       });
@@ -457,7 +459,11 @@ export class EuiPopover extends Component<Props, State> {
     }
 
     if (this.props.repositionOnScroll) {
-      (this.context.window ?? window).addEventListener('scroll', this.positionPopoverFixed, true);
+      (this.context.window ?? window).addEventListener(
+        'scroll',
+        this.positionPopoverFixed,
+        true
+      );
     }
   }
 
@@ -481,9 +487,17 @@ export class EuiPopover extends Component<Props, State> {
     // update scroll listener
     if (prevProps.repositionOnScroll !== this.props.repositionOnScroll) {
       if (this.props.repositionOnScroll) {
-        (this.context.window ?? window).addEventListener('scroll', this.positionPopoverFixed, true);
+        (this.context.window ?? window).addEventListener(
+          'scroll',
+          this.positionPopoverFixed,
+          true
+        );
       } else {
-        (this.context.window ?? window).removeEventListener('scroll', this.positionPopoverFixed, true);
+        (this.context.window ?? window).removeEventListener(
+          'scroll',
+          this.positionPopoverFixed,
+          true
+        );
       }
     }
 
@@ -491,7 +505,9 @@ export class EuiPopover extends Component<Props, State> {
     if (prevProps.isOpen && !this.props.isOpen) {
       // If the user has just closed the popover, queue up the removal of the content after the
       // transition is complete.
-      this.closingTransitionTimeout = (this.context.window ?? window).setTimeout(() => {
+      this.closingTransitionTimeout = (
+        this.context.window ?? window
+      ).setTimeout(() => {
         this.setState({
           isClosing: false,
         });
@@ -500,7 +516,11 @@ export class EuiPopover extends Component<Props, State> {
   }
 
   componentWillUnmount() {
-    (this.context.window ?? window).removeEventListener('scroll', this.positionPopoverFixed, true);
+    (this.context.window ?? window).removeEventListener(
+      'scroll',
+      this.positionPopoverFixed,
+      true
+    );
     clearTimeout(this.respositionTimeout);
     clearTimeout(this.strandedFocusTimeout);
     clearTimeout(this.closingTransitionTimeout);
@@ -553,7 +573,7 @@ export class EuiPopover extends Component<Props, State> {
       returnBoundingBox: this.props.attachToAnchor,
       allowCrossAxis: this.props.repositionToCrossAxis,
       buffer: this.props.buffer,
-      currentWindow: this.context.window ?? window
+      currentWindow: this.context.window ?? window,
     });
 
     // the popover's z-index must inherit from the button
@@ -562,7 +582,11 @@ export class EuiPopover extends Component<Props, State> {
     const { zIndex: zIndexProp } = this.props;
     const zIndex =
       zIndexProp == null
-        ? getElementZIndex(this.button, this.panel, this.context.window ?? window) + 2000
+        ? getElementZIndex(
+            this.button,
+            this.panel,
+            this.context.window ?? window
+          ) + 2000
         : zIndexProp;
 
     const popoverStyles = {
@@ -607,11 +631,17 @@ export class EuiPopover extends Component<Props, State> {
         openPosition: null,
         isOpenStable: false,
       });
-      (this.context.window ?? window).removeEventListener('resize', this.positionPopoverFluid);
+      (this.context.window ?? window).removeEventListener(
+        'resize',
+        this.positionPopoverFluid
+      );
     } else {
       // panel is coming into existence
       this.positionPopoverFluid();
-      (this.context.window ?? window).addEventListener('resize', this.positionPopoverFluid);
+      (this.context.window ?? window).addEventListener(
+        'resize',
+        this.positionPopoverFluid
+      );
     }
   };
 

@@ -65,11 +65,15 @@ export const EuiToolTipPopover: FunctionComponent<Props> = ({
   };
 
   useEffect(() => {
-    (currentWindow?.document ?? document).body.classList.add('euiBody-hasPortalContent');
+    (currentWindow?.document ?? document).body.classList.add(
+      'euiBody-hasPortalContent'
+    );
     (currentWindow ?? window).addEventListener('resize', updateDimensions);
 
     return () => {
-      (currentWindow?.document ?? document).body.classList.remove('euiBody-hasPortalContent');
+      (currentWindow?.document ?? document).body.classList.remove(
+        'euiBody-hasPortalContent'
+      );
       (currentWindow ?? window).removeEventListener('resize', updateDimensions);
     };
   }, [updateDimensions]);
