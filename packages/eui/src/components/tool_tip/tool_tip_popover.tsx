@@ -76,7 +76,7 @@ export const EuiToolTipPopover: FunctionComponent<Props> = ({
       );
       (currentWindow ?? window).removeEventListener('resize', updateDimensions);
     };
-  }, [updateDimensions]);
+  }, [updateDimensions, currentWindow]);
 
   const classes = classNames('euiToolTipPopover', className);
 

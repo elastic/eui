@@ -166,7 +166,13 @@ export const EuiInputPopover: FunctionComponent<EuiInputPopoverProps> = ({
         }
       }
     },
-    [disableFocusTrap, ownFocus, closePopover, panelPropsOnKeyDown]
+    [
+      disableFocusTrap,
+      ownFocus,
+      closePopover,
+      panelPropsOnKeyDown,
+      currentWindow,
+    ]
   );
 
   /**
@@ -221,7 +227,7 @@ export const EuiInputPopover: FunctionComponent<EuiInputPopoverProps> = ({
         clearTimeout(timeoutId);
       };
     }
-  }, [closeOnScroll, closePopover, panelEl, inputEl]);
+  }, [closeOnScroll, closePopover, panelEl, inputEl, currentWindow]);
 
   return (
     <EuiPopover
