@@ -51,6 +51,9 @@
     "url": "https://github.com/elastic/eui.git"
   },
   "dependencies": {
+    "@elastic/eui-common": "workspace:^",
+    "@elastic/eui-theme-base": "workspace:^",
+    "@elastic/eui-theme-berlin": "workspace:^",
     "@hello-pangea/dnd": "^16.6.0",
     "@types/lodash": "^4.14.202",
     "@types/numeral": "^2.0.5",
