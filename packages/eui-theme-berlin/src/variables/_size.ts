@@ -6,12 +6,12 @@
  * Side Public License, v 1.
  */
 
+import { sizeToPixel } from '@elastic/eui-common';
 import {
   computed,
-  sizeToPixel,
   type _EuiThemeBase,
   type _EuiThemeSizes,
-} from '@elastic/eui';
+} from '@elastic/eui-theme-base';
 
 export const base: _EuiThemeBase = 16;
 

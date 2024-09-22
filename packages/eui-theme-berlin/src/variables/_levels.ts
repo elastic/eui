@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import type { _EuiThemeLevels } from '@elastic/eui';
+import type { _EuiThemeLevels } from '@elastic/eui-theme-base';
 
 export const levels: _EuiThemeLevels = {
   toast: 9000,

@@ -8,10 +8,6 @@
 
 import {
   computed,
-  makeHighContrastColor,
-  makeDisabledContrastColor,
-  shade,
-  tint,
   type _EuiThemeColors,
   type _EuiThemeBrandColors,
   type _EuiThemeBrandTextColors,
@@ -19,14 +15,14 @@ import {
   type _EuiThemeSpecialColors,
   type _EuiThemeTextColors,
   type _EuiThemeColorsMode,
-} from '@elastic/eui';
+} from '@elastic/eui-theme-base';
 
 /*
  * DARK THEME
  */
 
 export const dark_brand_colors: _EuiThemeBrandColors = {
-  primary: '#36A2EF',
+  primary: '#00aa00', // test color for distinction
   accent: '#F68FBE',
   success: '#7DDED8',
   warning: '#F3D371',
@@ -34,11 +30,12 @@ export const dark_brand_colors: _EuiThemeBrandColors = {
 };
 
 export const dark_brand_text_colors: _EuiThemeBrandTextColors = {
-  primaryText: computed(makeHighContrastColor('colors.primary')),
-  accentText: computed(makeHighContrastColor('colors.accent')),
-  successText: computed(makeHighContrastColor('colors.success')),
-  warningText: computed(makeHighContrastColor('colors.warning')),
-  dangerText: computed(makeHighContrastColor('colors.danger')),
+  // temp. static values to remove dependency on makeHighContrastColor
+  primaryText: '#36a2ef',
+  accentText: '#f68fbe',
+  successText: '#7dded8',
+  warningText: '#f3d371',
+  dangerText: '#f86b63',
 };
 
 export const dark_shades: _EuiThemeShadeColors = {
@@ -52,20 +49,18 @@ export const dark_shades: _EuiThemeShadeColors = {
 };
 
 export const dark_special_colors: _EuiThemeSpecialColors = {
-  body: computed(
-    ([lightestShade]) => shade(lightestShade, 0.45),
-    ['colors.lightestShade']
-  ),
+  // temp. static values to remove dependency on shade and makeDisabledContrastColor
+  body: '#141519',
   highlight: '#2E2D25',
   disabled: '#515761',
-  disabledText: computed(makeDisabledContrastColor('colors.disabled')),
+  disabledText: '#515761',
   shadow: computed(({ colors }) => colors.ink),
 };
 
 export const dark_text_colors: _EuiThemeTextColors = {
   text: '#DFE5EF',
   title: computed(([text]) => text, ['colors.text']),
-  subduedText: computed(makeHighContrastColor('colors.mediumShade')),
+  subduedText: '#81858f', // temp. static value to remove dependency makeDisabledContrastColor
   link: computed(([primaryText]) => primaryText, ['colors.primaryText']),
 };
 
