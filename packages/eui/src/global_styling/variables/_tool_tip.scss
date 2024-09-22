@@ -1,9 +1,1 @@
-$euiTooltipBackgroundColor: tintOrShade($euiColorFullShade, 25%, 100%) !default;
-$euiTooltipBorderColor: tintOrShade($euiColorFullShade, 35%, 80%) !default;
-
-$euiTooltipAnimations: (
-  top: euiToolTipTop,
-  left: euiToolTipBottom,
-  bottom: euiToolTipLeft,
-  right: euiToolTipRight,
-) !default;
+@import '../../../node_modules/@elastic/eui-theme-base/src/variables/tool_tip'
