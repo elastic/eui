@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import type { _EuiThemeColors } from '@elastic/eui';
+import type { _EuiThemeColors } from '@elastic/eui-theme-base';
 
 import { light_colors } from './_colors_light';
 import { dark_colors } from './_colors_dark';

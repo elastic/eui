@@ -1,33 +1,35 @@
 {
-    "name": "@elastic/eui-theme-berlin",
-    "version": "0.0.1",
-    "description": "A visual theme for EUI",
-    "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1",
-        "build": "tsc",
-        "build-pack": "yarn build && npm pack"
-    },
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/elastic/eui.git",
-        "directory": "packages/eui-theme-berlin"
-    },
-    "private": true,
-    "devDependencies": {
-        "typescript": "^5.6.2"
-    },
-    "peerDependencies": {
-        "@elastic/eui": "^95.10.1"
-    },
-    "main": "lib/index.js",
-    "exports": {
-        "./lib/*": "./lib/*",
-        ".": {
-            "default": "./lib/index.js"
-        }
-    },
-    "files": [
-        "lib/",
-        "README.md"
-    ]
+  "name": "@elastic/eui-theme-berlin",
+  "version": "0.0.1",
+  "description": "A visual theme for EUI",
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc",
+    "build-pack": "yarn build && npm pack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/elastic/eui.git",
+    "directory": "packages/eui-theme-berlin"
+  },
+  "private": true,
+  "dependencies": {
+    "@elastic/eui-common": "workspace:^",
+    "@elastic/eui-theme-base": "workspace:^"
+  },
+  "devDependencies": {
+    "typescript": "^5.6.2"
+  },
+  "main": "lib/index.js",
+  "exports": {
+    "./lib/*": "./lib/*",
+    ".": {
+      "default": "./lib/index.js"
+    }
+  },
+  "files": [
+    "lib/",
+    "README.md"
+  ]
 }

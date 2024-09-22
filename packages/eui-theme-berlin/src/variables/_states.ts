@@ -6,12 +6,8 @@
  * Side Public License, v 1.
  */
 
-import {
-  computed,
-  transparentize,
-  sizeToPixel,
-  type _EuiThemeFocus,
-} from '@elastic/eui';
+import { sizeToPixel } from '@elastic/eui-common';
+import { computed, type _EuiThemeFocus } from '@elastic/eui-theme-base';
 
 export const focus: _EuiThemeFocus = {
   // Focus ring
@@ -19,7 +15,5 @@ export const focus: _EuiThemeFocus = {
   width: computed(sizeToPixel(0.125)),
   // Focus background
   transparency: { LIGHT: 0.1, DARK: 0.2 },
-  backgroundColor: computed(({ colors, focus }) =>
-    transparentize(colors.primary, focus.transparency)
-  ),
+  backgroundColor: 'rgba(0, 119, 204, 0.1)', // temp. static value to remove dependency on transparentize
 };
