@@ -79,7 +79,9 @@ export const euiTableRowStyles = (euiThemeContext: UseEuiTheme) => {
         ${logicalCSS('margin-bottom', cellContentPadding)}
 
         /* EuiPanel styling */
-        ${euiShadow(euiThemeContext, 's')}
+        ${euiShadow(euiThemeContext, 's', {
+          borderAllInHighContrastMode: true,
+        })}
         background-color: ${euiBackgroundColor(euiThemeContext, 'plain')};
         border-radius: ${euiTheme.border.radius.medium};
       `,

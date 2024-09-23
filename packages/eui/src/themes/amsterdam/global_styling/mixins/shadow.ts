@@ -8,6 +8,7 @@
 
 import { useEuiTheme, UseEuiTheme } from '../../../../services/theme';
 import { getShadowColor } from '../functions';
+import { logicalCSS } from '../../../../global_styling';
 import {
   _EuiThemeShadowSize,
   _EuiThemeShadowCustomColor,
@@ -25,7 +26,9 @@ export const euiShadowXSmall = (
   options?: _EuiThemeShadowCustomColor
 ) => {
   if (highContrastMode) {
-    return _highContrastBorderBottom(euiTheme);
+    return options?.borderAllInHighContrastMode
+      ? _highContrastBorderAll(euiTheme)
+      : _highContrastBorderBottom(euiTheme);
   }
 
   const color = options?.color || euiTheme.colors.shadow;
@@ -45,7 +48,9 @@ export const euiShadowSmall = (
   options?: _EuiThemeShadowCustomColor
 ) => {
   if (highContrastMode) {
-    return _highContrastBorderBottom(euiTheme);
+    return options?.borderAllInHighContrastMode
+      ? _highContrastBorderAll(euiTheme)
+      : _highContrastBorderBottom(euiTheme);
   }
 
   const color = options?.color || euiTheme.colors.shadow;
@@ -66,7 +71,9 @@ export const euiShadowMedium = (
   options?: _EuiThemeShadowCustomColor
 ) => {
   if (highContrastMode) {
-    return _highContrastBorderBottom(euiTheme);
+    return options?.borderAllInHighContrastMode
+      ? _highContrastBorderAll(euiTheme)
+      : _highContrastBorderBottom(euiTheme);
   }
 
   const color = options?.color || euiTheme.colors.shadow;
@@ -95,7 +102,9 @@ export const euiShadowLarge = (
   options?: _EuiThemeShadowCustomColor
 ) => {
   if (highContrastMode) {
-    return _highContrastBorderBottom(euiTheme);
+    return options?.borderAllInHighContrastMode
+      ? _highContrastBorderAll(euiTheme)
+      : _highContrastBorderBottom(euiTheme);
   }
 
   const color = options?.color || euiTheme.colors.shadow;
@@ -120,7 +129,9 @@ export const euiShadowXLarge = (
   options?: EuiShadowXLarge
 ) => {
   if (highContrastMode) {
-    return _highContrastBorderBottom(euiTheme);
+    return options?.borderAllInHighContrastMode
+      ? _highContrastBorderAll(euiTheme)
+      : _highContrastBorderBottom(euiTheme);
   }
 
   const color = options?.color || euiTheme.colors.shadow;
@@ -143,7 +154,9 @@ export const euiSlightShadowHover = (
   options?: _EuiThemeShadowCustomColor
 ) => {
   if (highContrastMode) {
-    return _highContrastBorderBottom(euiTheme);
+    return options?.borderAllInHighContrastMode
+      ? _highContrastBorderAll(euiTheme)
+      : _highContrastBorderBottom(euiTheme);
   }
 
   const color = options?.color || euiTheme.colors.shadow;
@@ -174,7 +187,9 @@ export const euiShadowFlat = (
   options?: _EuiThemeShadowCustomColor
 ) => {
   if (highContrastMode) {
-    return _highContrastBorderBottom(euiTheme);
+    return options?.borderAllInHighContrastMode
+      ? _highContrastBorderAll(euiTheme)
+      : _highContrastBorderBottom(euiTheme);
   }
 
   const color = options?.color || euiTheme.colors.shadow;
@@ -200,7 +215,9 @@ export const euiShadow = (
   options?: _EuiThemeShadowCustomColor
 ) => {
   if (euiThemeContext.highContrastMode) {
-    return _highContrastBorderBottom(euiThemeContext.euiTheme);
+    return options?.borderAllInHighContrastMode
+      ? _highContrastBorderAll(euiThemeContext.euiTheme)
+      : _highContrastBorderBottom(euiThemeContext.euiTheme);
   }
 
   switch (size) {
@@ -230,8 +247,13 @@ export const useEuiShadow = (
 };
 
 /**
- * Internal utilities for replacing shadows with high contrast borders instead
+ * Internal utilities for replacing shadows with high contrast borders instead.
+ * NOTE: Windows' high contrast themes ignore *all* `box-shadow` CSS,
+ * so we have to use `border` CSS explicitly, not box-shadow
  */
 
 const _highContrastBorderBottom = ({ border }: UseEuiTheme['euiTheme']) =>
-  `box-shadow: 0 ${border.width.thin} 0 0 ${border.color};`;
+  logicalCSS('border-bottom', border.thin);
+
+const _highContrastBorderAll = ({ border }: UseEuiTheme['euiTheme']) =>
+  `border: ${border.thin};`;
