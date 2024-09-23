@@ -26,44 +26,28 @@ EUI_THEMES.forEach((theme) => {
 });
 const THEME_NAMES = EUI_THEMES.map(({ value }) => value);
 
-const URL_PARAM_KEY = 'themeLanguage';
-export type THEME_LANGUAGES = {
-  id: 'language--js' | 'language--sass';
-  label: string;
-  title: string;
-};
-export const theme_languages: THEME_LANGUAGES[] = [
-  {
-    id: 'language--js',
-    label: 'CSS-in-JS',
-    title: 'Language selector: CSS-in-JS',
-  },
-  {
-    id: 'language--sass',
-    label: 'Sass',
-    title: 'Language selector: Sass',
-  },
-];
-const THEME_LANGS = theme_languages.map(({ id }) => id);
+import { type ThemeLanguages } from './language_selector';
 
 export type ThemeContextType = {
   theme?: EUI_THEME['value'];
   colorMode?: EuiThemeColorModeStandard;
   highContrastMode?: boolean;
-  themeLanguage: THEME_LANGUAGES['id'];
+  i18n?: 'en' | 'en-xa';
+  themeLanguage: ThemeLanguages['id']; // TODO: Can likely be deleted once Sass is fully deprecated
   setContext: (context: Partial<State>) => void;
 };
 export const ThemeContext = React.createContext<ThemeContextType>({
   theme: undefined,
   colorMode: undefined,
   highContrastMode: undefined,
-  themeLanguage: THEME_LANGS[0],
+  themeLanguage: 'language--js',
+  i18n: 'en',
   setContext: () => {},
 });
 
 type State = Pick<
   ThemeContextType,
-  'theme' | 'colorMode' | 'highContrastMode' | 'themeLanguage'
+  'theme' | 'colorMode' | 'highContrastMode' | 'themeLanguage' | 'i18n'
 >;
 
 export class ThemeProvider extends React.Component<PropsWithChildren, State> {
@@ -81,12 +65,15 @@ export class ThemeProvider extends React.Component<PropsWithChildren, State> {
       ? localStorage.getItem('highContrastMode') === 'true'
       : undefined;
 
+    const i18n = (localStorage.getItem('i18n') as any) || 'en';
+
     const themeLanguage = this.getThemeLanguage();
 
     this.state = {
       theme,
       colorMode,
       highContrastMode,
+      i18n,
       themeLanguage,
     };
   }
@@ -100,6 +87,7 @@ export class ThemeProvider extends React.Component<PropsWithChildren, State> {
       'theme',
       'colorMode',
       'highContrastMode',
+      'i18n',
       'themeLanguage',
     ] as const;
 
@@ -123,41 +111,40 @@ export class ThemeProvider extends React.Component<PropsWithChildren, State> {
     // to specific docs, e.g. ?themeLanguage=js, ?themeLanguage=sass
     // Note that because of our hash router, this logic only works on page load/full reload
     const urlParams = window?.location?.href?.split('?')[1]; // Note: we can't use location.search because of our hash router
-    const fromUrlParam = new URLSearchParams(urlParams).get(URL_PARAM_KEY);
+    const fromUrlParam = new URLSearchParams(urlParams).get('themeLanguage');
     // Otherwise, obtain it from localStorage
-    const fromLocalStorage = localStorage.getItem(URL_PARAM_KEY);
+    const fromLocalStorage = localStorage.getItem('themeLanguage');
 
-    let themeLanguage = (
+    const themeLanguage = (
       fromUrlParam ? `language--${fromUrlParam}` : fromLocalStorage
-    ) as THEME_LANGUAGES['id'];
+    ) as ThemeLanguages['id'];
 
     // If not set by either param or storage, or an invalid value, use the default
-    if (!themeLanguage || !THEME_LANGS.includes(themeLanguage))
-      themeLanguage = THEME_LANGS[0];
-
-    return themeLanguage;
+    return themeLanguage || 'language--js';
   };
 
-  setThemeLanguageParam = (languageKey: THEME_LANGUAGES['id']) => {
+  setThemeLanguageParam = (languageKey: ThemeLanguages['id']) => {
     const languageValue = languageKey.replace('language--', ''); // Make our params more succinct
     const hash = window?.location?.hash?.split('?'); // Note: we can't use location.search because of our hash router
 
     const queryParams = hash[1];
     const params = new URLSearchParams(queryParams);
-    params.set(URL_PARAM_KEY, languageValue);
+    params.set('themeLanguage', languageValue);
 
     window.location.hash = `${hash[0]}?${params.toString()}`;
   };
 
   render() {
     const { children } = this.props;
-    const { theme, colorMode, highContrastMode, themeLanguage } = this.state;
+    const { theme, colorMode, highContrastMode, i18n, themeLanguage } =
+      this.state;
     return (
       <ThemeContext.Provider
         value={{
           theme,
           colorMode,
           highContrastMode,
+          i18n,
           themeLanguage,
           setContext: this.setContext,
         }}
