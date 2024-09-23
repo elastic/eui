@@ -107,7 +107,7 @@ export const euiFlyoutStyles = (euiThemeContext: UseEuiTheme) => {
 
     // Type
     overlay: css`
-      ${euiShadowXLarge(euiThemeContext)}
+      ${euiShadowXLarge(euiThemeContext, { borderAllInHighContrastMode: true })}
     `,
     push: {
       push: css`
