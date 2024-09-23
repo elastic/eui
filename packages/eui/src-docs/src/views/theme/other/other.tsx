@@ -121,7 +121,6 @@ export default () => {
   return (
     <GuideTabbedPage
       title="More tokens"
-      isBeta={!showSass}
       notice={<ThemeNotice />}
       showThemeLanguageToggle
       description="Here are a few more global theme tokens for styles we use throughout EUI."

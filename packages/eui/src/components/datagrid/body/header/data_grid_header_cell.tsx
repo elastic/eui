@@ -149,9 +149,7 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
       const styles = useEuiMemoizedStyles(euiDataGridHeaderCellStyles);
       const contentStyles = [
         styles.euiDataGridHeaderCell__content,
-        columnType === 'numeric' || columnType === 'currency'
-          ? styles.right
-          : styles.left,
+        (columnType === 'numeric' || columnType === 'currency') && styles.right,
       ];
 
       return (

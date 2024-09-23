@@ -101,6 +101,7 @@ export const euiDataGridCellOutlineSelectors = (parentSelector = '&') => {
 };
 
 export const euiDataGridRowCellStyles = (euiThemeContext: UseEuiTheme) => {
+  const { euiTheme } = euiThemeContext;
   const cellOutline = euiDataGridCellOutlineStyles(euiThemeContext);
   const { outline: outlineSelectors } = euiDataGridCellOutlineSelectors();
 
@@ -146,16 +147,44 @@ export const euiDataGridRowCellStyles = (euiThemeContext: UseEuiTheme) => {
       euiDataGridRowCell__content: css`
         overflow: hidden;
       `,
-      controlColumn: css`
-        ${logicalCSS('max-height', '100%')}
-        display: flex;
-        align-items: center;
-      `,
       autoHeight: css`
         ${logicalCSS('height', 'auto')}
       `,
       defaultHeight: css`
         ${logicalCSS('height', '100%')}
+      `,
+      // Control columns should be vertically centered with the *first line* of text
+      // for both single and multi-line heights (see https://github.com/elastic/eui/issues/7897)
+      controlColumn: css`
+        display: inline-flex;
+        align-items: start;
+        gap: ${euiTheme.size.xxs}; /* EuiButtonIcons */
+
+        /* FF and webkit browsers have more centered vertical alignment behind undocumented browser prefixes */
+        vertical-align: -webkit-baseline-middle;
+        vertical-align: -moz-middle-with-baseline;
+
+        /* Compact sizing affordance for EuiButtonIcons */
+        .euiDataGrid--fontSizeSmall
+          &:where(.euiDataGridRowCell__content--defaultHeight) {
+          ${logicalCSS('height', '100%')}
+          align-items: center;
+        }
+
+        /* Line up single EuiCheckboxes a bit better (insert Peter Griffin blinds gif) */
+        .euiCheckbox:not(:has(label)) {
+          display: inline;
+
+          .euiCheckbox__square {
+            display: inline-flex;
+            vertical-align: text-bottom;
+
+            /* sub alignment looks better on Firefox, text-bottom looks better on webkit 💀 */
+            @supports (vertical-align: -moz-middle-with-baseline) {
+              vertical-align: sub;
+            }
+          }
+        }
       `,
     },
   };

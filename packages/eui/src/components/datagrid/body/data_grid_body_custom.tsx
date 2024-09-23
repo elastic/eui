@@ -143,6 +143,7 @@ export const EuiDataGridBodyCustomRender: FunctionComponent<
       setRowHeight,
       rowHeightsOptions,
       rowHeightUtils,
+      gridStyles,
     };
   }, [
     schema,
@@ -161,6 +162,7 @@ export const EuiDataGridBodyCustomRender: FunctionComponent<
     setRowHeight,
     rowHeightsOptions,
     rowHeightUtils,
+    gridStyles,
   ]);
 
   const Cell = useCallback<EuiDataGridCustomBodyProps['Cell']>(

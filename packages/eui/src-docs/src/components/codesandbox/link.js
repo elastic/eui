@@ -1,5 +1,6 @@
 import React from 'react';
 import { getParameters } from 'codesandbox/lib/api/define';
+import { useEuiTheme } from '../../../../src/services';
 import {
   cleanEuiImports,
   hasDisplayToggles,
@@ -38,6 +39,8 @@ export const CodeSandboxLink = ({
   content,
   type = 'js',
 }) => {
+  const { colorMode } = useEuiTheme();
+
   let demoContent;
 
   if (!content) {

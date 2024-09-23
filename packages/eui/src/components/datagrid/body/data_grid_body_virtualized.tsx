@@ -337,6 +337,7 @@ export const EuiDataGridBodyVirtualized: FunctionComponent<EuiDataGridBodyProps>
           rowManager,
           pagination,
           headerRowHeight,
+          gridStyles,
         };
       }, [
         schemaDetectors,
@@ -357,6 +358,7 @@ export const EuiDataGridBodyVirtualized: FunctionComponent<EuiDataGridBodyProps>
         rowManager,
         pagination,
         headerRowHeight,
+        gridStyles,
       ]);
 
       const rowWrapperContextValue = useMemo(() => {

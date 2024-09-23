@@ -30,7 +30,7 @@ exports[`EuiDataGridBodyVirtualized renders 1`] = `
           data-test-subj="dataGridColumnResizer"
         />
         <div
-          class="euiDataGridHeaderCell__content emotion-euiDataGridHeaderCell__content-left"
+          class="euiDataGridHeaderCell__content emotion-euiDataGridHeaderCell__content"
           title="columnA"
         >
           columnA
@@ -72,7 +72,7 @@ exports[`EuiDataGridBodyVirtualized renders 1`] = `
           data-test-subj="dataGridColumnResizer"
         />
         <div
-          class="euiDataGridHeaderCell__content emotion-euiDataGridHeaderCell__content-left"
+          class="euiDataGridHeaderCell__content emotion-euiDataGridHeaderCell__content"
           title="columnB"
         >
           columnB
