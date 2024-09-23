@@ -46,9 +46,9 @@ export const euiButtonColor = (
   color: _EuiButtonColor | 'disabled'
 ) => {
   const { euiTheme, colorMode } = euiThemeContext;
-  function tintOrShade(color: string) {
-    return colorMode === 'DARK' ? shade(color, 0.7) : tint(color, 0.8);
-  }
+
+  const tintOrShade = (color: string) =>
+    colorMode === 'DARK' ? shade(color, 0.7) : tint(color, 0.8);
 
   let foreground;
   let background;
@@ -58,6 +58,7 @@ export const euiButtonColor = (
       return {
         color: euiTheme.colors.disabledText,
         backgroundColor: transparentize(euiTheme.colors.lightShade, 0.15),
+        ..._highContrastBorder(euiThemeContext, euiTheme.colors.disabledText),
       };
     case 'text':
       foreground = euiTheme.colors[color];
@@ -75,6 +76,7 @@ export const euiButtonColor = (
   return {
     color: makeHighContrastColor(foreground)(background),
     backgroundColor: background,
+    ..._highContrastBorder(euiThemeContext, foreground),
   };
 };
 
@@ -129,6 +131,10 @@ export const euiButtonFillColor = (
   return {
     color: foreground,
     backgroundColor: background,
+    ..._highContrastBorder(
+      euiThemeContext,
+      color === 'disabled' ? foreground : background // The border is not visible on Mac, but is necessary for Windows high contrast themes which ignores background-color
+    ),
   };
 };
 
@@ -297,3 +303,14 @@ export const euiButtonSizeMap = ({ euiTheme }: UseEuiTheme) => ({
     fontScale: 's' as const,
   },
 });
+
+/**
+ * Internal util for high contrast button borders
+ */
+const _highContrastBorder = (
+  { highContrastMode, euiTheme }: UseEuiTheme,
+  color: string
+) =>
+  highContrastMode
+    ? { border: `${euiTheme.border.width.thin} solid ${color}` }
+    : {};

@@ -31,7 +31,7 @@ import { euiScreenReaderOnly } from '../../accessibility';
 import { euiFormVariables } from '../../form/form.styles';
 
 export const euiButtonGroupButtonStyles = (euiThemeContext: UseEuiTheme) => {
-  const { euiTheme } = euiThemeContext;
+  const { euiTheme, highContrastMode } = euiThemeContext;
 
   const { controlCompressedHeight, controlCompressedBorderRadius } =
     euiFormVariables(euiThemeContext);
@@ -84,8 +84,14 @@ export const euiButtonGroupButtonStyles = (euiThemeContext: UseEuiTheme) => {
       get borders() {
         const selectors =
           '.euiButtonGroupButton-isSelected, .euiButtonGroup__tooltipWrapper-isSelected';
-        const selectedColor = transparentize(euiTheme.colors.emptyShade, 0.2);
-        const unselectedColor = transparentize(euiTheme.colors.fullShade, 0.1);
+        const selectedColor = transparentize(
+          euiTheme.colors.emptyShade,
+          highContrastMode ? 1 : 0.2
+        );
+        const unselectedColor = transparentize(
+          euiTheme.colors.fullShade,
+          highContrastMode ? 1 : 0.1
+        );
         const borderWidth = euiTheme.border.width.thin;
 
         // "Borders" between buttons should be present between two of the same colored buttons,
@@ -134,6 +140,13 @@ export const euiButtonGroupButtonStyles = (euiThemeContext: UseEuiTheme) => {
       &:is(.euiButtonGroupButton-isSelected) {
         font-weight: ${euiTheme.font.weight.semiBold};
       }
+
+      ${highContrastMode
+        ? // Mac vs Windows high contrast modes - Mac shows background colors which is sufficient affordance, Windows does not and needs the default button border
+          `@media (forced-colors: none) {
+            border: none;
+          }`
+        : ''}
     `,
     // States
     disabledAndSelected: css`
@@ -141,6 +154,9 @@ export const euiButtonGroupButtonStyles = (euiThemeContext: UseEuiTheme) => {
         euiTheme.colors.disabled
       )};
       background-color: ${euiTheme.colors.disabled};
+      ${highContrastMode
+        ? `border: ${euiTheme.border.width.thin} solid ${euiTheme.colors.disabled};`
+        : ''}
     `,
     // Tooltip anchor wrapper
     tooltipWrapper: css`

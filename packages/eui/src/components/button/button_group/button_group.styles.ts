@@ -8,7 +8,7 @@
 
 import { css } from '@emotion/react';
 import { UseEuiTheme } from '../../../services';
-import { logicalCSS } from '../../../global_styling';
+import { logicalCSS, mathWithUnits } from '../../../global_styling';
 import { euiFormVariables } from '../../form/form.styles';
 
 export const euiButtonGroupStyles = {
@@ -23,7 +23,7 @@ export const euiButtonGroupStyles = {
 };
 
 export const euiButtonGroupButtonsStyles = (euiThemeContext: UseEuiTheme) => {
-  const { euiTheme } = euiThemeContext;
+  const { euiTheme, highContrastMode } = euiThemeContext;
 
   const {
     controlCompressedHeight,
@@ -31,6 +31,26 @@ export const euiButtonGroupButtonsStyles = (euiThemeContext: UseEuiTheme) => {
     backgroundColor,
     borderColor,
   } = euiFormVariables(euiThemeContext);
+
+  const _highContrastAffordance = highContrastMode
+    ? `
+      & > .euiButtonGroupButton:not(:first-child),
+      & > .euiButtonGroup__tooltipWrapper:not(:first-child) .euiButtonGroupButton {
+        ${logicalCSS('border-left', 'none')}
+      }
+
+      /* Target Windows high contrast themes, which ignore background-color
+       * and make selections difficult to distinguish */
+      @media (forced-colors: active) {
+        .euiButtonGroupButton-isSelected {
+          ${logicalCSS(
+            'border-bottom-width',
+            mathWithUnits(euiTheme.border.width.thick, (x) => x * 1.5)
+          )}
+        }
+      }
+      `
+    : '';
 
   return {
     // Base
@@ -50,9 +70,11 @@ export const euiButtonGroupButtonsStyles = (euiThemeContext: UseEuiTheme) => {
     // Sizes
     m: css`
       border-radius: ${euiTheme.border.radius.medium};
+      ${_highContrastAffordance}
     `,
     s: css`
       border-radius: ${euiTheme.border.radius.small};
+      ${_highContrastAffordance}
     `,
     compressed: css`
       ${logicalCSS('height', controlCompressedHeight)}
