@@ -1,3 +1,17 @@
+## [`v95.12.0`](https://github.com/elastic/eui/releases/v95.12.0)
+
+- Enhanced `EuiDataGrid` and `EuiBasic/InMemoryTable` to clean content newlines/tabs when users copy and paste from their tabular data ([#8019](https://github.com/elastic/eui/pull/8019))
+- Updated `EuiResizableButton` with a new `accountForScrollbars` prop ([#8021](https://github.com/elastic/eui/pull/8021))
+- Updated `EuiProvider` to inherit from the user's OS/system light/dark mode setting if a `colorMode` prop has not been passed ([#8026](https://github.com/elastic/eui/pull/8026))
+
+**Bug fixes**
+
+- Fixed `EuiDatePicker`'s `onClear` button to not appear when the input is `disabled` ([#8020](https://github.com/elastic/eui/pull/8020))
+- Fixed several `EuiDataGrid` row height bugs: ([#8025](https://github.com/elastic/eui/pull/8025))
+  - Fixed row heights not recalculating when `rowHeightOptions.lineHeight`, `gridStyles.fontSize`, or `gridStyles.cellPadding` changed
+  - Fixed incorrect height calculations for `rowHeightOptions.rowHeights` with `lineCount`s
+  - Fixed control column content to align better with multi-line row heights, as well as custom line-heights
+
 ## [`v95.11.0`](https://github.com/elastic/eui/releases/v95.11.0)
 
 - Updated `EuiText`, `EuiTextColor`, and `EuiTextAlign` with a new `component` prop that allows changing the default rendered `<div>` wrapper to a `<span>` or `<p>` tag. ([#7993](https://github.com/elastic/eui/pull/7993))
