@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "docusaurus": "docusaurus",
+    "init:workspaces": "yarn workspace @elastic/eui-common run build && yarn workspace @elastic/eui-theme-base run build && yarn workspace @elastic/eui-theme-berlin run build && yarn workspaces foreach -Rti --from @elastic/eui-website run build",
     "start": "cross-env NODE_OPTIONS=--openssl-legacy-provider docusaurus start",
     "build": "cross-env NODE_OPTIONS=--openssl-legacy-provider docusaurus build",
     "swizzle": "docusaurus swizzle",

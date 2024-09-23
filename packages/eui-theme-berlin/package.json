@@ -14,12 +14,14 @@
     "directory": "packages/eui-theme-berlin"
   },
   "private": true,
-  "dependencies": {
-    "@elastic/eui-common": "workspace:^",
-    "@elastic/eui-theme-base": "workspace:^"
-  },
   "devDependencies": {
+    "@elastic/eui-common": "workspace:^",
+    "@elastic/eui-theme-base": "workspace:^",
     "typescript": "^5.6.2"
+  },
+  "peerDependencies": {
+    "@elastic/eui-common": "0.0.1",
+    "@elastic/eui-theme-base": "0.0.1"
   },
   "main": "lib/index.js",
   "exports": {
@@ -30,6 +32,7 @@
   },
   "files": [
     "lib/",
+    "src/**/*.scss",
     "README.md"
   ]
 }
