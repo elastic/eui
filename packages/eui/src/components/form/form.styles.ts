@@ -337,7 +337,7 @@ const euiPlaceholderPerBrowser = (content: string) => `
  */
 
 export const euiFormCustomControlVariables = (euiThemeContext: UseEuiTheme) => {
-  const { euiTheme, colorMode } = euiThemeContext;
+  const { euiTheme, colorMode, highContrastMode } = euiThemeContext;
 
   const sizes = {
     control: euiTheme.size.base,
@@ -347,10 +347,11 @@ export const euiFormCustomControlVariables = (euiThemeContext: UseEuiTheme) => {
 
   const colors = {
     unselected: euiTheme.colors.emptyShade,
-    unselectedBorder:
-      colorMode === 'DARK'
-        ? tint(euiTheme.colors.lightestShade, 0.31) // WCAG AA requirements
-        : shade(euiTheme.colors.lightestShade, 0.4),
+    unselectedBorder: highContrastMode
+      ? euiTheme.border.color
+      : colorMode === 'DARK'
+      ? tint(euiTheme.colors.lightestShade, 0.31) // WCAG AA requirements
+      : shade(euiTheme.colors.lightestShade, 0.4),
     selected: euiTheme.colors.primary,
     selectedIcon: euiTheme.colors.emptyShade,
     disabled: euiTheme.colors.lightShade,
@@ -371,7 +372,7 @@ export const euiFormCustomControlVariables = (euiThemeContext: UseEuiTheme) => {
 };
 
 export const euiFormCustomControlStyles = (euiThemeContext: UseEuiTheme) => {
-  const { euiTheme } = euiThemeContext;
+  const { euiTheme, highContrastMode } = euiThemeContext;
   const controlVars = euiFormCustomControlVariables(euiThemeContext);
 
   const centerWithLabel = mathWithUnits(
@@ -392,6 +393,8 @@ export const euiFormCustomControlStyles = (euiThemeContext: UseEuiTheme) => {
         display: flex;
         justify-content: center;
         align-items: center;
+        /* For Windows high contrast themes, a border must always be rendered, not just a background */
+        border: ${euiTheme.border.width.thin} solid transparent;
 
         &:has(input:focus-visible) {
           outline: ${euiTheme.focus.width} solid ${controlVars.colors.selected};
@@ -414,11 +417,12 @@ export const euiFormCustomControlStyles = (euiThemeContext: UseEuiTheme) => {
         selected: `
           color: ${controlVars.colors.selectedIcon};
           background-color: ${controlVars.colors.selected};
+          border-color: ${controlVars.colors.selected};
         `,
         unselected: `
           color: transparent;
           background-color: ${controlVars.colors.unselected};
-          border: ${euiTheme.border.width.thin} solid ${controlVars.colors.unselectedBorder};
+          border-color: ${controlVars.colors.unselectedBorder};
 
           &:has(input:focus) {
             border-color: ${controlVars.colors.selected};
@@ -426,17 +430,29 @@ export const euiFormCustomControlStyles = (euiThemeContext: UseEuiTheme) => {
         `,
       },
       disabled: {
-        selected: `
-          label: disabled;
-          color: ${controlVars.colors.disabledIcon};
-          background-color: ${controlVars.colors.disabled};
-        `,
-        unselected: `
-          label: disabled;
-          color: ${controlVars.colors.disabled};
-          background-color: ${controlVars.colors.disabled};
-          cursor: not-allowed;
-        `,
+        get shared() {
+          const borderColor = highContrastMode
+            ? controlVars.colors.disabledIcon
+            : controlVars.colors.disabled;
+          return `
+            label: disabled;
+            cursor: not-allowed;
+            background-color: ${controlVars.colors.disabled};
+            border-color: ${borderColor};
+          `;
+        },
+        get selected() {
+          return `
+            ${this.shared}
+            color: ${controlVars.colors.disabledIcon};
+          `;
+        },
+        get unselected() {
+          return `
+            ${this.shared}
+            color: ${controlVars.colors.disabled};
+          `;
+        },
       },
 
       // Looks better centered at different zoom levels than just <EuiIcon size="s" />

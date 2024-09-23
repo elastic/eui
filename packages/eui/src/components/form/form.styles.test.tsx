@@ -224,26 +224,40 @@ describe('euiFormCustomControlStyles', () => {
         "input": {
           "disabled": {
             "selected": "
-                label: disabled;
-                color: #69707D;
-                background-color: #D3DAE6;
-              ",
+                  
+                  label: disabled;
+                  cursor: not-allowed;
+                  background-color: #D3DAE6;
+                  border-color: #D3DAE6;
+                
+                  color: #69707D;
+                ",
+            "shared": "
+                  label: disabled;
+                  cursor: not-allowed;
+                  background-color: #D3DAE6;
+                  border-color: #D3DAE6;
+                ",
             "unselected": "
-                label: disabled;
-                color: #D3DAE6;
-                background-color: #D3DAE6;
-                cursor: not-allowed;
-              ",
+                  
+                  label: disabled;
+                  cursor: not-allowed;
+                  background-color: #D3DAE6;
+                  border-color: #D3DAE6;
+                
+                  color: #D3DAE6;
+                ",
           },
           "enabled": {
             "selected": "
                 color: #FFF;
                 background-color: #07C;
+                border-color: #07C;
               ",
             "unselected": "
                 color: transparent;
                 background-color: #FFF;
-                border: 1px solid #919296;
+                border-color: #919296;
 
                 &:has(input:focus) {
                   border-color: #07C;
@@ -257,6 +271,8 @@ describe('euiFormCustomControlStyles', () => {
               display: flex;
               justify-content: center;
               align-items: center;
+              /* For Windows high contrast themes, a border must always be rendered, not just a background */
+              border: 1px solid transparent;
 
               &:has(input:focus-visible) {
                 outline: 2px solid #07C;
