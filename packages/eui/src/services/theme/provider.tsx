@@ -106,6 +106,36 @@ export const EuiThemeProvider = <T extends {} = {}>({
   const prevColorMode = useRef(colorMode);
 
   const highContrastMode = _highContrastMode ?? parentHighContrastMode;
+  const prevHighContrastMode = useRef(highContrastMode);
+
+  // Rather than being calculated when the theme's styles are being computed, we're bogarting the
+  // `modify` logic so we can ensure consumer modifications to border-color are also overriden.
+  // If in the future we need more complex high contrast mode logic (e.g. changing color tokens)
+  // we'll need to actually dive into theme/utils.ts's Computed.getValue logic at that point.
+  const highContrastModifications = useMemo(() => {
+    if (highContrastMode) {
+      return {
+        ...modifications,
+        border: {
+          color: system.root.colors[colorMode].fullShade,
+          get thin() {
+            const width =
+              modifications.border?.width?.thin ||
+              system.root.border.width.thin;
+
+            return `${width} solid ${this.color}`;
+          },
+          get thick() {
+            const width =
+              modifications.border?.width?.thick ||
+              system.root.border.width.thick;
+
+            return `${width} solid ${this.color}`;
+          },
+        },
+      };
+    }
+  }, [highContrastMode, modifications, colorMode, system]);
 
   const isParentTheme = useRef(
     prevSystemKey.current === parentSystem.key &&
@@ -119,7 +149,10 @@ export const EuiThemeProvider = <T extends {} = {}>({
       ? { ...parentTheme } // Intentionally create a new object to break referential equality
       : getComputed(
           system,
-          buildTheme(modifications, `_${system.key}`) as typeof system,
+          buildTheme(
+            highContrastModifications ?? modifications,
+            `_${system.key}`
+          ) as typeof system,
           colorMode
         )
   );
@@ -152,16 +185,29 @@ export const EuiThemeProvider = <T extends {} = {}>({
   }, [_colorMode, parentColorMode]);
 
   useEffect(() => {
-    if (!isParentTheme.current) {
+    const highContrastModeChanged =
+      prevHighContrastMode.current !== highContrastMode;
+
+    if (!isParentTheme.current || highContrastModeChanged) {
       setTheme(
         getComputed(
           system,
-          buildTheme(modifications, `_${system.key}`) as typeof system,
+          buildTheme(
+            highContrastModifications ?? modifications,
+            `_${system.key}`
+          ) as typeof system,
           colorMode
         )
       );
+      prevHighContrastMode.current = highContrastMode;
     }
-  }, [colorMode, system, modifications]);
+  }, [
+    colorMode,
+    system,
+    modifications,
+    highContrastMode,
+    highContrastModifications,
+  ]);
 
   const [themeCSSVariables, _setThemeCSSVariables] = useState<CSSObject>();
   const setThemeCSSVariables = useCallback(

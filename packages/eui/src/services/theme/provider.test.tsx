@@ -63,10 +63,13 @@ describe('EuiThemeProvider', () => {
   describe('highContrastMode', () => {
     it('sets `highContrastMode`', () => {
       const { getByText } = render(
-        <EuiThemeProvider highContrastMode={true}>
+        <EuiThemeProvider
+          highContrastMode={true}
+          modify={{ border: { width: { thin: '3px' } } }} // should be inherited by euiTheme.border.thin
+        >
           <div css={({ euiTheme }) => ({ border: euiTheme.border.thin })}>
             High contrast mode
-            <EuiThemeProvider highContrastMode={true}>
+            <EuiThemeProvider highContrastMode={false}>
               <div css={({ euiTheme }) => ({ border: euiTheme.border.thin })}>
                 Not high contrast mode
               </div>
@@ -75,10 +78,13 @@ describe('EuiThemeProvider', () => {
         </EuiThemeProvider>
       );
 
-      expect(getByText('High contrast mode')).toHaveStyleRule('border', 'TODO');
+      expect(getByText('High contrast mode')).toHaveStyleRule(
+        'border',
+        '3px solid #000'
+      );
       expect(getByText('Not high contrast mode')).toHaveStyleRule(
         'border',
-        'TODO'
+        '3px solid #D3DAE6'
       );
     });
   });
