@@ -7,13 +7,21 @@
  */
 
 import { css } from '@emotion/react';
-import { euiTextBreakWord, logicalCSS } from '../../global_styling';
+import {
+  euiTextBreakWord,
+  logicalCSS,
+  mathWithUnits,
+} from '../../global_styling';
 import { UseEuiTheme } from '../../services';
 import { euiShadowLarge } from '../../themes/amsterdam';
 import { euiTitle } from '../title/title.styles';
 
 export const euiToastStyles = (euiThemeContext: UseEuiTheme) => {
-  const { euiTheme } = euiThemeContext;
+  const { euiTheme, highContrastMode } = euiThemeContext;
+
+  const borderWidth = highContrastMode
+    ? mathWithUnits(euiTheme.border.width.thick, (x) => x * 2)
+    : euiTheme.border.width.thick;
 
   return {
     // Base
@@ -44,16 +52,28 @@ export const euiToastStyles = (euiThemeContext: UseEuiTheme) => {
     `,
     // Variants
     primary: css`
-      ${logicalCSS('border-top', `2px solid ${euiTheme.colors.primary}`)}
+      ${logicalCSS(
+        'border-top',
+        `${borderWidth} solid ${euiTheme.colors.primary}`
+      )}
     `,
     success: css`
-      ${logicalCSS('border-top', `2px solid ${euiTheme.colors.success}`)}
+      ${logicalCSS(
+        'border-top',
+        `${borderWidth} solid ${euiTheme.colors.success}`
+      )}
     `,
     warning: css`
-      ${logicalCSS('border-top', `2px solid ${euiTheme.colors.warning}`)}
+      ${logicalCSS(
+        'border-top',
+        `${borderWidth} solid ${euiTheme.colors.warning}`
+      )}
     `,
     danger: css`
-      ${logicalCSS('border-top', `2px solid ${euiTheme.colors.danger}`)}
+      ${logicalCSS(
+        'border-top',
+        `${borderWidth} solid ${euiTheme.colors.danger}`
+      )}
     `,
   };
 };
