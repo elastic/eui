@@ -11,8 +11,17 @@ import { render } from '@testing-library/react'; // Note - don't use the EUI cus
 import { css } from '@emotion/react';
 
 import { EuiProvider } from '../../components/provider';
+import {
+  EuiSystemDefaultsProvider,
+  useWindowMediaMatcher,
+} from '../../components/provider/system_defaults';
+jest.mock('../../components/provider/system_defaults/match_media_hook', () => ({
+  useWindowMediaMatcher: jest.fn(),
+}));
 import { useCurrentEuiBreakpoint } from '../breakpoint';
 import { EuiNestedThemeContext } from './context';
+import { useEuiTheme } from './hooks';
+
 import { EuiThemeProvider } from './provider';
 
 describe('EuiThemeProvider', () => {
@@ -57,6 +66,158 @@ describe('EuiThemeProvider', () => {
         'color',
         '#000'
       );
+    });
+  });
+
+  describe('highContrastMode', () => {
+    describe('internal enum', () => {
+      const Output = () => {
+        const { highContrastMode } = useEuiTheme();
+        return <>{String(highContrastMode)}</>;
+      };
+
+      afterEach(() => {
+        (useWindowMediaMatcher as jest.Mock).mockReset();
+      });
+
+      it('always sets the contrast mode to forced if inherited from the system, overriding any application prop', () => {
+        (useWindowMediaMatcher as jest.Mock).mockImplementation((media) => {
+          if (media === '(forced-colors: active)') return true;
+        });
+
+        const { container } = render(
+          <EuiSystemDefaultsProvider>
+            <EuiThemeProvider highContrastMode={false}>
+              <Output />
+            </EuiThemeProvider>
+          </EuiSystemDefaultsProvider>
+        );
+
+        expect(container.textContent).toEqual('forced');
+      });
+
+      it("converts true to 'preferred'", () => {
+        const { container } = render(
+          <EuiSystemDefaultsProvider>
+            <EuiThemeProvider highContrastMode={true}>
+              <Output />
+            </EuiThemeProvider>
+          </EuiSystemDefaultsProvider>
+        );
+
+        expect(container.textContent).toEqual('preferred');
+      });
+
+      it('leaves false as `false`', () => {
+        const { container } = render(
+          <EuiSystemDefaultsProvider>
+            <EuiThemeProvider highContrastMode={false}>
+              <Output />
+            </EuiThemeProvider>
+          </EuiSystemDefaultsProvider>
+        );
+
+        expect(container.textContent).toEqual('false');
+      });
+
+      it('falls back to the system/parent contrast mode if not specified', () => {
+        (useWindowMediaMatcher as jest.Mock).mockImplementation((media) => {
+          if (media === '(prefers-contrast: more)') return true;
+        });
+
+        const { container } = render(
+          <EuiSystemDefaultsProvider>
+            <EuiThemeProvider>
+              <Output />
+            </EuiThemeProvider>
+          </EuiSystemDefaultsProvider>
+        );
+
+        expect(container.textContent).toEqual('preferred');
+      });
+    });
+
+    describe('modification overrides', () => {
+      it('overrides the theme border color', () => {
+        const { getByText } = render(
+          <EuiThemeProvider highContrastMode={true}>
+            <div css={({ euiTheme }) => ({ border: euiTheme.border.thin })}>
+              High contrast light mode
+              <EuiThemeProvider colorMode="dark">
+                <div css={({ euiTheme }) => ({ border: euiTheme.border.thin })}>
+                  High contrast dark mode
+                </div>
+              </EuiThemeProvider>
+              <EuiThemeProvider highContrastMode={false}>
+                <div css={({ euiTheme }) => ({ border: euiTheme.border.thin })}>
+                  Not high contrast mode
+                </div>
+              </EuiThemeProvider>
+            </div>
+          </EuiThemeProvider>
+        );
+
+        expect(getByText('High contrast light mode')).toHaveStyleRule(
+          'border',
+          '1px solid #000'
+        );
+        expect(getByText('High contrast dark mode')).toHaveStyleRule(
+          'border',
+          '1px solid #FFF'
+        );
+        expect(getByText('Not high contrast mode')).toHaveStyleRule(
+          'border',
+          '1px solid #D3DAE6'
+        );
+      });
+
+      it('overrides consumer border color modifications', () => {
+        const modify = {
+          colors: {
+            LIGHT: { border: '#aaa' },
+            DARK: { border: '#333' },
+          },
+        };
+        const { getByText } = render(
+          <EuiProvider modify={modify} highContrastMode={true}>
+            <div
+              css={({ euiTheme }) => ({ borderColor: euiTheme.border.color })}
+            >
+              High contrast mode
+            </div>
+          </EuiProvider>
+        );
+
+        expect(getByText('High contrast mode')).toHaveStyleRule(
+          'border-color',
+          '#000'
+        );
+      });
+
+      it('preserves modified border widths', () => {
+        const { getByText } = render(
+          <EuiThemeProvider
+            highContrastMode={true}
+            modify={{ border: { width: { thin: '5px', thick: '10px' } } }}
+          >
+            <div css={({ euiTheme }) => ({ border: euiTheme.border.thin })}>
+              Thin border
+            </div>
+            <div css={({ euiTheme }) => ({ border: euiTheme.border.thick })}>
+              Thick border
+            </div>
+          </EuiThemeProvider>
+        );
+
+        expect(getByText('Thin border')).toHaveStyleRule(
+          'border',
+          '5px solid #000'
+        );
+        expect(getByText('Thick border')).toHaveStyleRule(
+          'border',
+          '10px solid #000'
+        );
+      });
     });
   });
 
