@@ -76,6 +76,7 @@ const EuiDataGridFooterRow = memo(
         visibleRowIndex,
         interactiveCellId,
         popoverContext,
+        gridStyles,
       };
 
       return (

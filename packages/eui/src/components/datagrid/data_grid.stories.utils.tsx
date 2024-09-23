@@ -14,11 +14,14 @@ import React, {
   useState,
   FunctionComponent,
 } from 'react';
+import { css } from '@emotion/react';
 import { faker } from '@faker-js/faker';
 
 import { EuiLink } from '../link';
 import { EuiScreenReaderOnly } from '../accessibility';
 import { EuiButtonIcon } from '../button';
+import { EuiCheckbox } from '../form';
+import { EuiBadge } from '../badge';
 
 import { MINIMUM_WIDTH_FOR_GRID_CONTROLS } from './controls/data_grid_toolbar';
 import type {
@@ -73,7 +76,7 @@ export const raw_data = Array.from({ length: 10 }).map((_, i) => {
       raw: name,
     },
     email: {
-      formatted: <EuiLink href="">{faker.internet.email()}</EuiLink>,
+      formatted: <EuiLink href="">{email}</EuiLink>,
       raw: email,
     },
     location: (
@@ -82,9 +85,18 @@ export const raw_data = Array.from({ length: 10 }).map((_, i) => {
         <EuiLink href="https://google.com">{faker.location.country()}</EuiLink>
       </>
     ),
-    date: `${date}`,
+    date,
     account: faker.finance.accountNumber(),
-    version: faker.system.semver(),
+    version: (
+      <EuiBadge
+        // Tweak the badge's vertical centering
+        css={css`
+          vertical-align: text-bottom;
+        `}
+      >
+        {faker.system.semver()}
+      </EuiBadge>
+    ),
   };
 });
 
@@ -185,6 +197,7 @@ const columns = [
     initialWidth: 70,
     isResizable: false,
     actions: false as const,
+    schema: 'version', // Custom schema + CSS
   },
 ];
 
@@ -212,39 +225,54 @@ const RenderCellValue = ({
 
 export const defaultStorybookArgs = {
   'aria-label': 'EuiDataGrid',
+  css: css`
+    .euiDataGridRowCell--version,
+    .euiDataGridHeaderCell--version {
+      text-align: center;
+    }
+  `,
   columns,
   rowCount: 10,
   renderCellValue: RenderCellValue,
   trailingControlColumns: [
     {
       id: 'trailing-actions',
-      width: 40,
+      width: 64,
       headerCellRender: () => (
         <EuiScreenReaderOnly>
-          <span>Trailing actions</span>
+          <span>Row actions</span>
         </EuiScreenReaderOnly>
       ),
       rowCellRender: () => (
-        <EuiButtonIcon
-          iconType="boxesHorizontal"
-          aria-label="Open actions popover"
-        />
+        <>
+          <EuiButtonIcon
+            iconType="indexEdit"
+            aria-label="Edit row"
+          />
+          <EuiButtonIcon
+            iconType="boxesHorizontal"
+            aria-label="Open actions popover"
+          />
+        </>
       ),
     },
   ],
   leadingControlColumns: [
     {
       id: 'leading-actions',
-      width: 40,
+      width: 32,
       headerCellRender: () => (
-        <EuiScreenReaderOnly>
-          <span>Leading actions</span>
-        </EuiScreenReaderOnly>
+        <EuiCheckbox
+          id="selectAll"
+          aria-label="Select all rows"
+          onChange={() => {}}
+        />
       ),
-      rowCellRender: () => (
-        <EuiButtonIcon
-          iconType="boxesHorizontal"
-          aria-label="Open actions popover"
+      rowCellRender: ({ rowIndex }: EuiDataGridCellValueElementProps) => (
+        <EuiCheckbox
+          id={`selectRow${rowIndex}`}
+          aria-label={`Select row ${rowIndex + 1}`}
+          onChange={() => {}}
         />
       ),
     },

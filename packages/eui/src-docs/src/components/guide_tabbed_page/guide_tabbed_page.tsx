@@ -62,16 +62,15 @@ export const GuideTabbedPage: FunctionComponent<GuideTabbedPageProps> = ({
   const currentLanguage = themeContext.themeLanguage;
   const showSass = currentLanguage.includes('sass');
 
-  const headerBadge =
-    isBeta || (showThemeLanguageToggle && !showSass) ? (
-      <EuiBetaBadge
-        label="Beta"
-        color="accent"
-        tooltipContent="This component is still under development and may contain breaking changes in the nearby future."
-      />
-    ) : isNew ? (
-      <EuiBetaBadge label="New" color="accent" />
-    ) : undefined;
+  const headerBadge = isBeta ? (
+    <EuiBetaBadge
+      label="Beta"
+      color="accent"
+      tooltipContent="This component is still under development and may contain breaking changes in the nearby future."
+    />
+  ) : isNew ? (
+    <EuiBetaBadge label="New" color="accent" />
+  ) : undefined;
 
   let tabs:
     | Array<{
@@ -190,7 +189,7 @@ export const GuideTabbedPage: FunctionComponent<GuideTabbedPageProps> = ({
   };
 
   const renderNotice = () => {
-    if (!showSass && notice) {
+    if (showSass && notice) {
       return (
         <GuideSection>
           <div role="region" aria-label="Notice">

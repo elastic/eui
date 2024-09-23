@@ -15,6 +15,7 @@ export const euiResizableButtonStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
 
   const buttonSize = euiTheme.size.base;
+  const negativeMargin = mathWithUnits(buttonSize, (x) => x / -2);
   const grabHandleWidth = euiTheme.size.m;
   const grabHandleHeight = euiTheme.border.width.thin;
 
@@ -77,15 +78,27 @@ export const euiResizableButtonStyles = (euiThemeContext: UseEuiTheme) => {
       cursor: col-resize;
       ${logicalCSS('height', '100%')}
       ${logicalCSS('width', buttonSize)}
-      margin-inline: ${mathWithUnits(buttonSize, (x) => x / -2)};
     `,
     vertical: css`
       flex-direction: column;
       cursor: row-resize;
       ${logicalCSS('width', '100%')}
       ${logicalCSS('height', buttonSize)}
-      margin-block: ${mathWithUnits(buttonSize, (x) => x / -2)};
     `,
+    accountForScrollbars: {
+      horizontal: {
+        both: css``,
+        before: css(logicalCSS('margin-right', negativeMargin)),
+        after: css(logicalCSS('margin-left', negativeMargin)),
+        none: css(logicalCSS('margin-horizontal', negativeMargin)),
+      },
+      vertical: {
+        both: css``,
+        before: css(logicalCSS('margin-bottom', negativeMargin)),
+        after: css(logicalCSS('margin-top', negativeMargin)),
+        none: css(logicalCSS('margin-vertical', negativeMargin)),
+      },
+    },
 
     border: css`
       &::before,

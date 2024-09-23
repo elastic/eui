@@ -19,7 +19,7 @@ export default () => (
           </EuiText>
         </EuiResizablePanel>
 
-        <EuiResizableButton />
+        <EuiResizableButton accountForScrollbars="both" />
 
         <EuiResizablePanel initialSize={40} minSize="10%" tabIndex={0}>
           <EuiText>

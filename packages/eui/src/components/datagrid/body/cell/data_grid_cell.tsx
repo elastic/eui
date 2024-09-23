@@ -100,14 +100,7 @@ const EuiDataGridCellContent: FunctionComponent<
     const cssStyles = [
       styles.content.euiDataGridRowCell__content,
       ...(isControlColumn
-        ? [
-            // Control column cells should not be vertically centered (defaultHeight) except
-            // on single rows. They should be top-aligned for auto and lineCount heights
-            styles.content.controlColumn,
-            cellHeightType === 'default'
-              ? styles.content.defaultHeight
-              : styles.content.autoHeight,
-          ]
+        ? [styles.content.controlColumn, styles.content.autoHeight]
         : [
             // Regular data cells should always inherit height from the row wrapper,
             // except for auto height
@@ -221,8 +214,7 @@ export class EuiDataGridCell extends Component<
 
       const height = rowHeightUtils!.calculateHeightForLineCount(
         this.cellContentsRef,
-        lineCount,
-        shouldUseHeightsCache
+        lineCount
       );
 
       if (shouldUseHeightsCache) {
@@ -295,7 +287,13 @@ export class EuiDataGridCell extends Component<
 
     if (
       this.props.rowHeightsOptions?.defaultHeight !==
-      prevProps.rowHeightsOptions?.defaultHeight
+        prevProps.rowHeightsOptions?.defaultHeight ||
+      this.props.rowHeightsOptions?.rowHeights?.[this.props.rowIndex] !==
+        prevProps.rowHeightsOptions?.rowHeights?.[prevProps.rowIndex] ||
+      this.props.rowHeightsOptions?.lineHeight !==
+        prevProps.rowHeightsOptions?.lineHeight ||
+      this.props.gridStyles?.fontSize !== prevProps.gridStyles?.fontSize ||
+      this.props.gridStyles?.cellPadding !== prevProps.gridStyles?.cellPadding
     ) {
       this.recalculateLineHeight();
     }
@@ -349,6 +347,12 @@ export class EuiDataGridCell extends Component<
     if (nextProps.columnType !== this.props.columnType) return true;
     if (nextProps.width !== this.props.width) return true;
     if (nextProps.rowHeightsOptions !== this.props.rowHeightsOptions)
+      return true;
+    if (nextProps.gridStyles?.fontSize !== this.props.gridStyles?.fontSize)
+      return true;
+    if (
+      nextProps.gridStyles?.cellPadding !== this.props.gridStyles?.cellPadding
+    )
       return true;
     if (nextProps.renderCellValue !== this.props.renderCellValue) return true;
     if (nextProps.renderCellPopover !== this.props.renderCellPopover)

@@ -70,7 +70,7 @@ describe('EuiDataGridHeaderRow', () => {
             data-test-subj="dataGridColumnResizer"
           />
           <div
-            class="euiDataGridHeaderCell__content emotion-euiDataGridHeaderCell__content-left"
+            class="euiDataGridHeaderCell__content emotion-euiDataGridHeaderCell__content"
             title="someColumn"
           >
             someColumn

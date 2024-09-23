@@ -22,8 +22,8 @@ export default () => {
         `}
       >
         The padding of this box is created using <EuiCode>calc()</EuiCode>{' '}
-        because EUI&apos;s theme sizes are string pixel values that are
-        calculated off the theme&apos;s <EuiCode>base</EuiCode>
+        because EUI's theme sizes are string pixel values that are calculated
+        off the theme's <EuiCode>base</EuiCode>
       </p>
     </EuiText>
   );
