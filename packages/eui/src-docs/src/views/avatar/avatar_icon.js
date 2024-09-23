@@ -1,15 +1,8 @@
-import React, { useContext } from 'react';
-import { ThemeContext } from '../../components';
-
-import { EuiAvatar, EuiSpacer, EuiTitle } from '../../../../src/components';
+import React from 'react';
+import { EuiAvatar, EuiSpacer, EuiTitle, useEuiTheme } from '../../../../src';
 
 export default () => {
-  const themeContext = useContext(ThemeContext);
-
-  /**
-   * Setup theme based on current light/dark theme
-   */
-  const isDarkTheme = themeContext.theme.includes('dark');
+  const isDarkTheme = useEuiTheme().colorMode === 'DARK';
 
   return (
     <div>

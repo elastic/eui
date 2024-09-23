@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import reactElementToJSXString from 'react-element-to-jsx-string';
 import classNames from 'classnames';
 import {
@@ -20,8 +20,8 @@ import {
   EuiDescriptionListDescription,
   EuiLoadingSpinner,
   useIsWithinBreakpoints,
+  useEuiTheme,
 } from '../../../../src';
-import { ThemeContext } from '../../components/with_theme';
 import { typesOfPanelColors } from './_types_of_panel_colors';
 // @ts-ignore Importing from JS file
 import { typesOfUseCases } from './_types_of_use_cases';
@@ -43,12 +43,7 @@ import singleSvg from '../../images/single.svg';
 import contentCenterSvg from '../../images/content_center.svg';
 
 export default () => {
-  const themeContext = useContext(ThemeContext);
-
-  /**
-   * Setup theme based on current light/dark theme
-   */
-  const isDarkTheme = themeContext.theme.includes('dark');
+  const isDarkTheme = useEuiTheme().colorMode === 'DARK';
 
   const useCasesOptions: EuiRadioGroupOption[] = Object.values(
     typesOfUseCases
