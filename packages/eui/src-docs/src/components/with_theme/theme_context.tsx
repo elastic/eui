@@ -28,22 +28,20 @@ export const theme_languages: THEME_LANGUAGES[] = [
 const THEME_NAMES = EUI_THEMES.map(({ value }) => value);
 const THEME_LANGS = theme_languages.map(({ id }) => id);
 
-const defaultState = {
-  themeLanguage: THEME_LANGS[0],
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  changeThemeLanguage: (language: THEME_LANGUAGES['id']) => {},
-  theme: undefined as string | undefined,
-  changeTheme: (themeValue: EUI_THEME['value']) => {
-    applyTheme(themeValue);
-  },
-};
-
-interface State {
+type ThemeContextType = {
   theme?: EUI_THEME['value'];
+  changeTheme: (themeValue: EUI_THEME['value']) => void;
   themeLanguage: THEME_LANGUAGES['id'];
-}
+  changeThemeLanguage: (language: THEME_LANGUAGES['id']) => void;
+};
+export const ThemeContext = React.createContext<ThemeContextType>({
+  theme: undefined,
+  changeTheme: () => {},
+  themeLanguage: THEME_LANGS[0],
+  changeThemeLanguage: () => {},
+});
 
-export const ThemeContext = React.createContext(defaultState);
+type State = Pick<ThemeContextType, 'theme' | 'themeLanguage'>;
 
 export class ThemeProvider extends React.Component<PropsWithChildren, State> {
   constructor(props: object) {
@@ -82,7 +80,7 @@ export class ThemeProvider extends React.Component<PropsWithChildren, State> {
 
     // If not set by either param or storage, or an invalid value, use the default
     if (!themeLanguage || !THEME_LANGS.includes(themeLanguage))
-      themeLanguage = defaultState.themeLanguage;
+      themeLanguage = THEME_LANGS[0];
 
     return themeLanguage;
   };
