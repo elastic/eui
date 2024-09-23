@@ -245,10 +245,7 @@ export const defaultStorybookArgs = {
       ),
       rowCellRender: () => (
         <>
-          <EuiButtonIcon
-            iconType="indexEdit"
-            aria-label="Edit row"
-          />
+          <EuiButtonIcon iconType="indexEdit" aria-label="Edit row" />
           <EuiButtonIcon
             iconType="boxesHorizontal"
             aria-label="Open actions popover"
