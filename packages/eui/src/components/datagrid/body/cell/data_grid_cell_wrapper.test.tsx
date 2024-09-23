@@ -22,6 +22,7 @@ describe('Cell', () => {
     renderCellValue: () => null,
     interactiveCellId: '',
     rowHeightUtils: new RowHeightUtils(),
+    gridStyles: {},
     schema: {},
     schemaDetectors,
     columns: [{ id: 'C' }],

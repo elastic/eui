@@ -66,6 +66,20 @@ export const LineCount: Story = {
   ),
 };
 
+// Visual regression test for https://github.com/elastic/eui/issues/7780#issuecomment-2183179080
+// lineCount: 1 should fall back to default/undefined height, and
+// overflowing content should *not* be cut off by 'padding'
+export const LineCount1: Story = {
+  tags: ['vrt-only'],
+  render: () => (
+    <StatefulDataGrid
+      {...storyArgs}
+      rowHeightsOptions={{ defaultHeight: { lineCount: 1 } }}
+      gridStyle={{ fontSize: 's', cellPadding: 's' }}
+    />
+  ),
+};
+
 export const StaticHeight: Story = {
   args: {
     defaultHeight: { height: 48 },
@@ -79,15 +93,16 @@ export const CustomRowHeights: Story = {
   parameters: { controls: { include: ['rowHeights'] } },
   args: {
     rowHeights: {
-      2: 'auto',
-      3: 48,
-      4: {
+      1: 'auto',
+      2: 48,
+      3: {
         height: 56,
       },
-      5: {
+      4: {
         lineCount: 2,
       },
     },
+    onChange: undefined,
   },
   render: (rowHeightsOptions) => (
     <StatefulDataGrid {...storyArgs} rowHeightsOptions={rowHeightsOptions} />
@@ -98,8 +113,22 @@ export const CustomLineHeight: Story = {
   parameters: { controls: { include: ['lineHeight'] } },
   args: {
     lineHeight: '40px',
+    onChange: undefined,
   },
   render: (rowHeightsOptions) => (
     <StatefulDataGrid {...storyArgs} rowHeightsOptions={rowHeightsOptions} />
+  ),
+};
+
+// Visual regression test for https://github.com/elastic/eui/issues/7897
+// Control column checkboxes & buttons should vertically align with the first
+// line of text for both single and multiple lines of text
+export const CustomLineHeightControlColumn: Story = {
+  tags: ['vrt-only'],
+  render: () => (
+    <StatefulDataGrid
+      {...storyArgs}
+      rowHeightsOptions={{ lineHeight: '3', defaultHeight: { lineCount: 2 } }}
+    />
   ),
 };

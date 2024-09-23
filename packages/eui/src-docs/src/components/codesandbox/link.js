@@ -1,12 +1,11 @@
 import React from 'react';
 import { getParameters } from 'codesandbox/lib/api/define';
+import { useEuiTheme } from '../../../../src/services';
 import {
   cleanEuiImports,
   hasDisplayToggles,
   listExtraDeps,
 } from '../../services';
-
-import { ThemeContext } from '../with_theme';
 
 const pkg = require('../../../../package.json');
 
@@ -33,39 +32,14 @@ const getVersion = (packageName) => {
 const displayTogglesRawCode =
   require('!!raw-loader!../../views/form_controls/display_toggles').default;
 
-export const CodeSandboxLink = ({ ...rest }) => {
-  return (
-    <ThemeContext.Consumer>
-      {(context) => <CodeSandboxLinkComponent context={context} {...rest} />}
-    </ThemeContext.Consumer>
-  );
-};
-
 /* 1 */
-export const CodeSandboxLinkComponent = ({
+export const CodeSandboxLink = ({
   children,
   className,
   content,
   type = 'js',
-  context,
 }) => {
-  const isDarkMode = context.theme.includes('dark');
-  const colorMode = isDarkMode ? 'dark' : 'light';
-
-  const cssFile = `@elastic/eui/dist/eui_theme_${colorMode}.css`;
-
-  const providerPropsObject = {};
-  // Only add configuration if it isn't the default
-  if (isDarkMode) {
-    providerPropsObject.colorMode = 'dark';
-  }
-  // Can't spread an object inside of a string literal
-  const providerProps = Object.keys(providerPropsObject)
-    .map((prop) => {
-      const value = providerPropsObject[prop];
-      return value !== null ? `${prop}="${value}"` : `${prop}={${value}}`;
-    })
-    .join(' ');
+  const { colorMode } = useEuiTheme();
 
   let demoContent;
 
@@ -165,8 +139,7 @@ import '@elastic/charts/dist/theme_only_${colorMode}.css';`
         content: demoContent,
       },
       'index.js': {
-        content: `import '${cssFile}';
-import React from 'react';
+        content: `import React from 'react';
 import { createRoot } from 'react-dom/client';
 import createCache from '@emotion/cache';
 import { EuiProvider, euiStylisPrefixer } from '@elastic/eui';
@@ -182,7 +155,7 @@ cache.compat = true;
 
 const root = createRoot(document.getElementById('root'));
 root.render(
-  <EuiProvider cache={cache} ${providerProps}>
+  <EuiProvider cache={cache}>
     <Demo />
   </EuiProvider>
 );`,

@@ -45,12 +45,9 @@ This activity counter can be soft reset by commenting on the issue directly, but
 
 The EUI team, like everyone else, has a finite amount of time and resources, and it is not humanly possible for us to implement every task or feature requested of us. However, that's where the beauty of open source comes in - if your request is important to you, we strongly encourage you to [contribute code directly to EUI](wiki/contributing-to-eui/) that addresses your issue or request!
 
-<!-- TODO: Delete this question once the Emotion migration is complete -->
-### What is the status of EUI's theming?
+### I have more questions!
 
-The EUI library was previously built upon Sass and is in the process of migrating to CSS-in-JS (specifically [Emotion](https://emotion.sh)). While this work is in progress, we ask for your patience with our in-between state in areas such as documentation and setup.
-
-If you're a Kibana developer with questions around CSS-in-JS usage in Kibana, please check out our [FAQ discussion](https://github.com/elastic/eui/discussions/6828)!
+The EUI team has ongoing FAQs for more transient or component-specific questions. [Please see the FAQ section in our GitHub discussions here](https://github.com/elastic/eui/discussions/categories/faq).
 
 ## Wiki
 
