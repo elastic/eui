@@ -23,14 +23,21 @@ const _gutterSizeAdjustment = (gutterSize: string) => {
 
 // The vertical line should only appear when the EuiTimelineItem's
 // are wrapped in a EuiTimeline. That's why these styles live here.
-const timelineVerticalLine = (euiTheme: UseEuiTheme['euiTheme']) => {
+const timelineVerticalLine = ({ euiTheme, highContrastMode }: UseEuiTheme) => {
+  const highContrastBorder = highContrastMode
+    ? `
+    [class*="euiTimelineItemIcon__content"] > * {
+      border: ${euiTheme.border.thin};
+    }`
+    : '';
+
   return `  
     [class*='euiTimelineItem-'] > [class*='euiTimelineItemIcon-']::before {
       content: '';
       position: absolute;
       ${logicalCSS('top', 0)};
       ${logicalCSS('width', euiTheme.size.xxs)};
-      background-color: ${euiTheme.colors.lightShade};
+      background-color: ${euiTheme.border.color};
     }
 
     > [class*='euiTimelineItem-center']:first-child > [class*='euiTimelineItemIcon-']::before {
@@ -40,15 +47,18 @@ const timelineVerticalLine = (euiTheme: UseEuiTheme['euiTheme']) => {
     > [class*='euiTimelineItem-center']:last-child:not(:only-child) > [class*='euiTimelineItemIcon-']::before {
       ${logicalCSS('height', '50%')};
     }
+
+    ${highContrastBorder}
   `;
 };
 
-export const euiTimelineStyles = ({ euiTheme }: UseEuiTheme) => {
+export const euiTimelineStyles = (euiThemeContext: UseEuiTheme) => {
+  const { euiTheme } = euiThemeContext;
   return {
     euiTimeline: css`
       display: flex;
       flex-direction: column;
-      ${timelineVerticalLine(euiTheme)}
+      ${timelineVerticalLine(euiThemeContext)}
     `,
     m: css(_gutterSizeAdjustment(euiTheme.size.base)),
     l: css(_gutterSizeAdjustment(euiTheme.size.l)),

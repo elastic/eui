@@ -9,11 +9,15 @@
 import { css } from '@emotion/react';
 import { UseEuiTheme } from '../../services';
 
-export const euiSubStepsStyles = ({ euiTheme }: UseEuiTheme) => {
+export const euiSubStepsStyles = ({
+  euiTheme,
+  highContrastMode,
+}: UseEuiTheme) => {
   return {
     euiSubSteps: css`
       padding: ${euiTheme.size.base};
       background-color: ${euiTheme.colors.lightestShade};
+      ${highContrastMode ? `border: ${euiTheme.border.thin};` : ''}
       margin-block-end: ${euiTheme.size.base};
 
       > *:last-child {
