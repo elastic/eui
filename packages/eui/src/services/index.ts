@@ -105,5 +105,6 @@ export {
   EuiWindowContext,
   EuiWindowProvider,
   useEuiWindow,
+  useEuiWindowEmotion,
 } from './window_provider';
 export type { EuiWindowContextValue } from './window_provider';

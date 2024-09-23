@@ -8,6 +8,7 @@
 
 import React, { ReactNode } from 'react';
 import { EuiWindowContext } from './context';
+import createEmotion from '@emotion/css/create-instance';
 
 export interface EuiWindowProviderProps {
   window: Window;
@@ -18,8 +19,13 @@ export function EuiWindowProvider({
   window,
   children,
 }: EuiWindowProviderProps) {
+  const { css, cx } = createEmotion({
+    key: 'eui-child-window',
+    container: window.document.head,
+  });
+
   return (
-    <EuiWindowContext.Provider value={{ window }}>
+    <EuiWindowContext.Provider value={{ window, css, cx }}>
       {children}
     </EuiWindowContext.Provider>
   );

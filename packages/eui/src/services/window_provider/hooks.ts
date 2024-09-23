@@ -16,3 +16,8 @@ export function useEuiWindow() {
   const context = useContext(EuiWindowContext);
   return context.window ?? (typeof window !== 'undefined' ? window : undefined);
 }
+
+export function useEuiWindowEmotion() {
+  const { css, cx } = useContext(EuiWindowContext);
+  return { css, cx };
+}

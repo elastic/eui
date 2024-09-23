@@ -9,4 +9,4 @@
 export { EuiWindowProvider } from './provider';
 export type { EuiWindowContextValue } from './context';
 export { EuiWindowContext } from './context';
-export { useEuiWindow } from './hooks';
+export { useEuiWindow, useEuiWindowEmotion } from './hooks';
