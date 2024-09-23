@@ -15,14 +15,7 @@ import {
   EuiSwitchEvent,
 } from '../../../../src/components';
 
-type GuideThemeSelectorProps = {
-  onToggleLocale: Function;
-  selectedLocale: string;
-};
-
-export const GuideThemeSelector: React.FunctionComponent<
-  GuideThemeSelectorProps
-> = ({ onToggleLocale, selectedLocale }) => {
+export const GuideThemeSelector = () => {
   const context = useContext(ThemeContext);
   const euiThemeContext = useEuiTheme();
   const colorMode = context.colorMode ?? euiThemeContext.colorMode;
@@ -65,9 +58,9 @@ export const GuideThemeSelector: React.FunctionComponent<
     },
     location.host.includes('803') && {
       label: 'i18n testing',
-      checked: selectedLocale === 'en-xa',
+      checked: context.i18n === 'en-xa',
       onChange: (e: EuiSwitchEvent) =>
-        onToggleLocale(e.target.checked ? 'en-xa' : 'en'),
+        context.setContext({ i18n: e.target.checked ? 'en-xa' : 'en' }),
     },
   ];
 

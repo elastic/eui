@@ -2,11 +2,30 @@ import React, { useContext } from 'react';
 
 import { EuiButtonGroup } from '../../../../src/components';
 
-import {
-  ThemeContext,
-  theme_languages,
-  THEME_LANGUAGES,
-} from './theme_context';
+import { ThemeContext } from './theme_context';
+
+export const THEME_LANGUAGES = ['language--js', 'language--sass'] as const;
+
+export type ThemeLanguages = {
+  id: (typeof THEME_LANGUAGES)[number];
+  label: string;
+  title: string;
+};
+
+export const themeLanguagesOptions: ThemeLanguages[] = [
+  {
+    id: 'language--js',
+    label: 'CSS-in-JS',
+    title: 'Language selector: CSS-in-JS',
+  },
+  {
+    id: 'language--sass',
+    label: 'Sass',
+    title: 'Language selector: Sass',
+  },
+];
+
+const ids = themeLanguagesOptions.map(({ id }) => id);
 
 export const LanguageSelector = ({
   onChange,
@@ -17,7 +36,7 @@ export const LanguageSelector = ({
   const toggleIdSelected = themeContext.themeLanguage;
   const onLanguageChange = (optionId: string) => {
     themeContext.setContext({
-      themeLanguage: optionId as THEME_LANGUAGES['id'],
+      themeLanguage: optionId as ThemeLanguages['id'],
     });
     onChange?.(optionId);
   };
@@ -27,8 +46,10 @@ export const LanguageSelector = ({
       buttonSize="m"
       color="accent"
       legend="Language selector"
-      options={theme_languages}
-      idSelected={toggleIdSelected}
+      options={themeLanguagesOptions}
+      idSelected={
+        ids.includes(toggleIdSelected) ? toggleIdSelected : 'language--js'
+      }
       onChange={(id) => onLanguageChange(id)}
     />
   );

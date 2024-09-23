@@ -302,7 +302,5 @@ export class GuidePageChrome extends Component {
 
 GuidePageChrome.propTypes = {
   currentRoute: PropTypes.object.isRequired,
-  onToggleLocale: PropTypes.func.isRequired,
-  selectedLocale: PropTypes.string.isRequired,
   navigation: PropTypes.array.isRequired,
 };
