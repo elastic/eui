@@ -582,6 +582,13 @@ exports[`EuiDataGrid rendering renders additional toolbar controls 1`] = `
         role="grid"
         tabindex="0"
       >
+        <span
+          aria-hidden="true"
+          class="euiScreenReaderOnly"
+          data-tabular-copy-marker="boundary"
+        >
+          𐘂𐘂
+        </span>
         <div
           class="euiDataGrid__virtualized emotion-euiDataGridBody-virtualized"
           style="position: relative; height: 9007199254740991px; width: 9007199254740991px; overflow: auto; will-change: transform; direction: ltr;"
@@ -635,6 +642,13 @@ exports[`EuiDataGrid rendering renders additional toolbar controls 1`] = `
                     />
                   </button>
                 </div>
+                <span
+                  aria-hidden="true"
+                  class="euiScreenReaderOnly"
+                  data-tabular-copy-marker="tab"
+                >
+                  ↦
+                </span>
               </div>
               <div
                 aria-describedby="euiDataGridCellHeader_generated-id_sorting"
@@ -677,6 +691,13 @@ exports[`EuiDataGrid rendering renders additional toolbar controls 1`] = `
                     />
                   </button>
                 </div>
+                <span
+                  aria-hidden="true"
+                  class="euiScreenReaderOnly"
+                  data-tabular-copy-marker="newline"
+                >
+                  ↵
+                </span>
               </div>
             </div>
             <div
@@ -697,6 +718,13 @@ exports[`EuiDataGrid rendering renders additional toolbar controls 1`] = `
               >
                 0, A
               </div>
+              <span
+                aria-hidden="true"
+                class="euiScreenReaderOnly"
+                data-tabular-copy-marker="tab"
+              >
+                ↦
+              </span>
             </div>
             <div
               aria-rowindex="1"
@@ -716,6 +744,13 @@ exports[`EuiDataGrid rendering renders additional toolbar controls 1`] = `
               >
                 0, B
               </div>
+              <span
+                aria-hidden="true"
+                class="euiScreenReaderOnly"
+                data-tabular-copy-marker="newline"
+              >
+                ↵
+              </span>
             </div>
             <div
               aria-rowindex="2"
@@ -735,6 +770,13 @@ exports[`EuiDataGrid rendering renders additional toolbar controls 1`] = `
               >
                 1, A
               </div>
+              <span
+                aria-hidden="true"
+                class="euiScreenReaderOnly"
+                data-tabular-copy-marker="tab"
+              >
+                ↦
+              </span>
             </div>
             <div
               aria-rowindex="2"
@@ -754,6 +796,13 @@ exports[`EuiDataGrid rendering renders additional toolbar controls 1`] = `
               >
                 1, B
               </div>
+              <span
+                aria-hidden="true"
+                class="euiScreenReaderOnly"
+                data-tabular-copy-marker="newline"
+              >
+                ↵
+              </span>
             </div>
             <div
               aria-rowindex="3"
@@ -773,6 +822,13 @@ exports[`EuiDataGrid rendering renders additional toolbar controls 1`] = `
               >
                 2, A
               </div>
+              <span
+                aria-hidden="true"
+                class="euiScreenReaderOnly"
+                data-tabular-copy-marker="tab"
+              >
+                ↦
+              </span>
             </div>
             <div
               aria-rowindex="3"
@@ -792,9 +848,23 @@ exports[`EuiDataGrid rendering renders additional toolbar controls 1`] = `
               >
                 2, B
               </div>
+              <span
+                aria-hidden="true"
+                class="euiScreenReaderOnly"
+                data-tabular-copy-marker="newline"
+              >
+                ↵
+              </span>
             </div>
           </div>
         </div>
+        <span
+          aria-hidden="true"
+          class="euiScreenReaderOnly"
+          data-tabular-copy-marker="boundary"
+        >
+          𐘂𐘂
+        </span>
       </div>
       <p
         hidden=""
@@ -945,6 +1015,13 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
         role="grid"
         tabindex="0"
       >
+        <span
+          aria-hidden="true"
+          class="euiScreenReaderOnly"
+          data-tabular-copy-marker="boundary"
+        >
+          𐘂𐘂
+        </span>
         <div
           class="euiDataGrid__virtualized emotion-euiDataGridBody-virtualized"
           style="position: relative; height: 9007199254740991px; width: 9007199254740991px; overflow: auto; will-change: transform; direction: ltr;"
@@ -970,6 +1047,13 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
               >
                 <span>
                   leading heading
+                </span>
+                <span
+                  aria-hidden="true"
+                  class="euiScreenReaderOnly"
+                  data-tabular-copy-marker="tab"
+                >
+                  ↦
                 </span>
               </div>
               <div
@@ -1013,6 +1097,13 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
                     />
                   </button>
                 </div>
+                <span
+                  aria-hidden="true"
+                  class="euiScreenReaderOnly"
+                  data-tabular-copy-marker="tab"
+                >
+                  ↦
+                </span>
               </div>
               <div
                 aria-describedby="euiDataGridCellHeader_generated-id_sorting"
@@ -1055,6 +1146,13 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
                     />
                   </button>
                 </div>
+                <span
+                  aria-hidden="true"
+                  class="euiScreenReaderOnly"
+                  data-tabular-copy-marker="tab"
+                >
+                  ↦
+                </span>
               </div>
               <div
                 class="euiDataGridHeaderCell euiDataGridHeaderCell--controlColumn trailingControlCol emotion-euiDataGridHeaderCell"
@@ -1069,6 +1167,13 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
               >
                 <span>
                   trailing heading
+                </span>
+                <span
+                  aria-hidden="true"
+                  class="euiScreenReaderOnly"
+                  data-tabular-copy-marker="newline"
+                >
+                  ↵
                 </span>
               </div>
             </div>
@@ -1090,6 +1195,13 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
               >
                 0
               </div>
+              <span
+                aria-hidden="true"
+                class="euiScreenReaderOnly"
+                data-tabular-copy-marker="tab"
+              >
+                ↦
+              </span>
             </div>
             <div
               aria-rowindex="1"
@@ -1109,6 +1221,13 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
               >
                 0, A
               </div>
+              <span
+                aria-hidden="true"
+                class="euiScreenReaderOnly"
+                data-tabular-copy-marker="tab"
+              >
+                ↦
+              </span>
             </div>
             <div
               aria-rowindex="1"
@@ -1128,6 +1247,13 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
               >
                 0, B
               </div>
+              <span
+                aria-hidden="true"
+                class="euiScreenReaderOnly"
+                data-tabular-copy-marker="tab"
+              >
+                ↦
+              </span>
             </div>
             <div
               aria-rowindex="1"
@@ -1147,6 +1273,13 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
               >
                 0
               </div>
+              <span
+                aria-hidden="true"
+                class="euiScreenReaderOnly"
+                data-tabular-copy-marker="newline"
+              >
+                ↵
+              </span>
             </div>
             <div
               aria-rowindex="2"
@@ -1166,6 +1299,13 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
               >
                 1
               </div>
+              <span
+                aria-hidden="true"
+                class="euiScreenReaderOnly"
+                data-tabular-copy-marker="tab"
+              >
+                ↦
+              </span>
             </div>
             <div
               aria-rowindex="2"
@@ -1185,6 +1325,13 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
               >
                 1, A
               </div>
+              <span
+                aria-hidden="true"
+                class="euiScreenReaderOnly"
+                data-tabular-copy-marker="tab"
+              >
+                ↦
+              </span>
             </div>
             <div
               aria-rowindex="2"
@@ -1204,6 +1351,13 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
               >
                 1, B
               </div>
+              <span
+                aria-hidden="true"
+                class="euiScreenReaderOnly"
+                data-tabular-copy-marker="tab"
+              >
+                ↦
+              </span>
             </div>
             <div
               aria-rowindex="2"
@@ -1223,6 +1377,13 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
               >
                 1
               </div>
+              <span
+                aria-hidden="true"
+                class="euiScreenReaderOnly"
+                data-tabular-copy-marker="newline"
+              >
+                ↵
+              </span>
             </div>
             <div
               aria-rowindex="3"
@@ -1242,6 +1403,13 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
               >
                 2
               </div>
+              <span
+                aria-hidden="true"
+                class="euiScreenReaderOnly"
+                data-tabular-copy-marker="tab"
+              >
+                ↦
+              </span>
             </div>
             <div
               aria-rowindex="3"
@@ -1261,6 +1429,13 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
               >
                 2, A
               </div>
+              <span
+                aria-hidden="true"
+                class="euiScreenReaderOnly"
+                data-tabular-copy-marker="tab"
+              >
+                ↦
+              </span>
             </div>
             <div
               aria-rowindex="3"
@@ -1280,6 +1455,13 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
               >
                 2, B
               </div>
+              <span
+                aria-hidden="true"
+                class="euiScreenReaderOnly"
+                data-tabular-copy-marker="tab"
+              >
+                ↦
+              </span>
             </div>
             <div
               aria-rowindex="3"
@@ -1299,9 +1481,23 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
               >
                 2
               </div>
+              <span
+                aria-hidden="true"
+                class="euiScreenReaderOnly"
+                data-tabular-copy-marker="newline"
+              >
+                ↵
+              </span>
             </div>
           </div>
         </div>
+        <span
+          aria-hidden="true"
+          class="euiScreenReaderOnly"
+          data-tabular-copy-marker="boundary"
+        >
+          𐘂𐘂
+        </span>
       </div>
       <p
         hidden=""
@@ -1449,6 +1645,13 @@ exports[`EuiDataGrid rendering renders custom column headers 1`] = `
         role="grid"
         tabindex="0"
       >
+        <span
+          aria-hidden="true"
+          class="euiScreenReaderOnly"
+          data-tabular-copy-marker="boundary"
+        >
+          𐘂𐘂
+        </span>
         <div
           class="euiDataGrid__virtualized emotion-euiDataGridBody-virtualized"
           style="position: relative; height: 9007199254740991px; width: 9007199254740991px; overflow: auto; will-change: transform; direction: ltr;"
@@ -1502,6 +1705,13 @@ exports[`EuiDataGrid rendering renders custom column headers 1`] = `
                     />
                   </button>
                 </div>
+                <span
+                  aria-hidden="true"
+                  class="euiScreenReaderOnly"
+                  data-tabular-copy-marker="tab"
+                >
+                  ↦
+                </span>
               </div>
               <div
                 aria-describedby="euiDataGridCellHeader_generated-id_sorting"
@@ -1546,6 +1756,13 @@ exports[`EuiDataGrid rendering renders custom column headers 1`] = `
                     />
                   </button>
                 </div>
+                <span
+                  aria-hidden="true"
+                  class="euiScreenReaderOnly"
+                  data-tabular-copy-marker="newline"
+                >
+                  ↵
+                </span>
               </div>
             </div>
             <div
@@ -1566,6 +1783,13 @@ exports[`EuiDataGrid rendering renders custom column headers 1`] = `
               >
                 0, A
               </div>
+              <span
+                aria-hidden="true"
+                class="euiScreenReaderOnly"
+                data-tabular-copy-marker="tab"
+              >
+                ↦
+              </span>
             </div>
             <div
               aria-rowindex="1"
@@ -1585,6 +1809,13 @@ exports[`EuiDataGrid rendering renders custom column headers 1`] = `
               >
                 0, B
               </div>
+              <span
+                aria-hidden="true"
+                class="euiScreenReaderOnly"
+                data-tabular-copy-marker="newline"
+              >
+                ↵
+              </span>
             </div>
             <div
               aria-rowindex="2"
@@ -1604,6 +1835,13 @@ exports[`EuiDataGrid rendering renders custom column headers 1`] = `
               >
                 1, A
               </div>
+              <span
+                aria-hidden="true"
+                class="euiScreenReaderOnly"
+                data-tabular-copy-marker="tab"
+              >
+                ↦
+              </span>
             </div>
             <div
               aria-rowindex="2"
@@ -1623,6 +1861,13 @@ exports[`EuiDataGrid rendering renders custom column headers 1`] = `
               >
                 1, B
               </div>
+              <span
+                aria-hidden="true"
+                class="euiScreenReaderOnly"
+                data-tabular-copy-marker="newline"
+              >
+                ↵
+              </span>
             </div>
             <div
               aria-rowindex="3"
@@ -1642,6 +1887,13 @@ exports[`EuiDataGrid rendering renders custom column headers 1`] = `
               >
                 2, A
               </div>
+              <span
+                aria-hidden="true"
+                class="euiScreenReaderOnly"
+                data-tabular-copy-marker="tab"
+              >
+                ↦
+              </span>
             </div>
             <div
               aria-rowindex="3"
@@ -1661,9 +1913,23 @@ exports[`EuiDataGrid rendering renders custom column headers 1`] = `
               >
                 2, B
               </div>
+              <span
+                aria-hidden="true"
+                class="euiScreenReaderOnly"
+                data-tabular-copy-marker="newline"
+              >
+                ↵
+              </span>
             </div>
           </div>
         </div>
+        <span
+          aria-hidden="true"
+          class="euiScreenReaderOnly"
+          data-tabular-copy-marker="boundary"
+        >
+          𐘂𐘂
+        </span>
       </div>
       <p
         hidden=""
@@ -1811,6 +2077,13 @@ exports[`EuiDataGrid rendering renders with common and div attributes 1`] = `
         role="grid"
         tabindex="0"
       >
+        <span
+          aria-hidden="true"
+          class="euiScreenReaderOnly"
+          data-tabular-copy-marker="boundary"
+        >
+          𐘂𐘂
+        </span>
         <div
           class="euiDataGrid__virtualized emotion-euiDataGridBody-virtualized"
           style="position: relative; height: 9007199254740991px; width: 9007199254740991px; overflow: auto; will-change: transform; direction: ltr;"
@@ -1864,6 +2137,13 @@ exports[`EuiDataGrid rendering renders with common and div attributes 1`] = `
                     />
                   </button>
                 </div>
+                <span
+                  aria-hidden="true"
+                  class="euiScreenReaderOnly"
+                  data-tabular-copy-marker="tab"
+                >
+                  ↦
+                </span>
               </div>
               <div
                 aria-describedby="euiDataGridCellHeader_generated-id_sorting"
@@ -1906,6 +2186,13 @@ exports[`EuiDataGrid rendering renders with common and div attributes 1`] = `
                     />
                   </button>
                 </div>
+                <span
+                  aria-hidden="true"
+                  class="euiScreenReaderOnly"
+                  data-tabular-copy-marker="newline"
+                >
+                  ↵
+                </span>
               </div>
             </div>
             <div
@@ -1926,6 +2213,13 @@ exports[`EuiDataGrid rendering renders with common and div attributes 1`] = `
               >
                 0, A
               </div>
+              <span
+                aria-hidden="true"
+                class="euiScreenReaderOnly"
+                data-tabular-copy-marker="tab"
+              >
+                ↦
+              </span>
             </div>
             <div
               aria-rowindex="1"
@@ -1945,6 +2239,13 @@ exports[`EuiDataGrid rendering renders with common and div attributes 1`] = `
               >
                 0, B
               </div>
+              <span
+                aria-hidden="true"
+                class="euiScreenReaderOnly"
+                data-tabular-copy-marker="newline"
+              >
+                ↵
+              </span>
             </div>
             <div
               aria-rowindex="2"
@@ -1964,6 +2265,13 @@ exports[`EuiDataGrid rendering renders with common and div attributes 1`] = `
               >
                 1, A
               </div>
+              <span
+                aria-hidden="true"
+                class="euiScreenReaderOnly"
+                data-tabular-copy-marker="tab"
+              >
+                ↦
+              </span>
             </div>
             <div
               aria-rowindex="2"
@@ -1983,6 +2291,13 @@ exports[`EuiDataGrid rendering renders with common and div attributes 1`] = `
               >
                 1, B
               </div>
+              <span
+                aria-hidden="true"
+                class="euiScreenReaderOnly"
+                data-tabular-copy-marker="newline"
+              >
+                ↵
+              </span>
             </div>
             <div
               aria-rowindex="3"
@@ -2002,6 +2317,13 @@ exports[`EuiDataGrid rendering renders with common and div attributes 1`] = `
               >
                 2, A
               </div>
+              <span
+                aria-hidden="true"
+                class="euiScreenReaderOnly"
+                data-tabular-copy-marker="tab"
+              >
+                ↦
+              </span>
             </div>
             <div
               aria-rowindex="3"
@@ -2021,9 +2343,23 @@ exports[`EuiDataGrid rendering renders with common and div attributes 1`] = `
               >
                 2, B
               </div>
+              <span
+                aria-hidden="true"
+                class="euiScreenReaderOnly"
+                data-tabular-copy-marker="newline"
+              >
+                ↵
+              </span>
             </div>
           </div>
         </div>
+        <span
+          aria-hidden="true"
+          class="euiScreenReaderOnly"
+          data-tabular-copy-marker="boundary"
+        >
+          𐘂𐘂
+        </span>
       </div>
       <p
         hidden=""

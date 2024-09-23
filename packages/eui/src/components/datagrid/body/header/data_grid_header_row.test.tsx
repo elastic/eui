@@ -18,6 +18,7 @@ describe('EuiDataGridHeaderRow', () => {
     schema: {},
     schemaDetectors: [],
     setColumnWidth: jest.fn(),
+    visibleColCount: 0,
     setVisibleColumns: jest.fn(),
     switchColumnPos: jest.fn(),
     gridStyles: { header: 'shade' as const },
@@ -43,6 +44,7 @@ describe('EuiDataGridHeaderRow', () => {
         schema={{ someColumn: { columnType: 'string' } }}
         columnWidths={{ someColumn: 30 }}
         defaultColumnWidth={20}
+        visibleColCount={1}
       />
     );
     expect(container.firstChild).toMatchInlineSnapshot(`
@@ -92,6 +94,13 @@ describe('EuiDataGridHeaderRow', () => {
               />
             </button>
           </div>
+          <span
+            aria-hidden="true"
+            class="euiScreenReaderOnly"
+            data-tabular-copy-marker="newline"
+          >
+            ↵
+          </span>
         </div>
       </div>
     `);

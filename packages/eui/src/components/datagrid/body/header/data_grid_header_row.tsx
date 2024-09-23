@@ -29,6 +29,7 @@ const EuiDataGridHeaderRow = memo(
       columnWidths,
       defaultColumnWidth,
       setColumnWidth,
+      visibleColCount,
       setVisibleColumns,
       switchColumnPos,
       sorting,
@@ -57,6 +58,7 @@ const EuiDataGridHeaderRow = memo(
           <EuiDataGridControlHeaderCell
             key={controlColumn.id}
             index={index}
+            visibleColCount={visibleColCount}
             controlColumn={controlColumn}
           />
         ))}
@@ -69,6 +71,7 @@ const EuiDataGridHeaderRow = memo(
             columnWidths={columnWidths}
             defaultColumnWidth={defaultColumnWidth}
             setColumnWidth={setColumnWidth}
+            visibleColCount={visibleColCount}
             setVisibleColumns={setVisibleColumns}
             switchColumnPos={switchColumnPos}
             sorting={sorting}
@@ -80,6 +83,7 @@ const EuiDataGridHeaderRow = memo(
           <EuiDataGridControlHeaderCell
             key={controlColumn.id}
             index={index + leadingControlColumns.length + columns.length}
+            visibleColCount={visibleColCount}
             controlColumn={controlColumn}
           />
         ))}

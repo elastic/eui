@@ -48,6 +48,7 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
       columnWidths,
       defaultColumnWidth,
       setColumnWidth,
+      visibleColCount,
       setVisibleColumns,
       switchColumnPos,
       sorting,
@@ -158,6 +159,7 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
           className={classes}
           id={id}
           index={index}
+          visibleColCount={visibleColCount}
           width={width}
           aria-sort={ariaSort}
           hasActionsPopover={showColumnActions}
