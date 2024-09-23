@@ -7,8 +7,9 @@
     "build:clean": "rimraf lib",
     "build": "yarn build:clean && yarn build:compile && yarn build:compile:cjs && yarn build:types",
     "build:compile": "tsc --project tsconfig.json",
-    "build:compile:cjs": "NODE_ENV=production babel src --out-dir=lib/cjs --verbose --extensions .js,.ts,.tsx --source-maps",
+    "build:compile:cjs": "NODE_ENV=production babel src --out-dir=lib/cjs --extensions .js,.ts,.tsx --source-maps",
     "build:types": "NODE_ENV=production tsc --project tsconfig.types.json",
+    "build-pack": "yarn build && npm pack",
     "lint": "yarn tsc --noEmit && yarn lint-es",
     "lint-es": "eslint --cache src/**/*.ts --max-warnings 0",
     "test": "jest"
@@ -40,14 +41,14 @@
     "rimraf": "^6.0.1",
     "typescript": "^5.6.2"
   },
-  "main": "src/index.ts",
+  "main": "lib/cjs/index.js",
   "exports": {
     "./lib/*": "./lib/*",
     "./scripts/*": "./scripts/*",
     ".": {
       "require": "./lib/cjs/index.js",
       "import": "./lib/esm/index.js",
-      "default": "./lib/esm/index.js"
+      "default": "./lib/cjs/index.js"
     }
   },
   "files": [
