@@ -4,9 +4,10 @@ export function registerTheme(theme, cssFiles) {
   themes[theme] = cssFiles;
 }
 
-export function applyTheme(newTheme) {
+export function applyTheme(newTheme, colorMode = 'LIGHT') {
   Object.keys(themes).forEach((theme) =>
-    themes[theme].forEach((cssFile) => cssFile.unuse())
+    Object.values(themes[theme]).forEach((cssFile) => cssFile.unuse())
   );
-  themes[newTheme]?.forEach((cssFile) => cssFile.use());
+  console.log(newTheme, themes[newTheme]?.[colorMode]);
+  themes[newTheme]?.[colorMode]?.use();
 }

@@ -33,7 +33,7 @@ const utilityCache = createCache({
 });
 
 export const AppContext = ({ children }) => {
-  const { theme } = useContext(ThemeContext);
+  const { theme, colorMode, highContrastMode } = useContext(ThemeContext);
   const locale = useSelector((state) => getLocale(state));
 
   const mappingFuncs = {
@@ -56,9 +56,8 @@ export const AppContext = ({ children }) => {
         utility: utilityCache,
       }}
       theme={EUI_THEMES.find((t) => t.value === theme)?.provider}
-      colorMode={
-        theme ? (theme.includes('light') ? 'light' : 'dark') : undefined
-      }
+      colorMode={colorMode}
+      highContrastMode={highContrastMode}
     >
       <Helmet>
         <link
