@@ -14,10 +14,13 @@ export const COLOR_MODE_MEDIA_QUERY = '(prefers-color-scheme: dark)';
 export const EuiSystemColorModeProvider: FunctionComponent<{
   children: (systemColorMode: EuiThemeColorModeStandard) => ReactElement;
 }> = ({ children }) => {
-  // Use optional chaining here for SSR or test environments
+  // Check typeof and use optional chaining for SSR or test environments
   const [systemColorMode, setSystemColorMode] =
     useState<EuiThemeColorModeStandard>(() =>
-      window?.matchMedia?.(COLOR_MODE_MEDIA_QUERY).matches ? 'DARK' : 'LIGHT'
+      typeof window !== 'undefined' &&
+      window.matchMedia?.(COLOR_MODE_MEDIA_QUERY)?.matches
+        ? 'DARK'
+        : 'LIGHT'
     );
 
   // Listen for system changes
