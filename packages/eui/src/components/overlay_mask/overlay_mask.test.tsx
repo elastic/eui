@@ -45,7 +45,7 @@ describe('EuiOverlayMask', () => {
       baseElement.querySelector('.euiOverlayMask')!.className;
 
     expect(getClassName()).toMatchInlineSnapshot(
-      `"euiOverlayMask css-1hzbeld-euiOverlayMask-aboveHeader hello"`
+      `"euiOverlayMask css-5vqto6 hello"`
     );
 
     rerender(
@@ -54,7 +54,7 @@ describe('EuiOverlayMask', () => {
       </EuiOverlayMask>
     );
     expect(getClassName()).toMatchInlineSnapshot(
-      `"euiOverlayMask css-1j0pa91-euiOverlayMask-belowHeader world"`
+      `"euiOverlayMask css-xdflgg world"`
     );
   });
 
