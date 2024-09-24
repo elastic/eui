@@ -25,10 +25,21 @@ export const euiFlyoutResizableButtonStyles = ({ euiTheme }: UseEuiTheme) => ({
   },
   push: {
     left: css`
-      ${logicalCSS('right', `-${euiTheme.border.width.thin}`)}
+      ${logicalCSS('right', `-${euiTheme.border.width.thick}`)}
     `,
     right: css`
-      ${logicalCSS('left', `-${euiTheme.border.width.thin}`)}
+      ${logicalCSS('left', `-${euiTheme.border.width.thick}`)}
+    `,
+  },
+  noOverlay: {
+    noOverlay: css`
+      margin-inline: 0;
+    `,
+    left: css`
+      justify-content: flex-end;
+    `,
+    right: css`
+      justify-content: flex-start;
     `,
   },
 });

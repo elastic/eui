@@ -10,7 +10,12 @@
 /// <reference types="cypress-real-events" />
 /// <reference types="../../../cypress/support" />
 
-import React, { useState, useEffect, FunctionComponent } from 'react';
+import React, {
+  useState,
+  useEffect,
+  FunctionComponent,
+  PropsWithChildren,
+} from 'react';
 
 import { EuiPortal, EuiPortalProps } from './portal';
 
@@ -130,7 +135,7 @@ describe('EuiPortal', () => {
       const sibling = document.createElement('div');
       sibling.id = 'sibling';
 
-      const Wrapper: FunctionComponent = ({ children }) => {
+      const Wrapper: FunctionComponent<PropsWithChildren> = ({ children }) => {
         const [mounted, setMounted] = useState(false);
 
         useEffect(() => {

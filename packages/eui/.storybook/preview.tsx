@@ -28,17 +28,6 @@ Object.entries(typeToPathMap).forEach(async ([iconType, iconFileName]) => {
 });
 appendIconComponentCache(iconCache);
 
-/*
- * Theming
- */
-import { EuiProvider } from '../src/components/provider';
-import { writingModeStyles } from './writing_mode.styles';
-
-// Import light theme for components still using Sass styling
-// TODO: Remove this import and the `yarn compile-scss &&` command
-// once all EUI components are converted to Emotion
-import '../dist/eui_theme_light.css';
-
 /**
  * Ensure that any provider errors throw & warn us early
  */
@@ -46,65 +35,25 @@ import { setEuiDevProviderWarning } from '../src/services';
 setEuiDevProviderWarning('error');
 
 /**
- * Prop controls
+ * Custom global decorators
  */
-
-import type { CommonProps } from '../src/components/common';
-
 import { customJsxDecorator } from './addons/code-snippet/decorators/jsx_decorator';
-import { hideStorybookControls } from './utils';
+import { EuiProviderDecorator, euiProviderDecoratorGlobals } from './decorator';
 
 const preview: Preview = {
   decorators: [
     customJsxDecorator,
     (Story, context) => (
-      <EuiProvider
+      <EuiProviderDecorator
         colorMode={context.globals.colorMode}
         {...(context.componentId === 'theming-euiprovider' && context.args)}
+        writingMode={context.globals.writingMode}
       >
-        <div
-          /* #story-wrapper should always be the element that wraps <Story /> */
-          id="story-wrapper"
-          css={[
-            writingModeStyles.writingMode,
-            // @ts-ignore - we're manually ensuring `writingMode` globals match our Emotion style keys
-            writingModeStyles[context.globals.writingMode],
-          ]}
-        >
-          <Story />
-        </div>
-      </EuiProvider>
+        <Story />
+      </EuiProviderDecorator>
     ),
   ],
-  globalTypes: {
-    colorMode: {
-      description: 'Color mode for EuiProvider theme',
-      defaultValue: 'light',
-      toolbar: {
-        title: 'Color mode',
-        items: [
-          { value: 'light', title: 'Light mode', icon: 'circlehollow' },
-          { value: 'dark', title: 'Dark mode', icon: 'circle' },
-        ],
-        dynamicTitle: true,
-      },
-    },
-    writingMode: {
-      description: 'Writing mode for testing logical property directions',
-      defaultValue: 'ltr',
-      toolbar: {
-        title: 'Writing mode',
-        items: [
-          { value: 'ltr', title: 'LTR', icon: 'arrowleft' },
-          { value: 'rtl', title: 'RTL', icon: 'arrowright' },
-          { value: 'vertical-lr', title: 'Vertical LTR', icon: 'arrowup' },
-          { value: 'vertical-rl', title: 'Vertical RTL', icon: 'arrowdown' },
-          { value: 'sideways', title: 'Sideways LTR', icon: 'collapse' },
-        ],
-        dynamicTitle: true,
-      },
-    },
-  },
+  globalTypes: { ...euiProviderDecoratorGlobals },
   parameters: {
     backgrounds: { disable: true }, // Use colorMode instead
     options: {
@@ -141,10 +90,13 @@ const preview: Preview = {
     },
   },
 };
+
 // Due to CommonProps, these props appear on almost every Story, but generally
 // aren't super useful to test - let's disable them by default and (if needed)
 // individual stories can re-enable them, e.g. by passing
 // `argTypes: { 'data-test-subj': { table: { disable: false } } }`
+import type { CommonProps } from '../src/components/common';
+import { hideStorybookControls } from './utils';
 hideStorybookControls<CommonProps>(preview, [
   'css',
   'className',

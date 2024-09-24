@@ -3,10 +3,3 @@
 
 // Global styling
 @import './global_styling/index';
-
-// Components
-@import '../../components/index';
-
-// Component overrides
-// Comes after the component import and overrides via cascade
-@import './overrides/index';

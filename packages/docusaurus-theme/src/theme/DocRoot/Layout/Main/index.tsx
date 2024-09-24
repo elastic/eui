@@ -1,7 +1,7 @@
 import React from 'react';
 import clsx from 'clsx';
 import { css } from '@emotion/react';
-import { useDocsSidebar } from '@docusaurus/theme-common/internal';
+import { useDocsSidebar } from '@docusaurus/plugin-content-docs/client';
 import type { Props } from '@theme-original/DocRoot/Layout/Main';
 
 // converted from css modules to Emotion

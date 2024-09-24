@@ -34,7 +34,7 @@ describe('Cell focus utils', () => {
 
   describe('does not render a focus trap', () => {
     it('when body cells are expandable', () => {
-      cy.mount(
+      cy.realMount(
         <EuiDataGrid
           {...baseProps}
           columns={[{ id: 'column', isExpandable: true, actions: {} }]}
@@ -46,9 +46,9 @@ describe('Cell focus utils', () => {
       const cellPopover = '[data-test-subj="euiDataGridExpansionPopover"]';
 
       // Should toggle the cell expansion popover instead
-      cy.get(cell).click();
+      cy.get(cell).realHover();
       cy.get(cellAction).should('be.visible');
-      cy.get(cellAction).realClick();
+      cy.get(cellAction).click();
       cy.get(cellPopover).should('be.visible');
 
       // Keyboard behavior
@@ -59,7 +59,7 @@ describe('Cell focus utils', () => {
     });
 
     it('when header cells have actions but no other interactive content', () => {
-      cy.mount(
+      cy.realMount(
         <EuiDataGrid
           {...baseProps}
           columns={[{ id: 'column', isExpandable: true, actions: {} }]}
@@ -89,7 +89,7 @@ describe('Cell focus utils', () => {
 
   describe('renders a focus trap', () => {
     it('when header cells have actions and interactive content', () => {
-      cy.mount(
+      cy.realMount(
         <EuiDataGrid
           {...baseProps}
           columns={[
@@ -97,10 +97,6 @@ describe('Cell focus utils', () => {
           ]}
         />
       );
-
-      // For some reason the header click doesn't register in Cypress until the body is clicked
-      cy.get('[data-test-subj="dataGridRowCell"]').realClick();
-      cy.wait(50);
 
       // Enter the trap
       cy.get('[data-test-subj="dataGridHeaderCell-column"]').realClick();
@@ -127,7 +123,7 @@ describe('Cell focus utils', () => {
     });
 
     it('when header cells do not have actions but interactive content', () => {
-      cy.mount(
+      cy.realMount(
         <EuiDataGrid
           {...baseProps}
           columns={[
@@ -135,9 +131,6 @@ describe('Cell focus utils', () => {
           ]}
         />
       );
-      // For some reason the header click doesn't register in Cypress until the body is clicked
-      cy.get('[data-test-subj="dataGridRowCell"]').realClick();
-      cy.wait(50);
 
       // Enter the trap
       cy.get('[data-test-subj="dataGridHeaderCell-column"]').realClick();
@@ -160,7 +153,7 @@ describe('Cell focus utils', () => {
     });
 
     it('when body cells are not expandable', () => {
-      cy.mount(
+      cy.realMount(
         <EuiDataGrid
           {...baseProps}
           columns={[{ id: 'column', isExpandable: false }]}

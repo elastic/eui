@@ -140,6 +140,7 @@ export const EuiDataGridBodyVirtualized: FunctionComponent<EuiDataGridBodyProps>
       gridRef,
       gridItemsRendered,
       wrapperRef,
+      className,
     }) => {
       /**
        * Grid refs & observers
@@ -193,11 +194,13 @@ export const EuiDataGridBodyVirtualized: FunctionComponent<EuiDataGridBodyProps>
         columnWidths,
         defaultColumnWidth,
         setColumnWidth,
+        visibleColCount,
         setVisibleColumns,
         switchColumnPos,
         sorting,
         schema,
         schemaDetectors,
+        gridStyles,
       });
 
       const { footerRow, footerRowHeight } = useDataGridFooter({
@@ -205,6 +208,7 @@ export const EuiDataGridBodyVirtualized: FunctionComponent<EuiDataGridBodyProps>
         renderCellPopover,
         rowIndex: visibleRowCount,
         visibleRowIndex: visibleRowCount,
+        visibleColCount,
         interactiveCellId,
         leadingControlColumns,
         trailingControlColumns,
@@ -212,6 +216,7 @@ export const EuiDataGridBodyVirtualized: FunctionComponent<EuiDataGridBodyProps>
         columnWidths,
         defaultColumnWidth,
         schema,
+        gridStyles,
       });
 
       /**
@@ -334,6 +339,7 @@ export const EuiDataGridBodyVirtualized: FunctionComponent<EuiDataGridBodyProps>
           rowManager,
           pagination,
           headerRowHeight,
+          gridStyles,
         };
       }, [
         schemaDetectors,
@@ -354,6 +360,7 @@ export const EuiDataGridBodyVirtualized: FunctionComponent<EuiDataGridBodyProps>
         rowManager,
         pagination,
         headerRowHeight,
+        gridStyles,
       ]);
 
       const rowWrapperContextValue = useMemo(() => {
@@ -367,6 +374,7 @@ export const EuiDataGridBodyVirtualized: FunctionComponent<EuiDataGridBodyProps>
             ref={gridRef}
             className={classNames(
               'euiDataGrid__virtualized',
+              className,
               virtualizationOptions?.className
             )}
             onItemsRendered={onItemsRendered}

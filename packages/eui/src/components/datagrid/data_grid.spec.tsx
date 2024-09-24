@@ -111,8 +111,7 @@ describe('EuiDataGrid', () => {
 
       const virtualizedContainer = cy
         .get('[data-test-subj=euiDataGridBody]')
-        .children()
-        .first();
+        .find('.euiDataGrid__virtualized');
 
       // make sure the horizontal scrollbar is present
       virtualizedContainer.then(([outerContainer]) => {
@@ -717,6 +716,23 @@ describe('EuiDataGrid', () => {
           expect(el.find('.euiCodeBlock').length).equals(1);
           expect(el.find('.euiPopoverFooter').length).equals(1);
         });
+      });
+    });
+  });
+
+  describe('copying tabular content', () => {
+    it('renders one newline per-row and renders horizontal tab characters between cells', () => {
+      cy.realMount(<EuiDataGrid {...baseProps} />);
+
+      cy.selectAndCopy('.euiDataGrid__content').then((copiedText) => {
+        expect(copiedText).to.eq(
+          `First\tSecond
+a, 0\tb, 0
+a, 1\tb, 1
+a, 2\tb, 2
+a, footer\tb, footer
+`
+        );
       });
     });
   });

@@ -62,5 +62,15 @@ describe('EuiTextColor', () => {
         </EuiTextColor>
       );
     });
+
+    test('component', () => {
+      const { container } = render(
+        <EuiTextColor {...requiredProps} component="span">
+          Content
+        </EuiTextColor>
+      );
+
+      expect(container.firstChild?.nodeName).toBe('SPAN');
+    });
   });
 });

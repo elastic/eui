@@ -50,6 +50,7 @@ export const EuiDataGridBodyCustomRender: FunctionComponent<
   rowHeightsOptions,
   gridWidth,
   gridStyles,
+  className,
 }) => {
   /**
    * Columns & widths
@@ -98,11 +99,13 @@ export const EuiDataGridBodyCustomRender: FunctionComponent<
     columnWidths,
     defaultColumnWidth,
     setColumnWidth,
+    visibleColCount,
     setVisibleColumns,
     switchColumnPos,
     sorting,
     schema,
     schemaDetectors,
+    gridStyles,
   });
 
   const { footerRow } = useDataGridFooter({
@@ -110,6 +113,7 @@ export const EuiDataGridBodyCustomRender: FunctionComponent<
     renderCellPopover,
     rowIndex: visibleRows.visibleRowCount,
     visibleRowIndex: visibleRows.visibleRowCount,
+    visibleColCount,
     interactiveCellId,
     leadingControlColumns,
     trailingControlColumns,
@@ -117,6 +121,7 @@ export const EuiDataGridBodyCustomRender: FunctionComponent<
     columnWidths,
     defaultColumnWidth,
     schema,
+    gridStyles,
   });
 
   /**
@@ -140,6 +145,7 @@ export const EuiDataGridBodyCustomRender: FunctionComponent<
       setRowHeight,
       rowHeightsOptions,
       rowHeightUtils,
+      gridStyles,
     };
   }, [
     schema,
@@ -158,6 +164,7 @@ export const EuiDataGridBodyCustomRender: FunctionComponent<
     setRowHeight,
     rowHeightsOptions,
     rowHeightUtils,
+    gridStyles,
   ]);
 
   const Cell = useCallback<EuiDataGridCustomBodyProps['Cell']>(
@@ -187,6 +194,7 @@ export const EuiDataGridBodyCustomRender: FunctionComponent<
       {...customGridBodyProps}
       className={classNames(
         'euiDataGrid__customRenderBody',
+        className,
         customGridBodyProps?.className
       )}
     >

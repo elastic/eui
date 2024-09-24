@@ -6,8 +6,7 @@ import {
   EuiCheckbox,
   EuiButtonIcon,
   EuiSwitch,
-  EuiFlexGroup,
-  EuiFlexItem,
+  EuiSpacer,
 } from '../../../../../src';
 
 const raw_data = [];
@@ -151,44 +150,41 @@ export default () => {
   );
 
   // Footer row
-  const [showFooterRow, setShowFooterRow] = useState(true);
+  const [stickyFooter, setStickyFooter] = useState(true);
 
   return (
-    <EuiFlexGroup direction="column">
-      <EuiFlexItem>
-        <EuiSwitch
-          label="Show footer row"
-          checked={showFooterRow}
-          onChange={(e) => setShowFooterRow(e.target.checked)}
-        />
-      </EuiFlexItem>
-      <EuiFlexItem>
-        <EuiDataGrid
-          aria-label="Data grid footer row demo"
-          columns={columns}
-          columnVisibility={{ visibleColumns, setVisibleColumns }}
-          leadingControlColumns={leadingControlColumns}
-          trailingControlColumns={trailingControlColumns}
-          rowCount={raw_data.length}
-          renderCellValue={RenderCellValue}
-          renderFooterCellValue={
-            showFooterRow ? RenderFooterCellValue : undefined
-          }
-          pagination={{
-            ...pagination,
-            onChangeItemsPerPage: onChangeItemsPerPage,
-            onChangePage: onChangePage,
-          }}
-          onColumnResize={(eventData) => {
-            console.log(eventData);
-          }}
-          gridStyle={{
-            border: 'horizontal',
-            rowHover: 'highlight',
-            header: 'underline',
-          }}
-        />
-      </EuiFlexItem>
-    </EuiFlexGroup>
+    <>
+      <EuiSwitch
+        label="Sticky footer"
+        checked={stickyFooter}
+        onChange={(e) => setStickyFooter(e.target.checked)}
+      />
+      <EuiSpacer />
+      <EuiDataGrid
+        height={400}
+        aria-label="Data grid footer row demo"
+        columns={columns}
+        columnVisibility={{ visibleColumns, setVisibleColumns }}
+        leadingControlColumns={leadingControlColumns}
+        trailingControlColumns={trailingControlColumns}
+        rowCount={raw_data.length}
+        renderCellValue={RenderCellValue}
+        renderFooterCellValue={RenderFooterCellValue}
+        pagination={{
+          ...pagination,
+          onChangeItemsPerPage: onChangeItemsPerPage,
+          onChangePage: onChangePage,
+        }}
+        onColumnResize={(eventData) => {
+          console.log(eventData);
+        }}
+        gridStyle={{
+          stickyFooter,
+          border: 'none',
+          rowHover: 'highlight',
+          header: 'underline',
+        }}
+      />
+    </>
   );
 };

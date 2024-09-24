@@ -10,9 +10,9 @@ import React from 'react';
 import { EuiHorizontalRule } from '@elastic/eui';
 import { css } from '@emotion/react';
 import { useWindowSize } from '@docusaurus/theme-common';
-import { useDoc } from '@docusaurus/theme-common/internal';
+import { useDoc } from '@docusaurus/plugin-content-docs/client';
 import DocItemPaginator from '@theme-original/DocItem/Paginator';
-import Unlisted from '@theme-original/Unlisted';
+import ContentVisibility from '@theme-original/ContentVisibility';
 import DocVersionBanner from '@theme-original/DocVersionBanner';
 import DocVersionBadge from '@theme-original/DocVersionBadge';
 import * as Props from '@theme-original/DocItem/Layout';
@@ -67,13 +67,12 @@ function useDocTOC() {
 
 export default function DocItemLayout({ children }: typeof Props): JSX.Element {
   const docTOC = useDocTOC();
-  const {
-    metadata: { unlisted },
-  } = useDoc();
+  const { metadata } = useDoc();
+
   return (
     <div className="row" css={styles.docItemRow}>
       <div className="col" css={styles.docItemCol}>
-        {unlisted && <Unlisted />}
+        <ContentVisibility metadata={metadata} />
         <DocVersionBanner />
         <div css={styles.docItemContainer}>
           <article>

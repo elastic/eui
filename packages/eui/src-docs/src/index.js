@@ -97,15 +97,10 @@ root.render(
                                 isDeprecated,
                               }}
                             >
-                              {({ theme }) => (
-                                <>
-                                  {meta}
-                                  {createElement(component, {
-                                    selectedTheme: theme,
-                                    title: name,
-                                  })}
-                                </>
-                              )}
+                              {meta}
+                              {createElement(component, {
+                                title: name,
+                              })}
                             </AppView>
                           );
                         }

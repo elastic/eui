@@ -1,5 +1,4 @@
-import React, { useState, useContext } from 'react';
-import { ThemeContext } from '../../components/with_theme';
+import React, { useState } from 'react';
 
 import {
   EuiText,
@@ -84,7 +83,6 @@ const text = [
 ];
 
 export default () => {
-  const themeContext = useContext(ThemeContext);
   const textSizeArray = ['xs', 's', 'm'];
   const textSizeNamesArray = ['Extra small', 'Small', 'Medium'];
 
@@ -132,10 +130,7 @@ export default () => {
             options={firstOptions}
           />
           <EuiHorizontalRule />
-          <EuiText
-            className={`guideDemo__textLines guideDemo__textLines--${themeContext.theme}`}
-            size={firstSize}
-          >
+          <EuiText className="guideDemo__textLines" size={firstSize}>
             {text}
           </EuiText>
         </EuiFlexItem>
@@ -154,10 +149,7 @@ export default () => {
             options={secondOptions}
           />
           <EuiHorizontalRule />
-          <EuiText
-            className={`guideDemo__textLines guideDemo__textLines--${themeContext.theme}`}
-            size={secondSize}
-          >
+          <EuiText className="guideDemo__textLines" size={secondSize}>
             {text}
           </EuiText>
         </EuiFlexItem>

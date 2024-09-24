@@ -15,12 +15,15 @@ import React, {
 } from 'react';
 import classNames from 'classnames';
 
-import { keys } from '../../../../services';
+import { keys, useEuiMemoizedStyles } from '../../../../services';
 import { EuiWrappingPopover, EuiPopoverProps } from '../../../popover';
+
 import {
   DataGridCellPopoverContextShape,
   EuiDataGridCellPopoverElementProps,
 } from '../../data_grid_types';
+import { euiDataGridVariables } from '../../data_grid.styles';
+import { euiDataGridCellPopoverStyles } from './data_grid_cell_popover.styles';
 
 export const DataGridCellPopoverContext =
   createContext<DataGridCellPopoverContextShape>({
@@ -47,7 +50,7 @@ export const useCellPopover = (): {
   // Popover anchor & content are passed by individual `EuiDataGridCell`s
   const [popoverAnchor, setPopoverAnchor] = useState<HTMLElement | null>(null);
   const [popoverAnchorPosition, setPopoverAnchorPosition] = useState<
-    'downLeft' | 'downRight'
+    'downLeft' | 'upLeft'
   >('downLeft');
   const [popoverContent, setPopoverContent] = useState<ReactNode>();
   // Allow customization of most (not all) popover props by consumers
@@ -83,8 +86,9 @@ export const useCellPopover = (): {
   // clicking the expansion cell action triggers an outside click
   const onClickOutside = useCallback(
     (event: Event) => {
-      const cellActions =
-        popoverAnchor?.parentElement?.parentElement?.previousElementSibling;
+      const cellActions = popoverAnchor?.closest(
+        '.euiDataGridRowCell__actionsWrapper'
+      );
       if (!cellActions?.contains(event.target as Node)) {
         closeCellPopover();
       }
@@ -98,13 +102,13 @@ export const useCellPopover = (): {
         event.preventDefault();
         event.stopPropagation();
         closeCellPopover();
-        const cell = popoverAnchor?.parentElement?.parentElement?.parentElement;
+        const cell = popoverAnchor?.closest<HTMLElement>('.euiDataGridRowCell');
 
         // Prevent cell animation flash while focus is being shifted between popover and cell
         cell?.setAttribute('data-keyboard-closing', 'true');
         // Ensure focus is returned to the parent cell, and remove animation stopgap
         requestAnimationFrame(() => {
-          popoverAnchor?.parentElement!.focus();
+          cell?.focus();
           cell?.removeAttribute('data-keyboard-closing');
         });
       }
@@ -125,8 +129,13 @@ export const useCellPopover = (): {
     };
   }, [popoverIsOpen, closeCellPopover, openCellPopover, cellLocation]);
 
+  const styles = useEuiMemoizedStyles(euiDataGridCellPopoverStyles);
+  const { levels } = useEuiMemoizedStyles(euiDataGridVariables);
+
   const cellPopover = useMemo(() => {
     if (!popoverIsOpen || !popoverAnchor) return null;
+
+    const cell = popoverAnchor.closest<HTMLElement>('.euiDataGridRowCell');
 
     // Note that this popover is rendered once at the top grid level, rather than one popover per cell
     return (
@@ -134,14 +143,17 @@ export const useCellPopover = (): {
         isOpen={popoverIsOpen}
         display="block"
         hasArrow={false}
+        attachToAnchor={true} // required for https://github.com/elastic/eui/issues/6151
         panelPaddingSize="s"
         anchorPosition={popoverAnchorPosition}
         repositionToCrossAxis={false}
+        zIndex={levels.cellPopover}
         {...cellPopoverProps}
         focusTrapProps={{ onClickOutside, clickOutsideDisables: false }}
         panelProps={{
           'data-test-subj': 'euiDataGridExpansionPopover',
           ...(cellPopoverProps.panelProps || {}),
+          css: [styles.euiDataGridRowCell__popover, cellPopoverProps.css],
         }}
         panelClassName={classNames(
           'euiDataGridRowCell__popover',
@@ -149,9 +161,7 @@ export const useCellPopover = (): {
           cellPopoverProps.panelProps?.className
         )}
         panelStyle={{
-          maxInlineSize: `min(75vw, max(${
-            popoverAnchor.parentElement!.offsetWidth
-          }px, 400px))`,
+          maxInlineSize: `min(75vw, max(${cell?.offsetWidth ?? 0}px, 400px))`,
           maxBlockSize: '50vh',
         }}
         onKeyDown={onKeyDown}
@@ -162,6 +172,8 @@ export const useCellPopover = (): {
       </EuiWrappingPopover>
     );
   }, [
+    styles,
+    levels.cellPopover,
     popoverIsOpen,
     popoverAnchor,
     popoverContent,

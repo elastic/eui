@@ -1,11 +1,11 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import {
   EuiEmptyPrompt,
   EuiImage,
   EuiButton,
   EuiButtonEmpty,
-} from '../../../../../src/components';
-import { ThemeContext } from '../../../components/with_theme';
+  useEuiTheme,
+} from '../../../../../src';
 
 import pageNotFoundDark from '../../../images/empty-prompt/pageNotFound--dark.png';
 import pageNotFoundLight from '../../../images/empty-prompt/pageNotFound--light.png';
@@ -13,8 +13,7 @@ import pageNotFoundDark2x from '../../../images/empty-prompt/pageNotFound--dark@
 import pageNotFoundLight2x from '../../../images/empty-prompt/pageNotFound--light@2x.png';
 
 export default () => {
-  const themeContext = useContext(ThemeContext);
-  const isDarkTheme = themeContext.theme.includes('dark');
+  const isDarkTheme = useEuiTheme().colorMode === 'DARK';
 
   const pageNotFound = isDarkTheme ? pageNotFoundDark : pageNotFoundLight;
   const pageNotFound2x = isDarkTheme ? pageNotFoundDark2x : pageNotFoundLight2x;

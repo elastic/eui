@@ -9,12 +9,14 @@
 import React, { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import moment from 'moment';
-
+import { fireEvent, waitFor } from '@storybook/test';
+import { within } from '../../../.storybook/test';
+import { LOKI_SELECTORS } from '../../../.storybook/loki';
 import {
   disableStorybookControls,
   enableFunctionToggleControls,
 } from '../../../.storybook/utils';
-import { LOKI_SELECTORS } from '../../../.storybook/loki';
+
 import {
   EuiDatePicker,
   EuiDatePickerProps,
@@ -119,6 +121,16 @@ const meta: Meta<EuiDatePickerProps> = {
     selected: null,
     utcOffset: undefined,
   },
+  // Open the datepicker automatically for Loki VRT
+  play: async ({ canvasElement, step }) => {
+    const canvas = within(canvasElement);
+    await step('show popover on click', async () => {
+      await waitFor(async () => {
+        await fireEvent.click(canvas.getByRole('textbox'));
+      });
+      await canvas.waitForEuiPopoverVisible();
+    });
+  },
 };
 disableStorybookControls(meta, ['inputRef']);
 enableFunctionToggleControls(meta, ['onClear', 'onChange']);
@@ -135,9 +147,6 @@ export const Playground: Story = {
     },
   },
   args: {
-    // NOTE: loki play interactions won't work in CLI somehow
-    // TODO: exchange with loki play() interactions once fixed
-    autoFocus: true,
     // setting a selected date to ensure VRT does not
     // automatically updated based on the current date
     selected: moment('Tue Mar 19 2024 18:54:51 GMT+0100'),
@@ -162,7 +171,6 @@ export const TimeSelect: Story = {
     },
   },
   args: {
-    autoFocus: true, // Open the datepicker automatically for Loki VRT
     showTimeSelect: true,
     showTimeSelectOnly: false,
     selected: moment('01/01/1970').hours(23).minutes(0),
@@ -191,7 +199,6 @@ export const RestrictedDaySelect: Story = {
     },
   },
   args: {
-    autoFocus: true, // Open the datepicker automatically for Lok VRT,
     selected: moment('01/02/1970'),
     maxDate: moment('01/01/1970'),
     minDate: moment('12/31/1969'),

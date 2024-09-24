@@ -1,17 +1,16 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import {
   EuiEmptyPrompt,
   EuiImage,
   EuiButton,
   EuiButtonEmpty,
-} from '../../../../../src/components';
-import { ThemeContext } from '../../../components/with_theme';
+  useEuiTheme,
+} from '../../../../../src';
 import pageNotFoundLight from '../../../images/empty-prompt/accessDenied--light.png';
 import pageNotFoundDark from '../../../images/empty-prompt/accessDenied--dark.png';
 
 export default () => {
-  const themeContext = useContext(ThemeContext);
-  const isDarkTheme = themeContext.theme.includes('dark');
+  const isDarkTheme = useEuiTheme().colorMode === 'DARK';
 
   const iconImg: string = isDarkTheme ? pageNotFoundDark : pageNotFoundLight;
 

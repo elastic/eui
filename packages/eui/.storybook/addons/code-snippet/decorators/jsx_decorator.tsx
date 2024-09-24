@@ -126,11 +126,11 @@ export const customJsxDecorator = (
 
     for (const key of Object.keys(context.args)) {
       // checks story args for:
-      //   - remove if no value
-      //   - remove if `chidlren`
+      //   - remove if no value (but allow `false`)
+      //   - remove if `children`
       //   - remove if arg is a default prop
       if (
-        !context.args[key] ||
+        context.args[key] == null ||
         key === 'children' ||
         defaultProps?.includes(key)
       ) {

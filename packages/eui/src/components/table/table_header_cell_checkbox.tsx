@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent, ThHTMLAttributes } from 'react';
+import React, { FunctionComponent, ThHTMLAttributes, ReactNode } from 'react';
 import classNames from 'classnames';
 
 import { useEuiMemoizedStyles } from '../../services';
@@ -22,13 +22,14 @@ export type EuiTableHeaderCellCheckboxScope =
 export interface EuiTableHeaderCellCheckboxProps {
   width?: string | number;
   scope?: EuiTableHeaderCellCheckboxScope;
+  append?: ReactNode;
 }
 
 export const EuiTableHeaderCellCheckbox: FunctionComponent<
   CommonProps &
     ThHTMLAttributes<HTMLTableHeaderCellElement> &
     EuiTableHeaderCellCheckboxProps
-> = ({ children, className, scope = 'col', style, width, ...rest }) => {
+> = ({ children, className, scope = 'col', style, width, append, ...rest }) => {
   const classes = classNames('euiTableHeaderCellCheckbox', className);
   const styles = useEuiMemoizedStyles(euiTableCellCheckboxStyles);
   const inlineStyles = resolveWidthAsStyle(style, width);
@@ -42,6 +43,7 @@ export const EuiTableHeaderCellCheckbox: FunctionComponent<
       {...rest}
     >
       <div className="euiTableCellContent">{children}</div>
+      {append}
     </th>
   );
 };

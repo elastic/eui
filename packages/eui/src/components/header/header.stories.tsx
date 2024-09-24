@@ -90,7 +90,7 @@ export const DarkThemeWithSitewideSearch: Story = {
   parameters: {
     layout: 'fullscreen',
     controls: { include: ['theme'] },
-    loki: { chromeSelector: LOKI_SELECTORS.body }, // Required to capture the open popover
+    loki: { chromeSelector: LOKI_SELECTORS.portal }, // Required to capture the open popover
   },
   args: {
     theme: 'dark',
@@ -155,8 +155,8 @@ export const DarkThemeWithSitewideSearch: Story = {
 };
 
 const MultipleFixedHeadersExample = () => {
-  const [fixedHeadersCount, setFixedHeadersCount] = useState(3); // eslint-disable-line react-hooks/rules-of-hooks
-  const [isFlyoutOpen, setIsFlyoutOpen] = useState(false); // eslint-disable-line react-hooks/rules-of-hooks
+  const [fixedHeadersCount, setFixedHeadersCount] = useState(3);
+  const [isFlyoutOpen, setIsFlyoutOpen] = useState(false);
 
   const sections = [
     {

@@ -105,6 +105,12 @@ export interface EuiTableRowCellProps extends EuiTableRowCellSharedPropsShape {
    * See #EuiTableRowCellMobileOptionsShape
    */
   mobileOptions?: EuiTableRowCellMobileOptionsShape;
+  /**
+   * Content rendered outside the visible cell content wrapper. Useful for, e.g. screen reader text.
+   *
+   * Used by EuiBasicTable to render hidden copy markers
+   */
+  append?: ReactNode;
 }
 
 type Props = CommonProps &
@@ -125,6 +131,7 @@ export const EuiTableRowCell: FunctionComponent<Props> = ({
   width,
   valign = 'middle',
   mobileOptions,
+  append,
   ...rest
 }) => {
   const isResponsive = useEuiTableIsResponsive();
@@ -196,6 +203,7 @@ export const EuiTableRowCell: FunctionComponent<Props> = ({
           >
             {mobileOptions?.render || children}
           </EuiTableCellContent>
+          {append}
         </Element>
       );
     }
@@ -209,6 +217,7 @@ export const EuiTableRowCell: FunctionComponent<Props> = ({
           <EuiTableCellContent {...sharedContentProps}>
             {children}
           </EuiTableCellContent>
+          {append}
         </Element>
       );
     }

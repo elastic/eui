@@ -1,8 +1,8 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import { toggleLocale as _toggleLocale } from '../actions';
-import { GuidePageChrome, ThemeContext, GuidePageHeader } from '../components';
+import { GuidePageChrome, GuidePageHeader } from '../components';
 import { getLocale, getRoutes } from '../store';
 import {
   useScrollToHash,
@@ -21,7 +21,6 @@ export const AppView = ({ children, currentRoute = {} }) => {
   const toggleLocale = (locale) => dispatch(_toggleLocale(locale));
   const locale = useSelector((state) => getLocale(state));
   const routes = useSelector((state) => getRoutes(state));
-  const { theme } = useContext(ThemeContext);
 
   const portalledHeadingAnchorLinks = useHeadingAnchorLinks();
 
@@ -59,7 +58,7 @@ export const AppView = ({ children, currentRoute = {} }) => {
           />
         </EuiPageTemplate.Sidebar>
 
-        {children({ theme })}
+        {children}
       </EuiPageTemplate>
     </LinkWrapper>
   );

@@ -17,10 +17,15 @@ import React, {
 import classnames from 'classnames';
 import { FocusableElement } from 'tabbable';
 
-import { keys } from '../../../../services';
+import {
+  keys,
+  tabularCopyMarkers,
+  useEuiMemoizedStyles,
+} from '../../../../services';
 import { EuiDataGridHeaderCellWrapperProps } from '../../data_grid_types';
 import { DataGridFocusContext } from '../../utils/focus';
 import { HandleInteractiveChildren } from '../cell/focus_utils';
+import { euiDataGridHeaderCellWrapperStyles } from './data_grid_header_cell_wrapper.styles';
 
 /**
  * This is a wrapper that handles repeated concerns between control &
@@ -32,6 +37,7 @@ export const EuiDataGridHeaderCellWrapper: FunctionComponent<
 > = ({
   id,
   index,
+  visibleColCount,
   width,
   className,
   children,
@@ -41,6 +47,7 @@ export const EuiDataGridHeaderCellWrapper: FunctionComponent<
   ...rest
 }) => {
   const classes = classnames('euiDataGridHeaderCell', className);
+  const styles = useEuiMemoizedStyles(euiDataGridHeaderCellWrapperStyles);
 
   // Must be a state and not a ref to trigger a HandleInteractiveChildren rerender
   const [headerEl, setHeaderEl] = useState<HTMLDivElement | null>(null);
@@ -88,12 +95,15 @@ export const EuiDataGridHeaderCellWrapper: FunctionComponent<
     [hasActionsPopover, openActionsPopover, renderFocusTrap, headerEl]
   );
 
+  const isLastColumn = index === visibleColCount - 1;
+
   return (
     <div
       role="columnheader"
       ref={setHeaderEl}
       tabIndex={isFocused ? 0 : -1}
       onKeyDown={onKeyDown}
+      css={styles.euiDataGridHeaderCell}
       className={classes}
       data-test-subj={`dataGridHeaderCell-${id}`}
       data-gridcell-column-id={id}
@@ -112,6 +122,9 @@ export const EuiDataGridHeaderCellWrapper: FunctionComponent<
       >
         {typeof children === 'function' ? children(renderFocusTrap) : children}
       </HandleInteractiveChildren>
+      {isLastColumn
+        ? tabularCopyMarkers.hiddenNewline
+        : tabularCopyMarkers.hiddenTab}
     </div>
   );
 };

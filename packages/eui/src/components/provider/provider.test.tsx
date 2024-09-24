@@ -12,6 +12,11 @@ import { cache as emotionCache } from '@emotion/css';
 import createCache from '@emotion/cache';
 
 import { setEuiDevProviderWarning } from '../../services';
+import { EuiSystemColorModeProvider } from './system_color_mode';
+jest.mock('./system_color_mode', () => ({
+  EuiSystemColorModeProvider: jest.fn(({ children }: any) => children('LIGHT')),
+}));
+
 import { EuiProvider } from './provider';
 
 describe('EuiProvider', () => {
@@ -152,16 +157,40 @@ describe('EuiProvider', () => {
       expect(getByText('Modified')).toHaveStyleRule('color', '#aaa');
     });
 
-    it('passes `colorMode`', () => {
-      const { getByText } = render(
-        <EuiProvider modify={modify} colorMode="dark">
-          <div css={({ euiTheme }) => ({ color: euiTheme.colors.lightShade })}>
-            Dark mode
-          </div>
-        </EuiProvider>
-      );
+    describe('colorMode', () => {
+      beforeEach(() => {
+        (EuiSystemColorModeProvider as jest.Mock).mockImplementationOnce(
+          ({ children }) => children('DARK')
+        );
+      });
 
-      expect(getByText('Dark mode')).toHaveStyleRule('color', '#333');
+      it('inherits from system color mode by default', () => {
+        const { getByText } = render(
+          <EuiProvider modify={modify}>
+            <div
+              css={({ euiTheme }) => ({ color: euiTheme.colors.lightShade })}
+            >
+              Dark mode
+            </div>
+          </EuiProvider>
+        );
+
+        expect(getByText('Dark mode')).toHaveStyleRule('color', '#333');
+      });
+
+      it('overrides the system color mode with any passed `colorMode`', () => {
+        const { getByText } = render(
+          <EuiProvider modify={modify} colorMode="light">
+            <div
+              css={({ euiTheme }) => ({ color: euiTheme.colors.lightShade })}
+            >
+              Light mode
+            </div>
+          </EuiProvider>
+        );
+
+        expect(getByText('Light mode')).toHaveStyleRule('color', '#aaa');
+      });
     });
   });
 

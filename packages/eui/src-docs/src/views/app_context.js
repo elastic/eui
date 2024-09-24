@@ -56,7 +56,9 @@ export const AppContext = ({ children }) => {
         utility: utilityCache,
       }}
       theme={EUI_THEMES.find((t) => t.value === theme)?.provider}
-      colorMode={theme.includes('light') ? 'light' : 'dark'}
+      colorMode={
+        theme ? (theme.includes('light') ? 'light' : 'dark') : undefined
+      }
     >
       <Helmet>
         <link
