@@ -63,6 +63,22 @@ export const euiDataGridHeaderCellStyles = (euiThemeContext: UseEuiTheme) => {
 
       display: flex;
       ${logicalCSS('width', '100%')}
+      ${logicalCSS('height', '100%')}
+    `,
+    underline: css`
+      .euiDataGridHeaderCell {
+        background-color: ${euiTheme.colors.emptyShade};
+      }
+    `,
+    shade: css`
+      .euiDataGridHeaderCell {
+        background-color: ${euiTheme.colors.lightestShade};
+      }
+    `,
+    noLeadingBorder: css`
+      .euiDataGridHeaderCell & {
+        ${logicalCSS('border-left', 'none')}
+      }
     `,
   };
 };

@@ -159,6 +159,7 @@ export interface EuiDataGridHeaderCellProps
   > {
   column: EuiDataGridColumn;
   index: number;
+  gridStyles: EuiDataGridStyle;
 }
 
 export interface EuiDataGridControlHeaderCellProps {

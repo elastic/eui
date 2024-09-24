@@ -50,10 +50,7 @@ export const EuiDataGridHeaderCellWrapper: FunctionComponent<
 }) => {
   const classes = classnames('euiDataGridHeaderCell', className);
   const styles = useEuiMemoizedStyles(euiDataGridHeaderCellWrapperStyles);
-  const cssStyles = [
-    styles.euiDataGridHeaderCell,
-    isDragging && styles.isDragging,
-  ];
+  const cssStyles = [styles.euiDataGridHeaderCell];
 
   // Must be a state and not a ref to trigger a HandleInteractiveChildren rerender
   const [headerEl, setHeaderEl] = useState<HTMLDivElement | null>(null);

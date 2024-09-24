@@ -48,6 +48,7 @@ describe('EuiDataGridHeaderCell', () => {
     setVisibleColumns: jest.fn(),
     switchColumnPos: jest.fn(),
     wrapperRef: { current: null },
+    gridStyles: { header: 'shade' as const },
   };
 
   it('renders', () => {

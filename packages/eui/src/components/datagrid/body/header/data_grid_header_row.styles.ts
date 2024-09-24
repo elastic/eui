@@ -29,13 +29,14 @@ export const euiDataGridHeaderStyles = (euiThemeContext: UseEuiTheme) => {
       display: flex;
       ${logicalCSS('width', '100%')}
 
-      &:not(:first-child)
-        .euiDataGridHeaderCellDraggable:first-of-type
-        .euiDataGridHeaderCell {
+      *:not(:first-child)
+      .euiDataGridHeaderCellDraggable
+      .euiDataGridHeaderCell {
         ${logicalCSS('border-left', 'none')}
       }
 
-      .euiDataGridHeaderCellDraggable:not(:first-of-type)
+      &:not(:first-child)
+        .euiDataGridHeaderCellDraggable
         .euiDataGridHeaderCell {
         ${logicalCSS('border-left', 'none')}
       }
@@ -46,6 +47,11 @@ export const euiDataGridHeaderStyles = (euiThemeContext: UseEuiTheme) => {
         'border-bottom',
         `${euiTheme.border.width.thick} solid ${euiTheme.colors.text}`
       )}
+
+      /* ensure correct background on drag */
+      .euiDataGridHeaderCellDraggable .euiDataGridHeaderCell {
+        background-color: ${euiTheme.colors.emptyShade};
+      }
     `,
     shade: css`
       background-color: ${euiTheme.colors.lightestShade};

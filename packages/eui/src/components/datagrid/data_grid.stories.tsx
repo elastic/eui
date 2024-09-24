@@ -154,9 +154,7 @@ export const DraggableColumns: Story = {
       ).toBeInTheDocument();
     });
 
-    await fireEvent.mouseDown(
-      canvas.getByTestSubject('dataGridHeaderCell-name')
-    );
+    await fireEvent.focus(canvas.getByTestSubject('dataGridHeaderCell-name'));
   },
 };
 

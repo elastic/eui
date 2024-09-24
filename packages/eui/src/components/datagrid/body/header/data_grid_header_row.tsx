@@ -105,6 +105,7 @@ const EuiDataGridHeaderRow = memo(
             schemaDetectors={schemaDetectors}
             canDragAndDropColumns={canDragAndDropColumns}
             wrapperRef={wrapperRef}
+            gridStyles={gridStyles}
           />
         )),
       [
@@ -115,11 +116,13 @@ const EuiDataGridHeaderRow = memo(
         leadingControlColumns,
         schema,
         schemaDetectors,
+        visibleColCount,
         setColumnWidth,
         setVisibleColumns,
         sorting,
         switchColumnPos,
         wrapperRef,
+        gridStyles,
       ]
     );
 

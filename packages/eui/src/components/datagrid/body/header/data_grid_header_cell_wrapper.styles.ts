@@ -61,8 +61,5 @@ export const euiDataGridHeaderCellWrapperStyles = (
         ${logicalCSS('width', '100%')}
       }
     `,
-    isDragging: css`
-      background-color: ${euiTheme.colors.lightestShade};
-    `,
   };
 };
