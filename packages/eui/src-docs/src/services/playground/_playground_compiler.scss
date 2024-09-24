@@ -12,7 +12,7 @@
 }
 
 .playground__tableWrapper {
-  background-color: map-get($euiPanelBackgroundColorModifiers, 'subdued');
+  background-color: $euiPageBackgroundColor;
 }
 
 .playground__title {
