@@ -17,7 +17,11 @@ import React, {
 import classnames from 'classnames';
 import { FocusableElement } from 'tabbable';
 
-import { keys, useEuiMemoizedStyles } from '../../../../services';
+import {
+  keys,
+  tabularCopyMarkers,
+  useEuiMemoizedStyles,
+} from '../../../../services';
 import { EuiDataGridHeaderCellWrapperProps } from '../../data_grid_types';
 import { DataGridFocusContext } from '../../utils/focus';
 import { HandleInteractiveChildren } from '../cell/focus_utils';
@@ -33,6 +37,7 @@ export const EuiDataGridHeaderCellWrapper: FunctionComponent<
 > = ({
   id,
   index,
+  visibleColCount,
   width,
   className,
   children,
@@ -90,6 +95,8 @@ export const EuiDataGridHeaderCellWrapper: FunctionComponent<
     [hasActionsPopover, openActionsPopover, renderFocusTrap, headerEl]
   );
 
+  const isLastColumn = index === visibleColCount - 1;
+
   return (
     <div
       role="columnheader"
@@ -115,6 +122,9 @@ export const EuiDataGridHeaderCellWrapper: FunctionComponent<
       >
         {typeof children === 'function' ? children(renderFocusTrap) : children}
       </HandleInteractiveChildren>
+      {isLastColumn
+        ? tabularCopyMarkers.hiddenNewline
+        : tabularCopyMarkers.hiddenTab}
     </div>
   );
 };

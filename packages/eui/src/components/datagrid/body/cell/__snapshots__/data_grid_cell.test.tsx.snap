@@ -65,5 +65,12 @@ exports[`EuiDataGridCell renders 1`] = `
       </button>
     </div>
   </div>
+  <span
+    aria-hidden="true"
+    class="euiScreenReaderOnly"
+    data-tabular-copy-marker="tab"
+  >
+    ↦
+  </span>
 </div>
 `;

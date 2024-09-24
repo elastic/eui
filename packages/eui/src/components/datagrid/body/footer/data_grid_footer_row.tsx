@@ -6,8 +6,8 @@
  * Side Public License, v 1.
  */
 
-import React, { forwardRef, memo, useContext } from 'react';
-import classnames from 'classnames';
+import React, { forwardRef, memo, useCallback, useContext } from 'react';
+import classNames from 'classnames';
 
 import { useEuiMemoizedStyles } from '../../../../services';
 import { EuiDataGridFooterRowProps } from '../../data_grid_types';
@@ -33,6 +33,7 @@ const EuiDataGridFooterRow = memo(
         interactiveCellId,
         'data-test-subj': _dataTestSubj,
         visibleRowIndex = rowIndex,
+        visibleColCount,
         gridStyles,
         ...rest
       },
@@ -47,11 +48,25 @@ const EuiDataGridFooterRow = memo(
           : styles[gridStyles.footer!],
       ];
 
-      const classes = classnames('euiDataGridFooter', className);
-      const dataTestSubj = classnames(
+      const classes = classNames('euiDataGridFooter', className);
+      const dataTestSubj = classNames(
         'dataGridRow',
         'dataGridFooterRow',
         _dataTestSubj
+      );
+      const getCellClasses = useCallback(
+        (columnIndex: number, classes?: string) => {
+          return classNames(
+            'euiDataGridFooterCell',
+            {
+              'euiDataGridRowCell--firstColumn': columnIndex === 0,
+              'euiDataGridRowCell--lastColumn':
+                columnIndex === visibleColCount - 1,
+            },
+            classes
+          );
+        },
+        [visibleColCount]
       );
 
       const popoverContext = useContext(DataGridCellPopoverContext);
@@ -84,10 +99,12 @@ const EuiDataGridFooterRow = memo(
                 width={width}
                 renderCellValue={footerCellRender ?? renderEmpty}
                 isExpandable={false}
-                className={classnames(
-                  'euiDataGridFooterCell',
-                  'euiDataGridRowCell--controlColumn',
-                  footerCellProps?.className
+                className={getCellClasses(
+                  i,
+                  classNames(
+                    'euiDataGridRowCell--controlColumn',
+                    footerCellProps?.className
+                  )
                 )}
               />
             )
@@ -108,7 +125,7 @@ const EuiDataGridFooterRow = memo(
                 renderCellValue={renderCellValue}
                 renderCellPopover={renderCellPopover}
                 isExpandable={true}
-                className="euiDataGridFooterCell"
+                className={getCellClasses(columnPosition)}
               />
             );
           })}
@@ -127,10 +144,12 @@ const EuiDataGridFooterRow = memo(
                   width={width}
                   renderCellValue={footerCellRender ?? renderEmpty}
                   isExpandable={false}
-                  className={classnames(
-                    'euiDataGridFooterCell',
-                    'euiDataGridRowCell--controlColumn',
-                    footerCellProps?.className
+                  className={getCellClasses(
+                    colIndex,
+                    classNames(
+                      'euiDataGridRowCell--controlColumn',
+                      footerCellProps?.className
+                    )
                   )}
                 />
               );

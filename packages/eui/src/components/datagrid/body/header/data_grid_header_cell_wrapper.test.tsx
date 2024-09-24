@@ -18,6 +18,7 @@ describe('EuiDataGridHeaderCellWrapper', () => {
   const requiredProps = {
     id: 'someColumn',
     index: 0,
+    visibleColCount: 1,
     hasActionsPopover: true,
     children: (
       <>
@@ -62,6 +63,13 @@ describe('EuiDataGridHeaderCellWrapper', () => {
         >
           Mock column actions
         </button>
+        <span
+          aria-hidden="true"
+          class="euiScreenReaderOnly"
+          data-tabular-copy-marker="newline"
+        >
+          ↵
+        </span>
       </div>
     `);
   });
@@ -87,6 +95,13 @@ describe('EuiDataGridHeaderCellWrapper', () => {
         tabindex="0"
       >
         No column actions
+        <span
+          aria-hidden="true"
+          class="euiScreenReaderOnly"
+          data-tabular-copy-marker="newline"
+        >
+          ↵
+        </span>
       </div>
     `);
   });

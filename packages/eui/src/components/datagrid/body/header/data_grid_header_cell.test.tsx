@@ -44,6 +44,7 @@ describe('EuiDataGridHeaderCell', () => {
     schema: { someColumn: { columnType: 'numeric' } },
     schemaDetectors: [],
     setColumnWidth: jest.fn(),
+    visibleColCount: 1,
     setVisibleColumns: jest.fn(),
     switchColumnPos: jest.fn(),
   };

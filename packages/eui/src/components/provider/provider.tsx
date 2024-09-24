@@ -13,6 +13,7 @@ import {
   EuiThemeProvider,
   EuiThemeProviderProps,
   EuiThemeSystem,
+  EuiThemeColorMode,
 } from '../../services';
 import { emitEuiProviderWarning } from '../../services/theme/warning';
 import { cache as fallbackCache } from '../../services/emotion/css';
@@ -25,6 +26,7 @@ import { EuiUtilityClasses } from '../../global_styling/utility/utility';
 import { EuiThemeAmsterdam } from '../../themes';
 
 import { EuiCacheProvider } from './cache';
+import { EuiSystemColorModeProvider } from './system_color_mode';
 import { EuiProviderNestedCheck, useIsNestedEuiProvider } from './nested';
 import {
   EuiComponentDefaults,
@@ -38,12 +40,17 @@ const isEmotionCacheObject = (
 export interface EuiProviderProps<T>
   extends PropsWithChildren,
     EuiGlobalStylesProps,
-    Pick<EuiThemeProviderProps<T>, 'colorMode' | 'modify'> {
+    Pick<EuiThemeProviderProps<T>, 'modify'> {
   /**
    * Provide a specific EuiTheme; Defaults to EuiThemeAmsterdam;
    * Pass `null` to remove all theming including global reset
    */
   theme?: EuiThemeSystem | null;
+  /**
+   * Allows setting `light` or `dark` mode.
+   * Defaults to the user's OS/system setting if undefined.
+   */
+  colorMode?: EuiThemeColorMode;
   /**
    * Provide global styles via `@emotion/react` `Global` for your custom theme.
    * Pass `false` to remove the default EUI global styles.
@@ -101,9 +108,9 @@ export const EuiProvider = <T extends {} = {}>({
     return children as any;
   }
 
-  let defaultCache;
-  let globalCache;
-  let utilityCache;
+  let defaultCache: EmotionCache | undefined;
+  let globalCache: EmotionCache | undefined;
+  let utilityCache: EmotionCache | undefined;
   if (cache) {
     if (isEmotionCacheObject(cache)) {
       cache.compat = true;
@@ -127,27 +134,33 @@ export const EuiProvider = <T extends {} = {}>({
   return (
     <EuiProviderNestedCheck>
       <EuiCacheProvider cache={defaultCache ?? fallbackCache}>
-        <EuiThemeProvider
-          theme={theme ?? undefined}
-          colorMode={colorMode}
-          modify={modify}
-        >
-          {theme && (
-            <>
-              <EuiCacheProvider
-                cache={globalCache}
-                children={Globals && <Globals />}
-              />
-              <EuiCacheProvider
-                cache={utilityCache}
-                children={Utilities && <Utilities />}
-              />
-            </>
+        <EuiSystemColorModeProvider>
+          {(systemColorMode) => (
+            <EuiThemeProvider
+              theme={theme ?? undefined}
+              colorMode={colorMode ?? systemColorMode}
+              modify={modify}
+            >
+              {theme && (
+                <>
+                  <EuiCacheProvider
+                    cache={globalCache}
+                    children={Globals && <Globals />}
+                  />
+                  <EuiCacheProvider
+                    cache={utilityCache}
+                    children={Utilities && <Utilities />}
+                  />
+                </>
+              )}
+              <EuiComponentDefaultsProvider
+                componentDefaults={componentDefaults}
+              >
+                {children}
+              </EuiComponentDefaultsProvider>
+            </EuiThemeProvider>
           )}
-          <EuiComponentDefaultsProvider componentDefaults={componentDefaults}>
-            {children}
-          </EuiComponentDefaultsProvider>
-        </EuiThemeProvider>
+        </EuiSystemColorModeProvider>
       </EuiCacheProvider>
     </EuiProviderNestedCheck>
   );

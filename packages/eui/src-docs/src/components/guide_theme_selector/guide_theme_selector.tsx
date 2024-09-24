@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 
 import {
   EuiThemeProvider,
+  useEuiTheme,
   useIsWithinBreakpoints,
 } from '../../../../src/services';
 import { EUI_THEME, EUI_THEMES } from '../../../../src/themes';
@@ -34,8 +35,6 @@ export const GuideThemeSelector: React.FunctionComponent<
   );
 };
 
-const STORAGE_KEY = 'legacy_theme_notification';
-
 const GuideThemeSelectorComponent: React.FunctionComponent<
   GuideThemeSelectorProps
 > = ({ context, onToggleLocale, selectedLocale }) => {
@@ -44,15 +43,17 @@ const GuideThemeSelectorComponent: React.FunctionComponent<
 
   const onButtonClick = () => {
     setPopover(!isPopoverOpen);
-    localStorage.setItem(STORAGE_KEY, 'dismissed');
   };
 
   const closePopover = () => {
     setPopover(false);
   };
 
+  const systemColorMode = useEuiTheme().colorMode.toLowerCase();
   const currentTheme: EUI_THEME =
-    EUI_THEMES.find((theme) => theme.value === context.theme) || EUI_THEMES[0];
+    EUI_THEMES.find(
+      (theme) => theme.value === (context.theme ?? systemColorMode)
+    ) || EUI_THEMES[0];
 
   const getIconType = (value: EUI_THEME['value']) => {
     return value === currentTheme.value ? 'check' : 'empty';
