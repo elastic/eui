@@ -135,3 +135,26 @@ export const WrappingContent: Story = {
     )),
   },
 };
+
+export const ResponsiveReverse: Story = {
+  tags: ['vrt-only'],
+  args: {
+    ...Playground.args,
+    responsive: 'reverse',
+  },
+  render: (args) => (
+    // Simulate smaller containers (e.g. flyouts) that restrict width but not the media query
+    <div style={{ maxWidth: 400 }}>
+      <EuiPageHeaderContent {...args} />
+    </div>
+  ),
+};
+
+export const ResponsiveFalse: Story = {
+  tags: ['vrt-only'],
+  ...ResponsiveReverse,
+  args: {
+    ...Playground.args,
+    responsive: false,
+  },
+};
