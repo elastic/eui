@@ -16,7 +16,10 @@ import { EuiFlexGroup, EuiFlexItem, EuiFlexGroupProps } from '../../flex';
 import { EuiSpacer } from '../../spacer';
 import { EuiTitle, EuiTitleProps } from '../../title';
 import { EuiText } from '../../text';
-import { useIsWithinBreakpoints, useEuiTheme } from '../../../services';
+import {
+  useIsWithinBreakpoints,
+  useEuiMemoizedStyles,
+} from '../../../services';
 import { EuiScreenReaderOnly } from '../../accessibility';
 import { EuiBreadcrumbs, EuiBreadcrumbsProps } from '../../breadcrumbs';
 import {
@@ -102,7 +105,8 @@ export interface _EuiPageHeaderContentProps
   extends EuiPageHeaderContentLeft,
     _EuiPageRestrictWidth {
   /**
-   * The only option is on/off
+   * If not set, defaults to true if `tabs` are passed and render at the bottom of the page.
+   * Otherwise, defaults to false.
    */
   bottomBorder?: boolean;
   /**
@@ -122,8 +126,8 @@ export interface _EuiPageHeaderContentProps
   alignItems?: (typeof ALIGN_ITEMS)[number];
   /**
    * Pass custom an array of content to this side usually up to 3 buttons.
-   * The first button should be primary, usually with `fill` and will be visually displayed as the last item,
-   * but first in the tab order
+   * The first button should be primary, usually with `fill`. At larger breakpoints, items will
+   * render from right to left, but will collapse vertically and render left to right on smaller mobile screens.
    */
   rightSideItems?: ReactNode[];
   /**
@@ -170,10 +174,9 @@ export const EuiPageHeaderContent: FunctionComponent<
     !!responsive
   );
 
-  const useTheme = useEuiTheme();
   const classes = classNames('euiPageHeaderContent', className);
-  const pageHeaderStyles = euiPageHeaderStyles(useTheme);
-  const contentStyles = euiPageHeaderContentStyles(useTheme);
+  const pageHeaderStyles = useEuiMemoizedStyles(euiPageHeaderStyles);
+  const contentStyles = useEuiMemoizedStyles(euiPageHeaderContentStyles);
   const styles = setStyleForRestrictedPageWidth(restrictWidth, style);
 
   let paddingSides: LogicalSides = 'vertical';

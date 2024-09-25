@@ -11,6 +11,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 import { hideStorybookControls } from '../../../../.storybook/utils';
 import { EuiButton } from '../../button';
+import { EuiCallOut } from '../../call_out';
 import {
   EuiPageHeaderContent,
   EuiPageHeaderContentProps,
@@ -24,14 +25,20 @@ const meta: Meta<EuiPageHeaderContentProps> = {
       control: 'select',
       options: ['center', 'bottom', 'top', 'stretch', undefined],
     },
+    bottomBorder: {
+      control: 'select',
+      options: [true, false, undefined],
+    },
+    responsive: {
+      control: 'select',
+      options: [true, false, 'reverse'],
+    },
   },
   args: {
     // Component defaults
     paddingSize: 'none',
     responsive: true,
     restrictWidth: false,
-    alignItems: undefined,
-    bottomBorder: false,
   },
 };
 hideStorybookControls(meta, ['aria-label']);
@@ -44,7 +51,13 @@ export const Playground: Story = {
     pageTitle: 'Page title',
     iconType: 'logoKibana',
     description: 'Example of a description.',
-    bottomBorder: false,
+    children: (
+      <EuiCallOut
+        size="s"
+        iconType="iInCircle"
+        title="Example of custom children"
+      />
+    ),
     rightSideItems: [
       <EuiButton fill>Add something</EuiButton>,
       <EuiButton>Do something</EuiButton>,
