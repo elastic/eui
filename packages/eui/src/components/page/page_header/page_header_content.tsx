@@ -317,10 +317,9 @@ export const EuiPageHeaderContent: FunctionComponent<
   );
 
   let bottomContentNode;
-  if (childrenNode || (tabsNode && pageTitleNode)) {
+  if (tabsNode && pageTitleNode) {
     bottomContentNode = (
       <div className="euiPageHeaderContent__bottom">
-        {childrenNode}
         {pageTitleNode && tabsNode}
       </div>
     );
@@ -336,6 +335,7 @@ export const EuiPageHeaderContent: FunctionComponent<
       <>
         {tabsNode}
         {descriptionNode}
+        {childrenNode}
       </>
     );
   } else {
@@ -343,6 +343,7 @@ export const EuiPageHeaderContent: FunctionComponent<
       <>
         {pageTitleNode}
         {descriptionNode}
+        {childrenNode}
       </>
     );
   }
@@ -402,10 +403,10 @@ export const EuiPageHeaderContent: FunctionComponent<
       >
         <EuiFlexItem>
           {leftSideOrder}
-          {bottomContentNode}
         </EuiFlexItem>
         {rightSideFlexItem}
       </EuiFlexGroup>
+      {bottomContentNode}
     </div>
   );
 };
