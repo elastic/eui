@@ -135,7 +135,7 @@ exports[`EuiPageHeaderContent props alignItems top is rendered 1`] = `
   class="euiPageHeaderContent emotion-euiPageHeaderContent"
 >
   <div
-    class="euiFlexGroup euiPageHeaderContent__top emotion-euiFlexGroup-responsive-l-flexStart-flexStart-row"
+    class="euiFlexGroup euiPageHeaderContent__top emotion-euiFlexGroup-responsive-wrap-l-flexStart-flexStart-row-euiPageHeaderContent__top"
   >
     <div
       class="euiFlexItem emotion-euiFlexItem-grow-2-euiPageHeaderContent__leftSideItems"

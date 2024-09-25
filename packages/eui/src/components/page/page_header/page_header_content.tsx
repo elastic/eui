@@ -386,14 +386,22 @@ export const EuiPageHeaderContent: FunctionComponent<
     );
   }
 
-  return alignItems === 'top' || isResponsiveBreakpoint ? (
+  return (
     <div className={classes} css={cssStyles} style={styles} {...rest}>
       {optionalBreadcrumbs}
       <EuiFlexGroup
         responsive={!!responsive}
+        css={contentStyles.euiPageHeaderContent__top}
         className="euiPageHeaderContent__top"
-        alignItems={pageTitle ? 'flexStart' : 'baseline'}
+        alignItems={
+          alignItems === 'bottom'
+            ? 'flexEnd'
+            : alignItems === 'top'
+            ? 'flexStart'
+            : alignItems
+        }
         gutterSize="l"
+        wrap
       >
         {isResponsiveBreakpoint && responsive === 'reverse' ? (
           <>
@@ -406,22 +414,6 @@ export const EuiPageHeaderContent: FunctionComponent<
             {rightSideFlexItem}
           </>
         )}
-      </EuiFlexGroup>
-      {bottomContentNode}
-    </div>
-  ) : (
-    <div className={classes} css={cssStyles} style={styles} {...rest}>
-      {optionalBreadcrumbs}
-      <EuiFlexGroup
-        responsive={!!responsive}
-        css={contentStyles.euiPageHeaderContent__top}
-        className="euiPageHeaderContent__top"
-        alignItems={alignItems === 'bottom' ? 'flexEnd' : alignItems}
-        gutterSize="l"
-        wrap
-      >
-        {leftSideFlexItem}
-        {rightSideFlexItem}
       </EuiFlexGroup>
       {bottomContentNode}
     </div>
