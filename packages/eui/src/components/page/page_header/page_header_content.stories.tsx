@@ -134,6 +134,12 @@ export const WrappingContent: Story = {
       <EuiButton>Lots o buttons</EuiButton>
     )),
   },
+  render: (args) => (
+    // Screenshot wrapping behavior
+    <div style={{ maxWidth: 1000 }}>
+      <EuiPageHeaderContent {...args} />
+    </div>
+  ),
 };
 
 export const ResponsiveReverse: Story = {

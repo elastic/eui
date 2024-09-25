@@ -347,6 +347,14 @@ export const EuiPageHeaderContent: FunctionComponent<
       </>
     );
   }
+  const leftSideFlexItem = (
+    <EuiFlexItem
+      grow={2}
+      css={contentStyles.euiPageHeaderContent__leftSideItems}
+    >
+      {leftSideOrder}
+    </EuiFlexItem>
+  );
 
   let rightSideFlexItem;
   if (rightSideItems && rightSideItems.length) {
@@ -360,12 +368,21 @@ export const EuiPageHeaderContent: FunctionComponent<
       </EuiFlexItem>
     ));
 
+    const cssStyles = [
+      contentStyles.euiPageHeaderContent__rightSideItems,
+      rightSideGroupProps?.css,
+    ];
+
     rightSideFlexItem = (
-      <EuiFlexItem grow={false}>
-        <EuiFlexGroup wrap responsive={false} {...rightSideGroupProps}>
-          {rightSideFlexItems}
-        </EuiFlexGroup>
-      </EuiFlexItem>
+      <EuiFlexGroup
+        gutterSize="l"
+        responsive={false}
+        wrap
+        {...rightSideGroupProps}
+        css={cssStyles}
+      >
+        {rightSideFlexItems}
+      </EuiFlexGroup>
     );
   }
 
@@ -381,11 +398,11 @@ export const EuiPageHeaderContent: FunctionComponent<
         {isResponsiveBreakpoint && responsive === 'reverse' ? (
           <>
             {rightSideFlexItem}
-            <EuiFlexItem>{leftSideOrder}</EuiFlexItem>
+            {leftSideFlexItem}
           </>
         ) : (
           <>
-            <EuiFlexItem>{leftSideOrder}</EuiFlexItem>
+            {leftSideFlexItem}
             {rightSideFlexItem}
           </>
         )}
@@ -397,13 +414,13 @@ export const EuiPageHeaderContent: FunctionComponent<
       {optionalBreadcrumbs}
       <EuiFlexGroup
         responsive={!!responsive}
+        css={contentStyles.euiPageHeaderContent__top}
         className="euiPageHeaderContent__top"
         alignItems={alignItems === 'bottom' ? 'flexEnd' : alignItems}
         gutterSize="l"
+        wrap
       >
-        <EuiFlexItem>
-          {leftSideOrder}
-        </EuiFlexItem>
+        {leftSideFlexItem}
         {rightSideFlexItem}
       </EuiFlexGroup>
       {bottomContentNode}

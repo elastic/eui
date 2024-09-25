@@ -49,7 +49,24 @@ export const euiPageHeaderContentStyles = ({ euiTheme }: UseEuiTheme) => ({
     `,
   },
 
-  // Content
+  euiPageHeaderContent__top: css`
+    container-type: inline-size;
+  `,
+  euiPageHeaderContent__leftSideItems: css`
+    @container (max-width: ${euiTheme.breakpoint.m}px) {
+      ${logicalCSS('min-width', '50%')}
+    }
+  `,
+  euiPageHeaderContent__rightSideItems: css`
+    flex: 0 1 auto;
+    align-content: flex-start;
+
+    @container (min-width: ${euiTheme.breakpoint.m}px) {
+      ${logicalCSS('max-width', '50%')}
+      justify-content: flex-end;
+    }
+  `,
+
   euiPageHeaderContent__titleIcon: css`
     position: relative;
     ${logicalCSS('top', `-${euiTheme.size.xs}`)}
