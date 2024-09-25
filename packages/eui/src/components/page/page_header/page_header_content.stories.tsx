@@ -12,6 +12,8 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { hideStorybookControls } from '../../../../.storybook/utils';
 import { EuiButton } from '../../button';
 import { EuiCallOut } from '../../call_out';
+import { EuiTitle } from '../../title';
+import { EuiPageHeaderSection } from './page_header_section';
 import {
   EuiPageHeaderContent,
   EuiPageHeaderContentProps,
@@ -85,5 +87,32 @@ export const Playground: Story = {
         href: '#',
       },
     ],
+  },
+};
+
+export const LegacyChildrenOnly: Story = {
+  parameters: {
+    controls: {
+      include: ['alignItems', 'responsive', 'bottomBorder', 'paddingSize'],
+    },
+  },
+  args: {
+    children: (
+      <>
+        <EuiPageHeaderSection>
+          <EuiTitle size="l">
+            <h1>Page title</h1>
+          </EuiTitle>
+        </EuiPageHeaderSection>
+        <EuiPageHeaderSection>
+          <EuiButton
+            fill
+            size="s" // Better demonstrates alignItems
+          >
+            Add something
+          </EuiButton>
+        </EuiPageHeaderSection>
+      </>
+    ),
   },
 };

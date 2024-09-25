@@ -213,12 +213,13 @@ export const EuiPageHeaderContent: FunctionComponent<
   ];
 
   const childrenOnlyStyles = [
-    contentStyles.flex,
+    contentStyles.childrenOnly.flex,
     contentStyles[alignItems || 'center'],
-    responsive === true && isResponsiveBreakpoint && contentStyles.responsive,
-    responsive === 'reverse' &&
-      isResponsiveBreakpoint &&
-      contentStyles.responsiveReverse,
+    isResponsiveBreakpoint &&
+      responsive &&
+      (responsive === 'reverse'
+        ? contentStyles.childrenOnly.responsiveReverse
+        : contentStyles.childrenOnly.responsive),
   ];
 
   // Don't go any further if there's no other content than children

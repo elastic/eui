@@ -31,22 +31,23 @@ export const euiPageHeaderContentStyles = ({ euiTheme }: UseEuiTheme) => ({
   `,
 
   // Children only (legacy) expects EuiPageHeaderSections as children
-  flex: css`
-    flex-direction: row;
-    display: flex;
-    gap: ${euiTheme.size.base};
-    justify-content: space-between;
-  `,
-
-  // Responsive (what to do at the smaller breakpoint)
-  responsive: css`
-    flex-direction: column;
-    align-items: flex-start;
-  `,
-  responsiveReverse: css`
-    flex-direction: column-reverse;
-    align-items: flex-start;
-  `,
+  childrenOnly: {
+    flex: css`
+      flex-direction: row;
+      display: flex;
+      gap: ${euiTheme.size.base};
+      justify-content: space-between;
+    `,
+    // Responsive (what to do at the smaller breakpoint)
+    responsive: css`
+      flex-direction: column;
+      align-items: flex-start;
+    `,
+    responsiveReverse: css`
+      flex-direction: column-reverse;
+      align-items: flex-start;
+    `,
+  },
 
   // Content
   euiPageHeaderContent__titleIcon: css`
