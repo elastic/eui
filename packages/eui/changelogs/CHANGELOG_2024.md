@@ -1,3 +1,12 @@
+## [`v95.12.0-backport.0`](https://github.com/elastic/eui/releases/v95.12.0-backport.0)
+
+**This is a backport release only intended for use by Kibana.**
+
+**Bug fixes**
+
+- Fixed `EuiProvider`'s system color mode detection causing errors during server-side rendering ([#8040](https://github.com/elastic/eui/pull/8040))
+- Fixed an `EuiDataGrid` rendering bug that was causing bouncing scrollbar issues ([#8041](https://github.com/elastic/eui/pull/8041))
+
 ## [`v95.12.0`](https://github.com/elastic/eui/releases/v95.12.0)
 
 - Enhanced `EuiDataGrid` and `EuiBasic/InMemoryTable` to clean content newlines/tabs when users copy and paste from their tabular data ([#8019](https://github.com/elastic/eui/pull/8019))
