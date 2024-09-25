@@ -116,3 +116,22 @@ export const LegacyChildrenOnly: Story = {
     ),
   },
 };
+
+/**
+ * Visual regression tests
+ */
+
+export const WrappingContent: Story = {
+  tags: ['vrt-only'],
+  args: {
+    pageTitle: 'Lots of wrapping content',
+    description:
+      'Lorem ipsum odor amet, consectetuer adipiscing elit. Montes justo potenti per himenaeos non nascetur nulla taciti consequat. Curae blandit integer molestie quis taciti curabitur facilisi ullamcorper mi. Mus parturient ultrices lacus nascetur tellus scelerisque. Auctor senectus eu rhoncus eget laoreet nunc amet potenti penatibus. Mi ad iaculis diam feugiat egestas malesuada. Commodo a cras malesuada duis vel tempus per! Rhoncus montes aptent vitae efficitur eget ornare eu curae. Ut semper sed augue mattis proin imperdiet tempus.',
+    tabs: Array.from({ length: 7 }).map(() => ({
+      label: 'Long loooong tab',
+    })),
+    rightSideItems: Array.from({ length: 5 }).map(() => (
+      <EuiButton>Lots o buttons</EuiButton>
+    )),
+  },
+};
