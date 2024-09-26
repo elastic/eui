@@ -126,6 +126,141 @@ the visual changes with drop-to-remove interactions.
 
 <!-- TODO: Add copyable items example -->
 
+## Portalled items
+
+When using EUI drag components inside a stacking context, the fixed drag positioning might be affected. To ensure 
+dragging works as expected inside e.g. **EuiFlyout** or **EuiModal use the prop `usePortal` on **EuiDraggable** components. 
+This will render the currently dragged element inside a portal on the body scope.
+
+If the styling of the **EuiDraggable** content is relative to an outer scope component, the styling won't be applied
+whiled dragging it when using **usePortal**. This is because due to the changed position in the DOM which changes
+previous hierarchical relations to other ancestor elements. To prevent this from happening, we recommend to apply 
+styling from within the **EuiDraggable** scope.
+
+```tsx interactive
+import React, { useState } from 'react';
+import {
+  EuiButton,
+  EuiCode,
+  EuiDragDropContext,
+  EuiDraggable,
+  EuiDroppable,
+  EuiFlyout,
+  EuiFlyoutBody,
+  EuiFlyoutHeader,
+  EuiModal,
+  EuiModalBody,
+  EuiModalHeader,
+  EuiPanel,
+  EuiSpacer,
+  EuiTitle,
+  euiDragDropReorder,
+  htmlIdGenerator
+} from '@elastic/eui';
+
+const makeId = htmlIdGenerator();
+
+const makeList = (number, start = 1) =>
+  Array.from({ length: number }, (v, k) => k + start).map((el) => {
+    return {
+      content: `Item ${el}`,
+      id: makeId(),
+    };
+  });
+
+export default () => {
+  const [isFlyoutOpen, setFlyoutOpen] = useState(false);
+  const [isModalOpen, setModalOpen] = useState(false);
+  const [list, setList] = useState(makeList(3));
+  const onDragEnd = ({ source, destination }) => {
+    if (source && destination) {
+      const items = euiDragDropReorder(list, source.index, destination.index);
+
+      setList(items);
+    }
+  };
+
+  return (
+    <>
+      <EuiButton onClick={() => setFlyoutOpen(!isFlyoutOpen)}>
+        Toggle flyout
+      </EuiButton>
+      <EuiSpacer />
+      <EuiButton onClick={() => setModalOpen(!isModalOpen)}>
+        Toggle modal
+      </EuiButton>
+      {isFlyoutOpen && (
+        <EuiFlyout onClose={() => setFlyoutOpen(false)}>
+          <EuiFlyoutHeader>
+            <EuiTitle size="s">
+              <h2>
+                Portalled <EuiCode>EuiDraggable</EuiCode> items
+              </h2>
+            </EuiTitle>
+          </EuiFlyoutHeader>
+          <EuiFlyoutBody>
+            <EuiDragDropContext onDragEnd={onDragEnd}>
+              <EuiDroppable droppableId="DROPPABLE_AREA" spacing="m" withPanel>
+                {list.map(({ content, id }, idx) => (
+                  <EuiDraggable
+                    spacing="m"
+                    key={id}
+                    index={idx}
+                    draggableId={id}
+                    usePortal
+                  >
+                    {(provided, state) => (
+                      <EuiPanel hasShadow={state.isDragging}>
+                        {content}
+                        {state.isDragging && ' ✨'}
+                      </EuiPanel>
+                    )}
+                  </EuiDraggable>
+                ))}
+              </EuiDroppable>
+            </EuiDragDropContext>
+          </EuiFlyoutBody>
+        </EuiFlyout>
+      )}
+
+      {isModalOpen && (
+        <EuiModal onClose={() => setModalOpen(false)}>
+          <EuiModalHeader>
+            <EuiTitle size="s">
+              <h2>
+                Portalled <EuiCode>EuiDraggable</EuiCode> items
+              </h2>
+            </EuiTitle>
+          </EuiModalHeader>
+          <EuiModalBody>
+            <EuiDragDropContext onDragEnd={onDragEnd}>
+              <EuiDroppable droppableId="DROPPABLE_AREA" spacing="m" withPanel>
+                {list.map(({ content, id }, idx) => (
+                  <EuiDraggable
+                    spacing="m"
+                    key={id}
+                    index={idx}
+                    draggableId={id}
+                    usePortal
+                  >
+                    {(provided, state) => (
+                      <EuiPanel hasShadow={state.isDragging}>
+                        {content}
+                        {state.isDragging && ' ✨'}
+                      </EuiPanel>
+                    )}
+                  </EuiDraggable>
+                ))}
+              </EuiDroppable>
+            </EuiDragDropContext>
+          </EuiModalBody>
+        </EuiModal>
+      )}
+    </>
+  );
+};
+```
+
 ## Kitchen sink
 
 **EuiDraggables** in **EuiDroppables**, **EuiDroppables** in **EuiDraggables**, custom drag handles, horizontal

@@ -34,6 +34,9 @@ const dragAndDropTypesSource = require('!!raw-loader!./drag_and_drop_types');
 import DragAndDropClone from './drag_and_drop_clone';
 const dragAndDropCloneSource = require('!!raw-loader!./drag_and_drop_clone');
 
+import DragAndDropPortal from './drag_and_drop_portal';
+const dragAndDropPortalSource = require('!!raw-loader!./drag_and_drop_portal');
+
 import DragAndDropComplex from './drag_and_drop_complex';
 const dragAndDropComplexSource = require('!!raw-loader!./drag_and_drop_complex');
 
@@ -341,6 +344,56 @@ export const DragAndDropExample = {
         </>
       ),
       demo: <DragAndDropClone />,
+    },
+    {
+      title: 'Portalled items',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: dragAndDropPortalSource,
+        },
+      ],
+      text: (
+        <>
+          <p>
+            When using EUI drag components inside a stacking context, the fixed
+            drag positioning might be affected. To ensure dragging works as
+            expected inside e.g. <EuiCode>EuiFlyout</EuiCode> or{' '}
+            <EuiCode>EuiModal</EuiCode> use the prop{' '}
+            <EuiCode>usePortal</EuiCode> on <EuiCode>EuiDraggable</EuiCode>{' '}
+            components. This will render the currently dragged element inside a
+            portal on the body scope .
+          </p>
+          <p>
+            If the styling of the <EuiCode>EuiDraggable</EuiCode> content is
+            relative to an outer scope component, the styling won't be applied
+            whiled dragging it when using <EuiCode>usePortal</EuiCode>. This is
+            because due to the changed position in the DOM which changes
+            previous hierarchical relations to other ancestor elements. To
+            prevent this from happening, we recommend to apply styling from
+            within the <EuiCode>EuiDraggable</EuiCode> scope.
+          </p>
+        </>
+      ),
+      snippet: `<EuiDragDropContext onDragEnd={onDragEnd}>
+  <EuiDroppable droppableId="DROPPABLE_AREA">
+    <EuiDraggable
+        spacing="m"
+        key="DRAGGABLE_ID"
+        index={0}
+        draggableId="DRAGGABLE_ID"
+        usePortal
+      >
+        {(provided, state) => (
+          <EuiPanel hasShadow={state.isDragging}>
+            Item 1
+            {state.isDragging && ' ✨'}
+          </EuiPanel>
+        )}
+      </EuiDraggable>
+  </EuiDroppable>
+  </EuiDragDropContext>`,
+      demo: <DragAndDropPortal />,
     },
     {
       title: 'Kitchen sink',
