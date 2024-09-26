@@ -131,7 +131,7 @@ export const WrappingContent: Story = {
       label: 'Long loooong tab',
     })),
     rightSideItems: Array.from({ length: 5 }).map(() => (
-      <EuiButton>Lots o buttons</EuiButton>
+      <EuiButton>Lotsa buttons</EuiButton>
     )),
   },
   render: (args) => (
