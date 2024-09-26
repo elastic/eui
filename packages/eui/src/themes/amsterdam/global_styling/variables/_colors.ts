@@ -6,12 +6,6 @@
  * Side Public License, v 1.
  */
 
-import { shade, tint } from '../../../../services/color';
-import { computed } from '../../../../services/theme/utils';
-import {
-  makeHighContrastColor,
-  makeDisabledContrastColor,
-} from '../../../../services/color/contrast';
 import {
   _EuiThemeColors,
   _EuiThemeBrandColors,
@@ -20,7 +14,14 @@ import {
   _EuiThemeSpecialColors,
   _EuiThemeTextColors,
   _EuiThemeColorsMode,
-} from '../../../../global_styling/variables/colors';
+} from '@elastic/eui-theme-base';
+
+import { shade, tint } from '../../../../services/color';
+import { computed } from '../../../../services/theme/utils';
+import {
+  makeHighContrastColor,
+  makeDisabledContrastColor,
+} from '../../../../services/color/contrast';
 
 /*
  * LIGHT THEME
@@ -30,6 +31,7 @@ import {
 export const brand_colors: _EuiThemeBrandColors = {
   primary: '#07C',
   accent: '#F04E98',
+  accentSecondary: '#F04E98',
   success: '#00BFB3',
   warning: '#FEC514',
   danger: '#BD271E',
@@ -41,6 +43,13 @@ export const brand_text_colors: _EuiThemeBrandTextColors = {
   successText: computed(makeHighContrastColor('colors.success')),
   warningText: computed(makeHighContrastColor('colors.warning')),
   dangerText: computed(makeHighContrastColor('colors.danger')),
+
+  textPrimary: computed(makeHighContrastColor('colors.primary')),
+  textAccent: computed(makeHighContrastColor('colors.accent')),
+  textAccentSecondary: computed(makeHighContrastColor('colors.accent')),
+  textSuccess: computed(makeHighContrastColor('colors.success')),
+  textWarning: computed(makeHighContrastColor('colors.warning')),
+  textDanger: computed(makeHighContrastColor('colors.danger')),
 };
 
 export const shade_colors: _EuiThemeShadeColors = {
@@ -69,6 +78,15 @@ export const text_colors: _EuiThemeTextColors = {
   title: computed(([text]) => shade(text, 0.5), ['colors.text']),
   subduedText: computed(makeHighContrastColor('colors.darkShade')),
   link: computed(([primaryText]) => primaryText, ['colors.primaryText']),
+
+  textParagraph: computed(
+    ([darkestShade]) => darkestShade,
+    ['colors.darkestShade']
+  ),
+  textHeading: computed(([text]) => shade(text, 0.5), ['colors.text']),
+  textSubdued: computed(makeHighContrastColor('colors.darkShade')),
+  textDisabled: computed(makeDisabledContrastColor('colors.disabled')),
+  textInverse: computed(([ghost]) => ghost, ['colors.ghost']),
 };
 
 export const light_colors: _EuiThemeColorsMode = {
@@ -98,6 +116,7 @@ export const dark_colors_ams: _EuiThemeColorsMode = {
   // Brand
   primary: '#36A2EF',
   accent: '#F68FBE',
+  accentSecondary: '#F68FBE',
   success: '#7DDED8',
   warning: '#F3D371',
   danger: '#F86B63',
@@ -123,6 +142,12 @@ export const dark_colors_ams: _EuiThemeColorsMode = {
   title: computed(([text]) => text, ['colors.text']),
   subduedText: computed(makeHighContrastColor('colors.mediumShade')),
   link: computed(([primaryText]) => primaryText, ['colors.primaryText']),
+
+  textParagraph: '#DFE5EF',
+  textHeading: computed(([text]) => text, ['colors.text']),
+  textSubdued: computed(makeHighContrastColor('colors.mediumShade')),
+  textDisabled: computed(makeDisabledContrastColor('colors.disabled')),
+  textInverse: computed(([ink]) => ink, ['colors.ink']),
 };
 
 /*
@@ -132,6 +157,8 @@ export const dark_colors_ams: _EuiThemeColorsMode = {
 export const colors: _EuiThemeColors = {
   ghost: '#FFF',
   ink: '#000',
+  plainDark: '#000',
+  plainLight: '#FFF',
   LIGHT: light_colors,
   DARK: dark_colors_ams,
 };
