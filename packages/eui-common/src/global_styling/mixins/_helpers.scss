@@ -1,0 +1,126 @@
+// Helper mixins
+
+// Set scroll bar appearance on Chrome (and firefox).
+@mixin euiScrollBar($thumbColor: $euiColorDarkShade, $trackBackgroundColor: transparent, $size: 'thin') {
+  // Firefox's scrollbar coloring cascades, but the sizing does not,
+  // so it's being added to this mixin for allowing support wherever custom scrollbars are
+  scrollbar-color: transparentize($thumbColor, .5) $trackBackgroundColor; // Firefox support
+
+  @if ($size == 'thin') {
+    scrollbar-width: thin;
+  }
+
+  // stylelint-disable selector-no-vendor-prefix
+  &::-webkit-scrollbar {
+    width: $euiScrollBar;
+    height: $euiScrollBar;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: transparentize($thumbColor, .5);
+    background-clip: content-box;
+    border-radius: $euiScrollBar;
+
+    @if ($size == 'thin') {
+      border: $euiScrollBarCornerThin solid $trackBackgroundColor;
+    } @else {
+      border: $euiScrollBarCorner solid $trackBackgroundColor;
+    }
+  }
+
+  &::-webkit-scrollbar-corner,
+  &::-webkit-scrollbar-track {
+    background-color: $trackBackgroundColor;
+  }
+}
+
+/**
+ * 1. Focus rings shouldn't be visible on scrollable regions, but a11y requires them to be focusable.
+ *    Browser's supporting `:focus-visible` will still show outline on keyboard focus only.
+ *    Others like Safari, won't show anything at all.
+ * 2. Force the `:focus-visible` when the `tabindex=0` (is tabbable)
+ */
+
+// Just overflow and scrollbars
+@mixin euiYScroll {
+  @include euiScrollBar;
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  &:focus {
+    outline: none; /* 1 */
+  }
+
+  &[tabindex='0']:focus:focus-visible {
+    outline-style: auto; /* 2 */
+  }
+}
+
+@mixin euiXScroll {
+  @include euiScrollBar;
+  overflow-x: auto;
+
+  &:focus {
+    outline: none; /* 1 */
+  }
+
+  &[tabindex='0']:focus:focus-visible {
+    outline-style: auto; /* 2 */
+  }
+}
+
+// The full overflow with shadow
+@mixin euiYScrollWithShadows {
+  @include euiYScroll;
+  @include euiOverflowShadow('y');
+}
+
+@mixin euiXScrollWithShadows {
+  @include euiXScroll;
+  @include euiOverflowShadow('x');
+}
+
+/**
+ * For quickly applying a full-height element whether using flex or not
+ */
+@mixin euiFullHeight {
+  height: 100%;
+  flex: 1 1 auto;
+  overflow: hidden;
+}
+
+// Hiding elements offscreen to only be read by screen reader
+// See https://github.com/elastic/eui/pull/5130 and https://github.com/elastic/eui/pull/5152 for more info
+@mixin euiScreenReaderOnly {
+  // Take the element out of the layout
+  position: absolute;
+  // Keep it vertically inline
+  top: auto;
+  // Chrome requires a left value, and Selenium (used by Kibana's FTR) requires an off-screen position for its .getVisibleText() to not register SR-only text
+  left: -10000px;
+  // The element must have a size (for some screen readers)
+  width: 1px;
+  height: 1px;
+  // But reduce the visible size to nothing
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  // And ensure no overflows occur
+  overflow: hidden;
+  // Chrome requires the negative margin to not cause overflows of parent containers
+  margin: -1px;
+}
+
+// Doesn't have reduced motion turned on
+@mixin euiCanAnimate {
+  @media screen and (prefers-reduced-motion: no-preference) {
+    @content;
+  }
+}
+
+// Does have reduced motion turned on
+@mixin euiCantAnimate {
+  @media screen and (prefers-reduced-motion: reduce) {
+    @content;
+  }
+}
