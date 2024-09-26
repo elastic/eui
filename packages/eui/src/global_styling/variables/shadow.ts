@@ -6,7 +6,14 @@
  * Side Public License, v 1.
  */
 
-export const EuiThemeShadowSizes = ['panel', 'xs', 's', 'm', 'l', 'xl'] as const;
+export const EuiThemeShadowSizes = [
+  'panel',
+  'xs',
+  's',
+  'm',
+  'l',
+  'xl',
+] as const;
 
 export type _EuiThemeShadowSize = (typeof EuiThemeShadowSizes)[number];
 

@@ -37,10 +37,9 @@ export const euiPanelStyles = (euiThemeContext: UseEuiTheme) => {
     `,
 
     hasBevel: css`
-    ${euiThemeContext.colorMode == "LIGHT"
-      ? `border-bottom: ${euiTheme.border.thin};`
-      : `border-top: ${euiTheme.border.thin};`
-    }
+      ${euiThemeContext.colorMode === 'LIGHT'
+        ? `border-bottom: ${euiTheme.border.thin};`
+        : `border-top: ${euiTheme.border.thin};`}
     `,
 
     radius: {
