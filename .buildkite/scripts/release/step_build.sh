@@ -10,7 +10,7 @@ echo "+++ :yarn: Installing dependencies"
 yarn
 
 echo "+++ :yarn: Building @elastic/eui"
-yarn init:workspaces
+yarn build:workspaces
 yarn build
 
 echo "+++ :yarn: Built @elastic/eui"
