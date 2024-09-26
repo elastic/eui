@@ -38,8 +38,8 @@ export const euiPanelStyles = (euiThemeContext: UseEuiTheme) => {
 
     hasBevel: css`
       ${euiThemeContext.colorMode === 'LIGHT'
-        ? `border-block-end: ${euiTheme.border.thin};`
-        : `border-block-start: ${euiTheme.border.thin};`}
+        ? `border-block-end: ${euiTheme.border.thin}`
+        : `border-block-start: ${euiTheme.border.thin}`}
     `,
 
     radius: {
