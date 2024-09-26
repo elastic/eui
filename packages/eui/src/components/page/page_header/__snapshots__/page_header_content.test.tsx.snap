@@ -7,10 +7,10 @@ exports[`EuiPageHeaderContent is rendered 1`] = `
   data-test-subj="test subject string"
 >
   <div
-    class="euiFlexGroup euiPageHeaderContent__top emotion-euiFlexGroup-responsive-l-flexStart-stretch-row"
+    class="euiFlexGroup euiPageHeaderContent__top emotion-euiFlexGroup-responsive-wrap-l-flexStart-stretch-row-euiPageHeaderContent__top"
   >
     <div
-      class="euiFlexItem emotion-euiFlexItem-grow-1"
+      class="euiFlexItem emotion-euiFlexItem-grow-2-euiPageHeaderContent__leftSideItems"
     />
   </div>
 </div>
@@ -21,10 +21,10 @@ exports[`EuiPageHeaderContent props alignItems bottom is rendered 1`] = `
   class="euiPageHeaderContent emotion-euiPageHeaderContent"
 >
   <div
-    class="euiFlexGroup euiPageHeaderContent__top emotion-euiFlexGroup-responsive-l-flexStart-flexEnd-row"
+    class="euiFlexGroup euiPageHeaderContent__top emotion-euiFlexGroup-responsive-wrap-l-flexStart-flexEnd-row-euiPageHeaderContent__top"
   >
     <div
-      class="euiFlexItem emotion-euiFlexItem-grow-1"
+      class="euiFlexItem emotion-euiFlexItem-grow-2-euiPageHeaderContent__leftSideItems"
     >
       <h1
         class="euiTitle emotion-euiTitle-l"
@@ -33,25 +33,21 @@ exports[`EuiPageHeaderContent props alignItems bottom is rendered 1`] = `
       </h1>
     </div>
     <div
-      class="euiFlexItem emotion-euiFlexItem-growZero"
+      class="euiFlexGroup emotion-euiFlexGroup-wrap-l-flexStart-stretch-row-euiPageHeaderContent__rightSideItems"
     >
       <div
-        class="euiFlexGroup emotion-euiFlexGroup-wrap-l-flexStart-stretch-row"
+        class="euiFlexItem emotion-euiFlexItem-growZero"
       >
-        <div
-          class="euiFlexItem emotion-euiFlexItem-growZero"
-        >
-          <button>
-            Button 2
-          </button>
-        </div>
-        <div
-          class="euiFlexItem emotion-euiFlexItem-growZero"
-        >
-          <button>
-            Button 1
-          </button>
-        </div>
+        <button>
+          Button 2
+        </button>
+      </div>
+      <div
+        class="euiFlexItem emotion-euiFlexItem-growZero"
+      >
+        <button>
+          Button 1
+        </button>
       </div>
     </div>
   </div>
@@ -63,10 +59,10 @@ exports[`EuiPageHeaderContent props alignItems center is rendered 1`] = `
   class="euiPageHeaderContent emotion-euiPageHeaderContent"
 >
   <div
-    class="euiFlexGroup euiPageHeaderContent__top emotion-euiFlexGroup-responsive-l-flexStart-center-row"
+    class="euiFlexGroup euiPageHeaderContent__top emotion-euiFlexGroup-responsive-wrap-l-flexStart-center-row-euiPageHeaderContent__top"
   >
     <div
-      class="euiFlexItem emotion-euiFlexItem-grow-1"
+      class="euiFlexItem emotion-euiFlexItem-grow-2-euiPageHeaderContent__leftSideItems"
     >
       <h1
         class="euiTitle emotion-euiTitle-l"
@@ -75,25 +71,21 @@ exports[`EuiPageHeaderContent props alignItems center is rendered 1`] = `
       </h1>
     </div>
     <div
-      class="euiFlexItem emotion-euiFlexItem-growZero"
+      class="euiFlexGroup emotion-euiFlexGroup-wrap-l-flexStart-stretch-row-euiPageHeaderContent__rightSideItems"
     >
       <div
-        class="euiFlexGroup emotion-euiFlexGroup-wrap-l-flexStart-stretch-row"
+        class="euiFlexItem emotion-euiFlexItem-growZero"
       >
-        <div
-          class="euiFlexItem emotion-euiFlexItem-growZero"
-        >
-          <button>
-            Button 2
-          </button>
-        </div>
-        <div
-          class="euiFlexItem emotion-euiFlexItem-growZero"
-        >
-          <button>
-            Button 1
-          </button>
-        </div>
+        <button>
+          Button 2
+        </button>
+      </div>
+      <div
+        class="euiFlexItem emotion-euiFlexItem-growZero"
+      >
+        <button>
+          Button 1
+        </button>
       </div>
     </div>
   </div>
@@ -105,10 +97,10 @@ exports[`EuiPageHeaderContent props alignItems stretch is rendered 1`] = `
   class="euiPageHeaderContent emotion-euiPageHeaderContent"
 >
   <div
-    class="euiFlexGroup euiPageHeaderContent__top emotion-euiFlexGroup-responsive-l-flexStart-stretch-row"
+    class="euiFlexGroup euiPageHeaderContent__top emotion-euiFlexGroup-responsive-wrap-l-flexStart-stretch-row-euiPageHeaderContent__top"
   >
     <div
-      class="euiFlexItem emotion-euiFlexItem-grow-1"
+      class="euiFlexItem emotion-euiFlexItem-grow-2-euiPageHeaderContent__leftSideItems"
     >
       <h1
         class="euiTitle emotion-euiTitle-l"
@@ -117,25 +109,21 @@ exports[`EuiPageHeaderContent props alignItems stretch is rendered 1`] = `
       </h1>
     </div>
     <div
-      class="euiFlexItem emotion-euiFlexItem-growZero"
+      class="euiFlexGroup emotion-euiFlexGroup-wrap-l-flexStart-stretch-row-euiPageHeaderContent__rightSideItems"
     >
       <div
-        class="euiFlexGroup emotion-euiFlexGroup-wrap-l-flexStart-stretch-row"
+        class="euiFlexItem emotion-euiFlexItem-growZero"
       >
-        <div
-          class="euiFlexItem emotion-euiFlexItem-growZero"
-        >
-          <button>
-            Button 2
-          </button>
-        </div>
-        <div
-          class="euiFlexItem emotion-euiFlexItem-growZero"
-        >
-          <button>
-            Button 1
-          </button>
-        </div>
+        <button>
+          Button 2
+        </button>
+      </div>
+      <div
+        class="euiFlexItem emotion-euiFlexItem-growZero"
+      >
+        <button>
+          Button 1
+        </button>
       </div>
     </div>
   </div>
@@ -147,10 +135,10 @@ exports[`EuiPageHeaderContent props alignItems top is rendered 1`] = `
   class="euiPageHeaderContent emotion-euiPageHeaderContent"
 >
   <div
-    class="euiFlexGroup euiPageHeaderContent__top emotion-euiFlexGroup-responsive-l-flexStart-flexStart-row"
+    class="euiFlexGroup euiPageHeaderContent__top emotion-euiFlexGroup-responsive-wrap-l-flexStart-flexStart-row-euiPageHeaderContent__top"
   >
     <div
-      class="euiFlexItem emotion-euiFlexItem-grow-1"
+      class="euiFlexItem emotion-euiFlexItem-grow-2-euiPageHeaderContent__leftSideItems"
     >
       <h1
         class="euiTitle emotion-euiTitle-l"
@@ -159,25 +147,21 @@ exports[`EuiPageHeaderContent props alignItems top is rendered 1`] = `
       </h1>
     </div>
     <div
-      class="euiFlexItem emotion-euiFlexItem-growZero"
+      class="euiFlexGroup emotion-euiFlexGroup-wrap-l-flexStart-stretch-row-euiPageHeaderContent__rightSideItems"
     >
       <div
-        class="euiFlexGroup emotion-euiFlexGroup-wrap-l-flexStart-stretch-row"
+        class="euiFlexItem emotion-euiFlexItem-growZero"
       >
-        <div
-          class="euiFlexItem emotion-euiFlexItem-growZero"
-        >
-          <button>
-            Button 2
-          </button>
-        </div>
-        <div
-          class="euiFlexItem emotion-euiFlexItem-growZero"
-        >
-          <button>
-            Button 1
-          </button>
-        </div>
+        <button>
+          Button 2
+        </button>
+      </div>
+      <div
+        class="euiFlexItem emotion-euiFlexItem-growZero"
+      >
+        <button>
+          Button 1
+        </button>
       </div>
     </div>
   </div>
@@ -228,10 +212,10 @@ exports[`EuiPageHeaderContent props breadcrumbs is rendered 1`] = `
     class="euiSpacer euiSpacer--s emotion-euiSpacer-s"
   />
   <div
-    class="euiFlexGroup euiPageHeaderContent__top emotion-euiFlexGroup-responsive-l-flexStart-stretch-row"
+    class="euiFlexGroup euiPageHeaderContent__top emotion-euiFlexGroup-responsive-wrap-l-flexStart-stretch-row-euiPageHeaderContent__top"
   >
     <div
-      class="euiFlexItem emotion-euiFlexItem-grow-1"
+      class="euiFlexItem emotion-euiFlexItem-grow-2-euiPageHeaderContent__leftSideItems"
     />
   </div>
 </div>
@@ -242,7 +226,7 @@ exports[`EuiPageHeaderContent props children is rendered 1`] = `
   class="emotion-euiPageHeaderContent"
 >
   <div
-    class="css-ljpjbj-flex-center"
+    class="css-acb1mh-flex-center"
   >
     <p>
       Anything
@@ -256,7 +240,7 @@ exports[`EuiPageHeaderContent props children is rendered 2`] = `
   class="emotion-euiPageHeaderContent"
 >
   <div
-    class="css-ljpjbj-flex-center"
+    class="css-acb1mh-flex-center"
   >
     Child
   </div>
@@ -268,10 +252,10 @@ exports[`EuiPageHeaderContent props children is rendered even if content props a
   class="euiPageHeaderContent emotion-euiPageHeaderContent-border"
 >
   <div
-    class="euiFlexGroup euiPageHeaderContent__top emotion-euiFlexGroup-responsive-l-flexStart-stretch-row"
+    class="euiFlexGroup euiPageHeaderContent__top emotion-euiFlexGroup-responsive-wrap-l-flexStart-stretch-row-euiPageHeaderContent__top"
   >
     <div
-      class="euiFlexItem emotion-euiFlexItem-grow-1"
+      class="euiFlexItem emotion-euiFlexItem-grow-2-euiPageHeaderContent__leftSideItems"
     >
       <h1
         class="euiTitle emotion-euiTitle-l"
@@ -279,67 +263,63 @@ exports[`EuiPageHeaderContent props children is rendered even if content props a
         Page title
       </h1>
       <div
-        class="euiPageHeaderContent__bottom"
-      >
-        <div
-          class="euiSpacer euiSpacer--l emotion-euiSpacer-l"
-        />
-        Child
-        <div
-          class="euiSpacer euiSpacer--l emotion-euiSpacer-l"
-        />
-        <div
-          class="euiTabs emotion-euiTabs-l"
-          role="tablist"
-        >
-          <button
-            aria-selected="true"
-            class="euiTab euiTab-isSelected emotion-euiTab-selected"
-            role="tab"
-            type="button"
-          >
-            <span
-              class="euiTab__content eui-textTruncate emotion-euiTab__content-l"
-            >
-              Tab 1
-            </span>
-          </button>
-          <button
-            aria-selected="false"
-            class="euiTab emotion-euiTab"
-            role="tab"
-            type="button"
-          >
-            <span
-              class="euiTab__content eui-textTruncate emotion-euiTab__content-l"
-            >
-              Tab 2
-            </span>
-          </button>
-        </div>
-      </div>
+        class="euiSpacer euiSpacer--l emotion-euiSpacer-l"
+      />
+      Child
     </div>
     <div
-      class="euiFlexItem emotion-euiFlexItem-growZero"
+      class="euiFlexGroup emotion-euiFlexGroup-wrap-l-flexStart-stretch-row-euiPageHeaderContent__rightSideItems"
     >
       <div
-        class="euiFlexGroup emotion-euiFlexGroup-wrap-l-flexStart-stretch-row"
+        class="euiFlexItem emotion-euiFlexItem-growZero"
       >
-        <div
-          class="euiFlexItem emotion-euiFlexItem-growZero"
-        >
-          <button>
-            Button 2
-          </button>
-        </div>
-        <div
-          class="euiFlexItem emotion-euiFlexItem-growZero"
-        >
-          <button>
-            Button 1
-          </button>
-        </div>
+        <button>
+          Button 2
+        </button>
       </div>
+      <div
+        class="euiFlexItem emotion-euiFlexItem-growZero"
+      >
+        <button>
+          Button 1
+        </button>
+      </div>
+    </div>
+  </div>
+  <div
+    class="euiPageHeaderContent__bottom"
+  >
+    <div
+      class="euiSpacer euiSpacer--l emotion-euiSpacer-l"
+    />
+    <div
+      class="euiTabs emotion-euiTabs-l"
+      role="tablist"
+    >
+      <button
+        aria-selected="true"
+        class="euiTab euiTab-isSelected emotion-euiTab-selected"
+        role="tab"
+        type="button"
+      >
+        <span
+          class="euiTab__content eui-textTruncate emotion-euiTab__content-l"
+        >
+          Tab 1
+        </span>
+      </button>
+      <button
+        aria-selected="false"
+        class="euiTab emotion-euiTab"
+        role="tab"
+        type="button"
+      >
+        <span
+          class="euiTab__content eui-textTruncate emotion-euiTab__content-l"
+        >
+          Tab 2
+        </span>
+      </button>
     </div>
   </div>
 </div>
@@ -350,10 +330,10 @@ exports[`EuiPageHeaderContent props description is rendered 1`] = `
   class="euiPageHeaderContent emotion-euiPageHeaderContent"
 >
   <div
-    class="euiFlexGroup euiPageHeaderContent__top emotion-euiFlexGroup-responsive-l-flexStart-stretch-row"
+    class="euiFlexGroup euiPageHeaderContent__top emotion-euiFlexGroup-responsive-wrap-l-flexStart-stretch-row-euiPageHeaderContent__top"
   >
     <div
-      class="euiFlexItem emotion-euiFlexItem-grow-1"
+      class="euiFlexItem emotion-euiFlexItem-grow-2-euiPageHeaderContent__leftSideItems"
     >
       <div
         class="euiText emotion-euiText-constrainedWidth-m"
@@ -372,10 +352,10 @@ exports[`EuiPageHeaderContent props pageTitle is rendered 1`] = `
   class="euiPageHeaderContent emotion-euiPageHeaderContent"
 >
   <div
-    class="euiFlexGroup euiPageHeaderContent__top emotion-euiFlexGroup-responsive-l-flexStart-stretch-row"
+    class="euiFlexGroup euiPageHeaderContent__top emotion-euiFlexGroup-responsive-wrap-l-flexStart-stretch-row-euiPageHeaderContent__top"
   >
     <div
-      class="euiFlexItem emotion-euiFlexItem-grow-1"
+      class="euiFlexItem emotion-euiFlexItem-grow-2-euiPageHeaderContent__leftSideItems"
     >
       <h1
         class="euiTitle emotion-euiTitle-l"
@@ -392,10 +372,10 @@ exports[`EuiPageHeaderContent props pageTitle is rendered with icon 1`] = `
   class="euiPageHeaderContent emotion-euiPageHeaderContent"
 >
   <div
-    class="euiFlexGroup euiPageHeaderContent__top emotion-euiFlexGroup-responsive-l-flexStart-stretch-row"
+    class="euiFlexGroup euiPageHeaderContent__top emotion-euiFlexGroup-responsive-wrap-l-flexStart-stretch-row-euiPageHeaderContent__top"
   >
     <div
-      class="euiFlexItem emotion-euiFlexItem-grow-1"
+      class="euiFlexItem emotion-euiFlexItem-grow-2-euiPageHeaderContent__leftSideItems"
     >
       <h1
         class="euiTitle emotion-euiTitle-l"
@@ -416,10 +396,10 @@ exports[`EuiPageHeaderContent props pageTitle is rendered with icon and iconProp
   class="euiPageHeaderContent emotion-euiPageHeaderContent"
 >
   <div
-    class="euiFlexGroup euiPageHeaderContent__top emotion-euiFlexGroup-responsive-l-flexStart-stretch-row"
+    class="euiFlexGroup euiPageHeaderContent__top emotion-euiFlexGroup-responsive-wrap-l-flexStart-stretch-row-euiPageHeaderContent__top"
   >
     <div
-      class="euiFlexItem emotion-euiFlexItem-grow-1"
+      class="euiFlexItem emotion-euiFlexItem-grow-2-euiPageHeaderContent__leftSideItems"
     >
       <h1
         class="euiTitle emotion-euiTitle-l"
@@ -443,10 +423,10 @@ exports[`EuiPageHeaderContent props pageTitle is rendered with pageTitleProps 1`
   class="euiPageHeaderContent emotion-euiPageHeaderContent"
 >
   <div
-    class="euiFlexGroup euiPageHeaderContent__top emotion-euiFlexGroup-responsive-l-flexStart-stretch-row"
+    class="euiFlexGroup euiPageHeaderContent__top emotion-euiFlexGroup-responsive-wrap-l-flexStart-stretch-row-euiPageHeaderContent__top"
   >
     <div
-      class="euiFlexItem emotion-euiFlexItem-grow-1"
+      class="euiFlexItem emotion-euiFlexItem-grow-2-euiPageHeaderContent__leftSideItems"
     >
       <h1
         aria-label="aria-label"
@@ -465,10 +445,10 @@ exports[`EuiPageHeaderContent props responsive is rendered as false 1`] = `
   class="euiPageHeaderContent emotion-euiPageHeaderContent"
 >
   <div
-    class="euiFlexGroup euiPageHeaderContent__top emotion-euiFlexGroup-l-flexStart-stretch-row"
+    class="euiFlexGroup euiPageHeaderContent__top emotion-euiFlexGroup-wrap-l-flexStart-stretch-row-euiPageHeaderContent__top"
   >
     <div
-      class="euiFlexItem emotion-euiFlexItem-grow-1"
+      class="euiFlexItem emotion-euiFlexItem-grow-2-euiPageHeaderContent__leftSideItems"
     />
   </div>
 </div>
@@ -479,10 +459,10 @@ exports[`EuiPageHeaderContent props responsive is rendered as reverse 1`] = `
   class="euiPageHeaderContent emotion-euiPageHeaderContent"
 >
   <div
-    class="euiFlexGroup euiPageHeaderContent__top emotion-euiFlexGroup-responsive-l-flexStart-stretch-row"
+    class="euiFlexGroup euiPageHeaderContent__top emotion-euiFlexGroup-responsive-wrap-l-flexStart-stretch-row-euiPageHeaderContent__top"
   >
     <div
-      class="euiFlexItem emotion-euiFlexItem-grow-1"
+      class="euiFlexItem emotion-euiFlexItem-grow-2-euiPageHeaderContent__leftSideItems"
     />
   </div>
 </div>
@@ -493,31 +473,27 @@ exports[`EuiPageHeaderContent props rightSideItems is rendered 1`] = `
   class="euiPageHeaderContent emotion-euiPageHeaderContent"
 >
   <div
-    class="euiFlexGroup euiPageHeaderContent__top emotion-euiFlexGroup-responsive-l-flexStart-stretch-row"
+    class="euiFlexGroup euiPageHeaderContent__top emotion-euiFlexGroup-responsive-wrap-l-flexStart-stretch-row-euiPageHeaderContent__top"
   >
     <div
-      class="euiFlexItem emotion-euiFlexItem-grow-1"
+      class="euiFlexItem emotion-euiFlexItem-grow-2-euiPageHeaderContent__leftSideItems"
     />
     <div
-      class="euiFlexItem emotion-euiFlexItem-growZero"
+      class="euiFlexGroup emotion-euiFlexGroup-wrap-l-flexStart-stretch-row-euiPageHeaderContent__rightSideItems"
     >
       <div
-        class="euiFlexGroup emotion-euiFlexGroup-wrap-l-flexStart-stretch-row"
+        class="euiFlexItem emotion-euiFlexItem-growZero"
       >
-        <div
-          class="euiFlexItem emotion-euiFlexItem-growZero"
-        >
-          <button>
-            Button 2
-          </button>
-        </div>
-        <div
-          class="euiFlexItem emotion-euiFlexItem-growZero"
-        >
-          <button>
-            Button 1
-          </button>
-        </div>
+        <button>
+          Button 2
+        </button>
+      </div>
+      <div
+        class="euiFlexItem emotion-euiFlexItem-growZero"
+      >
+        <button>
+          Button 1
+        </button>
       </div>
     </div>
   </div>
@@ -529,33 +505,29 @@ exports[`EuiPageHeaderContent props rightSideItems is rendered with rightSideGro
   class="euiPageHeaderContent emotion-euiPageHeaderContent"
 >
   <div
-    class="euiFlexGroup euiPageHeaderContent__top emotion-euiFlexGroup-responsive-l-flexStart-stretch-row"
+    class="euiFlexGroup euiPageHeaderContent__top emotion-euiFlexGroup-responsive-wrap-l-flexStart-stretch-row-euiPageHeaderContent__top"
   >
     <div
-      class="euiFlexItem emotion-euiFlexItem-grow-1"
+      class="euiFlexItem emotion-euiFlexItem-grow-2-euiPageHeaderContent__leftSideItems"
     />
     <div
-      class="euiFlexItem emotion-euiFlexItem-growZero"
+      aria-label="aria-label"
+      class="euiFlexGroup testClass1 testClass2 emotion-euiFlexGroup-wrap-l-flexStart-stretch-column-euiPageHeaderContent__rightSideItems-euiTestCss"
+      data-test-subj="test subject string"
     >
       <div
-        aria-label="aria-label"
-        class="euiFlexGroup testClass1 testClass2 emotion-euiFlexGroup-wrap-l-flexStart-stretch-column-euiTestCss"
-        data-test-subj="test subject string"
+        class="euiFlexItem emotion-euiFlexItem-growZero"
       >
-        <div
-          class="euiFlexItem emotion-euiFlexItem-growZero"
-        >
-          <button>
-            Button 2
-          </button>
-        </div>
-        <div
-          class="euiFlexItem emotion-euiFlexItem-growZero"
-        >
-          <button>
-            Button 1
-          </button>
-        </div>
+        <button>
+          Button 2
+        </button>
+      </div>
+      <div
+        class="euiFlexItem emotion-euiFlexItem-growZero"
+      >
+        <button>
+          Button 1
+        </button>
       </div>
     </div>
   </div>
@@ -567,10 +539,10 @@ exports[`EuiPageHeaderContent props tabs is rendered 1`] = `
   class="euiPageHeaderContent emotion-euiPageHeaderContent"
 >
   <div
-    class="euiFlexGroup euiPageHeaderContent__top emotion-euiFlexGroup-responsive-l-flexStart-stretch-row"
+    class="euiFlexGroup euiPageHeaderContent__top emotion-euiFlexGroup-responsive-wrap-l-flexStart-stretch-row-euiPageHeaderContent__top"
   >
     <div
-      class="euiFlexItem emotion-euiFlexItem-grow-1"
+      class="euiFlexItem emotion-euiFlexItem-grow-2-euiPageHeaderContent__leftSideItems"
     >
       <h1
         class="emotion-euiScreenReaderOnly"
@@ -616,10 +588,10 @@ exports[`EuiPageHeaderContent props tabs is rendered with tabsProps 1`] = `
   class="euiPageHeaderContent emotion-euiPageHeaderContent"
 >
   <div
-    class="euiFlexGroup euiPageHeaderContent__top emotion-euiFlexGroup-responsive-l-flexStart-stretch-row"
+    class="euiFlexGroup euiPageHeaderContent__top emotion-euiFlexGroup-responsive-wrap-l-flexStart-stretch-row-euiPageHeaderContent__top"
   >
     <div
-      class="euiFlexItem emotion-euiFlexItem-grow-1"
+      class="euiFlexItem emotion-euiFlexItem-grow-2-euiPageHeaderContent__leftSideItems"
     >
       <h1
         class="emotion-euiScreenReaderOnly"
