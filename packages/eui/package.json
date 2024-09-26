@@ -31,7 +31,7 @@
     "test": "yarn lint && yarn test-unit",
     "test-ci": "yarn test && yarn test-cypress",
     "test-unit": "node ./scripts/test-unit",
-    "test-staged": "yarn lint && node scripts/test-staged.js",
+    "test-staged": "yarn build:workspaces && yarn lint && node scripts/test-staged.js",
     "test-cypress": "node ./scripts/test-cypress",
     "test-cypress-dev": "yarn test-cypress --dev",
     "test-cypress-a11y": "yarn test-cypress --a11y",
