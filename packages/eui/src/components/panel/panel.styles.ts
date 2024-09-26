@@ -29,11 +29,18 @@ export const euiPanelStyles = (euiThemeContext: UseEuiTheme) => {
     `,
 
     hasShadow: css`
-      ${euiShadow(euiThemeContext, 'm')}
+      ${euiShadow(euiThemeContext, 'panel')}
     `,
 
     hasBorder: css`
       border: ${euiTheme.border.thin};
+    `,
+
+    hasBevel: css`
+    ${euiThemeContext.colorMode == "LIGHT"
+      ? `border-bottom: ${euiTheme.border.thin};`
+      : `border-top: ${euiTheme.border.thin};`
+    }
     `,
 
     radius: {
@@ -61,7 +68,7 @@ export const euiPanelStyles = (euiThemeContext: UseEuiTheme) => {
 
       &:hover,
       &:focus {
-        ${euiShadow(euiThemeContext, 'l')}
+        ${euiShadow(euiThemeContext, 'm')}
         transform: translateY(-2px);
         cursor: pointer;
       }

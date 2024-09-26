@@ -75,6 +75,7 @@ export interface _EuiPanelProps extends CommonProps {
    * Usually a lightened form of the brand colors
    */
   color?: PanelColor;
+  hasBevel?: boolean;
 }
 
 export interface _EuiPanelDivlike
@@ -102,6 +103,7 @@ export const EuiPanel: FunctionComponent<EuiPanelProps> = ({
   color = 'plain',
   hasShadow = true,
   hasBorder = false,
+  hasBevel = false,
   grow = true,
   panelRef,
   element,
@@ -110,6 +112,7 @@ export const EuiPanel: FunctionComponent<EuiPanelProps> = ({
   // Shadows are only allowed when there's a white background (plain)
   const canHaveShadow = !hasBorder && color === 'plain';
   const canHaveBorder = color === 'plain' || color === 'transparent';
+  const canHaveBevel = !hasBorder;
 
   const styles = useEuiMemoizedStyles(euiPanelStyles);
   const cssStyles = [
@@ -120,6 +123,7 @@ export const EuiPanel: FunctionComponent<EuiPanelProps> = ({
     useEuiBackgroundColorCSS()[color],
     canHaveShadow && hasShadow === true && styles.hasShadow,
     canHaveBorder && hasBorder === true && styles.hasBorder,
+    canHaveBevel && hasBevel === true && styles.hasBevel,
     rest.onClick && styles.isClickable,
   ];
 
