@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-export const EuiThemeShadowSizes = ['xs', 's', 'm', 'l', 'xl'] as const;
+export const EuiThemeShadowSizes = ['panel', 'xs', 's', 'm', 'l', 'xl'] as const;
 
 export type _EuiThemeShadowSize = (typeof EuiThemeShadowSizes)[number];
 
@@ -15,6 +15,7 @@ export type _EuiThemeShadowSize = (typeof EuiThemeShadowSizes)[number];
  */
 export const _EuiShadowSizesDescriptions: Record<_EuiThemeShadowSize, string> =
   {
+    panel: 'For panels',
     xs: 'Very subtle shadow used on small components.',
     s: 'Adds subtle depth, usually used in conjunction with a border.',
     m: 'Used on small sized portalled content like popovers.',

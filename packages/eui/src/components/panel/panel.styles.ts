@@ -39,7 +39,7 @@ export const euiPanelStyles = (euiThemeContext: UseEuiTheme) => {
     radius: {
       none: css``,
       m: css`
-        border-radius: ${euiTheme.border.radius.medium};
+        border-radius: 2px;
       `,
     },
 
