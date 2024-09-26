@@ -8,6 +8,7 @@
 
 export const EuiThemeShadowSizes = [
   'panel',
+  'panel_hover',
   'xs',
   's',
   'm',
@@ -23,6 +24,7 @@ export type _EuiThemeShadowSize = (typeof EuiThemeShadowSizes)[number];
 export const _EuiShadowSizesDescriptions: Record<_EuiThemeShadowSize, string> =
   {
     panel: 'For panels',
+    panel_hover: 'For hovered panels',
     xs: 'Very subtle shadow used on small components.',
     s: 'Adds subtle depth, usually used in conjunction with a border.',
     m: 'Used on small sized portalled content like popovers.',

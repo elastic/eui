@@ -33,6 +33,21 @@ box-shadow:
 };
 
 /**
+ * euiPanelHoverShadow
+ */
+export const euiShadowPanelHover = (
+  { euiTheme, colorMode }: UseEuiTheme,
+  { color: _color }: _EuiThemeShadowCustomColor = {}
+) => {
+  const color = _color || euiTheme.colors.shadow;
+  return `
+box-shadow:
+  0 2px 8px ${getShadowColor(color, 0.16, colorMode)},
+  0 2px 12px ${getShadowColor(color, 0.08, colorMode)};
+`;
+};
+
+/**
  * euiSlightShadow
  */
 export const euiShadowXSmall = (
@@ -181,6 +196,8 @@ export const euiShadow = (
   switch (size) {
     case 'panel':
       return euiShadowPanel(euiThemeContext, { color });
+    case 'panel_hover':
+      return euiShadowPanelHover(euiThemeContext, { color });
     case 'xs':
       return euiShadowXSmall(euiThemeContext, { color });
     case 's':
