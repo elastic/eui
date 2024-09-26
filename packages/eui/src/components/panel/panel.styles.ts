@@ -67,7 +67,7 @@ export const euiPanelStyles = (euiThemeContext: UseEuiTheme) => {
 
       &:hover,
       &:focus {
-        ${euiShadow(euiThemeContext, 'm')}
+        ${euiShadow(euiThemeContext, 's')}
         transform: translateY(-2px);
         cursor: pointer;
       }
