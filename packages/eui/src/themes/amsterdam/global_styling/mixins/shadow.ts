@@ -27,8 +27,8 @@ export const euiShadowPanel = (
   const color = _color || euiTheme.colors.shadow;
   return `
 box-shadow:
-  0 2px 6px ${getShadowColor(color, 0.12, colorMode)},
-  0 2px 10px ${getShadowColor(color, 0.06, colorMode)};
+  0 2px 4px ${getShadowColor(color, 0.08, colorMode)},
+  0 2px 8px ${getShadowColor(color, 0.06, colorMode)};
 `;
 };
 
@@ -42,8 +42,8 @@ export const euiShadowPanelHover = (
   const color = _color || euiTheme.colors.shadow;
   return `
 box-shadow:
-  0 2px 8px ${getShadowColor(color, 0.16, colorMode)},
-  0 2px 12px ${getShadowColor(color, 0.08, colorMode)};
+  0 2px 6px ${getShadowColor(color, 0.1, colorMode)},
+  0 2px 10px ${getShadowColor(color, 0.08, colorMode)};
 `;
 };
 
