@@ -159,8 +159,7 @@ export const euiCardStyles = (
 
         /* Match border radius, minus border width */
         ${logicalCSS(
-          'border-top-left-radius',
-          `2px`
+          'border-top-left-radius', `2px`
         )}
         ${logicals['border-top-right-radius']}: 2px;
 
