@@ -14,6 +14,7 @@ import React, {
   useState,
   memo,
   useCallback,
+  useEffect,
 } from 'react';
 import {
   VariableSizeGrid as Grid,
@@ -423,6 +424,149 @@ export const EuiDataGrid = memo(
       ]
     );
 
+    useEffect(() => {
+      console.log('orderedVisibleColumns changed');
+    }, [orderedVisibleColumns]);
+
+    useEffect(() => {
+      console.log('visibleColCount changed');
+    }, [visibleColCount]);
+
+    useEffect(() => {
+      console.log('leadingControlColumns changed');
+    }, [leadingControlColumns]);
+
+    useEffect(() => {
+      console.log('mergedSchema changed');
+    }, [mergedSchema]);
+
+    useEffect(() => {
+      console.log('trailingControlColumns changed');
+    }, [trailingControlColumns]);
+
+    useEffect(() => {
+      console.log('setVisibleColumns changed');
+    }, [setVisibleColumns]);
+
+    useEffect(() => {
+      console.log('switchColumnPos changed');
+    }, [switchColumnPos]);
+
+    useEffect(() => {
+      console.log('onColumnResize changed');
+    }, [onColumnResize]);
+
+    useEffect(() => {
+      console.log('allSchemaDetectors changed');
+    }, [allSchemaDetectors]);
+
+    useEffect(() => {
+      console.log('sorting changed');
+    }, [sorting]);
+
+    useEffect(() => {
+      console.log('pagination changed');
+    }, [pagination]);
+
+    useEffect(() => {
+      console.log('renderCellValue changed');
+    }, [renderCellValue]);
+
+    useEffect(() => {
+      console.log('cellContext changed');
+    }, [cellContext]);
+
+    useEffect(() => {
+      console.log('renderCellPopover changed');
+    }, [renderCellPopover]);
+
+    useEffect(() => {
+      console.log('renderFooterCellValue changed');
+    }, [renderFooterCellValue]);
+
+    useEffect(() => {
+      console.log('rowCount changed');
+    }, [rowCount]);
+
+    useEffect(() => {
+      console.log('visibleRows changed');
+    }, [visibleRows]);
+
+    useEffect(() => {
+      console.log('interactiveCellId changed');
+    }, [interactiveCellId]);
+
+    useEffect(() => {
+      console.log('rowHeightsOptions changed');
+    }, [rowHeightsOptions]);
+
+    useEffect(() => {
+      console.log('virtualizationOptions changed');
+    }, [virtualizationOptions]);
+
+    useEffect(() => {
+      console.log('isFullScreen changed');
+    }, [isFullScreen]);
+
+    useEffect(() => {
+      console.log('gridStyles changed');
+    }, [gridStyles]);
+
+    useEffect(() => {
+      console.log('gridWidth changed');
+    }, [gridWidth]);
+
+    useEffect(() => {
+      console.log('gridRef changed');
+    }, [gridRef]);
+
+    useEffect(() => {
+      console.log('gridItemsRendered changed');
+    }, [gridItemsRendered]);
+
+    useEffect(() => {
+      console.log('contentRef changed');
+    }, [contentRef]);
+
+    useEffect(() => {
+      console.log('renderCustomGridBody changed');
+    }, [renderCustomGridBody]);
+
+    /*
+     *
+     *
+orderedVisibleColumns
+visibleColCount
+leadingControlColumns
+mergedSchema
+trailingControlColumns
+setVisibleColumns
+switchColumnPos
+onColumnResize
+allSchemaDetectors
+sorting
+pagination
+renderCellValue
+cellContext
+renderCellPopover
+renderFooterCellValue
+rowCount
+visibleRows
+interactiveCellId
+rowHeightsOptions
+virtualizationOptions
+emptyVirtualizationOptions
+isFullScreen
+gridStyles
+gridWidth
+gridRef
+gridItemsRendered
+contentRef
+renderCustomGridBody
+     *
+     *
+     * */
+
     return (
       <DataGridFocusContext.Provider value={focusContext}>
         <DataGridCellPopoverContext.Provider value={cellPopoverContext}>
@@ -475,7 +619,7 @@ export const EuiDataGrid = memo(
                   role="grid"
                   aria-rowcount={rowCount}
                   id={gridId}
-                  {...wrappingDivFocusProps} // re: above jsx-a11y - tabIndex is handled by these props, but the linter isn't smart enough to know that
+                  {...wrappingDivFocusProps}
                   {...gridAriaProps}
                 >
                   <EuiDataGridBody

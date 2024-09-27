@@ -36,6 +36,7 @@ dataGridRef.current.closeCellPopover();
 `;
 
 import CustomRenderer from './custom_renderer';
+import CustomRendererWithVirtualization from './custom_renderer_virtualization';
 const customRendererSource = require('!!raw-loader!./custom_renderer');
 const customRendererSnippet = `const CustomGridBody = ({ visibleColumns, visibleRowData, Cell }) => {
   const visibleRows = raw_data.slice(
@@ -250,6 +251,49 @@ export const DataGridAdvancedExample = {
         </>
       ),
       demo: <CustomRenderer />,
+      snippet: customRendererSnippet,
+      props: { EuiDataGridCustomBodyProps },
+    },
+
+    {
+      title: 'Custom body renderer with Custom Virtualization',
+      source: [
+        {
+          type: GuideSectionTypes.TSX,
+          code: customRendererSource,
+        },
+      ],
+      text: (
+        <>
+          <p>
+            For <strong>extremely</strong> advanced use cases, the{' '}
+            <EuiCode>renderCustomGridBody</EuiCode> prop may be used to take
+            complete control over rendering the grid body. This may be useful
+            for scenarios where the default{' '}
+            <Link to="/tabular-content/data-grid#virtualization">
+              virtualized
+            </Link>{' '}
+            rendering is not desired, or where custom row layouts (e.g., the
+            conditional row details cell below) are required.
+          </p>
+          <p>
+            Please note that this prop is meant to be an{' '}
+            <strong>escape hatch</strong>, and should only be used if you know
+            exactly what you are doing. Once a custom renderer is used, you are
+            in charge of ensuring the grid has all the correct semantic and aria
+            labels required by the{' '}
+            <EuiLink
+              href="https://www.w3.org/WAI/ARIA/apg/patterns/grid"
+              target="_blank"
+            >
+              data grid spec
+            </EuiLink>
+            , and that keyboard focus and navigation still work in an accessible
+            manner.
+          </p>
+        </>
+      ),
+      demo: <CustomRendererWithVirtualization />,
       snippet: customRendererSnippet,
       props: { EuiDataGridCustomBodyProps },
     },

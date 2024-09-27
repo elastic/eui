@@ -522,6 +522,8 @@ export interface EuiDataGridCustomBodyProps {
    */
 
   gridWidth: number;
+  headerRow?: React.JSX.Element;
+  footerRow?: React.JSX.Element | null;
 }
 
 export type EuiDataGridSetCustomGridBodyProps = CommonProps &

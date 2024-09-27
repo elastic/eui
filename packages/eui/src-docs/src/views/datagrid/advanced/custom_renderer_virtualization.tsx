@@ -1,5 +1,5 @@
-import React, { useEffect, useCallback, useState, useRef } from 'react';
-import { css } from '@emotion/react';
+import React, { useEffect, useCallback, useState, useRef, PropsWithChildren, useMemo } from 'react';
+import { css} from '@emotion/react';
 import { faker } from '@faker-js/faker';
 
 import {
@@ -21,6 +21,68 @@ import {
   EuiDataGridColumnSortingConfig,
   RenderCellValue,
 } from '../../../../../src';
+import { VariableSizeList } from 'react-window';
+
+type CustomTimelineDataGridSingleRowProps = {
+  rowIndex: number;
+  setRowHeight: (index: number, height: number) => void;
+  maxWidth: number | undefined;
+  showRowDetails: boolean;
+} & Pick<
+  EuiDataGridCustomBodyProps,
+  'visibleColumns' | 'Cell' >;
+
+const Row = ({ rowIndex, visibleColumns, setRowHeight, Cell,showRowDetails }: CustomTimelineDataGridSingleRowProps) => {
+  const {euiTheme} = useEuiTheme();
+      const styles = {
+        row: css`
+          ${logicalCSS('width', 'fit-content')};
+          ${logicalCSS('border-bottom', euiTheme.border.thin)};
+          background-color: ${euiTheme.colors.emptyShade};
+        `,
+        rowCellsWrapper: css`
+          display: flex;
+        `,
+        rowDetailsWrapper: css`
+          text-align: center;
+          background-color: ${euiTheme.colors.body};
+        `,
+      };
+  const rowRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (rowRef.current) {
+      setRowHeight(rowIndex, rowRef.current.offsetHeight);
+    }
+  }, [rowIndex, setRowHeight]);
+
+  return (<div ref={rowRef} role="row" css={styles.row} key={rowIndex}>
+              <div css={styles.rowCellsWrapper}>
+                {visibleColumns.map((column, colIndex) => {
+                  // Skip the row details cell - we'll render it manually outside of the flex wrapper
+                  if (column.id !== 'row-details') {
+                    return (
+                      <Cell
+                        colIndex={colIndex}
+                        visibleRowIndex={rowIndex}
+                        key={`${rowIndex},${colIndex}`}
+                      />
+                    );
+                  }
+                })}
+              </div>
+    {showRowDetails && (
+                <div css={styles.rowDetailsWrapper}>
+                  <Cell
+          rowHeightsOptions={{
+            defaultHeight: 'auto',
+          }}
+                    colIndex={visibleColumns.length - 1} // If the row is being shown, it should always be the last index
+                    visibleRowIndex={rowIndex}
+                  />
+                </div>)}
+            </div>)
+}
 
 const raw_data: Array<{ [key: string]: string }> = [];
 for (let i = 1; i < 100; i++) {
@@ -213,20 +275,6 @@ export default () => {
       );
 
       // Add styling needed for custom grid body rows
-      const styles = {
-        row: css`
-          ${logicalCSS('width', 'fit-content')};
-          ${logicalCSS('border-bottom', euiTheme.border.thin)};
-          background-color: ${euiTheme.colors.emptyShade};
-        `,
-        rowCellsWrapper: css`
-          display: flex;
-        `,
-        rowDetailsWrapper: css`
-          text-align: center;
-          background-color: ${euiTheme.colors.body};
-        `,
-      };
 
       // Set custom props onto the grid body wrapper
       const bodyRef = useRef<HTMLDivElement | null>(null);
@@ -238,36 +286,66 @@ export default () => {
         });
       }, [setCustomGridBodyProps]);
 
+    const listRef = useRef<VariableSizeList<unknown>>(null);
+    const rowHeights = useRef<number[]>([]);
+
+    const setRowHeight = useCallback((index: number, height: number) => {
+      if (rowHeights.current[index] === height) return;
+      listRef.current?.resetAfterIndex(index);
+
+      rowHeights.current[index] = height;
+    }, []);
+
+    const getRowHeight = useCallback((index: number) => {
+      return rowHeights.current[index] ?? 100;
+    }, []);
+
+    const outer = useMemo(()=> React.forwardRef<HTMLDivElement, PropsWithChildren<{}>>(({children, ...rest}, ref) => {
+                return (<div ref={ref} {...rest}>
+                    {headerRow}
+                    {children}
+                    {footerRow}
+                </div>
+                )
+              }), [headerRow, footerRow]);
+
+      const inner = useMemo(()=> React.forwardRef<HTMLDivElement, PropsWithChildren<{}>>(({children, style, ...rest}, ref) => {
+                return (<div  className="row-container" ref={ref} style={
+                {...style, position:'relative'}
+                } {...rest}>
+                    {children}
+                </div>
+                )
+              }),[])
+
       return (
         <>
-          {headerRow}
-          {visibleRows.map((row, rowIndex) => (
-            <div role="row" css={styles.row} key={rowIndex}>
-              <div css={styles.rowCellsWrapper}>
-                {visibleColumns.map((column, colIndex) => {
-                  // Skip the row details cell - we'll render it manually outside of the flex wrapper
-                  if (column.id !== 'row-details') {
-                    return (
-                      <Cell
-                        colIndex={colIndex}
-                        visibleRowIndex={rowIndex}
-                        key={`${rowIndex},${colIndex}`}
-                      />
-                    );
-                  }
-                })}
-              </div>
-              {showRowDetails && (
-                <div css={styles.rowDetailsWrapper}>
-                  <Cell
-                    colIndex={visibleColumns.length - 1} // If the row is being shown, it should always be the last index
-                    visibleRowIndex={rowIndex}
-                  />
-                </div>
-              )}
-            </div>
-          ))}
-          {footerRow}
+          <VariableSizeList
+            ref={listRef}
+            height={400}
+            width="100%"
+            itemCount={visibleRows.length}
+            itemSize={getRowHeight}
+            outerElementType={outer}
+            innerElementType={inner}
+            overscanCount={5}
+          >
+            { ({ index: rowIndex, style }) => {
+              return (
+                <div className={`row-${rowIndex}`} style={{
+                  ...style,
+                }} key={rowIndex}>
+                  <Row
+                    showRowDetails={showRowDetails}
+                    rowIndex={rowIndex}
+                    setRowHeight={setRowHeight}
+                  visibleColumns={visibleColumns}
+                    Cell={Cell}
+                    maxWidth={100} />
+              </div>)
+            }
+          }
+          </VariableSizeList>
         </>
       );
     },
