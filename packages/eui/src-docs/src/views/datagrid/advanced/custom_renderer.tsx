@@ -203,8 +203,6 @@ export default () => {
       visibleColumns,
       visibleRowData,
       setCustomGridBodyProps,
-      headerRow,
-      footerRow,
     }: EuiDataGridCustomBodyProps) => {
       // Ensure we're displaying correctly-paginated rows
       const visibleRows = raw_data.slice(
@@ -240,7 +238,6 @@ export default () => {
 
       return (
         <>
-          {headerRow}
           {visibleRows.map((row, rowIndex) => (
             <div role="row" css={styles.row} key={rowIndex}>
               <div css={styles.rowCellsWrapper}>
@@ -267,7 +264,6 @@ export default () => {
               )}
             </div>
           ))}
-          {footerRow}
         </>
       );
     },
