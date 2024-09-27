@@ -435,10 +435,6 @@ export const useDefaultRowHeight = ({
         );
       }
 
-      console.log(
-        `Height of Row ${rowIndex} is ${rowHeight || defaultRowHeight}`
-      );
-
       // Use the row-specific height if it exists, if not, fall back to the default
       return rowHeight || defaultRowHeight;
     },
