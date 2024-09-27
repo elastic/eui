@@ -136,6 +136,8 @@ export type EuiCardProps = Omit<CommonProps, 'aria-label'> &
      * Use a border style of card instead of shadow
      */
     hasBorder?: EuiPanelProps['hasBorder'];
+    hasBevel?: EuiPanelProps['hasBevel'];
+    hasShadow?: EuiPanelProps['hasShadow'];
   };
 
 export const EuiCard: FunctionComponent<EuiCardProps> = ({
