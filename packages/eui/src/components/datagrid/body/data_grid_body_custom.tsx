@@ -6,14 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, {
-  FunctionComponent,
-  useState,
-  useMemo,
-  useCallback,
-  RefObject,
-  useRef,
-} from 'react';
+import React, { FunctionComponent, useState, useMemo } from 'react';
 import classNames from 'classnames';
 
 import { useDefaultColumnWidth, useColumnWidths } from '../utils/col_widths';
