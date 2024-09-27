@@ -158,9 +158,7 @@ export const euiCardStyles = (
         ${logicalCSS('margin-bottom', `-${paddingAmount}`)}
 
         /* Match border radius, minus border width */
-        ${logicalCSS(
-          'border-top-left-radius', `2px`
-        )}
+        ${logicalCSS('border-top-left-radius', `2px`)}
         ${logicals['border-top-right-radius']}: 2px;
 
         img {
