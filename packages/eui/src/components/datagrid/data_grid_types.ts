@@ -18,6 +18,7 @@ import {
   Ref,
   Component,
   ComponentClass,
+  RefObject,
 } from 'react';
 import {
   VariableSizeGridProps,
@@ -517,8 +518,11 @@ export interface EuiDataGridCustomBodyProps {
    */
   setCustomGridBodyProps: (props: EuiDataGridSetCustomGridBodyProps) => void;
 
-  headerRow?: ReactElement;
-  footerRow?: ReactElement | null;
+  /**
+   * The width of the grid, can be used by consumer as a layout utility
+   */
+
+  gridWidth: number;
 }
 
 export type EuiDataGridSetCustomGridBodyProps = CommonProps &

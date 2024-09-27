@@ -610,10 +610,6 @@ export class EuiDataGridCell extends Component<
 
     cellProps.style = {
       ...style, // set by react-window or the custom renderer
-      height:
-        this.props.columnId === 'timeline-event-detail-row'
-          ? undefined
-          : style?.height, // row height, can be undefined
       top: style?.top ? 0 : undefined, // The cell's row will handle top positioning
       width: width === 0 ? '100%' : width, // column width, can be undefined
       lineHeight: rowHeightsOptions?.lineHeight ?? undefined, // lineHeight configuration
@@ -623,10 +619,6 @@ export class EuiDataGridCell extends Component<
     const rowHeight = rowHeightUtils?.getRowHeightOption(
       rowIndex,
       rowHeightsOptions
-    );
-
-    console.log(
-      `rowHeight for Column ID : ${this.props.columnId} is ${rowHeight}`
     );
 
     const row =

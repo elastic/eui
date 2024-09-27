@@ -11,6 +11,8 @@ import React, {
   useState,
   useMemo,
   useCallback,
+  RefObject,
+  useRef,
 } from 'react';
 import classNames from 'classnames';
 
@@ -160,28 +162,49 @@ export const EuiDataGridBodyCustomRender: FunctionComponent<
     rowHeightUtils,
   ]);
 
-  const Cell = useCallback<EuiDataGridCustomBodyProps['Cell']>(
-    ({ colIndex, visibleRowIndex, ...rest }) => {
-      const style = {
-        ...rest.style,
-        height: rowHeightUtils.isAutoHeight(visibleRowIndex, rowHeightsOptions)
-          ? 'auto'
-          : getRowHeight(visibleRowIndex),
-      };
-      const props = {
-        colIndex,
-        visibleRowIndex,
-        style,
-        ...cellProps,
-      };
-      return <CellWrapper {...props} {...rest} />;
-    },
+  const Cell = useMemo<EuiDataGridCustomBodyProps['Cell']>(
+    () =>
+      ({ colIndex, visibleRowIndex, ...rest }) => {
+        const style = {
+          height: rowHeightUtils.isAutoHeight(
+            visibleRowIndex,
+            rest.rowHeightsOptions ?? rowHeightsOptions
+          )
+            ? 'auto'
+            : getRowHeight(visibleRowIndex),
+        };
+
+        const props = {
+          colIndex,
+          visibleRowIndex,
+          style,
+          ...cellProps,
+        };
+        return <CellWrapper {...props} {...rest} />;
+      },
     [cellProps, getRowHeight, rowHeightUtils, rowHeightsOptions]
   );
 
   // Allow consumers to pass custom props/attributes/listeners etc. to the wrapping div
   const [customGridBodyProps, setCustomGridBodyProps] =
     useState<EuiDataGridSetCustomGridBodyProps>({});
+
+  const customDataGridBodyProps: EuiDataGridCustomBodyProps = useMemo(
+    () => ({
+      gridWidth,
+      visibleColumns,
+      visibleRowData: visibleRows,
+      Cell,
+      setCustomGridBodyProps,
+    }),
+    [gridWidth, visibleColumns, visibleRows, Cell, setCustomGridBodyProps]
+  );
+
+  /**
+   * 1. width of grid body is the sum of all column widths
+   * 2. scrollbar
+   *
+   * */
 
   return (
     <div
@@ -191,14 +214,9 @@ export const EuiDataGridBodyCustomRender: FunctionComponent<
         customGridBodyProps?.className
       )}
     >
-      {renderCustomGridBody!({
-        visibleColumns,
-        visibleRowData: visibleRows,
-        Cell,
-        setCustomGridBodyProps,
-        headerRow,
-        footerRow,
-      })}
+      {headerRow}
+      {renderCustomGridBody!(customDataGridBodyProps)}
+      {footerRow}
     </div>
   );
 };
