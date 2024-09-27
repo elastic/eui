@@ -18,7 +18,6 @@ import {
   Ref,
   Component,
   ComponentClass,
-  RefObject,
 } from 'react';
 import {
   VariableSizeGridProps,
