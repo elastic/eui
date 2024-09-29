@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent, useState, useMemo, useEffect } from 'react';
+import React, { FunctionComponent, useState, useMemo } from 'react';
 import classNames from 'classnames';
 
 import { useDefaultColumnWidth, useColumnWidths } from '../utils/col_widths';
@@ -46,90 +46,6 @@ export const EuiDataGridBodyCustomRender: FunctionComponent<EuiDataGridBodyProps
       gridWidth,
       gridStyles,
     }) => {
-      useEffect(() => {
-        console.log(`renderCustomGridBody changed`);
-      }, [renderCustomGridBody]);
-
-      useEffect(() => {
-        console.log(`renderCellValue changed`);
-      }, [renderCellValue]);
-
-      useEffect(() => {
-        console.log(`cellContext changed`);
-      }, [cellContext]);
-
-      useEffect(() => {
-        console.log(`renderCellPopover changed`);
-      }, [renderCellPopover]);
-
-      useEffect(() => {
-        console.log(`renderFooterCellValue changed`);
-      }, [renderFooterCellValue]);
-
-      useEffect(() => {
-        console.log(`interactiveCellId changed`);
-      }, [interactiveCellId]);
-
-      useEffect(() => {
-        console.log(`visibleRows changed`);
-      }, [visibleRows]);
-
-      useEffect(() => {
-        console.log(`visibleColCount changed`);
-      }, [visibleColCount]);
-
-      useEffect(() => {
-        console.log(`leadingControlColumns changed`);
-      }, [leadingControlColumns]);
-
-      useEffect(() => {
-        console.log(`trailingControlColumns changed`);
-      }, [trailingControlColumns]);
-
-      useEffect(() => {
-        console.log(`columns changed`);
-      }, [columns]);
-
-      useEffect(() => {
-        console.log(`setVisibleColumns changed`);
-      }, [setVisibleColumns]);
-
-      useEffect(() => {
-        console.log(`switchColumnPos changed`);
-      }, [switchColumnPos]);
-
-      useEffect(() => {
-        console.log(`onColumnResize changed`);
-      }, [onColumnResize]);
-
-      useEffect(() => {
-        console.log(`schema changed`);
-      }, [schema]);
-
-      useEffect(() => {
-        console.log(`schemaDetectors changed`);
-      }, [schemaDetectors]);
-
-      useEffect(() => {
-        console.log(`sorting changed`);
-      }, [sorting]);
-
-      useEffect(() => {
-        console.log(`pagination changed`);
-      }, [pagination]);
-
-      useEffect(() => {
-        console.log(`rowHeightsOptions changed`);
-      }, [rowHeightsOptions]);
-
-      useEffect(() => {
-        console.log(`gridWidth changed`);
-      }, [gridWidth]);
-
-      useEffect(() => {
-        console.log(`gridStyles changed`);
-      }, [gridStyles]);
-
       /**
        * Columns & widths
        */
@@ -171,13 +87,6 @@ export const EuiDataGridBodyCustomRender: FunctionComponent<EuiDataGridBodyProps
         rowHeightUtils,
       });
 
-      useEffect(() => {
-        console.log('mounting changed');
-        return () => {
-          console.log('unmounting changed');
-        };
-      }, []);
-
       const headerRowProps = useMemo(() => {
         return {
           leadingControlColumns,
@@ -210,50 +119,6 @@ export const EuiDataGridBodyCustomRender: FunctionComponent<EuiDataGridBodyProps
        * Header & footer
        */
       const { headerRow } = useDataGridHeader(headerRowProps);
-
-      useEffect(() => {
-        console.log(`leadingControlColumns changed`);
-      }, [leadingControlColumns]);
-
-      useEffect(() => {
-        console.log(`trailingControlColumns changed`);
-      }, [trailingControlColumns]);
-
-      useEffect(() => {
-        console.log(`columns changed`);
-      }, [columns]);
-
-      useEffect(() => {
-        console.log(`columnWidths changed`);
-      }, [columnWidths]);
-
-      useEffect(() => {
-        console.log(`defaultColumnWidth changed`);
-      }, [defaultColumnWidth]);
-
-      useEffect(() => {
-        console.log(`setColumnWidth changed`);
-      }, [setColumnWidth]);
-
-      useEffect(() => {
-        console.log(`setVisibleColumns changed`);
-      }, [setVisibleColumns]);
-
-      useEffect(() => {
-        console.log(`switchColumnPos changed`);
-      }, [switchColumnPos]);
-
-      useEffect(() => {
-        console.log(`sorting changed`);
-      }, [sorting]);
-
-      useEffect(() => {
-        console.log(`schema changed`);
-      }, [schema]);
-
-      useEffect(() => {
-        console.log(`schemaDetectors changed`);
-      }, [schemaDetectors]);
 
       const footerRowProps = useMemo(
         () => ({
@@ -373,30 +238,6 @@ export const EuiDataGridBodyCustomRender: FunctionComponent<EuiDataGridBodyProps
           footerRow,
         ]
       );
-
-      useEffect(() => {
-        console.log(`headerRow changed`);
-      }, [headerRow]);
-
-      useEffect(() => {
-        console.log(`footerRow changed`);
-      }, [footerRow]);
-
-      useEffect(() => {
-        console.log(`visibleColumns changed`);
-      }, [visibleColumns]);
-
-      useEffect(() => {
-        console.log(`visibleRows changed`);
-      }, [visibleRows]);
-
-      useEffect(() => {
-        console.log(`Cell changed`);
-      }, [Cell]);
-
-      useEffect(() => {
-        console.log(`setCustomGridBodyProps changed`);
-      }, [setCustomGridBodyProps]);
 
       /**
        *

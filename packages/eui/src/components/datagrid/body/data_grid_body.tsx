@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent, useEffect, useMemo } from 'react';
+import React, { FunctionComponent } from 'react';
 
 import { EuiDataGridBodyProps } from '../data_grid_types';
 import { EuiDataGridBodyVirtualized } from './data_grid_body_virtualized';
@@ -22,22 +22,7 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = ({
    * passed their own custom renderer
    */
 
-  console.log({ EuiDataGridBodyCustomRender, EuiDataGridBodyVirtualized });
-
-  useEffect(() => {
-    console.log(`EuiDataGridBody mounted change`);
-    return () => {
-      console.log(`EuiDataGridBody unmounted change`);
-    };
-  }, []);
-
-  useEffect(() => {
-    console.log(`EuiDataGridBody props change`);
-  }, [props]);
-
-  console.log({ renderCustomGridBody });
-
-  return !!renderCustomGridBody ? (
+  return renderCustomGridBody ? (
     <EuiDataGridBodyCustomRender
       renderCustomGridBody={renderCustomGridBody}
       {...props}

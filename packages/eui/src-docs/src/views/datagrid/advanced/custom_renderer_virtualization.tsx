@@ -1,5 +1,12 @@
-import React, { useEffect, useCallback, useState, useRef, PropsWithChildren, useMemo } from 'react';
-import { css} from '@emotion/react';
+import React, {
+  useEffect,
+  useCallback,
+  useState,
+  useRef,
+  PropsWithChildren,
+  useMemo,
+} from 'react';
+import { css } from '@emotion/react';
 import { faker } from '@faker-js/faker';
 
 import {
@@ -20,6 +27,7 @@ import {
   EuiDataGridSorting,
   EuiDataGridColumnSortingConfig,
   RenderCellValue,
+  EuiAutoSizer,
 } from '../../../../../src';
 import { VariableSizeList } from 'react-window';
 
@@ -28,61 +36,68 @@ type CustomTimelineDataGridSingleRowProps = {
   setRowHeight: (index: number, height: number) => void;
   maxWidth: number | undefined;
   showRowDetails: boolean;
-} & Pick<
-  EuiDataGridCustomBodyProps,
-  'visibleColumns' | 'Cell' >;
+} & Pick<EuiDataGridCustomBodyProps, 'visibleColumns' | 'Cell'>;
 
-const Row = ({ rowIndex, visibleColumns, setRowHeight, Cell,showRowDetails }: CustomTimelineDataGridSingleRowProps) => {
-  const {euiTheme} = useEuiTheme();
-      const styles = {
-        row: css`
-          ${logicalCSS('width', 'fit-content')};
-          ${logicalCSS('border-bottom', euiTheme.border.thin)};
-          background-color: ${euiTheme.colors.emptyShade};
-        `,
-        rowCellsWrapper: css`
-          display: flex;
-        `,
-        rowDetailsWrapper: css`
-          text-align: center;
-          background-color: ${euiTheme.colors.body};
-        `,
-      };
+const Row = ({
+  rowIndex,
+  visibleColumns,
+  setRowHeight,
+  Cell,
+  showRowDetails,
+}: CustomTimelineDataGridSingleRowProps) => {
+  const { euiTheme } = useEuiTheme();
+  const styles = {
+    row: css`
+      ${logicalCSS('width', 'fit-content')};
+      ${logicalCSS('border-bottom', euiTheme.border.thin)};
+      background-color: ${euiTheme.colors.emptyShade};
+    `,
+    rowCellsWrapper: css`
+      display: flex;
+    `,
+    rowDetailsWrapper: css`
+      text-align: center;
+      background-color: ${euiTheme.colors.body};
+    `,
+  };
   const rowRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (rowRef.current) {
       setRowHeight(rowIndex, rowRef.current.offsetHeight);
     }
-  }, [rowIndex, setRowHeight]);
+  }, [Cell, rowIndex, setRowHeight]);
 
-  return (<div ref={rowRef} role="row" css={styles.row} key={rowIndex}>
-              <div css={styles.rowCellsWrapper}>
-                {visibleColumns.map((column, colIndex) => {
-                  // Skip the row details cell - we'll render it manually outside of the flex wrapper
-                  if (column.id !== 'row-details') {
-                    return (
-                      <Cell
-                        colIndex={colIndex}
-                        visibleRowIndex={rowIndex}
-                        key={`${rowIndex},${colIndex}`}
-                      />
-                    );
-                  }
-                })}
-              </div>
-    {showRowDetails && (
-                <div css={styles.rowDetailsWrapper}>
-                  <Cell
-          rowHeightsOptions={{
-            defaultHeight: 'auto',
-          }}
-                    colIndex={visibleColumns.length - 1} // If the row is being shown, it should always be the last index
-                    visibleRowIndex={rowIndex}
-                  />
-                </div>)}
-            </div>)
-}
+  return (
+    <div ref={rowRef} role="row" css={styles.row} key={rowIndex}>
+      <div css={styles.rowCellsWrapper}>
+        {visibleColumns.map((column, colIndex) => {
+          // Skip the row details cell - we'll render it manually outside of the flex wrapper
+          if (column.id !== 'row-details') {
+            return (
+              <Cell
+                colIndex={colIndex}
+                visibleRowIndex={rowIndex}
+                key={`${rowIndex},${colIndex}`}
+              />
+            );
+          }
+        })}
+      </div>
+      {showRowDetails && (
+        <div css={styles.rowDetailsWrapper}>
+          <Cell
+            rowHeightsOptions={{
+              defaultHeight: 'auto',
+            }}
+            colIndex={visibleColumns.length - 1} // If the row is being shown, it should always be the last index
+            visibleRowIndex={rowIndex}
+          />
+        </div>
+      )}
+    </div>
+  );
+};
 
 const raw_data: Array<{ [key: string]: string }> = [];
 for (let i = 1; i < 100; i++) {
@@ -173,14 +188,20 @@ const RowCellRender: RenderCellValue = ({ setCellProps, rowIndex }) => {
 
   const firstName = raw_data[rowIndex].name.split(', ')[1];
   const isGood = faker.datatype.boolean();
+  const randomeSentence = faker.lorem.paragraph({ min: 1, max: 10 });
   return (
-    <>
-      {firstName}&apos;s account has {isGood ? 'no' : ''} outstanding fees.{' '}
-      <EuiIcon
-        type={isGood ? 'checkInCircleFilled' : 'error'}
-        color={isGood ? 'success' : 'danger'}
-      />
-    </>
+    <div style={{ textAlign: 'left' }}>
+      <p>
+        {firstName}&apos;s account has {isGood ? 'no' : ''} outstanding fees.{' '}
+        <EuiIcon
+          type={isGood ? 'checkInCircleFilled' : 'error'}
+          color={isGood ? 'success' : 'danger'}
+        />
+      </p>
+      <div>
+        <p>{randomeSentence}</p>
+      </div>
+    </div>
   );
 };
 
@@ -226,8 +247,8 @@ const RenderFooterCellValue: RenderCellValue = ({ columnId, setCellProps }) => {
 };
 
 export default () => {
-  const [autoHeight, setAutoHeight] = useState(true);
-  const [showRowDetails, setShowRowDetails] = useState(false);
+  const [autoHeight, setAutoHeight] = useState(false);
+  const [showRowDetails, setShowRowDetails] = useState(true);
 
   // Column visibility
   const [visibleColumns, setVisibleColumns] = useState(() =>
@@ -255,8 +276,6 @@ export default () => {
   const onSort = useCallback<EuiDataGridSorting['onSort']>((sortingColumns) => {
     setSortingColumns(sortingColumns);
   }, []);
-
-  const { euiTheme } = useEuiTheme();
 
   // Custom grid body renderer
   const RenderCustomGridBody = useCallback(
@@ -286,70 +305,99 @@ export default () => {
         });
       }, [setCustomGridBodyProps]);
 
-    const listRef = useRef<VariableSizeList<unknown>>(null);
-    const rowHeights = useRef<number[]>([]);
+      const listRef = useRef<VariableSizeList<unknown>>(null);
+      const rowHeights = useRef<number[]>([]);
 
-    const setRowHeight = useCallback((index: number, height: number) => {
-      if (rowHeights.current[index] === height) return;
-      listRef.current?.resetAfterIndex(index);
+      const setRowHeight = useCallback((index: number, height: number) => {
+        if (rowHeights.current[index] === height) return;
+        listRef.current?.resetAfterIndex(index);
 
-      rowHeights.current[index] = height;
-    }, []);
+        rowHeights.current[index] = height;
+      }, []);
 
-    const getRowHeight = useCallback((index: number) => {
-      return rowHeights.current[index] ?? 100;
-    }, []);
+      const getRowHeight = useCallback((index: number) => {
+        return rowHeights.current[index] ?? 100;
+      }, []);
 
-    const outer = useMemo(()=> React.forwardRef<HTMLDivElement, PropsWithChildren<{}>>(({children, ...rest}, ref) => {
-                return (<div ref={ref} {...rest}>
-                    {headerRow}
-                    {children}
-                    {footerRow}
+      const outer = useMemo(
+        () =>
+          React.forwardRef<HTMLDivElement, PropsWithChildren<{}>>(
+            ({ children, ...rest }, ref) => {
+              return (
+                <div ref={ref} {...rest}>
+                  {headerRow}
+                  {children}
+                  {footerRow}
                 </div>
-                )
-              }), [headerRow, footerRow]);
+              );
+            }
+          ),
+        [headerRow, footerRow]
+      );
 
-      const inner = useMemo(()=> React.forwardRef<HTMLDivElement, PropsWithChildren<{}>>(({children, style, ...rest}, ref) => {
-                return (<div  className="row-container" ref={ref} style={
-                {...style, position:'relative'}
-                } {...rest}>
-                    {children}
+      const inner = useMemo(
+        () =>
+          React.forwardRef<HTMLDivElement, PropsWithChildren<{}>>(
+            ({ children, style, ...rest }, ref) => {
+              return (
+                <div
+                  className="row-container"
+                  ref={ref}
+                  style={{ ...style, position: 'relative' }}
+                  {...rest}
+                >
+                  {children}
                 </div>
-                )
-              }),[])
+              );
+            }
+          ),
+        []
+      );
 
       return (
-        <>
-          <VariableSizeList
-            ref={listRef}
-            height={400}
-            width="100%"
-            itemCount={visibleRows.length}
-            itemSize={getRowHeight}
-            outerElementType={outer}
-            innerElementType={inner}
-            overscanCount={5}
-          >
-            { ({ index: rowIndex, style }) => {
-              return (
-                <div className={`row-${rowIndex}`} style={{
-                  ...style,
-                }} key={rowIndex}>
-                  <Row
-                    showRowDetails={showRowDetails}
-                    rowIndex={rowIndex}
-                    setRowHeight={setRowHeight}
-                  visibleColumns={visibleColumns}
-                    Cell={Cell}
-                    maxWidth={100} />
-              </div>)
-            }
-          }
-          </VariableSizeList>
-        </>
+        <EuiAutoSizer disableWidth>
+          {({ height }) => {
+            console.log(`new height is ${height}`);
+            return (
+              <VariableSizeList
+                ref={listRef}
+                // Full re-render when height changes to ensure correct row positioning
+                key={height}
+                height={height}
+                width="100%"
+                itemCount={visibleRows.length}
+                itemSize={getRowHeight}
+                outerElementType={outer}
+                innerElementType={inner}
+                overscanCount={0}
+              >
+                {({ index: rowIndex, style }) => {
+                  return (
+                    <div
+                      className={`row-${rowIndex}`}
+                      style={{
+                        ...style,
+                      }}
+                      key={`${height}-${rowIndex}`}
+                    >
+                      <Row
+                        showRowDetails={showRowDetails}
+                        rowIndex={rowIndex}
+                        setRowHeight={setRowHeight}
+                        visibleColumns={visibleColumns}
+                        Cell={Cell}
+                        maxWidth={100}
+                      />
+                    </div>
+                  );
+                }}
+              </VariableSizeList>
+            );
+          }}
+        </EuiAutoSizer>
       );
     },
-    [showRowDetails, euiTheme]
+    [showRowDetails]
   );
 
   return (
@@ -388,7 +436,7 @@ export default () => {
         renderCellValue={renderCellValue}
         renderFooterCellValue={RenderFooterCellValue}
         renderCustomGridBody={RenderCustomGridBody}
-        height={autoHeight ? undefined : 400}
+        height={400}
         gridStyle={{ border: 'none', header: 'underline' }}
       />
     </>
