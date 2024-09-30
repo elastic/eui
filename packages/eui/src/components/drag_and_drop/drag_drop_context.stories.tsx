@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { useState } from 'react';
+import React from 'react';
 import type { Meta, StoryObj, ReactRenderer } from '@storybook/react';
 import type { PlayFunctionContext } from '@storybook/csf';
 import { expect, fireEvent, waitFor } from '@storybook/test';
@@ -21,7 +21,6 @@ import { EuiDroppable } from './droppable';
 import { EuiDraggable } from './draggable';
 import { EuiDragDropContext } from './drag_drop_context';
 import { EuiFlyout, EuiFlyoutBody, EuiFlyoutHeader } from '../flyout';
-import { EuiButton } from '../button';
 import { EuiModal, EuiModalBody, EuiModalHeader } from '../modal';
 import { EuiTitle } from '../title';
 
@@ -112,74 +111,7 @@ export const WithinFlyouts: Story = {
       </EuiDroppable>
     ),
   },
-  render: (args) => <FlyoutOrModalStory type="flyout" {...args} />,
-  play: async ({ canvasElement }: PlayFunctionContext<ReactRenderer>) => {
-    const canvas = within(canvasElement);
-
-    await waitFor(async () => {
-      expect(canvas.getByTestSubject('flyoutDragDrop')).toBeInTheDocument();
-      expect(canvas.getByTestSubject('euiFlyoutCloseButton')).toBeVisible(); // wait for the flyout to be open open
-    });
-
-    await setTimeout(async () => {
-      await waitFor(async () => {
-        await fireEvent.mouseDown(canvas.getByTestSubject('draggable-item-1'));
-        await fireEvent.mouseMove(canvas.getByTestSubject('draggable-item-1'), {
-          clientX: 0,
-          clientY: 5,
-        });
-
-        expect(
-          [...canvas.getByTestSubject('draggable-item-1').classList]
-            .join('')
-            .includes('isDragging')
-        ).toBe(true);
-      });
-    }, 150); // add a timeout to prevent differences due to animation
-  },
-};
-
-export const WithinModals: Story = {
-  tags: ['vrt-only'],
-  parameters: {
-    loki: {
-      skip: false,
-      chromeSelector: LOKI_SELECTORS.portal,
-    },
-  },
-  args: {
-    children: (
-      <EuiDroppable droppableId="droppableArea">
-        <EuiDraggable
-          spacing="m"
-          index={0}
-          draggableId="draggable-item-1"
-          usePortal
-          data-test-subj="draggable-item-1"
-        >
-          {(_, state) => (
-            <EuiPanel hasShadow={state.isDragging}>
-              Draggable item 1 {state.isDragging && '✨'}
-            </EuiPanel>
-          )}
-        </EuiDraggable>
-        <EuiDraggable
-          spacing="m"
-          index={1}
-          draggableId="draggable-item-2"
-          usePortal
-          data-test-subj="draggable-item-2"
-        >
-          {(_, state) => (
-            <EuiPanel hasShadow={state.isDragging}>
-              Draggable item 2 {state.isDragging && '✨'}
-            </EuiPanel>
-          )}
-        </EuiDraggable>
-      </EuiDroppable>
-    ),
-  },
-  render: (args) => <FlyoutOrModalStory type="modal" {...args} />,
+  render: (args) => <VRTStory type="flyout" {...args} />,
   play: async ({ canvasElement }: PlayFunctionContext<ReactRenderer>) => {
     const canvas = within(canvasElement);
 
@@ -202,56 +134,53 @@ export const WithinModals: Story = {
             .includes('isDragging')
         ).toBe(true);
       });
-    }, 150);
+    }, 150); // add a timeout to prevent differences due to animation
   },
 };
 
-const FlyoutOrModalStory = ({
+export const WithinModals: Story = {
+  tags: ['vrt-only'],
+  ...WithinFlyouts,
+  render: (args) => <VRTStory type="modal" {...args} />,
+};
+
+const VRTStory = ({
   type,
   ...args
 }: DragDropContextProps & { type: 'flyout' | 'modal' }) => {
-  const [isOpen, setOpen] = useState(true);
+  if (type === 'flyout') {
+    return (
+      <EuiFlyout ownFocus onClose={() => {}} data-test-subj="flyoutDragDrop">
+        <EuiFlyoutHeader>
+          <EuiTitle size="s">
+            <h2>Drag & Drop inside a flyout</h2>
+          </EuiTitle>
+        </EuiFlyoutHeader>
+        <EuiFlyoutBody>
+          <EuiPanel color="subdued" paddingSize="none">
+            <EuiDragDropContext {...args} />
+          </EuiPanel>
+        </EuiFlyoutBody>
+      </EuiFlyout>
+    );
+  }
 
-  const handleOnClose = () => setOpen(false);
+  if (type === 'modal') {
+    return (
+      <EuiModal onClose={() => {}}>
+        <EuiModalHeader>
+          <EuiTitle size="s">
+            <h2>Drag & Drop inside a modal</h2>
+          </EuiTitle>
+        </EuiModalHeader>
+        <EuiModalBody>
+          <EuiPanel color="subdued" paddingSize="none">
+            <EuiDragDropContext {...args} />
+          </EuiPanel>
+        </EuiModalBody>
+      </EuiModal>
+    );
+  }
 
-  return (
-    <>
-      <EuiButton onClick={() => setOpen(!isOpen)}>Toggle</EuiButton>
-      {isOpen && (
-        <>
-          {type === 'flyout' ? (
-            <EuiFlyout
-              ownFocus
-              onClose={handleOnClose}
-              data-test-subj="flyoutDragDrop"
-            >
-              <EuiFlyoutHeader>
-                <EuiTitle size="s">
-                  <h2>Drag & Drop inside a flyout</h2>
-                </EuiTitle>
-              </EuiFlyoutHeader>
-              <EuiFlyoutBody>
-                <EuiPanel color="subdued" paddingSize="none">
-                  <EuiDragDropContext {...args} />
-                </EuiPanel>
-              </EuiFlyoutBody>
-            </EuiFlyout>
-          ) : (
-            <EuiModal onClose={handleOnClose}>
-              <EuiModalHeader>
-                <EuiTitle size="s">
-                  <h2>Drag & Drop inside a modal</h2>
-                </EuiTitle>
-              </EuiModalHeader>
-              <EuiModalBody>
-                <EuiPanel color="subdued" paddingSize="none">
-                  <EuiDragDropContext {...args} />
-                </EuiPanel>
-              </EuiModalBody>
-            </EuiModal>
-          )}
-        </>
-      )}
-    </>
-  );
+  return null;
 };
