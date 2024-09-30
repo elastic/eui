@@ -47,19 +47,6 @@ module.exports = {
           plugins: ['istanbul'],
         },
       },
-      {
-        test: /\.css$/,
-        use: [
-          {
-            loader: 'style-loader',
-            options: {
-              insert: 'meta[name="css-styles"]',
-            },
-          },
-          'css-loader',
-        ],
-        exclude: /node_modules/,
-      },
     ],
     strictExportPresence: false,
   },
