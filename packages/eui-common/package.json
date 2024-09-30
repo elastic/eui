@@ -53,6 +53,7 @@
   },
   "files": [
     "lib/",
+    "src/**/*.scss",
     "README.md"
   ],
   "installConfig": {
