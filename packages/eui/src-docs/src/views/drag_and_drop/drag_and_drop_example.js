@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 import { GuideSectionTypes } from '../../components';
 import {
@@ -39,9 +38,6 @@ const dragAndDropPortalSource = require('!!raw-loader!./drag_and_drop_portal');
 
 import DragAndDropComplex from './drag_and_drop_complex';
 const dragAndDropComplexSource = require('!!raw-loader!./drag_and_drop_complex');
-
-import DragAndDropInPopover from './in_popover';
-const dragAndDropInPopoverSource = require('!!raw-loader!./in_popover');
 
 export const DragAndDropExample = {
   title: 'Drag and drop',
@@ -356,23 +352,38 @@ export const DragAndDropExample = {
       text: (
         <>
           <p>
-            When using EUI drag components inside a stacking context, the fixed
-            drag positioning might be affected. To ensure dragging works as
-            expected inside e.g. <EuiCode>EuiFlyout</EuiCode> or{' '}
-            <EuiCode>EuiModal</EuiCode> use the prop{' '}
-            <EuiCode>usePortal</EuiCode> on <EuiCode>EuiDraggable</EuiCode>{' '}
-            components. This will render the currently dragged element inside a
-            portal on the body scope .
+            <strong>EuiDraggables</strong> use fixed positioning to render and
+            animate the item being dragged. This positioning logic does not work
+            as expected when used inside of containers that have their own{' '}
+            <EuiLink
+              href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_positioned_layout/Understanding_z-index/Stacking_context"
+              target="_blank"
+            >
+              stacking context
+            </EuiLink>
+            .
           </p>
           <p>
-            If the styling of the <EuiCode>EuiDraggable</EuiCode> content is
-            relative to an outer scope component, the styling won't be applied
-            whiled dragging it when using <EuiCode>usePortal</EuiCode>. This is
-            because due to the changed position in the DOM which changes
-            previous hierarchical relations to other ancestor elements. To
-            prevent this from happening, we recommend to apply styling from
-            within the <EuiCode>EuiDraggable</EuiCode> scope.
+            To ensure dragging works as expected inside e.g.{' '}
+            <strong>EuiFlyout</strong>, <strong>EuiModal</strong> or{' '}
+            <strong>EuiPopover</strong> use the prop{' '}
+            <EuiCode>usePortal</EuiCode> on <strong>EuiDraggable</strong>{' '}
+            components. This will render the currently dragged element inside a
+            portal appended to the document body (or wherever{' '}
+            <strong>EuiPortal</strong> is configured to{' '}
+            <EuiCode>insert</EuiCode> to by default).
           </p>
+          <EuiCallOut color="warning" title="Style inheritance">
+            <p>
+              If the styling of the <strong>EuiDraggable</strong> content is
+              relative to an outer scope component, the styling won't be applied
+              whiled dragging it when using <EuiCode>usePortal</EuiCode>. This
+              is because due to the changed position in the DOM which changes
+              previous hierarchical relations to other ancestor elements. To
+              prevent this from happening, we recommend to apply styling from
+              within the <strong>EuiDraggable</strong> scope.
+            </p>
+          </EuiCallOut>
         </>
       ),
       snippet: `<EuiDragDropContext onDragEnd={onDragEnd}>
@@ -414,42 +425,6 @@ export const DragAndDropExample = {
         </>
       ),
       demo: <DragAndDropComplex />,
-    },
-    {
-      title: 'Using drag and drop in popovers',
-      source: [
-        {
-          type: GuideSectionTypes.TSX,
-          code: dragAndDropInPopoverSource,
-        },
-      ],
-      text: (
-        <>
-          <p>
-            <strong>EuiDraggables</strong> use fixed positioning to render and
-            animate the item being dragged. This positioning logic does not work
-            as expected when used inside of containers that have their own{' '}
-            <EuiLink
-              href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_positioned_layout/Understanding_z-index/Stacking_context"
-              target="_blank"
-            >
-              stacking context
-            </EuiLink>
-            .
-          </p>
-          <p>
-            This behavior particularly affects{' '}
-            <Link to="/layout/popover">
-              <strong>EuiPopover</strong>
-            </Link>
-            . If using drag and drop UX within a popover, you{' '}
-            <strong>must</strong> include the{' '}
-            <EuiCode>{'<EuiPopover hasDragDrop>'}</EuiCode> prop for items to
-            properly render while being dragged.
-          </p>
-        </>
-      ),
-      demo: <DragAndDropInPopover />,
     },
   ],
 };

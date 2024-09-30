@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import {
   EuiButton,
-  EuiCode,
   EuiDragDropContext,
   EuiDraggable,
   EuiDroppable,
@@ -12,15 +11,17 @@ import {
   EuiModalBody,
   EuiModalHeader,
   EuiPanel,
+  EuiPopover,
   EuiSpacer,
   EuiTitle,
   euiDragDropReorder,
 } from '../../../../src/components';
 import { htmlIdGenerator } from '../../../../src/services';
+import { OnDragEndResponder } from '@hello-pangea/dnd';
 
 const makeId = htmlIdGenerator();
 
-const makeList = (number, start = 1) =>
+const makeList = (number: number, start = 1) =>
   Array.from({ length: number }, (v, k) => k + start).map((el) => {
     return {
       content: `Item ${el}`,
@@ -31,8 +32,10 @@ const makeList = (number, start = 1) =>
 export default () => {
   const [isFlyoutOpen, setFlyoutOpen] = useState(false);
   const [isModalOpen, setModalOpen] = useState(false);
+  const [isPopoverOpen, setIsPopoverOpen] = useState(false);
+
   const [list, setList] = useState(makeList(3));
-  const onDragEnd = ({ source, destination }) => {
+  const onDragEnd: OnDragEndResponder = ({ source, destination }) => {
     if (source && destination) {
       const items = euiDragDropReorder(list, source.index, destination.index);
 
@@ -49,12 +52,13 @@ export default () => {
       <EuiButton onClick={() => setModalOpen(!isModalOpen)}>
         Toggle modal
       </EuiButton>
+
       {isFlyoutOpen && (
         <EuiFlyout onClose={() => setFlyoutOpen(false)}>
           <EuiFlyoutHeader>
             <EuiTitle size="s">
               <h2>
-                Portalled <EuiCode>EuiDraggable</EuiCode> items
+                Portalled <strong>EuiDraggable</strong> items
               </h2>
             </EuiTitle>
           </EuiFlyoutHeader>
@@ -88,7 +92,7 @@ export default () => {
           <EuiModalHeader>
             <EuiTitle size="s">
               <h2>
-                Portalled <EuiCode>EuiDraggable</EuiCode> items
+                Portalled <strong>EuiDraggable</strong> items
               </h2>
             </EuiTitle>
           </EuiModalHeader>
@@ -116,6 +120,49 @@ export default () => {
           </EuiModalBody>
         </EuiModal>
       )}
+
+      <EuiSpacer />
+
+      <EuiPopover
+        isOpen={isPopoverOpen}
+        closePopover={() => setIsPopoverOpen(false)}
+        button={
+          <EuiButton onClick={() => setIsPopoverOpen(!isPopoverOpen)}>
+            Toggle popover
+          </EuiButton>
+        }
+        panelPaddingSize="none"
+        panelProps={{ css: { inlineSize: 200 } }}
+      >
+        <EuiDragDropContext
+          onDragEnd={({ source, destination }) => {
+            if (source && destination) {
+              const items = euiDragDropReorder(
+                list,
+                source.index,
+                destination.index
+              );
+              setList(items);
+            }
+          }}
+        >
+          <EuiDroppable droppableId="droppableInPopover" spacing="m">
+            {list.map(({ content, id }, idx) => (
+              <EuiDraggable
+                spacing="m"
+                key={id}
+                index={idx}
+                draggableId={id}
+                usePortal
+              >
+                {(provided, state) => (
+                  <EuiPanel hasShadow={state.isDragging}>{content}</EuiPanel>
+                )}
+              </EuiDraggable>
+            ))}
+          </EuiDroppable>
+        </EuiDragDropContext>
+      </EuiPopover>
     </>
   );
 };

@@ -45,7 +45,9 @@ export interface EuiDraggableProps
   isRemovable?: boolean;
   /**
    * Whether the currently dragged item is cloned into a portal in the body. This settings will
-   * ensure that drag & drop still works as expected within stacking contexts (e.g. within EuiFlyout and EuiModal).
+   * ensure that drag & drop still works as expected within stacking contexts (e.g. within `EuiFlyout`,
+   * `EuiModal` and `EuiPopover`).
+   *
    * Make sure to apply styles directly to the Draggable content as relative styling from an outside
    * scope might not be applied when the content is placed in a portal as the DOM structure changes.
    */
