@@ -116,17 +116,19 @@ describe('DataGridSortingControl', () => {
   });
 
   describe('sort order', () => {
-    const mockDrag = (handle: HTMLElement, moveEvent: Partial<MouseEvent>) => {
-      fireEvent.mouseDown(handle);
-      fireEvent.mouseMove(handle, moveEvent);
-      fireEvent.mouseUp(handle);
-    };
-
     it('reorders sort on drag', () => {
       const { getByLabelText } = render(<ControlWithState />);
       openPopover();
 
-      mockDrag(getByLabelText('Drag handle'), { clientX: 0, clientY: 5 });
+      // we need to re-query the handle, otherwise the handle would not
+      // be available because the draggable item is portalled on drag
+      fireEvent.mouseDown(getByLabelText('Drag handle'));
+      fireEvent.mouseMove(getByLabelText('Drag handle'), {
+        clientX: 0,
+        clientY: 5,
+      });
+      fireEvent.mouseUp(getByLabelText('Drag handle'));
+
       expect(onSort).toHaveBeenCalledWith(defaultSort);
     });
 
@@ -134,7 +136,12 @@ describe('DataGridSortingControl', () => {
       const { getByLabelText } = render(<ControlWithState />);
       openPopover();
 
-      mockDrag(getByLabelText('Drag handle'), {});
+      const draggableItem = getByLabelText('Drag handle');
+
+      fireEvent.mouseDown(draggableItem);
+      fireEvent.mouseMove(draggableItem, {});
+      fireEvent.mouseUp(draggableItem);
+
       expect(onSort).not.toHaveBeenCalled();
     });
   });

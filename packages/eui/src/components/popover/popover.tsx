@@ -177,6 +177,8 @@ export interface EuiPopoverProps extends PropsWithChildren, CommonProps {
   /**
    * Must be set to true if using `EuiDragDropContext` within a popover,
    * otherwise your nested drag & drop will have incorrect positioning
+   *
+   * @deprecated - use `usePortal` prop on children `EuiDraggable` components instead.
    */
   hasDragDrop?: boolean;
   /**

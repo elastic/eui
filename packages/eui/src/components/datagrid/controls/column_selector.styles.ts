@@ -9,7 +9,11 @@
 import { css } from '@emotion/react';
 
 import { UseEuiTheme } from '../../../services';
-import { euiYScroll, logicalCSS, mathWithUnits } from '../../../global_styling';
+import {
+  euiYScrollWithShadows,
+  logicalCSS,
+  mathWithUnits,
+} from '../../../global_styling';
 import { euiShadowLarge } from '../../../themes';
 
 export const euiDataGridColumnSelectorStyles = (
@@ -22,7 +26,7 @@ export const euiDataGridColumnSelectorStyles = (
 
   return {
     euiDataGridColumnSelector: css`
-      ${euiYScroll(euiThemeContext)}
+      ${euiYScrollWithShadows(euiThemeContext)}
       ${logicalCSS('max-height', maxResponsiveHeight)}
       padding: ${euiTheme.size.s};
     `,
