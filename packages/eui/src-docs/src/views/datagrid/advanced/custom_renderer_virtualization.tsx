@@ -5,6 +5,9 @@ import React, {
   useRef,
   PropsWithChildren,
   useMemo,
+  memo,
+  ComponentProps,
+  CSSProperties,
 } from 'react';
 import { css } from '@emotion/react';
 import { faker } from '@faker-js/faker';
@@ -90,6 +93,8 @@ const Row = ({
             rowHeightsOptions={{
               defaultHeight: 'auto',
             }}
+            /* @ts-expect-error */
+            width={"100%"}
             colIndex={visibleColumns.length - 1} // If the row is being shown, it should always be the last index
             visibleRowIndex={rowIndex}
           />
@@ -183,7 +188,7 @@ const trailingControlColumns: EuiDataGridProps['trailingControlColumns'] = [
   },
 ];
 
-const RowCellRender: RenderCellValue = ({ setCellProps, rowIndex }) => {
+const RowCellRender: RenderCellValue = memo(({ setCellProps, rowIndex }) => {
   setCellProps({ style: { width: '100%', height: 'auto' } });
 
   const firstName = raw_data[rowIndex].name.split(', ')[1];
@@ -203,7 +208,7 @@ const RowCellRender: RenderCellValue = ({ setCellProps, rowIndex }) => {
       </div>
     </div>
   );
-};
+});
 
 // The custom row details is actually a trailing control column cell with
 // a hidden header. This is important for accessibility and markup reasons
@@ -247,7 +252,6 @@ const RenderFooterCellValue: RenderCellValue = ({ columnId, setCellProps }) => {
 };
 
 export default () => {
-  const [autoHeight, setAutoHeight] = useState(false);
   const [showRowDetails, setShowRowDetails] = useState(true);
 
   // Column visibility
@@ -323,6 +327,7 @@ export default () => {
         () =>
           React.forwardRef<HTMLDivElement, PropsWithChildren<{}>>(
             ({ children, ...rest }, ref) => {
+
               return (
                 <div ref={ref} {...rest}>
                   {headerRow}
@@ -335,9 +340,9 @@ export default () => {
         [headerRow, footerRow]
       );
 
-      const inner = useMemo(
+    const inner = useMemo(
         () =>
-          React.forwardRef<HTMLDivElement, PropsWithChildren<{}>>(
+          React.forwardRef<HTMLDivElement, PropsWithChildren<{style: CSSProperties}> >(
             ({ children, style, ...rest }, ref) => {
               return (
                 <div
@@ -354,6 +359,7 @@ export default () => {
         []
       );
 
+
       return (
         <EuiAutoSizer disableWidth>
           {({ height }) => {
@@ -361,23 +367,22 @@ export default () => {
             return (
               <VariableSizeList
                 ref={listRef}
-                // Full re-render when height changes to ensure correct row positioning
-                key={height}
                 height={height}
                 width="100%"
                 itemCount={visibleRows.length}
                 itemSize={getRowHeight}
+                itemKey={(index) => `${height}-${visibleRows.length}-${index}`}
                 outerElementType={outer}
                 innerElementType={inner}
                 overscanCount={0}
+                layout="vertical"
               >
                 {({ index: rowIndex, style }) => {
+                    console.log(`Style of ${rowIndex} : `, {style})
                   return (
                     <div
                       className={`row-${rowIndex}`}
-                      style={{
-                        ...style,
-                      }}
+                      style={style}
                       key={`${height}-${rowIndex}`}
                     >
                       <Row
@@ -404,11 +409,6 @@ export default () => {
     <>
       <EuiFlexGroup alignItems="center">
         <EuiSwitch
-          label="Set static grid height"
-          checked={!autoHeight}
-          onChange={() => setAutoHeight(!autoHeight)}
-        />
-        <EuiSwitch
           label="Toggle custom row details"
           checked={showRowDetails}
           onChange={() => setShowRowDetails(!showRowDetails)}
@@ -416,7 +416,7 @@ export default () => {
       </EuiFlexGroup>
       <EuiSpacer />
       <EuiDataGrid
-        aria-label="Data grid custom body renderer demo"
+        aria-label="Data grid custom body renderer with virtualizer demo"
         columns={columns}
         leadingControlColumns={leadingControlColumns}
         trailingControlColumns={
@@ -436,7 +436,7 @@ export default () => {
         renderCellValue={renderCellValue}
         renderFooterCellValue={RenderFooterCellValue}
         renderCustomGridBody={RenderCustomGridBody}
-        height={400}
+        height={600}
         gridStyle={{ border: 'none', header: 'underline' }}
       />
     </>
