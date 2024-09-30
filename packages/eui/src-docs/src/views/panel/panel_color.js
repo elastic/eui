@@ -13,5 +13,9 @@ export default () => (
     <EuiPanel color="transparent" hasBorder={false}>
       <p>I am a transparent box simply for padding</p>
     </EuiPanel>
+
+    <EuiPanel color="subdued" hasBevel={true}>
+      <p>I am a beveled panel</p>
+    </EuiPanel>
   </div>
 );

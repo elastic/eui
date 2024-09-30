@@ -18,6 +18,36 @@ export interface EuiShadowCustomColor {
 }
 
 /**
+ * euiPanelShadow
+ */
+export const euiShadowPanel = (
+  { euiTheme, colorMode }: UseEuiTheme,
+  { color: _color }: _EuiThemeShadowCustomColor = {}
+) => {
+  const color = _color || euiTheme.colors.shadow;
+  return `
+box-shadow:
+  0 2px 4px ${getShadowColor(color, 0.08, colorMode)},
+  0 2px 8px ${getShadowColor(color, 0.06, colorMode)};
+`;
+};
+
+/**
+ * euiPanelHoverShadow
+ */
+export const euiShadowPanelHover = (
+  { euiTheme, colorMode }: UseEuiTheme,
+  { color: _color }: _EuiThemeShadowCustomColor = {}
+) => {
+  const color = _color || euiTheme.colors.shadow;
+  return `
+box-shadow:
+  0 2px 6px ${getShadowColor(color, 0.1, colorMode)},
+  0 2px 10px ${getShadowColor(color, 0.08, colorMode)};
+`;
+};
+
+/**
  * euiSlightShadow
  */
 export const euiShadowXSmall = (
@@ -164,6 +194,10 @@ export const euiShadow = (
   { color }: _EuiThemeShadowCustomColor = {}
 ) => {
   switch (size) {
+    case 'panel':
+      return euiShadowPanel(euiThemeContext, { color });
+    case 'panel_hover':
+      return euiShadowPanelHover(euiThemeContext, { color });
     case 'xs':
       return euiShadowXSmall(euiThemeContext, { color });
     case 's':

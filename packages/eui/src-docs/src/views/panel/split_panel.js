@@ -65,13 +65,13 @@ export default () => (
     </EuiFlexGroup>
     <EuiSpacer />
     <EuiSplitPanel.Outer direction="row">
-      <EuiSplitPanel.Inner>
+      <EuiSplitPanel.Inner hasBevel={true}>
         <EuiText>
           <p>Left panel</p>
           <p>Has more content</p>
         </EuiText>
       </EuiSplitPanel.Inner>
-      <EuiSplitPanel.Inner color="subdued">
+      <EuiSplitPanel.Inner color="subdued" hasBevel={true}>
         <EuiText>
           <p>Right panel</p>
         </EuiText>

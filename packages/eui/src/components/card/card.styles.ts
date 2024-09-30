@@ -158,19 +158,15 @@ export const euiCardStyles = (
         ${logicalCSS('margin-bottom', `-${paddingAmount}`)}
 
         /* Match border radius, minus border width */
-        ${logicalCSS(
-          'border-top-left-radius',
-          `calc(${euiTheme.border.radius.medium} - ${euiTheme.border.width.thin})`
-        )}
-        ${logicals['border-top-right-radius']}: calc(${euiTheme.border.radius
-          .medium} - ${euiTheme.border.width.thin});
+        ${logicalCSS('border-top-left-radius', `2px`)}
+        ${logicals['border-top-right-radius']}: 2px;
 
         img {
           ${logicalCSS('width', '100%')}/* 4 */
         }
       `,
       transparent: css`
-        border-radius: ${euiTheme.border.radius.medium};
+        border-radius: 2px;
       `,
     },
 
