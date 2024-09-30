@@ -239,15 +239,6 @@ export const EuiDataGridBodyCustomRender: FunctionComponent<EuiDataGridBodyProps
         ]
       );
 
-      /**
-       *
-       * 1. width of header to know the actual width of the table.
-       * 2. Effect to change the actual width of available area so that table can be re-factored accordingly.
-       * 3. header Row inside the `renderCustomGridBody` to own the scrolling container.
-       * 4. We treat all cells as same while the `extra Row` cell should be treated differently in terms of dimensions
-       *
-       * */
-
       return (
         <div
           {...customGridBodyProps}
