@@ -21,7 +21,6 @@ export const EuiDataGridBody: FunctionComponent<EuiDataGridBodyProps> = ({
    * + virtualization library for rendering content, or if consumers have
    * passed their own custom renderer
    */
-
   return renderCustomGridBody ? (
     <EuiDataGridBodyCustomRender
       renderCustomGridBody={renderCustomGridBody}

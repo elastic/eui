@@ -6,7 +6,6 @@ import React, {
   PropsWithChildren,
   useMemo,
   memo,
-  ComponentProps,
   CSSProperties,
 } from 'react';
 import { css } from '@emotion/react';
@@ -93,8 +92,8 @@ const Row = ({
             rowHeightsOptions={{
               defaultHeight: 'auto',
             }}
-            /* @ts-expect-error */
-            width={"100%"}
+            /* @ts-expect-error because currently CellProps do not allow string width but it is important to be passed for height calculations   */
+            width={'100%'}
             colIndex={visibleColumns.length - 1} // If the row is being shown, it should always be the last index
             visibleRowIndex={rowIndex}
           />
@@ -188,6 +187,7 @@ const trailingControlColumns: EuiDataGridProps['trailingControlColumns'] = [
   },
 ];
 
+/* eslint-disable-next-line local/forward-ref */
 const RowCellRender: RenderCellValue = memo(({ setCellProps, rowIndex }) => {
   setCellProps({ style: { width: '100%', height: 'auto' } });
 
@@ -327,7 +327,6 @@ export default () => {
         () =>
           React.forwardRef<HTMLDivElement, PropsWithChildren<{}>>(
             ({ children, ...rest }, ref) => {
-
               return (
                 <div ref={ref} {...rest}>
                   {headerRow}
@@ -340,30 +339,29 @@ export default () => {
         [headerRow, footerRow]
       );
 
-    const inner = useMemo(
+      const inner = useMemo(
         () =>
-          React.forwardRef<HTMLDivElement, PropsWithChildren<{style: CSSProperties}> >(
-            ({ children, style, ...rest }, ref) => {
-              return (
-                <div
-                  className="row-container"
-                  ref={ref}
-                  style={{ ...style, position: 'relative' }}
-                  {...rest}
-                >
-                  {children}
-                </div>
-              );
-            }
-          ),
+          React.forwardRef<
+            HTMLDivElement,
+            PropsWithChildren<{ style: CSSProperties }>
+          >(({ children, style, ...rest }, ref) => {
+            return (
+              <div
+                className="row-container"
+                ref={ref}
+                style={{ ...style, position: 'relative' }}
+                {...rest}
+              >
+                {children}
+              </div>
+            );
+          }),
         []
       );
 
-
       return (
         <EuiAutoSizer disableWidth>
-          {({ height }) => {
-            console.log(`new height is ${height}`);
+          {({ height }: { height: number }) => {
             return (
               <VariableSizeList
                 ref={listRef}
@@ -378,11 +376,10 @@ export default () => {
                 layout="vertical"
               >
                 {({ index: rowIndex, style }) => {
-                    console.log(`Style of ${rowIndex} : `, {style})
                   return (
                     <div
                       className={`row-${rowIndex}`}
-                      style={style}
+                      style={{ ...style }}
                       key={`${height}-${rowIndex}`}
                     >
                       <Row

@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { useEffect, useState, useMemo } from 'react';
+import React, { useState, useMemo } from 'react';
 
 import { useResizeObserver } from '../../../observer/resize_observer';
 
@@ -19,10 +19,6 @@ import { EuiDataGridHeaderRow } from './data_grid_header_row';
 export const useDataGridHeader = (props: EuiDataGridHeaderRowProps) => {
   const [headerRowRef, setHeaderRowRef] = useState<HTMLDivElement | null>(null);
   const { height: headerRowHeight } = useResizeObserver(headerRowRef, 'height');
-
-  useEffect(() => {
-    console.log('props changed');
-  }, [props]);
 
   const headerRow = useMemo(() => {
     return <EuiDataGridHeaderRow ref={setHeaderRowRef} {...props} />;
