@@ -31,7 +31,6 @@ import { EuiPopover } from '../../../popover';
 import { EuiButtonIcon } from '../../../button';
 import { EuiDraggable } from '../../../drag_and_drop';
 import { EuiFlexGroup } from '../../../flex';
-import { EuiPortal } from '../../../portal';
 import { DataGridFocusContext } from '../../utils/focus';
 import {
   EuiDataGridHeaderCellProps,
@@ -324,8 +323,10 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
             css={styles.euiDataGridHeaderCellDraggable}
             index={index}
             customDragHandle="custom"
+            // Requires reparenting of the draggable item into a portal while dragging to ensure correct positioning inside stacking context
+            usePortal
           >
-            {({ draggableProps, dragHandleProps }, { isDragging }) => {
+            {({ dragHandleProps }, { isDragging }) => {
               const {
                 role, // extracting role to not pass it along
                 tabIndex, // we want to use the columnheader rowing tabindex instead
@@ -338,8 +339,6 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
                 ...contentProps,
                 'aria-describedby': `${contentProps['aria-describedby']} ${ariaDescribedby}`,
               };
-
-              const dragProps = isDragging && draggableProps;
 
               // since the cloned content is in a portal outside the datagrid
               // we need to re-add styles to the cell as the scoped styles
@@ -357,23 +356,14 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
                   isDragging={isDragging}
                   onBlur={handleOnBlur}
                   onMouseDown={handleOnMouseDown}
-                  {...dragProps}
                   {...dragContentProps}
                 >
                   {renderContent}
                 </EuiDataGridHeaderCellWrapper>
               );
 
-              /**
-               * Requires reparenting of the draggable item into a portal while dragging to ensure
-               * correct positioning inside transform context. The recommended cloningAPI would require
-               * code duplication, using our own portal in place is cleaner.
-               * https://github.com/hello-pangea/dnd/blob/8f8cc785171bf67f660f7306d16666a1945e29a6/docs/guides/reparenting.md
-               */
               return isDragging ? (
-                <EuiPortal>
-                  <div css={cssStyles}>{content}</div>
-                </EuiPortal>
+                <div css={cssStyles}>{content}</div>
               ) : (
                 content
               );

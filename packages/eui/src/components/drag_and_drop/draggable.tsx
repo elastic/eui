@@ -115,9 +115,7 @@ export const EuiDraggable: FunctionComponent<EuiDraggableProps> = ({
         const content = (
           <>
             <div
-              {...(isFullyCustomDragHandle && isDragging
-                ? {}
-                : provided.draggableProps)}
+              {...provided.draggableProps}
               {...(!hasCustomDragHandle ? provided.dragHandleProps : {})}
               ref={provided.innerRef}
               data-test-subj={dataTestSubj}
@@ -139,6 +137,8 @@ export const EuiDraggable: FunctionComponent<EuiDraggableProps> = ({
               }
               // If the container includes an interactive element, we remove the tabindex=0
               // because [role="group"] does not permit or warrant a tab stop
+              // additionally we remove the tabindex when the child is a fully custom handle
+              // that has its own tabindex and handle props
               tabIndex={
                 hasInteractiveChildren || isFullyCustomDragHandle
                   ? undefined
