@@ -179,7 +179,6 @@ export const DataGridSortingControl: FunctionComponent<ColumnSortingProps> =
         closePopover={() => setIsOpen(false)}
         anchorPosition="downLeft"
         panelPaddingSize="s"
-        hasDragDrop
         button={
           <EuiDataGridToolbarControl
             badgeContent={sorting.columns.length}
