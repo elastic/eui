@@ -50,7 +50,7 @@ exports[`DataGridSortingControl renders a toolbar button/popover allowing users 
         aria-describedby="generated-id"
         aria-live="off"
         aria-modal="true"
-        class="euiPanel euiPanel--plain euiPanel--paddingSmall euiPopover__panel emotion-euiPanel-grow-m-s-plain-euiPopover__panel-light-hasDragDrop-bottom"
+        class="euiPanel euiPanel--plain euiPanel--paddingSmall euiPopover__panel emotion-euiPanel-grow-m-s-plain-euiPopover__panel-light-hasTransform"
         data-autofocus="true"
         data-popover-panel="true"
         role="dialog"

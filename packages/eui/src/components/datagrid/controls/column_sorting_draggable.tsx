@@ -101,6 +101,7 @@ export const EuiDataGridColumnSortingDraggable: FunctionComponent<
       index={index}
       hasInteractiveChildren
       customDragHandle
+      usePortal
       {...rest}
     >
       {(provided, state) => (

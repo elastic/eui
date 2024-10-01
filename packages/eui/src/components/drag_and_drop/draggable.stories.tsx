@@ -52,6 +52,7 @@ const meta: Meta<EuiDraggableProps> = {
     hasInteractiveChildren: false,
     isRemovable: false,
     spacing: 'none',
+    usePortal: false,
   },
 };
 hideStorybookControls(meta, ['style']);

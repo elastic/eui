@@ -144,7 +144,6 @@ export const useDataGridColumnSelector = (
         closePopover={() => setIsOpen(false)}
         anchorPosition="downLeft"
         panelPaddingSize="none"
-        hasDragDrop
         button={
           <EuiDataGridToolbarControl
             badgeContent={
@@ -199,6 +198,7 @@ export const useDataGridColumnSelector = (
                   isDragDisabled={!isDragEnabled}
                   hasInteractiveChildren
                   customDragHandle
+                  usePortal
                 >
                   {(provided, state) => (
                     <div
