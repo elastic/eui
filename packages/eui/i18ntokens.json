@@ -1409,14 +1409,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 159,
+        "line": 158,
         "column": 12,
-        "index": 4993
+        "index": 4973
       },
       "end": {
-        "line": 159,
+        "line": 158,
         "column": 74,
-        "index": 5055
+        "index": 5035
       }
     },
     "filepath": "src/components/datagrid/controls/column_selector.tsx"
@@ -1427,14 +1427,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 165,
+        "line": 164,
         "column": 12,
-        "index": 5201
+        "index": 5181
       },
       "end": {
-        "line": 171,
+        "line": 170,
         "column": 13,
-        "index": 5413
+        "index": 5393
       }
     },
     "filepath": "src/components/datagrid/controls/column_selector.tsx"
@@ -1445,14 +1445,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 165,
+        "line": 164,
         "column": 12,
-        "index": 5201
+        "index": 5181
       },
       "end": {
-        "line": 171,
+        "line": 170,
         "column": 13,
-        "index": 5413
+        "index": 5393
       }
     },
     "filepath": "src/components/datagrid/controls/column_selector.tsx"
@@ -1465,12 +1465,12 @@
       "start": {
         "line": 288,
         "column": 18,
-        "index": 10378
+        "index": 10386
       },
       "end": {
         "line": 291,
         "column": 20,
-        "index": 10502
+        "index": 10510
       }
     },
     "filepath": "src/components/datagrid/controls/column_selector.tsx"
@@ -1483,12 +1483,12 @@
       "start": {
         "line": 301,
         "column": 18,
-        "index": 10862
+        "index": 10870
       },
       "end": {
         "line": 304,
         "column": 20,
-        "index": 10984
+        "index": 10992
       }
     },
     "filepath": "src/components/datagrid/controls/column_selector.tsx"
@@ -1553,14 +1553,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 119,
+        "line": 120,
         "column": 14,
-        "index": 3743
+        "index": 3759
       },
       "end": {
-        "line": 123,
+        "line": 124,
         "column": 15,
-        "index": 3932
+        "index": 3948
       }
     },
     "filepath": "src/components/datagrid/controls/column_sorting_draggable.tsx"
@@ -1571,14 +1571,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 129,
+        "line": 130,
         "column": 12,
-        "index": 4120
+        "index": 4136
       },
       "end": {
-        "line": 133,
+        "line": 134,
         "column": 13,
-        "index": 4302
+        "index": 4318
       }
     },
     "filepath": "src/components/datagrid/controls/column_sorting_draggable.tsx"
@@ -1589,14 +1589,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 177,
+        "line": 178,
         "column": 12,
-        "index": 5805
+        "index": 5821
       },
       "end": {
-        "line": 181,
+        "line": 182,
         "column": 13,
-        "index": 5983
+        "index": 5999
       }
     },
     "filepath": "src/components/datagrid/controls/column_sorting_draggable.tsx"
@@ -1643,14 +1643,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 221,
+        "line": 220,
         "column": 14,
-        "index": 6957
+        "index": 6937
       },
       "end": {
-        "line": 224,
+        "line": 223,
         "column": 16,
-        "index": 7093
+        "index": 7073
       }
     },
     "filepath": "src/components/datagrid/controls/column_sorting.tsx"
@@ -1661,14 +1661,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 254,
+        "line": 253,
         "column": 24,
-        "index": 8316
+        "index": 8296
       },
       "end": {
-        "line": 257,
+        "line": 256,
         "column": 26,
-        "index": 8472
+        "index": 8452
       }
     },
     "filepath": "src/components/datagrid/controls/column_sorting.tsx"
@@ -1679,14 +1679,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 329,
+        "line": 328,
         "column": 20,
-        "index": 11826
+        "index": 11806
       },
       "end": {
-        "line": 332,
+        "line": 331,
         "column": 22,
-        "index": 11959
+        "index": 11939
       }
     },
     "filepath": "src/components/datagrid/controls/column_sorting.tsx"
@@ -5927,14 +5927,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 698,
+        "line": 700,
         "column": 16,
-        "index": 20714
+        "index": 20806
       },
       "end": {
-        "line": 701,
+        "line": 703,
         "column": 18,
-        "index": 20908
+        "index": 21000
       }
     },
     "filepath": "src/components/popover/popover.tsx"
@@ -6017,14 +6017,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 49,
+        "line": 48,
         "column": 29,
-        "index": 1421
+        "index": 1388
       },
       "end": {
-        "line": 52,
+        "line": 51,
         "column": 3,
-        "index": 1484
+        "index": 1451
       }
     },
     "filepath": "src/components/search_bar/search_box.tsx"
@@ -6035,14 +6035,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 53,
+        "line": 52,
         "column": 31,
-        "index": 1517
+        "index": 1484
       },
       "end": {
-        "line": 56,
+        "line": 55,
         "column": 3,
-        "index": 1671
+        "index": 1638
       }
     },
     "filepath": "src/components/search_bar/search_box.tsx"
@@ -6053,14 +6053,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 57,
+        "line": 56,
         "column": 25,
-        "index": 1698
+        "index": 1665
       },
       "end": {
-        "line": 60,
+        "line": 59,
         "column": 3,
-        "index": 1847
+        "index": 1814
       }
     },
     "filepath": "src/components/search_bar/search_box.tsx"
