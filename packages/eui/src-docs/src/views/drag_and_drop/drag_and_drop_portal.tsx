@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { FunctionComponent, ReactElement, useState } from 'react';
 import {
   EuiButton,
   EuiDragDropContext,
@@ -17,7 +17,7 @@ import {
   euiDragDropReorder,
 } from '../../../../src/components';
 import { htmlIdGenerator } from '../../../../src/services';
-import { OnDragEndResponder } from '@hello-pangea/dnd';
+import { DroppableProps, OnDragEndResponder } from '@hello-pangea/dnd';
 
 const makeId = htmlIdGenerator();
 
@@ -28,6 +28,17 @@ const makeList = (number: number, start = 1) =>
       id: makeId(),
     };
   });
+
+const DragContainer: FunctionComponent<{
+  children: ReactElement | ReactElement[] | DroppableProps['children'];
+  onDragEnd: OnDragEndResponder;
+}> = ({ children, onDragEnd }) => (
+  <EuiDragDropContext onDragEnd={onDragEnd}>
+    <EuiDroppable droppableId="DROPPABLE_AREA" spacing="m">
+      {children}
+    </EuiDroppable>
+  </EuiDragDropContext>
+);
 
 export default () => {
   const [isFlyoutOpen, setFlyoutOpen] = useState(false);
@@ -63,26 +74,24 @@ export default () => {
             </EuiTitle>
           </EuiFlyoutHeader>
           <EuiFlyoutBody>
-            <EuiDragDropContext onDragEnd={onDragEnd}>
-              <EuiDroppable droppableId="DROPPABLE_AREA" spacing="m" withPanel>
-                {list.map(({ content, id }, idx) => (
-                  <EuiDraggable
-                    spacing="m"
-                    key={id}
-                    index={idx}
-                    draggableId={id}
-                    usePortal
-                  >
-                    {(provided, state) => (
-                      <EuiPanel hasShadow={state.isDragging}>
-                        {content}
-                        {state.isDragging && ' ✨'}
-                      </EuiPanel>
-                    )}
-                  </EuiDraggable>
-                ))}
-              </EuiDroppable>
-            </EuiDragDropContext>
+            <DragContainer onDragEnd={onDragEnd}>
+              {list.map(({ content, id }, idx) => (
+                <EuiDraggable
+                  spacing="m"
+                  key={id}
+                  index={idx}
+                  draggableId={id}
+                  usePortal
+                >
+                  {(provided, state) => (
+                    <EuiPanel hasShadow={state.isDragging}>
+                      {content}
+                      {state.isDragging && ' ✨'}
+                    </EuiPanel>
+                  )}
+                </EuiDraggable>
+              ))}
+            </DragContainer>
           </EuiFlyoutBody>
         </EuiFlyout>
       )}
@@ -97,26 +106,24 @@ export default () => {
             </EuiTitle>
           </EuiModalHeader>
           <EuiModalBody>
-            <EuiDragDropContext onDragEnd={onDragEnd}>
-              <EuiDroppable droppableId="DROPPABLE_AREA" spacing="m" withPanel>
-                {list.map(({ content, id }, idx) => (
-                  <EuiDraggable
-                    spacing="m"
-                    key={id}
-                    index={idx}
-                    draggableId={id}
-                    usePortal
-                  >
-                    {(provided, state) => (
-                      <EuiPanel hasShadow={state.isDragging}>
-                        {content}
-                        {state.isDragging && ' ✨'}
-                      </EuiPanel>
-                    )}
-                  </EuiDraggable>
-                ))}
-              </EuiDroppable>
-            </EuiDragDropContext>
+            <DragContainer onDragEnd={onDragEnd}>
+              {list.map(({ content, id }, idx) => (
+                <EuiDraggable
+                  spacing="m"
+                  key={id}
+                  index={idx}
+                  draggableId={id}
+                  usePortal
+                >
+                  {(provided, state) => (
+                    <EuiPanel hasShadow={state.isDragging}>
+                      {content}
+                      {state.isDragging && ' ✨'}
+                    </EuiPanel>
+                  )}
+                </EuiDraggable>
+              ))}
+            </DragContainer>
           </EuiModalBody>
         </EuiModal>
       )}
@@ -134,7 +141,7 @@ export default () => {
         panelPaddingSize="none"
         panelProps={{ css: { inlineSize: 200 } }}
       >
-        <EuiDragDropContext
+        <DragContainer
           onDragEnd={({ source, destination }) => {
             if (source && destination) {
               const items = euiDragDropReorder(
@@ -146,22 +153,20 @@ export default () => {
             }
           }}
         >
-          <EuiDroppable droppableId="droppableInPopover" spacing="m">
-            {list.map(({ content, id }, idx) => (
-              <EuiDraggable
-                spacing="m"
-                key={id}
-                index={idx}
-                draggableId={id}
-                usePortal
-              >
-                {(provided, state) => (
-                  <EuiPanel hasShadow={state.isDragging}>{content}</EuiPanel>
-                )}
-              </EuiDraggable>
-            ))}
-          </EuiDroppable>
-        </EuiDragDropContext>
+          {list.map(({ content, id }, idx) => (
+            <EuiDraggable
+              spacing="m"
+              key={id}
+              index={idx}
+              draggableId={id}
+              usePortal
+            >
+              {(provided, state) => (
+                <EuiPanel hasShadow={state.isDragging}>{content}</EuiPanel>
+              )}
+            </EuiDraggable>
+          ))}
+        </DragContainer>
       </EuiPopover>
     </>
   );

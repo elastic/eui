@@ -375,13 +375,13 @@ export const DragAndDropExample = {
           </p>
           <EuiCallOut color="warning" title="Style inheritance">
             <p>
-              If the styling of the <strong>EuiDraggable</strong> content is
-              relative to an outer scope component, the styling won't be applied
-              whiled dragging it when using <EuiCode>usePortal</EuiCode>. This
-              is because due to the changed position in the DOM which changes
-              previous hierarchical relations to other ancestor elements. To
-              prevent this from happening, we recommend to apply styling from
-              within the <strong>EuiDraggable</strong> scope.
+              If the styling of the your draggable content is scoped to a parent
+              component, the styling won't be applied while dragging it when
+              using <EuiCode>usePortal</EuiCode>. This is due to the portalled
+              position in the DOM, which changes previous hierarchical relations
+              to other ancestor elements. To prevent this from happening, we
+              recommend applying styling from within the{' '}
+              <strong>EuiDraggable</strong> scope without any parent selectors.
             </p>
           </EuiCallOut>
         </>
