@@ -1,3 +1,19 @@
+## [`v96.1.0`](https://github.com/elastic/eui/releases/v96.1.0)
+
+**CSS-in-JS conversions**
+
+- Removed the following component-specific Sass mixins: ([#8055](https://github.com/elastic/eui/pull/8055))
+  - `euiButton`
+  - `euiButtonBase`
+  - `euiButtonFocus`
+  - `euiButtonContent`
+  - `euiButtonContentDisabled`
+  - `euiButtonDefaultStyle`
+  - `euiButtonFillStyle`
+  - `euiPanel`
+  - `euiFormControlDefaultShadow`
+  - `euiToolTipTitle`
+
 ## [`v96.0.0`](https://github.com/elastic/eui/releases/v96.0.0)
 
 - Improved `EuiPageHeader`/`EuiPageTemplate.Header`'s responsive UX: ([#8044](https://github.com/elastic/eui/pull/8044))
