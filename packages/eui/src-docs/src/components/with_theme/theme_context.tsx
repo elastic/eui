@@ -1,5 +1,5 @@
 import React, { PropsWithChildren } from 'react';
-import { EuiThemeBerlin } from '@elastic/eui-theme-berlin';
+import { EuiThemeBorealis } from '@elastic/eui-theme-borealis';
 
 import {
   EUI_THEMES,
@@ -15,14 +15,14 @@ const URL_PARAM_KEY = 'themeLanguage';
 const EXPERIMENTAL_THEMES: EUI_THEME[] = isExperimentalThemeEnabled()
   ? [
       {
-        text: 'Berlin (Light)',
-        value: `${EuiThemeBerlin.key}_LIGHT`,
-        provider: EuiThemeBerlin,
+        text: 'Borealis (Light)',
+        value: `${EuiThemeBorealis.key}_LIGHT`,
+        provider: EuiThemeBorealis,
       },
       {
-        text: 'Berlin (Dark)',
-        value: `${EuiThemeBerlin.key}_DARK`,
-        provider: EuiThemeBerlin,
+        text: 'Borealis (Dark)',
+        value: `${EuiThemeBorealis.key}_DARK`,
+        provider: EuiThemeBorealis,
       },
     ]
   : [];
