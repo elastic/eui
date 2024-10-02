@@ -11,7 +11,7 @@ import {
   euiFontSize,
   logicalCSS,
   logicalShorthandCSS,
-  logicalTextAlignStyle,
+  logicalTextAlignCSS,
 } from '../../../global_styling';
 import { euiButtonSizeMap } from '../../../themes/amsterdam/global_styling/mixins';
 import { EuiButtonDisplaySizes } from './_button_display';
@@ -23,7 +23,7 @@ export const euiButtonBaseCSS = () => {
     display: inline-block;
     appearance: none;
     cursor: pointer;
-    ${logicalTextAlignStyle('center')};
+    ${logicalTextAlignCSS('center')};
     white-space: nowrap;
     ${logicalCSS('max-width', '100%')};
     vertical-align: middle;
