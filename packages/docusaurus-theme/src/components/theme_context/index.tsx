@@ -10,15 +10,15 @@ import {
   EuiThemeAmsterdam,
   EuiThemeColorMode,
 } from '@elastic/eui';
-import { EuiThemeBerlin } from '@elastic/eui-theme-berlin';
+import { EuiThemeBorealis } from '@elastic/eui-theme-borealis';
 
 import { EuiThemeOverrides } from './theme_overrides';
 
 const EXPERIMENTAL_THEMES = [
   {
-    text: 'Berlin',
-    value: EuiThemeBerlin.key,
-    provider: EuiThemeBerlin,
+    text: 'Borealis',
+    value: EuiThemeBorealis.key,
+    provider: EuiThemeBorealis,
   },
 ];
 

@@ -17,9 +17,9 @@ import { levels } from './variables/_levels';
 import { font } from './variables/_typography';
 import { focus } from './variables/_states';
 
-export const EUI_THEME_BERLIN_KEY = 'EUI_THEME_BERLIN';
+export const EUI_THEME_BOREALIS_KEY = 'EUI_THEME_BOREALIS';
 
-export const euiThemeBerlin: EuiThemeShape = {
+export const euiThemeBorealis: EuiThemeShape = {
   colors,
   base,
   size,
@@ -31,4 +31,7 @@ export const euiThemeBerlin: EuiThemeShape = {
   focus,
 };
 
-export const EuiThemeBerlin = buildTheme(euiThemeBerlin, EUI_THEME_BERLIN_KEY);
+export const EuiThemeBorealis = buildTheme(
+  euiThemeBorealis,
+  EUI_THEME_BOREALIS_KEY
+);

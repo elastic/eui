@@ -15,7 +15,7 @@ import React, {
 } from 'react';
 import { css } from '@emotion/react';
 import type { Preview } from '@storybook/react';
-import { EuiThemeBerlin } from '@elastic/eui-theme-berlin';
+import { EuiThemeBorealis } from '@elastic/eui-theme-borealis';
 
 import { EuiThemeColorMode } from '../src/services';
 import { EuiProvider, EuiProviderProps } from '../src/components/provider';
@@ -23,9 +23,9 @@ import { EuiThemeAmsterdam } from '../src/themes';
 
 const EXPERIMENTAL_THEMES = [
   {
-    text: 'Berlin',
-    value: EuiThemeBerlin.key,
-    provider: EuiThemeBerlin,
+    text: 'Borealis',
+    value: EuiThemeBorealis.key,
+    provider: EuiThemeBorealis,
   },
 ];
 
@@ -177,7 +177,7 @@ export const euiProviderDecoratorGlobalsExperimental = {
       title: 'Theme',
       items: [
         { value: EuiThemeAmsterdam.key, title: 'Amsterdam', icon: 'box' },
-        { value: EuiThemeBerlin.key, title: 'Berlin', icon: 'box' },
+        { value: EuiThemeBorealis.key, title: 'Borealis', icon: 'box' },
       ],
       dynamicTitle: true,
     },

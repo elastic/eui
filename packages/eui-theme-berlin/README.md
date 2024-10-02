@@ -1,1 +1,0 @@
-# `eui-theme-berlin` - A visual EUI theme
