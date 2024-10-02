@@ -16,10 +16,3 @@
     background-color: $euiTooltipBorderColor;
   }
 }
-
-@mixin euiToolTipTitle {
-  font-weight: $euiFontWeightBold;
-  border-bottom: solid $euiBorderWidthThin $euiTooltipBorderColor;
-  padding-bottom: $euiSizeXS;
-  margin-bottom: $euiSizeXS;
-}
