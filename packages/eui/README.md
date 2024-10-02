@@ -1,3 +1,4 @@
+<!-- Note: this README is what renders to our published NPM package, and should remain nice-looking & have useful links without repeating too much information from the top-level README -->
 <img src="https://repository-images.githubusercontent.com/107422373/b6180480-a1d7-11eb-8a3c-902086232aa7" alt="" />
 
 # Elastic UI Framework
