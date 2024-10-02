@@ -7,7 +7,4 @@
 @import '../../../../global_styling/mixins/helpers';
 @import 'states';
 
-@import '../../../../global_styling/mixins/button';
-@import '../../../../global_styling/mixins/form';
-@import '../../../../global_styling/mixins/panel';
-@import '../../../../global_styling/mixins/tool_tip';
+@import '../../../../global_styling/mixins/tool_tip'; // Needed by Elastic Charts
