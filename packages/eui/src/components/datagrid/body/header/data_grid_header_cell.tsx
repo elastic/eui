@@ -320,7 +320,7 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
             key={id}
             draggableId={id}
             className="euiDataGridHeaderCellDraggable"
-            css={styles.euiDataGridHeaderCellDraggable}
+            css={styles.canDrag.euiDataGridHeaderCellDraggable}
             index={index}
             customDragHandle="custom"
             // Requires reparenting of the draggable item into a portal while dragging to ensure correct positioning inside stacking context
@@ -343,12 +343,16 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
               // since the cloned content is in a portal outside the datagrid
               // we need to re-add styles to the cell as the scoped styles
               // from the wrapper don't apply
-              const cssStyles = [
+              const draggingStyles = [
                 dataGridStyles.cellPadding[gridStyles.cellPadding!],
                 dataGridStyles.fontSize[gridStyles.fontSize!],
                 dataGridStyles.borders[gridStyles.border!],
-                isDragging && index !== 0 && styles.noLeadingBorder,
-                isDragging && gridStyles.header && styles[gridStyles.header],
+              ];
+              // Manually re-apply background and border overrides, since
+              // the droppable zone sets its own and confuses :first-of-type CSS
+              const cellOverrideStyles = [
+                styles.canDrag[gridStyles.header!],
+                index !== 0 && styles.canDrag.noLeadingBorder,
               ];
 
               const content = (
@@ -356,6 +360,7 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
                   isDragging={isDragging}
                   onBlur={handleOnBlur}
                   onMouseDown={handleOnMouseDown}
+                  css={cellOverrideStyles}
                   {...dragContentProps}
                 >
                   {renderContent}
@@ -363,7 +368,7 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
               );
 
               return isDragging ? (
-                <div css={cssStyles}>{content}</div>
+                <div css={draggingStyles}>{content}</div>
               ) : (
                 content
               );

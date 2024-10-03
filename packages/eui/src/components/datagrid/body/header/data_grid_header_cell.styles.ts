@@ -58,27 +58,25 @@ export const euiDataGridHeaderCellStyles = (euiThemeContext: UseEuiTheme) => {
         animation: none !important; /* stylelint-disable-line declaration-no-important */
       }
     `,
-    euiDataGridHeaderCellDraggable: css`
-      /* override internal styling from @hello-pangea/dnd to ensure positioning */
 
-      display: flex;
-      ${logicalCSS('width', '100%')}
-      ${logicalCSS('height', '100%')}
-    `,
-    underline: css`
-      .euiDataGridHeaderCell {
+    canDrag: {
+      euiDataGridHeaderCellDraggable: css`
+        /* override internal styling from @hello-pangea/dnd to ensure positioning */
+
+        display: flex;
+        ${logicalCSS('width', '100%')}
+        ${logicalCSS('height', '100%')}
+      `,
+      // Ensure correct cell background colors on drag
+      underline: css`
         background-color: ${euiTheme.colors.emptyShade};
-      }
-    `,
-    shade: css`
-      .euiDataGridHeaderCell {
+      `,
+      shade: css`
         background-color: ${euiTheme.colors.lightestShade};
-      }
-    `,
-    noLeadingBorder: css`
-      .euiDataGridHeaderCell & {
-        ${logicalCSS('border-left', 'none')}
-      }
-    `,
+      `,
+      noLeadingBorder: css`
+        ${logicalCSS('border-left', 'none !important')}
+      `,
+    },
   };
 };

@@ -25,41 +25,19 @@ export const euiDataGridHeaderStyles = (euiThemeContext: UseEuiTheme) => {
       ${logicalCSS('width', 'fit-content')}
       display: flex;
     `,
-    euiDataGridHeaderDroppable: css`
-      display: flex;
-      ${logicalCSS('width', '100%')}
-
-      *:not(:first-child)
-      .euiDataGridHeaderCellDraggable
-      .euiDataGridHeaderCell {
-        ${logicalCSS('border-left', 'none')}
-      }
-
-      &:not(:first-child)
-        .euiDataGridHeaderCellDraggable
-        .euiDataGridHeaderCell {
-        ${logicalCSS('border-left', 'none')}
-      }
-    `,
     underline: css`
       background-color: ${euiTheme.colors.emptyShade};
       ${logicalCSS(
         'border-bottom',
         `${euiTheme.border.width.thick} solid ${euiTheme.colors.text}`
       )}
-
-      /* ensure correct background on drag */
-      .euiDataGridHeaderCellDraggable .euiDataGridHeaderCell {
-        background-color: ${euiTheme.colors.emptyShade};
-      }
     `,
     shade: css`
       background-color: ${euiTheme.colors.lightestShade};
+    `,
 
-      /* ensure correct background on drag */
-      .euiDataGridHeaderCellDraggable .euiDataGridHeaderCell {
-        background-color: ${euiTheme.colors.lightestShade};
-      }
+    euiDataGridHeader__droppable: css`
+      display: flex;
     `,
   };
 };

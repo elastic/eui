@@ -149,8 +149,7 @@ const EuiDataGridHeaderRow = memo(
               key={droppableId}
               droppableId={droppableId}
               direction="horizontal"
-              className="euiDataGridHeaderDroppable"
-              css={styles.euiDataGridHeaderDroppable}
+              css={styles.euiDataGridHeader__droppable}
               data-test-subj="euiDataGridHeaderDroppable"
             >
               {content}
