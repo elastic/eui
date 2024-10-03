@@ -300,7 +300,6 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
           {/* keep the resizer outside of Draggable to ensure both are working independently */}
           {columnResizer}
           <EuiDraggable
-            key={id}
             draggableId={id}
             className="euiDataGridHeaderCellDraggable"
             css={styles.canDrag.euiDataGridHeaderCellDraggable}

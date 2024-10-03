@@ -55,17 +55,14 @@ const EuiDataGridHeaderRow = memo(
     const handleOnDragEnd: OnDragEndResponder = useCallback(
       ({ source, destination }) => {
         if (!source || !destination) return;
-
-        if (destination.index === source.index) {
-          return;
-        }
+        if (destination.index === source.index) return;
 
         const indexOffset = leadingControlColumns?.length ?? 0;
         const sourceColumn = columns[source.index - indexOffset];
         const destinationColumn = columns[destination.index - indexOffset];
 
         if (sourceColumn && destinationColumn) {
-          switchColumnPos?.(sourceColumn.id, destinationColumn.id);
+          switchColumnPos(sourceColumn.id, destinationColumn.id);
         }
       },
       [columns, leadingControlColumns, switchColumnPos]
@@ -129,7 +126,6 @@ const EuiDataGridHeaderRow = memo(
         {canDragAndDropColumns ? (
           <EuiDragDropContext onDragEnd={handleOnDragEnd}>
             <EuiDroppable
-              key={droppableId}
               droppableId={droppableId}
               direction="horizontal"
               css={styles.euiDataGridHeader__droppable}
