@@ -27,15 +27,11 @@ export const euiDataGridHeaderCellWrapperStyles = (
     euiDataGridCellOutlineStyles(euiThemeContext);
   const { header: outlineSelectors } = euiDataGridCellOutlineSelectors();
 
-  const _sharedFlexCss = css`
-    display: flex;
-    align-items: center;
-  `;
-
   return {
     euiDataGridHeaderCell: css`
       position: relative; /* Needed for cell outline */
-      ${_sharedFlexCss}
+      display: flex;
+      align-items: center;
       flex: 0 0 auto;
       font-weight: ${euiTheme.font.weight.bold};
 
@@ -48,8 +44,7 @@ export const euiDataGridHeaderCellWrapperStyles = (
       }
 
       ${outlineSelectors.showActions} {
-        gap: ${euiTheme.size.xxs};
-
+        &,
         & > [data-focus-lock-disabled] {
           gap: ${euiTheme.size.xxs};
         }
@@ -57,7 +52,8 @@ export const euiDataGridHeaderCellWrapperStyles = (
 
       /* Workaround for focus trap */
       & > [data-focus-lock-disabled] {
-        ${_sharedFlexCss}
+        display: flex;
+        align-items: center;
         ${logicalCSS('width', '100%')}
       }
     `,

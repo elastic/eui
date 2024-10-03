@@ -95,7 +95,7 @@ export const euiDataGridCellOutlineSelectors = (parentSelector = '&') => {
     header: {
       focus: is(selectors(focus, focusWithin, headerActionsOpen)), // :focus-within here is primarily intended for when the column actions button has been clicked twice
       focusTrapped: _(isEntered),
-      showActions: selectors(hover, focusWithin, headerActionsOpen),
+      showActions: is(selectors(hover, focusWithin, headerActionsOpen)),
       hideActions: not(selectors(hover, focusWithin, headerActionsOpen)),
     },
   };
