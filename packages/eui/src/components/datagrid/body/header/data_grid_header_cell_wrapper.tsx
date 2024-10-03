@@ -43,7 +43,7 @@ export const EuiDataGridHeaderCellWrapper: FunctionComponent<
   children,
   isDragging,
   hasActionsPopover,
-  openActionsPopover,
+  onKeyDown: _onKeyDown,
   closeActionsPopover,
   'aria-label': ariaLabel,
   ...rest
@@ -90,28 +90,22 @@ export const EuiDataGridHeaderCellWrapper: FunctionComponent<
     }
   }, [isDragging, closeActionsPopover]);
 
-  // For cell headers with only actions, auto-open the actions popover on enter keypress
   const onKeyDown: KeyboardEventHandler = useCallback(
     (e) => {
+      // Ignore all keypresses if currently dragging
       if (isDragging) {
         e.preventDefault();
         e.stopPropagation();
-      } else if (
-        e.key === keys.ENTER &&
-        hasActionsPopover &&
-        !renderFocusTrap &&
-        e.target === headerEl
-      ) {
-        openActionsPopover?.();
+        return;
       }
+      // Ignore keys that conflict with the focus trap being entered/exited
+      if (renderFocusTrap && (e.key === keys.ENTER || e.key === keys.ESCAPE)) {
+        return;
+      }
+      // Otherwise, continue with whatever onKeyDown is being passed
+      _onKeyDown?.(e);
     },
-    [
-      hasActionsPopover,
-      openActionsPopover,
-      renderFocusTrap,
-      headerEl,
-      isDragging,
-    ]
+    [_onKeyDown, renderFocusTrap, isDragging]
   );
 
   const isLastColumn = index === visibleColCount - 1;

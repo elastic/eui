@@ -17,6 +17,7 @@ import React, {
   useMemo,
   memo,
   FocusEventHandler,
+  KeyboardEventHandler,
 } from 'react';
 import { tabbable, FocusableElement } from 'tabbable';
 import {
@@ -111,10 +112,6 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
       ]);
 
       const showColumnActions = columnActions && columnActions.length > 0;
-      const actionsButtonRef = useRef<HTMLButtonElement | null>(null);
-      const clickActionsButton = useCallback(() => {
-        actionsButtonRef.current?.click();
-      }, []);
       const [isActionsButtonFocused, setIsActionsButtonFocused] =
         useState(false);
 
@@ -126,6 +123,16 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
       const actionsEnterKeyInstructions = useEuiI18n(
         'euiDataGridHeaderCell.actionsEnterKeyInstructions',
         "Press the Enter key to view this column's actions"
+      );
+
+      // For cell headers with only actions, auto-open the actions popover on enter keypress
+      const onKeyDown: KeyboardEventHandler = useCallback(
+        (e) => {
+          if (e.key === keys.ENTER && showColumnActions) {
+            setIsPopoverOpen(true);
+          }
+        },
+        [showColumnActions]
       );
 
       /*
@@ -220,9 +227,9 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
         id,
         index,
         width,
-        visibleColCount: visibleColCount,
+        visibleColCount,
         hasActionsPopover: showColumnActions,
-        openActionsPopover: clickActionsButton,
+        onKeyDown,
         closeActionsPopover: closePopover,
         'aria-sort': ariaSort,
         'aria-label': displayAsText && `${displayAsText}, `, // ensure cell text content is read first, if available
@@ -280,7 +287,6 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
                   color="text"
                   css={styles.euiDataGridHeaderCell__actions}
                   className="euiDataGridHeaderCell__button"
-                  buttonRef={actionsButtonRef}
                   onClick={togglePopover}
                   onFocus={() => setIsActionsButtonFocused(true)}
                   onBlur={() => setIsActionsButtonFocused(false)}

@@ -18,6 +18,7 @@ import {
   Ref,
   Component,
   ComponentClass,
+  KeyboardEventHandler,
 } from 'react';
 import {
   VariableSizeGridProps,
@@ -178,7 +179,7 @@ export interface EuiDataGridHeaderCellWrapperProps {
   'aria-label'?: AriaAttributes['aria-label'];
   isDragging?: boolean;
   hasActionsPopover?: boolean;
-  openActionsPopover?: () => void;
+  onKeyDown?: KeyboardEventHandler;
   closeActionsPopover?: () => void;
 }
 
