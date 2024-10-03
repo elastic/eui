@@ -9,6 +9,7 @@ permissions:
 jobs:
   stale-prs: # close stale PRs after ~3 months
     permissions:
+      issues: write
       pull-requests: write
     runs-on: ubuntu-latest
     steps:
@@ -27,6 +28,7 @@ jobs:
   stale-issues: # close stale issues after ~1 year
     permissions:
       issues: write
+      pull-requests: write
     runs-on: ubuntu-latest
     steps:
       - uses: actions/stale@v8
