@@ -1,0 +1,12 @@
+{
+  "codeConnect": {
+    "parser": "react",
+    "include": ["/**/*.{tsx,jsx}"],
+    "importPaths": {
+      "src/components/*": "@elastic/eui"
+    },
+    "documentUrlSubstitutions": {
+      "node-id": "https://www.figma.com/design/RzfYLj2xmH9K7gQtbSKygn/Elastic-UI?node-id"
+    }
+  }
+}
