@@ -324,6 +324,7 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
               // we need to re-add styles to the cell as the scoped styles
               // from the wrapper don't apply
               const draggingStyles = [
+                styles.canDrag.euiDataGridHeaderCellDraggable, // ensure height is maintained while dragging
                 dataGridStyles.cellPadding[gridStyles.cellPadding!],
                 dataGridStyles.fontSize[gridStyles.fontSize!],
                 dataGridStyles.borders[gridStyles.border!],

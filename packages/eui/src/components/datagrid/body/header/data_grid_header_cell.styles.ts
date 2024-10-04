@@ -70,9 +70,7 @@ export const euiDataGridHeaderCellStyles = (euiThemeContext: UseEuiTheme) => {
       `,
       euiDataGridHeaderCellDraggable: css`
         /* override internal styling from @hello-pangea/dnd to ensure positioning */
-
         display: flex;
-        ${logicalCSS('width', '100%')}
         ${logicalCSS('height', '100%')}
       `,
       // Add more visual affordance to keyboard drags (raises cell slightly to show green droppable bg)
