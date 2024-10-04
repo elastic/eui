@@ -203,7 +203,6 @@ export const EuiDataGridBodyVirtualized: FunctionComponent<EuiDataGridBodyProps>
         schemaDetectors,
         gridStyles,
         canDragAndDropColumns,
-        wrapperRef,
       });
 
       const { footerRow, footerRowHeight } = useDataGridFooter({

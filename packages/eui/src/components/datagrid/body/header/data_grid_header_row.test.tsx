@@ -22,7 +22,6 @@ describe('EuiDataGridHeaderRow', () => {
     setVisibleColumns: jest.fn(),
     switchColumnPos: jest.fn(),
     gridStyles: { header: 'shade' as const },
-    wrapperRef: { current: null },
   };
 
   it('renders', () => {

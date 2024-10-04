@@ -144,7 +144,6 @@ export interface EuiDataGridHeaderRowPropsSpecificProps {
   visibleColCount: number;
   setVisibleColumns: (columnId: string[]) => void;
   switchColumnPos: (colFromId: string, colToId: string) => void;
-  wrapperRef: MutableRefObject<HTMLDivElement | null>;
   gridStyles: EuiDataGridStyle;
   canDragAndDropColumns?: boolean;
 }
@@ -156,11 +155,10 @@ export type EuiDataGridHeaderRowProps = CommonProps &
 export interface EuiDataGridHeaderCellProps
   extends Omit<
     EuiDataGridHeaderRowPropsSpecificProps,
-    'leadingControlColumns' | 'gridStyles'
+    'leadingControlColumns'
   > {
-  column: EuiDataGridColumn;
   index: number;
-  gridStyles: EuiDataGridStyle;
+  column: EuiDataGridColumn;
 }
 
 export interface EuiDataGridControlHeaderCellProps {
