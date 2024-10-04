@@ -7,18 +7,11 @@
  */
 
 import classnames from 'classnames';
-import React, {
-  forwardRef,
-  memo,
-  useCallback,
-  useContext,
-  useMemo,
-} from 'react';
+import React, { forwardRef, memo, useCallback, useMemo } from 'react';
 import { OnDragEndResponder } from '@hello-pangea/dnd';
 
 import { useEuiMemoizedStyles, useGeneratedHtmlId } from '../../../../services';
 import { EuiDragDropContext, EuiDroppable } from '../../../drag_and_drop';
-import { DataGridFocusContext } from '../../utils/focus';
 import {
   emptyControlColumns,
   EuiDataGridHeaderRowProps,
@@ -60,8 +53,6 @@ const EuiDataGridHeaderRow = memo(
       prefix: 'euiDataGridHeaderDroppable',
     });
 
-    const { setFocusedCell } = useContext(DataGridFocusContext);
-
     const handleOnDragEnd: OnDragEndResponder = useCallback(
       ({ source, destination }) => {
         if (!source || !destination) return;
@@ -76,14 +67,9 @@ const EuiDataGridHeaderRow = memo(
 
         if (sourceColumn && destinationColumn) {
           switchColumnPos?.(sourceColumn.id, destinationColumn.id);
-
-          // ensure updating focus last by using last stack execution
-          setTimeout(() => {
-            setFocusedCell([destination.index, -1]);
-          });
         }
       },
-      [columns, leadingControlColumns, setFocusedCell, switchColumnPos]
+      [columns, leadingControlColumns, switchColumnPos]
     );
 
     const content = useMemo(

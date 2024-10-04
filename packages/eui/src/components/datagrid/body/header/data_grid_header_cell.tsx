@@ -16,8 +16,8 @@ import React, {
   useCallback,
   useMemo,
   memo,
-  FocusEventHandler,
   KeyboardEventHandler,
+  MouseEventHandler,
 } from 'react';
 import { tabbable, FocusableElement } from 'tabbable';
 import {
@@ -80,8 +80,7 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
       const closePopover = useCallback(() => {
         setIsPopoverOpen(false);
       }, []);
-      const { popoverPanelRef, ...popoverArrowNavigationProps } =
-        usePopoverArrowNavigation();
+      const popoverArrowNavigationProps = usePopoverArrowNavigation();
 
       const columnActions = useMemo(() => {
         return getColumnActions({
@@ -114,6 +113,7 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
       const showColumnActions = columnActions && columnActions.length > 0;
       const [isActionsButtonFocused, setIsActionsButtonFocused] =
         useState(false);
+      const actionsButtonRef = useRef<HTMLButtonElement | null>(null);
 
       const actionsButtonAriaLabel = useEuiI18n(
         'euiDataGridHeaderCell.actionsButtonAriaLabel',
@@ -154,53 +154,29 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
        * Dragging
        */
 
-      // Draggable prevents FocusTrap onOutsideClick to be called.
-      // We manually close the popover for draggable cells and
-      // update the focus index onBlur to ensure execution order
-      // as closePopover() focuses its own cells first on close.
-      const handleOnBlur: FocusEventHandler = useCallback(
-        (e) => {
-          if (
-            !isPopoverOpen ||
-            popoverPanelRef.current == null ||
-            e.relatedTarget == null
-          )
-            return;
-
-          if (
-            !e.currentTarget.contains(e.relatedTarget) &&
-            e.relatedTarget !== popoverPanelRef.current &&
-            !popoverPanelRef.current.contains(e.relatedTarget)
-          ) {
-            closePopover();
-
-            const dataRowIndex = e.relatedTarget?.getAttribute(
-              'data-gridcell-row-index'
-            );
-            const dataNextIndex = e.relatedTarget?.getAttribute(
-              'data-gridcell-column-index'
-            );
-            const rowIndex = dataRowIndex ? parseInt(dataRowIndex) : undefined;
-            const nextIndex = dataNextIndex
-              ? parseInt(dataNextIndex)
-              : undefined;
-
-            if (nextIndex && rowIndex === -1) {
-              setTimeout(() => {
-                setFocusedCell([nextIndex, -1]);
-              });
-            }
-          }
-        },
-        [isPopoverOpen, popoverPanelRef, closePopover, setFocusedCell]
-      );
-
       // Draggable prevents the cell from receiving focus on click.
       // We manually ensure focus is set on cell mouseDown which
       // also includes setting focus before dragging
-      const handleOnMouseDown = () => {
-        setFocusedCell([index, -1]);
-      };
+      const handleOnMouseDown: MouseEventHandler = useCallback(
+        (e) => {
+          const openFocusTrap = document.querySelector(
+            '[data-focus-lock-disabled="false"]'
+          );
+          if (
+            !!openFocusTrap && // If a focus trap is open somewhere on the page
+            !openFocusTrap.contains(e.target as Node) && // & the focus trap doesn't belong to this header
+            e.target !== actionsButtonRef.current // & we're not closing the actions popover toggle
+          ) {
+            // Trick the focus trap lib into registering an outside click -
+            // the drag/drop lib otherwise otherwise prevents the event 💀
+            document.dispatchEvent(new MouseEvent('mousedown'));
+          }
+          setTimeout(() => {
+            setFocusedCell([index, -1]);
+          });
+        },
+        [setFocusedCell, index, actionsButtonRef]
+      );
 
       /*
        * Rendering
@@ -288,6 +264,7 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
                   css={styles.euiDataGridHeaderCell__actions}
                   className="euiDataGridHeaderCell__button"
                   onClick={togglePopover}
+                  buttonRef={actionsButtonRef}
                   onFocus={() => setIsActionsButtonFocused(true)}
                   onBlur={() => setIsActionsButtonFocused(false)}
                   tabIndex={0} // Override EuiButtonIcon's conditional tabindex based on aria-hidden
@@ -364,7 +341,6 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
               const content = (
                 <EuiDataGridHeaderCellWrapper
                   isDragging={isDragging}
-                  onBlur={handleOnBlur}
                   onMouseDown={handleOnMouseDown}
                   css={cellOverrideStyles}
                   {...dragContentProps}
@@ -563,7 +539,6 @@ export const usePopoverArrowNavigation = () => {
 
   return {
     panelRef,
-    popoverPanelRef,
     panelProps: { onKeyDown },
     popoverScreenReaderText: (
       <EuiI18n
