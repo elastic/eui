@@ -306,7 +306,7 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
             // Requires reparenting of the draggable item into a portal while dragging to ensure correct positioning inside stacking context
             usePortal
           >
-            {({ dragHandleProps }, { isDragging }) => {
+            {({ dragHandleProps }, { isDragging, mode }) => {
               const {
                 role, // extracting role to not pass it along
                 tabIndex, // we want to use the columnheader rowing tabindex instead
@@ -333,6 +333,7 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
               const cellOverrideStyles = [
                 styles.canDrag[gridStyles.header!],
                 index !== 0 && styles.canDrag.noLeadingBorder,
+                mode === 'SNAP' && styles.canDrag.isKeyboardDragging,
               ];
 
               const content = (

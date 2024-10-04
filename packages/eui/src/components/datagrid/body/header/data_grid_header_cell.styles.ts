@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import { css } from '@emotion/react';
+import { css, keyframes } from '@emotion/react';
 
 import { UseEuiTheme } from '../../../../services';
 import {
@@ -74,6 +74,20 @@ export const euiDataGridHeaderCellStyles = (euiThemeContext: UseEuiTheme) => {
         display: flex;
         ${logicalCSS('width', '100%')}
         ${logicalCSS('height', '100%')}
+      `,
+      // Add more visual affordance to keyboard drags (raises cell slightly to show green droppable bg)
+      // Using animation as transition doesn't seem to work (a tale as old as EuiDataGrid...)
+      isKeyboardDragging: css`
+        animation-name: ${keyframes`
+          from { transform: translateY(0); }
+          to { transform: translateY(-${euiTheme.size.s}); }
+        `};
+        animation-iteration-count: 1;
+        animation-fill-mode: forwards;
+
+        ${euiCanAnimate} {
+          animation-duration: ${euiTheme.animation.fast};
+        }
       `,
       // Ensure correct cell background colors on drag
       underline: css`
