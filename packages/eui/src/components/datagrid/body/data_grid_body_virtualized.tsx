@@ -232,6 +232,7 @@ export const EuiDataGridBodyVirtualized: FunctionComponent<EuiDataGridBodyProps>
         footerRowHeight,
         visibleRowCount,
         hasStickyFooter: !!(renderFooterCellValue && gridStyles.stickyFooter),
+        canDragAndDropColumns,
       });
 
       /**
