@@ -19,6 +19,11 @@ export const euiDatePickerRangeStyles = {
     .euiDatePicker {
       ${logicalCSS('height', '100%')}
     }
+
+    /* Needed for the fullWidth prop: makes inputs take the whole available space */
+    .euiPopover {
+      flex: 1;
+    }
   `,
 };
 
