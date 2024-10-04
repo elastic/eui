@@ -60,6 +60,14 @@ export const euiDataGridHeaderCellStyles = (euiThemeContext: UseEuiTheme) => {
     `,
 
     canDrag: {
+      // The resizer must be positioned outside the draggable component to ensure both work independently
+      euiDataGridHeaderCellDraggableWrapper: css`
+        position: relative;
+
+        .euiDataGridColumnResizer::after {
+          ${logicalCSS('margin-left', `-${euiTheme.border.width.thick}`)}
+        }
+      `,
       euiDataGridHeaderCellDraggable: css`
         /* override internal styling from @hello-pangea/dnd to ensure positioning */
 

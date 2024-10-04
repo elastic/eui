@@ -31,7 +31,6 @@ import { EuiListGroup } from '../../../list_group';
 import { EuiPopover } from '../../../popover';
 import { EuiButtonIcon } from '../../../button';
 import { EuiDraggable } from '../../../drag_and_drop';
-import { EuiFlexGroup } from '../../../flex';
 import { DataGridFocusContext } from '../../utils/focus';
 import {
   EuiDataGridHeaderCellProps,
@@ -39,6 +38,7 @@ import {
 } from '../../data_grid_types';
 import { euiDataGridStyles } from '../../data_grid.styles';
 import { getColumnActions } from './column_actions';
+import { DragOverlay } from './drag_overlay';
 import { EuiDataGridColumnResizer } from './data_grid_column_resizer';
 import { EuiDataGridHeaderCellWrapper } from './data_grid_header_cell_wrapper';
 import { euiDataGridHeaderCellStyles } from './data_grid_header_cell.styles';
@@ -296,9 +296,7 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
       );
 
       return canDragAndDropColumns ? (
-        <EuiFlexGroup alignItems="center" css={{ position: 'relative' }}>
-          {/* keep the resizer outside of Draggable to ensure both are working independently */}
-          {columnResizer}
+        <div css={styles.canDrag.euiDataGridHeaderCellDraggableWrapper}>
           <EuiDraggable
             draggableId={id}
             className="euiDataGridHeaderCellDraggable"
@@ -349,13 +347,17 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
               );
 
               return isDragging ? (
-                <div css={draggingStyles}>{content}</div>
+                <div css={draggingStyles}>
+                  <DragOverlay isDragging cursor="grabbing" />
+                  {content}
+                </div>
               ) : (
                 content
               );
             }}
           </EuiDraggable>
-        </EuiFlexGroup>
+          {columnResizer}
+        </div>
       ) : (
         <EuiDataGridHeaderCellWrapper {...contentProps}>
           {renderContent}
