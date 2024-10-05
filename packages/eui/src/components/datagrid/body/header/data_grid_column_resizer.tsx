@@ -13,7 +13,7 @@ import {
   EuiDataGridColumnResizerProps,
   EuiDataGridColumnResizerState,
 } from '../../data_grid_types';
-import { DragOverlay } from './drag_overlay';
+import { DragOverlay } from './draggable_columns';
 import { euiDataGridColumnResizerStyles } from './data_grid_column_resizer.styles';
 
 const MINIMUM_COLUMN_WIDTH = 40;

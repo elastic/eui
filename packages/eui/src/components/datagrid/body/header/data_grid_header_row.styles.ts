@@ -35,9 +35,5 @@ export const euiDataGridHeaderStyles = (euiThemeContext: UseEuiTheme) => {
     shade: css`
       background-color: ${euiTheme.colors.lightestShade};
     `,
-
-    euiDataGridHeader__droppable: css`
-      display: flex;
-    `,
   };
 };

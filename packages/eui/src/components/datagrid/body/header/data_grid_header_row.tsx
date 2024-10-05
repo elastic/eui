@@ -7,15 +7,14 @@
  */
 
 import classnames from 'classnames';
-import React, { forwardRef, memo, useCallback, useMemo } from 'react';
-import { OnDragEndResponder } from '@hello-pangea/dnd';
+import React, { forwardRef, memo } from 'react';
 
-import { useEuiMemoizedStyles, useGeneratedHtmlId } from '../../../../services';
-import { EuiDragDropContext, EuiDroppable } from '../../../drag_and_drop';
+import { useEuiMemoizedStyles } from '../../../../services';
 import {
   emptyControlColumns,
   EuiDataGridHeaderRowProps,
 } from '../../data_grid_types';
+import { ConditionalDroppableColumns } from './draggable_columns';
 import { EuiDataGridControlHeaderCell } from './data_grid_control_header_cell';
 import { EuiDataGridHeaderCell } from './data_grid_header_cell';
 import { euiDataGridHeaderStyles } from './data_grid_header_row.styles';
@@ -48,64 +47,6 @@ const EuiDataGridHeaderRow = memo(
     const classes = classnames('euiDataGridHeader', className);
     const dataTestSubj = classnames('dataGridHeader', _dataTestSubj);
 
-    const droppableId = useGeneratedHtmlId({
-      prefix: 'euiDataGridHeaderDroppable',
-    });
-
-    const handleOnDragEnd: OnDragEndResponder = useCallback(
-      ({ source, destination }) => {
-        if (!source || !destination) return;
-        if (destination.index === source.index) return;
-
-        const indexOffset = leadingControlColumns?.length ?? 0;
-        const sourceColumn = columns[source.index - indexOffset];
-        const destinationColumn = columns[destination.index - indexOffset];
-
-        if (sourceColumn && destinationColumn) {
-          switchColumnPos(sourceColumn.id, destinationColumn.id);
-        }
-      },
-      [columns, leadingControlColumns, switchColumnPos]
-    );
-
-    const content = useMemo(
-      () =>
-        columns.map((column, index) => (
-          <EuiDataGridHeaderCell
-            key={column.id}
-            index={index + leadingControlColumns.length}
-            column={column}
-            columns={columns}
-            columnWidths={columnWidths}
-            defaultColumnWidth={defaultColumnWidth}
-            setColumnWidth={setColumnWidth}
-            visibleColCount={visibleColCount}
-            setVisibleColumns={setVisibleColumns}
-            switchColumnPos={switchColumnPos}
-            sorting={sorting}
-            schema={schema}
-            schemaDetectors={schemaDetectors}
-            canDragAndDropColumns={canDragAndDropColumns}
-            gridStyles={gridStyles}
-          />
-        )),
-      [
-        canDragAndDropColumns,
-        columnWidths,
-        columns,
-        defaultColumnWidth,
-        leadingControlColumns,
-        schema,
-        schemaDetectors,
-        visibleColCount,
-        setColumnWidth,
-        setVisibleColumns,
-        sorting,
-        switchColumnPos,
-        gridStyles,
-      ]
-    );
-
     return (
       <div
         role="row"
@@ -123,20 +64,32 @@ const EuiDataGridHeaderRow = memo(
             controlColumn={controlColumn}
           />
         ))}
-        {canDragAndDropColumns ? (
-          <EuiDragDropContext onDragEnd={handleOnDragEnd}>
-            <EuiDroppable
-              droppableId={droppableId}
-              direction="horizontal"
-              css={styles.euiDataGridHeader__droppable}
-              data-test-subj="euiDataGridHeaderDroppable"
-            >
-              {content}
-            </EuiDroppable>
-          </EuiDragDropContext>
-        ) : (
-          content
-        )}
+        <ConditionalDroppableColumns
+          canDragAndDropColumns={!!canDragAndDropColumns}
+          columns={columns}
+          switchColumnPos={switchColumnPos}
+          indexOffset={leadingControlColumns?.length ?? 0}
+        >
+          {columns.map((column, index) => (
+            <EuiDataGridHeaderCell
+              key={column.id}
+              index={index + leadingControlColumns.length}
+              column={column}
+              columns={columns}
+              columnWidths={columnWidths}
+              defaultColumnWidth={defaultColumnWidth}
+              setColumnWidth={setColumnWidth}
+              visibleColCount={visibleColCount}
+              setVisibleColumns={setVisibleColumns}
+              switchColumnPos={switchColumnPos}
+              sorting={sorting}
+              schema={schema}
+              schemaDetectors={schemaDetectors}
+              canDragAndDropColumns={canDragAndDropColumns}
+              gridStyles={gridStyles}
+            />
+          ))}
+        </ConditionalDroppableColumns>
         {trailingControlColumns.map((controlColumn, index) => (
           <EuiDataGridControlHeaderCell
             key={controlColumn.id}

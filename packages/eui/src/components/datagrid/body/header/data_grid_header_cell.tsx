@@ -17,7 +17,6 @@ import React, {
   useMemo,
   memo,
   KeyboardEventHandler,
-  MouseEventHandler,
 } from 'react';
 import { tabbable, FocusableElement } from 'tabbable';
 import {
@@ -30,18 +29,16 @@ import { EuiIcon } from '../../../icon';
 import { EuiListGroup } from '../../../list_group';
 import { EuiPopover } from '../../../popover';
 import { EuiButtonIcon } from '../../../button';
-import { EuiDraggable } from '../../../drag_and_drop';
 import { DataGridFocusContext } from '../../utils/focus';
 import {
   EuiDataGridHeaderCellProps,
   EuiDataGridSorting,
 } from '../../data_grid_types';
-import { euiDataGridStyles } from '../../data_grid.styles';
 import { getColumnActions } from './column_actions';
-import { DragOverlay } from './drag_overlay';
 import { EuiDataGridColumnResizer } from './data_grid_column_resizer';
 import { EuiDataGridHeaderCellWrapper } from './data_grid_header_cell_wrapper';
 import { euiDataGridHeaderCellStyles } from './data_grid_header_cell.styles';
+import { ConditionalDraggableColumn } from './draggable_columns';
 
 export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps> =
   memo(
@@ -150,34 +147,6 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
         suffix: 'sorting',
       });
 
-      /**
-       * Dragging
-       */
-
-      // Draggable prevents the cell from receiving focus on click.
-      // We manually ensure focus is set on cell mouseDown which
-      // also includes setting focus before dragging
-      const handleOnMouseDown: MouseEventHandler = useCallback(
-        (e) => {
-          const openFocusTrap = document.querySelector(
-            '[data-focus-lock-disabled="false"]'
-          );
-          if (
-            !!openFocusTrap && // If a focus trap is open somewhere on the page
-            !openFocusTrap.contains(e.target as Node) && // & the focus trap doesn't belong to this header
-            e.target !== actionsButtonRef.current // & we're not closing the actions popover toggle
-          ) {
-            // Trick the focus trap lib into registering an outside click -
-            // the drag/drop lib otherwise otherwise prevents the event 💀
-            document.dispatchEvent(new MouseEvent('mousedown'));
-          }
-          setTimeout(() => {
-            setFocusedCell([index, -1]);
-          });
-        },
-        [setFocusedCell, index, actionsButtonRef]
-      );
-
       /*
        * Rendering
        */
@@ -191,179 +160,125 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
       );
 
       const styles = useEuiMemoizedStyles(euiDataGridHeaderCellStyles);
-      const dataGridStyles = useEuiMemoizedStyles(euiDataGridStyles);
       const contentStyles = [
         styles.euiDataGridHeaderCell__content,
         (columnType === 'numeric' || columnType === 'currency') && styles.right,
       ];
 
-      const contentProps = {
-        ...displayHeaderCellProps,
-        className: classes,
-        id,
-        index,
-        width,
-        visibleColCount,
-        hasActionsPopover: showColumnActions,
-        onKeyDown,
-        closeActionsPopover: closePopover,
-        'aria-sort': ariaSort,
-        'aria-label': displayAsText && `${displayAsText}, `, // ensure cell text content is read first, if available
-        'aria-describedby': sortingAriaId,
-      };
-
-      const columnResizer =
-        column.isResizable !== false && width != null ? (
+      const columnResizer = useMemo(() => {
+        return column.isResizable !== false && width != null ? (
           <EuiDataGridColumnResizer
             columnId={id}
             columnWidth={width}
             setColumnWidth={setColumnWidth}
           />
         ) : null;
+      }, [column.isResizable, id, width, setColumnWidth]);
 
-      const renderContent = (hasFocusTrap: boolean) => (
-        <>
-          {!canDragAndDropColumns && columnResizer}
-          {canDragAndDropColumns && (
-            <span className="euiDataGridHeaderCell__draggableIcon">
-              <EuiIcon
-                type="grabOmnidirectional"
-                size="s"
-                css={styles.euiDataGridHeaderCell__actions}
-              />
-            </span>
-          )}
-
-          <div
-            css={contentStyles}
-            className="euiDataGridHeaderCell__content"
-            title={title}
-          >
-            {children}
-          </div>
-          {sortingArrow}
-
-          {sortingScreenReaderText && (
-            <p id={sortingAriaId} hidden>
-              {sortingScreenReaderText}
-            </p>
-          )}
-
-          {showColumnActions && (
-            <EuiPopover
-              display="block"
-              panelPaddingSize="none"
-              offset={7}
-              anchorPosition="downRight"
-              css={styles.euiDataGridHeaderCell__popover}
-              button={
-                <EuiButtonIcon
-                  iconType="boxesVertical"
-                  iconSize="s"
-                  color="text"
-                  css={styles.euiDataGridHeaderCell__actions}
-                  className="euiDataGridHeaderCell__button"
-                  onClick={togglePopover}
-                  buttonRef={actionsButtonRef}
-                  onFocus={() => setIsActionsButtonFocused(true)}
-                  onBlur={() => setIsActionsButtonFocused(false)}
-                  tabIndex={0} // Override EuiButtonIcon's conditional tabindex based on aria-hidden
-                  aria-hidden={
-                    hasFocusTrap && !isActionsButtonFocused
-                      ? 'true' // prevent the actions button from being read on cell focus
-                      : undefined
-                  }
-                  aria-label={
-                    hasFocusTrap
-                      ? actionsButtonAriaLabel
-                      : actionsEnterKeyInstructions
-                  }
-                  data-test-subj={`dataGridHeaderCellActionButton-${id}`}
-                />
-              }
-              isOpen={isPopoverOpen}
-              closePopover={closePopover}
-              {...popoverArrowNavigationProps}
+      return (
+        <ConditionalDraggableColumn
+          id={id}
+          index={index}
+          canDragAndDropColumns={!!canDragAndDropColumns}
+          gridStyles={gridStyles}
+          columnResizer={columnResizer}
+          actionsPopoverToggle={actionsButtonRef.current}
+        >
+          {(dragProps) => (
+            <EuiDataGridHeaderCellWrapper
+              {...displayHeaderCellProps}
+              {...dragProps}
+              className={classes}
+              id={id}
+              index={index}
+              visibleColCount={visibleColCount}
+              width={width}
+              aria-sort={ariaSort}
+              hasActionsPopover={showColumnActions}
+              closeActionsPopover={closePopover}
+              onKeyDown={onKeyDown}
+              aria-label={displayAsText && `${displayAsText}, `} // ensure cell text content is read first, if available
+              aria-describedby={classnames(
+                sortingAriaId,
+                dragProps?.['aria-describedby']
+              )}
             >
-              <EuiListGroup
-                listItems={columnActions}
-                gutterSize="none"
-                data-test-subj={`dataGridHeaderCellActionGroup-${id}`}
-              />
-            </EuiPopover>
+              {(hasFocusTrap) => (
+                <>
+                  {!canDragAndDropColumns && columnResizer}
+                  {canDragAndDropColumns && (
+                    <span className="euiDataGridHeaderCell__draggableIcon">
+                      <EuiIcon
+                        type="grabOmnidirectional"
+                        size="s"
+                        css={styles.euiDataGridHeaderCell__actions}
+                      />
+                    </span>
+                  )}
+
+                  <div
+                    css={contentStyles}
+                    className="euiDataGridHeaderCell__content"
+                    title={title}
+                  >
+                    {children}
+                  </div>
+                  {sortingArrow}
+
+                  {sortingScreenReaderText && (
+                    <p id={sortingAriaId} hidden>
+                      {sortingScreenReaderText}
+                    </p>
+                  )}
+
+                  {showColumnActions && (
+                    <EuiPopover
+                      display="block"
+                      panelPaddingSize="none"
+                      offset={7}
+                      anchorPosition="downRight"
+                      css={styles.euiDataGridHeaderCell__popover}
+                      button={
+                        <EuiButtonIcon
+                          iconType="boxesVertical"
+                          iconSize="s"
+                          color="text"
+                          css={styles.euiDataGridHeaderCell__actions}
+                          className="euiDataGridHeaderCell__button"
+                          onClick={togglePopover}
+                          buttonRef={actionsButtonRef}
+                          onFocus={() => setIsActionsButtonFocused(true)}
+                          onBlur={() => setIsActionsButtonFocused(false)}
+                          tabIndex={0} // Override EuiButtonIcon's conditional tabindex based on aria-hidden
+                          aria-hidden={
+                            hasFocusTrap && !isActionsButtonFocused
+                              ? 'true' // prevent the actions button from being read on cell focus
+                              : undefined
+                          }
+                          aria-label={
+                            hasFocusTrap
+                              ? actionsButtonAriaLabel
+                              : actionsEnterKeyInstructions
+                          }
+                          data-test-subj={`dataGridHeaderCellActionButton-${id}`}
+                        />
+                      }
+                      isOpen={isPopoverOpen}
+                      closePopover={closePopover}
+                      {...popoverArrowNavigationProps}
+                    >
+                      <EuiListGroup
+                        listItems={columnActions}
+                        gutterSize="none"
+                        data-test-subj={`dataGridHeaderCellActionGroup-${id}`}
+                      />
+                    </EuiPopover>
+                  )}
+                </>
+              )}
+            </EuiDataGridHeaderCellWrapper>
           )}
-        </>
-      );
-
-      return canDragAndDropColumns ? (
-        <div css={styles.canDrag.euiDataGridHeaderCellDraggableWrapper}>
-          <EuiDraggable
-            draggableId={id}
-            className="euiDataGridHeaderCellDraggable"
-            css={styles.canDrag.euiDataGridHeaderCellDraggable}
-            index={index}
-            customDragHandle="custom"
-            // Requires reparenting of the draggable item into a portal while dragging to ensure correct positioning inside stacking context
-            usePortal
-          >
-            {({ dragHandleProps }, { isDragging, mode }) => {
-              const {
-                role, // extracting role to not pass it along
-                tabIndex, // we want to use the columnheader rowing tabindex instead
-                'aria-describedby': ariaDescribedby,
-                ...restDragHandleProps
-              } = dragHandleProps ?? {};
-
-              const dragContentProps = {
-                ...restDragHandleProps,
-                ...contentProps,
-                'aria-describedby': `${contentProps['aria-describedby']} ${ariaDescribedby}`,
-              };
-
-              // since the cloned content is in a portal outside the datagrid
-              // we need to re-add styles to the cell as the scoped styles
-              // from the wrapper don't apply
-              const draggingStyles = [
-                styles.canDrag.euiDataGridHeaderCellDraggable, // ensure height is maintained while dragging
-                dataGridStyles.cellPadding[gridStyles.cellPadding!],
-                dataGridStyles.fontSize[gridStyles.fontSize!],
-                dataGridStyles.borders[gridStyles.border!],
-              ];
-              // Manually re-apply background and border overrides, since
-              // the droppable zone sets its own and confuses :first-of-type CSS
-              const cellOverrideStyles = [
-                styles.canDrag[gridStyles.header!],
-                index !== 0 && styles.canDrag.noLeadingBorder,
-                mode === 'SNAP' && styles.canDrag.isKeyboardDragging,
-              ];
-
-              const content = (
-                <EuiDataGridHeaderCellWrapper
-                  isDragging={isDragging}
-                  onMouseDown={handleOnMouseDown}
-                  css={cellOverrideStyles}
-                  {...dragContentProps}
-                >
-                  {renderContent}
-                </EuiDataGridHeaderCellWrapper>
-              );
-
-              return isDragging ? (
-                <div css={draggingStyles}>
-                  <DragOverlay isDragging cursor="grabbing" />
-                  {content}
-                </div>
-              ) : (
-                content
-              );
-            }}
-          </EuiDraggable>
-          {columnResizer}
-        </div>
-      ) : (
-        <EuiDataGridHeaderCellWrapper {...contentProps}>
-          {renderContent}
-        </EuiDataGridHeaderCellWrapper>
+        </ConditionalDraggableColumn>
       );
     }
   );
