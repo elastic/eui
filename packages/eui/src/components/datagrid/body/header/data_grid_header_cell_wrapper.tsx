@@ -41,10 +41,8 @@ export const EuiDataGridHeaderCellWrapper: FunctionComponent<
   width,
   className,
   children,
-  isDragging,
   hasActionsPopover,
   onKeyDown: _onKeyDown,
-  closeActionsPopover,
   'aria-label': ariaLabel,
   ...rest
 }) => {
@@ -83,21 +81,8 @@ export const EuiDataGridHeaderCellWrapper: FunctionComponent<
     });
   }, [index, onFocusUpdate, headerEl]);
 
-  // close action popover when cell is being dragged
-  useEffect(() => {
-    if (isDragging) {
-      closeActionsPopover?.();
-    }
-  }, [isDragging, closeActionsPopover]);
-
   const onKeyDown: KeyboardEventHandler = useCallback(
     (e) => {
-      // Ignore all keypresses if currently dragging
-      if (isDragging) {
-        e.preventDefault();
-        e.stopPropagation();
-        return;
-      }
       // Ignore keys that conflict with the focus trap being entered/exited
       if (renderFocusTrap && (e.key === keys.ENTER || e.key === keys.ESCAPE)) {
         return;
@@ -105,7 +90,7 @@ export const EuiDataGridHeaderCellWrapper: FunctionComponent<
       // Otherwise, continue with whatever onKeyDown is being passed
       _onKeyDown?.(e);
     },
-    [_onKeyDown, renderFocusTrap, isDragging]
+    [_onKeyDown, renderFocusTrap]
   );
 
   const isLastColumn = index === visibleColCount - 1;

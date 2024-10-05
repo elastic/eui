@@ -10,12 +10,14 @@ import React, {
   CSSProperties,
   FunctionComponent,
   MouseEventHandler,
+  KeyboardEventHandler,
   ComponentProps,
   ReactElement,
   ReactNode,
   memo,
   useCallback,
   useContext,
+  useRef,
 } from 'react';
 import {
   OnDragEndResponder,
@@ -139,10 +141,21 @@ export const DraggableColumn: FunctionComponent<{
       [setFocusedCell, index, actionsPopoverToggle]
     );
 
+    // Prevent any other keypresses when dragging
+    const isDraggingRef = useRef(false);
+    const handleOnKeydown: KeyboardEventHandler = useCallback((e) => {
+      if (isDraggingRef.current) {
+        e.preventDefault();
+        e.stopPropagation();
+        return false;
+      }
+    }, []);
+
     return (
       <div
         css={styles.euiDataGridHeaderCellDraggableWrapper}
         onMouseDown={handleOnMouseDown}
+        onKeyDownCapture={handleOnKeydown}
       >
         {columnResizer}
         <EuiDraggable
@@ -155,6 +168,8 @@ export const DraggableColumn: FunctionComponent<{
           usePortal
         >
           {({ dragHandleProps }, { isDragging, mode }) => {
+            isDraggingRef.current = isDragging;
+
             const {
               role, // extracting role to not pass it along
               tabIndex, // we want to use the columnheader rowing tabindex instead
@@ -164,7 +179,6 @@ export const DraggableColumn: FunctionComponent<{
             const passedProps = {
               ...restDragHandleProps,
               css: reapplyCellStyles,
-              isDragging,
             };
 
             // since the cloned content is in a portal outside the datagrid

@@ -195,7 +195,6 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
               width={width}
               aria-sort={ariaSort}
               hasActionsPopover={showColumnActions}
-              closeActionsPopover={closePopover}
               onKeyDown={onKeyDown}
               aria-label={displayAsText && `${displayAsText}, `} // ensure cell text content is read first, if available
               aria-describedby={classnames(

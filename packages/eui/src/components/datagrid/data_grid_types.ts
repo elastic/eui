@@ -175,10 +175,8 @@ export interface EuiDataGridHeaderCellWrapperProps {
   width?: number | null;
   className?: string;
   'aria-label'?: AriaAttributes['aria-label'];
-  isDragging?: boolean;
   hasActionsPopover?: boolean;
   onKeyDown?: KeyboardEventHandler;
-  closeActionsPopover?: () => void;
 }
 
 export type EuiDataGridFooterRowProps = CommonProps &
