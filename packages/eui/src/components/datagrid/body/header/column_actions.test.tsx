@@ -22,6 +22,7 @@ describe('getColumnActions', () => {
   const focusFirstVisibleInteractiveCell = jest.fn();
   const setIsPopoverOpen = jest.fn();
   const switchColumnPos = jest.fn();
+  const setIsColumnMoving = jest.fn();
   const setFocusedCell = jest.fn();
 
   const testArgs = {
@@ -35,6 +36,7 @@ describe('getColumnActions', () => {
     setIsPopoverOpen,
     sorting: undefined,
     switchColumnPos,
+    setIsColumnMoving,
     setFocusedCell,
   };
 
@@ -195,6 +197,7 @@ describe('getColumnActions', () => {
         jest.runAllTimers();
         expect(switchColumnPos).toHaveBeenCalledWith('B', 'A');
         expect(setFocusedCell).toHaveBeenLastCalledWith([0, -1]);
+        expect(setIsColumnMoving).toHaveBeenCalledWith(true);
 
         callActionOnClick(moveRight);
         jest.runAllTimers();

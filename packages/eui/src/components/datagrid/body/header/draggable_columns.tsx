@@ -96,7 +96,9 @@ export const DraggableColumn: FunctionComponent<{
   columnResizer?: ReactNode;
   actionsPopoverToggle?: HTMLButtonElement | null;
   children: (
-    dragProps?: Partial<DraggableProvidedDragHandleProps>
+    dragProps?: Partial<DraggableProvidedDragHandleProps> & {
+      'data-column-moving'?: boolean;
+    }
   ) => ReactElement;
 }> = memo(
   ({
@@ -151,6 +153,21 @@ export const DraggableColumn: FunctionComponent<{
       }
     }, []);
 
+    // UX polish: add a slight animation frame delay to the dragging ref end
+    // which prevents re-running the hover animation of column header actions
+    const updateDraggingRef = useCallback((isDragging: boolean) => {
+      // Only update if the state has changed from before
+      if (isDragging !== isDraggingRef.current) {
+        if (!isDragging) {
+          requestAnimationFrame(() => {
+            isDraggingRef.current = false;
+          });
+        } else {
+          isDraggingRef.current = true;
+        }
+      }
+    }, []);
+
     return (
       <div
         css={styles.euiDataGridHeaderCellDraggableWrapper}
@@ -168,7 +185,7 @@ export const DraggableColumn: FunctionComponent<{
           usePortal
         >
           {({ dragHandleProps }, { isDragging, mode }) => {
-            isDraggingRef.current = isDragging;
+            updateDraggingRef(isDragging);
 
             const {
               role, // extracting role to not pass it along
@@ -179,6 +196,7 @@ export const DraggableColumn: FunctionComponent<{
             const passedProps = {
               ...restDragHandleProps,
               css: reapplyCellStyles,
+              'data-column-moving': isDraggingRef.current || undefined,
             };
 
             // since the cloned content is in a portal outside the datagrid

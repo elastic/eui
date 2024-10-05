@@ -33,6 +33,7 @@ interface GetColumnActions {
   setIsPopoverOpen: (value: boolean) => void;
   sorting: EuiDataGridSorting | undefined;
   switchColumnPos: (colFromId: string, colToId: string) => void;
+  setIsColumnMoving: (value: boolean) => void;
   setFocusedCell: DataGridFocusContextShape['setFocusedCell'];
   columnFocusIndex: number; // Index including leadingControlColumns
 }
@@ -47,6 +48,7 @@ export const getColumnActions = ({
   setIsPopoverOpen,
   sorting,
   switchColumnPos,
+  setIsColumnMoving,
   setFocusedCell,
   columnFocusIndex,
 }: GetColumnActions): EuiListGroupItemProps[] => {
@@ -71,6 +73,7 @@ export const getColumnActions = ({
       column,
       columns,
       switchColumnPos,
+      setIsColumnMoving,
       setFocusedCell,
       columnFocusIndex,
     }),
@@ -142,6 +145,7 @@ type MoveColumnActions = Pick<
   | 'column'
   | 'columns'
   | 'switchColumnPos'
+  | 'setIsColumnMoving'
   | 'setFocusedCell'
   | 'columnFocusIndex'
 >;
@@ -150,12 +154,19 @@ const getMoveColumnActions = ({
   column,
   columns,
   switchColumnPos,
+  setIsColumnMoving,
   setFocusedCell,
   columnFocusIndex,
 }: MoveColumnActions): EuiListGroupItemProps[] => {
   const items = [];
 
   const colIdx = columns.findIndex((col) => col.id === column.id);
+
+  // UX polish: prevent the column actions hover animation from flashing after column move
+  const handleAnimationFlash = () => {
+    setIsColumnMoving(true);
+    requestAnimationFrame(() => setIsColumnMoving(false));
+  };
 
   const moveFocus = (direction: 'left' | 'right') => {
     const newIndex = direction === 'left' ? -1 : 1;
@@ -171,6 +182,7 @@ const getMoveColumnActions = ({
       const targetCol = columns[colIdx - 1];
       if (targetCol) {
         switchColumnPos(column.id, targetCol.id);
+        handleAnimationFlash();
         moveFocus('left');
       }
     };
@@ -191,6 +203,7 @@ const getMoveColumnActions = ({
       const targetCol = columns[colIdx + 1];
       if (targetCol) {
         switchColumnPos(column.id, targetCol.id);
+        handleAnimationFlash();
         moveFocus('right');
       }
     };

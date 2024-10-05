@@ -79,6 +79,8 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
       }, []);
       const popoverArrowNavigationProps = usePopoverArrowNavigation();
 
+      const [isColumnMoving, setIsColumnMoving] = useState(false);
+
       const columnActions = useMemo(() => {
         return getColumnActions({
           column,
@@ -88,6 +90,7 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
           setVisibleColumns,
           focusFirstVisibleInteractiveCell,
           setIsPopoverOpen,
+          setIsColumnMoving,
           sorting,
           switchColumnPos,
           setFocusedCell,
@@ -201,6 +204,9 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
                 sortingAriaId,
                 dragProps?.['aria-describedby']
               )}
+              data-column-moving={
+                isColumnMoving || dragProps?.['data-column-moving'] || undefined
+              }
             >
               {(hasFocusTrap) => (
                 <>
