@@ -50,7 +50,7 @@ exports[`useDataGridColumnSelector columnSelector renders a toolbar button/popov
         aria-describedby="generated-id"
         aria-live="off"
         aria-modal="true"
-        class="euiPanel euiPanel--plain euiPopover__panel emotion-euiPanel-grow-m-plain-euiPopover__panel-light-hasDragDrop-bottom"
+        class="euiPanel euiPanel--plain euiPopover__panel emotion-euiPanel-grow-m-plain-euiPopover__panel-light-hasTransform"
         data-autofocus="true"
         data-popover-panel="true"
         role="dialog"

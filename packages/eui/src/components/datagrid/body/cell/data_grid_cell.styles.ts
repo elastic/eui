@@ -156,6 +156,10 @@ export const euiDataGridRowCellStyles = (euiThemeContext: UseEuiTheme) => {
       // Control columns should be vertically centered with the *first line* of text
       // for both single and multi-line heights (see https://github.com/elastic/eui/issues/7897)
       controlColumn: css`
+        ${
+          // ❗ For some reason Chromium browsers will scrollbar stutter without this :|||
+          logicalCSS('max-height', '100%')
+        }
         display: inline-flex;
         align-items: start;
         gap: ${euiTheme.size.xxs}; /* EuiButtonIcons */

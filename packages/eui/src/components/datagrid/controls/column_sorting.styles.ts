@@ -13,6 +13,7 @@ import {
   euiFontSize,
   euiMinBreakpoint,
   euiYScroll,
+  euiYScrollWithShadows,
   logicalCSS,
   mathWithUnits,
 } from '../../../global_styling';
@@ -36,7 +37,7 @@ export const euiDataGridColumnSortingStyles = (
 
       /* Make scrollbar flush against popover panel */
       margin: -${euiTheme.size.s};
-      ${euiYScroll(euiThemeContext)}
+      ${euiYScrollWithShadows(euiThemeContext)}
     `,
     euiDataGridColumnSorting__item: css`
       ${logicalCSS('padding-horizontal', euiTheme.size.s)}

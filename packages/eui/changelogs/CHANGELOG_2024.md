@@ -1,3 +1,116 @@
+## [`v96.1.0`](https://github.com/elastic/eui/releases/v96.1.0)
+
+**CSS-in-JS conversions**
+
+- Removed the following component-specific Sass mixins: ([#8055](https://github.com/elastic/eui/pull/8055))
+  - `euiButton`
+  - `euiButtonBase`
+  - `euiButtonFocus`
+  - `euiButtonContent`
+  - `euiButtonContentDisabled`
+  - `euiButtonDefaultStyle`
+  - `euiButtonFillStyle`
+  - `euiPanel`
+  - `euiFormControlDefaultShadow`
+  - `euiToolTipTitle`
+
+## [`v96.0.0`](https://github.com/elastic/eui/releases/v96.0.0)
+
+- Improved `EuiPageHeader`/`EuiPageTemplate.Header`'s responsive UX: ([#8044](https://github.com/elastic/eui/pull/8044))
+  - `rightSideItems` are no longer pushed to the side by wide `tabs` content
+  - `rightSideItems` now wrap more responsively at smaller container widths
+- Updated `EuiDraggable` with a new `usePortal` prop.  ([#8048](https://github.com/elastic/eui/pull/8048))
+  - This prop portals the dragged element to the body, allowing it to escape stacking contexts which prevents buggy drag positioning in e.g. popovers, modals, and flyouts.
+
+**Bug fixes**
+
+- Fixed `EuiProvider`'s system color mode detection causing errors during server-side rendering ([#8040](https://github.com/elastic/eui/pull/8040))
+- Fixed an `EuiDataGrid` rendering bug that was causing bouncing scrollbar issues ([#8041](https://github.com/elastic/eui/pull/8041))
+- Fixed `EuiSearchBox` skips input when running with React 18 in Legacy Mode ([#8047](https://github.com/elastic/eui/pull/8047))
+
+**Deprecations**
+
+- Deprecated `EuiPopover`'s `hasDragDrop` prop. Use `EuiDraggable`'s new `usePortal` prop instead. ([#8048](https://github.com/elastic/eui/pull/8048))
+
+**Breaking changes**
+
+- Removed the following exported `.css` files: ([#8045](https://github.com/elastic/eui/pull/8045))
+  - `@elastic/eui/dist/eui_theme_light.css`
+  - `@elastic/eui/dist/eui_theme_light.min.css`
+  - `@elastic/eui/dist/eui_theme_dark.css`
+  - `@elastic/eui/dist/eui_theme_dark.min.css`
+- All EUI components are now on CSS-in-JS. A CSS file/import in consuming applications is no longer needed, and is safe to remove. ([#8045](https://github.com/elastic/eui/pull/8045))
+- Removed all `src/theme/legacy` Sass exports ([#8054](https://github.com/elastic/eui/pull/8054))
+
+**CSS-in-JS conversions**
+
+- Removed the following component-specific Sass variables: ([#8031](https://github.com/elastic/eui/pull/8031))
+  - `$euiButtonColorDisabled`
+  - `$euiButtonColorDisabledText`
+  - `$euiButtonColorGhostDisabled`
+  - `$euiButtonFontWeight`
+  - `$euiFormControlIconSizes`
+  - `$euiFormControlLayoutGroupInputHeight`
+  - `$euiFormControlLayoutGroupInputCompressedHeight`
+  - `$euiFormControlLayoutGroupInputCompressedBorderRadius`
+  - `$euiPageSidebarMinWidth`
+  - `$euiPageDefaultMaxWidth`
+  - `$euiPanelPaddingModifiers`
+  - `$euiPanelBorderRadiusModifiers`
+  - `$euiPanelBackgroundColorModifiers`
+  - `$euiRangeTrackColor`
+  - `$euiRangeHighlightColor`
+  - `$euiRangeThumbHeight`
+  - `$euiRangeThumbWidth`
+  - `$euiRangeThumbBorderColor`
+  - `$euiRangeThumbBackgroundColor`
+  - `$euiRangeTrackWidth`
+  - `$euiRangeTrackHeight`
+  - `$euiRangeTrackCompressedHeight`
+  - `$euiRangeTrackBorderWidth`
+  - `$euiRangeTrackBorderColor`
+  - `$euiRangeTrackRadius`
+  - `$euiRangeDisabledOpacity`
+  - `$euiRangeHighlightHeight`
+  - `$euiRangeHighlightCompressedHeight`
+  - `$euiRangeHeight`
+  - `$euiRangeCompressedHeight`
+  - `$euiTooltipAnimations`
+  - `$euiTooltipBackgroundColor`
+  - `$euiTooltipBorderColor`
+- Removed the following Sass mixins due to low external usage: ([#8031](https://github.com/elastic/eui/pull/8031))
+  - `euiHoverState`
+  - `euiFocusState`
+  - `euiDisabledState`
+  - `euiInteractiveStates`
+  - `euiFormControlStyle`
+  - `euiFormControlStyleCompressed`
+  - `euiFormControlFocusStyle`
+  - `euiFormControlInvalidStyle`
+  - `euiFormControlDisabledTextStyle`
+  - `euiFormControlDisabledStyle`
+  - `euiFormControlReadOnlyStyle`
+  - `euiFormControlText`
+  - `euiFormControlSize`
+  - `euiFormControlGradient`
+  - `euiFormControlLayoutPadding`
+  - `euiFormControlWithIcon`
+  - `euiFormControlIsLoading`
+  - `euiFormControlSideBorderRadius`
+  - `euiPlaceholderPerBrowser`
+  - `euiHiddenSelectableInput`
+  - `euiLink`
+  - `euiLoadingSpinnerBorderColors`
+  - `euiRangeTrackSize`
+  - `euiRangeTrackPerBrowser`
+  - `euiRangeThumbBorder`
+  - `euiRangeThumbBoxShadow`
+  - `euiRangeThumbFocusBoxShadow`
+  - `euiRangeThumbStyle`
+  - `euiRangeThumbPerBrowser`
+  - `euiRangeThumbFocus`
+  - `euiToolTipAnimation`
+
 ## [`v95.12.0`](https://github.com/elastic/eui/releases/v95.12.0)
 
 - Enhanced `EuiDataGrid` and `EuiBasic/InMemoryTable` to clean content newlines/tabs when users copy and paste from their tabular data ([#8019](https://github.com/elastic/eui/pull/8019))
