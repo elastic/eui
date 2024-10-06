@@ -14,7 +14,7 @@ import { getAllByTestSubject, render } from '../../test/rtl';
 import { shouldRenderCustomStyles } from '../../test/internal';
 import { keys } from '../../services';
 
-import { EuiDataGridColumnResizer } from './body/header/data_grid_column_resizer';
+import { EuiDataGridColumnResizer } from './body/header/column_resizer';
 import type { EuiDataGridProps, RenderCellValue } from './data_grid_types';
 import { EuiDataGrid } from './';
 

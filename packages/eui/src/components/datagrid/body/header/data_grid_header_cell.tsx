@@ -25,10 +25,10 @@ import {
   PropsFromColumnActions,
 } from './column_actions';
 import { useColumnSorting } from './column_sorting';
-import { EuiDataGridColumnResizer } from './data_grid_column_resizer';
+import { ConditionalDraggableColumn } from './draggable_columns';
+import { EuiDataGridColumnResizer } from './column_resizer';
 import { EuiDataGridHeaderCellWrapper } from './data_grid_header_cell_wrapper';
 import { euiDataGridHeaderCellStyles } from './data_grid_header_cell.styles';
-import { ConditionalDraggableColumn } from './draggable_columns';
 
 export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps> =
   memo(
@@ -164,7 +164,7 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
                       hasFocusTrap={hasFocusTrap}
                       setPropsFromColumnActions={setPropsFromColumnActions}
                       actionsButtonRef={actionsButtonRef}
-                      />
+                    />
                   )}
                 </>
               )}

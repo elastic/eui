@@ -10,7 +10,7 @@ import React from 'react';
 import { act } from '@testing-library/react';
 import { render } from '../../../../test/rtl';
 
-import { EuiDataGridColumnResizer } from './data_grid_column_resizer';
+import { EuiDataGridColumnResizer } from './column_resizer';
 
 describe('EuiDataGridHeaderResizer', () => {
   const props = {
