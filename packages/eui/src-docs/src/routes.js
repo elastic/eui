@@ -237,6 +237,8 @@ import { TourExample } from './views/tour/tour_example';
 
 import { WindowEventExample } from './views/window_event/window_event_example';
 
+import { WindowProviderExample } from './views/window_provider/window_provider_example';
+
 import { Changelog } from './views/package/changelog';
 
 import { I18nTokens } from './views/package/i18n_tokens';
@@ -667,6 +669,7 @@ const navigation = [
       ].map((example) => createExample(example)),
       createTabbedPage(TextTruncateExample),
       createExample(WindowEventExample),
+      createExample(WindowProviderExample),
     ],
   },
   {
