@@ -11,7 +11,14 @@ import { EuiWindowContext } from './context';
 import createEmotion from '@emotion/css/create-instance';
 
 export interface EuiWindowProviderProps {
+  /**
+   * Window object to be used for children components.
+   */
   window: Window;
+
+  /**
+   * ReactNode to render as this component's content
+   */
   children: ReactNode;
 }
 
