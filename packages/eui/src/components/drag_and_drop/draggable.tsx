@@ -31,12 +31,9 @@ export interface EuiDraggableProps
   children: ReactElement | DraggableProps['children'];
   className?: string;
   /**
-   * Whether the `children` will provide and set up its own drag handle.
-   * The `custom` value additionally removes the `role` from the draggable container.
-   * Use this if the `children` element is focusable and should keep its
-   * semantic role for accessibility purposes.
+   * Whether the `children` will provide and set up its own drag handle
    */
-  customDragHandle?: boolean | 'custom';
+  customDragHandle?: boolean;
   /**
    * Whether the container has interactive children and should have `role="group"` instead of `"button"`.
    * Setting this flag ensures your drag & drop container is keyboard and screen reader accessible.
@@ -82,8 +79,6 @@ export const EuiDraggable: FunctionComponent<EuiDraggableProps> = ({
   const euiTheme = useEuiTheme();
   const styles = euiDraggableStyles(euiTheme);
 
-  const hasCustomDragHandle = customDragHandle !== false;
-
   return (
     <Draggable
       draggableId={draggableId}
@@ -93,7 +88,6 @@ export const EuiDraggable: FunctionComponent<EuiDraggableProps> = ({
     >
       {(provided, snapshot, rubric) => {
         const { isDragging } = snapshot;
-        const isFullyCustomDragHandle = customDragHandle === 'custom';
 
         const cssStyles = [
           styles.euiDraggable,
@@ -116,7 +110,7 @@ export const EuiDraggable: FunctionComponent<EuiDraggableProps> = ({
           <>
             <div
               {...provided.draggableProps}
-              {...(!hasCustomDragHandle ? provided.dragHandleProps : {})}
+              {...(!customDragHandle ? provided.dragHandleProps : {})}
               ref={provided.innerRef}
               data-test-subj={dataTestSubj}
               className={classes}
@@ -131,16 +125,12 @@ export const EuiDraggable: FunctionComponent<EuiDraggableProps> = ({
               role={
                 hasInteractiveChildren
                   ? 'group'
-                  : isFullyCustomDragHandle
-                  ? undefined // prevent wrapper role from removing semantics of the children
                   : provided.dragHandleProps?.role
               }
               // If the container includes an interactive element, we remove the tabindex=0
               // because [role="group"] does not permit or warrant a tab stop
-              // additionally we remove the tabindex when the child is a fully custom handle
-              // that has its own tabindex and handle props
               tabIndex={
-                hasInteractiveChildren || isFullyCustomDragHandle
+                hasInteractiveChildren
                   ? undefined
                   : provided.dragHandleProps?.tabIndex
               }

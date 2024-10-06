@@ -180,8 +180,8 @@ export const DraggableColumn: FunctionComponent<{
           className="euiDataGridHeaderCellDraggable"
           css={styles.euiDataGridHeaderCellDraggable}
           index={index}
-          customDragHandle="custom"
-          // Requires reparenting of the draggable item into a portal while dragging to ensure correct positioning inside stacking context
+          customDragHandle
+          hasInteractiveChildren
           usePortal
         >
           {({ dragHandleProps }, { isDragging, mode }) => {
