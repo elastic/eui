@@ -6,7 +6,14 @@
  * Side Public License, v 1.
  */
 
-import React from 'react';
+import React, { useRef, useCallback } from 'react';
+import { tabbable, FocusableElement } from 'tabbable';
+
+import { keys } from '../../../../services';
+/* eslint-disable local/i18n */
+import { EuiI18n } from '../../../i18n';
+import { EuiListGroupItemProps } from '../../../list_group';
+
 import {
   EuiDataGridColumn,
   EuiDataGridColumnActions,
@@ -15,13 +22,75 @@ import {
   EuiDataGridSorting,
   DataGridFocusContextShape,
 } from '../../data_grid_types';
-import { EuiI18n } from '../../../i18n';
-import { EuiListGroupItemProps } from '../../../list_group';
 import { getDetailsForSchema } from '../../utils/data_grid_schema';
 import {
   defaultSortAscLabel,
   defaultSortDescLabel,
 } from '../../controls/column_sorting_draggable';
+
+/**
+ * Add keyboard arrow navigation to the cell actions popover
+ * to match the UX of the rest of EuiDataGrid
+ */
+export const usePopoverArrowNavigation = () => {
+  const popoverPanelRef = useRef<HTMLElement | null>(null);
+  const actionsRef = useRef<FocusableElement[] | undefined>(undefined);
+  const panelRef = useCallback((ref: HTMLElement | null) => {
+    popoverPanelRef.current = ref;
+    actionsRef.current = ref ? tabbable(ref) : undefined;
+  }, []);
+
+  const onKeyDown = useCallback((e: React.KeyboardEvent) => {
+    if (e.key !== keys.ARROW_DOWN && e.key !== keys.ARROW_UP) return;
+    if (!actionsRef.current?.length) return;
+
+    e.preventDefault();
+
+    const initialState = document.activeElement === popoverPanelRef.current;
+    const currentIndex = !initialState
+      ? actionsRef.current.findIndex((el) => document.activeElement === el)
+      : -1;
+    const lastIndex = actionsRef.current.length - 1;
+
+    let indexToFocus: number;
+    if (initialState) {
+      if (e.key === keys.ARROW_DOWN) {
+        indexToFocus = 0;
+      } else if (e.key === keys.ARROW_UP) {
+        indexToFocus = lastIndex;
+      }
+    } else {
+      if (e.key === keys.ARROW_DOWN) {
+        indexToFocus = currentIndex + 1;
+        if (indexToFocus > lastIndex) {
+          indexToFocus = 0;
+        }
+      } else if (e.key === keys.ARROW_UP) {
+        indexToFocus = currentIndex - 1;
+        if (indexToFocus < 0) {
+          indexToFocus = lastIndex;
+        }
+      }
+    }
+
+    actionsRef.current[indexToFocus!].focus();
+  }, []);
+
+  return {
+    panelRef,
+    panelProps: { onKeyDown },
+    popoverScreenReaderText: (
+      <EuiI18n
+        token="euiDataGridHeaderCell.actionsPopoverScreenReaderText"
+        default="To navigate through the list of column actions, press the Tab or Up and Down arrow keys."
+      />
+    ),
+  };
+};
+
+/**
+ * Logic for returning an array of actions/items to pass to EuiListGroup
+ */
 
 interface GetColumnActions {
   column: EuiDataGridColumn;
