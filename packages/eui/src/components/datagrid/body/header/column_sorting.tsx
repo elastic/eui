@@ -21,11 +21,11 @@ import { EuiDataGridSorting } from '../../data_grid_types';
 export const useColumnSorting = ({
   sorting,
   id,
-  showColumnActions,
+  hasColumnActions,
 }: {
   sorting?: EuiDataGridSorting;
   id: string;
-  showColumnActions: boolean;
+  hasColumnActions: boolean;
 }) => {
   const sortedColumn = useMemo(
     () => sorting?.columns.find((col) => col.id === id),
@@ -72,7 +72,7 @@ export const useColumnSorting = ({
    */
   const sortingScreenReaderText = useMemo(() => {
     if (!isColumnSorted) return null;
-    if (!showColumnActions && hasOnlyOneSort) return null; // in this scenario, the `aria-sort` attribute will be used by screen readers
+    if (!hasColumnActions && hasOnlyOneSort) return null; // in this scenario, the `aria-sort` attribute will be used by screen readers
     return (
       <p id={sortingAriaId} hidden>
         {sorting?.columns?.map(({ id: columnId, direction }, index) => {
@@ -141,7 +141,7 @@ export const useColumnSorting = ({
     );
   }, [
     isColumnSorted,
-    showColumnActions,
+    hasColumnActions,
     hasOnlyOneSort,
     sorting,
     sortingAriaId,

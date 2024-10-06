@@ -54,12 +54,12 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
       const children = display || displayAsText || id;
       const width = columnWidths[id] || defaultColumnWidth;
       const columnType = schema[id] ? schema[id].columnType : null;
-      const showColumnActions = useHasColumnActions(actions);
+      const hasColumnActions = useHasColumnActions(actions);
 
       const classes = classnames(
         {
           [`euiDataGridHeaderCell--${columnType}`]: columnType,
-          'euiDataGridHeaderCell--hasColumnActions': showColumnActions,
+          'euiDataGridHeaderCell--hasColumnActions': hasColumnActions,
         },
         displayHeaderCellProps?.className
       );
@@ -80,7 +80,7 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
         useColumnSorting({
           sorting,
           id,
-          showColumnActions,
+          hasColumnActions,
         });
 
       const columnResizer = useMemo(() => {
@@ -106,6 +106,7 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
             <EuiDataGridHeaderCellWrapper
               {...displayHeaderCellProps}
               {...dragProps}
+              hasColumnActions={hasColumnActions}
               {...propsFromColumnActions}
               className={classnames(classes, propsFromColumnActions.className)}
               id={id}
@@ -113,7 +114,6 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
               visibleColCount={visibleColCount}
               width={width}
               aria-sort={ariaSort}
-              hasActionsPopover={showColumnActions}
               aria-label={displayAsText && `${displayAsText}, `} // ensure cell text content is read first, if available
               aria-describedby={classnames(
                 sortingAriaId,
@@ -149,7 +149,7 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
                   {sortingArrow}
                   {sortingScreenReaderText}
 
-                  {showColumnActions && (
+                  {hasColumnActions && (
                     <ColumnActions
                       index={index}
                       id={id}

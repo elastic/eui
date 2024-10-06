@@ -41,7 +41,7 @@ export const EuiDataGridHeaderCellWrapper: FunctionComponent<
   width,
   className,
   children,
-  hasActionsPopover,
+  hasColumnActions,
   onKeyDown: _onKeyDown,
   'aria-label': ariaLabel,
   ...rest
@@ -58,10 +58,8 @@ export const EuiDataGridHeaderCellWrapper: FunctionComponent<
   >([]);
   useEffect(() => {
     // We're checking for interactive children outside of the default actions button
-    setRenderFocusTrap(
-      interactiveChildren.length > (hasActionsPopover ? 1 : 0)
-    );
-  }, [hasActionsPopover, interactiveChildren]);
+    setRenderFocusTrap(interactiveChildren.length > (hasColumnActions ? 1 : 0));
+  }, [hasColumnActions, interactiveChildren]);
 
   const { setFocusedCell, onFocusUpdate } = useContext(DataGridFocusContext);
   const updateCellFocusContext = useCallback(() => {

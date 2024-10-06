@@ -17,7 +17,7 @@ describe('useColumnSorting', () => {
   const mockSortingArgs = {
     sorting: undefined,
     id: columnId,
-    showColumnActions: true,
+    hasColumnActions: true,
   };
 
   const getRender = (node: ReactNode) => render(<>{node}</>).container;
@@ -65,7 +65,7 @@ describe('useColumnSorting', () => {
                 onSort,
                 columns: [{ id: columnId, direction: 'asc' }],
               },
-              showColumnActions: false,
+              hasColumnActions: false,
             })
           ).result.current;
 
@@ -83,7 +83,7 @@ describe('useColumnSorting', () => {
                 onSort,
                 columns: [{ id: columnId, direction: 'desc' }],
               },
-              showColumnActions: true,
+              hasColumnActions: true,
             })
           ).result.current;
 

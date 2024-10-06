@@ -19,7 +19,7 @@ describe('EuiDataGridHeaderCellWrapper', () => {
     id: 'someColumn',
     index: 0,
     visibleColCount: 1,
-    hasActionsPopover: true,
+    hasColumnActions: true,
     children: (
       <>
         Some Column

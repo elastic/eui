@@ -175,7 +175,7 @@ export interface EuiDataGridHeaderCellWrapperProps {
   width?: number | null;
   className?: string;
   'aria-label'?: AriaAttributes['aria-label'];
-  hasActionsPopover?: boolean;
+  hasColumnActions?: boolean;
   onKeyDown?: KeyboardEventHandler;
 }
 
