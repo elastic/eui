@@ -8,7 +8,6 @@
 
 import classnames from 'classnames';
 import React, {
-  AriaAttributes,
   FunctionComponent,
   useContext,
   useState,
@@ -19,22 +18,16 @@ import React, {
   KeyboardEventHandler,
 } from 'react';
 import { tabbable, FocusableElement } from 'tabbable';
-import {
-  keys,
-  useGeneratedHtmlId,
-  useEuiMemoizedStyles,
-} from '../../../../services';
+import { keys, useEuiMemoizedStyles } from '../../../../services';
 import { EuiI18n, useEuiI18n } from '../../../i18n';
 import { EuiIcon } from '../../../icon';
 import { EuiListGroup } from '../../../list_group';
 import { EuiPopover } from '../../../popover';
 import { EuiButtonIcon } from '../../../button';
 import { DataGridFocusContext } from '../../utils/focus';
-import {
-  EuiDataGridHeaderCellProps,
-  EuiDataGridSorting,
-} from '../../data_grid_types';
+import { EuiDataGridHeaderCellProps } from '../../data_grid_types';
 import { getColumnActions } from './column_actions';
+import { useColumnSorting } from './column_sorting';
 import { EuiDataGridColumnResizer } from './data_grid_column_resizer';
 import { EuiDataGridHeaderCellWrapper } from './data_grid_header_cell_wrapper';
 import { euiDataGridHeaderCellStyles } from './data_grid_header_cell.styles';
@@ -138,18 +131,12 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
       /*
        * Column sorting
        */
-      const { sortingArrow, ariaSort, sortingScreenReaderText } =
-        useSortingUtils({
+      const { sortingArrow, ariaSort, sortingAriaId, sortingScreenReaderText } =
+        useColumnSorting({
           sorting,
           id,
           showColumnActions,
         });
-
-      const sortingAriaId = useGeneratedHtmlId({
-        prefix: 'euiDataGridCellHeader',
-        suffix: 'sorting',
-      });
-
       /*
        * Rendering
        */
@@ -228,13 +215,9 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
                   >
                     {children}
                   </div>
-                  {sortingArrow}
 
-                  {sortingScreenReaderText && (
-                    <p id={sortingAriaId} hidden>
-                      {sortingScreenReaderText}
-                    </p>
-                  )}
+                  {sortingArrow}
+                  {sortingScreenReaderText}
 
                   {showColumnActions && (
                     <EuiPopover
@@ -288,129 +271,6 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
     }
   );
 EuiDataGridHeaderCell.displayName = 'EuiDataGridHeaderCell';
-
-/**
- * Column sorting utility helpers
- */
-export const useSortingUtils = ({
-  sorting,
-  id,
-  showColumnActions,
-}: {
-  sorting?: EuiDataGridSorting;
-  id: string;
-  showColumnActions: boolean;
-}) => {
-  const sortedColumn = useMemo(
-    () => sorting?.columns.find((col) => col.id === id),
-    [sorting, id]
-  );
-  const isColumnSorted = !!sortedColumn;
-  const hasOnlyOneSort = sorting?.columns?.length === 1;
-
-  /**
-   * Arrow icon
-   */
-  const sortingArrow = useMemo(() => {
-    return isColumnSorted ? (
-      <EuiIcon
-        type={sortedColumn.direction === 'asc' ? 'sortUp' : 'sortDown'}
-        color="text"
-        className="euiDataGridHeaderCell__sortingArrow"
-        data-test-subj={`dataGridHeaderCellSortingIcon-${id}`}
-      />
-    ) : null;
-  }, [id, isColumnSorted, sortedColumn]);
-
-  /**
-   * aria-sort attribute - should only be used when a single column is being sorted
-   * @see https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-sort
-   * @see https://www.w3.org/WAI/ARIA/apg/example-index/table/sortable-table.html
-   * @see https://github.com/w3c/aria/issues/283 for potential future multi-column usage
-   */
-  const ariaSort: AriaAttributes['aria-sort'] =
-    isColumnSorted && hasOnlyOneSort
-      ? sorting.columns[0].direction === 'asc'
-        ? 'ascending'
-        : 'descending'
-      : undefined;
-
-  /**
-   * Sorting status - screen reader text
-   */
-  const sortingScreenReaderText = useMemo(() => {
-    if (!isColumnSorted) return null;
-    if (!showColumnActions && hasOnlyOneSort) return null; // in this scenario, the `aria-sort` attribute will be used by screen readers
-    return (
-      <>
-        {sorting?.columns?.map(({ id: columnId, direction }, index) => {
-          if (hasOnlyOneSort) {
-            if (direction === 'asc') {
-              return (
-                <EuiI18n
-                  token="euiDataGridHeaderCell.sortedByAscendingSingle"
-                  default="Sorted ascending"
-                  key={index}
-                />
-              );
-            } else {
-              return (
-                <EuiI18n
-                  token="euiDataGridHeaderCell.sortedByDescendingSingle"
-                  default="Sorted descending"
-                  key={index}
-                />
-              );
-            }
-          } else if (index === 0) {
-            if (direction === 'asc') {
-              return (
-                <EuiI18n
-                  token="euiDataGridHeaderCell.sortedByAscendingFirst"
-                  default="Sorted by {columnId}, ascending"
-                  values={{ columnId }}
-                  key={index}
-                />
-              );
-            } else {
-              return (
-                <EuiI18n
-                  token="euiDataGridHeaderCell.sortedByDescendingFirst"
-                  default="Sorted by {columnId}, descending"
-                  values={{ columnId }}
-                  key={index}
-                />
-              );
-            }
-          } else {
-            if (direction === 'asc') {
-              return (
-                <EuiI18n
-                  token="euiDataGridHeaderCell.sortedByAscendingMultiple"
-                  default=", then sorted by {columnId}, ascending"
-                  values={{ columnId }}
-                  key={index}
-                />
-              );
-            } else {
-              return (
-                <EuiI18n
-                  token="euiDataGridHeaderCell.sortedByDescendingMultiple"
-                  default=", then sorted by {columnId}, descending"
-                  values={{ columnId }}
-                  key={index}
-                />
-              );
-            }
-          }
-        })}
-        .
-      </>
-    );
-  }, [isColumnSorted, showColumnActions, hasOnlyOneSort, sorting]);
-
-  return { sortingArrow, ariaSort, sortingScreenReaderText };
-};
 
 /**
  * Add keyboard arrow navigation to the cell actions popover
