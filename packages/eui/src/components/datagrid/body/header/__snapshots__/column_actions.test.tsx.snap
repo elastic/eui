@@ -1,0 +1,179 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ColumnActions renders 1`] = `
+<body>
+  <div>
+    <div
+      class="euiPopover euiPopover-isOpen emotion-euiPopover-block-euiDataGridHeaderCell__popover"
+    >
+      <button
+        aria-label="Press the Enter key to view this column's actions"
+        class="euiButtonIcon euiDataGridHeaderCell__button emotion-euiButtonIcon-xs-empty-text-euiDataGridHeaderCell__actions"
+        data-test-subj="dataGridHeaderCellActionButton-someColumn"
+        tabindex="0"
+        type="button"
+      >
+        <span
+          aria-hidden="true"
+          class="euiButtonIcon__icon"
+          color="inherit"
+          data-euiicon-type="boxesVertical"
+        />
+      </button>
+    </div>
+  </div>
+  <div
+    data-euiportal="true"
+  >
+    <div
+      data-focus-guard="true"
+      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+      tabindex="0"
+    />
+    <div
+      data-focus-lock-disabled="false"
+    >
+      <div
+        aria-describedby="generated-id"
+        aria-live="off"
+        aria-modal="true"
+        class="euiPanel euiPanel--plain euiPopover__panel emotion-euiPanel-grow-m-plain-euiPopover__panel-light-isOpen-hasTransform-bottom"
+        data-autofocus="true"
+        data-popover-open="true"
+        data-popover-panel="true"
+        role="dialog"
+        style="top: 23px; left: -22px; z-index: 2000;"
+        tabindex="0"
+      >
+        <div
+          class="euiPopover__arrow emotion-euiPopoverArrow-bottom"
+          data-popover-arrow="bottom"
+          style="left: 10px; top: 0px;"
+        />
+        <p
+          class="emotion-euiScreenReaderOnly"
+          id="generated-id"
+        >
+          You are in a dialog. Press Escape, or tap/click outside the dialog to close.
+          To navigate through the list of column actions, press the Tab or Up and Down arrow keys.
+        </p>
+        <div>
+          <ul
+            class="euiListGroup emotion-euiListGroup-none-maxWidthDefault"
+            data-test-subj="dataGridHeaderCellActionGroup-someColumn"
+          >
+            <li
+              class="euiListGroupItem emotion-euiListGroupItem-text-xs"
+            >
+              <button
+                class="euiListGroupItem__button emotion-euiListGroupItem__inner-xs-text-isClickable"
+                type="button"
+              >
+                <span
+                  class="euiListGroupItem__icon emotion-euiListGroupItem__icon"
+                  color="inherit"
+                  data-euiicon-type="eyeClosed"
+                />
+                <span
+                  class="euiListGroupItem__label emotion-euiListGroupItem__label-truncate"
+                  title="Hide column"
+                >
+                  Hide column
+                </span>
+              </button>
+            </li>
+            <li
+              class="euiListGroupItem emotion-euiListGroupItem-text-xs"
+            >
+              <button
+                class="euiListGroupItem__button emotion-euiListGroupItem__inner-xs-text-isClickable"
+                type="button"
+              >
+                <span
+                  class="euiListGroupItem__icon emotion-euiListGroupItem__icon"
+                  color="inherit"
+                  data-euiicon-type="sortUp"
+                />
+                <span
+                  class="euiListGroupItem__label emotion-euiListGroupItem__label-truncate"
+                  title="Sort A-Z"
+                >
+                  Sort 
+                  A-Z
+                </span>
+              </button>
+            </li>
+            <li
+              class="euiListGroupItem emotion-euiListGroupItem-text-xs"
+            >
+              <button
+                class="euiListGroupItem__button emotion-euiListGroupItem__inner-xs-text-isClickable"
+                type="button"
+              >
+                <span
+                  class="euiListGroupItem__icon emotion-euiListGroupItem__icon"
+                  color="inherit"
+                  data-euiicon-type="sortDown"
+                />
+                <span
+                  class="euiListGroupItem__label emotion-euiListGroupItem__label-truncate"
+                  title="Sort Z-A"
+                >
+                  Sort 
+                  Z-A
+                </span>
+              </button>
+            </li>
+            <li
+              class="euiListGroupItem emotion-euiListGroupItem-text-xs"
+            >
+              <button
+                class="euiListGroupItem__button emotion-euiListGroupItem__inner-xs-text-isClickable"
+                type="button"
+              >
+                <span
+                  class="euiListGroupItem__icon emotion-euiListGroupItem__icon"
+                  color="inherit"
+                  data-euiicon-type="sortLeft"
+                />
+                <span
+                  class="euiListGroupItem__label emotion-euiListGroupItem__label-truncate"
+                  title="Move left"
+                >
+                  Move left
+                </span>
+              </button>
+            </li>
+            <li
+              class="euiListGroupItem emotion-euiListGroupItem-xs"
+            >
+              <button
+                class="euiListGroupItem__button emotion-euiListGroupItem__inner-xs-isDisabled"
+                disabled=""
+                type="button"
+              >
+                <span
+                  class="euiListGroupItem__icon emotion-euiListGroupItem__icon"
+                  color="inherit"
+                  data-euiicon-type="sortRight"
+                />
+                <span
+                  class="euiListGroupItem__label emotion-euiListGroupItem__label-truncate"
+                  title="Move right"
+                >
+                  Move right
+                </span>
+              </button>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div
+      data-focus-guard="true"
+      style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
+      tabindex="0"
+    />
+  </div>
+</body>
+`;

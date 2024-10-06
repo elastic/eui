@@ -7,17 +7,111 @@
  */
 
 import React, { ReactElement } from 'react';
-import { render, renderHook } from '../../../../test/rtl';
+import { fireEvent } from '@testing-library/react';
+import {
+  render,
+  renderHook,
+  waitForEuiPopoverOpen,
+  waitForEuiPopoverClose,
+} from '../../../../test/rtl';
 
 import { EuiListGroupItemProps } from '../../../list_group';
 import { schemaDetectors } from '../../utils/data_grid_schema';
 
 import {
+  useHasColumnActions,
+  ColumnActions,
   getColumnActions,
   isColumnActionEnabled,
   getColumnActionConfig,
   usePopoverArrowNavigation,
 } from './column_actions';
+
+describe('useHasColumnActions', () => {
+  it('is true if no configuration was set', () => {
+    const { result } = renderHook(useHasColumnActions);
+    expect(result.current).toEqual(true);
+  });
+
+  it('all actions can be quickly turned off with false', () => {
+    const { result } = renderHook(() => useHasColumnActions(false));
+    expect(result.current).toEqual(false);
+  });
+
+  it('all actions can be turned off manually', () => {
+    const { result } = renderHook(() =>
+      useHasColumnActions({
+        showHide: false,
+        showMoveLeft: false,
+        showMoveRight: false,
+        showSortAsc: false,
+        showSortDesc: false,
+      })
+    );
+    expect(result.current).toEqual(false);
+  });
+
+  it('returns true if only some actions are turned off', () => {
+    const { result } = renderHook(() =>
+      useHasColumnActions({
+        showSortAsc: false,
+        showSortDesc: false,
+      })
+    );
+    expect(result.current).toEqual(true);
+  });
+
+  it('returns true if additional actions have been passed but all other actions turned off', () => {
+    const { result } = renderHook(() =>
+      useHasColumnActions({
+        showHide: false,
+        showMoveLeft: false,
+        showMoveRight: false,
+        showSortAsc: false,
+        showSortDesc: false,
+        additional: [{ label: 'additional action' }],
+      })
+    );
+    expect(result.current).toEqual(true);
+  });
+});
+
+describe('ColumnActions', () => {
+  const requiredProps = {
+    index: 0,
+    id: 'someColumn',
+    title: 'someColumn',
+    column: {
+      id: 'someColumn',
+    },
+    columns: [],
+    schema: { someColumn: { columnType: 'numeric' } },
+    schemaDetectors: [],
+    setVisibleColumns: jest.fn(),
+    switchColumnPos: jest.fn(),
+    sorting: { onSort: jest.fn(), columns: [] },
+    hasFocusTrap: false,
+    setPropsFromColumnActions: jest.fn(),
+    actionsButtonRef: jest.fn(),
+  };
+
+  it('renders', async () => {
+    const { getByTestSubject, baseElement } = render(
+      <ColumnActions {...requiredProps} />
+    );
+    const toggle = getByTestSubject(
+      'dataGridHeaderCellActionButton-someColumn'
+    );
+
+    fireEvent.click(toggle);
+    await waitForEuiPopoverOpen();
+
+    expect(baseElement).toMatchSnapshot();
+
+    fireEvent.click(toggle);
+    await waitForEuiPopoverClose();
+  });
+});
 
 describe('usePopoverArrowNavigation', () => {
   const MockPanel = () => (
