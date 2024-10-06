@@ -143,6 +143,11 @@ export const DraggableColumns: Story = {
       ...defaultStorybookArgs.columnVisibility,
       canDragAndDropColumns: true,
     },
+    columns: defaultStorybookArgs.columns.map((column) =>
+      column.id === 'location'
+        ? { ...column, display: <CustomHeaderCell title="Location" /> }
+        : column
+    ),
   },
   render: (args: EuiDataGridProps) => <StatefulDataGrid {...args} />,
   play: async ({ canvasElement }: PlayFunctionContext<ReactRenderer>) => {
