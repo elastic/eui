@@ -18,6 +18,7 @@ import React, {
   useCallback,
   useContext,
   useRef,
+  FocusEventHandler,
 } from 'react';
 import {
   OnDragEndResponder,
@@ -109,6 +110,8 @@ export const DraggableColumn: FunctionComponent<{
     actionsPopoverToggle,
     children,
   }) => {
+    const draggableColumnRef = useRef<HTMLDivElement>(null);
+
     const dataGridStyles = useEuiMemoizedStyles(euiDataGridStyles);
     const styles = useEuiMemoizedStyles(euiDataGridDraggableHeaderStyles);
     // Manually re-apply background and border overrides, since
@@ -121,7 +124,7 @@ export const DraggableColumn: FunctionComponent<{
     // Draggable prevents the cell from receiving focus on click.
     // We manually ensure focus is set on cell mouseDown which
     // also includes setting focus before dragging
-    const { setFocusedCell } = useContext(DataGridFocusContext);
+    const { focusedCell, setFocusedCell } = useContext(DataGridFocusContext);
     const handleOnMouseDown: MouseEventHandler = useCallback(
       (e) => {
         const openFocusTrap = document.querySelector(
@@ -153,6 +156,29 @@ export const DraggableColumn: FunctionComponent<{
       }
     }, []);
 
+    const handleDropAbort: FocusEventHandler = useCallback(
+      (e) => {
+        // use requestAnimationFrame to ensure isDragging is already updated
+        requestAnimationFrame(() => {
+          if (isDraggingRef.current === true) return;
+          // There is no relatedTarget for in-place drop as the dragging item is
+          // rendered in a portal and the dropped item is newly rendered.
+          if (
+            e.relatedTarget != null &&
+            !draggableColumnRef.current?.contains(e.target)
+          ) {
+            return;
+          }
+
+          // force focus cell update only for in-place drop (same index)
+          if (index === focusedCell?.[0]) {
+            setFocusedCell([index, -1], true);
+          }
+        });
+      },
+      [index, focusedCell, setFocusedCell]
+    );
+
     // UX polish: add a slight animation frame delay to the dragging ref end
     // which prevents re-running the hover animation of column header actions
     const updateDraggingRef = useCallback((isDragging: boolean) => {
@@ -170,9 +196,11 @@ export const DraggableColumn: FunctionComponent<{
 
     return (
       <div
+        ref={draggableColumnRef}
         css={styles.euiDataGridHeaderCellDraggableWrapper}
         onMouseDown={handleOnMouseDown}
         onKeyDownCapture={handleOnKeydown}
+        onFocus={handleDropAbort}
       >
         {columnResizer}
         <EuiDraggable

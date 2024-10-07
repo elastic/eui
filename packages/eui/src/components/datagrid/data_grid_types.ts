@@ -213,7 +213,7 @@ export type EuiDataGridFocusedCell = [number, number];
 
 export interface DataGridFocusContextShape {
   focusedCell?: EuiDataGridFocusedCell;
-  setFocusedCell: (cell: EuiDataGridFocusedCell) => void;
+  setFocusedCell: (cell: EuiDataGridFocusedCell, forceUpdate?: boolean) => void;
   setIsFocusedCellInView: (isFocusedCellInView: boolean) => void;
   onFocusUpdate: (
     cell: EuiDataGridFocusedCell,
