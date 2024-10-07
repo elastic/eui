@@ -30,7 +30,7 @@ export const openAnimationTiming = 'slow';
  */
 
 export const euiPopoverPanelStyles = (euiThemeContext: UseEuiTheme) => {
-  const { euiTheme, colorMode } = euiThemeContext;
+  const { euiTheme, colorMode, highContrastMode } = euiThemeContext;
 
   const translateDistance = euiTheme.size.s;
   const animationSpeed = euiTheme.animation[openAnimationTiming];
@@ -59,6 +59,9 @@ export const euiPopoverPanelStyles = (euiThemeContext: UseEuiTheme) => {
       &:focus {
         outline-offset: 0;
       }
+
+      /* We're already setting 'borders' via euiShadow below, so skip the borders inherited from EuiPanel */
+      ${highContrastMode ? 'border: none;' : ''}
     `,
     isOpen: css`
       opacity: 1;
@@ -78,7 +81,10 @@ export const euiPopoverPanelStyles = (euiThemeContext: UseEuiTheme) => {
     hasTransform: {
       hasTransform: css`
         transform: translateY(0) translateX(0) translateZ(0); /* 2 */
-        ${euiShadowMedium(euiThemeContext, { property: 'filter' })}
+        ${euiShadowMedium(euiThemeContext, {
+          property: 'filter',
+          borderAllInHighContrastMode: true,
+        })}
 
         ${euiCanAnimate} {
           transition: ${opacityTransition}, ${transformTransition}; /* 2 */
@@ -107,10 +113,14 @@ export const euiPopoverPanelStyles = (euiThemeContext: UseEuiTheme) => {
         }
       `,
       top: css`
-        ${euiShadowFlat(euiThemeContext)}
+        ${euiShadowFlat(euiThemeContext, {
+          borderAllInHighContrastMode: true,
+        })}
       `,
       bottom: css`
-        ${euiShadow(euiThemeContext, 'm')}
+        ${euiShadow(euiThemeContext, 'm', {
+          borderAllInHighContrastMode: true,
+        })}
       `,
       get left() {
         return this.bottom;
@@ -124,7 +134,10 @@ export const euiPopoverPanelStyles = (euiThemeContext: UseEuiTheme) => {
     // stacking context that messes up the drag/drop fixed positioning
     hasDragDrop: {
       hasDragDrop: css`
-        ${euiShadowMedium(euiThemeContext, { property: 'box-shadow' })}
+        ${euiShadowMedium(euiThemeContext, {
+          property: 'box-shadow',
+          borderAllInHighContrastMode: true,
+        })}
 
         ${euiCanAnimate} {
           transition: ${opacityTransition}; /* 2 */

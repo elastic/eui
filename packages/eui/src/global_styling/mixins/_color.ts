@@ -131,7 +131,7 @@ export const useEuiBackgroundColorCSS = () =>
  */
 
 export const euiBorderColor = (
-  { euiTheme, colorMode }: UseEuiTheme,
+  { euiTheme, colorMode, highContrastMode }: UseEuiTheme,
   color: _EuiBackgroundColor
 ) => {
   switch (color) {
@@ -140,9 +140,17 @@ export const euiBorderColor = (
     case 'subdued':
       return euiTheme.border.color;
     case 'warning':
-      return tintOrShade(euiTheme.colors.warning, 0.4, colorMode);
+      return tintOrShade(
+        euiTheme.colors.warning,
+        highContrastMode ? 0 : 0.4,
+        colorMode
+      );
     default:
-      return tintOrShade(euiTheme.colors[color], 0.6, colorMode);
+      return tintOrShade(
+        euiTheme.colors[color],
+        highContrastMode ? 0 : 0.6,
+        colorMode
+      );
   }
 };
 

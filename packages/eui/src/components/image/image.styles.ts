@@ -29,7 +29,7 @@ export const euiImageStyles = (euiThemeContext: UseEuiTheme) => ({
     ${logicalCSS('max-width', '80vw')}
   `,
   hasShadow: css`
-    ${euiShadow(euiThemeContext, 's')}
+    ${euiShadow(euiThemeContext, 's', { borderAllInHighContrastMode: true })}
   `,
   // Sizes
   // These sizes are mostly suggestions. Don't look too hard for meaning in their values.

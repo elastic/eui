@@ -86,7 +86,7 @@ export const euiFormControlLayoutStyles = (euiThemeContext: UseEuiTheme) => {
 export const euiFormControlLayoutSideNodeStyles = (
   euiThemeContext: UseEuiTheme
 ) => {
-  const { euiTheme } = euiThemeContext;
+  const { euiTheme, highContrastMode } = euiThemeContext;
   const form = euiFormVariables(euiThemeContext);
 
   const uncompressedHeight = mathWithUnits(
@@ -143,6 +143,12 @@ export const euiFormControlLayoutSideNodeStyles = (
     `,
     append: css``,
     prepend: css``,
+    disabled: {
+      append:
+        highContrastMode && logicalCSS('border-left', euiTheme.border.thin),
+      prepend:
+        highContrastMode && logicalCSS('border-right', euiTheme.border.thin),
+    },
     uncompressed: `
       ${text} {
         ${logicalCSS('padding-horizontal', euiTheme.size.xs)}

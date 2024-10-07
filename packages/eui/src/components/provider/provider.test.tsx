@@ -12,9 +12,11 @@ import { cache as emotionCache } from '@emotion/css';
 import createCache from '@emotion/cache';
 
 import { setEuiDevProviderWarning } from '../../services';
-import { EuiSystemColorModeProvider } from './system_color_mode';
-jest.mock('./system_color_mode', () => ({
-  EuiSystemColorModeProvider: jest.fn(({ children }: any) => children('LIGHT')),
+import { EuiSystemDefaultsProvider } from './system_defaults';
+jest.mock('./system_defaults', () => ({
+  EuiSystemDefaultsProvider: jest.fn(({ children }: any) =>
+    children('LIGHT', false)
+  ),
 }));
 
 import { EuiProvider } from './provider';
@@ -159,8 +161,8 @@ describe('EuiProvider', () => {
 
     describe('colorMode', () => {
       beforeEach(() => {
-        (EuiSystemColorModeProvider as jest.Mock).mockImplementationOnce(
-          ({ children }) => children('DARK')
+        (EuiSystemDefaultsProvider as jest.Mock).mockImplementationOnce(
+          ({ children }) => children('DARK', false)
         );
       });
 
@@ -190,6 +192,48 @@ describe('EuiProvider', () => {
         );
 
         expect(getByText('Light mode')).toHaveStyleRule('color', '#aaa');
+      });
+    });
+
+    describe('highContrastMode', () => {
+      beforeEach(() => {
+        (EuiSystemDefaultsProvider as jest.Mock).mockImplementationOnce(
+          ({ children }) => children('LIGHT', true)
+        );
+      });
+
+      it('inherits from system contrast preference by default', () => {
+        const { getByText } = render(
+          <EuiProvider modify={modify}>
+            <div
+              css={({ euiTheme }) => ({ borderColor: euiTheme.border.color })}
+            >
+              High contrast
+            </div>
+          </EuiProvider>
+        );
+
+        expect(getByText('High contrast')).toHaveStyleRule(
+          'border-color',
+          '#000'
+        );
+      });
+
+      it('overrides the system color mode with any passed `highContrastMode`', () => {
+        const { getByText } = render(
+          <EuiProvider modify={modify} highContrastMode={false}>
+            <div
+              css={({ euiTheme }) => ({ borderColor: euiTheme.border.color })}
+            >
+              Normal contrast
+            </div>
+          </EuiProvider>
+        );
+
+        expect(getByText('Normal contrast')).toHaveStyleRule(
+          'border-color',
+          '#aaa'
+        );
       });
     });
   });

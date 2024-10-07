@@ -27,6 +27,7 @@ describe('useEuiTheme', () => {
     expect(result.current).toEqual({
       euiTheme: expect.any(Object),
       colorMode: 'LIGHT',
+      highContrastMode: false,
       modifications: {},
     });
   });
@@ -68,7 +69,7 @@ describe('withEuiTheme', () => {
   it('provides underlying class components with a `theme` prop', () => {
     const { container } = render(<Component />);
     expect(container.firstChild!.textContent).toEqual(
-      'euiTheme,colorMode,modifications'
+      'euiTheme,colorMode,highContrastMode,modifications'
     );
   });
 });
@@ -81,7 +82,7 @@ describe('RenderWithEuiTheme', () => {
       </RenderWithEuiTheme>
     );
     expect(container.firstChild!.textContent).toEqual(
-      'euiTheme,colorMode,modifications'
+      'euiTheme,colorMode,highContrastMode,modifications'
     );
   });
 });

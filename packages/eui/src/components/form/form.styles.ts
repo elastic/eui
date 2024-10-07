@@ -29,7 +29,7 @@ export const euiFormMaxWidth = ({ euiTheme }: UseEuiTheme) =>
   mathWithUnits(euiTheme.size.base, (x) => x * 25);
 
 export const euiFormVariables = (euiThemeContext: UseEuiTheme) => {
-  const { euiTheme, colorMode } = euiThemeContext;
+  const { euiTheme, colorMode, highContrastMode } = euiThemeContext;
   const isColorDark = colorMode === 'DARK';
   const backgroundColor = isColorDark
     ? shade(euiTheme.colors.lightestShade, 0.4)
@@ -55,12 +55,14 @@ export const euiFormVariables = (euiThemeContext: UseEuiTheme) => {
     backgroundColor: backgroundColor,
     backgroundDisabledColor: darken(euiTheme.colors.lightestShade, 0.05),
     backgroundReadOnlyColor: euiTheme.colors.emptyShade,
-    borderColor: transparentize(
-      colorMode === 'DARK'
-        ? euiTheme.colors.ghost
-        : darken(euiTheme.border.color, 4),
-      0.1
-    ),
+    borderColor: highContrastMode
+      ? euiTheme.border.color
+      : transparentize(
+          colorMode === 'DARK'
+            ? euiTheme.colors.ghost
+            : darken(euiTheme.border.color, 4),
+          0.1
+        ),
     controlDisabledColor: euiTheme.colors.mediumShade,
     controlBoxShadow: '0 0 transparent',
     controlPlaceholderText: makeHighContrastColor(euiTheme.colors.subduedText)(
@@ -193,7 +195,7 @@ export const euiFormControlDefaultShadow = (
     withBackgroundAnimation?: boolean;
   } = {}
 ) => {
-  const { euiTheme } = euiThemeContext;
+  const { euiTheme, highContrastMode } = euiThemeContext;
   const form = euiFormVariables(euiThemeContext);
 
   // We use inset box-shadow instead of border to skip extra height calculations
@@ -206,13 +208,16 @@ export const euiFormControlDefaultShadow = (
     background-color: ${form.backgroundColor};
   `.trim();
 
+  const gradientThickness = highContrastMode
+    ? mathWithUnits(euiTheme.border.width.thick, (x) => x * 2)
+    : euiTheme.border.width.thick;
   const backgroundGradient = `
     background-repeat: no-repeat;
     background-size: 0% 100%;
     background-image: linear-gradient(to top,
       var(--euiFormControlStateColor),
-      var(--euiFormControlStateColor) ${euiTheme.border.width.thick},
-      transparent ${euiTheme.border.width.thick},
+      var(--euiFormControlStateColor) ${gradientThickness},
+      transparent ${gradientThickness},
       transparent 100%
     );
   `.trim();
@@ -332,7 +337,7 @@ const euiPlaceholderPerBrowser = (content: string) => `
  */
 
 export const euiFormCustomControlVariables = (euiThemeContext: UseEuiTheme) => {
-  const { euiTheme, colorMode } = euiThemeContext;
+  const { euiTheme, colorMode, highContrastMode } = euiThemeContext;
 
   const sizes = {
     control: euiTheme.size.base,
@@ -342,10 +347,11 @@ export const euiFormCustomControlVariables = (euiThemeContext: UseEuiTheme) => {
 
   const colors = {
     unselected: euiTheme.colors.emptyShade,
-    unselectedBorder:
-      colorMode === 'DARK'
-        ? tint(euiTheme.colors.lightestShade, 0.31) // WCAG AA requirements
-        : shade(euiTheme.colors.lightestShade, 0.4),
+    unselectedBorder: highContrastMode
+      ? euiTheme.border.color
+      : colorMode === 'DARK'
+      ? tint(euiTheme.colors.lightestShade, 0.31) // WCAG AA requirements
+      : shade(euiTheme.colors.lightestShade, 0.4),
     selected: euiTheme.colors.primary,
     selectedIcon: euiTheme.colors.emptyShade,
     disabled: euiTheme.colors.lightShade,
@@ -366,7 +372,7 @@ export const euiFormCustomControlVariables = (euiThemeContext: UseEuiTheme) => {
 };
 
 export const euiFormCustomControlStyles = (euiThemeContext: UseEuiTheme) => {
-  const { euiTheme } = euiThemeContext;
+  const { euiTheme, highContrastMode } = euiThemeContext;
   const controlVars = euiFormCustomControlVariables(euiThemeContext);
 
   const centerWithLabel = mathWithUnits(
@@ -421,17 +427,29 @@ export const euiFormCustomControlStyles = (euiThemeContext: UseEuiTheme) => {
         `,
       },
       disabled: {
-        selected: `
-          label: disabled;
-          color: ${controlVars.colors.disabledIcon};
-          background-color: ${controlVars.colors.disabled};
-        `,
-        unselected: `
-          label: disabled;
-          color: ${controlVars.colors.disabled};
-          background-color: ${controlVars.colors.disabled};
-          cursor: not-allowed;
-        `,
+        get shared() {
+          const highContrastBorder = highContrastMode
+            ? `border: ${euiTheme.border.width.thin} solid ${controlVars.colors.disabledIcon};`
+            : '';
+          return `
+            label: disabled;
+            cursor: not-allowed;
+            background-color: ${controlVars.colors.disabled};
+            ${highContrastBorder}
+          `;
+        },
+        get selected() {
+          return `
+            ${this.shared}
+            color: ${controlVars.colors.disabledIcon};
+          `;
+        },
+        get unselected() {
+          return `
+            ${this.shared}
+            color: ${controlVars.colors.disabled};
+          `;
+        },
       },
 
       // Looks better centered at different zoom levels than just <EuiIcon size="s" />

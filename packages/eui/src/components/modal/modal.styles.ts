@@ -21,7 +21,7 @@ export const euiModalStyles = (euiThemeContext: UseEuiTheme) => {
 
   return {
     euiModal: css`
-      ${euiShadowXLarge(euiThemeContext)}
+      ${euiShadowXLarge(euiThemeContext, { borderAllInHighContrastMode: true })}
       display: flex;
       flex-direction: column;
       max-block-size: 75vh; /* We overflow the modal body based off this */
@@ -69,7 +69,10 @@ export const euiModalStyles = (euiThemeContext: UseEuiTheme) => {
       min-inline-size: ${euiFormVariables(euiThemeContext).maxWidth};
 
       ${euiMaxBreakpoint(euiThemeContext, 'm')} {
-        ${euiShadowXLarge(euiThemeContext, { reverse: true })}
+        ${euiShadowXLarge(euiThemeContext, {
+          reverse: true,
+          borderAllInHighContrastMode: true,
+        })}
         inset-block-start: auto;
       }
     `,

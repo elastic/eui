@@ -167,6 +167,7 @@ export const EuiFormControlLayout: FunctionComponent<
         nodes={prepend}
         inputId={inputId}
         compressed={compressed}
+        isDisabled={isDisabled}
       />
       <div
         {...wrapperProps}
@@ -208,6 +209,7 @@ export const EuiFormControlLayout: FunctionComponent<
         nodes={append}
         inputId={inputId}
         compressed={compressed}
+        isDisabled={isDisabled}
       />
     </div>
   );
@@ -221,12 +223,14 @@ const EuiFormControlLayoutSideNodes: FunctionComponent<{
   nodes?: PrependAppendType; // For some bizarre reason if you make this the `children` prop instead, React doesn't properly override cloned keys :|
   inputId?: string;
   compressed?: boolean;
-}> = ({ side, nodes, inputId, compressed }) => {
+  isDisabled?: boolean;
+}> = ({ side, nodes, inputId, compressed, isDisabled }) => {
   const className = `euiFormControlLayout__${side}`;
   const styles = useEuiMemoizedStyles(euiFormControlLayoutSideNodeStyles);
   const cssStyles = [
     styles.euiFormControlLayout__side,
     styles[side],
+    isDisabled && styles.disabled[side],
     compressed ? styles.compressed : styles.uncompressed,
   ];
 
