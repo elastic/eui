@@ -29,7 +29,6 @@ metadata:
 spec:
   type: library
   owner: group:eui-team
-  system: ci-systems
   lifecycle: production
 
 ---
