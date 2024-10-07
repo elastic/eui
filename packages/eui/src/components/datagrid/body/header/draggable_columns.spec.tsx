@@ -174,6 +174,23 @@ describe('draggable columns', () => {
         'dataGridHeaderCell-b'
       );
     });
+
+    it('correctly re-focuses dragged cells if an interactive child has focus on drag start', () => {
+      cy.realMount(<StatefulDataGrid />);
+
+      cy.get('[data-test-subj="b"]').focus();
+      cy.focused().should('have.attr', 'data-test-subj', 'b');
+
+      cy.get('[data-test-subj=dataGridHeaderCell-b]')
+        .realMouseDown({ position: 'center' })
+        .realMouseMove(0, 0) // start drag
+        .realMouseMove(0, 34) // move (absolute coordinates)
+        .realMouseUp();
+
+      cy.focused()
+        .should('have.attr', 'data-test-subj', 'dataGridHeaderCell-b')
+        .should('have.attr', 'tabindex', '0');
+    });
   });
 
   describe('clicking a draggable cell', () => {
