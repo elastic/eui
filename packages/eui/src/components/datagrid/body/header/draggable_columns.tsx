@@ -62,12 +62,12 @@ export const DroppableColumns: FunctionComponent<
       if (!source) return;
 
       if (destination && destination.index !== source.index) {
-      const sourceColumn = columns[source.index - indexOffset];
-      const destinationColumn = columns[destination.index - indexOffset];
+        const sourceColumn = columns[source.index - indexOffset];
+        const destinationColumn = columns[destination.index - indexOffset];
 
-      if (sourceColumn && destinationColumn) {
-        switchColumnPos(sourceColumn.id, destinationColumn.id);
-      }
+        if (sourceColumn && destinationColumn) {
+          switchColumnPos(sourceColumn.id, destinationColumn.id);
+        }
       }
       // Force focus the cell to prevent the datagrid body from become unfocusable, including on drag cancel
       setTimeout(() => {
@@ -205,6 +205,7 @@ export const DraggableColumn: FunctionComponent<{
               ...restDragHandleProps,
               css: reapplyCellStyles,
               'data-column-moving': isDraggingRef.current || undefined,
+              isDragging,
             };
 
             // since the cloned content is in a portal outside the datagrid

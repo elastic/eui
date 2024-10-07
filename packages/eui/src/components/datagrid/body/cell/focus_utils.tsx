@@ -146,6 +146,7 @@ export const FocusTrappedChildren: FunctionComponent<
               isCellEntered === false &&
               isDOMNode(event.target) &&
               isDOMNode(event.currentTarget) &&
+              event.currentTarget !== event.target &&
               event.currentTarget.contains(event.target)
             ) {
               return true;

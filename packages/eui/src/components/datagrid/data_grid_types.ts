@@ -176,6 +176,7 @@ export interface EuiDataGridHeaderCellWrapperProps {
   className?: string;
   'aria-label'?: AriaAttributes['aria-label'];
   hasColumnActions?: boolean;
+  isDragging?: boolean;
   onKeyDown?: KeyboardEventHandler;
 }
 

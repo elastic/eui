@@ -191,6 +191,35 @@ describe('draggable columns', () => {
         .should('have.attr', 'data-test-subj', 'dataGridHeaderCell-b')
         .should('have.attr', 'tabindex', '0');
     });
+
+    it('should not open focus traps when dragging', () => {
+      cy.realMount(<StatefulDataGrid />);
+
+      // Start drag
+      cy.get('[data-test-subj=dataGridHeaderCell-b]')
+        .focus()
+        .realPress('Space');
+
+      // Should not enter focus trap
+      cy.realPress('Enter');
+      cy.focused().should(
+        'have.attr',
+        'data-test-subj',
+        'dataGridHeaderCell-b'
+      );
+
+      // Cancel drag
+      cy.realPress('Escape');
+      cy.focused().should(
+        'have.attr',
+        'data-test-subj',
+        'dataGridHeaderCell-b'
+      );
+
+      // Should still be able to enter focus trap
+      cy.realPress('Enter');
+      cy.focused().should('have.text', 'Second');
+    });
   });
 
   describe('clicking a draggable cell', () => {
