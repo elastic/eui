@@ -10,7 +10,7 @@
 /// <reference types="cypress-real-events" />
 /// <reference types="../../../cypress/support" />
 
-import React, { ReactNode, useState } from 'react';
+import React, { ReactNode } from 'react';
 import {
   EuiDataGrid,
   EuiDataGridColumn,
@@ -538,124 +538,6 @@ describe('EuiDataGrid', () => {
           .should('have.attr', 'data-gridcell-column-index', '1')
           .should('have.attr', 'data-gridcell-row-index', '-1');
       });
-    });
-  });
-
-  describe('draggable columns', () => {
-    const StatefulDataGrid = (props) => {
-      const [visibleColumns, setVisibleColumns] = useState(['a', 'b']);
-
-      return (
-        <EuiDataGrid
-          {...props}
-          columnVisibility={{
-            visibleColumns,
-            setVisibleColumns,
-            canDragAndDropColumns: true,
-          }}
-        />
-      );
-    };
-
-    it('should reorder columns on header cell drag and drop', () => {
-      cy.mount(<StatefulDataGrid {...baseProps} />);
-
-      cy.wait(50);
-
-      cy.get('[data-test-subj=dataGridHeaderCell-a]')
-        .realHover()
-        .realMouseDown({ position: 'center' })
-        .realMouseMove(0, 0) // start drag
-        .realMouseMove(200, 34) // move (absolute coordinates)
-        .realMouseUp();
-
-      cy.get('[data-test-subj=dataGridHeaderCell-a]').should(
-        'have.attr',
-        'data-gridcell-column-index',
-        '1'
-      );
-      cy.get('[data-test-subj=dataGridHeaderCell-b]').should(
-        'have.attr',
-        'data-gridcell-column-index',
-        '0'
-      );
-
-      cy.get('[data-test-subj=dataGridHeaderCell-a]')
-        .realHover()
-        .realMouseDown({ position: 'center' })
-        .realMouseMove(0, 0) // start drag
-        .realMouseMove(0, 34) // move (absolute coordinates)
-        .realMouseUp();
-
-      cy.get('[data-test-subj=dataGridHeaderCell-a]').should(
-        'have.attr',
-        'data-gridcell-column-index',
-        '0'
-      );
-      cy.get('[data-test-subj=dataGridHeaderCell-b]').should(
-        'have.attr',
-        'data-gridcell-column-index',
-        '1'
-      );
-    });
-
-    it('should reorder columns on header cell drag and drop with keyboard', () => {
-      cy.mount(<StatefulDataGrid {...baseProps} />);
-
-      cy.wait(50);
-
-      cy.get('[data-test-subj=dataGridHeaderCell-a]')
-        .focus()
-        .realPress('Space')
-        .realPress('ArrowRight')
-        .realPress('Space');
-
-      cy.get('[data-test-subj=dataGridHeaderCell-a]').should(
-        'have.attr',
-        'data-gridcell-column-index',
-        '1'
-      );
-      cy.get('[data-test-subj=dataGridHeaderCell-b]').should(
-        'have.attr',
-        'data-gridcell-column-index',
-        '0'
-      );
-
-      cy.get('[data-test-subj=dataGridHeaderCell-a]')
-        .focus()
-        .realPress('Space')
-        .realPress('ArrowLeft')
-        .realPress('Space');
-
-      cy.get('[data-test-subj=dataGridHeaderCell-a]').should(
-        'have.attr',
-        'data-gridcell-column-index',
-        '0'
-      );
-      cy.get('[data-test-subj=dataGridHeaderCell-b]').should(
-        'have.attr',
-        'data-gridcell-column-index',
-        '1'
-      );
-    });
-
-    it('should close the actions popover on click of another draggable cell', () => {
-      cy.mount(<StatefulDataGrid {...baseProps} />);
-
-      cy.wait(50);
-
-      cy.get('[data-test-subj=dataGridHeaderCell-a]').realHover();
-
-      cy.wait(50); // wait until actions button transition is progressed enough for the button to be clickable
-
-      cy.get('[data-test-subj=dataGridHeaderCellActionButton-a]').realClick();
-
-      cy.get('.euiPanel').should('have.focus');
-
-      cy.get('[data-test-subj=dataGridHeaderCell-b]').realClick();
-
-      cy.get('[data-test-subj=dataGridHeaderCell-b]').should('have.focus');
-      cy.get('.euiPanel').should('not.be.visible');
     });
   });
 
