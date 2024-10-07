@@ -180,7 +180,7 @@ export const DraggableColumn: FunctionComponent<{
           className="euiDataGridHeaderCellDraggable"
           css={styles.euiDataGridHeaderCellDraggable}
           index={index}
-          customDragHandle
+          customDragHandle="custom"
           hasInteractiveChildren
           usePortal
         >
