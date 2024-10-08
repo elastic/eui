@@ -10,6 +10,7 @@ import React, {
   FunctionComponent,
   HTMLAttributes,
   ThHTMLAttributes,
+  ReactNode,
 } from 'react';
 import classNames from 'classnames';
 
@@ -47,6 +48,12 @@ export type EuiTableHeaderCellProps = CommonProps &
      * Shows the sort indicator but removes the button
      */
     readOnly?: boolean;
+    /**
+     * Content rendered outside the visible cell content wrapper. Useful for, e.g. screen reader text.
+     *
+     * Used by EuiBasicTable to render hidden copy markers
+     */
+    append?: ReactNode;
   };
 
 const CellContents = ({
@@ -128,6 +135,7 @@ export const EuiTableHeaderCell: FunctionComponent<EuiTableHeaderCellProps> = ({
   style,
   readOnly,
   description,
+  append,
   ...rest
 }) => {
   const styles = useEuiMemoizedStyles(euiTableHeaderFooterCellStyles);
@@ -186,6 +194,7 @@ export const EuiTableHeaderCell: FunctionComponent<EuiTableHeaderCellProps> = ({
       ) : (
         <CellContents {...cellContentsProps} />
       )}
+      {append}
     </CellComponent>
   );
 };

@@ -39,7 +39,7 @@ exports[`EuiDataGridCell componentDidUpdate handles the cell popover by forwardi
 exports[`EuiDataGridCell renders 1`] = `
 <div
   aria-rowindex="1"
-  class="euiDataGridRowCell euiDataGridRowCell--alignLeft"
+  class="euiDataGridRowCell emotion-euiDataGridRowCell"
   data-gridcell-column-id="someColumn"
   data-gridcell-column-index="0"
   data-gridcell-row-index="0"
@@ -49,7 +49,7 @@ exports[`EuiDataGridCell renders 1`] = `
   tabindex="-1"
 >
   <div
-    class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight eui-textTruncate"
+    class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight eui-textTruncate emotion-euiDataGridRowCell__content-defaultHeight"
     data-datagrid-cellcontent="true"
   >
     <div>
@@ -65,12 +65,12 @@ exports[`EuiDataGridCell renders 1`] = `
       </button>
     </div>
   </div>
-  <p
-    class="emotion-euiScreenReaderOnly"
-    hidden=""
+  <span
+    aria-hidden="true"
+    class="euiScreenReaderOnly"
+    data-tabular-copy-marker="tab"
   >
-    - 
-    someColumn, column 1, row 1
-  </p>
+    ↦
+  </span>
 </div>
 `;

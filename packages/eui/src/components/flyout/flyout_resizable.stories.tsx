@@ -8,6 +8,7 @@
 
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
+import { LOKI_SELECTORS } from '../../../.storybook/loki';
 import { moveStorybookControlsToCategory } from '../../../.storybook/utils';
 
 import { EuiText } from '../text';
@@ -18,7 +19,6 @@ import {
   EuiFlyoutResizable,
   EuiFlyoutResizableProps,
 } from './flyout_resizable';
-import { LOKI_SELECTORS } from '../../../.storybook/loki';
 
 const meta: Meta<EuiFlyoutResizableProps> = {
   title: 'Layout/EuiFlyout/EuiFlyoutResizable',
@@ -57,7 +57,6 @@ moveStorybookControlsToCategory(
     'closeButtonProps',
     'focusTrapProps',
     'includeFixedHeadersInFocusTrap',
-    'ownFocus',
     'maskProps',
     'pushAnimation',
     'pushMinBreakpoint',

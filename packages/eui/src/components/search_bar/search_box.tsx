@@ -6,9 +6,8 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent, useRef } from 'react';
+import React, { FunctionComponent, useRef, useLayoutEffect } from 'react';
 
-import { useUpdateEffect } from '../../services';
 import { useEuiI18n } from '../i18n';
 import { EuiFieldSearch, EuiFieldSearchProps } from '../form';
 import { EuiInputPopover } from '../popover';
@@ -39,7 +38,7 @@ export const EuiSearchBox: FunctionComponent<EuiSearchBoxProps> = ({
 }) => {
   const inputRef = useRef<HTMLInputElement | null>(null);
 
-  useUpdateEffect(() => {
+  useLayoutEffect(() => {
     if (inputRef.current) {
       inputRef.current.value = query;
       inputRef.current.dispatchEvent(new Event('change'));

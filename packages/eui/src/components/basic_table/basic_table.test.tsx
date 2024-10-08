@@ -348,7 +348,8 @@ describe('EuiBasicTable', () => {
 
     expect(getByTestSubject('tableHeaderSortButton')).toBeTruthy();
     expect(
-      container.querySelector('[aria-sort="ascending"]')?.textContent
+      container.querySelector('[aria-sort="ascending"] .euiTableCellContent')
+        ?.textContent
     ).toEqual('Name');
   });
 

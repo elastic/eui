@@ -5,10 +5,4 @@
 @import 'helpers';
 @import 'states';
 
-@import 'button';
-@import 'form';
-@import 'loading';
-@import 'link';
-@import 'panel';
-@import 'range';
-@import 'tool_tip';
+@import 'tool_tip'; // Needed by Elastic Charts

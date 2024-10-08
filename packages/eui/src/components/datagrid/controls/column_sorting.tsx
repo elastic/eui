@@ -16,6 +16,8 @@ import React, {
   memo,
 } from 'react';
 import { DropResult } from '@hello-pangea/dnd';
+
+import { useEuiMemoizedStyles } from '../../../services';
 import { EuiButtonEmpty } from '../../button';
 import {
   EuiDragDropContext,
@@ -27,15 +29,17 @@ import { EuiI18n, useEuiI18n } from '../../i18n';
 import { EuiPopover, EuiPopoverFooter } from '../../popover';
 import { EuiText } from '../../text';
 import { EuiToken } from '../../token';
-import { EuiDataGridToolbarControl } from './data_grid_toolbar_control';
-import { EuiDataGridColumnSortingDraggable } from './column_sorting_draggable';
-import { getDetailsForSchema } from '../utils/data_grid_schema';
+
 import {
   EuiDataGridColumn,
   EuiDataGridSchema,
   EuiDataGridSchemaDetector,
   EuiDataGridSorting,
 } from '../data_grid_types';
+import { getDetailsForSchema } from '../utils/data_grid_schema';
+import { EuiDataGridToolbarControl } from './data_grid_toolbar_control';
+import { EuiDataGridColumnSortingDraggable } from './column_sorting_draggable';
+import { euiDataGridColumnSortingStyles } from './column_sorting.styles';
 
 export type ColumnSortingProps = {
   sorting: EuiDataGridSorting;
@@ -67,6 +71,8 @@ export const DataGridSortingControl: FunctionComponent<ColumnSortingProps> =
       'euiColumnSorting.sortFieldAriaLabel',
       'Sort by: '
     );
+
+    const styles = useEuiMemoizedStyles(euiDataGridColumnSortingStyles);
 
     const [availableColumnsIsOpen, setAvailableColumnsIsOpen] = useState(false);
     const availableColumnIds = useMemo(
@@ -173,7 +179,6 @@ export const DataGridSortingControl: FunctionComponent<ColumnSortingProps> =
         closePopover={() => setIsOpen(false)}
         anchorPosition="downLeft"
         panelPaddingSize="s"
-        hasDragDrop
         button={
           <EuiDataGridToolbarControl
             badgeContent={sorting.columns.length}
@@ -189,7 +194,7 @@ export const DataGridSortingControl: FunctionComponent<ColumnSortingProps> =
           <EuiDragDropContext onDragEnd={onDragEnd}>
             <EuiDroppable
               droppableId="columnSorting"
-              className="euiDataGrid__controlScroll"
+              css={styles.euiDataGridColumnSorting}
             >
               <>
                 {sorting.columns.map(({ id, direction }, index) => {
@@ -253,6 +258,7 @@ export const DataGridSortingControl: FunctionComponent<ColumnSortingProps> =
                     }
                   >
                     <div
+                      css={styles.euiDataGridColumnSorting__fieldList}
                       className="euiDataGridColumnSorting__fieldList"
                       role="listbox"
                     >
@@ -261,6 +267,7 @@ export const DataGridSortingControl: FunctionComponent<ColumnSortingProps> =
                           return (
                             <button
                               key={id}
+                              css={styles.euiDataGridColumnSorting__field}
                               className="euiDataGridColumnSorting__field"
                               aria-label={`${sortFieldAriaLabel} ${id}`}
                               role="option"

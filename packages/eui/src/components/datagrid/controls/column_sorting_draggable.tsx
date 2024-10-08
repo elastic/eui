@@ -9,6 +9,7 @@
 import React, { FunctionComponent, useCallback } from 'react';
 import classNames from 'classnames';
 
+import { useEuiMemoizedStyles } from '../../../services';
 import { EuiScreenReaderOnly } from '../../accessibility';
 import { EuiButtonGroup, EuiButtonIcon } from '../../button';
 import { EuiDraggable } from '../../drag_and_drop';
@@ -17,8 +18,10 @@ import { EuiI18n, useEuiI18n } from '../../i18n';
 import { EuiIcon } from '../../icon';
 import { EuiText } from '../../text';
 import { EuiToken } from '../../token';
+
 import { getDetailsForSchema } from '../utils/data_grid_schema';
 import { EuiDataGridColumnSortingDraggableProps } from '../data_grid_types';
+import { euiDataGridColumnSortingStyles } from './column_sorting.styles';
 
 export const defaultSortAscLabel = (
   <EuiI18n token="euiColumnSortingDraggable.defaultSortAsc" default="A-Z" />
@@ -90,19 +93,27 @@ export const EuiDataGridColumnSortingDraggable: FunctionComponent<
     [id, sorting]
   );
 
+  const styles = useEuiMemoizedStyles(euiDataGridColumnSortingStyles);
+
   return (
     <EuiDraggable
       draggableId={id}
       index={index}
       hasInteractiveChildren
       customDragHandle
+      usePortal
       {...rest}
     >
       {(provided, state) => (
-        <div
+        <EuiFlexGroup
+          css={styles.euiDataGridColumnSorting__item}
           className={classNames('euiDataGridColumnSorting__item', {
             'euiDataGridColumnSorting__item-isDragging': state.isDragging,
           })}
+          gutterSize="xs"
+          alignItems="center"
+          responsive={false}
+          data-test-subj={`euiDataGridColumnSorting-sortColumn-${id}`}
         >
           <EuiScreenReaderOnly>
             <p>
@@ -115,91 +126,83 @@ export const EuiDataGridColumnSortingDraggable: FunctionComponent<
               </EuiI18n>
             </p>
           </EuiScreenReaderOnly>
-          <EuiFlexGroup
-            gutterSize="xs"
-            alignItems="center"
-            responsive={false}
-            data-test-subj={`euiDataGridColumnSorting-sortColumn-${id}`}
+          <EuiFlexItem grow={false}>
+            <EuiI18n
+              token="euiColumnSortingDraggable.removeSortLabel"
+              default="Remove {display} from data grid sort"
+              values={{ display }}
+            >
+              {(removeSortLabel: string) => (
+                <EuiButtonIcon
+                  color="text"
+                  className="euiDataGridColumnSorting__button"
+                  aria-label={removeSortLabel}
+                  iconType="cross"
+                  onClick={removeSort}
+                />
+              )}
+            </EuiI18n>
+          </EuiFlexItem>
+
+          <EuiFlexItem
+            // This extra column name flex item affords the column more grabbable real estate
+            // for mouse users, while hiding repetition for keyboard/screen reader users
+            css={styles.euiDataGridColumnSorting__name}
+            className="euiDataGridColumnSorting__name"
+            {...provided.dragHandleProps}
+            tabIndex={-1}
+            aria-hidden
           >
-            <EuiFlexItem grow={false}>
-              <EuiI18n
-                token="euiColumnSortingDraggable.removeSortLabel"
-                default="Remove {display} from data grid sort"
-                values={{ display }}
-              >
-                {(removeSortLabel: string) => (
-                  <EuiButtonIcon
-                    color="text"
-                    className="euiDataGridColumnSorting__button"
-                    aria-label={removeSortLabel}
-                    iconType="cross"
-                    onClick={removeSort}
-                  />
-                )}
-              </EuiI18n>
-            </EuiFlexItem>
-
-            <EuiFlexItem
-              className="euiDataGridColumnSorting__name"
-              // This extra column name flex item affords the column more grabbable real estate
-              // for mouse users, while hiding repetition for keyboard/screen reader users
-              {...provided.dragHandleProps}
-              tabIndex={-1}
-              aria-hidden
+            <EuiFlexGroup
+              gutterSize="xs"
+              alignItems="center"
+              responsive={false}
             >
-              <EuiFlexGroup
-                gutterSize="xs"
-                alignItems="center"
-                responsive={false}
-              >
-                <EuiFlexItem grow={false}>
-                  <EuiToken
-                    color={
-                      schemaDetails != null ? schemaDetails.color : undefined
-                    }
-                    iconType={
-                      schemaDetails != null ? schemaDetails.icon : 'tokenString'
-                    }
-                  />
-                </EuiFlexItem>
-                <EuiFlexItem>
-                  <EuiText size="xs">
-                    <p>{display}</p>
-                  </EuiText>
-                </EuiFlexItem>
-              </EuiFlexGroup>
-            </EuiFlexItem>
+              <EuiFlexItem grow={false}>
+                <EuiToken
+                  color={
+                    schemaDetails != null ? schemaDetails.color : undefined
+                  }
+                  iconType={
+                    schemaDetails != null ? schemaDetails.icon : 'tokenString'
+                  }
+                />
+              </EuiFlexItem>
+              <EuiFlexItem>
+                <EuiText size="xs">{display}</EuiText>
+              </EuiFlexItem>
+            </EuiFlexGroup>
+          </EuiFlexItem>
 
-            <EuiFlexItem>
-              <EuiI18n
-                token="euiColumnSortingDraggable.toggleLegend"
-                default="Select sorting method for {display}"
-                values={{ display }}
-              >
-                {(toggleLegend: string) => (
-                  <EuiButtonGroup
-                    legend={toggleLegend}
-                    name={id}
-                    isFullWidth
-                    options={toggleOptions}
-                    buttonSize="compressed"
-                    className="euiDataGridColumnSorting__order"
-                    idSelected={direction === 'asc' ? `${id}Asc` : `${id}Desc`}
-                    onChange={toggleLegendHandler}
-                  />
-                )}
-              </EuiI18n>
-            </EuiFlexItem>
-
-            <EuiFlexItem
-              grow={false}
-              {...provided.dragHandleProps}
-              aria-label={dragHandleAriaLabel}
+          <EuiFlexItem>
+            <EuiI18n
+              token="euiColumnSortingDraggable.toggleLegend"
+              default="Select sorting method for {display}"
+              values={{ display }}
             >
-              <EuiIcon type="grab" color="subdued" />
-            </EuiFlexItem>
-          </EuiFlexGroup>
-        </div>
+              {(toggleLegend: string) => (
+                <EuiButtonGroup
+                  legend={toggleLegend}
+                  isFullWidth
+                  options={toggleOptions}
+                  buttonSize="compressed"
+                  css={styles.euiDataGridColumnSorting__order}
+                  className="euiDataGridColumnSorting__order"
+                  idSelected={direction === 'asc' ? `${id}Asc` : `${id}Desc`}
+                  onChange={toggleLegendHandler}
+                />
+              )}
+            </EuiI18n>
+          </EuiFlexItem>
+
+          <EuiFlexItem
+            grow={false}
+            {...provided.dragHandleProps}
+            aria-label={dragHandleAriaLabel}
+          >
+            <EuiIcon type="grab" color="subdued" />
+          </EuiFlexItem>
+        </EuiFlexGroup>
       )}
     </EuiDraggable>
   );

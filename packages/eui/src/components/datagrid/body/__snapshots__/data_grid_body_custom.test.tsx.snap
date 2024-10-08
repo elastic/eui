@@ -5,13 +5,13 @@ exports[`EuiDataGridBodyCustomRender treats \`renderCustomGridBody\` as a render
   class="euiDataGrid__customRenderBody"
 >
   <div
-    class="euiDataGridHeader"
+    class="euiDataGridHeader emotion-euiDataGridHeader"
     data-test-subj="dataGridHeader"
     role="row"
   >
     <div
       aria-describedby="euiDataGridCellHeader_generated-id_sorting"
-      class="euiDataGridHeaderCell euiDataGridHeaderCell--boolean euiDataGridHeaderCell--hasColumnActions"
+      class="euiDataGridHeaderCell euiDataGridHeaderCell--boolean euiDataGridHeaderCell--hasColumnActions emotion-euiDataGridHeaderCell"
       data-gridcell-column-id="columnA"
       data-gridcell-column-index="0"
       data-gridcell-row-index="-1"
@@ -22,40 +22,45 @@ exports[`EuiDataGridBodyCustomRender treats \`renderCustomGridBody\` as a render
       tabindex="-1"
     >
       <div
-        class="euiDataGridColumnResizer"
+        class="euiDataGridColumnResizer emotion-euiDataGridColumnResizer"
         data-test-subj="dataGridColumnResizer"
-        style="margin-right: 0px;"
       />
       <div
-        class="euiDataGridHeaderCell__content"
+        class="euiDataGridHeaderCell__content emotion-euiDataGridHeaderCell__content"
         title="columnA"
       >
         columnA
       </div>
       <div
-        class="euiPopover emotion-euiPopover-block-EuiDataGridHeaderCell"
+        class="euiPopover emotion-euiPopover-block-euiDataGridHeaderCell__popover"
       >
         <button
           aria-label="Press the Enter key to view this column's actions"
-          class="euiDataGridHeaderCell__button css-wvewty"
+          class="euiButtonIcon euiDataGridHeaderCell__button emotion-euiButtonIcon-xs-empty-text-euiDataGridHeaderCell__button"
           data-euigrid-tab-managed="true"
           data-test-subj="dataGridHeaderCellActionButton-columnA"
           tabindex="-1"
+          type="button"
         >
-          <div
-            class="euiDataGridHeaderCell__icon"
-          >
-            <span
-              color="text"
-              data-euiicon-type="boxesVertical"
-            />
-          </div>
+          <span
+            aria-hidden="true"
+            class="euiButtonIcon__icon"
+            color="inherit"
+            data-euiicon-type="boxesVertical"
+          />
         </button>
       </div>
+      <span
+        aria-hidden="true"
+        class="euiScreenReaderOnly"
+        data-tabular-copy-marker="tab"
+      >
+        ↦
+      </span>
     </div>
     <div
       aria-describedby="euiDataGridCellHeader_generated-id_sorting"
-      class="euiDataGridHeaderCell euiDataGridHeaderCell--string euiDataGridHeaderCell--hasColumnActions"
+      class="euiDataGridHeaderCell euiDataGridHeaderCell--string euiDataGridHeaderCell--hasColumnActions emotion-euiDataGridHeaderCell"
       data-gridcell-column-id="columnB"
       data-gridcell-column-index="1"
       data-gridcell-row-index="-1"
@@ -66,36 +71,41 @@ exports[`EuiDataGridBodyCustomRender treats \`renderCustomGridBody\` as a render
       tabindex="-1"
     >
       <div
-        class="euiDataGridColumnResizer"
+        class="euiDataGridColumnResizer emotion-euiDataGridColumnResizer"
         data-test-subj="dataGridColumnResizer"
-        style="margin-right: 0px;"
       />
       <div
-        class="euiDataGridHeaderCell__content"
+        class="euiDataGridHeaderCell__content emotion-euiDataGridHeaderCell__content"
         title="columnB"
       >
         columnB
       </div>
       <div
-        class="euiPopover emotion-euiPopover-block-EuiDataGridHeaderCell"
+        class="euiPopover emotion-euiPopover-block-euiDataGridHeaderCell__popover"
       >
         <button
           aria-label="Press the Enter key to view this column's actions"
-          class="euiDataGridHeaderCell__button css-wvewty"
+          class="euiButtonIcon euiDataGridHeaderCell__button emotion-euiButtonIcon-xs-empty-text-euiDataGridHeaderCell__button"
           data-euigrid-tab-managed="true"
           data-test-subj="dataGridHeaderCellActionButton-columnB"
           tabindex="-1"
+          type="button"
         >
-          <div
-            class="euiDataGridHeaderCell__icon"
-          >
-            <span
-              color="text"
-              data-euiicon-type="boxesVertical"
-            />
-          </div>
+          <span
+            aria-hidden="true"
+            class="euiButtonIcon__icon"
+            color="inherit"
+            data-euiicon-type="boxesVertical"
+          />
         </button>
       </div>
+      <span
+        aria-hidden="true"
+        class="euiScreenReaderOnly"
+        data-tabular-copy-marker="newline"
+      >
+        ↵
+      </span>
     </div>
   </div>
   <div
@@ -103,7 +113,7 @@ exports[`EuiDataGridBodyCustomRender treats \`renderCustomGridBody\` as a render
   >
     <div
       aria-rowindex="1"
-      class="euiDataGridRowCell euiDataGridRowCell--alignLeft euiDataGridRowCell--boolean euiDataGridRowCell--firstColumn"
+      class="euiDataGridRowCell euiDataGridRowCell--boolean euiDataGridRowCell--firstColumn emotion-euiDataGridRowCell"
       data-gridcell-column-id="columnA"
       data-gridcell-column-index="0"
       data-gridcell-row-index="0"
@@ -114,22 +124,22 @@ exports[`EuiDataGridBodyCustomRender treats \`renderCustomGridBody\` as a render
       tabindex="-1"
     >
       <div
-        class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight eui-textTruncate"
+        class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight eui-textTruncate emotion-euiDataGridRowCell__content-defaultHeight"
         data-datagrid-cellcontent="true"
       >
         hello
       </div>
-      <p
-        class="emotion-euiScreenReaderOnly"
-        hidden=""
+      <span
+        aria-hidden="true"
+        class="euiScreenReaderOnly"
+        data-tabular-copy-marker="tab"
       >
-        - 
-        columnA, column 1, row 1
-      </p>
+        ↦
+      </span>
     </div>
     <div
       aria-rowindex="1"
-      class="euiDataGridRowCell euiDataGridRowCell--alignLeft euiDataGridRowCell--string euiDataGridRowCell--lastColumn"
+      class="euiDataGridRowCell euiDataGridRowCell--string euiDataGridRowCell--lastColumn emotion-euiDataGridRowCell"
       data-gridcell-column-id="columnB"
       data-gridcell-column-index="1"
       data-gridcell-row-index="0"
@@ -140,18 +150,18 @@ exports[`EuiDataGridBodyCustomRender treats \`renderCustomGridBody\` as a render
       tabindex="-1"
     >
       <div
-        class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight eui-textTruncate"
+        class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight eui-textTruncate emotion-euiDataGridRowCell__content-defaultHeight"
         data-datagrid-cellcontent="true"
       >
         world
       </div>
-      <p
-        class="emotion-euiScreenReaderOnly"
-        hidden=""
+      <span
+        aria-hidden="true"
+        class="euiScreenReaderOnly"
+        data-tabular-copy-marker="newline"
       >
-        - 
-        columnB, column 2, row 1
-      </p>
+        ↵
+      </span>
     </div>
   </div>
   <div
@@ -159,7 +169,7 @@ exports[`EuiDataGridBodyCustomRender treats \`renderCustomGridBody\` as a render
   >
     <div
       aria-rowindex="2"
-      class="euiDataGridRowCell euiDataGridRowCell--alignLeft euiDataGridRowCell--boolean euiDataGridRowCell--firstColumn"
+      class="euiDataGridRowCell euiDataGridRowCell--boolean euiDataGridRowCell--firstColumn emotion-euiDataGridRowCell"
       data-gridcell-column-id="columnA"
       data-gridcell-column-index="0"
       data-gridcell-row-index="1"
@@ -170,22 +180,22 @@ exports[`EuiDataGridBodyCustomRender treats \`renderCustomGridBody\` as a render
       tabindex="-1"
     >
       <div
-        class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight eui-textTruncate"
+        class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight eui-textTruncate emotion-euiDataGridRowCell__content-defaultHeight"
         data-datagrid-cellcontent="true"
       >
         lorem
       </div>
-      <p
-        class="emotion-euiScreenReaderOnly"
-        hidden=""
+      <span
+        aria-hidden="true"
+        class="euiScreenReaderOnly"
+        data-tabular-copy-marker="tab"
       >
-        - 
-        columnA, column 1, row 2
-      </p>
+        ↦
+      </span>
     </div>
     <div
       aria-rowindex="2"
-      class="euiDataGridRowCell euiDataGridRowCell--alignLeft euiDataGridRowCell--string euiDataGridRowCell--lastColumn"
+      class="euiDataGridRowCell euiDataGridRowCell--string euiDataGridRowCell--lastColumn emotion-euiDataGridRowCell"
       data-gridcell-column-id="columnB"
       data-gridcell-column-index="1"
       data-gridcell-row-index="1"
@@ -196,18 +206,18 @@ exports[`EuiDataGridBodyCustomRender treats \`renderCustomGridBody\` as a render
       tabindex="-1"
     >
       <div
-        class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight eui-textTruncate"
+        class="euiDataGridRowCell__content euiDataGridRowCell__content--defaultHeight eui-textTruncate emotion-euiDataGridRowCell__content-defaultHeight"
         data-datagrid-cellcontent="true"
       >
         ipsum
       </div>
-      <p
-        class="emotion-euiScreenReaderOnly"
-        hidden=""
+      <span
+        aria-hidden="true"
+        class="euiScreenReaderOnly"
+        data-tabular-copy-marker="newline"
       >
-        - 
-        columnB, column 2, row 2
-      </p>
+        ↵
+      </span>
     </div>
   </div>
 </div>

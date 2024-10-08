@@ -8,10 +8,9 @@
 
 import React from 'react';
 import { createEvent, fireEvent } from '@testing-library/react';
-import { shallow } from 'enzyme';
-
 import { render, renderHook, renderHookAct } from '../../../../test/rtl';
 import { keys } from '../../../../services';
+
 import { DataGridCellPopoverContextShape } from '../../data_grid_types';
 import { useCellPopover, DefaultCellPopover } from './data_grid_cell_popover';
 
@@ -97,42 +96,38 @@ describe('useCellPopover', () => {
       expect(result.current.cellPopover).toBeFalsy(); // Should be empty on init
 
       populateCellPopover(result.current.cellPopoverContext);
-      expect(result.current.cellPopover).toMatchInlineSnapshot(`
-        <EuiWrappingPopover
-          anchorPosition="downLeft"
-          button={<div />}
-          closePopover={[Function]}
-          display="block"
-          focusTrapProps={
-            {
-              "clickOutsideDisables": false,
-              "onClickOutside": [Function],
-            }
-          }
-          hasArrow={false}
-          isOpen={true}
-          onKeyDown={[Function]}
-          panelClassName="euiDataGridRowCell__popover"
-          panelPaddingSize="s"
-          panelProps={
-            {
-              "data-test-subj": "euiDataGridExpansionPopover",
-            }
-          }
-          panelStyle={
-            {
-              "maxBlockSize": "50vh",
-              "maxInlineSize": "min(75vw, max(0px, 400px))",
-            }
-          }
-          repositionToCrossAxis={false}
+      expect(result.current.cellPopover).toBeTruthy();
+
+      const { baseElement } = render(<>{result.current.cellPopover}</>);
+      expect(baseElement.querySelector('.euiDataGridRowCell__popover'))
+        .toMatchInlineSnapshot(`
+        <div
+          aria-describedby="generated-id"
+          aria-live="off"
+          aria-modal="true"
+          class="euiPanel euiPanel--plain euiPanel--paddingSmall euiPopover__panel euiDataGridRowCell__popover emotion-euiPanel-grow-m-s-plain-euiPopover__panel-light-isOpen-isAttached-bottom-euiDataGridRowCell__popover"
+          data-autofocus="true"
+          data-popover-open="true"
+          data-popover-panel="true"
+          data-test-subj="euiDataGridExpansionPopover"
+          role="dialog"
+          style="top: 0px; left: 0px; will-change: transform, opacity; max-inline-size: min(75vw, max(0px, 400px)); max-block-size: 50vh; z-index: 1000;"
+          tabindex="0"
         >
-          <div
-            data-test-subj="mockPopover"
+          <p
+            class="emotion-euiScreenReaderOnly"
+            id="generated-id"
           >
-            Hello world
+            You are in a dialog. Press Escape, or tap/click outside the dialog to close.
+          </p>
+          <div>
+            <div
+              data-test-subj="mockPopover"
+            >
+              Hello world
+            </div>
           </div>
-        </EuiWrappingPopover>
+        </div>
       `);
     });
 
@@ -148,6 +143,7 @@ describe('useCellPopover', () => {
 
       // Mock a focusable cell parent
       const mockCell = document.createElement('div');
+      mockCell.className = 'euiDataGridRowCell';
       mockCell.tabIndex = 0;
 
       const renderCellPopover = () => {
@@ -245,39 +241,16 @@ describe('popover content renderers', () => {
   };
 
   test('default cell popover', () => {
-    const component = shallow(<DefaultCellPopover {...props} />);
-    expect(component).toMatchInlineSnapshot(`
-      <Fragment>
-        <EuiText>
-          <div
-            data-test-subj="mockCellValue"
-          >
-            Content
-          </div>
-        </EuiText>
-        <div
-          data-test-subj="mockCellActions"
-        >
-          Action
-        </div>
-      </Fragment>
-    `);
+    const { container } = render(<DefaultCellPopover {...props} />);
+    expect(container.firstChild).toHaveClass('euiText');
+    expect(container).toHaveTextContent('Content');
   });
 
   test('JSON schema popover', () => {
-    const component = shallow(<DefaultCellPopover {...props} schema="json" />);
-    const codeBlock = component.find('JsonPopoverContent').dive();
-    expect(codeBlock).toMatchInlineSnapshot(`
-      <EuiCodeBlock
-        isCopyable={true}
-        language="json"
-        paddingSize="none"
-        transparentBackground={true}
-      >
-        {
-        "hello": "world"
-      }
-      </EuiCodeBlock>
-    `);
+    const { container } = render(
+      <DefaultCellPopover {...props} schema="json" />
+    );
+    expect(container.firstChild).toHaveClass('euiCodeBlock');
+    expect(container).toHaveTextContent('{ "hello": "world" }');
   });
 });

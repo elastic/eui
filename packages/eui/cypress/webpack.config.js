@@ -10,8 +10,6 @@
 
 const { ProvidePlugin, DefinePlugin } = require('webpack');
 
-const THEME_IMPORT = `'../../dist/eui_theme_${process.env.THEME}.css'`;
-
 const alias = {};
 const reactVersion = process.env.REACT_VERSION || '18';
 
@@ -49,19 +47,6 @@ module.exports = {
           plugins: ['istanbul'],
         },
       },
-      {
-        test: /\.css$/,
-        use: [
-          {
-            loader: 'style-loader',
-            options: {
-              insert: 'meta[name="css-styles"]',
-            },
-          },
-          'css-loader',
-        ],
-        exclude: /node_modules/,
-      },
     ],
     strictExportPresence: false,
   },
@@ -72,7 +57,6 @@ module.exports = {
     }),
 
     new DefinePlugin({
-      THEME_IMPORT, // allow cypress/support/component.tsx to require the correct css file
       'process.env.REACT_VERSION': JSON.stringify(reactVersion),
     }),
   ],

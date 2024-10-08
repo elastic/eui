@@ -38,8 +38,6 @@ export const EXCLUDED_PROPS = new Set([
   EMOTION_LABEL_KEY,
   'key',
 ]);
-// props with 'false' value that should not be removed but shown in the code snippet
-export const PRESERVED_FALSE_VALUE_PROPS = new Set(['grow']);
 
 /** ERRORS */
 export const ADDON_ERROR =

@@ -1,7 +1,7 @@
 {
   "name": "@elastic/eui",
   "description": "Elastic UI Component Library",
-  "version": "95.10.1",
+  "version": "96.1.0",
   "license": "SEE LICENSE IN LICENSE.txt",
   "main": "lib",
   "module": "es",
@@ -42,8 +42,8 @@
     "release": "node ./scripts/release.js",
     "release-backport": "node ./scripts/release.js --type=backport",
     "release-rc": "node ./scripts/release.js --type=prerelease",
-    "storybook": "yarn compile-scss && storybook dev -p 6006",
-    "build-storybook": "yarn compile-scss && storybook build",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build",
     "pre-push": "yarn test-staged"
   },
   "repository": {

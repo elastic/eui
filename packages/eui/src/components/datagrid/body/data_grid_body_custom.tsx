@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent, useState, useMemo } from 'react';
+import React, { FunctionComponent, useState, useMemo, memo } from 'react';
 import classNames from 'classnames';
 
 import { useDefaultColumnWidth, useColumnWidths } from '../utils/col_widths';
@@ -22,7 +22,7 @@ import { useDataGridFooter } from './footer';
 import { CellWrapper } from './cell';
 
 export const EuiDataGridBodyCustomRender: FunctionComponent<EuiDataGridBodyProps> =
-  React.memo(
+  memo(
     ({
       renderCustomGridBody,
       renderCellValue,
@@ -45,6 +45,7 @@ export const EuiDataGridBodyCustomRender: FunctionComponent<EuiDataGridBodyProps
       rowHeightsOptions,
       gridWidth,
       gridStyles,
+      className,
     }) => {
       /**
        * Columns & widths
@@ -96,10 +97,12 @@ export const EuiDataGridBodyCustomRender: FunctionComponent<EuiDataGridBodyProps
           defaultColumnWidth,
           setColumnWidth,
           setVisibleColumns,
+          visibleColCount,
           switchColumnPos,
           sorting,
           schema,
           schemaDetectors,
+          gridStyles,
         };
       }, [
         leadingControlColumns,
@@ -108,11 +111,13 @@ export const EuiDataGridBodyCustomRender: FunctionComponent<EuiDataGridBodyProps
         columnWidths,
         defaultColumnWidth,
         setColumnWidth,
+        visibleColCount,
         setVisibleColumns,
         switchColumnPos,
         sorting,
         schema,
         schemaDetectors,
+        gridStyles,
       ]);
 
       /**
@@ -126,6 +131,7 @@ export const EuiDataGridBodyCustomRender: FunctionComponent<EuiDataGridBodyProps
           renderCellPopover,
           rowIndex: visibleRows.visibleRowCount,
           visibleRowIndex: visibleRows.visibleRowCount,
+          visibleColCount,
           interactiveCellId,
           leadingControlColumns,
           trailingControlColumns,
@@ -133,11 +139,13 @@ export const EuiDataGridBodyCustomRender: FunctionComponent<EuiDataGridBodyProps
           columnWidths,
           defaultColumnWidth,
           schema,
+          gridStyles,
         }),
         [
           renderFooterCellValue,
           renderCellPopover,
           visibleRows.visibleRowCount,
+          visibleColCount,
           interactiveCellId,
           leadingControlColumns,
           trailingControlColumns,
@@ -145,6 +153,7 @@ export const EuiDataGridBodyCustomRender: FunctionComponent<EuiDataGridBodyProps
           columnWidths,
           defaultColumnWidth,
           schema,
+          gridStyles,
         ]
       );
 
@@ -171,6 +180,7 @@ export const EuiDataGridBodyCustomRender: FunctionComponent<EuiDataGridBodyProps
           setRowHeight,
           rowHeightsOptions,
           rowHeightUtils,
+          gridStyles,
         };
       }, [
         schema,
@@ -189,9 +199,10 @@ export const EuiDataGridBodyCustomRender: FunctionComponent<EuiDataGridBodyProps
         setRowHeight,
         rowHeightsOptions,
         rowHeightUtils,
+        gridStyles,
       ]);
 
-      const Cell = useMemo<EuiDataGridCustomBodyProps['Cell']>(
+      const Cell: EuiDataGridCustomBodyProps['Cell'] = useMemo(
         () =>
           ({ colIndex, visibleRowIndex, ...rest }) => {
             const style = {
@@ -244,6 +255,7 @@ export const EuiDataGridBodyCustomRender: FunctionComponent<EuiDataGridBodyProps
           {...customGridBodyProps}
           className={classNames(
             'euiDataGrid__customRenderBody',
+            className,
             customGridBodyProps?.className
           )}
         >

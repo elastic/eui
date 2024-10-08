@@ -20,6 +20,7 @@ import { CommonProps } from '../common';
 
 import { EuiDroppableContext, SPACINGS } from './droppable';
 import { euiDraggableStyles, euiDraggableItemStyles } from './draggable.styles';
+import { EuiPortal } from '../portal';
 
 export interface EuiDraggableProps
   extends CommonProps,
@@ -43,6 +44,15 @@ export interface EuiDraggableProps
    */
   isRemovable?: boolean;
   /**
+   * Whether the currently dragged item is cloned into a portal in the body. This settings will
+   * ensure that drag & drop still works as expected within stacking contexts (e.g. within `EuiFlyout`,
+   * `EuiModal` and `EuiPopover`).
+   *
+   * Make sure to apply styles directly to the Draggable content as relative styling from an outside
+   * scope might not be applied when the content is placed in a portal as the DOM structure changes.
+   */
+  usePortal?: boolean;
+  /**
    * Adds padding to the draggable item
    */
   spacing?: (typeof SPACINGS)[number];
@@ -55,6 +65,7 @@ export const EuiDraggable: FunctionComponent<EuiDraggableProps> = ({
   isDragDisabled = false,
   hasInteractiveChildren = false,
   isRemovable = false,
+  usePortal = false,
   index,
   children,
   className,
@@ -94,7 +105,8 @@ export const EuiDraggable: FunctionComponent<EuiDraggableProps> = ({
           typeof children === 'function'
             ? (children(provided, snapshot, rubric) as ReactElement)
             : children;
-        return (
+
+        const content = (
           <>
             <div
               {...provided.draggableProps}
@@ -103,7 +115,10 @@ export const EuiDraggable: FunctionComponent<EuiDraggableProps> = ({
               data-test-subj={dataTestSubj}
               className={classes}
               css={cssStyles}
-              style={{ ...style, ...provided.draggableProps.style }}
+              style={{
+                ...style,
+                ...provided.draggableProps.style,
+              }}
               // We use [role="group"] instead of [role="button"] when we expect a nested
               // interactive element. Screen readers will cue users that this is a container
               // and has one or more elements inside that are part of a related group.
@@ -140,6 +155,12 @@ export const EuiDraggable: FunctionComponent<EuiDraggableProps> = ({
               </div>
             )}
           </>
+        );
+
+        return isDragging && usePortal ? (
+          <EuiPortal>{content}</EuiPortal>
+        ) : (
+          content
         );
       }}
     </Draggable>

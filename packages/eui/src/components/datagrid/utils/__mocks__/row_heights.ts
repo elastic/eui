@@ -23,7 +23,6 @@ export const RowHeightUtils = jest.fn().mockImplementation(() => {
   const rowHeightUtils = new ActualRowHeightUtils();
 
   const rowHeightUtilsMock: RowHeightUtilsPublicAPI = {
-    cacheStyles: jest.fn(),
     getHeightType: jest.fn(rowHeightUtils.getHeightType),
     isAutoHeight: jest.fn(() => false),
     setRowHeight: jest.fn(),

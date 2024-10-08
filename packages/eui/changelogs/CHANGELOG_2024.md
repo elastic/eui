@@ -1,3 +1,171 @@
+## [`v96.1.0`](https://github.com/elastic/eui/releases/v96.1.0)
+
+**CSS-in-JS conversions**
+
+- Removed the following component-specific Sass mixins: ([#8055](https://github.com/elastic/eui/pull/8055))
+  - `euiButton`
+  - `euiButtonBase`
+  - `euiButtonFocus`
+  - `euiButtonContent`
+  - `euiButtonContentDisabled`
+  - `euiButtonDefaultStyle`
+  - `euiButtonFillStyle`
+  - `euiPanel`
+  - `euiFormControlDefaultShadow`
+  - `euiToolTipTitle`
+
+## [`v96.0.0`](https://github.com/elastic/eui/releases/v96.0.0)
+
+- Improved `EuiPageHeader`/`EuiPageTemplate.Header`'s responsive UX: ([#8044](https://github.com/elastic/eui/pull/8044))
+  - `rightSideItems` are no longer pushed to the side by wide `tabs` content
+  - `rightSideItems` now wrap more responsively at smaller container widths
+- Updated `EuiDraggable` with a new `usePortal` prop.  ([#8048](https://github.com/elastic/eui/pull/8048))
+  - This prop portals the dragged element to the body, allowing it to escape stacking contexts which prevents buggy drag positioning in e.g. popovers, modals, and flyouts.
+
+**Bug fixes**
+
+- Fixed `EuiProvider`'s system color mode detection causing errors during server-side rendering ([#8040](https://github.com/elastic/eui/pull/8040))
+- Fixed an `EuiDataGrid` rendering bug that was causing bouncing scrollbar issues ([#8041](https://github.com/elastic/eui/pull/8041))
+- Fixed `EuiSearchBox` skips input when running with React 18 in Legacy Mode ([#8047](https://github.com/elastic/eui/pull/8047))
+
+**Deprecations**
+
+- Deprecated `EuiPopover`'s `hasDragDrop` prop. Use `EuiDraggable`'s new `usePortal` prop instead. ([#8048](https://github.com/elastic/eui/pull/8048))
+
+**Breaking changes**
+
+- Removed the following exported `.css` files: ([#8045](https://github.com/elastic/eui/pull/8045))
+  - `@elastic/eui/dist/eui_theme_light.css`
+  - `@elastic/eui/dist/eui_theme_light.min.css`
+  - `@elastic/eui/dist/eui_theme_dark.css`
+  - `@elastic/eui/dist/eui_theme_dark.min.css`
+- All EUI components are now on CSS-in-JS. A CSS file/import in consuming applications is no longer needed, and is safe to remove. ([#8045](https://github.com/elastic/eui/pull/8045))
+- Removed all `src/theme/legacy` Sass exports ([#8054](https://github.com/elastic/eui/pull/8054))
+
+**CSS-in-JS conversions**
+
+- Removed the following component-specific Sass variables: ([#8031](https://github.com/elastic/eui/pull/8031))
+  - `$euiButtonColorDisabled`
+  - `$euiButtonColorDisabledText`
+  - `$euiButtonColorGhostDisabled`
+  - `$euiButtonFontWeight`
+  - `$euiFormControlIconSizes`
+  - `$euiFormControlLayoutGroupInputHeight`
+  - `$euiFormControlLayoutGroupInputCompressedHeight`
+  - `$euiFormControlLayoutGroupInputCompressedBorderRadius`
+  - `$euiPageSidebarMinWidth`
+  - `$euiPageDefaultMaxWidth`
+  - `$euiPanelPaddingModifiers`
+  - `$euiPanelBorderRadiusModifiers`
+  - `$euiPanelBackgroundColorModifiers`
+  - `$euiRangeTrackColor`
+  - `$euiRangeHighlightColor`
+  - `$euiRangeThumbHeight`
+  - `$euiRangeThumbWidth`
+  - `$euiRangeThumbBorderColor`
+  - `$euiRangeThumbBackgroundColor`
+  - `$euiRangeTrackWidth`
+  - `$euiRangeTrackHeight`
+  - `$euiRangeTrackCompressedHeight`
+  - `$euiRangeTrackBorderWidth`
+  - `$euiRangeTrackBorderColor`
+  - `$euiRangeTrackRadius`
+  - `$euiRangeDisabledOpacity`
+  - `$euiRangeHighlightHeight`
+  - `$euiRangeHighlightCompressedHeight`
+  - `$euiRangeHeight`
+  - `$euiRangeCompressedHeight`
+  - `$euiTooltipAnimations`
+  - `$euiTooltipBackgroundColor`
+  - `$euiTooltipBorderColor`
+- Removed the following Sass mixins due to low external usage: ([#8031](https://github.com/elastic/eui/pull/8031))
+  - `euiHoverState`
+  - `euiFocusState`
+  - `euiDisabledState`
+  - `euiInteractiveStates`
+  - `euiFormControlStyle`
+  - `euiFormControlStyleCompressed`
+  - `euiFormControlFocusStyle`
+  - `euiFormControlInvalidStyle`
+  - `euiFormControlDisabledTextStyle`
+  - `euiFormControlDisabledStyle`
+  - `euiFormControlReadOnlyStyle`
+  - `euiFormControlText`
+  - `euiFormControlSize`
+  - `euiFormControlGradient`
+  - `euiFormControlLayoutPadding`
+  - `euiFormControlWithIcon`
+  - `euiFormControlIsLoading`
+  - `euiFormControlSideBorderRadius`
+  - `euiPlaceholderPerBrowser`
+  - `euiHiddenSelectableInput`
+  - `euiLink`
+  - `euiLoadingSpinnerBorderColors`
+  - `euiRangeTrackSize`
+  - `euiRangeTrackPerBrowser`
+  - `euiRangeThumbBorder`
+  - `euiRangeThumbBoxShadow`
+  - `euiRangeThumbFocusBoxShadow`
+  - `euiRangeThumbStyle`
+  - `euiRangeThumbPerBrowser`
+  - `euiRangeThumbFocus`
+  - `euiToolTipAnimation`
+
+## [`v95.12.0`](https://github.com/elastic/eui/releases/v95.12.0)
+
+- Enhanced `EuiDataGrid` and `EuiBasic/InMemoryTable` to clean content newlines/tabs when users copy and paste from their tabular data ([#8019](https://github.com/elastic/eui/pull/8019))
+- Updated `EuiResizableButton` with a new `accountForScrollbars` prop ([#8021](https://github.com/elastic/eui/pull/8021))
+- Updated `EuiProvider` to inherit from the user's OS/system light/dark mode setting if a `colorMode` prop has not been passed ([#8026](https://github.com/elastic/eui/pull/8026))
+
+**Bug fixes**
+
+- Fixed `EuiDatePicker`'s `onClear` button to not appear when the input is `disabled` ([#8020](https://github.com/elastic/eui/pull/8020))
+- Fixed several `EuiDataGrid` row height bugs: ([#8025](https://github.com/elastic/eui/pull/8025))
+  - Fixed row heights not recalculating when `rowHeightOptions.lineHeight`, `gridStyles.fontSize`, or `gridStyles.cellPadding` changed
+  - Fixed incorrect height calculations for `rowHeightOptions.rowHeights` with `lineCount`s
+  - Fixed control column content to align better with multi-line row heights, as well as custom line-heights
+
+## [`v95.11.0`](https://github.com/elastic/eui/releases/v95.11.0)
+
+- Updated `EuiText`, `EuiTextColor`, and `EuiTextAlign` with a new `component` prop that allows changing the default rendered `<div>` wrapper to a `<span>` or `<p>` tag. ([#7993](https://github.com/elastic/eui/pull/7993))
+- Updated `EuiDataGrid`'s cell actions to always consistently be left-aligned, regardless of text content alignment ([#8011](https://github.com/elastic/eui/pull/8011))
+- Increased `EuiDataGrid`'s cell actions hover zone to reduce UX friction when mousing over from the grid cell to its actions ([#8011](https://github.com/elastic/eui/pull/8011))
+
+**Bug fixes**
+
+- Fixed `EuiPopover` to correctly inherit from `EuiProvider`'s `componentDefaults.EuiPortal.insert` ([#8003](https://github.com/elastic/eui/pull/8003))
+- Fixed push `EuiFlyoutResizable`s to not potentially block scrollbars on outside content ([#8010](https://github.com/elastic/eui/pull/8010))
+- Fixed an `EuiDataGrid` bug where the `setCellProps` callback passed by `renderCellValue` was not correctly applying custom `data-test-subj`s ([#8011](https://github.com/elastic/eui/pull/8011))
+
+**Accessibility**
+
+- Updated the `EuiBasicTable` actions button's `aria-label` by adding a reference to the current row ([#7994](https://github.com/elastic/eui/pull/7994))
+
+**CSS-in-JS conversions**
+
+- Converted `EuiDataGrid`'s toolbar controls to Emotion ([#7997](https://github.com/elastic/eui/pull/7997))
+  - Removed `$euiDataGridPopoverMaxHeight`
+- Converted `EuiDataGrid` to Emotion ([#7998](https://github.com/elastic/eui/pull/7998))
+  - Removed `$euiZDataGrid`
+  - Removed `$euiZHeaderBelowDataGrid`
+- Converted `EuiDataGrid`'s `gridStyle`s to Emotion; Removed the following Sass variables and mixins: ([#8006](https://github.com/elastic/eui/pull/8006))
+  - `$euiDataGridCellPaddingS`
+  - `$euiDataGridCellPaddingM`
+  - `$euiDataGridCellPaddingL`
+  - `$euiDataGridVerticalBorder`
+  - `$euiDataGridPrefix`
+  - `$euiDataGridStyles`
+  - `@euiDataGridSelector`
+  - `@euiDataGridStyles`
+- Converted `EuiDataGrid`'s cell popover, actions, and focus outline to Emotion; Removed the following Sass variables and mixins: ([#8011](https://github.com/elastic/eui/pull/8011))
+  - `$euiZDataGridCellPopover`
+  - `@euiDataGridCellFocus`
+- Converted `EuiDataGrid`'s row, header, and footer cells to Emotion; Removed the following Sass variables and mixins: ([#8013](https://github.com/elastic/eui/pull/8013))
+  - `$euiDataGridColumnResizerWidth`
+  - `@euiDataGridRowCell`
+  - `@euiDataGridHeaderCell`
+  - `@euiDataGridFooterCell`
+
 ## [`v95.10.1`](https://github.com/elastic/eui/releases/v95.10.1)
 
 **Bug fixes**

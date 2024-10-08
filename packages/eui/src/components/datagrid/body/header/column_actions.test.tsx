@@ -314,7 +314,6 @@ describe('getColumnActions', () => {
       it('renders a "Sort A-Z" item', () => {
         expect(sortAsc).toMatchInlineSnapshot(`
           {
-            "className": "",
             "color": "text",
             "iconType": "sortUp",
             "isDisabled": false,
@@ -339,7 +338,6 @@ describe('getColumnActions', () => {
       it('renders a "Sort Z-A" item', () => {
         expect(sortDesc).toMatchInlineSnapshot(`
           {
-            "className": "",
             "color": "text",
             "iconType": "sortDown",
             "isDisabled": false,
@@ -378,10 +376,21 @@ describe('getColumnActions', () => {
         });
         const sortAsc = items[1];
 
-        it('renders sortAsc as selected', () => {
-          expect(sortAsc.className).toEqual(
-            'euiDataGridHeader__action--selected'
-          );
+        it('changes label to unsort', () => {
+          expect(sortAsc.label).toMatchInlineSnapshot(`
+            <EuiI18n
+              default="Unsort {schemaLabel}"
+              token="euiColumnActions.unsort"
+              values={
+                {
+                  "schemaLabel": <EuiI18n
+                    default="A-Z"
+                    token="euiColumnSortingDraggable.defaultSortAsc"
+                  />,
+                }
+              }
+            />
+          `);
         });
 
         it('unsets the current sort if sortAsc is clicked again', () => {
@@ -398,10 +407,21 @@ describe('getColumnActions', () => {
         const sortAsc = items[1];
         const sortDesc = items[2];
 
-        it('renders sortDesc as selected', () => {
-          expect(sortDesc.className).toEqual(
-            'euiDataGridHeader__action--selected'
-          );
+        it('changes label to unsort', () => {
+          expect(sortDesc.label).toMatchInlineSnapshot(`
+            <EuiI18n
+              default="Unsort {schemaLabel}"
+              token="euiColumnActions.unsort"
+              values={
+                {
+                  "schemaLabel": <EuiI18n
+                    default="Z-A"
+                    token="euiColumnSortingDraggable.defaultSortDesc"
+                  />,
+                }
+              }
+            />
+          `);
         });
 
         it('sets a new sort if the direction is changed', () => {

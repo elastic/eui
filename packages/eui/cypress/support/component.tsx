@@ -20,6 +20,7 @@ import 'cypress-real-events';
 
 import './a11y/checkAxe';
 import './keyboard/repeatRealPress';
+import './copy/select_and_copy';
 import './setup/mount';
 import './setup/realMount';
 
@@ -30,5 +31,3 @@ Cypress.on('uncaught:exception', (err) => {
     return false;
   }
 });
-
-require(THEME_IMPORT); // defined by DefinePlugin in the cypress webpack config

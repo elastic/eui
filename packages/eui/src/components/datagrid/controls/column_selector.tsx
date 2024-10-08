@@ -14,21 +14,22 @@ import React, {
   ChangeEvent,
 } from 'react';
 import classNames from 'classnames';
+import { DropResult } from '@hello-pangea/dnd';
 
+import { useDependentState, useEuiMemoizedStyles } from '../../../services';
 import { EuiPopover, EuiPopoverFooter, EuiPopoverTitle } from '../../popover';
 import { EuiI18n, useEuiI18n } from '../../i18n';
 import { EuiButtonEmpty } from '../../button';
 import { EuiFlexGroup, EuiFlexItem } from '../../flex';
 import { EuiSwitch, EuiFieldText } from '../../form';
+import { EuiText } from '../../text';
+import { EuiIcon } from '../../icon';
 import {
   EuiDragDropContext,
   EuiDraggable,
   EuiDroppable,
   euiDragDropReorder,
 } from '../../drag_and_drop';
-import { DropResult } from '@hello-pangea/dnd';
-import { EuiIcon } from '../../icon';
-import { useDependentState } from '../../../services';
 
 import {
   EuiDataGridColumn,
@@ -37,6 +38,7 @@ import {
 } from '../data_grid_types';
 import { getNestedObjectOptions } from './data_grid_toolbar';
 import { EuiDataGridToolbarControl } from './data_grid_toolbar_control';
+import { euiDataGridColumnSelectorStyles } from './column_selector.styles';
 
 export const useDataGridColumnSelector = (
   availableColumns: EuiDataGridColumn[],
@@ -132,6 +134,8 @@ export const useDataGridColumnSelector = (
     [availableColumns, visibleColumns]
   );
 
+  const styles = useEuiMemoizedStyles(euiDataGridColumnSelectorStyles);
+
   const columnSelector = useMemo(() => {
     return allowColumnHiding || allowColumnReorder ? (
       <EuiPopover
@@ -139,8 +143,7 @@ export const useDataGridColumnSelector = (
         isOpen={isOpen}
         closePopover={() => setIsOpen(false)}
         anchorPosition="downLeft"
-        panelPaddingSize="s"
-        hasDragDrop
+        panelPaddingSize="none"
         button={
           <EuiDataGridToolbarControl
             badgeContent={
@@ -157,7 +160,7 @@ export const useDataGridColumnSelector = (
         }
       >
         {allowColumnHiding && (
-          <EuiPopoverTitle>
+          <EuiPopoverTitle paddingSize="s">
             <EuiI18n
               tokens={[
                 'euiColumnSelector.search',
@@ -184,7 +187,7 @@ export const useDataGridColumnSelector = (
           <EuiDroppable
             droppableId="columnOrder"
             isDropDisabled={!isDragEnabled}
-            className="euiDataGrid__controlScroll"
+            css={styles.euiDataGridColumnSelector}
           >
             <>
               {filteredColumns.map((id, index) => (
@@ -195,9 +198,11 @@ export const useDataGridColumnSelector = (
                   isDragDisabled={!isDragEnabled}
                   hasInteractiveChildren
                   customDragHandle
+                  usePortal
                 >
                   {(provided, state) => (
                     <div
+                      css={styles.euiDataGridColumnSelector__item}
                       className={classNames('euiDataGridColumnSelector__item', {
                         'euiDataGridColumnSelector__item-isDragging':
                           state.isDragging,
@@ -242,9 +247,12 @@ export const useDataGridColumnSelector = (
                           aria-hidden
                           tabIndex={-1}
                         >
-                          <span className="euiDataGridColumnSelector__itemLabel">
+                          <EuiText
+                            size="xs"
+                            className="euiDataGridColumnSelector__itemLabel"
+                          >
                             {displayValues[id] || id}
-                          </span>
+                          </EuiText>
                         </EuiFlexItem>
                         {isDragEnabled && (
                           <EuiFlexItem
@@ -264,7 +272,7 @@ export const useDataGridColumnSelector = (
           </EuiDroppable>
         </EuiDragDropContext>
         {allowColumnHiding && (
-          <EuiPopoverFooter>
+          <EuiPopoverFooter paddingSize="s">
             <EuiFlexGroup
               gutterSize="s"
               responsive={false}
@@ -302,6 +310,7 @@ export const useDataGridColumnSelector = (
       </EuiPopover>
     ) : null;
   }, [
+    styles,
     availableColumns.length,
     numberOfHiddenFields,
     orderedVisibleColumns.length,

@@ -18,6 +18,7 @@ describe('EuiDataGridHeaderCellWrapper', () => {
   const requiredProps = {
     id: 'someColumn',
     index: 0,
+    visibleColCount: 1,
     hasActionsPopover: true,
     children: (
       <>
@@ -46,7 +47,7 @@ describe('EuiDataGridHeaderCellWrapper', () => {
     const { container } = renderWithContext();
     expect(container.firstChild).toMatchInlineSnapshot(`
       <div
-        class="euiDataGridHeaderCell"
+        class="euiDataGridHeaderCell emotion-euiDataGridHeaderCell"
         data-gridcell-column-id="someColumn"
         data-gridcell-column-index="0"
         data-gridcell-row-index="-1"
@@ -62,6 +63,13 @@ describe('EuiDataGridHeaderCellWrapper', () => {
         >
           Mock column actions
         </button>
+        <span
+          aria-hidden="true"
+          class="euiScreenReaderOnly"
+          data-tabular-copy-marker="newline"
+        >
+          ↵
+        </span>
       </div>
     `);
   });
@@ -76,7 +84,7 @@ describe('EuiDataGridHeaderCellWrapper', () => {
     expect(getByTestSubject('dataGridHeaderCell-someColumn'))
       .toMatchInlineSnapshot(`
       <div
-        class="euiDataGridHeaderCell euiDataGridHeaderCell--test"
+        class="euiDataGridHeaderCell euiDataGridHeaderCell--test emotion-euiDataGridHeaderCell"
         data-gridcell-column-id="someColumn"
         data-gridcell-column-index="0"
         data-gridcell-row-index="-1"
@@ -87,6 +95,13 @@ describe('EuiDataGridHeaderCellWrapper', () => {
         tabindex="0"
       >
         No column actions
+        <span
+          aria-hidden="true"
+          class="euiScreenReaderOnly"
+          data-tabular-copy-marker="newline"
+        >
+          ↵
+        </span>
       </div>
     `);
   });
@@ -121,14 +136,8 @@ describe('EuiDataGridHeaderCellWrapper', () => {
           Mock column actions
         </button>
         <p
-          aria-hidden="true"
-          class="emotion-euiScreenReaderOnly"
-          id="euiDataGridCellHeader_generated-id_exited"
-        />
-        <p
-          aria-hidden="true"
-          class="emotion-euiScreenReaderOnly"
-          id="euiDataGridCellHeader_generated-id_keyboardHint"
+          hidden=""
+          id="generated-id_focusTrapHint"
         >
           Press the Enter key to interact with this cell's contents.
         </p>

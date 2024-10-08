@@ -1,5 +1,4 @@
-import React, { useContext } from 'react';
-import { ThemeContext } from '../../components/with_theme';
+import React from 'react';
 
 import { GuideSectionTypes } from '../../components';
 
@@ -44,22 +43,6 @@ const textAlignSnippet = [
   `<EuiTextAlign textAlign="center"><!-- Raw HTML content --></EuiTextAlign>
 `,
 ];
-
-const LineHeightText = () => {
-  const themeContext = useContext(ThemeContext);
-  let text;
-  switch (themeContext.theme) {
-    default:
-      text = (
-        <>
-          The goal is that the every line-height lands on the{' '}
-          <EuiCode>4px</EuiCode> baseline grid.
-        </>
-      );
-  }
-
-  return text;
-};
 
 export const TextExample = {
   title: 'Text',
@@ -130,7 +113,8 @@ export const TextExample = {
         <p>
           Using the <EuiCode>size</EuiCode> prop on <strong>EuiText</strong> you
           can get smaller sizes of text than the default. This demo compares the
-          scaling for all sizes. <LineHeightText />
+          scaling for all sizes. The goal is that the every line-height lands on
+          the <EuiCode>4px</EuiCode> baseline grid.
         </p>
       ),
       snippet: textScalingSnippet,

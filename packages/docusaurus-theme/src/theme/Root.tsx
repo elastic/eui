@@ -16,7 +16,6 @@ import Head from '@docusaurus/Head';
 import { Props } from '@theme/Root';
 import { css, Global } from '@emotion/react';
 import { useEuiTheme } from '@elastic/eui';
-import '@elastic/eui/dist/eui_theme_light.css';
 
 import { AppThemeProvider } from '../components/theme_context';
 import { getGlobalStyles } from './Root.styles';

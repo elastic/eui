@@ -23,20 +23,12 @@ import {
   EuiDataGridRowHeightsOptions,
   EuiDataGridScrollAnchorRow,
   EuiDataGridStyle,
-  EuiDataGridStyleCellPaddings,
   ImperativeGridApi,
 } from '../data_grid_types';
 import { DataGridSortedContext } from './sorting';
 
-// TODO: Once JS variables are available, use them here instead of hard-coded maps
-export const cellPaddingsMap: Record<EuiDataGridStyleCellPaddings, number> = {
-  s: 4,
-  m: 6,
-  l: 8,
-};
-
-export const AUTO_HEIGHT = 'auto';
-export const DEFAULT_ROW_HEIGHT = 34;
+const AUTO_HEIGHT = 'auto';
+const DEFAULT_ROW_HEIGHT = 34;
 
 export type RowHeightUtilsType = RowHeightUtils | RowHeightVirtualizationUtils;
 
@@ -88,25 +80,6 @@ export class RowHeightUtils {
   }
 
   /**
-   * Styles utils
-   */
-
-  private styles: {
-    paddingTop: number;
-    paddingBottom: number;
-  } = {
-    paddingTop: 0,
-    paddingBottom: 0,
-  };
-
-  cacheStyles(gridStyles: EuiDataGridStyle) {
-    this.styles = {
-      paddingTop: cellPaddingsMap[gridStyles.cellPadding || 'm'],
-      paddingBottom: cellPaddingsMap[gridStyles.cellPadding || 'm'],
-    };
-  }
-
-  /**
    * Height types
    */
 
@@ -117,8 +90,9 @@ export class RowHeightUtils {
     if (option === AUTO_HEIGHT) {
       return 'auto';
     }
-    if (this.getLineCount(option) != null) {
-      return 'lineCount';
+    const lineCount = this.getLineCount(option);
+    if (lineCount != null) {
+      return lineCount > 1 ? 'lineCount' : 'default';
     }
     return 'numerical';
   };
@@ -131,18 +105,14 @@ export class RowHeightUtils {
     return isObject(option) ? option.lineCount : undefined;
   }
 
-  calculateHeightForLineCount(
-    cellRef: HTMLElement,
-    lineCount: number,
-    excludePadding?: boolean
-  ) {
+  calculateHeightForLineCount(cellRef: HTMLElement, lineCount: number) {
     const computedStyles = window.getComputedStyle(cellRef, null);
     const lineHeight = parseInt(computedStyles.lineHeight, 10);
     const contentHeight = Math.ceil(lineCount * lineHeight);
+    const padding = parseInt(computedStyles.paddingTop, 10);
 
-    return excludePadding
-      ? contentHeight
-      : contentHeight + this.styles.paddingTop + this.styles.paddingBottom;
+    // Assumes both padding-top and bottom are the same
+    return contentHeight + padding * 2;
   }
 
   /**
@@ -330,7 +300,6 @@ export class RowHeightVirtualizationUtils extends RowHeightUtils {
 export const useRowHeightUtils = ({
   virtualization,
   rowHeightsOptions,
-  gridStyles,
   columns,
 }: {
   virtualization?:
@@ -376,13 +345,6 @@ export const useRowHeightUtils = ({
     rowHeightUtils,
     forceRenderRef,
   ]);
-
-  // Re-cache styles whenever grid density changes
-  useEffect(() => {
-    rowHeightUtils.cacheStyles({
-      cellPadding: gridStyles.cellPadding,
-    });
-  }, [gridStyles.cellPadding, rowHeightUtils]);
 
   // Update row heights map to remove hidden columns whenever orderedVisibleColumns change
   useEffect(() => {

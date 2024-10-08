@@ -61,13 +61,6 @@ export interface EuiDataGridCustomToolbarProps {
   columnSortingControl: ReactNode;
 }
 
-export interface EuiDataGridPaginationRendererProps
-  extends EuiDataGridPaginationProps {
-  rowCount: number;
-  controls: string;
-  'aria-label'?: AriaAttributes['aria-label'];
-}
-
 export interface EuiDataGridInMemoryRendererProps {
   inMemory: EuiDataGridInMemory;
   columns: EuiDataGridColumn[];
@@ -147,8 +140,10 @@ export interface EuiDataGridHeaderRowPropsSpecificProps {
   schemaDetectors: EuiDataGridSchemaDetector[];
   defaultColumnWidth?: number | null;
   setColumnWidth: (columnId: string, width: number) => void;
+  visibleColCount: number;
   setVisibleColumns: (columnId: string[]) => void;
   switchColumnPos: (colFromId: string, colToId: string) => void;
+  gridStyles: EuiDataGridStyle;
 }
 
 export type EuiDataGridHeaderRowProps = CommonProps &
@@ -158,7 +153,7 @@ export type EuiDataGridHeaderRowProps = CommonProps &
 export interface EuiDataGridHeaderCellProps
   extends Omit<
     EuiDataGridHeaderRowPropsSpecificProps,
-    'leadingControlColumns'
+    'leadingControlColumns' | 'gridStyles'
   > {
   column: EuiDataGridColumn;
   index: number;
@@ -166,6 +161,7 @@ export interface EuiDataGridHeaderCellProps
 
 export interface EuiDataGridControlHeaderCellProps {
   index: number;
+  visibleColCount: number;
   controlColumn: EuiDataGridControlColumn;
 }
 
@@ -173,6 +169,7 @@ export interface EuiDataGridHeaderCellWrapperProps {
   children: ReactNode | ((renderFocusTrap: boolean) => ReactNode);
   id: string;
   index: number;
+  visibleColCount: number;
   width?: number | null;
   className?: string;
   'aria-label'?: AriaAttributes['aria-label'];
@@ -193,6 +190,8 @@ export type EuiDataGridFooterRowProps = CommonProps &
     renderCellPopover?: EuiDataGridCellProps['renderCellPopover'];
     interactiveCellId: EuiDataGridCellProps['interactiveCellId'];
     visibleRowIndex?: number;
+    visibleColCount: number;
+    gridStyles: EuiDataGridStyle;
   };
 
 export interface EuiDataGridVisibleRows {
@@ -228,7 +227,7 @@ export interface DataGridCellPopoverContextShape {
   openCellPopover(args: { rowIndex: number; colIndex: number }): void;
   closeCellPopover(): void;
   setPopoverAnchor(anchor: HTMLElement): void;
-  setPopoverAnchorPosition(position: 'downLeft' | 'downRight'): void;
+  setPopoverAnchorPosition(position: 'downLeft' | 'upLeft'): void;
   setPopoverContent(content: ReactNode): void;
   setCellPopoverProps: EuiDataGridCellPopoverElementProps['setCellPopoverProps'];
 }
@@ -478,6 +477,7 @@ export interface EuiDataGridBodyProps {
   gridRef: MutableRefObject<Grid | null>;
   gridItemsRendered: MutableRefObject<GridOnItemsRenderedProps | null>;
   wrapperRef: MutableRefObject<HTMLDivElement | null>;
+  className?: string;
 }
 
 export interface EuiDataGridCustomBodyProps {
@@ -563,7 +563,10 @@ interface SharedRenderCellElementProps {
 }
 
 export type EuiDataGridSetCellProps = CommonProps &
-  HTMLAttributes<HTMLDivElement> & {
+  Omit<
+    HTMLAttributes<HTMLDivElement>,
+    'role' | 'tabIndex' | 'aria-rowindex'
+  > & {
     isExpandable?: boolean;
   };
 
@@ -648,18 +651,18 @@ export interface EuiDataGridCellProps {
     | ((props: EuiDataGridCellPopoverElementProps) => ReactNode);
   setRowHeight?: (height: number) => void;
   getRowHeight?: (rowIndex: number) => number;
-  style?: React.CSSProperties;
+  style?: CSSProperties;
   rowHeightsOptions?: EuiDataGridRowHeightsOptions;
   rowHeightUtils?: RowHeightUtilsType;
   rowManager?: EuiDataGridRowManager;
   pagination?: Required<EuiDataGridPaginationProps>;
+  gridStyles?: EuiDataGridStyle;
 }
 
 export interface EuiDataGridCellState {
   cellProps: EuiDataGridSetCellProps;
   isFocused: boolean; // tracks if this cell has focus or not, used to enable tabIndex on the cell
   isHovered: boolean; // tracks if this cell is hovered, used to conditionally render cell actions
-  cellTextAlign: 'Left' | 'Right'; // determines the cell actions and cell popover expansion position
 }
 
 export type EuiDataGridCellValueProps = Omit<
@@ -848,34 +851,42 @@ export type EuiDataGridStyleCellPaddings = 's' | 'm' | 'l';
 export interface EuiDataGridStyle {
   /**
    * Size of fonts used within the row and column cells
+   * @default m
    */
   fontSize?: EuiDataGridStyleFontSizes;
   /**
    * Defines the padding with the row and column cells
+   * @default m
    */
   cellPadding?: EuiDataGridStyleCellPaddings;
   /**
-   * Border uses for the row and column cells
+   * Border used for the row and column cells
+   * @default all
    */
   border?: EuiDataGridStyleBorders;
   /**
    * If set to true, rows will alternate zebra striping for clarity
+   * @default false
    */
   stripes?: boolean;
   /**
    * Visual style for the column headers. Recommendation is to use the `underline` style in times when #EuiDataGrid `toolbarVisibility` is set to `false`.
+   * @default shade
    */
   header?: EuiDataGridStyleHeader;
   /**
    * Visual style for the column footers.
+   * @default overline
    */
   footer?: EuiDataGridStyleFooter;
   /**
    * If set to true, the footer row will be sticky
+   * @default true
    */
   stickyFooter?: boolean;
   /**
    * Will define what visual style to show on row hover
+   * @default hover
    */
   rowHover?: EuiDataGridStyleRowHover;
   /**
@@ -922,6 +933,7 @@ export interface EuiDataGridToolBarVisibilityDisplaySelectorOptions {
 export interface EuiDataGridToolBarVisibilityOptions {
   /**
    * Allows the ability for the user to hide fields and sort columns, boolean or a #EuiDataGridToolBarVisibilityColumnSelectorOptions
+   * @default true
    */
   showColumnSelector?:
     | boolean
@@ -929,21 +941,25 @@ export interface EuiDataGridToolBarVisibilityOptions {
   /**
    * Allows the ability for the user to customize display settings such as grid density and row heights.
    * User changes will override what is provided in #EuiDataGridStyle and #EuiDataGridRowHeightsOptions
+   * @default true
    */
   showDisplaySelector?:
     | boolean
     | EuiDataGridToolBarVisibilityDisplaySelectorOptions;
   /**
    * Allows the ability for the user to sort rows based upon column values
+   * @default true
    */
   showSortSelector?: boolean;
   /**
    * Displays a popover listing all keyboard controls and shortcuts for the data grid.
    * If set to `false`, the toggle will be visually hidden, but still focusable by keyboard and screen reader users.
+   * @default true
    */
   showKeyboardShortcuts?: boolean;
   /**
    * Allows user to be able to fullscreen the data grid. If set to `false` make sure your grid fits within a large enough panel to still show the other controls.
+   * @default true
    */
   showFullScreenSelector?: boolean;
   /**

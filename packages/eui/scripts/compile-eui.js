@@ -14,6 +14,8 @@ const IGNORE_TESTS = [
   '**/*.spec.tsx',
   '**/*.stories.ts',
   '**/*.stories.tsx',
+  '**/**.stories.utils.ts',
+  '**/**.stories.utils.tsx',
   '**/*.mdx',
   '**/test/internal/**/*.ts',
   '**/test/internal/**/*.tsx',
@@ -24,9 +26,7 @@ const IGNORE_TESTENV = [
   '**/*.testenv.tsx',
   '**/*.testenv.ts',
 ];
-const IGNORE_PACKAGES = [
-  '**/react-datepicker/test/**/*.js',
-];
+const IGNORE_PACKAGES = ['**/react-datepicker/test/**/*.js'];
 
 function compileLib() {
   shell.mkdir('-p', 'lib/services', 'lib/test');
