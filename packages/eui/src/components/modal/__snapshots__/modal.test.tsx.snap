@@ -4,7 +4,7 @@ exports[`EuiModal renders 1`] = `
 <body>
   <div />
   <div
-    class="euiOverlayMask emotion-euiOverlayMask-aboveHeader"
+    class="euiOverlayMask css-5vqto6"
     data-euiportal="true"
     data-relative-to-header="above"
   >

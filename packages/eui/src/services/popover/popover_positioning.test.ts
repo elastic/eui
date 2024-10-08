@@ -486,6 +486,7 @@ describe('popover_positioning', () => {
             popover,
             container,
             offset: 7,
+            currentWindow: window,
           })
         ).toEqual({
           fit: 1,
@@ -518,6 +519,7 @@ describe('popover_positioning', () => {
             popover,
             container,
             offset: 5,
+            currentWindow: window,
           })
         ).toEqual({
           fit: 1,
@@ -550,6 +552,7 @@ describe('popover_positioning', () => {
             popover,
             container,
             offset: 5,
+            currentWindow: window,
           })
         ).toEqual({
           fit: 1,
@@ -581,6 +584,7 @@ describe('popover_positioning', () => {
             popover,
             container,
             offset: 5,
+            currentWindow: window,
           })
         ).toEqual({
           fit: 1,
@@ -612,6 +616,7 @@ describe('popover_positioning', () => {
             popover,
             container,
             offset: 5,
+            currentWindow: window,
           })
         ).toEqual({
           fit: 0,
@@ -644,6 +649,7 @@ describe('popover_positioning', () => {
             popover,
             container,
             offset: 5,
+            currentWindow: window,
           })
         ).toEqual({
           fit: 1,
@@ -680,6 +686,7 @@ describe('popover_positioning', () => {
             popover,
             container,
             offset: 7,
+            currentWindow: window,
           })
         ).toEqual({
           fit: 1,
@@ -711,6 +718,7 @@ describe('popover_positioning', () => {
             popover,
             container,
             allowCrossAxis: false,
+            currentWindow: window,
           })
         ).toEqual({
           fit: 0.34,
@@ -736,6 +744,7 @@ describe('popover_positioning', () => {
           returnBoundingBox: true,
           anchor,
           popover,
+          currentWindow: window,
         })
       ).toEqual({
         fit: 1,

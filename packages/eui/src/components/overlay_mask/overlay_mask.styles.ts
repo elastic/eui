@@ -6,29 +6,37 @@
  * Side Public License, v 1.
  */
 
-import { css } from '@emotion/css';
+import { Emotion } from '@emotion/css/create-instance';
 import { logicalCSS, euiAnimFadeIn } from '../../global_styling';
 import { transparentize, UseEuiTheme } from '../../services';
 
-export const euiOverlayMaskStyles = ({ euiTheme }: UseEuiTheme) => ({
-  euiOverlayMask: css`
-    position: fixed;
-    ${logicalCSS('top', 0)}
-    ${logicalCSS('left', 0)}
-    ${logicalCSS('right', 0)}
-    ${logicalCSS('bottom', 0)}
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    ${logicalCSS('padding-bottom', '10vh')}
-    animation: ${euiAnimFadeIn} ${euiTheme.animation.fast} ease-in;
-    background: ${transparentize(euiTheme.colors.ink, 0.5)};
-  `,
-  aboveHeader: css`
-    z-index: ${euiTheme.levels.mask};
-  `,
-  belowHeader: css`
-    z-index: ${euiTheme.levels.maskBelowHeader};
-    ${logicalCSS('top', 'var(--euiFixedHeadersOffset, 0)')}
-  `,
-});
+export const euiOverlayMaskStyles = ({
+  euiTheme,
+  css,
+}: {
+  euiTheme: UseEuiTheme['euiTheme'];
+  css: Emotion['css'];
+}) => {
+  return {
+    euiOverlayMask: css`
+      position: fixed;
+      ${logicalCSS('top', 0)}
+      ${logicalCSS('left', 0)}
+      ${logicalCSS('right', 0)}
+      ${logicalCSS('bottom', 0)}
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      ${logicalCSS('padding-bottom', '10vh')}
+      animation: ${euiAnimFadeIn} ${euiTheme.animation.fast} ease-in;
+      background: ${transparentize(euiTheme.colors.ink, 0.5)};
+    `,
+    aboveHeader: css`
+      z-index: ${euiTheme.levels.mask};
+    `,
+    belowHeader: css`
+      z-index: ${euiTheme.levels.maskBelowHeader};
+      ${logicalCSS('top', 'var(--euiFixedHeadersOffset, 0)')}
+    `,
+  };
+};

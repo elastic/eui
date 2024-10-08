@@ -15,6 +15,7 @@ import React, {
   Ref,
   RefCallback,
   PropsWithChildren,
+  ContextType,
 } from 'react';
 import classNames from 'classnames';
 import { focusable } from 'tabbable';
@@ -28,6 +29,7 @@ import {
   getWaitDuration,
   performOnFrame,
   htmlIdGenerator,
+  EuiWindowContext,
 } from '../../services';
 import { setMultipleRefs } from '../../services/hooks/useCombinedRefs';
 
@@ -301,6 +303,9 @@ export class EuiPopover extends Component<Props, State> {
     display: 'inline-block',
   };
 
+  static contextType = EuiWindowContext;
+  declare context: ContextType<typeof EuiWindowContext>;
+
   static getDerivedStateFromProps(
     nextProps: Props,
     prevState: State
@@ -368,14 +373,16 @@ export class EuiPopover extends Component<Props, State> {
   };
 
   handleStrandedFocus = () => {
-    this.strandedFocusTimeout = window.setTimeout(() => {
+    const currentWindow = this.context.window ?? window;
+    this.strandedFocusTimeout = currentWindow.setTimeout(() => {
       // If `returnFocus` failed and focus was stranded,
       // attempt to manually restore focus to the toggle button.
       // The stranded focus is either in most cases on body but
       // it will be on the panel instead on mount when isOpen=true
+      const currentDocument = currentWindow.document;
       if (
-        document.activeElement === document.body ||
-        document.activeElement === this.panel
+        currentDocument.activeElement === currentDocument.body ||
+        currentDocument.activeElement === this.panel
       ) {
         if (!this.button) return;
 
@@ -410,7 +417,9 @@ export class EuiPopover extends Component<Props, State> {
     }
     // We need to set this state a beat after the render takes place, so that the CSS
     // transition can take effect.
-    this.closingTransitionAnimationFrame = window.requestAnimationFrame(() => {
+    this.closingTransitionAnimationFrame = (
+      this.context.window ?? window
+    ).requestAnimationFrame(() => {
       this.setState({
         isOpening: true,
       });
@@ -435,7 +444,7 @@ export class EuiPopover extends Component<Props, State> {
       );
 
     clearTimeout(this.respositionTimeout);
-    this.respositionTimeout = window.setTimeout(() => {
+    this.respositionTimeout = (this.context.window ?? window).setTimeout(() => {
       this.setState({ isOpenStable: true }, () => {
         this.positionPopoverFixed();
       });
@@ -452,7 +461,11 @@ export class EuiPopover extends Component<Props, State> {
     }
 
     if (this.props.repositionOnScroll) {
-      window.addEventListener('scroll', this.positionPopoverFixed, true);
+      (this.context.window ?? window).addEventListener(
+        'scroll',
+        this.positionPopoverFixed,
+        true
+      );
     }
   }
 
@@ -476,9 +489,17 @@ export class EuiPopover extends Component<Props, State> {
     // update scroll listener
     if (prevProps.repositionOnScroll !== this.props.repositionOnScroll) {
       if (this.props.repositionOnScroll) {
-        window.addEventListener('scroll', this.positionPopoverFixed, true);
+        (this.context.window ?? window).addEventListener(
+          'scroll',
+          this.positionPopoverFixed,
+          true
+        );
       } else {
-        window.removeEventListener('scroll', this.positionPopoverFixed, true);
+        (this.context.window ?? window).removeEventListener(
+          'scroll',
+          this.positionPopoverFixed,
+          true
+        );
       }
     }
 
@@ -486,7 +507,9 @@ export class EuiPopover extends Component<Props, State> {
     if (prevProps.isOpen && !this.props.isOpen) {
       // If the user has just closed the popover, queue up the removal of the content after the
       // transition is complete.
-      this.closingTransitionTimeout = window.setTimeout(() => {
+      this.closingTransitionTimeout = (
+        this.context.window ?? window
+      ).setTimeout(() => {
         this.setState({
           isClosing: false,
         });
@@ -495,7 +518,11 @@ export class EuiPopover extends Component<Props, State> {
   }
 
   componentWillUnmount() {
-    window.removeEventListener('scroll', this.positionPopoverFixed, true);
+    (this.context.window ?? window).removeEventListener(
+      'scroll',
+      this.positionPopoverFixed,
+      true
+    );
     clearTimeout(this.respositionTimeout);
     clearTimeout(this.strandedFocusTimeout);
     clearTimeout(this.closingTransitionTimeout);
@@ -548,6 +575,7 @@ export class EuiPopover extends Component<Props, State> {
       returnBoundingBox: this.props.attachToAnchor,
       allowCrossAxis: this.props.repositionToCrossAxis,
       buffer: this.props.buffer,
+      currentWindow: this.context.window ?? window,
     });
 
     // the popover's z-index must inherit from the button
@@ -556,7 +584,11 @@ export class EuiPopover extends Component<Props, State> {
     const { zIndex: zIndexProp } = this.props;
     const zIndex =
       zIndexProp == null
-        ? getElementZIndex(this.button, this.panel) + 2000
+        ? getElementZIndex(
+            this.button,
+            this.panel,
+            this.context.window ?? window
+          ) + 2000
         : zIndexProp;
 
     const popoverStyles = {
@@ -601,11 +633,17 @@ export class EuiPopover extends Component<Props, State> {
         openPosition: null,
         isOpenStable: false,
       });
-      window.removeEventListener('resize', this.positionPopoverFluid);
+      (this.context.window ?? window).removeEventListener(
+        'resize',
+        this.positionPopoverFluid
+      );
     } else {
       // panel is coming into existence
       this.positionPopoverFluid();
-      window.addEventListener('resize', this.positionPopoverFluid);
+      (this.context.window ?? window).addEventListener(
+        'resize',
+        this.positionPopoverFluid
+      );
     }
   };
 

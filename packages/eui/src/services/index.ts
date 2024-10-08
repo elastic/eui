@@ -101,3 +101,10 @@ export {
 } from './transition';
 export { EuiWindowEvent } from './window_event';
 export { keys };
+export {
+  EuiWindowContext,
+  EuiWindowProvider,
+  useEuiWindow,
+  useEuiWindowEmotion,
+} from './window_provider';
+export type { EuiWindowContextValue } from './window_provider';
