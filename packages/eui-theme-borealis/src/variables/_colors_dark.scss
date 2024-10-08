@@ -1,14 +1,14 @@
 // stylelint-disable color-no-hex
 
 // This extra import allows any variables that are created via functions to work when loaded into JS
-@import 'node_modules/@elastic/eui-common/src/global_styling/functions/index';
+@import 'node_modules/@elastic/eui-theme-common/src/global_styling/functions/index';
 
 // These colors stay the same no matter the theme
 $euiColorGhost: #FFF !default;
 $euiColorInk: #000 !default;
 
 // Core
-$euiColorPrimary: #00aa00 !default; // test color for distinction
+$euiColorPrimary: #0A0 !default; // test color for distinction
 $euiColorAccent: #F68FBE !default;
 
 // Status

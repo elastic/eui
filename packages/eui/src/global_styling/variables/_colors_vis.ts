@@ -6,4 +6,4 @@
  * Side Public License, v 1.
  */
 
-export { colorVis } from '@elastic/eui-theme-base';
+export { colorVis } from '@elastic/eui-theme-common';

@@ -6,4 +6,4 @@
  * Side Public License, v 1.
  */
 
-export type { _EuiThemeFocus } from '@elastic/eui-theme-base';
+export type { _EuiThemeFocus } from '@elastic/eui-theme-common';

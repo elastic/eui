@@ -8,14 +8,13 @@
 
 import {
   computed,
-  type _EuiThemeColors,
   type _EuiThemeBrandColors,
   type _EuiThemeBrandTextColors,
   type _EuiThemeShadeColors,
   type _EuiThemeSpecialColors,
   type _EuiThemeTextColors,
   type _EuiThemeColorsMode,
-} from '@elastic/eui-theme-base';
+} from '@elastic/eui-theme-common';
 
 /*
  * LIGHT THEME

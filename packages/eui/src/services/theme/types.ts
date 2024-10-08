@@ -19,4 +19,4 @@ export {
   type ComputedThemeShape,
   type EuiThemeComputed,
   type EuiThemeNested,
-} from '@elastic/eui-theme-base';
+} from '@elastic/eui-theme-common';

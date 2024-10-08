@@ -6,8 +6,11 @@
  * Side Public License, v 1.
  */
 
-import { sizeToPixel } from '@elastic/eui-common';
-import { computed, type _EuiThemeFocus } from '@elastic/eui-theme-base';
+import {
+  computed,
+  sizeToPixel,
+  type _EuiThemeFocus,
+} from '@elastic/eui-theme-common';
 
 export const focus: _EuiThemeFocus = {
   // Focus ring

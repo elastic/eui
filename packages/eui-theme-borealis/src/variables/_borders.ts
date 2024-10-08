@@ -6,8 +6,11 @@
  * Side Public License, v 1.
  */
 
-import { computed, type _EuiThemeBorder } from '@elastic/eui-theme-base';
-import { sizeToPixel } from '@elastic/eui-common';
+import {
+  computed,
+  type _EuiThemeBorder,
+  sizeToPixel,
+} from '@elastic/eui-theme-common';
 
 export const border: _EuiThemeBorder = {
   color: computed(([lightShade]) => lightShade, ['colors.lightShade']),

@@ -11,4 +11,4 @@ export {
   type _EuiThemeBase,
   type _EuiThemeSize,
   type _EuiThemeSizes,
-} from '@elastic/eui-theme-base';
+} from '@elastic/eui-theme-common';

@@ -15,4 +15,4 @@ export type {
   _EuiThemeConstantColors,
   _EuiThemeColorsMode,
   _EuiThemeColors,
-} from '@elastic/eui-theme-base';
+} from '@elastic/eui-theme-common';

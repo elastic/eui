@@ -17,4 +17,4 @@ export {
   getComputed,
   buildTheme,
   mergeDeep,
-} from '@elastic/eui-theme-base';
+} from '@elastic/eui-theme-common';
