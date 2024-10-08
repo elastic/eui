@@ -30,6 +30,7 @@ const config: StorybookConfig = {
     '@storybook/addon-essentials',
     '@storybook/addon-interactions',
     '@storybook/addon-webpack5-compiler-babel',
+    '@storybook/addon-designs',
   ],
   framework: {
     name: '@storybook/react-webpack5',
@@ -50,6 +51,15 @@ const config: StorybookConfig = {
       ...config,
       resolve: {
         ...config.resolve,
+        fallback: {
+          ...config.resolve?.fallback,
+          console: false, // used by @figma/code-connect
+          child_process: false, // used by @figma/code-connect
+          os: false, // used by dotenv
+          // not necessary for the browser environment (Storybook), therefore doesn't need a polyfill;
+          // the change is required only for the purposes of Code Connect investigation, otherwise
+          // Webpack gets confused; likely this won't get merged
+        },
         alias: {
           ...config.resolve?.alias,
           // we need to resolve to the modules file as otherwise
