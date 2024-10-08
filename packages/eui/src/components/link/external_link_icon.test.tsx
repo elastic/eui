@@ -23,8 +23,12 @@ describe('EuiExternalLinkIcon', () => {
         <span
           class="emotion-EuiExternalLinkIcon"
           data-euiicon-type="popout"
+          role="presentation"
+        />
+        <span
+          class="emotion-euiScreenReaderOnly"
         >
-          External link
+          (external)
         </span>
       </div>
     `);
@@ -38,13 +42,12 @@ describe('EuiExternalLinkIcon', () => {
           <span
             class="emotion-EuiExternalLinkIcon"
             data-euiicon-type="popout"
-          >
-            External link
-          </span>
+            role="presentation"
+          />
           <span
             class="emotion-euiScreenReaderOnly"
           >
-            (opens in a new tab or window)
+            (external, opens in a new tab or window)
           </span>
         </div>
       `);
@@ -54,15 +57,7 @@ describe('EuiExternalLinkIcon', () => {
       const { container } = render(
         <EuiExternalLinkIcon target="_blank" external={false} />
       );
-      expect(container).toMatchInlineSnapshot(`
-        <div>
-          <span
-            class="emotion-euiScreenReaderOnly"
-          >
-            (opens in a new tab or window)
-          </span>
-        </div>
-      `);
+      expect(container).toMatchInlineSnapshot(`<div />`);
     });
   });
 

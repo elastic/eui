@@ -11,7 +11,7 @@ import React, { FunctionComponent, AnchorHTMLAttributes } from 'react';
 import { useEuiMemoizedStyles, UseEuiTheme } from '../../services';
 import { logicalStyle } from '../../global_styling';
 import { EuiIcon, EuiIconProps } from '../icon';
-import { EuiI18n, useEuiI18n } from '../i18n';
+import { EuiI18n } from '../i18n';
 import { EuiScreenReaderOnly } from '../accessibility';
 
 /**
@@ -39,31 +39,39 @@ export const EuiExternalLinkIcon: FunctionComponent<
   const showExternalLinkIcon =
     (target === '_blank' && external !== false) || external === true;
 
-  const iconAriaLabel = useEuiI18n(
-    'euiExternalLinkIcon.ariaLabel',
-    'External link'
-  );
-
   return (
     <>
       {showExternalLinkIcon && (
-        <EuiIcon
-          css={iconCssStyle}
-          aria-label={iconAriaLabel}
-          size="s"
-          type="popout"
-          {...rest}
-        />
-      )}
-      {target === '_blank' && (
-        <EuiScreenReaderOnly>
-          <span>
-            <EuiI18n
-              token="euiExternalLinkIcon.newTarget.screenReaderOnlyText"
-              default="(opens in a new tab or window)"
-            />
-          </span>
-        </EuiScreenReaderOnly>
+        <>
+          <EuiIcon
+            css={iconCssStyle}
+            size="s"
+            type="popout"
+            role="presentation"
+            {...rest}
+          />
+          {target === '_blank' ? (
+            <EuiScreenReaderOnly>
+              <span>
+                <EuiI18n
+                  token="euiExternalLinkIcon.newTarget.screenReaderOnlyText"
+                  default="(external, opens in a new tab or window)"
+                />
+              </span>
+            </EuiScreenReaderOnly>
+          ) : (
+            <>
+              <EuiScreenReaderOnly>
+                <span>
+                  <EuiI18n
+                    token="euiExternalLinkIcon.externalTarget.screenReaderOnlyText"
+                    default="(external)"
+                  />
+                </span>
+              </EuiScreenReaderOnly>
+            </>
+          )}
+        </>
       )}
     </>
   );

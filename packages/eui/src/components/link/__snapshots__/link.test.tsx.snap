@@ -44,8 +44,12 @@ exports[`EuiLink it is an external link 1`] = `
   <span
     class="emotion-EuiExternalLinkIcon"
     data-euiicon-type="popout"
+    role="presentation"
+  />
+  <span
+    class="emotion-euiScreenReaderOnly"
   >
-    External link
+    (external)
   </span>
 </a>
 `;
@@ -134,13 +138,12 @@ exports[`EuiLink supports target 1`] = `
   <span
     class="emotion-EuiExternalLinkIcon"
     data-euiicon-type="popout"
-  >
-    External link
-  </span>
+    role="presentation"
+  />
   <span
     class="emotion-euiScreenReaderOnly"
   >
-    (opens in a new tab or window)
+    (external, opens in a new tab or window)
   </span>
 </a>
 `;
