@@ -1,1 +1,0 @@
-# EUI base theme functionality and styling
