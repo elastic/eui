@@ -8,14 +8,54 @@
 
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
+import figma from '@figma/code-connect';
 
 import {
   disableStorybookControls,
   enableFunctionToggleControls,
 } from '../../../../.storybook/utils';
 import { EuiIcon } from '../../icon';
-
 import { EuiSelect, EuiSelectProps } from './select';
+import { EuiFormRow } from '../form_row';
+
+// We need to add story-specific arguments (that do not map directly to component props)
+type Story = StoryObj<
+  EuiSelectProps & { ariaLabel?: string; helpText?: string; label?: string }
+>;
+
+export const Playground: Story = {
+  args: {
+    defaultValue: 'option-2',
+    options: [
+      { value: 'option-1', text: 'Option 1' },
+      { value: 'option-2', text: 'Option 2' },
+      { value: 'option-3', text: 'Option 3' },
+    ],
+  },
+  // Each prop has to be explicitly defined to be present in the Code Connect code snippet
+  // but if it's not available in the Figma mapping, the parsing will fail if we add it as an explicit story arg
+  render: ({
+    ariaLabel,
+    helpText,
+    label,
+    /* options - this will fail parsing */
+    ...props
+  }) => (
+    <EuiFormRow helpText={helpText} label={label}>
+      <EuiSelect
+        aria-label={ariaLabel}
+        value="option-1"
+        options={[
+          { value: 'option-1', text: 'Option 1' },
+          { value: 'option-2', text: 'Option 2' },
+          { value: 'option-3', text: 'Option 3' },
+        ]}
+        onChange={() => {}}
+        {...props}
+      />
+    </EuiFormRow>
+  ),
+};
 
 const meta: Meta<EuiSelectProps> = {
   title: 'Forms/EuiSelect',
@@ -24,6 +64,38 @@ const meta: Meta<EuiSelectProps> = {
     controls: {
       // Excude onMouseUp from controls, as it's not a terribly useful prop to document
       exclude: ['onMouseUp'],
+    },
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/design/RzfYLj2xmH9K7gQtbSKygn/Elastic-UI?node-id=15883-129716&node-type=frame&m=dev',
+      examples: [Playground],
+      props: {
+        ariaLabel: figma.boolean('Label', {
+          true: undefined,
+          false: 'Meaningful label',
+        }),
+        compressed: figma.boolean('Compressed'),
+        helpText: figma.boolean('Help text', {
+          true: 'Help text',
+          false: undefined,
+        }),
+        isDisabled: figma.enum('State', {
+          Default: false,
+          Focus: false,
+          Invalid: false,
+          Disabled: true,
+        }),
+        isInvalid: figma.enum('State', {
+          Default: false,
+          Focus: false,
+          Invalid: true,
+          Disabled: false,
+        }),
+        label: figma.boolean('Label', {
+          true: 'Label',
+          false: undefined,
+        }),
+      },
     },
   },
   argTypes: {
@@ -63,15 +135,3 @@ enableFunctionToggleControls(meta, ['onChange']);
 disableStorybookControls(meta, ['inputRef']);
 
 export default meta;
-type Story = StoryObj<EuiSelectProps>;
-
-export const Playground: Story = {
-  args: {
-    defaultValue: 'option-2',
-    options: [
-      { value: 'option-1', text: 'Option 1' },
-      { value: 'option-2', text: 'Option 2' },
-      { value: 'option-3', text: 'Option 3' },
-    ],
-  },
-};
