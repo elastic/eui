@@ -6,7 +6,13 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent, useState, useMemo, memo } from 'react';
+import React, {
+  FunctionComponent,
+  JSXElementConstructor,
+  useState,
+  useMemo,
+  memo,
+} from 'react';
 import classNames from 'classnames';
 
 import { useDefaultColumnWidth, useColumnWidths } from '../utils/col_widths';
@@ -250,6 +256,9 @@ export const EuiDataGridBodyCustomRender: FunctionComponent<EuiDataGridBodyProps
         ]
       );
 
+      const BodyElement =
+        renderCustomGridBody as JSXElementConstructor<EuiDataGridCustomBodyProps>;
+
       return (
         <div
           {...customGridBodyProps}
@@ -259,10 +268,10 @@ export const EuiDataGridBodyCustomRender: FunctionComponent<EuiDataGridBodyProps
             customGridBodyProps?.className
           )}
         >
-          {renderCustomGridBody!(customDataGridBodyProps)}
+          <BodyElement {...customDataGridBodyProps} />
         </div>
       );
     }
   );
 
-EuiDataGridBodyCustomRender.displayName = 'EuiDataGridBodyCustomRenderMemo';
+EuiDataGridBodyCustomRender.displayName = 'EuiDataGridBodyCustomRender';
