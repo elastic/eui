@@ -524,11 +524,11 @@ export interface EuiDataGridCustomBodyProps {
   /**
    * Header row component to render by custom renderer
    * */
-  headerRow?: React.JSX.Element;
+  headerRow: React.JSX.Element;
   /**
    * Footer row component to render by custom renderer
    * */
-  footerRow?: React.JSX.Element | null;
+  footerRow: React.JSX.Element | null;
 }
 
 export type EuiDataGridSetCustomGridBodyProps = CommonProps &
@@ -656,7 +656,7 @@ export interface EuiDataGridCellProps {
   rowHeightUtils?: RowHeightUtilsType;
   rowManager?: EuiDataGridRowManager;
   pagination?: Required<EuiDataGridPaginationProps>;
-  gridStyles?: EuiDataGridStyle;
+  gridStyles: EuiDataGridStyle;
 }
 
 export interface EuiDataGridCellState {
