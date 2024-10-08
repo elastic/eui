@@ -16,7 +16,7 @@
   ],
   "scripts": {
     "start": "cross-env BABEL_MODULES=false webpack serve --config=src-docs/webpack.config.js",
-    "build:workspaces": "yarn workspaces foreach -Rti --from @elastic/eui --exclude @elastic/eui run build",
+    "build:workspaces": "yarn workspaces foreach -Rti --from @elastic/eui-theme-common run build && yarn workspaces foreach -Rti --from @elastic/eui --exclude @elastic/eui --exclude @elastic/eui-theme-common run build",
     "build-docs": "cross-env BABEL_MODULES=false cross-env NODE_ENV=production NODE_OPTIONS=--max-old-space-size=4096 webpack --config=src-docs/webpack.config.js",
     "build": "node ./scripts/compile-i18n-strings.js && node ./scripts/compile-clean.js && node ./scripts/compile-eui.js && yarn compile-scss",
     "build-pack": "yarn build && npm pack",
