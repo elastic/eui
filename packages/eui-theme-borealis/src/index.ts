@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import { buildTheme, EuiThemeShape } from '@elastic/eui-theme-base';
+import { buildTheme, EuiThemeShape } from '@elastic/eui-theme-common';
 
 import { colors } from './variables/_colors';
 import { animation } from './variables/_animation';

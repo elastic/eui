@@ -13,4 +13,4 @@ export type {
   _EuiThemeBorderValues,
   _EuiThemeBorderTypes,
   _EuiThemeBorder,
-} from '@elastic/eui-theme-base';
+} from '@elastic/eui-theme-common';

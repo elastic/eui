@@ -11,4 +11,4 @@ export {
   _EuiShadowSizesDescriptions,
   type _EuiThemeShadowSize,
   type _EuiThemeShadowCustomColor,
-} from '@elastic/eui-theme-base';
+} from '@elastic/eui-theme-common';

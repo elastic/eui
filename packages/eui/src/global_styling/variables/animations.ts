@@ -16,4 +16,4 @@ export {
   type _EuiThemeAnimationEasing,
   type _EuiThemeAnimationEasings,
   type _EuiThemeAnimation,
-} from '@elastic/eui-theme-base';
+} from '@elastic/eui-theme-common';

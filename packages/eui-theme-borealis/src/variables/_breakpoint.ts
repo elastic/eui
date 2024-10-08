@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import type { _EuiThemeBreakpoints } from '@elastic/eui-theme-base';
+import type { _EuiThemeBreakpoints } from '@elastic/eui-theme-common';
 
 export const breakpoint: _EuiThemeBreakpoints = {
   xl: 1200,

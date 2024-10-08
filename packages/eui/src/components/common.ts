@@ -17,7 +17,7 @@ import {
 } from 'react';
 import { Interpolation, Theme } from '@emotion/react';
 
-export type { RecursivePartial, ValueOf } from '@elastic/eui-common';
+export type { RecursivePartial, ValueOf } from '@elastic/eui-theme-common';
 
 export interface CommonProps {
   className?: string;

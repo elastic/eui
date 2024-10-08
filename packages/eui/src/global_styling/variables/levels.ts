@@ -10,4 +10,4 @@ export {
   EuiThemeLevels,
   type _EuiThemeLevel,
   type _EuiThemeLevels,
-} from '@elastic/eui-theme-base';
+} from '@elastic/eui-theme-common';

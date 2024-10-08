@@ -10,7 +10,7 @@ import type {
   _EuiThemeAnimationSpeeds,
   _EuiThemeAnimationEasings,
   _EuiThemeAnimation,
-} from '@elastic/eui-theme-base';
+} from '@elastic/eui-theme-common';
 
 export const animation_speed: _EuiThemeAnimationSpeeds = {
   extraFast: '90ms',

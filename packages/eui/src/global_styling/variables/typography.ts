@@ -19,4 +19,4 @@ export {
   type _EuiThemeBody,
   type _EuiThemeTitle,
   type _EuiThemeFont,
-} from '@elastic/eui-theme-base';
+} from '@elastic/eui-theme-common';

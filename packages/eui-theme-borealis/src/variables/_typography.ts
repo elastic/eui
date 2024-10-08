@@ -12,7 +12,7 @@ import {
   type _EuiThemeFontBase,
   type _EuiThemeFontScales,
   type _EuiThemeFontWeights,
-} from '@elastic/eui-theme-base';
+} from '@elastic/eui-theme-common';
 
 // Typographic scale -- loosely based on Major Third (1.250)
 export const fontScale: _EuiThemeFontScales = {

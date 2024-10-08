@@ -10,4 +10,4 @@ export {
   EuiThemeBreakpoints,
   type _EuiThemeBreakpoint,
   type _EuiThemeBreakpoints,
-} from '@elastic/eui-theme-base';
+} from '@elastic/eui-theme-common';
