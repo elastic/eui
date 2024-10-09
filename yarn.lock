@@ -5785,8 +5785,11 @@ __metadata:
     "@babel/preset-env": "npm:^7.21.5"
     "@babel/preset-react": "npm:^7.18.6"
     "@babel/preset-typescript": "npm:^7.21.5"
+    "@emotion/react": "npm:^11.11.0"
     "@types/jest": "npm:^29.5.12"
     "@types/prettier": "npm:2.7.3"
+    "@types/react": "npm:^16.9 || ^17.0 || ^18.0"
+    "@types/react-dom": "npm:^16.9 || ^17.0 || ^18.0"
     "@typescript-eslint/eslint-plugin": "npm:^5.59.7"
     "@typescript-eslint/parser": "npm:^5.59.7"
     eslint: "npm:^8.41.0"
@@ -5797,12 +5800,18 @@ __metadata:
     eslint-plugin-prettier: "npm:^4.2.1"
     jest: "npm:^29.7.0"
     prettier: "npm:^2.8.8"
+    react: "npm:^18.2.0"
+    react-dom: "npm:^18.2.0"
     rimraf: "npm:^6.0.1"
     stylelint: "npm:^15.7.0"
     stylelint-config-prettier-scss: "npm:^1.0.0"
     stylelint-config-standard: "npm:^33.0.0"
     stylelint-config-standard-scss: "npm:^9.0.0"
     typescript: "npm:4.5.3"
+  peerDependencies:
+    "@emotion/react": 11.x
+    react: ^16.12 || ^17.0 || ^18.0
+    react-dom: ^16.12 || ^17.0 || ^18.0
   languageName: unknown
   linkType: soft
 
@@ -10120,21 +10129,21 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/react-dom@npm:^16.9 || ^17.0 || ^18.0, @types/react-dom@npm:^18.3.0":
+  version: 18.3.0
+  resolution: "@types/react-dom@npm:18.3.0"
+  dependencies:
+    "@types/react": "npm:*"
+  checksum: 10c0/6c90d2ed72c5a0e440d2c75d99287e4b5df3e7b011838cdc03ae5cd518ab52164d86990e73246b9d812eaf02ec351d74e3b4f5bd325bf341e13bf980392fd53b
+  languageName: node
+  linkType: hard
+
 "@types/react-dom@npm:^18.0.0, @types/react-dom@npm:^18.2.6":
   version: 18.2.6
   resolution: "@types/react-dom@npm:18.2.6"
   dependencies:
     "@types/react": "npm:*"
   checksum: 10c0/bd734ca04c52b3c96891a7f9c1139486807dac7a2449fb72e8f8e23018bc6eeeb87a490a105cb39d05ccb7ddf80ed7a441e5bd3e5866c6f6ae8870cd723599e8
-  languageName: node
-  linkType: hard
-
-"@types/react-dom@npm:^18.3.0":
-  version: 18.3.0
-  resolution: "@types/react-dom@npm:18.3.0"
-  dependencies:
-    "@types/react": "npm:*"
-  checksum: 10c0/6c90d2ed72c5a0e440d2c75d99287e4b5df3e7b011838cdc03ae5cd518ab52164d86990e73246b9d812eaf02ec351d74e3b4f5bd325bf341e13bf980392fd53b
   languageName: node
   linkType: hard
 
