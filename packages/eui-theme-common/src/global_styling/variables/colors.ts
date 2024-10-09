@@ -21,6 +21,10 @@ export type _EuiThemeBrandColors = {
    */
   accent: ColorModeSwitch;
   /**
+   * Secondary attention indicator with lower priority.
+   */
+  accentSecondary: ColorModeSwitch;
+  /**
    * Used for **positive** messages/graphics and additive actions.
    */
   success: ColorModeSwitch;
@@ -40,53 +44,72 @@ export type _EuiThemeBrandColors = {
 export type _EuiThemeBrandTextColors = {
   /**
    * Typically computed against `colors.primary`
+   * @deprecated - use `textPrimary` instead
    */
   primaryText: ColorModeSwitch;
   /**
    * Typically computed against `colors.accent`
+   * @deprecated - use `textAccent` instead
    */
   accentText: ColorModeSwitch;
   /**
    * Typically computed against `colors.success`
+   * @deprecated - use `textSuccess` instead
    */
   successText: ColorModeSwitch;
   /**
    * Typically computed against `colors.warning`
+   * @deprecated - use `textWarning` instead
    */
   warningText: ColorModeSwitch;
   /**
    * Typically computed against `colors.danger`
+   * @deprecated - use `textDanger` instead
    */
   dangerText: ColorModeSwitch;
+
+  textPrimary: ColorModeSwitch;
+  textAccent: ColorModeSwitch;
+  textAccentSecondary: ColorModeSwitch;
+  textSuccess: ColorModeSwitch;
+  textWarning: ColorModeSwitch;
+  textDanger: ColorModeSwitch;
 };
 
 export type _EuiThemeShadeColors = {
   /**
    * Used as the background color of primary **page content and panels** including modals and flyouts.
+   * @deprecated - use `white`
    */
   emptyShade: ColorModeSwitch;
   /**
    * Used to lightly shade areas that contain **secondary content** or contain panel-like components.
+   * @deprecated - use specific semantic color tokens instead
    */
   lightestShade: ColorModeSwitch;
   /**
    * Used for most **borders** and dividers (horizontal rules).
+   * @deprecated - use specific semantic color tokens instead
    */
   lightShade: ColorModeSwitch;
   /**
    * The middle gray for all themes; this is the base for `colors.subdued`.
+   * @deprecated - use specific semantic color tokens instead
    */
   mediumShade: ColorModeSwitch;
   /**
    * Slightly subtle graphic color
+   * @deprecated - use specific semantic color tokens instead
    */
   darkShade: ColorModeSwitch;
   /**
    * Used as the **text** color and the background color for **inverted components** like tooltips and the control bar.
+   * @deprecated - use specific semantic color tokens instead
    */
   darkestShade: ColorModeSwitch;
   /**
    * The opposite of `emptyShade`
+   * @deprecated - use`black`
    */
   fullShade: ColorModeSwitch;
 };
@@ -94,26 +117,36 @@ export type _EuiThemeShadeColors = {
 export type _EuiThemeTextColors = {
   /**
    * Computed against `colors.darkestShade`
+   * @deprecated - use `textParagraph` instead
    */
   text: ColorModeSwitch;
   /**
    * Computed against `colors.text`
+   * @deprecated - use `textHeading` instead
    */
   title: ColorModeSwitch;
   /**
    * Computed against `colors.mediumShade`
+   * @deprecated - use `textSubdued` instead
    */
   subduedText: ColorModeSwitch;
   /**
    * Computed against `colors.primaryText`
    */
   link: ColorModeSwitch;
+
+  textParagraph: ColorModeSwitch;
+  textHeading: ColorModeSwitch;
+  textSubdued: ColorModeSwitch;
+  textDisabled: ColorModeSwitch;
+  textInverse: ColorModeSwitch;
 };
 
 export type _EuiThemeSpecialColors = {
   /**
    * The background color for the **whole window (body)** and is a computed value of `colors.lightestShade`.
    * Provides denominator (background) value for **contrast calculations**.
+   * @deprecated - use backgroundPage instead
    */
   body: ColorModeSwitch;
   /**
@@ -122,15 +155,18 @@ export type _EuiThemeSpecialColors = {
   highlight: ColorModeSwitch;
   /**
    * Computed against `colors.darkestShade`
+   * @deprecated - use specific semantic tokens instead (e.g. backgroundDisabled, borderDisabled etc)
    */
   disabled: ColorModeSwitch;
   /**
    * Computed against `colors.disabled`
+   * @deprecated - use textDisabled instead
    */
   disabledText: ColorModeSwitch;
   /**
    * The base color for shadows that gets `transparentized`
    * at a value based on the `colorMode` and then layered.
+   * @deprecated - use specific shadow tokens instead
    */
   shadow: ColorModeSwitch;
 };
@@ -138,12 +174,22 @@ export type _EuiThemeSpecialColors = {
 export type _EuiThemeConstantColors = {
   /**
    * Purest **white**
+   * @deprecated
    */
   ghost: string;
   /**
    * Purest **black**
+   * @deprecated
    */
   ink: string;
+  /**
+   * Purest **white**
+   */
+  plainLight: string;
+  /**
+   * Purest **black**
+   */
+  plainDark: string;
 };
 
 export type _EuiThemeColorsMode = _EuiThemeBrandColors &

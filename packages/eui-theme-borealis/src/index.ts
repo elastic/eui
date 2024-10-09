@@ -8,7 +8,7 @@
 
 import { buildTheme, EuiThemeShape } from '@elastic/eui-theme-common';
 
-import { colors } from './variables/_colors';
+import { colors } from './variables/colors';
 import { animation } from './variables/_animation';
 import { breakpoint } from './variables/_breakpoint';
 import { base, size } from './variables/_size';

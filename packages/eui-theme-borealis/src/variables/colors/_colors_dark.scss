@@ -1,0 +1,69 @@
+// stylelint-disable color-no-hex
+
+// This extra import allows any variables that are created via functions to work when loaded into JS
+@import 'node_modules/@elastic/eui-theme-common/src/global_styling/functions/index';
+
+@import 'semantic_colors';
+
+// Constants (legacy)
+$euiColorGhost: $euiColorWhite !default;
+$euiColorInk: $euiColorBlack !default;
+
+// Constants
+$euiColorPlainLight: $euiColorWhite;
+$euiColorPlainDark: $euiColorMutedBlack;
+
+// Brand
+$euiColorPrimary: $euiColorPrimary70 !default;
+$euiColorAccent: $euiColorAccent70 !default;
+$euiColorAccentSecondary: $euiColorAccentSecondary70 !default;
+$euiColorSuccess: $euiColorSuccess60 !default;
+$euiColorWarning: $euiColorWarning40 !default;
+$euiColorDanger: $euiColorDanger70 !default;
+
+// Shades
+$euiColorEmptyShade: $euiColorBlack !default;
+$euiColorLightestShade: $euiColorShade125 !default;
+$euiColorLightShade: $euiColorShade85 !default;
+$euiColorMediumShade: $euiColorShade60 !default;
+$euiColorDarkShade: $euiColorShade30 !default;
+$euiColorDarkestShade: $euiColorShade10 !default;
+$euiColorFullShade: $euiColorPlainLight !default;
+
+// Backgrounds
+$euiPageBackgroundColor: $euiColorMutedBlack !default;
+$euiColorHighlight: $euiColorWarning100 !default;
+
+// Texts (legacy)
+$euiTextColor: $euiColorShade20 !default;
+$euiTitleColor: $euiColorShade15 !default;
+$euiTextSubduedColor: $euiColorShade110 !default;
+$euiColorDisabled: $euiColorShade70 !default;
+$euiColorDisabledText: $euiColorShade120 !default;
+$euiLinkColor: $euiColorPrimary60 !default;
+
+// Texts
+$euiColorTextParagraph: $euiColorShade20 !default;
+$euiColorTextHeading: $euiColorShade15 !default;
+$euiColorTextSubdued: $euiColorShade110 !default;
+$euiColorTextDisabled: $euiColorShade120 !default;
+$euiColorTextInverse: $euiColorMutedBlack !default;
+
+// Brand texts (legacy)
+$euiColorPrimaryText: $euiColorPrimary60 !default;
+$euiColorAccentText: $euiColorAccent60 !default;
+$euiColorSuccessText: $euiColorSuccess60 !default;
+$euiColorWarningText: $euiColorWarning40 !default;
+$euiColorDangerText: $euiColorDanger60 !default;
+
+// Brand texts
+$euiColorTextPrimary: $euiColorPrimary60 !default;
+$euiColorTextAccent: $euiColorAccent60 !default;
+$euiColorTextAccentSecondary: $euiColorAccentSecondary60 !default;
+$euiColorTextSuccess: $euiColorSuccess60 !default;
+$euiColorTextWarning: $euiColorWarning40 !default;
+$euiColorTextDanger: $euiColorDanger60 !default;
+
+// Charts
+$euiColorChartLines: $euiColorShade85 !default;
+$euiColorChartBand: $euiColorShade125 !default;
