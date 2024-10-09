@@ -1,5 +1,1 @@
-// Math needs to be first in the load order
-@import 'math';
-
-// Using math, we have functions to manipulate contrast / luminosity for accessibility
-@import 'colors';
+@import 'node_modules/@elastic/eui-theme-common/src/global_styling/functions/index';

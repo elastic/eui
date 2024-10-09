@@ -1,0 +1,11 @@
+# Dependencies
+/node_modules
+
+# Production
+/lib
+
+yarn-debug.log*
+yarn-error.log*
+
+# Build-related files
+.eslintcache

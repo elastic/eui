@@ -1,0 +1,11 @@
+// Borders
+
+$euiBorderWidthThin: 1px !default;
+$euiBorderWidthThick: 2px !default;
+
+$euiBorderColor: $euiColorLightShade !default;
+$euiBorderRadius: $euiSizeS * .75 !default;
+$euiBorderRadiusSmall: $euiSizeS * .5 !default;
+$euiBorderThick: $euiBorderWidthThick solid $euiBorderColor !default;
+$euiBorderThin: $euiBorderWidthThin solid $euiBorderColor !default;
+$euiBorderEditable: $euiBorderWidthThick dotted $euiBorderColor !default;

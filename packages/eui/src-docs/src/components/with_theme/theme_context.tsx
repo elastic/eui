@@ -1,10 +1,33 @@
 import React, { PropsWithChildren } from 'react';
-import { EUI_THEMES, EUI_THEME } from '../../../../src/themes';
+import { EuiThemeBorealis } from '@elastic/eui-theme-borealis';
+
+import {
+  EUI_THEMES,
+  EUI_THEME,
+  isExperimentalThemeEnabled,
+} from '../../../../src/themes';
 // @ts-ignore importing from a JS file
 import { applyTheme } from '../../services';
 
 const STYLE_STORAGE_KEY = 'js_vs_sass_preference';
 const URL_PARAM_KEY = 'themeLanguage';
+
+const EXPERIMENTAL_THEMES: EUI_THEME[] = isExperimentalThemeEnabled()
+  ? [
+      {
+        text: 'Borealis (Light)',
+        value: `${EuiThemeBorealis.key}_LIGHT`,
+        provider: EuiThemeBorealis,
+      },
+      {
+        text: 'Borealis (Dark)',
+        value: `${EuiThemeBorealis.key}_DARK`,
+        provider: EuiThemeBorealis,
+      },
+    ]
+  : [];
+
+export const AVAILABLE_THEMES = [...EUI_THEMES, ...EXPERIMENTAL_THEMES];
 
 export type THEME_LANGUAGES = {
   id: 'language--js' | 'language--sass';
@@ -25,7 +48,7 @@ export const theme_languages: THEME_LANGUAGES[] = [
   },
 ];
 
-const THEME_NAMES = EUI_THEMES.map(({ value }) => value);
+const THEME_NAMES = AVAILABLE_THEMES.map(({ value }) => value);
 const THEME_LANGS = theme_languages.map(({ id }) => id);
 
 type ThemeContextType = {
