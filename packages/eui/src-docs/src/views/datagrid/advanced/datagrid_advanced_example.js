@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 import { GuideSectionTypes } from '../../../components';
 import {
@@ -10,12 +9,10 @@ import {
   EuiLink,
 } from '../../../../../src/components';
 
-import {
-  EuiDataGridRefProps,
-  EuiDataGridCustomBodyProps,
-} from '!!prop-loader!../../../../../src/components/datagrid/data_grid_types';
+import { EuiDataGridRefProps } from '!!prop-loader!../../../../../src/components/datagrid/data_grid_types';
 
 import { DataGridMemoryExample } from './datagrid_memory_example';
+import { DataGridCustomBodyExample } from './render_custom_grid_body/example';
 
 import DataGridRef from './ref';
 const dataGridRefSource = require('!!raw-loader!./ref');
@@ -34,28 +31,6 @@ dataGridRef.current.openCellPopover({ rowIndex, colIndex });
 // Close any open cell popover
 dataGridRef.current.closeCellPopover();
 `;
-
-import CustomRenderer from './custom_renderer';
-const customRendererSource = require('!!raw-loader!./custom_renderer');
-const customRendererSnippet = `const CustomGridBody = ({ visibleColumns, visibleRowData, Cell }) => {
-  const visibleRows = raw_data.slice(
-    visibleRowData.startRow,
-    visibleRowData.endRow
-  );
-  return (
-    <>
-      {visibleRows.map((row, rowIndex) => (
-        <div role="row" style={{ display: 'flex' }} key={rowIndex}>
-          {visibleColumns.map((column, colIndex) => (
-            <Cell colIndex={colIndex} visibleRowIndex={rowIndex} key={\`\${rowIndex},\${colIndex}\`} />
-          ))}
-        </div>
-      ))}
-    </>
-  );
-};
-
-<EuiDataGridBody renderCustomGridBody={CustomGridBody} {...props} />`;
 
 export const DataGridAdvancedExample = {
   title: 'Data grid advanced',
@@ -211,47 +186,6 @@ export const DataGridAdvancedExample = {
       props: { EuiDataGridRefProps },
     },
     ...DataGridMemoryExample.sections,
-    {
-      title: 'Custom body renderer',
-      source: [
-        {
-          type: GuideSectionTypes.TSX,
-          code: customRendererSource,
-        },
-      ],
-      text: (
-        <>
-          <p>
-            For <strong>extremely</strong> advanced use cases, the{' '}
-            <EuiCode>renderCustomGridBody</EuiCode> prop may be used to take
-            complete control over rendering the grid body. This may be useful
-            for scenarios where the default{' '}
-            <Link to="/tabular-content/data-grid#virtualization">
-              virtualized
-            </Link>{' '}
-            rendering is not desired, or where custom row layouts (e.g., the
-            conditional row details cell below) are required.
-          </p>
-          <p>
-            Please note that this prop is meant to be an{' '}
-            <strong>escape hatch</strong>, and should only be used if you know
-            exactly what you are doing. Once a custom renderer is used, you are
-            in charge of ensuring the grid has all the correct semantic and aria
-            labels required by the{' '}
-            <EuiLink
-              href="https://www.w3.org/WAI/ARIA/apg/patterns/grid"
-              target="_blank"
-            >
-              data grid spec
-            </EuiLink>
-            , and that keyboard focus and navigation still work in an accessible
-            manner.
-          </p>
-        </>
-      ),
-      demo: <CustomRenderer />,
-      snippet: customRendererSnippet,
-      props: { EuiDataGridCustomBodyProps },
-    },
+    DataGridCustomBodyExample,
   ],
 };

@@ -516,6 +516,19 @@ export interface EuiDataGridCustomBodyProps {
    * It's best to wrap calls to `setCustomGridBodyProps` in a `useEffect` hook
    */
   setCustomGridBodyProps: (props: EuiDataGridSetCustomGridBodyProps) => void;
+
+  /**
+   * The width of the grid, can be used by consumer as a layout utility
+   */
+  gridWidth: number;
+  /**
+   * Header row component to render by custom renderer
+   * */
+  headerRow: React.JSX.Element;
+  /**
+   * Footer row component to render by custom renderer
+   * */
+  footerRow: React.JSX.Element | null;
 }
 
 export type EuiDataGridSetCustomGridBodyProps = CommonProps &
