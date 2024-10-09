@@ -66,7 +66,7 @@ describe('EuiDataGridHeaderRow', () => {
           tabindex="-1"
         >
           <div
-            class="euiDataGridColumnResizer emotion-euiDataGridColumnResizer"
+            class="euiDataGridColumnResizer emotion-euiDataGridColumnResizer-isLastColumn"
             data-test-subj="dataGridColumnResizer"
           />
           <div
