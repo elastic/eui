@@ -37,6 +37,8 @@ describe('EuiDataGridBodyCustomRender', () => {
     const CustomGridBody: EuiDataGridProps['renderCustomGridBody'] = ({
       visibleColumns,
       visibleRowData,
+      headerRow,
+      footerRow,
       Cell,
     }) => {
       const visibleRows = raw_data.slice(
@@ -45,6 +47,7 @@ describe('EuiDataGridBodyCustomRender', () => {
       );
       return (
         <>
+          {headerRow}
           {visibleRows.map((row, rowIndex) => (
             <div role="row" key={rowIndex}>
               {visibleColumns.map((column, colIndex) => (
@@ -56,6 +59,7 @@ describe('EuiDataGridBodyCustomRender', () => {
               ))}
             </div>
           ))}
+          {footerRow}
         </>
       );
     };
