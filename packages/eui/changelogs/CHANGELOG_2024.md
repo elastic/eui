@@ -1,3 +1,19 @@
+## [`v97.0.0`](https://github.com/elastic/eui/releases/v97.0.0)
+
+**Bug fixes**
+
+- Fixed inputs not taking the whole width when passing `fullWidth` as `true` to EuiDatePickerRange component ([#8061](https://github.com/elastic/eui/pull/8061))
+
+**Breaking changes**
+
+- EuiDataGrid's custom grid body (rendered via `renderCustomGridBody`) no longer automatically renders the column header row or footer rows. It instead now passes the `headerRow` and `footerRow` React elements, which require manual rendering. ([#8028](https://github.com/elastic/eui/pull/8028))
+  - This change was made to allow consumers to sync header/footer rows with their own custom virtualization libraries.
+  - To facilitate this, a `gridWidth` prop is now also passed to custom grid body renderers.
+
+**Accessibility**
+
+- Improved accessibility of `EuiExternalLinkIcon` by clarifying text for Screen Reader users. ([#8065](https://github.com/elastic/eui/pull/8065))
+
 ## [`v96.1.0`](https://github.com/elastic/eui/releases/v96.1.0)
 
 **CSS-in-JS conversions**
