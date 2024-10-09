@@ -1,5 +1,24 @@
 [
   {
+    "version": "97.0.0",
+    "changes": [
+      {
+        "token": "euiExternalLinkIcon.ariaLabel",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiExternalLinkIcon.newTarget.screenReaderOnlyText",
+        "changeType": "modified",
+        "value": "(external, opens in a new tab or window)"
+      },
+      {
+        "token": "euiExternalLinkIcon.externalTarget.screenReaderOnlyText",
+        "changeType": "added",
+        "value": "(external)"
+      }
+    ]
+  },
+  {
     "version": "95.11.0",
     "changes": [
       {

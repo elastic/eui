@@ -5256,37 +5256,37 @@
     "filepath": "src/components/inline_edit/inline_edit_form.tsx"
   },
   {
-    "token": "euiExternalLinkIcon.ariaLabel",
-    "defString": "External link",
+    "token": "euiExternalLinkIcon.newTarget.screenReaderOnlyText",
+    "defString": "(external, opens in a new tab or window)",
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 42,
-        "column": 24,
-        "index": 1528
+        "line": 56,
+        "column": 16,
+        "index": 1824
       },
       "end": {
-        "line": 45,
-        "column": 3,
-        "index": 1600
+        "line": 59,
+        "column": 18,
+        "index": 1997
       }
     },
     "filepath": "src/components/link/external_link_icon.tsx"
   },
   {
-    "token": "euiExternalLinkIcon.newTarget.screenReaderOnlyText",
-    "defString": "(opens in a new tab or window)",
+    "token": "euiExternalLinkIcon.externalTarget.screenReaderOnlyText",
+    "defString": "(external)",
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 61,
-        "column": 12,
-        "index": 1911
+        "line": 66,
+        "column": 18,
+        "index": 2163
       },
       "end": {
-        "line": 64,
-        "column": 14,
-        "index": 2062
+        "line": 69,
+        "column": 20,
+        "index": 2317
       }
     },
     "filepath": "src/components/link/external_link_icon.tsx"
