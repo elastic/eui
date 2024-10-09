@@ -29,7 +29,7 @@ const mountCommand = (
   options: MountOptions = {}
 ): ReturnType<typeof mount> => {
   const { providerProps } = options;
-  return cypressMount(<EuiProvider {...providerProps}>{children}</EuiProvider>);
+  return cypressMount(<EuiProvider {...providerProps} colorMode="LIGHT">{children}</EuiProvider>);
 };
 
 // Export only the type to not confuse code-completion tools
