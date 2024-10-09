@@ -67,6 +67,7 @@ export class EuiDataGridColumnResizer extends Component<
 
   render() {
     const { offset } = this.state;
+    const { isLastColumn } = this.props;
 
     return (
       <RenderWithEuiStylesMemoizer>
@@ -74,6 +75,7 @@ export class EuiDataGridColumnResizer extends Component<
           const styles = stylesMemoizer(euiDataGridColumnResizerStyles);
           const cssStyles = [
             styles.euiDataGridColumnResizer,
+            isLastColumn && styles.isLastColumn,
             offset && styles.isDragging,
           ];
           return (

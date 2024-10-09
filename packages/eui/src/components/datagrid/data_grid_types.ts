@@ -432,6 +432,7 @@ export interface EuiDataGridColumnResizerProps {
   columnId: string;
   columnWidth: number;
   setColumnWidth: (columnId: string, width: number) => void;
+  isLastColumn: boolean;
 }
 
 export interface EuiDataGridColumnResizerState {

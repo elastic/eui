@@ -55,6 +55,7 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
       const width = columnWidths[id] || defaultColumnWidth;
       const columnType = schema[id] ? schema[id].columnType : null;
       const hasColumnActions = useHasColumnActions(actions);
+      const isLastColumn = index === visibleColCount - 1;
 
       const classes = classnames(
         {
@@ -89,9 +90,10 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
             columnId={id}
             columnWidth={width}
             setColumnWidth={setColumnWidth}
+            isLastColumn={isLastColumn}
           />
         ) : null;
-      }, [column.isResizable, id, width, setColumnWidth]);
+      }, [column.isResizable, id, width, setColumnWidth, isLastColumn]);
 
       return (
         <ConditionalDraggableColumn

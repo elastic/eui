@@ -17,6 +17,7 @@ describe('EuiDataGridHeaderResizer', () => {
     columnId: 'someColumn',
     columnWidth: 50,
     setColumnWidth: jest.fn(),
+    isLastColumn: false,
   };
 
   it('renders', () => {
