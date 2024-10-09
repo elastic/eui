@@ -39,9 +39,9 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
       columnWidths,
       defaultColumnWidth,
       setColumnWidth,
-      visibleColCount,
       setVisibleColumns,
       switchColumnPos,
+      isLastColumn,
       sorting,
       schema,
       schemaDetectors,
@@ -55,7 +55,6 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
       const width = columnWidths[id] || defaultColumnWidth;
       const columnType = schema[id] ? schema[id].columnType : null;
       const hasColumnActions = useHasColumnActions(actions);
-      const isLastColumn = index === visibleColCount - 1;
 
       const classes = classnames(
         {
@@ -113,7 +112,7 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
               className={classnames(classes, propsFromColumnActions.className)}
               id={id}
               index={index}
-              visibleColCount={visibleColCount}
+              isLastColumn={isLastColumn}
               width={width}
               aria-sort={ariaSort}
               aria-label={displayAsText && `${displayAsText}, `} // ensure cell text content is read first, if available

@@ -13,7 +13,7 @@ import { EuiDataGridControlHeaderCellProps } from '../../data_grid_types';
 import { EuiDataGridHeaderCellWrapper } from './data_grid_header_cell_wrapper';
 
 export const EuiDataGridControlHeaderCell: FunctionComponent<EuiDataGridControlHeaderCellProps> =
-  memo(({ controlColumn, index, visibleColCount }) => {
+  memo(({ controlColumn, index, isLastColumn }) => {
     const {
       headerCellRender: HeaderCellRender,
       headerCellProps,
@@ -31,7 +31,7 @@ export const EuiDataGridControlHeaderCell: FunctionComponent<EuiDataGridControlH
         id={id}
         index={index}
         width={width}
-        visibleColCount={visibleColCount}
+        isLastColumn={isLastColumn}
       >
         <HeaderCellRender />
       </EuiDataGridHeaderCellWrapper>

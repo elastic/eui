@@ -37,7 +37,7 @@ export const EuiDataGridHeaderCellWrapper: FunctionComponent<
 > = ({
   id,
   index,
-  visibleColCount,
+  isLastColumn,
   width,
   className,
   children,
@@ -90,8 +90,6 @@ export const EuiDataGridHeaderCellWrapper: FunctionComponent<
     },
     [_onKeyDown, renderFocusTrap]
   );
-
-  const isLastColumn = index === visibleColCount - 1;
 
   return (
     <div

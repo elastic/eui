@@ -155,15 +155,16 @@ export type EuiDataGridHeaderRowProps = CommonProps &
 export interface EuiDataGridHeaderCellProps
   extends Omit<
     EuiDataGridHeaderRowPropsSpecificProps,
-    'leadingControlColumns'
+    'leadingControlColumns' | 'trailingControlColumns' | 'visibleColCount'
   > {
   index: number;
   column: EuiDataGridColumn;
+  isLastColumn: boolean;
 }
 
 export interface EuiDataGridControlHeaderCellProps {
   index: number;
-  visibleColCount: number;
+  isLastColumn: boolean;
   controlColumn: EuiDataGridControlColumn;
 }
 
@@ -171,7 +172,7 @@ export interface EuiDataGridHeaderCellWrapperProps {
   children: ReactNode | ((renderFocusTrap: boolean) => ReactNode);
   id: string;
   index: number;
-  visibleColCount: number;
+  isLastColumn: boolean;
   width?: number | null;
   className?: string;
   'aria-label'?: AriaAttributes['aria-label'];

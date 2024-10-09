@@ -18,7 +18,7 @@ describe('EuiDataGridHeaderCellWrapper', () => {
   const requiredProps = {
     id: 'someColumn',
     index: 0,
-    visibleColCount: 1,
+    isLastColumn: true,
     hasColumnActions: true,
     children: (
       <>
