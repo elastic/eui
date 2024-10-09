@@ -245,7 +245,6 @@ describe('Cell outline styles', () => {
 
         tabToDataGrid();
         cy.realPress('Space');
-        cy.realPress('ArrowRight');
         getDragIconWidth().then((width) => expect(width).to.eq(12));
 
         cy.realPress('Space');
