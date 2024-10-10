@@ -12,7 +12,7 @@ import React, {
   MouseEventHandler,
 } from 'react';
 import classNames from 'classnames';
-import { LocaleSpecifier } from 'moment'; // eslint-disable-line import/named
+import { LocaleSpecifier, Moment } from 'moment'; // eslint-disable-line import/named
 
 import { useEuiMemoizedStyles } from '../../../../services';
 import { CommonProps } from '../../../common';
@@ -46,6 +46,8 @@ export interface EuiDatePopoverButtonProps {
   timeFormat: string;
   value: string;
   utcOffset?: number;
+  minDate?: Moment;
+  maxDate?: Moment;
   compressed?: boolean;
   timeOptions: TimeOptions;
 }
@@ -66,6 +68,8 @@ export const EuiDatePopoverButton: FunctionComponent<
     locale,
     dateFormat,
     utcOffset,
+    minDate,
+    maxDate,
     timeFormat,
     isOpen,
     onPopoverToggle,
@@ -150,6 +154,8 @@ export const EuiDatePopoverButton: FunctionComponent<
         position={position}
         utcOffset={utcOffset}
         timeOptions={timeOptions}
+        minDate={minDate}
+        maxDate={maxDate}
       />
     </EuiPopover>
   );
