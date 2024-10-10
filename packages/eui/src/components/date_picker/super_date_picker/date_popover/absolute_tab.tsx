@@ -45,6 +45,8 @@ export interface EuiAbsoluteTabProps {
   roundUp: boolean;
   labelPrefix: string;
   utcOffset?: number;
+  minDate?: Moment;
+  maxDate?: Moment;
 }
 
 export const EuiAbsoluteTab: FunctionComponent<EuiAbsoluteTabProps> = ({
@@ -55,6 +57,8 @@ export const EuiAbsoluteTab: FunctionComponent<EuiAbsoluteTabProps> = ({
   locale,
   roundUp,
   utcOffset,
+  minDate,
+  maxDate,
   labelPrefix,
 }) => {
   const styles = useEuiMemoizedStyles(euiAbsoluteTabDateFormStyles);
@@ -157,6 +161,8 @@ export const EuiAbsoluteTab: FunctionComponent<EuiAbsoluteTabProps> = ({
         timeFormat={timeFormat}
         locale={locale}
         utcOffset={utcOffset}
+        minDate={minDate}
+        maxDate={maxDate}
       />
       <EuiFlexGroup
         component="form"

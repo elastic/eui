@@ -41,6 +41,9 @@ const superDatePickerPatternSource = require('!!raw-loader!./super_date_picker_p
 import SuperDatePickerLocale from './super_date_picker_locale';
 const superDatePickerLocaleSource = require('!!raw-loader!./super_date_picker_locale');
 
+import SuperDatePickerRangeRestricted from './super_date_picker_range_restricted';
+const superDatePickerRangeRestrictedSource = require('!!raw-loader!./super_date_picker_range_restricted');
+
 const superDatePickerSnippet = `<EuiSuperDatePicker
   onTimeChange={onTimeChange}
   start="now-30m"
@@ -68,6 +71,15 @@ const superDatePickerLocaleSnippet = `<EuiSuperDatePicker
   end="now-15m"
   locale="zh-CN"
   dateFormat="MMM D, YYYY @ HH:mm:ss.SSS"
+  onTimeChange={onTimeChange}
+/>`;
+
+const superDatePickerRangeRestrictedSnippet = `<EuiSuperDatePicker
+  start="now-1h"
+  end="now-15m"
+  minDate={moment('10/01/2024')}
+  maxDate={moment('11/01/2024')}
+  dateFormat="MM DD, YYYY"
   onTimeChange={onTimeChange}
 />`;
 
@@ -390,6 +402,29 @@ if (!endMoment || !endMoment.isValid()) {
       props: { EuiSuperDatePicker },
       snippet: superDatePickerLocaleSnippet,
       demo: <SuperDatePickerLocale />,
+    },
+    {
+      title: 'Restricted Range',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: superDatePickerRangeRestrictedSource,
+        },
+      ],
+      text: (
+        <>
+          <p>
+            To limit the range from which users can choose a date, you can use{' '}
+            <EuiCode>minDate</EuiCode> and <EuiCode>maxDate</EuiCode>. By
+            updating the date input values for <EuiCode>start</EuiCode> and{' '}
+            <EuiCode>end</EuiCode> users get immediate feedback on what range
+            values are allowed.
+          </p>
+        </>
+      ),
+      props: { EuiSuperDatePicker },
+      snippet: superDatePickerRangeRestrictedSnippet,
+      demo: <SuperDatePickerRangeRestricted />,
     },
   ],
 };

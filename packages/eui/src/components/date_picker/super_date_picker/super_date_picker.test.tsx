@@ -16,6 +16,7 @@ import {
   EuiSuperDatePicker,
   EuiSuperDatePickerProps,
 } from './super_date_picker';
+import moment from 'moment';
 
 const noop = () => {};
 
@@ -394,6 +395,84 @@ describe('EuiSuperDatePicker', () => {
 
         fireEvent.change(unitSelect, { target: { value: 'd' } });
         expect(startButton).toHaveTextContent('300 days ago');
+      });
+    });
+
+    describe('minDate', () => {
+      const props = {
+        onTimeChange: noop,
+        end: 'now',
+      };
+
+      it('is valid when the start value is set after the minDate', () => {
+        const { container } = render(
+          <EuiSuperDatePicker
+            {...props}
+            start="10/01/2024"
+            minDate={moment('10/01/2024')}
+          />
+        );
+
+        const formWraper = container.querySelector(
+          '.euiFormControlLayout__childrenWrapper'
+        )!;
+
+        expect(formWraper.className).not.toContain('invalid');
+      });
+
+      it('is invalid when the start value is set before the minDate', () => {
+        const { container } = render(
+          <EuiSuperDatePicker
+            {...props}
+            start="09/30/2024"
+            minDate={moment('10/01/2024')}
+          />
+        );
+
+        const formWraper = container.querySelector(
+          '.euiFormControlLayout__childrenWrapper'
+        )!;
+
+        expect(formWraper.className).toContain('invalid');
+      });
+    });
+
+    describe('maxDate', () => {
+      const props = {
+        onTimeChange: noop,
+        start: '10/01/2024',
+      };
+
+      it('is valid when the end value is set before the maxDate', () => {
+        const { container } = render(
+          <EuiSuperDatePicker
+            {...props}
+            end="10/31/2024"
+            maxDate={moment('11/01/2024')}
+          />
+        );
+
+        const formWraper = container.querySelector(
+          '.euiFormControlLayout__childrenWrapper'
+        )!;
+
+        expect(formWraper.className).not.toContain('invalid');
+      });
+
+      it('is invalid when the end date exceeds the maxDate', () => {
+        const { container } = render(
+          <EuiSuperDatePicker
+            {...props}
+            end="11/02/2024"
+            maxDate={moment('11/01/2024')}
+          />
+        );
+
+        const formWraper = container.querySelector(
+          '.euiFormControlLayout__childrenWrapper'
+        )!;
+
+        expect(formWraper.className).toContain('invalid');
       });
     });
   });
