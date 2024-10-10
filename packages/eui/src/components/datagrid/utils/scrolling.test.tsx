@@ -122,6 +122,35 @@ describe('useScrollCellIntoView', () => {
       scrollCellIntoView({ rowIndex: 1, colIndex: 5 });
       expect(scrollTo).toHaveBeenCalledWith({ scrollLeft: 50, scrollTop: 0 });
     });
+
+    it('correctly accounts for header cells inside EuiDraggable', () => {
+      const mockEuiDraggable = {
+        offsetLeft: 500,
+      };
+      const cell = {
+        ...mockCell,
+        offsetLeft: 0,
+        offsetWidth: 100,
+        offsetParent: mockEuiDraggable,
+      };
+      const grid = {
+        offsetWidth: 600,
+        clientWidth: 200,
+      };
+
+      getCell.mockReturnValue(cell);
+      const { scrollCellIntoView } = renderHook(() =>
+        useScrollCellIntoView({
+          ...args,
+          outerGridRef: { current: { ...args.outerGridRef.current, ...grid } },
+          canDragAndDropColumns: true,
+        })
+      ).result.current;
+
+      scrollCellIntoView({ rowIndex: -1, colIndex: 4 });
+      // should scroll all the way to the right, aka the grid's offsetWidth - clientWidth
+      expect(scrollTo).toHaveBeenCalledWith({ scrollLeft: 400, scrollTop: 0 });
+    });
   });
 
   describe('left scroll adjustments', () => {
@@ -168,6 +197,34 @@ describe('useScrollCellIntoView', () => {
 
       scrollCellIntoView({ rowIndex: 1, colIndex: 1 });
       expect(scrollTo).toHaveBeenCalledWith({ scrollLeft: 50, scrollTop: 0 });
+    });
+
+    it('correctly accounts for header cells inside EuiDraggable', () => {
+      const mockEuiDraggable = {
+        offsetLeft: 100,
+      };
+      const cell = {
+        ...mockCell,
+        offsetLeft: 0,
+        offsetWidth: 100,
+        offsetParent: mockEuiDraggable,
+      };
+      const grid = {
+        scrollLeft: 300,
+      };
+
+      getCell.mockReturnValue(cell);
+      const { scrollCellIntoView } = renderHook(() =>
+        useScrollCellIntoView({
+          ...args,
+          outerGridRef: { current: { ...args.outerGridRef.current, ...grid } },
+          canDragAndDropColumns: true,
+        })
+      ).result.current;
+
+      scrollCellIntoView({ rowIndex: -1, colIndex: 1 });
+      // should have been called with mockEuiDraggable's offsetLeft
+      expect(scrollTo).toHaveBeenCalledWith({ scrollLeft: 100, scrollTop: 0 });
     });
   });
 

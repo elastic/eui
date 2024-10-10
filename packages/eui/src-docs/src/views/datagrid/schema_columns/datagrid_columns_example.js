@@ -17,6 +17,8 @@ import DataGridColumnWidths from './column_widths';
 const dataGridColumnWidthsSource = require('!!raw-loader!./column_widths');
 import DataGridColumnActions from './column_actions';
 const dataGridColumnActionsSource = require('!!raw-loader!./column_actions');
+import DataGridColumnDragging from './column_dragging';
+const dataGridColumnDraggingSource = require('!!raw-loader!./column_dragging');
 
 import DataGridFooterRow from './footer_row';
 const dataGridFooterRowSource = require('!!raw-loader!./footer_row');
@@ -237,6 +239,32 @@ schemaDetectors={[
         EuiListGroupItem,
       },
       demo: <DataGridColumnActions />,
+    },
+    {
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: dataGridColumnDraggingSource,
+        },
+      ],
+      title: 'Draggable columns',
+      text: (
+        <Fragment>
+          <p>
+            To reorder columns directly instead of via the actions menu popover,
+            you can enable draggable <strong>EuiDataGrid</strong> header columns
+            via the <EuiCode>columnVisibility.canDragAndDropColumns</EuiCode>{' '}
+            prop. This will allow you to reorder the column by dragging them.
+          </p>
+        </Fragment>
+      ),
+      props: {
+        EuiDataGrid,
+        EuiDataGridColumn,
+        EuiDataGridColumnActions,
+        EuiListGroupItem,
+      },
+      demo: <DataGridColumnDragging />,
     },
     {
       title: 'Control columns',

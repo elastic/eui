@@ -18,6 +18,7 @@ import {
   Ref,
   Component,
   ComponentClass,
+  KeyboardEventHandler,
 } from 'react';
 import {
   VariableSizeGridProps,
@@ -144,6 +145,7 @@ export interface EuiDataGridHeaderRowPropsSpecificProps {
   setVisibleColumns: (columnId: string[]) => void;
   switchColumnPos: (colFromId: string, colToId: string) => void;
   gridStyles: EuiDataGridStyle;
+  canDragAndDropColumns?: boolean;
 }
 
 export type EuiDataGridHeaderRowProps = CommonProps &
@@ -153,15 +155,16 @@ export type EuiDataGridHeaderRowProps = CommonProps &
 export interface EuiDataGridHeaderCellProps
   extends Omit<
     EuiDataGridHeaderRowPropsSpecificProps,
-    'leadingControlColumns' | 'gridStyles'
+    'leadingControlColumns' | 'trailingControlColumns' | 'visibleColCount'
   > {
-  column: EuiDataGridColumn;
   index: number;
+  column: EuiDataGridColumn;
+  isLastColumn: boolean;
 }
 
 export interface EuiDataGridControlHeaderCellProps {
   index: number;
-  visibleColCount: number;
+  isLastColumn: boolean;
   controlColumn: EuiDataGridControlColumn;
 }
 
@@ -169,12 +172,13 @@ export interface EuiDataGridHeaderCellWrapperProps {
   children: ReactNode | ((renderFocusTrap: boolean) => ReactNode);
   id: string;
   index: number;
-  visibleColCount: number;
+  isLastColumn: boolean;
   width?: number | null;
   className?: string;
   'aria-label'?: AriaAttributes['aria-label'];
-  hasActionsPopover?: boolean;
-  openActionsPopover?: () => void;
+  hasColumnActions?: boolean;
+  isDragging?: boolean;
+  onKeyDown?: KeyboardEventHandler;
 }
 
 export type EuiDataGridFooterRowProps = CommonProps &
@@ -211,7 +215,7 @@ export type EuiDataGridFocusedCell = [number, number];
 
 export interface DataGridFocusContextShape {
   focusedCell?: EuiDataGridFocusedCell;
-  setFocusedCell: (cell: EuiDataGridFocusedCell) => void;
+  setFocusedCell: (cell: EuiDataGridFocusedCell, forceUpdate?: boolean) => void;
   setIsFocusedCellInView: (isFocusedCellInView: boolean) => void;
   onFocusUpdate: (
     cell: EuiDataGridFocusedCell,
@@ -429,6 +433,7 @@ export interface EuiDataGridColumnResizerProps {
   columnId: string;
   columnWidth: number;
   setColumnWidth: (columnId: string, width: number) => void;
+  isLastColumn: boolean;
 }
 
 export interface EuiDataGridColumnResizerState {
@@ -478,6 +483,7 @@ export interface EuiDataGridBodyProps {
   gridItemsRendered: MutableRefObject<GridOnItemsRenderedProps | null>;
   wrapperRef: MutableRefObject<HTMLDivElement | null>;
   className?: string;
+  canDragAndDropColumns?: boolean;
 }
 
 export interface EuiDataGridCustomBodyProps {
@@ -835,6 +841,9 @@ export interface EuiDataGridColumnVisibility {
    * A callback for when a column's visibility or order is modified by the user.
    */
   setVisibleColumns: (visibleColumns: string[]) => void;
+
+  /** Enables reordering grid columns on drag and drop via the headers cells */
+  canDragAndDropColumns?: boolean;
 }
 
 export interface EuiDataGridColumnWidths {

@@ -6,8 +6,30 @@
  * Side Public License, v 1.
  */
 
-import React from 'react';
+import React, {
+  useContext,
+  useState,
+  useMemo,
+  useCallback,
+  useRef,
+  Ref,
+  KeyboardEventHandler,
+  FunctionComponent,
+  memo,
+  useEffect,
+} from 'react';
+import { tabbable, FocusableElement } from 'tabbable';
+
+import { keys, useEuiMemoizedStyles } from '../../../../services';
+// Keep the i18n scope the same as EuiDataGridHeaderCell
+/* eslint-disable local/i18n */
+import { EuiI18n, useEuiI18n } from '../../../i18n';
+import { EuiPopover } from '../../../popover';
+import { EuiListGroup, EuiListGroupItemProps } from '../../../list_group';
+import { EuiButtonIcon } from '../../../button';
+
 import {
+  EuiDataGridHeaderCellProps,
   EuiDataGridColumn,
   EuiDataGridColumnActions,
   EuiDataGridSchema,
@@ -15,13 +37,271 @@ import {
   EuiDataGridSorting,
   DataGridFocusContextShape,
 } from '../../data_grid_types';
-import { EuiI18n } from '../../../i18n';
-import { EuiListGroupItemProps } from '../../../list_group';
+import { DataGridFocusContext } from '../../utils/focus';
 import { getDetailsForSchema } from '../../utils/data_grid_schema';
 import {
   defaultSortAscLabel,
   defaultSortDescLabel,
 } from '../../controls/column_sorting_draggable';
+import { euiDataGridHeaderCellStyles } from './data_grid_header_cell.styles';
+
+export const useHasColumnActions = (
+  columnActions: EuiDataGridColumn['actions']
+) =>
+  useMemo(() => {
+    // By default, all column actions are enabled
+    if (columnActions === undefined) return true;
+    if (columnActions === false) return false;
+    if (columnActions.additional && columnActions.additional.length)
+      return true;
+    // Check if all (currently 5) default column actions have been manually disabled
+    const disabledActions = Object.values(columnActions).filter(
+      (action) => action === false
+    );
+    return disabledActions.length < 5;
+  }, [columnActions]);
+
+// Props to pass back to EuiDataGridHeaderCell and set on EuiDataGridHeaderCellWrapper
+export type PropsFromColumnActions = {
+  className?: string;
+  onKeyDown?: KeyboardEventHandler;
+  'data-column-moving'?: boolean;
+};
+
+export const ColumnActions: FunctionComponent<
+  Pick<
+    EuiDataGridHeaderCellProps,
+    | 'index'
+    | 'column'
+    | 'columns'
+    | 'schema'
+    | 'schemaDetectors'
+    | 'setVisibleColumns'
+    | 'switchColumnPos'
+    | 'sorting'
+  > & {
+    id: string;
+    title: string;
+    hasFocusTrap: boolean;
+    setPropsFromColumnActions: (props: PropsFromColumnActions) => void;
+    actionsButtonRef: Ref<HTMLButtonElement>;
+  }
+> = memo(
+  ({
+    index,
+    id,
+    title,
+    column,
+    columns,
+    schema,
+    schemaDetectors,
+    setVisibleColumns,
+    switchColumnPos,
+    sorting,
+    hasFocusTrap,
+    setPropsFromColumnActions,
+    actionsButtonRef,
+  }) => {
+    /**
+     * Popover logic and accessibility
+     */
+    const [isPopoverOpen, setIsPopoverOpen] = useState(false);
+    const togglePopover = useCallback(() => {
+      setIsPopoverOpen((isOpen) => !isOpen);
+    }, []);
+    const closePopover = useCallback(() => {
+      setIsPopoverOpen(false);
+    }, []);
+
+    const [isActionsButtonFocused, setIsActionsButtonFocused] = useState(false);
+    const onFocus = useCallback(() => setIsActionsButtonFocused(true), []);
+    const onBlur = useCallback(() => setIsActionsButtonFocused(false), []);
+
+    const actionsButtonAriaLabel = useEuiI18n(
+      'euiDataGridHeaderCell.actionsButtonAriaLabel',
+      '{title}. Click to view column header actions.',
+      { title }
+    );
+    const actionsEnterKeyInstructions = useEuiI18n(
+      'euiDataGridHeaderCell.actionsEnterKeyInstructions',
+      "Press the Enter key to view this column's actions"
+    );
+    const openActionsPopoverOnEnter: KeyboardEventHandler = useCallback((e) => {
+      if (e.key === keys.ENTER) {
+        setIsPopoverOpen(true);
+      }
+    }, []);
+    const popoverArrowNavigationProps = usePopoverArrowNavigation();
+
+    /**
+     * Props to set on parent EuiDataGridHeaderCell
+     */
+    const [isColumnMoving, setIsColumnMoving] = useState(false);
+
+    useEffect(() => {
+      setPropsFromColumnActions({
+        className: isPopoverOpen
+          ? 'euiDataGridHeaderCell--isActionsPopoverOpen'
+          : '',
+        onKeyDown: openActionsPopoverOnEnter,
+        'data-column-moving': isColumnMoving || undefined,
+      });
+    }, [
+      setPropsFromColumnActions,
+      isPopoverOpen,
+      openActionsPopoverOnEnter,
+      isColumnMoving,
+    ]);
+
+    /**
+     * Get column actions as an array of EuiListGroup items
+     */
+    const { setFocusedCell, focusFirstVisibleInteractiveCell } =
+      useContext(DataGridFocusContext);
+
+    const columnActions = useMemo(() => {
+      return getColumnActions({
+        column,
+        columns,
+        schema,
+        schemaDetectors,
+        setVisibleColumns,
+        focusFirstVisibleInteractiveCell,
+        sorting,
+        switchColumnPos,
+        setIsPopoverOpen,
+        setIsColumnMoving,
+        setFocusedCell,
+        columnFocusIndex: index,
+      });
+    }, [
+      column,
+      columns,
+      schema,
+      schemaDetectors,
+      setVisibleColumns,
+      focusFirstVisibleInteractiveCell,
+      sorting,
+      switchColumnPos,
+      setFocusedCell,
+      index,
+    ]);
+
+    /**
+     * Rendering
+     */
+    const styles = useEuiMemoizedStyles(euiDataGridHeaderCellStyles);
+
+    return (
+      <EuiPopover
+        display="block"
+        panelPaddingSize="none"
+        offset={7}
+        anchorPosition="downRight"
+        css={styles.euiDataGridHeaderCell__popover}
+        button={
+          <EuiButtonIcon
+            iconType="boxesVertical"
+            iconSize="s"
+            color="text"
+            css={styles.euiDataGridHeaderCell__actions}
+            className="euiDataGridHeaderCell__button"
+            onClick={togglePopover}
+            buttonRef={actionsButtonRef}
+            onFocus={onFocus}
+            onBlur={onBlur}
+            tabIndex={0} // Override EuiButtonIcon's conditional tabindex based on aria-hidden
+            aria-hidden={
+              hasFocusTrap && !isActionsButtonFocused
+                ? 'true' // prevent the actions button from being read on cell focus
+                : undefined
+            }
+            aria-label={
+              hasFocusTrap
+                ? actionsButtonAriaLabel
+                : actionsEnterKeyInstructions
+            }
+            data-test-subj={`dataGridHeaderCellActionButton-${id}`}
+          />
+        }
+        isOpen={isPopoverOpen}
+        closePopover={closePopover}
+        {...popoverArrowNavigationProps}
+      >
+        <EuiListGroup
+          listItems={columnActions}
+          gutterSize="none"
+          data-test-subj={`dataGridHeaderCellActionGroup-${id}`}
+        />
+      </EuiPopover>
+    );
+  }
+);
+ColumnActions.displayName = 'EuiDataGridHeaderCellColumnActions';
+
+/**
+ * Add keyboard arrow navigation to the cell actions popover
+ * to match the UX of the rest of EuiDataGrid
+ */
+export const usePopoverArrowNavigation = () => {
+  const popoverPanelRef = useRef<HTMLElement | null>(null);
+  const actionsRef = useRef<FocusableElement[] | undefined>(undefined);
+  const panelRef = useCallback((ref: HTMLElement | null) => {
+    popoverPanelRef.current = ref;
+    actionsRef.current = ref ? tabbable(ref) : undefined;
+  }, []);
+
+  const onKeyDown = useCallback((e: React.KeyboardEvent) => {
+    if (e.key !== keys.ARROW_DOWN && e.key !== keys.ARROW_UP) return;
+    if (!actionsRef.current?.length) return;
+
+    e.preventDefault();
+
+    const initialState = document.activeElement === popoverPanelRef.current;
+    const currentIndex = !initialState
+      ? actionsRef.current.findIndex((el) => document.activeElement === el)
+      : -1;
+    const lastIndex = actionsRef.current.length - 1;
+
+    let indexToFocus: number;
+    if (initialState) {
+      if (e.key === keys.ARROW_DOWN) {
+        indexToFocus = 0;
+      } else if (e.key === keys.ARROW_UP) {
+        indexToFocus = lastIndex;
+      }
+    } else {
+      if (e.key === keys.ARROW_DOWN) {
+        indexToFocus = currentIndex + 1;
+        if (indexToFocus > lastIndex) {
+          indexToFocus = 0;
+        }
+      } else if (e.key === keys.ARROW_UP) {
+        indexToFocus = currentIndex - 1;
+        if (indexToFocus < 0) {
+          indexToFocus = lastIndex;
+        }
+      }
+    }
+
+    actionsRef.current[indexToFocus!].focus();
+  }, []);
+
+  return {
+    panelRef,
+    panelProps: { onKeyDown },
+    popoverScreenReaderText: (
+      <EuiI18n
+        token="euiDataGridHeaderCell.actionsPopoverScreenReaderText"
+        default="To navigate through the list of column actions, press the Tab or Up and Down arrow keys."
+      />
+    ),
+  };
+};
+
+/**
+ * Logic for returning an array of actions/items to pass to EuiListGroup
+ */
 
 interface GetColumnActions {
   column: EuiDataGridColumn;
@@ -33,6 +313,7 @@ interface GetColumnActions {
   setIsPopoverOpen: (value: boolean) => void;
   sorting: EuiDataGridSorting | undefined;
   switchColumnPos: (colFromId: string, colToId: string) => void;
+  setIsColumnMoving: (value: boolean) => void;
   setFocusedCell: DataGridFocusContextShape['setFocusedCell'];
   columnFocusIndex: number; // Index including leadingControlColumns
 }
@@ -47,6 +328,7 @@ export const getColumnActions = ({
   setIsPopoverOpen,
   sorting,
   switchColumnPos,
+  setIsColumnMoving,
   setFocusedCell,
   columnFocusIndex,
 }: GetColumnActions): EuiListGroupItemProps[] => {
@@ -71,6 +353,7 @@ export const getColumnActions = ({
       column,
       columns,
       switchColumnPos,
+      setIsColumnMoving,
       setFocusedCell,
       columnFocusIndex,
     }),
@@ -142,6 +425,7 @@ type MoveColumnActions = Pick<
   | 'column'
   | 'columns'
   | 'switchColumnPos'
+  | 'setIsColumnMoving'
   | 'setFocusedCell'
   | 'columnFocusIndex'
 >;
@@ -150,12 +434,19 @@ const getMoveColumnActions = ({
   column,
   columns,
   switchColumnPos,
+  setIsColumnMoving,
   setFocusedCell,
   columnFocusIndex,
 }: MoveColumnActions): EuiListGroupItemProps[] => {
   const items = [];
 
   const colIdx = columns.findIndex((col) => col.id === column.id);
+
+  // UX polish: prevent the column actions hover animation from flashing after column move
+  const handleAnimationFlash = () => {
+    setIsColumnMoving(true);
+    requestAnimationFrame(() => setIsColumnMoving(false));
+  };
 
   const moveFocus = (direction: 'left' | 'right') => {
     const newIndex = direction === 'left' ? -1 : 1;
@@ -171,6 +462,7 @@ const getMoveColumnActions = ({
       const targetCol = columns[colIdx - 1];
       if (targetCol) {
         switchColumnPos(column.id, targetCol.id);
+        handleAnimationFlash();
         moveFocus('left');
       }
     };
@@ -191,6 +483,7 @@ const getMoveColumnActions = ({
       const targetCol = columns[colIdx + 1];
       if (targetCol) {
         switchColumnPos(column.id, targetCol.id);
+        handleAnimationFlash();
         moveFocus('right');
       }
     };

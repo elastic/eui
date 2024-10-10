@@ -9,6 +9,7 @@
 import React, { useRef, useEffect } from 'react';
 import type { Meta, StoryObj, ReactRenderer } from '@storybook/react';
 import type { PlayFunctionContext } from '@storybook/csf';
+import { expect, fireEvent, waitFor } from '@storybook/test';
 import { within } from '../../../.storybook/test';
 import { enableFunctionToggleControls } from '../../../.storybook/utils';
 
@@ -130,6 +131,36 @@ export const CustomHeaderContent: Story = {
     ],
   },
   render: (args: EuiDataGridProps) => <StatefulDataGrid {...args} />,
+};
+
+export const DraggableColumns: Story = {
+  parameters: {
+    controls: { include: ['columns', 'columnVisibility'] },
+  },
+  args: {
+    ...defaultStorybookArgs,
+    columnVisibility: {
+      ...defaultStorybookArgs.columnVisibility,
+      canDragAndDropColumns: true,
+    },
+    columns: defaultStorybookArgs.columns.map((column) =>
+      column.id === 'location'
+        ? { ...column, display: <CustomHeaderCell title="Location" /> }
+        : column
+    ),
+  },
+  render: (args: EuiDataGridProps) => <StatefulDataGrid {...args} />,
+  play: async ({ canvasElement }: PlayFunctionContext<ReactRenderer>) => {
+    const canvas = within(canvasElement);
+
+    await waitFor(async () => {
+      expect(
+        canvas.getByTestSubject('dataGridHeaderCell-name')
+      ).toBeInTheDocument();
+    });
+
+    await fireEvent.focus(canvas.getByTestSubject('dataGridHeaderCell-name'));
+  },
 };
 
 /**

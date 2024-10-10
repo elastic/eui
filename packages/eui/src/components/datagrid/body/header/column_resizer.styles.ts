@@ -50,19 +50,18 @@ export const euiDataGridColumnResizerStyles = (
         ${logicalCSS('width', indicatorWidth)}
         background-color: ${euiTheme.colors.primary};
       }
+    `,
+    /* Because the resizer sits in the negative space to the right of the column,
+     * it can cause the full grid to be a few pixels longer than it actually is.
+     * So for the last cell, we don't use negative positioning and the borders from
+     * the cell will match the container. */
+    isLastColumn: css`
+      ${logicalCSS('right', 0)}
+      ${logicalCSS('width', euiTheme.size.s)}
 
-      /* Because the resizer sits in the negative space to the right of the column,
-       * it can cause the full grid to be a few pixels longer than it actually is.
-       * So for the last cell, we don't use negative positioning and the borders from
-       * the cell will match the container. */
-      .euiDataGridHeaderCell:last-child & {
+      &::after {
+        ${logicalCSS('left', 'auto')}
         ${logicalCSS('right', 0)}
-        ${logicalCSS('width', euiTheme.size.s)}
-
-        &::after {
-          ${logicalCSS('left', 'auto')}
-          ${logicalCSS('right', 0)}
-        }
       }
     `,
     isDragging: css`

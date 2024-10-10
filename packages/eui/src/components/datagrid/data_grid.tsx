@@ -529,6 +529,9 @@ export const EuiDataGrid = memo(
                       gridItemsRendered={gridItemsRendered}
                       wrapperRef={contentRef}
                       renderCustomGridBody={renderCustomGridBody}
+                      canDragAndDropColumns={
+                        columnVisibility.canDragAndDropColumns
+                      }
                     />
                   </OverrideCopiedTabularContent>
                 </div>

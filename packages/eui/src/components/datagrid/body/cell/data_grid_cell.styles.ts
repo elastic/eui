@@ -69,6 +69,7 @@ export const euiDataGridCellOutlineSelectors = (parentSelector = '&') => {
 
   // Cell header specific selectors
   const headerActionsOpen = '.euiDataGridHeaderCell--isActionsPopoverOpen';
+  const isMoving = '[data-column-moving]'; // prevents the header column actions hover animation from replaying on column move
 
   // Utils
   const selectors = (...args: string[]) => [...args].join(', ');
@@ -93,9 +94,14 @@ export const euiDataGridCellOutlineSelectors = (parentSelector = '&') => {
     },
 
     header: {
-      focus: is(selectors(focus, focusWithin, headerActionsOpen)), // :focus-within here is primarily intended for when the column actions button has been clicked twice
+      focus: is(selectors(focus, focusWithin, headerActionsOpen, isMoving)), // :focus-within here is primarily intended for when the column actions button has been clicked twice
       focusTrapped: _(isEntered),
-      hideActions: not(selectors(hover, focusWithin, headerActionsOpen)),
+      showActions: is(
+        selectors(hover, focusWithin, headerActionsOpen, isMoving)
+      ),
+      hideActions: not(
+        selectors(hover, focusWithin, headerActionsOpen, isMoving)
+      ),
     },
   };
 };

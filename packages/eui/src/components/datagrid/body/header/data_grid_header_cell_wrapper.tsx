@@ -37,12 +37,13 @@ export const EuiDataGridHeaderCellWrapper: FunctionComponent<
 > = ({
   id,
   index,
-  visibleColCount,
+  isLastColumn,
   width,
   className,
   children,
-  hasActionsPopover,
-  openActionsPopover,
+  hasColumnActions,
+  isDragging,
+  onKeyDown: _onKeyDown,
   'aria-label': ariaLabel,
   ...rest
 }) => {
@@ -57,10 +58,8 @@ export const EuiDataGridHeaderCellWrapper: FunctionComponent<
   >([]);
   useEffect(() => {
     // We're checking for interactive children outside of the default actions button
-    setRenderFocusTrap(
-      interactiveChildren.length > (hasActionsPopover ? 1 : 0)
-    );
-  }, [hasActionsPopover, interactiveChildren]);
+    setRenderFocusTrap(interactiveChildren.length > (hasColumnActions ? 1 : 0));
+  }, [hasColumnActions, interactiveChildren]);
 
   const { setFocusedCell, onFocusUpdate } = useContext(DataGridFocusContext);
   const updateCellFocusContext = useCallback(() => {
@@ -80,22 +79,17 @@ export const EuiDataGridHeaderCellWrapper: FunctionComponent<
     });
   }, [index, onFocusUpdate, headerEl]);
 
-  // For cell headers with only actions, auto-open the actions popover on enter keypress
   const onKeyDown: KeyboardEventHandler = useCallback(
     (e) => {
-      if (
-        e.key === keys.ENTER &&
-        hasActionsPopover &&
-        !renderFocusTrap &&
-        e.target === headerEl
-      ) {
-        openActionsPopover?.();
+      // Ignore keys that conflict with the focus trap being entered/exited
+      if (renderFocusTrap && (e.key === keys.ENTER || e.key === keys.ESCAPE)) {
+        return;
       }
+      // Otherwise, continue with whatever onKeyDown is being passed
+      _onKeyDown?.(e);
     },
-    [hasActionsPopover, openActionsPopover, renderFocusTrap, headerEl]
+    [_onKeyDown, renderFocusTrap]
   );
-
-  const isLastColumn = index === visibleColCount - 1;
 
   return (
     <div
@@ -115,9 +109,9 @@ export const EuiDataGridHeaderCellWrapper: FunctionComponent<
       {...rest}
     >
       <HandleInteractiveChildren
-        cellEl={headerEl}
+        cellEl={isDragging ? null : headerEl}
+        renderFocusTrap={isDragging ? false : renderFocusTrap}
         updateCellFocusContext={updateCellFocusContext}
-        renderFocusTrap={renderFocusTrap}
         onInteractiveChildrenFound={setInteractiveChildren}
       >
         {typeof children === 'function' ? children(renderFocusTrap) : children}

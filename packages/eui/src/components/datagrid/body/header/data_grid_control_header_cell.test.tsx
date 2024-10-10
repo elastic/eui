@@ -14,7 +14,7 @@ import { EuiDataGridControlHeaderCell } from './data_grid_control_header_cell';
 describe('EuiDataGridControlHeaderCell', () => {
   const props = {
     index: 0,
-    visibleColCount: 1,
+    isLastColumn: true,
     controlColumn: {
       id: 'someControlColumn',
       headerCellRender: () => <button data-euigrid-tab-managed="true" />,

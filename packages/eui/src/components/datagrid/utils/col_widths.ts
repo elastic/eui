@@ -79,22 +79,29 @@ export const useColumnWidths = ({
   setColumnWidth: (columnId: string, width: number) => void;
   getColumnWidth: (index: number) => number;
 } => {
-  const computeColumnWidths = useCallback(() => {
-    return columns
-      .filter(doesColumnHaveAnInitialWidth)
-      .reduce<EuiDataGridColumnWidths>((initialWidths, column) => {
-        return { ...initialWidths, [column.id]: column.initialWidth! };
-      }, {});
-  }, [columns]);
+  const getInitialWidths = useCallback(
+    (prevColumnWidths?: EuiDataGridColumnWidths) => {
+      const columnWidths = { ...prevColumnWidths };
+      columns
+        .filter(doesColumnHaveAnInitialWidth)
+        .forEach(({ id, initialWidth }) => {
+          if (columnWidths[id] == null) {
+            columnWidths[id] = initialWidth!;
+          }
+        });
+      return columnWidths;
+    },
+    [columns]
+  );
 
   // Passes initializer function for performance, so computing only runs once on init
   // @see https://react.dev/reference/react/useState#examples-initializer
   const [columnWidths, setColumnWidths] =
-    useState<EuiDataGridColumnWidths>(computeColumnWidths);
+    useState<EuiDataGridColumnWidths>(getInitialWidths);
 
   useUpdateEffect(() => {
-    setColumnWidths(computeColumnWidths());
-  }, [computeColumnWidths]);
+    setColumnWidths(getInitialWidths);
+  }, [columns]);
 
   const setColumnWidth = useCallback(
     (columnId: string, width: number) => {
@@ -102,9 +109,7 @@ export const useColumnWidths = ({
         ...prevColumnWidths,
         [columnId]: width,
       }));
-      if (onColumnResize) {
-        onColumnResize({ columnId, width });
-      }
+      onColumnResize?.({ columnId, width });
     },
     [onColumnResize]
   );

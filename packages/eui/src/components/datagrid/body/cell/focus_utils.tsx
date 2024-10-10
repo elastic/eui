@@ -97,20 +97,24 @@ export const FocusTrappedChildren: FunctionComponent<
   // direct DOM manipulation as workaround to attach required hints
   useEffect(() => {
     const currentAriaDescribedbyId = cellEl.getAttribute('aria-describedby');
+    // A11y: splitting ids to be able to append the first hint (sorting)
+    // while other hints should follow the keyboard navigation hints
+    const [sortingId, ...rest] = currentAriaDescribedbyId?.split(' ') ?? [];
+    const remainingIds = rest.join(' ');
 
     cellEl.setAttribute(
       'aria-describedby',
-      classNames(currentAriaDescribedbyId, ariaDescribedById)
+      classNames(sortingId, ariaDescribedById, !isCellEntered && remainingIds)
     );
 
     return () => {
       if (currentAriaDescribedbyId) {
-        cellEl.setAttribute('aria-descibedby', currentAriaDescribedbyId);
+        cellEl.setAttribute('aria-describedby', currentAriaDescribedbyId);
       } else {
         cellEl.removeAttribute('aria-describedby');
       }
     };
-  }, [cellEl, ariaDescribedById]);
+  }, [cellEl, ariaDescribedById, isCellEntered]);
 
   useEffect(() => {
     if (isCellEntered) {
@@ -142,6 +146,7 @@ export const FocusTrappedChildren: FunctionComponent<
               isCellEntered === false &&
               isDOMNode(event.target) &&
               isDOMNode(event.currentTarget) &&
+              event.currentTarget !== event.target &&
               event.currentTarget.contains(event.target)
             ) {
               return true;

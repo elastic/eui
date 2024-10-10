@@ -40,8 +40,9 @@ export const euiDataGridHeaderCellStyles = (euiThemeContext: UseEuiTheme) => {
       /* Remove inline struts from EuiButtonIcon */
       line-height: 0;
     `,
-    euiDataGridHeaderCell__button: css`
+    euiDataGridHeaderCell__actions: css`
       overflow: hidden;
+      display: flex;
 
       ${header.hideActions} & {
         ${logicalCSS('width', 0)}

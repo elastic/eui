@@ -206,6 +206,52 @@ describe('Cell outline styles', () => {
         });
       });
     });
+
+    describe('column header dragging', () => {
+      const propsWithDrag = {
+        ...baseProps,
+        columnVisibility: {
+          ...baseProps.columnVisibility,
+          canDragAndDropColumns: true,
+        },
+      };
+      const getHeaderCell = () =>
+        cy.get('.euiDataGridHeaderCell[data-gridcell-column-id="expandable"]');
+      const getDragIconWidth = () =>
+        getHeaderCell()
+          .find('.euiDataGridHeaderCell__draggableIcon')
+          .then(($el) => {
+            const { width } = $el[0].getBoundingClientRect();
+            return width;
+          });
+
+      it('should show focus state when dragging', () => {
+        cy.realMount(<EuiDataGrid {...propsWithDrag} />);
+        getDragIconWidth().then((width) => expect(width).to.eq(0));
+
+        tabToDataGrid();
+        cy.realPress('Space');
+        getHeaderCell().should('have.attr', 'data-column-moving', 'true');
+
+        cy.wait(ANIMATION.DURATION + ANIMATION.BUFFER);
+        getHeaderCell().then(($el) => {
+          expect(getOutlineColor($el[0])).to.eq(EXPECTED_FOCUS_COLOR);
+        });
+        getDragIconWidth().then((width) => expect(width).to.eq(12));
+      });
+
+      it('should not re-flash the header actions transition after drop', () => {
+        cy.realMount(<EuiDataGrid {...propsWithDrag} />);
+
+        tabToDataGrid();
+        cy.realPress('Space');
+        getDragIconWidth().then((width) => expect(width).to.eq(12));
+
+        cy.realPress('Space');
+        getDragIconWidth().then((width) => expect(width).to.eq(12));
+        getHeaderCell().should('not.have.attr', 'data-column-moving');
+      });
+    });
   });
 
   describe('mouse UI/UX', () => {

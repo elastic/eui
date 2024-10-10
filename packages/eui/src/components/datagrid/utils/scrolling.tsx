@@ -35,6 +35,7 @@ interface Dependencies {
   footerRowHeight: number;
   visibleRowCount: number;
   hasStickyFooter: boolean;
+  canDragAndDropColumns?: boolean;
 }
 
 /**
@@ -83,6 +84,7 @@ export const useScrollCellIntoView = ({
   footerRowHeight,
   visibleRowCount,
   hasStickyFooter,
+  canDragAndDropColumns,
 }: Dependencies) => {
   const scrollCellIntoView = useCallback(
     // Note: in order for this UX to work correctly with react-window's APIs,
@@ -116,6 +118,12 @@ export const useScrollCellIntoView = ({
       }
       if (!cell) return; // If for some reason we can't find a valid cell, short-circuit
 
+      const isStickyHeader = rowIndex === -1;
+      const isStickyFooter = hasStickyFooter && rowIndex === visibleRowCount;
+      const isDraggableHeader = canDragAndDropColumns && isStickyHeader;
+      const isDraggableHeaderCell =
+        isDraggableHeader && cell.offsetLeft === 0 && colIndex !== 0;
+
       // We now manually adjust scroll positioning around the cell to ensure it's
       // fully in view on all sides. A couple of notes on this:
       // 1. We're avoiding relying on react-window's scrollToItem for this because it also
@@ -128,8 +136,14 @@ export const useScrollCellIntoView = ({
       let adjustedScrollTop;
       let adjustedScrollLeft;
 
+      // Draggable header columns are nested within EuiDraggables,
+      // and their offsetLeft needs to go up a wrapper as a result
+      const cellLeftPos = isDraggableHeaderCell
+        ? (cell.offsetParent as HTMLDivElement).offsetLeft
+        : cell.offsetLeft;
+
       // Check if the cell's right side is outside the current scrolling bounds
-      const cellRightPos = cell.offsetLeft + cell.offsetWidth;
+      const cellRightPos = cellLeftPos + cell.offsetWidth;
       const rightScrollBound = scrollLeft + outerGridRef.current.clientWidth; // Note: We specifically want clientWidth and not offsetWidth here to account for scrollbars
       const rightWidthOutOfView = cellRightPos - rightScrollBound;
       if (rightWidthOutOfView > 0) {
@@ -137,7 +151,6 @@ export const useScrollCellIntoView = ({
       }
 
       // Check if the cell's left side is outside the current scrolling bounds
-      const cellLeftPos = cell.offsetLeft;
       const leftScrollBound = adjustedScrollLeft ?? scrollLeft;
       const leftWidthOutOfView = leftScrollBound - cellLeftPos;
       if (leftWidthOutOfView > 0) {
@@ -148,9 +161,6 @@ export const useScrollCellIntoView = ({
 
       // Skip top/bottom scroll adjustments for sticky headers & footers
       // since they should always be in view vertically
-      const isStickyHeader = rowIndex === -1;
-      const isStickyFooter = hasStickyFooter && rowIndex === visibleRowCount;
-
       if (!isStickyHeader && !isStickyFooter) {
         const parentRow = cell.parentNode as HTMLDivElement;
 
@@ -191,6 +201,7 @@ export const useScrollCellIntoView = ({
       footerRowHeight,
       visibleRowCount,
       hasStickyFooter,
+      canDragAndDropColumns,
     ]
   );
 

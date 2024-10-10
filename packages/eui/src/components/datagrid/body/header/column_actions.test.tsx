@@ -6,22 +6,249 @@
  * Side Public License, v 1.
  */
 
-import { ReactElement } from 'react';
+import React, { ReactElement } from 'react';
+import { fireEvent } from '@testing-library/react';
+import {
+  render,
+  renderHook,
+  waitForEuiPopoverOpen,
+  waitForEuiPopoverClose,
+} from '../../../../test/rtl';
 
 import { EuiListGroupItemProps } from '../../../list_group';
 import { schemaDetectors } from '../../utils/data_grid_schema';
 
 import {
+  useHasColumnActions,
+  ColumnActions,
   getColumnActions,
   isColumnActionEnabled,
   getColumnActionConfig,
+  usePopoverArrowNavigation,
 } from './column_actions';
+
+describe('useHasColumnActions', () => {
+  it('is true if no configuration was set', () => {
+    const { result } = renderHook(useHasColumnActions);
+    expect(result.current).toEqual(true);
+  });
+
+  it('all actions can be quickly turned off with false', () => {
+    const { result } = renderHook(() => useHasColumnActions(false));
+    expect(result.current).toEqual(false);
+  });
+
+  it('all actions can be turned off manually', () => {
+    const { result } = renderHook(() =>
+      useHasColumnActions({
+        showHide: false,
+        showMoveLeft: false,
+        showMoveRight: false,
+        showSortAsc: false,
+        showSortDesc: false,
+      })
+    );
+    expect(result.current).toEqual(false);
+  });
+
+  it('returns true if only some actions are turned off', () => {
+    const { result } = renderHook(() =>
+      useHasColumnActions({
+        showSortAsc: false,
+        showSortDesc: false,
+      })
+    );
+    expect(result.current).toEqual(true);
+  });
+
+  it('returns true if additional actions have been passed but all other actions turned off', () => {
+    const { result } = renderHook(() =>
+      useHasColumnActions({
+        showHide: false,
+        showMoveLeft: false,
+        showMoveRight: false,
+        showSortAsc: false,
+        showSortDesc: false,
+        additional: [{ label: 'additional action' }],
+      })
+    );
+    expect(result.current).toEqual(true);
+  });
+});
+
+describe('ColumnActions', () => {
+  const requiredProps = {
+    index: 0,
+    id: 'someColumn',
+    title: 'someColumn',
+    column: {
+      id: 'someColumn',
+    },
+    columns: [],
+    schema: { someColumn: { columnType: 'numeric' } },
+    schemaDetectors: [],
+    setVisibleColumns: jest.fn(),
+    switchColumnPos: jest.fn(),
+    sorting: { onSort: jest.fn(), columns: [] },
+    hasFocusTrap: false,
+    setPropsFromColumnActions: jest.fn(),
+    actionsButtonRef: jest.fn(),
+  };
+
+  it('renders', async () => {
+    const { getByTestSubject, baseElement } = render(
+      <ColumnActions {...requiredProps} />
+    );
+    const toggle = getByTestSubject(
+      'dataGridHeaderCellActionButton-someColumn'
+    );
+
+    fireEvent.click(toggle);
+    await waitForEuiPopoverOpen();
+
+    expect(baseElement).toMatchSnapshot();
+
+    fireEvent.click(toggle);
+    await waitForEuiPopoverClose();
+  });
+});
+
+describe('usePopoverArrowNavigation', () => {
+  const MockPanel = () => (
+    <div tabIndex={-1}>
+      <button data-test-subj="first">First action</button>
+      <button data-test-subj="second">Second action</button>
+      <button data-test-subj="last">Last action</button>
+    </div>
+  );
+
+  const {
+    panelRef,
+    panelProps: { onKeyDown },
+  } = renderHook(usePopoverArrowNavigation).result.current;
+
+  let mockPanel: HTMLElement;
+
+  const preventDefault = jest.fn();
+  const keyDownEvent = { preventDefault } as unknown as React.KeyboardEvent;
+  beforeEach(() => jest.clearAllMocks());
+
+  describe('early returns', () => {
+    it('does nothing if the up/down arrow keys are not pressed', () => {
+      onKeyDown({ ...keyDownEvent, key: 'Tab' });
+      expect(preventDefault).not.toHaveBeenCalled();
+    });
+
+    it('does nothing if the popover contains no tabbable elements', () => {
+      const emptyDiv = document.createElement('div');
+      panelRef(emptyDiv);
+      onKeyDown({ ...keyDownEvent, key: 'ArrowDown' });
+      expect(preventDefault).not.toHaveBeenCalled();
+
+      panelRef(mockPanel); // Reset for other tests
+    });
+  });
+
+  describe('when the popover panel is focused (on initial open state)', () => {
+    beforeEach(() => {
+      const { container } = render(<MockPanel />);
+
+      mockPanel = container.firstElementChild as HTMLElement;
+      panelRef(mockPanel);
+
+      mockPanel.focus();
+    });
+    it('focuses the first action when the arrow down key is pressed', () => {
+      expect(mockPanel).toHaveFocus();
+      onKeyDown({ ...keyDownEvent, key: 'ArrowDown' });
+      expect(preventDefault).toHaveBeenCalled();
+      expect(document.activeElement?.getAttribute('data-test-subj')).toEqual(
+        'first'
+      );
+    });
+
+    it('focuses the last action when the arrow up key is pressed', () => {
+      onKeyDown({ ...keyDownEvent, key: 'ArrowUp' });
+      expect(preventDefault).toHaveBeenCalled();
+      expect(document.activeElement?.getAttribute('data-test-subj')).toEqual(
+        'last'
+      );
+    });
+  });
+
+  describe('when already focused on action buttons', () => {
+    describe('down arrow key', () => {
+      beforeEach(() => {
+        const { container } = render(<MockPanel />);
+
+        mockPanel = container.firstElementChild as HTMLElement;
+        panelRef(mockPanel);
+      });
+
+      it('moves focus to the the next action', () => {
+        (mockPanel.firstElementChild as HTMLButtonElement).focus();
+
+        onKeyDown({ ...keyDownEvent, key: 'ArrowDown' });
+        expect(document.activeElement?.getAttribute('data-test-subj')).toEqual(
+          'second'
+        );
+
+        onKeyDown({ ...keyDownEvent, key: 'ArrowDown' });
+        expect(document.activeElement?.getAttribute('data-test-subj')).toEqual(
+          'last'
+        );
+      });
+
+      it('loops focus back to the first action when pressing down on the last action', () => {
+        (mockPanel.lastElementChild as HTMLButtonElement).focus();
+
+        onKeyDown({ ...keyDownEvent, key: 'ArrowDown' });
+        expect(document.activeElement?.getAttribute('data-test-subj')).toEqual(
+          'first'
+        );
+      });
+    });
+
+    describe('up arrow key', () => {
+      beforeEach(() => {
+        const { container } = render(<MockPanel />);
+
+        mockPanel = container.firstElementChild as HTMLElement;
+        panelRef(mockPanel);
+      });
+
+      it('moves focus to the previous action', () => {
+        (mockPanel.lastElementChild as HTMLButtonElement).focus();
+
+        onKeyDown({ ...keyDownEvent, key: 'ArrowUp' });
+        expect(document.activeElement?.getAttribute('data-test-subj')).toEqual(
+          'second'
+        );
+
+        onKeyDown({ ...keyDownEvent, key: 'ArrowUp' });
+        expect(document.activeElement?.getAttribute('data-test-subj')).toEqual(
+          'first'
+        );
+      });
+
+      it('loops focus back to the last action when pressing up on the first action', () => {
+        (mockPanel.firstElementChild as HTMLButtonElement).focus();
+
+        onKeyDown({ ...keyDownEvent, key: 'ArrowUp' });
+        expect(document.activeElement?.getAttribute('data-test-subj')).toEqual(
+          'last'
+        );
+      });
+    });
+  });
+});
 
 describe('getColumnActions', () => {
   const setVisibleColumns = jest.fn();
   const focusFirstVisibleInteractiveCell = jest.fn();
   const setIsPopoverOpen = jest.fn();
   const switchColumnPos = jest.fn();
+  const setIsColumnMoving = jest.fn();
   const setFocusedCell = jest.fn();
 
   const testArgs = {
@@ -35,6 +262,7 @@ describe('getColumnActions', () => {
     setIsPopoverOpen,
     sorting: undefined,
     switchColumnPos,
+    setIsColumnMoving,
     setFocusedCell,
   };
 
@@ -195,6 +423,7 @@ describe('getColumnActions', () => {
         jest.runAllTimers();
         expect(switchColumnPos).toHaveBeenCalledWith('B', 'A');
         expect(setFocusedCell).toHaveBeenLastCalledWith([0, -1]);
+        expect(setIsColumnMoving).toHaveBeenCalledWith(true);
 
         callActionOnClick(moveRight);
         jest.runAllTimers();

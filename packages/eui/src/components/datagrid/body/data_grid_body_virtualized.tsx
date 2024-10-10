@@ -141,6 +141,7 @@ export const EuiDataGridBodyVirtualized: FunctionComponent<EuiDataGridBodyProps>
       gridItemsRendered,
       wrapperRef,
       className,
+      canDragAndDropColumns,
     }) => {
       /**
        * Grid refs & observers
@@ -201,6 +202,7 @@ export const EuiDataGridBodyVirtualized: FunctionComponent<EuiDataGridBodyProps>
         schema,
         schemaDetectors,
         gridStyles,
+        canDragAndDropColumns,
       });
 
       const { footerRow, footerRowHeight } = useDataGridFooter({
@@ -230,6 +232,7 @@ export const EuiDataGridBodyVirtualized: FunctionComponent<EuiDataGridBodyProps>
         footerRowHeight,
         visibleRowCount,
         hasStickyFooter: !!(renderFooterCellValue && gridStyles.stickyFooter),
+        canDragAndDropColumns,
       });
 
       /**

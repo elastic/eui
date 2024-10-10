@@ -13,7 +13,8 @@ import {
   EuiDataGridColumnResizerProps,
   EuiDataGridColumnResizerState,
 } from '../../data_grid_types';
-import { euiDataGridColumnResizerStyles } from './data_grid_column_resizer.styles';
+import { DragOverlay } from './draggable_columns';
+import { euiDataGridColumnResizerStyles } from './column_resizer.styles';
 
 const MINIMUM_COLUMN_WIDTH = 40;
 
@@ -66,6 +67,7 @@ export class EuiDataGridColumnResizer extends Component<
 
   render() {
     const { offset } = this.state;
+    const { isLastColumn } = this.props;
 
     return (
       <RenderWithEuiStylesMemoizer>
@@ -73,6 +75,7 @@ export class EuiDataGridColumnResizer extends Component<
           const styles = stylesMemoizer(euiDataGridColumnResizerStyles);
           const cssStyles = [
             styles.euiDataGridColumnResizer,
+            isLastColumn && styles.isLastColumn,
             offset && styles.isDragging,
           ];
           return (
@@ -86,7 +89,11 @@ export class EuiDataGridColumnResizer extends Component<
                   : undefined
               }
               onMouseDown={this.onMouseDown}
-            />
+            >
+              {/* UX polish: prevent other hover states from activating when
+                  dragging over other elements + maintain the resize cursor */}
+              <DragOverlay isDragging={!!offset} cursor="ew-resize" />
+            </div>
           );
         }}
       </RenderWithEuiStylesMemoizer>
