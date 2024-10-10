@@ -7,6 +7,7 @@
  */
 
 import React, { useCallback, useState } from 'react';
+import figma from '@figma/code-connect';
 import type { Meta, StoryObj } from '@storybook/react';
 import { userEvent, waitFor, within, expect } from '@storybook/test';
 
@@ -19,7 +20,8 @@ import { EuiCode } from '../code';
 import { EuiFlexItem } from '../flex';
 
 import { EuiComboBoxOptionMatcher } from './types';
-import { EuiComboBox, EuiComboBoxProps } from './combo_box';
+import { EuiComboBox as ComboBox, EuiComboBoxProps } from './combo_box';
+import { EuiFormRow } from '../form/form_row';
 
 const options = [
   { label: 'Item 1' },
@@ -29,50 +31,68 @@ const options = [
   { label: 'Item 5' },
 ];
 
-const meta: Meta<EuiComboBoxProps<{}>> = {
-  title: 'Forms/EuiComboBox',
-  // @ts-ignore typescript shenanigans
-  component: EuiComboBox,
-  argTypes: {
-    singleSelection: {
-      control: 'radio',
-      options: [false, true, 'asPlainText'],
-    },
-    append: { control: 'text' },
-    prepend: { control: 'text' },
-    // Storybook is skipping the Pick<> props from EuiComboBoxList for some annoying reason
-    onCreateOption: { control: 'boolean' }, // Set to a true/false for ease of testing
-    customOptionText: { control: 'text' },
-    renderOption: { control: 'function' },
-  },
-  args: {
-    // Pass options in by default for ease of testing
-    options: options,
-    selectedOptions: [options[0]],
-    // Component defaults
-    delimiter: ',',
-    sortMatchesBy: 'none',
-    singleSelection: false,
-    noSuggestions: false,
-    async: false,
-    isCaseSensitive: false,
-    isClearable: true,
-    isDisabled: false,
-    isInvalid: false,
-    isLoading: false,
-    autoFocus: false,
-    compressed: false,
-    fullWidth: false,
-    onCreateOption: undefined, // Override Storybook's default callback
-  },
+const EuiComboBox = ({
+  singleSelection,
+  onCreateOption,
+  onChange,
+  ...args
+}: EuiComboBoxProps<{}>) => {
+  const [selectedOptions, setSelectedOptions] = useState(args.selectedOptions);
+  const handleOnChange: EuiComboBoxProps<{}>['onChange'] = (
+    options,
+    ...args
+  ) => {
+    setSelectedOptions(options);
+    onChange?.(options, ...args);
+  };
+  const _onCreateOption: EuiComboBoxProps<{}>['onCreateOption'] = (
+    searchValue,
+    ...args
+  ) => {
+    const createdOption = { label: searchValue };
+    setSelectedOptions((prevState) =>
+      !prevState || singleSelection
+        ? [createdOption]
+        : [...prevState, createdOption]
+    );
+    onCreateOption?.(searchValue, ...args);
+  };
+  return (
+    <ComboBox
+      singleSelection={
+        // @ts-ignore Specific to Storybook control
+        singleSelection === 'asPlainText'
+          ? { asPlainText: true }
+          : Boolean(singleSelection)
+      }
+      {...args}
+      selectedOptions={selectedOptions}
+      onChange={handleOnChange}
+      onCreateOption={onCreateOption ? _onCreateOption : undefined}
+    />
+  );
 };
-enableFunctionToggleControls(meta, ['onChange', 'onCreateOption']);
 
-export default meta;
-type Story = StoryObj<EuiComboBoxProps<{}>>;
+type Story = StoryObj<
+  EuiComboBoxProps<{}> & {
+    ariaLabel?: string;
+    helpText?: string;
+    label?: string;
+  }
+>;
 
 export const Playground: Story = {
-  render: (args) => <StatefulComboBox {...args} />,
+  render: ({ ariaLabel, helpText, label, ...props }) => (
+    <EuiFormRow helpText={helpText} label={label}>
+      <EuiComboBox
+        aria-label={ariaLabel}
+        options={options}
+        selectedOptions={[{ label: 'Item 1' }, { label: 'Item 2' }]}
+        onChange={() => {}}
+        {...props}
+      />
+    </EuiFormRow>
+  ),
 };
 
 export const WithTooltip: Story = {
@@ -94,7 +114,7 @@ export const WithTooltip: Story = {
       value: idx,
     })),
   },
-  render: (args) => <StatefulComboBox {...args} />,
+  render: (args) => <EuiComboBox {...args} />,
   play: lokiPlayDecorator(async (context) => {
     const { bodyElement, step } = context;
 
@@ -158,7 +178,7 @@ export const Groups: Story = {
     ],
     autoFocus: true,
   },
-  render: (args) => <StatefulComboBox {...args} />,
+  render: (args) => <EuiComboBox {...args} />,
 };
 
 export const NestedOptionsGroups: Story = {
@@ -189,49 +209,7 @@ export const NestedOptionsGroups: Story = {
     ],
     autoFocus: true,
   },
-  render: (args) => <StatefulComboBox {...args} />,
-};
-
-const StatefulComboBox = ({
-  singleSelection,
-  onCreateOption,
-  onChange,
-  ...args
-}: EuiComboBoxProps<{}>) => {
-  const [selectedOptions, setSelectedOptions] = useState(args.selectedOptions);
-  const handleOnChange: EuiComboBoxProps<{}>['onChange'] = (
-    options,
-    ...args
-  ) => {
-    setSelectedOptions(options);
-    onChange?.(options, ...args);
-  };
-  const _onCreateOption: EuiComboBoxProps<{}>['onCreateOption'] = (
-    searchValue,
-    ...args
-  ) => {
-    const createdOption = { label: searchValue };
-    setSelectedOptions((prevState) =>
-      !prevState || singleSelection
-        ? [createdOption]
-        : [...prevState, createdOption]
-    );
-    onCreateOption?.(searchValue, ...args);
-  };
-  return (
-    <EuiComboBox
-      singleSelection={
-        // @ts-ignore Specific to Storybook control
-        singleSelection === 'asPlainText'
-          ? { asPlainText: true }
-          : Boolean(singleSelection)
-      }
-      {...args}
-      selectedOptions={selectedOptions}
-      onChange={handleOnChange}
-      onCreateOption={onCreateOption ? _onCreateOption : undefined}
-    />
-  );
+  render: (args) => <EuiComboBox {...args} />,
 };
 
 const StoryCustomMatcher = ({
@@ -263,7 +241,7 @@ const StoryCustomMatcher = ({
         matched.
       </p>
       <br />
-      <EuiComboBox
+      <ComboBox
         singleSelection={
           // @ts-ignore Specific to Storybook control
           singleSelection === 'asPlainText'
@@ -278,3 +256,80 @@ const StoryCustomMatcher = ({
     </>
   );
 };
+
+const meta: Meta<EuiComboBoxProps<{}>> = {
+  title: 'Forms/EuiComboBox',
+  // @ts-ignore typescript shenanigans
+  component: ComboBox,
+  argTypes: {
+    singleSelection: {
+      control: 'radio',
+      options: [false, true, 'asPlainText'],
+    },
+    append: { control: 'text' },
+    prepend: { control: 'text' },
+    // Storybook is skipping the Pick<> props from EuiComboBoxList for some annoying reason
+    onCreateOption: { control: 'boolean' }, // Set to a true/false for ease of testing
+    customOptionText: { control: 'text' },
+    renderOption: { control: 'function' },
+  },
+  args: {
+    // Pass options in by default for ease of testing
+    options: options,
+    selectedOptions: [options[0]],
+    // Component defaults
+    delimiter: ',',
+    sortMatchesBy: 'none',
+    singleSelection: false,
+    noSuggestions: false,
+    async: false,
+    isCaseSensitive: false,
+    isClearable: true,
+    isDisabled: false,
+    isInvalid: false,
+    isLoading: false,
+    autoFocus: false,
+    compressed: false,
+    fullWidth: false,
+    onCreateOption: undefined, // Override Storybook's default callback
+  },
+  parameters: {
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/design/RzfYLj2xmH9K7gQtbSKygn/Elastic-UI?node-id=15883-161301&node-type=frame&m=dev',
+      examples: [Playground],
+      props: {
+        ariaLabel: figma.boolean('Label', {
+          true: undefined,
+          false: 'Meaningful label',
+        }),
+        compressed: figma.boolean('Compressed'),
+        helpText: figma.boolean('Help text', {
+          true: 'Help text',
+          false: undefined,
+        }),
+        isDisabled: figma.enum('State', {
+          Filled: false,
+          Focus: false,
+          Invalid: false,
+          Disabled: true,
+          Placeholder: false,
+        }),
+        isInvalid: figma.enum('State', {
+          Filled: false,
+          Focus: false,
+          Invalid: true,
+          Disabled: false,
+          Placeholder: false,
+        }),
+        label: figma.boolean('Label', {
+          true: 'Label',
+          false: undefined,
+        }),
+      },
+    },
+  },
+};
+enableFunctionToggleControls(meta, ['onChange', 'onCreateOption']);
+
+export default meta;

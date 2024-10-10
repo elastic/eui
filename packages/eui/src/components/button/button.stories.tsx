@@ -6,6 +6,8 @@
  * Side Public License, v 1.
  */
 
+import React from 'react';
+import figma from '@figma/code-connect';
 import type { Meta, StoryObj } from '@storybook/react';
 
 import {
@@ -14,6 +16,18 @@ import {
 } from '../../../.storybook/utils';
 
 import { EuiButton, Props as EuiButtonProps } from './button';
+
+type Story = StoryObj<EuiButtonProps>;
+
+export const Playground: Story = {
+  args: {
+    children: 'Button',
+  },
+  render: ({ children, ...props }: EuiButtonProps) => (
+    <EuiButton {...props}>{children}</EuiButton>
+  ),
+};
+disableStorybookControls(Playground, ['buttonRef']);
 
 const meta: Meta<EuiButtonProps> = {
   title: 'Navigation/EuiButton',
@@ -37,15 +51,18 @@ const meta: Meta<EuiButtonProps> = {
     isLoading: false,
     isSelected: false,
   },
+  parameters: {
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/design/RzfYLj2xmH9K7gQtbSKygn/Elastic-UI?node-id=31735-391399&node-type=frame&m=dev',
+      examples: [Playground],
+      props: {
+        children: figma.string('Text'),
+        isDisabled: figma.boolean('Disabled'),
+      },
+    },
+  },
 };
 enableFunctionToggleControls(meta, ['onClick']);
 
 export default meta;
-type Story = StoryObj<EuiButtonProps>;
-
-export const Playground: Story = {
-  args: {
-    children: 'Button',
-  },
-};
-disableStorybookControls(Playground, ['buttonRef']);

@@ -7,45 +7,32 @@
  */
 
 import React from 'react';
+import figma from '@figma/code-connect';
 import type { Meta, StoryObj } from '@storybook/react';
+
 import {
   disableStorybookControls,
   moveStorybookControlsToCategory,
 } from '../../../../.storybook/utils';
-
 import { EuiFieldText, EuiFieldTextProps } from './field_text';
+import { EuiFormRow } from '../form_row';
 
-const meta: Meta<EuiFieldTextProps> = {
-  title: 'Forms/EuiFieldText',
-  component: EuiFieldText,
-  argTypes: {
-    // For quicker/easier QA
-    icon: { control: 'text' },
-    prepend: { control: 'text' },
-    append: { control: 'text' },
-    value: { control: 'text' },
-  },
-  args: {
-    // Component defaults
-    compressed: false,
-    fullWidth: false,
-    isInvalid: false,
-    isLoading: false,
-    disabled: false,
-    readOnly: false,
-    controlOnly: false,
-    // Added for easier testing
-    placeholder: 'EuiFieldText',
-    id: '',
-    name: '',
-  },
+type Story = StoryObj<
+  EuiFieldTextProps & { ariaLabel?: string; helpText?: string; label?: string }
+>;
+
+export const Playground: Story = {
+  render: ({ ariaLabel, helpText, label, ...props }) => (
+    <EuiFormRow helpText={helpText} label={label}>
+      <EuiFieldText
+        aria-label={ariaLabel}
+        value={''}
+        onChange={() => {}}
+        {...props}
+      />
+    </EuiFormRow>
+  ),
 };
-
-export default meta;
-type Story = StoryObj<EuiFieldTextProps>;
-disableStorybookControls(meta, ['inputRef']);
-
-export const Playground: Story = {};
 
 export const IconShape: Story = {
   parameters: {
@@ -98,3 +85,66 @@ export const AutoFill: Story = {
     name: 'autofill-test',
   },
 };
+
+const meta: Meta<EuiFieldTextProps> = {
+  title: 'Forms/EuiFieldText',
+  component: EuiFieldText,
+  argTypes: {
+    // For quicker/easier QA
+    icon: { control: 'text' },
+    prepend: { control: 'text' },
+    append: { control: 'text' },
+    value: { control: 'text' },
+  },
+  args: {
+    // Component defaults
+    compressed: false,
+    fullWidth: false,
+    isInvalid: false,
+    isLoading: false,
+    disabled: false,
+    readOnly: false,
+    controlOnly: false,
+    // Added for easier testing
+    placeholder: 'EuiFieldText',
+    id: '',
+    name: '',
+  },
+  parameters: {
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/design/RzfYLj2xmH9K7gQtbSKygn/Elastic-UI?node-id=13676-796&node-type=frame&m=dev',
+      examples: [Playground],
+      props: {
+        ariaLabel: figma.boolean('Label', {
+          true: undefined,
+          false: 'Meaningful label',
+        }),
+        compressed: figma.boolean('Compressed'),
+        helpText: figma.boolean('Help text', {
+          true: 'Help text',
+          false: undefined,
+        }),
+        isDisabled: figma.enum('State', {
+          Filled: false,
+          Focus: false,
+          Invalid: false,
+          Disabled: true,
+        }),
+        isInvalid: figma.enum('State', {
+          Filled: false,
+          Focus: false,
+          Invalid: true,
+          Disabled: false,
+        }),
+        label: figma.boolean('Label', {
+          true: 'Label',
+          false: undefined,
+        }),
+      },
+    },
+  },
+};
+
+export default meta;
+disableStorybookControls(meta, ['inputRef']);
