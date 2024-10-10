@@ -85,7 +85,7 @@ describe('doesColumnHaveAnInitialWidth', () => {
 describe('useColumnWidths', () => {
   const args = {
     leadingControlColumns: [{ id: 'a', width: 50 }] as any,
-    columns: [{ id: 'b', initialWidth: 75 }, { id: 'c ' }],
+    columns: [{ id: 'b', initialWidth: 75 }, { id: 'c' }],
     trailingControlColumns: [{ id: 'd', width: 25 }] as any,
     defaultColumnWidth: 150,
     onColumnResize: jest.fn(),
@@ -99,16 +99,43 @@ describe('useColumnWidths', () => {
       expect(columnWidths).toEqual({ b: 75 });
     });
 
-    it('recomputes column widths on columns change', () => {
-      const { rerender, result } = renderHook(useColumnWidths, {
-        initialProps: args,
-      });
-      rerender({
-        ...args,
-        columns: [{ id: 'c', initialWidth: 125 }],
+    describe('when `columns` updates', () => {
+      it('adds new `initialWidth`s', () => {
+        const { rerender, result } = renderHook(useColumnWidths, {
+          initialProps: args,
+        });
+        rerender({
+          ...args,
+          columns: [{ id: 'f', initialWidth: 100 }],
+        });
+
+        expect(result.current.columnWidths).toEqual({ b: 75, f: 100 });
       });
 
-      expect(result.current.columnWidths).toEqual({ c: 125 });
+      it('does not remove column widths that have been hidden', () => {
+        const { rerender, result } = renderHook(useColumnWidths, {
+          initialProps: args,
+        });
+
+        rerender({
+          ...args,
+          columns: [{ id: 'c' }],
+        });
+        expect(result.current.columnWidths).toEqual({ b: 75 });
+      });
+
+      it('does not override column widths that have already been set by manual user resize', () => {
+        const { rerender, result } = renderHook(useColumnWidths, {
+          initialProps: args,
+        });
+
+        renderHookAct(() => result.current.setColumnWidth('b', 150));
+        rerender({
+          ...args,
+          columns: [...args.columns],
+        });
+        expect(result.current.columnWidths).toEqual({ b: 150 });
+      });
     });
   });
 
