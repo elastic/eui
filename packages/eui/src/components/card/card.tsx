@@ -199,7 +199,11 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
   let link: HTMLAnchorElement | HTMLButtonElement | null = null;
   const outerOnClick = (e: React.MouseEvent<HTMLDivElement>) => {
     if (link && link !== e.target && !link.contains(e.target as Node)) {
-      link.click();
+      // Clone and dispatch event rather than trigger link.click so that links can still be opened in a new tab
+      // with cmd+click, etc.
+      const newEvent = new PointerEvent(e.nativeEvent.type, e.nativeEvent);
+      // Dispatch the cloned event on the new target
+      link.dispatchEvent(newEvent);
     }
   };
 
