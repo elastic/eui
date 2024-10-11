@@ -7,45 +7,46 @@
  */
 
 import React from 'react';
+import figma from '@figma/code-connect';
 import type { Meta, StoryObj } from '@storybook/react';
+
 import {
   disableStorybookControls,
   moveStorybookControlsToCategory,
 } from '../../../../.storybook/utils';
+import { EuiFormRow } from '../form_row';
 
 import { EuiFieldText, EuiFieldTextProps } from './field_text';
 
-const meta: Meta<EuiFieldTextProps> = {
-  title: 'Forms/EuiFieldText',
-  component: EuiFieldText,
-  argTypes: {
-    // For quicker/easier QA
-    icon: { control: 'text' },
-    prepend: { control: 'text' },
-    append: { control: 'text' },
-    value: { control: 'text' },
-  },
-  args: {
-    // Component defaults
-    compressed: false,
-    fullWidth: false,
-    isInvalid: false,
-    isLoading: false,
-    disabled: false,
-    readOnly: false,
-    controlOnly: false,
-    // Added for easier testing
-    placeholder: 'EuiFieldText',
-    id: '',
-    name: '',
-  },
+// We need to add some args to make the snippet fully accurate
+// Here, args do not map 1:1 to props
+type Story = StoryObj<
+  EuiFieldTextProps & {
+    ariaLabel: string;
+    error: { text?: string };
+    helpText: { text?: string };
+    label: { text?: string };
+  }
+>;
+
+export const Playground: Story = {
+  render: ({ ariaLabel, error, helpText, isInvalid, label, ...props }) => (
+    <EuiFormRow
+      error={error.text}
+      helpText={helpText.text}
+      isInvalid={isInvalid}
+      label={label.text}
+    >
+      <EuiFieldText
+        aria-label={ariaLabel}
+        value={''}
+        onChange={() => {}}
+        isInvalid={isInvalid}
+        {...props}
+      />
+    </EuiFormRow>
+  ),
 };
-
-export default meta;
-type Story = StoryObj<EuiFieldTextProps>;
-disableStorybookControls(meta, ['inputRef']);
-
-export const Playground: Story = {};
 
 export const IconShape: Story = {
   parameters: {
@@ -98,3 +99,71 @@ export const AutoFill: Story = {
     name: 'autofill-test',
   },
 };
+
+const meta: Meta<EuiFieldTextProps> = {
+  title: 'Forms/EuiFieldText',
+  component: EuiFieldText,
+  argTypes: {
+    // For quicker/easier QA
+    icon: { control: 'text' },
+    prepend: { control: 'text' },
+    append: { control: 'text' },
+    value: { control: 'text' },
+  },
+  args: {
+    // Component defaults
+    compressed: false,
+    fullWidth: false,
+    isInvalid: false,
+    isLoading: false,
+    disabled: false,
+    readOnly: false,
+    controlOnly: false,
+    // Added for easier testing
+    placeholder: 'EuiFieldText',
+    id: '',
+    name: '',
+  },
+  parameters: {
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/design/RzfYLj2xmH9K7gQtbSKygn/Elastic-UI?node-id=13676-796&node-type=frame&m=dev',
+      examples: [Playground],
+      props: {
+        ariaLabel: figma.boolean('Label', {
+          true: undefined,
+          false: 'Meaningful label',
+        }),
+        compressed: figma.boolean('Compressed'),
+        error: figma.nestedProps('📦Form Row / Error text', {
+          text: figma.textContent('Text'),
+        }),
+        helpText: figma.boolean('Help text', {
+          true: figma.nestedProps('📦 Form Row / Help text', {
+            text: figma.textContent('Text'),
+          }),
+          false: {
+            text: undefined,
+          },
+        }),
+        isDisabled: figma.enum('State', {
+          Disabled: true,
+        }),
+        isInvalid: figma.enum('State', {
+          Invalid: true,
+        }),
+        label: figma.boolean('Label', {
+          true: figma.nestedProps('📦 Form Row / Label', {
+            text: figma.textContent('Text'),
+          }),
+          false: {
+            text: undefined,
+          },
+        }),
+      },
+    },
+  },
+};
+
+export default meta;
+disableStorybookControls(meta, ['inputRef']);
