@@ -43,7 +43,9 @@ export const euiKeyPadMenuItemStyles = (euiThemeContext: UseEuiTheme) => {
       &:focus-within {
         cursor: pointer;
         text-decoration: underline;
-        ${euiShadow(euiThemeContext, 's')}
+        ${euiShadow(euiThemeContext, 's', {
+          borderAllInHighContrastMode: true,
+        })}
 
         ${euiCanAnimate} {
           .euiKeyPadMenuItem__icon {

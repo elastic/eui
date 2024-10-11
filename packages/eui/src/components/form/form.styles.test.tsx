@@ -224,16 +224,29 @@ describe('euiFormCustomControlStyles', () => {
         "input": {
           "disabled": {
             "selected": "
-                label: disabled;
-                color: #69707D;
-                background-color: #D3DAE6;
-              ",
+                  
+                  label: disabled;
+                  cursor: not-allowed;
+                  background-color: #D3DAE6;
+                  
+                
+                  color: #69707D;
+                ",
+            "shared": "
+                  label: disabled;
+                  cursor: not-allowed;
+                  background-color: #D3DAE6;
+                  
+                ",
             "unselected": "
-                label: disabled;
-                color: #D3DAE6;
-                background-color: #D3DAE6;
-                cursor: not-allowed;
-              ",
+                  
+                  label: disabled;
+                  cursor: not-allowed;
+                  background-color: #D3DAE6;
+                  
+                
+                  color: #D3DAE6;
+                ",
           },
           "enabled": {
             "selected": "

@@ -12,9 +12,10 @@ import { euiBackgroundColor, logicalCSS } from '../../../global_styling';
 import { transparentize, UseEuiTheme } from '../../../services';
 
 export const euiPageInnerStyles = (euiThemeContext: UseEuiTheme) => {
+  const { euiTheme, highContrastMode } = euiThemeContext;
   const borderColor = transparentize(
-    euiThemeContext.euiTheme.colors.lightShade,
-    0.7
+    euiTheme.border.color,
+    highContrastMode ? 1 : 0.7
   );
 
   return {
@@ -37,14 +38,14 @@ export const euiPageInnerStyles = (euiThemeContext: UseEuiTheme) => {
       top: css`
         ${logicalCSS(
           'border-top',
-          `${euiThemeContext.euiTheme.border.width.thin} solid ${borderColor}`
+          `${euiTheme.border.width.thin} solid ${borderColor}`
         )}
       `,
 
       left: css`
         ${logicalCSS(
           'border-left',
-          `${euiThemeContext.euiTheme.border.width.thin} solid ${borderColor}`
+          `${euiTheme.border.width.thin} solid ${borderColor}`
         )}
       `,
     },

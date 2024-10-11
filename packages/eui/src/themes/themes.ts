@@ -17,13 +17,8 @@ export interface EUI_THEME {
 
 export const EUI_THEMES: EUI_THEME[] = [
   {
-    text: 'Light',
-    value: 'light',
-    provider: EuiThemeAmsterdam,
-  },
-  {
-    text: 'Dark',
-    value: 'dark',
+    text: 'Amsterdam',
+    value: AMSTERDAM_NAME_KEY,
     provider: EuiThemeAmsterdam,
   },
 ];

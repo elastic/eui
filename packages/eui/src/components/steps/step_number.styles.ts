@@ -16,25 +16,32 @@ import {
   logicalSizeCSS,
 } from '../../global_styling';
 import { UseEuiTheme } from '../../services';
-import { euiStepVariables } from './step.styles';
 import { euiButtonFillColor } from '../../themes/amsterdam/global_styling/mixins';
 
+import { euiStepVariables } from './step.styles';
+
 export const euiStepNumberStyles = (euiThemeContext: UseEuiTheme) => {
-  const { euiTheme } = euiThemeContext;
+  const { euiTheme, highContrastMode } = euiThemeContext;
   const euiStep = euiStepVariables(euiTheme);
 
   const createStepsNumber = (size: string, fontSize: string) => {
+    const highContrastBorder = highContrastMode
+      ? `border: ${euiTheme.border.thin};`
+      : '';
+
     return `
-      display: inline-block;
-      line-height: ${size};
-      border-radius: ${size};
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
       ${logicalCSS('width', size)};
       ${logicalCSS('height', size)};
+      font-size: ${fontSize};
+      font-weight: ${euiTheme.font.weight.medium};
       text-align: center;
       color: ${euiTheme.colors.emptyShade};
       background-color: ${euiTheme.colors.primary};
-      font-size: ${fontSize};
-      font-weight: ${euiTheme.font.weight.medium};
+      border-radius: 50%;
+      ${highContrastBorder}
     `;
   };
 
@@ -111,14 +118,9 @@ export const euiStepNumberStyles = (euiThemeContext: UseEuiTheme) => {
   };
 };
 
-export const euiStepNumberContentStyles = ({ euiTheme }: UseEuiTheme) => {
+export const euiStepNumberIconStyles = ({ euiTheme }: UseEuiTheme) => {
   return {
-    // Statuses with icon content
-    euiStepNumber__icon: css`
-      vertical-align: middle;
-      position: relative;
-      inset-block-start: -${euiTheme.border.width.thin};
-    `,
+    euiStepNumber__icon: css``,
     complete: css`
       /* Thicken the checkmark by adding a slight stroke */
       stroke: currentColor;
@@ -131,22 +133,7 @@ export const euiStepNumberContentStyles = ({ euiTheme }: UseEuiTheme) => {
     `,
     warning: css`
       /* Slight extra visual offset */
-      inset-block-start: -${euiTheme.border.width.thick};
-    `,
-    // Statuses with number content
-    euiStepNumber__number: css``,
-    incomplete: css`
-      /* Adjusts position because of thicker border */
-      display: unset;
-      position: relative;
-      inset-block-start: -${euiTheme.border.width.thick};
-    `,
-    loading: css``,
-    disabled: css``,
-    current: css`
-      /* Transform the step number so it appears in the center of the step circle */
-      display: inline-block;
-      transform: translateY(-${euiTheme.border.width.thick});
+      margin-block-start: -${euiTheme.border.width.thick};
     `,
     none: css(logicalSizeCSS(euiTheme.size.s)),
   };

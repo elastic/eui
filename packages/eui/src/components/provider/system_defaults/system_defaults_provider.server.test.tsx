@@ -13,17 +13,17 @@
 import React from 'react';
 import { renderToString } from 'react-dom/server';
 
-import { EuiSystemColorModeProvider } from './system_color_mode_provider';
+import { EuiSystemDefaultsProvider } from './system_defaults_provider';
 
-describe('EuiSystemColorModeProvider', () => {
+describe('EuiSystemDefaultsProvider', () => {
   it('handles server-side rendering without crashing', () => {
     const children = jest.fn(() => <>Test</>);
 
     const renderOnServer = () =>
-      renderToString(<EuiSystemColorModeProvider children={children} />);
+      renderToString(<EuiSystemDefaultsProvider children={children} />);
     expect(renderOnServer).not.toThrow();
 
     expect(renderOnServer()).toEqual('Test');
-    expect(children).toHaveBeenCalledWith('LIGHT');
+    expect(children).toHaveBeenCalledWith('LIGHT', false);
   });
 });

@@ -13,10 +13,13 @@ import { UseEuiTheme } from '../../../services';
 export const popoverArrowSize = 'm';
 
 export const euiPopoverArrowStyles = (euiThemeContext: UseEuiTheme) => {
-  const { euiTheme } = euiThemeContext;
+  const { euiTheme, highContrastMode } = euiThemeContext;
 
   const borderColor = 'var(--euiPopoverBackgroundColor)';
   const arrowSize = euiTheme.size[popoverArrowSize];
+
+  const highContrastBorder = (filter: string) =>
+    highContrastMode ? `filter: ${filter} !important;` : ''; // Using !important for high contrast mode filters to override hasDragDrop higher specificity CSS
 
   return {
     // Base
@@ -40,6 +43,10 @@ export const euiPopoverArrowStyles = (euiThemeContext: UseEuiTheme) => {
         ${logicals['border-right']}: ${arrowSize} solid transparent;
         ${logicals['border-top']}: ${arrowSize} solid ${borderColor};
       }
+
+      ${highContrastBorder(`
+        drop-shadow(0 ${euiTheme.border.width.thin} 0 ${euiTheme.border.color})
+        drop-shadow(0 -${euiTheme.border.width.thin} 0 ${euiTheme.colors.emptyShade})`)}
     `,
 
     bottom: css`
@@ -49,6 +56,10 @@ export const euiPopoverArrowStyles = (euiThemeContext: UseEuiTheme) => {
         ${logicals['border-right']}: ${arrowSize} solid transparent;
         ${logicals['border-bottom']}: ${arrowSize} solid ${borderColor};
       }
+
+      ${highContrastBorder(`
+        drop-shadow(0 ${euiTheme.border.width.thin} 0 ${euiTheme.colors.emptyShade}) 
+        drop-shadow(0 -${euiTheme.border.width.thin} 0 ${euiTheme.border.color})`)}
     `,
 
     left: css`
@@ -59,6 +70,10 @@ export const euiPopoverArrowStyles = (euiThemeContext: UseEuiTheme) => {
         ${logicals['border-bottom']}: ${arrowSize} solid transparent;
         ${logicals['border-left']}: ${arrowSize} solid ${borderColor};
       }
+
+      ${highContrastBorder(`
+        drop-shadow(${euiTheme.border.width.thin} 0 0 ${euiTheme.border.color}) 
+        drop-shadow(-${euiTheme.border.width.thin} 0 0 ${euiTheme.colors.emptyShade})`)}
     `,
 
     right: css`
@@ -69,6 +84,10 @@ export const euiPopoverArrowStyles = (euiThemeContext: UseEuiTheme) => {
         ${logicals['border-bottom']}: ${arrowSize} solid transparent;
         ${logicals['border-right']}: ${arrowSize} solid ${borderColor};
       }
+
+      ${highContrastBorder(`
+        drop-shadow(${euiTheme.border.width.thin} 0 0 ${euiTheme.colors.emptyShade}) 
+        drop-shadow(-${euiTheme.border.width.thin} 0 0 ${euiTheme.border.color})`)}
     `,
   };
 };

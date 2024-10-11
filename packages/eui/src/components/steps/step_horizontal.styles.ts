@@ -11,7 +11,7 @@ import { UseEuiTheme, makeHighContrastColor } from '../../services';
 import {
   euiBreakpoint,
   logicalShorthandCSS,
-  euiFocusRing,
+  euiOutline,
   euiCanAnimate,
   mathWithUnits,
 } from '../../global_styling/';
@@ -19,7 +19,7 @@ import { euiTitle } from '../title/title.styles';
 import { euiStepVariables } from './step.styles';
 
 export const euiStepHorizontalStyles = (euiThemeContext: UseEuiTheme) => {
-  const { euiTheme } = euiThemeContext;
+  const { euiTheme, highContrastMode } = euiThemeContext;
   const euiStep = euiStepVariables(euiTheme);
 
   /**
@@ -91,11 +91,18 @@ export const euiStepHorizontalStyles = (euiThemeContext: UseEuiTheme) => {
         outline: none;
 
         .euiStepHorizontal__number {
-          ${euiFocusRing(euiThemeContext)}
-        }
+          ${euiOutline(
+            euiThemeContext,
+            highContrastMode ? 0 : 'center', // Account for border in high contrast mode
+            euiTheme.colors.fullShade
+          )}
 
-        .euiStepHorizontal__number:not(:focus-visible) {
-          outline: ${euiTheme.focus.width} solid ${euiTheme.colors.darkestShade};
+          &:where([class*='current']) {
+            outline-offset: ${mathWithUnits(
+              euiTheme.border.width.thick,
+              (x) => x / 2
+            )};
+          }
         }
       }
     `,

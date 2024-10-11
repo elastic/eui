@@ -23,7 +23,7 @@ export const euiButtonGroupStyles = {
 };
 
 export const euiButtonGroupButtonsStyles = (euiThemeContext: UseEuiTheme) => {
-  const { euiTheme } = euiThemeContext;
+  const { euiTheme, highContrastMode } = euiThemeContext;
 
   const {
     controlCompressedHeight,
@@ -32,11 +32,16 @@ export const euiButtonGroupButtonsStyles = (euiThemeContext: UseEuiTheme) => {
     borderColor,
   } = euiFormVariables(euiThemeContext);
 
+  const highContrastBorder = highContrastMode
+    ? `border: ${euiTheme.border.thin};`
+    : '';
+
   return {
     // Base
     euiButtonGroup__buttons: css`
       ${logicalCSS('max-width', '100%')}
       display: flex;
+      ${highContrastBorder}
     `,
     fullWidth: css`
       ${logicalCSS('width', '100%')}

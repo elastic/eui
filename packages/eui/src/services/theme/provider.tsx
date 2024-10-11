@@ -31,6 +31,7 @@ import {
   EuiNestedThemeContext,
   EuiModificationsContext,
   EuiColorModeContext,
+  EuiHighContrastModeContext,
 } from './context';
 import { EuiEmotionThemeProvider } from './emotion';
 import { EuiThemeMemoizedStylesProvider } from './style_memoization';
@@ -45,6 +46,7 @@ import {
 export interface EuiThemeProviderProps<T> extends PropsWithChildren {
   theme?: EuiThemeSystem<T>;
   colorMode?: EuiThemeColorMode;
+  highContrastMode?: boolean;
   modify?: EuiThemeModifications<T>;
   children: any;
   /**
@@ -64,6 +66,7 @@ export interface EuiThemeProviderProps<T> extends PropsWithChildren {
 export const EuiThemeProvider = <T extends {} = {}>({
   theme: _system,
   colorMode: _colorMode,
+  highContrastMode: _highContrastMode,
   modify: _modifications,
   children,
   wrapperProps,
@@ -77,6 +80,7 @@ export const EuiThemeProvider = <T extends {} = {}>({
   const parentSystem = useContext(EuiSystemContext);
   const parentModifications = useContext(EuiModificationsContext);
   const parentColorMode = useContext(EuiColorModeContext);
+  const parentHighContrastMode = useContext(EuiHighContrastModeContext);
   const parentTheme = useContext(EuiThemeContext);
 
   const [system, setSystem] = useState(_system || parentSystem);
@@ -101,9 +105,38 @@ export const EuiThemeProvider = <T extends {} = {}>({
   );
   const prevColorMode = useRef(colorMode);
 
+  const highContrastMode = _highContrastMode ?? parentHighContrastMode;
+  const prevHighContrastMode = useRef(highContrastMode);
+
+  const highContrastModifications = useMemo(() => {
+    if (highContrastMode) {
+      return {
+        ...modifications,
+        border: {
+          color: system.root.colors[colorMode].fullShade,
+          get thin() {
+            const width =
+              modifications.border?.width?.thin ||
+              system.root.border.width.thin;
+
+            return `${width} solid ${this.color}`;
+          },
+          get thick() {
+            const width =
+              modifications.border?.width?.thick ||
+              system.root.border.width.thick;
+
+            return `${width} solid ${this.color}`;
+          },
+        },
+      };
+    }
+  }, [highContrastMode, modifications, colorMode, system]);
+
   const isParentTheme = useRef(
     prevSystemKey.current === parentSystem.key &&
       colorMode === parentColorMode &&
+      highContrastMode === parentHighContrastMode &&
       isEqual(parentModifications, modifications)
   );
 
@@ -112,7 +145,10 @@ export const EuiThemeProvider = <T extends {} = {}>({
       ? { ...parentTheme } // Intentionally create a new object to break referential equality
       : getComputed(
           system,
-          buildTheme(modifications, `_${system.key}`) as typeof system,
+          buildTheme(
+            highContrastModifications ?? modifications,
+            `_${system.key}`
+          ) as typeof system,
           colorMode
         )
   );
@@ -145,16 +181,29 @@ export const EuiThemeProvider = <T extends {} = {}>({
   }, [_colorMode, parentColorMode]);
 
   useEffect(() => {
-    if (!isParentTheme.current) {
+    const highContrastModeChanged =
+      prevHighContrastMode.current !== highContrastMode;
+
+    if (!isParentTheme.current || highContrastModeChanged) {
       setTheme(
         getComputed(
           system,
-          buildTheme(modifications, `_${system.key}`) as typeof system,
+          buildTheme(
+            highContrastModifications ?? modifications,
+            `_${system.key}`
+          ) as typeof system,
           colorMode
         )
       );
+      prevHighContrastMode.current = highContrastMode;
     }
-  }, [colorMode, system, modifications]);
+  }, [
+    colorMode,
+    system,
+    modifications,
+    highContrastMode,
+    highContrastModifications,
+  ]);
 
   const [themeCSSVariables, _setThemeCSSVariables] = useState<CSSObject>();
   const setThemeCSSVariables = useCallback(
@@ -237,21 +286,23 @@ export const EuiThemeProvider = <T extends {} = {}>({
         <Global styles={{ ':root': themeCSSVariables }} />
       )}
       <EuiColorModeContext.Provider value={colorMode}>
-        <EuiSystemContext.Provider value={system}>
-          <EuiModificationsContext.Provider value={modifications}>
-            <EuiThemeContext.Provider value={theme}>
-              <EuiNestedThemeContext.Provider value={nestedThemeContext}>
-                <EuiThemeMemoizedStylesProvider>
-                  <EuiEmotionThemeProvider>
-                    <EuiConditionalBreakpointProvider>
-                      {renderedChildren}
-                    </EuiConditionalBreakpointProvider>
-                  </EuiEmotionThemeProvider>
-                </EuiThemeMemoizedStylesProvider>
-              </EuiNestedThemeContext.Provider>
-            </EuiThemeContext.Provider>
-          </EuiModificationsContext.Provider>
-        </EuiSystemContext.Provider>
+        <EuiHighContrastModeContext.Provider value={highContrastMode}>
+          <EuiSystemContext.Provider value={system}>
+            <EuiModificationsContext.Provider value={modifications}>
+              <EuiThemeContext.Provider value={theme}>
+                <EuiNestedThemeContext.Provider value={nestedThemeContext}>
+                  <EuiThemeMemoizedStylesProvider>
+                    <EuiEmotionThemeProvider>
+                      <EuiConditionalBreakpointProvider>
+                        {renderedChildren}
+                      </EuiConditionalBreakpointProvider>
+                    </EuiEmotionThemeProvider>
+                  </EuiThemeMemoizedStylesProvider>
+                </EuiNestedThemeContext.Provider>
+              </EuiThemeContext.Provider>
+            </EuiModificationsContext.Provider>
+          </EuiSystemContext.Provider>
+        </EuiHighContrastModeContext.Provider>
       </EuiColorModeContext.Provider>
     </>
   );

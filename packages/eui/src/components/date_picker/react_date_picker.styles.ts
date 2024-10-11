@@ -188,7 +188,7 @@ export const _monthYearDropdowns = (euiThemeContext: UseEuiTheme) => {
       padding: ${euiTheme.size.xs};
       background-color: ${euiTheme.colors.emptyShade};
       border-radius: ${euiTheme.border.radius.medium};
-      ${euiShadowSmall(euiThemeContext)}
+      ${euiShadowSmall(euiThemeContext, { borderAllInHighContrastMode: true })}
     }
 
     .react-datepicker__year-dropdown {

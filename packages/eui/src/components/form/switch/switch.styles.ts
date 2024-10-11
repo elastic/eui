@@ -20,12 +20,14 @@ import {
 import { euiFormCustomControlVariables } from '../form.styles';
 
 const euiSwitchVars = (euiThemeContext: UseEuiTheme) => {
-  const { euiTheme } = euiThemeContext;
+  const { euiTheme, highContrastMode } = euiThemeContext;
   const formVars = euiFormCustomControlVariables(euiThemeContext);
 
   const colors = {
     on: formVars.colors.selected,
-    off: formVars.colors.unselectedBorder,
+    off: highContrastMode
+      ? euiTheme.colors.darkShade
+      : formVars.colors.unselectedBorder,
     disabled: formVars.colors.disabled,
     thumb: formVars.colors.selectedIcon,
     thumbBorder: formVars.colors.unselectedBorder,
