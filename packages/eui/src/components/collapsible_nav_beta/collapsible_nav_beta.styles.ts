@@ -25,6 +25,7 @@ export const euiCollapsibleNavBetaStyles = (euiThemeContext: UseEuiTheme) => {
 
   return {
     euiCollapsibleNavBeta: css`
+      z-index: ${euiTheme.levels.navigation};
       /* Fixed header affordance */
       ${logicalCSS('top', fixedHeaderOffset)}
 
