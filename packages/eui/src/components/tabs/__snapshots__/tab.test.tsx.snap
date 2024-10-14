@@ -63,7 +63,7 @@ exports[`EuiTab props href renders anchor 1`] = `
   role="tab"
 >
   <span
-    class="euiTab__content emotion-euiTab__content-m"
+    class="euiTab__content eui-textTruncate emotion-euiTab__content-m"
   >
     children
   </span>
