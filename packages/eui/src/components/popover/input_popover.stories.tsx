@@ -14,12 +14,16 @@ import {
   enableFunctionToggleControls,
   moveStorybookControlsToCategory,
 } from '../../../.storybook/utils';
+import { LOKI_SELECTORS } from '../../../.storybook/loki';
 import { EuiFieldText } from '../form';
 import { EuiInputPopover, EuiInputPopoverProps } from './input_popover';
 
 const meta: Meta<EuiInputPopoverProps> = {
   title: 'Layout/EuiInputPopover',
   component: EuiInputPopover,
+  parameters: {
+    loki: { chromeSelector: LOKI_SELECTORS.portal },
+  },
   args: {
     anchorPosition: 'downLeft',
     attachToAnchor: true,
