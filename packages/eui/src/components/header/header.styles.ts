@@ -28,15 +28,8 @@ export const euiHeaderVariables = (euiThemeContext: UseEuiTheme) => {
 };
 
 export const euiHeaderStyles = (euiThemeContext: UseEuiTheme) => {
-  const { euiTheme, colorMode } = euiThemeContext;
+  const { euiTheme } = euiThemeContext;
   const { height, padding } = euiHeaderVariables(euiThemeContext);
-
-  // Curated border color to fade into the shadow without looking too much like a border
-  // It adds separation between the header and flyout
-  const borderColor =
-    colorMode === 'DARK'
-      ? shade(euiTheme.colors.emptyShade, 0.35)
-      : shade(euiTheme.border.color, 0.03);
 
   return {
     euiHeader: css`
@@ -44,6 +37,7 @@ export const euiHeaderStyles = (euiThemeContext: UseEuiTheme) => {
       justify-content: space-between;
       ${logicalCSS('height', height)}
       ${logicalCSS('padding-horizontal', padding)}
+      ${logicalCSS('border-bottom', euiTheme.border.thin)}
       ${euiShadowSmall(euiThemeContext)}
     `,
     // Position
@@ -61,12 +55,8 @@ export const euiHeaderStyles = (euiThemeContext: UseEuiTheme) => {
     // Theme
     default: css`
       background-color: ${euiTheme.colors.emptyShade};
-      ${logicalCSS(
-        'border-bottom',
-        `${euiTheme.border.width.thin} solid ${borderColor}`
-      )}
     `,
-    dark: css(euiHeaderDarkStyles(euiThemeContext, borderColor)),
+    dark: css(euiHeaderDarkStyles(euiThemeContext)),
   };
 };
 
@@ -81,10 +71,7 @@ export const euiHeaderStyles = (euiThemeContext: UseEuiTheme) => {
  */
 import { euiFormVariables } from '../form/form.styles';
 
-const euiHeaderDarkStyles = (
-  euiThemeContext: UseEuiTheme,
-  defaultBorderColor: string
-) => {
+const euiHeaderDarkStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme, colorMode } = euiThemeContext;
   const { controlPlaceholderText } = euiFormVariables(euiThemeContext);
 
@@ -92,12 +79,9 @@ const euiHeaderDarkStyles = (
     colorMode === 'DARK'
       ? shade(euiTheme.colors.lightestShade, 0.5)
       : shade(euiTheme.colors.darkestShade, 0.28);
-  const borderColor =
-    colorMode === 'DARK' ? defaultBorderColor : backgroundColor;
 
   return `
     background-color: ${backgroundColor};
-    ${logicalCSS('border-bottom-color', borderColor)}
 
     .euiHeaderLogo__text,
     .euiHeaderLink,
