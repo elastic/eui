@@ -2867,14 +2867,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 79,
+        "line": 83,
         "column": 28,
-        "index": 2489
+        "index": 2551
       },
       "end": {
-        "line": 82,
+        "line": 86,
         "column": 3,
-        "index": 2565
+        "index": 2627
       }
     },
     "filepath": "src/components/date_picker/super_date_picker/date_popover/absolute_tab.tsx"
@@ -2885,14 +2885,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 83,
+        "line": 87,
         "column": 26,
-        "index": 2593
+        "index": 2655
       },
       "end": {
-        "line": 87,
+        "line": 91,
         "column": 3,
-        "index": 2775
+        "index": 2837
       }
     },
     "filepath": "src/components/date_picker/super_date_picker/date_popover/absolute_tab.tsx"
@@ -2903,14 +2903,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 100,
+        "line": 104,
         "column": 23,
-        "index": 2832
+        "index": 2906
       },
       "end": {
-        "line": 104,
+        "line": 108,
         "column": 3,
-        "index": 2931
+        "index": 3005
       }
     },
     "filepath": "src/components/date_picker/super_date_picker/date_popover/date_popover_button.tsx"
@@ -2921,14 +2921,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 105,
+        "line": 109,
         "column": 24,
-        "index": 2957
+        "index": 3031
       },
       "end": {
-        "line": 109,
+        "line": 113,
         "column": 3,
-        "index": 3058
+        "index": 3132
       }
     },
     "filepath": "src/components/date_picker/super_date_picker/date_popover/date_popover_button.tsx"
@@ -2939,14 +2939,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 70,
+        "line": 74,
         "column": 25,
-        "index": 2070
+        "index": 2140
       },
       "end": {
-        "line": 73,
+        "line": 77,
         "column": 3,
-        "index": 2146
+        "index": 2216
       }
     },
     "filepath": "src/components/date_picker/super_date_picker/date_popover/date_popover_content.tsx"
@@ -2957,14 +2957,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 74,
+        "line": 78,
         "column": 23,
-        "index": 2171
+        "index": 2241
       },
       "end": {
-        "line": 77,
+        "line": 81,
         "column": 3,
-        "index": 2243
+        "index": 2313
       }
     },
     "filepath": "src/components/date_picker/super_date_picker/date_popover/date_popover_content.tsx"
@@ -2975,14 +2975,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 80,
+        "line": 84,
         "column": 24,
-        "index": 2346
+        "index": 2416
       },
       "end": {
-        "line": 83,
+        "line": 87,
         "column": 3,
-        "index": 2422
+        "index": 2492
       }
     },
     "filepath": "src/components/date_picker/super_date_picker/date_popover/date_popover_content.tsx"
@@ -2993,14 +2993,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 84,
+        "line": 88,
         "column": 24,
-        "index": 2448
+        "index": 2518
       },
       "end": {
-        "line": 87,
+        "line": 91,
         "column": 3,
-        "index": 2524
+        "index": 2594
       }
     },
     "filepath": "src/components/date_picker/super_date_picker/date_popover/date_popover_content.tsx"
@@ -3011,14 +3011,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 88,
+        "line": 92,
         "column": 19,
-        "index": 2545
+        "index": 2615
       },
       "end": {
-        "line": 88,
+        "line": 92,
         "column": 73,
-        "index": 2599
+        "index": 2669
       }
     },
     "filepath": "src/components/date_picker/super_date_picker/date_popover/date_popover_content.tsx"
@@ -3029,14 +3029,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 134,
+        "line": 140,
         "column": 12,
-        "index": 3817
+        "index": 3943
       },
       "end": {
-        "line": 137,
+        "line": 143,
         "column": 14,
-        "index": 4026
+        "index": 4152
       }
     },
     "filepath": "src/components/date_picker/super_date_picker/date_popover/date_popover_content.tsx"
@@ -3047,14 +3047,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 149,
+        "line": 155,
         "column": 14,
-        "index": 4316
+        "index": 4442
       },
       "end": {
-        "line": 152,
+        "line": 158,
         "column": 16,
-        "index": 4462
+        "index": 4588
       }
     },
     "filepath": "src/components/date_picker/super_date_picker/date_popover/date_popover_content.tsx"
@@ -3065,14 +3065,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 154,
+        "line": 160,
         "column": 14,
-        "index": 4495
+        "index": 4621
       },
       "end": {
-        "line": 157,
+        "line": 163,
         "column": 16,
-        "index": 4637
+        "index": 4763
       }
     },
     "filepath": "src/components/date_picker/super_date_picker/date_popover/date_popover_content.tsx"
