@@ -15,6 +15,10 @@ import {
   UseEuiTheme,
   useEuiMemoizedStyles,
 } from '../../services';
+import {
+  _EuiThemeBackgroundColors,
+  getTokenName,
+} from '@elastic/eui-theme-common';
 
 export const BACKGROUND_COLORS = [
   'transparent',
@@ -37,6 +41,7 @@ export interface _EuiBackgroundColorOptions {
 }
 
 /**
+ * @deprecated
  * @returns A single background color with optional alpha transparency
  */
 export const euiBackgroundColor = (
@@ -73,6 +78,7 @@ export const euiBackgroundColor = (
 };
 
 /**
+ * @deprecated
  * @returns An object map of color keys to color values, categorized by
  * opaque (default) vs transparency (hover/focus states) methods.
  * e.g. {
@@ -99,6 +105,9 @@ const _euiBackgroundColorMap = (euiThemeContext: UseEuiTheme) => ({
   ),
 });
 
+/**
+ * @deprecated
+ */
 export const useEuiBackgroundColor = (
   color: _EuiBackgroundColor,
   { method }: _EuiBackgroundColorOptions = {}
@@ -112,17 +121,25 @@ export const useEuiBackgroundColor = (
  * e.g. { danger: css``, success: css``, ... }
  */
 const _euiBackgroundColors = (euiThemeContext: UseEuiTheme) =>
-  BACKGROUND_COLORS.reduce(
-    (acc, color) => ({
+  BACKGROUND_COLORS.reduce((acc, color) => {
+    const backgroundToken = getTokenName(
+      'background',
+      color
+    ) as keyof _EuiThemeBackgroundColors;
+    return {
       ...acc,
       [color]: css`
-        background-color: ${euiBackgroundColor(euiThemeContext, color)};
+        background-color: ${euiThemeContext.euiTheme.colors[backgroundToken]};
         label: ${color};
       `,
-    }),
-    {} as Record<_EuiBackgroundColor, SerializedStyles>
-  );
+    };
+  }, {} as Record<_EuiBackgroundColor, SerializedStyles>);
 
+/**
+ * Hook to retrieve background style for a background color variant
+ * @returns An object map of color keys to CSS,
+ * e.g. { danger: css``, success: css``, ... }
+ */
 export const useEuiBackgroundColorCSS = () =>
   useEuiMemoizedStyles(_euiBackgroundColors);
 
