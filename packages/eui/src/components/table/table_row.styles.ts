@@ -9,11 +9,7 @@
 import { css, keyframes } from '@emotion/react';
 
 import { UseEuiTheme, tint, shade, transparentize } from '../../services';
-import {
-  euiCanAnimate,
-  euiBackgroundColor,
-  logicalCSS,
-} from '../../global_styling';
+import { euiCanAnimate, logicalCSS } from '../../global_styling';
 import { euiShadow } from '../../themes/amsterdam/global_styling/mixins';
 
 import { euiTableVariables } from './table.styles';
@@ -80,7 +76,7 @@ export const euiTableRowStyles = (euiThemeContext: UseEuiTheme) => {
 
         /* EuiPanel styling */
         ${euiShadow(euiThemeContext, 's')}
-        background-color: ${euiBackgroundColor(euiThemeContext, 'plain')};
+        background-color: ${euiTheme.colors.backgroundPlain};
         border-radius: ${euiTheme.border.radius.medium};
       `,
       selected: css`
