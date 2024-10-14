@@ -1,3 +1,9 @@
+## [`v97.0.0-backport.0`](https://github.com/elastic/eui/releases/v97.0.0-backport.0)
+
+**This is a backport release only intended for use by Kibana.**
+
+- Added props `minDate` and `maxDate` on `EuiSuperDatePicker` to support restricting date range selections ([#8071](https://github.com/elastic/eui/pull/8071))
+
 ## [`v97.0.0`](https://github.com/elastic/eui/releases/v97.0.0)
 
 **Bug fixes**
