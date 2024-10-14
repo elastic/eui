@@ -7,6 +7,7 @@
  */
 
 import React from 'react';
+import moment from 'moment';
 import type { Meta, StoryObj } from '@storybook/react';
 import { expect } from '@storybook/test';
 import { within } from '../../../../.storybook/test';
@@ -48,6 +49,8 @@ const meta: Meta<EuiSuperDatePickerProps> = {
     isLoading: false,
     isQuickSelectOnly: false,
     commonlyUsedRanges: [{ start: 'now/d', end: 'now/d', label: 'Today' }],
+    maxDate: undefined,
+    minDate: undefined,
   },
 };
 enableFunctionToggleControls(meta, ['onTimeChange']);
@@ -86,6 +89,28 @@ export const CustomQuickSelectPanel: Story = {
       await canvas.waitForEuiPopoverVisible();
       expect(canvas.getByText('Custom quick select panel')).toBeVisible();
     });
+  },
+};
+
+export const RestrictedRange: Story = {
+  parameters: {
+    controls: {
+      include: [
+        'dateFormat',
+        'start',
+        'end',
+        'minDate',
+        'maxDate',
+        'onTimeChange',
+      ],
+    },
+    loki: {
+      chromeSelector: LOKI_SELECTORS.portal,
+    },
+  },
+  args: {
+    minDate: moment('10/01/2024'),
+    maxDate: moment('11/01/2024'),
   },
 };
 
