@@ -13,6 +13,9 @@ import {
   type _EuiThemeSpecialColors,
   type _EuiThemeTextColors,
   type _EuiThemeColorsMode,
+  _EuiThemeBackgroundColors,
+  _EuiThemeBorderColors,
+  _EuiThemeTransparentBackgroundColors,
 } from '@elastic/eui-theme-common';
 
 import { PRIMITIVE_COLORS } from './_primitive_colors';
@@ -76,6 +79,44 @@ export const dark_shades: _EuiThemeShadeColors = {
   fullShade: PRIMITIVE_COLORS.white,
 };
 
+export const dark_background_colors: _EuiThemeBackgroundColors = {
+  backgroundPrimary: SEMANTIC_COLORS.primary130,
+  backgroundAccent: SEMANTIC_COLORS.accent130,
+  backgroundAccentSecondary: SEMANTIC_COLORS.accentSecondary130,
+  backgroundSuccess: SEMANTIC_COLORS.success130,
+  backgroundWarning: SEMANTIC_COLORS.warning130,
+  backgroundDanger: SEMANTIC_COLORS.danger130,
+  backgroundSubdued: SEMANTIC_COLORS.plainDark,
+  backgroundDisabled: SEMANTIC_COLORS.shade70,
+  backgroundPlain: SEMANTIC_COLORS.shade140,
+  backgroundPage: SEMANTIC_COLORS.plainDark,
+};
+
+/* TODO: align values for previously transparent backgrounds */
+export const dark_transparent_background_colors: _EuiThemeTransparentBackgroundColors =
+  {
+    backgroundTransparent: 'transparent',
+    backgroundTransparentPrimary: dark_background_colors.backgroundPrimary,
+    backgroundTransparentAccent: dark_background_colors.backgroundAccent,
+    backgroundTransparentSuccess: dark_background_colors.backgroundSuccess,
+    backgroundTransparentWarning: dark_background_colors.backgroundWarning,
+    backgroundTransparentDanger: dark_background_colors.backgroundDanger,
+    backgroundTransparentSubdued: dark_background_colors.backgroundSubdued,
+    backgroundTransparentPlain: dark_background_colors.backgroundPlain,
+  };
+
+export const dark_border_colors: _EuiThemeBorderColors = {
+  borderPrimary: SEMANTIC_COLORS.primary60,
+  borderAccent: SEMANTIC_COLORS.accent60,
+  borderAccentSecondary: SEMANTIC_COLORS.accentSecondary60,
+  borderSuccess: SEMANTIC_COLORS.success60,
+  borderWarning: SEMANTIC_COLORS.warning40,
+  borderDanger: SEMANTIC_COLORS.danger60,
+  borderSubdued: SEMANTIC_COLORS.shade110,
+  borderDisabled: SEMANTIC_COLORS.shade110,
+  borderPlain: SEMANTIC_COLORS.shade110,
+};
+
 export const dark_special_colors: _EuiThemeSpecialColors = {
   body: SEMANTIC_COLORS.plainDark,
   highlight: SEMANTIC_COLORS.warning100,
@@ -91,4 +132,7 @@ export const dark_colors: _EuiThemeColorsMode = {
   ...dark_special_colors,
   ...dark_brand_text_colors,
   ...dark_text_colors,
+  ...dark_background_colors,
+  ...dark_transparent_background_colors,
+  ...dark_border_colors,
 };

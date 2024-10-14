@@ -13,6 +13,9 @@ import {
   type _EuiThemeSpecialColors,
   type _EuiThemeTextColors,
   type _EuiThemeColorsMode,
+  _EuiThemeBackgroundColors,
+  _EuiThemeBorderColors,
+  _EuiThemeTransparentBackgroundColors,
 } from '@elastic/eui-theme-common';
 
 import { PRIMITIVE_COLORS } from './_primitive_colors';
@@ -73,6 +76,44 @@ export const shade_colors: _EuiThemeShadeColors = {
   fullShade: PRIMITIVE_COLORS.black,
 };
 
+export const background_colors: _EuiThemeBackgroundColors = {
+  backgroundPrimary: SEMANTIC_COLORS.primary10,
+  backgroundAccent: SEMANTIC_COLORS.accent10,
+  backgroundAccentSecondary: SEMANTIC_COLORS.accentSecondary10,
+  backgroundSuccess: SEMANTIC_COLORS.success10,
+  backgroundWarning: SEMANTIC_COLORS.warning10,
+  backgroundDanger: SEMANTIC_COLORS.danger10,
+  backgroundSubdued: SEMANTIC_COLORS.shade10,
+  backgroundDisabled: SEMANTIC_COLORS.shade20,
+  backgroundPlain: SEMANTIC_COLORS.plainLight,
+  backgroundPage: SEMANTIC_COLORS.shade10,
+};
+
+/* TODO: align values for previously transparent backgrounds */
+export const transparent_background_colors: _EuiThemeTransparentBackgroundColors =
+  {
+    backgroundTransparent: 'transparent',
+    backgroundTransparentPrimary: background_colors.backgroundPrimary,
+    backgroundTransparentAccent: background_colors.backgroundAccent,
+    backgroundTransparentSuccess: background_colors.backgroundSuccess,
+    backgroundTransparentWarning: background_colors.backgroundWarning,
+    backgroundTransparentDanger: background_colors.backgroundDanger,
+    backgroundTransparentSubdued: SEMANTIC_COLORS.shade15,
+    backgroundTransparentPlain: SEMANTIC_COLORS.shade15,
+  };
+
+export const border_colors: _EuiThemeBorderColors = {
+  borderPrimary: SEMANTIC_COLORS.primary100,
+  borderAccent: SEMANTIC_COLORS.accent100,
+  borderAccentSecondary: SEMANTIC_COLORS.accentSecondary100,
+  borderSuccess: SEMANTIC_COLORS.success100,
+  borderWarning: SEMANTIC_COLORS.warning100,
+  borderDanger: SEMANTIC_COLORS.danger100,
+  borderSubdued: SEMANTIC_COLORS.shade30,
+  borderDisabled: SEMANTIC_COLORS.shade30,
+  borderPlain: SEMANTIC_COLORS.shade30,
+};
+
 export const special_colors: _EuiThemeSpecialColors = {
   body: SEMANTIC_COLORS.shade10,
   highlight: SEMANTIC_COLORS.warning10,
@@ -88,4 +129,7 @@ export const light_colors: _EuiThemeColorsMode = {
   ...special_colors,
   ...brand_text_colors,
   ...text_colors,
+  ...background_colors,
+  ...transparent_background_colors,
+  ...border_colors,
 };
