@@ -171,6 +171,51 @@ export type _EuiThemeSpecialColors = {
   shadow: ColorModeSwitch;
 };
 
+export type _EuiThemeBackgroundColors = {
+  backgroundPrimary: ColorModeSwitch;
+  backgroundAccent: ColorModeSwitch;
+  backgroundAccentSecondary: ColorModeSwitch;
+  backgroundSuccess: ColorModeSwitch;
+  backgroundWarning: ColorModeSwitch;
+  backgroundDanger: ColorModeSwitch;
+  backgroundSubdued: ColorModeSwitch;
+  backgroundDisabled: ColorModeSwitch;
+  backgroundPlain: ColorModeSwitch;
+  backgroundPage: ColorModeSwitch;
+};
+
+/** TODO: remove once usages are re-mapped */
+export type _EuiThemeTransparentBackgroundColors = {
+  /** @deprecated */
+  backgroundTransparent: string;
+  /** @deprecated */
+  backgroundTransparentPrimary: ColorModeSwitch;
+  /** @deprecated */
+  backgroundTransparentAccent: ColorModeSwitch;
+  /** @deprecated */
+  backgroundTransparentSuccess: ColorModeSwitch;
+  /** @deprecated */
+  backgroundTransparentWarning: ColorModeSwitch;
+  /** @deprecated */
+  backgroundTransparentDanger: ColorModeSwitch;
+  /** @deprecated */
+  backgroundTransparentSubdued: ColorModeSwitch;
+  /** @deprecated */
+  backgroundTransparentPlain: ColorModeSwitch;
+};
+
+export type _EuiThemeBorderColors = {
+  borderPrimary: ColorModeSwitch;
+  borderAccent: ColorModeSwitch;
+  borderAccentSecondary: ColorModeSwitch;
+  borderSuccess: ColorModeSwitch;
+  borderWarning: ColorModeSwitch;
+  borderDanger: ColorModeSwitch;
+  borderSubdued: ColorModeSwitch;
+  borderDisabled: ColorModeSwitch;
+  borderPlain: ColorModeSwitch;
+};
+
 export type _EuiThemeConstantColors = {
   /**
    * Purest **white**
@@ -188,7 +233,10 @@ export type _EuiThemeColorsMode = _EuiThemeBrandColors &
   _EuiThemeBrandTextColors &
   _EuiThemeShadeColors &
   _EuiThemeSpecialColors &
-  _EuiThemeTextColors;
+  _EuiThemeTextColors &
+  _EuiThemeBackgroundColors &
+  _EuiThemeTransparentBackgroundColors &
+  _EuiThemeBorderColors;
 
 export type _EuiThemeColors = StrictColorModeSwitch<_EuiThemeColorsMode> &
   _EuiThemeConstantColors;

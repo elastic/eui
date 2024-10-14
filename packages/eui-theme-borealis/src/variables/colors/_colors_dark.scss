@@ -31,8 +31,18 @@ $euiColorDarkestShade: $euiColorShade10 !default;
 $euiColorFullShade: $euiColorPlainLight !default;
 
 // Backgrounds
-$euiPageBackgroundColor: $euiColorMutedBlack !default;
+$euiPageBackgroundColor: $euiColorMutedBlack !default;  // deprecated
 $euiColorHighlight: $euiColorWarning100 !default;
+$euiBackgroundPrimary: $euiColorPrimary130 !default;
+$euiBackgroundAccent: $euiColorAccent130 !default;
+$euiBackgroundAccentSecondary: $euiColorAccentSecondary130 !default;
+$euiBackgroundSuccess: $euiColorSuccess130 !default;
+$euiBackgroundWarning: $euiColorWarning130 !default;
+$euiBackgroundDanger: $euiColorDanger130 !default;
+$euiBackgroundSubdued: $euiColorPlainDark !default;
+$euiBackgroundDisabled: $euiColorShade70 !default;
+$euiBackgroundPlain: $euiColorShade140 !default;
+$euiBackgroundPage: $euiColorPlainDark !default;
 
 // Texts (legacy)
 $euiTextColor: $euiColorShade20 !default;

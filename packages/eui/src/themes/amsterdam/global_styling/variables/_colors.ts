@@ -14,9 +14,17 @@ import {
   _EuiThemeSpecialColors,
   _EuiThemeTextColors,
   _EuiThemeColorsMode,
+  _EuiThemeBackgroundColors,
+  _EuiThemeBorderColors,
+  _EuiThemeTransparentBackgroundColors,
 } from '@elastic/eui-theme-common';
 
-import { shade, tint } from '../../../../services/color';
+import {
+  darken,
+  shade,
+  tint,
+  transparentize,
+} from '../../../../services/color';
 import { computed } from '../../../../services/theme/utils';
 import {
   makeHighContrastColor,
@@ -89,6 +97,100 @@ export const text_colors: _EuiThemeTextColors = {
   textInverse: computed(([ghost]) => ghost, ['colors.ghost']),
 };
 
+export const background_colors: _EuiThemeBackgroundColors = {
+  backgroundPrimary: computed(
+    ([primary]) => tint(primary, 0.9),
+    ['colors.primary']
+  ),
+  backgroundAccent: computed(
+    ([accent]) => tint(accent, 0.9),
+    ['colors.accent']
+  ),
+  backgroundAccentSecondary: computed(
+    ([accent]) => tint(accent, 0.9),
+    ['colors.accent']
+  ),
+  backgroundSuccess: computed(
+    ([success]) => tint(success, 0.9),
+    ['colors.success']
+  ),
+  backgroundWarning: computed(
+    ([warning]) => tint(warning, 0.9),
+    ['colors.warning']
+  ),
+  backgroundDanger: computed(
+    ([danger]) => tint(danger, 0.9),
+    ['colors.danger']
+  ),
+  backgroundSubdued: computed(([body]) => body, ['colors.body']),
+  backgroundDisabled: computed(([disabled]) => disabled, ['colors.disabled']),
+  backgroundPlain: computed(
+    ([emptyShade]) => emptyShade,
+    ['colors.emptyShade']
+  ),
+  backgroundPage: computed(([body]) => body, ['colors.body']),
+};
+
+export const transparent_background_colors: _EuiThemeTransparentBackgroundColors =
+  {
+    backgroundTransparent: 'transparent',
+    backgroundTransparentPrimary: computed(
+      ([primary]) => transparentize(primary, 0.1),
+      ['colors.primary']
+    ),
+    backgroundTransparentAccent: computed(
+      ([accent]) => transparentize(accent, 0.1),
+      ['colors.accent']
+    ),
+    backgroundTransparentSuccess: computed(
+      ([success]) => transparentize(success, 0.1),
+      ['colors.success']
+    ),
+    backgroundTransparentWarning: computed(
+      ([warning]) => transparentize(warning, 0.1),
+      ['colors.warning']
+    ),
+    backgroundTransparentDanger: computed(
+      ([danger]) => transparentize(danger, 0.1),
+      ['colors.danger']
+    ),
+    backgroundTransparentSubdued: computed(
+      ([lightShade]) => transparentize(lightShade, 0.2),
+      ['colors.lightShade']
+    ),
+    backgroundTransparentPlain: computed(
+      ([ghost]) => transparentize(ghost, 0.2),
+      ['colors.ghost']
+    ),
+  };
+
+export const border_colors: _EuiThemeBorderColors = {
+  borderPrimary: computed(
+    ([primary]) => tint(primary, 0.6),
+    ['colors.primary']
+  ),
+  borderAccent: computed(([accent]) => tint(accent, 0.6), ['colors.accent']),
+  borderAccentSecondary: computed(
+    ([accent]) => tint(accent, 0.6),
+    ['colors.accent']
+  ),
+  borderSuccess: computed(
+    ([success]) => tint(success, 0.6),
+    ['colors.success']
+  ),
+  borderWarning: computed(
+    ([warning]) => tint(warning, 0.4),
+    ['colors.warning']
+  ),
+  borderDanger: computed(([danger]) => tint(danger, 0.6), ['colors.danger']),
+  borderSubdued: computed(([color]) => color, ['border.color']),
+  borderDisabled: computed(
+    ([lightShade]) => transparentize(darken(lightShade, 4), 0.1),
+    ['colors.lightShade']
+  ),
+  borderPlain: computed(([color]) => color, ['border.color']),
+};
+
 export const light_colors: _EuiThemeColorsMode = {
   ...brand_colors,
   ...shade_colors,
@@ -96,6 +198,9 @@ export const light_colors: _EuiThemeColorsMode = {
   // Need to come after special colors so they can react to `body`
   ...brand_text_colors,
   ...text_colors,
+  ...background_colors,
+  ...transparent_background_colors,
+  ...border_colors,
 };
 
 /*
@@ -110,6 +215,76 @@ export const dark_shades: _EuiThemeShadeColors = {
   darkShade: '#98A2B3',
   darkestShade: '#D4DAE5',
   fullShade: '#FFF',
+};
+
+export const dark_background_colors: _EuiThemeBackgroundColors = {
+  backgroundPrimary: computed(
+    ([primary]) => shade(primary, 0.8),
+    ['colors.primary']
+  ),
+  backgroundAccent: computed(
+    ([accent]) => shade(accent, 0.8),
+    ['colors.accent']
+  ),
+  backgroundAccentSecondary: computed(
+    ([accent]) => shade(accent, 0.8),
+    ['colors.accent']
+  ),
+  backgroundSuccess: computed(
+    ([success]) => shade(success, 0.8),
+    ['colors.success']
+  ),
+  backgroundWarning: computed(
+    ([warning]) => shade(warning, 0.8),
+    ['colors.warning']
+  ),
+  backgroundDanger: computed(
+    ([danger]) => shade(danger, 0.8),
+    ['colors.danger']
+  ),
+  backgroundSubdued: computed(([body]) => shade(body, 0.9), ['colors.body']),
+  backgroundDisabled: computed(([disabled]) => disabled, ['colors.disabled']),
+  backgroundPlain: computed(
+    ([emptyShade]) => emptyShade,
+    ['colors.emptyShade']
+  ),
+  backgroundPage: computed(([body]) => body, ['colors.body']),
+};
+
+export const dark_transparent_background_colors: _EuiThemeTransparentBackgroundColors =
+  {
+    ...transparent_background_colors,
+    backgroundTransparentSubdued: computed(
+      ([lightShade]) => transparentize(lightShade, 0.4),
+      ['colors.lightShade']
+    ),
+  };
+
+export const dark_border_colors: _EuiThemeBorderColors = {
+  borderPrimary: computed(
+    ([primary]) => shade(primary, 0.6),
+    ['colors.primary']
+  ),
+  borderAccent: computed(([accent]) => shade(accent, 0.6), ['colors.accent']),
+  borderAccentSecondary: computed(
+    ([accent]) => shade(accent, 0.6),
+    ['colors.accent']
+  ),
+  borderSuccess: computed(
+    ([success]) => shade(success, 0.6),
+    ['colors.success']
+  ),
+  borderWarning: computed(
+    ([warning]) => shade(warning, 0.4),
+    ['colors.warning']
+  ),
+  borderDanger: computed(([danger]) => shade(danger, 0.6), ['colors.danger']),
+  borderSubdued: computed(([color]) => color, ['border.color']),
+  borderDisabled: computed(
+    ([ghost]) => transparentize(ghost, 0.1),
+    ['colors.ghost']
+  ),
+  borderPlain: computed(([color]) => color, ['border.color']),
 };
 
 export const dark_colors_ams: _EuiThemeColorsMode = {
@@ -148,6 +323,10 @@ export const dark_colors_ams: _EuiThemeColorsMode = {
   textSubdued: computed(makeHighContrastColor('colors.mediumShade')),
   textDisabled: computed(makeDisabledContrastColor('colors.disabled')),
   textInverse: computed(([ink]) => ink, ['colors.ink']),
+
+  ...dark_background_colors,
+  ...dark_transparent_background_colors,
+  ...dark_border_colors,
 };
 
 /*
