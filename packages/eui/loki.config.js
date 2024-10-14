@@ -3,7 +3,7 @@ module.exports = {
   // Please keep in sync with .storybook/loki.ts
   chromeSelector: '#story-wrapper > *',
   chromeRetries: 3,
-  chromeDockerImage: 'yukinying/chrome-headless-browser-stable:latest',
+  chromeDockerImage: 'yukinying/chrome-headless-browser-stable:118.0.5993.117', // Loki does not work with latest Chrome images and must be pinned
   chromeFlags: '--headless --disable-gpu --hide-scrollbars --force-prefers-reduced-motion',
   configurations: {
     'chrome.desktop': {
