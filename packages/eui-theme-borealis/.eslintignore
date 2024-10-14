@@ -1,0 +1,9 @@
+dist
+node_modules
+lib
+types
+**/*.d.ts
+package.json
+scripts
+.eslintrc.js
+babel.config.js

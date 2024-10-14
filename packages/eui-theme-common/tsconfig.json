@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "compilerOptions": {
+    "rootDir": "src",
+    "outDir": "lib/esm",
+    "target": "ES2020",
+    "module": "ESNext",
+    "lib": [
+      "ESNext",
+      "DOM"
+    ],
+    "moduleResolution": "Node",
+    "declaration": true,
+    "sourceMap": true,
+    "noEmitHelpers": true,
+    "incremental": true,
+    "esModuleInterop": true,
+    "strict": true,
+    "skipLibCheck": true,
+    "tsBuildInfoFile": "lib/esm/.tsbuildinfo"
+  },
+  "include": [
+    "src",
+  ],
+  "exclude": [
+    "node_modules"
+  ],
+}
