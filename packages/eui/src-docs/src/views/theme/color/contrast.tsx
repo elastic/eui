@@ -25,17 +25,17 @@ import { brandKeys, shadeKeys } from './_color_js';
 import { ContrastSlider } from './_contrast_slider';
 import { ratingAA } from './_contrast_utilities';
 import { _EuiThemeColorsMode } from '../../../../../src/global_styling/variables/colors';
-import {
-  BACKGROUND_COLORS,
-  _EuiBackgroundColor,
-  euiBackgroundColor,
-} from '../../../../../src/global_styling';
+import { BACKGROUND_COLORS } from '../../../../../src/global_styling';
 import {
   BUTTON_COLORS,
   euiButtonColor,
   _EuiButtonColor,
 } from '../../../../../src/themes/amsterdam/global_styling/mixins/button';
 import { GuideSection } from '../../../components/guide_section/guide_section';
+import {
+  _EuiThemeBackgroundColors,
+  getTokenName,
+} from '@elastic/eui-theme-common';
 
 // This array is used inside routes.js to create the sidenav sub-sections
 export const contrastSections = [
@@ -66,9 +66,7 @@ export default () => {
 
   const [backgroundColors, setBackgroundColors] =
     useState<any>(background_colors);
-  const [backgroundFunction, setBackgroundFunction] = useState<any>(
-    'useEuiBackgroundColor'
-  );
+  const [backgroundFunction, setBackgroundFunction] = useState<any>(undefined);
   const [backgroundSelected, setBackgroundSelected] = useState(
     backgroundButtons[0].id
   );
@@ -78,12 +76,7 @@ export default () => {
       case 'container':
         setBackgroundSelected(id);
         setBackgroundColors(background_colors);
-        setBackgroundFunction('useEuiBackgroundColor(color)');
-        break;
-      case 'hover':
-        setBackgroundSelected(id);
-        setBackgroundColors(background_colors);
-        setBackgroundFunction("useEuiBackgroundColor(color, 'transparent')");
+        setBackgroundFunction(undefined);
         break;
       case 'button':
         setBackgroundSelected(id);
@@ -269,8 +262,13 @@ export default () => {
                   description={
                     <p>
                       These background colors are pre-defined shades of the
-                      brand colors. They are recalled by using the hook{' '}
-                      <EuiCode>{backgroundFunction}</EuiCode>.
+                      brand colors.{' '}
+                      {backgroundFunction && (
+                        <>
+                          They are recalled by using the hook{' '}
+                          <EuiCode>{backgroundFunction}</EuiCode>
+                        </>
+                      )}
                     </p>
                   }
                 >
@@ -289,6 +287,11 @@ export default () => {
               <EuiSpacer />
 
               {backgroundColors.map((color: string) => {
+                const backgroundToken = getTokenName(
+                  'background',
+                  color
+                ) as keyof _EuiThemeBackgroundColors;
+
                 switch (backgroundSelected) {
                   case 'container':
                     return (
@@ -296,34 +299,10 @@ export default () => {
                         <ColorSectionJS
                           key={color}
                           color={color as keyof _EuiThemeColorsMode}
-                          // Can't use hooks in a conditional switch, so use the non-hook version
-                          colorValue={euiBackgroundColor(
-                            euiTheme,
-                            color as _EuiBackgroundColor
-                          )}
-                          hookName="useEuiBackgroundColor"
+                          colorValue={euiTheme.euiTheme.colors[backgroundToken]}
                           minimumContrast={contrastValue}
                           showTextVariants={showTextVariants}
-                        />
-                        <EuiSpacer />
-                      </React.Fragment>
-                    );
-
-                  case 'hover':
-                    return (
-                      <React.Fragment key={color}>
-                        <ColorSectionJS
-                          key={color}
-                          color={color as keyof _EuiThemeColorsMode}
-                          // Can't use hooks in a conditional switch
-                          colorValue={euiBackgroundColor(
-                            euiTheme,
-                            color as _EuiBackgroundColor,
-                            { method: 'transparent' }
-                          )}
-                          hookName="useEuiBackgroundColor"
-                          minimumContrast={contrastValue}
-                          showTextVariants={showTextVariants}
+                          tokenName={`euiTheme.colors.${backgroundToken}`}
                         />
                         <EuiSpacer />
                       </React.Fragment>
