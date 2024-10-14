@@ -37,6 +37,7 @@ export const euiHeaderStyles = (euiThemeContext: UseEuiTheme) => {
       justify-content: space-between;
       ${logicalCSS('height', height)}
       ${logicalCSS('padding-horizontal', padding)}
+      ${logicalCSS('border-bottom', euiTheme.border.thin)}
       ${euiShadowSmall(euiThemeContext)}
     `,
     // Position
@@ -54,7 +55,6 @@ export const euiHeaderStyles = (euiThemeContext: UseEuiTheme) => {
     // Theme
     default: css`
       background-color: ${euiTheme.colors.emptyShade};
-      ${logicalCSS('border-bottom', euiTheme.border.thin)}
     `,
     dark: css(euiHeaderDarkStyles(euiThemeContext)),
   };
