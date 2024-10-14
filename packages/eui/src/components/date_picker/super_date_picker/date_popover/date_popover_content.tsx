@@ -7,7 +7,7 @@
  */
 
 import React, { FunctionComponent } from 'react';
-import { LocaleSpecifier } from 'moment';
+import { LocaleSpecifier, Moment } from 'moment';
 
 import { useEuiMemoizedStyles } from '../../../../services';
 import { useEuiPaddingCSS } from '../../../../global_styling';
@@ -37,6 +37,8 @@ export interface EuiDatePopoverContentProps {
   locale?: LocaleSpecifier;
   position: 'start' | 'end';
   utcOffset?: number;
+  minDate?: Moment;
+  maxDate?: Moment;
   timeOptions: TimeOptions;
 }
 
@@ -53,6 +55,8 @@ export const EuiDatePopoverContent: FunctionComponent<
   position,
   utcOffset,
   timeOptions,
+  minDate,
+  maxDate,
 }) => {
   const styles = useEuiMemoizedStyles(euiDatePopoverContentStyles);
 
@@ -101,6 +105,8 @@ export const EuiDatePopoverContent: FunctionComponent<
           roundUp={roundUp}
           labelPrefix={labelPrefix}
           utcOffset={utcOffset}
+          minDate={minDate}
+          maxDate={maxDate}
         />
       ),
       'data-test-subj': 'superDatePickerAbsoluteTab',
