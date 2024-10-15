@@ -21,7 +21,7 @@ import { EuiPopover, EuiPopoverFooter } from '../../popover';
 import { EuiButtonIcon, EuiButtonGroup, EuiButtonEmpty } from '../../button';
 import { EuiFormRow, EuiRange, EuiRangeProps } from '../../form';
 import { euiFormMaxWidth } from '../../form/form.styles';
-import { EuiFlexGroup, EuiFlexItem } from '../../flex';
+import { EuiFlexGroup } from '../../flex';
 import { EuiToolTip } from '../../tool_tip';
 
 import {
@@ -286,11 +286,6 @@ export const useDataGridDisplaySelector = (
 ): [ReactNode, EuiDataGridStyle, EuiDataGridRowHeightsOptions] => {
   const [isOpen, setIsOpen] = useState(false);
 
-  const allowResetButton = getNestedObjectOptions(
-    showDisplaySelector,
-    'allowResetButton'
-  );
-
   const additionalDisplaySettings =
     typeof showDisplaySelector === 'boolean'
       ? null
@@ -315,47 +310,22 @@ export const useDataGridDisplaySelector = (
     };
   }, [initialRowHeightsOptions, userRowHeightsOptions]);
 
-  // Show a reset button whenever users manually change settings, and
-  // invoke onChange callbacks (removing the callback value itself, so that only configuration values are returned)
-  const [showResetButton, setShowResetButton] = useState(false);
-
+  // Invoke onChange callbacks (removing the callback value itself, so that only configuration values are returned)
   useUpdateEffect(() => {
-    if (allowResetButton) {
-      const hasUserChanges = Object.keys(userGridStyles).length > 0;
-      if (hasUserChanges) setShowResetButton(true);
-    }
-
     const { onChange, ...currentGridStyles } = gridStyles;
     initialStyles?.onChange?.(currentGridStyles);
-  }, [userGridStyles, allowResetButton]);
+  }, [userGridStyles]);
 
   useUpdateEffect(() => {
-    if (allowResetButton) {
-      const hasUserChanges = Object.keys(userRowHeightsOptions).length > 0;
-      if (hasUserChanges) setShowResetButton(true);
-    }
-
     const { onChange, ...currentRowHeightsOptions } = rowHeightsOptions;
     initialRowHeightsOptions?.onChange?.(currentRowHeightsOptions);
-  }, [userRowHeightsOptions, allowResetButton]);
+  }, [userRowHeightsOptions]);
 
   // Allow resetting to initial developer-specified configurations
   const resetToInitialState = useCallback(() => {
     setUserGridStyles({});
     setUserRowHeightsOptions({});
-    setShowResetButton(false);
   }, []);
-
-  const buttonLabel = useEuiI18n(
-    'euiDisplaySelector.buttonText',
-    'Display options'
-  );
-  const resetButtonLabel = useEuiI18n(
-    'euiDisplaySelector.resetButtonText',
-    'Reset to default'
-  );
-
-  const euiTheme = useEuiTheme();
 
   const densityControl = useMemo(() => {
     const show = getNestedObjectOptions(showDisplaySelector, 'allowDensity');
@@ -373,6 +343,33 @@ export const useDataGridDisplaySelector = (
       />
     ) : null;
   }, [showDisplaySelector, rowHeightsOptions, setUserRowHeightsOptions]);
+
+  const resetButton = useMemo(() => {
+    const show = getNestedObjectOptions(
+      showDisplaySelector,
+      'allowResetButton'
+    );
+    if (!show) return null;
+
+    const hasUserChanges =
+      Object.keys(userGridStyles).length > 0 ||
+      Object.keys(userRowHeightsOptions).length > 0;
+
+    return hasUserChanges ? (
+      <ResetButton onClick={resetToInitialState} />
+    ) : null;
+  }, [
+    showDisplaySelector,
+    resetToInitialState,
+    userGridStyles,
+    userRowHeightsOptions,
+  ]);
+
+  const buttonLabel = useEuiI18n(
+    'euiDisplaySelector.buttonText',
+    'Display options'
+  );
+  const euiTheme = useEuiTheme();
 
   const displaySelector = useMemo(() => {
     const paddingSize = 's';
@@ -407,24 +404,7 @@ export const useDataGridDisplaySelector = (
         {densityControl}
         {rowHeightControl}
         {additionalDisplaySettings}
-        {showResetButton && (
-          <EuiPopoverFooter>
-            <EuiFlexGroup justifyContent="flexEnd" responsive={false}>
-              <EuiFlexItem grow={false}>
-                <div>
-                  <EuiButtonEmpty
-                    flush="both"
-                    size="xs"
-                    onClick={resetToInitialState}
-                    data-test-subj="resetDisplaySelector"
-                  >
-                    {resetButtonLabel}
-                  </EuiButtonEmpty>
-                </div>
-              </EuiFlexItem>
-            </EuiFlexGroup>
-          </EuiPopoverFooter>
-        )}
+        {resetButton}
       </EuiPopover>
     ) : null;
   }, [
@@ -432,12 +412,32 @@ export const useDataGridDisplaySelector = (
     densityControl,
     rowHeightControl,
     additionalDisplaySettings,
+    resetButton,
     buttonLabel,
     isOpen,
-    resetButtonLabel,
-    showResetButton,
-    resetToInitialState,
   ]);
 
   return [displaySelector, gridStyles, rowHeightsOptions];
+};
+
+const ResetButton = ({ onClick }: { onClick: () => void }) => {
+  const resetButtonLabel = useEuiI18n(
+    'euiDisplaySelector.resetButtonText',
+    'Reset to default'
+  );
+
+  return (
+    <EuiPopoverFooter>
+      <EuiFlexGroup justifyContent="flexEnd" responsive={false}>
+        <EuiButtonEmpty
+          flush="both"
+          size="xs"
+          onClick={onClick}
+          data-test-subj="resetDisplaySelector"
+        >
+          {resetButtonLabel}
+        </EuiButtonEmpty>
+      </EuiFlexGroup>
+    </EuiPopoverFooter>
+  );
 };
