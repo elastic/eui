@@ -1067,14 +1067,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 187,
+        "line": 192,
         "column": 10,
-        "index": 6439
+        "index": 6786
       },
       "end": {
-        "line": 191,
+        "line": 196,
         "column": 12,
-        "index": 6610
+        "index": 6957
       }
     },
     "filepath": "src/components/datagrid/body/cell/focus_utils.tsx"
@@ -1085,17 +1085,71 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 194,
+        "line": 199,
         "column": 10,
-        "index": 6661
+        "index": 7008
       },
       "end": {
-        "line": 198,
+        "line": 203,
         "column": 12,
-        "index": 6871
+        "index": 7218
       }
     },
     "filepath": "src/components/datagrid/body/cell/focus_utils.tsx"
+  },
+  {
+    "token": "euiDataGridHeaderCell.actionsButtonAriaLabel",
+    "defString": "{title}. Click to view column header actions.",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 120,
+        "column": 35,
+        "index": 3558
+      },
+      "end": {
+        "line": 124,
+        "column": 5,
+        "index": 3700
+      }
+    },
+    "filepath": "src/components/datagrid/body/header/column_actions.tsx"
+  },
+  {
+    "token": "euiDataGridHeaderCell.actionsEnterKeyInstructions",
+    "defString": "Press the Enter key to view this column's actions",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 125,
+        "column": 40,
+        "index": 3742
+      },
+      "end": {
+        "line": 128,
+        "column": 5,
+        "index": 3876
+      }
+    },
+    "filepath": "src/components/datagrid/body/header/column_actions.tsx"
+  },
+  {
+    "token": "euiDataGridHeaderCell.actionsPopoverScreenReaderText",
+    "defString": "To navigate through the list of column actions, press the Tab or Up and Down arrow keys.",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 294,
+        "column": 6,
+        "index": 8661
+      },
+      "end": {
+        "line": 297,
+        "column": 8,
+        "index": 8854
+      }
+    },
+    "filepath": "src/components/datagrid/body/header/column_actions.tsx"
   },
   {
     "token": "euiColumnActions.hideColumn",
@@ -1103,14 +1157,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 122,
+        "line": 405,
         "column": 6,
-        "index": 3246
+        "index": 11442
       },
       "end": {
-        "line": 122,
+        "line": 405,
         "column": 75,
-        "index": 3315
+        "index": 11511
       }
     },
     "filepath": "src/components/datagrid/body/header/column_actions.tsx"
@@ -1121,14 +1175,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 178,
+        "line": 470,
         "column": 13,
-        "index": 4719
+        "index": 13216
       },
       "end": {
-        "line": 178,
+        "line": 470,
         "column": 78,
-        "index": 4784
+        "index": 13281
       }
     },
     "filepath": "src/components/datagrid/body/header/column_actions.tsx"
@@ -1139,14 +1193,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 199,
+        "line": 492,
         "column": 8,
-        "index": 5340
+        "index": 13869
       },
       "end": {
-        "line": 199,
+        "line": 492,
         "column": 75,
-        "index": 5407
+        "index": 13936
       }
     },
     "filepath": "src/components/datagrid/body/header/column_actions.tsx"
@@ -1157,14 +1211,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 283,
+        "line": 576,
         "column": 8,
-        "index": 7566
+        "index": 16095
       },
       "end": {
-        "line": 287,
+        "line": 580,
         "column": 10,
-        "index": 7710
+        "index": 16239
       }
     },
     "filepath": "src/components/datagrid/body/header/column_actions.tsx"
@@ -1175,14 +1229,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 289,
+        "line": 582,
         "column": 8,
-        "index": 7731
+        "index": 16260
       },
       "end": {
-        "line": 293,
+        "line": 586,
         "column": 10,
-        "index": 7871
+        "index": 16400
       }
     },
     "filepath": "src/components/datagrid/body/header/column_actions.tsx"
@@ -1193,14 +1247,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 319,
+        "line": 612,
         "column": 8,
-        "index": 8519
+        "index": 17048
       },
       "end": {
-        "line": 323,
+        "line": 616,
         "column": 10,
-        "index": 8663
+        "index": 17192
       }
     },
     "filepath": "src/components/datagrid/body/header/column_actions.tsx"
@@ -1211,53 +1265,17 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 325,
+        "line": 618,
         "column": 8,
-        "index": 8684
+        "index": 17213
       },
       "end": {
-        "line": 329,
+        "line": 622,
         "column": 10,
-        "index": 8824
+        "index": 17353
       }
     },
     "filepath": "src/components/datagrid/body/header/column_actions.tsx"
-  },
-  {
-    "token": "euiDataGridHeaderCell.actionsButtonAriaLabel",
-    "defString": "{title}. Click to view column header actions.",
-    "highlighting": "string",
-    "loc": {
-      "start": {
-        "line": 113,
-        "column": 37,
-        "index": 3516
-      },
-      "end": {
-        "line": 117,
-        "column": 7,
-        "index": 3666
-      }
-    },
-    "filepath": "src/components/datagrid/body/header/data_grid_header_cell.tsx"
-  },
-  {
-    "token": "euiDataGridHeaderCell.actionsEnterKeyInstructions",
-    "defString": "Press the Enter key to view this column's actions",
-    "highlighting": "string",
-    "loc": {
-      "start": {
-        "line": 118,
-        "column": 42,
-        "index": 3710
-      },
-      "end": {
-        "line": 121,
-        "column": 7,
-        "index": 3850
-      }
-    },
-    "filepath": "src/components/datagrid/body/header/data_grid_header_cell.tsx"
   },
   {
     "token": "euiDataGridHeaderCell.sortedByAscendingSingle",
@@ -1265,17 +1283,17 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 304,
+        "line": 82,
         "column": 16,
-        "index": 9963
+        "index": 2747
       },
       "end": {
-        "line": 308,
+        "line": 86,
         "column": 18,
-        "index": 10137
+        "index": 2921
       }
     },
-    "filepath": "src/components/datagrid/body/header/data_grid_header_cell.tsx"
+    "filepath": "src/components/datagrid/body/header/column_sorting.tsx"
   },
   {
     "token": "euiDataGridHeaderCell.sortedByDescendingSingle",
@@ -1283,17 +1301,17 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 312,
+        "line": 90,
         "column": 16,
-        "index": 10215
+        "index": 2999
       },
       "end": {
-        "line": 316,
+        "line": 94,
         "column": 18,
-        "index": 10391
+        "index": 3175
       }
     },
-    "filepath": "src/components/datagrid/body/header/data_grid_header_cell.tsx"
+    "filepath": "src/components/datagrid/body/header/column_sorting.tsx"
   },
   {
     "token": "euiDataGridHeaderCell.sortedByAscendingFirst",
@@ -1301,17 +1319,17 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 322,
+        "line": 100,
         "column": 16,
-        "index": 10537
+        "index": 3321
       },
       "end": {
-        "line": 327,
+        "line": 105,
         "column": 18,
-        "index": 10765
+        "index": 3549
       }
     },
-    "filepath": "src/components/datagrid/body/header/data_grid_header_cell.tsx"
+    "filepath": "src/components/datagrid/body/header/column_sorting.tsx"
   },
   {
     "token": "euiDataGridHeaderCell.sortedByDescendingFirst",
@@ -1319,17 +1337,17 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 331,
+        "line": 109,
         "column": 16,
-        "index": 10843
+        "index": 3627
       },
       "end": {
-        "line": 336,
+        "line": 114,
         "column": 18,
-        "index": 11073
+        "index": 3857
       }
     },
-    "filepath": "src/components/datagrid/body/header/data_grid_header_cell.tsx"
+    "filepath": "src/components/datagrid/body/header/column_sorting.tsx"
   },
   {
     "token": "euiDataGridHeaderCell.sortedByAscendingMultiple",
@@ -1337,17 +1355,17 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 342,
+        "line": 120,
         "column": 16,
-        "index": 11202
+        "index": 3986
       },
       "end": {
-        "line": 347,
+        "line": 125,
         "column": 18,
-        "index": 11440
+        "index": 4224
       }
     },
-    "filepath": "src/components/datagrid/body/header/data_grid_header_cell.tsx"
+    "filepath": "src/components/datagrid/body/header/column_sorting.tsx"
   },
   {
     "token": "euiDataGridHeaderCell.sortedByDescendingMultiple",
@@ -1355,35 +1373,17 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 351,
+        "line": 129,
         "column": 16,
-        "index": 11518
+        "index": 4302
       },
       "end": {
-        "line": 356,
+        "line": 134,
         "column": 18,
-        "index": 11758
+        "index": 4542
       }
     },
-    "filepath": "src/components/datagrid/body/header/data_grid_header_cell.tsx"
-  },
-  {
-    "token": "euiDataGridHeaderCell.actionsPopoverScreenReaderText",
-    "defString": "To navigate through the list of column actions, press the Tab or Up and Down arrow keys.",
-    "highlighting": "string",
-    "loc": {
-      "start": {
-        "line": 421,
-        "column": 6,
-        "index": 13604
-      },
-      "end": {
-        "line": 424,
-        "column": 8,
-        "index": 13797
-      }
-    },
-    "filepath": "src/components/datagrid/body/header/data_grid_header_cell.tsx"
+    "filepath": "src/components/datagrid/body/header/column_sorting.tsx"
   },
   {
     "token": "euiColumnSelector.dragHandleAriaLabel",
@@ -2471,14 +2471,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 549,
+        "line": 552,
         "column": 18,
-        "index": 17131
+        "index": 17264
       },
       "end": {
-        "line": 552,
+        "line": 555,
         "column": 20,
-        "index": 17284
+        "index": 17417
       }
     },
     "filepath": "src/components/datagrid/data_grid.tsx"
@@ -2867,14 +2867,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 79,
+        "line": 83,
         "column": 28,
-        "index": 2489
+        "index": 2551
       },
       "end": {
-        "line": 82,
+        "line": 86,
         "column": 3,
-        "index": 2565
+        "index": 2627
       }
     },
     "filepath": "src/components/date_picker/super_date_picker/date_popover/absolute_tab.tsx"
@@ -2885,14 +2885,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 83,
+        "line": 87,
         "column": 26,
-        "index": 2593
+        "index": 2655
       },
       "end": {
-        "line": 87,
+        "line": 91,
         "column": 3,
-        "index": 2775
+        "index": 2837
       }
     },
     "filepath": "src/components/date_picker/super_date_picker/date_popover/absolute_tab.tsx"
@@ -2903,14 +2903,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 100,
+        "line": 104,
         "column": 23,
-        "index": 2832
+        "index": 2906
       },
       "end": {
-        "line": 104,
+        "line": 108,
         "column": 3,
-        "index": 2931
+        "index": 3005
       }
     },
     "filepath": "src/components/date_picker/super_date_picker/date_popover/date_popover_button.tsx"
@@ -2921,14 +2921,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 105,
+        "line": 109,
         "column": 24,
-        "index": 2957
+        "index": 3031
       },
       "end": {
-        "line": 109,
+        "line": 113,
         "column": 3,
-        "index": 3058
+        "index": 3132
       }
     },
     "filepath": "src/components/date_picker/super_date_picker/date_popover/date_popover_button.tsx"
@@ -2939,14 +2939,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 70,
+        "line": 74,
         "column": 25,
-        "index": 2070
+        "index": 2140
       },
       "end": {
-        "line": 73,
+        "line": 77,
         "column": 3,
-        "index": 2146
+        "index": 2216
       }
     },
     "filepath": "src/components/date_picker/super_date_picker/date_popover/date_popover_content.tsx"
@@ -2957,14 +2957,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 74,
+        "line": 78,
         "column": 23,
-        "index": 2171
+        "index": 2241
       },
       "end": {
-        "line": 77,
+        "line": 81,
         "column": 3,
-        "index": 2243
+        "index": 2313
       }
     },
     "filepath": "src/components/date_picker/super_date_picker/date_popover/date_popover_content.tsx"
@@ -2975,14 +2975,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 80,
+        "line": 84,
         "column": 24,
-        "index": 2346
+        "index": 2416
       },
       "end": {
-        "line": 83,
+        "line": 87,
         "column": 3,
-        "index": 2422
+        "index": 2492
       }
     },
     "filepath": "src/components/date_picker/super_date_picker/date_popover/date_popover_content.tsx"
@@ -2993,14 +2993,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 84,
+        "line": 88,
         "column": 24,
-        "index": 2448
+        "index": 2518
       },
       "end": {
-        "line": 87,
+        "line": 91,
         "column": 3,
-        "index": 2524
+        "index": 2594
       }
     },
     "filepath": "src/components/date_picker/super_date_picker/date_popover/date_popover_content.tsx"
@@ -3011,14 +3011,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 88,
+        "line": 92,
         "column": 19,
-        "index": 2545
+        "index": 2615
       },
       "end": {
-        "line": 88,
+        "line": 92,
         "column": 73,
-        "index": 2599
+        "index": 2669
       }
     },
     "filepath": "src/components/date_picker/super_date_picker/date_popover/date_popover_content.tsx"
@@ -3029,14 +3029,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 134,
+        "line": 140,
         "column": 12,
-        "index": 3817
+        "index": 3943
       },
       "end": {
-        "line": 137,
+        "line": 143,
         "column": 14,
-        "index": 4026
+        "index": 4152
       }
     },
     "filepath": "src/components/date_picker/super_date_picker/date_popover/date_popover_content.tsx"
@@ -3047,14 +3047,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 149,
+        "line": 155,
         "column": 14,
-        "index": 4316
+        "index": 4442
       },
       "end": {
-        "line": 152,
+        "line": 158,
         "column": 16,
-        "index": 4462
+        "index": 4588
       }
     },
     "filepath": "src/components/date_picker/super_date_picker/date_popover/date_popover_content.tsx"
@@ -3065,14 +3065,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 154,
+        "line": 160,
         "column": 14,
-        "index": 4495
+        "index": 4621
       },
       "end": {
-        "line": 157,
+        "line": 163,
         "column": 16,
-        "index": 4637
+        "index": 4763
       }
     },
     "filepath": "src/components/date_picker/super_date_picker/date_popover/date_popover_content.tsx"
