@@ -22,6 +22,9 @@ export const euiHeaderLinksStyles = ({ euiTheme }: UseEuiTheme) => {
       align-items: center;
     `,
     gutterSizes: {
+      xxs: css`
+        gap: ${euiTheme.size.xs};
+      `,
       xs: css`
         gap: ${euiTheme.size.s};
       `,

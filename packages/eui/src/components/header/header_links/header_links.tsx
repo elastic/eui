@@ -31,7 +31,7 @@ import { EuiHideFor, EuiShowFor } from '../../responsive';
 
 import { euiHeaderLinksStyles } from './header_links.styles';
 
-export const GUTTER_SIZES = ['xs', 's', 'm', 'l'] as const;
+export const GUTTER_SIZES = ['xxs', 'xs', 's', 'm', 'l'] as const;
 type EuiHeaderLinksGutterSize = (typeof GUTTER_SIZES)[number];
 
 type EuiHeaderLinksPopoverButtonProps =

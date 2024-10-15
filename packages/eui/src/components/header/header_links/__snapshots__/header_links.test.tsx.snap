@@ -44,6 +44,17 @@ exports[`EuiHeaderLinks gutterSize xs is rendered 1`] = `
 </nav>
 `;
 
+exports[`EuiHeaderLinks gutterSize xxs is rendered 1`] = `
+<nav
+  aria-label="App menu"
+  class="euiHeaderLinks emotion-euiHeaderLinks"
+>
+  <div
+    class="euiHeaderLinks__list emotion-euiHeaderLinks__list-xxs-EuiHeaderLinks"
+  />
+</nav>
+`;
+
 exports[`EuiHeaderLinks is rendered 1`] = `
 <nav
   aria-label="aria-label"
