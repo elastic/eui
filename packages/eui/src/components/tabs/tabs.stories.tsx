@@ -66,3 +66,17 @@ export const Playground: Story = {
     ),
   },
 };
+
+export const LongTabContent: Story = {
+  tags: ['vrt-only'],
+  args: {
+    children: (
+      <>
+        <EuiTab>Very long tab content that should not wrap</EuiTab>
+        <EuiTab href="#" css={{ maxWidth: 200 }}>
+          Very very long tab content that should have ellipses
+        </EuiTab>
+      </>
+    ),
+  },
+};
