@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 import { css } from '@emotion/react';
 import { faker } from '@faker-js/faker';
 
@@ -8,12 +8,18 @@ import {
   EuiDataGridColumnSortingConfig,
   EuiDataGridToolbarProps,
   EuiDataGridToolbarControl,
+  EuiDataGridStyle,
+  EuiDataGridStyleBorders,
+  EuiDataGridDisplaySelectorCustomRender,
+  EuiSpacer,
+  EuiHorizontalRule,
   EuiFormRow,
-  EuiRange,
+  EuiButtonGroup,
   EuiFlexGroup,
   EuiFlexItem,
   euiScreenReaderOnly,
   RenderCellValue,
+  EuiSwitch,
 } from '../../../../../src';
 
 const raw_data: Array<{ [key: string]: string }> = [];
@@ -57,6 +63,7 @@ const renderCustomToolbar: EuiDataGridToolbarProps['renderCustomToolbar'] = ({
       justifyContent="spaceBetween"
       alignItems="center"
       css={mobileStyles}
+      className="euiDataGrid__controls"
     >
       <EuiFlexItem grow={false}>
         {hasRoomForGridControls && (
@@ -86,29 +93,6 @@ const renderCustomToolbar: EuiDataGridToolbarProps['renderCustomToolbar'] = ({
 const renderCellValue: RenderCellValue = ({ rowIndex, columnId }) =>
   raw_data[rowIndex][columnId];
 
-// Some additional custom settings to show in the Display popover
-const AdditionalDisplaySettings = () => {
-  const [exampleSettingValue, setExampleSettingValue] = useState<number>(10);
-
-  return (
-    <EuiFormRow label="Example additional setting" display="columnCompressed">
-      <EuiRange
-        compressed
-        fullWidth
-        showInput
-        min={1}
-        max={100}
-        step={1}
-        value={exampleSettingValue}
-        data-test-subj="exampleAdditionalSetting"
-        onChange={(event) => {
-          setExampleSettingValue(Number(event.currentTarget.value));
-        }}
-      />
-    </EuiFormRow>
-  );
-};
-
 export default () => {
   // Column visibility
   const [visibleColumns, setVisibleColumns] = useState(() =>
@@ -123,6 +107,51 @@ export default () => {
     setSortingColumns(sortingColumns);
   }, []);
 
+  // Custom display settings
+  const [borders, setGridBorders] = useState<EuiDataGridStyleBorders>('none');
+  const [rowStripes, setRowStripes] = useState(false);
+  const gridStyle: EuiDataGridStyle = useMemo(
+    () => ({
+      border: borders,
+      header: borders === 'none' ? 'underline' : 'shade',
+      stripes: rowStripes,
+    }),
+    [borders, rowStripes]
+  );
+  const customDisplayControls: EuiDataGridDisplaySelectorCustomRender =
+    useCallback(
+      ({ densityControl, rowHeightControl }) => {
+        return (
+          <>
+            <EuiSpacer size="xs" />
+            <EuiSwitch
+              label="Show row stripes"
+              checked={rowStripes}
+              onChange={() => setRowStripes(!rowStripes)}
+            />
+            <EuiHorizontalRule margin="s" />
+            {densityControl}
+            <EuiFormRow label="Border" display="columnCompressed">
+              <EuiButtonGroup
+                isFullWidth
+                buttonSize="compressed"
+                legend="Border"
+                options={[
+                  { id: 'all', label: 'All' },
+                  { id: 'horizontal', label: 'Horizontal only' },
+                  { id: 'none', label: 'None' },
+                ]}
+                idSelected={borders}
+                onChange={(id) => setGridBorders(id as EuiDataGridStyleBorders)}
+              />
+            </EuiFormRow>
+            {rowHeightControl}
+          </>
+        );
+      },
+      [borders, rowStripes]
+    );
+
   return (
     <EuiDataGrid
       aria-label="Data grid custom toolbar demo"
@@ -131,12 +160,12 @@ export default () => {
       sorting={{ columns: sortingColumns, onSort }}
       rowCount={raw_data.length}
       renderCellValue={renderCellValue}
-      gridStyle={{ border: 'none', header: 'underline' }}
+      gridStyle={gridStyle}
       renderCustomToolbar={renderCustomToolbar}
       toolbarVisibility={{
         showDisplaySelector: {
           allowResetButton: false,
-          additionalDisplaySettings: <AdditionalDisplaySettings />,
+          customRender: customDisplayControls,
         },
       }}
     />

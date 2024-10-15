@@ -17,6 +17,8 @@ import {
   EuiContextMenuItem,
   EuiContextMenuPanel,
   EuiPopover,
+  EuiFormRow,
+  EuiRange,
   EuiDataGridPaginationProps,
   RenderCellValue,
 } from '../../../../../src';
@@ -53,6 +55,29 @@ for (let i = 1; i < 20; i++) {
 
 const renderCellValue: RenderCellValue = ({ rowIndex, columnId }) =>
   data[rowIndex][columnId];
+
+// Some additional custom settings to show in the Display popover
+const AdditionalDisplaySettings = () => {
+  const [exampleSettingValue, setExampleSettingValue] = useState<number>(10);
+
+  return (
+    <EuiFormRow label="Example additional setting" display="columnCompressed">
+      <EuiRange
+        compressed
+        fullWidth
+        showInput
+        min={1}
+        max={100}
+        step={1}
+        value={exampleSettingValue}
+        data-test-subj="exampleAdditionalSetting"
+        onChange={(event) => {
+          setExampleSettingValue(Number(event.currentTarget.value));
+        }}
+      />
+    </EuiFormRow>
+  );
+};
 
 export default () => {
   const [pagination, setPagination] = useState({ pageIndex: 0 });
@@ -208,6 +233,10 @@ export default () => {
                 </EuiToolTip>
               </Fragment>
             ),
+          },
+          showDisplaySelector: {
+            allowResetButton: false,
+            additionalDisplaySettings: <AdditionalDisplaySettings />,
           },
         }}
       />
