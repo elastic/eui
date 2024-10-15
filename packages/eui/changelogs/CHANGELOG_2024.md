@@ -1,3 +1,13 @@
+## [`v97.1.0`](https://github.com/elastic/eui/releases/v97.1.0)
+
+- Added `columnVisibility.canDragAndDropColumns` on `EuiDataGrid` which enables reordering columns via draggable header cells ([#8015](https://github.com/elastic/eui/pull/8015))
+- Updated `EuiHeader`s in dark mode to have a visible border-bottom color ([#8070](https://github.com/elastic/eui/pull/8070))
+- Added props `minDate` and `maxDate` on `EuiSuperDatePicker` to support restricting date range selections ([#8071](https://github.com/elastic/eui/pull/8071))
+
+**Bug fixes**
+
+- Fixed `EuiTabs` incorrectly wrapping tabs for tabs that are links ([#8073](https://github.com/elastic/eui/pull/8073))
+
 ## [`v97.0.0`](https://github.com/elastic/eui/releases/v97.0.0)
 
 **Bug fixes**
