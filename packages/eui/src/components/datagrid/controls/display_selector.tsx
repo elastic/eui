@@ -291,6 +291,11 @@ export const useDataGridDisplaySelector = (
       ? null
       : showDisplaySelector?.additionalDisplaySettings ?? null;
 
+  const customRender =
+    typeof showDisplaySelector === 'boolean'
+      ? undefined
+      : showDisplaySelector?.customRender;
+
   // Track styles specified by the user at run time
   const [userGridStyles, setUserGridStyles] = useState({});
   const [userRowHeightsOptions, setUserRowHeightsOptions] = useState({});
@@ -401,10 +406,21 @@ export const useDataGridDisplaySelector = (
           </EuiToolTip>
         }
       >
-        {densityControl}
-        {rowHeightControl}
-        {additionalDisplaySettings}
-        {resetButton}
+        {customRender ? (
+          customRender({
+            densityControl,
+            rowHeightControl,
+            additionalDisplaySettings,
+            resetButton,
+          })
+        ) : (
+          <>
+            {densityControl}
+            {rowHeightControl}
+            {additionalDisplaySettings}
+            {resetButton}
+          </>
+        )}
       </EuiPopover>
     ) : null;
   }, [
@@ -413,6 +429,7 @@ export const useDataGridDisplaySelector = (
     rowHeightControl,
     additionalDisplaySettings,
     resetButton,
+    customRender,
     buttonLabel,
     isOpen,
   ]);

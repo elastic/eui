@@ -1,5 +1,196 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`useDataGridDisplaySelector displaySelector allows consumers to customize render order via a render prop 1`] = `
+<div
+  data-test-subj="customRender"
+>
+  <div>
+    Hello world
+  </div>
+  <div
+    class="euiFormRow euiFormRow--hasLabel emotion-euiFormRow-columnCompressed"
+    id="generated-id-row"
+  >
+    <div
+      class="euiFormRow__labelWrapper"
+    >
+      <label
+        class="euiFormLabel euiFormRow__label emotion-euiFormLabel"
+        for="generated-id"
+        id="generated-id-label"
+      >
+        Density
+      </label>
+    </div>
+    <div
+      class="euiFormRow__fieldWrapper"
+    >
+      <fieldset
+        class="euiButtonGroup emotion-euiButtonGroup-fullWidth"
+        data-test-subj="densityButtonGroup"
+        id="generated-id"
+      >
+        <legend
+          class="emotion-euiScreenReaderOnly"
+        >
+          Density
+        </legend>
+        <div
+          class="euiButtonGroup__buttons emotion-euiButtonGroup__buttons-fullWidth-compressed"
+        >
+          <button
+            aria-pressed="false"
+            class="euiButtonGroupButton emotion-euiButtonDisplay-s-defaultMinWidth-euiButtonGroupButton-compressed-empty-text"
+            data-test-subj="compact"
+            title="Compact"
+            type="button"
+          >
+            <span
+              class="emotion-euiButtonDisplayContent-euiButtonGroupButton__content-compressed"
+            >
+              <span
+                class="eui-textTruncate emotion-euiButtonGroupButton__text"
+                data-text="Compact"
+              >
+                Compact
+              </span>
+            </span>
+          </button>
+          <button
+            aria-pressed="false"
+            class="euiButtonGroupButton emotion-euiButtonDisplay-s-defaultMinWidth-euiButtonGroupButton-compressed-empty-text"
+            data-test-subj="normal"
+            title="Normal"
+            type="button"
+          >
+            <span
+              class="emotion-euiButtonDisplayContent-euiButtonGroupButton__content-compressed"
+            >
+              <span
+                class="eui-textTruncate emotion-euiButtonGroupButton__text"
+                data-text="Normal"
+              >
+                Normal
+              </span>
+            </span>
+          </button>
+          <button
+            aria-pressed="false"
+            class="euiButtonGroupButton emotion-euiButtonDisplay-s-defaultMinWidth-euiButtonGroupButton-compressed-empty-text"
+            data-test-subj="expanded"
+            title="Expanded"
+            type="button"
+          >
+            <span
+              class="emotion-euiButtonDisplayContent-euiButtonGroupButton__content-compressed"
+            >
+              <span
+                class="eui-textTruncate emotion-euiButtonGroupButton__text"
+                data-text="Expanded"
+              >
+                Expanded
+              </span>
+            </span>
+          </button>
+        </div>
+      </fieldset>
+    </div>
+  </div>
+  <div>
+    Mock custom control
+  </div>
+  <div
+    class="euiFormRow euiFormRow--hasLabel emotion-euiFormRow-columnCompressed"
+    id="generated-id-row"
+  >
+    <div
+      class="euiFormRow__labelWrapper"
+    >
+      <label
+        class="euiFormLabel euiFormRow__label emotion-euiFormLabel"
+        for="generated-id"
+        id="generated-id-label"
+      >
+        Row height
+      </label>
+    </div>
+    <div
+      class="euiFormRow__fieldWrapper"
+    >
+      <fieldset
+        class="euiButtonGroup emotion-euiButtonGroup-fullWidth"
+        data-test-subj="rowHeightButtonGroup"
+        id="generated-id"
+      >
+        <legend
+          class="emotion-euiScreenReaderOnly"
+        >
+          Row height
+        </legend>
+        <div
+          class="euiButtonGroup__buttons emotion-euiButtonGroup__buttons-fullWidth-compressed"
+        >
+          <button
+            aria-pressed="true"
+            class="euiButtonGroupButton euiButtonGroupButton-isSelected emotion-euiButtonDisplay-s-defaultMinWidth-euiButtonGroupButton-compressed-fill-text"
+            data-test-subj="undefined"
+            title="Single"
+            type="button"
+          >
+            <span
+              class="emotion-euiButtonDisplayContent-euiButtonGroupButton__content-compressed"
+            >
+              <span
+                class="eui-textTruncate emotion-euiButtonGroupButton__text"
+                data-text="Single"
+              >
+                Single
+              </span>
+            </span>
+          </button>
+          <button
+            aria-pressed="false"
+            class="euiButtonGroupButton emotion-euiButtonDisplay-s-defaultMinWidth-euiButtonGroupButton-compressed-empty-text"
+            data-test-subj="auto"
+            title="Auto fit"
+            type="button"
+          >
+            <span
+              class="emotion-euiButtonDisplayContent-euiButtonGroupButton__content-compressed"
+            >
+              <span
+                class="eui-textTruncate emotion-euiButtonGroupButton__text"
+                data-text="Auto fit"
+              >
+                Auto fit
+              </span>
+            </span>
+          </button>
+          <button
+            aria-pressed="false"
+            class="euiButtonGroupButton emotion-euiButtonDisplay-s-defaultMinWidth-euiButtonGroupButton-compressed-empty-text"
+            data-test-subj="lineCount"
+            title="Custom"
+            type="button"
+          >
+            <span
+              class="emotion-euiButtonDisplayContent-euiButtonGroupButton__content-compressed"
+            >
+              <span
+                class="eui-textTruncate emotion-euiButtonGroupButton__text"
+                data-text="Custom"
+              >
+                Custom
+              </span>
+            </span>
+          </button>
+        </div>
+      </fieldset>
+    </div>
+  </div>
+</div>
+`;
+
 exports[`useDataGridDisplaySelector displaySelector renders a toolbar button/popover allowing users to customize display settings 1`] = `
 <body>
   <div>

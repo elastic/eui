@@ -19,6 +19,7 @@ import { keys } from '../../../services';
 
 import {
   EuiDataGridToolBarVisibilityOptions,
+  EuiDataGridDisplaySelectorCustomRender,
   EuiDataGridRowHeightsOptions,
 } from '../data_grid_types';
 
@@ -84,6 +85,30 @@ describe('useDataGridDisplaySelector', () => {
         />
       );
       expect(container).toBeEmptyDOMElement();
+    });
+
+    it('allows consumers to customize render order via a render prop', () => {
+      const customRender: EuiDataGridDisplaySelectorCustomRender = ({
+        densityControl,
+        rowHeightControl,
+      }) => {
+        return (
+          <div data-test-subj="customRender">
+            <div>Hello world</div>
+            {densityControl}
+            <div>Mock custom control</div>
+            {rowHeightControl}
+          </div>
+        );
+      };
+      const { getByTestSubject } = render(
+        <MockComponent showDisplaySelector={{ customRender }} />
+      );
+      fireEvent.click(getByTestSubject('dataGridDisplaySelectorButton'));
+      expect(getByTestSubject('customRender')).toContainHTML(
+        'Mock custom control'
+      );
+      expect(getByTestSubject('customRender')).toMatchSnapshot();
     });
 
     describe('density', () => {

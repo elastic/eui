@@ -937,7 +937,19 @@ export interface EuiDataGridToolBarVisibilityDisplaySelectorOptions {
    * Allows appending additional content to the bottom of the display settings popover
    */
   additionalDisplaySettings?: ReactNode;
+  /**
+   * Allows completely custom rendering of the display selector popover via render prop.
+   * Passes back the default controls as arguments for optional rendering.
+   */
+  customRender?: EuiDataGridDisplaySelectorCustomRender;
 }
+
+export type EuiDataGridDisplaySelectorCustomRender = (args: {
+  densityControl: ReactNode;
+  rowHeightControl: ReactNode;
+  additionalDisplaySettings: ReactNode;
+  resetButton: ReactNode;
+}) => ReactNode;
 
 export interface EuiDataGridToolBarVisibilityOptions {
   /**
