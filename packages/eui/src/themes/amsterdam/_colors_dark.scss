@@ -30,6 +30,16 @@ $euiColorFullShade: #FFF !default;
 // Backgrounds
 $euiPageBackgroundColor: shade($euiColorLightestShade, 45%) !default;
 $euiColorHighlight: #2E2D25 !default;
+$euiColorBackgroundPrimary: shade($euiColorPrimary, 80%) !default;
+$euiColorBackgroundAccent: shade($euiColorAccent, 80%) !default;
+$euiColorBackgroundAccentSecondary: shade($euiColorAccentSecondary, 80%) !default;
+$euiColorBackgroundSuccess: shade($euiColorSuccess, 80%) !default;
+$euiColorBackgroundWarning: shade($euiColorWarning, 80%) !default;
+$euiColorBackgroundDanger: shade($euiColorDanger, 80%) !default;
+$euiColorBackgroundSubdued: shade($euiPageBackgroundColor, 80%) !default;
+$euiColorBackgroundDisabled: transparentize($euiColorLightShade, 0.15)!default;
+$euiColorBackgroundPlain: $euiColorEmptyShade !default;
+$euiColorBackgroundPage: $euiPageBackgroundColor !default;
 
 // Texts
 $euiTextColor: #DFE5EF !default;
