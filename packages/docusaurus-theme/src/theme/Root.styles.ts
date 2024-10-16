@@ -7,7 +7,6 @@
  */
 
 import {
-  euiBorderColor,
   euiFontSizeFromScale,
   euiLineHeightFromBaseline,
   UseEuiTheme,
@@ -96,7 +95,7 @@ export const getGlobalStyles = (theme: UseEuiTheme) => {
       --eui-size-xs: ${euiTheme.size.xs};
       --eui-size-s: ${euiTheme.size.s};
 
-      --eui-border-color-primary: ${euiBorderColor(theme, 'primary')};
+      --eui-border-color-primary: ${euiTheme.colors.borderPrimary};
 
       --eui-theme-content-vertical-spacing: ${euiTheme.size.base};
 
