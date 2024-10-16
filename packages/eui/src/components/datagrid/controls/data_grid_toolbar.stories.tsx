@@ -334,7 +334,7 @@ export const DisplaySelector: Story = {
     });
     await step('Toggle density and row height settings', async () => {
       await fireEvent.click(canvas.getByTestSubject('compact'));
-      await fireEvent.click(canvas.getByTestSubject('lineCount'));
+      await fireEvent.click(canvas.getByTestSubject('auto'));
     });
   },
 };
