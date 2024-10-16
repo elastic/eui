@@ -12,10 +12,11 @@ import React, {
   useMemo,
   useCallback,
   useEffect,
+  useRef,
 } from 'react';
 
 import { logicalStyle, mathWithUnits } from '../../../global_styling';
-import { useUpdateEffect, useEuiTheme } from '../../../services';
+import { useUpdateEffect, useDeepEqual, useEuiTheme } from '../../../services';
 import { EuiI18n, useEuiI18n } from '../../i18n';
 import { EuiPopover, EuiPopoverFooter } from '../../popover';
 import { EuiButtonIcon, EuiButtonGroup, EuiButtonEmpty } from '../../button';
@@ -41,6 +42,7 @@ export const startingStyles: EuiDataGridStyle = {
   footer: 'overline',
   stickyFooter: true,
 };
+const emptyRowHeightsOptions: EuiDataGridRowHeightsOptions = {};
 
 /**
  * Cell density
@@ -281,8 +283,8 @@ const RowHeightControl = ({
 
 export const useDataGridDisplaySelector = (
   showDisplaySelector: EuiDataGridToolBarVisibilityOptions['showDisplaySelector'],
-  initialStyles: EuiDataGridStyle,
-  initialRowHeightsOptions?: EuiDataGridRowHeightsOptions
+  passedGridStyles: EuiDataGridStyle,
+  passedRowHeightsOptions: EuiDataGridRowHeightsOptions = emptyRowHeightsOptions
 ): [ReactNode, EuiDataGridStyle, EuiDataGridRowHeightsOptions] => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -296,79 +298,110 @@ export const useDataGridDisplaySelector = (
       ? undefined
       : showDisplaySelector?.customRender;
 
-  // Track styles specified by the user at run time
-  const [userGridStyles, setUserGridStyles] = useState({});
-  const [userRowHeightsOptions, setUserRowHeightsOptions] = useState({});
+  /**
+   * Grid style changes
+   */
+  const [gridStyles, setGridStyles] =
+    useState<EuiDataGridStyle>(passedGridStyles);
 
-  // Merge the developer-specified configurations with user overrides
-  const gridStyles = useMemo(() => {
-    return {
-      ...initialStyles,
-      ...userGridStyles,
-    };
-  }, [initialStyles, userGridStyles]);
-
-  const rowHeightsOptions = useMemo(() => {
-    return {
-      ...initialRowHeightsOptions,
-      ...userRowHeightsOptions,
-    };
-  }, [initialRowHeightsOptions, userRowHeightsOptions]);
-
-  // Invoke onChange callbacks (removing the callback value itself, so that only configuration values are returned)
+  // Update if consumers pass new grid style configurations
+  const stablePassedGridStyles = useDeepEqual(passedGridStyles);
   useUpdateEffect(() => {
-    const { onChange, ...currentGridStyles } = gridStyles;
-    initialStyles?.onChange?.(currentGridStyles);
-  }, [userGridStyles]);
+    setGridStyles(stablePassedGridStyles);
+  }, [stablePassedGridStyles]);
 
-  useUpdateEffect(() => {
-    const { onChange, ...currentRowHeightsOptions } = rowHeightsOptions;
-    initialRowHeightsOptions?.onChange?.(currentRowHeightsOptions);
-  }, [userRowHeightsOptions]);
-
-  // Allow resetting to initial developer-specified configurations
-  const resetToInitialState = useCallback(() => {
-    setUserGridStyles({});
-    setUserRowHeightsOptions({});
-  }, []);
+  // Update on user display selector change
+  const onUserGridStyleChange = useCallback(
+    (styles: EuiDataGridRowHeightsOptions) =>
+      setGridStyles((prevStyles) => {
+        const changedStyles = { ...prevStyles, ...styles };
+        const { onChange, ...rest } = changedStyles;
+        onChange?.(rest);
+        return changedStyles;
+      }),
+    []
+  );
 
   const densityControl = useMemo(() => {
     const show = getNestedObjectOptions(showDisplaySelector, 'allowDensity');
     return show ? (
-      <DensityControl gridStyles={gridStyles} onChange={setUserGridStyles} />
+      <DensityControl
+        gridStyles={gridStyles}
+        onChange={onUserGridStyleChange}
+      />
     ) : null;
-  }, [showDisplaySelector, gridStyles, setUserGridStyles]);
+  }, [showDisplaySelector, gridStyles, onUserGridStyleChange]);
+
+  /**
+   * Row height changes
+   */
+  const [rowHeightsOptions, setRowHeightsOptions] =
+    useState<EuiDataGridRowHeightsOptions>(passedRowHeightsOptions);
+
+  // Update if consumers pass new row height configurations
+  const stablePassedRowHeights = useDeepEqual(passedRowHeightsOptions);
+  useUpdateEffect(() => {
+    setRowHeightsOptions(stablePassedRowHeights);
+  }, [stablePassedRowHeights]);
+
+  // Update on user display selector change
+  const onUserRowHeightChange = useCallback(
+    (options: EuiDataGridRowHeightsOptions) =>
+      setRowHeightsOptions((prevOptions) => {
+        const changedOptions = { ...prevOptions, ...options };
+        const { onChange, ...rest } = changedOptions;
+        onChange?.(rest);
+        return changedOptions;
+      }),
+    []
+  );
 
   const rowHeightControl = useMemo(() => {
     const show = getNestedObjectOptions(showDisplaySelector, 'allowRowHeight');
     return show ? (
       <RowHeightControl
         rowHeightsOptions={rowHeightsOptions}
-        onChange={setUserRowHeightsOptions}
+        onChange={onUserRowHeightChange}
       />
     ) : null;
-  }, [showDisplaySelector, rowHeightsOptions, setUserRowHeightsOptions]);
+  }, [showDisplaySelector, rowHeightsOptions, onUserRowHeightChange]);
+
+  /**
+   * Reset button
+   */
+  const [showResetButton, setShowResetButton] = useState(false);
+  const initialGridStyles = useRef<EuiDataGridStyle>(passedGridStyles);
+  const initialRowHeightsOptions = useRef<EuiDataGridRowHeightsOptions>(
+    passedRowHeightsOptions
+  );
+
+  const resetToInitialState = useCallback(() => {
+    setGridStyles(initialGridStyles.current);
+    setRowHeightsOptions(initialRowHeightsOptions.current);
+  }, []);
+
+  useUpdateEffect(() => {
+    setShowResetButton(
+      rowHeightsOptions.defaultHeight !==
+        initialRowHeightsOptions.current.defaultHeight ||
+        gridStyles.fontSize !== initialGridStyles.current.fontSize ||
+        gridStyles.cellPadding !== initialGridStyles.current.cellPadding
+    );
+  }, [
+    rowHeightsOptions.defaultHeight,
+    gridStyles.fontSize,
+    gridStyles.cellPadding,
+  ]);
 
   const resetButton = useMemo(() => {
-    const show = getNestedObjectOptions(
+    const allowed = getNestedObjectOptions(
       showDisplaySelector,
       'allowResetButton'
     );
-    if (!show) return null;
+    if (!allowed || !showResetButton) return null;
 
-    const hasUserChanges =
-      Object.keys(userGridStyles).length > 0 ||
-      Object.keys(userRowHeightsOptions).length > 0;
-
-    return hasUserChanges ? (
-      <ResetButton onClick={resetToInitialState} />
-    ) : null;
-  }, [
-    showDisplaySelector,
-    resetToInitialState,
-    userGridStyles,
-    userRowHeightsOptions,
-  ]);
+    return <ResetButton onClick={resetToInitialState} />;
+  }, [showDisplaySelector, showResetButton, resetToInitialState]);
 
   const buttonLabel = useEuiI18n(
     'euiDisplaySelector.buttonText',

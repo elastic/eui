@@ -545,7 +545,6 @@ describe('useDataGridDisplaySelector', () => {
 
     describe('reset button', () => {
       it('renders a reset button only when the user changes from the current settings', async () => {
-        // const component = mount(<MockComponent gridStyles={startingStyles} />);
         const { container, baseElement, getByTestSubject } = render(
           <MockComponent gridStyles={startingStyles} />
         );
@@ -582,7 +581,32 @@ describe('useDataGridDisplaySelector', () => {
         ).not.toBeInTheDocument();
       });
 
-      it('hides the reset button even after changes if allowResetButton is false', async () => {
+      it('hides the reset button if the user changes display settings back to the initial settings', async () => {
+        const { container, baseElement, getByTestSubject } = render(
+          <MockComponent gridStyles={startingStyles} />
+        );
+        openPopover(container);
+
+        await waitFor(() => {
+          userEvent.click(getByTestSubject('expanded'));
+          userEvent.click(getByTestSubject('auto'));
+        });
+
+        expect(
+          baseElement.querySelector('[data-test-subj="resetDisplaySelector"]')
+        ).toBeInTheDocument();
+
+        await waitFor(() => {
+          userEvent.click(getByTestSubject('normal'));
+          userEvent.click(getByTestSubject('undefined'));
+        });
+
+        expect(
+          container.querySelector('[data-test-subj="resetDisplaySelector"]')
+        ).not.toBeInTheDocument();
+      });
+
+      it('does not render the reset button if allowResetButton is false', async () => {
         const { container, baseElement, getByTestSubject } = render(
           <MockComponent
             showDisplaySelector={{
@@ -600,16 +624,6 @@ describe('useDataGridDisplaySelector', () => {
           userEvent.click(getByTestSubject('expanded'));
           userEvent.click(getByTestSubject('auto'));
         });
-        expect(
-          baseElement.querySelector('[data-test-subj="resetDisplaySelector"]')
-        ).not.toBeInTheDocument();
-
-        // Should hide the reset button again after the popover was reopened
-        closePopover(container);
-        await waitForEuiPopoverClose();
-        openPopover(container);
-        await waitForEuiPopoverOpen();
-
         expect(
           baseElement.querySelector('[data-test-subj="resetDisplaySelector"]')
         ).not.toBeInTheDocument();
@@ -658,6 +672,17 @@ describe('useDataGridDisplaySelector', () => {
               }
             `);
     });
+
+    it('updates gridStyles when consumers pass in new settings', () => {
+      const { result, rerender } = renderHook(
+        ({ gridStyles }) => useDataGridDisplaySelector(true, gridStyles),
+        { initialProps: { gridStyles: startingStyles } }
+      );
+      expect(result.current[1].border).toEqual('all');
+
+      rerender({ gridStyles: { ...startingStyles, border: 'none' } });
+      expect(result.current[1].border).toEqual('none');
+    });
   });
 
   describe('rowHeightsOptions', () => {
@@ -687,6 +712,7 @@ describe('useDataGridDisplaySelector', () => {
     const getOutput = () => {
       return JSON.parse(screen.getByTestSubject('output').textContent!);
     };
+
     describe('returns an object of rowHeightsOptions with user overrides', () => {
       it('overrides `rowHeights` and `defaultHeight`', () => {
         render(
@@ -703,6 +729,7 @@ describe('useDataGridDisplaySelector', () => {
           defaultHeight: undefined,
         });
       });
+
       it('does not override other rowHeightsOptions properties', () => {
         render(
           <MockComponent initialRowHeightsOptions={{ lineHeight: '2em' }} />
@@ -713,6 +740,21 @@ describe('useDataGridDisplaySelector', () => {
           defaultHeight: { lineCount: 2 },
           rowHeights: {},
         });
+      });
+
+      it('updates rowHeightsOptions when consumers pass in new settings', () => {
+        const initialRowHeightsOptions: EuiDataGridRowHeightsOptions = {
+          defaultHeight: 'auto',
+        };
+        const { result, rerender } = renderHook(
+          ({ rowHeightsOptions }) =>
+            useDataGridDisplaySelector(true, startingStyles, rowHeightsOptions),
+          { initialProps: { rowHeightsOptions: initialRowHeightsOptions } }
+        );
+        expect(result.current[2].defaultHeight).toEqual('auto');
+
+        rerender({ rowHeightsOptions: { defaultHeight: { lineCount: 2 } } });
+        expect(result.current[2].defaultHeight).toEqual({ lineCount: 2 });
       });
     });
 
