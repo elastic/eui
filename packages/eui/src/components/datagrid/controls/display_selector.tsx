@@ -286,18 +286,6 @@ export const useDataGridDisplaySelector = (
   passedGridStyles: EuiDataGridStyle,
   passedRowHeightsOptions: EuiDataGridRowHeightsOptions = emptyRowHeightsOptions
 ): [ReactNode, EuiDataGridStyle, EuiDataGridRowHeightsOptions] => {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const additionalDisplaySettings =
-    typeof showDisplaySelector === 'boolean'
-      ? null
-      : showDisplaySelector?.additionalDisplaySettings ?? null;
-
-  const customRender =
-    typeof showDisplaySelector === 'boolean'
-      ? undefined
-      : showDisplaySelector?.customRender;
-
   /**
    * Grid style changes
    */
@@ -403,10 +391,26 @@ export const useDataGridDisplaySelector = (
     return <ResetButton onClick={resetToInitialState} />;
   }, [showDisplaySelector, showResetButton, resetToInitialState]);
 
+  /**
+   * Display settings popover
+   */
+  const [isOpen, setIsOpen] = useState(false);
+
   const buttonLabel = useEuiI18n(
     'euiDisplaySelector.buttonText',
     'Display options'
   );
+
+  const additionalDisplaySettings =
+    typeof showDisplaySelector === 'boolean'
+      ? null
+      : showDisplaySelector?.additionalDisplaySettings ?? null;
+
+  const customRender =
+    typeof showDisplaySelector === 'boolean'
+      ? undefined
+      : showDisplaySelector?.customRender;
+
   const euiTheme = useEuiTheme();
 
   const displaySelector = useMemo(() => {
