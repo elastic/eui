@@ -111,81 +111,85 @@ exports[`useDataGridDisplaySelector displaySelector allows consumers to customiz
         for="generated-id"
         id="generated-id-label"
       >
-        Row height
+        Lines per row
       </label>
     </div>
     <div
       class="euiFormRow__fieldWrapper"
     >
-      <fieldset
-        class="euiButtonGroup emotion-euiButtonGroup-fullWidth"
-        data-test-subj="rowHeightButtonGroup"
+      <div
+        class="euiFlexGroup emotion-euiFlexGroup-s-flexStart-stretch-row"
         id="generated-id"
       >
-        <legend
-          class="emotion-euiScreenReaderOnly"
+        <fieldset
+          class="euiButtonGroup emotion-euiButtonGroup-fullWidth-RowHeightControl"
+          data-test-subj="rowHeightButtonGroup"
         >
-          Row height
-        </legend>
+          <legend
+            class="emotion-euiScreenReaderOnly"
+          >
+            Lines per row
+          </legend>
+          <div
+            class="euiButtonGroup__buttons emotion-euiButtonGroup__buttons-fullWidth-compressed"
+          >
+            <button
+              aria-pressed="false"
+              class="euiButtonGroupButton emotion-euiButtonDisplay-s-defaultMinWidth-euiButtonGroupButton-compressed-empty-text"
+              data-test-subj="auto"
+              title="Auto"
+              type="button"
+            >
+              <span
+                class="emotion-euiButtonDisplayContent-euiButtonGroupButton__content-compressed"
+              >
+                <span
+                  class="eui-textTruncate emotion-euiButtonGroupButton__text"
+                  data-text="Auto"
+                >
+                  Auto
+                </span>
+              </span>
+            </button>
+            <button
+              aria-pressed="true"
+              class="euiButtonGroupButton euiButtonGroupButton-isSelected emotion-euiButtonDisplay-s-defaultMinWidth-euiButtonGroupButton-compressed-fill-text"
+              data-test-subj="static"
+              title="Static"
+              type="button"
+            >
+              <span
+                class="emotion-euiButtonDisplayContent-euiButtonGroupButton__content-compressed"
+              >
+                <span
+                  class="eui-textTruncate emotion-euiButtonGroupButton__text"
+                  data-text="Static"
+                >
+                  Static
+                </span>
+              </span>
+            </button>
+          </div>
+        </fieldset>
         <div
-          class="euiButtonGroup__buttons emotion-euiButtonGroup__buttons-fullWidth-compressed"
+          class="euiFormControlLayout emotion-euiFormControlLayout-compressed"
         >
-          <button
-            aria-pressed="true"
-            class="euiButtonGroupButton euiButtonGroupButton-isSelected emotion-euiButtonDisplay-s-defaultMinWidth-euiButtonGroupButton-compressed-fill-text"
-            data-test-subj="undefined"
-            title="Single"
-            type="button"
+          <div
+            class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper"
           >
-            <span
-              class="emotion-euiButtonDisplayContent-euiButtonGroupButton__content-compressed"
-            >
-              <span
-                class="eui-textTruncate emotion-euiButtonGroupButton__text"
-                data-text="Single"
-              >
-                Single
-              </span>
-            </span>
-          </button>
-          <button
-            aria-pressed="false"
-            class="euiButtonGroupButton emotion-euiButtonDisplay-s-defaultMinWidth-euiButtonGroupButton-compressed-empty-text"
-            data-test-subj="auto"
-            title="Auto fit"
-            type="button"
-          >
-            <span
-              class="emotion-euiButtonDisplayContent-euiButtonGroupButton__content-compressed"
-            >
-              <span
-                class="eui-textTruncate emotion-euiButtonGroupButton__text"
-                data-text="Auto fit"
-              >
-                Auto fit
-              </span>
-            </span>
-          </button>
-          <button
-            aria-pressed="false"
-            class="euiButtonGroupButton emotion-euiButtonDisplay-s-defaultMinWidth-euiButtonGroupButton-compressed-empty-text"
-            data-test-subj="lineCount"
-            title="Custom"
-            type="button"
-          >
-            <span
-              class="emotion-euiButtonDisplayContent-euiButtonGroupButton__content-compressed"
-            >
-              <span
-                class="eui-textTruncate emotion-euiButtonGroupButton__text"
-                data-text="Custom"
-              >
-                Custom
-              </span>
-            </span>
-          </button>
+            <input
+              aria-label="Lines per row"
+              class="euiFieldNumber emotion-euiFieldNumber-compressed"
+              data-test-subj="lineCountNumber"
+              max="20"
+              min="1"
+              step="any"
+              type="number"
+              value="1"
+            />
+          </div>
         </div>
-      </fieldset>
+      </div>
     </div>
   </div>
 </div>
@@ -352,81 +356,85 @@ exports[`useDataGridDisplaySelector displaySelector renders a toolbar button/pop
                 for="generated-id"
                 id="generated-id-label"
               >
-                Row height
+                Lines per row
               </label>
             </div>
             <div
               class="euiFormRow__fieldWrapper"
             >
-              <fieldset
-                class="euiButtonGroup emotion-euiButtonGroup-fullWidth"
-                data-test-subj="rowHeightButtonGroup"
+              <div
+                class="euiFlexGroup emotion-euiFlexGroup-s-flexStart-stretch-row"
                 id="generated-id"
               >
-                <legend
-                  class="emotion-euiScreenReaderOnly"
+                <fieldset
+                  class="euiButtonGroup emotion-euiButtonGroup-fullWidth-RowHeightControl"
+                  data-test-subj="rowHeightButtonGroup"
                 >
-                  Row height
-                </legend>
+                  <legend
+                    class="emotion-euiScreenReaderOnly"
+                  >
+                    Lines per row
+                  </legend>
+                  <div
+                    class="euiButtonGroup__buttons emotion-euiButtonGroup__buttons-fullWidth-compressed"
+                  >
+                    <button
+                      aria-pressed="false"
+                      class="euiButtonGroupButton emotion-euiButtonDisplay-s-defaultMinWidth-euiButtonGroupButton-compressed-empty-text"
+                      data-test-subj="auto"
+                      title="Auto"
+                      type="button"
+                    >
+                      <span
+                        class="emotion-euiButtonDisplayContent-euiButtonGroupButton__content-compressed"
+                      >
+                        <span
+                          class="eui-textTruncate emotion-euiButtonGroupButton__text"
+                          data-text="Auto"
+                        >
+                          Auto
+                        </span>
+                      </span>
+                    </button>
+                    <button
+                      aria-pressed="true"
+                      class="euiButtonGroupButton euiButtonGroupButton-isSelected emotion-euiButtonDisplay-s-defaultMinWidth-euiButtonGroupButton-compressed-fill-text"
+                      data-test-subj="static"
+                      title="Static"
+                      type="button"
+                    >
+                      <span
+                        class="emotion-euiButtonDisplayContent-euiButtonGroupButton__content-compressed"
+                      >
+                        <span
+                          class="eui-textTruncate emotion-euiButtonGroupButton__text"
+                          data-text="Static"
+                        >
+                          Static
+                        </span>
+                      </span>
+                    </button>
+                  </div>
+                </fieldset>
                 <div
-                  class="euiButtonGroup__buttons emotion-euiButtonGroup__buttons-fullWidth-compressed"
+                  class="euiFormControlLayout emotion-euiFormControlLayout-compressed"
                 >
-                  <button
-                    aria-pressed="true"
-                    class="euiButtonGroupButton euiButtonGroupButton-isSelected emotion-euiButtonDisplay-s-defaultMinWidth-euiButtonGroupButton-compressed-fill-text"
-                    data-test-subj="undefined"
-                    title="Single"
-                    type="button"
+                  <div
+                    class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper"
                   >
-                    <span
-                      class="emotion-euiButtonDisplayContent-euiButtonGroupButton__content-compressed"
-                    >
-                      <span
-                        class="eui-textTruncate emotion-euiButtonGroupButton__text"
-                        data-text="Single"
-                      >
-                        Single
-                      </span>
-                    </span>
-                  </button>
-                  <button
-                    aria-pressed="false"
-                    class="euiButtonGroupButton emotion-euiButtonDisplay-s-defaultMinWidth-euiButtonGroupButton-compressed-empty-text"
-                    data-test-subj="auto"
-                    title="Auto fit"
-                    type="button"
-                  >
-                    <span
-                      class="emotion-euiButtonDisplayContent-euiButtonGroupButton__content-compressed"
-                    >
-                      <span
-                        class="eui-textTruncate emotion-euiButtonGroupButton__text"
-                        data-text="Auto fit"
-                      >
-                        Auto fit
-                      </span>
-                    </span>
-                  </button>
-                  <button
-                    aria-pressed="false"
-                    class="euiButtonGroupButton emotion-euiButtonDisplay-s-defaultMinWidth-euiButtonGroupButton-compressed-empty-text"
-                    data-test-subj="lineCount"
-                    title="Custom"
-                    type="button"
-                  >
-                    <span
-                      class="emotion-euiButtonDisplayContent-euiButtonGroupButton__content-compressed"
-                    >
-                      <span
-                        class="eui-textTruncate emotion-euiButtonGroupButton__text"
-                        data-text="Custom"
-                      >
-                        Custom
-                      </span>
-                    </span>
-                  </button>
+                    <input
+                      aria-label="Lines per row"
+                      class="euiFieldNumber emotion-euiFieldNumber-compressed"
+                      data-test-subj="lineCountNumber"
+                      max="20"
+                      min="1"
+                      step="any"
+                      type="number"
+                      value="1"
+                    />
+                  </div>
                 </div>
-              </fieldset>
+              </div>
             </div>
           </div>
         </div>

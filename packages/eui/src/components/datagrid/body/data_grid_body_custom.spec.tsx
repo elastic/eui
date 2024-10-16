@@ -203,7 +203,7 @@ describe('EuiDataGridBodyCustomRender', () => {
     cy.get('[role="gridcell"]').first().invoke('outerHeight').should('eq', 36);
 
     cy.get('[data-test-subj="dataGridDisplaySelectorButton"]').click();
-    cy.contains('Auto fit').click();
+    cy.contains('Auto').click();
 
     cy.get('[role="gridcell"]')
       .first()

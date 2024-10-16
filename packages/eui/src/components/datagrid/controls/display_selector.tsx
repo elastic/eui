@@ -7,6 +7,7 @@
  */
 
 import React, {
+  ChangeEvent,
   ReactNode,
   useState,
   useMemo,
@@ -20,7 +21,7 @@ import { useUpdateEffect, useDeepEqual, useEuiTheme } from '../../../services';
 import { EuiI18n, useEuiI18n } from '../../i18n';
 import { EuiPopover, EuiPopoverFooter } from '../../popover';
 import { EuiButtonIcon, EuiButtonGroup, EuiButtonEmpty } from '../../button';
-import { EuiFormRow, EuiRange, EuiRangeProps } from '../../form';
+import { EuiFormRow, EuiFieldNumber } from '../../form';
 import { euiFormMaxWidth } from '../../form/form.styles';
 import { EuiFlexGroup } from '../../flex';
 import { EuiToolTip } from '../../tool_tip';
@@ -134,27 +135,24 @@ const DensityControl = ({
  * Row heights
  */
 
-const rowHeightButtonOptions: string[] = ['undefined', 'auto', 'lineCount'];
 const convertRowHeightsOptionsToSelection = (
   rowHeightsOptions: EuiDataGridRowHeightsOptions
 ) => {
   const { defaultHeight } = rowHeightsOptions;
 
-  if (defaultHeight === 'auto') {
-    return rowHeightButtonOptions[1];
-  }
-  if (typeof defaultHeight === 'object' && defaultHeight?.lineCount) {
-    return rowHeightButtonOptions[2];
-  }
+  // Custom pixel row height values don't have a corresponding UI element
   if (
     typeof defaultHeight === 'number' ||
     (typeof defaultHeight === 'object' && defaultHeight.height)
   ) {
     return '';
   }
-  return rowHeightButtonOptions[0];
+
+  if (defaultHeight === 'auto') {
+    return 'auto';
+  }
+  return 'static';
 };
-const defaultLineCountValue = String(2);
 const RowHeightControl = ({
   rowHeightsOptions,
   onChange,
@@ -162,32 +160,36 @@ const RowHeightControl = ({
   rowHeightsOptions: EuiDataGridRowHeightsOptions;
   onChange: Function;
 }) => {
-  const [lineCountInput, setLineCountInput] = useState(defaultLineCountValue);
-  const setLineCountHeight = useCallback<
-    NonNullable<EuiRangeProps['onChange']>
-  >(
-    (event) => {
-      setLineCountInput(event.currentTarget.value);
+  const [lineCountInput, setLineCountInput] = useState(1);
+  const setLineCountHeight = useCallback(
+    (event: ChangeEvent<HTMLInputElement>) => {
       const newLineCount = Number(event.currentTarget.value);
+      setLineCountInput(newLineCount);
 
-      // Don't let users set a 0 or negative line count
-      if (newLineCount > 0) {
-        onChange({
-          rowHeights: {}, // Unset all row-specific line counts
-          defaultHeight: { lineCount: newLineCount },
-        });
-      }
+      onChange({
+        rowHeights: {}, // Unset all row-specific line counts
+        defaultHeight:
+          newLineCount > 1 ? { lineCount: newLineCount } : undefined, // lineCount: 1 is the same as undefined, and this helps correctly display the reset button
+      });
     },
     [onChange]
   );
 
   useEffect(() => {
-    setLineCountInput(
-      // @ts-ignore - optional chaining operator handles types & cases that aren't lineCount
-      rowHeightsOptions?.defaultHeight?.lineCount || defaultLineCountValue
-    );
-    // @ts-ignore - same as above
-  }, [rowHeightsOptions?.defaultHeight?.lineCount]);
+    const passedLineCount =
+      typeof rowHeightsOptions?.defaultHeight === 'object'
+        ? rowHeightsOptions.defaultHeight.lineCount
+        : undefined;
+
+    // If lineCount updates come in from consumer changes, update the input to reflect that
+    if (passedLineCount) {
+      setLineCountInput(passedLineCount);
+    }
+    // If set back to undefined/single line height (typically from the reset button)
+    if (rowHeightsOptions?.defaultHeight === undefined) {
+      setLineCountInput(1);
+    }
+  }, [rowHeightsOptions?.defaultHeight]);
 
   const rowHeightSelection = useMemo(() => {
     return convertRowHeightsOptionsToSelection(rowHeightsOptions);
@@ -201,10 +203,15 @@ const RowHeightControl = ({
 
       if (option === 'auto') {
         rowHeightsOptions.defaultHeight = 'auto';
-      } else if (option === 'lineCount') {
-        rowHeightsOptions.defaultHeight = { lineCount: Number(lineCountInput) };
-      } else {
-        rowHeightsOptions.defaultHeight = undefined;
+      } else if (option === 'static') {
+        const lineCount = Number(lineCountInput);
+
+        if (lineCount > 1) {
+          rowHeightsOptions.defaultHeight = { lineCount };
+        } else {
+          // lineCount: 1 is the same as single/undefined
+          rowHeightsOptions.defaultHeight = undefined;
+        }
       }
 
       onChange(rowHeightsOptions);
@@ -216,61 +223,40 @@ const RowHeightControl = ({
     <EuiI18n
       tokens={[
         'euiDisplaySelector.rowHeightLabel',
-        'euiDisplaySelector.labelSingle',
         'euiDisplaySelector.labelAuto',
-        'euiDisplaySelector.labelCustom',
-        'euiDisplaySelector.lineCountLabel',
+        'euiDisplaySelector.labelStatic',
       ]}
-      defaults={['Row height', 'Single', 'Auto fit', 'Custom', 'Lines per row']}
+      defaults={['Lines per row', 'Auto', 'Static']}
     >
-      {([
-        rowHeightLabel,
-        labelSingle,
-        labelAuto,
-        labelCustom,
-        lineCountLabel,
-      ]: string[]) => (
+      {([rowHeightLabel, labelAuto, labelStatic]: string[]) => (
         <>
           <EuiFormRow label={rowHeightLabel} display="columnCompressed">
-            <EuiButtonGroup
-              legend={rowHeightLabel}
-              buttonSize="compressed"
-              isFullWidth
-              options={[
-                {
-                  id: rowHeightButtonOptions[0],
-                  label: labelSingle,
-                },
-                {
-                  id: rowHeightButtonOptions[1],
-                  label: labelAuto,
-                },
-                {
-                  id: rowHeightButtonOptions[2],
-                  label: labelCustom,
-                },
-              ]}
-              onChange={setRowHeight}
-              idSelected={rowHeightSelection}
-              data-test-subj="rowHeightButtonGroup"
-            />
-          </EuiFormRow>
-          {rowHeightSelection === rowHeightButtonOptions[2] && (
-            <EuiFormRow label={lineCountLabel} display="columnCompressed">
-              <EuiRange
+            <EuiFlexGroup gutterSize="s" responsive={false}>
+              <EuiButtonGroup
+                legend={rowHeightLabel}
+                css={{ flexShrink: 0, flexBasis: '66.6%' }}
+                buttonSize="compressed"
+                isFullWidth
+                options={[
+                  { id: 'auto', label: labelAuto },
+                  { id: 'static', label: labelStatic },
+                ]}
+                onChange={setRowHeight}
+                idSelected={rowHeightSelection}
+                data-test-subj="rowHeightButtonGroup"
+              />
+              <EuiFieldNumber
+                aria-label={rowHeightLabel}
                 compressed
-                fullWidth
-                showInput
                 min={1}
                 max={20}
-                step={1}
-                required
+                disabled={rowHeightSelection !== 'static'}
                 value={lineCountInput}
                 onChange={setLineCountHeight}
                 data-test-subj="lineCountNumber"
               />
-            </EuiFormRow>
-          )}
+            </EuiFlexGroup>
+          </EuiFormRow>
         </>
       )}
     </EuiI18n>

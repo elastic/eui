@@ -256,42 +256,60 @@ describe('useDataGridDisplaySelector', () => {
     });
 
     describe('row height', () => {
-      it('renders row height buttons that toggle betwen undefined, auto, and lineCount', async () => {
+      it('renders auto/static row height buttons and a lineCount input', async () => {
         const { container, baseElement, getByTestSubject } = render(
           <MockComponent />
         );
-
         openPopover(container);
-        expect(
-          baseElement.querySelector('[data-test-subj="lineCountNumber"]')
-        ).not.toBeInTheDocument();
-
-        await waitFor(() => {
-          userEvent.click(getByTestSubject('auto'));
-        });
 
         expect(getSelection(baseElement, 'rowHeightButtonGroup')).toEqual(
-          'auto'
+          'static'
         );
+        expect(getByTestSubject('lineCountNumber')).toHaveValue(1);
       });
 
       it('calls the rowHeightsOptions.onChange callback on user change', async () => {
         const onRowHeightChange = jest.fn();
-        const { container, getByTestSubject } = render(
+        const { container, baseElement, getByTestSubject } = render(
           <MockComponent
             rowHeightsOptions={{ lineHeight: '3', onChange: onRowHeightChange }}
           />
         );
-
         openPopover(container);
+
+        // line count
+        fireEvent.change(getByTestSubject('lineCountNumber'), {
+          target: { value: 2 },
+        });
+        expect(getByTestSubject('lineCountNumber')).toHaveValue(2);
+        expect(onRowHeightChange).toHaveBeenCalledWith({
+          lineHeight: '3',
+          rowHeights: {},
+          defaultHeight: { lineCount: 2 },
+        });
+
+        // undefined
+        fireEvent.change(getByTestSubject('lineCountNumber'), {
+          target: { value: 1 },
+        });
+        expect(onRowHeightChange).toHaveBeenCalledWith({
+          lineHeight: '3',
+          rowHeights: {},
+          defaultHeight: undefined,
+        });
+
+        // auto
         await waitFor(() => {
           userEvent.click(getByTestSubject('auto'));
         });
+        expect(getSelection(baseElement, 'rowHeightButtonGroup')).toEqual(
+          'auto'
+        );
 
         expect(onRowHeightChange).toHaveBeenCalledWith({
+          lineHeight: '3',
           rowHeights: {},
           defaultHeight: 'auto',
-          lineHeight: '3',
         });
       });
 
@@ -304,11 +322,14 @@ describe('useDataGridDisplaySelector', () => {
         expect(
           baseElement.querySelector('[data-test-subj="rowHeightButtonGroup"]')
         ).not.toBeInTheDocument();
+        expect(
+          baseElement.querySelector('[data-test-subj="lineCountNumber"]')
+        ).not.toBeInTheDocument();
       });
 
       describe('convertRowHeightsOptionsToSelection', () => {
         test('auto', () => {
-          const { container, baseElement } = render(
+          const { container, baseElement, getByTestSubject } = render(
             <MockComponent rowHeightsOptions={{ defaultHeight: 'auto' }} />
           );
           openPopover(container);
@@ -316,10 +337,12 @@ describe('useDataGridDisplaySelector', () => {
           expect(getSelection(baseElement, 'rowHeightButtonGroup')).toEqual(
             'auto'
           );
+          expect(getByTestSubject('lineCountNumber')).toBeDisabled();
+          expect(getByTestSubject('lineCountNumber')).toHaveValue(1);
         });
 
         test('lineCount', () => {
-          const { container, baseElement } = render(
+          const { container, baseElement, getByTestSubject } = render(
             <MockComponent
               rowHeightsOptions={{ defaultHeight: { lineCount: 3 } }}
             />
@@ -327,19 +350,23 @@ describe('useDataGridDisplaySelector', () => {
           openPopover(container);
 
           expect(getSelection(baseElement, 'rowHeightButtonGroup')).toEqual(
-            'lineCount'
+            'static'
           );
+          expect(getByTestSubject('lineCountNumber')).not.toBeDisabled();
+          expect(getByTestSubject('lineCountNumber')).toHaveValue(3);
         });
 
         test('undefined', () => {
-          const { container, baseElement } = render(
+          const { container, baseElement, getByTestSubject } = render(
             <MockComponent rowHeightsOptions={undefined} />
           );
           openPopover(container);
 
           expect(getSelection(baseElement, 'rowHeightButtonGroup')).toEqual(
-            'undefined'
+            'static'
           );
+          expect(getByTestSubject('lineCountNumber')).not.toBeDisabled();
+          expect(getByTestSubject('lineCountNumber')).toHaveValue(1);
         });
 
         test('height should not select any buttons', () => {
@@ -353,7 +380,7 @@ describe('useDataGridDisplaySelector', () => {
       });
 
       it('updates row height whenever new developer settings are passed in', () => {
-        const { container, baseElement, rerender } = render(
+        const { container, baseElement, getByTestSubject, rerender } = render(
           <MockComponent rowHeightsOptions={{ defaultHeight: 'auto' }} />
         );
         openPopover(container);
@@ -369,8 +396,9 @@ describe('useDataGridDisplaySelector', () => {
         );
 
         expect(getSelection(baseElement, 'rowHeightButtonGroup')).toEqual(
-          'lineCount'
+          'static'
         );
+        expect(getByTestSubject('lineCountNumber')).toHaveValue(3);
       });
 
       it('correctly resets row height to initial developer-passed state', async () => {
@@ -380,7 +408,7 @@ describe('useDataGridDisplaySelector', () => {
         openPopover(container);
 
         expect(getSelection(baseElement, 'rowHeightButtonGroup')).toEqual(
-          'undefined'
+          'static'
         );
 
         await waitFor(() => {
@@ -396,150 +424,8 @@ describe('useDataGridDisplaySelector', () => {
         });
 
         expect(getSelection(baseElement, 'rowHeightButtonGroup')).toEqual(
-          'undefined'
+          'static'
         );
-      });
-
-      describe('lineCount', () => {
-        const getLineCountNumber = (element: HTMLElement) =>
-          element
-            .querySelector(
-              'input[type="range"][data-test-subj="lineCountNumber"]'
-            )!
-            .getAttribute('value');
-
-        const setLineCountNumber = (element: HTMLElement, number: number) => {
-          const input = element.querySelector(
-            'input[type="range"][data-test-subj="lineCountNumber"]'
-          ) as HTMLInputElement;
-
-          fireEvent.input(input, { target: { value: number.toString() } });
-        };
-
-        it('conditionally displays a line count number input when the lineCount button is selected', async () => {
-          const { container, baseElement, getByTestSubject } = render(
-            <MockComponent />
-          );
-          openPopover(container);
-
-          expect(
-            baseElement.querySelector('[data-test-subj="lineCountNumber"]')
-          ).not.toBeInTheDocument();
-
-          await waitFor(() => {
-            userEvent.click(getByTestSubject('lineCount'));
-          });
-
-          expect(getSelection(baseElement, 'rowHeightButtonGroup')).toEqual(
-            'lineCount'
-          );
-
-          expect(
-            baseElement.querySelector('[data-test-subj="lineCountNumber"]')
-          ).toBeInTheDocument();
-        });
-
-        it('displays the defaultHeight.lineCount passed in by the developer', () => {
-          const { container, baseElement } = render(
-            <MockComponent
-              rowHeightsOptions={{ defaultHeight: { lineCount: 5 } }}
-            />
-          );
-          openPopover(container);
-
-          expect(getLineCountNumber(baseElement)).toEqual('5');
-        });
-
-        it('defaults to a lineCount of 2 when no developer settings have been passed', async () => {
-          const { container, baseElement, getByTestSubject } = render(
-            <MockComponent />
-          );
-          openPopover(container);
-
-          await waitFor(() => userEvent.click(getByTestSubject('lineCount')));
-
-          expect(getLineCountNumber(baseElement)).toEqual('2');
-        });
-
-        it('increments the rowHeightOptions line count number', () => {
-          const { container, baseElement } = render(
-            <MockComponent
-              rowHeightsOptions={{ defaultHeight: { lineCount: 1 } }}
-            />
-          );
-          openPopover(container);
-
-          setLineCountNumber(baseElement, 3);
-
-          expect(getLineCountNumber(baseElement)).toEqual('3');
-        });
-
-        it('sets the min value for the text input if an invalid number is passed', () => {
-          const { container, baseElement } = render(
-            <MockComponent
-              rowHeightsOptions={{ defaultHeight: { lineCount: 2 } }}
-            />
-          );
-          openPopover(container);
-
-          const assertInvalidNumber = (value: number) => {
-            setLineCountNumber(baseElement, value);
-
-            const input = baseElement.querySelector(
-              'input[type="number"]'
-            ) as HTMLInputElement;
-
-            expect(input.value).toEqual(input.min);
-          };
-
-          assertInvalidNumber(0);
-          assertInvalidNumber(-50);
-        });
-
-        it('the text input is invalid and does not update the grid display if an invalid number is passed', () => {
-          const onChange = jest.fn();
-
-          const { container, baseElement } = render(
-            <MockComponent
-              rowHeightsOptions={{ defaultHeight: { lineCount: 2 }, onChange }}
-            />
-          );
-          openPopover(container);
-
-          const assertInvalidNumber = (value: number) => {
-            const input = baseElement.querySelector(
-              'input[type="number"]'
-            ) as HTMLInputElement;
-
-            input.value = value.toString();
-            expect(input.value).toEqual(value.toString());
-
-            expect(input).toBeInvalid();
-            expect(onChange).not.toHaveBeenCalled();
-          };
-
-          assertInvalidNumber(0);
-          assertInvalidNumber(-50);
-        });
-
-        it('correctly resets lineCount to initial developer-passed state', async () => {
-          const { container, baseElement, getByTestSubject } = render(
-            <MockComponent
-              rowHeightsOptions={{ defaultHeight: { lineCount: 3 } }}
-            />
-          );
-          openPopover(container);
-          expect(getLineCountNumber(baseElement)).toEqual('3');
-
-          setLineCountNumber(baseElement, 5);
-          expect(getLineCountNumber(baseElement)).toEqual('5');
-
-          await waitFor(() =>
-            userEvent.click(getByTestSubject('resetDisplaySelector'))
-          );
-
-          expect(getLineCountNumber(baseElement)).toEqual('3');
-        });
       });
     });
 
@@ -598,7 +484,7 @@ describe('useDataGridDisplaySelector', () => {
 
         await waitFor(() => {
           userEvent.click(getByTestSubject('normal'));
-          userEvent.click(getByTestSubject('undefined'));
+          userEvent.click(getByTestSubject('static'));
         });
 
         expect(
@@ -723,7 +609,7 @@ describe('useDataGridDisplaySelector', () => {
             }}
           />
         );
-        setRowHeight('undefined');
+        setRowHeight('static');
         expect(getOutput()).toEqual({
           rowHeights: {},
           defaultHeight: undefined,
@@ -734,10 +620,10 @@ describe('useDataGridDisplaySelector', () => {
         render(
           <MockComponent initialRowHeightsOptions={{ lineHeight: '2em' }} />
         );
-        setRowHeight('lineCount');
+        setRowHeight('auto');
         expect(getOutput()).toEqual({
           lineHeight: '2em',
-          defaultHeight: { lineCount: 2 },
+          defaultHeight: 'auto',
           rowHeights: {},
         });
       });
