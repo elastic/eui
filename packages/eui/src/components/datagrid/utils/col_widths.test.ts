@@ -88,7 +88,6 @@ describe('useColumnWidths', () => {
     columns: [{ id: 'b', initialWidth: 75 }, { id: 'c' }],
     trailingControlColumns: [{ id: 'd', width: 25 }] as any,
     defaultColumnWidth: 150,
-    onColumnResize: jest.fn(),
   };
 
   describe('columnWidths', () => {
@@ -136,16 +135,36 @@ describe('useColumnWidths', () => {
         });
         expect(result.current.columnWidths).toEqual({ b: 150 });
       });
+
+      it('does override user resized column widths if `onColumnResize` is passed', () => {
+        const controlledWidthsArgs = {
+          ...args,
+          onColumnResize: jest.fn(),
+        };
+        const { rerender, result } = renderHook(useColumnWidths, {
+          initialProps: controlledWidthsArgs,
+        });
+
+        renderHookAct(() => result.current.setColumnWidth('b', 150));
+        rerender({
+          ...controlledWidthsArgs,
+          columns: [{ id: 'b', initialWidth: 100 }],
+        });
+        expect(result.current.columnWidths).toEqual({ b: 100 });
+      });
     });
   });
 
   describe('setColumnWidth', () => {
     it("sets a single column's width in the columnWidths map", () => {
-      const { result } = renderHook(() => useColumnWidths(args));
+      const onColumnResize = jest.fn();
+      const { result } = renderHook(() =>
+        useColumnWidths({ ...args, onColumnResize })
+      );
 
       renderHookAct(() => result.current.setColumnWidth('c', 125));
       expect(result.current.columnWidths).toEqual({ b: 75, c: 125 });
-      expect(args.onColumnResize).toHaveBeenCalledWith({
+      expect(onColumnResize).toHaveBeenCalledWith({
         columnId: 'c',
         width: 125,
       });
