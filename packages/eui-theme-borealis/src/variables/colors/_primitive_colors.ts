@@ -72,7 +72,7 @@ export const PRIMITIVE_COLORS = {
     145: '#09182F',
   },
   blue: {
-    10: '#F1F9FF',
+    10: '#E5F1FF',
     20: '#D2E7FF',
     30: '#B4D5FF',
     40: '#96C3FF',
@@ -88,7 +88,7 @@ export const PRIMITIVE_COLORS = {
     140: '#09182F',
   },
   teal: {
-    10: '#EAFDFC',
+    10: '#D9FDFB',
     20: '#C0F1EE',
     30: '#93E5E0',
     40: '#5DD8D2',
@@ -104,7 +104,7 @@ export const PRIMITIVE_COLORS = {
     140: '#001F1E',
   },
   pink: {
-    10: '#FFF3F9',
+    10: '#FFEBF5',
     20: '#FFD9E7',
     30: '#FFBED5',
     40: '#FBA3C4',
@@ -120,7 +120,7 @@ export const PRIMITIVE_COLORS = {
     140: '#290D19',
   },
   green: {
-    10: '#EEFDF4',
+    10: '#D9FDEA',
     20: '#CAF1DB',
     30: '#A6E4C2',
     40: '#7ED8A9',
@@ -136,7 +136,7 @@ export const PRIMITIVE_COLORS = {
     140: '#001F10',
   },
   yellow: {
-    10: '#FEF8E7',
+    10: '#FFF1CC',
     20: '#FCE8B0',
     30: '#FFD569',
     40: '#FEC514',
@@ -152,7 +152,7 @@ export const PRIMITIVE_COLORS = {
     140: '#331600',
   },
   red: {
-    10: '#FFF4F1',
+    10: '#FFE9E5',
     20: '#FFDAD5',
     30: '#FFC0B8',
     40: '#FFA59C',
@@ -168,7 +168,7 @@ export const PRIMITIVE_COLORS = {
     140: '#2B0E0C',
   },
   purple: {
-    10: '#FAF6FF',
+    10: '#F3EBFF',
     20: '#EBDFFF',
     30: '#DBC8FF',
     40: '#CCB1FE',
