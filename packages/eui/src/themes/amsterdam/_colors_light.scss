@@ -30,6 +30,16 @@ $euiColorFullShade: #000 !default;
 // Backgrounds
 $euiPageBackgroundColor: tint($euiColorLightestShade, 50%) !default;
 $euiColorHighlight: tint($euiColorWarning, 90%) !default;
+$euiColorBackgroundPrimary: tint($euiColorPrimary, 90%) !default;
+$euiColorBackgroundAccent: tint($euiColorAccent, 90%) !default;
+$euiColorBackgroundAccentSecondary: tint($euiColorAccentSecondary, 90%) !default;
+$euiColorBackgroundSuccess: tint($euiColorSuccess, 90%) !default;
+$euiColorBackgroundWarning: tint($euiColorWarning, 90%) !default;
+$euiColorBackgroundDanger: tint($euiColorDanger, 90%) !default;
+$euiColorBackgroundSubdued: $euiPageBackgroundColor !default;
+$euiColorBackgroundDisabled: transparentize($euiColorLightShade, 0.15) !default;
+$euiColorBackgroundPlain: $euiColorEmptyShade !default;
+$euiColorBackgroundPage: $euiPageBackgroundColor !default;
 
 // Texts
 $euiTextColor: $euiColorDarkestShade !default;
