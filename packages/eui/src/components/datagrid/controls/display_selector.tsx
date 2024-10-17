@@ -15,6 +15,7 @@ import React, {
   useEffect,
   useRef,
 } from 'react';
+import isEqual from 'lodash/isEqual';
 
 import { logicalStyle, mathWithUnits } from '../../../global_styling';
 import { useUpdateEffect, useDeepEqual, useEuiTheme } from '../../../services';
@@ -229,35 +230,33 @@ const RowHeightControl = ({
       defaults={['Lines per row', 'Auto', 'Static']}
     >
       {([rowHeightLabel, labelAuto, labelStatic]: string[]) => (
-        <>
-          <EuiFormRow label={rowHeightLabel} display="columnCompressed">
-            <EuiFlexGroup gutterSize="s" responsive={false}>
-              <EuiButtonGroup
-                legend={rowHeightLabel}
-                css={{ flexShrink: 0, flexBasis: '66.6%' }}
-                buttonSize="compressed"
-                isFullWidth
-                options={[
-                  { id: 'auto', label: labelAuto },
-                  { id: 'static', label: labelStatic },
-                ]}
-                onChange={setRowHeight}
-                idSelected={rowHeightSelection}
-                data-test-subj="rowHeightButtonGroup"
-              />
-              <EuiFieldNumber
-                aria-label={rowHeightLabel}
-                compressed
-                min={1}
-                max={20}
-                disabled={rowHeightSelection !== 'static'}
-                value={lineCountInput}
-                onChange={setLineCountHeight}
-                data-test-subj="lineCountNumber"
-              />
-            </EuiFlexGroup>
-          </EuiFormRow>
-        </>
+        <EuiFormRow label={rowHeightLabel} display="columnCompressed">
+          <EuiFlexGroup gutterSize="s" responsive={false}>
+            <EuiButtonGroup
+              legend={rowHeightLabel}
+              css={{ flexShrink: 0, flexBasis: '66.6%' }}
+              buttonSize="compressed"
+              isFullWidth
+              options={[
+                { id: 'auto', label: labelAuto },
+                { id: 'static', label: labelStatic },
+              ]}
+              onChange={setRowHeight}
+              idSelected={rowHeightSelection}
+              data-test-subj="rowHeightButtonGroup"
+            />
+            <EuiFieldNumber
+              aria-label={rowHeightLabel}
+              compressed
+              min={1}
+              max={20}
+              disabled={rowHeightSelection !== 'static'}
+              value={lineCountInput}
+              onChange={setLineCountHeight}
+              data-test-subj="lineCountNumber"
+            />
+          </EuiFlexGroup>
+        </EuiFormRow>
       )}
     </EuiI18n>
   );
@@ -356,8 +355,10 @@ export const useDataGridDisplaySelector = (
 
   useUpdateEffect(() => {
     setShowResetButton(
-      rowHeightsOptions.defaultHeight !==
-        initialRowHeightsOptions.current.defaultHeight ||
+      !isEqual(
+        rowHeightsOptions.defaultHeight,
+        initialRowHeightsOptions.current.defaultHeight
+      ) ||
         gridStyles.fontSize !== initialGridStyles.current.fontSize ||
         gridStyles.cellPadding !== initialGridStyles.current.cellPadding
     );
