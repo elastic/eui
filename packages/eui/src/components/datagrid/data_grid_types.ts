@@ -349,6 +349,10 @@ export type CommonGridProps = CommonProps &
     sorting?: EuiDataGridSorting;
     /**
      * A callback for when a column's size changes. Callback receives `{ columnId: string, width: number }`.
+     *
+     * When an `onColumnResize` function is passed, `columns[].initialWidth` behaves like a
+     * controlled (rather than uncontrolled) prop, and can be used to completely manage column
+     * widths even after initial mount.
      */
     onColumnResize?: EuiDataGridOnColumnResizeHandler;
     /**
