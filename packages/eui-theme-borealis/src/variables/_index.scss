@@ -1,0 +1,8 @@
+// Import base theme first, then override
+@import 'node_modules/@elastic/eui-theme-common/src/global_styling/variables/index';
+@import 'states';
+
+@import 'borders';
+@import 'buttons';
+@import 'page';
+@import 'typography';

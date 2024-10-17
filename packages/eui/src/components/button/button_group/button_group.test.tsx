@@ -17,7 +17,7 @@ import {
 import { requiredProps as commonProps } from '../../../test';
 import { shouldRenderCustomStyles } from '../../../test/internal';
 
-import { BUTTON_COLORS } from '../../../themes/amsterdam/global_styling/mixins';
+import { BUTTON_COLORS } from '../../../global_styling/mixins';
 import {
   EuiButtonGroup,
   EuiButtonGroupOptionProps,

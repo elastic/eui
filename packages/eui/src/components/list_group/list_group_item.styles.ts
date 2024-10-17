@@ -12,22 +12,17 @@ import {
   euiFontSize,
   logicalCSS,
   logicalShorthandCSS,
-  euiBackgroundColor,
   euiTextTruncate,
   euiTextBreakWord,
 } from '../../global_styling';
 import { UseEuiTheme } from '../../services';
-import { euiButtonColor } from '../../themes/amsterdam/global_styling/mixins/button';
+import { euiButtonColor } from '../../global_styling/mixins/_button';
 
 export const euiListGroupItemStyles = (euiThemeContext: UseEuiTheme) => {
   const euiTheme = euiThemeContext.euiTheme;
 
-  const primaryBgColor = euiBackgroundColor(euiThemeContext, 'primary', {
-    method: 'transparent',
-  });
-  const subduedBgColor = euiBackgroundColor(euiThemeContext, 'subdued', {
-    method: 'transparent',
-  });
+  const primaryBgColor = euiTheme.colors.backgroundTransparentPrimary;
+  const subduedBgColor = euiTheme.colors.backgroundTransparentSubdued;
 
   return {
     // Base

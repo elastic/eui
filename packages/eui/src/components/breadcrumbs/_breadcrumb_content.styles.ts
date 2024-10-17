@@ -17,7 +17,7 @@ import {
   logicalBorderRadiusCSS,
   mathWithUnits,
 } from '../../global_styling';
-import { euiButtonColor } from '../../themes/amsterdam/global_styling/mixins/button';
+import { euiButtonColor } from '../../global_styling/mixins/_button';
 
 /**
  * Styles cast to inner <a>, <button>, <span> elements

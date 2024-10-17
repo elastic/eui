@@ -10,7 +10,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 
 import { moveStorybookControlsToCategory } from '../../../.storybook/utils';
-import { BUTTON_COLORS } from '../../themes/amsterdam/global_styling/mixins';
+import { BUTTON_COLORS } from '../../global_styling/mixins/_button';
 import {
   CANCEL_BUTTON,
   CONFIRM_BUTTON,
