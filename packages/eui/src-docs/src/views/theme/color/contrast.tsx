@@ -30,7 +30,7 @@ import {
   BUTTON_COLORS,
   euiButtonColor,
   _EuiButtonColor,
-} from '../../../../../src/themes/amsterdam/global_styling/mixins/button';
+} from '../../../../../src/global_styling/mixins/_button';
 import { GuideSection } from '../../../components/guide_section/guide_section';
 import {
   _EuiThemeBackgroundColors,

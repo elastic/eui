@@ -17,7 +17,7 @@ import {
 } from '../../global_styling';
 import { UseEuiTheme } from '../../services';
 import { euiStepVariables } from './step.styles';
-import { euiButtonFillColor } from '../../themes/amsterdam/global_styling/mixins';
+import { euiButtonFillColor } from '../../global_styling/mixins';
 
 export const euiStepNumberStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
