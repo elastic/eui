@@ -6,12 +6,12 @@
  * Side Public License, v 1.
  */
 
-import { renderHook } from '../../../../test/rtl';
+import { renderHook } from '../../test/rtl';
 import {
   useEuiButtonColorCSS,
   BUTTON_DISPLAYS,
   useEuiButtonFocusCSS,
-} from './button';
+} from './_button';
 
 describe('useEuiButtonColorCSS', () => {
   BUTTON_DISPLAYS.forEach((display) => {

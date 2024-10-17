@@ -182,6 +182,23 @@ export type _EuiThemeBackgroundColors = {
   backgroundDisabled: ColorModeSwitch;
   backgroundPlain: ColorModeSwitch;
   backgroundPage: ColorModeSwitch;
+  backgroundHover: ColorModeSwitch;
+
+  backgroundLightPrimary: ColorModeSwitch;
+  backgroundLightAccent: ColorModeSwitch;
+  backgroundLightAccentSecondary: ColorModeSwitch;
+  backgroundLightSuccess: ColorModeSwitch;
+  backgroundLightWarning: ColorModeSwitch;
+  backgroundLightDanger: ColorModeSwitch;
+  backgroundLightText: ColorModeSwitch;
+
+  backgroundFilledPrimary: ColorModeSwitch;
+  backgroundFilledAccent: ColorModeSwitch;
+  backgroundFilledAccentSecondary: ColorModeSwitch;
+  backgroundFilledSuccess: ColorModeSwitch;
+  backgroundFilledWarning: ColorModeSwitch;
+  backgroundFilledDanger: ColorModeSwitch;
+  backgroundFilledText: ColorModeSwitch;
 };
 
 /** TODO: remove once usages are re-mapped */
@@ -192,6 +209,8 @@ export type _EuiThemeTransparentBackgroundColors = {
   backgroundTransparentPrimary: ColorModeSwitch;
   /** @deprecated */
   backgroundTransparentAccent: ColorModeSwitch;
+  /** @deprecated */
+  backgroundTransparentAccentSecondary: ColorModeSwitch;
   /** @deprecated */
   backgroundTransparentSuccess: ColorModeSwitch;
   /** @deprecated */

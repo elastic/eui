@@ -84,9 +84,26 @@ export const background_colors: _EuiThemeBackgroundColors = {
   backgroundWarning: SEMANTIC_COLORS.warning10,
   backgroundDanger: SEMANTIC_COLORS.danger10,
   backgroundSubdued: SEMANTIC_COLORS.shade10,
-  backgroundDisabled: SEMANTIC_COLORS.shade20,
+  backgroundDisabled: SEMANTIC_COLORS.shade15,
   backgroundPlain: SEMANTIC_COLORS.plainLight,
   backgroundPage: SEMANTIC_COLORS.shade10,
+  backgroundHover: SEMANTIC_COLORS.shade15,
+
+  backgroundLightPrimary: SEMANTIC_COLORS.primary20,
+  backgroundLightAccent: SEMANTIC_COLORS.accent20,
+  backgroundLightAccentSecondary: SEMANTIC_COLORS.accentSecondary20,
+  backgroundLightSuccess: SEMANTIC_COLORS.success20,
+  backgroundLightWarning: SEMANTIC_COLORS.warning20,
+  backgroundLightDanger: SEMANTIC_COLORS.danger20,
+  backgroundLightText: SEMANTIC_COLORS.shade20,
+
+  backgroundFilledPrimary: SEMANTIC_COLORS.primary90,
+  backgroundFilledAccent: SEMANTIC_COLORS.accent90,
+  backgroundFilledAccentSecondary: SEMANTIC_COLORS.accentSecondary90,
+  backgroundFilledSuccess: SEMANTIC_COLORS.success90,
+  backgroundFilledWarning: SEMANTIC_COLORS.warning40,
+  backgroundFilledDanger: SEMANTIC_COLORS.danger90,
+  backgroundFilledText: SEMANTIC_COLORS.shade90,
 };
 
 /* TODO: align values for previously transparent backgrounds */
@@ -95,6 +112,8 @@ export const transparent_background_colors: _EuiThemeTransparentBackgroundColors
     backgroundTransparent: 'transparent',
     backgroundTransparentPrimary: background_colors.backgroundPrimary,
     backgroundTransparentAccent: background_colors.backgroundAccent,
+    backgroundTransparentAccentSecondary:
+      background_colors.backgroundAccentSecondary,
     backgroundTransparentSuccess: background_colors.backgroundSuccess,
     backgroundTransparentWarning: background_colors.backgroundWarning,
     backgroundTransparentDanger: background_colors.backgroundDanger,

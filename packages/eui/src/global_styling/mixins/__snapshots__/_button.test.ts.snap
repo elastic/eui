@@ -18,9 +18,9 @@ exports[`useEuiButtonColorCSS base 1`] = `
   },
   "disabled": {
     "map": undefined,
-    "name": "13xo60b-displaysColorsMap-display-color",
+    "name": "1jk94p6-displaysColorsMap-display-color",
     "next": undefined,
-    "styles": "color:#a2abba;background-color:rgba(211,218,230,0.15);;;label:base-disabled;",
+    "styles": "color:#535760;background-color:rgba(211,218,230,0.15);;;label:base-disabled;",
     "toString": [Function],
   },
   "primary": {
@@ -72,9 +72,9 @@ exports[`useEuiButtonColorCSS empty 1`] = `
   },
   "disabled": {
     "map": undefined,
-    "name": "2vymtv-displaysColorsMap-display-color",
+    "name": "lqv5x6-displaysColorsMap-display-color",
     "next": undefined,
-    "styles": "color:#a2abba;&:focus,&:active{background-color:transparent;};label:empty-disabled;",
+    "styles": "color:#535760;&:focus,&:active{background-color:transparent;};label:empty-disabled;",
     "toString": [Function],
   },
   "primary": {
