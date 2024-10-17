@@ -12,3 +12,4 @@ export * from './_padding';
 export * from './_states';
 export * from './_typography';
 export * from './_responsive';
+export * from './_button';

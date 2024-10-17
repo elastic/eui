@@ -9,7 +9,7 @@
 import React, { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { _EuiButtonColor } from '../../../themes/amsterdam/global_styling/mixins';
+import { _EuiButtonColor } from '../../../global_styling/mixins';
 import { EuiFlexGroup, EuiFlexItem } from '../../flex';
 import { EuiSpacer } from '../../spacer';
 import { EuiButton, EuiButtonEmpty } from '../../button';

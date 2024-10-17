@@ -26,7 +26,7 @@ import {
   euiButtonFillColor,
   _EuiButtonColor,
   BUTTON_COLORS,
-} from '../../../themes/amsterdam/global_styling/mixins/button';
+} from '../../../global_styling/mixins/_button';
 import { euiScreenReaderOnly } from '../../accessibility';
 import { euiFormVariables } from '../../form/form.styles';
 

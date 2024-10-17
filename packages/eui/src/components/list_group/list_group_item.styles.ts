@@ -16,7 +16,7 @@ import {
   euiTextBreakWord,
 } from '../../global_styling';
 import { UseEuiTheme } from '../../services';
-import { euiButtonColor } from '../../themes/amsterdam/global_styling/mixins/button';
+import { euiButtonColor } from '../../global_styling/mixins/_button';
 
 export const euiListGroupItemStyles = (euiThemeContext: UseEuiTheme) => {
   const euiTheme = euiThemeContext.euiTheme;
