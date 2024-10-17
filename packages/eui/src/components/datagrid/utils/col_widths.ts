@@ -79,19 +79,25 @@ export const useColumnWidths = ({
   setColumnWidth: (columnId: string, width: number) => void;
   getColumnWidth: (index: number) => number;
 } => {
+  const hasOnColumnResize = !!onColumnResize;
   const getInitialWidths = useCallback(
     (prevColumnWidths?: EuiDataGridColumnWidths) => {
       const columnWidths = { ...prevColumnWidths };
       columns
         .filter(doesColumnHaveAnInitialWidth)
         .forEach(({ id, initialWidth }) => {
-          if (columnWidths[id] == null) {
+          // Several Kibana datagrids are using `onColumnResize` and `column.initialWidth`
+          // to fully control column widths. Sadly, we didn't do a good job documenting
+          // the intent of this prop and how controlled it is, so for now we'll assume
+          // that any datagrid passing `onColumnResize` is controlling its column widths
+          // and should override any internal column width state set by user resizing
+          if (hasOnColumnResize || columnWidths[id] == null) {
             columnWidths[id] = initialWidth!;
           }
         });
       return columnWidths;
     },
-    [columns]
+    [columns, hasOnColumnResize]
   );
 
   // Passes initializer function for performance, so computing only runs once on init
