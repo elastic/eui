@@ -129,6 +129,60 @@ export const background_colors: _EuiThemeBackgroundColors = {
     ['colors.emptyShade']
   ),
   backgroundPage: computed(([body]) => body, ['colors.body']),
+
+  backgroundHover: computed(
+    ([lightShade]) => transparentize(lightShade, 0.2),
+    ['colors.lightShade']
+  ),
+
+  backgroundLightPrimary: computed(
+    ([primary]) => tint(primary, 0.8),
+    ['colors.primary']
+  ),
+  backgroundLightAccent: computed(
+    ([accent]) => tint(accent, 0.8),
+    ['colors.accent']
+  ),
+  backgroundLightAccentSecondary: computed(
+    ([accent]) => tint(accent, 0.8),
+    ['colors.accent']
+  ),
+  backgroundLightSuccess: computed(
+    ([success]) => tint(success, 0.8),
+    ['colors.success']
+  ),
+  backgroundLightWarning: computed(
+    ([warning]) => tint(warning, 0.8),
+    ['colors.warning']
+  ),
+  backgroundLightDanger: computed(
+    ([danger]) => tint(danger, 0.8),
+    ['colors.danger']
+  ),
+  backgroundLightText: computed(
+    ([lightShade]) => tint(lightShade, 0.5),
+    ['colors.lightShade']
+  ),
+
+  backgroundFilledPrimary: computed(([primary]) => primary, ['colors.primary']),
+  backgroundFilledAccent: computed(
+    ([accent]) => tint(accent, 0.3),
+    ['colors.accent']
+  ),
+  backgroundFilledAccentSecondary: computed(
+    ([accent]) => tint(accent, 0.3),
+    ['colors.accent']
+  ),
+  backgroundFilledSuccess: computed(
+    ([success]) => tint(success, 0.3),
+    ['colors.success']
+  ),
+  backgroundFilledWarning: computed(([warning]) => warning, ['colors.warning']),
+  backgroundFilledDanger: computed(([danger]) => danger, ['colors.danger']),
+  backgroundFilledText: computed(
+    ([darkShade]) => darkShade,
+    ['colors.darkShade']
+  ),
 };
 
 export const transparent_background_colors: _EuiThemeTransparentBackgroundColors =
@@ -139,6 +193,10 @@ export const transparent_background_colors: _EuiThemeTransparentBackgroundColors
       ['colors.primary']
     ),
     backgroundTransparentAccent: computed(
+      ([accent]) => transparentize(accent, 0.1),
+      ['colors.accent']
+    ),
+    backgroundTransparentAccentSecondary: computed(
       ([accent]) => transparentize(accent, 0.1),
       ['colors.accent']
     ),
@@ -249,6 +307,51 @@ export const dark_background_colors: _EuiThemeBackgroundColors = {
     ['colors.emptyShade']
   ),
   backgroundPage: computed(([body]) => body, ['colors.body']),
+
+  backgroundHover: computed(
+    ([lightShade]) => transparentize(lightShade, 0.2),
+    ['colors.lightShade']
+  ),
+
+  backgroundLightPrimary: computed(
+    ([primary]) => shade(primary, 0.7),
+    ['colors.primary']
+  ),
+  backgroundLightAccent: computed(
+    ([accent]) => shade(accent, 0.7),
+    ['colors.accent']
+  ),
+  backgroundLightAccentSecondary: computed(
+    ([accent]) => shade(accent, 0.7),
+    ['colors.accent']
+  ),
+  backgroundLightSuccess: computed(
+    ([success]) => shade(success, 0.7),
+    ['colors.success']
+  ),
+  backgroundLightWarning: computed(
+    ([warning]) => shade(warning, 0.7),
+    ['colors.warning']
+  ),
+  backgroundLightDanger: computed(
+    ([danger]) => shade(danger, 0.7),
+    ['colors.danger']
+  ),
+  backgroundLightText: computed(
+    ([lightShade]) => shade(lightShade, 0.2),
+    ['colors.lightShade']
+  ),
+
+  backgroundFilledPrimary: computed(([primary]) => primary, ['colors.primary']),
+  backgroundFilledAccent: computed(([accent]) => accent, ['colors.accent']),
+  backgroundFilledAccentSecondary: computed(
+    ([accent]) => accent,
+    ['colors.accent']
+  ),
+  backgroundFilledSuccess: computed(([success]) => success, ['colors.success']),
+  backgroundFilledWarning: computed(([warning]) => warning, ['colors.warning']),
+  backgroundFilledDanger: computed(([danger]) => danger, ['colors.danger']),
+  backgroundFilledText: computed(([text]) => text, ['colors.text']),
 };
 
 export const dark_transparent_background_colors: _EuiThemeTransparentBackgroundColors =

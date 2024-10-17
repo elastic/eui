@@ -16,6 +16,7 @@ import { border } from './variables/_borders';
 import { levels } from './variables/_levels';
 import { font } from './variables/_typography';
 import { focus } from './variables/_states';
+import { components } from './variables/_components';
 
 export const EUI_THEME_BOREALIS_KEY = 'EUI_THEME_BOREALIS';
 
@@ -29,6 +30,7 @@ export const euiThemeBorealis: EuiThemeShape = {
   breakpoint,
   levels,
   focus,
+  components,
 };
 
 export const EuiThemeBorealis = buildTheme(

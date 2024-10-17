@@ -6,15 +6,10 @@
  * Side Public License, v 1.
  */
 
-export * from './animations';
-export * from './borders';
-export * from './breakpoint';
-export * from './colors';
-export * from './_colors_vis';
-export * from './levels';
-export * from './size';
-export * from './shadow';
-export * from './states';
-export * from './typography';
-export * from './buttons';
-export * from './components';
+import { StrictColorModeSwitch } from '../types';
+import { _EuiThemeButtonColors } from './buttons';
+import { _EuiThemeFormColors } from './forms';
+
+export type _EuiThemeComponents = {
+  buttons: StrictColorModeSwitch<_EuiThemeButtonColors>;
+};
