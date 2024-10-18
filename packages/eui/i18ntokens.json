@@ -5119,12 +5119,12 @@
       "start": {
         "line": 114,
         "column": 4,
-        "index": 3416
+        "index": 3423
       },
       "end": {
         "line": 114,
         "column": 75,
-        "index": 3487
+        "index": 3494
       }
     },
     "filepath": "src/components/header/header_links/header_links.tsx"
@@ -5137,12 +5137,12 @@
       "start": {
         "line": 131,
         "column": 4,
-        "index": 3915
+        "index": 3922
       },
       "end": {
         "line": 131,
         "column": 69,
-        "index": 3980
+        "index": 3987
       }
     },
     "filepath": "src/components/header/header_links/header_links.tsx"
