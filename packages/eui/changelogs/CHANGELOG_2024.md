@@ -1,3 +1,11 @@
+## [`v97.2.0`](https://github.com/elastic/eui/releases/v97.2.0)
+
+- Updated `EuiHeaderLinks` with a new `xxs` gutter size ([#8079](https://github.com/elastic/eui/pull/8079))
+
+**Bug fixes**
+
+- Reverted an `EuiDataGrid` regression from [#8015](https://github.com/elastic/eui/pull/8015) which prevented overriding column widths via columns's `initialWidth`s ([#8086](https://github.com/elastic/eui/pull/8086))
+
 ## [`v97.1.0`](https://github.com/elastic/eui/releases/v97.1.0)
 
 - Added `columnVisibility.canDragAndDropColumns` on `EuiDataGrid` which enables reordering columns via draggable header cells ([#8015](https://github.com/elastic/eui/pull/8015))
