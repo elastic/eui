@@ -22,8 +22,8 @@ import {
   euiButtonColor,
   euiButtonEmptyColor,
   euiButtonFillColor,
-  euiShadowSmall,
-} from '../../themes/amsterdam/global_styling/mixins';
+} from '../../global_styling/mixins';
+import { euiShadowSmall } from '../../themes/amsterdam/global_styling/mixins';
 import {
   euiFormControlStyles,
   euiFormControlText,

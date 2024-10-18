@@ -12,4 +12,4 @@ docker run \
     --volume "$PWD":/app \
     --workdir /app \
     "$DOCKER_BASE_IMAGE" \
-    bash -c 'yarn && yarn --cwd packages/eui build && yarn --cwd packages/eui build-docs && yarn --cwd packages/eui build-storybook'
+    bash -c 'yarn && yarn --cwd packages/eui build:workspaces && yarn --cwd packages/eui build && yarn --cwd packages/eui build-docs && yarn --cwd packages/eui build-storybook'

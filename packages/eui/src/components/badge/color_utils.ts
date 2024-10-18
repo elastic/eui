@@ -12,7 +12,7 @@ import { UseEuiTheme, isColorDark, tint } from '../../services';
 import {
   euiButtonColor,
   euiButtonFillColor,
-} from '../../themes/amsterdam/global_styling/mixins';
+} from '../../global_styling/mixins/_button';
 import { chromaValid, parseColor } from '../color_picker/utils';
 
 export const euiBadgeColors = (euiThemeContext: UseEuiTheme) => {

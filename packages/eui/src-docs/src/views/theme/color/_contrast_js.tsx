@@ -27,6 +27,7 @@ type ColorSection = {
   showTextVariants: boolean;
   matchPanelColor?: boolean;
   hookName?: string;
+  tokenName?: string;
 };
 
 export const ColorSectionJS: FunctionComponent<ColorSection> = ({
@@ -36,6 +37,7 @@ export const ColorSectionJS: FunctionComponent<ColorSection> = ({
   showTextVariants,
   matchPanelColor,
   hookName,
+  tokenName,
 }) => {
   const { euiTheme } = useEuiTheme();
   const colorsForContrast = showTextVariants ? textVariants : allowedColors;
@@ -80,7 +82,9 @@ export const ColorSectionJS: FunctionComponent<ColorSection> = ({
                 background={_colorValue ? colorValue : color}
                 key={color2}
                 minimumContrast={minimumContrast}
-                styleString={hookName && `${hookName}('${color}')`}
+                styleString={
+                  tokenName ?? (hookName && `${hookName}('${color}')`)
+                }
               />
             );
           })}

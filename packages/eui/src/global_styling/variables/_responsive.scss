@@ -1,9 +1,1 @@
-$euiBreakpoints: (
-  'xs': 0,
-  's':  575px,
-  'm':  768px,
-  'l':  992px,
-  'xl': 1200px
-) !default;
-
-$euiBreakpointKeys: map-keys($euiBreakpoints);
+@import 'node_modules/@elastic/eui-theme-common/src/global_styling/variables/responsive'
