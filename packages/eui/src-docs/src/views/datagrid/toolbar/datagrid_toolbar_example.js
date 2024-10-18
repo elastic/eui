@@ -34,60 +34,64 @@ const controlsSnippet = `<EuiDataGrid
   columnVisibility={{ visibleColumns, setVisibleColumns }}
   rowCount={rowCount}
   toolbarVisibility={{
-  // Use of a fragment for multiple items will insure proper margins
-  additionalControls: {
-    left: {
-      prepend: (
+    // Use of a fragment for multiple items will insure proper margins
+    additionalControls: {
+      left: {
+        prepend: (
+          <>
+            <EuiButtonEmpty
+              size="xs"
+              onClick={() => {}}>
+              New button
+            </EuiButtonEmpty>
+            <EuiButtonEmpty
+              size="xs"
+              onClick={() => {}}>
+              Another button
+            </EuiButtonEmpty>
+          </>
+        ),
+        append: (
+          <>
+            <EuiButtonEmpty
+              size="xs"
+              onClick={() => {}}>
+              New button
+            </EuiButtonEmpty>
+            <EuiButtonEmpty
+              size="xs"
+              onClick={() => {}}>
+              Another button
+            </EuiButtonEmpty>
+          </>
+        ),
+      },
+      right: (
         <>
-          <EuiButtonEmpty
-            size="xs"
-            onClick={() => {}}>
-            New button
-          </EuiButtonEmpty>
-          <EuiButtonEmpty
-            size="xs"
-            onClick={() => {}}>
-            Another button
-          </EuiButtonEmpty>
-        </>
-      ),
-      append: (
-        <>
-          <EuiButtonEmpty
-            size="xs"
-            onClick={() => {}}>
-            New button
-          </EuiButtonEmpty>
-          <EuiButtonEmpty
-            size="xs"
-            onClick={() => {}}>
-            Another button
-          </EuiButtonEmpty>
+          <EuiToolTip content="Right-side button">
+            <EuiButtonIcon
+              aria-label="Right-side button"
+              size="xs"
+              iconType="refresh"
+              onClick={() => {}}
+            />
+          </EuiToolTip>
+          <EuiToolTip content="Another right-side button">
+            <EuiButtonIcon
+              aria-label="Another right-side button"
+              size="xs"
+              iconType="inspect"
+              onClick={() => {}}
+            />
+          </EuiToolTip>
         </>
       ),
     },
-    right: (
-      <>
-        <EuiToolTip content="Right-side button">
-          <EuiButtonIcon
-            aria-label="Right-side button"
-            size="xs"
-            iconType="refresh"
-            onClick={() => {}}
-          />
-        </EuiToolTip>
-        <EuiToolTip content="Another right-side button">
-          <EuiButtonIcon
-            aria-label="Another right-side button"
-            size="xs"
-            iconType="inspect"
-            onClick={() => {}}
-          />
-        </EuiToolTip>
-      </>
-    )
-  }
-}}
+    // Additional controls can also be passed to the display settings popover
+    showDisplaySelector: {
+      additionalDisplaySettings: <div>Custom settings content</div>,
+    },
+  }}
 />
 `;
 
@@ -246,8 +250,7 @@ export const DataGridToolbarExample = {
   renderCustomToolbar={({ displayControl }) => <div>Custom toolbar content {displayControl}</div>}
   toolbarVisibility={{
     showDisplaySelector: {
-      allowResetButton: false,
-      additionalDisplaySettings: <div>Custom settings content</div>
+      customRender: ({ densityControl }) => <div>Custom display selector {densityControl}</div>
     }
   }}
 />`,

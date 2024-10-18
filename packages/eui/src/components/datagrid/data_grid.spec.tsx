@@ -83,7 +83,7 @@ describe('EuiDataGrid', () => {
         .invoke('outerHeight')
         .then((firstHeight) => {
           cy.get('[data-test-subj=dataGridDisplaySelectorPopover]').click();
-          cy.get('[data-text="Auto fit"]').click();
+          cy.get('[data-text="Auto"]').click();
 
           cy.get('[data-test-subj=euiDataGridBody]')
             .invoke('outerHeight')

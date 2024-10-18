@@ -6,8 +6,9 @@
  * Side Public License, v 1.
  */
 
-import { useRef } from 'react';
+import { useState } from 'react';
 import isEqual from 'lodash/isEqual';
+import { useUpdateEffect } from './useUpdateEffect';
 
 /**
  * This hook is mostly a performance concern for third-party objs/arrays that EUI
@@ -17,11 +18,13 @@ import isEqual from 'lodash/isEqual';
 export const useDeepEqual = <T = Record<string, any> | any[] | undefined>(
   object: T
 ): T => {
-  const ref = useRef(object);
+  const [memoizedObject, setMemoizedObject] = useState(object);
 
-  if (!isEqual(object, ref.current)) {
-    ref.current = object;
-  }
+  useUpdateEffect(() => {
+    if (!isEqual(object, memoizedObject)) {
+      setMemoizedObject(object);
+    }
+  }, [object]);
 
-  return ref.current;
+  return memoizedObject;
 };
