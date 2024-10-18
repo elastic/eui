@@ -26,6 +26,7 @@ export const euiDataGridToolbarStyles = ({ euiTheme }: UseEuiTheme) => {
     euiDataGrid__rightControls: css`
       display: flex;
       justify-content: flex-end;
+      align-items: center;
       flex-wrap: wrap;
       column-gap: ${euiTheme.size.s};
       ${logicalCSS('padding-right', euiTheme.size.xs)}
@@ -38,6 +39,7 @@ export const euiDataGridToolbarStyles = ({ euiTheme }: UseEuiTheme) => {
     euiDataGrid__leftControls: css`
       display: flex;
       flex-wrap: wrap;
+      align-items: center;
       gap: ${euiTheme.size.xxs};
     `,
   };
