@@ -8,7 +8,7 @@
 
 import React, { FunctionComponent } from 'react';
 import classNames from 'classnames';
-import { EuiTimelineItem } from '../timeline';
+import { EuiTimelineItem, EuiTimelineItemProps } from '../timeline';
 import { EuiCommentEvent, EuiCommentEventProps } from './comment_event';
 import {
   EuiCommentTimeline,
@@ -17,7 +17,8 @@ import {
 
 export interface EuiCommentProps
   extends EuiCommentEventProps,
-    EuiCommentTimelineProps {}
+    EuiCommentTimelineProps,
+    Omit<EuiTimelineItemProps, 'children' | 'icon' | 'iconAriaLabel'> {}
 
 export const EuiComment: FunctionComponent<EuiCommentProps> = ({
   children,
