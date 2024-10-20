@@ -36,8 +36,7 @@ export interface _EuiBackgroundColorOptions {
 }
 
 /**
- * @deprecated - use background tokens directly or use
- * `useEuiBackgroundColorCSS` for composed styles
+ * @deprecated - use background tokens directly
  * @returns A single background color with optional alpha transparency
  */
 export const euiBackgroundColor = (
@@ -49,14 +48,14 @@ export const euiBackgroundColor = (
 
   if (method === 'transparent') {
     const tokenName = getTokenName(
-      'backgroundTransparent',
+      'backgroundBase',
       color
     ) as keyof _EuiThemeTransparentBackgroundColors;
 
     return euiTheme.colors[tokenName];
   } else {
     const tokenName = getTokenName(
-      'background',
+      'backgroundBase',
       color
     ) as keyof _EuiThemeTransparentBackgroundColors;
 
@@ -104,25 +103,33 @@ export const useEuiBackgroundColor = (
 };
 
 /**
+ * @deprecated
  * @returns An object map of color keys to CSS,
  * e.g. { danger: css``, success: css``, ... }
  */
 const _euiBackgroundColors = (euiThemeContext: UseEuiTheme) =>
   BACKGROUND_COLORS.reduce((acc, color) => {
     const tokenName = getTokenName(
-      'background',
+      'backgroundBase',
       color
     ) as keyof _EuiThemeBackgroundColors;
+
+    const backgroundColor =
+      color === 'transparent'
+        ? 'transparent'
+        : euiThemeContext.euiTheme.colors[tokenName];
+
     return {
       ...acc,
       [color]: css`
-        background-color: ${euiThemeContext.euiTheme.colors[tokenName]};
+        background-color: ${backgroundColor};
         label: ${color};
       `,
     };
   }, {} as Record<_EuiBackgroundColor, SerializedStyles>);
 
 /**
+ * @deprecated - use background tokens directly
  * Hook to retrieve background style for a background color variant
  * @returns An object map of color keys to CSS,
  * e.g. { danger: css``, success: css``, ... }
@@ -145,7 +152,7 @@ export const euiBorderColor = (
       return euiTheme.border.color;
     default: {
       const tokenName = getTokenName(
-        'border',
+        'borderBase',
         color
       ) as keyof _EuiThemeBorderColors;
 
@@ -161,7 +168,7 @@ export const euiBorderColor = (
 const _euiBorderColors = (euiThemeContext: UseEuiTheme) =>
   BACKGROUND_COLORS.reduce((acc, color) => {
     const borderToken = getTokenName(
-      'border',
+      'borderBase',
       color
     ) as keyof _EuiThemeBackgroundColors;
 

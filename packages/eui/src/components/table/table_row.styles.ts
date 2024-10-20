@@ -76,7 +76,7 @@ export const euiTableRowStyles = (euiThemeContext: UseEuiTheme) => {
 
         /* EuiPanel styling */
         ${euiShadow(euiThemeContext, 's')}
-        background-color: ${euiTheme.colors.backgroundPlain};
+        background-color: ${euiTheme.colors.backgroundBasePlain};
         border-radius: ${euiTheme.border.radius.medium};
       `,
       selected: css`

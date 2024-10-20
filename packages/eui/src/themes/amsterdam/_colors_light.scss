@@ -30,16 +30,38 @@ $euiColorFullShade: #000 !default;
 // Backgrounds
 $euiPageBackgroundColor: tint($euiColorLightestShade, 50%) !default;
 $euiColorHighlight: tint($euiColorWarning, 90%) !default;
-$euiColorBackgroundPrimary: tint($euiColorPrimary, 90%) !default;
-$euiColorBackgroundAccent: tint($euiColorAccent, 90%) !default;
-$euiColorBackgroundAccentSecondary: tint($euiColorAccentSecondary, 90%) !default;
-$euiColorBackgroundSuccess: tint($euiColorSuccess, 90%) !default;
-$euiColorBackgroundWarning: tint($euiColorWarning, 90%) !default;
-$euiColorBackgroundDanger: tint($euiColorDanger, 90%) !default;
-$euiColorBackgroundSubdued: $euiPageBackgroundColor !default;
-$euiColorBackgroundDisabled: transparentize($euiColorLightShade, 0.15) !default;
-$euiColorBackgroundPlain: $euiColorEmptyShade !default;
-$euiColorBackgroundPage: $euiPageBackgroundColor !default;
+
+$euiColorBackgroundBasePrimary: tint($euiColorPrimary, 90%) !default;
+$euiColorBackgroundBaseAccent: tint($euiColorAccent, 90%) !default;
+$euiColorBackgroundBaseAccentSecondary: tint($euiColorAccentSecondary, 90%) !default;
+$euiColorBackgroundBaseSuccess: tint($euiColorSuccess, 90%) !default;
+$euiColorBackgroundBaseWarning: tint($euiColorWarning, 90%) !default;
+$euiColorBackgroundBaseDanger: tint($euiColorDanger, 90%) !default;
+$euiColorBackgroundBaseSubdued: $euiPageBackgroundColor !default;
+$euiColorBackgroundBaseDisabled: transparentize($euiColorLightShade, 0.15) !default;
+$euiColorBackgroundBasePlain: $euiColorEmptyShade !default;
+$euiColorBackgroundBasePage: $euiPageBackgroundColor !default;
+$euiColorBackgroundBasePrepend: tint($euiColorLightShade, 0.5) !default;
+
+$euiColorBackgroundBaseHover: transparentize($euiColorLightShade, 0.2) !default;
+$euiColorBackgroundBaseSelect: tint($euiColorPrimary, 0.96) !default;
+$euiColorBackgroundBaseOverlay: transparentize($euiColorInk, 0.5) !default;
+
+$euiColorBackgroundLightPrimary: tint($euiColorPrimary, 0.8) !default;
+$euiColorBackgroundLightAccent: tint($euiColorAccent, 0.8) !default;
+$euiColorBackgroundLightAccentSecondary: tint($euiColorAccentSecondary, 0.8)  !default;
+$euiColorBackgroundLightSuccess: tint($euiColorSuccess, 0.8)  !default;
+$euiColorBackgroundLightWarning: tint($euiColorWarning, 0.8)  !default;
+$euiColorBackgroundLightDanger: tint($euiColorDanger, 0.8)  !default;
+$euiColorBackgroundLightText: tint($euiColorLightShade, 0.5) !default;
+
+$euiColorBackgroundFilledPrimary: $euiColorPrimary !default;
+$euiColorBackgroundFilledAccent: tint($euiColorAccent, 0.3) !default;
+$euiColorBackgroundFilledAccentSecondary: tint($euiColorAccentSecondary, 0.3) !default;
+$euiColorBackgroundFilledSuccess: tint($euiColorSuccess, 0.3) !default;
+$euiColorBackgroundFilledWarning: $euiColorWarning !default;
+$euiColorBackgroundFilledDanger: $euiColorDanger !default;
+$euiColorBackgroundFilledText: $euiColorDarkShade !default;
 
 // Texts
 $euiTextColor: $euiColorDarkestShade !default;
@@ -69,6 +91,18 @@ $euiColorTextWarning: $euiColorWarningText !default;
 $euiColorTextDanger: $euiColorDangerText !default;
 
 $euiLinkColor: $euiColorPrimaryText !default;
+
+// Borders
+$borderBasePrimary: tint($euiColorPrimary, 0.6);
+$borderBaseAccent: tint($euiColorAccent, 0.6);
+$borderBaseAccentSecondary: tint($euiColorAccentSecondary, 0.6);
+$borderBaseSuccess: tint($euiColorSuccess, 0.6);
+$borderBaseWarning: tint($euiColorWarning, 0.6);
+$borderBaseDanger: tint($euiColorDanger, 0.6);
+$borderBasePlain: $euiColorLightShade;
+$borderBaseSubdued: $euiColorLightShade;
+$borderBaseDisabled: transparentize(darken($euiColorLightShade, 40%), 0.1);
+$borderBaseFloating: 'transparent';
 
 // Charts
 $euiColorChartLines: shade($euiColorLightestShade, 3%) !default;

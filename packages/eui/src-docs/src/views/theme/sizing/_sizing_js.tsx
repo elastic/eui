@@ -426,7 +426,7 @@ const cssStyles = [paddingStyles['l']];
         example={
           <p
             css={css`
-              background: ${euiTheme.colors.backgroundWarning};
+              background: ${euiTheme.colors.backgroundBaseWarning};
               padding: ${useEuiPaddingSize('l')};
             `}
           >

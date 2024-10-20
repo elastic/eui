@@ -8,7 +8,6 @@
 
 import { StrictColorModeSwitch } from '../types';
 import { _EuiThemeButtonColors } from './buttons';
-import { _EuiThemeFormColors } from './forms';
 
 export type _EuiThemeComponents = {
   buttons: StrictColorModeSwitch<_EuiThemeButtonColors>;
