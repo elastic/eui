@@ -37,7 +37,7 @@ export const euiEmptyPromptStyles = (euiThemeContext: UseEuiTheme) => {
 
   const generateFooterBorder = (color: _EuiBackgroundColor) => {
     const borderToken = getTokenName(
-      'border',
+      'borderBase',
       color
     ) as keyof _EuiThemeBorderColors;
 

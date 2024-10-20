@@ -27,7 +27,7 @@ const _buttons = {
   backgroundWarning: background_colors.backgroundLightWarning,
   backgroundDanger: background_colors.backgroundLightDanger,
   backgroundText: background_colors.backgroundLightText,
-  backgroundDisabled: background_colors.backgroundDisabled,
+  backgroundDisabled: background_colors.backgroundBaseDisabled,
 
   backgroundFilledPrimary: background_colors.backgroundFilledPrimary,
   backgroundFilledAccent: background_colors.backgroundFilledAccent,
@@ -37,7 +37,7 @@ const _buttons = {
   backgroundFilledWarning: background_colors.backgroundFilledWarning,
   backgroundFilledDanger: background_colors.backgroundFilledDanger,
   backgroundFilledText: background_colors.backgroundFilledText,
-  backgroundFilledDisabled: background_colors.backgroundDisabled,
+  backgroundFilledDisabled: background_colors.backgroundBaseDisabled,
 
   textColorPrimary: brand_text_colors.textPrimary,
   textColorAccent: brand_text_colors.textAccent,
@@ -59,8 +59,6 @@ const _buttons = {
 };
 
 const _dark_buttons = {
-  ..._buttons,
-
   backgroundPrimary: dark_background_colors.backgroundLightPrimary,
   backgroundAccent: dark_background_colors.backgroundLightAccent,
   backgroundAccentSecondary:
@@ -69,15 +67,35 @@ const _dark_buttons = {
   backgroundWarning: dark_background_colors.backgroundLightWarning,
   backgroundDanger: dark_background_colors.backgroundLightDanger,
   backgroundText: dark_background_colors.backgroundLightText,
-  backgroundDisabled: SEMANTIC_COLORS.plainDark,
+  backgroundDisabled: dark_background_colors.backgroundBaseDisabled,
 
-  textPrimary: dark_brand_text_colors.textPrimary,
-  textAccent: dark_brand_text_colors.textAccent,
-  textAccentSecondary: dark_brand_text_colors.textAccentSecondary,
-  textSuccess: dark_brand_text_colors.textSuccess,
-  textWarning: dark_brand_text_colors.textWarning,
-  textDanger: dark_brand_text_colors.textDanger,
-  textDisabled: dark_text_colors.textDisabled,
+  backgroundFilledPrimary: dark_background_colors.backgroundFilledPrimary,
+  backgroundFilledAccent: dark_background_colors.backgroundFilledAccent,
+  backgroundFilledAccentSecondary:
+    dark_background_colors.backgroundFilledAccentSecondary,
+  backgroundFilledSuccess: dark_background_colors.backgroundFilledSuccess,
+  backgroundFilledWarning: dark_background_colors.backgroundFilledWarning,
+  backgroundFilledDanger: dark_background_colors.backgroundFilledDanger,
+  backgroundFilledText: dark_background_colors.backgroundFilledText,
+  backgroundFilledDisabled: dark_background_colors.backgroundBaseDisabled,
+
+  textColorPrimary: dark_brand_text_colors.textPrimary,
+  textColorAccent: dark_brand_text_colors.textAccent,
+  textColorAccentSecondary: dark_brand_text_colors.textAccentSecondary,
+  textColorSuccess: dark_brand_text_colors.textSuccess,
+  textColorWarning: dark_brand_text_colors.textWarning,
+  textColorDanger: dark_brand_text_colors.textDanger,
+  textColorText: dark_text_colors.textParagraph,
+  textColorDisabled: dark_text_colors.textDisabled,
+
+  textColorFilledPrimary: dark_text_colors.textInverse,
+  textColorFilledAccent: dark_text_colors.textInverse,
+  textColorFilledAccentSecondary: dark_text_colors.textInverse,
+  textColorFilledSuccess: dark_text_colors.textInverse,
+  textColorFilledWarning: SEMANTIC_COLORS.warning110,
+  textColorFilledDanger: dark_text_colors.textInverse,
+  textColorFilledText: dark_text_colors.textInverse,
+  textColorFilledDisabled: dark_text_colors.textDisabled,
 };
 
 export const buttons: _EuiThemeButton = {

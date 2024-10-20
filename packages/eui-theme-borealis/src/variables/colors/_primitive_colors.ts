@@ -11,6 +11,10 @@ export const PRIMITIVE_COLORS = {
   black: '#000000',
   mutedBlack: '#0E0F12',
   blueBlack: '#050F21',
+  transparent: 'transparent',
+  transparentBlack: {
+    60: 'rgba(0, 0, 0, 0.6)',
+  },
   mutedGrey: {
     10: '#F6F9FC',
     15: '#EDEFF3',

@@ -288,7 +288,7 @@ export default () => {
 
               {backgroundColors.map((color: string) => {
                 const backgroundToken = getTokenName(
-                  'background',
+                  'backgroundBase',
                   color
                 ) as keyof _EuiThemeBackgroundColors;
 

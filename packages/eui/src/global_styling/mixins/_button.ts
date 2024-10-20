@@ -63,7 +63,7 @@ export const euiButtonColor = (
 
   return {
     color:
-      background === 'transparent'
+      background === 'transparent' || color === 'disabled'
         ? foreground
         : makeHighContrastColor(foreground)(background),
     backgroundColor: background,
