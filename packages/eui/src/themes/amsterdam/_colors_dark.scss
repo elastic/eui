@@ -30,16 +30,38 @@ $euiColorFullShade: #FFF !default;
 // Backgrounds
 $euiPageBackgroundColor: shade($euiColorLightestShade, 45%) !default;
 $euiColorHighlight: #2E2D25 !default;
-$euiColorBackgroundPrimary: shade($euiColorPrimary, 80%) !default;
-$euiColorBackgroundAccent: shade($euiColorAccent, 80%) !default;
-$euiColorBackgroundAccentSecondary: shade($euiColorAccentSecondary, 80%) !default;
-$euiColorBackgroundSuccess: shade($euiColorSuccess, 80%) !default;
-$euiColorBackgroundWarning: shade($euiColorWarning, 80%) !default;
-$euiColorBackgroundDanger: shade($euiColorDanger, 80%) !default;
-$euiColorBackgroundSubdued: shade($euiPageBackgroundColor, 80%) !default;
-$euiColorBackgroundDisabled: transparentize($euiColorLightShade, 0.15)!default;
-$euiColorBackgroundPlain: $euiColorEmptyShade !default;
-$euiColorBackgroundPage: $euiPageBackgroundColor !default;
+
+$euiColorBackgroundBasePrimary: shade($euiColorPrimary, 80%) !default;
+$euiColorBackgroundBaseAccent: shade($euiColorAccent, 80%) !default;
+$euiColorBackgroundBaseAccentSecondary: shade($euiColorAccentSecondary, 80%) !default;
+$euiColorBackgroundBaseSuccess: shade($euiColorSuccess, 80%) !default;
+$euiColorBackgroundBaseWarning: shade($euiColorWarning, 80%) !default;
+$euiColorBackgroundBaseDanger: shade($euiColorDanger, 80%) !default;
+$euiColorBackgroundBaseSubdued: shade($euiPageBackgroundColor, 80%) !default;
+$euiColorBackgroundBaseDisabled: transparentize($euiColorLightShade, 0.15)!default;
+$euiColorBackgroundBasePlain: $euiColorEmptyShade !default;
+$euiColorBackgroundBasePage: $euiPageBackgroundColor !default;
+$euiColorBackgroundBasePrepend: shade($euiColorLightShade, 0.15) !default;
+
+$euiColorBackgroundBaseHover: transparentize($euiColorLightShade, 0.2) !default;
+$euiColorBackgroundBaseSelect: shade($euiColorPrimary, 0.7) !default;
+$euiColorBackgroundBaseOverlay: transparentize($euiColorInk, 0.5) !default;
+
+$euiColorBackgroundLightPrimary: shade($euiColorPrimary, 0.7) !default;
+$euiColorBackgroundLightAccent: shade($euiColorAccent, 0.7) !default;
+$euiColorBackgroundLightAccentSecondary: shade($euiColorAccentSecondary, 0.7)  !default;
+$euiColorBackgroundLightSuccess: shade($euiColorSuccess, 0.7)  !default;
+$euiColorBackgroundLightWarning: shade($euiColorWarning, 0.7)  !default;
+$euiColorBackgroundLightDanger: shade($euiColorDanger, 0.7)  !default;
+$euiColorBackgroundLightText: shade($euiColorLightShade, 0.2) !default;
+
+$euiColorBackgroundFilledPrimary: $euiColorPrimary !default;
+$euiColorBackgroundFilledAccent: $euiColorAccent !default;
+$euiColorBackgroundFilledAccentSecondary: $euiColorAccentSecondary !default;
+$euiColorBackgroundFilledSuccess: $euiColorSuccess !default;
+$euiColorBackgroundFilledWarning: $euiColorWarning !default;
+$euiColorBackgroundFilledDanger: $euiColorDanger !default;
+$euiColorBackgroundFilledText:  #DFE5EF !default;
 
 // Texts
 $euiTextColor: #DFE5EF !default;
@@ -69,6 +91,18 @@ $euiColorTextWarning: $euiColorWarningText !default;
 $euiColorTextDanger: $euiColorDangerText !default;
 
 $euiLinkColor: $euiColorPrimaryText !default;
+
+// Borders
+$borderBasePrimary: sahde($euiColorPrimary, 0.6);
+$borderBaseAccent: shade($euiColorAccent, 0.6);
+$borderBaseAccentSecondary: shade($euiColorAccentSecondary, 0.6);
+$borderBaseSuccess: shade($euiColorSuccess, 0.6);
+$borderBaseWarning: shade($euiColorWarning, 0.6);
+$borderBaseDanger: shade($euiColorDanger, 0.6);
+$borderBasePlain: $euiColorLightShade;
+$borderBaseSubdued: $euiColorLightShade;
+$borderBaseDisabled: transparentize($euiColorGhost, 0.1);
+$borderBaseFloating: $euiColorLightShade;
 
 // Charts
 $euiColorChartLines: $euiColorLightShade !default;

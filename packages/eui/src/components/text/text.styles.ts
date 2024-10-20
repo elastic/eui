@@ -305,7 +305,7 @@ export const euiTextStyles = (euiThemeContext: UseEuiTheme) => {
       pre:not(.euiCodeBlock__pre) {
         white-space: pre-wrap;
         /* TODO: $euiCodeBlockBackgroundColor - switch to var once EuiCode is converted */
-        background: ${euiTheme.colors.backgroundSubdued};
+        background: ${euiTheme.colors.backgroundBaseSubdued};
         /* TODO: $euiCodeBlockColor - switch to var once EuiCode is converted */
         color: ${euiTheme.colors.text};
       }

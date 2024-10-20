@@ -44,32 +44,30 @@ export const getGlobalStyles = (theme: UseEuiTheme) => {
   const lineHeightXS = '1.33rem';
   const lineHeightXXS = euiLineHeightFromBaseline('xxs', euiTheme);
 
-  console.log(euiTheme.colors.backgroundSubdued);
-
   return css`
     // color theme related variables
     :root,
     [data-theme='dark']:root {
       /* EUI theme variables */
-      --eui-background-color-primary: ${euiTheme.colors.backgroundPrimary};
-      --eui-background-color-success: ${euiTheme.colors.backgroundSuccess};
-      --eui-background-color-danger: ${euiTheme.colors.backgroundDanger};
-      --eui-background-color-warning: ${euiTheme.colors.backgroundWarning};
-      --eui-background-color-accent: ${euiTheme.colors.backgroundAccent};
+      --eui-background-color-primary: ${colors.backgroundBasePrimary};
+      --eui-background-color-success: ${colors.backgroundBaseSuccess};
+      --eui-background-color-danger: ${colors.backgroundBaseDanger};
+      --eui-background-color-warning: ${colors.backgroundBaseWarning};
+      --eui-background-color-accent: ${colors.backgroundBaseAccent};
 
-      --eui-color-danger-text: ${euiTheme.colors.textDanger};
+      --eui-color-danger-text: ${colors.textDanger};
 
       /* Docusaurus theme variables */
-      --ifm-background-color: ${colors.backgroundPlain};
+      --ifm-background-color: ${colors.backgroundBasePlain};
       --ifm-font-color-base: ${colors.textParagraph};
       --ifm-link-color: ${colors.link};
       --ifm-link-hover-color: ${colors.link};
 
-      --ifm-menu-color: ${euiTheme.colors.textParagraph};
-      --ifm-menu-color-background-active: ${euiTheme.colors.backgroundSubdued};
+      --ifm-menu-color: ${colors.textParagraph};
+      --ifm-menu-color-background-active: ${colors.backgroundBaseSubdued};
       --ifm-menu-color-background-hover: var(--eui-background-color-primary);
 
-      --ifm-pre-background: ${euiTheme.colors.lightestShade};
+      --ifm-pre-background: ${colors.lightestShade};
     }
 
     :root {
@@ -92,12 +90,12 @@ export const getGlobalStyles = (theme: UseEuiTheme) => {
       --eui-line-height-xs: ${lineHeightXS};
       --eui-line-height-xxs: ${lineHeightXXS};
 
-      --eui-size-xs: ${euiTheme.size.xs};
-      --eui-size-s: ${euiTheme.size.s};
+      --eui-size-xs: ${size.xs};
+      --eui-size-s: ${size.s};
 
-      --eui-border-color-primary: ${euiTheme.colors.borderPrimary};
+      --eui-border-color-primary: ${colors.borderBasePrimary};
 
-      --eui-theme-content-vertical-spacing: ${euiTheme.size.base};
+      --eui-theme-content-vertical-spacing: ${size.base};
 
       /* Docusaurus theme variables */
       --ifm-font-family-base: ${fontBase.fontFamily};

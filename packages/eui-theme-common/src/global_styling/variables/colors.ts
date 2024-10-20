@@ -172,17 +172,20 @@ export type _EuiThemeSpecialColors = {
 };
 
 export type _EuiThemeBackgroundColors = {
-  backgroundPrimary: ColorModeSwitch;
-  backgroundAccent: ColorModeSwitch;
-  backgroundAccentSecondary: ColorModeSwitch;
-  backgroundSuccess: ColorModeSwitch;
-  backgroundWarning: ColorModeSwitch;
-  backgroundDanger: ColorModeSwitch;
-  backgroundSubdued: ColorModeSwitch;
-  backgroundDisabled: ColorModeSwitch;
-  backgroundPlain: ColorModeSwitch;
-  backgroundPage: ColorModeSwitch;
-  backgroundHover: ColorModeSwitch;
+  backgroundBasePrimary: ColorModeSwitch;
+  backgroundBaseAccent: ColorModeSwitch;
+  backgroundBaseAccentSecondary: ColorModeSwitch;
+  backgroundBaseSuccess: ColorModeSwitch;
+  backgroundBaseWarning: ColorModeSwitch;
+  backgroundBaseDanger: ColorModeSwitch;
+  backgroundBaseSubdued: ColorModeSwitch;
+  backgroundBaseDisabled: ColorModeSwitch;
+  backgroundBasePlain: ColorModeSwitch;
+  backgroundBasePage: ColorModeSwitch;
+  backgroundBaseHover: ColorModeSwitch;
+  backgroundBaseSelect: ColorModeSwitch;
+  backgroundBasePrepend: ColorModeSwitch;
+  backgroundBaseOverlay: ColorModeSwitch;
 
   backgroundLightPrimary: ColorModeSwitch;
   backgroundLightAccent: ColorModeSwitch;
@@ -224,15 +227,16 @@ export type _EuiThemeTransparentBackgroundColors = {
 };
 
 export type _EuiThemeBorderColors = {
-  borderPrimary: ColorModeSwitch;
-  borderAccent: ColorModeSwitch;
-  borderAccentSecondary: ColorModeSwitch;
-  borderSuccess: ColorModeSwitch;
-  borderWarning: ColorModeSwitch;
-  borderDanger: ColorModeSwitch;
-  borderSubdued: ColorModeSwitch;
-  borderDisabled: ColorModeSwitch;
-  borderPlain: ColorModeSwitch;
+  borderBasePrimary: ColorModeSwitch;
+  borderBaseAccent: ColorModeSwitch;
+  borderBaseAccentSecondary: ColorModeSwitch;
+  borderBaseSuccess: ColorModeSwitch;
+  borderBaseWarning: ColorModeSwitch;
+  borderBaseDanger: ColorModeSwitch;
+  borderBasePlain: ColorModeSwitch;
+  borderBaseSubdued: ColorModeSwitch;
+  borderBaseDisabled: ColorModeSwitch;
+  borderBaseFloating: ColorModeSwitch;
 };
 
 export type _EuiThemeConstantColors = {

@@ -281,8 +281,10 @@ describe('mergeDeep', () => {
 
 describe('getTokenName', () => {
   it('returns the correct token name', () => {
-    expect(getTokenName('background', 'primary')).toEqual('backgroundPrimary');
-    expect(getTokenName('background', 'primary', 'hovered')).toEqual(
+    expect(getTokenName('backgroundBase', 'primary')).toEqual(
+      'backgroundBasePrimary'
+    );
+    expect(getTokenName('backgroundBase', 'primary', 'hovered')).toEqual(
       'backgroundPrimaryHovered'
     );
   });

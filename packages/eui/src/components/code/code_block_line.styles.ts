@@ -39,7 +39,7 @@ export const euiCodeBlockLineStyles = (euiThemeContext: UseEuiTheme) => {
         user-select: text;
       `,
       isHighlighted: css`
-        background: ${euiTheme.colors.backgroundPrimary};
+        background: ${euiTheme.colors.backgroundBasePrimary};
         border-inline-start: ${euiTheme.border.width.thick} solid
           ${euiTheme.colors.primary};
       `,

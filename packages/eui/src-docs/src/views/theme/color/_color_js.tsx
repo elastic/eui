@@ -301,7 +301,9 @@ export const UtilsJS = () => {
         }
         example={
           <p css={[useEuiBackgroundColorCSS().accent, useEuiPaddingCSS().l]}>
-            <code>background-color: {euiTheme.colors.backgroundAccent}</code>
+            <code>
+              background-color: {euiTheme.colors.backgroundBaseAccent}
+            </code>
           </p>
         }
         snippetLanguage="tsx"
@@ -358,7 +360,7 @@ export const UtilsValuesJS = () => {
 
       <ThemeValuesTable
         items={BACKGROUND_COLORS.map((color) => {
-          const backgroundToken = getTokenName('background', color);
+          const backgroundToken = getTokenName('backgroundBase', color);
           const transparentBackgroundToken =
             color === 'transparent'
               ? backgroundToken
