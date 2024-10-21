@@ -303,8 +303,8 @@ export class FieldValueSelectionFilter extends Component<
       <EuiScreenReaderOnly>
         <span>
           <EuiI18n
-            token="euiFieldValueSelectionFilterButton.accessibleText"
-            default="Select`"
+            token="euiFieldValueSelectionFilter.accessibleText"
+            default="Select"
           />
         </span>
       </EuiScreenReaderOnly>
