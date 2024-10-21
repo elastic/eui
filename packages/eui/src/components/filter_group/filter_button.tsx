@@ -21,6 +21,7 @@ import {
   euiFilterButtonStyles,
   euiFilterButtonChildStyles,
 } from './filter_button.styles';
+import { EuiScreenReaderOnly } from '../accessibility';
 
 export type EuiFilterButtonProps = {
   /**
@@ -53,6 +54,10 @@ export type EuiFilterButtonProps = {
    * Change color of the counter badge
    */
   badgeColor?: BadgeNotificationColor;
+  /**
+   * Enables a screen reader only label
+   */
+  hasAccessibleLabel?: boolean;
 } & DistributiveOmit<EuiButtonEmptyProps, 'flush' | 'size'>;
 
 export const EuiFilterButton: FunctionComponent<EuiFilterButtonProps> = ({
@@ -72,6 +77,7 @@ export const EuiFilterButton: FunctionComponent<EuiFilterButtonProps> = ({
   withNext,
   textProps,
   contentProps,
+  hasAccessibleLabel,
   ...rest
 }) => {
   const numFiltersDefined = numFilters != null; // != instead of !== to allow for null and undefined
@@ -165,6 +171,8 @@ export const EuiFilterButton: FunctionComponent<EuiFilterButtonProps> = ({
     </span>
   );
 
+  const accessibleText = useEuiI18n('euiFilterButton.accessibleText', 'Select');
+
   return (
     <EuiButtonEmpty
       className={classes}
@@ -187,6 +195,11 @@ export const EuiFilterButton: FunctionComponent<EuiFilterButtonProps> = ({
     >
       {textContent}
       {badgeContent}
+      {hasAccessibleLabel && (
+        <EuiScreenReaderOnly>
+          <span>{accessibleText}</span>
+        </EuiScreenReaderOnly>
+      )}
     </EuiButtonEmpty>
   );
 };

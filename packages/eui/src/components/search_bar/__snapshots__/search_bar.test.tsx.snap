@@ -153,11 +153,6 @@ exports[`SearchBar render - provided query, filters 1`] = `
             title="Open"
           >
             Open
-            <span
-              class="emotion-euiScreenReaderOnly"
-            >
-              select
-            </span>
           </span>
         </span>
       </button>
@@ -177,11 +172,11 @@ exports[`SearchBar render - provided query, filters 1`] = `
               title="Tag"
             >
               Tag
-              <span
-                class="emotion-euiScreenReaderOnly"
-              >
-                select
-              </span>
+            </span>
+            <span
+              class="emotion-euiScreenReaderOnly"
+            >
+              Select
             </span>
             <span
               color="inherit"

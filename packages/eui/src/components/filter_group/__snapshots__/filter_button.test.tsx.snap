@@ -12,15 +12,7 @@ exports[`EuiFilterButton does not render a badge or count if numFilters is not p
   >
     <span
       class="euiFilterButton__text emotion-euiFilterButton__text"
-      data-text="select"
-      title="select"
-    >
-      <span
-        class="emotion-euiScreenReaderOnly"
-      >
-        select
-      </span>
-    </span>
+    />
   </span>
 </button>
 `;
@@ -35,15 +27,7 @@ exports[`EuiFilterButton props badgeColor renders 1`] = `
   >
     <span
       class="euiFilterButton__text emotion-euiFilterButton__text"
-      data-text="select"
-      title="select"
-    >
-      <span
-        class="emotion-euiScreenReaderOnly"
-      >
-        select
-      </span>
-    </span>
+    />
   </span>
 </button>
 `;
@@ -58,15 +42,7 @@ exports[`EuiFilterButton props grow can be turned off 1`] = `
   >
     <span
       class="euiFilterButton__text emotion-euiFilterButton__text"
-      data-text="select"
-      title="select"
-    >
-      <span
-        class="emotion-euiScreenReaderOnly"
-      >
-        select
-      </span>
-    </span>
+    />
   </span>
 </button>
 `;
@@ -81,15 +57,7 @@ exports[`EuiFilterButton props iconType and iconSide renders 1`] = `
   >
     <span
       class="euiFilterButton__text emotion-euiFilterButton__text"
-      data-text="select"
-      title="select"
-    >
-      <span
-        class="emotion-euiScreenReaderOnly"
-      >
-        select
-      </span>
-    </span>
+    />
     <span
       color="inherit"
       data-euiicon-type="user"
@@ -109,15 +77,7 @@ exports[`EuiFilterButton props isDisabled renders 1`] = `
   >
     <span
       class="euiFilterButton__text emotion-euiFilterButton__text"
-      data-text="select"
-      title="select"
-    >
-      <span
-        class="emotion-euiScreenReaderOnly"
-      >
-        select
-      </span>
-    </span>
+    />
   </span>
 </button>
 `;
@@ -132,15 +92,7 @@ exports[`EuiFilterButton props isSelected renders 1`] = `
   >
     <span
       class="euiFilterButton__text emotion-euiFilterButton__text"
-      data-text="select"
-      title="select"
-    >
-      <span
-        class="emotion-euiScreenReaderOnly"
-      >
-        select
-      </span>
-    </span>
+    />
   </span>
 </button>
 `;
@@ -155,15 +107,7 @@ exports[`EuiFilterButton props numActiveFilters and hasActiveFilters renders 1`]
   >
     <span
       class="euiFilterButton__text euiFilterButton__text-hasNotification emotion-euiFilterButton__text-hasNotification"
-      data-text="select"
-      title="select"
-    >
-      <span
-        class="emotion-euiScreenReaderOnly"
-      >
-        select
-      </span>
-    </span>
+    />
     <span
       aria-label="5 active filters"
       class="euiNotificationBadge euiFilterButton__notification emotion-euiNotificationBadge-s-accent-euiFilterButton__notification-badgeContent"
@@ -185,15 +129,7 @@ exports[`EuiFilterButton props numFilters renders 1`] = `
   >
     <span
       class="euiFilterButton__text euiFilterButton__text-hasNotification emotion-euiFilterButton__text-hasNotification"
-      data-text="select"
-      title="select"
-    >
-      <span
-        class="emotion-euiScreenReaderOnly"
-      >
-        select
-      </span>
-    </span>
+    />
     <span
       aria-label="5 available filters"
       class="euiNotificationBadge euiFilterButton__notification emotion-euiNotificationBadge-s-subdued-euiFilterButton__notification-badgeContent"
@@ -215,15 +151,7 @@ exports[`EuiFilterButton props type renders 1`] = `
   >
     <span
       class="euiFilterButton__text emotion-euiFilterButton__text"
-      data-text="select"
-      title="select"
-    >
-      <span
-        class="emotion-euiScreenReaderOnly"
-      >
-        select
-      </span>
-    </span>
+    />
   </span>
 </button>
 `;
@@ -238,15 +166,7 @@ exports[`EuiFilterButton props withNext renders 1`] = `
   >
     <span
       class="euiFilterButton__text emotion-euiFilterButton__text"
-      data-text="select"
-      title="select"
-    >
-      <span
-        class="emotion-euiScreenReaderOnly"
-      >
-        select
-      </span>
-    </span>
+    />
   </span>
 </button>
 `;
@@ -263,15 +183,7 @@ exports[`EuiFilterButton renders 1`] = `
   >
     <span
       class="euiFilterButton__text emotion-euiFilterButton__text"
-      data-text="select"
-      title="select"
-    >
-      <span
-        class="emotion-euiScreenReaderOnly"
-      >
-        select
-      </span>
-    </span>
+    />
   </span>
 </button>
 `;
@@ -288,15 +200,7 @@ exports[`EuiFilterButton renders zero properly 1`] = `
   >
     <span
       class="euiFilterButton__text euiFilterButton__text-hasNotification emotion-euiFilterButton__text-hasNotification"
-      data-text="select"
-      title="select"
-    >
-      <span
-        class="emotion-euiScreenReaderOnly"
-      >
-        select
-      </span>
-    </span>
+    />
     <span
       aria-label="0 available filters"
       class="euiNotificationBadge euiFilterButton__notification emotion-euiNotificationBadge-s-subdued-euiFilterButton__notification-badgeContent"

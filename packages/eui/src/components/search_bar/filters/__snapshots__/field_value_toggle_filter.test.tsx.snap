@@ -15,11 +15,6 @@ exports[`FieldValueToggleFilter render - active 1`] = `
       title="Kibana"
     >
       Kibana
-      <span
-        class="emotion-euiScreenReaderOnly"
-      >
-        select
-      </span>
     </span>
   </span>
 </button>
@@ -40,11 +35,6 @@ exports[`FieldValueToggleFilter render - active negated - custom negated name 1`
       title="Others"
     >
       Others
-      <span
-        class="emotion-euiScreenReaderOnly"
-      >
-        select
-      </span>
     </span>
   </span>
 </button>
@@ -65,11 +55,6 @@ exports[`FieldValueToggleFilter render - active negated 1`] = `
       title="Not Kibana"
     >
       Not Kibana
-      <span
-        class="emotion-euiScreenReaderOnly"
-      >
-        select
-      </span>
     </span>
   </span>
 </button>
@@ -90,11 +75,6 @@ exports[`FieldValueToggleFilter renders 1`] = `
       title="Kibana"
     >
       Kibana
-      <span
-        class="emotion-euiScreenReaderOnly"
-      >
-        select
-      </span>
     </span>
   </span>
 </button>

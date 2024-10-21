@@ -18,8 +18,6 @@ import { EuiSelectable, EuiSelectableProps } from '../../selectable';
 import { EuiSelectableOptionCheckedType } from '../../../components/selectable/selectable_option';
 import { Query } from '../query';
 import { Clause, Operator, OperatorType, Value } from '../query/ast';
-import { EuiI18n } from '../../i18n';
-import { EuiScreenReaderOnly } from '../../accessibility';
 
 export interface FieldValueOptionType {
   field?: string;
@@ -299,17 +297,6 @@ export class FieldValueSelectionFilter extends Component<
     const { activeItemsCount } = this.state;
     const active = (activeTop || activeItem) && activeItemsCount > 0;
 
-    const accessibleText = (
-      <EuiScreenReaderOnly>
-        <span>
-          <EuiI18n
-            token="euiFieldValueSelectionFilter.accessibleText"
-            default="Select"
-          />
-        </span>
-      </EuiScreenReaderOnly>
-    );
-
     const button = (
       <EuiFilterButton
         iconType="arrowDown"
@@ -317,10 +304,10 @@ export class FieldValueSelectionFilter extends Component<
         onClick={this.onButtonClick.bind(this)}
         hasActiveFilters={active}
         numActiveFilters={active ? activeItemsCount : undefined}
+        hasAccessibleLabel
         grow
       >
         {config.name}
-        {accessibleText}
       </EuiFilterButton>
     );
 
