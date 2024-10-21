@@ -21,6 +21,7 @@ import {
   euiFilterButtonStyles,
   euiFilterButtonChildStyles,
 } from './filter_button.styles';
+import { EuiScreenReaderOnly } from '../accessibility';
 
 export type EuiFilterButtonProps = {
   /**
@@ -152,6 +153,12 @@ export const EuiFilterButton: FunctionComponent<EuiFilterButtonProps> = ({
   const dataText =
     children && typeof children === 'string' ? children : innerText;
 
+  const accessibleText = (
+    <EuiScreenReaderOnly>
+      <span>{useEuiI18n('euiFilterButton.accessibleText', 'select')}</span>
+    </EuiScreenReaderOnly>
+  );
+
   const textContent = (
     <span
       ref={ref}
@@ -162,6 +169,7 @@ export const EuiFilterButton: FunctionComponent<EuiFilterButtonProps> = ({
       css={textCssStyles}
     >
       {children}
+      {accessibleText}
     </span>
   );
 
