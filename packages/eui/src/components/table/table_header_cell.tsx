@@ -11,6 +11,7 @@ import React, {
   HTMLAttributes,
   ThHTMLAttributes,
   ReactNode,
+  useMemo,
 } from 'react';
 import classNames from 'classnames';
 
@@ -66,27 +67,47 @@ const SortScreenReaderText = ({
   isSortAscending: boolean | undefined;
   allowNeutralSort: boolean | undefined;
 }) => {
-  if (!isSorted) {
-    return useEuiI18n(
-      'euiTableHeaderCell.unsorted',
-      'Unsorted. Click to sort ascending'
-    );
-  }
-  if (isSortAscending) {
-    return useEuiI18n(
-      'euiTableHeaderCell.sortedAscending',
-      'Sorted ascending. Click to sort descending'
-    );
-  }
-  if (allowNeutralSort === false) {
-    return useEuiI18n(
-      'euiTableHeaderCell.sortedDescending',
-      'Sorted descending. Click to sort ascending'
-    );
-  }
-  return useEuiI18n(
+  const unsortedText = useEuiI18n(
+    'euiTableHeaderCell.unsorted',
+    'Unsorted. Click to sort ascending'
+  );
+  const sortedAscendingText = useEuiI18n(
+    'euiTableHeaderCell.sortedAscending',
+    'Sorted ascending. Click to sort descending'
+  );
+  const sortedDescendingText = useEuiI18n(
+    'euiTableHeaderCell.sortedDescending',
+    'Sorted descending. Click to sort ascending'
+  );
+  const sortedDescendingUnsortText = useEuiI18n(
     'euiTableHeaderCell.sortedDescendingUnsort',
     'Sorted descending. Click to unsort'
+  );
+  const text = useMemo(() => {
+    if (!isSorted) {
+      return unsortedText;
+    }
+    if (isSortAscending) {
+      return sortedAscendingText;
+    }
+    if (allowNeutralSort === false) {
+      return sortedDescendingText;
+    }
+    return sortedDescendingUnsortText;
+  }, [
+    isSorted,
+    isSortAscending,
+    allowNeutralSort,
+    unsortedText,
+    sortedAscendingText,
+    sortedDescendingText,
+    sortedDescendingUnsortText,
+  ]);
+
+  return (
+    <EuiScreenReaderOnly>
+      <span>{text}</span>
+    </EuiScreenReaderOnly>
   );
 };
 
@@ -140,11 +161,7 @@ const CellContents = ({
           <span>{description}</span>
         </EuiScreenReaderOnly>
       )}
-      {sortScreenReaderText && (
-        <EuiScreenReaderOnly>
-          <span>{sortScreenReaderText}</span>
-        </EuiScreenReaderOnly>
-      )}
+      {sortScreenReaderText}
       {isSorted ? (
         <EuiIcon
           className="euiTableSortIcon"
