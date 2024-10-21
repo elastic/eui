@@ -50,6 +50,7 @@ export interface DemoProps extends PropsWithChildren {
    */
   scope?: Record<string, unknown>;
   previewPadding?: DemoPreviewProps['padding'];
+  previewWrapper?: DemoPreviewProps['wrapperComponent'];
 }
 
 const getDemoStyles = (euiTheme: UseEuiTheme) => ({
@@ -68,6 +69,7 @@ export const Demo = ({
   scope,
   isSourceOpen: _isSourceOpen = false,
   previewPadding,
+  previewWrapper,
 }: DemoProps) => {
   const styles = useEuiMemoizedStyles(getDemoStyles);
   const [sources, setSources] = useState<DemoSourceMeta[]>([]);
@@ -77,16 +79,19 @@ export const Demo = ({
   // liveProviderKey restarts the demo to its initial state
   const [liveProviderKey, setLiveProviderKey] = useState<number>(0);
 
-  const finalScope = useMemo(() => ({
-    ...demoDefaultScope,
-    ...scope,
-  }), [scope]);
+  const finalScope = useMemo(
+    () => ({
+      ...demoDefaultScope,
+      ...scope,
+    }),
+    [scope]
+  );
 
   const addSource = useCallback<DemoContextObject['addSource']>(
     (source: DemoSourceMeta) => {
-      setSources((sources) => ([...sources, source]));
+      setSources((sources) => [...sources, source]);
     },
-    [],
+    []
   );
 
   const onClickCopyToClipboard = useCallback(() => {
@@ -112,7 +117,10 @@ export const Demo = ({
           theme={prismThemes.dracula}
           scope={finalScope}
         >
-          <DemoPreview padding={previewPadding} />
+          <DemoPreview
+            padding={previewPadding}
+            wrapperComponent={previewWrapper}
+          />
           <DemoActionsBar
             isSourceOpen={isSourceOpen}
             setSourceOpen={setIsSourceOpen}
