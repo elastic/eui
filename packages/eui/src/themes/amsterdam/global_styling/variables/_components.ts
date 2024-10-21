@@ -8,8 +8,287 @@
 
 import { _EuiThemeComponents } from '@elastic/eui-theme-common';
 
+import { computed } from '../../../../services/theme/utils';
+import {
+  shade,
+  tint,
+  transparentize,
+} from '../../../../services/color/manipulation';
+import { makeHighContrastColor } from '../../../../services/color/contrast';
+
 import { buttons } from './_buttons';
+import { forms } from './_forms';
+
+const temporary_components = {
+  scrollbarTrackColor: computed(([body]) => shade(body, 0.03), ['colors.body']),
+
+  badgeBackgroundSubdued: computed(
+    ([lightShade]) => tint(lightShade, 0.3),
+    ['colors.lightShade']
+  ),
+  badgeBorderColorHollow: computed(([color]) => color, ['border.color']),
+
+  buttonGroupBorderColor: computed(
+    ([fullShade]) => transparentize(fullShade, 0.1),
+    ['colors.fullShade']
+  ),
+  buttonGroupBorderColorSelected: computed(
+    ([emptyShade]) => transparentize(emptyShade, 0.2),
+    ['colors.emptyShade']
+  ),
+
+  bottomBarBackground: computed(
+    ([lightestShade]) => shade(lightestShade, 0.5),
+    ['colors.lightestShade']
+  ),
+
+  headerBackground: computed(
+    ([emptyShade]) => emptyShade,
+    ['colors.emptyShade']
+  ),
+  headerBackgroundDark: computed(
+    ([darkestShade]) => shade(darkestShade, 0.28),
+    ['colors.darkestShade']
+  ),
+  headerSectionItemBackgroundFocusDark: computed(
+    ([primary]) => shade(primary, 0.5),
+    ['colors.primary']
+  ),
+
+  breadcrumbsApplicationBackground: computed(
+    ([darkestShade]) => tint(darkestShade, 0.85),
+    ['colors.darkestShade']
+  ),
+  breadcrumbsApplicationColor: computed(
+    ([darkestShade]) => tint(darkestShade, 0.2),
+    ['colors.darkestShade']
+  ),
+
+  collapsibleNavGroupBackground: computed(([body]) => body, ['colors.body']),
+  collapsibleNavGroupBackgroundDark: computed(
+    ([darkestShade]) => shade(darkestShade, 0.2),
+    ['colors.darkestShade']
+  ),
+
+  switchBackgroundOff: computed(
+    ([lightestShade]) => shade(lightestShade, 0.4),
+    ['colors.lightestShade']
+  ),
+  switchUncompressedBackgroundDisabled: computed(
+    ([lightShade]) => tint(lightShade, 0.5),
+    ['colors.lightShade']
+  ),
+  switchCompressedBackgroundDisabled: computed(
+    ([lightShade]) => tint(lightShade, 0.25),
+    ['colors.lightShade']
+  ),
+  switchMiniBackgroundDisabled: computed(
+    ([lightShade]) => tint(lightShade, 0),
+    ['colors.lightShade']
+  ),
+
+  superDatePickerBackgroundSuccees: computed(
+    ([success]) => tint(success, 0.9),
+    ['colors.success']
+  ),
+
+  dataGridVerticalLineBorderColor: computed(
+    ([color]) => tint(color, 0.3),
+    ['border.color']
+  ),
+  dataGridRowBackgroundStriped: computed(
+    ([lightestShade]) => lightestShade,
+    ['colors.lightestShade']
+  ),
+  dataGridRowBackgroundHover: computed(
+    ([highlight]) => highlight,
+    ['colors.highlight']
+  ),
+
+  tableRowBackgroundHover: computed(
+    ([lightestShade]) => tint(lightestShade, 0.5),
+    ['colors.lightestShade']
+  ),
+  tableRowBackgroundSelected: computed(
+    ([primary]) => tint(primary, 0.96),
+    ['colors.primary']
+  ),
+  tableRowBackgroundSelectedHover: computed(
+    ([primary]) => tint(primary, 0.9),
+    ['colors.primary']
+  ),
+  tableRowInteractiveBackgroundHover: computed(
+    ([primary]) => transparentize(primary, 0.05),
+    ['colors.primary']
+  ),
+  tableRowInteractiveBackgroundFocus: computed(
+    ([primary]) => transparentize(primary, 0.1),
+    ['colors.primary']
+  ),
+  tableCellSortableIconColor: computed(
+    ([emptyShade, subduedText]) => {
+      const color = tint(subduedText, 0.9);
+      return makeHighContrastColor(
+        // Tint it arbitrarily high, the contrast util will take care of lowering back down to WCAG
+        color,
+        3 // 3:1 ratio from https://www.w3.org/WAI/WCAG22/Understanding/non-text-contrast.html
+      )(emptyShade);
+    },
+    ['colors.emptyShade', 'colors.subduedText']
+  ),
+
+  popoverPanelBackground: computed(
+    ([emptyShade]) => emptyShade,
+    ['colors.emptyShade']
+  ),
+  popoverFooterBorderColor: computed(([color]) => color, ['border.color']),
+
+  tooltipBackground: computed(
+    ([fullShade]) => tint(fullShade, 0.25),
+    ['colors.fullShade']
+  ),
+  tooltipBorder: computed(
+    ([fullShade]) => tint(fullShade, 0.35),
+    ['colors.fullShade']
+  ),
+  tooltipBorderFloating: computed(
+    ([borderBaseFloating]) => borderBaseFloating,
+    ['colors.borderBaseFloating']
+  ),
+
+  tourFooterBackground: computed(
+    ([lightestShade]) => tint(lightestShade, 0.5),
+    ['colors.lightestShade']
+  ),
+
+  skeletonGradientStartStopBackground: computed(
+    ([lightShade]) => tint(lightShade, 0.65),
+    ['colors.lightShade']
+  ),
+  skeletonGradientMiddleBackground: computed(
+    ([lightShade]) => tint(lightShade, 0.8),
+    ['colors.lightShade']
+  ),
+
+  dragDropDraggingBackground: computed(
+    ([success]) => transparentize(success, 0.1),
+    ['colors.success']
+  ),
+  dragDropDraggingOverBackground: computed(
+    ([success]) => transparentize(success, 0.25),
+    ['colors.success']
+  ),
+};
 
 export const components: _EuiThemeComponents = {
   buttons,
+  forms,
+  __TEMP_INTERNAL__: {
+    LIGHT: temporary_components,
+    DARK: {
+      ...temporary_components,
+      scrollbarTrackColor: computed(
+        ([body]) => tint(body, 0.07),
+        ['colors.body']
+      ),
+
+      badgeBorderColorHollow: computed(
+        ([color]) => tint(color, 0.15),
+        ['border.color']
+      ),
+
+      headerBackgroundDark: computed(
+        ([lightestShade]) => shade(lightestShade, 0.5),
+        ['colors.lightestShade']
+      ),
+
+      breadcrumbsApplicationBackground: computed(
+        ([darkestShade]) => shade(darkestShade, 0.7),
+        ['colors.darkestShade']
+      ),
+      breadcrumbsApplicationColor: computed(
+        ([darkestShade]) => shade(darkestShade, 0.2),
+        ['colors.darkestShade']
+      ),
+
+      collapsibleNavGroupBackground: computed(
+        ([lightestShade]) => shade(lightestShade, 0.5),
+        ['colors.lightestShade']
+      ),
+      collapsibleNavGroupBackgroundDark: computed(
+        ([lightestShade]) => shade(lightestShade, 0.5),
+        ['colors.lightestShade']
+      ),
+
+      switchBackgroundOff: computed(
+        ([lightestShade]) => tint(lightestShade, 0.31),
+        ['colors.lightestShade']
+      ),
+      switchUncompressedBackgroundDisabled: computed(
+        ([disabled]) => disabled,
+        ['colors.disabled']
+      ),
+      switchCompressedBackgroundDisabled: computed(
+        ([disabled]) => disabled,
+        ['colors.disabled']
+      ),
+      switchMiniBackgroundDisabled: computed(
+        ([disabled]) => disabled,
+        ['colors.disabled']
+      ),
+
+      superDatePickerBackgroundSuccees: computed(
+        ([success]) => shade(success, 0.7),
+        ['colors.success']
+      ),
+
+      dataGridVerticalLineBorderColor: computed(
+        ([color]) => shade(color, 0.3),
+        ['border.color']
+      ),
+
+      tableRowBackgroundHover: computed(
+        ([lightestShade]) => lightestShade,
+        ['colors.lightestShade']
+      ),
+      tableRowBackgroundSelected: computed(
+        ([primary]) => shade(primary, 0.7),
+        ['colors.primary']
+      ),
+      tableRowBackgroundSelectedHover: computed(
+        ([primary]) => shade(primary, 0.75),
+        ['colors.primary']
+      ),
+      tableCellSortableIconColor: computed(
+        ([emptyShade, subduedText]) => {
+          const color = shade(subduedText, 0.9);
+          return makeHighContrastColor(color, 3)(emptyShade);
+        },
+        ['colors.emptyShade', 'colors.subduedText']
+      ),
+
+      popoverPanelBackground: computed(
+        ([emptyShade]) => tint(emptyShade, 0.025),
+        ['colors.emptyShade']
+      ),
+
+      tooltipBackground: computed(
+        ([emptyShade]) => shade(emptyShade, 1),
+        ['colors.emptyShade']
+      ),
+      tooltipBorder: computed(
+        ([fullShade]) => shade(fullShade, 0.8),
+        ['colors.fullShade']
+      ),
+
+      skeletonGradientStartStopBackground: computed(
+        ([lightShade]) => shade(lightShade, 0.12),
+        ['colors.lightShade']
+      ),
+      skeletonGradientMiddleBackground: computed(
+        ([lightShade]) => shade(lightShade, 0.24),
+        ['colors.lightShade']
+      ),
+    },
+  },
 };
