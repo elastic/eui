@@ -23,6 +23,7 @@
     "@elastic/eui-docusaurus-theme": "workspace:^",
     "@emotion/css": "^11.11.2",
     "@emotion/react": "^11.11.4",
+    "@faker-js/faker": "^8.4.1",
     "@mdx-js/react": "^3.0.0",
     "clsx": "^2.0.0",
     "cross-env": "^7.0.3",

@@ -5764,6 +5764,7 @@ __metadata:
     "@elastic/eui-docusaurus-theme": "workspace:^"
     "@emotion/css": "npm:^11.11.2"
     "@emotion/react": "npm:^11.11.4"
+    "@faker-js/faker": "npm:^8.4.1"
     "@mdx-js/react": "npm:^3.0.0"
     "@types/react": "npm:^18.3.3"
     "@types/react-dom": "npm:^18.3.0"
@@ -6480,6 +6481,13 @@ __metadata:
   version: 8.0.2
   resolution: "@faker-js/faker@npm:8.0.2"
   checksum: 10c0/a7851d4abfcd93c8c9d40ca7f1a7ad2218b9dcac1b11afe9dcf0fe38f5c1d91610e56bcedf5193a5b178dc10e052baab35977853342e84ec12b1fb27b425b356
+  languageName: node
+  linkType: hard
+
+"@faker-js/faker@npm:^8.4.1":
+  version: 8.4.1
+  resolution: "@faker-js/faker@npm:8.4.1"
+  checksum: 10c0/4f2aecddcfdc2cc8b50b2d15d1e37302a7c7a5bbd184ae910a9d271bc11248533ca74dcdd4a9ccbe20410553e7af0f6a4d334c5b955635e09a32ddf4a64942d4
   languageName: node
   linkType: hard
 
@@ -13676,24 +13684,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"caniuse-lite@npm:^1.0.0, caniuse-lite@npm:^1.0.30001109, caniuse-lite@npm:^1.0.30001449, caniuse-lite@npm:^1.0.30001517":
-  version: 1.0.30001564
-  resolution: "caniuse-lite@npm:1.0.30001564"
-  checksum: 10c0/27722fea974fc8d2cd334cdef23e1299465c870c97902cc5c293673e6c3ae5241f36f31ca180c903160f0b1c3b51e2b2e8962c537b0a6ac6518a1113b5b5665e
-  languageName: node
-  linkType: hard
-
-"caniuse-lite@npm:^1.0.30001587":
-  version: 1.0.30001608
-  resolution: "caniuse-lite@npm:1.0.30001608"
-  checksum: 10c0/eb77c78fb5b0f75b0fdfcc7c40b9d7d11aeb9514091347b42dda4c13c81d14579495939e8ee00572b4ce6af21b3ab4b8ceb68c43f0caf8a2c478f3dcc085e74a
-  languageName: node
-  linkType: hard
-
-"caniuse-lite@npm:^1.0.30001599":
-  version: 1.0.30001629
-  resolution: "caniuse-lite@npm:1.0.30001629"
-  checksum: 10c0/e95136a423c0c5e7f9d026ef3f9be8d06cadc4c83ad65eedfaeaba6b5eb814489ea186e90bae1085f3be7348577e25f8fe436b384c2f983324ad8dea4a7dfe1d
+"caniuse-lite@npm:^1.0.0, caniuse-lite@npm:^1.0.30001109, caniuse-lite@npm:^1.0.30001449, caniuse-lite@npm:^1.0.30001517, caniuse-lite@npm:^1.0.30001587, caniuse-lite@npm:^1.0.30001599":
+  version: 1.0.30001669
+  resolution: "caniuse-lite@npm:1.0.30001669"
+  checksum: 10c0/f125f23440d3dbb6c25ffb8d55f4ce48af36a84d0932b152b3b74f143a4170cbe92e02b0a9676209c86609bf7bf34119ff10cc2bc7c1b7ea40e936cc16598408
   languageName: node
   linkType: hard
 
