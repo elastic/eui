@@ -6,6 +6,12 @@
  * Side Public License, v 1.
  */
 
-export { Demo, type DemoProps } from './demo';
-export { DemoSource } from './source';
-export { createDemo } from './create_demo';
+import { Demo, DemoProps } from './demo';
+
+/**
+ * Creates a custom <Demo /> component with predefined props.
+ */
+export const createDemo =
+  (defaultProps: Partial<DemoProps>): typeof Demo =>
+  (props: DemoProps) =>
+    <Demo {...defaultProps} {...props} />;
