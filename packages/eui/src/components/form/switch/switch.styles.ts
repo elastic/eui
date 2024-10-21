@@ -8,7 +8,7 @@
 
 import { css } from '@emotion/react';
 
-import { UseEuiTheme, tint } from '../../../services';
+import { UseEuiTheme } from '../../../services';
 import {
   euiCanAnimate,
   euiFocusRing,
@@ -25,7 +25,7 @@ const euiSwitchVars = (euiThemeContext: UseEuiTheme) => {
 
   const colors = {
     on: formVars.colors.selected,
-    off: formVars.colors.unselectedBorder,
+    off: euiTheme.components.__TEMP_INTERNAL__.switchBackgroundOff,
     disabled: formVars.colors.disabled,
     thumb: formVars.colors.selectedIcon,
     thumbBorder: formVars.colors.unselectedBorder,
@@ -142,18 +142,7 @@ const buttonStyles = (
   };
 };
 
-const bodyStyles = ({ colorMode }: UseEuiTheme, { colors }: EuiSwitchVars) => {
-  // This is probably very extra, but the visual weight of the default
-  // disabled custom control feels different in light mode depending
-  // on the size of the switch, so I'm tinting it based on that.
-  // Gotta justify my stupidly expensive art degree!
-  const _calculateDisabledColor = (tintAmount: number) => css`
-    label: disabled;
-    background-color: ${colorMode === 'DARK'
-      ? colors.disabled
-      : tint(colors.disabled, tintAmount)};
-  `;
-
+const bodyStyles = ({ euiTheme }: UseEuiTheme, { colors }: EuiSwitchVars) => {
   return {
     euiSwitch__body: css`
       position: absolute;
@@ -169,9 +158,18 @@ const bodyStyles = ({ colorMode }: UseEuiTheme, { colors }: EuiSwitchVars) => {
       background-color: ${colors.off};
     `,
     disabled: {
-      uncompressed: _calculateDisabledColor(0.5),
-      compressed: _calculateDisabledColor(0.25),
-      mini: _calculateDisabledColor(0),
+      uncompressed: css`
+        background-color: ${euiTheme.components.__TEMP_INTERNAL__
+          .switchUncompressedBackgroundDisabled};
+      `,
+      compressed: css`
+        background-color: ${euiTheme.components.__TEMP_INTERNAL__
+          .switchCompressedBackgroundDisabled};
+      `,
+      mini: css`
+        background-color: ${euiTheme.components.__TEMP_INTERNAL__
+          .switchMiniBackgroundDisabled};
+      `,
     },
   };
 };

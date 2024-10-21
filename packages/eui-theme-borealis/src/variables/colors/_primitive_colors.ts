@@ -11,9 +11,19 @@ export const PRIMITIVE_COLORS = {
   black: '#000000',
   mutedBlack: '#0E0F12',
   blueBlack: '#050F21',
-  transparent: 'transparent',
-  transparentBlack: {
-    60: 'rgba(0, 0, 0, 0.6)',
+  transparent: {
+    white: {
+      0: 'transparent',
+    },
+    black: {
+      60: 'rgba(0, 0, 0, 0.6)',
+    },
+    mutedGrey: {
+      10: 'rgba(102, 109, 120, 0.1)',
+    },
+    blueGrey: {
+      10: 'rgba(84, 109, 149, 0.6)',
+    },
   },
   mutedGrey: {
     10: '#F6F9FC',

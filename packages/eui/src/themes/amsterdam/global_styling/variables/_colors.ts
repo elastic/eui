@@ -434,7 +434,7 @@ export const dark_border_colors: _EuiThemeBorderColors = {
     ['colors.ghost']
   ),
   borderBasePlain: computed(([color]) => color, ['border.color']),
-  borderBaseFloating: computed(([color]) => color, ['border.color']),
+  borderBaseFloating: 'transparent',
 };
 
 export const dark_colors_ams: _EuiThemeColorsMode = {

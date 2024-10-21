@@ -15,7 +15,7 @@ import {
   _EuiButtonColor,
   euiButtonEmptyColor,
   euiButtonSizeMap,
-} from '../../../global_styling/mixins/_button';
+} from '../../../themes/amsterdam/global_styling/mixins/button';
 
 import { euiButtonBaseCSS } from '../button_display/_button_display.styles';
 
@@ -57,15 +57,17 @@ export const euiButtonIconStyles = (euiThemeContext: UseEuiTheme) => {
 };
 
 export const _emptyHoverStyles = (euiThemeContext: UseEuiTheme) =>
-  BUTTON_COLORS.reduce(
-    (styles, color) => ({
+  BUTTON_COLORS.reduce((styles, color) => {
+    const backgroundColor =
+      color === 'text'
+        ? euiThemeContext.euiTheme.colors.backgroundBaseHover
+        : euiButtonEmptyColor(euiThemeContext, color).backgroundColor;
+    return {
       ...styles,
       [color]: css`
         &:hover {
-          background-color: ${euiButtonEmptyColor(euiThemeContext, color)
-            .backgroundColor};
+          background-color: ${backgroundColor};
         }
       `,
-    }),
-    {} as Record<_EuiButtonColor, SerializedStyles>
-  );
+    };
+  }, {} as Record<_EuiButtonColor, SerializedStyles>);

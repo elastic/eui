@@ -13,7 +13,7 @@ import {
   euiShadowMedium,
 } from '../../../themes/amsterdam/global_styling/mixins';
 import { getShadowColor } from '../../../themes/amsterdam/global_styling/functions';
-import { UseEuiTheme, tint } from '../../../services';
+import { UseEuiTheme } from '../../../services';
 import {
   euiCanAnimate,
   logicalCSS,
@@ -59,6 +59,16 @@ export const euiPopoverPanelStyles = (euiThemeContext: UseEuiTheme) => {
       &:focus {
         outline-offset: 0;
       }
+
+      &::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        border-radius: inherit;
+        border: ${euiTheme.border.width.thin} solid
+          ${euiTheme.colors.borderBaseFloating};
+        pointer-events: none;
+      }
     `,
     isOpen: css`
       opacity: 1;
@@ -67,10 +77,12 @@ export const euiPopoverPanelStyles = (euiThemeContext: UseEuiTheme) => {
 
     /* 4 */
     light: css`
-      --euiPopoverBackgroundColor: ${euiTheme.colors.emptyShade};
+      --euiPopoverBackgroundColor: ${euiTheme.components.__TEMP_INTERNAL__
+        .popoverPanelBackground};
     `,
     dark: css`
-      --euiPopoverBackgroundColor: ${tint(euiTheme.colors.emptyShade, 0.025)};
+      --euiPopoverBackgroundColor: ${euiTheme.components.__TEMP_INTERNAL__
+        .popoverPanelBackground};
     `,
 
     // Regular popover with an arrow, a transform animation/transition, and a
