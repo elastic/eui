@@ -286,6 +286,11 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
                 your name
               </span>
               <span
+                class="emotion-euiScreenReaderOnly"
+              >
+                Sorted ascending. Click to sort descending
+              </span>
+              <span
                 class="euiTableSortIcon"
                 data-euiicon-type="sortUp"
               />

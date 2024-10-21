@@ -350,7 +350,8 @@ describe('EuiBasicTable', () => {
     expect(
       container.querySelector('[aria-sort="ascending"] .euiTableCellContent')
         ?.textContent
-    ).toEqual('Name');
+      // Using toMatch because the text includes screen reader only text.
+    ).toMatch('Name');
   });
 
   test('with sortable columns and sorting disabled', () => {

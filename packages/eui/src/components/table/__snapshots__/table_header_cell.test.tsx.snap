@@ -139,6 +139,11 @@ exports[`EuiTableHeaderCell sorting renders a button with onSort 1`] = `
               Test
             </span>
             <span
+              class="emotion-euiScreenReaderOnly"
+            >
+              Sorted descending. Click to unsort
+            </span>
+            <span
               class="euiTableSortIcon"
               data-euiicon-type="sortDown"
             />
@@ -233,6 +238,11 @@ exports[`EuiTableHeaderCell sorting renders with a sortable icon if \`onSort\` i
               title="Test"
             >
               Test
+            </span>
+            <span
+              class="emotion-euiScreenReaderOnly"
+            >
+              Unsorted. Click to sort ascending
             </span>
             <span
               class="euiTableSortIcon euiTableSortIcon--sortable"
