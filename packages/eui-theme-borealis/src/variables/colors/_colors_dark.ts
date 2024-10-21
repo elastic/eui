@@ -94,7 +94,7 @@ export const dark_background_colors: _EuiThemeBackgroundColors = {
 
   backgroundBaseHover: SEMANTIC_COLORS.shade130,
   backgroundBaseSelect: SEMANTIC_COLORS.primary130,
-  backgroundBaseOverlay: PRIMITIVE_COLORS.transparentBlack['60'],
+  backgroundBaseOverlay: PRIMITIVE_COLORS.transparent.black['60'],
 
   backgroundLightPrimary: SEMANTIC_COLORS.primary120,
   backgroundLightAccent: SEMANTIC_COLORS.accent120,
@@ -119,7 +119,7 @@ export const dark_background_colors: _EuiThemeBackgroundColors = {
  */
 export const dark_transparent_background_colors: _EuiThemeTransparentBackgroundColors =
   {
-    backgroundTransparent: 'transparent',
+    backgroundTransparent: PRIMITIVE_COLORS.transparent.white['0'],
     backgroundTransparentPrimary: dark_background_colors.backgroundBasePrimary,
     backgroundTransparentAccent: dark_background_colors.backgroundBaseAccent,
     backgroundTransparentAccentSecondary:

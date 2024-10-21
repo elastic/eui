@@ -17,4 +17,5 @@ export * from './shadow';
 export * from './states';
 export * from './typography';
 export * from './buttons';
+export * from './forms';
 export * from './components';

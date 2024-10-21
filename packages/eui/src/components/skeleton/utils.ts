@@ -8,7 +8,7 @@
 
 import { css } from '@emotion/react';
 
-import { UseEuiTheme, shade, tint } from '../../services';
+import { UseEuiTheme } from '../../services';
 import { euiCanAnimate, logicalCSS } from '../../global_styling';
 import { euiAnimSlideX } from '../../global_styling/utility/animations';
 
@@ -18,17 +18,13 @@ type AnimationOptions = {
 };
 
 export const euiSkeletonGradientAnimation = (
-  { euiTheme, colorMode }: UseEuiTheme,
+  { euiTheme }: UseEuiTheme,
   { slideSize = '-53%', gradientSize = '220%' }: AnimationOptions = {}
 ) => {
   const gradientStartStop =
-    colorMode === 'DARK'
-      ? shade(euiTheme.colors.lightShade, 0.12)
-      : tint(euiTheme.colors.lightShade, 0.65);
+    euiTheme.components.__TEMP_INTERNAL__.skeletonGradientStartStopBackground;
   const gradientMiddle =
-    colorMode === 'DARK'
-      ? shade(euiTheme.colors.lightShade, 0.24)
-      : tint(euiTheme.colors.lightShade, 0.8);
+    euiTheme.components.__TEMP_INTERNAL__.skeletonGradientMiddleBackground;
 
   return css`
     background-color: ${gradientStartStop};

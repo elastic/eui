@@ -12,7 +12,6 @@ import { euiShadowSmall } from '../../themes/amsterdam/global_styling/mixins';
 import { logicalCSS } from '../../global_styling';
 import {
   UseEuiTheme,
-  shade,
   transparentize,
   makeHighContrastColor,
 } from '../../services';
@@ -54,7 +53,8 @@ export const euiHeaderStyles = (euiThemeContext: UseEuiTheme) => {
     `,
     // Theme
     default: css`
-      background-color: ${euiTheme.colors.emptyShade};
+      background-color: ${euiTheme.components.__TEMP_INTERNAL__
+        .headerBackground};
     `,
     dark: css(euiHeaderDarkStyles(euiThemeContext)),
   };
@@ -72,13 +72,11 @@ export const euiHeaderStyles = (euiThemeContext: UseEuiTheme) => {
 import { euiFormVariables } from '../form/form.styles';
 
 const euiHeaderDarkStyles = (euiThemeContext: UseEuiTheme) => {
-  const { euiTheme, colorMode } = euiThemeContext;
+  const { euiTheme } = euiThemeContext;
   const { controlPlaceholderText } = euiFormVariables(euiThemeContext);
 
   const backgroundColor =
-    colorMode === 'DARK'
-      ? shade(euiTheme.colors.lightestShade, 0.5)
-      : shade(euiTheme.colors.darkestShade, 0.28);
+    euiTheme.components.__TEMP_INTERNAL__.headerBackgroundDark;
 
   return `
     background-color: ${backgroundColor};
@@ -97,7 +95,10 @@ const euiHeaderDarkStyles = (euiThemeContext: UseEuiTheme) => {
     .euiHeaderLink,
     .euiHeaderSectionItemButton {
       &:focus {
-        background-color: ${shade(euiTheme.colors.primary, 0.5)};
+        background-color: ${
+          euiTheme.components.__TEMP_INTERNAL__
+            .headerSectionItemBackgroundFocusDark
+        };
       }
     }
 
