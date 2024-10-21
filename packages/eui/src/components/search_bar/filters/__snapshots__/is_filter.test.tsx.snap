@@ -15,6 +15,11 @@ exports[`IsFilter render 1`] = `
       title="Open"
     >
       Open
+      <span
+        class="emotion-euiScreenReaderOnly"
+      >
+        select
+      </span>
     </span>
   </span>
 </button>

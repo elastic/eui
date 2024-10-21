@@ -24,6 +24,11 @@ exports[`EuiSearchBarFilters render - with filters 1`] = `
         title="Open"
       >
         Open
+        <span
+          class="emotion-euiScreenReaderOnly"
+        >
+          select
+        </span>
       </span>
     </span>
   </button>
@@ -43,6 +48,11 @@ exports[`EuiSearchBarFilters render - with filters 1`] = `
           title="Tag"
         >
           Tag
+          <span
+            class="emotion-euiScreenReaderOnly"
+          >
+            select
+          </span>
         </span>
         <span
           color="inherit"
