@@ -57,7 +57,7 @@ export type EuiFilterButtonProps = {
   /**
    * Enables a screen reader only label
    */
-  hasAccessibleLabel?: boolean;
+  hasAccessibleText?: boolean;
 } & DistributiveOmit<EuiButtonEmptyProps, 'flush' | 'size'>;
 
 export const EuiFilterButton: FunctionComponent<EuiFilterButtonProps> = ({
@@ -77,7 +77,7 @@ export const EuiFilterButton: FunctionComponent<EuiFilterButtonProps> = ({
   withNext,
   textProps,
   contentProps,
-  hasAccessibleLabel,
+  hasAccessibleText,
   ...rest
 }) => {
   const numFiltersDefined = numFilters != null; // != instead of !== to allow for null and undefined
@@ -195,7 +195,7 @@ export const EuiFilterButton: FunctionComponent<EuiFilterButtonProps> = ({
     >
       {textContent}
       {badgeContent}
-      {hasAccessibleLabel && (
+      {hasAccessibleText && (
         <EuiScreenReaderOnly>
           <span>{accessibleText}</span>
         </EuiScreenReaderOnly>
