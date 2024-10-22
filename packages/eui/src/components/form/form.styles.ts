@@ -315,9 +315,11 @@ export const euiFormCustomControlVariables = (euiThemeContext: UseEuiTheme) => {
     unselected: euiTheme.components.forms.controlBackgroundUnselected,
     unselectedBorder: euiTheme.components.forms.controlBorder,
     selected: euiTheme.colors.primary,
+    selectedBorder: euiTheme.components.forms.controlBorderSelected,
     selectedIcon: euiTheme.colors.emptyShade,
     disabled: euiTheme.components.forms.colorDisabled,
-    disabledIcon: euiTheme.colors.darkShade,
+    disabledBorder: euiTheme.components.forms.controlBorderDisabled,
+    disabledIcon: euiTheme.components.forms.iconDisabled,
     disabledLabel: euiTheme.colors.disabledText, // Lighter than formVars.disabledColor because it typically doesn't have as dark a background
   };
 

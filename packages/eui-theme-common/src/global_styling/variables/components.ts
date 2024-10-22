@@ -80,6 +80,7 @@ type _InternalOnlyComponentTokens = {
   switchUncompressedBackgroundDisabled: ColorModeSwitch;
   switchCompressedBackgroundDisabled: ColorModeSwitch;
   switchMiniBackgroundDisabled: ColorModeSwitch;
+  switchThumbBackgroundDisabled: ColorModeSwitch;
 
   tableRowBackgroundHover: ColorModeSwitch;
   tableRowBackgroundSelected: ColorModeSwitch;

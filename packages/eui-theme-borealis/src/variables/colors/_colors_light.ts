@@ -119,6 +119,7 @@ export const border_colors: _EuiThemeBorderColors = {
   borderBaseSuccess: SEMANTIC_COLORS.success100,
   borderBaseWarning: SEMANTIC_COLORS.warning100,
   borderBaseDanger: SEMANTIC_COLORS.danger100,
+  borderBaseText: SEMANTIC_COLORS.shade100,
   borderBasePlain: SEMANTIC_COLORS.shade30,
   borderBaseSubdued: SEMANTIC_COLORS.shade20,
   borderBaseDisabled: SEMANTIC_COLORS.shade30,

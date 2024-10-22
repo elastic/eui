@@ -95,11 +95,12 @@ const temporary_components = {
 
   superDatePickerBackgroundSuccees: background_colors.backgroundBaseSuccess,
 
-  switchBackgroundOff: background_colors.backgroundBaseDisabled,
+  switchBackgroundOff: background_colors.backgroundFilledText,
   switchUncompressedBackgroundDisabled:
     background_colors.backgroundBaseDisabled,
   switchCompressedBackgroundDisabled: background_colors.backgroundBaseDisabled,
   switchMiniBackgroundDisabled: background_colors.backgroundBaseDisabled,
+  switchThumbBackgroundDisabled: background_colors.backgroundBasePlain,
 
   tableRowBackgroundHover: background_colors.backgroundBaseHover,
   tableRowBackgroundSelected: background_colors.backgroundBaseSelect,
@@ -202,13 +203,14 @@ export const components: _EuiThemeComponents = {
 
       selectableListItemBorderColor: dark_border_colors.borderBaseSubdued,
 
-      switchBackgroundOff: dark_background_colors.backgroundBaseDisabled,
+      switchBackgroundOff: dark_background_colors.backgroundFilledText,
       switchUncompressedBackgroundDisabled:
         dark_background_colors.backgroundBaseDisabled,
       switchCompressedBackgroundDisabled:
         dark_background_colors.backgroundBaseDisabled,
       switchMiniBackgroundDisabled:
         dark_background_colors.backgroundBaseDisabled,
+      switchThumbBackgroundDisabled: dark_background_colors.backgroundBasePlain,
 
       superDatePickerBackgroundSuccees:
         dark_background_colors.backgroundBaseSuccess,

@@ -225,7 +225,7 @@ describe('euiFormCustomControlStyles', () => {
           "disabled": {
             "selected": "
                 label: disabled;
-                color: #69707D;
+                color: #919296;
                 background-color: #D3DAE6;
               ",
             "unselected": "
