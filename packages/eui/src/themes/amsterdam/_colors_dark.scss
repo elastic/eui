@@ -44,8 +44,11 @@ $euiColorBackgroundBasePage: $euiPageBackgroundColor !default;
 $euiColorBackgroundBasePrepend: shade($euiColorLightShade, 0.15) !default;
 
 $euiColorBackgroundBaseHover: transparentize($euiColorLightShade, 0.2) !default;
+$euiColorBackgroundBaseHoverTransparent: transparentize($euiColorLightShade, 0.2) !default;
 $euiColorBackgroundBaseSelect: shade($euiColorPrimary, 0.7) !default;
 $euiColorBackgroundBaseOverlay: transparentize($euiColorInk, 0.5) !default;
+$euiColorBackgroundBaseSkeletonEdge: shade($euiColorLightShade, 0.12) !default;
+$euiColorBackgroundBaseSkeletonMiddle: shade($euiColorLightShade, 0.24) !default;
 
 $euiColorBackgroundLightPrimary: shade($euiColorPrimary, 0.7) !default;
 $euiColorBackgroundLightAccent: shade($euiColorAccent, 0.7) !default;
@@ -103,6 +106,7 @@ $borderBasePlain: $euiColorLightShade;
 $borderBaseSubdued: $euiColorLightShade;
 $borderBaseDisabled: transparentize($euiColorGhost, 0.1);
 $borderBaseFloating: $euiColorLightShade;
+$borderBaseColorSwatch: transparentize($euiColorFullShade, 0.1);
 
 // Charts
 $euiColorChartLines: $euiColorLightShade !default;
