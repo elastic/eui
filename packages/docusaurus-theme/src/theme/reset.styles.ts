@@ -39,6 +39,10 @@ export const getResetStyles = (theme: UseEuiTheme) => {
       margin: 0;
     }
 
+    ul, ol {
+      list-style: none;
+    }
+
     * {
       ${euiFocusRing(theme, 'outset', { color: euiTheme.colors.primary })};
     }
