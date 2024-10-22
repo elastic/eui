@@ -102,6 +102,7 @@ $borderBaseAccentSecondary: shade($euiColorAccentSecondary, 0.6);
 $borderBaseSuccess: shade($euiColorSuccess, 0.6);
 $borderBaseWarning: shade($euiColorWarning, 0.6);
 $borderBaseDanger: shade($euiColorDanger, 0.6);
+$borderBaseText: tint($euiColorLightestShade, 0.31);
 $borderBasePlain: $euiColorLightShade;
 $borderBaseSubdued: $euiColorLightShade;
 $borderBaseDisabled: transparentize($euiColorGhost, 0.1);
