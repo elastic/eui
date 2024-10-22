@@ -25,10 +25,13 @@ const _forms = {
   prependBackground: SEMANTIC_COLORS.shade15,
   border: border_colors.borderBasePlain,
   borderAutofilled: border_colors.borderBasePrimary,
-  controlBorder: border_colors.borderBasePlain,
-  controlBackgroundUnselected: background_colors.backgroundBaseDisabled,
+  controlBorder: border_colors.borderBaseText,
+  controlBorderSelected: border_colors.borderBasePrimary,
+  controlBorderDisabled: border_colors.borderBaseDisabled,
+  controlBackgroundUnselected: background_colors.backgroundBasePlain,
   colorHasPlaceholder: text_colors.textSubdued,
   colorDisabled: text_colors.textDisabled,
+  iconDisabled: text_colors.textDisabled,
 };
 
 const _dark_forms = {
@@ -40,10 +43,13 @@ const _dark_forms = {
   prependBackground: SEMANTIC_COLORS.shade130,
   border: dark_border_colors.borderBasePlain,
   borderAutofilled: dark_border_colors.borderBasePrimary,
-  controlBorder: dark_border_colors.borderBasePlain,
-  controlBackgroundUnselected: dark_background_colors.backgroundBaseDisabled,
+  controlBorder: dark_border_colors.borderBaseText,
+  controlBorderSelected: dark_border_colors.borderBasePrimary,
+  controlBorderDisabled: dark_border_colors.borderBaseDisabled,
+  controlBackgroundUnselected: dark_background_colors.backgroundBasePlain,
   colorHasPlaceholder: dark_text_colors.textSubdued,
   colorDisabled: dark_text_colors.textDisabled,
+  iconDisabled: dark_text_colors.textDisabled,
 };
 
 export const forms = {

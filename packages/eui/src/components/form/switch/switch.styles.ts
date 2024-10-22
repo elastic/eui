@@ -28,8 +28,12 @@ const euiSwitchVars = (euiThemeContext: UseEuiTheme) => {
     off: euiTheme.components.__TEMP_INTERNAL__.switchBackgroundOff,
     disabled: formVars.colors.disabled,
     thumb: formVars.colors.selectedIcon,
+    thumbDisabled:
+      euiTheme.components.__TEMP_INTERNAL__.switchThumbBackgroundDisabled,
     thumbBorder: formVars.colors.unselectedBorder,
-    thumbBorderDisabled: formVars.colors.unselectedBorder,
+    thumbBorderOn: formVars.colors.selectedBorder,
+    thumbBorderDisabled: formVars.colors.disabledBorder,
+    iconDisabled: formVars.colors.disabledIcon,
   };
 
   const sizes = {
@@ -206,7 +210,7 @@ const iconStyles = (
       color: ${colors.thumb};
     `,
     disabled: css`
-      color: ${colors.thumbBorderDisabled};
+      color: ${colors.iconDisabled};
     `,
   };
 };
@@ -254,6 +258,10 @@ const thumbStyles = ({ euiTheme }: UseEuiTheme, switchVars: EuiSwitchVars) => {
       ${logicalCSS('left', 0)}
     `,
     get on() {
+      const baseStyles = `
+        border: ${euiTheme.border.width.thin} solid ${colors.thumbBorderOn};
+      `;
+
       // right: 0 works but doesn't transition/animate, so we need to
       // manually calculate the left position per switch size
       const _calculateLeft = (bodyWidth: string, thumbWidth: string) => {
@@ -264,6 +272,7 @@ const thumbStyles = ({ euiTheme }: UseEuiTheme, switchVars: EuiSwitchVars) => {
         return css`
           label: on;
           ${logicalCSS('left', leftPosition)}
+          ${baseStyles}
         `;
       };
       return {
@@ -285,7 +294,7 @@ const thumbStyles = ({ euiTheme }: UseEuiTheme, switchVars: EuiSwitchVars) => {
 
     disabled: {
       disabled: css`
-        background-color: transparent;
+        background-color: ${colors.thumbDisabled};
         border: ${euiTheme.border.width.thin} solid
           ${colors.thumbBorderDisabled};
       `,
