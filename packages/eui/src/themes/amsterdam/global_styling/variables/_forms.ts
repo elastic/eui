@@ -53,6 +53,14 @@ const _forms = {
     ([lightestShade]) => shade(lightestShade, 0.4),
     ['colors.lightestShade']
   ),
+  controlBorderSelected: computed(
+    ([lightestShade]) => shade(lightestShade, 0.4),
+    ['colors.lightestShade']
+  ),
+  controlBorderDisabled: computed(
+    ([lightestShade]) => shade(lightestShade, 0.4),
+    ['colors.lightestShade']
+  ),
   controlBackgroundUnselected: computed(
     ([emptyShade]) => emptyShade,
     ['colors.emptyShade']
@@ -63,6 +71,10 @@ const _forms = {
     ['colors.subduedText']
   ),
   colorDisabled: computed(([lightShade]) => lightShade, ['colors.lightShade']),
+  iconDisabled: computed(
+    ([lightestShade]) => shade(lightestShade, 0.4),
+    ['colors.lightestShade']
+  ),
 };
 
 const _dark_forms = {
@@ -88,6 +100,18 @@ const _dark_forms = {
   ),
   border: computed(([ghost]) => transparentize(ghost, 0.1), ['colors.ghost']),
   controlBorder: computed(
+    ([lightestShade]) => tint(lightestShade, 0.31),
+    ['colors.lightestShade']
+  ),
+  controlBorderSelected: computed(
+    ([lightestShade]) => tint(lightestShade, 0.31),
+    ['colors.lightestShade']
+  ),
+  controlBorderDisabled: computed(
+    ([lightestShade]) => tint(lightestShade, 0.31),
+    ['colors.lightestShade']
+  ),
+  iconDisabled: computed(
     ([lightestShade]) => tint(lightestShade, 0.31),
     ['colors.lightestShade']
   ),

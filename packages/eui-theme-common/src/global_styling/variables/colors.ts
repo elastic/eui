@@ -214,6 +214,7 @@ export type _EuiThemeBorderColors = {
   borderBaseSuccess: ColorModeSwitch;
   borderBaseWarning: ColorModeSwitch;
   borderBaseDanger: ColorModeSwitch;
+  borderBaseText: ColorModeSwitch;
   borderBasePlain: ColorModeSwitch;
   borderBaseSubdued: ColorModeSwitch;
   borderBaseDisabled: ColorModeSwitch;

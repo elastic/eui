@@ -236,6 +236,11 @@ export const border_colors: _EuiThemeBorderColors = {
     ([danger]) => tint(danger, 0.6),
     ['colors.danger']
   ),
+  borderBaseText: computed(
+    ([lightestShade]) => shade(lightestShade, 0.4),
+    ['colors.lightestShade']
+  ),
+
   borderBaseSubdued: computed(([color]) => color, ['border.color']),
   borderBaseDisabled: computed(
     ([lightShade]) => transparentize(darken(lightShade, 0.4), 0.1),
@@ -408,6 +413,11 @@ export const dark_border_colors: _EuiThemeBorderColors = {
     ([danger]) => shade(danger, 0.6),
     ['colors.danger']
   ),
+  borderBaseText: computed(
+    ([lightestShade]) => tint(lightestShade, 0.31),
+    ['colors.lightestShade']
+  ),
+
   borderBaseSubdued: computed(([color]) => color, ['border.color']),
   borderBaseDisabled: computed(
     ([ghost]) => transparentize(ghost, 0.1),
