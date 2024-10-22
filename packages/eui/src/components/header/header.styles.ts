@@ -10,11 +10,7 @@ import { css } from '@emotion/react';
 
 import { euiShadowSmall } from '../../themes/amsterdam/global_styling/mixins';
 import { logicalCSS } from '../../global_styling';
-import {
-  UseEuiTheme,
-  transparentize,
-  makeHighContrastColor,
-} from '../../services';
+import { UseEuiTheme, makeHighContrastColor } from '../../services';
 
 export const euiHeaderVariables = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
@@ -114,7 +110,9 @@ const euiHeaderDarkStyles = (euiThemeContext: UseEuiTheme) => {
       background-color: transparent;
 
       &--group {
-        border-color: ${transparentize(euiTheme.colors.ghost, 0.3)};
+        border-color: ${
+          euiTheme.components.__TEMP_INTERNAL__.headerSearchBorderColor
+        };
       }
 
       &:not(:focus-within) {

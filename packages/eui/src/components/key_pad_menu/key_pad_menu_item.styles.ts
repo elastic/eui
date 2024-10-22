@@ -8,7 +8,7 @@
 
 import { css } from '@emotion/react';
 
-import { UseEuiTheme, transparentize } from '../../services';
+import { UseEuiTheme } from '../../services';
 import {
   logicalCSS,
   logicalSizeCSS,
@@ -82,10 +82,8 @@ export const euiKeyPadMenuItemStyles = (euiThemeContext: UseEuiTheme) => {
         }
       `,
       selected: css`
-        background-color: ${transparentize(
-          euiTheme.colors.disabled,
-          euiTheme.focus.transparency
-        )};
+        background-color: ${euiTheme.components.__TEMP_INTERNAL__
+          .keyPadMenuItemBackgroundDisabledSelect};
       `,
     },
   };
