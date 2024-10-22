@@ -20,6 +20,42 @@ import { buttons } from './_buttons';
 import { forms } from './_forms';
 
 const temporary_components = {
+  shared: {
+    backgroundTransparent: 'transparent',
+    backgroundTransparentPrimary: computed(
+      ([primary]) => transparentize(primary, 0.1),
+      ['colors.primary']
+    ),
+    backgroundTransparentAccent: computed(
+      ([accent]) => transparentize(accent, 0.1),
+      ['colors.accent']
+    ),
+    backgroundTransparentAccentSecondary: computed(
+      ([accent]) => transparentize(accent, 0.1),
+      ['colors.accent']
+    ),
+    backgroundTransparentSuccess: computed(
+      ([success]) => transparentize(success, 0.1),
+      ['colors.success']
+    ),
+    backgroundTransparentWarning: computed(
+      ([warning]) => transparentize(warning, 0.1),
+      ['colors.warning']
+    ),
+    backgroundTransparentDanger: computed(
+      ([danger]) => transparentize(danger, 0.1),
+      ['colors.danger']
+    ),
+    backgroundTransparentSubdued: computed(
+      ([lightShade]) => transparentize(lightShade, 0.2),
+      ['colors.lightShade']
+    ),
+    backgroundTransparentPlain: computed(
+      ([ghost]) => transparentize(ghost, 0.2),
+      ['colors.ghost']
+    ),
+  },
+
   scrollbarTrackColor: computed(([body]) => shade(body, 0.03), ['colors.body']),
 
   badgeBackgroundSubdued: computed(
@@ -178,6 +214,23 @@ const temporary_components = {
     ([success]) => transparentize(success, 0.25),
     ['colors.success']
   ),
+
+  listGroupItemBackgroundPrimaryActive: computed(
+    ([lightShade]) => transparentize(lightShade, 0.2),
+    ['colors.lightShade']
+  ),
+  listGroupItemBackgroundSubduedActive: computed(
+    ([primary]) => transparentize(primary, 0.1),
+    ['colors.primary']
+  ),
+  listGroupItemBackgroundHover: computed(
+    ([lightShade]) => transparentize(lightShade, 0.2),
+    ['colors.lightShade']
+  ),
+  listGroupItemBackgroundPrimaryHover: computed(
+    ([primary]) => transparentize(primary, 0.1),
+    ['colors.primary']
+  ),
 };
 
 export const components: _EuiThemeComponents = {
@@ -187,6 +240,16 @@ export const components: _EuiThemeComponents = {
     LIGHT: temporary_components,
     DARK: {
       ...temporary_components,
+
+      shared: {
+        ...temporary_components.shared,
+
+        backgroundTransparentSubdued: computed(
+          ([lightShade]) => transparentize(lightShade, 0.4),
+          ['colors.lightShade']
+        ),
+      },
+
       scrollbarTrackColor: computed(
         ([body]) => tint(body, 0.07),
         ['colors.body']
@@ -287,6 +350,11 @@ export const components: _EuiThemeComponents = {
       ),
       skeletonGradientMiddleBackground: computed(
         ([lightShade]) => shade(lightShade, 0.24),
+        ['colors.lightShade']
+      ),
+
+      listGroupItemBackgroundSubduedActive: computed(
+        ([lightShade]) => transparentize(lightShade, 0.4),
         ['colors.lightShade']
       ),
     },

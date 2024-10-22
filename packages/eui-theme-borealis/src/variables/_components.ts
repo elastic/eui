@@ -8,6 +8,7 @@
 
 import { _EuiThemeComponents } from '@elastic/eui-theme-common';
 
+import { PRIMITIVE_COLORS } from './colors/_primitive_colors';
 import { SEMANTIC_COLORS } from './colors/_semantic_colors';
 import {
   dark_background_colors,
@@ -24,6 +25,19 @@ import {
 } from './colors/_colors_light';
 
 const temporary_components = {
+  shared: {
+    backgroundTransparent: PRIMITIVE_COLORS.transparent.white['0'],
+    backgroundTransparentPrimary: background_colors.backgroundBasePrimary,
+    backgroundTransparentAccent: background_colors.backgroundBaseAccent,
+    backgroundTransparentAccentSecondary:
+      background_colors.backgroundBaseAccentSecondary,
+    backgroundTransparentSuccess: background_colors.backgroundBaseSuccess,
+    backgroundTransparentWarning: background_colors.backgroundBaseWarning,
+    backgroundTransparentDanger: background_colors.backgroundBaseDanger,
+    backgroundTransparentSubdued: SEMANTIC_COLORS.shade15,
+    backgroundTransparentPlain: SEMANTIC_COLORS.shade15,
+  },
+
   scrollbarTrackColor: SEMANTIC_COLORS.shade15,
 
   buttonGroupBorderColor: border_colors.borderBasePlain,
@@ -79,6 +93,11 @@ const temporary_components = {
 
   dragDropDraggingBackground: background_colors.backgroundBaseSuccess,
   dragDropDraggingOverBackground: background_colors.backgroundLightSuccess,
+
+  listGroupItemBackgroundPrimaryActive: background_colors.backgroundBaseSelect,
+  listGroupItemBackgroundSubduedActive: background_colors.backgroundBaseSelect,
+  listGroupItemBackgroundHover: background_colors.backgroundBaseHover,
+  listGroupItemBackgroundPrimaryHover: background_colors.backgroundBaseHover,
 };
 
 export const components: _EuiThemeComponents = {
@@ -88,6 +107,25 @@ export const components: _EuiThemeComponents = {
     LIGHT: temporary_components,
     DARK: {
       ...temporary_components,
+
+      shared: {
+        backgroundTransparent: PRIMITIVE_COLORS.transparent.white['0'],
+        backgroundTransparentPrimary:
+          dark_background_colors.backgroundBasePrimary,
+        backgroundTransparentAccent:
+          dark_background_colors.backgroundBaseAccent,
+        backgroundTransparentAccentSecondary:
+          dark_background_colors.backgroundBaseAccent,
+        backgroundTransparentSuccess:
+          dark_background_colors.backgroundBaseSuccess,
+        backgroundTransparentWarning:
+          dark_background_colors.backgroundBaseWarning,
+        backgroundTransparentDanger:
+          dark_background_colors.backgroundBaseDanger,
+        backgroundTransparentSubdued:
+          dark_background_colors.backgroundBaseSubdued,
+        backgroundTransparentPlain: dark_background_colors.backgroundBasePlain,
+      },
 
       buttonGroupBorderColor: dark_border_colors.borderBasePlain,
       buttonGroupBorderColorSelected: dark_border_colors.borderBasePlain,
@@ -147,6 +185,14 @@ export const components: _EuiThemeComponents = {
       dragDropDraggingBackground: dark_background_colors.backgroundBaseSuccess,
       dragDropDraggingOverBackground:
         dark_background_colors.backgroundLightSuccess,
+
+      listGroupItemBackgroundPrimaryActive:
+        dark_background_colors.backgroundBaseSelect,
+      listGroupItemBackgroundSubduedActive:
+        dark_background_colors.backgroundBaseSelect,
+      listGroupItemBackgroundHover: dark_background_colors.backgroundBaseHover,
+      listGroupItemBackgroundPrimaryHover:
+        dark_background_colors.backgroundBaseHover,
     },
   },
 };
