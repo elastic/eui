@@ -8,23 +8,15 @@ export interface GuidelineTextProps extends PropsWithChildren {
 
 export const GuidelineText = ({ type, children }: GuidelineTextProps) => {
   const textPrefix = useMemo(() => {
-    if (type === 'do') {
-      return (
-        <>
-          <strong>Do:</strong>&nbsp;
-        </>
-      );
+    if (type === 'default') {
+      return undefined;
     }
 
-    if (type === 'dont') {
-      return (
-        <>
-          <strong>Don't:</strong>&nbsp;
-        </>
-      );
-    }
-
-    return undefined;
+    return (
+      <>
+        <strong>{type === 'do' ? 'Do:' : `Don't:`}</strong>&nbsp;
+      </>
+    );
   }, [type]);
 
   const textColor = useMemo((): EuiTextProps['color'] => {
