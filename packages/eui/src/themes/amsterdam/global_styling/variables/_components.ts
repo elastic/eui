@@ -56,13 +56,24 @@ const temporary_components = {
     ),
   },
 
-  scrollbarTrackColor: computed(([body]) => shade(body, 0.03), ['colors.body']),
-
   badgeBackgroundSubdued: computed(
     ([lightShade]) => tint(lightShade, 0.3),
     ['colors.lightShade']
   ),
   badgeBorderColorHollow: computed(([color]) => color, ['border.color']),
+  badgeIconButtonBackgroundHover: computed(
+    ([ghost]) => transparentize(ghost, 0.8),
+    ['colors.ghost']
+  ),
+
+  breadcrumbsApplicationBackground: computed(
+    ([darkestShade]) => tint(darkestShade, 0.85),
+    ['colors.darkestShade']
+  ),
+  breadcrumbsApplicationColor: computed(
+    ([darkestShade]) => tint(darkestShade, 0.2),
+    ['colors.darkestShade']
+  ),
 
   buttonGroupBorderColor: computed(
     ([fullShade]) => transparentize(fullShade, 0.1),
@@ -78,6 +89,44 @@ const temporary_components = {
     ['colors.lightestShade']
   ),
 
+  collapsibleNavGroupBackground: computed(([body]) => body, ['colors.body']),
+  collapsibleNavGroupBackgroundDark: computed(
+    ([darkestShade]) => shade(darkestShade, 0.2),
+    ['colors.darkestShade']
+  ),
+
+  dataGridVerticalLineBorderColor: computed(
+    ([color]) => tint(color, 0.3),
+    ['border.color']
+  ),
+  dataGridRowBackgroundStriped: computed(
+    ([lightestShade]) => lightestShade,
+    ['colors.lightestShade']
+  ),
+  dataGridRowBackgroundHover: computed(
+    ([highlight]) => highlight,
+    ['colors.highlight']
+  ),
+
+  dragDropDraggingBackground: computed(
+    ([success]) => transparentize(success, 0.1),
+    ['colors.success']
+  ),
+  dragDropDraggingOverBackground: computed(
+    ([success]) => transparentize(success, 0.25),
+    ['colors.success']
+  ),
+
+  filterSelectItemBackgroundFocusDisabled: computed(
+    ([disabled]) => transparentize(disabled, 0.1),
+    ['colors.disabled']
+  ),
+
+  flyoutCloseButtonInsideBackground: computed(
+    ([emptyShade]) => transparentize(emptyShade, 0.9),
+    ['colors.emptyShade']
+  ),
+
   headerBackground: computed(
     ([emptyShade]) => emptyShade,
     ['colors.emptyShade']
@@ -90,20 +139,64 @@ const temporary_components = {
     ([primary]) => shade(primary, 0.5),
     ['colors.primary']
   ),
-
-  breadcrumbsApplicationBackground: computed(
-    ([darkestShade]) => tint(darkestShade, 0.85),
-    ['colors.darkestShade']
-  ),
-  breadcrumbsApplicationColor: computed(
-    ([darkestShade]) => tint(darkestShade, 0.2),
-    ['colors.darkestShade']
+  headerSearchBorderColor: computed(
+    ([ghost]) => transparentize(ghost, 0.3),
+    ['colors.ghost']
   ),
 
-  collapsibleNavGroupBackground: computed(([body]) => body, ['colors.body']),
-  collapsibleNavGroupBackgroundDark: computed(
-    ([darkestShade]) => shade(darkestShade, 0.2),
-    ['colors.darkestShade']
+  keyPadMenuItemBackgroundDisabledSelect: computed(
+    ([disabled]) => transparentize(disabled, 0.1),
+    ['colors.disabled']
+  ),
+
+  listGroupItemBackgroundPrimaryActive: computed(
+    ([lightShade]) => transparentize(lightShade, 0.2),
+    ['colors.lightShade']
+  ),
+  listGroupItemBackgroundSubduedActive: computed(
+    ([primary]) => transparentize(primary, 0.1),
+    ['colors.primary']
+  ),
+  listGroupItemBackgroundHover: computed(
+    ([lightShade]) => transparentize(lightShade, 0.2),
+    ['colors.lightShade']
+  ),
+  listGroupItemBackgroundPrimaryHover: computed(
+    ([primary]) => transparentize(primary, 0.1),
+    ['colors.primary']
+  ),
+
+  markBackground: computed(
+    ([primary]) => transparentize(primary, 0.1),
+    ['colors.primary']
+  ),
+
+  markdownFormatTableBorderColor: computed(
+    ([fullShade]) => transparentize(fullShade, 0.15),
+    ['colors.fullShade']
+  ),
+
+  popoverPanelBackground: computed(
+    ([emptyShade]) => emptyShade,
+    ['colors.emptyShade']
+  ),
+  popoverFooterBorderColor: computed(([color]) => color, ['border.color']),
+
+  scrollbarTrackColor: computed(([body]) => shade(body, 0.03), ['colors.body']),
+
+  sideNavItemEmphasizedBackground: computed(
+    ([lightShade]) => transparentize(lightShade, 0.3),
+    ['colors.lightShade']
+  ),
+
+  selectableListItemBorderColor: computed(
+    ([color]) => transparentize(color, 0.4),
+    ['border.color']
+  ),
+
+  superDatePickerBackgroundSuccees: computed(
+    ([success]) => tint(success, 0.9),
+    ['colors.success']
   ),
 
   switchBackgroundOff: computed(
@@ -121,24 +214,6 @@ const temporary_components = {
   switchMiniBackgroundDisabled: computed(
     ([lightShade]) => tint(lightShade, 0),
     ['colors.lightShade']
-  ),
-
-  superDatePickerBackgroundSuccees: computed(
-    ([success]) => tint(success, 0.9),
-    ['colors.success']
-  ),
-
-  dataGridVerticalLineBorderColor: computed(
-    ([color]) => tint(color, 0.3),
-    ['border.color']
-  ),
-  dataGridRowBackgroundStriped: computed(
-    ([lightestShade]) => lightestShade,
-    ['colors.lightestShade']
-  ),
-  dataGridRowBackgroundHover: computed(
-    ([highlight]) => highlight,
-    ['colors.highlight']
   ),
 
   tableRowBackgroundHover: computed(
@@ -173,12 +248,6 @@ const temporary_components = {
     ['colors.emptyShade', 'colors.subduedText']
   ),
 
-  popoverPanelBackground: computed(
-    ([emptyShade]) => emptyShade,
-    ['colors.emptyShade']
-  ),
-  popoverFooterBorderColor: computed(([color]) => color, ['border.color']),
-
   tooltipBackground: computed(
     ([fullShade]) => tint(fullShade, 0.25),
     ['colors.fullShade']
@@ -197,39 +266,9 @@ const temporary_components = {
     ['colors.lightestShade']
   ),
 
-  skeletonGradientStartStopBackground: computed(
-    ([lightShade]) => tint(lightShade, 0.65),
-    ['colors.lightShade']
-  ),
-  skeletonGradientMiddleBackground: computed(
-    ([lightShade]) => tint(lightShade, 0.8),
-    ['colors.lightShade']
-  ),
-
-  dragDropDraggingBackground: computed(
-    ([success]) => transparentize(success, 0.1),
-    ['colors.success']
-  ),
-  dragDropDraggingOverBackground: computed(
-    ([success]) => transparentize(success, 0.25),
-    ['colors.success']
-  ),
-
-  listGroupItemBackgroundPrimaryActive: computed(
-    ([lightShade]) => transparentize(lightShade, 0.2),
-    ['colors.lightShade']
-  ),
-  listGroupItemBackgroundSubduedActive: computed(
-    ([primary]) => transparentize(primary, 0.1),
-    ['colors.primary']
-  ),
-  listGroupItemBackgroundHover: computed(
-    ([lightShade]) => transparentize(lightShade, 0.2),
-    ['colors.lightShade']
-  ),
-  listGroupItemBackgroundPrimaryHover: computed(
-    ([primary]) => transparentize(primary, 0.1),
-    ['colors.primary']
+  treeViewItembackgroundHover: computed(
+    ([text]) => transparentize(text, 0.1),
+    ['colors.text']
   ),
 };
 
@@ -250,19 +289,9 @@ export const components: _EuiThemeComponents = {
         ),
       },
 
-      scrollbarTrackColor: computed(
-        ([body]) => tint(body, 0.07),
-        ['colors.body']
-      ),
-
       badgeBorderColorHollow: computed(
         ([color]) => tint(color, 0.15),
         ['border.color']
-      ),
-
-      headerBackgroundDark: computed(
-        ([lightestShade]) => shade(lightestShade, 0.5),
-        ['colors.lightestShade']
       ),
 
       breadcrumbsApplicationBackground: computed(
@@ -283,6 +312,46 @@ export const components: _EuiThemeComponents = {
         ['colors.lightestShade']
       ),
 
+      dataGridVerticalLineBorderColor: computed(
+        ([color]) => shade(color, 0.3),
+        ['border.color']
+      ),
+
+      headerBackgroundDark: computed(
+        ([lightestShade]) => shade(lightestShade, 0.5),
+        ['colors.lightestShade']
+      ),
+
+      keyPadMenuItemBackgroundDisabledSelect: computed(
+        ([disabled]) => transparentize(disabled, 0.2),
+        ['colors.disabled']
+      ),
+
+      listGroupItemBackgroundSubduedActive: computed(
+        ([lightShade]) => transparentize(lightShade, 0.4),
+        ['colors.lightShade']
+      ),
+
+      markBackground: computed(
+        ([primary]) => transparentize(primary, 0.3),
+        ['colors.primary']
+      ),
+
+      popoverPanelBackground: computed(
+        ([emptyShade]) => tint(emptyShade, 0.025),
+        ['colors.emptyShade']
+      ),
+
+      scrollbarTrackColor: computed(
+        ([body]) => tint(body, 0.07),
+        ['colors.body']
+      ),
+
+      superDatePickerBackgroundSuccees: computed(
+        ([success]) => shade(success, 0.7),
+        ['colors.success']
+      ),
+
       switchBackgroundOff: computed(
         ([lightestShade]) => tint(lightestShade, 0.31),
         ['colors.lightestShade']
@@ -298,16 +367,6 @@ export const components: _EuiThemeComponents = {
       switchMiniBackgroundDisabled: computed(
         ([disabled]) => disabled,
         ['colors.disabled']
-      ),
-
-      superDatePickerBackgroundSuccees: computed(
-        ([success]) => shade(success, 0.7),
-        ['colors.success']
-      ),
-
-      dataGridVerticalLineBorderColor: computed(
-        ([color]) => shade(color, 0.3),
-        ['border.color']
       ),
 
       tableRowBackgroundHover: computed(
@@ -330,11 +389,6 @@ export const components: _EuiThemeComponents = {
         ['colors.emptyShade', 'colors.subduedText']
       ),
 
-      popoverPanelBackground: computed(
-        ([emptyShade]) => tint(emptyShade, 0.025),
-        ['colors.emptyShade']
-      ),
-
       tooltipBackground: computed(
         ([emptyShade]) => shade(emptyShade, 1),
         ['colors.emptyShade']
@@ -344,18 +398,9 @@ export const components: _EuiThemeComponents = {
         ['colors.fullShade']
       ),
 
-      skeletonGradientStartStopBackground: computed(
-        ([lightShade]) => shade(lightShade, 0.12),
-        ['colors.lightShade']
-      ),
-      skeletonGradientMiddleBackground: computed(
-        ([lightShade]) => shade(lightShade, 0.24),
-        ['colors.lightShade']
-      ),
-
-      listGroupItemBackgroundSubduedActive: computed(
-        ([lightShade]) => transparentize(lightShade, 0.4),
-        ['colors.lightShade']
+      treeViewItembackgroundHover: computed(
+        ([text]) => transparentize(text, 0.2),
+        ['colors.text']
       ),
     },
   },

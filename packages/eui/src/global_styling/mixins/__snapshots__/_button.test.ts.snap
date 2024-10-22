@@ -65,9 +65,9 @@ exports[`useEuiButtonColorCSS empty 1`] = `
 {
   "accent": {
     "map": undefined,
-    "name": "121kapi-displaysColorsMap-display-color",
+    "name": "cy4kjs-displaysColorsMap-display-color",
     "next": undefined,
-    "styles": "color:#a03465;&:focus,&:active{background-color:#feedf5;};label:empty-accent;",
+    "styles": "color:#a03465;&:focus,&:active{background-color:rgba(240,78,152,0.1);};label:empty-accent;",
     "toString": [Function],
   },
   "accentSecondary": {
@@ -79,9 +79,9 @@ exports[`useEuiButtonColorCSS empty 1`] = `
   },
   "danger": {
     "map": undefined,
-    "name": "18iy26o-displaysColorsMap-display-color",
+    "name": "j8xrk3-displaysColorsMap-display-color",
     "next": undefined,
-    "styles": "color:#ab231c;&:focus,&:active{background-color:#f8e9e9;};label:empty-danger;",
+    "styles": "color:#ab231c;&:focus,&:active{background-color:rgba(189,39,30,0.1);};label:empty-danger;",
     "toString": [Function],
   },
   "disabled": {
@@ -93,30 +93,30 @@ exports[`useEuiButtonColorCSS empty 1`] = `
   },
   "primary": {
     "map": undefined,
-    "name": "1gyhkbb-displaysColorsMap-display-color",
+    "name": "15isz8i-displaysColorsMap-display-color",
     "next": undefined,
-    "styles": "color:#0061a6;&:focus,&:active{background-color:#e6f1fa;};label:empty-primary;",
+    "styles": "color:#0061a6;&:focus,&:active{background-color:rgba(0,119,204,0.1);};label:empty-primary;",
     "toString": [Function],
   },
   "success": {
     "map": undefined,
-    "name": "xlnevw-displaysColorsMap-display-color",
+    "name": "h2w3e9-displaysColorsMap-display-color",
     "next": undefined,
-    "styles": "color:#006c66;&:focus,&:active{background-color:#e6f9f7;};label:empty-success;",
+    "styles": "color:#006c66;&:focus,&:active{background-color:rgba(0,191,179,0.1);};label:empty-success;",
     "toString": [Function],
   },
   "text": {
     "map": undefined,
-    "name": "1aj0g2d-displaysColorsMap-display-color",
+    "name": "1dqg6bz-displaysColorsMap-display-color",
     "next": undefined,
-    "styles": "color:#343741;&:focus,&:active{background-color:#f7f8fc;};label:empty-text;",
+    "styles": "color:#343741;&:focus,&:active{background-color:rgba(211,218,230,0.2);};label:empty-text;",
     "toString": [Function],
   },
   "warning": {
     "map": undefined,
-    "name": "1yid1j7-displaysColorsMap-display-color",
+    "name": "w61e3r-displaysColorsMap-display-color",
     "next": undefined,
-    "styles": "color:#83650a;&:focus,&:active{background-color:#fff9e8;};label:empty-warning;",
+    "styles": "color:#83650a;&:focus,&:active{background-color:rgba(254,197,20,0.1);};label:empty-warning;",
     "toString": [Function],
   },
 }
