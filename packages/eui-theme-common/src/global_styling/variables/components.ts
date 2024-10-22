@@ -11,6 +11,18 @@ import { _EuiThemeButtonColors } from './buttons';
 import { _EuiThemeFormColors } from './forms';
 
 type _InternalOnlyComponentTokens = {
+  shared: {
+    backgroundTransparent: ColorModeSwitch;
+    backgroundTransparentPrimary: ColorModeSwitch;
+    backgroundTransparentAccent: ColorModeSwitch;
+    backgroundTransparentAccentSecondary: ColorModeSwitch;
+    backgroundTransparentSuccess: ColorModeSwitch;
+    backgroundTransparentWarning: ColorModeSwitch;
+    backgroundTransparentDanger: ColorModeSwitch;
+    backgroundTransparentSubdued: ColorModeSwitch;
+    backgroundTransparentPlain: ColorModeSwitch;
+  };
+
   scrollbarTrackColor: ColorModeSwitch;
 
   buttonGroupBorderColor: ColorModeSwitch;
@@ -63,6 +75,11 @@ type _InternalOnlyComponentTokens = {
 
   dragDropDraggingBackground: ColorModeSwitch;
   dragDropDraggingOverBackground: ColorModeSwitch;
+
+  listGroupItemBackgroundPrimaryActive: ColorModeSwitch;
+  listGroupItemBackgroundSubduedActive: ColorModeSwitch;
+  listGroupItemBackgroundHover: ColorModeSwitch;
+  listGroupItemBackgroundPrimaryHover: ColorModeSwitch;
 };
 
 export type _EuiThemeComponents = {
