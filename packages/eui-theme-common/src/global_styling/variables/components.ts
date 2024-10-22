@@ -23,19 +23,14 @@ type _InternalOnlyComponentTokens = {
     backgroundTransparentPlain: ColorModeSwitch;
   };
 
-  scrollbarTrackColor: ColorModeSwitch;
-
   buttonGroupBorderColor: ColorModeSwitch;
   buttonGroupBorderColorSelected: ColorModeSwitch;
 
   badgeBackgroundSubdued: ColorModeSwitch;
   badgeBorderColorHollow: ColorModeSwitch;
+  badgeIconButtonBackgroundHover: ColorModeSwitch;
 
   bottomBarBackground: ColorModeSwitch;
-
-  headerBackground: ColorModeSwitch;
-  headerBackgroundDark: ColorModeSwitch;
-  headerSectionItemBackgroundFocusDark: ColorModeSwitch;
 
   breadcrumbsApplicationBackground: ColorModeSwitch;
   breadcrumbsApplicationColor: ColorModeSwitch;
@@ -43,16 +38,48 @@ type _InternalOnlyComponentTokens = {
   collapsibleNavGroupBackground: ColorModeSwitch;
   collapsibleNavGroupBackgroundDark: ColorModeSwitch;
 
+  dataGridVerticalLineBorderColor: ColorModeSwitch;
+  dataGridRowBackgroundStriped: ColorModeSwitch;
+  dataGridRowBackgroundHover: ColorModeSwitch;
+
+  dragDropDraggingBackground: ColorModeSwitch;
+  dragDropDraggingOverBackground: ColorModeSwitch;
+
+  headerBackground: ColorModeSwitch;
+  headerBackgroundDark: ColorModeSwitch;
+  headerSectionItemBackgroundFocusDark: ColorModeSwitch;
+  headerSearchBorderColor: ColorModeSwitch;
+
+  filterSelectItemBackgroundFocusDisabled: ColorModeSwitch;
+
+  flyoutCloseButtonInsideBackground: ColorModeSwitch;
+
+  keyPadMenuItemBackgroundDisabledSelect: ColorModeSwitch;
+
+  listGroupItemBackgroundPrimaryActive: ColorModeSwitch;
+  listGroupItemBackgroundSubduedActive: ColorModeSwitch;
+  listGroupItemBackgroundHover: ColorModeSwitch;
+  listGroupItemBackgroundPrimaryHover: ColorModeSwitch;
+
+  markBackground: ColorModeSwitch;
+
+  markdownFormatTableBorderColor: ColorModeSwitch;
+
+  popoverPanelBackground: ColorModeSwitch;
+  popoverFooterBorderColor: ColorModeSwitch;
+
+  scrollbarTrackColor: ColorModeSwitch;
+
+  sideNavItemEmphasizedBackground: ColorModeSwitch;
+
+  selectableListItemBorderColor: ColorModeSwitch;
+
+  superDatePickerBackgroundSuccees: ColorModeSwitch;
+
   switchBackgroundOff: ColorModeSwitch;
   switchUncompressedBackgroundDisabled: ColorModeSwitch;
   switchCompressedBackgroundDisabled: ColorModeSwitch;
   switchMiniBackgroundDisabled: ColorModeSwitch;
-
-  superDatePickerBackgroundSuccees: ColorModeSwitch;
-
-  dataGridVerticalLineBorderColor: ColorModeSwitch;
-  dataGridRowBackgroundStriped: ColorModeSwitch;
-  dataGridRowBackgroundHover: ColorModeSwitch;
 
   tableRowBackgroundHover: ColorModeSwitch;
   tableRowBackgroundSelected: ColorModeSwitch;
@@ -61,25 +88,13 @@ type _InternalOnlyComponentTokens = {
   tableRowInteractiveBackgroundFocus: ColorModeSwitch;
   tableCellSortableIconColor: ColorModeSwitch;
 
-  popoverPanelBackground: ColorModeSwitch;
-  popoverFooterBorderColor: ColorModeSwitch;
-
   tooltipBackground: ColorModeSwitch;
   tooltipBorder: ColorModeSwitch;
   tooltipBorderFloating: ColorModeSwitch;
 
   tourFooterBackground: ColorModeSwitch;
 
-  skeletonGradientStartStopBackground: ColorModeSwitch;
-  skeletonGradientMiddleBackground: ColorModeSwitch;
-
-  dragDropDraggingBackground: ColorModeSwitch;
-  dragDropDraggingOverBackground: ColorModeSwitch;
-
-  listGroupItemBackgroundPrimaryActive: ColorModeSwitch;
-  listGroupItemBackgroundSubduedActive: ColorModeSwitch;
-  listGroupItemBackgroundHover: ColorModeSwitch;
-  listGroupItemBackgroundPrimaryHover: ColorModeSwitch;
+  treeViewItembackgroundHover: ColorModeSwitch;
 };
 
 export type _EuiThemeComponents = {

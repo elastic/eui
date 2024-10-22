@@ -38,38 +38,68 @@ const temporary_components = {
     backgroundTransparentPlain: SEMANTIC_COLORS.shade15,
   },
 
-  scrollbarTrackColor: SEMANTIC_COLORS.shade15,
-
   buttonGroupBorderColor: border_colors.borderBasePlain,
   buttonGroupBorderColorSelected: border_colors.borderBasePlain,
 
   badgeBackgroundSubdued: background_colors.backgroundBaseSubdued,
   badgeBorderColorHollow: border_colors.borderBasePlain,
+  badgeIconButtonBackgroundHover:
+    background_colors.backgroundBaseHoverTransparent,
+
+  breadcrumbsApplicationBackground: background_colors.backgroundLightText,
+  breadcrumbsApplicationColor: text_colors.textSubdued,
 
   bottomBarBackground: SEMANTIC_COLORS.plainDark,
+
+  collapsibleNavGroupBackground: background_colors.backgroundBasePage,
+  collapsibleNavGroupBackgroundDark: dark_background_colors.backgroundBasePage,
+
+  dataGridVerticalLineBorderColor: border_colors.borderBasePlain,
+  dataGridRowBackgroundStriped: background_colors.backgroundBaseSubdued,
+  dataGridRowBackgroundHover: background_colors.backgroundBaseHover,
+
+  dragDropDraggingBackground: background_colors.backgroundBaseSuccess,
+  dragDropDraggingOverBackground: background_colors.backgroundLightSuccess,
+
+  filterSelectItemBackgroundFocusDisabled:
+    background_colors.backgroundBaseDisabled,
+
+  flyoutCloseButtonInsideBackground: background_colors.backgroundBasePlain,
 
   headerBackground: background_colors.backgroundBasePlain,
   headerBackgroundDark: dark_background_colors.backgroundBasePlain,
   headerSectionItemBackgroundFocusDark:
     dark_background_colors.backgroundBasePrimary,
+  headerSearchBorderColor: SEMANTIC_COLORS.shade70,
 
-  breadcrumbsApplicationBackground: background_colors.backgroundLightText,
-  breadcrumbsApplicationColor: text_colors.textSubdued,
+  keyPadMenuItemBackgroundDisabledSelect:
+    background_colors.backgroundBaseDisabled,
 
-  collapsibleNavGroupBackground: background_colors.backgroundBasePage,
-  collapsibleNavGroupBackgroundDark: dark_background_colors.backgroundBasePage,
+  listGroupItemBackgroundPrimaryActive: background_colors.backgroundBaseSelect,
+  listGroupItemBackgroundSubduedActive: background_colors.backgroundBaseSelect,
+  listGroupItemBackgroundHover: background_colors.backgroundBaseHover,
+  listGroupItemBackgroundPrimaryHover: background_colors.backgroundBaseHover,
+
+  markBackground: background_colors.backgroundLightPrimary,
+
+  markdownFormatTableBorderColor: border_colors.borderBasePlain,
+
+  popoverPanelBackground: background_colors.backgroundBasePlain,
+  popoverFooterBorderColor: border_colors.borderBaseSubdued,
+
+  scrollbarTrackColor: SEMANTIC_COLORS.shade15,
+
+  sideNavItemEmphasizedBackground: background_colors.backgroundBaseSelect,
+
+  selectableListItemBorderColor: border_colors.borderBaseSubdued,
+
+  superDatePickerBackgroundSuccees: background_colors.backgroundBaseSuccess,
 
   switchBackgroundOff: background_colors.backgroundBaseDisabled,
   switchUncompressedBackgroundDisabled:
     background_colors.backgroundBaseDisabled,
   switchCompressedBackgroundDisabled: background_colors.backgroundBaseDisabled,
   switchMiniBackgroundDisabled: background_colors.backgroundBaseDisabled,
-
-  superDatePickerBackgroundSuccees: background_colors.backgroundBaseSuccess,
-
-  dataGridVerticalLineBorderColor: border_colors.borderBasePlain,
-  dataGridRowBackgroundStriped: background_colors.backgroundBaseSubdued,
-  dataGridRowBackgroundHover: background_colors.backgroundBaseHover,
 
   tableRowBackgroundHover: background_colors.backgroundBaseHover,
   tableRowBackgroundSelected: background_colors.backgroundBaseSelect,
@@ -78,26 +108,13 @@ const temporary_components = {
   tableRowInteractiveBackgroundFocus: background_colors.backgroundBaseSelect,
   tableCellSortableIconColor: background_colors.backgroundFilledText,
 
-  popoverPanelBackground: background_colors.backgroundBasePlain,
-  popoverFooterBorderColor: border_colors.borderBaseSubdued,
-
   tooltipBackground: dark_background_colors.backgroundBaseSubdued,
   tooltipBorder: dark_border_colors.borderBaseSubdued,
   tooltipBorderFloating: border_colors.borderBaseFloating,
 
   tourFooterBackground: background_colors.backgroundBaseSubdued,
 
-  // TODO: update once aligned
-  skeletonGradientStartStopBackground: SEMANTIC_COLORS.shade20,
-  skeletonGradientMiddleBackground: SEMANTIC_COLORS.shade15,
-
-  dragDropDraggingBackground: background_colors.backgroundBaseSuccess,
-  dragDropDraggingOverBackground: background_colors.backgroundLightSuccess,
-
-  listGroupItemBackgroundPrimaryActive: background_colors.backgroundBaseSelect,
-  listGroupItemBackgroundSubduedActive: background_colors.backgroundBaseSelect,
-  listGroupItemBackgroundHover: background_colors.backgroundBaseHover,
-  listGroupItemBackgroundPrimaryHover: background_colors.backgroundBaseHover,
+  treeViewItembackgroundHover: background_colors.backgroundBaseHover,
 };
 
 export const components: _EuiThemeComponents = {
@@ -132,10 +149,8 @@ export const components: _EuiThemeComponents = {
 
       badgeBackgroundSubdued: dark_background_colors.backgroundBaseSubdued,
       badgeBorderColorHollow: dark_border_colors.borderBasePlain,
-
-      scrollbarTrackColor: SEMANTIC_COLORS.shade145,
-
-      headerBackground: dark_background_colors.backgroundBasePlain,
+      badgeIconButtonBackgroundHover:
+        dark_background_colors.backgroundBaseHoverTransparent,
 
       breadcrumbsApplicationBackground:
         dark_background_colors.backgroundLightText,
@@ -144,6 +159,48 @@ export const components: _EuiThemeComponents = {
       collapsibleNavGroupBackground: dark_background_colors.backgroundBasePage,
       collapsibleNavGroupBackgroundDark:
         dark_background_colors.backgroundBasePage,
+
+      dataGridVerticalLineBorderColor: dark_border_colors.borderBasePlain,
+      dataGridRowBackgroundStriped:
+        dark_background_colors.backgroundBaseSubdued,
+      dataGridRowBackgroundHover: dark_background_colors.backgroundBaseHover,
+
+      dragDropDraggingBackground: dark_background_colors.backgroundBaseSuccess,
+      dragDropDraggingOverBackground:
+        dark_background_colors.backgroundLightSuccess,
+
+      filterSelectItemBackgroundFocusDisabled:
+        dark_background_colors.backgroundBaseDisabled,
+
+      flyoutCloseButtonInsideBackground:
+        dark_background_colors.backgroundBasePlain,
+
+      headerBackground: dark_background_colors.backgroundBasePlain,
+
+      keyPadMenuItemBackgroundDisabledSelect:
+        dark_background_colors.backgroundBaseDisabled,
+
+      listGroupItemBackgroundPrimaryActive:
+        dark_background_colors.backgroundBaseSelect,
+      listGroupItemBackgroundSubduedActive:
+        dark_background_colors.backgroundBaseSelect,
+      listGroupItemBackgroundHover: dark_background_colors.backgroundBaseHover,
+      listGroupItemBackgroundPrimaryHover:
+        dark_background_colors.backgroundBaseHover,
+
+      markBackground: dark_background_colors.backgroundLightPrimary,
+
+      markdownFormatTableBorderColor: dark_border_colors.borderBasePlain,
+
+      popoverPanelBackground: dark_background_colors.backgroundBasePlain,
+      popoverFooterBorderColor: dark_border_colors.borderBaseSubdued,
+
+      scrollbarTrackColor: SEMANTIC_COLORS.shade145,
+
+      sideNavItemEmphasizedBackground:
+        dark_background_colors.backgroundBaseSelect,
+
+      selectableListItemBorderColor: dark_border_colors.borderBaseSubdued,
 
       switchBackgroundOff: dark_background_colors.backgroundBaseDisabled,
       switchUncompressedBackgroundDisabled:
@@ -156,11 +213,6 @@ export const components: _EuiThemeComponents = {
       superDatePickerBackgroundSuccees:
         dark_background_colors.backgroundBaseSuccess,
 
-      dataGridVerticalLineBorderColor: dark_border_colors.borderBasePlain,
-      dataGridRowBackgroundStriped:
-        dark_background_colors.backgroundBaseSubdued,
-      dataGridRowBackgroundHover: dark_background_colors.backgroundBaseHover,
-
       tableRowBackgroundHover: dark_background_colors.backgroundBaseHover,
       tableRowBackgroundSelected: dark_background_colors.backgroundBaseSelect,
       tableRowBackgroundSelectedHover:
@@ -171,28 +223,11 @@ export const components: _EuiThemeComponents = {
         dark_background_colors.backgroundBaseHover,
       tableCellSortableIconColor: dark_background_colors.backgroundFilledText,
 
-      popoverPanelBackground: dark_background_colors.backgroundBasePlain,
-      popoverFooterBorderColor: dark_border_colors.borderBaseSubdued,
-
       tooltipBorderFloating: dark_border_colors.borderBaseFloating,
 
       tourFooterBackground: dark_background_colors.backgroundBaseSubdued,
 
-      // TODO: update once aligned
-      skeletonGradientStartStopBackground: SEMANTIC_COLORS.shade120,
-      skeletonGradientMiddleBackground: SEMANTIC_COLORS.shade135,
-
-      dragDropDraggingBackground: dark_background_colors.backgroundBaseSuccess,
-      dragDropDraggingOverBackground:
-        dark_background_colors.backgroundLightSuccess,
-
-      listGroupItemBackgroundPrimaryActive:
-        dark_background_colors.backgroundBaseSelect,
-      listGroupItemBackgroundSubduedActive:
-        dark_background_colors.backgroundBaseSelect,
-      listGroupItemBackgroundHover: dark_background_colors.backgroundBaseHover,
-      listGroupItemBackgroundPrimaryHover:
-        dark_background_colors.backgroundBaseHover,
+      treeViewItembackgroundHover: dark_background_colors.backgroundBaseHover,
     },
   },
 };

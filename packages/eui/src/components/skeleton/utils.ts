@@ -21,10 +21,8 @@ export const euiSkeletonGradientAnimation = (
   { euiTheme }: UseEuiTheme,
   { slideSize = '-53%', gradientSize = '220%' }: AnimationOptions = {}
 ) => {
-  const gradientStartStop =
-    euiTheme.components.__TEMP_INTERNAL__.skeletonGradientStartStopBackground;
-  const gradientMiddle =
-    euiTheme.components.__TEMP_INTERNAL__.skeletonGradientMiddleBackground;
+  const gradientStartStop = euiTheme.colors.backgroundBaseSkeletonEdge;
+  const gradientMiddle = euiTheme.colors.backgroundBaseSkeletonMiddle;
 
   return css`
     background-color: ${gradientStartStop};
