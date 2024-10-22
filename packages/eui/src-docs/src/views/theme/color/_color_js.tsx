@@ -31,7 +31,6 @@ import {
 import { ThemeValuesTable } from '../_components/_theme_values_table';
 import {
   _EuiThemeBackgroundColors,
-  _EuiThemeTransparentBackgroundColors,
   getTokenName,
 } from '@elastic/eui-theme-common';
 
@@ -368,13 +367,20 @@ export const UtilsValuesJS = () => {
 
           const token =
             backgroundSelected === 'transparent'
-              ? (transparentBackgroundToken as keyof _EuiThemeTransparentBackgroundColors)
-              : (backgroundToken as keyof _EuiThemeBackgroundColors);
+              ? transparentBackgroundToken
+              : backgroundToken;
+
+          const tokenValue =
+            backgroundSelected === 'transparent'
+              ? euiTheme.components.__TEMP_INTERNAL__.shared[
+                  token as keyof typeof euiTheme.components.__TEMP_INTERNAL__.shared
+                ]
+              : euiTheme.colors[token as keyof _EuiThemeBackgroundColors];
 
           return {
             id: color,
             token,
-            value: euiTheme.colors[token],
+            value: tokenValue,
           };
         })}
         render={(item) => (

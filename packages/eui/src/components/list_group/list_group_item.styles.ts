@@ -21,8 +21,15 @@ import { euiButtonColor } from '../../global_styling/mixins/_button';
 export const euiListGroupItemStyles = (euiThemeContext: UseEuiTheme) => {
   const euiTheme = euiThemeContext.euiTheme;
 
-  const primaryBgColor = euiTheme.colors.backgroundTransparentPrimary;
-  const subduedBgColor = euiTheme.colors.backgroundTransparentSubdued;
+  const primaryBgColor =
+    euiTheme.components.__TEMP_INTERNAL__.listGroupItemBackgroundPrimaryActive;
+  const subduedBgColor =
+    euiTheme.components.__TEMP_INTERNAL__.listGroupItemBackgroundSubduedActive;
+
+  const backgroundHover =
+    euiTheme.components.__TEMP_INTERNAL__.listGroupItemBackgroundHover;
+  const backgroundPrimaryHover =
+    euiTheme.components.__TEMP_INTERNAL__.listGroupItemBackgroundPrimaryHover;
 
   return {
     // Base
@@ -66,19 +73,19 @@ export const euiListGroupItemStyles = (euiThemeContext: UseEuiTheme) => {
         primary: css`
           &:hover,
           &:focus-within {
-            background-color: ${primaryBgColor};
+            background-color: ${backgroundPrimaryHover};
           }
         `,
         text: css`
           &:hover,
           &:focus-within {
-            background-color: ${subduedBgColor};
+            background-color: ${backgroundHover};
           }
         `,
         subdued: css`
           &:hover,
           &:focus-within {
-            background-color: ${subduedBgColor};
+            background-color: ${backgroundHover};
           }
         `,
       },

@@ -15,7 +15,6 @@ import {
   type _EuiThemeColorsMode,
   _EuiThemeBackgroundColors,
   _EuiThemeBorderColors,
-  _EuiThemeTransparentBackgroundColors,
 } from '@elastic/eui-theme-common';
 
 import { PRIMITIVE_COLORS } from './_primitive_colors';
@@ -90,8 +89,11 @@ export const background_colors: _EuiThemeBackgroundColors = {
   backgroundBasePrepend: SEMANTIC_COLORS.shade15,
 
   backgroundBaseHover: SEMANTIC_COLORS.shade15,
+  backgroundBaseHoverTransparent: SEMANTIC_COLORS.shadeTransparent10,
   backgroundBaseSelect: SEMANTIC_COLORS.primary10,
-  backgroundBaseOverlay: PRIMITIVE_COLORS.transparent.black['60'],
+  backgroundBaseOverlay: SEMANTIC_COLORS.shadeTransparent100,
+  backgroundBaseSkeletonEdge: SEMANTIC_COLORS.shadeTransparent30,
+  backgroundBaseSkeletonMiddle: SEMANTIC_COLORS.shadeTransparent10,
 
   backgroundLightPrimary: SEMANTIC_COLORS.primary20,
   backgroundLightAccent: SEMANTIC_COLORS.accent20,
@@ -110,24 +112,6 @@ export const background_colors: _EuiThemeBackgroundColors = {
   backgroundFilledText: SEMANTIC_COLORS.shade90,
 };
 
-/**
- * NOTE: temp values for migration
- * TODO: align values for previously transparent backgrounds
- */
-export const transparent_background_colors: _EuiThemeTransparentBackgroundColors =
-  {
-    backgroundTransparent: PRIMITIVE_COLORS.transparent.white['0'],
-    backgroundTransparentPrimary: background_colors.backgroundBasePrimary,
-    backgroundTransparentAccent: background_colors.backgroundBaseAccent,
-    backgroundTransparentAccentSecondary:
-      background_colors.backgroundBaseAccentSecondary,
-    backgroundTransparentSuccess: background_colors.backgroundBaseSuccess,
-    backgroundTransparentWarning: background_colors.backgroundBaseWarning,
-    backgroundTransparentDanger: background_colors.backgroundBaseDanger,
-    backgroundTransparentSubdued: SEMANTIC_COLORS.shade15,
-    backgroundTransparentPlain: SEMANTIC_COLORS.shade15,
-  };
-
 export const border_colors: _EuiThemeBorderColors = {
   borderBasePrimary: SEMANTIC_COLORS.primary100,
   borderBaseAccent: SEMANTIC_COLORS.accent100,
@@ -139,6 +123,7 @@ export const border_colors: _EuiThemeBorderColors = {
   borderBaseSubdued: SEMANTIC_COLORS.shade20,
   borderBaseDisabled: SEMANTIC_COLORS.shade30,
   borderBaseFloating: PRIMITIVE_COLORS.transparent.white['0'],
+  borderBaseColorSwatch: SEMANTIC_COLORS.shadeTransparent30,
 };
 
 export const special_colors: _EuiThemeSpecialColors = {
@@ -157,6 +142,5 @@ export const light_colors: _EuiThemeColorsMode = {
   ...brand_text_colors,
   ...text_colors,
   ...background_colors,
-  ...transparent_background_colors,
   ...border_colors,
 };

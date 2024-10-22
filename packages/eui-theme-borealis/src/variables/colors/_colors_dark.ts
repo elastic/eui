@@ -15,7 +15,6 @@ import {
   type _EuiThemeColorsMode,
   _EuiThemeBackgroundColors,
   _EuiThemeBorderColors,
-  _EuiThemeTransparentBackgroundColors,
 } from '@elastic/eui-theme-common';
 
 import { PRIMITIVE_COLORS } from './_primitive_colors';
@@ -93,8 +92,11 @@ export const dark_background_colors: _EuiThemeBackgroundColors = {
   backgroundBasePrepend: SEMANTIC_COLORS.shade125,
 
   backgroundBaseHover: SEMANTIC_COLORS.shade130,
+  backgroundBaseHoverTransparent: PRIMITIVE_COLORS.transparent.white['10'],
   backgroundBaseSelect: SEMANTIC_COLORS.primary130,
-  backgroundBaseOverlay: PRIMITIVE_COLORS.transparent.black['60'],
+  backgroundBaseOverlay: SEMANTIC_COLORS.shadeTransparent100,
+  backgroundBaseSkeletonEdge: PRIMITIVE_COLORS.transparent.white['10'],
+  backgroundBaseSkeletonMiddle: PRIMITIVE_COLORS.transparent.white['30'],
 
   backgroundLightPrimary: SEMANTIC_COLORS.primary120,
   backgroundLightAccent: SEMANTIC_COLORS.accent120,
@@ -113,24 +115,6 @@ export const dark_background_colors: _EuiThemeBackgroundColors = {
   backgroundFilledText: SEMANTIC_COLORS.shade70,
 };
 
-/**
- * NOTE: temp values for migration
- * TODO: align values for previously transparent backgrounds
- */
-export const dark_transparent_background_colors: _EuiThemeTransparentBackgroundColors =
-  {
-    backgroundTransparent: PRIMITIVE_COLORS.transparent.white['0'],
-    backgroundTransparentPrimary: dark_background_colors.backgroundBasePrimary,
-    backgroundTransparentAccent: dark_background_colors.backgroundBaseAccent,
-    backgroundTransparentAccentSecondary:
-      dark_background_colors.backgroundBaseAccent,
-    backgroundTransparentSuccess: dark_background_colors.backgroundBaseSuccess,
-    backgroundTransparentWarning: dark_background_colors.backgroundBaseWarning,
-    backgroundTransparentDanger: dark_background_colors.backgroundBaseDanger,
-    backgroundTransparentSubdued: dark_background_colors.backgroundBaseSubdued,
-    backgroundTransparentPlain: dark_background_colors.backgroundBasePlain,
-  };
-
 export const dark_border_colors: _EuiThemeBorderColors = {
   borderBasePrimary: SEMANTIC_COLORS.primary60,
   borderBaseAccent: SEMANTIC_COLORS.accent60,
@@ -142,6 +126,7 @@ export const dark_border_colors: _EuiThemeBorderColors = {
   borderBaseSubdued: SEMANTIC_COLORS.shade120,
   borderBaseDisabled: SEMANTIC_COLORS.shade110,
   borderBaseFloating: SEMANTIC_COLORS.shade120,
+  borderBaseColorSwatch: PRIMITIVE_COLORS.transparent.white['30'],
 };
 
 export const dark_special_colors: _EuiThemeSpecialColors = {
@@ -160,6 +145,5 @@ export const dark_colors: _EuiThemeColorsMode = {
   ...dark_brand_text_colors,
   ...dark_text_colors,
   ...dark_background_colors,
-  ...dark_transparent_background_colors,
   ...dark_border_colors,
 };

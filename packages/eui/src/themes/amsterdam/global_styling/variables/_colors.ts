@@ -16,7 +16,6 @@ import {
   _EuiThemeColorsMode,
   _EuiThemeBackgroundColors,
   _EuiThemeBorderColors,
-  _EuiThemeTransparentBackgroundColors,
 } from '@elastic/eui-theme-common';
 
 import {
@@ -141,6 +140,10 @@ export const background_colors: _EuiThemeBackgroundColors = {
     ([lightShade]) => transparentize(lightShade, 0.2),
     ['colors.lightShade']
   ),
+  backgroundBaseHoverTransparent: computed(
+    ([lightShade]) => transparentize(lightShade, 0.2),
+    ['colors.lightShade']
+  ),
   backgroundBaseSelect: computed(
     ([primary]) => tint(primary, 0.96),
     ['colors.primary']
@@ -148,6 +151,14 @@ export const background_colors: _EuiThemeBackgroundColors = {
   backgroundBaseOverlay: computed(
     ([ink]) => transparentize(ink, 0.5),
     ['colors.ink']
+  ),
+  backgroundBaseSkeletonEdge: computed(
+    ([lightShade]) => tint(lightShade, 0.65),
+    ['colors.lightShade']
+  ),
+  backgroundBaseSkeletonMiddle: computed(
+    ([lightShade]) => tint(lightShade, 0.8),
+    ['colors.lightShade']
   ),
 
   backgroundLightPrimary: computed(
@@ -200,43 +211,6 @@ export const background_colors: _EuiThemeBackgroundColors = {
   ),
 };
 
-export const transparent_background_colors: _EuiThemeTransparentBackgroundColors =
-  {
-    backgroundTransparent: 'transparent',
-    backgroundTransparentPrimary: computed(
-      ([primary]) => transparentize(primary, 0.1),
-      ['colors.primary']
-    ),
-    backgroundTransparentAccent: computed(
-      ([accent]) => transparentize(accent, 0.1),
-      ['colors.accent']
-    ),
-    backgroundTransparentAccentSecondary: computed(
-      ([accent]) => transparentize(accent, 0.1),
-      ['colors.accent']
-    ),
-    backgroundTransparentSuccess: computed(
-      ([success]) => transparentize(success, 0.1),
-      ['colors.success']
-    ),
-    backgroundTransparentWarning: computed(
-      ([warning]) => transparentize(warning, 0.1),
-      ['colors.warning']
-    ),
-    backgroundTransparentDanger: computed(
-      ([danger]) => transparentize(danger, 0.1),
-      ['colors.danger']
-    ),
-    backgroundTransparentSubdued: computed(
-      ([lightShade]) => transparentize(lightShade, 0.2),
-      ['colors.lightShade']
-    ),
-    backgroundTransparentPlain: computed(
-      ([ghost]) => transparentize(ghost, 0.2),
-      ['colors.ghost']
-    ),
-  };
-
 export const border_colors: _EuiThemeBorderColors = {
   borderBasePrimary: computed(
     ([primary]) => tint(primary, 0.6),
@@ -269,6 +243,10 @@ export const border_colors: _EuiThemeBorderColors = {
   ),
   borderBasePlain: computed(([color]) => color, ['border.color']),
   borderBaseFloating: 'transparent',
+  borderBaseColorSwatch: computed(
+    ([fullShade]) => transparentize(fullShade, 0.1),
+    ['colors.fullShade']
+  ),
 };
 
 export const light_colors: _EuiThemeColorsMode = {
@@ -279,7 +257,6 @@ export const light_colors: _EuiThemeColorsMode = {
   ...brand_text_colors,
   ...text_colors,
   ...background_colors,
-  ...transparent_background_colors,
   ...border_colors,
 };
 
@@ -344,6 +321,10 @@ export const dark_background_colors: _EuiThemeBackgroundColors = {
     ([lightShade]) => transparentize(lightShade, 0.2),
     ['colors.lightShade']
   ),
+  backgroundBaseHoverTransparent: computed(
+    ([lightShade]) => transparentize(lightShade, 0.2),
+    ['colors.lightShade']
+  ),
   backgroundBaseSelect: computed(
     ([primary]) => shade(primary, 0.7),
     ['colors.primary']
@@ -351,6 +332,14 @@ export const dark_background_colors: _EuiThemeBackgroundColors = {
   backgroundBaseOverlay: computed(
     ([ink]) => transparentize(ink, 0.5),
     ['colors.ink']
+  ),
+  backgroundBaseSkeletonEdge: computed(
+    ([lightShade]) => shade(lightShade, 0.12),
+    ['colors.lightShade']
+  ),
+  backgroundBaseSkeletonMiddle: computed(
+    ([lightShade]) => shade(lightShade, 0.24),
+    ['colors.lightShade']
   ),
 
   backgroundLightPrimary: computed(
@@ -394,15 +383,6 @@ export const dark_background_colors: _EuiThemeBackgroundColors = {
   backgroundFilledText: computed(([text]) => text, ['colors.text']),
 };
 
-export const dark_transparent_background_colors: _EuiThemeTransparentBackgroundColors =
-  {
-    ...transparent_background_colors,
-    backgroundTransparentSubdued: computed(
-      ([lightShade]) => transparentize(lightShade, 0.4),
-      ['colors.lightShade']
-    ),
-  };
-
 export const dark_border_colors: _EuiThemeBorderColors = {
   borderBasePrimary: computed(
     ([primary]) => shade(primary, 0.6),
@@ -435,6 +415,10 @@ export const dark_border_colors: _EuiThemeBorderColors = {
   ),
   borderBasePlain: computed(([color]) => color, ['border.color']),
   borderBaseFloating: 'transparent',
+  borderBaseColorSwatch: computed(
+    ([fullShade]) => transparentize(fullShade, 0.1),
+    ['colors.fullShade']
+  ),
 };
 
 export const dark_colors_ams: _EuiThemeColorsMode = {
@@ -475,7 +459,6 @@ export const dark_colors_ams: _EuiThemeColorsMode = {
   textInverse: computed(([ink]) => ink, ['colors.ink']),
 
   ...dark_background_colors,
-  ...dark_transparent_background_colors,
   ...dark_border_colors,
 };
 
