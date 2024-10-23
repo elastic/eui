@@ -10,12 +10,7 @@ import { css } from '@emotion/react';
 
 import { euiShadowSmall } from '../../themes/amsterdam/global_styling/mixins';
 import { logicalCSS } from '../../global_styling';
-import {
-  UseEuiTheme,
-  shade,
-  transparentize,
-  makeHighContrastColor,
-} from '../../services';
+import { UseEuiTheme, makeHighContrastColor } from '../../services';
 
 export const euiHeaderVariables = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
@@ -54,7 +49,8 @@ export const euiHeaderStyles = (euiThemeContext: UseEuiTheme) => {
     `,
     // Theme
     default: css`
-      background-color: ${euiTheme.colors.emptyShade};
+      background-color: ${euiTheme.components.__TEMP_INTERNAL__
+        .headerBackground};
     `,
     dark: css(euiHeaderDarkStyles(euiThemeContext)),
   };
@@ -72,13 +68,11 @@ export const euiHeaderStyles = (euiThemeContext: UseEuiTheme) => {
 import { euiFormVariables } from '../form/form.styles';
 
 const euiHeaderDarkStyles = (euiThemeContext: UseEuiTheme) => {
-  const { euiTheme, colorMode } = euiThemeContext;
+  const { euiTheme } = euiThemeContext;
   const { controlPlaceholderText } = euiFormVariables(euiThemeContext);
 
   const backgroundColor =
-    colorMode === 'DARK'
-      ? shade(euiTheme.colors.lightestShade, 0.5)
-      : shade(euiTheme.colors.darkestShade, 0.28);
+    euiTheme.components.__TEMP_INTERNAL__.headerBackgroundDark;
 
   return `
     background-color: ${backgroundColor};
@@ -97,7 +91,10 @@ const euiHeaderDarkStyles = (euiThemeContext: UseEuiTheme) => {
     .euiHeaderLink,
     .euiHeaderSectionItemButton {
       &:focus {
-        background-color: ${shade(euiTheme.colors.primary, 0.5)};
+        background-color: ${
+          euiTheme.components.__TEMP_INTERNAL__
+            .headerSectionItemBackgroundFocusDark
+        };
       }
     }
 
@@ -113,7 +110,9 @@ const euiHeaderDarkStyles = (euiThemeContext: UseEuiTheme) => {
       background-color: transparent;
 
       &--group {
-        border-color: ${transparentize(euiTheme.colors.ghost, 0.3)};
+        border-color: ${
+          euiTheme.components.__TEMP_INTERNAL__.headerSearchBorderColor
+        };
       }
 
       &:not(:focus-within) {

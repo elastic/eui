@@ -8,12 +8,8 @@
 
 import { css, keyframes } from '@emotion/react';
 
-import { UseEuiTheme, tint, shade, transparentize } from '../../services';
-import {
-  euiCanAnimate,
-  euiBackgroundColor,
-  logicalCSS,
-} from '../../global_styling';
+import { UseEuiTheme } from '../../services';
+import { euiCanAnimate, logicalCSS } from '../../global_styling';
 import { euiShadow } from '../../themes/amsterdam/global_styling/mixins';
 
 import { euiTableVariables } from './table.styles';
@@ -80,7 +76,7 @@ export const euiTableRowStyles = (euiThemeContext: UseEuiTheme) => {
 
         /* EuiPanel styling */
         ${euiShadow(euiThemeContext, 's')}
-        background-color: ${euiBackgroundColor(euiThemeContext, 'plain')};
+        background-color: ${euiTheme.colors.backgroundBasePlain};
         border-radius: ${euiTheme.border.radius.medium};
       `,
       selected: css`
@@ -159,23 +155,17 @@ const _expandedRowAnimation = ({ euiTheme }: UseEuiTheme) => {
   `;
 };
 
-const _rowColorVariables = ({ euiTheme, colorMode }: UseEuiTheme) => ({
-  hover:
-    colorMode === 'DARK'
-      ? euiTheme.colors.lightestShade
-      : tint(euiTheme.colors.lightestShade, 0.5),
+const _rowColorVariables = ({ euiTheme }: UseEuiTheme) => ({
+  hover: euiTheme.components.__TEMP_INTERNAL__.tableRowBackgroundHover,
   selected: {
-    color:
-      colorMode === 'DARK'
-        ? shade(euiTheme.colors.primary, 0.7)
-        : tint(euiTheme.colors.primary, 0.96),
+    color: euiTheme.components.__TEMP_INTERNAL__.tableRowBackgroundSelected,
     hover:
-      colorMode === 'DARK'
-        ? shade(euiTheme.colors.primary, 0.75)
-        : tint(euiTheme.colors.primary, 0.9),
+      euiTheme.components.__TEMP_INTERNAL__.tableRowBackgroundSelectedHover,
   },
   clickable: {
-    hover: transparentize(euiTheme.colors.primary, 0.05),
-    focus: transparentize(euiTheme.colors.primary, 0.1),
+    hover:
+      euiTheme.components.__TEMP_INTERNAL__.tableRowInteractiveBackgroundHover,
+    focus:
+      euiTheme.components.__TEMP_INTERNAL__.tableRowInteractiveBackgroundFocus,
   },
 });

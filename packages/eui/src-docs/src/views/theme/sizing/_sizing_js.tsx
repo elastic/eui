@@ -12,7 +12,6 @@ import {
   logicalShorthandCSS,
   EuiText,
   useEuiPaddingSize,
-  useEuiBackgroundColor,
   useEuiBackgroundColorCSS,
   useEuiPaddingCSS,
   EuiAccordion,
@@ -363,6 +362,8 @@ export const UtilsJS = () => {
 };
 
 export const PaddingJS = () => {
+  const { euiTheme } = useEuiTheme();
+
   return (
     <>
       <EuiText grow={false}>
@@ -425,7 +426,7 @@ const cssStyles = [paddingStyles['l']];
         example={
           <p
             css={css`
-              background: ${useEuiBackgroundColor('warning')};
+              background: ${euiTheme.colors.backgroundBaseWarning};
               padding: ${useEuiPaddingSize('l')};
             `}
           >

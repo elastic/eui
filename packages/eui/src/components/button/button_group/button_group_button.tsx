@@ -15,7 +15,7 @@ import React, {
 import { CSSInterpolation } from '@emotion/css';
 
 import { useEuiMemoizedStyles } from '../../../services';
-import { useEuiButtonColorCSS } from '../../../themes/amsterdam/global_styling/mixins/button';
+import { useEuiButtonColorCSS } from '../../../global_styling/mixins/_button';
 import { useInnerText } from '../../inner_text';
 
 import { EuiButtonDisplay } from '../button_display/_button_display';

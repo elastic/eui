@@ -25,6 +25,13 @@ The editor also ships with some built in plugins. For example it can handle chec
 - [x] Can be filled
 - [ ] Or empty
 
+| Emoji | Color |
+| ------ | ----------- |
+| :rose:   | Red |
+| :apple: | Red |
+| :green_heart:    | Green |
+
+
 It can also handle emojis! :smile:
 
 And it can render !{tooltip[tooltips like this](Look! I'm a very helpful tooltip content!)}

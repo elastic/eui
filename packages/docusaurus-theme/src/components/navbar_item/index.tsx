@@ -91,9 +91,9 @@ export const NavbarItem = (props: Props) => {
   } = props;
 
   const isBrowser = useIsBrowser();
-  const { theme } = useContext(AppThemeContext);
+  const { colorMode } = useContext(AppThemeContext);
 
-  const isDarkMode = theme === 'dark';
+  const isDarkMode = colorMode === 'dark';
 
   const styles = useEuiMemoizedStyles(getStyles);
   const cssStyles = [
