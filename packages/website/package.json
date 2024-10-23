@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "docusaurus": "docusaurus",
+    "build:workspaces": "yarn workspaces foreach -R --from @elastic/eui-website run build:workspaces && yarn workspaces foreach -Rti --from @elastic/eui-website run build",
     "start": "cross-env NODE_OPTIONS=--openssl-legacy-provider docusaurus start",
     "build": "cross-env NODE_OPTIONS=--openssl-legacy-provider docusaurus build",
     "swizzle": "docusaurus swizzle",
@@ -19,7 +20,7 @@
     "@docusaurus/preset-classic": "^3.5.2",
     "@elastic/charts": "^68.0.2",
     "@elastic/datemath": "^5.0.3",
-    "@elastic/eui": "97.2.0",
+    "@elastic/eui": "workspace:^",
     "@elastic/eui-docgen": "workspace:^",
     "@elastic/eui-docusaurus-theme": "workspace:^",
     "@emotion/css": "^11.11.2",
