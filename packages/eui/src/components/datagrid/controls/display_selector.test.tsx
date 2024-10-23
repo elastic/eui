@@ -266,7 +266,17 @@ describe('useDataGridDisplaySelector', () => {
         expect(getSelection(baseElement, 'rowHeightButtonGroup')).toEqual(
           'static'
         );
+        expect(getByTestSubject('static')).toHaveTextContent('Static');
         expect(getByTestSubject('lineCountNumber')).toHaveValue(1);
+      });
+
+      it('renders a "Max" label instead of "Static" if autoBelowLineCount is true', async () => {
+        const { container, getByTestSubject } = render(
+          <MockComponent rowHeightsOptions={{ autoBelowLineCount: true }} />
+        );
+        openPopover(container);
+
+        expect(getByTestSubject('static')).toHaveTextContent('Max');
       });
 
       it('calls the rowHeightsOptions.onChange callback on user change', async () => {
