@@ -82,6 +82,35 @@ const _buttons = {
     ['colors.lightShade']
   ),
 
+  backgroundEmptyPrimaryHover: computed(
+    ([primary]) => transparentize(primary, 0.1),
+    ['colors.primary']
+  ),
+  backgroundEmptyAccentHover: computed(
+    ([accent]) => transparentize(accent, 0.1),
+    ['colors.accent']
+  ),
+  backgroundEmptyAccentSecondaryHover: computed(
+    ([accent]) => transparentize(accent, 0.1),
+    ['colors.accent']
+  ),
+  backgroundEmptySuccessHover: computed(
+    ([success]) => transparentize(success, 0.1),
+    ['colors.success']
+  ),
+  backgroundEmptyWarningHover: computed(
+    ([warning]) => transparentize(warning, 0.1),
+    ['colors.warning']
+  ),
+  backgroundEmptyDangerHover: computed(
+    ([danger]) => transparentize(danger, 0.1),
+    ['colors.danger']
+  ),
+  backgroundEmptyTextHover: computed(
+    ([lightShade]) => transparentize(lightShade, 0.2),
+    ['colors.lightShade']
+  ),
+
   textColorPrimary: computed(
     ([primaryText]) => primaryText,
     ['colors.primaryText']
@@ -154,6 +183,11 @@ const _dark_buttons = {
   ..._buttons,
   backgroundFilledDisabled: computed(
     ([lightShade]) => transparentize(lightShade, 0.15),
+    ['colors.lightShade']
+  ),
+
+  backgroundEmptyTextHover: computed(
+    ([lightShade]) => transparentize(lightShade, 0.4),
     ['colors.lightShade']
   ),
 
