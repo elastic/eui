@@ -108,6 +108,23 @@ describe('RowHeightUtils', () => {
         });
       });
 
+      describe('autoBelowLineCount', () => {
+        it('uses the auto height cache', () => {
+          const rowIndex = 3;
+          const autoRowHeight = 100;
+          rowHeightUtils.setRowHeight(rowIndex, 'a', autoRowHeight, 0);
+
+          expect(
+            rowHeightUtils.getCalculatedHeight(
+              { lineCount: 10 },
+              34,
+              rowIndex,
+              { rowHeights: { [rowIndex]: autoRowHeight } }
+            )
+          ).toEqual(autoRowHeight);
+        });
+      });
+
       describe('row-specific overrides', () => {
         it('returns the height set in the cache', () => {
           const rowIndex = 5;
@@ -119,7 +136,7 @@ describe('RowHeightUtils', () => {
               { lineCount: 10 },
               34,
               rowIndex,
-              true
+              { rowHeights: { [rowIndex]: rowHeightOverride } }
             )
           ).toEqual(rowHeightOverride);
         });

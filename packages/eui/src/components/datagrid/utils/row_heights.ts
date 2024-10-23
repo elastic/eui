@@ -54,7 +54,7 @@ export class RowHeightUtils {
     heightOption: EuiDataGridRowHeightOption,
     defaultHeight: number,
     rowIndex?: number,
-    isRowHeightOverride?: boolean
+    rowHeightsOptions?: EuiDataGridRowHeightsOptions
   ) {
     if (isObject(heightOption) && heightOption.height) {
       return Math.max(heightOption.height, defaultHeight);
@@ -65,8 +65,13 @@ export class RowHeightUtils {
     }
 
     if (isObject(heightOption) && heightOption.lineCount) {
-      if (isRowHeightOverride) {
-        return this.getRowHeight(rowIndex!) || defaultHeight; // lineCount overrides are stored in the heights cache
+      const { autoBelowLineCount } = rowHeightsOptions || {}; // uses auto height cache
+      const isRowHeightOverride = // lineCount overrides are stored in the heights cache
+        rowIndex != null &&
+        this.isRowHeightOverride(rowIndex, rowHeightsOptions);
+
+      if (autoBelowLineCount || isRowHeightOverride) {
+        return this.getRowHeight(rowIndex!) || defaultHeight;
       } else {
         return defaultHeight; // default lineCount height is set in minRowHeight state in grid_row_body
       }
@@ -405,7 +410,7 @@ export const useDefaultRowHeight = ({
           rowHeightOption,
           minRowHeight,
           correctRowIndex,
-          rowHeightUtils.isRowHeightOverride(correctRowIndex, rowHeightsOptions)
+          rowHeightsOptions
         );
       }
 
