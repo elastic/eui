@@ -17,21 +17,21 @@ other, more complicated and prone to breaking queries (e.g. `div > span.title`) 
 
 Check out our component-specific testing docs to find the selectors we officially support.
 
-<GuideRule type="do" panelPadding="none" text="Use accessible and semantic queries.">
+<Guideline type="do" panelPadding="none" text="Use accessible and semantic queries.">
   ```tsx
   screen.getByRole('dialog'); // react-testing-library
   cy.get('[role="dialog"]'); // cypress
   driver.findElement(By.cssSelector('[role="dialog"]')); // selenium
   ```
-</GuideRule>
+</Guideline>
 
-<GuideRule type="dont" panelPadding="none" text="Query by internal EUI selectors, especially when better selectors are available.">
+<Guideline type="dont" panelPadding="none" text="Query by internal EUI selectors, especially when better selectors are available.">
   ```tsx
   container.querySelector('.euiFlyout'); // react-testing-library
   cy.get('.euiFlyout'); // cypress
   driver.findElement(By.cssSelector('.euiFlyout')); // selenium
   ```
-</GuideRule>
+</Guideline>
 
 ## Don't use snapshots
 
@@ -45,20 +45,20 @@ or if the data is coming from a prop or being dynamically calculated.
 
 Instead, consider writing simple but precise assertion tests.
 
-<GuideRule type="do" panelPadding="none" text="Query and assert on elements you actually want to test">
+<Guideline type="do" panelPadding="none" text="Query and assert on elements you actually want to test">
   ```tsx
   const { getByText, getByRole } = render(<MyComponent />);
   expect(getByText('Hello, World!')).toBeInTheDocument();
   expect(getByRole('button')).toHaveTextContent('Save');
   ```
-</GuideRule>
+</Guideline>
 
-<GuideRule type="dont" panelPadding="none" text="Snapshot whole components">
+<Guideline type="dont" panelPadding="none" text="Snapshot whole components">
   ```tsx
   const { container } = render(<MyComponent />); // react-testing-library
   expect(container).toMatchSnapshot();
   ```
-</GuideRule>
+</Guideline>
 
 ## Avoid time-based waits
 
@@ -72,20 +72,20 @@ this can't be considered a reliable fix, because:
 Instead, use the utilities available for every testing framework to wait for elements to appear
 or for asynchronous operations to finish execution.
 
-<GuideRule type="do" panelPadding="none" text="Programmatically await changes to occur">
+<Guideline type="do" panelPadding="none" text="Programmatically await changes to occur">
   ```tsx
   screen.getByRole('button', { name: 'Save document' });
   expect(await screen.findByText('Document saved successfully')).toBeInTheDocument();
   ```
-</GuideRule>
+</Guideline>
 
-<GuideRule type="dont" panelPadding="none" text="Add timeouts and other static waits">
+<Guideline type="dont" panelPadding="none" text="Add timeouts and other static waits">
   ```tsx
   screen.getByRole('button', { name: 'Save document' });
   await new Promise((resolve) => setTimeout(resolve, 1000));
   expect(screen.getByText('Document saved successfully')).toBeInTheDocument();
   ```
-</GuideRule>
+</Guideline>
 
 ## Write clear test names
 
@@ -94,7 +94,7 @@ Use short but descriptive names written in plain English.
 
 We recommend using the third-person singular simple present tense for its short form and ease of reading.
 
-<GuideRule type="do" panelPadding="none" text="Use clear and consistent names and test grouping">
+<Guideline type="do" panelPadding="none" text="Use clear and consistent names and test grouping">
   ```tsx
   describe('arraySearch()', () => { // use tested function name as the root group name
     it('accepts object arrays', () => { /* [...] */ });
@@ -103,9 +103,9 @@ We recommend using the third-person singular simple present tense for its short 
     it('supports the `options.caseSensitive` option', () => { /*[...]*/ });
   });
   ```
-</GuideRule>
+</Guideline>
 
-<GuideRule type="dont" panelPadding="none" text="Use inconsistent or unclear naming">
+<Guideline type="dont" panelPadding="none" text="Use inconsistent or unclear naming">
   ```tsx
   describe('array search', () => { // bad: not pointing to what exactly this group is testing
     it('object arrays', () => { /* [...] */ }); // bad: not enough context
@@ -114,24 +114,24 @@ We recommend using the third-person singular simple present tense for its short 
     it('supports options.caseSensitive', () => { /* [...] */ }); // bad: using two different naming conventions; see line above
   });
   ```
-</GuideRule>
+</Guideline>
 
 ### Wrap property names and data in  `` ` ``
 
 When including property and argument names in the test name string, wrap them in backticks (`` ` ``) to clearly
 separate them from the rest of the text.
 
-<GuideRule type="do" panelPadding="none" text="Wrap property names in backticks">
+<Guideline type="do" panelPadding="none" text="Wrap property names in backticks">
   ```tsx
   it('returns an empty object when the `value` string is empty');
   ```
-</GuideRule>
+</Guideline>
 
-<GuideRule type="dont" panelPadding="none" text="Have no separation between property names and the rest of the text">
+<Guideline type="dont" panelPadding="none" text="Have no separation between property names and the rest of the text">
   ```tsx
   it('returns an empty object when the value string is empty');
   ```
-</GuideRule>
+</Guideline>
 
 ## Add debug-friendly comments or error messages
 
@@ -139,9 +139,9 @@ Consider adding custom error messages or code comments for assertions that are n
 For [jest](https://jestjs.io/), we recommend adding a comment on top or to the right of the assertion,
 so in case of an error, it will be printed out together as the failing code fragment.
 
-<GuideRule type="do" panelPadding="none" text="Explain the source of the asserted value in code">
+<Guideline type="do" panelPadding="none" text="Explain the source of the asserted value in code">
   ```tsx
   // Total should equal the result of 1234^2 / 3.14 rounded to two decimal places
   expect(screen.getByText('Total: 484954.14')).toBeInTheDocument();
   ```
-</GuideRule>
+</Guideline>
