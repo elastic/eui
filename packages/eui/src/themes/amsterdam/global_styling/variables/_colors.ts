@@ -157,8 +157,6 @@ export const dark_colors_ams: _EuiThemeColorsMode = {
 export const colors: _EuiThemeColors = {
   ghost: '#FFF',
   ink: '#000',
-  plainDark: '#000',
-  plainLight: '#FFF',
   LIGHT: light_colors,
   DARK: dark_colors_ams,
 };
