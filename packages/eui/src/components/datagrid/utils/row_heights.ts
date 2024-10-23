@@ -115,6 +115,15 @@ export class RowHeightUtils {
     return contentHeight + padding * 2;
   }
 
+  isAutoBelowLineCount(
+    options?: EuiDataGridRowHeightsOptions,
+    option?: EuiDataGridRowHeightOption
+  ) {
+    if (!options?.autoBelowLineCount) return false;
+    if ((this.getLineCount(option) ?? 0) > 1) return true;
+    return false;
+  }
+
   /**
    * Auto height utils
    */
@@ -126,6 +135,9 @@ export class RowHeightUtils {
     const height = this.getRowHeightOption(rowIndex, rowHeightsOptions);
 
     if (height === AUTO_HEIGHT) {
+      return true;
+    }
+    if (this.isAutoBelowLineCount(rowHeightsOptions, height)) {
       return true;
     }
     return false;

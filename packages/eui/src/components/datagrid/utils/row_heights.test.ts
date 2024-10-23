@@ -223,6 +223,56 @@ describe('RowHeightUtils', () => {
         ); // 5 * 24 + 6 + 6
       });
     });
+
+    describe('isAutoBelowLineCount', () => {
+      it('returns true when the feature flag is enabled and a lineCount above 1 exists', () => {
+        expect(
+          rowHeightUtils.isAutoBelowLineCount(
+            { autoBelowLineCount: true },
+            { lineCount: 3 }
+          )
+        ).toEqual(true);
+      });
+
+      it('returns false if the feature flag is not enabled', () => {
+        expect(
+          rowHeightUtils.isAutoBelowLineCount(
+            { autoBelowLineCount: false },
+            { lineCount: 3 }
+          )
+        ).toEqual(false);
+        expect(
+          rowHeightUtils.isAutoBelowLineCount(undefined, { lineCount: 3 })
+        ).toEqual(false);
+      });
+
+      it('returns false if height type is not lineCount', () => {
+        expect(
+          rowHeightUtils.isAutoBelowLineCount({ autoBelowLineCount: true }, 50)
+        ).toEqual(false);
+        expect(
+          rowHeightUtils.isAutoBelowLineCount(
+            { autoBelowLineCount: true },
+            'auto'
+          )
+        ).toEqual(false);
+      });
+
+      it('returns false if lineCount is 1 (treated as single line/undefined)', () => {
+        expect(
+          rowHeightUtils.isAutoBelowLineCount(
+            { autoBelowLineCount: true },
+            { lineCount: 1 }
+          )
+        ).toEqual(false);
+        expect(
+          rowHeightUtils.isAutoBelowLineCount(
+            { autoBelowLineCount: true },
+            undefined
+          )
+        ).toEqual(false);
+      });
+    });
   });
 
   describe('auto height utils', () => {
@@ -236,6 +286,15 @@ describe('RowHeightUtils', () => {
         expect(
           rowHeightUtils.isAutoHeight(1, {
             defaultHeight: 'auto',
+          })
+        ).toEqual(true);
+      });
+
+      it('returns true if the grid if the conditions for `.isAutoBelowLineCount` are met`', () => {
+        expect(
+          rowHeightUtils.isAutoHeight(1, {
+            autoBelowLineCount: true,
+            defaultHeight: { lineCount: 2 },
           })
         ).toEqual(true);
       });
