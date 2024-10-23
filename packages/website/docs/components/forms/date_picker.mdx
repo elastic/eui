@@ -34,7 +34,6 @@ Examples of how the input can appear within a form. This should match our other 
 ```tsx interactive
 import React, { useState } from 'react';
 import { EuiDatePicker, EuiSpacer, EuiFormRow } from '@elastic/eui';
-import { DisplayToggles } from '../form_controls/display_toggles';
 
 export default () => {
   const [startDate, setStartDate] = useState(null);
@@ -235,7 +234,6 @@ To create a single date range control, use **EuiDatePickerRange** and pass indiv
 import React, { useState } from 'react';
 import { EuiDatePicker, EuiDatePickerRange } from '@elastic/eui';
 import moment from 'moment';
-import { DisplayToggles } from '../form_controls/display_toggles';
 
 export default () => {
   const [startDate, setStartDate] = useState(moment());
@@ -533,7 +531,6 @@ import {
   EuiSpacer,
 } from '@elastic/eui';
 import moment from 'moment';
-import { DisplayToggles } from '../form_controls/display_toggles';
 
 export default () => {
   const [shadow, setShadow] = useState(true);

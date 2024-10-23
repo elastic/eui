@@ -6,5 +6,4 @@
  * Side Public License, v 1.
  */
 
-export * from './example';
-export * from './display_toggles';
+export { DisplayToggles } from './display_toggles';

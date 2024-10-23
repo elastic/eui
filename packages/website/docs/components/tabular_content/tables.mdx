@@ -655,142 +655,7 @@ The following example shows how to configure selection via the `selection` prope
 
 To completely control table selection, use `selection.selected` instead (which requires passing `selected.onSelectionChange`). This can be useful if you want to handle table selections based on user interaction with another part of the UI.
 
-Controlled selection
-
-Delete 2 Users
-
-Demo for EuiBasicTable with selection; Page 1 of 4.
-|
- |
-
-First Name
-
- |
-
-Last Name
-
- |
-
-Location
-
- |
-
-Online
-
- |
-| --- | --- | --- | --- | --- |
-|
-
- |
-
-Ahmed
-
- |
-
-Sipes
-
- |
-
-Berthabury, Reunion
-
- |
-
-Offline
-
- |
-|
-
- |
-
-Alexandria
-
- |
-
-Schultz
-
- |
-
-Kokomo, Bolivia
-
- |
-
-Online
-
- |
-|
-
- |
-
-Dortha
-
- |
-
-Hoeger
-
- |
-
-North Mariana, Panama
-
- |
-
-Online
-
- |
-|
-
- |
-
-Fabian
-
- |
-
-Wunsch
-
- |
-
-South Milliehaven, Turks and Caicos Islands
-
- |
-
-Offline
-
- |
-|
-
- |
-
-Giovanni
-
- |
-
-DuBuque
-
- |
-
-East Naomi, Bahamas
-
- |
-
-Offline
-
- |
-
-Rows per page: 5
-
-Page 1 of 4
-
-*   1
-*   [2](#__table_1b6481f1-49d8-11ef-8eee-0717f10ebc2a)
-*   [3](#__table_1b6481f1-49d8-11ef-8eee-0717f10ebc2a)
-*   [4](#__table_1b6481f1-49d8-11ef-8eee-0717f10ebc2a)
-
-[](#__table_1b6481f1-49d8-11ef-8eee-0717f10ebc2a "Next page")
-
-Demo TSProps
-
-* * *
-
-```
+```tsx interactive
 import React, { useState } from 'react';
 import {
   Comparators,
@@ -1026,8 +891,6 @@ export default () => {
   );
 };
 ```
-
-Try out this demo on Code Sandbox
 
 ## Adding a footer to a table
 
@@ -1925,7 +1788,7 @@ export default () => {
     <>
       <EuiFlexGroup
         alignItems="center"
-        css={({ euiTheme }) => ({ minHeight: euiTheme.size.xxl })}
+        css={({ euiTheme }) => ({ minHeight: euiTheme?.size?.xxl })}
       >
         <EuiFlexItem grow={false}>
           <EuiSwitch

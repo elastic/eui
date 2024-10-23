@@ -438,9 +438,7 @@ import {
   EuiPopoverFooter,
   EuiPopoverTitle,
   EuiSelectable,
-  type,
   EuiSelectableOption,
-  type,
   EuiSelectableProps,
   EuiSpacer,
   EuiTitle,
@@ -489,49 +487,6 @@ const OPTIONS: EuiSelectableOption[] = [
   { label: 'Kerberos' },
   { label: 'Hydra' },
 ];
-
-export default () => {
-  const [options, setOptions] = useState<EuiSelectableOption[]>(OPTIONS);
-  const onChange = (options: EuiSelectableOption[]) => {
-    setOptions(options);
-  };
-
-  return (
-    <>
-      <SelectablePopover options={options} onChange={onChange} />
-      <EuiSpacer />
-
-      <SelectableFlyout options={options} onChange={onChange} />
-      <EuiSpacer />
-
-      <EuiTitle size="xxs">
-        <h4>In an input popover</h4>
-      </EuiTitle>
-      <EuiSpacer size="s" />
-      <SelectableInputPopover />
-      <EuiSpacer />
-
-      <EuiTitle size="xxs">
-        <h4>
-          Using <EuiCode language="js">listProps.bordered=true</EuiCode> and{' '}
-          <EuiCode language="js">
-            listProps.paddingSize=&quot;none&quot;
-          </EuiCode>
-        </h4>
-      </EuiTitle>
-      <EuiSpacer size="s" />
-      <EuiSelectable
-        aria-label="Bordered selectable example"
-        options={options}
-        onChange={onChange}
-        style={{ width: 300 }}
-        listProps={{ bordered: true, paddingSize: 'none' }}
-      >
-        {(list) => list}
-      </EuiSelectable>
-    </>
-  );
-};
 
 const SelectablePopover = (
   props: Pick<EuiSelectableProps, 'options' | 'onChange'>
@@ -683,6 +638,49 @@ const SelectableInputPopover = () => {
         </EuiInputPopover>
       )}
     </EuiSelectable>
+  );
+};
+
+export default () => {
+  const [options, setOptions] = useState<EuiSelectableOption[]>(OPTIONS);
+  const onChange = (options: EuiSelectableOption[]) => {
+    setOptions(options);
+  };
+
+  return (
+    <>
+      <SelectablePopover options={options} onChange={onChange} />
+      <EuiSpacer />
+
+      <SelectableFlyout options={options} onChange={onChange} />
+      <EuiSpacer />
+
+      <EuiTitle size="xxs">
+        <h4>In an input popover</h4>
+      </EuiTitle>
+      <EuiSpacer size="s" />
+      <SelectableInputPopover />
+      <EuiSpacer />
+
+      <EuiTitle size="xxs">
+        <h4>
+          Using <EuiCode language="js">listProps.bordered=true</EuiCode> and{' '}
+          <EuiCode language="js">
+            listProps.paddingSize=&quot;none&quot;
+          </EuiCode>
+        </h4>
+      </EuiTitle>
+      <EuiSpacer size="s" />
+      <EuiSelectable
+        aria-label="Bordered selectable example"
+        options={options}
+        onChange={onChange}
+        style={{ width: 300 }}
+        listProps={{ bordered: true, paddingSize: 'none' }}
+      >
+        {(list) => list}
+      </EuiSelectable>
+    </>
   );
 };
 ```

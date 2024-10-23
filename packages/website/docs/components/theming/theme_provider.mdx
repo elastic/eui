@@ -112,7 +112,8 @@ export default <ConsumingHOC />;
 
 **EuiThemeProvider** by default sets an [Emotion theme context(opens in a new tab or window)](https://emotion.sh/docs/theming) with the results of **useEuiTheme()**. This is a syntactical sugar convenience that allows you to take advantage of Emotion's `styled` syntax, or use a function in the `css` prop.
 
-If you prefer to use or access your own custom Emotion theme, you can completely override EUI's passed theme at any time with your own `ThemeProvider` - see the second box below for an example.
+<!-- The following section is commented out due to @emotion/react version mismatch. We can't easily fix it unless we disable nohoist for /packages/eui and that requires updating it to TypeScript 5... -->
+<!-- If you prefer to use or access your own custom Emotion theme, you can completely override EUI's passed theme at any time with your own `ThemeProvider` - see the second box below for an example.
 
 ```tsx interactive
 import React from 'react';
@@ -164,7 +165,40 @@ export default () => {
     </EuiText>
   );
 };
+```
+-->
 
+If you prefer to use or access your own custom Emotion theme, you can completely override EUI's passed theme at any time with your own `ThemeProvider`.
+
+```tsx interactive
+import React from 'react';
+import { EuiText } from '@elastic/eui';
+import { ThemeProvider, css } from '@emotion/react';
+
+export default () => {
+  return (
+    <EuiText>
+      <ThemeProvider
+        theme={{
+          // @ts-ignore - if providing your own Emotion theme, create your own emotion.d.ts - see https://emotion.sh/docs/typescript#define-a-theme
+          brandColor: 'pink',
+          backgroundColor: 'black',
+          padding: '1rem',
+        }}
+      >
+        <p
+          css={(theme: any) => css`
+            color: ${theme.brandColor};
+            background-color: ${theme.backgroundColor};
+            padding: ${theme.padding};
+          `}
+        >
+          This box sets its own Emotion ThemeProvider and theme variables
+        </p>
+      </ThemeProvider>
+    </EuiText>
+  );
+};
 ```
 
 ## Simple instance overrides

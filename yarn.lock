@@ -5768,6 +5768,7 @@ __metadata:
     "@mdx-js/react": "npm:^3.0.0"
     "@types/react": "npm:^18.3.3"
     "@types/react-dom": "npm:^18.3.0"
+    classnames: "npm:^2.5.1"
     clsx: "npm:^2.0.0"
     cross-env: "npm:^7.0.3"
     docusaurus-lunr-search: "npm:^3.4.0"

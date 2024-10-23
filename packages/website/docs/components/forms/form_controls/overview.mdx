@@ -22,7 +22,6 @@ This component renders a basic HTML `<input type="text">` element. Use a **EuiFi
 ```tsx interactive
 import React, { useState } from 'react';
 import { EuiFieldText } from '@elastic/eui';
-import { DisplayToggles } from './display_toggles';
 
 export default function () {
   const [value, setValue] = useState('');
@@ -32,15 +31,12 @@ export default function () {
   };
 
   return (
-    /* DisplayToggles wrapper for Docs only */
-    <DisplayToggles canPrepend canAppend>
-      <EuiFieldText
-        placeholder="Placeholder text"
-        value={value}
-        onChange={(e) => onChange(e)}
-        aria-label="Use aria labels when no actual label is in use"
-      />
-    </DisplayToggles>
+    <EuiFieldText
+      placeholder="Placeholder text"
+      value={value}
+      onChange={(e) => onChange(e)}
+      aria-label="Use aria labels when no actual label is in use"
+    />
   );
 }
 ```
@@ -52,7 +48,6 @@ This component renders a basic HTML `<input type="search">` element. Use a **Eui
 ```tsx interactive
 import React, { useState } from 'react';
 import { EuiFieldSearch, EuiSwitch } from '@elastic/eui';
-import { DisplayToggles } from './display_toggles';
 
 export default () => {
   const [isClearable, setIsClearable] = useState(true);
@@ -97,7 +92,6 @@ This component renders a basic HTML `<input type="number">` element. Use a **Eui
 ```tsx interactive
 import React, { useState } from 'react';
 import { EuiFieldNumber } from '@elastic/eui';
-import { DisplayToggles } from './display_toggles';
 
 export default () => {
   const [value, setValue] = useState('');
@@ -129,7 +123,6 @@ You can change this default behavior by passing `type="dual"` so that users can 
 ```tsx interactive
 import React, { useState } from 'react';
 import { EuiFieldPassword, EuiSwitch } from '@elastic/eui';
-import { DisplayToggles } from './display_toggles';
 
 export default function () {
   const [value, setValue] = useState('');
@@ -172,7 +165,6 @@ If you need more customization for searching or rendering options, see [EUI's gu
 ```tsx interactive
 import React, { useState } from 'react';
 import { EuiSelect, useGeneratedHtmlId } from '@elastic/eui';
-import { DisplayToggles } from './display_toggles';
 
 export default () => {
   const options = [
@@ -211,7 +203,6 @@ This component renders a basic HTML `<textarea />` element. Use **EuiTextArea** 
 ```tsx interactive
 import React, { useState } from 'react';
 import { EuiTextArea } from '@elastic/eui';
-import { DisplayToggles } from './display_toggles';
 
 export default () => {
   const [value, setValue] = useState('');
@@ -249,7 +240,6 @@ import {
   EuiSwitch,
   useGeneratedHtmlId,
 } from '@elastic/eui';
-import { DisplayToggles } from './display_toggles';
 
 export default () => {
   const [files, setFiles] = useState({});

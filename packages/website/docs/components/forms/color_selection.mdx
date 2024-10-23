@@ -46,7 +46,6 @@ import {
   EuiCode,
   EuiColorPalettePicker,
 } from '@elastic/eui';
-import { DisplayToggles } from '../form_controls/display_toggles';
 
 const palettes = [
   {
@@ -749,7 +748,6 @@ export default () => {
 ```tsx interactive
 import React from 'react';
 import { EuiColorPicker, useColorPickerState } from '@elastic/eui';
-import { DisplayToggles } from '../form_controls/display_toggles';
 
 export default () => {
   const [color, setColor] = useColorPickerState('#D36086');

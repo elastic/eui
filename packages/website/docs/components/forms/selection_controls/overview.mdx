@@ -95,7 +95,6 @@ Use the `compressed` prop to tighten up the spacing between checkbox rows.
 ```tsx interactive
 import React, { useState } from 'react';
 import { EuiCheckboxGroup, useGeneratedHtmlId } from '@elastic/eui';
-import { DisplayToggles } from '../form_controls/display_toggles';
 
 export default () => {
   const checkboxGroupItemId__1 = useGeneratedHtmlId({
@@ -229,7 +228,6 @@ When the individual labels for each radio do not provide a sufficient descriptio
 ```tsx interactive
 import React, { useState } from 'react';
 import { EuiRadioGroup, useGeneratedHtmlId } from '@elastic/eui';
-import { DisplayToggles } from '../form_controls/display_toggles';
 
 export default () => {
   const radioGroupItemId__1 = useGeneratedHtmlId({
@@ -296,7 +294,6 @@ A switch can be substituted for a checkbox when the semantics of the label dicta
 ```tsx interactive
 import React, { useState } from 'react';
 import { EuiSwitch } from '@elastic/eui';
-import { DisplayToggles } from '../form_controls/display_toggles';
 
 export default () => {
   const [checked, setChecked] = useState(false);

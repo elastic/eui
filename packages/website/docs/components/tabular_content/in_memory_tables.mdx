@@ -151,51 +151,7 @@ For uncontrolled usage, where selection changes are determined entirely to be se
 
 To completely control table selection, use `selection.selected` instead (which requires passing `selected.onSelectionChange`). This can be useful if you want to handle table selections based on user interaction with another part of the UI.
 
-Controlled selection
-
-Online
-
-Country
-
-Load Users
-
-Load Users (Error)
-
-Demo of EuiInMemoryTable with uncontrolled selection; Page 1 of 0.
-|
- |
-
-First Name
-
- |
-
-Last Name
-
- |
-
-Location
-
- |
-
-Online
-
- |
-| --- | --- | --- | --- | --- |
-|
-
-### No users
-
-Looks like you don’t have any users. Let’s create some!
-
-Load Users
-
- |
-
-Demo TSProps
-
-* * *
-
-```
+```tsx interactive
 import React, { useState, ReactNode } from 'react';
 import {
   EuiInMemoryTable,
@@ -451,8 +407,6 @@ export default () => {
   );
 };
 ```
-
-Try out this demo on Code Sandbox
 
 ## In-memory table with search
 

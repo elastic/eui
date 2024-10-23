@@ -7,7 +7,7 @@ id: display_comment_list
 
 The **EuiCommentList** is a timeline component built on top of [**EuiTimeline**](/docs/display/timeline). It allows you to display comments or logged actions that either a user or a system has performed.
 
-:::warning For accessibility, it is highly recommended to provide a descriptive aria-label or the ID of an external label to the aria-labelledby prop of the EuiCommentList. A timelineAvatarAriaLabel should be provided for every EuiComment with or without a timelineAvatar as IconType.
+:::warning
 
 For accessibility, it is highly recommended to provide a descriptive `aria-label` or the ID of an external label to the `aria-labelledby` prop of the **EuiCommentList**. A `timelineAvatarAriaLabel` should be provided for every **EuiComment** with or without a `timelineAvatar` as `IconType`.
 
@@ -114,30 +114,23 @@ export default () => (
 
 The **EuiComment** is flexible and adapts the design according to the props passed.
 
-1.  B
-
-    C usernameD eventE timestamp
-
-    F
-
-    G children
-
-
-Code snippet
-
+```mdx-code-block
+import { CommentListProps } from './comment_list_props.tsx';
 ```
-<EuiCommentList aria-label="Comment example">
-  <EuiComment
-    eventIcon="pencil"
-    username="janed"
-    event={event}
-    timestamp={timestamp}
-    actions={customActions}
-  >
-    {children}
-  </EuiComment>
-</EuiCommentList>
-```
+
+<CommentListProps
+  snippet={`<EuiCommentList aria-label="Comment example">
+    <EuiComment
+      eventIcon="pencil"
+      username="janed"
+      event={event}
+      timestamp={timestamp}
+      actions={customActions}
+    >
+      {children}
+    </EuiComment>
+  </EuiCommentList>`}
+/>
 
 1.  `timelineAvatar`: Shows an avatar that should indicate who is the author of the comment. To customize, pass a `string` as a `EuiIcon['type']` or a a [**EuiAvatar**](/docs/display/avatar). Use in conjunction with `timelineAvatarAriaLabel` to pass an aria label to the avatar. If no avatar is provided, it will default to an avatar with a `userAvatar` icon.
 2.  `eventIcon`: Icon that shows before the username. Use in conjunction with `eventIconAriaLabel` to pass an aria label to the event icon.

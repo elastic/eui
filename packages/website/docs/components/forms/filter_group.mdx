@@ -16,7 +16,6 @@ Set `hasActiveFilters` to true when the filter is active.
 ```tsx interactive
 import React, { useState } from 'react';
 import { EuiFilterGroup, EuiFilterButton } from '@elastic/eui';
-import { DisplayToggles } from '../form_controls/display_toggles';
 
 export default () => {
   const [isFilterOn, setIsFilterOn] = useState(false);
@@ -38,32 +37,24 @@ export default () => {
   };
 
   return (
-    <DisplayToggles
-      canDisabled={false}
-      canReadOnly={false}
-      canLoading={false}
-      canInvalid={false}
-      canFullWidth
-    >
-      <EuiFilterGroup>
-        <EuiFilterButton hasActiveFilters={isFilterOn} onClick={toggleFilter}>
-          Single filter
-        </EuiFilterButton>
-        <EuiFilterButton
-          withNext
-          hasActiveFilters={isOnFilterOn}
-          onClick={toggleOnFilter}
-        >
-          On
-        </EuiFilterButton>
-        <EuiFilterButton
-          hasActiveFilters={isOffFilterOn}
-          onClick={toggleOffFilter}
-        >
-          Off
-        </EuiFilterButton>
-      </EuiFilterGroup>
-    </DisplayToggles>
+    <EuiFilterGroup>
+      <EuiFilterButton hasActiveFilters={isFilterOn} onClick={toggleFilter}>
+        Single filter
+      </EuiFilterButton>
+      <EuiFilterButton
+        withNext
+        hasActiveFilters={isOnFilterOn}
+        onClick={toggleOnFilter}
+      >
+        On
+      </EuiFilterButton>
+      <EuiFilterButton
+        hasActiveFilters={isOffFilterOn}
+        onClick={toggleOffFilter}
+      >
+        Off
+      </EuiFilterButton>
+    </EuiFilterGroup>
   );
 };
 ```

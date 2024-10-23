@@ -18,7 +18,6 @@ Labels can be created by wrapping the combo box in an **EuiFormRow** with a `lab
 ```tsx interactive
 import React, { useState } from 'react';
 import { EuiComboBox } from '@elastic/eui';
-import { DisplayToggles } from '../form_controls/display_toggles';
 
 const optionsStatic = [
   {
@@ -503,7 +502,6 @@ Useful for visualization or tagging systems. You can also pass a color in your o
 ```tsx interactive
 import React, { useState } from 'react';
 import { EuiComboBox, euiPaletteColorBlindBehindText } from '@elastic/eui';
-import { DisplayToggles } from '../form_controls/display_toggles';
 
 const visColorsBehindText = euiPaletteColorBlindBehindText();
 const optionsStatic = [
@@ -1102,7 +1100,6 @@ To only allow the user to select a single option, provide the `singleSelection` 
 ```tsx interactive
 import React, { useState } from 'react';
 import { EuiComboBox } from '@elastic/eui';
-import { DisplayToggles } from '../form_controls/display_toggles';
 
 const options = [
   {
