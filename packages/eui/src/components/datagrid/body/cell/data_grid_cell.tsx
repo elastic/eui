@@ -201,6 +201,12 @@ export class EuiDataGridCell extends Component<
       rowIndex,
       rowHeightsOptions
     );
+    if (
+      rowHeightUtils?.isAutoBelowLineCount(rowHeightsOptions, rowHeightOption)
+    ) {
+      return; // Using auto height instead
+    }
+
     const isSingleLine = rowHeightOption == null; // Undefined rowHeightsOptions default to a single line
     const lineCount = isSingleLine
       ? 1

@@ -757,6 +757,26 @@ describe('EuiDataGridCell', () => {
         callMethod(component);
         expect(setRowHeight).not.toHaveBeenCalled();
       });
+
+      it('does nothing if cell height is auto or autoBelowLineCount', () => {
+        mockRowHeightUtils.isAutoBelowLineCount.mockReturnValue(true);
+
+        const component = mount(
+          <EuiDataGridCell
+            {...requiredProps}
+            rowHeightsOptions={{
+              autoBelowLineCount: true,
+              defaultHeight: { lineCount: 3 },
+            }}
+            setRowHeight={setRowHeight}
+          />
+        );
+
+        callMethod(component);
+        expect(setRowHeight).not.toHaveBeenCalled();
+
+        mockRowHeightUtils.isAutoBelowLineCount.mockRestore();
+      });
     });
   });
 
