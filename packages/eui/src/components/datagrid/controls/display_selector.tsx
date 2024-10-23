@@ -136,6 +136,7 @@ const DensityControl = ({
  * Row heights
  */
 
+const rowHeightSelectionOptions = ['auto', 'static'] as const;
 const convertRowHeightsOptionsToSelection = (
   rowHeightsOptions: EuiDataGridRowHeightsOptions
 ) => {
@@ -150,9 +151,9 @@ const convertRowHeightsOptionsToSelection = (
   }
 
   if (defaultHeight === 'auto') {
-    return 'auto';
+    return rowHeightSelectionOptions[0];
   }
-  return 'static';
+  return rowHeightSelectionOptions[1];
 };
 const RowHeightControl = ({
   rowHeightsOptions,
@@ -202,9 +203,9 @@ const RowHeightControl = ({
         rowHeights: {}, // Unset all row-specific heights
       };
 
-      if (option === 'auto') {
+      if (option === rowHeightSelectionOptions[0]) {
         rowHeightsOptions.defaultHeight = 'auto';
-      } else if (option === 'static') {
+      } else if (option === rowHeightSelectionOptions[1]) {
         const lineCount = Number(lineCountInput);
 
         if (lineCount > 1) {
@@ -238,8 +239,8 @@ const RowHeightControl = ({
               buttonSize="compressed"
               isFullWidth
               options={[
-                { id: 'auto', label: labelAuto },
-                { id: 'static', label: labelStatic },
+                { id: rowHeightSelectionOptions[0], label: labelAuto },
+                { id: rowHeightSelectionOptions[1], label: labelStatic },
               ]}
               onChange={setRowHeight}
               idSelected={rowHeightSelection}
@@ -250,7 +251,7 @@ const RowHeightControl = ({
               compressed
               min={1}
               max={20}
-              disabled={rowHeightSelection !== 'static'}
+              disabled={rowHeightSelection !== rowHeightSelectionOptions[1]}
               value={lineCountInput}
               onChange={setLineCountHeight}
               data-test-subj="lineCountNumber"
