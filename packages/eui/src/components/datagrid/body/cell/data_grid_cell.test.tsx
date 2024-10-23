@@ -836,6 +836,30 @@ describe('EuiDataGridCell', () => {
       expect(component.find('.eui-textBreakWord').exists()).toBe(true);
       expect(component.find('.euiTextBlockTruncate').exists()).toBe(true);
     });
+
+    test('autoBelowLineCount', () => {
+      mockRowHeightUtils.isAutoBelowLineCount.mockReturnValue(true);
+
+      const component = mount(
+        <EuiDataGridCell
+          {...props}
+          rowHeightsOptions={{
+            autoBelowLineCount: true,
+            defaultHeight: { lineCount: 3 },
+          }}
+        />
+      );
+
+      expect(
+        component
+          .find('div.euiDataGridRowCell__content--autoBelowLineCountHeight')
+          .hasClass(/autoHeight/)
+      ).toBe(true);
+      expect(component.find('.eui-textBreakWord').exists()).toBe(true);
+      expect(component.find('.euiTextBlockTruncate').exists()).toBe(true);
+
+      mockRowHeightUtils.isAutoBelowLineCount.mockRestore();
+    });
   });
 
   // Note: Tests for cell interactivity (focus, tabbing, etc) are in `focus_utils.spec.tsx`
