@@ -9,7 +9,6 @@
 import type { MutableRefObject } from 'react';
 import { act } from '@testing-library/react';
 import { renderHook } from '../../../test/rtl';
-import { startingStyles } from '../controls';
 import type { ImperativeGridApi } from '../data_grid_types';
 import {
   RowHeightUtils,
@@ -615,10 +614,8 @@ describe('RowHeightVirtualizationUtils', () => {
 });
 
 describe('useRowHeightUtils', () => {
-  const mockArgs = {
-    gridStyles: startingStyles,
+  const mockArgs: Parameters<typeof useRowHeightUtils>[0] = {
     columns: [{ id: 'A' }, { id: 'B' }],
-    rowHeightOptions: undefined,
   };
   const mockVirtualizationArgs = {
     ...mockArgs,

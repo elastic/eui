@@ -22,7 +22,6 @@ import {
   EuiDataGridRowHeightOption,
   EuiDataGridRowHeightsOptions,
   EuiDataGridScrollAnchorRow,
-  EuiDataGridStyle,
   ImperativeGridApi,
 } from '../data_grid_types';
 import { DataGridSortedContext } from './sorting';
@@ -327,7 +326,6 @@ export const useRowHeightUtils = ({
         gridItemsRenderedRef: MutableRefObject<GridOnItemsRenderedProps | null>;
       };
   rowHeightsOptions?: EuiDataGridRowHeightsOptions;
-  gridStyles: EuiDataGridStyle;
   columns: EuiDataGridColumn[];
 }) => {
   const forceRenderRef = useLatest(useForceRender());
