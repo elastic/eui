@@ -31,3 +31,14 @@ export const EUI_THEMES: EUI_THEME[] = [
 export const isDefaultTheme = (name: string) => {
   return name === AMSTERDAM_NAME_KEY;
 };
+
+export const EUI_EXPERIMENTAL_THEME_ENABLED_KEY =
+  'eui-experimental-theme-enabled';
+
+export const isExperimentalThemeEnabled = () => {
+  if (typeof localStorage !== 'undefined') {
+    return localStorage.getItem(EUI_EXPERIMENTAL_THEME_ENABLED_KEY) === 'true';
+  }
+
+  return false;
+};
