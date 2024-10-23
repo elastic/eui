@@ -23,7 +23,7 @@ import { DecorRight } from './decor_right';
 import { DecorLeft } from './decor_left';
 
 const title = 'Meet the EUI framework';
-const tagline = 'powering the Elastic stack';
+const tagline = 'powering the Elastic Stack';
 
 const DESCRIPTION_DATA = [
   {

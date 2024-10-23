@@ -6,4 +6,5 @@
  * Side Public License, v 1.
  */
 
-export { DemoSource, type DemoSourceProps } from './source';
+export { createDemo } from './demo';
+export { Guideline, GuidelineText } from './guideline';

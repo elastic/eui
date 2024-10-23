@@ -31,28 +31,28 @@ import SvgTable from './svg/table.svg';
 const CONTENT_DATA = [
   {
     title: 'Flexible layout',
-    href: '/docs/components/flex',
+    href: '/docs/layout/flex',
     svg: SvgFlex,
     description:
       'Flex groups, grids, panels and items to build responsive page layout',
   },
   {
     title: 'Spacer',
-    href: '/docs/components/spacer/',
+    href: '/docs/layout/spacer/',
     svg: SvgSpacer,
     description:
       'Component with strictly defined height to organise content blocks',
   },
   {
     title: 'Text',
-    href: '/docs/components/text',
+    href: '/docs/display/text',
     svg: SvgText,
     description:
       'Simple HTML text like paragraphs or lists, wrapped in a single component',
   },
   {
     title: 'Title',
-    href: '/docs/components/title',
+    href: '/docs/display/title',
     svg: SvgTitle,
     description:
       'Component for styling the page, section, and content headings',
@@ -65,39 +65,39 @@ const CONTENT_DATA = [
   },
   {
     title: 'Button',
-    href: '/docs/components/button',
+    href: '/docs/navigation/button',
     svg: SvgButton,
     description:
       'Variety of buttons and button groups with different styles and colours',
   },
   {
     title: 'Link',
-    href: '/docs/components/link',
+    href: '/docs/navigation/link',
     svg: SvgLink,
     description: 'Component designed to display nicely within a block of text',
   },
   {
     title: 'Tooltip',
-    href: '/docs/components/tooltip',
+    href: '/docs/display/tooltip',
     svg: SvgTooltip,
     description:
       'Contextual information hint with flexible positioning and behavior',
   },
   {
     title: 'Panel',
-    href: '/docs/components/panel',
+    href: '/docs/layout/panel',
     svg: SvgPanel,
     description: 'Layout helper, commonly used as a base for other components',
   },
   {
     title: 'Callout',
-    href: '/docs/components/callout',
+    href: '/docs/display/callout',
     svg: SvgCallout,
     description: 'Important message directly related to content on the page',
   },
   {
     title: 'Card',
-    href: '/docs/components/card',
+    href: '/docs/display/card',
     svg: SvgCard,
     description:
       'Vertical or horizontal cards, containing any custom components needed',

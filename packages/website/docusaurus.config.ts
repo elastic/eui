@@ -44,11 +44,11 @@ const config: Config = {
       {
         docs: {
           sidebarPath: './sidebars.ts',
-          editUrl: 'https://github.com/elastic/eui/tree/main/website/',
+          editUrl: 'https://github.com/elastic/eui/tree/main/packages/website/',
         },
         blog: {
           showReadingTime: true,
-          editUrl: 'https://github.com/elastic/eui/tree/main/website/',
+          editUrl: 'https://github.com/elastic/eui/tree/main/packages/website/',
         },
         googleTagManager: googleTagManagerId && {
           containerId: googleTagManagerId,
@@ -76,25 +76,25 @@ const config: Config = {
       items: [
         {
           type: 'docSidebar',
-          sidebarId: 'rootSidebar',
+          sidebarId: 'components',
           position: 'left',
-          label: 'Documentation',
+          label: 'Components',
         },
         {
           type: 'docSidebar',
-          sidebarId: 'patternsSidebar',
+          sidebarId: 'patterns',
           position: 'left',
           label: 'Patterns',
         },
         {
           type: 'docSidebar',
-          sidebarId: 'contentSidebar',
+          sidebarId: 'content',
           position: 'left',
           label: 'Content',
         },
         {
           type: 'docSidebar',
-          sidebarId: 'datavizSidebar',
+          sidebarId: 'dataviz',
           position: 'left',
           label: 'Data visualization',
         },
