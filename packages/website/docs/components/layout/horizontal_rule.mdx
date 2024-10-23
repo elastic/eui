@@ -1,0 +1,72 @@
+---
+slug: /layout/horizontal-rule
+id: layout_horizontal_rule
+---
+
+# Horizontal rule
+
+**EuiHorizontalRule** is a styled `<hr>` element. It can be one of three provided sizes (lengths), by default it will be `full`.
+
+```tsx interactive
+import React from 'react';
+import { EuiHorizontalRule, EuiCode } from '@elastic/eui';
+
+export default () => (
+  <>
+    <EuiCode>quarter</EuiCode>
+    <EuiHorizontalRule size="quarter" />
+    <EuiCode>half</EuiCode>
+    <EuiHorizontalRule size="half" />
+    <EuiCode>full (default)</EuiCode>
+    <EuiHorizontalRule />
+  </>
+);
+```
+
+## Margins
+
+The spacing added before and after **EuiHorizontalRule** can be adjusted using the `margin` prop. Don’t forget that margins will collapse against items that proceed and/or follow.
+
+```tsx interactive
+import React from 'react';
+import { EuiHorizontalRule, EuiCode } from '@elastic/eui';
+
+export default () => (
+  <>
+    <EuiCode>none</EuiCode>
+    <div>
+      <EuiHorizontalRule margin="none" />
+    </div>
+    <EuiCode>xs</EuiCode>
+    <div>
+      <EuiHorizontalRule margin="xs" />
+    </div>
+    <EuiCode>s</EuiCode>
+    <div>
+      <EuiHorizontalRule margin="s" />
+    </div>
+    <EuiCode>m</EuiCode>
+    <div>
+      <EuiHorizontalRule margin="m" />
+    </div>
+    <EuiCode>l (default)</EuiCode>
+    <div>
+      <EuiHorizontalRule margin="l" />
+    </div>
+    <EuiCode>xl</EuiCode>
+    <div>
+      <EuiHorizontalRule margin="xl" />
+    </div>
+    <EuiCode>xxl</EuiCode>
+    <div>
+      <EuiHorizontalRule margin="xxl" />
+    </div>
+  </>
+);
+```
+
+## Props
+
+import docgen from '@elastic/eui-docgen/dist/components/horizontal_rule';
+
+<PropTable definition={docgen.EuiHorizontalRule} />

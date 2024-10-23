@@ -1,0 +1,19 @@
+---
+slug: /elastic-charts/categorical
+id: elastic_charts_categorical
+---
+
+# Categorical
+
+External library: @elastic/charts v64.1.0
+
+Categorical charts compare data between multiple distinct categories. Avoid using a line chart because it might create confusion with a time series chart. Use a bar chart instead.
+
+**Key configurations**
+
+*   `Settings.rotation = 90`
+*   `BarSeries.data = orderBy(DATASET, ['count'], ['desc'])`
+*   `BarSeries.xAccessor = "vizType"`
+*   `Axis.tickFormat = (d => Number(d)'k')`
+
+null
