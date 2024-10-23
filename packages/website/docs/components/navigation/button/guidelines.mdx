@@ -205,11 +205,15 @@ Two buttons are optimal for a side-by-side layout, three is rare. For more butto
 
 ```mdx-code-block
 import ContextMenu from './guidelines_context_menu';
+import BrowserOnly from '@docusaurus/BrowserOnly';
 ```
 
 <EuiFlexGroup gutterSize="m">
   <Guideline type="do" text="Put multiple actions inside a menu triggered by a single rather than showing them separately.">
-    <ContextMenu />
+    {/* ContextMenu uses EuiPopover that's SSR-incompatible */}
+    <BrowserOnly>
+      {() => <ContextMenu />}
+    </BrowserOnly>
   </Guideline>
   <Guideline type="dont" text="When there are many buttons, none matter.">
     <EuiFlexGroup>
