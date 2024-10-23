@@ -39,6 +39,16 @@ const _buttons = {
   backgroundFilledText: background_colors.backgroundFilledText,
   backgroundFilledDisabled: background_colors.backgroundBaseDisabled,
 
+  // Temp. mapping to support more variants in old theme
+  backgroundEmptyPrimaryHover: background_colors.backgroundBaseHoverTransparent,
+  backgroundEmptyAccentHover: background_colors.backgroundBaseHoverTransparent,
+  backgroundEmptyAccentSecondaryHover:
+    background_colors.backgroundBaseHoverTransparent,
+  backgroundEmptySuccessHover: background_colors.backgroundBaseHoverTransparent,
+  backgroundEmptyWarningHover: background_colors.backgroundBaseHoverTransparent,
+  backgroundEmptyDangerHover: background_colors.backgroundBaseHoverTransparent,
+  backgroundEmptyTextHover: background_colors.backgroundBaseHoverTransparent,
+
   textColorPrimary: brand_text_colors.textPrimary,
   textColorAccent: brand_text_colors.textAccent,
   textColorAccentSecondary: brand_text_colors.textAccentSecondary,
@@ -78,6 +88,21 @@ const _dark_buttons = {
   backgroundFilledDanger: dark_background_colors.backgroundFilledDanger,
   backgroundFilledText: dark_background_colors.backgroundFilledText,
   backgroundFilledDisabled: dark_background_colors.backgroundBaseDisabled,
+
+  backgroundEmptyPrimaryHover:
+    dark_background_colors.backgroundBaseHoverTransparent,
+  backgroundEmptyAccentHover:
+    dark_background_colors.backgroundBaseHoverTransparent,
+  backgroundEmptyAccentSecondaryHover:
+    dark_background_colors.backgroundBaseHoverTransparent,
+  backgroundEmptySuccessHover:
+    dark_background_colors.backgroundBaseHoverTransparent,
+  backgroundEmptyWarningHover:
+    dark_background_colors.backgroundBaseHoverTransparent,
+  backgroundEmptyDangerHover:
+    dark_background_colors.backgroundBaseHoverTransparent,
+  backgroundEmptyTextHover:
+    dark_background_colors.backgroundBaseHoverTransparent,
 
   textColorPrimary: dark_brand_text_colors.textPrimary,
   textColorAccent: dark_brand_text_colors.textAccent,

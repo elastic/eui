@@ -35,8 +35,6 @@ export const euiBreadcrumbContentStyles = (euiThemeContext: UseEuiTheme) => {
     color: euiTheme.components.__TEMP_INTERNAL__.breadcrumbsApplicationColor,
   };
 
-  console.log(applicationTextColors);
-
   return {
     euiBreadcrumb__content: css`
       /* Unset EuiLink's bolder font weight */

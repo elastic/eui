@@ -15,7 +15,6 @@ export const _tourFooterBgColor = ({ euiTheme }: UseEuiTheme) =>
 
 export const euiTourFooterStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
-  console.log(_tourFooterBgColor(euiThemeContext));
   return {
     // Base
     euiTourFooter: css`

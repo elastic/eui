@@ -13,7 +13,6 @@ import {
   euiCanAnimate,
 } from '@elastic/eui-theme-common';
 
-import { euiBackgroundColor } from './_color';
 import {
   makeHighContrastColor,
   UseEuiTheme,
@@ -119,18 +118,18 @@ export const euiButtonEmptyColor = (
       foreground = euiButtonColor(euiThemeContext, color).color;
       background = 'transparent';
       break;
-    case 'text':
+    default: {
+      const backgroundToken = getTokenName(
+        'backgroundEmpty',
+        color,
+        'hover'
+      ) as keyof _EuiThemeButtonColors;
+
       foreground = euiButtonColor(euiThemeContext, color).color;
-      background = euiBackgroundColor(euiThemeContext, 'subdued', {
-        method: 'transparent',
-      });
+      background = euiThemeContext.euiTheme.components.buttons[backgroundToken];
+
       break;
-    default:
-      foreground = euiButtonColor(euiThemeContext, color).color;
-      background = euiBackgroundColor(euiThemeContext, color, {
-        method: 'transparent',
-      });
-      break;
+    }
   }
 
   return {

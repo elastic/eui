@@ -57,17 +57,15 @@ export const euiButtonIconStyles = (euiThemeContext: UseEuiTheme) => {
 };
 
 export const _emptyHoverStyles = (euiThemeContext: UseEuiTheme) =>
-  BUTTON_COLORS.reduce((styles, color) => {
-    const backgroundColor =
-      color === 'text'
-        ? euiThemeContext.euiTheme.colors.backgroundBaseHover
-        : euiButtonEmptyColor(euiThemeContext, color).backgroundColor;
-    return {
+  BUTTON_COLORS.reduce(
+    (styles, color) => ({
       ...styles,
       [color]: css`
         &:hover {
-          background-color: ${backgroundColor};
+          background-color: ${euiButtonEmptyColor(euiThemeContext, color)
+            .backgroundColor};
         }
       `,
-    };
-  }, {} as Record<_EuiButtonColor, SerializedStyles>);
+    }),
+    {} as Record<_EuiButtonColor, SerializedStyles>
+  );
