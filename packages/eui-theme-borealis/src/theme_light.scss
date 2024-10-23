@@ -1,0 +1,7 @@
+// color mode specific variables
+@import './variables/colors_light';
+
+
+// Global styling
+@import 'node_modules/@elastic/eui-theme-common/src/global_styling/index';
+@import './variables/index';
