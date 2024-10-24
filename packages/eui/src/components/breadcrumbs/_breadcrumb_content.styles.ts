@@ -30,9 +30,8 @@ export const euiBreadcrumbContentStyles = (euiThemeContext: UseEuiTheme) => {
   // Create custom darker gray colors for non-clickable application breadcrumbs
   // The numbers/ratios are fairly specific here to pass WCAG AA contrast minimums
   const applicationTextColors = {
-    backgroundColor:
-      euiTheme.components.__TEMP_INTERNAL__.breadcrumbsApplicationBackground,
-    color: euiTheme.components.__TEMP_INTERNAL__.breadcrumbsApplicationColor,
+    backgroundColor: euiTheme.components.breadcrumbsApplicationBackground,
+    color: euiTheme.components.breadcrumbsApplicationColor,
   };
 
   return {

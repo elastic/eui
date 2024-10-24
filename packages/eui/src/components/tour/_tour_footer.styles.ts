@@ -11,7 +11,7 @@ import { UseEuiTheme } from '../../services';
 import { logicalCSS } from '../../global_styling';
 
 export const _tourFooterBgColor = ({ euiTheme }: UseEuiTheme) =>
-  euiTheme.components.__TEMP_INTERNAL__.tourFooterBackground;
+  euiTheme.components.tourFooterBackground;
 
 export const euiTourFooterStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;

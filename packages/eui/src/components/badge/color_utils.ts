@@ -31,12 +31,12 @@ export const euiBadgeColors = (euiThemeContext: UseEuiTheme) => {
     // Hollow has a border and is used for autocompleters and beta badges
     hollow: {
       ...getBadgeColors(euiThemeContext, euiTheme.colors.emptyShade),
-      borderColor: euiTheme.components.__TEMP_INTERNAL__.badgeBorderColorHollow,
+      borderColor: euiTheme.components.badgeBorderColorHollow,
     },
     // Colors used by beta and notification badges
     subdued: getBadgeColors(
       euiThemeContext,
-      euiTheme.components.__TEMP_INTERNAL__.badgeBackgroundSubdued
+      euiTheme.components.badgeBackgroundSubdued
     ),
     accentText: getBadgeColors(euiThemeContext, euiTheme.colors.accentText),
   };

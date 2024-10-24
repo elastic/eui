@@ -13,7 +13,7 @@ import { euiScreenReaderOnly } from '../accessibility';
 export const euiMarkStyles = ({ euiTheme }: UseEuiTheme) => {
   return {
     euiMark: css`
-      background-color: ${euiTheme.components.__TEMP_INTERNAL__.markBackground};
+      background-color: ${euiTheme.components.markBackground};
       font-weight: ${euiTheme.font.weight.bold};
       /* Override the browser's black color.
          Can't use 'inherit' because the text to background color contrast may not be sufficient */

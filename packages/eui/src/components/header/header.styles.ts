@@ -49,8 +49,7 @@ export const euiHeaderStyles = (euiThemeContext: UseEuiTheme) => {
     `,
     // Theme
     default: css`
-      background-color: ${euiTheme.components.__TEMP_INTERNAL__
-        .headerBackground};
+      background-color: ${euiTheme.components.headerBackground};
     `,
     dark: css(euiHeaderDarkStyles(euiThemeContext)),
   };
@@ -71,8 +70,7 @@ const euiHeaderDarkStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
   const { controlPlaceholderText } = euiFormVariables(euiThemeContext);
 
-  const backgroundColor =
-    euiTheme.components.__TEMP_INTERNAL__.headerBackgroundDark;
+  const backgroundColor = euiTheme.components.headerBackgroundDark;
 
   return `
     background-color: ${backgroundColor};
@@ -92,8 +90,7 @@ const euiHeaderDarkStyles = (euiThemeContext: UseEuiTheme) => {
     .euiHeaderSectionItemButton {
       &:focus {
         background-color: ${
-          euiTheme.components.__TEMP_INTERNAL__
-            .headerSectionItemBackgroundFocusDark
+          euiTheme.components.headerSectionItemBackgroundFocusDark
         };
       }
     }
@@ -110,9 +107,7 @@ const euiHeaderDarkStyles = (euiThemeContext: UseEuiTheme) => {
       background-color: transparent;
 
       &--group {
-        border-color: ${
-          euiTheme.components.__TEMP_INTERNAL__.headerSearchBorderColor
-        };
+        border-color: ${euiTheme.components.headerSearchBorderColor};
       }
 
       &:not(:focus-within) {

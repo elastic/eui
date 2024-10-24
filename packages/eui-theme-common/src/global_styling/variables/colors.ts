@@ -207,6 +207,28 @@ export type _EuiThemeBackgroundColors = {
   backgroundFilledText: ColorModeSwitch;
 };
 
+/** TODO: remove once usages are re-mapped */
+export type _EuiThemeTransparentBackgroundColors = {
+  /** @deprecated */
+  backgroundTransparent: string;
+  /** @deprecated */
+  backgroundTransparentPrimary: ColorModeSwitch;
+  /** @deprecated */
+  backgroundTransparentAccent: ColorModeSwitch;
+  /** @deprecated */
+  backgroundTransparentAccentSecondary: ColorModeSwitch;
+  /** @deprecated */
+  backgroundTransparentSuccess: ColorModeSwitch;
+  /** @deprecated */
+  backgroundTransparentWarning: ColorModeSwitch;
+  /** @deprecated */
+  backgroundTransparentDanger: ColorModeSwitch;
+  /** @deprecated */
+  backgroundTransparentSubdued: ColorModeSwitch;
+  /** @deprecated */
+  backgroundTransparentPlain: ColorModeSwitch;
+};
+
 export type _EuiThemeBorderColors = {
   borderBasePrimary: ColorModeSwitch;
   borderBaseAccent: ColorModeSwitch;
@@ -249,6 +271,7 @@ export type _EuiThemeColorsMode = _EuiThemeBrandColors &
   _EuiThemeSpecialColors &
   _EuiThemeTextColors &
   _EuiThemeBackgroundColors &
+  _EuiThemeTransparentBackgroundColors &
   _EuiThemeBorderColors;
 
 export type _EuiThemeColors = StrictColorModeSwitch<_EuiThemeColorsMode> &

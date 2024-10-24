@@ -156,16 +156,13 @@ const _expandedRowAnimation = ({ euiTheme }: UseEuiTheme) => {
 };
 
 const _rowColorVariables = ({ euiTheme }: UseEuiTheme) => ({
-  hover: euiTheme.components.__TEMP_INTERNAL__.tableRowBackgroundHover,
+  hover: euiTheme.components.tableRowBackgroundHover,
   selected: {
-    color: euiTheme.components.__TEMP_INTERNAL__.tableRowBackgroundSelected,
-    hover:
-      euiTheme.components.__TEMP_INTERNAL__.tableRowBackgroundSelectedHover,
+    color: euiTheme.components.tableRowBackgroundSelected,
+    hover: euiTheme.components.tableRowBackgroundSelectedHover,
   },
   clickable: {
-    hover:
-      euiTheme.components.__TEMP_INTERNAL__.tableRowInteractiveBackgroundHover,
-    focus:
-      euiTheme.components.__TEMP_INTERNAL__.tableRowInteractiveBackgroundFocus,
+    hover: euiTheme.components.tableRowInteractiveBackgroundHover,
+    focus: euiTheme.components.tableRowInteractiveBackgroundFocus,
   },
 });

@@ -45,7 +45,7 @@ export const euiSuperDatePickerStyles = (euiThemeContext: UseEuiTheme) => {
 
   // Needs updating colors
   const needsUpdatingBackgroundColor =
-    euiTheme.components.__TEMP_INTERNAL__.superDatePickerBackgroundSuccees;
+    euiTheme.components.superDatePickerBackgroundSuccees;
   const needsUpdatingTextColor = makeHighContrastColor(euiTheme.colors.success)(
     needsUpdatingBackgroundColor
   );

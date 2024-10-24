@@ -77,11 +77,11 @@ export const euiPopoverPanelStyles = (euiThemeContext: UseEuiTheme) => {
 
     /* 4 */
     light: css`
-      --euiPopoverBackgroundColor: ${euiTheme.components.__TEMP_INTERNAL__
+      --euiPopoverBackgroundColor: ${euiTheme.components
         .popoverPanelBackground};
     `,
     dark: css`
-      --euiPopoverBackgroundColor: ${euiTheme.components.__TEMP_INTERNAL__
+      --euiPopoverBackgroundColor: ${euiTheme.components
         .popoverPanelBackground};
     `,
 

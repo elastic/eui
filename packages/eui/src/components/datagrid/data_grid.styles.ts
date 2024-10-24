@@ -65,13 +65,11 @@ export const euiDataGridStyles = (euiThemeContext: UseEuiTheme) => {
       }
 
       *:where(&.euiDataGrid--stripes .euiDataGridRow--striped) {
-        background-color: ${euiTheme.components.__TEMP_INTERNAL__
-          .dataGridRowBackgroundStriped};
+        background-color: ${euiTheme.components.dataGridRowBackgroundStriped};
       }
 
       *:where(&.euiDataGrid--rowHoverHighlight .euiDataGridRow:hover) {
-        background-color: ${euiTheme.components.__TEMP_INTERNAL__
-          .dataGridRowBackgroundHover};
+        background-color: ${euiTheme.components.dataGridRowBackgroundHover};
       }
     `,
     cellPadding: {
@@ -155,7 +153,7 @@ export const euiDataGridStyles = (euiThemeContext: UseEuiTheme) => {
             ${logicalCSS(
               'border-right',
               // Visually lighten vertical borders
-              `${euiTheme.border.width.thin} solid ${euiTheme.components.__TEMP_INTERNAL__.dataGridVerticalLineBorderColor}`
+              `${euiTheme.border.width.thin} solid ${euiTheme.components.dataGridVerticalLineBorderColor}`
             )}
           }
 
