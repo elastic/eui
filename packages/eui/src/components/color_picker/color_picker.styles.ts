@@ -48,7 +48,7 @@ export const euiColorPickerStyles = (euiThemeContext: UseEuiTheme) => {
     euiColorPicker__swatchInputIcon: css`
       .euiSwatchInput__stroke {
         fill: none;
-        stroke: ${euiTheme.colors.borderBaseColorSwatch};
+        stroke: ${euiTheme.colors.borderBaseFormsColorSwatch};
       }
     `,
   };

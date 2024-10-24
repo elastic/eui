@@ -83,16 +83,18 @@ export const background_colors: _EuiThemeBackgroundColors = {
   backgroundBaseSuccess: SEMANTIC_COLORS.success10,
   backgroundBaseWarning: SEMANTIC_COLORS.warning10,
   backgroundBaseDanger: SEMANTIC_COLORS.danger10,
-  backgroundBasePlain: SEMANTIC_COLORS.plainLight,
-  backgroundBaseSubdued: SEMANTIC_COLORS.shade10,
-  backgroundBaseDisabled: SEMANTIC_COLORS.shade15,
   backgroundBasePage: SEMANTIC_COLORS.shade10,
-  backgroundBasePrepend: SEMANTIC_COLORS.shade15,
+  backgroundBaseSubdued: SEMANTIC_COLORS.shade10,
+  backgroundBasePlain: SEMANTIC_COLORS.plainLight,
+  backgroundBaseDisabled: SEMANTIC_COLORS.shade15,
 
-  backgroundBaseHover: SEMANTIC_COLORS.shade15,
-  backgroundBaseHoverTransparent: SEMANTIC_COLORS.shadeTransparent10,
-  backgroundBaseSelect: SEMANTIC_COLORS.primary10,
-  backgroundBaseOverlay: SEMANTIC_COLORS.shadeTransparent100,
+  backgroundBaseFormsPrepend: SEMANTIC_COLORS.shade15,
+  backgroundBaseFormsControlDisabled: SEMANTIC_COLORS.shade30,
+
+  backgroundBaseInteractiveHover: SEMANTIC_COLORS.shadeTransparent10,
+  backgroundBaseInteractiveSelect: SEMANTIC_COLORS.primary10,
+  backgroundBaseInteractiveOverlay: SEMANTIC_COLORS.shadeTransparent80,
+
   backgroundBaseSkeletonEdge: SEMANTIC_COLORS.shadeTransparent30,
   backgroundBaseSkeletonMiddle: SEMANTIC_COLORS.shadeTransparent10,
 
@@ -144,7 +146,9 @@ export const border_colors: _EuiThemeBorderColors = {
   borderBaseSubdued: SEMANTIC_COLORS.shade20,
   borderBaseDisabled: SEMANTIC_COLORS.shade30,
   borderBaseFloating: PRIMITIVE_COLORS.transparent.white['0'],
-  borderBaseColorSwatch: SEMANTIC_COLORS.shadeTransparent30,
+
+  borderBaseFormsColorSwatch: SEMANTIC_COLORS.shadeTransparent30,
+  borderBaseFormsControl: SEMANTIC_COLORS.shade60,
 };
 
 export const special_colors: _EuiThemeSpecialColors = {

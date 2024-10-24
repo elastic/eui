@@ -29,7 +29,7 @@ const euiSwitchVars = (euiThemeContext: UseEuiTheme) => {
     disabled: formVars.colors.disabled,
     thumb: formVars.colors.selectedIcon,
     thumbDisabled: euiTheme.components.switchThumbBackgroundDisabled,
-    thumbBorder: formVars.colors.unselectedBorder,
+    thumbBorder: euiTheme.components.switchThumbBorder,
     thumbBorderOn: formVars.colors.selectedBorder,
     thumbBorderDisabled: formVars.colors.disabledBorder,
     iconDisabled: formVars.colors.disabledIcon,

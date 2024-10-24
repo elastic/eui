@@ -69,6 +69,7 @@ type _EuiThemeComponentColors = {
   switchCompressedBackgroundDisabled: ColorModeSwitch;
   switchMiniBackgroundDisabled: ColorModeSwitch;
   switchThumbBackgroundDisabled: ColorModeSwitch;
+  switchThumbBorder: ColorModeSwitch;
 
   tableRowBackgroundHover: ColorModeSwitch;
   tableRowBackgroundSelected: ColorModeSwitch;

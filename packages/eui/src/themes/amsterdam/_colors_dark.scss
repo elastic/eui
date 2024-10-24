@@ -37,16 +37,16 @@ $euiColorBackgroundBaseAccentSecondary: shade($euiColorAccentSecondary, 80%) !de
 $euiColorBackgroundBaseSuccess: shade($euiColorSuccess, 80%) !default;
 $euiColorBackgroundBaseWarning: shade($euiColorWarning, 80%) !default;
 $euiColorBackgroundBaseDanger: shade($euiColorDanger, 80%) !default;
+$euiColorBackgroundBasePage: $euiPageBackgroundColor !default;
 $euiColorBackgroundBaseSubdued: shade($euiPageBackgroundColor, 80%) !default;
 $euiColorBackgroundBaseDisabled: transparentize($euiColorLightShade, 0.15)!default;
 $euiColorBackgroundBasePlain: $euiColorEmptyShade !default;
-$euiColorBackgroundBasePage: $euiPageBackgroundColor !default;
-$euiColorBackgroundBasePrepend: shade($euiColorLightShade, 0.15) !default;
+$euiColorBackgroundBaseFormsPrepend: shade($euiColorLightShade, 0.15) !default;
+$euiColorBackgroundBaseFormsControlDisabled: $euiColorLightShade !default;
 
-$euiColorBackgroundBaseHover: transparentize($euiColorLightShade, 0.2) !default;
-$euiColorBackgroundBaseHoverTransparent: transparentize($euiColorLightShade, 0.2) !default;
-$euiColorBackgroundBaseSelect: shade($euiColorPrimary, 0.7) !default;
-$euiColorBackgroundBaseOverlay: transparentize($euiColorInk, 0.5) !default;
+$euiColorBackgroundBaseInteractiveHover: transparentize($euiColorLightShade, 0.2) !default;
+$euiColorBackgroundBaseInteractiveSelect: shade($euiColorPrimary, 0.7) !default;
+$euiColorBackgroundBaseInteractiveOverlay: transparentize($euiColorInk, 0.5) !default;
 $euiColorBackgroundBaseSkeletonEdge: shade($euiColorLightShade, 0.12) !default;
 $euiColorBackgroundBaseSkeletonMiddle: shade($euiColorLightShade, 0.24) !default;
 
@@ -107,7 +107,8 @@ $borderBasePlain: $euiColorLightShade;
 $borderBaseSubdued: $euiColorLightShade;
 $borderBaseDisabled: transparentize($euiColorGhost, 0.1);
 $borderBaseFloating: $euiColorLightShade;
-$borderBaseColorSwatch: transparentize($euiColorFullShade, 0.1);
+$borderBaseFormsColorSwatch: transparentize($euiColorFullShade, 0.1);
+$borderBaseFormsControl: tint($euiColorLightestShade, 0.31);
 
 // Charts
 $euiColorChartLines: $euiColorLightShade !default;

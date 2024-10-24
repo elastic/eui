@@ -19,7 +19,7 @@ export const focus: _EuiThemeFocus = {
   // Focus background
   transparency: { LIGHT: 0.1, DARK: 0.2 },
   backgroundColor: computed(
-    ([backgroundBaseHoverTransparent]) => backgroundBaseHoverTransparent,
-    ['colors.backgroundBaseHoverTransparent']
+    ([backgroundBaseInteractiveHover]) => backgroundBaseInteractiveHover,
+    ['colors.backgroundBaseInteractiveHover']
   ),
 };

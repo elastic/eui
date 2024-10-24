@@ -65,6 +65,7 @@ const _forms = {
     ([emptyShade]) => emptyShade,
     ['colors.emptyShade']
   ),
+  controlBackgroundDisabled: 'transparent',
 
   colorHasPlaceholder: computed(
     ([subduedText]) => tint(subduedText, 0.08),

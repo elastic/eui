@@ -8,7 +8,6 @@
 
 import { _EuiThemeComponents } from '@elastic/eui-theme-common';
 
-import { PRIMITIVE_COLORS } from './colors/_primitive_colors';
 import { SEMANTIC_COLORS } from './colors/_semantic_colors';
 import {
   dark_background_colors,
@@ -31,7 +30,7 @@ const _components = {
   badgeBackgroundSubdued: background_colors.backgroundBaseSubdued,
   badgeBorderColorHollow: border_colors.borderBasePlain,
   badgeIconButtonBackgroundHover:
-    background_colors.backgroundBaseHoverTransparent,
+    background_colors.backgroundBaseInteractiveHover,
 
   breadcrumbsApplicationBackground: background_colors.backgroundLightText,
   breadcrumbsApplicationColor: text_colors.textSubdued,
@@ -43,7 +42,7 @@ const _components = {
 
   dataGridVerticalLineBorderColor: border_colors.borderBasePlain,
   dataGridRowBackgroundStriped: background_colors.backgroundBaseSubdued,
-  dataGridRowBackgroundHover: background_colors.backgroundBaseHover,
+  dataGridRowBackgroundHover: background_colors.backgroundBaseInteractiveHover,
 
   dragDropDraggingBackground: background_colors.backgroundBaseSuccess,
   dragDropDraggingOverBackground: background_colors.backgroundLightSuccess,
@@ -62,10 +61,14 @@ const _components = {
   keyPadMenuItemBackgroundDisabledSelect:
     background_colors.backgroundBaseDisabled,
 
-  listGroupItemBackgroundPrimaryActive: background_colors.backgroundBaseSelect,
-  listGroupItemBackgroundSubduedActive: background_colors.backgroundBaseSelect,
-  listGroupItemBackgroundHover: background_colors.backgroundBaseHover,
-  listGroupItemBackgroundPrimaryHover: background_colors.backgroundBaseHover,
+  listGroupItemBackgroundPrimaryActive:
+    background_colors.backgroundBaseInteractiveSelect,
+  listGroupItemBackgroundSubduedActive:
+    background_colors.backgroundBaseInteractiveSelect,
+  listGroupItemBackgroundHover:
+    background_colors.backgroundBaseInteractiveHover,
+  listGroupItemBackgroundPrimaryHover:
+    background_colors.backgroundBaseInteractiveHover,
 
   markBackground: background_colors.backgroundLightPrimary,
 
@@ -76,7 +79,8 @@ const _components = {
 
   scrollbarTrackColor: SEMANTIC_COLORS.shade15,
 
-  sideNavItemEmphasizedBackground: background_colors.backgroundBaseSelect,
+  sideNavItemEmphasizedBackground:
+    background_colors.backgroundBaseInteractiveSelect,
 
   selectableListItemBorderColor: border_colors.borderBaseSubdued,
 
@@ -84,16 +88,22 @@ const _components = {
 
   switchBackgroundOff: background_colors.backgroundFilledText,
   switchUncompressedBackgroundDisabled:
-    background_colors.backgroundBaseDisabled,
-  switchCompressedBackgroundDisabled: background_colors.backgroundBaseDisabled,
-  switchMiniBackgroundDisabled: background_colors.backgroundBaseDisabled,
+    background_colors.backgroundBaseFormsControlDisabled,
+  switchCompressedBackgroundDisabled:
+    background_colors.backgroundBaseFormsControlDisabled,
+  switchMiniBackgroundDisabled:
+    background_colors.backgroundBaseFormsControlDisabled,
   switchThumbBackgroundDisabled: background_colors.backgroundBasePlain,
+  switchThumbBorder: border_colors.borderBaseText,
 
-  tableRowBackgroundHover: background_colors.backgroundBaseHover,
-  tableRowBackgroundSelected: background_colors.backgroundBaseSelect,
-  tableRowBackgroundSelectedHover: background_colors.backgroundBaseSelect,
-  tableRowInteractiveBackgroundHover: background_colors.backgroundBaseSelect,
-  tableRowInteractiveBackgroundFocus: background_colors.backgroundBaseSelect,
+  tableRowBackgroundHover: background_colors.backgroundBaseInteractiveHover,
+  tableRowBackgroundSelected: background_colors.backgroundBaseInteractiveSelect,
+  tableRowBackgroundSelectedHover:
+    background_colors.backgroundBaseInteractiveSelect,
+  tableRowInteractiveBackgroundHover:
+    background_colors.backgroundBaseInteractiveSelect,
+  tableRowInteractiveBackgroundFocus:
+    background_colors.backgroundBaseInteractiveSelect,
   tableCellSortableIconColor: background_colors.backgroundFilledText,
 
   tooltipBackground: dark_background_colors.backgroundBaseSubdued,
@@ -102,7 +112,7 @@ const _components = {
 
   tourFooterBackground: background_colors.backgroundBaseSubdued,
 
-  treeViewItemBackgroundHover: background_colors.backgroundBaseHover,
+  treeViewItemBackgroundHover: background_colors.backgroundBaseInteractiveHover,
 };
 
 export const components: _EuiThemeComponents = {
@@ -118,7 +128,7 @@ export const components: _EuiThemeComponents = {
     badgeBackgroundSubdued: dark_background_colors.backgroundBaseSubdued,
     badgeBorderColorHollow: dark_border_colors.borderBasePlain,
     badgeIconButtonBackgroundHover:
-      dark_background_colors.backgroundBaseHoverTransparent,
+      dark_background_colors.backgroundBaseInteractiveHover,
 
     breadcrumbsApplicationBackground:
       dark_background_colors.backgroundLightText,
@@ -130,7 +140,8 @@ export const components: _EuiThemeComponents = {
 
     dataGridVerticalLineBorderColor: dark_border_colors.borderBasePlain,
     dataGridRowBackgroundStriped: dark_background_colors.backgroundBaseSubdued,
-    dataGridRowBackgroundHover: dark_background_colors.backgroundBaseHover,
+    dataGridRowBackgroundHover:
+      dark_background_colors.backgroundBaseInteractiveHover,
 
     dragDropDraggingBackground: dark_background_colors.backgroundBaseSuccess,
     dragDropDraggingOverBackground:
@@ -148,12 +159,13 @@ export const components: _EuiThemeComponents = {
       dark_background_colors.backgroundBaseDisabled,
 
     listGroupItemBackgroundPrimaryActive:
-      dark_background_colors.backgroundBaseSelect,
+      dark_background_colors.backgroundBaseInteractiveSelect,
     listGroupItemBackgroundSubduedActive:
-      dark_background_colors.backgroundBaseSelect,
-    listGroupItemBackgroundHover: dark_background_colors.backgroundBaseHover,
+      dark_background_colors.backgroundBaseInteractiveSelect,
+    listGroupItemBackgroundHover:
+      dark_background_colors.backgroundBaseInteractiveHover,
     listGroupItemBackgroundPrimaryHover:
-      dark_background_colors.backgroundBaseHover,
+      dark_background_colors.backgroundBaseInteractiveHover,
 
     markBackground: dark_background_colors.backgroundLightPrimary,
 
@@ -165,35 +177,40 @@ export const components: _EuiThemeComponents = {
     scrollbarTrackColor: SEMANTIC_COLORS.shade145,
 
     sideNavItemEmphasizedBackground:
-      dark_background_colors.backgroundBaseSelect,
+      dark_background_colors.backgroundBaseInteractiveSelect,
 
     selectableListItemBorderColor: dark_border_colors.borderBaseSubdued,
 
     switchBackgroundOff: dark_background_colors.backgroundFilledText,
     switchUncompressedBackgroundDisabled:
-      dark_background_colors.backgroundBaseDisabled,
+      dark_background_colors.backgroundBaseFormsControlDisabled,
     switchCompressedBackgroundDisabled:
-      dark_background_colors.backgroundBaseDisabled,
-    switchMiniBackgroundDisabled: dark_background_colors.backgroundBaseDisabled,
+      dark_background_colors.backgroundBaseFormsControlDisabled,
+    switchMiniBackgroundDisabled:
+      dark_background_colors.backgroundBaseFormsControlDisabled,
     switchThumbBackgroundDisabled: dark_background_colors.backgroundBasePlain,
+    switchThumbBorder: dark_border_colors.borderBaseText,
 
     superDatePickerBackgroundSuccees:
       dark_background_colors.backgroundBaseSuccess,
 
-    tableRowBackgroundHover: dark_background_colors.backgroundBaseHover,
-    tableRowBackgroundSelected: dark_background_colors.backgroundBaseSelect,
+    tableRowBackgroundHover:
+      dark_background_colors.backgroundBaseInteractiveHover,
+    tableRowBackgroundSelected:
+      dark_background_colors.backgroundBaseInteractiveSelect,
     tableRowBackgroundSelectedHover:
-      dark_background_colors.backgroundBaseSelect,
+      dark_background_colors.backgroundBaseInteractiveSelect,
     tableRowInteractiveBackgroundHover:
-      dark_background_colors.backgroundBaseHover,
+      dark_background_colors.backgroundBaseInteractiveHover,
     tableRowInteractiveBackgroundFocus:
-      dark_background_colors.backgroundBaseHover,
+      dark_background_colors.backgroundBaseInteractiveHover,
     tableCellSortableIconColor: dark_background_colors.backgroundFilledText,
 
     tooltipBorderFloating: dark_border_colors.borderBaseFloating,
 
     tourFooterBackground: dark_background_colors.backgroundBaseSubdued,
 
-    treeViewItemBackgroundHover: dark_background_colors.backgroundBaseHover,
+    treeViewItemBackgroundHover:
+      dark_background_colors.backgroundBaseInteractiveHover,
   },
 };
