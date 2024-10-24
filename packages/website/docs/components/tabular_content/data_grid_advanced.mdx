@@ -39,7 +39,7 @@ When using `setFocusedCell` or `openCellPopover`, keep in mind:
 
 ### react-window methods
 
-`EuiDataGrid` also exposes several underlying methods from [react-window's `VariableSizeGrid` imperative API(opens in a new tab or window)](https://react-window.vercel.app/#/api/VariableSizeGrid) via its `ref`:
+`EuiDataGrid` also exposes several underlying methods from [react-window's `VariableSizeGrid` imperative API](https://react-window.vercel.app/#/api/VariableSizeGrid) via its `ref`:
 
 *   `scrollTo({ scrollLeft: number, scrollTop: number })` - scrolls the grid to the specified horizontal and vertical pixel offsets.
 
@@ -878,7 +878,7 @@ export default () => {
 
 For **extremely** advanced use cases, the `renderCustomGridBody` prop may be used to take complete control over rendering the grid body. This may be useful for scenarios where the default [virtualized](/docs/tabular-content/data-grid#virtualization) rendering is not desired, or where custom row layouts (e.g., the conditional row details cell below) are required.
 
-Please note that this prop is meant to be an **escape hatch**, and should only be used if you know exactly what you are doing. Once a custom renderer is used, you are in charge of ensuring the grid has all the correct semantic and aria labels required by the [data grid spec(opens in a new tab or window)](https://www.w3.org/WAI/ARIA/apg/patterns/grid), and that keyboard focus and navigation still work in an accessible manner.
+Please note that this prop is meant to be an **escape hatch**, and should only be used if you know exactly what you are doing. Once a custom renderer is used, you are in charge of ensuring the grid has all the correct semantic and aria labels required by the [data grid spec](https://www.w3.org/WAI/ARIA/apg/patterns/grid), and that keyboard focus and navigation still work in an accessible manner.
 
 ```tsx interactive
 import React, { useEffect, useCallback, useState, useRef } from 'react';

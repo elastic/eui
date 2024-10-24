@@ -857,7 +857,7 @@ export default () => {
 
 ## Using drag and drop in popovers
 
-**EuiDraggables** use fixed positioning to render and animate the item being dragged. This positioning logic does not work as expected when used inside of containers that have their own [stacking context(opens in a new tab or window)](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_positioned_layout/Understanding_z-index/Stacking_context).
+**EuiDraggables** use fixed positioning to render and animate the item being dragged. This positioning logic does not work as expected when used inside of containers that have their own [stacking context](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_positioned_layout/Understanding_z-index/Stacking_context).
 
 This behavior particularly affects [**EuiPopover**](/docs/layout/popover). If using drag and drop UX within a popover, you **must** include the `<EuiPopover hasDragDrop>` prop for items to properly render while being dragged.
 
