@@ -59,7 +59,6 @@ const getStyles = (euiThemeContext: UseEuiTheme) => {
       --hero-decor-fill-brand-poppy: #ff957d;
 
       position: relative;
-      overflow: hidden;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -178,6 +177,14 @@ const getStyles = (euiThemeContext: UseEuiTheme) => {
       }
     `,
     decor: {
+      wrapper: css`
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        overflow: hidden;
+      `,
       decor: css`
         position: absolute;
         top: 0;
@@ -216,11 +223,13 @@ export function HomepageHeader() {
 
   return (
     <header className={clsx('hero hero--primary')} css={styles.hero}>
-      <div css={[styles.decor.decor, styles.decor.left]}>
-        <DecorLeft />
-      </div>
-      <div css={[styles.decor.decor, styles.decor.right]}>
-        <DecorRight />
+      <div css={styles.decor.wrapper}>
+        <div css={[styles.decor.decor, styles.decor.left]}>
+          <DecorLeft />
+        </div>
+        <div css={[styles.decor.decor, styles.decor.right]}>
+          <DecorRight />
+        </div>
       </div>
       <HomepageContainer>
         <div css={styles.left}>
