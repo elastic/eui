@@ -5,7 +5,6 @@
  * in compliance with, at your election, the Elastic License 2.0 or the Server
  * Side Public License, v 1.
  */
-import { SEMANTIC_COLORS } from './colors/_semantic_colors';
 import {
   dark_background_colors,
   dark_border_colors,
@@ -22,7 +21,7 @@ const _forms = {
   backgroundDisabled: background_colors.backgroundBaseDisabled,
   backgroundFocused: background_colors.backgroundBasePlain,
   backgroundAutofilled: background_colors.backgroundBasePrimary,
-  prependBackground: SEMANTIC_COLORS.shade15,
+  prependBackground: background_colors.backgroundBaseFormsPrepend,
   border: border_colors.borderBasePlain,
   borderAutofilled: border_colors.borderBasePrimary,
   controlBorder: border_colors.borderBaseFormsControl,
@@ -42,7 +41,7 @@ const _dark_forms = {
   backgroundDisabled: dark_background_colors.backgroundBaseDisabled,
   backgroundFocused: dark_background_colors.backgroundBasePlain,
   backgroundAutofilled: dark_background_colors.backgroundBasePrimary,
-  prependBackground: SEMANTIC_COLORS.shade130,
+  prependBackground: dark_background_colors.backgroundBaseFormsPrepend,
   border: dark_border_colors.borderBasePlain,
   borderAutofilled: dark_border_colors.borderBasePrimary,
   controlBorder: dark_border_colors.borderBaseFormsControl,
