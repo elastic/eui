@@ -5,7 +5,7 @@ id: elastic_charts_categorical
 
 # Categorical
 
-External library: @elastic/charts v64.1.0
+<Badge>External library: @elastic/charts v64.1.0</Badge>
 
 Categorical charts compare data between multiple distinct categories. Avoid using a line chart because it might create confusion with a time series chart. Use a bar chart instead.
 
@@ -16,4 +16,13 @@ Categorical charts compare data between multiple distinct categories. Avoid usin
 *   `BarSeries.xAccessor = "vizType"`
 *   `Axis.tickFormat = (d => Number(d)'k')`
 
-null
+<br />
+
+```mdx-code-block
+import { CategoryChart } from './category_chart';
+import BrowserOnly from '@docusaurus/BrowserOnly';
+```
+
+<BrowserOnly>
+  {() => <CategoryChart />}
+</BrowserOnly>

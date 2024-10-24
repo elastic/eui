@@ -5,7 +5,7 @@ id: elastic_charts_part_to_whole_comparisons
 
 # Part to whole comparisons
 
-External library: @elastic/charts v64.1.0
+<Badge>External library: @elastic/charts v64.1.0</Badge>
 
 ## Pie and donut charts
 
@@ -17,123 +17,130 @@ A common argument is made that pie charts are not usually the best representatio
 
 The guidelines for [donut charts](http://kosara.net/publications/Skau-EuroVis-2016.html) are the same for pie charts. The empty center of donut charts can provide a place to display additional/related information.
 
-```tsx interactive
-import React from 'react';
-import {
-  EuiFlexGrid,
-  EuiFlexItem,
-  EuiTitle,
-  EuiSpacer,
-  htmlIdGenerator,
-} from '@elastic/eui';
-import {
-  Chart,
-  Partition,
-  Settings,
-  PartitionLayout,
-  PartialTheme,
-} from '@elastic/charts';
-import { useChartBaseTheme } from './utils/use_chart_base_theme';
-
-const STATUS_DATA = [
-  {
-    status: 'Open',
-    count: 25,
-  },
-  {
-    status: 'Closed',
-    count: 319,
-  },
-];
-
-const LANGUAGE_DATA = [
-  {
-    language: 'JavaScript',
-    percent: 51.4,
-  },
-  {
-    language: 'TypeScript',
-    percent: 39.6,
-  },
-  {
-    language: 'CSS',
-    percent: 8.7,
-  },
-];
-
-export default () => {
-  const chartBaseTheme = useChartBaseTheme();
-  const htmlId = htmlIdGenerator();
-  const exampleOne = htmlId();
-  const exampleTwo = htmlId();
-
-  const themeOverrides: PartialTheme = {
-    partition: { emptySizeRatio: 0.4 },
-  };
-
-  return (
-    <div>
-      <EuiFlexGrid columns={2}>
-        <EuiFlexItem>
-          <EuiTitle className="eui-textCenter" size="xs">
-            <h3 id={exampleOne}>Year to date PR count by status</h3>
-          </EuiTitle>
-          <EuiSpacer />
-          <Chart size={{ height: 200 }}>
-            <Settings
-              baseTheme={chartBaseTheme}
-              theme={themeOverrides}
-              ariaLabelledBy={exampleOne}
-            />
-            <Partition
-              id="pieByPR"
-              data={STATUS_DATA}
-              layout={PartitionLayout.sunburst}
-              valueAccessor={(d) => d.count}
-              layers={[
-                {
-                  groupByRollup: (d: (typeof STATUS_DATA)[0]) => d.status,
-                  shape: {
-                    fillColor: (_, sortIndex) =>
-                      chartBaseTheme.colors.vizColors![sortIndex],
-                  },
-                },
-              ]}
-              clockwiseSectors={false}
-            />
-          </Chart>
-        </EuiFlexItem>
-        <EuiFlexItem>
-          <EuiTitle className="eui-textCenter" size="xs">
-            <h3 id={exampleTwo}>Code languages</h3>
-          </EuiTitle>
-          <EuiSpacer />
-          <Chart size={{ height: 200 }}>
-            <Settings baseTheme={chartBaseTheme} ariaLabelledBy={exampleTwo} />
-            <Partition
-              id="donutByLanguage"
-              data={LANGUAGE_DATA}
-              layout={PartitionLayout.sunburst}
-              valueAccessor={(d) => Number(d.percent)}
-              valueFormatter={() => ''}
-              layers={[
-                {
-                  groupByRollup: (d: (typeof LANGUAGE_DATA)[0]) => d.language,
-                  shape: {
-                    fillColor: (_, sortIndex) =>
-                      chartBaseTheme.colors.vizColors![sortIndex],
-                  },
-                },
-              ]}
-              clockwiseSectors={false}
-            />
-          </Chart>
-        </EuiFlexItem>
-      </EuiFlexGrid>
-    </div>
-  );
-};
+```mdx-code-block
+import * as ElasticCharts from '@elastic/charts';
+import { useChartBaseTheme } from './use_chart_base_theme';
+import BrowserOnly from '@docusaurus/BrowserOnly';
 ```
+
+<Demo scope={{ ...ElasticCharts, useChartBaseTheme }}>
+  ```tsx
+  import React from 'react';
+  import {
+    EuiFlexGrid,
+    EuiFlexItem,
+    EuiTitle,
+    EuiSpacer,
+    htmlIdGenerator,
+  } from '@elastic/eui';
+  import {
+    Chart,
+    Partition,
+    Settings,
+    PartitionLayout,
+    PartialTheme,
+  } from '@elastic/charts';
+
+  const STATUS_DATA = [
+    {
+      status: 'Open',
+      count: 25,
+    },
+    {
+      status: 'Closed',
+      count: 319,
+    },
+  ];
+
+  const LANGUAGE_DATA = [
+    {
+      language: 'JavaScript',
+      percent: 51.4,
+    },
+    {
+      language: 'TypeScript',
+      percent: 39.6,
+    },
+    {
+      language: 'CSS',
+      percent: 8.7,
+    },
+  ];
+
+  export default () => {
+    const chartBaseTheme = useChartBaseTheme();
+    const htmlId = htmlIdGenerator();
+    const exampleOne = htmlId();
+    const exampleTwo = htmlId();
+
+    const themeOverrides: PartialTheme = {
+      partition: { emptySizeRatio: 0.4 },
+    };
+
+    return (
+      <div>
+        <EuiFlexGrid columns={2}>
+          <EuiFlexItem>
+            <EuiTitle className="eui-textCenter" size="xs">
+              <h3 id={exampleOne}>Year to date PR count by status</h3>
+            </EuiTitle>
+            <EuiSpacer />
+            <Chart size={{ height: 200 }}>
+              <Settings
+                baseTheme={chartBaseTheme}
+                theme={themeOverrides}
+                ariaLabelledBy={exampleOne}
+              />
+              <Partition
+                id="pieByPR"
+                data={STATUS_DATA}
+                layout={PartitionLayout.sunburst}
+                valueAccessor={(d) => d.count}
+                layers={[
+                  {
+                    groupByRollup: (d: (typeof STATUS_DATA)[0]) => d.status,
+                    shape: {
+                      fillColor: (_, sortIndex) =>
+                        chartBaseTheme.colors.vizColors![sortIndex],
+                    },
+                  },
+                ]}
+                clockwiseSectors={false}
+              />
+            </Chart>
+          </EuiFlexItem>
+          <EuiFlexItem>
+            <EuiTitle className="eui-textCenter" size="xs">
+              <h3 id={exampleTwo}>Code languages</h3>
+            </EuiTitle>
+            <EuiSpacer />
+            <Chart size={{ height: 200 }}>
+              <Settings baseTheme={chartBaseTheme} ariaLabelledBy={exampleTwo} />
+              <Partition
+                id="donutByLanguage"
+                data={LANGUAGE_DATA}
+                layout={PartitionLayout.sunburst}
+                valueAccessor={(d) => Number(d.percent)}
+                valueFormatter={() => ''}
+                layers={[
+                  {
+                    groupByRollup: (d: (typeof LANGUAGE_DATA)[0]) => d.language,
+                    shape: {
+                      fillColor: (_, sortIndex) =>
+                        chartBaseTheme.colors.vizColors![sortIndex],
+                    },
+                  },
+                ]}
+                clockwiseSectors={false}
+              />
+            </Chart>
+          </EuiFlexItem>
+        </EuiFlexGrid>
+      </div>
+    );
+  };
+  ```
+</Demo>
 
 ## Slices and labelling
 
@@ -147,7 +154,13 @@ Again, pie charts should have no more than six slices. However, it can be benefi
 
 The order of the slices should always **start from the 12 o’clock position**, showing the largest slice in the clockwise position then the rest ordering counterclockwise in descending order. However, categories that have a natural order, should follow this natural order, be it low to high or good to bad.
 
-null
+```mdx-code-block
+import { PieSlices } from './pie_slices';
+```
+
+<BrowserOnly>
+  {() => <PieSlices />}
+</BrowserOnly>
 
 ## Sunbursts and treemaps
 
@@ -155,120 +168,125 @@ Multi-level pie charts (also known as sunbursts) and treemaps are great for visu
 
 Below are some basic examples and how EUI supports them with theming. However, this site will not document the best uses of these chart types. For more guidance, go to the [Elastic Charts documentation](https://elastic.github.io/elastic-charts).
 
-```tsx interactive
-import React from 'react';
-import {
-  EuiFlexGrid,
-  EuiFlexItem,
-  EuiTitle,
-  EuiSpacer,
-  euiPaletteColorBlind,
-} from '@elastic/eui';
-import { Chart, Partition, Settings, PartitionLayout } from '@elastic/charts';
+```mdx-code-block
 import { GITHUB_DATASET_MOD } from './data';
-import { useChartBaseTheme } from './utils/use_chart_base_theme';
-
-type DataType = (typeof GITHUB_DATASET_MOD)[0];
-
-export default () => {
-  const chartBaseTheme = useChartBaseTheme();
-
-  /**
-   * Create a 3 rotation palette (one for each level)
-   */
-  const groupedPalette = euiPaletteColorBlind({
-    rotations: 3,
-    order: 'group',
-    sortBy: 'natural',
-  });
-
-  return (
-    <>
-      <EuiTitle className="eui-textCenter" size="xs">
-        <h3>Github issues by label</h3>
-      </EuiTitle>
-      <EuiSpacer />
-      <EuiFlexGrid columns={2}>
-        <EuiFlexItem>
-          <Chart size={{ height: 240 }}>
-            <Settings
-              baseTheme={chartBaseTheme}
-              showLegend
-              legendMaxDepth={2}
-            />
-            <Partition
-              id="sunburst"
-              data={GITHUB_DATASET_MOD}
-              layout={PartitionLayout.sunburst}
-              valueAccessor={(d) => d.count}
-              layers={[
-                {
-                  groupByRollup: (d: DataType) => d.total,
-                  shape: {
-                    fillColor: chartBaseTheme.partition.sectorLineStroke!,
-                  },
-                },
-                {
-                  groupByRollup: (d: DataType) => d.vizType,
-                  shape: {
-                    fillColor: (key, sortIndex) =>
-                      groupedPalette[sortIndex * 3],
-                  },
-                },
-                {
-                  groupByRollup: (d: DataType) => d.issueType,
-                  shape: {
-                    fillColor: (key, sortIndex, { parent }) =>
-                      groupedPalette[parent.sortIndex * 3 + sortIndex + 1],
-                  },
-                },
-              ]}
-              clockwiseSectors={false}
-            />
-          </Chart>
-        </EuiFlexItem>
-        <EuiFlexItem>
-          <Chart size={{ height: 240 }}>
-            <Settings
-              baseTheme={chartBaseTheme}
-              showLegend
-              legendMaxDepth={1}
-            />
-            <Partition
-              id="treemap"
-              data={GITHUB_DATASET_MOD}
-              layout={PartitionLayout.treemap}
-              valueAccessor={(d) => d.count}
-              valueGetter="percent"
-              topGroove={0}
-              layers={[
-                {
-                  groupByRollup: (d: DataType) => d.vizType,
-                  shape: {
-                    fillColor: (key, sortIndex) =>
-                      groupedPalette[sortIndex * 3],
-                  },
-                  fillLabel: {
-                    valueFormatter: () => '',
-                    textColor: 'rgba(0,0,0,0)', // Keeps the label in the legend, but hides it from view
-                  },
-                },
-                {
-                  groupByRollup: (d: DataType) => d.issueType,
-                  shape: {
-                    fillColor: (key, sortIndex, { parent }) =>
-                      groupedPalette[parent.sortIndex * 3 + sortIndex],
-                  },
-                },
-              ]}
-            />
-          </Chart>
-        </EuiFlexItem>
-      </EuiFlexGrid>
-    </>
-  );
-};
 ```
+
+<Demo scope={{ ...ElasticCharts, useChartBaseTheme, GITHUB_DATASET_MOD }}>
+  ```tsx
+  import React from 'react';
+  import {
+    EuiFlexGrid,
+    EuiFlexItem,
+    EuiTitle,
+    EuiSpacer,
+    euiPaletteColorBlind,
+  } from '@elastic/eui';
+  import { Chart, Partition, Settings, PartitionLayout } from '@elastic/charts';
+
+
+  type DataType = (typeof GITHUB_DATASET_MOD)[0];
+
+  export default () => {
+    const chartBaseTheme = useChartBaseTheme();
+
+    /**
+     * Create a 3 rotation palette (one for each level)
+     */
+    const groupedPalette = euiPaletteColorBlind({
+      rotations: 3,
+      order: 'group',
+      sortBy: 'natural',
+    });
+
+    return (
+      <>
+        <EuiTitle className="eui-textCenter" size="xs">
+          <h3>Github issues by label</h3>
+        </EuiTitle>
+        <EuiSpacer />
+        <EuiFlexGrid columns={2}>
+          <EuiFlexItem>
+            <Chart size={{ height: 240 }}>
+              <Settings
+                baseTheme={chartBaseTheme}
+                showLegend
+                legendMaxDepth={2}
+              />
+              <Partition
+                id="sunburst"
+                data={GITHUB_DATASET_MOD}
+                layout={PartitionLayout.sunburst}
+                valueAccessor={(d) => d.count}
+                layers={[
+                  {
+                    groupByRollup: (d: DataType) => d.total,
+                    shape: {
+                      fillColor: chartBaseTheme.partition.sectorLineStroke!,
+                    },
+                  },
+                  {
+                    groupByRollup: (d: DataType) => d.vizType,
+                    shape: {
+                      fillColor: (key, sortIndex) =>
+                        groupedPalette[sortIndex * 3],
+                    },
+                  },
+                  {
+                    groupByRollup: (d: DataType) => d.issueType,
+                    shape: {
+                      fillColor: (key, sortIndex, { parent }) =>
+                        groupedPalette[parent.sortIndex * 3 + sortIndex + 1],
+                    },
+                  },
+                ]}
+                clockwiseSectors={false}
+              />
+            </Chart>
+          </EuiFlexItem>
+          <EuiFlexItem>
+            <Chart size={{ height: 240 }}>
+              <Settings
+                baseTheme={chartBaseTheme}
+                showLegend
+                legendMaxDepth={1}
+              />
+              <Partition
+                id="treemap"
+                data={GITHUB_DATASET_MOD}
+                layout={PartitionLayout.treemap}
+                valueAccessor={(d) => d.count}
+                valueGetter="percent"
+                topGroove={0}
+                layers={[
+                  {
+                    groupByRollup: (d: DataType) => d.vizType,
+                    shape: {
+                      fillColor: (key, sortIndex) =>
+                        groupedPalette[sortIndex * 3],
+                    },
+                    fillLabel: {
+                      valueFormatter: () => '',
+                      textColor: 'rgba(0,0,0,0)', // Keeps the label in the legend, but hides it from view
+                    },
+                  },
+                  {
+                    groupByRollup: (d: DataType) => d.issueType,
+                    shape: {
+                      fillColor: (key, sortIndex, { parent }) =>
+                        groupedPalette[parent.sortIndex * 3 + sortIndex],
+                    },
+                  },
+                ]}
+              />
+            </Chart>
+          </EuiFlexItem>
+        </EuiFlexGrid>
+      </>
+    );
+  };
+  ```
+</Demo>
 
 ## Alternatives
 
@@ -281,4 +299,10 @@ Most pie/donut/sunburst chart data can be **better** explained using bar charts 
 
 And under no circumstances should you enlarge or explode slices. This leads to [errors in understanding](https://digitalblog.ons.gov.uk/2017/02/28/the-humble-pie-chart-part2/).
 
-null
+```mdx-code-block
+import { PieAlts } from './pie_alts';
+```
+
+<BrowserOnly>
+  {() => <PieAlts />}
+</BrowserOnly>

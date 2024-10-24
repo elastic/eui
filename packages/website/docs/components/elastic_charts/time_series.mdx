@@ -5,7 +5,7 @@ id: elastic_charts_time_series
 
 # Time series
 
-External library: @elastic/charts v64.1.0
+<Badge>External library: @elastic/charts v64.1.0</Badge>
 
 Time series charts show data over a period of time, such as trends or comparisons across multiple categories. When smaller changes exist, it’s better to use line charts rather than bar charts.
 
@@ -13,3 +13,14 @@ Time series charts show data over a period of time, such as trends or comparison
 
 *   `BarSeries.xScaleType = "time"`
 *   `tickFormat = timeFormatter(niceTimeFormatByDay(1));`
+
+<br />
+
+```mdx-code-block
+import BrowserOnly from '@docusaurus/BrowserOnly';
+import { TimeChart } from './time_chart';
+```
+
+<BrowserOnly>
+  {() => <TimeChart />}
+</BrowserOnly>
