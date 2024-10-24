@@ -40,16 +40,16 @@ $euiColorBackgroundBaseAccentSecondary: $euiColorAccentSecondary10 !default;
 $euiColorBackgroundBaseSuccess: $euiColorSuccess10 !default;
 $euiColorBackgroundBaseWarning: $euiColorWarning10 !default;
 $euiColorBackgroundBaseDanger: $euiColorDanger10 !default;
-$euiColorBackgroundBasePlain: $euiColorPlainLight !default;
-$euiColorBackgroundBaseSubdued: $euiColorShade10 !default;
-$euiColorBackgroundBaseDisabled: $euiColorShade15 !default;
 $euiColorBackgroundBasePage: $euiColorShade10 !default;
-$euiColorBackgroundBasePrepend: $euiColorShade15 !default;
+$euiColorBackgroundBaseSubdued: $euiColorBackgroundBasePage !default;
+$euiColorBackgroundBasePlain: $euiColorPlainLight !default;
+$euiColorBackgroundBaseDisabled: $euiColorShade15 !default;
+$euiColorBackgroundBaseFormsPrepend: $euiColorShade15 !default;
+$euiColorBackgroundBaseFormsControlDisabled: $euiColorShade30 !default;
 
-$euiColorBackgroundBaseHover: $euiColorShade15 !default;
-$euiColorBackgroundBaseHoverTransparent: $euiColorShadeTransparent10 !default;
-$euiColorBackgroundBaseSelect: $euiColorPrimary10 !default;
-$euiColorBackgroundBaseOverlay: $euiColorShadeTransparent100 !default;
+$euiColorBackgroundBaseInteractiveHover: $euiColorShadeTransparent10 !default;
+$euiColorBackgroundBaseInteractiveSelect: $euiColorPrimary10 !default;
+$euiColorBackgroundBaseInteractiveOverlay: $euiColorShadeTransparent80 !default;
 $euiColorBackgroundBaseSkeletonEdge: $euiColorShadeTransparent30 !default;
 $euiColorBackgroundBaseSkeletonMiddle: $euiColorShadeTransparent10 !default;
 
@@ -110,8 +110,9 @@ $borderBaseText: $euiColorShade100;
 $borderBasePlain: $euiColorShade30;
 $borderBaseSubdued: $euiColorShade20;
 $borderBaseDisabled: $euiColorShade30;
-$borderBaseFloating: $euiColorTransparentWhite0;
 $borderBaseFloating: $euiColorShadeTransparent30;
+$borderBaseFormsColorSwatch: $euiColorShadeTransparent30;
+$borderBaseFormsControl: $euiColorShade60;
 
 // Charts
 $euiColorChartLines: $euiColorShade30 !default;

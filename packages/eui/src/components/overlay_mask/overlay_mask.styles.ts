@@ -22,7 +22,7 @@ export const euiOverlayMaskStyles = ({ euiTheme }: UseEuiTheme) => ({
     justify-content: center;
     ${logicalCSS('padding-bottom', '10vh')}
     animation: ${euiAnimFadeIn} ${euiTheme.animation.fast} ease-in;
-    background: ${euiTheme.colors.backgroundBaseOverlay};
+    background: ${euiTheme.colors.backgroundBaseInteractiveOverlay};
   `,
   aboveHeader: css`
     z-index: ${euiTheme.levels.mask};

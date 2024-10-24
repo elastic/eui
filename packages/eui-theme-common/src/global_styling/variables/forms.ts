@@ -20,6 +20,7 @@ export type _EuiThemeFormColors = {
   controlBorderSelected: ColorModeSwitch;
   controlBorderDisabled: ColorModeSwitch;
   controlBackgroundUnselected: ColorModeSwitch;
+  controlBackgroundDisabled: ColorModeSwitch;
   colorHasPlaceholder: ColorModeSwitch;
   colorDisabled: ColorModeSwitch;
   iconDisabled: ColorModeSwitch;

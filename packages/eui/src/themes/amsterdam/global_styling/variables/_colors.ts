@@ -122,6 +122,7 @@ export const background_colors: _EuiThemeBackgroundColors = {
     ([danger]) => tint(danger, 0.9),
     ['colors.danger']
   ),
+  backgroundBasePage: computed(([body]) => body, ['colors.body']),
   backgroundBaseSubdued: computed(([body]) => body, ['colors.body']),
   backgroundBaseDisabled: computed(
     ([disabled]) => disabled,
@@ -131,25 +132,25 @@ export const background_colors: _EuiThemeBackgroundColors = {
     ([emptyShade]) => emptyShade,
     ['colors.emptyShade']
   ),
-  backgroundBasePage: computed(([body]) => body, ['colors.body']),
-  backgroundBasePrepend: computed(
+
+  backgroundBaseFormsPrepend: computed(
     ([lightShade]) => tint(lightShade, 0.5),
     ['colors.lightShade']
   ),
+  backgroundBaseFormsControlDisabled: computed(
+    ([lightShade]) => lightShade,
+    ['colors.lightShade']
+  ),
 
-  backgroundBaseHover: computed(
+  backgroundBaseInteractiveHover: computed(
     ([lightShade]) => transparentize(lightShade, 0.2),
     ['colors.lightShade']
   ),
-  backgroundBaseHoverTransparent: computed(
-    ([lightShade]) => transparentize(lightShade, 0.2),
-    ['colors.lightShade']
-  ),
-  backgroundBaseSelect: computed(
+  backgroundBaseInteractiveSelect: computed(
     ([primary]) => tint(primary, 0.96),
     ['colors.primary']
   ),
-  backgroundBaseOverlay: computed(
+  backgroundBaseInteractiveOverlay: computed(
     ([ink]) => transparentize(ink, 0.5),
     ['colors.ink']
   ),
@@ -286,9 +287,14 @@ export const border_colors: _EuiThemeBorderColors = {
   ),
   borderBasePlain: computed(([color]) => color, ['border.color']),
   borderBaseFloating: 'transparent',
-  borderBaseColorSwatch: computed(
+
+  borderBaseFormsColorSwatch: computed(
     ([fullShade]) => transparentize(fullShade, 0.1),
     ['colors.fullShade']
+  ),
+  borderBaseFormsControl: computed(
+    ([lightestShade]) => shade(lightestShade, 0.4),
+    ['colors.lightestShade']
   ),
 };
 
@@ -343,6 +349,7 @@ export const dark_background_colors: _EuiThemeBackgroundColors = {
     ([danger]) => shade(danger, 0.8),
     ['colors.danger']
   ),
+  backgroundBasePage: computed(([body]) => body, ['colors.body']),
   backgroundBaseSubdued: computed(
     ([body]) => shade(body, 0.9),
     ['colors.body']
@@ -355,25 +362,25 @@ export const dark_background_colors: _EuiThemeBackgroundColors = {
     ([emptyShade]) => emptyShade,
     ['colors.emptyShade']
   ),
-  backgroundBasePage: computed(([body]) => body, ['colors.body']),
-  backgroundBasePrepend: computed(
+
+  backgroundBaseFormsPrepend: computed(
     ([lightShade]) => shade(lightShade, 0.15),
     ['colors.lightShade']
   ),
+  backgroundBaseFormsControlDisabled: computed(
+    ([lightShade]) => lightShade,
+    ['colors.lightShade']
+  ),
 
-  backgroundBaseHover: computed(
+  backgroundBaseInteractiveHover: computed(
     ([lightShade]) => transparentize(lightShade, 0.2),
     ['colors.lightShade']
   ),
-  backgroundBaseHoverTransparent: computed(
-    ([lightShade]) => transparentize(lightShade, 0.2),
-    ['colors.lightShade']
-  ),
-  backgroundBaseSelect: computed(
+  backgroundBaseInteractiveSelect: computed(
     ([primary]) => shade(primary, 0.7),
     ['colors.primary']
   ),
-  backgroundBaseOverlay: computed(
+  backgroundBaseInteractiveOverlay: computed(
     ([ink]) => transparentize(ink, 0.5),
     ['colors.ink']
   ),
@@ -473,9 +480,14 @@ export const dark_border_colors: _EuiThemeBorderColors = {
   ),
   borderBasePlain: computed(([color]) => color, ['border.color']),
   borderBaseFloating: 'transparent',
-  borderBaseColorSwatch: computed(
+
+  borderBaseFormsColorSwatch: computed(
     ([fullShade]) => transparentize(fullShade, 0.1),
     ['colors.fullShade']
+  ),
+  borderBaseFormsControl: computed(
+    ([lightestShade]) => tint(lightestShade, 0.31),
+    ['colors.lightestShade']
   ),
 };
 

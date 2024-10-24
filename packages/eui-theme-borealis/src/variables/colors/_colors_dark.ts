@@ -67,7 +67,7 @@ export const dark_text_colors: _EuiThemeTextColors = {
 };
 
 export const dark_shades: _EuiThemeShadeColors = {
-  emptyShade: SEMANTIC_COLORS.plainDark,
+  emptyShade: SEMANTIC_COLORS.shade145,
   lightestShade: SEMANTIC_COLORS.shade135,
   lightShade: SEMANTIC_COLORS.shade125,
   mediumShade: SEMANTIC_COLORS.shade95,
@@ -83,16 +83,18 @@ export const dark_background_colors: _EuiThemeBackgroundColors = {
   backgroundBaseSuccess: SEMANTIC_COLORS.success130,
   backgroundBaseWarning: SEMANTIC_COLORS.warning130,
   backgroundBaseDanger: SEMANTIC_COLORS.danger130,
-  backgroundBasePlain: SEMANTIC_COLORS.shade140,
-  backgroundBaseSubdued: SEMANTIC_COLORS.shade130,
-  backgroundBaseDisabled: SEMANTIC_COLORS.shade125,
   backgroundBasePage: SEMANTIC_COLORS.plainDark,
-  backgroundBasePrepend: SEMANTIC_COLORS.shade125,
+  backgroundBaseSubdued: SEMANTIC_COLORS.plainDark,
+  backgroundBasePlain: SEMANTIC_COLORS.shade145,
+  backgroundBaseDisabled: SEMANTIC_COLORS.shade130,
 
-  backgroundBaseHover: SEMANTIC_COLORS.shade130,
-  backgroundBaseHoverTransparent: PRIMITIVE_COLORS.transparent.white['10'],
-  backgroundBaseSelect: SEMANTIC_COLORS.primary130,
-  backgroundBaseOverlay: SEMANTIC_COLORS.shadeTransparent100,
+  backgroundBaseFormsPrepend: SEMANTIC_COLORS.shade125,
+  backgroundBaseFormsControlDisabled: SEMANTIC_COLORS.shade110,
+
+  backgroundBaseInteractiveHover: PRIMITIVE_COLORS.transparent.white['10'],
+  backgroundBaseInteractiveSelect: SEMANTIC_COLORS.primary130,
+  backgroundBaseInteractiveOverlay: SEMANTIC_COLORS.shadeTransparent80,
+
   backgroundBaseSkeletonEdge: PRIMITIVE_COLORS.transparent.white['10'],
   backgroundBaseSkeletonMiddle: PRIMITIVE_COLORS.transparent.white['30'],
 
@@ -140,11 +142,13 @@ export const dark_border_colors: _EuiThemeBorderColors = {
   borderBaseWarning: SEMANTIC_COLORS.warning40,
   borderBaseDanger: SEMANTIC_COLORS.danger60,
   borderBaseText: SEMANTIC_COLORS.shade60,
-  borderBasePlain: SEMANTIC_COLORS.shade110,
-  borderBaseSubdued: SEMANTIC_COLORS.shade120,
-  borderBaseDisabled: SEMANTIC_COLORS.shade110,
-  borderBaseFloating: SEMANTIC_COLORS.shade120,
-  borderBaseColorSwatch: PRIMITIVE_COLORS.transparent.white['30'],
+  borderBasePlain: SEMANTIC_COLORS.shade120,
+  borderBaseSubdued: SEMANTIC_COLORS.shade130,
+  borderBaseDisabled: SEMANTIC_COLORS.shade120,
+  borderBaseFloating: SEMANTIC_COLORS.shade130,
+
+  borderBaseFormsColorSwatch: PRIMITIVE_COLORS.transparent.white['30'],
+  borderBaseFormsControl: SEMANTIC_COLORS.shade80,
 };
 
 export const dark_special_colors: _EuiThemeSpecialColors = {

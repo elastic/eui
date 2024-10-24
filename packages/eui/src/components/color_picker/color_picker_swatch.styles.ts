@@ -28,7 +28,7 @@ export const euiColorPickerSwatchStyles = (euiThemeContext: UseEuiTheme) => {
         (x) => x / 2
       )};
       border: ${euiTheme.border.width.thin} solid
-        ${euiTheme.colors.borderBaseColorSwatch};
+        ${euiTheme.colors.borderBaseFormsColorSwatch};
       box-shadow: inset 0 0 0 ${euiTheme.border.width.thin}
         ${transparentize(euiTheme.colors.emptyShade, 0.05)};
       cursor: pointer;

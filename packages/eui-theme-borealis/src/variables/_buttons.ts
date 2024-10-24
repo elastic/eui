@@ -40,14 +40,14 @@ const _buttons = {
   backgroundFilledDisabled: background_colors.backgroundBaseDisabled,
 
   // Temp. mapping to support more variants in old theme
-  backgroundEmptyPrimaryHover: background_colors.backgroundBaseHoverTransparent,
-  backgroundEmptyAccentHover: background_colors.backgroundBaseHoverTransparent,
+  backgroundEmptyPrimaryHover: background_colors.backgroundBaseInteractiveHover,
+  backgroundEmptyAccentHover: background_colors.backgroundBaseInteractiveHover,
   backgroundEmptyAccentSecondaryHover:
-    background_colors.backgroundBaseHoverTransparent,
-  backgroundEmptySuccessHover: background_colors.backgroundBaseHoverTransparent,
-  backgroundEmptyWarningHover: background_colors.backgroundBaseHoverTransparent,
-  backgroundEmptyDangerHover: background_colors.backgroundBaseHoverTransparent,
-  backgroundEmptyTextHover: background_colors.backgroundBaseHoverTransparent,
+    background_colors.backgroundBaseInteractiveHover,
+  backgroundEmptySuccessHover: background_colors.backgroundBaseInteractiveHover,
+  backgroundEmptyWarningHover: background_colors.backgroundBaseInteractiveHover,
+  backgroundEmptyDangerHover: background_colors.backgroundBaseInteractiveHover,
+  backgroundEmptyTextHover: background_colors.backgroundBaseInteractiveHover,
 
   textColorPrimary: brand_text_colors.textPrimary,
   textColorAccent: brand_text_colors.textAccent,
@@ -90,19 +90,19 @@ const _dark_buttons = {
   backgroundFilledDisabled: dark_background_colors.backgroundBaseDisabled,
 
   backgroundEmptyPrimaryHover:
-    dark_background_colors.backgroundBaseHoverTransparent,
+    dark_background_colors.backgroundBaseInteractiveHover,
   backgroundEmptyAccentHover:
-    dark_background_colors.backgroundBaseHoverTransparent,
+    dark_background_colors.backgroundBaseInteractiveHover,
   backgroundEmptyAccentSecondaryHover:
-    dark_background_colors.backgroundBaseHoverTransparent,
+    dark_background_colors.backgroundBaseInteractiveHover,
   backgroundEmptySuccessHover:
-    dark_background_colors.backgroundBaseHoverTransparent,
+    dark_background_colors.backgroundBaseInteractiveHover,
   backgroundEmptyWarningHover:
-    dark_background_colors.backgroundBaseHoverTransparent,
+    dark_background_colors.backgroundBaseInteractiveHover,
   backgroundEmptyDangerHover:
-    dark_background_colors.backgroundBaseHoverTransparent,
+    dark_background_colors.backgroundBaseInteractiveHover,
   backgroundEmptyTextHover:
-    dark_background_colors.backgroundBaseHoverTransparent,
+    dark_background_colors.backgroundBaseInteractiveHover,
 
   textColorPrimary: dark_brand_text_colors.textPrimary,
   textColorAccent: dark_brand_text_colors.textAccent,

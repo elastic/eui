@@ -180,6 +180,10 @@ const _components = {
     ['colors.lightShade']
   ),
   switchThumbBackgroundDisabled: 'transparent',
+  switchThumbBorder: computed(
+    ([lightestShade]) => shade(lightestShade, 0.4),
+    ['colors.lightestShade']
+  ),
 
   tableRowBackgroundHover: computed(
     ([lightestShade]) => tint(lightestShade, 0.5),
@@ -322,6 +326,10 @@ export const components: _EuiThemeComponents = {
     switchMiniBackgroundDisabled: computed(
       ([lightShade]) => lightShade,
       ['colors.lightShade']
+    ),
+    switchThumbBorder: computed(
+      ([lightestShade]) => tint(lightestShade, 0.31),
+      ['colors.lightestShade']
     ),
 
     tableRowBackgroundHover: computed(
