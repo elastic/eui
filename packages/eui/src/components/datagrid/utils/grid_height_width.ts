@@ -141,7 +141,7 @@ export const useUnconstrainedHeight = ({
           rowHeightOption,
           defaultRowHeight,
           correctRowIndex,
-          rowHeightUtils.isRowHeightOverride(correctRowIndex, rowHeightsOptions)
+          rowHeightsOptions
         );
       }
     }

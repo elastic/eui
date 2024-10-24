@@ -80,7 +80,8 @@ export const euiDataGridStyles = (euiThemeContext: UseEuiTheme) => {
         }
 
         /* Workaround to trim line-clamp and padding - @see https://github.com/elastic/eui/issues/7780 */
-        .euiDataGridRowCell__content--lineCountHeight {
+        .euiDataGridRowCell__content--lineCountHeight,
+        .euiDataGridRowCell__content--autoBelowLineCountHeight {
           ${logicalCSS('padding-bottom', 0)}
           ${logicalCSS(
             'border-bottom',
