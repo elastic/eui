@@ -1,0 +1,37 @@
+---
+slug: /forms/form-validation/guidelines
+id: forms_form_validation_guidelines
+title: Form validation guidelines
+sidebar_label: Guidelines
+---
+
+```mdx-code-block
+import { EuiFormRow, EuiFieldText } from '@elastic/eui';
+```
+
+## Validation error text
+
+Validation messages are needed when the user input differs from what the system expects and enforces:
+
+*   Required fields that are still blank.
+*   Invalid values, for one or several reasons (forbidden characters, formatting, duplicate).
+
+Use clear language that helps users understand what they have to do.
+
+<Guideline type="do" text="Use a simple, minimalist format for a required field.">
+  <EuiFormRow label="Name" isInvalid error={['Name is required.']}>
+    <EuiFieldText name="first" isInvalid />
+  </EuiFormRow>
+</Guideline>
+
+<Guideline type="do" text="Tell users what happened and how to fix it.">
+  <EuiFormRow label="Email" isInvalid error={['This address is already used. Enter a different one.']}>
+    <EuiFieldText name="text" isInvalid />
+  </EuiFormRow>
+</Guideline>
+
+<Guideline type="do" text="Be as precise as possible to describe the problem.">
+  <EuiFormRow label="Key" isInvalid error={[`The key can't contain the \`:\` character.`]}>
+    <EuiFieldText name="text" isInvalid />
+  </EuiFormRow>
+</Guideline>

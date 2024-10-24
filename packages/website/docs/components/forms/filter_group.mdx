@@ -1,0 +1,299 @@
+---
+slug: /forms/filter-group
+id: forms_filter_group
+---
+
+# Filter group
+
+## Filter buttons
+
+Use **EuiFilterGroup** to wrap **EuiFilterButtons** into a container that looks nice against form fields (like search). These buttons are used in two different patterns. The most simplest use is that of an on/off pattern to show whether a filter is on. Add the prop `withNext` to remove the border between it and the next EuiFilterButton to visually group similar or opposite style filters.
+
+Add the prop `withNext` to remove the border between it and the next EuiFilterButton to visually group similar or opposite style filters.
+
+Set `hasActiveFilters` to true when the filter is active.
+
+```tsx interactive
+import React, { useState } from 'react';
+import { EuiFilterGroup, EuiFilterButton } from '@elastic/eui';
+
+export default () => {
+  const [isFilterOn, setIsFilterOn] = useState(false);
+  const [isOnFilterOn, setIsOnFilterOn] = useState(false);
+  const [isOffFilterOn, setIsOffFilterOn] = useState(false);
+
+  const toggleFilter = () => {
+    setIsFilterOn(!isFilterOn);
+  };
+
+  const toggleOnFilter = () => {
+    setIsOnFilterOn(!isOnFilterOn);
+    setIsOffFilterOn(isOffFilterOn && !isOnFilterOn ? false : isOffFilterOn);
+  };
+
+  const toggleOffFilter = () => {
+    setIsOffFilterOn(!isOffFilterOn);
+    setIsOnFilterOn(isOnFilterOn && !isOffFilterOn ? false : isOnFilterOn);
+  };
+
+  return (
+    <EuiFilterGroup>
+      <EuiFilterButton hasActiveFilters={isFilterOn} onClick={toggleFilter}>
+        Single filter
+      </EuiFilterButton>
+      <EuiFilterButton
+        withNext
+        hasActiveFilters={isOnFilterOn}
+        onClick={toggleOnFilter}
+      >
+        On
+      </EuiFilterButton>
+      <EuiFilterButton
+        hasActiveFilters={isOffFilterOn}
+        onClick={toggleOffFilter}
+      >
+        Off
+      </EuiFilterButton>
+    </EuiFilterGroup>
+  );
+};
+```
+
+## Multi-select
+
+To provide a long list of grouped filters, we recommend wrapping the filter button within an [**EuiPopover**](/docs/layout/popover) and passing the items to a searchable [**EuiSelectable**](/docs/forms/selectable).
+
+### Indicating number of filters
+
+By passing a number to `numFilters` you can express the number of filters available. When the user has applied these filter add the prop `hasActiveFilters` as before and this will change the coloring of the indicator. You can also supply a number to `numActiveFilters`which will change the number displayed.
+
+```tsx interactive
+import React, { useEffect, useRef, useState } from 'react';
+import {
+  EuiPopover,
+  EuiPopoverTitle,
+  EuiFilterGroup,
+  EuiFilterButton,
+  EuiSelectable,
+  EuiSpacer,
+  EuiSwitch,
+  useGeneratedHtmlId,
+} from '@elastic/eui';
+
+export default () => {
+  const timeoutRef = useRef();
+  const [isPopoverOpen, setIsPopoverOpen] = useState(false);
+  const [withLoading, setWithLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    return () => clearTimeout(timeoutRef.current);
+  }, []);
+
+  const onButtonClick = () => {
+    if (withLoading && !isPopoverOpen) {
+      setIsLoading(true);
+      timeoutRef.current = setTimeout(() => {
+        setIsLoading(false);
+      }, 1500);
+    }
+    setIsPopoverOpen(!isPopoverOpen);
+  };
+
+  const closePopover = () => {
+    setIsPopoverOpen(false);
+  };
+
+  const filterGroupPopoverId = useGeneratedHtmlId({
+    prefix: 'filterGroupPopover',
+  });
+
+  const [items, setItems] = useState([
+    { label: 'Johann Sebastian Bach', checked: 'on' },
+    { label: 'Wolfgang Amadeus Mozart', checked: 'on' },
+    { label: 'Antonín Dvořák', checked: 'off' },
+    { label: 'Dmitri Shostakovich' },
+    { label: 'Felix Mendelssohn-Bartholdy' },
+    { label: 'Franz Liszt' },
+    { label: 'Franz Schubert' },
+    { label: 'Frédéric Chopin' },
+    { label: 'Georg Friedrich Händel' },
+    { label: 'Giuseppe Verdi' },
+    { label: 'Gustav Mahler' },
+    { label: 'Igor Stravinsky' },
+    { label: 'Johannes Brahms' },
+    { label: 'Joseph Haydn' },
+    { label: 'Ludwig van Beethoven' },
+    { label: 'Piotr Illitch Tchaïkovsky' },
+    { label: 'Robert Schumann' },
+    { label: 'Sergej S. Prokofiew' },
+  ]);
+
+  const button = (
+    <EuiFilterButton
+      iconType="arrowDown"
+      badgeColor="success"
+      onClick={onButtonClick}
+      isSelected={isPopoverOpen}
+      numFilters={items.filter((item) => item.checked !== 'off').length}
+      hasActiveFilters={!!items.find((item) => item.checked === 'on')}
+      numActiveFilters={items.filter((item) => item.checked === 'on').length}
+    >
+      Composers
+    </EuiFilterButton>
+  );
+
+  return (
+    <>
+      <EuiSwitch
+        checked={withLoading}
+        onChange={(e) => setWithLoading(e.target.checked)}
+        label="Simulate dynamic loading"
+      />
+      <EuiSpacer />
+      <EuiFilterGroup>
+        <EuiPopover
+          id={filterGroupPopoverId}
+          button={button}
+          isOpen={isPopoverOpen}
+          closePopover={closePopover}
+          panelPaddingSize="none"
+        >
+          <EuiSelectable
+            allowExclusions
+            searchable
+            searchProps={{
+              placeholder: 'Filter list',
+              compressed: true,
+            }}
+            aria-label="Composers"
+            options={items}
+            onChange={(newOptions) => setItems(newOptions)}
+            isLoading={isLoading}
+            loadingMessage="Loading filters"
+            emptyMessage="No filters available"
+            noMatchesMessage="No filters found"
+          >
+            {(list, search) => (
+              <div style={{ width: 300 }}>
+                <EuiPopoverTitle paddingSize="s">{search}</EuiPopoverTitle>
+                {list}
+              </div>
+            )}
+          </EuiSelectable>
+        </EuiPopover>
+      </EuiFilterGroup>
+    </>
+  );
+};
+```
+
+## Layout
+
+By default, the bar is auto-widthed based on its contents. To expand the bar to fill its parent's width add `fullWidth`. This will also set each button to grow. If you do not want the button to grow, set `grow=false`.
+
+```tsx interactive
+import React, { useState } from 'react';
+import {
+  EuiFilterGroup,
+  EuiFilterButton,
+  EuiPopover,
+  EuiSelectableMessage,
+  EuiIcon,
+  EuiSpacer,
+  useGeneratedHtmlId,
+} from '@elastic/eui';
+
+export default () => {
+  const [isPopoverOpen, setIsPopoverOpen] = useState(false);
+  const [isFilterOn, setIsFilterOn] = useState(false);
+  const [isOnFilterOn, setIsOnFilterOn] = useState(false);
+  const [isOffFilterOn, setIsOffFilterOn] = useState(false);
+
+  const toggleFilter = () => {
+    setIsFilterOn(!isFilterOn);
+  };
+
+  const toggleOnFilter = () => {
+    setIsOnFilterOn(!isOnFilterOn);
+    setIsOffFilterOn(isOffFilterOn && !isOnFilterOn ? false : isOffFilterOn);
+  };
+
+  const toggleOffFilter = () => {
+    setIsOffFilterOn(!isOffFilterOn);
+    setIsOnFilterOn(isOnFilterOn && !isOffFilterOn ? false : isOnFilterOn);
+  };
+
+  const onButtonClick = () => {
+    setIsPopoverOpen(!isPopoverOpen);
+  };
+
+  const closePopover = () => {
+    setIsPopoverOpen(false);
+  };
+
+  const button = (
+    <EuiFilterButton
+      iconType="arrowDown"
+      onClick={onButtonClick}
+      isSelected={isPopoverOpen}
+      numFilters={12}
+      hasActiveFilters={true}
+      numActiveFilters={2}
+    >
+      Composers
+    </EuiFilterButton>
+  );
+
+  const filterGroupPopoverId = useGeneratedHtmlId({
+    prefix: 'filterGroupPopover',
+  });
+
+  return (
+    <EuiFilterGroup fullWidth={true}>
+      <EuiFilterButton
+        grow={false}
+        hasActiveFilters={isFilterOn}
+        onClick={toggleFilter}
+      >
+        Filter
+      </EuiFilterButton>
+      <EuiFilterButton
+        withNext
+        grow={false}
+        hasActiveFilters={isOnFilterOn}
+        onClick={toggleOnFilter}
+      >
+        On
+      </EuiFilterButton>
+      <EuiFilterButton
+        grow={false}
+        hasActiveFilters={isOffFilterOn}
+        onClick={toggleOffFilter}
+      >
+        Off
+      </EuiFilterButton>
+      <EuiPopover
+        id={filterGroupPopoverId}
+        button={button}
+        isOpen={isPopoverOpen}
+        closePopover={closePopover}
+        panelPaddingSize="none"
+      >
+        <EuiSelectableMessage>
+          <EuiIcon type="minusInCircle" />
+          <EuiSpacer size="xs" />
+          <p>No filters found</p>
+        </EuiSelectableMessage>
+      </EuiPopover>
+      <EuiFilterButton
+        numFilters={12}
+        hasActiveFilters={isFilterOn}
+        onClick={toggleFilter}
+      >
+        Filter with a very long name
+      </EuiFilterButton>
+    </EuiFilterGroup>
+  );
+};
+```
