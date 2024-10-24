@@ -22,14 +22,13 @@ export const euiListGroupItemStyles = (euiThemeContext: UseEuiTheme) => {
   const euiTheme = euiThemeContext.euiTheme;
 
   const primaryBgColor =
-    euiTheme.components.__TEMP_INTERNAL__.listGroupItemBackgroundPrimaryActive;
+    euiTheme.components.listGroupItemBackgroundPrimaryActive;
   const subduedBgColor =
-    euiTheme.components.__TEMP_INTERNAL__.listGroupItemBackgroundSubduedActive;
+    euiTheme.components.listGroupItemBackgroundSubduedActive;
 
-  const backgroundHover =
-    euiTheme.components.__TEMP_INTERNAL__.listGroupItemBackgroundHover;
+  const backgroundHover = euiTheme.components.listGroupItemBackgroundHover;
   const backgroundPrimaryHover =
-    euiTheme.components.__TEMP_INTERNAL__.listGroupItemBackgroundPrimaryHover;
+    euiTheme.components.listGroupItemBackgroundPrimaryHover;
 
   return {
     // Base

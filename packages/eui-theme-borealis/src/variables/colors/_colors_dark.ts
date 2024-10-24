@@ -15,6 +15,7 @@ import {
   type _EuiThemeColorsMode,
   _EuiThemeBackgroundColors,
   _EuiThemeBorderColors,
+  _EuiThemeTransparentBackgroundColors,
 } from '@elastic/eui-theme-common';
 
 import { PRIMITIVE_COLORS } from './_primitive_colors';
@@ -65,9 +66,6 @@ export const dark_text_colors: _EuiThemeTextColors = {
   textInverse: SEMANTIC_COLORS.plainDark,
 };
 
-/* TODO: These are not finalized yet.
-These tokens won't be used in the new theme specifically,
-but we want to support them until fully deprecated */
 export const dark_shades: _EuiThemeShadeColors = {
   emptyShade: SEMANTIC_COLORS.plainDark,
   lightestShade: SEMANTIC_COLORS.shade135,
@@ -115,6 +113,25 @@ export const dark_background_colors: _EuiThemeBackgroundColors = {
   backgroundFilledText: SEMANTIC_COLORS.shade70,
 };
 
+/**
+ * NOTE: temp values for migration - these should not be used,
+ * use backgroundBase tokens instead
+ * TODO: remove once obsolete
+ */
+export const dark_transparent_background_colors: _EuiThemeTransparentBackgroundColors =
+  {
+    backgroundTransparent: PRIMITIVE_COLORS.transparent.white['0'],
+    backgroundTransparentPrimary: dark_background_colors.backgroundBasePrimary,
+    backgroundTransparentAccent: dark_background_colors.backgroundBaseAccent,
+    backgroundTransparentAccentSecondary:
+      dark_background_colors.backgroundBaseAccent,
+    backgroundTransparentSuccess: dark_background_colors.backgroundBaseSuccess,
+    backgroundTransparentWarning: dark_background_colors.backgroundBaseWarning,
+    backgroundTransparentDanger: dark_background_colors.backgroundBaseDanger,
+    backgroundTransparentSubdued: dark_background_colors.backgroundBaseSubdued,
+    backgroundTransparentPlain: dark_background_colors.backgroundBasePlain,
+  };
+
 export const dark_border_colors: _EuiThemeBorderColors = {
   borderBasePrimary: SEMANTIC_COLORS.primary60,
   borderBaseAccent: SEMANTIC_COLORS.accent60,
@@ -146,5 +163,6 @@ export const dark_colors: _EuiThemeColorsMode = {
   ...dark_brand_text_colors,
   ...dark_text_colors,
   ...dark_background_colors,
+  ...dark_transparent_background_colors,
   ...dark_border_colors,
 };

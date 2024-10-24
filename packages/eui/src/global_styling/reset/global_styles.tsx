@@ -26,7 +26,7 @@ export const EuiGlobalStyles = ({}: EuiGlobalStylesProps) => {
    * so that it knows to use custom styles. Therefore, we just reuse the same scrollbar mixin with thick size.
    */
   const scrollbarStyles = euiScrollBarStyles(euiThemeContext, {
-    trackColor: euiTheme.components.__TEMP_INTERNAL__.scrollbarTrackColor,
+    trackColor: euiTheme.components.scrollbarTrackColor,
     width: 'auto',
   });
 

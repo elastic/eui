@@ -16,8 +16,7 @@ import {
 } from '../../../global_styling';
 
 export const euiSelectableListItemVariables = ({ euiTheme }: UseEuiTheme) => {
-  const lighterBorder =
-    euiTheme.components.__TEMP_INTERNAL__.selectableListItemBorderColor;
+  const lighterBorder = euiTheme.components.selectableListItemBorderColor;
   return {
     border: `${euiTheme.border.width.thin} solid ${lighterBorder}`,
     paddingHorizontal: euiTheme.size.m,

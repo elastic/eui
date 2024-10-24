@@ -45,8 +45,7 @@ export const euiTableHeaderFooterCellStyles = (
 
       /* Tint the sortable icon a bit further */
       .euiTableSortIcon--sortable {
-        color: ${euiTheme.components.__TEMP_INTERNAL__
-          .tableCellSortableIconColor};
+        color: ${euiTheme.components.tableCellSortableIconColor};
       }
 
       &:hover,

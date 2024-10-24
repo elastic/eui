@@ -24,20 +24,7 @@ import {
   text_colors,
 } from './colors/_colors_light';
 
-const temporary_components = {
-  shared: {
-    backgroundTransparent: PRIMITIVE_COLORS.transparent.white['0'],
-    backgroundTransparentPrimary: background_colors.backgroundBasePrimary,
-    backgroundTransparentAccent: background_colors.backgroundBaseAccent,
-    backgroundTransparentAccentSecondary:
-      background_colors.backgroundBaseAccentSecondary,
-    backgroundTransparentSuccess: background_colors.backgroundBaseSuccess,
-    backgroundTransparentWarning: background_colors.backgroundBaseWarning,
-    backgroundTransparentDanger: background_colors.backgroundBaseDanger,
-    backgroundTransparentSubdued: SEMANTIC_COLORS.shade15,
-    backgroundTransparentPlain: SEMANTIC_COLORS.shade15,
-  },
-
+const _components = {
   buttonGroupBorderColor: border_colors.borderBasePlain,
   buttonGroupBorderColorSelected: border_colors.borderBasePlain,
 
@@ -115,121 +102,98 @@ const temporary_components = {
 
   tourFooterBackground: background_colors.backgroundBaseSubdued,
 
-  treeViewItembackgroundHover: background_colors.backgroundBaseHover,
+  treeViewItemBackgroundHover: background_colors.backgroundBaseHover,
 };
 
 export const components: _EuiThemeComponents = {
   buttons,
   forms,
-  __TEMP_INTERNAL__: {
-    LIGHT: temporary_components,
-    DARK: {
-      ...temporary_components,
+  LIGHT: _components,
+  DARK: {
+    ..._components,
 
-      shared: {
-        backgroundTransparent: PRIMITIVE_COLORS.transparent.white['0'],
-        backgroundTransparentPrimary:
-          dark_background_colors.backgroundBasePrimary,
-        backgroundTransparentAccent:
-          dark_background_colors.backgroundBaseAccent,
-        backgroundTransparentAccentSecondary:
-          dark_background_colors.backgroundBaseAccent,
-        backgroundTransparentSuccess:
-          dark_background_colors.backgroundBaseSuccess,
-        backgroundTransparentWarning:
-          dark_background_colors.backgroundBaseWarning,
-        backgroundTransparentDanger:
-          dark_background_colors.backgroundBaseDanger,
-        backgroundTransparentSubdued:
-          dark_background_colors.backgroundBaseSubdued,
-        backgroundTransparentPlain: dark_background_colors.backgroundBasePlain,
-      },
+    buttonGroupBorderColor: dark_border_colors.borderBasePlain,
+    buttonGroupBorderColorSelected: dark_border_colors.borderBasePlain,
 
-      buttonGroupBorderColor: dark_border_colors.borderBasePlain,
-      buttonGroupBorderColorSelected: dark_border_colors.borderBasePlain,
+    badgeBackgroundSubdued: dark_background_colors.backgroundBaseSubdued,
+    badgeBorderColorHollow: dark_border_colors.borderBasePlain,
+    badgeIconButtonBackgroundHover:
+      dark_background_colors.backgroundBaseHoverTransparent,
 
-      badgeBackgroundSubdued: dark_background_colors.backgroundBaseSubdued,
-      badgeBorderColorHollow: dark_border_colors.borderBasePlain,
-      badgeIconButtonBackgroundHover:
-        dark_background_colors.backgroundBaseHoverTransparent,
+    breadcrumbsApplicationBackground:
+      dark_background_colors.backgroundLightText,
+    breadcrumbsApplicationColor: dark_text_colors.textSubdued,
 
-      breadcrumbsApplicationBackground:
-        dark_background_colors.backgroundLightText,
-      breadcrumbsApplicationColor: dark_text_colors.textSubdued,
+    collapsibleNavGroupBackground: dark_background_colors.backgroundBasePage,
+    collapsibleNavGroupBackgroundDark:
+      dark_background_colors.backgroundBasePage,
 
-      collapsibleNavGroupBackground: dark_background_colors.backgroundBasePage,
-      collapsibleNavGroupBackgroundDark:
-        dark_background_colors.backgroundBasePage,
+    dataGridVerticalLineBorderColor: dark_border_colors.borderBasePlain,
+    dataGridRowBackgroundStriped: dark_background_colors.backgroundBaseSubdued,
+    dataGridRowBackgroundHover: dark_background_colors.backgroundBaseHover,
 
-      dataGridVerticalLineBorderColor: dark_border_colors.borderBasePlain,
-      dataGridRowBackgroundStriped:
-        dark_background_colors.backgroundBaseSubdued,
-      dataGridRowBackgroundHover: dark_background_colors.backgroundBaseHover,
+    dragDropDraggingBackground: dark_background_colors.backgroundBaseSuccess,
+    dragDropDraggingOverBackground:
+      dark_background_colors.backgroundLightSuccess,
 
-      dragDropDraggingBackground: dark_background_colors.backgroundBaseSuccess,
-      dragDropDraggingOverBackground:
-        dark_background_colors.backgroundLightSuccess,
+    filterSelectItemBackgroundFocusDisabled:
+      dark_background_colors.backgroundBaseDisabled,
 
-      filterSelectItemBackgroundFocusDisabled:
-        dark_background_colors.backgroundBaseDisabled,
+    flyoutCloseButtonInsideBackground:
+      dark_background_colors.backgroundBasePlain,
 
-      flyoutCloseButtonInsideBackground:
-        dark_background_colors.backgroundBasePlain,
+    headerBackground: dark_background_colors.backgroundBasePlain,
 
-      headerBackground: dark_background_colors.backgroundBasePlain,
+    keyPadMenuItemBackgroundDisabledSelect:
+      dark_background_colors.backgroundBaseDisabled,
 
-      keyPadMenuItemBackgroundDisabledSelect:
-        dark_background_colors.backgroundBaseDisabled,
+    listGroupItemBackgroundPrimaryActive:
+      dark_background_colors.backgroundBaseSelect,
+    listGroupItemBackgroundSubduedActive:
+      dark_background_colors.backgroundBaseSelect,
+    listGroupItemBackgroundHover: dark_background_colors.backgroundBaseHover,
+    listGroupItemBackgroundPrimaryHover:
+      dark_background_colors.backgroundBaseHover,
 
-      listGroupItemBackgroundPrimaryActive:
-        dark_background_colors.backgroundBaseSelect,
-      listGroupItemBackgroundSubduedActive:
-        dark_background_colors.backgroundBaseSelect,
-      listGroupItemBackgroundHover: dark_background_colors.backgroundBaseHover,
-      listGroupItemBackgroundPrimaryHover:
-        dark_background_colors.backgroundBaseHover,
+    markBackground: dark_background_colors.backgroundLightPrimary,
 
-      markBackground: dark_background_colors.backgroundLightPrimary,
+    markdownFormatTableBorderColor: dark_border_colors.borderBasePlain,
 
-      markdownFormatTableBorderColor: dark_border_colors.borderBasePlain,
+    popoverPanelBackground: dark_background_colors.backgroundBasePlain,
+    popoverFooterBorderColor: dark_border_colors.borderBaseSubdued,
 
-      popoverPanelBackground: dark_background_colors.backgroundBasePlain,
-      popoverFooterBorderColor: dark_border_colors.borderBaseSubdued,
+    scrollbarTrackColor: SEMANTIC_COLORS.shade145,
 
-      scrollbarTrackColor: SEMANTIC_COLORS.shade145,
+    sideNavItemEmphasizedBackground:
+      dark_background_colors.backgroundBaseSelect,
 
-      sideNavItemEmphasizedBackground:
-        dark_background_colors.backgroundBaseSelect,
+    selectableListItemBorderColor: dark_border_colors.borderBaseSubdued,
 
-      selectableListItemBorderColor: dark_border_colors.borderBaseSubdued,
+    switchBackgroundOff: dark_background_colors.backgroundFilledText,
+    switchUncompressedBackgroundDisabled:
+      dark_background_colors.backgroundBaseDisabled,
+    switchCompressedBackgroundDisabled:
+      dark_background_colors.backgroundBaseDisabled,
+    switchMiniBackgroundDisabled: dark_background_colors.backgroundBaseDisabled,
+    switchThumbBackgroundDisabled: dark_background_colors.backgroundBasePlain,
 
-      switchBackgroundOff: dark_background_colors.backgroundFilledText,
-      switchUncompressedBackgroundDisabled:
-        dark_background_colors.backgroundBaseDisabled,
-      switchCompressedBackgroundDisabled:
-        dark_background_colors.backgroundBaseDisabled,
-      switchMiniBackgroundDisabled:
-        dark_background_colors.backgroundBaseDisabled,
-      switchThumbBackgroundDisabled: dark_background_colors.backgroundBasePlain,
+    superDatePickerBackgroundSuccees:
+      dark_background_colors.backgroundBaseSuccess,
 
-      superDatePickerBackgroundSuccees:
-        dark_background_colors.backgroundBaseSuccess,
+    tableRowBackgroundHover: dark_background_colors.backgroundBaseHover,
+    tableRowBackgroundSelected: dark_background_colors.backgroundBaseSelect,
+    tableRowBackgroundSelectedHover:
+      dark_background_colors.backgroundBaseSelect,
+    tableRowInteractiveBackgroundHover:
+      dark_background_colors.backgroundBaseHover,
+    tableRowInteractiveBackgroundFocus:
+      dark_background_colors.backgroundBaseHover,
+    tableCellSortableIconColor: dark_background_colors.backgroundFilledText,
 
-      tableRowBackgroundHover: dark_background_colors.backgroundBaseHover,
-      tableRowBackgroundSelected: dark_background_colors.backgroundBaseSelect,
-      tableRowBackgroundSelectedHover:
-        dark_background_colors.backgroundBaseSelect,
-      tableRowInteractiveBackgroundHover:
-        dark_background_colors.backgroundBaseHover,
-      tableRowInteractiveBackgroundFocus:
-        dark_background_colors.backgroundBaseHover,
-      tableCellSortableIconColor: dark_background_colors.backgroundFilledText,
+    tooltipBorderFloating: dark_border_colors.borderBaseFloating,
 
-      tooltipBorderFloating: dark_border_colors.borderBaseFloating,
+    tourFooterBackground: dark_background_colors.backgroundBaseSubdued,
 
-      tourFooterBackground: dark_background_colors.backgroundBaseSubdued,
-
-      treeViewItembackgroundHover: dark_background_colors.backgroundBaseHover,
-    },
+    treeViewItemBackgroundHover: dark_background_colors.backgroundBaseHover,
   },
 };

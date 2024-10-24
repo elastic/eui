@@ -10,19 +10,7 @@ import { ColorModeSwitch, StrictColorModeSwitch } from '../types';
 import { _EuiThemeButtonColors } from './buttons';
 import { _EuiThemeFormColors } from './forms';
 
-type _InternalOnlyComponentTokens = {
-  shared: {
-    backgroundTransparent: ColorModeSwitch;
-    backgroundTransparentPrimary: ColorModeSwitch;
-    backgroundTransparentAccent: ColorModeSwitch;
-    backgroundTransparentAccentSecondary: ColorModeSwitch;
-    backgroundTransparentSuccess: ColorModeSwitch;
-    backgroundTransparentWarning: ColorModeSwitch;
-    backgroundTransparentDanger: ColorModeSwitch;
-    backgroundTransparentSubdued: ColorModeSwitch;
-    backgroundTransparentPlain: ColorModeSwitch;
-  };
-
+type _EuiThemeComponentColors = {
   buttonGroupBorderColor: ColorModeSwitch;
   buttonGroupBorderColorSelected: ColorModeSwitch;
 
@@ -95,7 +83,7 @@ type _InternalOnlyComponentTokens = {
 
   tourFooterBackground: ColorModeSwitch;
 
-  treeViewItembackgroundHover: ColorModeSwitch;
+  treeViewItemBackgroundHover: ColorModeSwitch;
 };
 
 export type _EuiThemeComponents = {
@@ -104,5 +92,6 @@ export type _EuiThemeComponents = {
   /**
    * internal-only key that holds temporary tokens used while migrating themes
    */
-  __TEMP_INTERNAL__: StrictColorModeSwitch<_InternalOnlyComponentTokens>;
+  LIGHT: _EuiThemeComponentColors;
+  DARK: _EuiThemeComponentColors;
 };

@@ -29,7 +29,7 @@ export const euiFlyoutCloseButtonStyles = (euiThemeContext: UseEuiTheme) => {
       z-index: 3;
     `,
     inside: css`
-      background-color: ${euiTheme.components.__TEMP_INTERNAL__
+      background-color: ${euiTheme.components
         .flyoutCloseButtonInsideBackground};
     `,
     outside: css`

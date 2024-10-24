@@ -50,8 +50,7 @@ export const euiTreeViewItemStyles = (euiThemeContext: UseEuiTheme) => {
         &:hover,
         &:active,
         &:focus {
-          background-color: ${euiTheme.components.__TEMP_INTERNAL__
-            .treeViewItembackgroundHover};
+          background-color: ${euiTheme.components.treeViewItemBackgroundHover};
         }
       `,
       default: css`

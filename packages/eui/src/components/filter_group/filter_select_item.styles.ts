@@ -26,7 +26,7 @@ export const euiFilterSelectItemStyles = (euiThemeContext: UseEuiTheme) => {
     text-decoration: underline;
 
     &:disabled {
-      background-color: ${euiTheme.components.__TEMP_INTERNAL__.filterSelectItemBackgroundFocusDisabled};
+      background-color: ${euiTheme.components.filterSelectItemBackgroundFocusDisabled};
     }
   `;
 
