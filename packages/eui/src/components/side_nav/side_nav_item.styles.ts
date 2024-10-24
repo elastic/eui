@@ -8,17 +8,15 @@
 
 import { css } from '@emotion/react';
 
-import { UseEuiTheme, transparentize } from '../../services';
+import { UseEuiTheme } from '../../services';
 import { euiFontSize, logicalCSS, mathWithUnits } from '../../global_styling';
 import { euiTitle } from '../title/title.styles';
 
 export const euiSideNavItemStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
 
-  const emphasizedBackgroundColor = transparentize(
-    euiTheme.colors.lightShade,
-    0.3
-  );
+  const emphasizedBackgroundColor =
+    euiTheme.components.sideNavItemEmphasizedBackground;
 
   return {
     euiSideNavItem: css``,

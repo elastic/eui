@@ -18,5 +18,8 @@ export const focus: _EuiThemeFocus = {
   width: computed(sizeToPixel(0.125)),
   // Focus background
   transparency: { LIGHT: 0.1, DARK: 0.2 },
-  backgroundColor: 'rgba(0, 119, 204, 0.1)', // temp. static value to remove dependency on transparentize
+  backgroundColor: computed(
+    ([backgroundBaseInteractiveHover]) => backgroundBaseInteractiveHover,
+    ['colors.backgroundBaseInteractiveHover']
+  ),
 };

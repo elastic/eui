@@ -8,7 +8,7 @@
 
 import { css } from '@emotion/react';
 
-import { UseEuiTheme, transparentize } from '../../../services';
+import { UseEuiTheme } from '../../../services';
 import {
   euiFontSize,
   euiTextTruncate,
@@ -16,7 +16,7 @@ import {
 } from '../../../global_styling';
 
 export const euiSelectableListItemVariables = ({ euiTheme }: UseEuiTheme) => {
-  const lighterBorder = transparentize(euiTheme.border.color, 0.4);
+  const lighterBorder = euiTheme.components.selectableListItemBorderColor;
   return {
     border: `${euiTheme.border.width.thin} solid ${lighterBorder}`,
     paddingHorizontal: euiTheme.size.m,

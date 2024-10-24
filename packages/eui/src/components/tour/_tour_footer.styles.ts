@@ -7,13 +7,11 @@
  */
 
 import { css } from '@emotion/react';
-import { UseEuiTheme, shade, tint } from '../../services';
+import { UseEuiTheme } from '../../services';
 import { logicalCSS } from '../../global_styling';
 
-export const _tourFooterBgColor = ({ colorMode, euiTheme }: UseEuiTheme) =>
-  colorMode === 'DARK'
-    ? shade(euiTheme.colors.lightestShade, 0.45)
-    : tint(euiTheme.colors.lightestShade, 0.5);
+export const _tourFooterBgColor = ({ euiTheme }: UseEuiTheme) =>
+  euiTheme.components.tourFooterBackground;
 
 export const euiTourFooterStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;

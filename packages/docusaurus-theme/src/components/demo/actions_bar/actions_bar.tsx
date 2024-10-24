@@ -36,23 +36,24 @@ const getDemoActionsBarStyles = (euiTheme: UseEuiTheme) => {
       &:last-child {
         // border radius should be 1px smaller to work nicely
         // with the wrapper border width of 1px
-        border-radius: 0 0 calc(var(--docs-demo-border-radius) - 1px) calc(var(--docs-demo-border-radius) - 1px);
+        border-radius: 0 0 calc(var(--docs-demo-border-radius) - 1px)
+          calc(var(--docs-demo-border-radius) - 1px);
       }
     `,
     button: css`
-      background: var(--eui-background-color-primary-opaque);
+      background: var(--eui-background-color-primary);
       border: 1px solid var(--eui-border-color-primary);
       margin-right: auto;
     `,
   };
-}
+};
 
 export const DemoActionsBar = ({
   isSourceOpen,
   setSourceOpen,
   onClickOpenInCodeSandbox,
   onClickReloadExample,
-  onClickCopyToClipboard
+  onClickCopyToClipboard,
 }: DemoActionsBarProps) => {
   const styles = useEuiMemoizedStyles(getDemoActionsBarStyles);
 

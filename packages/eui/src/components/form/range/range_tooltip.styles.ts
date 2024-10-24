@@ -7,12 +7,7 @@
  */
 
 import { css } from '@emotion/react';
-import {
-  UseEuiTheme,
-  COLOR_MODES_STANDARD,
-  tint,
-  shade,
-} from '../../../services';
+import { UseEuiTheme } from '../../../services';
 import { euiRangeVariables } from './range.styles';
 import { euiFontSize, mathWithUnits } from '../../../global_styling';
 
@@ -35,21 +30,15 @@ export const euiRangeTooltipStyles = (euiThemeContext: UseEuiTheme) => {
   };
 };
 
-const euiToolTipBackgroundColor = (
-  euiTheme: UseEuiTheme['euiTheme'],
-  colorMode: UseEuiTheme['colorMode']
-) =>
-  colorMode === COLOR_MODES_STANDARD.dark
-    ? shade(euiTheme.colors.emptyShade, 1)
-    : tint(euiTheme.colors.fullShade, 0.25);
-
 export const euiRangeTooltipValueStyles = (euiThemeContext: UseEuiTheme) => {
   const range = euiRangeVariables(euiThemeContext);
-  const { euiTheme, colorMode } = euiThemeContext;
+  const { euiTheme } = euiThemeContext;
 
   const arrowSize = euiTheme.size.m;
   const arrowSizeInt = parseInt(arrowSize, 10);
   const arrowMinusSize = `${(arrowSizeInt / 2 - 1) * -1}px`; // Shift arrow 1px more than half its size to account for border radius
+
+  const toolTipBackgroundColor = euiTheme.components.tooltipBackground;
 
   return {
     euiRangeTooltip__value: css`
@@ -63,9 +52,8 @@ export const euiRangeTooltipValueStyles = (euiThemeContext: UseEuiTheme) => {
       ${euiFontSize(euiThemeContext, 's')}
       line-height: ${euiFontSize(euiThemeContext, 's').lineHeight};
       color: ${euiTheme.colors.ghost};
-      background-color: ${euiToolTipBackgroundColor(euiTheme, colorMode)};
-      border: ${euiTheme.border.width.thin} solid
-        ${euiToolTipBackgroundColor(euiTheme, colorMode)};
+      background-color: ${toolTipBackgroundColor};
+      border: ${euiTheme.border.width.thin} solid ${toolTipBackgroundColor};
       border-radius: ${euiTheme.border.radius.small};
 
       &::before {
@@ -76,7 +64,7 @@ export const euiRangeTooltipValueStyles = (euiThemeContext: UseEuiTheme) => {
         block-size: ${arrowSize};
         transform-origin: center;
         transform: translateY(50%) rotateZ(45deg);
-        background-color: ${euiToolTipBackgroundColor(euiTheme, colorMode)};
+        background-color: ${toolTipBackgroundColor};
         border-radius: ${mathWithUnits(
           euiTheme.border.radius.small,
           (x) => x / 2

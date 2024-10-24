@@ -8,7 +8,7 @@
 
 import { css } from '@emotion/react';
 
-import { UseEuiTheme, transparentize } from '../../services';
+import { UseEuiTheme } from '../../services';
 import { euiFocusRing, logicalCSS, mathWithUnits } from '../../global_styling';
 
 export const euiTreeViewItemStyles = (euiThemeContext: UseEuiTheme) => {
@@ -50,10 +50,7 @@ export const euiTreeViewItemStyles = (euiThemeContext: UseEuiTheme) => {
         &:hover,
         &:active,
         &:focus {
-          background-color: ${transparentize(
-            euiTheme.colors.text,
-            euiTheme.focus.transparency
-          )};
+          background-color: ${euiTheme.components.treeViewItemBackgroundHover};
         }
       `,
       default: css`

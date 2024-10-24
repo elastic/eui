@@ -13,7 +13,6 @@ import {
   logicalShorthandCSS,
   logicalTextAlignCSS,
   euiFontSize,
-  euiBackgroundColor,
   _FontScaleOptions,
   mathWithUnits,
 } from '../../global_styling';
@@ -306,7 +305,7 @@ export const euiTextStyles = (euiThemeContext: UseEuiTheme) => {
       pre:not(.euiCodeBlock__pre) {
         white-space: pre-wrap;
         /* TODO: $euiCodeBlockBackgroundColor - switch to var once EuiCode is converted */
-        background: ${euiBackgroundColor(euiThemeContext, 'subdued')};
+        background: ${euiTheme.colors.backgroundBaseSubdued};
         /* TODO: $euiCodeBlockColor - switch to var once EuiCode is converted */
         color: ${euiTheme.colors.text};
       }

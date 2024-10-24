@@ -8,7 +8,7 @@
 
 import { css } from '@emotion/react';
 
-import { UseEuiTheme, transparentize } from '../../services';
+import { UseEuiTheme } from '../../services';
 import { logicalCSS } from '../../global_styling';
 import { euiMarkdownEditorVariables } from './markdown_editor.styles';
 
@@ -28,19 +28,15 @@ export const euiMarkdownEditorDropZoneStyles = (
     isDragging: css`
       .euiMarkdownEditorFooter,
       .euiMarkdownEditorTextArea {
-        background-color: ${transparentize(
-          euiTheme.colors.primary,
-          0.1
-        )} !important; /* stylelint-disable-line declaration-no-important */
+        background-color: ${euiTheme.colors
+          .backgroundTransparentPrimary} !important; /* stylelint-disable-line declaration-no-important */
       }
     `,
     isDraggingError: css`
       .euiMarkdownEditorFooter,
       .euiMarkdownEditorTextArea {
-        background-color: ${transparentize(
-          euiTheme.colors.danger,
-          0.1
-        )} !important; /* stylelint-disable-line declaration-no-important */
+        background-color: ${euiTheme.colors
+          .backgroundTransparentDanger} !important; /* stylelint-disable-line declaration-no-important */
       }
     `,
     hasError: css`

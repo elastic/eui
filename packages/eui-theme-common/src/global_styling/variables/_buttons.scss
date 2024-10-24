@@ -15,4 +15,4 @@ $euiButtonTypes: (
 
 // TODO: Remove this once elastic-charts no longer uses this variable
 // @see https://github.com/elastic/elastic-charts/pull/2528
-$euiButtonColorDisabledText: $euiColorDisabledText;
+$euiButtonColorDisabledText: $euiColorTextDisabled !default;

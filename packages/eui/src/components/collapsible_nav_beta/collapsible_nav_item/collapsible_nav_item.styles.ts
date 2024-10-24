@@ -14,7 +14,7 @@ import {
   mathWithUnits,
   euiFontSize,
 } from '../../../global_styling';
-import { euiButtonColor } from '../../../themes/amsterdam/global_styling/mixins/button';
+import { euiButtonColor } from '../../../global_styling/mixins/_button';
 
 /**
  * Style variables shared between accordion, link, and sub items

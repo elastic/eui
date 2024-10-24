@@ -8,7 +8,7 @@
 
 import { buildTheme, EuiThemeShape } from '@elastic/eui-theme-common';
 
-import { colors } from './variables/_colors';
+import { colors } from './variables/colors';
 import { animation } from './variables/_animation';
 import { breakpoint } from './variables/_breakpoint';
 import { base, size } from './variables/_size';
@@ -16,6 +16,7 @@ import { border } from './variables/_borders';
 import { levels } from './variables/_levels';
 import { font } from './variables/_typography';
 import { focus } from './variables/_states';
+import { components } from './variables/_components';
 
 export const EUI_THEME_BOREALIS_KEY = 'EUI_THEME_BOREALIS';
 
@@ -29,6 +30,7 @@ export const euiThemeBorealis: EuiThemeShape = {
   breakpoint,
   levels,
   focus,
+  components,
 };
 
 export const EuiThemeBorealis = buildTheme(
