@@ -15,7 +15,7 @@ export const euiColorPaletteDisplayStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
 
   // Border is a pseudo element with transparency
-  const border = `${euiTheme.border.width.thin} solid ${euiTheme.colors.borderBaseColorSwatch}`;
+  const border = `${euiTheme.border.width.thin} solid ${euiTheme.colors.borderBaseFormsColorSwatch}`;
 
   return {
     euiColorPaletteDisplay: css`
