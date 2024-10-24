@@ -22121,6 +22121,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"infima@patch:infima@npm%3A0.2.0-alpha.44#~/.yarn/patches/infima-npm-0.2.0-alpha.44-145834fad0.patch":
+  version: 0.2.0-alpha.44
+  resolution: "infima@patch:infima@npm%3A0.2.0-alpha.44#~/.yarn/patches/infima-npm-0.2.0-alpha.44-145834fad0.patch::version=0.2.0-alpha.44&hash=40a7f8"
+  checksum: 10c0/f7b8ea4e4142bcfa75c79b4b9fe73dee4b2ce89a019d834a72649e7325e265c7f64c301b7c5be4bf25fff1121f5b376de3708490b063c50f52d60d022d33a693
+  languageName: node
+  linkType: hard
+
 "inflight@npm:^1.0.4":
   version: 1.0.6
   resolution: "inflight@npm:1.0.6"
