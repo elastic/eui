@@ -1,0 +1,418 @@
+---
+slug: /editors-syntax/markdown-format
+id: editors_syntax_markdown_format
+---
+
+# Markdown format
+
+**EuiMarkdownFormat** is a read-only way to render markdown-style content in a page. It is a peer component to **[EuiMarkdownEditor](/docs/editors-syntax/markdown-editor/)** and has the ability to be modified by additional [markdown plugins](/docs/editors-syntax/markdown-plugins).
+
+## Built in plugins
+
+**EuiMarkdownFormat** is a wrapper that will render Markdown provided. EuiMarkdownFormat uses [Remark](https://github.com/remarkjs/remark) by default. The translation layer automatically substitutes raw HTML output with their EUI equivalent. This means anchor, code blocks and horizontal rules will become **EuiLink**, **EuiCodeBlock** and **EuiHorizontalRule** components respectively.
+
+```tsx interactive
+import React from 'react';
+import { EuiMarkdownFormat } from '@elastic/eui';
+
+const markdownContent = `Beyond Remark's base syntax, **EuiMarkdownFormat** bundles these abilities by default:
+
+\`:smile:\` we support emojis :smile:! But not :)
+
+\`!{tooltip[anchor text](Tooltip content)}\` syntax can render !{tooltip[tooltips like this](I am Jack's helpful tooltip content)}
+
+We also support checkboxes so that
+
+\`\`\`
+- [ ] Checkboxes
+- [x] Can be filled
+- [ ] Or empty
+\`\`\`
+
+turns into
+
+- [ ] Checkboxes
+- [x] Can be filled
+- [ ] Or empty
+
+Note that you'll need to use *EuiMarkdownEditor* to make those checkboxes dynamic.
+`;
+
+export default () => {
+  return <EuiMarkdownFormat>{markdownContent}</EuiMarkdownFormat>;
+};
+
+```
+
+## Text sizing and coloring
+
+**EuiMarkdownFormat** uses [EuiText](/docs/display/text/) as a wrapper to handle all the CSS styling when rendering the HTML. It also gives the ability to control the text size and color with the `textSize` and `color` props, respectively.
+
+```tsx interactive
+import React from 'react';
+import { EuiMarkdownFormat } from '@elastic/eui';
+
+const markdownContent = `This text has the \`textSize\` prop set to \`"s"\`.
+
+The color prop is set to \`"danger"\` and that's why all the text is red! :smile:
+
+| Emoji | Color |
+| ------ | ----------- |
+| :rose:   | Red |
+| :apple: | Red |
+| :green_heart:    | Green |
+`;
+
+export default () => {
+  return (
+    <EuiMarkdownFormat color="danger" textSize="s">
+      {markdownContent}
+    </EuiMarkdownFormat>
+  );
+};
+
+```
+
+## Link validation for security
+
+Markdown content often comes from untrusted sources like user generated content. To help with potential security issues, `EuiMarkdownRenderer` only renders links if they begin with `https:`, `http:`, `mailto:`, or `/`.
+
+```
+**Links starting with http:, https:, mailto:, and / are valid:**
+
+* https://elastic.com
+* http://elastic.com
+* https link to [elastic.co](https://elastic.co)
+* http link to [elastic.co](http://elastic.co)
+* relative link to [eui doc's homepage](/)
+* someone@elastic.co
+* [email me!](mailto:someone@elastic.co)
+
+**Other link protocols are kept as their markdown source:**
+* ftp://elastic.co
+* An [ftp link](ftp://elastic.co)
+```
+
+```tsx interactive
+import React from 'react';
+import { EuiMarkdownFormat } from '@elastic/eui';
+
+// eslint-disable-next-line no-restricted-globals
+const locationPathname = location.pathname;
+
+export const markdownContent = `**Links starting with http:, https:, mailto:, and / are valid:**
+
+* https://elastic.com
+* http://elastic.com
+* https link to [elastic.co](https://elastic.co)
+* http link to [elastic.co](http://elastic.co)
+* relative link to [eui doc's homepage](${locationPathname})
+* someone@elastic.co
+* [email me!](mailto:someone@elastic.co)
+
+**Other link protocols are kept as their markdown source:**
+* ftp://elastic.co
+* An [ftp link](ftp://elastic.co)
+`;
+
+export default () => {
+  return <EuiMarkdownFormat>{markdownContent}</EuiMarkdownFormat>;
+};
+
+```
+
+## Kitchen sink
+
+This example shows of all the styling and markup possibilities. It is mostly used for testing.
+
+```mdx-code-block
+import classNames from 'classnames';
+```
+
+<Demo scope={{ classNames }}>
+  ```tsx
+  import React, { useState } from 'react';
+  import {
+    EuiMarkdownFormat,
+    EuiPanel,
+    EuiFlexGroup,
+    EuiFlexItem,
+    EuiSpacer,
+    EuiFormRow,
+    EuiSelect,
+    EuiRange,
+    EuiColorPicker,
+    useColorPickerState,
+    EuiButton,
+    EuiPopover,
+  } from '@elastic/eui';
+  import classNames from 'classnames';
+
+  const markdownContent = `# h1 Heading
+  ## h2 Heading
+  ### h3 Heading
+  #### h4 Heading
+  ##### h5 Heading
+  ###### h6 Heading
+
+  ### Emphasis
+
+  **This is bold text**
+
+  __This is bold text__
+
+  *This is italic text*
+
+  _This is italic text_
+
+  ~~Strikethrough~~
+
+  ### Horizontal Rules
+
+  ___
+
+  ---
+
+  ***
+
+  ## Blockquotes
+
+  > Blockquotes can also be nested...
+  >> ...by using additional greater-than signs right next to each other...
+  > > > ...or with spaces between arrows.
+
+  ## Lists
+
+  Unordered
+
+  * Item 1
+  * Item 2
+    * Item 2a
+    * Item 2b
+
+  Ordered
+
+  1. Item 1
+  1. Item 2
+  1. Item 3
+     1. Item 3a
+     1. Item 3b
+
+  ## Task Lists
+
+  - [x] Create a new project
+  - [x] Give your project a name
+  - [ ] Add a new column
+
+  ## Another Task Lists
+
+  * [x] Create a new project
+  * [x] Give your project a name
+  * [ ] Add a new column
+
+  ## Code
+
+  Inline \`<Code />\` is awesome!
+
+  Block code "fences"
+
+  \`\`\`
+  Sample text here...
+  \`\`\`
+
+  Syntax highlighting JS
+
+  \`\`\` js
+  var foo = function (bar) {
+    return bar++;
+  };
+
+  console.log(foo(5));
+  \`\`\`
+
+  Syntax highlighting Java
+
+  \`\`\` java
+  package l2f.gameserver.model;
+
+  public abstract class L2Char extends L2Object {
+    public static final Short ERROR = 0x0001;
+
+    public void moveTo(int x, int y, int z) {
+      _ai = null;
+      log("Should not be called");
+      if (1 > 5) { // wtf!?
+        return;
+      }
+    }
+  }
+  \`\`\`
+
+  ## Tables
+
+  | Option | Description |
+  | ------ | ----------- |
+  | data   | path to data files to supply the data that will be passed into templates. |
+  | engine | engine to be used for processing templates. Handlebars is the default. |
+  | ext    | extension to be used for dest files. |
+
+  Right aligned columns
+
+  | Option | Description |
+  | ------:| -----------:|
+  | data   | path to data files to supply the data that will be passed into templates. |
+  | engine | engine to be used for processing templates. Handlebars is the default. |
+  | ext    | extension to be used for dest files. |
+
+  ## Links
+
+  [link text](http://dev.nodeca.com)
+
+  [link with title](http://nodeca.github.io/pica/demo/ "title text!")
+
+  Autoconverted link https://github.com/nodeca/pica (enable linkify to see)
+
+  ## Images
+
+  ![Kibana](https://user-images.githubusercontent.com/2750668/74490344-2f271800-4ec0-11ea-8614-8651cd47eab1.png)
+
+  ### [Emojies](https://github.com/markdown-it/markdown-it-emoji)
+
+  > Classic markup: :wink: :cry: :laughing: :yum:
+  `;
+
+  export default () => {
+    const textSizeArray = ['xs', 's', 'm', 'relative'];
+
+    const textSizeOptions = textSizeArray.map((name) => {
+      return {
+        value: name,
+        text: name,
+      };
+    });
+
+    const textColorsArray = [
+      'default',
+      'subdued',
+      'success',
+      'accent',
+      'danger',
+      'warning',
+      'ghost',
+      'inherit',
+      'custom',
+    ];
+
+    const textColorsOptions = textColorsArray.map((name) => {
+      return {
+        value: name,
+        text: name,
+      };
+    });
+
+    const [textSize, setTextSize] = useState(textSizeOptions[2].value);
+    const [fontSizeScale, setFontSizeScale] = useState(16);
+    const [textColor, setTextColor] = useState(textColorsOptions[0].value);
+    const [isPopoverOpen, setIsPopoverOpen] = useState(false);
+
+    const onChangeTextSize = (e) => {
+      setTextSize(e.target.value);
+    };
+
+    const onChangeFontSizeScale = (e) => {
+      console.log(fontSizeScale);
+      setFontSizeScale(e.target.value);
+    };
+
+    const onChangeTextColor = (e) => {
+      setTextColor(e.target.value);
+    };
+
+    const panelClasses = classNames({
+      guideDemo__ghostBackground: textColor === 'ghost',
+    });
+
+    const [color, setColor, colorErrors] = useColorPickerState('#c561dc');
+
+    const onButtonClick = () =>
+      setIsPopoverOpen((isPopoverOpen) => !isPopoverOpen);
+    const closePopover = () => setIsPopoverOpen(false);
+
+    const button = (
+      <EuiButton onClick={onButtonClick} iconType="controlsVertical" size="s">
+        Customize props
+      </EuiButton>
+    );
+
+    return (
+      <>
+        <EuiFlexGroup>
+          <EuiFlexItem grow={false}>
+            <EuiPopover
+              panelStyle={{ minWidth: 380 }}
+              button={button}
+              isOpen={isPopoverOpen}
+              closePopover={closePopover}
+            >
+              <EuiFormRow label="Color">
+                <EuiSelect
+                  options={textColorsOptions}
+                  value={textColor}
+                  onChange={(e) => onChangeTextColor(e)}
+                />
+              </EuiFormRow>
+
+              <EuiFormRow
+                label="Custom color"
+                isInvalid={!!colorErrors}
+                error={colorErrors}
+              >
+                <EuiColorPicker
+                  onChange={setColor}
+                  color={color}
+                  isInvalid={!!colorErrors}
+                  disabled={textColor !== 'custom'}
+                />
+              </EuiFormRow>
+
+              <EuiFormRow label="Text size">
+                <EuiSelect
+                  options={textSizeOptions}
+                  value={textSize}
+                  onChange={(e) => onChangeTextSize(e)}
+                />
+              </EuiFormRow>
+
+              <EuiFormRow label="Relative text size">
+                <EuiRange
+                  min={12}
+                  max={24}
+                  value={fontSizeScale}
+                  onChange={onChangeFontSizeScale}
+                  showValue
+                  showLabels
+                  disabled={textSize !== 'relative'}
+                />
+              </EuiFormRow>
+            </EuiPopover>
+          </EuiFlexItem>
+        </EuiFlexGroup>
+
+        <EuiSpacer size="s" />
+
+        <EuiPanel hasBorder={false} hasShadow={false} className={panelClasses}>
+          <EuiMarkdownFormat
+            textSize={textSize}
+            color={textColor === 'custom' ? color : textColor}
+            style={{
+              fontSize: textSize === 'relative' && `${fontSizeScale}px`,
+            }}
+          >
+            {markdownContent}
+          </EuiMarkdownFormat>
+        </EuiPanel>
+      </>
+    );
+  };
+  ```
+</Demo>

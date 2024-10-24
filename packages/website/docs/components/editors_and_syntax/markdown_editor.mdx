@@ -1,0 +1,444 @@
+---
+slug: /editors-syntax/markdown-editor
+id: editors_syntax_markdown_editor
+---
+
+# Markdown editor
+
+**EuiMarkdownEditor** provides a markdown authoring experience for the user. The component consists of a toolbar, text area, and a drag-and-drop zone to accept files (if configured to do so). There are two modes: a textarea that keeps track of cursor position, and a rendered preview mode that is powered by **[EuiMarkdownFormat](/docs/editors-syntax/markdown-format/)**. State is maintained between the two and it is possible to pass changes from the preview area to the textarea and vice versa.
+
+## Base editor
+
+Use the base editor to produce technical content in markdown which can contain text, code, and images. Besides this default markdown content, the base editor comes with built-in plugins that let you add emojis, to-do lists, and tooltips.
+
+Consider applying the `readOnly` prop to restrict editing during asynchronous submit events, like when submitting a [comment](/docs/display/comment-list). This will ensure users understand that the content cannot be changed while the comment is being submitted.
+
+```tsx interactive
+import React, { useCallback, useState } from 'react';
+import {
+  EuiMarkdownEditor,
+  EuiSpacer,
+  EuiCodeBlock,
+  EuiButton,
+  EuiSwitch,
+  EuiFlexGroup,
+  EuiFlexItem,
+} from '@elastic/eui';
+
+const initialContent = `## Hello world!
+
+Basic "GitHub flavored" markdown will work as you'd expect.
+
+The editor also ships with some built in plugins. For example it can handle checkboxes. Notice how they toggle state even in the preview mode.
+
+- [ ] Checkboxes
+- [x] Can be filled
+- [ ] Or empty
+
+It can also handle emojis! :smile:
+And it can render !{tooltip[tooltips like this](Look! I'm a very helpful tooltip content!)}
+`;
+
+const dropHandlers = [
+  {
+    supportedFiles: ['.jpg', '.jpeg'],
+    accepts: (itemType) => itemType === 'image/jpeg',
+    getFormattingForItem: (item) => {
+      // fake an upload
+      return new Promise((resolve) => {
+        setTimeout(() => {
+          const url = URL.createObjectURL(item);
+          resolve({
+            text: `![${item.name}](${url})`,
+            config: { block: true },
+          });
+        }, 1000);
+      });
+    },
+  },
+];
+
+export default () => {
+  const [value, setValue] = useState(initialContent);
+  const [messages, setMessages] = useState([]);
+  const [ast, setAst] = useState(null);
+  const [isAstShowing, setIsAstShowing] = useState(false);
+  const onParse = useCallback((err, { messages, ast }) => {
+    setMessages(err ? [err] : messages);
+    setAst(JSON.stringify(ast, null, 2));
+  }, []);
+
+  const [isReadOnly, setIsReadOnly] = useState(false);
+
+  const onChange = (e) => {
+    setIsReadOnly(e.target.checked);
+  };
+
+  return (
+    <>
+      <EuiMarkdownEditor
+        aria-label="EUI markdown editor demo"
+        placeholder="Your markdown here..."
+        value={value}
+        onChange={setValue}
+        height={400}
+        onParse={onParse}
+        errors={messages}
+        dropHandlers={dropHandlers}
+        readOnly={isReadOnly}
+        initialViewMode="viewing"
+      />
+      <EuiSpacer size="s" />
+      <EuiFlexGroup alignItems="center">
+        <EuiFlexItem grow={true}>
+          <EuiSwitch
+            label="Read-only"
+            checked={isReadOnly}
+            onChange={onChange}
+          />
+        </EuiFlexItem>
+        <EuiFlexItem grow={false}>
+          <EuiButton
+            size="s"
+            iconType={isAstShowing ? 'eyeClosed' : 'eye'}
+            onClick={() => setIsAstShowing(!isAstShowing)}
+            fill={isAstShowing}
+          >
+            {isAstShowing ? 'Hide editor AST' : 'Show editor AST'}
+          </EuiButton>
+        </EuiFlexItem>
+      </EuiFlexGroup>
+
+      <EuiSpacer size="s" />
+
+      {isAstShowing && <EuiCodeBlock language="json">{ast}</EuiCodeBlock>}
+    </>
+  );
+};
+
+```
+
+## Unregistering plugins
+
+The **EuiMarkdownEditor** comes with several default plugins, demo'd below. If these defaults are unnecessary for your use-case or context, you can unregister these plugins by excluding them from the `parsingPlugins`, `processingPlugins` and `uiPlugins` options with a single `exclude` parameter passed to `getDefaultEuiMarkdownPlugins()`. This will ensure the syntax won't be identified or rendered, and no additional UI (like toolbar buttons or help syntax) will be displayed by the unregistered plugins.
+
+```tsx interactive
+import React, { useState, useMemo } from 'react';
+import {
+  EuiMarkdownEditor,
+  getDefaultEuiMarkdownPlugins,
+  EuiFlexGroup,
+  EuiFlexItem,
+  EuiSwitch,
+} from '@elastic/eui';
+
+const initialContent = `
+### tooltip
+
+When disabled, the button in the toolbar and the help syntax won't be displayed, and the following syntax will no longer works.
+
+!{tooltip[anchor text](Tooltip content)}
+
+### checkbox
+
+When disabled, a EuiCheckbox will no longer render.
+
+- [ ] TODO: Disable some default plugins
+
+### emoji
+
+When disabled, text will render instead of an emoji.
+
+:smile:
+
+### linkValidator
+
+When disabled, all links will render as links instead of as text.
+
+[This is a sus link](file://)
+
+### lineBreaks
+
+When disabled, these sentence will be in the same line.
+When enabled, these sentences will be separated by a line break.
+
+Two blank lines in a row will create a new paragraph as usual.
+`;
+
+export default () => {
+  const [value, setValue] = useState(initialContent);
+
+  const [tooltip, excludeTooltips] = useState(false);
+  const [checkbox, excludeCheckboxes] = useState(true);
+  const [emoji, excludeEmojis] = useState(true);
+  const [linkValidator, excludeLinkValidator] = useState(true);
+  const [lineBreaks, excludeLineBreaks] = useState(false);
+
+  const { parsingPlugins, processingPlugins, uiPlugins } = useMemo(() => {
+    const excludedPlugins = [];
+    if (!tooltip) excludedPlugins.push('tooltip');
+    if (!checkbox) excludedPlugins.push('checkbox');
+    if (!emoji) excludedPlugins.push('emoji');
+    if (!linkValidator) excludedPlugins.push('linkValidator');
+    if (!lineBreaks) excludedPlugins.push('lineBreaks');
+
+    return getDefaultEuiMarkdownPlugins({
+      exclude: excludedPlugins,
+    });
+  }, [tooltip, checkbox, emoji, linkValidator, lineBreaks]);
+
+  return (
+    <>
+      <EuiFlexGroup>
+        <EuiFlexItem grow={false} css={{ gap: 20 }}>
+          <EuiSwitch
+            label="tooltip"
+            checked={tooltip}
+            onChange={() => excludeTooltips(!tooltip)}
+          />
+          <EuiSwitch
+            label="checkbox"
+            checked={checkbox}
+            onChange={() => excludeCheckboxes(!checkbox)}
+          />
+          <EuiSwitch
+            label="emoji"
+            checked={emoji}
+            onChange={() => excludeEmojis(!emoji)}
+          />
+          <EuiSwitch
+            label="linkValidator"
+            checked={linkValidator}
+            onChange={() => excludeLinkValidator(!linkValidator)}
+          />
+          <EuiSwitch
+            label="lineBreaks"
+            checked={lineBreaks}
+            onChange={() => excludeLineBreaks(!lineBreaks)}
+          />
+        </EuiFlexItem>
+        <EuiFlexItem>
+          <EuiMarkdownEditor
+            aria-label="Demo with excluded default plugins"
+            value={value}
+            onChange={setValue}
+            parsingPluginList={parsingPlugins}
+            processingPluginList={processingPlugins}
+            uiPlugins={uiPlugins}
+            initialViewMode="viewing"
+            autoExpandPreview={false}
+            height={400}
+          />
+        </EuiFlexItem>
+      </EuiFlexGroup>
+    </>
+  );
+};
+
+```
+
+## Error handling and feedback
+
+The `errors` prop allows you to pass an array of errors if syntax is malformed. The below example starts with an incomplete tooltip tag, showing this error message by default. These errors are meant to be ephemeral and part of the editing experience. They should not be a substitute for [form validation](/docs/forms/form-validation).
+
+```tsx interactive
+import React, { useCallback, useState, useRef } from 'react';
+import {
+  EuiMarkdownEditor,
+  EuiSpacer,
+  EuiCodeBlock,
+  EuiButton,
+  EuiFormErrorText,
+  htmlIdGenerator,
+} from '@elastic/eui';
+
+const initialContent = `## Errors
+
+The tooltip is empty and will error
+
+!{tooltip[]()}
+`;
+
+export default () => {
+  const errorElementId = useRef(htmlIdGenerator()());
+  const [value, setValue] = useState(initialContent);
+  const [messages, setMessages] = useState([]);
+  const [ast, setAst] = useState(null);
+  const [isAstShowing, setIsAstShowing] = useState(false);
+  const onParse = useCallback((err, { messages, ast }) => {
+    setMessages(err ? [err] : messages);
+    setAst(JSON.stringify(ast, null, 2));
+  }, []);
+  return (
+    <>
+      <EuiMarkdownEditor
+        aria-label="EUI markdown editor demo"
+        aria-describedby={errorElementId.current}
+        placeholder="Your markdown here..."
+        value={value}
+        onChange={setValue}
+        height={400}
+        onParse={onParse}
+        errors={messages}
+      />
+      <EuiSpacer size="s" />
+
+      <EuiFormErrorText
+        id={errorElementId.current}
+        className="euiFormRow__text"
+      >
+        Utilize error text or{' '}
+        <strong>
+          <a href="#/forms/form-validation">EuiFormRow</a>
+        </strong>{' '}
+        for more permanent error feedback
+      </EuiFormErrorText>
+
+      <div className="eui-textRight">
+        <EuiButton
+          size="s"
+          iconType={isAstShowing ? 'eyeClosed' : 'eye'}
+          onClick={() => setIsAstShowing(!isAstShowing)}
+          fill={isAstShowing}
+        >
+          {isAstShowing ? 'Hide editor AST' : 'Show editor AST'}
+        </EuiButton>
+      </div>
+
+      {isAstShowing && <EuiCodeBlock language="json">{ast}</EuiCodeBlock>}
+    </>
+  );
+};
+
+```
+
+## Controlling the height
+
+The `height` prop allows you to control the height of the **EuiMarkdownEditor**. You can set the `height` in pixels or pass `"full"` to allow the **EuiMarkdownEditor** to fill the height of its container. By default, the `autoExpandPreview` prop is set to `true`. This means that the preview `height` is automatically adjusted to fit all the content and avoid a scrollbar.
+
+You can also control the `maxHeight` of the editor/preview area. This prop only works when the `height` is not set to `"full"`.
+
+```tsx interactive
+import React, { useState } from 'react';
+import {
+  EuiMarkdownEditor,
+  EuiFlexGroup,
+  EuiFlexItem,
+  EuiSpacer,
+  EuiPanel,
+} from '@elastic/eui';
+
+const initialContent1 = `## 👋 Hello there!
+
+I'm a **EuiMarkdownEditor** with:
+
+- a \`height\` set to \`200\`
+- my parent container is a flex item
+
+### Things you should know
+
+When my content is very long 😅
+
+The preview height is automatically adjusted 😉
+
+To avoid a scrollbar 😌
+
+### That's why I look good 😍
+
+`;
+
+const initialContent2 = `## 👋 Hello again!
+
+I'm a **EuiMarkdownEditor** with:
+- a \`height\` set to \`"full"\`
+- my parent container is a flex item with a \`height\` set to \`600\`
+`;
+
+const initialContent3 = `## 👋 Hi!
+
+I'm a **EuiMarkdownEditor** with:
+- a \`height\` set to \`200\`
+- my parent container is a flex item.
+- the \`autoExpandPreview\` is set to \`false\`
+
+### Things you should know
+
+When the content grows the preview height is not automatically adjusted. Just because the \`autoExpandPreview\` is set to \`false\` 😉
+`;
+
+const initialContent4 = `## 👋 Hello again!
+
+I'm just a **EuiMarkdownEditor** with:
+- a \`height\` set to \`200\`
+- a \`maxHeight\` set to \`300\`
+`;
+
+export default () => {
+  const [value1, setValue1] = useState(initialContent1);
+  const [value2, setValue2] = useState(initialContent2);
+  const [value3, setValue3] = useState(initialContent3);
+  const [value4, setValue4] = useState(initialContent4);
+
+  return (
+    <>
+      <EuiFlexGroup>
+        <EuiFlexItem>
+          <EuiPanel color="primary">
+            <EuiMarkdownEditor
+              aria-label="EUI markdown editor with fixed height"
+              placeholder="Your markdown here..."
+              initialViewMode="viewing"
+              value={value1}
+              onChange={setValue1}
+              height={200}
+            />
+          </EuiPanel>
+        </EuiFlexItem>
+        <EuiFlexItem style={{ height: '600px' }}>
+          <EuiPanel color="primary">
+            <EuiMarkdownEditor
+              aria-label="EUI markdown editor with full height "
+              initialViewMode="viewing"
+              value={value2}
+              onChange={setValue2}
+              height="full"
+            />
+          </EuiPanel>
+        </EuiFlexItem>
+      </EuiFlexGroup>
+
+      <EuiSpacer />
+
+      <EuiFlexGroup>
+        <EuiFlexItem>
+          <EuiPanel color="primary">
+            <EuiMarkdownEditor
+              aria-label="EUI markdown editor with no auto expand"
+              placeholder="Your markdown here..."
+              initialViewMode="viewing"
+              value={value3}
+              onChange={setValue3}
+              height={200}
+              autoExpandPreview={false}
+            />
+          </EuiPanel>
+        </EuiFlexItem>
+        <EuiFlexItem>
+          <EuiPanel color="primary">
+            <EuiMarkdownEditor
+              aria-label="EUI markdown editor with fixed and max height"
+              placeholder="Your markdown here..."
+              initialViewMode="viewing"
+              value={value4}
+              onChange={setValue4}
+              height={200}
+              maxHeight={300}
+            />
+          </EuiPanel>
+        </EuiFlexItem>
+      </EuiFlexGroup>
+    </>
+  );
+};
+
+```

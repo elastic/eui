@@ -1,0 +1,1157 @@
+---
+slug: /tabular-content/data-grid/style-and-display
+id: tabular_content_data_grid_style_display
+---
+
+# Data grid style & display
+
+## Grid style
+
+Styling can be passed down to the grid through the `gridStyle` prop. It accepts an object that allows for customization.
+
+With the default settings, the `showDisplaySelector.allowDensity` setting in `toolbarVisibility` means the user has the ability to override the padding and font size passed into `gridStyle` by the engineer. The font size overriding only works with text or elements that can inherit the parent font size or elements that use units relative to the parent container.
+
+```tsx interactive
+import React, { useState, useCallback } from 'react';
+import { EuiDataGrid, EuiAvatar } from '@elastic/eui';
+import { faker } from '@faker-js/faker';
+
+const columns = [
+  {
+    id: 'avatar',
+    initialWidth: 40,
+  },
+  {
+    id: 'name',
+  },
+  {
+    id: 'email',
+  },
+  {
+    id: 'city',
+  },
+  {
+    id: 'country',
+  },
+  {
+    id: 'account',
+  },
+];
+
+const data = [];
+
+for (let i = 1; i < 6; i++) {
+  data.push({
+    avatar: (
+      <EuiAvatar
+        size="s"
+        name={`${faker.person.lastName()}, ${faker.person.firstName()}`}
+      />
+    ),
+    name: `${faker.person.lastName()}, ${faker.person.firstName()} ${faker.person.suffix()}`,
+    email: faker.internet.email(),
+    city: faker.location.city(),
+    country: faker.location.country(),
+    account: faker.finance.accountNumber(),
+  });
+}
+
+const footerCellValues = {
+  name: '5 accounts',
+};
+
+const renderFooterCellValue = ({ columnId }) =>
+  footerCellValues[columnId] || null;
+
+const DataGridStyle = ({
+  border = 'none',
+  fontSize = 'm',
+  cellPadding = 'm',
+  stripes = true,
+  rowHover = 'highlight',
+  header = 'underline',
+  footer = 'overline',
+}) => {
+  const [pagination, setPagination] = useState({ pageIndex: 0 });
+  const [visibleColumns, setVisibleColumns] = useState(
+    columns.map(({ id }) => id)
+  );
+
+  const setPageIndex = useCallback((pageIndex) => {
+    setPagination((pagination) => ({ ...pagination, pageIndex }));
+  }, []);
+
+  const setPageSize = useCallback((pageSize) => {
+    setPagination((pagination) => ({
+      ...pagination,
+      pageSize,
+      pageIndex: 0,
+    }));
+  }, []);
+
+  const handleVisibleColumns = (visibleColumns) =>
+    setVisibleColumns(visibleColumns);
+
+  const [sortingColumns, setSortingColumns] = useState([]);
+  const onSort = useCallback(
+    (sortingColumns) => setSortingColumns(sortingColumns),
+    [setSortingColumns]
+  );
+
+  return (
+    <EuiDataGrid
+      aria-label="Data grid styling demo"
+      columns={columns}
+      columnVisibility={{
+        visibleColumns: visibleColumns,
+        setVisibleColumns: handleVisibleColumns,
+      }}
+      sorting={{ columns: sortingColumns, onSort }}
+      rowCount={data.length}
+      gridStyle={{
+        border: border,
+        fontSize: fontSize,
+        cellPadding: cellPadding,
+        stripes: stripes,
+        rowHover: rowHover,
+        header: header,
+        footer: footer,
+      }}
+      renderCellValue={({ rowIndex, columnId }) => data[rowIndex][columnId]}
+      renderFooterCellValue={renderFooterCellValue}
+      pagination={{
+        ...pagination,
+        onChangeItemsPerPage: setPageSize,
+        onChangePage: setPageIndex,
+      }}
+    />
+  );
+};
+
+export default DataGridStyle;
+
+```
+
+## Grid row classes
+
+Specific rows can be highlighted or otherwise have custom styling passed to them via the`gridStyle.rowClasses` prop. It accepts an object associating the row's index with a class name string.
+
+The example below sets a custom striped class on the 3rd row and dynamically updates the `rowClasses` map when rows are selected.
+
+```tsx interactive
+import React, {
+  createContext,
+  useContext,
+  useReducer,
+  useState,
+  useMemo,
+} from 'react';
+import { EuiDataGrid, EuiCheckbox, EuiButtonEmpty } from '@elastic/eui';
+import { faker } from '@faker-js/faker';
+
+/**
+ * Data
+ */
+const columns = [
+  { id: 'name' },
+  { id: 'email' },
+  { id: 'city' },
+  { id: 'country' },
+  { id: 'account' },
+];
+
+const DEMO_ROW = 2;
+
+const data = [];
+for (let i = 1; i <= 10; i++) {
+  data.push({
+    name: `${faker.person.lastName()}, ${faker.person.firstName()} ${faker.person.suffix()}`,
+    email: faker.internet.email(),
+    city: faker.location.city(),
+    country: faker.location.country(),
+    account: faker.finance.accountNumber(),
+  });
+}
+data[DEMO_ROW].account = 'OVERDUE';
+
+/**
+ * Selection
+ */
+const SelectionContext = createContext();
+
+const SelectionButton = () => {
+  const [selectedRows] = useContext(SelectionContext);
+  const hasSelection = selectedRows.size > 0;
+  return hasSelection ? (
+    <EuiButtonEmpty
+      size="xs"
+      iconType="arrowDown"
+      iconSide="right"
+      onClick={() => window.alert('This is not a real control.')}
+    >
+      {selectedRows.size} {selectedRows.size > 1 ? 'items' : 'item'} selected
+    </EuiButtonEmpty>
+  ) : null;
+};
+
+const SelectionHeaderCell = () => {
+  const [selectedRows, updateSelectedRows] = useContext(SelectionContext);
+  const isIndeterminate =
+    selectedRows.size > 0 && selectedRows.size < data.length;
+  return (
+    <EuiCheckbox
+      id="selection-toggle"
+      aria-label="Select all rows"
+      indeterminate={isIndeterminate}
+      checked={selectedRows.size > 0}
+      onChange={(e) => {
+        if (isIndeterminate) {
+          // clear selection
+          updateSelectedRows({ action: 'clear' });
+        } else {
+          if (e.target.checked) {
+            // select everything
+            updateSelectedRows({ action: 'selectAll' });
+          } else {
+            // clear selection
+            updateSelectedRows({ action: 'clear' });
+          }
+        }
+      }}
+    />
+  );
+};
+
+const SelectionRowCell = ({ rowIndex }) => {
+  const [selectedRows, updateSelectedRows] = useContext(SelectionContext);
+  const isChecked = selectedRows.has(rowIndex);
+  return (
+    <>
+      <EuiCheckbox
+        id={`${rowIndex}`}
+        aria-label={`Select row ${rowIndex}, ${data[rowIndex].name}`}
+        checked={isChecked}
+        onChange={(e) => {
+          if (e.target.checked) {
+            updateSelectedRows({ action: 'add', rowIndex });
+          } else {
+            updateSelectedRows({ action: 'delete', rowIndex });
+          }
+        }}
+      />
+    </>
+  );
+};
+
+const leadingControlColumns = [
+  {
+    id: 'selection',
+    width: 32,
+    headerCellRender: SelectionHeaderCell,
+    rowCellRender: SelectionRowCell,
+  },
+];
+
+/**
+ * Data grid
+ */
+export default () => {
+  const [visibleColumns, setVisibleColumns] = useState(
+    columns.map(({ id }) => id)
+  );
+
+  const rowSelection = useReducer((rowSelection, { action, rowIndex }) => {
+    if (action === 'add') {
+      const nextRowSelection = new Set(rowSelection);
+      nextRowSelection.add(rowIndex);
+      return nextRowSelection;
+    } else if (action === 'delete') {
+      const nextRowSelection = new Set(rowSelection);
+      nextRowSelection.delete(rowIndex);
+      return nextRowSelection;
+    } else if (action === 'clear') {
+      return new Set();
+    } else if (action === 'selectAll') {
+      return new Set(data.map((_, index) => index));
+    }
+    return rowSelection;
+  }, new Set());
+
+  const rowClasses = useMemo(() => {
+    const rowClasses = {
+      [DEMO_ROW]: 'euiDataGridRow--rowClassesDemo',
+    };
+    rowSelection[0].forEach((rowIndex) => {
+      rowClasses[rowIndex] = 'euiDataGridRow--rowClassesDemoSelected';
+    });
+    return rowClasses;
+  }, [rowSelection]);
+
+  return (
+    <SelectionContext.Provider value={rowSelection}>
+      <EuiDataGrid
+        aria-label="Top EUI contributors"
+        columns={columns}
+        columnVisibility={{ visibleColumns, setVisibleColumns }}
+        rowCount={data.length}
+        renderCellValue={({ rowIndex, columnId }) => data[rowIndex][columnId]}
+        leadingControlColumns={leadingControlColumns}
+        toolbarVisibility={{
+          additionalControls: <SelectionButton />,
+        }}
+        gridStyle={{ rowClasses, rowHover: 'none' }}
+      />
+    </SelectionContext.Provider>
+  );
+};
+
+```
+
+## Row heights options
+
+By default, all rows get a height of **34 pixels**, but there are scenarios where you might want to adjust the height to fit more content. To do that, you can pass an object to the `rowHeightsOptions` prop. This object accepts the following properties:
+
+*   `defaultHeight`
+    *   Defines the default size for all rows
+    *   Can be configured with an exact pixel height, a line count, or `"auto"` to fit all content
+*   `rowHeights`
+    *   Overrides the height for a specific row
+    *   Can be configured with an exact pixel height, a line count, or `"auto"` to fit all content
+*   `lineHeight`
+    *   Sets a default line height for all cells, which is used to calculate row height
+    *   Accepts any value that the `line-height` CSS property normally takes (e.g. px, ems, rems, or unitless)
+*   `onChange`
+    *   Optional callback when the user changes the data grid's internal `rowHeightsOptions` (e.g., via the toolbar display selector).
+    *   Can be used to store and preserve user display preferences on page refresh - see this [data grid styling and control example](/docs/tabular-content/data-grid-style-display#adjusting-your-grid-to-usertoolbar-changes).
+*   `scrollAnchorRow`
+    *   Optional indicator of the row that should be used as an anchor for vertical layout shift compensation.
+    *   Can be set to the default `undefined`,`"start"`, or`"center"`.
+    *   If set to `"start"`, the topmost visible row will monitor for unexpected changes to its vertical position and try to compensate for these by scrolling the grid scroll container such that the topmost row position remains stable.
+    *   If set to `"center"`, the middle visible row will monitor for unexpected changes to its vertical position and try to compensate for these by scrolling the grid scroll container such that the middle row position remains stable.
+    *   This is particularly useful when the grid contains`auto` sized rows. Since these rows are measured as they appear in the overscan, they can cause surprising shifts of the vertical position of all following rows when their measured height is different from the estimated height.
+
+:::warning Rows have minimum height requirements
+
+Rows must be at least **34 pixels** tall so they can render at least one line of text. If you provide a smaller height the row will default to **34 pixels**.
+
+:::
+
+## Setting a default height and line height for rows
+
+You can change the default height for all rows via the `defaultHeight` property. Note that the `showDisplaySelector.allowRowHeight` setting in `toolbarVisibility` means the user has the ability to override this default height. Users will be able to toggle between single rows, a configurable line count, or `"auto"`.
+
+You can also customize the line height of all cells with the `lineHeight` property. However, if you wrap your cell content with CSS that overrides/sets line-height (e.g. in an `EuiText`), your row heights will not be calculated correctly - make sure to match the passed `lineHeight` property to the actual cell content line height.
+
+```tsx interactive
+import React, {
+  useCallback,
+  useState,
+  createContext,
+  useContext,
+  useMemo,
+  ReactNode,
+} from 'react';
+import {
+  RenderCellValue as RenderCellValueType,
+  EuiDataGrid,
+  EuiLink,
+  EuiAvatar,
+  EuiBadge,
+  EuiMarkdownFormat,
+  EuiText,
+  EuiSpacer,
+  formatDate,
+  EuiDataGridSorting,
+  EuiDataGridColumnSortingConfig,
+  EuiDataGridPaginationProps,
+} from '@elastic/eui';
+import githubData from '../_row_auto_height_data.json';
+
+interface DataShape {
+  html_url: string;
+  title: string;
+  user: {
+    login: string;
+    avatar_url: string;
+  };
+  labels: Array<{
+    name: string;
+    color: string;
+  }>;
+  comments: number;
+  created_at: string;
+  body: null | string;
+}
+
+type DataContextShape =
+  | undefined
+  | {
+      data: DataShape[];
+    };
+const DataContext = createContext<DataContextShape>(undefined);
+
+const columns = [
+  {
+    id: 'index',
+    displayAsText: 'Index',
+    isExpandable: false,
+    initialWidth: 80,
+  },
+  {
+    id: 'issue',
+    displayAsText: 'Issue',
+    isExpandable: false,
+  },
+  {
+    id: 'body',
+    displayAsText: 'Description',
+  },
+];
+
+// it is expensive to compute 10000 rows of fake data
+// instead of loading up front, generate entries on the fly
+const raw_data: DataShape[] = githubData;
+
+const RenderCellValue: RenderCellValueType = ({
+  rowIndex,
+  columnId,
+  isDetails,
+}) => {
+  const { data } = useContext(DataContext)!;
+
+  const item = data[rowIndex];
+  let content: ReactNode = '';
+
+  if (columnId === 'index') {
+    content = <>{rowIndex}</>;
+  } else if (columnId === 'issue') {
+    content = (
+      <>
+        <EuiText size="relative">
+          <h3>
+            <EuiLink color="text" href={item.html_url} target="blank" external>
+              {item.title}
+            </EuiLink>
+            {'  '}
+            {item.labels.map(({ name, color }) => (
+              <EuiBadge key={name} color={`#${color}`}>
+                {name}
+              </EuiBadge>
+            ))}
+          </h3>
+        </EuiText>
+
+        <EuiSpacer size="s" />
+
+        <EuiText color="subdued" size="relative">
+          <span>
+            Opened by{' '}
+            <EuiAvatar
+              name={item.user.login}
+              imageUrl={item.user.avatar_url}
+              size="s"
+            />{' '}
+            {item.user.login} on{' '}
+            {formatDate(new Date(item.created_at), 'dobLong')}
+          </span>
+        </EuiText>
+
+        <EuiSpacer size="s" />
+
+        {item.comments === 1 && (
+          <EuiBadge iconType="editorComment" iconSide="left" color="hollow">
+            {`${item.comments} comment`}
+          </EuiBadge>
+        )}
+
+        {item.comments >= 2 && (
+          <EuiBadge iconType="editorComment" iconSide="left" color="hollow">
+            {`${item.comments} comments`}
+          </EuiBadge>
+        )}
+      </>
+    );
+  } else if (columnId === 'body') {
+    if (isDetails) {
+      // expanded in a popover
+      content = <EuiMarkdownFormat>{item.body ?? ''}</EuiMarkdownFormat>;
+    } else {
+      // a full issue description is a *lot* to shove into a cell
+      content = (
+        <EuiMarkdownFormat textSize="relative">
+          {(item.body ?? '').slice(0, 300)}
+        </EuiMarkdownFormat>
+      );
+    }
+  }
+
+  return content;
+};
+
+export default () => {
+  // Pagination
+  const [pagination, setPagination] = useState({ pageIndex: 0, pageSize: 50 });
+
+  // Sorting
+  const [sortingColumns, setSortingColumns] = useState<
+    EuiDataGridColumnSortingConfig[]
+  >([]);
+  const onSort = useCallback<EuiDataGridSorting['onSort']>(
+    (sortingColumns) => {
+      setSortingColumns(sortingColumns);
+    },
+    [setSortingColumns]
+  );
+
+  const onChangeItemsPerPage = useCallback<
+    EuiDataGridPaginationProps['onChangeItemsPerPage']
+  >(
+    (pageSize) =>
+      setPagination((pagination) => ({
+        ...pagination,
+        pageSize,
+        pageIndex: 0,
+      })),
+    [setPagination]
+  );
+
+  const onChangePage = useCallback<EuiDataGridPaginationProps['onChangePage']>(
+    (pageIndex) =>
+      setPagination((pagination) => ({ ...pagination, pageIndex })),
+    [setPagination]
+  );
+
+  // Column visibility
+  const [visibleColumns, setVisibleColumns] = useState(
+    columns.map(({ id }) => id)
+  );
+
+  // matches the snippet example
+  const rowHeightsOptions = useMemo(
+    () => ({
+      defaultHeight: 'auto' as const,
+    }),
+    []
+  );
+
+  const dataContext = useMemo<DataContextShape>(
+    () => ({
+      data: raw_data,
+    }),
+    []
+  );
+
+  return (
+    <DataContext.Provider value={dataContext}>
+      <EuiDataGrid
+        aria-label="Row height options with auto demo"
+        columns={columns}
+        columnVisibility={{ visibleColumns, setVisibleColumns }}
+        rowCount={raw_data.length}
+        height={400}
+        renderCellValue={RenderCellValue}
+        inMemory={{ level: 'sorting' }}
+        sorting={{ columns: sortingColumns, onSort }}
+        rowHeightsOptions={rowHeightsOptions}
+        virtualizationOptions={{
+          // rough average of the cell heights in the example
+          // accurately setting this smooths out the scrolling experience
+          estimatedRowHeight: 210,
+        }}
+        pagination={{
+          ...pagination,
+          pageSizeOptions: [50, 250, 1000],
+          onChangeItemsPerPage: onChangeItemsPerPage,
+          onChangePage: onChangePage,
+        }}
+      />
+    </DataContext.Provider>
+  );
+};
+
+```
+
+## Overriding specific row heights
+
+You can override the default height of a specific row by passing a`rowHeights` object associating the row's index with a specific height configuration.
+
+:::warning Disabling the row height toolbar control
+
+Individual row heights will be overridden by the toolbar display controls. If you do not want users to be able to override specific row heights, set `toolbarVisibility.showDisplaySelector.allowRowHeight` to `false`.
+
+:::
+
+```tsx interactive
+import React, {
+  useCallback,
+  useState,
+  createContext,
+  useContext,
+  useMemo,
+  ReactNode,
+} from 'react';
+import {
+  RenderCellValue as RenderCellValueType,
+  EuiDataGrid,
+  EuiLink,
+  EuiAvatar,
+  EuiBadge,
+  EuiMarkdownFormat,
+  EuiText,
+  EuiSpacer,
+  formatDate,
+  EuiDataGridSorting,
+  EuiDataGridColumnSortingConfig,
+  EuiDataGridPaginationProps,
+} from '@elastic/eui';
+import githubData from '../_row_auto_height_data.json';
+
+interface DataShape {
+  html_url: string;
+  title: string;
+  user: {
+    login: string;
+    avatar_url: string;
+  };
+  labels: Array<{
+    name: string;
+    color: string;
+  }>;
+  comments: number;
+  created_at: string;
+  body: null | string;
+}
+
+type DataContextShape =
+  | undefined
+  | {
+      data: DataShape[];
+    };
+const DataContext = createContext<DataContextShape>(undefined);
+
+const columns = [
+  {
+    id: 'index',
+    displayAsText: 'Index',
+    isExpandable: false,
+    initialWidth: 80,
+  },
+  {
+    id: 'issue',
+    displayAsText: 'Issue',
+    isExpandable: false,
+  },
+  {
+    id: 'body',
+    displayAsText: 'Description',
+  },
+];
+
+// it is expensive to compute 10000 rows of fake data
+// instead of loading up front, generate entries on the fly
+const raw_data: DataShape[] = githubData;
+
+const RenderCellValue: RenderCellValueType = ({
+  rowIndex,
+  columnId,
+  isDetails,
+}) => {
+  const { data } = useContext(DataContext)!;
+
+  const item = data[rowIndex];
+  let content: ReactNode = '';
+
+  if (columnId === 'index') {
+    content = <>{rowIndex}</>;
+  } else if (columnId === 'issue') {
+    content = (
+      <>
+        <EuiText size="relative">
+          <h3>
+            <EuiLink color="text" href={item.html_url} target="blank" external>
+              {item.title}
+            </EuiLink>
+            {'  '}
+            {item.labels.map(({ name, color }) => (
+              <EuiBadge key={name} color={`#${color}`}>
+                {name}
+              </EuiBadge>
+            ))}
+          </h3>
+        </EuiText>
+
+        <EuiSpacer size="s" />
+
+        <EuiText color="subdued" size="relative">
+          <span>
+            Opened by{' '}
+            <EuiAvatar
+              name={item.user.login}
+              imageUrl={item.user.avatar_url}
+              size="s"
+            />{' '}
+            {item.user.login} on{' '}
+            {formatDate(new Date(item.created_at), 'dobLong')}
+          </span>
+        </EuiText>
+
+        <EuiSpacer size="s" />
+
+        {item.comments === 1 && (
+          <EuiBadge iconType="editorComment" iconSide="left" color="hollow">
+            {`${item.comments} comment`}
+          </EuiBadge>
+        )}
+
+        {item.comments >= 2 && (
+          <EuiBadge iconType="editorComment" iconSide="left" color="hollow">
+            {`${item.comments} comments`}
+          </EuiBadge>
+        )}
+      </>
+    );
+  } else if (columnId === 'body') {
+    if (isDetails) {
+      // expanded in a popover
+      content = <EuiMarkdownFormat>{item.body ?? ''}</EuiMarkdownFormat>;
+    } else {
+      // a full issue description is a *lot* to shove into a cell
+      content = (
+        <EuiMarkdownFormat textSize="relative">
+          {(item.body ?? '').slice(0, 300)}
+        </EuiMarkdownFormat>
+      );
+    }
+  }
+
+  return content;
+};
+
+export default () => {
+  // Pagination
+  const [pagination, setPagination] = useState({ pageIndex: 0, pageSize: 50 });
+
+  // Sorting
+  const [sortingColumns, setSortingColumns] = useState<
+    EuiDataGridColumnSortingConfig[]
+  >([]);
+  const onSort = useCallback<EuiDataGridSorting['onSort']>(
+    (sortingColumns) => {
+      setSortingColumns(sortingColumns);
+    },
+    [setSortingColumns]
+  );
+
+  const onChangeItemsPerPage = useCallback<
+    EuiDataGridPaginationProps['onChangeItemsPerPage']
+  >(
+    (pageSize) =>
+      setPagination((pagination) => ({
+        ...pagination,
+        pageSize,
+        pageIndex: 0,
+      })),
+    [setPagination]
+  );
+
+  const onChangePage = useCallback<EuiDataGridPaginationProps['onChangePage']>(
+    (pageIndex) =>
+      setPagination((pagination) => ({ ...pagination, pageIndex })),
+    [setPagination]
+  );
+
+  // Column visibility
+  const [visibleColumns, setVisibleColumns] = useState(
+    columns.map(({ id }) => id)
+  );
+
+  // matches the snippet example
+  const rowHeightsOptions = useMemo(
+    () => ({
+      defaultHeight: 140,
+      rowHeights: {
+        1: {
+          lineCount: 5,
+        },
+        4: 200,
+        5: 80,
+      },
+    }),
+    []
+  );
+
+  const dataContext = useMemo<DataContextShape>(
+    () => ({
+      data: raw_data,
+    }),
+    []
+  );
+
+  return (
+    <DataContext.Provider value={dataContext}>
+      <EuiDataGrid
+        aria-label="Row height options with fixed demo"
+        columns={columns}
+        columnVisibility={{ visibleColumns, setVisibleColumns }}
+        rowCount={raw_data.length}
+        height={400}
+        renderCellValue={RenderCellValue}
+        inMemory={{ level: 'sorting' }}
+        sorting={{ columns: sortingColumns, onSort }}
+        rowHeightsOptions={rowHeightsOptions}
+        virtualizationOptions={{
+          // rough average of the cell heights in the example
+          // accurately setting this smooths out the scrolling experience
+          estimatedRowHeight: 210,
+        }}
+        pagination={{
+          ...pagination,
+          pageSizeOptions: [50, 250, 1000],
+          onChangeItemsPerPage: onChangeItemsPerPage,
+          onChangePage: onChangePage,
+        }}
+      />
+    </DataContext.Provider>
+  );
+};
+
+```
+
+## Auto heights for rows
+
+To enable automatically fitting rows to their content you can set `defaultHeight="auto"`. This ensures every row automatically adjusts its height to fit the contents.
+
+You can also override the height of a specific row by passing a`rowHeights` object associating the row's index with an `"auto"` value.
+
+```tsx interactive
+import React, {
+  useCallback,
+  useState,
+  createContext,
+  useContext,
+  useMemo,
+  ReactNode,
+} from 'react';
+import {
+  RenderCellValue as RenderCellValueType,
+  EuiDataGrid,
+  EuiLink,
+  EuiAvatar,
+  EuiBadge,
+  EuiMarkdownFormat,
+  EuiText,
+  EuiSpacer,
+  formatDate,
+  EuiDataGridSorting,
+  EuiDataGridColumnSortingConfig,
+  EuiDataGridPaginationProps,
+} from '@elastic/eui';
+import githubData from '../_row_auto_height_data.json';
+
+interface DataShape {
+  html_url: string;
+  title: string;
+  user: {
+    login: string;
+    avatar_url: string;
+  };
+  labels: Array<{
+    name: string;
+    color: string;
+  }>;
+  comments: number;
+  created_at: string;
+  body: null | string;
+}
+
+type DataContextShape =
+  | undefined
+  | {
+      data: DataShape[];
+    };
+const DataContext = createContext<DataContextShape>(undefined);
+
+const columns = [
+  {
+    id: 'index',
+    displayAsText: 'Index',
+    isExpandable: false,
+    initialWidth: 80,
+  },
+  {
+    id: 'issue',
+    displayAsText: 'Issue',
+    isExpandable: false,
+  },
+  {
+    id: 'body',
+    displayAsText: 'Description',
+  },
+];
+
+// it is expensive to compute 10000 rows of fake data
+// instead of loading up front, generate entries on the fly
+const raw_data: DataShape[] = githubData;
+
+const RenderCellValue: RenderCellValueType = ({
+  rowIndex,
+  columnId,
+  isDetails,
+}) => {
+  const { data } = useContext(DataContext)!;
+
+  const item = data[rowIndex];
+  let content: ReactNode = '';
+
+  if (columnId === 'index') {
+    content = <>{rowIndex}</>;
+  } else if (columnId === 'issue') {
+    content = (
+      <>
+        <EuiText size="relative">
+          <h3>
+            <EuiLink color="text" href={item.html_url} target="blank" external>
+              {item.title}
+            </EuiLink>
+            {'  '}
+            {item.labels.map(({ name, color }) => (
+              <EuiBadge key={name} color={`#${color}`}>
+                {name}
+              </EuiBadge>
+            ))}
+          </h3>
+        </EuiText>
+
+        <EuiSpacer size="s" />
+
+        <EuiText color="subdued" size="relative">
+          <span>
+            Opened by{' '}
+            <EuiAvatar
+              name={item.user.login}
+              imageUrl={item.user.avatar_url}
+              size="s"
+            />{' '}
+            {item.user.login} on{' '}
+            {formatDate(new Date(item.created_at), 'dobLong')}
+          </span>
+        </EuiText>
+
+        <EuiSpacer size="s" />
+
+        {item.comments === 1 && (
+          <EuiBadge iconType="editorComment" iconSide="left" color="hollow">
+            {`${item.comments} comment`}
+          </EuiBadge>
+        )}
+
+        {item.comments >= 2 && (
+          <EuiBadge iconType="editorComment" iconSide="left" color="hollow">
+            {`${item.comments} comments`}
+          </EuiBadge>
+        )}
+      </>
+    );
+  } else if (columnId === 'body') {
+    if (isDetails) {
+      // expanded in a popover
+      content = <EuiMarkdownFormat>{item.body ?? ''}</EuiMarkdownFormat>;
+    } else {
+      // a full issue description is a *lot* to shove into a cell
+      content = (
+        <EuiMarkdownFormat textSize="relative">
+          {(item.body ?? '').slice(0, 300)}
+        </EuiMarkdownFormat>
+      );
+    }
+  }
+
+  return content;
+};
+
+export default () => {
+  // Pagination
+  const [pagination, setPagination] = useState({ pageIndex: 0, pageSize: 50 });
+
+  // Sorting
+  const [sortingColumns, setSortingColumns] = useState<
+    EuiDataGridColumnSortingConfig[]
+  >([]);
+  const onSort = useCallback<EuiDataGridSorting['onSort']>(
+    (sortingColumns) => {
+      setSortingColumns(sortingColumns);
+    },
+    [setSortingColumns]
+  );
+
+  const onChangeItemsPerPage = useCallback<
+    EuiDataGridPaginationProps['onChangeItemsPerPage']
+  >(
+    (pageSize) =>
+      setPagination((pagination) => ({
+        ...pagination,
+        pageSize,
+        pageIndex: 0,
+      })),
+    [setPagination]
+  );
+
+  const onChangePage = useCallback<EuiDataGridPaginationProps['onChangePage']>(
+    (pageIndex) =>
+      setPagination((pagination) => ({ ...pagination, pageIndex })),
+    [setPagination]
+  );
+
+  // Column visibility
+  const [visibleColumns, setVisibleColumns] = useState(
+    columns.map(({ id }) => id)
+  );
+
+  // matches the snippet example
+  const rowHeightsOptions = useMemo(
+    () => ({
+      defaultHeight: 'auto' as const,
+    }),
+    []
+  );
+
+  const dataContext = useMemo<DataContextShape>(
+    () => ({
+      data: raw_data,
+    }),
+    []
+  );
+
+  return (
+    <DataContext.Provider value={dataContext}>
+      <EuiDataGrid
+        aria-label="Row height options with auto demo"
+        columns={columns}
+        columnVisibility={{ visibleColumns, setVisibleColumns }}
+        rowCount={raw_data.length}
+        height={400}
+        renderCellValue={RenderCellValue}
+        inMemory={{ level: 'sorting' }}
+        sorting={{ columns: sortingColumns, onSort }}
+        rowHeightsOptions={rowHeightsOptions}
+        virtualizationOptions={{
+          // rough average of the cell heights in the example
+          // accurately setting this smooths out the scrolling experience
+          estimatedRowHeight: 210,
+        }}
+        pagination={{
+          ...pagination,
+          pageSizeOptions: [50, 250, 1000],
+          onChangeItemsPerPage: onChangeItemsPerPage,
+          onChangePage: onChangePage,
+        }}
+      />
+    </DataContext.Provider>
+  );
+};
+
+```
+
+## Adjusting your grid to user/toolbar changes[](/docs/tabular-content/data-grid-style-display#adjusting-your-grid-to-usertoolbar-changes)
+
+You can use the optional `gridStyle.onChange` and `rowHeightsOptions.onChange` callbacks to adjust your data grid based on user density or row height changes.
+
+For example, if the user changes the grid density to compressed, you may want to adjust a cell's content sizing in response. Or you could store user settings in localStorage or other database to preserve display settings on page refresh, like the below example does.
+
+```tsx interactive
+import React, { useState, useCallback, useMemo } from 'react';
+import { EuiDataGrid, EuiIcon } from '@elastic/eui';
+import { faker } from '@faker-js/faker';
+
+const columns = [
+  { id: 'name' },
+  { id: 'email' },
+  { id: 'city' },
+  { id: 'country' },
+  { id: 'account' },
+];
+const data = [];
+for (let i = 1; i <= 5; i++) {
+  data.push({
+    name: `${faker.person.lastName()}, ${faker.person.firstName()} ${faker.person.suffix()}`,
+    email: faker.internet.email(),
+    city: faker.location.city(),
+    country: faker.location.country(),
+    account: faker.finance.accountNumber(),
+  });
+}
+
+const GRID_STYLES_KEY = 'euiDataGridStyles';
+const INITIAL_STYLES = JSON.stringify({ stripes: true });
+
+const ROW_HEIGHTS_KEY = 'euiDataGridRowHeightsOptions';
+const INITIAL_ROW_HEIGHTS = JSON.stringify({});
+
+export default () => {
+  const [densitySize, setDensitySize] = useState('');
+  const responsiveIcon = useCallback(
+    () => <EuiIcon type="user" size={densitySize} />,
+    [densitySize]
+  );
+  const responsiveIconWidth = useMemo(() => {
+    if (densitySize === 'l') return 44;
+    if (densitySize === 's') return 24;
+    return 32;
+  }, [densitySize]);
+  const leadingControlColumns = useMemo(
+    () => [
+      {
+        id: 'icon',
+        width: responsiveIconWidth,
+        headerCellRender: responsiveIcon,
+        rowCellRender: responsiveIcon,
+      },
+    ],
+    [responsiveIcon, responsiveIconWidth]
+  );
+
+  const storedRowHeightsOptions = useMemo(
+    () =>
+      JSON.parse(localStorage.getItem(ROW_HEIGHTS_KEY) || INITIAL_ROW_HEIGHTS),
+    []
+  );
+  const storeRowHeightsOptions = useCallback((updatedRowHeights) => {
+    console.log(updatedRowHeights);
+    localStorage.setItem(ROW_HEIGHTS_KEY, JSON.stringify(updatedRowHeights));
+  }, []);
+
+  const storedGridStyles = useMemo(
+    () => JSON.parse(localStorage.getItem(GRID_STYLES_KEY) || INITIAL_STYLES),
+    []
+  );
+  const storeGridStyles = useCallback((updatedStyles) => {
+    console.log(updatedStyles);
+    localStorage.setItem(GRID_STYLES_KEY, JSON.stringify(updatedStyles));
+    setDensitySize(updatedStyles.fontSize);
+  }, []);
+
+  const [visibleColumns, setVisibleColumns] = useState(
+    columns.map(({ id }) => id)
+  );
+
+  return (
+    <EuiDataGrid
+      aria-label="DataGrid demonstrating display selector callbacks"
+      leadingControlColumns={leadingControlColumns}
+      rowHeightsOptions={{
+        ...storedRowHeightsOptions,
+        onChange: storeRowHeightsOptions,
+      }}
+      gridStyle={{
+        ...storedGridStyles,
+        onChange: storeGridStyles,
+      }}
+      columns={columns}
+      columnVisibility={{ visibleColumns, setVisibleColumns }}
+      rowCount={data.length}
+      renderCellValue={({ rowIndex, columnId }) => data[rowIndex][columnId]}
+    />
+  );
+};
+
+```

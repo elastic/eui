@@ -32,7 +32,8 @@
     "@babel/core": "^7.21.8",
     "jsdom": "24.1.0",
     "@types/jsdom@npm:^20.0.0": "patch:@types/jsdom@npm%3A20.0.1#~/.yarn/patches/@types-jsdom-npm-20.0.1-5bb899e006.patch",
-    "infima@npm:0.2.0-alpha.43": "patch:infima@npm%3A0.2.0-alpha.43#~/.yarn/patches/infima-npm-0.2.0-alpha.43-8d3b77b44d.patch"
+    "infima@npm:0.2.0-alpha.43": "patch:infima@npm%3A0.2.0-alpha.43#~/.yarn/patches/infima-npm-0.2.0-alpha.43-8d3b77b44d.patch",
+    "infima@npm:0.2.0-alpha.44": "patch:infima@npm%3A0.2.0-alpha.44#~/.yarn/patches/infima-npm-0.2.0-alpha.44-145834fad0.patch"
   },
   "packageManager": "yarn@4.2.2"
 }

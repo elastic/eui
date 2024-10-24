@@ -1,0 +1,223 @@
+---
+slug: /display/avatar
+id: display_avatar
+---
+
+# Avatar
+
+The **EuiAvatar** component typically creates a user icon. It will accept `name` (required) and `image` props and will configure the display and accessibility as needed. By default, the background colors come from the set of colors used for visualizations. Otherwise you can pass a hex value to the `color` prop.
+
+```tsx interactive
+import React from 'react';
+import { EuiAvatar, EuiSpacer, EuiTitle } from '@elastic/eui';
+
+export default () => (
+  <div>
+    <EuiAvatar size="s" name="Raphael" />
+    &emsp;
+    <EuiAvatar size="m" name="Donatello" />
+    &emsp;
+    <EuiAvatar size="l" name="Leonardo" color="#BD10E0" />
+    &emsp;
+    <EuiAvatar size="xl" name="Michelangelo" />
+    <EuiSpacer />
+    <EuiTitle size="xs">
+      <h2>With image</h2>
+    </EuiTitle>
+    <EuiSpacer />
+    <EuiAvatar size="s" name="Cat" imageUrl="https://picsum.photos/id/40/64" />
+    &emsp;
+    <EuiAvatar size="m" name="Cat" imageUrl="https://picsum.photos/id/40/64" />
+    &emsp;
+    <EuiAvatar size="l" name="Cat" imageUrl="https://picsum.photos/id/40/64" />
+    &emsp;
+    <EuiAvatar size="xl" name="Cat" imageUrl="https://picsum.photos/id/40/64" />
+  </div>
+);
+```
+
+## Initials
+
+The initials displayed in the avatar try to be smart based on the name prop. If the name contains spaces, it will display the first character of each word, **always maxing out at 2 characters**. You can customize this by passing a combination of `initialsLength` and/or `initials` props. However, the avatar will still always max out at 2 characters.
+
+```tsx interactive
+import React from 'react';
+import { EuiAvatar, EuiTitle, EuiSpacer, EuiFlexGroup } from '@elastic/eui';
+
+export default () => (
+  <>
+    <EuiTitle size="xs">
+      <h3>Single vs multi-word</h3>
+    </EuiTitle>
+    <EuiSpacer />
+    <EuiFlexGroup responsive={false} gutterSize="xs">
+      <EuiAvatar name="Single" />
+      <EuiAvatar name="Two Words" />
+      <EuiAvatar name="More Than Two Words" />
+      <EuiAvatar name="lower case" casing="lowercase" />
+    </EuiFlexGroup>
+    <EuiSpacer />
+    <EuiTitle size="xs">
+      <h3>Custom</h3>
+    </EuiTitle>
+    <EuiSpacer />
+    <EuiFlexGroup responsive={false} gutterSize="xs">
+      <EuiAvatar name="Kibana" initialsLength={2} casing="capitalize" />
+      <EuiAvatar name="Leonardo Dude" initialsLength={1} />
+      <EuiAvatar name="Not provided" initials="?" />
+      <EuiAvatar
+        name="Engineering User"
+        initials="En"
+        casing="none"
+        initialsLength={2}
+      />
+    </EuiFlexGroup>
+  </>
+);
+```
+
+## Types
+
+The avatar `type`, which primarily defines the shape, is keyworded and can be `"user"` (default) or `"space"` (for workspaces).
+
+```tsx interactive
+import React from 'react';
+import { EuiAvatar, EuiTitle, EuiSpacer } from '@elastic/eui';
+
+export default () => (
+  <div>
+    <EuiTitle size="xs">
+      <h3>Spaces</h3>
+    </EuiTitle>
+    <EuiSpacer />
+    <EuiAvatar size="s" type="space" name="Kibana" />
+    &emsp;
+    <EuiAvatar type="space" name="Leonardo Space" />
+    &emsp;
+    <EuiAvatar size="l" type="space" name="Default" />
+    &emsp;
+    <EuiAvatar size="xl" type="space" name="Engineering Space" />
+  </div>
+);
+```
+
+## Icons
+
+Icons can also be displayed instead of initials or images. When simply passing an `iconType`, it will both size and color appropriately based on the other **EuiAvatar** props. To customize these specifically, pass `iconSize` and `iconColor`.
+
+If your icon has multiples or custom colors like a logo, you can keep the default `iconColor` by passing `null`. Otherwise it will get the appropriate contrast acceptable variant. Just ensure that you also are providing an accesible background color to match that of the icon's color.
+
+```tsx interactive
+import React, { useContext } from 'react';
+import { EuiAvatar, EuiSpacer, EuiTitle } from '@elastic/eui';
+import { ThemeContext } from '../../components';
+
+export default () => {
+  const themeContext = useContext(ThemeContext);
+
+  /**
+   * Setup theme based on current light/dark theme
+   */
+  const isDarkTheme = themeContext.theme.includes('dark');
+
+  return (
+    <div>
+      <EuiTitle size="xs">
+        <h2>Avatar colors and sizes</h2>
+      </EuiTitle>
+      <EuiSpacer />
+      <EuiAvatar size="s" name="Small size" iconType="managementApp" />
+      &emsp;
+      <EuiAvatar size="m" name="Medium size" iconType="managementApp" />
+      &emsp;
+      <EuiAvatar
+        size="l"
+        color="subdued"
+        name="Large"
+        iconType="managementApp"
+      />
+      &emsp;
+      <EuiAvatar
+        size="xl"
+        color="plain"
+        name="Plain color"
+        iconType="managementApp"
+      />
+      <EuiSpacer />
+      <EuiTitle size="xs">
+        <h2>Icon colors and sizes</h2>
+      </EuiTitle>
+      <EuiSpacer />
+      <EuiAvatar name="Avatar color" iconType="managementApp" color="#BD10E0" />
+      &emsp;
+      <EuiAvatar
+        name="Custom iconColor"
+        iconType="managementApp"
+        color={isDarkTheme ? '#103148' : '#E6F1FA'}
+        iconColor="primary"
+      />
+      &emsp;
+      <EuiAvatar
+        name="Null iconColor"
+        iconType="managementApp"
+        color={isDarkTheme ? '#343741' : '#D3DAE6'}
+        iconColor={null}
+      />
+      &emsp;
+      <EuiAvatar name="Large iconSize" iconType="managementApp" iconSize="l" />
+      &emsp;
+    </div>
+  );
+};
+```
+
+## Disabled
+
+While **EuiAvatar** doesn't accept any interactive behaviors itself, you can create a visually presented disabled avatar by adding `isDisabled` when placed within a disabled element.
+
+```tsx interactive
+import React from 'react';
+import { EuiAvatar } from '@elastic/eui';
+
+export default () => (
+  <div>
+    <EuiAvatar
+      size="m"
+      type="space"
+      name="Disabled"
+      initials="Di"
+      initialsLength={2}
+      isDisabled={true}
+    />
+    &emsp;
+    <EuiAvatar
+      size="m"
+      type="user"
+      name="User"
+      initials="En"
+      initialsLength={2}
+      isDisabled={true}
+    />
+    &emsp;
+    <EuiAvatar
+      size="m"
+      name="Cat"
+      imageUrl="https://picsum.photos/id/40/64"
+      isDisabled={true}
+    />
+    &emsp;
+    <EuiAvatar
+      size="m"
+      name="Management"
+      iconType="managementApp"
+      isDisabled={true}
+    />
+  </div>
+);
+```
+
+## Props
+
+import docgen from '@elastic/eui-docgen/dist/components/avatar';
+
+<PropTable definition={docgen.EuiAvatar} />

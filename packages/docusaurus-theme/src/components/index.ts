@@ -8,3 +8,4 @@
 
 export { createDemo } from './demo';
 export { Guideline, GuidelineText } from './guideline';
+export { AppThemeContext } from './theme_context';

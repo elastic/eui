@@ -1,0 +1,681 @@
+---
+slug: /tabular-content/data-grid/toolbar
+id: tabular_content_data_grid_toolbar
+---
+
+# Data grid toolbar
+
+## Toolbar visibility
+
+The `toolbarVisibility` prop when used as a boolean controls the visibility of the entire toolbar displayed above the grid. Using the prop as a shape, allows setting the visibility of the individual controls within.
+
+```tsx interactive
+import React, { useState, useCallback, useMemo } from 'react';
+import { EuiDataGrid, EuiAvatar, EuiFormRow, EuiRange } from '@elastic/eui';
+import { faker } from '@faker-js/faker';
+
+const columns = [
+  {
+    id: 'avatar',
+    initialWidth: 40,
+  },
+  {
+    id: 'name',
+  },
+  {
+    id: 'email',
+  },
+  {
+    id: 'city',
+  },
+  {
+    id: 'country',
+  },
+  {
+    id: 'account',
+  },
+];
+
+const data = [];
+
+for (let i = 1; i < 6; i++) {
+  data.push({
+    avatar: (
+      <EuiAvatar
+        size="s"
+        name={`${faker.person.lastName()}, ${faker.person.firstName()}`}
+      />
+    ),
+    name: `${faker.person.lastName()}, ${faker.person.firstName()} ${faker.person.suffix()}`,
+    email: faker.internet.email(),
+    city: faker.location.city(),
+    country: faker.location.country(),
+    account: faker.finance.accountNumber(),
+  });
+}
+
+const DataGridStyle = ({
+  toolbarType,
+  showColumnSelector,
+  showSortSelector,
+  showDisplaySelector,
+  showKeyboardShortcuts,
+  showFullScreenSelector,
+  allowDensity,
+  allowRowHeight,
+  allowResetButton,
+  additionalDisplaySettings,
+  allowHideColumns,
+  allowOrderingColumns,
+}) => {
+  const [pagination, setPagination] = useState({ pageIndex: 0 });
+  const [visibleColumns, setVisibleColumns] = useState(
+    columns.map(({ id }) => id)
+  );
+
+  const setPageIndex = useCallback((pageIndex) => {
+    setPagination((pagination) => ({ ...pagination, pageIndex }));
+  }, []);
+
+  const setPageSize = useCallback((pageSize) => {
+    setPagination((pagination) => ({
+      ...pagination,
+      pageSize,
+      pageIndex: 0,
+    }));
+  }, []);
+
+  const handleVisibleColumns = (visibleColumns) =>
+    setVisibleColumns(visibleColumns);
+
+  const [sortingColumns, setSortingColumns] = useState([]);
+  const onSort = useCallback(
+    (sortingColumns) => setSortingColumns(sortingColumns),
+    [setSortingColumns]
+  );
+
+  const toggleColumnSelector = useMemo(() => {
+    if (
+      showColumnSelector === true &&
+      (allowHideColumns === false || allowOrderingColumns === false)
+    ) {
+      return {
+        allowHide: allowHideColumns,
+        allowReorder: allowOrderingColumns,
+      };
+    } else {
+      return showColumnSelector;
+    }
+  }, [showColumnSelector, allowHideColumns, allowOrderingColumns]);
+
+  const toggleDisplaySelector = useMemo(() => {
+    if (
+      showDisplaySelector === true &&
+      (allowDensity === false ||
+        allowRowHeight === false ||
+        allowResetButton === false ||
+        additionalDisplaySettings)
+    ) {
+      const customDisplaySetting = additionalDisplaySettings && (
+        <EuiFormRow label="Random Sample Size" display="columnCompressed">
+          <EuiRange
+            compressed
+            fullWidth
+            showInput
+            min={1}
+            max={100}
+            step={1}
+            value={10}
+            data-test-subj="randomSampleSize"
+          />
+        </EuiFormRow>
+      );
+      return {
+        allowDensity,
+        allowRowHeight,
+        allowResetButton,
+        additionalDisplaySettings: customDisplaySetting,
+      };
+    } else {
+      return showDisplaySelector;
+    }
+  }, [
+    showDisplaySelector,
+    allowDensity,
+    allowRowHeight,
+    allowResetButton,
+    additionalDisplaySettings,
+  ]);
+
+  const toolbarVisibilityOptions = {
+    showColumnSelector: toggleColumnSelector,
+    showSortSelector: showSortSelector,
+    showDisplaySelector: toggleDisplaySelector,
+    showKeyboardShortcuts: showKeyboardShortcuts,
+    showFullScreenSelector: showFullScreenSelector,
+  };
+
+  let toolbarConfig;
+
+  if (toolbarType === 'object') {
+    toolbarConfig = toolbarVisibilityOptions;
+  } else {
+    toolbarConfig = toolbarType === 'true';
+  }
+
+  return (
+    <EuiDataGrid
+      aria-label="Top contributors"
+      columns={columns}
+      columnVisibility={{
+        visibleColumns: visibleColumns,
+        setVisibleColumns: handleVisibleColumns,
+      }}
+      sorting={{ columns: sortingColumns, onSort }}
+      rowCount={data.length}
+      toolbarVisibility={toolbarConfig}
+      renderCellValue={({ rowIndex, columnId }) => data[rowIndex][columnId]}
+      pagination={{
+        ...pagination,
+        onChangeItemsPerPage: setPageSize,
+        onChangePage: setPageIndex,
+      }}
+    />
+  );
+};
+
+export default DataGridStyle;
+
+```
+
+## Additional controls in the toolbar
+
+Use the `toolbarVisibility.additionalControls` prop to pass more buttons to the toolbar.
+
+Passing a single node to `additionalControls` will default to being placed in the `left.append` position of the toolbar. To configure which side of the toolbar your controls display in, pass an object with the `left` or `right` properties:
+
+*   `additionalControls.left` appends the passed custom control into the left side of the toolbar.
+    *   `left.prepend` prepends the passed node into the left side of the toolbar, before the column & sort controls.
+    *   `left.append` appends the passed node into the left side of the toolbar, after the column & sort controls.
+*   `additionalControls.right` prepends the passed node into the right side of the toolbar, before the density & full screen controls.
+
+Although any node is allowed, the recommendation is to use `<EuiDataGridToolbarControl />` for the left-side of the toolbar and `<EuiButtonIcon size="xs" />` for the right-side of the toolbar.
+
+```tsx interactive
+import React, { useState, useCallback, Fragment } from 'react';
+import {
+  EuiDataGrid,
+  EuiDataGridToolbarControl,
+  EuiButtonEmpty,
+  EuiButtonIcon,
+  EuiLink,
+  EuiToolTip,
+  useGeneratedHtmlId,
+  EuiFlyout,
+  EuiFlyoutBody,
+  EuiFlyoutHeader,
+  EuiText,
+  EuiTitle,
+  EuiContextMenuItem,
+  EuiContextMenuPanel,
+  EuiPopover,
+  EuiDataGridPaginationProps,
+  RenderCellValue,
+} from '@elastic/eui';
+import { faker } from '@faker-js/faker';
+
+const columns = [
+  {
+    id: 'name',
+  },
+  {
+    id: 'email',
+  },
+  {
+    id: 'city',
+  },
+  {
+    id: 'country',
+  },
+  {
+    id: 'account',
+  },
+];
+
+const data: any[] = [];
+
+for (let i = 1; i < 20; i++) {
+  data.push({
+    name: `${faker.person.lastName()}, ${faker.person.firstName()} ${faker.person.suffix()}`,
+    email: faker.internet.email(),
+    city: <EuiLink href="http://google.com">{faker.location.city()}</EuiLink>,
+    country: faker.location.country(),
+    account: faker.finance.accountNumber(),
+  });
+}
+
+const renderCellValue: RenderCellValue = ({ rowIndex, columnId }) =>
+  data[rowIndex][columnId];
+
+export default () => {
+  const [pagination, setPagination] = useState({ pageIndex: 0 });
+  const [isFlyoutVisible, setIsFlyoutVisible] = useState(false);
+  const flyoutTitleId = useGeneratedHtmlId({
+    prefix: 'dataGridAdditionalControlsFlyout',
+  });
+
+  let flyout;
+  if (isFlyoutVisible) {
+    flyout = (
+      <EuiFlyout
+        onClose={() => setIsFlyoutVisible(false)}
+        aria-labelledby={flyoutTitleId}
+      >
+        <EuiFlyoutHeader hasBorder>
+          <EuiTitle size="m">
+            <h2 id={flyoutTitleId}>Inspect</h2>
+          </EuiTitle>
+        </EuiFlyoutHeader>
+        <EuiFlyoutBody>
+          <EuiText>
+            <p>
+              This is not a real control, just an example of how to trigger a
+              flyout from a custom data grid control.
+            </p>
+          </EuiText>
+        </EuiFlyoutBody>
+      </EuiFlyout>
+    );
+  }
+
+  const [isPopoverOpen, setPopover] = useState(false);
+  const popoverId = useGeneratedHtmlId({
+    prefix: 'dataGridAdditionalControlsPopover',
+  });
+  const alertAndClosePopover = (position?: string) => {
+    setPopover(false);
+    window.alert(
+      `This is not a real control. It was passed into the \`${position}\` position.`
+    );
+  };
+
+  const [visibleColumns, setVisibleColumns] = useState(
+    columns.map(({ id }) => id)
+  );
+
+  const setPageIndex = useCallback<EuiDataGridPaginationProps['onChangePage']>(
+    (pageIndex) =>
+      setPagination((pagination) => ({ ...pagination, pageIndex })),
+    []
+  );
+  const setPageSize = useCallback<
+    EuiDataGridPaginationProps['onChangeItemsPerPage']
+  >(
+    (pageSize) =>
+      setPagination((pagination) => ({
+        ...pagination,
+        pageSize,
+        pageIndex: 0,
+      })),
+    []
+  );
+
+  return (
+    <>
+      <EuiDataGrid
+        aria-label="Data grid demo with additional controls"
+        columns={columns}
+        columnVisibility={{
+          visibleColumns: visibleColumns,
+          setVisibleColumns: setVisibleColumns,
+        }}
+        rowCount={data.length}
+        gridStyle={{
+          border: 'horizontal',
+          header: 'underline',
+        }}
+        renderCellValue={renderCellValue}
+        pagination={{
+          ...pagination,
+          onChangeItemsPerPage: setPageSize,
+          onChangePage: setPageIndex,
+        }}
+        toolbarVisibility={{
+          additionalControls: {
+            left: {
+              prepend: (
+                <EuiButtonEmpty
+                  size="xs"
+                  iconType="document"
+                  color="text"
+                  onClick={() => alertAndClosePopover('left.prepend')}
+                >
+                  {data.length} results
+                </EuiButtonEmpty>
+              ),
+              append: (
+                <EuiPopover
+                  id={popoverId}
+                  button={
+                    <EuiDataGridToolbarControl
+                      iconType="download"
+                      onClick={() => setPopover((open) => !open)}
+                    >
+                      Download
+                    </EuiDataGridToolbarControl>
+                  }
+                  isOpen={isPopoverOpen}
+                  closePopover={() => setPopover(false)}
+                  panelPaddingSize="none"
+                >
+                  <EuiContextMenuPanel
+                    size="s"
+                    items={[
+                      <EuiContextMenuItem
+                        key="csv"
+                        onClick={() => alertAndClosePopover('left.append')}
+                      >
+                        CSV
+                      </EuiContextMenuItem>,
+                      <EuiContextMenuItem
+                        key="jsonedit"
+                        onClick={() => alertAndClosePopover('left.append')}
+                      >
+                        JSON
+                      </EuiContextMenuItem>,
+                    ]}
+                  />
+                </EuiPopover>
+              ),
+            },
+            right: (
+              <Fragment>
+                <EuiToolTip
+                  title="Updated 3 min ago"
+                  content="Click to refresh"
+                >
+                  <EuiButtonIcon
+                    aria-label="Refresh grid data"
+                    size="xs"
+                    iconType="refresh"
+                    onClick={() => alertAndClosePopover('right')}
+                  />
+                </EuiToolTip>
+                <EuiToolTip content="Inspect grid data">
+                  <EuiButtonIcon
+                    aria-label="Inspect grid data"
+                    size="xs"
+                    iconType="inspect"
+                    onClick={() => setIsFlyoutVisible(true)}
+                  />
+                </EuiToolTip>
+              </Fragment>
+            ),
+          },
+        }}
+      />
+      {flyout}
+    </>
+  );
+};
+
+```
+
+## Completely custom toolbar rendering
+
+If more customized control over the toolbar is required than `toolbarVisibility` or `additionalControls` allows, you can use the `renderCustomToolbar` prop to pass a component. The default datagrid controls are passed back as parameters for optional usage.
+
+`renderCustomToolbar` should only be used when a very custom layout (e.g. moving default buttons between sides, interspering custom controls between default controls, custom responsive behavior, etc.) is required. For consistent visuals, we recommend using the `<EuiDataGridToolbarControl />` subcomponent when rendering custom controls.
+
+:::warning Keep consistency in mind when customizing the toolbar
+
+If using multiple datagrid instances across your app, users will typically want to reach for the same controls for each grid. Changing the available controls inconsistently across your app may result in user frustration.
+
+:::
+
+```tsx interactive
+import React, { useCallback, useState } from 'react';
+import {
+  EuiDataGrid,
+  EuiDataGridSorting,
+  EuiDataGridColumnSortingConfig,
+  EuiDataGridToolbarProps,
+  EuiDataGridToolbarControl,
+  EuiFormRow,
+  EuiRange,
+  EuiFlexGroup,
+  EuiFlexItem,
+  euiScreenReaderOnly,
+  RenderCellValue,
+} from '@elastic/eui';
+import { css } from '@emotion/react';
+import { faker } from '@faker-js/faker';
+
+const raw_data: Array<{ [key: string]: string }> = [];
+for (let i = 0; i < 5; i++) {
+  raw_data.push({
+    name: `${faker.person.lastName()}, ${faker.person.firstName()}`,
+    email: faker.internet.email(),
+    location: `${faker.location.city()}, ${faker.location.country()}`,
+    date: `${faker.date.past()}`,
+    amount: faker.commerce.price({ min: 1, max: 1000, dec: 2, symbol: '$' }),
+  });
+}
+const columns = [
+  { id: 'name', displayAsText: 'Name' },
+  { id: 'email', displayAsText: 'Email address' },
+  { id: 'location', displayAsText: 'Location' },
+  { id: 'date', displayAsText: 'Date' },
+  { id: 'amount', displayAsText: 'Amount' },
+];
+
+// Custom toolbar renderer
+const renderCustomToolbar: EuiDataGridToolbarProps['renderCustomToolbar'] = ({
+  hasRoomForGridControls,
+  columnControl,
+  columnSortingControl,
+  displayControl,
+  fullScreenControl,
+  keyboardShortcutsControl,
+}) => {
+  const mobileStyles =
+    !hasRoomForGridControls &&
+    css`
+      .euiDataGridToolbarControl__text {
+        ${euiScreenReaderOnly()}
+      }
+    `;
+  return (
+    <EuiFlexGroup
+      responsive={false}
+      gutterSize="s"
+      justifyContent="spaceBetween"
+      alignItems="center"
+      css={mobileStyles}
+    >
+      <EuiFlexItem grow={false}>
+        {hasRoomForGridControls && (
+          <EuiDataGridToolbarControl
+            iconType="brush"
+            badgeContent={10}
+            onClick={() => {}}
+          >
+            Custom left side
+          </EuiDataGridToolbarControl>
+        )}
+      </EuiFlexItem>
+
+      <EuiFlexItem grow={false}>
+        <EuiFlexGroup responsive={false} gutterSize="s" alignItems="center">
+          <EuiFlexItem grow={false}>{columnControl}</EuiFlexItem>
+          <EuiFlexItem grow={false}>{columnSortingControl}</EuiFlexItem>
+          <EuiFlexItem grow={false}>{keyboardShortcutsControl}</EuiFlexItem>
+          <EuiFlexItem grow={false}>{displayControl}</EuiFlexItem>
+          <EuiFlexItem grow={false}>{fullScreenControl}</EuiFlexItem>
+        </EuiFlexGroup>
+      </EuiFlexItem>
+    </EuiFlexGroup>
+  );
+};
+
+const renderCellValue: RenderCellValue = ({ rowIndex, columnId }) =>
+  raw_data[rowIndex][columnId];
+
+// Some additional custom settings to show in the Display popover
+const AdditionalDisplaySettings = () => {
+  const [exampleSettingValue, setExampleSettingValue] = useState<number>(10);
+
+  return (
+    <EuiFormRow label="Example additional setting" display="columnCompressed">
+      <EuiRange
+        compressed
+        fullWidth
+        showInput
+        min={1}
+        max={100}
+        step={1}
+        value={exampleSettingValue}
+        data-test-subj="exampleAdditionalSetting"
+        onChange={(event) => {
+          setExampleSettingValue(Number(event.currentTarget.value));
+        }}
+      />
+    </EuiFormRow>
+  );
+};
+
+export default () => {
+  // Column visibility
+  const [visibleColumns, setVisibleColumns] = useState(() =>
+    columns.map(({ id }) => id)
+  );
+
+  // Sorting
+  const [sortingColumns, setSortingColumns] = useState<
+    EuiDataGridColumnSortingConfig[]
+  >([]);
+  const onSort = useCallback<EuiDataGridSorting['onSort']>((sortingColumns) => {
+    setSortingColumns(sortingColumns);
+  }, []);
+
+  return (
+    <EuiDataGrid
+      aria-label="Data grid custom toolbar demo"
+      columns={columns}
+      columnVisibility={{ visibleColumns, setVisibleColumns }}
+      sorting={{ columns: sortingColumns, onSort }}
+      rowCount={raw_data.length}
+      renderCellValue={renderCellValue}
+      gridStyle={{ border: 'none', header: 'underline' }}
+      renderCustomToolbar={renderCustomToolbar}
+      toolbarVisibility={{
+        showDisplaySelector: {
+          allowResetButton: false,
+          additionalDisplaySettings: <AdditionalDisplaySettings />,
+        },
+      }}
+    />
+  );
+};
+
+```
+
+## Toolbar props
+
+### `EuiDataGridToolBarVisibilityOptions`
+
+This table contains 6 rows.
+|
+Prop
+
+ |
+
+Sample snippet
+
+ |
+| --- | --- |
+|
+
+**showSortSelector**
+
+Allows the ability for the user to sort rows based upon column values
+
+ |
+
+```
+showSortSelector: false
+```
+
+ |
+|
+
+**additionalControls**
+
+If passed a `ReactNode`, appends the passed custom control into the left side of the toolbar, after the column & sort controls. Or use **EuiDataGridToolBarAdditionalControlsOptions** to customize the location of your control.
+
+ |
+
+```
+additionalControls: {
+  left: <EuiButtonEmpty size="xs" />,
+  right: <EuiButtonIcon size="xs" />,
+}
+```
+
+ |
+|
+
+**showColumnSelector**
+
+Allows the ability for the user to hide fields and sort columns, boolean or a **EuiDataGridToolBarVisibilityColumnSelectorOptions**
+
+ |
+
+```
+showColumnSelector: {
+  allowHide: false;
+  allowReorder: false;
+}
+```
+
+ |
+|
+
+**showDisplaySelector**
+
+Allows the ability for the user to customize display settings such as grid density and row heights. User changes will override what is provided in **EuiDataGridStyle** and **EuiDataGridRowHeightsOptions**
+
+ |
+
+```
+showDisplaySelector: {
+  allowDensity: false;
+  allowRowHeight: false;
+  allowResetButton: false;
+  additionalDisplaySettings: <EuiButtonEmpty size="xs" />;
+}
+```
+
+ |
+|
+
+**showFullScreenSelector**
+
+Allows user to be able to fullscreen the data grid. If set to `false` make sure your grid fits within a large enough panel to still show the other controls.
+
+ |
+
+```
+showFullScreenSelector: false
+```
+
+ |
+|
+
+**showKeyboardShortcuts**
+
+Displays a popover listing all keyboard controls and shortcuts for the data grid. If set to `false`, the toggle will be visually hidden, but still focusable by keyboard and screen reader users.
+
+ |
+
+ |
