@@ -46,6 +46,19 @@ const ExampleSnippet = ({ children }: PropsWithChildren) => children;
 
 const ExamplePreview = ({ children }: PropsWithChildren) => children;
 
+/**
+ * <Example /> utility component
+ *
+ * It renders code examples in a unified form. Instead of accepting data
+ * as props, it expects the following child components to be used:
+ *
+ * - Example.Description - description of the example; may include a heading
+ * - Example.Snippet - example snippet with a code block inside
+ * - Example.Preview - renderable preview component
+ *
+ * Please note that this data flow is specifically made to help writing content
+ * in MDX. It should not be used in customer-facing components.
+ */
 export const Example = ({ children }: ExampleProps) => {
   const styles = useEuiMemoizedStyles(getExampleStyles);
   const { euiTheme } = useEuiTheme();
