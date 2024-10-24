@@ -126,6 +126,13 @@ const euiHeaderDarkStyles = (euiThemeContext: UseEuiTheme) => {
         box-shadow: inset 0 0 0 ${euiTheme.border.width.thin} ${
     selectableSitewide.borderColor
   };
+        ${
+          // hide the focus underline in light mode - the search input showing a white background
+          // on focus is sufficient indicator
+          colorMode !== 'DARK'
+            ? `&:focus { --euiFormControlStateColor: transparent; }`
+            : ''
+        }
       }
 
       &--group {
