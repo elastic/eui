@@ -124,7 +124,7 @@ export const DarkThemeWithSitewideSearch: Story = {
               },
             ]}
             searchProps={{
-              append: '⌘K',
+              // append: '⌘K',
               compressed: true,
             }}
             popoverButton={
