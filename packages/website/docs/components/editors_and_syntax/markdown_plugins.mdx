@@ -5,7 +5,7 @@ id: editors_syntax_markdown_plugins
 
 # Markdown plugins
 
-Both **[EuiMarkdownEditor](/docs/editors-syntax/markdown-editor/)** and **[EuiMarkdownFormat](/docs/editors-syntax/markdown-format/)** utilize the same underlying plugin architecture to transform string based syntax into React components. At a high level [Unified JS(opens in a new tab or window)](https://www.npmjs.com/package/unified) is used in combination with [Remark(opens in a new tab or window)](https://www.npmjs.com/package/remark-parse) to provide EUI's markdown components, which are separated into a **parsing** and **processing** layer. These two concepts are kept distinct in EUI components to provide concrete locations for your plugins to be injected, be it editing or rendering. Finally you provide **UI** to the component to handle interactions with the editor.
+Both **[EuiMarkdownEditor](/docs/editors-syntax/markdown-editor/)** and **[EuiMarkdownFormat](/docs/editors-syntax/markdown-format/)** utilize the same underlying plugin architecture to transform string based syntax into React components. At a high level [Unified JS(external, opens in a new tab or window)](https://www.npmjs.com/package/unified) is used in combination with [Remark(external, opens in a new tab or window)](https://www.npmjs.com/package/remark-parse) to provide EUI's markdown components, which are separated into a **parsing** and **processing** layer. These two concepts are kept distinct in EUI components to provide concrete locations for your plugins to be injected, be it editing or rendering. Finally you provide **UI** to the component to handle interactions with the editor.
 
 In addition to running the full pipeline, **EuiMarkdownEditor** uses just the parsing configuration to determine the input's validity, provide messages back to the application, and allow the toolbar buttons to interact with existing markdown tags.
 
@@ -33,48 +33,52 @@ The last set of plugin configuration - `uiPlugins` - allows toolbar buttons to b
 
 1.  [tooltip plugin ui](https://github.com/elastic/eui/blob/main/src/components/markdown_editor/plugins/markdown_tooltip/plugin.tsx)
 
-These plugin definitions can be obtained by calling `getDefaultEuiMarkdownParsingPlugins`, `getDefaultEuiMarkdownProcessingPlugins`, and `getDefaultEuiMarkdownUiPlugins` respectively. Each of these three functions take an optional configuration object with an `exclude` key, an array of EUI-defaulted plugins to disable. Currently the only option this configuration can take is `'tooltip'`.
+These plugin definitions can be obtained by calling `getDefaultEuiMarkdownParsingPlugins`, `getDefaultEuiMarkdownProcessingPlugins`, and `getDefaultEuiMarkdownUiPlugins` respectively.
 
-## Link validation & security[](/docs/editors-syntax/markdown-plugins#link-validation-security)
+## Configuring the default plugins
 
-To enhance user and application security, the default behavior removes links to URLs that aren't relative (beginning with `/`) and don't use the `https:`, `http:`, or `mailto:` protocols. This validation can be further configured or removed altogether.
+The above plugin utils, as well as `getDefaultEuiMarkdownPlugins`, accept an optional configuration object of:
 
-In this example only `https:` and `mailto:` links are allowed.
+*   `exclude`: an array of default plugins to [unregister](/docs/editors-syntax/markdown-editor#unregistering-plugins)
+*   `parsingConfig`: allows overriding the configuration of any default parsing plugin
+*   `processingConfig`: currently only accepts a `linkProps` key, which accepts any prop that [EuiLink](/docs/navigation/link) accepts
+
+The below example has the `emoji` plugin excluded, and custom configuration on the link validator parsing plugin and link processing plugin. See the **Props** table for all plugin config options.
 
 ```tsx interactive
 import React from 'react';
-import {
-  getDefaultEuiMarkdownParsingPlugins,
-  euiMarkdownLinkValidator,
-  EuiMarkdownFormat,
-} from '@elastic/eui';
+import { EuiMarkdownFormat, getDefaultEuiMarkdownPlugins } from '@elastic/eui';
 
-// find the validation plugin and configure it to only allow https: and mailto: links
-const parsingPlugins = getDefaultEuiMarkdownParsingPlugins();
-parsingPlugins.find(([plugin, config]) => {
-  const isValidationPlugin = plugin === euiMarkdownLinkValidator;
-  if (isValidationPlugin) {
-    config.allowProtocols = ['https:', 'mailto:'];
-  }
-  return isValidationPlugin;
-});
+const markdownContent = `
+- :cry: Automatic emoji formatting has been excluded from this markdown.
+- In the example below, only \`https:\` and \`mailto:\` protocols should turn into links.
+- Links should open in a new tab.
 
-const markdown = `**Standalone links**
-https://example.com
-http://example.com
-someone@example.com
-
-**As markdown syntax**
-[example.com, https](https://example.com)
-[example.com, http](http://example.com)
-[email someone@example.com](mailto:someone@example.com)
+https://elastic.co
+http://elastic.co
+someone@elastic.co
 `;
 
-export default () => (
-  <EuiMarkdownFormat parsingPluginList={parsingPlugins}>
-    {markdown}
-  </EuiMarkdownFormat>
-);
+export default () => {
+  const { processingPlugins, parsingPlugins } = getDefaultEuiMarkdownPlugins({
+    exclude: ['emoji'],
+    processingConfig: {
+      linkProps: { target: '_blank' },
+    },
+    parsingConfig: {
+      linkValidator: { allowProtocols: ['https:', 'mailto:'] },
+    },
+  });
+
+  return (
+    <EuiMarkdownFormat
+      processingPluginList={processingPlugins}
+      parsingPluginList={parsingPlugins}
+    >
+      {markdownContent}
+    </EuiMarkdownFormat>
+  );
+};
 
 ```
 
@@ -97,21 +101,49 @@ An **EuiMarkdown plugin** is comprised of three major pieces, which are passed s
 />
 ```
 
-uiPlugin
+<br/>
 
-Provides the **UI** for the button in the toolbar as well as any modals or extra UI that provides content to the editor.
+```mdx-code-block
+import { EuiDescriptionList } from '@elastic/eui';
+```
 
-parsingPluginList
-
-Provides the logic to identify the new syntax and parse it into an **AST node**.
-
-processingPluginList
-
-Provides the logic to process the new **AST node** into a **React node**.
+<EuiDescriptionList
+  compressed
+  type="responsiveColumn"
+  listItems={[
+    {
+      title: 'uiPlugin',
+      description: (
+        <span>
+          Provides the <strong>UI</strong> for the button in the toolbar as well
+          as any modals or extra UI that provides content to the editor.
+        </span>
+      ),
+    },
+    {
+      title: 'parsingPluginList',
+      description: (
+        <span>
+          Provides the logic to identify the new syntax and parse it into an{' '}
+          <strong>AST node</strong>.
+        </span>
+      ),
+    },
+    {
+      title: 'processingPluginList',
+      description: (
+        <span>
+          Provides the logic to process the new <strong>AST node</strong> into a{' '}
+          <strong>React node</strong>.
+        </span>
+      ),
+    },
+  ]}
+/>
 
 * * *
 
-### uiPlugin
+### `uiPlugin`
 
 ```
 const myPluginUI = {
@@ -125,29 +157,68 @@ const myPluginUI = {
 };
 ```
 
-name
+<br />
 
-The name of your plugin. Use the **button.label** listed below if you need a more friendly display name. The button can be ommitted if you wish the user to only utilize syntax to author the content.
-
-button
-
-Takes a **label** and an **icon type**. This forms the button that appear in the toolbar. Clicking the button will trigger either the **editor** or **formatter**.
-
-editor
-
-Provides UI controls (like an interactive modal) for how to build the inital content. **Must exist if formatting does not**.
-
-formatting
-
-If no **editor** is provided, this is an object defining how the plugins markdown tag is styled.
-
-helpText
-
-Contains a React node. Should contain some information and an example for how to utlize the syntax. Appears when the markdown icon is clicked on the bottom of the editor.
+<EuiDescriptionList
+  compressed
+  type="responsiveColumn"
+  listItems={[
+    {
+      title: 'name',
+      description: (
+        <span>
+          The name of your plugin. Use the <strong>button.label</strong> listed
+          below if you need a more friendly display name. The button can be
+          ommitted if you wish the user to only utilize syntax to author the
+          content.
+        </span>
+      ),
+    },
+    {
+      title: 'button',
+      description: (
+        <span>
+          Takes a <strong>label</strong> and an <strong>icon type</strong>. This
+          forms the button that appear in the toolbar. Clicking the button will
+          trigger either the <strong>editor</strong> or <strong>formatter</strong>
+          .
+        </span>
+      ),
+    },
+    {
+      title: 'editor',
+      description: (
+        <span>
+          Provides UI controls (like an interactive modal) for how to build the
+          inital content. <strong>Must exist if formatting does not</strong>.
+        </span>
+      ),
+    },
+    {
+      title: 'formatting',
+      description: (
+        <span>
+          If no <strong>editor</strong> is provided, this is an object defining
+          how the plugins markdown tag is styled.
+        </span>
+      ),
+    },
+    {
+      title: 'helpText',
+      description: (
+        <span>
+          Contains a React node. Should contain some information and an example
+          for how to utlize the syntax. Appears when the markdown icon is clicked
+          on the bottom of the editor.
+        </span>
+      ),
+    },
+  ]}
+/>
 
 * * *
 
-### parsingPluginList
+### `parsingPluginList`
 
 [Remark-parse](https://www.npmjs.com/package/remark-parse) is used to parse the input text into markdown AST nodes. Its documentation for [writing parsers](https://www.npmjs.com/package/remark-parse#extending-the-parser) is under the Extending the Parser section, but highlights are included below.
 
@@ -230,338 +301,343 @@ const processingList = getDefaultEuiMarkdownProcessingPlugins();
 processingList[1][1].components.emojiPlugin = EmojiMarkdownRenderer;
 ```
 
-## Putting it all together: a simple chart plugin[](/docs/editors-syntax/markdown-plugins#putting-it-all-together-a-simple-chart-plugin)
+## Putting it all together: a simple chart plugin
 
 The below example takes the concepts from above to construct a simple chart embed that is initiated from a new button in the editor toolbar.
 
 Note that the **EuiMarkdownEditor** and **EuiMarkdownFormat** examples utilize the same prop list. The editor manages additional controls through the `uiPlugins` prop.
 
-```tsx interactive
-import React, { useCallback, useState } from 'react';
-import {
-  getDefaultEuiMarkdownParsingPlugins,
-  getDefaultEuiMarkdownProcessingPlugins,
-  EuiMarkdownEditor,
-  EuiMarkdownFormat,
-  EuiSpacer,
-  EuiCodeBlock,
-  EuiModalHeader,
-  EuiModalHeaderTitle,
-  EuiModalBody,
-  EuiModalFooter,
-  EuiButton,
-  EuiButtonEmpty,
-  EuiForm,
-  EuiFormRow,
-  EuiColorPalettePicker,
-  EuiRange,
-  EuiText,
-  EuiFlexGroup,
-  EuiFlexItem,
-  useEuiTheme,
-  euiPaletteComplementary,
-  euiPaletteCool,
-  euiPaletteForStatus,
-  euiPaletteForTemperature,
-  euiPaletteGray,
-  euiPaletteRed,
-  euiPaletteGreen,
-  euiPaletteWarm,
-  getDefaultEuiMarkdownUiPlugins,
-} from '@elastic/eui';
-import {
-  Chart,
-  Settings,
-  Axis,
-  BarSeries,
-  DataGenerator,
-  LIGHT_THEME,
-  DARK_THEME,
-} from '@elastic/charts';
+```mdx-code-block
+import * as ElasticCharts from '@elastic/charts';
+```
 
-const paletteData = {
-  euiPaletteForStatus,
-  euiPaletteForTemperature,
-  euiPaletteComplementary,
-  euiPaletteRed,
-  euiPaletteGreen,
-  euiPaletteCool,
-  euiPaletteWarm,
-  euiPaletteGray,
-};
+<Demo scope={{ ...ElasticCharts }}>
+  ```tsx
+  import React, { useCallback, useState } from 'react';
+  import {
+    getDefaultEuiMarkdownParsingPlugins,
+    getDefaultEuiMarkdownProcessingPlugins,
+    EuiMarkdownEditor,
+    EuiMarkdownFormat,
+    EuiSpacer,
+    EuiCodeBlock,
+    EuiModalHeader,
+    EuiModalHeaderTitle,
+    EuiModalBody,
+    EuiModalFooter,
+    EuiButton,
+    EuiButtonEmpty,
+    EuiForm,
+    EuiFormRow,
+    EuiColorPalettePicker,
+    EuiRange,
+    EuiText,
+    EuiFlexGroup,
+    EuiFlexItem,
+    useEuiTheme,
+    euiPaletteComplementary,
+    euiPaletteCool,
+    euiPaletteForStatus,
+    euiPaletteForTemperature,
+    euiPaletteGray,
+    euiPaletteRed,
+    euiPaletteGreen,
+    euiPaletteWarm,
+    getDefaultEuiMarkdownUiPlugins,
+  } from '@elastic/eui';
+  import {
+    Chart,
+    Settings,
+    Axis,
+    BarSeries,
+    DataGenerator,
+    LIGHT_THEME,
+    DARK_THEME,
+  } from '@elastic/charts';
 
-const paletteNames = Object.keys(paletteData);
+  const paletteData = {
+    euiPaletteForStatus,
+    euiPaletteForTemperature,
+    euiPaletteComplementary,
+    euiPaletteRed,
+    euiPaletteGreen,
+    euiPaletteCool,
+    euiPaletteWarm,
+    euiPaletteGray,
+  };
 
-const dg = new DataGenerator();
-const generateData = (categories) => dg.generateGroupedSeries(10, categories);
+  const paletteNames = Object.keys(paletteData);
 
-const chartDemoPlugin = {
-  name: 'chartDemoPlugin',
-  button: {
-    label: 'Chart',
-    iconType: 'visBarVerticalStacked',
-  },
-  helpText: (
-    <div>
-      <EuiCodeBlock language="md" fontSize="l" paddingSize="s" isCopyable>
-        {'!{chart{options}}'}
-      </EuiCodeBlock>
-      <EuiSpacer size="s" />
-      <EuiText size="xs" style={{ marginLeft: 16 }}>
-        <p>Where options can contain:</p>
-        <ul>
-          <li>
-            <strong>palette: </strong>A number between 1-8 for each palette.
-          </li>
-          <li>
-            <strong>categories: </strong>
-            The number of categories per column
-          </li>
-        </ul>
-      </EuiText>
-    </div>
-  ),
-  editor: function ChartEditor({ node, onSave, onCancel }) {
-    const [palette, setPalette] = useState((node && node.palette) || '1');
-    const [categories, setCategories] = useState(5);
+  const dg = new DataGenerator();
+  const generateData = (categories) => dg.generateGroupedSeries(10, categories);
 
-    const onChange = (e) => {
-      setCategories(Number(e.target.value));
-    };
+  const chartDemoPlugin = {
+    name: 'chartDemoPlugin',
+    button: {
+      label: 'Chart',
+      iconType: 'visBarVerticalStacked',
+    },
+    helpText: (
+      <div>
+        <EuiCodeBlock language="md" fontSize="l" paddingSize="s" isCopyable>
+          {'!{chart{options}}'}
+        </EuiCodeBlock>
+        <EuiSpacer size="s" />
+        <EuiText size="xs" style={{ marginLeft: 16 }}>
+          <p>Where options can contain:</p>
+          <ul>
+            <li>
+              <strong>palette: </strong>A number between 1-8 for each palette.
+            </li>
+            <li>
+              <strong>categories: </strong>
+              The number of categories per column
+            </li>
+          </ul>
+        </EuiText>
+      </div>
+    ),
+    editor: function ChartEditor({ node, onSave, onCancel }) {
+      const [palette, setPalette] = useState((node && node.palette) || '1');
+      const [categories, setCategories] = useState(5);
 
-    const palettes = paletteNames.map((paletteName, index) => {
-      return {
-        value: String(index + 1),
-        title: paletteName,
-        palette: paletteData[paletteNames[index]](categories),
-        type: 'fixed',
+      const onChange = (e) => {
+        setCategories(Number(e.target.value));
       };
-    });
 
-    return (
-      <>
-        <EuiModalHeader>
-          <EuiModalHeaderTitle>Add chart</EuiModalHeaderTitle>
-        </EuiModalHeader>
+      const palettes = paletteNames.map((paletteName, index) => {
+        return {
+          value: String(index + 1),
+          title: paletteName,
+          palette: paletteData[paletteNames[index]](categories),
+          type: 'fixed',
+        };
+      });
 
-        <EuiModalBody>
-          <>
-            <EuiForm component="form">
-              <EuiFlexGroup gutterSize="m" style={{ width: 600 }}>
-                <EuiFlexItem>
-                  <EuiFormRow label="Palette">
-                    <EuiColorPalettePicker
-                      palettes={palettes}
-                      onChange={setPalette}
-                      value={palette}
-                      compressed
-                    />
-                  </EuiFormRow>
-                </EuiFlexItem>
-                <EuiFlexItem>
-                  <EuiFormRow label="Categories">
-                    <EuiRange
-                      value={categories}
-                      onChange={onChange}
-                      min={1}
-                      max={10}
-                      compressed
-                      showValue
-                    />
-                  </EuiFormRow>
-                </EuiFlexItem>
-              </EuiFlexGroup>
-            </EuiForm>
-            <EuiSpacer />
-            <ChartMarkdownRenderer palette={palette} categories={categories} />
-          </>
-        </EuiModalBody>
+      return (
+        <>
+          <EuiModalHeader>
+            <EuiModalHeaderTitle>Add chart</EuiModalHeaderTitle>
+          </EuiModalHeader>
 
-        <EuiModalFooter>
-          <EuiButtonEmpty onClick={onCancel}>Cancel</EuiButtonEmpty>
+          <EuiModalBody>
+            <>
+              <EuiForm component="form">
+                <EuiFlexGroup gutterSize="m" style={{ width: 600 }}>
+                  <EuiFlexItem>
+                    <EuiFormRow label="Palette">
+                      <EuiColorPalettePicker
+                        palettes={palettes}
+                        onChange={setPalette}
+                        value={palette}
+                        compressed
+                      />
+                    </EuiFormRow>
+                  </EuiFlexItem>
+                  <EuiFlexItem>
+                    <EuiFormRow label="Categories">
+                      <EuiRange
+                        value={categories}
+                        onChange={onChange}
+                        min={1}
+                        max={10}
+                        compressed
+                        showValue
+                      />
+                    </EuiFormRow>
+                  </EuiFlexItem>
+                </EuiFlexGroup>
+              </EuiForm>
+              <EuiSpacer />
+              <ChartMarkdownRenderer palette={palette} categories={categories} />
+            </>
+          </EuiModalBody>
 
-          <EuiButton
-            onClick={() =>
-              onSave(`!{chart${JSON.stringify({ palette, categories })}}`, {
-                block: true,
-              })
+          <EuiModalFooter>
+            <EuiButtonEmpty onClick={onCancel}>Cancel</EuiButtonEmpty>
+
+            <EuiButton
+              onClick={() =>
+                onSave(`!{chart${JSON.stringify({ palette, categories })}}`, {
+                  block: true,
+                })
+              }
+              fill
+            >
+              Save
+            </EuiButton>
+          </EuiModalFooter>
+        </>
+      );
+    },
+  };
+
+  function ChartMarkdownParser() {
+    const Parser = this.Parser;
+    const tokenizers = Parser.prototype.blockTokenizers;
+    const methods = Parser.prototype.blockMethods;
+
+    function tokenizeChart(eat, value, silent) {
+      if (value.startsWith('!{chart') === false) return false;
+
+      const nextChar = value[7];
+
+      if (nextChar !== '{' && nextChar !== '}') return false; // this isn't actually a chart
+
+      if (silent) {
+        return true;
+      }
+
+      // is there a configuration?
+      const hasConfiguration = nextChar === '{';
+
+      let match = '!{chart';
+      let configuration = {};
+
+      if (hasConfiguration) {
+        let configurationString = '';
+
+        let openObjects = 0;
+
+        for (let i = 7; i < value.length; i++) {
+          const char = value[i];
+          if (char === '{') {
+            openObjects++;
+            configurationString += char;
+          } else if (char === '}') {
+            openObjects--;
+            if (openObjects === -1) {
+              break;
             }
-            fill
-          >
-            Save
-          </EuiButton>
-        </EuiModalFooter>
-      </>
-    );
-  },
-};
-
-function ChartMarkdownParser() {
-  const Parser = this.Parser;
-  const tokenizers = Parser.prototype.blockTokenizers;
-  const methods = Parser.prototype.blockMethods;
-
-  function tokenizeChart(eat, value, silent) {
-    if (value.startsWith('!{chart') === false) return false;
-
-    const nextChar = value[7];
-
-    if (nextChar !== '{' && nextChar !== '}') return false; // this isn't actually a chart
-
-    if (silent) {
-      return true;
-    }
-
-    // is there a configuration?
-    const hasConfiguration = nextChar === '{';
-
-    let match = '!{chart';
-    let configuration = {};
-
-    if (hasConfiguration) {
-      let configurationString = '';
-
-      let openObjects = 0;
-
-      for (let i = 7; i < value.length; i++) {
-        const char = value[i];
-        if (char === '{') {
-          openObjects++;
-          configurationString += char;
-        } else if (char === '}') {
-          openObjects--;
-          if (openObjects === -1) {
-            break;
+            configurationString += char;
+          } else {
+            configurationString += char;
           }
-          configurationString += char;
-        } else {
-          configurationString += char;
+        }
+
+        match += configurationString;
+        try {
+          configuration = JSON.parse(configurationString);
+        } catch (e) {
+          const now = eat.now();
+          this.file.fail(`Unable to parse chart JSON configuration: ${e}`, {
+            line: now.line,
+            column: now.column + 7,
+          });
         }
       }
 
-      match += configurationString;
-      try {
-        configuration = JSON.parse(configurationString);
-      } catch (e) {
-        const now = eat.now();
-        this.file.fail(`Unable to parse chart JSON configuration: ${e}`, {
-          line: now.line,
-          column: now.column + 7,
-        });
-      }
+      match += '}';
+
+      return eat(match)({
+        type: 'chartDemoPlugin',
+        ...configuration,
+      });
     }
 
-    match += '}';
-
-    return eat(match)({
-      type: 'chartDemoPlugin',
-      ...configuration,
-    });
+    tokenizers.chart = tokenizeChart;
+    methods.splice(methods.indexOf('text'), 0, 'chart');
   }
 
-  tokenizers.chart = tokenizeChart;
-  methods.splice(methods.indexOf('text'), 0, 'chart');
-}
-
-// receives the configuration from the parser and renders
-const ChartMarkdownRenderer = ({ palette, categories }) => {
-  const { colorMode } = useEuiTheme();
-  const chartBaseTheme = colorMode === 'DARK' ? DARK_THEME : LIGHT_THEME;
-  const customColors = {
-    colors: {
-      vizColors: paletteData[paletteNames[palette - 1]](categories),
-    },
+  // receives the configuration from the parser and renders
+  const ChartMarkdownRenderer = ({ palette, categories }) => {
+    const { colorMode } = useEuiTheme();
+    const chartBaseTheme = colorMode === 'DARK' ? DARK_THEME : LIGHT_THEME;
+    const customColors = {
+      colors: {
+        vizColors: paletteData[paletteNames[palette - 1]](categories),
+      },
+    };
+    return (
+      <Chart size={{ height: 320 }}>
+        <Settings
+          baseTheme={chartBaseTheme}
+          theme={[customColors]}
+          showLegend={false}
+          showLegendDisplayValue={false}
+        />
+        <BarSeries
+          id="status"
+          name="Status"
+          data={generateData(categories)}
+          xAccessor={'x'}
+          yAccessors={['y']}
+          splitSeriesAccessors={['g']}
+          stackAccessors={['g']}
+        />
+        <Axis id="bottom-axis" position="bottom" showGridLines />
+        <Axis
+          id="left-axis"
+          position="left"
+          showGridLines
+          tickFormat={(d) => Number(d).toFixed(2)}
+        />
+      </Chart>
+    );
   };
-  return (
-    <Chart size={{ height: 320 }}>
-      <Settings
-        baseTheme={chartBaseTheme}
-        theme={[customColors]}
-        showLegend={false}
-        showLegendDisplayValue={false}
-      />
-      <BarSeries
-        id="status"
-        name="Status"
-        data={generateData(categories)}
-        xAccessor={'x'}
-        yAccessors={['y']}
-        splitSeriesAccessors={['g']}
-        stackAccessors={['g']}
-      />
-      <Axis id="bottom-axis" position="bottom" showGridLines />
-      <Axis
-        id="left-axis"
-        position="left"
-        showGridLines
-        tickFormat={(d) => Number(d).toFixed(2)}
-      />
-    </Chart>
-  );
-};
 
-const exampleParsingList = getDefaultEuiMarkdownParsingPlugins();
-exampleParsingList.push(ChartMarkdownParser);
+  const exampleParsingList = getDefaultEuiMarkdownParsingPlugins();
+  exampleParsingList.push(ChartMarkdownParser);
 
-const exampleProcessingList = getDefaultEuiMarkdownProcessingPlugins();
-exampleProcessingList[1][1].components.chartDemoPlugin = ChartMarkdownRenderer;
+  const exampleProcessingList = getDefaultEuiMarkdownProcessingPlugins();
+  exampleProcessingList[1][1].components.chartDemoPlugin = ChartMarkdownRenderer;
 
-const exampleUiPlugins = getDefaultEuiMarkdownUiPlugins();
-exampleUiPlugins.push(chartDemoPlugin);
+  const exampleUiPlugins = getDefaultEuiMarkdownUiPlugins();
+  exampleUiPlugins.push(chartDemoPlugin);
 
-const initialExample = `## Chart plugin
+  const initialExample = `## Chart plugin
 
-Notice the toolbar above has a new chart button. Click it to add a chart.
+  Notice the toolbar above has a new chart button. Click it to add a chart.
 
-Once you finish it'll add some syntax that looks like the below.
+  Once you finish it'll add some syntax that looks like the below.
 
-!{chart{"palette":"2","categories":5}}
-`;
+  !{chart{"palette":"2","categories":5}}
+  `;
 
-export default () => {
-  const [value, setValue] = useState(initialExample);
-  const [messages, setMessages] = useState([]);
-  const [ast, setAst] = useState(null);
-  const [isAstShowing, setIsAstShowing] = useState(false);
-  const onParse = useCallback((err, { messages, ast }) => {
-    setMessages(err ? [err] : messages);
-    setAst(JSON.stringify(ast, null, 2));
-  }, []);
-  return (
-    <>
-      <EuiMarkdownEditor
-        aria-label="EUI markdown editor with plugins demo"
-        placeholder="Your markdown here..."
-        value={value}
-        onChange={setValue}
-        height={400}
-        uiPlugins={exampleUiPlugins}
-        parsingPluginList={exampleParsingList}
-        processingPluginList={exampleProcessingList}
-        onParse={onParse}
-        errors={messages}
-      />
-      <EuiSpacer size="s" />
-      <div className="eui-textRight">
-        <EuiButton
-          size="s"
-          iconType={isAstShowing ? 'eyeClosed' : 'eye'}
-          onClick={() => setIsAstShowing(!isAstShowing)}
-          fill={isAstShowing}
+  export default () => {
+    const [value, setValue] = useState(initialExample);
+    const [messages, setMessages] = useState([]);
+    const [ast, setAst] = useState(null);
+    const [isAstShowing, setIsAstShowing] = useState(false);
+    const onParse = useCallback((err, { messages, ast }) => {
+      setMessages(err ? [err] : messages);
+      setAst(JSON.stringify(ast, null, 2));
+    }, []);
+    return (
+      <>
+        <EuiMarkdownEditor
+          aria-label="EUI markdown editor with plugins demo"
+          placeholder="Your markdown here..."
+          value={value}
+          onChange={setValue}
+          height={400}
+          uiPlugins={exampleUiPlugins}
+          parsingPluginList={exampleParsingList}
+          processingPluginList={exampleProcessingList}
+          onParse={onParse}
+          errors={messages}
+        />
+        <EuiSpacer size="s" />
+        <div className="eui-textRight">
+          <EuiButton
+            size="s"
+            iconType={isAstShowing ? 'eyeClosed' : 'eye'}
+            onClick={() => setIsAstShowing(!isAstShowing)}
+            fill={isAstShowing}
+          >
+            {isAstShowing ? 'Hide editor AST' : 'Show editor AST'}
+          </EuiButton>
+        </div>
+        {isAstShowing && <EuiCodeBlock language="json">{ast}</EuiCodeBlock>}
+
+        <EuiMarkdownFormat
+          parsingPluginList={exampleParsingList}
+          processingPluginList={exampleProcessingList}
         >
-          {isAstShowing ? 'Hide editor AST' : 'Show editor AST'}
-        </EuiButton>
-      </div>
-      {isAstShowing && <EuiCodeBlock language="json">{ast}</EuiCodeBlock>}
-
-      <EuiMarkdownFormat
-        parsingPluginList={exampleParsingList}
-        processingPluginList={exampleProcessingList}
-      >
-        {value}
-      </EuiMarkdownFormat>
-    </>
-  );
-};
-
-```
+          {value}
+        </EuiMarkdownFormat>
+      </>
+    );
+  };
+  ```
+</Demo>
