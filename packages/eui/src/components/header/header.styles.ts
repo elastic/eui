@@ -122,8 +122,18 @@ const euiHeaderDarkStyles = (euiThemeContext: UseEuiTheme) => {
     .euiSelectableTemplateSitewide .euiFormControlLayout {
       background-color: transparent;
 
+      input {
+        box-shadow: inset 0 0 0 ${euiTheme.border.width.thin} ${
+    selectableSitewide.borderColor
+  };
+      }
+
       &--group {
         border-color: ${selectableSitewide.borderColor};
+
+        input {
+          box-shadow: none;
+        }
       }
 
       &:not(:focus-within) {
