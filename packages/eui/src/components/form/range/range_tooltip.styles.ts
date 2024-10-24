@@ -38,8 +38,7 @@ export const euiRangeTooltipValueStyles = (euiThemeContext: UseEuiTheme) => {
   const arrowSizeInt = parseInt(arrowSize, 10);
   const arrowMinusSize = `${(arrowSizeInt / 2 - 1) * -1}px`; // Shift arrow 1px more than half its size to account for border radius
 
-  const toolTipBackgroundColor =
-    euiTheme.components.__TEMP_INTERNAL__.tooltipBackground;
+  const toolTipBackgroundColor = euiTheme.components.tooltipBackground;
 
   return {
     euiRangeTooltip__value: css`

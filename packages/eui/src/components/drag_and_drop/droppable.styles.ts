@@ -21,12 +21,10 @@ export const euiDroppableStyles = (euiThemeContext: UseEuiTheme) => {
       }
     `,
     isDragging: css`
-      background-color: ${euiTheme.components.__TEMP_INTERNAL__
-        .dragDropDraggingBackground};
+      background-color: ${euiTheme.components.dragDropDraggingBackground};
     `,
     isDraggingOver: css`
-      background-color: ${euiTheme.components.__TEMP_INTERNAL__
-        .dragDropDraggingOverBackground};
+      background-color: ${euiTheme.components.dragDropDraggingOverBackground};
     `,
     grow: css`
       flex-grow: 1;

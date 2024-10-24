@@ -18,10 +18,10 @@ import { UseEuiTheme } from '../../services';
 import { euiShadow } from '../../themes/amsterdam';
 
 export const euiToolTipBackgroundColor = (euiTheme: UseEuiTheme['euiTheme']) =>
-  euiTheme.components.__TEMP_INTERNAL__.tooltipBackground;
+  euiTheme.components.tooltipBackground;
 
 export const euiToolTipBorderColor = (euiTheme: UseEuiTheme['euiTheme']) =>
-  euiTheme.components.__TEMP_INTERNAL__.tooltipBorder;
+  euiTheme.components.tooltipBorder;
 
 const euiToolTipAnimationVertical = (size: string) => keyframes`
     0% {
@@ -61,7 +61,7 @@ export const euiToolTipStyles = (euiThemeContext: UseEuiTheme) => {
       ${euiShadow(euiThemeContext)}
       border-radius: ${euiTheme.border.radius.medium};
       border: ${euiTheme.border.width.thin} solid
-        ${euiTheme.components.__TEMP_INTERNAL__.tooltipBorderFloating};
+        ${euiTheme.components.tooltipBorderFloating};
       background-color: ${euiToolTipBackgroundColor(euiTheme)};
       color: ${euiTheme.colors.ghost};
       z-index: ${euiTheme.levels.toast};

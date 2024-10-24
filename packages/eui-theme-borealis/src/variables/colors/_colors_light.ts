@@ -15,6 +15,7 @@ import {
   type _EuiThemeColorsMode,
   _EuiThemeBackgroundColors,
   _EuiThemeBorderColors,
+  _EuiThemeTransparentBackgroundColors,
 } from '@elastic/eui-theme-common';
 
 import { PRIMITIVE_COLORS } from './_primitive_colors';
@@ -112,6 +113,25 @@ export const background_colors: _EuiThemeBackgroundColors = {
   backgroundFilledText: SEMANTIC_COLORS.shade90,
 };
 
+/**
+ * NOTE: temp values for migration - these should not be used,
+ * use backgroundBase tokens instead
+ * TODO: remove once obsolete
+ */
+export const transparent_background_colors: _EuiThemeTransparentBackgroundColors =
+  {
+    backgroundTransparent: PRIMITIVE_COLORS.transparent.white['0'],
+    backgroundTransparentPrimary: background_colors.backgroundBasePrimary,
+    backgroundTransparentAccent: background_colors.backgroundBaseAccent,
+    backgroundTransparentAccentSecondary:
+      background_colors.backgroundBaseAccentSecondary,
+    backgroundTransparentSuccess: background_colors.backgroundBaseSuccess,
+    backgroundTransparentWarning: background_colors.backgroundBaseWarning,
+    backgroundTransparentDanger: background_colors.backgroundBaseDanger,
+    backgroundTransparentSubdued: SEMANTIC_COLORS.shade15,
+    backgroundTransparentPlain: SEMANTIC_COLORS.shade15,
+  };
+
 export const border_colors: _EuiThemeBorderColors = {
   borderBasePrimary: SEMANTIC_COLORS.primary100,
   borderBaseAccent: SEMANTIC_COLORS.accent100,
@@ -143,5 +163,6 @@ export const light_colors: _EuiThemeColorsMode = {
   ...brand_text_colors,
   ...text_colors,
   ...background_colors,
+  ...transparent_background_colors,
   ...border_colors,
 };

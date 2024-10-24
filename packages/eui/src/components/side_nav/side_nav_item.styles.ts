@@ -16,7 +16,7 @@ export const euiSideNavItemStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
 
   const emphasizedBackgroundColor =
-    euiTheme.components.__TEMP_INTERNAL__.sideNavItemEmphasizedBackground;
+    euiTheme.components.sideNavItemEmphasizedBackground;
 
   return {
     euiSideNavItem: css``,

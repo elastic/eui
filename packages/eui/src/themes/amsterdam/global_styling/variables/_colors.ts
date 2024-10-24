@@ -16,6 +16,7 @@ import {
   _EuiThemeColorsMode,
   _EuiThemeBackgroundColors,
   _EuiThemeBorderColors,
+  _EuiThemeTransparentBackgroundColors,
 } from '@elastic/eui-theme-common';
 
 import {
@@ -211,6 +212,43 @@ export const background_colors: _EuiThemeBackgroundColors = {
   ),
 };
 
+export const transparent_background_colors: _EuiThemeTransparentBackgroundColors =
+  {
+    backgroundTransparent: 'transparent',
+    backgroundTransparentPrimary: computed(
+      ([primary]) => transparentize(primary, 0.1),
+      ['colors.primary']
+    ),
+    backgroundTransparentAccent: computed(
+      ([accent]) => transparentize(accent, 0.1),
+      ['colors.accent']
+    ),
+    backgroundTransparentAccentSecondary: computed(
+      ([accent]) => transparentize(accent, 0.1),
+      ['colors.accent']
+    ),
+    backgroundTransparentSuccess: computed(
+      ([success]) => transparentize(success, 0.1),
+      ['colors.success']
+    ),
+    backgroundTransparentWarning: computed(
+      ([warning]) => transparentize(warning, 0.1),
+      ['colors.warning']
+    ),
+    backgroundTransparentDanger: computed(
+      ([danger]) => transparentize(danger, 0.1),
+      ['colors.danger']
+    ),
+    backgroundTransparentSubdued: computed(
+      ([lightShade]) => transparentize(lightShade, 0.2),
+      ['colors.lightShade']
+    ),
+    backgroundTransparentPlain: computed(
+      ([ghost]) => transparentize(ghost, 0.2),
+      ['colors.ghost']
+    ),
+  };
+
 export const border_colors: _EuiThemeBorderColors = {
   borderBasePrimary: computed(
     ([primary]) => tint(primary, 0.6),
@@ -262,6 +300,7 @@ export const light_colors: _EuiThemeColorsMode = {
   ...brand_text_colors,
   ...text_colors,
   ...background_colors,
+  ...transparent_background_colors,
   ...border_colors,
 };
 
@@ -388,6 +427,15 @@ export const dark_background_colors: _EuiThemeBackgroundColors = {
   backgroundFilledText: computed(([text]) => text, ['colors.text']),
 };
 
+export const dark_transparent_background_colors: _EuiThemeTransparentBackgroundColors =
+  {
+    ...transparent_background_colors,
+    backgroundTransparentSubdued: computed(
+      ([lightShade]) => transparentize(lightShade, 0.4),
+      ['colors.lightShade']
+    ),
+  };
+
 export const dark_border_colors: _EuiThemeBorderColors = {
   borderBasePrimary: computed(
     ([primary]) => shade(primary, 0.6),
@@ -469,6 +517,7 @@ export const dark_colors_ams: _EuiThemeColorsMode = {
   textInverse: computed(([ink]) => ink, ['colors.ink']),
 
   ...dark_background_colors,
+  ...dark_transparent_background_colors,
   ...dark_border_colors,
 };
 

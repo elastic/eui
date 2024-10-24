@@ -25,11 +25,10 @@ const euiSwitchVars = (euiThemeContext: UseEuiTheme) => {
 
   const colors = {
     on: formVars.colors.selected,
-    off: euiTheme.components.__TEMP_INTERNAL__.switchBackgroundOff,
+    off: euiTheme.components.switchBackgroundOff,
     disabled: formVars.colors.disabled,
     thumb: formVars.colors.selectedIcon,
-    thumbDisabled:
-      euiTheme.components.__TEMP_INTERNAL__.switchThumbBackgroundDisabled,
+    thumbDisabled: euiTheme.components.switchThumbBackgroundDisabled,
     thumbBorder: formVars.colors.unselectedBorder,
     thumbBorderOn: formVars.colors.selectedBorder,
     thumbBorderDisabled: formVars.colors.disabledBorder,
@@ -163,16 +162,15 @@ const bodyStyles = ({ euiTheme }: UseEuiTheme, { colors }: EuiSwitchVars) => {
     `,
     disabled: {
       uncompressed: css`
-        background-color: ${euiTheme.components.__TEMP_INTERNAL__
+        background-color: ${euiTheme.components
           .switchUncompressedBackgroundDisabled};
       `,
       compressed: css`
-        background-color: ${euiTheme.components.__TEMP_INTERNAL__
+        background-color: ${euiTheme.components
           .switchCompressedBackgroundDisabled};
       `,
       mini: css`
-        background-color: ${euiTheme.components.__TEMP_INTERNAL__
-          .switchMiniBackgroundDisabled};
+        background-color: ${euiTheme.components.switchMiniBackgroundDisabled};
       `,
     },
   };

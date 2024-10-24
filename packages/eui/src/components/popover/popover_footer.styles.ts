@@ -25,7 +25,7 @@ export const euiPopoverFooterStyles = (euiThemeContext: UseEuiTheme) => {
       ${euiFontSize(euiThemeContext, 's')}
       ${logicalCSS(
         'border-top',
-        `${euiTheme.border.width.thin} solid ${euiTheme.components.__TEMP_INTERNAL__.popoverFooterBorderColor}`
+        `${euiTheme.border.width.thin} solid ${euiTheme.components.popoverFooterBorderColor}`
       )}
     `,
     // If the popover's containing panel has padding applied,

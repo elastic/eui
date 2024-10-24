@@ -81,9 +81,8 @@ export const euiButtonGroupButtonStyles = (euiThemeContext: UseEuiTheme) => {
         const selectors =
           '.euiButtonGroupButton-isSelected, .euiButtonGroup__tooltipWrapper-isSelected';
         const selectedColor =
-          euiTheme.components.__TEMP_INTERNAL__.buttonGroupBorderColorSelected;
-        const unselectedColor =
-          euiTheme.components.__TEMP_INTERNAL__.buttonGroupBorderColor;
+          euiTheme.components.buttonGroupBorderColorSelected;
+        const unselectedColor = euiTheme.components.buttonGroupBorderColor;
         const borderWidth = euiTheme.border.width.thin;
 
         // "Borders" between buttons should be present between two of the same colored buttons,

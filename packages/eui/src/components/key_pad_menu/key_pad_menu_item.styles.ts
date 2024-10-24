@@ -82,7 +82,7 @@ export const euiKeyPadMenuItemStyles = (euiThemeContext: UseEuiTheme) => {
         }
       `,
       selected: css`
-        background-color: ${euiTheme.components.__TEMP_INTERNAL__
+        background-color: ${euiTheme.components
           .keyPadMenuItemBackgroundDisabledSelect};
       `,
     },

@@ -11,6 +11,7 @@ import { UseEuiTheme, useEuiMemoizedStyles } from '../../services';
 import {
   _EuiThemeBackgroundColors,
   _EuiThemeBorderColors,
+  _EuiThemeTransparentBackgroundColors,
   getTokenName,
 } from '@elastic/eui-theme-common';
 
@@ -50,9 +51,9 @@ export const euiBackgroundColor = (
     const tokenName = getTokenName(
       'backgroundTransparent',
       color
-    ) as keyof typeof euiTheme.components.__TEMP_INTERNAL__.shared;
+    ) as keyof _EuiThemeTransparentBackgroundColors;
 
-    return euiTheme.components.__TEMP_INTERNAL__.shared[tokenName];
+    return euiTheme.colors[tokenName];
   } else {
     const tokenName = getTokenName(
       'backgroundBase',
