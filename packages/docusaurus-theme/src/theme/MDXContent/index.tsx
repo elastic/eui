@@ -13,7 +13,7 @@ import type { WrapperProps } from '@docusaurus/types';
 type Props = WrapperProps<typeof MDXContentType>;
 
 const MDXContent = (props: Props): JSX.Element => (
-  <div data-search-children="">
+  <div data-search-children={true}>
     <OriginalMDXContent {...props} />
   </div>
 );
