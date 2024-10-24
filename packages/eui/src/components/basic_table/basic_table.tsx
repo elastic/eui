@@ -797,6 +797,7 @@ export class EuiBasicTable<T extends object = any> extends Component<
             : undefined;
           sorting.onSort = this.resolveColumnOnSort(column);
           sorting.readOnly = this.props.sorting.readOnly || readOnly;
+          sorting.allowNeutralSort = this.props.sorting.allowNeutralSort;
         }
         headers.push(
           <EuiTableHeaderCell

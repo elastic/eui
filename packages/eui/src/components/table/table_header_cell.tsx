@@ -11,6 +11,7 @@ import React, {
   HTMLAttributes,
   ThHTMLAttributes,
   ReactNode,
+  useMemo,
 } from 'react';
 import classNames from 'classnames';
 
@@ -19,7 +20,7 @@ import {
   HorizontalAlignment,
   LEFT_ALIGNMENT,
 } from '../../services';
-import { EuiI18n } from '../i18n';
+import { EuiI18n, useEuiI18n } from '../i18n';
 import { EuiScreenReaderOnly } from '../accessibility';
 import { CommonProps, NoArgCallback } from '../common';
 import { EuiIcon } from '../icon';
@@ -54,7 +55,61 @@ export type EuiTableHeaderCellProps = CommonProps &
      * Used by EuiBasicTable to render hidden copy markers
      */
     append?: ReactNode;
+    allowNeutralSort?: boolean;
   };
+
+const SortScreenReaderText = ({
+  isSorted,
+  isSortAscending,
+  allowNeutralSort,
+}: {
+  isSorted: boolean | undefined;
+  isSortAscending: boolean | undefined;
+  allowNeutralSort: boolean | undefined;
+}) => {
+  const unsortedText = useEuiI18n(
+    'euiTableHeaderCell.unsorted',
+    'Unsorted. Click to sort ascending'
+  );
+  const sortedAscendingText = useEuiI18n(
+    'euiTableHeaderCell.sortedAscending',
+    'Sorted ascending. Click to sort descending'
+  );
+  const sortedDescendingText = useEuiI18n(
+    'euiTableHeaderCell.sortedDescending',
+    'Sorted descending. Click to sort ascending'
+  );
+  const sortedDescendingUnsortText = useEuiI18n(
+    'euiTableHeaderCell.sortedDescendingUnsort',
+    'Sorted descending. Click to unsort'
+  );
+  const text = useMemo(() => {
+    if (!isSorted) {
+      return unsortedText;
+    }
+    if (isSortAscending) {
+      return sortedAscendingText;
+    }
+    if (allowNeutralSort === false) {
+      return sortedDescendingText;
+    }
+    return sortedDescendingUnsortText;
+  }, [
+    isSorted,
+    isSortAscending,
+    allowNeutralSort,
+    unsortedText,
+    sortedAscendingText,
+    sortedDescendingText,
+    sortedDescendingUnsortText,
+  ]);
+
+  return (
+    <EuiScreenReaderOnly>
+      <span>{text}</span>
+    </EuiScreenReaderOnly>
+  );
+};
 
 const CellContents = ({
   className,
@@ -64,6 +119,7 @@ const CellContents = ({
   canSort,
   isSorted,
   isSortAscending,
+  sortScreenReaderText,
 }: {
   className?: string;
   align: HorizontalAlignment;
@@ -72,6 +128,7 @@ const CellContents = ({
   canSort?: boolean;
   isSorted: EuiTableHeaderCellProps['isSorted'];
   isSortAscending?: EuiTableHeaderCellProps['isSortAscending'];
+  sortScreenReaderText?: ReactNode;
 }) => {
   return (
     <EuiTableCellContent
@@ -104,6 +161,7 @@ const CellContents = ({
           <span>{description}</span>
         </EuiScreenReaderOnly>
       )}
+      {sortScreenReaderText}
       {isSorted ? (
         <EuiIcon
           className="euiTableSortIcon"
@@ -136,6 +194,7 @@ export const EuiTableHeaderCell: FunctionComponent<EuiTableHeaderCellProps> = ({
   readOnly,
   description,
   append,
+  allowNeutralSort,
   ...rest
 }) => {
   const styles = useEuiMemoizedStyles(euiTableHeaderFooterCellStyles);
@@ -159,6 +218,14 @@ export const EuiTableHeaderCell: FunctionComponent<EuiTableHeaderCellProps> = ({
     ariaSortValue = 'none';
   }
 
+  const sortScreenReaderText = canSort ? (
+    <SortScreenReaderText
+      isSorted={isSorted}
+      isSortAscending={isSortAscending}
+      allowNeutralSort={allowNeutralSort}
+    />
+  ) : undefined;
+
   const cellContentsProps = {
     css: styles.euiTableHeaderCell__content,
     align,
@@ -167,6 +234,7 @@ export const EuiTableHeaderCell: FunctionComponent<EuiTableHeaderCellProps> = ({
     isSorted,
     isSortAscending,
     children,
+    sortScreenReaderText,
   };
 
   return (
