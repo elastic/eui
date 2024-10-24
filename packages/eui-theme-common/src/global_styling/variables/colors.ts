@@ -233,6 +233,14 @@ export type _EuiThemeConstantColors = {
    * @deprecated
    */
   ink: string;
+  /**
+   * Purest **white**
+   */
+  plainLight: string;
+  /**
+   * Purest **black**
+   */
+  plainDark: string;
 };
 
 export type _EuiThemeColorsMode = _EuiThemeBrandColors &
