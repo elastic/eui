@@ -12,6 +12,7 @@ import { css } from '@emotion/react';
 
 const getOrderedListStyles = ({ euiTheme }: UseEuiTheme) => css`
   margin-inline-start: ${euiTheme.size.l};
+  list-style: decimal;
 `;
 
 export const OrderedList = ({ children, ...restProps }: HTMLAttributes<HTMLUListElement>) => {

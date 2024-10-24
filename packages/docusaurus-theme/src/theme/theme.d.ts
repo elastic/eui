@@ -542,3 +542,9 @@ declare module '@theme/Heading' {
 
   export default function Heading(props: Props): JSX.Element;
 }
+
+declare module '@theme/Demo/default_scope' {
+  export type ScopeType = Record<string, unknown>;
+
+  export const demoDefaultScope: ScopeType;
+}

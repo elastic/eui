@@ -1,0 +1,188 @@
+---
+slug: /theming/breakpoints/values
+id: theming_breakpoints_values
+---
+
+# Breakpoints
+
+For most of your usages we recommend using the [responsive utilities](/docs/theming/breakpoints/utilities) **instead** of consuming the theme values directly.
+
+## Default values
+
+If you want to align your custom responsive styles with EUI's breakpoints, or when using components that accept our named breakpoints, you'll want to utilize the following default values and provided hooks.
+
+```mdx-code-block
+import { Example, ExampleDescription } from '@site/src/components';
+import { useCurrentEuiBreakpoint } from '@elastic/eui';
+```
+
+<Example>
+  <Example.Description>
+    ### `useCurrentEuiBreakpoint()` <Badge color="hollow">hook</Badge>
+
+    This hook returns the named breakpoint size of the current browser window width, responsively updating whenever the window is resized.
+
+    The hook automatically inherits breakpoint sizes from the current EUI theme and any theme overrides.
+  </Example.Description>
+  <Example.Preview>
+    Current breakpoint: <strong>{useCurrentEuiBreakpoint()}</strong>
+  </Example.Preview>
+  <Example.Snippet>
+    ```tsx
+    const currentBreakpoint = useCurrentEuiBreakpoint()
+    ```
+  </Example.Snippet>
+</Example>
+
+```mdx-code-block
+import { EuiIcon, EuiText, useIsWithinBreakpoints, useIsWithinMaxBreakpoint, useIsWithinMinBreakpoint } from '@elastic/eui';
+```
+
+<Example>
+  <Example.Description>
+    ### `useIsWithinBreakpoints(sizes[], isResponsive?)` <Badge color="hollow">hook</Badge>
+
+    This hook returns true or false if the current browser window width is within the passed breakpoint `sizes`. The `isResponsive` parameter allows it to easily be turned on/off from within your component.
+
+    You can also use `useIsWithinMaxBreakpoint(size)` and `useIsWithinMinBreakpoint(size)`. The min/max hooks return true or false if the current browser window width is above or below the passed breakpoint `size` respectively.
+
+    These hooks automatically inherits breakpoint sizes from the current EUI theme and any theme overrides.
+  </Example.Description>
+  <Example.Preview>
+    Targeting large devices only: {useIsWithinBreakpoints(['l', 'xl']) ? <EuiIcon type="checkInCircleFilled" color="success" /> : <EuiIcon type="cross" color="danger" />}
+
+    Targeting medium devices and below: {useIsWithinMaxBreakpoint('m') ? <EuiIcon type="checkInCircleFilled" color="success" /> : <EuiIcon type="cross" color="danger" />}
+
+    Targeting small devices and above: {useIsWithinMinBreakpoint('s') ? <EuiIcon type="checkInCircleFilled" color="success" /> : <EuiIcon type="cross" color="danger" />}
+  </Example.Preview>
+  <Example.Snippet>
+    ```tsx
+    useIsWithinBreakpoints(['l', 'xl'])
+    useIsWithinMaxBreakpoint('m')
+    useIsWithinMinBreakpoint('s')
+    ```
+  </Example.Snippet>
+</Example>
+
+```mdx-code-block
+import { useEuiBreakpoint, useEuiTheme } from '@elastic/eui';
+import { UseEuiBreakpointPreview } from './use_eui_breakpoint_preview';
+```
+
+<Example>
+  <Example.Description>
+    ### `useEuiBreakpoint(sizes[])` <Badge color="hollow">hook</Badge>
+
+    Given an array of screen sizes, this hook generates a CSS media query string based on the minimum and maximum screen sizes provided.
+  </Example.Description>
+  <Example.Preview>
+    <UseEuiBreakpointPreview />
+  </Example.Preview>
+  <Example.Snippet>
+    ```tsx
+    ${useEuiBreakpoint(['s', 'l'])} {
+      font-weight: bold;
+    }
+    ${useEuiBreakpoint(['xs', 's'])} {
+      color: red;
+    }
+    ${useEuiBreakpoint(['m'])} {
+      color: yellow;
+    }
+    ${useEuiBreakpoint(['l', 'xl'])} {
+      color: green;
+    }
+    ```
+  </Example.Snippet>
+</Example>
+
+```mdx-code-block
+import { UseEuiMinMaxMaxBreakpointPreview } from './use_eui_min_max_breakpoint_preview';
+```
+
+<Example>
+  <Example.Description>
+    ### `useEuiMaxBreakpoint(size)` and `useEuiMinBreakpoint(size)` <Badge color="hollow">hook</Badge>
+
+    Given a single breakpoint key, these hooks generate a min or max CSS media query string based on the single breakpoint dimension returned.
+  </Example.Description>
+  <Example.Preview>
+    <UseEuiMinMaxMaxBreakpointPreview />
+  </Example.Preview>
+  <Example.Snippet>
+    ```tsx
+    css`
+      ${useEuiMaxBreakpoint('m')} {
+        color: red;
+      }
+      ${useEuiMinBreakpoint('m')} {
+        color: green;
+      }
+    `
+    ```
+  </Example.Snippet>
+</Example>
+
+```mdx-code-block
+import { BreakpointsTable } from './breakpoints_table.tsx';
+```
+
+<BreakpointsTable />
+
+## Custom values
+
+```mdx-code-block
+import { CurrentCustomBreakpointPreview } from './current_custom_breakpoint_preview';
+```
+
+EUI's theme breakpoints can be overridden and extended. However, the default sizes (**xl** through **xs**) will always be present and cannot be removed.
+
+```mdx-code-block
+import { EuiThemeProvider } from '@elastic/eui';
+```
+
+<EuiThemeProvider
+  modify={{ breakpoint: {
+    xxs: 0,
+    xs: 250,
+    s: 500,
+    m: 1000,
+    l: 1500,
+    xl: 2000,
+    xxl: 2500,
+  }
+}}>
+  <Example>
+    <Example.Description>
+      ### `EuiProvider` <Badge color="hollow">theme</Badge>
+
+      Theme breakpoints can be overriden or added via `EuiProvider`'s or `EuiThemeProvider`'s `modify` prop.
+
+      Excluding a default breakpoint key in your `breakpoint` override will use the EUI default value for that size as a fallback.
+    </Example.Description>
+    <Example.Preview>
+      <CurrentCustomBreakpointPreview />
+    </Example.Preview>
+    <Example.Snippet>
+      ```tsx
+      <EuiThemeProvider
+        modify={{
+          breakpoint: {
+            xxs: 0,
+            xs: 250,
+            s: 500,
+            m: 1000,
+            l: 1500,
+            xl: 2000,
+            xxl: 2500,
+          },
+        }}
+      >
+        <App />
+      </EuiThemeProvider>
+      ```
+    </Example.Snippet>
+  </Example>
+
+  <BreakpointsTable />
+</EuiThemeProvider>
