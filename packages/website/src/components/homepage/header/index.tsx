@@ -59,7 +59,7 @@ const getStyles = (euiThemeContext: UseEuiTheme) => {
       --hero-decor-fill-brand-poppy: #ff957d;
 
       position: relative;
-      overflow: hidden;
+      overflow: hidden auto;
       display: flex;
       flex-direction: column;
       justify-content: center;
