@@ -80,6 +80,16 @@ const euiHeaderDarkStyles = (euiThemeContext: UseEuiTheme) => {
       ? shade(euiTheme.colors.lightestShade, 0.5)
       : shade(euiTheme.colors.darkestShade, 0.28);
 
+  // Specific color overrides for EuiSelectableTemplateSitewide
+  const selectableSitewide = {
+    color: euiTheme.colors.ghost,
+    borderColor: transparentize(euiTheme.colors.ghost, 0.3),
+    placeholderColor: makeHighContrastColor(
+      controlPlaceholderText,
+      8
+    )(backgroundColor),
+  };
+
   return `
     background-color: ${backgroundColor};
 
@@ -113,20 +123,17 @@ const euiHeaderDarkStyles = (euiThemeContext: UseEuiTheme) => {
       background-color: transparent;
 
       &--group {
-        border-color: ${transparentize(euiTheme.colors.ghost, 0.3)};
+        border-color: ${selectableSitewide.borderColor};
       }
 
       &:not(:focus-within) {
         /* Increase contrast of filled text to be more than placeholder text */
-        color: ${euiTheme.colors.ghost};
+        color: ${selectableSitewide.color};
 
         input {
           /* Increase contrast of placeholder text */
           &::placeholder {
-            color: ${makeHighContrastColor(
-              controlPlaceholderText,
-              8
-            )(backgroundColor)};
+            color: ${selectableSitewide.placeholderColor};
           }
 
           /* Inherit color from form control layout */
