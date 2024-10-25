@@ -23,6 +23,7 @@ import {
 export const BUTTON_COLORS = [
   'text',
   'accent',
+  'accentSecondary',
   'primary',
   'success',
   'warning',

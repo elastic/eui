@@ -157,6 +157,9 @@ export const euiEmptyPromptStyles = (euiThemeContext: UseEuiTheme) => {
       accent: css`
         ${logicalCSS('border-top', generateFooterBorder('accent'))}
       `,
+      accentSecondary: css`
+        ${logicalCSS('border-top', generateFooterBorder('accentSecondary'))}
+      `,
       danger: css`
         ${logicalCSS('border-top', generateFooterBorder('danger'))}
       `,

@@ -20,6 +20,7 @@ export const BACKGROUND_COLORS = [
   'plain',
   'subdued',
   'accent',
+  'accentSecondary',
   'primary',
   'success',
   'warning',
