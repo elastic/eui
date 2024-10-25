@@ -39,7 +39,7 @@ export const dark_brand_text_colors: _EuiThemeBrandTextColors = {
   primaryText: SEMANTIC_COLORS.primary60,
   accentText: SEMANTIC_COLORS.accent60,
   successText: SEMANTIC_COLORS.success60,
-  warningText: SEMANTIC_COLORS.warning60,
+  warningText: SEMANTIC_COLORS.warning30,
   dangerText: SEMANTIC_COLORS.danger60,
 
   /* New colors */
@@ -47,7 +47,7 @@ export const dark_brand_text_colors: _EuiThemeBrandTextColors = {
   textAccent: SEMANTIC_COLORS.accent60,
   textAccentSecondary: SEMANTIC_COLORS.accentSecondary60,
   textSuccess: SEMANTIC_COLORS.success60,
-  textWarning: SEMANTIC_COLORS.warning60,
+  textWarning: SEMANTIC_COLORS.warning30,
   textDanger: SEMANTIC_COLORS.danger60,
 };
 
@@ -77,22 +77,21 @@ export const dark_shades: _EuiThemeShadeColors = {
 };
 
 export const dark_background_colors: _EuiThemeBackgroundColors = {
-  backgroundBasePrimary: SEMANTIC_COLORS.primary130,
-  backgroundBaseAccent: SEMANTIC_COLORS.accent130,
-  backgroundBaseAccentSecondary: SEMANTIC_COLORS.accentSecondary130,
-  backgroundBaseSuccess: SEMANTIC_COLORS.success130,
-  backgroundBaseWarning: SEMANTIC_COLORS.warning130,
-  backgroundBaseDanger: SEMANTIC_COLORS.danger130,
-  backgroundBasePage: SEMANTIC_COLORS.plainDark,
+  backgroundBasePrimary: SEMANTIC_COLORS.primary140,
+  backgroundBaseAccent: SEMANTIC_COLORS.accent140,
+  backgroundBaseAccentSecondary: SEMANTIC_COLORS.accentSecondary140,
+  backgroundBaseSuccess: SEMANTIC_COLORS.success140,
+  backgroundBaseWarning: SEMANTIC_COLORS.warning140,
+  backgroundBaseDanger: SEMANTIC_COLORS.danger140,
   backgroundBaseSubdued: SEMANTIC_COLORS.plainDark,
   backgroundBasePlain: SEMANTIC_COLORS.shade145,
   backgroundBaseDisabled: SEMANTIC_COLORS.shade130,
 
   backgroundBaseFormsPrepend: SEMANTIC_COLORS.shade125,
-  backgroundBaseFormsControlDisabled: SEMANTIC_COLORS.shade110,
+  backgroundBaseFormsControlDisabled: SEMANTIC_COLORS.shade120,
 
   backgroundBaseInteractiveHover: PRIMITIVE_COLORS.transparent.white['10'],
-  backgroundBaseInteractiveSelect: SEMANTIC_COLORS.primary130,
+  backgroundBaseInteractiveSelect: SEMANTIC_COLORS.shade130,
   backgroundBaseInteractiveOverlay: SEMANTIC_COLORS.shadeTransparent80,
 
   backgroundBaseSkeletonEdge: PRIMITIVE_COLORS.transparent.white['10'],
@@ -106,13 +105,13 @@ export const dark_background_colors: _EuiThemeBackgroundColors = {
   backgroundLightDanger: SEMANTIC_COLORS.danger120,
   backgroundLightText: SEMANTIC_COLORS.shade120,
 
-  backgroundFilledPrimary: SEMANTIC_COLORS.primary70,
-  backgroundFilledAccent: SEMANTIC_COLORS.accent70,
-  backgroundFilledAccentSecondary: SEMANTIC_COLORS.accentSecondary70,
-  backgroundFilledSuccess: SEMANTIC_COLORS.success70,
+  backgroundFilledPrimary: SEMANTIC_COLORS.primary60,
+  backgroundFilledAccent: SEMANTIC_COLORS.accent60,
+  backgroundFilledAccentSecondary: SEMANTIC_COLORS.accentSecondary60,
+  backgroundFilledSuccess: SEMANTIC_COLORS.success60,
   backgroundFilledWarning: SEMANTIC_COLORS.warning40,
-  backgroundFilledDanger: SEMANTIC_COLORS.danger70,
-  backgroundFilledText: SEMANTIC_COLORS.shade70,
+  backgroundFilledDanger: SEMANTIC_COLORS.danger60,
+  backgroundFilledText: SEMANTIC_COLORS.shade60,
 };
 
 /**
@@ -135,13 +134,13 @@ export const dark_transparent_background_colors: _EuiThemeTransparentBackgroundC
   };
 
 export const dark_border_colors: _EuiThemeBorderColors = {
-  borderBasePrimary: SEMANTIC_COLORS.primary60,
-  borderBaseAccent: SEMANTIC_COLORS.accent60,
-  borderBaseAccentSecondary: SEMANTIC_COLORS.accentSecondary60,
-  borderBaseSuccess: SEMANTIC_COLORS.success60,
-  borderBaseWarning: SEMANTIC_COLORS.warning40,
-  borderBaseDanger: SEMANTIC_COLORS.danger60,
-  borderBaseText: SEMANTIC_COLORS.shade60,
+  borderBasePrimary: SEMANTIC_COLORS.primary120,
+  borderBaseAccent: SEMANTIC_COLORS.accent120,
+  borderBaseAccentSecondary: SEMANTIC_COLORS.accentSecondary120,
+  borderBaseSuccess: SEMANTIC_COLORS.success120,
+  borderBaseWarning: SEMANTIC_COLORS.warning120,
+  borderBaseDanger: SEMANTIC_COLORS.danger120,
+
   borderBasePlain: SEMANTIC_COLORS.shade120,
   borderBaseSubdued: SEMANTIC_COLORS.shade130,
   borderBaseDisabled: SEMANTIC_COLORS.shade120,
@@ -149,6 +148,13 @@ export const dark_border_colors: _EuiThemeBorderColors = {
 
   borderBaseFormsColorSwatch: PRIMITIVE_COLORS.transparent.white['30'],
   borderBaseFormsControl: SEMANTIC_COLORS.shade80,
+
+  borderStrongPrimary: SEMANTIC_COLORS.primary60,
+  borderStrongAccent: SEMANTIC_COLORS.accent60,
+  borderStrongAccentSecondary: SEMANTIC_COLORS.accentSecondary60,
+  borderStrongSuccess: SEMANTIC_COLORS.success60,
+  borderStrongWarning: SEMANTIC_COLORS.warning40,
+  borderStrongDanger: SEMANTIC_COLORS.danger60,
 };
 
 export const dark_special_colors: _EuiThemeSpecialColors = {

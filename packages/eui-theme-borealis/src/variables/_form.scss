@@ -1,5 +1,5 @@
 // Coloring
-$euiFormBackgroundColor: $euiColorBackgroundBasePage !default;
+$euiFormBackgroundColor: $euiColorBackgroundBaseSubdued !default;
 $euiFormBackgroundDisabledColor: $euiColorBackgroundBaseDisabled !default;
 $euiFormBackgroundReadOnlyColor: $euiColorBackgroundBasePlain !default;
 $euiFormBorderOpaqueColor: shadeOrTint(desaturate(adjust-hue($euiColorPrimary, 22), 22.95), 26%, 100%) !default;

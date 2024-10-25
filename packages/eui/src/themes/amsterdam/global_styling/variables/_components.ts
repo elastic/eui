@@ -163,6 +163,7 @@ const _components = {
     ['colors.success']
   ),
 
+  switchBackgroundOn: computed(([primary]) => primary, ['colors.primary']),
   switchBackgroundOff: computed(
     ([lightestShade]) => shade(lightestShade, 0.4),
     ['colors.lightestShade']
@@ -180,7 +181,15 @@ const _components = {
     ['colors.lightShade']
   ),
   switchThumbBackgroundDisabled: 'transparent',
-  switchThumbBorder: computed(
+  switchThumbBorderOn: computed(
+    ([lightestShade]) => shade(lightestShade, 0.4),
+    ['colors.lightestShade']
+  ),
+  switchThumbBorderOff: computed(
+    ([lightestShade]) => shade(lightestShade, 0.4),
+    ['colors.lightestShade']
+  ),
+  switchIconDisabled: computed(
     ([lightestShade]) => shade(lightestShade, 0.4),
     ['colors.lightestShade']
   ),
@@ -327,7 +336,15 @@ export const components: _EuiThemeComponents = {
       ([lightShade]) => lightShade,
       ['colors.lightShade']
     ),
-    switchThumbBorder: computed(
+    switchThumbBorderOn: computed(
+      ([lightestShade]) => tint(lightestShade, 0.31),
+      ['colors.lightestShade']
+    ),
+    switchThumbBorderOff: computed(
+      ([lightestShade]) => tint(lightestShade, 0.31),
+      ['colors.lightestShade']
+    ),
+    switchIconDisabled: computed(
       ([lightestShade]) => tint(lightestShade, 0.31),
       ['colors.lightestShade']
     ),

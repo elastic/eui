@@ -64,12 +64,15 @@ type _EuiThemeComponentColors = {
 
   superDatePickerBackgroundSuccees: ColorModeSwitch;
 
+  switchBackgroundOn: ColorModeSwitch;
   switchBackgroundOff: ColorModeSwitch;
   switchUncompressedBackgroundDisabled: ColorModeSwitch;
   switchCompressedBackgroundDisabled: ColorModeSwitch;
   switchMiniBackgroundDisabled: ColorModeSwitch;
   switchThumbBackgroundDisabled: ColorModeSwitch;
-  switchThumbBorder: ColorModeSwitch;
+  switchThumbBorderOn: ColorModeSwitch;
+  switchThumbBorderOff: ColorModeSwitch;
+  switchIconDisabled: ColorModeSwitch;
 
   tableRowBackgroundHover: ColorModeSwitch;
   tableRowBackgroundSelected: ColorModeSwitch;

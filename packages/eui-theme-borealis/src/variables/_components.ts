@@ -37,8 +37,9 @@ const _components = {
 
   bottomBarBackground: SEMANTIC_COLORS.plainDark,
 
-  collapsibleNavGroupBackground: background_colors.backgroundBasePage,
-  collapsibleNavGroupBackgroundDark: dark_background_colors.backgroundBasePage,
+  collapsibleNavGroupBackground: background_colors.backgroundBaseSubdued,
+  collapsibleNavGroupBackgroundDark:
+    dark_background_colors.backgroundBaseSubdued,
 
   dataGridVerticalLineBorderColor: border_colors.borderBasePlain,
   dataGridRowBackgroundStriped: background_colors.backgroundBaseSubdued,
@@ -86,6 +87,7 @@ const _components = {
 
   superDatePickerBackgroundSuccees: background_colors.backgroundBaseSuccess,
 
+  switchBackgroundOn: background_colors.backgroundFilledPrimary,
   switchBackgroundOff: background_colors.backgroundFilledText,
   switchUncompressedBackgroundDisabled:
     background_colors.backgroundBaseFormsControlDisabled,
@@ -94,7 +96,9 @@ const _components = {
   switchMiniBackgroundDisabled:
     background_colors.backgroundBaseFormsControlDisabled,
   switchThumbBackgroundDisabled: background_colors.backgroundBasePlain,
-  switchThumbBorder: border_colors.borderBaseText,
+  switchThumbBorderOn: background_colors.backgroundFilledPrimary,
+  switchThumbBorderOff: background_colors.backgroundFilledText,
+  switchIconDisabled: forms.LIGHT.iconDisabled,
 
   tableRowBackgroundHover: background_colors.backgroundBaseInteractiveHover,
   tableRowBackgroundSelected: background_colors.backgroundBaseInteractiveSelect,
@@ -134,9 +138,9 @@ export const components: _EuiThemeComponents = {
       dark_background_colors.backgroundLightText,
     breadcrumbsApplicationColor: dark_text_colors.textSubdued,
 
-    collapsibleNavGroupBackground: dark_background_colors.backgroundBasePage,
+    collapsibleNavGroupBackground: dark_background_colors.backgroundBaseSubdued,
     collapsibleNavGroupBackgroundDark:
-      dark_background_colors.backgroundBasePage,
+      dark_background_colors.backgroundBaseSubdued,
 
     dataGridVerticalLineBorderColor: dark_border_colors.borderBasePlain,
     dataGridRowBackgroundStriped: dark_background_colors.backgroundBaseSubdued,
@@ -181,6 +185,7 @@ export const components: _EuiThemeComponents = {
 
     selectableListItemBorderColor: dark_border_colors.borderBaseSubdued,
 
+    switchBackgroundOn: dark_background_colors.backgroundFilledPrimary,
     switchBackgroundOff: dark_background_colors.backgroundFilledText,
     switchUncompressedBackgroundDisabled:
       dark_background_colors.backgroundBaseFormsControlDisabled,
@@ -189,7 +194,9 @@ export const components: _EuiThemeComponents = {
     switchMiniBackgroundDisabled:
       dark_background_colors.backgroundBaseFormsControlDisabled,
     switchThumbBackgroundDisabled: dark_background_colors.backgroundBasePlain,
-    switchThumbBorder: dark_border_colors.borderBaseText,
+    switchThumbBorderOn: dark_background_colors.backgroundFilledPrimary,
+    switchThumbBorderOff: dark_background_colors.backgroundFilledText,
+    switchIconDisabled: forms.DARK.iconDisabled,
 
     superDatePickerBackgroundSuccees:
       dark_background_colors.backgroundBaseSuccess,

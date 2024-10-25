@@ -37,7 +37,6 @@ $euiColorBackgroundBaseAccentSecondary: shade($euiColorAccentSecondary, 80%) !de
 $euiColorBackgroundBaseSuccess: shade($euiColorSuccess, 80%) !default;
 $euiColorBackgroundBaseWarning: shade($euiColorWarning, 80%) !default;
 $euiColorBackgroundBaseDanger: shade($euiColorDanger, 80%) !default;
-$euiColorBackgroundBasePage: $euiPageBackgroundColor !default;
 $euiColorBackgroundBaseSubdued: shade($euiPageBackgroundColor, 80%) !default;
 $euiColorBackgroundBaseDisabled: transparentize($euiColorLightShade, 0.15)!default;
 $euiColorBackgroundBasePlain: $euiColorEmptyShade !default;
@@ -96,19 +95,26 @@ $euiColorTextDanger: $euiColorDangerText !default;
 $euiLinkColor: $euiColorPrimaryText !default;
 
 // Borders
-$borderBasePrimary: sahde($euiColorPrimary, 0.6);
-$borderBaseAccent: shade($euiColorAccent, 0.6);
-$borderBaseAccentSecondary: shade($euiColorAccentSecondary, 0.6);
-$borderBaseSuccess: shade($euiColorSuccess, 0.6);
-$borderBaseWarning: shade($euiColorWarning, 0.6);
-$borderBaseDanger: shade($euiColorDanger, 0.6);
-$borderBaseText: tint($euiColorLightestShade, 0.31);
-$borderBasePlain: $euiColorLightShade;
-$borderBaseSubdued: $euiColorLightShade;
-$borderBaseDisabled: transparentize($euiColorGhost, 0.1);
-$borderBaseFloating: $euiColorLightShade;
-$borderBaseFormsColorSwatch: transparentize($euiColorFullShade, 0.1);
-$borderBaseFormsControl: tint($euiColorLightestShade, 0.31);
+$euiColorBorderBasePrimary: shade($euiColorPrimary, 0.6);
+$euiColorBorderBaseAccent: shade($euiColorAccent, 0.6);
+$euiColorBorderBaseAccentSecondary: shade($euiColorAccentSecondary, 0.6);
+$euiColorBorderBaseSuccess: shade($euiColorSuccess, 0.6);
+$euiColorBorderBaseWarning: shade($euiColorWarning, 0.6);
+$euiColorBorderBaseDanger: shade($euiColorDanger, 0.6);
+
+$euiColorBorderBasePlain: $euiColorLightShade;
+$euiColorBorderBaseSubdued: $euiColorLightShade;
+$euiColorBorderBaseDisabled: transparentize($euiColorGhost, 0.1);
+$euiColorBorderBaseFloating: $euiColorLightShade;
+$euiColorBorderBaseFormsColorSwatch: transparentize($euiColorFullShade, 0.1);
+$euiColorBorderBaseFormsControl: tint($euiColorLightestShade, 0.31);
+
+$euiColorBorderStrongPrimary: $euiColorBorderBasePrimary;
+$euiColorBorderStrongAccent: $euiColorBorderBaseAccent;
+$euiColorBorderStrongAccentSecondary: $euiColorBorderBaseAccentSecondary;
+$euiColorBorderStrongSuccess: $euiColorBorderBaseSuccess;
+$euiColorBorderStrongWarning: $euiColorBorderBaseWarning;
+$euiColorBorderStrongDanger: $euiColorBorderBaseDanger;
 
 // Charts
 $euiColorChartLines: $euiColorLightShade !default;

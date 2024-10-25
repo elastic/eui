@@ -152,7 +152,7 @@ export const euiBorderColor = (
       return euiTheme.border.color;
     default: {
       const tokenName = getTokenName(
-        'borderBase',
+        'borderStrong',
         color
       ) as keyof _EuiThemeBorderColors;
 

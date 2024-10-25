@@ -40,12 +40,12 @@ export const euiFormVariables = (euiThemeContext: UseEuiTheme) => {
   };
 
   const colors = {
-    textColor: euiTheme.colors.text,
+    textColor: euiTheme.colors.textParagraph,
     backgroundColor: backgroundColor,
     backgroundDisabledColor: euiTheme.components.forms.backgroundDisabled,
-    backgroundReadOnlyColor: euiTheme.colors.emptyShade,
+    backgroundReadOnlyColor: euiTheme.components.forms.backgroundReadOnly,
     borderColor: euiTheme.components.forms.border,
-    controlDisabledColor: euiTheme.colors.mediumShade,
+    controlDisabledColor: euiTheme.components.forms.controlBackgroundDisabled,
     controlBoxShadow: '0 0 transparent',
     controlPlaceholderText: makeHighContrastColor(euiTheme.colors.subduedText)(
       backgroundColor
