@@ -9,7 +9,6 @@
 import type { MutableRefObject } from 'react';
 import { act } from '@testing-library/react';
 import { renderHook } from '../../../test/rtl';
-import { startingStyles } from '../controls';
 import type { ImperativeGridApi } from '../data_grid_types';
 import {
   RowHeightUtils,
@@ -108,6 +107,23 @@ describe('RowHeightUtils', () => {
         });
       });
 
+      describe('autoBelowLineCount', () => {
+        it('uses the auto height cache', () => {
+          const rowIndex = 3;
+          const autoRowHeight = 100;
+          rowHeightUtils.setRowHeight(rowIndex, 'a', autoRowHeight, 0);
+
+          expect(
+            rowHeightUtils.getCalculatedHeight(
+              { lineCount: 10 },
+              34,
+              rowIndex,
+              { rowHeights: { [rowIndex]: autoRowHeight } }
+            )
+          ).toEqual(autoRowHeight);
+        });
+      });
+
       describe('row-specific overrides', () => {
         it('returns the height set in the cache', () => {
           const rowIndex = 5;
@@ -119,7 +135,7 @@ describe('RowHeightUtils', () => {
               { lineCount: 10 },
               34,
               rowIndex,
-              true
+              { rowHeights: { [rowIndex]: rowHeightOverride } }
             )
           ).toEqual(rowHeightOverride);
         });
@@ -223,6 +239,56 @@ describe('RowHeightUtils', () => {
         ); // 5 * 24 + 6 + 6
       });
     });
+
+    describe('isAutoBelowLineCount', () => {
+      it('returns true when the feature flag is enabled and a lineCount above 1 exists', () => {
+        expect(
+          rowHeightUtils.isAutoBelowLineCount(
+            { autoBelowLineCount: true },
+            { lineCount: 3 }
+          )
+        ).toEqual(true);
+      });
+
+      it('returns false if the feature flag is not enabled', () => {
+        expect(
+          rowHeightUtils.isAutoBelowLineCount(
+            { autoBelowLineCount: false },
+            { lineCount: 3 }
+          )
+        ).toEqual(false);
+        expect(
+          rowHeightUtils.isAutoBelowLineCount(undefined, { lineCount: 3 })
+        ).toEqual(false);
+      });
+
+      it('returns false if height type is not lineCount', () => {
+        expect(
+          rowHeightUtils.isAutoBelowLineCount({ autoBelowLineCount: true }, 50)
+        ).toEqual(false);
+        expect(
+          rowHeightUtils.isAutoBelowLineCount(
+            { autoBelowLineCount: true },
+            'auto'
+          )
+        ).toEqual(false);
+      });
+
+      it('returns false if lineCount is 1 (treated as single line/undefined)', () => {
+        expect(
+          rowHeightUtils.isAutoBelowLineCount(
+            { autoBelowLineCount: true },
+            { lineCount: 1 }
+          )
+        ).toEqual(false);
+        expect(
+          rowHeightUtils.isAutoBelowLineCount(
+            { autoBelowLineCount: true },
+            undefined
+          )
+        ).toEqual(false);
+      });
+    });
   });
 
   describe('auto height utils', () => {
@@ -236,6 +302,15 @@ describe('RowHeightUtils', () => {
         expect(
           rowHeightUtils.isAutoHeight(1, {
             defaultHeight: 'auto',
+          })
+        ).toEqual(true);
+      });
+
+      it('returns true if the conditions for `.isAutoBelowLineCount` are met', () => {
+        expect(
+          rowHeightUtils.isAutoHeight(1, {
+            autoBelowLineCount: true,
+            defaultHeight: { lineCount: 2 },
           })
         ).toEqual(true);
       });
@@ -539,10 +614,8 @@ describe('RowHeightVirtualizationUtils', () => {
 });
 
 describe('useRowHeightUtils', () => {
-  const mockArgs = {
-    gridStyles: startingStyles,
+  const mockArgs: Parameters<typeof useRowHeightUtils>[0] = {
     columns: [{ id: 'A' }, { id: 'B' }],
-    rowHeightOptions: undefined,
   };
   const mockVirtualizationArgs = {
     ...mockArgs,

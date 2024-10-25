@@ -84,11 +84,7 @@ export const EuiDataGridBodyCustomRender: FunctionComponent<EuiDataGridBodyProps
       /**
        * Row heights
        */
-      const rowHeightUtils = useRowHeightUtils({
-        rowHeightsOptions,
-        gridStyles,
-        columns,
-      });
+      const rowHeightUtils = useRowHeightUtils({ rowHeightsOptions, columns });
 
       const { setRowHeight, getRowHeight } = useDefaultRowHeight({
         rowHeightsOptions,

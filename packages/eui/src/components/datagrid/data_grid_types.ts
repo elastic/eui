@@ -1109,6 +1109,14 @@ export interface EuiDataGridRowHeightsOptions {
    */
   defaultHeight?: EuiDataGridRowHeightOption;
   /**
+   * Feature flag for custom `lineCount` behavior, where `lineCount` acts like a
+   * *max* number of lines (instead of a set number of lines for all rows).
+   *
+   * This functionality is in beta and has performance implications;
+   * we do not yet fully recommend/support it for heavy production usage.
+   */
+  autoBelowLineCount?: boolean;
+  /**
    * Defines the height for a specific row. It can be line count or just height.
    *
    * When using row height overrides, we strongly setting the `showDisplaySelector: allowRowHeight`

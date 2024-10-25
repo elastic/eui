@@ -253,7 +253,6 @@ export const EuiDataGridBodyVirtualized: FunctionComponent<EuiDataGridBodyProps>
           gridItemsRenderedRef: gridItemsRendered,
         },
         rowHeightsOptions,
-        gridStyles,
         columns,
       });
 
