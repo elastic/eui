@@ -96,7 +96,7 @@ $euiColorTextDanger: $euiColorDangerText !default;
 $euiLinkColor: $euiColorPrimaryText !default;
 
 // Borders
-$borderBasePrimary: sahde($euiColorPrimary, 0.6);
+$borderBasePrimary: shade($euiColorPrimary, 0.6);
 $borderBaseAccent: shade($euiColorAccent, 0.6);
 $borderBaseAccentSecondary: shade($euiColorAccentSecondary, 0.6);
 $borderBaseSuccess: shade($euiColorSuccess, 0.6);
