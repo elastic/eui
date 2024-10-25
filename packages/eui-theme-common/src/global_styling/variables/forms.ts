@@ -11,6 +11,7 @@ import { ColorModeSwitch } from '../types';
 export type _EuiThemeFormColors = {
   background: ColorModeSwitch;
   backgroundDisabled: ColorModeSwitch;
+  backgroundReadOnly: ColorModeSwitch;
   backgroundFocused: ColorModeSwitch;
   backgroundAutofilled: ColorModeSwitch;
   prependBackground: ColorModeSwitch;

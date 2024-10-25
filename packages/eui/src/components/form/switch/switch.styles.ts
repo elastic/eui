@@ -24,15 +24,15 @@ const euiSwitchVars = (euiThemeContext: UseEuiTheme) => {
   const formVars = euiFormCustomControlVariables(euiThemeContext);
 
   const colors = {
-    on: formVars.colors.selected,
+    on: euiTheme.components.switchBackgroundOn,
     off: euiTheme.components.switchBackgroundOff,
     disabled: formVars.colors.disabled,
     thumb: formVars.colors.selectedIcon,
     thumbDisabled: euiTheme.components.switchThumbBackgroundDisabled,
-    thumbBorder: euiTheme.components.switchThumbBorder,
-    thumbBorderOn: formVars.colors.selectedBorder,
+    thumbBorder: euiTheme.components.switchThumbBorderOff,
+    thumbBorderOn: euiTheme.components.switchThumbBorderOn,
     thumbBorderDisabled: formVars.colors.disabledBorder,
-    iconDisabled: formVars.colors.disabledIcon,
+    iconDisabled: euiTheme.components.switchIconDisabled,
   };
 
   const sizes = {

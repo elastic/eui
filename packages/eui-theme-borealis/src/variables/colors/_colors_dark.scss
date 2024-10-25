@@ -34,21 +34,20 @@ $euiColorFullShade: $euiColorPlainLight !default;
 $euiPageBackgroundColor: $euiColorMutedBlack !default;  // deprecated
 $euiColorHighlight: $euiColorPrimary100 !default;
 
-$euiColorBackgroundBasePrimary: $euiColorPrimary130 !default;
-$euiColorBackgroundBaseAccent: $euiColorAccent130 !default;
-$euiColorBackgroundBaseAccentSecondary: $euiColorAccentSecondary130 !default;
-$euiColorBackgroundBaseSuccess: $euiColorSuccess130 !default;
-$euiColorBackgroundBaseWarning: $euiColorWarning130 !default;
-$euiColorBackgroundBaseDanger: $euiColorDanger130 !default;
-$euiColorBackgroundBasePage: $euiColorPlainDark !default;
-$euiColorBackgroundBaseSubdued: $euiColorBackgroundBasePage !default;
-$euiColorBackgroundBasePlain: $euiColorShade140 !default;
-$euiColorBackgroundBaseDisabled: $euiColorShade125 !default;
+$euiColorBackgroundBasePrimary: $euiColorPrimary140 !default;
+$euiColorBackgroundBaseAccent: $euiColorAccent140 !default;
+$euiColorBackgroundBaseAccentSecondary: $euiColorAccentSecondary140 !default;
+$euiColorBackgroundBaseSuccess: $euiColorSuccess140 !default;
+$euiColorBackgroundBaseWarning: $euiColorWarning140 !default;
+$euiColorBackgroundBaseDanger: $euiColorDanger140 !default;
+$euiColorBackgroundBaseSubdued: $euiColorPlainDark !default;
+$euiColorBackgroundBasePlain: $euiColorShade145 !default;
+$euiColorBackgroundBaseDisabled: $euiColorShade130 !default;
 $euiColorBackgroundBaseFormsPrepend: $euiColorShade125 !default;
-$euiColorBackgroundBaseFormsControlDisabled: $euiColorShade125 !default;
+$euiColorBackgroundBaseFormsControlDisabled: $euiColorShade120 !default;
 
 $euiColorBackgroundBaseInteractiveHover: $euiColorTransparentWhite10 !default;
-$euiColorBackgroundBaseInteractiveSelect: $euiColorPrimary130 !default;
+$euiColorBackgroundBaseInteractiveSelect: $euiColorShade130 !default;
 $euiColorBackgroundBaseInteractiveOverlay: $euiColorShadeTransparent80 !default;
 $euiColorBackgroundBaseSkeletonEdge: $euiColorTransparentWhite10 !default;
 $euiColorBackgroundBaseSkeletonMiddle: $euiColorTransparentWhite30 !default;
@@ -61,13 +60,13 @@ $euiColorBackgroundLightWarning: $euiColorWarning120 !default;
 $euiColorBackgroundLightDanger: $euiColorDanger120 !default;
 $euiColorBackgroundLightText: $euiColorShade120 !default;
 
-$euiColorBackgroundFilledPrimary: $euiColorPrimary70 !default;
-$euiColorBackgroundFilledAccent: $euiColorAccent70 !default;
-$euiColorBackgroundFilledAccentSecondary: $euiColorAccentSecondary70 !default;
-$euiColorBackgroundFilledSuccess: $euiColorSuccess70 !default;
+$euiColorBackgroundFilledPrimary: $euiColorPrimary60 !default;
+$euiColorBackgroundFilledAccent: $euiColorAccent60 !default;
+$euiColorBackgroundFilledAccentSecondary: $euiColorAccentSecondary60 !default;
+$euiColorBackgroundFilledSuccess: $euiColorSuccess60 !default;
 $euiColorBackgroundFilledWarning: $euiColorWarning40 !default;
-$euiColorBackgroundFilledDanger: $euiColorDanger70 !default;
-$euiColorBackgroundFilledText: $euiColorShade70 !default;
+$euiColorBackgroundFilledDanger: $euiColorDanger60 !default;
+$euiColorBackgroundFilledText: $euiColorShade60 !default;
 
 // Texts (legacy)
 $euiTextColor: $euiColorShade20 !default;
@@ -88,7 +87,7 @@ $euiColorTextInverse: $euiColorPlainDark !default;
 $euiColorPrimaryText: $euiColorPrimary60 !default;
 $euiColorAccentText: $euiColorAccent60 !default;
 $euiColorSuccessText: $euiColorSuccess60 !default;
-$euiColorWarningText: $euiColorWarning40 !default;
+$euiColorWarningText: $euiColorWarning30 !default;
 $euiColorDangerText: $euiColorDanger60 !default;
 
 // Brand texts
@@ -96,23 +95,30 @@ $euiColorTextPrimary: $euiColorPrimary60 !default;
 $euiColorTextAccent: $euiColorAccent60 !default;
 $euiColorTextAccentSecondary: $euiColorAccentSecondary60 !default;
 $euiColorTextSuccess: $euiColorSuccess60 !default;
-$euiColorTextWarning: $euiColorWarning40 !default;
+$euiColorTextWarning: $euiColorWarning30 !default;
 $euiColorTextDanger: $euiColorDanger60 !default;
 
 // Borders
-$euiColorBorderBasePrimary: $euiColorPrimary60;
-$euiColorBorderBaseAccent: $euiColorAccent60;
-$euiColorBorderBaseAccentSecondary: $euiColorAccentSecondary60;
-$euiColorBorderBaseSuccess: $euiColorSuccess60;
-$euiColorBorderBaseWarning: $euiColorWarning40;
-$euiColorBorderBaseDanger: $euiColorDanger60;
-$euiColorBorderBaseText: $euiColorShade60;
+$euiColorBorderBasePrimary: $euiColorPrimary120;
+$euiColorBorderBaseAccent: $euiColorAccent120;
+$euiColorBorderBaseAccentSecondary: $euiColorAccentSecondary120;
+$euiColorBorderBaseSuccess: $euiColorSuccess120;
+$euiColorBorderBaseWarning: $euiColorWarning120;
+$euiColorBorderBaseDanger: $euiColorDanger120;
+
 $euiColorBorderBasePlain: $euiColorShade120;
 $euiColorBorderBaseSubdued: $euiColorShade130;
 $euiColorBorderBaseDisabled: $euiColorShade120;
 $euiColorBorderBaseFloating: $euiColorShade130;
 $euiColorBorderBaseFormsColorSwatch: $euiColorTransparentWhite30;
 $euiColorBorderBaseFormsControl: $euiColorShade80;
+
+$euiColorStrongBasePrimary: $euiColorPrimary60;
+$euiColorStrongBaseAccent: $euiColorAccent60;
+$euiColorStrongBaseAccentSecondary: $euiColorAccentSecondary60;
+$euiColorStrongBaseSuccess: $euiColorSuccess60;
+$euiColorStrongBaseWarning: $euiColorWarning40;
+$euiColorStrongBaseDanger: $euiColorDanger60;
 
 // Charts
 $euiColorChartLines: $euiColorShade85 !default;

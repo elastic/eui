@@ -178,7 +178,6 @@ export type _EuiThemeBackgroundColors = {
   backgroundBaseSuccess: ColorModeSwitch;
   backgroundBaseWarning: ColorModeSwitch;
   backgroundBaseDanger: ColorModeSwitch;
-  backgroundBasePage: ColorModeSwitch;
   backgroundBaseSubdued: ColorModeSwitch;
   backgroundBasePlain: ColorModeSwitch;
   backgroundBaseDisabled: ColorModeSwitch;
@@ -236,7 +235,7 @@ export type _EuiThemeBorderColors = {
   borderBaseSuccess: ColorModeSwitch;
   borderBaseWarning: ColorModeSwitch;
   borderBaseDanger: ColorModeSwitch;
-  borderBaseText: ColorModeSwitch;
+
   borderBasePlain: ColorModeSwitch;
   borderBaseSubdued: ColorModeSwitch;
   borderBaseDisabled: ColorModeSwitch;
@@ -244,6 +243,13 @@ export type _EuiThemeBorderColors = {
 
   borderBaseFormsColorSwatch: ColorModeSwitch;
   borderBaseFormsControl: ColorModeSwitch;
+
+  borderStrongPrimary: ColorModeSwitch;
+  borderStrongAccent: ColorModeSwitch;
+  borderStrongAccentSecondary: ColorModeSwitch;
+  borderStrongSuccess: ColorModeSwitch;
+  borderStrongWarning: ColorModeSwitch;
+  borderStrongDanger: ColorModeSwitch;
 };
 
 export type _EuiThemeConstantColors = {

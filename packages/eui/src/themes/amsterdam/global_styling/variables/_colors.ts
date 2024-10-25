@@ -122,7 +122,6 @@ export const background_colors: _EuiThemeBackgroundColors = {
     ([danger]) => tint(danger, 0.9),
     ['colors.danger']
   ),
-  backgroundBasePage: computed(([body]) => body, ['colors.body']),
   backgroundBaseSubdued: computed(([body]) => body, ['colors.body']),
   backgroundBaseDisabled: computed(
     ([disabled]) => disabled,
@@ -138,8 +137,8 @@ export const background_colors: _EuiThemeBackgroundColors = {
     ['colors.lightShade']
   ),
   backgroundBaseFormsControlDisabled: computed(
-    ([lightShade]) => lightShade,
-    ['colors.lightShade']
+    ([mediumShade]) => mediumShade,
+    ['colors.mediumShade']
   ),
 
   backgroundBaseInteractiveHover: computed(
@@ -275,10 +274,6 @@ export const border_colors: _EuiThemeBorderColors = {
     ([danger]) => tint(danger, 0.6),
     ['colors.danger']
   ),
-  borderBaseText: computed(
-    ([lightestShade]) => shade(lightestShade, 0.4),
-    ['colors.lightestShade']
-  ),
 
   borderBaseSubdued: computed(([color]) => color, ['border.color']),
   borderBaseDisabled: computed(
@@ -295,6 +290,31 @@ export const border_colors: _EuiThemeBorderColors = {
   borderBaseFormsControl: computed(
     ([lightestShade]) => shade(lightestShade, 0.4),
     ['colors.lightestShade']
+  ),
+
+  borderStrongPrimary: computed(
+    ([borderBasePrimary]) => borderBasePrimary,
+    ['colors.borderBasePrimary']
+  ),
+  borderStrongAccent: computed(
+    ([borderBaseAccent]) => borderBaseAccent,
+    ['colors.borderBaseAccent']
+  ),
+  borderStrongAccentSecondary: computed(
+    ([borderBaseAccentSecondary]) => borderBaseAccentSecondary,
+    ['colors.borderBaseAccentSecondary']
+  ),
+  borderStrongSuccess: computed(
+    ([borderBaseSuccess]) => borderBaseSuccess,
+    ['colors.borderBaseSuccess']
+  ),
+  borderStrongWarning: computed(
+    ([borderBaseWarning]) => borderBaseWarning,
+    ['colors.borderBaseWarning']
+  ),
+  borderStrongDanger: computed(
+    ([borderBaseDanger]) => borderBaseDanger,
+    ['colors.borderBaseDanger']
   ),
 };
 
@@ -349,7 +369,6 @@ export const dark_background_colors: _EuiThemeBackgroundColors = {
     ([danger]) => shade(danger, 0.8),
     ['colors.danger']
   ),
-  backgroundBasePage: computed(([body]) => body, ['colors.body']),
   backgroundBaseSubdued: computed(
     ([body]) => shade(body, 0.9),
     ['colors.body']
@@ -368,8 +387,8 @@ export const dark_background_colors: _EuiThemeBackgroundColors = {
     ['colors.lightShade']
   ),
   backgroundBaseFormsControlDisabled: computed(
-    ([lightShade]) => lightShade,
-    ['colors.lightShade']
+    ([mediumShade]) => mediumShade,
+    ['colors.mediumShade']
   ),
 
   backgroundBaseInteractiveHover: computed(
@@ -468,10 +487,6 @@ export const dark_border_colors: _EuiThemeBorderColors = {
     ([danger]) => shade(danger, 0.6),
     ['colors.danger']
   ),
-  borderBaseText: computed(
-    ([lightestShade]) => tint(lightestShade, 0.31),
-    ['colors.lightestShade']
-  ),
 
   borderBaseSubdued: computed(([color]) => color, ['border.color']),
   borderBaseDisabled: computed(
@@ -488,6 +503,31 @@ export const dark_border_colors: _EuiThemeBorderColors = {
   borderBaseFormsControl: computed(
     ([lightestShade]) => tint(lightestShade, 0.31),
     ['colors.lightestShade']
+  ),
+
+  borderStrongPrimary: computed(
+    ([borderBasePrimary]) => borderBasePrimary,
+    ['colors.borderBasePrimary']
+  ),
+  borderStrongAccent: computed(
+    ([borderBaseAccent]) => borderBaseAccent,
+    ['colors.borderBaseAccent']
+  ),
+  borderStrongAccentSecondary: computed(
+    ([borderBaseAccentSecondary]) => borderBaseAccentSecondary,
+    ['colors.borderBaseAccentSecondary']
+  ),
+  borderStrongSuccess: computed(
+    ([borderBaseSuccess]) => borderBaseSuccess,
+    ['colors.borderBaseSuccess']
+  ),
+  borderStrongWarning: computed(
+    ([borderBaseWarning]) => borderBaseWarning,
+    ['colors.borderBaseWarning']
+  ),
+  borderStrongDanger: computed(
+    ([borderBaseDanger]) => borderBaseDanger,
+    ['colors.borderBaseDanger']
   ),
 };
 
