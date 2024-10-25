@@ -306,7 +306,7 @@ describe('RowHeightUtils', () => {
         ).toEqual(true);
       });
 
-      it('returns true if the grid if the conditions for `.isAutoBelowLineCount` are met`', () => {
+      it('returns true if the conditions for `.isAutoBelowLineCount` are met', () => {
         expect(
           rowHeightUtils.isAutoHeight(1, {
             autoBelowLineCount: true,
