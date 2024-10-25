@@ -37,6 +37,43 @@ exports[`euiMarkdownFormat text colors accent 1`] = `
   ;label:accent;"
 `;
 
+exports[`euiMarkdownFormat text colors accentSecondary 1`] = `
+"
+    .euiMarkdownFormat__blockquote {
+      border-inline-start-color: #F04E98;
+    }
+
+    .euiHorizontalRule {
+      background-color: #F04E98;
+      color: #F04E98; /* ensure that firefox gets the currentColor */
+    }
+
+    /* Tables */
+
+    .euiMarkdownFormat__table {
+      display: block;
+      inline-size: 100%;
+      overflow: auto;
+      border-spacing: 0;
+      border-collapse: collapse;
+      border-inline-start: 1px solid #F04E98;
+    }
+
+    .euiMarkdownFormat__table th,
+    .euiMarkdownFormat__table td {
+      border-block: 1px solid #F04E98;
+
+      &:last-child {
+        border-inline-end: 1px solid #F04E98;
+      }
+    }
+
+    .euiMarkdownFormat__table tr {
+      border-block-start: 1px solid #F04E98;
+    }
+  ;label:accentSecondary;"
+`;
+
 exports[`euiMarkdownFormat text colors custom 1`] = `
 "
     .euiMarkdownFormat__blockquote {

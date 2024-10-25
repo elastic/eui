@@ -134,6 +134,12 @@ export const euiMarkdownFormatStyles = (euiTheme: UseEuiTheme) => ({
     accent: css(
       euiMarkdownAdjustBorderColors(euiTheme, euiTheme.euiTheme.colors.accent)
     ),
+    accentSecondary: css(
+      euiMarkdownAdjustBorderColors(
+        euiTheme,
+        euiTheme.euiTheme.colors.accentSecondary
+      )
+    ),
     warning: css(
       euiMarkdownAdjustBorderColors(euiTheme, euiTheme.euiTheme.colors.warning)
     ),

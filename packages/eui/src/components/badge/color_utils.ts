@@ -25,6 +25,7 @@ export const euiBadgeColors = (euiThemeContext: UseEuiTheme) => {
     warning: euiButtonFillColor(euiThemeContext, 'warning'),
     danger: euiButtonFillColor(euiThemeContext, 'danger'),
     accent: euiButtonFillColor(euiThemeContext, 'accent'),
+    accentSecondary: euiButtonFillColor(euiThemeContext, 'accentSecondary'),
     disabled: euiButtonColor(euiThemeContext, 'disabled'),
     // Colors unique to badges
     default: getBadgeColors(euiThemeContext, euiTheme.colors.lightShade),
@@ -41,7 +42,11 @@ export const euiBadgeColors = (euiThemeContext: UseEuiTheme) => {
       euiThemeContext,
       tint(euiTheme.colors.lightShade, 0.3)
     ),
-    accentText: getBadgeColors(euiThemeContext, euiTheme.colors.accentText),
+    accentText: getBadgeColors(euiThemeContext, euiTheme.colors.textAccent),
+    accentSecondaryText: getBadgeColors(
+      euiThemeContext,
+      euiTheme.colors.textAccentSecondary
+    ),
   };
 };
 

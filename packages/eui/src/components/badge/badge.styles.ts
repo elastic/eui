@@ -106,6 +106,7 @@ export const euiBadgeStyles = (euiThemeContext: UseEuiTheme) => {
     `,
     primary: css(setBadgeColorVars(badgeColors.primary)),
     accent: css(setBadgeColorVars(badgeColors.accent)),
+    accentSecondary: css(setBadgeColorVars(badgeColors.accentSecondary)),
     warning: css(setBadgeColorVars(badgeColors.warning)),
     danger: css(setBadgeColorVars(badgeColors.danger)),
     success: css(setBadgeColorVars(badgeColors.success)),
