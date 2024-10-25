@@ -46,6 +46,12 @@ export type EuiContextMenuPanelProps = PropsWithChildren &
     HTMLAttributes<HTMLDivElement>,
     'onKeyDown' | 'tabIndex' | 'onAnimationEnd' | 'title'
   > & {
+    /**
+     * Determines the initially focused menu item for keyboard and screen reader users.
+     *
+     * Can be set to `-1` to prevent autofocus (an uncommon case that must have
+     * keyboard accessibility accounted for manually if used)
+     */
     initialFocusedItemIndex?: number;
     items?: ReactElement[];
     onClose?: NoArgCallback<void>;
@@ -99,7 +105,9 @@ export class EuiContextMenuPanelClass extends Component<
       },
       menuItems: [],
       focusedItemIndex:
-        props.onClose && props.initialFocusedItemIndex != null
+        props.onClose &&
+        props.initialFocusedItemIndex != null &&
+        props.initialFocusedItemIndex !== -1
           ? props.initialFocusedItemIndex + 1 // Account for panel title back button
           : props.initialFocusedItemIndex,
       currentHeight: undefined,
@@ -255,6 +263,13 @@ export class EuiContextMenuPanelClass extends Component<
       // Initial focus has already been handled, no need to continue and potentially hijack/focus fight
       if (this.state.tookInitialFocus) {
         return;
+      }
+
+      // `initialFocusedItemIndex={-1}` should only be used when preventing initial item focus is desired
+      if (this.state.focusedItemIndex === -1) {
+        // Resetting the focusedItemIndex to 0 allows keyboard up/down behavior to
+        // still work correctly later if the panel is manually tabbed into
+        return this.setState({ tookInitialFocus: true, focusedItemIndex: 0 });
       }
 
       // If an item should be focused, focus it (if it exists)
