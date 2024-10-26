@@ -369,10 +369,7 @@ export const dark_background_colors: _EuiThemeBackgroundColors = {
     ([danger]) => shade(danger, 0.8),
     ['colors.danger']
   ),
-  backgroundBaseSubdued: computed(
-    ([body]) => shade(body, 0.9),
-    ['colors.body']
-  ),
+  backgroundBaseSubdued: computed(([body]) => body, ['colors.body']),
   backgroundBaseDisabled: computed(
     ([disabled]) => disabled,
     ['colors.disabled']
