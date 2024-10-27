@@ -1,0 +1,142 @@
+---
+slug: /theming/colors
+id: theming_colors
+---
+
+# Colors
+
+Elastic UI builds with a very limited palette. It uses a core set of three colors with a green / orange / red qualitative set and combined with a six-color grayscale. Variation beyond these colors is minimal and always done with math manipulation against the original set.
+
+When switching between light and dark color modes, the theme keys do not change, only their values do. This is why most keys are not named for their **evaluated** value but by their **purpose**.
+
+## Brand colors
+
+Elastic has two main brand colors. The other three are used for statefulness like indicating between successful and dangerous actions.
+
+```mdx-code-block
+import { Example } from '@site/src/components';
+import { BrandColorPreview } from './brand_color_preview';
+import { BrandColorsTable } from './brand_colors_table';
+```
+
+<Example>
+  <Example.Description>
+    ### `euiTheme.colors[brand]` <Badge color="hollow">token</Badge>
+
+    Most usages of the colors can be implemented simply by pulling and applying the values.
+  </Example.Description>
+  <Example.Preview>
+    <BrandColorPreview />
+  </Example.Preview>
+  <Example.Snippet>
+    ```tsx
+    css`
+      background: ${euiTheme.colors.warning};
+    `
+    ```
+  </Example.Snippet>
+</Example>
+
+<br />
+
+<BrandColorsTable />
+
+## Text colors
+
+Specific text colors calculated off either the brand or shade colors.
+
+Each brand color also has a corresponding text variant that has been calculated for proper (at least 4.5) contrast against `colors.body` and should be used specifically when coloring text. As is used in [**EuiTextColor**](/docs/display/text#coloring-text).
+
+```mdx-code-block
+import { TextColorPreview } from './text_color_preview';
+import { TextColorsTable } from './text_colors_table';
+```
+
+<Example>
+  <Example.Description>
+    ### `euiTheme.colors[colorText]` <Badge color="hollow">token</Badge>
+
+    Remember, when using any of the EUI colors for text, **use the text specific variant**.
+
+    If your background color is anything other than or darker than the `body` color, you will want to re-calculate the high contrast version by using the [`makeHighContrastColor(foreground)(background)`](/docs/theming/colors/utilities) method.
+  </Example.Description>
+  <Example.Preview>
+    <TextColorPreview />
+  </Example.Preview>
+  <Example.Snippet>
+    ```tsx
+    css`
+      color: ${euiTheme.colors.warningText};
+    `
+    ```
+  </Example.Snippet>
+</Example>
+
+<br />
+
+<TextColorsTable />
+
+## Shades
+
+A six-color grayscale palette. Variation beyond these colors is minimal and always done through computations against this set.
+
+```mdx-code-block
+import { ShadeColorPreview } from './shade_color_preview';
+import { ShadeColorsTable } from './shade_colors_table';
+```
+
+<Example>
+  <Example.Description>
+    ### `euiTheme.colors[colorShade]` <Badge color="hollow">token</Badge>
+
+    Since the EUI colors usually evaluate to a hex value, the easiest way to perform color operations like transparency, shading, or tinting is by using the EUI provided methods of `transparentize()`, `shade()`, and `tint()` respectively.
+
+    For all available color functions see the [Colors Utilities page](/docs/theming/colors/utilities).
+  </Example.Description>
+  <Example.Preview>
+    <ShadeColorPreview />
+  </Example.Preview>
+  <Example.Snippet>
+    ```tsx
+    css`
+      background: ${euiTheme.colors.lightShade};
+    `
+    ```
+  </Example.Snippet>
+</Example>
+
+<br />
+
+<ShadeColorsTable />
+
+## Special colors
+
+These are used a lot for special cases.
+
+```mdx-code-block
+import { SpecialColorsPreview } from './special_colors_preview';
+import { SpecialColorsTable } from './special_colors_table';
+```
+
+<Example>
+  <Example.Description>
+    ### `euiTheme.colors[special]` <Badge color="hollow">token</Badge>
+
+    Constant colors are those that do not change no matter the theme or color mode and typically represent the polar extremes.
+  </Example.Description>
+  <Example.Preview>
+    <SpecialColorsPreview />
+  </Example.Preview>
+  <Example.Snippet>
+    ```
+    css`
+      color: ${euiTheme.colors.ghost};
+      background-color: ${euiTheme.colors.ink};
+    `
+    ```
+  </Example.Snippet>
+</Example>
+
+<br />
+
+<SpecialColorsTable />

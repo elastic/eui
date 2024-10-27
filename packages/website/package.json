@@ -27,6 +27,7 @@
     "@faker-js/faker": "^8.4.1",
     "@mdx-js/react": "^3.0.0",
     "@types/lodash": "^4.14.202",
+    "chroma-js": "^3.1.2",
     "classnames": "^2.5.1",
     "clsx": "^2.0.0",
     "cross-env": "^7.0.3",

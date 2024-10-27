@@ -5802,6 +5802,7 @@ __metadata:
     "@types/lodash": "npm:^4.14.202"
     "@types/react": "npm:^18.3.3"
     "@types/react-dom": "npm:^18.3.0"
+    chroma-js: "npm:^3.1.2"
     classnames: "npm:^2.5.1"
     clsx: "npm:^2.0.0"
     cross-env: "npm:^7.0.3"
@@ -13962,6 +13963,13 @@ __metadata:
   version: 2.4.2
   resolution: "chroma-js@npm:2.4.2"
   checksum: 10c0/5657cd10892538c4a41e8bd95524d018c3a43318b26dfb20d572b2084bc6d5af742457a6d5701ddecb4d4eceb99995873b22293c1b396ab0b35ef55a264550c8
+  languageName: node
+  linkType: hard
+
+"chroma-js@npm:^3.1.2":
+  version: 3.1.2
+  resolution: "chroma-js@npm:3.1.2"
+  checksum: 10c0/145ce9aea91dac81c6158082675084778e8c83e6959032e37fd4ba9b01db9f5c29c520453ec4bab7e87689f12756fcc63821e3c6b866e083ea41d341c7b2bf71
   languageName: node
   linkType: hard
 
