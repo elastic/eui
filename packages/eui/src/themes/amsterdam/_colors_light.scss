@@ -13,7 +13,7 @@ $euiColorPlainDark: $euiColorInk;
 // Brand
 $euiColorPrimary: #07C !default;
 $euiColorAccent: #F04E98 !default;
-$euiColorAccentSecondary: #F04E98 !default;
+$euiColorAccentSecondary: #00BFB3 !default;
 $euiColorSuccess: #00BFB3 !default;
 $euiColorWarning: #FEC514 !default;
 $euiColorDanger: #BD271E !default;
@@ -87,7 +87,7 @@ $euiColorDisabledText: makeDisabledContrastColor($euiColorDisabled) !default;
 
 $euiColorTextPrimary: $euiColorPrimaryText !default;
 $euiColorTextAccent: $euiColorAccentText !default;
-$euiColorTextAccentSecondary: $euiColorAccentText !default;
+$euiColorTextAccentSecondary: $euiColorSuccessText !default;
 $euiColorTextSuccess: $euiColorSuccessText !default;
 $euiColorTextWarning: $euiColorWarningText !default;
 $euiColorTextDanger: $euiColorDangerText !default;

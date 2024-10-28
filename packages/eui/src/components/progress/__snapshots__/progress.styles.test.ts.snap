@@ -11,7 +11,7 @@ exports[`euiProgressStyles indeterminate div CSS colors accent 1`] = `
 exports[`euiProgressStyles indeterminate div CSS colors accentSecondary 1`] = `
 "
   &::before {
-    background-color: #F04E98;
+    background-color: #00BFB3;
   }
 ;;label:accentSecondary;"
 `;
@@ -172,10 +172,10 @@ exports[`euiProgressStyles native progress CSS colors accent 1`] = `
 exports[`euiProgressStyles native progress CSS colors accentSecondary 1`] = `
 "
   &::-webkit-progress-value {
-    background-color: #F04E98;
+    background-color: #00BFB3;
   }
   &::-moz-progress-bar {
-    background-color: #F04E98;
+    background-color: #00BFB3;
   }
 ;;label:accentSecondary;"
 `;

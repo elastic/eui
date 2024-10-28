@@ -91,8 +91,8 @@ const _buttons = {
     ['colors.accent']
   ),
   backgroundEmptyAccentSecondaryHover: computed(
-    ([accent]) => transparentize(accent, 0.1),
-    ['colors.accent']
+    ([success]) => transparentize(success, 0.1),
+    ['colors.success']
   ),
   backgroundEmptySuccessHover: computed(
     ([success]) => transparentize(success, 0.1),
@@ -120,8 +120,8 @@ const _buttons = {
     ['colors.accentText']
   ),
   textColorAccentSecondary: computed(
-    ([accentText]) => accentText,
-    ['colors.accentText']
+    ([successText]) => successText,
+    ['colors.successText']
   ),
   textColorSuccess: computed(
     ([successText]) => successText,
@@ -150,8 +150,12 @@ const _buttons = {
     ['colors.accent', 'colors.ghost', 'colors.ink']
   ),
   textColorFilledAccentSecondary: computed(
-    ([accent, ghost, ink]) => (isDark(accent) ? ghost : ink),
-    ['colors.accent', 'colors.ghost', 'colors.ink']
+    ([success, ghost, ink]) => {
+      const background = tint(success, 0.3);
+
+      return isDark(background) ? ghost : ink;
+    },
+    ['colors.success', 'colors.ghost', 'colors.ink']
   ),
   textColorFilledSuccess: computed(
     ([success, ghost, ink]) => {
