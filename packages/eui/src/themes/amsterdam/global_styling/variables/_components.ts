@@ -95,17 +95,17 @@ const _components = {
     ([emptyShade]) => emptyShade,
     ['colors.emptyShade']
   ),
-  headerBackgroundDark: computed(
+  headerDarkBackground: computed(
     ([darkestShade]) => shade(darkestShade, 0.28),
     ['colors.darkestShade']
   ),
-  headerSectionItemBackgroundFocusDark: computed(
-    ([primary]) => shade(primary, 0.5),
-    ['colors.primary']
-  ),
-  headerSearchBorderColor: computed(
+  headerDarkSearchBorderColor: computed(
     ([ghost]) => transparentize(ghost, 0.3),
     ['colors.ghost']
+  ),
+  headerDarkSectionItemBackgroundFocus: computed(
+    ([primary]) => shade(primary, 0.5),
+    ['colors.primary']
   ),
 
   keyPadMenuItemBackgroundDisabledSelect: computed(
@@ -285,7 +285,7 @@ export const components: _EuiThemeComponents = {
       ['border.color']
     ),
 
-    headerBackgroundDark: computed(
+    headerDarkBackground: computed(
       ([lightestShade]) => shade(lightestShade, 0.5),
       ['colors.lightestShade']
     ),

@@ -54,10 +54,10 @@ const _components = {
   flyoutCloseButtonInsideBackground: background_colors.backgroundBasePlain,
 
   headerBackground: background_colors.backgroundBasePlain,
-  headerBackgroundDark: dark_background_colors.backgroundBasePlain,
-  headerSectionItemBackgroundFocusDark:
+  headerDarkBackground: dark_background_colors.backgroundBasePlain,
+  headerDarkSearchBorderColor: dark_border_colors.borderBaseFormsControl,
+  headerDarkSectionItemBackgroundFocus:
     dark_background_colors.backgroundBasePrimary,
-  headerSearchBorderColor: SEMANTIC_COLORS.shade70,
 
   keyPadMenuItemBackgroundDisabledSelect:
     background_colors.backgroundBaseDisabled,

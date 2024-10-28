@@ -34,9 +34,9 @@ type _EuiThemeComponentColors = {
   dragDropDraggingOverBackground: ColorModeSwitch;
 
   headerBackground: ColorModeSwitch;
-  headerBackgroundDark: ColorModeSwitch;
-  headerSectionItemBackgroundFocusDark: ColorModeSwitch;
-  headerSearchBorderColor: ColorModeSwitch;
+  headerDarkBackground: ColorModeSwitch;
+  headerDarkSearchBorderColor: ColorModeSwitch;
+  headerDarkSectionItemBackgroundFocus: ColorModeSwitch;
 
   filterSelectItemBackgroundFocusDisabled: ColorModeSwitch;
 
