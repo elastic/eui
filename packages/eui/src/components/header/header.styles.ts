@@ -70,7 +70,7 @@ const euiHeaderDarkStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
   const { controlPlaceholderText } = euiFormVariables(euiThemeContext);
 
-  const backgroundColor = euiTheme.components.headerBackgroundDark;
+  const backgroundColor = euiTheme.components.headerDarkBackground;
 
   return `
     background-color: ${backgroundColor};
@@ -90,7 +90,7 @@ const euiHeaderDarkStyles = (euiThemeContext: UseEuiTheme) => {
     .euiHeaderSectionItemButton {
       &:focus {
         background-color: ${
-          euiTheme.components.headerSectionItemBackgroundFocusDark
+          euiTheme.components.headerDarkSectionItemBackgroundFocus
         };
       }
     }
@@ -107,7 +107,7 @@ const euiHeaderDarkStyles = (euiThemeContext: UseEuiTheme) => {
       background-color: transparent;
 
       &--group {
-        border-color: ${euiTheme.components.headerSearchBorderColor};
+        border-color: ${euiTheme.components.headerDarkSearchBorderColor};
       }
 
       &:not(:focus-within) {
