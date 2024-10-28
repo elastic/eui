@@ -1,3 +1,17 @@
+## [`v97.3.0`](https://github.com/elastic/eui/releases/v97.3.0)
+
+- `EuiDataGrid` now supports a new `toolbarVisibility.showDisplaySelector.customRender` function that allows completely customizing the rendering of the display selector popover ([#8080](https://github.com/elastic/eui/pull/8080))
+- `EuiDataGrid`'s row height/lines per row setting has been streamlined in both UI and UX ([#8080](https://github.com/elastic/eui/pull/8080))
+- `EuiDataGrid` now accepts consumer-passed display setting updates even after users have changed their display preferences via UI ([#8080](https://github.com/elastic/eui/pull/8080))
+- Updated `EuiDataGrid` to vertically center all `toolbarVisibility.additionalControls` nodes ([#8085](https://github.com/elastic/eui/pull/8085))
+- Updated `EuiDataGrid` with a beta `rowHeightsOptions.autoBelowLineCount` feature flag ([#8096](https://github.com/elastic/eui/pull/8096))
+- Updated `EuiContextMenuPanel` to allow disabling initial focus via `initialFocusedItemIndex={-1}` ([#8101](https://github.com/elastic/eui/pull/8101))
+
+**Bug fixes**
+
+- Fixed `EuiComment`'s typing to correctly reflect all accepted props ([#8089](https://github.com/elastic/eui/pull/8089))
+- Fixed `EuiSelectableTemplateSitewide`s within dark-themed `EuiHeader`s missing input borders ([#8100](https://github.com/elastic/eui/pull/8100))
+
 ## [`v97.2.0`](https://github.com/elastic/eui/releases/v97.2.0)
 
 - Updated `EuiHeaderLinks` with a new `xxs` gutter size ([#8079](https://github.com/elastic/eui/pull/8079))
