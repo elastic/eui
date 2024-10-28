@@ -9,10 +9,6 @@
 $euiColorGhost: $euiColorWhite !default;
 $euiColorInk: $euiColorBlack !default;
 
-// Constants
-$euiColorPlainLight: $euiColorWhite;
-$euiColorPlainDark: $euiColorBlueBlack;
-
 // Brand
 $euiColorPrimary: $euiColorPrimary70 !default;
 $euiColorAccent: $euiColorAccent70 !default;
@@ -31,7 +27,7 @@ $euiColorDarkestShade: $euiColorShade30 !default;
 $euiColorFullShade: $euiColorPlainLight !default;
 
 // Backgrounds
-$euiPageBackgroundColor: $euiColorMutedBlack !default;  // deprecated
+$euiPageBackgroundColor: $euiColorBlueBlack !default;  // deprecated
 $euiColorHighlight: $euiColorPrimary100 !default;
 
 $euiColorBackgroundBasePrimary: $euiColorPrimary140 !default;
