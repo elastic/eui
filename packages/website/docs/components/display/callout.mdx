@@ -1,0 +1,214 @@
+---
+slug: /display/callout
+id: display_callout
+---
+
+# Callout
+
+**EuiCallOut** contains a message directly related to content on the page. This includes general information, success, warning, and error messages.
+
+**Keep these guidelines in mind:**
+
+*   Minimize the number of callouts per page.
+*   Stack callouts in the order in which they require users' attention: error, warning, info, and then success.
+*   Offer only one action per callout and ensure it's an action users can perform quickly.
+*   If the callout has a permanent spot in the UI, but needs to be less obstructive, set the `size` property to `s` (small).
+*   Use an `iconType` if it adds context.
+
+## Info
+
+Use **EuiCallOut** to communicate general information to the user.
+
+```tsx interactive
+import React from 'react';
+import { EuiCallOut, EuiLink, EuiSpacer } from '@elastic/eui';
+
+export default () => (
+  <div>
+    <EuiCallOut
+      title="Check it out, here's a really long title that will wrap within a narrower browser"
+      iconType="search"
+    >
+      <p>
+        Here&rsquo;s some stuff that you need to know. We can make this text
+        really long so that, when viewed within a browser that&rsquo;s fairly
+        narrow, it will wrap, too.
+      </p>
+      <p>
+        And some other stuff on another line, just for kicks. And{' '}
+        <EuiLink href="#">here&rsquo;s a link</EuiLink>.
+      </p>
+    </EuiCallOut>
+
+    <EuiSpacer size="m" />
+
+    <EuiCallOut
+      title="Callouts can exist as just a title. Simply omit the child content."
+      iconType="lensApp"
+    />
+
+    <EuiSpacer size="m" />
+
+    <EuiCallOut
+      size="s"
+      title="This is a small callout for more unintrusive but constant messages."
+      iconType="pin"
+    />
+  </div>
+);
+```
+
+## Success
+
+Use this callout to notify the user of an action that succesfully completed. Use success callouts sparingly—callouts are typically used for things that are broken rather than things that succeed.
+
+```tsx interactive
+import React from 'react';
+import { EuiCallOut, EuiLink } from '@elastic/eui';
+
+export default () => (
+  <EuiCallOut title="Good news, everyone!" color="success" iconType="user">
+    <p>
+      I have no news. Which is good! And{' '}
+      <EuiLink href="#">here&rsquo;s a link</EuiLink>.
+    </p>
+  </EuiCallOut>
+);
+```
+
+## Warning
+
+Use this callout to warn the user against decisions they might regret. You should receive a warning message when the program detects that **something is not behaving right, but it didn't cause any termination**.
+
+```tsx interactive
+import React from 'react';
+import { EuiCallOut, EuiLink, EuiButton } from '@elastic/eui';
+
+export default () => (
+  <EuiCallOut title="Proceed with caution!" color="warning" iconType="warning">
+    <p>
+      Here be dragons. Don&rsquo;t wanna mess with no dragons. And{' '}
+      <EuiLink href="#">here&rsquo;s a link</EuiLink>.
+    </p>
+    <EuiButton href="#" color="warning">
+      Link button
+    </EuiButton>
+  </EuiCallOut>
+);
+```
+
+## Danger
+
+Use this callout to let the user know that something went wrong. For example if you want to communicate an error. You should receive an error message when the issue is **terminal, this doesn't always mean that the operation stops completely, but the task is not complete**.
+
+```tsx interactive
+import React from 'react';
+import { EuiCallOut, EuiLink } from '@elastic/eui';
+
+export default () => (
+  <EuiCallOut title="Sorry, there was an error" color="danger" iconType="error">
+    <p>
+      Now you have to fix it, but maybe{' '}
+      <EuiLink href="#">this link can help</EuiLink>.
+    </p>
+  </EuiCallOut>
+);
+```
+
+## Dismissible callouts
+
+To render a cross icon in the top right hand corner, pass an `onDismiss` callback that handles conditionally rendering your callout.
+
+```tsx interactive
+import React, { useState } from 'react';
+import {
+  EuiFlexGroup,
+  EuiSwitch,
+  EuiSpacer,
+  EuiButtonEmpty,
+  EuiCallOut,
+} from '@elastic/eui';
+
+export default () => {
+  const [showCallOut, setShowCallOut] = useState(
+    !localStorage.getItem('EuiCallOutOnDismissDemo')
+  );
+  const onDismiss = () => {
+    setShowCallOut(false);
+    localStorage.setItem('EuiCallOutOnDismissDemo', 'hidden');
+  };
+  const resetDemo = () => {
+    setShowCallOut(true);
+    localStorage.setItem('EuiCallOutOnDismissDemo', '');
+  };
+
+  // UI toggles
+  const [showTitle, setShowTitle] = useState(true);
+  const [showChildren, setShowChildren] = useState(true);
+  const [smallSize, setSmallSize] = useState(false);
+
+  return (
+    <div css={{ maxInlineSize: 500 }}>
+      <EuiFlexGroup>
+        <EuiSwitch
+          label="Show title"
+          checked={showTitle}
+          onChange={(e) => setShowTitle(e.target.checked)}
+          compressed
+        />
+        <EuiSwitch
+          label="Show children"
+          checked={showChildren}
+          onChange={(e) => setShowChildren(e.target.checked)}
+          compressed
+        />
+        <EuiSwitch
+          label="Small size"
+          checked={smallSize}
+          onChange={(e) => setSmallSize(e.target.checked)}
+          compressed
+        />
+      </EuiFlexGroup>
+      <EuiSpacer />
+      {showCallOut ? (
+        <EuiCallOut
+          onDismiss={onDismiss}
+          iconType="iInCircle"
+          title={
+            showTitle
+              ? 'You can dismiss this callout by clicking the Close button in the top right corner'
+              : ''
+          }
+          size={smallSize ? 's' : 'm'}
+        >
+          {showChildren && (
+            <>
+              <p>
+                Here’s more some stuff users need to know. But maybe users don't
+                need to know it on every page refresh, so you could remember
+                whether or not to display this callout in local storage.
+              </p>
+              {!showTitle && (
+                <p>
+                  This second paragraph is here to demonstrate that only the
+                  first one needs to account for the dismiss button in width.
+                </p>
+              )}
+            </>
+          )}
+        </EuiCallOut>
+      ) : (
+        <EuiButtonEmpty onClick={resetDemo}>
+          The callout has been dismissed. Click to reset the demo
+        </EuiButtonEmpty>
+      )}
+    </div>
+  );
+};
+```
+
+## Props
+
+import docgen from '@elastic/eui-docgen/dist/components/call_out';
+
+<PropTable definition={docgen.EuiCallOut} />

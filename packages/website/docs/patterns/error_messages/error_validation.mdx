@@ -25,7 +25,7 @@ Instead, use one of the following:
 - [error warning pattern](./error_warning.mdx)
 
 ## How it works
-There are several steps to creating a good user experience for validation errors. 
+There are several steps to creating a good user experience for validation errors.
 
 1. Display an error summary explaining the issues
 2. Link to the fields which caused the errors
@@ -46,9 +46,9 @@ Example:
 ![A red banner which reads, you must fix the following, your email must contain an @ character. The date you registered must be in the past.](./images/error-summary.webp)
 
 ### Text inputs
-Use the [EuiFieldText](../../02_components/forms/form_controls/overview.mdx#text-field) component and the prop `isInvalid=true` render the error styles.
+Use the [EuiFieldText](../../components/forms/form_controls/overview.mdx#text-field) component and the prop `isInvalid=true` render the error styles.
 
-Use the [errors prop](../../02_components/forms/form_controls/overview.mdx#text-field) to display the error message alongside the field. Make sure the error message on the field matches the error message in the summary, so it’s obvious which field caused which error.
+Use the [errors prop](../../components/forms/form_controls/overview.mdx#text-field) to display the error message alongside the field. Make sure the error message on the field matches the error message in the summary, so it’s obvious which field caused which error.
 
 ![A text input with the label 'Email'. An error message in red text positioned below the field reads, 'your email must contain an @ character'](./images/error-validation-text.webp)
 

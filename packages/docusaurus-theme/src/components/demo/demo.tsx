@@ -22,11 +22,12 @@ import {
   UseEuiTheme,
 } from '@elastic/eui';
 import { css } from '@emotion/react';
+import { demoDefaultScope } from '@theme/Demo/default_scope';
 import { DemoContext, DemoContextObject } from './context';
 import { DemoEditor } from './editor';
 import { DemoPreview } from './preview';
 import { DemoSource } from './source';
-import { demoDefaultScope } from './scope';
+import { originalScope } from './scope';
 import { DemoActionsBar } from './actions_bar';
 import { demoCodeTransformer } from './code_transformer';
 import { DemoPreviewProps } from './preview/preview';
@@ -81,6 +82,7 @@ export const Demo = ({
 
   const finalScope = useMemo(
     () => ({
+      ...originalScope,
       ...demoDefaultScope,
       ...scope,
     }),

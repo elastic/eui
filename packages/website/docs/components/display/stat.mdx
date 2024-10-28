@@ -1,0 +1,361 @@
+---
+slug: /display/stat
+id: display_stat
+---
+
+# Stat
+
+**EuiStat** can be used to display prominent text or number values. It consists of `title`and `description` elements with several visual styling properties (examples below).
+
+```tsx interactive
+import React from 'react';
+import { EuiStat, EuiFlexItem, EuiFlexGroup } from '@elastic/eui';
+
+export default () => (
+  <div>
+    <EuiFlexGroup>
+      <EuiFlexItem>
+        <EuiStat title="7,600 mm" description="Total people" />
+      </EuiFlexItem>
+    </EuiFlexGroup>
+  </div>
+);
+```
+
+## Color variants
+
+`title` can be altered using the color property. By default, it will appear in `full` color. For proper color contrast, only a limited set of EUI colors are offered. See the Props tab above for a list of available colors.
+
+```tsx interactive
+import React from 'react';
+import { EuiStat, EuiFlexItem, EuiFlexGroup } from '@elastic/eui';
+
+export default () => (
+  <div>
+    <EuiFlexGroup>
+      <EuiFlexItem>
+        <EuiStat title="1" description="Default color" />
+      </EuiFlexItem>
+      <EuiFlexItem>
+        <EuiStat title="10" description="Subdued color" titleColor="subdued" />
+      </EuiFlexItem>
+      <EuiFlexItem>
+        <EuiStat title="100" description="Primary color" titleColor="primary" />
+      </EuiFlexItem>
+      <EuiFlexItem>
+        <EuiStat
+          title="1,000"
+          description="Success color"
+          titleColor="success"
+        />
+      </EuiFlexItem>
+      <EuiFlexItem>
+        <EuiStat
+          title="10,000"
+          description="Danger color"
+          titleColor="danger"
+        />
+      </EuiFlexItem>
+      <EuiFlexItem>
+        <EuiStat
+          title="100,000"
+          description="Accent color"
+          titleColor="accent"
+        />
+      </EuiFlexItem>
+    </EuiFlexGroup>
+  </div>
+);
+```
+
+## Text alignment
+
+**EuiStat** also offers alignment options. By default, text will be left aligned.
+
+```tsx interactive
+import React from 'react';
+import { EuiStat, EuiFlexItem, EuiFlexGroup } from '@elastic/eui';
+
+export default () => (
+  <div>
+    <EuiFlexGroup>
+      <EuiFlexItem>
+        <EuiStat title="$ 1,000.00" description="Left align" textAlign="left" />
+      </EuiFlexItem>
+      <EuiFlexItem>
+        <EuiStat
+          title="99.9999"
+          description="Center align"
+          textAlign="center"
+        />
+      </EuiFlexItem>
+      <EuiFlexItem>
+        <EuiStat
+          title="1,000.00 €"
+          description="Right align"
+          textAlign="right"
+        />
+      </EuiFlexItem>
+    </EuiFlexGroup>
+  </div>
+);
+```
+
+## Title size
+
+`title` uses the **EuiTitle** component and thus uses the same sizing property values (applied via the `titleSize` property). Although all **EuiTitle** sizes are available, suggested sizes include `'l' | 'm' | 's' | 'xs' | 'xxs' | 'xxxs'`. By default, the size is set to large `'l'`. The `description` label cannot be re-sized via component properties.
+
+```tsx interactive
+import React from 'react';
+import { EuiStat, EuiFlexItem, EuiFlexGroup } from '@elastic/eui';
+
+export default () => (
+  <div>
+    <EuiFlexGroup>
+      <EuiFlexItem>
+        <EuiStat title="1,000,000" description="Large size" titleSize="l" />
+      </EuiFlexItem>
+      <EuiFlexItem>
+        <EuiStat title="1,000,000" description="Medium size" titleSize="m" />
+      </EuiFlexItem>
+      <EuiFlexItem>
+        <EuiStat title="1,000,000" description="Small size" titleSize="s" />
+      </EuiFlexItem>
+    </EuiFlexGroup>
+    <EuiFlexGroup>
+      <EuiFlexItem>
+        <EuiStat
+          title="1,000,000"
+          description="Extra small size"
+          titleSize="xs"
+        />
+      </EuiFlexItem>
+      <EuiFlexItem>
+        <EuiStat
+          title="1,000,000"
+          description="Extra extra small size"
+          titleSize="xxs"
+        />
+      </EuiFlexItem>
+      <EuiFlexItem>
+        <EuiStat
+          title="1,000,000"
+          description="Extra extra extra small size"
+          titleSize="xxxs"
+        />
+      </EuiFlexItem>
+    </EuiFlexGroup>
+  </div>
+);
+```
+
+## Reverse the order
+
+You can reverse the order of the `description` and `title` text by setting the `reverse` property to true. By default, the description (label) is displayed above the title (value).
+
+```tsx interactive
+import React from 'react';
+import { EuiStat, EuiFlexItem, EuiFlexGroup } from '@elastic/eui';
+
+export default () => (
+  <div>
+    <EuiFlexGroup>
+      <EuiFlexItem>
+        <EuiStat title="10,000" description="Description underneath" reverse />
+      </EuiFlexItem>
+    </EuiFlexGroup>
+  </div>
+);
+```
+
+## Stat loading
+
+If you apply the `isLoading` prop, the title will indicate the loading status by swapping the provided title with two flashing dashes.
+
+```tsx interactive
+import React, { useState } from 'react';
+import { EuiSwitch, EuiStat, EuiSpacer } from '@elastic/eui';
+
+export default () => {
+  const [isLoading, setLoading] = useState(true);
+
+  const onToggleChange = (e) => {
+    setLoading(e.target.checked);
+  };
+
+  return (
+    <div>
+      <EuiStat
+        title="7,600 mm"
+        description="Total People"
+        isLoading={isLoading}
+      />
+      <EuiSpacer />
+      <EuiSwitch
+        label="Show as loading"
+        checked={isLoading}
+        onChange={onToggleChange}
+      />
+    </div>
+  );
+};
+```
+
+## Component variants
+
+In the following example, you can see variants of how the **EuiStat** component can be assembled. This component is very helpful for constructing single-value visualizations and summaries for different dashboards and page layouts and for communicating trends over time.
+
+```tsx interactive
+import React, { useState } from 'react';
+import {
+  EuiStat,
+  EuiFlexItem,
+  EuiFlexGroup,
+  EuiPanel,
+  EuiIcon,
+  EuiSwitch,
+  EuiSpacer,
+  EuiTextColor,
+} from '@elastic/eui';
+
+export default () => {
+  const [isLoading, setLoading] = useState(false);
+
+  const onToggleChange = (e) => {
+    setLoading(e.target.checked);
+  };
+
+  return (
+    <div>
+      <EuiFlexGroup>
+        <EuiFlexItem>
+          <EuiPanel hasBorder={true}>
+            <EuiFlexGroup>
+              <EuiFlexItem>
+                <EuiStat
+                  title="2,000"
+                  textAlign="left"
+                  isLoading={isLoading}
+                  titleColor="accent"
+                  description={
+                    <EuiTextColor color="accent">
+                      <span>
+                        <EuiIcon type="clock" color="accent" /> 70,29%
+                      </span>
+                    </EuiTextColor>
+                  }
+                >
+                  Pending widgets
+                </EuiStat>
+              </EuiFlexItem>
+              <EuiFlexItem>
+                <EuiStat
+                  title="22,550"
+                  textAlign="left"
+                  isLoading={isLoading}
+                  titleColor="success"
+                  description={
+                    <EuiTextColor color="success">
+                      <span>
+                        <EuiIcon type="check" color="success" /> 88,88%
+                      </span>
+                    </EuiTextColor>
+                  }
+                >
+                  Successes
+                </EuiStat>
+              </EuiFlexItem>
+            </EuiFlexGroup>
+          </EuiPanel>
+        </EuiFlexItem>
+        <EuiFlexItem>
+          <EuiPanel hasBorder={true}>
+            <EuiFlexGroup>
+              <EuiFlexItem>
+                <EuiStat
+                  title="1,554"
+                  textAlign="left"
+                  isLoading={isLoading}
+                  titleColor="danger"
+                  description={
+                    <EuiTextColor color="accent">
+                      <span>
+                        <EuiIcon type="error" color="danger" /> 12,20%
+                      </span>
+                    </EuiTextColor>
+                  }
+                >
+                  Errors
+                </EuiStat>
+              </EuiFlexItem>
+              <EuiFlexItem>
+                <EuiStat
+                  title="8,888"
+                  description={
+                    <EuiTextColor color="success">
+                      <span>
+                        <EuiIcon type="sortUp" /> 23,30%
+                      </span>
+                    </EuiTextColor>
+                  }
+                  textAlign="left"
+                  isLoading={isLoading}
+                >
+                  Visitor count
+                </EuiStat>
+              </EuiFlexItem>
+            </EuiFlexGroup>
+          </EuiPanel>
+        </EuiFlexItem>
+        <EuiFlexItem>
+          <EuiPanel hasBorder={true}>
+            <EuiFlexGroup>
+              <EuiFlexItem>
+                <EuiStat
+                  title="1,554"
+                  textAlign="left"
+                  isLoading={isLoading}
+                  titleColor="danger"
+                  description="Good news"
+                >
+                  <EuiTextColor color="accent">
+                    <span>
+                      <EuiIcon type="error" color="danger" /> 66,55%
+                    </span>
+                  </EuiTextColor>
+                </EuiStat>
+              </EuiFlexItem>
+              <EuiFlexItem>
+                <EuiStat
+                  title="8,888"
+                  description="Great news"
+                  textAlign="left"
+                  isLoading={isLoading}
+                >
+                  <EuiTextColor color="success">
+                    <span>
+                      <EuiIcon type="sortUp" /> 27,83%
+                    </span>
+                  </EuiTextColor>
+                </EuiStat>
+              </EuiFlexItem>
+            </EuiFlexGroup>
+          </EuiPanel>
+        </EuiFlexItem>
+      </EuiFlexGroup>
+      <EuiSpacer />
+      <EuiSwitch
+        label="Show as loading"
+        checked={isLoading}
+        onChange={onToggleChange}
+      />
+    </div>
+  );
+};
+```
+
+## Props
+
+import docgen from '@elastic/eui-docgen/dist/components/stat';
+
+<PropTable definition={docgen.EuiStat} />

@@ -1,0 +1,1680 @@
+---
+slug: /layout/header
+id: layout_header
+---
+
+import Link from '@docusaurus/Link';
+
+# Header
+
+The header is made up of **many** individual components starting with **EuiHeader** as the container. You can manually configure your header with the following related components:
+
+*   **EuiHeaderSection**: Left/right containers with flex properties.
+*   **EuiHeaderSectionItem**: Containers for individual header items as flex items.
+*   **EuiHeaderSectionItemButton**: Specialized button that extends [**EuiButtonEmpty**](/docs/navigation/button#empty-button) but styled to fit the height of the header with additional `notification` props.
+*   **EuiHeaderLogo**: A helpful component for creating a linked logo that fits within the header sizing.
+*   **EuiHeaderBreadcrumbs**: A set of [**EuiBreadcrumbs**](/docs/navigation/breadcrumbs) specifically stylized to fit inside the header.
+
+<Demo scope={{ Link }}>
+  ```tsx
+  import React, { useState } from 'react';
+  import {
+    EuiAvatar,
+    EuiBreadcrumb,
+    EuiButton,
+    EuiFlexGroup,
+    EuiFlexItem,
+    EuiHeader,
+    EuiHeaderBreadcrumbs,
+    EuiHeaderLogo,
+    EuiHeaderSection,
+    EuiHeaderSectionItem,
+    EuiHeaderSectionItemButton,
+    EuiIcon,
+    EuiKeyPadMenu,
+    EuiKeyPadMenuItem,
+    EuiLink,
+    EuiPopover,
+    EuiPopoverFooter,
+    EuiPopoverTitle,
+    EuiSelectable,
+    EuiSelectableMessage,
+    EuiSelectableOption,
+    EuiSelectableProps,
+    EuiSelectableTemplateSitewide,
+    EuiSpacer,
+    EuiText,
+    useGeneratedHtmlId,
+  } from '@elastic/eui';
+  import { Link } from 'react-router-dom';
+
+  const HeaderSpacesMenu = () => {
+    const headerSpacesPopoverId = useGeneratedHtmlId({
+      prefix: 'headerSpacesPopover',
+    });
+    const spacesValues: EuiSelectableOption[] = [
+      {
+        label: 'Sales team',
+        prepend: <EuiAvatar type="space" name="Sales Team" size="s" />,
+        checked: 'on',
+      },
+      {
+        label: 'Engineering',
+        prepend: <EuiAvatar type="space" name="Engineering" size="s" />,
+      },
+      {
+        label: 'Security',
+        prepend: <EuiAvatar type="space" name="Security" size="s" />,
+      },
+      {
+        label: 'Default',
+        prepend: <EuiAvatar type="space" name="Default" size="s" />,
+      },
+    ];
+
+    const additionalSpaces = [
+      {
+        label: 'Sales team 2',
+        prepend: <EuiAvatar type="space" name="Sales Team 2" size="s" />,
+      },
+      {
+        label: 'Engineering 2',
+        prepend: <EuiAvatar type="space" name="Engineering 2" size="s" />,
+      },
+      {
+        label: 'Security 2',
+        prepend: <EuiAvatar type="space" name="Security 2" size="s" />,
+      },
+      {
+        label: 'Default 2',
+        prepend: <EuiAvatar type="space" name="Default 2" size="s" />,
+      },
+    ];
+
+    const [spaces, setSpaces] = useState<EuiSelectableOption[]>(spacesValues);
+    const [selectedSpace, setSelectedSpace] = useState(
+      spaces.filter((option) => option.checked)[0]
+    );
+    const [isOpen, setIsOpen] = useState(false);
+
+    const isListExtended = () => {
+      return spaces.length > 4 ? true : false;
+    };
+
+    const onMenuButtonClick = () => {
+      setIsOpen(!isOpen);
+    };
+
+    const closePopover = () => {
+      setIsOpen(false);
+    };
+
+    const onChange: EuiSelectableProps['onChange'] = (options) => {
+      setSpaces(options);
+      setSelectedSpace(options.filter((option) => option.checked)[0]);
+      setIsOpen(false);
+    };
+
+    const addMoreSpaces = () => {
+      setSpaces(spaces.concat(additionalSpaces));
+    };
+
+    const button = (
+      <EuiHeaderSectionItemButton
+        aria-controls={headerSpacesPopoverId}
+        aria-expanded={isOpen}
+        aria-haspopup="true"
+        aria-label="Spaces menu"
+        onClick={onMenuButtonClick}
+      >
+        {selectedSpace.prepend}
+      </EuiHeaderSectionItemButton>
+    );
+
+    return (
+      <EuiPopover
+        id={headerSpacesPopoverId}
+        button={button}
+        isOpen={isOpen}
+        anchorPosition="downLeft"
+        closePopover={closePopover}
+        panelPaddingSize="none"
+      >
+        <EuiSelectable
+          {...({
+            searchable: isListExtended(),
+            searchProps: {
+              placeholder: 'Find a space',
+              compressed: true,
+            },
+          } as Partial<EuiSelectableProps>)}
+          options={spaces}
+          singleSelection="always"
+          style={{ width: 300 }}
+          onChange={onChange}
+          listProps={{
+            rowHeight: 40,
+            showIcons: false,
+          }}
+        >
+          {(list, search) => (
+            <>
+              <EuiPopoverTitle paddingSize="s">
+                {search || 'Your spaces'}
+              </EuiPopoverTitle>
+              {list}
+              <EuiPopoverFooter paddingSize="s">
+                <EuiButton
+                  size="s"
+                  fullWidth
+                  onClick={addMoreSpaces}
+                  disabled={isListExtended()}
+                >
+                  Add more spaces
+                </EuiButton>
+              </EuiPopoverFooter>
+            </>
+          )}
+        </EuiSelectable>
+      </EuiPopover>
+    );
+  };
+
+  const HeaderUserMenu = () => {
+    const headerUserPopoverId = useGeneratedHtmlId({
+      prefix: 'headerUserPopover',
+    });
+    const [isOpen, setIsOpen] = useState(false);
+
+    const onMenuButtonClick = () => {
+      setIsOpen(!isOpen);
+    };
+
+    const closeMenu = () => {
+      setIsOpen(false);
+    };
+
+    const button = (
+      <EuiHeaderSectionItemButton
+        aria-controls={headerUserPopoverId}
+        aria-expanded={isOpen}
+        aria-haspopup="true"
+        aria-label="Account menu"
+        onClick={onMenuButtonClick}
+      >
+        <EuiAvatar name="John Username" size="s" />
+      </EuiHeaderSectionItemButton>
+    );
+
+    return (
+      <EuiPopover
+        id={headerUserPopoverId}
+        button={button}
+        isOpen={isOpen}
+        anchorPosition="downRight"
+        closePopover={closeMenu}
+        panelPaddingSize="m"
+      >
+        <div style={{ width: 300 }}>
+          <EuiFlexGroup gutterSize="m" responsive={false}>
+            <EuiFlexItem grow={false}>
+              <EuiAvatar name="John Username" size="xl" />
+            </EuiFlexItem>
+
+            <EuiFlexItem>
+              <EuiText>
+                <p>John Username</p>
+              </EuiText>
+
+              <EuiSpacer size="m" />
+
+              <EuiFlexGroup>
+                <EuiFlexItem>
+                  <EuiFlexGroup justifyContent="spaceBetween">
+                    <EuiFlexItem grow={false}>
+                      <EuiLink>Edit profile</EuiLink>
+                    </EuiFlexItem>
+
+                    <EuiFlexItem grow={false}>
+                      <EuiLink>Log out</EuiLink>
+                    </EuiFlexItem>
+                  </EuiFlexGroup>
+                </EuiFlexItem>
+              </EuiFlexGroup>
+            </EuiFlexItem>
+          </EuiFlexGroup>
+        </div>
+      </EuiPopover>
+    );
+  };
+
+  const HeaderAppMenu = () => {
+    const headerAppPopoverId = useGeneratedHtmlId({ prefix: 'headerAppPopover' });
+    const headerAppKeyPadMenuId = useGeneratedHtmlId({
+      prefix: 'headerAppKeyPadMenu',
+    });
+
+    const [isOpen, setIsOpen] = useState(false);
+
+    const onMenuButtonClick = () => {
+      setIsOpen(!isOpen);
+    };
+
+    const closeMenu = () => {
+      setIsOpen(false);
+    };
+
+    const button = (
+      <EuiHeaderSectionItemButton
+        aria-controls={headerAppKeyPadMenuId}
+        aria-expanded={isOpen}
+        aria-haspopup="true"
+        aria-label="Apps menu with 1 new app"
+        notification="1"
+        onClick={onMenuButtonClick}
+      >
+        <EuiIcon type="apps" size="m" />
+      </EuiHeaderSectionItemButton>
+    );
+
+    return (
+      <EuiPopover
+        id={headerAppPopoverId}
+        button={button}
+        isOpen={isOpen}
+        anchorPosition="downRight"
+        closePopover={closeMenu}
+      >
+        <EuiKeyPadMenu id={headerAppKeyPadMenuId} style={{ width: 288 }}>
+          <EuiKeyPadMenuItem label="Discover">
+            <EuiIcon type="discoverApp" size="l" />
+          </EuiKeyPadMenuItem>
+
+          <EuiKeyPadMenuItem label="Dashboard">
+            <EuiIcon type="dashboardApp" size="l" />
+          </EuiKeyPadMenuItem>
+
+          <EuiKeyPadMenuItem label="Dev Tools">
+            <EuiIcon type="devToolsApp" size="l" />
+          </EuiKeyPadMenuItem>
+
+          <EuiKeyPadMenuItem label="Machine Learning">
+            <EuiIcon type="machineLearningApp" size="l" />
+          </EuiKeyPadMenuItem>
+
+          <EuiKeyPadMenuItem label="Graph">
+            <EuiIcon type="graphApp" size="l" />
+          </EuiKeyPadMenuItem>
+
+          <EuiKeyPadMenuItem label="Visualize">
+            <EuiIcon type="visualizeApp" size="l" />
+          </EuiKeyPadMenuItem>
+
+          <EuiKeyPadMenuItem label="Timelion" betaBadgeLabel="Beta">
+            <EuiIcon type="timelionApp" size="l" />
+          </EuiKeyPadMenuItem>
+        </EuiKeyPadMenu>
+      </EuiPopover>
+    );
+  };
+  export default () => {
+    const renderLogo = () => (
+      <EuiHeaderLogo
+        iconType="logoElastic"
+        href="#"
+        onClick={(e) => e.preventDefault()}
+        aria-label="Go to home page"
+      />
+    );
+
+    const renderBreadcrumbs = () => {
+      const breadcrumbs: EuiBreadcrumb[] = [
+        {
+          text: 'Management',
+          href: '#',
+          onClick: (e) => {
+            e.preventDefault();
+          },
+          'data-test-subj': 'breadcrumbsAnimals',
+          className: 'customClass',
+        },
+        {
+          text: 'Truncation test is here for a really long item',
+          href: '#',
+          onClick: (e) => {
+            e.preventDefault();
+          },
+        },
+        {
+          text: 'Hidden',
+          href: '#',
+          onClick: (e) => {
+            e.preventDefault();
+          },
+        },
+        {
+          text: 'Users',
+          href: '#',
+          onClick: (e) => {
+            e.preventDefault();
+          },
+        },
+        {
+          text: 'Create',
+        },
+      ];
+
+      return (
+        <EuiHeaderBreadcrumbs
+          aria-label="Header breadcrumbs example"
+          breadcrumbs={breadcrumbs}
+        />
+      );
+    };
+
+    const search = (
+      <EuiSelectableTemplateSitewide
+        options={[]}
+        searchProps={{
+          compressed: true,
+        }}
+        popoverButton={
+          <EuiHeaderSectionItemButton aria-label="Sitewide search">
+            <EuiIcon type="search" size="m" />
+          </EuiHeaderSectionItemButton>
+        }
+        emptyMessage={
+          <EuiSelectableMessage style={{ minHeight: 300 }}>
+            <p>
+              Please see the component page for{' '}
+              <Link to="/forms/selectable">
+                <strong>EuiSelectableTemplateSitewide</strong>
+              </Link>{' '}
+              on how to configure your sitewide search.
+            </p>
+          </EuiSelectableMessage>
+        }
+      />
+    );
+
+    return (
+      <EuiHeader>
+        <EuiHeaderSection>
+          <EuiHeaderSectionItem>{renderLogo()}</EuiHeaderSectionItem>
+          <EuiHeaderSectionItem>
+            <HeaderSpacesMenu />
+          </EuiHeaderSectionItem>
+        </EuiHeaderSection>
+
+        {renderBreadcrumbs()}
+
+        <EuiHeaderSection side="right">
+          <EuiHeaderSectionItem>{search}</EuiHeaderSectionItem>
+
+          <EuiHeaderSectionItem>
+            <HeaderUserMenu />
+          </EuiHeaderSectionItem>
+
+          <EuiHeaderSectionItem>
+            <HeaderAppMenu />
+          </EuiHeaderSectionItem>
+        </EuiHeaderSection>
+      </EuiHeader>
+    );
+  };
+  ```
+</Demo>
+
+## Sections
+
+Alternatively, you can pass an array of objects to the `sections` prop that takes a key of `items` (array of children to wrap in an **EuiHeaderSectionItem**) and/or `breadcrumbs` (array of [breadcrumb](/docs/navigation/breadcrumbs) objects). Each item in the array will be wrapped in an **EuiHeaderSection**.
+
+**Note:** Passing `sections` and `children` will disregard the `children` as it is not easily interpreted at what location the children should be placed.
+
+```tsx interactive
+import React from 'react';
+import {
+  EuiBreadcrumb,
+  EuiHeader,
+  EuiHeaderLogo,
+  EuiHeaderSectionItemButton,
+  EuiHeaderSections,
+  EuiIcon,
+  EuiAvatar,
+} from '@elastic/eui';
+
+/**
+ * This demo has been simplified to showcase just the buttons within sections.
+ * See the main example for all the menu items.
+ */
+
+export default () => {
+  const renderLogo = (
+    <EuiHeaderLogo
+      iconType="logoElastic"
+      href="#"
+      onClick={(e) => e.preventDefault()}
+      aria-label="Go to home page"
+    />
+  );
+
+  const renderSpaces = (
+    <EuiHeaderSectionItemButton aria-label="Spaces menu">
+      <EuiAvatar type="space" name="Sales Team" size="s" />
+    </EuiHeaderSectionItemButton>
+  );
+
+  const breadcrumbs: EuiBreadcrumb[] = [
+    {
+      text: 'Management',
+      href: '#',
+      onClick: (e) => {
+        e.preventDefault();
+      },
+    },
+    {
+      text: 'Users',
+      href: '#',
+      onClick: (e) => {
+        e.preventDefault();
+      },
+    },
+    {
+      text: 'Create',
+    },
+  ];
+
+  const renderSearch = (
+    <EuiHeaderSectionItemButton disabled aria-label="Sitewide search">
+      <EuiIcon type="search" size="m" />
+    </EuiHeaderSectionItemButton>
+  );
+  const renderUser = (
+    <EuiHeaderSectionItemButton disabled aria-label="Account menu">
+      <EuiAvatar isDisabled name="John Username" size="s" />
+    </EuiHeaderSectionItemButton>
+  );
+
+  const renderApps = (
+    <EuiHeaderSectionItemButton
+      disabled
+      aria-label="Apps menu with 1 new app"
+      notification="1"
+    >
+      <EuiIcon type="apps" size="m" />
+    </EuiHeaderSectionItemButton>
+  );
+
+  const sections: EuiHeaderSections[] = [
+    {
+      items: [renderLogo, renderSpaces],
+      breadcrumbs: breadcrumbs,
+      breadcrumbProps: {
+        'aria-label': 'Header sections breadcrumbs',
+      },
+    },
+    {
+      items: [renderSearch, renderUser, renderApps],
+    },
+  ];
+
+  return <EuiHeader sections={sections} />;
+};
+```
+
+## Header links
+
+In addition to the components mentioned prior, which lend themselves to more application style navigation patterns, **EuiHeaderLinks** and **EuiHeaderLink** supply the ability to inline a list of navigational or menu style links.
+
+**EuiHeaderLinks** comes with responsive functionality built-in which will convert the inline list of links to a popover list triggered by a **EuiHeaderSectionItemButton**. You can adjust at which breakpoints to switch to the popover display by passing your own array of named breakpoints to `popoverBreakpoints`.
+
+```tsx interactive
+import React from 'react';
+import {
+  EuiHeader,
+  EuiHeaderSectionItem,
+  EuiHeaderLogo,
+  EuiHeaderLinks,
+  EuiHeaderLink,
+} from '@elastic/eui';
+
+export default () => {
+  return (
+    <EuiHeader>
+      <EuiHeaderSectionItem>
+        <EuiHeaderLogo>Elastic</EuiHeaderLogo>
+      </EuiHeaderSectionItem>
+
+      <EuiHeaderSectionItem>
+        <EuiHeaderLinks aria-label="App navigation links example">
+          {(closeMobilePopover) => (
+            <>
+              <EuiHeaderLink isActive onClick={closeMobilePopover}>
+                Docs
+              </EuiHeaderLink>
+
+              <EuiHeaderLink onClick={closeMobilePopover}>Code</EuiHeaderLink>
+
+              <EuiHeaderLink iconType="help" onClick={closeMobilePopover}>
+                Help
+              </EuiHeaderLink>
+            </>
+          )}
+        </EuiHeaderLinks>
+      </EuiHeaderSectionItem>
+    </EuiHeader>
+  );
+};
+```
+
+## Fixed header
+
+Most consumers need a header that does not scroll away with the page contents. You can set this display by applying the property `position="fixed"`. Multiple fixed headers will automatically stack underneath one another. No manual positioning is required.
+
+If you're using [**EuiPageTemplate**](/docs/templates/page-template), a padding top will be automatically set based on the number of fixed headers on the page. [**EuiFlyouts**](/docs/layout/flyout) will also automatically account for and sit below fixed headers.
+
+If you're using your own custom layout, or have custom UI that needs to sit below your fixed header(s), EUI provides a global CSS `var(--euiFixedHeadersOffset)` variable. You can use this variable anywhere, or even override it, to correctly offset any and all fixed header heights.
+
+```tsx interactive
+import React, { useState } from 'react';
+import {
+  EuiHeader,
+  EuiHeaderLogo,
+  EuiHeaderProps,
+  EuiHeaderSections,
+  EuiSwitch,
+  EuiSpacer,
+} from '@elastic/eui';
+
+export default () => {
+  const [position, setPosition] =
+    useState<EuiHeaderProps['position']>('static');
+
+  const sections: EuiHeaderSections[] = [
+    {
+      items: [<EuiHeaderLogo>Elastic</EuiHeaderLogo>],
+    },
+  ];
+
+  return (
+    <>
+      <EuiSwitch
+        label={'Make header fixed position'}
+        checked={position === 'fixed'}
+        onChange={(e) => setPosition(e.target.checked ? 'fixed' : 'static')}
+      />
+      <EuiSpacer />
+      <EuiHeader position={position} sections={sections} />
+    </>
+  );
+};
+```
+
+## Dark theme
+
+To make site-wide navigation more prominent, **EuiHeader** supports reversing the colors to dark theme with `theme="dark"`. However, it only supports a **limited set of children** that will also shift their theme. These components include **EuiHeaderLogo, EuiHeaderLink(s),** **EuiHeaderSectionItemButton** and **EuiSelectableTemplateSitewide**. Any other content may not render correctly without custom configurations.
+
+```tsx interactive
+import React from 'react';
+import {
+  EuiHeader,
+  EuiHeaderLogo,
+  EuiHeaderLinks,
+  EuiHeaderLink,
+  EuiHeaderSectionItemButton,
+  EuiBadge,
+  EuiIcon,
+  EuiAvatar,
+  useEuiTheme,
+} from '@elastic/eui';
+
+export default () => {
+  const { euiTheme } = useEuiTheme();
+
+  return (
+    <EuiHeader
+      theme="dark"
+      sections={[
+        {
+          items: [
+            <EuiHeaderLogo>Elastic</EuiHeaderLogo>,
+            <EuiHeaderLinks aria-label="App navigation dark theme example">
+              <EuiHeaderLink isActive>Docs</EuiHeaderLink>
+              <EuiHeaderLink>Code</EuiHeaderLink>
+              <EuiHeaderLink iconType="help"> Help</EuiHeaderLink>
+            </EuiHeaderLinks>,
+          ],
+        },
+        {
+          items: [
+            <EuiBadge
+              color={euiTheme.colors.darkestShade}
+              iconType="arrowDown"
+              iconSide="right"
+            >
+              Production logs
+            </EuiBadge>,
+            <EuiHeaderSectionItemButton
+              aria-label="2 Notifications"
+              notification={'2'}
+            >
+              <EuiIcon type="cheer" size="m" />
+            </EuiHeaderSectionItemButton>,
+            <EuiHeaderSectionItemButton aria-label="Account menu">
+              <EuiAvatar name="John Username" size="s" />
+            </EuiHeaderSectionItemButton>,
+          ],
+        },
+      ]}
+    />
+  );
+};
+```
+
+## Portal content in the header
+
+Use an **EuiHeaderSectionItemButton** to display additional information in [popovers](/docs/layout/popover) or [flyouts](/docs/layout/flyout), such as a user profile or news feed. When using [**EuiFlyout**](/docs/layout/flyout), be sure to wrap it in a [**EuiPortal**](/docs/utilities/portal). When using an [**EuiPopover**](/docs/layout/popover) in conjunction with a **fixed** header, be sure to add the `repositionOnScroll` prop to the popover.
+
+The example below shows how to incorporate **EuiHeaderAlert** components to show a list of updates inside a [**EuiFlyout**](/docs/layout/flyout) and a [**EuiPopover**](/docs/layout/popover) .
+
+```tsx interactive
+import React, { useState } from 'react';
+import {
+  EuiAvatar,
+  EuiBadge,
+  EuiButtonEmpty,
+  EuiFlexGroup,
+  EuiFlexItem,
+  EuiFlyout,
+  EuiFlyoutBody,
+  EuiFlyoutFooter,
+  EuiFlyoutHeader,
+  EuiHeader,
+  EuiHeaderAlert,
+  EuiHeaderLogo,
+  EuiHeaderProps,
+  EuiHeaderSection,
+  EuiHeaderSectionItem,
+  EuiHeaderSectionItemButton,
+  EuiIcon,
+  EuiLink,
+  EuiPopover,
+  EuiPopoverFooter,
+  EuiPopoverTitle,
+  EuiPortal,
+  EuiSpacer,
+  EuiSwitch,
+  EuiText,
+  EuiTitle,
+  useGeneratedHtmlId,
+  useEuiTheme,
+} from '@elastic/eui';
+
+const HeaderUpdates = () => {
+  const { euiTheme } = useEuiTheme();
+
+  const [isFlyoutVisible, setIsFlyoutVisible] = useState(false);
+  const [isPopoverVisible, setIsPopoverVisible] = useState(false);
+  const newsFeedFlyoutId = useGeneratedHtmlId({ prefix: 'newsFeedFlyout' });
+  const newsFeedFlyoutTitleId = useGeneratedHtmlId({
+    prefix: 'newsFeedFlyoutTitle',
+  });
+  const newsFeedPopoverId = useGeneratedHtmlId({ prefix: 'newsFeedPopover' });
+
+  const alerts = [
+    {
+      title: 'Control access to features',
+      text: 'Show or hide applications and features per space in Kibana.',
+      action: <EuiLink href="">Learn about feature controls</EuiLink>,
+      date: '1 May 2019',
+      badge: <EuiBadge>7.1</EuiBadge>,
+    },
+    {
+      title: 'Kibana 7.0 is turning heads',
+      text: 'Simplified navigation, responsive dashboards, dark mode… pick your favorite.',
+      action: (
+        <EuiLink
+          target="_blank"
+          external
+          href="https://www.elastic.co/blog/kibana-7-0-0-released"
+        >
+          Read the blog
+        </EuiLink>
+      ),
+      date: '10 April 2019',
+      badge: <EuiBadge color="hollow">7.0</EuiBadge>,
+    },
+    {
+      title: 'Enter dark mode',
+      text: 'Kibana now supports the easy-on-the-eyes theme across the entire UI.',
+      action: <EuiLink href="">Go to Advanced Settings</EuiLink>,
+      date: '10 April 2019',
+      badge: <EuiBadge color="hollow">7.0</EuiBadge>,
+    },
+    {
+      title: 'Pixel-perfect Canvas is production ready',
+      text: 'Your creative space for visualizing data awaits.',
+      action: (
+        <EuiLink
+          target="_blank"
+          external
+          href="https://www.elastic.co/webinars/intro-to-canvas-a-new-way-to-tell-visual-stories-in-kibana"
+        >
+          Watch the webinar
+        </EuiLink>
+      ),
+      date: '26 March 2019',
+      badge: <EuiBadge color="hollow">6.7</EuiBadge>,
+    },
+    {
+      title: '6.7 release notes',
+      text: 'Stay up-to-date on the latest and greatest features.',
+      action: (
+        <EuiLink
+          target="_blank"
+          external
+          href="https://www.elastic.co/guide/en/kibana/6.7/release-notes-6.7.0.html"
+        >
+          Check out the docs
+        </EuiLink>
+      ),
+      date: '26 March 2019',
+      badge: <EuiBadge color="hollow">6.7</EuiBadge>,
+    },
+    {
+      title: 'Rollups made simple in Kibana',
+      text: 'Save space and preserve the integrity of your data directly in the UI.',
+      action: (
+        <EuiLink
+          target="_blank"
+          external
+          href="https://www.elastic.co/blog/how-to-create-manage-and-visualize-elasticsearch-rollup-data-in-kibana"
+        >
+          Read the blog
+        </EuiLink>
+      ),
+      date: '10 January 2019',
+      badge: <EuiBadge color="hollow">6.5</EuiBadge>,
+    },
+  ];
+
+  const closeFlyout = () => {
+    setIsFlyoutVisible(false);
+  };
+
+  const closePopover = () => {
+    setIsPopoverVisible(false);
+  };
+
+  const showFlyout = () => {
+    setIsFlyoutVisible(!isFlyoutVisible);
+  };
+
+  const showPopover = () => {
+    setIsPopoverVisible(!isPopoverVisible);
+  };
+
+  const bellButton = (
+    <EuiHeaderSectionItemButton
+      aria-controls="headerFlyoutNewsFeed"
+      aria-expanded={isFlyoutVisible}
+      aria-haspopup="true"
+      aria-label={'Alerts feed: Updates available'}
+      onClick={() => showFlyout()}
+      notification={true}
+    >
+      <EuiIcon type="bell" />
+    </EuiHeaderSectionItemButton>
+  );
+
+  const cheerButton = (
+    <EuiHeaderSectionItemButton
+      aria-controls="headerPopoverNewsFeed"
+      aria-expanded={isPopoverVisible}
+      aria-haspopup="true"
+      aria-label={"News feed: Updates available'"}
+      onClick={showPopover}
+      notification={6}
+    >
+      <EuiIcon type="cheer" />
+    </EuiHeaderSectionItemButton>
+  );
+
+  const flyout = (
+    <EuiPortal>
+      <EuiFlyout
+        onClose={closeFlyout}
+        size="s"
+        id={newsFeedFlyoutId}
+        aria-labelledby={newsFeedFlyoutTitleId}
+      >
+        <EuiFlyoutHeader hasBorder>
+          <EuiTitle size="s">
+            <h2 id={newsFeedFlyoutTitleId}>What&apos;s new</h2>
+          </EuiTitle>
+        </EuiFlyoutHeader>
+        <EuiFlyoutBody>
+          {alerts.map((alert, i) => (
+            <EuiHeaderAlert
+              key={`alert-${i}`}
+              title={alert.title}
+              action={alert.action}
+              text={alert.text}
+              date={alert.date}
+              badge={alert.badge}
+            />
+          ))}
+        </EuiFlyoutBody>
+        <EuiFlyoutFooter>
+          <EuiFlexGroup justifyContent="spaceBetween" alignItems="center">
+            <EuiFlexItem grow={false}>
+              <EuiButtonEmpty
+                iconType="cross"
+                onClick={closeFlyout}
+                flush="left"
+              >
+                Close
+              </EuiButtonEmpty>
+            </EuiFlexItem>
+            <EuiFlexItem grow={false}>
+              <EuiText color="subdued" size="s">
+                <p>Version 7.0</p>
+              </EuiText>
+            </EuiFlexItem>
+          </EuiFlexGroup>
+        </EuiFlyoutFooter>
+      </EuiFlyout>
+    </EuiPortal>
+  );
+
+  const popover = (
+    <EuiPopover
+      id={newsFeedPopoverId}
+      ownFocus
+      repositionOnScroll
+      button={cheerButton}
+      isOpen={isPopoverVisible}
+      closePopover={closePopover}
+      panelPaddingSize="none"
+    >
+      <EuiPopoverTitle paddingSize="s">What&apos;s new</EuiPopoverTitle>
+      <div
+        style={{
+          maxHeight: '40vh',
+          overflowY: 'auto',
+          padding: euiTheme.size.s,
+        }}
+      >
+        <EuiSpacer size="s" />
+        {alerts.map((alert, i) => (
+          <EuiHeaderAlert
+            key={`alert-${i}`}
+            title={alert.title}
+            action={alert.action}
+            text={alert.text}
+            date={alert.date}
+            badge={alert.badge}
+          />
+        ))}
+      </div>
+      <EuiPopoverFooter paddingSize="s">
+        <EuiText color="subdued" size="s">
+          <p>Version 7.0</p>
+        </EuiText>
+      </EuiPopoverFooter>
+    </EuiPopover>
+  );
+
+  return (
+    <>
+      {bellButton}
+      {popover}
+      {isFlyoutVisible && flyout}
+    </>
+  );
+};
+
+const HeaderUserMenu = () => {
+  const userPopoverId = useGeneratedHtmlId({ prefix: 'userPopover' });
+  const [isOpen, setIsOpen] = useState(false);
+
+  const onMenuButtonClick = () => {
+    setIsOpen(!isOpen);
+  };
+
+  const closeMenu = () => {
+    setIsOpen(false);
+  };
+
+  const button = (
+    <EuiHeaderSectionItemButton
+      aria-controls={userPopoverId}
+      aria-expanded={isOpen}
+      aria-haspopup="true"
+      aria-label="Account menu"
+      onClick={onMenuButtonClick}
+    >
+      <EuiAvatar name="John Username" size="s" />
+    </EuiHeaderSectionItemButton>
+  );
+
+  return (
+    <EuiPopover
+      id={userPopoverId}
+      repositionOnScroll
+      button={button}
+      isOpen={isOpen}
+      anchorPosition="downRight"
+      closePopover={closeMenu}
+      panelPaddingSize="m"
+    >
+      <div style={{ width: 300 }}>
+        <EuiFlexGroup gutterSize="m" responsive={false}>
+          <EuiFlexItem grow={false}>
+            <EuiAvatar name="John Username" size="xl" />
+          </EuiFlexItem>
+
+          <EuiFlexItem>
+            <EuiText>
+              <p>John Username</p>
+            </EuiText>
+
+            <EuiSpacer size="m" />
+
+            <EuiFlexGroup>
+              <EuiFlexItem>
+                <EuiFlexGroup justifyContent="spaceBetween">
+                  <EuiFlexItem grow={false}>
+                    <EuiLink>Edit profile</EuiLink>
+                  </EuiFlexItem>
+
+                  <EuiFlexItem grow={false}>
+                    <EuiLink>Log out</EuiLink>
+                  </EuiFlexItem>
+                </EuiFlexGroup>
+              </EuiFlexItem>
+            </EuiFlexGroup>
+          </EuiFlexItem>
+        </EuiFlexGroup>
+      </div>
+    </EuiPopover>
+  );
+};
+
+export default () => {
+  const [position, setPosition] =
+    useState<EuiHeaderProps['position']>('static');
+  const [theme, setTheme] = useState<EuiHeaderProps['theme']>('default');
+
+  return (
+    <>
+      <EuiFlexGroup alignItems="center" gutterSize="m">
+        <EuiFlexItem grow={false}>
+          <EuiSwitch
+            label={'Make header fixed position'}
+            checked={position === 'fixed'}
+            onChange={(e) => setPosition(e.target.checked ? 'fixed' : 'static')}
+          />
+        </EuiFlexItem>
+
+        <EuiFlexItem grow={false}>
+          <EuiSwitch
+            label={'Change theme to dark'}
+            checked={theme === 'dark'}
+            onChange={(e) => setTheme(e.target.checked ? 'dark' : 'default')}
+          />
+        </EuiFlexItem>
+      </EuiFlexGroup>
+
+      <EuiSpacer />
+
+      <EuiHeader position={position} theme={theme}>
+        <EuiHeaderSection>
+          <EuiHeaderSectionItem>
+            <EuiHeaderLogo>Elastic</EuiHeaderLogo>
+          </EuiHeaderSectionItem>
+        </EuiHeaderSection>
+        <EuiHeaderSection side="right">
+          <EuiHeaderSectionItem>
+            <HeaderUpdates />
+          </EuiHeaderSectionItem>
+          <EuiHeaderSectionItem>
+            <HeaderUserMenu />
+          </EuiHeaderSectionItem>
+        </EuiHeaderSection>
+      </EuiHeader>
+    </>
+  );
+};
+
+```
+
+## Header notifications
+
+To alert or notify users about the additional information they are receiving, use the **EuiHeaderSectionItemButton** `notification` prop. You can pass a `node` that will render inside a **EuiBadgeNotification** or pass `true` to render a simple dot. You can also animate the button by calling the `euiAnimate()` method on the **EuiHeaderSectionItemButton** `ref`.
+
+```tsx interactive
+import React, {
+  forwardRef,
+  useCallback,
+  useImperativeHandle,
+  useRef,
+  useState,
+} from 'react';
+import {
+  EuiButton,
+  EuiFlexGroup,
+  EuiFlexItem,
+  EuiHeader,
+  EuiHeaderLogo,
+  EuiHeaderSectionItemButton,
+  EuiIcon,
+  EuiSpacer,
+} from '@elastic/eui';
+
+interface HeaderUpdatesProps {
+  showNotification: boolean;
+  setShowNotification: (x: boolean) => void;
+  notificationsNumber: number;
+}
+
+const HeaderUpdates = forwardRef<
+  { euiAnimate: () => void },
+  HeaderUpdatesProps
+>(({ showNotification, notificationsNumber }, ref) => {
+  const bellRef = useRef<any>(null);
+  const cheerRef = useRef<any>(null);
+
+  // wrapping the `euiAnimate` methods to make them available through this component's `ref`
+  const euiAnimate = useCallback(() => {
+    bellRef.current?.euiAnimate();
+    cheerRef.current?.euiAnimate();
+  }, []);
+
+  // we're using the `useImperativeHandle` which allows the child to expose a function to the parent
+  // this way we can trigger the animations on both child components: `bellRef` and `cheerRef`
+  useImperativeHandle(
+    ref,
+    () => ({
+      euiAnimate,
+    }),
+    [euiAnimate]
+  );
+
+  const bellButton = (
+    <EuiHeaderSectionItemButton
+      ref={bellRef}
+      aria-label={`News feed: ${
+        showNotification ? 'Updates available' : 'No updates'
+      }`}
+      notification={showNotification}
+    >
+      <EuiIcon type="bell" />
+    </EuiHeaderSectionItemButton>
+  );
+
+  const cheerButton = (
+    <EuiHeaderSectionItemButton
+      ref={cheerRef}
+      aria-label={`News feed: ${
+        showNotification ? 'Updates available' : 'No updates'
+      }`}
+      notification={showNotification && notificationsNumber}
+    >
+      <EuiIcon type="cheer" />
+    </EuiHeaderSectionItemButton>
+  );
+
+  return (
+    <>
+      {bellButton}
+      {cheerButton}
+    </>
+  );
+});
+HeaderUpdates.displayName = 'HeaderUpdates';
+
+export default () => {
+  const [showNotification, setShowNotification] = useState(false);
+  const headerUpdatesRef = useRef<any>(null);
+  const [notificationsNumber, setNotificationsNumber] = useState(0);
+
+  const notify = () => {
+    if (!showNotification) {
+      setNotificationsNumber(1);
+      setShowNotification(true);
+    } else {
+      setNotificationsNumber(notificationsNumber + 1);
+    }
+
+    headerUpdatesRef.current?.euiAnimate();
+  };
+
+  return (
+    <>
+      <EuiFlexGroup responsive={false} alignItems="center" gutterSize="m">
+        <EuiFlexItem grow={false}>
+          <EuiButton size="s" onClick={notify}>
+            Notify & animate
+          </EuiButton>
+        </EuiFlexItem>
+
+        <EuiFlexItem grow={false}>
+          <EuiButton
+            size="s"
+            color="warning"
+            onClick={() => {
+              setShowNotification(false);
+              setNotificationsNumber(0);
+            }}
+          >
+            Reset
+          </EuiButton>
+        </EuiFlexItem>
+      </EuiFlexGroup>
+
+      <EuiSpacer />
+
+      <EuiHeader
+        sections={[
+          {
+            items: [<EuiHeaderLogo>Elastic</EuiHeaderLogo>],
+          },
+          {
+            items: [
+              <HeaderUpdates
+                ref={headerUpdatesRef}
+                showNotification={showNotification}
+                setShowNotification={setShowNotification}
+                notificationsNumber={notificationsNumber}
+              />,
+            ],
+          },
+        ]}
+      />
+    </>
+  );
+};
+
+```
+
+## Stacked headers
+
+Stacking multiple headers provides a great way to separate global navigation concerns.
+
+```tsx interactive
+import React, { useState } from 'react';
+import {
+  EuiBreadcrumb,
+  EuiHeader,
+  EuiHeaderLogo,
+  EuiHeaderSectionItemButton,
+  EuiSwitch,
+  EuiSpacer,
+  EuiAvatar,
+  EuiIcon,
+} from '@elastic/eui';
+
+export default () => {
+  const [isFixed, setIsFixed] = useState(false);
+
+  const breadcrumbs: EuiBreadcrumb[] = [
+    {
+      text: 'Management',
+      href: '#',
+      onClick: (e) => {
+        e.preventDefault();
+      },
+    },
+    {
+      text: 'Users',
+    },
+  ];
+
+  const headers = (
+    <>
+      <EuiHeader
+        theme="dark"
+        position={isFixed ? 'fixed' : 'static'}
+        sections={[
+          {
+            items: [
+              <EuiHeaderLogo iconType="logoElastic">Elastic</EuiHeaderLogo>,
+            ],
+          },
+          {
+            items: [
+              <EuiHeaderSectionItemButton aria-label="Account menu">
+                <EuiAvatar name="John Username" size="s" />
+              </EuiHeaderSectionItemButton>,
+            ],
+          },
+        ]}
+      />
+      <EuiHeader
+        position={isFixed ? 'fixed' : 'static'}
+        sections={[
+          {
+            items: [
+              <EuiHeaderSectionItemButton aria-label="Account menu">
+                <EuiAvatar type="space" name="Default Space" size="s" />
+              </EuiHeaderSectionItemButton>,
+            ],
+            breadcrumbs: breadcrumbs,
+          },
+          {
+            items: [
+              <EuiHeaderSectionItemButton
+                aria-label="News feed: Updates available"
+                notification={true}
+              >
+                <EuiIcon type="cheer" size="m" />
+              </EuiHeaderSectionItemButton>,
+            ],
+          },
+        ]}
+      />
+    </>
+  );
+
+  return (
+    <>
+      <EuiSwitch
+        label={'Make header fixed position'}
+        checked={isFixed}
+        onChange={(e) => setIsFixed(e.target.checked)}
+      />
+      <EuiSpacer />
+      {headers}
+    </>
+  );
+};
+```
+
+## The Elastic navigation pattern
+
+### Putting it all together
+
+The button below will launch a fullscreen example that includes two **EuiHeaders** with all the appropriate navigation pieces including [**EuiCollapsibleNav**,](/docs/navigation/collapsible-nav) **EuiHeaderAlerts**, user menu, deployment switcher, space selector, **EuiHeaderBreadcrumbs** and **EuiHeaderLinks** for app menu items.
+
+This is just a pattern and should be treated as such. Consuming applications will need to recreate the pattern according to their context and save the states as is appropriate to their data store.
+
+<Demo scope={{ Link }}>
+  ```tsx
+  import React, { useState } from 'react';
+  import {
+    EuiAvatar,
+    EuiBadge,
+    EuiButton,
+    EuiCollapsibleNav,
+    EuiCollapsibleNavGroup,
+    EuiFlexItem,
+    EuiFlyout,
+    EuiFlyoutBody,
+    EuiFlyoutHeader,
+    EuiHeader,
+    EuiHeaderLink,
+    EuiHeaderLinks,
+    EuiHeaderLogo,
+    EuiHeaderSectionItemButton,
+    EuiIcon,
+    EuiListGroupItem,
+    EuiPopover,
+    EuiPortal,
+    EuiShowFor,
+    EuiText,
+    EuiTitle,
+    EuiSelectableTemplateSitewide,
+    EuiSelectableMessage,
+    useEuiTheme,
+    useGeneratedHtmlId,
+  } from '@elastic/eui';
+  import { Link } from 'react-router-dom';
+
+  export default () => {
+    const { euiTheme } = useEuiTheme();
+    const guideHeaderCollapsibleNavId = useGeneratedHtmlId({
+      prefix: 'guideHeaderCollapsibleNav',
+    });
+    const guideHeaderAlertFlyoutId = useGeneratedHtmlId({
+      prefix: 'guideHeaderAlertFlyout',
+    });
+    const guideHeaderAlertFlyoutTitleId = useGeneratedHtmlId({
+      prefix: 'guideHeaderAlertFlyoutTitle',
+    });
+    const guideHeaderUserPopoverId = useGeneratedHtmlId({
+      prefix: 'guideHeaderUserPopover',
+    });
+    const guideHeaderSpacesPopoverId = useGeneratedHtmlId({
+      prefix: 'guideHeaderSpacesPopover',
+    });
+    const guideHeaderDeploymentPopoverId = useGeneratedHtmlId({
+      prefix: 'guideHeaderDeploymentPopover',
+    });
+
+    /**
+     * Collapsible Nav
+     */
+    const [navIsOpen, setNavIsOpen] = useState(
+      JSON.parse(String(localStorage.getItem('navIsDocked'))) || false
+    );
+    const [navIsDocked, setNavIsDocked] = useState(
+      JSON.parse(String(localStorage.getItem('navIsDocked'))) || false
+    );
+    const collapsibleNav = (
+      <EuiCollapsibleNav
+        id={guideHeaderCollapsibleNavId}
+        aria-label="Main navigation"
+        isOpen={navIsOpen}
+        isDocked={navIsDocked}
+        button={
+          <EuiHeaderSectionItemButton
+            aria-label="Toggle main navigation"
+            onClick={() => setNavIsOpen(!navIsOpen)}
+          >
+            <EuiIcon type={'menu'} size="m" aria-hidden="true" />
+          </EuiHeaderSectionItemButton>
+        }
+        onClose={() => setNavIsOpen(false)}
+      >
+        <EuiFlexItem className="eui-yScroll">
+          {/* Docs callout */}
+          <EuiCollapsibleNavGroup background="none" title="EuiCollapsibleNav">
+            <EuiText size="s" color="subdued" style={{ padding: '0 8px 8px' }}>
+              <p>
+                Please see the component page for{' '}
+                <Link to="/navigation/collapsible-nav">
+                  <strong>EuiCollapsibleNav</strong>
+                </Link>{' '}
+                on how to configure your navigation.
+              </p>
+            </EuiText>
+          </EuiCollapsibleNavGroup>
+        </EuiFlexItem>
+        <EuiFlexItem grow={false}>
+          {/* Docking button only for larger screens that can support it*/}
+          <EuiShowFor sizes={['l', 'xl']}>
+            <EuiCollapsibleNavGroup>
+              <EuiListGroupItem
+                size="xs"
+                color="subdued"
+                label={`${navIsDocked ? 'Undock' : 'Dock'} navigation`}
+                onClick={() => {
+                  setNavIsDocked(!navIsDocked);
+                  localStorage.setItem(
+                    'navIsDocked',
+                    JSON.stringify(!navIsDocked)
+                  );
+                }}
+                iconType={navIsDocked ? 'lock' : 'lockOpen'}
+              />
+            </EuiCollapsibleNavGroup>
+          </EuiShowFor>
+        </EuiFlexItem>
+      </EuiCollapsibleNav>
+    );
+
+    /**
+     * Header Alerts
+     */
+    const [isAlertFlyoutVisible, setIsAlertFlyoutVisible] = useState(false);
+    const headerAlerts = (
+      <EuiPortal>
+        <EuiFlyout
+          onClose={() => setIsAlertFlyoutVisible(false)}
+          size="s"
+          id={guideHeaderAlertFlyoutId}
+          aria-labelledby={guideHeaderAlertFlyoutTitleId}
+        >
+          <EuiFlyoutHeader hasBorder>
+            <EuiTitle size="s">
+              <h2 id={guideHeaderAlertFlyoutTitleId}>EuiHeaderAlert</h2>
+            </EuiTitle>
+          </EuiFlyoutHeader>
+          <EuiFlyoutBody>
+            <EuiText size="s" color="subdued">
+              <p>
+                Please see the component page for{' '}
+                <Link to="/layout/header">
+                  <strong>EuiHeaderAlert</strong>
+                </Link>{' '}
+                on how to configure your alerts.
+              </p>
+            </EuiText>
+          </EuiFlyoutBody>
+        </EuiFlyout>
+      </EuiPortal>
+    );
+
+    /**
+     * User Menu
+     */
+    const [isUserMenuVisible, setIsUserMenuVisible] = useState(false);
+    const userMenu = (
+      <EuiPopover
+        id={guideHeaderUserPopoverId}
+        repositionOnScroll
+        button={
+          <EuiHeaderSectionItemButton
+            aria-controls={guideHeaderUserPopoverId}
+            aria-expanded={isUserMenuVisible}
+            aria-haspopup="true"
+            aria-label="User menu"
+            onClick={() => setIsUserMenuVisible(!isUserMenuVisible)}
+          >
+            <EuiAvatar name="John Username" size="s" />
+          </EuiHeaderSectionItemButton>
+        }
+        isOpen={isUserMenuVisible}
+        anchorPosition="downRight"
+        closePopover={() => setIsUserMenuVisible(false)}
+      >
+        <div style={{ width: 320 }}>
+          <EuiText size="s" color="subdued">
+            <p>
+              Please see the component page for{' '}
+              <Link to="/layout/header">
+                <strong>EuiHeader</strong>
+              </Link>{' '}
+              on how to configure your user menu.
+            </p>
+          </EuiText>
+        </div>
+      </EuiPopover>
+    );
+
+    /**
+     * Spaces Menu
+     */
+    const [isSpacesMenuVisible, setIsSpacesMenuVisible] = useState(false);
+    const spacesMenu = (
+      <EuiPopover
+        id={guideHeaderSpacesPopoverId}
+        repositionOnScroll
+        button={
+          <EuiHeaderSectionItemButton
+            aria-controls={guideHeaderSpacesPopoverId}
+            aria-expanded={isSpacesMenuVisible}
+            aria-haspopup="true"
+            aria-label="Spaces menu"
+            onClick={() => setIsSpacesMenuVisible(!isSpacesMenuVisible)}
+          >
+            <EuiAvatar type="space" name="Default Space" size="s" />
+          </EuiHeaderSectionItemButton>
+        }
+        isOpen={isSpacesMenuVisible}
+        anchorPosition="downRight"
+        closePopover={() => setIsSpacesMenuVisible(false)}
+      >
+        <div style={{ width: 320 }}>
+          <EuiText size="s" color="subdued">
+            <p>
+              Please see the component page for{' '}
+              <Link to="/layout/header">
+                <strong>EuiHeader</strong>
+              </Link>{' '}
+              on how to configure your spaces menu.
+            </p>
+          </EuiText>
+        </div>
+      </EuiPopover>
+    );
+
+    /**
+     * Deployment Menu
+     */
+    const [isDeploymentMenuVisible, setIsDeploymentMenuVisible] = useState(false);
+    const deploymentMenu = (
+      <EuiPopover
+        id={guideHeaderDeploymentPopoverId}
+        repositionOnScroll
+        button={
+          <EuiBadge
+            color={euiTheme.colors.darkestShade}
+            iconType="arrowDown"
+            iconSide="right"
+            aria-controls={guideHeaderDeploymentPopoverId}
+            aria-expanded={isDeploymentMenuVisible}
+            aria-haspopup="true"
+            onClickAriaLabel="Current deployment: Production logs. Click to open deployment menu."
+            onClick={() => setIsDeploymentMenuVisible(!isDeploymentMenuVisible)}
+          >
+            Production logs
+          </EuiBadge>
+        }
+        isOpen={isDeploymentMenuVisible}
+        anchorPosition="downRight"
+        closePopover={() => setIsDeploymentMenuVisible(false)}
+      >
+        <EuiText size="s" color="subdued">
+          <p>Deployment menu pattern TBD</p>
+        </EuiText>
+      </EuiPopover>
+    );
+
+    /**
+     * Sitewide search
+     */
+    const search = (
+      <EuiSelectableTemplateSitewide
+        options={[]}
+        searchProps={{
+          append: '⌘K',
+          compressed: true,
+        }}
+        popoverButton={
+          <EuiHeaderSectionItemButton aria-label="Sitewide search">
+            <EuiIcon type="search" size="m" />
+          </EuiHeaderSectionItemButton>
+        }
+        popoverButtonBreakpoints={['xs', 's']}
+        popoverProps={{
+          repositionOnScroll: true, // Necessary when placing search in a fixed component
+        }}
+        emptyMessage={
+          <EuiSelectableMessage style={{ minHeight: 300 }}>
+            <p>
+              Please see the component page for{' '}
+              <Link to="/forms/selectable">
+                <strong>EuiSelectableTemplateSitewide</strong>
+              </Link>{' '}
+              on how to configure your sitewide search.
+            </p>
+          </EuiSelectableMessage>
+        }
+      />
+    );
+
+    return (
+      <>
+        <EuiHeader
+          theme="dark"
+          position="fixed"
+          sections={[
+            {
+              items: [
+                <EuiHeaderLogo iconType="logoElastic" href="">
+                  Elastic
+                </EuiHeaderLogo>,
+                deploymentMenu,
+              ],
+            },
+            {
+              items: [<EuiShowFor sizes={['m', 'l', 'xl']}>{search}</EuiShowFor>],
+            },
+            {
+              items: [
+                <EuiShowFor sizes={['xs', 's']}>{search}</EuiShowFor>,
+                <EuiHeaderSectionItemButton
+                  notification={true}
+                  aria-label="Notifications: Updates available"
+                  onClick={() => setIsAlertFlyoutVisible(!isAlertFlyoutVisible)}
+                >
+                  <EuiIcon type="cheer" size="m" />
+                </EuiHeaderSectionItemButton>,
+                userMenu,
+              ],
+            },
+          ]}
+        />
+        <EuiHeader
+          position="fixed"
+          sections={[
+            {
+              items: [collapsibleNav, spacesMenu],
+              breadcrumbs: [
+                {
+                  text: 'Management',
+                  onClick: () => {},
+                },
+                {
+                  text: 'Users',
+                },
+              ],
+            },
+            {
+              items: [
+                <EuiHeaderLinks
+                  popoverProps={{
+                    repositionOnScroll: true, // Necessary when placing search in a fixed component
+                  }}
+                >
+                  <EuiHeaderLink color="primary">Share</EuiHeaderLink>
+                  <EuiHeaderLink color="primary">Clone</EuiHeaderLink>
+                  <EuiButton
+                    iconType="exit"
+                    style={{ minWidth: 80 }}
+                    size="s"
+                    color="primary"
+                    href="#"
+                  >
+                    Exit fullscreen
+                  </EuiButton>
+                </EuiHeaderLinks>,
+              ],
+            },
+          ]}
+        />
+
+        {isAlertFlyoutVisible ? headerAlerts : null}
+      </>
+    );
+  };
+  ```
+</Demo>
+
+## Props
+
+import docgen from '@elastic/eui-docgen/dist/components/header';
+
+<PropTable definition={docgen.EuiHeader} />
+
+<PropTable definition={docgen.EuiHeaderSection} />
+
+<PropTable definition={docgen.EuiHeaderSectionItem} />
+
+<PropTable definition={docgen.EuiHeaderSectionItemButton} />
+
+<PropTable definition={docgen.EuiHeaderLogo} />
+
+<PropTable definition={docgen.EuiHeaderBreadcrumbs} />
