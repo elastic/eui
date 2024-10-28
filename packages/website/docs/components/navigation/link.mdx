@@ -1,0 +1,191 @@
+---
+slug: /navigation/link
+id: navigation_link
+---
+
+# Link
+
+**EuiLink** is any anchor or button element that is designed to display nicely within a block of text. It also provides more anchor-specific styling onto links and makes sure they are accessible.
+
+```tsx interactive
+import React from 'react';
+import { EuiCode, EuiLink, EuiText } from '@elastic/eui';
+
+export default () => (
+  <EuiText>
+    <p>
+      A simple <EuiLink href="#/navigation/link">EuiLink</EuiLink> used within a
+      paragraph of text.
+    </p>
+    <p>
+      This is actually a <EuiLink onClick={() => {}}>button</EuiLink> with an
+      onClick handler.
+    </p>
+    <p>
+      Here is an example of a{' '}
+      <EuiLink
+        href="https://github.com/elastic/eui/blob/main/wiki/consuming-eui/react-router.md#how-react-router-works"
+        onClick={() => {}}
+      >
+        link
+      </EuiLink>{' '}
+      with both an <EuiCode>href</EuiCode> and an <EuiCode>onClick</EuiCode>{' '}
+      handler.
+    </p>
+  </EuiText>
+);
+```
+
+## External links
+
+Setting `target="_blank"` defaults to `external={true}`. This adds an icon indicator instructing users that a new window will open. You can also manually apply this icon in case you handle the target behavior by other means.
+
+```tsx interactive
+import React from 'react';
+import { EuiCode, EuiLink, EuiText } from '@elastic/eui';
+
+export default () => (
+  <EuiText>
+    <p>
+      Open the{' '}
+      <EuiLink href="http://www.elastic.co" target="_blank">
+        Elastic website
+      </EuiLink>{' '}
+      in a new tab.
+    </p>
+    <p>
+      This{' '}
+      <EuiLink href="#/navigation/link" external>
+        link
+      </EuiLink>{' '}
+      has the <EuiCode>external</EuiCode> prop set to true.
+    </p>
+  </EuiText>
+);
+```
+
+## Coloring links
+
+Like any other [button component](/docs/navigation/button), links can be passed a `color`. Note that the `ghost` type should only be used on dark backgrounds (regardless of theming) as it will always create a white link.
+
+```tsx interactive
+import React from 'react';
+import { EuiLink, EuiText } from '@elastic/eui';
+
+const links = [
+  'primary',
+  'subdued',
+  'success',
+  'accent',
+  'warning',
+  'danger',
+  'text',
+];
+
+export default () => (
+  <EuiText>
+    <ul>
+      {links.map((value) => (
+        <li key={value}>
+          <EuiLink
+            color={value !== 'disabled' ? value : undefined}
+            href="#/navigation/link"
+          >
+            {value.charAt(0).toUpperCase() + value.slice(1)}
+          </EuiLink>
+        </li>
+      ))}
+      <li style={{ background: 'black' }}>
+        <EuiLink color="ghost">Ghost</EuiLink>
+      </li>
+    </ul>
+  </EuiText>
+);
+```
+
+## Disabled links
+
+When an **EuiLink** is passed an `onClick` method, and is not passed an `href`, it can optionally be set to`disabled` which disables the click behavior, and removes the link styling.
+
+```tsx interactive
+import React, { useState } from 'react';
+import {
+  EuiLink,
+  EuiSwitch,
+  EuiTextColor,
+  EuiHorizontalRule,
+  EuiText,
+} from '@elastic/eui';
+
+export default () => {
+  const [disableLink, setDisableLink] = useState(true);
+
+  return (
+    <EuiText>
+      <EuiSwitch
+        compressed
+        label="Disable links"
+        checked={disableLink}
+        onChange={() => setDisableLink(!disableLink)}
+      />
+      <EuiHorizontalRule margin="m" />
+      <p>
+        This{' '}
+        <EuiLink color="accent" disabled={disableLink} onClick={() => {}}>
+          paragraph
+        </EuiLink>{' '}
+        has two{disableLink ? ' disabled ' : ' enabled '}
+        <EuiLink color="warning" disabled={disableLink} onClick={() => {}}>
+          links
+        </EuiLink>{' '}
+        in it.
+      </p>
+      <p>
+        <EuiTextColor color="accent">
+          When links are disabled, they inherit the{' '}
+          <EuiLink color="success" disabled={disableLink} onClick={() => {}}>
+            color
+          </EuiLink>{' '}
+          of surrounding text.
+        </EuiTextColor>
+      </p>
+    </EuiText>
+  );
+};
+```
+
+## Link validation
+
+To make links more secure for users, **EuiLink** and other components that accept an `href` prop become disabled if that `href` uses the `javascript:` protocol. This helps protect consuming applications from cross-site scripting (XSS) attacks and mirrors React's [planned behavior](https://github.com/facebook/react/blob/940f48b999a3131e77b2545bd7ae252ef27ae6d1/packages/react-dom/src/shared/sanitizeURL.js#L37) to prevent rendering of `javascript:` links.
+
+```tsx interactive
+import React from 'react';
+import { EuiLink, EuiText } from '@elastic/eui';
+
+const urls = [
+  'https://elastic.co',
+  '//elastic.co',
+  'relative/url/somewhere',
+  'http://username:password@example.com/',
+  // eslint-disable-next-line no-script-url
+  'javascript:alert()',
+];
+
+export default () => (
+  <EuiText>
+    {urls.map((url) => (
+      <p key={url}>
+        <EuiLink color="success" href={url}>
+          {url}
+        </EuiLink>
+      </p>
+    ))}
+  </EuiText>
+);
+```
+
+## Props
+
+import docgen from '@elastic/eui-docgen/dist/components/link';
+
+<PropTable definition={docgen.EuiLink} />

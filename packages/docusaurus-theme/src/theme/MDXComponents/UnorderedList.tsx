@@ -12,6 +12,7 @@ import { css } from '@emotion/react';
 
 const getUnorderedListStyles = ({ euiTheme }: UseEuiTheme) => css`
   margin-inline-start: ${euiTheme.size.l};
+  list-style: disc;
 `;
 
 export const UnorderedList = ({ children, ...restProps }: HTMLAttributes<HTMLUListElement>) => {
