@@ -95,6 +95,16 @@ const euiHeaderDarkStyles = (
   const borderColor =
     colorMode === 'DARK' ? defaultBorderColor : backgroundColor;
 
+  // Specific color overrides for EuiSelectableTemplateSitewide
+  const selectableSitewide = {
+    color: euiTheme.colors.ghost,
+    borderColor: transparentize(euiTheme.colors.ghost, 0.3),
+    placeholderColor: makeHighContrastColor(
+      controlPlaceholderText,
+      8
+    )(backgroundColor),
+  };
+
   return `
     background-color: ${backgroundColor};
     ${logicalCSS('border-bottom-color', borderColor)}
@@ -128,21 +138,28 @@ const euiHeaderDarkStyles = (
     .euiSelectableTemplateSitewide .euiFormControlLayout {
       background-color: transparent;
 
+      input {
+        box-shadow: inset 0 0 0 ${euiTheme.border.width.thin} ${
+    selectableSitewide.borderColor
+  };
+      }
+
       &--group {
-        border-color: ${transparentize(euiTheme.colors.ghost, 0.3)};
+        border-color: ${selectableSitewide.borderColor};
+
+        input {
+          box-shadow: none;
+        }
       }
 
       &:not(:focus-within) {
         /* Increase contrast of filled text to be more than placeholder text */
-        color: ${euiTheme.colors.ghost};
+        color: ${selectableSitewide.color};
 
         input {
           /* Increase contrast of placeholder text */
           &::placeholder {
-            color: ${makeHighContrastColor(
-              controlPlaceholderText,
-              8
-            )(backgroundColor)};
+            color: ${selectableSitewide.placeholderColor};
           }
 
           /* Inherit color from form control layout */
