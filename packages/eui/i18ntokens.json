@@ -1031,14 +1031,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 738,
+        "line": 748,
         "column": 23,
-        "index": 23328
+        "index": 23788
       },
       "end": {
-        "line": 742,
+        "line": 752,
         "column": 3,
-        "index": 23475
+        "index": 23935
       }
     },
     "filepath": "src/components/datagrid/body/cell/data_grid_cell.tsx"
@@ -1049,14 +1049,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 743,
+        "line": 753,
         "column": 25,
-        "index": 23502
+        "index": 23962
       },
       "end": {
-        "line": 746,
+        "line": 756,
         "column": 3,
-        "index": 23608
+        "index": 24068
       }
     },
     "filepath": "src/components/datagrid/body/cell/data_grid_cell.tsx"
@@ -1710,55 +1710,19 @@
     "filepath": "src/components/datagrid/controls/data_grid_toolbar_control.tsx"
   },
   {
-    "token": "euiDisplaySelector.buttonText",
-    "defString": "Display options",
-    "highlighting": "string",
-    "loc": {
-      "start": {
-        "line": 228,
-        "column": 22,
-        "index": 7412
-      },
-      "end": {
-        "line": 231,
-        "column": 3,
-        "index": 7486
-      }
-    },
-    "filepath": "src/components/datagrid/controls/display_selector.tsx"
-  },
-  {
-    "token": "euiDisplaySelector.resetButtonText",
-    "defString": "Reset to default",
-    "highlighting": "string",
-    "loc": {
-      "start": {
-        "line": 232,
-        "column": 27,
-        "index": 7515
-      },
-      "end": {
-        "line": 235,
-        "column": 3,
-        "index": 7595
-      }
-    },
-    "filepath": "src/components/datagrid/controls/display_selector.tsx"
-  },
-  {
     "token": "euiDisplaySelector.densityLabel",
     "defString": "Density",
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 272,
-        "column": 10,
-        "index": 8779
+        "line": 96,
+        "column": 4,
+        "index": 2610
       },
       "end": {
-        "line": 280,
-        "column": 11,
-        "index": 9100
+        "line": 104,
+        "column": 5,
+        "index": 2883
       }
     },
     "filepath": "src/components/datagrid/controls/display_selector.tsx"
@@ -1769,14 +1733,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 272,
-        "column": 10,
-        "index": 8779
+        "line": 96,
+        "column": 4,
+        "index": 2610
       },
       "end": {
-        "line": 280,
-        "column": 11,
-        "index": 9100
+        "line": 104,
+        "column": 5,
+        "index": 2883
       }
     },
     "filepath": "src/components/datagrid/controls/display_selector.tsx"
@@ -1787,14 +1751,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 272,
-        "column": 10,
-        "index": 8779
+        "line": 96,
+        "column": 4,
+        "index": 2610
       },
       "end": {
-        "line": 280,
-        "column": 11,
-        "index": 9100
+        "line": 104,
+        "column": 5,
+        "index": 2883
       }
     },
     "filepath": "src/components/datagrid/controls/display_selector.tsx"
@@ -1805,104 +1769,122 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 272,
-        "column": 10,
-        "index": 8779
+        "line": 96,
+        "column": 4,
+        "index": 2610
       },
       "end": {
-        "line": 280,
-        "column": 11,
-        "index": 9100
+        "line": 104,
+        "column": 5,
+        "index": 2883
       }
     },
     "filepath": "src/components/datagrid/controls/display_selector.tsx"
   },
   {
     "token": "euiDisplaySelector.rowHeightLabel",
-    "defString": "Row height",
+    "defString": "Lines per row",
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 315,
-        "column": 10,
-        "index": 10207
+        "line": 227,
+        "column": 4,
+        "index": 6476
       },
       "end": {
-        "line": 330,
-        "column": 11,
-        "index": 10680
-      }
-    },
-    "filepath": "src/components/datagrid/controls/display_selector.tsx"
-  },
-  {
-    "token": "euiDisplaySelector.labelSingle",
-    "defString": "Single",
-    "highlighting": "string",
-    "loc": {
-      "start": {
-        "line": 315,
-        "column": 10,
-        "index": 10207
-      },
-      "end": {
-        "line": 330,
-        "column": 11,
-        "index": 10680
+        "line": 235,
+        "column": 5,
+        "index": 6741
       }
     },
     "filepath": "src/components/datagrid/controls/display_selector.tsx"
   },
   {
     "token": "euiDisplaySelector.labelAuto",
-    "defString": "Auto fit",
+    "defString": "Auto",
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 315,
-        "column": 10,
-        "index": 10207
+        "line": 227,
+        "column": 4,
+        "index": 6476
       },
       "end": {
-        "line": 330,
-        "column": 11,
-        "index": 10680
+        "line": 235,
+        "column": 5,
+        "index": 6741
       }
     },
     "filepath": "src/components/datagrid/controls/display_selector.tsx"
   },
   {
-    "token": "euiDisplaySelector.labelCustom",
-    "defString": "Custom",
+    "token": "euiDisplaySelector.labelStatic",
+    "defString": "Static",
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 315,
-        "column": 10,
-        "index": 10207
+        "line": 227,
+        "column": 4,
+        "index": 6476
       },
       "end": {
-        "line": 330,
-        "column": 11,
-        "index": 10680
+        "line": 235,
+        "column": 5,
+        "index": 6741
       }
     },
     "filepath": "src/components/datagrid/controls/display_selector.tsx"
   },
   {
-    "token": "euiDisplaySelector.lineCountLabel",
-    "defString": "Lines per row",
+    "token": "euiDisplaySelector.labelMax",
+    "defString": "Max",
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 315,
-        "column": 10,
-        "index": 10207
+        "line": 227,
+        "column": 4,
+        "index": 6476
       },
       "end": {
-        "line": 330,
-        "column": 11,
-        "index": 10680
+        "line": 235,
+        "column": 5,
+        "index": 6741
+      }
+    },
+    "filepath": "src/components/datagrid/controls/display_selector.tsx"
+  },
+  {
+    "token": "euiDisplaySelector.buttonText",
+    "defString": "Display options",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 393,
+        "column": 22,
+        "index": 11825
+      },
+      "end": {
+        "line": 396,
+        "column": 3,
+        "index": 11899
+      }
+    },
+    "filepath": "src/components/datagrid/controls/display_selector.tsx"
+  },
+  {
+    "token": "euiDisplaySelector.resetButtonText",
+    "defString": "Reset to default",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 472,
+        "column": 27,
+        "index": 14023
+      },
+      "end": {
+        "line": 475,
+        "column": 3,
+        "index": 14103
       }
     },
     "filepath": "src/components/datagrid/controls/display_selector.tsx"

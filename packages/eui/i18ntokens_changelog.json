@@ -1,5 +1,42 @@
 [
   {
+    "version": "97.3.0",
+    "changes": [
+      {
+        "token": "euiDisplaySelector.rowHeightLabel",
+        "changeType": "modified",
+        "value": "Lines per row"
+      },
+      {
+        "token": "euiDisplaySelector.labelSingle",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiDisplaySelector.labelAuto",
+        "changeType": "modified",
+        "value": "Auto"
+      },
+      {
+        "token": "euiDisplaySelector.labelCustom",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiDisplaySelector.lineCountLabel",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiDisplaySelector.labelStatic",
+        "changeType": "added",
+        "value": "Static"
+      },
+      {
+        "token": "euiDisplaySelector.labelMax",
+        "changeType": "added",
+        "value": "Max"
+      }
+    ]
+  },
+  {
     "version": "97.0.0",
     "changes": [
       {
