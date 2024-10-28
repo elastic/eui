@@ -39,7 +39,7 @@ import {
 export const brand_colors: _EuiThemeBrandColors = {
   primary: '#07C',
   accent: '#F04E98',
-  accentSecondary: '#F04E98',
+  accentSecondary: '#00BFB3',
   success: '#00BFB3',
   warning: '#FEC514',
   danger: '#BD271E',
@@ -54,7 +54,7 @@ export const brand_text_colors: _EuiThemeBrandTextColors = {
 
   textPrimary: computed(makeHighContrastColor('colors.primary')),
   textAccent: computed(makeHighContrastColor('colors.accent')),
-  textAccentSecondary: computed(makeHighContrastColor('colors.accent')),
+  textAccentSecondary: computed(makeHighContrastColor('colors.success')),
   textSuccess: computed(makeHighContrastColor('colors.success')),
   textWarning: computed(makeHighContrastColor('colors.warning')),
   textDanger: computed(makeHighContrastColor('colors.danger')),
@@ -107,8 +107,8 @@ export const background_colors: _EuiThemeBackgroundColors = {
     ['colors.accent']
   ),
   backgroundBaseAccentSecondary: computed(
-    ([accent]) => tint(accent, 0.9),
-    ['colors.accent']
+    ([success]) => tint(success, 0.9),
+    ['colors.success']
   ),
   backgroundBaseSuccess: computed(
     ([success]) => tint(success, 0.9),
@@ -171,8 +171,8 @@ export const background_colors: _EuiThemeBackgroundColors = {
     ['colors.accent']
   ),
   backgroundLightAccentSecondary: computed(
-    ([accent]) => tint(accent, 0.8),
-    ['colors.accent']
+    ([success]) => tint(success, 0.8),
+    ['colors.success']
   ),
   backgroundLightSuccess: computed(
     ([success]) => tint(success, 0.8),
@@ -197,8 +197,8 @@ export const background_colors: _EuiThemeBackgroundColors = {
     ['colors.accent']
   ),
   backgroundFilledAccentSecondary: computed(
-    ([accent]) => tint(accent, 0.3),
-    ['colors.accent']
+    ([success]) => tint(success, 0.3),
+    ['colors.success']
   ),
   backgroundFilledSuccess: computed(
     ([success]) => tint(success, 0.3),
@@ -224,8 +224,8 @@ export const transparent_background_colors: _EuiThemeTransparentBackgroundColors
       ['colors.accent']
     ),
     backgroundTransparentAccentSecondary: computed(
-      ([accent]) => transparentize(accent, 0.1),
-      ['colors.accent']
+      ([success]) => transparentize(success, 0.1),
+      ['colors.success']
     ),
     backgroundTransparentSuccess: computed(
       ([success]) => transparentize(success, 0.1),
@@ -259,8 +259,8 @@ export const border_colors: _EuiThemeBorderColors = {
     ['colors.accent']
   ),
   borderBaseAccentSecondary: computed(
-    ([accent]) => tint(accent, 0.6),
-    ['colors.accent']
+    ([success]) => tint(success, 0.6),
+    ['colors.success']
   ),
   borderBaseSuccess: computed(
     ([success]) => tint(success, 0.6),
@@ -354,8 +354,8 @@ export const dark_background_colors: _EuiThemeBackgroundColors = {
     ['colors.accent']
   ),
   backgroundBaseAccentSecondary: computed(
-    ([accent]) => shade(accent, 0.8),
-    ['colors.accent']
+    ([success]) => shade(success, 0.8),
+    ['colors.success']
   ),
   backgroundBaseSuccess: computed(
     ([success]) => shade(success, 0.8),
@@ -418,8 +418,8 @@ export const dark_background_colors: _EuiThemeBackgroundColors = {
     ['colors.accent']
   ),
   backgroundLightAccentSecondary: computed(
-    ([accent]) => shade(accent, 0.7),
-    ['colors.accent']
+    ([success]) => shade(success, 0.7),
+    ['colors.success']
   ),
   backgroundLightSuccess: computed(
     ([success]) => shade(success, 0.7),
@@ -441,8 +441,8 @@ export const dark_background_colors: _EuiThemeBackgroundColors = {
   backgroundFilledPrimary: computed(([primary]) => primary, ['colors.primary']),
   backgroundFilledAccent: computed(([accent]) => accent, ['colors.accent']),
   backgroundFilledAccentSecondary: computed(
-    ([accent]) => accent,
-    ['colors.accent']
+    ([success]) => success,
+    ['colors.success']
   ),
   backgroundFilledSuccess: computed(([success]) => success, ['colors.success']),
   backgroundFilledWarning: computed(([warning]) => warning, ['colors.warning']),
@@ -469,8 +469,8 @@ export const dark_border_colors: _EuiThemeBorderColors = {
     ['colors.accent']
   ),
   borderBaseAccentSecondary: computed(
-    ([accent]) => shade(accent, 0.6),
-    ['colors.accent']
+    ([success]) => shade(success, 0.6),
+    ['colors.success']
   ),
   borderBaseSuccess: computed(
     ([success]) => shade(success, 0.6),
@@ -532,7 +532,7 @@ export const dark_colors_ams: _EuiThemeColorsMode = {
   // Brand
   primary: '#36A2EF',
   accent: '#F68FBE',
-  accentSecondary: '#F68FBE',
+  accentSecondary: '#7DDED8',
   success: '#7DDED8',
   warning: '#F3D371',
   danger: '#F86B63',
