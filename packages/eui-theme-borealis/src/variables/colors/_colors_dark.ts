@@ -141,10 +141,10 @@ export const dark_border_colors: _EuiThemeBorderColors = {
   borderBaseWarning: SEMANTIC_COLORS.warning120,
   borderBaseDanger: SEMANTIC_COLORS.danger120,
 
-  borderBasePlain: SEMANTIC_COLORS.shade120,
-  borderBaseSubdued: SEMANTIC_COLORS.shade130,
+  borderBasePlain: SEMANTIC_COLORS.shade110,
+  borderBaseSubdued: SEMANTIC_COLORS.shade120,
   borderBaseDisabled: SEMANTIC_COLORS.shade120,
-  borderBaseFloating: SEMANTIC_COLORS.shade130,
+  borderBaseFloating: SEMANTIC_COLORS.shade120,
 
   borderBaseFormsColorSwatch: PRIMITIVE_COLORS.transparent.white['30'],
   borderBaseFormsControl: SEMANTIC_COLORS.shade80,
