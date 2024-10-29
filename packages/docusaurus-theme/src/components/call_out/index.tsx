@@ -43,6 +43,8 @@ const getStyles = (theme: UseEuiTheme, variant: VARIANTS) => {
 
   return {
     note: css`
+      margin-block-start: var(--eui-theme-content-vertical-spacing);
+
       &:not(:last-child) {
         margin-block-end: ${euiTheme.size.xl};
       }
