@@ -89,9 +89,7 @@ export default () => (
 
 Images can be added in place of, or in conjuction with, icons. Just pass a url into the `image` prop and it will expand to the edges of the card.
 
-:::note Make sure that all images are the same proportions when used in a singular row.
-
-Make sure that all images are the **same proportions** when used in a singular row.
+:::tip Make sure that all images are the **same proportions** when used in a singular row.
 
 Also, when passing an **element** to the `image` prop that consists solely of inline elements or does not contain an`<img />` element, each element will require a style of `width: 100%`.
 
@@ -293,10 +291,8 @@ export default () => (
 
 When you have a list of cards that can be selected but **do not navigate anywhere**, you can add the `selectable` prop. The prop is an object that extends **EuiButtonEmpty**. It will apply the button as seen below, and passing `selectable.isSelected=true` will alter the styles of the card and button to look selected.
 
-:::warning
-
+:::tip
 When providing an extra link to more details or such, be sure to stop event propagation from also selecting the card.
-
 :::
 
 ```tsx interactive
