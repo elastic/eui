@@ -9,22 +9,11 @@ id: tabular_content_data_grid_advanced
 
 For advanced use cases, and particularly for data grids that manage associated modals/flyouts and need to manually control their grid cell popovers & focus states, we expose certain internal methods via the `ref` prop of **EuiDataGrid**. These methods are:
 
-*   `setIsFullScreen(isFullScreen)` - controls the fullscreen state of the data grid. Accepts a true/false boolean flag.
-
-*   `setFocusedCell({ rowIndex, colIndex })` - focuses the specified cell in the grid.
-
-    :::warning Using this method is an accessibility requirement if your data grid toggles a modal or flyout.
-
-
-
-
-    Your modal or flyout should restore focus into the grid on close to prevent keyboard or screen reader users from being stranded.
-
-    :::
-
-*   `openCellPopover({ rowIndex, colIndex })` - opens the specified cell's popover contents.
-
-*   `closeCellPopover()` - closes any currently open cell popover.
+* `setIsFullScreen(isFullScreen)` - controls the fullscreen state of the data grid. Accepts a true/false boolean flag.
+* `setFocusedCell({ rowIndex, colIndex })` - focuses the specified cell in the grid.
+  * Using this method is an **accessibility requirement** if your data grid toggles a modal or flyout. Your modal or flyout should restore focus into the grid on close to prevent keyboard or screen reader users from being stranded.
+* `openCellPopover({ rowIndex, colIndex })` - opens the specified cell's popover contents.
+* `closeCellPopover()` - closes any currently open cell popover.
 
 
 :::note Handling cell location
