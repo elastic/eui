@@ -240,10 +240,8 @@ export default () => {
 
 Use **EuiContextMenuPanel** for simple, non-nested context menus. The below pagination example has no nesting and no title.
 
-:::note The selected context menu item should have an aria-current attribute
-
-**aria-current** tells screen readers which item is selected. Add an `aria-current="true"` attribute to `EuiContextMenuItem` when a context menu item is clicked or receives a keypress.
-
+:::note Accessibility recommendation
+The selected context menu item should receive the `aria-current="true"` attribute, which tells screen readers which item is selected.
 :::
 
 ```tsx interactive

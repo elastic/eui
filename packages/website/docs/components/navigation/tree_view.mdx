@@ -11,10 +11,8 @@ id: navigation_tree_view
 
 Each node requires a `label` and a unique `id`. The `icon` prop accepts any [icon or token](/docs/display/icons). You can also specify a different icon for the open state with the `iconWhenExpanded` prop. Use the nodes' `children` prop to nest more nodes.
 
-:::warning
-
-For accessibility, it is required to provide a descriptive `aria-label` for each tree view. This component also builds in keyboard navigation allowing users to traverse the tree using the arrow keys, spacebar, and return.
-
+:::note Accessibility recommendation
+Provide a descriptive `aria-label` for each tree view. This component also builds in keyboard navigation allowing users to traverse the tree using the arrow keys, spacebar, and return.
 :::
 
 ```tsx interactive

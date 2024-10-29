@@ -155,10 +155,8 @@ export default () => (
 
 Footers can contain any number of elements and will always align to the bottom of the card. However, if you supply a footer containing a **EuiButton** you **must not** also give it an `onClick`.
 
-:::warning When using footers to display generic "Go" buttons, you must provide an aria-label to the button itself that refers back to the title of the card.
-
+:::note Accessibility requirement
 When using footers to display generic "Go" buttons, you must provide an `aria-label` to the button itself that refers back to the title of the card.
-
 :::
 
 ```tsx interactive
@@ -422,10 +420,8 @@ export default () => {
 };
 ```
 
-:::warning When used as a radio group, you must provide a fieldset with a legend for accessibility.
-
+:::note Accessibility requirement
 When used as a radio group, you must provide a `fieldset` with a `legend` for accessibility.
-
 :::
 
 ```tsx interactive

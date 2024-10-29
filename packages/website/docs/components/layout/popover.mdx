@@ -1041,10 +1041,8 @@ export default () => {
 
 If you want a specific child element of the popover to immediately gain focus when the popover is open, use the `initialFocus` prop to pass either a selector or DOM node.
 
-:::warning
-
+:::note Accessibility recommendation
 It can be jarring for keyboard and screen reader users to immediately land on an element with no other context. To alleviate this, ensure that your initial focus target makes sense alone or is the primary goal of the popover.
-
 :::
 
 ```tsx interactive
@@ -1166,10 +1164,8 @@ export default () => {
 
 If the popover should not trap focus within itself, then you can remove it with `ownFocus={false}`.
 
-:::warning Removing ownFocus makes it difficult for keyboard-only and screen reader users to navigate to and from your popover.
-
+:::warning Accessibility warning
 Removing `ownFocus` makes it difficult for keyboard-only and screen reader users to navigate to and from your popover.
-
 :::
 
 ```tsx interactive
