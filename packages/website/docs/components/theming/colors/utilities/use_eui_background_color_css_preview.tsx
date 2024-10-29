@@ -1,5 +1,4 @@
-import { useEuiBackgroundColorCSS, useEuiPaddingCSS } from '@elastic/eui';
-import { useEuiBackgroundColor } from '@elastic/eui/src/global_styling/mixins/_color';
+import { useEuiBackgroundColorCSS, useEuiPaddingCSS, useEuiBackgroundColor } from '@elastic/eui';
 
 export const UseEuiBackgroundColorCSSPreview = () => {
   const accentStyles = useEuiBackgroundColorCSS().accent;

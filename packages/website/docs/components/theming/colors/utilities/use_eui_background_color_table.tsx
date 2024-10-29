@@ -5,9 +5,9 @@ import {
   EuiSpacer,
   EuiButtonGroup,
   useEuiTheme,
+  euiBackgroundColor,
 } from '@elastic/eui';
 import { ColorsTable } from '../colors_table';
-import { euiBackgroundColor } from '@elastic/eui/src/global_styling/mixins/_color';
 
 const colors = [
   'transparent',
