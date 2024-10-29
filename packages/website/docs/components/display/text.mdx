@@ -5,15 +5,11 @@ id: display_text
 
 # Text
 
-**EuiText** is a generic catchall wrapper that will apply our standard typography styling and spacing to naked HTML. Because of its forced style it **only accepts raw XHTML**.
+**EuiText** is a generic catchall wrapper that will apply our standard typography styling and spacing to naked HTML. Because of its forced styles, it **only accepts raw XHTML**.
 
-:::note When using EuiText, keep in mind:
-
-When using **EuiText**, keep in mind:
-
+:::warning
 *   All your **XHTML** elements should be direct descendants of **EuiText**. You should avoid wrapping them in a `div` or `span`. This will ensure styles are applied correctly.
 *   Avoid nesting React components which would break their styling.
-
 :::
 
 **EuiText** can ensure proper line-length for readability by setting a `max-width` on the entire component. To add the max-width setting, set `grow=false`.
