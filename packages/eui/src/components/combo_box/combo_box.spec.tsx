@@ -70,6 +70,31 @@ describe('EuiComboBox', () => {
   });
 
   describe('keyboard UX', () => {
+    it('allows the enter key to delete items and clear selections', () => {
+      cy.realMount(
+        <StatefulComboBox
+          data-test-subj="combobox"
+          selectedOptions={[{ label: 'Item 1' }, { label: 'Item 2' }]}
+          options={defaultOptions}
+        />
+      );
+      cy.get('.euiComboBoxPill').should('have.length', 2);
+
+      cy.realPress('Tab');
+      cy.focused().should(
+        'have.attr',
+        'aria-label',
+        'Remove Item 1 from selection in this group'
+      );
+      cy.realPress('Enter');
+      cy.get('.euiComboBoxPill').should('have.length', 1);
+
+      cy.realPress('Tab');
+      cy.focused().should('have.attr', 'data-test-subj', 'comboBoxClearButton');
+      cy.realPress('Enter');
+      cy.get('.euiComboBoxPill').should('have.length', 0);
+    });
+
     describe('backspace to delete last pill', () => {
       it('does not delete the last pill if there is search text', () => {
         cy.realMount(<StatefulComboBox />);
