@@ -1,6 +1,5 @@
-import { useEuiBackgroundColor } from '@elastic/eui/src/global_styling/mixins/_color';
+import { useEuiBackgroundColor, useEuiPaddingCSS } from '@elastic/eui';
 import { css } from '@emotion/react';
-import { useEuiPaddingCSS } from '@elastic/eui/src/global_styling/mixins/_padding';
 
 export const UseEuiBackgroundColorPreview = () => {
   return (
