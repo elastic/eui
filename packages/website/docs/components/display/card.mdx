@@ -41,10 +41,8 @@ export default () => <EuiFlexGroup gutterSize="l">{cardNodes}</EuiFlexGroup>;
 
 Most of the time, cards should read from top to bottom (vertical). However, in some cases, you may want the icon to be to the left of the content. In this case, add the prop `layout="horizontal"`. Works best when the icon is size `xl`.
 
-:::danger Horizontal layouts do not work with images, footers, or textAlign. Therefore, these properties will be ignored.
-
+:::danger
 Horizontal layouts **do not** work with images, footers, or `textAlign`. Therefore, these properties will be ignored.
-
 :::
 
 ```tsx interactive
