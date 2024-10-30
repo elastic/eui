@@ -31,6 +31,9 @@ export const euiThemeBorealis: EuiThemeShape = {
   levels,
   focus,
   components,
+  flags: {
+    hasGlobalFocusColor: true,
+  },
 };
 
 export const EuiThemeBorealis = buildTheme(
