@@ -41,6 +41,7 @@ export const euiFormVariables = (euiThemeContext: UseEuiTheme) => {
 
   const colors = {
     textColor: euiTheme.colors.textParagraph,
+    textColorDisabled: euiTheme.components.forms.colorDisabled,
     backgroundColor: backgroundColor,
     backgroundDisabledColor: euiTheme.components.forms.backgroundDisabled,
     backgroundReadOnlyColor: euiTheme.components.forms.backgroundReadOnly,
@@ -230,17 +231,26 @@ export const euiFormControlInvalidStyles = ({ euiTheme }: UseEuiTheme) => `
 
 export const euiFormControlDisabledStyles = (euiThemeContext: UseEuiTheme) => {
   const form = euiFormVariables(euiThemeContext);
+  const { euiTheme } = euiThemeContext;
+  const hasGlobalFocusColor = euiTheme.flags?.hasGlobalFocusColor;
+
+  const border =
+    hasGlobalFocusColor &&
+    `
+    box-shadow: inset 0 0 0 ${euiTheme.border.width.thin} ${euiTheme.colors.borderBaseDisabled};
+  `.trim();
 
   return `
-    color: ${form.controlDisabledColor};
+    color: ${form.textColorDisabled};
     /* Required for Safari */
-    -webkit-text-fill-color: ${form.controlDisabledColor};
+    -webkit-text-fill-color: ${form.textColorDisabled};
     background-color: ${form.backgroundDisabledColor};
+    ${border}
     cursor: not-allowed;
     --euiFormControlStateColor: transparent;
 
     ${euiPlaceholderPerBrowser(`
-      color: ${form.controlDisabledColor};
+      color: ${form.textColorDisabled};
       opacity: 1;
     `)}
   `;
@@ -317,7 +327,7 @@ export const euiFormCustomControlVariables = (euiThemeContext: UseEuiTheme) => {
     selected: euiTheme.colors.primary,
     selectedBorder: euiTheme.components.forms.controlBorderSelected,
     selectedIcon: euiTheme.colors.emptyShade,
-    disabled: euiTheme.components.forms.colorDisabled,
+    disabled: euiTheme.components.forms.controlBackgroundDisabled,
     disabledBorder: euiTheme.components.forms.controlBorderDisabled,
     disabledIcon: euiTheme.components.forms.iconDisabled,
     disabledLabel: euiTheme.colors.disabledText, // Lighter than formVars.disabledColor because it typically doesn't have as dark a background
