@@ -57,6 +57,11 @@ export const euiButtonGroupButtonStyles = (euiThemeContext: UseEuiTheme) => {
       ${logicalCSS('min-width', 0)}
       flex-shrink: 1;
       flex-grow: 0;
+      z-index: 0;
+
+      &:focus-visible {
+        z-index: 1;
+      }
 
       ${euiCanAnimate} {
         transition: background-color ${euiTheme.animation.normal} ease-in-out,
@@ -74,7 +79,11 @@ export const euiButtonGroupButtonStyles = (euiThemeContext: UseEuiTheme) => {
         }
 
         &:focus-visible {
-          ${euiOutline(euiThemeContext, 'inset', euiTheme.colors.fullShade)}
+          ${euiOutline(
+            euiThemeContext,
+            'inset',
+            euiTheme.components.buttonGroupFocusColor
+          )}
         }
       `,
       get borders() {
