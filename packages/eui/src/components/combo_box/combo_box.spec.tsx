@@ -21,6 +21,31 @@ import {
 } from './index';
 
 describe('EuiComboBox', () => {
+  const defaultOptions: Array<EuiComboBoxOptionOption<{}>> = [
+    { label: 'Item 1' },
+    { label: 'Item 2' },
+    { label: 'Item 3' },
+  ];
+  const StatefulComboBox: FunctionComponent<Partial<EuiComboBoxProps<{}>>> = ({
+    options = defaultOptions,
+    selectedOptions: _selectedOptions = [],
+    ...rest
+  }) => {
+    const [selectedOptions, setSelected] =
+      useState<typeof options>(_selectedOptions);
+    const onChange = (selectedOptions: typeof options) => {
+      setSelected(selectedOptions);
+    };
+    return (
+      <EuiComboBox
+        options={options}
+        selectedOptions={selectedOptions}
+        {...rest}
+        onChange={onChange}
+      />
+    );
+  };
+
   describe('focus management', () => {
     it('keeps focus on the input box when clicking a disabled item', () => {
       cy.realMount(
@@ -41,6 +66,116 @@ describe('EuiComboBox', () => {
       cy.get('span').contains('Item 2').realClick();
 
       cy.focused().should('have.attr', 'data-test-subj', 'comboBoxSearchInput');
+    });
+  });
+
+  describe('keyboard UX', () => {
+    it('allows the enter key to delete items and clear selections', () => {
+      cy.realMount(
+        <StatefulComboBox
+          data-test-subj="combobox"
+          selectedOptions={[{ label: 'Item 1' }, { label: 'Item 2' }]}
+          options={defaultOptions}
+        />
+      );
+      cy.get('.euiComboBoxPill').should('have.length', 2);
+
+      cy.realPress('Tab');
+      cy.focused().should(
+        'have.attr',
+        'aria-label',
+        'Remove Item 1 from selection in this group'
+      );
+      cy.realPress('Enter');
+      cy.get('.euiComboBoxPill').should('have.length', 1);
+
+      cy.realPress('Tab');
+      cy.focused().should('have.attr', 'data-test-subj', 'comboBoxClearButton');
+      cy.realPress('Enter');
+      cy.get('.euiComboBoxPill').should('have.length', 0);
+    });
+
+    describe('backspace to delete last pill', () => {
+      it('does not delete the last pill if there is search text', () => {
+        cy.realMount(<StatefulComboBox />);
+        cy.get('[data-test-subj=comboBoxSearchInput]').realClick();
+        cy.realPress('{downarrow}');
+        cy.realPress('Enter');
+        cy.realPress('{downarrow}');
+        cy.realPress('Enter');
+        cy.get('.euiComboBoxPill').should('have.length', 2);
+
+        cy.get('[data-test-subj=comboBoxSearchInput]').type('test');
+        cy.get('[data-test-subj=comboBoxSearchInput]').realPress('Backspace');
+
+        cy.get('[data-test-subj=comboBoxSearchInput]')
+          .invoke('val')
+          .should('equal', 'tes');
+        cy.get('.euiComboBoxPill').should('have.length', 2);
+      });
+
+      it('does not delete the last pill if the input is not active when backspace is pressed', () => {
+        cy.realMount(<StatefulComboBox />);
+        cy.get('[data-test-subj=comboBoxSearchInput]').realClick();
+        cy.realPress('{downarrow}');
+        cy.realPress('Enter');
+        cy.get('[data-test-subj=comboBoxSearchInput]').type('test');
+        cy.realPress('Escape');
+        cy.get('.euiComboBoxPill').should('have.length', 1);
+
+        cy.realPress(['Shift', 'Tab']); // Should be focused on the first pill's X button
+        cy.realPress('Backspace');
+        cy.get('.euiComboBoxPill').should('have.length', 1);
+
+        cy.repeatRealPress('Tab', 2); // Should be focused on the clear button
+        cy.realPress('Backspace');
+        cy.get('.euiComboBoxPill').should('have.length', 1);
+      });
+
+      it('deletes the last pill added when backspace on the input is pressed ', () => {
+        cy.realMount(<StatefulComboBox />);
+        cy.get('[data-test-subj=comboBoxSearchInput]').realClick();
+        cy.realPress('{downarrow}');
+        cy.realPress('Enter');
+        cy.realPress('{downarrow}');
+        cy.realPress('Enter');
+        cy.get('.euiComboBoxPill').should('have.length', 2);
+
+        cy.get('[data-test-subj=comboBoxSearchInput]').realPress('Backspace');
+        cy.get('.euiComboBoxPill').should('have.length', 1);
+      });
+
+      it('`asPlainText`: deletes the selection and only a single character', () => {
+        cy.realMount(
+          // @ts-ignore - not totally sure why TS is kicking up a fuss here
+          <StatefulComboBox singleSelection={{ asPlainText: true }} />
+        );
+        cy.get('[data-test-subj=comboBoxSearchInput]').realClick();
+        cy.realPress('{downarrow}');
+        cy.realPress('Enter');
+        cy.get('[data-test-subj=comboBoxSearchInput]').should(
+          'have.value',
+          'Item 1'
+        );
+        cy.get('[data-test-subj="comboBoxClearButton"]').should('exist'); // indicates selection
+
+        cy.get('[data-test-subj=comboBoxSearchInput]').realPress('Backspace');
+        cy.get('[data-test-subj="comboBoxClearButton"]').should('not.exist'); // selection removed
+        cy.get('[data-test-subj=comboBoxSearchInput]').should(
+          'have.value',
+          'Item '
+        );
+      });
+
+      it('opens up the selection list again after deleting the active single selection ', () => {
+        cy.realMount(<StatefulComboBox singleSelection />);
+        cy.get('[data-test-subj=comboBoxSearchInput]').realClick();
+        cy.realPress('{downarrow}');
+        cy.realPress('Enter');
+
+        cy.realPress('Backspace');
+        cy.get('[data-test-subj=comboBoxOptionsList]').should('have.length', 1);
+      });
     });
   });
 
@@ -221,28 +356,6 @@ describe('EuiComboBox', () => {
   });
 
   describe('selection', () => {
-    const defaultOptions: Array<EuiComboBoxOptionOption<{}>> = [
-      { label: 'Item 1' },
-      { label: 'Item 2' },
-      { label: 'Item 3' },
-    ];
-    const StatefulComboBox: FunctionComponent<
-      Partial<EuiComboBoxProps<{}>>
-    > = ({ options = defaultOptions, ...rest }) => {
-      const [selectedOptions, setSelected] = useState<typeof options>([]);
-      const onChange = (selectedOptions: typeof options) => {
-        setSelected(selectedOptions);
-      };
-      return (
-        <EuiComboBox
-          options={options}
-          selectedOptions={selectedOptions}
-          {...rest}
-          onChange={onChange}
-        />
-      );
-    };
-
     describe('delimiter', () => {
       it('selects the option when the delimiter option is typed into the search', () => {
         cy.mount(<StatefulComboBox delimiter="," />);
@@ -341,89 +454,6 @@ describe('EuiComboBox', () => {
           cy.get('[data-test-subj="comboBoxSearchInput"]').click();
           cy.get('[data-test-subj="comboBoxOptionsList"]').should('be.visible');
         });
-      });
-    });
-
-    describe('backspace to delete last pill', () => {
-      it('does not delete the last pill if there is search text', () => {
-        cy.realMount(<StatefulComboBox />);
-        cy.get('[data-test-subj=comboBoxSearchInput]').realClick();
-        cy.realPress('{downarrow}');
-        cy.realPress('Enter');
-        cy.realPress('{downarrow}');
-        cy.realPress('Enter');
-        cy.get('.euiComboBoxPill').should('have.length', 2);
-
-        cy.get('[data-test-subj=comboBoxSearchInput]').type('test');
-        cy.get('[data-test-subj=comboBoxSearchInput]').realPress('Backspace');
-
-        cy.get('[data-test-subj=comboBoxSearchInput]')
-          .invoke('val')
-          .should('equal', 'tes');
-        cy.get('.euiComboBoxPill').should('have.length', 2);
-      });
-
-      it('does not delete the last pill if the input is not active when backspace is pressed', () => {
-        cy.realMount(<StatefulComboBox />);
-        cy.get('[data-test-subj=comboBoxSearchInput]').realClick();
-        cy.realPress('{downarrow}');
-        cy.realPress('Enter');
-        cy.get('[data-test-subj=comboBoxSearchInput]').type('test');
-        cy.realPress('Escape');
-        cy.get('.euiComboBoxPill').should('have.length', 1);
-
-        cy.realPress(['Shift', 'Tab']); // Should be focused on the first pill's X button
-        cy.realPress('Backspace');
-        cy.get('.euiComboBoxPill').should('have.length', 1);
-
-        cy.repeatRealPress('Tab', 2); // Should be focused on the clear button
-        cy.realPress('Backspace');
-        cy.get('.euiComboBoxPill').should('have.length', 1);
-      });
-
-      it('deletes the last pill added when backspace on the input is pressed ', () => {
-        cy.realMount(<StatefulComboBox />);
-        cy.get('[data-test-subj=comboBoxSearchInput]').realClick();
-        cy.realPress('{downarrow}');
-        cy.realPress('Enter');
-        cy.realPress('{downarrow}');
-        cy.realPress('Enter');
-        cy.get('.euiComboBoxPill').should('have.length', 2);
-
-        cy.get('[data-test-subj=comboBoxSearchInput]').realPress('Backspace');
-        cy.get('.euiComboBoxPill').should('have.length', 1);
-      });
-
-      it('`asPlainText`: deletes the selection and only a single character', () => {
-        cy.realMount(
-          // @ts-ignore - not totally sure why TS is kicking up a fuss here
-          <StatefulComboBox singleSelection={{ asPlainText: true }} />
-        );
-        cy.get('[data-test-subj=comboBoxSearchInput]').realClick();
-        cy.realPress('{downarrow}');
-        cy.realPress('Enter');
-        cy.get('[data-test-subj=comboBoxSearchInput]').should(
-          'have.value',
-          'Item 1'
-        );
-        cy.get('[data-test-subj="comboBoxClearButton"]').should('exist'); // indicates selection
-
-        cy.get('[data-test-subj=comboBoxSearchInput]').realPress('Backspace');
-        cy.get('[data-test-subj="comboBoxClearButton"]').should('not.exist'); // selection removed
-        cy.get('[data-test-subj=comboBoxSearchInput]').should(
-          'have.value',
-          'Item '
-        );
-      });
-
-      it('opens up the selection list again after deleting the active single selection ', () => {
-        cy.realMount(<StatefulComboBox singleSelection />);
-        cy.get('[data-test-subj=comboBoxSearchInput]').realClick();
-        cy.realPress('{downarrow}');
-        cy.realPress('Enter');
-
-        cy.realPress('Backspace');
-        cy.get('[data-test-subj=comboBoxOptionsList]').should('have.length', 1);
       });
     });
   });
