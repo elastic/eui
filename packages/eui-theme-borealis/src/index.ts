@@ -33,6 +33,7 @@ export const euiThemeBorealis: EuiThemeShape = {
   components,
   flags: {
     hasGlobalFocusColor: true,
+    hasVisColorAdjustment: false,
   },
 };
 
