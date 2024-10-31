@@ -14,7 +14,7 @@ import { shouldRenderCustomStyles } from '../../../test/internal';
 
 import { EuiButtonEmpty, SIZES, FLUSH_TYPES } from './button_empty';
 import { ICON_SIDES } from '../button_display/_button_display_content';
-import { BUTTON_COLORS } from '../../../themes/amsterdam/global_styling/mixins';
+import { BUTTON_COLORS } from '../../../global_styling/mixins';
 
 describe('EuiButtonEmpty', () => {
   shouldRenderCustomStyles(<EuiButtonEmpty>Content</EuiButtonEmpty>, {
