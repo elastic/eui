@@ -14,16 +14,16 @@ import {
   type _EuiThemeFontWeights,
 } from '@elastic/eui-theme-common';
 
-// Typographic scale -- loosely based on Major Third (1.250)
+// Typographic scale -- loosely based on Major Third (1.200)
 export const fontScale: _EuiThemeFontScales = {
-  xxxs: 0.5625,
-  xxs: 0.6875,
-  xs: 0.75,
-  s: 0.875,
-  m: 1,
-  l: 1.375,
-  xl: 1.6875,
-  xxl: 2.125,
+  xxxs: 0.5625, // 9px
+  xxs: 0.6875, // 11px
+  xs: 0.75, // 12px
+  s: 0.875, // 14px
+  m: 1, // 16px
+  l: 1.25, // 20px
+  xl: 1.5, // 24px
+  xxl: 1.875, // 30px
 };
 
 // Families & base font settings
@@ -43,9 +43,9 @@ export const fontBase: _EuiThemeFontBase = {
 export const fontWeight: _EuiThemeFontWeights = {
   light: 300,
   regular: 400,
-  medium: 500,
-  semiBold: 600,
-  bold: 700,
+  medium: 450,
+  semiBold: 500,
+  bold: 600,
 };
 
 export const font: _EuiThemeFont = {
