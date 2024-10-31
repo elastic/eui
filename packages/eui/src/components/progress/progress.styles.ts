@@ -180,6 +180,9 @@ export const euiProgressStyles = (
   accent: css`
     ${nativeVsIndeterminateColor(euiTheme.colors.accent, isNative)}
   `,
+  accentSecondary: css`
+    ${nativeVsIndeterminateColor(euiTheme.colors.accentSecondary, isNative)}
+  `,
   vis0: css`
     ${nativeVsIndeterminateColor(visColors[0], isNative)}
   `,
@@ -249,22 +252,25 @@ export const euiProgressValueTextStyles = ({ euiTheme }: UseEuiTheme) => ({
   `,
   // Colors
   primary: css`
-    color: ${euiTheme.colors.primaryText};
+    color: ${euiTheme.colors.textPrimary};
   `,
   success: css`
-    color: ${euiTheme.colors.successText};
+    color: ${euiTheme.colors.textSuccess};
   `,
   warning: css`
-    color: ${euiTheme.colors.warningText};
+    color: ${euiTheme.colors.textWarning};
   `,
   danger: css`
-    color: ${euiTheme.colors.dangerText};
+    color: ${euiTheme.colors.textDanger};
   `,
   subdued: css`
-    color: ${euiTheme.colors.subduedText};
+    color: ${euiTheme.colors.textSubdued};
   `,
   accent: css`
-    color: ${euiTheme.colors.accentText};
+    color: ${euiTheme.colors.textAccent};
+  `,
+  accentSecondary: css`
+    color: ${euiTheme.colors.textAccentSecondary};
   `,
   vis0: css`
     color: ${makeHighContrastColor(visColors[0])(euiTheme)};

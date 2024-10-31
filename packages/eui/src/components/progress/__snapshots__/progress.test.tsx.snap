@@ -6,6 +6,12 @@ exports[`EuiProgress color accent is rendered 1`] = `
 />
 `;
 
+exports[`EuiProgress color accentSecondary is rendered 1`] = `
+<div
+  class="euiProgress emotion-euiProgress-indeterminate-m-static-accentSecondary"
+/>
+`;
+
 exports[`EuiProgress color danger is rendered 1`] = `
 <div
   class="euiProgress emotion-euiProgress-indeterminate-m-static-danger"

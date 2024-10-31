@@ -13,7 +13,10 @@ import {
 } from '@elastic/eui-theme-common';
 
 export const border: _EuiThemeBorder = {
-  color: computed(([lightShade]) => lightShade, ['colors.lightShade']),
+  color: computed(
+    ([borderBasePlain]) => borderBasePlain,
+    ['colors.borderBasePlain']
+  ),
   width: {
     thin: '1px',
     thick: '2px',

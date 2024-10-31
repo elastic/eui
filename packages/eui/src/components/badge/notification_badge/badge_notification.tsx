@@ -14,7 +14,12 @@ import { CommonProps } from '../../common';
 
 import { euiNotificationBadgeStyles } from './badge_notification.styles';
 
-export const COLORS = ['accent', 'subdued', 'success'] as const;
+export const COLORS = [
+  'accent',
+  'accentSecondary',
+  'subdued',
+  'success',
+] as const;
 export type BadgeNotificationColor = (typeof COLORS)[number];
 
 export const SIZES = ['s', 'm'] as const;

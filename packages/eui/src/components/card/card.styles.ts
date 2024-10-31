@@ -15,7 +15,7 @@ import {
   logicalTextAlignCSS,
 } from '../../global_styling';
 import { UseEuiTheme } from '../../services';
-import { euiButtonColor } from '../../themes/amsterdam/global_styling/mixins';
+import { euiButtonColor } from '../../global_styling/mixins';
 
 import { EuiCardProps } from './card';
 const paddingKey = 'm';

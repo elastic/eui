@@ -12,22 +12,23 @@ import {
   euiFontSize,
   logicalCSS,
   logicalShorthandCSS,
-  euiBackgroundColor,
   euiTextTruncate,
   euiTextBreakWord,
 } from '../../global_styling';
 import { UseEuiTheme } from '../../services';
-import { euiButtonColor } from '../../themes/amsterdam/global_styling/mixins/button';
+import { euiButtonColor } from '../../global_styling/mixins/_button';
 
 export const euiListGroupItemStyles = (euiThemeContext: UseEuiTheme) => {
   const euiTheme = euiThemeContext.euiTheme;
 
-  const primaryBgColor = euiBackgroundColor(euiThemeContext, 'primary', {
-    method: 'transparent',
-  });
-  const subduedBgColor = euiBackgroundColor(euiThemeContext, 'subdued', {
-    method: 'transparent',
-  });
+  const primaryBgColor =
+    euiTheme.components.listGroupItemBackgroundPrimaryActive;
+  const subduedBgColor =
+    euiTheme.components.listGroupItemBackgroundSubduedActive;
+
+  const backgroundHover = euiTheme.components.listGroupItemBackgroundHover;
+  const backgroundPrimaryHover =
+    euiTheme.components.listGroupItemBackgroundPrimaryHover;
 
   return {
     // Base
@@ -71,19 +72,19 @@ export const euiListGroupItemStyles = (euiThemeContext: UseEuiTheme) => {
         primary: css`
           &:hover,
           &:focus-within {
-            background-color: ${primaryBgColor};
+            background-color: ${backgroundPrimaryHover};
           }
         `,
         text: css`
           &:hover,
           &:focus-within {
-            background-color: ${subduedBgColor};
+            background-color: ${backgroundHover};
           }
         `,
         subdued: css`
           &:hover,
           &:focus-within {
-            background-color: ${subduedBgColor};
+            background-color: ${backgroundHover};
           }
         `,
       },

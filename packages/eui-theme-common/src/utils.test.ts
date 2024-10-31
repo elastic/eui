@@ -16,6 +16,7 @@ import {
   getComputed,
   buildTheme,
   mergeDeep,
+  getTokenName,
 } from './utils';
 
 describe('isInverseColorMode', () => {
@@ -275,5 +276,16 @@ describe('mergeDeep', () => {
     expect(
       mergeDeep({ a: 1, b: { c: { d: 3 } } }, { b: { c: { e: 5 } } })
     ).toEqual({ a: 1, b: { c: { d: 3, e: 5 } } });
+  });
+});
+
+describe('getTokenName', () => {
+  it('returns the correct token name', () => {
+    expect(getTokenName('backgroundBase', 'primary')).toEqual(
+      'backgroundBasePrimary'
+    );
+    expect(getTokenName('backgroundBase', 'primary', 'hovered')).toEqual(
+      'backgroundBasePrimaryHovered'
+    );
   });
 });
