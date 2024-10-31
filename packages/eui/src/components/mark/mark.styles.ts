@@ -7,19 +7,13 @@
  */
 
 import { css } from '@emotion/react';
-import { UseEuiTheme, transparentize } from '../../services';
+import { UseEuiTheme } from '../../services';
 import { euiScreenReaderOnly } from '../accessibility';
 
-export const euiMarkStyles = ({ euiTheme, colorMode }: UseEuiTheme) => {
-  // TODO: Was $euiFocusBackgroundColor
-  const transparency = { LIGHT: 0.1, DARK: 0.3 };
-
+export const euiMarkStyles = ({ euiTheme }: UseEuiTheme) => {
   return {
     euiMark: css`
-      background-color: ${transparentize(
-        euiTheme.colors.primary,
-        transparency[colorMode]
-      )};
+      background-color: ${euiTheme.components.markBackground};
       font-weight: ${euiTheme.font.weight.bold};
       /* Override the browser's black color.
          Can't use 'inherit' because the text to background color contrast may not be sufficient */

@@ -390,3 +390,20 @@ export const mergeDeep = (
 
   return target;
 };
+
+/**
+ * Returns token name string based on passed dynamic variants
+ * and additional prefix/suffix
+ */
+export const getTokenName = (
+  prefix: string,
+  variant: string,
+  suffix?: string
+) => {
+  const getCapitalized = (str: string) =>
+    str.charAt(0).toUpperCase() + str.slice(1);
+  const colorName = variant.charAt(0).toUpperCase() + variant.slice(1);
+  const _suffix = suffix ? getCapitalized(suffix) : '';
+
+  return `${prefix}${getCapitalized(colorName)}${_suffix}`;
+};

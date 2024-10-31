@@ -1,0 +1,211 @@
+/**
+ * contains primitive & semantic colors
+ * Temp. manually created file
+ * TODO: automatically generate scss variable files
+ */
+
+
+$euiColorWhite: #FFF !default;
+$euiColorBlack: #000 !default;
+$euiColorMutedBlack: #0E0F12 !default;
+$euiColorBlueBlack: #050F21 !default;
+
+$euiColorTransparentWhite0: 'transparent' !default;
+$euiColorTransparentWhite10: rgba(255, 255, 255, 0.06) !default;
+$euiColorTransparentWhite20: rgba(255, 255, 255, 0.10) !default;
+$euiColorTransparentWhite30: rgba(255, 255, 255, 0.16) !default;
+$euiColorTransparentWhite40: rgba(255, 255, 255, 0.22) !default;
+$euiColorTransparentWhite50: rgba(255, 255, 255, 0.28) !default;
+$euiColorTransparentWhite60: rgba(255, 255, 255, 0.34) !default;
+$euiColorTransparentWhite70: rgba(255, 255, 255, 0.42) !default;
+$euiColorTransparentWhite80: rgba(255, 255, 255, 0.50) !default;
+$euiColorTransparentWhite90: rgba(255, 255, 255, 0.58) !default;
+$euiColorTransparentWhite100: rgba(255, 255, 255, 0.66) !default;
+$euiColorTransparentWhite110: rgba(255, 255, 255, 0.74) !default;
+$euiColorTransparentWhite120: rgba(255, 255, 255, 0.8) !default;
+$euiColorTransparentWhite130: rgba(255, 255, 255, 0.84) !default;
+$euiColorTransparentWhite140: rgba(255, 255, 255, 0.88) !default;
+
+$euiColorTransparentMutedGrey10: rgba(54, 95, 178, 0.06) !default;
+$euiColorTransparentMutedGrey20: rgba(50, 88, 163, 0.10) !default;
+$euiColorTransparentMutedGrey30: rgba(44, 75, 138, 0.15) !default;
+$euiColorTransparentMutedGrey40: rgba(37, 60, 111, 0.19) !default;
+$euiColorTransparentMutedGrey50: rgba(31, 48, 84, 0.24) !default;
+$euiColorTransparentMutedGrey60: rgba(24, 35, 58, 0.32) !default;
+$euiColorTransparentMutedGrey70: rgba(18, 22, 32, 0.40) !default;
+$euiColorTransparentMutedGrey80: rgba(14, 15, 18, 0.50) !default;
+$euiColorTransparentMutedGrey90: rgba(14, 15, 18, 0.60) !default;
+$euiColorTransparentMutedGrey100: rgba(14, 15, 18, 0.68) !default;
+$euiColorTransparentMutedGrey110: rgba(14, 15, 18, 0.76) !default;
+$euiColorTransparentMutedGrey120: rgba(14, 15, 18, 0.84) !default;
+$euiColorTransparentMutedGrey130: rgba(14, 15, 18, 0.88) !default;
+$euiColorTransparentMutedGrey140: rgba(14, 15, 18, 0.92) !default;
+
+$euiColorTransparentBlueGrey10: rgba(54, 95, 178, 0.06) !default;
+$euiColorTransparentBlueGrey20: rgba(54, 95, 178, 0.10) !default;
+$euiColorTransparentBlueGrey30: rgba(54, 95, 178, 0.16) !default;
+$euiColorTransparentBlueGrey40: rgba(54, 95, 178, 0.22) !default;
+$euiColorTransparentBlueGrey50: rgba(47, 84, 158, 0.28) !default;
+$euiColorTransparentBlueGrey60: rgba(35, 65, 123, 0.36) !default;
+$euiColorTransparentBlueGrey70: rgba(24, 45, 88, 0.44) !default;
+$euiColorTransparentBlueGrey80: rgba(11, 25, 51, 0.52) !default;
+$euiColorTransparentBlueGrey90: rgba(5, 15, 33, 0.60) !default;
+$euiColorTransparentBlueGrey100: rgba(5, 15, 33, 0.68) !default;
+$euiColorTransparentBlueGrey110: rgba(5, 15, 33, 0.76) !default;
+$euiColorTransparentBlueGrey120: rgba(5, 15, 33, 0.84) !default;
+$euiColorTransparentBlueGrey130: rgba(5, 15, 33, 0.88) !default;
+$euiColorTransparentBlueGrey140: rgba(5, 15, 33, 0.92) !default;
+
+$euiColorPlainLight: $euiColorWhite !default;
+$euiColorPlainDark: $euiColorBlueBlack !default;
+
+$euiColorPrimary10: #E5F3FF !default;
+$euiColorPrimary20: #D6E9FF !default;
+$euiColorPrimary30: #B4D5FF !default;
+$euiColorPrimary40: #96C3FF !default;
+$euiColorPrimary50: #78B0FF !default;
+$euiColorPrimary60: #599DFF !default;
+$euiColorPrimary70: #3788FF !default;
+$euiColorPrimary80: #2476F0 !default;
+$euiColorPrimary90: #0B64DD !default;
+$euiColorPrimary100: #1750BA !default;
+$euiColorPrimary110: #154399 !default;
+$euiColorPrimary120: #123778 !default;
+$euiColorPrimary130: #0D2F5E !default;
+$euiColorPrimary140: #0A2342 !default;
+
+$euiColorAccent10: #FFEBF5 !default;
+$euiColorAccent20: #FDDDE9 !default;
+$euiColorAccent30: #FFBED5 !default;
+$euiColorAccent40: #FBA3C4 !default;
+$euiColorAccent50: #F588B3 !default;
+$euiColorAccent60: #ED6BA2 !default;
+$euiColorAccent70: #E54A91 !default;
+$euiColorAccent80: #D13680 !default;
+$euiColorAccent90: #BC1E70 !default;
+$euiColorAccent100: #A11262 !default;
+$euiColorAccent110: #831652 !default;
+$euiColorAccent120: #5E2140 !default;
+$euiColorAccent130: #481E32 !default;
+$euiColorAccent140: #351725 !default;
+
+$euiColorAccentSecondary10: #E2F9F7 !default;
+$euiColorAccentSecondary20: #C9F3F0 !default;
+$euiColorAccentSecondary30: #98E6E2 !default;
+$euiColorAccentSecondary40: #5DD8D2 !default;
+$euiColorAccentSecondary50: #2ECCC7 !default;
+$euiColorAccentSecondary60: #00BEB8 !default;
+$euiColorAccentSecondary70: #00B0AA !default;
+$euiColorAccentSecondary80: #009E99 !default;
+$euiColorAccentSecondary90: #008B87 !default;
+$euiColorAccentSecondary100: #047471 !default;
+$euiColorAccentSecondary110: #065B58 !default;
+$euiColorAccentSecondary120: #044949 !default;
+$euiColorAccentSecondary130: #023436 !default;
+$euiColorAccentSecondary140: #03282B !default;
+
+$euiColorSuccess10: #E2F8F0 !default;
+$euiColorSuccess20: #C9F3E3 !default;
+$euiColorSuccess30: #9DEDCE !default;
+$euiColorSuccess40: #6EDEB7 !default;
+$euiColorSuccess50: #3ACFA0 !default;
+$euiColorSuccess60: #23BE8F !default;
+$euiColorSuccess70: #04AE7E !default;
+$euiColorSuccess80: #00996B !default;
+$euiColorSuccess90: #008A5E !default;
+$euiColorSuccess100: #09724D !default;
+$euiColorSuccess110: #0C5A3F !default;
+$euiColorSuccess120: #094837 !default;
+$euiColorSuccess130: #0D362B !default;
+$euiColorSuccess140: #092A26 !default;
+
+$euiColorWarning10: #FDF3D8 !default;
+$euiColorWarning20: #FDE9B5 !default;
+$euiColorWarning30: #FCD279 !default;
+$euiColorWarning40: #FACB3D !default;
+$euiColorWarning50: #F5BC00 !default;
+$euiColorWarning60: #E6AB01 !default;
+$euiColorWarning70: #CA9601 !default;
+$euiColorWarning80: #AD7E00 !default;
+$euiColorWarning90: #966B03 !default;
+$euiColorWarning100: #825803 !default;
+$euiColorWarning110: #6A4906 !default;
+$euiColorWarning120: #513910 !default;
+$euiColorWarning130: #3D3014 !default;
+$euiColorWarning140: #2C2721 !default;
+
+$euiColorDanger10: #FFE8E5 !default;
+$euiColorDanger20: #FDDDD8 !default;
+$euiColorDanger30: #FFC0B8 !default;
+$euiColorDanger40: #FFA59C !default;
+$euiColorDanger50: #FC8A80 !default;
+$euiColorDanger60: #F66D64 !default;
+$euiColorDanger70: #EE4C48 !default;
+$euiColorDanger80: #DA3737 !default;
+$euiColorDanger90: #C61E25 !default;
+$euiColorDanger100: #A71627 !default;
+$euiColorDanger110: #7F1F27 !default;
+$euiColorDanger120: #5E2129 !default;
+$euiColorDanger130: #491D27 !default;
+$euiColorDanger140: #351721 !default;
+
+$euiColorAssistance10: #F3ECFE !default;
+$euiColorAssistance20: #ECE2FE !default;
+$euiColorAssistance30: #DECDFE !default;
+$euiColorAssistance40: #CEB6FC !default;
+$euiColorAssistance50: #BF9CF9 !default;
+$euiColorAssistance60: #B084F5 !default;
+$euiColorAssistance70: #A36DEF !default;
+$euiColorAssistance80: #925CDA !default;
+$euiColorAssistance90: #8144CC !default;
+$euiColorAssistance100: #6B3C9F !default;
+$euiColorAssistance110: #52357E !default;
+$euiColorAssistance120: #3E2C63 !default;
+$euiColorAssistance130: #322452 !default;
+$euiColorAssistance140: #2A1E3E !default;
+
+$euiColorShade10: #F6F9FC !default;
+$euiColorShade15: #ECF1F9 !default;
+$euiColorShade20: #E3E8F2 !default;
+$euiColorShade25: #D6DDEA !default;
+$euiColorShade30: #CAD3E2 !default;
+$euiColorShade35: #C0CCDD !default;
+$euiColorShade40: #B4C1D5 !default;
+$euiColorShade45: #ABB9D0 !default;
+$euiColorShade50: #A2B1C9 !default;
+$euiColorShade55: #98A8C3 !default;
+$euiColorShade60: #8E9FBC !default;
+$euiColorShade65: #8497B7 !default;
+$euiColorShade70: #798EAF !default;
+$euiColorShade75: #7186A8 !default;
+$euiColorShade80: #6A7FA0 !default;
+$euiColorShade85: #627593 !default;
+$euiColorShade90: #5A6D8C !default;
+$euiColorShade95: #516381 !default;
+$euiColorShade100: #485975 !default;
+$euiColorShade105: #3F4F69 !default;
+$euiColorShade110: #384861 !default;
+$euiColorShade115: #324058 !default;
+$euiColorShade120: #2B394F !default;
+$euiColorShade125: #243147 !default;
+$euiColorShade130: #1D2A3E !default;
+$euiColorShade135: #172336 !default;
+$euiColorShade140: #111C2C !default;
+$euiColorShade145: #0B1628 !default;
+
+$euiColorShadeTransparent10: $euiColorTransparentBlueGrey10 !default;
+$euiColorShadeTransparent20: $euiColorTransparentBlueGrey20 !default;
+$euiColorShadeTransparent30: $euiColorTransparentBlueGrey30 !default;
+$euiColorShadeTransparent40: $euiColorTransparentBlueGrey40 !default;
+$euiColorShadeTransparent50: $euiColorTransparentBlueGrey50 !default;
+$euiColorShadeTransparent60: $euiColorTransparentBlueGrey60 !default;
+$euiColorShadeTransparent70: $euiColorTransparentBlueGrey70 !default;
+$euiColorShadeTransparent80: $euiColorTransparentBlueGrey80 !default;
+$euiColorShadeTransparent90: $euiColorTransparentBlueGrey90 !default;
+$euiColorShadeTransparent100: $euiColorTransparentBlueGrey100 !default;
+$euiColorShadeTransparent110: $euiColorTransparentBlueGrey110 !default;
+$euiColorShadeTransparent120: $euiColorTransparentBlueGrey120 !default;
+$euiColorShadeTransparent130: $euiColorTransparentBlueGrey130 !default;
+$euiColorShadeTransparent140: $euiColorTransparentBlueGrey140 !default;
+ 
+ 

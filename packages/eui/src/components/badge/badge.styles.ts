@@ -16,7 +16,7 @@ import {
   logicalTextAlignCSS,
   mathWithUnits,
 } from '../../global_styling';
-import { UseEuiTheme, transparentize } from '../../services';
+import { UseEuiTheme } from '../../services';
 import { euiBadgeColors } from './color_utils';
 
 export const euiBadgeStyles = (euiThemeContext: UseEuiTheme) => {
@@ -106,6 +106,7 @@ export const euiBadgeStyles = (euiThemeContext: UseEuiTheme) => {
     `,
     primary: css(setBadgeColorVars(badgeColors.primary)),
     accent: css(setBadgeColorVars(badgeColors.accent)),
+    accentSecondary: css(setBadgeColorVars(badgeColors.accentSecondary)),
     warning: css(setBadgeColorVars(badgeColors.warning)),
     danger: css(setBadgeColorVars(badgeColors.danger)),
     success: css(setBadgeColorVars(badgeColors.success)),
@@ -165,7 +166,8 @@ export const euiBadgeStyles = (euiThemeContext: UseEuiTheme) => {
         font-size: 0; /* Makes the button only as large as the icon so it aligns vertically better */
 
         &:focus {
-          background-color: ${transparentize(euiTheme.colors.ghost, 0.8)};
+          background-color: ${euiTheme.components
+            .badgeIconButtonBackgroundHover};
           color: ${euiTheme.colors.ink};
           border-radius: ${mathWithUnits(
             euiTheme.border.radius.small,
