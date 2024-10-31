@@ -6,14 +6,20 @@
  * Side Public License, v 1.
  */
 
+import React, { useEffect, useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { euiPaletteColorBlind } from '../../../services';
+import {
+  EUI_VIS_COLOR_STORE,
+  euiPaletteColorBlind,
+  useUpdateEffect,
+} from '../../../services';
 
 import {
   EuiColorPaletteDisplay,
   EuiColorPaletteDisplayProps,
 } from './color_palette_display';
+import { VIS_COLOR_STORE_EVENTS } from '@elastic/eui-theme-common';
 
 const meta: Meta<EuiColorPaletteDisplayProps> = {
   title: 'Forms/EuiColorPalettePicker/EuiColorPaletteDisplay',
@@ -30,6 +36,22 @@ type Story = StoryObj<EuiColorPaletteDisplayProps>;
 
 export const Playground: Story = {
   args: {
-    palette: euiPaletteColorBlind(),
+    palette: euiPaletteColorBlind(), // static input
+  },
+  render: function Render({ palette, ...rest }: EuiColorPaletteDisplayProps) {
+    const [_palette, setPalette] = useState(palette);
+
+    // subscribe to theme-related vis_color changes
+    useEffect(() => {
+      EUI_VIS_COLOR_STORE.subscribe(VIS_COLOR_STORE_EVENTS.UPDATE, () => {
+        setPalette(euiPaletteColorBlind());
+      });
+    }, []);
+
+    useUpdateEffect(() => {
+      setPalette(palette);
+    }, [palette]);
+
+    return <EuiColorPaletteDisplay palette={_palette} {...rest} />;
   },
 };

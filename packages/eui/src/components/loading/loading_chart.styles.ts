@@ -7,14 +7,17 @@
  */
 
 import { css, keyframes } from '@emotion/react';
-import { euiPaletteColorBlind, shadeOrTint, UseEuiTheme } from '../../services';
+import {
+  _EuiThemeComponentColors,
+  _EuiThemeVisColors,
+} from '@elastic/eui-theme-common';
+
+import { UseEuiTheme } from '../../services';
 import {
   euiCanAnimate,
   euiCantAnimate,
   logicalCSS,
 } from '../../global_styling';
-
-const nonMonoColors = euiPaletteColorBlind();
 
 export const euiLoadingChartStyles = ({ euiTheme }: UseEuiTheme) => ({
   euiLoadingChart: css`
@@ -37,49 +40,66 @@ export const euiLoadingChartStyles = ({ euiTheme }: UseEuiTheme) => ({
 
 export const BARS_COUNT = 4;
 
-export const euiLoadingChartBarStyles = ({
-  euiTheme,
-  colorMode,
-}: UseEuiTheme) => ({
-  euiLoadingChart__bar: css`
-    ${logicalCSS('height', '100%')}
-    display: inline-block;
+export const euiLoadingChartBarStyles = ({ euiTheme }: UseEuiTheme) => {
+  const nonMonoColors = Object.keys(euiTheme.colors.vis).reduce(
+    (colors, cur) => {
+      const isVisColor = cur.match(/euiColorVis[0-9]/);
 
-    ${euiCanAnimate} {
-      animation: ${barAnimation} 1s infinite;
+      if (isVisColor) {
+        const color = euiTheme.colors.vis[cur as keyof _EuiThemeVisColors];
+        return [...colors, color];
+      }
 
-      ${outputNthChildCss((index) => `animation-delay: 0.${index}s;`)}
-    }
-    ${euiCantAnimate} {
-      ${outputNthChildCss((index) => `transform: translateY(${22 * index}%);`)}
-    }
-  `,
-  nonmono: css`
-    ${outputNthChildCss((index) => `background-color: ${nonMonoColors[index]}`)}
-  `,
-  mono: css`
-    ${outputNthChildCss(
-      (index) =>
-        `background-color: ${shadeOrTint(
-          euiTheme.colors.lightShade,
-          index * 0.04,
-          colorMode
-        )}`
-    )}
-  `,
-  m: css`
-    ${logicalCSS('width', euiTheme.size.xxs)}
-    ${logicalCSS('margin-bottom', euiTheme.size.s)}
-  `,
-  l: css`
-    ${logicalCSS('width', euiTheme.size.xs)}
-    ${logicalCSS('margin-bottom', euiTheme.size.m)}
-  `,
-  xl: css`
-    ${logicalCSS('width', euiTheme.size.s)}
-    ${logicalCSS('margin-bottom', euiTheme.size.base)}
-  `,
-});
+      return colors;
+    },
+    [] as string[]
+  );
+
+  return {
+    euiLoadingChart__bar: css`
+      ${logicalCSS('height', '100%')}
+      display: inline-block;
+
+      ${euiCanAnimate} {
+        animation: ${barAnimation} 1s infinite;
+
+        ${outputNthChildCss((index) => `animation-delay: 0.${index}s;`)}
+      }
+      ${euiCantAnimate} {
+        ${outputNthChildCss(
+          (index) => `transform: translateY(${22 * index}%);`
+        )}
+      }
+    `,
+    nonmono: css`
+      ${outputNthChildCss(
+        (index) => `background-color: ${nonMonoColors[index]}`
+      )}
+    `,
+    mono: css`
+      /* stylelint-disable no-extra-semicolons */
+      ${outputNthChildCss((index) => {
+        const token =
+          `loadingChartMonoBackground${index}` as keyof _EuiThemeComponentColors;
+        const color = euiTheme.components[token];
+
+        return `background-color: ${color}`;
+      })}
+    `,
+    m: css`
+      ${logicalCSS('width', euiTheme.size.xxs)}
+      ${logicalCSS('margin-bottom', euiTheme.size.s)}
+    `,
+    l: css`
+      ${logicalCSS('width', euiTheme.size.xs)}
+      ${logicalCSS('margin-bottom', euiTheme.size.m)}
+    `,
+    xl: css`
+      ${logicalCSS('width', euiTheme.size.s)}
+      ${logicalCSS('margin-bottom', euiTheme.size.base)}
+    `,
+  };
+};
 
 /**
  * Small utility helper for generating nth-child CSS for each bar

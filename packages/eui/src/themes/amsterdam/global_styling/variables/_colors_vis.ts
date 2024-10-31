@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import { _EuiThemeVisColors } from './colors';
+import { _EuiThemeVisColors } from '@elastic/eui-theme-common';
 
 /**
  * NOTE: These were quick conversions of their Sass counterparts.

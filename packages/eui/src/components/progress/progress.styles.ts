@@ -15,11 +15,7 @@ import {
   euiFontSize,
   euiTextTruncate,
 } from '../../global_styling';
-import {
-  UseEuiTheme,
-  euiPaletteColorBlind,
-  makeHighContrastColor,
-} from '../../services';
+import { UseEuiTheme, makeHighContrastColor } from '../../services';
 import { euiText } from '../text/text.styles';
 
 /**
@@ -42,7 +38,6 @@ const indeterminateProgressValue = (cssProperties: string) => `
 /**
  * Color utilities
  */
-const visColors = euiPaletteColorBlind();
 
 const nativeVsIndeterminateColor = (color: string, isNative: boolean) => {
   const selectors = isNative
@@ -184,34 +179,34 @@ export const euiProgressStyles = (
     ${nativeVsIndeterminateColor(euiTheme.colors.accentSecondary, isNative)}
   `,
   vis0: css`
-    ${nativeVsIndeterminateColor(visColors[0], isNative)}
+    ${nativeVsIndeterminateColor(euiTheme.colors.vis.euiColorVis0, isNative)}
   `,
   vis1: css`
-    ${nativeVsIndeterminateColor(visColors[1], isNative)}
+    ${nativeVsIndeterminateColor(euiTheme.colors.vis.euiColorVis1, isNative)}
   `,
   vis2: css`
-    ${nativeVsIndeterminateColor(visColors[2], isNative)}
+    ${nativeVsIndeterminateColor(euiTheme.colors.vis.euiColorVis2, isNative)}
   `,
   vis3: css`
-    ${nativeVsIndeterminateColor(visColors[3], isNative)}
+    ${nativeVsIndeterminateColor(euiTheme.colors.vis.euiColorVis3, isNative)}
   `,
   vis4: css`
-    ${nativeVsIndeterminateColor(visColors[4], isNative)}
+    ${nativeVsIndeterminateColor(euiTheme.colors.vis.euiColorVis4, isNative)}
   `,
   vis5: css`
-    ${nativeVsIndeterminateColor(visColors[5], isNative)}
+    ${nativeVsIndeterminateColor(euiTheme.colors.vis.euiColorVis5, isNative)}
   `,
   vis6: css`
-    ${nativeVsIndeterminateColor(visColors[6], isNative)}
+    ${nativeVsIndeterminateColor(euiTheme.colors.vis.euiColorVis6, isNative)}
   `,
   vis7: css`
-    ${nativeVsIndeterminateColor(visColors[7], isNative)}
+    ${nativeVsIndeterminateColor(euiTheme.colors.vis.euiColorVis7, isNative)}
   `,
   vis8: css`
-    ${nativeVsIndeterminateColor(visColors[8], isNative)}
+    ${nativeVsIndeterminateColor(euiTheme.colors.vis.euiColorVis8, isNative)}
   `,
   vis9: css`
-    ${nativeVsIndeterminateColor(visColors[9], isNative)}
+    ${nativeVsIndeterminateColor(euiTheme.colors.vis.euiColorVis9, isNative)}
   `,
   customColor: css`
     ${nativeVsIndeterminateColor('currentColor', isNative)}
@@ -273,34 +268,34 @@ export const euiProgressValueTextStyles = ({ euiTheme }: UseEuiTheme) => ({
     color: ${euiTheme.colors.textAccentSecondary};
   `,
   vis0: css`
-    color: ${makeHighContrastColor(visColors[0])(euiTheme)};
+    color: ${makeHighContrastColor(euiTheme.colors.vis.euiColorVis0)(euiTheme)};
   `,
   vis1: css`
-    color: ${makeHighContrastColor(visColors[1])(euiTheme)};
+    color: ${makeHighContrastColor(euiTheme.colors.vis.euiColorVis1)(euiTheme)};
   `,
   vis2: css`
-    color: ${makeHighContrastColor(visColors[2])(euiTheme)};
+    color: ${makeHighContrastColor(euiTheme.colors.vis.euiColorVis2)(euiTheme)};
   `,
   vis3: css`
-    color: ${makeHighContrastColor(visColors[3])(euiTheme)};
+    color: ${makeHighContrastColor(euiTheme.colors.vis.euiColorVis3)(euiTheme)};
   `,
   vis4: css`
-    color: ${makeHighContrastColor(visColors[4])(euiTheme)};
+    color: ${makeHighContrastColor(euiTheme.colors.vis.euiColorVis4)(euiTheme)};
   `,
   vis5: css`
-    color: ${makeHighContrastColor(visColors[5])(euiTheme)};
+    color: ${makeHighContrastColor(euiTheme.colors.vis.euiColorVis5)(euiTheme)};
   `,
   vis6: css`
-    color: ${makeHighContrastColor(visColors[6])(euiTheme)};
+    color: ${makeHighContrastColor(euiTheme.colors.vis.euiColorVis6)(euiTheme)};
   `,
   vis7: css`
-    color: ${makeHighContrastColor(visColors[7])(euiTheme)};
+    color: ${makeHighContrastColor(euiTheme.colors.vis.euiColorVis7)(euiTheme)};
   `,
   vis8: css`
-    color: ${makeHighContrastColor(visColors[8])(euiTheme)};
+    color: ${makeHighContrastColor(euiTheme.colors.vis.euiColorVis8)(euiTheme)};
   `,
   vis9: css`
-    color: ${makeHighContrastColor(visColors[9])(euiTheme)};
+    color: ${makeHighContrastColor(euiTheme.colors.vis.euiColorVis9)(euiTheme)};
   `,
   customColor: css`
     color: currentColor;
