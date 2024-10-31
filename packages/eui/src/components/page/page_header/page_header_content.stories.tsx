@@ -142,6 +142,24 @@ export const WrappingContent: Story = {
   ),
 };
 
+export const TruncatedRightSideItems: Story = {
+  tags: ['vrt-only'],
+  args: {
+    pageTitle: 'Truncated right side items',
+    rightSideItems: [
+      <EuiButton>
+        I am a very incredibly long looong button that should truncate
+      </EuiButton>,
+    ],
+  },
+  render: (args) => (
+    // Screenshot truncation behavior on desktop
+    <div style={{ maxWidth: 800 }}>
+      <EuiPageHeaderContent {...args} />
+    </div>
+  ),
+};
+
 export const ResponsiveReverse: Story = {
   tags: ['vrt-only'],
   args: {
