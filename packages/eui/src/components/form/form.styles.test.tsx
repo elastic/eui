@@ -37,7 +37,7 @@ describe('euiFormVariables', () => {
         "controlCompressedBorderRadius": "4px",
         "controlCompressedHeight": "32px",
         "controlCompressedPadding": "8px",
-        "controlDisabledColor": "#98A2B3",
+        "controlDisabledColor": "transparent",
         "controlHeight": "40px",
         "controlIconSize": {
           "l": "24px",
@@ -92,32 +92,32 @@ describe('euiFormControlStyles', () => {
             border-radius: 4px;
           ",
         "disabled": "
-          color: #98A2B3;
+          color: transparent;
           /* Required for Safari */
-          -webkit-text-fill-color: #98A2B3;
+          -webkit-text-fill-color: transparent;
           background-color: #eef1f7;
           cursor: not-allowed;
           --euiFormControlStateColor: transparent;
 
           
         &::-webkit-input-placeholder { 
-            color: #98A2B3;
+            color: transparent;
             opacity: 1;
            }
         &::-moz-placeholder { 
-            color: #98A2B3;
+            color: transparent;
             opacity: 1;
            }
         &:-ms-input-placeholder { 
-            color: #98A2B3;
+            color: transparent;
             opacity: 1;
            }
         &:-moz-placeholder { 
-            color: #98A2B3;
+            color: transparent;
             opacity: 1;
            }
         &::placeholder { 
-            color: #98A2B3;
+            color: transparent;
             opacity: 1;
            }
 

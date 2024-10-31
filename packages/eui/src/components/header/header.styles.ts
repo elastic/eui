@@ -10,12 +10,7 @@ import { css } from '@emotion/react';
 
 import { euiShadowSmall } from '../../themes/amsterdam/global_styling/mixins';
 import { logicalCSS } from '../../global_styling';
-import {
-  UseEuiTheme,
-  shade,
-  transparentize,
-  makeHighContrastColor,
-} from '../../services';
+import { UseEuiTheme, makeHighContrastColor } from '../../services';
 
 export const euiHeaderVariables = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
@@ -54,7 +49,7 @@ export const euiHeaderStyles = (euiThemeContext: UseEuiTheme) => {
     `,
     // Theme
     default: css`
-      background-color: ${euiTheme.colors.emptyShade};
+      background-color: ${euiTheme.components.headerBackground};
     `,
     dark: css(euiHeaderDarkStyles(euiThemeContext)),
   };
@@ -72,13 +67,10 @@ export const euiHeaderStyles = (euiThemeContext: UseEuiTheme) => {
 import { euiFormVariables } from '../form/form.styles';
 
 const euiHeaderDarkStyles = (euiThemeContext: UseEuiTheme) => {
-  const { euiTheme, colorMode } = euiThemeContext;
+  const { euiTheme } = euiThemeContext;
   const { controlPlaceholderText } = euiFormVariables(euiThemeContext);
 
-  const backgroundColor =
-    colorMode === 'DARK'
-      ? shade(euiTheme.colors.lightestShade, 0.5)
-      : shade(euiTheme.colors.darkestShade, 0.28);
+  const backgroundColor = euiTheme.components.headerDarkBackground;
 
   // Specific color overrides for EuiSelectableTemplateSitewide
   const selectableSitewide = {
@@ -107,7 +99,9 @@ const euiHeaderDarkStyles = (euiThemeContext: UseEuiTheme) => {
     .euiHeaderLink,
     .euiHeaderSectionItemButton {
       &:focus {
-        background-color: ${shade(euiTheme.colors.primary, 0.5)};
+        background-color: ${
+          euiTheme.components.headerDarkSectionItemBackgroundFocus
+        };
       }
     }
 
@@ -129,7 +123,7 @@ const euiHeaderDarkStyles = (euiThemeContext: UseEuiTheme) => {
       }
 
       &--group {
-        border-color: ${selectableSitewide.borderColor};
+        border-color: ${euiTheme.components.headerDarkSearchBorderColor};
 
         input {
           box-shadow: none;

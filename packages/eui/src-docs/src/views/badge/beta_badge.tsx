@@ -3,7 +3,7 @@ import { css } from '@emotion/react';
 
 import { EuiBetaBadge, EuiSpacer, EuiTitle } from '../../../../src/components';
 
-const colors = ['hollow', 'accent', 'subdued'] as const;
+const colors = ['hollow', 'accent', 'accentSecondary', 'subdued'] as const;
 
 export default () => (
   <>
