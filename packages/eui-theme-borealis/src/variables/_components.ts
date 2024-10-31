@@ -6,7 +6,10 @@
  * Side Public License, v 1.
  */
 
-import { _EuiThemeComponents } from '@elastic/eui-theme-common';
+import {
+  _EuiThemeComponentColors,
+  _EuiThemeComponents,
+} from '@elastic/eui-theme-common';
 
 import { SEMANTIC_COLORS } from './colors/_semantic_colors';
 import {
@@ -23,7 +26,7 @@ import {
   text_colors,
 } from './colors/_colors_light';
 
-const _components = {
+const component_colors: _EuiThemeComponentColors = {
   buttonGroupBorderColor: border_colors.borderBasePlain,
   buttonGroupBorderColorSelected: border_colors.borderBasePlain,
 
@@ -122,9 +125,9 @@ const _components = {
 export const components: _EuiThemeComponents = {
   buttons,
   forms,
-  LIGHT: _components,
+  LIGHT: component_colors,
   DARK: {
-    ..._components,
+    ...component_colors,
 
     buttonGroupBorderColor: dark_border_colors.borderBasePlain,
     buttonGroupBorderColorSelected: dark_border_colors.borderBasePlain,

@@ -6,7 +6,10 @@
  * Side Public License, v 1.
  */
 
-import { _EuiThemeComponents } from '@elastic/eui-theme-common';
+import {
+  _EuiThemeComponentColors,
+  _EuiThemeComponents,
+} from '@elastic/eui-theme-common';
 
 import { computed } from '../../../../services/theme/utils';
 import {
@@ -19,7 +22,7 @@ import { makeHighContrastColor } from '../../../../services/color/contrast';
 import { buttons } from './_buttons';
 import { forms } from './_forms';
 
-const _components = {
+const component_colors: _EuiThemeComponentColors = {
   badgeBackgroundSubdued: computed(
     ([lightShade]) => tint(lightShade, 0.3),
     ['colors.lightShade']
@@ -253,9 +256,9 @@ const _components = {
 export const components: _EuiThemeComponents = {
   buttons,
   forms,
-  LIGHT: _components,
+  LIGHT: component_colors,
   DARK: {
-    ..._components,
+    ...component_colors,
 
     badgeBorderColorHollow: computed(
       ([color]) => tint(color, 0.15),

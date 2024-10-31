@@ -10,7 +10,7 @@ import { ColorModeSwitch, StrictColorModeSwitch } from '../types';
 import { _EuiThemeButtonColors } from './buttons';
 import { _EuiThemeFormColors } from './forms';
 
-type _EuiThemeComponentColors = {
+export type _EuiThemeComponentColors = {
   buttonGroupBorderColor: ColorModeSwitch;
   buttonGroupBorderColorSelected: ColorModeSwitch;
 
