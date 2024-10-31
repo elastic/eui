@@ -7,12 +7,10 @@ id: forms_form_controls
 
 EUI provides different types of basic form controls: [**EuiFieldText**](/docs/forms/form-controls#text-field), [**EuiFieldSearch**](/docs/forms/form-controls#search-field), [**EuiFieldNumber**](/docs/forms/form-controls#number-field), [**EuiFieldPassword**](/docs/forms/form-controls#password-field), [**EuiSelect**](/docs/forms/form-controls#select), [**EuiTextArea**](/docs/forms/form-controls#textarea), and [**EuiFilePicker**](/docs/forms/form-controls#file-picker).
 
-:::warning Wrap each of your from controls in a EuiFormRow
+:::note Accessibility requirement
+You must provide a `label`, `aria-label`, or valid `aria-labelledby` prop to all form controls.
 
-Wrap each of your from controls in a **EuiFormRow**
-
-Use the [**EuiFormRow**](/docs/forms/form-layouts#form-and-form-rows) component to easily associate form components with labels, help text, and error text. For accessibility, you must provide a `label`, `aria-label` , or a text node ID of an external label to the `aria-labelledby` prop.
-
+To easily meet this requirement, we recommend wrapping your form controls in the [**EuiFormRow**](/docs/forms/form-layouts#form-and-form-rows) component, which automatically associates form controls with labels, help text, and error text.
 :::
 
 ## Text field

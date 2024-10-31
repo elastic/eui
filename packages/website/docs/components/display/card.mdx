@@ -41,10 +41,8 @@ export default () => <EuiFlexGroup gutterSize="l">{cardNodes}</EuiFlexGroup>;
 
 Most of the time, cards should read from top to bottom (vertical). However, in some cases, you may want the icon to be to the left of the content. In this case, add the prop `layout="horizontal"`. Works best when the icon is size `xl`.
 
-:::danger Horizontal layouts do not work with images, footers, or textAlign. Therefore, these properties will be ignored.
-
+:::danger
 Horizontal layouts **do not** work with images, footers, or `textAlign`. Therefore, these properties will be ignored.
-
 :::
 
 ```tsx interactive
@@ -89,9 +87,7 @@ export default () => (
 
 Images can be added in place of, or in conjuction with, icons. Just pass a url into the `image` prop and it will expand to the edges of the card.
 
-:::note Make sure that all images are the same proportions when used in a singular row.
-
-Make sure that all images are the **same proportions** when used in a singular row.
+:::tip Make sure that all images are the **same proportions** when used in a singular row.
 
 Also, when passing an **element** to the `image` prop that consists solely of inline elements or does not contain an`<img />` element, each element will require a style of `width: 100%`.
 
@@ -155,10 +151,8 @@ export default () => (
 
 Footers can contain any number of elements and will always align to the bottom of the card. However, if you supply a footer containing a **EuiButton** you **must not** also give it an `onClick`.
 
-:::warning When using footers to display generic "Go" buttons, you must provide an aria-label to the button itself that refers back to the title of the card.
-
+:::note Accessibility requirement
 When using footers to display generic "Go" buttons, you must provide an `aria-label` to the button itself that refers back to the title of the card.
-
 :::
 
 ```tsx interactive
@@ -295,10 +289,8 @@ export default () => (
 
 When you have a list of cards that can be selected but **do not navigate anywhere**, you can add the `selectable` prop. The prop is an object that extends **EuiButtonEmpty**. It will apply the button as seen below, and passing `selectable.isSelected=true` will alter the styles of the card and button to look selected.
 
-:::warning
-
+:::tip
 When providing an extra link to more details or such, be sure to stop event propagation from also selecting the card.
-
 :::
 
 ```tsx interactive
@@ -422,10 +414,8 @@ export default () => {
 };
 ```
 
-:::warning When used as a radio group, you must provide a fieldset with a legend for accessibility.
-
+:::note Accessibility requirement
 When used as a radio group, you must provide a `fieldset` with a `legend` for accessibility.
-
 :::
 
 ```tsx interactive

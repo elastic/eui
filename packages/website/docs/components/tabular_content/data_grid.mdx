@@ -651,9 +651,7 @@ export default () => {
 
 Creating a lot of DOM nodes is computationally expensive, and **EuiDataGrid** uses a couple wrapping divs to build each cell. To help offset the cost of larger tables, cell virtualization can be opted into by constraining the grid's height and/or width. There are two ways to enable this functionality. First, `height` and/or `width` can be passed as props, which are applied to the grid's container style. Alternatively, if **EuiDataGrid** is unable to render at the full dimensions it needs due to screen real estate or other DOM constraints, it will overflow within a scrollable container and only render the visible cells.
 
-:::warning Never toggle the height between a value and undefined.
-
-Never toggle the height between a value and `undefined`.
+:::warning Never toggle the height between a value and `undefined`.
 
 Similar to React's rule of not switching between a controlled and uncontrolled input, `EuiDataGrid` does not accommodate for its height switching to or from `undefined`. For demonstration purposes, the example below uses a `key` to force **EuiDataGrid** to completely remount when its height changes between constrained & constrained heights.
 

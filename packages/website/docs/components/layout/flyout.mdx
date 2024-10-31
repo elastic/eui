@@ -9,10 +9,8 @@ id: layout_flyout
 
 Like modals, you control the visibilty of the flyout using your own state management, but **EuiFlyout** requires an `onClose` handler for it's internal dismiss buttons.
 
-:::note
-
+:::note Accessibility recommendation
 Use `aria-labelledby={headingId}` to announce the flyout to screen readers.
-
 :::
 
 ```tsx interactive
@@ -815,9 +813,7 @@ export default () => {
 By default, flyouts will continue to grow with the width of the window. To stop this growth at an ideal width, set `maxWidth` to `true`, or pass your own custom size.
 
 :::warning
-
 Note that there are some caveats to providing a maxWidth that is smaller than the minWidth.
-
 :::
 
 ```tsx interactive

@@ -8,9 +8,7 @@ id: forms_compressed_forms
 Also known as **Editor-Style Controls**, compressed forms and controls were specifically created for use when space is at a premium. They are not intended for use when the form is the main objective of the page. They work best in editor-style applications where form controls are being used to create or edit content on the page.
 
 :::danger
-
 Do not use compressed and non-compressed form controls in the same form.
-
 :::
 
 To use compressed forms, pass `display="rowCompressed"` to the EuiFormRows and `compressed=true` to the form controls themselves.
@@ -322,7 +320,7 @@ export default () => (
 
 ## In a popover
 
-Always use the compressed version of forms and elements when they exist inside of a[popover](/docs/layout/popover).
+Always use the compressed version of forms and elements when they exist inside of a [popover](/docs/layout/popover).
 
 ```tsx interactive
 import React, { useState } from 'react';
@@ -410,10 +408,8 @@ export default () => {
 
 This is an example of how to combine compressed form controls with from rows, labels, prepend and appends in a column layout.
 
-:::warning Pay close attention to the patterns of using htmlFor and aria-label. For best results, each form control that is not wrapped in an EuiFormRow should be supplied an id.
-
+:::note Accessibility recommendation
 Pay close attention to the patterns of using `htmlFor` and `aria-label`. For best results, each form control that is not wrapped in an EuiFormRow should be supplied an `id`.
-
 :::
 
 ```tsx interactive

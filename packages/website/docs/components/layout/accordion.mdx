@@ -399,10 +399,8 @@ In some cases you might want to prevent the user from closing the **EuiAccordion
 
 The `isDisabled` prop will disable interaction on the button and the arrow. Use it in conjunction with `initialIsOpen` to achieve the desired effect.
 
-:::warning
-
+:::note Accessibility recommendation
 When disabling the interaction of accordions based on user input, it's advisable to ensure there is further explanation through the use of help or error text.
-
 :::
 
 ```tsx interactive
@@ -532,10 +530,8 @@ Passing interactive content like links, buttons, or form elements as the `button
 
 If you don't want the interactive content to trigger the accordion expansion, you will have to apply `e.stopPropagation()` to your element manually.
 
-:::warning
-
+:::note Accessibility requirement
 Accordions need a focusable button for accessibility, so changing the element to anything other than a button will enforce the display of the arrow.
-
 :::
 
 ```tsx interactive

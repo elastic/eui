@@ -427,10 +427,8 @@ export default () => (
 
 An **EuiButtonIcon** is a button that only contains an icon (no text). Use the `display` and `size` props to match the appearance of your **EuiButtonIcon** to other standard buttons. By default they will appear as `xs`, `empty` buttons.
 
-:::warning EuiButtonIcon requires an aria-label to express the meaning to screen readers.
-
+:::note Accessibility requirement
 **EuiButtonIcon** requires an `aria-label` to express the meaning to screen readers.
-
 :::
 
 ```tsx interactive
@@ -795,10 +793,8 @@ export default () => {
 
 2.  If your button only changes the **visual** appearance, you must add `aria-pressed` passing a boolean for the on and off states. All EUI button types provide a helper prop for this called `isSelected`.
 
-:::warning Do not add aria-pressed or isSelected if you also change the readable text.
-
+:::note Accessibility recommendation
 Do not add `aria-pressed` or `isSelected` if you also change the readable text.
-
 :::
 
 ```tsx interactive
@@ -843,10 +839,8 @@ export default () => {
 
 An **EuiButtonGroup** is for indicating **selection** only. They utilize the `type="single"` or `"multi"` prop to determine whether multiple or only single selections are allowed per group.
 
-:::warning In order for groups to be properly read as groups with a title, the legend prop is required. This is only for accessibility, however, so it will be visibly hidden.
-
+:::note Accessibility requirement
 In order for groups to be properly read as groups with a title, the `legend` prop is **required**. This is only for accessibility, however, so it will be visibly hidden.
-
 :::
 
 ```tsx interactive

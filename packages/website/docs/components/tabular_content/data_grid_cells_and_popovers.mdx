@@ -404,23 +404,12 @@ If you want complete control over the rendering of the entire cell popover, use 
 
 To make falling back to atoms of the default cell popover easier, several props are passed to your custom `renderCellPopover` function:
 
-*   `children` - the direct JSX output of the cell's returned `renderCellValue`. It can be used (e.g.) if you want a custom wrapper or cell actions, but default popover content.
-
-*   `cellContentsElement` - a direct reference to the cell's HTML content node, which allows accessing the cell's `innerText` for cases where raw non-JSX text is useful (e.g. copying).
-
-*   `cellActions` - the direct JSX output of the default popover footer and buttons. Use this prop if you want custom popover content but default cell actions.:::warning Using custom cell actions
-
-
-
-
-    If deliberately leaving out the default `cellActions`, you **must** re-implement your cell actions in the popover in some form. Leaving out cell actions available in the cell but not in the popover introduces UX inconsistencies and will confuse the end user.
-
-    :::
-
-*   `DefaultCellPopover` - the default popover component. Use this component if you only want custom popover content for certain schemas or columns and default popover rendering for other cells.
-
-*   `setCellPopoverProps` - this callback is passed to allow customizing the cell expansion popover. Accepts any prop that `EuiPopover` accepts, except for `button` & `closePopover`, which is controlled by the data grid.
-
+* `children` - the direct JSX output of the cell's returned `renderCellValue`. It can be used (e.g.) if you want a custom wrapper or cell actions, but default popover content.
+* `cellContentsElement` - a direct reference to the cell's HTML content node, which allows accessing the cell's `innerText` for cases where raw non-JSX text is useful (e.g. copying).
+* `cellActions` - the direct JSX output of the default popover footer and buttons. Use this prop if you want custom popover content but default cell actions.
+  * If deliberately leaving out the default `cellActions`, you **must** re-implement your cell actions in the popover in some form. Leaving out cell actions available in the cell but not in the popover introduces UX inconsistencies and will confuse the end user.
+* `DefaultCellPopover` - the default popover component. Use this component if you only want custom popover content for certain schemas or columns and default popover rendering for other cells.
+* `setCellPopoverProps` - this callback is passed to allow customizing the cell expansion popover. Accepts any prop that `EuiPopover` accepts, except for `button` & `closePopover`, which is controlled by the data grid.
 
 Take a look at the below example's demo code to see the above props in action.
 

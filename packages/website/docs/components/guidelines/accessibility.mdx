@@ -76,7 +76,7 @@ You can aid navigation and make pages more accessible for screen reader users by
   ```
 </Guideline>
 
-:::note
+:::tip
 [**EuiTitle**](/docs/display/title) gives you a way to separate your presentation from your semantic markup.
 :::
 
@@ -217,10 +217,8 @@ Focus states are an important part of design because they let keyboard users kno
 
 Given that a keyboard user primarily navigates pages in one direction (either forward or backward), it’s important to have an intuitive focus order. Focus order should follow the flow of the page to make it easy to follow. If you’ve made a normally non-interactive element like a `<div>` interactive via JavaScript, you can enable a tab stop using `tabIndex=0`. If you want something that is only focusable programmatically, you can use `tabIndex=-1`.
 
-:::danger Using tabIndex values greater than 0 is problematic and should be avoided.
-
+:::danger
 Using `tabIndex` values greater than 0 is problematic and should be avoided.
-
 :::
 
 ### How do I get back to where I was?
@@ -340,8 +338,7 @@ Here, the 3 buttons have the same accessible name. There are a few different pat
 </ul>
 ```
 
-:::note Give lists an accessible name to improve their discoverability!
-
+:::tip Give lists an accessible label to improve their discoverability!
 ```
 <!-- Can be any heading level or even a paragraph -->
 <h1 id="a1b2c3">My favorite fruit</h1>
@@ -350,7 +347,6 @@ Here, the 3 buttons have the same accessible name. There are a few different pat
 <!-- You can still provide an accessible title even if there's no visual label -->
 <ul aria-label="My favorite vegetables">...</ul>
 ```
-
 :::
 
 ### Further reading

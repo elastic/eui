@@ -11,9 +11,11 @@ id: forms_selectable
 
 At its simplest, **EuiSelectable** requires an array of `options` and an `onChange` handler which passes back the altered `selectedOptions` array. The `children` is a function that return the `list` and `search` nodes.
 
-:::note Selected options are based on the checked = on property
+:::tip Selected options are based on the checked = on property
 
-**EuiSelectable** offers the ability to **exclude** selections or **include selections for some** (mixed). Therefore, the `checked` property is one of `undefined | 'on' | 'off' | 'mixed'`, `'on'` being the default for selected options when `allowExclusions = false`.
+**EuiSelectable** offers the ability to **exclude** selections or **include selections for some** (mixed). Therefore, the `checked` property is one of `undefined | 'on' | 'off' | 'mixed'`.
+
+`'on'` is the default for selected options when `allowExclusions = false`.
 
 :::
 
@@ -77,10 +79,8 @@ export default () => {
 
 To add a search component to the list, simply add the `searchable` prop. You can optionally pass in a `searchProps` object which will get passed down to the actual **EuiFieldSearch** used. In this example,`onSearch` will return a second parameter, enabling you to access the list of filtered items
 
-:::note The search is performed as a string match against the option.label unless a separate option.searchableLabel is provided.
-
+:::tip
 The search is performed as a string match against the `option.label` unless a separate `option.searchableLabel` is provided.
-
 :::
 
 ```tsx interactive

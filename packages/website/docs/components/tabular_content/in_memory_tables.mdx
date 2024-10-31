@@ -7,9 +7,11 @@ id: tabular_content_in_memory_tables
 
 The **EuiInMemoryTable** is a higher level component wrapper around **EuiBasicTable** aimed at displaying tables data when all the data is in memory. It takes the full set of data (all possible items) and based on its configuration, will display it handling all configured functionality (pagination and sorting) for you.
 
-:::warning EuiMemoryTable relies on referential equality of a column's name
+:::warning Column names must be referentially stable
 
-**EuiMemoryTable** relies on referential equality of a column's `name` field when sorting by that column. For example, if a JSX element is created for the name every render it appears different to the table and prevents sorting. Instead, that value needs to be lifted outside of the render method and preserved between renders.
+**EuiMemoryTable** relies on referential equality of a column's `name` field when sorting by that column. This particularly applies to **JSX nodes**.
+
+If your JSX `name` is not defined outside a component `render` cycle or is not correctly memoized with `useMemo`, it will break sorting and other in-memory comparisons.
 
 :::
 

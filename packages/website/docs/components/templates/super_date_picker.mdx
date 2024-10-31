@@ -669,9 +669,7 @@ export default () => {
 Locale formatting is achieved by using the `locale`,`timeFormat`, and `dateFormat` props. The latter will take any `moment()` notation. Check [Date format by country](https://en.wikipedia.org/wiki/Date_format_by_country) for formatting examples.
 
 :::warning
-
 Moment will try to load the locale on demand when it is used. Bundlers that do not support dynamic require statements will need to explicitly import the locale, e.g. `import 'moment/locale/zh-cn'`. See the below demo TSX for examples.
-
 :::
 
 ```tsx interactive

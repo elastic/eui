@@ -11,10 +11,8 @@ See [**EuiTabs guidelines**](/docs/navigation/tabs/guidelines) if your applicati
 
 **EuiBreadcrumbs** requires an array of **EuiBreadcrumb** objects as `breadcrumbs` and handles truncation, including middle-truncation in the case of many items, and mobile responsiveness. Each item accepts an `href` prop, though we recommend the last item represent the current page and therefore the link is unnecessary.
 
-:::warning For accessibility, it is highly recommended to provide a descriptive aria-label for each set of breadcrumbs.
-
-For accessibility, it is highly recommended to provide a descriptive `aria-label` for each set of breadcrumbs.
-
+:::note Accessibility recommendation
+Provide a descriptive `aria-label` for each set of breadcrumbs.
 :::
 
 ```tsx interactive
@@ -353,10 +351,8 @@ You may also pass `popoverProps` with almost any prop that [**EuiPopover**](/doc
 
 If you need the ability to close the breadcrumb popover from within your popover content, `popoverContent` accepts a render function that will be passed a `closePopover` callback, which you can invoke to close the popover. See the Deployment breadcrumb below for example usage.
 
-:::warning Please note that creating a breadcrumb with a popover will nullify any passed href or onClick behavior, as the only interaction the breadcrumb should have at that point is the popover toggle.
-
-Please note that creating a breadcrumb with a popover will nullify any passed `href` or `onClick` behavior, as the _only_ interaction the breadcrumb should have at that point is the popover toggle.
-
+:::warning
+Creating a breadcrumb with a popover will nullify any passed `href` or `onClick` behavior, as the _only_ interaction the breadcrumb should have at that point is the popover toggle.
 :::
 
 ```tsx interactive

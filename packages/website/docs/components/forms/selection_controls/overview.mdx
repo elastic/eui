@@ -324,10 +324,8 @@ Make sure to pass a `label` to ensure a larger clickable area and ensure that sc
 
 If the switch is described in some other manner, like when using an [**EuiFormRow**](/docs/forms/form-layouts#form-and-form-rows), you can eliminate the visible label with `showLabel={false}` or use it to further describe the state.
 
-:::warning
-
-When providing the state as the label, you'll need to provide an aria-describedby with the label's id to associate it with the switch.
-
+:::note Accessibility requirement
+When providing the state as the label, you'll need to provide an `aria-describedby` with the label's `id` to associate it with the switch.
 :::
 
 ```tsx interactive
@@ -381,10 +379,8 @@ export default () => {
 
 ## Fieldset and legend
 
-:::warning "[Use a fieldset and legend] for groups of related controls where the individual labels for each control do not provide a sufficient description, and an additional group level description is needed." WCAG Spec
-
+:::note Accessibility recommendation
 "\[Use a fieldset and legend\] for groups of related controls where the individual labels for each control do not provide a sufficient description, and an additional group level description is needed." [WCAG Spec](https://www.w3.org/WAI/WCAG21/Techniques/html/H71)
-
 :::
 
 **EuiFormFieldset** simply wraps its children in a `<fieldset>` with the option to add a `<legend>` via the `legend` object prop. Find more examples in the [guidelines tab](/docs/forms/selection-controls/guidelines).

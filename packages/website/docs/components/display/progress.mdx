@@ -88,9 +88,9 @@ export default () => {
 
 Using the `position` prop we can align our bar to be `fixed` or `absolute`. In both options, the background color of the base bar is dropped (since the context of width is already known from your wrapping element). For the absolute option, make sure that your wrapping element has `position: relative` applied.
 
-:::note Note about progress bars over fixed headers
+:::warning Progress bars over fixed headers
 
-Using **EuiProgress** with a `fixed` position may result in it being overlayed when its parent wrapper has a `z-index` value lower than another fixed element, such as **EuiHeader**. In that case, wrap **EuiProgress** in an **EuiPortal** as seen on the Snippet tab.
+Using the `fixed` position may result in **EuiProgress** being overlayed when its parent wrapper has a `z-index` value lower than another fixed element, such as **EuiHeader**. In this scenario, wrap **EuiProgress** in an **EuiPortal** (example below).
 
 :::
 
