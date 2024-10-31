@@ -1,3 +1,11 @@
+## [`v97.0.0-backport.1`](https://github.com/elastic/eui/releases/v97.0.0-backport.1)
+
+**This is a backport release only intended for use by Kibana.**
+
+**Bug fixes**
+
+- Fixed `EuiSelectableTemplateSitewide`s within dark-themed `EuiHeader`s missing input borders ([#8100](https://github.com/elastic/eui/pull/8100))
+
 ## [`v97.0.0-backport.0`](https://github.com/elastic/eui/releases/v97.0.0-backport.0)
 
 **This is a backport release only intended for use by Kibana.**
