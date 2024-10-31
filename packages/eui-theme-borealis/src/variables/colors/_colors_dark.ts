@@ -90,12 +90,12 @@ export const dark_background_colors: _EuiThemeBackgroundColors = {
   backgroundBaseFormsPrepend: SEMANTIC_COLORS.shade125,
   backgroundBaseFormsControlDisabled: SEMANTIC_COLORS.shade120,
 
-  backgroundBaseInteractiveHover: PRIMITIVE_COLORS.transparent.white['10'],
+  backgroundBaseInteractiveHover: PRIMITIVE_COLORS.transparent.white10,
   backgroundBaseInteractiveSelect: SEMANTIC_COLORS.shade130,
   backgroundBaseInteractiveOverlay: SEMANTIC_COLORS.shadeTransparent80,
 
-  backgroundBaseSkeletonEdge: PRIMITIVE_COLORS.transparent.white['10'],
-  backgroundBaseSkeletonMiddle: PRIMITIVE_COLORS.transparent.white['30'],
+  backgroundBaseSkeletonEdge: PRIMITIVE_COLORS.transparent.white10,
+  backgroundBaseSkeletonMiddle: PRIMITIVE_COLORS.transparent.white30,
 
   backgroundLightPrimary: SEMANTIC_COLORS.primary130,
   backgroundLightAccent: SEMANTIC_COLORS.accent130,
@@ -121,7 +121,7 @@ export const dark_background_colors: _EuiThemeBackgroundColors = {
  */
 export const dark_transparent_background_colors: _EuiThemeTransparentBackgroundColors =
   {
-    backgroundTransparent: PRIMITIVE_COLORS.transparent.white['0'],
+    backgroundTransparent: PRIMITIVE_COLORS.transparent.white0,
     backgroundTransparentPrimary: dark_background_colors.backgroundBasePrimary,
     backgroundTransparentAccent: dark_background_colors.backgroundBaseAccent,
     backgroundTransparentAccentSecondary:
@@ -146,7 +146,7 @@ export const dark_border_colors: _EuiThemeBorderColors = {
   borderBaseDisabled: SEMANTIC_COLORS.shade120,
   borderBaseFloating: SEMANTIC_COLORS.shade120,
 
-  borderBaseFormsColorSwatch: PRIMITIVE_COLORS.transparent.white['30'],
+  borderBaseFormsColorSwatch: PRIMITIVE_COLORS.transparent.white30,
   borderBaseFormsControl: SEMANTIC_COLORS.shade80,
 
   borderStrongPrimary: SEMANTIC_COLORS.primary60,

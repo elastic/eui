@@ -121,7 +121,7 @@ export const background_colors: _EuiThemeBackgroundColors = {
  */
 export const transparent_background_colors: _EuiThemeTransparentBackgroundColors =
   {
-    backgroundTransparent: PRIMITIVE_COLORS.transparent.white['0'],
+    backgroundTransparent: PRIMITIVE_COLORS.transparent.white0,
     backgroundTransparentPrimary: background_colors.backgroundBasePrimary,
     backgroundTransparentAccent: background_colors.backgroundBaseAccent,
     backgroundTransparentAccentSecondary:
@@ -144,7 +144,7 @@ export const border_colors: _EuiThemeBorderColors = {
   borderBasePlain: SEMANTIC_COLORS.shade30,
   borderBaseSubdued: SEMANTIC_COLORS.shade20,
   borderBaseDisabled: SEMANTIC_COLORS.shade30,
-  borderBaseFloating: PRIMITIVE_COLORS.transparent.white['0'],
+  borderBaseFloating: PRIMITIVE_COLORS.transparent.white0,
 
   borderBaseFormsColorSwatch: SEMANTIC_COLORS.shadeTransparent30,
   borderBaseFormsControl: SEMANTIC_COLORS.shade60,
