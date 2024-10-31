@@ -8,6 +8,14 @@ exports[`euiProgressStyles indeterminate div CSS colors accent 1`] = `
 ;;label:accent;"
 `;
 
+exports[`euiProgressStyles indeterminate div CSS colors accentSecondary 1`] = `
+"
+  &::before {
+    background-color: #00BFB3;
+  }
+;;label:accentSecondary;"
+`;
+
 exports[`euiProgressStyles indeterminate div CSS colors danger 1`] = `
 "
   &::before {
@@ -159,6 +167,17 @@ exports[`euiProgressStyles native progress CSS colors accent 1`] = `
     background-color: #F04E98;
   }
 ;;label:accent;"
+`;
+
+exports[`euiProgressStyles native progress CSS colors accentSecondary 1`] = `
+"
+  &::-webkit-progress-value {
+    background-color: #00BFB3;
+  }
+  &::-moz-progress-bar {
+    background-color: #00BFB3;
+  }
+;;label:accentSecondary;"
 `;
 
 exports[`euiProgressStyles native progress CSS colors danger 1`] = `

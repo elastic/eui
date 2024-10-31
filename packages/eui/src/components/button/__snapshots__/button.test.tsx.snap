@@ -30,6 +30,17 @@ exports[`EuiButton props color accent is rendered 1`] = `
 </button>
 `;
 
+exports[`EuiButton props color accentSecondary is rendered 1`] = `
+<button
+  class="euiButton emotion-euiButtonDisplay-m-defaultMinWidth-base-accentSecondary"
+  type="button"
+>
+  <span
+    class="emotion-euiButtonDisplayContent"
+  />
+</button>
+`;
+
 exports[`EuiButton props color danger is rendered 1`] = `
 <button
   class="euiButton emotion-euiButtonDisplay-m-defaultMinWidth-base-danger"
