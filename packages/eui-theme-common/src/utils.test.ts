@@ -285,7 +285,7 @@ describe('getTokenName', () => {
       'backgroundBasePrimary'
     );
     expect(getTokenName('backgroundBase', 'primary', 'hovered')).toEqual(
-      'backgroundPrimaryHovered'
+      'backgroundBasePrimaryHovered'
     );
   });
 });
