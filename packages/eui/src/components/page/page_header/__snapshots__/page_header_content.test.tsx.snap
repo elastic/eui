@@ -36,14 +36,14 @@ exports[`EuiPageHeaderContent props alignItems bottom is rendered 1`] = `
       class="euiFlexGroup emotion-euiFlexGroup-wrap-l-flexStart-stretch-row-euiPageHeaderContent__rightSideItems"
     >
       <div
-        class="euiFlexItem emotion-euiFlexItem-growZero"
+        class="euiFlexItem emotion-euiFlexItem-growZero-euiPageHeaderContent__rightSideItem"
       >
         <button>
           Button 2
         </button>
       </div>
       <div
-        class="euiFlexItem emotion-euiFlexItem-growZero"
+        class="euiFlexItem emotion-euiFlexItem-growZero-euiPageHeaderContent__rightSideItem"
       >
         <button>
           Button 1
@@ -74,14 +74,14 @@ exports[`EuiPageHeaderContent props alignItems center is rendered 1`] = `
       class="euiFlexGroup emotion-euiFlexGroup-wrap-l-flexStart-stretch-row-euiPageHeaderContent__rightSideItems"
     >
       <div
-        class="euiFlexItem emotion-euiFlexItem-growZero"
+        class="euiFlexItem emotion-euiFlexItem-growZero-euiPageHeaderContent__rightSideItem"
       >
         <button>
           Button 2
         </button>
       </div>
       <div
-        class="euiFlexItem emotion-euiFlexItem-growZero"
+        class="euiFlexItem emotion-euiFlexItem-growZero-euiPageHeaderContent__rightSideItem"
       >
         <button>
           Button 1
@@ -112,14 +112,14 @@ exports[`EuiPageHeaderContent props alignItems stretch is rendered 1`] = `
       class="euiFlexGroup emotion-euiFlexGroup-wrap-l-flexStart-stretch-row-euiPageHeaderContent__rightSideItems"
     >
       <div
-        class="euiFlexItem emotion-euiFlexItem-growZero"
+        class="euiFlexItem emotion-euiFlexItem-growZero-euiPageHeaderContent__rightSideItem"
       >
         <button>
           Button 2
         </button>
       </div>
       <div
-        class="euiFlexItem emotion-euiFlexItem-growZero"
+        class="euiFlexItem emotion-euiFlexItem-growZero-euiPageHeaderContent__rightSideItem"
       >
         <button>
           Button 1
@@ -150,14 +150,14 @@ exports[`EuiPageHeaderContent props alignItems top is rendered 1`] = `
       class="euiFlexGroup emotion-euiFlexGroup-wrap-l-flexStart-stretch-row-euiPageHeaderContent__rightSideItems"
     >
       <div
-        class="euiFlexItem emotion-euiFlexItem-growZero"
+        class="euiFlexItem emotion-euiFlexItem-growZero-euiPageHeaderContent__rightSideItem"
       >
         <button>
           Button 2
         </button>
       </div>
       <div
-        class="euiFlexItem emotion-euiFlexItem-growZero"
+        class="euiFlexItem emotion-euiFlexItem-growZero-euiPageHeaderContent__rightSideItem"
       >
         <button>
           Button 1
@@ -271,14 +271,14 @@ exports[`EuiPageHeaderContent props children is rendered even if content props a
       class="euiFlexGroup emotion-euiFlexGroup-wrap-l-flexStart-stretch-row-euiPageHeaderContent__rightSideItems"
     >
       <div
-        class="euiFlexItem emotion-euiFlexItem-growZero"
+        class="euiFlexItem emotion-euiFlexItem-growZero-euiPageHeaderContent__rightSideItem"
       >
         <button>
           Button 2
         </button>
       </div>
       <div
-        class="euiFlexItem emotion-euiFlexItem-growZero"
+        class="euiFlexItem emotion-euiFlexItem-growZero-euiPageHeaderContent__rightSideItem"
       >
         <button>
           Button 1
@@ -482,14 +482,14 @@ exports[`EuiPageHeaderContent props rightSideItems is rendered 1`] = `
       class="euiFlexGroup emotion-euiFlexGroup-wrap-l-flexStart-stretch-row-euiPageHeaderContent__rightSideItems"
     >
       <div
-        class="euiFlexItem emotion-euiFlexItem-growZero"
+        class="euiFlexItem emotion-euiFlexItem-growZero-euiPageHeaderContent__rightSideItem"
       >
         <button>
           Button 2
         </button>
       </div>
       <div
-        class="euiFlexItem emotion-euiFlexItem-growZero"
+        class="euiFlexItem emotion-euiFlexItem-growZero-euiPageHeaderContent__rightSideItem"
       >
         <button>
           Button 1
@@ -516,14 +516,14 @@ exports[`EuiPageHeaderContent props rightSideItems is rendered with rightSideGro
       data-test-subj="test subject string"
     >
       <div
-        class="euiFlexItem emotion-euiFlexItem-growZero"
+        class="euiFlexItem emotion-euiFlexItem-growZero-euiPageHeaderContent__rightSideItem"
       >
         <button>
           Button 2
         </button>
       </div>
       <div
-        class="euiFlexItem emotion-euiFlexItem-growZero"
+        class="euiFlexItem emotion-euiFlexItem-growZero-euiPageHeaderContent__rightSideItem"
       >
         <button>
           Button 1
