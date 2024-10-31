@@ -9,6 +9,13 @@ exports[`useEuiButtonColorCSS base 1`] = `
     "styles": "color:#a03465;background-color:#fcdcea;;;label:base-accent;",
     "toString": [Function],
   },
+  "accentSecondary": {
+    "map": undefined,
+    "name": "1j0clgi-displaysColorsMap-display-color",
+    "next": undefined,
+    "styles": "color:#006c66;background-color:#ccf2f0;;;label:base-accentSecondary;",
+    "toString": [Function],
+  },
   "danger": {
     "map": undefined,
     "name": "1cquuvx-displaysColorsMap-display-color",
@@ -63,6 +70,13 @@ exports[`useEuiButtonColorCSS empty 1`] = `
     "styles": "color:#a03465;&:focus,&:active{background-color:rgba(240,78,152,0.1);};label:empty-accent;",
     "toString": [Function],
   },
+  "accentSecondary": {
+    "map": undefined,
+    "name": "h2w3e9-displaysColorsMap-display-color",
+    "next": undefined,
+    "styles": "color:#006c66;&:focus,&:active{background-color:rgba(0,191,179,0.1);};label:empty-accentSecondary;",
+    "toString": [Function],
+  },
   "danger": {
     "map": undefined,
     "name": "j8xrk3-displaysColorsMap-display-color",
@@ -115,6 +129,13 @@ exports[`useEuiButtonColorCSS fill 1`] = `
     "name": "1lwffh1-displaysColorsMap-display-color",
     "next": undefined,
     "styles": "color:#000000;background-color:#f583b7;outline-color:#000000;;label:fill-accent;",
+    "toString": [Function],
+  },
+  "accentSecondary": {
+    "map": undefined,
+    "name": "vi45v3-displaysColorsMap-display-color",
+    "next": undefined,
+    "styles": "color:#000;background-color:#f583b7;outline-color:#000;;label:fill-accentSecondary;",
     "toString": [Function],
   },
   "danger": {

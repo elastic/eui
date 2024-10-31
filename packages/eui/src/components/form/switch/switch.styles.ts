@@ -8,7 +8,7 @@
 
 import { css } from '@emotion/react';
 
-import { UseEuiTheme, tint } from '../../../services';
+import { UseEuiTheme } from '../../../services';
 import {
   euiCanAnimate,
   euiFocusRing,
@@ -24,12 +24,15 @@ const euiSwitchVars = (euiThemeContext: UseEuiTheme) => {
   const formVars = euiFormCustomControlVariables(euiThemeContext);
 
   const colors = {
-    on: formVars.colors.selected,
-    off: formVars.colors.unselectedBorder,
+    on: euiTheme.components.switchBackgroundOn,
+    off: euiTheme.components.switchBackgroundOff,
     disabled: formVars.colors.disabled,
     thumb: formVars.colors.selectedIcon,
-    thumbBorder: formVars.colors.unselectedBorder,
-    thumbBorderDisabled: formVars.colors.unselectedBorder,
+    thumbDisabled: euiTheme.components.switchThumbBackgroundDisabled,
+    thumbBorder: euiTheme.components.switchThumbBorderOff,
+    thumbBorderOn: euiTheme.components.switchThumbBorderOn,
+    thumbBorderDisabled: formVars.colors.disabledBorder,
+    iconDisabled: euiTheme.components.switchIconDisabled,
   };
 
   const sizes = {
@@ -142,18 +145,7 @@ const buttonStyles = (
   };
 };
 
-const bodyStyles = ({ colorMode }: UseEuiTheme, { colors }: EuiSwitchVars) => {
-  // This is probably very extra, but the visual weight of the default
-  // disabled custom control feels different in light mode depending
-  // on the size of the switch, so I'm tinting it based on that.
-  // Gotta justify my stupidly expensive art degree!
-  const _calculateDisabledColor = (tintAmount: number) => css`
-    label: disabled;
-    background-color: ${colorMode === 'DARK'
-      ? colors.disabled
-      : tint(colors.disabled, tintAmount)};
-  `;
-
+const bodyStyles = ({ euiTheme }: UseEuiTheme, { colors }: EuiSwitchVars) => {
   return {
     euiSwitch__body: css`
       position: absolute;
@@ -169,9 +161,17 @@ const bodyStyles = ({ colorMode }: UseEuiTheme, { colors }: EuiSwitchVars) => {
       background-color: ${colors.off};
     `,
     disabled: {
-      uncompressed: _calculateDisabledColor(0.5),
-      compressed: _calculateDisabledColor(0.25),
-      mini: _calculateDisabledColor(0),
+      uncompressed: css`
+        background-color: ${euiTheme.components
+          .switchUncompressedBackgroundDisabled};
+      `,
+      compressed: css`
+        background-color: ${euiTheme.components
+          .switchCompressedBackgroundDisabled};
+      `,
+      mini: css`
+        background-color: ${euiTheme.components.switchMiniBackgroundDisabled};
+      `,
     },
   };
 };
@@ -208,7 +208,7 @@ const iconStyles = (
       color: ${colors.thumb};
     `,
     disabled: css`
-      color: ${colors.thumbBorderDisabled};
+      color: ${colors.iconDisabled};
     `,
   };
 };
@@ -256,6 +256,10 @@ const thumbStyles = ({ euiTheme }: UseEuiTheme, switchVars: EuiSwitchVars) => {
       ${logicalCSS('left', 0)}
     `,
     get on() {
+      const baseStyles = `
+        border: ${euiTheme.border.width.thin} solid ${colors.thumbBorderOn};
+      `;
+
       // right: 0 works but doesn't transition/animate, so we need to
       // manually calculate the left position per switch size
       const _calculateLeft = (bodyWidth: string, thumbWidth: string) => {
@@ -266,6 +270,7 @@ const thumbStyles = ({ euiTheme }: UseEuiTheme, switchVars: EuiSwitchVars) => {
         return css`
           label: on;
           ${logicalCSS('left', leftPosition)}
+          ${baseStyles}
         `;
       };
       return {
@@ -287,7 +292,7 @@ const thumbStyles = ({ euiTheme }: UseEuiTheme, switchVars: EuiSwitchVars) => {
 
     disabled: {
       disabled: css`
-        background-color: transparent;
+        background-color: ${colors.thumbDisabled};
         border: ${euiTheme.border.width.thin} solid
           ${colors.thumbBorderDisabled};
       `,

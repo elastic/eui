@@ -13,7 +13,7 @@ import {
   logicalShorthandCSS,
   logicalTextAlignCSS,
 } from '../../../global_styling';
-import { euiButtonSizeMap } from '../../../themes/amsterdam/global_styling/mixins';
+import { euiButtonSizeMap } from '../../../global_styling/mixins';
 import { EuiButtonDisplaySizes } from './_button_display';
 
 // Provides a solid reset and base for handling sizing layout

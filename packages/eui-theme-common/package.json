@@ -13,7 +13,7 @@
     "lint": "yarn tsc --noEmit && yarn lint-es && yarn lint-sass",
     "lint-es": "eslint --cache src/**/*.ts --max-warnings 0",
     "lint-sass": "yarn stylelint \"**/*.scss\" --quiet-deprecation-warnings",
-    "test": "jest",
+    "test": "jest ./src",
     "pre-push": "yarn lint && yarn test"
   },
   "repository": {

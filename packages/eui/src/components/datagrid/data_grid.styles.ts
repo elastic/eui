@@ -8,7 +8,7 @@
 
 import { css } from '@emotion/react';
 
-import { UseEuiTheme, tintOrShade } from '../../services';
+import { UseEuiTheme } from '../../services';
 import {
   euiFontSize,
   logicalCSS,
@@ -43,7 +43,7 @@ export const euiDataGridVariables = (euiThemeContext: UseEuiTheme) => {
 };
 
 export const euiDataGridStyles = (euiThemeContext: UseEuiTheme) => {
-  const { euiTheme, colorMode } = euiThemeContext;
+  const { euiTheme } = euiThemeContext;
   const { cellPadding, lineHeight, fontSize } =
     euiDataGridVariables(euiThemeContext);
 
@@ -65,11 +65,11 @@ export const euiDataGridStyles = (euiThemeContext: UseEuiTheme) => {
       }
 
       *:where(&.euiDataGrid--stripes .euiDataGridRow--striped) {
-        background-color: ${euiTheme.colors.lightestShade};
+        background-color: ${euiTheme.components.dataGridRowBackgroundStriped};
       }
 
       *:where(&.euiDataGrid--rowHoverHighlight .euiDataGridRow:hover) {
-        background-color: ${euiTheme.colors.highlight};
+        background-color: ${euiTheme.components.dataGridRowBackgroundHover};
       }
     `,
     cellPadding: {
@@ -154,11 +154,7 @@ export const euiDataGridStyles = (euiThemeContext: UseEuiTheme) => {
             ${logicalCSS(
               'border-right',
               // Visually lighten vertical borders
-              `${euiTheme.border.width.thin} solid ${tintOrShade(
-                euiTheme.border.color,
-                0.3,
-                colorMode
-              )}`
+              `${euiTheme.border.width.thin} solid ${euiTheme.components.dataGridVerticalLineBorderColor}`
             )}
           }
 

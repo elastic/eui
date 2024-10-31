@@ -41,10 +41,13 @@ export const euiIconStyles = ({ euiTheme }: UseEuiTheme) => ({
   `,
   // Colors
   accent: css`
-    color: ${euiTheme.colors.accentText};
+    color: ${euiTheme.colors.textAccent};
+  `,
+  accentSecondary: css`
+    color: ${euiTheme.colors.textAccentSecondary};
   `,
   danger: css`
-    color: ${euiTheme.colors.dangerText};
+    color: ${euiTheme.colors.textDanger};
   `,
   ghost: css`
     color: ${euiTheme.colors.ghost};
@@ -56,16 +59,16 @@ export const euiIconStyles = ({ euiTheme }: UseEuiTheme) => ({
     }
   `,
   primary: css`
-    color: ${euiTheme.colors.primaryText};
+    color: ${euiTheme.colors.textPrimary};
   `,
   success: css`
-    color: ${euiTheme.colors.successText};
+    color: ${euiTheme.colors.textSuccess};
   `,
   subdued: css`
-    color: ${euiTheme.colors.subduedText};
+    color: ${euiTheme.colors.textSubdued};
   `,
   text: css`
-    color: ${euiTheme.colors.title};
+    color: ${euiTheme.colors.textHeading};
 
     /* Really force all paths to inherit (specifically for logos) */
     *[fill],
@@ -74,7 +77,7 @@ export const euiIconStyles = ({ euiTheme }: UseEuiTheme) => ({
     }
   `,
   warning: css`
-    color: ${euiTheme.colors.warningText};
+    color: ${euiTheme.colors.textWarning};
   `,
   inherit: css`
     color: inherit;
@@ -106,7 +109,7 @@ export const euiIconStyles = ({ euiTheme }: UseEuiTheme) => ({
     /* Note: This className is hard-coded into our SVGs and cannot be converted to Emotion */
     .euiIcon__fillSecondary {
       /* This provides the default secondary color */
-      fill: ${euiTheme.colors.successText};
+      fill: ${euiTheme.colors.textSuccess};
     }
   `,
   logo: css``,
