@@ -142,6 +142,7 @@ export const EuiDatePopoverButton: FunctionComponent<
       display="block"
       panelPaddingSize="none"
       {...rest}
+      css={value === 'now' && styles.now}
     >
       <EuiDatePopoverContent
         value={value}
