@@ -826,7 +826,7 @@ exports[`EuiSuperDatePicker renders an EuiDatePickerRange 1`] = `
           </span>
         </div>
         <div
-          class="euiPopover euiFormControlLayoutDelimited__input emotion-euiPopover-block-euiFormControlLayoutDelimited__input-euiSuperDatePicker__rangeInput"
+          class="euiPopover euiFormControlLayoutDelimited__input emotion-euiPopover-block-now-euiFormControlLayoutDelimited__input-euiSuperDatePicker__rangeInput"
         >
           <button
             class="euiDatePopoverButton euiDatePopoverButton--end emotion-euiDatePopoverButton"

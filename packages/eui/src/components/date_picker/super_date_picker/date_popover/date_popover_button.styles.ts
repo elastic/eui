@@ -15,5 +15,9 @@ export const euiDatePopoverButtonStyles = (euiThemeContext: UseEuiTheme) => {
     euiDatePopoverButton: css`
       ${_buttonStyles(euiThemeContext)}
     `,
+    now: css`
+      /* !important needed to override date range picker nested styles */
+      flex-grow: 0.5 !important; /* stylelint-disable-line declaration-no-important */
+    `,
   };
 };

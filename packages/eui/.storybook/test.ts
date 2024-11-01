@@ -40,6 +40,12 @@ const customWithin = (canvasElement: HTMLElement) => {
       await waitFor(() =>
         expect(canvasElement.querySelector('[data-popover-open]')).toBeVisible()
       ),
+    waitForEuiPopoverHidden: async () =>
+      await waitFor(() =>
+        expect(
+          canvasElement.querySelector('[data-popover-panel]')
+        ).not.toBeInTheDocument()
+      ),
   };
 };
 

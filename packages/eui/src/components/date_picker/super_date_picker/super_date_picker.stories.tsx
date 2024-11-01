@@ -9,7 +9,7 @@
 import React from 'react';
 import moment from 'moment';
 import type { Meta, StoryObj } from '@storybook/react';
-import { expect } from '@storybook/test';
+import { expect, fireEvent } from '@storybook/test';
 import { within } from '../../../../.storybook/test';
 import { LOKI_SELECTORS } from '../../../../.storybook/loki';
 import { enableFunctionToggleControls } from '../../../../.storybook/utils';
@@ -123,3 +123,33 @@ function CustomPanel({ applyTime }: { applyTime?: ApplyTime }) {
     <EuiLink onClick={applyMyCustomTime}>Entire dataset timerange</EuiLink>
   );
 }
+
+/**
+ * VRT only
+ */
+export const OverflowingChildren: Story = {
+  tags: ['vrt-only'],
+  args: { start: 'Dec 31, 1999' },
+  decorators: [
+    (Story) => (
+      <div style={{ maxWidth: 400 }}>
+        <Story />
+      </div>
+    ),
+  ],
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+
+    const startButton = canvas.getByTestSubject(
+      'superDatePickerstartDatePopoverButton'
+    );
+    const getAbsoluteTab = () =>
+      canvas.getByTestSubject('superDatePickerAbsoluteTab');
+
+    await fireEvent.click(startButton);
+    await canvas.waitForEuiPopoverVisible();
+    await fireEvent.click(getAbsoluteTab());
+    await fireEvent.click(startButton);
+    await canvas.waitForEuiPopoverHidden();
+  },
+};

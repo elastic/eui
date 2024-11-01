@@ -129,6 +129,7 @@ export const euiSuperDatePickerStyles = (euiThemeContext: UseEuiTheme) => {
     euiSuperDatePicker__rangeInput: css`
       flex-grow: 1;
       ${logicalCSS('width', 'auto')}
+      overflow: hidden;
     `,
     euiSuperDatePicker__prettyFormat: css`
       ${_buttonStyles(euiThemeContext)}
