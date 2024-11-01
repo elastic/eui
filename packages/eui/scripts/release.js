@@ -141,6 +141,12 @@ const hasStep = (step) => {
 
     // Update version number
     execSync(`yarn version ${versionTarget}`, execOptions);
+    // `yarn version` sometimes has a bug with the suffixed releases (e.g. `-backport.*`)
+    // where it doesn't properly set the version target. Running the command twice in a row
+    // appears to fix the issue for some reason ¯\_(ツ)_/¯
+    if (isSpecialRelease) {
+      execSync(`yarn version ${versionTarget}`, execOptions);
+    }
 
     // Commit version number update
     execSync('git add package.json', execOptions);
