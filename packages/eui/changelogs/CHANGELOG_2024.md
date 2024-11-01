@@ -1,3 +1,12 @@
+## [`v97.0.0-backport.2`](https://github.com/elastic/eui/releases/v97.0.0-backport.2)
+
+**This is a backport release only intended for use by Kibana.**
+
+**Bug fixes**
+
+- Fixed an `EuiSuperDatePicker` bug where inputs would overflow out of smaller widths instead of truncating ([#8109](https://github.com/elastic/eui/pull/8109))
+- Fixed a bug with `EuiPageHeader`'s `rightSideItems` responsiveness where single items could overflow past the intended max width ([#8110](https://github.com/elastic/eui/pull/8110))
+
 ## [`v97.0.0-backport.1`](https://github.com/elastic/eui/releases/v97.0.0-backport.1)
 
 **This is a backport release only intended for use by Kibana.**
