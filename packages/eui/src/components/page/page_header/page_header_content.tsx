@@ -363,7 +363,11 @@ export const EuiPageHeaderContent: FunctionComponent<
       : [...rightSideItems].reverse();
 
     const rightSideFlexItems = itemsToRender.map((item, index) => (
-      <EuiFlexItem grow={false} key={index}>
+      <EuiFlexItem
+        key={index}
+        grow={false}
+        css={contentStyles.euiPageHeaderContent__rightSideItem}
+      >
         {item}
       </EuiFlexItem>
     ));
