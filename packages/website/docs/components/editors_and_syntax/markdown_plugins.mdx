@@ -16,22 +16,22 @@ EUI provides additional plugins by default, but these can be omitted or otherwis
 The parsing plugins, responsible for parsing markdown are:
 
 1.  [remark-parse](https://www.npmjs.com/package/remark-parse)
-2.  [additional pre-processing for code blocks](https://github.com/elastic/eui/blob/main/src/components/markdown_editor/plugins/remark/remark_prismjs.ts)
+2.  [additional pre-processing for code blocks](https://github.com/elastic/eui/blob/main/packages/eui/src/components/markdown_editor/plugins/remark/remark_prismjs.ts)
 3.  [remark-emoji](https://www.npmjs.com/package/remark-emoji)
 4.  [remark-breaks](https://www.npmjs.com/package/remark-breaks)
-5.  [link validation for security](https://github.com/elastic/eui/blob/main/src/components/markdown_editor/plugins/markdown_link_validator.tsx)
-6.  [injection of EuiCheckbox for markdown check boxes](https://github.com/elastic/eui/blob/main/src/components/markdown_editor/plugins/markdown_checkbox/parser.ts)
-7.  [tooltip plugin parser](https://github.com/elastic/eui/blob/main/src/components/markdown_editor/plugins/markdown_tooltip/parser.ts)
+5.  [link validation for security](https://github.com/elastic/eui/blob/main/packages/eui/src/components/markdown_editor/plugins/markdown_link_validator.tsx)
+6.  [injection of EuiCheckbox for markdown check boxes](https://github.com/elastic/eui/blob/main/packages/eui/src/components/markdown_editor/plugins/markdown_checkbox/parser.ts)
+7.  [tooltip plugin parser](https://github.com/elastic/eui/blob/main/packages/eui/src/components/markdown_editor/plugins/markdown_tooltip/parser.ts)
 
 The above set provides an abstract syntax tree used by the editor to provide feedback, and the renderer passes that output to the set of processing plugins to allow it to be rendered:
 
 1.  [remark-rehype](https://www.npmjs.com/package/remark-rehype)
 2.  [rehype-react](https://www.npmjs.com/package/rehype-react)
-3.  [tooltip plugin renderer](https://github.com/elastic/eui/blob/main/src/components/markdown_editor/plugins/markdown_tooltip/renderer.tsx)
+3.  [tooltip plugin renderer](https://github.com/elastic/eui/blob/main/packages/eui/src/components/markdown_editor/plugins/markdown_tooltip/renderer.tsx)
 
 The last set of plugin configuration - `uiPlugins` - allows toolbar buttons to be defined and how they alter or inject markdown and returns with only one plugin:
 
-1.  [tooltip plugin ui](https://github.com/elastic/eui/blob/main/src/components/markdown_editor/plugins/markdown_tooltip/plugin.tsx)
+1.  [tooltip plugin ui](https://github.com/elastic/eui/blob/main/packages/eui/src/components/markdown_editor/plugins/markdown_tooltip/plugin.tsx)
 
 These plugin definitions can be obtained by calling `getDefaultEuiMarkdownParsingPlugins`, `getDefaultEuiMarkdownProcessingPlugins`, and `getDefaultEuiMarkdownUiPlugins` respectively.
 
