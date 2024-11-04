@@ -44,7 +44,7 @@ export const euiFlyoutSlideInLeft = keyframes`
 `;
 
 export const euiFlyoutStyles = (euiThemeContext: UseEuiTheme) => {
-  const euiTheme = euiThemeContext.euiTheme;
+  const { euiTheme, colorMode } = euiThemeContext;
 
   return {
     euiFlyout: css`
@@ -106,9 +106,27 @@ export const euiFlyoutStyles = (euiThemeContext: UseEuiTheme) => {
     `,
 
     // Type
-    overlay: css`
-      ${euiShadowXLarge(euiThemeContext)}
-    `,
+    overlay: {
+      overlay: css`
+        ${euiShadowXLarge(euiThemeContext)}
+
+        &:has(.euiResizableButton) {
+          border-inline: none;
+        }
+      `,
+      left: css`
+        border-inline-end: ${colorMode === 'DARK'
+          ? `${euiTheme.border.width.thin} solid
+          ${euiTheme.colors.borderBaseFloating}`
+          : 'none'};
+      `,
+      right: css`
+        border-inline-start: ${colorMode === 'DARK'
+          ? `${euiTheme.border.width.thin} solid
+          ${euiTheme.colors.borderBaseFloating}`
+          : 'none'};
+      `,
+    },
     push: {
       push: css`
         clip-path: none;
