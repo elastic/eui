@@ -11,7 +11,7 @@ Also known as **Editor-Style Controls**, compressed forms and controls were spec
 Do not use compressed and non-compressed form controls in the same form.
 :::
 
-To use compressed forms, pass `display="rowCompressed"` to the EuiFormRows and `compressed=true` to the form controls themselves.
+To use compressed forms, pass `compressed=true` to all form controls.
 
 ```tsx interactive
 import React, { useState } from 'react';
@@ -91,12 +91,11 @@ export default () => {
       <EuiFormRow
         label="Text field"
         helpText="I am some friendly help text."
-        display="rowCompressed"
       >
         <EuiFieldText name="first" isLoading compressed />
       </EuiFormRow>
 
-      <EuiFormRow label="Select" display="rowCompressed">
+      <EuiFormRow label="Select">
         <EuiSelect
           options={[
             { value: 'option_one', text: 'Option one' },
@@ -107,11 +106,11 @@ export default () => {
         />
       </EuiFormRow>
 
-      <EuiFormRow label="File picker" display="rowCompressed">
+      <EuiFormRow label="File picker">
         <EuiFilePicker compressed display="default" />
       </EuiFormRow>
 
-      <EuiFormRow label="Combobox" display="rowCompressed">
+      <EuiFormRow label="Combobox">
         <EuiComboBox
           options={[
             { label: 'Option one' },
@@ -126,7 +125,7 @@ export default () => {
         />
       </EuiFormRow>
 
-      <EuiFormRow label="Range" display="rowCompressed">
+      <EuiFormRow label="Range">
         <EuiRange
           min={0}
           max={100}
@@ -139,7 +138,7 @@ export default () => {
         />
       </EuiFormRow>
 
-      <EuiFormRow label="Switch" display="rowCompressed" hasChildLabel={false}>
+      <EuiFormRow label="Switch" hasChildLabel={false}>
         <EuiSwitch
           label="Setting name"
           name="switch"
@@ -168,8 +167,6 @@ export default () => {
 ## Column layout
 
 Editor-style controls can be displayed in a two column layout for even better use of limited space, just pass `display="columnCompressed"` to align the labels and inputs side by side.
-
-**EuiSwitches** are a special case in which so you must pass `"columnCompressedSwitch"` to the EuiFormRow as the display property.
 
 ```tsx interactive
 import React, { useState } from 'react';
@@ -255,7 +252,7 @@ export default () => {
         />
       </EuiFormRow>
 
-      <EuiFormRow display="columnCompressedSwitch" label="Switch">
+      <EuiFormRow display="columnCompressed" label="Switch">
         <EuiSwitch
           showLabel={false}
           label="Switch"
