@@ -1,4 +1,4 @@
-declare module '@elastic/eui/dist/eui_theme_dark.json' {
+declare module '@elastic/eui/dist/eui_theme_amsterdam_light.json' {
   const sassVariables: {
     euiZDataGrid: number;
     euiZHeaderBelowDataGrid: number;

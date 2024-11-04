@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 
-import lightColors from './eui_theme_light.json';
-import darkColors from './eui_theme_dark.json';
+import lightColors from './eui_theme_amsterdam_light.json';
+import darkColors from './eui_theme_amsterdam_dark.json';
 import { ThemeContext } from '../../../components';
 
 export const useJsonVars = () => {
