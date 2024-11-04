@@ -18,10 +18,12 @@ export const euiPopoverArrowStyles = (euiThemeContext: UseEuiTheme) => {
   const arrowColor = 'var(--euiPopoverBackgroundColor)';
   const borderColor = euiTheme.colors.borderBaseFloating;
   const arrowSizeBase = euiTheme.size[popoverArrowSize];
-  const arrowSize = mathWithUnits(arrowSizeBase, (x) => x + 1); // calculation to ensure sqaure diagonal ~24px
+  const arrowSize = mathWithUnits(arrowSizeBase, (x) => x + 3); // calculation to ensure size parity
 
   const arrowPlusSize = mathWithUnits(arrowSize, (x) => (x / 2 + 1) * -1);
   const arrowMinusSize = mathWithUnits(arrowSize, (x) => (x / 2 - 1) * -1);
+
+  const adjustedPosition = 'calc(25% - 2px)';
 
   return {
     // Base
@@ -41,25 +43,27 @@ export const euiPopoverArrowStyles = (euiThemeContext: UseEuiTheme) => {
     top: css`
       border-block-end-color: ${borderColor};
       border-inline-end-color: ${borderColor};
-      transform: translate(25%, ${arrowPlusSize}) rotateZ(45deg);
+      transform: translate(${adjustedPosition}, ${arrowPlusSize}) rotateZ(45deg);
     `,
 
     bottom: css`
       border-block-start-color: ${borderColor};
       border-inline-start-color: ${borderColor};
-      transform: translate(25%, ${arrowMinusSize}) rotateZ(45deg);
+      transform: translate(${adjustedPosition}, ${arrowMinusSize})
+        rotateZ(45deg);
     `,
 
     left: css`
       border-block-start-color: ${borderColor};
       border-inline-end-color: ${borderColor};
-      transform: translate(${arrowPlusSize}, 25%) rotateZ(45deg);
+      transform: translate(${arrowPlusSize}, ${adjustedPosition}) rotateZ(45deg);
     `,
 
     right: css`
       border-block-end-color: ${borderColor};
       border-inline-start-color: ${borderColor};
-      transform: translate(${arrowMinusSize}, 25%) rotateZ(45deg);
+      transform: translate(${arrowMinusSize}, ${adjustedPosition})
+        rotateZ(45deg);
     `,
   };
 };
