@@ -1,19 +1,27 @@
 import { useContext } from 'react';
 
+import { EUI_THEME_BOREALIS_KEY } from '@elastic/eui-theme-borealis';
+import borealisLightColors from '@elastic/eui-theme-borealis/lib/eui_theme_borealis_light.json';
+import borealisDarkColors from '@elastic/eui-theme-borealis/lib/eui_theme_borealis_dark.json';
+
+import { ThemeContext } from '../../../components';
 import lightColors from './eui_theme_amsterdam_light.json';
 import darkColors from './eui_theme_amsterdam_dark.json';
-import { ThemeContext } from '../../../components';
 
 export const useJsonVars = () => {
   const themeContext = useContext(ThemeContext);
+  const isNewTheme = themeContext.theme.includes(EUI_THEME_BOREALIS_KEY);
+
+  const darkTokens = isNewTheme ? borealisDarkColors : darkColors;
+  const lightTokens = isNewTheme ? borealisLightColors : lightColors;
 
   let palette;
   switch (themeContext.theme) {
     case 'dark':
-      palette = darkColors;
+      palette = darkTokens;
       break;
     default:
-      palette = lightColors;
+      palette = lightTokens;
       break;
   }
 
