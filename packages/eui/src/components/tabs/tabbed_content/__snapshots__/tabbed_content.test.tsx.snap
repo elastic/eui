@@ -16,6 +16,7 @@ exports[`EuiTabbedContent is rendered with required props and tabs 1`] = `
       class="euiTab euiTab-isSelected emotion-euiTab-selected"
       id="es"
       role="tab"
+      tabindex="0"
       type="button"
     >
       <span
@@ -31,6 +32,7 @@ exports[`EuiTabbedContent is rendered with required props and tabs 1`] = `
       data-test-subj="kibanaTab"
       id="kibana"
       role="tab"
+      tabindex="-1"
       type="button"
     >
       <span
@@ -76,6 +78,7 @@ exports[`EuiTabbedContent props autoFocus initial is rendered 1`] = `
       class="euiTab euiTab-isSelected emotion-euiTab-selected"
       id="es"
       role="tab"
+      tabindex="0"
       type="button"
     >
       <span
@@ -91,6 +94,7 @@ exports[`EuiTabbedContent props autoFocus initial is rendered 1`] = `
       data-test-subj="kibanaTab"
       id="kibana"
       role="tab"
+      tabindex="-1"
       type="button"
     >
       <span
@@ -136,6 +140,7 @@ exports[`EuiTabbedContent props autoFocus selected is rendered 1`] = `
       class="euiTab euiTab-isSelected emotion-euiTab-selected"
       id="es"
       role="tab"
+      tabindex="0"
       type="button"
     >
       <span
@@ -151,6 +156,7 @@ exports[`EuiTabbedContent props autoFocus selected is rendered 1`] = `
       data-test-subj="kibanaTab"
       id="kibana"
       role="tab"
+      tabindex="-1"
       type="button"
     >
       <span
@@ -196,6 +202,7 @@ exports[`EuiTabbedContent props initialSelectedTab renders a selected tab 1`] = 
       class="euiTab emotion-euiTab"
       id="es"
       role="tab"
+      tabindex="-1"
       type="button"
     >
       <span
@@ -211,6 +218,7 @@ exports[`EuiTabbedContent props initialSelectedTab renders a selected tab 1`] = 
       data-test-subj="kibanaTab"
       id="kibana"
       role="tab"
+      tabindex="0"
       type="button"
     >
       <span
@@ -256,6 +264,7 @@ exports[`EuiTabbedContent props selectedTab renders a selected tab 1`] = `
       class="euiTab emotion-euiTab"
       id="es"
       role="tab"
+      tabindex="-1"
       type="button"
     >
       <span
@@ -271,6 +280,7 @@ exports[`EuiTabbedContent props selectedTab renders a selected tab 1`] = `
       data-test-subj="kibanaTab"
       id="kibana"
       role="tab"
+      tabindex="0"
       type="button"
     >
       <span
@@ -316,6 +326,7 @@ exports[`EuiTabbedContent props size can be small 1`] = `
       class="euiTab euiTab-isSelected emotion-euiTab-selected"
       id="es"
       role="tab"
+      tabindex="0"
       type="button"
     >
       <span
@@ -331,6 +342,7 @@ exports[`EuiTabbedContent props size can be small 1`] = `
       data-test-subj="kibanaTab"
       id="kibana"
       role="tab"
+      tabindex="-1"
       type="button"
     >
       <span
