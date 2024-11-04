@@ -773,3 +773,33 @@ export default () => {
   );
 };
 ```
+
+## Restricted range
+
+To limit the range from which users can choose a date, you can use `minDate` and `maxDate`. By updating the date input values for `start` and `end`, users get immediate feedback on what range values are allowed.
+
+```tsx interactive
+import React, { useState } from 'react';
+import { EuiSuperDatePicker, OnTimeChangeProps } from '@elastic/eui';
+import moment from 'moment';
+
+export default () => {
+  const [start, setStart] = useState('now-30m');
+  const [end, setEnd] = useState('now');
+  const minDate = moment().subtract(1, 'M');
+  const maxDate = moment().add(1, 'M');
+  const onTimeChange = ({ start, end }: OnTimeChangeProps) => {
+    setStart(start);
+    setEnd(end);
+  };
+  return (
+    <EuiSuperDatePicker
+      start={start}
+      end={end}
+      minDate={minDate}
+      maxDate={maxDate}
+      onTimeChange={onTimeChange}
+    />
+  );
+};
+```
