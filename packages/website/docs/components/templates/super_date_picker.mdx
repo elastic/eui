@@ -135,7 +135,7 @@ When `start` and `end` change from interactions with **Absolute**, **Relative**,
 Instead of hiding completely, you can reduce the footprint of the update button to just an icon with `showUpdateButton="iconOnly"`. You can further configure the button using `updateButtonProps`, like setting the `fill` to `false`.
 
 ```tsx interactive
-import React, { useState, Fragment } from 'react';
+import React, { useState } from 'react';
 import {
   EuiSuperDatePicker,
   EuiSwitch,
@@ -188,7 +188,7 @@ export default () => {
   };
 
   return (
-    <Fragment>
+    <>
       <EuiSwitch
         label="Show update button"
         onChange={toggleShowApplyButton}
@@ -221,7 +221,7 @@ export default () => {
         updateButtonProps={{ fill: showFill }}
       />
       <EuiSpacer />
-    </Fragment>
+    </>
   );
 };
 ```
@@ -237,7 +237,7 @@ export default () => {
 You can also reduce the **EuiSuperDatePicker** to display **just** the quick select button and dropdown by passing `isQuickSelectOnly={true}`. Be sure you display the rendered time period elsewhere in your interface.
 
 ```tsx interactive
-import React, { useState, Fragment } from 'react';
+import React, { useState } from 'react';
 import {
   EuiSuperDatePicker,
   EuiSwitch,
@@ -328,7 +328,7 @@ export default () => {
   ];
 
   return (
-    <Fragment>
+    <>
       <EuiSwitch
         label="Show recently used"
         onChange={toggleShowRecentlyUsed}
@@ -360,7 +360,7 @@ export default () => {
         isQuickSelectOnly={showQuickSelectOnly}
       />
       <EuiSpacer />
-    </Fragment>
+    </>
   );
 };
 ```
@@ -369,7 +369,9 @@ export default () => {
 
 You can optionally pass the `customQuickSelectRender` prop that passes default panels as arguments and allows you to re-order panels, omit certain panels entirely, or pass in your own fully custom content.
 
-null
+import CustomRenderExample from './custom_quick_select_render';
+
+<CustomRenderExample />
 
 ## Sizing
 
@@ -688,9 +690,9 @@ import {
 
 // NOTE: These explicit imports are required for CodeSandbox and any
 // bundler that does not support Moment dynamically loading locales
-import 'moment/locale/zh-cn';
-import 'moment/locale/ja';
-import 'moment/locale/fr';
+// import 'moment/locale/zh-cn';
+// import 'moment/locale/ja';
+// import 'moment/locale/fr';
 
 const localeId = htmlIdGenerator('locale');
 const locales = [
