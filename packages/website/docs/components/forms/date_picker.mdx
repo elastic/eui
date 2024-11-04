@@ -436,25 +436,22 @@ export default () => {
 Use `customInput` to pass a custom input to trigger your calendar.
 
 ```tsx interactive
-import React, { forwardRef, useState } from 'react';
+import React, { forwardRef, useState, FunctionComponent, ReactNode } from 'react';
 import { EuiDatePicker, EuiButton } from '@elastic/eui';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 
 // Should be a component because the date picker does some ref stuff behind the scenes
-// eslint-disable-next-line
-const ExampleCustomInput = forwardRef(({ onClick, value }, ref) => {
+const ExampleCustomInput: FunctionComponent<{
+  onClick: Function;
+  value: ReactNode;
+}> = forwardRef(({ onClick, value }, ref) => {
   return (
     <EuiButton className="example-custom-input" onClick={onClick}>
       {value}
     </EuiButton>
   );
 });
-
-ExampleCustomInput.propTypes = {
-  onClick: PropTypes.func,
-  value: PropTypes.string,
-};
 
 export default () => {
   const [startDate, setStartDate] = useState(moment());
