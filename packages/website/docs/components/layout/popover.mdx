@@ -777,44 +777,6 @@ export default () => {
 };
 ```
 
-## Panel class name
-
-Use the `panelClassName` prop to pass a custom class to the panel containing the popover contents.
-
-```tsx interactive
-import React, { useState } from 'react';
-import { EuiPopover, EuiButtonEmpty, EuiText } from '@elastic/eui';
-
-export default () => {
-  const [isPopoverOpen, setIsPopoverOpen] = useState(false);
-
-  const onButtonClick = () =>
-    setIsPopoverOpen((isPopoverOpen) => !isPopoverOpen);
-  const closePopover = () => setIsPopoverOpen(false);
-
-  return (
-    <EuiPopover
-      button={
-        <EuiButtonEmpty
-          iconType="help"
-          iconSide="right"
-          onClick={onButtonClick}
-        >
-          Text scaling
-        </EuiButtonEmpty>
-      }
-      isOpen={isPopoverOpen}
-      closePopover={closePopover}
-      panelClassName="guideDemo__textLines"
-    >
-      <EuiText style={{ width: 100 }}>
-        <p>This has a custom class that applies some grid lines.</p>
-      </EuiText>
-    </EuiPopover>
-  );
-};
-```
-
 ## Popover with block level display
 
 Popover anchors default to `display: inline-block;` so they do not force a display on inline triggers. If you do need to change this, just add `display="block"`
