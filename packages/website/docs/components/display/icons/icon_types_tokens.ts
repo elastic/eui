@@ -46,6 +46,7 @@ export const iconTypesTokens: Array<IconType> = [
   'tokenRankFeatures',
   'tokenRepo',
   'tokenSearchType',
+  'tokenSemanticText',
   'tokenShape',
   'tokenString',
   'tokenStruct',
