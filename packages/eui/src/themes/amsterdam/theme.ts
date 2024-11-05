@@ -32,6 +32,9 @@ export const euiThemeAmsterdam: EuiThemeShape = {
   levels,
   focus,
   components,
+  flags: {
+    hasGlobalFocusColor: false,
+  },
 };
 
 export const EuiThemeAmsterdam = buildTheme(

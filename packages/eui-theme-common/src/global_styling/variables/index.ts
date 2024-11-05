@@ -19,3 +19,4 @@ export * from './typography';
 export * from './buttons';
 export * from './forms';
 export * from './components';
+export * from './flags';
