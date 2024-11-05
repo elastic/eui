@@ -75,7 +75,7 @@ const euiHeaderDarkStyles = (euiThemeContext: UseEuiTheme) => {
   // Specific color overrides for EuiSelectableTemplateSitewide
   const selectableSitewide = {
     color: euiTheme.colors.ghost,
-    borderColor: transparentize(euiTheme.colors.ghost, 0.3),
+    borderColor: euiTheme.components.headerDarkSearchBorderColor,
     placeholderColor: makeHighContrastColor(
       controlPlaceholderText,
       8

@@ -55,14 +55,14 @@ export const dark_text_colors: _EuiThemeTextColors = {
   /* Legacy colors */
   text: SEMANTIC_COLORS.shade20,
   title: SEMANTIC_COLORS.shade15,
-  subduedText: SEMANTIC_COLORS.shade40,
+  subduedText: SEMANTIC_COLORS.shade60,
   link: SEMANTIC_COLORS.primary60,
 
   /* New colors */
   textParagraph: SEMANTIC_COLORS.shade20,
   textHeading: SEMANTIC_COLORS.shade15,
-  textSubdued: SEMANTIC_COLORS.shade40,
-  textDisabled: SEMANTIC_COLORS.shade60,
+  textSubdued: SEMANTIC_COLORS.shade60,
+  textDisabled: SEMANTIC_COLORS.shade80,
   textInverse: SEMANTIC_COLORS.plainDark,
 };
 
@@ -91,7 +91,7 @@ export const dark_background_colors: _EuiThemeBackgroundColors = {
   backgroundBaseFormsControlDisabled: SEMANTIC_COLORS.shade120,
 
   backgroundBaseInteractiveHover: PRIMITIVE_COLORS.transparent.white10,
-  backgroundBaseInteractiveSelect: SEMANTIC_COLORS.shade130,
+  backgroundBaseInteractiveSelect: SEMANTIC_COLORS.shade125,
   backgroundBaseInteractiveOverlay: SEMANTIC_COLORS.shadeTransparent80,
 
   backgroundBaseSkeletonEdge: PRIMITIVE_COLORS.transparent.white10,
@@ -141,9 +141,9 @@ export const dark_border_colors: _EuiThemeBorderColors = {
   borderBaseWarning: SEMANTIC_COLORS.warning120,
   borderBaseDanger: SEMANTIC_COLORS.danger120,
 
-  borderBasePlain: SEMANTIC_COLORS.shade110,
+  borderBasePlain: SEMANTIC_COLORS.shade100,
   borderBaseSubdued: SEMANTIC_COLORS.shade120,
-  borderBaseDisabled: SEMANTIC_COLORS.shade120,
+  borderBaseDisabled: SEMANTIC_COLORS.shade100,
   borderBaseFloating: SEMANTIC_COLORS.shade120,
 
   borderBaseFormsColorSwatch: PRIMITIVE_COLORS.transparent.white30,
@@ -160,8 +160,8 @@ export const dark_border_colors: _EuiThemeBorderColors = {
 export const dark_special_colors: _EuiThemeSpecialColors = {
   body: SEMANTIC_COLORS.plainDark,
   highlight: SEMANTIC_COLORS.primary100,
-  disabled: SEMANTIC_COLORS.shade70,
-  disabledText: SEMANTIC_COLORS.shade120,
+  disabled: SEMANTIC_COLORS.shade130,
+  disabledText: SEMANTIC_COLORS.shade80,
   shadow: PRIMITIVE_COLORS.black,
 };
 

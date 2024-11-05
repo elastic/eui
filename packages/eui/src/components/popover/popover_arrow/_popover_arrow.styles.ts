@@ -7,68 +7,63 @@
  */
 
 import { css } from '@emotion/react';
-import { logicals, logicalSizeCSS } from '../../../global_styling';
+import { logicalSizeCSS, mathWithUnits } from '../../../global_styling';
 import { UseEuiTheme } from '../../../services';
 
-export const popoverArrowSize = 'm';
+export const popoverArrowSize = 'base';
 
 export const euiPopoverArrowStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
 
-  const borderColor = 'var(--euiPopoverBackgroundColor)';
-  const arrowSize = euiTheme.size[popoverArrowSize];
+  const arrowColor = 'var(--euiPopoverBackgroundColor)';
+  const borderColor = euiTheme.colors.borderBaseFloating;
+  const arrowSizeBase = euiTheme.size[popoverArrowSize];
+  const arrowSize = mathWithUnits(arrowSizeBase, (x) => x + 3); // calculation to ensure size parity
+
+  const arrowPlusSize = mathWithUnits(arrowSize, (x) => (x / 2 + 1) * -1);
+  const arrowMinusSize = mathWithUnits(arrowSize, (x) => (x / 2 - 1) * -1);
+
+  const adjustedPosition = 'calc(25% - 2px)';
 
   return {
     // Base
     euiPopoverArrow: css`
       position: absolute;
-      ${logicalSizeCSS(0, 0)}
-
-      /* This part of the arrow matches the panel. */
-      &::before {
-        content: '';
-        position: absolute;
-        ${logicalSizeCSS(0, 0)}
-      }
+      ${logicalSizeCSS(arrowSize, arrowSize)}
+      transform-origin: center;
+      border-radius: ${mathWithUnits(
+        euiTheme.border.radius.small,
+        (x) => x / 2
+      )};
+      border: ${euiTheme.border.width.thin} solid transparent;
+      background-color: ${arrowColor};
     `,
 
     // POSITIONS
     top: css`
-      &::before {
-        ${logicals.bottom}: -${arrowSize};
-        ${logicals['border-left']}: ${arrowSize} solid transparent;
-        ${logicals['border-right']}: ${arrowSize} solid transparent;
-        ${logicals['border-top']}: ${arrowSize} solid ${borderColor};
-      }
+      border-block-end-color: ${borderColor};
+      border-inline-end-color: ${borderColor};
+      transform: translate(${adjustedPosition}, ${arrowPlusSize}) rotateZ(45deg);
     `,
 
     bottom: css`
-      &::before {
-        ${logicals.top}: -${arrowSize};
-        ${logicals['border-left']}: ${arrowSize} solid transparent;
-        ${logicals['border-right']}: ${arrowSize} solid transparent;
-        ${logicals['border-bottom']}: ${arrowSize} solid ${borderColor};
-      }
+      border-block-start-color: ${borderColor};
+      border-inline-start-color: ${borderColor};
+      transform: translate(${adjustedPosition}, ${arrowMinusSize})
+        rotateZ(45deg);
     `,
 
     left: css`
-      &::before {
-        ${logicals.top}: 50%;
-        ${logicals.right}: -${arrowSize};
-        ${logicals['border-top']}: ${arrowSize} solid transparent;
-        ${logicals['border-bottom']}: ${arrowSize} solid transparent;
-        ${logicals['border-left']}: ${arrowSize} solid ${borderColor};
-      }
+      border-block-start-color: ${borderColor};
+      border-inline-end-color: ${borderColor};
+      transform: translate(${arrowPlusSize}, ${adjustedPosition}) rotateZ(45deg);
     `,
 
     right: css`
-      &::before {
-        ${logicals.top}: 50%;
-        ${logicals.left}: -${arrowSize};
-        ${logicals['border-top']}: ${arrowSize} solid transparent;
-        ${logicals['border-bottom']}: ${arrowSize} solid transparent;
-        ${logicals['border-right']}: ${arrowSize} solid ${borderColor};
-      }
+      border-block-end-color: ${borderColor};
+      border-inline-start-color: ${borderColor};
+      transform: translate(${arrowMinusSize}, ${adjustedPosition})
+        rotateZ(45deg);
     `,
   };
 };

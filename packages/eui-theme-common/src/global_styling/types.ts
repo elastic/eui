@@ -19,6 +19,7 @@ import { _EuiThemeFont } from './variables/typography';
 import { _EuiThemeFocus } from './variables/states';
 import { _EuiThemeLevels } from './variables/levels';
 import { _EuiThemeComponents } from './variables/components';
+import { _EuiThemeFlags } from './variables';
 
 export const COLOR_MODES_STANDARD = {
   light: 'LIGHT',
@@ -59,8 +60,8 @@ export type EuiThemeShape = {
   animation: _EuiThemeAnimation;
   breakpoint: _EuiThemeBreakpoints;
   levels: _EuiThemeLevels;
-  // bevel: _EuiThemeBevel;
   components: _EuiThemeComponents;
+  flags: _EuiThemeFlags;
 };
 
 export type EuiThemeSystem<T = {}> = {
