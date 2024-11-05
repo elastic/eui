@@ -94,8 +94,8 @@ export const dark_background_colors: _EuiThemeBackgroundColors = {
   backgroundBaseInteractiveSelect: SEMANTIC_COLORS.shade125,
   backgroundBaseInteractiveOverlay: SEMANTIC_COLORS.shadeTransparent80,
 
-  backgroundBaseSkeletonEdge: PRIMITIVE_COLORS.transparent.white10,
-  backgroundBaseSkeletonMiddle: PRIMITIVE_COLORS.transparent.white30,
+  backgroundBaseSkeletonEdge: PRIMITIVE_COLORS.transparent.white30,
+  backgroundBaseSkeletonMiddle: PRIMITIVE_COLORS.transparent.white10,
 
   backgroundLightPrimary: SEMANTIC_COLORS.primary130,
   backgroundLightAccent: SEMANTIC_COLORS.accent130,
