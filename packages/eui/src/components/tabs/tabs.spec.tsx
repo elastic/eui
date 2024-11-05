@@ -114,13 +114,22 @@ describe('EuiTabs', () => {
     it('handles keypress events', () => {
       cy.realMount(<TabbedContent />);
       cy.realPress('Tab');
-      cy.realPress(['Shift', 'Tab']);
+      cy.realPress('ArrowLeft');
+      // on enter, should select the first tab
       cy.realPress('Enter');
       cy.get('div[role="tabpanel"]').first().should('exist');
       cy.get('div[role="tabpanel"]').should('have.length', 1);
       cy.focused().should('have.text', 'Cobalt');
-      cy.repeatRealPress('Tab', 3);
+      // on arrow right, should navigate to the next tab
+      cy.repeatRealPress('ArrowRight', 3);
       cy.focused().should('have.text', 'Monosodium Glutamate');
+      // on arrow right, should loop back to the first tab
+      cy.repeatRealPress('ArrowRight', 1);
+      cy.focused().should('have.text', 'Cobalt');
+      // on arrow left, should loop back to the last tab
+      cy.repeatRealPress('ArrowLeft', 1);
+      cy.focused().should('have.text', 'Monosodium Glutamate');
+      // on enter, should select the last tab
       cy.realPress('Enter');
       cy.get('div[role="tabpanel"]').last().should('exist');
       cy.get('div[role="tabpanel"]').should('have.length', 1);
