@@ -13,6 +13,7 @@ import { _EuiThemeFormColors } from './forms';
 export type _EuiThemeComponentColors = {
   buttonGroupBorderColor: ColorModeSwitch;
   buttonGroupBorderColorSelected: ColorModeSwitch;
+  buttonGroupFocusColor: ColorModeSwitch;
 
   badgeBackgroundSubdued: ColorModeSwitch;
   badgeBorderColorHollow: ColorModeSwitch;

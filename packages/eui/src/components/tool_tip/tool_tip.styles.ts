@@ -114,20 +114,29 @@ export const euiToolTipStyles = (euiThemeContext: UseEuiTheme) => {
         euiTheme.border.radius.small,
         (x) => x / 2
       )};
+      border: ${euiTheme.border.width.thin} solid transparent;
       background-color: ${euiToolTipBackgroundColor(euiTheme)};
       ${logicalSizeCSS(arrowSize, arrowSize)}
     `,
     arrowPositions: {
       top: css`
+        border-block-end-color: ${euiTheme.colors.borderBaseFloating};
+        border-inline-end-color: ${euiTheme.colors.borderBaseFloating};
         transform: translateY(${arrowPlusSize}) rotateZ(45deg);
       `,
       bottom: css`
+        border-block-start-color: ${euiTheme.colors.borderBaseFloating};
+        border-inline-start-color: ${euiTheme.colors.borderBaseFloating};
         transform: translateY(${arrowMinusSize}) rotateZ(45deg);
       `,
       left: css`
+        border-block-start-color: ${euiTheme.colors.borderBaseFloating};
+        border-inline-end-color: ${euiTheme.colors.borderBaseFloating};
         transform: translateX(${arrowPlusSize}) rotateZ(45deg);
       `,
       right: css`
+        border-block-end-color: ${euiTheme.colors.borderBaseFloating};
+        border-inline-start-color: ${euiTheme.colors.borderBaseFloating};
         transform: translateX(${arrowMinusSize}) rotateZ(45deg);
       `,
     },

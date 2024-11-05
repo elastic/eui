@@ -15,6 +15,7 @@ import { SEMANTIC_COLORS } from './colors/_semantic_colors';
 import {
   dark_background_colors,
   dark_border_colors,
+  dark_brand_text_colors,
   dark_text_colors,
 } from './colors/_colors_dark';
 
@@ -23,13 +24,11 @@ import { forms } from './_forms';
 import {
   background_colors,
   border_colors,
+  brand_text_colors,
   text_colors,
 } from './colors/_colors_light';
 
 const component_colors: _EuiThemeComponentColors = {
-  buttonGroupBorderColor: border_colors.borderBasePlain,
-  buttonGroupBorderColorSelected: border_colors.borderBasePlain,
-
   badgeBackgroundSubdued: background_colors.backgroundBaseSubdued,
   badgeBorderColorHollow: border_colors.borderBasePlain,
   badgeIconButtonBackgroundHover:
@@ -39,6 +38,10 @@ const component_colors: _EuiThemeComponentColors = {
   breadcrumbsApplicationColor: text_colors.textSubdued,
 
   bottomBarBackground: SEMANTIC_COLORS.plainDark,
+
+  buttonGroupBorderColor: border_colors.borderBasePlain,
+  buttonGroupBorderColorSelected: border_colors.borderBasePlain,
+  buttonGroupFocusColor: brand_text_colors.textPrimary,
 
   collapsibleNavGroupBackground: background_colors.backgroundBaseSubdued,
   collapsibleNavGroupBackgroundDark:
@@ -58,7 +61,7 @@ const component_colors: _EuiThemeComponentColors = {
 
   headerBackground: background_colors.backgroundBasePlain,
   headerDarkBackground: dark_background_colors.backgroundBasePlain,
-  headerDarkSearchBorderColor: dark_border_colors.borderBaseFormsControl,
+  headerDarkSearchBorderColor: dark_border_colors.borderBasePlain,
   headerDarkSectionItemBackgroundFocus:
     dark_background_colors.backgroundBasePrimary,
 
@@ -129,9 +132,6 @@ export const components: _EuiThemeComponents = {
   DARK: {
     ...component_colors,
 
-    buttonGroupBorderColor: dark_border_colors.borderBasePlain,
-    buttonGroupBorderColorSelected: dark_border_colors.borderBasePlain,
-
     badgeBackgroundSubdued: dark_background_colors.backgroundBaseSubdued,
     badgeBorderColorHollow: dark_border_colors.borderBasePlain,
     badgeIconButtonBackgroundHover:
@@ -140,6 +140,10 @@ export const components: _EuiThemeComponents = {
     breadcrumbsApplicationBackground:
       dark_background_colors.backgroundLightText,
     breadcrumbsApplicationColor: dark_text_colors.textSubdued,
+
+    buttonGroupBorderColor: dark_border_colors.borderBasePlain,
+    buttonGroupBorderColorSelected: dark_border_colors.borderBasePlain,
+    buttonGroupFocusColor: dark_brand_text_colors.textPrimary,
 
     collapsibleNavGroupBackground: dark_background_colors.backgroundBaseSubdued,
     collapsibleNavGroupBackgroundDark:

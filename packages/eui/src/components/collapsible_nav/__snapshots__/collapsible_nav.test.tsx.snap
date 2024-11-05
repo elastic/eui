@@ -13,7 +13,7 @@ exports[`EuiCollapsibleNav close button can be hidden 1`] = `
     >
       <nav
         aria-describedby="generated-id"
-        class="euiFlyout euiCollapsibleNav emotion-euiFlyout-none-noMaxWidth-overlay-left-euiCollapsibleNav-overlay"
+        class="euiFlyout euiCollapsibleNav emotion-euiFlyout-none-noMaxWidth-overlay-left-left-euiCollapsibleNav-overlay"
         data-autofocus="true"
         id="id"
         role="dialog"
@@ -67,7 +67,7 @@ exports[`EuiCollapsibleNav is rendered 1`] = `
       <nav
         aria-describedby="generated-id"
         aria-label="aria-label"
-        class="euiFlyout euiCollapsibleNav testClass1 testClass2 emotion-euiFlyout-none-noMaxWidth-overlay-left-euiCollapsibleNav-overlay-euiTestCss"
+        class="euiFlyout euiCollapsibleNav testClass1 testClass2 emotion-euiFlyout-none-noMaxWidth-overlay-left-left-euiCollapsibleNav-overlay-euiTestCss"
         data-autofocus="true"
         data-test-subj="test subject string"
         id="id"
@@ -118,7 +118,7 @@ exports[`EuiCollapsibleNav props accepts EuiFlyout props 1`] = `
   >
     <nav
       aria-describedby="generated-id"
-      class="euiFlyout euiCollapsibleNav emotion-euiFlyout-none-noMaxWidth-overlay-left-euiCollapsibleNav-overlay"
+      class="euiFlyout euiCollapsibleNav emotion-euiFlyout-none-noMaxWidth-overlay-left-left-euiCollapsibleNav-overlay"
       data-autofocus="true"
       id="id"
       role="dialog"
@@ -173,7 +173,7 @@ exports[`EuiCollapsibleNav props button 1`] = `
     >
       <nav
         aria-describedby="generated-id"
-        class="euiFlyout euiCollapsibleNav emotion-euiFlyout-none-noMaxWidth-overlay-left-euiCollapsibleNav-overlay"
+        class="euiFlyout euiCollapsibleNav emotion-euiFlyout-none-noMaxWidth-overlay-left-left-euiCollapsibleNav-overlay"
         data-autofocus="true"
         id="id"
         role="dialog"
@@ -224,7 +224,7 @@ exports[`EuiCollapsibleNav props dockedBreakpoint 1`] = `
     >
       <nav
         aria-describedby="generated-id"
-        class="euiFlyout euiCollapsibleNav emotion-euiFlyout-none-noMaxWidth-overlay-left-euiCollapsibleNav-overlay"
+        class="euiFlyout euiCollapsibleNav emotion-euiFlyout-none-noMaxWidth-overlay-left-left-euiCollapsibleNav-overlay"
         data-autofocus="true"
         id="id"
         role="dialog"
@@ -299,7 +299,7 @@ exports[`EuiCollapsibleNav props onClose 1`] = `
     >
       <nav
         aria-describedby="generated-id"
-        class="euiFlyout euiCollapsibleNav emotion-euiFlyout-none-noMaxWidth-overlay-left-euiCollapsibleNav-overlay"
+        class="euiFlyout euiCollapsibleNav emotion-euiFlyout-none-noMaxWidth-overlay-left-left-euiCollapsibleNav-overlay"
         data-autofocus="true"
         id="id"
         role="dialog"
@@ -379,7 +379,7 @@ exports[`EuiCollapsibleNav props size 1`] = `
     >
       <nav
         aria-describedby="generated-id"
-        class="euiFlyout euiCollapsibleNav emotion-euiFlyout-none-noMaxWidth-overlay-left-euiCollapsibleNav-overlay"
+        class="euiFlyout euiCollapsibleNav emotion-euiFlyout-none-noMaxWidth-overlay-left-left-euiCollapsibleNav-overlay"
         data-autofocus="true"
         id="id"
         role="dialog"
