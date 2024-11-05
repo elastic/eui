@@ -50,6 +50,10 @@ const component_colors: _EuiThemeComponentColors = {
     ([emptyShade]) => transparentize(emptyShade, 0.2),
     ['colors.emptyShade']
   ),
+  buttonGroupFocusColor: computed(
+    ([fullShade]) => fullShade,
+    ['colors.fullShade']
+  ),
 
   bottomBarBackground: computed(
     ([lightestShade]) => shade(lightestShade, 0.5),

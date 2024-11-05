@@ -30,6 +30,8 @@ export const euiPanelStyles = (euiThemeContext: UseEuiTheme) => {
 
     hasShadow: css`
       ${euiShadow(euiThemeContext, 'm')}
+      border: ${euiTheme.border.width.thin} solid ${euiTheme.colors
+        .borderBaseFloating};
     `,
 
     hasBorder: css`
