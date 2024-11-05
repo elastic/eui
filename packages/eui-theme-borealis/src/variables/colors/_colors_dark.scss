@@ -43,7 +43,7 @@ $euiColorBackgroundBaseFormsPrepend: $euiColorShade125 !default;
 $euiColorBackgroundBaseFormsControlDisabled: $euiColorShade120 !default;
 
 $euiColorBackgroundBaseInteractiveHover: $euiColorTransparentWhite10 !default;
-$euiColorBackgroundBaseInteractiveSelect: $euiColorShade130 !default;
+$euiColorBackgroundBaseInteractiveSelect: $euiColorShade125 !default;
 $euiColorBackgroundBaseInteractiveOverlay: $euiColorShadeTransparent80 !default;
 $euiColorBackgroundBaseSkeletonEdge: $euiColorTransparentWhite10 !default;
 $euiColorBackgroundBaseSkeletonMiddle: $euiColorTransparentWhite30 !default;
@@ -67,16 +67,16 @@ $euiColorBackgroundFilledText: $euiColorShade60 !default;
 // Texts (legacy)
 $euiTextColor: $euiColorShade20 !default;
 $euiTitleColor: $euiColorShade15 !default;
-$euiTextSubduedColor: $euiColorShade40 !default;
+$euiTextSubduedColor: $euiColorShade60 !default;
 $euiColorDisabled: $euiColorBackgroundBaseDisabled !default;
-$euiColorDisabledText: $euiColorShade60 !default;
+$euiColorDisabledText: $euiColorShade80 !default;
 $euiLinkColor: $euiColorPrimary60 !default;
 
 // Texts
 $euiColorTextParagraph: $euiColorShade20 !default;
 $euiColorTextHeading: $euiColorShade15 !default;
-$euiColorTextSubdued: $euiColorShade40 !default;
-$euiColorTextDisabled: $euiColorShade60 !default;
+$euiColorTextSubdued: $euiColorShade60 !default;
+$euiColorTextDisabled: $euiColorShade80 !default;
 $euiColorTextInverse: $euiColorPlainDark !default;
 
 // Brand texts (legacy)
@@ -102,9 +102,9 @@ $euiColorBorderBaseSuccess: $euiColorSuccess120;
 $euiColorBorderBaseWarning: $euiColorWarning120;
 $euiColorBorderBaseDanger: $euiColorDanger120;
 
-$euiColorBorderBasePlain: $euiColorShade110;
+$euiColorBorderBasePlain: $euiColorShade100;
 $euiColorBorderBaseSubdued: $euiColorShade120;
-$euiColorBorderBaseDisabled: $euiColorShade120;
+$euiColorBorderBaseDisabled: $euiColorShade100;
 $euiColorBorderBaseFloating: $euiColorShade120;
 $euiColorBorderBaseFormsColorSwatch: $euiColorTransparentWhite30;
 $euiColorBorderBaseFormsControl: $euiColorShade80;

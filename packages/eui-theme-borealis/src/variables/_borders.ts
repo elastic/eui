@@ -14,8 +14,8 @@ import {
 
 export const border: _EuiThemeBorder = {
   color: computed(
-    ([borderBasePlain]) => borderBasePlain,
-    ['colors.borderBasePlain']
+    ([borderBaseSubdued]) => borderBaseSubdued,
+    ['colors.borderBaseSubdued']
   ),
   width: {
     thin: '1px',
