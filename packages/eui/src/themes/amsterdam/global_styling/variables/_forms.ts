@@ -69,13 +69,19 @@ const _forms = {
     ([emptyShade]) => emptyShade,
     ['colors.emptyShade']
   ),
-  controlBackgroundDisabled: 'transparent',
+  controlBackgroundDisabled: computed(
+    ([lightShade]) => lightShade,
+    ['colors.lightShade']
+  ),
 
   colorHasPlaceholder: computed(
     ([subduedText]) => tint(subduedText, 0.08),
     ['colors.subduedText']
   ),
-  colorDisabled: computed(([lightShade]) => lightShade, ['colors.lightShade']),
+  colorDisabled: computed(
+    ([mediumShade]) => mediumShade,
+    ['colors.mediumShade']
+  ),
   iconDisabled: computed(([darkShade]) => darkShade, ['colors.darkShade']),
 };
 
