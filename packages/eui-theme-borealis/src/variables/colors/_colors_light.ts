@@ -68,7 +68,7 @@ export const text_colors: _EuiThemeTextColors = {
 
 export const shade_colors: _EuiThemeShadeColors = {
   emptyShade: SEMANTIC_COLORS.plainLight,
-  lightestShade: SEMANTIC_COLORS.shade20,
+  lightestShade: SEMANTIC_COLORS.shade15,
   lightShade: SEMANTIC_COLORS.shade30,
   mediumShade: SEMANTIC_COLORS.shade60,
   darkShade: SEMANTIC_COLORS.shade90,
