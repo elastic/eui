@@ -995,14 +995,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 791,
+        "line": 794,
         "column": 8,
-        "index": 23154
+        "index": 23332
       },
       "end": {
-        "line": 794,
+        "line": 797,
         "column": 9,
-        "index": 23273
+        "index": 23451
       }
     },
     "filepath": "src/components/combo_box/combo_box.tsx"
