@@ -1,3 +1,11 @@
+## [`v97.3.1`](https://github.com/elastic/eui/releases/v97.3.1)
+
+**Bug fixes**
+
+- Fixed an `EuiComboBox` bug where Enter keypresses were not working correctly on selection clear buttons ([#8105](https://github.com/elastic/eui/pull/8105))
+- Fixed an `EuiSuperDatePicker` bug where inputs would overflow out of smaller widths instead of truncating ([#8109](https://github.com/elastic/eui/pull/8109))
+- Fixed a bug with `EuiPageHeader`'s `rightSideItems` responsiveness where single items could overflow past the intended max width ([#8110](https://github.com/elastic/eui/pull/8110))
+
 ## [`v97.3.0`](https://github.com/elastic/eui/releases/v97.3.0)
 
 - `EuiDataGrid` now supports a new `toolbarVisibility.showDisplaySelector.customRender` function that allows completely customizing the rendering of the display selector popover ([#8080](https://github.com/elastic/eui/pull/8080))
