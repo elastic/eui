@@ -84,7 +84,7 @@ export const colorVis: _EuiThemeVisColors = {
   euiColorVisDanger0: '#CC5642',
   euiColorVisDanger1: euiPaletteColorBlind.euiColorVis9.graphic,
 
-  euiColorVisNeutral0: 'white',
+  euiColorVisNeutral0: '#FFFFFF',
 
   euiColorVisGrey0: '#d3dae6',
   euiColorVisGrey1: '#98a2b3',
