@@ -10,7 +10,8 @@ import darkColors from './eui_theme_amsterdam_dark.json';
 
 export const useJsonVars = () => {
   const themeContext = useContext(ThemeContext);
-  const isNewTheme = themeContext.theme.includes(EUI_THEME_BOREALIS_KEY);
+  const isNewTheme =
+    themeContext.theme?.includes(EUI_THEME_BOREALIS_KEY) ?? false;
 
   const darkTokens = isNewTheme ? borealisDarkColors : darkColors;
   const lightTokens = isNewTheme ? borealisLightColors : lightColors;
