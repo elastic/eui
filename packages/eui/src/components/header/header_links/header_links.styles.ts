@@ -39,6 +39,9 @@ export const euiHeaderLinksStyles = ({ euiTheme }: UseEuiTheme) => {
       `,
     },
     euiHeaderLinks__mobileList: css`
+      display: flex;
+      flex-direction: column;
+
       .euiHeaderLink {
         display: block;
         ${logicalCSS('width', '100%')}
