@@ -27,6 +27,7 @@ import {
   brand_text_colors,
   text_colors,
 } from './colors/_colors_light';
+import { colorVis } from './colors/_colors_vis';
 
 const component_colors: _EuiThemeComponentColors = {
   badgeBackgroundSubdued: background_colors.backgroundBaseSubdued,
@@ -42,6 +43,30 @@ const component_colors: _EuiThemeComponentColors = {
   buttonGroupBorderColor: border_colors.borderBasePlain,
   buttonGroupBorderColorSelected: border_colors.borderBasePlain,
   buttonGroupFocusColor: brand_text_colors.textPrimary,
+
+  codeBackground: background_colors.backgroundBaseFormsPrepend,
+  codeBackgroundSelected: 'inherit',
+  codeColor: text_colors.textParagraph,
+  codeInlineColor: colorVis.euiColorVisAsTextLight6,
+  codeCommentColor: text_colors.textSubdued,
+  codeSelectorColor: 'inherit',
+  codeStringColor: colorVis.euiColorVisAsTextLight2,
+  codeTagColor: colorVis.euiColorVisAsTextLight1,
+  codeNameColor: colorVis.euiColorVisAsTextLight1,
+  codeNumberColor: colorVis.euiColorVisAsTextLight0,
+  codeKeywordColor: colorVis.euiColorVisAsTextLight6,
+  codeFunctionTitleColor: 'inherit',
+  codeTypeColor: colorVis.euiColorVisAsTextLight1,
+  codeAttributeColor: 'inherit',
+  codeSymbolColor: colorVis.euiColorVisAsTextLight3,
+  codeParamsColor: 'inherit',
+  codeMetaColor: text_colors.textSubdued,
+  codeTitleColor: colorVis.euiColorVisAsTextLight4,
+  codeSectionColor: colorVis.euiColorVisAsTextLight3,
+  codeAdditionColor: colorVis.euiColorVisAsTextLight0,
+  codeDeletionColor: colorVis.euiColorVisAsTextLight3,
+  codeSelectorClassColor: 'inherit',
+  codeSelectorIdColor: 'inherit',
 
   collapsibleNavGroupBackground: background_colors.backgroundBaseSubdued,
   collapsibleNavGroupBackgroundDark:
@@ -76,6 +101,11 @@ const component_colors: _EuiThemeComponentColors = {
     background_colors.backgroundBaseInteractiveHover,
   listGroupItemBackgroundPrimaryHover:
     background_colors.backgroundBaseInteractiveHover,
+
+  loadingChartMonoBackground0: SEMANTIC_COLORS.shade20,
+  loadingChartMonoBackground1: SEMANTIC_COLORS.shade30,
+  loadingChartMonoBackground2: SEMANTIC_COLORS.shade40,
+  loadingChartMonoBackground3: SEMANTIC_COLORS.shade50,
 
   markBackground: background_colors.backgroundLightPrimary,
 
@@ -145,6 +175,30 @@ export const components: _EuiThemeComponents = {
     buttonGroupBorderColorSelected: dark_border_colors.borderBasePlain,
     buttonGroupFocusColor: dark_brand_text_colors.textPrimary,
 
+    codeBackground: dark_background_colors.backgroundBaseFormsPrepend,
+    codeBackgroundSelected: 'inherit',
+    codeColor: dark_text_colors.textParagraph,
+    codeInlineColor: colorVis.euiColorVisAsTextDark6,
+    codeCommentColor: dark_text_colors.textSubdued,
+    codeSelectorColor: 'inherit',
+    codeStringColor: colorVis.euiColorVisAsTextDark2,
+    codeTagColor: colorVis.euiColorVisAsTextDark1,
+    codeNameColor: colorVis.euiColorVisAsTextDark1,
+    codeNumberColor: colorVis.euiColorVisAsTextDark0,
+    codeKeywordColor: colorVis.euiColorVisAsTextDark6,
+    codeFunctionTitleColor: 'inherit',
+    codeTypeColor: colorVis.euiColorVisAsTextDark1,
+    codeAttributeColor: 'inherit',
+    codeSymbolColor: colorVis.euiColorVisAsTextDark3,
+    codeParamsColor: 'inherit',
+    codeMetaColor: dark_text_colors.textSubdued,
+    codeTitleColor: colorVis.euiColorVisAsTextDark4,
+    codeSectionColor: colorVis.euiColorVisAsTextDark3,
+    codeAdditionColor: colorVis.euiColorVisAsTextDark0,
+    codeDeletionColor: colorVis.euiColorVisAsTextDark3,
+    codeSelectorClassColor: 'inherit',
+    codeSelectorIdColor: 'inherit',
+
     collapsibleNavGroupBackground: dark_background_colors.backgroundBaseSubdued,
     collapsibleNavGroupBackgroundDark:
       dark_background_colors.backgroundBaseSubdued,
@@ -177,6 +231,11 @@ export const components: _EuiThemeComponents = {
       dark_background_colors.backgroundBaseInteractiveHover,
     listGroupItemBackgroundPrimaryHover:
       dark_background_colors.backgroundBaseInteractiveHover,
+
+    loadingChartMonoBackground0: SEMANTIC_COLORS.shade95,
+    loadingChartMonoBackground1: SEMANTIC_COLORS.shade105,
+    loadingChartMonoBackground2: SEMANTIC_COLORS.shade115,
+    loadingChartMonoBackground3: SEMANTIC_COLORS.shade125,
 
     markBackground: dark_background_colors.backgroundLightPrimary,
 

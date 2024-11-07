@@ -18,7 +18,7 @@ import { css } from '@emotion/react';
 // on the global level to reduce how often they are called
 export const getGlobalStyles = (theme: UseEuiTheme) => {
   const { euiTheme } = theme;
-  const { font, base, colors, size } = euiTheme;
+  const { font, base, colors, size, components } = euiTheme;
   const fontBodyScale = font.scale[font.body.scale];
   const fontBase = {
     fontFamily: font.family,
@@ -67,7 +67,7 @@ export const getGlobalStyles = (theme: UseEuiTheme) => {
       --ifm-menu-color-background-active: ${colors.backgroundBaseSubdued};
       --ifm-menu-color-background-hover: var(--eui-background-color-primary);
 
-      --ifm-pre-background: ${colors.lightestShade};
+      --ifm-pre-background: ${components.codeBackground};
     }
 
     :root {
