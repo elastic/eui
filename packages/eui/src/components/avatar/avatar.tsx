@@ -10,16 +10,16 @@ import React, { HTMLAttributes, FunctionComponent, useMemo } from 'react';
 import { CommonProps, ExclusiveUnion } from '../common';
 import classNames from 'classnames';
 
-import { isColorDark, hexToRgb, isValidHex } from '../../services/color';
 import {
+  isColorDark,
+  hexToRgb,
+  isValidHex,
   euiPaletteColorBlindBehindText,
-  toInitials,
-  useEuiMemoizedStyles,
-} from '../../services';
+} from '../../services/color';
+import { toInitials, useEuiMemoizedStyles, useEuiTheme } from '../../services';
 import { IconType, EuiIcon, IconSize, IconColor } from '../icon';
 
 import { euiAvatarStyles } from './avatar.styles';
-const visColors = euiPaletteColorBlindBehindText();
 
 export const SIZES = ['s', 'm', 'l', 'xl'] as const;
 export type EuiAvatarSize = (typeof SIZES)[number];
@@ -127,6 +127,14 @@ export const EuiAvatar: FunctionComponent<EuiAvatarProps> = ({
   checkValidInitials(initials);
   const { casing = type === 'space' ? 'none' : 'uppercase', ...rest } = props;
 
+  const { euiTheme } = useEuiTheme();
+
+  const visColors = useMemo(
+    () => euiPaletteColorBlindBehindText(),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [euiTheme]
+  );
+
   const isPlain = color === 'plain';
   const isSubdued = color === 'subdued';
   const isNamedColor = isPlain || isSubdued || color === null;
@@ -172,7 +180,7 @@ export const EuiAvatar: FunctionComponent<EuiAvatarProps> = ({
         color: textColor,
       };
     }
-  }, [imageUrl, color, isNamedColor, name.length]);
+  }, [imageUrl, color, isNamedColor, name.length, visColors]);
 
   const iconCustomColor = useMemo(() => {
     // `null` allows icons to keep their default color (e.g. app icons)

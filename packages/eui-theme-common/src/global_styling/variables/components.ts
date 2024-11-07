@@ -24,6 +24,30 @@ export type _EuiThemeComponentColors = {
   breadcrumbsApplicationBackground: ColorModeSwitch;
   breadcrumbsApplicationColor: ColorModeSwitch;
 
+  codeBackground: ColorModeSwitch;
+  codeBackgroundSelected: ColorModeSwitch;
+  codeColor: ColorModeSwitch;
+  codeInlineColor: ColorModeSwitch;
+  codeCommentColor: ColorModeSwitch;
+  codeSelectorColor: ColorModeSwitch;
+  codeStringColor: ColorModeSwitch;
+  codeTagColor: ColorModeSwitch;
+  codeNameColor: ColorModeSwitch;
+  codeNumberColor: ColorModeSwitch;
+  codeKeywordColor: ColorModeSwitch;
+  codeFunctionTitleColor: ColorModeSwitch;
+  codeTypeColor: ColorModeSwitch;
+  codeAttributeColor: ColorModeSwitch;
+  codeSymbolColor: ColorModeSwitch;
+  codeParamsColor: ColorModeSwitch;
+  codeMetaColor: ColorModeSwitch;
+  codeTitleColor: ColorModeSwitch;
+  codeSectionColor: ColorModeSwitch;
+  codeAdditionColor: ColorModeSwitch;
+  codeDeletionColor: ColorModeSwitch;
+  codeSelectorClassColor: ColorModeSwitch;
+  codeSelectorIdColor: ColorModeSwitch;
+
   collapsibleNavGroupBackground: ColorModeSwitch;
   collapsibleNavGroupBackgroundDark: ColorModeSwitch;
 
@@ -49,6 +73,11 @@ export type _EuiThemeComponentColors = {
   listGroupItemBackgroundSubduedActive: ColorModeSwitch;
   listGroupItemBackgroundHover: ColorModeSwitch;
   listGroupItemBackgroundPrimaryHover: ColorModeSwitch;
+
+  loadingChartMonoBackground0: ColorModeSwitch;
+  loadingChartMonoBackground1: ColorModeSwitch;
+  loadingChartMonoBackground2: ColorModeSwitch;
+  loadingChartMonoBackground3: ColorModeSwitch;
 
   markBackground: ColorModeSwitch;
 

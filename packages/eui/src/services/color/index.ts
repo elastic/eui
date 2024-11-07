@@ -22,6 +22,7 @@ export {
   VISUALIZATION_COLORS,
   DEFAULT_VISUALIZATION_COLOR,
 } from './visualization_colors';
+export { EUI_VIS_COLOR_STORE } from './vis_color_store';
 export { colorPalette } from './color_palette';
 export {
   euiPaletteForLightBackground,

@@ -6,6 +6,8 @@
  * Side Public License, v 1.
  */
 
+import { _EuiThemeVisColors } from '@elastic/eui-theme-common';
+
 /**
  * NOTE: These were quick conversions of their Sass counterparts.
  *       They have yet to be used/tested.
@@ -48,7 +50,7 @@ const euiPaletteColorBlind = {
   },
 };
 
-export const colorVis = {
+export const colorVis: _EuiThemeVisColors = {
   euiColorVis0: euiPaletteColorBlind.euiColorVis0.graphic,
   euiColorVis1: euiPaletteColorBlind.euiColorVis1.graphic,
   euiColorVis2: euiPaletteColorBlind.euiColorVis2.graphic,
@@ -59,4 +61,44 @@ export const colorVis = {
   euiColorVis7: euiPaletteColorBlind.euiColorVis7.graphic,
   euiColorVis8: euiPaletteColorBlind.euiColorVis8.graphic,
   euiColorVis9: euiPaletteColorBlind.euiColorVis9.graphic,
+
+  euiColorVisAsTextLight0: '#006BB4',
+  euiColorVisAsTextLight1: '#017D73',
+  euiColorVisAsTextLight2: '#F5A700',
+  euiColorVisAsTextLight3: '#BD271E',
+  euiColorVisAsTextLight4: '#DD0A73',
+  euiColorVisAsTextLight5: '#006BB4', // duplicated to handle color amount difference between themes
+  euiColorVisAsTextLight6: '#017D73',
+
+  euiColorVisAsTextDark0: '#1BA9F5',
+  euiColorVisAsTextDark1: '#7DE2D1',
+  euiColorVisAsTextDark2: '#F990C0',
+  euiColorVisAsTextDark3: '#F66',
+  euiColorVisAsTextDark4: '#FFCE7A',
+  euiColorVisAsTextDark5: '#1BA9F5',
+  euiColorVisAsTextDark6: '#7DE2D1',
+
+  euiColorVisSuccess0: '#209280',
+  euiColorVisSuccess1: euiPaletteColorBlind.euiColorVis0.graphic,
+  euiColorVisWarning0: '#D6BF57',
+  euiColorVisDanger0: '#CC5642',
+  euiColorVisDanger1: euiPaletteColorBlind.euiColorVis9.graphic,
+
+  euiColorVisNeutral0: '#FFFFFF',
+
+  euiColorVisGrey0: '#d3dae6',
+  euiColorVisGrey1: '#98a2b3',
+  euiColorVisGrey2: '#69707d',
+  euiColorVisGrey3: '#343741',
+
+  euiColorVisWarm0: '#FBFBDC',
+  euiColorVisWarm1: euiPaletteColorBlind.euiColorVis7.graphic,
+  euiColorVisWarm2: euiPaletteColorBlind.euiColorVis9.graphic,
+
+  euiColorVisCool0: '#EBEFF5',
+  euiColorVisCool1: euiPaletteColorBlind.euiColorVis1.graphic,
+  euiColorVisCool2: '#6092C0',
+
+  euiColorVisComplementary0: euiPaletteColorBlind.euiColorVis1.graphic,
+  euiColorVisComplementary1: euiPaletteColorBlind.euiColorVis7.graphic,
 };
