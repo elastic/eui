@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
+import { VIS_COLOR_STORE_EVENTS } from '@elastic/eui-theme-common';
 import {
   euiPaletteColorBlind,
   euiPaletteForStatus,
@@ -9,6 +10,7 @@ import {
   euiPaletteCool,
   euiPaletteWarm,
   euiPaletteGray,
+  EUI_VIS_COLOR_STORE,
 } from '../../../../src/services/color';
 
 import {
@@ -67,10 +69,39 @@ const sizes = [
 
 export default () => {
   const [palette, setPalette] = useState('1');
+
   const [categories, setCategories] = useState(5);
   const [selectionType, setSelectionType] = useState(true);
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
   const [size, setSize] = useState(sizes[1].value);
+
+  const getPalettes = useCallback(
+    () =>
+      paletteNames.map((paletteName, index) => {
+        return {
+          value: String(index + 1),
+          title: paletteName,
+          palette: paletteData[paletteNames[index]](categories),
+          type: selectionType ? 'fixed' : 'gradient',
+        };
+      }),
+    [categories, selectionType]
+  );
+
+  const [palettes, setPalettes] = useState(getPalettes());
+
+  useEffect(() => {
+    const storeId = EUI_VIS_COLOR_STORE.subscribe(
+      VIS_COLOR_STORE_EVENTS.UPDATE,
+      () => {
+        setPalettes(getPalettes());
+      }
+    );
+
+    return () => {
+      EUI_VIS_COLOR_STORE.unsubscribe(VIS_COLOR_STORE_EVENTS.UPDATE, storeId);
+    };
+  }, [getPalettes]);
 
   const onChangeSize = (e) => {
     setSize(e.target.value);
@@ -79,15 +110,6 @@ export default () => {
   const onChange = (e) => {
     setCategories(parseInt(e.target.value));
   };
-
-  const palettes = paletteNames.map((paletteName, index) => {
-    return {
-      value: String(index + 1),
-      title: paletteName,
-      palette: paletteData[paletteNames[index]](categories),
-      type: selectionType ? 'fixed' : 'gradient',
-    };
-  });
 
   const selectedPalette = paletteData[paletteNames[palette - 1]](categories);
 

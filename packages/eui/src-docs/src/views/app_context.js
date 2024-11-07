@@ -33,7 +33,7 @@ const utilityCache = createCache({
 });
 
 export const AppContext = ({ children }) => {
-  const { theme } = useContext(ThemeContext);
+  const { theme, colorMode } = useContext(ThemeContext);
   const locale = useSelector((state) => getLocale(state));
 
   const mappingFuncs = {
@@ -56,13 +56,7 @@ export const AppContext = ({ children }) => {
         utility: utilityCache,
       }}
       theme={AVAILABLE_THEMES.find((t) => t.value === theme)?.provider}
-      colorMode={
-        theme
-          ? theme.toLowerCase().includes('light')
-            ? 'light'
-            : 'dark'
-          : undefined
-      }
+      colorMode={colorMode}
     >
       <Helmet>
         <link

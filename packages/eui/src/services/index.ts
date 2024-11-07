@@ -60,6 +60,7 @@ export {
   tintOrShade,
   transparentize,
   VISUALIZATION_COLORS,
+  EUI_VIS_COLOR_STORE,
   wcagContrastMin,
 } from './color';
 export type { HSV } from './color';
