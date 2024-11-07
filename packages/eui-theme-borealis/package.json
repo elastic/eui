@@ -65,8 +65,6 @@
   "files": [
     "lib/",
     "src/**/*.scss",
-    "src/eui_theme_borealis_light.json",
-    "src/eui_theme_borealis_dark.json",
     "README.md"
   ],
   "installConfig": {
