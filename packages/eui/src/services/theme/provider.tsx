@@ -124,7 +124,9 @@ export const EuiThemeProvider = <T extends {} = {}>({
       colorMode
     );
 
-    updateVisColorStore(theme);
+    setTimeout(() => {
+      updateVisColorStore(theme);
+    });
 
     return theme;
   };
