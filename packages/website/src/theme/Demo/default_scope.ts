@@ -8,13 +8,15 @@
 
 import * as EUI from '@elastic/eui';
 import * as EmotionReact from '@emotion/react';
-import moment from 'moment'
+import * as EuiThemeCommon from '@elastic/eui-theme-common';
+import moment from 'moment';
 import { faker } from '@faker-js/faker';
 import { DisplayToggles } from '@site/src/components';
 
 export const demoDefaultScope: Record<string, unknown> = {
   // EUI exports
   ...EUI,
+  ...EuiThemeCommon,
 
   // Emotion
   ...EmotionReact,
@@ -25,4 +27,4 @@ export const demoDefaultScope: Record<string, unknown> = {
 
   // Utilities
   DisplayToggles,
-}
+};

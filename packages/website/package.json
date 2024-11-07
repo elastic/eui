@@ -23,6 +23,7 @@
     "@elastic/eui": "workspace:^",
     "@elastic/eui-docgen": "workspace:^",
     "@elastic/eui-docusaurus-theme": "workspace:^",
+    "@elastic/eui-theme-common": "workspace:^",
     "@emotion/css": "^11.11.2",
     "@emotion/react": "^11.11.4",
     "@faker-js/faker": "^8.4.1",

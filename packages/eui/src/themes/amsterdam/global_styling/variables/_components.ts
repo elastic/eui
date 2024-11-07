@@ -21,6 +21,7 @@ import { makeHighContrastColor } from '../../../../services/color/contrast';
 
 import { buttons } from './_buttons';
 import { forms } from './_forms';
+import { colorVis } from './_colors_vis';
 
 const component_colors: _EuiThemeComponentColors = {
   badgeBackgroundSubdued: computed(
@@ -59,6 +60,91 @@ const component_colors: _EuiThemeComponentColors = {
     ([lightestShade]) => shade(lightestShade, 0.5),
     ['colors.lightestShade']
   ),
+
+  codeBackground: computed(
+    ([lightestShade]) => lightestShade,
+    ['colors.lightestShade']
+  ),
+  codeBackgroundSelected: 'inherit',
+  codeColor: computed(
+    ([lightestShade, text]) => makeHighContrastColor(text)(lightestShade),
+    ['colors.lightestShade', 'colors.text']
+  ),
+  codeInlineColor: computed(
+    ([lightestShade]) =>
+      makeHighContrastColor(colorVis.euiColorVis3)(lightestShade),
+    ['colors.lightestShade']
+  ),
+  codeCommentColor: computed(
+    ([lightestShade, subduedText]) =>
+      makeHighContrastColor(subduedText)(lightestShade),
+    ['colors.lightestShade', 'colors.subduedText']
+  ),
+  codeSelectorColor: 'inherit',
+  codeStringColor: computed(
+    ([lightestShade]) =>
+      makeHighContrastColor(colorVis.euiColorVis2)(lightestShade),
+    ['colors.lightestShade']
+  ),
+  codeTagColor: computed(
+    ([lightestShade]) =>
+      makeHighContrastColor(colorVis.euiColorVis1)(lightestShade),
+    ['colors.lightestShade']
+  ),
+  codeNameColor: computed(
+    ([lightestShade]) =>
+      makeHighContrastColor(colorVis.euiColorVis1)(lightestShade),
+    ['colors.lightestShade']
+  ),
+  codeNumberColor: computed(
+    ([lightestShade]) =>
+      makeHighContrastColor(colorVis.euiColorVis0)(lightestShade),
+    ['colors.lightestShade']
+  ),
+  codeKeywordColor: computed(
+    ([lightestShade]) =>
+      makeHighContrastColor(colorVis.euiColorVis3)(lightestShade),
+    ['colors.lightestShade']
+  ),
+  codeFunctionTitleColor: 'inherit',
+  codeTypeColor: computed(
+    ([lightestShade]) =>
+      makeHighContrastColor(colorVis.euiColorVis1)(lightestShade),
+    ['colors.lightestShade']
+  ),
+  codeAttributeColor: 'inherit',
+  codeSymbolColor: computed(
+    ([lightestShade]) =>
+      makeHighContrastColor(colorVis.euiColorVis9)(lightestShade),
+    ['colors.lightestShade']
+  ),
+  codeParamsColor: 'inherit',
+  codeMetaColor: computed(
+    ([lightestShade, subduedText]) =>
+      makeHighContrastColor(subduedText)(lightestShade),
+    ['colors.lightestShade', 'colors.subduedText']
+  ),
+  codeTitleColor: computed(
+    ([lightestShade]) =>
+      makeHighContrastColor(colorVis.euiColorVis7)(lightestShade),
+    ['colors.lightestShade']
+  ),
+  codeSectionColor: computed(
+    ([lightestShade]) =>
+      makeHighContrastColor(colorVis.euiColorVis9)(lightestShade),
+    ['colors.lightestShade']
+  ),
+  codeAdditionColor: computed(
+    ([lightestShade]) =>
+      makeHighContrastColor(colorVis.euiColorVis0)(lightestShade),
+    ['colors.lightestShade']
+  ),
+  codeDeletionColor: computed(
+    ([lightestShade, danger]) => makeHighContrastColor(danger)(lightestShade),
+    ['colors.lightestShade', 'colors.danger']
+  ),
+  codeSelectorClassColor: 'inherit',
+  codeSelectorIdColor: 'inherit',
 
   collapsibleNavGroupBackground: computed(([body]) => body, ['colors.body']),
   collapsibleNavGroupBackgroundDark: computed(
@@ -135,6 +221,23 @@ const component_colors: _EuiThemeComponentColors = {
   listGroupItemBackgroundPrimaryHover: computed(
     ([primary]) => transparentize(primary, 0.1),
     ['colors.primary']
+  ),
+
+  loadingChartMonoBackground0: computed(
+    ([lightShade]) => lightShade,
+    ['colors.lightShade']
+  ),
+  loadingChartMonoBackground1: computed(
+    ([lightShade]) => shade(lightShade, 0.04),
+    ['colors.lightShade']
+  ),
+  loadingChartMonoBackground2: computed(
+    ([lightShade]) => shade(lightShade, 0.08),
+    ['colors.lightShade']
+  ),
+  loadingChartMonoBackground3: computed(
+    ([lightShade]) => shade(lightShade, 0.12),
+    ['colors.lightShade']
   ),
 
   markBackground: computed(
@@ -304,6 +407,23 @@ export const components: _EuiThemeComponents = {
 
     listGroupItemBackgroundSubduedActive: computed(
       ([lightShade]) => transparentize(lightShade, 0.4),
+      ['colors.lightShade']
+    ),
+
+    loadingChartMonoBackground0: computed(
+      ([lightShade]) => lightShade,
+      ['colors.lightShade']
+    ),
+    loadingChartMonoBackground1: computed(
+      ([lightShade]) => tint(lightShade, 0.04),
+      ['colors.lightShade']
+    ),
+    loadingChartMonoBackground2: computed(
+      ([lightShade]) => tint(lightShade, 0.08),
+      ['colors.lightShade']
+    ),
+    loadingChartMonoBackground3: computed(
+      ([lightShade]) => tint(lightShade, 0.12),
       ['colors.lightShade']
     ),
 

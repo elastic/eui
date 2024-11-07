@@ -11,4 +11,5 @@
  */
 export type _EuiThemeFlags = {
   hasGlobalFocusColor: boolean;
+  hasVisColorAdjustment: boolean;
 };

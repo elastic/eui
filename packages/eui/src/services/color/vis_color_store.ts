@@ -6,16 +6,10 @@
  * Side Public License, v 1.
  */
 
-export * from './animations';
-export * from './borders';
-export * from './breakpoint';
-export * from './colors';
-export * from './levels';
-export * from './size';
-export * from './shadow';
-export * from './states';
-export * from './typography';
-export * from './buttons';
-export * from './forms';
-export * from './components';
-export * from './flags';
+import { _EuiVisColorStore, EuiVisColorStore } from '@elastic/eui-theme-common';
+
+import { colorVis } from '../../global_styling/variables/_colors_vis';
+
+// initialsetup of Vis color storage with default colors
+export const EUI_VIS_COLOR_STORE: _EuiVisColorStore =
+  EuiVisColorStore.getInstance(colorVis, true);

@@ -4,35 +4,16 @@ import { Provider } from 'react-redux';
 import { HashRouter, Switch, Route, Redirect } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 
-import { isExperimentalThemeEnabled } from '../../src/themes';
-
 import configureStore from './store/configure_store';
 
 import { AppContext } from './views/app_context';
 import { AppView } from './views/app_view';
 import { HomeView } from './views/home/home_view';
 import { NotFoundView } from './views/not_found/not_found_view';
-import { registerTheme, ExampleContext } from './services';
+import { ExampleContext } from './services';
 
 import Routes from './routes';
-import {
-  ThemeProvider,
-  AVAILABLE_THEMES,
-} from './components/with_theme/theme_context';
-
-// TODO: update SCSS files for new theme once available
-import themeLight from './theme_light.scss';
-import themeDark from './theme_dark.scss';
-import themeNewLight from './theme_new_light.scss';
-import themeNewDark from './theme_new_dark.scss';
-
-registerTheme('light', [themeLight]);
-registerTheme('dark', [themeDark]);
-
-if (isExperimentalThemeEnabled()) {
-  registerTheme(AVAILABLE_THEMES[2].value, [themeNewLight]);
-  registerTheme(AVAILABLE_THEMES[3].value, [themeNewDark]);
-}
+import { ThemeProvider } from './components/with_theme/theme_context';
 
 // Set up app
 
