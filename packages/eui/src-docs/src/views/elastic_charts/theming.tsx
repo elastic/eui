@@ -69,9 +69,16 @@ export default () => {
   );
 
   useEffect(() => {
-    EUI_VIS_COLOR_STORE.subscribe(VIS_COLOR_STORE_EVENTS.UPDATE, () => {
-      setPalettes(getPalettes());
-    });
+    const storeId = EUI_VIS_COLOR_STORE.subscribe(
+      VIS_COLOR_STORE_EVENTS.UPDATE,
+      () => {
+        setPalettes(getPalettes());
+      }
+    );
+
+    return () => {
+      EUI_VIS_COLOR_STORE.unsubscribe(VIS_COLOR_STORE_EVENTS.UPDATE, storeId);
+    };
   }, []);
 
   /**

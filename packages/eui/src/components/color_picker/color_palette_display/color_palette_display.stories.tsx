@@ -43,9 +43,16 @@ export const Playground: Story = {
 
     // subscribe to theme-related vis_color changes
     useEffect(() => {
-      EUI_VIS_COLOR_STORE.subscribe(VIS_COLOR_STORE_EVENTS.UPDATE, () => {
-        setPalette(euiPaletteColorBlind());
-      });
+      const storeId = EUI_VIS_COLOR_STORE.subscribe(
+        VIS_COLOR_STORE_EVENTS.UPDATE,
+        () => {
+          setPalette(euiPaletteColorBlind());
+        }
+      );
+
+      return () => {
+        EUI_VIS_COLOR_STORE.unsubscribe(VIS_COLOR_STORE_EVENTS.UPDATE, storeId);
+      };
     }, []);
 
     useUpdateEffect(() => {
