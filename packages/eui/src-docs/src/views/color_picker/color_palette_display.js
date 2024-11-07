@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react';
+import { VIS_COLOR_STORE_EVENTS } from '@elastic/eui-theme-common';
 import {
   euiPaletteColorBlind,
   euiPaletteForStatus,
@@ -27,7 +28,6 @@ import {
   EuiButtonEmpty,
   EuiSelect,
 } from '../../../../src/components/';
-import { VIS_COLOR_STORE_EVENTS } from '@elastic/eui-theme-common/lib/esm/index.js';
 
 const paletteWithStops = [
   {

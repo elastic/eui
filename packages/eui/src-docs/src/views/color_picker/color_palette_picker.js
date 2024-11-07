@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { VIS_COLOR_STORE_EVENTS } from '@elastic/eui-theme-common';
 import {
   EUI_VIS_COLOR_STORE,
   euiPaletteColorBlind,
@@ -14,7 +15,6 @@ import {
 } from '../../../../src/components/';
 
 import { DisplayToggles } from '../form_controls/display_toggles';
-import { VIS_COLOR_STORE_EVENTS } from '@elastic/eui-theme-common/lib/esm/index.js';
 
 const getPalettes = () => [
   {
