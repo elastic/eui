@@ -252,6 +252,59 @@ export type _EuiThemeBorderColors = {
   borderStrongDanger: ColorModeSwitch;
 };
 
+export type _EuiThemeVisColors = {
+  euiColorVis0: string;
+  euiColorVis1: string;
+  euiColorVis2: string;
+  euiColorVis3: string;
+  euiColorVis4: string;
+  euiColorVis5: string;
+  euiColorVis6: string;
+  euiColorVis7: string;
+  euiColorVis8: string;
+  euiColorVis9: string;
+
+  euiColorVisAsTextLight0: string;
+  euiColorVisAsTextLight1: string;
+  euiColorVisAsTextLight2: string;
+  euiColorVisAsTextLight3: string;
+  euiColorVisAsTextLight4: string;
+  euiColorVisAsTextLight5: string;
+  euiColorVisAsTextLight6: string;
+
+  euiColorVisAsTextDark0: string;
+  euiColorVisAsTextDark1: string;
+  euiColorVisAsTextDark2: string;
+  euiColorVisAsTextDark3: string;
+  euiColorVisAsTextDark4: string;
+  euiColorVisAsTextDark5: string;
+  euiColorVisAsTextDark6: string;
+
+  euiColorVisSuccess0: string;
+  euiColorVisSuccess1: string;
+  euiColorVisWarning0: string;
+  euiColorVisDanger0: string;
+  euiColorVisDanger1: string;
+
+  euiColorVisNeutral0: string;
+
+  euiColorVisGrey0: string;
+  euiColorVisGrey1: string;
+  euiColorVisGrey2: string;
+  euiColorVisGrey3: string;
+
+  euiColorVisWarm0: string;
+  euiColorVisWarm1: string;
+  euiColorVisWarm2: string;
+
+  euiColorVisCool0: string;
+  euiColorVisCool1: string;
+  euiColorVisCool2: string;
+
+  euiColorVisComplementary0: string;
+  euiColorVisComplementary1: string;
+};
+
 export type _EuiThemeConstantColors = {
   /**
    * Purest **white**
@@ -263,6 +316,7 @@ export type _EuiThemeConstantColors = {
    * @deprecated
    */
   ink: string;
+  vis: _EuiThemeVisColors;
 };
 
 export type _EuiThemeColorsMode = _EuiThemeBrandColors &

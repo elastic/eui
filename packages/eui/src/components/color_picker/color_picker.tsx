@@ -21,8 +21,9 @@ import chroma, { ColorSpaces } from 'chroma-js';
 
 import {
   useEuiMemoizedStyles,
-  VISUALIZATION_COLORS,
   keys,
+  euiPaletteColorBlind,
+  useEuiTheme,
 } from '../../services';
 import { CommonProps } from '../common';
 import {
@@ -198,7 +199,7 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
   onChange,
   onFocus,
   readOnly = false,
-  swatches = VISUALIZATION_COLORS,
+  swatches: _swatches,
   popoverZIndex,
   prepend,
   append,
@@ -236,6 +237,14 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
       'Press the escape key to close the popover',
       'Press the down key to open a popover containing color options',
     ]
+  );
+
+  const { euiTheme } = useEuiTheme();
+
+  const swatches = useMemo(
+    () => _swatches ?? euiPaletteColorBlind(),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [_swatches, euiTheme]
   );
 
   const preferredFormat = useMemo(() => {
