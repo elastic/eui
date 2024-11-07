@@ -30,6 +30,7 @@ import {
   makeHighContrastColor,
   makeDisabledContrastColor,
 } from '../../../../services/color/contrast';
+import { colorVis } from './_colors_vis';
 
 /*
  * LIGHT THEME
@@ -579,4 +580,5 @@ export const colors: _EuiThemeColors = {
   ink: '#000000',
   LIGHT: light_colors,
   DARK: dark_colors_ams,
+  vis: colorVis,
 };

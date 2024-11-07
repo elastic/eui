@@ -6,12 +6,16 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, useMemo } from 'react';
 import classNames from 'classnames';
 import { useEuiTheme, isColorDark, hexToRgb } from '../../services';
 
 import { EuiIcon, IconSize } from '../icon';
-import { EuiTokenMapType, TOKEN_MAP } from './token_map';
+import {
+  EuiTokenMapType,
+  TOKEN_MAP_AMSTERDAM,
+  TOKEN_MAP_BOREALIS,
+} from './token_map';
 import { COLORS } from './token_types';
 import type {
   EuiTokenProps,
@@ -53,6 +57,13 @@ export const EuiToken: FunctionComponent<EuiTokenProps> = ({
     finalSize = 'm';
   }
 
+  const euiTheme = useEuiTheme();
+  const { hasVisColorAdjustment } = euiTheme.euiTheme.flags;
+
+  const TOKEN_MAP = hasVisColorAdjustment
+    ? TOKEN_MAP_AMSTERDAM
+    : TOKEN_MAP_BOREALIS;
+
   // If the iconType passed is one of the prefab token types,
   // grab its properties
   const tokenDefaults =
@@ -64,8 +75,10 @@ export const EuiToken: FunctionComponent<EuiTokenProps> = ({
   const finalShape = shape || tokenDefaults.shape || 'circle';
   let finalFill = fill || 'light';
 
-  const euiTheme = useEuiTheme();
-  const styles = euiTokenStyles(euiTheme, finalFill);
+  // memoize styles to reduce executing contained color calculations
+  const styles = useMemo(() => {
+    return euiTokenStyles(euiTheme, finalFill);
+  }, [euiTheme, finalFill]);
 
   let cssStyles = [
     styles.euiToken,

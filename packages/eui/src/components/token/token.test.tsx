@@ -13,10 +13,10 @@ import { render } from '../../test/rtl';
 
 import { EuiToken } from './token';
 import { COLORS, SHAPES, SIZES, FILLS } from './token_types';
-import { TOKEN_MAP } from './token_map';
+import { TOKEN_MAP_AMSTERDAM } from './token_map';
 import { keysOf } from '../common';
 
-const tokenTypes = keysOf(TOKEN_MAP);
+const tokenTypes = keysOf(TOKEN_MAP_AMSTERDAM);
 const tokenColors = COLORS;
 
 describe('EuiToken', () => {

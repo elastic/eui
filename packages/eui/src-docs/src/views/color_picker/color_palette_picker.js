@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { VIS_COLOR_STORE_EVENTS } from '@elastic/eui-theme-common';
 import {
+  EUI_VIS_COLOR_STORE,
   euiPaletteColorBlind,
   euiPaletteForStatus,
   euiPaletteForTemperature,
@@ -14,27 +16,27 @@ import {
 
 import { DisplayToggles } from '../form_controls/display_toggles';
 
-const palettes = [
+const getPalettes = () => [
   {
-    value: 'pallette_1',
+    value: 'palette_1',
     title: 'EUI color blind (fixed)',
     palette: euiPaletteColorBlind(),
     type: 'fixed',
   },
   {
-    value: 'pallette_2',
+    value: 'palette_2',
     title: 'EUI palette for status (gradient)',
     palette: euiPaletteForStatus(5),
     type: 'gradient',
   },
   {
-    value: 'pallette_3',
+    value: 'palette_3',
     title: 'EUI palette for temperature (fixed)',
     palette: euiPaletteForTemperature(5),
     type: 'fixed',
   },
   {
-    value: 'pallette_4',
+    value: 'palette_4',
     title: 'Grayscale (gradient with stops)',
     palette: [
       {
@@ -88,7 +90,21 @@ const palettes = [
 
 export default () => {
   const [selectionDisplay, setSelectionDisplay] = useState(false);
-  const [pallette, setPallette] = useState('pallette_1');
+  const [palettes, setPalettes] = useState(getPalettes());
+  const [selectedPalette, setSelectedPalette] = useState('palette_1');
+
+  useEffect(() => {
+    const storeId = EUI_VIS_COLOR_STORE.subscribe(
+      VIS_COLOR_STORE_EVENTS.UPDATE,
+      () => {
+        setPalettes(getPalettes());
+      }
+    );
+
+    return () => {
+      EUI_VIS_COLOR_STORE.unsubscribe(VIS_COLOR_STORE_EVENTS.UPDATE, storeId);
+    };
+  }, []);
 
   return (
     <>
@@ -105,8 +121,8 @@ export default () => {
       <DisplayToggles canPrepend={true} canAppend={true} canReadOnly={false}>
         <EuiColorPalettePicker
           palettes={palettes}
-          onChange={setPallette}
-          valueOfSelected={pallette}
+          onChange={setSelectedPalette}
+          valueOfSelected={selectedPalette}
           selectionDisplay={selectionDisplay ? 'title' : 'palette'}
         />
       </DisplayToggles>
