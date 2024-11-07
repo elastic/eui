@@ -1,4 +1,4 @@
-declare module '@elastic/eui/dist/eui_theme_dark.json' {
+declare module '@elastic/eui-theme-borealis/lib/eui_theme_borealis_light.json' {
   const sassVariables: {
     euiZDataGrid: number;
     euiZHeaderBelowDataGrid: number;
@@ -39,6 +39,7 @@ declare module '@elastic/eui/dist/eui_theme_dark.json' {
     euiButtonTypes: {
       primary: string;
       accent: string;
+      accentSecondary: string;
       success: string;
       warning: string;
       danger: string;
@@ -182,6 +183,7 @@ declare module '@elastic/eui/dist/eui_theme_dark.json' {
       plain: string;
       subdued: string;
       accent: string;
+      accentSecondary: string;
       primary: string;
       success: string;
       warning: string;
@@ -283,6 +285,7 @@ declare module '@elastic/eui/dist/eui_theme_dark.json' {
     euiColorInk: string;
     euiColorPrimary: string;
     euiColorAccent: string;
+    euiColorAccentSecondary: string;
     euiColorSuccess: string;
     euiColorWarning: string;
     euiColorDanger: string;
@@ -302,6 +305,7 @@ declare module '@elastic/eui/dist/eui_theme_dark.json' {
     euiColorPrimaryText: string;
     euiColorSuccessText: string;
     euiColorAccentText: string;
+    euiColorAccentSecondaryText: string;
     euiColorWarningText: string;
     euiColorDangerText: string;
     euiColorDisabledText: string;

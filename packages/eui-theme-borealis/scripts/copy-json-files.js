@@ -5,21 +5,25 @@ const copyFilePromise = util.promisify(fs.copyFile);
 
 const chalk = require('chalk');
 
-async function compileScssFiles({
-  destinationDirectory,
-  docsVariablesDirectory,
-}) {
-  // Copy static JSON Sass var files from src-docs/src/views/theme/_json to dist
+const sourceDirectory = 'src';
+const destinationDirectory = 'lib';
+
+async function copyJsonFiles() {
+  // Copy static legacy JSON token files from /src to /lib
   const jsonFilesToCopy = [
-    'eui_theme_amsterdam_dark.json',
-    'eui_theme_amsterdam_light.json',
-    'eui_theme_amsterdam_dark.json.d.ts',
-    'eui_theme_amsterdam_light.json.d.ts',
+    'eui_theme_borealis_light.json',
+    'eui_theme_borealis_dark.json',
+    'eui_theme_borealis_light.json.d.ts',
+    'eui_theme_borealis_dark.json.d.ts',
   ];
   await Promise.all(
     jsonFilesToCopy.map((fileName) => {
-      const source = path.join(docsVariablesDirectory, fileName);
+      const source = path.join(sourceDirectory, fileName);
       const destination = path.join(destinationDirectory, fileName);
+
+      if (!fs.existsSync(destinationDirectory)) {
+        fs.mkdirSync(destinationDirectory);
+      }
 
       return copyFilePromise(source, destination, (err) => {
         if (err) throw err;
@@ -32,8 +36,5 @@ async function compileScssFiles({
 }
 
 if (require.main === module) {
-  compileScssFiles({
-    destinationDirectory: 'dist',
-    docsVariablesDirectory: 'src-docs/src/views/theme/_json',
-  });
+  copyJsonFiles();
 }
