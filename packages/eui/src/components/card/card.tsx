@@ -191,18 +191,6 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
     isDisabled && textStyles.disabled,
   ];
 
-  /**
-   * For a11y, we simulate the same click that's provided on the title when clicking the whole card
-   * without having to make the whole card a button or anchor tag.
-   * *Card Accessibility: The redundant click event https://inclusive-components.design/cards/*
-   */
-  let link: HTMLAnchorElement | HTMLButtonElement | null = null;
-  const outerOnClick = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (link && link !== e.target && !link.contains(e.target as Node)) {
-      link.click();
-    }
-  };
-
   if (layout === 'horizontal') {
     if (image || footer || textAlign !== 'center') {
       throw new Error(
@@ -316,20 +304,12 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
         <EuiCardSelect
           aria-describedby={`${ariaId}Title ${ariaDesc}`}
           {...selectable}
-          buttonRef={(node: HTMLAnchorElement | HTMLButtonElement | null) => {
-            link = node;
-          }}
         />
       </>
     );
   }
 
   const TitleElement = titleElement;
-
-  /**
-   * Wraps the title with the link (<a>) or button.
-   * This makes the title element a11y friendly and gets described by its content if its interactable.
-   */
 
   let theTitle;
   if (!isDisabled && href) {
@@ -342,9 +322,6 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
         target={target}
         aria-describedby={ariaDesc}
         rel={getSecureRelForTarget({ href, target, rel })}
-        ref={(node) => {
-          link = node;
-        }}
       >
         {title}
       </a>
@@ -357,9 +334,6 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
         onClick={onClick as React.MouseEventHandler<HTMLButtonElement>}
         disabled={isDisabled}
         aria-describedby={`${optionalBetaBadgeID} ${ariaDesc}`}
-        ref={(node) => {
-          link = node;
-        }}
       >
         {title}
       </button>
@@ -401,7 +375,6 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
       element="div"
       className={classes}
       css={[...cardStyles, optionalBetaCSS]}
-      onClick={isClickable ? outerOnClick : undefined}
       color={isDisabled ? 'subdued' : display}
       hasShadow={isDisabled || display ? false : true}
       hasBorder={display ? false : undefined}
