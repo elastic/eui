@@ -10,7 +10,16 @@ import { css } from '@emotion/react';
 import { logicalCSS, mathWithUnits, euiFontSize } from '../../global_styling';
 import { UseEuiTheme } from '../../services';
 
-export const euiTabStyles = ({ euiTheme }: UseEuiTheme) => {
+export const euiTabStyles = ({ euiTheme, highContrastMode }: UseEuiTheme) => {
+  const _selectedBorder = (color: string) => {
+    const borderWidth = euiTheme.border.width.thick;
+    return !highContrastMode
+      ? // By default, styles use an inset box shadow to not increase/affect height
+        `box-shadow: inset 0 -${borderWidth} 0 ${color};`
+      : // However, Windows high contrast themes ignores box-shadow and only respects border-bottom
+        logicalCSS('border-bottom', `${borderWidth} solid ${color}`);
+  };
+
   return {
     euiTab: css`
       display: flex;
@@ -36,8 +45,8 @@ export const euiTabStyles = ({ euiTheme }: UseEuiTheme) => {
       justify-content: center;
     `,
     selected: css`
-      box-shadow: inset 0 -${euiTheme.border.width.thick} 0 ${euiTheme.colors.primary};
       color: ${euiTheme.colors.primaryText};
+      ${_selectedBorder(euiTheme.colors.primary)}
     `,
     disabled: {
       disabled: css`
@@ -45,7 +54,7 @@ export const euiTabStyles = ({ euiTheme }: UseEuiTheme) => {
         color: ${euiTheme.colors.disabledText};
       `,
       selected: css`
-        box-shadow: inset 0 -${euiTheme.border.width.thick} 0 ${euiTheme.colors.disabledText};
+        ${_selectedBorder(euiTheme.colors.disabledText)}
       `,
     },
   };
