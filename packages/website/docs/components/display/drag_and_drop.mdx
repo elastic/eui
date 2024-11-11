@@ -736,7 +736,7 @@ export default () => {
 To ensure dragging works as expected inside e.g. **EuiFlyout**, **EuiModal** or **EuiPopover**, use the prop `usePortal` on **EuiDraggable** components. This will render the currently dragged element inside a portal appended to the document body (or wherever **EuiPortal** is configured to `insert` to by default).
 
 :::warning Style inheritance
-If the styling of the your draggable content is scoped to a parent component, the styling won't be applied while dragging it when using `usePortal`. This is due to the portalled position in the DOM, which changes previous hierarchical relations to other ancestor elements. To prevent this from happening, we recommend applying styling from within the **EuiDraggable** scope without any parent selectors.
+If the styling of the draggable content is scoped to a parent component, the styling won't be applied while dragging it when using `usePortal`. This is due to the portalled position in the DOM, which changes previous hierarchical relations to other ancestor elements. To prevent this from happening, we recommend applying styling from within the **EuiDraggable** scope without any parent selectors.
 :::
 
 ```tsx interactive
