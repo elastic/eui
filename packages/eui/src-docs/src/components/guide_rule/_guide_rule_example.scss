@@ -12,6 +12,11 @@
 
 .guideRule__example__panelFooter {
   padding: $euiSize 0;
+
+  /* High contrast mode has borders, so we should tweak the text padding to account for that */
+  @media (prefers-contrast: more), (prefers-contrast: custom), (forced-colors: active) {
+    padding: $euiSize;
+  }
 }
 
 .guideRule__example--do {

@@ -17,7 +17,8 @@ export interface GuidelineProps extends PropsWithChildren {
   panelStyle?: EuiPanelProps['style'];
 }
 
-const getGuidelineStyles = ({ euiTheme }: UseEuiTheme) => ({
+// @ts-expect-error - Typing doesn't exist until EUI is released/upgraded
+const getGuidelineStyles = ({ euiTheme, highContrastMode }: UseEuiTheme) => ({
   root: css`
     margin-block: var(--eui-theme-content-vertical-spacing);
   `,
@@ -31,7 +32,9 @@ const getGuidelineStyles = ({ euiTheme }: UseEuiTheme) => ({
     border-color: ${euiTheme.colors.danger};
   `,
   textWrapper: css`
-    margin-block-start: var(--eui-size-xs);
+    ${highContrastMode // High contrast mode adds borders around split panels, so we should tweak text margins to account for that
+      ? 'margin: var(--eui-size-s);'
+      : 'margin-block-start: var(--eui-size-xs);'}
   `,
 });
 

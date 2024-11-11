@@ -976,8 +976,6 @@ export const WritingGuidelines = () => {
         <EuiFlexGrid gutterSize="xl" columns={3}>
           <EuiFlexItem>
             <EuiCard
-              paddingSize="none"
-              display="transparent"
               titleSize="xs"
               layout="horizontal"
               title="Work with a writer"
@@ -988,8 +986,6 @@ say."
 
           <EuiFlexItem>
             <EuiCard
-              paddingSize="none"
-              display="transparent"
               titleSize="xs"
               layout="horizontal"
               title="Read your text out loud"
@@ -1001,8 +997,6 @@ natural."
 
           <EuiFlexItem>
             <EuiCard
-              paddingSize="none"
-              display="transparent"
               titleSize="xs"
               layout="horizontal"
               title="Use spell check"
