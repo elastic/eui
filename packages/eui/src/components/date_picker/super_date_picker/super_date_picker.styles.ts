@@ -28,7 +28,7 @@ import {
 } from '../../form/form.styles';
 
 export const euiSuperDatePickerStyles = (euiThemeContext: UseEuiTheme) => {
-  const { euiTheme, colorMode } = euiThemeContext;
+  const { euiTheme, colorMode, highContrastMode } = euiThemeContext;
   const forms = euiFormVariables(euiThemeContext);
 
   const inputWidth = euiTheme.base * 30;
@@ -141,7 +141,7 @@ export const euiSuperDatePickerStyles = (euiThemeContext: UseEuiTheme) => {
       euiSuperDatePicker__formControlLayout: css`
         .euiFormControlLayout__childrenWrapper {
           ${euiFormControlDefaultShadow(euiThemeContext)}
-          box-shadow: none;
+          ${highContrastMode ? 'border: none' : 'box-shadow: none'};
         }
       `,
       default: css`
@@ -152,8 +152,10 @@ export const euiSuperDatePickerStyles = (euiThemeContext: UseEuiTheme) => {
 
         /* Focus/selection underline per-button */
         .euiDatePopoverButton {
-          ${euiFormControlDefaultShadow(euiThemeContext)}
-          box-shadow: none;
+          ${euiFormControlDefaultShadow(euiThemeContext, {
+            withBorder: false,
+            withBackgroundColor: false,
+          })}
         }
 
         .euiDatePopoverButton:focus,
@@ -186,9 +188,10 @@ export const euiSuperDatePickerStyles = (euiThemeContext: UseEuiTheme) => {
 
         /* Focus/selection underline per-button */
         .euiDatePopoverButton {
-          ${euiFormControlDefaultShadow(euiThemeContext)}
-          background-color: inherit;
-          box-shadow: none;
+          ${euiFormControlDefaultShadow(euiThemeContext, {
+            withBorder: false,
+            withBackgroundColor: false,
+          })}
         }
 
         .euiDatePopoverButton:focus,
