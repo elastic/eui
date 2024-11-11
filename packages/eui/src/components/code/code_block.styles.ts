@@ -26,7 +26,14 @@ import { euiCodeSyntaxVariables } from './code_syntax.styles';
 
 export const euiCodeBlockStyles = (euiThemeContext: UseEuiTheme) => {
   const codeSyntaxVariables = euiCodeSyntaxVariables(euiThemeContext);
-  const { euiTheme } = euiThemeContext;
+  const { euiTheme, highContrastMode } = euiThemeContext;
+
+  const highContrastBorder = `
+    /* EuiPanels always have a border in high contrast mode, no need to double up */
+    /* Border must be on the child <pre> to play nicely with EuiText's <pre> styles */
+    &:not(.euiPanel > *) .euiCodeBlock__pre {
+      border: ${euiTheme.border.thin};
+    }`;
 
   return {
     euiCodeBlock: css`
@@ -34,6 +41,7 @@ export const euiCodeBlockStyles = (euiThemeContext: UseEuiTheme) => {
       display: block;
       position: relative;
       background: ${codeSyntaxVariables.backgroundColor};
+      ${highContrastMode ? highContrastBorder : ''}
 
       ${codeSyntaxVariables.tokensCss}
     `,
