@@ -727,7 +727,192 @@ export default () => {
     </EuiDragDropContext>
   );
 };
+```
 
+## Portalled items
+
+**EuiDraggables** use fixed positioning to render and animate the item being dragged. This positioning logic does not work as expected when used inside of containers that have their own [stacking context](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_positioned_layout/Understanding_z-index/Stacking_context).
+
+To ensure dragging works as expected inside e.g. **EuiFlyout**, **EuiModal** or **EuiPopover**, use the prop `usePortal` on **EuiDraggable** components. This will render the currently dragged element inside a portal appended to the document body (or wherever **EuiPortal** is configured to `insert` to by default).
+
+:::warning Style inheritance
+If the styling of the draggable content is scoped to a parent component, the styling won't be applied while dragging it when using `usePortal`. This is due to the portalled position in the DOM, which changes previous hierarchical relations to other ancestor elements. To prevent this from happening, we recommend applying styling from within the **EuiDraggable** scope without any parent selectors.
+:::
+
+```tsx interactive
+import React, { FunctionComponent, ReactElement, useState } from 'react';
+import {
+  EuiButton,
+  EuiDragDropContext,
+  EuiDraggable,
+  EuiDroppable,
+  EuiFlyout,
+  EuiFlyoutBody,
+  EuiFlyoutHeader,
+  EuiModal,
+  EuiModalBody,
+  EuiModalHeader,
+  EuiPanel,
+  EuiPopover,
+  EuiSpacer,
+  EuiTitle,
+  euiDragDropReorder,
+  htmlIdGenerator,
+} from '@elastic/eui';
+import { DroppableProps, OnDragEndResponder } from '@hello-pangea/dnd';
+
+const makeId = htmlIdGenerator();
+
+const makeList = (number: number, start = 1) =>
+  Array.from({ length: number }, (v, k) => k + start).map((el) => {
+    return {
+      content: `Item ${el}`,
+      id: makeId(),
+    };
+  });
+
+const DragContainer: FunctionComponent<{
+  children: ReactElement | ReactElement[] | DroppableProps['children'];
+  onDragEnd: OnDragEndResponder;
+}> = ({ children, onDragEnd }) => (
+  <EuiDragDropContext onDragEnd={onDragEnd}>
+    <EuiDroppable droppableId="DROPPABLE_AREA" spacing="m">
+      {children}
+    </EuiDroppable>
+  </EuiDragDropContext>
+);
+
+export default () => {
+  const [isFlyoutOpen, setFlyoutOpen] = useState(false);
+  const [isModalOpen, setModalOpen] = useState(false);
+  const [isPopoverOpen, setIsPopoverOpen] = useState(false);
+
+  const [list, setList] = useState(makeList(3));
+  const onDragEnd: OnDragEndResponder = ({ source, destination }) => {
+    if (source && destination) {
+      const items = euiDragDropReorder(list, source.index, destination.index);
+
+      setList(items);
+    }
+  };
+
+  return (
+    <>
+      <EuiButton onClick={() => setFlyoutOpen(!isFlyoutOpen)}>
+        Toggle flyout
+      </EuiButton>
+      <EuiSpacer />
+      <EuiButton onClick={() => setModalOpen(!isModalOpen)}>
+        Toggle modal
+      </EuiButton>
+
+      {isFlyoutOpen && (
+        <EuiFlyout onClose={() => setFlyoutOpen(false)}>
+          <EuiFlyoutHeader>
+            <EuiTitle size="s">
+              <h2>
+                Portalled <strong>EuiDraggable</strong> items
+              </h2>
+            </EuiTitle>
+          </EuiFlyoutHeader>
+          <EuiFlyoutBody>
+            <DragContainer onDragEnd={onDragEnd}>
+              {list.map(({ content, id }, idx) => (
+                <EuiDraggable
+                  spacing="m"
+                  key={id}
+                  index={idx}
+                  draggableId={id}
+                  usePortal
+                >
+                  {(provided, state) => (
+                    <EuiPanel hasShadow={state.isDragging}>
+                      {content}
+                      {state.isDragging && ' ✨'}
+                    </EuiPanel>
+                  )}
+                </EuiDraggable>
+              ))}
+            </DragContainer>
+          </EuiFlyoutBody>
+        </EuiFlyout>
+      )}
+
+      {isModalOpen && (
+        <EuiModal onClose={() => setModalOpen(false)}>
+          <EuiModalHeader>
+            <EuiTitle size="s">
+              <h2>
+                Portalled <strong>EuiDraggable</strong> items
+              </h2>
+            </EuiTitle>
+          </EuiModalHeader>
+          <EuiModalBody>
+            <DragContainer onDragEnd={onDragEnd}>
+              {list.map(({ content, id }, idx) => (
+                <EuiDraggable
+                  spacing="m"
+                  key={id}
+                  index={idx}
+                  draggableId={id}
+                  usePortal
+                >
+                  {(provided, state) => (
+                    <EuiPanel hasShadow={state.isDragging}>
+                      {content}
+                      {state.isDragging && ' ✨'}
+                    </EuiPanel>
+                  )}
+                </EuiDraggable>
+              ))}
+            </DragContainer>
+          </EuiModalBody>
+        </EuiModal>
+      )}
+
+      <EuiSpacer />
+
+      <EuiPopover
+        isOpen={isPopoverOpen}
+        closePopover={() => setIsPopoverOpen(false)}
+        button={
+          <EuiButton onClick={() => setIsPopoverOpen(!isPopoverOpen)}>
+            Toggle popover
+          </EuiButton>
+        }
+        panelPaddingSize="none"
+        panelProps={{ css: { inlineSize: 200 } }}
+      >
+        <DragContainer
+          onDragEnd={({ source, destination }) => {
+            if (source && destination) {
+              const items = euiDragDropReorder(
+                list,
+                source.index,
+                destination.index
+              );
+              setList(items);
+            }
+          }}
+        >
+          {list.map(({ content, id }, idx) => (
+            <EuiDraggable
+              spacing="m"
+              key={id}
+              index={idx}
+              draggableId={id}
+              usePortal
+            >
+              {(provided, state) => (
+                <EuiPanel hasShadow={state.isDragging}>{content}</EuiPanel>
+              )}
+            </EuiDraggable>
+          ))}
+        </DragContainer>
+      </EuiPopover>
+    </>
+  );
+};
 ```
 
 ## Kitchen sink
@@ -851,78 +1036,6 @@ export default () => {
   );
 };
 
-```
-
-## Using drag and drop in popovers
-
-**EuiDraggables** use fixed positioning to render and animate the item being dragged. This positioning logic does not work as expected when used inside of containers that have their own [stacking context](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_positioned_layout/Understanding_z-index/Stacking_context).
-
-This behavior particularly affects [**EuiPopover**](/docs/layout/popover). If using drag and drop UX within a popover, you **must** include the `<EuiPopover hasDragDrop>` prop for items to properly render while being dragged.
-
-```tsx interactive
-import React, { useState } from 'react';
-import {
-  EuiPopover,
-  EuiButton,
-  EuiPanel,
-  EuiDragDropContext,
-  EuiDraggable,
-  EuiDroppable,
-  euiDragDropReorder,
-  htmlIdGenerator,
-} from '@elastic/eui';
-
-const makeId = htmlIdGenerator();
-const makeList = (number: number, start = 1) =>
-  Array.from({ length: number }, (v, k) => k + start).map((el) => {
-    return {
-      content: `Item ${el}`,
-      id: makeId(),
-    };
-  });
-
-export default () => {
-  const [isPopoverOpen, setIsPopoverOpen] = useState(false);
-  const [list, setList] = useState(makeList(3));
-
-  return (
-    <EuiPopover
-      hasDragDrop
-      isOpen={isPopoverOpen}
-      closePopover={() => setIsPopoverOpen(false)}
-      button={
-        <EuiButton onClick={() => setIsPopoverOpen(!isPopoverOpen)}>
-          Toggle popover with drag and drop content
-        </EuiButton>
-      }
-      panelPaddingSize="none"
-      panelProps={{ css: { inlineSize: 200 } }}
-    >
-      <EuiDragDropContext
-        onDragEnd={({ source, destination }) => {
-          if (source && destination) {
-            const items = euiDragDropReorder(
-              list,
-              source.index,
-              destination.index
-            );
-            setList(items);
-          }
-        }}
-      >
-        <EuiDroppable droppableId="droppableInPopover" spacing="m">
-          {list.map(({ content, id }, idx) => (
-            <EuiDraggable spacing="m" key={id} index={idx} draggableId={id}>
-              {(provided, state) => (
-                <EuiPanel hasShadow={state.isDragging}>{content}</EuiPanel>
-              )}
-            </EuiDraggable>
-          ))}
-        </EuiDroppable>
-      </EuiDragDropContext>
-    </EuiPopover>
-  );
-};
 ```
 
 ## Props

@@ -80,8 +80,8 @@ Markdown content often comes from untrusted sources like user generated content.
 ```
 **Links starting with http:, https:, mailto:, and / are valid:**
 
-* https://elastic.com
-* http://elastic.com
+* https://elastic.co
+* http://elastic.co
 * https link to [elastic.co](https://elastic.co)
 * http link to [elastic.co](http://elastic.co)
 * relative link to [eui doc's homepage](/)
@@ -97,10 +97,9 @@ Markdown content often comes from untrusted sources like user generated content.
 import React from 'react';
 import { EuiMarkdownFormat } from '@elastic/eui';
 
-// eslint-disable-next-line no-restricted-globals
-const locationPathname = location.pathname;
+const locationPathname = window.location.pathname;
 
-export const markdownContent = `**Links starting with http:, https:, mailto:, and / are valid:**
+const markdownContent = `**Links starting with http:, https:, mailto:, and / are valid:**
 
 * https://elastic.com
 * http://elastic.com

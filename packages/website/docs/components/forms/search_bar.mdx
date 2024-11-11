@@ -49,7 +49,7 @@ Formats understood by the parser
     *   `YYYY-MM-DD`
 
 ```tsx interactive
-import React, { useState, Fragment } from 'react';
+import React, { useState } from 'react';
 import {
   EuiHealth,
   EuiCallOut,
@@ -108,7 +108,7 @@ const loadTags = () => {
 
 const initialQuery = EuiSearchBar.Query.MATCH_ALL;
 
-export const SearchBar = () => {
+export default () => {
   const [query, setQuery] = useState(initialQuery);
   const [error, setError] = useState(null);
   const [incremental, setIncremental] = useState(false);
@@ -251,14 +251,14 @@ export const SearchBar = () => {
       return;
     }
     return (
-      <Fragment>
+      <>
         <EuiCallOut
           iconType="faceSad"
           color="danger"
           title={`Invalid search: ${error.message}`}
         />
         <EuiSpacer size="l" />
-      </Fragment>
+      </>
     );
   };
 
@@ -323,8 +323,8 @@ export const SearchBar = () => {
   }
 
   const content = renderError() || (
-    <EuiFlexGroup>
-      <EuiFlexItem grow={4}>
+    <EuiFlexGroup wrap>
+      <EuiFlexItem>
         <EuiTitle size="s">
           <h3>Elasticsearch Query String</h3>
         </EuiTitle>
@@ -332,9 +332,8 @@ export const SearchBar = () => {
         <EuiCodeBlock language="js">
           {esQueryString ? esQueryString : ''}
         </EuiCodeBlock>
-
-        <EuiSpacer size="l" />
-
+      </EuiFlexItem>
+      <EuiFlexItem>
         <EuiTitle size="s">
           <h3>Elasticsearch Query DSL</h3>
         </EuiTitle>
@@ -344,7 +343,7 @@ export const SearchBar = () => {
         </EuiCodeBlock>
       </EuiFlexItem>
 
-      <EuiFlexItem grow={6}>
+      <EuiFlexItem style={{ flexBasis: '100%' }}>
         <EuiTitle size="s">
           <h3>JS execution</h3>
         </EuiTitle>
@@ -357,7 +356,7 @@ export const SearchBar = () => {
   );
 
   return (
-    <Fragment>
+    <>
       {renderSearch()}
       <EuiSpacer size="s" />
       <EuiFlexGroup justifyContent="flexEnd">
@@ -379,10 +378,9 @@ export const SearchBar = () => {
       </EuiFlexGroup>
       <EuiSpacer size="l" />
       {content}
-    </Fragment>
+    </>
   );
 };
-
 ```
 
 ## Controlled search bar
@@ -390,7 +388,7 @@ export const SearchBar = () => {
 An **EuiSearchBar** can have its query controlled by a parent component by passing the `query` prop. Changes to the query will be passed back up through the `onChange` callback where the new query must be stored in state and passed back into the search bar.
 
 ```tsx interactive
-import React, { useState, Fragment } from 'react';
+import React, { useState } from 'react';
 import {
   EuiHealth,
   EuiCallOut,
@@ -448,7 +446,7 @@ const loadTags = () => {
 
 const initialQuery = 'status:open';
 
-export const ControlledSearchBar = () => {
+export default () => {
   const [query, setQuery] = useState(initialQuery);
   const [error, setError] = useState(null);
   const [incremental, setIncremental] = useState(false);
@@ -468,7 +466,7 @@ export const ControlledSearchBar = () => {
 
   const renderBookmarks = () => {
     return (
-      <Fragment>
+      <>
         <p>Enter a query, or select one from a bookmark</p>
         <EuiSpacer size="s" />
         <EuiFlexGroup>
@@ -490,7 +488,7 @@ export const ControlledSearchBar = () => {
           </EuiFlexItem>
         </EuiFlexGroup>
         <EuiSpacer size="m" />
-      </Fragment>
+      </>
     );
   };
 
@@ -593,14 +591,14 @@ export const ControlledSearchBar = () => {
       return;
     }
     return (
-      <Fragment>
+      <>
         <EuiCallOut
           iconType="faceSad"
           color="danger"
           title={`Invalid search: ${error.message}`}
         />
         <EuiSpacer size="l" />
-      </Fragment>
+      </>
     );
   };
 
@@ -657,7 +655,7 @@ export const ControlledSearchBar = () => {
   );
 
   return (
-    <Fragment>
+    <>
       <EuiFlexGroup>
         <EuiFlexItem>{renderBookmarks()}</EuiFlexItem>
       </EuiFlexGroup>
@@ -674,7 +672,7 @@ export const ControlledSearchBar = () => {
       </EuiFlexGroup>
       <EuiSpacer size="l" />
       {content}
-    </Fragment>
+    </>
   );
 };
 
@@ -685,7 +683,7 @@ export const ControlledSearchBar = () => {
 An **EuiSearchBar** can have custom filter dropdowns that control how a user can search.
 
 ```tsx interactive
-import React, { useState, Fragment } from 'react';
+import React, { useState } from 'react';
 import {
   EuiHealth,
   EuiCallOut,
@@ -845,7 +843,7 @@ const CustomComponent = ({ query, onChange }) => {
   );
 };
 
-export const SearchBarFilters = () => {
+export default () => {
   const [query, setQuery] = useState(initialQuery);
   const [error, setError] = useState(null);
 
@@ -891,6 +889,7 @@ export const SearchBarFilters = () => {
           value: tag.name,
           view: <EuiHealth color={tag.color}>{tag.name}</EuiHealth>,
         })),
+        autoSortOptions: false,
       },
       {
         type: 'custom_component',
@@ -959,14 +958,14 @@ export const SearchBarFilters = () => {
       return;
     }
     return (
-      <Fragment>
+      <>
         <EuiCallOut
           iconType="faceSad"
           color="danger"
           title={`Invalid search: ${error.message}`}
         />
         <EuiSpacer size="l" />
-      </Fragment>
+      </>
     );
   };
 
@@ -1020,8 +1019,8 @@ export const SearchBarFilters = () => {
   const esQueryString = EuiSearchBar.Query.toESQueryString(query);
 
   const content = renderError() || (
-    <EuiFlexGroup>
-      <EuiFlexItem grow={4}>
+    <EuiFlexGroup wrap>
+      <EuiFlexItem>
         <EuiTitle size="s">
           <h3>Elasticsearch Query String</h3>
         </EuiTitle>
@@ -1029,9 +1028,8 @@ export const SearchBarFilters = () => {
         <EuiCodeBlock language="js">
           {esQueryString ? esQueryString : ''}
         </EuiCodeBlock>
-
-        <EuiSpacer size="l" />
-
+      </EuiFlexItem>
+      <EuiFlexItem>
         <EuiTitle size="s">
           <h3>Elasticsearch Query DSL</h3>
         </EuiTitle>
@@ -1041,7 +1039,7 @@ export const SearchBarFilters = () => {
         </EuiCodeBlock>
       </EuiFlexItem>
 
-      <EuiFlexItem grow={6}>
+      <EuiFlexItem style={{ flexBasis: '100%' }}>
         <EuiTitle size="s">
           <h3>JS execution</h3>
         </EuiTitle>
@@ -1054,11 +1052,11 @@ export const SearchBarFilters = () => {
   );
 
   return (
-    <Fragment>
+    <>
       {renderSearch()}
       <EuiSpacer size="l" />
       {content}
-    </Fragment>
+    </>
   );
 };
 

@@ -18,7 +18,7 @@ Use the `checked` prop to handle the checked and unchecked state. You can also u
 Make sure to pass a `label` to ensure a larger clickable area and ensure that screen readers will read out the label when the user is focused on the input. To learn more about labels usage, go to the [guidelines tab](/docs/forms/selection-controls/guidelines).
 
 ```tsx interactive
-import React, { useState, Fragment } from 'react';
+import React, { useState } from 'react';
 import { EuiCheckbox, EuiSpacer, useGeneratedHtmlId } from '@elastic/eui';
 
 export default () => {
@@ -43,7 +43,7 @@ export default () => {
   };
 
   return (
-    <Fragment>
+    <>
       <EuiCheckbox
         id={basicCheckboxId}
         label="I am a checkbox"
@@ -76,10 +76,10 @@ export default () => {
         id={compressedCheckboxId}
         label="I am a readonly checkbox"
         checked={checked}
-        onChange={(e) => onChange(e)}
+        onChange={() => {}}
         readOnly
       />
-    </Fragment>
+    </>
   );
 };
 ```
@@ -168,7 +168,7 @@ When creating a list, each input should have the same `name` to ensure a group i
 Make sure to pass a `label` to ensure a larger clickable area and ensure that screen readers will read out the label when the user is focused on the input. To learn more about labels usage, go to the [guidelines tab](/docs/forms/selection-controls/guidelines).
 
 ```tsx interactive
-import React, { useState, Fragment } from 'react';
+import React, { useState } from 'react';
 import { EuiRadio, EuiSpacer, useGeneratedHtmlId } from '@elastic/eui';
 
 export default () => {
@@ -187,7 +187,7 @@ export default () => {
   };
 
   return (
-    <Fragment>
+    <>
       <EuiRadio
         id={basicRadioButtonId}
         label="I am a radio"
@@ -214,7 +214,7 @@ export default () => {
         onChange={(e) => onChange(e)}
         compressed
       />
-    </Fragment>
+    </>
   );
 };
 ```
@@ -329,7 +329,7 @@ When providing the state as the label, you'll need to provide an `aria-described
 :::
 
 ```tsx interactive
-import React, { useState, Fragment } from 'react';
+import React, { useState } from 'react';
 import { EuiSwitch, EuiFormRow, useGeneratedHtmlId } from '@elastic/eui';
 
 export default () => {
@@ -350,8 +350,8 @@ export default () => {
   };
 
   return (
-    <Fragment>
-      <EuiFormRow display="columnCompressedSwitch" label="Autoscaling">
+    <>
+      <EuiFormRow display="columnCompressed" label="Autoscaling">
         <EuiSwitch
           showLabel={false}
           label="Autoscaling"
@@ -361,7 +361,7 @@ export default () => {
         />
       </EuiFormRow>
       <EuiFormRow
-        display="columnCompressedSwitch"
+        display="columnCompressed"
         label={<span id={toggleTextSwitchId}>Show something</span>}
       >
         <EuiSwitch
@@ -372,7 +372,7 @@ export default () => {
           compressed
         />
       </EuiFormRow>
-    </Fragment>
+    </>
   );
 };
 ```

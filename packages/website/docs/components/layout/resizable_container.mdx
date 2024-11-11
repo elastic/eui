@@ -45,7 +45,7 @@ Simple resizable container with two panels and a resizer between. This is the mo
             </EuiText>
           </EuiResizablePanel>
 
-          <EuiResizableButton />
+          <EuiResizableButton accountForScrollbars="before" />
 
           <EuiResizablePanel initialSize={50} minSize="200px" tabIndex={0}>
             <EuiText>{text}</EuiText>
@@ -81,7 +81,7 @@ The default props clear most of the **EuiPanel** styles, but you can add them ba
             </EuiText>
           </EuiResizablePanel>
 
-          <EuiResizableButton />
+          <EuiResizableButton accountForScrollbars="before" />
 
           <EuiResizablePanel
             initialSize={40}
@@ -241,7 +241,7 @@ Either `initialSize` or `size` must be specified. The `size` prop is for cases w
                 </EuiText>
               </EuiResizablePanel>
 
-              <EuiResizableButton />
+              <EuiResizableButton accountForScrollbars="before" />
 
               <EuiResizablePanel
                 id={secondPanelId}
@@ -289,7 +289,7 @@ Set `direction=vertical` on **EuiResizableContainer** to set a vertical orientat
             </EuiText>
           </EuiResizablePanel>
 
-          <EuiResizableButton />
+          <EuiResizableButton accountForScrollbars="both" />
 
           <EuiResizablePanel initialSize={40} minSize="10%" tabIndex={0}>
             <EuiText>
@@ -397,7 +397,7 @@ Set `direction=vertical` on **EuiResizableContainer** to set a vertical orientat
                   </EuiText>
                 </EuiResizablePanel>
 
-                <EuiResizableButton />
+                <EuiResizableButton accountForScrollbars="before" />
 
                 <EuiResizablePanel
                   id={secondPanelId}
@@ -480,7 +480,7 @@ Use the `mode` prop on an **EuiResizablePanel** to mark it as `collapsible` or `
         </EuiText>
         <EuiSpacer />
         <EuiPage paddingSize="none">
-          <EuiResizableContainer style={{ height: '320px' }}>
+          <EuiResizableContainer>
             {(EuiResizablePanel, EuiResizableButton) => (
               <>
                 <EuiResizablePanel
@@ -514,7 +514,7 @@ Use the `mode` prop on an **EuiResizablePanel** to mark it as `collapsible` or `
         <EuiSpacer />
 
         <EuiPage paddingSize="none">
-          <EuiResizableContainer style={{ height: '320px' }}>
+          <EuiResizableContainer>
             {(EuiResizablePanel, EuiResizableButton) => (
               <>
                 <EuiResizablePanel
@@ -574,7 +574,7 @@ Use the `mode` prop on an **EuiResizablePanel** to mark it as `collapsible` or `
                   <EuiListGroup flush>{itemElements}</EuiListGroup>
                 </EuiResizablePanel>
 
-                <EuiResizableButton />
+                <EuiResizableButton accountForScrollbars="before" />
 
                 <EuiResizablePanel mode="main" initialSize={80} minSize="50px">
                   <EuiPanel paddingSize="l" style={{ height: '100%' }}>
@@ -635,7 +635,7 @@ It is possible to dynamically change the `direction` prop to allow for adapting 
       },
       {
         id: 4,
-        label: 'Forth item',
+        label: 'Fourth item',
         text: <p>{faker.lorem.paragraphs()}</p>,
       },
     ];
@@ -721,7 +721,7 @@ mode={['collapsible', {
       {
         id: 1,
         label: 'First item',
-        text: <p>{faker.lorem.paragraphs()}</p>,
+        text: <p>{faker.lorem.paragraphs(1)}</p>,
       },
       {
         id: 2,
@@ -735,7 +735,7 @@ mode={['collapsible', {
       },
       {
         id: 4,
-        label: 'Forth item',
+        label: 'Fourth item',
         text: <p>{faker.lorem.paragraphs()}</p>,
       },
     ];
@@ -751,7 +751,7 @@ mode={['collapsible', {
     ));
     return (
       <EuiPage paddingSize="none">
-        <EuiResizableContainer style={{ height: '320px' }}>
+        <EuiResizableContainer>
           {(EuiResizablePanel, EuiResizableButton) => (
             <>
               <EuiResizablePanel
@@ -985,7 +985,7 @@ By default, **EuiResizableButton** shows a grab handle indicator as a UI hint. F
             <EuiText>{text}</EuiText>
           </EuiResizablePanel>
 
-          <EuiResizableButton indicator="border" />
+        <EuiResizableButton indicator="border" accountForScrollbars="before" />
 
           <EuiResizablePanel
             initialSize={50}
@@ -1000,10 +1000,10 @@ By default, **EuiResizableButton** shows a grab handle indicator as a UI hint. F
               {(EuiResizablePanel, EuiResizableButton) => (
                 <>
                   <EuiResizablePanel initialSize={50} minSize="50px" tabIndex={0}>
-                    <EuiText>{text}</EuiText>
+                    <EuiText style={{ width: '110%' }}>{text}</EuiText>
                   </EuiResizablePanel>
 
-                  <EuiResizableButton indicator="border" />
+                  <EuiResizableButton indicator="border" accountForScrollbars="both" />
 
                   <EuiResizablePanel initialSize={50} minSize="50px" tabIndex={0}>
                     <EuiText>{text}</EuiText>

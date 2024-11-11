@@ -109,19 +109,13 @@ If your icon has multiples or custom colors like a logo, you can keep the defaul
 
 ```tsx interactive
 import React, { useContext } from 'react';
-import { EuiAvatar, EuiSpacer, EuiTitle } from '@elastic/eui';
-import { ThemeContext } from '../../components';
+import { EuiAvatar, EuiSpacer, EuiTitle, useEuiTheme } from '@elastic/eui';
 
 export default () => {
-  const themeContext = useContext(ThemeContext);
-
-  /**
-   * Setup theme based on current light/dark theme
-   */
-  const isDarkTheme = themeContext.theme.includes('dark');
+  const isDarkTheme = useEuiTheme().colorMode === 'DARK';
 
   return (
-    <div>
+    <>
       <EuiTitle size="xs">
         <h2>Avatar colors and sizes</h2>
       </EuiTitle>
@@ -166,7 +160,7 @@ export default () => {
       &emsp;
       <EuiAvatar name="Large iconSize" iconType="managementApp" iconSize="l" />
       &emsp;
-    </div>
+    </>
   );
 };
 ```

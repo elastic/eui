@@ -354,12 +354,17 @@ import { iconColors } from './icon_colors.ts'
       {iconColors.map((color) => (
         <EuiFlexItem key={color}>
           <EuiCopy display="block" textToCopy={color} afterMessage={`${color} copied`}>
-            {(copy) => (
-              <EuiPanel hasShadow={false} hasBorder={false} onClick={copy} paddingSize="s">
-                <EuiIcon className="eui-alignMiddle" type="brush" color={color} /> &emsp;{' '}
-                <small>{color}</small>
-              </EuiPanel>
-            )}
+            {(copy) => {
+              const panel = (
+                <EuiPanel hasShadow={false} hasBorder={false} onClick={copy} paddingSize="s">
+                  <EuiIcon className="eui-alignMiddle" type="brush" color={color} /> &emsp;{' '}
+                  <small>{color}</small>
+                </EuiPanel>
+              );
+              return color === 'ghost'
+                ? <EuiThemeProvider colorMode="DARK">{panel}</EuiThemeProvider>
+                : panel;
+            }}
           </EuiCopy>
         </EuiFlexItem>
       ))}

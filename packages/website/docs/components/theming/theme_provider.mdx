@@ -6,15 +6,7 @@ id: theming_theme_provider
 
 # Theme provider
 
-:::warning Partial component support
-
-EUI is transitioning to a CSS-in-JS solution for theming and requires consuming/customizing global variables in **both the Sass and CSS-in-JS** methods. To track this effort, subscribe to the [Meta ticket](https://github.com/elastic/eui/issues/3912).
-
-:::
-
-# Theme provider
-
-EUI is in the progress of switching it's core styles processor from Sass to [Emotion](https://emotion.sh). To take full advantage of this context layer, wrap the root of your application with a single [**EuiProvider**](#utilities/provider). While **EuiProvider** should not be included more than once, you may use multiple nested **EuiThemeProviders** to customize section-specific or component-specific [color modes](/docs/theming/color-mode#rendering-a-specific-color-mode) or theme overrides.
+While [**EuiProvider**](#utilities/provider) should not be wrapped around your application root more than once, you may use multiple nested **EuiThemeProviders** to customize section-specific or component-specific [color modes](/docs/theming/color-mode#rendering-a-specific-color-mode) or theme overrides.
 
 ## EuiThemeProvider
 

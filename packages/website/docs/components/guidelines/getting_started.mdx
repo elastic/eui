@@ -23,22 +23,15 @@ You can read more about other ways to [consume EUI](https://github.com/elastic/e
 
 ## Setting up your application
 
-:::warning
-
-While EUI is in the process of converting from a Sass based theme to CSS-in-JS via Emotion. We require that both the [**EuiProvider**](/docs/utilities/provider) **and** the compiled CSS (or raw Sass) files be imported during this transition.
-
-:::
-
-EUI provides a general context provider to handle global aspects like light and dark theme. You can import these default themes through their respective compiled CSS files. Use the `.min.css` file extension for the minified version.
+EUI uses CSS-in-JS (specifically [Emotion](https://emotion.sh/)) for its styles and theming. As such, we require an `<EuiProvider>` wrapper around your application in order for various theme-related UI & UX (such as dark/light mode switching) to work as expected.
 
 ```tsx
 import React from 'react';
-import '@elastic/eui/dist/eui_theme_light.css';
 
 import { EuiProvider, EuiText } from '@elastic/eui';
 
 const MyApp = () => (
-  <EuiProvider colorMode="light">
+  <EuiProvider>
     <EuiText><p>Hello World!</p></EuiText>
   </EuiProvider>
 );
@@ -46,14 +39,13 @@ const MyApp = () => (
 export default MyApp;
 ```
 
-For the dark theme, you can swap the words `light` for `dark`.
-For more configuration options of the provider, see the [EuiProvider documentation](/docs/utilities/provider).
+For more configuration options of the provider, see the [**EuiProvider** documentation](/docs/utilities/provider).
 
 ## Styling your application
 
-To build your custom components using EUI theme variables, functions, and mixins, you will need to consume them through one of the [Sass](/docs/theming/sass), [Emotion](/docs/theming/theme-provider), or [JSON import](https://github.com/elastic/eui/blob/main/wiki/consuming-eui/README.md#a-not-recommended-legacy-method-to-consume-theming-variables-from-sass) methods.
+You can build custom components using EUI's theme tokens, consumed via `useEuiTheme()`. The below example uses Emotion's `css` prop, but any CSS-in-JS library should be able to interpolate the JS variables.
 
-As long as you have wrapped your application with [**EuiProvider**](/docs/guidelines/getting-started#setting-up-your-application), you have access to the JS theme tokens via `useEuiTheme()` and Emotion's `css` prop.
+For more ways to consume EUI's theme, see the [**EuiThemeProvider** documentation](/theming/theme-provider#consuming-with-the-react-hook).
 
 ```tsx
 import React from 'react';
@@ -88,19 +80,45 @@ export default () => {
 };
 ```
 
-### Customizing the style tokens
+### Customizing with classes
 
-EUI can be slightly customized to fit your branding needs by altering the base tokens like color and typography. Simply declare your token overrides before importing the whole EUI theme. This will re-compile all of the EUI components with your colors.
+For consumers using vanilla or preprocessed CSS, all components allow you to pass a custom `className` prop, which will be appended onto the component.
 
-For a full list of global tokens visit [Customizing theme](/docs/theming/customizing-themes).
+:::warning Avoid overwriting `.eui` class names
 
-:::warning Partial component support
-
-EUI is transitioning to a CSS-in-JS solution for theming and requires consuming/customizing global variables in **both the Sass and CSS-in-JS** methods. To track this effort, subscribe to the [Meta ticket](https://github.com/elastic/eui/issues/3912).
+EUI's class names are not a guaranteed API and are prone to change, which will risk breaking your theme. Target your custom classNames instead.
 
 :::
 
-You can pass along a full or partial list of global `overrides` to the [**EuiProvider**](/docs/guidelines/getting-started#setting-up-your-application) which will update the EUI components that are currently using the Emotion method of theming.
+While EUI's styles are generally low in [specificity](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity) due to our usage of CSS-in-JS, you may need to ensure that your CSS is defined after ours in your `<head>`. See [**EuiProvider's** cache customization for more style injection options](/utilities/provider#cache-customization).
+
+```tsx
+import React from 'react';
+import { EuiButton } from '@elastic/eui';
+const myCustomCSS = `
+  .myCustomButton {
+    background-color: pink;
+  }
+`;
+export default () => (
+  <>
+    <style>{myCustomCSS}</style>
+    <EuiButton className="myCustomButton">Hello world!</EuiButton>
+  </>
+);
+```
+
+### Customizing the style tokens
+
+EUI can be slightly customized to fit your branding needs by altering the base tokens like color and typography. You can pass a full or partial list of override tokens to the **EuiProvider**'s `modify` prop.
+
+:::warning Touch the least amount of variables possible
+
+By nature, EUI is very rigid. You shouldn't need much to make drastic changes to color. Most themes are less then a dozen variable overwrites in total.
+
+:::
+
+For a full list of global tokens visit [Customizing theme](/docs/theming/customizing-themes). For more examples of the `modify` prop, see the [**EuiThemeProvider** docs](/theming/theme-provider#simple-instance-overrides).
 
 ```tsx
 import React, { FunctionComponent, ReactNode } from 'react';
@@ -141,18 +159,6 @@ export default () => {
   );
 };
 ```
-
-#### Do not use in conjunction with the compiled CSS.
-
-If you provide both, it will duplicate the imported styles.
-
-#### Touch the least amount of variables possible.
-
-By nature EUI is very rigid. You shouldn't need much to make drastic changes to color. Most themes are less then a dozen variable overwrites in total.
-
-#### Do not overwrite individual component variables or `.eui` class names.
-
-Although this may be possible, components are much more prone to change and you'll risk breaking your theme. All EUI components accept custom a `className` which you can use to append your custom styles.
 
 ## Fonts
 
@@ -212,20 +218,6 @@ Test utilities are published from the `lib/test` directory.
 ```tsx
 import { findTestSubject } from '@elastic/eui/lib/test'; // Enzyme
 import { findByTestSubject, render, screen } from '@elastic/eui/lib/test/rtl'; // React Testing Library
-```
-
-## Customizing with classes
-
-We do not recommend customizing EUI components by applying styles directly to EUI classes, eg. `.euiButton`. All components allow you to pass a custom `className` prop directly to the component which will then append this to the class list. Utilizing the cascade feature of CSS, you can then customize by overriding styles so long as your styles are imported **after** the EUI import.
-
-```tsx
-<EuiButton className="myCustomClass__button" />
-```
-
-Renders as:
-
-```html
-<button class="euiButton myCustomClass__button" />
 ```
 
 ## Customizing component defaults

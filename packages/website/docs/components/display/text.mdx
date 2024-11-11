@@ -220,6 +220,7 @@ Using the `size` prop on **EuiText** you can get smaller sizes of text than the 
 
 ```tsx interactive
 import React, { useState, useContext } from 'react';
+import { css } from '@emotion/react';
 import {
   EuiText,
   EuiFlexGroup,
@@ -227,7 +228,6 @@ import {
   EuiHorizontalRule,
   EuiButtonGroup,
 } from '@elastic/eui';
-import { ThemeContext } from '../../components/with_theme';
 
 const text = [
   <h1 key={0}>This is Heading One</h1>,
@@ -303,8 +303,17 @@ const text = [
   <h6 key={13}>This is Heading Six</h6>,
 ];
 
+const textLinesCss = ({ euiTheme }) => css`
+  background-image: linear-gradient(${euiTheme.focus.backgroundColor} 1px, transparent 1px);
+  background-size: 100% 4px;
+  background-position-y: -1px;
+
+  & > * {
+    background-color: ${euiTheme.colors.highlight};
+  }
+`;
+
 export default () => {
-  const themeContext = useContext(ThemeContext);
   const textSizeArray = ['xs', 's', 'm'];
   const textSizeNamesArray = ['Extra small', 'Small', 'Medium'];
 
@@ -352,10 +361,7 @@ export default () => {
             options={firstOptions}
           />
           <EuiHorizontalRule />
-          <EuiText
-            className={`guideDemo__textLines guideDemo__textLines--${themeContext.theme}`}
-            size={firstSize}
-          >
+          <EuiText css={textLinesCss} size={firstSize}>
             {text}
           </EuiText>
         </EuiFlexItem>
@@ -374,10 +380,7 @@ export default () => {
             options={secondOptions}
           />
           <EuiHorizontalRule />
-          <EuiText
-            className={`guideDemo__textLines guideDemo__textLines--${themeContext.theme}`}
-            size={secondSize}
-          >
+          <EuiText css={textLinesCss} size={secondSize}>
             {text}
           </EuiText>
         </EuiFlexItem>
@@ -385,7 +388,6 @@ export default () => {
     </>
   );
 };
-
 ```
 
 ## Coloring text

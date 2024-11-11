@@ -49,8 +49,8 @@ export default () => {
 
   return (
     /* DisplayToggles wrapper for Docs only */
-    <div>
-      <DisplayToggles>
+    <>
+      <DisplayToggles canPrepend={true} canAppend={true}>
         <EuiDatePicker
           showTimeSelect
           selected={startDate}
@@ -80,7 +80,7 @@ export default () => {
           placeholder="Example of an error"
         />
       </EuiFormRow>
-    </div>
+    </>
   );
 };
 ```
@@ -436,25 +436,22 @@ export default () => {
 Use `customInput` to pass a custom input to trigger your calendar.
 
 ```tsx interactive
-import React, { forwardRef, useState } from 'react';
+import React, { forwardRef, useState, FunctionComponent, ReactNode } from 'react';
 import { EuiDatePicker, EuiButton } from '@elastic/eui';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 
 // Should be a component because the date picker does some ref stuff behind the scenes
-// eslint-disable-next-line
-const ExampleCustomInput = forwardRef(({ onClick, value }, ref) => {
+const ExampleCustomInput: FunctionComponent<{
+  onClick: Function;
+  value: ReactNode;
+}> = forwardRef(({ onClick, value }, ref) => {
   return (
     <EuiButton className="example-custom-input" onClick={onClick}>
       {value}
     </EuiButton>
   );
 });
-
-ExampleCustomInput.propTypes = {
-  onClick: PropTypes.func,
-  value: PropTypes.string,
-};
 
 export default () => {
   const [startDate, setStartDate] = useState(moment());
@@ -602,66 +599,79 @@ Custom classes can be passed to various bits of the calendar and input.
 *   `dayClassName` will pass onto specificed days.
 *   `popperClassName` will pass onto the popover.
 
-```tsx interactive
-import React, { useState } from 'react';
-import { EuiDatePicker, EuiFormRow, EuiSpacer } from '@elastic/eui';
-import moment from 'moment';
+import { css } from '@emotion/css';
 
-export default () => {
-  const [startDate, setStartDate] = useState(moment());
+<Demo scope={{ css }}>
+  ```tsx interactive
+  import React, { useState } from 'react';
+  import { EuiDatePicker, EuiFormRow, EuiSpacer } from '@elastic/eui';
+  import moment from 'moment';
+  import { css } from '@emotion/css'; // Generates a vanilla JS className
 
-  const handleChange = (date) => {
-    setStartDate(date);
+  const visColors = euiPaletteColorBlind();
+  const backgroundCss = css`
+    background-color: ${visColors[3]};
+  `;
+  const outlineCss = css`
+    outline: solid 2px ${visColors[3]};
+  `;
+
+  export default () => {
+    const [startDate, setStartDate] = useState(moment());
+
+    const handleChange = (date) => {
+      setStartDate(date);
+    };
+
+    return (
+      <>
+        <EuiFormRow label="className example">
+          <EuiDatePicker
+            selected={startDate}
+            showTimeSelect
+            onChange={handleChange}
+            className={outlineCss}
+          />
+        </EuiFormRow>
+
+        <EuiSpacer size="m" />
+
+        <EuiFormRow label="calendarClassName example">
+          <EuiDatePicker
+            selected={startDate}
+            showTimeSelect
+            onChange={handleChange}
+            calendarClassName={backgroundCss}
+          />
+        </EuiFormRow>
+
+        <EuiSpacer size="m" />
+
+        <EuiFormRow label="dayClassName example">
+          <EuiDatePicker
+            selected={startDate}
+            showTimeSelect
+            onChange={handleChange}
+            dayClassName={(date) =>
+              date.date() < Math.random() * 31
+                ? backgroundCss
+                : undefined
+            }
+          />
+        </EuiFormRow>
+
+        <EuiSpacer size="m" />
+
+        <EuiFormRow label="popperClassName example">
+          <EuiDatePicker
+            selected={startDate}
+            showTimeSelect
+            onChange={handleChange}
+            popperClassName={outlineCss}
+          />
+        </EuiFormRow>
+      </>
+    );
   };
-
-  return (
-    <div>
-      <EuiFormRow label="className example">
-        <EuiDatePicker
-          selected={startDate}
-          showTimeSelect
-          onChange={handleChange}
-          className="guideDemo__datePickerPurpleInput"
-        />
-      </EuiFormRow>
-
-      <EuiSpacer size="m" />
-
-      <EuiFormRow label="calendarClassName example">
-        <EuiDatePicker
-          selected={startDate}
-          showTimeSelect
-          onChange={handleChange}
-          calendarClassName="guideDemo__datePickerPurpleCal"
-        />
-      </EuiFormRow>
-
-      <EuiSpacer size="m" />
-
-      <EuiFormRow label="dayClassName example">
-        <EuiDatePicker
-          selected={startDate}
-          showTimeSelect
-          onChange={handleChange}
-          dayClassName={(date) =>
-            date.date() < Math.random() * 31
-              ? 'guideDemo__datePickerPurpleDay'
-              : undefined
-          }
-        />
-      </EuiFormRow>
-
-      <EuiSpacer size="m" />
-
-      <EuiFormRow label="popperClassName example">
-        <EuiDatePicker
-          selected={startDate}
-          showTimeSelect
-          onChange={handleChange}
-          popperClassName="guideDemo__datePickerPurplePopper"
-        />
-      </EuiFormRow>
-    </div>
-  );
-};
-```
+  ```
+</Demo>
