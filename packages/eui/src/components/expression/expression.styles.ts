@@ -28,7 +28,7 @@ const _colorCSS = (color: string) => {
 };
 
 export const euiExpressionStyles = (euiThemeContext: UseEuiTheme) => {
-  const { euiTheme } = euiThemeContext;
+  const { euiTheme, highContrastMode } = euiThemeContext;
   return {
     euiExpression: css`
       ${euiTextBreakWord()}
@@ -57,15 +57,16 @@ export const euiExpressionStyles = (euiThemeContext: UseEuiTheme) => {
 
     // Variants
     columns: css`
-      border-color: transparent;
-      /* Ensures there's no flash of the dashed style before turning solid for the active state */
-      ${logicalCSS('border-bottom-style', 'solid')}
-      ${logicalCSS('margin-bottom', euiTheme.size.xs)}
-
-      ${logicalCSS('width', '100%')}
       display: flex;
+      ${logicalCSS('width', '100%')}
+      ${logicalCSS('margin-bottom', euiTheme.size.xs)}
       padding: ${euiTheme.size.xs};
-      border-radius: ${euiTheme.size.xs};
+      ${!highContrastMode
+        ? `
+          border-radius: ${euiTheme.size.xs};
+          border-color: transparent;
+        `
+        : ''}
     `,
 
     truncate: css`
