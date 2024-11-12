@@ -21,7 +21,7 @@ import { euiScreenReaderOnly } from '../accessibility';
 import { euiKeyPadMenuVariables } from './key_pad_menu.styles';
 
 export const euiKeyPadMenuItemStyles = (euiThemeContext: UseEuiTheme) => {
-  const { euiTheme } = euiThemeContext;
+  const { euiTheme, highContrastMode } = euiThemeContext;
   const { euiKeyPadMenuSize } = euiKeyPadMenuVariables(euiThemeContext);
 
   return {
@@ -38,14 +38,13 @@ export const euiKeyPadMenuItemStyles = (euiThemeContext: UseEuiTheme) => {
       }
     `,
     enabled: css`
-      &:hover,
-      &:focus,
-      &:focus-within {
+      &:is(:hover, :focus, :focus-within) {
         cursor: pointer;
         text-decoration: underline;
-        ${euiShadow(euiThemeContext, 's', {
-          borderAllInHighContrastMode: true,
-        })}
+        ${highContrastMode
+          ? // Use `outline` instead of border to avoid affecting absolutely positioned children
+            `outline: ${euiTheme.border.width.thin} solid ${euiTheme.colors.primary};`
+          : euiShadow(euiThemeContext, 's')}
 
         ${euiCanAnimate} {
           .euiKeyPadMenuItem__icon {
@@ -63,11 +62,16 @@ export const euiKeyPadMenuItemStyles = (euiThemeContext: UseEuiTheme) => {
       color: ${euiTheme.colors.title};
       background-color: ${euiTheme.focus.backgroundColor};
 
-      &,
-      &:hover,
-      &:focus,
-      &:focus-within {
+      &:is(*, :hover, :focus, :focus-within) {
         color: ${euiTheme.colors.primaryText};
+      }
+    `,
+    // Windows high contrast themes ignore background-color, so we need to ensure
+    // that selected item state is clearly via `outline`
+    selectedHighContrast: css`
+      :is(*, :hover, :focus, :focus-within) {
+        outline: ${euiTheme.border.width.thick} solid ${euiTheme.colors.primary};
+        outline-offset: 0;
       }
     `,
     disabled: {
@@ -88,6 +92,9 @@ export const euiKeyPadMenuItemStyles = (euiThemeContext: UseEuiTheme) => {
           euiTheme.colors.disabled,
           euiTheme.focus.transparency
         )};
+        ${highContrastMode
+          ? `outline-color: ${euiTheme.colors.disabledText} !important;`
+          : ''}
       `,
     },
   };
@@ -132,14 +139,10 @@ export const euiKeyPadMenuItemChildStyles = (euiThemeContext: UseEuiTheme) => {
     `,
 
     euiKeyPadMenuItem__checkableInput: css`
+      position: absolute;
       ${topRightChildren}
       transform: scale(.75);
       transform-origin: top right;
-
-      /* TODO: Remove this once EuiCheckbox and EuiRadio have been converted to Emotion */
-      && {
-        position: absolute;
-      }
     `,
     showCheckableInputOnInteraction: css`
       .euiKeyPadMenuItem:not(:hover, :focus, :focus-within) & {

@@ -191,6 +191,10 @@ export const EuiKeyPadMenuItem: FunctionComponent<EuiKeyPadMenuItemProps> = ({
     styles.euiKeyPadMenuItem,
     !isDisabled ? styles.enabled : styles.disabled.disabled,
     isSelected && (!isDisabled ? styles.selected : styles.disabled.selected),
+    euiTheme.highContrastMode &&
+      isSelected &&
+      !checkable &&
+      styles.selectedHighContrast,
   ];
 
   const classes = classNames('euiKeyPadMenuItem', className);
