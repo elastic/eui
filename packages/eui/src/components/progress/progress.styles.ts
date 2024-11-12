@@ -85,7 +85,7 @@ const euiIndeterminateAnimation = keyframes`
  * Emotion styles
  */
 export const euiProgressStyles = (
-  { euiTheme }: UseEuiTheme,
+  { euiTheme, highContrastMode }: UseEuiTheme,
   isNative: boolean
 ) => ({
   euiProgress: css`
@@ -98,12 +98,21 @@ export const euiProgressStyles = (
   native: css`
     display: block;
     ${logicalCSS('width', '100%')}
-    appearance: none;
-    border: none;
-    border-radius: ${euiTheme.size.s};
 
-    &::-webkit-progress-bar {
-      background-color: ${euiTheme.colors.lightShade};
+    @media (forced-colors: none) {
+      appearance: none;
+      border: none;
+      border-radius: ${euiTheme.size.s};
+
+      &::-webkit-progress-bar {
+        background-color: ${euiTheme.colors.lightShade};
+      }
+    }
+    /* Render the native progress element for Windows high contrast themes */
+    @media (forced-colors: active) {
+      background-color: revert;
+      /* Increase small sizes, otherwise the border is indistinguishable */
+      ${logicalCSS('min-height', euiTheme.size.s)}
     }
 
     ${euiCanAnimate} {
@@ -129,6 +138,12 @@ export const euiProgressStyles = (
       animation: ${euiIndeterminateAnimation} 1s
         ${euiTheme.animation.resistance} infinite;
 
+      /* Windows high contrast themes doesn't render backgrounds, so use a border instead */
+      @media (forced-colors: active) {
+        ${logicalCSS('border-top-style', 'solid')}
+        ${logicalCSS('border-top-color', 'transparent')}
+      }
+
       ${euiCantAnimate} {
         animation-duration: 2s;
         animation-timing-function: linear;
@@ -136,18 +151,28 @@ export const euiProgressStyles = (
     }
   `,
   // Sizes
-  xs: css`
-    ${logicalCSS('height', euiTheme.size.xxs)}
-  `,
-  s: css`
-    ${logicalCSS('height', euiTheme.size.xs)}
-  `,
-  m: css`
-    ${logicalCSS('height', euiTheme.size.s)}
-  `,
-  l: css`
-    ${logicalCSS('height', euiTheme.size.m)}
-  `,
+  _sharedSizeCSS: (size: string) => {
+    const highContrastBorder = highContrastMode
+      ? `&::before {
+          @media (forced-colors: active) {
+            ${logicalCSS('border-top-width', size)}
+          }
+        }`
+      : '';
+    return css(logicalCSS('height', size), highContrastBorder);
+  },
+  get xs() {
+    return css(this._sharedSizeCSS(euiTheme.size.xxs));
+  },
+  get s() {
+    return css(this._sharedSizeCSS(euiTheme.size.xs));
+  },
+  get m() {
+    return css(this._sharedSizeCSS(euiTheme.size.s));
+  },
+  get l() {
+    return css(this._sharedSizeCSS(euiTheme.size.m));
+  },
   // Positioning
   fixed: css`
     position: fixed;

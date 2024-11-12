@@ -11,7 +11,6 @@ import React, {
   HTMLAttributes,
   ProgressHTMLAttributes,
   ReactNode,
-  Fragment,
   CSSProperties,
 } from 'react';
 import classNames from 'classnames';
@@ -154,7 +153,7 @@ export const EuiProgress: FunctionComponent<
 
   if (determinate) {
     return (
-      <Fragment>
+      <>
         {label || valueText ? (
           <div css={dataCssStyles} className="euiProgress__data">
             {label && (
@@ -198,7 +197,7 @@ export const EuiProgress: FunctionComponent<
           aria-hidden={label && valueText ? true : false}
           {...(rest as ProgressHTMLAttributes<HTMLProgressElement>)}
         />
-      </Fragment>
+      </>
     );
   } else {
     return (
