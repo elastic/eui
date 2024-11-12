@@ -315,13 +315,17 @@ exports[`EuiRange props levels should render 1`] = `
     <div
       class="euiRangeLevels emotion-euiRangeLevels"
     >
-      <span
+      <svg
+        aria-hidden="true"
         class="euiRangeLevel emotion-euiRangeLevel-danger"
-        style="inset-inline-start: calc(0% + 0px); inset-inline-end: calc(100% - 0px);"
+        role="img"
+        style="inset-inline-start: calc(0% + 0px); inset-inline-end: calc(100% - 0px); inline-size: calc(0% + 0px);"
       />
-      <span
+      <svg
+        aria-hidden="true"
         class="euiRangeLevel emotion-euiRangeLevel-success"
-        style="inset-inline-start: calc(0% + 0px); inset-inline-end: calc(100% - 0px);"
+        role="img"
+        style="inset-inline-start: calc(0% + 0px); inset-inline-end: calc(100% - 0px); inline-size: calc(0% + 0px);"
       />
     </div>
     <input

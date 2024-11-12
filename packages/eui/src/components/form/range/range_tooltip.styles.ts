@@ -7,14 +7,13 @@
  */
 
 import { css } from '@emotion/react';
-import {
-  UseEuiTheme,
-  COLOR_MODES_STANDARD,
-  tint,
-  shade,
-} from '../../../services';
+import { UseEuiTheme, tint, shade } from '../../../services';
 import { euiRangeVariables } from './range.styles';
-import { euiFontSize, mathWithUnits } from '../../../global_styling';
+import {
+  euiFontSize,
+  logicalCSS,
+  mathWithUnits,
+} from '../../../global_styling';
 
 export const euiRangeTooltipStyles = (euiThemeContext: UseEuiTheme) => {
   const range = euiRangeVariables(euiThemeContext);
@@ -39,17 +38,16 @@ const euiToolTipBackgroundColor = (
   euiTheme: UseEuiTheme['euiTheme'],
   colorMode: UseEuiTheme['colorMode']
 ) =>
-  colorMode === COLOR_MODES_STANDARD.dark
+  colorMode === 'DARK'
     ? shade(euiTheme.colors.emptyShade, 1)
     : tint(euiTheme.colors.fullShade, 0.25);
 
 export const euiRangeTooltipValueStyles = (euiThemeContext: UseEuiTheme) => {
   const range = euiRangeVariables(euiThemeContext);
-  const { euiTheme, colorMode } = euiThemeContext;
+  const { euiTheme, colorMode, highContrastMode } = euiThemeContext;
 
   const arrowSize = euiTheme.size.m;
-  const arrowSizeInt = parseInt(arrowSize, 10);
-  const arrowMinusSize = `${(arrowSizeInt / 2 - 1) * -1}px`; // Shift arrow 1px more than half its size to account for border radius
+  const arrowMinusSize = mathWithUnits(arrowSize, (x) => x / -2);
 
   return {
     euiRangeTooltip__value: css`
@@ -65,7 +63,11 @@ export const euiRangeTooltipValueStyles = (euiThemeContext: UseEuiTheme) => {
       color: ${euiTheme.colors.ghost};
       background-color: ${euiToolTipBackgroundColor(euiTheme, colorMode)};
       border: ${euiTheme.border.width.thin} solid
-        ${euiToolTipBackgroundColor(euiTheme, colorMode)};
+        ${highContrastMode
+          ? euiTheme.border.color
+          : colorMode === 'DARK'
+          ? euiTheme.colors.mediumShade
+          : euiTheme.colors.fullShade};
       border-radius: ${euiTheme.border.radius.small};
 
       &::before {
@@ -88,6 +90,8 @@ export const euiRangeTooltipValueStyles = (euiThemeContext: UseEuiTheme) => {
 
       &::before {
         inset-inline-end: ${arrowMinusSize};
+        ${logicalCSS('border-top', 'inherit')}
+        ${logicalCSS('border-right', 'inherit')}
       }
     `,
     right: css`
@@ -95,6 +99,8 @@ export const euiRangeTooltipValueStyles = (euiThemeContext: UseEuiTheme) => {
 
       &::before {
         inset-inline-start: ${arrowMinusSize};
+        ${logicalCSS('border-bottom', 'inherit')}
+        ${logicalCSS('border-left', 'inherit')}
       }
     `,
     hasTicks: css`

@@ -37,6 +37,7 @@ export const euiRangeVariables = (euiThemeContext: UseEuiTheme) => {
 
     tickHeight: trackHeight,
     tickWidth: euiTheme.size.xs,
+    tickColor: euiTheme.colors.lightShade,
 
     disabledOpacity: 0.5,
 
@@ -134,11 +135,19 @@ export const euiRangeThumbFocus = (
   color?: string
 ) => {
   const range = euiRangeVariables(euiThemeContext);
+  const { euiTheme, highContrastMode } = euiThemeContext;
+
+  const backgroundColor = color || range.focusColor;
 
   return `
-   ${euiRangeThumbBorder(euiThemeContext)};
-   ${euiRangeThumbFocusBoxShadow(euiThemeContext)};
-   background-color: ${color || range.focusColor};
+    ${euiRangeThumbBorder(euiThemeContext)};
+    ${euiRangeThumbFocusBoxShadow(euiThemeContext)};
+    background-color: ${backgroundColor};
+    ${
+      highContrastMode
+        ? `outline: ${euiTheme.border.width.thick} solid ${backgroundColor};`
+        : ''
+    }
   `;
 };
 

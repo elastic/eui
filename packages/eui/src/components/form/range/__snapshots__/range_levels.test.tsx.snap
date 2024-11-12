@@ -6,14 +6,18 @@ exports[`EuiRangeLevels is rendered 1`] = `
   class="testClass1 testClass2 emotion-euiRangeLevels-euiTestCss"
   data-test-subj="test subject string"
 >
-  <span
+  <svg
+    aria-hidden="true"
     class="euiRangeLevel customClass emotion-euiRangeLevel-danger"
     data-test-subj="firstLevel"
-    style="inset-inline-start: calc(0% + 0px); inset-inline-end: calc(80.8% - 9.5625px);"
+    role="img"
+    style="inset-inline-start: calc(0% + 0px); inset-inline-end: calc(80.8% - 9.5625px); inline-size: calc(19.200000000000003% + 9.5625px);"
   />
-  <span
+  <svg
+    aria-hidden="true"
     class="euiRangeLevel emotion-euiRangeLevel-success"
-    style="inset-inline-start: calc(19.200000000000003% + 9.5625px); inset-inline-end: calc(0% - 0px);"
+    role="img"
+    style="inset-inline-start: calc(19.200000000000003% + 9.5625px); inset-inline-end: calc(0% - 0px); inline-size: calc(80.8% + -9.5625px);"
   />
 </div>
 `;
@@ -22,13 +26,17 @@ exports[`EuiRangeLevels is rendered with named and custom color 1`] = `
 <div
   class="euiRangeLevels emotion-euiRangeLevels"
 >
-  <span
+  <svg
+    aria-hidden="true"
     class="euiRangeLevel emotion-euiRangeLevel-danger"
-    style="inset-inline-start: calc(0% + 0px); inset-inline-end: calc(80.8% - 9.5625px);"
+    role="img"
+    style="inset-inline-start: calc(0% + 0px); inset-inline-end: calc(80.8% - 9.5625px); inline-size: calc(19.200000000000003% + 9.5625px);"
   />
-  <span
+  <svg
+    aria-hidden="true"
     class="euiRangeLevel emotion-euiRangeLevel-customColor"
-    style="inset-inline-start: calc(19.200000000000003% + 9.5625px); inset-inline-end: calc(0% - 0px); background-color: rgb(255, 0, 0);"
+    role="img"
+    style="inset-inline-start: calc(19.200000000000003% + 9.5625px); inset-inline-end: calc(0% - 0px); inline-size: calc(80.8% + -9.5625px); background-color: rgb(255, 0, 0);"
   />
 </div>
 `;

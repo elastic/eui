@@ -16,6 +16,7 @@ import {
 } from './range.styles';
 
 export const euiRangeThumbStyles = (euiThemeContext: UseEuiTheme) => {
+  const { highContrastMode } = euiThemeContext;
   const range = euiRangeVariables(euiThemeContext);
 
   return {
@@ -35,7 +36,11 @@ export const euiRangeThumbStyles = (euiThemeContext: UseEuiTheme) => {
 
       &:focus {
         ${euiRangeThumbFocus(euiThemeContext)}
-        outline: none;
+        ${highContrastMode
+          ? // For whatever reason, the outline renders oddly on the non-native thumbs,
+            // so opt to only show it on Windows high contrast themes
+            '@media (forced-colors: none) { outline: none; }'
+          : ''}
       }
     `,
     hasTicks: css`

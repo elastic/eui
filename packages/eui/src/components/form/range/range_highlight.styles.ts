@@ -36,16 +36,16 @@ export const euiRangeHighlightProgressStyles = (
   const range = euiRangeVariables(euiThemeContext);
 
   return {
+    // Use border instead of height+background-color to account for Windows high contrast themes
     euiRangeHighlight__progress: css`
-      block-size: ${range.highlightHeight};
+      border-block-start: ${range.highlightHeight} solid ${range.highlightColor};
       border-radius: ${range.trackBorderRadius};
-      background-color: ${range.highlightColor};
 
       /* Change highlight color to focus on keyboard focus and on mouse drag */
       .euiRangeSlider:focus-visible ~ .euiRangeHighlight &,
       .euiRangeThumb:focus-visible ~ .euiRangeHighlight &,
       .euiRangeDraggable:focus ~ .euiRangeHighlight & {
-        background-color: ${range.focusColor};
+        border-color: ${range.focusColor};
       }
     `,
   };

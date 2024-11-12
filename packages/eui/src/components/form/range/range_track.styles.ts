@@ -11,6 +11,7 @@ import { UseEuiTheme } from '../../../services';
 import { euiRangeVariables } from './range.styles';
 
 export const euiRangeTrackStyles = (euiThemeContext: UseEuiTheme) => {
+  const { highContrastMode } = euiThemeContext;
   const range = euiRangeVariables(euiThemeContext);
 
   return {
@@ -27,10 +28,13 @@ export const euiRangeTrackStyles = (euiThemeContext: UseEuiTheme) => {
         position: absolute;
         inset-block-start: ${range.trackTopPositionWithoutTicks};
         inset-inline-start: 0;
-        block-size: ${range.trackHeight};
         inline-size: ${range.trackWidth};
-        background: ${range.trackColor};
+        /* Use border instead of height+background-color to account for Windows high contrast themes */
+        border-block-start: ${range.trackHeight} solid ${range.trackColor};
         border-radius: ${range.trackBorderRadius};
+        ${highContrastMode
+          ? '@media (forced-colors:active) { opacity: 0.25; }'
+          : ''}
       }
     `,
     hasTicks: css`

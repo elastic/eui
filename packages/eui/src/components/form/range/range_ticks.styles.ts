@@ -10,7 +10,6 @@ import { css } from '@emotion/react';
 import { UseEuiTheme } from '../../../services';
 import {
   logicalCSS,
-  logicalSizeCSS,
   logicalCSSWithFallback,
   euiFontSize,
   mathWithUnits,
@@ -21,10 +20,8 @@ const tickStyles = ({ euiTheme }: UseEuiTheme, range: any) => {
   return `
     position: absolute;
     ${logicalCSS('top', 0)};
-    ${logicalSizeCSS(euiTheme.size.xs, euiTheme.size.xs)};
-    background-color: ${euiTheme.colors.lightShade};
-    inline-size: ${range.tickWidth};
     block-size: ${range.tickHeight};
+    ${logicalCSS('border-left', `${range.tickWidth} solid ${range.tickColor}`)}
     border-radius: ${euiTheme.border.radius.small};
   `;
 };
