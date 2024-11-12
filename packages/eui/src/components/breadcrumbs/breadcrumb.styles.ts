@@ -36,15 +36,14 @@ export const euiBreadcrumbStyles = (euiThemeContext: UseEuiTheme) => {
     page: css`
       &:not(:last-of-type) {
         &::after {
-          background: ${euiTheme.colors.lightShade};
           content: '';
           flex-shrink: 0;
           ${logicalCSS('margin-top', euiTheme.size.xs)}
           ${logicalCSS('margin-bottom', 0)}
           ${logicalCSS('margin-horizontal', euiTheme.size.s)}
           ${logicalCSS('height', euiTheme.size.base)}
-          ${logicalCSS('width', '1px')}
-          transform: translateY(-1px) rotate(15deg);
+          ${logicalCSS('border-right', euiTheme.border.thin)}
+          transform: translateY(-${euiTheme.border.width.thin}) rotate(15deg);
         }
       }
     `,
@@ -52,6 +51,39 @@ export const euiBreadcrumbStyles = (euiThemeContext: UseEuiTheme) => {
       &:not(:last-of-type) {
         ${logicalCSS('margin-right', `-${euiTheme.size.xs}`)}
       }
+      ${_applicationHighContrastBorders(euiThemeContext)}
     `,
   };
+};
+
+const _applicationHighContrastBorders = ({
+  euiTheme,
+  highContrastMode,
+}: UseEuiTheme) => {
+  if (!highContrastMode) return '';
+
+  const borderWidth = euiTheme.border.width.thin;
+  const borderColor = euiTheme.border.color;
+
+  // Windows high contrast themes ignore background-color, which makes application
+  // breadcrumbs hard to distinguish - these border/filter workarounds restore visual affordance
+  return `
+    @media (forced-colors: active) {
+      .euiBreadcrumb__content {
+        border: ${euiTheme.border.thin};
+      }
+
+      &:first-child:not(:only-child) {
+        filter: drop-shadow(${borderWidth} 0 0 ${borderColor});
+      }
+      &:last-child:not(:only-child) {
+        filter: drop-shadow(-${borderWidth} 0 0 ${borderColor});
+      }
+      &:not(:only-child, :first-child, :last-child) {
+        filter:
+          drop-shadow(${borderWidth} 0 0 ${borderColor})
+          drop-shadow(-${borderWidth} 0  0 ${borderColor});
+      }
+    }
+  `;
 };
