@@ -17,14 +17,19 @@ type AnimationOptions = {
   gradientSize?: string;
 };
 
+const _backgroundColor = ({
+  euiTheme,
+  colorMode,
+}: Pick<UseEuiTheme, 'euiTheme' | 'colorMode'>) =>
+  colorMode === 'DARK'
+    ? shade(euiTheme.colors.lightShade, 0.12)
+    : tint(euiTheme.colors.lightShade, 0.65);
+
 export const euiSkeletonGradientAnimation = (
   { euiTheme, colorMode }: UseEuiTheme,
   { slideSize = '-53%', gradientSize = '220%' }: AnimationOptions = {}
 ) => {
-  const gradientStartStop =
-    colorMode === 'DARK'
-      ? shade(euiTheme.colors.lightShade, 0.12)
-      : tint(euiTheme.colors.lightShade, 0.65);
+  const gradientStartStop = _backgroundColor({ euiTheme, colorMode });
   const gradientMiddle =
     colorMode === 'DARK'
       ? shade(euiTheme.colors.lightShade, 0.24)
@@ -51,6 +56,27 @@ export const euiSkeletonGradientAnimation = (
         animation: ${euiAnimSlideX(slideSize)} 1.5s
           ${euiTheme.animation.resistance} infinite;
       }
+    }
+  `;
+};
+
+// Windows high contrast themes ignore all backgrounds *except* for url-based background-images.
+// To ensure anything renders at all when in a forced color theme, we're inlining an SVG
+export const _highContrastFallback = (
+  { euiTheme, colorMode, highContrastMode }: UseEuiTheme,
+  { shape = 'rect', borderRadius = euiTheme.border.radius.small } = {}
+) => {
+  if (!highContrastMode) return '';
+
+  const backgroundColor = encodeURIComponent(
+    _backgroundColor({ euiTheme, colorMode })
+  );
+
+  const shapeProp = shape === 'circle' ? `r='200%25'` : `rx='${borderRadius}'`;
+
+  return `
+    @media (forced-colors: active) {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3C${shape} width='100%25' height='100%25' fill='${backgroundColor}' ${shapeProp} /%3E%3C/svg%3E");
     }
   `;
 };

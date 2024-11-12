@@ -9,7 +9,7 @@
 import { css } from '@emotion/react';
 import { UseEuiTheme } from '../../services';
 
-import { euiSkeletonGradientAnimation } from './utils';
+import { euiSkeletonGradientAnimation, _highContrastFallback } from './utils';
 
 export const euiSkeletonRectangleStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
@@ -25,12 +25,17 @@ export const euiSkeletonRectangleStyles = (euiThemeContext: UseEuiTheme) => {
     // Border radius
     s: css`
       border-radius: ${euiTheme.border.radius.small};
+      ${_highContrastFallback(euiThemeContext)}
     `,
     m: css`
       border-radius: ${euiTheme.border.radius.medium};
+      ${_highContrastFallback(euiThemeContext, {
+        borderRadius: euiTheme.border.radius.medium,
+      })}
     `,
     none: css`
       border-radius: 0;
+      ${_highContrastFallback(euiThemeContext, { borderRadius: 0 })}
     `,
   };
 };

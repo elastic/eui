@@ -10,7 +10,7 @@ import { css } from '@emotion/react';
 import { logicalSizeCSS, mathWithUnits } from '../../global_styling';
 import { UseEuiTheme } from '../../services';
 
-import { euiSkeletonGradientAnimation } from './utils';
+import { euiSkeletonGradientAnimation, _highContrastFallback } from './utils';
 
 export const euiSkeletonCircleStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
@@ -23,6 +23,7 @@ export const euiSkeletonCircleStyles = (euiThemeContext: UseEuiTheme) => {
         slideSize: '-70%',
         gradientSize: '280%',
       })}
+      ${_highContrastFallback(euiThemeContext, { shape: 'circle' })}
     `,
     // Sizes
     s: css`
