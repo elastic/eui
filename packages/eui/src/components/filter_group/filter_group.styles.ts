@@ -15,7 +15,7 @@ import { euiFormVariables } from '../form/form.styles';
 import { euiFilterButtonDisplay } from './filter_button.styles';
 
 export const euiFilterGroupStyles = (euiThemeContext: UseEuiTheme) => {
-  const { euiTheme } = euiThemeContext;
+  const { euiTheme, highContrastMode } = euiThemeContext;
 
   const {
     backgroundColor,
@@ -32,7 +32,9 @@ export const euiFilterGroupStyles = (euiThemeContext: UseEuiTheme) => {
       overflow: hidden;
 
       background-color: ${backgroundColor};
-      box-shadow: inset 0 0 0 ${euiTheme.border.width.thin} ${borderColor};
+      ${highContrastMode
+        ? `border: ${euiTheme.border.thin};`
+        : `box-shadow: inset 0 0 0 ${euiTheme.border.width.thin} ${borderColor};`}
 
       /* Account for popover or tooltip wrappers around EuiFilterButtons */
       > *:not(.euiFilterButton) {
