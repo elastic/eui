@@ -249,7 +249,6 @@ export const _dayCalendarStyles = (euiThemeContext: UseEuiTheme) => {
     .react-datepicker__day-names,
     .react-datepicker__week {
       display: flex;
-      /* stylelint-disable no-extra-semicolons */
       justify-content: space-between;
       flex-grow: 1;
       color: ${euiTheme.colors.subduedText};
