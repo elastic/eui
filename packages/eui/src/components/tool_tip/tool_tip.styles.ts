@@ -67,7 +67,9 @@ export const euiToolTipStyles = (euiThemeContext: UseEuiTheme) => {
   return {
     // Base
     euiToolTip: css`
-      ${euiShadow(euiThemeContext)}
+      ${euiShadow(euiThemeContext, undefined, {
+        borderAllInHighContrastMode: true,
+      })}
       border-radius: ${euiTheme.border.radius.medium};
       background-color: ${euiToolTipBackgroundColor(euiTheme, colorMode)};
       color: ${euiTheme.colors.ghost};
@@ -127,15 +129,19 @@ export const euiToolTipStyles = (euiThemeContext: UseEuiTheme) => {
     arrowPositions: {
       top: css`
         transform: translateY(${arrowPlusSize}) rotateZ(45deg);
+        ${_highContrastArrowBorder(euiThemeContext, ['bottom', 'right'])}
       `,
       bottom: css`
         transform: translateY(${arrowMinusSize}) rotateZ(45deg);
+        ${_highContrastArrowBorder(euiThemeContext, ['top', 'left'])}
       `,
       left: css`
         transform: translateX(${arrowPlusSize}) rotateZ(45deg);
+        ${_highContrastArrowBorder(euiThemeContext, ['top', 'right'])}
       `,
       right: css`
         transform: translateX(${arrowMinusSize}) rotateZ(45deg);
+        ${_highContrastArrowBorder(euiThemeContext, ['bottom', 'left'])}
       `,
     },
     // Title
@@ -152,6 +158,17 @@ export const euiToolTipStyles = (euiThemeContext: UseEuiTheme) => {
       ${logicalCSS('margin-bottom', euiTheme.size.xs)}
     `,
   };
+};
+
+const _highContrastArrowBorder = (
+  { euiTheme, highContrastMode }: UseEuiTheme,
+  sides: Array<'top' | 'bottom' | 'left' | 'right'>
+) => {
+  return highContrastMode
+    ? sides
+        .map((side) => logicalCSS(`border-${side}`, euiTheme.border.thin))
+        .join('\n')
+    : '';
 };
 
 export const euiToolTipAnchorStyles = () => ({
