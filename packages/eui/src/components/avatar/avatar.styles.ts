@@ -20,12 +20,14 @@ const _avatarSize = ({
   return `
     ${logicalCSS('width', size)};
     ${logicalCSS('height', size)};
-    line-height: ${size};
     font-size: ${fontSize};
   `;
 };
 
-export const euiAvatarStyles = ({ euiTheme }: UseEuiTheme) => ({
+export const euiAvatarStyles = ({
+  euiTheme,
+  highContrastMode,
+}: UseEuiTheme) => ({
   // Base
   euiAvatar: css`
     /* Ensures it never scales down below its intended size */
@@ -36,6 +38,9 @@ export const euiAvatarStyles = ({ euiTheme }: UseEuiTheme) => ({
     vertical-align: middle;
     background-size: cover;
     background-color: ${euiTheme.colors.lightShade};
+    ${highContrastMode
+      ? `border: ${euiTheme.border.width.thin} solid transparent;`
+      : ''}
     ${logicalTextAlignCSS('center')}
     ${logicalCSS('overflow-x', 'hidden')}
     /* Explicitly state weight so it doesn't get overridden by inheritance */
