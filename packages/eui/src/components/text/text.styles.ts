@@ -323,6 +323,8 @@ export const euiTextStyles = (euiThemeContext: UseEuiTheme) => {
       kbd {
         position: relative;
         display: inline-block;
+        vertical-align: bottom;
+        overflow: hidden; /* Fixes an odd border issue in Windows high contrast themes */
         ${logicalCSS('padding-vertical', euiTheme.size.xxs)}
         ${logicalCSS('padding-horizontal', euiTheme.size.xs)}
         line-height: 1;
