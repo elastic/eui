@@ -8,6 +8,7 @@
 
 import { css } from '@emotion/react';
 
+import { logicalSizeCSS, mathWithUnits } from '../../../global_styling';
 import { UseEuiTheme } from '../../../services';
 
 export const EuiFormControlLayoutClearButtonStyles = ({
@@ -18,31 +19,48 @@ export const EuiFormControlLayoutClearButtonStyles = ({
     colorMode === 'DARK'
       ? euiTheme.colors.darkShade
       : euiTheme.colors.mediumShade;
+
   return {
     euiFormControlLayoutClearButton: css`
       pointer-events: all;
-      background-color: ${backgroundColor};
+      display: flex;
+      justify-content: center;
+      align-items: center;
       border-radius: 50%;
-      line-height: 0; /* ensures the icon stays vertically centered */
+      /* Windows high contrast themes ignore background-color, so we use border here instead for better support */
+      border-style: solid;
+      border-color: ${backgroundColor};
 
       &:disabled {
         cursor: not-allowed;
         background-color: ${euiTheme.colors.disabled};
       }
     `,
-
-    euiFormControlLayoutClearButton__icon: css`
-      transform: scale(0.5);
-      fill: ${euiTheme.colors.emptyShade};
-      stroke: ${euiTheme.colors.emptyShade};
-    `,
     size: {
-      s: css`
-        stroke-width: ${euiTheme.size.xs};
+      s: `
+        ${logicalSizeCSS(euiTheme.size.m)}
+        border-width: ${mathWithUnits(euiTheme.size.m, (x) => x / 2)};
       `,
-      m: css`
-        stroke-width: ${euiTheme.size.xxs};
+      m: `
+        ${logicalSizeCSS(euiTheme.size.base)}
+        border-width: ${mathWithUnits(euiTheme.size.base, (x) => x / 2)};
       `,
+    },
+
+    icon: {
+      euiFormControlLayoutClearButton__icon: css`
+        transform: scale(0.5);
+        fill: ${euiTheme.colors.emptyShade};
+        stroke: ${euiTheme.colors.emptyShade};
+      `,
+      size: {
+        s: css`
+          stroke-width: ${euiTheme.size.xs};
+        `,
+        m: css`
+          stroke-width: ${euiTheme.size.xxs};
+        `,
+      },
     },
   };
 };
