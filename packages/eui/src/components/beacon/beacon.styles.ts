@@ -16,7 +16,9 @@ import {
 
 const _colorCSS = (color: string) => {
   return `
-    background-color: ${color};
+    svg {
+      fill: ${color};
+    }
     &:before,
     &:after {
       box-shadow: 0 0 1px 1px ${color};
@@ -60,13 +62,19 @@ export const euiBeaconStyles = ({ euiTheme }: UseEuiTheme) => ({
   // Base
   euiBeacon: css`
     position: relative;
+    display: flex;
+    justify-content: center;
     border-radius: 50%;
+
+    svg {
+      ${logicalSizeCSS('100%')}
+    }
 
     &::before,
     &::after {
       position: absolute;
       content: '';
-      ${logicalSizeCSS('100%', '100%')}
+      ${logicalSizeCSS('100%')}
       ${logicalCSS('left', 0)}
       ${logicalCSS('top', 0)}
       background-color: transparent;

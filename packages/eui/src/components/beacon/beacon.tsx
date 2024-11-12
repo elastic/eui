@@ -63,6 +63,12 @@ export const EuiBeacon: FunctionComponent<EuiBeaconProps> = ({
   );
 
   return (
-    <div className={classes} css={cssStyles} style={beaconStyle} {...rest} />
+    <div className={classes} css={cssStyles} style={beaconStyle} {...rest}>
+      {/* Windows high contrast themes ignore background-color, so we use an SVG
+          instead of plain CSS to ensure it renders with the correct colors */}
+      <svg viewBox="0 0 16 16" role="img" aria-hidden="true">
+        <circle cx="8" cy="8" r="8" />
+      </svg>
+    </div>
   );
 };
