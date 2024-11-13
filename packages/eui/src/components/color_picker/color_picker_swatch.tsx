@@ -12,6 +12,7 @@ import classNames from 'classnames';
 import { useEuiMemoizedStyles } from '../../services';
 import { CommonProps } from '../common';
 import { useEuiI18n } from '../i18n';
+import { EuiIcon } from '../icon';
 
 import { getChromaColor } from './utils';
 import { euiColorPickerSwatchStyles } from './color_picker_swatch.styles';
@@ -24,7 +25,7 @@ export type EuiColorPickerSwatchProps = CommonProps &
 export const EuiColorPickerSwatch = forwardRef<
   HTMLButtonElement,
   EuiColorPickerSwatchProps
->(({ className, color, style, ...rest }, ref) => {
+>(({ className, color, ...rest }, ref) => {
   const classes = classNames('euiColorPickerSwatch', className);
   const styles = useEuiMemoizedStyles(euiColorPickerSwatchStyles);
 
@@ -47,12 +48,10 @@ export const EuiColorPickerSwatch = forwardRef<
       className={classes}
       aria-label={ariaLabel}
       ref={ref}
-      style={{
-        background,
-        ...style,
-      }}
       {...rest}
-    />
+    >
+      <EuiIcon type="stopFilled" color={background} size="xl" />
+    </button>
   );
 });
 

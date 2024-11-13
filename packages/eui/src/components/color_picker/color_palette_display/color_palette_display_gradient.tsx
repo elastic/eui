@@ -19,23 +19,24 @@ export interface EuiColorPaletteDisplayGradientProps
 
 export const EuiColorPaletteDisplayGradient: FunctionComponent<
   EuiColorPaletteDisplayGradientProps
-> = ({ palette, title, style = {}, ...rest }) => {
+> = ({ palette, title, ...rest }) => {
   const gradient = getLinearGradient(palette);
 
   return (
-    <>
+    <span className="euiColorPaletteDisplayGradient" {...rest}>
       {title && (
         <EuiScreenReaderOnly>
           <span>{title}</span>
         </EuiScreenReaderOnly>
       )}
-      <span
+      <svg
         // aria-hidden="true" is to ensure color blocks are ignored by screen readers,
         // and the only accessible text for options is the EuiScreenReaderOnly {title}
         aria-hidden="true"
-        style={{ ...style, background: gradient }}
-        {...rest}
+        role="img"
+        className="eui-fullWidth"
+        style={{ background: gradient }}
       />
-    </>
+    </span>
   );
 };

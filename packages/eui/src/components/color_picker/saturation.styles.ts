@@ -16,7 +16,7 @@ import {
 } from '../../global_styling';
 
 export const euiSaturationStyles = (euiThemeContext: UseEuiTheme) => {
-  const { euiTheme } = euiThemeContext;
+  const { euiTheme, highContrastMode } = euiThemeContext;
 
   const indicatorSize = euiTheme.size.m;
 
@@ -29,8 +29,9 @@ export const euiSaturationStyles = (euiThemeContext: UseEuiTheme) => {
     euiSaturation: css`
       z-index: 3; /* Required to be above the hue slider, which can overlap */
       position: relative;
+      aspect-ratio: 1 / 1;
       ${logicalCSS('width', '100%')}
-      ${logicalCSS('padding-bottom', '100%')}
+      ${highContrastMode ? `border: ${euiTheme.border.thin};` : ''}
       border-radius: ${borderRadius};
       touch-action: none; /* prevent TouchMove events from scrolling page */
 
@@ -46,12 +47,14 @@ export const euiSaturationStyles = (euiThemeContext: UseEuiTheme) => {
       }
     `,
 
-    euiSaturation__lightness: css`
+    euiSaturation__svg: css`
       position: absolute;
-      inset: 0;
-      ${logicalCSS('top', '-1px')} /* Hides a slight color inconsistency */
-
+      ${logicalSizeCSS('100%')}
       border-radius: ${borderRadius};
+      pointer-events: none;
+    `,
+
+    euiSaturation__lightness: css`
       background: linear-gradient(
         to right,
         rgba(255, 255, 255, 1),
@@ -59,11 +62,6 @@ export const euiSaturationStyles = (euiThemeContext: UseEuiTheme) => {
       );
     `,
     euiSaturation__saturation: css`
-      position: absolute;
-      inset: 0;
-      ${logicalCSS('top', '-1px')} /* Hides a slight color inconsistency */
-
-      border-radius: ${borderRadius};
       background: linear-gradient(to top, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
     `,
 
@@ -71,8 +69,10 @@ export const euiSaturationStyles = (euiThemeContext: UseEuiTheme) => {
       position: absolute;
       ${logicalSizeCSS(indicatorSize)}
       transform: translateX(-50%) translateY(-50%);
-      border: ${euiTheme.border.width.thin} solid
-        ${euiTheme.colors.darkestShade};
+      ${highContrastMode ? `background-color: ${euiTheme.colors.ghost};` : ''}
+      border: ${euiTheme.border.width.thin} solid ${highContrastMode
+        ? euiTheme.colors.ink
+        : euiTheme.colors.darkestShade};
       border-radius: 100%;
 
       &::before {

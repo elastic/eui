@@ -11,7 +11,7 @@ import type { PaletteColorStop } from './color_palette_picker';
 
 export const getEventPosition = (
   location: { x: number; y: number },
-  container: HTMLElement
+  container: HTMLElement | SVGElement
 ) => {
   const { x, y } = location;
   const { width, height, left, top } = container.getBoundingClientRect();

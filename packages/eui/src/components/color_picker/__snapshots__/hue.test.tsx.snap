@@ -17,6 +17,11 @@ exports[`EuiHue accepts a hex value 1`] = `
     >
       #00FFFF
     </p>
+    <svg
+      aria-hidden="true"
+      class="euiHue__track emotion-euiHue__track"
+      role="img"
+    />
     <input
       aria-label="aria-label"
       class="euiHue__range emotion-euiHue__range"
@@ -47,6 +52,11 @@ exports[`EuiHue accepts a hue value 1`] = `
       aria-live="polite"
       class="emotion-euiScreenReaderOnly"
     />
+    <svg
+      aria-hidden="true"
+      class="euiHue__track emotion-euiHue__track"
+      role="img"
+    />
     <input
       aria-label="aria-label"
       class="euiHue__range emotion-euiHue__range"
@@ -76,6 +86,11 @@ exports[`EuiHue is rendered 1`] = `
     <p
       aria-live="polite"
       class="emotion-euiScreenReaderOnly"
+    />
+    <svg
+      aria-hidden="true"
+      class="euiHue__track emotion-euiHue__track"
+      role="img"
     />
     <input
       aria-label="aria-label"

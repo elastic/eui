@@ -60,6 +60,14 @@ export const EuiHue: FunctionComponent<EuiHueProps> = ({
       <EuiScreenReaderOnly>
         <p aria-live="polite">{hex}</p>
       </EuiScreenReaderOnly>
+      {/* This uses a separate <svg> element to support Windows high contrast themes,
+          which ignore all backgrounds except for those set on svgs */}
+      <svg
+        css={styles.euiHue__track}
+        className="euiHue__track"
+        role="img"
+        aria-hidden
+      />
       <input
         id={`${id}-hue`}
         min={0}

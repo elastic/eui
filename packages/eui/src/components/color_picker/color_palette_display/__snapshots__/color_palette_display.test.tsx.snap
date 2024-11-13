@@ -10,19 +10,29 @@ exports[`EuiColorPaletteDisplay is rendered 1`] = `
     aria-hidden="true"
     class="euiColorPaletteDisplayFixed__bleedArea emotion-euiColorPaletteDisplayFixed__bleedArea"
   >
-    <span
+    <svg
+      aria-hidden="true"
+      role="img"
       style="background-color: rgb(31, 176, 178); width: 20%;"
     />
-    <span
+    <svg
+      aria-hidden="true"
+      role="img"
       style="background-color: rgb(255, 219, 109); width: 20%;"
     />
-    <span
+    <svg
+      aria-hidden="true"
+      role="img"
       style="background-color: rgb(238, 145, 145); width: 20%;"
     />
-    <span
+    <svg
+      aria-hidden="true"
+      role="img"
       style="background-color: rgb(255, 255, 255); width: 20%;"
     />
-    <span
+    <svg
+      aria-hidden="true"
+      role="img"
       style="background-color: rgb(136, 128, 148); width: 20%;"
     />
   </span>
@@ -45,19 +55,29 @@ exports[`EuiColorPaletteDisplay props HTML attributes accepts span attributes 1`
     aria-hidden="true"
     class="euiColorPaletteDisplayFixed__bleedArea emotion-euiColorPaletteDisplayFixed__bleedArea"
   >
-    <span
+    <svg
+      aria-hidden="true"
+      role="img"
       style="background-color: rgb(31, 176, 178); width: 20%;"
     />
-    <span
+    <svg
+      aria-hidden="true"
+      role="img"
       style="background-color: rgb(255, 219, 109); width: 20%;"
     />
-    <span
+    <svg
+      aria-hidden="true"
+      role="img"
       style="background-color: rgb(238, 145, 145); width: 20%;"
     />
-    <span
+    <svg
+      aria-hidden="true"
+      role="img"
       style="background-color: rgb(255, 255, 255); width: 20%;"
     />
-    <span
+    <svg
+      aria-hidden="true"
+      role="img"
       style="background-color: rgb(136, 128, 148); width: 20%;"
     />
   </span>
@@ -74,19 +94,29 @@ exports[`EuiColorPaletteDisplay props size m is rendered 1`] = `
     aria-hidden="true"
     class="euiColorPaletteDisplayFixed__bleedArea emotion-euiColorPaletteDisplayFixed__bleedArea"
   >
-    <span
+    <svg
+      aria-hidden="true"
+      role="img"
       style="background-color: rgb(31, 176, 178); width: 20%;"
     />
-    <span
+    <svg
+      aria-hidden="true"
+      role="img"
       style="background-color: rgb(255, 219, 109); width: 20%;"
     />
-    <span
+    <svg
+      aria-hidden="true"
+      role="img"
       style="background-color: rgb(238, 145, 145); width: 20%;"
     />
-    <span
+    <svg
+      aria-hidden="true"
+      role="img"
       style="background-color: rgb(255, 255, 255); width: 20%;"
     />
-    <span
+    <svg
+      aria-hidden="true"
+      role="img"
       style="background-color: rgb(136, 128, 148); width: 20%;"
     />
   </span>
@@ -103,19 +133,29 @@ exports[`EuiColorPaletteDisplay props size s is rendered 1`] = `
     aria-hidden="true"
     class="euiColorPaletteDisplayFixed__bleedArea emotion-euiColorPaletteDisplayFixed__bleedArea"
   >
-    <span
+    <svg
+      aria-hidden="true"
+      role="img"
       style="background-color: rgb(31, 176, 178); width: 20%;"
     />
-    <span
+    <svg
+      aria-hidden="true"
+      role="img"
       style="background-color: rgb(255, 219, 109); width: 20%;"
     />
-    <span
+    <svg
+      aria-hidden="true"
+      role="img"
       style="background-color: rgb(238, 145, 145); width: 20%;"
     />
-    <span
+    <svg
+      aria-hidden="true"
+      role="img"
       style="background-color: rgb(255, 255, 255); width: 20%;"
     />
-    <span
+    <svg
+      aria-hidden="true"
+      role="img"
       style="background-color: rgb(136, 128, 148); width: 20%;"
     />
   </span>
@@ -132,19 +172,29 @@ exports[`EuiColorPaletteDisplay props size xs is rendered 1`] = `
     aria-hidden="true"
     class="euiColorPaletteDisplayFixed__bleedArea emotion-euiColorPaletteDisplayFixed__bleedArea"
   >
-    <span
+    <svg
+      aria-hidden="true"
+      role="img"
       style="background-color: rgb(31, 176, 178); width: 20%;"
     />
-    <span
+    <svg
+      aria-hidden="true"
+      role="img"
       style="background-color: rgb(255, 219, 109); width: 20%;"
     />
-    <span
+    <svg
+      aria-hidden="true"
+      role="img"
       style="background-color: rgb(238, 145, 145); width: 20%;"
     />
-    <span
+    <svg
+      aria-hidden="true"
+      role="img"
       style="background-color: rgb(255, 255, 255); width: 20%;"
     />
-    <span
+    <svg
+      aria-hidden="true"
+      role="img"
       style="background-color: rgb(136, 128, 148); width: 20%;"
     />
   </span>
@@ -161,16 +211,24 @@ exports[`EuiColorPaletteDisplay props type and palette are rendered with type fi
     aria-hidden="true"
     class="euiColorPaletteDisplayFixed__bleedArea emotion-euiColorPaletteDisplayFixed__bleedArea"
   >
-    <span
+    <svg
+      aria-hidden="true"
+      role="img"
       style="background-color: rgb(84, 179, 153); width: 21%;"
     />
-    <span
+    <svg
+      aria-hidden="true"
+      role="img"
       style="background-color: rgb(211, 96, 134); width: 32%;"
     />
-    <span
+    <svg
+      aria-hidden="true"
+      role="img"
       style="background-color: rgb(145, 112, 184); width: 21%;"
     />
-    <span
+    <svg
+      aria-hidden="true"
+      role="img"
       style="background-color: rgb(245, 167, 0); width: 26%;"
     />
   </span>
@@ -187,19 +245,29 @@ exports[`EuiColorPaletteDisplay props type and palette are rendered with type fi
     aria-hidden="true"
     class="euiColorPaletteDisplayFixed__bleedArea emotion-euiColorPaletteDisplayFixed__bleedArea"
   >
-    <span
+    <svg
+      aria-hidden="true"
+      role="img"
       style="background-color: rgb(31, 176, 178); width: 20%;"
     />
-    <span
+    <svg
+      aria-hidden="true"
+      role="img"
       style="background-color: rgb(255, 219, 109); width: 20%;"
     />
-    <span
+    <svg
+      aria-hidden="true"
+      role="img"
       style="background-color: rgb(238, 145, 145); width: 20%;"
     />
-    <span
+    <svg
+      aria-hidden="true"
+      role="img"
       style="background-color: rgb(255, 255, 255); width: 20%;"
     />
-    <span
+    <svg
+      aria-hidden="true"
+      role="img"
       style="background-color: rgb(136, 128, 148); width: 20%;"
     />
   </span>
@@ -208,18 +276,28 @@ exports[`EuiColorPaletteDisplay props type and palette are rendered with type fi
 
 exports[`EuiColorPaletteDisplay props type and palette are rendered with type gradient and palette with stops 1`] = `
 <span
-  aria-hidden="true"
   aria-label="aria-label"
   class="euiColorPaletteDisplay testClass1 testClass2 emotion-euiColorPaletteDisplay-s-euiTestCss"
   data-test-subj="test subject string"
-/>
+>
+  <svg
+    aria-hidden="true"
+    class="eui-fullWidth"
+    role="img"
+  />
+</span>
 `;
 
 exports[`EuiColorPaletteDisplay props type and palette are rendered with type gradient and palette without stops 1`] = `
 <span
-  aria-hidden="true"
   aria-label="aria-label"
   class="euiColorPaletteDisplay testClass1 testClass2 emotion-euiColorPaletteDisplay-s-euiTestCss"
   data-test-subj="test subject string"
-/>
+>
+  <svg
+    aria-hidden="true"
+    class="eui-fullWidth"
+    role="img"
+  />
+</span>
 `;

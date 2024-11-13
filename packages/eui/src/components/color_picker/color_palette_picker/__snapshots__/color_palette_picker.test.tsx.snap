@@ -116,19 +116,29 @@ exports[`EuiColorPalettePicker is rendered with a selected fixed palette 1`] = `
             aria-hidden="true"
             class="euiColorPaletteDisplayFixed__bleedArea emotion-euiColorPaletteDisplayFixed__bleedArea"
           >
-            <span
+            <svg
+              aria-hidden="true"
+              role="img"
               style="background-color: rgb(31, 176, 178); width: 20%;"
             />
-            <span
+            <svg
+              aria-hidden="true"
+              role="img"
               style="background-color: rgb(255, 219, 109); width: 20%;"
             />
-            <span
+            <svg
+              aria-hidden="true"
+              role="img"
               style="background-color: rgb(238, 145, 145); width: 20%;"
             />
-            <span
+            <svg
+              aria-hidden="true"
+              role="img"
               style="background-color: rgb(255, 255, 255); width: 20%;"
             />
-            <span
+            <svg
+              aria-hidden="true"
+              role="img"
               style="background-color: rgb(136, 128, 148); width: 20%;"
             />
           </span>
@@ -175,14 +185,19 @@ exports[`EuiColorPalettePicker is rendered with a selected gradient palette 1`] 
         type="button"
       >
         <span
-          class="emotion-euiScreenReaderOnly"
-        >
-          Linear Gradient
-        </span>
-        <span
-          aria-hidden="true"
           class="euiColorPaletteDisplay emotion-euiColorPaletteDisplay-s"
-        />
+        >
+          <span
+            class="emotion-euiScreenReaderOnly"
+          >
+            Linear Gradient
+          </span>
+          <svg
+            aria-hidden="true"
+            class="eui-fullWidth"
+            role="img"
+          />
+        </span>
       </button>
       <div
         class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-absolute-right"
@@ -225,14 +240,19 @@ exports[`EuiColorPalettePicker is rendered with a selected gradient palette with
         type="button"
       >
         <span
-          class="emotion-euiScreenReaderOnly"
-        >
-          Linear Gradient with stops
-        </span>
-        <span
-          aria-hidden="true"
           class="euiColorPaletteDisplay emotion-euiColorPaletteDisplay-s"
-        />
+        >
+          <span
+            class="emotion-euiScreenReaderOnly"
+          >
+            Linear Gradient with stops
+          </span>
+          <svg
+            aria-hidden="true"
+            class="eui-fullWidth"
+            role="img"
+          />
+        </span>
       </button>
       <div
         class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-absolute-right"
@@ -329,19 +349,29 @@ exports[`EuiColorPalettePicker more props are propagated to each option 1`] = `
                 aria-hidden="true"
                 class="euiColorPaletteDisplayFixed__bleedArea emotion-euiColorPaletteDisplayFixed__bleedArea"
               >
-                <span
+                <svg
+                  aria-hidden="true"
+                  role="img"
                   style="background-color: rgb(31, 176, 178); width: 20%;"
                 />
-                <span
+                <svg
+                  aria-hidden="true"
+                  role="img"
                   style="background-color: rgb(255, 219, 109); width: 20%;"
                 />
-                <span
+                <svg
+                  aria-hidden="true"
+                  role="img"
                   style="background-color: rgb(238, 145, 145); width: 20%;"
                 />
-                <span
+                <svg
+                  aria-hidden="true"
+                  role="img"
                   style="background-color: rgb(255, 255, 255); width: 20%;"
                 />
-                <span
+                <svg
+                  aria-hidden="true"
+                  role="img"
                   style="background-color: rgb(136, 128, 148); width: 20%;"
                 />
               </span>
@@ -447,19 +477,29 @@ exports[`EuiColorPalettePicker more props are propagated to each option 1`] = `
                         aria-hidden="true"
                         class="euiColorPaletteDisplayFixed__bleedArea emotion-euiColorPaletteDisplayFixed__bleedArea"
                       >
-                        <span
+                        <svg
+                          aria-hidden="true"
+                          role="img"
                           style="background-color: rgb(31, 176, 178); width: 20%;"
                         />
-                        <span
+                        <svg
+                          aria-hidden="true"
+                          role="img"
                           style="background-color: rgb(255, 219, 109); width: 20%;"
                         />
-                        <span
+                        <svg
+                          aria-hidden="true"
+                          role="img"
                           style="background-color: rgb(238, 145, 145); width: 20%;"
                         />
-                        <span
+                        <svg
+                          aria-hidden="true"
+                          role="img"
                           style="background-color: rgb(255, 255, 255); width: 20%;"
                         />
-                        <span
+                        <svg
+                          aria-hidden="true"
+                          role="img"
                           style="background-color: rgb(136, 128, 148); width: 20%;"
                         />
                       </span>
@@ -496,14 +536,19 @@ exports[`EuiColorPalettePicker more props are propagated to each option 1`] = `
                       class="euiSpacer euiSpacer--xs emotion-euiSpacer-xs"
                     />
                     <span
-                      class="emotion-euiScreenReaderOnly"
-                    >
-                      Linear Gradient
-                    </span>
-                    <span
-                      aria-hidden="true"
                       class="euiColorPaletteDisplay emotion-euiColorPaletteDisplay-s"
-                    />
+                    >
+                      <span
+                        class="emotion-euiScreenReaderOnly"
+                      >
+                        Linear Gradient
+                      </span>
+                      <svg
+                        aria-hidden="true"
+                        class="eui-fullWidth"
+                        role="img"
+                      />
+                    </span>
                   </div>
                 </span>
               </button>
@@ -536,14 +581,19 @@ exports[`EuiColorPalettePicker more props are propagated to each option 1`] = `
                       class="euiSpacer euiSpacer--xs emotion-euiSpacer-xs"
                     />
                     <span
-                      class="emotion-euiScreenReaderOnly"
-                    >
-                      Linear Gradient with stops
-                    </span>
-                    <span
-                      aria-hidden="true"
                       class="euiColorPaletteDisplay emotion-euiColorPaletteDisplay-s"
-                    />
+                    >
+                      <span
+                        class="emotion-euiScreenReaderOnly"
+                      >
+                        Linear Gradient with stops
+                      </span>
+                      <svg
+                        aria-hidden="true"
+                        class="eui-fullWidth"
+                        role="img"
+                      />
+                    </span>
                   </div>
                 </span>
               </button>
