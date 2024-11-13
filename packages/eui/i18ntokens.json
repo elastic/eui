@@ -653,14 +653,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 37,
+        "line": 38,
         "column": 20,
-        "index": 1352
+        "index": 1380
       },
       "end": {
-        "line": 41,
+        "line": 42,
         "column": 3,
-        "index": 1454
+        "index": 1482
       }
     },
     "filepath": "src/components/color_picker/color_picker_swatch.tsx"
@@ -4973,14 +4973,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 34,
+        "line": 35,
         "column": 20,
-        "index": 1321
+        "index": 1412
       },
       "end": {
-        "line": 37,
+        "line": 38,
         "column": 3,
-        "index": 1399
+        "index": 1490
       }
     },
     "filepath": "src/components/form/form_control_layout/form_control_layout_clear_button.tsx"
@@ -5927,14 +5927,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 139,
+        "line": 138,
         "column": 6,
-        "index": 3868
+        "index": 3856
       },
       "end": {
-        "line": 145,
+        "line": 144,
         "column": 8,
-        "index": 3996
+        "index": 3984
       }
     },
     "filepath": "src/components/progress/progress.tsx"
