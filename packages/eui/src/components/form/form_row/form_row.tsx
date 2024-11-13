@@ -37,10 +37,6 @@ export const DISPLAYS = [
   /**
    * @deprecated
    */
-  'columnCompressedSwitch',
-  /**
-   * @deprecated
-   */
   'rowCompressed',
 ] as const;
 
@@ -49,7 +45,6 @@ export type EuiFormRowDisplayKeys = (typeof DISPLAYS)[number];
 type EuiFormRowCommonProps = CommonProps & {
   /**
    * - `columnCompressed` creates a compressed and horizontal layout
-   * - `columnCompressedSwitch` - **deprecated**, use `columnCompressed` instead
    * - `center`/`centerCompressed` helps align non-input content better with inline form layouts
    * - `rowCompressed` - **deprecated**, does not currently affect styling
    */

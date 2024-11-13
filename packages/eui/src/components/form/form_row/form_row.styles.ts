@@ -94,11 +94,6 @@ export const euiFormRowStyles = (euiThemeContext: UseEuiTheme) => {
         }
       }
     `,
-    // Handled by :has CSS now rather than a separate modifier/prop
-    // TODO: Deprecate prop
-    get columnCompressedSwitch() {
-      return this.columnCompressed;
-    },
 
     // Center display is primarily for inline form rows, which may have have
     // field content that is shorter than form controls (e.g. switches, text),
