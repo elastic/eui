@@ -6,6 +6,9 @@ import {
   EuiAvatar,
   EuiToolTip,
   EuiButtonIcon,
+  EuiModal,
+  EuiModalBody,
+  EuiButton,
 } from '../../../../../src/components';
 
 const CustomHeaderCell = ({ title }) => (
@@ -67,21 +70,33 @@ for (let i = 1; i < 5; i++) {
 }
 
 export default () => {
+  const [isOpen, setOpen] = useState(false);
   const [visibleColumns, setVisibleColumns] = useState(
     columns.map(({ id }) => id)
   );
 
   return (
-    <EuiDataGrid
-      aria-label="DataGrid demonstrating column reordering on drag"
-      columns={columns}
-      columnVisibility={{
-        visibleColumns: visibleColumns,
-        setVisibleColumns: setVisibleColumns,
-        canDragAndDropColumns: true,
-      }}
-      rowCount={data.length}
-      renderCellValue={({ rowIndex, columnId }) => data[rowIndex][columnId]}
-    />
+    <>
+      <EuiButton onClick={() => setOpen(!isOpen)}>Toggle modal</EuiButton>
+      {isOpen && (
+        <EuiModal onClose={() => setOpen(false)}>
+          <EuiModalBody>
+            <EuiDataGrid
+              aria-label="DataGrid demonstrating column reordering on drag"
+              columns={columns}
+              columnVisibility={{
+                visibleColumns: visibleColumns,
+                setVisibleColumns: setVisibleColumns,
+                canDragAndDropColumns: true,
+              }}
+              rowCount={data.length}
+              renderCellValue={({ rowIndex, columnId }) =>
+                data[rowIndex][columnId]
+              }
+            />
+          </EuiModalBody>
+        </EuiModal>
+      )}
+    </>
   );
 };
