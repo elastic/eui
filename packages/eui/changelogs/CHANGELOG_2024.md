@@ -1,3 +1,11 @@
+## [`v97.3.1-rc.0`](https://github.com/elastic/eui/releases/v97.3.1-rc.0)
+
+**This is a prerelease candidate not intended for public use.**
+
+- Updated `EuiProvider` `and `EuiThemeProvider` with a new `highContrastMode` ([#8036](https://github.com/elastic/eui/pull/8036))
+  - This prop allows toggling a higher contrast visual style that primarily affects borders and shadows
+  - On `EuiProvider`, if the `highContrastMode` prop is not passed, this setting will inherit from the user's OS/system light/dark mode setting
+
 ## [`v97.3.1`](https://github.com/elastic/eui/releases/v97.3.1)
 
 **Bug fixes**
