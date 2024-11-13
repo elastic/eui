@@ -7,68 +7,95 @@
  */
 
 import { css } from '@emotion/react';
-import { logicals, logicalSizeCSS } from '../../../global_styling';
+import {
+  logicalCSS,
+  logicalSizeCSS,
+  mathWithUnits,
+} from '../../../global_styling';
 import { UseEuiTheme } from '../../../services';
 
 export const popoverArrowSize = 'm';
 
 export const euiPopoverArrowStyles = (euiThemeContext: UseEuiTheme) => {
-  const { euiTheme } = euiThemeContext;
+  const { euiTheme, highContrastMode } = euiThemeContext;
 
-  const borderColor = 'var(--euiPopoverBackgroundColor)';
   const arrowSize = euiTheme.size[popoverArrowSize];
+  const arrowDoubleSize = mathWithUnits(arrowSize, (x) => x * 2);
+
+  const highContrastPseudoElement = (css: string) => {
+    return highContrastMode ? `&::before {${css}}` : '';
+  };
+  const highContrastBorderAffordance = mathWithUnits(
+    euiTheme.border.width.thin,
+    (x) => x * -2
+  );
 
   return {
     // Base
     euiPopoverArrow: css`
       position: absolute;
-      ${logicalSizeCSS(0, 0)}
+      background-color: var(--euiPopoverBackgroundColor);
 
-      /* This part of the arrow matches the panel. */
-      &::before {
+      ${highContrastPseudoElement(`
         content: '';
         position: absolute;
-        ${logicalSizeCSS(0, 0)}
-      }
+        background-color: inherit;
+        border: ${euiTheme.border.thin};
+        transform: rotate(45deg);
+        transform-origin: top;
+        ${logicalSizeCSS(mathWithUnits(arrowDoubleSize, (x) => x * 0.75))}
+      `)}
     `,
 
     // POSITIONS
     top: css`
-      &::before {
-        ${logicals.bottom}: -${arrowSize};
-        ${logicals['border-left']}: ${arrowSize} solid transparent;
-        ${logicals['border-right']}: ${arrowSize} solid transparent;
-        ${logicals['border-top']}: ${arrowSize} solid ${borderColor};
-      }
+      clip-path: polygon(0 0, 50% 100%, 100% 0);
+      ${logicalSizeCSS(arrowDoubleSize, arrowSize)}
+      ${logicalCSS(
+        'margin-top',
+        highContrastMode ? highContrastBorderAffordance : 0
+      )}
+
+      ${highContrastPseudoElement(`
+        ${logicalCSS('top', '-60%')}
+        ${logicalCSS('left', '38%')}
+      `)}
     `,
 
     bottom: css`
-      &::before {
-        ${logicals.top}: -${arrowSize};
-        ${logicals['border-left']}: ${arrowSize} solid transparent;
-        ${logicals['border-right']}: ${arrowSize} solid transparent;
-        ${logicals['border-bottom']}: ${arrowSize} solid ${borderColor};
-      }
+      clip-path: polygon(0 100%, 50% 0, 100% 100%);
+      ${logicalSizeCSS(arrowDoubleSize, arrowSize)}
+      ${logicalCSS('margin-top', `-${arrowSize}`)}
+
+      ${highContrastPseudoElement(`
+        ${logicalCSS('top', '54%')}
+        ${logicalCSS('left', '38%')}
+      `)}
     `,
 
     left: css`
-      &::before {
-        ${logicals.top}: 50%;
-        ${logicals.right}: -${arrowSize};
-        ${logicals['border-top']}: ${arrowSize} solid transparent;
-        ${logicals['border-bottom']}: ${arrowSize} solid transparent;
-        ${logicals['border-left']}: ${arrowSize} solid ${borderColor};
-      }
+      clip-path: polygon(0 0, 100% 50%, 0 100%);
+      ${logicalSizeCSS(arrowSize, arrowDoubleSize)}
+      ${logicalCSS(
+        'margin-left',
+        highContrastMode ? highContrastBorderAffordance : 0
+      )}
+
+      ${highContrastPseudoElement(`
+        ${logicalCSS('top', '24%')}
+        ${logicalCSS('left', '-30%')}
+      `)}
     `,
 
     right: css`
-      &::before {
-        ${logicals.top}: 50%;
-        ${logicals.left}: -${arrowSize};
-        ${logicals['border-top']}: ${arrowSize} solid transparent;
-        ${logicals['border-bottom']}: ${arrowSize} solid transparent;
-        ${logicals['border-right']}: ${arrowSize} solid ${borderColor};
-      }
+      clip-path: polygon(100% 0, 0 50%, 100% 100%);
+      ${logicalSizeCSS(arrowSize, arrowDoubleSize)}
+      ${logicalCSS('margin-left', `-${arrowSize}`)}
+
+      ${highContrastPseudoElement(`
+        ${logicalCSS('top', '24%')}
+        ${logicalCSS('left', '90%')}
+      `)}
     `,
   };
 };

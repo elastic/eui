@@ -6,7 +6,19 @@ exports[`EuiBeacon is rendered 1`] = `
   class="euiBeacon testClass1 testClass2 emotion-euiBeacon-success-euiTestCss"
   data-test-subj="test subject string"
   style="block-size: 12px; inline-size: 12px;"
-/>
+>
+  <svg
+    aria-hidden="true"
+    role="img"
+    viewBox="0 0 16 16"
+  >
+    <circle
+      cx="8"
+      cy="8"
+      r="8"
+    />
+  </svg>
+</div>
 `;
 
 exports[`EuiBeacon props color accent is rendered 1`] = `
@@ -15,7 +27,19 @@ exports[`EuiBeacon props color accent is rendered 1`] = `
   class="euiBeacon testClass1 testClass2 emotion-euiBeacon-accent-euiTestCss"
   data-test-subj="test subject string"
   style="block-size: 12px; inline-size: 12px;"
-/>
+>
+  <svg
+    aria-hidden="true"
+    role="img"
+    viewBox="0 0 16 16"
+  >
+    <circle
+      cx="8"
+      cy="8"
+      r="8"
+    />
+  </svg>
+</div>
 `;
 
 exports[`EuiBeacon props color danger is rendered 1`] = `
@@ -24,7 +48,19 @@ exports[`EuiBeacon props color danger is rendered 1`] = `
   class="euiBeacon testClass1 testClass2 emotion-euiBeacon-danger-euiTestCss"
   data-test-subj="test subject string"
   style="block-size: 12px; inline-size: 12px;"
-/>
+>
+  <svg
+    aria-hidden="true"
+    role="img"
+    viewBox="0 0 16 16"
+  >
+    <circle
+      cx="8"
+      cy="8"
+      r="8"
+    />
+  </svg>
+</div>
 `;
 
 exports[`EuiBeacon props color primary is rendered 1`] = `
@@ -33,7 +69,19 @@ exports[`EuiBeacon props color primary is rendered 1`] = `
   class="euiBeacon testClass1 testClass2 emotion-euiBeacon-primary-euiTestCss"
   data-test-subj="test subject string"
   style="block-size: 12px; inline-size: 12px;"
-/>
+>
+  <svg
+    aria-hidden="true"
+    role="img"
+    viewBox="0 0 16 16"
+  >
+    <circle
+      cx="8"
+      cy="8"
+      r="8"
+    />
+  </svg>
+</div>
 `;
 
 exports[`EuiBeacon props color subdued is rendered 1`] = `
@@ -42,7 +90,19 @@ exports[`EuiBeacon props color subdued is rendered 1`] = `
   class="euiBeacon testClass1 testClass2 emotion-euiBeacon-subdued-euiTestCss"
   data-test-subj="test subject string"
   style="block-size: 12px; inline-size: 12px;"
-/>
+>
+  <svg
+    aria-hidden="true"
+    role="img"
+    viewBox="0 0 16 16"
+  >
+    <circle
+      cx="8"
+      cy="8"
+      r="8"
+    />
+  </svg>
+</div>
 `;
 
 exports[`EuiBeacon props color success is rendered 1`] = `
@@ -51,7 +111,19 @@ exports[`EuiBeacon props color success is rendered 1`] = `
   class="euiBeacon testClass1 testClass2 emotion-euiBeacon-success-euiTestCss"
   data-test-subj="test subject string"
   style="block-size: 12px; inline-size: 12px;"
-/>
+>
+  <svg
+    aria-hidden="true"
+    role="img"
+    viewBox="0 0 16 16"
+  >
+    <circle
+      cx="8"
+      cy="8"
+      r="8"
+    />
+  </svg>
+</div>
 `;
 
 exports[`EuiBeacon props color warning is rendered 1`] = `
@@ -60,7 +132,19 @@ exports[`EuiBeacon props color warning is rendered 1`] = `
   class="euiBeacon testClass1 testClass2 emotion-euiBeacon-warning-euiTestCss"
   data-test-subj="test subject string"
   style="block-size: 12px; inline-size: 12px;"
-/>
+>
+  <svg
+    aria-hidden="true"
+    role="img"
+    viewBox="0 0 16 16"
+  >
+    <circle
+      cx="8"
+      cy="8"
+      r="8"
+    />
+  </svg>
+</div>
 `;
 
 exports[`EuiBeacon props size accepts size 1`] = `
@@ -69,5 +153,17 @@ exports[`EuiBeacon props size accepts size 1`] = `
   class="euiBeacon testClass1 testClass2 emotion-euiBeacon-success-euiTestCss"
   data-test-subj="test subject string"
   style="block-size: 14px; inline-size: 14px;"
-/>
+>
+  <svg
+    aria-hidden="true"
+    role="img"
+    viewBox="0 0 16 16"
+  >
+    <circle
+      cx="8"
+      cy="8"
+      r="8"
+    />
+  </svg>
+</div>
 `;

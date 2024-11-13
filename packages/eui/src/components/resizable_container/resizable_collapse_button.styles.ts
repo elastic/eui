@@ -34,10 +34,14 @@ export const euiResizableCollapseButtonStyles = (
     collapsible: {
       collapsible: css`
         background: ${euiTheme.colors.emptyShade};
-        ${euiShadowXSmall(euiThemeContext)}
+        ${euiShadowXSmall(euiThemeContext, {
+          borderAllInHighContrastMode: true,
+        })}
 
         &:focus {
-          ${euiSlightShadowHover(euiThemeContext)}
+          ${euiSlightShadowHover(euiThemeContext, {
+            borderAllInHighContrastMode: true,
+          })}
         }
       `,
       horizontal: {

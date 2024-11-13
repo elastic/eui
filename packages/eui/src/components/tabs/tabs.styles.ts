@@ -11,7 +11,7 @@ import { logicalCSS, logicalCSSWithFallback } from '../../global_styling';
 import { UseEuiTheme } from '../../services';
 
 export const euiTabsStyles = (euiThemeContext: UseEuiTheme) => {
-  const { euiTheme } = euiThemeContext;
+  const { euiTheme, highContrastMode } = euiThemeContext;
 
   return {
     euiTabs: css`
@@ -22,9 +22,14 @@ export const euiTabsStyles = (euiThemeContext: UseEuiTheme) => {
       position: relative;
       flex-shrink: 0;
     `,
-    bottomBorder: css`
-      box-shadow: inset 0 -${euiTheme.border.width.thin} 0 ${euiTheme.border.color};
-    `,
+    bottomBorder: !highContrastMode
+      ? // By default, uses an inset box shadow to not increase/affect height
+        css`
+          box-shadow: inset 0 -${euiTheme.border.width.thin} 0 ${euiTheme.border.color};
+        `
+      : // However, Windows high contrast themes ignores box-shadow and only respects border-bottom
+        css(logicalCSS('border-bottom', euiTheme.border.thin)),
+
     // sizes
     s: css`
       gap: ${euiTheme.size.m};

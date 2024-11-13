@@ -7,16 +7,20 @@ exports[`EuiLoadingChart is rendered 1`] = `
   data-test-subj="test subject string"
   role="progressbar"
 >
-  <span
+  <svg
+    aria-hidden="true"
     class="emotion-euiLoadingChart__bar-nonmono-m"
   />
-  <span
+  <svg
+    aria-hidden="true"
     class="emotion-euiLoadingChart__bar-nonmono-m"
   />
-  <span
+  <svg
+    aria-hidden="true"
     class="emotion-euiLoadingChart__bar-nonmono-m"
   />
-  <span
+  <svg
+    aria-hidden="true"
     class="emotion-euiLoadingChart__bar-nonmono-m"
   />
 </span>
@@ -28,16 +32,20 @@ exports[`EuiLoadingChart mono is rendered 1`] = `
   class="euiLoadingChart emotion-euiLoadingChart-m"
   role="progressbar"
 >
-  <span
+  <svg
+    aria-hidden="true"
     class="emotion-euiLoadingChart__bar-mono-m"
   />
-  <span
+  <svg
+    aria-hidden="true"
     class="emotion-euiLoadingChart__bar-mono-m"
   />
-  <span
+  <svg
+    aria-hidden="true"
     class="emotion-euiLoadingChart__bar-mono-m"
   />
-  <span
+  <svg
+    aria-hidden="true"
     class="emotion-euiLoadingChart__bar-mono-m"
   />
 </span>
@@ -49,16 +57,20 @@ exports[`EuiLoadingChart size l is rendered 1`] = `
   class="euiLoadingChart emotion-euiLoadingChart-l"
   role="progressbar"
 >
-  <span
+  <svg
+    aria-hidden="true"
     class="emotion-euiLoadingChart__bar-nonmono-l"
   />
-  <span
+  <svg
+    aria-hidden="true"
     class="emotion-euiLoadingChart__bar-nonmono-l"
   />
-  <span
+  <svg
+    aria-hidden="true"
     class="emotion-euiLoadingChart__bar-nonmono-l"
   />
-  <span
+  <svg
+    aria-hidden="true"
     class="emotion-euiLoadingChart__bar-nonmono-l"
   />
 </span>
@@ -70,16 +82,20 @@ exports[`EuiLoadingChart size m is rendered 1`] = `
   class="euiLoadingChart emotion-euiLoadingChart-m"
   role="progressbar"
 >
-  <span
+  <svg
+    aria-hidden="true"
     class="emotion-euiLoadingChart__bar-nonmono-m"
   />
-  <span
+  <svg
+    aria-hidden="true"
     class="emotion-euiLoadingChart__bar-nonmono-m"
   />
-  <span
+  <svg
+    aria-hidden="true"
     class="emotion-euiLoadingChart__bar-nonmono-m"
   />
-  <span
+  <svg
+    aria-hidden="true"
     class="emotion-euiLoadingChart__bar-nonmono-m"
   />
 </span>
@@ -91,16 +107,20 @@ exports[`EuiLoadingChart size xl is rendered 1`] = `
   class="euiLoadingChart emotion-euiLoadingChart-xl"
   role="progressbar"
 >
-  <span
+  <svg
+    aria-hidden="true"
     class="emotion-euiLoadingChart__bar-nonmono-xl"
   />
-  <span
+  <svg
+    aria-hidden="true"
     class="emotion-euiLoadingChart__bar-nonmono-xl"
   />
-  <span
+  <svg
+    aria-hidden="true"
     class="emotion-euiLoadingChart__bar-nonmono-xl"
   />
-  <span
+  <svg
+    aria-hidden="true"
     class="emotion-euiLoadingChart__bar-nonmono-xl"
   />
 </span>

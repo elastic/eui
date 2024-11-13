@@ -36,16 +36,13 @@ export const euiRangeLevelsStyles = (euiThemeContext: UseEuiTheme) => {
       inset-block-start: ${range.trackTopPositionWithoutTicks};
       z-index: ${range.levelsZIndex};
     `,
-    hasRange: css`
-      &::after {
-        content: '';
-        position: absolute;
-        block-size: ${range.trackHeight};
-        inline-size: 100%;
-        background-image: ${stripesBackground};
-        background-size: ${euiTheme.size.xs} ${euiTheme.size.xs}; /* Percentage stops and background-size are both needed for Safari to render the gradient at fullWidth correctly */
-        border-radius: ${range.trackBorderRadius};
-      }
+    euiRangeLevels__overlay: css`
+      position: absolute;
+      block-size: ${range.trackHeight};
+      inline-size: 100%;
+      background-image: ${stripesBackground};
+      background-size: ${euiTheme.size.xs} ${euiTheme.size.xs}; /* Percentage stops and background-size are both needed for Safari to render the gradient at fullWidth correctly */
+      border-radius: ${range.trackBorderRadius};
     `,
     hasTicks: css`
       inset-block-start: ${range.trackTopPositionWithTicks};
@@ -70,7 +67,8 @@ export const euiRangeLevelStyles = (euiThemeContext: UseEuiTheme) => {
         border-end-start-radius: ${range.trackBorderRadius};
       }
 
-      &:last-child {
+      &:last-child,
+      &:has(+ .euiRangeLevels__overlay) {
         margin-inline-end: 0;
         border-start-end-radius: ${range.trackBorderRadius};
         border-end-end-radius: ${range.trackBorderRadius};

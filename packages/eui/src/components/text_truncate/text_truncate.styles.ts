@@ -23,11 +23,17 @@ export const euiTextTruncateStyles = {
    * cross-browser issues with this at some point. Hopefully CSS natively implements
    * custom text truncation some day (https://github.com/w3c/csswg-drafts/issues/3937)
    * and there'll be no need for the entire component at that point 🙏
+   *
+   * 2024 update: We have found an issue! Windows high contrast themes force overrides
+   * `color` and therefore "breaks" the rgba hack. We can skip this UX (via the
+   * forced-colors media query) for those modes for now.
    */
   // Makes the truncated text unselectable/un-clickable
   euiTextTruncate__truncatedText: css`
-    user-select: none;
-    pointer-events: none;
+    @media (forced-colors: none) {
+      user-select: none;
+      pointer-events: none;
+    }
   `,
   // Positions the full text on top of the truncated text (so that clicking targets it)
   // and gives it a color opacity of 0 so that it's not actually visible
@@ -43,6 +49,11 @@ export const euiTextTruncateStyles = {
      */
     @supports (-webkit-hyphens: none) {
       text-overflow: ellipsis;
+    }
+
+    /* Hide this completely for Windows high contrast themes */
+    @media (forced-colors: active) {
+      display: none;
     }
   `,
 };

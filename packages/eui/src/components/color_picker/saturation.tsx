@@ -88,7 +88,7 @@ export const EuiSaturation = forwardRef<HTMLDivElement, EuiSaturationProps>(
     });
     const [lastColor, setLastColor] = useState<ColorSpaces['hsv'] | []>([]);
 
-    const boxRef = useRef<HTMLDivElement>(null);
+    const boxRef = useRef<SVGSVGElement>(null);
 
     useEffect(() => {
       // Mimics `componentDidMount` and `componentDidUpdate`
@@ -190,22 +190,30 @@ export const EuiSaturation = forwardRef<HTMLDivElement, EuiSaturationProps>(
         css={styles.euiSaturation}
         className={classes}
         data-test-subj={dataTestSubj}
-        style={{
-          background: `hsl(${color[0]}, 100%, 50%)`,
-        }}
         tabIndex={-1}
         {...rest}
       >
-        <div
-          css={styles.euiSaturation__lightness}
+        {/* We use <svg> elements to support Windows high contrast themes,
+            which ignore all backgrounds except for those set on svgs */}
+        <svg
+          css={styles.euiSaturation__svg}
+          style={{ background: `hsl(${color[0]}, 100%, 50%)` }}
+          role="img"
+          aria-hidden
+        />
+        <svg
+          css={[styles.euiSaturation__svg, styles.euiSaturation__lightness]}
           className="euiSaturation__lightness"
+          role="img"
+          aria-hidden
           ref={boxRef}
-        >
-          <div
-            css={styles.euiSaturation__saturation}
-            className="euiSaturation__saturation"
-          />
-        </div>
+        />
+        <svg
+          css={[styles.euiSaturation__svg, styles.euiSaturation__saturation]}
+          className="euiSaturation__saturation"
+          role="img"
+          aria-hidden
+        />
         <button
           id={indicatorId}
           css={styles.euiSaturation__indicator}

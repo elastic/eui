@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent, HTMLAttributes } from 'react';
+import React, { FunctionComponent, HTMLAttributes, useMemo } from 'react';
 import { CommonProps } from '../../common';
 import { getFixedLinearGradient } from '../utils';
 import { EuiScreenReaderOnly } from '../../accessibility';
@@ -26,14 +26,19 @@ interface paletteItem {
 export const EuiColorPaletteDisplayFixed: FunctionComponent<
   EuiColorPaletteDisplayFixedProps
 > = ({ palette, title, ...rest }) => {
-  const fixedGradient = getFixedLinearGradient(palette);
-
-  const paletteStops = fixedGradient.map((item: paletteItem, index: number) => (
-    <span
-      style={{ backgroundColor: item.color, width: item.width }}
-      key={`${item.color}-${index}`}
-    />
-  ));
+  const paletteStops = useMemo(() => {
+    const fixedGradient = getFixedLinearGradient(palette);
+    return fixedGradient.map((item: paletteItem, index: number) => (
+      // We use <svg> elements to support Windows high contrast themes,
+      // which ignore all backgrounds except for those set on svgs
+      <svg
+        style={{ backgroundColor: item.color, width: item.width }}
+        key={`${item.color}-${index}`}
+        role="img"
+        aria-hidden
+      />
+    ));
+  }, [palette]);
 
   return (
     <span {...rest}>

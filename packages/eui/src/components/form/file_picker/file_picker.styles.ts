@@ -98,7 +98,7 @@ export const euiFilePickerStyles = (euiThemeContext: UseEuiTheme) => {
       ${euiTextTruncate()}
       color: ${euiTheme.colors.text};
       border: ${euiTheme.border.width.thick} dashed
-        var(--euiFormControlStateColor, ${euiTheme.colors.lightShade});
+        var(--euiFormControlStateColor, ${euiTheme.border.color});
 
       ${euiCanAnimate} {
         transition: border-color ${euiTheme.animation.fast} ease-in,

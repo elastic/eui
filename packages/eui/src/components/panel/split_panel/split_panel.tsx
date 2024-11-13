@@ -13,6 +13,7 @@ import {
   EuiBreakpointSize,
   useIsWithinBreakpoints,
 } from '../../../services/breakpoint';
+import { useEuiMemoizedStyles } from '../../../services';
 
 import { EuiPanel, _EuiPanelProps } from '../panel';
 import {
@@ -31,6 +32,7 @@ export const _EuiSplitPanelInner: FunctionComponent<
   _EuiSplitPanelInnerProps
 > = ({ children, className, ...rest }) => {
   const classes = classNames('euiSplitPanel__inner', className);
+  const styles = useEuiMemoizedStyles(euiSplitPanelInnerStyles);
 
   const panelProps: _EuiPanelProps = {
     hasShadow: false,
@@ -43,7 +45,7 @@ export const _EuiSplitPanelInner: FunctionComponent<
     <EuiPanel
       element="div"
       className={classes}
-      css={euiSplitPanelInnerStyles.euiSplitPanelInner}
+      css={styles.euiSplitPanelInner}
       {...panelProps}
       {...(rest as _EuiPanelProps)}
     >

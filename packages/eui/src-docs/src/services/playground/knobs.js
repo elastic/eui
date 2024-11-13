@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { assertUnreachable, PropTypes } from 'react-view';
+import { css } from '@emotion/react';
 import {
   useIsWithinBreakpoints,
+  useEuiTheme,
   EuiTitle,
   EuiCodeBlock,
   EuiSpacer,
@@ -22,7 +24,6 @@ import {
   EuiTextArea,
   EuiFormRow,
   EuiText,
-  EuiPanel,
   EuiMarkdownFormat,
 } from '../../../../src';
 import {
@@ -512,6 +513,7 @@ const KnobColumn = ({ state, knobNames, error, set, isPlayground }) => {
 
 const Knobs = ({ state, set, error, isPlayground = true }) => {
   const isMobile = useIsWithinBreakpoints(['xs', 's']);
+  const { euiTheme } = useEuiTheme();
   const knobNames = Object.keys(state);
 
   const columns = [
@@ -532,34 +534,40 @@ const Knobs = ({ state, set, error, isPlayground = true }) => {
   });
 
   return (
-    <EuiPanel
-      color="transparent"
-      paddingSize={isMobile ? 's' : 'none'}
-      hasBorder={false}
-      hasShadow={false}
-    >
-      <EuiTable style={{ background: 'transparent' }}>
-        <EuiTableHeader>
-          {columns.map(({ name, width }, id) => {
-            return (
-              <EuiTableHeaderCell width={width} key={id}>
-                {name}
-              </EuiTableHeaderCell>
-            );
-          })}
-        </EuiTableHeader>
+    <EuiTable
+      css={css`
+        background: transparent;
+        ${isMobile
+          ? `
+            margin: ${euiTheme.size.s};
+            inline-size: auto;`
+          : ''}
 
-        <EuiTableBody>
-          <KnobColumn
-            isPlayground={isPlayground}
-            state={state}
-            knobNames={knobNames}
-            set={set}
-            error={error}
-          />
-        </EuiTableBody>
-      </EuiTable>
-    </EuiPanel>
+        .euiTableRow:last-child td {
+          border-block-end: 0;
+        }
+      `}
+    >
+      <EuiTableHeader>
+        {columns.map(({ name, width }, id) => {
+          return (
+            <EuiTableHeaderCell width={width} key={id}>
+              {name}
+            </EuiTableHeaderCell>
+          );
+        })}
+      </EuiTableHeader>
+
+      <EuiTableBody>
+        <KnobColumn
+          isPlayground={isPlayground}
+          state={state}
+          knobNames={knobNames}
+          set={set}
+          error={error}
+        />
+      </EuiTableBody>
+    </EuiTable>
   );
 };
 

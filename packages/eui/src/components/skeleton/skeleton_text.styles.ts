@@ -10,7 +10,7 @@ import { css } from '@emotion/react';
 import { euiFontSize, logicalCSS, mathWithUnits } from '../../global_styling';
 import { UseEuiTheme } from '../../services';
 
-import { euiSkeletonGradientAnimation } from './utils';
+import { euiSkeletonGradientAnimation, _highContrastFallback } from './utils';
 
 const calculateLineSize = (
   euiThemeContext: UseEuiTheme,
@@ -38,6 +38,7 @@ export const euiSkeletonTextStyles = (euiThemeContext: UseEuiTheme) => {
       ${logicalCSS('width', '100%')}
       border-radius: ${euiTheme.border.radius.small};
       ${euiSkeletonGradientAnimation(euiThemeContext)}
+      ${_highContrastFallback(euiThemeContext)}
 
       /* Offset via transform to more closely match placement of text */
       transform: translateY(-25%);

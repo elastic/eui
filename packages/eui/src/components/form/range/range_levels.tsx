@@ -46,11 +46,7 @@ export const EuiRangeLevels: FunctionComponent<EuiRangeLevelsProps> = ({
 }) => {
   const euiTheme = useEuiTheme();
   const styles = euiRangeLevelsStyles(euiTheme);
-  const cssStyles = [
-    styles.euiRangeLevels,
-    showTicks && styles.hasTicks,
-    showRange && styles.hasRange,
-  ];
+  const cssStyles = [styles.euiRangeLevels, showTicks && styles.hasTicks];
 
   return (
     <div className="euiRangeLevels" css={cssStyles} {...rest}>
@@ -63,6 +59,16 @@ export const EuiRangeLevels: FunctionComponent<EuiRangeLevelsProps> = ({
           trackWidth={trackWidth}
         />
       ))}
+      {showRange && (
+        // This must be an <svg> element (as opposed to a pseudo element or standard div)
+        // in order for Windows high contrast themes to respect its background image
+        <svg
+          className="euiRangeLevels__overlay"
+          css={styles.euiRangeLevels__overlay}
+          role="img"
+          aria-hidden="true"
+        />
+      )}
     </div>
   );
 };
@@ -109,6 +115,7 @@ const EuiRangeLevelElement: FunctionComponent<{
     return logicalStyles({
       left: `calc(${left}% + ${leftOffset}px)`,
       right: `calc(${100 - right}% - ${rightOffset}px)`,
+      width: `calc(${right - left}% + ${rightOffset - leftOffset}px)`,
       backgroundColor: !isNamedColor ? color : undefined,
     });
   }, [levelMin, levelMax, min, max, trackWidth, isNamedColor, color]);
@@ -125,10 +132,14 @@ const EuiRangeLevelElement: FunctionComponent<{
   ];
 
   return (
-    <span
+    // This must be an <svg> element (as opposed to a span/div) in order
+    // for Windows high contrast themes to respect its background colors
+    <svg
       style={styles}
       className={levelClasses}
       css={cssLevelStyles}
+      role="img"
+      aria-hidden="true"
       {...levelRest}
     />
   );

@@ -14,13 +14,21 @@ import {
 
 const visColors = euiPaletteColorBlind();
 
+export const euiCodeTextColors = ({ euiTheme }: UseEuiTheme) => {
+  return {
+    backgroundColor: euiTheme.colors.lightestShade,
+    color: euiTheme.colors.text,
+  };
+};
+
 // These variables are computationally expensive - do not call them outside `useEuiMemoizedStyles`
-export const euiCodeSyntaxVariables = ({ euiTheme }: UseEuiTheme) => {
-  const backgroundColor = euiTheme.colors.lightestShade;
+export const euiCodeSyntaxVariables = (euiThemeContext: UseEuiTheme) => {
+  const { backgroundColor, color } = euiCodeTextColors(euiThemeContext);
+  const { euiTheme } = euiThemeContext;
 
   return {
-    backgroundColor: backgroundColor,
-    color: makeHighContrastColor(euiTheme.colors.text)(backgroundColor),
+    backgroundColor,
+    color,
     inlineCodeColor: makeHighContrastColor(visColors[3])(backgroundColor),
     selectedBackgroundColor: 'inherit',
     commentColor: makeHighContrastColor(euiTheme.colors.subduedText)(

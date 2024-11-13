@@ -37,7 +37,19 @@ exports[`EuiTourStep renders 1`] = `
             <div
               class="euiBeacon euiTour__beacon emotion-euiBeacon-success-euiTourBeacon-isOpen-left"
               style="block-size: 12px; inline-size: 12px;"
-            />
+            >
+              <svg
+                aria-hidden="true"
+                role="img"
+                viewBox="0 0 16 16"
+              >
+                <circle
+                  cx="8"
+                  cy="8"
+                  r="8"
+                />
+              </svg>
+            </div>
           </div>
           <div>
             <div

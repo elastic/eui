@@ -5,16 +5,24 @@ exports[`EuiHue accepts a color 1`] = `
   aria-label="aria-label"
   class="euiSaturation testClass1 testClass2 emotion-euiSaturation-euiTestCss"
   data-test-subj="test subject string"
-  style="background: rgb(0, 255, 255);"
   tabindex="-1"
 >
-  <div
-    class="euiSaturation__lightness emotion-euiSaturation__lightness"
-  >
-    <div
-      class="euiSaturation__saturation emotion-euiSaturation__saturation"
-    />
-  </div>
+  <svg
+    aria-hidden="true"
+    class="emotion-euiSaturation__svg"
+    role="img"
+    style="background: rgb(0, 255, 255);"
+  />
+  <svg
+    aria-hidden="true"
+    class="euiSaturation__lightness emotion-euiSaturation__svg-euiSaturation__lightness-EuiSaturation"
+    role="img"
+  />
+  <svg
+    aria-hidden="true"
+    class="euiSaturation__saturation emotion-euiSaturation__svg-euiSaturation__saturation-EuiSaturation"
+    role="img"
+  />
   <button
     aria-describedby="generated-id-instructions"
     aria-roledescription="HSV color mode saturation and value 2-axis slider"
@@ -40,16 +48,24 @@ exports[`EuiHue is rendered 1`] = `
   aria-label="aria-label"
   class="euiSaturation testClass1 testClass2 emotion-euiSaturation-euiTestCss"
   data-test-subj="test subject string"
-  style="background: rgb(255, 4, 0);"
   tabindex="-1"
 >
-  <div
-    class="euiSaturation__lightness emotion-euiSaturation__lightness"
-  >
-    <div
-      class="euiSaturation__saturation emotion-euiSaturation__saturation"
-    />
-  </div>
+  <svg
+    aria-hidden="true"
+    class="emotion-euiSaturation__svg"
+    role="img"
+    style="background: rgb(255, 4, 0);"
+  />
+  <svg
+    aria-hidden="true"
+    class="euiSaturation__lightness emotion-euiSaturation__svg-euiSaturation__lightness-EuiSaturation"
+    role="img"
+  />
+  <svg
+    aria-hidden="true"
+    class="euiSaturation__saturation emotion-euiSaturation__svg-euiSaturation__saturation-EuiSaturation"
+    role="img"
+  />
   <button
     aria-describedby="generated-id-instructions"
     aria-roledescription="HSV color mode saturation and value 2-axis slider"

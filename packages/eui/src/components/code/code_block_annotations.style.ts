@@ -30,7 +30,9 @@ export const euiCodeBlockAnnotationsStyles = ({ euiTheme }: UseEuiTheme) => {
       display: flex;
       align-items: center;
       justify-content: center;
-      background-color: ${euiTheme.colors.primary};
+      /* Use border instead of background-color for Windows high contrast theme support */
+      border: ${mathWithUnits(buttonIconSize, (x) => x / 2)} solid
+        ${euiTheme.colors.primary};
       border-radius: 50%;
     `,
   };

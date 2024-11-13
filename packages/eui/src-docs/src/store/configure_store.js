@@ -3,18 +3,13 @@ import thunk from 'redux-thunk';
 
 import Routes from '../routes';
 
-import localeReducer from './reducers/locale_reducer';
-import themeReducer from './reducers/theme_reducer';
-
 /**
  * @param {Object} initialState An object defining the application's initial
  * state.
  */
 export default function configureStore(initialState) {
-  function rootReducer(state = {}, action) {
+  function rootReducer() {
     return {
-      theme: themeReducer(state.theme, action),
-      locale: localeReducer(state.locale, action),
       routes: Routes,
     };
   }

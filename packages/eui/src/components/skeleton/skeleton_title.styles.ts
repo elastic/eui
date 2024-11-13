@@ -11,7 +11,7 @@ import { logicalCSS } from '../../global_styling';
 import { UseEuiTheme } from '../../services';
 import { euiTitle } from '../title/title.styles';
 
-import { euiSkeletonGradientAnimation } from './utils';
+import { euiSkeletonGradientAnimation, _highContrastFallback } from './utils';
 
 export const euiSkeletonTitleStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
@@ -22,6 +22,7 @@ export const euiSkeletonTitleStyles = (euiThemeContext: UseEuiTheme) => {
       ${logicalCSS('width', '45%')}
       border-radius: ${euiTheme.border.radius.medium};
       ${euiSkeletonGradientAnimation(euiThemeContext)}
+      ${_highContrastFallback(euiThemeContext)}
     `,
     // Sizes
     l: css`

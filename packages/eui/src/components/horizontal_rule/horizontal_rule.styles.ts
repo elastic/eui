@@ -10,11 +10,19 @@ import { css } from '@emotion/react';
 import { logicalCSS } from '../../global_styling';
 import { UseEuiTheme } from '../../services';
 
-export const euiHorizontalRuleStyles = ({ euiTheme }: UseEuiTheme) => ({
+export const euiHorizontalRuleStyles = ({
+  euiTheme,
+  highContrastMode,
+}: UseEuiTheme) => ({
   euiHorizontalRule: css`
     border: none;
+    ${highContrastMode
+      ? // Windows high contrast themes forcibly remove background colors but respects borders
+        logicalCSS('border-bottom', euiTheme.border.thin)
+      : `
     ${logicalCSS('height', euiTheme.border.width.thin)}
     background-color: ${euiTheme.border.color};
+`}
     /* Ensure when used in flex group, it retains its size */
     flex-shrink: 0;
     flex-grow: 0;

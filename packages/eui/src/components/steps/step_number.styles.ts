@@ -16,25 +16,32 @@ import {
   logicalSizeCSS,
 } from '../../global_styling';
 import { UseEuiTheme } from '../../services';
-import { euiStepVariables } from './step.styles';
 import { euiButtonFillColor } from '../../themes/amsterdam/global_styling/mixins';
 
+import { euiStepVariables } from './step.styles';
+
 export const euiStepNumberStyles = (euiThemeContext: UseEuiTheme) => {
-  const { euiTheme } = euiThemeContext;
+  const { euiTheme, highContrastMode } = euiThemeContext;
   const euiStep = euiStepVariables(euiTheme);
 
   const createStepsNumber = (size: string, fontSize: string) => {
+    const highContrastBorder = highContrastMode
+      ? `border: ${euiTheme.border.thin};`
+      : '';
+
     return `
-      display: inline-block;
-      line-height: ${size};
-      border-radius: ${size};
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
       ${logicalCSS('width', size)};
       ${logicalCSS('height', size)};
+      font-size: ${fontSize};
+      font-weight: ${euiTheme.font.weight.medium};
       text-align: center;
       color: ${euiTheme.colors.emptyShade};
       background-color: ${euiTheme.colors.primary};
-      font-size: ${fontSize};
-      font-weight: ${euiTheme.font.weight.medium};
+      border-radius: 50%;
+      ${highContrastBorder}
     `;
   };
 
@@ -104,21 +111,28 @@ export const euiStepNumberStyles = (euiThemeContext: UseEuiTheme) => {
       }
     `,
     current: css`
-      border: ${euiTheme.border.width.thick} solid ${euiTheme.colors.body};
-      box-shadow: 0 0 0 ${euiTheme.border.width.thick}
-        ${euiTheme.colors.primary};
+      border: ${euiTheme.border.width.thick} solid ${euiTheme.colors.primary};
+      box-shadow: inset 0 0 0 ${euiTheme.border.width.thick}
+        ${euiTheme.colors.body};
+      transform: scale(1.15);
+
+      ${highContrastMode
+        ? // Windows high contrast themes ignore box-shadow and background-color,
+          // so double the border width instead to make the selected state clearer
+          `@media (forced-colors: active) {
+            border-width: ${mathWithUnits(
+              euiTheme.border.width.thick,
+              (x) => x * 2
+            )};
+          }`
+        : ''}
     `,
   };
 };
 
-export const euiStepNumberContentStyles = ({ euiTheme }: UseEuiTheme) => {
+export const euiStepNumberIconStyles = ({ euiTheme }: UseEuiTheme) => {
   return {
-    // Statuses with icon content
-    euiStepNumber__icon: css`
-      vertical-align: middle;
-      position: relative;
-      inset-block-start: -${euiTheme.border.width.thin};
-    `,
+    euiStepNumber__icon: css``,
     complete: css`
       /* Thicken the checkmark by adding a slight stroke */
       stroke: currentColor;
@@ -131,22 +145,7 @@ export const euiStepNumberContentStyles = ({ euiTheme }: UseEuiTheme) => {
     `,
     warning: css`
       /* Slight extra visual offset */
-      inset-block-start: -${euiTheme.border.width.thick};
-    `,
-    // Statuses with number content
-    euiStepNumber__number: css``,
-    incomplete: css`
-      /* Adjusts position because of thicker border */
-      display: unset;
-      position: relative;
-      inset-block-start: -${euiTheme.border.width.thick};
-    `,
-    loading: css``,
-    disabled: css``,
-    current: css`
-      /* Transform the step number so it appears in the center of the step circle */
-      display: inline-block;
-      transform: translateY(-${euiTheme.border.width.thick});
+      margin-block-start: -${euiTheme.border.width.thick};
     `,
     none: css(logicalSizeCSS(euiTheme.size.s)),
   };

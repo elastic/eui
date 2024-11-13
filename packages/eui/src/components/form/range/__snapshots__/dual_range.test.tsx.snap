@@ -76,15 +76,24 @@ exports[`EuiDualRange props levels renders levels when levels prop is set 1`] = 
     class="euiRangeTrack emotion-euiRangeTrack-hasLevels"
   >
     <div
-      class="euiRangeLevels emotion-euiRangeLevels-hasRange"
+      class="euiRangeLevels emotion-euiRangeLevels"
     >
-      <span
+      <svg
+        aria-hidden="true"
         class="euiRangeLevel emotion-euiRangeLevel-danger"
-        style="inset-inline-start: calc(0% + 0px); inset-inline-end: calc(100% - 0px);"
+        role="img"
+        style="inset-inline-start: calc(0% + 0px); inset-inline-end: calc(100% - 0px); inline-size: calc(0% + 0px);"
       />
-      <span
+      <svg
+        aria-hidden="true"
         class="euiRangeLevel emotion-euiRangeLevel-success"
-        style="inset-inline-start: calc(0% + 0px); inset-inline-end: calc(100% - 0px);"
+        role="img"
+        style="inset-inline-start: calc(0% + 0px); inset-inline-end: calc(100% - 0px); inline-size: calc(0% + 0px);"
+      />
+      <svg
+        aria-hidden="true"
+        class="euiRangeLevels__overlay emotion-euiRangeLevels__overlay"
+        role="img"
       />
     </div>
     <input
@@ -129,13 +138,17 @@ exports[`EuiDualRange props levels renders levels when levels prop is set 1`] = 
           class="emotion-euiRangeLevels-euiRangeHighlight__levels"
           style="inset-inline-start: -0px; inline-size: 0px;"
         >
-          <span
+          <svg
+            aria-hidden="true"
             class="euiRangeLevel emotion-euiRangeLevel-danger"
-            style="inset-inline-start: calc(0% + 0px); inset-inline-end: calc(100% - 0px);"
+            role="img"
+            style="inset-inline-start: calc(0% + 0px); inset-inline-end: calc(100% - 0px); inline-size: calc(0% + 0px);"
           />
-          <span
+          <svg
+            aria-hidden="true"
             class="euiRangeLevel emotion-euiRangeLevel-success"
-            style="inset-inline-start: calc(0% + 0px); inset-inline-end: calc(100% - 0px);"
+            role="img"
+            style="inset-inline-start: calc(0% + 0px); inset-inline-end: calc(100% - 0px); inline-size: calc(0% + 0px);"
           />
         </div>
       </div>

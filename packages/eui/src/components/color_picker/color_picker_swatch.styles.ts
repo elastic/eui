@@ -16,21 +16,28 @@ import {
 } from '../../global_styling';
 
 export const euiColorPickerSwatchStyles = (euiThemeContext: UseEuiTheme) => {
-  const { euiTheme } = euiThemeContext;
+  const { euiTheme, highContrastMode } = euiThemeContext;
 
   return {
     euiColorPickerSwatch: css`
-      display: inline-block;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       ${logicalSizeCSS(euiTheme.size.l)}
+      overflow: hidden;
 
       border-radius: ${mathWithUnits(
         euiTheme.border.radius.medium,
         (x) => x / 2
       )};
-      border: ${euiTheme.border.width.thin} solid
-        ${transparentize(euiTheme.colors.fullShade, 0.1)};
-      box-shadow: inset 0 0 0 ${euiTheme.border.width.thin}
-        ${transparentize(euiTheme.colors.emptyShade, 0.05)};
+      ${highContrastMode
+        ? `border: ${euiTheme.border.thin};`
+        : `
+          border: ${euiTheme.border.width.thin} solid
+            ${transparentize(euiTheme.colors.fullShade, 0.1)};
+          box-shadow: inset 0 0 0 ${euiTheme.border.width.thin}
+            ${transparentize(euiTheme.colors.emptyShade, 0.05)};
+        `}
       cursor: pointer;
 
       &:disabled {
@@ -40,6 +47,10 @@ export const euiColorPickerSwatchStyles = (euiThemeContext: UseEuiTheme) => {
       /* Focus ring gets slightly cut off if not offset to the center */
       &:focus {
         ${euiOutline(euiThemeContext, 'center')}
+      }
+
+      svg {
+        pointer-events: none;
       }
     `,
   };

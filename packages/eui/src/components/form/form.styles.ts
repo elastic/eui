@@ -6,6 +6,7 @@
  * Side Public License, v 1.
  */
 
+import { keyframes } from '@emotion/css';
 import {
   UseEuiTheme,
   shade,
@@ -29,7 +30,7 @@ export const euiFormMaxWidth = ({ euiTheme }: UseEuiTheme) =>
   mathWithUnits(euiTheme.size.base, (x) => x * 25);
 
 export const euiFormVariables = (euiThemeContext: UseEuiTheme) => {
-  const { euiTheme, colorMode } = euiThemeContext;
+  const { euiTheme, colorMode, highContrastMode } = euiThemeContext;
   const isColorDark = colorMode === 'DARK';
   const backgroundColor = isColorDark
     ? shade(euiTheme.colors.lightestShade, 0.4)
@@ -48,6 +49,9 @@ export const euiFormVariables = (euiThemeContext: UseEuiTheme) => {
     controlCompressedBorderRadius: euiTheme.border.radius.small,
     iconAffordance: mathWithUnits(euiTheme.size.base, (x) => x * 1.5),
     iconCompressedAffordance: mathWithUnits(euiTheme.size.m, (x) => x * 1.5),
+    stateUnderlineHeight: highContrastMode
+      ? mathWithUnits(euiTheme.border.width.thick, (x) => x * 2)
+      : euiTheme.border.width.thick,
   };
 
   const colors = {
@@ -55,12 +59,14 @@ export const euiFormVariables = (euiThemeContext: UseEuiTheme) => {
     backgroundColor: backgroundColor,
     backgroundDisabledColor: darken(euiTheme.colors.lightestShade, 0.05),
     backgroundReadOnlyColor: euiTheme.colors.emptyShade,
-    borderColor: transparentize(
-      colorMode === 'DARK'
-        ? euiTheme.colors.ghost
-        : darken(euiTheme.border.color, 4),
-      0.1
-    ),
+    borderColor: highContrastMode
+      ? euiTheme.border.color
+      : transparentize(
+          colorMode === 'DARK'
+            ? euiTheme.colors.ghost
+            : darken(euiTheme.border.color, 4),
+          0.1
+        ),
     controlDisabledColor: euiTheme.colors.mediumShade,
     controlBoxShadow: '0 0 transparent',
     controlPlaceholderText: makeHighContrastColor(euiTheme.colors.subduedText)(
@@ -100,6 +106,7 @@ export const euiFormVariables = (euiThemeContext: UseEuiTheme) => {
 };
 
 export const euiFormControlStyles = (euiThemeContext: UseEuiTheme) => {
+  const { highContrastMode } = euiThemeContext;
   const form = euiFormVariables(euiThemeContext);
 
   return {
@@ -139,7 +146,7 @@ export const euiFormControlStyles = (euiThemeContext: UseEuiTheme) => {
     // In group
     inGroup: `
       ${logicalCSS('height', '100%')}
-      box-shadow: none;
+      ${highContrastMode ? 'border: none' : 'box-shadow: none'};
       border-radius: 0;
     `,
 
@@ -193,14 +200,16 @@ export const euiFormControlDefaultShadow = (
     withBackgroundAnimation?: boolean;
   } = {}
 ) => {
-  const { euiTheme } = euiThemeContext;
+  const { euiTheme, highContrastMode } = euiThemeContext;
   const form = euiFormVariables(euiThemeContext);
 
   // We use inset box-shadow instead of border to skip extra height calculations
-  const border = `
+  const border = !highContrastMode
+    ? `
     border: none;
     box-shadow: inset 0 0 0 ${euiTheme.border.width.thin} ${form.borderColor};
-  `.trim();
+  `.trim()
+    : `border: ${euiTheme.border.width.thin} solid ${euiTheme.border.color};`;
 
   const backgroundColor = `
     background-color: ${form.backgroundColor};
@@ -211,8 +220,8 @@ export const euiFormControlDefaultShadow = (
     background-size: 0% 100%;
     background-image: linear-gradient(to top,
       var(--euiFormControlStateColor),
-      var(--euiFormControlStateColor) ${euiTheme.border.width.thick},
-      transparent ${euiTheme.border.width.thick},
+      var(--euiFormControlStateColor) ${form.stateUnderlineHeight},
+      transparent ${form.stateUnderlineHeight},
       transparent 100%
     );
   `.trim();
@@ -234,24 +243,31 @@ export const euiFormControlDefaultShadow = (
   `;
 };
 
-export const euiFormControlFocusStyles = ({
-  euiTheme,
-  colorMode,
-}: UseEuiTheme) => `
-  --euiFormControlStateColor: ${euiTheme.colors.primary};
-  background-color: ${
-    colorMode === 'DARK'
-      ? shade(euiTheme.colors.emptyShade, 0.4)
-      : euiTheme.colors.emptyShade
-  };
-  background-size: 100% 100%;
-  outline: none; /* Remove all outlines and rely on our own bottom border gradient */
-`;
+export const euiFormControlFocusStyles = (euiThemeContext: UseEuiTheme) => {
+  const { euiTheme, colorMode } = euiThemeContext;
+  const focusColor = euiTheme.colors.primary;
+  return `
+    --euiFormControlStateColor: ${focusColor};
+    background-color: ${
+      colorMode === 'DARK'
+        ? shade(euiTheme.colors.emptyShade, 0.4)
+        : euiTheme.colors.emptyShade
+    };
+    background-size: 100% 100%;
+    outline: none; /* Remove all outlines and rely on our own bottom border gradient */
+    ${euiFormControlHighContrastFallback(euiThemeContext, focusColor)}
+  `;
+};
 
-export const euiFormControlInvalidStyles = ({ euiTheme }: UseEuiTheme) => `
-  --euiFormControlStateColor: ${euiTheme.colors.danger};
-  background-size: 100% 100%;
-`;
+export const euiFormControlInvalidStyles = (euiThemeContext: UseEuiTheme) => {
+  const { euiTheme } = euiThemeContext;
+  const invalidColor = euiTheme.colors.danger;
+  return `
+    --euiFormControlStateColor: ${invalidColor};
+    background-size: 100% 100%;
+    ${euiFormControlHighContrastFallback(euiThemeContext, invalidColor)}
+  `;
+};
 
 export const euiFormControlDisabledStyles = (euiThemeContext: UseEuiTheme) => {
   const form = euiFormVariables(euiThemeContext);
@@ -319,6 +335,39 @@ export const euiFormControlAutoFillStyles = (euiThemeContext: UseEuiTheme) => {
   `;
 };
 
+const euiFormControlHighContrastFallback = (
+  euiThemeContext: UseEuiTheme,
+  color: string
+) => {
+  if (!euiThemeContext.highContrastMode) return '';
+
+  const { stateUnderlineHeight, animationTiming } =
+    euiFormVariables(euiThemeContext);
+
+  // Windows high contrast themes ignore all background-images that aren't url-based,
+  // so to restore the linear-gradient that provides important visual information, we're
+  // using a static inline SVG workaround
+  const fill = encodeURIComponent(color);
+  const inlineSVG = `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='100%25' height='100%25' fill='${fill}' /%3E%3C/svg%3E`;
+
+  return `
+    @media (forced-colors: active) {
+      background-size: 100% ${stateUnderlineHeight};
+      background-position: bottom left;
+      background-origin: border-box;
+      background-image: url("${inlineSVG}");
+    }
+    /* Override the default transition with an animation, since we have to use a static height */
+    @media (forced-colors: active) and (prefers-reduced-motion: no-preference) {
+      transition: none;
+      animation: ${keyframes`
+        from { background-size: 0% ${stateUnderlineHeight}; }
+        to { background-size: 100% ${stateUnderlineHeight}; }
+      `} ${animationTiming} 1 forwards;
+    }
+  `;
+};
+
 const euiPlaceholderPerBrowser = (content: string) => `
   &::-webkit-input-placeholder { ${content} }
   &::-moz-placeholder { ${content} }
@@ -332,7 +381,7 @@ const euiPlaceholderPerBrowser = (content: string) => `
  */
 
 export const euiFormCustomControlVariables = (euiThemeContext: UseEuiTheme) => {
-  const { euiTheme, colorMode } = euiThemeContext;
+  const { euiTheme, colorMode, highContrastMode } = euiThemeContext;
 
   const sizes = {
     control: euiTheme.size.base,
@@ -342,10 +391,11 @@ export const euiFormCustomControlVariables = (euiThemeContext: UseEuiTheme) => {
 
   const colors = {
     unselected: euiTheme.colors.emptyShade,
-    unselectedBorder:
-      colorMode === 'DARK'
-        ? tint(euiTheme.colors.lightestShade, 0.31) // WCAG AA requirements
-        : shade(euiTheme.colors.lightestShade, 0.4),
+    unselectedBorder: highContrastMode
+      ? euiTheme.border.color
+      : colorMode === 'DARK'
+      ? tint(euiTheme.colors.lightestShade, 0.31) // WCAG AA requirements
+      : shade(euiTheme.colors.lightestShade, 0.4),
     selected: euiTheme.colors.primary,
     selectedIcon: euiTheme.colors.emptyShade,
     disabled: euiTheme.colors.lightShade,
@@ -366,7 +416,7 @@ export const euiFormCustomControlVariables = (euiThemeContext: UseEuiTheme) => {
 };
 
 export const euiFormCustomControlStyles = (euiThemeContext: UseEuiTheme) => {
-  const { euiTheme } = euiThemeContext;
+  const { euiTheme, highContrastMode } = euiThemeContext;
   const controlVars = euiFormCustomControlVariables(euiThemeContext);
 
   const centerWithLabel = mathWithUnits(
@@ -387,6 +437,8 @@ export const euiFormCustomControlStyles = (euiThemeContext: UseEuiTheme) => {
         display: flex;
         justify-content: center;
         align-items: center;
+        /* For Windows high contrast themes, a border must always be rendered, not just a background */
+        border: ${euiTheme.border.width.thin} solid transparent;
 
         &:has(input:focus-visible) {
           outline: ${euiTheme.focus.width} solid ${controlVars.colors.selected};
@@ -409,11 +461,12 @@ export const euiFormCustomControlStyles = (euiThemeContext: UseEuiTheme) => {
         selected: `
           color: ${controlVars.colors.selectedIcon};
           background-color: ${controlVars.colors.selected};
+          border-color: ${controlVars.colors.selected};
         `,
         unselected: `
           color: transparent;
           background-color: ${controlVars.colors.unselected};
-          border: ${euiTheme.border.width.thin} solid ${controlVars.colors.unselectedBorder};
+          border-color: ${controlVars.colors.unselectedBorder};
 
           &:has(input:focus) {
             border-color: ${controlVars.colors.selected};
@@ -421,17 +474,29 @@ export const euiFormCustomControlStyles = (euiThemeContext: UseEuiTheme) => {
         `,
       },
       disabled: {
-        selected: `
-          label: disabled;
-          color: ${controlVars.colors.disabledIcon};
-          background-color: ${controlVars.colors.disabled};
-        `,
-        unselected: `
-          label: disabled;
-          color: ${controlVars.colors.disabled};
-          background-color: ${controlVars.colors.disabled};
-          cursor: not-allowed;
-        `,
+        get shared() {
+          const borderColor = highContrastMode
+            ? controlVars.colors.disabledIcon
+            : controlVars.colors.disabled;
+          return `
+            label: disabled;
+            cursor: not-allowed;
+            background-color: ${controlVars.colors.disabled};
+            border-color: ${borderColor};
+          `;
+        },
+        get selected() {
+          return `
+            ${this.shared}
+            color: ${controlVars.colors.disabledIcon};
+          `;
+        },
+        get unselected() {
+          return `
+            ${this.shared}
+            color: ${controlVars.colors.disabled};
+          `;
+        },
       },
 
       // Looks better centered at different zoom levels than just <EuiIcon size="s" />

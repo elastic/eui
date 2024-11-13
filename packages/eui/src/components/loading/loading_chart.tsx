@@ -23,7 +23,7 @@ export const SIZES = ['m', 'l', 'xl'] as const;
 export type EuiLoadingChartSize = (typeof SIZES)[number];
 
 export type EuiLoadingChartProps = CommonProps &
-  HTMLAttributes<HTMLDivElement> & {
+  HTMLAttributes<HTMLSpanElement> & {
     size?: EuiLoadingChartSize;
     mono?: boolean;
   };
@@ -58,7 +58,9 @@ export const EuiLoadingChart: FunctionComponent<EuiLoadingChartProps> = ({
       {...rest}
     >
       {Array.from({ length: BARS_COUNT }, (_, index) => (
-        <span key={index} css={barCssStyles} />
+        // Windows high contrast themes ignore background-color on all elements except svgs
+        // We're using the element here as shortcut (+ b/c loading logos are already SVGs)
+        <svg key={index} css={barCssStyles} aria-hidden />
       ))}
     </span>
   );

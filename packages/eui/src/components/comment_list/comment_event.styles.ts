@@ -25,10 +25,16 @@ export const euiCommentEventStyles = (euiThemeContext: UseEuiTheme) => {
 };
 
 export const euiCommentEventHeaderStyles = (euiThemeContext: UseEuiTheme) => {
-  const { euiTheme } = euiThemeContext;
+  const { euiTheme, highContrastMode } = euiThemeContext;
 
   return {
-    euiCommentEvent__header: css``,
+    euiCommentEvent__header: highContrastMode // Remove duplicate high contrast panel borders
+      ? css`
+          & > .euiPanel {
+            border: none;
+          }
+        `
+      : css``,
     border: css`
       ${logicalCSS('border-bottom-style', 'solid')}
       ${logicalCSS('border-bottom-width', euiTheme.border.width.thin)}

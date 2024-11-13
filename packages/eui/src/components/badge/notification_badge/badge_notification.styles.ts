@@ -20,14 +20,18 @@ import { euiBadgeColors } from '../color_utils';
 export const euiNotificationBadgeStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
   const badgeColors = euiBadgeColors(euiThemeContext);
+  const borderWidth = euiTheme.border.width.thin;
 
   return {
     euiNotificationBadge: css`
       flex-shrink: 0; /* Ensures it never scales down below its intended size */
-      display: inline-block;
-      vertical-align: middle;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
       ${logicalCSS('padding-horizontal', euiTheme.size.xs)}
       border-radius: ${euiTheme.border.radius.small};
+      border: ${borderWidth} solid transparent;
+      overflow: hidden; /* This fixes border shenanigans in Windows high contrast themes */
       cursor: default;
 
       font-size: ${euiFontSizeFromScale('xs', euiTheme)};
@@ -41,12 +45,10 @@ export const euiNotificationBadgeStyles = (euiThemeContext: UseEuiTheme) => {
     `,
     // Sizes
     s: css`
-      line-height: ${euiTheme.size.base};
       ${logicalCSS('height', euiTheme.size.base)}
       ${logicalCSS('min-width', euiTheme.size.base)}
     `,
     m: css`
-      line-height: ${mathWithUnits(euiTheme.size.xs, (x) => x + euiTheme.base)};
       ${logicalCSS(
         'height',
         mathWithUnits(euiTheme.size.xs, (x) => x + euiTheme.base)

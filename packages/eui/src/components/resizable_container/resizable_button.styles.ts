@@ -12,12 +12,18 @@ import { UseEuiTheme, transparentize } from '../../services';
 import { logicalCSS, mathWithUnits, euiCanAnimate } from '../../global_styling';
 
 export const euiResizableButtonStyles = (euiThemeContext: UseEuiTheme) => {
-  const { euiTheme } = euiThemeContext;
+  const { euiTheme, highContrastMode } = euiThemeContext;
 
   const buttonSize = euiTheme.size.base;
   const negativeMargin = mathWithUnits(buttonSize, (x) => x / -2);
   const grabHandleWidth = euiTheme.size.m;
-  const grabHandleHeight = euiTheme.border.width.thin;
+
+  const borderWidth = highContrastMode
+    ? mathWithUnits(euiTheme.border.width.thin, (x) => x * 1.5)
+    : euiTheme.border.width.thin;
+  const borderWidthActive = highContrastMode
+    ? mathWithUnits(euiTheme.border.width.thin, (x) => x * 2)
+    : euiTheme.border.width.thin;
 
   const transitionSpeed = euiTheme.animation.fast;
   const transition = `${transitionSpeed} ease`;
@@ -27,6 +33,7 @@ export const euiResizableButtonStyles = (euiThemeContext: UseEuiTheme) => {
     // 1. The "grab" handle transforms into a thicker straight line on :hover and :focus
     // 2. Start/end aligned grab handles should have a slight margin offset that disappears on hover/focus
     // 3. CSS hack to smooth out/anti-alias the 1px wide handles at various zoom levels
+    // 4. We use `border`s instead of `background-color` to support Windows high contrast themes
     euiResizableButton: css`
       z-index: 1;
       flex-shrink: 0;
@@ -41,10 +48,12 @@ export const euiResizableButtonStyles = (euiThemeContext: UseEuiTheme) => {
       &::after {
         content: '';
         display: block;
+        border-style: solid; /* 4 */
+        border-width: 0;
 
         ${euiCanAnimate} {
           transition: width ${transition}, height ${transition},
-            margin ${transition}, background-color ${transition};
+            margin ${transition}, border ${transition};
         }
       }
 
@@ -52,7 +61,7 @@ export const euiResizableButtonStyles = (euiThemeContext: UseEuiTheme) => {
       &:hover {
         &::before,
         &::after {
-          background-color: ${euiTheme.colors.mediumShade};
+          border-color: ${euiTheme.colors.mediumShade}; /* 4 */
         }
       }
 
@@ -64,9 +73,9 @@ export const euiResizableButtonStyles = (euiThemeContext: UseEuiTheme) => {
 
         &::before,
         &::after {
-          background-color: ${euiTheme.colors.primary};
+          border-color: ${euiTheme.colors.primary}; /* 4 */
 
-          /* Overrides default transition so that "grab" background-color doesn't animate */
+          /* Overrides default transition so that the "grab" border-color doesn't animate */
           ${euiCanAnimate} {
             transition: width ${transition}, height ${transition};
             transition-delay: ${mathWithUnits(transitionSpeed, (x) => x / 2)};
@@ -103,13 +112,13 @@ export const euiResizableButtonStyles = (euiThemeContext: UseEuiTheme) => {
     border: css`
       &::before,
       &::after {
-        background-color: ${euiTheme.border.color};
+        border-color: ${euiTheme.border.color}; /* 4 */
       }
     `,
     borderDirection: {
       horizontal: css`
         &::before {
-          ${logicalCSS('width', euiTheme.border.width.thin)}
+          ${logicalCSS('border-left-width', borderWidth)} /* 4 */
           ${logicalCSS('height', '100%')}
         }
 
@@ -117,14 +126,14 @@ export const euiResizableButtonStyles = (euiThemeContext: UseEuiTheme) => {
         &:focus,
         &:active {
           &::after {
-            ${logicalCSS('width', euiTheme.border.width.thin)}
+            ${logicalCSS('border-left-width', borderWidthActive)} /* 4 */
             ${logicalCSS('height', '100%')}
           }
         }
       `,
       vertical: css`
         &::before {
-          ${logicalCSS('height', euiTheme.border.width.thin)}
+          ${logicalCSS('border-top-width', borderWidth)} /* 4 */
           ${logicalCSS('width', '100%')}
         }
 
@@ -132,7 +141,7 @@ export const euiResizableButtonStyles = (euiThemeContext: UseEuiTheme) => {
         &:focus,
         &:active {
           &::after {
-            ${logicalCSS('height', euiTheme.border.width.thin)}
+            ${logicalCSS('border-top-width', borderWidthActive)} /* 4 */
             ${logicalCSS('width', '100%')}
           }
         }
@@ -140,7 +149,7 @@ export const euiResizableButtonStyles = (euiThemeContext: UseEuiTheme) => {
     },
 
     handle: css`
-      gap: ${mathWithUnits(grabHandleHeight, (x) => x * 2)};
+      gap: ${mathWithUnits(borderWidth, (x) => x * 2)};
 
       /* 1 */
       &:hover,
@@ -155,7 +164,7 @@ export const euiResizableButtonStyles = (euiThemeContext: UseEuiTheme) => {
 
       &::before,
       &::after {
-        background-color: ${euiTheme.colors.darkestShade};
+        border-color: ${euiTheme.colors.darkestShade}; /* 4 */
         transform: translateZ(0); /* 3 */
       }
 
@@ -174,7 +183,7 @@ export const euiResizableButtonStyles = (euiThemeContext: UseEuiTheme) => {
       horizontal: css`
         &::before,
         &::after {
-          ${logicalCSS('width', grabHandleHeight)}
+          ${logicalCSS('border-left-width', borderWidth)} /* 4 */
           ${logicalCSS('height', grabHandleWidth)}
           margin-block: ${euiTheme.size.base}; /* 2 */
         }
@@ -185,6 +194,7 @@ export const euiResizableButtonStyles = (euiThemeContext: UseEuiTheme) => {
         &:active {
           &::before,
           &::after {
+            ${logicalCSS('border-left-width', borderWidthActive)} /* 4 */
             ${logicalCSS('height', '100%')}
             margin-block: 0; /* 2 */
             transform: none; /* 3 */
@@ -194,7 +204,7 @@ export const euiResizableButtonStyles = (euiThemeContext: UseEuiTheme) => {
       vertical: css`
         &::before,
         &::after {
-          ${logicalCSS('height', grabHandleHeight)}
+          ${logicalCSS('border-top-width', borderWidth)} /* 4 */
           ${logicalCSS('width', grabHandleWidth)}
           margin-inline: ${euiTheme.size.base}; /* 2 */
         }
@@ -205,6 +215,7 @@ export const euiResizableButtonStyles = (euiThemeContext: UseEuiTheme) => {
         &:active {
           &::before,
           &::after {
+            ${logicalCSS('border-top-width', borderWidthActive)} /* 4 */
             ${logicalCSS('width', '100%')}
             margin-inline: 0; /* 2 */
             transform: none; /* 3 */

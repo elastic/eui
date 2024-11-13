@@ -15,7 +15,6 @@ import {
   EuiFlexGroup,
   EuiFlexItem,
   EuiCard,
-  EuiPanel,
   EuiSpacer,
 } from '../../../../src/components';
 
@@ -281,71 +280,55 @@ export const ButtonExample = {
         <>
           <EuiSpacer size="xl" />
           <EuiFlexGroup wrap>
-            <EuiFlexItem>
-              <EuiCard
-                hasBorder
-                href="#/navigation/button#basic-button"
-                image={
-                  <EuiPanel color="subdued" borderRadius="none">
-                    <EuiPanel color="subdued">
-                      <EuiButton fill>Primary action</EuiButton>
-                    </EuiPanel>
-                  </EuiPanel>
-                }
-                title="EuiButton"
-                titleSize="xs"
-              />
-            </EuiFlexItem>
-            <EuiFlexItem>
-              <EuiCard
-                hasBorder
-                href="#/navigation/button#basic-button"
-                image={
-                  <EuiPanel color="subdued" borderRadius="none">
-                    <EuiPanel color="subdued">
-                      <EuiButton>Secondary action</EuiButton>
-                    </EuiPanel>
-                  </EuiPanel>
-                }
-                title="EuiButton"
-                titleSize="xs"
-              />
-            </EuiFlexItem>
-            <EuiFlexItem>
-              <EuiCard
-                hasBorder
-                href="#/navigation/button#empty-button"
-                image={
-                  <EuiPanel color="subdued" borderRadius="none">
-                    <EuiPanel color="subdued">
-                      <EuiButtonEmpty>Tertiary action</EuiButtonEmpty>
-                    </EuiPanel>
-                  </EuiPanel>
-                }
-                title="EuiButtonEmpty"
-                titleSize="xs"
-              />
-            </EuiFlexItem>
-            <EuiFlexItem>
-              <EuiCard
-                hasBorder
-                href="#/navigation/button#icon-buttons"
-                image={
-                  <EuiPanel color="subdued" borderRadius="none">
-                    <EuiPanel color="subdued">
-                      <EuiButtonIcon
-                        display="base"
-                        size="m"
-                        iconType="refresh"
-                        aria-label="Button icon example with refresh icon"
-                      />
-                    </EuiPanel>
-                  </EuiPanel>
-                }
-                title="EuiButtonIcon"
-                titleSize="xs"
-              />
-            </EuiFlexItem>
+            {[
+              {
+                title: 'EuiButton',
+                children: <EuiButton fill>Primary action</EuiButton>,
+                href: '#/navigation/button#basic-button',
+              },
+              {
+                title: 'EuiButton',
+                children: <EuiButton>Secondary action</EuiButton>,
+                href: '#/navigation/button#basic-button',
+              },
+              {
+                title: 'EuiButtonEmpty',
+                children: <EuiButtonEmpty>Tertiary action</EuiButtonEmpty>,
+                href: '#/navigation/button#empty-button',
+              },
+              {
+                title: 'EuiButtonIcon',
+                children: (
+                  <EuiButtonIcon
+                    display="base"
+                    size="m"
+                    iconType="refresh"
+                    aria-label="Button icon example with refresh icon"
+                  />
+                ),
+                href: '#/navigation/button#icon-buttons',
+              },
+              // eslint-disable-next-line local/href-with-rel
+            ].map(({ title, children, href }) => (
+              <EuiFlexItem>
+                <EuiCard
+                  hasBorder
+                  href={href}
+                  image={
+                    <div
+                      css={({ euiTheme }) => ({
+                        backgroundColor: euiTheme.colors.body,
+                        padding: euiTheme.size.xl,
+                      })}
+                    >
+                      {children}
+                    </div>
+                  }
+                  title={title}
+                  titleSize="xs"
+                />
+              </EuiFlexItem>
+            ))}
           </EuiFlexGroup>
         </>
       ),

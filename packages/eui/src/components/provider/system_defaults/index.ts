@@ -6,4 +6,4 @@
  * Side Public License, v 1.
  */
 
-export { EuiSystemColorModeProvider } from './system_color_mode_provider';
+export { EuiSystemDefaultsProvider } from './system_defaults_provider';

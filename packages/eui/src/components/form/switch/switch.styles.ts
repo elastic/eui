@@ -20,12 +20,14 @@ import {
 import { euiFormCustomControlVariables } from '../form.styles';
 
 const euiSwitchVars = (euiThemeContext: UseEuiTheme) => {
-  const { euiTheme } = euiThemeContext;
+  const { euiTheme, highContrastMode } = euiThemeContext;
   const formVars = euiFormCustomControlVariables(euiThemeContext);
 
   const colors = {
     on: formVars.colors.selected,
-    off: formVars.colors.unselectedBorder,
+    off: highContrastMode
+      ? euiTheme.colors.darkShade
+      : formVars.colors.unselectedBorder,
     disabled: formVars.colors.disabled,
     thumb: formVars.colors.selectedIcon,
     thumbBorder: formVars.colors.unselectedBorder,
@@ -142,7 +144,10 @@ const buttonStyles = (
   };
 };
 
-const bodyStyles = ({ colorMode }: UseEuiTheme, { colors }: EuiSwitchVars) => {
+const bodyStyles = (
+  { colorMode, highContrastMode, euiTheme }: UseEuiTheme,
+  { colors }: EuiSwitchVars
+) => {
   // This is probably very extra, but the visual weight of the default
   // disabled custom control feels different in light mode depending
   // on the size of the switch, so I'm tinting it based on that.
@@ -161,6 +166,10 @@ const bodyStyles = ({ colorMode }: UseEuiTheme, { colors }: EuiSwitchVars) => {
       overflow: hidden;
       border-radius: inherit;
       pointer-events: none; /* Required for Kibana's Selenium driver to be able to click switches in FTR tests */
+      ${highContrastMode
+        ? // For Windows high contrast themes, a border *must* be rendered, not just a background
+          `border: ${euiTheme.border.width.thin} solid transparent;`
+        : ''}
     `,
     on: css`
       background-color: ${colors.on};
@@ -213,7 +222,10 @@ const iconStyles = (
   };
 };
 
-const thumbStyles = ({ euiTheme }: UseEuiTheme, switchVars: EuiSwitchVars) => {
+const thumbStyles = (
+  { euiTheme, highContrastMode }: UseEuiTheme,
+  switchVars: EuiSwitchVars
+) => {
   const { sizes, colors, animation } = switchVars;
   const { uncompressed, compressed, mini } = sizes;
 
@@ -256,6 +268,14 @@ const thumbStyles = ({ euiTheme }: UseEuiTheme, switchVars: EuiSwitchVars) => {
       ${logicalCSS('left', 0)}
     `,
     get on() {
+      const _sizeBasedCss = (bodyWidth: string, thumbWidth: string) => {
+        return css`
+          label: on;
+          ${_calculateLeft(bodyWidth, thumbWidth)}
+          ${_highContrastOn(thumbWidth)}
+        `;
+      };
+
       // right: 0 works but doesn't transition/animate, so we need to
       // manually calculate the left position per switch size
       const _calculateLeft = (bodyWidth: string, thumbWidth: string) => {
@@ -263,15 +283,31 @@ const thumbStyles = ({ euiTheme }: UseEuiTheme, switchVars: EuiSwitchVars) => {
           [bodyWidth, thumbWidth],
           (x, y) => x - y
         );
-        return css`
-          label: on;
-          ${logicalCSS('left', leftPosition)}
-        `;
+        return logicalCSS('left', leftPosition);
       };
+
+      // Windows high contrast themes ignore background-color, making on vs. off state (for
+      // sizes without icons) impossible to distinguish without this pseudo border workaround
+      const _highContrastOn = (thumbWidth: string) => {
+        if (highContrastMode) {
+          const borderSize = mathWithUnits(thumbWidth, (x) => x / 2);
+          return `
+            overflow: hidden;
+            &::after {
+              content: '';
+              position: absolute;
+              inset: 0;
+              border-radius: 50%;
+              border: ${borderSize} solid ${colors.thumb};
+            }
+          `;
+        }
+      };
+
       return {
-        uncompressed: _calculateLeft(uncompressed.width, uncompressed.height),
-        compressed: _calculateLeft(compressed.width, compressed.height),
-        mini: _calculateLeft(mini.width, mini.height),
+        uncompressed: _sizeBasedCss(uncompressed.width, uncompressed.height),
+        compressed: _sizeBasedCss(compressed.width, compressed.height),
+        mini: _sizeBasedCss(mini.width, mini.height),
       };
     },
 
