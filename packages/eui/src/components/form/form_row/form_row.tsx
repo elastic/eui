@@ -35,7 +35,8 @@ export const DISPLAYS = [
   'center',
   'centerCompressed',
   /**
-   * @deprecated
+   * This currently does not affect styles/appearances
+   * in EUI's present primary theme, but may in the future.
    */
   'rowCompressed',
 ] as const;
