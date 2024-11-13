@@ -72,7 +72,7 @@ to have version-specific search experience without the need to run
 a search server.
 
 Because the search index is generated in build time, it means that
-searching is not possible when running the development sever.
+searching is not possible when running the development server.
 Please refer to the [Building the website](#building-the-website) section
 to learn how to build the documentation site locally
 and serve it to use local search.
