@@ -12,6 +12,7 @@
 
 import React, { useState } from 'react';
 import { EuiDataGrid, EuiDataGridProps } from '../../index';
+import { EuiModal, EuiModalBody } from '../../../modal';
 
 describe('draggable columns', () => {
   const columns = [
@@ -282,6 +283,42 @@ describe('draggable columns', () => {
       });
       cy.get('[data-test-subj=dataGridHeaderCell-a]').should('have.focus');
       cy.get('[data-popover-open]').should('not.exist');
+    });
+  });
+
+  describe('inside a modal', () => {
+    it('should execute column actions on click', () => {
+      cy.realMount(
+        <EuiModal onClose={() => {}}>
+          <EuiModalBody>
+            <StatefulDataGrid />
+          </EuiModalBody>
+        </EuiModal>
+      );
+
+      cy.get('[data-test-subj=dataGridHeaderCell-a]').realHover();
+      cy.wait(50); // wait until actions button transition is progressed enough for the button to be clickable
+      cy.get('[data-test-subj=dataGridHeaderCellActionButton-a]').realClick();
+      cy.get('[data-popover-open]').should('have.focus');
+
+      cy.get(
+        '.euiListGroupItem:last-child .euiListGroupItem__button'
+      ).realClick();
+
+      cy.get('[data-test-subj=dataGridHeaderCell-a]').should(
+        'have.attr',
+        'data-gridcell-column-index',
+        '1'
+      );
+      cy.get('[data-test-subj=dataGridHeaderCell-b]').should(
+        'have.attr',
+        'data-gridcell-column-index',
+        '0'
+      );
+
+      cy.get('[data-test-subj=euiDataGridHeaderColumnActions]').should(
+        'not.exist'
+      );
     });
   });
 });
