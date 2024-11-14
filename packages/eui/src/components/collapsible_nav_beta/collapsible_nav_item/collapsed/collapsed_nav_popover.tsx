@@ -49,6 +49,17 @@ export const EuiCollapsedNavPopover: FunctionComponent<
   );
   const closePopover = useCallback(() => setIsPopoverOpen(false), []);
 
+  const closePopoverAndClearFocus = useCallback(() => {
+    closePopover();
+
+    setTimeout(() => {
+      if (document.activeElement instanceof HTMLElement) {
+        // We don't want the tooltip to appear after closing the popover
+        document.activeElement.blur();
+      }
+    }, 10);
+  }, [closePopover]);
+
   const withOnClick = (
     item: EuiCollapsibleNavSubItemProps
   ): EuiCollapsibleNavSubItemProps => {
@@ -75,15 +86,7 @@ export const EuiCollapsedNavPopover: FunctionComponent<
         if (rest.onClick) {
           rest.onClick(e);
         }
-
-        closePopover();
-
-        setTimeout(() => {
-          if (document.activeElement instanceof HTMLElement) {
-            // We don't want the tooltip to appear after closing the popover
-            document.activeElement.blur();
-          }
-        }, 10);
+        closePopoverAndClearFocus();
       };
     }
 
@@ -126,7 +129,7 @@ export const EuiCollapsedNavPopover: FunctionComponent<
         {items!.map((item, index) => (
           <EuiCollapsibleNavSubItem
             key={index}
-            closePopover={closePopover}
+            closePopover={closePopoverAndClearFocus}
             {...withOnClick(item)}
           />
         ))}

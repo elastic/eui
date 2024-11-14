@@ -11,4 +11,7 @@ export type {
   EuiCollapsibleNavSubItemProps,
 } from './collapsible_nav_item';
 
-export { EuiCollapsibleNavItem } from './collapsible_nav_item';
+export {
+  EuiCollapsibleNavItem,
+  EuiCollapsibleNavSubItem,
+} from './collapsible_nav_item';

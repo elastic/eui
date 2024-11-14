@@ -25,6 +25,7 @@ import {
   EuiCollapsibleNavBetaProps,
   EuiCollapsibleNavItemProps,
 } from './';
+import { EuiCollapsibleNavSubItem } from './collapsible_nav_item';
 
 const meta: Meta<EuiCollapsibleNavBetaProps> = {
   title: 'Navigation/EuiCollapsibleNav (beta)/EuiCollapsibleNavBeta',
@@ -117,6 +118,16 @@ export const Playground: Story = {
                   ],
                 },
               ],
+            },
+            {
+              renderItem: ({ closePopover }) => (
+                <EuiCollapsibleNavSubItem
+                  title="Render item node"
+                  onClick={() => {
+                    closePopover?.();
+                  }}
+                />
+              ),
             },
             ...renderGroup('Content', [
               { title: 'Indices', href: '#' },
