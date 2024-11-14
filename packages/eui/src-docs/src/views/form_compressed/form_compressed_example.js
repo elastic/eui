@@ -93,20 +93,12 @@ export const FormCompressedExample = {
         EuiFormRow,
       },
       demo: <FormHorizontal />,
-      snippet: [
-        `<EuiFormRow
+      snippet: `<EuiFormRow
   label="Text field"
   display="columnCompressed"
 >
   <EuiFieldText compressed />
 </EuiFormRow>`,
-        `<EuiFormRow
-  label="Switch"
-  display="columnCompressedSwitch"
->
-  <EuiSwitch compressed />
-</EuiFormRow>`,
-      ],
     },
     {
       title: 'Contextual help',
