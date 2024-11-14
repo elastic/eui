@@ -1,44 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { faker } from '@faker-js/faker';
 
-import {
-  EuiDataGrid,
-  EuiAvatar,
-  EuiToolTip,
-  EuiButtonIcon,
-  EuiModal,
-  EuiModalBody,
-  EuiButton,
-} from '../../../../../src/components';
-
-const CustomHeaderCell = ({ title }) => (
-  <>
-    <span>{title}</span>
-    <EuiToolTip content="tooltip content">
-      <EuiButtonIcon
-        iconType="questionInCircle"
-        aria-label="Additional information"
-        color="primary"
-      />
-    </EuiToolTip>
-  </>
-);
+import { EuiDataGrid, EuiAvatar } from '../../../../../src/components';
 
 const columns = [
   {
     id: 'avatar',
     initialWidth: 40,
     isResizable: false,
-    actions: false,
   },
   {
     id: 'name',
-    displayAsText: 'Name',
-    display: <CustomHeaderCell title="Name" />,
+    initialWidth: 100,
   },
   {
     id: 'email',
-    display: <CustomHeaderCell title="Email" />,
   },
   {
     id: 'city',
@@ -70,33 +46,42 @@ for (let i = 1; i < 5; i++) {
 }
 
 export default () => {
-  const [isOpen, setOpen] = useState(false);
+  const [pagination, setPagination] = useState({ pageIndex: 0 });
+
   const [visibleColumns, setVisibleColumns] = useState(
     columns.map(({ id }) => id)
   );
 
+  const setPageIndex = useCallback(
+    (pageIndex) =>
+      setPagination((pagination) => ({ ...pagination, pageIndex })),
+    []
+  );
+  const setPageSize = useCallback(
+    (pageSize) =>
+      setPagination((pagination) => ({
+        ...pagination,
+        pageSize,
+        pageIndex: 0,
+      })),
+    []
+  );
+
   return (
-    <>
-      <EuiButton onClick={() => setOpen(!isOpen)}>Toggle modal</EuiButton>
-      {isOpen && (
-        <EuiModal onClose={() => setOpen(false)}>
-          <EuiModalBody>
-            <EuiDataGrid
-              aria-label="DataGrid demonstrating column reordering on drag"
-              columns={columns}
-              columnVisibility={{
-                visibleColumns: visibleColumns,
-                setVisibleColumns: setVisibleColumns,
-                canDragAndDropColumns: true,
-              }}
-              rowCount={data.length}
-              renderCellValue={({ rowIndex, columnId }) =>
-                data[rowIndex][columnId]
-              }
-            />
-          </EuiModalBody>
-        </EuiModal>
-      )}
-    </>
+    <EuiDataGrid
+      aria-label="DataGrid demonstrating column sizing constraints"
+      columns={columns}
+      columnVisibility={{
+        visibleColumns: visibleColumns,
+        setVisibleColumns: setVisibleColumns,
+      }}
+      rowCount={data.length}
+      renderCellValue={({ rowIndex, columnId }) => data[rowIndex][columnId]}
+      pagination={{
+        ...pagination,
+        onChangeItemsPerPage: setPageSize,
+        onChangePage: setPageIndex,
+      }}
+    />
   );
 };
