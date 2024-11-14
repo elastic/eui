@@ -67,18 +67,13 @@ export const EuiCollapsedNavPopover: FunctionComponent<
       return item;
     }
 
-    const { renderItem, href, linkProps, ...rest } = item;
+    const { renderItem, ...rest } = item;
 
     const updatedItem: EuiCollapsibleNavSubItemProps = {
       ...rest,
     };
 
-    if (href || linkProps) {
-      updatedItem.href = href;
-      updatedItem.linkProps = linkProps;
-    } else {
-      updatedItem.items = rest.items ? rest.items?.map(withOnClick) : undefined;
-    }
+    updatedItem.items = rest.items ? rest.items?.map(withOnClick) : undefined;
 
     if (!updatedItem.items) {
       // Only override the onClick if there are no sub-items (leaf node)
