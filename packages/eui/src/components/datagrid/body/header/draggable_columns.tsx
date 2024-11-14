@@ -136,14 +136,13 @@ export const DraggableColumn: FunctionComponent<{
           '[data-focus-lock-disabled="false"]'
         );
         const validOpenFocusTraps = [...openFocusTraps].filter(
-          (focusTrap) =>
-            !focusTrap.querySelector('.euiModal') && // if it's not a modal
-            !focusTrap.contains(e.target as Node) // & if it doesn't contain the target
+          (focusTrap) => !focusTrap.contains(e.currentTarget as Node) // remove containing focus traps (e.g. modals or flyouts)
         );
 
         const shouldDispatchEvent = validOpenFocusTraps.some(
           (focusTrap) =>
-            !!focusTrap && // If there is a focus trap is open
+            !!focusTrap && // If there is a focus trap open
+            !focusTrap.contains(e.target as Node) && // & if it doesn't contain the target
             e.target !== actionsPopoverToggle // & we're not closing the actions popover toggle
         );
 
