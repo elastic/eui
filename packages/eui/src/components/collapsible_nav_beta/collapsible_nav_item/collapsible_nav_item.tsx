@@ -103,7 +103,13 @@ export type EuiCollapsibleNavItemProps = _SharedEuiCollapsibleNavItemProps & {
   >;
 
 export type EuiCollapsibleNavCustomSubItem = {
-  renderItem: () => ReactNode;
+  renderItem: (options: {
+    /**
+     * When the side nav is collapsed, the menu appears in a EuiPopover. Use this handler to close the popover.
+     * If the handler is not defined it means that the side nav is not collapsed.
+     */
+    closePopover?: () => void;
+  }) => ReactNode;
 };
 
 export type EuiCollapsibleNavSubItemProps = ExclusiveUnion<
@@ -226,12 +232,12 @@ export const EuiCollapsibleNavItemTitle: FunctionComponent<
  * or they can simply be more links or accordions
  */
 export const EuiCollapsibleNavSubItem: FunctionComponent<
-  EuiCollapsibleNavSubItemProps
-> = ({ renderItem, className, ...props }) => {
+  EuiCollapsibleNavSubItemProps & { closePopover?: () => void }
+> = ({ renderItem, className, closePopover, ...props }) => {
   const classes = classNames('euiCollapsibleNavSubItem', className);
 
   if (renderItem) {
-    return <>{renderItem()}</>;
+    return <>{renderItem({ closePopover })}</>;
   }
 
   return (

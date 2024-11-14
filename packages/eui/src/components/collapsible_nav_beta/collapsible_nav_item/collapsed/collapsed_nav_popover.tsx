@@ -19,6 +19,7 @@ import {
 import {
   EuiCollapsibleNavSubItem,
   EuiCollapsibleNavItemProps,
+  EuiCollapsibleNavSubItemProps,
 } from '../collapsible_nav_item';
 
 import { EuiCollapsedNavButton } from './collapsed_nav_button';
@@ -47,6 +48,47 @@ export const EuiCollapsedNavPopover: FunctionComponent<
     []
   );
   const closePopover = useCallback(() => setIsPopoverOpen(false), []);
+
+  const withOnClick = (
+    item: EuiCollapsibleNavSubItemProps
+  ): EuiCollapsibleNavSubItemProps => {
+    if (item.renderItem) {
+      return item;
+    }
+
+    const { renderItem, href, linkProps, ...rest } = item;
+
+    const updatedItem: EuiCollapsibleNavSubItemProps = {
+      ...rest,
+    };
+
+    if (href || linkProps) {
+      updatedItem.href = href;
+      updatedItem.linkProps = linkProps;
+    } else {
+      updatedItem.items = rest.items ? rest.items?.map(withOnClick) : undefined;
+    }
+
+    if (!updatedItem.items) {
+      // Only override the onClick if there are no sub-items (leaf node)
+      updatedItem.onClick = (e: React.MouseEvent<HTMLElement>) => {
+        if (rest.onClick) {
+          rest.onClick(e);
+        }
+
+        closePopover();
+
+        setTimeout(() => {
+          if (document.activeElement instanceof HTMLElement) {
+            // We don't want the tooltip to appear after closing the popover
+            document.activeElement.blur();
+          }
+        }, 10);
+      };
+    }
+
+    return updatedItem;
+  };
 
   return (
     <EuiPopover
@@ -82,7 +124,11 @@ export const EuiCollapsedNavPopover: FunctionComponent<
       </EuiPopoverTitle>
       <div css={styles.euiCollapsedNavPopover__items}>
         {items!.map((item, index) => (
-          <EuiCollapsibleNavSubItem key={index} {...item} />
+          <EuiCollapsibleNavSubItem
+            key={index}
+            closePopover={closePopover}
+            {...withOnClick(item)}
+          />
         ))}
       </div>
     </EuiPopover>

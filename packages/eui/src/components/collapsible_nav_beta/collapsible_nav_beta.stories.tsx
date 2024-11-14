@@ -104,6 +104,20 @@ export const Playground: Story = {
               { title: 'Dashboards', href: '#' },
               { title: 'Visualize library', href: '#' },
             ]),
+            {
+              title: 'Machine learning',
+              items: [
+                { title: 'Anomaly detection', href: '#' },
+                { title: 'Data frame analytics', href: '#' },
+                {
+                  title: 'Sub group',
+                  items: [
+                    { title: 'Sub item 1', href: '#' },
+                    { title: 'Sub item 2', href: '#' },
+                  ],
+                },
+              ],
+            },
             ...renderGroup('Content', [
               { title: 'Indices', href: '#' },
               { title: 'Transforms', href: '#' },
