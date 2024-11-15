@@ -31,6 +31,7 @@ import {
   EuiNestedThemeContext,
   EuiModificationsContext,
   EuiColorModeContext,
+  DEFAULTS,
 } from './context';
 import { EuiEmotionThemeProvider } from './emotion';
 import { EuiThemeMemoizedStylesProvider } from './style_memoization';
@@ -102,9 +103,13 @@ export const EuiThemeProvider = <T extends {} = {}>({
   const prevColorMode = useRef(colorMode);
 
   const isParentTheme = useRef(
-    prevSystemKey.current === parentSystem.key &&
-      colorMode === parentColorMode &&
-      isEqual(parentModifications, modifications)
+    isGlobalTheme
+      ? prevSystemKey.current === DEFAULTS.system.key &&
+          colorMode === DEFAULTS.colorMode &&
+          !_modifications
+      : prevSystemKey.current === parentSystem.key &&
+          colorMode === parentColorMode &&
+          isEqual(parentModifications, modifications)
   );
 
   const [theme, setTheme] = useState(

@@ -12,9 +12,9 @@ import { cache as emotionCache } from '@emotion/css';
 import createCache from '@emotion/cache';
 
 import { setEuiDevProviderWarning } from '../../services';
-import { EuiSystemColorModeProvider } from './system_color_mode';
-jest.mock('./system_color_mode', () => ({
-  EuiSystemColorModeProvider: jest.fn(({ children }: any) => children('LIGHT')),
+import { useWindowMediaMatcher } from './system_defaults/match_media_hook';
+jest.mock('./system_defaults/match_media_hook', () => ({
+  useWindowMediaMatcher: jest.fn(),
 }));
 
 import { EuiProvider } from './provider';
@@ -158,10 +158,10 @@ describe('EuiProvider', () => {
     });
 
     describe('colorMode', () => {
-      beforeEach(() => {
-        (EuiSystemColorModeProvider as jest.Mock).mockImplementationOnce(
-          ({ children }) => children('DARK')
-        );
+      beforeAll(() => {
+        (useWindowMediaMatcher as jest.Mock).mockImplementation((media) => {
+          if (media === '(prefers-color-scheme: dark)') return true;
+        });
       });
 
       it('inherits from system color mode by default', () => {

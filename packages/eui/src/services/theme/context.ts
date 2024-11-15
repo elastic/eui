@@ -17,15 +17,24 @@ import {
 import { EuiThemeAmsterdam } from '../../themes/amsterdam/theme';
 import { DEFAULT_COLOR_MODE, getComputed } from './utils';
 
-export const EuiSystemContext =
-  createContext<EuiThemeSystem>(EuiThemeAmsterdam);
-export const EuiModificationsContext = createContext<EuiThemeModifications>({});
-export const EuiColorModeContext =
-  createContext<EuiThemeColorModeStandard>(DEFAULT_COLOR_MODE);
+export const DEFAULTS = {
+  system: EuiThemeAmsterdam,
+  modifications: {},
+  colorMode: DEFAULT_COLOR_MODE,
+};
+
+export const EuiSystemContext = createContext<EuiThemeSystem>(DEFAULTS.system);
+export const EuiModificationsContext = createContext<EuiThemeModifications>(
+  DEFAULTS.modifications
+);
+export const EuiColorModeContext = createContext<EuiThemeColorModeStandard>(
+  DEFAULTS.colorMode
+);
+
 export const defaultComputedTheme = getComputed(
-  EuiThemeAmsterdam,
-  {},
-  DEFAULT_COLOR_MODE
+  DEFAULTS.system,
+  DEFAULTS.modifications,
+  DEFAULTS.colorMode
 );
 export const EuiThemeContext =
   createContext<EuiThemeComputed>(defaultComputedTheme);

@@ -26,7 +26,7 @@ import { EuiUtilityClasses } from '../../global_styling/utility/utility';
 import { EuiThemeAmsterdam } from '../../themes';
 
 import { EuiCacheProvider } from './cache';
-import { EuiSystemColorModeProvider } from './system_color_mode';
+import { EuiSystemDefaultsProvider } from './system_defaults';
 import { EuiProviderNestedCheck, useIsNestedEuiProvider } from './nested';
 import {
   EuiComponentDefaults,
@@ -134,33 +134,29 @@ export const EuiProvider = <T extends {} = {}>({
   return (
     <EuiProviderNestedCheck>
       <EuiCacheProvider cache={defaultCache ?? fallbackCache}>
-        <EuiSystemColorModeProvider>
-          {(systemColorMode) => (
-            <EuiThemeProvider
-              theme={theme ?? undefined}
-              colorMode={colorMode ?? systemColorMode}
-              modify={modify}
-            >
-              {theme && (
-                <>
-                  <EuiCacheProvider
-                    cache={globalCache}
-                    children={Globals && <Globals />}
-                  />
-                  <EuiCacheProvider
-                    cache={utilityCache}
-                    children={Utilities && <Utilities />}
-                  />
-                </>
-              )}
-              <EuiComponentDefaultsProvider
-                componentDefaults={componentDefaults}
-              >
-                {children}
-              </EuiComponentDefaultsProvider>
-            </EuiThemeProvider>
-          )}
-        </EuiSystemColorModeProvider>
+        <EuiSystemDefaultsProvider>
+          <EuiThemeProvider
+            theme={theme ?? undefined}
+            colorMode={colorMode}
+            modify={modify}
+          >
+            {theme && (
+              <>
+                <EuiCacheProvider
+                  cache={globalCache}
+                  children={Globals && <Globals />}
+                />
+                <EuiCacheProvider
+                  cache={utilityCache}
+                  children={Utilities && <Utilities />}
+                />
+              </>
+            )}
+            <EuiComponentDefaultsProvider componentDefaults={componentDefaults}>
+              {children}
+            </EuiComponentDefaultsProvider>
+          </EuiThemeProvider>
+        </EuiSystemDefaultsProvider>
       </EuiCacheProvider>
     </EuiProviderNestedCheck>
   );
