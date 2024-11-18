@@ -20,6 +20,7 @@ const meta: Meta<EuiProviderProps<{}>> = {
       control: 'select',
       options: ['light', 'dark', 'inverse', 'LIGHT', 'DARK', 'INVERSE'],
     },
+    highContrastMode: { control: 'boolean' },
     modify: { control: 'object' },
     componentDefaults: { control: 'object' },
     globalStyles: { control: 'boolean' },
