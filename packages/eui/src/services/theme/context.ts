@@ -9,6 +9,7 @@
 import { createContext } from 'react';
 import {
   EuiThemeColorModeStandard,
+  EuiThemeHighContrastMode,
   EuiThemeSystem,
   EuiThemeModifications,
   EuiThemeComputed,
@@ -21,6 +22,7 @@ export const DEFAULTS = {
   system: EuiThemeAmsterdam,
   modifications: {},
   colorMode: DEFAULT_COLOR_MODE,
+  highContrastMode: false as const,
 };
 
 export const EuiSystemContext = createContext<EuiThemeSystem>(DEFAULTS.system);
@@ -30,6 +32,8 @@ export const EuiModificationsContext = createContext<EuiThemeModifications>(
 export const EuiColorModeContext = createContext<EuiThemeColorModeStandard>(
   DEFAULTS.colorMode
 );
+export const EuiHighContrastModeContext =
+  createContext<EuiThemeHighContrastMode>(DEFAULTS.highContrastMode);
 
 export const defaultComputedTheme = getComputed(
   DEFAULTS.system,

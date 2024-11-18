@@ -53,4 +53,49 @@ describe('EuiSystemDefaultsProvider', () => {
       expect(container.textContent).toEqual('DARK');
     });
   });
+
+  describe('high contrast mode', () => {
+    const Output = () => {
+      const { highContrastMode } = useEuiTheme();
+      return <>{String(highContrastMode)}</>;
+    };
+
+    it('returns `false` if no contrast-related media query has been set', () => {
+      const { container } = render(
+        <EuiSystemDefaultsProvider>
+          <Output />
+        </EuiSystemDefaultsProvider>
+      );
+
+      expect(container.textContent).toEqual('false');
+    });
+
+    it('returns `preferred` for MacOS high contrast mode', () => {
+      (useWindowMediaMatcher as jest.Mock).mockImplementation((media) => {
+        if (media === '(prefers-contrast: more)') return true;
+      });
+
+      const { container } = render(
+        <EuiSystemDefaultsProvider>
+          <Output />
+        </EuiSystemDefaultsProvider>
+      );
+
+      expect(container.textContent).toEqual('preferred');
+    });
+
+    it('returns `forced` for Windows high contrast mode', () => {
+      (useWindowMediaMatcher as jest.Mock).mockImplementation((media) => {
+        if (media === '(forced-colors: active)') return true;
+      });
+
+      const { container } = render(
+        <EuiSystemDefaultsProvider>
+          <Output />
+        </EuiSystemDefaultsProvider>
+      );
+
+      expect(container.textContent).toEqual('forced');
+    });
+  });
 });

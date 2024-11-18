@@ -11,7 +11,7 @@ import { render } from '@testing-library/react'; // Note - don't use the EUI cus
 import { cache as emotionCache } from '@emotion/css';
 import createCache from '@emotion/cache';
 
-import { setEuiDevProviderWarning } from '../../services';
+import { setEuiDevProviderWarning, useEuiTheme } from '../../services';
 import { useWindowMediaMatcher } from './system_defaults/match_media_hook';
 jest.mock('./system_defaults/match_media_hook', () => ({
   useWindowMediaMatcher: jest.fn(),
@@ -190,6 +190,40 @@ describe('EuiProvider', () => {
         );
 
         expect(getByText('Light mode')).toHaveStyleRule('color', '#aaa');
+      });
+    });
+
+    describe('highContrastMode', () => {
+      const Output = () => {
+        const { highContrastMode } = useEuiTheme();
+        return <>{String(highContrastMode)}</>;
+      };
+
+      beforeEach(() => {
+        (useWindowMediaMatcher as jest.Mock).mockImplementation((media) => {
+          if (media === '(prefers-contrast: more)') return true;
+        });
+      });
+      afterEach(jest.resetAllMocks);
+
+      it('inherits from system contrast preference by default', () => {
+        const { container } = render(
+          <EuiProvider>
+            <Output />
+          </EuiProvider>
+        );
+
+        expect(container.textContent).toEqual('preferred');
+      });
+
+      it('overrides the system preference with the passed prop', () => {
+        const { container } = render(
+          <EuiProvider highContrastMode={false}>
+            <Output />
+          </EuiProvider>
+        );
+
+        expect(container.textContent).toEqual('false');
       });
     });
   });
