@@ -10,13 +10,18 @@ While [**EuiProvider**](#utilities/provider) should not be wrapped around your a
 
 ## EuiThemeProvider
 
-The context layer that enables theming (including the default theme styles) comes from `EuiThemeProvider`. `EuiThemeProvider` accepts three props, all of which have default values and are therefore optional. To use the default EUI theme, no configuration is required.
+The context layer that enables theming (including the default theme styles) comes from `EuiThemeProvider`. `EuiThemeProvider` accepts four main props (all of which have default values and are therefore optional):
 
-*   `theme: EuiThemeSystem` Raw theme values. Calculated values are acceptable.
-*   `colorMode: EuiThemeColorMode` Simply 'light' or 'dark'
-*   `modify: EuiThemeModifications` Overrides and modifications for theme values.
+* `theme:` Raw theme values. Calculated values are acceptable.
+     * For the full shape of an EUI theme, see the [global values](/docs/theming/customizing-themes) page.
+* `modify:` Accepts an object of overrides for theme values.
+     * For examples of this prop, see [Simple instance overrides](#simple-instance-overrides) below.
+* `colorMode:` Accepts 'light', 'dark', or 'inverse'.
+     * For usage, see the [Color mode](/docs/theming/color-mode) page.
+* `highContrastMode`: Accepts a true/false boolean.
+     * For usage, see the [High contrast mode](/docs/theming/high-contrast-mode) page.
 
-The concept for each prop is explained in subsequent sections. More information on the full shape of an EUI theme, see the [Global Values](/docs/theming/customizing-themes) page.
+ To use the default EUI theme, no configuration is required.
 
 import { ProviderDetails } from './provider_details';
 
@@ -24,11 +29,12 @@ import { ProviderDetails } from './provider_details';
 
 ## Consuming with the React hook
 
-Using the react hook **useEuiTheme()** makes it very easy to consume the EUI static and computed variables like colors and sizing. It simply passes back an object of the current theme which includes
+Using the React hook `useEuiTheme()` makes it very easy to consume the EUI static and computed variables like colors and sizing. It simply passes back an object of the current theme which includes:
 
-*   `euiTheme: EuiThemeComputed` All the calculated keys including any modifications
-*   `colorMode: EuiThemeColorMode` Simply 'light' or 'dark'
-*   `modifications: EuiThemeModifications` Only the modification keys
+* `euiTheme:` All the calculated keys including any modifications
+* `modifications:` Only the modification keys
+* `colorMode:` Either 'LIGHT' or 'DARK'
+* `highContrastMode:` Either 'forced', 'preferred', or `false`
 
 When consuming the theme's keys like `euiTheme.colors.primary`, you'll want to pass them via the `css` property to take advantage of Emotion's compilation.
 
