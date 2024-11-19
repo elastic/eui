@@ -10,7 +10,6 @@ import { css } from '@emotion/react';
 
 import {
   euiPaddingSize,
-  euiSupportsHas,
   logicalCSS,
   logicals,
   logicalTextAlignCSS,
@@ -217,12 +216,6 @@ export const euiCardTextStyles = (euiThemeContext: UseEuiTheme) => {
       &:hover,
       &:focus {
         text-decoration: underline;
-      }
-
-      /* Progressive enhancement where we remove focus from text as
-         it will be applied to the whole card instead */
-      ${euiSupportsHas} {
-        outline: none !important; /* stylelint-disable-line declaration-no-important */
       }
     `,
 
