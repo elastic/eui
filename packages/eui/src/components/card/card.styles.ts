@@ -269,9 +269,8 @@ export const euiCardBetaBadgeStyles = (
       transform: translateX(-50%) translateY(-50%);
       /* Get above absolutely positioned image */
       z-index: 3;
-      /* TODO: $euiButtonMinWidth */
       /* Extend beta badges to at least 30% of the container's width or 112px (whichever is smaller) */
-      ${logicalCSS('min-width', 'min(30%, 112px)')}
+      ${logicalCSS('min-width', `min(30%, ${euiTheme.base * 7}px)`)}
       ${logicalCSS('max-width', `calc(100% - (${padding} * 2))`)}
     `,
 
