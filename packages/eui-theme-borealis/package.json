@@ -23,7 +23,6 @@
     "url": "https://github.com/elastic/eui.git",
     "directory": "packages/eui-theme-borealis"
   },
-  "private": true,
   "devDependencies": {
     "@babel/cli": "^7.21.5",
     "@babel/core": "^7.21.8",
@@ -65,7 +64,9 @@
   "files": [
     "lib/",
     "src/**/*.scss",
-    "README.md"
+    "README.md",
+    "licenses",
+    "!lib/**/*.tsbuildinfo"
   ],
   "installConfig": {
     "hoistingLimits": "workspaces"
