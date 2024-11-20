@@ -170,17 +170,15 @@ export const euiListGroupItemInnerStyles = (euiThemeContext: UseEuiTheme) => {
   };
 };
 
-export const euiListGroupItemLabelStyles = () => {
-  return {
-    // Base
-    euiListGroupItem__label: css``,
-    truncate: css`
-      ${euiTextTruncate()}
-    `,
-    wrapText: css`
-      ${euiTextBreakWord()}
-    `,
-  };
+export const euiListGroupItemLabelStyles = {
+  // Base
+  euiListGroupItem__label: css``,
+  truncate: css`
+    ${euiTextTruncate()}
+  `,
+  wrapText: css`
+    ${euiTextBreakWord()}
+  `,
 };
 
 export const euiListGroupItemIconStyles = ({ euiTheme }: UseEuiTheme) => {
@@ -194,12 +192,10 @@ export const euiListGroupItemIconStyles = ({ euiTheme }: UseEuiTheme) => {
   };
 };
 
-export const euiListGroupItemTooltipStyles = () => {
-  return {
-    // Base
-    euiListGroupItem__tooltip: css`
-      display: inline-flex; /* Allows the wrapped button/text to grow */
-      ${logicalCSS('width', '100%')}
-    `,
-  };
+export const euiListGroupItemTooltipStyles = {
+  // Base
+  euiListGroupItem__tooltip: css`
+    display: inline-flex; /* Allows the wrapped button/text to grow */
+    ${logicalCSS('width', '100%')}
+  `,
 };

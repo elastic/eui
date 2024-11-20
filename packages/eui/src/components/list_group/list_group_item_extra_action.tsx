@@ -9,9 +9,9 @@
 import React, { FunctionComponent } from 'react';
 import classNames from 'classnames';
 
+import { useEuiMemoizedStyles } from '../../services';
 import { EuiButtonIcon, EuiButtonIconPropsForButton } from '../button';
 
-import { useEuiTheme } from '../../services';
 import { euiListGroupItemExtraActionStyles } from './list_group_item_extra_action.styles';
 
 export type EuiListGroupItemExtraActionProps = {
@@ -36,9 +36,9 @@ export const EuiListGroupItemExtraAction: FunctionComponent<
     className
   );
 
-  const euiTheme = useEuiTheme();
-
-  const extraActionStyles = euiListGroupItemExtraActionStyles(euiTheme);
+  const extraActionStyles = useEuiMemoizedStyles(
+    euiListGroupItemExtraActionStyles
+  );
   const cssExtraActionStyles = [
     extraActionStyles.euiListGroupItemExtraAction,
     alwaysShow && extraActionStyles.alwaysShow,
