@@ -80,10 +80,12 @@ export const EuiTabs = forwardRef<EuiTabRef, EuiTabsProps>(
       );
 
       if (event.key === keys.ARROW_LEFT) {
-        const previousIndex = (currentIndex - 1 + tabs.length) % tabs.length;
+        const previousIndex =
+          (currentIndex === 0 ? tabs.length : currentIndex) - 1;
         tabs[previousIndex].focus();
       } else if (event.key === keys.ARROW_RIGHT) {
-        const nextIndex = (currentIndex + 1) % tabs.length;
+        const nextIndex =
+          currentIndex === tabs.length - 1 ? 0 : currentIndex + 1;
         tabs[nextIndex].focus();
       }
     };
