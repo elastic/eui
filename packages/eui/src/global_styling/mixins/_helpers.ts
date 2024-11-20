@@ -226,9 +226,3 @@ export const euiFullHeight = () => `
   flex: 1 1 auto;
   overflow: hidden;
 `;
-
-/**
- * A constant storing the support for the `:has()` selector through a
- * media query that will only apply the content it is supported.
- */
-export const euiSupportsHas = '@supports(selector(:has(p)))';

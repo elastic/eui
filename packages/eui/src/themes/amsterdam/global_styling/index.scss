@@ -9,7 +9,4 @@
 // Mixins provide generic code expansion through helpers
 @import 'mixins/index';
 
-// Utility classes provide one-off selectors for common css problems
-@import '../../../global_styling/utility/index';
-
 // The reset file has moved to global_styles.tsx
