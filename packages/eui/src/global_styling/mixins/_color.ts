@@ -153,7 +153,7 @@ export const euiBorderColor = (
       return euiTheme.border.color;
     default: {
       const tokenName = getTokenName(
-        'borderStrong',
+        'borderBase',
         color
       ) as keyof _EuiThemeBorderColors;
 
@@ -171,12 +171,16 @@ const _euiBorderColors = (euiThemeContext: UseEuiTheme) =>
     const borderToken = getTokenName(
       'borderBase',
       color
-    ) as keyof _EuiThemeBackgroundColors;
+    ) as keyof _EuiThemeBorderColors;
+    const borderColor =
+      color === 'transparent'
+        ? euiThemeContext.euiTheme.border.color
+        : euiThemeContext.euiTheme.colors[borderToken];
 
     return {
       ...acc,
       [color]: css`
-        border-color: ${euiThemeContext.euiTheme.colors[borderToken]};
+        border-color: ${borderColor};
         label: ${color};
       `,
     };
