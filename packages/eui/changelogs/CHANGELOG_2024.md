@@ -1,3 +1,13 @@
+## [`v98.0.0`](https://github.com/elastic/eui/releases/v98.0.0)
+
+**Bug fixes**
+
+-  Fixed an `EuiDataGrid` bug where column actions where not clickable when `EuiDataGrid` with `columnVisibility.canDragAndDropColumns` was used inside a modal ([#8135](https://github.com/elastic/eui/pull/8135))
+
+**Breaking changes**
+
+- Removed `EuiFormRow`'s deprecated `columnCompressedSwitch` display prop. Use `columnCompressed` instead ([#8113](https://github.com/elastic/eui/pull/8113))
+
 ## [`v97.3.1`](https://github.com/elastic/eui/releases/v97.3.1)
 
 **Bug fixes**
