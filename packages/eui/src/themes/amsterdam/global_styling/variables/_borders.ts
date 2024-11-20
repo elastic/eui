@@ -12,7 +12,10 @@ import { sizeToPixel } from '../../../../global_styling/functions';
 import { computed } from '../../../../services/theme/utils';
 
 export const border: _EuiThemeBorder = {
-  color: computed(([lightShade]) => lightShade, ['colors.lightShade']),
+  color: computed(
+    ([borderBaseSubdued]) => borderBaseSubdued,
+    ['colors.borderBaseSubdued']
+  ),
   width: {
     thin: '1px',
     thick: '2px',
