@@ -10,8 +10,9 @@
 /// <reference types="cypress-real-events" />
 /// <reference types="../../../cypress/support" />
 
-import React from 'react';
+import React, { useState } from 'react';
 import { EuiTabbedContent, EuiTabbedContentProps } from './tabbed_content';
+import { EuiButton } from '../button';
 import { EuiSpacer } from '../spacer';
 import { EuiText } from '../text';
 
@@ -85,6 +86,30 @@ const tabs = [
   },
 ];
 
+const tabsSecond = [
+  {
+    id: 'hello',
+    name: 'New tab 1',
+    content: <p>Hello</p>,
+  },
+  {
+    id: 'world',
+    name: 'New tab 2',
+    content: <p>World</p>,
+  },
+];
+
+const DynamicTabbedContent = () => {
+  const [items, setItems] = useState(tabs);
+
+  return (
+    <>
+      <EuiButton onClick={() => setItems(tabsSecond)}>Change tabs</EuiButton>
+      <EuiTabbedContent tabs={items} />
+    </>
+  );
+};
+
 const TabbedContent = () => {
   const tabProps: EuiTabbedContentProps = {
     tabs: tabs,
@@ -110,8 +135,10 @@ describe('EuiTabs', () => {
       cy.get('div[role="tabpanel"]').first().should('exist');
       cy.get('div[role="tabpanel"]').should('have.length', 1);
     });
+  });
 
-    it('handles keypress events', () => {
+  describe('Arrow key navigation', () => {
+    it('should navigate the tabs with arrow keys', () => {
       cy.realMount(<TabbedContent />);
       cy.realPress('Tab');
       cy.realPress('ArrowLeft');
@@ -124,15 +151,38 @@ describe('EuiTabs', () => {
       cy.repeatRealPress('ArrowRight', 3);
       cy.focused().should('have.text', 'Monosodium Glutamate');
       // on arrow right, should loop back to the first tab
-      cy.repeatRealPress('ArrowRight', 1);
+      cy.realPress('ArrowRight');
       cy.focused().should('have.text', 'Cobalt');
       // on arrow left, should loop back to the last tab
-      cy.repeatRealPress('ArrowLeft', 1);
+      cy.realPress('ArrowLeft');
       cy.focused().should('have.text', 'Monosodium Glutamate');
       // on enter, should select the last tab
       cy.realPress('Enter');
       cy.get('div[role="tabpanel"]').last().should('exist');
       cy.get('div[role="tabpanel"]').should('have.length', 1);
+    });
+
+    it('should navigate dynamic tabs correctly after they changed', () => {
+      cy.mount(<DynamicTabbedContent />);
+      cy.repeatRealPress('Tab', 2);
+      // focus the second tab and assert it is focused
+      cy.realPress('ArrowRight');
+      cy.focused().should('have.text', 'Dextrose');
+      // click the button to change the tabs
+      cy.get('button').contains('Change tabs').click();
+      // assert that the focus was reset
+      cy.realPress('Tab');
+      cy.realPress('ArrowRight');
+      cy.focused().should('have.text', 'New tab 2');
+      // press ArrowRight to navigate to the first tab and assert it is focused
+      cy.realPress('ArrowRight');
+      cy.focused().should('have.text', 'New tab 1');
+      // press ArrowRight to navigate back to the second tab and assert it is focused
+      cy.realPress('ArrowRight');
+      cy.focused().should('have.text', 'New tab 2');
+      // press ArrowLeft to navigate back to the first tab and verify it is focused
+      cy.realPress('ArrowLeft');
+      cy.focused().should('have.text', 'New tab 1');
     });
   });
 });
