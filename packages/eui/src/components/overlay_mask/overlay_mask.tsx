@@ -18,7 +18,7 @@ import React, {
 import { cx } from '@emotion/css';
 import { Global } from '@emotion/react';
 import { CommonProps, keysOf } from '../common';
-import { useCombinedRefs, useEuiTheme } from '../../services';
+import { useCombinedRefs, useEuiMemoizedStyles } from '../../services';
 import { EuiPortal } from '../portal';
 import { euiOverlayMaskStyles } from './overlay_mask.styles';
 import { euiOverlayMaskBodyStyles } from './overlay_mask_body.styles';
@@ -59,8 +59,7 @@ export const EuiOverlayMask: FunctionComponent<EuiOverlayMaskProps> = ({
     setOverlayMaskNode,
     maskRef,
   ]);
-  const euiTheme = useEuiTheme();
-  const styles = euiOverlayMaskStyles(euiTheme);
+  const styles = useEuiMemoizedStyles(euiOverlayMaskStyles);
   const cssStyles = cx([
     styles.euiOverlayMask,
     styles[`${headerZindexLocation}Header`],
