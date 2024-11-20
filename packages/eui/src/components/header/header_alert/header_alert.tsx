@@ -12,7 +12,7 @@ import classNames from 'classnames';
 import { CommonProps } from '../../common';
 
 import { EuiFlexGroup, EuiFlexItem } from '../../flex';
-import { useEuiTheme, useGeneratedHtmlId } from '../../../services';
+import { useEuiMemoizedStyles, useGeneratedHtmlId } from '../../../services';
 
 import { euiHeaderAlertStyles } from './header_alert.styles';
 
@@ -40,8 +40,7 @@ export const EuiHeaderAlert: FunctionComponent<EuiHeaderAlertProps> = ({
   badge,
   ...rest
 }) => {
-  const euiTheme = useEuiTheme();
-  const styles = euiHeaderAlertStyles(euiTheme);
+  const styles = useEuiMemoizedStyles(euiHeaderAlertStyles);
 
   const classes = classNames('euiHeaderAlert', className);
 
