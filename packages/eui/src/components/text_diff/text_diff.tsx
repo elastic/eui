@@ -9,7 +9,7 @@
 import React, { HTMLAttributes, useMemo, ElementType } from 'react';
 import Diff from 'text-diff';
 import classNames from 'classnames';
-import { useEuiTheme } from '../../services';
+import { useEuiMemoizedStyles } from '../../services';
 import { CommonProps } from '../common';
 import { euiTextDiffStyles } from './text_diff.styles';
 
@@ -63,8 +63,7 @@ export const useEuiTextDiff = ({
     return diff.main(beforeText, afterText);
   }, [beforeText, afterText, timeout]); // produces diff array
 
-  const euiTheme = useEuiTheme();
-  const styles = euiTextDiffStyles(euiTheme);
+  const styles = useEuiMemoizedStyles(euiTextDiffStyles);
 
   const classes = classNames('euiTextDiff', className);
 
