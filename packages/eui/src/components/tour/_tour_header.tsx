@@ -8,12 +8,11 @@
 
 import React, { FunctionComponent, memo } from 'react';
 
-import { useEuiTheme } from '../../services';
+import { useEuiMemoizedStyles } from '../../services';
 import { EuiPopoverTitle } from '../popover';
 import { EuiTitle } from '../title';
 
 import type { EuiTourStepProps } from './tour_step';
-
 import { euiTourHeaderStyles } from './_tour_header.styles';
 
 type EuiTourHeaderProps = { id: string } & Pick<
@@ -23,8 +22,7 @@ type EuiTourHeaderProps = { id: string } & Pick<
 
 export const EuiTourHeader: FunctionComponent<EuiTourHeaderProps> = memo(
   ({ id, title, subtitle }) => {
-    const euiTheme = useEuiTheme();
-    const headerStyles = euiTourHeaderStyles(euiTheme);
+    const headerStyles = useEuiMemoizedStyles(euiTourHeaderStyles);
 
     return (
       <EuiPopoverTitle
