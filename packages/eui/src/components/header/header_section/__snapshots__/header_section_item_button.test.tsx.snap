@@ -79,7 +79,7 @@ exports[`EuiHeaderSectionItemButton renders notification as a badge 1`] = `
         class="euiHeaderSectionItemButton__content emotion-euiHeaderSectionItemButton__content"
       />
       <span
-        class="euiNotificationBadge euiHeaderSectionItemButton__notification euiHeaderSectionItemButton__notification--badge emotion-euiNotificationBadge-s-accent-euiHeaderSectionItemButton__notification-badge-buttonNotification"
+        class="euiNotificationBadge euiHeaderSectionItemButton__notification euiHeaderSectionItemButton__notification--badge emotion-euiNotificationBadge-s-accent-euiHeaderSectionItemButton__notification-badge"
       >
         1
       </span>
@@ -103,7 +103,7 @@ exports[`EuiHeaderSectionItemButton renders notification as a dot 1`] = `
         class="euiHeaderSectionItemButton__content emotion-euiHeaderSectionItemButton__content"
       />
       <span
-        class="euiHeaderSectionItemButton__notification euiHeaderSectionItemButton__notification--dot emotion-euiHeaderSectionItemButton__notification-dot-notificationDot"
+        class="euiHeaderSectionItemButton__notification euiHeaderSectionItemButton__notification--dot emotion-euiHeaderSectionItemButton__notification-dot"
         color="accent"
         data-euiicon-type="dot"
       />
@@ -127,7 +127,7 @@ exports[`EuiHeaderSectionItemButton renders notification color 1`] = `
         class="euiHeaderSectionItemButton__content emotion-euiHeaderSectionItemButton__content"
       />
       <span
-        class="euiNotificationBadge euiHeaderSectionItemButton__notification euiHeaderSectionItemButton__notification--badge emotion-euiNotificationBadge-s-subdued-euiHeaderSectionItemButton__notification-badge-buttonNotification"
+        class="euiNotificationBadge euiHeaderSectionItemButton__notification euiHeaderSectionItemButton__notification--badge emotion-euiNotificationBadge-s-subdued-euiHeaderSectionItemButton__notification-badge"
       >
         1
       </span>
