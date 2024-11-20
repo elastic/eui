@@ -21,7 +21,6 @@
     "url": "https://github.com/elastic/eui.git",
     "directory": "packages/eui-theme-common"
   },
-  "private": true,
   "dependencies": {
     "@types/lodash": "^4.14.202",
     "lodash": "^4.17.21"
@@ -74,7 +73,9 @@
   "files": [
     "lib/",
     "src/**/*.scss",
-    "README.md"
+    "README.md",
+    "licenses",
+    "!lib/**/*.tsbuildinfo"
   ],
   "installConfig": {
     "hoistingLimits": "workspaces"
