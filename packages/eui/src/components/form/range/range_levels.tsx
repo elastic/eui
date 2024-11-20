@@ -14,7 +14,7 @@ import React, {
 } from 'react';
 import classNames from 'classnames';
 
-import { useEuiTheme } from '../../../services';
+import { useEuiMemoizedStyles } from '../../../services';
 import { logicalStyles } from '../../../global_styling';
 
 import type { EuiRangeLevel, EuiRangeProps } from './types';
@@ -44,8 +44,7 @@ export const EuiRangeLevels: FunctionComponent<EuiRangeLevelsProps> = ({
   trackWidth,
   ...rest
 }) => {
-  const euiTheme = useEuiTheme();
-  const styles = euiRangeLevelsStyles(euiTheme);
+  const styles = useEuiMemoizedStyles(euiRangeLevelsStyles);
   const cssStyles = [
     styles.euiRangeLevels,
     showTicks && styles.hasTicks,
@@ -115,8 +114,7 @@ const EuiRangeLevelElement: FunctionComponent<{
 
   const levelClasses = classNames('euiRangeLevel', className);
 
-  const euiTheme = useEuiTheme();
-  const levelStyles = euiRangeLevelStyles(euiTheme);
+  const levelStyles = useEuiMemoizedStyles(euiRangeLevelStyles);
   const cssLevelStyles = [
     levelStyles.euiRangeLevel,
     isNamedColor

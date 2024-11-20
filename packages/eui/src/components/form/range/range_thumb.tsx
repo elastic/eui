@@ -9,7 +9,7 @@
 import React, { FunctionComponent, HTMLAttributes } from 'react';
 import classNames from 'classnames';
 
-import { useEuiTheme } from '../../../services';
+import { useEuiMemoizedStyles } from '../../../services';
 import { CommonProps, ExclusiveUnion } from '../../common';
 
 import type { EuiRangeProps } from './types';
@@ -44,8 +44,7 @@ export const EuiRangeThumb: FunctionComponent<EuiRangeThumbProps> = ({
 }) => {
   const classes = classNames('euiRangeThumb', className);
 
-  const euiTheme = useEuiTheme();
-  const styles = euiRangeThumbStyles(euiTheme);
+  const styles = useEuiMemoizedStyles(euiRangeThumbStyles);
   const cssStyles = [styles.euiRangeThumb, showTicks && styles.hasTicks];
 
   const commonAttrs = {

@@ -14,7 +14,11 @@ import React, {
   useRef,
 } from 'react';
 
-import { useEuiTheme, useCombinedRefs } from '../../../services';
+import {
+  useEuiTheme,
+  useEuiMemoizedStyles,
+  useCombinedRefs,
+} from '../../../services';
 import { logicalStyles } from '../../../global_styling';
 import { euiFormVariables } from '../form.styles';
 import { EuiFieldNumber, EuiFieldNumberProps } from '../field_number';
@@ -46,7 +50,7 @@ export const EuiRangeInput: FunctionComponent<EuiRangeInputProps> = ({
   ...rest
 }) => {
   const euiTheme = useEuiTheme();
-  const styles = euiRangeInputStyles(euiTheme);
+  const styles = useEuiMemoizedStyles(euiRangeInputStyles);
   const cssStyles = [styles.euiRangeInput];
 
   // Determine whether an invalid icon is showing, which can come from
