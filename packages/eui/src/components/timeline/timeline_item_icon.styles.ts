@@ -17,12 +17,11 @@ export const euiTimelineItemIconStyles = ({ euiTheme }: UseEuiTheme) => ({
     flex-grow: 0;
     justify-content: center;
     ${logicalCSS('margin-right', euiTheme.size.base)}
-  `,
-  euiTimelineItemIcon__content: css`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
+
+    /* Ensure icons sit above timeline line */
+    & > * {
+      z-index: 1;
+    }
   `,
   //  Vertical alignments
   top: css`
