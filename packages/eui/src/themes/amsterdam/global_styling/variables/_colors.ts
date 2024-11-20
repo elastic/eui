@@ -276,12 +276,18 @@ export const border_colors: _EuiThemeBorderColors = {
     ['colors.danger']
   ),
 
-  borderBaseSubdued: computed(([color]) => color, ['border.color']),
+  borderBaseSubdued: computed(
+    ([lightShade]) => lightShade,
+    ['colors.lightShade']
+  ),
   borderBaseDisabled: computed(
     ([lightShade]) => transparentize(darken(lightShade, 0.4), 0.1),
     ['colors.lightShade']
   ),
-  borderBasePlain: computed(([color]) => color, ['border.color']),
+  borderBasePlain: computed(
+    ([lightShade]) => lightShade,
+    ['colors.lightShade']
+  ),
   borderBaseFloating: 'transparent',
 
   borderBaseFormsColorSwatch: computed(
@@ -486,12 +492,18 @@ export const dark_border_colors: _EuiThemeBorderColors = {
     ['colors.danger']
   ),
 
-  borderBaseSubdued: computed(([color]) => color, ['border.color']),
+  borderBaseSubdued: computed(
+    ([lightShade]) => lightShade,
+    ['colors.lightShade']
+  ),
   borderBaseDisabled: computed(
     ([ghost]) => transparentize(ghost, 0.1),
     ['colors.ghost']
   ),
-  borderBasePlain: computed(([color]) => color, ['border.color']),
+  borderBasePlain: computed(
+    ([lightShade]) => lightShade,
+    ['colors.lightShade']
+  ),
   borderBaseFloating: 'transparent',
 
   borderBaseFormsColorSwatch: computed(
