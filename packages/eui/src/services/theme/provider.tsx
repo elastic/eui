@@ -36,6 +36,7 @@ import {
 } from './context';
 import { EuiEmotionThemeProvider } from './emotion';
 import { EuiThemeMemoizedStylesProvider } from './style_memoization';
+import { useHighContrastModifications } from './high_contrast_overrides';
 import { buildTheme, getColorMode, getComputed, mergeDeep } from './utils';
 import {
   EuiThemeColorMode,
@@ -116,26 +117,12 @@ export const EuiThemeProvider = <T extends {} = {}>({
   }, [_highContrastMode, parentHighContrastMode]);
   const prevHighContrastMode = useRef(highContrastMode);
 
-  // Rather than being calculated when the theme's styles are being computed, we're bogarting the
-  // `modify` logic so we can ensure consumer modifications to border-color are also overriden.
-  // If in the future we need more complex high contrast mode logic (e.g. changing color tokens)
-  // we'll need to actually dive into theme/utils.ts's Computed.getValue logic at that point.
-  const modificationsWithHighContrast = useMemo(() => {
-    if (!highContrastMode) return modifications;
-
-    const borderColor = system.root.colors[colorMode].fullShade;
-    const getBorderWidth = (width: 'thin' | 'thick') =>
-      modifications?.border?.width?.[width] || system.root.border.width[width];
-
-    return {
-      ...modifications,
-      border: {
-        color: borderColor,
-        thin: `${getBorderWidth('thin')} solid ${borderColor}`,
-        thick: `${getBorderWidth('thick')} solid ${borderColor}`,
-      },
-    };
-  }, [highContrastMode, modifications, colorMode, system]);
+  const modificationsWithHighContrast = useHighContrastModifications({
+    highContrastMode,
+    colorMode,
+    system,
+    modifications,
+  });
 
   const isParentTheme = useRef(
     isGlobalTheme
