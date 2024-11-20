@@ -4,8 +4,6 @@ import { GuideSectionTypes } from '../../../components';
 
 import { EuiCallOut, EuiCode, EuiLink, EuiText } from '../../../../../src';
 
-// import Intro from './_color_mode_intro';
-
 import Rendering from './rendering';
 const RenderingSource = require('!!raw-loader!./rendering');
 
@@ -35,9 +33,9 @@ export const HighContrastModeExample = {
       text: (
         <>
           <p>
-            While it's usually best keep all high contrast mode the same across
-            your app for visual consistency, some instances may benefit from an
-            exaggerated change in contrast. For this you can set{' '}
+            While it's usually best to keep all high contrast mode the same
+            across your app for visual consistency, some instances may benefit
+            from an exaggerated change in contrast. For this you can set{' '}
             <strong>EuiThemeProvider</strong>'s{' '}
             <EuiCode>highContrastMode</EuiCode> to <EuiCode>true</EuiCode>.
           </p>

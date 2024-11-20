@@ -71,7 +71,7 @@ export const ThemeExample = {
             </li>
             <li>
               <EuiCode language="ts">modify:</EuiCode> Accepts an object of
-              overrides for theme values. For examples of this prop, see{' '}
+              overrides for theme values. For usage examples, see{' '}
               <EuiLink href="#/theming/theme-provider#simple-instance-overrides">
                 Simple instance overrides
               </EuiLink>{' '}
