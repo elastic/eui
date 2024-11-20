@@ -7,7 +7,10 @@
  */
 
 import React, { useState } from 'react';
+import figma from '@figma/code-connect';
 import type { Meta, StoryObj } from '@storybook/react';
+import { useArgs } from '@storybook/preview-api';
+
 import { disableStorybookControls } from '../../../../.storybook/utils';
 
 import {
@@ -16,40 +19,6 @@ import {
   EuiButtonGroupOptionProps,
 } from './button_group';
 
-const meta: Meta<EuiButtonGroupProps> = {
-  title: 'Navigation/EuiButtonGroup',
-  // @ts-ignore This still works for Storybook controls, even though Typescript complains
-  component: EuiButtonGroup,
-  argTypes: {
-    type: {
-      options: ['single', 'multi'],
-      control: { type: 'radio' },
-    },
-    idSelected: {
-      control: 'text',
-      if: { arg: 'type', eq: 'single' },
-    },
-    idToSelectedMap: {
-      control: 'object',
-      if: { arg: 'type', eq: 'multi' },
-    },
-    options: {
-      control: 'array',
-    },
-  },
-  args: {
-    // Component defaults
-    type: 'single',
-    buttonSize: 's',
-    color: 'text',
-    isDisabled: false,
-    isFullWidth: false,
-    isIconOnly: false,
-  },
-};
-disableStorybookControls(meta, ['type']);
-
-export default meta;
 type Story = StoryObj<EuiButtonGroupProps>;
 
 const options: EuiButtonGroupOptionProps[] = [
@@ -67,20 +36,44 @@ const options: EuiButtonGroupOptionProps[] = [
   },
 ];
 
-const StatefulEuiButtonGroupSingle = (props: any) => {
-  const [idSelected, setIdSelected] = useState(props.idSelected);
+/* Notice how within the same file we have 2 component wrappers,
+  - one for single selection
+  - and one for multi selection
+
+  Using these wrappers as-is in render function will result in an incorrect code snippet:
+
+  ```tsx
+  <StatefulEuiButtonGroupSingle
+    buttonSize="s"
+    color="text"
+    isFullWidth
+  />
+  ```
+
+  Component name should be EuiButtonGroup and there are important props missing
+  like `type`, `options`, `onChange`, `idSelected` / `idToSelectedMap`.
+
+  Instead, 1) we could leverage args and useArgs utility hook from Storybook.
+  to synchronize the sandbox component state with Storybook controls panel.
+  (Source: https://storybook.js.org/docs/writing-stories/args#setting-args-from-within-a-story)
+*/
+
+const StatefulEuiButtonGroupSingle = (props: EuiButtonGroupProps) => {
+  const [{ idSelected }, updateArgs] = useArgs();
+
+  const onChange = (idSelected: EuiButtonGroupProps['idSelected']) => {
+    updateArgs({ idSelected });
+  };
 
   return (
-    <EuiButtonGroup
-      {...props}
-      onChange={(id) => setIdSelected(id)}
-      idSelected={idSelected}
-    />
+    <EuiButtonGroup {...props} onChange={onChange} idSelected={idSelected} />
   );
 };
 
 export const SingleSelection: Story = {
-  render: ({ ...args }) => <StatefulEuiButtonGroupSingle {...args} />,
+  render: (args: EuiButtonGroupProps) => (
+    <StatefulEuiButtonGroupSingle {...args} />
+  ),
   args: {
     legend: 'EuiButtonGroup - single selection',
     options,
@@ -157,3 +150,61 @@ export const WithTooltips: Story = {
     idToSelectedMap: { button1: true },
   },
 };
+
+const meta: Meta<EuiButtonGroupProps> = {
+  title: 'Navigation/EuiButtonGroup',
+  // @ts-ignore This still works for Storybook controls, even though Typescript complains
+  component: EuiButtonGroup,
+  argTypes: {
+    type: {
+      options: ['single', 'multi'],
+      control: { type: 'radio' },
+    },
+    idSelected: {
+      control: 'text',
+      if: { arg: 'type', eq: 'single' },
+    },
+    idToSelectedMap: {
+      control: 'object',
+      if: { arg: 'type', eq: 'multi' },
+    },
+    options: {
+      control: 'array',
+    },
+  },
+  args: {
+    // Component defaults
+    type: 'single',
+    buttonSize: 's',
+    color: 'text',
+    isDisabled: false,
+    isFullWidth: false,
+    isIconOnly: false,
+  },
+  parameters: {
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/design/RzfYLj2xmH9K7gQtbSKygn/Elastic-UI?node-id=31735-392753&node-type=frame&m=dev',
+      examples: [SingleSelection],
+      props: {
+        buttonSize: figma.enum('Size', {
+          'Small*': 's',
+          Medium: 'm',
+          Compressed: 'compressed',
+        }),
+        color: figma.enum('Color', {
+          'Neutral*': 'text',
+          Primary: 'primary',
+          // TODO: document discrepancy between Figma and EUI
+          // accent, success, warning, danger
+        }),
+        isDisabled: figma.boolean('Disabled'),
+        isFullWidth: figma.boolean('Full width'),
+        isIconOnly: figma.boolean('Icon only'),
+      },
+    },
+  },
+};
+disableStorybookControls(meta, ['type']);
+
+export default meta;
