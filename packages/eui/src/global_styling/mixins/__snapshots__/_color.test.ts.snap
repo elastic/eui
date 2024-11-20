@@ -68,6 +68,6 @@ exports[`useEuiBorderColorCSS hook returns an object of Emotion border-color pro
 
 exports[`useEuiBorderColorCSS hook returns an object of Emotion border-color properties for each color: success 1`] = `"border-color:#99e5e1;label:success;"`;
 
-exports[`useEuiBorderColorCSS hook returns an object of Emotion border-color properties for each color: transparent 1`] = `"border-color:;label:transparent;"`;
+exports[`useEuiBorderColorCSS hook returns an object of Emotion border-color properties for each color: transparent 1`] = `"border-color:#D3DAE6;label:transparent;"`;
 
 exports[`useEuiBorderColorCSS hook returns an object of Emotion border-color properties for each color: warning 1`] = `"border-color:#fedc72;label:warning;"`;
