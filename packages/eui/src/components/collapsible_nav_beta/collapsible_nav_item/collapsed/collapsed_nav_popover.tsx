@@ -76,8 +76,8 @@ export const EuiCollapsedNavPopover: FunctionComponent<
     if (!updatedItem.items) {
       // Only override the onClick if there are no sub-items (leaf node)
       updatedItem.onClick = (e: React.MouseEvent<HTMLElement>) => {
-        if (rest.onClick) {
-          rest.onClick(e);
+        if (item.onClick) {
+          item.onClick(e);
         }
         closePopoverAndClearFocus();
       };

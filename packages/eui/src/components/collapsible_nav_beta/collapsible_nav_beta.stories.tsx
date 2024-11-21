@@ -8,6 +8,7 @@
 
 import React, { FunctionComponent, PropsWithChildren, useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
+import { action } from '@storybook/addon-actions';
 import {
   disableStorybookControls,
   hideAllStorybookControls,
@@ -101,7 +102,10 @@ export const Playground: Story = {
           items={[
             { title: 'Get started', href: '#' },
             ...renderGroup('Explore', [
-              { title: 'Discover', href: '#' },
+              {
+                title: 'Discover',
+                onClick: () => action('Discover')('clicked!'),
+              },
               { title: 'Dashboards', href: '#' },
               { title: 'Visualize library', href: '#' },
             ]),

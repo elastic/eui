@@ -46,4 +46,27 @@ describe('EuiCollapsedNavPopover', () => {
     fireEvent.keyDown(baseElement, { key: 'Escape' });
     await waitForEuiPopoverClose();
   });
+
+  it('closes the popover when clicking on a link', async () => {
+    const onClick = jest.fn();
+    const { getByTestSubject } = render(
+      <EuiCollapsedNavPopover
+        {...requiredProps}
+        title="Item"
+        titleElement="h3"
+        items={[
+          { title: 'Sub-item A', onClick, 'data-test-subj': 'A' },
+          { title: 'Sub-item B', href: '#', 'data-test-subj': 'B' },
+        ]}
+      />
+    );
+    fireEvent.click(getByTestSubject('euiCollapsedNavButton'));
+    await waitForEuiPopoverOpen();
+
+    expect(onClick).not.toHaveBeenCalled();
+    fireEvent.click(getByTestSubject('A'));
+
+    await waitForEuiPopoverClose(); // popover should close
+    expect(onClick).toHaveBeenCalledTimes(1); // custom onClick should be called
+  });
 });
