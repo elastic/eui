@@ -10,8 +10,9 @@
 /// <reference types="cypress-real-events" />
 /// <reference types="../../../cypress/support" />
 
-import React from 'react';
+import React, { useState } from 'react';
 import { EuiTabbedContent, EuiTabbedContentProps } from './tabbed_content';
+import { EuiButton } from '../button';
 import { EuiSpacer } from '../spacer';
 import { EuiText } from '../text';
 
@@ -85,10 +86,51 @@ const tabs = [
   },
 ];
 
+const tabsSecond = [
+  {
+    id: 'apple',
+    name: 'Apple',
+    content: <p>Apple</p>,
+  },
+  {
+    id: 'banana',
+    name: 'Banana',
+    content: <p>Banana</p>,
+  },
+  {
+    id: 'pear',
+    name: 'Pear',
+    content: <p>Pear</p>,
+    disabled: true,
+  },
+];
+
 const TabbedContent = () => {
   const tabProps: EuiTabbedContentProps = {
     tabs: tabs,
     initialSelectedTab: tabs[1],
+    autoFocus: 'selected',
+    onTabClick: () => {},
+  };
+
+  return <EuiTabbedContent {...tabProps} />;
+};
+
+const DynamicTabbedContent = () => {
+  const [items, setItems] = useState(tabs);
+
+  return (
+    <>
+      <EuiButton onClick={() => setItems(tabsSecond)}>Change tabs</EuiButton>
+      <EuiTabbedContent tabs={items} />
+    </>
+  );
+};
+
+const TabbedContentWithDisabledTabs = () => {
+  const tabProps: EuiTabbedContentProps = {
+    tabs: tabsSecond,
+    initialSelectedTab: tabsSecond[0],
     autoFocus: 'selected',
     onTabClick: () => {},
   };
@@ -110,20 +152,74 @@ describe('EuiTabs', () => {
       cy.get('div[role="tabpanel"]').first().should('exist');
       cy.get('div[role="tabpanel"]').should('have.length', 1);
     });
+  });
 
-    it('handles keypress events', () => {
+  describe('Arrow key navigation', () => {
+    it('should navigate the tabs with arrow keys', () => {
       cy.realMount(<TabbedContent />);
       cy.realPress('Tab');
-      cy.realPress(['Shift', 'Tab']);
+      cy.realPress('ArrowLeft');
+      // on enter, should select the first tab
       cy.realPress('Enter');
       cy.get('div[role="tabpanel"]').first().should('exist');
       cy.get('div[role="tabpanel"]').should('have.length', 1);
       cy.focused().should('have.text', 'Cobalt');
-      cy.repeatRealPress('Tab', 3);
+      // on arrow right, should navigate to the next tab
+      cy.repeatRealPress('ArrowRight', 3);
       cy.focused().should('have.text', 'Monosodium Glutamate');
+      // on arrow right, should loop back to the first tab
+      cy.realPress('ArrowRight');
+      cy.focused().should('have.text', 'Cobalt');
+      // on arrow left, should loop back to the last tab
+      cy.realPress('ArrowLeft');
+      cy.focused().should('have.text', 'Monosodium Glutamate');
+      // on enter, should select the last tab
       cy.realPress('Enter');
       cy.get('div[role="tabpanel"]').last().should('exist');
       cy.get('div[role="tabpanel"]').should('have.length', 1);
+    });
+
+    it('should navigate dynamic tabs correctly after they changed', () => {
+      cy.mount(<DynamicTabbedContent />);
+      cy.repeatRealPress('Tab', 2);
+      // focus the second tab and assert it is focused
+      cy.realPress('ArrowRight');
+      cy.focused().should('have.text', 'Dextrose');
+      // click the button to change the tabs
+      cy.get('button').contains('Change tabs').click();
+      // assert that the focus was reset
+      cy.realPress('Tab');
+      cy.realPress('ArrowRight');
+      cy.focused().should('have.text', 'Banana');
+      // press ArrowRight to navigate to the first tab and assert it is focused
+      cy.realPress('ArrowRight');
+      cy.focused().should('have.text', 'Apple');
+      // press ArrowRight to navigate back to the second tab and assert it is focused
+      cy.realPress('ArrowRight');
+      cy.focused().should('have.text', 'Banana');
+      // press ArrowLeft to navigate back to the first tab and verify it is focused
+      cy.realPress('ArrowLeft');
+      cy.focused().should('have.text', 'Apple');
+    });
+
+    it('should skip disabled tabs', () => {
+      cy.mount(<TabbedContentWithDisabledTabs />);
+
+      // focus the first tab and assert it is focused
+      cy.realPress('Tab');
+      cy.focused().should('have.text', 'Apple');
+
+      // press ArrowRight to navigate to the second tab and assert it is focused
+      cy.realPress('ArrowRight');
+      cy.focused().should('have.text', 'Banana');
+
+      // press ArrowRight to navigate to the first tab because the third tab is disabled
+      cy.realPress('ArrowRight');
+      cy.focused().should('have.text', 'Apple');
+
+      // press ArrowLeft to navigate back to the second tab, skipping the third tab and assert it is focused
+      cy.realPress('ArrowLeft');
+      cy.focused().should('have.text', 'Banana');
     });
   });
 });
