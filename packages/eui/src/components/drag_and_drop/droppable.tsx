@@ -15,7 +15,7 @@ import React, {
 import { Droppable, DroppableProps } from '@hello-pangea/dnd';
 import classNames from 'classnames';
 
-import { useEuiTheme } from '../../services';
+import { useEuiMemoizedStyles } from '../../services';
 import { CommonProps } from '../common';
 import { EuiPanel } from '../panel';
 
@@ -73,8 +73,7 @@ export const EuiDroppable: FunctionComponent<EuiDroppableProps> = ({
   const { isDraggingType } = useContext(EuiDragDropContextContext);
   const dropIsDisabled: boolean = cloneDraggables ? true : isDropDisabled;
 
-  const euiTheme = useEuiTheme();
-  const styles = euiDroppableStyles(euiTheme);
+  const styles = useEuiMemoizedStyles(euiDroppableStyles);
 
   return (
     <Droppable

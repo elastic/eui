@@ -15,14 +15,16 @@ import type { DragDropContextProps } from '@hello-pangea/dnd';
 import { enableFunctionToggleControls } from '../../../.storybook/utils';
 import { within } from '../../../.storybook/test';
 import { LOKI_SELECTORS } from '../../../.storybook/loki';
+import { sleep } from '../../test';
+
 import { EuiPanel } from '../panel';
+import { EuiFlyout, EuiFlyoutBody, EuiFlyoutHeader } from '../flyout';
+import { EuiModal, EuiModalBody, EuiModalHeader } from '../modal';
+import { EuiTitle } from '../title';
 
 import { EuiDroppable } from './droppable';
 import { EuiDraggable } from './draggable';
 import { EuiDragDropContext } from './drag_drop_context';
-import { EuiFlyout, EuiFlyoutBody, EuiFlyoutHeader } from '../flyout';
-import { EuiModal, EuiModalBody, EuiModalHeader } from '../modal';
-import { EuiTitle } from '../title';
 
 const meta: Meta<DragDropContextProps> = {
   title: 'Display/EuiDragDropContext',
@@ -120,21 +122,21 @@ export const WithinFlyouts: Story = {
       expect(canvas.getByRole('dialog')).toBeVisible();
     });
 
-    await setTimeout(async () => {
-      await waitFor(async () => {
-        await fireEvent.mouseDown(canvas.getByTestSubject('draggable-item-1'));
-        await fireEvent.mouseMove(canvas.getByTestSubject('draggable-item-1'), {
-          clientX: 0,
-          clientY: 5,
-        });
-
-        expect(
-          [...canvas.getByTestSubject('draggable-item-1').classList]
-            .join('')
-            .includes('isDragging')
-        ).toBe(true);
+    await waitFor(async () => {
+      await fireEvent.mouseDown(canvas.getByTestSubject('draggable-item-1'));
+      await fireEvent.mouseMove(canvas.getByTestSubject('draggable-item-1'), {
+        clientX: 0,
+        clientY: 5,
       });
-    }, 150); // add a timeout to prevent differences due to animation
+
+      expect(
+        [...canvas.getByTestSubject('draggable-item-1').classList]
+          .join('')
+          .includes('isDragging')
+      ).toBe(true);
+    });
+
+    await sleep(150); // add a timeout to prevent differences due to animation
   },
 };
 

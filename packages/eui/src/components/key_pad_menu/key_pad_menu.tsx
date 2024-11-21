@@ -9,12 +9,13 @@
 import React, { FunctionComponent, HTMLAttributes, ReactNode } from 'react';
 import classNames from 'classnames';
 
+import { useEuiMemoizedStyles } from '../../services';
 import { CommonProps, ExclusiveUnion } from '../common';
 import {
   EuiFormLabel,
   _EuiFormLegendProps,
 } from '../form/form_label/form_label';
-import { useEuiTheme } from '../../services';
+
 import { euiKeyPadMenuStyles } from './key_pad_menu.styles';
 
 export type _EuiKeyPadMenuCheckableProps = ExclusiveUnion<
@@ -57,8 +58,7 @@ export const EuiKeyPadMenu: FunctionComponent<EuiKeyPadMenuProps> = ({
 
   const classes = classNames('euiKeyPadMenu', className);
 
-  const theme = useEuiTheme();
-  const styles = euiKeyPadMenuStyles(theme);
+  const styles = useEuiMemoizedStyles(euiKeyPadMenuStyles);
   const cssStyles = [styles.euiKeyPadMenu];
   const legendCssStyles = [
     styles.euiKeyPadMenu__legend,

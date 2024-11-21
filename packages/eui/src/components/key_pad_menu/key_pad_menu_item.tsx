@@ -17,11 +17,10 @@ import React, {
 import classNames from 'classnames';
 
 import {
-  useEuiTheme,
+  useEuiMemoizedStyles,
   getSecureRelForTarget,
   useGeneratedHtmlId,
 } from '../../services';
-
 import {
   CommonProps,
   ExclusiveUnion,
@@ -185,8 +184,7 @@ export const EuiKeyPadMenuItem: FunctionComponent<EuiKeyPadMenuItemProps> = ({
   const isHrefValid = !href || validateHref(href);
   const isDisabled = disabled || _isDisabled || !isHrefValid;
 
-  const euiTheme = useEuiTheme();
-  const styles = euiKeyPadMenuItemStyles(euiTheme);
+  const styles = useEuiMemoizedStyles(euiKeyPadMenuItemStyles);
   const cssStyles = [
     styles.euiKeyPadMenuItem,
     !isDisabled ? styles.enabled : styles.disabled.disabled,
@@ -201,10 +199,7 @@ export const EuiKeyPadMenuItem: FunctionComponent<EuiKeyPadMenuItemProps> = ({
   type ElementType = ReactElementType<typeof Element>;
 
   const itemId = useGeneratedHtmlId({ conditionalId: id });
-  const childStyles = useMemo(
-    () => euiKeyPadMenuItemChildStyles(euiTheme),
-    [euiTheme]
-  );
+  const childStyles = useEuiMemoizedStyles(euiKeyPadMenuItemChildStyles);
 
   const checkableElement = useMemo(() => {
     if (!checkable) return;

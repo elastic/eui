@@ -15,7 +15,7 @@ import React, {
 import { Draggable, DraggableProps } from '@hello-pangea/dnd';
 import classNames from 'classnames';
 
-import { useEuiTheme, cloneElementWithCss } from '../../services';
+import { useEuiMemoizedStyles, cloneElementWithCss } from '../../services';
 import { CommonProps } from '../common';
 
 import { EuiDroppableContext, SPACINGS } from './droppable';
@@ -79,8 +79,7 @@ export const EuiDraggable: FunctionComponent<EuiDraggableProps> = ({
 }) => {
   const { cloneItems } = useContext(EuiDroppableContext);
 
-  const euiTheme = useEuiTheme();
-  const styles = euiDraggableStyles(euiTheme);
+  const styles = useEuiMemoizedStyles(euiDraggableStyles);
 
   const hasCustomDragHandle = customDragHandle !== false;
 
