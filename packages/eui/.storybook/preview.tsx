@@ -46,6 +46,7 @@ const preview: Preview = {
     (Story, context) => (
       <EuiProviderDecorator
         colorMode={context.globals.colorMode}
+        highContrastMode={context.globals.highContrastMode}
         {...(context.componentId === 'theming-euiprovider' && context.args)}
         writingMode={context.globals.writingMode}
         themeName={context.globals.theme}

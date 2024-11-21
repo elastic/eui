@@ -16,17 +16,12 @@ import {
 } from '../../../../src/components';
 import { AVAILABLE_THEMES } from '../with_theme/theme_context';
 
-type GuideThemeSelectorProps = {
-  onToggleLocale: Function;
-  selectedLocale: string;
-};
-
-export const GuideThemeSelector: React.FunctionComponent<
-  GuideThemeSelectorProps
-> = ({ onToggleLocale, selectedLocale }) => {
+export const GuideThemeSelector = () => {
   const context = useContext(ThemeContext);
   const euiThemeContext = useEuiTheme();
   const colorMode = context.colorMode ?? euiThemeContext.colorMode;
+  const highContrastMode =
+    context.highContrastMode ?? euiThemeContext.highContrastMode;
   const currentTheme: EUI_THEME =
     AVAILABLE_THEMES.find((theme) => theme.value === context.theme) ||
     AVAILABLE_THEMES[0];
@@ -59,11 +54,17 @@ export const GuideThemeSelector: React.FunctionComponent<
           colorMode: e.target.checked ? 'DARK' : 'LIGHT',
         }),
     },
+    {
+      label: 'High contrast',
+      checked: !!highContrastMode,
+      onChange: (e: EuiSwitchEvent) =>
+        context.setContext({ highContrastMode: e.target.checked }),
+    },
     location.host.includes('803') && {
       label: 'i18n testing',
-      checked: selectedLocale === 'en-xa',
+      checked: context.i18n === 'en-xa',
       onChange: (e: EuiSwitchEvent) =>
-        onToggleLocale(e.target.checked ? 'en-xa' : 'en'),
+        context.setContext({ i18n: e.target.checked ? 'en-xa' : 'en' }),
     },
   ];
 
@@ -85,6 +86,7 @@ export const GuideThemeSelector: React.FunctionComponent<
               key={theme.value}
               icon={currentTheme.value === theme.value ? 'check' : 'empty'}
               onClick={() => {
+                closePopover();
                 context.setContext({ theme: theme.value });
               }}
             >

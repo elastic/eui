@@ -21,10 +21,15 @@ export interface EuiShadowCustomColor {
  * euiSlightShadow
  */
 export const euiShadowXSmall = (
-  { euiTheme, colorMode }: UseEuiTheme,
-  { color: _color }: _EuiThemeShadowCustomColor = {}
+  { euiTheme, colorMode, highContrastMode }: UseEuiTheme,
+  options?: _EuiThemeShadowCustomColor
 ) => {
-  const color = _color || euiTheme.colors.shadow;
+  if (highContrastMode) {
+    return _highContrastBorderBottom(euiTheme);
+  }
+
+  const color = options?.color || euiTheme.colors.shadow;
+
   return `
 box-shadow:
   0 .8px .8px ${getShadowColor(color, 0.04, colorMode)},
@@ -36,10 +41,15 @@ box-shadow:
  * bottomShadowSmall
  */
 export const euiShadowSmall = (
-  { euiTheme, colorMode }: UseEuiTheme,
-  { color: _color }: _EuiThemeShadowCustomColor = {}
+  { euiTheme, colorMode, highContrastMode }: UseEuiTheme,
+  options?: _EuiThemeShadowCustomColor
 ) => {
-  const color = _color || euiTheme.colors.shadow;
+  if (highContrastMode) {
+    return _highContrastBorderBottom(euiTheme);
+  }
+
+  const color = options?.color || euiTheme.colors.shadow;
+
   return `
 box-shadow:
   0 .7px 1.4px ${getShadowColor(color, 0.07, colorMode)},
@@ -52,12 +62,16 @@ box-shadow:
  * bottomShadowMedium
  */
 export const euiShadowMedium = (
-  { euiTheme, colorMode }: UseEuiTheme,
-  { color: _color, property }: _EuiThemeShadowCustomColor = {}
+  { euiTheme, colorMode, highContrastMode }: UseEuiTheme,
+  options?: _EuiThemeShadowCustomColor
 ) => {
-  const color = _color || euiTheme.colors.shadow;
+  if (highContrastMode) {
+    return _highContrastBorderBottom(euiTheme);
+  }
 
-  if (property === 'filter') {
+  const color = options?.color || euiTheme.colors.shadow;
+
+  if (options?.property === 'filter') {
     // Using only one drop-shadow filter instead of multiple is more performant & prevents Safari bugs
     return `filter: drop-shadow(0 5.7px 9px ${getShadowColor(
       color,
@@ -77,10 +91,15 @@ export const euiShadowMedium = (
  * bottomShadow
  */
 export const euiShadowLarge = (
-  { euiTheme, colorMode }: UseEuiTheme,
-  { color: _color }: _EuiThemeShadowCustomColor = {}
+  { euiTheme, colorMode, highContrastMode }: UseEuiTheme,
+  options?: _EuiThemeShadowCustomColor
 ) => {
-  const color = _color || euiTheme.colors.shadow;
+  if (highContrastMode) {
+    return _highContrastBorderBottom(euiTheme);
+  }
+
+  const color = options?.color || euiTheme.colors.shadow;
+
   return `
 box-shadow:
   0 1px 5px ${getShadowColor(color, 0.1, colorMode)},
@@ -97,10 +116,17 @@ export interface EuiShadowXLarge extends _EuiThemeShadowCustomColor {
   reverse?: boolean;
 }
 export const euiShadowXLarge = (
-  { euiTheme, colorMode }: UseEuiTheme,
-  { color: _color, reverse }: EuiShadowXLarge = {}
+  { euiTheme, colorMode, highContrastMode }: UseEuiTheme,
+  options?: EuiShadowXLarge
 ) => {
-  const color = _color || euiTheme.colors.shadow;
+  if (highContrastMode) {
+    return _highContrastBorderBottom(euiTheme);
+  }
+
+  const color = options?.color || euiTheme.colors.shadow;
+
+  const reverse = options?.reverse ?? false;
+
   return `
 box-shadow:
   0 ${reverse ? '-' : ''}2.7px 9px ${getShadowColor(color, 0.13, colorMode)},
@@ -113,10 +139,15 @@ box-shadow:
  * slightShadowHover
  */
 export const euiSlightShadowHover = (
-  { euiTheme, colorMode }: UseEuiTheme,
-  { color: _color }: _EuiThemeShadowCustomColor = {}
+  { euiTheme, colorMode, highContrastMode }: UseEuiTheme,
+  options?: _EuiThemeShadowCustomColor
 ) => {
-  const color = _color || euiTheme.colors.shadow;
+  if (highContrastMode) {
+    return _highContrastBorderBottom(euiTheme);
+  }
+
+  const color = options?.color || euiTheme.colors.shadow;
+
   return `
 box-shadow:
   0 1px 5px ${getShadowColor(color, 0.1, colorMode)},
@@ -133,10 +164,15 @@ box-shadow:
  * Useful for popovers that drop UP rather than DOWN.
  */
 export const euiShadowFlat = (
-  { euiTheme, colorMode }: UseEuiTheme,
-  { color: _color }: _EuiThemeShadowCustomColor = {}
+  { euiTheme, colorMode, highContrastMode }: UseEuiTheme,
+  options?: _EuiThemeShadowCustomColor
 ) => {
-  const color = _color || euiTheme.colors.shadow;
+  if (highContrastMode) {
+    return _highContrastBorderBottom(euiTheme);
+  }
+
+  const color = options?.color || euiTheme.colors.shadow;
+
   return `
 box-shadow:
   0 0 .8px ${getShadowColor(color, 0.06, colorMode)},
@@ -149,22 +185,35 @@ box-shadow:
 export const euiShadow = (
   euiThemeContext: UseEuiTheme,
   size: _EuiThemeShadowSize = 'l',
-  { color }: _EuiThemeShadowCustomColor = {}
+  options?: _EuiThemeShadowCustomColor
 ) => {
+  if (euiThemeContext.highContrastMode) {
+    return _highContrastBorderBottom(euiThemeContext.euiTheme);
+  }
+
   switch (size) {
     case 'xs':
-      return euiShadowXSmall(euiThemeContext, { color });
+      return euiShadowXSmall(euiThemeContext, options);
     case 's':
-      return euiShadowSmall(euiThemeContext, { color });
+      return euiShadowSmall(euiThemeContext, options);
     case 'm':
-      return euiShadowMedium(euiThemeContext, { color });
+      return euiShadowMedium(euiThemeContext, options);
     case 'l':
-      return euiShadowLarge(euiThemeContext, { color });
+      return euiShadowLarge(euiThemeContext, options);
     case 'xl':
-      return euiShadowXLarge(euiThemeContext, { color });
+      return euiShadowXLarge(euiThemeContext, options);
 
     default:
       console.warn('Please provide a valid size option to useEuiShadow');
       return '';
   }
 };
+
+/**
+ * Internal utilities for replacing shadows with high contrast borders instead.
+ * NOTE: Windows' high contrast themes ignore *all* `box-shadow` CSS,
+ * so we use `border` CSS explicitly instead of shadows
+ */
+
+const _highContrastBorderBottom = ({ border }: UseEuiTheme['euiTheme']) =>
+  `border-block-end: ${border.thin};`;
