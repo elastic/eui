@@ -8,8 +8,11 @@
 
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
-
 import { SPREAD_STORY_ARGS_MARKER } from '../../../.storybook/addons/code-snippet/constants';
+
+import { EuiPanel } from '../panel';
+import { EuiCode } from '../code';
+
 import { EuiProvider, EuiProviderProps } from './provider';
 
 const meta: Meta<EuiProviderProps<{}>> = {
@@ -18,19 +21,31 @@ const meta: Meta<EuiProviderProps<{}>> = {
   argTypes: {
     colorMode: {
       control: 'select',
-      options: ['light', 'dark', 'inverse', 'LIGHT', 'DARK', 'INVERSE'],
+      options: [
+        undefined,
+        'light',
+        'dark',
+        'inverse',
+        'LIGHT',
+        'DARK',
+        'INVERSE',
+      ],
+    },
+    highContrastMode: {
+      control: 'select',
+      options: [undefined, true, false],
     },
     modify: { control: 'object' },
     componentDefaults: { control: 'object' },
-    globalStyles: { control: 'boolean' },
-    utilityClasses: { control: 'boolean' },
+    globalStyles: {
+      control: 'boolean',
+      mapping: { true: undefined, false: false },
+    },
+    utilityClasses: {
+      control: 'boolean',
+      mapping: { true: undefined, false: false },
+    },
   },
-};
-
-export default meta;
-type Story = StoryObj<EuiProviderProps<{}>>;
-
-export const FontDefaultUnits: Story = {
   parameters: {
     codeSnippet: {
       snippet: `
@@ -38,10 +53,67 @@ export const FontDefaultUnits: Story = {
       `,
     },
   },
+};
+
+export default meta;
+type Story = StoryObj<EuiProviderProps<{}>>;
+
+export const Playground: Story = {
+  render: () => (
+    <>
+      <EuiPanel>
+        Setting <EuiCode>globalStyles</EuiCode> to false will remove all body
+        and font styles, but retain component styles (e.g. this{' '}
+        <EuiCode>EuiPanel</EuiCode>).
+      </EuiPanel>
+      <EuiPanel color="transparent" className="eui-textCenter">
+        Setting <EuiCode>utilityClasses</EuiCode> to false will remove the
+        centering on this text, which has <EuiCode>.eui-textCenter</EuiCode>{' '}
+        applied.
+      </EuiPanel>
+    </>
+  ),
+};
+
+export const SystemDefaults: Story = {
+  parameters: {
+    controls: {
+      include: ['colorMode', 'highContrastMode'],
+    },
+  },
+  argTypes: {
+    colorMode: {
+      control: 'radio',
+      options: [undefined, 'light', 'dark'],
+    },
+    highContrastMode: {
+      control: 'radio',
+      options: [undefined, false, true],
+    },
+  },
+  args: {
+    colorMode: undefined,
+    highContrastMode: undefined,
+  },
+  // _args is needed (even if unused) for controls.include to work as expected
+  // see https://github.com/storybookjs/storybook/issues/23343
+  render: (_args) => (
+    <EuiPanel>
+      When undefined, <EuiCode>colorMode</EuiCode> and{' '}
+      <EuiCode>highContrastMode</EuiCode> will inherit from the user's OS/system
+      settings.
+    </EuiPanel>
+  ),
+};
+
+export const FontDefaultUnits: Story = {
+  parameters: {
+    controls: { include: ['modify'] },
+  },
   args: {
     modify: { font: { defaultUnits: 'rem' } },
   },
-  render: () => (
+  render: (_args) => (
     <>
       Change <strong>`modify.font.defaultUnits`</strong> to{' '}
       <strong>`rem`, `em`, or `px`</strong> and then inspect this demo's `html`

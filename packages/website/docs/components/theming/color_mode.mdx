@@ -8,9 +8,11 @@ id: theming_color_mode
 
 The `colorMode` determines which values to return based on `LIGHT` or `DARK` mode.
 
+By default, if this prop is not passed, **EuiProvider** will detect and use the user's system dark mode preference. If the prop _is_ passed, it will override the user's system settings.
+
 import { ProviderDetails } from './provider_details';
 
-<ProviderDetails withThemeName={false} />
+<ProviderDetails withThemeName={false} withHighContrastMode={false} />
 
 ## Rendering a specific color mode
 
