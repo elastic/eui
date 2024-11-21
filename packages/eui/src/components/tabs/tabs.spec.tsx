@@ -88,16 +88,33 @@ const tabs = [
 
 const tabsSecond = [
   {
-    id: 'hello',
-    name: 'New tab 1',
-    content: <p>Hello</p>,
+    id: 'apple',
+    name: 'Apple',
+    content: <p>Apple</p>,
   },
   {
-    id: 'world',
-    name: 'New tab 2',
-    content: <p>World</p>,
+    id: 'banana',
+    name: 'Banana',
+    content: <p>Banana</p>,
+  },
+  {
+    id: 'pear',
+    name: 'Pear',
+    content: <p>Pear</p>,
+    disabled: true,
   },
 ];
+
+const TabbedContent = () => {
+  const tabProps: EuiTabbedContentProps = {
+    tabs: tabs,
+    initialSelectedTab: tabs[1],
+    autoFocus: 'selected',
+    onTabClick: () => {},
+  };
+
+  return <EuiTabbedContent {...tabProps} />;
+};
 
 const DynamicTabbedContent = () => {
   const [items, setItems] = useState(tabs);
@@ -110,10 +127,10 @@ const DynamicTabbedContent = () => {
   );
 };
 
-const TabbedContent = () => {
+const TabbedContentWithDisabledTabs = () => {
   const tabProps: EuiTabbedContentProps = {
-    tabs: tabs,
-    initialSelectedTab: tabs[1],
+    tabs: tabsSecond,
+    initialSelectedTab: tabsSecond[0],
     autoFocus: 'selected',
     onTabClick: () => {},
   };
@@ -173,16 +190,36 @@ describe('EuiTabs', () => {
       // assert that the focus was reset
       cy.realPress('Tab');
       cy.realPress('ArrowRight');
-      cy.focused().should('have.text', 'New tab 2');
+      cy.focused().should('have.text', 'Banana');
       // press ArrowRight to navigate to the first tab and assert it is focused
       cy.realPress('ArrowRight');
-      cy.focused().should('have.text', 'New tab 1');
+      cy.focused().should('have.text', 'Apple');
       // press ArrowRight to navigate back to the second tab and assert it is focused
       cy.realPress('ArrowRight');
-      cy.focused().should('have.text', 'New tab 2');
+      cy.focused().should('have.text', 'Banana');
       // press ArrowLeft to navigate back to the first tab and verify it is focused
       cy.realPress('ArrowLeft');
-      cy.focused().should('have.text', 'New tab 1');
+      cy.focused().should('have.text', 'Apple');
+    });
+
+    it('should skip disabled tabs', () => {
+      cy.mount(<TabbedContentWithDisabledTabs />);
+
+      // focus the first tab and assert it is focused
+      cy.realPress('Tab');
+      cy.focused().should('have.text', 'Apple');
+
+      // press ArrowRight to navigate to the second tab and assert it is focused
+      cy.realPress('ArrowRight');
+      cy.focused().should('have.text', 'Banana');
+
+      // press ArrowRight to navigate to the first tab because the third tab is disabled
+      cy.realPress('ArrowRight');
+      cy.focused().should('have.text', 'Apple');
+
+      // press ArrowLeft to navigate back to the second tab, skipping the third tab and assert it is focused
+      cy.realPress('ArrowLeft');
+      cy.focused().should('have.text', 'Banana');
     });
   });
 });
