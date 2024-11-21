@@ -33,9 +33,6 @@ const meta: Meta<EuiButtonGroupProps> = {
       control: 'object',
       if: { arg: 'type', eq: 'multi' },
     },
-    options: {
-      control: 'array',
-    },
   },
   args: {
     // Component defaults
@@ -45,6 +42,7 @@ const meta: Meta<EuiButtonGroupProps> = {
     isDisabled: false,
     isFullWidth: false,
     isIconOnly: false,
+    options: [],
   },
 };
 disableStorybookControls(meta, ['type']);
