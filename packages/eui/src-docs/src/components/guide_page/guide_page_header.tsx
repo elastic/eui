@@ -21,15 +21,7 @@ import { VersionSwitcher } from './version_switcher';
 
 const GITHUB_URL = 'https://github.com/elastic/eui';
 
-export type GuidePageHeaderProps = {
-  onToggleLocale: () => {};
-  selectedLocale: string;
-};
-
-export const GuidePageHeader: React.FunctionComponent<GuidePageHeaderProps> = ({
-  onToggleLocale,
-  selectedLocale,
-}) => {
+export const GuidePageHeader = () => {
   const isMobileSize = useIsWithinBreakpoints(['xs', 's']);
 
   const logo = useMemo(() => {
@@ -112,18 +104,9 @@ export const GuidePageHeader: React.FunctionComponent<GuidePageHeaderProps> = ({
   }, [codesandbox, github]);
 
   const rightSideItems = isMobileSize
-    ? [
-        <GuideThemeSelector
-          onToggleLocale={onToggleLocale}
-          selectedLocale={selectedLocale}
-        />,
-        mobileMenu,
-      ]
+    ? [<GuideThemeSelector />, mobileMenu]
     : [
-        <GuideThemeSelector
-          onToggleLocale={onToggleLocale}
-          selectedLocale={selectedLocale}
-        />,
+        <GuideThemeSelector />,
         github,
         <GuideFigmaLink key="figma" />,
         codesandbox,

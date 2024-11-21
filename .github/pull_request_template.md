@@ -12,6 +12,8 @@ Remove or strikethrough items that do not apply to your PR.
 
 - Browser QA
     - [ ] Checked in both **light and dark** modes
+    - [ ] Checked in both [MacOS](https://support.apple.com/lv-lv/guide/mac-help/unac089/mac) and [Windows](https://support.microsoft.com/en-us/windows/turn-high-contrast-mode-on-or-off-in-windows-909e9d89-a0f9-a3a9-b993-7a6dcee85025) **high contrast modes**
+      - (_[emulate forced colors](https://devtoolstips.org/tips/en/emulate-forced-colors/) if you do not have access to a Windows machine_.)
     - [ ] Checked in **mobile**
     - [ ] Checked in **Chrome**, **Safari**, **Edge**, and **Firefox**
     - [ ] Checked for **accessibility** including keyboard-only and screenreader modes

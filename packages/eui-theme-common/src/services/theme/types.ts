@@ -49,6 +49,12 @@ export type StrictColorModeSwitch<T = string> = {
   [key in EuiThemeColorModeStandard]: T;
 };
 
+// Consumers can pass a boolean to manually toggle the preferred high contrast mode,
+// but our internal high contrast mode enum is slightly more granular to account for
+// Windows's high contrast themes, which force colors/backgrounds/shadows
+export type EuiThemeHighContrastModeProp = boolean;
+export type EuiThemeHighContrastMode = 'forced' | 'preferred' | false;
+
 export type EuiThemeShape = {
   colors: _EuiThemeColors;
   /** - Default value: 16 */
@@ -115,5 +121,6 @@ export type EuiThemeNested = {
 export interface UseEuiTheme<T extends {} = {}> {
   euiTheme: EuiThemeComputed<T>;
   colorMode: EuiThemeColorModeStandard;
+  highContrastMode: EuiThemeHighContrastMode;
   modifications: EuiThemeModifications<T>;
 }

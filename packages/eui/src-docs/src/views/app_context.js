@@ -1,10 +1,8 @@
 import React, { useContext } from 'react';
 import { Helmet } from 'react-helmet';
-import { useSelector } from 'react-redux';
 import createCache from '@emotion/cache';
 import { ThemeContext } from '../components';
 import { translateUsingPseudoLocale } from '../services';
-import { getLocale } from '../store';
 
 import { EuiContext, EuiProvider } from '../../../src/components';
 import {
@@ -33,18 +31,7 @@ const utilityCache = createCache({
 });
 
 export const AppContext = ({ children }) => {
-  const { theme, colorMode } = useContext(ThemeContext);
-  const locale = useSelector((state) => getLocale(state));
-
-  const mappingFuncs = {
-    'en-xa': translateUsingPseudoLocale,
-  };
-
-  const i18n = {
-    mappingFunc: mappingFuncs[locale],
-    formatNumber: (value) => new Intl.NumberFormat(locale).format(value),
-    locale,
-  };
+  const { theme, colorMode, highContrastMode, i18n } = useContext(ThemeContext);
 
   const isLocalDev = window.location.host.includes('803');
   setEuiDevProviderWarning(isLocalDev ? 'error' : 'warn'); // Note: this can't be in a useEffect, otherwise it fires too late for style memoization warnings to error on page reload
@@ -57,6 +44,7 @@ export const AppContext = ({ children }) => {
       }}
       theme={AVAILABLE_THEMES.find((t) => t.value === theme)?.provider}
       colorMode={colorMode}
+      highContrastMode={highContrastMode}
     >
       <Helmet>
         <link
@@ -84,7 +72,16 @@ export const AppContext = ({ children }) => {
           rel="stylesheet"
         />
       </Helmet>
-      <EuiContext i18n={i18n}>{children}</EuiContext>
+      <EuiContext
+        i18n={{
+          locale: i18n,
+          mappingFunc:
+            i18n === 'en-xa' ? translateUsingPseudoLocale : undefined,
+          formatNumber: (value) => new Intl.NumberFormat(i18n).format(value),
+        }}
+      >
+        {children}
+      </EuiContext>
     </EuiProvider>
   );
 };
