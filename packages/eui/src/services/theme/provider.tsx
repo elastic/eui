@@ -31,13 +31,18 @@ import {
   EuiNestedThemeContext,
   EuiModificationsContext,
   EuiColorModeContext,
+  EuiHighContrastModeContext,
+  DEFAULTS,
 } from './context';
 import { EuiEmotionThemeProvider } from './emotion';
 import { EuiThemeMemoizedStylesProvider } from './style_memoization';
+import { useHighContrastModifications } from './high_contrast_overrides';
 import { buildTheme, getColorMode, getComputed, mergeDeep } from './utils';
 import {
   EuiThemeColorMode,
   EuiThemeColorModeStandard,
+  EuiThemeHighContrastModeProp,
+  EuiThemeHighContrastMode,
   EuiThemeSystem,
   EuiThemeModifications,
 } from './types';
@@ -45,6 +50,7 @@ import {
 export interface EuiThemeProviderProps<T> extends PropsWithChildren {
   theme?: EuiThemeSystem<T>;
   colorMode?: EuiThemeColorMode;
+  highContrastMode?: EuiThemeHighContrastModeProp;
   modify?: EuiThemeModifications<T>;
   children: any;
   /**
@@ -64,6 +70,7 @@ export interface EuiThemeProviderProps<T> extends PropsWithChildren {
 export const EuiThemeProvider = <T extends {} = {}>({
   theme: _system,
   colorMode: _colorMode,
+  highContrastMode: _highContrastMode,
   modify: _modifications,
   children,
   wrapperProps,
@@ -77,6 +84,7 @@ export const EuiThemeProvider = <T extends {} = {}>({
   const parentSystem = useContext(EuiSystemContext);
   const parentModifications = useContext(EuiModificationsContext);
   const parentColorMode = useContext(EuiColorModeContext);
+  const parentHighContrastMode = useContext(EuiHighContrastModeContext);
   const parentTheme = useContext(EuiThemeContext);
 
   const [system, setSystem] = useState(_system || parentSystem);
@@ -101,10 +109,31 @@ export const EuiThemeProvider = <T extends {} = {}>({
   );
   const prevColorMode = useRef(colorMode);
 
+  const highContrastMode: EuiThemeHighContrastMode = useMemo(() => {
+    if (parentHighContrastMode === 'forced') return 'forced'; // System forced high contrast mode will always supercede application settings
+    if (_highContrastMode === true) return 'preferred'; // Convert the boolean prop to our internal enum
+    if (_highContrastMode === false) return false; // Allow `false` prop to override user/system preference
+    return parentHighContrastMode; // Fall back to the parent/system setting
+  }, [_highContrastMode, parentHighContrastMode]);
+  const prevHighContrastMode = useRef(highContrastMode);
+
+  const modificationsWithHighContrast = useHighContrastModifications({
+    highContrastMode,
+    colorMode,
+    system,
+    modifications,
+  });
+
   const isParentTheme = useRef(
-    prevSystemKey.current === parentSystem.key &&
-      colorMode === parentColorMode &&
-      isEqual(parentModifications, modifications)
+    isGlobalTheme
+      ? prevSystemKey.current === DEFAULTS.system.key &&
+          colorMode === DEFAULTS.colorMode &&
+          highContrastMode === DEFAULTS.highContrastMode &&
+          !_modifications
+      : prevSystemKey.current === parentSystem.key &&
+          colorMode === parentColorMode &&
+          highContrastMode === parentHighContrastMode &&
+          isEqual(parentModifications, modifications)
   );
 
   const [theme, setTheme] = useState(
@@ -112,7 +141,7 @@ export const EuiThemeProvider = <T extends {} = {}>({
       ? { ...parentTheme } // Intentionally create a new object to break referential equality
       : getComputed(
           system,
-          buildTheme(modifications, `_${system.key}`) as typeof system,
+          buildTheme<any>(modificationsWithHighContrast, `_${system.key}`),
           colorMode
         )
   );
@@ -145,16 +174,22 @@ export const EuiThemeProvider = <T extends {} = {}>({
   }, [_colorMode, parentColorMode]);
 
   useEffect(() => {
+    if (prevHighContrastMode.current !== highContrastMode) {
+      isParentTheme.current = false;
+    }
+  }, [highContrastMode]);
+
+  useEffect(() => {
     if (!isParentTheme.current) {
       setTheme(
         getComputed(
           system,
-          buildTheme(modifications, `_${system.key}`) as typeof system,
+          buildTheme<any>(modificationsWithHighContrast, `_${system.key}`),
           colorMode
         )
       );
     }
-  }, [colorMode, system, modifications]);
+  }, [colorMode, system, modificationsWithHighContrast]);
 
   const [themeCSSVariables, _setThemeCSSVariables] = useState<CSSObject>();
   const setThemeCSSVariables = useCallback(
@@ -237,21 +272,23 @@ export const EuiThemeProvider = <T extends {} = {}>({
         <Global styles={{ ':root': themeCSSVariables }} />
       )}
       <EuiColorModeContext.Provider value={colorMode}>
-        <EuiSystemContext.Provider value={system}>
-          <EuiModificationsContext.Provider value={modifications}>
-            <EuiThemeContext.Provider value={theme}>
-              <EuiNestedThemeContext.Provider value={nestedThemeContext}>
-                <EuiThemeMemoizedStylesProvider>
-                  <EuiEmotionThemeProvider>
-                    <EuiConditionalBreakpointProvider>
-                      {renderedChildren}
-                    </EuiConditionalBreakpointProvider>
-                  </EuiEmotionThemeProvider>
-                </EuiThemeMemoizedStylesProvider>
-              </EuiNestedThemeContext.Provider>
-            </EuiThemeContext.Provider>
-          </EuiModificationsContext.Provider>
-        </EuiSystemContext.Provider>
+        <EuiHighContrastModeContext.Provider value={highContrastMode}>
+          <EuiSystemContext.Provider value={system}>
+            <EuiModificationsContext.Provider value={modifications}>
+              <EuiThemeContext.Provider value={theme}>
+                <EuiNestedThemeContext.Provider value={nestedThemeContext}>
+                  <EuiThemeMemoizedStylesProvider>
+                    <EuiEmotionThemeProvider>
+                      <EuiConditionalBreakpointProvider>
+                        {renderedChildren}
+                      </EuiConditionalBreakpointProvider>
+                    </EuiEmotionThemeProvider>
+                  </EuiThemeMemoizedStylesProvider>
+                </EuiNestedThemeContext.Provider>
+              </EuiThemeContext.Provider>
+            </EuiModificationsContext.Provider>
+          </EuiSystemContext.Provider>
+        </EuiHighContrastModeContext.Provider>
       </EuiColorModeContext.Provider>
     </>
   );
