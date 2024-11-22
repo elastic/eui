@@ -5,7 +5,11 @@ import { EuiSwitch } from '@elastic/eui';
 // @ts-expect-error Docusaurus theme is missing types for this component
 import { Demo } from '@elastic/eui-docusaurus-theme/lib/components/demo';
 
-const userDataSetup = (varName: string = 'users', isControlled: boolean) => `
+const userDataSetup = (
+  varName: string = 'users',
+  count: number = 20,
+  isControlled: boolean
+) => `
 type User = {
   id: number;
   firstName: string | null | undefined;
@@ -19,12 +23,12 @@ type User = {
 
 const ${varName}: User[] = [];
 
-for (let i = 0; i < 20; i++) {
+for (let i = 0; i < ${count}; i++) {
   ${varName}.push({
     id: i + 1,
     firstName: faker.person.firstName(),
     lastName: faker.person.lastName(),
-    online: faker.datatype.boolean(),
+    online: i === 0 ? true : faker.datatype.boolean(),
     location: {
       city: faker.location.city(),
       country: faker.location.country(),
@@ -137,7 +141,7 @@ import {
   EuiButton,
 } from '@elastic/eui';
 
-${userDataSetup('users', isControlled)}
+${userDataSetup('users', 5, isControlled)}
 
 export default () => {
   /**
@@ -154,88 +158,7 @@ export default () => {
     });
     setSelectedItems([]);
   }
-
-  /**
-   * Pagination & sorting
-   */
-  const [pageIndex, setPageIndex] = useState(0);
-  const [pageSize, setPageSize] = useState(5);
-  const [sortField, setSortField] = useState<keyof User>('firstName');
-  const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('asc');
-
-  const onTableChange = ({ page, sort }: Criteria<User>) => {
-    if (page) {
-      const { index: pageIndex, size: pageSize } = page;
-      setPageIndex(pageIndex);
-      setPageSize(pageSize);
-    }
-    if (sort) {
-      const { field: sortField, direction: sortDirection } = sort;
-      setSortField(sortField);
-      setSortDirection(sortDirection);
-    }
-  };
-
-  // Manually handle sorting and pagination of data
-  const findUsers = (
-    users: User[],
-    pageIndex: number,
-    pageSize: number,
-    sortField: keyof User,
-    sortDirection: 'asc' | 'desc'
-  ) => {
-    let items;
-
-    if (sortField) {
-      items = users
-        .slice(0)
-        .sort(
-          Comparators.property(sortField, Comparators.default(sortDirection))
-        );
-    } else {
-      items = users;
-    }
-
-    let pageOfItems;
-
-    if (!pageIndex && !pageSize) {
-      pageOfItems = items;
-    } else {
-      const startIndex = pageIndex * pageSize;
-      pageOfItems = items.slice(
-        startIndex,
-        Math.min(startIndex + pageSize, users.length)
-      );
-    }
-
-    return {
-      pageOfItems,
-      totalItemCount: users.length,
-    };
-  };
-
-  const { pageOfItems, totalItemCount } = findUsers(
-    users,
-    pageIndex,
-    pageSize,
-    sortField,
-    sortDirection
-  );
-
-  const pagination = {
-    pageIndex: pageIndex,
-    pageSize: pageSize,
-    totalItemCount: totalItemCount,
-    pageSizeOptions: [3, 5, 8],
-  };
-
-  const sorting: EuiTableSortingType<User> = {
-    sort: {
-      field: sortField,
-      direction: sortDirection,
-    },
-  };
-
+  
   return (
     <>
       <EuiFlexGroup alignItems="center" justifyContent="spaceBetween">
@@ -262,14 +185,10 @@ export default () => {
         tableCaption="Demo for an EuiBasicTable with ${
           isControlled ? 'controlled' : 'uncontrolled'
         } selection"
-        responsiveBreakpoint={false}
-        items={pageOfItems}
+        items={users}
         itemId="id"
         rowHeader="firstName"
         columns={columns}
-        pagination={pagination}
-        sorting={sorting}
-        onChange={onTableChange}
         selection={selection}
       />
     </>
@@ -291,7 +210,7 @@ import {
   EuiButton,
 } from '@elastic/eui';
 
-${userDataSetup('userData', isControlled)}
+${userDataSetup('userData', 20, isControlled)}
 
 export default () => {
   ${selectionSetup(isControlled)}
