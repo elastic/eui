@@ -15,6 +15,8 @@ import React, { useState } from 'react';
 import { EuiGlobalToastList } from '../toast';
 import { EuiHeader } from '../header';
 import { EuiFlyout } from './flyout';
+import { EuiToolTip } from '../tool_tip';
+import { EuiButton } from '../button';
 
 const childrenDefault = (
   <>
@@ -89,6 +91,46 @@ describe('EuiFlyout', () => {
       cy.realPress('Escape').then(() => {
         expect(cy.get('[data-test-subj="flyoutSpec"]').should('not.exist'));
       });
+    });
+  });
+
+  describe('Close behavior: overlay elements as children', () => {
+    it('closes the flyout when the EuiToolTip is not focused', () => {
+      cy.mount(
+        <Flyout>
+          <EuiToolTip content="Tooltip text here" data-test-subj="tool_tip">
+            <EuiButton data-test-subj="tool_tip_trigger">
+              Show tooltip
+            </EuiButton>
+          </EuiToolTip>
+        </Flyout>
+      );
+      cy.get('[data-test-subj="tool_tip"]').should('not.exist');
+
+      cy.realPress('Escape');
+      cy.get('[data-test-subj="flyoutSpec"]').should('not.exist');
+    });
+
+    it('does not close the flyout when the tooltip is shown but closes the tooltip', () => {
+      cy.mount(
+        <Flyout
+          children={
+            <EuiToolTip content="Tooltip text here" data-test-subj="tool_tip">
+              <EuiButton data-test-subj="tool_tip_trigger">
+                Show tooltip
+              </EuiButton>
+            </EuiToolTip>
+          }
+        ></Flyout>
+      );
+      cy.get('[data-test-subj="tool_tip"]').should('not.exist');
+
+      cy.repeatRealPress('Tab', 2);
+      cy.get('[data-test-subj="tool_tip"]').should('exist');
+
+      cy.realPress('Escape');
+      cy.get('[data-test-subj="tool_tip"]').should('not.exist');
+      cy.get('[data-test-subj="flyoutSpec"]').should('exist');
     });
   });
 
