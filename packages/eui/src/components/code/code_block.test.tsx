@@ -46,11 +46,11 @@ describe('EuiCodeBlock', () => {
       });
     });
 
-    describe('customCopyAriaLabel', () => {
+    describe('copyAriaLabel', () => {
       it('is rendered', () => {
         const customLabel = 'Copy this code';
         const { container } = render(
-          <EuiCodeBlock isCopyable customCopyAriaLabel={customLabel}>
+          <EuiCodeBlock isCopyable copyAriaLabel={customLabel}>
             {code}
           </EuiCodeBlock>
         );

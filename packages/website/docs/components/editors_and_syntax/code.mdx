@@ -93,20 +93,6 @@ export default () => (
 
 ```
 
-You can specify a custom aria label for the Copy button using the `customCopyAriaLabel` prop. It works in conjunction with the `isCopyable` prop.
-
-```tsx
-import React from 'react';
-import { EuiCodeBlock } from '@elastic/eui';
-
-export default () => (
-  <EuiCodeBlock language="html" isCopyable customCopyAriaLabel="Copy the code">
-    {...}
-  </EuiCodeBlock>
-);
-
-```
-
 For long content, you can set an `overflowHeight` which will scroll if the text exceeds that height, and allows users to view the code in fullscreen mode.
 
 ```tsx interactive

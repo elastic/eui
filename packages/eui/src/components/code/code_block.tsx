@@ -89,8 +89,10 @@ export type EuiCodeBlockProps = EuiCodeSharedProps & {
 
   /**
    * Customizes the aria-label for the copy button.
+   *
+   * @default 'Copy'
    */
-  customCopyAriaLabel?: string;
+  copyAriaLabel?: string;
 
   /**
    * Displays line numbers.
@@ -123,7 +125,7 @@ export const EuiCodeBlock: FunctionComponent<EuiCodeBlockProps> = ({
   paddingSize = 'l',
   fontSize = 's',
   isCopyable = false,
-  customCopyAriaLabel,
+  copyAriaLabel,
   whiteSpace = 'pre-wrap',
   children,
   className,
@@ -165,7 +167,7 @@ export const EuiCodeBlock: FunctionComponent<EuiCodeBlockProps> = ({
   );
 
   const { innerTextRef, copyButton } = useCopy({
-    customCopyAriaLabel,
+    copyAriaLabel,
     isCopyable,
     isVirtualized,
     children,
