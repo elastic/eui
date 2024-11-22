@@ -536,14 +536,17 @@ export class EuiComboBox<T> extends Component<
         break;
 
       case keys.ENTER:
-        event.preventDefault();
-        event.stopPropagation();
-        if (this.hasActiveOption()) {
-          this.onAddOption(
-            this.state.matchingOptions[this.state.activeOptionIndex]
-          );
-        } else {
-          this.setCustomOptions(false);
+        // Do not block enter keypresses for the clear button or delete selection buttons
+        if (event.target === this.searchInputRefInstance) {
+          event.preventDefault();
+          event.stopPropagation();
+          if (this.hasActiveOption()) {
+            this.onAddOption(
+              this.state.matchingOptions[this.state.activeOptionIndex]
+            );
+          } else {
+            this.setCustomOptions(false);
+          }
         }
         break;
 

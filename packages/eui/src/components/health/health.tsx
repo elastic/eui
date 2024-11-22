@@ -8,12 +8,13 @@
 
 import React, { FunctionComponent, HTMLAttributes } from 'react';
 import classNames from 'classnames';
-import { useEuiTheme } from '../../services';
-import { euiHealthStyles } from './health.styles';
 
+import { useEuiMemoizedStyles } from '../../services';
 import { CommonProps } from '../common';
 import { EuiIcon, IconColor } from '../icon';
 import { EuiFlexGroup, EuiFlexItem } from '../flex';
+
+import { euiHealthStyles } from './health.styles';
 
 export const TEXT_SIZES = ['xs', 's', 'm', 'inherit'] as const;
 
@@ -39,8 +40,7 @@ export const EuiHealth: FunctionComponent<EuiHealthProps> = ({
   textSize = 's',
   ...rest
 }) => {
-  const euiTheme = useEuiTheme();
-  const styles = euiHealthStyles(euiTheme);
+  const styles = useEuiMemoizedStyles(euiHealthStyles);
   const cssStyles = [styles.euiHealth, styles[textSize]];
   const classes = classNames('euiHealth', className);
 

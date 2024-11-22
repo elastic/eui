@@ -1,0 +1,473 @@
+---
+slug: /navigation/breadcrumbs
+id: navigation_breadcrumbs
+---
+
+# Breadcrumbs
+
+**EuiBreadcrumbs** let the user track their progress within and back out of a UX flow and work well when used in combination with [**EuiPageHeader**](/docs/layout/page-header). They are meant to be used at lower page level flows, while [**EuiHeaderBreadcrumbs**](/docs/layout/header) should be used for application-wide navigation.
+
+See [**EuiTabs guidelines**](/docs/navigation/tabs/guidelines) if your application requires breadcrumbs and tabs on the same view.
+
+**EuiBreadcrumbs** requires an array of **EuiBreadcrumb** objects as `breadcrumbs` and handles truncation, including middle-truncation in the case of many items, and mobile responsiveness. Each item accepts an `href` prop, though we recommend the last item represent the current page and therefore the link is unnecessary.
+
+:::note Accessibility recommendation
+Provide a descriptive `aria-label` for each set of breadcrumbs.
+:::
+
+```tsx interactive
+import React from 'react';
+import {
+  EuiBreadcrumb,
+  EuiBreadcrumbs,
+  EuiButton,
+  EuiPanel,
+  EuiPageHeader,
+  EuiSpacer,
+} from '@elastic/eui';
+
+export default () => {
+  const breadcrumbs: EuiBreadcrumb[] = [
+    {
+      text: 'Animals',
+      href: '#',
+      onClick: (e) => {
+        e.preventDefault();
+      },
+      'data-test-subj': 'breadcrumbsAnimals',
+    },
+    {
+      text: 'Reptiles',
+    },
+    {
+      text: 'Boa constrictor',
+      href: '#',
+      onClick: (e) => {
+        e.preventDefault();
+      },
+    },
+    {
+      text: 'Edit',
+      href: '#',
+      onClick: (e) => {
+        e.preventDefault();
+      },
+    },
+  ];
+
+  return (
+    <EuiPanel>
+      <EuiBreadcrumbs
+        breadcrumbs={breadcrumbs}
+        truncate={false}
+        aria-label="An example of EuiBreadcrumbs"
+      />
+      <EuiSpacer size="xs" />
+      <EuiPageHeader
+        role=""
+        pageTitle="Boa constrictor"
+        rightSideItems={[<EuiButton>Cancel</EuiButton>]}
+      />
+    </EuiPanel>
+  );
+};
+```
+
+## Limit the number of breadcrumbs
+
+Use the `max` prop to collapse breadcrumbs beyond a certain number. The center breadcrumbs will collapse into a single item allowing the user to navigate these items from within a popover.
+
+```tsx interactive
+import React from 'react';
+import { EuiBreadcrumbs } from '@elastic/eui';
+
+export default () => {
+  const breadcrumbs = [
+    {
+      text: 'Animals',
+      href: '#',
+    },
+    {
+      text: 'Metazoans',
+      href: '#',
+    },
+    {
+      text: 'Chordates',
+      href: '#',
+    },
+    {
+      text: 'Vertebrates',
+      href: '#',
+    },
+    {
+      text: 'Tetrapods',
+      href: '#',
+    },
+    {
+      text: 'Reptiles',
+      href: '#',
+    },
+    {
+      text: 'Boa constrictor',
+      href: '#',
+    },
+    {
+      text: 'Nebulosa subspecies',
+    },
+  ];
+
+  return (
+    <EuiBreadcrumbs
+      max={4}
+      breadcrumbs={breadcrumbs}
+      aria-label="An example of EuiBreadcrumbs with specifying max prop"
+    />
+  );
+};
+```
+
+## Truncate each breadcrumb
+
+**EuiBreadcrumbs** will truncate the full set by default, forcing it to a single line and setting a max width on all items except for the last. You can turn this off by setting `truncate={false}`.
+
+```tsx interactive
+import React from 'react';
+import { EuiBreadcrumbs } from '@elastic/eui';
+
+export default () => {
+  const breadcrumbs = [
+    {
+      text: 'Animals',
+      href: '#',
+    },
+    {
+      text: 'Metazoans is a real mouthful, especially for creatures without mouths',
+      href: '#',
+      truncate: true,
+    },
+    {
+      text: 'Chordates',
+      href: '#',
+    },
+    {
+      text: 'Vertebrates',
+      href: '#',
+    },
+    {
+      text: 'Tetrapods',
+      href: '#',
+    },
+    {
+      text: 'Reptiles',
+      href: '#',
+    },
+    {
+      text: 'Boa constrictor',
+      href: '#',
+    },
+    {
+      text: 'Nebulosa subspecies is also a real mouthful, especially for creatures without mouths',
+    },
+  ];
+
+  return (
+    <EuiBreadcrumbs
+      truncate={true}
+      breadcrumbs={breadcrumbs}
+      aria-label="An example of EuiBreadcrumbs with truncate prop"
+    />
+  );
+};
+```
+
+Alternatively, you can force truncation on single breadcrumb **item** by adding `truncate: true` to the object.
+
+```tsx interactive
+import React from 'react';
+import { EuiBreadcrumbs } from '@elastic/eui';
+
+export default () => {
+  const breadcrumbs = [
+    {
+      text: 'Animals',
+      href: '#',
+    },
+    {
+      text: 'Metazoans is a real mouthful, especially for creatures without mouths',
+      href: '#',
+      truncate: true,
+    },
+    {
+      text: 'Chordates',
+      href: '#',
+    },
+    {
+      text: 'Vertebrates',
+      href: '#',
+    },
+    {
+      text: 'Tetrapods',
+      href: '#',
+    },
+    {
+      text: 'Reptiles',
+      href: '#',
+    },
+    {
+      text: 'Boa constrictor',
+      href: '#',
+    },
+    {
+      text: 'Nebulosa subspecies is also a real mouthful, especially for creatures without mouths',
+    },
+  ];
+
+  return (
+    <EuiBreadcrumbs
+      truncate={false}
+      breadcrumbs={breadcrumbs}
+      aria-label="An example of EuiBreadcrumbs without truncate prop"
+    />
+  );
+};
+```
+
+## Responsive
+
+**EuiBreadcrumbs** are `responsive` by default and will collapse breadcrumbs on narrower screens. Setting `responsive={false}` will keep all breadcrumbs visible at all screens sizes.
+
+```tsx interactive
+import React from 'react';
+import { EuiBreadcrumbs } from '@elastic/eui';
+
+export default () => {
+  const breadcrumbs = [
+    {
+      text: 'Animals',
+      href: '#',
+    },
+    {
+      text: 'Metazoans',
+      href: '#',
+    },
+    {
+      text: 'Chordates',
+      href: '#',
+    },
+    {
+      text: 'Vertebrates',
+      href: '#',
+    },
+    {
+      text: 'Tetrapods',
+      href: '#',
+    },
+    {
+      text: 'Reptiles',
+      href: '#',
+    },
+    {
+      text: 'Boa constrictor',
+      href: '#',
+    },
+    {
+      text: 'Nebulosa subspecies',
+    },
+  ];
+
+  return (
+    <EuiBreadcrumbs
+      responsive={false}
+      breadcrumbs={breadcrumbs}
+      max={null}
+      aria-label="An example of non-responsive EuiBreadcrumbs"
+    />
+  );
+};
+```
+
+Alternatively, you can change number of breadcrumbs that show per breakpoint by passing a custom responsive object.
+
+```tsx interactive
+import React from 'react';
+import { EuiBreadcrumbs } from '@elastic/eui';
+
+export default () => {
+  const breadcrumbs = [
+    {
+      text: 'Animals',
+      href: '#',
+    },
+    {
+      text: 'Metazoans',
+      href: '#',
+    },
+    {
+      text: 'Chordates',
+      href: '#',
+    },
+    {
+      text: 'Vertebrates',
+      href: '#',
+    },
+    {
+      text: 'Tetrapods',
+      href: '#',
+    },
+    {
+      text: 'Reptiles',
+      href: '#',
+    },
+    {
+      text: 'Boa constrictor',
+      href: '#',
+    },
+    {
+      text: 'Nebulosa subspecies',
+    },
+  ];
+
+  return (
+    <EuiBreadcrumbs
+      responsive={{
+        xs: 1,
+        s: 3,
+        m: 5,
+        xl: 6,
+      }}
+      breadcrumbs={breadcrumbs}
+      max={null}
+      aria-label="An example of custom responsive EuiBreadcrumbs"
+    />
+  );
+};
+```
+
+## Popover content
+
+If you want a breadcrumb that toggles a popover, e.g. for an account switcher, you can use the `popoverContent` prop for this purpose. **EuiBreadcrumbs** will automatically handle rendering a popover indicator and popover accessibility best practies for you. We recommend using components such as [**EuiContextMenu**](/docs/navigation/context-menu) or [**EuiListGroup**](/docs/display/list-group) for displaying popover options, or potentially [**EuiSelectable**](/docs/forms/selectable) if you have many items that require filtering.
+
+You may also pass `popoverProps` with almost any prop that [**EuiPopover**](/docs/layout/popover) accepts, such as customizing `panelPaddingSize` or `anchorPosition`. However, props that affect popover state such as `closePopover`, `isOpen`, and `button` are not accepted as they are controlled automatically by **EuiBreadcrumbs**.
+
+If you need the ability to close the breadcrumb popover from within your popover content, `popoverContent` accepts a render function that will be passed a `closePopover` callback, which you can invoke to close the popover. See the Deployment breadcrumb below for example usage.
+
+:::warning
+Creating a breadcrumb with a popover will nullify any passed `href` or `onClick` behavior, as the _only_ interaction the breadcrumb should have at that point is the popover toggle.
+:::
+
+```tsx interactive
+import React, { useState } from 'react';
+import {
+  EuiBreadcrumbs,
+  EuiBreadcrumb,
+  EuiPopoverTitle,
+  EuiPopoverFooter,
+  EuiContextMenuPanel,
+  EuiSelectable,
+  EuiSelectableOption,
+  EuiAvatar,
+  EuiButton,
+  EuiContextMenuItem,
+} from '@elastic/eui';
+
+export default () => {
+  const [spaces, setSpaces] = useState<EuiSelectableOption[]>([
+    {
+      label: 'My space',
+      checked: 'on',
+      prepend: <EuiAvatar type="space" size="s" name="My space" />,
+    },
+    {
+      label: "Jim's space",
+      prepend: <EuiAvatar type="space" size="s" name="Jim" />,
+    },
+    {
+      label: "Pam's space",
+      prepend: <EuiAvatar type="space" size="s" name="Pam" />,
+    },
+    {
+      label: "Michael's space",
+      prepend: <EuiAvatar type="space" size="s" name="Michael" />,
+    },
+    {
+      label: "Assistant Manager Dwight's space",
+      prepend: <EuiAvatar type="space" size="s" name="Dwight" />,
+    },
+  ]);
+
+  const breadcrumbs: EuiBreadcrumb[] = [
+    {
+      text: 'My deployment',
+      // Passing a render function allows closing the breadcrumb popover from within your content
+      popoverContent: (closePopover) => {
+        const onClick = (e: React.MouseEvent) => {
+          e.preventDefault();
+          closePopover();
+        };
+        return (
+          <>
+            <EuiPopoverTitle paddingSize="s">
+              Select a deployment
+            </EuiPopoverTitle>
+            <EuiContextMenuPanel
+              size="s"
+              items={[
+                <EuiContextMenuItem key="A" href="#" onClick={onClick}>
+                  Go to Deployment A
+                </EuiContextMenuItem>,
+                <EuiContextMenuItem key="B" href="#" onClick={onClick}>
+                  Go to Deployment B
+                </EuiContextMenuItem>,
+                <EuiContextMenuItem key="C" href="#" onClick={onClick}>
+                  Go to all deployments
+                </EuiContextMenuItem>,
+              ]}
+            />
+          </>
+        );
+      },
+      popoverProps: { panelPaddingSize: 'none' },
+    },
+    {
+      text: spaces.find((space) => space.checked === 'on')!.label,
+      popoverContent: (
+        <EuiSelectable
+          singleSelection="always"
+          options={spaces}
+          onChange={(newOptions) => setSpaces(newOptions)}
+          searchable
+          searchProps={{ placeholder: 'Filter spaces', compressed: true }}
+          aria-label="Space switcher"
+          emptyMessage="No spaces available"
+          noMatchesMessage="No spaces found"
+        >
+          {(list, search) => (
+            <>
+              <EuiPopoverTitle paddingSize="s">Select a space</EuiPopoverTitle>
+              <EuiPopoverTitle paddingSize="s">{search}</EuiPopoverTitle>
+              {list}
+              <EuiPopoverFooter paddingSize="s">
+                <EuiButton fullWidth size="s" iconType="gear">
+                  Manage all spaces
+                </EuiButton>
+              </EuiPopoverFooter>
+            </>
+          )}
+        </EuiSelectable>
+      ),
+      popoverProps: { panelPaddingSize: 'none' },
+    },
+    {
+      text: 'Home',
+    },
+  ];
+
+  return <EuiBreadcrumbs breadcrumbs={breadcrumbs} />;
+};
+```
+
+## Props
+
+import docgen from '@elastic/eui-docgen/dist/components/breadcrumbs';
+
+<PropTable definition={docgen.EuiBreadcrumbs} />

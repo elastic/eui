@@ -14,9 +14,9 @@ import React, {
 } from 'react';
 import classNames from 'classnames';
 
+import { useEuiMemoizedStyles } from '../../services';
 import { useEuiI18n } from '../i18n';
 import { CommonProps } from '../common';
-import { useEuiTheme } from '../../services';
 import { euiMarkStyles, euiMarkScreenReaderStyles } from './mark.styles';
 
 export type EuiMarkProps = HTMLAttributes<HTMLElement> &
@@ -39,8 +39,7 @@ export const EuiMark: FunctionComponent<EuiMarkProps> = ({
   ...rest
 }) => {
   const classes = classNames('euiMark', className);
-  const euiTheme = useEuiTheme();
-  const styles = euiMarkStyles(euiTheme);
+  const styles = useEuiMemoizedStyles(euiMarkStyles);
 
   const highlightStart = useEuiI18n(
     'euiMark.highlightStart',

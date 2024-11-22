@@ -132,16 +132,23 @@ export const DraggableColumn: FunctionComponent<{
     const { setFocusedCell } = useContext(DataGridFocusContext);
     const handleOnMouseDown: MouseEventHandler = useCallback(
       (e) => {
-        const openFocusTrap = document.querySelector(
+        const openFocusTraps = document.querySelectorAll(
           '[data-focus-lock-disabled="false"]'
         );
-        if (
-          !!openFocusTrap && // If a focus trap is open somewhere on the page
-          !openFocusTrap.contains(e.target as Node) && // & the focus trap doesn't belong to this header
-          e.target !== actionsPopoverToggle // & we're not closing the actions popover toggle
-        ) {
+        const validOpenFocusTraps = [...openFocusTraps].filter(
+          (focusTrap) => !focusTrap.contains(e.currentTarget as Node) // remove containing focus traps (e.g. modals or flyouts)
+        );
+
+        const shouldDispatchEvent = validOpenFocusTraps.some(
+          (focusTrap) =>
+            !!focusTrap && // If there is a focus trap open
+            !focusTrap.contains(e.target as Node) && // & if it doesn't contain the target
+            e.target !== actionsPopoverToggle // & we're not closing the actions popover toggle
+        );
+
+        if (shouldDispatchEvent) {
           // Trick the focus trap lib into registering an outside click -
-          // the drag/drop lib otherwise otherwise prevents the event 💀
+          // the drag/drop lib otherwise prevents the event 💀
           document.dispatchEvent(new MouseEvent('mousedown'));
         }
         setTimeout(() => {

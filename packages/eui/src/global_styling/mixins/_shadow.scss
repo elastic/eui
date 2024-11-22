@@ -63,14 +63,6 @@
   }
 }
 
-@mixin euiSlightShadowHover($color: $euiShadowColor) {
-  box-shadow:
-    0 1px 5px rgba($color, shadowOpacity(.1)),
-    0 3.6px 13px rgba($color, shadowOpacity(.07)),
-    0 8.4px 23px rgba($color, shadowOpacity(.06)),
-    0 23px 35px rgba($color, shadowOpacity(.05));
-}
-
 // stylelint-disable color-named
 @mixin euiOverflowShadow($direction: 'y', $side: 'both') {
   $hideHeight: $euiScrollBarCornerThin * 1.25;

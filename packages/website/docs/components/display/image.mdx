@@ -1,0 +1,236 @@
+---
+slug: /display/image
+id: display_image
+---
+
+# Image
+
+Use **EuiImage** when you need to place a static image into a page with an optional caption.
+
+:::tip Writing meaningful image alt text
+
+This page has several examples of alt text written to aid screen reader users, as well as several examples of when _not_ to include alt text. When an image is decorative, or if the image is adequately described by surrounding text, it is better to pass an empty `""` string instead.
+
+When an image is not already sufficiently described, the alt text passed should help non-visual users understand the purpose of the image within the context of the overall page. See [WebAIM](https://webaim.org/techniques/alttext/) for a more detailed guide to writing effective alt text.
+
+:::
+
+```tsx interactive
+import React from 'react';
+import { EuiImage } from '@elastic/eui';
+
+export default () => (
+  <EuiImage
+    size="l"
+    hasShadow
+    caption={
+      <p>
+        <em>Mastigias papua</em>, also known as spotted jelly
+      </p>
+    }
+    alt="Many small white-spotted pink jellyfish floating in a dark aquarium"
+    src="https://images.unsplash.com/photo-1650253618249-fb0d32d3865c?w=900&h=900&fit=crop&q=60"
+  />
+);
+```
+
+## Click an image for a fullscreen version
+
+Apply the `allowFullScreen` prop to make the image clickable and show a fullscreen version. Note that the second image also passes `fullScreenIconColor="dark"` to change icon color to better contrast against the light background of that image.
+
+```tsx interactive
+import React from 'react';
+import { EuiImage, EuiFlexGroup, EuiFlexItem, EuiLink } from '@elastic/eui';
+
+export default () => (
+  <EuiFlexGroup justifyContent="spaceEvenly">
+    <EuiFlexItem grow={false}>
+      <EuiImage
+        size="m"
+        hasShadow
+        allowFullScreen
+        caption="Albert Einstein, theoretical physicist"
+        alt="" // Because this image is sufficiently described by its caption, there is no need to repeat it via alt text
+        src="https://upload.wikimedia.org/wikipedia/commons/d/d3/Albert_Einstein_Head.jpg"
+      />
+    </EuiFlexItem>
+    <EuiFlexItem grow={false}>
+      <EuiImage
+        allowFullScreen
+        caption={
+          <>
+            Browser usage on{' '}
+            <EuiLink
+              href="https://commons.wikimedia.org/wiki/File:Wikimedia_browser_share_pie_chart.png"
+              target="_blank"
+            >
+              Wikimedia (CC BY 3.0)
+            </EuiLink>
+          </>
+        }
+        alt="Pie chart describing browser usage on Wikimedia on October 2011. Internet Explorer occupies 34 percent, Firefox occupies 23 percent, Chrome occupies 20 percent, Safari occupies 11 percent, Opera occupies 5%, Android occupies 1.9 percent, and other browsers occupy 3.5 percent."
+        src="https://upload.wikimedia.org/wikipedia/commons/a/a2/Wikimedia_browser_share_pie_chart.png"
+        fullScreenIconColor="dark"
+        size={300}
+        style={{ padding: '20px 30px', background: 'white' }}
+      />
+    </EuiFlexItem>
+  </EuiFlexGroup>
+);
+```
+
+## Images can be sized
+
+Images can be sized by passing the `size` prop a value of `s / m / l / xl / original / fullWidth / number / string`. This size sets the **maximum** length of the longest edge of the image, whether that is height or width, and scales it. Only the provided sizing values will also increase the size of a smaller image.
+
+```tsx interactive
+import React from 'react';
+import { EuiImage, EuiSpacer } from '@elastic/eui';
+
+const src =
+  'https://images.unsplash.com/photo-1477747219299-60f95c811fef?w=1000&h=1000&fit=crop&q=60';
+const alt =
+  'A cozy breakfast scene. In the background is a plate of waffles and blueberries. In the middle ground is a glass of orange juice and a small cup of cream. In the foreground is a plate of Eggs Benedict with a side of salad and cherry tomatoes.';
+
+export default () => (
+  <div>
+    <EuiImage
+      hasShadow
+      allowFullScreen
+      size={50}
+      caption="Custom size (50)"
+      alt={alt}
+      src={src}
+      wrapperProps={{ className: 'eui-textLeft' }}
+    />
+    <EuiSpacer />
+    <EuiImage
+      size="s"
+      hasShadow
+      allowFullScreen
+      caption="Small"
+      alt={alt}
+      src={src}
+    />
+    <EuiSpacer />
+    <EuiImage
+      size="m"
+      hasShadow
+      allowFullScreen
+      caption="Medium"
+      alt={alt}
+      src={src}
+    />
+    <EuiSpacer />
+    <EuiImage
+      size="l"
+      hasShadow
+      allowFullScreen
+      caption="Large"
+      alt={alt}
+      src={src}
+    />
+    <EuiSpacer />
+    <EuiImage
+      size="xl"
+      hasShadow
+      allowFullScreen
+      caption="Extra large"
+      alt={alt}
+      src={src}
+    />
+    <EuiSpacer />
+    <EuiImage
+      hasShadow
+      allowFullScreen
+      caption="Original"
+      alt={alt}
+      src={src}
+    />
+    <EuiSpacer />
+    <EuiImage
+      hasShadow
+      allowFullScreen
+      size="fullWidth"
+      caption="Full width"
+      alt={alt}
+      src={src}
+    />
+  </div>
+);
+```
+
+## Supporting SVG images
+
+If you are using an SVG source within `EuiImage`, the SVG image may not show up! While this is surprising to the user, if your image doesn't have a width or viewbox set, it is behaving in accordance with the SVG spec.
+
+In order to work with an SVG image that lacks a defined size, you'll want to set a `size` prop. If you are using the `allowFullScreen` prop as well, you will also want to add a `width` prop.
+
+```tsx interactive
+import React from 'react';
+import { EuiImage } from '@elastic/eui';
+
+export default () => (
+  <EuiImage
+    size="l"
+    width={600}
+    hasShadow
+    caption="Diagram of fishapod timelines"
+    alt="Diagram of fishapod timelines"
+    src="https://upload.wikimedia.org/wikipedia/commons/a/af/Fishapods.svg"
+    allowFullScreen
+  />
+);
+```
+
+## Float images within text
+
+When using `EuiImage` within `EuiText` it is often useful to apply floats. Almost always you'll want to pair the `float` prop usage, with a `margin` prop usage to give space around your image. Margins, when used in combo with floats, will adjust depending upon the position of the float.
+
+:::warning Be careful with floats
+
+Floats should only be used on images within **large** bodies of text. Specifically, we only suggest using them with `EuiText` which comes automatically clears floats.
+
+:::
+
+```tsx interactive
+import React from 'react';
+import { EuiImage, EuiText } from '@elastic/eui';
+import { faker } from '@faker-js/faker';
+
+export default () => (
+  <EuiText>
+    <EuiImage
+      size="l"
+      float="right"
+      margin="l"
+      hasShadow
+      caption="A randomized image"
+      allowFullScreen
+      alt="" // Because the image is randomized, there is no meaningful alt text we can generate here.
+      src="https://picsum.photos/800/500"
+    />
+    <p>{faker.lorem.paragraphs()}</p>
+    <p>{faker.lorem.paragraphs()}</p>
+    <p>{faker.lorem.paragraphs()}</p>
+    <EuiImage
+      size="l"
+      float="left"
+      margin="l"
+      hasShadow
+      allowFullScreen
+      caption="Another randomized image"
+      alt="" // Because the image is randomized, there is no meaningful alt text we can generate here.
+      src="https://picsum.photos/300/300"
+    />
+    <p>{faker.lorem.paragraphs()}</p>
+    <p>{faker.lorem.paragraphs()}</p>
+  </EuiText>
+);
+```
+
+## Props
+
+import docgen from '@elastic/eui-docgen/dist/components/image';
+
+<PropTable definition={docgen.EuiImage} />

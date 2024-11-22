@@ -1,0 +1,401 @@
+---
+slug: /display/progress
+id: display_progress
+---
+
+# Progress
+
+The **EuiProgress** component by default will display in an indeterminate loading state (rendered as a single div) until you define a `max` and `value` prop. The `size` prop refers to its vertical height. It will always stretch `100%` to its container.
+
+```tsx interactive
+import React from 'react';
+import { EuiProgress } from '@elastic/eui';
+
+export default () => (
+  <div>
+    <EuiProgress size="xs" color="accent" />
+  </div>
+);
+```
+
+## Progress with values
+
+Once the `max` and `value` props are set, it will act as a determinate progress bar. This is rendered using an HTML5 `progress` tag.
+
+```tsx interactive
+import React, { useState, useEffect } from 'react';
+import {
+  EuiButton,
+  EuiFlexGroup,
+  EuiFlexItem,
+  EuiProgress,
+  EuiText,
+} from '@elastic/eui';
+
+export default () => {
+  const [value, setValue] = useState(0);
+  const [showProgress, setShowProgress] = useState(false);
+
+  let timer;
+  const progress = (value) => {
+    if (value > 100) {
+      setValue(100);
+    } else {
+      setValue(value);
+      const diff = Math.round(Math.random() * 10);
+      timer = setTimeout(() => progress(value + diff), 250);
+    }
+  };
+  const toggleProgress = () => {
+    const currentState = showProgress;
+
+    if (!currentState) {
+      timer = setTimeout(() => progress(0), 250);
+    } else {
+      clearTimeout(timer);
+      setValue(0);
+    }
+    setShowProgress(!showProgress);
+  };
+
+  useEffect(() => {
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [timer]);
+
+  return (
+    <EuiFlexGroup alignItems="center">
+      <EuiFlexItem grow={false}>
+        <EuiButton size="s" onClick={toggleProgress}>
+          Toggle progress
+        </EuiButton>
+      </EuiFlexItem>
+      <EuiFlexItem grow={false}>
+        <EuiText>
+          <p>{value}</p>
+        </EuiText>
+      </EuiFlexItem>
+      <EuiFlexItem>
+        <EuiProgress value={value} max={100} size="xs" />
+      </EuiFlexItem>
+    </EuiFlexGroup>
+  );
+};
+```
+
+## Progress can have absolute or fixed positions
+
+Using the `position` prop we can align our bar to be `fixed` or `absolute`. In both options, the background color of the base bar is dropped (since the context of width is already known from your wrapping element). For the absolute option, make sure that your wrapping element has `position: relative` applied.
+
+:::warning Progress bars over fixed headers
+
+Using the `fixed` position may result in **EuiProgress** being overlayed when its parent wrapper has a `z-index` value lower than another fixed element, such as **EuiHeader**. In this scenario, wrap **EuiProgress** in an **EuiPortal** (example below).
+
+:::
+
+```tsx interactive
+import React, { useState, useEffect } from 'react';
+import {
+  EuiProgress,
+  EuiSpacer,
+  EuiButton,
+  EuiText,
+  EuiPanel,
+  EuiCallOut,
+  EuiFlexGroup,
+  EuiFlexItem,
+  EuiHeader,
+  EuiHeaderLogo,
+  EuiHeaderSection,
+  EuiHeaderSectionItem,
+  EuiPortal,
+} from '@elastic/eui';
+
+export default () => {
+  const [value, setValue] = useState(0);
+  const [showProgress, setShowProgress] = useState(false);
+  const [showHeader, setShowHeader] = useState(false);
+
+  let timer;
+  const progress = (value) => {
+    if (value > 100) {
+      setValue(100);
+    } else {
+      setValue(value);
+      const diff = Math.round(Math.random() * 10);
+      timer = setTimeout(() => progress(value + diff), 250);
+    }
+  };
+
+  const toggleProgress = () => {
+    const currentState = showProgress;
+
+    if (!currentState) {
+      timer = setTimeout(() => progress(0), 250);
+    } else {
+      clearTimeout(timer);
+      setValue(0);
+    }
+    setShowProgress(!showProgress);
+    setShowHeader(false);
+  };
+
+  const toggleHeader = () => {
+    setShowProgress(false);
+    setShowHeader(!showHeader);
+  };
+
+  useEffect(() => {
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [timer]);
+
+  let progress2 = null;
+
+  if (showProgress) {
+    progress2 = (
+      <div>
+        <EuiCallOut title="Look up!" color="warning" iconType="sortUp">
+          <p>The progress bar is fixed to the top of your browser.</p>
+        </EuiCallOut>
+        <EuiProgress value={value} max={100} size="s" position="fixed" />
+      </div>
+    );
+  }
+
+  if (showHeader) {
+    progress2 = (
+      <div>
+        <EuiCallOut title="Look up!" color="warning" iconType="sortUp">
+          <p>
+            The progress bar is fixed to the top of your browser and positioned
+            above an <strong>EuiHeader</strong>.
+          </p>
+        </EuiCallOut>
+        <EuiHeader
+          style={{ position: 'fixed', top: 0, left: 0, width: '100%' }}
+        >
+          <EuiHeaderSection>
+            <EuiHeaderSectionItem>
+              <EuiHeaderLogo
+                iconType="logoKibana"
+                href="#"
+                aria-label="Go to home page"
+              />
+            </EuiHeaderSectionItem>
+          </EuiHeaderSection>
+        </EuiHeader>
+        <div style={{ position: 'absolute', zIndex: '5' }}>
+          <EuiPortal>
+            <EuiProgress size="xs" color="accent" position="fixed" />
+          </EuiPortal>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div>
+      <EuiPanel style={{ width: 300, position: 'relative' }}>
+        <EuiProgress size="xs" color="accent" position="absolute" />
+        <EuiText>
+          <h2>Absolutely!</h2>
+          <p>
+            The progress bar is absolutely positioned in this panel. You could
+            see how this might be useful in our Toast component.
+          </p>
+        </EuiText>
+      </EuiPanel>
+
+      <EuiSpacer size="l" />
+
+      <EuiFlexGroup gutterSize="s" alignItems="center">
+        <EuiFlexItem grow={false}>
+          <EuiButton size="s" onClick={toggleProgress}>
+            Toggle a fixed bar
+          </EuiButton>
+        </EuiFlexItem>
+        <EuiFlexItem grow={false}>
+          <EuiButton size="s" onClick={toggleHeader}>
+            Toggle a fixed bar with header
+          </EuiButton>
+        </EuiFlexItem>
+      </EuiFlexGroup>
+
+      <EuiSpacer size="l" />
+
+      {progress2}
+    </div>
+  );
+};
+```
+
+## Sizes
+
+You can adjust the `size` of both determinate and indeterminate progress bars.
+
+```tsx interactive
+import React from 'react';
+import { EuiProgress, EuiSpacer } from '@elastic/eui';
+
+export default () => (
+  <div>
+    <EuiProgress value={20} max={100} size="xs" />
+    <EuiSpacer size="l" />
+
+    <EuiProgress value={40} max={100} size="xs" />
+    <EuiSpacer size="l" />
+
+    <EuiProgress value={60} max={100} size="s" />
+    <EuiSpacer size="l" />
+
+    <EuiProgress value={80} max={100} size="m" />
+    <EuiSpacer size="l" />
+
+    <EuiProgress value={90} max={100} size="l" />
+  </div>
+);
+```
+
+## Colors
+
+**EuiProgress** supports a few options for `color`. You can pass any value from our basic color set or from our visualization palette (`vis0` through `vis9`). To learn more about color usage, go to the [Colors](/docs/theming/colors/values) page.
+
+Additionally, you can pass any valid color string like a hex value or named color. Each `valueText` renders with a high contrast version of the color.
+
+```tsx interactive
+import React from 'react';
+import { EuiFlexGroup, EuiFlexItem, EuiProgress, EuiSpacer } from '@elastic/eui';
+
+const mainColors = [
+  'primary',
+  'success',
+  'warning',
+  'danger',
+  'subdued',
+  'accent',
+];
+
+const vizBars = [];
+
+for (let i = 0; i < 10; i++) {
+  vizBars.push(
+    <React.Fragment key={i}>
+      <EuiProgress
+        label={`vis${i}`}
+        valueText={true}
+        value={80}
+        max={100}
+        color={`vis${i}`}
+        size="m"
+      />
+      <EuiSpacer size="s" />
+    </React.Fragment>
+  );
+}
+
+export default () => (
+  <EuiFlexGroup>
+    <EuiFlexItem>
+      {mainColors.map((value) => (
+        <React.Fragment key={value}>
+          <EuiProgress
+            label={value}
+            valueText={true}
+            value={80}
+            max={100}
+            color={value}
+            size="m"
+          />
+          <EuiSpacer size="s" />
+        </React.Fragment>
+      ))}
+    </EuiFlexItem>
+    <EuiFlexItem>{vizBars}</EuiFlexItem>
+    <EuiFlexItem>
+      <EuiProgress
+        valueText={true}
+        label="#32CD32"
+        color="#32CD32"
+        value={80}
+        max={100}
+        size="m"
+      />
+      <EuiSpacer size="s" />
+      <EuiProgress
+        valueText={true}
+        label="mediumslateblue"
+        color="mediumslateblue"
+        value={80}
+        max={100}
+        size="m"
+      />
+    </EuiFlexItem>
+  </EuiFlexGroup>
+);
+
+```
+
+## Progress for charts
+
+Determinate progress bar can be used as simple bar charts. Use them with the `label` and `valueText` props to show the data corresponding to each bar.
+
+Setting `valueText={true}` will add a % sign next to the`value` passed. If you want to display a custom `valueText`, you can pass a node instead.
+
+```tsx interactive
+import React, { Fragment } from 'react';
+import { EuiProgress, EuiSpacer } from '@elastic/eui';
+
+const data = [
+  { label: 'Basic percentage', value: '80' },
+  {
+    label: 'Long percentage',
+    value: '60.0703850454546453168415365451354641354684531',
+  },
+  { label: 'Another basic percent', value: '45' },
+  { label: 'Custom valueText', value: '40', valueText: <span>4,005,678</span> },
+  { label: "Women's Accessories", value: '24.0256' },
+];
+
+export default () => (
+  <Fragment>
+    <div style={{ maxWidth: 160 }}>
+      {data.map((item) => (
+        <React.Fragment key={item.value}>
+          <EuiProgress
+            valueText={true}
+            max={100}
+            color="success"
+            size="s"
+            {...item}
+          />
+          <EuiSpacer size="s" />
+        </React.Fragment>
+      ))}
+    </div>
+    <EuiSpacer size="m" />
+    <div style={{ maxWidth: 200 }}>
+      {data.map((item) => (
+        <Fragment key={item.value}>
+          <EuiProgress
+            valueText={true}
+            max={100}
+            color="primary"
+            size="m"
+            {...item}
+          />
+          <EuiSpacer size="s" />
+        </Fragment>
+      ))}
+    </div>
+  </Fragment>
+);
+```
+
+## Props
+
+import docgen from '@elastic/eui-docgen/dist/components/progress';
+
+<PropTable definition={docgen.EuiProgress} />

@@ -1,0 +1,520 @@
+---
+slug: /display/skeleton
+id: display_skeleton
+---
+
+# Skeleton
+
+The **EuiSkeleton** components are placeholder components for content which has yet to load. They provide meaningful previews, avoid layout content shifts, and add accessible announcements to screen readers when content is done loading.
+
+:::note Accessibility recommendation
+The `contentAriaLabel` prop should be used to help describe the type of content that is loading to screen reader users. If you do not provide a descriptive label and have have multiple loading skeletons on the page, screen reader users may hear a multitude of “Loaded” messages in a row, with no meaningful indication of what actually loaded.
+:::
+
+## Text
+
+Use **EuiSkeletonText** to display a placeholder for multiple lines of text.
+
+```tsx interactive
+import React, { useState } from 'react';
+import {
+  EuiSkeletonText,
+  EuiText,
+  EuiSwitch,
+  EuiButtonGroup,
+  EuiSpacer,
+  EuiFlexGroup,
+} from '@elastic/eui';
+import { css } from '@emotion/react';
+
+type TextSizes = 'm' | 's' | 'xs' | 'relative';
+
+export default () => {
+  const [isLoading, setIsLoading] = useState(true);
+  const [size, setSize] = useState<TextSizes>('m');
+
+  return (
+    <>
+      <EuiFlexGroup alignItems="center" justifyContent="spaceBetween">
+        <EuiSwitch
+          label="Toggle loaded state"
+          checked={isLoading}
+          onChange={() => setIsLoading(!isLoading)}
+        />
+        <EuiButtonGroup
+          legend="Change text size"
+          idSelected={size}
+          onChange={(optionId) => {
+            setSize(optionId as TextSizes);
+          }}
+          options={[
+            { label: 'Medium', id: 'm' },
+            { label: 'Small', id: 's' },
+            { label: 'Extra small', id: 'xs' },
+            { label: 'Relative', id: 'relative' },
+          ]}
+        />
+      </EuiFlexGroup>
+      <EuiSpacer />
+      <EuiSkeletonText
+        lines={3}
+        size={size}
+        isLoading={isLoading}
+        contentAriaLabel="Demo skeleton text"
+      >
+        <EuiText
+          // Trim text to 3 lines to visually match the skeleton lines
+          css={css`
+            text-overflow: ellipsis;
+            overflow: hidden;
+            line-clamp: 3;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+          `}
+          size={size}
+        >
+          <p>
+            Far out in the uncharted backwaters of the unfashionable end of the
+            western spiral arm of the Galaxy lies a small unregarded yellow sun.
+            Orbiting this at a distance of roughly ninety-two million miles is
+            an utterly insignificant little blue green planet whose
+            ape-descended life forms are so amazingly primitive that they still
+            think digital watches are a pretty neat idea.
+          </p>
+        </EuiText>
+      </EuiSkeletonText>
+    </>
+  );
+};
+
+```
+
+## Title
+
+Use **EuiSkeletonTitle** to display a placeholder for heading titles.
+
+```tsx interactive
+import React, { useState } from 'react';
+import {
+  EuiSkeletonTitle,
+  EuiTitle,
+  EuiSwitch,
+  EuiSpacer,
+  EuiFlexGroup,
+} from '@elastic/eui';
+
+export default () => {
+  const [isLoading, setIsLoading] = useState(true);
+
+  return (
+    <>
+      <EuiSwitch
+        label="Toggle loaded state"
+        checked={isLoading}
+        onChange={() => setIsLoading(!isLoading)}
+      />
+      <EuiSpacer />
+      <EuiFlexGroup direction="column">
+        <EuiSkeletonTitle
+          size="xxxs"
+          isLoading={isLoading}
+          contentAriaLabel="Demo skeleton title"
+        >
+          <EuiTitle size="xxxs">
+            <span>This is an extra extra extra small title</span>
+          </EuiTitle>
+        </EuiSkeletonTitle>
+
+        <EuiSkeletonTitle
+          size="xxs"
+          isLoading={isLoading}
+          contentAriaLabel="Demo skeleton title"
+        >
+          <EuiTitle size="xxs">
+            <span>This is an extra extra small title</span>
+          </EuiTitle>
+        </EuiSkeletonTitle>
+
+        <EuiSkeletonTitle
+          size="xs"
+          isLoading={isLoading}
+          contentAriaLabel="Demo skeleton title"
+        >
+          <EuiTitle size="xs">
+            <span>This is an extra small title</span>
+          </EuiTitle>
+        </EuiSkeletonTitle>
+
+        <EuiSkeletonTitle
+          size="s"
+          isLoading={isLoading}
+          contentAriaLabel="Demo skeleton title"
+        >
+          <EuiTitle size="s">
+            <span>This is a small title</span>
+          </EuiTitle>
+        </EuiSkeletonTitle>
+
+        <EuiSkeletonTitle
+          size="m"
+          isLoading={isLoading}
+          contentAriaLabel="Demo skeleton title"
+        >
+          <EuiTitle size="m">
+            <span>This is a medium title</span>
+          </EuiTitle>
+        </EuiSkeletonTitle>
+
+        <EuiSkeletonTitle
+          size="l"
+          isLoading={isLoading}
+          contentAriaLabel="Demo skeleton title"
+        >
+          <EuiTitle size="l">
+            <span>This is a large title</span>
+          </EuiTitle>
+        </EuiSkeletonTitle>
+      </EuiFlexGroup>
+    </>
+  );
+};
+```
+
+## Circle
+
+Use **EuiSkeletonCircle** to display a circular preview, mainly for avatars.
+
+```tsx interactive
+import React, { useState } from 'react';
+import {
+  EuiSkeletonCircle,
+  EuiAvatar,
+  EuiFlexGroup,
+  EuiFlexItem,
+  EuiSwitch,
+  EuiSpacer,
+} from '@elastic/eui';
+
+export default () => {
+  const [isLoading, setIsLoading] = useState(true);
+
+  return (
+    <>
+      <EuiSwitch
+        label="Toggle loaded state"
+        checked={isLoading}
+        onChange={() => setIsLoading(!isLoading)}
+      />
+      <EuiSpacer />
+      <EuiFlexGroup responsive={false} gutterSize="s" alignItems="center">
+        <EuiFlexItem grow={false}>
+          <EuiSkeletonCircle
+            size="s"
+            isLoading={isLoading}
+            contentAriaLabel="Demo skeleton avatar"
+          >
+            <EuiAvatar size="s" name="Raphael" />
+          </EuiSkeletonCircle>
+        </EuiFlexItem>
+
+        <EuiFlexItem grow={false}>
+          <EuiSkeletonCircle
+            size="m"
+            isLoading={isLoading}
+            contentAriaLabel="Demo skeleton avatar"
+          >
+            <EuiAvatar size="m" name="Donatello" />
+          </EuiSkeletonCircle>
+        </EuiFlexItem>
+
+        <EuiFlexItem grow={false}>
+          <EuiSkeletonCircle
+            size="l"
+            isLoading={isLoading}
+            contentAriaLabel="Demo skeleton avatar"
+          >
+            <EuiAvatar size="l" name="Leonardo" />
+          </EuiSkeletonCircle>
+        </EuiFlexItem>
+
+        <EuiFlexItem grow={false}>
+          <EuiSkeletonCircle
+            size="xl"
+            isLoading={isLoading}
+            contentAriaLabel="Demo skeleton avatar"
+          >
+            <EuiAvatar size="xl" name="Michelangelo" />
+          </EuiSkeletonCircle>
+        </EuiFlexItem>
+      </EuiFlexGroup>
+    </>
+  );
+};
+```
+
+## Rectangle
+
+**EuiSkeletonRectangle** allows you define a large and customizable shape via its `width`, `height`, and `borderRadius` props.
+
+```tsx interactive
+import React, { useState } from 'react';
+import {
+  EuiSkeletonRectangle,
+  EuiFlexGroup,
+  EuiFlexItem,
+  EuiSwitch,
+  EuiSpacer,
+  EuiImage,
+  EuiBadge,
+  EuiCard,
+  EuiIcon,
+} from '@elastic/eui';
+
+export default () => {
+  const [isLoading, setIsLoading] = useState(true);
+
+  return (
+    <>
+      <EuiSwitch
+        label="Toggle loaded state"
+        checked={isLoading}
+        onChange={() => setIsLoading(!isLoading)}
+      />
+      <EuiSpacer />
+      <EuiFlexGroup responsive={false} wrap>
+        <EuiFlexItem grow={false}>
+          <EuiSkeletonRectangle
+            isLoading={isLoading}
+            contentAriaLabel="Demo skeleton badge"
+            width="54.16px"
+            height="20px"
+            borderRadius="s"
+          >
+            <EuiBadge color="success">Active</EuiBadge>
+          </EuiSkeletonRectangle>
+        </EuiFlexItem>
+
+        <EuiFlexItem grow={false}>
+          <EuiSkeletonRectangle
+            isLoading={isLoading}
+            contentAriaLabel="Demo skeleton image"
+            width={100}
+            height={100}
+            borderRadius="none"
+          >
+            <EuiImage
+              width={100}
+              height={100}
+              src="https://picsum.photos/300/300"
+              alt="A randomized image"
+            />
+          </EuiSkeletonRectangle>
+        </EuiFlexItem>
+
+        <EuiFlexItem grow={false}>
+          <EuiSkeletonRectangle
+            isLoading={isLoading}
+            contentAriaLabel="Demo skeleton card"
+            width={203}
+            height={148}
+            borderRadius="m"
+          >
+            <EuiCard
+              icon={<EuiIcon size="xxl" type="logoCloud" />}
+              title="Elastic Cloud"
+              description="Example card description."
+              onClick={() => {}}
+            />
+          </EuiSkeletonRectangle>
+        </EuiFlexItem>
+      </EuiFlexGroup>
+    </>
+  );
+};
+```
+
+## Combining multiple skeletons
+
+**EuiSkeletonLoading** is a light wrapper around the **EuiSkeleton** components that handles loading accessibility and flipping between skeleton and loaded content.
+
+As you may have noticed in the previous demos, toggling multiple skeletons to their loaded state all at once triggers multiple queued screen reader announcements, which can be annoying to SR users.
+
+To circumvent this, use **EuiSkeletonLoading** to handle a single parent-level `isLoading` state. **EuiSkeleton** children passed to the `loadingContent` should not have their own `isLoading` props or children.
+
+```tsx interactive
+import React, { useState } from 'react';
+import {
+  EuiSkeletonLoading,
+  EuiSkeletonTitle,
+  EuiTitle,
+  EuiSkeletonText,
+  EuiText,
+  EuiSkeletonRectangle,
+  EuiCard,
+  EuiSkeletonCircle,
+  EuiAvatar,
+  EuiSwitch,
+  EuiSpacer,
+  EuiPanel,
+  EuiFlexGroup,
+  EuiFlexItem,
+  EuiIcon,
+  EuiCode,
+} from '@elastic/eui';
+
+export default () => {
+  const [isLoading, setIsLoading] = useState(true);
+
+  return (
+    <>
+      <EuiSwitch
+        label="Toggle loaded state"
+        checked={isLoading}
+        onChange={() => setIsLoading(!isLoading)}
+      />
+      <EuiSpacer />
+      <EuiSkeletonLoading
+        isLoading={isLoading}
+        contentAriaLabel="Demo loading section"
+        loadingContent={
+          <EuiPanel>
+            <EuiFlexGroup alignItems="center" gutterSize="s" responsive={false}>
+              <EuiFlexItem grow={false}>
+                <EuiSkeletonCircle size="s" />
+              </EuiFlexItem>
+              <EuiFlexItem>
+                <EuiSkeletonTitle size="l" />
+              </EuiFlexItem>
+            </EuiFlexGroup>
+            <EuiSpacer size="s" />
+            <EuiFlexGroup>
+              <EuiFlexItem>
+                <EuiSkeletonText lines={5} />
+              </EuiFlexItem>
+              <EuiFlexItem>
+                <EuiSkeletonRectangle width="100%" height={148} />
+              </EuiFlexItem>
+            </EuiFlexGroup>
+          </EuiPanel>
+        }
+        loadedContent={
+          <EuiPanel>
+            <EuiFlexGroup alignItems="center" gutterSize="s" responsive={false}>
+              <EuiAvatar size="s" name="Avatar" />
+              <EuiTitle size="l">
+                <span>Example section title</span>
+              </EuiTitle>
+            </EuiFlexGroup>
+            <EuiSpacer size="s" />
+            <EuiFlexGroup>
+              <EuiFlexItem>
+                <EuiText>
+                  <p>
+                    This demo groups multiple skeleton types into a single
+                    loading section by using{' '}
+                    <EuiCode>EuiSkeletonLoading</EuiCode>.
+                  </p>
+                  <p>
+                    This is a significant usability improvement for screen
+                    readers as only one loaded message is announced, as opposed
+                    to four.
+                  </p>
+                </EuiText>
+              </EuiFlexItem>
+              <EuiFlexItem>
+                <EuiCard
+                  display="subdued"
+                  icon={<EuiIcon size="xxl" type="logoElastic" />}
+                  title="Elastic Cloud"
+                  description="Example card description."
+                />
+              </EuiFlexItem>
+            </EuiFlexGroup>
+          </EuiPanel>
+        }
+      />
+    </>
+  );
+};
+```
+
+## Customizing screen reader announcements
+
+**EuiSkeleton** components assume that the page starts as loading and transitions to loaded, and the default screen reader experience is set up accordingly (`announceLoadedStatus={true}`).
+
+In scenarios where that is not the case (i.e., transitioning to loading), you can customize what statuses are announced to screen readers by setting `announceLoadingStatus` to true, or `announceLoadedStatus` to false. Submitting the below example announces a loading status, but not a loaded status.
+
+As an optional escape hatch, `ariaLiveProps` is also available and accepts any [**EuiScreenReaderLive**](/docs/utilities/accessibility#screen-reader-live-region) props.
+
+```tsx interactive
+import React, { useState } from 'react';
+import {
+  EuiSkeletonLoading,
+  EuiSkeletonRectangle,
+  EuiFieldText,
+  EuiButton,
+  EuiFlexGroup,
+  EuiFlexItem,
+  useEuiTheme,
+} from '@elastic/eui';
+
+export default () => {
+  const [isLoading, setIsLoading] = useState(false);
+
+  const simulateLoading = () => {
+    setIsLoading(true);
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 3000);
+  };
+
+  const { euiTheme } = useEuiTheme();
+
+  return (
+    <>
+      <EuiSkeletonLoading
+        isLoading={isLoading}
+        announceLoadedStatus={false} // Prevents unnecessary announcement on page load
+        announceLoadingStatus={true} // Announces on submit
+        ariaLiveProps={{ role: 'alert' }} // Allows customizing the aria-live region
+        contentAriaLabel="Demo form"
+        loadingContent={
+          <EuiSkeletonRectangle width="100%" height={euiTheme.size.xxl} />
+        }
+        loadedContent={
+          <form onSubmit={simulateLoading}>
+            <EuiFlexGroup alignItems="center" gutterSize="s" responsive={false}>
+              <EuiFlexItem>
+                <EuiFieldText
+                  fullWidth
+                  aria-label="Input that transitions to loading"
+                  defaultValue="Replaced with a loading skeleton on submit"
+                />
+              </EuiFlexItem>
+              <EuiFlexItem grow={false}>
+                <EuiButton type="submit" fill>
+                  Submit
+                </EuiButton>
+              </EuiFlexItem>
+              <EuiFlexItem grow={false}>
+                <EuiButton>Cancel</EuiButton>
+              </EuiFlexItem>
+            </EuiFlexGroup>
+          </form>
+        }
+      />
+    </>
+  );
+};
+```
+
+## Props
+
+import docgen from '@elastic/eui-docgen/dist/components/skeleton';
+
+<PropTable definition={docgen.EuiSkeletonCircle} />
+<PropTable definition={docgen.EuiSkeletonRectangle} />
+<PropTable definition={docgen.EuiSkeletonLoading} />
+<PropTable definition={docgen.EuiSkeletonTitle} />
+<PropTable definition={docgen.EuiSkeletonText} />

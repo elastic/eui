@@ -757,6 +757,26 @@ describe('EuiDataGridCell', () => {
         callMethod(component);
         expect(setRowHeight).not.toHaveBeenCalled();
       });
+
+      it('does nothing if cell height is auto or autoBelowLineCount', () => {
+        mockRowHeightUtils.isAutoBelowLineCount.mockReturnValue(true);
+
+        const component = mount(
+          <EuiDataGridCell
+            {...requiredProps}
+            rowHeightsOptions={{
+              autoBelowLineCount: true,
+              defaultHeight: { lineCount: 3 },
+            }}
+            setRowHeight={setRowHeight}
+          />
+        );
+
+        callMethod(component);
+        expect(setRowHeight).not.toHaveBeenCalled();
+
+        mockRowHeightUtils.isAutoBelowLineCount.mockRestore();
+      });
     });
   });
 
@@ -815,6 +835,30 @@ describe('EuiDataGridCell', () => {
       ).toBe(true);
       expect(component.find('.eui-textBreakWord').exists()).toBe(true);
       expect(component.find('.euiTextBlockTruncate').exists()).toBe(true);
+    });
+
+    test('autoBelowLineCount', () => {
+      mockRowHeightUtils.isAutoBelowLineCount.mockReturnValue(true);
+
+      const component = mount(
+        <EuiDataGridCell
+          {...props}
+          rowHeightsOptions={{
+            autoBelowLineCount: true,
+            defaultHeight: { lineCount: 3 },
+          }}
+        />
+      );
+
+      expect(
+        component
+          .find('div.euiDataGridRowCell__content--autoBelowLineCountHeight')
+          .hasClass(/autoHeight/)
+      ).toBe(true);
+      expect(component.find('.eui-textBreakWord').exists()).toBe(true);
+      expect(component.find('.euiTextBlockTruncate').exists()).toBe(true);
+
+      mockRowHeightUtils.isAutoBelowLineCount.mockRestore();
     });
   });
 

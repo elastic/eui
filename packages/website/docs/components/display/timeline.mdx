@@ -1,0 +1,256 @@
+---
+slug: /display/timeline
+id: display_timeline
+---
+
+# Timeline
+
+The **EuiTimeline** component standardizes the way a timeline thread is displayed. Pass an array of **EuiTimelineItem** objects and **EuiTimeline** will generate a timeline thread.
+
+This component allows you to create any type of timeline, but for more specific use cases you should consider:
+
+*   [**EuiSteps**](/docs/navigation/steps): a timeline that allows you to present instructional content that must be conducted in a particular order and might contain progress indications.
+*   [**EuiCommentList**](/docs/display/comment-list): a timeline that allows you to display comments or logging actions that either a user or a system has performed.
+
+:::note Accessibility requirement
+For accessibility, it is required to wrap your **EuiTimelineItem**'s with a **EuiTimeline**. It is highly recommended to provide a descriptive `aria-label`, or a text node ID of an external label to the `aria-labelledby` prop of the **EuiTimeline**.
+:::
+
+```tsx interactive
+import React from 'react';
+import { EuiTimeline, EuiTimelineProps, EuiText } from '@elastic/eui';
+
+const items: EuiTimelineProps['items'] = [
+  {
+    icon: 'email',
+    iconAriaLabel: 'Invitation',
+    children: (
+      <EuiText size="s">
+        <p>
+          <strong>janet@elastic.co</strong> was invited to the project.
+        </p>
+      </EuiText>
+    ),
+  },
+  {
+    icon: 'pencil',
+    iconAriaLabel: 'Edited',
+    children: (
+      <EuiText size="s">
+        <p>
+          The project was renamed to <strong>Revenue Dashboard</strong>.
+        </p>
+      </EuiText>
+    ),
+  },
+  {
+    icon: 'folderClosed',
+    iconAriaLabel: 'Project closed',
+    children: (
+      <EuiText size="s">
+        <p>The project was archived.</p>
+      </EuiText>
+    ),
+  },
+];
+
+export default () => (
+  <EuiTimeline items={items} aria-label="Project beta timeline" />
+);
+```
+
+## Timeline item
+
+Each **EuiTimelineItem** has two parts: an icon on the left side and an event on the right side. To create an item you need the following props:
+
+*   `icon`: main icon that appears on the left side. Can be passed as any `IconType` string or custom node (e.g. [**EuiAvatar**](/docs/display/avatar)). It is recommended not to use an element larger than 40x40.
+*   `children`: any node as the event content.
+
+```tsx interactive
+import React from 'react';
+import { EuiTimeline, EuiTimelineItem, EuiText, EuiCode } from '@elastic/eui';
+
+export default () => (
+  <EuiTimeline aria-label="Timeline item example">
+    <EuiTimelineItem icon="dot" iconAriaLabel="Main icon">
+      <EuiText size="s">
+        <p>
+          I&apos;m the <EuiCode>children</EuiCode> and you can find the{' '}
+          <EuiCode>icon</EuiCode> on the left side.
+        </p>
+      </EuiText>
+    </EuiTimelineItem>
+  </EuiTimeline>
+);
+```
+
+## A timeline thread with multiple items
+
+You can create a timeline thread by rendering multiple **EuiTimelineItem** components in a **EuiTimeline**. Following this structure ensures that timeline styles are applied correctly and appropriate semantic elements are used to assist with screen readers.
+
+When passing an `icon` and `children` prop to each item, there are some design considerations to take into account:
+
+*   `icon`: use icons of the same size to create a better visual consistency.
+*   `children`: when your content is just one line of text, the recommendation is to use a a [**EuiText**](/docs/display/text) as a wrapper. For multi-line content consider using a [**EuiPanel**](/docs/layout/panel) or a [**EuiSplitPanel**](/docs/layout/panel#split-panels) instead. For other types of components like editors, the recommendation is to pass the children without any wrapper.
+
+The following example shows how to display multiple **EuiTimelineItem**s and how you can use a **EuiSplitPanel** as the content wrapper.
+
+```tsx interactive
+import React, { useState } from 'react';
+import {
+  EuiTimelineItem,
+  EuiAvatar,
+  EuiText,
+  EuiSwitch,
+  EuiSwitchEvent,
+  EuiAccordion,
+  EuiFlexGroup,
+  EuiFlexItem,
+  EuiSpacer,
+  EuiBadge,
+  EuiTitle,
+  EuiSplitPanel,
+  EuiPanel,
+  EuiHorizontalRule,
+  EuiTimeline,
+  useGeneratedHtmlId,
+  euiPaletteColorBlindBehindText,
+} from '@elastic/eui';
+
+export default () => {
+  const [checked1, setChecked1] = useState(false);
+  const [checked2, setChecked2] = useState(false);
+  const [checked3, setChecked3] = useState(false);
+  const buttonElementAccordionId = useGeneratedHtmlId({
+    prefix: 'buttonElementAccordion',
+  });
+
+  // We could use the `euiPaletteColorBlind` for coloring the avatars
+  // But because we're placing an icon on top of these colors
+  // The `euiPaletteColorBlindBehindText` is a better choice to ensure better contrast
+  const colorBlindBehindText = euiPaletteColorBlindBehindText({
+    sortBy: 'natural',
+  });
+
+  const onChange1 = (e: EuiSwitchEvent) => setChecked1(e.target.checked);
+
+  const onChange2 = (e: EuiSwitchEvent) => setChecked2(e.target.checked);
+
+  const onChange3 = (e: EuiSwitchEvent) => setChecked3(e.target.checked);
+
+  const phase = (
+    title: string,
+    checked: boolean,
+    onChange: (e: EuiSwitchEvent) => void,
+    avatarColor: string
+  ) => (
+    <EuiTimelineItem
+      verticalAlign="top"
+      icon={
+        checked ? (
+          <EuiAvatar name="Checked" iconType="check" color={avatarColor} />
+        ) : (
+          <EuiAvatar name="Unchecked" iconType="dot" color="subdued" />
+        )
+      }
+    >
+      <EuiSplitPanel.Outer color="transparent" hasBorder grow>
+        <EuiSplitPanel.Inner color={checked ? 'transparent' : 'subdued'}>
+          <EuiFlexGroup alignItems="center" gutterSize="s">
+            <EuiFlexItem grow={false}>
+              <EuiSwitch
+                showLabel={false}
+                label={checked ? `${title} is on` : `${title} is off`}
+                checked={checked}
+                onChange={onChange}
+              />
+            </EuiFlexItem>
+            <EuiFlexItem>
+              <EuiTitle size="s">
+                <h2>{title}</h2>
+              </EuiTitle>
+            </EuiFlexItem>
+          </EuiFlexGroup>
+        </EuiSplitPanel.Inner>
+        <EuiHorizontalRule margin="none" />
+        <EuiSplitPanel.Inner>
+          <EuiText size="s" grow={false}>
+            <p>
+              Move data to the cold tier when you are searching it less often
+              and don&apos;t need to update it. The cold tier is optimized for
+              cost savings over search performance.
+            </p>
+          </EuiText>
+
+          {checked && (
+            <>
+              <EuiSpacer />
+              <EuiAccordion
+                id={buttonElementAccordionId}
+                buttonElement="div"
+                buttonContent="Advanced settings"
+              >
+                <EuiPanel color="transparent">
+                  Any content inside of <strong>EuiAccordion</strong> will
+                  appear here.
+                </EuiPanel>
+              </EuiAccordion>
+            </>
+          )}
+        </EuiSplitPanel.Inner>
+      </EuiSplitPanel.Outer>
+    </EuiTimelineItem>
+  );
+
+  return (
+    <EuiTimeline aria-label="Life cycle of data">
+      <EuiTimelineItem
+        verticalAlign="top"
+        icon={
+          <EuiAvatar
+            name="Checked"
+            iconType="check"
+            color={colorBlindBehindText[0]}
+          />
+        }
+      >
+        <EuiSplitPanel.Outer color="transparent" hasBorder grow>
+          <EuiSplitPanel.Inner>
+            <EuiTitle size="s">
+              <h2>
+                Hot phase <EuiBadge color="warning">Required</EuiBadge>
+              </h2>
+            </EuiTitle>
+          </EuiSplitPanel.Inner>
+          <EuiHorizontalRule margin="none" />
+          <EuiSplitPanel.Inner>
+            <EuiText grow={false} size="s">
+              <p>
+                Store your most recent, most frequently-searched data in the hot
+                tier. The hot tier provides the best indexing and search
+                performance by using the most powerful, expensive hardware.
+              </p>
+            </EuiText>
+          </EuiSplitPanel.Inner>
+        </EuiSplitPanel.Outer>
+      </EuiTimelineItem>
+
+      {phase('Warm phase', checked1, onChange1, colorBlindBehindText[1])}
+
+      {phase('Cold phase', checked2, onChange2, colorBlindBehindText[2])}
+
+      {phase('Frozen phase', checked3, onChange3, colorBlindBehindText[3])}
+    </EuiTimeline>
+  );
+};
+
+```
+
+## Props
+
+import docgen from '@elastic/eui-docgen/dist/components/timeline';
+
+<PropTable definition={docgen.EuiTimeline} />
+<PropTable definition={docgen.EuiTimelineItem} />
+<PropTable definition={docgen.EuiTimelineItemEvent} />
+<PropTable definition={docgen.EuiTimelineItemIcon} />

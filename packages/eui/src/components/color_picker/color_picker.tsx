@@ -456,7 +456,6 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
     mode === 'secondaryInput' || secondaryInputDisplay !== 'none';
   const inlineInput = showSecondaryInput && (
     <EuiFormRow
-      display="rowCompressed"
       isInvalid={isInvalid}
       error={isInvalid ? colorErrorMessage : null}
     >

@@ -8,14 +8,16 @@
 
 import React, { useMemo, FunctionComponent } from 'react';
 import classNames from 'classnames';
+
+import { useEuiMemoizedStyles } from '../../services';
 import { EuiText, EuiTextProps } from '../text';
+
 import {
   EuiInlineEditCommonProps,
   EuiInlineEditForm,
   SMALL_SIZE_FORM,
   MEDIUM_SIZE_FORM,
 } from './inline_edit_form';
-import { useEuiTheme } from '../../services';
 import { euiInlineEditTextStyles } from './inline_edit_text.styles';
 
 export type EuiInlineEditTextSizes = Exclude<EuiTextProps['size'], 'relative'>;
@@ -35,9 +37,7 @@ export const EuiInlineEditText: FunctionComponent<EuiInlineEditTextProps> = ({
   ...rest
 }) => {
   const classes = classNames('euiInlineEditText', className);
-
-  const theme = useEuiTheme();
-  const styles = euiInlineEditTextStyles(theme);
+  const styles = useEuiMemoizedStyles(euiInlineEditTextStyles);
   const cssStyles = [styles.euiInlineEditText, styles.fontSize[size]];
 
   const isSmallSize = ['xs', 's'].includes(size);

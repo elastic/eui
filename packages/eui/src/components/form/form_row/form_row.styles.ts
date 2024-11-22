@@ -49,8 +49,7 @@ export const euiFormRowStyles = (euiThemeContext: UseEuiTheme) => {
         ${logicalCSS('margin-top', euiTheme.size.base)}
       }
     `,
-    // No difference from the uncompressed row for this current theme AFAICT
-    // TODO: Deprecate prop
+    // No difference from the uncompressed row for the current EUI theme
     get rowCompressed() {
       return this.row;
     },
@@ -94,11 +93,6 @@ export const euiFormRowStyles = (euiThemeContext: UseEuiTheme) => {
         }
       }
     `,
-    // Handled by :has CSS now rather than a separate modifier/prop
-    // TODO: Deprecate prop
-    get columnCompressedSwitch() {
-      return this.columnCompressed;
-    },
 
     // Center display is primarily for inline form rows, which may have have
     // field content that is shorter than form controls (e.g. switches, text),

@@ -22,7 +22,6 @@ import {
   EuiDataGridRowHeightOption,
   EuiDataGridRowHeightsOptions,
   EuiDataGridScrollAnchorRow,
-  EuiDataGridStyle,
   ImperativeGridApi,
 } from '../data_grid_types';
 import { DataGridSortedContext } from './sorting';
@@ -54,7 +53,7 @@ export class RowHeightUtils {
     heightOption: EuiDataGridRowHeightOption,
     defaultHeight: number,
     rowIndex?: number,
-    isRowHeightOverride?: boolean
+    rowHeightsOptions?: EuiDataGridRowHeightsOptions
   ) {
     if (isObject(heightOption) && heightOption.height) {
       return Math.max(heightOption.height, defaultHeight);
@@ -65,8 +64,13 @@ export class RowHeightUtils {
     }
 
     if (isObject(heightOption) && heightOption.lineCount) {
-      if (isRowHeightOverride) {
-        return this.getRowHeight(rowIndex!) || defaultHeight; // lineCount overrides are stored in the heights cache
+      const { autoBelowLineCount } = rowHeightsOptions || {}; // uses auto height cache
+      const isRowHeightOverride = // lineCount overrides are stored in the heights cache
+        rowIndex != null &&
+        this.isRowHeightOverride(rowIndex, rowHeightsOptions);
+
+      if (autoBelowLineCount || isRowHeightOverride) {
+        return this.getRowHeight(rowIndex!) || defaultHeight;
       } else {
         return defaultHeight; // default lineCount height is set in minRowHeight state in grid_row_body
       }
@@ -115,6 +119,15 @@ export class RowHeightUtils {
     return contentHeight + padding * 2;
   }
 
+  isAutoBelowLineCount(
+    options?: EuiDataGridRowHeightsOptions,
+    option?: EuiDataGridRowHeightOption
+  ) {
+    if (!options?.autoBelowLineCount) return false;
+    if ((this.getLineCount(option) ?? 0) > 1) return true;
+    return false;
+  }
+
   /**
    * Auto height utils
    */
@@ -126,6 +139,9 @@ export class RowHeightUtils {
     const height = this.getRowHeightOption(rowIndex, rowHeightsOptions);
 
     if (height === AUTO_HEIGHT) {
+      return true;
+    }
+    if (this.isAutoBelowLineCount(rowHeightsOptions, height)) {
       return true;
     }
     return false;
@@ -310,7 +326,6 @@ export const useRowHeightUtils = ({
         gridItemsRenderedRef: MutableRefObject<GridOnItemsRenderedProps | null>;
       };
   rowHeightsOptions?: EuiDataGridRowHeightsOptions;
-  gridStyles: EuiDataGridStyle;
   columns: EuiDataGridColumn[];
 }) => {
   const forceRenderRef = useLatest(useForceRender());
@@ -393,7 +408,7 @@ export const useDefaultRowHeight = ({
           rowHeightOption,
           minRowHeight,
           correctRowIndex,
-          rowHeightUtils.isRowHeightOverride(correctRowIndex, rowHeightsOptions)
+          rowHeightsOptions
         );
       }
 

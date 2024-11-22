@@ -69,7 +69,7 @@ const EuiDataGridCellContent: FunctionComponent<
     setCellContentsRef,
     rowIndex,
     colIndex,
-    rowHeight,
+    rowHeightsOptions,
     rowHeightUtils,
     isControlColumn,
     ...rest
@@ -78,11 +78,18 @@ const EuiDataGridCellContent: FunctionComponent<
     const CellElement =
       renderCellValue as JSXElementConstructor<EuiDataGridCellValueElementProps>;
 
-    const cellHeightType = useMemo(
-      () => rowHeightUtils?.getHeightType(rowHeight) || 'default',
-      [rowHeightUtils, rowHeight]
+    // Cell height type
+    const rowHeight = rowHeightUtils?.getRowHeightOption(
+      rowIndex,
+      rowHeightsOptions
     );
+    const cellHeightType = useMemo(() => {
+      return rowHeightUtils?.isAutoBelowLineCount(rowHeightsOptions, rowHeight)
+        ? 'autoBelowLineCount'
+        : rowHeightUtils?.getHeightType(rowHeight) || 'default';
+    }, [rowHeightUtils, rowHeight, rowHeightsOptions]);
 
+    // Classes and styles
     const classes = useMemo(
       () =>
         classNames(
@@ -104,7 +111,7 @@ const EuiDataGridCellContent: FunctionComponent<
         : [
             // Regular data cells should always inherit height from the row wrapper,
             // except for auto height
-            cellHeightType === 'auto'
+            cellHeightType === 'auto' || cellHeightType === 'autoBelowLineCount'
               ? styles.content.autoHeight
               : styles.content.defaultHeight,
           ]),
@@ -113,7 +120,9 @@ const EuiDataGridCellContent: FunctionComponent<
     return (
       <RenderTruncatedCellContent
         hasLineCountTruncation={
-          cellHeightType === 'lineCount' && !isControlColumn
+          (cellHeightType === 'lineCount' ||
+            cellHeightType === 'autoBelowLineCount') &&
+          !isControlColumn
         }
         rowHeight={rowHeight}
       >
@@ -201,6 +210,12 @@ export class EuiDataGridCell extends Component<
       rowIndex,
       rowHeightsOptions
     );
+    if (
+      rowHeightUtils?.isAutoBelowLineCount(rowHeightsOptions, rowHeightOption)
+    ) {
+      return; // Using auto height instead
+    }
+
     const isSingleLine = rowHeightOption == null; // Undefined rowHeightsOptions default to a single line
     const lineCount = isSingleLine
       ? 1
@@ -585,11 +600,6 @@ export class EuiDataGridCell extends Component<
       ...cellPropsStyle, // apply anything from setCellProps({ style })
     };
 
-    const rowHeight = rowHeightUtils?.getRowHeightOption(
-      rowIndex,
-      rowHeightsOptions
-    );
-
     const row =
       rowManager && !IS_JEST_ENVIRONMENT
         ? rowManager.getRow({
@@ -628,7 +638,7 @@ export class EuiDataGridCell extends Component<
               isExpandable={isExpandable}
               isExpanded={popoverIsOpen}
               setCellContentsRef={this.setCellContentsRef}
-              rowHeight={rowHeight}
+              rowHeightsOptions={rowHeightsOptions}
               rowHeightUtils={rowHeightUtils}
               isControlColumn={isControlColumn}
               rowIndex={rowIndex}

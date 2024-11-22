@@ -8,14 +8,16 @@
 
 import React, { useMemo, FunctionComponent } from 'react';
 import classNames from 'classnames';
+
+import { useEuiMemoizedStyles } from '../../services';
 import { EuiTitle, EuiTitleSize } from '../title';
+
 import {
   EuiInlineEditCommonProps,
   EuiInlineEditForm,
   SMALL_SIZE_FORM,
   MEDIUM_SIZE_FORM,
 } from './inline_edit_form';
-import { useEuiTheme } from '../../services';
 import { euiInlineEditTitleStyles } from './inline_edit_title.styles';
 
 export const HEADINGS = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'span'] as const;
@@ -42,9 +44,7 @@ export const EuiInlineEditTitle: FunctionComponent<EuiInlineEditTitleProps> = ({
   ...rest
 }) => {
   const classes = classNames('euiInlineEditTitle', className);
-
-  const theme = useEuiTheme();
-  const styles = euiInlineEditTitleStyles(theme);
+  const styles = useEuiMemoizedStyles(euiInlineEditTitleStyles);
   const cssStyles = [styles.euiInlineEditTitle, styles.fontSize[size]];
 
   const H: Heading = heading;

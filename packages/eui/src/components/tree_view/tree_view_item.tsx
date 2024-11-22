@@ -15,7 +15,7 @@ import React, {
 } from 'react';
 import classNames from 'classnames';
 
-import { useEuiTheme } from '../../services';
+import { useEuiMemoizedStyles } from '../../services';
 import { CommonProps } from '../common';
 import { EuiIcon } from '../icon';
 
@@ -81,8 +81,7 @@ export const EuiTreeViewItem: FunctionComponent<EuiTreeViewItemProps> = memo(
     wrapperProps,
     ...rest
   }) => {
-    const euiTheme = useEuiTheme();
-    const styles = euiTreeViewItemStyles(euiTheme);
+    const styles = useEuiMemoizedStyles(euiTreeViewItemStyles);
 
     const wrapperClasses = classNames(
       'euiTreeView__node',

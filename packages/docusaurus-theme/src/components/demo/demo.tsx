@@ -1,3 +1,11 @@
+/*
+ * Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
+ * or more contributor license agreements. Licensed under the Elastic License
+ * 2.0 and the Server Side Public License, v 1; you may not use this file except
+ * in compliance with, at your election, the Elastic License 2.0 or the Server
+ * Side Public License, v 1.
+ */
+
 import {
   Children,
   PropsWithChildren,
@@ -14,11 +22,12 @@ import {
   UseEuiTheme,
 } from '@elastic/eui';
 import { css } from '@emotion/react';
+import { demoDefaultScope } from '@theme/Demo/default_scope';
 import { DemoContext, DemoContextObject } from './context';
 import { DemoEditor } from './editor';
 import { DemoPreview } from './preview';
 import { DemoSource } from './source';
-import { demoDefaultScope } from './scope';
+import { originalScope } from './scope';
 import { DemoActionsBar } from './actions_bar';
 import { demoCodeTransformer } from './code_transformer';
 import { DemoPreviewProps } from './preview/preview';
@@ -42,6 +51,7 @@ export interface DemoProps extends PropsWithChildren {
    */
   scope?: Record<string, unknown>;
   previewPadding?: DemoPreviewProps['padding'];
+  previewWrapper?: DemoPreviewProps['wrapperComponent'];
 }
 
 const getDemoStyles = (euiTheme: UseEuiTheme) => ({
@@ -60,6 +70,7 @@ export const Demo = ({
   scope,
   isSourceOpen: _isSourceOpen = false,
   previewPadding,
+  previewWrapper,
 }: DemoProps) => {
   const styles = useEuiMemoizedStyles(getDemoStyles);
   const [sources, setSources] = useState<DemoSourceMeta[]>([]);
@@ -69,16 +80,20 @@ export const Demo = ({
   // liveProviderKey restarts the demo to its initial state
   const [liveProviderKey, setLiveProviderKey] = useState<number>(0);
 
-  const finalScope = useMemo(() => ({
-    ...demoDefaultScope,
-    ...scope,
-  }), [scope]);
+  const finalScope = useMemo(
+    () => ({
+      ...originalScope,
+      ...demoDefaultScope,
+      ...scope,
+    }),
+    [scope]
+  );
 
   const addSource = useCallback<DemoContextObject['addSource']>(
     (source: DemoSourceMeta) => {
-      setSources((sources) => ([...sources, source]));
+      setSources((sources) => [...sources, source]);
     },
-    [],
+    []
   );
 
   const onClickCopyToClipboard = useCallback(() => {
@@ -104,7 +119,10 @@ export const Demo = ({
           theme={prismThemes.dracula}
           scope={finalScope}
         >
-          <DemoPreview padding={previewPadding} />
+          <DemoPreview
+            padding={previewPadding}
+            wrapperComponent={previewWrapper}
+          />
           <DemoActionsBar
             isSourceOpen={isSourceOpen}
             setSourceOpen={setIsSourceOpen}

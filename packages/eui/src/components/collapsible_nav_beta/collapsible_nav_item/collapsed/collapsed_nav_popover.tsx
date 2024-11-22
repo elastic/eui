@@ -55,6 +55,7 @@ export const EuiCollapsedNavPopover: FunctionComponent<
       display="block"
       anchorPosition="rightUp"
       panelPaddingSize="none"
+      repositionOnScroll={true}
       button={
         <EuiCollapsedNavButton
           title={title}

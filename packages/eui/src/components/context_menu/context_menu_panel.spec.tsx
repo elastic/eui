@@ -231,6 +231,52 @@ describe('EuiContextMenuPanel', () => {
         cy.focused().should('have.attr', 'data-test-subj', 'popoverToggle');
       });
     });
+
+    describe('disabling auto focus', () => {
+      it('does not focus anything if initialFocusedItemIndex is set to -1', () => {
+        cy.mount(
+          <EuiContextMenuPanel initialFocusedItemIndex={-1}>
+            {children}
+          </EuiContextMenuPanel>
+        );
+        cy.focused().should('not.exist');
+      });
+
+      it('does not focus the back button if it exists', () => {
+        cy.mount(
+          <EuiContextMenuPanel
+            initialFocusedItemIndex={-1}
+            onClose={() => {}}
+            title="Test"
+            items={items}
+          />
+        );
+        cy.focused().should('not.exist');
+      });
+
+      it('still allows for manually tabbing to the panel and using up/down key navigation', () => {
+        cy.realMount(
+          <EuiContextMenuPanel initialFocusedItemIndex={-1} items={items} />
+        );
+        cy.realPress('Tab');
+        cy.focused().should('have.attr', 'data-test-subj', 'itemA');
+        cy.realPress('{downarrow}');
+        cy.focused().should('have.attr', 'data-test-subj', 'itemB');
+      });
+
+      it('other children with `autoFocus` should take focus', () => {
+        cy.mount(
+          <EuiContextMenuPanel
+            initialFocusedItemIndex={-1}
+            items={[
+              ...items,
+              <input type="text" value="Auto focus test" autoFocus />,
+            ]}
+          />
+        );
+        cy.focused().should('have.value', 'Auto focus test');
+      });
+    });
   });
 
   describe('Keyboard navigation of items', () => {

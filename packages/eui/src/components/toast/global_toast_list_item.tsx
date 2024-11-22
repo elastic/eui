@@ -8,7 +8,7 @@
 
 import { FunctionComponent, ReactElement } from 'react';
 import classNames from 'classnames';
-import { useEuiTheme, cloneElementWithCss } from '../../services';
+import { useEuiMemoizedStyles, cloneElementWithCss } from '../../services';
 import { CommonProps } from '../common';
 import { euiGlobalToastListItemStyles } from './global_toast_list.styles';
 
@@ -23,11 +23,10 @@ export interface EuiGlobalToastListItemProps extends CommonProps {
 export const EuiGlobalToastListItem: FunctionComponent<
   EuiGlobalToastListItemProps
 > = ({ children, className, isDismissed }) => {
-  const euiTheme = useEuiTheme();
-  if (!children) {
-    return null;
-  }
-  const styles = euiGlobalToastListItemStyles(euiTheme);
+  const styles = useEuiMemoizedStyles(euiGlobalToastListItemStyles);
+
+  if (!children) return null;
+
   const cssStyles = [
     styles.euiGlobalToastListItem,
     isDismissed && styles.dismissed,

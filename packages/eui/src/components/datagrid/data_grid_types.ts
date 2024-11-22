@@ -937,7 +937,19 @@ export interface EuiDataGridToolBarVisibilityDisplaySelectorOptions {
    * Allows appending additional content to the bottom of the display settings popover
    */
   additionalDisplaySettings?: ReactNode;
+  /**
+   * Allows completely custom rendering of the display selector popover via render prop.
+   * Passes back the default controls as arguments for optional rendering.
+   */
+  customRender?: EuiDataGridDisplaySelectorCustomRender;
 }
+
+export type EuiDataGridDisplaySelectorCustomRender = (args: {
+  densityControl: ReactNode;
+  rowHeightControl: ReactNode;
+  additionalDisplaySettings: ReactNode;
+  resetButton: ReactNode;
+}) => ReactNode;
 
 export interface EuiDataGridToolBarVisibilityOptions {
   /**
@@ -1096,6 +1108,14 @@ export interface EuiDataGridRowHeightsOptions {
    * Defines the default size for all rows. It can be line count or just height.
    */
   defaultHeight?: EuiDataGridRowHeightOption;
+  /**
+   * Feature flag for custom `lineCount` behavior, where `lineCount` acts like a
+   * *max* number of lines (instead of a set number of lines for all rows).
+   *
+   * This functionality is in beta and has performance implications;
+   * we do not yet fully recommend/support it for heavy production usage.
+   */
+  autoBelowLineCount?: boolean;
   /**
    * Defines the height for a specific row. It can be line count or just height.
    *

@@ -19,19 +19,17 @@ import React, {
 } from 'react';
 import classNames from 'classnames';
 
-import { logicalStyles } from '../../global_styling';
-import { CommonProps, ExclusiveUnion, NoArgCallback } from '../common';
-
-import { EuiBeacon } from '../beacon';
-import { EuiPopover, EuiPopoverProps, EuiWrappingPopover } from '../popover';
-
 import {
   useGeneratedHtmlId,
   findElementBySelectorOrRef,
   ElementTarget,
-  useEuiTheme,
+  useEuiMemoizedStyles,
 } from '../../services';
+import { logicalStyles } from '../../global_styling';
+import { CommonProps, ExclusiveUnion, NoArgCallback } from '../common';
 import { EuiPopoverPosition } from '../../services/popover';
+import { EuiPopover, EuiPopoverProps, EuiWrappingPopover } from '../popover';
+import { EuiBeacon } from '../beacon';
 
 import { EuiTourHeader } from './_tour_header';
 import { EuiTourFooter } from './_tour_footer';
@@ -175,9 +173,8 @@ export const EuiTourStep: FunctionComponent<EuiTourStepProps> = ({
 
   const anchorClasses = classNames('euiTourAnchor', className);
   const popoverClasses = classNames('euiTour', panelClassName);
-  const euiTheme = useEuiTheme();
-  const tourStyles = euiTourStyles(euiTheme);
-  const beaconStyles = euiTourBeaconStyles(euiTheme);
+  const tourStyles = useEuiMemoizedStyles(euiTourStyles);
+  const beaconStyles = useEuiMemoizedStyles(euiTourBeaconStyles);
   const beaconCss = [
     beaconStyles.euiTourBeacon,
     isStepOpen && beaconStyles.isOpen,

@@ -35,11 +35,8 @@ export const DISPLAYS = [
   'center',
   'centerCompressed',
   /**
-   * @deprecated
-   */
-  'columnCompressedSwitch',
-  /**
-   * @deprecated
+   * This currently does not affect styles/appearances
+   * in EUI's present primary theme, but may in the future.
    */
   'rowCompressed',
 ] as const;
@@ -49,7 +46,6 @@ export type EuiFormRowDisplayKeys = (typeof DISPLAYS)[number];
 type EuiFormRowCommonProps = CommonProps & {
   /**
    * - `columnCompressed` creates a compressed and horizontal layout
-   * - `columnCompressedSwitch` - **deprecated**, use `columnCompressed` instead
    * - `center`/`centerCompressed` helps align non-input content better with inline form layouts
    * - `rowCompressed` - **deprecated**, does not currently affect styling
    */

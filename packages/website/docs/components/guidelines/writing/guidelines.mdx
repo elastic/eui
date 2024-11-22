@@ -1,0 +1,570 @@
+---
+slug: /guidelines/writing/guidelines
+id: guidelines_writing_guidelines
+title: Writing
+sidebar_position: 3
+---
+
+import {
+  EuiCard,
+  EuiCallOut,
+  EuiFlexGroup,
+  EuiButton,
+  EuiPanel,
+  EuiTitle,
+  EuiSpacer,
+  EuiText,
+  EuiButtonEmpty,
+  EuiTabs,
+  EuiTab,
+  EuiFormRow,
+  EuiFieldText,
+  EuiFieldSearch,
+  EuiLink,
+  EuiFieldNumber,
+  EuiFieldPassword,
+  EuiCheckbox,
+  EuiFlexGrid,
+  EuiFlexItem,
+  htmlIdGenerator,
+} from '@elastic/eui';
+
+You can have the most beautiful UI, but without **consistent, easy-to-understand text**, you haven’t built the best user experience.
+
+<EuiFlexGroup gutterSize="m" direction="column">
+  <EuiCard title="Clear and concise" titleSize="xs" textAlign="left">
+    Get straight to the point—in a way that your users understand. Make every word contribute to meaning.
+  </EuiCard>
+  <EuiCard title="Consistent" titleSize="xs" textAlign="left">
+    Use the same terminology to mean the same thing. Make sure spelling, capitalization, punctuation, labels, and use of abbreviations are all consistent.
+  </EuiCard>
+  <EuiCard title="Conversational" titleSize="xs" textAlign="left">
+    Write as a professional in the field would talk—not as a professor lecturing students. Use words that the user would use.
+  </EuiCard>
+</EuiFlexGroup>
+
+## Capitalization
+
+In sentence case, only the first word and proper names are capped. In title case, the first letter of each word, except for articles, conjuctions, and prepositions, is capitalized.
+
+<Guideline type="do" text="Use sentence case in buttons, menus, titles, and tabs." panelPadding="xl">
+  <EuiButton fill>Check for new data</EuiButton>
+</Guideline>
+
+<Guideline type="do" text="Use sentence case for modal and page elements." panelPadding="xl">
+  <EuiPanel style={{ transform: 'scale(0.75)'}}>
+    <EuiTitle size="m">
+      <span>Search session complete</span>
+    </EuiTitle>
+    <EuiSpacer />
+    <EuiText>
+      <p>Save your session and return to it later.</p>
+    </EuiText>
+    <EuiFlexGroup justifyContent="flexEnd" gutterSize="none">
+      <EuiButtonEmpty>Manage sessions</EuiButtonEmpty>
+      <EuiButton fill size="s">
+        Save session
+      </EuiButton>
+    </EuiFlexGroup>
+  </EuiPanel>
+</Guideline>
+
+<Guideline type="do" text="Data streams, index templates, and enrich polices are features and use sentence case." panelPadding="xl">
+  <EuiTabs display="condensed">
+    <EuiTab>Data streams</EuiTab>
+    <EuiTab>Index templates</EuiTab>
+    <EuiTab isSelected>Enrich policies</EuiTab>
+  </EuiTabs>
+</Guideline>
+
+<Guideline type="do" text="Maintenance windows is a feature and uses sentence case." panelPadding="xl">
+  <EuiPanel style={{ transform: 'scale(0.75)'}}>
+    <EuiTitle size="m">
+      <span>Maintenance windows</span>
+    </EuiTitle>
+    <EuiSpacer />
+    <EuiText>
+      <p>Suppress rule notifications for scheduled periods of time.</p>
+    </EuiText>
+  </EuiPanel>
+</Guideline>
+
+### Title case for proper nouns
+
+Proper nouns include product names, solutions, apps, feature tiers, and subscription levels.
+
+<Guideline type="do" text="Product and solution names are always capitalized. Same goes for feature tiers and subscription levels." panelPadding="xl">
+  *   Welcome to Elastic Observability
+  *   Elastic APM
+  *   You have chosen Security Analytics Essentials.
+  *   This feature is available for Gold subscriptions and higher.
+</Guideline>
+
+<Guideline type="do" text="App names are also capitalized, as seen in Dashboard app in this example. When referring to building a dashboard, the term is capitalized. In another example, the Machine Learning app is upper case, but the machine learning feature is lower case." panelPadding="xl">
+  <EuiCallOut iconType="gear" title="Building a dashboard?">
+    Create content directly from our Dashboard app using our new integrated workflow. <EuiLink href="https://brand.elastic.co/302f66895/p/072ccc-naming-guide" target="_blank">Learn more</EuiLink>
+  </EuiCallOut>
+</Guideline>
+
+For more information, view the [Elastic name guidelines.](https://brand.elastic.co/302f66895/p/072ccc-naming-guide)
+
+---
+
+## Writing style
+
+### Write in active voice
+
+Active voice puts the focus on who or what is performing the action and makes the sentence easier to understand.
+
+<EuiFlexGroup gutterSize="m">
+  <Guideline type="do" text="Writing in active voice puts the subject first.">
+    The Elasticsearch Query DSL builds filters.
+  </Guideline>
+
+  <Guideline type="dont" text="With passive voice, it's harder to tell who's doing what.">
+    Filters are built using the Elasticsearch Query DSL.
+  </Guideline>
+</EuiFlexGroup>
+
+### Keep it short and snappy
+
+Identify the most important information and say it concisely. Don't repeat what's already been said or state the obvious. Omit common introductory phrases.
+
+<EuiFlexGroup gutterSize="m">
+  <Guideline type="do" text="Keep it short.">
+    **Edit saved objects**
+  </Guideline>
+
+  <Guideline type="dont" text="Repeat what's already been said or state the obvious.">
+    **Edit saved objects**
+
+    From here, you can edit saved objects. To get started, follow these steps.
+  </Guideline>
+</EuiFlexGroup>
+
+<EuiFlexGroup gutterSize="m">
+  <Guideline type="do" text="Get straight to the point.">
+    Configure at least one index pattern.
+  </Guideline>
+
+  <Guideline type="dont" text="Use unnecessary introductory phrases.">
+    In order to use Kibana, you must configure at least one index pattern.
+  </Guideline>
+</EuiFlexGroup>
+
+<EuiFlexGroup gutterSize="m">
+  <Guideline type="do" text="Ensure all words contribute to meaning.">
+    No active shard records for this cluster.
+  </Guideline>
+
+  <Guideline type="dont" text={`Start a sentence with "There are" or "There is."`}>
+    There are currently no active shard records for this cluster.
+  </Guideline>
+</EuiFlexGroup>
+
+<EuiFlexGroup gutterSize="m">
+  <Guideline type="do" text="Avoid unneeded words in button labels.">
+    <EuiButton fill>
+      Create component template
+    </EuiButton>
+  </Guideline>
+
+  <Guideline type="dont" text={`Use "create a new" or include articles in button labels.`}>
+    <EuiButton fill>
+      Create a new component template
+    </EuiButton>
+  </Guideline>
+</EuiFlexGroup>
+
+---
+
+## Addressing the user
+
+### In most cases, address users as "you"
+
+It's friendly and engages the user directly.
+
+<EuiFlexGroup gutterSize="m">
+  <Guideline type="do" text={`Converse directly with the user using "you" and "your."`}>
+    You must configure TLS to apply a Platinum license.
+  </Guideline>
+  <Guideline type="dont" text={`Avoid the user. It creates awkward phrasing such as "will be required."`}>
+    Configuring TLS will be required to apply a Platinum license.
+  </Guideline>
+</EuiFlexGroup>
+
+### In some cases, "we" and "our" are appropriate
+
+The use of "we" is appropriate for situations where you're taking an action for the user or making a suggestion. It's best reserved for onboarding and empty states.
+
+<EuiFlexGroup gutterSize="m">
+  <Guideline type="do" text={`Use "we" when taking an action on behalf of the user.`}>
+    We noticed that you don't have any data in your cluster. Try our sample data and dashboards or jump in with your own data.
+  </Guideline>
+  <Guideline type="dont" text={`Overuse "us." It can become annoying.`}>
+    * Let's create a database
+    * Let's create a visualization
+    * ...
+  </Guideline>
+</EuiFlexGroup>
+
+### Less common are "I" and "my"
+
+Use first person when you want to give the user ownership of an action.
+
+<EuiFlexGroup gutterSize="m">
+  <Guideline type="do" text={`Use "my" in buttons and links to give users ownership.`}>
+    Explore on my own
+  </Guideline>
+  <Guideline type="dont" text={`Use "I" in agreement statements.`}>
+    I agree to follow the terms of service
+  </Guideline>
+</EuiFlexGroup>
+
+---
+
+## Punctuation
+
+### Don't use unnecessary punctuation
+
+Although punctuation can help clarify meaning, it can also clutter the UI. Don't add a colon after a label, an ellipsis (...) at the end of an action, an (s) at the end of a noun, or add parentheses ().
+
+<EuiFlexGroup gutterSize="m">
+  <Guideline type="do" text={`Use an "s" or "es" to show plural.`}>
+    <EuiFormRow label="Airports" helpText="Separate multiple names with a comma">
+      <EuiFieldText />
+    </EuiFormRow>
+  </Guideline>
+  <Guideline type="dont" text="Use (s), a colon after labels, or parenthetical statements.">
+    <EuiFormRow label="Airport(s):" helpText="Separate multiple names with a comma (other characters are unsupported).">
+      <EuiFieldText />
+    </EuiFormRow>
+  </Guideline>
+</EuiFlexGroup>
+
+<EuiFlexGroup gutterSize="m">
+  <Guideline type="do" text="Remove the ellipsis from Search fields.">
+    <EuiFieldSearch defaultValue="Search" aria-label="Search example" />
+  </Guideline>
+  <Guideline type="do" text="Use an ellipsis for truncated text or situations that require waiting.">
+    <EuiFieldSearch defaultValue="Loading..." aria-label="Search loading example" />
+  </Guideline>
+</EuiFlexGroup>
+
+### Know when to use the ending period
+
+Use periods at the end of help text and complete sentences in body text. These are typically supplemental explanations and instructions. Avoid periods in titles and headings.
+
+<EuiFlexGroup gutterSize="m">
+  <Guideline type="do" text="Use periods at the end of help text.">
+    <EuiFormRow
+      label="Number"
+      helpText={
+        <span>
+          Accepts 1-5. <EuiLink>Learn more.</EuiLink>
+        </span>
+      }
+    >
+      <EuiFieldNumber min={1} max={5} step={1} />
+    </EuiFormRow>
+  </Guideline>
+  <Guideline type="dont" text="Use a lead-in sentence without an ending period. It looks wrong.">
+    <EuiTitle size="s">
+      <span>Index management</span>
+    </EuiTitle>
+    <EuiText>
+      Update your Elasticsearch indices individually or in bulk
+    </EuiText>
+  </Guideline>
+</EuiFlexGroup>
+
+### Use contractions
+
+Use contractions if they make your text flow more naturally, such as "didn't" instead of "did not" and "can't" instead of "cannot."
+
+<EuiFlexGroup gutterSize="m">
+  <Guideline type="do" text="Use contractions if they make the text easier to read.">
+    Didn't find what you were looking for?
+  </Guideline>
+  <Guideline type="dont" text="Without the contraction, this text sounds stilted.">
+    Did not find what you were looking for?
+  </Guideline>
+</EuiFlexGroup>
+
+### Limit the use of exclamation points
+
+Showing excitement is best reserved for greetings and encouraging messages. Don't use more than one exclamation point per page.
+
+<EuiFlexGroup gutterSize="m">
+  <Guideline type="do" text="Use exclamations for encouragement, but use sparingly.">
+    This dashboard is empty. Fill it up!
+  </Guideline>
+  <Guideline type="dont" text="Use exclamation points in error messages.">
+    Couldn't find any Elasticsearch data!
+  </Guideline>
+</EuiFlexGroup>
+
+---
+
+## Messages
+
+### Summarize the message in the title
+
+Don't start with the words error, warning, and confirm, or jargon such as oops and uh-oh. A title-only message is ok.
+
+<EuiFlexGroup gutterSize="m">
+  <Guideline type="do" text="Provide a title that is meaningful to the user.">
+    **This dashboard is empty**
+
+    To add a visualization, click Add in the menu bar. No visualizations yet? Go to Visualize to create one.
+  </Guideline>
+  <Guideline type="dont" text="Use uh-oh, oops, or other meaningless text in the title.">
+    **Uh-oh!**
+
+    This dashboard is empty. To add a visualization, click Add in the menu bar. No visualizations yet? Go to the Visualize app to create one.
+  </Guideline>
+</EuiFlexGroup>
+
+### Include critical information first
+
+Tell the user the most important information first, and less critical information second.
+
+<EuiFlexGroup gutterSize="m">
+  <Guideline type="do" text="Prioritize the contents of the message.">
+    You need to increase your subscription limit. Please contact support.
+  </Guideline>
+  <Guideline type="dont" text="Hide important information at the end.">
+    Contact support because you need to increase your subscription limit.
+  </Guideline>
+</EuiFlexGroup>
+
+<EuiFlexGroup gutterSize="m">
+  <Guideline type="do" text="State what went wrong, followed by a clear course of action.">
+    No data sources. Go to Management to define an index pattern.
+  </Guideline>
+  <Guideline type="dont" text="Leave the user guessing about next steps.">
+    Oops, no data sources.
+  </Guideline>
+</EuiFlexGroup>
+
+### Avoid using "Are you sure"
+
+Your text is more direct without it.
+
+<EuiFlexGroup gutterSize="m">
+  <Guideline type="do" text="Keep titles as concise as possible.">
+    <EuiPanel style={{ transform: 'scale(0.75)'}}>
+        <EuiTitle size="m">
+          <span>Delete this report?</span>
+        </EuiTitle>
+        <EuiSpacer />
+        <EuiFlexGroup justifyContent="flexEnd" gutterSize="none">
+          <EuiButtonEmpty color="text" size="s">
+            Cancel
+          </EuiButtonEmpty>
+          <EuiButton color="danger" size="s">
+            Delete
+          </EuiButton>
+        </EuiFlexGroup>
+      </EuiPanel>
+  </Guideline>
+  <Guideline type="dont" text="Pad the title with empty words—it increases reading time.">
+    <EuiPanel style={{ transform: 'scale(0.75)'}}>
+      <EuiTitle size="m">
+        <span>Are you sure you want to delete this report?</span>
+      </EuiTitle>
+      <EuiSpacer />
+      <EuiFlexGroup justifyContent="flexEnd" gutterSize="none">
+        <EuiButtonEmpty color="text" size="s">
+          Cancel
+        </EuiButtonEmpty>
+        <EuiButton color="danger" size="s">
+          Delete report
+        </EuiButton>
+      </EuiFlexGroup>
+    </EuiPanel>
+  </Guideline>
+</EuiFlexGroup>
+
+### Avoid using "please"
+
+In most cases, "please" is unnecessary. Exceptions are situations where the user must wait or do something inconvenient. Or, if the text sounds too abrupt without it.
+
+<EuiFlexGroup gutterSize="m">
+  <Guideline type="do" text={`Omit "please" in longer instructions.`}>
+    Save your work before generating a report.
+  </Guideline>
+  <Guideline type="dont" text={`Use "please" when a pleasantry is not needed.`}>
+    Please save your work before generating a report.
+
+  </Guideline>
+</EuiFlexGroup>
+
+<EuiFlexGroup gutterSize="m">
+  <Guideline type="do" text={`Use "please" only when it feels natural and makes short text less abrupt.`}>
+    Your session has expired. Please log in again.
+  </Guideline>
+  <Guideline type="do" text={`Use "please" when asking the user to wait.`}>
+    Please wait.
+  </Guideline>
+</EuiFlexGroup>
+
+### Use 1 to 2 simple, short sentences
+
+Don’t force the user to read long blocks of text. Write for scanning. Link to documentation.
+
+<EuiFlexGroup gutterSize="m">
+  <Guideline type="do" text="Write for scanning.">
+    <EuiFormRow
+      label="Password"
+      helpText="Must be least 8 characters and include upper and lower case letters, numbers, and symbols such as !@#$%."
+    >
+      <EuiFieldPassword />
+    </EuiFormRow>
+  </Guideline>
+  <Guideline type="dont" text="Write long blocks of text.">
+    <EuiFormRow
+      label="Password"
+      helpText="Passwords must be at least 8 characters long. Good passwords
+        contain either a combination of upper and lowercase letters or a
+        combination of letters with one digit. Strong passwords contain either
+        a combination of letters and more than one digit or special characters."
+      >
+      <EuiFieldPassword />
+    </EuiFormRow>
+  </Guideline>
+</EuiFlexGroup>
+
+### Avoid the urge to explain everything
+
+Not every task requires an explanation nor does every field require placeholder text.
+
+<EuiFlexGroup gutterSize="m">
+  <Guideline type="do" text="Explain new or difficult concepts.">
+    <EuiFormRow
+      label="Index template"
+      helpText="A template defines the settings, mappings, and aliases to apply when you create an index."
+    >
+      <EuiFieldText />
+    </EuiFormRow>
+  </Guideline>
+  <Guideline type="dont" text="Provide explanations for common actions.">
+    <EuiFormRow
+      label="Email"
+      helpText="Please enter your email address."
+    >
+      <EuiFieldText />
+    </EuiFormRow>
+  </Guideline>
+</EuiFlexGroup>
+
+---
+
+## Labels
+
+### Convey the purpose of the component
+
+Avoid long labels, but don't sacrifice clarity. If needed, put additional information in help text and tooltips.
+
+<EuiFlexGroup gutterSize="m">
+  <Guideline type="do" text="Use labels that say what the component does.">
+    <EuiFormRow>
+      <EuiCheckbox
+        onChange={() => {}}
+        id={htmlIdGenerator()()}
+        label="Combine values in other bucket"
+      />
+    </EuiFormRow>
+    <EuiFormRow label="Bucket label">
+      <EuiFieldText />
+    </EuiFormRow>
+  </Guideline>
+  <Guideline type="dont" text="Use generic labels.">
+    <EuiFormRow>
+      <EuiCheckbox
+        onChange={() => {}}
+        id={htmlIdGenerator()()}
+        label="Combine other"
+      />
+    </EuiFormRow>
+    <EuiFormRow label="Bucket label">
+      <EuiFieldText />
+    </EuiFormRow>
+  </Guideline>
+</EuiFlexGroup>
+
+
+### Label buttons with their action
+
+Don't use Yes or OK when you can use a verb phrase instead.
+
+<EuiFlexGroup gutterSize="m">
+  <Guideline type="do" text="Use a verb + noun for a button label.">
+    <EuiPanel style={{ transform: 'scale(0.75)' }}>
+      <EuiTitle size="m">
+        <span>Remove this user?</span>
+      </EuiTitle>
+      <EuiSpacer />
+      <EuiFlexGroup justifyContent="flexEnd" gutterSize="none">
+        <EuiButtonEmpty color="text" size="s">
+          Cancel
+        </EuiButtonEmpty>
+        <EuiButton color="danger" size="s">
+          Remove user
+        </EuiButton>
+      </EuiFlexGroup>
+    </EuiPanel>
+  </Guideline>
+  <Guideline type="dont" text="Use vague labels, such as Yes and OK.">
+    <EuiPanel style={{ transform: 'scale(0.75)' }}>
+      <EuiTitle size="m">
+        <span>Remove this user?</span>
+      </EuiTitle>
+      <EuiSpacer />
+      <EuiFlexGroup justifyContent="flexEnd" gutterSize="none">
+        <EuiButtonEmpty color="text" size="s">
+          Cancel
+        </EuiButtonEmpty>
+        <EuiButton color="danger" size="s">
+          Ok
+        </EuiButton>
+      </EuiFlexGroup>
+    </EuiPanel>
+  </Guideline>
+</EuiFlexGroup>
+
+---
+
+## Be careful with humor
+
+Your text can be fun as long as it fits the experience—and doesn't get in the user's way. Clever text can become annoying when used for frequently performed tasks. Situations where the user might lose data or otherwise be frustrated are also not appropriate for humor.
+
+<EuiFlexGroup gutterSize="m">
+  <Guideline type="do" text="Make it fun only if it fits the experience.">
+    Odd, exciting, and scary trends and anomalies in your Elasticsearch data
+  </Guideline>
+  <Guideline type="dont" text="Be clever with a serious message.">
+    Unfortunately, I could not find any results matching your search. I tried really hard. I looked all over the place and frankly, I just couldn't find anything good. Help me, help you.
+  </Guideline>
+</EuiFlexGroup>
+
+## Verifying your text
+
+**Work with a writer** <br /> A writer can help determine where you need text and what it should say.
+
+**Read your text out loud** <br /> Word flow has a natural feel to it. Read your text out loud, make changes, and then repeat until the flow of your text feels natural.
+
+**Use spell check** <br /> Run your text through a spelling and grammar checker.
+
+---
+
+## Specific component guidelines
+
+Find specific guidelines and examples by checking component details.
+
+*   [Button](/docs/navigation/button/guidelines)
+*   [Modal](/docs/layout/modal/guidelines)
+*   [Selection control labels](/docs/forms/selection-controls/guidelines)
+*   [Toast](/docs/display/toast/guidelines)
+
+Need some more writing examples? Check out the [Examples](/docs/guidelines/writing/examples) page.

@@ -1,0 +1,627 @@
+---
+slug: /navigation/collapsible-nav
+id: navigation_collapsible_nav
+---
+
+# Collapsible nav
+
+This is a high level component that creates a flyout-style navigational pane.
+
+**EuiCollapsibleNav** is a custom implementation of [**EuiFlyout**](/docs/layout/flyout); the visibility of which must still be maintained by the consuming application. An extra feature that it provides is the ability to `dock` the flyout. This affixes the flyout to the window and pushes the body content by adding left side padding.
+
+:::warning
+Docking is not possible on small screens because it would force less real estate for the page content.
+:::
+
+```tsx interactive
+import React, { useState } from 'react';
+import {
+  EuiCollapsibleNav,
+  EuiButton,
+  EuiTitle,
+  EuiSpacer,
+  EuiText,
+  EuiCode,
+} from '@elastic/eui';
+
+export default () => {
+  const [navIsOpen, setNavIsOpen] = useState<boolean>(
+    JSON.parse(
+      String(localStorage.getItem('euiCollapsibleNavExample--isDocked'))
+    ) || false
+  );
+  const [navIsDocked, setNavIsDocked] = useState<boolean>(
+    JSON.parse(
+      String(localStorage.getItem('euiCollapsibleNavExample--isDocked'))
+    ) || false
+  );
+
+  return (
+    <>
+      <EuiCollapsibleNav
+        isOpen={navIsOpen}
+        isDocked={navIsDocked}
+        size={240}
+        button={
+          <EuiButton onClick={() => setNavIsOpen((isOpen) => !isOpen)}>
+            Toggle nav
+          </EuiButton>
+        }
+        onClose={() => setNavIsOpen(false)}
+      >
+        <div style={{ padding: 16 }}>
+          <EuiTitle>
+            <h2>I am some nav</h2>
+          </EuiTitle>
+          <EuiSpacer />
+          <EuiText size="s" color="subdued">
+            <p>
+              The docked status is being stored in{' '}
+              <EuiCode>localStorage</EuiCode>.
+            </p>
+          </EuiText>
+          <EuiSpacer />
+          <EuiButton
+            onClick={() => {
+              setNavIsDocked(!navIsDocked);
+              localStorage.setItem(
+                'euiCollapsibleNavExample--isDocked',
+                JSON.stringify(!navIsDocked)
+              );
+            }}
+          >
+            Docked: {navIsDocked ? 'on' : 'off'}
+          </EuiButton>
+        </div>
+      </EuiCollapsibleNav>
+
+      {navIsDocked && (
+        <EuiText size="s" color="subdued">
+          <p>
+            The <EuiCode>button</EuiCode> gets hidden by default when the nav is
+            docked unless you set{' '}
+            <EuiCode language="js">showButtonIfDocked = true</EuiCode>.
+          </p>
+        </EuiText>
+      )}
+    </>
+  );
+};
+```
+
+## Collapsible nav group
+
+An **EuiCollapsibleNavGroup** adds some basic borders and `background` color of `none`, `light`, or `dark`. Give each section a heading by providing an optional `title` and `iconType`. Make the section collapsible ([accordion style](/docs/layout/accordion)) with `isCollapsible=true`.
+
+When in `isCollapsible` mode, a `title` and `initialIsOpen:boolean` is required.
+
+```tsx interactive
+import React from 'react';
+import { EuiCollapsibleNavGroup, EuiText, EuiCode } from '@elastic/eui';
+
+export default () => (
+  <>
+    <EuiCollapsibleNavGroup>
+      <EuiText size="s" color="subdued">
+        <p>This is a basic group without any modifications</p>
+      </EuiText>
+    </EuiCollapsibleNavGroup>
+    <EuiCollapsibleNavGroup title="Nav group" iconType="logoElastic">
+      <EuiText size="s" color="subdued">
+        <p>
+          This is a nice group with a heading supplied via{' '}
+          <EuiCode>title</EuiCode> and <EuiCode>iconType</EuiCode>.
+        </p>
+      </EuiText>
+    </EuiCollapsibleNavGroup>
+    <EuiCollapsibleNavGroup
+      background="light"
+      title="Nav group"
+      isCollapsible={true}
+      iconType="logoElastic"
+      initialIsOpen={true}
+    >
+      <EuiText size="s" color="subdued">
+        <p>
+          This group is <EuiCode>collapsible</EuiCode> and set with{' '}
+          <EuiCode>initialIsOpen</EuiCode>. It has a heading that is the
+          collapsing button via <EuiCode>title</EuiCode> and{' '}
+          <EuiCode>iconType</EuiCode>.
+        </p>
+      </EuiText>
+    </EuiCollapsibleNavGroup>
+    <EuiCollapsibleNavGroup
+      title="Nav group"
+      iconType="logoGCPMono"
+      iconSize="xxl"
+      titleSize="s"
+      isCollapsible={true}
+      initialIsOpen={false}
+      background="dark"
+    >
+      <EuiText size="s">
+        <p>
+          This is a <EuiCode>dark</EuiCode> <EuiCode>collapsible</EuiCode> group
+          that is initally set to closed,{' '}
+          <EuiCode>iconSize=&quot;xxl&quot;</EuiCode> and{' '}
+          <EuiCode>titleSize=&quot;s&quot;</EuiCode>.
+        </p>
+      </EuiText>
+    </EuiCollapsibleNavGroup>
+  </>
+);
+```
+
+## Nav groups with lists and other content
+
+**EuiCollapsibleNavGroups** can contain any children. They work well with [**EuiListGroup, EuiPinnableListGroup**](/docs/display/list-group) and simple [**EuiText**](/docs/navigation/link).
+
+Below are a few established patterns to use.
+
+```tsx interactive
+import React from 'react';
+import {
+  EuiCollapsibleNavGroup,
+  EuiText,
+  EuiListGroup,
+  EuiListGroupProps,
+  EuiPinnableListGroup,
+  EuiPinnableListGroupItemProps,
+  EuiSpacer,
+  EuiButton,
+  EuiButtonIcon,
+  EuiLink,
+} from '@elastic/eui';
+
+const deploymentsList: EuiListGroupProps['listItems'] = [
+  {
+    label: 'combining-binaries',
+    iconType: 'logoAzureMono',
+    size: 's',
+  },
+  {
+    label: 'stack-monitoring',
+    iconType: 'logoAWSMono',
+    size: 's',
+  },
+];
+
+const TopNavLinks: EuiPinnableListGroupItemProps[] = [
+  {
+    label: 'Home',
+    iconType: 'home',
+    isActive: true,
+    pinnable: false,
+  },
+  { label: 'Dashboards', pinned: true },
+  { label: 'Dev tools', pinned: true },
+  { label: 'Maps', pinned: true },
+];
+
+const KibanaNavLinks: EuiPinnableListGroupItemProps[] = [
+  { label: 'Discover' },
+  { label: 'Visualize' },
+  { label: 'Dashboards' },
+  { label: 'Canvas' },
+  { label: 'Maps' },
+  { label: 'Machine Learning' },
+  { label: 'Graph' },
+];
+
+const DeploymentsGroup = (
+  <EuiCollapsibleNavGroup
+    title={
+      <span>
+        <small style={{ fontWeight: 'normal' }}>Deployment</small> <br />
+        <strong>personal-databoard</strong>
+      </span>
+    }
+    iconType="logoGCPMono"
+    iconSize="xl"
+    isCollapsible={true}
+    initialIsOpen={false}
+    background="dark"
+  >
+    <EuiListGroup listItems={deploymentsList} flush />
+    <EuiSpacer size="s" />
+    <EuiButton fullWidth>Manage deployments</EuiButton>
+  </EuiCollapsibleNavGroup>
+);
+
+const SecurityGroup = (
+  <EuiCollapsibleNavGroup
+    background="light"
+    iconType="logoSecurity"
+    title="Elastic Security"
+    isCollapsible={true}
+    initialIsOpen={true}
+    arrowDisplay="none"
+    extraAction={
+      <EuiButtonIcon
+        aria-label="Hide and never show again"
+        title="Hide and never show again"
+        iconType="cross"
+      />
+    }
+  >
+    <EuiText size="s" color="subdued" style={{ padding: '0 8px 8px' }}>
+      <p>
+        Threat prevention, detection, and response with SIEM and endpoint
+        security.
+        <br />
+        <EuiLink>Learn more</EuiLink>
+      </p>
+    </EuiText>
+  </EuiCollapsibleNavGroup>
+);
+
+export default () => (
+  <>
+    {DeploymentsGroup}
+    <EuiCollapsibleNavGroup background="light">
+      <EuiPinnableListGroup
+        listItems={TopNavLinks}
+        onPinClick={() => {}}
+        maxWidth="none"
+        color="text"
+        gutterSize="none"
+        size="s"
+      />
+    </EuiCollapsibleNavGroup>
+    <EuiCollapsibleNavGroup
+      title="Kibana"
+      iconType="logoKibana"
+      isCollapsible={true}
+      initialIsOpen={true}
+    >
+      <EuiPinnableListGroup
+        listItems={KibanaNavLinks}
+        onPinClick={() => {}}
+        maxWidth="none"
+        color="subdued"
+        gutterSize="none"
+        size="s"
+      />
+    </EuiCollapsibleNavGroup>
+    {SecurityGroup}
+  </>
+);
+```
+
+## Full pattern with header and saved pins
+
+### Putting it all together
+
+The button below will launch a fullscreen example that includes [**EuiHeader**](/docs/layout/header) with a toggle button to open an **EuiCollapsibleNav**. The contents of which are multiple **EuiCollapsibleNavGroups** and saves the open/closed/pinned state for each section and item in local store.
+
+This is just a pattern and should be treated as such. Consuming applications will need to create the navigation groups according to their context and save the states as is appropriate to their data store.
+
+```tsx interactive
+import React, { useState } from 'react';
+import {
+  logicalCSSWithFallback,
+  EuiCollapsibleNav,
+  EuiCollapsibleNavGroup,
+  EuiHeaderSectionItemButton,
+  EuiHeaderLogo,
+  EuiHeader,
+  EuiIcon,
+  EuiButton,
+  EuiButtonEmpty,
+  EuiPageTemplate,
+  EuiPinnableListGroup,
+  EuiPinnableListGroupItemProps,
+  EuiFlexItem,
+  EuiHorizontalRule,
+  EuiImage,
+  EuiListGroup,
+  useGeneratedHtmlId,
+} from '@elastic/eui';
+import find from 'lodash/find';
+import findIndex from 'lodash/findIndex';
+import { css } from '@emotion/react';
+import { KibanaNavLinks, SecurityGroup } from './collapsible_nav_list';
+import contentSvg from '../../images/content.svg';
+import { useExitPath } from '../../services/routing/routing';
+
+const TopLinks: EuiPinnableListGroupItemProps[] = [
+  {
+    label: 'Home',
+    iconType: 'home',
+    isActive: true,
+    'aria-current': true,
+    onClick: () => {},
+    pinnable: false,
+  },
+];
+const KibanaLinks: EuiPinnableListGroupItemProps[] = KibanaNavLinks.map(
+  (link) => {
+    return {
+      ...link,
+      onClick: () => {},
+    };
+  }
+);
+const LearnLinks: EuiPinnableListGroupItemProps[] = [
+  { label: 'Docs', onClick: () => {} },
+  { label: 'Blogs', onClick: () => {} },
+  { label: 'Webinars', onClick: () => {} },
+  { label: 'Elastic.co', href: 'https://elastic.co' },
+];
+
+const CollapsibleNavAll = () => {
+  const exitPath = useExitPath();
+  const [navIsOpen, setNavIsOpen] = useState(true);
+
+  /**
+   * Accordion toggling
+   */
+  const [openGroups, setOpenGroups] = useState(
+    JSON.parse(String(localStorage.getItem('openNavGroups'))) || [
+      'Kibana',
+      'Learn',
+    ]
+  );
+
+  // Save which groups are open and which are not with state and local store
+  const toggleAccordion = (isOpen: boolean, title?: string) => {
+    if (!title) return;
+    const itExists = openGroups.includes(title);
+    if (isOpen) {
+      if (itExists) return;
+      openGroups.push(title);
+    } else {
+      const index = openGroups.indexOf(title);
+      if (index > -1) {
+        openGroups.splice(index, 1);
+      }
+    }
+    setOpenGroups([...openGroups]);
+    localStorage.setItem('openNavGroups', JSON.stringify(openGroups));
+  };
+
+  /**
+   * Pinning
+   */
+  const [pinnedItems, setPinnedItems] = useState<
+    EuiPinnableListGroupItemProps[]
+  >(JSON.parse(String(localStorage.getItem('pinnedItems'))) || []);
+
+  const addPin = (item: any) => {
+    if (!item || find(pinnedItems, { label: item.label })) {
+      return;
+    }
+    item.pinned = true;
+    const newPinnedItems = pinnedItems ? pinnedItems.concat(item) : [item];
+    setPinnedItems(newPinnedItems);
+    localStorage.setItem('pinnedItems', JSON.stringify(newPinnedItems));
+  };
+
+  const removePin = (item: any) => {
+    const pinIndex = findIndex(pinnedItems, { label: item.label });
+    if (pinIndex > -1) {
+      item.pinned = false;
+      const newPinnedItems = pinnedItems;
+      newPinnedItems.splice(pinIndex, 1);
+      setPinnedItems([...newPinnedItems]);
+      localStorage.setItem('pinnedItems', JSON.stringify(newPinnedItems));
+    }
+  };
+
+  function alterLinksWithCurrentState(
+    links: EuiPinnableListGroupItemProps[],
+    showPinned = false
+  ): EuiPinnableListGroupItemProps[] {
+    return links.map((link) => {
+      const { pinned, ...rest } = link;
+      return {
+        pinned: showPinned ? pinned : false,
+        ...rest,
+      };
+    });
+  }
+
+  function addLinkNameToPinTitle(listItem: EuiPinnableListGroupItemProps) {
+    return `Pin ${listItem.label} to top`;
+  }
+
+  function addLinkNameToUnpinTitle(listItem: EuiPinnableListGroupItemProps) {
+    return `Unpin ${listItem.label}`;
+  }
+
+  const collapsibleNavId = useGeneratedHtmlId({ prefix: 'collapsibleNav' });
+
+  const collapsibleNav = (
+    <EuiCollapsibleNav
+      id={collapsibleNavId}
+      aria-label="Main navigation"
+      isOpen={navIsOpen}
+      button={
+        <EuiHeaderSectionItemButton
+          aria-label="Toggle main navigation"
+          onClick={() => setNavIsOpen(!navIsOpen)}
+        >
+          <EuiIcon type={'menu'} size="m" aria-hidden="true" />
+        </EuiHeaderSectionItemButton>
+      }
+      onClose={() => setNavIsOpen(false)}
+      // Accessibility - Add scroll to nav on very small screens
+      css={css`
+        @media (max-height: 15em) {
+          ${logicalCSSWithFallback('overflow-y', 'auto')}
+        }
+      `}
+    >
+      {/* Dark deployments section */}
+      <EuiFlexItem grow={false} style={{ flexShrink: 0 }}>
+        <EuiCollapsibleNavGroup isCollapsible={false} background="dark">
+          <EuiListGroup
+            maxWidth="none"
+            gutterSize="none"
+            size="s"
+            listItems={[
+              {
+                label: 'Manage deployment',
+                href: '#',
+                iconType: 'logoCloud',
+                iconProps: {
+                  color: 'ghost',
+                },
+              },
+            ]}
+          />
+        </EuiCollapsibleNavGroup>
+      </EuiFlexItem>
+
+      {/* Shaded pinned section always with a home item */}
+      <EuiFlexItem grow={false} style={{ flexShrink: 0 }}>
+        <EuiCollapsibleNavGroup
+          background="light"
+          style={{ maxHeight: '40vh' }}
+          className="eui-yScroll"
+        >
+          <EuiPinnableListGroup
+            aria-label="Pinned links" // A11y : Since this group doesn't have a visible `title` it should be provided an accessible description
+            listItems={alterLinksWithCurrentState(TopLinks).concat(
+              alterLinksWithCurrentState(pinnedItems, true)
+            )}
+            unpinTitle={addLinkNameToUnpinTitle}
+            onPinClick={removePin}
+            maxWidth="none"
+            color="text"
+            gutterSize="none"
+            size="s"
+          />
+        </EuiCollapsibleNavGroup>
+      </EuiFlexItem>
+
+      <EuiHorizontalRule margin="none" />
+
+      {/* BOTTOM */}
+      <EuiFlexItem
+        className="eui-yScroll"
+        // Accessibility - Allows nav items to be seen and interacted with on very small screen sizes
+        css={css`
+          @media (max-height: 15em) {
+            flex: 1 0 auto;
+          }
+        `}
+      >
+        {/* Kibana section */}
+        <EuiCollapsibleNavGroup
+          title={
+            <a
+              className="eui-textInheritColor"
+              href="#/navigation/collapsible-nav"
+              onClick={(e) => e.stopPropagation()}
+            >
+              Kibana
+            </a>
+          }
+          buttonElement="div"
+          iconType="logoKibana"
+          isCollapsible={true}
+          initialIsOpen={openGroups.includes('Kibana')}
+          onToggle={(isOpen: boolean) => toggleAccordion(isOpen, 'Kibana')}
+        >
+          <EuiPinnableListGroup
+            aria-label="Kibana" // A11y : EuiCollapsibleNavGroup can't correctly pass the `title` as the `aria-label` to the right HTML element, so it must be added manually
+            listItems={alterLinksWithCurrentState(KibanaLinks)}
+            pinTitle={addLinkNameToPinTitle}
+            onPinClick={addPin}
+            maxWidth="none"
+            color="subdued"
+            gutterSize="none"
+            size="s"
+          />
+        </EuiCollapsibleNavGroup>
+
+        {/* Security callout */}
+        {SecurityGroup}
+
+        {/* Learn section */}
+        <EuiCollapsibleNavGroup
+          title={
+            <a
+              className="eui-textInheritColor"
+              href="#/navigation/collapsible-nav"
+              onClick={(e) => e.stopPropagation()}
+            >
+              Training
+            </a>
+          }
+          buttonElement="div"
+          iconType="training"
+          isCollapsible={true}
+          initialIsOpen={openGroups.includes('Learn')}
+          onToggle={(isOpen: boolean) => toggleAccordion(isOpen, 'Learn')}
+        >
+          <EuiPinnableListGroup
+            aria-label="Learn" // A11y : EuiCollapsibleNavGroup can't correctly pass the `title` as the `aria-label` to the right HTML element, so it must be added manually
+            listItems={alterLinksWithCurrentState(LearnLinks)}
+            pinTitle={addLinkNameToPinTitle}
+            onPinClick={addPin}
+            maxWidth="none"
+            color="subdued"
+            gutterSize="none"
+            size="s"
+          />
+        </EuiCollapsibleNavGroup>
+      </EuiFlexItem>
+
+      <EuiFlexItem grow={false}>
+        {/* Span fakes the nav group into not being the first item and therefore adding a top border */}
+        <span />
+        <EuiCollapsibleNavGroup>
+          <EuiButton fill fullWidth iconType="plusInCircleFilled">
+            Add data
+          </EuiButton>
+        </EuiCollapsibleNavGroup>
+      </EuiFlexItem>
+    </EuiCollapsibleNav>
+  );
+
+  const leftSectionItems = [
+    collapsibleNav,
+    <EuiHeaderLogo href={exitPath} iconType="logoElastic">
+      Elastic
+    </EuiHeaderLogo>,
+  ];
+
+  return (
+    <>
+      <EuiHeader
+        position="fixed"
+        sections={[
+          {
+            items: leftSectionItems,
+          },
+          {
+            items: [
+              <EuiButtonEmpty href={exitPath} iconType="exit">
+                Exit fullscreen
+              </EuiButtonEmpty>,
+            ],
+          },
+        ]}
+      />
+
+      <EuiPageTemplate>
+        <EuiPageTemplate.EmptyPrompt>
+          <EuiImage size="fullWidth" alt="Fake paragraph" url={contentSvg} />
+        </EuiPageTemplate.EmptyPrompt>
+      </EuiPageTemplate>
+    </>
+  );
+};
+
+export default CollapsibleNavAll;
+```
+
+## Props
+
+import docgen from '@elastic/eui-docgen/dist/components/collapsible_nav';
+
+<PropTable definition={docgen.EuiCollapsibleNav} />
+
+<PropTable definition={docgen.EuiCollapsibleNavGroup} />

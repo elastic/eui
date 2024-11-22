@@ -1,0 +1,259 @@
+---
+slug: /layout/page-components
+id: layout_page_components_overview
+---
+
+# Page components
+
+Page layouts are modular and fit together in a precise manner, though certain parts can also be added or removed as needed. EUI provides both the **individual page components** and an [over-arching template](/docs/templates/page-template) for easily creating some pre-defined layouts.
+
+:::note The following examples showcase the individual components only.
+
+If you're looking for full page layout examples, we recommend using the [EuiPageTemplate](/docs/templates/page-template) and use this page to modify the props of each part of the template.
+
+:::
+
+## Page, body, and sidebar
+
+**EuiPage** is simply a flex wrapper that will automatically `grow` to fill the height of a flex container. You can also control the flex `direction` and the maximum width using`restrictWidth` which centers the page when it reaches the provided value (or `1200px` if set to `true`).
+
+**EuiPageSidebar** doesn't contain many configurations itself, but it does dictate how the rest of the page contents should be displayed. Typically you'll want to wrap all your page contents in **EuiPageBody** and set `panelled={true}` when you have a side bar.
+
+import fakeSidebar from '!url-loader!./fake_sidebar.svg';
+import fakeParagraph from '!url-loader!./fake_paragraph.svg';
+
+import { PageComponentsPreviewWrapper } from './preview_wrapper';
+
+<Demo scope={{ fakeParagraph, fakeSidebar }} previewPadding="none" previewWrapper={PageComponentsPreviewWrapper}>
+  ```tsx
+  import React, { ReactElement } from 'react';
+  import {
+    EuiPage,
+    EuiPageProps,
+    EuiPageSection,
+    EuiPageSidebar,
+    EuiPageBody,
+  } from '@elastic/eui';
+
+  export default ({
+    content = <EuiImage alt="Fake paragraph" src={fakeParagraph} size="fullWidth" />,
+    sidebarContent = <EuiImage alt="Fake side nav" size="original" url={fakeSidebar} />,
+    ...rest
+  }: Omit<EuiPageProps, 'content'> & {
+    content: ReactElement;
+    sidebarContent?: ReactElement;
+  }) => (
+    <EuiPage paddingSize="none" {...rest}>
+      <EuiPageSidebar paddingSize="l">
+        {sidebarContent}
+      </EuiPageSidebar>
+      <EuiPageBody paddingSize="none" panelled={!!sidebarContent}>
+        <EuiPageSection>{content}</EuiPageSection>
+      </EuiPageBody>
+    </EuiPage>
+  );
+  ```
+</Demo>
+## Page sections
+
+**EuiPageSection** is a stackable component that is essentially an [**EuiPanel**](/docs/layout/panel) with props for quickly creating common usages. It is meant to be a direct descendent of **EuiPageBody** You'll need to set `grow={false}` to any content that you don't want to stretch within the page.
+
+To create dividers between contents, use the `bottomBorder` prop. The `'extended'` version ensures the border touches the sides of the parent. It also supports `restrictWidth` and `alignment` to align with common usages.
+
+```tsx interactive
+import React, { ReactElement } from 'react';
+import { EuiPageHeader, EuiPageSection } from '@elastic/eui';
+
+export default ({
+  content = <></>,
+  extendedBorder,
+  restrictWidth,
+  centeredContent,
+}: {
+  content: ReactElement;
+  extendedBorder?: boolean;
+  restrictWidth?: boolean;
+  centeredContent?: boolean;
+}) => {
+  const width = restrictWidth ? '75%' : false;
+  const bottomBorder = extendedBorder ? 'extended' : true;
+
+  return (
+    <>
+      <EuiPageHeader
+        paddingSize="l"
+        restrictWidth={width}
+        bottomBorder={bottomBorder}
+        pageTitle="Page title"
+        description="EuiPageHeader accepts similar border, restrict width and padding props as EuiPageSection."
+      />
+      <EuiPageSection
+        restrictWidth={width}
+        color="subdued"
+        bottomBorder={bottomBorder}
+      >
+        Secondary content
+      </EuiPageSection>
+      <EuiPageSection
+        restrictWidth={width}
+        alignment={centeredContent ? 'center' : 'top'}
+        color={extendedBorder ? 'plain' : 'transparent'}
+        grow={centeredContent ? true : false}
+      >
+        {content}
+      </EuiPageSection>
+    </>
+  );
+};
+```
+
+## Page configurations
+
+When piecing all of the different page components together, the state of your application will dictate how best to configure each component. Ideally, your main content should always live within a `'plain'` colored body or section.
+
+When using [**EuiEmptyPrompt**](/docs/display/empty-prompt) to replace the main contents of your page you will want to use a panel color opposite that of the section color. For example:
+
+<table>
+  <tr>
+    <th>EuiPageSidebar</th>
+    <th>EuiPageHeader</th>
+    <th>EuiPageBody</th>
+    <th>EuiPageSection</th>
+    <th>EuiEmptyPrompt settings</th>
+  </tr>
+  <tr>
+    <td>
+      <Icon
+        type="checkInCircleFilled"
+        color="green"
+        title="yes"
+      />
+    </td>
+    <td>
+      <Icon
+        type="minusInCircle"
+        color="subdued"
+        title="doesn't matter"
+      />
+    </td>
+    <td>`color="plain"`</td>
+    <td>
+      <span>`color="plain"`</span>
+      <br />
+      <span>`bottomBorder={true}`</span>
+    </td>
+    <td>`color="subdued"`</td>
+  </tr>
+  <tr>
+    <td>
+      <Icon type="error" color="danger" title="no" />
+    </td>
+    <td>
+      <Icon
+        type="checkInCircleFilled"
+        color="green"
+        title="yes"
+      />
+    </td>
+    <td>`color="transparent"`</td>
+    <td>
+      <span>`color="plain"`</span>
+      <br />
+      <span>`bottomBorder="extended"`</span>
+    </td>
+    <td>`color="subdued"`</td>
+  </tr>
+  <tr>
+      <td>
+        <Icon type="error" color="danger" title="no" />
+      </td>
+      <td>
+        <Icon type="error" color="danger" title="no" />
+      </td>
+      <td>`color="transparent"`</td>
+      <td>
+        <span>`color="plain"`</span>
+        <br />
+        <span>`bottomBorder="extended"`</span>
+      </td>
+      <td>`color="plain"`</td>
+    </tr>
+</table>
+
+:::tip
+Reminder: [**EuiPageTemplate**](/docs/templates/page-template) can handle all these configurations for you.
+:::
+
+<Demo scope={{ fakeParagraph, fakeSidebar }} previewPadding="none" previewWrapper={PageComponentsPreviewWrapper}>
+  ```tsx
+  import React, { ReactElement } from 'react';
+  import {
+    _EuiPageRestrictWidth,
+    EuiPage,
+    EuiPageSidebar,
+    EuiPageBody,
+    EuiEmptyPrompt,
+    EuiPageHeader,
+    EuiPageSection,
+  } from '@elastic/eui';
+
+  export default ({
+    content = <EuiImage alt="Fake paragraph" src={fakeParagraph} size="fullWidth" />,
+    sideBar = <EuiImage alt="Fake side nav" size="original" url={fakeSidebar} />,
+    pageHeader,
+    emptyPrompt,
+  }: _EuiPageRestrictWidth & {
+    content: ReactElement;
+    sideBar?: ReactElement;
+    pageHeader?: boolean;
+    emptyPrompt?: boolean;
+  }) => {
+    return (
+      <EuiPage paddingSize="none">
+        {sideBar && (
+          <EuiPageSidebar paddingSize="l" sticky>
+            {sideBar}
+          </EuiPageSidebar>
+        )}
+
+        <EuiPageBody paddingSize="none" panelled={Boolean(sideBar)}>
+          {pageHeader && (
+            <EuiPageSection bottomBorder={sideBar ? true : 'extended'}>
+              <EuiPageHeader pageTitle="Page title" />
+            </EuiPageSection>
+          )}
+
+          {emptyPrompt ? (
+            <EuiPageSection
+              color={pageHeader ? 'plain' : 'transparent'}
+              alignment={'center'}
+              grow
+            >
+              <EuiEmptyPrompt
+                title={<span>No spice</span>}
+                body={content}
+                color={pageHeader || sideBar ? 'subdued' : 'plain'}
+              />
+            </EuiPageSection>
+          ) : (
+            <EuiPageSection color={'plain'} alignment={'top'} grow>
+              {content}
+            </EuiPageSection>
+          )}
+        </EuiPageBody>
+      </EuiPage>
+    );
+  };
+  ```
+</Demo>
+
+## Props
+
+import docgen from '@elastic/eui-docgen/dist/components/page';
+
+<PropTable definition={docgen.EuiPage} />
+
+<PropTable definition={docgen.EuiPageBody} />
+
+<PropTable definition={docgen.EuiPageSidebar} />
+

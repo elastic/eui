@@ -1,0 +1,1258 @@
+---
+slug: /navigation/button
+id: navigation_button
+---
+
+# Button
+
+EUI provides many types, colors and configurations of buttons. The one best suited for you context depends on placement, prominence, and state. For primary and secondary actions it is best to use the basic **EuiButton**. For tertiary or low prominence actions, use **EuiButtonEmpty**.
+
+Be sure to read the full [button usage guidelines](/docs/guidelines/button).
+
+## Basic button
+
+The most standard button component is **EuiButton** which comes in two styles and two sizes. The `fill` style should be reserved for the main action and limited in number for a single page. Use the small size (`size="s"`) when placing buttons into smaller containers like popovers.
+
+When using colors other than `primary`, be sure that either the words or an icon also represents the status. For instance, don't rely on color alone to represent dangerous actions but use words like "Delete" not "Confirm". The `text` and `accent` colors should be used sparingly as they can easily be confused with other states like disabled and danger.
+
+```tsx interactive
+import React from 'react';
+import { EuiButton, EuiFlexGroup, EuiFlexItem, EuiSpacer } from '@elastic/eui';
+
+const buttons = [
+  'primary',
+  'success',
+  'warning',
+  'danger',
+  'text',
+  'accent',
+  'disabled',
+];
+
+export default () => (
+  <div>
+    {buttons.map((value) => (
+      <>
+        <EuiFlexGroup
+          key={value}
+          gutterSize="s"
+          alignItems="center"
+          responsive={false}
+          wrap
+        >
+          <EuiFlexItem grow={false}>
+            <EuiButton
+              color={value !== 'disabled' ? value : undefined}
+              isDisabled={value === 'disabled' ? true : false}
+              onClick={() => {}}
+            >
+              {value.charAt(0).toUpperCase() + value.slice(1)}
+            </EuiButton>
+          </EuiFlexItem>
+
+          <EuiFlexItem grow={false}>
+            <EuiButton
+              color={value !== 'disabled' ? value : undefined}
+              isDisabled={value === 'disabled' ? true : false}
+              fill
+              onClick={() => {}}
+            >
+              Filled
+            </EuiButton>
+          </EuiFlexItem>
+
+          <EuiFlexItem grow={false}>
+            <EuiButton
+              color={value !== 'disabled' ? value : undefined}
+              isDisabled={value === 'disabled' ? true : false}
+              size="s"
+              onClick={() => {}}
+            >
+              Small
+            </EuiButton>
+          </EuiFlexItem>
+
+          <EuiFlexItem grow={false}>
+            <EuiButton
+              color={value !== 'disabled' ? value : undefined}
+              isDisabled={value === 'disabled' ? true : false}
+              size="s"
+              fill
+              onClick={() => {}}
+            >
+              Small and filled
+            </EuiButton>
+          </EuiFlexItem>
+
+          <EuiFlexItem grow={true}>
+            <EuiButton
+              color={value !== 'disabled' ? value : undefined}
+              isDisabled={value === 'disabled' ? true : false}
+              fullWidth
+              onClick={() => {}}
+            >
+              Full width
+            </EuiButton>
+          </EuiFlexItem>
+        </EuiFlexGroup>
+        <EuiSpacer size="s" />
+      </>
+    ))}
+  </div>
+);
+```
+
+## Empty button
+
+Use **EuiButtonEmpty** when you want to reduce the importance of the button, but still want to align it to the rest of the buttons. It is also the only button component that supports down to size `xs`.
+
+```tsx interactive
+import React from 'react';
+import {
+  EuiButtonEmpty,
+  EuiFlexGroup,
+  EuiFlexItem,
+  EuiSpacer,
+} from '@elastic/eui';
+
+const buttons = ['primary', 'success', 'warning', 'danger', 'text', 'disabled'];
+
+export default () => (
+  <div>
+    {buttons.map((value) => (
+      <>
+        <EuiFlexGroup
+          key={value}
+          responsive={false}
+          gutterSize="s"
+          alignItems="center"
+        >
+          <EuiFlexItem grow={false}>
+            <EuiButtonEmpty
+              isDisabled={value === 'disabled' ? true : false}
+              color={value !== 'disabled' ? value : 'primary'}
+              onClick={() => {}}
+            >
+              {value.charAt(0).toUpperCase() + value.slice(1)}
+            </EuiButtonEmpty>
+          </EuiFlexItem>
+
+          <EuiFlexItem grow={false}>
+            <EuiButtonEmpty
+              size="s"
+              isDisabled={value === 'disabled' ? true : false}
+              color={value !== 'disabled' ? value : 'primary'}
+              onClick={() => {}}
+            >
+              Small
+            </EuiButtonEmpty>
+          </EuiFlexItem>
+
+          <EuiFlexItem grow={false}>
+            <EuiButtonEmpty
+              size="xs"
+              isDisabled={value === 'disabled' ? true : false}
+              color={value !== 'disabled' ? value : 'primary'}
+              onClick={() => {}}
+            >
+              Extra small
+            </EuiButtonEmpty>
+          </EuiFlexItem>
+        </EuiFlexGroup>
+        <EuiSpacer size="s" />
+      </>
+    ))}
+  </div>
+);
+```
+
+## Flush empty button
+
+When aligning **EuiButtonEmpty** components to the left or the right, you should make sure they’re flush with the edge of their container, so that they’re horizontally aligned with the other content in the container.
+
+```tsx interactive
+import React from 'react';
+import { EuiButtonEmpty, EuiFlexGroup, EuiFlexItem } from '@elastic/eui';
+
+export default () => (
+  <EuiFlexGroup responsive={false} gutterSize="s" alignItems="center">
+    <EuiFlexItem grow={false}>
+      <EuiButtonEmpty flush="left">Flush left</EuiButtonEmpty>
+    </EuiFlexItem>
+
+    <EuiFlexItem grow={false}>
+      <EuiButtonEmpty flush="right">Flush right</EuiButtonEmpty>
+    </EuiFlexItem>
+
+    <EuiFlexItem grow={false}>
+      <EuiButtonEmpty flush="both">Flush both</EuiButtonEmpty>
+    </EuiFlexItem>
+  </EuiFlexGroup>
+);
+```
+
+## Buttons with icons
+
+All button components accept an `iconType` which must be an acceptable [**EuiIcon**](/docs/display/icons) type. Multi-color icons like app icons will be converted to single color. Icons can be displayed on the opposite side by passing `iconSide="right"`.
+
+```tsx interactive
+import React from 'react';
+import {
+  EuiButton,
+  EuiFlexGroup,
+  EuiFlexItem,
+  EuiButtonEmpty,
+  EuiSpacer,
+} from '@elastic/eui';
+
+export default () => (
+  <div>
+    <EuiFlexGroup responsive={false} wrap gutterSize="s" alignItems="center">
+      <EuiFlexItem grow={false}>
+        <EuiButton onClick={() => {}} iconType="heart">
+          Primary
+        </EuiButton>
+      </EuiFlexItem>
+
+      <EuiFlexItem grow={false}>
+        <EuiButton fill iconType="lensApp" onClick={() => {}}>
+          Filled
+        </EuiButton>
+      </EuiFlexItem>
+
+      <EuiFlexItem grow={false}>
+        <EuiButton iconType="heart" size="s" onClick={() => {}}>
+          Small
+        </EuiButton>
+      </EuiFlexItem>
+
+      <EuiFlexItem grow={false}>
+        <EuiButton iconType="lensApp" size="s" fill onClick={() => {}}>
+          Small and filled
+        </EuiButton>
+      </EuiFlexItem>
+
+      <EuiFlexItem grow={true}>
+        <EuiButton fullWidth iconType="lensApp" onClick={() => {}}>
+          Full width
+        </EuiButton>
+      </EuiFlexItem>
+    </EuiFlexGroup>
+
+    <EuiSpacer size="s" />
+
+    <EuiFlexGroup responsive={false} wrap gutterSize="s" alignItems="center">
+      <EuiFlexItem grow={false}>
+        <EuiButtonEmpty onClick={() => {}} iconType="lensApp">
+          Empty button
+        </EuiButtonEmpty>
+      </EuiFlexItem>
+
+      <EuiFlexItem grow={false}>
+        <EuiButtonEmpty onClick={() => {}} iconType="lensApp" size="s">
+          Small empty
+        </EuiButtonEmpty>
+      </EuiFlexItem>
+
+      <EuiFlexItem grow={false}>
+        <EuiButtonEmpty onClick={() => {}} iconType="lensApp" size="xs">
+          Extra small empty
+        </EuiButtonEmpty>
+      </EuiFlexItem>
+    </EuiFlexGroup>
+
+    <EuiSpacer size="s" />
+
+    <EuiFlexGroup responsive={false} wrap gutterSize="s" alignItems="center">
+      <EuiFlexItem grow={false}>
+        <EuiButton iconSide="right" onClick={() => {}} iconType="arrowDown">
+          Icon right
+        </EuiButton>
+      </EuiFlexItem>
+
+      <EuiFlexItem grow={false}>
+        <EuiButton
+          iconSide="right"
+          fill
+          iconType="arrowDown"
+          onClick={() => {}}
+        >
+          Filled
+        </EuiButton>
+      </EuiFlexItem>
+
+      <EuiFlexItem grow={false}>
+        <EuiButton
+          iconSide="right"
+          iconType="arrowDown"
+          size="s"
+          onClick={() => {}}
+        >
+          Small
+        </EuiButton>
+      </EuiFlexItem>
+
+      <EuiFlexItem grow={false}>
+        <EuiButton
+          iconSide="right"
+          iconType="arrowDown"
+          size="s"
+          fill
+          onClick={() => {}}
+        >
+          Small and filled
+        </EuiButton>
+      </EuiFlexItem>
+
+      <EuiFlexItem grow={true}>
+        <EuiButton
+          fullWidth
+          iconSide="right"
+          iconType="arrowDown"
+          onClick={() => {}}
+        >
+          Full width
+        </EuiButton>
+      </EuiFlexItem>
+    </EuiFlexGroup>
+
+    <EuiSpacer size="s" />
+
+    <EuiFlexGroup responsive={false} wrap gutterSize="s" alignItems="center">
+      <EuiFlexItem grow={false}>
+        <EuiButtonEmpty
+          iconSide="right"
+          onClick={() => {}}
+          iconType="arrowDown"
+        >
+          Icon right
+        </EuiButtonEmpty>
+      </EuiFlexItem>
+
+      <EuiFlexItem grow={false}>
+        <EuiButtonEmpty
+          iconSide="right"
+          onClick={() => {}}
+          iconType="arrowDown"
+          size="s"
+        >
+          Small empty
+        </EuiButtonEmpty>
+      </EuiFlexItem>
+
+      <EuiFlexItem grow={false}>
+        <EuiButtonEmpty
+          iconSide="right"
+          onClick={() => {}}
+          iconType="arrowDown"
+          size="xs"
+        >
+          Extra small empty
+        </EuiButtonEmpty>
+      </EuiFlexItem>
+    </EuiFlexGroup>
+
+    <EuiSpacer size="s" />
+
+    <EuiFlexGroup responsive={false} wrap gutterSize="s" alignItems="center">
+      <EuiFlexItem grow={false}>
+        <EuiButton onClick={() => {}} iconType="heart" isDisabled>
+          Disabled
+        </EuiButton>
+      </EuiFlexItem>
+
+      <EuiFlexItem grow={false}>
+        <EuiButton fill iconType="lensApp" onClick={() => {}} isDisabled>
+          Filled
+        </EuiButton>
+      </EuiFlexItem>
+
+      <EuiFlexItem grow={false}>
+        <EuiButton iconType="heart" size="s" onClick={() => {}} isDisabled>
+          Small
+        </EuiButton>
+      </EuiFlexItem>
+
+      <EuiFlexItem grow={false}>
+        <EuiButton
+          iconType="lensApp"
+          size="s"
+          fill
+          onClick={() => {}}
+          isDisabled
+        >
+          Small and filled
+        </EuiButton>
+      </EuiFlexItem>
+
+      <EuiFlexItem grow={true}>
+        <EuiButton fullWidth iconType="lensApp" onClick={() => {}} isDisabled>
+          Full width
+        </EuiButton>
+      </EuiFlexItem>
+    </EuiFlexGroup>
+
+    <EuiSpacer size="s" />
+
+    <EuiFlexGroup responsive={false} wrap gutterSize="s" alignItems="center">
+      <EuiFlexItem grow={false}>
+        <EuiButtonEmpty
+          isDisabled
+          color="text"
+          onClick={() => {}}
+          iconType="dashboardApp"
+        >
+          Disabled app icon
+        </EuiButtonEmpty>
+      </EuiFlexItem>
+
+      <EuiFlexItem grow={false}>
+        <EuiButtonEmpty
+          isDisabled
+          color="text"
+          onClick={() => {}}
+          iconType="arrowDown"
+          iconSide="right"
+          size="xs"
+        >
+          Disabled icon right
+        </EuiButtonEmpty>
+      </EuiFlexItem>
+    </EuiFlexGroup>
+  </div>
+);
+```
+
+## Icon buttons
+
+An **EuiButtonIcon** is a button that only contains an icon (no text). Use the `display` and `size` props to match the appearance of your **EuiButtonIcon** to other standard buttons. By default they will appear as `xs`, `empty` buttons.
+
+:::note Accessibility requirement
+**EuiButtonIcon** requires an `aria-label` to express the meaning to screen readers.
+:::
+
+```tsx interactive
+import React from 'react';
+import {
+  EuiButtonIcon,
+  EuiFlexGroup,
+  EuiFlexItem,
+  EuiSpacer,
+  EuiTitle,
+  EuiCode,
+} from '@elastic/eui';
+
+const colors = ['primary', 'success', 'warning', 'danger', 'text', 'accent'];
+
+export default () => (
+  <>
+    <EuiFlexGroup responsive={false} gutterSize="s" alignItems="center">
+      {colors.map((color) => (
+        <EuiFlexItem key={color} grow={false}>
+          <EuiButtonIcon
+            color={color}
+            onClick={() => {}}
+            iconType="help"
+            aria-label="Help"
+          />
+        </EuiFlexItem>
+      ))}
+    </EuiFlexGroup>
+    <EuiSpacer size="m" />
+    <EuiTitle size="xxs">
+      <h3>
+        Display (<EuiCode>empty</EuiCode>, <EuiCode>base</EuiCode>,{' '}
+        <EuiCode>fill</EuiCode>)
+      </h3>
+    </EuiTitle>
+    <EuiSpacer size="s" />
+    <EuiFlexGroup responsive={false} gutterSize="s" alignItems="center">
+      <EuiFlexItem grow={false}>
+        <EuiButtonIcon iconType="arrowRight" aria-label="Next" />
+      </EuiFlexItem>
+      <EuiFlexItem grow={false}>
+        <EuiButtonIcon display="base" iconType="arrowRight" aria-label="Next" />
+      </EuiFlexItem>
+      <EuiFlexItem grow={false}>
+        <EuiButtonIcon display="fill" iconType="arrowRight" aria-label="Next" />
+      </EuiFlexItem>
+    </EuiFlexGroup>
+    <EuiSpacer size="m" />
+    <EuiTitle size="xxs">
+      <h3>Disabled </h3>
+    </EuiTitle>
+    <EuiSpacer size="s" />
+    <EuiFlexGroup responsive={false} gutterSize="s" alignItems="center">
+      <EuiFlexItem grow={false}>
+        <EuiButtonIcon iconType="arrowRight" isDisabled aria-label="Next" />
+      </EuiFlexItem>
+      <EuiFlexItem grow={false}>
+        <EuiButtonIcon
+          display="base"
+          iconType="arrowRight"
+          isDisabled
+          aria-label="Next"
+        />
+      </EuiFlexItem>
+      <EuiFlexItem grow={false}>
+        <EuiButtonIcon
+          iconType="arrowRight"
+          display="fill"
+          disabled
+          aria-label="Next"
+        />
+      </EuiFlexItem>
+    </EuiFlexGroup>
+    <EuiSpacer size="m" />
+    <EuiTitle size="xxs">
+      <h3>
+        Size (<EuiCode>xs</EuiCode>, <EuiCode>s</EuiCode>, <EuiCode>m</EuiCode>)
+      </h3>
+    </EuiTitle>
+    <EuiSpacer size="s" />
+    <EuiFlexGroup responsive={false} gutterSize="s" alignItems="center">
+      <EuiFlexItem grow={false}>
+        <EuiButtonIcon display="base" iconType="arrowRight" aria-label="Next" />
+      </EuiFlexItem>
+      <EuiFlexItem grow={false}>
+        <EuiButtonIcon
+          display="base"
+          iconType="arrowRight"
+          size="s"
+          aria-label="Next"
+        />
+      </EuiFlexItem>
+      <EuiFlexItem grow={false}>
+        <EuiButtonIcon
+          display="base"
+          iconType="arrowRight"
+          iconSize="l"
+          size="m"
+          aria-label="Next"
+        />
+      </EuiFlexItem>
+    </EuiFlexGroup>
+    <EuiSpacer size="m" />
+    <EuiTitle size="xxs">
+      <h3>All icons types inherit button color</h3>
+    </EuiTitle>
+    <EuiSpacer size="s" />
+    <EuiFlexGroup responsive={false} gutterSize="s" alignItems="center">
+      <EuiFlexItem grow={false}>
+        <EuiButtonIcon iconType="heart" aria-label="Heart" color="accent" />
+      </EuiFlexItem>
+      <EuiFlexItem grow={false}>
+        <EuiButtonIcon
+          iconType="dashboardApp"
+          aria-label="Dashboard"
+          color="success"
+        />
+      </EuiFlexItem>
+      <EuiFlexItem grow={false}>
+        <EuiButtonIcon
+          display="base"
+          iconType="trash"
+          aria-label="Delete"
+          color="danger"
+        />
+      </EuiFlexItem>
+      <EuiFlexItem grow={false}>
+        <EuiButtonIcon display="base" iconType="lensApp" aria-label="Lens" />
+      </EuiFlexItem>
+    </EuiFlexGroup>
+  </>
+);
+```
+
+## Buttons as links
+
+Every button component accepts either an `href` (rendered as an `<a>`) or an `onClick` (rendered as a `<button>`). While they also accept both props to be applied simultaneously to support certain routing mechansims, it is not usually recommended. For more specific information on how to integrate EUI buttons with react-router, [see this wiki page](https://github.com/elastic/eui/blob/main/wiki/consuming-eui/react-router.md#how-react-router-works).
+
+If you are creating a purely text-based link, like the one in the previous paragraph, use [**EuiLink**](/docs/navigation/link) instead.
+
+```tsx interactive
+import React, { Fragment } from 'react';
+import {
+  EuiButton,
+  EuiButtonEmpty,
+  EuiButtonIcon,
+  EuiFlexGroup,
+  EuiFlexItem,
+  EuiSpacer,
+} from '@elastic/eui';
+
+export default () => (
+  <Fragment>
+    <EuiFlexGroup responsive={false} wrap gutterSize="s" alignItems="center">
+      <EuiFlexItem grow={false}>
+        <EuiButton href="#/navigation/button">Link to elastic.co</EuiButton>
+      </EuiFlexItem>
+
+      <EuiFlexItem grow={false}>
+        <EuiButtonEmpty href="#/navigation/button">
+          Link to elastic.co
+        </EuiButtonEmpty>
+      </EuiFlexItem>
+
+      <EuiFlexItem grow={false}>
+        <EuiButtonIcon
+          href="#/navigation/button"
+          iconType="link"
+          aria-label="This is a link"
+        />
+      </EuiFlexItem>
+    </EuiFlexGroup>
+
+    <EuiSpacer size="s" />
+
+    <EuiFlexGroup responsive={false} wrap gutterSize="s" alignItems="center">
+      <EuiFlexItem grow={false}>
+        <EuiButton href="#/navigation/button" isDisabled>
+          Disabled link
+        </EuiButton>
+      </EuiFlexItem>
+
+      <EuiFlexItem grow={false}>
+        <EuiButtonEmpty href="#/navigation/button" isDisabled>
+          Disabled empty link
+        </EuiButtonEmpty>
+      </EuiFlexItem>
+
+      <EuiFlexItem grow={false}>
+        <EuiButtonIcon
+          href="#/navigation/button"
+          iconType="link"
+          aria-label="This is a link"
+          isDisabled
+        />
+      </EuiFlexItem>
+    </EuiFlexGroup>
+  </Fragment>
+);
+```
+
+## Loading state
+
+Setting the `isLoading` prop to true will add the loading spinner or swap the existing icon for the loading spinner and set the button to disabled. It is good practice to also rename the button to "Loading…".
+
+```tsx interactive
+import React from 'react';
+import {
+  EuiButton,
+  EuiFlexGroup,
+  EuiFlexItem,
+  EuiButtonEmpty,
+} from '@elastic/eui';
+
+export default () => (
+  <EuiFlexGroup responsive={false} wrap gutterSize="s" alignItems="center">
+    <EuiFlexItem grow={false}>
+      <EuiButton isLoading={true}>Loading&hellip;</EuiButton>
+    </EuiFlexItem>
+
+    <EuiFlexItem grow={false}>
+      <EuiButton fill size="s" isLoading={true}>
+        Loading&hellip;
+      </EuiButton>
+    </EuiFlexItem>
+
+    <EuiFlexItem grow={false}>
+      <EuiButton fill isLoading={true} iconType="check" iconSide="right">
+        Loading&hellip;
+      </EuiButton>
+    </EuiFlexItem>
+
+    <EuiFlexItem grow={false}>
+      <EuiButtonEmpty onClick={() => {}} isLoading>
+        Loading&hellip;
+      </EuiButtonEmpty>
+    </EuiFlexItem>
+
+    <EuiFlexItem grow={false}>
+      <EuiButtonEmpty size="xs" onClick={() => {}} isLoading iconSide="right">
+        Loading&hellip;
+      </EuiButtonEmpty>
+    </EuiFlexItem>
+  </EuiFlexGroup>
+);
+```
+
+## Split buttons
+
+EUI [does not support](https://github.com/elastic/eui/issues/4171) split buttons specifically. Instead, we recommend using separate buttons for the main and overflow actions. You can achieve this by simply using the `display` and `size` props **EuiButtonIcon** to match that of the primary action button.
+
+```tsx interactive
+import React, { useState } from 'react';
+import {
+  EuiButton,
+  EuiButtonIcon,
+  EuiFlexGroup,
+  EuiFlexItem,
+  EuiContextMenuPanel,
+  EuiContextMenuItem,
+  EuiPopover,
+  useGeneratedHtmlId,
+} from '@elastic/eui';
+
+export default () => {
+  const [isPopoverOpen, setPopover] = useState(false);
+  const splitButtonPopoverId = useGeneratedHtmlId({
+    prefix: 'splitButtonPopover',
+  });
+
+  const onButtonClick = () => {
+    setPopover(!isPopoverOpen);
+  };
+
+  const closePopover = () => {
+    setPopover(false);
+  };
+
+  const items = [
+    <EuiContextMenuItem key="copy" icon="copy" onClick={closePopover}>
+      Copy
+    </EuiContextMenuItem>,
+    <EuiContextMenuItem key="edit" icon="pencil" onClick={closePopover}>
+      Edit
+    </EuiContextMenuItem>,
+    <EuiContextMenuItem key="share" icon="share" onClick={closePopover}>
+      Share
+    </EuiContextMenuItem>,
+  ];
+
+  return (
+    <>
+      <EuiFlexGroup responsive={false} gutterSize="xs" alignItems="center">
+        <EuiFlexItem grow={false}>
+          <EuiButton size="s" iconType="calendar">
+            Last 15 min
+          </EuiButton>
+        </EuiFlexItem>
+        <EuiFlexItem grow={false}>
+          <EuiPopover
+            id={splitButtonPopoverId}
+            button={
+              <EuiButtonIcon
+                display="base"
+                size="s"
+                iconType="boxesVertical"
+                aria-label="More"
+                onClick={onButtonClick}
+              />
+            }
+            isOpen={isPopoverOpen}
+            closePopover={closePopover}
+            panelPaddingSize="none"
+            anchorPosition="downLeft"
+          >
+            <EuiContextMenuPanel size="s" items={items} />
+          </EuiPopover>
+        </EuiFlexItem>
+      </EuiFlexGroup>
+    </>
+  );
+};
+```
+
+## Toggle buttons
+
+You can create a toggle button with any button type like the standard **EuiButton**, **EuiButtonEmpty**, or **EuiButtonIcon**. Use state management to handle the visual differences for on and off. Though there are two **exclusive** situations to consider.
+
+1.  If your button changes its readable **text**, via children or `aria-label`, then there is no additional accessibility concern.
+
+```tsx interactive
+import React, { useState } from 'react';
+import { EuiButton, EuiButtonIcon } from '@elastic/eui';
+
+export default () => {
+  const [toggle0On, setToggle0On] = useState(false);
+  const [toggle1On, setToggle1On] = useState(true);
+
+  return (
+    <>
+      <EuiButton
+        onClick={() => {
+          setToggle0On((isOn) => !isOn);
+        }}
+      >
+        {toggle0On ? 'Hey there good lookin' : 'Toggle me'}
+      </EuiButton>
+      &emsp;
+      <EuiButtonIcon
+        title={toggle1On ? 'Play' : 'Pause'}
+        aria-label={toggle1On ? 'Play' : 'Pause'}
+        iconType={toggle1On ? 'play' : 'pause'}
+        onClick={() => {
+          setToggle1On((isOn) => !isOn);
+        }}
+      />
+    </>
+  );
+};
+```
+
+2.  If your button only changes the **visual** appearance, you must add `aria-pressed` passing a boolean for the on and off states. All EUI button types provide a helper prop for this called `isSelected`.
+
+:::note Accessibility recommendation
+Do not add `aria-pressed` or `isSelected` if you also change the readable text.
+:::
+
+```tsx interactive
+import React, { useState } from 'react';
+import { EuiButton, EuiButtonIcon } from '@elastic/eui';
+
+export default () => {
+  const [toggle2On, setToggle2On] = useState(true);
+  const [toggle3On, setToggle3On] = useState(false);
+
+  return (
+    <>
+      <EuiButton
+        isSelected={toggle2On}
+        fill={toggle2On}
+        iconType={toggle2On ? 'starFilledSpace' : 'starPlusEmpty'}
+        onClick={() => {
+          setToggle2On((isOn) => !isOn);
+        }}
+      >
+        Toggle me
+      </EuiButton>
+      &emsp;
+      <EuiButtonIcon
+        display={toggle3On ? 'base' : 'empty'}
+        size="m"
+        aria-label="Autosave"
+        title="Autosave"
+        iconType="save"
+        aria-pressed={toggle3On}
+        color={toggle3On ? 'primary' : 'text'}
+        onClick={() => {
+          setToggle3On((isOn) => !isOn);
+        }}
+      />
+    </>
+  );
+};
+```
+
+## Button groups
+
+An **EuiButtonGroup** is for indicating **selection** only. They utilize the `type="single"` or `"multi"` prop to determine whether multiple or only single selections are allowed per group.
+
+:::note Accessibility requirement
+In order for groups to be properly read as groups with a title, the `legend` prop is **required**. This is only for accessibility, however, so it will be visibly hidden.
+:::
+
+```tsx interactive
+import React, { useState, Fragment } from 'react';
+import {
+  EuiButtonGroup,
+  EuiSpacer,
+  EuiTitle,
+  useGeneratedHtmlId,
+} from '@elastic/eui';
+
+export default () => {
+  const basicButtonGroupPrefix = useGeneratedHtmlId({
+    prefix: 'basicButtonGroup',
+  });
+  const multiSelectButtonGroupPrefix = useGeneratedHtmlId({
+    prefix: 'multiSelectButtonGroup',
+  });
+  const disabledButtonGroupPrefix = useGeneratedHtmlId({
+    prefix: 'disabledButtonGroup',
+  });
+
+  const toggleButtons = [
+    {
+      id: `${basicButtonGroupPrefix}__0`,
+      label: 'Option one',
+    },
+    {
+      id: `${basicButtonGroupPrefix}__1`,
+      label: 'Option two is selected by default',
+    },
+    {
+      id: `${basicButtonGroupPrefix}__2`,
+      label: 'Option three',
+    },
+  ];
+
+  const toggleButtonsDisabled = [
+    {
+      id: `${disabledButtonGroupPrefix}__0`,
+      label: 'Option one',
+    },
+    {
+      id: `${disabledButtonGroupPrefix}__1`,
+      label: 'Option two is selected by default',
+    },
+    {
+      id: `${disabledButtonGroupPrefix}__2`,
+      label: 'Option three',
+    },
+  ];
+
+  const toggleButtonsMulti = [
+    {
+      id: `${multiSelectButtonGroupPrefix}__0`,
+      label: 'Option 1',
+    },
+    {
+      id: `${multiSelectButtonGroupPrefix}__1`,
+      label: 'Option 2 is selected by default',
+    },
+    {
+      id: `${multiSelectButtonGroupPrefix}__2`,
+      label: 'Option 3',
+    },
+  ];
+
+  const [toggleIdSelected, setToggleIdSelected] = useState(
+    `${basicButtonGroupPrefix}__1`
+  );
+  const [toggleIdDisabled, setToggleIdDisabled] = useState(
+    `${disabledButtonGroupPrefix}__1`
+  );
+  const [toggleIdToSelectedMap, setToggleIdToSelectedMap] = useState({
+    [`${multiSelectButtonGroupPrefix}__1`]: true,
+  });
+
+  const onChange = (optionId) => {
+    setToggleIdSelected(optionId);
+  };
+
+  const onChangeDisabled = (optionId) => {
+    setToggleIdDisabled(optionId);
+  };
+
+  const onChangeMulti = (optionId) => {
+    const newToggleIdToSelectedMap = {
+      ...toggleIdToSelectedMap,
+      ...{
+        [optionId]: !toggleIdToSelectedMap[optionId],
+      },
+    };
+    setToggleIdToSelectedMap(newToggleIdToSelectedMap);
+  };
+
+  return (
+    <Fragment>
+      <EuiButtonGroup
+        legend="This is a basic group"
+        options={toggleButtons}
+        idSelected={toggleIdSelected}
+        onChange={(id) => onChange(id)}
+      />
+      <EuiSpacer size="m" />
+      <EuiTitle size="xxs">
+        <h3>Primary &amp; multi select</h3>
+      </EuiTitle>
+      <EuiSpacer size="s" />
+      <EuiButtonGroup
+        legend="This is a primary group"
+        options={toggleButtonsMulti}
+        idToSelectedMap={toggleIdToSelectedMap}
+        onChange={(id) => onChangeMulti(id)}
+        color="primary"
+        type="multi"
+      />
+      <EuiSpacer size="m" />
+      <EuiTitle size="xxs">
+        <h3>Disabled &amp; full width</h3>
+      </EuiTitle>
+      <EuiSpacer size="s" />
+      <EuiButtonGroup
+        legend="This is a disabled group"
+        options={toggleButtonsDisabled}
+        idSelected={toggleIdDisabled}
+        onChange={(id) => onChangeDisabled(id)}
+        buttonSize="m"
+        isDisabled
+        isFullWidth
+      />
+    </Fragment>
+  );
+};
+
+```
+
+### Icon only button groups
+
+If you're just displaying a group of icons, add the prop `isIconOnly`.
+
+```tsx interactive
+import React, { useState, Fragment } from 'react';
+import { EuiButtonGroup, htmlIdGenerator } from '@elastic/eui';
+
+const idPrefix3 = htmlIdGenerator()();
+
+export default () => {
+  const toggleButtonsIcons = [
+    {
+      id: `${idPrefix3}0`,
+      label: 'Align left',
+      iconType: 'editorAlignLeft',
+    },
+    {
+      id: `${idPrefix3}1`,
+      label: 'Align center',
+      iconType: 'editorAlignCenter',
+    },
+    {
+      id: `${idPrefix3}2`,
+      label: 'Align right',
+      iconType: 'editorAlignRight',
+      isDisabled: true,
+    },
+  ];
+
+  const toggleButtonsIconsMulti = [
+    {
+      id: `${idPrefix3}3`,
+      label: 'Bold',
+      name: 'bold',
+      iconType: 'editorBold',
+    },
+    {
+      id: `${idPrefix3}4`,
+      label: 'Italic',
+      name: 'italic',
+      iconType: 'editorItalic',
+      isDisabled: true,
+    },
+    {
+      id: `${idPrefix3}5`,
+      label: 'Underline',
+      name: 'underline',
+      iconType: 'editorUnderline',
+    },
+    {
+      id: `${idPrefix3}6`,
+      label: 'Strikethrough',
+      name: 'strikethrough',
+      iconType: 'editorStrike',
+    },
+  ];
+
+  const [toggleIconIdSelected, setToggleIconIdSelected] = useState(
+    `${idPrefix3}1`
+  );
+  const [toggleIconIdToSelectedMap, setToggleIconIdToSelectedMap] = useState(
+    {}
+  );
+
+  const onChangeIcons = (optionId) => {
+    setToggleIconIdSelected(optionId);
+  };
+
+  const onChangeIconsMulti = (optionId) => {
+    const newToggleIconIdToSelectedMap = {
+      ...toggleIconIdToSelectedMap,
+      ...{
+        [optionId]: !toggleIconIdToSelectedMap[optionId],
+      },
+    };
+
+    setToggleIconIdToSelectedMap(newToggleIconIdToSelectedMap);
+  };
+
+  return (
+    <Fragment>
+      <EuiButtonGroup
+        legend="Text align"
+        options={toggleButtonsIcons}
+        idSelected={toggleIconIdSelected}
+        onChange={(id) => onChangeIcons(id)}
+        isIconOnly
+      />
+      &nbsp;&nbsp;
+      <EuiButtonGroup
+        legend="Text style"
+        options={toggleButtonsIconsMulti}
+        idToSelectedMap={toggleIconIdToSelectedMap}
+        onChange={(id) => onChangeIconsMulti(id)}
+        type="multi"
+        isIconOnly
+      />
+    </Fragment>
+  );
+};
+
+```
+
+### Button groups in forms
+
+When using button groups within compressed forms, match the form elements by adding `buttonSize="compressed"`. Compressed groups should always be `fullWidth` so they line up nicely in their small container **unless** they are icon only.
+
+For a more detailed example of how to integrate with forms, see the ["Complex example"](/docs/forms/compressed-forms#complex-example) on the compressed forms page.
+
+```tsx interactive
+import React, { useState } from 'react';
+import {
+  EuiButtonGroup,
+  EuiSpacer,
+  EuiPanel,
+  useGeneratedHtmlId,
+} from '@elastic/eui';
+
+export default () => {
+  const compressedToggleButtonGroupPrefix = useGeneratedHtmlId({
+    prefix: 'compressedToggleButtonGroup',
+  });
+  const multiSelectButtonGroupPrefix = useGeneratedHtmlId({
+    prefix: 'multiSelectButtonGroup',
+  });
+
+  const toggleButtonsCompressed = [
+    {
+      id: `${compressedToggleButtonGroupPrefix}__0`,
+      label: 'fine',
+    },
+    {
+      id: `${compressedToggleButtonGroupPrefix}__1`,
+      label: 'rough',
+    },
+    {
+      id: `${compressedToggleButtonGroupPrefix}__2`,
+      label: 'coarse',
+    },
+  ];
+
+  const toggleButtonsIconsMulti = [
+    {
+      id: `${multiSelectButtonGroupPrefix}__0`,
+      label: 'Bold',
+      name: 'bold',
+      iconType: 'editorBold',
+    },
+    {
+      id: `${multiSelectButtonGroupPrefix}__1`,
+      label: 'Italic',
+      name: 'italic',
+      iconType: 'editorItalic',
+      isDisabled: true,
+    },
+    {
+      id: `${multiSelectButtonGroupPrefix}__2`,
+      label: 'Underline',
+      name: 'underline',
+      iconType: 'editorUnderline',
+    },
+    {
+      id: `${multiSelectButtonGroupPrefix}__3`,
+      label: 'Strikethrough',
+      name: 'strikethrough',
+      iconType: 'editorStrike',
+    },
+  ];
+
+  const [toggleIconIdToSelectedMapIcon, setToggleIconIdToSelectedMapIcon] =
+    useState({});
+  const [toggleCompressedIdSelected, setToggleCompressedIdSelected] = useState(
+    `${compressedToggleButtonGroupPrefix}__1`
+  );
+
+  const onChangeCompressed = (optionId) => {
+    setToggleCompressedIdSelected(optionId);
+  };
+
+  const onChangeIconsMultiIcons = (optionId) => {
+    const newToggleIconIdToSelectedMapIcon = {
+      ...toggleIconIdToSelectedMapIcon,
+      ...{
+        [optionId]: !toggleIconIdToSelectedMapIcon[optionId],
+      },
+    };
+
+    setToggleIconIdToSelectedMapIcon(newToggleIconIdToSelectedMapIcon);
+  };
+
+  return (
+    <EuiPanel hasBorder style={{ maxWidth: 300 }}>
+      <EuiButtonGroup
+        name="coarsness"
+        legend="This is a basic group"
+        options={toggleButtonsCompressed}
+        idSelected={toggleCompressedIdSelected}
+        onChange={(id) => onChangeCompressed(id)}
+        buttonSize="compressed"
+        isFullWidth
+      />
+      <EuiSpacer />
+      <EuiButtonGroup
+        legend="Text style"
+        className="eui-displayInlineBlock"
+        options={toggleButtonsIconsMulti}
+        idToSelectedMap={toggleIconIdToSelectedMapIcon}
+        onChange={(id) => onChangeIconsMultiIcons(id)}
+        type="multi"
+        buttonSize="compressed"
+        isIconOnly
+      />
+    </EuiPanel>
+  );
+};
+
+```
+
+### Button group tooltips
+
+Buttons within a button group will automatically display a default browser tooltip containing the button `label` text. This can be customized or unset via the `title` property in your `options` button configuration.
+
+To instead display an `EuiToolTip` around your button(s), pass the `toolTipContent` property. You can also use `toolTipProps` to customize tooltip placement, title, and any other prop that [**EuiToolTip**](/docs/#/display/tooltip) accepts.
+
+```tsx interactive
+import React, { useState } from 'react';
+import { EuiButtonGroup } from '@elastic/eui';
+
+export default () => {
+  const toggleButtons = [
+    {
+      id: 'buttonGroup__0',
+      label: 'Default title',
+    },
+    {
+      id: 'buttonGroup__1',
+      label: 'Custom tooltip content',
+      toolTipContent: 'This is a custom tooltip',
+    },
+    {
+      id: 'buttonGroup__2',
+      label: 'Custom tooltip props',
+      toolTipContent: 'This is another custom tooltip',
+      toolTipProps: {
+        title: 'My custom title',
+        position: 'right',
+      },
+    },
+  ];
+
+  const [toggleIdSelected, setToggleIdSelected] = useState('buttonGroup__1');
+
+  const onChange = (optionId) => {
+    setToggleIdSelected(optionId);
+  };
+
+  return (
+    <EuiButtonGroup
+      legend="This is a group with tooltips"
+      options={toggleButtons}
+      idSelected={toggleIdSelected}
+      onChange={(id) => onChange(id)}
+    />
+  );
+};
+```
+
+## Props
+
+import docgen from '@elastic/eui-docgen/dist/components/button';
+
+<PropTable definition={docgen.EuiButton} />
+
+<PropTable definition={docgen.EuiButtonGroup} />
+
+<PropTable definition={docgen.EuiButtonEmpty} />
+
+<PropTable definition={docgen.EuiButtonIcon} />

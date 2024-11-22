@@ -16,6 +16,7 @@ import { ListItem } from './ListItem';
 import { Paragraph } from './Paragraph';
 import { UnorderedList } from './UnorderedList';
 import { OrderedList } from './OrderedList';
+import { Guideline, GuidelineText } from '../../components';
 
 const MDXComponents = {
   ...OriginalMDXComponents,
@@ -32,6 +33,8 @@ const MDXComponents = {
   Demo,
   DemoSource,
   PropTable,
+  Guideline,
+  GuidelineText,
 };
 
 export default MDXComponents;

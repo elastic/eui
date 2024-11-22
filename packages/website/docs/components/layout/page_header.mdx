@@ -1,0 +1,184 @@
+---
+slug: /layout/page-header
+id: layout_page_header
+---
+
+# Page header
+
+While the **EuiPageHeader** component can be placed anywhere within your page layout, we recommend using it within the [**EuiPageTemplate**](/docs/templates/page-template) component by passing the configuration props as its `pageHeader`.
+
+**EuiPageHeader** provides props for opinionated, consistent formatting of your header. Any combination of `pageTitle`, `description`, `tabs`, or any `children` will adjust the layout as needed.
+
+An additional prop `rightSideItems` allows for a simple **array of nodes** which will layout in a flexbox row. This is commonly used for adding multiple buttons, of which, at least one should be primary (adding `fill="true"`). These items are also displayed in **reverse order** so that the first and primary array item will be displayed on the far right.
+
+You can further adjust the display of these content types with an optional `iconType` placed to the left of the title, `alignItems` for adjusting the vertical alignment of the two sides, and `responsiveOrder` to determine which content side to display first on smaller screens.
+
+```tsx interactive
+import React from 'react';
+import { EuiPageHeader, EuiButton } from '@elastic/eui';
+
+export default () => (
+  <EuiPageHeader
+    pageTitle="Page title"
+    iconType="logoKibana"
+    description="This description should be describing the current page as depicted by the page title. It will never extend beneath the right side content."
+    rightSideItems={[
+      <EuiButton fill>Add something</EuiButton>,
+      <EuiButton>Do something</EuiButton>,
+    ]}
+  />
+);
+```
+
+## Tabs in the page header
+
+A set of `tabs` can be displayed inside the page header by passing an array of [**EuiTab**](/docs/navigation/tabs) objects using the `label` key for the tab content. When displaying tabs, the `bottomBorder` prop will be enforced to create separation of the header and content. You'll still need to manage the page content and selected tab in your own instance.
+
+```tsx interactive
+import React from 'react';
+import { EuiPageHeader, EuiButton } from '@elastic/eui';
+
+export default () => (
+  <EuiPageHeader
+    pageTitle="Page title"
+    tabs={[
+      {
+        label: 'Tab 1',
+        isSelected: true,
+      },
+      {
+        label: 'Tab 2',
+      },
+    ]}
+    rightSideItems={[
+      <EuiButton fill>Add something</EuiButton>,
+      <EuiButton>Do something</EuiButton>,
+    ]}
+  />
+);
+```
+
+When supplying `tabs` without a `pageTitle`, **EuiPageHeader** will promote those tabs as if they are the page title. This means that any `description` or `children` will sit **below** the tabs and should used to describe the currently selected tab.
+
+```tsx interactive
+import React from 'react';
+import { EuiPageHeader } from '@elastic/eui';
+
+export default () => (
+  <EuiPageHeader
+    tabs={[
+      {
+        label: 'Tab 1',
+        isSelected: true,
+      },
+      {
+        label: 'Tab 2',
+      },
+    ]}
+    description="This description should be describing the current page as depicted by the current tab. It has grow set to false to ensure a readable line-length."
+  />
+);
+```
+
+## Breadcrumbs in the page header
+
+[Breadcrumbs](/docs/navigation/breadcrumbs) are useful for tracking in-page flows that **are not part of the entire application architecture**. To make this easy **EuiPageHeader** provides a `breadcrumbs` prop that accepts the same configuration as `EuiBreadrumbs.breadcrumbs`.
+
+```tsx interactive
+import React from 'react';
+import { requiredProps, EuiPageHeader, EuiButton } from '@elastic/eui';
+
+export default () => (
+  <EuiPageHeader
+    pageTitle="Page title"
+    description="Example of a description."
+    breadcrumbs={[
+      {
+        text: 'Breadcrumb 1',
+        href: '#',
+        onClick: (e) => e.preventDefault(),
+      },
+      {
+        text: 'Breadcrumb 2',
+        href: '#',
+        onClick: (e) => e.preventDefault(),
+      },
+      {
+        text: 'Current',
+        href: '#',
+        onClick: (e) => e.preventDefault(),
+      },
+    ]}
+    rightSideItems={[
+      <EuiButton fill>Add something</EuiButton>,
+      <EuiButton>Do something</EuiButton>,
+    ]}
+    breadcrumbProps={{
+      'aria-label': 'aria-label',
+      className: 'testClass1 testClass2',
+      'data-test-subj': 'test subject string',
+    }}
+  />
+);
+```
+
+A common pattern is to use a single breadcrumb to return the user to a listing page from which the current page was navigated to.
+
+```tsx interactive
+import React from 'react';
+import { EuiPageHeader, EuiButton, EuiIcon } from '@elastic/eui';
+
+export default () => (
+  <EuiPageHeader
+    pageTitle="Page title"
+    description="Example of a description."
+    breadcrumbs={[
+      {
+        text: (
+          <>
+            <EuiIcon size="s" type="arrowLeft" /> Return
+          </>
+        ),
+        color: 'primary',
+        'aria-current': false,
+        href: '#',
+        onClick: (e) => e.preventDefault(),
+      },
+    ]}
+    rightSideItems={[
+      <EuiButton fill>Add something</EuiButton>,
+      <EuiButton>Do something</EuiButton>,
+    ]}
+  />
+);
+```
+
+## Customizing the page header
+
+The page header content props are helpful props to push content into established Elastic page layout patterns. They are completely optional and by design, inflexible. If you need a layout that does not match these patterns you can pass in your own `children` utilizing the **EuiPageHeaderSection** components.
+
+```tsx interactive
+import React from 'react';
+import { EuiPageHeader, EuiPageHeaderSection, EuiTitle } from '@elastic/eui';
+
+export default () => (
+  <EuiPageHeader bottomBorder>
+    <EuiPageHeaderSection>
+      <EuiTitle size="l">
+        <h1>Page title</h1>
+      </EuiTitle>
+    </EuiPageHeaderSection>
+    <EuiPageHeaderSection>Page abilities</EuiPageHeaderSection>
+  </EuiPageHeader>
+);
+```
+
+## Props
+
+import docgen from '@elastic/eui-docgen/dist/components/page';
+
+<PropTable definition={docgen.EuiPageHeader} />
+
+<PropTable definition={docgen.EuiPageHeaderContent} />
+
+<PropTable definition={docgen.EuiPageHeaderSection} />

@@ -60,11 +60,15 @@ export const euiPageHeaderContentStyles = ({ euiTheme }: UseEuiTheme) => ({
   euiPageHeaderContent__rightSideItems: css`
     flex: 0 1 auto;
     align-content: flex-start;
+    ${logicalCSS('max-width', '100%')}
 
     @container (min-width: ${euiTheme.breakpoint.m}px) {
       ${logicalCSS('max-width', '50%')}
       justify-content: flex-end;
     }
+  `,
+  euiPageHeaderContent__rightSideItem: css`
+    ${logicalCSS('max-width', '100%')}
   `,
 
   euiPageHeaderContent__titleIcon: css`

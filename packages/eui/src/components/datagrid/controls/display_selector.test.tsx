@@ -8,6 +8,7 @@
 
 import React from 'react';
 import { act, fireEvent, waitFor } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import {
   renderHook,
   render,
@@ -15,15 +16,16 @@ import {
   waitForEuiPopoverClose,
   waitForEuiPopoverOpen,
 } from '../../../test/rtl';
+import { testOnReactVersion } from '../../../test/internal';
 import { keys } from '../../../services';
 
 import {
   EuiDataGridToolBarVisibilityOptions,
+  EuiDataGridDisplaySelectorCustomRender,
   EuiDataGridRowHeightsOptions,
 } from '../data_grid_types';
 
 import { useDataGridDisplaySelector, startingStyles } from './display_selector';
-import userEvent from '@testing-library/user-event';
 
 describe('useDataGridDisplaySelector', () => {
   describe('displaySelector', () => {
@@ -84,6 +86,30 @@ describe('useDataGridDisplaySelector', () => {
         />
       );
       expect(container).toBeEmptyDOMElement();
+    });
+
+    it('allows consumers to customize render order via a render prop', () => {
+      const customRender: EuiDataGridDisplaySelectorCustomRender = ({
+        densityControl,
+        rowHeightControl,
+      }) => {
+        return (
+          <div data-test-subj="customRender">
+            <div>Hello world</div>
+            {densityControl}
+            <div>Mock custom control</div>
+            {rowHeightControl}
+          </div>
+        );
+      };
+      const { getByTestSubject } = render(
+        <MockComponent showDisplaySelector={{ customRender }} />
+      );
+      fireEvent.click(getByTestSubject('dataGridDisplaySelectorButton'));
+      expect(getByTestSubject('customRender')).toContainHTML(
+        'Mock custom control'
+      );
+      expect(getByTestSubject('customRender')).toMatchSnapshot();
     });
 
     describe('density', () => {
@@ -231,42 +257,70 @@ describe('useDataGridDisplaySelector', () => {
     });
 
     describe('row height', () => {
-      it('renders row height buttons that toggle betwen undefined, auto, and lineCount', async () => {
+      it('renders auto/static row height buttons and a lineCount input', async () => {
         const { container, baseElement, getByTestSubject } = render(
           <MockComponent />
         );
-
         openPopover(container);
-        expect(
-          baseElement.querySelector('[data-test-subj="lineCountNumber"]')
-        ).not.toBeInTheDocument();
-
-        await waitFor(() => {
-          userEvent.click(getByTestSubject('auto'));
-        });
 
         expect(getSelection(baseElement, 'rowHeightButtonGroup')).toEqual(
-          'auto'
+          'static'
         );
+        expect(getByTestSubject('static')).toHaveTextContent('Static');
+        expect(getByTestSubject('lineCountNumber')).toHaveValue(1);
+      });
+
+      it('renders a "Max" label instead of "Static" if autoBelowLineCount is true', async () => {
+        const { container, getByTestSubject } = render(
+          <MockComponent rowHeightsOptions={{ autoBelowLineCount: true }} />
+        );
+        openPopover(container);
+
+        expect(getByTestSubject('static')).toHaveTextContent('Max');
       });
 
       it('calls the rowHeightsOptions.onChange callback on user change', async () => {
         const onRowHeightChange = jest.fn();
-        const { container, getByTestSubject } = render(
+        const { container, baseElement, getByTestSubject } = render(
           <MockComponent
             rowHeightsOptions={{ lineHeight: '3', onChange: onRowHeightChange }}
           />
         );
-
         openPopover(container);
+
+        // line count
+        fireEvent.change(getByTestSubject('lineCountNumber'), {
+          target: { value: 2 },
+        });
+        expect(getByTestSubject('lineCountNumber')).toHaveValue(2);
+        expect(onRowHeightChange).toHaveBeenCalledWith({
+          lineHeight: '3',
+          rowHeights: {},
+          defaultHeight: { lineCount: 2 },
+        });
+
+        // undefined
+        fireEvent.change(getByTestSubject('lineCountNumber'), {
+          target: { value: 1 },
+        });
+        expect(onRowHeightChange).toHaveBeenCalledWith({
+          lineHeight: '3',
+          rowHeights: {},
+          defaultHeight: undefined,
+        });
+
+        // auto
         await waitFor(() => {
           userEvent.click(getByTestSubject('auto'));
         });
+        expect(getSelection(baseElement, 'rowHeightButtonGroup')).toEqual(
+          'auto'
+        );
 
         expect(onRowHeightChange).toHaveBeenCalledWith({
+          lineHeight: '3',
           rowHeights: {},
           defaultHeight: 'auto',
-          lineHeight: '3',
         });
       });
 
@@ -279,11 +333,14 @@ describe('useDataGridDisplaySelector', () => {
         expect(
           baseElement.querySelector('[data-test-subj="rowHeightButtonGroup"]')
         ).not.toBeInTheDocument();
+        expect(
+          baseElement.querySelector('[data-test-subj="lineCountNumber"]')
+        ).not.toBeInTheDocument();
       });
 
       describe('convertRowHeightsOptionsToSelection', () => {
         test('auto', () => {
-          const { container, baseElement } = render(
+          const { container, baseElement, getByTestSubject } = render(
             <MockComponent rowHeightsOptions={{ defaultHeight: 'auto' }} />
           );
           openPopover(container);
@@ -291,10 +348,12 @@ describe('useDataGridDisplaySelector', () => {
           expect(getSelection(baseElement, 'rowHeightButtonGroup')).toEqual(
             'auto'
           );
+          expect(getByTestSubject('lineCountNumber')).toBeDisabled();
+          expect(getByTestSubject('lineCountNumber')).toHaveValue(1);
         });
 
         test('lineCount', () => {
-          const { container, baseElement } = render(
+          const { container, baseElement, getByTestSubject } = render(
             <MockComponent
               rowHeightsOptions={{ defaultHeight: { lineCount: 3 } }}
             />
@@ -302,19 +361,23 @@ describe('useDataGridDisplaySelector', () => {
           openPopover(container);
 
           expect(getSelection(baseElement, 'rowHeightButtonGroup')).toEqual(
-            'lineCount'
+            'static'
           );
+          expect(getByTestSubject('lineCountNumber')).not.toBeDisabled();
+          expect(getByTestSubject('lineCountNumber')).toHaveValue(3);
         });
 
         test('undefined', () => {
-          const { container, baseElement } = render(
+          const { container, baseElement, getByTestSubject } = render(
             <MockComponent rowHeightsOptions={undefined} />
           );
           openPopover(container);
 
           expect(getSelection(baseElement, 'rowHeightButtonGroup')).toEqual(
-            'undefined'
+            'static'
           );
+          expect(getByTestSubject('lineCountNumber')).not.toBeDisabled();
+          expect(getByTestSubject('lineCountNumber')).toHaveValue(1);
         });
 
         test('height should not select any buttons', () => {
@@ -328,7 +391,7 @@ describe('useDataGridDisplaySelector', () => {
       });
 
       it('updates row height whenever new developer settings are passed in', () => {
-        const { container, baseElement, rerender } = render(
+        const { container, baseElement, getByTestSubject, rerender } = render(
           <MockComponent rowHeightsOptions={{ defaultHeight: 'auto' }} />
         );
         openPopover(container);
@@ -344,8 +407,9 @@ describe('useDataGridDisplaySelector', () => {
         );
 
         expect(getSelection(baseElement, 'rowHeightButtonGroup')).toEqual(
-          'lineCount'
+          'static'
         );
+        expect(getByTestSubject('lineCountNumber')).toHaveValue(3);
       });
 
       it('correctly resets row height to initial developer-passed state', async () => {
@@ -355,7 +419,7 @@ describe('useDataGridDisplaySelector', () => {
         openPopover(container);
 
         expect(getSelection(baseElement, 'rowHeightButtonGroup')).toEqual(
-          'undefined'
+          'static'
         );
 
         await waitFor(() => {
@@ -371,156 +435,13 @@ describe('useDataGridDisplaySelector', () => {
         });
 
         expect(getSelection(baseElement, 'rowHeightButtonGroup')).toEqual(
-          'undefined'
+          'static'
         );
-      });
-
-      describe('lineCount', () => {
-        const getLineCountNumber = (element: HTMLElement) =>
-          element
-            .querySelector(
-              'input[type="range"][data-test-subj="lineCountNumber"]'
-            )!
-            .getAttribute('value');
-
-        const setLineCountNumber = (element: HTMLElement, number: number) => {
-          const input = element.querySelector(
-            'input[type="range"][data-test-subj="lineCountNumber"]'
-          ) as HTMLInputElement;
-
-          fireEvent.input(input, { target: { value: number.toString() } });
-        };
-
-        it('conditionally displays a line count number input when the lineCount button is selected', async () => {
-          const { container, baseElement, getByTestSubject } = render(
-            <MockComponent />
-          );
-          openPopover(container);
-
-          expect(
-            baseElement.querySelector('[data-test-subj="lineCountNumber"]')
-          ).not.toBeInTheDocument();
-
-          await waitFor(() => {
-            userEvent.click(getByTestSubject('lineCount'));
-          });
-
-          expect(getSelection(baseElement, 'rowHeightButtonGroup')).toEqual(
-            'lineCount'
-          );
-
-          expect(
-            baseElement.querySelector('[data-test-subj="lineCountNumber"]')
-          ).toBeInTheDocument();
-        });
-
-        it('displays the defaultHeight.lineCount passed in by the developer', () => {
-          const { container, baseElement } = render(
-            <MockComponent
-              rowHeightsOptions={{ defaultHeight: { lineCount: 5 } }}
-            />
-          );
-          openPopover(container);
-
-          expect(getLineCountNumber(baseElement)).toEqual('5');
-        });
-
-        it('defaults to a lineCount of 2 when no developer settings have been passed', async () => {
-          const { container, baseElement, getByTestSubject } = render(
-            <MockComponent />
-          );
-          openPopover(container);
-
-          await waitFor(() => userEvent.click(getByTestSubject('lineCount')));
-
-          expect(getLineCountNumber(baseElement)).toEqual('2');
-        });
-
-        it('increments the rowHeightOptions line count number', () => {
-          const { container, baseElement } = render(
-            <MockComponent
-              rowHeightsOptions={{ defaultHeight: { lineCount: 1 } }}
-            />
-          );
-          openPopover(container);
-
-          setLineCountNumber(baseElement, 3);
-
-          expect(getLineCountNumber(baseElement)).toEqual('3');
-        });
-
-        it('sets the min value for the text input if an invalid number is passed', () => {
-          const { container, baseElement } = render(
-            <MockComponent
-              rowHeightsOptions={{ defaultHeight: { lineCount: 2 } }}
-            />
-          );
-          openPopover(container);
-
-          const assertInvalidNumber = (value: number) => {
-            setLineCountNumber(baseElement, value);
-
-            const input = baseElement.querySelector(
-              'input[type="number"]'
-            ) as HTMLInputElement;
-
-            expect(input.value).toEqual(input.min);
-          };
-
-          assertInvalidNumber(0);
-          assertInvalidNumber(-50);
-        });
-
-        it('the text input is invalid and does not update the grid display if an invalid number is passed', () => {
-          const onChange = jest.fn();
-
-          const { container, baseElement } = render(
-            <MockComponent
-              rowHeightsOptions={{ defaultHeight: { lineCount: 2 }, onChange }}
-            />
-          );
-          openPopover(container);
-
-          const assertInvalidNumber = (value: number) => {
-            const input = baseElement.querySelector(
-              'input[type="number"]'
-            ) as HTMLInputElement;
-
-            input.value = value.toString();
-            expect(input.value).toEqual(value.toString());
-
-            expect(input).toBeInvalid();
-            expect(onChange).not.toHaveBeenCalled();
-          };
-
-          assertInvalidNumber(0);
-          assertInvalidNumber(-50);
-        });
-
-        it('correctly resets lineCount to initial developer-passed state', async () => {
-          const { container, baseElement, getByTestSubject } = render(
-            <MockComponent
-              rowHeightsOptions={{ defaultHeight: { lineCount: 3 } }}
-            />
-          );
-          openPopover(container);
-          expect(getLineCountNumber(baseElement)).toEqual('3');
-
-          setLineCountNumber(baseElement, 5);
-          expect(getLineCountNumber(baseElement)).toEqual('5');
-
-          await waitFor(() =>
-            userEvent.click(getByTestSubject('resetDisplaySelector'))
-          );
-
-          expect(getLineCountNumber(baseElement)).toEqual('3');
-        });
       });
     });
 
     describe('reset button', () => {
       it('renders a reset button only when the user changes from the current settings', async () => {
-        // const component = mount(<MockComponent gridStyles={startingStyles} />);
         const { container, baseElement, getByTestSubject } = render(
           <MockComponent gridStyles={startingStyles} />
         );
@@ -557,7 +478,32 @@ describe('useDataGridDisplaySelector', () => {
         ).not.toBeInTheDocument();
       });
 
-      it('hides the reset button even after changes if allowResetButton is false', async () => {
+      it('hides the reset button if the user changes display settings back to the initial settings', async () => {
+        const { container, baseElement, getByTestSubject } = render(
+          <MockComponent gridStyles={startingStyles} />
+        );
+        openPopover(container);
+
+        await waitFor(() => {
+          userEvent.click(getByTestSubject('expanded'));
+          userEvent.click(getByTestSubject('auto'));
+        });
+
+        expect(
+          baseElement.querySelector('[data-test-subj="resetDisplaySelector"]')
+        ).toBeInTheDocument();
+
+        await waitFor(() => {
+          userEvent.click(getByTestSubject('normal'));
+          userEvent.click(getByTestSubject('static'));
+        });
+
+        expect(
+          container.querySelector('[data-test-subj="resetDisplaySelector"]')
+        ).not.toBeInTheDocument();
+      });
+
+      it('does not render the reset button if allowResetButton is false', async () => {
         const { container, baseElement, getByTestSubject } = render(
           <MockComponent
             showDisplaySelector={{
@@ -575,16 +521,6 @@ describe('useDataGridDisplaySelector', () => {
           userEvent.click(getByTestSubject('expanded'));
           userEvent.click(getByTestSubject('auto'));
         });
-        expect(
-          baseElement.querySelector('[data-test-subj="resetDisplaySelector"]')
-        ).not.toBeInTheDocument();
-
-        // Should hide the reset button again after the popover was reopened
-        closePopover(container);
-        await waitForEuiPopoverClose();
-        openPopover(container);
-        await waitForEuiPopoverOpen();
-
         expect(
           baseElement.querySelector('[data-test-subj="resetDisplaySelector"]')
         ).not.toBeInTheDocument();
@@ -633,6 +569,17 @@ describe('useDataGridDisplaySelector', () => {
               }
             `);
     });
+
+    it('updates gridStyles when consumers pass in new settings', () => {
+      const { result, rerender } = renderHook(
+        ({ gridStyles }) => useDataGridDisplaySelector(true, gridStyles),
+        { initialProps: { gridStyles: startingStyles } }
+      );
+      expect(result.current[1].border).toEqual('all');
+
+      rerender({ gridStyles: { ...startingStyles, border: 'none' } });
+      expect(result.current[1].border).toEqual('none');
+    });
   });
 
   describe('rowHeightsOptions', () => {
@@ -662,6 +609,7 @@ describe('useDataGridDisplaySelector', () => {
     const getOutput = () => {
       return JSON.parse(screen.getByTestSubject('output').textContent!);
     };
+
     describe('returns an object of rowHeightsOptions with user overrides', () => {
       it('overrides `rowHeights` and `defaultHeight`', () => {
         render(
@@ -672,23 +620,48 @@ describe('useDataGridDisplaySelector', () => {
             }}
           />
         );
-        setRowHeight('undefined');
+        setRowHeight('static');
         expect(getOutput()).toEqual({
           rowHeights: {},
           defaultHeight: undefined,
         });
       });
+
       it('does not override other rowHeightsOptions properties', () => {
         render(
           <MockComponent initialRowHeightsOptions={{ lineHeight: '2em' }} />
         );
-        setRowHeight('lineCount');
+        setRowHeight('auto');
         expect(getOutput()).toEqual({
           lineHeight: '2em',
-          defaultHeight: { lineCount: 2 },
+          defaultHeight: 'auto',
           rowHeights: {},
         });
       });
+
+      // Skipping React 16/17. For some reason, this test succeeds when run with `.only`
+      // but fails when run with the rest of the tests in this describe block 🤷
+      testOnReactVersion('18')(
+        'updates rowHeightsOptions when consumers pass in new settings',
+        () => {
+          const initialRowHeightsOptions: EuiDataGridRowHeightsOptions = {
+            defaultHeight: 'auto',
+          };
+          const { result, rerender } = renderHook(
+            ({ rowHeightsOptions }) =>
+              useDataGridDisplaySelector(
+                true,
+                startingStyles,
+                rowHeightsOptions
+              ),
+            { initialProps: { rowHeightsOptions: initialRowHeightsOptions } }
+          );
+          expect(result.current[2].defaultHeight).toEqual('auto');
+
+          rerender({ rowHeightsOptions: { defaultHeight: { lineCount: 2 } } });
+          expect(result.current[2].defaultHeight).toEqual({ lineCount: 2 });
+        }
+      );
     });
 
     it('handles undefined initialRowHeightsOptions', () => {

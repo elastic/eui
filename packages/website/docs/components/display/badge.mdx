@@ -1,0 +1,420 @@
+---
+slug: /display/badge
+id: display_badge
+---
+
+# Badge
+
+**EuiBadges** are used to focus on important bits of information. Although they will automatically space themselves if you use them in a repetitive fashion it is good form to wrap them using a **EuiBadgeGroup** so that they will wrap when width is constrained (as seen below).
+
+```tsx interactive
+import React, { Fragment, useState } from 'react';
+import {
+  EuiBadge,
+  EuiFlexItem,
+  EuiFlexGroup,
+  EuiSpacer,
+  EuiSwitch,
+  EuiText,
+  EuiTitle,
+} from '@elastic/eui';
+
+const badges = [
+  'default',
+  'hollow',
+  'primary',
+  'success',
+  'accent',
+  'warning',
+  'danger',
+];
+
+const customBadges = [
+  '#DDD',
+  '#AAA',
+  '#666',
+  '#333',
+  '#BADA55',
+  '#FCF7BC',
+  '#FEA27F',
+  '#FFA500',
+  '#0000FF',
+];
+
+export default () => {
+  const [isDisabled, setDisabled] = useState(false);
+
+  return (
+    <Fragment>
+      <EuiTitle size="xs">
+        <h2>Accepted color names</h2>
+      </EuiTitle>
+      <EuiSpacer size="m" />
+      <EuiFlexGroup wrap responsive={false} gutterSize="xs">
+        {badges.map((badge) => (
+          <EuiFlexItem grow={false} key={badge}>
+            <EuiBadge color={badge}>{badge}</EuiBadge>
+          </EuiFlexItem>
+        ))}
+      </EuiFlexGroup>
+      <EuiSpacer />
+      <EuiTitle size="xs">
+        <h3>Custom color examples</h3>
+      </EuiTitle>
+      <EuiSpacer size="m" />
+      <EuiFlexGroup
+        wrap
+        responsive={false}
+        gutterSize="xs"
+        style={{ maxWidth: '300px' }}
+      >
+        {customBadges.map((badge) => (
+          <EuiFlexItem grow={false} key={badge}>
+            <EuiBadge color={badge}>{badge}</EuiBadge>
+          </EuiFlexItem>
+        ))}
+      </EuiFlexGroup>
+      <EuiSpacer />
+      <EuiTitle size="xs">
+        <h3>Disabled state</h3>
+      </EuiTitle>
+      <EuiSpacer size="m" />
+      <EuiText size="s">
+        Regardless of the assigned color, all badges use the same disabled state
+        styles.
+      </EuiText>
+      <EuiSpacer size="m" />
+      <EuiSwitch
+        label="Show disabled state"
+        checked={isDisabled}
+        onChange={(e) => setDisabled(e.target.checked)}
+      />
+      <EuiSpacer size="m" />
+      <EuiFlexGroup wrap responsive={false} gutterSize="xs">
+        <EuiFlexItem grow={false}>
+          <EuiBadge color="success" isDisabled={isDisabled}>
+            {isDisabled ? 'Disabled badge' : 'Disable me!'}
+          </EuiBadge>
+        </EuiFlexItem>
+      </EuiFlexGroup>
+    </Fragment>
+  );
+};
+```
+
+## Badge with Icon
+
+Badges can use icons on the left and right (default) sides.
+
+```tsx interactive
+import React from 'react';
+import { EuiBadge } from '@elastic/eui';
+
+export default () => (
+  <div>
+    <EuiBadge color="hollow" iconType="cross" iconSide="right">
+      Hollow
+    </EuiBadge>
+
+    <EuiBadge iconType="check">Default</EuiBadge>
+
+    <EuiBadge iconType="lensApp" color="primary">
+      Primary with an app icon
+    </EuiBadge>
+
+    <EuiBadge iconType="returnKey" />
+  </div>
+);
+```
+
+## Badge with onClick events
+
+Badges can have `onClick` events applied to the badge itself or the icon within the badge. The latter option is useful for when you might use badges in other components (like a tag system with autocomplete where you need close events).
+
+:::note `onClick` with `iconOnClick`
+
+When providing both these click handlers, **EuiBadge** must alter the contents so that it does not contain nested button tags. Please make note that if you provide props other than those explicit to **EuiBadge**, they will always be applied to the main `button` tag which may be inside of the outer most tag.
+
+:::
+
+```tsx interactive
+import React from 'react';
+import { EuiBadge, EuiFlexGroup, EuiFlexItem } from '@elastic/eui';
+
+export default () => (
+  <EuiFlexGroup wrap responsive={false} gutterSize="xs">
+    <EuiFlexItem grow={false}>
+      <EuiBadge
+        color="primary"
+        onClick={() => {}}
+        onClickAriaLabel="Example of onClick event for the button"
+        data-test-sub="testExample1"
+      >
+        onClick on text within badge
+      </EuiBadge>
+    </EuiFlexItem>
+    <EuiFlexItem grow={false}>
+      <EuiBadge
+        color="hollow"
+        iconType="cross"
+        iconSide="right"
+        iconOnClick={() => {}}
+        iconOnClickAriaLabel="Example of onClick event for icon within the button"
+        data-test-sub="testExample2"
+      >
+        onClick on icon within badge
+      </EuiBadge>
+    </EuiFlexItem>
+    <EuiFlexItem grow={false}>
+      <EuiBadge
+        color="success"
+        iconType="cross"
+        iconSide="right"
+        onClick={() => {}}
+        onClickAriaLabel="Example of onClick event for the button"
+        iconOnClick={() => {}}
+        iconOnClickAriaLabel="Example of onClick event for icon within the button"
+        data-test-sub="testExample3"
+      >
+        onClick on both text and icon within badge
+      </EuiBadge>
+    </EuiFlexItem>
+    <EuiFlexItem grow={false}>
+      <EuiBadge
+        isDisabled={true}
+        color="danger"
+        onClick={() => {}}
+        onClickAriaLabel="Example of disabled button badge"
+        iconOnClick={() => {}}
+        iconOnClickAriaLabel="Example of disabled button badge"
+        data-test-sub="testExample4"
+      >
+        disabled button badge
+      </EuiBadge>
+    </EuiFlexItem>
+  </EuiFlexGroup>
+);
+```
+
+## Badge for health status
+
+Badges can work as health status indicators in places where there are a lot of repeated statuses, e.g. in tables.
+
+```tsx interactive
+import React from 'react';
+import { EuiBadge, EuiFlexGroup, EuiFlexItem } from '@elastic/eui';
+
+export default () => (
+  <EuiFlexGroup wrap responsive={false} gutterSize="xs">
+    <EuiFlexItem grow={false}>
+      <EuiBadge color="success">Healthy</EuiBadge>
+    </EuiFlexItem>
+    <EuiFlexItem grow={false}>
+      <EuiBadge color="warning">Warning</EuiBadge>
+    </EuiFlexItem>
+    <EuiFlexItem grow={false}>
+      <EuiBadge color="danger">Critical</EuiBadge>
+    </EuiFlexItem>
+    <EuiFlexItem grow={false}>
+      <EuiBadge color="default">Unknown</EuiBadge>
+    </EuiFlexItem>
+  </EuiFlexGroup>
+);
+```
+
+## Badge with href
+
+Badges can also be made to render anchor tags by passing an `href`.
+
+```tsx interactive
+import React from 'react';
+import { EuiBadge, EuiFlexGroup, EuiFlexItem } from '@elastic/eui';
+
+export default () => (
+  <EuiFlexGroup wrap responsive={false} gutterSize="xs">
+    <EuiFlexItem grow={false}>
+      <EuiBadge color="#BADA55" href="#/display/badge">
+        badge as an anchor
+      </EuiBadge>
+    </EuiFlexItem>
+    <EuiFlexItem grow={false}>
+      <EuiBadge color="hollow" href="#/display/badge" target="blank">
+        anchor with target specified
+      </EuiBadge>
+    </EuiFlexItem>
+    <EuiFlexItem grow={false}>
+      <EuiBadge
+        color="accent"
+        href="#/display/badge"
+        iconType="bolt"
+        iconSide="right"
+        iconOnClick={() => {}}
+        iconOnClickAriaLabel="Example of onClick event for icon within the anchor"
+      >
+        anchor with an icon and iconOnClick
+      </EuiBadge>
+    </EuiFlexItem>
+    <EuiFlexItem grow={false}>
+      <EuiBadge color="success" href="#/display/badge" isDisabled={true}>
+        disabled anchor badge
+      </EuiBadge>
+    </EuiFlexItem>
+  </EuiFlexGroup>
+);
+```
+
+## Badge groups and truncation
+
+Badges, like buttons, will only every be a single line of text. This means text will not wrap, but be truncated if the badge's width reaches that of its parent's.
+
+For this reason, badges also auto-apply the inner text of the badge to the `title` attribute of the element to provide default browser tooltips with the full badge text.
+
+To ensure proper wrapping, truncation and spacing of multiple badges, it is advisable to wrap them in a **EuiBadgeGroup**.
+
+```tsx interactive
+import React from 'react';
+import { EuiBadge, EuiPanel, EuiBadgeGroup } from '@elastic/eui';
+
+export default () => (
+  <EuiPanel style={{ maxWidth: 200 }}>
+    <EuiBadgeGroup gutterSize="s">
+      <EuiBadge>Badge with simple text being truncated</EuiBadge>
+
+      <EuiBadge iconType="clock">Badge with icon being truncated</EuiBadge>
+
+      <EuiBadge onClick={() => {}} onClickAriaLabel="Click this badge to...">
+        Badge with onClick being truncated
+      </EuiBadge>
+
+      <EuiBadge
+        iconType="cross"
+        iconSide="right"
+        iconOnClick={() => {}}
+        iconOnClickAriaLabel="Click this icon to..."
+      >
+        Badge with iconOnClick being truncated
+      </EuiBadge>
+
+      <EuiBadge
+        iconType="cross"
+        iconSide="right"
+        onClick={() => {}}
+        onClickAriaLabel="Click this badge to..."
+        iconOnClick={() => {}}
+        iconOnClickAriaLabel="Click this icon to..."
+      >
+        Badge with both onClicks being truncated
+      </EuiBadge>
+    </EuiBadgeGroup>
+  </EuiPanel>
+);
+```
+
+## Beta badge type
+
+The **EuiBetaBadge** was created specifically to call out modules that are not in GA. Generally the labels used are "Beta" or "Lab". They require an extra `tooltipContent` to describe the purpose of the badge. You can pass an optional `title` prop to populate the tooltip title or html title attribute but by default it will use the `label`.
+
+If you pass in an `iconType`, only the icon will be used in the badge itself and the label will be applied as the title. Only use an icon when attaching the beta badge to small components. Beta badges can also be made clickable by passing `href` or `onClick` as needed.
+
+They can also be used in conjunction with [**EuiCards**](/docs/display/card) and [**EuiKeyPadMenuItems**](/docs/navigation/key-pad-menu).
+
+```tsx interactive
+import React from 'react';
+import { EuiBetaBadge, EuiSpacer, EuiTitle } from '@elastic/eui';
+import { css } from '@emotion/react';
+
+const colors = ['hollow', 'accent', 'subdued'] as const;
+
+export default () => (
+  <>
+    <div
+      css={css`
+        display: grid;
+        align-items: flex-start;
+        grid: repeat(3, max-content) / repeat(6, max-content);
+        gap: 0.75rem;
+      `}
+    >
+      {colors.map((item) => (
+        <>
+          <EuiBetaBadge
+            label="Beta"
+            color={item}
+            tooltipContent="This module is not GA. Please help us by reporting any bugs."
+          />
+          <EuiBetaBadge
+            label="Beta"
+            color={item}
+            size="s"
+            tooltipContent="This module is not GA. Please help us by reporting any bugs."
+          />
+          <EuiBetaBadge label="Beta" color={item} iconType="beta" />
+          <EuiBetaBadge size="s" label="Beta" color={item} iconType="beta" />
+          <EuiBetaBadge label="Lab" color={item} iconType="beaker" />
+          <EuiBetaBadge label="Lab" size="s" color={item} iconType="beaker" />
+        </>
+      ))}
+    </div>
+    <EuiSpacer size="s" />
+    <EuiTitle size="s">
+      <h3>
+        Beta badges will also line up nicely with titles &nbsp;
+        <EuiBetaBadge
+          label="Lab"
+          tooltipContent="This module is not GA. Please help us by reporting any bugs."
+        />
+      </h3>
+    </EuiTitle>
+    <EuiSpacer />
+    <EuiTitle size="xs">
+      <h3>Clickable beta badges</h3>
+    </EuiTitle>
+    <EuiSpacer size="s" />
+    <div
+      css={css`
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+      `}
+    >
+      <EuiBetaBadge
+        label="Lens"
+        iconType="lensApp"
+        onClick={() => alert('Goes to Lens')}
+      />
+      <EuiBetaBadge
+        label="Basic"
+        href="http://www.elastic.co/subscriptions"
+        target="_blank"
+      />
+    </div>
+  </>
+);
+
+```
+
+## Notification badge type
+
+Used to showcase the number of notifications, alerts, or hidden selections. This badge type is commonly used in the [**EuiHeader**](/docs/layout/header) and [**EuiFilterButton**](/docs/forms/filter-group) components.
+
+```tsx interactive
+import React from 'react';
+import { EuiFlexGroup, EuiNotificationBadge } from '@elastic/eui';
+
+export default () => (
+  <EuiFlexGroup responsive={false} gutterSize="s">
+    <EuiNotificationBadge>1</EuiNotificationBadge>
+    <EuiNotificationBadge color="success">2</EuiNotificationBadge>
+    <EuiNotificationBadge color="subdued">3</EuiNotificationBadge>
+  </EuiFlexGroup>
+);
+```
+
+## Props
+
+import docgen from '@elastic/eui-docgen/dist/components/badge';
+
+<PropTable definition={docgen.EuiBadge} />
+<PropTable definition={docgen.EuiBadgeGroup} />
+<PropTable definition={docgen.EuiNotificationBadge} />
+<PropTable definition={docgen.EuiBetaBadge} />

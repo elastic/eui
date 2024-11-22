@@ -40,7 +40,7 @@ export default function DocRootLayout({ children }: Props): JSX.Element {
           window.location.hash.substring(1),
         );
         element?.scrollIntoView(true);
-      }, 0);
+      }, 100);
     }
   }, [isBrowser]);
 

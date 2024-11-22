@@ -1,0 +1,329 @@
+---
+slug: /navigation/key-pad-menu
+id: navigation_key_pad_menu
+---
+
+# Key pad menu
+
+The **EuiKeyPadMenu** component presents **EuiKeyPadMenuItems** in a tiled format, with a fixed width which will accommodate three items and then wrap.
+
+**EuiKeyPadMenu** is just a wrapping element for creating the list elements but you must declare each **EuiKeyPadMenu** component manually.
+
+:::note Accessibility recommendation
+If the menu provides navigation for your application, wrap the **EuiKeyPadMenu** with `<nav aria-label="Nav title"></nav>`.
+:::
+
+```tsx interactive
+import React from 'react';
+import { EuiIcon, EuiKeyPadMenu, EuiKeyPadMenuItem } from '@elastic/eui';
+
+export default () => (
+  <nav aria-label="Nav title">
+    <EuiKeyPadMenu>
+      <EuiKeyPadMenuItem label="Dashboard">
+        <EuiIcon type="dashboardApp" size="l" />
+      </EuiKeyPadMenuItem>
+
+      <EuiKeyPadMenuItem label="Canvas">
+        <EuiIcon type="canvasApp" size="l" />
+      </EuiKeyPadMenuItem>
+
+      <EuiKeyPadMenuItem isSelected label="Lens">
+        <EuiIcon type="lensApp" size="l" />
+      </EuiKeyPadMenuItem>
+
+      <EuiKeyPadMenuItem isDisabled label="Visualize">
+        <EuiIcon type="visualizeApp" size="l" />
+      </EuiKeyPadMenuItem>
+
+      <EuiKeyPadMenuItem label="Graph">
+        <EuiIcon type="graphApp" size="l" />
+      </EuiKeyPadMenuItem>
+
+      <EuiKeyPadMenuItem label="Advanced Settings">
+        <EuiIcon type="advancedSettingsApp" size="l" />
+      </EuiKeyPadMenuItem>
+    </EuiKeyPadMenu>
+  </nav>
+);
+```
+
+## Menu item
+
+The **EuiKeyPadMenuItem** component can act both as an anchor as well as a button by specifying `href` or `onClick` respectively. It requires a text-based `label` and `children` for declaring the [icon](/docs/display/icons). This is the most flexible way for handling the customization of the icon itself.
+
+When using the `isSelected` prop to create a toggle button, you must supply both the `true` and `false` states explicitly to ensure the attribute is added for both states.
+
+```tsx interactive
+import React, { useState } from 'react';
+import {
+  EuiIcon,
+  EuiKeyPadMenu,
+  EuiKeyPadMenuItem,
+  useGeneratedHtmlId,
+} from '@elastic/eui';
+
+export default () => {
+  const keypadButtonId__1 = useGeneratedHtmlId({
+    prefix: 'keypadButton',
+    suffix: 'first',
+  });
+  const keypadButtonId__2 = useGeneratedHtmlId({
+    prefix: 'keypadButton',
+    suffix: 'second',
+  });
+  const keypadButtonId__3 = useGeneratedHtmlId({
+    prefix: 'keypadButton',
+    suffix: 'third',
+  });
+  const keypadButtonId__4 = useGeneratedHtmlId({
+    prefix: 'keypadButton',
+    suffix: 'fourth',
+  });
+  const keypadButtonId__5 = useGeneratedHtmlId({
+    prefix: 'keypadButton',
+    suffix: 'fifth',
+  });
+  const keypadButtonId__6 = useGeneratedHtmlId({
+    prefix: 'keypadButton',
+    suffix: 'sixth',
+  });
+
+  const [selectedID, setSelectedID] = useState(keypadButtonId__6);
+
+  return (
+    <EuiKeyPadMenu>
+      <EuiKeyPadMenuItem
+        id={keypadButtonId__1}
+        label="Button"
+        isSelected={selectedID === keypadButtonId__1}
+        onClick={() => setSelectedID(keypadButtonId__1)}
+      >
+        <EuiIcon type="grid" size="l" />
+      </EuiKeyPadMenuItem>
+      <EuiKeyPadMenuItem
+        id={keypadButtonId__2}
+        label="Button"
+        isSelected={selectedID === keypadButtonId__2}
+        onClick={() => setSelectedID(keypadButtonId__2)}
+      >
+        <EuiIcon type="grid" size="l" />
+      </EuiKeyPadMenuItem>
+      <EuiKeyPadMenuItem id={keypadButtonId__3} label="Disabled" isDisabled>
+        <EuiIcon type="grid" size="l" />
+      </EuiKeyPadMenuItem>
+      <EuiKeyPadMenuItem
+        id={keypadButtonId__4}
+        label="Link"
+        href="#/navigation/key-pad-menu"
+        isSelected={selectedID === keypadButtonId__4}
+        onClick={() => setSelectedID(keypadButtonId__4)}
+      >
+        <EuiIcon type="link" size="l" />
+      </EuiKeyPadMenuItem>
+      <EuiKeyPadMenuItem
+        id={keypadButtonId__5}
+        label="Link"
+        href="#/navigation/key-pad-menu"
+        isSelected={selectedID === keypadButtonId__5}
+        onClick={() => setSelectedID(keypadButtonId__5)}
+      >
+        <EuiIcon type="link" size="l" />
+      </EuiKeyPadMenuItem>
+      <EuiKeyPadMenuItem
+        id={keypadButtonId__6}
+        label="Disabled"
+        isDisabled
+        isSelected={selectedID === keypadButtonId__6}
+      >
+        <EuiIcon type="link" size="l" />
+      </EuiKeyPadMenuItem>
+    </EuiKeyPadMenu>
+  );
+};
+```
+
+## Beta item
+
+If the item links to a module that is not GA (beta, lab, etc), you can add a `betaBadgeLabel` and `betaBadgeTooltipContent` to the card and it will properly create and position an [**EuiBetaBadge**](/docs/display/badge#beta-badge-type).
+
+Supplying just a label will only show the first letter in the badge but displays the full label to the tooltip. You can also pass an `iconType` to replace the letter.
+
+```tsx interactive
+import React from 'react';
+import { EuiIcon, EuiKeyPadMenu, EuiKeyPadMenuItem } from '@elastic/eui';
+
+export default () => (
+  <EuiKeyPadMenu>
+    <EuiKeyPadMenuItem label="No beta">
+      <EuiIcon type="editorStrike" size="l" />
+    </EuiKeyPadMenuItem>
+
+    <EuiKeyPadMenuItem
+      label="Icon"
+      betaBadgeLabel="Beta"
+      betaBadgeTooltipContent="This module is not GA. Please help us by reporting any bugs."
+      betaBadgeIconType="beta"
+    >
+      <EuiIcon type="editorBold" size="l" />
+    </EuiKeyPadMenuItem>
+
+    <EuiKeyPadMenuItem
+      label="Icon"
+      betaBadgeLabel="External"
+      betaBadgeTooltipContent="This module is an external app."
+      betaBadgeIconType="popout"
+    >
+      <EuiIcon type="editorCodeBlock" size="l" />
+    </EuiKeyPadMenuItem>
+  </EuiKeyPadMenu>
+);
+```
+
+## Checkable
+
+**EuiKeyPadMenuItem**s can also be rendered as checkbox or radio form controls using the `checkable` prop. Pass in `"multi"` for checkboxes or `"single"` for radios.
+
+To ensure the **EuiKeyPadMenu** renders the semantically appropriate HTML elements, you will need to pass in the `checkable` prop as `true` or an object that requires a `legend`. This will wrap the input group in a `<fieldset>` with a `<legend>`.
+
+```tsx interactive
+import React, { useState } from 'react';
+import {
+  EuiIcon,
+  EuiKeyPadMenu,
+  EuiKeyPadMenuItem,
+  useGeneratedHtmlId,
+} from '@elastic/eui';
+
+export default () => {
+  const keypadMultiSelectButtonId__1 = useGeneratedHtmlId({
+    prefix: 'keypadMultiSelectButton',
+    suffix: 'first',
+  });
+  const keypadMultiSelectButtonId__2 = useGeneratedHtmlId({
+    prefix: 'keypadMultiSelectButton',
+    suffix: 'second',
+  });
+  const keypadMultiSelectButtonId__3 = useGeneratedHtmlId({
+    prefix: 'keypadMultiSelectButton',
+    suffix: 'third',
+  });
+
+  const [multiSelect1isSelected, setmultiSelect1isSelected] = useState(true);
+  const [multiSelect3isSelected, setmultiSelect2isSelected] = useState(false);
+
+  return (
+    <EuiKeyPadMenu checkable={{ legend: 'Multi select as checkboxes' }}>
+      <EuiKeyPadMenuItem
+        checkable="multi"
+        isSelected={multiSelect1isSelected}
+        id={keypadMultiSelectButtonId__1}
+        label="Check one"
+        onChange={() => {
+          setmultiSelect1isSelected((selected) => !selected);
+        }}
+      >
+        <EuiIcon type="faceHappy" size="l" />
+      </EuiKeyPadMenuItem>
+      <EuiKeyPadMenuItem
+        checkable="multi"
+        isSelected={multiSelect3isSelected}
+        id={keypadMultiSelectButtonId__2}
+        label="Check two"
+        onChange={() => {
+          setmultiSelect2isSelected((selected) => !selected);
+        }}
+      >
+        <EuiIcon type="faceNeutral" size="l" />
+      </EuiKeyPadMenuItem>
+      <EuiKeyPadMenuItem
+        checkable="multi"
+        id={keypadMultiSelectButtonId__3}
+        label="Disabled"
+        isDisabled
+      >
+        <EuiIcon type="faceSad" size="l" />
+      </EuiKeyPadMenuItem>
+    </EuiKeyPadMenu>
+  );
+};
+```
+
+For single selection (radio) items, you must pass a singular `name` prop to each item to ensure they are grouped properly. Also, if you would like to hide the visible `<legend>` in favor of an screen-reader only solution, you can pass `ariaLegend` instead of `legend`.
+
+```tsx interactive
+import React, { useState } from 'react';
+import {
+  EuiIcon,
+  EuiKeyPadMenu,
+  EuiKeyPadMenuItem,
+  useGeneratedHtmlId,
+} from '@elastic/eui';
+
+export default () => {
+  const radioGroupName = useGeneratedHtmlId({ prefix: 'radioGroup' });
+
+  const keypadRadioButtonId__1 = useGeneratedHtmlId({
+    prefix: 'keypadRadioButton',
+    suffix: 'first',
+  });
+  const keypadRadioButtonId__2 = useGeneratedHtmlId({
+    prefix: 'keypadRadioButton',
+    suffix: 'second',
+  });
+  const keypadRadioButtonId__3 = useGeneratedHtmlId({
+    prefix: 'keypadRadioButton',
+    suffix: 'third',
+  });
+
+  const [singleSelectedID, setSingleSelectedID] = useState(
+    keypadRadioButtonId__1
+  );
+
+  return (
+    <EuiKeyPadMenu checkable={{ ariaLegend: 'Single select as radios' }}>
+      <EuiKeyPadMenuItem
+        checkable="single"
+        name={radioGroupName}
+        id={keypadRadioButtonId__1}
+        label="Radio one"
+        onChange={(id) => {
+          setSingleSelectedID(id);
+        }}
+        isSelected={singleSelectedID === keypadRadioButtonId__1}
+      >
+        <EuiIcon type="faceHappy" size="l" />
+      </EuiKeyPadMenuItem>
+      <EuiKeyPadMenuItem
+        checkable="single"
+        name={radioGroupName}
+        id={keypadRadioButtonId__2}
+        label="Radio two"
+        onChange={(id) => {
+          setSingleSelectedID(id);
+        }}
+        isSelected={singleSelectedID === keypadRadioButtonId__2}
+      >
+        <EuiIcon type="faceNeutral" size="l" />
+      </EuiKeyPadMenuItem>
+      <EuiKeyPadMenuItem
+        checkable="single"
+        name={radioGroupName}
+        id={keypadRadioButtonId__3}
+        label="Disabled"
+        isDisabled
+      >
+        <EuiIcon type="faceSad" size="l" />
+      </EuiKeyPadMenuItem>
+    </EuiKeyPadMenu>
+  );
+};
+```
+
+## Props
+
+import docgen from '@elastic/eui-docgen/dist/components/key_pad_menu';
+
+<PropTable definition={docgen.EuiKeyPadMenu} />
+
+<PropTable definition={docgen.EuiKeyPadMenuItem} />

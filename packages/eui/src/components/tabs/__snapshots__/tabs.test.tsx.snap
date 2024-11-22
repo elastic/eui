@@ -9,6 +9,7 @@ exports[`EuiTabs props expand passes down to EuiTab children 1`] = `
     aria-selected="false"
     class="euiTab emotion-euiTab-expanded"
     role="tab"
+    tabindex="-1"
     type="button"
   >
     <span
@@ -29,6 +30,7 @@ exports[`EuiTabs props size l renders and passes down to EuiTab children 1`] = `
     aria-selected="false"
     class="euiTab emotion-euiTab"
     role="tab"
+    tabindex="-1"
     type="button"
   >
     <span
@@ -49,6 +51,7 @@ exports[`EuiTabs props size m renders and passes down to EuiTab children 1`] = `
     aria-selected="false"
     class="euiTab emotion-euiTab"
     role="tab"
+    tabindex="-1"
     type="button"
   >
     <span
@@ -69,6 +72,7 @@ exports[`EuiTabs props size s renders and passes down to EuiTab children 1`] = `
     aria-selected="false"
     class="euiTab emotion-euiTab"
     role="tab"
+    tabindex="-1"
     type="button"
   >
     <span
@@ -89,6 +93,7 @@ exports[`EuiTabs props size xl renders and passes down to EuiTab children 1`] = 
     aria-selected="false"
     class="euiTab emotion-euiTab"
     role="tab"
+    tabindex="-1"
     type="button"
   >
     <span
