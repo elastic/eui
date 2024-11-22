@@ -49,6 +49,7 @@ export const euiBetaBadgeStyles = (euiThemeContext: UseEuiTheme) => {
       box-shadow: inset 0 0 0 ${euiTheme.border.width.thin}
         ${badgeColors.hollow.borderColor};
     `,
+    warning: css(badgeColors.warning),
     // Font sizes
     m: css`
       font-size: ${euiFontSizeFromScale('xs', euiTheme)};

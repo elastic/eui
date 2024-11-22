@@ -68,6 +68,17 @@ exports[`EuiBetaBadge props color subdued is rendered 1`] = `
 </span>
 `;
 
+exports[`EuiBetaBadge props color warning is rendered 1`] = `
+<span>
+  <span
+    class="euiBetaBadge emotion-euiBetaBadge-warning-m-baseline"
+    title="Beta"
+  >
+    Beta
+  </span>
+</span>
+`;
+
 exports[`EuiBetaBadge props iconType 1`] = `
 <span>
   <span
