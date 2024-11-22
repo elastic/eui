@@ -1,11 +1,11 @@
 ---
-slug: /editors-syntax/markdown-plugins
+slug: /editors-syntax/markdown/plugins
 id: editors_syntax_markdown_plugins
 ---
 
 # Markdown plugins
 
-Both **[EuiMarkdownEditor](/docs/editors-syntax/markdown-editor/)** and **[EuiMarkdownFormat](/docs/editors-syntax/markdown-format/)** utilize the same underlying plugin architecture to transform string based syntax into React components. At a high level [Unified JS(external, opens in a new tab or window)](https://www.npmjs.com/package/unified) is used in combination with [Remark(external, opens in a new tab or window)](https://www.npmjs.com/package/remark-parse) to provide EUI's markdown components, which are separated into a **parsing** and **processing** layer. These two concepts are kept distinct in EUI components to provide concrete locations for your plugins to be injected, be it editing or rendering. Finally you provide **UI** to the component to handle interactions with the editor.
+Both **[EuiMarkdownEditor](./editor)** and **[EuiMarkdownFormat](./format)** utilize the same underlying plugin architecture to transform string based syntax into React components. At a high level [Unified JS](https://www.npmjs.com/package/unified) is used in combination with [Remark](https://www.npmjs.com/package/remark-parse) to provide EUI's markdown components, which are separated into a **parsing** and **processing** layer. These two concepts are kept distinct in EUI components to provide concrete locations for your plugins to be injected, be it editing or rendering. Finally you provide **UI** to the component to handle interactions with the editor.
 
 In addition to running the full pipeline, **EuiMarkdownEditor** uses just the parsing configuration to determine the input's validity, provide messages back to the application, and allow the toolbar buttons to interact with existing markdown tags.
 
@@ -35,13 +35,13 @@ The last set of plugin configuration - `uiPlugins` - allows toolbar buttons to b
 
 These plugin definitions can be obtained by calling `getDefaultEuiMarkdownParsingPlugins`, `getDefaultEuiMarkdownProcessingPlugins`, and `getDefaultEuiMarkdownUiPlugins` respectively.
 
-## Configuring the default plugins
+### Configuring the default plugins
 
 The above plugin utils, as well as `getDefaultEuiMarkdownPlugins`, accept an optional configuration object of:
 
-*   `exclude`: an array of default plugins to [unregister](/docs/editors-syntax/markdown-editor#unregistering-plugins)
+*   `exclude`: an array of default plugins to [unregister](#unregistering-plugins)
 *   `parsingConfig`: allows overriding the configuration of any default parsing plugin
-*   `processingConfig`: currently only accepts a `linkProps` key, which accepts any prop that [EuiLink](/docs/navigation/link) accepts
+*   `processingConfig`: currently only accepts a `linkProps` key, which accepts any prop that [EuiLink](../../navigation/link) accepts
 
 The below example has the `emoji` plugin excluded, and custom configuration on the link validator parsing plugin and link processing plugin. See the **Props** table for all plugin config options.
 
@@ -79,14 +79,131 @@ export default () => {
     </EuiMarkdownFormat>
   );
 };
+```
 
+### Unregistering plugins
+
+**EuiMarkdownEditor** comes with several default plugins, demo'd below. If these defaults are unnecessary for your use-case or context, you can unregister these plugins with a single `exclude` parameter passed to `getDefaultEuiMarkdownPlugins()`. This will ensure the syntax won't be identified or rendered, and no additional UI (like toolbar buttons or help syntax) will be displayed by the unregistered plugins.
+
+```tsx interactive
+import React, { useState, useMemo } from 'react';
+import {
+  EuiMarkdownEditor,
+  getDefaultEuiMarkdownPlugins,
+  EuiFlexGroup,
+  EuiFlexItem,
+  EuiSwitch,
+} from '@elastic/eui';
+
+const initialContent = `
+### tooltip
+
+When disabled, the button in the toolbar and the help syntax won't be displayed, and the following syntax will no longer works.
+
+!{tooltip[anchor text](Tooltip content)}
+
+### checkbox
+
+When disabled, a EuiCheckbox will no longer render.
+
+- [ ] TODO: Disable some default plugins
+
+### emoji
+
+When disabled, text will render instead of an emoji.
+
+:smile:
+
+### linkValidator
+
+When disabled, all links will render as links instead of as text.
+
+[This is a sus link](file://)
+
+### lineBreaks
+
+When disabled, these sentence will be in the same line.
+When enabled, these sentences will be separated by a line break.
+
+Two blank lines in a row will create a new paragraph as usual.
+`;
+
+export default () => {
+  const [value, setValue] = useState(initialContent);
+
+  const [tooltip, excludeTooltips] = useState(false);
+  const [checkbox, excludeCheckboxes] = useState(true);
+  const [emoji, excludeEmojis] = useState(true);
+  const [linkValidator, excludeLinkValidator] = useState(true);
+  const [lineBreaks, excludeLineBreaks] = useState(false);
+
+  const { parsingPlugins, processingPlugins, uiPlugins } = useMemo(() => {
+    const excludedPlugins = [];
+    if (!tooltip) excludedPlugins.push('tooltip');
+    if (!checkbox) excludedPlugins.push('checkbox');
+    if (!emoji) excludedPlugins.push('emoji');
+    if (!linkValidator) excludedPlugins.push('linkValidator');
+    if (!lineBreaks) excludedPlugins.push('lineBreaks');
+
+    return getDefaultEuiMarkdownPlugins({
+      exclude: excludedPlugins,
+    });
+  }, [tooltip, checkbox, emoji, linkValidator, lineBreaks]);
+
+  return (
+    <>
+      <EuiFlexGroup>
+        <EuiFlexItem grow={false} css={{ gap: 20 }}>
+          <EuiSwitch
+            label="tooltip"
+            checked={tooltip}
+            onChange={() => excludeTooltips(!tooltip)}
+          />
+          <EuiSwitch
+            label="checkbox"
+            checked={checkbox}
+            onChange={() => excludeCheckboxes(!checkbox)}
+          />
+          <EuiSwitch
+            label="emoji"
+            checked={emoji}
+            onChange={() => excludeEmojis(!emoji)}
+          />
+          <EuiSwitch
+            label="linkValidator"
+            checked={linkValidator}
+            onChange={() => excludeLinkValidator(!linkValidator)}
+          />
+          <EuiSwitch
+            label="lineBreaks"
+            checked={lineBreaks}
+            onChange={() => excludeLineBreaks(!lineBreaks)}
+          />
+        </EuiFlexItem>
+        <EuiFlexItem>
+          <EuiMarkdownEditor
+            aria-label="Demo with excluded default plugins"
+            value={value}
+            onChange={setValue}
+            parsingPluginList={parsingPlugins}
+            processingPluginList={processingPlugins}
+            uiPlugins={uiPlugins}
+            initialViewMode="viewing"
+            autoExpandPreview={false}
+            height={400}
+          />
+        </EuiFlexItem>
+      </EuiFlexGroup>
+    </>
+  );
+};
 ```
 
 ## Plugin development
 
 An **EuiMarkdown plugin** is comprised of three major pieces, which are passed searpately as props.
 
-```
+```tsx
 <EuiMarkdownEditor
   uiPlugin={myPluginUI}
   parsingPluginList={myPluginParsingList}
@@ -145,7 +262,7 @@ import { EuiDescriptionList } from '@elastic/eui';
 
 ### `uiPlugin`
 
-```
+```tsx
 const myPluginUI = {
   name: 'myPlugin',
   button: {
@@ -232,7 +349,7 @@ Inline tags are allowed at any point in text, and will be rendered somewhere wit
 
 Block tags are rendered inside `<span>` elements, and do not have a locate method. They can consume as much input text as desired, across multiple lines.
 
-```
+```ts
 // example plugin parser
 function EmojiMarkdownParser() {
   const Parser = this.Parser;
@@ -288,7 +405,7 @@ parsingList.push(EmojiMarkdownParser);
 
 After parsing the input into an AST, the nodes need to be transformed into React elements. This is performed by a list of processors, the default set converts remark AST into rehype and then into React. Plugins need to define themselves within this transformation process, identifying with the same type its parser uses in its `eat` call.
 
-```
+```tsx
 // example plugin processor
 
 // receives the configuration from the parser and renders
@@ -301,7 +418,7 @@ const processingList = getDefaultEuiMarkdownProcessingPlugins();
 processingList[1][1].components.emojiPlugin = EmojiMarkdownRenderer;
 ```
 
-## Putting it all together: a simple chart plugin
+### Putting it all together: a simple chart plugin
 
 The below example takes the concepts from above to construct a simple chart embed that is initiated from a new button in the editor toolbar.
 
