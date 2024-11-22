@@ -45,11 +45,6 @@ exports[`EuiSearchBarFilters render - with filters 1`] = `
           Tag
         </span>
         <span
-          class="emotion-euiScreenReaderOnly"
-        >
-          Select
-        </span>
-        <span
           color="inherit"
           data-euiicon-type="arrowDown"
         />

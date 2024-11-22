@@ -304,7 +304,6 @@ export class FieldValueSelectionFilter extends Component<
         onClick={this.onButtonClick.bind(this)}
         hasActiveFilters={active}
         numActiveFilters={active ? activeItemsCount : undefined}
-        hasAccessibleText
         grow
       >
         {config.name}

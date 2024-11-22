@@ -174,11 +174,6 @@ exports[`SearchBar render - provided query, filters 1`] = `
               Tag
             </span>
             <span
-              class="emotion-euiScreenReaderOnly"
-            >
-              Select
-            </span>
-            <span
               color="inherit"
               data-euiicon-type="arrowDown"
             />
