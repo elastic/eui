@@ -162,7 +162,6 @@ export type EuiSelectableListProps<T> = EuiSelectableOptionsListProps & {
   makeOptionId: (index: number | undefined) => string;
   listId: string;
   setActiveOptionIndex: (index: number, cb?: () => void) => void;
-  autoFocus?: boolean;
 };
 
 type State<T> = {
