@@ -46,6 +46,19 @@ describe('EuiCodeBlock', () => {
       });
     });
 
+    describe('customCopyAriaLabel', () => {
+      it('is rendered', () => {
+        const customLabel = 'Copy this code';
+        const { container } = render(
+          <EuiCodeBlock isCopyable customCopyAriaLabel={customLabel}>
+            {code}
+          </EuiCodeBlock>
+        );
+
+        expect(container.firstChild).toMatchSnapshot();
+      });
+    });
+
     describe('overflowHeight', () => {
       it('is rendered', () => {
         const { container } = render(

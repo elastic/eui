@@ -32,6 +32,12 @@ const codeBlockCopySnippet = `<EuiCodeBlock language="html" isCopyable>
 </EuiCodeBlock>
 `;
 
+import CodeBlockCustomCopyAriaLabel from './code_block_custom_copy_aria_label';
+const codeBlockCustomCopyAriaLabelSnippet = `<EuiCodeBlock language="html" isCopyable customCopyAriaLabel="Copy this code">
+{...}
+</EuiCodeBlock>
+`;
+
 import CodeBlockOverflow from './code_block_overflow';
 const codeBlockOverflowSource = require('!!raw-loader!./code_block_overflow');
 const codeBlockOverflowSnippet = `<EuiCodeBlock language="html" overflowHeight={300}>
@@ -176,6 +182,19 @@ export const CodeExample = {
       snippet: codeBlockCopySnippet,
       props: { EuiCodeBlock },
       demo: <CodeBlockCopy />,
+    },
+    {
+      text: (
+        <p>
+          You can specify a custom aria label for the Copy button using the
+          <EuiCode>customCopyAriaLabel</EuiCode> prop. It works in conjunction
+          with the
+          <EuiCode>isCopyable</EuiCode> prop.
+        </p>
+      ),
+      snippet: codeBlockCustomCopyAriaLabelSnippet,
+      props: { EuiCodeBlock },
+      demo: <CodeBlockCustomCopyAriaLabel />,
     },
     {
       text: (
