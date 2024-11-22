@@ -1,0 +1,102 @@
+---
+slug: /navigation/button/empty
+id: navigation_button_empty
+sidebar_position: 2
+---
+
+# Empty button
+
+Use **EuiButtonEmpty** when you want to reduce the importance of the button (i.e. tertiary or low prominence actions), but still want to align it to the rest of the buttons.
+
+It is also the only button component that supports down to size `xs`.
+
+```tsx interactive
+import React from 'react';
+import {
+  EuiButtonEmpty,
+  EuiFlexGroup,
+  EuiFlexItem,
+  EuiSpacer,
+} from '@elastic/eui';
+
+const buttons = ['primary', 'success', 'warning', 'danger', 'text', 'disabled'];
+
+export default () => (
+  <div>
+    {buttons.map((value) => (
+      <>
+        <EuiFlexGroup
+          key={value}
+          responsive={false}
+          gutterSize="s"
+          alignItems="center"
+        >
+          <EuiFlexItem grow={false}>
+            <EuiButtonEmpty
+              isDisabled={value === 'disabled' ? true : false}
+              color={value !== 'disabled' ? value : 'primary'}
+              onClick={() => {}}
+            >
+              {value.charAt(0).toUpperCase() + value.slice(1)}
+            </EuiButtonEmpty>
+          </EuiFlexItem>
+
+          <EuiFlexItem grow={false}>
+            <EuiButtonEmpty
+              size="s"
+              isDisabled={value === 'disabled' ? true : false}
+              color={value !== 'disabled' ? value : 'primary'}
+              onClick={() => {}}
+            >
+              Small
+            </EuiButtonEmpty>
+          </EuiFlexItem>
+
+          <EuiFlexItem grow={false}>
+            <EuiButtonEmpty
+              size="xs"
+              isDisabled={value === 'disabled' ? true : false}
+              color={value !== 'disabled' ? value : 'primary'}
+              onClick={() => {}}
+            >
+              Extra small
+            </EuiButtonEmpty>
+          </EuiFlexItem>
+        </EuiFlexGroup>
+        <EuiSpacer size="s" />
+      </>
+    ))}
+  </div>
+);
+```
+
+## Flush empty button
+
+When aligning **EuiButtonEmpty** components to the left or the right, you should make sure they’re flush with the edge of their container, so that they’re horizontally aligned with the other content in the container.
+
+```tsx interactive
+import React from 'react';
+import { EuiButtonEmpty, EuiFlexGroup, EuiFlexItem } from '@elastic/eui';
+
+export default () => (
+  <EuiFlexGroup responsive={false} gutterSize="s" alignItems="center">
+    <EuiFlexItem grow={false}>
+      <EuiButtonEmpty flush="left">Flush left</EuiButtonEmpty>
+    </EuiFlexItem>
+
+    <EuiFlexItem grow={false}>
+      <EuiButtonEmpty flush="right">Flush right</EuiButtonEmpty>
+    </EuiFlexItem>
+
+    <EuiFlexItem grow={false}>
+      <EuiButtonEmpty flush="both">Flush both</EuiButtonEmpty>
+    </EuiFlexItem>
+  </EuiFlexGroup>
+);
+```
+
+## Props
+
+import docgen from '@elastic/eui-docgen/dist/components/button';
+
+<PropTable definition={docgen.EuiButtonEmpty} />
