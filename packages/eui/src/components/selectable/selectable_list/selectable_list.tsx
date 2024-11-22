@@ -162,6 +162,7 @@ export type EuiSelectableListProps<T> = EuiSelectableOptionsListProps & {
   makeOptionId: (index: number | undefined) => string;
   listId: string;
   setActiveOptionIndex: (index: number, cb?: () => void) => void;
+  autoFocus?: boolean;
 };
 
 type State<T> = {
@@ -233,6 +234,7 @@ export class EuiSelectableList<T> extends Component<
       listId,
       searchable,
       singleSelection,
+      autoFocus,
       'aria-label': ariaLabel,
       'aria-labelledby': ariaLabelledby,
       'aria-describedby': ariaDescribedby,
@@ -258,6 +260,12 @@ export class EuiSelectableList<T> extends Component<
 
       if (typeof ariaDescribedby === 'string') {
         ref.setAttribute('aria-describedby', ariaDescribedby);
+      }
+
+      if (autoFocus === true) {
+        // manually focus listbox once available
+        // use last stack execution to prevent potential focus order issues
+        setTimeout(() => ref.focus());
       }
     }
   };
@@ -714,6 +722,7 @@ export class EuiSelectableList<T> extends Component<
       isVirtualized,
       textWrap,
       truncationProps,
+      autoFocus,
       ...rest
     } = this.props;
 

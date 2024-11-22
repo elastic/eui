@@ -392,6 +392,7 @@ export class FieldValueSelectionFilter extends Component<
               noMatchesMessage={config.noOptionsMessage}
               listProps={{
                 isVirtualized: isOverSearchThreshold || false,
+                autoFocus: true,
               }}
               onChange={(options, event, changedOption) => {
                 if (changedOption.data) {
