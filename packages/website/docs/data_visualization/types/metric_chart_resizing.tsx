@@ -1,7 +1,7 @@
 import React from 'react';
 import { EuiPanel } from '@elastic/eui';
 import { Chart, Metric, Settings } from '@elastic/charts';
-import { useChartBaseTheme } from './use_chart_base_theme';
+import { useChartBaseTheme } from '../use_chart_base_theme';
 
 export const MetricChartResizing = () => {
   const chartBaseTheme = useChartBaseTheme();

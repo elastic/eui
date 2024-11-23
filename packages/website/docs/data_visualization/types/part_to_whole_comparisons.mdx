@@ -1,11 +1,10 @@
 ---
-slug: /elastic-charts/part-to-whole-comparisons
+slug: /charts/types/part-to-whole-comparisons
 id: elastic_charts_part_to_whole_comparisons
+sidebar_position: 2
 ---
 
 # Part to whole comparisons
-
-<Badge>External library: @elastic/charts v64.1.0</Badge>
 
 ## Pie and donut charts
 
@@ -19,7 +18,7 @@ The guidelines for [donut charts](http://kosara.net/publications/Skau-EuroVis-20
 
 ```mdx-code-block
 import * as ElasticCharts from '@elastic/charts';
-import { useChartBaseTheme } from './use_chart_base_theme';
+import { useChartBaseTheme } from '../use_chart_base_theme';
 import BrowserOnly from '@docusaurus/BrowserOnly';
 ```
 
@@ -142,15 +141,15 @@ import BrowserOnly from '@docusaurus/BrowserOnly';
   ```
 </Demo>
 
-## Slices and labelling
+### Slices and labelling
 
 Try to keep the labels **within the slices** (or just outside) and consider appending their values. However, if there are many small slices or long labels, use a legend, especially one that displays the values in a table format with right aligned values.
 
-### Other slices
+#### Other slices
 
 Again, pie charts should have no more than six slices. However, it can be beneficial to **group smaller/overflow slices** into a single “Other” category. Careful consideration should be given when doing so as this could end up being the largest category and therefore obscuring the meaning of the chart.
 
-### Slice order
+#### Slice order
 
 The order of the slices should always **start from the 12 o’clock position**, showing the largest slice in the clockwise position then the rest ordering counterclockwise in descending order. However, categories that have a natural order, should follow this natural order, be it low to high or good to bad.
 
@@ -169,7 +168,7 @@ Multi-level pie charts (also known as sunbursts) and treemaps are great for visu
 Below are some basic examples and how EUI supports them with theming. However, this site will not document the best uses of these chart types. For more guidance, go to the [Elastic Charts documentation](https://elastic.github.io/elastic-charts).
 
 ```mdx-code-block
-import { GITHUB_DATASET_MOD } from './data';
+import { GITHUB_DATASET_MOD } from '../data';
 ```
 
 <Demo scope={{ ...ElasticCharts, useChartBaseTheme, GITHUB_DATASET_MOD }}>

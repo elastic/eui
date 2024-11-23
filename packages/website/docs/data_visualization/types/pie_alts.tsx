@@ -21,9 +21,9 @@ import {
   useEuiTheme,
 } from '@elastic/eui';
 
-import { GITHUB_DATASET, GITHUB_DATASET_MOD, DAYS_OF_RAIN } from './data';
+import { GITHUB_DATASET, GITHUB_DATASET_MOD, DAYS_OF_RAIN } from '../data';
+import { useChartBaseTheme } from '../use_chart_base_theme';
 import { ChartCard } from './shared';
-import { useChartBaseTheme } from './use_chart_base_theme';
 
 export const PieAlts = () => {
   const { colorMode } = useEuiTheme();

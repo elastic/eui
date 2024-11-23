@@ -21,7 +21,7 @@ import {
 } from '@elastic/eui';
 import { CHART_COMPONENTS, type ChartType, ChartCard } from './shared';
 
-import { useChartBaseTheme } from './use_chart_base_theme';
+import { useChartBaseTheme } from '../use_chart_base_theme';
 
 export const Categorical = () => {
   const chartBaseTheme = useChartBaseTheme();
@@ -58,7 +58,9 @@ export const Categorical = () => {
     []
   );
   const [dataString, setDataString] = useState('[{x: 1, y: 5.5, g: 0}]');
-  const [vizColors, setVizColors] = useState<ReturnType<typeof euiPaletteGray> | undefined>();
+  const [vizColors, setVizColors] = useState<
+    ReturnType<typeof euiPaletteGray> | undefined
+  >();
   const [vizColorsString, setVizColorsString] = useState('');
   const [chartType, setChartType] = useState<ChartType>('LineSeries');
 

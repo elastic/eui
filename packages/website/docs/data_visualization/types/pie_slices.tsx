@@ -19,8 +19,8 @@ import {
 } from '@elastic/eui';
 
 import { ChartCard } from './shared';
-import { BROWSER_DATA_2019 } from './data';
-import { useChartBaseTheme } from './use_chart_base_theme';
+import { BROWSER_DATA_2019 } from '../data';
+import { useChartBaseTheme } from '../use_chart_base_theme';
 
 export const PieSlices = () => {
   const chartBaseTheme = useChartBaseTheme();
