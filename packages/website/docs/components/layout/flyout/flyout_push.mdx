@@ -1,0 +1,88 @@
+---
+slug: /layout/flyout/push
+id: layout_flyout_push
+---
+
+# Push flyouts
+
+Another way to allow for continued interactions of the page content while a flyout is visible is to change the `type` from `overlay` to `push`.
+
+:::warning Push flyouts require manual accessibility management
+
+Push flyouts do not use a focus trap, do not close on Escape keypress, do not inherit a [dialog role](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/dialog_role), and do not include any of the default screen reader guidance that overlay flyouts contain out-of-the-box.
+
+Please be cautious when using push flyouts, and make sure you are managing your own focus and screen reader UX.
+
+:::
+
+A pushed flyout still positions itself as `fixed`, but adds padding to the document's body element to accommodate for the flyout's width. Because this squishes the page content, the flyout changes back to `overlay` at smaller window widths. You can adjust this minimum breakpoint with `pushMinBreakpoint`.
+
+
+```tsx interactive
+import React, { useState } from 'react';
+import {
+  EuiFlyout,
+  EuiFlyoutBody,
+  EuiFlyoutHeader,
+  EuiButton,
+  EuiText,
+  EuiTitle,
+  EuiFlyoutFooter,
+  useGeneratedHtmlId,
+} from '@elastic/eui';
+
+export default () => {
+  const [isFlyoutVisible, setIsFlyoutVisible] = useState(false);
+  const pushedFlyoutTitleId = useGeneratedHtmlId({
+    prefix: 'pushedFlyoutTitle',
+  });
+  let flyout;
+
+  if (isFlyoutVisible) {
+    flyout = (
+      <EuiFlyout
+        type="push"
+        size="s"
+        onClose={() => setIsFlyoutVisible(false)}
+        aria-labelledby={pushedFlyoutTitleId}
+      >
+        <EuiFlyoutHeader hasBorder>
+          <EuiTitle size="m">
+            <h2 id={pushedFlyoutTitleId}>A pushed flyout</h2>
+          </EuiTitle>
+        </EuiFlyoutHeader>
+        <EuiFlyoutBody>
+          <EuiText>
+            <p>
+              A pushed flyout typically contains more information about a
+              particular piece of data or complex form controls for editing.
+            </p>
+            <p>
+              Also, it is good to include a close button in the footer for a
+              larger hit target than the small close button provides.
+            </p>
+          </EuiText>
+        </EuiFlyoutBody>
+        <EuiFlyoutFooter>
+          <EuiButton onClick={() => setIsFlyoutVisible(false)}>Close</EuiButton>
+        </EuiFlyoutFooter>
+      </EuiFlyout>
+    );
+  }
+
+  return (
+    <div>
+      <EuiButton onClick={() => setIsFlyoutVisible((visible) => !visible)}>
+        Toggle pushed flyout
+      </EuiButton>
+      {flyout}
+    </div>
+  );
+};
+```
+
+## Props
+
+import flyoutDocgen from '@elastic/eui-docgen/dist/components/flyout/flyout.json';
+
+<PropTable definition={flyoutDocgen.EuiFlyout} />

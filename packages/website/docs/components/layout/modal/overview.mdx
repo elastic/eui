@@ -5,13 +5,13 @@ id: layout_modal
 
 # Modal
 
-A modal works best for focusing users' attention on a **short** amount of content and getting them to make a decision. Use it to temporarily interrupt a user’s current task and block interactions to the content below it.
+A modal works best for focusing users' attention on a **short** amount of content and getting them to make a decision, such as a [confirmation](./confirm). Use it to temporarily interrupt a user’s current task and block interactions to the content below it.
 
-If your modal content is more complex, or requires considerable time to complete, consider using an [**EuiFlyout**](/docs/layout/flyout) instead.
+If your modal content is more complex, or requires considerable time to complete, consider using an [**EuiFlyout**](../flyout) instead.
 
 Each **EuiModal** requires a specific set of nested child components. They can be omitted if necessary, but the order cannot be changed or interrupted.
 
-Modals come a wrapping **EuiOverlayMask** to obscure the content beneath, but unlike [flyouts](/docs/layout/flyout), modals cannot be dismissed by clicking on the overlay mask. This is inline with our [modal usage guidelines](/docs/layout/modal/guidelines) which requires there to be a primary action button, even if that button simply closes the modal.
+Modals come a wrapping **EuiOverlayMask** to obscure the content beneath, but unlike flyouts, modals cannot be dismissed by clicking on the overlay mask. This is inline with our [modal usage guidelines](./guidelines) which requires there to be a primary action button, even if that button simply closes the modal.
 
 ```tsx interactive
 import React, { useState } from 'react';
@@ -239,167 +239,6 @@ export default () => {
 };
 ```
 
-## Confirm modal
-
-Use the **EuiConfirmModal** to ask the user to confirm a decision. It is a contextual wrapper around **EuiModal** that provides some helpful props for filling in common modal pieces. By default, the button color indicates a positive or neutral action. Change the `buttonColor` property to `danger` to indicate a destructive action.
-
-```tsx interactive
-import React, { useState } from 'react';
-import {
-  EuiButton,
-  EuiConfirmModal,
-  EuiFlexGroup,
-  EuiFlexItem,
-  useGeneratedHtmlId,
-} from '@elastic/eui';
-
-export default () => {
-  const [isModalVisible, setIsModalVisible] = useState(false);
-  const [isDestroyModalVisible, setIsDestroyModalVisible] = useState(false);
-
-  const closeModal = () => setIsModalVisible(false);
-  const showModal = () => setIsModalVisible(true);
-
-  const closeDestroyModal = () => setIsDestroyModalVisible(false);
-  const showDestroyModal = () => setIsDestroyModalVisible(true);
-
-  const modalTitleId = useGeneratedHtmlId();
-  const destroyModalTitleId = useGeneratedHtmlId();
-
-  return (
-    <>
-      <EuiFlexGroup responsive={false} wrap gutterSize="xs">
-        <EuiFlexItem grow={false}>
-          <EuiButton onClick={showModal}>Show confirm modal</EuiButton>
-        </EuiFlexItem>
-        <EuiFlexItem grow={false}>
-          <EuiButton onClick={showDestroyModal}>
-            Show dangerous confirm modal
-          </EuiButton>
-        </EuiFlexItem>
-      </EuiFlexGroup>
-
-      {isModalVisible && (
-        <EuiConfirmModal
-          aria-labelledby={modalTitleId}
-          style={{ width: 600 }}
-          title="Update subscription to Platinum?"
-          titleProps={{ id: modalTitleId }}
-          onCancel={closeModal}
-          onConfirm={closeModal}
-          cancelButtonText="Cancel"
-          confirmButtonText="Update subscription"
-          defaultFocusedButton="confirm"
-        >
-          <p>
-            Your subscription and benefits increase immediately. If you change
-            to a lower subscription later, it will not take affect until the
-            next billing cycle.
-          </p>
-        </EuiConfirmModal>
-      )}
-
-      {isDestroyModalVisible && (
-        <EuiConfirmModal
-          aria-labelledby={destroyModalTitleId}
-          title="Discard dashboard changes?"
-          titleProps={{ id: destroyModalTitleId }}
-          onCancel={closeDestroyModal}
-          onConfirm={closeDestroyModal}
-          cancelButtonText="Keep editing"
-          confirmButtonText="Discard changes"
-          buttonColor="danger"
-          defaultFocusedButton="confirm"
-        >
-          <p>You will lose all unsaved changes made to this dashboard.</p>
-        </EuiConfirmModal>
-      )}
-    </>
-  );
-};
-```
-
-## Loading and disabling confirm button
-
-**EuiConfirmModal** supports being able to apply loading and disabled states to the confirm button with the `confirmButtonDisabled` and `isLoading` props respectively. This is helpful to indicate the fetching of data and/or to wait for a user's input before enabling the confirm action.
-
-```tsx interactive
-import React, { useState } from 'react';
-import {
-  EuiButton,
-  EuiConfirmModal,
-  EuiFormRow,
-  EuiFieldText,
-  useGeneratedHtmlId,
-} from '@elastic/eui';
-
-export default () => {
-  const [isLoading, setIsLoading] = useState(false);
-  const [isModalVisible, setIsModalVisible] = useState(false);
-  const [value, setValue] = useState('');
-
-  let timeoutId: ReturnType<typeof setTimeout>;
-  const searchTimeout = () =>
-    setTimeout(() => {
-      // Simulate a remotely-executed search.
-      setIsLoading(false);
-    }, 1200);
-
-  const showModal = () => {
-    setIsModalVisible(true);
-    setIsLoading(true);
-    timeoutId = searchTimeout();
-  };
-
-  const closeModal = () => {
-    setIsModalVisible(false);
-    setIsLoading(false);
-    setValue('');
-    clearTimeout(timeoutId);
-  };
-
-  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setValue(e.target.value);
-  };
-
-  const modalTitleId = useGeneratedHtmlId();
-
-  return (
-    <>
-      <EuiButton onClick={showModal}>Show loading confirm modal</EuiButton>
-
-      {isModalVisible && (
-        <EuiConfirmModal
-          aria-labelledby={modalTitleId}
-          title="Delete the EUI repo?"
-          titleProps={{ id: modalTitleId }}
-          onCancel={closeModal}
-          onConfirm={() => {
-            closeModal();
-            window.alert('Shame on you!');
-          }}
-          confirmButtonText="Delete"
-          cancelButtonText="Cancel"
-          buttonColor="danger"
-          initialFocus="[name=delete]"
-          confirmButtonDisabled={value.toLowerCase() !== 'delete'}
-          isLoading={isLoading}
-        >
-          <EuiFormRow label="Type the word 'delete' to confirm">
-            <EuiFieldText
-              name="delete"
-              isLoading={isLoading}
-              value={value}
-              onChange={onChange}
-            />
-          </EuiFormRow>
-        </EuiConfirmModal>
-      )}
-    </>
-  );
-};
-```
-
 ## Widths
 
 Modals start with a minimum width of `400px`, just enough to display form rows. They will grow to fit the contents until it reaches the specified `maxWidth`, the default of which is set to the medium breakpoint.
@@ -492,5 +331,3 @@ import docgen from '@elastic/eui-docgen/dist/components/modal';
 <PropTable definition={docgen.EuiModalBody} />
 
 <PropTable definition={docgen.EuiModalFooter} />
-
-<PropTable definition={docgen.EuiConfirmModal} />

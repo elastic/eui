@@ -5,7 +5,7 @@ id: layout_flyout
 
 # Flyout
 
-**EuiFlyout** is a fixed position panel that pops in from the side of the window. It should be used to reveal more detailed contextual information or to provide complex forms without losing the user's current state. It is a good alternative to [modals](/docs/layout/modal) when the action is not transient.
+**EuiFlyout** is a fixed position panel that pops in from the side of the window. It should be used to reveal more detailed contextual information or to provide complex forms without losing the user's current state. It is a good alternative to [modals](../modal) when the action is not transient.
 
 Like modals, you control the visibilty of the flyout using your own state management, but **EuiFlyout** requires an `onClose` handler for it's internal dismiss buttons.
 
@@ -602,7 +602,7 @@ export default () => {
 
 ## Adding a banner
 
-To highlight some information at the top of a flyout, you can pass an [**EuiCallOut**](/docs/display/callout) to the `banner` prop available in **EuiFlyoutBody** and its layout will adjust appropriately.
+To highlight some information at the top of a flyout, you can pass an [**EuiCallOut**](../../display/callout) to the `banner` prop available in **EuiFlyoutBody** and its layout will adjust appropriately.
 
 ```tsx interactive
 import React, { useState } from 'react';
@@ -672,7 +672,7 @@ export default () => {
 
 ## Without ownFocus
 
-Like modals, you will usually want to obscure the page content beneath with `ownFocus` which wraps the flyout with an [**EuiOverlayMask**](/docs/utilities/overlay-mask) . However, there are use-cases where flyouts present more information or controls, but need to maintain the interactions of the page content. By setting `ownFocus={false}`, the underlying page content will be visible and clickable.
+Like modals, you will usually want to obscure the page content beneath with `ownFocus` which wraps the flyout with an [**EuiOverlayMask**](../../utilities/overlay-mask) . However, there are use-cases where flyouts present more information or controls, but need to maintain the interactions of the page content. By setting `ownFocus={false}`, the underlying page content will be visible and clickable.
 
 ```tsx interactive
 import React, { useState } from 'react';
@@ -725,83 +725,6 @@ export default () => {
     <div>
       <EuiButton onClick={toggleFlyout}>Toggle flyout</EuiButton>
 
-      {flyout}
-    </div>
-  );
-};
-```
-
-## Push versus overlay
-
-Another way to allow for continued interactions of the page content while a flyout is visible, is to change the `type` from `overlay` to `push`.
-
-A pushed flyout still positions itself as `fixed`, but adds padding to the document's body element to accommodate for the flyout's width. Because this squishes the page content, the flyout changes back to `overlay` at smaller window widths. You can adjust this minimum breakpoint with `pushMinBreakpoint`.
-
-:::warning Push flyouts require manual accessibility management
-
-Push flyouts do not use a focus trap, do not close on Escape keypress, do not inherit a [dialog role](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/dialog_role), and do not include any of the default screen reader guidance that overlay flyouts contain out-of-the-box.
-
-Please be cautious when using push flyouts, and make sure you are managing your own focus and screen reader UX.
-
-:::
-
-```tsx interactive
-import React, { useState } from 'react';
-import {
-  EuiFlyout,
-  EuiFlyoutBody,
-  EuiFlyoutHeader,
-  EuiButton,
-  EuiText,
-  EuiTitle,
-  EuiFlyoutFooter,
-  useGeneratedHtmlId,
-} from '@elastic/eui';
-
-export default () => {
-  const [isFlyoutVisible, setIsFlyoutVisible] = useState(false);
-  const pushedFlyoutTitleId = useGeneratedHtmlId({
-    prefix: 'pushedFlyoutTitle',
-  });
-  let flyout;
-
-  if (isFlyoutVisible) {
-    flyout = (
-      <EuiFlyout
-        type="push"
-        size="s"
-        onClose={() => setIsFlyoutVisible(false)}
-        aria-labelledby={pushedFlyoutTitleId}
-      >
-        <EuiFlyoutHeader hasBorder>
-          <EuiTitle size="m">
-            <h2 id={pushedFlyoutTitleId}>A pushed flyout</h2>
-          </EuiTitle>
-        </EuiFlyoutHeader>
-        <EuiFlyoutBody>
-          <EuiText>
-            <p>
-              A pushed flyout typically contains more information about a
-              particular piece of data or complex form controls for editing.
-            </p>
-            <p>
-              Also, it is good to include a close button in the footer for a
-              larger hit target than the small close button provides.
-            </p>
-          </EuiText>
-        </EuiFlyoutBody>
-        <EuiFlyoutFooter>
-          <EuiButton onClick={() => setIsFlyoutVisible(false)}>Close</EuiButton>
-        </EuiFlyoutFooter>
-      </EuiFlyout>
-    );
-  }
-
-  return (
-    <div>
-      <EuiButton onClick={() => setIsFlyoutVisible((visible) => !visible)}>
-        Toggle pushed flyout
-      </EuiButton>
       {flyout}
     </div>
   );
@@ -1038,110 +961,12 @@ export default () => {
 
 ```
 
-## Resizable flyouts
-
-You can use **EuiFlyoutResizable** to render a flyout that users can drag with their mouse or use arrow keys to resize. This may be useful for scenarios where the space the user needs can be unpredictable, if content is dynamic. Resizable flyouts allow users to adjust content to better fit their individual screens and workflows.
-
-We strongly recommend setting reasonable numerical `minWidth` and `maxWidth` props based on the flyout content and page content that you _can_ predict.
-
-```tsx interactive
-import React, { useState } from 'react';
-import {
-  EuiFlyoutResizable,
-  EuiFlyoutProps,
-  EuiFlyoutBody,
-  EuiFlyoutHeader,
-  EuiButton,
-  EuiButtonGroup,
-  EuiText,
-  EuiTitle,
-  EuiSpacer,
-  useGeneratedHtmlId,
-} from '@elastic/eui';
-
-export default () => {
-  const [isFlyoutVisible, setIsFlyoutVisible] = useState(false);
-  const [flyoutType, setFlyoutType] = useState('overlay');
-  const [flyoutSide, setFlyoutSide] = useState('right');
-
-  const flyoutTitleId = useGeneratedHtmlId({
-    prefix: 'simpleFlyoutTitle',
-  });
-
-  let flyout;
-
-  if (isFlyoutVisible) {
-    flyout = (
-      <EuiFlyoutResizable
-        type={flyoutType as EuiFlyoutProps['type']}
-        side={flyoutSide as EuiFlyoutProps['side']}
-        onClose={() => setIsFlyoutVisible(false)}
-        aria-labelledby={flyoutTitleId}
-      >
-        <EuiFlyoutHeader hasBorder>
-          <EuiTitle size="m">
-            <h2 id={flyoutTitleId}>A resizable flyout</h2>
-          </EuiTitle>
-        </EuiFlyoutHeader>
-        <EuiFlyoutBody>
-          <EuiText>
-            <p>
-              This flyout is resizable by both mouse drag and arrow keys (when
-              the resizable edge is focused). Both push and overlay flyouts can
-              be resizable, on either side.
-            </p>
-          </EuiText>
-          <EuiSpacer />
-          <EuiTitle size="xxs">
-            <h3>Flyout type</h3>
-          </EuiTitle>
-          <EuiSpacer size="s" />
-          <EuiButtonGroup
-            legend="Flyout type"
-            options={[
-              { id: 'overlay', label: 'Overlay' },
-              { id: 'push', label: 'Push' },
-            ]}
-            idSelected={flyoutType}
-            onChange={(id) => setFlyoutType(id)}
-          />
-          <EuiSpacer />
-          <EuiTitle size="xxs">
-            <h3>Flyout side</h3>
-          </EuiTitle>
-          <EuiButtonGroup
-            legend="Flyout side"
-            options={[
-              { id: 'right', label: 'Right' },
-              { id: 'left', label: 'Left' },
-            ]}
-            idSelected={flyoutSide}
-            onChange={(id) => setFlyoutSide(id)}
-          />
-        </EuiFlyoutBody>
-      </EuiFlyoutResizable>
-    );
-  }
-
-  return (
-    <>
-      <EuiButton onClick={() => setIsFlyoutVisible(true)}>
-        Show resizable flyout
-      </EuiButton>
-      {flyout}
-    </>
-  );
-};
-```
-
 ## Props
 
 import docgen from '@elastic/eui-docgen/dist/components/flyout';
 import flyoutDocgen from '@elastic/eui-docgen/dist/components/flyout/flyout.json';
 
 <PropTable definition={flyoutDocgen.EuiFlyout} />
-
-<PropTable definition={docgen.EuiFlyoutResizable} />
 
 <PropTable definition={docgen.EuiFlyoutBody} />
 
