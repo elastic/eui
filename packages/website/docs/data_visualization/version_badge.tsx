@@ -1,7 +1,10 @@
 import { EuiBadge } from '@elastic/eui';
 
-import { dependencies } from '../../package.json';
-const chartsVersion = dependencies['@elastic/charts'].replace(/[^0-9\.]/g, '');
+import pkg from '../../package.json';
+const chartsVersion = pkg.dependencies['@elastic/charts'].replace(
+  /[^0-9\.]/g,
+  ''
+);
 
 export default () => (
   <EuiBadge
