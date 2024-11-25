@@ -46,6 +46,20 @@ describe('EuiCodeBlock', () => {
       });
     });
 
+    it('renders `copyAriaLabel` on the copy button', () => {
+      const customLabel = 'Copy this code';
+      const { getByTestSubject } = render(
+        <EuiCodeBlock isCopyable copyAriaLabel={customLabel}>
+          {code}
+        </EuiCodeBlock>
+      );
+
+      expect(getByTestSubject('euiCodeBlockCopy')).toHaveAttribute(
+        'aria-label',
+        customLabel
+      );
+    });
+
     describe('overflowHeight', () => {
       it('is rendered', () => {
         const { container } = render(
