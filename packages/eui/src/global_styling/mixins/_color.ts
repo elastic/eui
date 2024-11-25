@@ -140,17 +140,13 @@ export const euiBorderColor = (
     case 'subdued':
       return euiTheme.border.color;
     case 'warning':
-      return tintOrShade(
-        euiTheme.colors.warning,
-        highContrastMode ? 0 : 0.4,
-        colorMode
-      );
+      return highContrastMode
+        ? euiTheme.colors.warningText
+        : tintOrShade(euiTheme.colors.warning, 0.4, colorMode);
     default:
-      return tintOrShade(
-        euiTheme.colors[color],
-        highContrastMode ? 0 : 0.6,
-        colorMode
-      );
+      return highContrastMode
+        ? euiTheme.colors[`${color}Text`]
+        : tintOrShade(euiTheme.colors[color], 0.6, colorMode);
   }
 };
 
