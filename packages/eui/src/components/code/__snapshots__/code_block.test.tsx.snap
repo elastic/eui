@@ -382,59 +382,6 @@ exports[`EuiCodeBlock line numbers renders line numbers with a start value 1`] =
 </div>
 `;
 
-exports[`EuiCodeBlock props copyAriaLabel is rendered 1`] = `
-<div
-  class="euiCodeBlock emotion-euiCodeBlock-s-hasControls"
->
-  <pre
-    class="euiCodeBlock__pre emotion-euiCodeBlock__pre-preWrap-padding-controlsOffset"
-    tabindex="-1"
-  >
-    <code
-      class="euiCodeBlock__code emotion-euiCodeBlock__code"
-      data-code-language="text"
-    >
-      <span
-        class="euiCodeBlock__line emotion-euiCodeBlock__line"
-      >
-        var some = 'code';
-
-      </span>
-      <span
-        class="euiCodeBlock__line emotion-euiCodeBlock__line"
-      >
-        console.log(some);
-      </span>
-    </code>
-  </pre>
-  <div
-    class="euiCodeBlock__controls emotion-euiCodeBlock__controls-l"
-  >
-    <div
-      class="euiCodeBlock__copyButton"
-    >
-      <span
-        class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
-      >
-        <button
-          aria-label="Copy this code"
-          class="euiButtonIcon emotion-euiButtonIcon-xs-empty-text"
-          data-test-subj="euiCodeBlockCopy"
-          type="button"
-        >
-          <span
-            aria-hidden="true"
-            class="euiButtonIcon__icon"
-            color="inherit"
-            data-euiicon-type="copyClipboard"
-          />
-        </button>
-      </span>
-    </div>
-  </div>
-</div>
-`;
-
 exports[`EuiCodeBlock props fontSize l is rendered 1`] = `
 <div
   class="euiCodeBlock emotion-euiCodeBlock-l"

@@ -46,17 +46,18 @@ describe('EuiCodeBlock', () => {
       });
     });
 
-    describe('copyAriaLabel', () => {
-      it('is rendered', () => {
-        const customLabel = 'Copy this code';
-        const { container } = render(
-          <EuiCodeBlock isCopyable copyAriaLabel={customLabel}>
-            {code}
-          </EuiCodeBlock>
-        );
+    it('renders `copyAriaLabel` on the copy button', () => {
+      const customLabel = 'Copy this code';
+      const { getByTestSubject } = render(
+        <EuiCodeBlock isCopyable copyAriaLabel={customLabel}>
+          {code}
+        </EuiCodeBlock>
+      );
 
-        expect(container.firstChild).toMatchSnapshot();
-      });
+      expect(getByTestSubject('euiCodeBlockCopy')).toHaveAttribute(
+        'aria-label',
+        customLabel
+      );
     });
 
     describe('overflowHeight', () => {
