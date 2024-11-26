@@ -6,12 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, {
-  Component,
-  FunctionComponent,
-  ReactNode,
-  createRef,
-} from 'react';
+import React, { Component, ReactNode, createRef } from 'react';
 
 import { RenderWithEuiTheme } from '../../../services';
 import { isArray, isNil } from '../../../services/predicate';
@@ -21,7 +16,7 @@ import { EuiFilterButton } from '../../filter_group';
 import { euiFilterGroupStyles } from '../../filter_group/filter_group.styles';
 import { EuiSelectable, EuiSelectableProps } from '../../selectable';
 import { EuiSelectableOptionCheckedType } from '../../../components/selectable/selectable_option';
-import { useEuiI18n } from '../../i18n';
+import { EuiI18n } from '../../i18n';
 import { Query } from '../query';
 import { Clause, Operator, OperatorType, Value } from '../query/ast';
 
@@ -304,12 +299,27 @@ export class FieldValueSelectionFilter extends Component<
     const active = (activeTop || activeItem) && activeItemsCount > 0;
 
     const button = (
-      <EuiFieldValueSelectionFilterButton
-        label={config.name}
-        isActive={active}
-        activeItemsCount={activeItemsCount}
-        onClick={this.onButtonClick.bind(this)}
-      />
+      <EuiI18n
+        token="euiFieldValueSelectionFilter.buttonLabelHint"
+        default="Selection"
+      >
+        {(buttonLabelHint: string) => {
+          const ariaLabel = `${config.name} ${buttonLabelHint}`;
+          return (
+            <EuiFilterButton
+              iconType="arrowDown"
+              iconSide="right"
+              hasActiveFilters={active}
+              numActiveFilters={active ? activeItemsCount : undefined}
+              grow
+              aria-label={ariaLabel}
+              onClick={this.onButtonClick.bind(this)}
+            >
+              {config.name}
+            </EuiFilterButton>
+          );
+        }}
+      </EuiI18n>
     );
 
     const items = options
@@ -440,35 +450,3 @@ export class FieldValueSelectionFilter extends Component<
     return query.hasSimpleFieldClause(field);
   }
 }
-
-type EuiFieldValueSelectionFilterButtonProps = {
-  label: string;
-  activeItemsCount: number;
-  isActive: boolean;
-  onClick: () => void;
-};
-
-const EuiFieldValueSelectionFilterButton: FunctionComponent<
-  EuiFieldValueSelectionFilterButtonProps
-> = (props) => {
-  const { label, activeItemsCount, isActive, onClick } = props;
-  const labelHint = useEuiI18n(
-    'euiFieldValueSelectionFilter.buttonLabelHint',
-    'Selection'
-  );
-  const ariaLabel = `${label} ${labelHint}`;
-
-  return (
-    <EuiFilterButton
-      iconType="arrowDown"
-      iconSide="right"
-      hasActiveFilters={isActive}
-      numActiveFilters={isActive ? activeItemsCount : undefined}
-      grow
-      aria-label={ariaLabel}
-      onClick={onClick}
-    >
-      {label}
-    </EuiFilterButton>
-  );
-};
