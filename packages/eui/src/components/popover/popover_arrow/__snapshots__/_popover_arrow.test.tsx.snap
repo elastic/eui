@@ -3,35 +3,51 @@
 exports[`EuiPopoverArrow position bottom is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="testClass1 testClass2 emotion-euiPopoverArrow-bottom-euiTestCss"
-  data-popover-arrow="bottom"
+  class="testClass1 testClass2 emotion-euiPopoverArrowWrapper-euiTestCss"
   data-test-subj="test subject string"
-/>
+>
+  <div
+    class="euiPopover__arrow emotion-euiPopoverArrow-bottom"
+    data-popover-arrow="bottom"
+  />
+</div>
 `;
 
 exports[`EuiPopoverArrow position left is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="testClass1 testClass2 emotion-euiPopoverArrow-left-euiTestCss"
-  data-popover-arrow="left"
+  class="testClass1 testClass2 emotion-euiPopoverArrowWrapper-euiTestCss"
   data-test-subj="test subject string"
-/>
+>
+  <div
+    class="euiPopover__arrow emotion-euiPopoverArrow-left"
+    data-popover-arrow="left"
+  />
+</div>
 `;
 
 exports[`EuiPopoverArrow position right is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="testClass1 testClass2 emotion-euiPopoverArrow-right-euiTestCss"
-  data-popover-arrow="right"
+  class="testClass1 testClass2 emotion-euiPopoverArrowWrapper-euiTestCss"
   data-test-subj="test subject string"
-/>
+>
+  <div
+    class="euiPopover__arrow emotion-euiPopoverArrow-right"
+    data-popover-arrow="right"
+  />
+</div>
 `;
 
 exports[`EuiPopoverArrow position top is rendered 1`] = `
 <div
   aria-label="aria-label"
-  class="testClass1 testClass2 emotion-euiPopoverArrow-top-euiTestCss"
-  data-popover-arrow="top"
+  class="testClass1 testClass2 emotion-euiPopoverArrowWrapper-euiTestCss"
   data-test-subj="test subject string"
-/>
+>
+  <div
+    class="euiPopover__arrow emotion-euiPopoverArrow-top"
+    data-popover-arrow="top"
+  />
+</div>
 `;

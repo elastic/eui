@@ -14,13 +14,11 @@ import {
 } from '../../../global_styling';
 import { UseEuiTheme } from '../../../services';
 
-export const popoverArrowSize = 'base';
-
 export const euiPopoverArrowStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme, highContrastMode, colorMode } = euiThemeContext;
   const hasBorder = highContrastMode || colorMode === 'DARK';
 
-  const arrowSize = euiTheme.size[popoverArrowSize];
+  const arrowSize = euiTheme.size.base;
   const arrowOffset = mathWithUnits(arrowSize, (x) => x / -2);
   const arrowBorderRadius = mathWithUnits(
     euiTheme.border.radius.small,
@@ -28,6 +26,12 @@ export const euiPopoverArrowStyles = (euiThemeContext: UseEuiTheme) => {
   );
 
   return {
+    // Wrapper
+    euiPopoverArrowWrapper: css`
+      position: absolute;
+      ${logicalSizeCSS(arrowSize)}
+    `,
+
     // Base
     euiPopoverArrow: css`
       position: absolute;
