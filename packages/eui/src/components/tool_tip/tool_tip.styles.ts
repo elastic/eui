@@ -59,18 +59,24 @@ const euiToolTipAnimationHorizontal = (size: string) => keyframes`
 
 export const euiToolTipStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme, colorMode, highContrastMode } = euiThemeContext;
+
   const hasShadow = !highContrastMode;
-  const hasBorder = highContrastMode || colorMode === 'DARK';
+  const hasVisibleBorder = highContrastMode || colorMode === 'DARK';
   const animationTiming = `${euiTheme.animation.slow} ease-out 0s forwards`;
-  // Shift arrow 1px more than half its size to account for border radius
+
   const arrowSize = euiTheme.size.m;
-  const arrowPlusSize = mathWithUnits(arrowSize, (x) => (x / 2 + 1) * -1);
-  const arrowMinusSize = mathWithUnits(arrowSize, (x) => (x / 2 - 1) * -1);
+  const arrowOffset = mathWithUnits(arrowSize, (x) => x / -2);
+  const arrowBorderRadius = mathWithUnits(
+    euiTheme.border.radius.small,
+    (x) => x / 2
+  );
+
   return {
     // Base
     euiToolTip: css`
       ${hasShadow ? euiShadow(euiThemeContext) : ''}
-      ${hasBorder ? `border: ${euiTheme.border.thin};` : ''}
+      border: ${euiTheme.border.width.thin} solid
+        ${hasVisibleBorder ? euiTheme.border.color : 'transparent'};
       border-radius: ${euiTheme.border.radius.medium};
       background-color: ${euiToolTipBackgroundColor(euiTheme, colorMode)};
       color: ${euiTheme.colors.ghost};
@@ -119,30 +125,31 @@ export const euiToolTipStyles = (euiThemeContext: UseEuiTheme) => {
     euiToolTip__arrow: css`
       content: '';
       position: absolute;
+      ${logicalSizeCSS(arrowSize)}
+      background-color: inherit;
+      border: inherit;
+      border-radius: ${arrowBorderRadius};
+      clip-path: polygon(0 0, 100% 100%, 0 100%);
       transform-origin: center;
-      border-radius: ${mathWithUnits(
-        euiTheme.border.radius.small,
-        (x) => x / 2
-      )};
-      background-color: ${euiToolTipBackgroundColor(euiTheme, colorMode)};
-      ${logicalSizeCSS(arrowSize, arrowSize)}
     `,
     arrowPositions: {
       top: css`
-        transform: translateY(${arrowPlusSize}) rotateZ(45deg);
-        ${hasBorder ? _arrowBorder(euiThemeContext, ['bottom', 'right']) : ''}
+        transform: rotate(-45deg);
+        ${logicalCSS('margin-top', arrowOffset)}
       `,
       bottom: css`
-        transform: translateY(${arrowMinusSize}) rotateZ(45deg);
-        ${hasBorder ? _arrowBorder(euiThemeContext, ['top', 'left']) : ''}
+        ${logicalCSS('bottom', 0)}
+        transform: rotate(135deg);
+        ${logicalCSS('margin-bottom', arrowOffset)}
       `,
       left: css`
-        transform: translateX(${arrowPlusSize}) rotateZ(45deg);
-        ${hasBorder ? _arrowBorder(euiThemeContext, ['top', 'right']) : ''}
+        transform: rotate(-135deg);
+        ${logicalCSS('margin-left', arrowOffset)}
       `,
       right: css`
-        transform: translateX(${arrowMinusSize}) rotateZ(45deg);
-        ${hasBorder ? _arrowBorder(euiThemeContext, ['bottom', 'left']) : ''}
+        ${logicalCSS('right', 0)}
+        transform: rotate(45deg);
+        ${logicalCSS('margin-right', arrowOffset)}
       `,
     },
     // Title
@@ -159,15 +166,6 @@ export const euiToolTipStyles = (euiThemeContext: UseEuiTheme) => {
       ${logicalCSS('margin-bottom', euiTheme.size.xs)}
     `,
   };
-};
-
-const _arrowBorder = (
-  { euiTheme }: UseEuiTheme,
-  sides: Array<'top' | 'bottom' | 'left' | 'right'>
-) => {
-  return sides
-    .map((side) => logicalCSS(`border-${side}`, euiTheme.border.thin))
-    .join('\n');
 };
 
 export const euiToolTipAnchorStyles = () => ({

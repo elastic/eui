@@ -70,13 +70,13 @@ exports[`EuiPopover props arrowChildren is rendered 1`] = `
         data-popover-open="true"
         data-popover-panel="true"
         role="dialog"
-        style="top: 16px; left: -22px; will-change: transform, opacity; z-index: 2000;"
+        style="top: 16px; left: -18px; will-change: transform, opacity; z-index: 2000;"
         tabindex="0"
       >
         <div
           class="euiPopover__arrow emotion-euiPopoverArrow-bottom"
           data-popover-arrow="bottom"
-          style="left: 10px; top: 0px;"
+          style="left: 9px; bottom: 100%;"
         >
           <span />
         </div>
@@ -122,13 +122,13 @@ exports[`EuiPopover props buffer 1`] = `
         data-popover-open="true"
         data-popover-panel="true"
         role="dialog"
-        style="top: 16px; left: -22px; will-change: transform, opacity; z-index: 2000;"
+        style="top: 16px; left: -18px; will-change: transform, opacity; z-index: 2000;"
         tabindex="0"
       >
         <div
           class="euiPopover__arrow emotion-euiPopoverArrow-bottom"
           data-popover-arrow="bottom"
-          style="left: 10px; top: 0px;"
+          style="left: 9px; bottom: 100%;"
         />
         <p
           class="emotion-euiScreenReaderOnly"
@@ -172,13 +172,13 @@ exports[`EuiPopover props buffer for all sides 1`] = `
         data-popover-open="true"
         data-popover-panel="true"
         role="dialog"
-        style="top: 16px; left: -22px; will-change: transform, opacity; z-index: 2000;"
+        style="top: 16px; left: -18px; will-change: transform, opacity; z-index: 2000;"
         tabindex="0"
       >
         <div
           class="euiPopover__arrow emotion-euiPopoverArrow-bottom"
           data-popover-arrow="bottom"
-          style="left: 10px; top: 0px;"
+          style="left: 9px; bottom: 100%;"
         />
         <p
           class="emotion-euiScreenReaderOnly"
@@ -231,13 +231,13 @@ exports[`EuiPopover props focusTrapProps is rendered 1`] = `
         data-popover-open="true"
         data-popover-panel="true"
         role="dialog"
-        style="top: 16px; left: -22px; will-change: transform, opacity; z-index: 2000;"
+        style="top: 16px; left: -18px; will-change: transform, opacity; z-index: 2000;"
         tabindex="0"
       >
         <div
           class="euiPopover__arrow emotion-euiPopoverArrow-bottom"
           data-popover-arrow="bottom"
-          style="left: 10px; top: 0px;"
+          style="left: 9px; bottom: 100%;"
         />
         <p
           class="emotion-euiScreenReaderOnly"
@@ -290,13 +290,13 @@ exports[`EuiPopover props isOpen renders true 1`] = `
         data-popover-open="true"
         data-popover-panel="true"
         role="dialog"
-        style="top: 16px; left: -22px; will-change: transform, opacity; z-index: 2000;"
+        style="top: 16px; left: -18px; will-change: transform, opacity; z-index: 2000;"
         tabindex="0"
       >
         <div
           class="euiPopover__arrow emotion-euiPopoverArrow-bottom"
           data-popover-arrow="bottom"
-          style="left: 10px; top: 0px;"
+          style="left: 9px; bottom: 100%;"
         />
         <p
           class="emotion-euiScreenReaderOnly"
@@ -340,13 +340,13 @@ exports[`EuiPopover props ownFocus defaults to true 1`] = `
         data-popover-open="true"
         data-popover-panel="true"
         role="dialog"
-        style="top: 16px; left: -22px; will-change: transform, opacity; z-index: 2000;"
+        style="top: 16px; left: -18px; will-change: transform, opacity; z-index: 2000;"
         tabindex="0"
       >
         <div
           class="euiPopover__arrow emotion-euiPopoverArrow-bottom"
           data-popover-arrow="bottom"
-          style="left: 10px; top: 0px;"
+          style="left: 9px; bottom: 100%;"
         />
         <p
           class="emotion-euiScreenReaderOnly"
@@ -388,12 +388,12 @@ exports[`EuiPopover props ownFocus renders false 1`] = `
         data-popover-open="true"
         data-popover-panel="true"
         role="dialog"
-        style="top: 16px; left: -22px; will-change: transform, opacity; z-index: 2000;"
+        style="top: 16px; left: -18px; will-change: transform, opacity; z-index: 2000;"
       >
         <div
           class="euiPopover__arrow emotion-euiPopoverArrow-bottom"
           data-popover-arrow="bottom"
-          style="left: 10px; top: 0px;"
+          style="left: 9px; bottom: 100%;"
         />
         <div />
       </div>
@@ -431,13 +431,13 @@ exports[`EuiPopover props panelClassName is rendered 1`] = `
         data-popover-open="true"
         data-popover-panel="true"
         role="dialog"
-        style="top: 16px; left: -22px; will-change: transform, opacity; z-index: 2000;"
+        style="top: 16px; left: -18px; will-change: transform, opacity; z-index: 2000;"
         tabindex="0"
       >
         <div
           class="euiPopover__arrow emotion-euiPopoverArrow-bottom"
           data-popover-arrow="bottom"
-          style="left: 10px; top: 0px;"
+          style="left: 9px; bottom: 100%;"
         />
         <p
           class="emotion-euiScreenReaderOnly"
@@ -481,13 +481,13 @@ exports[`EuiPopover props panelPaddingSize is rendered 1`] = `
         data-popover-open="true"
         data-popover-panel="true"
         role="dialog"
-        style="top: 16px; left: -22px; will-change: transform, opacity; z-index: 2000;"
+        style="top: 16px; left: -18px; will-change: transform, opacity; z-index: 2000;"
         tabindex="0"
       >
         <div
           class="euiPopover__arrow emotion-euiPopoverArrow-bottom"
           data-popover-arrow="bottom"
-          style="left: 10px; top: 0px;"
+          style="left: 9px; bottom: 100%;"
         />
         <p
           class="emotion-euiScreenReaderOnly"
@@ -532,13 +532,13 @@ exports[`EuiPopover props panelProps is rendered 1`] = `
         data-popover-panel="true"
         data-test-subj="test subject string"
         role="dialog"
-        style="top: 16px; left: -22px; will-change: transform, opacity; z-index: 2000;"
+        style="top: 16px; left: -18px; will-change: transform, opacity; z-index: 2000;"
         tabindex="0"
       >
         <div
           class="euiPopover__arrow emotion-euiPopoverArrow-bottom"
           data-popover-arrow="bottom"
-          style="left: 10px; top: 0px;"
+          style="left: 9px; bottom: 100%;"
         />
         <p
           class="emotion-euiScreenReaderOnly"
@@ -581,12 +581,12 @@ exports[`EuiPopover props popoverScreenReaderText 1`] = `
         data-popover-open="true"
         data-popover-panel="true"
         role="dialog"
-        style="top: 16px; left: -22px; will-change: transform, opacity; z-index: 2000;"
+        style="top: 16px; left: -18px; will-change: transform, opacity; z-index: 2000;"
       >
         <div
           class="euiPopover__arrow emotion-euiPopoverArrow-bottom"
           data-popover-arrow="bottom"
-          style="left: 10px; top: 0px;"
+          style="left: 9px; bottom: 100%;"
         />
         <p
           class="emotion-euiScreenReaderOnly"

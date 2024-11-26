@@ -14,88 +14,53 @@ import {
 } from '../../../global_styling';
 import { UseEuiTheme } from '../../../services';
 
-export const popoverArrowSize = 'm';
+export const popoverArrowSize = 'base';
 
 export const euiPopoverArrowStyles = (euiThemeContext: UseEuiTheme) => {
-  const { euiTheme, highContrastMode } = euiThemeContext;
+  const { euiTheme, highContrastMode, colorMode } = euiThemeContext;
+  const hasBorder = highContrastMode || colorMode === 'DARK';
 
   const arrowSize = euiTheme.size[popoverArrowSize];
-  const arrowDoubleSize = mathWithUnits(arrowSize, (x) => x * 2);
-
-  const highContrastPseudoElement = (css: string) => {
-    return highContrastMode ? `&::before {${css}}` : '';
-  };
-  const highContrastBorderAffordance = mathWithUnits(
-    euiTheme.border.width.thin,
-    (x) => x * -2
+  const arrowOffset = mathWithUnits(arrowSize, (x) => x / -2);
+  const arrowBorderRadius = mathWithUnits(
+    euiTheme.border.radius.small,
+    (x) => x / 2
   );
 
   return {
     // Base
     euiPopoverArrow: css`
       position: absolute;
+      ${logicalSizeCSS(arrowSize)}
       background-color: var(--euiPopoverBackgroundColor);
-
-      ${highContrastPseudoElement(`
-        content: '';
-        position: absolute;
-        background-color: inherit;
-        border: ${euiTheme.border.thin};
-        transform: rotate(45deg);
-        transform-origin: top;
-        ${logicalSizeCSS(mathWithUnits(arrowDoubleSize, (x) => x * 0.75))}
-      `)}
+      ${hasBorder ? `border: ${euiTheme.border.thin};` : ''}
+      border-radius: ${arrowBorderRadius};
+      /* Use clip-path to ensure that arrows don't overlap into popover content */
+      clip-path: polygon(0 0, 100% 100%, 0 100%);
+      transform-origin: center;
     `,
 
     // POSITIONS
     top: css`
-      clip-path: polygon(0 0, 50% 100%, 100% 0);
-      ${logicalSizeCSS(arrowDoubleSize, arrowSize)}
-      ${logicalCSS(
-        'margin-top',
-        highContrastMode ? highContrastBorderAffordance : 0
-      )}
-
-      ${highContrastPseudoElement(`
-        ${logicalCSS('top', '-60%')}
-        ${logicalCSS('left', '38%')}
-      `)}
+      ${logicalCSS('margin-top', arrowOffset)}
+      transform: rotate(-45deg);
     `,
 
     bottom: css`
-      clip-path: polygon(0 100%, 50% 0, 100% 100%);
-      ${logicalSizeCSS(arrowDoubleSize, arrowSize)}
-      ${logicalCSS('margin-top', `-${arrowSize}`)}
-
-      ${highContrastPseudoElement(`
-        ${logicalCSS('top', '54%')}
-        ${logicalCSS('left', '38%')}
-      `)}
+      ${logicalCSS('bottom', 0)}
+      ${logicalCSS('margin-bottom', arrowOffset)}
+      transform: rotate(135deg);
     `,
 
     left: css`
-      clip-path: polygon(0 0, 100% 50%, 0 100%);
-      ${logicalSizeCSS(arrowSize, arrowDoubleSize)}
-      ${logicalCSS(
-        'margin-left',
-        highContrastMode ? highContrastBorderAffordance : 0
-      )}
-
-      ${highContrastPseudoElement(`
-        ${logicalCSS('top', '24%')}
-        ${logicalCSS('left', '-30%')}
-      `)}
+      ${logicalCSS('margin-left', arrowOffset)}
+      transform: rotate(-135deg);
     `,
 
     right: css`
-      clip-path: polygon(100% 0, 0 50%, 100% 100%);
-      ${logicalSizeCSS(arrowSize, arrowDoubleSize)}
-      ${logicalCSS('margin-left', `-${arrowSize}`)}
-
-      ${highContrastPseudoElement(`
-        ${logicalCSS('top', '24%')}
-        ${logicalCSS('left', '90%')}
-      `)}
+      ${logicalCSS('right', 0)}
+      ${logicalCSS('margin-right', arrowOffset)}
+      transform: rotate(45deg);
     `,
   };
 };
