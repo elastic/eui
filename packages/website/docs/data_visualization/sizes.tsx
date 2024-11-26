@@ -34,7 +34,7 @@ import {
   type WithEuiThemeProps,
 } from '@elastic/eui';
 
-import { MultiChartCard, ChartCard } from './shared';
+import { MultiChartCard, ChartCard } from './types/shared';
 
 import { TIME_DATA, TIME_DATA_2 } from './data';
 

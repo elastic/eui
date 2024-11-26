@@ -1,12 +1,7 @@
 import React from 'react';
-import {
-  EuiFlexGroup,
-  EuiFlexItem,
-  EuiPanel,
-  EuiText,
-} from '@elastic/eui';
+import { EuiFlexGroup, EuiFlexItem, EuiPanel, EuiText } from '@elastic/eui';
 import { Chart, Metric, Settings } from '@elastic/charts';
-import { useChartBaseTheme } from './use_chart_base_theme';
+import { useChartBaseTheme } from '../use_chart_base_theme';
 
 export const MetricChartNoData = () => {
   const chartBaseTheme = useChartBaseTheme();

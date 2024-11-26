@@ -22,7 +22,8 @@ import {
   dateFormatAliases,
 } from '@elastic/eui';
 
-import { TIME_DATA, TIME_DATA_2 } from './data';
+import { TIME_DATA, TIME_DATA_2 } from '../data';
+import { useChartBaseTheme } from '../use_chart_base_theme';
 import {
   ChartTypeCard,
   CHART_COMPONENTS,
@@ -30,7 +31,6 @@ import {
   MultiChartCard,
   ChartCard,
 } from './shared';
-import { useChartBaseTheme } from './use_chart_base_theme';
 
 export const TimeChart = () => {
   const chartBaseTheme = useChartBaseTheme();

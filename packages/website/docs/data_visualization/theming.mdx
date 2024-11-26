@@ -1,20 +1,20 @@
 ---
-slug: /elastic-charts/creating-charts
-id: elastic_charts_creating_charts
+title: Theming
+slug: /charts/theming
+id: elastic_charts_theming
+sidebar_position: 6
 ---
 
-# Creating charts
+import VersionBadge from './version_badge';
+
+<VersionBadge />
+
+# Theming
 
 ```mdx-code-block
 import { useChartBaseTheme } from './use_chart_base_theme';
 import * as ElasticCharts from '@elastic/charts';
 ```
-
-<Badge>External library: @elastic/charts v64.1.0</Badge>
-
-EUI provides utilities and documentation for working with [Elastic Charts](https://elastic.github.io/elastic-charts), an open source charting library also created and maintained by Elastic.
-
-## Theming via EUI
 
 EUI provides both light and dark theme files to use in tandem with Elastic Charts. Simply import these objects from the themes folder and pass the correct one to the Settings.theme property.
 
@@ -194,7 +194,7 @@ When coloring for sequential series data (not categorical), rely on conventions.
 Whan signifying quantities, group values into intervals instead of a continuous gradient scale.
 
 ```mdx-code-block
-import { Categorical } from './categorical';
+import { Categorical } from './types/categorical';
 ```
 
 <Categorical />

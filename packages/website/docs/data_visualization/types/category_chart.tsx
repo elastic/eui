@@ -15,7 +15,8 @@ import {
   EuiButton,
 } from '@elastic/eui';
 
-import { SIMPLE_GITHUB_DATASET, GITHUB_DATASET } from './data';
+import { useChartBaseTheme } from '../use_chart_base_theme';
+import { SIMPLE_GITHUB_DATASET, GITHUB_DATASET } from '../data';
 import {
   ChartTypeCard,
   MultiChartCard,
@@ -23,7 +24,6 @@ import {
   type ChartType,
   ChartCard,
 } from './shared';
-import { useChartBaseTheme } from './use_chart_base_theme';
 
 export const CategoryChart = () => {
   const chartBaseTheme = useChartBaseTheme();
