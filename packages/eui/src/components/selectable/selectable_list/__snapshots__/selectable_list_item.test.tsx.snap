@@ -557,7 +557,7 @@ exports[`EuiSelectableListItem props tooltip behavior on mouseover 1`] = `
       </div>
       <div
         class="euiToolTip__arrow emotion-euiToolTip__arrow-top"
-        style="left: 4px; top: 0px;"
+        style="left: 3px; top: 100%;"
       />
       <div>
         I am a tooltip!
@@ -637,7 +637,7 @@ exports[`EuiSelectableListItem props tooltip behavior when isFocused 1`] = `
       </div>
       <div
         class="euiToolTip__arrow emotion-euiToolTip__arrow-top"
-        style="left: 4px; top: 0px;"
+        style="left: 3px; top: 100%;"
       />
       <div>
         I am a tooltip!
