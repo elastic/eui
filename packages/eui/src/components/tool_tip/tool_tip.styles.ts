@@ -7,14 +7,9 @@
  */
 
 import { css, keyframes } from '@emotion/react';
-import {
-  logicalCSS,
-  logicalSizeCSS,
-  euiFontSize,
-  euiCanAnimate,
-  mathWithUnits,
-} from '../../global_styling';
+import { logicalCSS, euiFontSize, euiCanAnimate } from '../../global_styling';
 import { COLOR_MODES_STANDARD, UseEuiTheme, tint, shade } from '../../services';
+import { _popoverArrowStyles } from '../../services/popover';
 import { euiShadow } from '../../themes/amsterdam';
 
 export const euiToolTipBackgroundColor = (
@@ -65,11 +60,7 @@ export const euiToolTipStyles = (euiThemeContext: UseEuiTheme) => {
   const animationTiming = `${euiTheme.animation.slow} ease-out 0s forwards`;
 
   const arrowSize = euiTheme.size.m;
-  const arrowOffset = mathWithUnits(arrowSize, (x) => x / -2);
-  const arrowBorderRadius = mathWithUnits(
-    euiTheme.border.radius.small,
-    (x) => x / 2
-  );
+  const arrowStyles = _popoverArrowStyles(euiThemeContext, arrowSize);
 
   return {
     // Base
@@ -123,35 +114,11 @@ export const euiToolTipStyles = (euiThemeContext: UseEuiTheme) => {
     `,
     // Arrow
     euiToolTip__arrow: css`
-      content: '';
-      position: absolute;
-      ${logicalSizeCSS(arrowSize)}
+      ${arrowStyles._arrowStyles}
       background-color: inherit;
       border: inherit;
-      border-radius: ${arrowBorderRadius};
-      clip-path: polygon(0 0, 100% 100%, 0 100%);
-      transform-origin: center;
     `,
-    arrowPositions: {
-      top: css`
-        transform: rotate(-45deg);
-        ${logicalCSS('margin-top', arrowOffset)}
-      `,
-      bottom: css`
-        ${logicalCSS('bottom', 0)}
-        transform: rotate(135deg);
-        ${logicalCSS('margin-bottom', arrowOffset)}
-      `,
-      left: css`
-        transform: rotate(-135deg);
-        ${logicalCSS('margin-left', arrowOffset)}
-      `,
-      right: css`
-        ${logicalCSS('right', 0)}
-        transform: rotate(45deg);
-        ${logicalCSS('margin-right', arrowOffset)}
-      `,
-    },
+    arrowPositions: arrowStyles.positions,
     // Title
     euiToolTip__title: css`
       font-weight: ${euiTheme.font.weight.bold};

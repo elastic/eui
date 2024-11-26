@@ -7,11 +7,8 @@
  */
 
 import { css } from '@emotion/react';
-import {
-  logicalCSS,
-  logicalSizeCSS,
-  mathWithUnits,
-} from '../../../global_styling';
+import { logicalSizeCSS } from '../../../global_styling';
+import { _popoverArrowStyles } from '../../../services/popover';
 import { UseEuiTheme } from '../../../services';
 
 export const euiPopoverArrowStyles = (euiThemeContext: UseEuiTheme) => {
@@ -19,11 +16,7 @@ export const euiPopoverArrowStyles = (euiThemeContext: UseEuiTheme) => {
   const hasBorder = highContrastMode || colorMode === 'DARK';
 
   const arrowSize = euiTheme.size.base;
-  const arrowOffset = mathWithUnits(arrowSize, (x) => x / -2);
-  const arrowBorderRadius = mathWithUnits(
-    euiTheme.border.radius.small,
-    (x) => x / 2
-  );
+  const arrowStyles = _popoverArrowStyles(euiThemeContext, arrowSize);
 
   return {
     // Wrapper
@@ -34,37 +27,11 @@ export const euiPopoverArrowStyles = (euiThemeContext: UseEuiTheme) => {
 
     // Base
     euiPopoverArrow: css`
-      position: absolute;
-      ${logicalSizeCSS(arrowSize)}
+      ${arrowStyles._arrowStyles}
       background-color: var(--euiPopoverBackgroundColor);
       ${hasBorder ? `border: ${euiTheme.border.thin};` : ''}
-      border-radius: ${arrowBorderRadius};
-      /* Use clip-path to ensure that arrows don't overlap into popover content */
-      clip-path: polygon(0 0, 100% 100%, 0 100%);
-      transform-origin: center;
     `,
 
-    // POSITIONS
-    top: css`
-      ${logicalCSS('margin-top', arrowOffset)}
-      transform: rotate(-45deg);
-    `,
-
-    bottom: css`
-      ${logicalCSS('bottom', 0)}
-      ${logicalCSS('margin-bottom', arrowOffset)}
-      transform: rotate(135deg);
-    `,
-
-    left: css`
-      ${logicalCSS('margin-left', arrowOffset)}
-      transform: rotate(-135deg);
-    `,
-
-    right: css`
-      ${logicalCSS('right', 0)}
-      ${logicalCSS('margin-right', arrowOffset)}
-      transform: rotate(45deg);
-    `,
+    ...arrowStyles.positions,
   };
 };
