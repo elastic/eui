@@ -26,11 +26,13 @@ export const euiResizablePanelStyles = {
 export const euiResizablePanelContentStyles = (
   euiThemeContext: UseEuiTheme
 ) => {
-  const { euiTheme } = euiThemeContext;
+  const { euiTheme, highContrastMode } = euiThemeContext;
 
   return {
     euiResizablePanel__content: css`
       ${logicalCSS('height', '100%')}
+      /* Disable default high contrast borders - they make the resize indicators too hard to see */
+      ${highContrastMode ? 'border: none;' : ''}
     `,
     scrollable: css`
       ${euiScrollBarStyles(euiThemeContext)}

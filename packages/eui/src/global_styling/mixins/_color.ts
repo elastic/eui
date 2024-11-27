@@ -11,6 +11,7 @@ import { UseEuiTheme, useEuiMemoizedStyles } from '../../services';
 import {
   _EuiThemeBackgroundColors,
   _EuiThemeBorderColors,
+  _EuiThemeBrandTextColors,
   _EuiThemeTransparentBackgroundColors,
   getTokenName,
 } from '@elastic/eui-theme-common';
@@ -144,19 +145,28 @@ export const useEuiBackgroundColorCSS = () =>
  */
 
 export const euiBorderColor = (
-  { euiTheme }: UseEuiTheme,
+  { euiTheme, highContrastMode }: UseEuiTheme,
   color: _EuiBackgroundColor
 ) => {
   switch (color) {
     case 'transparent':
       return euiTheme.border.color;
     default: {
+      const baseBorderType = ['subdued', 'plain'].includes(color);
+
+      const highContrastTokenName = getTokenName(
+        'text',
+        color
+      ) as keyof _EuiThemeBrandTextColors;
+
       const tokenName = getTokenName(
         'borderBase',
         color
       ) as keyof _EuiThemeBorderColors;
 
-      return euiTheme.colors[tokenName];
+      return highContrastMode && !baseBorderType
+        ? euiTheme.colors[highContrastTokenName]
+        : euiTheme.colors[tokenName];
     }
   }
 };

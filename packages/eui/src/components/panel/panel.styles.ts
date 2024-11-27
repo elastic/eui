@@ -15,6 +15,7 @@ import {
   logicalCSS,
   logicalTextAlignCSS,
 } from '../../global_styling';
+import { highContrastModeStyles } from '../../global_styling/functions/high_contrast';
 
 export const euiPanelBorderStyles = (
   euiThemeContext: UseEuiTheme,
@@ -53,7 +54,9 @@ export const euiPanelBorderStyles = (
 };
 
 export const euiPanelStyles = (euiThemeContext: UseEuiTheme) => {
-  const { euiTheme } = euiThemeContext;
+  const { euiTheme, highContrastMode } = euiThemeContext;
+
+  const hasShadow = !highContrastMode;
 
   return {
     // Base
@@ -67,7 +70,7 @@ export const euiPanelStyles = (euiThemeContext: UseEuiTheme) => {
     `,
 
     hasShadow: css`
-      ${euiShadow(euiThemeContext, 'm')}
+      ${hasShadow && euiShadow(euiThemeContext, 'm')}
 
       ${euiPanelBorderStyles(euiThemeContext, {
         hasFloatingBorder: false,
@@ -106,7 +109,13 @@ export const euiPanelStyles = (euiThemeContext: UseEuiTheme) => {
 
       &:hover,
       &:focus {
-        ${euiShadow(euiThemeContext, 'l')}
+        ${highContrastModeStyles(euiThemeContext, {
+          none: euiShadow(euiThemeContext, 'l'),
+          // Windows high contrast themes ignore box-shadows - use a filter workaround instead
+          preferred: `
+            filter: drop-shadow(0 ${euiTheme.border.width.thick} 0 ${euiTheme.border.color});
+          `,
+        })}
         transform: translateY(-2px);
         cursor: pointer;
       }
