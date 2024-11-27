@@ -6,7 +6,12 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent, useState, useCallback } from 'react';
+import React, {
+  FunctionComponent,
+  MouseEvent,
+  useState,
+  useCallback,
+} from 'react';
 
 import { useEuiMemoizedStyles } from '../../../../services';
 
@@ -19,7 +24,6 @@ import {
 import {
   EuiCollapsibleNavSubItem,
   EuiCollapsibleNavItemProps,
-  EuiCollapsibleNavSubItemProps,
 } from '../collapsible_nav_item';
 
 import { EuiCollapsedNavButton } from './collapsed_nav_button';
@@ -49,42 +53,16 @@ export const EuiCollapsedNavPopover: FunctionComponent<
   );
   const closePopover = useCallback(() => setIsPopoverOpen(false), []);
 
-  const closePopoverAndClearFocus = useCallback(() => {
-    closePopover();
+  const onSubItemClick = useCallback(
+    (event: MouseEvent) => {
+      if (event.defaultPrevented) return;
+      if (!(event.target instanceof HTMLElement)) return;
 
-    setTimeout(() => {
-      if (document.activeElement instanceof HTMLElement) {
-        // We don't want the tooltip to appear after closing the popover
-        document.activeElement.blur();
-      }
-    }, 10);
-  }, [closePopover]);
-
-  const withOnClick = (
-    item: EuiCollapsibleNavSubItemProps
-  ): EuiCollapsibleNavSubItemProps => {
-    if (item.renderItem) {
-      return item;
-    }
-
-    const updatedItem: EuiCollapsibleNavSubItemProps = {
-      ...item,
-    };
-
-    updatedItem.items = item.items ? item.items?.map(withOnClick) : undefined;
-
-    if (!updatedItem.items) {
-      // Only override the onClick if there are no sub-items (leaf node)
-      updatedItem.onClick = (e: React.MouseEvent<HTMLElement>) => {
-        if (item.onClick) {
-          item.onClick(e);
-        }
-        closePopoverAndClearFocus();
-      };
-    }
-
-    return updatedItem;
-  };
+      const isNavLink = event.target.closest('.euiCollapsibleNavLink.euiLink');
+      if (isNavLink) closePopover();
+    },
+    [closePopover]
+  );
 
   return (
     <EuiPopover
@@ -118,13 +96,9 @@ export const EuiCollapsedNavPopover: FunctionComponent<
           {title}
         </TitleElement>
       </EuiPopoverTitle>
-      <div css={styles.euiCollapsedNavPopover__items}>
+      <div css={styles.euiCollapsedNavPopover__items} onClick={onSubItemClick}>
         {items!.map((item, index) => (
-          <EuiCollapsibleNavSubItem
-            key={index}
-            closePopover={closePopoverAndClearFocus}
-            {...withOnClick(item)}
-          />
+          <EuiCollapsibleNavSubItem key={index} {...item} />
         ))}
       </div>
     </EuiPopover>

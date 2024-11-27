@@ -48,25 +48,43 @@ describe('EuiCollapsedNavPopover', () => {
   });
 
   it('closes the popover when clicking on a link', async () => {
-    const onClick = jest.fn();
     const { getByTestSubject } = render(
       <EuiCollapsedNavPopover
         {...requiredProps}
         title="Item"
         titleElement="h3"
         items={[
-          { title: 'Sub-item A', onClick, 'data-test-subj': 'A' },
-          { title: 'Sub-item B', href: '#', 'data-test-subj': 'B' },
+          { title: 'Not a link', 'data-test-subj': 'A' },
+          { title: 'Nav link', href: '#', 'data-test-subj': 'B' },
         ]}
       />
     );
     fireEvent.click(getByTestSubject('euiCollapsedNavButton'));
     await waitForEuiPopoverOpen();
 
-    expect(onClick).not.toHaveBeenCalled();
     fireEvent.click(getByTestSubject('A'));
+    await waitForEuiPopoverOpen(); // popover should not close for non-links
 
+    fireEvent.click(getByTestSubject('B'));
     await waitForEuiPopoverClose(); // popover should close
-    expect(onClick).toHaveBeenCalledTimes(1); // custom onClick should be called
+  });
+
+  it('does not close the popover if the link prevents default', async () => {
+    const onClick = jest.fn((event) => event.preventDefault());
+
+    const { getByTestSubject } = render(
+      <EuiCollapsedNavPopover
+        {...requiredProps}
+        title="Item"
+        titleElement="h3"
+        items={[{ title: 'Link', onClick, 'data-test-subj': 'A' }]}
+      />
+    );
+    fireEvent.click(getByTestSubject('euiCollapsedNavButton'));
+    await waitForEuiPopoverOpen();
+
+    fireEvent.click(getByTestSubject('A'));
+    expect(onClick).toHaveBeenCalledTimes(1);
+    await waitForEuiPopoverOpen(); // popover should not have closed
   });
 });
