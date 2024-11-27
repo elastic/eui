@@ -9,6 +9,7 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 
+import { LOKI_SELECTORS } from '../../../.storybook/loki';
 import { PADDING_SIZES } from '../../global_styling';
 import { EuiButton } from '../button';
 import { EuiPopover } from './popover';
@@ -29,6 +30,9 @@ const meta: Meta<EuiPopoverTitleProps> = {
       control: 'select',
       options: [undefined, ...PADDING_SIZES],
     },
+  },
+  parameters: {
+    loki: { chromeSelector: LOKI_SELECTORS.portal },
   },
 };
 
