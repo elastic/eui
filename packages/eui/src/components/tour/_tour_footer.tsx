@@ -8,7 +8,7 @@
 
 import React, { FunctionComponent, useMemo, memo } from 'react';
 
-import { useEuiTheme } from '../../services';
+import { useEuiMemoizedStyles } from '../../services';
 import { EuiI18n } from '../i18n';
 import { EuiPopoverFooter } from '../popover';
 import { EuiButtonEmpty } from '../button';
@@ -19,7 +19,6 @@ import {
   type EuiTourStepStatus,
 } from './tour_step_indicator';
 import type { EuiTourStepProps } from './tour_step';
-
 import { euiTourFooterStyles } from './_tour_footer.styles';
 
 type EuiTourFooterProps = Pick<
@@ -29,8 +28,7 @@ type EuiTourFooterProps = Pick<
 
 export const EuiTourFooter: FunctionComponent<EuiTourFooterProps> = memo(
   ({ footerAction, step, stepsTotal, onFinish }) => {
-    const euiTheme = useEuiTheme();
-    const footerStyles = euiTourFooterStyles(euiTheme);
+    const footerStyles = useEuiMemoizedStyles(euiTourFooterStyles);
 
     const customFooterAction = useMemo(() => {
       if (!footerAction) return null;

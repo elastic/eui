@@ -1,0 +1,27 @@
+---
+slug: /display/badge/notification
+id: display_badge_notification
+---
+
+# Notification badge
+
+**EuiNotificationBadge** should be used to showcase the number of notifications, alerts, or hidden selections. This badge type is commonly used in the [**EuiHeader**](/docs/layout/header) and [**EuiFilterButton**](/docs/forms/filter-group) components.
+
+```tsx interactive
+import React from 'react';
+import { EuiFlexGroup, EuiNotificationBadge } from '@elastic/eui';
+
+export default () => (
+  <EuiFlexGroup responsive={false} gutterSize="s">
+    <EuiNotificationBadge>1</EuiNotificationBadge>
+    <EuiNotificationBadge color="success">2</EuiNotificationBadge>
+    <EuiNotificationBadge color="subdued">3</EuiNotificationBadge>
+  </EuiFlexGroup>
+);
+```
+
+## Props
+
+import docgen from '@elastic/eui-docgen/dist/components/badge';
+
+<PropTable definition={docgen.EuiNotificationBadge} />

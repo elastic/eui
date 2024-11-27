@@ -160,6 +160,7 @@ exports[`SearchBar render - provided query, filters 1`] = `
         class="euiPopover emotion-euiPopover-inline-block"
       >
         <button
+          aria-label="Tag Selection"
           class="euiButtonEmpty euiFilterButton emotion-euiButtonDisplay-euiButtonEmpty-m-empty-text-euiFilterButton"
           type="button"
         >

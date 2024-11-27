@@ -43,7 +43,7 @@ const meta: Meta<EuiComboBoxProps<{}>> = {
     // Storybook is skipping the Pick<> props from EuiComboBoxList for some annoying reason
     onCreateOption: { control: 'boolean' }, // Set to a true/false for ease of testing
     customOptionText: { control: 'text' },
-    renderOption: { control: 'function' },
+    renderOption: { control: false }, // Storybook doesn't have a function control type
   },
   args: {
     // Pass options in by default for ease of testing

@@ -216,7 +216,6 @@ describe('EuiSearchBar', () => {
     it('has zero violations after filtering by Tags', () => {
       cy.get('button.euiButtonEmpty').last().focus();
       cy.realPress('Enter');
-      cy.realPress('Tab');
       cy.realPress('ArrowDown');
       cy.realPress('Enter');
       cy.realPress('Escape');

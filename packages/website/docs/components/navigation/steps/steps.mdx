@@ -1,0 +1,413 @@
+---
+slug: /navigation/steps
+id: navigation_steps
+---
+
+# Steps
+
+**EuiSteps** presents procedural content in a numbered outline format. It is best used when presenting instructional content that must be conducted in a particular order. It requires a `title` and `children` to be present and will automatically increment the step number based on the initial `firstStepNumber`.
+
+```tsx interactive
+import React from 'react';
+import { EuiCode, EuiSpacer, EuiSteps, EuiText } from '@elastic/eui';
+
+const firstSetOfSteps = [
+  {
+    title: 'Step 1',
+    children: (
+      <EuiText>
+        <p>Do this first</p>
+      </EuiText>
+    ),
+  },
+  {
+    title: 'Step 2',
+    children: (
+      <EuiText>
+        <p>Then this</p>
+      </EuiText>
+    ),
+  },
+];
+
+const nextSetOfSteps = [
+  {
+    title: 'Good step',
+    children: (
+      <EuiText>
+        <p>Do this first</p>
+      </EuiText>
+    ),
+  },
+  {
+    title: 'Better step',
+    children: (
+      <EuiText>
+        <p>Then this</p>
+      </EuiText>
+    ),
+  },
+];
+
+export default () => (
+  <>
+    <EuiSteps steps={firstSetOfSteps} />
+
+    <EuiSpacer size="m" />
+    <EuiText>
+      <p>
+        Set <EuiCode>firstStepNumber</EuiCode> to continue step numbering after
+        any type of break in the content
+      </p>
+    </EuiText>
+    <EuiSpacer size="m" />
+
+    <EuiSteps
+      firstStepNumber={firstSetOfSteps.length + 1}
+      steps={nextSetOfSteps}
+    />
+  </>
+);
+```
+
+## Complex steps
+
+If you need to call out a set of substeps that are not lines of code, most likely a `<ol/>`, wrap the block in a `<EuiSubSteps/>`.
+
+```tsx interactive
+import React from 'react';
+import {
+  EuiCode,
+  EuiSteps,
+  EuiText,
+  EuiCodeBlock,
+  EuiSubSteps,
+  EuiSpacer,
+} from '@elastic/eui';
+
+const steps = [
+  {
+    title: 'Step 1 has intro plus code snippet',
+    children: (
+      <>
+        <EuiText>
+          <p>Run this code snippet to install things.</p>
+        </EuiText>
+        <EuiSpacer />
+        <EuiCodeBlock language="bash">npm install</EuiCodeBlock>
+      </>
+    ),
+  },
+  {
+    title: 'Step 2 has sub steps',
+    children: (
+      <EuiText>
+        <p>
+          In order to complete this step, do the following things{' '}
+          <strong>in order</strong>.
+        </p>
+        <EuiSubSteps>
+          <ol>
+            <li>Do thing 1</li>
+            <li>Do thing 2</li>
+            <li>Do thing 3</li>
+          </ol>
+        </EuiSubSteps>
+        <p>Here are some bullet point reminders.</p>
+        <ul>
+          <li>Reminder 1</li>
+          <li>Reminder 2</li>
+          <li>Reminder 3</li>
+        </ul>
+      </EuiText>
+    ),
+  },
+  {
+    title: 'Step 3 has an intro and one line instruction',
+    children: (
+      <EuiText>
+        <p>
+          Now that you&apos;ve completed step 2, go find the{' '}
+          <EuiCode>thing</EuiCode>.
+        </p>
+        <p>
+          Go to <strong>Overview &gt;&gt; Endpoints</strong> note{' '}
+          <strong>Elasticsearch</strong> as <EuiCode>&lt;thing&gt;</EuiCode>.
+        </p>
+      </EuiText>
+    ),
+  },
+  {
+    title: 'The last step has two options',
+    children: (
+      <EuiText size="s">
+        <h3>
+          <strong>Option 1:</strong> If you have this type of instance
+        </h3>
+        <EuiSubSteps>
+          <ol>
+            <li>Do thing 1</li>
+            <li>Do thing 2</li>
+            <li>Do thing 3</li>
+          </ol>
+        </EuiSubSteps>
+        <h3>
+          <strong>Option 2:</strong> If you have the other type of instance
+        </h3>
+        <EuiSubSteps>
+          <ol>
+            <li>Do thing 1</li>
+            <li>Do thing 2</li>
+            <li>Do thing 3</li>
+          </ol>
+        </EuiSubSteps>
+      </EuiText>
+    ),
+  },
+];
+
+export default () => (
+  <div>
+    <EuiSteps headingElement="h2" steps={steps} />
+  </div>
+);
+```
+
+## Heading elements
+
+To aid with accessibility and hierarchical headings, you can and should pass in a heading element to use for each step title. The example below shows that the logical heading element should be an `h2`and therefore adds `headingElement="h2"` to the EuiSteps component.
+
+The style of the title will **not** be affected.
+
+```tsx interactive
+import React from 'react';
+import { EuiSteps, EuiTitle, EuiSpacer } from '@elastic/eui';
+
+const steps = [
+  {
+    title: 'Inspect me',
+    children: (
+      <EuiTitle size="xs">
+        <h3>Did you notice the step title is inside a Heading 2 element?</h3>
+      </EuiTitle>
+    ),
+  },
+];
+
+export default () => (
+  <>
+    <EuiTitle size="l">
+      <h1>Heading 1</h1>
+    </EuiTitle>
+
+    <EuiSpacer size="xl" />
+
+    <EuiSteps steps={steps} headingElement="h2" />
+  </>
+);
+```
+
+## Steps status
+
+Steps can optionally include `status` prop that will alter the look of the number prefix. The options are `incomplete`, `complete`, `warning`, `danger`, `disabled` and `loading`. This is used mostly as a final step when you need to make some sort of final check.
+
+```tsx interactive
+import React, { useState } from 'react';
+import {
+  EuiSpacer,
+  EuiSteps,
+  EuiStepStatus,
+  EuiButton,
+  EuiFlexGroup,
+  EuiFlexItem,
+} from '@elastic/eui';
+
+export default () => {
+  const [status, setStatus] = useState<EuiStepStatus>('incomplete');
+
+  let completeButton;
+  if (status !== 'complete') {
+    completeButton = (
+      <EuiButton onClick={() => setStatus('complete')}>
+        You complete me
+      </EuiButton>
+    );
+  } else {
+    completeButton = (
+      <EuiButton onClick={() => setStatus('incomplete')}>Reset</EuiButton>
+    );
+  }
+
+  let warningButton;
+  if (status !== 'warning') {
+    warningButton = (
+      <EuiButton color="warning" onClick={() => setStatus('warning')}>
+        Uh oh!
+      </EuiButton>
+    );
+  } else {
+    warningButton = (
+      <EuiButton color="warning" onClick={() => setStatus('incomplete')}>
+        Reset
+      </EuiButton>
+    );
+  }
+
+  let dangerButton;
+  if (status !== 'danger') {
+    dangerButton = (
+      <EuiButton color="danger" onClick={() => setStatus('danger')}>
+        Something terrible
+      </EuiButton>
+    );
+  } else {
+    dangerButton = (
+      <EuiButton color="danger" onClick={() => setStatus('incomplete')}>
+        Reset
+      </EuiButton>
+    );
+  }
+
+  let disabledButton;
+  if (status !== 'disabled') {
+    disabledButton = (
+      <EuiButton color="accent" onClick={() => setStatus('disabled')}>
+        Disabled
+      </EuiButton>
+    );
+  } else {
+    disabledButton = (
+      <EuiButton color="accent" onClick={() => setStatus('incomplete')}>
+        Reset
+      </EuiButton>
+    );
+  }
+
+  const firstSetOfSteps = [
+    {
+      title: 'Normal step',
+      children: <p>Do this first</p>,
+    },
+    {
+      title: 'Push the button to complete this final step',
+      children: (
+        <>
+          <p>We are fancy buttons just waiting to be pushed!</p>
+          <EuiSpacer />
+          <EuiFlexGroup
+            gutterSize="s"
+            alignItems="center"
+            responsive={false}
+            wrap
+          >
+            <EuiFlexItem grow={false}> {completeButton} </EuiFlexItem>
+            <EuiFlexItem grow={false}> {warningButton} </EuiFlexItem>
+            <EuiFlexItem grow={false}> {dangerButton} </EuiFlexItem>
+            <EuiFlexItem grow={false}> {disabledButton} </EuiFlexItem>
+          </EuiFlexGroup>
+        </>
+      ),
+      status: status,
+    },
+  ];
+
+  return <EuiSteps steps={firstSetOfSteps} />;
+};
+```
+
+## Custom title sizes
+
+You can set a different title size using `titleSize`. If `titleSize` is set in both **EuiSteps** and **EuiStep**, the latter value will override the former. Additionally, the title size `xs` will automatically generate smaller steps circles.
+
+The title size `xxs` affects only the size of the accompanying **unnumbered** step indicator, but not the title itself.
+
+```tsx interactive
+import React, { useState } from 'react';
+import {
+  EuiButtonGroup,
+  EuiCode,
+  EuiSpacer,
+  EuiSteps,
+  EuiTitle,
+  EuiStepInterface,
+} from '@elastic/eui';
+
+const firstSetOfSteps: EuiStepInterface[] = [
+  {
+    title: 'Step 1',
+    children: (
+      <p>
+        Both step title and circle indicators will adjust in size based on the{' '}
+        <EuiCode>titleSize</EuiCode> prop
+      </p>
+    ),
+  },
+  {
+    title: 'Step 2',
+    children: (
+      <p>
+        Both step title and circle indicators will adjust in size based on the{' '}
+        <EuiCode>titleSize</EuiCode> prop
+      </p>
+    ),
+  },
+];
+
+const sizeButtons = [
+  {
+    id: 'xxs',
+    label: 'XXSmall',
+  },
+  {
+    id: 'xs',
+    label: 'XSmall',
+  },
+  {
+    id: 's',
+    label: 'Small',
+  },
+  {
+    id: 'm',
+    label: 'Medium',
+  },
+];
+
+type StepSizes = NonNullable<EuiStepInterface['titleSize']>;
+
+export default () => {
+  const [titleSize, setTitleSize] = useState<StepSizes>('m');
+
+  const sizeOnChange = (optionId: StepSizes) => {
+    setTitleSize(optionId);
+  };
+
+  return (
+    <>
+      <EuiTitle size="xxs">
+        <h3>Step Size</h3>
+      </EuiTitle>
+      <EuiSpacer size="s" />
+      <EuiButtonGroup
+        legend="Horizontal step size toggle"
+        options={sizeButtons}
+        idSelected={titleSize}
+        onChange={(id) => sizeOnChange(id as StepSizes)}
+      />
+      <EuiSpacer size="m" />
+      <EuiSteps titleSize={titleSize} steps={firstSetOfSteps} />
+    </>
+  );
+};
+```
+
+## Props
+
+import docgen from '@elastic/eui-docgen/dist/components/steps';
+
+<PropTable definition={docgen.EuiSteps} />
+
+<PropTable definition={docgen.EuiStep} />
+
+<PropTable definition={docgen.EuiStepNumber} />
+
+<PropTable definition={docgen.EuiSubSteps} />

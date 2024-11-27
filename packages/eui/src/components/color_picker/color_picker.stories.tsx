@@ -10,6 +10,7 @@ import React, { FunctionComponent, useState, useEffect } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { enableFunctionToggleControls } from '../../../.storybook/utils';
 
+import { euiPaletteColorBlind } from '../..//services';
 import { EuiColorPicker, EuiColorPickerProps } from './color_picker';
 
 const meta: Meta<EuiColorPickerProps> = {
@@ -17,7 +18,6 @@ const meta: Meta<EuiColorPickerProps> = {
   component: EuiColorPicker,
   argTypes: {
     color: { control: 'color' },
-    swatches: { control: 'array' }, // TODO: crashes if clicked in Storybook
     append: { control: 'text' },
     prepend: { control: 'text' },
   },
@@ -33,6 +33,7 @@ const meta: Meta<EuiColorPickerProps> = {
     display: 'default',
     mode: 'default',
     secondaryInputDisplay: 'none',
+    swatches: euiPaletteColorBlind(),
   },
 };
 enableFunctionToggleControls(meta, ['onChange']);

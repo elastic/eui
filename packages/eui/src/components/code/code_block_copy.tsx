@@ -17,10 +17,12 @@ import { NEW_LINE_REGEX_GLOBAL } from './utils';
  * Hook that returns copy-related state/logic/utils
  */
 export const useCopy = ({
+  copyAriaLabel,
   isCopyable,
   isVirtualized,
   children,
 }: {
+  copyAriaLabel?: string;
   isCopyable: boolean;
   isVirtualized: boolean;
   children: ReactNode;
@@ -41,7 +43,7 @@ export const useCopy = ({
 
   const showCopyButton = isCopyable && textToCopy;
 
-  const copyAriaLabel = useEuiI18n('euiCodeBlockCopy.copy', 'Copy');
+  const copyDefaultAriaLabel = useEuiI18n('euiCodeBlockCopy.copy', 'Copy');
 
   const copyButton = useMemo(() => {
     return showCopyButton ? (
@@ -52,14 +54,14 @@ export const useCopy = ({
               onClick={copy}
               iconType="copyClipboard"
               color="text"
-              aria-label={copyAriaLabel}
+              aria-label={copyAriaLabel || copyDefaultAriaLabel}
               data-test-subj="euiCodeBlockCopy"
             />
           )}
         </EuiCopy>
       </div>
     ) : null;
-  }, [showCopyButton, textToCopy, copyAriaLabel]);
+  }, [copyAriaLabel, copyDefaultAriaLabel, showCopyButton, textToCopy]);
 
   return { innerTextRef, copyButton };
 };

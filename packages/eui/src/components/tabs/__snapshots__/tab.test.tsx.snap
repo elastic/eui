@@ -5,6 +5,7 @@ exports[`EuiTab props append is rendered 1`] = `
   aria-selected="false"
   class="euiTab emotion-euiTab"
   role="tab"
+  tabindex="-1"
   type="button"
 >
   <span
@@ -26,6 +27,7 @@ exports[`EuiTab props disabled and selected 1`] = `
   class="euiTab euiTab-isSelected emotion-euiTab-disabled-selected"
   disabled=""
   role="tab"
+  tabindex="0"
   type="button"
 >
   <span
@@ -42,6 +44,7 @@ exports[`EuiTab props disabled is rendered 1`] = `
   class="euiTab emotion-euiTab-disabled"
   disabled=""
   role="tab"
+  tabindex="-1"
   type="button"
 >
   <span
@@ -61,6 +64,7 @@ exports[`EuiTab props href renders anchor 1`] = `
   href="/baz/bing"
   rel="noreferrer"
   role="tab"
+  tabindex="-1"
 >
   <span
     class="euiTab__content eui-textTruncate emotion-euiTab__content-m"
@@ -75,6 +79,7 @@ exports[`EuiTab props isSelected is rendered 1`] = `
   aria-selected="true"
   class="euiTab euiTab-isSelected emotion-euiTab-selected"
   role="tab"
+  tabindex="0"
   type="button"
 >
   <span
@@ -92,6 +97,7 @@ exports[`EuiTab props onClick renders button 1`] = `
   class="euiTab testClass1 testClass2 emotion-euiTab-euiTestCss"
   data-test-subj="test subject string"
   role="tab"
+  tabindex="-1"
   type="button"
 >
   <span
@@ -107,6 +113,7 @@ exports[`EuiTab props prepend is rendered 1`] = `
   aria-selected="false"
   class="euiTab emotion-euiTab"
   role="tab"
+  tabindex="-1"
   type="button"
 >
   <span

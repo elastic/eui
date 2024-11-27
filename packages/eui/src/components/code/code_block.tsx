@@ -88,6 +88,13 @@ export type EuiCodeBlockProps = EuiCodeSharedProps & {
   isCopyable?: boolean;
 
   /**
+   * Customizes the aria-label for the copy button.
+   *
+   * @default 'Copy'
+   */
+  copyAriaLabel?: string;
+
+  /**
    * Displays line numbers.
    * Optionally accepts a configuration object for setting the starting number,
    * visually highlighting ranges, or annotating specific lines:
@@ -118,6 +125,7 @@ export const EuiCodeBlock: FunctionComponent<EuiCodeBlockProps> = ({
   paddingSize = 'l',
   fontSize = 's',
   isCopyable = false,
+  copyAriaLabel,
   whiteSpace = 'pre-wrap',
   children,
   className,
@@ -159,6 +167,7 @@ export const EuiCodeBlock: FunctionComponent<EuiCodeBlockProps> = ({
   );
 
   const { innerTextRef, copyButton } = useCopy({
+    copyAriaLabel,
     isCopyable,
     isVirtualized,
     children,

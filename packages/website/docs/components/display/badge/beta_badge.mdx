@@ -1,0 +1,93 @@
+---
+slug: /display/badge/beta
+id: display_badge_beta
+---
+
+# Beta badge
+
+The **EuiBetaBadge** was created specifically to call out modules that are not in GA. Generally the labels used are "Beta" or "Lab". They require an extra `tooltipContent` to describe the purpose of the badge. You can pass an optional `title` prop to populate the tooltip title or html title attribute but by default it will use the `label`.
+
+If you pass in an `iconType`, only the icon will be used in the badge itself and the label will be applied as the title. Only use an icon when attaching the beta badge to small components. Beta badges can also be made clickable by passing `href` or `onClick` as needed.
+
+They can also be used in conjunction with [**EuiCards**](/docs/display/card) and [**EuiKeyPadMenuItems**](/docs/navigation/key-pad-menu).
+
+```tsx interactive
+import React from 'react';
+import { EuiBetaBadge, EuiSpacer, EuiTitle } from '@elastic/eui';
+import { css } from '@emotion/react';
+
+const colors = ['hollow', 'accent', 'subdued', 'warning'] as const;
+
+export default () => (
+  <>
+    <div
+      css={css`
+        display: grid;
+        align-items: flex-start;
+        grid: repeat(3, max-content) / repeat(6, max-content);
+        gap: 0.75rem;
+      `}
+    >
+      {colors.map((item) => (
+        <>
+          <EuiBetaBadge
+            label="Beta"
+            color={item}
+            tooltipContent="This module is not GA. Please help us by reporting any bugs."
+          />
+          <EuiBetaBadge
+            label="Beta"
+            color={item}
+            size="s"
+            tooltipContent="This module is not GA. Please help us by reporting any bugs."
+          />
+          <EuiBetaBadge label="Beta" color={item} iconType="beta" />
+          <EuiBetaBadge size="s" label="Beta" color={item} iconType="beta" />
+          <EuiBetaBadge label="Lab" color={item} iconType="beaker" />
+          <EuiBetaBadge label="Lab" size="s" color={item} iconType="beaker" />
+        </>
+      ))}
+    </div>
+    <EuiSpacer size="s" />
+    <EuiTitle size="s">
+      <h3>
+        Beta badges will also line up nicely with titles &nbsp;
+        <EuiBetaBadge
+          label="Lab"
+          tooltipContent="This module is not GA. Please help us by reporting any bugs."
+        />
+      </h3>
+    </EuiTitle>
+    <EuiSpacer />
+    <EuiTitle size="xs">
+      <h3>Clickable beta badges</h3>
+    </EuiTitle>
+    <EuiSpacer size="s" />
+    <div
+      css={css`
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+      `}
+    >
+      <EuiBetaBadge
+        label="Lens"
+        iconType="lensApp"
+        onClick={() => alert('Goes to Lens')}
+      />
+      <EuiBetaBadge
+        label="Basic"
+        href="http://www.elastic.co/subscriptions"
+        target="_blank"
+      />
+    </div>
+  </>
+);
+
+```
+
+## Props
+
+import docgen from '@elastic/eui-docgen/dist/components/badge';
+
+<PropTable definition={docgen.EuiBetaBadge} />

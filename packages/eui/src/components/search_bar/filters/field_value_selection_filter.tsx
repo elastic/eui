@@ -16,6 +16,7 @@ import { EuiFilterButton } from '../../filter_group';
 import { euiFilterGroupStyles } from '../../filter_group/filter_group.styles';
 import { EuiSelectable, EuiSelectableProps } from '../../selectable';
 import { EuiSelectableOptionCheckedType } from '../../../components/selectable/selectable_option';
+import { EuiI18n } from '../../i18n';
 import { Query } from '../query';
 import { Clause, Operator, OperatorType, Value } from '../query/ast';
 
@@ -298,16 +299,27 @@ export class FieldValueSelectionFilter extends Component<
     const active = (activeTop || activeItem) && activeItemsCount > 0;
 
     const button = (
-      <EuiFilterButton
-        iconType="arrowDown"
-        iconSide="right"
-        onClick={this.onButtonClick.bind(this)}
-        hasActiveFilters={active}
-        numActiveFilters={active ? activeItemsCount : undefined}
-        grow
+      <EuiI18n
+        token="euiFieldValueSelectionFilter.buttonLabelHint"
+        default="Selection"
       >
-        {config.name}
-      </EuiFilterButton>
+        {(buttonLabelHint: string) => {
+          const ariaLabel = `${config.name} ${buttonLabelHint}`;
+          return (
+            <EuiFilterButton
+              iconType="arrowDown"
+              iconSide="right"
+              hasActiveFilters={active}
+              numActiveFilters={active ? activeItemsCount : undefined}
+              grow
+              aria-label={ariaLabel}
+              onClick={this.onButtonClick.bind(this)}
+            >
+              {config.name}
+            </EuiFilterButton>
+          );
+        }}
+      </EuiI18n>
     );
 
     const items = options
@@ -390,6 +402,7 @@ export class FieldValueSelectionFilter extends Component<
               noMatchesMessage={config.noOptionsMessage}
               listProps={{
                 isVirtualized: isOverSearchThreshold || false,
+                autoFocus: true,
               }}
               onChange={(options, event, changedOption) => {
                 if (changedOption.data) {

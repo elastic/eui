@@ -40,6 +40,9 @@
     // same in TypeScript as it does in Node.js.
     "moduleResolution": "node",
 
+    // Skip type checking node_modules
+    "skipLibCheck": true,
+
     // Disallow inconsistently-cased references to the same file.
     "forceConsistentCasingInFileNames": true,
 

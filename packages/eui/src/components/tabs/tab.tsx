@@ -100,6 +100,7 @@ export const EuiTab: FunctionComponent<Props> = ({
       <a
         role="tab"
         aria-selected={!!isSelected}
+        tabIndex={isSelected ? 0 : -1}
         className={classes}
         css={cssTabStyles}
         href={href}
@@ -123,6 +124,7 @@ export const EuiTab: FunctionComponent<Props> = ({
     <button
       role="tab"
       aria-selected={!!isSelected}
+      tabIndex={isSelected ? 0 : -1}
       type="button"
       className={classes}
       css={cssTabStyles}

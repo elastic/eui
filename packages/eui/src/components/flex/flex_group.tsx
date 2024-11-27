@@ -64,14 +64,9 @@ export type EuiFlexGroupProps<TComponent extends ElementType = 'div'> =
        * such as `'div'` or `'span'`, a React component (a function, a class,
        * or an exotic component like `memo()`).
        *
-       * `<EuiFlexGroup>` accepts and forwards all extra props to the custom
+       * `EuiFlexGroup` accepts and forwards all extra props to the custom
        * component.
        *
-       * @example
-       * // Renders a <button> element
-       * <EuiFlexGroup component="button">
-       *   Submit form
-       * </EuiFlexGroup>
        * @default "div"
        */
       component?: TComponent;
