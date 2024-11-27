@@ -57,10 +57,10 @@ export const Accordion: Story = {
       { title: 'Popover link B', href: '#' },
       { title: 'Popover link C', href: '#' },
       {
-        renderItem: ({ closePopover }) => (
+        renderItem: ({ closePortals }) => (
           <button
             css={({ euiTheme }) => ({ padding: euiTheme.size.s })}
-            onClick={() => closePopover?.()}
+            onClick={(event) => closePortals?.(event)}
           >
             Custom button
           </button>

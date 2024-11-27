@@ -11,21 +11,21 @@ import React, {
   MouseEvent,
   useState,
   useCallback,
+  useContext,
 } from 'react';
 
 import { useEuiMemoizedStyles } from '../../../../services';
-
 import {
   type EuiPopoverProps,
   EuiPopover,
   EuiPopoverTitle,
 } from '../../../popover';
 
+import { EuiCollapsibleNavContext } from '../../context';
 import {
   EuiCollapsibleNavSubItem,
   EuiCollapsibleNavItemProps,
 } from '../collapsible_nav_item';
-
 import { EuiCollapsedNavButton } from './collapsed_nav_button';
 import { euiCollapsedNavPopoverStyles } from './collapsed_nav_popover.styles';
 
@@ -53,14 +53,9 @@ export const EuiCollapsedNavPopover: FunctionComponent<
   );
   const closePopover = useCallback(() => setIsPopoverOpen(false), []);
 
-  const onSubItemClick = useCallback(
+  const closePopoverClick = useCallback(
     (event: MouseEvent) => {
-      if (event.defaultPrevented) return;
-      if (!(event.target instanceof HTMLElement)) return;
-
-      const isNavLink = event.target.closest('.euiCollapsibleNavLink.euiLink');
-      if (isNavLink) closePopover();
-
+      closePopover();
       // Visually hide the tooltip for mouse users only
       const isMouseEvent = event.screenX !== 0 && event.screenY !== 0;
       if (isMouseEvent) setIsTooltipHidden(true);
@@ -69,6 +64,8 @@ export const EuiCollapsedNavPopover: FunctionComponent<
   );
   const [isTooltipHidden, setIsTooltipHidden] = useState(false);
   const reshowTooltip = useCallback(() => setIsTooltipHidden(false), []);
+
+  const navContext = useContext(EuiCollapsibleNavContext);
 
   return (
     <EuiPopover
@@ -103,14 +100,14 @@ export const EuiCollapsedNavPopover: FunctionComponent<
           {title}
         </TitleElement>
       </EuiPopoverTitle>
-      <div css={styles.euiCollapsedNavPopover__items} onClick={onSubItemClick}>
-        {items!.map((item, index) => (
-          <EuiCollapsibleNavSubItem
-            closePopover={closePopover}
-            key={index}
-            {...item}
-          />
-        ))}
+      <div css={styles.euiCollapsedNavPopover__items}>
+        <EuiCollapsibleNavContext.Provider
+          value={{ ...navContext, closePortals: closePopoverClick }}
+        >
+          {items!.map((item, index) => (
+            <EuiCollapsibleNavSubItem key={index} {...item} />
+          ))}
+        </EuiCollapsibleNavContext.Provider>
       </div>
     </EuiPopover>
   );

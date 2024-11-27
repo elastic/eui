@@ -6,12 +6,18 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent, ReactNode } from 'react';
+import React, {
+  FunctionComponent,
+  ReactNode,
+  useCallback,
+  useContext,
+} from 'react';
 import classNames from 'classnames';
 
 import { useEuiMemoizedStyles } from '../../../services';
 import { EuiLink, EuiLinkProps } from '../../link';
 
+import { EuiCollapsibleNavContext } from '../context';
 import type {
   _SharedEuiCollapsibleNavItemProps,
   _EuiCollapsibleNavItemDisplayProps,
@@ -71,11 +77,25 @@ export const EuiCollapsibleNavLink: FunctionComponent<
     isInteractive && linkProps?.css,
   ];
 
+  const { closePortals } = useContext(EuiCollapsibleNavContext);
+  const onClick = useCallback(
+    (event: React.MouseEvent<HTMLElement>) => {
+      rest.onClick?.(event);
+      linkProps?.onClick?.(event as any);
+      if (!event.defaultPrevented) {
+        closePortals?.(event);
+      }
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [rest.onClick, linkProps?.onClick, closePortals]
+  );
+
   return isInteractive ? (
     <EuiLink
       href={href}
       rel={rel}
       {...({ ...rest, ...linkProps } as any)} // EuiLink ExclusiveUnion shenanigans
+      onClick={onClick}
       className={classes}
       css={cssStyles}
     >

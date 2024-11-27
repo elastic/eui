@@ -9,6 +9,7 @@
 import React, {
   FunctionComponent,
   HTMLAttributes,
+  MouseEventHandler,
   ReactNode,
   useContext,
   useMemo,
@@ -103,14 +104,16 @@ export type EuiCollapsibleNavItemProps = _SharedEuiCollapsibleNavItemProps & {
   >;
 
 export type EuiCollapsibleNavCustomSubItem = {
-  renderItem: (options: _RenderItemProps) => ReactNode;
-};
-type _RenderItemProps = {
-  /**
-   * When the side nav is collapsed, the menu appears in a EuiPopover. Use this handler to close the popover.
-   * If the handler is not defined it means that the side nav is not collapsed.
-   */
-  closePopover?: () => void;
+  renderItem: (options: {
+    /**
+     * When the side nav is collapsed on larger screens, the menu appears in an EuiPopover.
+     * When the sidenav is collapsed on smaller screens, the menu appears in an EuiFlyout.
+     *
+     * Use this handler to close either the portalled flyout or popover, depending on which is present.
+     * If the handler is not defined, it means there is no portal onscreen to close.
+     */
+    closePortals?: MouseEventHandler;
+  }) => ReactNode;
 };
 
 export type EuiCollapsibleNavSubItemProps = ExclusiveUnion<
@@ -233,12 +236,13 @@ export const EuiCollapsibleNavItemTitle: FunctionComponent<
  * or they can simply be more links or accordions
  */
 export const EuiCollapsibleNavSubItem: FunctionComponent<
-  EuiCollapsibleNavSubItemProps & _RenderItemProps
-> = ({ renderItem, className, closePopover, ...props }) => {
+  EuiCollapsibleNavSubItemProps
+> = ({ renderItem, className, ...props }) => {
   const classes = classNames('euiCollapsibleNavSubItem', className);
+  const { closePortals } = useContext(EuiCollapsibleNavContext);
 
   if (renderItem) {
-    return <>{renderItem({ closePopover })}</>;
+    return <>{renderItem({ closePortals })}</>;
   }
 
   return (

@@ -88,7 +88,7 @@ describe('EuiCollapsedNavPopover', () => {
     await waitForEuiPopoverOpen(); // popover should not have closed
   });
 
-  it('passes the closePopover function to custom rendered subitems', async () => {
+  it('allows custom rendered subitems to close the popover', async () => {
     const { getByTestSubject } = render(
       <EuiCollapsedNavPopover
         {...requiredProps}
@@ -96,8 +96,11 @@ describe('EuiCollapsedNavPopover', () => {
         titleElement="h3"
         items={[
           {
-            renderItem: ({ closePopover }) => (
-              <button onClick={() => closePopover?.()} data-test-subj="custom">
+            renderItem: ({ closePortals }) => (
+              <button
+                onClick={(e) => closePortals?.(e)}
+                data-test-subj="custom"
+              >
                 Custom button
               </button>
             ),

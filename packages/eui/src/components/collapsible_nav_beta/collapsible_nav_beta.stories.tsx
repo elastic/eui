@@ -18,7 +18,7 @@ import { EuiHeader, EuiHeaderSection, EuiHeaderSectionItem } from '../header';
 import { EuiPageTemplate } from '../page_template';
 import { EuiBottomBar } from '../bottom_bar';
 import { EuiFlyout } from '../flyout';
-import { EuiButton } from '../button';
+import { EuiButton, EuiButtonEmpty } from '../button';
 import { EuiTitle } from '../title';
 
 import {
@@ -121,6 +121,13 @@ export const Playground: Story = {
                   ],
                 },
               ],
+            },
+            {
+              renderItem: ({ closePortals }) => (
+                <EuiButtonEmpty onClick={closePortals} size="s">
+                  Custom rendered item
+                </EuiButtonEmpty>
+              ),
             },
             ...renderGroup('Content', [
               { title: 'Indices', href: '#' },
