@@ -52,6 +52,7 @@
     "url": "https://github.com/elastic/eui.git"
   },
   "dependencies": {
+    "@elastic/eui-theme-common": "workspace:^",
     "@hello-pangea/dnd": "^16.6.0",
     "@types/lodash": "^4.14.202",
     "@types/numeral": "^2.0.5",
@@ -105,7 +106,6 @@
     "@elastic/charts": "^64.1.0",
     "@elastic/datemath": "^5.0.3",
     "@elastic/eui-theme-borealis": "workspace:^",
-    "@elastic/eui-theme-common": "workspace:^",
     "@emotion/babel-preset-css-prop": "^11.11.0",
     "@emotion/cache": "^11.11.0",
     "@emotion/css": "^11.11.0",
@@ -257,8 +257,7 @@
   },
   "peerDependencies": {
     "@elastic/datemath": "^5.0.2",
-    "@elastic/eui-theme-borealis": "0.0.1",
-    "@elastic/eui-theme-common": "0.0.1",
+    "@elastic/eui-theme-borealis": "0.0.4",
     "@emotion/css": "11.x",
     "@emotion/react": "11.x",
     "@types/react": "^16.9 || ^17.0 || ^18.0",
