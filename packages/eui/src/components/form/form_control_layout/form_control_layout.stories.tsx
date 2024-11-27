@@ -263,3 +263,9 @@ export const AppendPrepend: Story = {
     );
   },
 };
+
+export const HighContrast: Story = {
+  ...AppendPrepend,
+  tags: ['vrt-only'],
+  globals: { highContrastMode: true },
+};

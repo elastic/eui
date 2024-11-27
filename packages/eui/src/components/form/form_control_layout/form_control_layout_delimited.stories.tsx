@@ -201,3 +201,9 @@ export const KitchenSink: Story = {
     );
   },
 };
+
+export const HighContrast: Story = {
+  ...KitchenSink,
+  tags: ['vrt-only'],
+  globals: { highContrastMode: true },
+};
