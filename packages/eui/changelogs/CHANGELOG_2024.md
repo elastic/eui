@@ -1,3 +1,32 @@
+## [`v98.1.0`](https://github.com/elastic/eui/releases/v98.1.0)
+
+- Updated `EuiBetaBadge` with a new `warning` color variant ([#8177](https://github.com/elastic/eui/pull/8177))
+
+**Accessibility**
+
+- Ensures `autoFocus` on `EuiSelectableList` triggers initial focus ([#8091](https://github.com/elastic/eui/pull/8091))
+- Improved the accessibility of `EuiSearchBarFilters` by:  ([#8091](https://github.com/elastic/eui/pull/8091))
+  - adding a more descriptive `aria-label` to selection filter buttons
+  - ensuring the selection listbox is initially focused when opening a selection popover
+- Improved the accessibility experience of tabs (EuiTab, EuiTabs): tab group is a tab stop and tabs can be traversed with arrow keys. ([#8116](https://github.com/elastic/eui/pull/8116))
+- Updated `EuiCodeBlock` with a new `copyAriaLabel` prop, which allows setting a custom screen reader label on the copy button. ([#8176](https://github.com/elastic/eui/pull/8176))
+
+**CSS-in-JS conversions**
+
+- Removed the following global Sass variables: ([#8169](https://github.com/elastic/eui/pull/8169))
+  - `$euiButtonMinWidth`
+  - `$euiDatePickerCalendarWidth`
+- Removed the following Sass animations: ([#8169](https://github.com/elastic/eui/pull/8169))
+  - `euiAnimFadeIn`
+  - `euiGrow`
+  - `focusRingAnimate`
+  - `focusRingAnimateLarge`
+  - `euiButtonActive`
+- Removed the following Sass mixins: ([#8169](https://github.com/elastic/eui/pull/8169))
+  - `euiFullHeight`
+  - `euiSlightShadowHover`
+  - `datePickerArrow`
+
 ## [`v98.0.0`](https://github.com/elastic/eui/releases/v98.0.0)
 
 **Bug fixes**
