@@ -54,6 +54,7 @@ describe('euiFormVariables', () => {
         "iconAffordance": "24px",
         "iconCompressedAffordance": "18px",
         "maxWidth": "400px",
+        "stateUnderlineHeight": "2px",
         "textColor": "#343741",
       }
     `);
@@ -123,11 +124,11 @@ describe('euiFormControlStyles', () => {
 
         ",
         "focus": "
-        --euiFormControlStateColor: #07C;
-        background-color: #FFF;
-        background-size: 100% 100%;
-        outline: none; /* Remove all outlines and rely on our own bottom border gradient */
-      ",
+          --euiFormControlStateColor: #07C;
+          background-color: #FFF;
+          background-size: 100% 100%;
+          outline: none; /* Remove all outlines and rely on our own bottom border gradient */
+        ",
         "formWidth": "
             max-inline-size: 400px;
             inline-size: 100%;
@@ -142,9 +143,9 @@ describe('euiFormControlStyles', () => {
             border-radius: 0;
           ",
         "invalid": "
-        --euiFormControlStateColor: #BD271E;
-        background-size: 100% 100%;
-      ",
+          --euiFormControlStateColor: #BD271E;
+          background-size: 100% 100%;
+        ",
         "readOnly": "
           cursor: default;
           color: #343741;
