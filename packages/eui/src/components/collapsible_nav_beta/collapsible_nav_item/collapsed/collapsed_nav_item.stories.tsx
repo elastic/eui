@@ -48,9 +48,24 @@ export const Accordion: Story = {
     title: 'Collapsed nav item',
     icon: 'home',
     items: [
-      { title: 'Popover link A', href: '#', linkProps: { target: '_blank' } },
+      {
+        title: 'Popover link A',
+        href: '#',
+        linkProps: { target: '_blank' },
+        onClick: (event) => event.preventDefault(),
+      },
       { title: 'Popover link B', href: '#' },
       { title: 'Popover link C', href: '#' },
+      {
+        renderItem: ({ closePopover }) => (
+          <button
+            css={({ euiTheme }) => ({ padding: euiTheme.size.s })}
+            onClick={() => closePopover?.()}
+          >
+            Custom button
+          </button>
+        ),
+      },
     ],
   },
 };

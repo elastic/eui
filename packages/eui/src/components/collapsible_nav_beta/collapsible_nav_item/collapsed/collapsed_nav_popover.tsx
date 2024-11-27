@@ -98,7 +98,11 @@ export const EuiCollapsedNavPopover: FunctionComponent<
       </EuiPopoverTitle>
       <div css={styles.euiCollapsedNavPopover__items} onClick={onSubItemClick}>
         {items!.map((item, index) => (
-          <EuiCollapsibleNavSubItem key={index} {...item} />
+          <EuiCollapsibleNavSubItem
+            closePopover={closePopover}
+            key={index}
+            {...item}
+          />
         ))}
       </div>
     </EuiPopover>

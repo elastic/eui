@@ -87,4 +87,28 @@ describe('EuiCollapsedNavPopover', () => {
     expect(onClick).toHaveBeenCalledTimes(1);
     await waitForEuiPopoverOpen(); // popover should not have closed
   });
+
+  it('passes the closePopover function to custom rendered subitems', async () => {
+    const { getByTestSubject } = render(
+      <EuiCollapsedNavPopover
+        {...requiredProps}
+        title="Item"
+        titleElement="h3"
+        items={[
+          {
+            renderItem: ({ closePopover }) => (
+              <button onClick={() => closePopover?.()} data-test-subj="custom">
+                Custom button
+              </button>
+            ),
+          },
+        ]}
+      />
+    );
+    fireEvent.click(getByTestSubject('euiCollapsedNavButton'));
+    await waitForEuiPopoverOpen();
+
+    fireEvent.click(getByTestSubject('custom'));
+    await waitForEuiPopoverClose();
+  });
 });
