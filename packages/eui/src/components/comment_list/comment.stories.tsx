@@ -30,7 +30,7 @@ export const _eventColorArgType = {
     'accent',
   ],
   control: { type: 'radio' },
-};
+} as const;
 export const _actionsExampleArgType = {
   control: 'radio',
   options: ['Example action', 'No actions'],
@@ -46,7 +46,7 @@ export const _actionsExampleArgType = {
     'No actions': null,
   },
   defaultValue: 'Example action',
-};
+} as const;
 
 /**
  * Rendered stories

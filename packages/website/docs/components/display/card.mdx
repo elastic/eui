@@ -17,7 +17,7 @@ For accessibility and heading hierarchy, a card's title element is a `span` by d
 import React from 'react';
 import { EuiCard, EuiIcon, EuiFlexGroup, EuiFlexItem } from '@elastic/eui';
 
-const icons = ['Beats', 'Cloud', 'Logging', 'Kibana'];
+const icons = ['Beats', 'Cloud', 'Kibana'];
 
 const cardNodes = icons.map(function (item, index) {
   return (
@@ -626,62 +626,59 @@ For non-interactive cards, reduce or eliminate the padding as needed to suit you
 import React from 'react';
 import {
   EuiCard,
-  EuiFlexGroup,
+  EuiFlexGrid,
   EuiFlexItem,
   EuiIcon,
   EuiSpacer,
 } from '@elastic/eui';
 
 export default () => (
-  <div>
-    <EuiSpacer size="s" />
-    <EuiFlexGroup gutterSize="l" wrap>
-      <EuiFlexItem>
-        <EuiCard
-          layout="horizontal"
-          icon={<EuiIcon size="xl" type="logoLogging" />}
-          onClick={() => {}}
-          title="Plain"
-          display="plain"
-          description="This one still has a solid background color."
-        />
-      </EuiFlexItem>
-      <EuiFlexItem>
-        <EuiCard
-          icon={<EuiIcon size="xl" type="logoLogging" />}
-          title="Subdued"
-          display="subdued"
-          description="This one has a subdued background color."
-          onClick={() => {}}
-        />
-      </EuiFlexItem>
-      <EuiFlexItem>
-        <EuiCard
-          layout="horizontal"
-          icon={<EuiIcon size="xl" type="logoLogging" />}
-          title="Transparent"
-          display="transparent"
-          description="This one doesn't have a background color anymore."
-          betaBadgeProps={{
-            label: 'Beta',
-            tooltipContent:
-              'This module is not GA. Please help us by reporting any bugs.',
-          }}
-          onClick={() => {}}
-        />
-      </EuiFlexItem>
-      <EuiFlexItem>
-        <EuiCard
-          icon={<EuiIcon size="xl" type="logoLogging" />}
-          title="Bordered"
-          display="plain"
-          hasBorder
-          description="This one has a plain background color and border."
-          onClick={() => {}}
-        />
-      </EuiFlexItem>
-    </EuiFlexGroup>
-  </div>
+  <EuiFlexGrid columns={2}>
+    <EuiFlexItem>
+      <EuiCard
+        layout="horizontal"
+        icon={<EuiIcon size="xl" type="logoLogging" />}
+        onClick={() => {}}
+        title="Plain"
+        display="plain"
+        description="This one still has a solid background color."
+      />
+    </EuiFlexItem>
+    <EuiFlexItem>
+      <EuiCard
+        icon={<EuiIcon size="xl" type="logoLogging" />}
+        title="Subdued"
+        display="subdued"
+        description="This one has a subdued background color."
+        onClick={() => {}}
+      />
+    </EuiFlexItem>
+    <EuiFlexItem>
+      <EuiCard
+        layout="horizontal"
+        icon={<EuiIcon size="xl" type="logoLogging" />}
+        title="Transparent"
+        display="transparent"
+        description="This one doesn't have a background color anymore."
+        betaBadgeProps={{
+          label: 'Beta',
+          tooltipContent:
+            'This module is not GA. Please help us by reporting any bugs.',
+        }}
+        onClick={() => {}}
+      />
+    </EuiFlexItem>
+    <EuiFlexItem>
+      <EuiCard
+        icon={<EuiIcon size="xl" type="logoLogging" />}
+        title="Bordered"
+        display="plain"
+        hasBorder
+        description="This one has a plain background color and border."
+        onClick={() => {}}
+      />
+    </EuiFlexItem>
+  </EuiFlexGrid>
 );
 ```
 

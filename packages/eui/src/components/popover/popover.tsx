@@ -375,7 +375,7 @@ export class EuiPopover extends Component<Props, State> {
       // it will be on the panel instead on mount when isOpen=true
       if (
         document.activeElement === document.body ||
-        document.activeElement === this.panel
+        this.panel?.contains(document.activeElement) // if focus is on OR within this.panel
       ) {
         if (!this.button) return;
 

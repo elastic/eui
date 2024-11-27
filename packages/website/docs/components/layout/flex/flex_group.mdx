@@ -1,0 +1,223 @@
+---
+slug: /layout/flex/group
+id: layout_flex_group
+sidebar_position: 1
+---
+
+# Flex groups
+
+import { createDemo } from '@elastic/eui-docusaurus-theme/lib/components';
+import { FlexPreviewWrapper } from './flex_preview_wrapper';
+import DemoNote from './_flex_preview_note.mdx';
+
+export const FlexDemo = createDemo({ previewWrapper: FlexPreviewWrapper });
+
+<DemoNote />
+
+**EuiFlexGroup** is useful for setting up layouts for a single row of content. By default, any [**EuiFlexItem**](./item) within **EuiFlexGroup** will stretch and grow to match their siblings.
+
+<FlexDemo>
+  ```tsx
+  import React from 'react';
+  import { EuiFlexGroup, EuiFlexItem, EuiSpacer } from '@elastic/eui';
+
+  export default () => (
+    <EuiFlexGroup>
+      <EuiFlexItem>Flex item</EuiFlexItem>
+      <EuiFlexItem>
+        <p>Another flex item</p>
+        <EuiSpacer />
+        <p>
+          Note how both of these are the same width and height despite having
+          different content?
+        </p>
+      </EuiFlexItem>
+    </EuiFlexGroup>
+  );
+  ```
+</FlexDemo>
+
+## Responsive flex groups
+
+**EuiFlexGroup** is responsive by default, stacking items vertically on smaller screens. If you need to disable this behavior (e.g. for groups only used for alignment and margins rather than layouts), apply the `responsive={false}` prop to retain a single row layout at all screen sizes.
+
+<FlexDemo>
+  ```tsx
+  import React from 'react';
+  import { EuiFlexGroup, EuiFlexItem, EuiSpacer, EuiIcon } from '@elastic/eui';
+
+  export default () => (
+    <>
+      <EuiFlexGroup alignItems="center">
+        <EuiFlexItem grow={false}>
+          <EuiIcon type="faceSad" />
+        </EuiFlexItem>
+        <EuiFlexItem grow={false}>
+          On mobile, the icon will show above this text.
+        </EuiFlexItem>
+      </EuiFlexGroup>
+
+      <EuiSpacer />
+
+      <EuiFlexGroup responsive={false} alignItems="center">
+        <EuiFlexItem grow={false}>
+          <EuiIcon type="faceHappy" />
+        </EuiFlexItem>
+        <EuiFlexItem grow={false}>
+          On mobile, the icon will stay to the left of this text.
+        </EuiFlexItem>
+      </EuiFlexGroup>
+    </>
+  );
+  ```
+</FlexDemo>
+
+## Display customization
+
+### Justify and align
+
+**EuiFlexGroups** have the props `justifyContent` and `alignItems` that accept [normal flexbox parameters](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Aligning_Items_in_a_Flex_Container). Below are some common scenarios, where you need to separate two items, center justify a single one, or center an item vertically. Note the usage of **EuiFlexItems** with `grow=false` so that they do not stretch.
+
+<FlexDemo>
+  ```tsx
+  import React from 'react';
+  import { EuiFlexGroup, EuiFlexItem } from '@elastic/eui';
+
+  export default () => (
+    <EuiFlexGroup justifyContent="spaceAround">
+      <EuiFlexItem grow={false}>I&rsquo;m a single centered item!</EuiFlexItem>
+    </EuiFlexGroup>
+  );
+  ```
+</FlexDemo>
+
+<FlexDemo>
+  ```tsx
+  import React from 'react';
+  import { EuiFlexGroup, EuiFlexItem } from '@elastic/eui';
+
+  export default () => (
+    <EuiFlexGroup justifyContent="spaceBetween">
+      <EuiFlexItem grow={false}>One here on the left.</EuiFlexItem>
+      <EuiFlexItem grow={false}>The other over here on the right.</EuiFlexItem>
+    </EuiFlexGroup>
+  );
+  ```
+</FlexDemo>
+
+<FlexDemo>
+  ```tsx
+  import React from 'react';
+  import { EuiFlexGroup, EuiFlexItem } from '@elastic/eui';
+
+  export default () => (
+    <EuiFlexGroup justifyContent="spaceEvenly">
+      <EuiFlexItem grow={false}>Spaced evenly between this one.</EuiFlexItem>
+      <EuiFlexItem grow={false}>And this one here on the right.</EuiFlexItem>
+    </EuiFlexGroup>
+  );
+  ```
+</FlexDemo>
+
+<FlexDemo>
+  ```tsx
+  import React from 'react';
+  import { EuiFlexGroup, EuiFlexItem } from '@elastic/eui';
+
+  export default () => (
+    <EuiFlexGroup alignItems="center">
+      <EuiFlexItem grow={false}>
+        <p>I</p>
+        <p>am</p>
+        <p>a</p>
+        <p>tall</p>
+        <p>item</p>
+      </EuiFlexItem>
+      <EuiFlexItem>I am vertically centered!</EuiFlexItem>
+    </EuiFlexGroup>
+  );
+  ```
+</FlexDemo>
+
+### Gutter sizing
+
+The `gutterSize` prop can be applied to a parent **EuiFlexGroup** to adjust the spacing between child **EuiFlexItems**.
+
+<FlexDemo>
+  ```tsx
+  import React, { Fragment } from 'react';
+  import { EuiFlexGroup, EuiFlexItem, EuiSpacer } from '@elastic/eui';
+
+  const gutterSizes = {
+    'none': 'None',
+    'xs': 'Extra small',
+    's': 'Small',
+    'm': 'Medium',
+    'l': 'Large (default)',
+    'xl': 'Extra large',
+  } as const;
+
+  export default () => (
+    <>
+      {Object.entries(gutterSizes).map(([gutterSize, text]) => (
+        <Fragment key={gutterSize}>
+          <EuiFlexGroup gutterSize={gutterSize}>
+            <EuiFlexItem>{text}</EuiFlexItem>
+            <EuiFlexItem>{text}</EuiFlexItem>
+            <EuiFlexItem>{text}</EuiFlexItem>
+            <EuiFlexItem>{text}</EuiFlexItem>
+          </EuiFlexGroup>
+          <EuiSpacer size="m" />
+        </Fragment>
+      ))}
+    </>
+  );
+  ```
+</FlexDemo>
+
+### Allowing flex items to wrap
+
+You can set `wrap` on **EuiFlexGroup** if it contains **EuiFlexItems** with minimum widths, which you want to wrap as the container becomes narrower.
+
+<FlexDemo>
+  ```tsx
+  import React from 'react';
+  import { EuiFlexGroup, EuiFlexItem } from '@elastic/eui';
+
+  export default () => (
+    <EuiFlexGroup wrap>
+      <EuiFlexItem style={{ minWidth: 300 }}>Min-width 300px</EuiFlexItem>
+
+      <EuiFlexItem style={{ minWidth: 300 }}>Min-width 300px</EuiFlexItem>
+
+      <EuiFlexItem style={{ minWidth: 300 }}>Min-width 300px</EuiFlexItem>
+    </EuiFlexGroup>
+  );
+  ```
+</FlexDemo>
+
+### Changing direction
+
+You can change direction using the `direction` prop.
+
+<FlexDemo>
+  ```tsx
+  import React from 'react';
+  import { EuiFlexGroup, EuiFlexItem } from '@elastic/eui';
+
+  export default () => (
+    <EuiFlexGroup direction="column">
+      <EuiFlexItem>Flex item</EuiFlexItem>
+      <EuiFlexItem>Another flex item</EuiFlexItem>
+      <EuiFlexItem>Using the column direction</EuiFlexItem>
+    </EuiFlexGroup>
+  );
+  ```
+</FlexDemo>
+
+## Props
+
+import docgen from '@elastic/eui-docgen/dist/components/flex';
+
+<PropTable definition={docgen.EuiFlexGroup} />
+<PropTable definition={docgen.EuiFlexItem} />

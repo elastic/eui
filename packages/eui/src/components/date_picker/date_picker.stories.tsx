@@ -39,7 +39,7 @@ const meta: Meta<EuiDatePickerProps> = {
         'Allows customizing the underlying EuiPopover component, of type `Partial<EuiPopoverProps>`',
     },
     filterDate: {
-      control: 'function',
+      control: false, // Storybook doesn't have a function control type
       // @ts-ignore - overwriting to match jsdoc info
       type: '(date: moment.Moment) => boolean',
     },
