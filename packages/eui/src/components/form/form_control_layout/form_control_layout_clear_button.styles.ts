@@ -13,15 +13,20 @@ import { UseEuiTheme } from '../../../services';
 export const EuiFormControlLayoutClearButtonStyles = ({
   euiTheme,
   colorMode,
+  highContrastMode,
 }: UseEuiTheme) => {
   const backgroundColor =
-    colorMode === 'DARK'
+    highContrastMode === 'forced'
+      ? euiTheme.colors.fullShade
+      : colorMode === 'DARK' || highContrastMode // mediumShade is not sufficient WCAG contrast
       ? euiTheme.colors.darkShade
       : euiTheme.colors.mediumShade;
+
   return {
     euiFormControlLayoutClearButton: css`
       pointer-events: all;
       background-color: ${backgroundColor};
+      ${highContrastMode === 'forced' ? 'forced-color-adjust: none;' : ''}
       border-radius: 50%;
       line-height: 0; /* ensures the icon stays vertically centered */
 
