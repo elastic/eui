@@ -46,4 +46,72 @@ describe('EuiCollapsedNavPopover', () => {
     fireEvent.keyDown(baseElement, { key: 'Escape' });
     await waitForEuiPopoverClose();
   });
+
+  it('closes the popover when clicking on a link', async () => {
+    const { getByTestSubject } = render(
+      <EuiCollapsedNavPopover
+        {...requiredProps}
+        title="Item"
+        titleElement="h3"
+        items={[
+          { title: 'Not a link', 'data-test-subj': 'A' },
+          { title: 'Nav link', href: '#', 'data-test-subj': 'B' },
+        ]}
+      />
+    );
+    fireEvent.click(getByTestSubject('euiCollapsedNavButton'));
+    await waitForEuiPopoverOpen();
+
+    fireEvent.click(getByTestSubject('A'));
+    await waitForEuiPopoverOpen(); // popover should not close for non-links
+
+    fireEvent.click(getByTestSubject('B'));
+    await waitForEuiPopoverClose(); // popover should close
+  });
+
+  it('does not close the popover if the link prevents default', async () => {
+    const onClick = jest.fn((event) => event.preventDefault());
+
+    const { getByTestSubject } = render(
+      <EuiCollapsedNavPopover
+        {...requiredProps}
+        title="Item"
+        titleElement="h3"
+        items={[{ title: 'Link', onClick, 'data-test-subj': 'A' }]}
+      />
+    );
+    fireEvent.click(getByTestSubject('euiCollapsedNavButton'));
+    await waitForEuiPopoverOpen();
+
+    fireEvent.click(getByTestSubject('A'));
+    expect(onClick).toHaveBeenCalledTimes(1);
+    await waitForEuiPopoverOpen(); // popover should not have closed
+  });
+
+  it('allows custom rendered subitems to close the popover', async () => {
+    const { getByTestSubject } = render(
+      <EuiCollapsedNavPopover
+        {...requiredProps}
+        title="Item"
+        titleElement="h3"
+        items={[
+          {
+            renderItem: ({ closePortals }) => (
+              <button
+                onClick={(e) => closePortals?.(e)}
+                data-test-subj="custom"
+              >
+                Custom button
+              </button>
+            ),
+          },
+        ]}
+      />
+    );
+    fireEvent.click(getByTestSubject('euiCollapsedNavButton'));
+    await waitForEuiPopoverOpen();
+
+    fireEvent.click(getByTestSubject('custom'));
+    await waitForEuiPopoverClose();
+  });
 });

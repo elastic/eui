@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import { createContext } from 'react';
+import { createContext, MouseEventHandler } from 'react';
 
 import { _EuiFlyoutSide } from '../flyout/flyout';
 
@@ -15,6 +15,7 @@ type _EuiCollapsibleNavContext = {
   isPush: boolean;
   isOverlayOpen: boolean;
   side: _EuiFlyoutSide;
+  closePortals?: MouseEventHandler;
 };
 
 export const EuiCollapsibleNavContext =

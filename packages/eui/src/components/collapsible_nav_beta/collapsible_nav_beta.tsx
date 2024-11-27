@@ -139,6 +139,7 @@ const _EuiCollapsibleNavBeta: FunctionComponent<EuiCollapsibleNavBetaProps> = ({
   const toggleOverlayFlyout = useCallback(() => {
     setIsOverlayOpen((isOpen) => !isOpen);
   }, []);
+  const closeOverlayFlyout = useCallback(() => setIsOverlayOpen(false), []);
 
   const flyoutType = isOverlay ? 'overlay' : 'push';
   const isPush = !isOverlay;
@@ -219,7 +220,7 @@ const _EuiCollapsibleNavBeta: FunctionComponent<EuiCollapsibleNavBetaProps> = ({
       type={flyoutType}
       paddingSize="none"
       pushMinBreakpoint="xs"
-      onClose={onClose}
+      onClose={isPush ? onClose : closeOverlayFlyout}
       hideCloseButton={true}
     >
       {children}
@@ -230,7 +231,13 @@ const _EuiCollapsibleNavBeta: FunctionComponent<EuiCollapsibleNavBetaProps> = ({
 
   return (
     <EuiCollapsibleNavContext.Provider
-      value={{ isPush, isCollapsed, isOverlayOpen, side }}
+      value={{
+        isPush,
+        isCollapsed,
+        isOverlayOpen,
+        side,
+        closePortals: closeOverlayFlyout,
+      }}
     >
       <EuiCollapsibleNavButton
         ref={buttonRef}

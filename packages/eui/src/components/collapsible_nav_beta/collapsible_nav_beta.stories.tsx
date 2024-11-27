@@ -8,6 +8,7 @@
 
 import React, { FunctionComponent, PropsWithChildren, useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
+import { action } from '@storybook/addon-actions';
 import {
   disableStorybookControls,
   hideAllStorybookControls,
@@ -17,7 +18,7 @@ import { EuiHeader, EuiHeaderSection, EuiHeaderSectionItem } from '../header';
 import { EuiPageTemplate } from '../page_template';
 import { EuiBottomBar } from '../bottom_bar';
 import { EuiFlyout } from '../flyout';
-import { EuiButton } from '../button';
+import { EuiButton, EuiButtonEmpty } from '../button';
 import { EuiTitle } from '../title';
 
 import {
@@ -100,10 +101,34 @@ export const Playground: Story = {
           items={[
             { title: 'Get started', href: '#' },
             ...renderGroup('Explore', [
-              { title: 'Discover', href: '#' },
+              {
+                title: 'Discover',
+                onClick: () => action('Discover')('clicked!'),
+              },
               { title: 'Dashboards', href: '#' },
               { title: 'Visualize library', href: '#' },
             ]),
+            {
+              title: 'Machine learning',
+              items: [
+                { title: 'Anomaly detection', href: '#' },
+                { title: 'Data frame analytics', href: '#' },
+                {
+                  title: 'Sub group',
+                  items: [
+                    { title: 'Sub item 1', href: '#' },
+                    { title: 'Sub item 2', href: '#' },
+                  ],
+                },
+              ],
+            },
+            {
+              renderItem: ({ closePortals }) => (
+                <EuiButtonEmpty onClick={closePortals} size="s">
+                  Custom rendered item
+                </EuiButtonEmpty>
+              ),
+            },
             ...renderGroup('Content', [
               { title: 'Indices', href: '#' },
               { title: 'Transforms', href: '#' },

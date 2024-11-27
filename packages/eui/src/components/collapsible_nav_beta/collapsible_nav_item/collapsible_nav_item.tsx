@@ -9,6 +9,7 @@
 import React, {
   FunctionComponent,
   HTMLAttributes,
+  MouseEventHandler,
   ReactNode,
   useContext,
   useMemo,
@@ -103,7 +104,16 @@ export type EuiCollapsibleNavItemProps = _SharedEuiCollapsibleNavItemProps & {
   >;
 
 export type EuiCollapsibleNavCustomSubItem = {
-  renderItem: () => ReactNode;
+  renderItem: (options: {
+    /**
+     * When the side nav is collapsed on larger screens, the menu appears in an EuiPopover.
+     * When the sidenav is collapsed on smaller screens, the menu appears in an EuiFlyout.
+     *
+     * Use this handler to close either the portalled flyout or popover, depending on which is present.
+     * If the handler is not defined, it means there is no portal onscreen to close.
+     */
+    closePortals?: MouseEventHandler;
+  }) => ReactNode;
 };
 
 export type EuiCollapsibleNavSubItemProps = ExclusiveUnion<
@@ -229,9 +239,10 @@ export const EuiCollapsibleNavSubItem: FunctionComponent<
   EuiCollapsibleNavSubItemProps
 > = ({ renderItem, className, ...props }) => {
   const classes = classNames('euiCollapsibleNavSubItem', className);
+  const { closePortals } = useContext(EuiCollapsibleNavContext);
 
   if (renderItem) {
-    return <>{renderItem()}</>;
+    return <>{renderItem({ closePortals })}</>;
   }
 
   return (
