@@ -1,5 +1,15 @@
 [
   {
+    "version": "98.1.0",
+    "changes": [
+      {
+        "token": "euiFieldValueSelectionFilter.buttonLabelHint",
+        "changeType": "added",
+        "value": "Selection"
+      }
+    ]
+  },
+  {
     "version": "97.3.0",
     "changes": [
       {

@@ -437,14 +437,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 44,
-        "column": 24,
-        "index": 1519
+        "line": 46,
+        "column": 31,
+        "index": 1569
       },
       "end": {
-        "line": 44,
-        "column": 67,
-        "index": 1562
+        "line": 46,
+        "column": 74,
+        "index": 1612
       }
     },
     "filepath": "src/components/code/code_block_copy.tsx"
@@ -4721,14 +4721,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 110,
+        "line": 109,
         "column": 12,
-        "index": 3054
+        "index": 3041
       },
       "end": {
-        "line": 110,
+        "line": 109,
         "column": 70,
-        "index": 3112
+        "index": 3099
       }
     },
     "filepath": "src/components/error_boundary/error_boundary.tsx"
@@ -5171,14 +5171,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 172,
+        "line": 171,
         "column": 37,
-        "index": 5274
+        "index": 5264
       },
       "end": {
-        "line": 175,
+        "line": 174,
         "column": 3,
-        "index": 5350
+        "index": 5340
       }
     },
     "filepath": "src/components/inline_edit/inline_edit_form.tsx"
@@ -5189,14 +5189,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 176,
+        "line": 175,
         "column": 39,
-        "index": 5391
+        "index": 5381
       },
       "end": {
-        "line": 179,
+        "line": 178,
         "column": 3,
-        "index": 5471
+        "index": 5461
       }
     },
     "filepath": "src/components/inline_edit/inline_edit_form.tsx"
@@ -5207,14 +5207,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 300,
+        "line": 299,
         "column": 10,
-        "index": 9596
+        "index": 9598
       },
       "end": {
-        "line": 303,
+        "line": 302,
         "column": 12,
-        "index": 9775
+        "index": 9777
       }
     },
     "filepath": "src/components/inline_edit/inline_edit_form.tsx"
@@ -5225,14 +5225,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 391,
+        "line": 390,
         "column": 10,
-        "index": 12623
+        "index": 12625
       },
       "end": {
-        "line": 394,
+        "line": 393,
         "column": 12,
-        "index": 12764
+        "index": 12766
       }
     },
     "filepath": "src/components/inline_edit/inline_edit_form.tsx"
@@ -5333,14 +5333,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 45,
+        "line": 44,
         "column": 25,
-        "index": 1302
+        "index": 1289
       },
       "end": {
-        "line": 48,
+        "line": 47,
         "column": 3,
-        "index": 1369
+        "index": 1356
       }
     },
     "filepath": "src/components/mark/mark.tsx"
@@ -5351,14 +5351,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 49,
+        "line": 48,
         "column": 23,
-        "index": 1394
+        "index": 1381
       },
       "end": {
-        "line": 49,
+        "line": 48,
         "column": 74,
-        "index": 1445
+        "index": 1432
       }
     },
     "filepath": "src/components/mark/mark.tsx"
@@ -5911,12 +5911,12 @@
       "start": {
         "line": 700,
         "column": 16,
-        "index": 20806
+        "index": 20852
       },
       "end": {
         "line": 703,
         "column": 18,
-        "index": 21000
+        "index": 21046
       }
     },
     "filepath": "src/components/popover/popover.tsx"
@@ -5992,6 +5992,24 @@
       }
     },
     "filepath": "src/components/resizable_container/resizable_panel.tsx"
+  },
+  {
+    "token": "euiFieldValueSelectionFilter.buttonLabelHint",
+    "defString": "Selection",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 302,
+        "column": 6,
+        "index": 8608
+      },
+      "end": {
+        "line": 305,
+        "column": 7,
+        "index": 8713
+      }
+    },
+    "filepath": "src/components/search_bar/filters/field_value_selection_filter.tsx"
   },
   {
     "token": "euiSearchBox.placeholder",
@@ -6989,14 +7007,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 95,
+        "line": 93,
         "column": 14,
-        "index": 2888
+        "index": 2872
       },
       "end": {
-        "line": 102,
+        "line": 100,
         "column": 15,
-        "index": 3156
+        "index": 3140
       }
     },
     "filepath": "src/components/tour/_tour_footer.tsx"
@@ -7007,14 +7025,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 95,
+        "line": 93,
         "column": 14,
-        "index": 2888
+        "index": 2872
       },
       "end": {
-        "line": 102,
+        "line": 100,
         "column": 15,
-        "index": 3156
+        "index": 3140
       }
     },
     "filepath": "src/components/tour/_tour_footer.tsx"
@@ -7025,14 +7043,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 95,
+        "line": 93,
         "column": 14,
-        "index": 2888
+        "index": 2872
       },
       "end": {
-        "line": 102,
+        "line": 100,
         "column": 15,
-        "index": 3156
+        "index": 3140
       }
     },
     "filepath": "src/components/tour/_tour_footer.tsx"
