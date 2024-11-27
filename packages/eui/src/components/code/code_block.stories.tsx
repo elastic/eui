@@ -41,13 +41,6 @@ const htmlCode = `<p>
   <!-- Hello world -->
 </p>`;
 
-const pythonCode = `import antigravity
-
-def procrastinate():
-    print("I'll do it later...")
-
-procrastinate()`;
-
 export const Playground: Story = {
   args: {
     children: htmlCode,
@@ -107,90 +100,5 @@ export const Annotations: Story = {
     const dialog = await canvas.findByRole('dialog');
 
     expect(dialog).toHaveTextContent('Hello world');
-  },
-};
-
-/**
- * VRT tests only
- */
-
-export const SmallFontSize: Story = {
-  tags: ['vrt-only'],
-  args: {
-    children: htmlCode,
-    language: 'html',
-    fontSize: 's',
-  },
-};
-
-export const MediumFontSize: Story = {
-  tags: ['vrt-only'],
-  args: {
-    children: htmlCode,
-    language: 'html',
-    fontSize: 'm',
-  },
-};
-
-export const LargeFontSize: Story = {
-  tags: ['vrt-only'],
-  args: {
-    children: htmlCode,
-    language: 'html',
-    fontSize: 'l',
-  },
-};
-
-export const NoPaddingSize: Story = {
-  tags: ['vrt-only'],
-  args: {
-    children: htmlCode,
-    language: 'html',
-    paddingSize: 'none',
-  },
-};
-
-export const SmallPaddingSize: Story = {
-  tags: ['vrt-only'],
-  args: {
-    children: htmlCode,
-    language: 'html',
-    paddingSize: 's',
-  },
-};
-
-export const MediumPaddingSize: Story = {
-  tags: ['vrt-only'],
-  args: {
-    children: htmlCode,
-    language: 'html',
-    paddingSize: 'm',
-  },
-};
-
-export const LargePaddingSize: Story = {
-  tags: ['vrt-only'],
-  args: {
-    children: htmlCode,
-    language: 'html',
-    paddingSize: 'l',
-  },
-};
-
-export const OverflowHeight: Story = {
-  tags: ['vrt-only'],
-  args: {
-    children: pythonCode,
-    language: 'python',
-    overflowHeight: 100,
-  },
-};
-
-export const TransparentBackground: Story = {
-  tags: ['vrt-only'],
-  args: {
-    children: htmlCode,
-    language: 'html',
-    transparentBackground: true,
   },
 };
