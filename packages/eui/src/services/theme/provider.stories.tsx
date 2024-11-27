@@ -123,6 +123,6 @@ export const HighContrastMode: Story = {
   tags: ['vrt-only'],
   args: {
     highContrastMode: true,
-    children: <EuiPanel hasBorder>High contrast mode</EuiPanel>,
+    children: <EuiPanel>High contrast mode</EuiPanel>,
   },
 };

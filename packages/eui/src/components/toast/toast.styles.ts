@@ -19,7 +19,7 @@ export const euiToastStyles = (euiThemeContext: UseEuiTheme) => {
     // Base
     euiToast: css`
       border-radius: ${euiTheme.border.radius.medium};
-      ${euiShadowLarge(euiThemeContext)}
+      ${euiShadowLarge(euiThemeContext, { borderAllInHighContrastMode: true })}
 
       position: relative;
       ${logicalCSS('padding-horizontal', euiTheme.size.base)}
