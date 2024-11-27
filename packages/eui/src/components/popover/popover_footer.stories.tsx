@@ -34,6 +34,9 @@ const meta: Meta<EuiPopoverFooterProps> = {
       options: [undefined, ...PADDING_SIZES],
     },
   },
+  parameters: {
+    loki: { chromeSelector: LOKI_SELECTORS.portal },
+  },
 };
 
 export default meta;

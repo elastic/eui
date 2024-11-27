@@ -17,7 +17,7 @@ import {
 } from '../../global_styling';
 
 export const euiPanelStyles = (euiThemeContext: UseEuiTheme) => {
-  const { euiTheme } = euiThemeContext;
+  const { euiTheme, highContrastMode } = euiThemeContext;
 
   const borderStyle = `
     position: relative;
@@ -81,7 +81,10 @@ export const euiPanelStyles = (euiThemeContext: UseEuiTheme) => {
 
       &:hover,
       &:focus {
-        ${euiShadow(euiThemeContext, 'l')}
+        ${highContrastMode
+          ? // Use drop-shadow instead of box-shadow, as Windows high contrast themes ignores box-shadows
+            `filter: drop-shadow(0 ${euiTheme.border.width.thick} 0 ${euiTheme.border.color});`
+          : euiShadow(euiThemeContext, 'l')}
         transform: translateY(-2px);
         cursor: pointer;
       }
