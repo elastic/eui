@@ -1,0 +1,86 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiCodeBlock Virtualization renders a virtualized code block 1`] = `
+<div
+  class="euiCodeBlock testClass1 testClass2 emotion-euiCodeBlock-s-hasControls-euiTestCss"
+  style="block-size: 50%;"
+>
+  <div
+    data-eui="EuiAutoSizer"
+  >
+    <pre
+      class="euiCodeBlock__pre emotion-euiCodeBlock__pre-pre-padding-controlsOffset"
+      style="position: relative; block-size: 600px; inline-size: 600px; overflow: auto; will-change: transform; direction: ltr;"
+      tabindex="0"
+    >
+      <code
+        aria-label="aria-label"
+        class="euiCodeBlock__code emotion-euiCodeBlock__code-isVirtualized"
+        data-code-language="text"
+        data-test-subj="test subject string"
+        style="block-size: 36px; inline-size: 100%;"
+      >
+        <span
+          class="euiCodeBlock__line emotion-euiCodeBlock__line"
+          style="position: absolute; inset-inline-start: 0; inset-block-start: 0; block-size: 18px; inline-size: 100%;"
+        >
+          var some = 'code';
+
+        </span>
+        <span
+          class="euiCodeBlock__line emotion-euiCodeBlock__line"
+          style="position: absolute; inset-inline-start: 0; inset-block-start: 18px; block-size: 18px; inline-size: 100%;"
+        >
+          console.log(some);
+        </span>
+      </code>
+    </pre>
+  </div>
+  <div
+    class="euiCodeBlock__controls emotion-euiCodeBlock__controls-l"
+  >
+    <button
+      aria-label="Expand"
+      class="euiButtonIcon euiCodeBlock__fullScreenButton emotion-euiButtonIcon-xs-empty-text"
+      type="button"
+    >
+      <span
+        aria-hidden="true"
+        class="euiButtonIcon__icon"
+        color="inherit"
+        data-euiicon-type="fullScreen"
+      />
+    </button>
+  </div>
+</div>
+`;
+
+exports[`EuiCodeBlock renders a code block 1`] = `
+<div
+  class="euiCodeBlock testClass1 testClass2 emotion-euiCodeBlock-s-euiTestCss"
+>
+  <pre
+    class="euiCodeBlock__pre emotion-euiCodeBlock__pre-preWrap-padding"
+    tabindex="-1"
+  >
+    <code
+      aria-label="aria-label"
+      class="euiCodeBlock__code emotion-euiCodeBlock__code"
+      data-code-language="text"
+      data-test-subj="test subject string"
+    >
+      <span
+        class="euiCodeBlock__line emotion-euiCodeBlock__line"
+      >
+        var some = 'code';
+
+      </span>
+      <span
+        class="euiCodeBlock__line emotion-euiCodeBlock__line"
+      >
+        console.log(some);
+      </span>
+    </code>
+  </pre>
+</div>
+`;

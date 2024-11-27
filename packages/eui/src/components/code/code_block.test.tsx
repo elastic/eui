@@ -11,6 +11,7 @@ import { fireEvent } from '@testing-library/react';
 
 import { requiredProps } from '../../test/required_props';
 import { render } from '../../test/rtl';
+import { useEuiTheme } from '../../services';
 
 import { EuiCodeBlock } from './code_block';
 
@@ -24,6 +25,7 @@ describe('EuiCodeBlock', () => {
     );
 
     expect(container).toBeInTheDocument();
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   it('updates DOM when the input changes', () => {
@@ -49,7 +51,7 @@ describe('EuiCodeBlock', () => {
   });
 
   describe('Props', () => {
-    it('renders "Copy" on the copy button', () => {
+    it('renders "Copy" on the copy button when no `copyAriaLabel` is passed', () => {
       const { getByTestSubject } = render(
         <EuiCodeBlock isCopyable>{code}</EuiCodeBlock>
       );
@@ -72,6 +74,96 @@ describe('EuiCodeBlock', () => {
         'aria-label',
         customLabel
       );
+    });
+
+    it('renders a transparent background when `transparentBackground` is `true`', () => {
+      const { container } = render(
+        <EuiCodeBlock transparentBackground>{code}</EuiCodeBlock>
+      );
+
+      expect(container.querySelector('.euiCodeBlock')).toHaveStyle({
+        background: 'transparent',
+      });
+    });
+
+    it('renders no padding when `paddingSize` is `none`', () => {
+      const { container } = render(
+        <EuiCodeBlock paddingSize="none">{code}</EuiCodeBlock>
+      );
+
+      expect(container.querySelector('.euiCodeBlock__pre')).toHaveStyle({
+        padding: '0',
+      });
+    });
+
+    it('renders a small padding when `paddingSize` is `s`', () => {
+      const { container } = render(
+        <EuiCodeBlock paddingSize="s">{code}</EuiCodeBlock>
+      );
+
+      expect(container.querySelector('.euiCodeBlock__pre')).toHaveStyle({
+        padding: '8px',
+      });
+    });
+
+    it('renders a medium padding when `paddingSize` is `m`', () => {
+      const { container } = render(
+        <EuiCodeBlock paddingSize="m">{code}</EuiCodeBlock>
+      );
+
+      expect(container.querySelector('.euiCodeBlock__pre')).toHaveStyle({
+        padding: '16px',
+      });
+    });
+
+    it.skip('renders a large padding when `paddingSize` is `l`', () => {
+      const CodeBlock = () => {
+        const euiTheme = useEuiTheme();
+
+        console.log(euiTheme);
+
+        return <EuiCodeBlock paddingSize="l">{code}</EuiCodeBlock>;
+      };
+
+      const { container } = render(<CodeBlock />);
+
+      console.log(
+        getComputedStyle(container.querySelector('.euiCodeBlock__pre')!)
+      );
+
+      expect(container.querySelector('.euiCodeBlock__pre')).toHaveStyle({
+        padding: '24px',
+      });
+    });
+
+    it('renders a small font size when `fontSize` is `s`', () => {
+      const { container } = render(
+        <EuiCodeBlock fontSize="s">{code}</EuiCodeBlock>
+      );
+
+      expect(container.querySelector('.euiCodeBlock')).toHaveStyle({
+        fontSize: '0.8571rem',
+      });
+    });
+
+    it('renders a medium font size when `fontSize` is `m`', () => {
+      const { container } = render(
+        <EuiCodeBlock fontSize="m">{code}</EuiCodeBlock>
+      );
+
+      expect(container.querySelector('.euiCodeBlock')).toHaveStyle({
+        fontSize: '1.0000rem',
+      });
+    });
+
+    it('renders a large font size when `fontSize` is `l`', () => {
+      const { container } = render(
+        <EuiCodeBlock fontSize="l">{code}</EuiCodeBlock>
+      );
+
+      expect(container.querySelector('.euiCodeBlock')).toHaveStyle({
+        fontSize: '1.1429rem',
+      });
     });
   });
 
@@ -131,7 +223,10 @@ describe('EuiCodeBlock', () => {
         </EuiCodeBlock>
       );
 
-      expect(container).toBeInTheDocument();
+      expect(
+        container.querySelector('[class*="euiCodeBlock__code-isVirtualized"]')
+      ).toBeInTheDocument();
+      expect(container.firstChild).toMatchSnapshot();
     });
 
     it('requires overflowHeight', () => {
@@ -160,7 +255,7 @@ describe('EuiCodeBlock', () => {
       );
 
       expect(
-        container.querySelectorAll('.euiCodeBlock__lineNumberWrapper').length
+        container.querySelectorAll('.euiCodeBlock__lineNumber').length
       ).toBeGreaterThan(0);
     });
 
@@ -171,15 +266,14 @@ describe('EuiCodeBlock', () => {
         </EuiCodeBlock>
       );
 
-      expect(
-        container.querySelectorAll('.euiCodeBlock__lineNumberWrapper > span')[0]
-      ).toHaveAttribute('data-line-number', '10');
-      expect(
-        container.querySelectorAll('.euiCodeBlock__lineNumberWrapper > span')[1]
-      ).toHaveAttribute('data-line-number', '11');
+      const lineNumbers = container.querySelectorAll(
+        '.euiCodeBlock__lineNumber'
+      );
+
+      expect(lineNumbers[0]).toHaveAttribute('data-line-number', '10');
+      expect(lineNumbers[1]).toHaveAttribute('data-line-number', '11');
     });
 
-    // TODO: Update the assertion
     it('renders highlighted line numbers', () => {
       const { container } = render(
         <EuiCodeBlock lineNumbers={{ highlight: '1' }} {...requiredProps}>
@@ -187,7 +281,11 @@ describe('EuiCodeBlock', () => {
         </EuiCodeBlock>
       );
 
-      expect(container).toBeInTheDocument();
+      const highlightedLine = container.querySelector(
+        '[class*="euiCodeBlock__lineText-isHighlighted"]'
+      );
+
+      expect(highlightedLine).toBeInTheDocument();
     });
 
     it('renders annotated line numbers', () => {
