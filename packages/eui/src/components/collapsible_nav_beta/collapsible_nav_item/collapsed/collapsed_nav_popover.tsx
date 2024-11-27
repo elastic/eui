@@ -60,9 +60,15 @@ export const EuiCollapsedNavPopover: FunctionComponent<
 
       const isNavLink = event.target.closest('.euiCollapsibleNavLink.euiLink');
       if (isNavLink) closePopover();
+
+      // Visually hide the tooltip for mouse users only
+      const isMouseEvent = event.screenX !== 0 && event.screenY !== 0;
+      if (isMouseEvent) setIsTooltipHidden(true);
     },
     [closePopover]
   );
+  const [isTooltipHidden, setIsTooltipHidden] = useState(false);
+  const reshowTooltip = useCallback(() => setIsTooltipHidden(false), []);
 
   return (
     <EuiPopover
@@ -79,7 +85,8 @@ export const EuiCollapsedNavPopover: FunctionComponent<
           iconProps={iconProps}
           isSelected={isSelected}
           onClick={togglePopover}
-          hideToolTip={isPopoverOpen}
+          hideToolTip={isPopoverOpen || isTooltipHidden}
+          linkProps={{ onMouseOver: reshowTooltip }}
         />
       }
       {...rest}

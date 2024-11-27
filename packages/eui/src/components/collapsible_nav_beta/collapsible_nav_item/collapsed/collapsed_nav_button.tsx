@@ -77,6 +77,7 @@ export const EuiCollapsedNavButton: FunctionComponent<
       position={side}
       display="block"
       anchorProps={rest}
+      repositionOnScroll={true}
     >
       <EuiButtonIcon
         data-test-subj="euiCollapsedNavButton"
