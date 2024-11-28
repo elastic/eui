@@ -40,6 +40,41 @@ const meta: Meta<EuiDatePickerRangeProps> = {
 export default meta;
 type Story = StoryObj<EuiDatePickerRangeProps>;
 
+const StatefulPlayground = ({
+  startDateControl,
+  endDateControl,
+  ...rest
+}: EuiDatePickerRangeProps) => {
+  const [selectedStartDate, setSelectedStartDate] = useState<moment.Moment>(
+    startDateControl.props.selected
+  );
+  const [selectedEndDate, setSelectedEndDate] = useState<moment.Moment>(
+    endDateControl.props.selected
+  );
+
+  const startControl = React.cloneElement(startDateControl, {
+    selected: selectedStartDate,
+    onChange: setSelectedStartDate,
+    startDate: selectedStartDate,
+    endDate: selectedEndDate,
+  });
+
+  const endControl = React.cloneElement(endDateControl, {
+    selected: selectedEndDate,
+    onChange: setSelectedEndDate,
+    startDate: selectedStartDate,
+    endDate: selectedEndDate,
+  });
+
+  return (
+    <EuiDatePickerRange
+      startDateControl={startControl}
+      endDateControl={endControl}
+      {...rest}
+    />
+  );
+};
+
 export const Playground: Story = {
   parameters: {
     controls: {
@@ -104,37 +139,16 @@ export const RestrictedSelection: Story = {
   render: (args) => <StatefulPlayground {...args} />,
 };
 
-const StatefulPlayground = ({
-  startDateControl,
-  endDateControl,
-  ...rest
-}: EuiDatePickerRangeProps) => {
-  const [selectedStartDate, setSelectedStartDate] = useState<moment.Moment>(
-    startDateControl.props.selected
-  );
-  const [selectedEndDate, setSelectedEndDate] = useState<moment.Moment>(
-    endDateControl.props.selected
-  );
+/**
+ * VRT only stories
+ */
 
-  const startControl = React.cloneElement(startDateControl, {
-    selected: selectedStartDate,
-    onChange: setSelectedStartDate,
-    startDate: selectedStartDate,
-    endDate: selectedEndDate,
-  });
-
-  const endControl = React.cloneElement(endDateControl, {
-    selected: selectedEndDate,
-    onChange: setSelectedEndDate,
-    startDate: selectedStartDate,
-    endDate: selectedEndDate,
-  });
-
-  return (
-    <EuiDatePickerRange
-      startDateControl={startControl}
-      endDateControl={endControl}
-      {...rest}
-    />
-  );
+export const FullWidth: Story = {
+  tags: ['vrt-only'],
+  args: {
+    startDateControl: <EuiDatePicker />,
+    endDateControl: <EuiDatePicker />,
+    fullWidth: true,
+  },
+  render: (args) => <StatefulPlayground {...args} />,
 };
