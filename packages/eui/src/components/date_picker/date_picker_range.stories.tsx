@@ -104,6 +104,24 @@ export const RestrictedSelection: Story = {
   render: (args) => <StatefulPlayground {...args} />,
 };
 
+/**
+ * VRT only stories
+ */
+
+export const FullWidth: Story = {
+  tags: ['vrt-only'],
+  args: {
+    startDateControl: <EuiDatePicker />,
+    endDateControl: <EuiDatePicker />,
+    fullWidth: true,
+  },
+  render: (args) => <StatefulPlayground {...args} />,
+};
+
+/**
+ * Helpers
+ */
+
 const StatefulPlayground = ({
   startDateControl,
   endDateControl,
