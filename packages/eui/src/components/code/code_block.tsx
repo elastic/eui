@@ -14,6 +14,7 @@ import {
   useCombinedRefs,
   useEuiTheme,
   useEuiMemoizedStyles,
+  tabularCopyMarkers,
 } from '../../services';
 import { ExclusiveUnion } from '../common';
 import {
@@ -274,9 +275,13 @@ export const EuiCodeBlock: FunctionComponent<EuiCodeBlockProps> = ({
   // pre tags don't accept aria-label without an
   // appropriate role, we add a SR only text instead
   const codeBlockLabelElement = (
-    <EuiScreenReaderOnly>
-      <div>{codeBlockLabel}</div>
-    </EuiScreenReaderOnly>
+    <>
+      {tabularCopyMarkers.hiddenNoCopyBoundary}
+      <EuiScreenReaderOnly>
+        <div>{codeBlockLabel}</div>
+      </EuiScreenReaderOnly>
+      {tabularCopyMarkers.hiddenNoCopyBoundary}
+    </>
   );
 
   return (

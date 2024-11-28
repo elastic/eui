@@ -7,6 +7,8 @@
  */
 
 import React, { ReactNode, useMemo } from 'react';
+
+import { noCopyBoundsRegex } from '../../services';
 import { useInnerText } from '../inner_text';
 import { EuiCopy } from '../copy';
 import { useEuiI18n } from '../i18n';
@@ -28,17 +30,23 @@ export const useCopy = ({
   children: ReactNode;
 }) => {
   const [innerTextRef, _innerText] = useInnerText('');
-  const innerText = useMemo(
-    () =>
+  const innerText = useMemo(() => {
+    if (!_innerText) return;
+
+    return (
       _innerText
+        // remove text that should not be copied (e.g. screen reader instructions)
+        ?.replace(noCopyBoundsRegex, '')
         // Normalize line terminations to match native JS format
         ?.replace(NEW_LINE_REGEX_GLOBAL, '\n')
+        // remove initial line break (if there was hidden content removed)
+        ?.replace(/^\n/, '')
         // Reduce two or more consecutive new line characters to a single one
         // This is needed primarily because of how syntax highlighting
         // generated DOM elements affect `innerText` output.
-        .replace(/\n{2,}/g, '\n') || '',
-    [_innerText]
-  );
+        ?.replace(/\n{2,}/g, '\n') || ''
+    );
+  }, [_innerText]);
   const textToCopy = isVirtualized ? `${children}` : innerText; // Virtualized code blocks do not have inner text
 
   const showCopyButton = isCopyable && textToCopy;
