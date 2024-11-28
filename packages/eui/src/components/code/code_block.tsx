@@ -37,6 +37,8 @@ import {
   euiCodeBlockPreStyles,
   euiCodeBlockCodeStyles,
 } from './code_block.styles';
+import { EuiScreenReaderOnly } from '../accessibility';
+import { useEuiI18n } from '../i18n';
 
 // Based on observed line height for non-virtualized code blocks
 const fontSizeToRowHeightMap = {
@@ -235,7 +237,6 @@ export const EuiCodeBlock: FunctionComponent<EuiCodeBlockProps> = ({
             : preStyles.whiteSpace.preWrap.controlsOffset.xl),
       ],
       tabIndex: 0,
-      onKeyDown,
     };
 
     return [preProps, preFullscreenProps];
@@ -245,7 +246,6 @@ export const EuiCodeBlock: FunctionComponent<EuiCodeBlockProps> = ({
     isVirtualized,
     hasControls,
     paddingSize,
-    onKeyDown,
     tabIndex,
   ]);
 
@@ -264,6 +264,21 @@ export const EuiCodeBlock: FunctionComponent<EuiCodeBlockProps> = ({
     };
   }, [codeStyles, language, isVirtualized, rest]);
 
+  const codeBlockLabel = useEuiI18n(
+    'euiCodeBlock.label',
+    '{language} code block:',
+    {
+      language,
+    }
+  );
+  // pre tags don't accept aria-label without an
+  // appropriate role, we add a SR only text instead
+  const codeBlockLabelElement = (
+    <EuiScreenReaderOnly>
+      <div>{codeBlockLabel}</div>
+    </EuiScreenReaderOnly>
+  );
+
   return (
     <div
       css={cssStyles}
@@ -280,6 +295,7 @@ export const EuiCodeBlock: FunctionComponent<EuiCodeBlockProps> = ({
         />
       ) : (
         <pre {...preProps} ref={combinedRef} style={overflowHeightStyles}>
+          {codeBlockLabelElement}
           <code {...codeProps}>{content}</code>
         </pre>
       )}
@@ -289,7 +305,7 @@ export const EuiCodeBlock: FunctionComponent<EuiCodeBlockProps> = ({
       />
 
       {isFullScreen && (
-        <EuiCodeBlockFullScreenWrapper>
+        <EuiCodeBlockFullScreenWrapper onClose={onKeyDown}>
           {isVirtualized ? (
             <EuiCodeBlockVirtualized
               data={data}
@@ -299,6 +315,7 @@ export const EuiCodeBlock: FunctionComponent<EuiCodeBlockProps> = ({
             />
           ) : (
             <pre {...preFullscreenProps}>
+              {codeBlockLabelElement}
               <code {...codeProps}>{content}</code>
             </pre>
           )}
