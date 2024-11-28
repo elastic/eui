@@ -11,9 +11,12 @@ import { fireEvent } from '@testing-library/react';
 
 import { requiredProps } from '../../test/required_props';
 import { render } from '../../test/rtl';
-import { useEuiTheme } from '../../services';
 
-import { EuiCodeBlock } from './code_block';
+import {
+  EuiCodeBlock,
+  EuiCodeBlockFontSize,
+  EuiCodeBlockPaddingSize,
+} from './code_block';
 
 const code = `var some = 'code';
 console.log(some);`;
@@ -81,90 +84,48 @@ describe('EuiCodeBlock', () => {
         <EuiCodeBlock transparentBackground>{code}</EuiCodeBlock>
       );
 
-      expect(container.querySelector('.euiCodeBlock')).toHaveStyle({
-        background: 'transparent',
-      });
-    });
-
-    it('renders no padding when `paddingSize` is `none`', () => {
-      const { container } = render(
-        <EuiCodeBlock paddingSize="none">{code}</EuiCodeBlock>
+      expect(container.querySelector('.euiCodeBlock')).toHaveStyleRule(
+        'background',
+        'transparent'
       );
-
-      expect(container.querySelector('.euiCodeBlock__pre')).toHaveStyle({
-        padding: '0',
-      });
     });
 
-    it('renders a small padding when `paddingSize` is `s`', () => {
-      const { container } = render(
-        <EuiCodeBlock paddingSize="s">{code}</EuiCodeBlock>
-      );
+    test.each<{ paddingSize: EuiCodeBlockPaddingSize; expected: string }>([
+      { paddingSize: 'none', expected: '0' },
+      { paddingSize: 's', expected: '8px' },
+      { paddingSize: 'm', expected: '16px' },
+      { paddingSize: 'l', expected: '24px' },
+    ])(
+      'renders a padding of $expected when `paddingSize` is `$paddingSize`',
+      ({ paddingSize, expected }) => {
+        const { container } = render(
+          <EuiCodeBlock paddingSize={paddingSize}>{code}</EuiCodeBlock>
+        );
 
-      expect(container.querySelector('.euiCodeBlock__pre')).toHaveStyle({
-        padding: '8px',
-      });
-    });
+        expect(container.querySelector('.euiCodeBlock__pre')).toHaveStyleRule(
+          'padding',
+          expected
+        );
+      }
+    );
 
-    it('renders a medium padding when `paddingSize` is `m`', () => {
-      const { container } = render(
-        <EuiCodeBlock paddingSize="m">{code}</EuiCodeBlock>
-      );
+    test.each<{ fontSize: EuiCodeBlockFontSize; expected: string }>([
+      { fontSize: 's', expected: '0.8571rem' },
+      { fontSize: 'm', expected: '1.0000rem' },
+      { fontSize: 'l', expected: '1.1429rem' },
+    ])(
+      'renders a font size of $expected when `fontSize` is `$fontSize`',
+      ({ fontSize, expected }) => {
+        const { container } = render(
+          <EuiCodeBlock fontSize={fontSize}>{code}</EuiCodeBlock>
+        );
 
-      expect(container.querySelector('.euiCodeBlock__pre')).toHaveStyle({
-        padding: '16px',
-      });
-    });
-
-    it.skip('renders a large padding when `paddingSize` is `l`', () => {
-      const CodeBlock = () => {
-        const euiTheme = useEuiTheme();
-
-        console.log(euiTheme);
-
-        return <EuiCodeBlock paddingSize="l">{code}</EuiCodeBlock>;
-      };
-
-      const { container } = render(<CodeBlock />);
-
-      console.log(
-        getComputedStyle(container.querySelector('.euiCodeBlock__pre')!)
-      );
-
-      expect(container.querySelector('.euiCodeBlock__pre')).toHaveStyle({
-        padding: '24px',
-      });
-    });
-
-    it('renders a small font size when `fontSize` is `s`', () => {
-      const { container } = render(
-        <EuiCodeBlock fontSize="s">{code}</EuiCodeBlock>
-      );
-
-      expect(container.querySelector('.euiCodeBlock')).toHaveStyle({
-        fontSize: '0.8571rem',
-      });
-    });
-
-    it('renders a medium font size when `fontSize` is `m`', () => {
-      const { container } = render(
-        <EuiCodeBlock fontSize="m">{code}</EuiCodeBlock>
-      );
-
-      expect(container.querySelector('.euiCodeBlock')).toHaveStyle({
-        fontSize: '1.0000rem',
-      });
-    });
-
-    it('renders a large font size when `fontSize` is `l`', () => {
-      const { container } = render(
-        <EuiCodeBlock fontSize="l">{code}</EuiCodeBlock>
-      );
-
-      expect(container.querySelector('.euiCodeBlock')).toHaveStyle({
-        fontSize: '1.1429rem',
-      });
-    });
+        expect(container.querySelector('.euiCodeBlock')).toHaveStyleRule(
+          'font-size',
+          expected
+        );
+      }
+    );
   });
 
   describe('Fullscreen', () => {
