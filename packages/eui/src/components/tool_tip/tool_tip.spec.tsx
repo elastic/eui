@@ -73,7 +73,7 @@ describe('EuiToolTip', () => {
 
   describe('Escape key', () => {
     it('hides the tooltip when rendered by itself', () => {
-      cy.realMount(
+      cy.mount(
         <EuiToolTip content="Tooltip text here" data-test-subj="tooltip">
           <EuiButton data-test-subj="toggleToolTip">Show tooltip</EuiButton>
         </EuiToolTip>
@@ -100,7 +100,7 @@ describe('EuiToolTip', () => {
         ) : null;
       };
 
-      cy.realMount(
+      cy.mount(
         <Flyout>
           <EuiToolTip content="Tooltip text here" data-test-subj="tool_tip">
             <EuiButton data-test-subj="tool_tip_trigger">
@@ -111,7 +111,7 @@ describe('EuiToolTip', () => {
       );
       cy.get('[data-test-subj="tool_tip"]').should('not.exist');
 
-      cy.repeatRealPress('Tab', 2);
+      cy.get('[data-test-subj="tool_tip_trigger"]').focus();
       cy.get('[data-test-subj="tool_tip"]').should('exist');
 
       cy.realPress('Escape');
@@ -137,7 +137,7 @@ describe('EuiToolTip', () => {
         ) : null;
       };
 
-      cy.realMount(
+      cy.mount(
         <Modal>
           <EuiToolTip content="Tooltip text here" data-test-subj="tool_tip">
             <EuiButton data-test-subj="tool_tip_trigger">
@@ -148,7 +148,7 @@ describe('EuiToolTip', () => {
       );
       cy.get('[data-test-subj="tool_tip"]').should('not.exist');
 
-      cy.repeatRealPress('Tab', 2);
+      cy.get('[data-test-subj="tool_tip_trigger"]').focus();
       cy.get('[data-test-subj="tool_tip"]').should('exist');
 
       cy.realPress('Escape');
@@ -188,7 +188,7 @@ describe('EuiToolTip', () => {
         );
       };
 
-      cy.realMount(
+      cy.mount(
         <Popover>
           <EuiToolTip content="Tooltip text here" data-test-subj="tool_tip">
             <EuiButton data-test-subj="tool_tip_trigger">
@@ -199,7 +199,7 @@ describe('EuiToolTip', () => {
       );
       cy.get('[data-test-subj="tool_tip"]').should('not.exist');
 
-      cy.realPress('Tab');
+      cy.get('[data-test-subj="tool_tip_trigger"]').focus();
       cy.get('[data-test-subj="tool_tip"]').should('exist');
 
       cy.realPress('Escape');
