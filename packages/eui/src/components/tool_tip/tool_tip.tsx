@@ -280,6 +280,7 @@ export class EuiToolTip extends Component<EuiToolTipProps, State> {
 
   onEscapeKey = (event: React.KeyboardEvent<HTMLSpanElement>) => {
     if (event.key === keys.ESCAPE) {
+      if (this.state.visible) event.stopPropagation();
       this.setState({ hasFocus: false }); // Allows mousing over back into the tooltip to work correctly
       this.hideToolTip();
     }
