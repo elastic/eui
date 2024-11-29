@@ -133,8 +133,6 @@ export const EuiCodeBlockFullScreenWrapper: FunctionComponent<
     'Expanded code block'
   );
 
-  // the fullscreen element is fullscreen and has a focus trap, mark it as dialog
-  // to ensure expected semantic definition and behavior for screen readers
   const dialogProps = {
     role: 'dialog',
     'aria-modal': true,
