@@ -35,6 +35,7 @@ module.exports = {
   },
   extends: [
     'plugin:@typescript-eslint/recommended',
+    'plugin:deprecation/recommended',
     'plugin:storybook/recommended',
     // Prettier options need to come last, in order to override other style rules
     'plugin:prettier/recommended',
@@ -47,6 +48,7 @@ module.exports = {
     'react',
     'react-hooks',
     '@emotion',
+    'deprecation'
   ],
   rules: {
     'block-scoped-var': 'error',
