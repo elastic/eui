@@ -111,7 +111,9 @@ describe('EuiToolTip', () => {
       );
       cy.get('[data-test-subj="tool_tip"]').should('not.exist');
 
-      cy.get('[data-test-subj="tool_tip_trigger"]').focus();
+      cy.get('[data-test-subj="flyout"]').focus();
+
+      cy.repeatRealPress('Tab', 2);
       cy.get('[data-test-subj="tool_tip"]').should('exist');
 
       cy.realPress('Escape');
@@ -148,7 +150,9 @@ describe('EuiToolTip', () => {
       );
       cy.get('[data-test-subj="tool_tip"]').should('not.exist');
 
-      cy.get('[data-test-subj="tool_tip_trigger"]').focus();
+      cy.get('[data-test-subj="modal"]').focus();
+
+      cy.repeatRealPress('Tab', 2);
       cy.get('[data-test-subj="tool_tip"]').should('exist');
 
       cy.realPress('Escape');
@@ -199,7 +203,9 @@ describe('EuiToolTip', () => {
       );
       cy.get('[data-test-subj="tool_tip"]').should('not.exist');
 
-      cy.get('[data-test-subj="tool_tip_trigger"]').focus();
+      cy.get('[data-test-subj="popover"]').focus();
+
+      cy.realPress('Tab');
       cy.get('[data-test-subj="tool_tip"]').should('exist');
 
       cy.realPress('Escape');
