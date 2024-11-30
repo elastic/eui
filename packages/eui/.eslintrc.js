@@ -51,6 +51,7 @@ module.exports = {
     'deprecation'
   ],
   rules: {
+    'deprecation/deprecation': 'warn',
     'block-scoped-var': 'error',
     camelcase: 'off',
     'dot-notation': ['error', { allowKeywords: true }],
