@@ -13,13 +13,23 @@ import { CommonProps } from '../common';
 import { useEuiTheme } from '../../services';
 import { euiModalHeaderStyles } from './modal_header.styles';
 
+import { EuiButtonIcon } from '../button';
+import { EuiI18n } from '../i18n';
 export type EuiModalHeaderProps = FunctionComponent<
-  HTMLAttributes<HTMLDivElement> & CommonProps
+  HTMLAttributes<HTMLDivElement> &
+    CommonProps & {
+      onClose: (
+        event?:
+          | React.KeyboardEvent<HTMLDivElement>
+          | React.MouseEvent<HTMLButtonElement>
+      ) => void;
+    }
 >;
 
 export const EuiModalHeader: EuiModalHeaderProps = ({
   className,
   children,
+  onClose,
   ...rest
 }) => {
   const classes = classnames('euiModalHeader', className);
@@ -27,10 +37,26 @@ export const EuiModalHeader: EuiModalHeaderProps = ({
   const euiTheme = useEuiTheme();
   const styles = euiModalHeaderStyles(euiTheme);
   const cssStyles = [styles.euiModalHeader];
+  const cssCloseIconStyles = [styles.euiModal__closeIcon];
 
   return (
     <div css={cssStyles} className={classes} {...rest}>
       {children}
+      <EuiI18n
+        token="euiModalHeader.closeModal"
+        default="Closes this modal window"
+      >
+        {(closeModal: string) => (
+          <EuiButtonIcon
+            iconType="cross"
+            css={cssCloseIconStyles}
+            className="euiModal__closeIcon"
+            color="text"
+            onClick={onClose}
+            aria-label={closeModal}
+          />
+        )}
+      </EuiI18n>
     </div>
   );
 };

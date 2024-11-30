@@ -5634,7 +5634,7 @@
     "filepath": "src/components/markdown_editor/markdown_editor_toolbar.tsx"
   },
   {
-    "token": "euiModal.closeModal",
+    "token": "euiModalHeader.closeModal",
     "defString": "Closes this modal window",
     "highlighting": "string",
     "loc": {
@@ -5649,7 +5649,7 @@
         "index": 3276
       }
     },
-    "filepath": "src/components/modal/modal.tsx"
+    "filepath": "src/components/modal/modal_header.tsx"
   },
   {
     "token": "euiPaginationButtonArrow.firstPage",
