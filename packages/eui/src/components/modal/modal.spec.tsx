@@ -38,7 +38,7 @@ const Modal = ({ content }: { content?: ReactNode }) => {
       <EuiButton onClick={showModal}>Show confirm modal</EuiButton>
       {isModalVisible && (
         <EuiModal {...modalProps}>
-          <EuiModalHeader>
+          <EuiModalHeader onClose={modalProps.onClose}>
             <EuiModalHeaderTitle>Title of modal</EuiModalHeaderTitle>
           </EuiModalHeader>
 
