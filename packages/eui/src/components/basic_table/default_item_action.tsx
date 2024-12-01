@@ -22,6 +22,8 @@ import {
   DefaultItemAction as Action,
   callWithItemIfFunction,
 } from './action_types';
+import { useEuiMemoizedStyles } from '../../services';
+import { euiIconButtonWrapperStyles } from './default_item_action.styles';
 
 export interface DefaultItemActionProps<T extends object> {
   action: Action<T>;
@@ -65,6 +67,9 @@ export const DefaultItemAction = <T extends object>({
   let ariaLabelledBy: ReactNode;
   let button;
 
+  const styles = useEuiMemoizedStyles(euiIconButtonWrapperStyles);
+  const cssStyles = [styles.isDisabled];
+
   if (action.type === 'icon') {
     if (!icon) {
       throw new Error(`Cannot render item action [${action.name}]. It is configured to render as an icon but no
@@ -81,9 +86,6 @@ export const DefaultItemAction = <T extends object>({
         href={href}
         target={action.target}
         data-test-subj={dataTestSubj}
-        // If action is disabled, the normal tooltip can't show - attempt to
-        // provide some amount of affordance with a browser title tooltip
-        title={!enabled ? tooltipContent : undefined}
       />
     );
     // actionContent (action.name) is a ReactNode and must be rendered
@@ -112,19 +114,14 @@ export const DefaultItemAction = <T extends object>({
     );
   }
 
-  return enabled ? (
-    <>
+  return (
+    <div css={cssStyles} className={`${className} icon-wrapper`}>
       <EuiToolTip content={tooltipContent} delay="long">
         {button}
       </EuiToolTip>
       {/* SR text has to be rendered outside the tooltip,
       otherwise EuiToolTip's own aria-labelledby won't properly clone */}
       {ariaLabelledBy}
-    </>
-  ) : (
-    <>
-      {button}
-      {ariaLabelledBy}
-    </>
+    </div>
   );
 };
