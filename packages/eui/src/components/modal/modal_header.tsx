@@ -18,8 +18,8 @@ import { EuiI18n } from '../i18n';
 export type EuiModalHeaderProps = FunctionComponent<
   HTMLAttributes<HTMLDivElement> &
     CommonProps & {
-      onClose: (
-        event?:
+      onClose?: (
+        event:
           | React.KeyboardEvent<HTMLDivElement>
           | React.MouseEvent<HTMLButtonElement>
       ) => void;
