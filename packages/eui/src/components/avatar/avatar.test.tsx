@@ -160,7 +160,7 @@ describe('EuiAvatar', () => {
     const component = () =>
       render(<EuiAvatar name="name" color="rgba(0,0,0,0)" />);
 
-    expect(component).toThrowError(
+    expect(component).toThrow(
       'EuiAvatar needs to pass a valid color. This can either be a three or six character hex value'
     );
   });

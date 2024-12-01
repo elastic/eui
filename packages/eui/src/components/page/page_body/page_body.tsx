@@ -17,7 +17,7 @@ import { EuiPanel, EuiPanelProps } from '../../panel';
 import { useEuiPaddingCSS, EuiPaddingSize } from '../../../global_styling';
 import { euiPageBodyStyles } from './page_body.styles';
 
-type ComponentTypes = keyof JSX.IntrinsicElements | ComponentType<any>;
+type ComponentTypes = keyof React.JSX.IntrinsicElements | ComponentType<any>;
 
 export type EuiPageBodyProps<T extends ComponentTypes = 'main'> =
   PropsWithChildren &

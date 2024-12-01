@@ -37,7 +37,7 @@ const getStyles = ({ euiTheme }: UseEuiTheme) => {
   };
 };
 
-export default function PaginatorNavLink(props: Props): JSX.Element {
+export default function PaginatorNavLink(props: Props): React.JSX.Element {
   const { permalink, title, subLabel, isNext } = props;
   const isPrev = !isNext;
   const styles = useEuiMemoizedStyles(getStyles);

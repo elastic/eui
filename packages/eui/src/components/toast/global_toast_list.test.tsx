@@ -124,11 +124,11 @@ describe('EuiGlobalToastList', () => {
         act(() => {
           jest.advanceTimersByTime(TOAST_FADE_OUT_MS - 1);
         });
-        expect(dismissToastSpy).not.toBeCalled();
+        expect(dismissToastSpy).not.toHaveBeenCalled();
         act(() => {
           jest.advanceTimersByTime(1);
         });
-        expect(dismissToastSpy).toBeCalled();
+        expect(dismissToastSpy).toHaveBeenCalled();
       });
 
       test('is called when the toast lifetime elapses', () => {
@@ -150,11 +150,11 @@ describe('EuiGlobalToastList', () => {
         act(() => {
           jest.advanceTimersByTime(TOAST_LIFE_TIME_MS + TOAST_FADE_OUT_MS - 1);
         });
-        expect(dismissToastSpy).not.toBeCalled();
+        expect(dismissToastSpy).not.toHaveBeenCalled();
         act(() => {
           jest.advanceTimersByTime(1);
         });
-        expect(dismissToastSpy).toBeCalled();
+        expect(dismissToastSpy).toHaveBeenCalled();
       });
 
       test('toastLifeTimeMs is overrideable by individidual toasts', () => {
@@ -180,11 +180,11 @@ describe('EuiGlobalToastList', () => {
         act(() => {
           jest.advanceTimersByTime(notYetTime);
         });
-        expect(dismissToastSpy).not.toBeCalled();
+        expect(dismissToastSpy).not.toHaveBeenCalled();
         act(() => {
           jest.advanceTimersByTime(nowItsTime - notYetTime);
         });
-        expect(dismissToastSpy).toBeCalled();
+        expect(dismissToastSpy).toHaveBeenCalled();
       });
     });
 

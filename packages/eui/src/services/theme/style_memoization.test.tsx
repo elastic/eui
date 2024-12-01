@@ -86,7 +86,7 @@ describe('useEuiMemoizedStyles', () => {
         renderHook(() => useEuiMemoizedStyles(() => ({})), {
           wrapper: EuiThemeProvider,
         })
-      ).toThrowError(
+      ).toThrow(
         'Styles are memoized per function. Your style functions must be statically defined in order to not create a new map entry every rerender.'
       );
       setEuiDevProviderWarning(undefined);

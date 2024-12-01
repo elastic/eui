@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import { memo, JSX } from 'react';
 import {
   DocSidebarItemsExpandedStateProvider,
   useVisibleSidebarItems,

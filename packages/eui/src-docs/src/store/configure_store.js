@@ -1,4 +1,4 @@
-import { applyMiddleware, createStore, compose } from 'redux';
+import { applyMiddleware, legacy_createStore, compose } from 'redux';
 import thunk from 'redux-thunk';
 
 import Routes from '../routes';
@@ -19,7 +19,7 @@ export default function configureStore(initialState) {
     };
   }
 
-  return compose(applyMiddleware(thunk))(createStore)(
+  return compose(applyMiddleware(thunk))(legacy_createStore)(
     rootReducer,
     initialState
   );

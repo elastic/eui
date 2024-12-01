@@ -6,9 +6,9 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent, ReactChild, ReactElement } from 'react';
+import React, { FunctionComponent, ReactElement } from 'react';
 import { EuiI18nConsumer } from '../context';
-import { ExclusiveUnion } from '../common';
+import { ExclusiveUnion, ReactChild } from '../common';
 
 const defaultFormatter = new Intl.NumberFormat('en');
 function defaultFormatNumber(value: number) {

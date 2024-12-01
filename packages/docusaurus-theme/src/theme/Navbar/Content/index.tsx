@@ -1,4 +1,4 @@
-import React, { type ReactNode } from 'react';
+import { type ReactNode, JSX } from 'react';
 import { css, Global } from '@emotion/react';
 import { useThemeConfig, ErrorCauseBoundary } from '@docusaurus/theme-common';
 import {

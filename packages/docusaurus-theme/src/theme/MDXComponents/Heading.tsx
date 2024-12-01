@@ -6,6 +6,7 @@
  * Side Public License, v 1.
  */
 
+import { JSX } from 'react';
 import Heading, { Props as HeadingProps } from '@theme/Heading';
 
 const MDXHeading = (props: HeadingProps): JSX.Element => (
