@@ -7,5 +7,17 @@ exports[`EuiModalHeader is rendered 1`] = `
   data-test-subj="test subject string"
 >
   children
+  <button
+    aria-label="Closes this modal window"
+    class="euiButtonIcon euiModal__closeIcon emotion-euiButtonIcon-xs-empty-text-euiModal__closeIcon"
+    type="button"
+  >
+    <span
+      aria-hidden="true"
+      class="euiButtonIcon__icon"
+      color="inherit"
+      data-euiicon-type="cross"
+    />
+  </button>
 </div>
 `;
