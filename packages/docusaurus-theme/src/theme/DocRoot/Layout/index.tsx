@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState, JSX } from 'react';
 import { css } from '@emotion/react';
 import { useDocsSidebar } from '@docusaurus/plugin-content-docs/client';
 import useIsBrowser from '@docusaurus/useIsBrowser';

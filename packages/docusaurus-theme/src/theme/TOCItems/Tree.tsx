@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { JSX } from 'react';
 import { css } from '@emotion/react';
 import Link from '@docusaurus/Link';
 import type { Props } from '@theme-original/TOCItems/Tree';

@@ -188,7 +188,7 @@ describe('EuiColorPicker', () => {
     );
 
     fireEvent.click(getByTestSubject('euiColorPickerAnchor'));
-    expect(onFocusHandler).toBeCalled();
+    expect(onFocusHandler).toHaveBeenCalled();
     expect(getByTestSubject('euiColorPickerPopover')).toBeInTheDocument();
   });
 
@@ -209,7 +209,7 @@ describe('EuiColorPicker', () => {
     });
     await (async () => {
       expect(getByTestSubject('euiColorPickerPopover')).not.toBeInTheDocument();
-      expect(onBlurHandler).toBeCalled(); // The blur handler is called just before the portal would be removed.
+      expect(onBlurHandler).toHaveBeenCalled(); // The blur handler is called just before the portal would be removed.
     });
   });
 
@@ -235,8 +235,8 @@ describe('EuiColorPicker', () => {
     const event = { target: { value: '#000000' } };
     fireEvent.change(getByTestSubject('euiColorPickerAnchor'), event);
 
-    expect(onChange).toBeCalled();
-    expect(onChange).toBeCalledWith('#000000', {
+    expect(onChange).toHaveBeenCalled();
+    expect(onChange).toHaveBeenCalledWith('#000000', {
       hex: '#000000',
       isValid: true,
       rgba: [0, 0, 0, 1],
@@ -252,8 +252,8 @@ describe('EuiColorPicker', () => {
     expect(swatches.length).toBe(VISUALIZATION_COLORS.length);
 
     fireEvent.click(swatches[0]);
-    expect(onChange).toBeCalled();
-    expect(onChange).toBeCalledWith(VISUALIZATION_COLORS[0], {
+    expect(onChange).toHaveBeenCalled();
+    expect(onChange).toHaveBeenCalledWith(VISUALIZATION_COLORS[0], {
       hex: '#16c5c0',
       isValid: true,
       rgba: [22, 197, 192, 1],
@@ -270,14 +270,14 @@ describe('EuiColorPicker', () => {
     // Slider
     const [range, input] = getAllByTestSubject('euiColorPickerAlpha');
     fireEvent.change(range, { target: { value: '50' } });
-    expect(onChange).toBeCalledWith('#ffeedd80', {
+    expect(onChange).toHaveBeenCalledWith('#ffeedd80', {
       hex: '#ffeedd80',
       isValid: true,
       rgba: [255, 238, 221, 0.5],
     });
     // Number input
     fireEvent.change(input, { target: { value: '25' } });
-    expect(onChange).toBeCalledWith('#ffeedd40', {
+    expect(onChange).toHaveBeenCalledWith('#ffeedd40', {
       hex: '#ffeedd40',
       isValid: true,
       rgba: [255, 238, 221, 0.25],
@@ -290,8 +290,8 @@ describe('EuiColorPicker', () => {
     );
 
     fireEvent.click(getByLabelText('Clear input'));
-    expect(onChange).toBeCalled();
-    expect(onChange).toBeCalledWith('', {
+    expect(onChange).toHaveBeenCalled();
+    expect(onChange).toHaveBeenCalledWith('', {
       hex: '',
       isValid: false,
       rgba: [NaN, NaN, NaN, 1],

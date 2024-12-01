@@ -10,9 +10,9 @@ import React, {
   createContext,
   Context,
   FunctionComponent,
-  ReactChild,
   ReactNode,
 } from 'react';
+import { ReactChild } from '../common';
 
 export interface RenderableValues {
   // undefined values are ignored, but including support here improves usability

@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React from 'react';
+import { JSX } from 'react';
 import { EuiHorizontalRule } from '@elastic/eui';
 import { css } from '@emotion/react';
 import { useWindowSize } from '@docusaurus/theme-common';

@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, JSX } from 'react';
 import clsx from 'clsx';
 import { css } from '@emotion/react';
 import {

@@ -27,7 +27,7 @@ export interface EuiTableHeaderCellCheckboxProps {
 
 export const EuiTableHeaderCellCheckbox: FunctionComponent<
   CommonProps &
-    ThHTMLAttributes<HTMLTableHeaderCellElement> &
+    ThHTMLAttributes<HTMLTableCellElement> &
     EuiTableHeaderCellCheckboxProps
 > = ({ children, className, scope = 'col', style, width, append, ...rest }) => {
   const classes = classNames('euiTableHeaderCellCheckbox', className);

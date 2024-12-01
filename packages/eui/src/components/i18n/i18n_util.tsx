@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import { cloneElement, ReactChild } from 'react';
+import { cloneElement } from 'react';
 import {
   isBoolean,
   isString,
@@ -15,6 +15,7 @@ import {
 } from '../../services/predicate';
 import { isElement } from 'react-is';
 import { RenderableValues } from '../context/context';
+import { ReactChild } from '../common';
 
 function isPrimitive(value: ReactChild | undefined) {
   return (

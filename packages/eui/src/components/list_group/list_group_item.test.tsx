@@ -310,7 +310,7 @@ describe('EuiListGroupItem', () => {
         <EuiListGroupItem label="" iconType="empty" icon={<span />} />
       );
 
-      expect(consoleStub).toBeCalled();
+      expect(consoleStub).toHaveBeenCalled();
       expect(consoleStub.mock.calls[0][0]).toMatch(
         '`iconType` and `icon` were passed'
       );

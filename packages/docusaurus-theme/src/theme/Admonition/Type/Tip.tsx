@@ -1,3 +1,4 @@
+import { JSX } from 'react';
 import OriginalTip from '@theme-init/Admonition/Type/Tip';
 import type TipType from '@theme-init/Admonition/Type/Tip';
 import type { WrapperProps } from '@docusaurus/types';

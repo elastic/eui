@@ -16,7 +16,7 @@ import {
 import { useEuiTheme, useIsWithinBreakpoints } from '../../../services';
 import { euiPageInnerStyles } from './page_inner.styles';
 
-export type ComponentTypes = keyof JSX.IntrinsicElements | ComponentType;
+export type ComponentTypes = keyof React.JSX.IntrinsicElements | ComponentType;
 
 export type _EuiPageInnerProps<T extends ComponentTypes = 'main'> =
   PropsWithChildren &

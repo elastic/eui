@@ -224,8 +224,8 @@ export function findPopoverPosition({
       bestPosition = {
         fit: screenCoordinates.fit,
         position: iterationPosition,
-        top: screenCoordinates.top + window.pageYOffset,
-        left: screenCoordinates.left + window.pageXOffset,
+        top: screenCoordinates.top + window.scrollY,
+        left: screenCoordinates.left + window.scrollX,
         arrow: screenCoordinates.arrow,
       };
 

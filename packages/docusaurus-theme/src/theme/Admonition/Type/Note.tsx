@@ -1,3 +1,4 @@
+import { JSX } from 'react';
 import OriginalNote from '@theme-init/Admonition/Type/Note';
 import type NoteType from '@theme-init/Admonition/Type/Note';
 import type { WrapperProps } from '@docusaurus/types';
