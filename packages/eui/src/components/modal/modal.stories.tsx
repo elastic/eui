@@ -48,7 +48,7 @@ export const Playground: Story = {
   args: {
     children: (
       <>
-        <EuiModalHeader>
+        <EuiModalHeader onClose={action('onClose')}>
           <EuiModalHeaderTitle>Modal title</EuiModalHeaderTitle>
         </EuiModalHeader>
 
@@ -66,7 +66,7 @@ export const ToggleExample: Story = {
   args: {
     children: (
       <>
-        <EuiModalHeader>
+        <EuiModalHeader onClose={action('onClose')}>
           <EuiModalHeaderTitle>Modal title</EuiModalHeaderTitle>
         </EuiModalHeader>
 
@@ -94,7 +94,7 @@ export const InitialFocus: Story = {
     };
     return (
       <StatefulModal aria-labelledby="modalTitleId" {...args}>
-        <EuiModalHeader>
+        <EuiModalHeader onClose={action('onClose')}>
           <EuiModalHeaderTitle id="modalTitleId">
             Modal title
           </EuiModalHeaderTitle>

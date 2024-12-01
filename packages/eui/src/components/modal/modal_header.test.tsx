@@ -13,12 +13,18 @@ import { render } from '../../test/rtl';
 
 import { EuiModalHeader } from './modal_header';
 
+const onClose = jest.fn;
+
 describe('EuiModalHeader', () => {
-  shouldRenderCustomStyles(<EuiModalHeader>children</EuiModalHeader>);
+  shouldRenderCustomStyles(
+    <EuiModalHeader onClose={onClose}>children</EuiModalHeader>
+  );
 
   test('is rendered', () => {
     const { container } = render(
-      <EuiModalHeader {...requiredProps}>children</EuiModalHeader>
+      <EuiModalHeader onClose={onClose} {...requiredProps}>
+        children
+      </EuiModalHeader>
     );
     expect(container.firstChild).toMatchSnapshot();
   });

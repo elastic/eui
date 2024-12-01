@@ -31,7 +31,7 @@ const meta: Meta<EuiModalHeaderTitleProps> = {
   decorators: [
     (Story) => (
       <EuiModal onClose={action('onClose')}>
-        <EuiModalHeader>
+        <EuiModalHeader onClose={action('onClose')}>
           <Story />
         </EuiModalHeader>
       </EuiModal>
