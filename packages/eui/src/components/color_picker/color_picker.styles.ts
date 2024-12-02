@@ -12,7 +12,7 @@ import { UseEuiTheme, transparentize } from '../../services';
 import { logicalCSS, mathWithUnits } from '../../global_styling';
 
 export const euiColorPickerStyles = (euiThemeContext: UseEuiTheme) => {
-  const euiTheme = euiThemeContext.euiTheme;
+  const { euiTheme, highContrastMode } = euiThemeContext;
 
   // 5 columns of swatches + margins + border
   const colorPickerWidth = mathWithUnits(
@@ -48,7 +48,10 @@ export const euiColorPickerStyles = (euiThemeContext: UseEuiTheme) => {
     euiColorPicker__swatchInputIcon: css`
       .euiSwatchInput__stroke {
         fill: none;
-        stroke: ${transparentize(euiTheme.colors.fullShade, 0.2)};
+        stroke: ${transparentize(
+          euiTheme.colors.fullShade,
+          highContrastMode ? 1 : 0.2
+        )};
       }
     `,
   };

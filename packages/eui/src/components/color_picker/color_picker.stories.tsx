@@ -56,6 +56,12 @@ export const InlineWithAllElements: Story = {
   },
 };
 
+export const HighContrast: Story = {
+  ...InlineWithAllElements,
+  tags: ['vrt-only'],
+  globals: { highContrastMode: true },
+};
+
 const StatefulColorPicker: FunctionComponent<EuiColorPickerProps> = ({
   color: _color,
   format,

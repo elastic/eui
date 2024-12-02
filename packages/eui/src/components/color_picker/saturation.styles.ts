@@ -16,7 +16,7 @@ import {
 } from '../../global_styling';
 
 export const euiSaturationStyles = (euiThemeContext: UseEuiTheme) => {
-  const { euiTheme } = euiThemeContext;
+  const { euiTheme, highContrastMode } = euiThemeContext;
 
   const indicatorSize = euiTheme.size.m;
 
@@ -31,6 +31,8 @@ export const euiSaturationStyles = (euiThemeContext: UseEuiTheme) => {
       position: relative;
       ${logicalCSS('width', '100%')}
       ${logicalCSS('padding-bottom', '100%')}
+      ${highContrastMode ? `border: ${euiTheme.border.thin};` : ''}
+      ${highContrastMode === 'forced' ? 'forced-color-adjust: none;' : ''}
       border-radius: ${borderRadius};
       touch-action: none; /* prevent TouchMove events from scrolling page */
 
