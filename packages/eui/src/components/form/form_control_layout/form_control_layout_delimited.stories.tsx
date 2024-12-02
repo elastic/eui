@@ -139,7 +139,9 @@ export const KitchenSink: Story = {
         css={{ display: 'flex', flexDirection: 'column', gap: 10 }}
       >
         <EuiFormControlLayoutDelimited
-          startControl={<EuiFieldNumber controlOnly placeholder="0" />}
+          startControl={
+            <EuiFieldNumber controlOnly placeholder="0" autoFocus />
+          }
           endControl={<EuiFieldNumber controlOnly placeholder="100" />}
         />
         <EuiFormControlLayoutDelimited
@@ -200,4 +202,16 @@ export const KitchenSink: Story = {
       </EuiForm>
     );
   },
+};
+
+export const HighContrast: Story = {
+  ...KitchenSink,
+  tags: ['vrt-only'],
+  globals: { highContrastMode: true },
+};
+
+export const HighContrastDarkMode: Story = {
+  ...KitchenSink,
+  tags: ['vrt-only'],
+  globals: { highContrastMode: true, colorMode: 'dark' },
 };

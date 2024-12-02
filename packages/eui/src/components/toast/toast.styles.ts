@@ -7,17 +7,21 @@
  */
 
 import { css } from '@emotion/react';
-import { euiShadowLarge } from '@elastic/eui-theme-common';
+import { euiShadowLarge, mathWithUnits } from '@elastic/eui-theme-common';
 
 import { euiTextBreakWord, logicalCSS } from '../../global_styling';
 import { UseEuiTheme } from '../../services';
 import { euiTitle } from '../title/title.styles';
 import { euiPanelBorderStyles } from '../panel/panel.styles';
+import { CSSProperties } from 'react';
 
 export const euiToastStyles = (euiThemeContext: UseEuiTheme) => {
-  const { euiTheme } = euiThemeContext;
+  const { euiTheme, highContrastMode } = euiThemeContext;
 
-  const highlightStyles = (color: string) => `
+  const highlightStyles = (
+    color: string,
+    width?: CSSProperties['borderWidth']
+  ) => `
     &:after {
       content: '';
       position: absolute;
@@ -25,7 +29,7 @@ export const euiToastStyles = (euiThemeContext: UseEuiTheme) => {
       z-index: 1;
       inset: 0;
       border-radius: inherit;
-      ${logicalCSS('border-top', `2px solid ${color}`)}
+      ${logicalCSS('border-top', `${width} solid ${color}`)}
       pointer-events: none;
     }
   `;
@@ -60,18 +64,41 @@ export const euiToastStyles = (euiThemeContext: UseEuiTheme) => {
       ${logicalCSS('right', euiTheme.size.base)}
     `,
     // Variants
-    primary: css`
-      ${highlightStyles(euiTheme.colors.primary)}
-    `,
-    success: css`
-      ${highlightStyles(euiTheme.colors.success)}
-    `,
-    warning: css`
-      ${highlightStyles(euiTheme.colors.warning)}
-    `,
-    danger: css`
-      ${highlightStyles(euiTheme.colors.danger)}
-    `,
+    colors: {
+      _getStyles: (color: string) => {
+        // Increase color/border thickness for all high contrast modes
+        const borderWidth = highContrastMode
+          ? mathWithUnits(euiTheme.border.width.thick, (x) => x * 2)
+          : euiTheme.border.width.thick;
+
+        return highContrastMode !== 'forced'
+          ? highlightStyles(color, borderWidth)
+          : // Windows high contrast mode ignores/overrides border colors, which have semantic meaning here. To get around this, we'll use a pseudo element that ignores forced colors
+            `overflow: hidden;
+
+            &::before {
+              content: '';
+              position: absolute;
+              ${logicalCSS('top', 0)}
+              ${logicalCSS('horizontal', 0)}
+              ${logicalCSS('height', borderWidth)}
+              background-color: ${color};
+              forced-color-adjust: none;
+            }`;
+      },
+      get primary() {
+        return css(this._getStyles(euiTheme.colors.primary));
+      },
+      get success() {
+        return css(this._getStyles(euiTheme.colors.success));
+      },
+      get warning() {
+        return css(this._getStyles(euiTheme.colors.warning));
+      },
+      get danger() {
+        return css(this._getStyles(euiTheme.colors.danger));
+      },
+    },
   };
 };
 
