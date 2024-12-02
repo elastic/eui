@@ -41,9 +41,13 @@ export const euiSaturationStyles = (euiThemeContext: UseEuiTheme) => {
         outline: none; /* Hide focus ring from tabindex=0 */
 
         .euiSaturation__indicator {
-          outline: none; /* Standardize indicator focus ring */
-          box-shadow: 0 0 0 ${euiTheme.focus.width} ${euiTheme.colors.primary};
-          border-color: ${euiTheme.colors.primary};
+          ${highContrastMode
+            ? `outline: ${euiTheme.border.thin};`
+            : `
+              outline: none; /* Standardize indicator focus ring */
+              box-shadow: 0 0 0 ${euiTheme.focus.width} ${euiTheme.colors.primary};
+              border-color: ${euiTheme.colors.primary};
+            `}
         }
       }
     `,
@@ -69,18 +73,27 @@ export const euiSaturationStyles = (euiThemeContext: UseEuiTheme) => {
       position: absolute;
       ${logicalSizeCSS(indicatorSize)}
       transform: translateX(-50%) translateY(-50%);
-      border: ${euiTheme.border.width.thin} solid
-        ${euiTheme.colors.darkestShade};
       border-radius: 100%;
+      ${highContrastMode
+        ? `
+        border: ${euiTheme.border.width.thick} solid ${euiTheme.colors.ink};
+        background-color: ${euiTheme.colors.ghost};
 
-      &::before {
-        content: '';
-        position: absolute;
-        inset: 0;
-        border-radius: 100%;
-        border: ${euiTheme.border.width.thin} solid
-          ${euiTheme.colors.lightestShade};
-      }
+        &:focus-visible {
+          outline: ${euiTheme.border.thin};
+          outline-offset: 0;
+        }`
+        : `
+        border: ${euiTheme.border.width.thin} solid ${euiTheme.colors.darkestShade};
+
+        &::before {
+          content: '';
+          position: absolute;
+          inset: 0;
+          border-radius: 100%;
+          border: ${euiTheme.border.width.thin} solid
+            ${euiTheme.colors.lightestShade};
+        }`}
     `,
   };
 };
