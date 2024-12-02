@@ -153,6 +153,7 @@ describe('euiFormControlStyles', () => {
 
           background-color: #FFF;
           --euiFormControlStateColor: transparent;
+          
         ",
         "shared": "
             

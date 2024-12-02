@@ -298,6 +298,7 @@ export const euiFormControlDisabledStyles = (euiThemeContext: UseEuiTheme) => {
 
 export const euiFormControlReadOnlyStyles = (euiThemeContext: UseEuiTheme) => {
   const form = euiFormVariables(euiThemeContext);
+  const { highContrastMode } = euiThemeContext;
 
   return `
     cursor: default;
@@ -306,6 +307,7 @@ export const euiFormControlReadOnlyStyles = (euiThemeContext: UseEuiTheme) => {
 
     background-color: ${form.backgroundReadOnlyColor};
     --euiFormControlStateColor: transparent;
+    ${highContrastMode === 'forced' ? 'background-image: none;' : ''}
   `;
 };
 
