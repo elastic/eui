@@ -29,8 +29,8 @@ export const euiSaturationStyles = (euiThemeContext: UseEuiTheme) => {
     euiSaturation: css`
       z-index: 3; /* Required to be above the hue slider, which can overlap */
       position: relative;
+      aspect-ratio: 1 / 1;
       ${logicalCSS('width', '100%')}
-      ${logicalCSS('padding-bottom', '100%')}
       ${highContrastMode ? `border: ${euiTheme.border.thin};` : ''}
       ${highContrastMode === 'forced' ? 'forced-color-adjust: none;' : ''}
       border-radius: ${borderRadius};
@@ -51,8 +51,6 @@ export const euiSaturationStyles = (euiThemeContext: UseEuiTheme) => {
     euiSaturation__lightness: css`
       position: absolute;
       inset: 0;
-      ${logicalCSS('top', '-1px')} /* Hides a slight color inconsistency */
-
       border-radius: ${borderRadius};
       background: linear-gradient(
         to right,
@@ -63,8 +61,6 @@ export const euiSaturationStyles = (euiThemeContext: UseEuiTheme) => {
     euiSaturation__saturation: css`
       position: absolute;
       inset: 0;
-      ${logicalCSS('top', '-1px')} /* Hides a slight color inconsistency */
-
       border-radius: ${borderRadius};
       background: linear-gradient(to top, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
     `,
