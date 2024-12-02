@@ -26,9 +26,10 @@ export const EuiFormControlLayoutClearButton: FunctionComponent<
 > = ({ className, onClick, size = 'm', ...rest }) => {
   const classes = classNames('euiFormControlLayoutClearButton', className);
   const styles = useEuiMemoizedStyles(EuiFormControlLayoutClearButtonStyles);
+  const cssStyles = [styles.euiFormControlLayoutClearButton, styles.size[size]];
   const iconStyles = [
-    styles.euiFormControlLayoutClearButton__icon,
-    styles.size[size],
+    styles.icon.euiFormControlLayoutClearButton__icon,
+    styles.icon.size[size],
   ];
 
   const ariaLabel = useEuiI18n(
@@ -39,7 +40,7 @@ export const EuiFormControlLayoutClearButton: FunctionComponent<
   return (
     <button
       type="button"
-      css={styles.euiFormControlLayoutClearButton}
+      css={cssStyles}
       className={classes}
       onClick={onClick}
       aria-label={ariaLabel}
