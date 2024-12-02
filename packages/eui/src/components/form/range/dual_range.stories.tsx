@@ -229,3 +229,22 @@ export const InputWithPopover: Story = {
     return <EuiDualRange {...args} ref={setRef} />;
   },
 };
+
+export const HighContrast: Story = {
+  tags: ['vrt-only'],
+  globals: { highContrastMode: true },
+  args: {
+    fullWidth: true,
+    compressed: true,
+    showInput: true,
+    min: 0,
+    max: 100,
+    value: [10, 80],
+    showLabels: true,
+    showTicks: true,
+    ticks: [
+      { label: '20kb', value: 20 },
+      { label: '100kb', value: 100 },
+    ],
+  },
+};

@@ -12,7 +12,7 @@ import { mathWithUnits } from '../../../global_styling';
 import { euiFormVariables } from '../form.styles';
 
 export const euiRangeVariables = (euiThemeContext: UseEuiTheme) => {
-  const euiTheme = euiThemeContext.euiTheme;
+  const { euiTheme, highContrastMode } = euiThemeContext;
   const trackHeight = '6px';
   const thumbHeight = euiTheme.size.base;
   const thumbWidth = euiTheme.size.base;
@@ -20,7 +20,9 @@ export const euiRangeVariables = (euiThemeContext: UseEuiTheme) => {
 
   return {
     trackColor: euiTheme.colors.lightShade,
-    highlightColor: euiTheme.colors.darkShade,
+    highlightColor: highContrastMode
+      ? euiTheme.colors.fullShade
+      : euiTheme.colors.darkShade,
     focusColor: euiTheme.colors.primary,
 
     thumbHeight: thumbHeight,
