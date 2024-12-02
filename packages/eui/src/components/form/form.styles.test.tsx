@@ -56,6 +56,7 @@ describe('euiFormVariables', () => {
         "maxWidth": "400px",
         "textColor": "#1D2A3E",
         "textColorDisabled": "#798EAF",
+        "stateUnderlineHeight": "2px",
       }
     `);
   });
@@ -153,6 +154,7 @@ describe('euiFormControlStyles', () => {
 
           background-color: #FFFFFF;
           --euiFormControlStateColor: transparent;
+          
         ",
         "shared": "
             
@@ -258,6 +260,8 @@ describe('euiFormCustomControlStyles', () => {
               display: flex;
               justify-content: center;
               align-items: center;
+              /* For Windows high contrast themes, a border must always be rendered, not just a background */
+              border: 1px solid transparent;
 
               &:has(input:focus-visible) {
                 outline: 2px solid #0B64DD;

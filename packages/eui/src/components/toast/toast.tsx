@@ -42,7 +42,7 @@ export const EuiToast: FunctionComponent<EuiToastProps> = ({
   ...rest
 }) => {
   const baseStyles = useEuiMemoizedStyles(euiToastStyles);
-  const baseCss = [baseStyles.euiToast, color && baseStyles[color]];
+  const baseCss = [baseStyles.euiToast, color && baseStyles.colors[color]];
   const headerStyles = useEuiMemoizedStyles(euiToastHeaderStyles);
   const headerCss = [
     headerStyles.euiToastHeader,

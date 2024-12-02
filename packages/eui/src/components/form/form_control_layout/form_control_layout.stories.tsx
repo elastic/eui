@@ -131,6 +131,7 @@ export const AppendPrepend: Story = {
               <EuiText size="s">Tooltip</EuiText>
             </EuiToolTip>
           }
+          autoFocus
         />
         <EuiFieldText
           placeholder="XS empty button in a popover & tooltip"
@@ -262,4 +263,16 @@ export const AppendPrepend: Story = {
       </EuiForm>
     );
   },
+};
+
+export const HighContrast: Story = {
+  ...AppendPrepend,
+  tags: ['vrt-only'],
+  globals: { highContrastMode: true },
+};
+
+export const HighContrastDarkMode: Story = {
+  ...AppendPrepend,
+  tags: ['vrt-only'],
+  globals: { highContrastMode: true, colorMode: 'dark' },
 };

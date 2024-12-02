@@ -55,7 +55,7 @@ exports[`EuiKeyPadMenuItem checkable renders as radio 1`] = `
       >
         <span
           class="emotion-euiRadio__icon"
-          data-euiicon-type="dot"
+          data-euiicon-type="empty"
         />
         <input
           class="euiRadio__input emotion-euiRadio__input"

@@ -45,7 +45,7 @@ exports[`EuiRadioGroup props idSelected is rendered 1`] = `
     >
       <span
         class="emotion-euiRadio__icon"
-        data-euiicon-type="dot"
+        data-euiicon-type="empty"
       />
       <input
         class="euiRadio__input emotion-euiRadio__input"
@@ -81,7 +81,7 @@ exports[`EuiRadioGroup props legend is rendered 1`] = `
     >
       <span
         class="emotion-euiRadio__icon"
-        data-euiicon-type="dot"
+        data-euiicon-type="empty"
       />
       <input
         class="euiRadio__input emotion-euiRadio__input"
@@ -105,7 +105,7 @@ exports[`EuiRadioGroup props legend is rendered 1`] = `
     >
       <span
         class="emotion-euiRadio__icon"
-        data-euiicon-type="dot"
+        data-euiicon-type="empty"
       />
       <input
         class="euiRadio__input emotion-euiRadio__input"
@@ -136,7 +136,7 @@ exports[`EuiRadioGroup props name is propagated to radios 1`] = `
     >
       <span
         class="emotion-euiRadio__icon"
-        data-euiicon-type="dot"
+        data-euiicon-type="empty"
       />
       <input
         class="euiRadio__input emotion-euiRadio__input"
@@ -161,7 +161,7 @@ exports[`EuiRadioGroup props name is propagated to radios 1`] = `
     >
       <span
         class="emotion-euiRadio__icon"
-        data-euiicon-type="dot"
+        data-euiicon-type="empty"
       />
       <input
         class="euiRadio__input emotion-euiRadio__input"
@@ -193,7 +193,7 @@ exports[`EuiRadioGroup props options are rendered 1`] = `
     >
       <span
         class="emotion-euiRadio__icon"
-        data-euiicon-type="dot"
+        data-euiicon-type="empty"
       />
       <input
         class="euiRadio__input emotion-euiRadio__input"
@@ -217,7 +217,7 @@ exports[`EuiRadioGroup props options are rendered 1`] = `
     >
       <span
         class="emotion-euiRadio__icon"
-        data-euiicon-type="dot"
+        data-euiicon-type="empty"
       />
       <input
         class="euiRadio__input emotion-euiRadio__input"
@@ -249,7 +249,7 @@ exports[`EuiRadioGroup props value is propagated to radios 1`] = `
     >
       <span
         class="emotion-euiRadio__icon"
-        data-euiicon-type="dot"
+        data-euiicon-type="empty"
       />
       <input
         class="euiRadio__input emotion-euiRadio__input"
@@ -274,7 +274,7 @@ exports[`EuiRadioGroup props value is propagated to radios 1`] = `
     >
       <span
         class="emotion-euiRadio__icon"
-        data-euiicon-type="dot"
+        data-euiicon-type="empty"
       />
       <input
         class="euiRadio__input emotion-euiRadio__input"
