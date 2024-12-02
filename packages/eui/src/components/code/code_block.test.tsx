@@ -194,13 +194,13 @@ describe('EuiCodeBlock', () => {
 
         userEvent.keyboard('{enter}');
 
-        waitFor(() =>
+        waitFor(() => {
           expect(
             baseElement.querySelector('.euiCodeBlockFullScreen')
-          ).not.toBeInTheDocument()
-        );
+          ).not.toBeInTheDocument();
 
-        waitFor(() => expect(getByLabelText('Expand')).toHaveFocus());
+          expect(getByLabelText('Expand')).toHaveFocus();
+        });
       });
     });
 
