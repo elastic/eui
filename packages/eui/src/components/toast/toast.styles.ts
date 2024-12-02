@@ -7,13 +7,17 @@
  */
 
 import { css } from '@emotion/react';
-import { euiTextBreakWord, logicalCSS } from '../../global_styling';
+import {
+  euiTextBreakWord,
+  logicalCSS,
+  mathWithUnits,
+} from '../../global_styling';
 import { UseEuiTheme } from '../../services';
 import { euiShadowLarge } from '../../themes/amsterdam';
 import { euiTitle } from '../title/title.styles';
 
 export const euiToastStyles = (euiThemeContext: UseEuiTheme) => {
-  const { euiTheme } = euiThemeContext;
+  const { euiTheme, highContrastMode } = euiThemeContext;
 
   return {
     // Base
@@ -26,7 +30,6 @@ export const euiToastStyles = (euiThemeContext: UseEuiTheme) => {
       ${logicalCSS('padding-vertical', euiTheme.size.base)}
       background-color: ${euiTheme.colors.emptyShade};
       ${logicalCSS('width', '100%')}
-
       ${euiTextBreakWord()} /* Prevent long lines from overflowing */
 
       &:hover,
@@ -43,18 +46,41 @@ export const euiToastStyles = (euiThemeContext: UseEuiTheme) => {
       ${logicalCSS('right', euiTheme.size.base)}
     `,
     // Variants
-    primary: css`
-      ${logicalCSS('border-top', `2px solid ${euiTheme.colors.primary}`)}
-    `,
-    success: css`
-      ${logicalCSS('border-top', `2px solid ${euiTheme.colors.success}`)}
-    `,
-    warning: css`
-      ${logicalCSS('border-top', `2px solid ${euiTheme.colors.warning}`)}
-    `,
-    danger: css`
-      ${logicalCSS('border-top', `2px solid ${euiTheme.colors.danger}`)}
-    `,
+    colors: {
+      _getStyles: (color: string) => {
+        // Increase color/border thickness for all high contrast modes
+        const borderWidth = highContrastMode
+          ? mathWithUnits(euiTheme.border.width.thick, (x) => x * 2)
+          : euiTheme.border.width.thick;
+
+        return highContrastMode !== 'forced'
+          ? logicalCSS('border-top', `${borderWidth} solid ${color}`)
+          : // Windows high contrast mode ignores/overrides border colors, which have semantic meaning here. To get around this, we'll use a pseudo element that ignores forced colors
+            `overflow: hidden;
+
+            &::before {
+              content: '';
+              position: absolute;
+              ${logicalCSS('top', 0)}
+              ${logicalCSS('horizontal', 0)}
+              ${logicalCSS('height', borderWidth)}
+              background-color: ${color};
+              forced-color-adjust: none;
+            }`;
+      },
+      get primary() {
+        return css(this._getStyles(euiTheme.colors.primary));
+      },
+      get success() {
+        return css(this._getStyles(euiTheme.colors.success));
+      },
+      get warning() {
+        return css(this._getStyles(euiTheme.colors.warning));
+      },
+      get danger() {
+        return css(this._getStyles(euiTheme.colors.danger));
+      },
+    },
   };
 };
 
