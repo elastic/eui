@@ -37,10 +37,23 @@ export const euiColorPickerStyles = (euiThemeContext: UseEuiTheme) => {
       gap: ${euiTheme.size.s};
     `,
 
+    // `!important`s required to override default EuiFormControlLayout styles */
     euiColorPicker__alphaRange: css`
+      /* stylelint-disable declaration-no-important */
       .euiRangeInput {
         ${logicalCSS('min-width', 0)}
+        ${logicalCSS('width', `calc(3ch + ${euiTheme.size.l}) !important`)}
+        padding-inline: ${euiTheme.size.xs};
       }
+
+      .euiFormControlLayout__append {
+        padding-inline: ${euiTheme.size.xxs} !important;
+      }
+
+      & > .euiFormControlLayout {
+        flex-shrink: 0;
+      }
+      /* stylelint-enable declaration-no-important */
     `,
 
     // Adds a stroke color for the swatchInput icon. Unlike most EuiIcons it has a stroke in the SVG
