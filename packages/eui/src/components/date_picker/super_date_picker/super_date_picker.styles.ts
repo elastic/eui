@@ -25,6 +25,7 @@ import {
   euiFormControlDefaultShadow,
   euiFormControlInvalidStyles,
   euiFormControlDisabledStyles,
+  euiFormControlShowBackgroundUnderline,
 } from '../../form/form.styles';
 
 export const euiSuperDatePickerStyles = (euiThemeContext: UseEuiTheme) => {
@@ -161,7 +162,10 @@ export const euiSuperDatePickerStyles = (euiThemeContext: UseEuiTheme) => {
         .euiDatePopoverButton:focus,
         .euiPopover-isOpen .euiDatePopoverButton {
           --euiFormControlStateColor: ${euiTheme.colors.primary};
-          background-size: 100% 100%;
+          ${euiFormControlShowBackgroundUnderline(
+            euiThemeContext,
+            euiTheme.colors.primary
+          )}
         }
       `,
       disabled: css`
@@ -197,8 +201,21 @@ export const euiSuperDatePickerStyles = (euiThemeContext: UseEuiTheme) => {
         .euiDatePopoverButton:focus,
         .euiPopover-isOpen .euiDatePopoverButton {
           --euiFormControlStateColor: ${euiTheme.colors.success};
-          background-size: 100% 100%;
+          ${euiFormControlShowBackgroundUnderline(
+            euiThemeContext,
+            euiTheme.colors.success
+          )}
         }
+
+        ${highContrastMode === 'forced'
+          ? // Force the fill color of all icons/svgs to give a bit more indication of state,
+            // since Windows high contrast themes otherwise override background/text color
+            `
+          svg,
+          & + * svg {
+            fill: ${euiTheme.colors.success};
+          }`
+          : ''}
       `,
     },
   };
