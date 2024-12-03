@@ -109,7 +109,7 @@ export const EuiThemeProvider = <T extends {} = {}>({
   const prevModifications = useRef(modifications);
 
   const [colorMode, setColorMode] = useState<EuiThemeColorModeStandard>(
-    getColorMode(_colorMode, parentColorMode)
+    getColorMode(_colorMode, parentColorMode, isForced)
   );
   const prevColorMode = useRef(colorMode);
 
@@ -169,13 +169,13 @@ export const EuiThemeProvider = <T extends {} = {}>({
   }, [_modifications, parentModifications]);
 
   useEffect(() => {
-    const newColorMode = getColorMode(_colorMode, parentColorMode);
+    const newColorMode = getColorMode(_colorMode, parentColorMode, isForced);
     if (!isEqual(newColorMode, prevColorMode.current)) {
       setColorMode(newColorMode);
       prevColorMode.current = newColorMode;
       isParentTheme.current = false;
     }
-  }, [_colorMode, parentColorMode]);
+  }, [_colorMode, parentColorMode, isForced]);
 
   useEffect(() => {
     if (prevHighContrastMode.current !== highContrastMode) {
