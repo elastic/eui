@@ -107,23 +107,38 @@ export const euiRangeThumbFocusBoxShadow = (euiThemeContext: UseEuiTheme) => {
   const range = euiRangeVariables(euiThemeContext);
 
   return `
-    box-shadow: 0 0 0 ${range.thumbBorderWidth} var(--euiRangeThumbColor, ${range.focusColor});
+    outline: ${range.thumbBorderWidth} solid var(--euiRangeThumbColor, ${range.focusColor});
+    outline-offset: 0;
+    box-shadow: none; /* Unset inset box-shadow on high contrast modes */
   `;
 };
 
 export const euiRangeThumbStyle = (euiThemeContext: UseEuiTheme) => {
   const range = euiRangeVariables(euiThemeContext);
+  const { highContrastMode, euiTheme } = euiThemeContext;
 
-  return `
-    ${euiRangeThumbBoxShadow(euiThemeContext)};
-    ${euiRangeThumbBorder(euiThemeContext)};
+  const baseStyles = `
     border-radius: 50%;
     cursor: pointer;
-    background-color: var(--euiRangeThumbColor, ${range.thumbBackgroundColor});
     padding: 0;
     block-size: ${range.thumbHeight};
     inline-size: ${range.thumbWidth};
     box-sizing: border-box;  // required for firefox or the border makes the width and height to increase
+  `;
+
+  return !highContrastMode
+    ? `
+    ${baseStyles}
+    background-color: var(--euiRangeThumbColor, ${range.thumbBackgroundColor});
+    ${euiRangeThumbBoxShadow(euiThemeContext)};
+    ${euiRangeThumbBorder(euiThemeContext)};
+  `
+    : `
+    ${baseStyles}
+    forced-color-adjust: none;
+    background-color: var(--euiRangeThumbColor, ${euiTheme.colors.emptyShade});
+    border: ${range.thumbBorderWidth} solid var(--euiRangeThumbColor, ${euiTheme.colors.fullShade});
+    box-shadow: inset 0 0 0 ${range.thumbBorderWidth} ${euiTheme.colors.emptyShade};
   `;
 };
 

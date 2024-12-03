@@ -246,5 +246,9 @@ export const HighContrast: Story = {
       { label: '20kb', value: 20 },
       { label: '100kb', value: 100 },
     ],
+    levels: [
+      { min: 0, max: 20, color: 'danger' },
+      { min: 20, max: 100, color: 'success' },
+    ],
   },
 };
