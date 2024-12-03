@@ -283,3 +283,17 @@ export const HighContrast: Story = {
     tickInterval: 20,
   },
 };
+
+export const DarkMode: Story = {
+  tags: ['vrt-only'],
+  globals: { colorMode: 'dark' },
+  args: {
+    min: 0,
+    max: 100,
+    value: 50,
+    showValue: true,
+    showRange: true,
+    showTicks: true,
+    tickInterval: 50,
+  },
+};
