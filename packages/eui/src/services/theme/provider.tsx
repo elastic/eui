@@ -87,8 +87,9 @@ export const EuiThemeProvider = <T extends {} = {}>({
   const parentHighContrastMode = useContext(EuiHighContrastModeContext);
   const parentTheme = useContext(EuiThemeContext);
 
-  const [system, setSystem] = useState(_system || parentSystem);
-  const prevSystemKey = useRef(system.key);
+  // If the user has an OS-wide high contrast theme applied, it will ignore EUI's
+  // colors and light/dark mode. We should respect that use the system setting
+  const isForced = parentHighContrastMode === 'forced';
 
   // To reduce the number of window resize listeners, only render a
   // CurrentEuiBreakpointProvider for the top level parent theme, or for
@@ -98,6 +99,9 @@ export const EuiThemeProvider = <T extends {} = {}>({
       ? CurrentEuiBreakpointProvider
       : Fragment;
   }, [isGlobalTheme, _modifications]);
+
+  const [system, setSystem] = useState(_system || parentSystem);
+  const prevSystemKey = useRef(system.key);
 
   const [modifications, setModifications] = useState<EuiThemeModifications>(
     mergeDeep(parentModifications, _modifications)
@@ -110,11 +114,11 @@ export const EuiThemeProvider = <T extends {} = {}>({
   const prevColorMode = useRef(colorMode);
 
   const highContrastMode: EuiThemeHighContrastMode = useMemo(() => {
-    if (parentHighContrastMode === 'forced') return 'forced'; // System forced high contrast mode will always supercede application settings
+    if (isForced) return 'forced'; // System forced high contrast mode will always supercede application settings
     if (_highContrastMode === true) return 'preferred'; // Convert the boolean prop to our internal enum
     if (_highContrastMode === false) return false; // Allow `false` prop to override user/system preference
     return parentHighContrastMode; // Fall back to the parent/system setting
-  }, [_highContrastMode, parentHighContrastMode]);
+  }, [_highContrastMode, parentHighContrastMode, isForced]);
   const prevHighContrastMode = useRef(highContrastMode);
 
   const modificationsWithHighContrast = useHighContrastModifications({
