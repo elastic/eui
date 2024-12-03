@@ -107,7 +107,7 @@ export const euiRangeThumbFocusBoxShadow = (euiThemeContext: UseEuiTheme) => {
   const range = euiRangeVariables(euiThemeContext);
 
   return `
-    box-shadow: 0 0 0 ${range.thumbBorderWidth} ${range.focusColor};
+    box-shadow: 0 0 0 ${range.thumbBorderWidth} var(--euiRangeThumbColor, ${range.focusColor});
   `;
 };
 
@@ -119,7 +119,7 @@ export const euiRangeThumbStyle = (euiThemeContext: UseEuiTheme) => {
     ${euiRangeThumbBorder(euiThemeContext)};
     border-radius: 50%;
     cursor: pointer;
-    background-color: ${range.thumbBackgroundColor};
+    background-color: var(--euiRangeThumbColor, ${range.thumbBackgroundColor});
     padding: 0;
     block-size: ${range.thumbHeight};
     inline-size: ${range.thumbWidth};
@@ -135,16 +135,13 @@ export const euiRangeThumbPerBrowser = (content: string) => {
   `;
 };
 
-export const euiRangeThumbFocus = (
-  euiThemeContext: UseEuiTheme,
-  color?: string
-) => {
+export const euiRangeThumbFocus = (euiThemeContext: UseEuiTheme) => {
   const range = euiRangeVariables(euiThemeContext);
 
   return `
-   ${euiRangeThumbBorder(euiThemeContext)};
-   ${euiRangeThumbFocusBoxShadow(euiThemeContext)};
-   background-color: ${color || range.focusColor};
+    ${euiRangeThumbBorder(euiThemeContext)};
+    ${euiRangeThumbFocusBoxShadow(euiThemeContext)}
+    background-color: var(--euiRangeThumbColor, ${range.focusColor});
   `;
 };
 

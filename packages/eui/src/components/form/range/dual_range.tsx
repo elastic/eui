@@ -579,13 +579,13 @@ export class EuiDualRangeClass extends Component<
     const leftThumbStyles = leftThumbColor
       ? {
           ...leftThumbPosition,
-          backgroundColor: euiRangeLevelColor(leftThumbColor, theme),
+          '--euiRangeThumbColor': euiRangeLevelColor(leftThumbColor, theme),
         }
       : leftThumbPosition;
     const rightThumbStyles = rightThumbColor
       ? {
           ...rightThumbPosition,
-          backgroundColor: euiRangeLevelColor(rightThumbColor, theme),
+          '--euiRangeThumbColor': euiRangeLevelColor(rightThumbColor, theme),
         }
       : rightThumbPosition;
 
