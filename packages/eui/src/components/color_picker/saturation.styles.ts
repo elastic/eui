@@ -19,11 +19,10 @@ export const euiSaturationStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme, highContrastMode } = euiThemeContext;
 
   const indicatorSize = euiTheme.size.m;
-
-  const borderRadius = mathWithUnits(
-    euiTheme.border.radius.medium,
-    (x) => x / 2
-  );
+  const borderRadius = euiTheme.border.radius.small;
+  // Without this slight decrease in border radius, the color can be seen
+  // peeking through the top left corner of the saturation gradient
+  const gradientBorderRadius = mathWithUnits(borderRadius, (x) => x - 1);
 
   return {
     euiSaturation: css`
@@ -31,8 +30,6 @@ export const euiSaturationStyles = (euiThemeContext: UseEuiTheme) => {
       position: relative;
       aspect-ratio: 1 / 1;
       ${logicalCSS('width', '100%')}
-      ${highContrastMode ? `border: ${euiTheme.border.thin};` : ''}
-      ${highContrastMode === 'forced' ? 'forced-color-adjust: none;' : ''}
       border-radius: ${borderRadius};
       touch-action: none; /* prevent TouchMove events from scrolling page */
 
@@ -50,12 +47,27 @@ export const euiSaturationStyles = (euiThemeContext: UseEuiTheme) => {
             `}
         }
       }
+
+      ${highContrastMode === 'forced' ? 'forced-color-adjust: none;' : ''}
+      ${highContrastMode
+        ? // The border must be in an overlaid pseudo element to not affect the
+          // width/height and position of the indicator, or cause border-radius issues
+          `&::after {
+            z-index: 1;
+            content: '';
+            position: absolute;
+            inset: 0;
+            border: ${euiTheme.border.thin};
+            border-radius: inherit;
+            pointer-events: none;
+          }`
+        : ''}
     `,
 
     euiSaturation__lightness: css`
       position: absolute;
       inset: 0;
-      border-radius: ${borderRadius};
+      border-radius: ${gradientBorderRadius};
       background: linear-gradient(
         to right,
         rgba(255, 255, 255, 1),
@@ -65,11 +77,12 @@ export const euiSaturationStyles = (euiThemeContext: UseEuiTheme) => {
     euiSaturation__saturation: css`
       position: absolute;
       inset: 0;
-      border-radius: ${borderRadius};
+      border-radius: ${gradientBorderRadius};
       background: linear-gradient(to top, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
     `,
 
     euiSaturation__indicator: css`
+      z-index: 2;
       position: absolute;
       ${logicalSizeCSS(indicatorSize)}
       transform: translateX(-50%) translateY(-50%);
