@@ -43,6 +43,9 @@ export const euiRangeVariables = (euiThemeContext: UseEuiTheme) => {
 
     tickHeight: trackHeight,
     tickWidth: euiTheme.size.xs,
+    tickColor: highContrastMode
+      ? euiTheme.colors.darkShade
+      : euiTheme.colors.lightShade,
 
     disabledOpacity: 0.5,
 
