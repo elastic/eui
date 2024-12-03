@@ -87,7 +87,7 @@ export const EuiRangeSlider: FunctionComponent<EuiRangeSliderProps> = ({
 
   const sliderStyle = useMemo(() => {
     return logicalStyles({
-      color: thumbColor && euiRangeLevelColor(thumbColor, euiTheme.euiTheme),
+      color: thumbColor && euiRangeLevelColor(thumbColor, euiTheme),
       ...style,
     });
   }, [thumbColor, euiTheme, style]);

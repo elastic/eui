@@ -55,7 +55,6 @@ export const euiRangeLevelsStyles = (euiThemeContext: UseEuiTheme) => {
 };
 
 export const euiRangeLevelStyles = (euiThemeContext: UseEuiTheme) => {
-  const { euiTheme } = euiThemeContext;
   const range = euiRangeVariables(euiThemeContext);
 
   return {
@@ -78,16 +77,16 @@ export const euiRangeLevelStyles = (euiThemeContext: UseEuiTheme) => {
       }
     `,
     primary: css`
-      background-color: ${euiRangeLevelColor('primary', euiTheme)};
+      background-color: ${euiRangeLevelColor('primary', euiThemeContext)};
     `,
     success: css`
-      background-color: ${euiRangeLevelColor('success', euiTheme)};
+      background-color: ${euiRangeLevelColor('success', euiThemeContext)};
     `,
     warning: css`
-      background-color: ${euiRangeLevelColor('warning', euiTheme)};
+      background-color: ${euiRangeLevelColor('warning', euiThemeContext)};
     `,
     danger: css`
-      background-color: ${euiRangeLevelColor('danger', euiTheme)};
+      background-color: ${euiRangeLevelColor('danger', euiThemeContext)};
     `,
     customColor: css``,
   };

@@ -29,12 +29,16 @@ export const euiRangeVariables = (euiThemeContext: UseEuiTheme) => {
     thumbWidth: thumbWidth,
     thumbBorderWidth: euiTheme.border.width.thick,
     thumbBorderColor: euiTheme.colors.emptyShade,
-    thumbBackgroundColor: euiTheme.colors.darkShade, // same as highlightColor
+    get thumbBackgroundColor() {
+      return this.highlightColor;
+    },
 
     trackWidth: '100%',
     trackHeight: trackHeight,
     trackBorderWidth: '0px',
-    trackBorderColor: euiTheme.colors.lightShade, // same as trackColor
+    get trackBorderColor() {
+      return this.trackColor;
+    },
     trackBorderRadius: euiTheme.border.radius.medium,
 
     tickHeight: trackHeight,
@@ -83,7 +87,7 @@ export const euiRangeThumbBorder = (euiThemeContext: UseEuiTheme) => {
 };
 
 export const euiRangeThumbBoxShadow = (euiThemeContext: UseEuiTheme) => {
-  const euiTheme = euiThemeContext.euiTheme;
+  const { euiTheme } = euiThemeContext;
   const shadowColor = `rgba(${hexToRgb(euiTheme.colors.shadow)}, .2)`;
 
   const range = euiRangeVariables(euiThemeContext);
