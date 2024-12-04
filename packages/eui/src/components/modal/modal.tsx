@@ -6,13 +6,20 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent, ReactNode, HTMLAttributes } from 'react';
+import React, {
+  FunctionComponent,
+  ReactNode,
+  ReactElement,
+  HTMLAttributes,
+  Children,
+} from 'react';
 import classnames from 'classnames';
 
 import { keys, useEuiTheme } from '../../services';
 import { isDOMNode } from '../../utils';
 
 import { EuiButtonIcon } from '../button';
+import { EuiModalHeader } from './modal_header';
 
 import { EuiFocusTrap } from '../focus_trap';
 import { EuiOverlayMask } from '../overlay_mask';
@@ -91,6 +98,39 @@ export const EuiModal: FunctionComponent<EuiModalProps> = ({
 
   const cssCloseIconStyles = [styles.euiModal__closeIcon];
 
+  const closeButton = (
+    <EuiI18n
+      token="euiModal.closeModal"
+      default="Closes this modal window"
+      key="closeButton"
+    >
+      {(closeModal: string) => (
+        <EuiButtonIcon
+          iconType="cross"
+          onClick={onClose}
+          css={cssCloseIconStyles}
+          className="euiModal__closeIcon"
+          color="text"
+          aria-label={closeModal}
+        />
+      )}
+    </EuiI18n>
+  );
+
+  // Note: for accessibility reasons we need the close button
+  // to be placed **after** the header, so screen reader users will
+  // know _what_ they're closing before they reach the button
+  // https://github.com/elastic/eui/pull/7156#discussion_r1334931714
+  const childrenArray = Children.toArray(children);
+  const headerIndex = childrenArray.findIndex(
+    (child) => (child as ReactElement).type === EuiModalHeader
+  );
+  if (headerIndex > -1) {
+    childrenArray.splice(headerIndex + 1, 0, closeButton);
+  } else {
+    childrenArray.push(closeButton);
+  }
+
   return (
     <EuiOverlayMask>
       <EuiFocusTrap initialFocus={initialFocus} scrollLock preventScrollOnFocus>
@@ -104,22 +144,7 @@ export const EuiModal: FunctionComponent<EuiModalProps> = ({
           aria-modal={true}
           {...rest}
         >
-          <EuiI18n
-            token="euiModal.closeModal"
-            default="Closes this modal window"
-          >
-            {(closeModal: string) => (
-              <EuiButtonIcon
-                iconType="cross"
-                onClick={onClose}
-                css={cssCloseIconStyles}
-                className="euiModal__closeIcon"
-                color="text"
-                aria-label={closeModal}
-              />
-            )}
-          </EuiI18n>
-          {children}
+          {childrenArray}
         </div>
       </EuiFocusTrap>
     </EuiOverlayMask>
