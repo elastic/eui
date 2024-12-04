@@ -14,6 +14,7 @@ import {
   logicalCSS,
   mathWithUnits,
 } from '../../../global_styling';
+import { highContrastAffordance } from '../../../global_styling/functions/high_contrast';
 
 import { euiFormVariables } from '../form.styles';
 
@@ -86,7 +87,7 @@ export const euiFormControlLayoutStyles = (euiThemeContext: UseEuiTheme) => {
 export const euiFormControlLayoutSideNodeStyles = (
   euiThemeContext: UseEuiTheme
 ) => {
-  const { euiTheme, highContrastMode } = euiThemeContext;
+  const { euiTheme } = euiThemeContext;
   const form = euiFormVariables(euiThemeContext);
 
   const uncompressedHeight = mathWithUnits(
@@ -141,14 +142,16 @@ export const euiFormControlLayoutSideNodeStyles = (
         ${logicalCSS('padding-right', euiTheme.size.s)}
       }
     `,
-    append: css`
-      ${highContrastMode ? logicalCSS('border-left', euiTheme.border.thin) : ''}
-    `,
-    prepend: css`
-      ${highContrastMode
-        ? logicalCSS('border-right', euiTheme.border.thin)
-        : ''}
-    `,
+    append: css(
+      highContrastAffordance(euiThemeContext, {
+        preferred: logicalCSS('border-left', euiTheme.border.thin),
+      })
+    ),
+    prepend: css(
+      highContrastAffordance(euiThemeContext, {
+        preferred: logicalCSS('border-right', euiTheme.border.thin),
+      })
+    ),
     uncompressed: `
       ${text} {
         ${logicalCSS('padding-horizontal', euiTheme.size.xs)}

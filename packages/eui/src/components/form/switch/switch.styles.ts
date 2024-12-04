@@ -17,7 +17,10 @@ import {
   logicalSizeCSS,
   mathWithUnits,
 } from '../../../global_styling';
-import { overrideForcedColors } from '../../../global_styling/functions/high_contrast';
+import {
+  highContrastAffordance,
+  overrideForcedColors,
+} from '../../../global_styling/functions/high_contrast';
 import { euiFormCustomControlVariables } from '../form.styles';
 
 const euiSwitchVars = (euiThemeContext: UseEuiTheme) => {
@@ -149,7 +152,7 @@ const bodyStyles = (
   euiThemeContext: UseEuiTheme,
   { colors }: EuiSwitchVars
 ) => {
-  const { colorMode, highContrastMode, euiTheme } = euiThemeContext;
+  const { colorMode, euiTheme } = euiThemeContext;
 
   // This is probably very extra, but the visual weight of the default
   // disabled custom control feels different in light mode depending
@@ -160,7 +163,9 @@ const bodyStyles = (
     background-color: ${colorMode === 'DARK'
       ? colors.disabled
       : tint(colors.disabled, tintAmount)};
-    ${highContrastMode ? `border: ${euiTheme.border.thin};` : ''}
+    ${highContrastAffordance(euiThemeContext, {
+      preferred: `border: ${euiTheme.border.thin};`,
+    })}
   `;
 
   return {
@@ -170,19 +175,21 @@ const bodyStyles = (
       overflow: hidden;
       border-radius: inherit;
       pointer-events: none; /* Required for Kibana's Selenium driver to be able to click switches in FTR tests */
-      ${highContrastMode === 'forced' // Windows high contrast mode
-        ? `border: ${euiTheme.border.thin};`
-        : ''}
+      ${highContrastAffordance(euiThemeContext, {
+        forced: `border: ${euiTheme.border.thin};`,
+      })}
     `,
-    on:
-      highContrastMode === 'forced'
-        ? css`
-            background-color: ${euiTheme.border.color};
-            ${overrideForcedColors(euiThemeContext)}
-          `
-        : css`
-            background-color: ${colors.on};
-          `,
+    on: css(
+      highContrastAffordance(euiThemeContext, {
+        default: `
+          background-color: ${colors.on};
+        `,
+        forced: `
+          background-color: ${euiTheme.border.color};
+          ${overrideForcedColors(euiThemeContext)}
+        `,
+      })
+    ),
     off: css`
       background-color: ${colors.off};
     `,
