@@ -18,9 +18,17 @@ import {
 export const GuideThemeSelector = () => {
   const context = useContext(ThemeContext);
   const euiThemeContext = useEuiTheme();
-  const colorMode = context.colorMode ?? euiThemeContext.colorMode;
+
+  const isForced = euiThemeContext.highContrastMode === 'forced';
+  const colorMode =
+    context.colorMode && !isForced
+      ? context.colorMode
+      : euiThemeContext.colorMode;
   const highContrastMode =
-    context.highContrastMode ?? euiThemeContext.highContrastMode;
+    context.colorMode && !isForced
+      ? context.highContrastMode
+      : euiThemeContext.highContrastMode;
+
   const currentTheme: EUI_THEME =
     EUI_THEMES.find((theme) => theme.value === context.theme) || EUI_THEMES[0];
 
@@ -51,12 +59,14 @@ export const GuideThemeSelector = () => {
         context.setContext({
           colorMode: e.target.checked ? 'DARK' : 'LIGHT',
         }),
+      disabled: isForced,
     },
     {
       label: 'High contrast',
       checked: !!highContrastMode,
       onChange: (e: EuiSwitchEvent) =>
         context.setContext({ highContrastMode: e.target.checked }),
+      disabled: isForced,
     },
     location.host.includes('803') && {
       label: 'i18n testing',
@@ -102,6 +112,7 @@ export const GuideThemeSelector = () => {
               label={item.label}
               checked={item.checked}
               onChange={item.onChange}
+              disabled={item.disabled}
             />
           </div>
         ) : null

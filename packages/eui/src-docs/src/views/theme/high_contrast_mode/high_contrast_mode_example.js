@@ -78,8 +78,9 @@ export const HighContrastModeExample = {
           <p>
             Since this is done at a level that EUI can do nothing about, if
             forced colors mode is detected by <strong>EuiProvider</strong>, EUI
-            will ignore any passed <EuiCode>highContrastMode</EuiCode> prop, as
-            this user choice and system setting takes precedence.
+            will ignore any passed <EuiCode>highContrastMode</EuiCode> or{' '}
+            <EuiCode>colorMode</EuiCode> props, as this user choice and system
+            setting takes precedence.
           </p>
           <EuiCallOut>
             To quickly test your application in forced colors mode without
