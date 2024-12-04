@@ -44,9 +44,10 @@ export const isInverseColorMode = (
  */
 export const getColorMode = (
   colorMode?: EuiThemeColorMode,
-  parentColorMode?: EuiThemeColorModeStandard
+  parentColorMode?: EuiThemeColorModeStandard,
+  isForced?: boolean
 ): EuiThemeColorModeStandard => {
-  if (colorMode == null) {
+  if (isForced || colorMode == null) {
     return parentColorMode || DEFAULT_COLOR_MODE;
   }
   const mode = colorMode.toUpperCase() as

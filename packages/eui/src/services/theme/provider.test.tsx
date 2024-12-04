@@ -67,6 +67,25 @@ describe('EuiThemeProvider', () => {
         '#000'
       );
     });
+
+    it('detects if color mode is forced from the system and overrides any props', () => {
+      (useWindowMediaMatcher as jest.Mock).mockImplementation((media) => {
+        if (media === '(prefers-color-scheme: dark)') return true;
+        if (media === '(forced-colors: active)') return true;
+      });
+
+      const { getByText } = render(
+        <EuiSystemDefaultsProvider>
+          <EuiThemeProvider colorMode="light">
+            <div css={({ euiTheme }) => ({ color: euiTheme.colors.fullShade })}>
+              Forced dark mode
+            </div>
+          </EuiThemeProvider>
+        </EuiSystemDefaultsProvider>
+      );
+
+      expect(getByText('Forced dark mode')).toHaveStyleRule('color', '#FFF');
+    });
   });
 
   describe('highContrastMode', () => {
