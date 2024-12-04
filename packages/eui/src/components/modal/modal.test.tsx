@@ -12,6 +12,7 @@ import { requiredProps } from '../../test';
 import { shouldRenderCustomStyles } from '../../test/internal';
 
 import { EuiModal } from './modal';
+import { EuiHeader } from '../header';
 
 describe('EuiModal', () => {
   shouldRenderCustomStyles(<EuiModal onClose={() => {}}>children</EuiModal>);
@@ -78,6 +79,20 @@ describe('EuiModal', () => {
       expect(modalB.className).not.toContain('defaultMaxWidth');
       expect(modalA.getAttribute('style')).toEqual('max-inline-size: 300px;');
       expect(modalB.getAttribute('style')).toEqual('max-inline-size: 50%;');
+    });
+  });
+
+  describe('reading order', () => {
+    test('button is placed after header', () => {
+      const { getByTestSubject } = render(
+        <EuiModal onClose={() => null}>
+          <EuiHeader data-test-subj="header">Title</EuiHeader>
+          children
+        </EuiModal>
+      );
+
+      const header = getByTestSubject('header');
+      expect(header.nextElementSibling?.tagName).toBe('BUTTON');
     });
   });
 });
