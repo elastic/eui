@@ -14,10 +14,13 @@ import {
   logicalSizeCSS,
   mathWithUnits,
 } from '../../global_styling';
-import { overrideForcedColors } from '../../global_styling/functions/high_contrast';
+import {
+  highContrastAffordance,
+  overrideForcedColors,
+} from '../../global_styling/functions/high_contrast';
 
 export const euiSaturationStyles = (euiThemeContext: UseEuiTheme) => {
-  const { euiTheme, highContrastMode } = euiThemeContext;
+  const { euiTheme } = euiThemeContext;
 
   const indicatorSize = euiTheme.size.m;
   const borderRadius = euiTheme.border.radius.small;
@@ -39,23 +42,25 @@ export const euiSaturationStyles = (euiThemeContext: UseEuiTheme) => {
         outline: none; /* Hide focus ring from tabindex=0 */
 
         .euiSaturation__indicator {
-          ${highContrastMode
-            ? `
-              outline: ${euiTheme.border.width.thin} solid ${euiTheme.colors.ink};
-              outline-offset: 0;`
-            : `
+          ${highContrastAffordance(euiThemeContext, {
+            default: `
               outline: none; /* Standardize indicator focus ring */
               box-shadow: 0 0 0 ${euiTheme.focus.width} ${euiTheme.colors.primary};
               border-color: ${euiTheme.colors.primary};
-            `}
+            `,
+            preferred: `
+              outline: ${euiTheme.border.width.thin} solid ${euiTheme.colors.ink};
+              outline-offset: 0;
+            `,
+          })}
         }
       }
 
-      ${overrideForcedColors(euiThemeContext)}
-      ${highContrastMode
-        ? // The border must be in an overlaid pseudo element to not affect the
-          // width/height and position of the indicator, or cause border-radius issues
-          `&::after {
+      ${highContrastAffordance(euiThemeContext, {
+        // The border must be in an overlaid pseudo element to not affect the
+        // width/height/position of the indicator, or cause border-radius issues
+        preferred: `
+          &::after {
             z-index: 1;
             content: '';
             position: absolute;
@@ -63,8 +68,10 @@ export const euiSaturationStyles = (euiThemeContext: UseEuiTheme) => {
             border: ${euiTheme.border.thin};
             border-radius: inherit;
             pointer-events: none;
-          }`
-        : ''}
+          }
+        `,
+        forced: overrideForcedColors(euiThemeContext),
+      })}
     `,
 
     euiSaturation__lightness: css`
@@ -90,21 +97,25 @@ export const euiSaturationStyles = (euiThemeContext: UseEuiTheme) => {
       ${logicalSizeCSS(indicatorSize)}
       transform: translateX(-50%) translateY(-50%);
       border-radius: 100%;
-      ${highContrastMode
-        ? `
-        border: ${euiTheme.border.width.thick} solid ${euiTheme.colors.ink};
-        background-color: ${euiTheme.colors.ghost};`
-        : `
-        border: ${euiTheme.border.width.thin} solid ${euiTheme.colors.darkestShade};
 
-        &::before {
-          content: '';
-          position: absolute;
-          inset: 0;
-          border-radius: 100%;
-          border: ${euiTheme.border.width.thin} solid
-            ${euiTheme.colors.lightestShade};
-        }`}
+      ${highContrastAffordance(euiThemeContext, {
+        default: `
+          border: ${euiTheme.border.width.thin} solid ${euiTheme.colors.darkestShade};
+
+          &::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 100%;
+            border: ${euiTheme.border.width.thin} solid
+              ${euiTheme.colors.lightestShade};
+          }
+        `,
+        preferred: `
+          border: ${euiTheme.border.width.thick} solid ${euiTheme.colors.ink};
+          background-color: ${euiTheme.colors.ghost};
+        `,
+      })}
     `,
   };
 };
