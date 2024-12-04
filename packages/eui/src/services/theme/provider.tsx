@@ -88,7 +88,7 @@ export const EuiThemeProvider = <T extends {} = {}>({
   const parentTheme = useContext(EuiThemeContext);
 
   // If the user has an OS-wide high contrast theme applied, it will ignore EUI's
-  // colors and light/dark mode. We should respect that use the system setting
+  // colors and light/dark mode. We should respect the user's system setting
   const isForced = parentHighContrastMode === 'forced';
 
   // To reduce the number of window resize listeners, only render a
