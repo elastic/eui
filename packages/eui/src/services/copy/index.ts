@@ -9,5 +9,6 @@
 export { copyToClipboard } from './copy_to_clipboard';
 export {
   tabularCopyMarkers,
+  noCopyBoundsRegex,
   OverrideCopiedTabularContent,
 } from './tabular_copy';

@@ -7,7 +7,8 @@
  */
 
 import React from 'react';
-import { fireEvent } from '@testing-library/react';
+import { fireEvent, waitFor } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 
 import { requiredProps } from '../../test/required_props';
 import { render } from '../../test/rtl';
@@ -147,7 +148,63 @@ describe('EuiCodeBlock', () => {
       ).toBeInTheDocument();
     });
 
-    it('closes fullscreen mode when the Escape key is pressed', () => {
+    describe('keyboard navigation', () => {
+      it('correctly navigates fullscreen with keyboard', () => {
+        const { getByLabelText, baseElement } = render(
+          <EuiCodeBlock
+            {...requiredProps}
+            language="javascript"
+            overflowHeight={300}
+          >
+            const value = &quot;hello&quot;
+          </EuiCodeBlock>
+        );
+
+        (baseElement.querySelector(
+          '.euiCodeBlock__pre'
+        ) as HTMLPreElement)!.focus(); // start on focusable code block element
+
+        expect(getByLabelText('Expand')).toBeInTheDocument();
+
+        userEvent.keyboard('{tab}');
+
+        waitFor(() => expect(getByLabelText('Expand')).toHaveFocus());
+
+        userEvent.keyboard('{enter}');
+
+        waitFor(() =>
+          expect(
+            baseElement.querySelector('.euiCodeBlockFullScreen')
+          ).toBeInTheDocument()
+        );
+
+        userEvent.keyboard('{tab}');
+
+        waitFor(() =>
+          expect(
+            baseElement.querySelector(
+              '.euiCodeBlockFullScreen .euiCodeBlock__pre'
+            )
+          ).toHaveFocus()
+        );
+
+        userEvent.keyboard('{tab}');
+
+        waitFor(() => expect(getByLabelText('Collapse')).toHaveFocus());
+
+        userEvent.keyboard('{enter}');
+
+        waitFor(() => {
+          expect(
+            baseElement.querySelector('.euiCodeBlockFullScreen')
+          ).not.toBeInTheDocument();
+
+          expect(getByLabelText('Expand')).toHaveFocus();
+        });
+      });
+    });
+
+    it('closes fullscreen mode when the escape key is pressed', () => {
       const { getByLabelText, baseElement } = render(
         <EuiCodeBlock
           {...requiredProps}
@@ -169,6 +226,8 @@ describe('EuiCodeBlock', () => {
       expect(
         baseElement.querySelector('.euiCodeBlockFullScreen')
       ).not.toBeInTheDocument();
+
+      waitFor(() => expect(getByLabelText('Expand')).toHaveFocus());
     });
   });
 
