@@ -82,17 +82,15 @@ describe('EuiModal', () => {
     });
   });
 
-  describe('reading order', () => {
-    test('button is placed after header', () => {
-      const { getByTestSubject } = render(
-        <EuiModal onClose={() => null}>
-          <EuiHeader data-test-subj="header">Title</EuiHeader>
-          children
-        </EuiModal>
-      );
+  test('button is placed after header', () => {
+    const { getByTestSubject } = render(
+      <EuiModal onClose={() => null}>
+        <EuiHeader data-test-subj="header">Title</EuiHeader>
+        children
+      </EuiModal>
+    );
 
-      const header = getByTestSubject('header');
-      expect(header.nextElementSibling?.tagName).toBe('BUTTON');
-    });
+    const header = getByTestSubject('header');
+    expect(header.nextElementSibling?.tagName).toBe('BUTTON');
   });
 });
