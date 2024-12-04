@@ -39,7 +39,9 @@ export const euiSaturationStyles = (euiThemeContext: UseEuiTheme) => {
 
         .euiSaturation__indicator {
           ${highContrastMode
-            ? `outline: ${euiTheme.border.thin};`
+            ? `
+              outline: ${euiTheme.border.width.thin} solid ${euiTheme.colors.ink};
+              outline-offset: 0;`
             : `
               outline: none; /* Standardize indicator focus ring */
               box-shadow: 0 0 0 ${euiTheme.focus.width} ${euiTheme.colors.primary};
@@ -90,12 +92,7 @@ export const euiSaturationStyles = (euiThemeContext: UseEuiTheme) => {
       ${highContrastMode
         ? `
         border: ${euiTheme.border.width.thick} solid ${euiTheme.colors.ink};
-        background-color: ${euiTheme.colors.ghost};
-
-        &:focus-visible {
-          outline: ${euiTheme.border.thin};
-          outline-offset: 0;
-        }`
+        background-color: ${euiTheme.colors.ghost};`
         : `
         border: ${euiTheme.border.width.thin} solid ${euiTheme.colors.darkestShade};
 

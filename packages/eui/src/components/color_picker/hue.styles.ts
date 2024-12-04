@@ -98,7 +98,7 @@ export const euiHueStyles = (euiThemeContext: UseEuiTheme) => {
         ? `
         &:focus {
           ${euiRangeThumbPerBrowser(`
-            outline: ${euiTheme.border.width.thin} solid ${euiTheme.colors.fullShade};
+            outline: ${euiTheme.border.width.thin} solid ${euiTheme.colors.ink};
             outline-offset: 0;
           `)}
         }`
