@@ -12,6 +12,7 @@ import {
   logicalCSS,
   mathWithUnits,
 } from '../../global_styling';
+import { overrideForcedColors } from '../../global_styling/functions/high_contrast';
 import { UseEuiTheme } from '../../services';
 import { euiShadowLarge } from '../../themes/amsterdam';
 import { euiTitle } from '../title/title.styles';
@@ -65,7 +66,7 @@ export const euiToastStyles = (euiThemeContext: UseEuiTheme) => {
               ${logicalCSS('horizontal', 0)}
               ${logicalCSS('height', borderWidth)}
               background-color: ${color};
-              forced-color-adjust: none;
+              ${overrideForcedColors(euiThemeContext)}
             }`;
       },
       get primary() {

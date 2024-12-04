@@ -10,6 +10,7 @@ import { css } from '@emotion/react';
 
 import { UseEuiTheme, transparentize } from '../../services';
 import { logicalCSS, mathWithUnits } from '../../global_styling';
+import { overrideForcedColors } from '../../global_styling/functions/high_contrast';
 import {
   euiRangeThumbPerBrowser,
   euiRangeThumbStyle,
@@ -37,7 +38,7 @@ export const euiHueStyles = (euiThemeContext: UseEuiTheme) => {
       ${logicalCSS('height', height)}
       border-radius: ${height};
       ${highContrastMode ? `border: ${euiTheme.border.thin};` : ''}
-      ${highContrastMode === 'forced' ? 'forced-color-adjust: none;' : ''}
+      ${overrideForcedColors(euiThemeContext)}
 
       background: linear-gradient(
         to right,

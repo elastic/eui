@@ -9,6 +9,7 @@
 import { css } from '@emotion/react';
 import { UseEuiTheme, hexToRgb } from '../../../services';
 import { mathWithUnits } from '../../../global_styling';
+import { overrideForcedColors } from '../../../global_styling/functions/high_contrast';
 import { euiFormVariables } from '../form.styles';
 
 export const euiRangeVariables = (euiThemeContext: UseEuiTheme) => {
@@ -138,10 +139,14 @@ export const euiRangeThumbStyle = (euiThemeContext: UseEuiTheme) => {
   `
     : `
     ${baseStyles}
-    forced-color-adjust: none;
+    ${overrideForcedColors(euiThemeContext)}
     background-color: var(--euiRangeThumbColor, ${euiTheme.colors.emptyShade});
-    border: ${range.thumbBorderWidth} solid var(--euiRangeThumbColor, ${euiTheme.colors.fullShade});
-    box-shadow: inset 0 0 0 ${range.thumbBorderWidth} ${euiTheme.colors.emptyShade};
+    border: ${range.thumbBorderWidth} solid var(--euiRangeThumbColor, ${
+        euiTheme.colors.fullShade
+      });
+    box-shadow: inset 0 0 0 ${range.thumbBorderWidth} ${
+        euiTheme.colors.emptyShade
+      };
   `;
 };
 

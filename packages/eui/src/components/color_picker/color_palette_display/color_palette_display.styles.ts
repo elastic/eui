@@ -10,6 +10,7 @@ import { css } from '@emotion/react';
 
 import { UseEuiTheme, transparentize } from '../../../services';
 import { logicalCSS } from '../../../global_styling';
+import { overrideForcedColors } from '../../../global_styling/functions/high_contrast';
 
 export const euiColorPaletteDisplayStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme, highContrastMode } = euiThemeContext;
@@ -28,7 +29,7 @@ export const euiColorPaletteDisplayStyles = (euiThemeContext: UseEuiTheme) => {
       display: flex;
       flex-direction: row;
       overflow: hidden;
-      ${highContrastMode === 'forced' ? 'forced-color-adjust: none;' : ''}
+      ${overrideForcedColors(euiThemeContext)}
 
       &::after {
         content: '';

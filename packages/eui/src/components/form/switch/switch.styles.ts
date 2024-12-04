@@ -17,6 +17,7 @@ import {
   logicalSizeCSS,
   mathWithUnits,
 } from '../../../global_styling';
+import { overrideForcedColors } from '../../../global_styling/functions/high_contrast';
 import { euiFormCustomControlVariables } from '../form.styles';
 
 const euiSwitchVars = (euiThemeContext: UseEuiTheme) => {
@@ -145,9 +146,11 @@ const buttonStyles = (
 };
 
 const bodyStyles = (
-  { colorMode, highContrastMode, euiTheme }: UseEuiTheme,
+  euiThemeContext: UseEuiTheme,
   { colors }: EuiSwitchVars
 ) => {
+  const { colorMode, highContrastMode, euiTheme } = euiThemeContext;
+
   // This is probably very extra, but the visual weight of the default
   // disabled custom control feels different in light mode depending
   // on the size of the switch, so I'm tinting it based on that.
@@ -175,7 +178,7 @@ const bodyStyles = (
       highContrastMode === 'forced'
         ? css`
             background-color: ${euiTheme.border.color};
-            forced-color-adjust: none;
+            ${overrideForcedColors(euiThemeContext)}
           `
         : css`
             background-color: ${colors.on};

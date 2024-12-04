@@ -14,6 +14,7 @@ import {
   mathWithUnits,
   euiOutline,
 } from '../../global_styling';
+import { overrideForcedColors } from '../../global_styling/functions/high_contrast';
 
 export const euiColorPickerSwatchStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme, highContrastMode } = euiThemeContext;
@@ -35,7 +36,7 @@ export const euiColorPickerSwatchStyles = (euiThemeContext: UseEuiTheme) => {
           box-shadow: inset 0 0 0 ${euiTheme.border.width.thin}
             ${transparentize(euiTheme.colors.emptyShade, 0.05)};
         `}
-      ${highContrastMode === 'forced' ? 'forced-color-adjust: none;' : ''}
+      ${overrideForcedColors(euiThemeContext)}
       cursor: pointer;
 
       &:disabled {

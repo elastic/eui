@@ -14,6 +14,7 @@ import {
   logicalSizeCSS,
   mathWithUnits,
 } from '../../global_styling';
+import { overrideForcedColors } from '../../global_styling/functions/high_contrast';
 
 export const euiSaturationStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme, highContrastMode } = euiThemeContext;
@@ -50,7 +51,7 @@ export const euiSaturationStyles = (euiThemeContext: UseEuiTheme) => {
         }
       }
 
-      ${highContrastMode === 'forced' ? 'forced-color-adjust: none;' : ''}
+      ${overrideForcedColors(euiThemeContext)}
       ${highContrastMode
         ? // The border must be in an overlaid pseudo element to not affect the
           // width/height and position of the indicator, or cause border-radius issues
