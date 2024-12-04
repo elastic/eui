@@ -36,6 +36,9 @@ describe('getColorMode', () => {
   it('uses `parentMode` as fallback', () => {
     expect(getColorMode(undefined, 'DARK')).toEqual('DARK');
   });
+  it('uses `parentMode` (the system OS setting) if isForced is true', () => {
+    expect(getColorMode('LIGHT', 'DARK', true)).toEqual('DARK');
+  });
   it("understands 'INVERSE'", () => {
     expect(getColorMode('INVERSE', 'DARK')).toEqual('LIGHT');
     expect(getColorMode('INVERSE', 'LIGHT')).toEqual('DARK');
