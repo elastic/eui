@@ -166,7 +166,6 @@ export const dark_special_colors: _EuiThemeSpecialColors = {
 };
 
 export const dark_colors: _EuiThemeColorsMode = {
-  ...SEMANTIC_COLORS,
   ...dark_brand_colors,
   ...dark_shades,
   ...dark_special_colors,

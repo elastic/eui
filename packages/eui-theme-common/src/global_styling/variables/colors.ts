@@ -316,6 +316,10 @@ export type _EuiThemeConstantColors = {
    * @deprecated
    */
   ink: string;
+
+  plainLight: string;
+  plainDark: string;
+
   vis: _EuiThemeVisColors;
 };
 
