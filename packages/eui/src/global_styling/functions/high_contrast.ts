@@ -12,6 +12,42 @@ import type { UseEuiTheme } from '../../services';
 // until high contrast mode is out of beta.
 
 /**
+ * Minor syntactical sugar for conditional high contrast styles.
+ * Ternaries are otherwise somewhat ugly in css`` template literals,
+ * and this makes life just a little more beautiful ✨
+ */
+export const highContrastAffordance = (
+  euiThemeContext: UseEuiTheme,
+  options: {
+    default?: string;
+    preferred?: string;
+    forced?: string;
+  }
+) => {
+  const { highContrastMode } = euiThemeContext;
+  const {
+    default: defaultStyles = '', // `default` is a reserved keyword in JS
+    preferred = '',
+    forced = '',
+  } = options;
+
+  if (highContrastMode) {
+    if (highContrastMode === 'forced') {
+      // Assume preferred high contrast styles should also apply to forced contrast styles
+      return preferred.trim() + forced.trim();
+    }
+
+    if (!preferred && forced && defaultStyles) {
+      // If only forced styles were passed, assume we can use default styles for preferred high contrast
+      return defaultStyles.trim();
+    }
+
+    return preferred.trim();
+  }
+  return defaultStyles.trim();
+};
+
+/**
  * Small uitility that allows component styles to ignore/override
  * forced colors modes (primarily Windows high contrast themes)
  * @see https://developer.mozilla.org/en-US/docs/Web/CSS/forced-color-adjust
