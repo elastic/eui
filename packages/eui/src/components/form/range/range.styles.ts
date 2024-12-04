@@ -9,7 +9,10 @@
 import { css } from '@emotion/react';
 import { UseEuiTheme, hexToRgb } from '../../../services';
 import { mathWithUnits } from '../../../global_styling';
-import { overrideForcedColors } from '../../../global_styling/functions/high_contrast';
+import {
+  highContrastAffordance,
+  overrideForcedColors,
+} from '../../../global_styling/functions/high_contrast';
 import { euiFormVariables } from '../form.styles';
 
 export const euiRangeVariables = (euiThemeContext: UseEuiTheme) => {
@@ -119,7 +122,7 @@ export const euiRangeThumbFocusBoxShadow = (euiThemeContext: UseEuiTheme) => {
 
 export const euiRangeThumbStyle = (euiThemeContext: UseEuiTheme) => {
   const range = euiRangeVariables(euiThemeContext);
-  const { highContrastMode, euiTheme } = euiThemeContext;
+  const { euiTheme } = euiThemeContext;
 
   const baseStyles = `
     border-radius: 50%;
@@ -130,24 +133,23 @@ export const euiRangeThumbStyle = (euiThemeContext: UseEuiTheme) => {
     box-sizing: border-box;  // required for firefox or the border makes the width and height to increase
   `;
 
-  return !highContrastMode
-    ? `
-    ${baseStyles}
-    background-color: var(--euiRangeThumbColor, ${range.thumbBackgroundColor});
-    ${euiRangeThumbBoxShadow(euiThemeContext)};
-    ${euiRangeThumbBorder(euiThemeContext)};
-  `
-    : `
-    ${baseStyles}
-    ${overrideForcedColors(euiThemeContext)}
-    background-color: var(--euiRangeThumbColor, ${euiTheme.colors.emptyShade});
-    border: ${range.thumbBorderWidth} solid var(--euiRangeThumbColor, ${
-        euiTheme.colors.fullShade
+  return highContrastAffordance(euiThemeContext, {
+    default: `
+      ${baseStyles}
+      background-color: var(--euiRangeThumbColor, ${
+        range.thumbBackgroundColor
       });
-    box-shadow: inset 0 0 0 ${range.thumbBorderWidth} ${
-        euiTheme.colors.emptyShade
-      };
-  `;
+      ${euiRangeThumbBoxShadow(euiThemeContext)};
+      ${euiRangeThumbBorder(euiThemeContext)};
+    `,
+    preferred: `
+      ${baseStyles}
+      background-color: var(--euiRangeThumbColor, ${euiTheme.colors.emptyShade});
+      border: ${range.thumbBorderWidth} solid var(--euiRangeThumbColor, ${euiTheme.colors.fullShade});
+      box-shadow: inset 0 0 0 ${range.thumbBorderWidth} ${euiTheme.colors.emptyShade};
+    `,
+    forced: overrideForcedColors(euiThemeContext),
+  });
 };
 
 export const euiRangeThumbPerBrowser = (content: string) => {

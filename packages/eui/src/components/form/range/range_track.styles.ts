@@ -8,10 +8,10 @@
 
 import { css } from '@emotion/react';
 import { UseEuiTheme } from '../../../services';
+import { highContrastAffordance } from '../../../global_styling/functions/high_contrast';
 import { euiRangeVariables } from './range.styles';
 
 export const euiRangeTrackStyles = (euiThemeContext: UseEuiTheme) => {
-  const { highContrastMode } = euiThemeContext;
   const range = euiRangeVariables(euiThemeContext);
 
   return {
@@ -29,15 +29,17 @@ export const euiRangeTrackStyles = (euiThemeContext: UseEuiTheme) => {
         inset-block-start: ${range.trackTopPositionWithoutTicks};
         inset-inline-start: 0;
         inline-size: ${range.trackWidth};
-        ${
-          highContrastMode !== 'forced'
-            ? `
-          background: ${range.trackColor};
-          block-size: ${range.trackHeight};`
-            : `
-          border-block-start: ${range.trackHeight} solid ${range.trackColor};
-          opacity: 0.25;` // Windows high contrast themes ignore background color, but will render borders
-        }
+        ${highContrastAffordance(euiThemeContext, {
+          default: `
+            background: ${range.trackColor};
+            block-size: ${range.trackHeight};
+          `,
+          // Windows high contrast themes ignore background color, but will render borders
+          forced: `
+            border-block-start: ${range.trackHeight} solid ${range.trackColor};
+            opacity: 0.25;
+          `,
+        })}
         border-radius: ${range.trackBorderRadius};
       }
     `,

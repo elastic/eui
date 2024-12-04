@@ -14,27 +14,30 @@ import {
   euiFontSize,
   mathWithUnits,
 } from '../../../global_styling';
+import { highContrastAffordance } from '../../../global_styling/functions/high_contrast';
+
 import { euiRangeVariables } from './range.styles';
 
 const tickStyles = (
-  { euiTheme, highContrastMode }: UseEuiTheme,
+  euiThemeContext: UseEuiTheme,
   range: ReturnType<typeof euiRangeVariables>
 ) => {
+  const { euiTheme } = euiThemeContext;
   return `
     position: absolute;
     ${logicalCSS('top', 0)};
     block-size: ${range.tickHeight};
-    ${
-      highContrastMode !== 'forced'
-        ? `
-          inline-size: ${range.tickWidth};
-          background-color: ${range.tickColor};
-        `
-        : logicalCSS(
-            'border-left',
-            `${range.tickWidth} solid ${range.tickColor}`
-          ) // Windows high contrast themes ignore background color but render borders
-    }
+    ${highContrastAffordance(euiThemeContext, {
+      default: `
+        inline-size: ${range.tickWidth};
+        background-color: ${range.tickColor};
+      `,
+      // Windows high contrast themes ignore background color but render borders
+      forced: logicalCSS(
+        'border-left',
+        `${range.tickWidth} solid ${range.tickColor}`
+      ),
+    })}
     border-radius: ${euiTheme.border.radius.small};
   `;
 };
