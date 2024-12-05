@@ -8,6 +8,7 @@
 
 // Needs to use vanilla `css` to pass a className directly to react-datepicker
 import { css } from '@emotion/css';
+import { serializeStyles } from '@emotion/serialize';
 
 import { UseEuiTheme } from '../../services';
 import {
@@ -18,7 +19,10 @@ import {
   logicalCSS,
   mathWithUnits,
 } from '../../global_styling';
-import { overrideForcedColors } from '../../global_styling/functions/high_contrast';
+import {
+  highContrastAffordance,
+  overrideForcedColors,
+} from '../../global_styling/functions/high_contrast';
 import {
   euiButtonColor,
   euiButtonEmptyColor,
@@ -233,7 +237,7 @@ export const _monthYearDropdowns = (euiThemeContext: UseEuiTheme) => {
 };
 
 export const _dayCalendarStyles = (euiThemeContext: UseEuiTheme) => {
-  const { euiTheme, highContrastMode } = euiThemeContext;
+  const { euiTheme } = euiThemeContext;
   const { gapSize } = euiDatePickerVariables(euiThemeContext);
 
   const daySize = euiTheme.size.xl;
@@ -296,9 +300,11 @@ export const _dayCalendarStyles = (euiThemeContext: UseEuiTheme) => {
 
       &--highlighted,
       &--highlighted:hover {
-        ${highContrastMode !== 'forced'
-          ? euiButtonColor(euiThemeContext, 'success')
-          : `border: ${euiTheme.border.thin};`}
+        ${highContrastAffordance(euiThemeContext, {
+          default: serializeStyles([euiButtonColor(euiThemeContext, 'success')])
+            .styles,
+          forced: `border: ${euiTheme.border.thin};`,
+        })}
       }
 
       &--in-range,
@@ -306,10 +312,10 @@ export const _dayCalendarStyles = (euiThemeContext: UseEuiTheme) => {
         ${euiButtonColor(euiThemeContext, 'primary')};
       }
 
-      ${highContrastMode !== 'forced'
-        ? // Ranges use 2 side box-shadows that are the same as the button
-          //background to fill the gap between margins
-          `
+      ${highContrastAffordance(euiThemeContext, {
+        // Ranges use 2 side box-shadows that are the same as the button
+        // background to fill the gap between margins
+        default: `
           &--in-range:not(&--selected):not(:hover):not(&--disabled) {
             box-shadow: -${rangeMarginOffset} 0 ${rangeBackgroundColor},
               ${rangeMarginOffset} 0 ${rangeBackgroundColor};
@@ -331,9 +337,10 @@ export const _dayCalendarStyles = (euiThemeContext: UseEuiTheme) => {
                 border-radius ${animationSpeed} ease-in-out,
                 background-color ${animationSpeed} ease-in;
             }
-          }`
-        : // In Windows high contrast mode, use borders and pseudo elements instead of background colors
-          `
+          }
+        `,
+        // In Windows high contrast mode, use borders and pseudo elements instead of background colors
+        forced: `
           &--in-range:not(&--selected) {
             position: relative;
             transform: none;
@@ -351,7 +358,9 @@ export const _dayCalendarStyles = (euiThemeContext: UseEuiTheme) => {
           }
           &--range-end:not(&--selected)::before {
             border-inline-end: ${euiTheme.border.thin};
-          }`}
+          }
+        `,
+      })}
 
       &--selected,
       &--selected:hover,
@@ -362,9 +371,12 @@ export const _dayCalendarStyles = (euiThemeContext: UseEuiTheme) => {
 
       &--disabled,
       &--disabled:hover {
-        ${highContrastMode !== 'forced'
-          ? euiButtonColor(euiThemeContext, 'disabled')
-          : 'opacity: 0.5;'}
+        ${highContrastAffordance(euiThemeContext, {
+          default: serializeStyles([
+            euiButtonColor(euiThemeContext, 'disabled'),
+          ]).styles,
+          forced: `opacity: 0.5;`,
+        })}
         cursor: not-allowed;
         text-decoration: none;
         transform: none;
@@ -381,14 +393,16 @@ export const _dayCalendarStyles = (euiThemeContext: UseEuiTheme) => {
       &--in-selecting-range:not(&--in-range),
       &--disabled.react-datepicker__day--selected,
       &--disabled.react-datepicker__day--selected:hover {
-        ${highContrastMode !== 'forced'
-          ? euiButtonColor(euiThemeContext, 'danger')
-          : `
+        ${highContrastAffordance(euiThemeContext, {
+          default: serializeStyles([euiButtonColor(euiThemeContext, 'danger')])
+            .styles,
+          forced: `
             color: ${euiTheme.colors.dangerText};
             border: ${euiTheme.border.width.thin} solid ${euiTheme.colors.dangerText};
             background-color: ${euiTheme.colors.emptyShade};
             opacity: 1;
-          `}
+          `,
+        })}
       }
     }
   `;
