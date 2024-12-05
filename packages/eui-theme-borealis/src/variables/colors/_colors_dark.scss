@@ -42,11 +42,11 @@ $euiColorBackgroundBaseDisabled: $euiColorShade130 !default;
 $euiColorBackgroundBaseFormsPrepend: $euiColorShade125 !default;
 $euiColorBackgroundBaseFormsControlDisabled: $euiColorShade120 !default;
 
-$euiColorBackgroundBaseInteractiveHover: $euiColorTransparentWhite10 !default;
+$euiColorBackgroundBaseInteractiveHover: $euiColorPlainLightAlpha6 !default;
 $euiColorBackgroundBaseInteractiveSelect: $euiColorShade125 !default;
-$euiColorBackgroundBaseInteractiveOverlay: $euiColorShadeTransparent80 !default;
-$euiColorBackgroundBaseSkeletonEdge: $euiColorTransparentWhite10 !default;
-$euiColorBackgroundBaseSkeletonMiddle: $euiColorTransparentWhite30 !default;
+$euiColorBackgroundBaseInteractiveOverlay: $euiColorShade120Alpha70 !default;
+$euiColorBackgroundBaseSkeletonEdge: $euiColorPlainLightAlpha16 !default;
+$euiColorBackgroundBaseSkeletonMiddle: $euiColorPlainLightAlpha6 !default;
 
 $euiColorBackgroundLightPrimary: $euiColorPrimary130 !default;
 $euiColorBackgroundLightAccent: $euiColorAccent130 !default;
@@ -106,7 +106,7 @@ $euiColorBorderBasePlain: $euiColorShade100;
 $euiColorBorderBaseSubdued: $euiColorShade120;
 $euiColorBorderBaseDisabled: $euiColorShade100;
 $euiColorBorderBaseFloating: $euiColorShade120;
-$euiColorBorderBaseFormsColorSwatch: $euiColorTransparentWhite30;
+$euiColorBorderBaseFormsColorSwatch: $euiColorPlainLightAlpha32;
 $euiColorBorderBaseFormsControl: $euiColorShade80;
 
 $euiColorStrongBasePrimary: $euiColorPrimary60;

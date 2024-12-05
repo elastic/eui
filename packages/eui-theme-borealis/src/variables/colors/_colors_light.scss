@@ -43,11 +43,11 @@ $euiColorBackgroundBaseDisabled: $euiColorShade15 !default;
 $euiColorBackgroundBaseFormsPrepend: $euiColorShade15 !default;
 $euiColorBackgroundBaseFormsControlDisabled: $euiColorShade30 !default;
 
-$euiColorBackgroundBaseInteractiveHover: $euiColorShadeTransparent10 !default;
+$euiColorBackgroundBaseInteractiveHover: $euiColorPrimary100Alpha4 !default;
 $euiColorBackgroundBaseInteractiveSelect: $euiColorShade15 !default;
-$euiColorBackgroundBaseInteractiveOverlay: $euiColorShadeTransparent80 !default;
-$euiColorBackgroundBaseSkeletonEdge: $euiColorShadeTransparent30 !default;
-$euiColorBackgroundBaseSkeletonMiddle: $euiColorShadeTransparent10 !default;
+$euiColorBackgroundBaseInteractiveOverlay: $euiColorShade100Alpha70 !default;
+$euiColorBackgroundBaseSkeletonEdge: $euiColorShade100Alpha16 !default;
+$euiColorBackgroundBaseSkeletonMiddle: $euiColorShade100Alpha4 !default;
 
 $euiColorBackgroundLightPrimary: $euiColorPrimary20 !default;
 $euiColorBackgroundLightAccent: $euiColorAccent20 !default;
@@ -61,7 +61,7 @@ $euiColorBackgroundFilledPrimary: $euiColorPrimary90 !default;
 $euiColorBackgroundFilledAccent: $euiColorAccent90 !default;
 $euiColorBackgroundFilledAccentSecondary: $euiColorAccentSecondary90 !default;
 $euiColorBackgroundFilledSuccess: $euiColorSuccess90 !default;
-$euiColorBackgroundFilledWarning: $euiColorWarning90 !default;
+$euiColorBackgroundFilledWarning: $euiColorWarning40 !default;
 $euiColorBackgroundFilledDanger: $euiColorDanger90 !default;
 $euiColorBackgroundFilledText: $euiColorShade90 !default;
 
@@ -106,9 +106,9 @@ $euiColorBorderBaseDanger: $euiColorDanger30;
 $euiColorBorderBasePlain: $euiColorShade30;
 $euiColorBorderBaseSubdued: $euiColorShade20;
 $euiColorBorderBaseDisabled: $euiColorShade30;
-$euiColorBorderBaseFloating: $euiColorTransparentWhite0;
+$euiColorBorderBaseFloating: $euiColorTransparent;
 
-$euiColorBorderBaseFormsColorSwatch: $euiColorShadeTransparent30;
+$euiColorBorderBaseFormsColorSwatch: $euiColorShade100Alpha24;
 $euiColorBorderBaseFormsControl: $euiColorShade60;
 
 $euiColorBorderStrongPrimary: $euiColorPrimary100;
