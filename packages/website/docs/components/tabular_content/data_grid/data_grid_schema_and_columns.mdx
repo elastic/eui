@@ -1,9 +1,10 @@
 ---
 slug: /tabular-content/data-grid/schema-and-columns
 id: tabular_content_data_grid_schema_columns
+sidebar_position: 1
 ---
 
-# Data grid schema & columns
+# Schema & columns
 
 ## Schemas
 
@@ -11,7 +12,7 @@ Schemas are data types you pass to grid columns to affect how the columns and ex
 
 ### Defining custom schemas
 
-Custom schemas are passed as an array to `schemaDetectors` and are constructed against the **EuiDataGridSchemaDetector** interface. You can see an example of a simple custom schema used on the last column below. In addition to schemas being useful to map against for cell and expansion rendering, any schema will also add a`className="euiDataGridRowCell--schemaName"` to each matching cell.
+Custom schemas are passed as an array to `schemaDetectors` and are constructed against the **EuiDataGridSchemaDetector** interface. You can see an example of a simple custom schema used on the last column below. In addition to schemas being useful to map against for cell and expansion rendering, any schema will also add a `className="euiDataGridRowCell--schemaName"` to each matching cell.
 
 ```tsx interactive
 import React, { useState } from 'react';
@@ -146,7 +147,6 @@ export default () => {
     />
   );
 };
-
 ```
 
 ## Column widths
@@ -242,7 +242,6 @@ export default () => {
     />
   );
 };
-
 ```
 
 ## Column actions
@@ -361,7 +360,6 @@ export default () => {
     />
   );
 };
-
 ```
 
 ## Control columns
@@ -379,7 +377,6 @@ import React, {
   useCallback,
   useReducer,
   useState,
-  Fragment,
 } from 'react';
 import {
   EuiDataGrid,
@@ -564,10 +561,10 @@ const FlyoutRowCell = (rowIndex) => {
 
     const details = Object.entries(rowData).map(([key, value]) => {
       return (
-        <Fragment>
+        <>
           <EuiDescriptionListTitle>{key}</EuiDescriptionListTitle>
           <EuiDescriptionListDescription>{value}</EuiDescriptionListDescription>
-        </Fragment>
+        </>
       );
     });
 
@@ -588,7 +585,7 @@ const FlyoutRowCell = (rowIndex) => {
   }
 
   return (
-    <Fragment>
+    <>
       <EuiButtonIcon
         color="text"
         iconType="eye"
@@ -597,7 +594,7 @@ const FlyoutRowCell = (rowIndex) => {
         onClick={() => setIsFlyoutOpen(!isFlyoutOpen)}
       />
       {flyout}
-    </Fragment>
+    </>
   );
 };
 
@@ -751,7 +748,6 @@ export default function DataGrid() {
     </SelectionContext.Provider>
   );
 }
-
 ```
 
 ## Footer row
@@ -958,5 +954,15 @@ export default () => {
     </EuiFlexGroup>
   );
 };
-
 ```
+
+<!--
+TODO: EuiDataGrid types aren't currently exported. We need to fix this
+
+import docgen from '@elastic/eui-docgen/dist/components/datagrid/data_grid.json';
+
+<PropTable definition={docgen.EuiDataGridColumn} />
+<PropTable definition={docgen.EuiDataGridColumnActions} />
+<PropTable definition={docgen.EuiDataGridControlColumn} />
+<PropTable definition={docgen.EuiDataGridSchemaDetector} />
+-->
