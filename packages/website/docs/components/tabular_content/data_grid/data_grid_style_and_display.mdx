@@ -10,128 +10,21 @@ sidebar_position: 4
 
 Styling can be passed down to the grid through the `gridStyle` prop. It accepts an object that allows for customization.
 
-With the default settings, the `showDisplaySelector.allowDensity` setting in `toolbarVisibility` means the user has the ability to override the padding and font size passed into `gridStyle` by the engineer. The font size overriding only works with text or elements that can inherit the parent font size or elements that use units relative to the parent container.
+:::tip
+To reduce grid re-renders, memoize or define your grid styles as a constant outside of components.
+:::
 
-```tsx interactive
-import React, { useState, useCallback } from 'react';
-import { EuiDataGrid, EuiAvatar } from '@elastic/eui';
-import { faker } from '@faker-js/faker';
+import GridStyleToggles from './data_grid_style_toggles';
 
-const columns = [
-  {
-    id: 'avatar',
-    initialWidth: 40,
-  },
-  {
-    id: 'name',
-  },
-  {
-    id: 'email',
-  },
-  {
-    id: 'city',
-  },
-  {
-    id: 'country',
-  },
-  {
-    id: 'account',
-  },
-];
+<GridStyleToggles />
 
-const data = [];
+:::note Density selector and grid styles
 
-for (let i = 1; i < 6; i++) {
-  data.push({
-    avatar: (
-      <EuiAvatar
-        size="s"
-        name={`${faker.person.lastName()}, ${faker.person.firstName()}`}
-      />
-    ),
-    name: `${faker.person.lastName()}, ${faker.person.firstName()} ${faker.person.suffix()}`,
-    email: faker.internet.email(),
-    city: faker.location.city(),
-    country: faker.location.country(),
-    account: faker.finance.accountNumber(),
-  });
-}
+The `showDisplaySelector.allowDensity` setting in `toolbarVisibility` means the user has the ability to override the padding and font size passed into `gridStyle` by the engineer.
 
-const footerCellValues = {
-  name: '5 accounts',
-};
+The font size overriding only works with text or elements that can inherit the parent font size or elements that use units relative to the parent container.
 
-const renderFooterCellValue = ({ columnId }) =>
-  footerCellValues[columnId] || null;
-
-const DataGridStyle = ({
-  border = 'none',
-  fontSize = 'm',
-  cellPadding = 'm',
-  stripes = true,
-  rowHover = 'highlight',
-  header = 'underline',
-  footer = 'overline',
-}) => {
-  const [pagination, setPagination] = useState({ pageIndex: 0 });
-  const [visibleColumns, setVisibleColumns] = useState(
-    columns.map(({ id }) => id)
-  );
-
-  const setPageIndex = useCallback((pageIndex) => {
-    setPagination((pagination) => ({ ...pagination, pageIndex }));
-  }, []);
-
-  const setPageSize = useCallback((pageSize) => {
-    setPagination((pagination) => ({
-      ...pagination,
-      pageSize,
-      pageIndex: 0,
-    }));
-  }, []);
-
-  const handleVisibleColumns = (visibleColumns) =>
-    setVisibleColumns(visibleColumns);
-
-  const [sortingColumns, setSortingColumns] = useState([]);
-  const onSort = useCallback(
-    (sortingColumns) => setSortingColumns(sortingColumns),
-    [setSortingColumns]
-  );
-
-  return (
-    <EuiDataGrid
-      aria-label="Data grid styling demo"
-      columns={columns}
-      columnVisibility={{
-        visibleColumns: visibleColumns,
-        setVisibleColumns: handleVisibleColumns,
-      }}
-      sorting={{ columns: sortingColumns, onSort }}
-      rowCount={data.length}
-      gridStyle={{
-        border: border,
-        fontSize: fontSize,
-        cellPadding: cellPadding,
-        stripes: stripes,
-        rowHover: rowHover,
-        header: header,
-        footer: footer,
-      }}
-      renderCellValue={({ rowIndex, columnId }) => data[rowIndex][columnId]}
-      renderFooterCellValue={renderFooterCellValue}
-      pagination={{
-        ...pagination,
-        onChangeItemsPerPage: setPageSize,
-        onChangePage: setPageIndex,
-      }}
-    />
-  );
-};
-
-export default DataGridStyle;
-
-```
+:::
 
 ## Grid row classes
 
