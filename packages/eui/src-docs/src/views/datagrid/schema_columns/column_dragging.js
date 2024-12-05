@@ -1,7 +1,6 @@
 import React, { useState, useCallback } from 'react';
+import { EuiDataGrid, EuiAvatar } from '@elastic/eui';
 import { faker } from '@faker-js/faker';
-
-import { EuiDataGrid, EuiAvatar } from '../../../../../src/components';
 
 const columns = [
   {
@@ -69,11 +68,12 @@ export default () => {
 
   return (
     <EuiDataGrid
-      aria-label="DataGrid demonstrating column sizing constraints"
+      aria-label="DataGrid demonstrating draggable column headers"
       columns={columns}
       columnVisibility={{
         visibleColumns: visibleColumns,
         setVisibleColumns: setVisibleColumns,
+        canDragAndDropColumns: true,
       }}
       rowCount={data.length}
       renderCellValue={({ rowIndex, columnId }) => data[rowIndex][columnId]}
