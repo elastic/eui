@@ -1,9 +1,10 @@
 ---
 slug: /tabular-content/data-grid/cells-and-popovers
 id: tabular_content_data_grid_cells_popovers
+sidebar_position: 2
 ---
 
-# Data grid cells & popovers
+# Cells & popovers
 
 Data grid cells are rendered using the `renderCellValue` prop. This prop accepts a function which is treated as a React component behind the scenes. This means the data grid passes cell-specific props (e.g. row index, column/schema info, etc.) to your render function, which can ouput anything from a string to any JSX element.
 
@@ -180,7 +181,6 @@ export default () => {
     />
   );
 };
-
 ```
 
 ## Visible cell actions and cell popovers
@@ -291,7 +291,6 @@ export default () => {
     />
   );
 };
-
 ```
 
 ## Conditionally customizing cell popover content
@@ -395,7 +394,6 @@ export default () => {
     />
   );
 };
-
 ```
 
 ## Completely customizing cell popover rendering
@@ -598,7 +596,6 @@ export default () => {
     />
   );
 };
-
 ```
 
 ## Disabling cell expansion popovers
@@ -697,7 +694,6 @@ export default () => {
     />
   );
 };
-
 ```
 
 ## Focus
@@ -1042,5 +1038,4 @@ export default () => {
     </>
   );
 };
-
 ```

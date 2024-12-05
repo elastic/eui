@@ -1,9 +1,10 @@
 ---
 slug: /tabular-content/data-grid/toolbar
 id: tabular_content_data_grid_toolbar
+sidebar_position: 3
 ---
 
-# Data grid toolbar
+# Toolbar
 
 ## Toolbar visibility
 
@@ -188,6 +189,7 @@ export default DataGridStyle;
 
 ```
 
+
 ## Additional controls in the toolbar
 
 Use the `toolbarVisibility.additionalControls` prop to pass more buttons to the toolbar.
@@ -202,7 +204,7 @@ Passing a single node to `additionalControls` will default to being placed in th
 Although any node is allowed, the recommendation is to use `<EuiDataGridToolbarControl />` for the left-side of the toolbar and `<EuiButtonIcon size="xs" />` for the right-side of the toolbar.
 
 ```tsx interactive
-import React, { useState, useCallback, Fragment } from 'react';
+import React, { useState, useCallback } from 'react';
 import {
   EuiDataGrid,
   EuiDataGridToolbarControl,
@@ -389,7 +391,7 @@ export default () => {
               ),
             },
             right: (
-              <Fragment>
+              <>
                 <EuiToolTip
                   title="Updated 3 min ago"
                   content="Click to refresh"
@@ -409,7 +411,7 @@ export default () => {
                     onClick={() => setIsFlyoutVisible(true)}
                   />
                 </EuiToolTip>
-              </Fragment>
+              </>
             ),
           },
         }}
@@ -418,7 +420,6 @@ export default () => {
     </>
   );
 };
-
 ```
 
 ## Completely custom toolbar rendering
@@ -577,7 +578,6 @@ export default () => {
     />
   );
 };
-
 ```
 
 ## Toolbar props

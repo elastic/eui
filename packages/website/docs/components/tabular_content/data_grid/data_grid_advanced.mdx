@@ -1,9 +1,10 @@
 ---
 slug: /tabular-content/data-grid/advanced
 id: tabular_content_data_grid_advanced
+sidebar_position: 6
 ---
 
-# Data grid advanced
+# Advanced use cases
 
 ## Ref methods
 
@@ -324,7 +325,7 @@ The grid has levels of **in-memory** settings that can be set. It is in the cons
 
 When enabled, **in-memory** renders cell data off-screen and uses those values to detect schemas and perform sorting. This detaches the user experience from the raw data; the data grid never has access to the backing data, only what is returned by `renderCellValue`.
 
-## When in-memory is not used
+### When in-memory is not used
 
 When `inMemory` is not in use the grid will not autodetect schemas. In the below example only the `amount` column has a schema because it is manually set. Sorting and pagination data management is the responsibility of the consuming application. Column sorting in particular is going to be imprecise because there is no backend service to call, and data grid instead defaults to naively applying JavaScript's default array sort which doesn't work well with numeric data and doesn't sort React elements such as the links. This is a good example of what happens when you **don't** utilize schemas for complex data.
 
@@ -469,7 +470,7 @@ export default () => {
 
 ```
 
-## Enhancements only in-memory
+### Enhancements only in-memory
 
 With `inMemory={{ level: 'enhancements' }}` the grid will now autodetect schemas based on the content it has available on the currently viewed page. Notice that the field list under Sort fields has detected the type of data each column contains.
 
@@ -617,7 +618,7 @@ export default () => {
 
 ```
 
-## Pagination only in-memory
+### Pagination only in-memory
 
 With `inMemory={{ level: 'pagination' }}` the grid will now take care of managing the data cleanup for pagination. Like before it will autodetect schemas when possible.
 
@@ -747,7 +748,7 @@ export default () => {
 
 ```
 
-## Sorting and pagination in-memory
+### Sorting and pagination in-memory
 
 With `inMemory={{ level: 'sorting' }}` the grid will now take care of managing the data cleanup for sorting as well as pagination. Like before it will autodetect schemas when possible.
 
@@ -867,7 +868,9 @@ export default () => {
 
 For **extremely** advanced use cases, the `renderCustomGridBody` prop may be used to take complete control over rendering the grid body. This may be useful for scenarios where the default [virtualized](/docs/tabular-content/data-grid#virtualization) rendering is not desired, or where custom row layouts (e.g., the conditional row details cell below) are required.
 
-Please note that this prop is meant to be an **escape hatch**, and should only be used if you know exactly what you are doing. Once a custom renderer is used, you are in charge of ensuring the grid has all the correct semantic and aria labels required by the [data grid spec](https://www.w3.org/WAI/ARIA/apg/patterns/grid), and that keyboard focus and navigation still work in an accessible manner.
+:::warning
+This prop is meant to be an **escape hatch**, and should only be used if you know exactly what you are doing. Once a custom renderer is used, you are in charge of ensuring the grid has all the correct semantic and aria labels required by the [data grid spec](https://www.w3.org/WAI/ARIA/apg/patterns/grid), and that keyboard focus and navigation still work in an accessible manner.
+:::
 
 ```tsx interactive
 import React, { useEffect, useCallback, useState, useRef } from 'react';
