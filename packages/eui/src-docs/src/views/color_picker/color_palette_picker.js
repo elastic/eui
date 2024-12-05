@@ -18,6 +18,7 @@ const palettes = [
   {
     value: 'pallette_1',
     title: 'EUI color blind (fixed)',
+    tag: 'Default',
     palette: euiPaletteColorBlind(),
     type: 'fixed',
   },
