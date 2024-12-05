@@ -22,6 +22,7 @@ export const euiPopoverArrowStyles = (euiThemeContext: UseEuiTheme) => {
     // Base
     euiPopoverArrow: css`
       position: absolute;
+      z-index: -1; // keep arrow below content
       ${logicalSizeCSS(0, 0)}
 
       /* This part of the arrow matches the panel. */
