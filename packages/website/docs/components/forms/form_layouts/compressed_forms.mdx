@@ -1,11 +1,12 @@
 ---
-slug: /forms/compressed-forms
+slug: /forms/layouts/compressed-forms
 id: forms_compressed_forms
+sidebar_position: 3
 ---
 
 # Compressed forms
 
-Also known as **Editor-Style Controls**, compressed forms and controls were specifically created for use when space is at a premium. They are not intended for use when the form is the main objective of the page. They work best in editor-style applications where form controls are being used to create or edit content on the page.
+Also known as **editor-style controls**, compressed forms and controls were specifically created for use when space is at a premium. They are not intended for use when the form is the main objective of the page. They work best in editor-style applications where form controls are being used to create or edit content on the page.
 
 :::danger
 Do not use compressed and non-compressed form controls in the same form.
@@ -269,7 +270,7 @@ export default () => {
 
 ## Contextual help
 
-When using compressed, horizontal form styles, it is best not to overload the UI with expansive help text. If it's short and part of the validation, use `helpText`. However, if it's an explanation of the control, consider wraping the label with an [**EuiToolTip**](/docs/display/tooltip) and appending the `questionInCircle` icon to it.
+When using compressed, horizontal form styles, it is best not to overload the UI with expansive help text. If it's short and part of the validation, use `helpText`. However, if it's an explanation of the control, consider wraping the label with an [**EuiToolTip**](../../../display/tooltip) and appending the `questionInCircle` icon to it.
 
 ```tsx interactive
 import React from 'react';
@@ -317,7 +318,7 @@ export default () => (
 
 ## In a popover
 
-Always use the compressed version of forms and elements when they exist inside of a [popover](/docs/layout/popover).
+Always use the compressed version of forms and elements when they exist inside of a [popover](../../../layout/popover).
 
 ```tsx interactive
 import React, { useState } from 'react';
