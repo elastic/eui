@@ -17,7 +17,7 @@ import {
 } from '../form/range/range.styles';
 
 export const euiHueStyles = (euiThemeContext: UseEuiTheme) => {
-  const { euiTheme } = euiThemeContext;
+  const { euiTheme, highContrastMode } = euiThemeContext;
 
   const height = euiTheme.size.m;
   const thumbSize = euiTheme.size.l;
@@ -33,9 +33,12 @@ export const euiHueStyles = (euiThemeContext: UseEuiTheme) => {
     // This wraps the range and sets a rainbow gradient,
     // which allows the range thumb to be larger than the visible track
     euiHue: css`
+      /* stylelint-disable color-no-hex */
       ${logicalCSS('height', height)}
       border-radius: ${height};
-      /* stylelint-disable color-no-hex */
+      ${highContrastMode ? `border: ${euiTheme.border.thin};` : ''}
+      ${highContrastMode === 'forced' ? 'forced-color-adjust: none;' : ''}
+
       background: linear-gradient(
         to right,
         #ff3232 0%,
@@ -70,26 +73,41 @@ export const euiHueStyles = (euiThemeContext: UseEuiTheme) => {
       }
       /* stylelint-enable property-no-vendor-prefix */
 
-      /* Indicator styles - for some incredibly bizarre reason, stylelint is unhappy about
-         the semicolons here and can't be stylelint-disabled, hence the syntax workaround */
-      ${euiRangeThumbPerBrowser(
-        [
-          euiRangeThumbStyle(euiThemeContext),
-          'background-color: inherit',
-          `border-width: ${thumbBorder}`,
-          'border-radius: 100%',
-          `box-shadow: ${thumbBoxShadow}`,
-        ].join(';\n')
-      )}
+      ${euiRangeThumbPerBrowser(`
+        ${euiRangeThumbStyle(euiThemeContext)}
+        border-width: ${thumbBorder};
+        ${
+          highContrastMode
+            ? `
+            background-color: ${euiTheme.colors.ghost};
+            border: ${thumbBorder} solid ${euiTheme.colors.ink};
+            box-shadow: none;
+          `
+            : `
+            background-color: transparent;
+            box-shadow: ${thumbBoxShadow};
+          `
+        }`)}
 
       /* Remove wrapping outline and show focus on thumb only */
       &:focus {
         outline: none;
       }
 
-      &:focus-visible {
-        ${euiRangeThumbPerBrowser(euiRangeThumbFocusBoxShadow(euiThemeContext))}
-      }
+      ${highContrastMode
+        ? `
+        &:focus {
+          ${euiRangeThumbPerBrowser(`
+            outline: ${euiTheme.border.width.thin} solid ${euiTheme.colors.ink};
+            outline-offset: 0;
+          `)}
+        }`
+        : `
+        &:focus-visible {
+          ${euiRangeThumbPerBrowser(
+            euiRangeThumbFocusBoxShadow(euiThemeContext)
+          )}
+        }`}
     `,
   };
 };

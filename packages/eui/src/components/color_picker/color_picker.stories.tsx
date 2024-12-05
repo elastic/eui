@@ -56,6 +56,21 @@ export const InlineWithAllElements: Story = {
   },
 };
 
+export const HighContrast: Story = {
+  ...InlineWithAllElements,
+  tags: ['vrt-only'],
+  globals: { highContrastMode: true },
+};
+
+export const HighContrastDarkMode: Story = {
+  ...HighContrast,
+  tags: ['vrt-only'],
+  globals: { highContrastMode: true, colorMode: 'dark' },
+  play: async ({ canvasElement }) => {
+    canvasElement.querySelector<HTMLInputElement>('.euiHue__range')?.focus?.();
+  },
+};
+
 const StatefulColorPicker: FunctionComponent<EuiColorPickerProps> = ({
   color: _color,
   format,
