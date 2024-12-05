@@ -8,18 +8,20 @@
 
 import React, { useEffect, useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
+import { VIS_COLOR_STORE_EVENTS } from '@elastic/eui-theme-common';
 
 import {
   EUI_VIS_COLOR_STORE,
   euiPaletteColorBlind,
+  euiPaletteForStatus,
+  euiPaletteForTemperature,
   useUpdateEffect,
 } from '../../../services';
-
+import { EuiSpacer } from '../../spacer';
 import {
   EuiColorPaletteDisplay,
   EuiColorPaletteDisplayProps,
 } from './color_palette_display';
-import { VIS_COLOR_STORE_EVENTS } from '@elastic/eui-theme-common';
 
 const meta: Meta<EuiColorPaletteDisplayProps> = {
   title: 'Forms/EuiColorPalettePicker/EuiColorPaletteDisplay',
@@ -61,4 +63,52 @@ export const Playground: Story = {
 
     return <EuiColorPaletteDisplay palette={_palette} {...rest} />;
   },
+};
+
+const paletteWithStops = [
+  { stop: 100, color: 'white' },
+  { stop: 250, color: 'lightgray' },
+  { stop: 320, color: 'gray' },
+  { stop: 470, color: 'black' },
+];
+
+export const PaletteWithStops: Story = {
+  args: {
+    palette: paletteWithStops,
+  },
+};
+
+/**
+ * VRT only
+ */
+
+export const KitchenSink: Story = {
+  tags: ['vrt-only'],
+  render: () => (
+    <>
+      <EuiColorPaletteDisplay
+        type="fixed"
+        palette={euiPaletteForStatus(6)}
+        size="xs"
+      />
+      <EuiSpacer />
+      <EuiColorPaletteDisplay
+        type="gradient"
+        palette={euiPaletteForTemperature(4)}
+        size="s"
+      />
+      <EuiSpacer />
+      <EuiColorPaletteDisplay
+        type="gradient"
+        palette={paletteWithStops}
+        size="m"
+      />
+    </>
+  ),
+};
+
+export const HighContrast: Story = {
+  ...KitchenSink,
+  tags: ['vrt-only'],
+  globals: { highContrastMode: true },
 };

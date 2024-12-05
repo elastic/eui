@@ -97,7 +97,9 @@ export const euiDatePickerRangeInlineStyles = (
     `,
     shadow: css`
       .euiFormControlLayoutDelimited {
-        ${euiShadowMedium(euiThemeContext)}
+        ${euiShadowMedium(euiThemeContext, {
+          borderAllInHighContrastMode: true,
+        })}
       }
     `,
 
