@@ -17,8 +17,8 @@ export const useJsonVars = () => {
   const lightTokens = isNewTheme ? borealisLightColors : lightColors;
 
   let palette;
-  switch (themeContext.theme) {
-    case 'dark':
+  switch (themeContext.colorMode) {
+    case 'DARK':
       palette = darkTokens;
       break;
     default:

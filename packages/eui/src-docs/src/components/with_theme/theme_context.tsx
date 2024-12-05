@@ -16,9 +16,10 @@ import { applyTheme, registerTheme } from '../../services';
 // @ts-ignore Sass
 import amsterdamThemeLight from '../../theme_light.scss';
 // @ts-ignore Sass
-import borealisThemeLight from '../../theme_borealis_light.scss';
-// @ts-ignore Sass
 import amsterdamThemeDark from '../../theme_dark.scss';
+
+// @ts-ignore Sass
+import borealisThemeLight from '../../theme_borealis_light.scss';
 // @ts-ignore Sass
 import borealisThemeDark from '../../theme_borealis_dark.scss';
 
@@ -93,11 +94,14 @@ export class ThemeProvider extends React.Component<PropsWithChildren, State> {
     super(props);
 
     const theme = localStorage.getItem('theme') || undefined;
-    applyTheme(theme && THEME_NAMES.includes(theme) ? theme : THEME_NAMES[0]);
-
     const colorMode =
       (localStorage.getItem('colorMode') as EuiThemeColorModeStandard) ||
       undefined;
+
+    applyTheme(
+      theme && THEME_NAMES.includes(theme) ? theme : THEME_NAMES[0],
+      colorMode
+    );
 
     const themeLanguage = this.getThemeLanguage();
 
@@ -124,8 +128,8 @@ export class ThemeProvider extends React.Component<PropsWithChildren, State> {
         localStorage.setItem(key, String(this.state[key]));
 
         // Side effects
-        if (key === 'theme') {
-          applyTheme(this.state.theme);
+        if (key === 'theme' || key === 'colorMode') {
+          applyTheme(this.state.theme, this.state.colorMode);
         }
         if (key === 'themeLanguage') {
           this.setThemeLanguageParam(this.state.themeLanguage!);
