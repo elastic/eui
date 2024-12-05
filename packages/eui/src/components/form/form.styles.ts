@@ -322,7 +322,7 @@ export const euiFormControlAutoFillStyles = (euiThemeContext: UseEuiTheme) => {
   `;
 };
 
-const euiFormControlShowBackgroundUnderline = (
+export const euiFormControlShowBackgroundUnderline = (
   euiThemeContext: UseEuiTheme,
   color: string
 ) => {

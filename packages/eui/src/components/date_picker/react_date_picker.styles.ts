@@ -188,7 +188,7 @@ export const _monthYearDropdowns = (euiThemeContext: UseEuiTheme) => {
       padding: ${euiTheme.size.xs};
       background-color: ${euiTheme.colors.emptyShade};
       border-radius: ${euiTheme.border.radius.medium};
-      ${euiShadowSmall(euiThemeContext)}
+      ${euiShadowSmall(euiThemeContext, { borderAllInHighContrastMode: true })}
     }
 
     .react-datepicker__year-dropdown {
@@ -220,7 +220,7 @@ export const _monthYearDropdowns = (euiThemeContext: UseEuiTheme) => {
 
       &--selected_year,
       &--selected_month {
-        ${euiButtonFillColor(euiThemeContext, 'primary')}
+        ${_highContrastSelected(euiThemeContext)}
       }
 
       /* Hide checkmark next to selected option */
@@ -232,7 +232,7 @@ export const _monthYearDropdowns = (euiThemeContext: UseEuiTheme) => {
 };
 
 export const _dayCalendarStyles = (euiThemeContext: UseEuiTheme) => {
-  const { euiTheme } = euiThemeContext;
+  const { euiTheme, highContrastMode } = euiThemeContext;
   const { gapSize } = euiDatePickerVariables(euiThemeContext);
 
   const daySize = euiTheme.size.xl;
@@ -295,7 +295,9 @@ export const _dayCalendarStyles = (euiThemeContext: UseEuiTheme) => {
 
       &--highlighted,
       &--highlighted:hover {
-        ${euiButtonColor(euiThemeContext, 'success')};
+        ${highContrastMode !== 'forced'
+          ? euiButtonColor(euiThemeContext, 'success')
+          : `border: ${euiTheme.border.thin};`}
       }
 
       &--in-range,
@@ -303,42 +305,65 @@ export const _dayCalendarStyles = (euiThemeContext: UseEuiTheme) => {
         ${euiButtonColor(euiThemeContext, 'primary')};
       }
 
-      /* Ranges use 2 side box-shadows that are the same as the button
-       * background to fill the gap between margins */
-      /* stylelint-disable-next-line selector-not-notation */
-      &--in-range:not(&--selected):not(:hover):not(&--disabled) {
-        box-shadow: -${rangeMarginOffset} 0 ${rangeBackgroundColor},
-          ${rangeMarginOffset} 0 ${rangeBackgroundColor};
-        border-radius: 0;
+      ${highContrastMode !== 'forced'
+        ? // Ranges use 2 side box-shadows that are the same as the button
+          //background to fill the gap between margins
+          `
+          &--in-range:not(&--selected):not(:hover):not(&--disabled) {
+            box-shadow: -${rangeMarginOffset} 0 ${rangeBackgroundColor},
+              ${rangeMarginOffset} 0 ${rangeBackgroundColor};
+            border-radius: 0;
 
-        &:first-child {
-          box-shadow: ${rangeMarginOffset} 0 ${rangeBackgroundColor};
-        }
+            &:first-child {
+              box-shadow: ${rangeMarginOffset} 0 ${rangeBackgroundColor};
+            }
 
-        &:last-child {
-          box-shadow: -${rangeMarginOffset} 0 ${rangeBackgroundColor};
-        }
-      }
-      /* Animate smoothly on hover */
-      &--in-range:not(&--selected) {
-        ${euiCanAnimate} {
-          transition: transform ${animationSpeed} ease-in-out,
-            box-shadow ${animationSpeed} ease-in-out,
-            border-radius ${animationSpeed} ease-in-out,
-            background-color ${animationSpeed} ease-in;
-        }
-      }
+            &:last-child {
+              box-shadow: -${rangeMarginOffset} 0 ${rangeBackgroundColor};
+            }
+          }
+          /* Animate smoothly on hover */
+          &--in-range:not(&--selected) {
+            ${euiCanAnimate} {
+              transition: transform ${animationSpeed} ease-in-out,
+                box-shadow ${animationSpeed} ease-in-out,
+                border-radius ${animationSpeed} ease-in-out,
+                background-color ${animationSpeed} ease-in;
+            }
+          }`
+        : // In Windows high contrast mode, use borders and pseudo elements instead of background colors
+          `
+          &--in-range:not(&--selected) {
+            position: relative;
+            transform: none;
+            &::before {
+              content: '';
+              position: absolute;
+              inset-inline: -${dayMargin};
+              inset-block: ${dayMargin};
+              border-block: ${euiTheme.border.thin};
+              pointer-events: none;
+            }
+          }
+          &--range-start:not(&--selected)::before {
+            border-inline-start: ${euiTheme.border.thin};
+          }
+          &--range-end:not(&--selected)::before {
+            border-inline-end: ${euiTheme.border.thin};
+          }`}
 
       &--selected,
       &--selected:hover,
       &--in-selecting-range,
       &--in-selecting-range:hover {
-        ${euiButtonFillColor(euiThemeContext, 'primary')}
+        ${_highContrastSelected(euiThemeContext)}
       }
 
       &--disabled,
       &--disabled:hover {
-        ${euiButtonColor(euiThemeContext, 'disabled')}
+        ${highContrastMode !== 'forced'
+          ? euiButtonColor(euiThemeContext, 'disabled')
+          : 'opacity: 0.5;'}
         cursor: not-allowed;
         text-decoration: none;
         transform: none;
@@ -355,14 +380,21 @@ export const _dayCalendarStyles = (euiThemeContext: UseEuiTheme) => {
       &--in-selecting-range:not(&--in-range),
       &--disabled.react-datepicker__day--selected,
       &--disabled.react-datepicker__day--selected:hover {
-        ${euiButtonColor(euiThemeContext, 'danger')}
+        ${highContrastMode !== 'forced'
+          ? euiButtonColor(euiThemeContext, 'danger')
+          : `
+            color: ${euiTheme.colors.dangerText};
+            border: ${euiTheme.border.width.thin} solid ${euiTheme.colors.dangerText};
+            background-color: ${euiTheme.colors.emptyShade};
+            opacity: 1;
+          `}
       }
     }
   `;
 };
 
 export const _timeSelectStyles = (euiThemeContext: UseEuiTheme) => {
-  const { euiTheme } = euiThemeContext;
+  const { euiTheme, highContrastMode } = euiThemeContext;
   const { gapSize } = euiDatePickerVariables(euiThemeContext);
 
   return css`
@@ -423,16 +455,20 @@ export const _timeSelectStyles = (euiThemeContext: UseEuiTheme) => {
       }
 
       &--injected {
-        ${euiButtonEmptyColor(euiThemeContext, 'success')}
+        ${highContrastMode !== 'forced'
+          ? euiButtonEmptyColor(euiThemeContext, 'success')
+          : `border: ${euiTheme.border.thin};`}
       }
 
       &--selected {
-        ${euiButtonFillColor(euiThemeContext, 'primary')}
+        ${_highContrastSelected(euiThemeContext)}
       }
 
       /* closest current time but not selected (also applied when using arrow keys to indicate focus) */
       &--preselected {
-        background-color: ${euiTheme.focus.backgroundColor};
+        ${highContrastMode !== 'forced'
+          ? `background-color: ${euiTheme.focus.backgroundColor};`
+          : `border: ${euiTheme.border.thin};`}
       }
 
       ${euiCanAnimate} {
@@ -460,4 +496,15 @@ export const _timeSelectStyles = (euiThemeContext: UseEuiTheme) => {
       }
     }
   `;
+};
+
+const _highContrastSelected = (euiThemeContext: UseEuiTheme) => {
+  const { highContrastMode, euiTheme } = euiThemeContext;
+  return highContrastMode !== 'forced'
+    ? euiButtonFillColor(euiThemeContext, 'primary')
+    : `
+        background-color: ${euiTheme.colors.fullShade};
+        color: ${euiTheme.colors.emptyShade};
+        forced-color-adjust: none;
+      `;
 };

@@ -16,7 +16,7 @@ import {
 } from '../../global_styling';
 
 export const euiColorPickerSwatchStyles = (euiThemeContext: UseEuiTheme) => {
-  const { euiTheme } = euiThemeContext;
+  const { euiTheme, highContrastMode } = euiThemeContext;
 
   return {
     euiColorPickerSwatch: css`
@@ -27,10 +27,15 @@ export const euiColorPickerSwatchStyles = (euiThemeContext: UseEuiTheme) => {
         euiTheme.border.radius.medium,
         (x) => x / 2
       )};
-      border: ${euiTheme.border.width.thin} solid
-        ${euiTheme.colors.borderBaseFormsColorSwatch};
-      box-shadow: inset 0 0 0 ${euiTheme.border.width.thin}
-        ${transparentize(euiTheme.colors.emptyShade, 0.05)};
+      ${highContrastMode
+        ? `border: ${euiTheme.border.thin};`
+        : `
+          border: ${euiTheme.border.width.thin} solid
+            ${euiTheme.colors.borderBaseFormsColorSwatch};
+          box-shadow: inset 0 0 0 ${euiTheme.border.width.thin}
+            ${transparentize(euiTheme.colors.emptyShade, 0.05)};
+        `}
+      ${highContrastMode === 'forced' ? 'forced-color-adjust: none;' : ''}
       cursor: pointer;
 
       &:disabled {

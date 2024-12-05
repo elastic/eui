@@ -77,15 +77,3 @@ export const euiRangeSliderStyles = (euiThemeContext: UseEuiTheme) => {
     `,
   };
 };
-
-export const euiRangeSliderThumbStyles = (euiThemeContext: UseEuiTheme) => ({
-  thumb: css`
-    ${euiRangeThumbPerBrowser('background-color: currentcolor')}
-
-    &:focus-visible {
-      ${euiRangeThumbPerBrowser(
-        euiRangeThumbFocus(euiThemeContext, 'currentcolor')
-      )}
-    }
-  `,
-});

@@ -11,6 +11,7 @@ import { UseEuiTheme } from '../../../services';
 import { euiRangeVariables } from './range.styles';
 
 export const euiRangeTrackStyles = (euiThemeContext: UseEuiTheme) => {
+  const { highContrastMode } = euiThemeContext;
   const range = euiRangeVariables(euiThemeContext);
 
   return {
@@ -27,9 +28,16 @@ export const euiRangeTrackStyles = (euiThemeContext: UseEuiTheme) => {
         position: absolute;
         inset-block-start: ${range.trackTopPositionWithoutTicks};
         inset-inline-start: 0;
-        block-size: ${range.trackHeight};
         inline-size: ${range.trackWidth};
-        background: ${range.trackColor};
+        ${
+          highContrastMode !== 'forced'
+            ? `
+          background: ${range.trackColor};
+          block-size: ${range.trackHeight};`
+            : `
+          border-block-start: ${range.trackHeight} solid ${range.trackColor};
+          opacity: 0.25;` // Windows high contrast themes ignore background color, but will render borders
+        }
         border-radius: ${range.trackBorderRadius};
       }
     `,

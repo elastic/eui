@@ -10,21 +10,31 @@ import { css } from '@emotion/react';
 import { UseEuiTheme } from '../../../services';
 import {
   logicalCSS,
-  logicalSizeCSS,
   logicalCSSWithFallback,
   euiFontSize,
   mathWithUnits,
 } from '../../../global_styling';
 import { euiRangeVariables } from './range.styles';
 
-const tickStyles = ({ euiTheme }: UseEuiTheme, range: any) => {
+const tickStyles = (
+  { euiTheme, highContrastMode }: UseEuiTheme,
+  range: ReturnType<typeof euiRangeVariables>
+) => {
   return `
     position: absolute;
     ${logicalCSS('top', 0)};
-    ${logicalSizeCSS(euiTheme.size.xs, euiTheme.size.xs)};
-    background-color: ${euiTheme.colors.lightShade};
-    inline-size: ${range.tickWidth};
     block-size: ${range.tickHeight};
+    ${
+      highContrastMode !== 'forced'
+        ? `
+          inline-size: ${range.tickWidth};
+          background-color: ${range.tickColor};
+        `
+        : logicalCSS(
+            'border-left',
+            `${range.tickWidth} solid ${range.tickColor}`
+          ) // Windows high contrast themes ignore background color but render borders
+    }
     border-radius: ${euiTheme.border.radius.small};
   `;
 };
