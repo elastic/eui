@@ -24,10 +24,7 @@ import {
 
 import type { EuiRangeProps, EuiRangeLevel } from './types';
 import { euiRangeLevelColor } from './range_levels_colors';
-import {
-  euiRangeSliderStyles,
-  euiRangeSliderThumbStyles,
-} from './range_slider.styles';
+import { euiRangeSliderStyles } from './range_slider.styles';
 
 export interface EuiRangeSliderProps
   extends Omit<
@@ -77,17 +74,17 @@ export const EuiRangeSlider: FunctionComponent<EuiRangeSliderProps> = ({
 
   const euiTheme = useEuiTheme();
   const styles = euiRangeSliderStyles(euiTheme);
-  const thumbStyles = euiRangeSliderThumbStyles(euiTheme);
   const cssStyles = [
     styles.euiRangeSlider,
     showTicks && styles.hasTicks,
     showRange && styles.hasRange,
-    thumbColor && thumbStyles.thumb,
   ];
 
   const sliderStyle = useMemo(() => {
     return logicalStyles({
-      color: thumbColor && euiRangeLevelColor(thumbColor, euiTheme.euiTheme),
+      // @ts-ignore - CSS variable
+      '--euiRangeThumbColor':
+        thumbColor && euiRangeLevelColor(thumbColor, euiTheme),
       ...style,
     });
   }, [thumbColor, euiTheme, style]);
