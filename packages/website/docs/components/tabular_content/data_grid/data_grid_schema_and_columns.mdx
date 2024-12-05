@@ -16,6 +16,7 @@ Custom schemas are passed as an array to `schemaDetectors` and are constructed a
 
 ```tsx interactive
 import React, { useState } from 'react';
+import { css } from '@emotion/react';
 import { EuiDataGrid } from '@elastic/eui';
 import { faker } from '@faker-js/faker';
 
@@ -144,6 +145,15 @@ export default () => {
           color: '#800080',
         },
       ]}
+      css={css`
+        .euiDataGridRowCell--favoriteFranchise {
+          background-color: rgba(128, 0, 128, 0.05);
+        }
+
+        .euiDataGridHeaderCell--favoriteFranchise {
+          background-color: rgba(128, 0, 128, 0.1);
+        }
+      `}
     />
   );
 };
