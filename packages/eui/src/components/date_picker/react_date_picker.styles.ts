@@ -8,6 +8,8 @@
 
 // Needs to use vanilla `css` to pass a className directly to react-datepicker
 import { css } from '@emotion/css';
+// Emotion can handle serializing objects passed directly to css``, but not objs nested
+// in another function util, so we need to serialize some style objects manually
 import { serializeStyles } from '@emotion/serialize';
 
 import { UseEuiTheme } from '../../services';
