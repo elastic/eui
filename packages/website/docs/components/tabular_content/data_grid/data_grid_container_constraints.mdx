@@ -590,12 +590,9 @@ export default () => {
 };
 ```
 
-<!--
-TODO: EuiDataGrid lower level types aren't currently exported.
+## Props
 
-import docgen from '@elastic/eui-docgen/dist/components/datagrid/data_grid.json';
+import docgen from '@elastic/eui-docgen/dist/components/datagrid/data_grid_types.docgen.json';
 
-virtualizationProps
-height
-width
--->
+<PropTable definition={{ ...docgen.EuiDataGridHeightWidthProps, displayName: 'EuiDataGridProps' }} />
+<PropTable definition={docgen.EuiDataGridVirtualizationOptions} />

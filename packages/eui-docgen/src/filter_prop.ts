@@ -35,6 +35,9 @@ const allowedParents = [
   'RefAttributes',
 ];
 
+// components/types that should allow all props, even from external modules
+const allowedComponents = ['EuiDataGridVirtualizationOptions'];
+
 /**
  * Filter props to remove props from node modules while keeping those whitelisted
  */
@@ -88,9 +91,10 @@ export const filterProp = (
       return true;
     }
 
+    if (allowedComponents.includes(component.name)) return true;
     if (prop.parent.fileName.includes('@elastic/charts')) return true;
     return !prop.parent.fileName.includes('node_modules');
   }
 
   return true;
-}
+};
