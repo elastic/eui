@@ -101,6 +101,14 @@ export const EuiDataGridRowHeightsOptions: FunctionComponent<
   DataGridTypes.EuiDataGridRowHeightsOptions
 > = () => <></>;
 
+export const EuiDataGridHeightWidthProps: FunctionComponent<
+  Pick<DataGridTypes.EuiDataGridProps, 'height' | 'width'>
+> = () => <></>;
+
+export const EuiDataGridVirtualizationOptions: FunctionComponent<
+  DataGridTypes.EuiDataGridProps['virtualizationOptions']
+> = () => <></>;
+
 export const EuiDataGridRefProps: FunctionComponent<
   DataGridTypes.EuiDataGridRefProps
 > = () => <></>;
