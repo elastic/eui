@@ -112,7 +112,7 @@ export const euiPanelStyles = (euiThemeContext: UseEuiTheme) => {
         ${highContrastModeStyles(euiThemeContext, {
           none: euiShadow(euiThemeContext, 'l'),
           // Windows high contrast themes ignore box-shadows - use a filter workaround instead
-          preferred: `
+          forced: `
             filter: drop-shadow(0 ${euiTheme.border.width.thick} 0 ${euiTheme.border.color});
           `,
         })}

@@ -8,6 +8,9 @@
 
 // Needs to use vanilla `css` to pass a className directly to react-datepicker
 import { css } from '@emotion/css';
+// Emotion can handle serializing objects passed directly to css``, but not objs nested
+// in another function util, so we need to serialize some style objects manually
+import { serializeStyles } from '@emotion/serialize';
 import { euiShadowSmall } from '@elastic/eui-theme-common';
 
 import { UseEuiTheme } from '../../services';
@@ -19,6 +22,10 @@ import {
   logicalCSS,
   mathWithUnits,
 } from '../../global_styling';
+import {
+  highContrastModeStyles,
+  preventForcedColors,
+} from '../../global_styling/functions/high_contrast';
 import {
   euiButtonColor,
   euiButtonEmptyColor,
@@ -232,7 +239,7 @@ export const _monthYearDropdowns = (euiThemeContext: UseEuiTheme) => {
 };
 
 export const _dayCalendarStyles = (euiThemeContext: UseEuiTheme) => {
-  const { euiTheme, highContrastMode } = euiThemeContext;
+  const { euiTheme } = euiThemeContext;
   const { gapSize } = euiDatePickerVariables(euiThemeContext);
 
   const daySize = euiTheme.size.xl;
@@ -290,14 +297,16 @@ export const _dayCalendarStyles = (euiThemeContext: UseEuiTheme) => {
       }
 
       &--outside-month {
-        color: ${euiTheme.colors.subduedText};
+        color: ${euiTheme.colors.textSubdued};
       }
 
       &--highlighted,
       &--highlighted:hover {
-        ${highContrastMode !== 'forced'
-          ? euiButtonColor(euiThemeContext, 'success')
-          : `border: ${euiTheme.border.thin};`}
+        ${highContrastModeStyles(euiThemeContext, {
+          none: serializeStyles([euiButtonColor(euiThemeContext, 'success')])
+            .styles,
+          forced: `border: ${euiTheme.border.thin};`,
+        })}
       }
 
       &--in-range,
@@ -305,10 +314,10 @@ export const _dayCalendarStyles = (euiThemeContext: UseEuiTheme) => {
         ${euiButtonColor(euiThemeContext, 'primary')};
       }
 
-      ${highContrastMode !== 'forced'
-        ? // Ranges use 2 side box-shadows that are the same as the button
-          //background to fill the gap between margins
-          `
+      ${highContrastModeStyles(euiThemeContext, {
+        // Ranges use 2 side box-shadows that are the same as the button
+        // background to fill the gap between margins
+        none: `
           &--in-range:not(&--selected):not(:hover):not(&--disabled) {
             box-shadow: -${rangeMarginOffset} 0 ${rangeBackgroundColor},
               ${rangeMarginOffset} 0 ${rangeBackgroundColor};
@@ -330,9 +339,10 @@ export const _dayCalendarStyles = (euiThemeContext: UseEuiTheme) => {
                 border-radius ${animationSpeed} ease-in-out,
                 background-color ${animationSpeed} ease-in;
             }
-          }`
-        : // In Windows high contrast mode, use borders and pseudo elements instead of background colors
-          `
+          }
+        `,
+        // In Windows high contrast mode, use borders and pseudo elements instead of background colors
+        forced: `
           &--in-range:not(&--selected) {
             position: relative;
             transform: none;
@@ -350,7 +360,9 @@ export const _dayCalendarStyles = (euiThemeContext: UseEuiTheme) => {
           }
           &--range-end:not(&--selected)::before {
             border-inline-end: ${euiTheme.border.thin};
-          }`}
+          }
+        `,
+      })}
 
       &--selected,
       &--selected:hover,
@@ -361,9 +373,11 @@ export const _dayCalendarStyles = (euiThemeContext: UseEuiTheme) => {
 
       &--disabled,
       &--disabled:hover {
-        ${highContrastMode !== 'forced'
-          ? euiButtonColor(euiThemeContext, 'disabled')
-          : 'opacity: 0.5;'}
+        ${highContrastModeStyles(euiThemeContext, {
+          none: serializeStyles([euiButtonColor(euiThemeContext, 'disabled')])
+            .styles,
+          forced: `opacity: 0.5;`,
+        })}
         cursor: not-allowed;
         text-decoration: none;
         transform: none;
@@ -380,14 +394,16 @@ export const _dayCalendarStyles = (euiThemeContext: UseEuiTheme) => {
       &--in-selecting-range:not(&--in-range),
       &--disabled.react-datepicker__day--selected,
       &--disabled.react-datepicker__day--selected:hover {
-        ${highContrastMode !== 'forced'
-          ? euiButtonColor(euiThemeContext, 'danger')
-          : `
-            color: ${euiTheme.colors.dangerText};
-            border: ${euiTheme.border.width.thin} solid ${euiTheme.colors.dangerText};
+        ${highContrastModeStyles(euiThemeContext, {
+          none: serializeStyles([euiButtonColor(euiThemeContext, 'danger')])
+            .styles,
+          forced: `
+            color: ${euiTheme.colors.textDanger};
+            border: ${euiTheme.border.width.thin} solid ${euiTheme.colors.textDanger};
             background-color: ${euiTheme.colors.emptyShade};
             opacity: 1;
-          `}
+          `,
+        })}
       }
     }
   `;
@@ -451,7 +467,7 @@ export const _timeSelectStyles = (euiThemeContext: UseEuiTheme) => {
 
       &--disabled {
         cursor: not-allowed;
-        color: ${euiTheme.colors.disabledText};
+        color: ${euiTheme.colors.textDisabled};
       }
 
       &--injected {
@@ -505,6 +521,6 @@ const _highContrastSelected = (euiThemeContext: UseEuiTheme) => {
     : `
         background-color: ${euiTheme.colors.fullShade};
         color: ${euiTheme.colors.emptyShade};
-        forced-color-adjust: none;
+        ${preventForcedColors(euiThemeContext)}
       `;
 };
