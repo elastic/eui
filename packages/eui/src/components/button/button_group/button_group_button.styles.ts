@@ -31,7 +31,7 @@ import { euiScreenReaderOnly } from '../../accessibility';
 import { euiFormVariables } from '../../form/form.styles';
 
 export const euiButtonGroupButtonStyles = (euiThemeContext: UseEuiTheme) => {
-  const { euiTheme } = euiThemeContext;
+  const { euiTheme, highContrastMode } = euiThemeContext;
 
   const { controlCompressedHeight, controlCompressedBorderRadius } =
     euiFormVariables(euiThemeContext);
@@ -84,8 +84,14 @@ export const euiButtonGroupButtonStyles = (euiThemeContext: UseEuiTheme) => {
       get borders() {
         const selectors =
           '.euiButtonGroupButton-isSelected, .euiButtonGroup__tooltipWrapper-isSelected';
-        const selectedColor = transparentize(euiTheme.colors.emptyShade, 0.2);
-        const unselectedColor = transparentize(euiTheme.colors.fullShade, 0.1);
+        const selectedColor = transparentize(
+          euiTheme.colors.emptyShade,
+          highContrastMode ? 1 : 0.2
+        );
+        const unselectedColor = transparentize(
+          euiTheme.colors.fullShade,
+          highContrastMode ? 1 : 0.1
+        );
         const borderWidth = euiTheme.border.width.thin;
 
         // "Borders" between buttons should be present between two of the same colored buttons,

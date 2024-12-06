@@ -9,6 +9,10 @@
 import { css } from '@emotion/react';
 import { UseEuiTheme } from '../../../services';
 import { logicalCSS } from '../../../global_styling';
+import {
+  highContrastModeStyles,
+  preventForcedColors,
+} from '../../../global_styling/functions/high_contrast';
 import { euiFormVariables } from '../../form/form.styles';
 
 export const euiButtonGroupStyles = {
@@ -50,15 +54,51 @@ export const euiButtonGroupButtonsStyles = (euiThemeContext: UseEuiTheme) => {
     // Sizes
     m: css`
       border-radius: ${euiTheme.border.radius.medium};
+      ${_highContrastStyles(euiThemeContext)}
     `,
     s: css`
       border-radius: ${euiTheme.border.radius.small};
+      ${_highContrastStyles(euiThemeContext)}
     `,
     compressed: css`
       ${logicalCSS('height', controlCompressedHeight)}
       background-color: ${backgroundColor};
       border: ${euiTheme.border.width.thin} solid ${borderColor};
       border-radius: ${controlCompressedBorderRadius};
+      ${_highContrastStyles(euiThemeContext, true)}
     `,
   };
+};
+
+const _highContrastStyles = (
+  euiThemeContext: UseEuiTheme,
+  compressed?: boolean
+) => {
+  const { euiTheme } = euiThemeContext;
+
+  return highContrastModeStyles(euiThemeContext, {
+    preferred: compressed
+      ? `
+        .euiButtonGroupButton {
+          border: none;
+        }
+      `
+      : `
+        & > .euiButtonGroupButton:not(:first-child),
+        & > .euiButtonGroup__tooltipWrapper:not(:first-child) .euiButtonGroupButton {
+          ${logicalCSS('border-left', 'none')}
+        }
+      `,
+    forced: `
+      .euiButtonGroupButton-isSelected {
+        ${preventForcedColors(euiThemeContext)}
+        color: ${euiTheme.colors.emptyShade};
+        background-color: ${euiTheme.colors.fullShade};
+      }
+
+      .euiButtonGroupButton[disabled] {
+        opacity: 0.5;
+      }
+    `,
+  });
 };
