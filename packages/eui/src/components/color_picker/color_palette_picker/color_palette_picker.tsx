@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent, useCallback, useMemo } from 'react';
+import React, { FunctionComponent, ReactNode, useCallback, useMemo } from 'react';
 
 import { CommonProps } from '../../common';
 import { EuiSpacer } from '../../spacer';
@@ -17,9 +17,6 @@ import {
 } from '../../form/super_select'; // Note: needs to be pointed at this specific subdir for Storybook to inherit types correctly??
 
 import { EuiColorPaletteDisplay } from '../color_palette_display';
-import { EuiBadge } from '../../badge';
-import { useEuiMemoizedStyles } from '../../../services';
-import { euiPalettePickerStyles } from './color_palette_picker.styles';
 
 export interface PaletteColorStop {
   stop: number;
@@ -34,8 +31,7 @@ export interface EuiColorPalettePickerPaletteTextProps extends CommonProps {
   /**
    *  The name of your palette
    */
-  title: string;
-  tag?: never;
+  title: NonNullable<ReactNode>;
   /**
    * `text`: a text only option (a title is required).
    */
@@ -54,11 +50,7 @@ export interface EuiColorPalettePickerPaletteFixedProps extends CommonProps {
   /**
    *  The name of your palette
    */
-  title?: string;
-  /**
-   *  Tag used in badge for classification
-   */
-  tag?: string;
+  title: ReactNode;
   /**
    * `fixed`: individual color blocks
    */
@@ -77,11 +69,7 @@ export interface EuiColorPalettePickerPaletteGradientProps extends CommonProps {
   /**
    *  The name of your palette
    */
-  title?: string;
-  /**
-   *  Tag used in badge for classification
-   */
-  tag?: string;
+  title: ReactNode;
   /**
    * `gradient`: each color fades into the next
    */
@@ -130,7 +118,6 @@ export const EuiColorPalettePicker: FunctionComponent<
   selectionDisplay = 'palette',
   ...rest
 }) => {
-  const styles = useEuiMemoizedStyles(euiPalettePickerStyles);
   const getPalette = useCallback(
     ({
       type,
@@ -140,7 +127,7 @@ export const EuiColorPalettePicker: FunctionComponent<
       | EuiColorPalettePickerPaletteFixedProps
       | EuiColorPalettePickerPaletteGradientProps) => {
       return (
-        <EuiColorPaletteDisplay type={type} palette={palette} title={title} />
+        <EuiColorPaletteDisplay type={type} palette={palette} title={typeof title === 'string' ? title : undefined} />
       );
     },
     []
@@ -149,7 +136,7 @@ export const EuiColorPalettePicker: FunctionComponent<
   const paletteOptions = useMemo(
     () =>
       palettes.map((item: EuiColorPalettePickerPaletteProps) => {
-        const { type, value, title, tag, palette, ...rest } = item;
+        const { type, value, title, palette, ...rest } = item;
         const paletteForDisplay =
           item.type !== 'text' ? getPalette(item) : null;
 
@@ -166,7 +153,7 @@ export const EuiColorPalettePicker: FunctionComponent<
                 // color_palette_display_gradient. Adding the aria-hidden attribute
                 // here to ensure screen readers don't speak the listbox options twice.
                 <>
-                  <div css={styles.euiColorPalettePicker__itemTitleGroup}>
+                  {typeof title !== 'string' ? title : (
                     <EuiText
                       aria-hidden="true"
                       className="euiColorPalettePicker__itemTitle"
@@ -174,10 +161,7 @@ export const EuiColorPalettePicker: FunctionComponent<
                     >
                       {title}
                     </EuiText>
-                    {tag && <>
-                      <EuiBadge css={styles.euiColorPalettePicker__itemTag} color="hollow">{tag}</EuiBadge>
-                    </>}
-                  </div>
+                  )}
                   <EuiSpacer size="xs" />
                 </>
               )}
