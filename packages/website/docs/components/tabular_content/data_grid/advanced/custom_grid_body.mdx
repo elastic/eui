@@ -1,0 +1,17 @@
+---
+slug: /tabular-content/data-grid/advanced/custom-grid-body
+id: tabular_content_data_grid_advanced_custom_grid_body
+sidebar_position: 2
+---
+
+# Custom body rendering
+
+For **extremely** advanced use cases, the `renderCustomGridBody` prop may be used to take complete control over rendering the grid body. This may be useful for scenarios where the default [virtualized](/docs/tabular-content/data-grid#virtualization) rendering is not desired, or where custom row layouts (e.g., the conditional row details cell below) are required.
+
+:::warning
+This prop is meant to be an **escape hatch**, and should only be used if you know exactly what you are doing. Once a custom renderer is used, you are in charge of ensuring the grid has all the correct semantic and aria labels required by the [data grid spec](https://www.w3.org/WAI/ARIA/apg/patterns/grid), and that keyboard focus and navigation still work in an accessible manner.
+:::
+
+import CustomGridBodyDemo from './custom_grid_body/demo';
+
+<CustomGridBodyDemo />
