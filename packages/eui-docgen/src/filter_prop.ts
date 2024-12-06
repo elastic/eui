@@ -44,7 +44,7 @@ const allowedComponents = ['EuiDataGridVirtualizationOptions'];
 export const filterProp = (
   prop: PropItem,
   component: any,
-  componentExtends: string[]
+  componentExtends: Record<string, string[]>
 ) => {
   if (allowedProps.includes(prop.name)) {
     return true;
@@ -82,11 +82,16 @@ export const filterProp = (
   }
 
   if (prop.parent) {
-    //Check if props are extended from other node module
+    // Check if props are extended from other node module
     if (allowedParents.includes(prop.parent.name)) return true;
-    if (!componentExtends.includes(prop.parent.name)) {
-      componentExtends.push(prop.parent.name);
+
+    if (!componentExtends[component.name]) {
+      componentExtends[component.name] = [];
     }
+    if (!componentExtends[component.name].includes(prop.parent.name)) {
+      componentExtends[component.name].push(prop.parent.name);
+    }
+
     if (allowedProps.includes(prop.name)) {
       return true;
     }
