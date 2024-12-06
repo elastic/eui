@@ -12,6 +12,7 @@ import {
   logicalCSSWithFallback,
   euiScrollBarStyles,
 } from '../../global_styling';
+import { highContrastModeStyles } from '../../global_styling/functions/high_contrast';
 import { UseEuiTheme } from '../../services';
 
 export const euiResizablePanelStyles = {
@@ -26,13 +27,16 @@ export const euiResizablePanelStyles = {
 export const euiResizablePanelContentStyles = (
   euiThemeContext: UseEuiTheme
 ) => {
-  const { euiTheme, highContrastMode } = euiThemeContext;
+  const { euiTheme } = euiThemeContext;
 
   return {
     euiResizablePanel__content: css`
       ${logicalCSS('height', '100%')}
-      /* Disable default high contrast borders - they make the resize indicators too hard to see */
-      ${highContrastMode ? 'border: none;' : ''}
+
+      ${highContrastModeStyles(euiThemeContext, {
+        // Disable default high contrast borders - they make the resize indicators too hard to see
+        preferred: 'border: none;',
+      })}
     `,
     scrollable: css`
       ${euiScrollBarStyles(euiThemeContext)}

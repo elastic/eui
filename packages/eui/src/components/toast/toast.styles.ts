@@ -10,6 +10,10 @@ import { css } from '@emotion/react';
 import { euiShadowLarge, mathWithUnits } from '@elastic/eui-theme-common';
 
 import { euiTextBreakWord, logicalCSS } from '../../global_styling';
+import {
+  highContrastModeStyles,
+  preventForcedColors,
+} from '../../global_styling/functions/high_contrast';
 import { UseEuiTheme } from '../../services';
 import { euiTitle } from '../title/title.styles';
 
@@ -53,10 +57,12 @@ export const euiToastStyles = (euiThemeContext: UseEuiTheme) => {
           ? mathWithUnits(euiTheme.border.width.thick, (x) => x * 2)
           : euiTheme.border.width.thick;
 
-        return highContrastMode !== 'forced'
-          ? logicalCSS('border-top', `${borderWidth} solid ${color}`)
-          : // Windows high contrast mode ignores/overrides border colors, which have semantic meaning here. To get around this, we'll use a pseudo element that ignores forced colors
-            `overflow: hidden;
+        return highContrastModeStyles(euiThemeContext, {
+          none: logicalCSS('border-top', `${borderWidth} solid ${color}`),
+
+          // Windows high contrast mode ignores/overrides border colors, which have semantic meaning here. To get around this, we'll use a pseudo element that ignores forced colors
+          forced: `
+            overflow: hidden;
 
             &::before {
               content: '';
@@ -65,8 +71,10 @@ export const euiToastStyles = (euiThemeContext: UseEuiTheme) => {
               ${logicalCSS('horizontal', 0)}
               ${logicalCSS('height', borderWidth)}
               background-color: ${color};
-              forced-color-adjust: none;
-            }`;
+              ${preventForcedColors(euiThemeContext)}
+            }
+          `,
+        });
       },
       get primary() {
         return css(this._getStyles(euiTheme.colors.primary));
@@ -103,7 +111,7 @@ export const euiToastHeaderStyles = (euiThemeContext: UseEuiTheme) => {
     // Elements
     euiToastHeader__icon: css`
       flex: 0 0 auto;
-      fill: ${euiTheme.colors.title};
+      fill: ${euiTheme.colors.textHeading};
 
       /* Vertically center icon with first line of title */
       transform: translateY(2px);

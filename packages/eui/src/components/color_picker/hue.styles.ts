@@ -11,13 +11,17 @@ import { css } from '@emotion/react';
 import { UseEuiTheme, transparentize } from '../../services';
 import { logicalCSS, mathWithUnits } from '../../global_styling';
 import {
+  highContrastModeStyles,
+  preventForcedColors,
+} from '../../global_styling/functions/high_contrast';
+import {
   euiRangeThumbPerBrowser,
   euiRangeThumbStyle,
   euiRangeThumbFocusBoxShadow,
 } from '../form/range/range.styles';
 
 export const euiHueStyles = (euiThemeContext: UseEuiTheme) => {
-  const { euiTheme, highContrastMode } = euiThemeContext;
+  const { euiTheme } = euiThemeContext;
 
   const height = euiTheme.size.m;
   const thumbSize = euiTheme.size.l;
@@ -33,12 +37,10 @@ export const euiHueStyles = (euiThemeContext: UseEuiTheme) => {
     // This wraps the range and sets a rainbow gradient,
     // which allows the range thumb to be larger than the visible track
     euiHue: css`
-      /* stylelint-disable color-no-hex */
       ${logicalCSS('height', height)}
       border-radius: ${height};
-      ${highContrastMode ? `border: ${euiTheme.border.thin};` : ''}
-      ${highContrastMode === 'forced' ? 'forced-color-adjust: none;' : ''}
 
+      /* stylelint-disable color-no-hex */
       background: linear-gradient(
         to right,
         #ff3232 0%,
@@ -50,6 +52,11 @@ export const euiHueStyles = (euiThemeContext: UseEuiTheme) => {
         #ff0094 100%
       );
       /* stylelint-enable color-no-hex */
+
+      ${highContrastModeStyles(euiThemeContext, {
+        preferred: `border: ${euiTheme.border.thin};`,
+        forced: preventForcedColors(euiThemeContext),
+      })}
     `,
 
     euiHue__range: css`
@@ -76,38 +83,42 @@ export const euiHueStyles = (euiThemeContext: UseEuiTheme) => {
       ${euiRangeThumbPerBrowser(`
         ${euiRangeThumbStyle(euiThemeContext)}
         border-width: ${thumbBorder};
-        ${
-          highContrastMode
-            ? `
+
+        ${highContrastModeStyles(euiThemeContext, {
+          none: `
+            background-color: transparent;
+            box-shadow: ${thumbBoxShadow};
+          `,
+          preferred: `
             background-color: ${euiTheme.colors.ghost};
             border: ${thumbBorder} solid ${euiTheme.colors.ink};
             box-shadow: none;
-          `
-            : `
-            background-color: transparent;
-            box-shadow: ${thumbBoxShadow};
-          `
-        }`)}
+          `,
+        })}
+      `)}
 
       /* Remove wrapping outline and show focus on thumb only */
       &:focus {
         outline: none;
       }
 
-      ${highContrastMode
-        ? `
-        &:focus {
-          ${euiRangeThumbPerBrowser(`
-            outline: ${euiTheme.border.width.thin} solid ${euiTheme.colors.ink};
-            outline-offset: 0;
-          `)}
-        }`
-        : `
-        &:focus-visible {
-          ${euiRangeThumbPerBrowser(
-            euiRangeThumbFocusBoxShadow(euiThemeContext)
-          )}
-        }`}
+      ${highContrastModeStyles(euiThemeContext, {
+        none: `
+          &:focus-visible {
+            ${euiRangeThumbPerBrowser(
+              euiRangeThumbFocusBoxShadow(euiThemeContext)
+            )}
+          }
+        `,
+        preferred: `
+          &:focus {
+            ${euiRangeThumbPerBrowser(`
+              outline: ${euiTheme.border.width.thin} solid ${euiTheme.colors.ink};
+              outline-offset: 0;
+            `)}
+          }
+        `,
+      })}
     `,
   };
 };

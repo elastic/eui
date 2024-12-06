@@ -9,6 +9,7 @@
 import { css } from '@emotion/react';
 
 import { logicalCSS } from '../../../global_styling';
+import { highContrastModeStyles } from '../../../global_styling/functions/high_contrast';
 import { UseEuiTheme } from '../../../services';
 
 export const euiSplitPanelOuterStyles = {
@@ -25,9 +26,7 @@ export const euiSplitPanelOuterStyles = {
   `,
 };
 
-export const euiSplitPanelInnerStyles = ({
-  highContrastMode,
-}: UseEuiTheme) => ({
+export const euiSplitPanelInnerStyles = (euiThemeContext: UseEuiTheme) => ({
   euiSplitPanelInner: css`
     /* Make sure they're evenly split */
     flex-basis: 0%;
@@ -37,7 +36,9 @@ export const euiSplitPanelInnerStyles = ({
     transform: none !important;
     box-shadow: none !important;
 
-    /* Don't double up on borders in high contrast mode */
-    ${highContrastMode ? 'border: none;' : ''}
+    ${highContrastModeStyles(euiThemeContext, {
+      // Don't double up on borders in high contrast mode
+      preferred: 'border: none;',
+    })}
   `,
 });
