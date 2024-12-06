@@ -19,7 +19,7 @@
     "@docusaurus/preset-classic": "^3.5.2",
     "@elastic/charts": "^68.0.2",
     "@elastic/datemath": "^5.0.3",
-    "@elastic/eui": "97.2.0",
+    "@elastic/eui": "workspace:^",
     "@elastic/eui-docgen": "workspace:^",
     "@elastic/eui-docusaurus-theme": "workspace:^",
     "@emotion/css": "^11.11.2",
