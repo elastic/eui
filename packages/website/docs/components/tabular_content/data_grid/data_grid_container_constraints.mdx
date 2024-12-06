@@ -8,7 +8,7 @@ sidebar_position: 5
 
 ## Data grid adapts to its container
 
-When wrapped inside a container, like a dashboard panel, the grid will start hiding controls and adopt a more strict flex layout. Use the`minSizeForControls` prop to control the min width to enables/disables grid controls based on available width.
+When wrapped inside a container, like a dashboard panel, the grid will start hiding controls and adopt a more strict flex layout. Use the `minSizeForControls` prop to control the min width to enables/disables grid controls based on available width.
 
 ```tsx interactive
 import React, { useState, useCallback } from 'react';
@@ -589,3 +589,13 @@ export default () => {
   );
 };
 ```
+
+<!--
+TODO: EuiDataGrid lower level types aren't currently exported.
+
+import docgen from '@elastic/eui-docgen/dist/components/datagrid/data_grid.json';
+
+virtualizationProps
+height
+width
+-->
