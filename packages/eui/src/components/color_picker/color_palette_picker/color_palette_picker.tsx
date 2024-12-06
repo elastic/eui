@@ -6,7 +6,12 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent, ReactNode, useCallback, useMemo } from 'react';
+import React, {
+  FunctionComponent,
+  ReactNode,
+  useCallback,
+  useMemo,
+} from 'react';
 
 import { CommonProps } from '../../common';
 import { EuiSpacer } from '../../spacer';
@@ -127,7 +132,11 @@ export const EuiColorPalettePicker: FunctionComponent<
       | EuiColorPalettePickerPaletteFixedProps
       | EuiColorPalettePickerPaletteGradientProps) => {
       return (
-        <EuiColorPaletteDisplay type={type} palette={palette} title={typeof title === 'string' ? title : undefined} />
+        <EuiColorPaletteDisplay
+          type={type}
+          palette={palette}
+          title={typeof title === 'string' ? title : undefined}
+        />
       );
     },
     []
@@ -153,7 +162,9 @@ export const EuiColorPalettePicker: FunctionComponent<
                 // color_palette_display_gradient. Adding the aria-hidden attribute
                 // here to ensure screen readers don't speak the listbox options twice.
                 <>
-                  {typeof title !== 'string' ? title : (
+                  {typeof title !== 'string' ? (
+                    title
+                  ) : (
                     <EuiText
                       aria-hidden="true"
                       className="euiColorPalettePicker__itemTitle"

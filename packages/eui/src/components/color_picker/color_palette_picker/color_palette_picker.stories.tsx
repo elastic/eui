@@ -63,12 +63,11 @@ export const Playground: Story = {
   },
 };
 
-
 export const CustomTitles: Story = {
   argTypes: {
     palettes: {
       control: false,
-    }
+    },
   },
   args: {
     palettes: [
