@@ -18,6 +18,16 @@ exports[`EuiConfirmModal renders EuiConfirmModal 1`] = `
       role="alertdialog"
       tabindex="0"
     >
+      <div
+        class="euiModalHeader emotion-euiModalHeader"
+      >
+        <h1
+          class="euiTitle euiModalHeader__title emotion-euiTitle-m"
+          data-test-subj="confirmModalTitleText"
+        >
+          A confirmation modal
+        </h1>
+      </div>
       <button
         aria-label="Closes this modal window"
         class="euiButtonIcon euiModal__closeIcon emotion-euiButtonIcon-xs-empty-text-euiModal__closeIcon"
@@ -30,16 +40,6 @@ exports[`EuiConfirmModal renders EuiConfirmModal 1`] = `
           data-euiicon-type="cross"
         />
       </button>
-      <div
-        class="euiModalHeader emotion-euiModalHeader"
-      >
-        <h1
-          class="euiTitle euiModalHeader__title emotion-euiTitle-m"
-          data-test-subj="confirmModalTitleText"
-        >
-          A confirmation modal
-        </h1>
-      </div>
       <div
         class="euiModalBody emotion-euiModalBody"
       >
@@ -118,6 +118,16 @@ exports[`EuiConfirmModal renders EuiConfirmModal without EuiModalBody, if empty 
       role="alertdialog"
       tabindex="0"
     >
+      <div
+        class="euiModalHeader emotion-euiModalHeader"
+      >
+        <h1
+          class="euiTitle euiModalHeader__title emotion-euiTitle-m"
+          data-test-subj="confirmModalTitleText"
+        >
+          A confirmation modal
+        </h1>
+      </div>
       <button
         aria-label="Closes this modal window"
         class="euiButtonIcon euiModal__closeIcon emotion-euiButtonIcon-xs-empty-text-euiModal__closeIcon"
@@ -130,16 +140,6 @@ exports[`EuiConfirmModal renders EuiConfirmModal without EuiModalBody, if empty 
           data-euiicon-type="cross"
         />
       </button>
-      <div
-        class="euiModalHeader emotion-euiModalHeader"
-      >
-        <h1
-          class="euiTitle euiModalHeader__title emotion-euiTitle-m"
-          data-test-subj="confirmModalTitleText"
-        >
-          A confirmation modal
-        </h1>
-      </div>
       <div
         class="euiModalFooter emotion-euiModalFooter"
       >
