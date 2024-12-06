@@ -17,6 +17,7 @@ import {
   _FontScaleOptions,
   mathWithUnits,
 } from '../../global_styling';
+import { highContrastModeStyles } from '../../global_styling/functions/high_contrast';
 
 import { euiLinkCSS } from '../link/link.styles';
 import { euiTitle } from '../title/title.styles';
@@ -303,12 +304,15 @@ export const euiTextStyles = (euiThemeContext: UseEuiTheme) => {
         color: inherit;
       }
 
-      pre:not(.euiCodeBlock__pre) {
+      pre:not(.euiCodeBlock > pre) {
         white-space: pre-wrap;
         /* TODO: $euiCodeBlockBackgroundColor - switch to var once EuiCode is converted */
         background: ${euiBackgroundColor(euiThemeContext, 'subdued')};
         /* TODO: $euiCodeBlockColor - switch to var once EuiCode is converted */
         color: ${euiTheme.colors.text};
+        ${highContrastModeStyles(euiThemeContext, {
+          preferred: `border: ${euiTheme.border.thin}`,
+        })}
       }
 
       pre:not(.euiCodeBlock__pre),
