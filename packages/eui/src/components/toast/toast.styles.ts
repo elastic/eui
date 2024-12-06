@@ -13,7 +13,7 @@ import {
   mathWithUnits,
 } from '../../global_styling';
 import {
-  highContrastAffordance,
+  highContrastModeStyles,
   preventForcedColors,
 } from '../../global_styling/functions/high_contrast';
 import { UseEuiTheme } from '../../services';
@@ -57,8 +57,8 @@ export const euiToastStyles = (euiThemeContext: UseEuiTheme) => {
           ? mathWithUnits(euiTheme.border.width.thick, (x) => x * 2)
           : euiTheme.border.width.thick;
 
-        return highContrastAffordance(euiThemeContext, {
-          default: logicalCSS('border-top', `${borderWidth} solid ${color}`),
+        return highContrastModeStyles(euiThemeContext, {
+          none: logicalCSS('border-top', `${borderWidth} solid ${color}`),
 
           // Windows high contrast mode ignores/overrides border colors, which have semantic meaning here. To get around this, we'll use a pseudo element that ignores forced colors
           forced: `

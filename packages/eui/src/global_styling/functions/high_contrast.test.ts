@@ -7,7 +7,7 @@
  */
 
 import { UseEuiTheme } from '../../services';
-import { highContrastAffordance, preventForcedColors } from './high_contrast';
+import { highContrastModeStyles, preventForcedColors } from './high_contrast';
 
 const mockForcedHighContrastMode = {
   highContrastMode: 'forced',
@@ -21,48 +21,48 @@ const mockRegularContrastMode = {
   highContrastMode: false,
 } as UseEuiTheme;
 
-describe('highContrastAffordance', () => {
+describe('highContrastModeStyles', () => {
   describe('no high contrast', () => {
-    it('returns the passed `defaultStyles`', () => {
+    it('returns the passed `none` styles', () => {
       expect(
-        highContrastAffordance(mockRegularContrastMode, {
-          default: 'color: red;',
+        highContrastModeStyles(mockRegularContrastMode, {
+          none: 'color: red;',
         })
       ).toEqual('color: red;');
       expect(
-        highContrastAffordance(mockRegularContrastMode, {
-          default: 'color: red;',
+        highContrastModeStyles(mockRegularContrastMode, {
+          none: 'color: red;',
           preferred: 'color: black;',
         })
       ).toEqual('color: red;');
       expect(
-        highContrastAffordance(mockRegularContrastMode, {
-          default: 'color: red;',
+        highContrastModeStyles(mockRegularContrastMode, {
+          none: 'color: red;',
           forced: 'forced-color-adjust: none;',
         })
       ).toEqual('color: red;');
       expect(
-        highContrastAffordance(mockRegularContrastMode, {
-          default: 'color: red;',
+        highContrastModeStyles(mockRegularContrastMode, {
+          none: 'color: red;',
           preferred: 'color: black;',
           forced: 'forced-color-adjust: none;',
         })
       ).toEqual('color: red;');
     });
 
-    it('returns nothing if no `defaultStyles` were passed', () => {
+    it('returns nothing if no `none` styles were passed', () => {
       expect(
-        highContrastAffordance(mockRegularContrastMode, {
+        highContrastModeStyles(mockRegularContrastMode, {
           preferred: 'color: black;',
         })
       ).toEqual('');
       expect(
-        highContrastAffordance(mockRegularContrastMode, {
+        highContrastModeStyles(mockRegularContrastMode, {
           forced: 'forced-color-adjust: none;',
         })
       ).toEqual('');
       expect(
-        highContrastAffordance(mockRegularContrastMode, {
+        highContrastModeStyles(mockRegularContrastMode, {
           preferred: 'color: black;',
           forced: 'forced-color-adjust: none;',
         })
@@ -71,34 +71,34 @@ describe('highContrastAffordance', () => {
   });
 
   describe('preferred high contrast', () => {
-    it('returns the passed `highContrastStyles`', () => {
+    it('returns the passed `preferred` styles', () => {
       expect(
-        highContrastAffordance(mockPreferredHighContrastMode, {
+        highContrastModeStyles(mockPreferredHighContrastMode, {
           preferred: 'color: black;',
         })
       ).toEqual('color: black;');
       expect(
-        highContrastAffordance(mockPreferredHighContrastMode, {
-          default: 'color: red;',
+        highContrastModeStyles(mockPreferredHighContrastMode, {
+          none: 'color: red;',
           preferred: 'color: black;',
         })
       ).toEqual('color: black;');
     });
 
-    it('ignores `forcedColorsStyles` if `highContrastStyles` were passed', () => {
+    it('ignores `forced` if `preferred` was passed', () => {
       expect(
-        highContrastAffordance(mockPreferredHighContrastMode, {
-          default: 'color: red;',
+        highContrastModeStyles(mockPreferredHighContrastMode, {
+          none: 'color: red;',
           preferred: 'color: black;',
           forced: 'forced-color-adjust: none;',
         })
       ).toEqual('color: black;');
     });
 
-    it('falls back to `defaultStyles` if only `forcedColorsStyles` were passed', () => {
+    it('falls back to `none` if only `forced` was passed', () => {
       expect(
-        highContrastAffordance(mockPreferredHighContrastMode, {
-          default: 'color: red;',
+        highContrastModeStyles(mockPreferredHighContrastMode, {
+          none: 'color: red;',
           forced: 'forced-color-adjust: none;',
         })
       ).toEqual('color: red;');
@@ -106,36 +106,36 @@ describe('highContrastAffordance', () => {
 
     it('returns nothing if no contrast styles were passed', () => {
       expect(
-        highContrastAffordance(mockPreferredHighContrastMode, {
-          default: 'color: red;',
+        highContrastModeStyles(mockPreferredHighContrastMode, {
+          none: 'color: red;',
         })
       ).toEqual('');
     });
   });
 
   describe('forced high contrast', () => {
-    it('returns the passed `forcedColorsStyles`', () => {
+    it('returns the passed `forced` styles', () => {
       expect(
-        highContrastAffordance(mockForcedHighContrastMode, {
+        highContrastModeStyles(mockForcedHighContrastMode, {
           forced: 'color: black;',
         })
       ).toEqual('color: black;');
       expect(
-        highContrastAffordance(mockForcedHighContrastMode, {
-          default: 'color: red;',
+        highContrastModeStyles(mockForcedHighContrastMode, {
+          none: 'color: red;',
           forced: 'color: black;',
         })
       ).toEqual('color: black;');
     });
 
-    it('also returns/concatenates `highContrastStyles` if passed', () => {
+    it('also returns/concatenates `preferred` styles if passed', () => {
       expect(
-        highContrastAffordance(mockForcedHighContrastMode, {
+        highContrastModeStyles(mockForcedHighContrastMode, {
           preferred: 'background-color: white;',
         })
       ).toEqual('background-color: white;');
       expect(
-        highContrastAffordance(mockForcedHighContrastMode, {
+        highContrastModeStyles(mockForcedHighContrastMode, {
           preferred: 'background-color: white;',
           forced: 'color: black;',
         })
@@ -144,8 +144,8 @@ describe('highContrastAffordance', () => {
 
     it('returns nothing if no contrast styles were passed', () => {
       expect(
-        highContrastAffordance(mockForcedHighContrastMode, {
-          default: 'color: red;',
+        highContrastModeStyles(mockForcedHighContrastMode, {
+          none: 'color: red;',
         })
       ).toEqual('');
     });

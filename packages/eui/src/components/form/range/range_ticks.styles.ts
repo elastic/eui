@@ -14,7 +14,7 @@ import {
   euiFontSize,
   mathWithUnits,
 } from '../../../global_styling';
-import { highContrastAffordance } from '../../../global_styling/functions/high_contrast';
+import { highContrastModeStyles } from '../../../global_styling/functions/high_contrast';
 
 import { euiRangeVariables } from './range.styles';
 
@@ -27,8 +27,8 @@ const tickStyles = (
     position: absolute;
     ${logicalCSS('top', 0)};
     block-size: ${range.tickHeight};
-    ${highContrastAffordance(euiThemeContext, {
-      default: `
+    ${highContrastModeStyles(euiThemeContext, {
+      none: `
         inline-size: ${range.tickWidth};
         background-color: ${range.tickColor};
       `,

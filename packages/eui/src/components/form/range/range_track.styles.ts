@@ -8,7 +8,7 @@
 
 import { css } from '@emotion/react';
 import { UseEuiTheme } from '../../../services';
-import { highContrastAffordance } from '../../../global_styling/functions/high_contrast';
+import { highContrastModeStyles } from '../../../global_styling/functions/high_contrast';
 import { euiRangeVariables } from './range.styles';
 
 export const euiRangeTrackStyles = (euiThemeContext: UseEuiTheme) => {
@@ -29,8 +29,8 @@ export const euiRangeTrackStyles = (euiThemeContext: UseEuiTheme) => {
         inset-block-start: ${range.trackTopPositionWithoutTicks};
         inset-inline-start: 0;
         inline-size: ${range.trackWidth};
-        ${highContrastAffordance(euiThemeContext, {
-          default: `
+        ${highContrastModeStyles(euiThemeContext, {
+          none: `
             background: ${range.trackColor};
             block-size: ${range.trackHeight};
           `,

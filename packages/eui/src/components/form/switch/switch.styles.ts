@@ -18,7 +18,7 @@ import {
   mathWithUnits,
 } from '../../../global_styling';
 import {
-  highContrastAffordance,
+  highContrastModeStyles,
   preventForcedColors,
 } from '../../../global_styling/functions/high_contrast';
 import { euiFormCustomControlVariables } from '../form.styles';
@@ -163,7 +163,7 @@ const bodyStyles = (
     background-color: ${colorMode === 'DARK'
       ? colors.disabled
       : tint(colors.disabled, tintAmount)};
-    ${highContrastAffordance(euiThemeContext, {
+    ${highContrastModeStyles(euiThemeContext, {
       preferred: `border: ${euiTheme.border.thin};`,
     })}
   `;
@@ -175,13 +175,13 @@ const bodyStyles = (
       overflow: hidden;
       border-radius: inherit;
       pointer-events: none; /* Required for Kibana's Selenium driver to be able to click switches in FTR tests */
-      ${highContrastAffordance(euiThemeContext, {
+      ${highContrastModeStyles(euiThemeContext, {
         forced: `border: ${euiTheme.border.thin};`,
       })}
     `,
     on: css(
-      highContrastAffordance(euiThemeContext, {
-        default: `
+      highContrastModeStyles(euiThemeContext, {
+        none: `
           background-color: ${colors.on};
         `,
         forced: `

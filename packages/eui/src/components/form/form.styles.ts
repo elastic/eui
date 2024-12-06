@@ -20,7 +20,7 @@ import {
   euiCanAnimate,
   euiFontSize,
 } from '../../global_styling';
-import { highContrastAffordance } from '../../global_styling/functions/high_contrast';
+import { highContrastModeStyles } from '../../global_styling/functions/high_contrast';
 import { euiButtonColor } from '../../themes/amsterdam/global_styling/mixins';
 
 // There are multiple components that only need the form max-width size &
@@ -147,8 +147,8 @@ export const euiFormControlStyles = (euiThemeContext: UseEuiTheme) => {
     // In group
     inGroup: `
       ${logicalCSS('height', '100%')}
-      ${highContrastAffordance(euiThemeContext, {
-        default: 'box-shadow: none;',
+      ${highContrastModeStyles(euiThemeContext, {
+        none: 'box-shadow: none;',
         preferred: 'border: none;',
       })}
       border-radius: 0;
@@ -207,9 +207,9 @@ export const euiFormControlDefaultShadow = (
   const { euiTheme } = euiThemeContext;
   const form = euiFormVariables(euiThemeContext);
 
-  const border = highContrastAffordance(euiThemeContext, {
+  const border = highContrastModeStyles(euiThemeContext, {
     // We use inset box-shadow instead of border to skip extra height calculations
-    default: `
+    none: `
       border: none;
       box-shadow: inset 0 0 0 ${euiTheme.border.width.thin} ${form.borderColor};
     `,
@@ -223,8 +223,8 @@ export const euiFormControlDefaultShadow = (
     background-color: ${form.backgroundColor};
   `.trim();
 
-  const backgroundGradient = highContrastAffordance(euiThemeContext, {
-    default: `
+  const backgroundGradient = highContrastModeStyles(euiThemeContext, {
+    none: `
       background-repeat: no-repeat;
       background-size: 0% 100%;
       background-image: linear-gradient(to top,
@@ -312,7 +312,7 @@ export const euiFormControlReadOnlyStyles = (euiThemeContext: UseEuiTheme) => {
 
     background-color: ${form.backgroundReadOnlyColor};
     --euiFormControlStateColor: transparent;
-    ${highContrastAffordance(euiThemeContext, {
+    ${highContrastModeStyles(euiThemeContext, {
       forced: 'background-image: none;',
     })}
   `;

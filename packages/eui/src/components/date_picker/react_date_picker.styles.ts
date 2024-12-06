@@ -20,7 +20,7 @@ import {
   mathWithUnits,
 } from '../../global_styling';
 import {
-  highContrastAffordance,
+  highContrastModeStyles,
   preventForcedColors,
 } from '../../global_styling/functions/high_contrast';
 import {
@@ -300,8 +300,8 @@ export const _dayCalendarStyles = (euiThemeContext: UseEuiTheme) => {
 
       &--highlighted,
       &--highlighted:hover {
-        ${highContrastAffordance(euiThemeContext, {
-          default: serializeStyles([euiButtonColor(euiThemeContext, 'success')])
+        ${highContrastModeStyles(euiThemeContext, {
+          none: serializeStyles([euiButtonColor(euiThemeContext, 'success')])
             .styles,
           forced: `border: ${euiTheme.border.thin};`,
         })}
@@ -312,10 +312,10 @@ export const _dayCalendarStyles = (euiThemeContext: UseEuiTheme) => {
         ${euiButtonColor(euiThemeContext, 'primary')};
       }
 
-      ${highContrastAffordance(euiThemeContext, {
+      ${highContrastModeStyles(euiThemeContext, {
         // Ranges use 2 side box-shadows that are the same as the button
         // background to fill the gap between margins
-        default: `
+        none: `
           &--in-range:not(&--selected):not(:hover):not(&--disabled) {
             box-shadow: -${rangeMarginOffset} 0 ${rangeBackgroundColor},
               ${rangeMarginOffset} 0 ${rangeBackgroundColor};
@@ -371,10 +371,9 @@ export const _dayCalendarStyles = (euiThemeContext: UseEuiTheme) => {
 
       &--disabled,
       &--disabled:hover {
-        ${highContrastAffordance(euiThemeContext, {
-          default: serializeStyles([
-            euiButtonColor(euiThemeContext, 'disabled'),
-          ]).styles,
+        ${highContrastModeStyles(euiThemeContext, {
+          none: serializeStyles([euiButtonColor(euiThemeContext, 'disabled')])
+            .styles,
           forced: `opacity: 0.5;`,
         })}
         cursor: not-allowed;
@@ -393,8 +392,8 @@ export const _dayCalendarStyles = (euiThemeContext: UseEuiTheme) => {
       &--in-selecting-range:not(&--in-range),
       &--disabled.react-datepicker__day--selected,
       &--disabled.react-datepicker__day--selected:hover {
-        ${highContrastAffordance(euiThemeContext, {
-          default: serializeStyles([euiButtonColor(euiThemeContext, 'danger')])
+        ${highContrastModeStyles(euiThemeContext, {
+          none: serializeStyles([euiButtonColor(euiThemeContext, 'danger')])
             .styles,
           forced: `
             color: ${euiTheme.colors.dangerText};

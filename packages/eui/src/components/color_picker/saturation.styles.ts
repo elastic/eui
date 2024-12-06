@@ -15,7 +15,7 @@ import {
   mathWithUnits,
 } from '../../global_styling';
 import {
-  highContrastAffordance,
+  highContrastModeStyles,
   preventForcedColors,
 } from '../../global_styling/functions/high_contrast';
 
@@ -42,8 +42,8 @@ export const euiSaturationStyles = (euiThemeContext: UseEuiTheme) => {
         outline: none; /* Hide focus ring from tabindex=0 */
 
         .euiSaturation__indicator {
-          ${highContrastAffordance(euiThemeContext, {
-            default: `
+          ${highContrastModeStyles(euiThemeContext, {
+            none: `
               outline: none; /* Standardize indicator focus ring */
               box-shadow: 0 0 0 ${euiTheme.focus.width} ${euiTheme.colors.primary};
               border-color: ${euiTheme.colors.primary};
@@ -56,7 +56,7 @@ export const euiSaturationStyles = (euiThemeContext: UseEuiTheme) => {
         }
       }
 
-      ${highContrastAffordance(euiThemeContext, {
+      ${highContrastModeStyles(euiThemeContext, {
         // The border must be in an overlaid pseudo element to not affect the
         // width/height/position of the indicator, or cause border-radius issues
         preferred: `
@@ -98,8 +98,8 @@ export const euiSaturationStyles = (euiThemeContext: UseEuiTheme) => {
       transform: translateX(-50%) translateY(-50%);
       border-radius: 100%;
 
-      ${highContrastAffordance(euiThemeContext, {
-        default: `
+      ${highContrastModeStyles(euiThemeContext, {
+        none: `
           border: ${euiTheme.border.width.thin} solid ${euiTheme.colors.darkestShade};
 
           &::before {

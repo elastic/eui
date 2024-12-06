@@ -14,7 +14,7 @@ import {
   logicalCSS,
   mathWithUnits,
 } from '../../../global_styling';
-import { highContrastAffordance } from '../../../global_styling/functions/high_contrast';
+import { highContrastModeStyles } from '../../../global_styling/functions/high_contrast';
 
 import { euiFormVariables } from '../form.styles';
 
@@ -143,12 +143,12 @@ export const euiFormControlLayoutSideNodeStyles = (
       }
     `,
     append: css(
-      highContrastAffordance(euiThemeContext, {
+      highContrastModeStyles(euiThemeContext, {
         preferred: logicalCSS('border-left', euiTheme.border.thin),
       })
     ),
     prepend: css(
-      highContrastAffordance(euiThemeContext, {
+      highContrastModeStyles(euiThemeContext, {
         preferred: logicalCSS('border-right', euiTheme.border.thin),
       })
     ),

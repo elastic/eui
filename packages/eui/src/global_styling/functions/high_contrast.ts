@@ -16,33 +16,36 @@ import type { UseEuiTheme } from '../../services';
  * Ternaries are otherwise somewhat ugly in css`` template literals,
  * and this makes life just a little more beautiful ✨
  */
-export const highContrastAffordance = (
+export const highContrastModeStyles = (
   euiThemeContext: UseEuiTheme,
   options: {
-    default?: string;
+    /** Default styles to render (no high contrast mode) */
+    none?: string;
+    /** Styles to render when high contrast mode is preferred or forced */
     preferred?: string;
+    /** Styles to render when high contrast mode is being forced */
     forced?: string;
   }
 ) => {
   const { highContrastMode } = euiThemeContext;
   const {
-    default: defaultStyles = '', // `default` is a reserved keyword in JS
-    preferred = '',
-    forced = '',
+    none: defaultStyles = '',
+    preferred: highContrastStyles = '',
+    forced: forcedColorsStyles = '',
   } = options;
 
   if (highContrastMode) {
     if (highContrastMode === 'forced') {
       // Assume preferred high contrast styles should also apply to forced contrast styles
-      return preferred.trim() + forced.trim();
+      return highContrastStyles.trim() + forcedColorsStyles.trim();
     }
 
-    if (!preferred && forced && defaultStyles) {
+    if (!highContrastStyles && forcedColorsStyles && defaultStyles) {
       // If only forced styles were passed, assume we can use default styles for preferred high contrast
       return defaultStyles.trim();
     }
 
-    return preferred.trim();
+    return highContrastStyles.trim();
   }
   return defaultStyles.trim();
 };

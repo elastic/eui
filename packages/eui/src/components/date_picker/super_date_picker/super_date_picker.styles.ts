@@ -20,7 +20,7 @@ import {
   logicalCSS,
   mathWithUnits,
 } from '../../../global_styling';
-import { highContrastAffordance } from '../../../global_styling/functions/high_contrast';
+import { highContrastModeStyles } from '../../../global_styling/functions/high_contrast';
 import {
   euiFormVariables,
   euiFormControlDefaultShadow,
@@ -143,8 +143,8 @@ export const euiSuperDatePickerStyles = (euiThemeContext: UseEuiTheme) => {
       euiSuperDatePicker__formControlLayout: css`
         .euiFormControlLayout__childrenWrapper {
           ${euiFormControlDefaultShadow(euiThemeContext)}
-          ${highContrastAffordance(euiThemeContext, {
-            default: 'box-shadow: none;',
+          ${highContrastModeStyles(euiThemeContext, {
+            none: 'box-shadow: none;',
             preferred: 'border: none;',
           })}
         }
@@ -211,7 +211,7 @@ export const euiSuperDatePickerStyles = (euiThemeContext: UseEuiTheme) => {
           )}
         }
 
-        ${highContrastAffordance(euiThemeContext, {
+        ${highContrastModeStyles(euiThemeContext, {
           // Force the fill color of all icons/svgs to give a bit more indication of state,
           // since Windows high contrast themes otherwise override background/text color
           forced: `

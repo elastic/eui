@@ -15,7 +15,7 @@ import {
   euiOutline,
 } from '../../global_styling';
 import {
-  highContrastAffordance,
+  highContrastModeStyles,
   preventForcedColors,
 } from '../../global_styling/functions/high_contrast';
 
@@ -31,8 +31,8 @@ export const euiColorPickerSwatchStyles = (euiThemeContext: UseEuiTheme) => {
         euiTheme.border.radius.medium,
         (x) => x / 2
       )};
-      ${highContrastAffordance(euiThemeContext, {
-        default: `
+      ${highContrastModeStyles(euiThemeContext, {
+        none: `
           border: ${euiTheme.border.width.thin} solid
             ${transparentize(euiTheme.colors.fullShade, 0.1)};
           box-shadow: inset 0 0 0 ${euiTheme.border.width.thin}

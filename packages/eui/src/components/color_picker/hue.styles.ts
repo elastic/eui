@@ -11,7 +11,7 @@ import { css } from '@emotion/react';
 import { UseEuiTheme, transparentize } from '../../services';
 import { logicalCSS, mathWithUnits } from '../../global_styling';
 import {
-  highContrastAffordance,
+  highContrastModeStyles,
   preventForcedColors,
 } from '../../global_styling/functions/high_contrast';
 import {
@@ -53,7 +53,7 @@ export const euiHueStyles = (euiThemeContext: UseEuiTheme) => {
       );
       /* stylelint-enable color-no-hex */
 
-      ${highContrastAffordance(euiThemeContext, {
+      ${highContrastModeStyles(euiThemeContext, {
         preferred: `border: ${euiTheme.border.thin};`,
         forced: preventForcedColors(euiThemeContext),
       })}
@@ -84,8 +84,8 @@ export const euiHueStyles = (euiThemeContext: UseEuiTheme) => {
         ${euiRangeThumbStyle(euiThemeContext)}
         border-width: ${thumbBorder};
 
-        ${highContrastAffordance(euiThemeContext, {
-          default: `
+        ${highContrastModeStyles(euiThemeContext, {
+          none: `
             background-color: transparent;
             box-shadow: ${thumbBoxShadow};
           `,
@@ -102,8 +102,8 @@ export const euiHueStyles = (euiThemeContext: UseEuiTheme) => {
         outline: none;
       }
 
-      ${highContrastAffordance(euiThemeContext, {
-        default: `
+      ${highContrastModeStyles(euiThemeContext, {
+        none: `
           &:focus-visible {
             ${euiRangeThumbPerBrowser(
               euiRangeThumbFocusBoxShadow(euiThemeContext)

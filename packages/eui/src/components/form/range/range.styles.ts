@@ -10,7 +10,7 @@ import { css } from '@emotion/react';
 import { UseEuiTheme, hexToRgb } from '../../../services';
 import { mathWithUnits } from '../../../global_styling';
 import {
-  highContrastAffordance,
+  highContrastModeStyles,
   preventForcedColors,
 } from '../../../global_styling/functions/high_contrast';
 import { euiFormVariables } from '../form.styles';
@@ -133,8 +133,8 @@ export const euiRangeThumbStyle = (euiThemeContext: UseEuiTheme) => {
     box-sizing: border-box;  // required for firefox or the border makes the width and height to increase
   `;
 
-  return highContrastAffordance(euiThemeContext, {
-    default: `
+  return highContrastModeStyles(euiThemeContext, {
+    none: `
       ${baseStyles}
       background-color: var(--euiRangeThumbColor, ${
         range.thumbBackgroundColor
