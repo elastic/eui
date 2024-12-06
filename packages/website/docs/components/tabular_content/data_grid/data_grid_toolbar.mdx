@@ -462,102 +462,15 @@ export default () => {
 };
 ```
 
-## Toolbar props
+## Props
 
-### `EuiDataGridToolBarVisibilityOptions`
+import docgen from '@elastic/eui-docgen/dist/components/datagrid/data_grid_types.docgen.json';
 
-This table contains 6 rows.
-|
-Prop
-
- |
-
-Sample snippet
-
- |
-| --- | --- |
-|
-
-**showSortSelector**
-
-Allows the ability for the user to sort rows based upon column values
-
- |
-
-```
-showSortSelector: false
-```
-
- |
-|
-
-**additionalControls**
-
-If passed a `ReactNode`, appends the passed custom control into the left side of the toolbar, after the column & sort controls. Or use **EuiDataGridToolBarAdditionalControlsOptions** to customize the location of your control.
-
- |
-
-```
-additionalControls: {
-  left: <EuiButtonEmpty size="xs" />,
-  right: <EuiButtonIcon size="xs" />,
-}
-```
-
- |
-|
-
-**showColumnSelector**
-
-Allows the ability for the user to hide fields and sort columns, boolean or a **EuiDataGridToolBarVisibilityColumnSelectorOptions**
-
- |
-
-```
-showColumnSelector: {
-  allowHide: false;
-  allowReorder: false;
-}
-```
-
- |
-|
-
-**showDisplaySelector**
-
-Allows the ability for the user to customize display settings such as grid density and row heights. User changes will override what is provided in **EuiDataGridStyle** and **EuiDataGridRowHeightsOptions**
-
- |
-
-```
-showDisplaySelector: {
-  allowDensity: false;
-  allowRowHeight: false;
-  allowResetButton: false;
-  additionalDisplaySettings: <EuiButtonEmpty size="xs" />;
-}
-```
-
- |
-|
-
-**showFullScreenSelector**
-
-Allows user to be able to fullscreen the data grid. If set to `false` make sure your grid fits within a large enough panel to still show the other controls.
-
- |
-
-```
-showFullScreenSelector: false
-```
-
- |
-|
-
-**showKeyboardShortcuts**
-
-Displays a popover listing all keyboard controls and shortcuts for the data grid. If set to `false`, the toggle will be visually hidden, but still focusable by keyboard and screen reader users.
-
- |
-
- |
+<PropTable definition={docgen.EuiDataGridToolBarVisibilityOptions} />
+<PropTable definition={docgen.EuiDataGridToolBarAdditionalControlsOptions} />
+<PropTable definition={docgen.EuiDataGridToolBarAdditionalControlsLeftOptions} />
+<PropTable definition={docgen.EuiDataGridCustomToolbarProps} />
+<PropTable definition={docgen.EuiDataGridToolbarControl} />
+<PropTable definition={docgen.EuiDataGridToolBarVisibilityColumnSelectorOptions} />
+<PropTable definition={docgen.EuiDataGridToolBarVisibilityDisplaySelectorOptions} />
+<PropTable definition={docgen.EuiDataGridDisplaySelectorCustomRenderProps} />

@@ -944,12 +944,16 @@ export interface EuiDataGridToolBarVisibilityDisplaySelectorOptions {
   customRender?: EuiDataGridDisplaySelectorCustomRender;
 }
 
-export type EuiDataGridDisplaySelectorCustomRender = (args: {
+export type EuiDataGridDisplaySelectorCustomRenderProps = {
   densityControl: ReactNode;
   rowHeightControl: ReactNode;
   additionalDisplaySettings: ReactNode;
   resetButton: ReactNode;
-}) => ReactNode;
+};
+
+export type EuiDataGridDisplaySelectorCustomRender = (
+  args: EuiDataGridDisplaySelectorCustomRenderProps
+) => ReactNode;
 
 export interface EuiDataGridToolBarVisibilityOptions {
   /**
