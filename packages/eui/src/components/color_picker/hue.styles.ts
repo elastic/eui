@@ -12,7 +12,7 @@ import { UseEuiTheme, transparentize } from '../../services';
 import { logicalCSS, mathWithUnits } from '../../global_styling';
 import {
   highContrastAffordance,
-  overrideForcedColors,
+  preventForcedColors,
 } from '../../global_styling/functions/high_contrast';
 import {
   euiRangeThumbPerBrowser,
@@ -55,7 +55,7 @@ export const euiHueStyles = (euiThemeContext: UseEuiTheme) => {
 
       ${highContrastAffordance(euiThemeContext, {
         preferred: `border: ${euiTheme.border.thin};`,
-        forced: overrideForcedColors(euiThemeContext),
+        forced: preventForcedColors(euiThemeContext),
       })}
     `,
 

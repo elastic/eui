@@ -8,7 +8,7 @@
 
 import { css } from '@emotion/react';
 import { UseEuiTheme, transparentize } from '../../../services';
-import { overrideForcedColors } from '../../../global_styling/functions/high_contrast';
+import { preventForcedColors } from '../../../global_styling/functions/high_contrast';
 
 import { euiRangeLevelColor } from './range_levels_colors';
 import { euiRangeVariables } from './range.styles';
@@ -36,7 +36,7 @@ export const euiRangeLevelsStyles = (euiThemeContext: UseEuiTheme) => {
       inset-inline: 0;
       inset-block-start: ${range.trackTopPositionWithoutTicks};
       z-index: ${range.levelsZIndex};
-      ${overrideForcedColors(euiThemeContext)}
+      ${preventForcedColors(euiThemeContext)}
     `,
     hasRange: css`
       &::after {

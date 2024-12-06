@@ -7,7 +7,7 @@
  */
 
 import { UseEuiTheme } from '../../services';
-import { highContrastAffordance, overrideForcedColors } from './high_contrast';
+import { highContrastAffordance, preventForcedColors } from './high_contrast';
 
 const mockForcedHighContrastMode = {
   highContrastMode: 'forced',
@@ -152,14 +152,14 @@ describe('highContrastAffordance', () => {
   });
 });
 
-describe('overrideForcedColors', () => {
+describe('preventForcedColors', () => {
   it('returns forced-color-adjust CSS when high contrast is being forced', () => {
-    expect(overrideForcedColors(mockForcedHighContrastMode)).toEqual(
+    expect(preventForcedColors(mockForcedHighContrastMode)).toEqual(
       'forced-color-adjust: none;'
     );
   });
 
   it('returns nothing when highContrastMode is not forced', () => {
-    expect(overrideForcedColors(mockRegularContrastMode)).toEqual('');
+    expect(preventForcedColors(mockRegularContrastMode)).toEqual('');
   });
 });

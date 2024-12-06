@@ -14,7 +14,7 @@ import {
 } from '../../global_styling';
 import {
   highContrastAffordance,
-  overrideForcedColors,
+  preventForcedColors,
 } from '../../global_styling/functions/high_contrast';
 import { UseEuiTheme } from '../../services';
 import { euiShadowLarge } from '../../themes/amsterdam';
@@ -71,7 +71,7 @@ export const euiToastStyles = (euiThemeContext: UseEuiTheme) => {
               ${logicalCSS('horizontal', 0)}
               ${logicalCSS('height', borderWidth)}
               background-color: ${color};
-              ${overrideForcedColors(euiThemeContext)}
+              ${preventForcedColors(euiThemeContext)}
             }
           `,
         });

@@ -58,5 +58,5 @@ export const highContrastAffordance = (
  * 2. Tweaks have been made to existing styles to increase color contrast
  *    as necessary
  */
-export const overrideForcedColors = ({ highContrastMode }: UseEuiTheme) =>
+export const preventForcedColors = ({ highContrastMode }: UseEuiTheme) =>
   highContrastMode === 'forced' ? 'forced-color-adjust: none;' : '';

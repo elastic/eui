@@ -16,7 +16,7 @@ import {
 } from '../../global_styling';
 import {
   highContrastAffordance,
-  overrideForcedColors,
+  preventForcedColors,
 } from '../../global_styling/functions/high_contrast';
 
 export const euiSaturationStyles = (euiThemeContext: UseEuiTheme) => {
@@ -70,7 +70,7 @@ export const euiSaturationStyles = (euiThemeContext: UseEuiTheme) => {
             pointer-events: none;
           }
         `,
-        forced: overrideForcedColors(euiThemeContext),
+        forced: preventForcedColors(euiThemeContext),
       })}
     `,
 

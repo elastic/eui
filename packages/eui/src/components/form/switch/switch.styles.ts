@@ -19,7 +19,7 @@ import {
 } from '../../../global_styling';
 import {
   highContrastAffordance,
-  overrideForcedColors,
+  preventForcedColors,
 } from '../../../global_styling/functions/high_contrast';
 import { euiFormCustomControlVariables } from '../form.styles';
 
@@ -186,7 +186,7 @@ const bodyStyles = (
         `,
         forced: `
           background-color: ${euiTheme.border.color};
-          ${overrideForcedColors(euiThemeContext)}
+          ${preventForcedColors(euiThemeContext)}
         `,
       })
     ),

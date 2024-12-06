@@ -11,7 +11,7 @@ import { UseEuiTheme, hexToRgb } from '../../../services';
 import { mathWithUnits } from '../../../global_styling';
 import {
   highContrastAffordance,
-  overrideForcedColors,
+  preventForcedColors,
 } from '../../../global_styling/functions/high_contrast';
 import { euiFormVariables } from '../form.styles';
 
@@ -148,7 +148,7 @@ export const euiRangeThumbStyle = (euiThemeContext: UseEuiTheme) => {
       border: ${range.thumbBorderWidth} solid var(--euiRangeThumbColor, ${euiTheme.colors.fullShade});
       box-shadow: inset 0 0 0 ${range.thumbBorderWidth} ${euiTheme.colors.emptyShade};
     `,
-    forced: overrideForcedColors(euiThemeContext),
+    forced: preventForcedColors(euiThemeContext),
   });
 };
 

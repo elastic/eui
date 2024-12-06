@@ -16,7 +16,7 @@ import {
 } from '../../global_styling';
 import {
   highContrastAffordance,
-  overrideForcedColors,
+  preventForcedColors,
 } from '../../global_styling/functions/high_contrast';
 
 export const euiColorPickerSwatchStyles = (euiThemeContext: UseEuiTheme) => {
@@ -39,7 +39,7 @@ export const euiColorPickerSwatchStyles = (euiThemeContext: UseEuiTheme) => {
             ${transparentize(euiTheme.colors.emptyShade, 0.05)};
         `,
         preferred: `border: ${euiTheme.border.thin};`,
-        forced: overrideForcedColors(euiThemeContext),
+        forced: preventForcedColors(euiThemeContext),
       })}
       cursor: pointer;
 

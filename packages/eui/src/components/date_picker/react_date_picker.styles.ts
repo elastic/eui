@@ -21,7 +21,7 @@ import {
 } from '../../global_styling';
 import {
   highContrastAffordance,
-  overrideForcedColors,
+  preventForcedColors,
 } from '../../global_styling/functions/high_contrast';
 import {
   euiButtonColor,
@@ -520,6 +520,6 @@ const _highContrastSelected = (euiThemeContext: UseEuiTheme) => {
     : `
         background-color: ${euiTheme.colors.fullShade};
         color: ${euiTheme.colors.emptyShade};
-        ${overrideForcedColors(euiThemeContext)}
+        ${preventForcedColors(euiThemeContext)}
       `;
 };
