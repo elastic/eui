@@ -56,7 +56,7 @@ export type EuiPageSectionProps = CommonProps &
     /**
      * Sets which HTML element to render.
      */
-    component?: keyof JSX.IntrinsicElements | ComponentType;
+    component?: keyof React.JSX.IntrinsicElements | ComponentType;
   } & Omit<HTMLAttributes<Element>, 'color'>;
 
 export const EuiPageSection: FunctionComponent<EuiPageSectionProps> = ({

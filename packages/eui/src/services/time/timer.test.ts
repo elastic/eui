@@ -14,14 +14,14 @@ describe('Timer', () => {
       const callbackSpy = jest.fn();
       new Timer(callbackSpy, 5);
       setTimeout(() => {
-        expect(callbackSpy).toBeCalled();
+        expect(callbackSpy).toHaveBeenCalled();
         done();
       }, 8);
     });
     test('creates no timeout for Infinity value', (done) => {
       const callbackSpy = jest.fn();
       new Timer(callbackSpy, Infinity);
-      expect(callbackSpy).not.toBeCalled();
+      expect(callbackSpy).not.toHaveBeenCalled();
       done();
     });
   });
@@ -33,7 +33,7 @@ describe('Timer', () => {
       timer.pause();
 
       setTimeout(() => {
-        expect(callbackSpy).not.toBeCalled();
+        expect(callbackSpy).not.toHaveBeenCalled();
         done();
       }, 8);
     });
@@ -47,7 +47,7 @@ describe('Timer', () => {
       timer.resume();
 
       setTimeout(() => {
-        expect(callbackSpy).toBeCalled();
+        expect(callbackSpy).toHaveBeenCalled();
         done();
       }, 8);
     });
@@ -60,7 +60,7 @@ describe('Timer', () => {
       timer.clear();
 
       setTimeout(() => {
-        expect(callbackSpy).not.toBeCalled();
+        expect(callbackSpy).not.toHaveBeenCalled();
         done();
       }, 8);
     });
@@ -71,7 +71,7 @@ describe('Timer', () => {
       const callbackSpy = jest.fn();
       const timer = new Timer(callbackSpy, 5);
       timer.finish();
-      expect(callbackSpy).toBeCalled();
+      expect(callbackSpy).toHaveBeenCalled();
     });
   });
 });

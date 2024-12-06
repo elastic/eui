@@ -6,12 +6,13 @@
  * Side Public License, v 1.
  */
 
-import React, { ReactChild } from 'react';
+import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { LOKI_SELECTORS } from '../../../.storybook/loki';
 import { EuiI18nNumber, EuiI18nNumberProps } from './i18n_number';
 import { EuiText } from '../text';
+import { ReactChild } from '../common';
 
 const meta: Meta<EuiI18nNumberProps> = {
   title: 'Utilities/EuiI18nNumber',
