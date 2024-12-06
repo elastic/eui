@@ -79,7 +79,7 @@ export type _EuiThemeBrandTextColors = {
 export type _EuiThemeShadeColors = {
   /**
    * Used as the background color of primary **page content and panels** including modals and flyouts.
-   * @deprecated - use `white`
+   * @deprecated - use specific semantic color tokens instead
    */
   emptyShade: ColorModeSwitch;
   /**
@@ -109,7 +109,7 @@ export type _EuiThemeShadeColors = {
   darkestShade: ColorModeSwitch;
   /**
    * The opposite of `emptyShade`
-   * @deprecated - use`black`
+   * @deprecated - use specific semantic color tokens instead
    */
   fullShade: ColorModeSwitch;
 };
