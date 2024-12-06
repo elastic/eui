@@ -20,6 +20,7 @@ import {
   euiCanAnimate,
   euiFontSize,
 } from '../../global_styling';
+import { highContrastModeStyles } from '../../global_styling/functions/high_contrast';
 import { euiButtonColor } from '../../themes/amsterdam/global_styling/mixins';
 
 // There are multiple components that only need the form max-width size &
@@ -107,7 +108,6 @@ export const euiFormVariables = (euiThemeContext: UseEuiTheme) => {
 };
 
 export const euiFormControlStyles = (euiThemeContext: UseEuiTheme) => {
-  const { highContrastMode } = euiThemeContext;
   const form = euiFormVariables(euiThemeContext);
 
   return {
@@ -147,7 +147,10 @@ export const euiFormControlStyles = (euiThemeContext: UseEuiTheme) => {
     // In group
     inGroup: `
       ${logicalCSS('height', '100%')}
-      ${highContrastMode ? 'border: none' : 'box-shadow: none'};
+      ${highContrastModeStyles(euiThemeContext, {
+        none: 'box-shadow: none;',
+        preferred: 'border: none;',
+      })}
       border-radius: 0;
     `,
 
@@ -201,41 +204,44 @@ export const euiFormControlDefaultShadow = (
     withBackgroundAnimation?: boolean;
   } = {}
 ) => {
-  const { euiTheme, highContrastMode } = euiThemeContext;
+  const { euiTheme } = euiThemeContext;
   const form = euiFormVariables(euiThemeContext);
 
-  // We use inset box-shadow instead of border to skip extra height calculations
-  const border = !highContrastMode
-    ? `
-    border: none;
-    box-shadow: inset 0 0 0 ${euiTheme.border.width.thin} ${form.borderColor};
-  `.trim()
-    : // In high contrast mode, this doesn't matter - we need to prioritize visibility
-      `border: ${euiTheme.border.width.thin} solid ${euiTheme.border.color};`;
+  const border = highContrastModeStyles(euiThemeContext, {
+    // We use inset box-shadow instead of border to skip extra height calculations
+    none: `
+      border: none;
+      box-shadow: inset 0 0 0 ${euiTheme.border.width.thin} ${form.borderColor};
+    `,
+    // In high contrast mode, this doesn't matter - we need to prioritize visibility
+    preferred: `
+      border: ${euiTheme.border.width.thin} solid ${euiTheme.border.color};
+    `,
+  });
 
   const backgroundColor = `
     background-color: ${form.backgroundColor};
   `.trim();
 
-  const backgroundGradient =
+  const backgroundGradient = highContrastModeStyles(euiThemeContext, {
+    none: `
+      background-repeat: no-repeat;
+      background-size: 0% 100%;
+      background-image: linear-gradient(to top,
+        var(--euiFormControlStateColor),
+        var(--euiFormControlStateColor) ${form.stateUnderlineHeight},
+        transparent ${form.stateUnderlineHeight},
+        transparent 100%
+      );
+    `,
     // Windows high contrast mode overrides/hides background gradients - we'll need another approach
-    highContrastMode !== 'forced'
-      ? `
-    background-repeat: no-repeat;
-    background-size: 0% 100%;
-    background-image: linear-gradient(to top,
-      var(--euiFormControlStateColor),
-      var(--euiFormControlStateColor) ${form.stateUnderlineHeight},
-      transparent ${form.stateUnderlineHeight},
-      transparent 100%
-    );
-  `.trim()
-      : `
-    background-repeat: no-repeat;
-    background-size: 0% ${form.stateUnderlineHeight};
-    background-position: bottom left;
-    background-origin: border-box;
-  `.trim();
+    forced: `
+      background-repeat: no-repeat;
+      background-size: 0% ${form.stateUnderlineHeight};
+      background-position: bottom left;
+      background-origin: border-box;
+    `,
+  });
 
   const backgroundAnimation = `
     ${euiCanAnimate} {
@@ -298,7 +304,6 @@ export const euiFormControlDisabledStyles = (euiThemeContext: UseEuiTheme) => {
 
 export const euiFormControlReadOnlyStyles = (euiThemeContext: UseEuiTheme) => {
   const form = euiFormVariables(euiThemeContext);
-  const { highContrastMode } = euiThemeContext;
 
   return `
     cursor: default;
@@ -307,7 +312,9 @@ export const euiFormControlReadOnlyStyles = (euiThemeContext: UseEuiTheme) => {
 
     background-color: ${form.backgroundReadOnlyColor};
     --euiFormControlStateColor: transparent;
-    ${highContrastMode === 'forced' ? 'background-image: none;' : ''}
+    ${highContrastModeStyles(euiThemeContext, {
+      forced: 'background-image: none;',
+    })}
   `;
 };
 

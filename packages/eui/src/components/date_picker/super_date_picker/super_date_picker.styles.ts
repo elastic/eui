@@ -20,6 +20,7 @@ import {
   logicalCSS,
   mathWithUnits,
 } from '../../../global_styling';
+import { highContrastModeStyles } from '../../../global_styling/functions/high_contrast';
 import {
   euiFormVariables,
   euiFormControlDefaultShadow,
@@ -29,7 +30,7 @@ import {
 } from '../../form/form.styles';
 
 export const euiSuperDatePickerStyles = (euiThemeContext: UseEuiTheme) => {
-  const { euiTheme, colorMode, highContrastMode } = euiThemeContext;
+  const { euiTheme, colorMode } = euiThemeContext;
   const forms = euiFormVariables(euiThemeContext);
 
   const inputWidth = euiTheme.base * 30;
@@ -142,7 +143,10 @@ export const euiSuperDatePickerStyles = (euiThemeContext: UseEuiTheme) => {
       euiSuperDatePicker__formControlLayout: css`
         .euiFormControlLayout__childrenWrapper {
           ${euiFormControlDefaultShadow(euiThemeContext)}
-          ${highContrastMode ? 'border: none' : 'box-shadow: none'};
+          ${highContrastModeStyles(euiThemeContext, {
+            none: 'box-shadow: none;',
+            preferred: 'border: none;',
+          })}
         }
       `,
       default: css`
@@ -207,15 +211,16 @@ export const euiSuperDatePickerStyles = (euiThemeContext: UseEuiTheme) => {
           )}
         }
 
-        ${highContrastMode === 'forced'
-          ? // Force the fill color of all icons/svgs to give a bit more indication of state,
-            // since Windows high contrast themes otherwise override background/text color
-            `
-          svg,
-          & + * svg {
-            fill: ${euiTheme.colors.success};
-          }`
-          : ''}
+        ${highContrastModeStyles(euiThemeContext, {
+          // Force the fill color of all icons/svgs to give a bit more indication of state,
+          // since Windows high contrast themes otherwise override background/text color
+          forced: `
+            svg,
+            & + * svg {
+              fill: ${euiTheme.colors.success};
+            }
+          `,
+        })}
       `,
     },
   };
