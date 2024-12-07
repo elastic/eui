@@ -54,6 +54,13 @@ export const euiDatePickerVariables = (euiThemeContext: UseEuiTheme) => {
     },
 
     colors: {
+      day: {
+        inMonth: euiTheme.colors.title,
+        outsideMonth: euiTheme.colors.subduedText,
+        header: euiTheme.colors.subduedText,
+        today: euiTheme.colors.primary,
+      },
+
       hover: unsetHighContrastBorder(
         euiButtonColor(euiThemeContext, 'primary')
       ),
@@ -88,6 +95,8 @@ export const euiDatePickerVariables = (euiThemeContext: UseEuiTheme) => {
 
       highlighted: euiButtonColor(euiThemeContext, 'success'),
     },
+
+    animationSpeed: euiTheme.animation.fast,
   };
 };
 type DatePickerVars = ReturnType<typeof euiDatePickerVariables>;
@@ -282,7 +291,7 @@ const _monthYearDropdowns = (
 
 const _dayCalendarStyles = (
   euiThemeContext: UseEuiTheme,
-  { gapSize, colors }: DatePickerVars
+  { gapSize, colors, animationSpeed }: DatePickerVars
 ) => {
   const { euiTheme } = euiThemeContext;
 
@@ -290,15 +299,13 @@ const _dayCalendarStyles = (
   const dayMargin = mathWithUnits(gapSize, (x) => x / 2);
   const rangeMarginOffset = mathWithUnits(dayMargin, (x) => x * 1.5);
 
-  const animationSpeed = euiTheme.animation.fast;
-
   return css`
     .react-datepicker__day-names,
     .react-datepicker__week {
       display: flex;
       justify-content: space-between;
       flex-grow: 1;
-      color: ${euiTheme.colors.subduedText};
+      color: ${colors.day.header};
     }
 
     .react-datepicker__day-name,
@@ -312,7 +319,7 @@ const _dayCalendarStyles = (
     }
 
     .react-datepicker__day {
-      color: ${euiTheme.colors.title};
+      color: ${colors.day.inMonth};
       border-radius: ${euiTheme.border.radius.small};
 
       ${euiCanAnimate} {
@@ -332,12 +339,12 @@ const _dayCalendarStyles = (
       }
 
       &--today {
-        color: ${euiTheme.colors.primary};
+        color: ${colors.day.today};
         font-weight: ${euiTheme.font.weight.bold};
       }
 
       &--outside-month {
-        color: ${euiTheme.colors.subduedText};
+        color: ${colors.day.outsideMonth};
       }
 
       &--highlighted,
@@ -382,6 +389,7 @@ const _dayCalendarStyles = (
           &--in-range:not(&--selected) {
             position: relative;
             transform: none;
+
             &::before {
               content: '';
               position: absolute;
@@ -439,7 +447,7 @@ const _dayCalendarStyles = (
 
 const _timeSelectStyles = (
   euiThemeContext: UseEuiTheme,
-  { gapSize, colors }: DatePickerVars
+  { gapSize, colors, animationSpeed }: DatePickerVars
 ) => {
   const { euiTheme } = euiThemeContext;
 
@@ -522,7 +530,7 @@ const _timeSelectStyles = (
       }
 
       ${euiCanAnimate} {
-        transition: background-color ${euiTheme.animation.fast} ease-in;
+        transition: background-color ${animationSpeed} ease-in;
       }
     }
 
