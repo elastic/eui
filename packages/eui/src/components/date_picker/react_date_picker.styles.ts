@@ -8,9 +8,6 @@
 
 // Needs to use vanilla `css` to pass a className directly to react-datepicker
 import { css } from '@emotion/css';
-// Emotion can handle serializing objects passed directly to css``, but not objs nested
-// in another function util, so we need to serialize some style objects manually
-import { serializeStyles } from '@emotion/serialize';
 
 import { UseEuiTheme } from '../../services';
 import {
@@ -37,6 +34,10 @@ import {
 
 export const euiDatePickerVariables = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme, highContrastMode } = euiThemeContext;
+  const unsetHighContrastBorder = <T extends object>(styles: T) => ({
+    ...styles,
+    border: undefined,
+  });
 
   return {
     gapSize: euiTheme.size.xs,
@@ -53,6 +54,21 @@ export const euiDatePickerVariables = (euiThemeContext: UseEuiTheme) => {
     },
 
     colors: {
+      hover: unsetHighContrastBorder(
+        euiButtonColor(euiThemeContext, 'primary')
+      ),
+      disabled: unsetHighContrastBorder(
+        euiButtonColor(euiThemeContext, 'disabled')
+      ),
+
+      get inRange() {
+        return this.hover;
+      },
+      inRangeAndDisabled: {
+        backgroundColor: euiButtonEmptyColor(euiThemeContext, 'primary')
+          .backgroundColor,
+      },
+
       selected:
         highContrastMode !== 'forced'
           ? euiButtonFillColor(euiThemeContext, 'primary')
@@ -69,6 +85,8 @@ export const euiDatePickerVariables = (euiThemeContext: UseEuiTheme) => {
               backgroundColor: euiTheme.colors.emptyShade,
               border: `${euiTheme.border.width.thin} solid ${euiTheme.colors.dangerText};`,
             },
+
+      highlighted: euiButtonColor(euiThemeContext, 'success'),
     },
   };
 };
@@ -246,7 +264,7 @@ const _monthYearDropdowns = (
       }
 
       &--preselected {
-        background-color: ${euiTheme.focus.backgroundColor};
+        ${colors.hover}
       }
 
       &--selected_year,
@@ -270,10 +288,6 @@ const _dayCalendarStyles = (
 
   const daySize = euiTheme.size.xl;
   const dayMargin = mathWithUnits(gapSize, (x) => x / 2);
-  const rangeBackgroundColor = euiButtonColor(
-    euiThemeContext,
-    'primary'
-  ).backgroundColor;
   const rangeMarginOffset = mathWithUnits(dayMargin, (x) => x * 1.5);
 
   const animationSpeed = euiTheme.animation.fast;
@@ -307,7 +321,7 @@ const _dayCalendarStyles = (
       }
 
       &:hover {
-        ${euiButtonColor(euiThemeContext, 'primary')}
+        ${colors.hover}
         text-decoration: underline;
         cursor: pointer;
 
@@ -328,16 +342,12 @@ const _dayCalendarStyles = (
 
       &--highlighted,
       &--highlighted:hover {
-        ${highContrastModeStyles(euiThemeContext, {
-          none: serializeStyles([euiButtonColor(euiThemeContext, 'success')])
-            .styles,
-          forced: `border: ${euiTheme.border.thin};`,
-        })}
+        ${colors.highlighted}
       }
 
       &--in-range,
       &--in-range:hover {
-        ${euiButtonColor(euiThemeContext, 'primary')};
+        ${colors.inRange}
       }
 
       ${highContrastModeStyles(euiThemeContext, {
@@ -345,16 +355,16 @@ const _dayCalendarStyles = (
         // background to fill the gap between margins
         none: `
           &--in-range:not(&--selected):not(:hover):not(&--disabled) {
-            box-shadow: -${rangeMarginOffset} 0 ${rangeBackgroundColor},
-              ${rangeMarginOffset} 0 ${rangeBackgroundColor};
+            box-shadow: -${rangeMarginOffset} 0 ${colors.inRange.backgroundColor},
+              ${rangeMarginOffset} 0 ${colors.inRange.backgroundColor};
             border-radius: 0;
 
             &:first-child {
-              box-shadow: ${rangeMarginOffset} 0 ${rangeBackgroundColor};
+              box-shadow: ${rangeMarginOffset} 0 ${colors.inRange.backgroundColor};
             }
 
             &:last-child {
-              box-shadow: -${rangeMarginOffset} 0 ${rangeBackgroundColor};
+              box-shadow: -${rangeMarginOffset} 0 ${colors.inRange.backgroundColor};
             }
           }
           /* Animate smoothly on hover */
@@ -399,10 +409,9 @@ const _dayCalendarStyles = (
 
       &--disabled,
       &--disabled:hover {
+        ${colors.disabled}
         ${highContrastModeStyles(euiThemeContext, {
-          none: serializeStyles([euiButtonColor(euiThemeContext, 'disabled')])
-            .styles,
-          forced: `opacity: 0.5;`,
+          forced: 'opacity: 0.5;',
         })}
         cursor: not-allowed;
         text-decoration: none;
@@ -412,8 +421,7 @@ const _dayCalendarStyles = (
       &--disabled.react-datepicker__day--in-range:not(&--selected) {
         &,
         &:hover {
-          background-color: ${euiButtonEmptyColor(euiThemeContext, 'primary')
-            .backgroundColor};
+          ${colors.inRangeAndDisabled}
         }
       }
 
@@ -490,13 +498,11 @@ const _timeSelectStyles = (
 
       &--disabled {
         cursor: not-allowed;
-        color: ${euiTheme.colors.disabledText};
+        color: ${colors.disabled.color};
       }
 
       &--injected {
-        ${highContrastMode !== 'forced'
-          ? euiButtonEmptyColor(euiThemeContext, 'success')
-          : `border: ${euiTheme.border.thin};`}
+        ${colors.highlighted}
       }
 
       &--selected {
@@ -505,9 +511,14 @@ const _timeSelectStyles = (
 
       /* closest current time but not selected (also applied when using arrow keys to indicate focus) */
       &--preselected {
-        ${highContrastMode !== 'forced'
-          ? `background-color: ${euiTheme.focus.backgroundColor};`
-          : `border: ${euiTheme.border.thin};`}
+        ${colors.hover}
+        ${highContrastModeStyles(euiThemeContext, {
+          // Use negative margins to offset the added border width
+          forced: `
+            border: ${euiTheme.border.thin};
+            margin-inline: -${euiTheme.border.width.thin};
+          `,
+        })}
       }
 
       ${euiCanAnimate} {
