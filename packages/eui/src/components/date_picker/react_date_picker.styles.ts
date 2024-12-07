@@ -19,6 +19,7 @@ import {
   euiFontSize,
   euiYScroll,
   logicalCSS,
+  logicalSizeCSS,
   mathWithUnits,
 } from '../../global_styling';
 import {
@@ -209,10 +210,11 @@ export const _monthYearDropdowns = (euiThemeContext: UseEuiTheme) => {
     .react-datepicker__year-option,
     .react-datepicker__month-option,
     .react-datepicker__month-year-option {
+      display: flex;
+      align-items: center;
+      ${logicalCSS('height', euiTheme.size.l)}
       ${logicalCSS('margin-vertical', euiTheme.size.xs)}
       ${logicalCSS('padding-horizontal', euiTheme.size.s)}
-      ${logicalCSS('height', euiTheme.size.l)}
-      line-height: ${euiTheme.size.l};
       font-size: ${euiFontSize(euiThemeContext, 's').fontSize};
       border-radius: ${euiTheme.border.radius.small};
       cursor: pointer;
@@ -263,12 +265,12 @@ export const _dayCalendarStyles = (euiThemeContext: UseEuiTheme) => {
 
     .react-datepicker__day-name,
     .react-datepicker__day {
-      display: inline-block;
-      ${logicalCSS('width', daySize)}
-      line-height: ${daySize};
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      ${logicalSizeCSS(daySize)}
       margin: ${dayMargin};
       font-weight: ${euiTheme.font.weight.medium};
-      text-align: center;
     }
 
     .react-datepicker__day {
@@ -450,14 +452,15 @@ export const _timeSelectStyles = (euiThemeContext: UseEuiTheme) => {
     }
 
     .react-datepicker__time-list-item {
-      ${logicalCSS('margin-horizontal', 'auto')};
-      ${logicalCSS('padding-horizontal', euiTheme.size.s)};
-      ${logicalCSS('height', euiTheme.size.l)}
-      line-height: ${euiTheme.size.l};
+      display: flex;
+      justify-content: align-center;
+      align-items: center;
+      ${logicalCSS('min-height', euiTheme.size.l)}
+      ${logicalCSS('margin-horizontal', 'auto')}
+      ${logicalCSS('padding-horizontal', euiTheme.size.s)}
       font-size: ${euiFontSize(euiThemeContext, 'xs').fontSize};
       font-weight: ${euiTheme.font.weight.medium};
       white-space: nowrap;
-      text-align: center;
       border-radius: ${euiTheme.border.radius.small};
 
       &:not(:disabled):hover {
