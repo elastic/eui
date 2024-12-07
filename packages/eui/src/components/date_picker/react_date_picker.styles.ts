@@ -22,10 +22,7 @@ import {
   logicalSizeCSS,
   mathWithUnits,
 } from '../../global_styling';
-import {
-  highContrastModeStyles,
-  preventForcedColors,
-} from '../../global_styling/functions/high_contrast';
+import { highContrastModeStyles } from '../../global_styling/functions/high_contrast';
 import {
   euiButtonColor,
   euiButtonEmptyColor,
@@ -38,7 +35,9 @@ import {
   euiFormControlDefaultShadow,
 } from '../form/form.styles';
 
-export const euiDatePickerVariables = ({ euiTheme }: UseEuiTheme) => {
+export const euiDatePickerVariables = (euiThemeContext: UseEuiTheme) => {
+  const { euiTheme, highContrastMode } = euiThemeContext;
+
   return {
     gapSize: euiTheme.size.xs,
     get paddingSize() {
@@ -52,13 +51,33 @@ export const euiDatePickerVariables = ({ euiTheme }: UseEuiTheme) => {
         (x, y) => x + y
       );
     },
+
+    colors: {
+      selected:
+        highContrastMode !== 'forced'
+          ? euiButtonFillColor(euiThemeContext, 'primary')
+          : {
+              color: euiTheme.colors.emptyShade,
+              backgroundColor: euiTheme.colors.fullShade,
+              forcedColorAdjust: 'none',
+            },
+      selectedAndDisabled:
+        highContrastMode !== 'forced'
+          ? euiButtonColor(euiThemeContext, 'danger')
+          : {
+              color: euiTheme.colors.dangerText,
+              backgroundColor: euiTheme.colors.emptyShade,
+              border: `${euiTheme.border.width.thin} solid ${euiTheme.colors.dangerText};`,
+            },
+    },
   };
 };
+type DatePickerVars = ReturnType<typeof euiDatePickerVariables>;
 
 export const euiReactDatePickerStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
-  const { gapSize, paddingSize, headerOffset } =
-    euiDatePickerVariables(euiThemeContext);
+  const datePickerVars = euiDatePickerVariables(euiThemeContext);
+  const { gapSize, paddingSize, headerOffset } = datePickerVars;
 
   return {
     euiReactDatePicker: css`
@@ -145,14 +164,17 @@ export const euiReactDatePickerStyles = (euiThemeContext: UseEuiTheme) => {
         }
       }
 
-      ${_monthYearDropdowns(euiThemeContext)}
-      ${_dayCalendarStyles(euiThemeContext)}
-      ${_timeSelectStyles(euiThemeContext)}
+      ${_monthYearDropdowns(euiThemeContext, datePickerVars)}
+      ${_dayCalendarStyles(euiThemeContext, datePickerVars)}
+      ${_timeSelectStyles(euiThemeContext, datePickerVars)}
     `,
   };
 };
 
-export const _monthYearDropdowns = (euiThemeContext: UseEuiTheme) => {
+const _monthYearDropdowns = (
+  euiThemeContext: UseEuiTheme,
+  { colors }: DatePickerVars
+) => {
   const { euiTheme } = euiThemeContext;
   const formStyles = euiFormControlStyles(euiThemeContext);
 
@@ -229,7 +251,7 @@ export const _monthYearDropdowns = (euiThemeContext: UseEuiTheme) => {
 
       &--selected_year,
       &--selected_month {
-        ${_highContrastSelected(euiThemeContext)}
+        ${colors.selected}
       }
 
       /* Hide checkmark next to selected option */
@@ -240,9 +262,11 @@ export const _monthYearDropdowns = (euiThemeContext: UseEuiTheme) => {
   `;
 };
 
-export const _dayCalendarStyles = (euiThemeContext: UseEuiTheme) => {
+const _dayCalendarStyles = (
+  euiThemeContext: UseEuiTheme,
+  { gapSize, colors }: DatePickerVars
+) => {
   const { euiTheme } = euiThemeContext;
-  const { gapSize } = euiDatePickerVariables(euiThemeContext);
 
   const daySize = euiTheme.size.xl;
   const dayMargin = mathWithUnits(gapSize, (x) => x / 2);
@@ -370,7 +394,7 @@ export const _dayCalendarStyles = (euiThemeContext: UseEuiTheme) => {
       &--selected:hover,
       &--in-selecting-range,
       &--in-selecting-range:hover {
-        ${_highContrastSelected(euiThemeContext)}
+        ${colors.selected}
       }
 
       &--disabled,
@@ -396,24 +420,20 @@ export const _dayCalendarStyles = (euiThemeContext: UseEuiTheme) => {
       &--in-selecting-range:not(&--in-range),
       &--disabled.react-datepicker__day--selected,
       &--disabled.react-datepicker__day--selected:hover {
+        ${colors.selectedAndDisabled}
         ${highContrastModeStyles(euiThemeContext, {
-          none: serializeStyles([euiButtonColor(euiThemeContext, 'danger')])
-            .styles,
-          forced: `
-            color: ${euiTheme.colors.dangerText};
-            border: ${euiTheme.border.width.thin} solid ${euiTheme.colors.dangerText};
-            background-color: ${euiTheme.colors.emptyShade};
-            opacity: 1;
-          `,
+          forced: 'opacity: 1;',
         })}
       }
     }
   `;
 };
 
-export const _timeSelectStyles = (euiThemeContext: UseEuiTheme) => {
-  const { euiTheme, highContrastMode } = euiThemeContext;
-  const { gapSize } = euiDatePickerVariables(euiThemeContext);
+const _timeSelectStyles = (
+  euiThemeContext: UseEuiTheme,
+  { gapSize, colors }: DatePickerVars
+) => {
+  const { euiTheme } = euiThemeContext;
 
   return css`
     .react-datepicker__time-container {
@@ -480,7 +500,7 @@ export const _timeSelectStyles = (euiThemeContext: UseEuiTheme) => {
       }
 
       &--selected {
-        ${_highContrastSelected(euiThemeContext)}
+        ${colors.selected}
       }
 
       /* closest current time but not selected (also applied when using arrow keys to indicate focus) */
@@ -515,15 +535,4 @@ export const _timeSelectStyles = (euiThemeContext: UseEuiTheme) => {
       }
     }
   `;
-};
-
-const _highContrastSelected = (euiThemeContext: UseEuiTheme) => {
-  const { highContrastMode, euiTheme } = euiThemeContext;
-  return highContrastMode !== 'forced'
-    ? euiButtonFillColor(euiThemeContext, 'primary')
-    : `
-        background-color: ${euiTheme.colors.fullShade};
-        color: ${euiTheme.colors.emptyShade};
-        ${preventForcedColors(euiThemeContext)}
-      `;
 };
