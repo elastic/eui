@@ -8,19 +8,15 @@ exports[`EuiTimelineItem is rendered 1`] = `
     class="emotion-euiTimelineItemIcon-center"
   >
     <div
-      class="emotion-euiTimelineItemIcon__content"
+      aria-label=""
+      class="euiAvatar euiAvatar--m euiAvatar--user emotion-euiAvatar-user-m-uppercase-subdued"
+      role="img"
+      title=""
     >
-      <div
-        aria-label=""
-        class="euiAvatar euiAvatar--m euiAvatar--user emotion-euiAvatar-user-m-uppercase-subdued"
-        role="img"
-        title=""
-      >
-        <span
-          class="euiAvatar__icon"
-          data-euiicon-type="dot"
-        />
-      </div>
+      <span
+        class="euiAvatar__icon"
+        data-euiicon-type="dot"
+      />
     </div>
   </div>
   <div
@@ -41,19 +37,15 @@ exports[`EuiTimelineItem props EuiAvatar is passed as an icon 1`] = `
     class="emotion-euiTimelineItemIcon-center"
   >
     <div
-      class="emotion-euiTimelineItemIcon__content"
+      aria-label="dot"
+      class="euiAvatar euiAvatar--m euiAvatar--user emotion-euiAvatar-user-m-uppercase-subdued"
+      role="img"
+      title="dot"
     >
-      <div
-        aria-label="dot"
-        class="euiAvatar euiAvatar--m euiAvatar--user emotion-euiAvatar-user-m-uppercase-subdued"
-        role="img"
-        title="dot"
-      >
-        <span
-          class="euiAvatar__icon"
-          data-euiicon-type="dot"
-        />
-      </div>
+      <span
+        class="euiAvatar__icon"
+        data-euiicon-type="dot"
+      />
     </div>
   </div>
   <div
@@ -74,19 +66,15 @@ exports[`EuiTimelineItem props iconAriaLabel is rendered 1`] = `
     class="emotion-euiTimelineItemIcon-center"
   >
     <div
-      class="emotion-euiTimelineItemIcon__content"
+      aria-label="icon aria label"
+      class="euiAvatar euiAvatar--m euiAvatar--user emotion-euiAvatar-user-m-uppercase-subdued"
+      role="img"
+      title="icon aria label"
     >
-      <div
-        aria-label="icon aria label"
-        class="euiAvatar euiAvatar--m euiAvatar--user emotion-euiAvatar-user-m-uppercase-subdued"
-        role="img"
-        title="icon aria label"
-      >
-        <span
-          class="euiAvatar__icon"
-          data-euiicon-type="dot"
-        />
-      </div>
+      <span
+        class="euiAvatar__icon"
+        data-euiicon-type="dot"
+      />
     </div>
   </div>
   <div
@@ -107,19 +95,15 @@ exports[`EuiTimelineItem props verticalAlign center is rendered 1`] = `
     class="emotion-euiTimelineItemIcon-center"
   >
     <div
-      class="emotion-euiTimelineItemIcon__content"
+      aria-label=""
+      class="euiAvatar euiAvatar--m euiAvatar--user emotion-euiAvatar-user-m-uppercase-subdued"
+      role="img"
+      title=""
     >
-      <div
-        aria-label=""
-        class="euiAvatar euiAvatar--m euiAvatar--user emotion-euiAvatar-user-m-uppercase-subdued"
-        role="img"
-        title=""
-      >
-        <span
-          class="euiAvatar__icon"
-          data-euiicon-type="dot"
-        />
-      </div>
+      <span
+        class="euiAvatar__icon"
+        data-euiicon-type="dot"
+      />
     </div>
   </div>
   <div
@@ -140,19 +124,15 @@ exports[`EuiTimelineItem props verticalAlign top is rendered 1`] = `
     class="emotion-euiTimelineItemIcon-top"
   >
     <div
-      class="emotion-euiTimelineItemIcon__content"
+      aria-label=""
+      class="euiAvatar euiAvatar--m euiAvatar--user emotion-euiAvatar-user-m-uppercase-subdued"
+      role="img"
+      title=""
     >
-      <div
-        aria-label=""
-        class="euiAvatar euiAvatar--m euiAvatar--user emotion-euiAvatar-user-m-uppercase-subdued"
-        role="img"
-        title=""
-      >
-        <span
-          class="euiAvatar__icon"
-          data-euiicon-type="dot"
-        />
-      </div>
+      <span
+        class="euiAvatar__icon"
+        data-euiicon-type="dot"
+      />
     </div>
   </div>
   <div
