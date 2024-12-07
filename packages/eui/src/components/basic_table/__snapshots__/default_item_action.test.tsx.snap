@@ -1,51 +1,59 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`DefaultItemAction renders an EuiButtonEmpty when \`type="button" 1`] = `
-<span
-  class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
+<div
+  class="undefined icon-wrapper css-1j3nbwz-isDisabled"
 >
-  <button
-    class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-s-empty-primary-flush-right"
-    type="button"
-  >
-    <span
-      class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
-    >
-      <span
-        class="eui-textTruncate euiButtonEmpty__text"
-      >
-        action1
-      </span>
-    </span>
-  </button>
-</span>
-`;
-
-exports[`DefaultItemAction renders an EuiButtonIcon with screen reader text when \`type="icon"\` 1`] = `
-<div>
   <span
     class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
   >
     <button
-      aria-labelledby="generated-id"
-      class="euiButtonIcon emotion-euiButtonIcon-xs-empty-primary"
+      class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-s-empty-primary-flush-right"
       type="button"
     >
       <span
-        aria-hidden="true"
-        class="euiButtonIcon__icon"
-        color="inherit"
-        data-euiicon-type="trash"
-      />
+        class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
+      >
+        <span
+          class="eui-textTruncate euiButtonEmpty__text"
+        >
+          action1
+        </span>
+      </span>
     </button>
   </span>
-  <span
-    class="emotion-euiScreenReaderOnly"
-    id="generated-id"
+</div>
+`;
+
+exports[`DefaultItemAction renders an EuiButtonIcon with screen reader text when \`type="icon"\` 1`] = `
+<div>
+  <div
+    class="undefined icon-wrapper css-1j3nbwz-isDisabled"
   >
-    <span>
-      action1
+    <span
+      class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
+    >
+      <button
+        aria-labelledby="generated-id"
+        class="euiButtonIcon emotion-euiButtonIcon-xs-empty-primary"
+        type="button"
+      >
+        <span
+          aria-hidden="true"
+          class="euiButtonIcon__icon"
+          color="inherit"
+          data-euiicon-type="trash"
+        />
+      </button>
     </span>
-  </span>
+    <span
+      class="emotion-euiScreenReaderOnly"
+      id="generated-id"
+    >
+      <span>
+        action1
+      </span>
+    </span>
+  </div>
 </div>
 `;
