@@ -72,9 +72,12 @@ const component_colors: _EuiThemeComponentColors = {
   collapsibleNavGroupBackgroundDark:
     dark_background_colors.backgroundBaseSubdued,
 
+  dataGridBorderColor: border_colors.borderBasePlain,
   dataGridVerticalLineBorderColor: border_colors.borderBasePlain,
   dataGridRowBackgroundStriped: background_colors.backgroundBaseSubdued,
   dataGridRowBackgroundHover: background_colors.backgroundBaseInteractiveHover,
+  dataGridRowBackgroundSelect:
+    background_colors.backgroundBaseInteractiveSelect,
 
   dragDropDraggingBackground: background_colors.backgroundBaseSuccess,
   dragDropDraggingOverBackground: background_colors.backgroundLightSuccess,
@@ -207,6 +210,8 @@ export const components: _EuiThemeComponents = {
     dataGridRowBackgroundStriped: dark_background_colors.backgroundBaseSubdued,
     dataGridRowBackgroundHover:
       dark_background_colors.backgroundBaseInteractiveHover,
+    dataGridRowBackgroundSelect:
+      dark_background_colors.backgroundBaseInteractiveSelect,
 
     dragDropDraggingBackground: dark_background_colors.backgroundBaseSuccess,
     dragDropDraggingOverBackground:

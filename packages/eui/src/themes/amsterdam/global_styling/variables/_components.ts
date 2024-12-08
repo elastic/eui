@@ -152,6 +152,7 @@ const component_colors: _EuiThemeComponentColors = {
     ['colors.darkestShade']
   ),
 
+  dataGridBorderColor: computed(([color]) => color, ['border.color']),
   dataGridVerticalLineBorderColor: computed(
     ([color]) => tint(color, 0.3),
     ['border.color']
@@ -161,6 +162,10 @@ const component_colors: _EuiThemeComponentColors = {
     ['colors.lightestShade']
   ),
   dataGridRowBackgroundHover: computed(
+    ([highlight]) => highlight,
+    ['colors.highlight']
+  ),
+  dataGridRowBackgroundSelect: computed(
     ([highlight]) => highlight,
     ['colors.highlight']
   ),

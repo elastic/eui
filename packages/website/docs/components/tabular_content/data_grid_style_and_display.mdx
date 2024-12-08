@@ -146,7 +146,7 @@ import React, {
   useState,
   useMemo,
 } from 'react';
-import { EuiDataGrid, EuiCheckbox, EuiButtonEmpty } from '@elastic/eui';
+import { EuiDataGrid, EuiCheckbox, EuiButtonEmpty, useEuiTheme } from '@elastic/eui';
 import { faker } from '@faker-js/faker';
 
 /**
@@ -256,6 +256,8 @@ const leadingControlColumns = [
  * Data grid
  */
 export default () => {
+  const { euiTheme } = useEuiTheme();
+
   const [visibleColumns, setVisibleColumns] = useState(
     columns.map(({ id }) => id)
   );
@@ -300,6 +302,24 @@ export default () => {
           additionalControls: <SelectionButton />,
         }}
         gridStyle={{ rowClasses, rowHover: 'none' }}
+        css={{
+            '--datagridRow-stripeColor': euiTheme.colors.lightShade,
+            '.euiDataGridRow--rowClassesDemoSelected': {
+              backgroundColor: euiTheme.components.dataGridRowBackgroundSelect,
+            },
+            '.euiDataGridRow--rowClassesDemo': {
+              backgroundImage: `linear-gradient(135deg,
+                ${euiTheme.colors.emptyShade} 41.67%,
+                var(--datagridRow-stripeColor) 41.67%,
+                var(--datagridRow-stripeColor) 50%,
+                ${euiTheme.colors.emptyShade} 50%,
+                ${euiTheme.colors.emptyShade} 91.67%,
+                var(--datagridRow-stripeColor) 91.67%,
+                var(--datagridRow-stripeColor) 100%
+              )`,
+              backgroundSize: '8.49px 8.49px',
+            }
+        }}
       />
     </SelectionContext.Provider>
   );

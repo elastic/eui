@@ -51,9 +51,11 @@ export type _EuiThemeComponentColors = {
   collapsibleNavGroupBackground: ColorModeSwitch;
   collapsibleNavGroupBackgroundDark: ColorModeSwitch;
 
+  dataGridBorderColor: ColorModeSwitch;
   dataGridVerticalLineBorderColor: ColorModeSwitch;
   dataGridRowBackgroundStriped: ColorModeSwitch;
   dataGridRowBackgroundHover: ColorModeSwitch;
+  dataGridRowBackgroundSelect: ColorModeSwitch;
 
   dragDropDraggingBackground: ColorModeSwitch;
   dragDropDraggingOverBackground: ColorModeSwitch;
