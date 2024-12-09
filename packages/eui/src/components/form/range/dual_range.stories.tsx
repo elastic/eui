@@ -9,6 +9,7 @@
 import React, { useEffect, useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 
+import { LOKI_SELECTORS } from '../../../../.storybook/loki';
 import {
   enableFunctionToggleControls,
   moveStorybookControlsToCategory,
@@ -43,7 +44,7 @@ const meta: Meta<EuiDualRangeProps> = {
     },
     showInput: {
       control: 'radio',
-      options: [true, false, 'inputWithPopover'],
+      options: [false, true, 'inputWithPopover'],
     },
     inputPopoverProps: {
       if: { arg: 'showInput', eq: 'inputWithPopover' },
@@ -70,7 +71,6 @@ const meta: Meta<EuiDualRangeProps> = {
     minInputProps: {},
     maxInputProps: {},
     inputPopoverProps: {},
-    ticks: [],
   },
 };
 moveStorybookControlsToCategory<EuiDualRangeProps>(
@@ -152,31 +152,6 @@ export const Input: Story = {
   render: (args) => <StatefulPlayground {...args} />,
 };
 
-export const InputWithPopover: Story = {
-  parameters: {
-    controls: {
-      include: [
-        'showInput',
-        'append',
-        'prepend',
-        'inputPopoverProps',
-        'isInvalid',
-        'isLoading',
-        'max',
-        'min',
-        'value',
-        'minInputProps',
-        'maxInputProps',
-      ],
-    },
-  },
-  args: {
-    value: [25, 50],
-    showInput: 'inputWithPopover',
-  },
-  render: (args) => <StatefulPlayground {...args} />,
-};
-
 export const Levels: Story = {
   parameters: {
     controls: {
@@ -207,7 +182,7 @@ const StatefulPlayground = ({
     }
   }, [value]);
 
-  const handelOnChange = (
+  const handleOnChange = (
     values: EuiDualRangeProps['value'],
     isValid: boolean,
     e?: _DualRangeChangeEvent
@@ -216,5 +191,41 @@ const StatefulPlayground = ({
     onChange?.(values, isValid, e);
   };
 
-  return <EuiDualRange value={values} onChange={handelOnChange} {...rest} />;
+  return <EuiDualRange value={values} onChange={handleOnChange} {...rest} />;
+};
+
+/**
+ * VRT only
+ */
+
+export const InputWithPopover: Story = {
+  tags: ['vrt-only'],
+  parameters: {
+    loki: { chromeSelector: LOKI_SELECTORS.portal },
+  },
+  args: {
+    showInput: 'inputWithPopover',
+    min: 0,
+    max: 100,
+    value: [10, 80],
+    // Should render ticks, levels, highlights, and tooltips in their correct positions
+    showLabels: true,
+    showTicks: true,
+    ticks: [
+      { label: '20kb', value: 20 },
+      { label: '100kb', value: 100 },
+    ],
+    levels: [
+      { min: 0, max: 20, color: 'danger' },
+      { min: 20, max: 100, color: 'success' },
+    ],
+  },
+  // Force input popover open via programmatic ref
+  render: function Render(args) {
+    const [ref, setRef] = useState<any>();
+    useEffect(() => {
+      ref?.onInputFocus();
+    }, [ref]);
+    return <EuiDualRange {...args} ref={setRef} />;
+  },
 };
