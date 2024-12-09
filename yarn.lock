@@ -4650,7 +4650,7 @@ __metadata:
     "@docusaurus/types": "npm:^3.5.2"
     "@elastic/charts": "npm:^68.0.2"
     "@elastic/datemath": "npm:^5.0.3"
-    "@elastic/eui": "npm:97.2.0"
+    "@elastic/eui": "workspace:^"
     "@elastic/eui-docgen": "workspace:^"
     "@elastic/eui-docusaurus-theme": "workspace:^"
     "@emotion/css": "npm:^11.11.2"
@@ -4727,7 +4727,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@elastic/eui@workspace:packages/eui":
+"@elastic/eui@workspace:^, @elastic/eui@workspace:packages/eui":
   version: 0.0.0-use.local
   resolution: "@elastic/eui@workspace:packages/eui"
   dependencies:
