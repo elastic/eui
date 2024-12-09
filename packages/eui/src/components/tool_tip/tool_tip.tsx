@@ -17,6 +17,7 @@ import classNames from 'classnames';
 
 import { CommonProps } from '../common';
 import { findPopoverPosition, htmlIdGenerator, keys } from '../../services';
+import { type EuiPopoverPosition } from '../../services/popover';
 import { enqueueStateChange } from '../../services/react';
 import { EuiResizeObserver } from '../observer/resize_observer';
 import { EuiPortal } from '../portal';
@@ -117,7 +118,7 @@ interface State {
   hasFocus: boolean;
   calculatedPosition: ToolTipPositions;
   toolTipStyles: ToolTipStyles;
-  arrowStyles: undefined | { left: number; top: number };
+  arrowStyles?: Record<EuiPopoverPosition, number | string>;
   id: string;
 }
 
