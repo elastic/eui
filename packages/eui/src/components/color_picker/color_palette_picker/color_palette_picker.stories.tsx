@@ -16,7 +16,6 @@ import {
   EuiColorPalettePicker,
   EuiColorPalettePickerProps,
 } from './color_palette_picker';
-import { EuiBadge } from '../../badge';
 import { EuiText } from '../../text';
 
 const meta: Meta<EuiColorPalettePickerProps<string>> = {
@@ -79,17 +78,25 @@ export const CustomTitles: Story = {
               display: flex;
               flex-direction: row;
               align-items: center;
+              justify-content: space-between;
               gap: ${euiTheme.size.xs};
             `}
           >
-            <EuiText
-              aria-hidden="true"
-              className="euiColorPalettePicker__itemTitle"
-              size="xs"
-            >
+            <EuiText aria-hidden="true" size="xs">
               Elastic
             </EuiText>
-            <EuiBadge color="hollow">Default</EuiBadge>
+            <EuiText
+              css={css`
+                text-decoration: none;
+                // breaks flow to prevent parent text-decoration
+                float: left;
+                clear: both;
+              `}
+              color="subdued"
+              size="xs"
+            >
+              Default
+            </EuiText>
           </div>
         ),
         palette: euiPaletteColorBlind(),
