@@ -510,6 +510,11 @@ export const components: _EuiThemeComponents = {
       ['colors.fullShade']
     ),
 
+    tourFooterBackground: computed(
+      ([lightestShade]) => shade(lightestShade, 0.45),
+      ['colors.lightestShade']
+    ),
+
     treeViewItemBackgroundHover: computed(
       ([text]) => transparentize(text, 0.2),
       ['colors.text']

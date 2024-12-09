@@ -44,7 +44,7 @@ const component_colors: _EuiThemeComponentColors = {
   buttonGroupBorderColorSelected: border_colors.borderBasePlain,
   buttonGroupFocusColor: brand_text_colors.textPrimary,
 
-  codeBackground: background_colors.backgroundBaseFormsPrepend,
+  codeBackground: background_colors.backgroundBaseHighlighted,
   codeBackgroundSelected: 'inherit',
   codeColor: text_colors.textParagraph,
   codeInlineColor: colorVis.euiColorVisAsTextLight6,
@@ -153,7 +153,7 @@ const component_colors: _EuiThemeComponentColors = {
   tooltipBorder: dark_border_colors.borderBaseSubdued,
   tooltipBorderFloating: border_colors.borderBaseFloating,
 
-  tourFooterBackground: background_colors.backgroundBaseSubdued,
+  tourFooterBackground: background_colors.backgroundBaseHighlighted,
 
   treeViewItemBackgroundHover: background_colors.backgroundBaseInteractiveHover,
 };
@@ -178,7 +178,7 @@ export const components: _EuiThemeComponents = {
     buttonGroupBorderColorSelected: dark_border_colors.borderBasePlain,
     buttonGroupFocusColor: dark_brand_text_colors.textPrimary,
 
-    codeBackground: dark_background_colors.backgroundBaseFormsPrepend,
+    codeBackground: dark_background_colors.backgroundBaseHighlighted,
     codeBackgroundSelected: 'inherit',
     codeColor: dark_text_colors.textParagraph,
     codeInlineColor: colorVis.euiColorVisAsTextDark6,
@@ -286,7 +286,7 @@ export const components: _EuiThemeComponents = {
 
     tooltipBorderFloating: dark_border_colors.borderBaseFloating,
 
-    tourFooterBackground: dark_background_colors.backgroundBaseSubdued,
+    tourFooterBackground: dark_background_colors.backgroundBaseHighlighted,
 
     treeViewItemBackgroundHover:
       dark_background_colors.backgroundBaseInteractiveHover,
