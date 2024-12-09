@@ -19,6 +19,7 @@ export const BACKGROUND_COLORS = [
   'transparent',
   'plain',
   'subdued',
+  'highlighted',
   'accent',
   'accentSecondary',
   'primary',

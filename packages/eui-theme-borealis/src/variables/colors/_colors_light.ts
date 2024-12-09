@@ -86,6 +86,7 @@ export const background_colors: _EuiThemeBackgroundColors = {
   backgroundBaseSubdued: SEMANTIC_COLORS.shade10,
   backgroundBasePlain: SEMANTIC_COLORS.plainLight,
   backgroundBaseDisabled: SEMANTIC_COLORS.shade15,
+  backgroundBaseHighlighted: SEMANTIC_COLORS.shade10,
 
   backgroundBaseFormsPrepend: SEMANTIC_COLORS.shade15,
   backgroundBaseFormsControlDisabled: SEMANTIC_COLORS.shade30,
@@ -130,6 +131,7 @@ export const transparent_background_colors: _EuiThemeTransparentBackgroundColors
     backgroundTransparentWarning: background_colors.backgroundBaseWarning,
     backgroundTransparentDanger: background_colors.backgroundBaseDanger,
     backgroundTransparentSubdued: SEMANTIC_COLORS.shade15,
+    backgroundTransparentHighlighted: SEMANTIC_COLORS.shade15,
     backgroundTransparentPlain: SEMANTIC_COLORS.shade15,
   };
 

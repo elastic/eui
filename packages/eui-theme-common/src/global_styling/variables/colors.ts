@@ -181,6 +181,7 @@ export type _EuiThemeBackgroundColors = {
   backgroundBaseSubdued: ColorModeSwitch;
   backgroundBasePlain: ColorModeSwitch;
   backgroundBaseDisabled: ColorModeSwitch;
+  backgroundBaseHighlighted: ColorModeSwitch;
   backgroundBaseFormsPrepend: ColorModeSwitch;
   backgroundBaseFormsControlDisabled: ColorModeSwitch;
   backgroundBaseInteractiveHover: ColorModeSwitch;
@@ -224,6 +225,8 @@ export type _EuiThemeTransparentBackgroundColors = {
   backgroundTransparentDanger: ColorModeSwitch;
   /** @deprecated */
   backgroundTransparentSubdued: ColorModeSwitch;
+  /** @deprecated */
+  backgroundTransparentHighlighted: ColorModeSwitch;
   /** @deprecated */
   backgroundTransparentPlain: ColorModeSwitch;
 };
