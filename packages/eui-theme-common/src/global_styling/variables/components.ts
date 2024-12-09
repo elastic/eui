@@ -15,6 +15,7 @@ export type _EuiThemeComponentColors = {
   buttonGroupBorderColorSelected: ColorModeSwitch;
   buttonGroupFocusColor: ColorModeSwitch;
 
+  badgeBackground: ColorModeSwitch;
   badgeBackgroundSubdued: ColorModeSwitch;
   badgeBorderColorHollow: ColorModeSwitch;
   badgeIconButtonBackgroundHover: ColorModeSwitch;

@@ -30,6 +30,7 @@ import {
 import { colorVis } from './colors/_colors_vis';
 
 const component_colors: _EuiThemeComponentColors = {
+  badgeBackground: background_colors.backgroundLightText,
   badgeBackgroundSubdued: background_colors.backgroundLightText,
   badgeBorderColorHollow: border_colors.borderBasePlain,
   badgeIconButtonBackgroundHover:
@@ -166,6 +167,7 @@ export const components: _EuiThemeComponents = {
   DARK: {
     ...component_colors,
 
+    badgeBackground: dark_background_colors.backgroundLightText,
     badgeBackgroundSubdued: dark_background_colors.backgroundLightText,
     badgeBorderColorHollow: dark_border_colors.borderBasePlain,
     badgeIconButtonBackgroundHover:
