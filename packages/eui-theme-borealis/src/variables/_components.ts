@@ -85,6 +85,7 @@ const component_colors: _EuiThemeComponentColors = {
   filterSelectItemBackgroundFocusDisabled:
     background_colors.backgroundBaseDisabled,
 
+  flyoutFooterBackground: background_colors.backgroundBaseHighlighted,
   flyoutCloseButtonInsideBackground: background_colors.backgroundBasePlain,
 
   headerBackground: background_colors.backgroundBasePlain,
@@ -220,6 +221,7 @@ export const components: _EuiThemeComponents = {
     filterSelectItemBackgroundFocusDisabled:
       dark_background_colors.backgroundBaseDisabled,
 
+    flyoutFooterBackground: dark_background_colors.backgroundBaseHighlighted,
     flyoutCloseButtonInsideBackground:
       dark_background_colors.backgroundBasePlain,
 

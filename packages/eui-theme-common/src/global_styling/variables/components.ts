@@ -67,6 +67,7 @@ export type _EuiThemeComponentColors = {
 
   filterSelectItemBackgroundFocusDisabled: ColorModeSwitch;
 
+  flyoutFooterBackground: ColorModeSwitch;
   flyoutCloseButtonInsideBackground: ColorModeSwitch;
 
   keyPadMenuItemBackgroundDisabledSelect: ColorModeSwitch;

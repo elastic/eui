@@ -184,6 +184,10 @@ const component_colors: _EuiThemeComponentColors = {
     ['colors.disabled']
   ),
 
+  flyoutFooterBackground: computed(
+    ([lightestShade]) => lightestShade,
+    ['colors.lightestShade']
+  ),
   flyoutCloseButtonInsideBackground: computed(
     ([emptyShade]) => transparentize(emptyShade, 0.9),
     ['colors.emptyShade']
