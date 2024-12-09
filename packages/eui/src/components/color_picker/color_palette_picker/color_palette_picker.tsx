@@ -6,7 +6,12 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent, useCallback, useMemo } from 'react';
+import React, {
+  FunctionComponent,
+  ReactNode,
+  useCallback,
+  useMemo,
+} from 'react';
 
 import { CommonProps } from '../../common';
 import { EuiSpacer } from '../../spacer';
@@ -31,7 +36,7 @@ export interface EuiColorPalettePickerPaletteTextProps extends CommonProps {
   /**
    *  The name of your palette
    */
-  title: string;
+  title: NonNullable<ReactNode>;
   /**
    * `text`: a text only option (a title is required).
    */
@@ -50,7 +55,7 @@ export interface EuiColorPalettePickerPaletteFixedProps extends CommonProps {
   /**
    *  The name of your palette
    */
-  title?: string;
+  title: ReactNode;
   /**
    * `fixed`: individual color blocks
    */
@@ -69,7 +74,7 @@ export interface EuiColorPalettePickerPaletteGradientProps extends CommonProps {
   /**
    *  The name of your palette
    */
-  title?: string;
+  title: ReactNode;
   /**
    * `gradient`: each color fades into the next
    */
@@ -127,7 +132,11 @@ export const EuiColorPalettePicker: FunctionComponent<
       | EuiColorPalettePickerPaletteFixedProps
       | EuiColorPalettePickerPaletteGradientProps) => {
       return (
-        <EuiColorPaletteDisplay type={type} palette={palette} title={title} />
+        <EuiColorPaletteDisplay
+          type={type}
+          palette={palette}
+          title={typeof title === 'string' ? title : undefined}
+        />
       );
     },
     []
@@ -153,13 +162,17 @@ export const EuiColorPalettePicker: FunctionComponent<
                 // color_palette_display_gradient. Adding the aria-hidden attribute
                 // here to ensure screen readers don't speak the listbox options twice.
                 <>
-                  <EuiText
-                    aria-hidden="true"
-                    className="euiColorPalettePicker__itemTitle"
-                    size="xs"
-                  >
-                    {title}
-                  </EuiText>
+                  {typeof title !== 'string' ? (
+                    title
+                  ) : (
+                    <EuiText
+                      aria-hidden="true"
+                      className="euiColorPalettePicker__itemTitle"
+                      size="xs"
+                    >
+                      {title}
+                    </EuiText>
+                  )}
                   <EuiSpacer size="xs" />
                 </>
               )}
