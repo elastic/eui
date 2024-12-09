@@ -15,6 +15,7 @@ export type _EuiThemeComponentColors = {
   buttonGroupBorderColorSelected: ColorModeSwitch;
   buttonGroupFocusColor: ColorModeSwitch;
 
+  badgeBackground: ColorModeSwitch;
   badgeBackgroundSubdued: ColorModeSwitch;
   badgeBorderColorHollow: ColorModeSwitch;
   badgeIconButtonBackgroundHover: ColorModeSwitch;
@@ -51,9 +52,11 @@ export type _EuiThemeComponentColors = {
   collapsibleNavGroupBackground: ColorModeSwitch;
   collapsibleNavGroupBackgroundDark: ColorModeSwitch;
 
+  dataGridBorderColor: ColorModeSwitch;
   dataGridVerticalLineBorderColor: ColorModeSwitch;
   dataGridRowBackgroundStriped: ColorModeSwitch;
   dataGridRowBackgroundHover: ColorModeSwitch;
+  dataGridRowBackgroundSelect: ColorModeSwitch;
 
   dragDropDraggingBackground: ColorModeSwitch;
   dragDropDraggingOverBackground: ColorModeSwitch;
@@ -65,6 +68,7 @@ export type _EuiThemeComponentColors = {
 
   filterSelectItemBackgroundFocusDisabled: ColorModeSwitch;
 
+  flyoutFooterBackground: ColorModeSwitch;
   flyoutCloseButtonInsideBackground: ColorModeSwitch;
 
   keyPadMenuItemBackgroundDisabledSelect: ColorModeSwitch;

@@ -36,78 +36,78 @@
   "euiButtonColorDisabledText": "#6A7FA0",
   "euiButtonColorGhostDisabled": "#1D2A3E",
   "euiButtonTypes": {
-    "primary": "#599DFF",
-    "accent": "#ED6BA2",
-    "accentSecondary": "#00BEB8",
-    "success": "#23BE8F",
-    "warning": "#FCD279",
-    "danger": "#F66D64",
+    "primary": "#61A2FF",
+    "accent": "#EE72A6",
+    "accentSecondary": "#16C5C0",
+    "success": "#24C292",
+    "warning": "#FACB3D",
+    "danger": "#F6726A",
     "ghost": "#07101F",
     "text": "#8E9FBC"
   },
   "euiPaletteColorBlind": {
     "euiColorVis0": {
-      "graphic": "#00BEB8",
-      "behindText": "#00BEB8"
+      "graphic": "#16C5C0",
+      "behindText": "#16C5C0"
     },
     "euiColorVis1": {
-      "graphic": "#98E6E2",
-      "behindText": "#98E6E2"
+      "graphic": "#A6EDEA",
+      "behindText": "#A6EDEA"
     },
     "euiColorVis2": {
-      "graphic": "#599DFF",
-      "behindText": "#599DFF"
+      "graphic": "#61A2FF",
+      "behindText": "#61A2FF"
     },
     "euiColorVis3": {
-      "graphic": "#B4D5FF",
-      "behindText": "#B4D5FF"
+      "graphic": "#BFDBFF",
+      "behindText": "#BFDBFF"
     },
     "euiColorVis4": {
-      "graphic": "#ED6BA2",
-      "behindText": "#ED6BA2"
+      "graphic": "#EE72A6",
+      "behindText": "#EE72A6"
     },
     "euiColorVis5": {
-      "graphic": "#FFBED5",
-      "behindText": "#FFBED5"
+      "graphic": "#FFC7DB",
+      "behindText": "#FFC7DB"
     },
     "euiColorVis6": {
-      "graphic": "#F66D64",
-      "behindText": "#F66D64"
+      "graphic": "#F6726A",
+      "behindText": "#F6726A"
     },
     "euiColorVis7": {
-      "graphic": "#FFC0B8",
-      "behindText": "#FFC0B8"
+      "graphic": "#FFC9C2",
+      "behindText": "#FFC9C2"
     },
     "euiColorVis8": {
-      "graphic": "#E6AB01",
-      "behindText": "#E6AB01"
+      "graphic": "#EAAE01",
+      "behindText": "#EAAE01"
     },
     "euiColorVis9": {
-      "graphic": "#FCD279",
-      "behindText": "#FCD279"
+      "graphic": "#FCD883",
+      "behindText": "#FCD883"
     }
   },
   "euiPaletteColorBlindKeys": "'euiColorVis0', 'euiColorVis1', 'euiColorVis2', 'euiColorVis3', 'euiColorVis4', 'euiColorVis5', 'euiColorVis6', 'euiColorVis7', 'euiColorVis8', 'euiColorVis9'",
-  "euiColorVis0": "#00BEB8",
-  "euiColorVis1": "#98E6E2",
-  "euiColorVis2": "#599DFF",
-  "euiColorVis3": "#B4D5FF",
-  "euiColorVis4": "#ED6BA2",
-  "euiColorVis5": "#FFBED5",
-  "euiColorVis6": "#F66D64",
-  "euiColorVis7": "#FFC0B8",
-  "euiColorVis8": "#E6AB01",
-  "euiColorVis9": "#FCD279",
-  "euiColorVis0_behindText": "#00BEB8",
-  "euiColorVis1_behindText": "#98E6E2",
-  "euiColorVis2_behindText": "#599DFF",
-  "euiColorVis3_behindText": "#B4D5FF",
-  "euiColorVis4_behindText": "#ED6BA2",
-  "euiColorVis5_behindText": "#FFBED5",
-  "euiColorVis6_behindText": "#F66D64",
-  "euiColorVis7_behindText": "#FFC0B8",
-  "euiColorVis8_behindText": "#E6AB01",
-  "euiColorVis9_behindText": "#FCD279",
+  "euiColorVis0": "#16C5C0",
+  "euiColorVis1": "#A6EDEA",
+  "euiColorVis2": "#61A2FF",
+  "euiColorVis3": "#BFDBFF",
+  "euiColorVis4": "#EE72A6",
+  "euiColorVis5": "#FFC7DB",
+  "euiColorVis6": "#F6726A",
+  "euiColorVis7": "#FFC9C2",
+  "euiColorVis8": "#EAAE01",
+  "euiColorVis9": "#FCD883",
+  "euiColorVis0_behindText": "#16C5C0",
+  "euiColorVis1_behindText": "#A6EDEA",
+  "euiColorVis2_behindText": "#61A2FF",
+  "euiColorVis3_behindText": "#BFDBFF",
+  "euiColorVis4_behindText": "#EE72A6",
+  "euiColorVis5_behindText": "#FFC7DB",
+  "euiColorVis6_behindText": "#F6726A",
+  "euiColorVis7_behindText": "#FFC9C2",
+  "euiColorVis8_behindText": "#EAAE01",
+  "euiColorVis9_behindText": "#FCD883",
   "euiFontWeightLight": 300,
   "euiFontWeightRegular": 400,
   "euiFontWeightMedium": 450,
@@ -207,7 +207,7 @@
   "euiScrollBar": "16px",
   "euiScrollBarCorner": "4px",
   "euiScrollBarCornerThin": "6px",
-  "euiFocusRingColor": "#599DFF",
+  "euiFocusRingColor": "#61A2FF",
   "euiFocusRingAnimStartColor": "rgba(0, 0, 0, 0)",
   "euiFocusRingAnimStartSize": "2px",
   "euiFocusRingAnimStartSizeLarge": "10px",
@@ -282,12 +282,12 @@
   "euiZContent": 0,
   "euiColorGhost": "#FFFFFF",
   "euiColorInk": "#000000",
-  "euiColorPrimary": "#599DFF",
-  "euiColorAccent": "#ED6BA2",
-  "euiColorAccentSecondary": "#00BEB8",
-  "euiColorSuccess": "#23BE8F",
-  "euiColorWarning": "#FCD279",
-  "euiColorDanger": "#F66D64",
+  "euiColorPrimary": "#61A2FF",
+  "euiColorAccent": "#EE72A6",
+  "euiColorAccentSecondary": "#16C5C0",
+  "euiColorSuccess": "#24C292",
+  "euiColorWarning": "#FACB3D",
+  "euiColorDanger": "#F6726A",
   "euiColorEmptyShade": "#0B1628",
   "euiColorLightestShade": "#172336",
   "euiColorLightShade": "#243147",
@@ -297,18 +297,18 @@
   "euiColorFullShade": "#FFFFFF",
   "euiPageBackgroundColor": "#07101F",
   "euiColorHighlight": "#1750BA",
-  "euiTextColor": "#E3E8F2",
-  "euiTitleColor": "#ECF1F9",
+  "euiTextColor": "#CAD3E2",
+  "euiTitleColor": "#E3E8F2",
   "euiTextSubduedColor": "#8E9FBC",
   "euiColorDisabled": "#1D2A3E",
-  "euiColorPrimaryText": "#599DFF",
-  "euiColorSuccessText": "#23BE8F",
-  "euiColorAccentText": "#ED6BA2",
-  "euiColorAccentSecondaryText": "#00BEB8",
-  "euiColorWarningText": "#FCD279",
-  "euiColorDangerText": "#F66D64",
+  "euiColorPrimaryText": "#61A2FF",
+  "euiColorSuccessText": "#24C292",
+  "euiColorAccentText": "#EE72A6",
+  "euiColorAccentSecondaryText": "#16C5C0",
+  "euiColorWarningText": "#FCD883",
+  "euiColorDangerText": "#F6726A",
   "euiColorDisabledText": "#6A7FA0",
-  "euiLinkColor": "#599DFF",
+  "euiLinkColor": "#61A2FF",
   "euiColorChartLines": "#7186A8",
   "euiColorChartBand": "#243147"
 }

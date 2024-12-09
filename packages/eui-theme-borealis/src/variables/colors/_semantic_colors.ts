@@ -12,6 +12,11 @@ export const SEMANTIC_COLORS = {
   plainLight: PRIMITIVE_COLORS.white,
   plainDark: PRIMITIVE_COLORS.blueBlack,
 
+  plainLightAlpha6: 'rgba(255, 255, 255, 0.06)',
+  plainLightAlpha12: 'rgba(255, 255, 255, 0.12)',
+  plainLightAlpha16: 'rgba(255, 255, 255, 0.16)',
+  plainLightAlpha32: 'rgba(255, 255, 255, 0.32)',
+
   primary10: PRIMITIVE_COLORS.blue10,
   primary20: PRIMITIVE_COLORS.blue20,
   primary30: PRIMITIVE_COLORS.blue30,
@@ -26,6 +31,13 @@ export const SEMANTIC_COLORS = {
   primary120: PRIMITIVE_COLORS.blue120,
   primary130: PRIMITIVE_COLORS.blue130,
   primary140: PRIMITIVE_COLORS.blue140,
+
+  primary70Alpha12: 'rgba(55, 136, 255, 0.12)',
+  primary70Alpha16: 'rgba(55, 136, 255, 0.16)',
+
+  primary100Alpha4: 'rgba(23, 80, 186, 0.04)',
+  primary100Alpha8: 'rgba(23, 80, 186, 0.08)',
+  primary100Alpha12: 'rgba(23, 80, 186, 0.12)',
 
   accent10: PRIMITIVE_COLORS.pink10,
   accent20: PRIMITIVE_COLORS.pink20,
@@ -42,6 +54,9 @@ export const SEMANTIC_COLORS = {
   accent130: PRIMITIVE_COLORS.pink130,
   accent140: PRIMITIVE_COLORS.pink140,
 
+  accent70Alpha12: 'rgba(229, 74, 145, 0.12)',
+  accent70Alpha16: 'rgba(229, 74, 145, 0.16)',
+
   accentSecondary10: PRIMITIVE_COLORS.teal10,
   accentSecondary20: PRIMITIVE_COLORS.teal20,
   accentSecondary30: PRIMITIVE_COLORS.teal30,
@@ -56,6 +71,9 @@ export const SEMANTIC_COLORS = {
   accentSecondary120: PRIMITIVE_COLORS.teal120,
   accentSecondary130: PRIMITIVE_COLORS.teal130,
   accentSecondary140: PRIMITIVE_COLORS.teal140,
+
+  accentSecondary70Alpha12: 'rgba(0, 176, 170, 0.12)',
+  accentSecondary70Alpha16: 'rgba(0, 176, 170, 0.16)',
 
   success10: PRIMITIVE_COLORS.green10,
   success20: PRIMITIVE_COLORS.green20,
@@ -72,6 +90,9 @@ export const SEMANTIC_COLORS = {
   success130: PRIMITIVE_COLORS.green130,
   success140: PRIMITIVE_COLORS.green140,
 
+  success70Alpha12: 'rgba(4, 174, 126, 0.12)',
+  success70Alpha16: 'rgba(4, 174, 126, 0.16)',
+
   warning10: PRIMITIVE_COLORS.yellow10,
   warning20: PRIMITIVE_COLORS.yellow20,
   warning30: PRIMITIVE_COLORS.yellow30,
@@ -87,6 +108,9 @@ export const SEMANTIC_COLORS = {
   warning130: PRIMITIVE_COLORS.yellow130,
   warning140: PRIMITIVE_COLORS.yellow140,
 
+  warning40Alpha12: 'rgba(250, 203, 61, 0.12)',
+  warning40Alpha24: 'rgba(250, 203, 61, 0.24)',
+
   danger10: PRIMITIVE_COLORS.red10,
   danger20: PRIMITIVE_COLORS.red20,
   danger30: PRIMITIVE_COLORS.red30,
@@ -101,6 +125,9 @@ export const SEMANTIC_COLORS = {
   danger120: PRIMITIVE_COLORS.red120,
   danger130: PRIMITIVE_COLORS.red130,
   danger140: PRIMITIVE_COLORS.red140,
+
+  danger70Alpha12: 'rgba(238, 75, 72, 0.12)',
+  danger70Alpha16: 'rgba(238, 75, 72, 0.16)',
 
   assistance10: PRIMITIVE_COLORS.purple10,
   assistance20: PRIMITIVE_COLORS.purple20,
@@ -146,18 +173,10 @@ export const SEMANTIC_COLORS = {
   shade140: PRIMITIVE_COLORS.blueGrey140,
   shade145: PRIMITIVE_COLORS.blueGrey145,
 
-  shadeTransparent10: PRIMITIVE_COLORS.transparent.blueGrey10,
-  shadeTransparent20: PRIMITIVE_COLORS.transparent.blueGrey20,
-  shadeTransparent30: PRIMITIVE_COLORS.transparent.blueGrey30,
-  shadeTransparent40: PRIMITIVE_COLORS.transparent.blueGrey40,
-  shadeTransparent50: PRIMITIVE_COLORS.transparent.blueGrey50,
-  shadeTransparent60: PRIMITIVE_COLORS.transparent.blueGrey60,
-  shadeTransparent70: PRIMITIVE_COLORS.transparent.blueGrey70,
-  shadeTransparent80: PRIMITIVE_COLORS.transparent.blueGrey80,
-  shadeTransparent90: PRIMITIVE_COLORS.transparent.blueGrey90,
-  shadeTransparent100: PRIMITIVE_COLORS.transparent.blueGrey100,
-  shadeTransparent110: PRIMITIVE_COLORS.transparent.blueGrey110,
-  shadeTransparent120: PRIMITIVE_COLORS.transparent.blueGrey120,
-  shadeTransparent130: PRIMITIVE_COLORS.transparent.blueGrey130,
-  shadeTransparent140: PRIMITIVE_COLORS.transparent.blueGrey140,
+  shade100Alpha4: 'rgba(72, 89, 117, 0.04)',
+  shade100Alpha16: 'rgba(72, 89, 117, 0.16)',
+  shade100Alpha24: 'rgba(72, 89, 117, 0.24)',
+  shade100Alpha70: 'rgba(72, 89, 117, 0.7)',
+
+  shade120Alpha70: 'rgba(43, 57, 79, 0.7)',
 };

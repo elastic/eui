@@ -21,6 +21,8 @@ export const euiBetaBadgeStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme, colorMode } = euiThemeContext;
   const badgeColors = euiBadgeColors(euiThemeContext);
 
+  const hasVisColorAdjustment = euiTheme.flags?.hasVisColorAdjustment;
+
   return {
     euiBetaBadge: css`
       display: inline-block;
@@ -41,8 +43,12 @@ export const euiBetaBadgeStyles = (euiThemeContext: UseEuiTheme) => {
       }
     `,
     // Colors
-    accent: css(badgeColors.accentText),
-    accentSecondary: css(badgeColors.accentSecondaryText),
+    accent: hasVisColorAdjustment
+      ? css(badgeColors.accentText)
+      : css(badgeColors.accent),
+    accentSecondary: hasVisColorAdjustment
+      ? css(badgeColors.accentSecondaryText)
+      : css(badgeColors.accentSecondary),
     subdued: css(badgeColors.subdued),
     hollow: css`
       color: ${badgeColors.hollow.color};

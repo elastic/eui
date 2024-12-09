@@ -47,67 +47,67 @@
   },
   "euiPaletteColorBlind": {
     "euiColorVis0": {
-      "graphic": "#00BEB8",
-      "behindText": "#00BEB8"
+      "graphic": "#16C5C0",
+      "behindText": "#16C5C0"
     },
     "euiColorVis1": {
       "graphic": "#98E6E2",
       "behindText": "#98E6E2"
     },
     "euiColorVis2": {
-      "graphic": "#599DFF",
-      "behindText": "#599DFF"
+      "graphic": "#61A2FF",
+      "behindText": "#61A2FF"
     },
     "euiColorVis3": {
-      "graphic": "#B4D5FF",
-      "behindText": "#B4D5FF"
+      "graphic": "#BFDBFF",
+      "behindText": "#BFDBFF"
     },
     "euiColorVis4": {
-      "graphic": "#ED6BA2",
-      "behindText": "#ED6BA2"
+      "graphic": "#EE72A6",
+      "behindText": "#EE72A6"
     },
     "euiColorVis5": {
-      "graphic": "#FFBED5",
-      "behindText": "#FFBED5"
+      "graphic": "#FFC7DB",
+      "behindText": "#FFC7DB"
     },
     "euiColorVis6": {
-      "graphic": "#F66D64",
-      "behindText": "#F66D64"
+      "graphic": "#F6726A",
+      "behindText": "#F6726A"
     },
     "euiColorVis7": {
-      "graphic": "#FFC0B8",
-      "behindText": "#FFC0B8"
+      "graphic": "#FFC9C2",
+      "behindText": "#FFC9C2"
     },
     "euiColorVis8": {
-      "graphic": "#E6AB01",
-      "behindText": "#E6AB01"
+      "graphic": "#EAAE01",
+      "behindText": "#EAAE01"
     },
     "euiColorVis9": {
-      "graphic": "#FCD279",
-      "behindText": "#FCD279"
+      "graphic": "#FCD883",
+      "behindText": "#FCD883"
     }
   },
   "euiPaletteColorBlindKeys": "'euiColorVis0', 'euiColorVis1', 'euiColorVis2', 'euiColorVis3', 'euiColorVis4', 'euiColorVis5', 'euiColorVis6', 'euiColorVis7', 'euiColorVis8', 'euiColorVis9'",
-  "euiColorVis0": "#00BEB8",
-  "euiColorVis1": "#98E6E2",
-  "euiColorVis2": "#599DFF",
-  "euiColorVis3": "#B4D5FF",
-  "euiColorVis4": "#ED6BA2",
-  "euiColorVis5": "#FFBED5",
-  "euiColorVis6": "#F66D64",
-  "euiColorVis7": "#FFC0B8",
-  "euiColorVis8": "#E6AB01",
-  "euiColorVis9": "#FCD279",
-  "euiColorVis0_behindText": "#00BEB8",
-  "euiColorVis1_behindText": "#98E6E2",
-  "euiColorVis2_behindText": "#599DFF",
+  "euiColorVis0": "#16C5C0",
+  "euiColorVis1": "#A6EDEA",
+  "euiColorVis2": "#61A2FF",
+  "euiColorVis3": "#BFDBFF",
+  "euiColorVis4": "#EE72A6",
+  "euiColorVis5": "#FFC7DB",
+  "euiColorVis6": "#F6726A",
+  "euiColorVis7": "#FFC9C2",
+  "euiColorVis8": "#EAAE01",
+  "euiColorVis9": "#FCD883",
+  "euiColorVis0_behindText": "#16C5C0",
+  "euiColorVis1_behindText": "#A6EDEA",
+  "euiColorVis2_behindText": "#61A2FF",
   "euiColorVis3_behindText": "#B4D5FF",
-  "euiColorVis4_behindText": "#ED6BA2",
-  "euiColorVis5_behindText": "#FFBED5",
-  "euiColorVis6_behindText": "#F66D64",
-  "euiColorVis7_behindText": "#FFC0B8",
-  "euiColorVis8_behindText": "#E6AB01",
-  "euiColorVis9_behindText": "#FCD279",
+  "euiColorVis4_behindText": "#EE72A6",
+  "euiColorVis5_behindText": "#FFC7DB",
+  "euiColorVis6_behindText": "#F6726A",
+  "euiColorVis7_behindText": "#FFC9C2",
+  "euiColorVis8_behindText": "#EAAE01",
+  "euiColorVis9_behindText": "#FCD883",
   "euiFontWeightLight": 300,
   "euiFontWeightRegular": 400,
   "euiFontWeightMedium": 450,
@@ -162,7 +162,7 @@
   "euiHeaderBackgroundColor": "#FFFFFF",
   "euiHeaderDarkBackgroundColor": "#0B1628",
   "euiHeaderBorderColor": "#E3E8F2",
-  "euiHeaderBreadcrumbColor": "#D6E9FF",
+  "euiHeaderBreadcrumbColor": "#D9E8FF",
   "euiHeaderHeight": "48px",
   "euiHeaderChildSize": "40px",
   "euiHeaderHeightCompensation": "48px",
@@ -183,7 +183,7 @@
     "subdued": "#F6F9FC",
     "accent": "#FFEBF5",
     "accentSecondary": "#E2F9F7",
-    "primary": "#E5F3FF",
+    "primary": "#E8F1FF",
     "success": "#E2F8F0",
     "warning": "#FDF3D8",
     "danger": "#FFE8E5"
@@ -296,8 +296,8 @@
   "euiColorDarkestShade": "#2B394F",
   "euiColorFullShade": "#07101F",
   "euiPageBackgroundColor": "#F6F9FC",
-  "euiColorHighlight": "#E5F3FF",
-  "euiTextColor": "#172336",
+  "euiColorHighlight": "#E8F1FF",
+  "euiTextColor": "#1D2A3E",
   "euiTitleColor": "#111C2C",
   "euiTextSubduedColor": "#5A6D8C",
   "euiColorDisabled": "#E3E8F2",

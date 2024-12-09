@@ -30,7 +30,8 @@ import {
 import { colorVis } from './colors/_colors_vis';
 
 const component_colors: _EuiThemeComponentColors = {
-  badgeBackgroundSubdued: background_colors.backgroundBaseSubdued,
+  badgeBackground: background_colors.backgroundLightText,
+  badgeBackgroundSubdued: background_colors.backgroundLightText,
   badgeBorderColorHollow: border_colors.borderBasePlain,
   badgeIconButtonBackgroundHover:
     background_colors.backgroundBaseInteractiveHover,
@@ -44,7 +45,7 @@ const component_colors: _EuiThemeComponentColors = {
   buttonGroupBorderColorSelected: border_colors.borderBasePlain,
   buttonGroupFocusColor: brand_text_colors.textPrimary,
 
-  codeBackground: background_colors.backgroundBaseFormsPrepend,
+  codeBackground: background_colors.backgroundBaseHighlighted,
   codeBackgroundSelected: 'inherit',
   codeColor: text_colors.textParagraph,
   codeInlineColor: colorVis.euiColorVisAsTextLight6,
@@ -72,9 +73,12 @@ const component_colors: _EuiThemeComponentColors = {
   collapsibleNavGroupBackgroundDark:
     dark_background_colors.backgroundBaseSubdued,
 
+  dataGridBorderColor: border_colors.borderBasePlain,
   dataGridVerticalLineBorderColor: border_colors.borderBasePlain,
   dataGridRowBackgroundStriped: background_colors.backgroundBaseSubdued,
   dataGridRowBackgroundHover: background_colors.backgroundBaseInteractiveHover,
+  dataGridRowBackgroundSelect:
+    background_colors.backgroundBaseInteractiveSelect,
 
   dragDropDraggingBackground: background_colors.backgroundBaseSuccess,
   dragDropDraggingOverBackground: background_colors.backgroundLightSuccess,
@@ -82,6 +86,7 @@ const component_colors: _EuiThemeComponentColors = {
   filterSelectItemBackgroundFocusDisabled:
     background_colors.backgroundBaseDisabled,
 
+  flyoutFooterBackground: background_colors.backgroundBaseHighlighted,
   flyoutCloseButtonInsideBackground: background_colors.backgroundBasePlain,
 
   headerBackground: background_colors.backgroundBasePlain,
@@ -150,7 +155,7 @@ const component_colors: _EuiThemeComponentColors = {
   tooltipBorder: dark_border_colors.borderBaseSubdued,
   tooltipBorderFloating: border_colors.borderBaseFloating,
 
-  tourFooterBackground: background_colors.backgroundBaseSubdued,
+  tourFooterBackground: background_colors.backgroundBaseHighlighted,
 
   treeViewItemBackgroundHover: background_colors.backgroundBaseInteractiveHover,
 };
@@ -162,7 +167,8 @@ export const components: _EuiThemeComponents = {
   DARK: {
     ...component_colors,
 
-    badgeBackgroundSubdued: dark_background_colors.backgroundBaseSubdued,
+    badgeBackground: dark_background_colors.backgroundLightText,
+    badgeBackgroundSubdued: dark_background_colors.backgroundLightText,
     badgeBorderColorHollow: dark_border_colors.borderBasePlain,
     badgeIconButtonBackgroundHover:
       dark_background_colors.backgroundBaseInteractiveHover,
@@ -175,7 +181,7 @@ export const components: _EuiThemeComponents = {
     buttonGroupBorderColorSelected: dark_border_colors.borderBasePlain,
     buttonGroupFocusColor: dark_brand_text_colors.textPrimary,
 
-    codeBackground: dark_background_colors.backgroundBaseFormsPrepend,
+    codeBackground: dark_background_colors.backgroundBaseHighlighted,
     codeBackgroundSelected: 'inherit',
     codeColor: dark_text_colors.textParagraph,
     codeInlineColor: colorVis.euiColorVisAsTextDark6,
@@ -207,6 +213,8 @@ export const components: _EuiThemeComponents = {
     dataGridRowBackgroundStriped: dark_background_colors.backgroundBaseSubdued,
     dataGridRowBackgroundHover:
       dark_background_colors.backgroundBaseInteractiveHover,
+    dataGridRowBackgroundSelect:
+      dark_background_colors.backgroundBaseInteractiveSelect,
 
     dragDropDraggingBackground: dark_background_colors.backgroundBaseSuccess,
     dragDropDraggingOverBackground:
@@ -215,6 +223,7 @@ export const components: _EuiThemeComponents = {
     filterSelectItemBackgroundFocusDisabled:
       dark_background_colors.backgroundBaseDisabled,
 
+    flyoutFooterBackground: dark_background_colors.backgroundBaseHighlighted,
     flyoutCloseButtonInsideBackground:
       dark_background_colors.backgroundBasePlain,
 
@@ -281,7 +290,7 @@ export const components: _EuiThemeComponents = {
 
     tooltipBorderFloating: dark_border_colors.borderBaseFloating,
 
-    tourFooterBackground: dark_background_colors.backgroundBaseSubdued,
+    tourFooterBackground: dark_background_colors.backgroundBaseHighlighted,
 
     treeViewItemBackgroundHover:
       dark_background_colors.backgroundBaseInteractiveHover,

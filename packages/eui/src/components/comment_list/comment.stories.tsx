@@ -23,6 +23,7 @@ export const _eventColorArgType = {
     'subdued',
     'transparent',
     'plain',
+    'highlighted',
     'warning',
     'danger',
     'success',

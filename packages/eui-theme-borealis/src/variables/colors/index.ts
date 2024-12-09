@@ -16,6 +16,8 @@ import { colorVis } from './_colors_vis';
 export const colors: _EuiThemeColors = {
   ghost: SEMANTIC_COLORS.plainLight,
   ink: SEMANTIC_COLORS.plainDark,
+  plainLight: SEMANTIC_COLORS.plainLight,
+  plainDark: SEMANTIC_COLORS.plainDark,
   LIGHT: light_colors,
   DARK: dark_colors,
   vis: colorVis,

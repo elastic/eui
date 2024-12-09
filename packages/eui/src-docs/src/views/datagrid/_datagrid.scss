@@ -23,3 +23,7 @@
 .euiDataGridRow--rowClassesDemoSelected {
   background: $euiColorHighlight;
 }
+
+.euiTheme--borealis .euiDataGridRow--rowClassesDemoSelected {
+  background: $euiColorBackgroundBaseInteractiveSelect;
+}

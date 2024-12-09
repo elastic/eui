@@ -79,7 +79,7 @@ export type _EuiThemeBrandTextColors = {
 export type _EuiThemeShadeColors = {
   /**
    * Used as the background color of primary **page content and panels** including modals and flyouts.
-   * @deprecated - use `white`
+   * @deprecated - use specific semantic color tokens instead
    */
   emptyShade: ColorModeSwitch;
   /**
@@ -109,7 +109,7 @@ export type _EuiThemeShadeColors = {
   darkestShade: ColorModeSwitch;
   /**
    * The opposite of `emptyShade`
-   * @deprecated - use`black`
+   * @deprecated - use specific semantic color tokens instead
    */
   fullShade: ColorModeSwitch;
 };
@@ -181,6 +181,7 @@ export type _EuiThemeBackgroundColors = {
   backgroundBaseSubdued: ColorModeSwitch;
   backgroundBasePlain: ColorModeSwitch;
   backgroundBaseDisabled: ColorModeSwitch;
+  backgroundBaseHighlighted: ColorModeSwitch;
   backgroundBaseFormsPrepend: ColorModeSwitch;
   backgroundBaseFormsControlDisabled: ColorModeSwitch;
   backgroundBaseInteractiveHover: ColorModeSwitch;
@@ -224,6 +225,8 @@ export type _EuiThemeTransparentBackgroundColors = {
   backgroundTransparentDanger: ColorModeSwitch;
   /** @deprecated */
   backgroundTransparentSubdued: ColorModeSwitch;
+  /** @deprecated */
+  backgroundTransparentHighlighted: ColorModeSwitch;
   /** @deprecated */
   backgroundTransparentPlain: ColorModeSwitch;
 };
@@ -316,6 +319,10 @@ export type _EuiThemeConstantColors = {
    * @deprecated
    */
   ink: string;
+
+  plainLight: string;
+  plainDark: string;
+
   vis: _EuiThemeVisColors;
 };
 
