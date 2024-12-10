@@ -8,6 +8,8 @@
 
 import { css } from '@emotion/react';
 import { euiFontSize, logicalCSS, mathWithUnits } from '../../global_styling';
+import { preventForcedColors } from '../../global_styling/functions/high_contrast';
+
 import { UseEuiTheme } from '../../services';
 
 import { euiSkeletonGradientAnimation } from './utils';
@@ -38,6 +40,7 @@ export const euiSkeletonTextStyles = (euiThemeContext: UseEuiTheme) => {
       ${logicalCSS('width', '100%')}
       border-radius: ${euiTheme.border.radius.small};
       ${euiSkeletonGradientAnimation(euiThemeContext)}
+      ${preventForcedColors(euiThemeContext)}
 
       /* Offset via transform to more closely match placement of text */
       transform: translateY(-25%);
