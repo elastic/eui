@@ -69,6 +69,8 @@ export const typeToPathMap = {
   continuityAboveBelow: 'continuityAboveBelow',
   continuityBelow: 'continuityBelow',
   continuityWithin: 'continuityWithin',
+  contrast: 'contrast',
+  contrastHigh: 'contrastHigh',
   controlsHorizontal: 'controls_horizontal',
   controlsVertical: 'controls_vertical',
   copy: 'copy',
