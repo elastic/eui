@@ -155,3 +155,32 @@ export const WithTooltips: Story = {
     idToSelectedMap: { button1: true },
   },
 };
+
+export const HighContrast: Story = {
+  tags: ['vrt-only'],
+  globals: { highContrastMode: true },
+  render: () => {
+    const props = {
+      options: [
+        { id: '1', label: 'One', isDisabled: true },
+        { id: '2', label: 'Two' },
+        { id: '3', label: 'Three' },
+        { id: '4', label: 'Four' },
+        { id: '5', label: 'Five' },
+        { id: '6', label: 'Six' },
+      ],
+      type: 'multi' as const,
+      idToSelectedMap: { '3': true, '4': true },
+      legend: '',
+      onChange: () => {},
+    };
+    return (
+      <>
+        <EuiButtonGroup {...props} color="primary" />
+        <br />
+        <br />
+        <EuiButtonGroup {...props} buttonSize="compressed" />
+      </>
+    );
+  },
+};

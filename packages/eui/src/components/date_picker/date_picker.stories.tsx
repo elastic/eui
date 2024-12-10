@@ -205,6 +205,16 @@ export const RestrictedDaySelect: Story = {
   },
 };
 
+export const HighContrast: Story = {
+  tags: ['vrt-only'],
+  globals: { highContrastMode: true },
+  args: {
+    ...TimeSelect.args,
+    ...RestrictedDaySelect.args,
+    selected: moment('01/02/1970').hours(23).minutes(0),
+  },
+};
+
 const StatefulDatePicker = ({
   selected,
   onChange,

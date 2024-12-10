@@ -11,7 +11,9 @@ import { css } from '@emotion/react';
 
 import { UseEuiTheme } from '../../services';
 import { logicalCSS, mathWithUnits, euiBreakpoint } from '../../global_styling';
+import { highContrastModeStyles } from '../../global_styling/functions/high_contrast';
 import { euiFormVariables } from '../form/form.styles';
+
 import { euiFilterButtonDisplay } from './filter_button.styles';
 
 export const euiFilterGroupStyles = (euiThemeContext: UseEuiTheme) => {
@@ -32,7 +34,10 @@ export const euiFilterGroupStyles = (euiThemeContext: UseEuiTheme) => {
       overflow: hidden;
 
       background-color: ${backgroundColor};
-      box-shadow: inset 0 0 0 ${euiTheme.border.width.thin} ${borderColor};
+      ${highContrastModeStyles(euiThemeContext, {
+        none: `box-shadow: inset 0 0 0 ${euiTheme.border.width.thin} ${borderColor};`,
+        forced: `border: ${euiTheme.border.thin};`,
+      })}
 
       /* Account for popover or tooltip wrappers around EuiFilterButtons */
       > *:not(.euiFilterButton) {

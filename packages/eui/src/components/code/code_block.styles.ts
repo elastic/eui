@@ -13,6 +13,7 @@ import {
   euiScrollBarStyles,
   mathWithUnits,
 } from '../../global_styling';
+import { highContrastModeStyles } from '../../global_styling/functions/high_contrast';
 import { UseEuiTheme } from '../../services';
 
 import { euiCodeSyntaxVariables } from './code_syntax.styles';
@@ -27,6 +28,9 @@ export const euiCodeBlockStyles = (euiThemeContext: UseEuiTheme) => {
       display: block;
       position: relative;
       background: ${codeSyntaxVariables.backgroundColor};
+      ${highContrastModeStyles(euiThemeContext, {
+        preferred: `border: ${euiTheme.border.thin};`,
+      })}
 
       ${codeSyntaxVariables.tokensCss}
     `,

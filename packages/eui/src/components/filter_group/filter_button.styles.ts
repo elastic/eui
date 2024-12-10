@@ -28,17 +28,39 @@ export const euiFilterButtonStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
   const { controlHeight, borderColor } = euiFormVariables(euiThemeContext);
 
-  // Box shadow simulates borders without affecting width
-  const leftBoxShadow = `-${euiTheme.border.width.thin} 0 0 0 ${borderColor}`;
+  const border = `${euiTheme.border.width.thin} solid ${borderColor}`;
+
+  // Pseudo elements create borders without affecting width. We also prefer them
+  // over box-shadow for Windows high contrast theme compatibility
+  const leftBorder = `
+    &::before {
+      content: '';
+      position: absolute;
+      ${logicalCSS('right', '100%')}
+      ${logicalCSS('vertical', 0)}
+      ${logicalCSS('border-left', border)}
+    }
+  `;
   // Bottom borders are needed for responsive flex-wrap behavior
-  const bottomBoxShadow = `0 ${euiTheme.border.width.thin} 0 0 ${borderColor}`;
+  const bottomBorder = `
+    &::after {
+      content: '';
+      position: absolute;
+      ${logicalCSS('top', '100%')}
+      ${logicalCSS('horizontal', 0)}
+      ${logicalCSS('border-bottom', border)}
+    }
+  `;
 
   return {
     euiFilterButton: css`
+      position: relative;
       ${euiFilterButtonDisplay(euiThemeContext)}
       ${logicalCSS('height', controlHeight)}
       border-radius: 0;
-      box-shadow: ${leftBoxShadow}, ${bottomBoxShadow};
+
+      ${leftBorder}
+      ${bottomBorder}
 
       /* :not(:disabled) specificity needed to override EuiButtonEmpty styles */
       &:hover:not(:disabled),
@@ -59,8 +81,11 @@ export const euiFilterButtonStyles = (euiThemeContext: UseEuiTheme) => {
     withNext: css`
       & + .euiFilterButton {
         ${logicalCSS('margin-left', `-${euiTheme.size.xs}`)}
+
         /* Remove just the left faux border */
-        box-shadow: ${bottomBoxShadow};
+        &::before {
+          display: none;
+        }
       }
     `,
     noGrow: css`

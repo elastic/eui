@@ -6,6 +6,7 @@
  * Side Public License, v 1.
  */
 
+import React from 'react';
 import type { Meta, StoryObj, ReactRenderer } from '@storybook/react';
 import type { PlayFunctionContext } from '@storybook/csf';
 
@@ -100,5 +101,34 @@ export const Annotations: Story = {
     const dialog = await canvas.findByRole('dialog');
 
     expect(dialog).toHaveTextContent('Hello world');
+  },
+};
+
+export const HighContrast: Story = {
+  tags: ['vrt-only'],
+  globals: { highContrastMode: true },
+  args: {
+    language: 'json',
+    lineNumbers: {
+      start: 32,
+      highlight: '32, 34-37, 40',
+      annotations: {
+        34: (
+          <>
+            A <b>special</b> note about this line
+          </>
+        ),
+        38: 'Also accepts quick plaintext notes',
+      },
+    },
+    children: `"OriginLocation": [
+  {
+    "coordinates": [
+      -97.43309784,
+      37.64989853
+    ],
+    "type": "Point"
+  }
+],`,
   },
 };
