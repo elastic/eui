@@ -67,6 +67,7 @@ export const euiButtonColor = (
         ? foreground
         : makeHighContrastColor(foreground)(background),
     backgroundColor: background,
+    ..._highContrastBorder(euiThemeContext, foreground),
   };
 };
 
@@ -98,6 +99,10 @@ export const euiButtonFillColor = (
   return {
     color: foreground,
     backgroundColor: background,
+    ..._highContrastBorder(
+      euiThemeContext,
+      background // The border is necessary for Windows high contrast themes, which ignore background-color
+    ),
   };
 };
 
@@ -266,3 +271,14 @@ export const euiButtonSizeMap = ({ euiTheme }: UseEuiTheme) => ({
     fontScale: 's' as const,
   },
 });
+
+/**
+ * Internal util for high contrast button borders
+ */
+const _highContrastBorder = (
+  { highContrastMode, euiTheme }: UseEuiTheme,
+  color: string
+) =>
+  highContrastMode
+    ? { border: `${euiTheme.border.width.thin} solid ${color}` }
+    : {};
