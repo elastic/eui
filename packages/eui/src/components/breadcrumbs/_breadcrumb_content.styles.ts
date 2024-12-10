@@ -90,21 +90,12 @@ export const euiBreadcrumbContentStyles = (euiThemeContext: UseEuiTheme) => {
       ${euiFontSize(euiThemeContext, 'xs')}
       font-weight: ${euiTheme.font.weight.medium};
       background-color: ${applicationTextColors.backgroundColor};
-      clip-path: polygon(
-        0 0,
-        calc(100% - ${euiTheme.size.s}) 0,
-        100% 50%,
-        calc(100% - ${euiTheme.size.s}) 100%,
-        0 100%,
-        ${euiTheme.size.s} 50%
-      );
       color: ${applicationTextColors.color};
       line-height: ${euiTheme.size.base};
       ${logicalCSS('padding-vertical', euiTheme.size.xs)}
       ${logicalCSS('padding-horizontal', euiTheme.size.base)}
 
-      &:is(a),
-      &:is(button) {
+      &:is(a, button) {
         background-color: ${applicationButtonColors.backgroundColor};
         color: ${applicationButtonColors.color};
 
@@ -121,7 +112,6 @@ export const euiBreadcrumbContentStyles = (euiThemeContext: UseEuiTheme) => {
     applicationStyles: {
       onlyChild: css`
         border-radius: ${euiTheme.border.radius.medium};
-        clip-path: none;
         ${logicalCSS('padding-horizontal', euiTheme.size.m)}
       `,
       firstChild: css`
@@ -137,6 +127,16 @@ export const euiBreadcrumbContentStyles = (euiThemeContext: UseEuiTheme) => {
           0 100%
         );
         ${logicalCSS('padding-left', euiTheme.size.m)}
+      `,
+      intermediateChild: `
+        clip-path: polygon(
+          0 0,
+          calc(100% - ${euiTheme.size.s}) 0,
+          100% 50%,
+          calc(100% - ${euiTheme.size.s}) 100%,
+          0 100%,
+          ${euiTheme.size.s} 50%
+        );
       `,
       lastChild: css`
         ${logicalBorderRadiusCSS(
