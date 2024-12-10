@@ -124,14 +124,21 @@ export const euiBreadcrumbContentStyles = (euiThemeContext: UseEuiTheme) => {
       &:is(a, button) {
         background-color: ${applicationButtonColors.backgroundColor};
         color: ${applicationButtonColors.color};
+      }
 
-        :focus {
-          ${euiFocusRing(euiThemeContext, 'inset')}
+      &:focus {
+        ${euiFocusRing(euiThemeContext, 'inset')}
+      }
 
-          :focus-visible {
-            border-radius: ${euiTheme.border.radius.medium};
-            clip-path: none;
-          }
+      &:focus-visible {
+        border-radius: ${euiTheme.border.radius.medium};
+        clip-path: none;
+
+        .euiBreadcrumb:has(&) {
+          z-index: 2;
+          ${highContrastModeStyles(euiThemeContext, {
+            preferred: 'filter: none;',
+          })}
         }
       }
     `,
