@@ -8,11 +8,21 @@
 
 import { UseEuiTheme } from '../../services';
 
-// These variables are computationally expensive - do not call them outside `useEuiMemoizedStyles`
-export const euiCodeSyntaxVariables = ({ euiTheme }: UseEuiTheme) => {
+export const euiCodeTextColors = ({ euiTheme }: UseEuiTheme) => {
   return {
     backgroundColor: euiTheme.components.codeBackground,
     color: euiTheme.components.codeColor,
+  };
+};
+
+// These variables are computationally expensive - do not call them outside `useEuiMemoizedStyles`
+export const euiCodeSyntaxVariables = (euiThemeContext: UseEuiTheme) => {
+  const { euiTheme } = euiThemeContext;
+  const { backgroundColor, color } = euiCodeTextColors(euiThemeContext);
+
+  return {
+    backgroundColor,
+    color,
     inlineCodeColor: euiTheme.components.codeInlineColor,
     selectedBackgroundColor: euiTheme.components.codeBackgroundSelected,
     commentColor: euiTheme.components.codeCommentColor,

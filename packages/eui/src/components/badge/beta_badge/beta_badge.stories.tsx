@@ -6,7 +6,10 @@
  * Side Public License, v 1.
  */
 
+import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
+
+import { EuiTitle } from '../../title';
 
 import { EuiBetaBadge, EuiBetaBadgeProps } from './beta_badge';
 
@@ -33,4 +36,19 @@ export const Playground: Story = {
   args: {
     label: 'Beta',
   },
+};
+
+export const TitleAlignment: Story = {
+  tags: ['vrt-only'],
+  args: {
+    label: 'Beta',
+  },
+  render: (args: EuiBetaBadgeProps) => (
+    <EuiTitle size="s">
+      <h1>
+        Beta badges will also line up nicely with titles{' '}
+        <EuiBetaBadge {...args} />
+      </h1>
+    </EuiTitle>
+  ),
 };

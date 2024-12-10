@@ -14,13 +14,26 @@
  */
 
 import { css } from '@emotion/css';
+import { mathWithUnits } from '../../global_styling';
 import { UseEuiTheme } from '../../services';
 
 // Note: These styles must be in a separate file due to using `css` from `@emotion/css`
 // (i.e., applying styles in vanilla JS / directly to DOM nodes instead of React)
 
 export const euiCodeBlockLineStyles = (euiThemeContext: UseEuiTheme) => {
-  const { euiTheme } = euiThemeContext;
+  const { euiTheme, highContrastMode } = euiThemeContext;
+
+  const lineMargins = euiTheme.size.m;
+  const lineWidth = euiTheme.border.width.thin;
+
+  // Increase highlight border width in high contrast modes
+  const highlightWidth = highContrastMode
+    ? mathWithUnits(euiTheme.border.width.thick, (x) => x * 1.5)
+    : euiTheme.border.width.thick;
+  const highlightOffset = mathWithUnits(
+    [lineMargins, lineWidth, highlightWidth],
+    (x, y, z) => x + y - z
+  );
 
   return {
     euiCodeBlock__line: css`
@@ -34,14 +47,14 @@ export const euiCodeBlockLineStyles = (euiThemeContext: UseEuiTheme) => {
       euiCodeBlock__lineText: css`
         flex-grow: 1;
         display: inline-block;
-        padding-inline-start: ${euiTheme.size.m};
-        border-inline-start: ${euiTheme.border.thin};
+        padding-inline-start: ${lineMargins};
+        border-inline-start: ${lineWidth} solid ${euiTheme.border.color};
         user-select: text;
       `,
       isHighlighted: css`
         background: ${euiTheme.colors.backgroundBasePrimary};
-        border-inline-start: ${euiTheme.border.width.thick} solid
-          ${euiTheme.colors.primary};
+        border-inline-start: ${highlightWidth} solid ${euiTheme.colors.primary};
+        padding-inline-start: ${highlightOffset};
       `,
     },
     lineNumber: {
@@ -50,11 +63,11 @@ export const euiCodeBlockLineStyles = (euiThemeContext: UseEuiTheme) => {
         flex-grow: 0;
         flex-shrink: 0;
         user-select: none;
-        padding-inline-end: ${euiTheme.size.m};
+        padding-inline-end: ${lineMargins};
         box-sizing: content-box; /* Width is calculated in JS and padding needs to be added on to that value */
       `,
       euiCodeBlock__lineNumber: css`
-        color: ${euiTheme.colors.subduedText};
+        color: ${euiTheme.colors.textSubdued};
         text-align: end;
         display: block;
 

@@ -49,3 +49,24 @@ export const Playground: Story = {
     </EuiPanel>
   ),
 };
+
+export const HighContrast: Story = {
+  tags: ['vrt-only'],
+  globals: { highContrastMode: true },
+  render: () => (
+    <div style={{ padding: 20, inlineSize: 240 }}>
+      <EuiPanel
+        style={{ blockSize: 200, inlineSize: 200, position: 'relative' }}
+        borderRadius="none"
+      >
+        <EuiResizableButton
+          isHorizontal={true}
+          style={{ position: 'absolute', top: 0, right: 0 }}
+          // screenshot the focus thicker border state without the keyboard outline focus
+          css={{ outline: 'none !important' }}
+          autoFocus
+        />
+      </EuiPanel>
+    </div>
+  ),
+};
