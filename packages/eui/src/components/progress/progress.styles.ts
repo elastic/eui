@@ -15,6 +15,7 @@ import {
   euiFontSize,
   euiTextTruncate,
 } from '../../global_styling';
+import { highContrastModeStyles } from '../../global_styling/functions/high_contrast';
 import {
   UseEuiTheme,
   euiPaletteColorBlind,
@@ -44,11 +45,22 @@ const indeterminateProgressValue = (cssProperties: string) => `
  */
 const visColors = euiPaletteColorBlind();
 
-const nativeVsIndeterminateColor = (color: string, isNative: boolean) => {
+const nativeVsIndeterminateColor = (
+  color: string,
+  isNative: boolean,
+  highContrastMode: UseEuiTheme['highContrastMode']
+) => {
   const selectors = isNative
     ? crossBrowserProgressValue
     : indeterminateProgressValue;
-  return selectors(`background-color: ${color};`);
+  return `
+    ${selectors(`background-color: ${color};`)}
+    ${
+      isNative && highContrastMode === 'preferred' // see highContrastModeStyles.preferred comment below
+        ? `border-color: ${color};`
+        : ''
+    }
+  `.trim();
 };
 
 /**
@@ -88,11 +100,15 @@ export const euiProgressStyles = (
   euiThemeContext: UseEuiTheme,
   isNative: boolean
 ) => {
-  const { euiTheme } = euiThemeContext;
+  const { euiTheme, highContrastMode } = euiThemeContext;
+  const backgroundColor = highContrastMode
+    ? euiTheme.colors.emptyShade
+    : euiTheme.colors.lightShade;
+
   return {
     euiProgress: css`
       overflow: hidden;
-      background-color: ${euiTheme.colors.lightShade};
+      background-color: ${backgroundColor};
     `,
     // https://css-tricks.com/html5-progress-element/
     // Good resource if you need to work in here. There's some gotchas with
@@ -100,13 +116,34 @@ export const euiProgressStyles = (
     native: css`
       display: block;
       ${logicalCSS('width', '100%')}
-      appearance: none;
-      border: none;
-      border-radius: ${euiTheme.size.s};
 
       &::-webkit-progress-bar {
-        background-color: ${euiTheme.colors.lightShade};
+        background-color: ${backgroundColor};
       }
+
+      ${highContrastModeStyles(euiThemeContext, {
+        none: `
+          appearance: none;
+          border: none;
+          border-radius: ${euiTheme.size.s};
+        `,
+        // For some reason we absolutely cannot set any border CSS in Windows high contrast
+        // or the native element stops rendering. However, we do want the extra border for
+        // MacOS high contrast, so #ternarylife
+        preferred:
+          highContrastMode !== 'forced'
+            ? `
+              border: ${euiTheme.border.thin};
+              border-radius: ${euiTheme.size.s};
+              ${logicalCSS('min-height', euiTheme.size.s)}
+            `
+            : // Increase small sizes, otherwise the border is hard to distinguish,
+              // However, native element heights seem to render differently,
+              // so we need to tweak the min-height accordingly
+              logicalCSS('min-height', euiTheme.size.m),
+        // Also doesn't render without this ¯\_(ツ)_/¯
+        forced: 'background-color: revert;',
+      })}
 
       ${euiCanAnimate} {
         /* Note: FF/Mozilla doesn't actually support animating the native progress bar
@@ -135,21 +172,43 @@ export const euiProgressStyles = (
           animation-duration: 2s;
           animation-timing-function: linear;
         }
+
+        ${highContrastModeStyles(euiThemeContext, {
+          // Windows high contrast themes ignore backgrounds, so use a border instead
+          forced: `
+            ${logicalCSS('border-top-style', 'solid')}
+            ${logicalCSS('border-top-color', 'transparent')}
+          `,
+        })}
       }
     `,
     // Sizes
-    xs: css`
-      ${logicalCSS('height', euiTheme.size.xxs)}
+    _sharedSizeCSS: (size: string) => `
+      ${logicalCSS('height', size)}
+      ${highContrastModeStyles(euiThemeContext, {
+        forced: `
+          &::before {
+            ${logicalCSS('border-top-width', size)}
+          }`,
+      })}
     `,
-    s: css`
-      ${logicalCSS('height', euiTheme.size.xs)}
-    `,
-    m: css`
-      ${logicalCSS('height', euiTheme.size.s)}
-    `,
-    l: css`
-      ${logicalCSS('height', euiTheme.size.m)}
-    `,
+    get xs() {
+      return css(
+        // Increased visibility/size for high contrast modes
+        this._sharedSizeCSS(
+          highContrastMode ? euiTheme.size.xs : euiTheme.size.xxs
+        )
+      );
+    },
+    get s() {
+      return css(this._sharedSizeCSS(euiTheme.size.xs));
+    },
+    get m() {
+      return css(this._sharedSizeCSS(euiTheme.size.s));
+    },
+    get l() {
+      return css(this._sharedSizeCSS(euiTheme.size.m));
+    },
     // Positioning
     fixed: css`
       position: fixed;
@@ -159,61 +218,87 @@ export const euiProgressStyles = (
     absolute: css`
       position: absolute;
       ${nonStaticPositioning(isNative)}
+      ${logicalCSS('border-top-left-radius', 'inherit')}
+      ${logicalCSS('border-top-right-radius', 'inherit')}
     `,
     static: css`
       position: relative;
     `,
     // Colors
     primary: css`
-      ${nativeVsIndeterminateColor(euiTheme.colors.primary, isNative)}
+      ${nativeVsIndeterminateColor(
+        euiTheme.colors.primary,
+        isNative,
+        highContrastMode
+      )}
     `,
     success: css`
-      ${nativeVsIndeterminateColor(euiTheme.colors.success, isNative)}
+      ${nativeVsIndeterminateColor(
+        euiTheme.colors.success,
+        isNative,
+        highContrastMode
+      )}
     `,
     warning: css`
-      ${nativeVsIndeterminateColor(euiTheme.colors.warning, isNative)}
+      ${nativeVsIndeterminateColor(
+        euiTheme.colors.warning,
+        isNative,
+        highContrastMode
+      )}
     `,
     danger: css`
-      ${nativeVsIndeterminateColor(euiTheme.colors.danger, isNative)}
+      ${nativeVsIndeterminateColor(
+        euiTheme.colors.danger,
+        isNative,
+        highContrastMode
+      )}
     `,
     subdued: css`
-      ${nativeVsIndeterminateColor(euiTheme.colors.subduedText, isNative)}
+      ${nativeVsIndeterminateColor(
+        euiTheme.colors.subduedText,
+        isNative,
+        highContrastMode
+      )}
     `,
     accent: css`
-      ${nativeVsIndeterminateColor(euiTheme.colors.accent, isNative)}
+      ${nativeVsIndeterminateColor(
+        euiTheme.colors.accent,
+        isNative,
+        highContrastMode
+      )}
     `,
     vis0: css`
-      ${nativeVsIndeterminateColor(visColors[0], isNative)}
+      ${nativeVsIndeterminateColor(visColors[0], isNative, highContrastMode)}
     `,
     vis1: css`
-      ${nativeVsIndeterminateColor(visColors[1], isNative)}
+      ${nativeVsIndeterminateColor(visColors[1], isNative, highContrastMode)}
     `,
     vis2: css`
-      ${nativeVsIndeterminateColor(visColors[2], isNative)}
+      ${nativeVsIndeterminateColor(visColors[2], isNative, highContrastMode)}
     `,
     vis3: css`
-      ${nativeVsIndeterminateColor(visColors[3], isNative)}
+      ${nativeVsIndeterminateColor(visColors[3], isNative, highContrastMode)}
     `,
     vis4: css`
-      ${nativeVsIndeterminateColor(visColors[4], isNative)}
+      ${nativeVsIndeterminateColor(visColors[4], isNative, highContrastMode)}
     `,
     vis5: css`
-      ${nativeVsIndeterminateColor(visColors[5], isNative)}
+      ${nativeVsIndeterminateColor(visColors[5], isNative, highContrastMode)}
     `,
     vis6: css`
-      ${nativeVsIndeterminateColor(visColors[6], isNative)}
+      ${nativeVsIndeterminateColor(visColors[6], isNative, highContrastMode)}
     `,
     vis7: css`
-      ${nativeVsIndeterminateColor(visColors[7], isNative)}
+      ${nativeVsIndeterminateColor(visColors[7], isNative, highContrastMode)}
     `,
     vis8: css`
-      ${nativeVsIndeterminateColor(visColors[8], isNative)}
+      ${nativeVsIndeterminateColor(visColors[8], isNative, highContrastMode)}
     `,
     vis9: css`
-      ${nativeVsIndeterminateColor(visColors[9], isNative)}
+      ${nativeVsIndeterminateColor(visColors[9], isNative, highContrastMode)}
     `,
     customColor: css`
-      ${nativeVsIndeterminateColor('currentColor', isNative)}
+      ${nativeVsIndeterminateColor('currentColor', isNative, highContrastMode)}
     `,
   };
 };
