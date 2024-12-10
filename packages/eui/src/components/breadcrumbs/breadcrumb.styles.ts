@@ -19,11 +19,6 @@ export const euiBreadcrumbStyles = (euiThemeContext: UseEuiTheme) => {
     euiBreadcrumb: css`
       align-items: center;
       display: flex;
-      ${logicalCSS(
-        // See .euiBreadcrumbs__list's negative margin-bottom
-        'margin-bottom',
-        euiTheme.size.xs
-      )}
     `,
     isTruncated: css`
       overflow: hidden;
