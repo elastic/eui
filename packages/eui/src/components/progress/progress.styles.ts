@@ -85,135 +85,138 @@ const euiIndeterminateAnimation = keyframes`
  * Emotion styles
  */
 export const euiProgressStyles = (
-  { euiTheme }: UseEuiTheme,
+  euiThemeContext: UseEuiTheme,
   isNative: boolean
-) => ({
-  euiProgress: css`
-    overflow: hidden;
-    background-color: ${euiTheme.colors.lightShade};
-  `,
-  // https://css-tricks.com/html5-progress-element/
-  // Good resource if you need to work in here. There's some gotchas with
-  // dealing with cross-browser progress bars.
-  native: css`
-    display: block;
-    ${logicalCSS('width', '100%')}
-    appearance: none;
-    border: none;
-    border-radius: ${euiTheme.size.s};
-
-    &::-webkit-progress-bar {
+) => {
+  const { euiTheme } = euiThemeContext;
+  return {
+    euiProgress: css`
+      overflow: hidden;
       background-color: ${euiTheme.colors.lightShade};
-    }
-
-    ${euiCanAnimate} {
-      /* Note: FF/Mozilla doesn't actually support animating the native progress bar
-        @see https://bugzilla.mozilla.org/show_bug.cgi?id=662351 */
-      ${crossBrowserProgressValue(
-        `transition: width ${euiTheme.animation.normal} linear`
-      )}
-    }
-  `,
-  // An indeterminate bar has an unreliable end time. Because of a Firefox animation issue,
-  // we apply this style to a <div> instead of a <progress> element.
-  // See https://css-tricks.com/html5-progress-element/ for more info.
-  indeterminate: css`
-    &::before {
-      position: absolute;
-      content: '';
+    `,
+    // https://css-tricks.com/html5-progress-element/
+    // Good resource if you need to work in here. There's some gotchas with
+    // dealing with cross-browser progress bars.
+    native: css`
+      display: block;
       ${logicalCSS('width', '100%')}
-      ${logicalCSS('top', 0)}
-      ${logicalCSS('bottom', 0)}
-      ${logicalCSS('left', 0)}
-      transform: scaleX(0) translateX(0%);
-      animation: ${euiIndeterminateAnimation} 1s
-        ${euiTheme.animation.resistance} infinite;
+      appearance: none;
+      border: none;
+      border-radius: ${euiTheme.size.s};
 
-      ${euiCantAnimate} {
-        animation-duration: 2s;
-        animation-timing-function: linear;
+      &::-webkit-progress-bar {
+        background-color: ${euiTheme.colors.lightShade};
       }
-    }
-  `,
-  // Sizes
-  xs: css`
-    ${logicalCSS('height', euiTheme.size.xxs)}
-  `,
-  s: css`
-    ${logicalCSS('height', euiTheme.size.xs)}
-  `,
-  m: css`
-    ${logicalCSS('height', euiTheme.size.s)}
-  `,
-  l: css`
-    ${logicalCSS('height', euiTheme.size.m)}
-  `,
-  // Positioning
-  fixed: css`
-    position: fixed;
-    z-index: ${Number(euiTheme.levels.header) + 1};
-    ${nonStaticPositioning(isNative)}
-  `,
-  absolute: css`
-    position: absolute;
-    ${nonStaticPositioning(isNative)}
-  `,
-  static: css`
-    position: relative;
-  `,
-  // Colors
-  primary: css`
-    ${nativeVsIndeterminateColor(euiTheme.colors.primary, isNative)}
-  `,
-  success: css`
-    ${nativeVsIndeterminateColor(euiTheme.colors.success, isNative)}
-  `,
-  warning: css`
-    ${nativeVsIndeterminateColor(euiTheme.colors.warning, isNative)}
-  `,
-  danger: css`
-    ${nativeVsIndeterminateColor(euiTheme.colors.danger, isNative)}
-  `,
-  subdued: css`
-    ${nativeVsIndeterminateColor(euiTheme.colors.subduedText, isNative)}
-  `,
-  accent: css`
-    ${nativeVsIndeterminateColor(euiTheme.colors.accent, isNative)}
-  `,
-  vis0: css`
-    ${nativeVsIndeterminateColor(visColors[0], isNative)}
-  `,
-  vis1: css`
-    ${nativeVsIndeterminateColor(visColors[1], isNative)}
-  `,
-  vis2: css`
-    ${nativeVsIndeterminateColor(visColors[2], isNative)}
-  `,
-  vis3: css`
-    ${nativeVsIndeterminateColor(visColors[3], isNative)}
-  `,
-  vis4: css`
-    ${nativeVsIndeterminateColor(visColors[4], isNative)}
-  `,
-  vis5: css`
-    ${nativeVsIndeterminateColor(visColors[5], isNative)}
-  `,
-  vis6: css`
-    ${nativeVsIndeterminateColor(visColors[6], isNative)}
-  `,
-  vis7: css`
-    ${nativeVsIndeterminateColor(visColors[7], isNative)}
-  `,
-  vis8: css`
-    ${nativeVsIndeterminateColor(visColors[8], isNative)}
-  `,
-  vis9: css`
-    ${nativeVsIndeterminateColor(visColors[9], isNative)}
-  `,
-  customColor: css`
-    ${nativeVsIndeterminateColor('currentColor', isNative)}
-  `,
-});
+
+      ${euiCanAnimate} {
+        /* Note: FF/Mozilla doesn't actually support animating the native progress bar
+          @see https://bugzilla.mozilla.org/show_bug.cgi?id=662351 */
+        ${crossBrowserProgressValue(
+          `transition: width ${euiTheme.animation.normal} linear`
+        )}
+      }
+    `,
+    // An indeterminate bar has an unreliable end time. Because of a Firefox animation issue,
+    // we apply this style to a <div> instead of a <progress> element.
+    // See https://css-tricks.com/html5-progress-element/ for more info.
+    indeterminate: css`
+      &::before {
+        position: absolute;
+        content: '';
+        ${logicalCSS('width', '100%')}
+        ${logicalCSS('top', 0)}
+        ${logicalCSS('bottom', 0)}
+        ${logicalCSS('left', 0)}
+        transform: scaleX(0) translateX(0%);
+        animation: ${euiIndeterminateAnimation} 1s
+          ${euiTheme.animation.resistance} infinite;
+
+        ${euiCantAnimate} {
+          animation-duration: 2s;
+          animation-timing-function: linear;
+        }
+      }
+    `,
+    // Sizes
+    xs: css`
+      ${logicalCSS('height', euiTheme.size.xxs)}
+    `,
+    s: css`
+      ${logicalCSS('height', euiTheme.size.xs)}
+    `,
+    m: css`
+      ${logicalCSS('height', euiTheme.size.s)}
+    `,
+    l: css`
+      ${logicalCSS('height', euiTheme.size.m)}
+    `,
+    // Positioning
+    fixed: css`
+      position: fixed;
+      z-index: ${Number(euiTheme.levels.header) + 1};
+      ${nonStaticPositioning(isNative)}
+    `,
+    absolute: css`
+      position: absolute;
+      ${nonStaticPositioning(isNative)}
+    `,
+    static: css`
+      position: relative;
+    `,
+    // Colors
+    primary: css`
+      ${nativeVsIndeterminateColor(euiTheme.colors.primary, isNative)}
+    `,
+    success: css`
+      ${nativeVsIndeterminateColor(euiTheme.colors.success, isNative)}
+    `,
+    warning: css`
+      ${nativeVsIndeterminateColor(euiTheme.colors.warning, isNative)}
+    `,
+    danger: css`
+      ${nativeVsIndeterminateColor(euiTheme.colors.danger, isNative)}
+    `,
+    subdued: css`
+      ${nativeVsIndeterminateColor(euiTheme.colors.subduedText, isNative)}
+    `,
+    accent: css`
+      ${nativeVsIndeterminateColor(euiTheme.colors.accent, isNative)}
+    `,
+    vis0: css`
+      ${nativeVsIndeterminateColor(visColors[0], isNative)}
+    `,
+    vis1: css`
+      ${nativeVsIndeterminateColor(visColors[1], isNative)}
+    `,
+    vis2: css`
+      ${nativeVsIndeterminateColor(visColors[2], isNative)}
+    `,
+    vis3: css`
+      ${nativeVsIndeterminateColor(visColors[3], isNative)}
+    `,
+    vis4: css`
+      ${nativeVsIndeterminateColor(visColors[4], isNative)}
+    `,
+    vis5: css`
+      ${nativeVsIndeterminateColor(visColors[5], isNative)}
+    `,
+    vis6: css`
+      ${nativeVsIndeterminateColor(visColors[6], isNative)}
+    `,
+    vis7: css`
+      ${nativeVsIndeterminateColor(visColors[7], isNative)}
+    `,
+    vis8: css`
+      ${nativeVsIndeterminateColor(visColors[8], isNative)}
+    `,
+    vis9: css`
+      ${nativeVsIndeterminateColor(visColors[9], isNative)}
+    `,
+    customColor: css`
+      ${nativeVsIndeterminateColor('currentColor', isNative)}
+    `,
+  };
+};
 
 /**
  * Data styles
