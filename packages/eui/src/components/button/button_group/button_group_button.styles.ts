@@ -82,26 +82,46 @@ export const euiButtonGroupButtonStyles = (euiThemeContext: UseEuiTheme) => {
         }
       `,
       get borders() {
+        // We use pseudo elements to avoid affecing button width, and to allow
+        // inheriting high contrast border colors
         const selectors =
           '.euiButtonGroupButton-isSelected, .euiButtonGroup__tooltipWrapper-isSelected';
-        const selectedColor = transparentize(
-          euiTheme.colors.emptyShade,
-          highContrastMode ? 1 : 0.2
-        );
-        const unselectedColor = transparentize(
-          euiTheme.colors.fullShade,
-          highContrastMode ? 1 : 0.1
-        );
-        const borderWidth = euiTheme.border.width.thin;
+        const selectedColor = highContrastMode
+          ? euiTheme.colors.emptyShade
+          : transparentize(euiTheme.colors.emptyShade, 0.2);
+        const unselectedColor = highContrastMode
+          ? 'inherit'
+          : transparentize(euiTheme.colors.fullShade, 0.1);
 
         // "Borders" between buttons should be present between two of the same colored buttons,
         // and absent between selected vs non-selected buttons (different colors)
         return `
-          &:not(${selectors}) + *:not(${selectors}) {
-            box-shadow: -${borderWidth} 0 0 0 ${unselectedColor};
+          position: relative;
+
+          &::before {
+            position: absolute;
+            ${logicalCSS('left', 0)}
+            ${logicalCSS(
+              'vertical',
+              highContrastMode ? `-${euiTheme.border.width.thin}` : 0
+            )}
+            ${logicalCSS('border-left-style', 'solid')}
+            ${logicalCSS('border-left-width', euiTheme.border.width.thin)}
+            pointer-events: none;
           }
+        
+          &:not(${selectors}) + *:not(${selectors}) {
+            &::before {
+              content: '';
+              border-color: ${unselectedColor};
+            }
+          }
+
           &:is(${selectors}) + *:is(${selectors}) {
-            box-shadow: -${borderWidth} 0 0 0 ${selectedColor};
+            &::before {
+              content: '';
+              border-color: ${selectedColor};
+            }
           }
         `;
       },

@@ -76,6 +76,11 @@ const _highContrastStyles = (
 ) => {
   const { euiTheme } = euiThemeContext;
 
+  // Account for buttons within tooltip wrappers in selectors
+  const getButtonChildSelectors = (selector: string) => `
+    & > .euiButtonGroupButton${selector},
+    & > .euiButtonGroup__tooltipWrapper${selector} .euiButtonGroupButton`;
+
   return highContrastModeStyles(euiThemeContext, {
     preferred: compressed
       ? `
@@ -83,9 +88,17 @@ const _highContrastStyles = (
           border: none;
         }
       `
-      : `
-        & > .euiButtonGroupButton:not(:first-child),
-        & > .euiButtonGroup__tooltipWrapper:not(:first-child) .euiButtonGroupButton {
+      : // Conditionally unset the high contrast borders passed by `euiButtonColor` -
+        // faux borders between selected/unselected buttons are rendered by pseudo elements,
+        // and can flip colors depending on selected/unselected siblings
+        `
+        ${getButtonChildSelectors(':not(:first-child, :last-child)')} {
+          ${logicalCSS('border-horizontal', 'none')}
+        }
+        ${getButtonChildSelectors(':first-child')} {
+          ${logicalCSS('border-right', 'none')}
+        }
+        ${getButtonChildSelectors(':last-child')} {
           ${logicalCSS('border-left', 'none')}
         }
       `,
