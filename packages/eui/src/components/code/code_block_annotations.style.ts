@@ -12,9 +12,11 @@ import {
   logicalSizeCSS,
   mathWithUnits,
 } from '../../global_styling';
+import { highContrastModeStyles } from '../../global_styling/functions/high_contrast';
 import { UseEuiTheme } from '../../services';
 
-export const euiCodeBlockAnnotationsStyles = ({ euiTheme }: UseEuiTheme) => {
+export const euiCodeBlockAnnotationsStyles = (euiThemeContext: UseEuiTheme) => {
+  const { euiTheme } = euiThemeContext;
   const buttonIconSize = mathWithUnits(euiTheme.size.base, (x) => x - 1.5);
 
   return {
@@ -30,8 +32,15 @@ export const euiCodeBlockAnnotationsStyles = ({ euiTheme }: UseEuiTheme) => {
       display: flex;
       align-items: center;
       justify-content: center;
-      background-color: ${euiTheme.colors.primary};
       border-radius: 50%;
+      ${highContrastModeStyles(euiThemeContext, {
+        none: `background-color: ${euiTheme.colors.primary};`,
+        // Windows high contrast themes ignore background-color
+        forced: `
+          border: ${mathWithUnits(buttonIconSize, (x) => x / 2)} solid ${
+          euiTheme.colors.primary
+        };`,
+      })}
     `,
   };
 };

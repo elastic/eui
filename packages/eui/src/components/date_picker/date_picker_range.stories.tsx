@@ -118,6 +118,12 @@ export const FullWidth: Story = {
   render: (args) => <StatefulPlayground {...args} />,
 };
 
+export const HighContrast: Story = {
+  ...RestrictedSelection,
+  tags: ['vrt-only'],
+  globals: { highContrastMode: true },
+};
+
 /**
  * Helpers
  */
