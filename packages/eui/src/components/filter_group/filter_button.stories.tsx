@@ -94,3 +94,9 @@ export const FullWidthAndGrow: Story = {
     </EuiFilterGroup>
   ),
 };
+
+export const HighContrast: Story = {
+  ...FullWidthAndGrow,
+  tags: ['vrt-only'],
+  globals: { highContrastMode: true },
+};

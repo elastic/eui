@@ -6,6 +6,7 @@
  * Side Public License, v 1.
  */
 
+import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 
 import {
@@ -13,6 +14,7 @@ import {
   enableFunctionToggleControls,
 } from '../../../.storybook/utils';
 
+import { EuiButtonEmpty } from './button_empty';
 import { EuiButton, Props as EuiButtonProps } from './button';
 
 const meta: Meta<EuiButtonProps> = {
@@ -49,3 +51,16 @@ export const Playground: Story = {
   },
 };
 disableStorybookControls(Playground, ['buttonRef']);
+
+export const HighContrast: Story = {
+  tags: ['vrt-only'],
+  globals: { highContrastMode: true },
+  render: () => (
+    <div css={{ display: 'flex', gap: 10, flexWrap: 'wrap' }}>
+      <EuiButton>Button</EuiButton>
+      <EuiButton fill>Filled</EuiButton>
+      <EuiButton disabled>Disabled</EuiButton>
+      <EuiButtonEmpty>Empty</EuiButtonEmpty>
+    </div>
+  ),
+};
