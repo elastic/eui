@@ -17,13 +17,14 @@ import {
   logicalBorderRadiusCSS,
   mathWithUnits,
 } from '../../global_styling';
+import { highContrastModeStyles } from '../../global_styling/functions/high_contrast';
 import { euiButtonColor } from '../../themes/amsterdam/global_styling/mixins/button';
 
 /**
  * Styles cast to inner <a>, <button>, <span> elements
  */
 export const euiBreadcrumbContentStyles = (euiThemeContext: UseEuiTheme) => {
-  const { euiTheme, colorMode } = euiThemeContext;
+  const { euiTheme, colorMode, highContrastMode } = euiThemeContext;
 
   // Reuse button colors for `type="application`" clickable breadcrumbs
   const applicationButtonColors = euiButtonColor(euiThemeContext, 'primary');
@@ -38,6 +39,28 @@ export const euiBreadcrumbContentStyles = (euiThemeContext: UseEuiTheme) => {
     ),
     color: tintOrShade(euiTheme.colors.darkestShade, 0.2, colorMode),
   };
+
+  // Create an arrow "border" in high contrast modes. We have to use a
+  // filter/drop-shadow workaround to get a border working with clip-path.
+  // Note: the filter must be on the parent wrapper, not on the clipped element
+  const dropShadow = (borderColor: string) =>
+    `filter: drop-shadow(${euiTheme.border.width.thin} 0 0 ${
+      highContrastMode === 'forced' ? euiTheme.border.color : borderColor
+    });`;
+  const applicationHighContrastArrow = highContrastModeStyles(euiThemeContext, {
+    preferred: `
+      &:is(a, button) {
+        .euiBreadcrumb:has(&) {
+          ${dropShadow(applicationButtonColors.color)}
+        }
+      }
+      &:not(a, button) {
+        .euiBreadcrumb:has(&) {
+          ${dropShadow(applicationTextColors.color)}
+        }
+      }
+    `,
+  });
 
   return {
     euiBreadcrumb__content: css`
@@ -90,38 +113,38 @@ export const euiBreadcrumbContentStyles = (euiThemeContext: UseEuiTheme) => {
       ${euiFontSize(euiThemeContext, 'xs')}
       font-weight: ${euiTheme.font.weight.medium};
       background-color: ${applicationTextColors.backgroundColor};
-      clip-path: polygon(
-        0 0,
-        calc(100% - ${euiTheme.size.s}) 0,
-        100% 50%,
-        calc(100% - ${euiTheme.size.s}) 100%,
-        0 100%,
-        ${euiTheme.size.s} 50%
-      );
+      ${highContrastModeStyles(euiThemeContext, {
+        preferred: `border: ${euiTheme.border.width.thin} solid currentColor;`,
+      })}
       color: ${applicationTextColors.color};
       line-height: ${euiTheme.size.base};
       ${logicalCSS('padding-vertical', euiTheme.size.xs)}
       ${logicalCSS('padding-horizontal', euiTheme.size.base)}
 
-      &:is(a),
-      &:is(button) {
+      &:is(a, button) {
         background-color: ${applicationButtonColors.backgroundColor};
         color: ${applicationButtonColors.color};
+      }
 
-        :focus {
-          ${euiFocusRing(euiThemeContext, 'inset')}
+      &:focus {
+        ${euiFocusRing(euiThemeContext, 'inset')}
+      }
 
-          :focus-visible {
-            border-radius: ${euiTheme.border.radius.medium};
-            clip-path: none;
-          }
+      &:focus-visible {
+        border-radius: ${euiTheme.border.radius.medium};
+        clip-path: none;
+
+        .euiBreadcrumb:has(&) {
+          z-index: 2;
+          ${highContrastModeStyles(euiThemeContext, {
+            preferred: 'filter: none;',
+          })}
         }
       }
     `,
     applicationStyles: {
       onlyChild: css`
         border-radius: ${euiTheme.border.radius.medium};
-        clip-path: none;
         ${logicalCSS('padding-horizontal', euiTheme.size.m)}
       `,
       firstChild: css`
@@ -137,6 +160,18 @@ export const euiBreadcrumbContentStyles = (euiThemeContext: UseEuiTheme) => {
           0 100%
         );
         ${logicalCSS('padding-left', euiTheme.size.m)}
+        ${applicationHighContrastArrow}
+      `,
+      intermediateChild: `
+        clip-path: polygon(
+          0 0,
+          calc(100% - ${euiTheme.size.s}) 0,
+          100% 50%,
+          calc(100% - ${euiTheme.size.s}) 100%,
+          0 100%,
+          ${euiTheme.size.s} 50%
+        );
+        ${applicationHighContrastArrow}
       `,
       lastChild: css`
         ${logicalBorderRadiusCSS(

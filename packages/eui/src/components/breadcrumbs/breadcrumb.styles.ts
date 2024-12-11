@@ -19,11 +19,6 @@ export const euiBreadcrumbStyles = (euiThemeContext: UseEuiTheme) => {
     euiBreadcrumb: css`
       align-items: center;
       display: flex;
-      ${logicalCSS(
-        // See .euiBreadcrumbs__list's negative margin-bottom
-        'margin-bottom',
-        euiTheme.size.xs
-      )}
     `,
     isTruncated: css`
       overflow: hidden;
@@ -36,15 +31,14 @@ export const euiBreadcrumbStyles = (euiThemeContext: UseEuiTheme) => {
     page: css`
       &:not(:last-of-type) {
         &::after {
-          background: ${euiTheme.colors.lightShade};
           content: '';
           flex-shrink: 0;
           ${logicalCSS('margin-top', euiTheme.size.xs)}
           ${logicalCSS('margin-bottom', 0)}
           ${logicalCSS('margin-horizontal', euiTheme.size.s)}
           ${logicalCSS('height', euiTheme.size.base)}
-          ${logicalCSS('width', '1px')}
-          transform: translateY(-1px) rotate(15deg);
+          ${logicalCSS('border-right', euiTheme.border.thin)}
+          transform: translateY(-${euiTheme.border.width.thin}) rotate(15deg);
         }
       }
     `,
