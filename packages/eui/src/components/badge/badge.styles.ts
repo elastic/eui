@@ -44,7 +44,7 @@ export const euiBadgeStyles = (euiThemeContext: UseEuiTheme) => {
       font-weight: ${euiTheme.font.weight.medium};
       white-space: nowrap;
       text-decoration: none;
-      cursor: default;
+      cursor: inherit;
       border: ${euiTheme.border.width.thin} solid transparent;
       border-radius: ${mathWithUnits(
         euiTheme.border.radius.medium,
