@@ -8,7 +8,7 @@
 
 import { css } from '@emotion/react';
 
-import { UseEuiTheme } from '../../services';
+import { tint, UseEuiTheme } from '../../services';
 import {
   euiCanAnimate,
   euiCantAnimate,
@@ -22,11 +22,16 @@ type AnimationOptions = {
 };
 
 export const euiSkeletonGradientAnimation = (
-  { euiTheme }: UseEuiTheme,
+  { euiTheme, colorMode, highContrastMode }: UseEuiTheme,
   { slideSize = '-53%', gradientSize = '220%' }: AnimationOptions = {}
 ) => {
   const gradientStartStop = euiTheme.colors.backgroundBaseSkeletonEdge;
-  const gradientMiddle = euiTheme.colors.backgroundBaseSkeletonMiddle;
+  // Increase "shine" visibility in high contrast modes
+  const gradientMiddle = highContrastMode
+    ? colorMode === 'DARK'
+      ? tint(euiTheme.colors.lightShade, 0.12) // TODO: remove in favor of token
+      : euiTheme.colors.emptyShade
+    : euiTheme.colors.backgroundBaseSkeletonMiddle;
 
   return css`
     ${euiCantAnimate} {

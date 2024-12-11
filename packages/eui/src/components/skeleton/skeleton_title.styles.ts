@@ -8,6 +8,7 @@
 
 import { css } from '@emotion/react';
 import { logicalCSS } from '../../global_styling';
+import { preventForcedColors } from '../../global_styling/functions/high_contrast';
 import { UseEuiTheme } from '../../services';
 import { euiTitle } from '../title/title.styles';
 
@@ -22,6 +23,7 @@ export const euiSkeletonTitleStyles = (euiThemeContext: UseEuiTheme) => {
       ${logicalCSS('width', '45%')}
       border-radius: ${euiTheme.border.radius.medium};
       ${euiSkeletonGradientAnimation(euiThemeContext)}
+      ${preventForcedColors(euiThemeContext)}
     `,
     // Sizes
     l: css`
