@@ -15,7 +15,10 @@ import {
   euiAnimScale,
   logicalSizeCSS,
 } from '../../global_styling';
-import { highContrastModeStyles } from '../../global_styling/functions/high_contrast';
+import {
+  highContrastModeStyles,
+  preventForcedColors,
+} from '../../global_styling/functions/high_contrast';
 import { UseEuiTheme } from '../../services';
 import { euiButtonFillColor } from '../../themes/amsterdam/global_styling/mixins';
 
@@ -121,9 +124,25 @@ export const euiStepNumberStyles = (euiThemeContext: UseEuiTheme) => {
       }
     `,
     current: css`
-      border: ${euiTheme.border.width.thick} solid ${euiTheme.colors.body};
-      box-shadow: 0 0 0 ${euiTheme.border.width.thick}
-        ${euiTheme.colors.primary};
+      transform: scale(1.1);
+      box-shadow: inset 0 0 0 ${euiTheme.border.width.thick}
+        ${euiTheme.colors.emptyShade};
+
+      ${highContrastModeStyles(euiThemeContext, {
+        none: `
+          border: ${euiTheme.border.width.thick} solid ${euiTheme.colors.primary};
+        `,
+        preferred: `
+          border-width: ${euiTheme.border.width.thick};
+          outline-offset: -${euiTheme.border.width.thin} !important;
+        `,
+        // For Windows forced color themes, just invert the background/foreground colors
+        forced: `
+          color: ${euiTheme.colors.emptyShade};
+          background-color: ${euiTheme.colors.fullShade};
+          ${preventForcedColors(euiThemeContext)}
+        `,
+      })}
     `,
   };
 };
