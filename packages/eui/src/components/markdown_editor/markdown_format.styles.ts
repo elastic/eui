@@ -92,58 +92,65 @@ const euiMarkdownAdjustBorderColors = (
 /**
  * Styles
  */
-export const euiMarkdownFormatStyles = (euiTheme: UseEuiTheme) => ({
-  euiMarkdownFormat: css``,
-  // Text sizes
-  m: css(
-    euiScaleMarkdownFormatText(euiTheme, {
-      customScale: 'm',
-    })
-  ),
-  s: css(
-    euiScaleMarkdownFormatText(euiTheme, {
-      customScale: 's',
-    })
-  ),
-  xs: css(
-    euiScaleMarkdownFormatText(euiTheme, {
-      customScale: 'xs',
-    })
-  ),
-  relative: css(
-    euiScaleMarkdownFormatText(euiTheme, {
-      unit: 'em',
-    })
-  ),
-  colors: {
-    default: css(
-      euiMarkdownAdjustBorderColors(
-        euiTheme,
-        transparentize(euiTheme.euiTheme.colors.fullShade, 0.15)
-      )
+export const euiMarkdownFormatStyles = (euiThemeContext: UseEuiTheme) => {
+  const { euiTheme } = euiThemeContext;
+  return {
+    euiMarkdownFormat: css``,
+    // Text sizes
+    m: css(
+      euiScaleMarkdownFormatText(euiThemeContext, {
+        customScale: 'm',
+      })
     ),
-    subdued: css(
-      euiMarkdownAdjustBorderColors(
-        euiTheme,
-        euiTheme.euiTheme.colors.subduedText
-      )
+    s: css(
+      euiScaleMarkdownFormatText(euiThemeContext, {
+        customScale: 's',
+      })
     ),
-    success: css(
-      euiMarkdownAdjustBorderColors(euiTheme, euiTheme.euiTheme.colors.success)
+    xs: css(
+      euiScaleMarkdownFormatText(euiThemeContext, {
+        customScale: 'xs',
+      })
     ),
-    accent: css(
-      euiMarkdownAdjustBorderColors(euiTheme, euiTheme.euiTheme.colors.accent)
+    relative: css(
+      euiScaleMarkdownFormatText(euiThemeContext, {
+        unit: 'em',
+      })
     ),
-    warning: css(
-      euiMarkdownAdjustBorderColors(euiTheme, euiTheme.euiTheme.colors.warning)
-    ),
-    danger: css(
-      euiMarkdownAdjustBorderColors(euiTheme, euiTheme.euiTheme.colors.danger)
-    ),
-    ghost: css(
-      euiMarkdownAdjustBorderColors(euiTheme, euiTheme.euiTheme.colors.ghost)
-    ),
-    inherit: css(euiMarkdownAdjustBorderColors(euiTheme, 'currentColor')),
-    custom: css(euiMarkdownAdjustBorderColors(euiTheme, 'currentColor')),
-  },
-});
+    colors: {
+      default: css(
+        euiMarkdownAdjustBorderColors(
+          euiThemeContext,
+          transparentize(euiTheme.colors.fullShade, 0.15)
+        )
+      ),
+      subdued: css(
+        euiMarkdownAdjustBorderColors(
+          euiThemeContext,
+          euiTheme.colors.subduedText
+        )
+      ),
+      success: css(
+        euiMarkdownAdjustBorderColors(euiThemeContext, euiTheme.colors.success)
+      ),
+      accent: css(
+        euiMarkdownAdjustBorderColors(euiThemeContext, euiTheme.colors.accent)
+      ),
+      warning: css(
+        euiMarkdownAdjustBorderColors(euiThemeContext, euiTheme.colors.warning)
+      ),
+      danger: css(
+        euiMarkdownAdjustBorderColors(euiThemeContext, euiTheme.colors.danger)
+      ),
+      ghost: css(
+        euiMarkdownAdjustBorderColors(euiThemeContext, euiTheme.colors.ghost)
+      ),
+      inherit: css(
+        euiMarkdownAdjustBorderColors(euiThemeContext, 'currentColor')
+      ),
+      custom: css(
+        euiMarkdownAdjustBorderColors(euiThemeContext, 'currentColor')
+      ),
+    },
+  };
+};
