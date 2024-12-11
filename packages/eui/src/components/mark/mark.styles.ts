@@ -7,23 +7,29 @@
  */
 
 import { css } from '@emotion/react';
-import { UseEuiTheme, transparentize } from '../../services';
+import { UseEuiTheme } from '../../services';
+import { highContrastModeStyles } from '../../global_styling/functions/high_contrast';
 import { euiScreenReaderOnly } from '../accessibility';
 
-export const euiMarkStyles = ({ euiTheme, colorMode }: UseEuiTheme) => {
-  // TODO: Was $euiFocusBackgroundColor
-  const transparency = { LIGHT: 0.1, DARK: 0.3 };
-
+export const euiMarkStyles = (euiThemeContext: UseEuiTheme) => {
+  const { euiTheme } = euiThemeContext;
   return {
     euiMark: css`
-      background-color: ${transparentize(
-        euiTheme.colors.primary,
-        transparency[colorMode]
-      )};
+      ${highContrastModeStyles(euiThemeContext, {
+        // Override the browser's black color.
+        // Can't use 'inherit' because the text to background color contrast may not be sufficient
+        none: `
+          color: ${euiTheme.colors.text};
+          background-color: ${euiTheme.focus.backgroundColor};
+        `,
+        // `!important` is required here because some marked text links
+        // (e.g. EuiSideNav) will take precedence otherwise
+        preferred: `
+          color: ${euiTheme.colors.emptyShade} !important;
+          background-color: ${euiTheme.colors.primaryText};
+        `,
+      })}
       font-weight: ${euiTheme.font.weight.bold};
-      /* Override the browser's black color.
-         Can't use 'inherit' because the text to background color contrast may not be sufficient */
-      color: ${euiTheme.colors.text};
     `,
   };
 };
