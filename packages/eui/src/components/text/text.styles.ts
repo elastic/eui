@@ -335,6 +335,13 @@ export const euiTextStyles = (euiThemeContext: UseEuiTheme) => {
           euiTheme.border.radius.small,
           (x) => x / 2
         )};
+        ${highContrastModeStyles(euiThemeContext, {
+          // Fixes an odd border issue in Windows high contrast themes
+          forced: `
+            overflow: hidden;
+            vertical-align: middle;
+          `,
+        })}
       }
     `,
     constrainedWidth: css`

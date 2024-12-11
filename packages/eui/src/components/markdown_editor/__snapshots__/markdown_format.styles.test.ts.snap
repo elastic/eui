@@ -374,6 +374,10 @@ exports[`euiMarkdownFormat text sizes m 1`] = `
 "
     .euiMarkdownFormat__codeblockWrapper {
       margin-block-end: 1.1429rem;
+
+      .euiCodeBlock__pre {
+        margin-block-end: 0;
+      }
     }
 
     .euiMarkdownFormat__table {
@@ -392,6 +396,10 @@ exports[`euiMarkdownFormat text sizes relative 1`] = `
 "
     .euiMarkdownFormat__codeblockWrapper {
       margin-block-end: 1em;
+
+      .euiCodeBlock__pre {
+        margin-block-end: 0;
+      }
     }
 
     .euiMarkdownFormat__table {
@@ -410,6 +418,10 @@ exports[`euiMarkdownFormat text sizes s 1`] = `
 "
     .euiMarkdownFormat__codeblockWrapper {
       margin-block-end: 1.0000rem;
+
+      .euiCodeBlock__pre {
+        margin-block-end: 0;
+      }
     }
 
     .euiMarkdownFormat__table {
@@ -428,6 +440,10 @@ exports[`euiMarkdownFormat text sizes xs 1`] = `
 "
     .euiMarkdownFormat__codeblockWrapper {
       margin-block-end: 0.8571rem;
+
+      .euiCodeBlock__pre {
+        margin-block-end: 0;
+      }
     }
 
     .euiMarkdownFormat__table {
