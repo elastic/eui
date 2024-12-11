@@ -139,8 +139,6 @@ export const ShadeSass: FunctionComponent<ThemeRowType> = ({ description }) => {
 export const ShadeValuesSass = () => {
   const values = useJsonVars();
 
-  console.log('values', values, values.euiColorEmptyShade);
-
   return (
     <>
       <ThemeValuesTable
