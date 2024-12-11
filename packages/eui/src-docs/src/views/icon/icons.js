@@ -62,6 +62,8 @@ export const iconTypes = [
   'continuityAboveBelow',
   'continuityBelow',
   'continuityWithin',
+  'contrast',
+  'contrastHigh',
   'controlsHorizontal',
   'controlsVertical',
   'copy',

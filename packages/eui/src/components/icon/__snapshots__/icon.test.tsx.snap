@@ -1781,6 +1781,45 @@ exports[`EuiIcon props type continuityWithin is rendered 1`] = `
 </svg>
 `;
 
+exports[`EuiIcon props type contrast is rendered 1`] = `
+<svg
+  aria-hidden="true"
+  class="euiIcon emotion-euiIcon-m-isLoaded"
+  data-icon-type="contrast"
+  data-is-loaded="true"
+  height="16"
+  role="img"
+  viewBox="0 0 16 16"
+  width="16"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    clip-rule="evenodd"
+    d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14Zm.5-1.5h1.902a6.004 6.004 0 0 0 1.567-1H8.5v1Zm0-2h4.374c.225-.312.42-.647.582-1H8.5v1Zm0-2h5.311c.083-.324.14-.658.168-1H8.5v1Zm0-2h5.48a5.988 5.988 0 0 0-.169-1H8.5v1Zm0-2h4.956a5.996 5.996 0 0 0-.582-1H8.5v1Zm0-2h3.469a6.004 6.004 0 0 0-1.567-1H8.5v1ZM2 8a6 6 0 0 1 5.5-5.98v11.96A6 6 0 0 1 2 8Z"
+    fill-rule="evenodd"
+  />
+</svg>
+`;
+
+exports[`EuiIcon props type contrastHigh is rendered 1`] = `
+<svg
+  aria-hidden="true"
+  class="euiIcon emotion-euiIcon-m-isLoaded"
+  data-icon-type="contrastHigh"
+  data-is-loaded="true"
+  height="16"
+  role="img"
+  viewBox="0 0 16 16"
+  width="16"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    clip-rule="evenodd"
+    d="M15 8A7 7 0 1 1 1 8a7 7 0 0 1 14 0Zm-7 6V2a6 6 0 1 0 0 12Z"
+  />
+</svg>
+`;
+
 exports[`EuiIcon props type controlsHorizontal is rendered 1`] = `
 <svg
   aria-hidden="true"
