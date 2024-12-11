@@ -7,7 +7,7 @@
  */
 
 import { css } from '@emotion/react';
-import { UseEuiTheme, transparentize } from '../../services';
+import { UseEuiTheme } from '../../services';
 import {
   logicalCSS,
   euiFontSize,
@@ -93,7 +93,7 @@ const euiMarkdownAdjustBorderColors = (
  * Styles
  */
 export const euiMarkdownFormatStyles = (euiThemeContext: UseEuiTheme) => {
-  const { euiTheme } = euiThemeContext;
+  const { euiTheme, highContrastMode } = euiThemeContext;
   return {
     euiMarkdownFormat: css``,
     // Text sizes
@@ -119,15 +119,12 @@ export const euiMarkdownFormatStyles = (euiThemeContext: UseEuiTheme) => {
     ),
     colors: {
       default: css(
-        euiMarkdownAdjustBorderColors(
-          euiThemeContext,
-          transparentize(euiTheme.colors.fullShade, 0.15)
-        )
+        euiMarkdownAdjustBorderColors(euiThemeContext, euiTheme.border.color)
       ),
       subdued: css(
         euiMarkdownAdjustBorderColors(
           euiThemeContext,
-          euiTheme.colors.subduedText
+          highContrastMode ? euiTheme.border.color : euiTheme.colors.subduedText
         )
       ),
       success: css(

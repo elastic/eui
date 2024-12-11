@@ -168,3 +168,9 @@ export const TextProps: Story = {
     textSize: 'xs',
   },
 };
+
+export const HighContrast: Story = {
+  ...KitchenSink,
+  tags: ['vrt-only'],
+  globals: { highContrastMode: true },
+};
