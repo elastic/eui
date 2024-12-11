@@ -14,10 +14,10 @@ $euiColorTransparent: 'transparent' !default;
 $euiColorPlainLight: $euiColorWhite !default;
 $euiColorPlainDark: $euiColorBlueBlack !default;
 
-$euiColorPlainLightAlpha8: 'rgba(255, 255, 255, 0.08)' !default;
-$euiColorPlainLightAlpha12: 'rgba(255, 255, 255, 0.12)' !default;
-$euiColorPlainLightAlpha16: 'rgba(255, 255, 255, 0.16)' !default;
-$euiColorPlainLightAlpha32: 'rgba(255, 255, 255, 0.32)' !default;
+$euiColorPlainLightAlpha8: rgba($euiColorPlainLight, 0.08) !default;
+$euiColorPlainLightAlpha12: rgba($euiColorPlainLight, 0.12) !default;
+$euiColorPlainLightAlpha16: rgba($euiColorPlainLight, 0.16) !default;
+$euiColorPlainLightAlpha32: rgba($euiColorPlainLight, 0.32) !default;
 
 $euiColorPrimary10: #E8F1FF !default;
 $euiColorPrimary20: #D9E8FF !default;
@@ -34,12 +34,12 @@ $euiColorPrimary120: #123778 !default;
 $euiColorPrimary130: #0D2F5E !default;
 $euiColorPrimary140: #0A2342 !default;
 
-$euiColorPrimary70Alpha12: 'rgba(55, 136, 255, 0.12)' !default;
-$euiColorPrimary70Alpha16: 'rgba(55, 136, 255, 0.16)' !default;
+$euiColorPrimary70Alpha12: rgba($euiColorPrimary70, 0.12) !default;
+$euiColorPrimary70Alpha16: rgba($euiColorPrimary70, 0.16) !default;
 
-$euiColorPrimary100Alpha4: 'rgba(23, 80, 186, 0.04)' !default;
-$euiColorPrimary100Alpha8: 'rgba(23, 80, 186, 0.08)' !default;
-$euiColorPrimary100Alpha12: 'rgba(23, 80, 186, 0.12)' !default;
+$euiColorPrimary100Alpha4: rgba($euiColorPrimary100, 0.04) !default;
+$euiColorPrimary100Alpha8: rgba($euiColorPrimary100, 0.08) !default;
+$euiColorPrimary100Alpha12: rgba($euiColorPrimary100, 0.12) !default;
 
 $euiColorAccent10: #FFEBF5 !default;
 $euiColorAccent20: #FDDDE9 !default;
@@ -56,8 +56,8 @@ $euiColorAccent120: #5E2140 !default;
 $euiColorAccent130: #481E32 !default;
 $euiColorAccent140: #351725 !default;
 
-$euiColorAccent70Alpha12: 'rgba(229, 74, 145, 0.12)' !default;
-$euiColorAccent70Alpha16: 'rgba(229, 74, 145, 0.16)' !default;
+$euiColorAccent70Alpha12: rgba($euiColorAccent70, 0.12) !default;
+$euiColorAccent70Alpha16: rgba($euiColorAccent70, 0.16) !default;
 
 $euiColorAccentSecondary10: #E2F9F7 !default;
 $euiColorAccentSecondary20: #C9F3F0 !default;
@@ -74,8 +74,8 @@ $euiColorAccentSecondary120: #044949 !default;
 $euiColorAccentSecondary130: #023436 !default;
 $euiColorAccentSecondary140: #03282B !default;
 
-$euiColorAccentSecondary70Alpha12: 'rgba(0, 176, 170, 0.12)' !default;
-$euiColorAccentSecondary70Alpha16: 'rgba(0, 176, 170, 0.16)' !default;
+$euiColorAccentSecondary70Alpha12: rgba($euiColorAccentSecondary70, 0.12) !default;
+$euiColorAccentSecondary70Alpha16: rgba($euiColorAccentSecondary70, 0.16) !default;
 
 $euiColorSuccess10: #E2F8F0 !default;
 $euiColorSuccess20: #C9F3E3 !default;
@@ -92,8 +92,8 @@ $euiColorSuccess120: #094837 !default;
 $euiColorSuccess130: #0D362B !default;
 $euiColorSuccess140: #092A26 !default;
 
-$euiColorSuccess70Alpha12: 'rgba(4, 174, 126, 0.12)' !default;
-$euiColorSuccess70Alpha16: 'rgba(4, 174, 126, 0.16)' !default;
+$euiColorSuccess70Alpha12: rgba($euiColorSuccess70, 0.12) !default;
+$euiColorSuccess70Alpha16: rgba($euiColorSuccess70, 0.16) !default;
 
 $euiColorWarning10: #FDF3D8 !default;
 $euiColorWarning20: #FDE9B5 !default;
@@ -110,8 +110,8 @@ $euiColorWarning120: #513910 !default;
 $euiColorWarning130: #3D3014 !default;
 $euiColorWarning140: #2C2721 !default;
 
-$euiColorWarning40Alpha12: 'rgba(250, 203, 61, 0.12)' !default;
-$euiColorWarning40Alpha24: 'rgba(250, 203, 61, 0.24)' !default;
+$euiColorWarning40Alpha12: rgba($euiColorWarning40, 0.12) !default;
+$euiColorWarning40Alpha24: rgba($euiColorWarning40, 0.24) !default;
 
 $euiColorDanger10: #FFE8E5 !default;
 $euiColorDanger20: #FDDDD8 !default;
@@ -128,8 +128,8 @@ $euiColorDanger120: #5E2129 !default;
 $euiColorDanger130: #491D27 !default;
 $euiColorDanger140: #351721 !default;
 
-$euiColorDanger70Alpha12: 'rgba(238, 75, 72, 0.12)' !default;
-$euiColorDanger70Alpha16: 'rgba(238, 75, 72, 0.16)' !default;
+$euiColorDanger70Alpha12: rgba($euiColorDanger70, 0.12) !default;
+$euiColorDanger70Alpha16: rgba($euiColorDanger70, 0.16) !default;
 
 $euiColorAssistance10: #F3ECFE !default;
 $euiColorAssistance20: #ECE2FE !default;
@@ -175,11 +175,11 @@ $euiColorShade135: #172336 !default;
 $euiColorShade140: #111C2C !default;
 $euiColorShade145: #0B1628 !default;
 
-$euiColorShade100Alpha4: 'rgba(72, 89, 117, 0.04)' !default;
-$euiColorShade100Alpha16: 'rgba(72, 89, 117, 0.16)' !default;
-$euiColorShade100Alpha24: 'rgba(72, 89, 117, 0.24)' !default;
-$euiColorShade100Alpha70: 'rgba(72, 89, 117, 0.7)' !default;
+$euiColorShade100Alpha4: rgba($euiColorShade100, 0.04) !default;
+$euiColorShade100Alpha16: rgba($euiColorShade100, 0.16) !default;
+$euiColorShade100Alpha24: rgba($euiColorShade100, 0.24) !default;
+$euiColorShade100Alpha70: rgba($euiColorShade100, 0.7) !default;
 
-$euiColorShade120Alpha70: 'rgba(43, 57, 79, 0.7)' !default;
+$euiColorShade120Alpha70: rgba($euiColorShade120, 0.7) !default;
  
  
