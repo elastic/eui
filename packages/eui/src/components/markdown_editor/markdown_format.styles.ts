@@ -32,6 +32,10 @@ const euiScaleMarkdownFormatText = (
   return `
     .euiMarkdownFormat__codeblockWrapper {
       ${logicalCSS('margin-bottom', fontSize)}
+
+      .euiCodeBlock__pre {
+        ${logicalCSS('margin-bottom', 0)}
+      }
     }
 
     .euiMarkdownFormat__table {
