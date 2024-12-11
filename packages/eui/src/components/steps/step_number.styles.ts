@@ -15,6 +15,7 @@ import {
   euiAnimScale,
   logicalSizeCSS,
 } from '../../global_styling';
+import { highContrastModeStyles } from '../../global_styling/functions/high_contrast';
 import { UseEuiTheme } from '../../services';
 import { euiButtonFillColor } from '../../themes/amsterdam/global_styling/mixins';
 
@@ -36,6 +37,9 @@ export const euiStepNumberStyles = (euiThemeContext: UseEuiTheme) => {
       color: ${euiTheme.colors.emptyShade};
       background-color: ${euiTheme.colors.primary};
       border-radius: 50%;
+      ${highContrastModeStyles(euiThemeContext, {
+        preferred: `border: ${euiTheme.border.thick};`,
+      })}
     `;
   };
 
@@ -76,12 +80,21 @@ export const euiStepNumberStyles = (euiThemeContext: UseEuiTheme) => {
     `,
     disabled: css`
       ${euiButtonFillColor(euiThemeContext, 'disabled')}
+      ${highContrastModeStyles(euiThemeContext, {
+        forced: 'opacity: 0.5;',
+      })}
     `,
     loading: css`
       background: transparent;
+      ${highContrastModeStyles(euiThemeContext, {
+        preferred: 'border: none;',
+      })}
     `,
     warning: css`
-      ${euiButtonFillColor(euiThemeContext, 'warning')}
+      ${{
+        ...euiButtonFillColor(euiThemeContext, 'warning'),
+        border: undefined,
+      }}
 
       ${euiCanAnimate} {
         animation: ${euiAnimScale} ${euiTheme.animation.fast}
@@ -89,7 +102,7 @@ export const euiStepNumberStyles = (euiThemeContext: UseEuiTheme) => {
       }
     `,
     danger: css`
-      ${euiButtonFillColor(euiThemeContext, 'danger')}
+      ${{ ...euiButtonFillColor(euiThemeContext, 'danger'), border: undefined }}
 
       ${euiCanAnimate} {
         animation: ${euiAnimScale} ${euiTheme.animation.fast}
@@ -97,7 +110,10 @@ export const euiStepNumberStyles = (euiThemeContext: UseEuiTheme) => {
       }
     `,
     complete: css`
-      ${euiButtonFillColor(euiThemeContext, 'success')}
+      ${{
+        ...euiButtonFillColor(euiThemeContext, 'success'),
+        border: undefined,
+      }}
 
       ${euiCanAnimate} {
         animation: ${euiAnimScale} ${euiTheme.animation.fast}
