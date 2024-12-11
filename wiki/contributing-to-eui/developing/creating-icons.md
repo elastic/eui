@@ -66,6 +66,7 @@ _1. Add your glyph to the `EuiIcon` component_
 
 _2. Display the icon in the docs_
 - Add the icon name to `/packages/eui/src-docs/src/views/icon/icons.js` *
+- Add the icon name to `/packages/website/docs/components/display/icons/icon_types.ts` *
 
 _3. Compile and test_
 - Go to the `packages/eui` directory
