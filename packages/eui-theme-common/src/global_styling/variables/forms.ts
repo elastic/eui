@@ -8,6 +8,10 @@
 
 import { ColorModeSwitch } from '../types';
 
+export type _EuiThemeForm = {
+  maxWidth: string;
+};
+
 export type _EuiThemeFormColors = {
   background: ColorModeSwitch;
   backgroundDisabled: ColorModeSwitch;
