@@ -18,7 +18,7 @@ import {
 // don't need the extra overhead/color computing expense of every form var.
 // For microperf, we're making this its own util
 export const euiFormMaxWidth = ({ euiTheme }: UseEuiTheme) =>
-  mathWithUnits(euiTheme.size.base, (x) => x * 25);
+  euiTheme.components.forms.maxWidth;
 
 export const euiFormVariables = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;

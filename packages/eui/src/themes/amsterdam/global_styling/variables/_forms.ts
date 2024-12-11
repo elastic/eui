@@ -6,6 +6,8 @@
  * Side Public License, v 1.
  */
 
+import { mathWithUnits } from '@elastic/eui-theme-common';
+
 import { computed } from '../../../../services/theme/utils';
 import {
   darken,
@@ -122,6 +124,10 @@ const _dark_forms = {
 };
 
 export const forms = {
+  maxWidth: computed(
+    ([base]) => mathWithUnits(base, (x) => x * 25),
+    ['size.base']
+  ),
   LIGHT: _forms,
   DARK: _dark_forms,
 };
