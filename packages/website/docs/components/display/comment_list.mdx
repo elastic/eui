@@ -5,7 +5,7 @@ id: display_comment_list
 
 # Comment list
 
-The **EuiCommentList** is a timeline component built on top of [**EuiTimeline**](/docs/display/timeline). It allows you to display comments or logged actions that either a user or a system has performed.
+The **EuiCommentList** is a timeline component built on top of [**EuiTimeline**](../timeline). It allows you to display comments or logged actions that either a user or a system has performed.
 
 :::note Accessibility recommendation
 Provide a descriptive `aria-label` or the ID of an external label to the `aria-labelledby` prop of the **EuiCommentList**. A `timelineAvatarAriaLabel` should be provided for every **EuiComment** with or without a `timelineAvatar` as `IconType`.
@@ -112,9 +112,7 @@ export default () => (
 
 The **EuiComment** is flexible and adapts the design according to the props passed.
 
-```mdx-code-block
-import { CommentListProps } from './comment_list_props.tsx';
-```
+import { CommentListProps, CommentListStyle } from './comment_list_props.tsx';
 
 <CommentListProps
   snippet={`<EuiCommentList aria-label="Comment example">
@@ -129,14 +127,17 @@ import { CommentListProps } from './comment_list_props.tsx';
     </EuiComment>
   </EuiCommentList>`}
 />
+<CommentListStyle>
 
-1.  `timelineAvatar`: Shows an avatar that should indicate who is the author of the comment. To customize, pass a `string` as a `EuiIcon['type']` or a a [**EuiAvatar**](/docs/display/avatar). Use in conjunction with `timelineAvatarAriaLabel` to pass an aria label to the avatar. If no avatar is provided, it will default to an avatar with a `userAvatar` icon.
+1.  `timelineAvatar`: Shows an avatar that should indicate who is the author of the comment. To customize, pass a `string` as an `EuiIcon['type']` or an [**EuiAvatar**](../avatar). Use in conjunction with `timelineAvatarAriaLabel` to pass an aria label to the avatar. If no avatar is provided, it will default to an avatar with a `userAvatar` icon.
 2.  `eventIcon`: Icon that shows before the username. Use in conjunction with `eventIconAriaLabel` to pass an aria label to the event icon.
 3.  `username`: Author of the comment.
 4.  `event`: Describes the event that took place.
 5.  `timestamp`: Time of occurrence of the event.
-6.  `actions`: Custom actions that the user can perform from the comment's header. When having multiple actions, consider grouping them in a nested menu system using a [**EuiPopover**](/docs/layout/popover) with a [**EuiContextMenu**](/docs/navigation/context-menu).
+6.  `actions`: Custom actions that the user can perform from the comment's header. When having multiple actions, consider grouping them in a nested menu system using a [**EuiPopover**](../../layout/popover) with a [**EuiContextMenu**](../../navigation/context-menu).
 7.  `children`: A user message or any custom component.
+
+</CommentListStyle>
 
 The following demo shows how you can combine different props to create different types of comments events like a regular, update, update with a danger background and a custom one.
 
@@ -330,8 +331,8 @@ export default () => {
 The timeline icon is a very important part of the comment:
 
 *   By default, each **EuiComment** shows an avatar with the `userAvatar` icon. A `timelineAvatarAriaLabel`should be provided when using this default option.
-*   You can customize your avatar by passing to the `timelineAvatar` any of the icon types that [**EuiIcon**](/docs/display/icons) supports. The icon will show inside a `subdued` avatar. Consider this option when showing a system update. Providing a `timelineAvatarAriaLabel` is recommended.
-*   You can further customize the timeline icon by passing to the `timelineAvatar` a [**EuiAvatar**](/docs/display/avatar).
+*   You can customize your avatar by passing to the `timelineAvatar` any of the icon types that [**EuiIcon**](../icons) supports. The icon will show inside a `subdued` avatar. Consider this option when showing a system update. Providing a `timelineAvatarAriaLabel` is recommended.
+*   You can further customize the timeline icon by passing to the `timelineAvatar` a [**EuiAvatar**](../avatar).
 
 ```tsx interactive
 import React from 'react';
@@ -391,7 +392,7 @@ export default () => (
 
 ## Comment event actions
 
-There are scenarios where you might want to allow the user to perform `actions` related to each comment. Some common `actions` include: editing, deleting, sharing and copying. To add custom `actions` to a comment, use the `actions`prop. These will be placed to the right of the metadata in the comment's header. We recommend using a [**EuiButtonIcon**](/docs/navigation/button) to trigger an action. When having multiple actions, consider grouping them in a nested menu system using a [**EuiPopover**](/docs/layout/popover) with a [**EuiContextMenu**](/docs/navigation/context-menu).
+There are scenarios where you might want to allow the user to perform `actions` related to each comment. Some common `actions` include: editing, deleting, sharing and copying. To add custom `actions` to a comment, use the `actions`prop. These will be placed to the right of the metadata in the comment's header. We recommend using a [**EuiButtonIcon**](../../navigation/button) to trigger an action. When having multiple actions, consider grouping them in a nested menu system using a [**EuiPopover**](../../layout/popover) with a [**EuiContextMenu**](../../navigation/context-menu).
 
 ```tsx interactive
 import React, { useState } from 'react';
@@ -546,7 +547,7 @@ export default () => {
 
 ## A comment system
 
-The below example uses a list of **EuiComments**, a [**EuiMarkdownEditor**](/docs/editors-syntax/markdown-editor), and a [**EuiMarkdownFormat**](/docs/editors-syntax/markdown-format) to create a simple comment system.
+The below example uses a list of **EuiComments**, a [**EuiMarkdownEditor**](../../editors-syntax/markdown-editor), and a [**EuiMarkdownFormat**](../../editors-syntax/markdown-format) to create a simple comment system.
 
 *   Each comment renders in a **EuiComment**.
 *   We use the **EuiMarkdownEditor** to post the `EuiComment.children`. This means the content uses Markdown.
