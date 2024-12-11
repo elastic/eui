@@ -57,8 +57,7 @@ export const euiSideNavItemStyles = (euiThemeContext: UseEuiTheme) => {
         content: '';
         ${logicalCSS('vertical', 0)}
         ${logicalCSS('left', 0)}
-        ${logicalCSS('width', euiTheme.border.width.thin)}
-        background-color: ${euiTheme.border.color};
+        ${logicalCSS('border-left', euiTheme.border.thin)}
       }
 
       /* If this is actually the last item, we don't want the vertical line to stretch all the way down */
@@ -164,8 +163,7 @@ export const euiSideNavItemButtonStyles = (euiThemeContext: UseEuiTheme) => {
         ${logicalCSS('top', euiTheme.size.m)}
         ${logicalCSS('left', 0)}
         ${logicalCSS('width', euiTheme.size.xs)}
-        ${logicalCSS('height', euiTheme.border.width.thin)}
-        background-color: ${euiTheme.border.color};
+        ${logicalCSS('border-bottom', euiTheme.border.thin)}
       }
     `,
 
