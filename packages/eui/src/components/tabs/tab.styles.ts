@@ -10,9 +10,16 @@ import { css } from '@emotion/react';
 import { logicalCSS, mathWithUnits, euiFontSize } from '../../global_styling';
 import { UseEuiTheme } from '../../services';
 
-export const euiTabStyles = ({ euiTheme }: UseEuiTheme) => {
+export const euiTabStyles = (euiThemeContext: UseEuiTheme) => {
+  const { euiTheme, highContrastMode } = euiThemeContext;
+
+  const selectedUnderlineSize = highContrastMode
+    ? mathWithUnits(euiTheme.border.thick, (x) => x * 2)
+    : euiTheme.border.width.thick;
+
   return {
     euiTab: css`
+      position: relative;
       display: flex;
       cursor: pointer;
       flex-direction: row;
@@ -28,6 +35,17 @@ export const euiTabStyles = ({ euiTheme }: UseEuiTheme) => {
       &:focus {
         outline-offset: -${euiTheme.focus.width};
       }
+
+      /* Selected underline - use a pseudo element instead of box-shadow for easier
+         color setting, as well as Windows high contrast theme rendering */
+      &::after {
+        position: absolute;
+        ${logicalCSS('bottom', 0)}
+        ${logicalCSS('horizontal', 0)}
+        ${logicalCSS('border-bottom-style', 'solid')}
+        ${logicalCSS('border-bottom-width', selectedUnderlineSize)}
+        pointer-events: none;
+      }
     `,
     // variations
     expanded: css`
@@ -36,16 +54,23 @@ export const euiTabStyles = ({ euiTheme }: UseEuiTheme) => {
       justify-content: center;
     `,
     selected: css`
-      box-shadow: inset 0 -${euiTheme.border.width.thick} 0 ${euiTheme.colors.primary};
       color: ${euiTheme.colors.textPrimary};
+
+      &::after {
+        content: '';
+        border-color: ${euiTheme.colors.primary};
+      }
     `,
     disabled: {
       disabled: css`
         cursor: not-allowed;
-        color: ${euiTheme.colors.disabledText};
+        color: ${euiTheme.colors.textDisabled};
       `,
       selected: css`
-        box-shadow: inset 0 -${euiTheme.border.width.thick} 0 ${euiTheme.colors.disabledText};
+        &::after {
+          content: '';
+          border-color: ${euiTheme.colors.textDisabled};
+        }
       `,
     },
   };
