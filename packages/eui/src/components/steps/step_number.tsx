@@ -14,7 +14,7 @@ import { EuiIcon, IconSize } from '../icon';
 import { EuiLoadingSpinner } from '../loading';
 import { EuiLoadingSpinnerSize } from '../loading/loading_spinner';
 import { EuiTitleProps } from '../title';
-import { useEuiTheme } from '../../services';
+import { useEuiMemoizedStyles } from '../../services';
 
 import {
   useI18nCompleteStep,
@@ -79,15 +79,14 @@ export const EuiStepNumber: FunctionComponent<EuiStepNumberProps> = ({
 
   const classes = classNames('euiStepNumber', className);
 
-  const euiTheme = useEuiTheme();
-  const styles = euiStepNumberStyles(euiTheme);
+  const styles = useEuiMemoizedStyles(euiStepNumberStyles);
   const cssStyles = [
     styles.euiStepNumber,
     styles[titleSize],
     status && styles[status],
   ];
 
-  const contentStyles = euiStepNumberContentStyles(euiTheme);
+  const iconStyles = useEuiMemoizedStyles(euiStepNumberContentStyles);
   let content: ReactNode;
   let screenReaderText: string | undefined;
 
@@ -114,11 +113,13 @@ export const EuiStepNumber: FunctionComponent<EuiStepNumberProps> = ({
     case 'warning':
     case 'complete': {
       const cssIconStyles = [
-        contentStyles.euiStepNumber__icon,
-        contentStyles[status],
+        iconStyles.euiStepNumber__icon,
+        status === 'warning'
+          ? iconStyles.warning[titleSize]
+          : iconStyles[status],
         // EuiIcon does not support a xxs size so far,
         // we use custom sizing here instead
-        titleSize === 'none' && contentStyles[titleSize],
+        titleSize === 'none' && iconStyles[titleSize],
       ];
       const iconTypeMap = {
         danger: 'cross',
@@ -154,17 +155,8 @@ export const EuiStepNumber: FunctionComponent<EuiStepNumberProps> = ({
         break;
       }
 
-      const cssNumberStyles = [
-        contentStyles.euiStepNumber__number,
-        status && contentStyles[status],
-      ];
-
       content = (
-        <span
-          aria-hidden="true"
-          className="euiStepNumber__number"
-          css={cssNumberStyles}
-        >
+        <span aria-hidden="true" className="euiStepNumber__number">
           {number}
         </span>
       );

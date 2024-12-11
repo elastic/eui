@@ -113,6 +113,11 @@ export const euiStepHorizontalNumberStyles = (euiThemeContext: UseEuiTheme) => {
       position: relative; /* 1 */
       z-index: ${Number(euiTheme.levels.content) + 1}; /* 1 */
 
+      /* Tweak number vertical alignment slightly */
+      .euiStepNumber__number {
+        margin-block-start: -0.5px;
+      }
+
       ${euiCanAnimate} {
         transition: all ${euiTheme.animation.fast} ease-in-out;
       }
