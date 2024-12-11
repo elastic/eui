@@ -38,9 +38,7 @@ export const euiKeyPadMenuItemStyles = (euiThemeContext: UseEuiTheme) => {
       }
     `,
     enabled: css`
-      &:hover,
-      &:focus,
-      &:focus-within {
+      &:is(:hover, :focus, :focus-within) {
         cursor: pointer;
         text-decoration: underline;
         ${euiShadow(euiThemeContext, 's')}
@@ -61,10 +59,7 @@ export const euiKeyPadMenuItemStyles = (euiThemeContext: UseEuiTheme) => {
       color: ${euiTheme.colors.title};
       background-color: ${euiTheme.focus.backgroundColor};
 
-      &,
-      &:hover,
-      &:focus,
-      &:focus-within {
+      &:is(*, :hover, :focus, :focus-within) {
         color: ${euiTheme.colors.primaryText};
       }
     `,
@@ -130,14 +125,10 @@ export const euiKeyPadMenuItemChildStyles = (euiThemeContext: UseEuiTheme) => {
     `,
 
     euiKeyPadMenuItem__checkableInput: css`
+      position: absolute;
       ${topRightChildren}
       transform: scale(.75);
       transform-origin: top right;
-
-      /* TODO: Remove this once EuiCheckbox and EuiRadio have been converted to Emotion */
-      && {
-        position: absolute;
-      }
     `,
     showCheckableInputOnInteraction: css`
       .euiKeyPadMenuItem:not(:hover, :focus, :focus-within) & {
