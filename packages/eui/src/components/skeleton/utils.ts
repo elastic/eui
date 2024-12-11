@@ -18,16 +18,21 @@ type AnimationOptions = {
 };
 
 export const euiSkeletonGradientAnimation = (
-  { euiTheme, colorMode }: UseEuiTheme,
+  { euiTheme, colorMode, highContrastMode }: UseEuiTheme,
   { slideSize = '-53%', gradientSize = '220%' }: AnimationOptions = {}
 ) => {
   const gradientStartStop =
     colorMode === 'DARK'
       ? shade(euiTheme.colors.lightShade, 0.12)
       : tint(euiTheme.colors.lightShade, 0.65);
+  // Increase "shine" visibility in high contrast modes
   const gradientMiddle =
     colorMode === 'DARK'
-      ? shade(euiTheme.colors.lightShade, 0.24)
+      ? highContrastMode
+        ? tint(euiTheme.colors.lightShade, 0.12)
+        : euiTheme.colors.lightShade
+      : highContrastMode
+      ? euiTheme.colors.emptyShade
       : tint(euiTheme.colors.lightShade, 0.8);
 
   return css`
