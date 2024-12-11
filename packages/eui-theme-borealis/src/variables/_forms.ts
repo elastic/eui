@@ -5,6 +5,7 @@
  * in compliance with, at your election, the Elastic License 2.0 or the Server
  * Side Public License, v 1.
  */
+import { computed, mathWithUnits } from '@elastic/eui-theme-common';
 import {
   dark_background_colors,
   dark_border_colors,
@@ -60,6 +61,10 @@ const _dark_forms = {
 };
 
 export const forms = {
+  maxWidth: computed(
+    ([base]) => mathWithUnits(base, (x) => x * 25),
+    ['size.base']
+  ),
   LIGHT: _forms,
   DARK: _dark_forms,
 };

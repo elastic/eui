@@ -8,7 +8,7 @@
 
 import { ColorModeSwitch, StrictColorModeSwitch } from '../types';
 import { _EuiThemeButtonColors } from './buttons';
-import { _EuiThemeFormColors } from './forms';
+import { _EuiThemeForm, _EuiThemeFormColors } from './forms';
 
 export type _EuiThemeComponentColors = {
   buttonGroupBorderColor: ColorModeSwitch;
@@ -122,7 +122,7 @@ export type _EuiThemeComponentColors = {
 
 export type _EuiThemeComponents = {
   buttons: StrictColorModeSwitch<_EuiThemeButtonColors>;
-  forms: StrictColorModeSwitch<_EuiThemeFormColors>;
+  forms: _EuiThemeForm & StrictColorModeSwitch<_EuiThemeFormColors>;
   /**
    * internal-only key that holds temporary tokens used while migrating themes
    */
