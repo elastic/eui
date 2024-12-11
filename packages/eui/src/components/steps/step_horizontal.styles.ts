@@ -10,6 +10,7 @@ import { css } from '@emotion/react';
 import { UseEuiTheme, makeHighContrastColor } from '../../services';
 import {
   euiBreakpoint,
+  logicalCSS,
   logicalShorthandCSS,
   euiOutline,
   euiCanAnimate,
@@ -60,8 +61,7 @@ export const euiStepHorizontalStyles = (euiThemeContext: UseEuiTheme) => {
       &::after {
         content: '';
         position: absolute;
-        background-color: ${euiTheme.border.color};
-        block-size: ${euiTheme.border.width.thick};
+        ${logicalCSS('border-top', euiTheme.border.thick)}
         z-index: ${euiTheme.levels.content}; /* 1 */
       }
 
