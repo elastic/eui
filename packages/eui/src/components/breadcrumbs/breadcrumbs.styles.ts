@@ -20,11 +20,7 @@ export const euiBreadcrumbsListStyles = (euiThemeContext: UseEuiTheme) => {
       display: flex;
       flex-wrap: wrap;
       line-height: ${euiTheme.size.l};
-      ${logicalCSS(
-        // Add vertical space between breadcrumbs, but make sure the whole breadcrumb set doesn't add space below itself
-        'margin-bottom',
-        `-${euiTheme.size.xs}`
-      )}
+      row-gap: ${euiTheme.size.xs};
       ${logicalCSS(
         // Ensure it shrinks if the window is narrow
         'min-width',

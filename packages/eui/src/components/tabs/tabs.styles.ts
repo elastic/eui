@@ -8,6 +8,7 @@
 
 import { css } from '@emotion/react';
 import { logicalCSS, logicalCSSWithFallback } from '../../global_styling';
+import { highContrastModeStyles } from '../../global_styling/functions/high_contrast';
 import { UseEuiTheme } from '../../services';
 
 export const euiTabsStyles = (euiThemeContext: UseEuiTheme) => {
@@ -23,7 +24,10 @@ export const euiTabsStyles = (euiThemeContext: UseEuiTheme) => {
       flex-shrink: 0;
     `,
     bottomBorder: css`
-      box-shadow: inset 0 -${euiTheme.border.width.thin} 0 ${euiTheme.border.color};
+      ${highContrastModeStyles(euiThemeContext, {
+        none: `box-shadow: inset 0 -${euiTheme.border.width.thin} 0 ${euiTheme.border.color};`,
+        forced: logicalCSS('border-bottom', euiTheme.border.thin),
+      })}
     `,
     // sizes
     s: css`
