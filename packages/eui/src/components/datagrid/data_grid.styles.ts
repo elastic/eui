@@ -211,7 +211,6 @@ export const euiDataGridStyles = (euiThemeContext: UseEuiTheme) => {
       ${logicalSizeCSS('100%')}
       ${logicalCSS('max-width', '100%')}
       overflow: hidden;
-      background-color: ${euiTheme.colors.body};
       font-feature-settings: 'tnum' 1; /* Tabular numbers */
     `,
     // Wrapper around EuiDataGrid
