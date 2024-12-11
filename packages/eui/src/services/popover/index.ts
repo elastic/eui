@@ -8,4 +8,7 @@
 
 export { calculatePopoverPosition } from './calculate_popover_position';
 export { findPopoverPosition, getElementZIndex } from './popover_positioning';
+
+// Not exported as public APIs
+export { _popoverArrowStyles } from './popover_arrow.styles';
 export type { EuiPopoverPosition } from './types';

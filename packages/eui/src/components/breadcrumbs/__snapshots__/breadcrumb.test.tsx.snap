@@ -61,14 +61,18 @@ exports[`EuiBreadcrumbCollapsed renders a ... breadcrumb with collapsed content 
         data-autofocus="true"
         data-popover-panel="true"
         role="dialog"
-        style="top: 16px; left: -22px; will-change: transform, opacity; z-index: 2000;"
+        style="top: 16px; left: -18px; will-change: transform, opacity; z-index: 2000;"
         tabindex="0"
       >
         <div
-          class="euiPopover__arrow emotion-euiPopoverArrow-bottom"
-          data-popover-arrow="bottom"
-          style="left: 10px; top: 0px;"
-        />
+          class="euiPopover__arrowWrapper emotion-euiPopoverArrowWrapper"
+          style="left: 9px; bottom: 100%;"
+        >
+          <div
+            class="euiPopover__arrow emotion-euiPopoverArrow-bottom"
+            data-popover-arrow="bottom"
+          />
+        </div>
         <p
           class="emotion-euiScreenReaderOnly"
           id="generated-id"

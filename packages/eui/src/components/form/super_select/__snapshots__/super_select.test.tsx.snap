@@ -190,7 +190,7 @@ exports[`EuiSuperSelect renders 1`] = `
         class="euiPanel euiPanel--plain euiPopover__panel emotion-euiPanel-grow-m-plain-euiPopover__panel-light-isAttached-bottom"
         data-popover-panel="true"
         role="dialog"
-        style="top: 0px; left: -22px; will-change: transform, opacity; z-index: 2000; inline-size: 0px;"
+        style="top: 0px; left: -18px; will-change: transform, opacity; z-index: 2000; inline-size: 0px;"
       >
         <div>
           <div
