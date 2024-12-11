@@ -13,6 +13,7 @@ import {
   euiCantAnimate,
   logicalCSS,
 } from '../../global_styling';
+import { preventForcedColors } from '../../global_styling/functions/high_contrast';
 
 const nonMonoColors = euiPaletteColorBlind();
 
@@ -37,49 +38,60 @@ export const euiLoadingChartStyles = ({ euiTheme }: UseEuiTheme) => ({
 
 export const BARS_COUNT = 4;
 
-export const euiLoadingChartBarStyles = ({
-  euiTheme,
-  colorMode,
-}: UseEuiTheme) => ({
-  euiLoadingChart__bar: css`
-    ${logicalCSS('height', '100%')}
-    display: inline-block;
+export const euiLoadingChartBarStyles = (euiThemeContext: UseEuiTheme) => {
+  const { euiTheme, colorMode, highContrastMode } = euiThemeContext;
+  return {
+    euiLoadingChart__bar: css`
+      ${logicalCSS('height', '100%')}
+      display: inline-block;
+      ${preventForcedColors(euiThemeContext)}
 
-    ${euiCanAnimate} {
-      animation: ${barAnimation} 1s infinite;
+      ${euiCanAnimate} {
+        animation: ${barAnimation} 1s infinite;
 
-      ${outputNthChildCss((index) => `animation-delay: 0.${index}s;`)}
-    }
-    ${euiCantAnimate} {
-      ${outputNthChildCss((index) => `transform: translateY(${22 * index}%);`)}
-    }
-  `,
-  nonmono: css`
-    ${outputNthChildCss((index) => `background-color: ${nonMonoColors[index]}`)}
-  `,
-  mono: css`
-    ${outputNthChildCss(
-      (index) =>
-        `background-color: ${shadeOrTint(
-          euiTheme.colors.lightShade,
-          index * 0.04,
-          colorMode
-        )}`
-    )}
-  `,
-  m: css`
-    ${logicalCSS('width', euiTheme.size.xxs)}
-    ${logicalCSS('margin-bottom', euiTheme.size.s)}
-  `,
-  l: css`
-    ${logicalCSS('width', euiTheme.size.xs)}
-    ${logicalCSS('margin-bottom', euiTheme.size.m)}
-  `,
-  xl: css`
-    ${logicalCSS('width', euiTheme.size.s)}
-    ${logicalCSS('margin-bottom', euiTheme.size.base)}
-  `,
-});
+        ${outputNthChildCss((index) => `animation-delay: 0.${index}s;`)}
+      }
+      ${euiCantAnimate} {
+        ${outputNthChildCss(
+          (index) => `transform: translateY(${22 * index}%);`
+        )}
+      }
+    `,
+    nonmono: css`
+      ${outputNthChildCss(
+        (index) => `background-color: ${nonMonoColors[index]}`
+      )}
+    `,
+    mono: css`
+      ${outputNthChildCss(
+        (index) =>
+          `background-color: ${
+            highContrastMode === 'forced'
+              ? euiTheme.colors.fullShade
+              : shadeOrTint(
+                  highContrastMode
+                    ? euiTheme.colors.darkShade
+                    : euiTheme.colors.lightShade,
+                  index * 0.04,
+                  colorMode
+                )
+          }`
+      )}
+    `,
+    m: css`
+      ${logicalCSS('width', euiTheme.size.xxs)}
+      ${logicalCSS('margin-bottom', euiTheme.size.s)}
+    `,
+    l: css`
+      ${logicalCSS('width', euiTheme.size.xs)}
+      ${logicalCSS('margin-bottom', euiTheme.size.m)}
+    `,
+    xl: css`
+      ${logicalCSS('width', euiTheme.size.s)}
+      ${logicalCSS('margin-bottom', euiTheme.size.base)}
+    `,
+  };
+};
 
 /**
  * Small utility helper for generating nth-child CSS for each bar
