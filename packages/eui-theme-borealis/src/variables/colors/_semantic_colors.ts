@@ -12,7 +12,7 @@ export const SEMANTIC_COLORS = {
   plainLight: PRIMITIVE_COLORS.white,
   plainDark: PRIMITIVE_COLORS.blueBlack,
 
-  plainLightAlpha6: 'rgba(255, 255, 255, 0.06)',
+  plainLightAlpha8: 'rgba(255, 255, 255, 0.08)',
   plainLightAlpha12: 'rgba(255, 255, 255, 0.12)',
   plainLightAlpha16: 'rgba(255, 255, 255, 0.16)',
   plainLightAlpha32: 'rgba(255, 255, 255, 0.32)',

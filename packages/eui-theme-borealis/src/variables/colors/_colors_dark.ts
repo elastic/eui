@@ -91,12 +91,12 @@ export const dark_background_colors: _EuiThemeBackgroundColors = {
   backgroundBaseFormsPrepend: SEMANTIC_COLORS.shade125,
   backgroundBaseFormsControlDisabled: SEMANTIC_COLORS.shade120,
 
-  backgroundBaseInteractiveHover: SEMANTIC_COLORS.plainLightAlpha6,
+  backgroundBaseInteractiveHover: SEMANTIC_COLORS.plainLightAlpha8,
   backgroundBaseInteractiveSelect: SEMANTIC_COLORS.primary130,
   backgroundBaseInteractiveOverlay: SEMANTIC_COLORS.shade120Alpha70,
 
   backgroundBaseSkeletonEdge: SEMANTIC_COLORS.plainLightAlpha16,
-  backgroundBaseSkeletonMiddle: SEMANTIC_COLORS.plainLightAlpha6,
+  backgroundBaseSkeletonMiddle: SEMANTIC_COLORS.plainLightAlpha8,
 
   backgroundLightPrimary: SEMANTIC_COLORS.primary130,
   backgroundLightAccent: SEMANTIC_COLORS.accent130,
