@@ -13,6 +13,7 @@ import {
   logicalShorthandCSS,
   mathWithUnits,
 } from '../../global_styling';
+import { preventForcedColors } from '../../global_styling/functions/high_contrast';
 import { UseEuiTheme } from '../../services';
 import {
   EuiLoadingSpinnerSize,
@@ -40,28 +41,42 @@ const spinnerSizes: {
 };
 
 export const euiSpinnerBorderColorsCSS = (
-  { euiTheme }: UseEuiTheme,
+  { euiTheme, highContrastMode }: UseEuiTheme,
   colors: EuiLoadingSpinnerColor = {}
 ): string => {
-  const {
+  let {
     border = euiTheme.components.loadingSpinnerBorder,
     highlight = euiTheme.components.loadingSpinnerHighlight,
   } = colors;
+
+  if (highContrastMode === 'forced') {
+    border = euiTheme.colors.lightestShade;
+    highlight = euiTheme.colors.fullShade;
+  }
   return `${highlight} ${border} ${border} ${border}`;
 };
 
 export const euiLoadingSpinnerStyles = (euiThemeContext: UseEuiTheme) => {
-  const { euiTheme } = euiThemeContext;
+  const { euiTheme, highContrastMode } = euiThemeContext;
+
+  const smallerBorderWidth = highContrastMode
+    ? euiTheme.border.width.thick
+    : mathWithUnits(euiTheme.border.width.thin, (x) => x * 1.5);
+  const largerBorderWidth = highContrastMode
+    ? mathWithUnits(euiTheme.border.thick, (x) => x * 2)
+    : euiTheme.border.width.thick;
+
   return {
     euiLoadingSpinner: css`
       flex-shrink: 0; /* Ensures it never scales down below its intended size */
       display: inline-block;
       border-radius: 50%;
-      border: ${euiTheme.border.thick};
+      border: ${largerBorderWidth} solid ${euiTheme.border.color};
       ${logicalShorthandCSS(
         'border-color',
         euiSpinnerBorderColorsCSS(euiThemeContext)
       )}
+      ${preventForcedColors(euiThemeContext)}
 
       ${euiCanAnimate} {
         animation: ${_loadingSpinner} 0.6s infinite linear;
@@ -74,20 +89,14 @@ export const euiLoadingSpinnerStyles = (euiThemeContext: UseEuiTheme) => {
         euiTheme.size[spinnerSizes.s],
         euiTheme.size[spinnerSizes.s]
       )}
-      border-width: ${mathWithUnits(
-        euiTheme.border.width.thin,
-        (x) => x * 1.5
-      )};
+      border-width: ${smallerBorderWidth};
     `,
     m: css`
       ${logicalSizeCSS(
         euiTheme.size[spinnerSizes.m],
         euiTheme.size[spinnerSizes.m]
       )}
-      border-width: ${mathWithUnits(
-        euiTheme.border.width.thin,
-        (x) => x * 1.5
-      )};
+      border-width: ${smallerBorderWidth};
     `,
     l: css`
       ${logicalSizeCSS(

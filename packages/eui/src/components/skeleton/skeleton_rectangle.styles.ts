@@ -8,6 +8,7 @@
 
 import { css } from '@emotion/react';
 import { UseEuiTheme } from '../../services';
+import { preventForcedColors } from '../../global_styling/functions/high_contrast';
 
 import { euiSkeletonGradientAnimation } from './utils';
 
@@ -21,6 +22,7 @@ export const euiSkeletonRectangleStyles = (euiThemeContext: UseEuiTheme) => {
         slideSize: '-75%',
         gradientSize: '350%',
       })}
+      ${preventForcedColors(euiThemeContext)}
     `,
     // Border radius
     s: css`

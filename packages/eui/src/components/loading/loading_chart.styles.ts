@@ -15,6 +15,7 @@ import {
   euiCantAnimate,
   logicalCSS,
 } from '../../global_styling';
+import { preventForcedColors } from '../../global_styling/functions/high_contrast';
 
 export const euiLoadingChartStyles = ({ euiTheme }: UseEuiTheme) => ({
   euiLoadingChart: css`
@@ -37,19 +38,27 @@ export const euiLoadingChartStyles = ({ euiTheme }: UseEuiTheme) => ({
 
 export const BARS_COUNT = 4;
 
-export const euiLoadingChartBarStyles = ({ euiTheme }: UseEuiTheme) => {
+export const euiLoadingChartBarStyles = (euiThemeContext: UseEuiTheme) => {
+  const { euiTheme, highContrastMode } = euiThemeContext;
   const backgroundColors = outputNthChildCss((index) => {
     const token =
       `loadingChartMonoBackground${index}` as keyof _EuiThemeComponentColors;
     const color = euiTheme.components[token];
 
-    return `background-color: ${color}`;
+    return `background-color: ${
+      highContrastMode === 'forced'
+        ? euiTheme.colors.fullShade
+        : highContrastMode
+        ? euiTheme.colors.darkShade
+        : color
+    }`;
   });
 
   return {
     euiLoadingChart__bar: css`
       ${logicalCSS('height', '100%')}
       display: inline-block;
+      ${preventForcedColors(euiThemeContext)}
 
       ${euiCanAnimate} {
         animation: ${barAnimation} 1s infinite;

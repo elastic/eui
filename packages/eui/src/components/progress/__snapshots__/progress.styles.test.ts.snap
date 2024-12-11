@@ -143,7 +143,7 @@ exports[`euiProgressStyles indeterminate div CSS positions absolute 1`] = `
   inset-inline-end: 0;
   background-color: transparent;
   
-;;label:absolute;"
+ border-start-start-radius: inherit; border-start-end-radius: inherit;;;label:absolute;"
 `;
 
 exports[`euiProgressStyles indeterminate div CSS positions fixed 1`] = `
@@ -355,7 +355,7 @@ exports[`euiProgressStyles native progress CSS positions absolute 1`] = `
       &::-webkit-progress-bar {
         background-color: transparent;
       }
-;;label:absolute;"
+ border-start-start-radius: inherit; border-start-end-radius: inherit;;;label:absolute;"
 `;
 
 exports[`euiProgressStyles native progress CSS positions fixed 1`] = `
