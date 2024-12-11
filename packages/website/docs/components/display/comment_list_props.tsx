@@ -50,11 +50,7 @@ export const CommentListProps = ({ snippet }: { snippet: ReactNode }) => {
   );
 
   return (
-    <EuiPanel
-      color="transparent"
-      paddingSize="none"
-      style={{ maxWidth: '540px' }}
-    >
+    <div style={{ maxWidth: '540px' }}>
       <EuiCommentList>
         <EuiComment username="avatar" timelineAvatarAriaLabel="Avatar">
           <div
@@ -149,6 +145,20 @@ export const CommentListProps = ({ snippet }: { snippet: ReactNode }) => {
           {snippet}
         </EuiCodeBlock>
       </EuiAccordion>
-    </EuiPanel>
+
+      <EuiSpacer />
+    </div>
   );
 };
+
+export const CommentListStyle = ({ children }) => (
+  <div
+    css={css`
+      ol {
+        list-style-type: upper-alpha;
+      }
+    `}
+  >
+    {children}
+  </div>
+);
