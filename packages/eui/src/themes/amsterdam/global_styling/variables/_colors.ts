@@ -604,10 +604,10 @@ export const dark_colors_ams: _EuiThemeColorsMode = {
  */
 
 export const colors: _EuiThemeColors = {
-  ghost: '#FFF',
-  ink: '#000',
-  plainLight: '#FFF',
-  plainDark: '#000',
+  ghost: '#FFFFFF',
+  ink: '#000000',
+  plainLight: '#FFFFFF',
+  plainDark: '#000000',
   LIGHT: light_colors,
   DARK: dark_colors_ams,
   vis: colorVis,
