@@ -15,6 +15,7 @@ import {
   euiCanAnimate,
   euiFontSize,
 } from '../../global_styling';
+import { highContrastModeStyles } from '../../global_styling/functions/high_contrast';
 import { euiShadow } from '../../themes/amsterdam/global_styling/mixins';
 import { euiScreenReaderOnly } from '../accessibility';
 
@@ -41,7 +42,14 @@ export const euiKeyPadMenuItemStyles = (euiThemeContext: UseEuiTheme) => {
       &:is(:hover, :focus, :focus-within) {
         cursor: pointer;
         text-decoration: underline;
-        ${euiShadow(euiThemeContext, 's')}
+
+        ${highContrastModeStyles(euiThemeContext, {
+          none: euiShadow(euiThemeContext, 's'),
+          // Use `outline` instead of border to avoid affecting absolutely positioned children
+          preferred: `
+            outline: ${euiTheme.border.width.thin} solid ${euiTheme.colors.primary};
+          `,
+        })}
 
         ${euiCanAnimate} {
           .euiKeyPadMenuItem__icon {
@@ -61,6 +69,17 @@ export const euiKeyPadMenuItemStyles = (euiThemeContext: UseEuiTheme) => {
 
       &:is(*, :hover, :focus, :focus-within) {
         color: ${euiTheme.colors.primaryText};
+
+        ${highContrastModeStyles(euiThemeContext, {
+          // Skip checkable items (which render a <label> instead of <button>/<a>),
+          // as they already have sufficient indication of state (checkbox or radio)
+          preferred: `
+            &:not(label) {
+              outline: ${euiTheme.border.width.thick} solid ${euiTheme.colors.primary};
+              outline-offset: 0;
+            }
+          `,
+        })}
       }
     `,
     disabled: {
@@ -68,19 +87,31 @@ export const euiKeyPadMenuItemStyles = (euiThemeContext: UseEuiTheme) => {
         cursor: not-allowed;
         color: ${euiTheme.colors.disabledText};
 
-        .euiKeyPadMenuItem__icon {
-          filter: grayscale(100%);
+        ${highContrastModeStyles(euiThemeContext, {
+          none: `
+            .euiKeyPadMenuItem__icon {
+              filter: grayscale(100%);
 
-          svg * {
-            fill: ${euiTheme.colors.disabledText};
-          }
-        }
+              svg * {
+                fill: ${euiTheme.colors.disabledText};
+              }
+            }
+          `,
+          forced: 'opacity: 0.5;',
+        })}
       `,
       selected: css`
         background-color: ${transparentize(
           euiTheme.colors.disabled,
           euiTheme.focus.transparency
         )};
+        ${highContrastModeStyles(euiThemeContext, {
+          preferred: `
+            &:not(label) {
+              outline: ${euiTheme.border.width.thick} solid ${euiTheme.colors.disabledText};
+            }
+          `,
+        })}
       `,
     },
   };
