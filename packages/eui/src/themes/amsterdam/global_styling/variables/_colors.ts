@@ -128,6 +128,10 @@ export const background_colors: _EuiThemeBackgroundColors = {
     ([disabled]) => disabled,
     ['colors.disabled']
   ),
+  backgroundBaseHighlighted: computed(
+    ([backgroundBaseSubdued]) => backgroundBaseSubdued,
+    ['colors.backgroundBaseSubdued']
+  ),
   backgroundBasePlain: computed(
     ([emptyShade]) => emptyShade,
     ['colors.emptyShade']
@@ -243,6 +247,10 @@ export const transparent_background_colors: _EuiThemeTransparentBackgroundColors
     backgroundTransparentSubdued: computed(
       ([lightShade]) => transparentize(lightShade, 0.2),
       ['colors.lightShade']
+    ),
+    backgroundTransparentHighlighted: computed(
+      ([backgroundTransparentSubdued]) => backgroundTransparentSubdued,
+      ['colors.backgroundTransparentSubdued']
     ),
     backgroundTransparentPlain: computed(
       ([ghost]) => transparentize(ghost, 0.2),
@@ -381,6 +389,10 @@ export const dark_background_colors: _EuiThemeBackgroundColors = {
     ([disabled]) => disabled,
     ['colors.disabled']
   ),
+  backgroundBaseHighlighted: computed(
+    ([backgroundBaseSubdued]) => backgroundBaseSubdued,
+    ['colors.backgroundBaseSubdued']
+  ),
   backgroundBasePlain: computed(
     ([emptyShade]) => emptyShade,
     ['colors.emptyShade']
@@ -463,6 +475,10 @@ export const dark_transparent_background_colors: _EuiThemeTransparentBackgroundC
     backgroundTransparentSubdued: computed(
       ([lightShade]) => transparentize(lightShade, 0.4),
       ['colors.lightShade']
+    ),
+    backgroundTransparentHighlighted: computed(
+      ([backgroundTransparentSubdued]) => backgroundTransparentSubdued,
+      ['colors.backgroundTransparentSubdued']
     ),
   };
 
@@ -590,6 +606,8 @@ export const dark_colors_ams: _EuiThemeColorsMode = {
 export const colors: _EuiThemeColors = {
   ghost: '#FFFFFF',
   ink: '#000000',
+  plainLight: '#FFFFFF',
+  plainDark: '#000000',
   LIGHT: light_colors,
   DARK: dark_colors_ams,
   vis: colorVis,

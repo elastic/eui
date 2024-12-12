@@ -10,6 +10,8 @@ exports[`useEuiBackgroundColor mixin returns a calculated background version for
 
 exports[`useEuiBackgroundColor mixin returns a calculated background version for each color: as transparent danger 1`] = `"rgba(189,39,30,0.1)"`;
 
+exports[`useEuiBackgroundColor mixin returns a calculated background version for each color: as transparent highlighted 1`] = `"rgba(211,218,230,0.2)"`;
+
 exports[`useEuiBackgroundColor mixin returns a calculated background version for each color: as transparent plain 1`] = `"rgba(255,255,255,0.2)"`;
 
 exports[`useEuiBackgroundColor mixin returns a calculated background version for each color: as transparent primary 1`] = `"rgba(0,119,204,0.1)"`;
@@ -23,6 +25,8 @@ exports[`useEuiBackgroundColor mixin returns a calculated background version for
 exports[`useEuiBackgroundColor mixin returns a calculated background version for each color: as transparent warning 1`] = `"rgba(254,197,20,0.1)"`;
 
 exports[`useEuiBackgroundColor mixin returns a calculated background version for each color: danger 1`] = `"#f8e9e9"`;
+
+exports[`useEuiBackgroundColor mixin returns a calculated background version for each color: highlighted 1`] = `"#f7f8fc"`;
 
 exports[`useEuiBackgroundColor mixin returns a calculated background version for each color: plain 1`] = `"#FFFFFF"`;
 
@@ -42,6 +46,8 @@ exports[`useEuiBackgroundColorCSS hook returns an object of Emotion background-c
 
 exports[`useEuiBackgroundColorCSS hook returns an object of Emotion background-color properties for each color: danger 1`] = `"background-color:#f8e9e9;label:danger;"`;
 
+exports[`useEuiBackgroundColorCSS hook returns an object of Emotion background-color properties for each color: highlighted 1`] = `"background-color:#f7f8fc;label:highlighted;"`;
+
 exports[`useEuiBackgroundColorCSS hook returns an object of Emotion background-color properties for each color: plain 1`] = `"background-color:#FFFFFF;label:plain;"`;
 
 exports[`useEuiBackgroundColorCSS hook returns an object of Emotion background-color properties for each color: primary 1`] = `"background-color:#e6f1fa;label:primary;"`;
@@ -59,6 +65,8 @@ exports[`useEuiBorderColorCSS hook returns an object of Emotion border-color pro
 exports[`useEuiBorderColorCSS hook returns an object of Emotion border-color properties for each color: accentSecondary 1`] = `"border-color:#99e5e1;label:accentSecondary;"`;
 
 exports[`useEuiBorderColorCSS hook returns an object of Emotion border-color properties for each color: danger 1`] = `"border-color:#e5a9a5;label:danger;"`;
+
+exports[`useEuiBorderColorCSS hook returns an object of Emotion border-color properties for each color: highlighted 1`] = `"border-color:;label:highlighted;"`;
 
 exports[`useEuiBorderColorCSS hook returns an object of Emotion border-color properties for each color: plain 1`] = `"border-color:#D3DAE6;label:plain;"`;
 
