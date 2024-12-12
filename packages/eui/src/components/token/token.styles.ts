@@ -13,6 +13,7 @@ import {
   logicalSizeCSS,
   mathWithUnits,
 } from '../../global_styling';
+import { highContrastModeStyles } from '../../global_styling/functions/high_contrast';
 import {
   UseEuiTheme,
   euiPaletteColorBlind,
@@ -28,11 +29,11 @@ const visColors = euiPaletteColorBlind();
 const visColorsBehindText = euiPaletteColorBlindBehindText();
 
 const getTokenColor = (
-  euiTheme: UseEuiTheme['euiTheme'],
-  colorMode: UseEuiTheme['colorMode'],
+  euiThemeContext: UseEuiTheme,
   fill: TokenFill,
   color: number | string
 ) => {
+  const { euiTheme, colorMode, highContrastMode } = euiThemeContext;
   const isVizColor = typeof color === 'number';
 
   const iconColor = isVizColor ? visColors[color] : euiTheme.colors.darkShade;
@@ -49,7 +50,9 @@ const getTokenColor = (
 
   const lightColor = makeHighContrastColor(iconColor)(backgroundLightColor);
 
-  const boxShadowColor = isDarkMode
+  const boxShadowColor = highContrastMode
+    ? iconColor
+    : isDarkMode
     ? shade(iconColor, 0.6)
     : tint(iconColor, 0.7);
 
@@ -67,7 +70,10 @@ const getTokenColor = (
       return `
         color: ${lightColor};
         background-color: ${backgroundLightColor};
-        box-shadow: inset 0 0 0 1px ${boxShadowColor};
+        ${highContrastModeStyles(euiThemeContext, {
+          none: `box-shadow: inset 0 0 0 ${euiTheme.border.width.thin} ${boxShadowColor};`,
+          forced: `border: ${euiTheme.border.thin};`,
+        })}
       `;
     case 'dark':
       return `
@@ -78,85 +84,88 @@ const getTokenColor = (
 };
 
 export const euiTokenStyles = (
-  { euiTheme, colorMode }: UseEuiTheme,
+  euiThemeContext: UseEuiTheme,
   fill: TokenFill
-) => ({
-  // Base
-  euiToken: css`
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
+) => {
+  const { euiTheme } = euiThemeContext;
+  return {
+    // Base
+    euiToken: css`
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
 
-    svg {
-      ${logicalCSS('height', '100%')}
-      margin: auto;
-    }
-  `,
-  // Shapes
-  circle: css`
-    border-radius: 50%;
-  `,
-  square: css`
-    border-radius: ${euiTheme.border.radius.small};
-  `,
-  rectangle: css`
-    box-sizing: content-box;
-    border-radius: ${euiTheme.border.radius.small};
-  `,
-  // Sizes
-  xs: css`
-    ${logicalSizeCSS(euiTheme.size.s)}
+      svg {
+        ${logicalCSS('height', '100%')}
+        margin: auto;
+      }
+    `,
+    // Shapes
+    circle: css`
+      border-radius: 50%;
+    `,
+    square: css`
+      border-radius: ${euiTheme.border.radius.small};
+    `,
+    rectangle: css`
+      box-sizing: content-box;
+      border-radius: ${euiTheme.border.radius.small};
+    `,
+    // Sizes
+    xs: css`
+      ${logicalSizeCSS(euiTheme.size.s)}
 
-    &[class*='-square'],
-    &[class*='-rectangle'] {
-      border-radius: ${mathWithUnits(
-        euiTheme.border.radius.small,
-        (x) => x / 2
-      )};
-    }
+      &[class*='-square'],
+      &[class*='-rectangle'] {
+        border-radius: ${mathWithUnits(
+          euiTheme.border.radius.small,
+          (x) => x / 2
+        )};
+      }
 
-    &[class*='-rectangle'] {
-      /* adds a small padding so that the icon is not touching the border */
-      ${logicalCSS('padding-vertical', '1px')}
-      ${logicalCSS('padding-horizontal', euiTheme.size.xs)}
-    }
-  `,
-  s: css`
-    ${logicalSizeCSS(euiTheme.size.base)}
+      &[class*='-rectangle'] {
+        /* adds a small padding so that the icon is not touching the border */
+        ${logicalCSS('padding-vertical', '1px')}
+        ${logicalCSS('padding-horizontal', euiTheme.size.xs)}
+      }
+    `,
+    s: css`
+      ${logicalSizeCSS(euiTheme.size.base)}
 
-    &[class*='-rectangle'] {
-      ${logicalCSS('padding-horizontal', euiTheme.size.xs)}
-    }
-  `,
-  m: css`
-    ${logicalSizeCSS(euiTheme.size.l)}
+      &[class*='-rectangle'] {
+        ${logicalCSS('padding-horizontal', euiTheme.size.xs)}
+      }
+    `,
+    m: css`
+      ${logicalSizeCSS(euiTheme.size.l)}
 
-    &[class*='-rectangle'] {
-      ${logicalCSS('padding-horizontal', euiTheme.size.s)}
-    }
-  `,
-  l: css`
-    ${logicalSizeCSS(euiTheme.size.xl)}
+      &[class*='-rectangle'] {
+        ${logicalCSS('padding-horizontal', euiTheme.size.s)}
+      }
+    `,
+    l: css`
+      ${logicalSizeCSS(euiTheme.size.xl)}
 
-    &[class*='-rectangle'] {
-      ${logicalCSS('padding-horizontal', euiTheme.size.s)}
-    }
-  `,
-  // Colors
-  euiColorVis0: css(getTokenColor(euiTheme, colorMode, fill, 0)),
-  euiColorVis1: css(getTokenColor(euiTheme, colorMode, fill, 1)),
-  euiColorVis2: css(getTokenColor(euiTheme, colorMode, fill, 2)),
-  euiColorVis3: css(getTokenColor(euiTheme, colorMode, fill, 3)),
-  euiColorVis4: css(getTokenColor(euiTheme, colorMode, fill, 4)),
-  euiColorVis5: css(getTokenColor(euiTheme, colorMode, fill, 5)),
-  euiColorVis6: css(getTokenColor(euiTheme, colorMode, fill, 6)),
-  euiColorVis7: css(getTokenColor(euiTheme, colorMode, fill, 7)),
-  euiColorVis8: css(getTokenColor(euiTheme, colorMode, fill, 8)),
-  euiColorVis9: css(getTokenColor(euiTheme, colorMode, fill, 9)),
-  gray: css(getTokenColor(euiTheme, colorMode, fill, 'gray')),
-  customColor: css``,
-  // Fills
-  light: css``,
-  dark: css``,
-  none: css``,
-});
+      &[class*='-rectangle'] {
+        ${logicalCSS('padding-horizontal', euiTheme.size.s)}
+      }
+    `,
+    // Colors
+    euiColorVis0: css(getTokenColor(euiThemeContext, fill, 0)),
+    euiColorVis1: css(getTokenColor(euiThemeContext, fill, 1)),
+    euiColorVis2: css(getTokenColor(euiThemeContext, fill, 2)),
+    euiColorVis3: css(getTokenColor(euiThemeContext, fill, 3)),
+    euiColorVis4: css(getTokenColor(euiThemeContext, fill, 4)),
+    euiColorVis5: css(getTokenColor(euiThemeContext, fill, 5)),
+    euiColorVis6: css(getTokenColor(euiThemeContext, fill, 6)),
+    euiColorVis7: css(getTokenColor(euiThemeContext, fill, 7)),
+    euiColorVis8: css(getTokenColor(euiThemeContext, fill, 8)),
+    euiColorVis9: css(getTokenColor(euiThemeContext, fill, 9)),
+    gray: css(getTokenColor(euiThemeContext, fill, 'gray')),
+    customColor: css``,
+    // Fills
+    light: css``,
+    dark: css``,
+    none: css``,
+  };
+};
