@@ -39,14 +39,15 @@ $euiColorBackgroundBaseDanger: $euiColorDanger140 !default;
 $euiColorBackgroundBaseSubdued: $euiColorPlainDark !default;
 $euiColorBackgroundBasePlain: $euiColorShade145 !default;
 $euiColorBackgroundBaseDisabled: $euiColorShade130 !default;
+$euiColorBackgroundBaseHighlighted: $euiColorShade135 !default;
 $euiColorBackgroundBaseFormsPrepend: $euiColorShade125 !default;
 $euiColorBackgroundBaseFormsControlDisabled: $euiColorShade120 !default;
 
-$euiColorBackgroundBaseInteractiveHover: $euiColorTransparentWhite10 !default;
-$euiColorBackgroundBaseInteractiveSelect: $euiColorShade125 !default;
-$euiColorBackgroundBaseInteractiveOverlay: $euiColorShadeTransparent80 !default;
-$euiColorBackgroundBaseSkeletonEdge: $euiColorTransparentWhite10 !default;
-$euiColorBackgroundBaseSkeletonMiddle: $euiColorTransparentWhite30 !default;
+$euiColorBackgroundBaseInteractiveHover: $euiColorPlainLightAlpha8 !default;
+$euiColorBackgroundBaseInteractiveSelect: $euiColorPrimary130 !default;
+$euiColorBackgroundBaseInteractiveOverlay: $euiColorShade120Alpha70 !default;
+$euiColorBackgroundBaseSkeletonEdge: $euiColorPlainLightAlpha16 !default;
+$euiColorBackgroundBaseSkeletonMiddle: $euiColorPlainLightAlpha8 !default;
 
 $euiColorBackgroundLightPrimary: $euiColorPrimary130 !default;
 $euiColorBackgroundLightAccent: $euiColorAccent130 !default;
@@ -65,16 +66,16 @@ $euiColorBackgroundFilledDanger: $euiColorDanger60 !default;
 $euiColorBackgroundFilledText: $euiColorShade60 !default;
 
 // Texts (legacy)
-$euiTextColor: $euiColorShade20 !default;
-$euiTitleColor: $euiColorShade15 !default;
+$euiTextColor: $euiColorShade30 !default;
+$euiTitleColor: $euiColorShade20 !default;
 $euiTextSubduedColor: $euiColorShade60 !default;
 $euiColorDisabled: $euiColorBackgroundBaseDisabled !default;
 $euiColorDisabledText: $euiColorShade80 !default;
 $euiLinkColor: $euiColorPrimary60 !default;
 
 // Texts
-$euiColorTextParagraph: $euiColorShade20 !default;
-$euiColorTextHeading: $euiColorShade15 !default;
+$euiColorTextParagraph: $euiColorShade30 !default;
+$euiColorTextHeading: $euiColorShade20 !default;
 $euiColorTextSubdued: $euiColorShade60 !default;
 $euiColorTextDisabled: $euiColorShade80 !default;
 $euiColorTextInverse: $euiColorPlainDark !default;
@@ -106,7 +107,7 @@ $euiColorBorderBasePlain: $euiColorShade100;
 $euiColorBorderBaseSubdued: $euiColorShade120;
 $euiColorBorderBaseDisabled: $euiColorShade100;
 $euiColorBorderBaseFloating: $euiColorShade120;
-$euiColorBorderBaseFormsColorSwatch: $euiColorTransparentWhite30;
+$euiColorBorderBaseFormsColorSwatch: $euiColorPlainLightAlpha32;
 $euiColorBorderBaseFormsControl: $euiColorShade80;
 
 $euiColorStrongBasePrimary: $euiColorPrimary60;
