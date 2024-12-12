@@ -37,7 +37,7 @@ export const euiEmptyPromptStyles = (euiThemeContext: UseEuiTheme) => {
 
   const generateFooterBorder = (color: _EuiBackgroundColor) => {
     const borderToken = getTokenName(
-      'borderStrong',
+      ['plain', 'subdued'].includes(color) ? 'borderBase' : 'borderStrong',
       color
     ) as keyof _EuiThemeBorderColors;
 
@@ -150,6 +150,9 @@ export const euiEmptyPromptStyles = (euiThemeContext: UseEuiTheme) => {
       `,
       subdued: css`
         ${logicalCSS('border-top', generateFooterBorder('subdued'))}
+      `,
+      highlighted: css`
+        ${logicalCSS('border-top', generateFooterBorder('plain'))}
       `,
       primary: css`
         ${logicalCSS('border-top', generateFooterBorder('primary'))}

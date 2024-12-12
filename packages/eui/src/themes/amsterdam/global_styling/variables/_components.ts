@@ -24,6 +24,10 @@ import { forms } from './_forms';
 import { colorVis } from './_colors_vis';
 
 const component_colors: _EuiThemeComponentColors = {
+  badgeBackground: computed(
+    ([lightShade]) => lightShade,
+    ['colors.lightShade']
+  ),
   badgeBackgroundSubdued: computed(
     ([lightShade]) => tint(lightShade, 0.3),
     ['colors.lightShade']
@@ -152,6 +156,7 @@ const component_colors: _EuiThemeComponentColors = {
     ['colors.darkestShade']
   ),
 
+  dataGridBorderColor: computed(([color]) => color, ['border.color']),
   dataGridVerticalLineBorderColor: computed(
     ([color]) => tint(color, 0.3),
     ['border.color']
@@ -161,6 +166,10 @@ const component_colors: _EuiThemeComponentColors = {
     ['colors.lightestShade']
   ),
   dataGridRowBackgroundHover: computed(
+    ([highlight]) => highlight,
+    ['colors.highlight']
+  ),
+  dataGridRowBackgroundSelect: computed(
     ([highlight]) => highlight,
     ['colors.highlight']
   ),
@@ -179,6 +188,10 @@ const component_colors: _EuiThemeComponentColors = {
     ['colors.disabled']
   ),
 
+  flyoutFooterBackground: computed(
+    ([lightestShade]) => lightestShade,
+    ['colors.lightestShade']
+  ),
   flyoutCloseButtonInsideBackground: computed(
     ([emptyShade]) => transparentize(emptyShade, 0.9),
     ['colors.emptyShade']
@@ -503,6 +516,11 @@ export const components: _EuiThemeComponents = {
     tooltipBorder: computed(
       ([fullShade]) => shade(fullShade, 0.8),
       ['colors.fullShade']
+    ),
+
+    tourFooterBackground: computed(
+      ([lightestShade]) => shade(lightestShade, 0.45),
+      ['colors.lightestShade']
     ),
 
     treeViewItemBackgroundHover: computed(

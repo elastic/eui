@@ -6,9 +6,10 @@
  * Side Public License, v 1.
  */
 
+import chroma from 'chroma-js';
 import { PRIMITIVE_COLORS } from './_primitive_colors';
 
-export const SEMANTIC_COLORS = {
+const _semantic_colors = {
   plainLight: PRIMITIVE_COLORS.white,
   plainDark: PRIMITIVE_COLORS.blueBlack,
 
@@ -145,19 +146,56 @@ export const SEMANTIC_COLORS = {
   shade135: PRIMITIVE_COLORS.blueGrey135,
   shade140: PRIMITIVE_COLORS.blueGrey140,
   shade145: PRIMITIVE_COLORS.blueGrey145,
+};
 
-  shadeTransparent10: PRIMITIVE_COLORS.transparent.blueGrey10,
-  shadeTransparent20: PRIMITIVE_COLORS.transparent.blueGrey20,
-  shadeTransparent30: PRIMITIVE_COLORS.transparent.blueGrey30,
-  shadeTransparent40: PRIMITIVE_COLORS.transparent.blueGrey40,
-  shadeTransparent50: PRIMITIVE_COLORS.transparent.blueGrey50,
-  shadeTransparent60: PRIMITIVE_COLORS.transparent.blueGrey60,
-  shadeTransparent70: PRIMITIVE_COLORS.transparent.blueGrey70,
-  shadeTransparent80: PRIMITIVE_COLORS.transparent.blueGrey80,
-  shadeTransparent90: PRIMITIVE_COLORS.transparent.blueGrey90,
-  shadeTransparent100: PRIMITIVE_COLORS.transparent.blueGrey100,
-  shadeTransparent110: PRIMITIVE_COLORS.transparent.blueGrey110,
-  shadeTransparent120: PRIMITIVE_COLORS.transparent.blueGrey120,
-  shadeTransparent130: PRIMITIVE_COLORS.transparent.blueGrey130,
-  shadeTransparent140: PRIMITIVE_COLORS.transparent.blueGrey140,
+const plainLightRGB = chroma(_semantic_colors.plainLight);
+const primary70RGB = chroma(_semantic_colors.primary70);
+const primary100RGB = chroma(_semantic_colors.primary100);
+const accent70RGB = chroma(_semantic_colors.accent70);
+const accentSecondary70RGB = chroma(_semantic_colors.accentSecondary70);
+const success70RGB = chroma(_semantic_colors.success70);
+const warning40RGB = chroma(_semantic_colors.warning40);
+const danger70RGB = chroma(_semantic_colors.danger70);
+const shade100RGB = chroma(_semantic_colors.shade100);
+const shade120RGB = chroma(_semantic_colors.shade120);
+
+const _semantic_alpha_colors = {
+  plainLightAlpha8: `rgba(${chroma(plainLightRGB)}, 0.08)`,
+  plainLightAlpha12: `rgba(${chroma(plainLightRGB)}, 0.12)`,
+  plainLightAlpha16: `rgba(${chroma(plainLightRGB)}, 0.16)`,
+  plainLightAlpha32: `rgba(${chroma(plainLightRGB)}, 0.32)`,
+
+  primary70Alpha12: `rgba(${chroma(primary70RGB)}, 0.12)`,
+  primary70Alpha16: `rgba(${chroma(primary70RGB)}, 0.16)`,
+
+  primary100Alpha4: `rgba(${chroma(primary100RGB)}, 0.04)`,
+  primary100Alpha8: `rgba(${chroma(primary100RGB)}, 0.08)`,
+  primary100Alpha12: `rgba(${chroma(primary100RGB)}, 0.12)`,
+
+  accent70Alpha12: `rgba(${chroma(accent70RGB)}, 0.12)`,
+  accent70Alpha16: `rgba(${chroma(accent70RGB)}, 0.16)`,
+
+  accentSecondary70Alpha12: `rgba(${chroma(accentSecondary70RGB)}, 0.12)`,
+  accentSecondary70Alpha16: `rgba(${chroma(accentSecondary70RGB)}, 0.16)`,
+
+  success70Alpha12: `rgba(${chroma(success70RGB)}, 0.12)`,
+  success70Alpha16: `rgba(${chroma(success70RGB)}, 0.16)`,
+
+  warning40Alpha12: `rgba(${chroma(warning40RGB)}, 0.12)`,
+  warning40Alpha24: `rgba(${chroma(warning40RGB)}, 0.24)`,
+
+  danger70Alpha12: `rgba(${chroma(danger70RGB)}, 0.12)`,
+  danger70Alpha16: `rgba(${chroma(danger70RGB)}, 0.16)`,
+
+  shade100Alpha4: `rgba(${chroma(shade100RGB)}, 0.04)`,
+  shade100Alpha16: `rgba(${chroma(shade100RGB)}, 0.16)`,
+  shade100Alpha24: `rgba(${chroma(shade100RGB)}, 0.24)`,
+  shade100Alpha70: `rgba(${chroma(shade100RGB)}, 0.7)`,
+
+  shade120Alpha70: `rgba(${chroma(shade120RGB)}, 0.7)`,
+};
+
+export const SEMANTIC_COLORS = {
+  ..._semantic_colors,
+  ..._semantic_alpha_colors,
 };

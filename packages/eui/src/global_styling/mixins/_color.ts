@@ -19,6 +19,7 @@ export const BACKGROUND_COLORS = [
   'transparent',
   'plain',
   'subdued',
+  'highlighted',
   'accent',
   'accentSecondary',
   'primary',
@@ -104,7 +105,6 @@ export const useEuiBackgroundColor = (
 };
 
 /**
- * @deprecated
  * @returns An object map of color keys to CSS,
  * e.g. { danger: css``, success: css``, ... }
  */
@@ -130,7 +130,6 @@ const _euiBackgroundColors = (euiThemeContext: UseEuiTheme) =>
   }, {} as Record<_EuiBackgroundColor, SerializedStyles>);
 
 /**
- * @deprecated - use background tokens directly
  * Hook to retrieve background style for a background color variant
  * @returns An object map of color keys to CSS,
  * e.g. { danger: css``, success: css``, ... }
