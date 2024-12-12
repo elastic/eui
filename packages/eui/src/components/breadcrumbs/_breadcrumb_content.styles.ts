@@ -44,7 +44,7 @@ export const euiBreadcrumbContentStyles = (euiThemeContext: UseEuiTheme) => {
       /* TODO: Remove this ':not()' selector and simply have this be
       baseline CSS once the 'color' prop is removed */
       &:not(.euiLink) {
-        color: ${euiTheme.colors.subduedText};
+        color: ${euiTheme.colors.textSubdued};
       }
     `,
 
