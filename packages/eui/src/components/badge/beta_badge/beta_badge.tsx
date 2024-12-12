@@ -22,13 +22,7 @@ import { EuiIcon, IconType } from '../../icon';
 
 import { euiBetaBadgeStyles } from './beta_badge.styles';
 
-export const COLORS = [
-  'accent',
-  'accentSecondary',
-  'subdued',
-  'hollow',
-  'warning',
-] as const;
+export const COLORS = ['accent', 'subdued', 'hollow', 'warning'] as const;
 export type BetaBadgeColor = (typeof COLORS)[number];
 
 export const SIZES = ['s', 'm'] as const;
