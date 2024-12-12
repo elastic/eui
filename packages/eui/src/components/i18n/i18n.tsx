@@ -8,13 +8,12 @@
 
 import React, {
   Fragment,
-  ReactChild,
   FunctionComponent,
   useContext,
   ReactElement,
 } from 'react';
 import { EuiI18nConsumer } from '../context';
-import { ExclusiveUnion } from '../common';
+import { ExclusiveUnion, ReactChild } from '../common';
 import {
   I18nContext,
   I18nShape,

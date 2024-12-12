@@ -28,7 +28,7 @@ describe('EuiCheckboxGroup behavior', () => {
     );
 
     component.find('input[type="checkbox"]').simulate('change');
-    expect(onChangeHandler).toBeCalledTimes(1);
+    expect(onChangeHandler).toHaveBeenCalledTimes(1);
     expect(onChangeHandler.mock.calls[0][0]).toBe('1');
   });
 });

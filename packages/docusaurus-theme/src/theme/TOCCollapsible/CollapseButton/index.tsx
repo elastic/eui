@@ -23,7 +23,7 @@ const getStyles = ({ euiTheme }: UseEuiTheme) => {
 export default function TOCCollapsibleCollapseButton({
   collapsed,
   ...props
-}: Props): JSX.Element {
+}: Props): React.JSX.Element {
   const styles = useEuiMemoizedStyles(getStyles);
 
   return (

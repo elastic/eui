@@ -19,6 +19,7 @@ import React, {
   FunctionComponent,
   MutableRefObject,
   ReactNode,
+  JSX,
 } from 'react';
 import classnames from 'classnames';
 
