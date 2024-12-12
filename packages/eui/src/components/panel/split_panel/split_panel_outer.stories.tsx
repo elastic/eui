@@ -34,3 +34,40 @@ export const SplitPanelOuter: Story = {
     </EuiSplitPanel.Outer>
   ),
 };
+
+export const HighContrast: Story = {
+  tags: ['vrt-only'],
+  globals: { highContrastMode: true },
+  render: () => (
+    <>
+      <EuiSplitPanel.Outer direction="row">
+        <EuiSplitPanel.Inner>
+          <EuiSplitPanel.Outer direction="column">
+            <EuiSplitPanel.Inner>Nested</EuiSplitPanel.Inner>
+            <EuiSplitPanel.Inner>Border test</EuiSplitPanel.Inner>
+          </EuiSplitPanel.Outer>
+        </EuiSplitPanel.Inner>
+        <EuiSplitPanel.Inner color="subdued">Right panel</EuiSplitPanel.Inner>
+      </EuiSplitPanel.Outer>
+      <div style={{ height: 20 }} />
+      <EuiSplitPanel.Outer>
+        <EuiSplitPanel.Inner>
+          <EuiSplitPanel.Outer
+            direction="row"
+            responsive={false}
+            color="primary"
+          >
+            <EuiSplitPanel.Inner>Nested</EuiSplitPanel.Inner>
+            <EuiSplitPanel.Inner>
+              <EuiSplitPanel.Outer direction="column" color="danger">
+                <EuiSplitPanel.Inner>Nested again</EuiSplitPanel.Inner>
+                <EuiSplitPanel.Inner>*inception noises*</EuiSplitPanel.Inner>
+              </EuiSplitPanel.Outer>
+            </EuiSplitPanel.Inner>
+          </EuiSplitPanel.Outer>
+        </EuiSplitPanel.Inner>
+        <EuiSplitPanel.Inner color="subdued">Bottom panel</EuiSplitPanel.Inner>
+      </EuiSplitPanel.Outer>
+    </>
+  ),
+};

@@ -6,7 +6,13 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent, ReactNode, HTMLAttributes } from 'react';
+import React, {
+  FunctionComponent,
+  ReactNode,
+  HTMLAttributes,
+  createContext,
+  useContext,
+} from 'react';
 import classNames from 'classnames';
 
 import {
@@ -31,8 +37,14 @@ export type _EuiSplitPanelInnerProps = HTMLAttributes<HTMLDivElement> &
 export const _EuiSplitPanelInner: FunctionComponent<
   _EuiSplitPanelInnerProps
 > = ({ children, className, ...rest }) => {
+  const direction = useContext(SplitPanelInnerBorderDirection);
+
   const classes = classNames('euiSplitPanel__inner', className);
   const styles = useEuiMemoizedStyles(euiSplitPanelInnerStyles);
+  const cssStyles = [
+    styles.euiSplitPanelInner,
+    styles.highContrastBorders[direction],
+  ];
 
   const panelProps: _EuiPanelProps = {
     hasShadow: false,
@@ -45,7 +57,7 @@ export const _EuiSplitPanelInner: FunctionComponent<
     <EuiPanel
       element="div"
       className={classes}
-      css={styles.euiSplitPanelInner}
+      css={cssStyles}
       {...panelProps}
       {...(rest as _EuiPanelProps)}
     >
@@ -87,12 +99,11 @@ export const _EuiSplitPanelOuter: FunctionComponent<
     responsive as EuiBreakpointSize[],
     !!responsive
   );
+  const responsiveDirection =
+    direction === 'row' && !isResponsive ? 'row' : 'column';
 
   const styles = euiSplitPanelOuterStyles;
-  const cssStyles = [
-    styles.euiSplitPanelOuter,
-    direction === 'row' && !isResponsive ? styles.row : styles.column,
-  ];
+  const cssStyles = [styles.euiSplitPanelOuter, styles[responsiveDirection]];
 
   const classes = classNames('euiSplitPanel', className);
 
@@ -104,10 +115,15 @@ export const _EuiSplitPanelOuter: FunctionComponent<
       css={cssStyles}
       {...(rest as _EuiPanelProps)}
     >
-      {children}
+      <SplitPanelInnerDirection.Provider value={responsiveDirection}>
+        {children}
+      </SplitPanelInnerDirection.Provider>
     </EuiPanel>
   );
 };
+
+const SplitPanelInnerDirection =
+  createContext<NonNullable<_EuiSplitPanelOuterProps['direction']>>('column');
 
 export const EuiSplitPanel = {
   Outer: _EuiSplitPanelOuter,
