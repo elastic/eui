@@ -15,6 +15,7 @@ import {
   logicalSizeCSS,
   mathWithUnits,
 } from '../../../../global_styling';
+import { highContrastModeStyles } from '../../../../global_styling/functions/high_contrast';
 
 import { euiDataGridVariables } from '../../data_grid.styles';
 import {
@@ -126,6 +127,11 @@ export const euiDataGridCellActionsStyles = (euiThemeContext: UseEuiTheme) => {
         ${logicalCSS('width', '120%')}
         ${logicalCSS('height', '100%')}
       }
+
+      /* Remove button borders in high contrast mode */
+      ${highContrastModeStyles(euiThemeContext, {
+        preferred: 'border: none;',
+      })}
     `,
   };
 };

@@ -120,8 +120,7 @@ export const euiTableRowCellStyles = (euiThemeContext: UseEuiTheme) => {
             content: '';
             position: absolute;
             ${logicalCSS('horizontal', 0)}
-            ${logicalCSS('height', euiTheme.border.width.thin)}
-            background-color: ${euiTheme.border.color};
+            ${logicalCSS('border-top', euiTheme.border.thin)}
           }
 
           /* Minor vertical alignment of cell content */
