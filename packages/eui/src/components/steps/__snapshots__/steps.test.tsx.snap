@@ -22,7 +22,7 @@ exports[`EuiSteps renders step title inside "headingElement" element 1`] = `
         </span>
         <span
           aria-hidden="true"
-          class="euiStepNumber__number emotion-euiStepNumber__number"
+          class="euiStepNumber__number"
         >
           1
         </span>
@@ -57,7 +57,7 @@ exports[`EuiSteps renders step title inside "headingElement" element 1`] = `
         </span>
         <span
           aria-hidden="true"
-          class="euiStepNumber__number emotion-euiStepNumber__number"
+          class="euiStepNumber__number"
         >
           2
         </span>
@@ -92,7 +92,7 @@ exports[`EuiSteps renders step title inside "headingElement" element 1`] = `
         </span>
         <span
           aria-hidden="true"
-          class="euiStepNumber__number emotion-euiStepNumber__number-incomplete"
+          class="euiStepNumber__number"
         >
           3
         </span>
@@ -136,7 +136,7 @@ exports[`EuiSteps renders steps 1`] = `
         </span>
         <span
           aria-hidden="true"
-          class="euiStepNumber__number emotion-euiStepNumber__number"
+          class="euiStepNumber__number"
         >
           1
         </span>
@@ -171,7 +171,7 @@ exports[`EuiSteps renders steps 1`] = `
         </span>
         <span
           aria-hidden="true"
-          class="euiStepNumber__number emotion-euiStepNumber__number"
+          class="euiStepNumber__number"
         >
           2
         </span>
@@ -206,7 +206,7 @@ exports[`EuiSteps renders steps 1`] = `
         </span>
         <span
           aria-hidden="true"
-          class="euiStepNumber__number emotion-euiStepNumber__number-incomplete"
+          class="euiStepNumber__number"
         >
           3
         </span>
@@ -250,7 +250,7 @@ exports[`EuiSteps renders steps with firstStepNumber 1`] = `
         </span>
         <span
           aria-hidden="true"
-          class="euiStepNumber__number emotion-euiStepNumber__number"
+          class="euiStepNumber__number"
         >
           10
         </span>
@@ -285,7 +285,7 @@ exports[`EuiSteps renders steps with firstStepNumber 1`] = `
         </span>
         <span
           aria-hidden="true"
-          class="euiStepNumber__number emotion-euiStepNumber__number"
+          class="euiStepNumber__number"
         >
           11
         </span>
@@ -320,7 +320,7 @@ exports[`EuiSteps renders steps with firstStepNumber 1`] = `
         </span>
         <span
           aria-hidden="true"
-          class="euiStepNumber__number emotion-euiStepNumber__number-incomplete"
+          class="euiStepNumber__number"
         >
           12
         </span>
@@ -364,7 +364,7 @@ exports[`EuiSteps renders steps with titleSize 1`] = `
         </span>
         <span
           aria-hidden="true"
-          class="euiStepNumber__number emotion-euiStepNumber__number"
+          class="euiStepNumber__number"
         >
           1
         </span>
@@ -399,7 +399,7 @@ exports[`EuiSteps renders steps with titleSize 1`] = `
         </span>
         <span
           aria-hidden="true"
-          class="euiStepNumber__number emotion-euiStepNumber__number"
+          class="euiStepNumber__number"
         >
           2
         </span>
@@ -434,7 +434,7 @@ exports[`EuiSteps renders steps with titleSize 1`] = `
         </span>
         <span
           aria-hidden="true"
-          class="euiStepNumber__number emotion-euiStepNumber__number-incomplete"
+          class="euiStepNumber__number"
         >
           3
         </span>

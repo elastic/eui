@@ -9,6 +9,7 @@
 import { css } from '@emotion/react';
 import { UseEuiTheme } from '../../services';
 import { logicalCSS } from '../../global_styling';
+import { highContrastModeStyles } from '../../global_styling/functions/high_contrast';
 
 export const euiCommentEventStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
@@ -28,7 +29,16 @@ export const euiCommentEventHeaderStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
 
   return {
-    euiCommentEvent__header: css``,
+    euiCommentEvent__header: css`
+      ${highContrastModeStyles(euiThemeContext, {
+        // Remove duplicate high contrast panel borders
+        preferred: `
+          & > .euiPanel {
+            border: none;
+          }
+      `,
+      })}
+    `,
     border: css`
       ${logicalCSS('border-bottom-style', 'solid')}
       ${logicalCSS('border-bottom-width', euiTheme.border.width.thin)}
