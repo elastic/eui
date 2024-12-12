@@ -10,7 +10,10 @@ import { css } from '@emotion/css';
 import { logicalCSS, euiAnimFadeIn } from '../../global_styling';
 import { transparentize, UseEuiTheme } from '../../services';
 
-export const euiOverlayMaskStyles = ({ euiTheme }: UseEuiTheme) => ({
+export const euiOverlayMaskStyles = ({
+  euiTheme,
+  highContrastMode,
+}: UseEuiTheme) => ({
   euiOverlayMask: css`
     position: fixed;
     ${logicalCSS('top', 0)}
@@ -22,7 +25,10 @@ export const euiOverlayMaskStyles = ({ euiTheme }: UseEuiTheme) => ({
     justify-content: center;
     ${logicalCSS('padding-bottom', '10vh')}
     animation: ${euiAnimFadeIn} ${euiTheme.animation.fast} ease-in;
-    background: ${transparentize(euiTheme.colors.ink, 0.5)};
+    background: ${transparentize(
+      euiTheme.colors.ink,
+      highContrastMode ? 0.85 : 0.5
+    )};
   `,
   aboveHeader: css`
     z-index: ${euiTheme.levels.mask};
