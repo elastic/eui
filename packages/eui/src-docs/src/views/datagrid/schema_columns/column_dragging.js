@@ -74,6 +74,7 @@ export default () => {
       columnVisibility={{
         visibleColumns: visibleColumns,
         setVisibleColumns: setVisibleColumns,
+        canDragAndDropColumns: true,
       }}
       rowCount={data.length}
       renderCellValue={({ rowIndex, columnId }) => data[rowIndex][columnId]}
