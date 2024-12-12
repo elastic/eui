@@ -46,17 +46,6 @@ exports[`EuiBetaBadge props color accent is rendered 1`] = `
 </span>
 `;
 
-exports[`EuiBetaBadge props color accentSecondary is rendered 1`] = `
-<span>
-  <span
-    class="euiBetaBadge emotion-euiBetaBadge-accentSecondary-m-baseline"
-    title="Beta"
-  >
-    Beta
-  </span>
-</span>
-`;
-
 exports[`EuiBetaBadge props color hollow is rendered 1`] = `
 <span>
   <span
