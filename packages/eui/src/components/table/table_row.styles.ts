@@ -80,7 +80,9 @@ export const euiTableRowStyles = (euiThemeContext: UseEuiTheme) => {
         ${logicalCSS('margin-bottom', cellContentPadding)}
 
         /* EuiPanel styling */
-        ${euiShadow(euiThemeContext, 's')}
+        ${euiShadow(euiThemeContext, 's', {
+          borderAllInHighContrastMode: true,
+        })}
         background-color: ${euiBackgroundColor(euiThemeContext, 'plain')};
         border-radius: ${euiTheme.border.radius.medium};
 
@@ -114,8 +116,7 @@ export const euiTableRowStyles = (euiThemeContext: UseEuiTheme) => {
           position: absolute;
           ${logicalCSS('vertical', 0)}
           ${logicalCSS('right', mobileSizes.actions.width)}
-          ${logicalCSS('width', euiTheme.border.width.thin)}
-          background-color: ${euiTheme.border.color};
+          ${logicalCSS('border-right', euiTheme.border.thin)}
         }
       `,
       /**
