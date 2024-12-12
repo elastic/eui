@@ -8,12 +8,7 @@
 
 /* eslint-disable storybook/default-exports, storybook/prefer-pascal-case */
 
-import React, {
-  useCallback,
-  useEffect,
-  useState,
-  FunctionComponent,
-} from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { css } from '@emotion/react';
 import { faker } from '@faker-js/faker';
 
@@ -29,10 +24,6 @@ import type {
   EuiDataGridColumnCellActionProps,
   EuiDataGridColumnSortingConfig,
   EuiDataGridProps,
-  EuiDataGridStyle,
-  EuiDataGridRowHeightsOptions,
-  EuiDataGridToolBarVisibilityOptions,
-  EuiDataGridToolBarAdditionalControlsOptions,
 } from './data_grid_types';
 import { EuiDataGrid } from './data_grid';
 
@@ -405,25 +396,3 @@ export const StatefulDataGrid = (props: EuiDataGridProps) => {
     />
   );
 };
-
-/*
- * Components that exist purely for allowing Storybook to parse certain nested
- * interfaces/types into specific example control tables.
- *
- * For whatever reason, they needs to be in a separate file for Storybook's
- * react-typescript-docgen to parse the jsdoc comments into the controls table
- */
-
-export const EuiDataGridToolbarPropsComponent: FunctionComponent<
-  EuiDataGridProps & // We really just want toolbarVisibility and renderCustomToolbar from here, but typescript-docgen is unhappy if we Pick<>
-    EuiDataGridToolBarVisibilityOptions &
-    EuiDataGridToolBarAdditionalControlsOptions
-> = () => <></>;
-
-export const EuiDataGridStylePropsComponent: FunctionComponent<
-  EuiDataGridStyle
-> = () => <></>;
-
-export const EuiDataGridRowHeightsPropsComponent: FunctionComponent<
-  EuiDataGridRowHeightsOptions
-> = () => <></>;
