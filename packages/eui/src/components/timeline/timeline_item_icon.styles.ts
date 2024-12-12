@@ -9,26 +9,37 @@
 import { css } from '@emotion/react';
 import { UseEuiTheme } from '../../services';
 import { logicalCSS } from '../../global_styling';
+import { highContrastModeStyles } from '../../global_styling/functions/high_contrast';
 
-export const euiTimelineItemIconStyles = ({ euiTheme }: UseEuiTheme) => ({
-  euiTimelineItemIcon: css`
-    display: flex;
-    position: relative;
-    flex-grow: 0;
-    justify-content: center;
-    ${logicalCSS('margin-right', euiTheme.size.base)}
-  `,
-  euiTimelineItemIcon__content: css`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-  `,
-  //  Vertical alignments
-  top: css`
-    align-items: flex-start;
-  `,
-  center: css`
-    align-items: center;
-  `,
-});
+export const euiTimelineItemIconStyles = (euiThemeContext: UseEuiTheme) => {
+  const { euiTheme } = euiThemeContext;
+  return {
+    euiTimelineItemIcon: css`
+      display: flex;
+      position: relative;
+      flex-grow: 0;
+      justify-content: center;
+      ${logicalCSS('margin-right', euiTheme.size.base)}
+    `,
+    euiTimelineItemIcon__content: css`
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      ${highContrastModeStyles(euiThemeContext, {
+        preferred: `
+          & > * {
+            border: ${euiTheme.border.thin};
+          }
+        `,
+      })}
+    `,
+    //  Vertical alignments
+    top: css`
+      align-items: flex-start;
+    `,
+    center: css`
+      align-items: center;
+    `,
+  };
+};

@@ -2,7 +2,6 @@ import React, { ReactNode } from 'react';
 import { css } from '@emotion/react';
 
 import {
-  EuiPanel,
   EuiButtonIcon,
   EuiCommentList,
   EuiComment,
@@ -50,11 +49,7 @@ export default ({ snippet }: { snippet: ReactNode }) => {
   );
 
   return (
-    <EuiPanel
-      color="transparent"
-      paddingSize="none"
-      style={{ maxWidth: '540px' }}
-    >
+    <div style={{ maxWidth: '540px' }}>
       <EuiCommentList>
         <EuiComment username="avatar" timelineAvatarAriaLabel="Avatar">
           <div
@@ -149,6 +144,6 @@ export default ({ snippet }: { snippet: ReactNode }) => {
           {snippet}
         </EuiCodeBlock>
       </EuiAccordion>
-    </EuiPanel>
+    </div>
   );
 };
