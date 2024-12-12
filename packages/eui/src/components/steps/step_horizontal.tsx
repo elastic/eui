@@ -14,7 +14,7 @@ import React, {
   MouseEventHandler,
 } from 'react';
 import { CommonProps } from '../common';
-import { useEuiTheme } from '../../services';
+import { useEuiMemoizedStyles } from '../../services';
 import {
   EuiStepNumber,
   EuiStepNumberProps,
@@ -80,18 +80,17 @@ export const EuiStepHorizontal: FunctionComponent<EuiStepHorizontalProps> = ({
 
   const classes = classNames('euiStepHorizontal', className);
 
-  const euiTheme = useEuiTheme();
-  const styles = euiStepHorizontalStyles(euiTheme);
+  const styles = useEuiMemoizedStyles(euiStepHorizontalStyles);
   const cssStyles = [
     styles.euiStepHorizontal,
     styles[size],
     status === 'disabled' ? styles.disabled : styles.enabled,
   ];
 
-  const numberStyles = euiStepHorizontalNumberStyles(euiTheme);
+  const numberStyles = useEuiMemoizedStyles(euiStepHorizontalNumberStyles);
   const cssNumberStyles = [numberStyles.euiStepHorizontal__number];
 
-  const titleStyles = euiStepHorizontalTitleStyles(euiTheme);
+  const titleStyles = useEuiMemoizedStyles(euiStepHorizontalTitleStyles);
   const cssTitleStyles = [
     titleStyles.euiStepHorizontal__title,
     status === 'disabled' && titleStyles.disabled,
