@@ -18,12 +18,22 @@ export const euiDataGridPaginationStyles = ({ euiTheme }: UseEuiTheme) => ({
     ${logicalCSS('padding-top', euiTheme.size.xs)}
 
     .euiDataGrid--fullScreen & {
+      position: relative;
       ${logicalCSS('padding-bottom', euiTheme.size.xs)}
       background-color: ${euiTheme.colors.lightestShade};
 
-      /* Use box-shadow instead of border-top to avoid duplicating the border-bottom on grid cells */
-      box-shadow: ${euiTheme.border.width.thin} 0 0
-        ${euiTheme.border.width.thin} ${euiTheme.border.color};
+      /* Use a pseudo element instead of:
+       * 1. border-top directly on the element, to avoid duplicating the border-bottom on grid cells
+       * 2. box-shadow, so that the border renders on Windows high contrast themes
+       */
+      &::before {
+        content: '';
+        position: absolute;
+        ${logicalCSS('top', `-${euiTheme.border.width.thin}`)}
+        ${logicalCSS('horizontal', 0)}
+        ${logicalCSS('border-top', euiTheme.border.thin)}
+        pointer-events: none;
+      }
     }
   `,
 });

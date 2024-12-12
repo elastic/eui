@@ -323,6 +323,15 @@ export const ExpandedNestedTable: Story = {
   },
 };
 
+export const HighContrastMobile: Story = {
+  tags: ['vrt-only'],
+  globals: { highContrastMode: true },
+  args: {
+    ...ExpandedRow.args,
+    responsiveBreakpoint: true,
+  },
+};
+
 const StatefulPlayground = ({
   items,
   pagination,
