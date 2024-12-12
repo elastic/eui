@@ -15,6 +15,7 @@ import {
   logicalSizeCSS,
   mathWithUnits,
 } from '../../global_styling';
+import { highContrastModeStyles } from '../../global_styling/functions/high_contrast';
 
 export const euiDataGridVariables = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
@@ -79,14 +80,24 @@ export const euiDataGridStyles = (euiThemeContext: UseEuiTheme) => {
           padding: ${cellPadding[size]};
         }
 
-        /* Workaround to trim line-clamp and padding - @see https://github.com/elastic/eui/issues/7780 */
         .euiDataGridRowCell__content--lineCountHeight,
         .euiDataGridRowCell__content--autoBelowLineCountHeight {
-          ${logicalCSS('padding-bottom', 0)}
-          ${logicalCSS(
-            'border-bottom',
-            `${cellPadding[size]} solid transparent`
-          )}
+          ${highContrastModeStyles(euiThemeContext, {
+            // Workaround to trim line-clamp and padding - @see https://github.com/elastic/eui/issues/7780
+            none: `
+              ${logicalCSS('padding-bottom', 0)}
+              ${logicalCSS(
+                'border-bottom',
+                `${cellPadding[size]} solid transparent`
+              )}
+            `,
+            // Unfortunately this workaround backfires in Windows high contrast themes, which force
+            // border-color, so we can't use it. We'll use a clip-path workaround instead.
+            get forced() {
+              const bottomY = `calc(100% - ${cellPadding[size]})`;
+              return `clip-path: polygon(0 0, 100% 0, 100% ${bottomY}, 0 ${bottomY});`;
+            },
+          })}
         }
 
         /* Ensure the column actions button maintains its size for accessible click/tap targeting
