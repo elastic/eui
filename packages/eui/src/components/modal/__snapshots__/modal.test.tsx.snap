@@ -24,6 +24,7 @@ exports[`EuiModal renders 1`] = `
         role="dialog"
         tabindex="0"
       >
+        children
         <button
           aria-label="Closes this modal window"
           class="euiButtonIcon euiModal__closeIcon emotion-euiButtonIcon-xs-empty-text-euiModal__closeIcon"
@@ -36,7 +37,6 @@ exports[`EuiModal renders 1`] = `
             data-euiicon-type="cross"
           />
         </button>
-        children
       </div>
     </div>
     <div
