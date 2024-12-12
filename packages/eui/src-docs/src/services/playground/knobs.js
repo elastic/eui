@@ -480,7 +480,6 @@ const KnobColumn = ({ state, knobNames, error, set, isPlayground }) => {
           key={`modify__${name}-${idx}`}
           header={isPlayground ? 'Modify' : 'Default value'}
           textOnly={false}
-          className={isPlayground ? 'playgroundKnobs__rowCell' : undefined}
         >
           {isPlayground ? (
             <Knob
