@@ -4609,7 +4609,7 @@ __metadata:
     "@docusaurus/types": "npm:^3.5.2"
     "@docusaurus/utils-validation": "npm:^3.5.2"
     "@elastic/datemath": "npm:^5.0.3"
-    "@elastic/eui": "npm:97.2.0"
+    "@elastic/eui": "workspace:^"
     "@elastic/eui-docgen": "workspace:^"
     "@emotion/css": "npm:^11.11.2"
     "@emotion/react": "npm:^11.11.4"
@@ -4675,57 +4675,6 @@ __metadata:
     typescript: "npm:~5.5.4"
   languageName: unknown
   linkType: soft
-
-"@elastic/eui@npm:97.2.0":
-  version: 97.2.0
-  resolution: "@elastic/eui@npm:97.2.0"
-  dependencies:
-    "@hello-pangea/dnd": "npm:^16.6.0"
-    "@types/lodash": "npm:^4.14.202"
-    "@types/numeral": "npm:^2.0.5"
-    "@types/react-window": "npm:^1.8.8"
-    "@types/refractor": "npm:^3.4.0"
-    chroma-js: "npm:^2.4.2"
-    classnames: "npm:^2.5.1"
-    lodash: "npm:^4.17.21"
-    mdast-util-to-hast: "npm:^10.2.0"
-    numeral: "npm:^2.0.6"
-    prop-types: "npm:^15.8.1"
-    react-dropzone: "npm:^11.7.1"
-    react-element-to-jsx-string: "npm:^15.0.0"
-    react-focus-on: "npm:^3.9.1"
-    react-is: "npm:^17.0.2"
-    react-remove-scroll-bar: "npm:^2.3.4"
-    react-virtualized-auto-sizer: "npm:^1.0.24"
-    react-window: "npm:^1.8.10"
-    refractor: "npm:^3.6.0"
-    rehype-raw: "npm:^5.1.0"
-    rehype-react: "npm:^6.2.1"
-    rehype-stringify: "npm:^8.0.0"
-    remark-breaks: "npm:^2.0.2"
-    remark-emoji: "npm:^2.1.0"
-    remark-parse-no-trim: "npm:^8.0.4"
-    remark-rehype: "npm:^8.1.0"
-    tabbable: "npm:^5.3.3"
-    text-diff: "npm:^1.0.1"
-    unified: "npm:^9.2.2"
-    unist-util-visit: "npm:^2.0.3"
-    url-parse: "npm:^1.5.10"
-    uuid: "npm:^8.3.0"
-    vfile: "npm:^4.2.1"
-  peerDependencies:
-    "@elastic/datemath": ^5.0.2
-    "@emotion/css": 11.x
-    "@emotion/react": 11.x
-    "@types/react": ^16.9 || ^17.0 || ^18.0
-    "@types/react-dom": ^16.9 || ^17.0 || ^18.0
-    moment: ^2.13.0
-    react: ^16.12 || ^17.0 || ^18.0
-    react-dom: ^16.12 || ^17.0 || ^18.0
-    typescript: ~4.5.3 || ^5
-  checksum: 10c0/c8fed61d39cc6d06f00caf8234b97e9579ca4d11d7bf0d3cf4cb5d09a6782d8866a7db66b02d3d5eb4f2947a213aca03837b38b166020d21c9bda2e7eb20ad11
-  languageName: node
-  linkType: hard
 
 "@elastic/eui@workspace:^, @elastic/eui@workspace:packages/eui":
   version: 0.0.0-use.local
