@@ -46,6 +46,13 @@ export const euiStepNumberStyles = (euiThemeContext: UseEuiTheme) => {
     `;
   };
 
+  // euiButtonColor utils add colored borders in high contrast mode, but
+  // we want to set our own standardized border instead
+  const unsetButtonBorder = (buttonStyles: object) => ({
+    ...buttonStyles,
+    border: undefined,
+  });
+
   return {
     euiStepNumber: css`
       flex-shrink: 0;
@@ -94,10 +101,7 @@ export const euiStepNumberStyles = (euiThemeContext: UseEuiTheme) => {
       })}
     `,
     warning: css`
-      ${{
-        ...euiButtonFillColor(euiThemeContext, 'warning'),
-        border: undefined,
-      }}
+      ${unsetButtonBorder(euiButtonFillColor(euiThemeContext, 'warning'))}
 
       ${euiCanAnimate} {
         animation: ${euiAnimScale} ${euiTheme.animation.fast}
@@ -105,7 +109,7 @@ export const euiStepNumberStyles = (euiThemeContext: UseEuiTheme) => {
       }
     `,
     danger: css`
-      ${{ ...euiButtonFillColor(euiThemeContext, 'danger'), border: undefined }}
+      ${unsetButtonBorder(euiButtonFillColor(euiThemeContext, 'danger'))}
 
       ${euiCanAnimate} {
         animation: ${euiAnimScale} ${euiTheme.animation.fast}
@@ -113,10 +117,7 @@ export const euiStepNumberStyles = (euiThemeContext: UseEuiTheme) => {
       }
     `,
     complete: css`
-      ${{
-        ...euiButtonFillColor(euiThemeContext, 'success'),
-        border: undefined,
-      }}
+      ${unsetButtonBorder(euiButtonFillColor(euiThemeContext, 'success'))}
 
       ${euiCanAnimate} {
         animation: ${euiAnimScale} ${euiTheme.animation.fast}
@@ -132,6 +133,8 @@ export const euiStepNumberStyles = (euiThemeContext: UseEuiTheme) => {
         none: `
           border: ${euiTheme.border.width.thick} solid ${euiTheme.colors.primary};
         `,
+        // !important overrides horizontal steps' euiOutline usage. The extra offset
+        // is here to helps reduce subpixel gaps between the outline and the border
         preferred: `
           border-width: ${euiTheme.border.width.thick};
           outline-offset: -${euiTheme.border.width.thin} !important;
