@@ -10,7 +10,8 @@ import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { enableFunctionToggleControls } from '../../../.storybook/utils';
-import { LOKI_SELECTORS } from '../../../.storybook/loki';
+import { LOKI_SELECTORS, lokiPlayDecorator } from '../../../.storybook/loki';
+import { sleep } from '../../test';
 import { EuiFlexGroup } from '../flex';
 import { EuiButton } from '../button';
 import { EuiToolTip, EuiToolTipProps } from './tool_tip';
@@ -59,16 +60,8 @@ export const Playground: Story = {
     children: <EuiButton autoFocus>Tooltip trigger</EuiButton>,
     content: 'tooltip content',
   },
-  // play: lokiPlayDecorator(async (context) => {
-  //   const { bodyElement, step } = context;
-
-  //   const canvas = within(bodyElement);
-
-  //   await step('show tooltip on click', async () => {
-  //     await userEvent.click(canvas.getByRole('button'));
-  //     await waitFor(() => {
-  //       expect(canvas.getByRole('tooltip')).toBeVisible();
-  //     });
-  //   });
-  // }),
+  play: lokiPlayDecorator(async () => {
+    // Reduce VRT flakiness/screenshots before tooltip is fully visible
+    await sleep(300);
+  }),
 };

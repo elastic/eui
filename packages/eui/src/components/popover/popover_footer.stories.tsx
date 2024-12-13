@@ -9,6 +9,7 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 
+import { LOKI_SELECTORS } from '../../../.storybook/loki';
 import { PADDING_SIZES } from '../../global_styling';
 import { EuiButton } from '../button';
 import { EuiPopover } from './popover';
@@ -17,6 +18,9 @@ import { EuiPopoverFooter, EuiPopoverFooterProps } from './popover_footer';
 const meta: Meta<EuiPopoverFooterProps> = {
   title: 'Layout/EuiPopover/EuiPopoverFooter',
   component: EuiPopoverFooter,
+  parameters: {
+    loki: { chromeSelector: LOKI_SELECTORS.portal },
+  },
   decorators: [
     (Story, { args }) => (
       <EuiPopover isOpen button={<EuiButton>trigger</EuiButton>}>

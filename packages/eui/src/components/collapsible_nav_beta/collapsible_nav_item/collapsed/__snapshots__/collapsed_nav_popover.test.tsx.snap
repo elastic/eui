@@ -47,14 +47,18 @@ exports[`EuiCollapsedNavPopover renders 1`] = `
         data-popover-open="true"
         data-popover-panel="true"
         role="dialog"
-        style="top: -22px; left: 16px; z-index: 2000;"
+        style="top: -18px; left: 16px; z-index: 2000;"
         tabindex="0"
       >
         <div
-          class="euiPopover__arrow emotion-euiPopoverArrow-right"
-          data-popover-arrow="right"
-          style="left: 0px; top: 10px;"
-        />
+          class="euiPopover__arrowWrapper emotion-euiPopoverArrowWrapper"
+          style="top: 9px; right: 100%;"
+        >
+          <div
+            class="euiPopover__arrow emotion-euiPopoverArrow-right"
+            data-popover-arrow="right"
+          />
+        </div>
         <p
           class="emotion-euiScreenReaderOnly"
           id="generated-id"
