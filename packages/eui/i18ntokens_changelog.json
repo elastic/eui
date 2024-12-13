@@ -3810,7 +3810,7 @@
         "value": "App navigation"
       },
       {
-        "token": "euiModal.closeModal",
+        "token": "euiModalHeader.closeModal",
         "changeType": "added",
         "value": "Closes this modal window"
       },

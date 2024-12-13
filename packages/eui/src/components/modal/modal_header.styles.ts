@@ -30,5 +30,11 @@ export const euiModalHeaderStyles = (euiThemeContext: UseEuiTheme) => {
         padding-block-start: ${euiTheme.size.s};
       }
     `,
+    euiModal__closeIcon: css`
+      position: absolute;
+      inset-inline-end: ${euiTheme.size.xs};
+      inset-block-start: ${euiTheme.size.xs};
+      z-index: 3;
+    `,
   };
 };

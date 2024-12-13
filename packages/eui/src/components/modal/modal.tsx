@@ -12,11 +12,8 @@ import classnames from 'classnames';
 import { keys, useEuiTheme } from '../../services';
 import { isDOMNode } from '../../utils';
 
-import { EuiButtonIcon } from '../button';
-
 import { EuiFocusTrap } from '../focus_trap';
 import { EuiOverlayMask } from '../overlay_mask';
-import { EuiI18n } from '../i18n';
 
 import { euiModalStyles } from './modal.styles';
 
@@ -50,6 +47,14 @@ export interface EuiModalProps extends HTMLAttributes<HTMLDivElement> {
    */
   role?: 'dialog' | 'alertdialog';
 }
+
+type ChildWithOnClose = React.ReactElement<{
+  onClose: (
+    event?:
+      | React.KeyboardEvent<HTMLDivElement>
+      | React.MouseEvent<HTMLButtonElement>
+  ) => void;
+}>;
 
 export const EuiModal: FunctionComponent<EuiModalProps> = ({
   className,
@@ -89,7 +94,12 @@ export const EuiModal: FunctionComponent<EuiModalProps> = ({
     maxWidth === true && styles.defaultMaxWidth,
   ];
 
-  const cssCloseIconStyles = [styles.euiModal__closeIcon];
+  const enhancedChildren = React.Children.map(children, (child) => {
+    if (React.isValidElement(child)) {
+      return React.cloneElement(child as ChildWithOnClose, { onClose });
+    }
+    return child;
+  });
 
   return (
     <EuiOverlayMask>
@@ -104,22 +114,7 @@ export const EuiModal: FunctionComponent<EuiModalProps> = ({
           aria-modal={true}
           {...rest}
         >
-          <EuiI18n
-            token="euiModal.closeModal"
-            default="Closes this modal window"
-          >
-            {(closeModal: string) => (
-              <EuiButtonIcon
-                iconType="cross"
-                onClick={onClose}
-                css={cssCloseIconStyles}
-                className="euiModal__closeIcon"
-                color="text"
-                aria-label={closeModal}
-              />
-            )}
-          </EuiI18n>
-          {children}
+          {enhancedChildren}
         </div>
       </EuiFocusTrap>
     </EuiOverlayMask>
