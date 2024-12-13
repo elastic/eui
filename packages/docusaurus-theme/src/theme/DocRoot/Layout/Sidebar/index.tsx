@@ -29,7 +29,7 @@ const getGlobalStyles = ({ euiTheme }: UseEuiTheme) => {
   };
 };
 
-// converted from css models to Emotion
+// converted from css modules to Emotion
 const styles = {
   docSidebarContainer: css`
     display: none;
