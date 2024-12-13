@@ -6,7 +6,9 @@ sidebar_position: 1
 
 # Date picker
 
-At its most bare the **EuiDatePicker** only requires props for `selected` and `onChange`. It depends on [moment](https://momentjs.com/docs/) for all of its formatting.
+**EuiDatePicker** is the foundational component that all other EUI date and time controls are built upon. It itself depends upon [moment](https://momentjs.com/docs/) for all of its formatting, and a forked and modified version of [react-datepicker](https://github.com/Hacker0x01/react-datepicker/tree/v2.0.0) for accessibility.
+
+At minimum, the **EuiDatePicker** requires the `selected` and `onChange` props to be passed.
 
 ```tsx interactive
 import React, { useState } from 'react';
