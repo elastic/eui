@@ -52,8 +52,9 @@ export default () => {
           image={
             <div
               css={{
-                backgroundColor: euiTheme.colors.body,
                 padding: euiTheme.size.xl,
+                borderBlockEnd: euiTheme.border.thin,
+                backgroundColor: euiTheme.colors.body,
               }}
             >
               {children}

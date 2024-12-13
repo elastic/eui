@@ -21,9 +21,3 @@ export const _EuiShadowSizesDescriptions: Record<_EuiThemeShadowSize, string> =
     l: 'Primary shadow used in most cases to add visible depth.',
     xl: 'Very large shadows used for large portalled style containers like modals and flyouts.',
   };
-
-export interface _EuiThemeShadowCustomColor {
-  color?: string;
-  property?: 'box-shadow' | 'filter';
-  borderAllInHighContrastMode?: boolean;
-}

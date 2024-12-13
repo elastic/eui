@@ -125,7 +125,7 @@ export const EuiPanel: FunctionComponent<EuiPanelProps> = ({
     useEuiBackgroundColorCSS()[color],
     canHaveShadow && hasShadow === true && styles.hasShadow,
     canHaveBorder && hasBorder === true && styles.hasBorder,
-    ...(highContrastMode
+    ...(highContrastMode && _canRenderHighContrastBorder({ color, hasBorder })
       ? [{ border: euiTheme.border.thin }, borderColors[color]]
       : []),
     rest.onClick && styles.isClickable,
@@ -165,3 +165,11 @@ export const EuiPanel: FunctionComponent<EuiPanelProps> = ({
     </div>
   );
 };
+
+// Do not render a high contrast border if the panel is transparent
+// and does not have a default contrast border
+export const _canRenderHighContrastBorder = ({
+  color,
+  hasBorder,
+}: Pick<_EuiPanelProps, 'color' | 'hasBorder'>) =>
+  !(color === 'transparent' && !hasBorder);

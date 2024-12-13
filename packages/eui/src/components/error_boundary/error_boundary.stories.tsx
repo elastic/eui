@@ -37,3 +37,9 @@ export const Playground: Story = {
     onError: console.log,
   },
 };
+
+export const HighContrast: Story = {
+  ...Playground,
+  tags: ['vrt-only'],
+  globals: { highContrastMode: true },
+};

@@ -14,6 +14,7 @@ import {
   logicalCSS,
   mathWithUnits,
 } from '../../global_styling';
+import { highContrastModeStyles } from '../../global_styling/functions/high_contrast';
 import { UseEuiTheme } from '../../services';
 
 export const euiEmptyPromptStyles = (euiThemeContext: UseEuiTheme) => {
@@ -141,9 +142,15 @@ export const euiEmptyPromptStyles = (euiThemeContext: UseEuiTheme) => {
       // Colors
       transparent: css`
         background-color: ${euiTheme.colors.body};
+        ${highContrastModeStyles(euiThemeContext, {
+          preferred: `border: ${euiTheme.border.thin};`,
+        })}
       `,
       plain: css`
         background-color: ${euiTheme.colors.body};
+        ${highContrastModeStyles(euiThemeContext, {
+          preferred: logicalCSS('border-top', generateFooterBorder('plain')),
+        })}
       `,
       subdued: css`
         ${logicalCSS('border-top', generateFooterBorder('subdued'))}

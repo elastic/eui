@@ -6,7 +6,13 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent, ReactNode, HTMLAttributes } from 'react';
+import React, {
+  FunctionComponent,
+  ReactNode,
+  HTMLAttributes,
+  createContext,
+  useContext,
+} from 'react';
 import classNames from 'classnames';
 
 import {
@@ -15,7 +21,11 @@ import {
 } from '../../../services/breakpoint';
 import { useEuiMemoizedStyles } from '../../../services';
 
-import { EuiPanel, _EuiPanelProps } from '../panel';
+import {
+  EuiPanel,
+  _EuiPanelProps,
+  _canRenderHighContrastBorder,
+} from '../panel';
 import {
   euiSplitPanelOuterStyles,
   euiSplitPanelInnerStyles,
@@ -31,8 +41,14 @@ export type _EuiSplitPanelInnerProps = HTMLAttributes<HTMLDivElement> &
 export const _EuiSplitPanelInner: FunctionComponent<
   _EuiSplitPanelInnerProps
 > = ({ children, className, ...rest }) => {
+  const borderDirection = useContext(SplitPanelInnerBorderDirection);
+
   const classes = classNames('euiSplitPanel__inner', className);
   const styles = useEuiMemoizedStyles(euiSplitPanelInnerStyles);
+  const cssStyles = [
+    styles.euiSplitPanelInner,
+    borderDirection && styles.highContrastBorders[borderDirection],
+  ];
 
   const panelProps: _EuiPanelProps = {
     hasShadow: false,
@@ -45,7 +61,7 @@ export const _EuiSplitPanelInner: FunctionComponent<
     <EuiPanel
       element="div"
       className={classes}
-      css={styles.euiSplitPanelInner}
+      css={cssStyles}
       {...panelProps}
       {...(rest as _EuiPanelProps)}
     >
@@ -87,12 +103,14 @@ export const _EuiSplitPanelOuter: FunctionComponent<
     responsive as EuiBreakpointSize[],
     !!responsive
   );
+  const responsiveDirection =
+    direction === 'row' && !isResponsive ? 'row' : 'column';
+  const innerBorderDirection = _canRenderHighContrastBorder({ ...rest })
+    ? responsiveDirection
+    : undefined;
 
   const styles = euiSplitPanelOuterStyles;
-  const cssStyles = [
-    styles.euiSplitPanelOuter,
-    direction === 'row' && !isResponsive ? styles.row : styles.column,
-  ];
+  const cssStyles = [styles.euiSplitPanelOuter, styles[responsiveDirection]];
 
   const classes = classNames('euiSplitPanel', className);
 
@@ -104,10 +122,15 @@ export const _EuiSplitPanelOuter: FunctionComponent<
       css={cssStyles}
       {...(rest as _EuiPanelProps)}
     >
-      {children}
+      <SplitPanelInnerBorderDirection.Provider value={innerBorderDirection}>
+        {children}
+      </SplitPanelInnerBorderDirection.Provider>
     </EuiPanel>
   );
 };
+
+const SplitPanelInnerBorderDirection =
+  createContext<_EuiSplitPanelOuterProps['direction']>(undefined);
 
 export const EuiSplitPanel = {
   Outer: _EuiSplitPanelOuter,
