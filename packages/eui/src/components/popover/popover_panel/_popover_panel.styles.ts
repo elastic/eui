@@ -40,6 +40,8 @@ export const euiPopoverPanelStyles = (euiThemeContext: UseEuiTheme) => {
     euiTheme.animation.bounce
   } ${mathWithUnits(animationSpeed, (x) => x + 100)}`;
 
+  const hasVisibleBorder = colorMode === 'DARK';
+
   return {
     // Base
     euiPopover__panel: css`
@@ -50,6 +52,8 @@ export const euiPopoverPanelStyles = (euiThemeContext: UseEuiTheme) => {
       pointer-events: none;
       opacity: 0; /* 2 */
       background-color: var(--euiPopoverBackgroundColor); /* 4 */
+      border: ${euiTheme.border.width.thin} solid
+        ${hasVisibleBorder ? euiTheme.border.color : 'transparent'};
 
       ${euiCanAnimate} {
         /* 2 */
@@ -58,16 +62,6 @@ export const euiPopoverPanelStyles = (euiThemeContext: UseEuiTheme) => {
 
       &:focus {
         outline-offset: 0;
-      }
-
-      &::before {
-        content: '';
-        position: absolute;
-        inset: 0;
-        border-radius: inherit;
-        border: ${euiTheme.border.width.thin} solid
-          ${euiTheme.colors.borderBaseFloating};
-        pointer-events: none;
       }
     `,
     isOpen: css`
