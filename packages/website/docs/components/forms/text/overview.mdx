@@ -1,0 +1,77 @@
+---
+slug: /forms/text/basic
+id: forms_text_basic
+sidebar_position: 0
+---
+
+# Basic text controls
+
+EUI provides different types of basic form controls: [**EuiFieldText**](/docs/forms/form-controls#text-field), [**EuiFieldSearch**](/docs/forms/form-controls#search-field), [**EuiFieldNumber**](/docs/forms/form-controls#number-field), [**EuiFieldPassword**](/docs/forms/form-controls#password-field), [**EuiSelect**](/docs/forms/form-controls#select), [**EuiTextArea**](/docs/forms/form-controls#textarea), and [**EuiFilePicker**](/docs/forms/form-controls#file-picker).
+
+:::note Accessibility requirement
+You must provide a `label`, `aria-label`, or valid `aria-labelledby` prop to all form controls.
+
+To easily meet this requirement, we recommend wrapping your form controls in the [**EuiFormRow**](/docs/forms/form-layouts#form-and-form-rows) component, which automatically associates form controls with labels, help text, and error text.
+:::
+
+## Text field
+
+This component renders a basic HTML `<input type="text">` element. Use a **EuiFieldText** to allow users to enter or edit text.
+
+```tsx interactive
+import React, { useState } from 'react';
+import { EuiFieldText } from '@elastic/eui';
+
+export default function () {
+  const [value, setValue] = useState('');
+
+  const onChange = (e) => {
+    setValue(e.target.value);
+  };
+
+  return (
+    <EuiFieldText
+      placeholder="Placeholder text"
+      value={value}
+      onChange={(e) => onChange(e)}
+      aria-label="Use aria labels when no actual label is in use"
+    />
+  );
+}
+```
+
+## Textarea
+
+This component renders a basic HTML `<textarea />` element. Use **EuiTextArea** to allow users to enter multi-line text.
+
+```tsx interactive
+import React, { useState } from 'react';
+import { EuiTextArea } from '@elastic/eui';
+
+export default () => {
+  const [value, setValue] = useState('');
+
+  const onChange = (e) => {
+    setValue(e.target.value);
+  };
+
+  return (
+    /* DisplayToggles wrapper for Docs only */
+    <DisplayToggles canClear>
+      <EuiTextArea
+        placeholder="Placeholder text"
+        aria-label="Use aria labels when no actual label is in use"
+        value={value}
+        onChange={(e) => onChange(e)}
+      />
+    </DisplayToggles>
+  );
+};
+```
+
+## Props
+
+import docgen from '@elastic/eui-docgen/dist/components/form';
+
+<PropTable definition={docgen.EuiFieldText} />
+<PropTable definition={docgen.EuiTextArea} />
