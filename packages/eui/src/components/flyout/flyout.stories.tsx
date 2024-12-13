@@ -10,7 +10,7 @@ import React, { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 
-import { EuiButton, EuiText, EuiTitle } from '../index';
+import { EuiButton, EuiCallOut, EuiText, EuiTitle } from '../index';
 
 import {
   EuiFlyout,
@@ -134,5 +134,27 @@ export const PushFlyouts: Story = {
         {fillerText}
       </>
     );
+  },
+};
+
+export const HighContrast: Story = {
+  tags: ['vrt-only'],
+  globals: { highContrastMode: true },
+  args: {
+    children: (
+      <>
+        <EuiFlyoutHeader hasBorder>
+          <EuiTitle size="m">
+            <h2>Flyout header</h2>
+          </EuiTitle>
+        </EuiFlyoutHeader>
+        <EuiFlyoutBody banner={<EuiCallOut>Flyout banner</EuiCallOut>}>
+          Flyout body
+        </EuiFlyoutBody>
+        <EuiFlyoutFooter>
+          <EuiButton fill>Flyout footer</EuiButton>
+        </EuiFlyoutFooter>
+      </>
+    ),
   },
 };
