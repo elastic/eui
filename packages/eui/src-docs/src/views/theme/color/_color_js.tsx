@@ -315,7 +315,7 @@ const cssStyles = [colorStyles['accent']];
         type="hook"
         props={`color: '${BACKGROUND_COLORS.join("' | '")}';
 
-method? 'opaque' | 'transparent';`}
+method?: 'opaque' | 'transparent';`}
         description={
           <p>
             Returns just the computed background color for the given{' '}
