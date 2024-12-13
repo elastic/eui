@@ -9,13 +9,15 @@
 import { useEuiTheme, UseEuiTheme } from '../../../../services/theme';
 import { getShadowColor } from '../functions';
 import { logicalCSS } from '../../../../global_styling';
-import {
-  _EuiThemeShadowSize,
-  _EuiThemeShadowCustomColor,
-} from '../../../../global_styling/variables/shadow';
+import { _EuiThemeShadowSize } from '../../../../global_styling/variables/shadow';
 
-export interface EuiShadowCustomColor {
+export interface EuiShadowOptions {
   color?: string;
+  /**
+   * Note: not supported by all shadow utilities.
+   */
+  property?: 'box-shadow' | 'filter';
+  borderAllInHighContrastMode?: boolean;
 }
 
 /**
@@ -23,7 +25,7 @@ export interface EuiShadowCustomColor {
  */
 export const euiShadowXSmall = (
   { euiTheme, colorMode, highContrastMode }: UseEuiTheme,
-  options?: _EuiThemeShadowCustomColor
+  options?: EuiShadowOptions
 ) => {
   if (highContrastMode) {
     return _highContrastBorder(euiTheme, options);
@@ -43,7 +45,7 @@ box-shadow:
  */
 export const euiShadowSmall = (
   { euiTheme, colorMode, highContrastMode }: UseEuiTheme,
-  options?: _EuiThemeShadowCustomColor
+  options?: EuiShadowOptions
 ) => {
   if (highContrastMode) {
     return _highContrastBorder(euiTheme, options);
@@ -64,7 +66,7 @@ box-shadow:
  */
 export const euiShadowMedium = (
   { euiTheme, colorMode, highContrastMode }: UseEuiTheme,
-  options?: _EuiThemeShadowCustomColor
+  options?: EuiShadowOptions
 ) => {
   if (highContrastMode) {
     return _highContrastBorder(euiTheme, options);
@@ -93,7 +95,7 @@ export const euiShadowMedium = (
  */
 export const euiShadowLarge = (
   { euiTheme, colorMode, highContrastMode }: UseEuiTheme,
-  options?: _EuiThemeShadowCustomColor
+  options?: EuiShadowOptions
 ) => {
   if (highContrastMode) {
     return _highContrastBorder(euiTheme, options);
@@ -113,7 +115,7 @@ box-shadow:
 /**
  * bottomShadowLarge
  */
-export interface EuiShadowXLarge extends _EuiThemeShadowCustomColor {
+export interface EuiShadowXLarge extends EuiShadowOptions {
   reverse?: boolean;
 }
 export const euiShadowXLarge = (
@@ -141,7 +143,7 @@ box-shadow:
  */
 export const euiSlightShadowHover = (
   { euiTheme, colorMode, highContrastMode }: UseEuiTheme,
-  options?: _EuiThemeShadowCustomColor
+  options?: EuiShadowOptions
 ) => {
   if (highContrastMode) {
     return _highContrastBorder(euiTheme, options);
@@ -157,11 +159,9 @@ box-shadow:
   0 23px 35px ${getShadowColor(color, 0.05, colorMode)};
 `;
 };
-export const useEuiSlightShadowHover = (
-  color?: _EuiThemeShadowCustomColor['color']
-) => {
+export const useEuiSlightShadowHover = (options?: EuiShadowOptions) => {
   const euiThemeContext = useEuiTheme();
-  return euiSlightShadowHover(euiThemeContext, { color });
+  return euiSlightShadowHover(euiThemeContext, options);
 };
 
 /**
@@ -172,10 +172,13 @@ export const useEuiSlightShadowHover = (
  */
 export const euiShadowFlat = (
   { euiTheme, colorMode, highContrastMode }: UseEuiTheme,
-  options?: _EuiThemeShadowCustomColor
+  options?: EuiShadowOptions
 ) => {
   if (highContrastMode) {
-    return _highContrastBorder(euiTheme, options);
+    return _highContrastBorder(euiTheme, {
+      borderAllInHighContrastMode: true,
+      ...options,
+    });
   }
 
   const color = options?.color || euiTheme.colors.shadow;
@@ -188,17 +191,15 @@ box-shadow:
   0 0 17px ${getShadowColor(color, 0.03, colorMode)};
 `;
 };
-export const useEuiShadowFlat = (
-  color?: _EuiThemeShadowCustomColor['color']
-) => {
+export const useEuiShadowFlat = (options?: EuiShadowOptions) => {
   const euiThemeContext = useEuiTheme();
-  return euiShadowFlat(euiThemeContext, { color });
+  return euiShadowFlat(euiThemeContext, options);
 };
 
 export const euiShadow = (
   euiThemeContext: UseEuiTheme,
   size: _EuiThemeShadowSize = 'l',
-  options?: _EuiThemeShadowCustomColor
+  options?: EuiShadowOptions
 ) => {
   if (euiThemeContext.highContrastMode) {
     return _highContrastBorder(euiThemeContext.euiTheme, options);
@@ -224,10 +225,10 @@ export const euiShadow = (
 
 export const useEuiShadow = (
   size: _EuiThemeShadowSize = 'l',
-  color?: _EuiThemeShadowCustomColor['color']
+  options?: EuiShadowOptions
 ) => {
   const euiThemeContext = useEuiTheme();
-  return euiShadow(euiThemeContext, size, { color });
+  return euiShadow(euiThemeContext, size, options);
 };
 
 /**
@@ -238,9 +239,11 @@ export const useEuiShadow = (
 
 const _highContrastBorder = (
   { border }: UseEuiTheme['euiTheme'],
-  { borderAllInHighContrastMode }: _EuiThemeShadowCustomColor = {}
+  { borderAllInHighContrastMode, color = border.color }: EuiShadowOptions = {}
 ) => {
+  const borderCSS = `${border.width.thin} solid ${color || border.color}`;
+
   return borderAllInHighContrastMode
-    ? `border: ${border.thin};`
-    : logicalCSS('border-bottom', border.thin);
+    ? `border: ${borderCSS};`
+    : logicalCSS('border-bottom', borderCSS);
 };
