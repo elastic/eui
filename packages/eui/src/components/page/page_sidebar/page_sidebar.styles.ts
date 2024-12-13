@@ -12,7 +12,6 @@ import { UseEuiTheme } from '../../../services';
 import { euiYScroll } from '../../../global_styling';
 
 export const euiPageSidebarStyles = (euiThemeContext: UseEuiTheme) => {
-
   return {
     euiPageSidebar: css`
       /* Prevent side bar width from changing when content width changes */

@@ -32,10 +32,6 @@ export interface EuiPageSidebarProps
    */
   paddingSize?: EuiPaddingSize;
   /**
-   * Renders a fancy little visual in the top left corner of the side bar
-   */
-  hasEmbellish?: boolean;
-  /**
    * Adds `position: sticky` and affords for any fixed position headers.
    */
   sticky?:
@@ -65,7 +61,6 @@ export const EuiPageSidebar: FunctionComponent<EuiPageSidebarProps> = ({
   paddingSize = 'none',
   minWidth = 248,
   responsive = ['xs', 's'],
-  hasEmbellish = false,
   style,
   ...rest
 }) => {
