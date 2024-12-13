@@ -8,15 +8,14 @@
 
 import React, { forwardRef, Ref } from 'react';
 
-import { useEuiTheme } from '../../services';
+import { useEuiMemoizedStyles } from '../../services';
 
 import { euiImageCaptionStyles } from './image_caption.styles';
 import type { EuiImageCaptionProps } from './image_types';
 
 export const EuiImageCaption = forwardRef<HTMLDivElement, EuiImageCaptionProps>(
   ({ caption, isOnOverlayMask = false }, ref: Ref<HTMLDivElement>) => {
-    const euiTheme = useEuiTheme();
-    const styles = euiImageCaptionStyles(euiTheme);
+    const styles = useEuiMemoizedStyles(euiImageCaptionStyles);
     const cssStyles = [
       styles.euiImageCaption,
       isOnOverlayMask && styles.isOnOverlayMask,

@@ -8,13 +8,14 @@
 
 import classNames from 'classnames';
 import React, { FunctionComponent, HTMLAttributes, ReactNode } from 'react';
-import { EuiScreenReaderOnly } from '../accessibility';
+
+import { useEuiMemoizedStyles } from '../../services';
 import { CommonProps } from '../common';
+import { EuiScreenReaderOnly } from '../accessibility';
 import { EuiIcon, IconSize } from '../icon';
 import { EuiLoadingSpinner } from '../loading';
 import { EuiLoadingSpinnerSize } from '../loading/loading_spinner';
 import { EuiTitleProps } from '../title';
-import { useEuiTheme } from '../../services';
 
 import {
   useI18nCompleteStep,
@@ -79,15 +80,14 @@ export const EuiStepNumber: FunctionComponent<EuiStepNumberProps> = ({
 
   const classes = classNames('euiStepNumber', className);
 
-  const euiTheme = useEuiTheme();
-  const styles = euiStepNumberStyles(euiTheme);
+  const styles = useEuiMemoizedStyles(euiStepNumberStyles);
   const cssStyles = [
     styles.euiStepNumber,
     styles[titleSize],
     status && styles[status],
   ];
 
-  const contentStyles = euiStepNumberContentStyles(euiTheme);
+  const contentStyles = useEuiMemoizedStyles(euiStepNumberContentStyles);
   let content: ReactNode;
   let screenReaderText: string | undefined;
 

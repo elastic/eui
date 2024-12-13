@@ -8,7 +8,7 @@
 
 import React, { FunctionComponent } from 'react';
 
-import { useEuiTheme } from '../../services';
+import { useEuiMemoizedStyles } from '../../services';
 import { useEuiI18n } from '../i18n';
 import { EuiIcon } from '../icon';
 import { EuiScreenReaderOnly } from '../accessibility';
@@ -40,9 +40,7 @@ export const EuiImageButton: FunctionComponent<EuiImageButtonProps> = ({
   fullScreenIconColor = 'light',
   ...rest
 }) => {
-  const euiTheme = useEuiTheme();
-
-  const buttonStyles = euiImageButtonStyles(euiTheme);
+  const buttonStyles = useEuiMemoizedStyles(euiImageButtonStyles);
 
   const cssButtonStyles = [
     buttonStyles.euiImageButton,
@@ -50,7 +48,7 @@ export const EuiImageButton: FunctionComponent<EuiImageButtonProps> = ({
     !isFullScreen && isFullWidth && buttonStyles.fullWidth,
   ];
 
-  const iconStyles = euiImageButtonIconStyles(euiTheme);
+  const iconStyles = useEuiMemoizedStyles(euiImageButtonIconStyles);
   const cssIconStyles = [
     iconStyles.euiImageButton__icon,
     iconStyles.openFullScreen,
@@ -69,39 +67,37 @@ export const EuiImageButton: FunctionComponent<EuiImageButtonProps> = ({
     fullScreenIconColorMap[fullScreenIconColor as EuiImageButtonIconColor];
 
   return (
-    <>
-      <button
-        type="button"
-        css={cssButtonStyles}
-        onClick={onClick}
-        onKeyDown={onKeyDown}
-        {...rest}
-      >
-        {isFullScreen && (
-          // In fullscreen mode, instructions should come first to allow screen reader
-          // users to quickly exit vs. potentially reading out long/unskippable alt text
+    <button
+      type="button"
+      css={cssButtonStyles}
+      onClick={onClick}
+      onKeyDown={onKeyDown}
+      {...rest}
+    >
+      {isFullScreen && (
+        // In fullscreen mode, instructions should come first to allow screen reader
+        // users to quickly exit vs. potentially reading out long/unskippable alt text
+        <EuiScreenReaderOnly>
+          <p>
+            {closeFullScreenInstructions}
+            {hasAlt && ' — '}
+          </p>
+        </EuiScreenReaderOnly>
+      )}
+
+      {children}
+
+      {!isFullScreen && (
+        <div css={cssIconStyles}>
           <EuiScreenReaderOnly>
             <p>
-              {closeFullScreenInstructions}
               {hasAlt && ' — '}
+              {openFullScreenInstructions}
             </p>
           </EuiScreenReaderOnly>
-        )}
-
-        {children}
-
-        {!isFullScreen && (
-          <div css={cssIconStyles}>
-            <EuiScreenReaderOnly>
-              <p>
-                {hasAlt && ' — '}
-                {openFullScreenInstructions}
-              </p>
-            </EuiScreenReaderOnly>
-            <EuiIcon type="fullScreen" color={iconColor} />
-          </div>
-        )}
-      </button>
-    </>
+          <EuiIcon type="fullScreen" color={iconColor} />
+        </div>
+      )}
+    </button>
   );
 };
