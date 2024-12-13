@@ -117,7 +117,7 @@ describe('EuiHeader', () => {
         </EuiHeader>
       );
 
-      expect(consoleStub).toBeCalled();
+      expect(consoleStub).toHaveBeenCalled();
       expect(consoleStub.mock.calls[0][0]).toMatch(
         'cannot accept both `children` and `sections`'
       );

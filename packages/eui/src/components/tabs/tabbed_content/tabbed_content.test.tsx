@@ -50,8 +50,8 @@ describe('EuiTabbedContent', () => {
           <EuiTabbedContent onTabClick={onTabClickHandler} tabs={tabs} />
         );
         fireEvent.click(getByTestSubject('kibanaTab'));
-        expect(onTabClickHandler).toBeCalledTimes(1);
-        expect(onTabClickHandler).toBeCalledWith(kibanaTab);
+        expect(onTabClickHandler).toHaveBeenCalledTimes(1);
+        expect(onTabClickHandler).toHaveBeenCalledWith(kibanaTab);
       });
     });
 

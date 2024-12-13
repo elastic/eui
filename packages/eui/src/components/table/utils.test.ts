@@ -49,7 +49,7 @@ describe('resolveWidthAsStyle', () => {
     it('returns width overriding style', () => {
       const style = { width: '20%', color: 'red' };
       expect(resolveWidthAsStyle(style, '10%')).toEqual(result);
-      expect(consoleStub).toBeCalled();
+      expect(consoleStub).toHaveBeenCalled();
     });
     it('returns style merged with width', () => {
       const style = { color: 'red' };

@@ -10,7 +10,6 @@ import React, {
   useState,
   useMemo,
   Fragment,
-  ReactChild,
   forwardRef,
   useContext,
 } from 'react';
@@ -42,6 +41,7 @@ import { EuiMarkdownContext } from './markdown_context';
 // @ts-ignore a react svg
 import MarkdownLogo from './icons/markdown_logo';
 import { euiMarkdownEditorFooterStyles } from './markdown_editor_footer.styles';
+import { ReactChild } from '../common';
 
 interface EuiMarkdownEditorFooterProps {
   uiPlugins: EuiMarkdownEditorUiPlugin[];
