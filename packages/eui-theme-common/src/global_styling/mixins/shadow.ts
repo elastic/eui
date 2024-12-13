@@ -13,8 +13,13 @@ import {
   _EuiThemeShadowCustomColor,
 } from '../variables/shadow';
 
-export interface EuiShadowCustomColor {
+export interface EuiShadowOptions {
   color?: string;
+  /**
+   * Note: not supported by all shadow utilities.
+   */
+  property?: 'box-shadow' | 'filter';
+  borderAllInHighContrastMode?: boolean;
 }
 
 /**
@@ -22,7 +27,7 @@ export interface EuiShadowCustomColor {
  */
 export const euiShadowXSmall = (
   { euiTheme, colorMode, highContrastMode }: UseEuiTheme,
-  options?: _EuiThemeShadowCustomColor
+  options?: EuiShadowOptions
 ) => {
   if (highContrastMode) {
     return _highContrastBorder(euiTheme, options);
@@ -42,7 +47,7 @@ box-shadow:
  */
 export const euiShadowSmall = (
   { euiTheme, colorMode, highContrastMode }: UseEuiTheme,
-  options?: _EuiThemeShadowCustomColor
+  options?: EuiShadowOptions
 ) => {
   if (highContrastMode) {
     return _highContrastBorder(euiTheme, options);
@@ -63,7 +68,7 @@ box-shadow:
  */
 export const euiShadowMedium = (
   { euiTheme, colorMode, highContrastMode }: UseEuiTheme,
-  options?: _EuiThemeShadowCustomColor
+  options?: EuiShadowOptions
 ) => {
   if (highContrastMode) {
     return _highContrastBorder(euiTheme, options);
@@ -92,7 +97,7 @@ export const euiShadowMedium = (
  */
 export const euiShadowLarge = (
   { euiTheme, colorMode, highContrastMode }: UseEuiTheme,
-  options?: _EuiThemeShadowCustomColor
+  options?: EuiShadowOptions
 ) => {
   if (highContrastMode) {
     return _highContrastBorder(euiTheme, options);
@@ -112,7 +117,7 @@ box-shadow:
 /**
  * bottomShadowLarge
  */
-export interface EuiShadowXLarge extends _EuiThemeShadowCustomColor {
+export interface EuiShadowXLarge extends EuiShadowOptions {
   reverse?: boolean;
 }
 export const euiShadowXLarge = (
@@ -140,7 +145,7 @@ box-shadow:
  */
 export const euiSlightShadowHover = (
   { euiTheme, colorMode, highContrastMode }: UseEuiTheme,
-  options?: _EuiThemeShadowCustomColor
+  options?: EuiShadowOptions
 ) => {
   if (highContrastMode) {
     return _highContrastBorder(euiTheme, options);
@@ -165,7 +170,7 @@ box-shadow:
  */
 export const euiShadowFlat = (
   { euiTheme, colorMode, highContrastMode }: UseEuiTheme,
-  options?: _EuiThemeShadowCustomColor
+  options?: EuiShadowOptions
 ) => {
   if (highContrastMode) {
     return _highContrastBorder(euiTheme, options);
@@ -185,7 +190,7 @@ box-shadow:
 export const euiShadow = (
   euiThemeContext: UseEuiTheme,
   size: _EuiThemeShadowSize = 'l',
-  options?: _EuiThemeShadowCustomColor
+  options?: EuiShadowOptions
 ) => {
   if (euiThemeContext.highContrastMode) {
     return _highContrastBorder(euiThemeContext.euiTheme, options);
@@ -217,7 +222,7 @@ export const euiShadow = (
 
 const _highContrastBorder = (
   { border }: UseEuiTheme['euiTheme'],
-  { borderAllInHighContrastMode }: _EuiThemeShadowCustomColor = {}
+  { borderAllInHighContrastMode }: EuiShadowOptions = {}
 ) => {
   return borderAllInHighContrastMode
     ? `border: ${border.thin};`

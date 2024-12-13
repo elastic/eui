@@ -17,6 +17,7 @@ const getGlobalStyles = ({ euiTheme }: UseEuiTheme) => {
     sidebar: css`
       --doc-sidebar-width: 258px;
       --doc-sidebar-hidden-width: 30px;
+      --ifm-toc-border-color: ${euiTheme.border.color};
 
       // ensure scrolling still works
       display: flex;
@@ -28,7 +29,7 @@ const getGlobalStyles = ({ euiTheme }: UseEuiTheme) => {
   };
 };
 
-// converted from css moduels to Emotion
+// converted from css modules to Emotion
 const styles = {
   docSidebarContainer: css`
     display: none;

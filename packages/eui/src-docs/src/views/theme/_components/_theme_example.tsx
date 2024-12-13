@@ -48,7 +48,7 @@ export const ThemeExample: FunctionComponent<ThemeExample> = ({
   snippetLanguage = 'jsx',
   props,
 }) => {
-  const { euiTheme } = useEuiTheme();
+  const { euiTheme, highContrastMode } = useEuiTheme();
   const isLargeBreakpoint = useIsWithinBreakpoints(['m', 'l', 'xl']);
 
   const finalSnippet =
@@ -146,6 +146,8 @@ export const ThemeExample: FunctionComponent<ThemeExample> = ({
                     language={
                       snippetLanguage === 'emotion' ? 'jsx' : snippetLanguage
                     }
+                    // Code block is used within a panel which already has a border - skip doubling up
+                    {...(highContrastMode && { css: { border: 'none' } })}
                   >
                     {finalSnippet}
                   </EuiCodeBlock>

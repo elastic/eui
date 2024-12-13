@@ -16,7 +16,6 @@ import {
   EuiFlexGroup,
   EuiFlexItem,
   EuiCard,
-  EuiPanel,
   EuiSpacer,
 } from '../../../../src/components';
 

@@ -37,7 +37,8 @@ export interface _EuiThemeBorderRadiusValues {
 
 export interface _EuiThemeBorderColorValues {
   /**
-   * Color for all borders; Default is `colors.lightShade`
+   * Color for all borders; Default is `colors.lightShade`.
+   * In high contrast mode, this value becomes `colors.fullShade` and cannot be overridden.
    */
   color: ColorModeSwitch;
 }
