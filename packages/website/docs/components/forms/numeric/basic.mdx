@@ -1,9 +1,9 @@
 ---
-slug: /forms/numeric/number
-id: forms_numeric_number
+slug: /forms/numeric
+id: forms_numeric_basic
 ---
 
-# Number field
+# Basic number field
 
 import EuiFormRowCallout from '../form_layouts/_form_row_callout.mdx';
 
@@ -38,7 +38,29 @@ export default () => {
 
 ## Native validation
 
-TODO
+When passed the `min`, `max`, or `step` props, **EuiFieldNumber** will automatically show an invalid/error state if the user inputs a number outside the min/max range, or a number that is not a multiple of `step`.
+
+Any native error messages will be visible as a browser tooltip on mouseover.
+
+```tsx interactive
+import React from 'react';
+import { EuiFormRow, EuiFieldNumber } from '@elastic/eui';
+
+export default () => {
+  return (
+    <EuiFormRow label="Number validation" helpText="Must be between 0 and 20, and and a multiple of 5.">
+      <EuiFieldNumber
+        placeholder="Try typing an invalid number, e.g. 3, or 30"
+        defaultValue=""
+        min={0}
+        max={20}
+        step={5}
+        aria-label="EuiFieldNumber with native validation"
+      />
+    </EuiFormRow>
+  );
+};
+```
 
 ## Props
 
