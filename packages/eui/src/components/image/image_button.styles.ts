@@ -56,12 +56,16 @@ export const euiImageButtonStyles = (euiThemeContext: UseEuiTheme) => {
     `,
     shadowHover: css`
       &::before {
-        ${euiShadow(euiThemeContext, 's')}
+        ${euiShadow(euiThemeContext, 's', {
+          borderAllInHighContrastMode: true,
+        })}
       }
     `,
     hasShadowHover: css`
       &::before {
-        ${euiShadow(euiThemeContext, 'm')}
+        ${euiShadow(euiThemeContext, 'm', {
+          borderAllInHighContrastMode: true,
+        })}
       }
     `,
   };
