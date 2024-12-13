@@ -57,3 +57,7 @@ export const euiBasicTableBodyLoading = ({ euiTheme }: UseEuiTheme) => css`
 export const safariLoadingWorkaround = css`
   position: relative;
 `;
+
+export const iconButtonWrapper = css`
+  cursor: not-allowed;
+`;
