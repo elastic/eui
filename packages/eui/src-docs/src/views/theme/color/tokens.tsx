@@ -1,7 +1,7 @@
 import React, { useContext, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 
-import { EuiCode, EuiSpacer, EuiText } from '../../../../../src';
+import { EuiCallOut, EuiCode, EuiSpacer, EuiText } from '../../../../../src';
 import { GuideSection } from '../../../components/guide_section/guide_section';
 
 import { ThemeContext } from '../../../components/with_theme';
@@ -33,20 +33,28 @@ export const colorsInfo = {
   notice: <ThemeNotice />,
   showThemeLanguageToggle: true,
   intro: (
-    <EuiText grow={false}>
-      <p>
-        Elastic UI builds with a very limited palette. It uses a core set of
-        three colors with a green / orange / red qualitative set and combined
-        with a six-color grayscale. Variation beyond these colors is minimal and
-        always done with math manipulation against the original set.
-      </p>
-      <p>
-        When switching between light and dark color modes, the theme keys do not
-        change, only their values do. This is why most keys are not named for
-        their <strong>evaluated</strong> value but by their{' '}
-        <strong>purpose</strong>.
-      </p>
-    </EuiText>
+    <>
+      <EuiText grow={false}>
+        <p>
+          Elastic UI builds with a very limited palette. It uses a core set of
+          three colors with a green / orange / red qualitative set and combined
+          with a six-color grayscale. Variation beyond these colors is minimal
+          and always done with math manipulation against the original set.
+        </p>
+      </EuiText>
+      <EuiSpacer size="m" />
+      <EuiCallOut iconType="accessibility" title="Colors and accessibility">
+        Never rely solely on color to convey meaning. Colors can be overridden
+        by{' '}
+        <Link to="/theming/high-contrast-mode/#forced-contrast-themes-and-colors">
+          system forced colors
+        </Link>
+        , or can be difficult to distinguish for different users. Always combine
+        color context with accompanying <Link to="/display/icons">icons</Link>{' '}
+        or <Link to="/guidelines/writing">copy</Link> to indicate states such as
+        error, activity, etc.
+      </EuiCallOut>
+    </>
   ),
 };
 
@@ -125,6 +133,12 @@ export default () => {
             Elastic has two main brand colors. The other three are used for
             statefulness like indicating between successful and dangerous
             actions.
+          </p>
+          <p>
+            When switching between light and dark color modes, the theme keys do
+            not change, only their values do. This is why most keys are not
+            named for their <strong>evaluated</strong> value but by their{' '}
+            <strong>purpose</strong>.
           </p>
         </EuiText>
 

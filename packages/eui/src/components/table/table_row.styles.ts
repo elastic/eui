@@ -13,6 +13,7 @@ import {
   euiCanAnimate,
   euiBackgroundColor,
   logicalCSS,
+  mathWithUnits,
 } from '../../global_styling';
 import { euiShadow } from '../../themes/amsterdam/global_styling/mixins';
 
@@ -79,9 +80,16 @@ export const euiTableRowStyles = (euiThemeContext: UseEuiTheme) => {
         ${logicalCSS('margin-bottom', cellContentPadding)}
 
         /* EuiPanel styling */
-        ${euiShadow(euiThemeContext, 's')}
+        ${euiShadow(euiThemeContext, 's', {
+          borderAllInHighContrastMode: true,
+        })}
         background-color: ${euiBackgroundColor(euiThemeContext, 'plain')};
         border-radius: ${euiTheme.border.radius.medium};
+
+        &:has(+ .euiTableRow-isExpandedRow) {
+          ${logicalCSS('border-bottom-left-radius', 0)}
+          ${logicalCSS('border-bottom-right-radius', 0)}
+        }
       `,
       selected: css`
         &,
@@ -108,15 +116,22 @@ export const euiTableRowStyles = (euiThemeContext: UseEuiTheme) => {
           position: absolute;
           ${logicalCSS('vertical', 0)}
           ${logicalCSS('right', mobileSizes.actions.width)}
-          ${logicalCSS('width', euiTheme.border.width.thin)}
-          background-color: ${euiTheme.border.color};
+          ${logicalCSS('border-right', euiTheme.border.thin)}
         }
       `,
       /**
        * Bottom of card - expanded rows
        */
       expanded: css`
-        ${logicalCSS('margin-top', `-${mobileSizes.actions.offset}`)}
+        ${logicalCSS(
+          // On mobile, visually move the expanded row to join up with the
+          // preceding table row via negative margins
+          'margin-top',
+          mathWithUnits(
+            [cellContentPadding, euiTheme.border.width.thin],
+            (x, y) => (x + y) * -1
+          )
+        )}
         /* Padding accounting for the checkbox is already applied via the content */
         ${logicalCSS('padding-left', cellContentPadding)}
 

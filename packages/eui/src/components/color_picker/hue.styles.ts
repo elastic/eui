@@ -11,6 +11,10 @@ import { css } from '@emotion/react';
 import { UseEuiTheme, transparentize } from '../../services';
 import { logicalCSS, mathWithUnits } from '../../global_styling';
 import {
+  highContrastModeStyles,
+  preventForcedColors,
+} from '../../global_styling/functions/high_contrast';
+import {
   euiRangeThumbPerBrowser,
   euiRangeThumbStyle,
   euiRangeThumbFocusBoxShadow,
@@ -35,6 +39,7 @@ export const euiHueStyles = (euiThemeContext: UseEuiTheme) => {
     euiHue: css`
       ${logicalCSS('height', height)}
       border-radius: ${height};
+
       /* stylelint-disable color-no-hex */
       background: linear-gradient(
         to right,
@@ -47,6 +52,11 @@ export const euiHueStyles = (euiThemeContext: UseEuiTheme) => {
         #ff0094 100%
       );
       /* stylelint-enable color-no-hex */
+
+      ${highContrastModeStyles(euiThemeContext, {
+        preferred: `border: ${euiTheme.border.thin};`,
+        forced: preventForcedColors(euiThemeContext),
+      })}
     `,
 
     euiHue__range: css`
@@ -70,26 +80,45 @@ export const euiHueStyles = (euiThemeContext: UseEuiTheme) => {
       }
       /* stylelint-enable property-no-vendor-prefix */
 
-      /* Indicator styles - for some incredibly bizarre reason, stylelint is unhappy about
-         the semicolons here and can't be stylelint-disabled, hence the syntax workaround */
-      ${euiRangeThumbPerBrowser(
-        [
-          euiRangeThumbStyle(euiThemeContext),
-          'background-color: inherit',
-          `border-width: ${thumbBorder}`,
-          'border-radius: 100%',
-          `box-shadow: ${thumbBoxShadow}`,
-        ].join(';\n')
-      )}
+      ${euiRangeThumbPerBrowser(`
+        ${euiRangeThumbStyle(euiThemeContext)}
+        border-width: ${thumbBorder};
+
+        ${highContrastModeStyles(euiThemeContext, {
+          none: `
+            background-color: transparent;
+            box-shadow: ${thumbBoxShadow};
+          `,
+          preferred: `
+            background-color: ${euiTheme.colors.ghost};
+            border: ${thumbBorder} solid ${euiTheme.colors.ink};
+            box-shadow: none;
+          `,
+        })}
+      `)}
 
       /* Remove wrapping outline and show focus on thumb only */
       &:focus {
         outline: none;
       }
 
-      &:focus-visible {
-        ${euiRangeThumbPerBrowser(euiRangeThumbFocusBoxShadow(euiThemeContext))}
-      }
+      ${highContrastModeStyles(euiThemeContext, {
+        none: `
+          &:focus-visible {
+            ${euiRangeThumbPerBrowser(
+              euiRangeThumbFocusBoxShadow(euiThemeContext)
+            )}
+          }
+        `,
+        preferred: `
+          &:focus {
+            ${euiRangeThumbPerBrowser(`
+              outline: ${euiTheme.border.width.thin} solid ${euiTheme.colors.ink};
+              outline-offset: 0;
+            `)}
+          }
+        `,
+      })}
     `,
   };
 };

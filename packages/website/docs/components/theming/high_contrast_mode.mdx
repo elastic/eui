@@ -1,0 +1,101 @@
+---
+sidebar_position: 2
+slug: /theming/high-contrast-mode
+id: theming_high_contrast_mode
+title: High contrast mode
+---
+
+import { EuiBetaBadge } from '@elastic/eui';
+
+# High contrast mode <EuiBetaBadge label="Beta" color="accent" />
+
+The `highContrastMode` determines and sets certain un-overrideable modifications to the EUI theme, primarily around borders and shadows. Borders will always be pure black or white (depending on the color mode), and shadows will be entirely replaced with borders.
+
+By default, if this prop is not passed, **EuiProvider** will detect and use the user's system contrast preferences.
+
+## Rendering a specific contrast mode
+
+While it's usually best to keep all high contrast mode the same across your app for visual consistency, some instances may benefit from an exaggerated change in contrast. For this you can set **EuiThemeProvider**'s `highContrastMode` to `true`.
+
+:::warning
+In general, we do not ever recommend manually turning off high contrast via `highContrastMode={false}`. Respect the user's contrast preferences where possible.
+:::
+
+```tsx interactive
+import React from 'react';
+import {
+  EuiThemeProvider,
+  EuiBasicTable,
+  EuiBasicTableColumn,
+} from '@elastic/eui';
+import { faker } from '@faker-js/faker';
+
+type User = {
+  firstName: string;
+  lastName: string;
+};
+
+const users: User[] = [];
+for (let i = 0; i < 5; i++) {
+  users.push({
+    firstName: faker.person.firstName(),
+    lastName: faker.person.lastName(),
+  });
+}
+
+const columns: Array<EuiBasicTableColumn<User>> = [
+  {
+    field: 'firstName',
+    name: 'First name',
+  },
+  {
+    field: 'lastName',
+    name: 'Last name',
+  }
+];
+
+export default () => {
+  return (
+    <EuiThemeProvider highContrastMode={true}>
+      <EuiBasicTable
+        columns={columns}
+        items={users}
+        compressed
+        responsiveBreakpoint={false}
+      />
+    </EuiThemeProvider>
+  );
+};
+```
+
+## Forced contrast themes and colors
+
+Please note that some OSes and browsers have something called [forced colors mode](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/forced-colors), which overrides **all** colors, backgrounds, borders, and shadows. An example of this is Windows High Contrast modes.
+
+Since this is done at a level that EUI can do nothing about, if forced colors mode is detected by **EuiProvider**, EUI will ignore *any* passed `highContrastMode` or `colorMode` prop, as this user choice and system setting takes precedence.
+
+:::tip
+To quickly test your application in forced colors mode without switching OS themes, you can [use Chrome or Edge's devtools to emulate forced-colors mode](https://devtoolstips.org/tips/en/emulate-forced-colors/).
+:::
+
+## Reacting to user high contrast modes
+
+The detected or current `highContrastMode` is available via `useEuiTheme()`. It returns either `"forced"`, `"preferred"`, or simply `false`. You can use this information to (for example) conditionally render or opt out of rendering certain styles or colors.
+
+```tsx interactive
+import React from 'react';
+import { useEuiTheme, EuiPanel } from '@elastic/eui';
+
+export default () => {
+  const { highContrastMode, euiTheme } = useEuiTheme();
+
+  return (
+    <EuiPanel
+      hasBorder={!!highContrastMode}
+      css={highContrastMode ? { border: euiTheme.border.thick } : {}}
+    >
+      This panel will have a thick border in high contrast mode.
+    </EuiPanel>
+  );
+};
+```

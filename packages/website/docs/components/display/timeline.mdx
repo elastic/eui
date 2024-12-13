@@ -9,8 +9,8 @@ The **EuiTimeline** component standardizes the way a timeline thread is displaye
 
 This component allows you to create any type of timeline, but for more specific use cases you should consider:
 
-*   [**EuiSteps**](/docs/navigation/steps): a timeline that allows you to present instructional content that must be conducted in a particular order and might contain progress indications.
-*   [**EuiCommentList**](/docs/display/comment-list): a timeline that allows you to display comments or logging actions that either a user or a system has performed.
+*   [**EuiSteps**](../../navigation/steps): a timeline that allows you to present instructional content that must be conducted in a particular order and might contain progress indications.
+*   [**EuiCommentList**](../comment-list): a timeline that allows you to display comments or logging actions that either a user or a system has performed.
 
 :::note Accessibility requirement
 For accessibility, it is required to wrap your **EuiTimelineItem**'s with a **EuiTimeline**. It is highly recommended to provide a descriptive `aria-label`, or a text node ID of an external label to the `aria-labelledby` prop of the **EuiTimeline**.
@@ -63,7 +63,7 @@ export default () => (
 
 Each **EuiTimelineItem** has two parts: an icon on the left side and an event on the right side. To create an item you need the following props:
 
-*   `icon`: main icon that appears on the left side. Can be passed as any `IconType` string or custom node (e.g. [**EuiAvatar**](/docs/display/avatar)). It is recommended not to use an element larger than 40x40.
+*   `icon`: main icon that appears on the left side. Can be passed as any `IconType` string or custom node (e.g. [**EuiAvatar**](../avatar)). It is recommended not to use an element larger than 40x40.
 *   `children`: any node as the event content.
 
 ```tsx interactive
@@ -91,7 +91,7 @@ You can create a timeline thread by rendering multiple **EuiTimelineItem** compo
 When passing an `icon` and `children` prop to each item, there are some design considerations to take into account:
 
 *   `icon`: use icons of the same size to create a better visual consistency.
-*   `children`: when your content is just one line of text, the recommendation is to use a a [**EuiText**](/docs/display/text) as a wrapper. For multi-line content consider using a [**EuiPanel**](/docs/layout/panel) or a [**EuiSplitPanel**](/docs/layout/panel#split-panels) instead. For other types of components like editors, the recommendation is to pass the children without any wrapper.
+*   `children`: when your content is just one line of text, the recommendation is to use an [**EuiText**](../text) as a wrapper. For multi-line content consider using a [**EuiPanel**](../../layout/panel) or a [**EuiSplitPanel**](../../panel#split-panels) instead. For other types of components like editors, the recommendation is to pass the children without any wrapper.
 
 The following example shows how to display multiple **EuiTimelineItem**s and how you can use a **EuiSplitPanel** as the content wrapper.
 

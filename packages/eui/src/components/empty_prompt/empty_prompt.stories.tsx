@@ -97,3 +97,18 @@ export const PageTemplate: Story = {
     ),
   },
 };
+
+export const HighContrast: Story = {
+  tags: ['vrt-only'],
+  globals: { highContrastMode: true },
+  args: Playground.args,
+};
+
+export const HighContrastTransparent: Story = {
+  tags: ['vrt-only'],
+  globals: { highContrastMode: true },
+  args: {
+    ...Playground.args,
+    color: 'transparent',
+  },
+};

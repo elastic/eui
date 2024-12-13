@@ -17,15 +17,21 @@ import {
   logicalSizeCSS,
   mathWithUnits,
 } from '../../../global_styling';
+import {
+  highContrastModeStyles,
+  preventForcedColors,
+} from '../../../global_styling/functions/high_contrast';
 import { euiFormCustomControlVariables } from '../form.styles';
 
 const euiSwitchVars = (euiThemeContext: UseEuiTheme) => {
-  const { euiTheme } = euiThemeContext;
+  const { euiTheme, highContrastMode } = euiThemeContext;
   const formVars = euiFormCustomControlVariables(euiThemeContext);
 
   const colors = {
     on: formVars.colors.selected,
-    off: formVars.colors.unselectedBorder,
+    off: highContrastMode
+      ? euiTheme.colors.darkShade
+      : formVars.colors.unselectedBorder,
     disabled: formVars.colors.disabled,
     thumb: formVars.colors.selectedIcon,
     thumbBorder: formVars.colors.unselectedBorder,
@@ -142,7 +148,12 @@ const buttonStyles = (
   };
 };
 
-const bodyStyles = ({ colorMode }: UseEuiTheme, { colors }: EuiSwitchVars) => {
+const bodyStyles = (
+  euiThemeContext: UseEuiTheme,
+  { colors }: EuiSwitchVars
+) => {
+  const { colorMode, euiTheme } = euiThemeContext;
+
   // This is probably very extra, but the visual weight of the default
   // disabled custom control feels different in light mode depending
   // on the size of the switch, so I'm tinting it based on that.
@@ -152,6 +163,9 @@ const bodyStyles = ({ colorMode }: UseEuiTheme, { colors }: EuiSwitchVars) => {
     background-color: ${colorMode === 'DARK'
       ? colors.disabled
       : tint(colors.disabled, tintAmount)};
+    ${highContrastModeStyles(euiThemeContext, {
+      preferred: `border: ${euiTheme.border.thin};`,
+    })}
   `;
 
   return {
@@ -161,10 +175,21 @@ const bodyStyles = ({ colorMode }: UseEuiTheme, { colors }: EuiSwitchVars) => {
       overflow: hidden;
       border-radius: inherit;
       pointer-events: none; /* Required for Kibana's Selenium driver to be able to click switches in FTR tests */
+      ${highContrastModeStyles(euiThemeContext, {
+        forced: `border: ${euiTheme.border.thin};`,
+      })}
     `,
-    on: css`
-      background-color: ${colors.on};
-    `,
+    on: css(
+      highContrastModeStyles(euiThemeContext, {
+        none: `
+          background-color: ${colors.on};
+        `,
+        forced: `
+          background-color: ${euiTheme.border.color};
+          ${preventForcedColors(euiThemeContext)}
+        `,
+      })
+    ),
     off: css`
       background-color: ${colors.off};
     `,

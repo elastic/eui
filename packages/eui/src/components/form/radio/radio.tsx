@@ -85,7 +85,10 @@ export const EuiRadio: FunctionComponent<EuiRadioProps> = ({
   return (
     <div css={styles.euiRadio} className={classes} {...rest}>
       <div css={inputStyles} className="euiRadio__circle">
-        <EuiIcon css={styles.input.euiRadio__icon} type="dot" />
+        <EuiIcon
+          css={styles.input.euiRadio__icon}
+          type={checked ? 'dot' : 'empty'} // Note that the icon does explicitly need to be empty for Windows high contrast themes
+        />
         <input
           css={styles.input.euiRadio__input}
           className="euiRadio__input"

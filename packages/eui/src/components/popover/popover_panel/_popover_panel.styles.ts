@@ -30,7 +30,7 @@ export const openAnimationTiming = 'slow';
  */
 
 export const euiPopoverPanelStyles = (euiThemeContext: UseEuiTheme) => {
-  const { euiTheme, colorMode } = euiThemeContext;
+  const { euiTheme, highContrastMode, colorMode } = euiThemeContext;
 
   const translateDistance = euiTheme.size.s;
   const animationSpeed = euiTheme.animation[openAnimationTiming];
@@ -39,6 +39,9 @@ export const euiPopoverPanelStyles = (euiThemeContext: UseEuiTheme) => {
   const transformTransition = `transform ${
     euiTheme.animation.bounce
   } ${mathWithUnits(animationSpeed, (x) => x + 100)}`;
+
+  const hasShadow = !highContrastMode;
+  const hasVisibleBorder = highContrastMode || colorMode === 'DARK';
 
   return {
     // Base
@@ -50,6 +53,8 @@ export const euiPopoverPanelStyles = (euiThemeContext: UseEuiTheme) => {
       pointer-events: none;
       opacity: 0; /* 2 */
       background-color: var(--euiPopoverBackgroundColor); /* 4 */
+      border: ${euiTheme.border.width.thin} solid
+        ${hasVisibleBorder ? euiTheme.border.color : 'transparent'};
 
       ${euiCanAnimate} {
         /* 2 */
@@ -78,7 +83,9 @@ export const euiPopoverPanelStyles = (euiThemeContext: UseEuiTheme) => {
     hasTransform: {
       hasTransform: css`
         transform: translateY(0) translateX(0) translateZ(0); /* 2 */
-        ${euiShadowMedium(euiThemeContext, { property: 'filter' })}
+        ${hasShadow
+          ? euiShadowMedium(euiThemeContext, { property: 'filter' })
+          : ''}
 
         ${euiCanAnimate} {
           transition: ${opacityTransition}, ${transformTransition}; /* 2 */
@@ -107,10 +114,10 @@ export const euiPopoverPanelStyles = (euiThemeContext: UseEuiTheme) => {
         }
       `,
       top: css`
-        ${euiShadowFlat(euiThemeContext)}
+        ${hasShadow ? euiShadowFlat(euiThemeContext) : ''}
       `,
       bottom: css`
-        ${euiShadow(euiThemeContext, 'm')}
+        ${hasShadow ? euiShadow(euiThemeContext, 'm') : ''}
       `,
       get left() {
         return this.bottom;
@@ -124,7 +131,9 @@ export const euiPopoverPanelStyles = (euiThemeContext: UseEuiTheme) => {
     // stacking context that messes up the drag/drop fixed positioning
     hasDragDrop: {
       hasDragDrop: css`
-        ${euiShadowMedium(euiThemeContext, { property: 'box-shadow' })}
+        ${hasShadow
+          ? euiShadowMedium(euiThemeContext, { property: 'box-shadow' })
+          : ''}
 
         ${euiCanAnimate} {
           transition: ${opacityTransition}; /* 2 */

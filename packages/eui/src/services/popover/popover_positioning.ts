@@ -83,7 +83,7 @@ interface FindPopoverPositionResult {
   left: number;
   position: EuiPopoverPosition;
   fit: number;
-  arrow?: { left: number; top: number };
+  arrow?: Record<EuiPopoverPosition, number | string>;
   anchorBoundingBox?: EuiClientRect;
 }
 
@@ -265,7 +265,7 @@ interface GetPopoverScreenCoordinatesResult {
   top: number;
   left: number;
   fit: number;
-  arrow: { top: number; left: number } | undefined;
+  arrow?: Record<EuiPopoverPosition, number | string>;
 }
 
 /**
@@ -360,14 +360,12 @@ export function getPopoverScreenCoordinates({
   const primaryAxisPositionName =
     dimensionPositionAttribute[primaryAxisDimension]; // "height" -> "top"
 
-  const { primaryAxisPosition, primaryAxisArrowPosition } =
-    getPrimaryAxisPosition({
-      position,
-      offset,
-      popoverBoundingBox,
-      anchorBoundingBox,
-      arrowConfig,
-    });
+  const { primaryAxisPosition } = getPrimaryAxisPosition({
+    position,
+    offset,
+    popoverBoundingBox,
+    anchorBoundingBox,
+  });
 
   const popoverPlacement = {
     [crossAxisFirstSide]: crossAxisPosition,
@@ -401,18 +399,18 @@ export function getPopoverScreenCoordinates({
   );
 
   const arrow = arrowConfig
-    ? {
+    ? ({
         [crossAxisFirstSide]:
-          crossAxisArrowPosition! - popoverPlacement[crossAxisFirstSide],
-        [primaryAxisPositionName]: primaryAxisArrowPosition,
-      }
+          crossAxisArrowPosition! - popoverPlacement[crossAxisFirstSide] - 1, // Account for 1px border thin width
+        [position]: '100%',
+      } as Record<EuiPopoverPosition, number | string>)
     : undefined;
 
   return {
     fit,
     top: popoverPlacement.top,
     left: popoverPlacement.left,
-    arrow: arrow ? { left: arrow.left!, top: arrow.top! } : undefined,
+    arrow,
   };
 }
 
@@ -560,7 +558,6 @@ interface GetPrimaryAxisPositionArgs {
   offset: number;
   popoverBoundingBox: BoundingBox;
   anchorBoundingBox: BoundingBox;
-  arrowConfig?: { arrowWidth: number; arrowBuffer: number };
 }
 
 function getPrimaryAxisPosition({
@@ -568,7 +565,6 @@ function getPrimaryAxisPosition({
   offset,
   popoverBoundingBox,
   anchorBoundingBox,
-  arrowConfig,
 }: GetPrimaryAxisPositionArgs) {
   // if positioning to the top or left, the target position decreases
   // from the anchor's top or left, otherwise the position adds to the anchor's
@@ -591,18 +587,7 @@ function getPrimaryAxisPosition({
     (offset + primaryAxisOffset!) * (isOffsetDecreasing ? -1 : 1);
   const primaryAxisPosition = anchorEdgeOrigin + contentOffset;
 
-  let primaryAxisArrowPosition;
-
-  if (arrowConfig) {
-    primaryAxisArrowPosition = isOffsetDecreasing
-      ? popoverSizeOnPrimaryAxis
-      : 0;
-  }
-
-  return {
-    primaryAxisPosition,
-    primaryAxisArrowPosition,
-  };
+  return { primaryAxisPosition };
 }
 
 /**

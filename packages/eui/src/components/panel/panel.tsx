@@ -13,9 +13,10 @@ import React, {
   Ref,
 } from 'react';
 import classNames from 'classnames';
-import { useEuiMemoizedStyles } from '../../services';
+import { useEuiMemoizedStyles, useEuiTheme } from '../../services';
 import {
   useEuiBackgroundColorCSS,
+  useEuiBorderColorCSS,
   useEuiPaddingCSS,
   _EuiBackgroundColor,
   EuiPaddingSize,
@@ -107,8 +108,12 @@ export const EuiPanel: FunctionComponent<EuiPanelProps> = ({
   element,
   ...rest
 }) => {
+  // Add borders to panels in high contrast mode
+  const { highContrastMode, euiTheme } = useEuiTheme();
+  const borderColors = useEuiBorderColorCSS();
+
   // Shadows are only allowed when there's a white background (plain)
-  const canHaveShadow = !hasBorder && color === 'plain';
+  const canHaveShadow = !hasBorder && color === 'plain' && !highContrastMode;
   const canHaveBorder = color === 'plain' || color === 'transparent';
 
   const styles = useEuiMemoizedStyles(euiPanelStyles);
@@ -120,6 +125,9 @@ export const EuiPanel: FunctionComponent<EuiPanelProps> = ({
     useEuiBackgroundColorCSS()[color],
     canHaveShadow && hasShadow === true && styles.hasShadow,
     canHaveBorder && hasBorder === true && styles.hasBorder,
+    ...(highContrastMode && _canRenderHighContrastBorder({ color, hasBorder })
+      ? [{ border: euiTheme.border.thin }, borderColors[color]]
+      : []),
     rest.onClick && styles.isClickable,
   ];
 
@@ -157,3 +165,11 @@ export const EuiPanel: FunctionComponent<EuiPanelProps> = ({
     </div>
   );
 };
+
+// Do not render a high contrast border if the panel is transparent
+// and does not have a default contrast border
+export const _canRenderHighContrastBorder = ({
+  color,
+  hasBorder,
+}: Pick<_EuiPanelProps, 'color' | 'hasBorder'>) =>
+  !(color === 'transparent' && !hasBorder);

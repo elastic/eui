@@ -44,3 +44,13 @@ export const Indeterminate: Story = {
     controls: { include: ['color', 'position', 'size', 'aria-label'] },
   },
 };
+
+export const HighContrast: Story = {
+  tags: ['vrt-only'],
+  globals: { highContrastMode: true },
+  args: {
+    ...Determinate.args,
+    size: 'xs',
+    color: 'primary',
+  },
+};

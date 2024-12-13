@@ -25,51 +25,47 @@ export const euiStepStyles = (euiThemeContext: UseEuiTheme) => {
 
   // the vertical line is centered on the number, so we need to offset the line
   // by half of the number size & half of the line size to center it
-  const lineStartPosition = mathWithUnits(
-    [euiStep.numberSize, euiTheme.border.width.thick],
-    (x, y) => x / 2 - y / 2
-  );
-  const lineEndPosition = mathWithUnits(
-    [euiStep.numberSize, euiTheme.border.width.thick],
-    (x, y) => x / 2 + y / 2
-  );
-
-  const lineGradient = `linear-gradient(to right,
-    transparent 0,
-    transparent ${lineStartPosition},
-    ${euiTheme.border.color} ${lineStartPosition},
-    ${euiTheme.border.color} ${lineEndPosition},
-    transparent ${lineEndPosition},
-    transparent 100%)`;
+  const getLeftPosition = (numberSize: string) =>
+    mathWithUnits(
+      [numberSize, euiTheme.border.width.thick],
+      (x, y) => x / 2 - y / 2
+    );
 
   return {
     euiStep: css`
+      position: relative;
+
       /* Create border on all but the last step */
-      &:not(:last-of-type) {
-        background-image: ${lineGradient};
-        background-repeat: no-repeat;
+      &:not(:last-of-type)::before {
+        content: '';
+        position: absolute;
+        ${logicalCSS('bottom', 0)}
+        ${logicalCSS('border-left', euiTheme.border.thick)}
       }
     `,
     // Sizes
     m: css`
-      &:not(:last-of-type) {
-        background-position: left ${euiStep.numberSize};
+      &:not(:last-of-type)::before {
+        ${logicalCSS('top', euiStep.numberSize)}
+        ${logicalCSS('left', getLeftPosition(euiStep.numberSize))}
       }
     `,
     s: css`
-      &:not(:last-of-type) {
-        background-position: left ${euiStep.numberSize};
+      &:not(:last-of-type)::before {
+        ${logicalCSS('top', euiStep.numberSize)}
+        ${logicalCSS('left', getLeftPosition(euiStep.numberSize))}
       }
     `,
     xs: css`
-      &:not(:last-of-type) {
-        /* Adjust the line to be centered on the smaller number */
-        background-position: -${euiTheme.size.xs} ${euiStep.numberXSSize};
+      &:not(:last-of-type)::before {
+        ${logicalCSS('top', euiStep.numberXSSize)}
+        ${logicalCSS('left', getLeftPosition(euiStep.numberXSSize))}
       }
     `,
     xxs: css`
-      &:not(:last-of-type) {
-        background-position: -${euiTheme.size.s} ${euiStep.numberXXSSize};
+      &:not(:last-of-type)::before {
+        ${logicalCSS('top', euiStep.numberXXSSize)}
+        ${logicalCSS('left', getLeftPosition(euiStep.numberXXSSize))}
       }
     `,
   };

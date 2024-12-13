@@ -7,14 +7,9 @@
  */
 
 import { css, keyframes } from '@emotion/react';
-import {
-  logicalCSS,
-  logicalSizeCSS,
-  euiFontSize,
-  euiCanAnimate,
-  mathWithUnits,
-} from '../../global_styling';
+import { logicalCSS, euiFontSize, euiCanAnimate } from '../../global_styling';
 import { COLOR_MODES_STANDARD, UseEuiTheme, tint, shade } from '../../services';
+import { _popoverArrowStyles } from '../../services/popover';
 import { euiShadow } from '../../themes/amsterdam';
 
 export const euiToolTipBackgroundColor = (
@@ -58,16 +53,21 @@ const euiToolTipAnimationHorizontal = (size: string) => keyframes`
 `;
 
 export const euiToolTipStyles = (euiThemeContext: UseEuiTheme) => {
-  const { euiTheme, colorMode } = euiThemeContext;
+  const { euiTheme, colorMode, highContrastMode } = euiThemeContext;
+
+  const hasShadow = !highContrastMode;
+  const hasVisibleBorder = highContrastMode || colorMode === 'DARK';
   const animationTiming = `${euiTheme.animation.slow} ease-out 0s forwards`;
-  // Shift arrow 1px more than half its size to account for border radius
+
   const arrowSize = euiTheme.size.m;
-  const arrowPlusSize = mathWithUnits(arrowSize, (x) => (x / 2 + 1) * -1);
-  const arrowMinusSize = mathWithUnits(arrowSize, (x) => (x / 2 - 1) * -1);
+  const arrowStyles = _popoverArrowStyles(euiThemeContext, arrowSize);
+
   return {
     // Base
     euiToolTip: css`
-      ${euiShadow(euiThemeContext)}
+      ${hasShadow ? euiShadow(euiThemeContext) : ''}
+      border: ${euiTheme.border.width.thin} solid
+        ${hasVisibleBorder ? euiTheme.border.color : 'transparent'};
       border-radius: ${euiTheme.border.radius.medium};
       background-color: ${euiToolTipBackgroundColor(euiTheme, colorMode)};
       color: ${euiTheme.colors.ghost};
@@ -114,30 +114,11 @@ export const euiToolTipStyles = (euiThemeContext: UseEuiTheme) => {
     `,
     // Arrow
     euiToolTip__arrow: css`
-      content: '';
-      position: absolute;
-      transform-origin: center;
-      border-radius: ${mathWithUnits(
-        euiTheme.border.radius.small,
-        (x) => x / 2
-      )};
-      background-color: ${euiToolTipBackgroundColor(euiTheme, colorMode)};
-      ${logicalSizeCSS(arrowSize, arrowSize)}
+      ${arrowStyles._arrowStyles}
+      background-color: inherit;
+      border: inherit;
     `,
-    arrowPositions: {
-      top: css`
-        transform: translateY(${arrowPlusSize}) rotateZ(45deg);
-      `,
-      bottom: css`
-        transform: translateY(${arrowMinusSize}) rotateZ(45deg);
-      `,
-      left: css`
-        transform: translateX(${arrowPlusSize}) rotateZ(45deg);
-      `,
-      right: css`
-        transform: translateX(${arrowMinusSize}) rotateZ(45deg);
-      `,
-    },
+    arrowPositions: arrowStyles.positions,
     // Title
     euiToolTip__title: css`
       font-weight: ${euiTheme.font.weight.bold};

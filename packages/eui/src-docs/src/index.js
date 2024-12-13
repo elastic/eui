@@ -10,15 +10,10 @@ import { AppContext } from './views/app_context';
 import { AppView } from './views/app_view';
 import { HomeView } from './views/home/home_view';
 import { NotFoundView } from './views/not_found/not_found_view';
-import { registerTheme, ExampleContext } from './services';
+import { ExampleContext } from './services';
 
 import Routes from './routes';
-import themeLight from './theme_light.scss';
-import themeDark from './theme_dark.scss';
 import { ThemeProvider } from './components/with_theme/theme_context';
-
-registerTheme('light', [themeLight]);
-registerTheme('dark', [themeDark]);
 
 // Set up app
 

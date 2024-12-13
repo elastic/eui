@@ -13,13 +13,14 @@ import {
   logicalShorthandCSS,
   logicalTextAlignCSS,
   euiFontSize,
-  euiBackgroundColor,
   _FontScaleOptions,
   mathWithUnits,
 } from '../../global_styling';
+import { highContrastModeStyles } from '../../global_styling/functions/high_contrast';
 
 import { euiLinkCSS } from '../link/link.styles';
 import { euiTitle } from '../title/title.styles';
+import { euiCodeTextColors } from '../code/code_syntax.styles';
 
 /**
  * TODO: Make this a global value so it can be set by theme?
@@ -202,6 +203,19 @@ const euiScaleText = (
     code:not(.euiCode):not(.euiCodeBlock__code)  {
       font-size: .9em; /* 90% of parent font size */
     }
+    ${highContrastModeStyles(euiThemeContext, {
+      // For EuiCodeBlocks, set the margin on the wrapper instead of on the <pre>
+      // so that high contrast mode borders render as expected
+      preferred: `
+        .euiCodeBlock {
+          ${logicalCSS('margin-bottom', lineHeightSize)}
+
+          pre {
+            ${logicalCSS('margin-bottom', 0)}
+          }
+        }
+      `,
+    })}
     ${
       // when textSize is 'm', the 'kbd' element gets a line between the text and the border-bottom
       _customScale === 'm'
@@ -234,6 +248,7 @@ const euiScaleText = (
  */
 export const euiTextStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
+  const codeColors = euiCodeTextColors(euiThemeContext);
 
   return {
     euiText: css`
@@ -303,12 +318,13 @@ export const euiTextStyles = (euiThemeContext: UseEuiTheme) => {
         color: inherit;
       }
 
-      pre:not(.euiCodeBlock__pre) {
+      pre:not(.euiCodeBlock > pre) {
         white-space: pre-wrap;
-        /* TODO: $euiCodeBlockBackgroundColor - switch to var once EuiCode is converted */
-        background: ${euiBackgroundColor(euiThemeContext, 'subdued')};
-        /* TODO: $euiCodeBlockColor - switch to var once EuiCode is converted */
-        color: ${euiTheme.colors.text};
+        background-color: ${codeColors.backgroundColor};
+        color: ${codeColors.color};
+        ${highContrastModeStyles(euiThemeContext, {
+          preferred: `border: ${euiTheme.border.thin}`,
+        })}
       }
 
       pre:not(.euiCodeBlock__pre),
@@ -331,6 +347,13 @@ export const euiTextStyles = (euiThemeContext: UseEuiTheme) => {
           euiTheme.border.radius.small,
           (x) => x / 2
         )};
+        ${highContrastModeStyles(euiThemeContext, {
+          // Fixes an odd border issue in Windows high contrast themes
+          forced: `
+            overflow: hidden;
+            vertical-align: middle;
+          `,
+        })}
       }
     `,
     constrainedWidth: css`

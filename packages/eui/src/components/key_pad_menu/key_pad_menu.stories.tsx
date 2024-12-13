@@ -223,3 +223,40 @@ export const CheckableMulti: Story = {
   },
   render: (args) => <StatefulKeyPadMenu {...args} checkableType="multi" />,
 };
+
+export const HighContrast: Story = {
+  tags: ['vrt-only'],
+  globals: { highContrastMode: true },
+  args: {
+    children: [
+      <EuiKeyPadMenuItem label="Button" autoFocus>
+        <EuiIcon type="grid" size="l" />
+      </EuiKeyPadMenuItem>,
+      <EuiKeyPadMenuItem label="Link" href="#">
+        <EuiIcon type="link" size="l" />
+      </EuiKeyPadMenuItem>,
+      <EuiKeyPadMenuItem
+        label="Badge"
+        betaBadgeLabel="External"
+        betaBadgeTooltipContent="This module is an external app."
+        betaBadgeIconType="popout"
+      >
+        <EuiIcon type="beta" size="l" />
+      </EuiKeyPadMenuItem>,
+      <EuiKeyPadMenuItem label="Selected" isSelected>
+        <EuiIcon type="faceHappy" size="l" />
+      </EuiKeyPadMenuItem>,
+      <EuiKeyPadMenuItem label="Disabled" isDisabled>
+        <EuiIcon type="faceSad" size="l" />
+      </EuiKeyPadMenuItem>,
+      <EuiKeyPadMenuItem
+        label="Selected and disabled"
+        isSelected
+        isDisabled
+        href="#"
+      >
+        <EuiIcon type="faceNeutral" size="l" />
+      </EuiKeyPadMenuItem>,
+    ],
+  },
+};

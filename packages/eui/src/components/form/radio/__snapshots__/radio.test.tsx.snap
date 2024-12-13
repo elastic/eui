@@ -11,7 +11,7 @@ exports[`EuiRadio is rendered 1`] = `
   >
     <span
       class="emotion-euiRadio__icon"
-      data-euiicon-type="dot"
+      data-euiicon-type="empty"
     />
     <input
       class="euiRadio__input emotion-euiRadio__input"
@@ -54,7 +54,7 @@ exports[`EuiRadio props disabled is rendered 1`] = `
   >
     <span
       class="emotion-euiRadio__icon"
-      data-euiicon-type="dot"
+      data-euiicon-type="empty"
     />
     <input
       class="euiRadio__input emotion-euiRadio__input"
@@ -76,7 +76,7 @@ exports[`EuiRadio props label is rendered 1`] = `
   >
     <span
       class="emotion-euiRadio__icon"
-      data-euiicon-type="dot"
+      data-euiicon-type="empty"
     />
     <input
       class="euiRadio__input emotion-euiRadio__input"
@@ -105,7 +105,7 @@ exports[`EuiRadio props labelProps is rendered 1`] = `
   >
     <span
       class="emotion-euiRadio__icon"
-      data-euiicon-type="dot"
+      data-euiicon-type="empty"
     />
     <input
       class="euiRadio__input emotion-euiRadio__input"
@@ -134,7 +134,7 @@ exports[`EuiRadio props value is rendered 1`] = `
   >
     <span
       class="emotion-euiRadio__icon"
-      data-euiicon-type="dot"
+      data-euiicon-type="empty"
     />
     <input
       class="euiRadio__input emotion-euiRadio__input"

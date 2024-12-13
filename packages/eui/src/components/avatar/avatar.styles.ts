@@ -7,7 +7,7 @@
  */
 
 import { css } from '@emotion/react';
-import { logicalCSS, logicalTextAlignCSS } from '../../global_styling';
+import { logicalSizeCSS, mathWithUnits } from '../../global_styling';
 import { UseEuiTheme } from '../../services';
 
 const _avatarSize = ({
@@ -18,9 +18,7 @@ const _avatarSize = ({
   fontSize: string;
 }) => {
   return `
-    ${logicalCSS('width', size)};
-    ${logicalCSS('height', size)};
-    line-height: ${size};
+    ${logicalSizeCSS(size)};
     font-size: ${fontSize};
   `;
 };
@@ -36,8 +34,7 @@ export const euiAvatarStyles = ({ euiTheme }: UseEuiTheme) => ({
     vertical-align: middle;
     background-size: cover;
     background-color: ${euiTheme.colors.lightShade};
-    ${logicalTextAlignCSS('center')}
-    ${logicalCSS('overflow-x', 'hidden')}
+    overflow: hidden;
     /* Explicitly state weight so it doesn't get overridden by inheritance */
     font-weight: ${euiTheme.font.weight.medium};
   `,
@@ -69,19 +66,19 @@ export const euiAvatarStyles = ({ euiTheme }: UseEuiTheme) => ({
   m: css(
     _avatarSize({
       size: euiTheme.size.xl,
-      fontSize: `calc(${euiTheme.size.base} * 0.9)`,
+      fontSize: mathWithUnits(euiTheme.size.base, (x) => x * 0.9),
     })
   ),
   l: css(
     _avatarSize({
       size: euiTheme.size.xxl,
-      fontSize: `calc(${euiTheme.size.l} * 0.8)`,
+      fontSize: mathWithUnits(euiTheme.size.l, (x) => x * 0.8),
     })
   ),
   xl: css(
     _avatarSize({
-      size: `calc(${euiTheme.size.base} * 4)`,
-      fontSize: `calc(${euiTheme.size.xl} * 0.8)`,
+      size: euiTheme.size.xxxxl,
+      fontSize: mathWithUnits(euiTheme.size.xl, (x) => x * 0.8),
     })
   ),
   // Casing

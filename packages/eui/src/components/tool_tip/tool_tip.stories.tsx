@@ -10,7 +10,8 @@ import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { enableFunctionToggleControls } from '../../../.storybook/utils';
-import { LOKI_SELECTORS } from '../../../.storybook/loki';
+import { LOKI_SELECTORS, lokiPlayDecorator } from '../../../.storybook/loki';
+import { sleep } from '../../test';
 import { EuiFlexGroup } from '../flex';
 import { EuiButton } from '../button';
 import { EuiToolTip, EuiToolTipProps } from './tool_tip';
@@ -71,4 +72,32 @@ export const Playground: Story = {
   //     });
   //   });
   // }),
+  play: lokiPlayDecorator(async () => {
+    // Reduce VRT flakiness/screenshots before tooltip is fully visible
+    await sleep(300);
+  }),
+};
+
+/**
+ * VRT only stories
+ */
+
+export const DarkMode: Story = {
+  tags: ['vrt-only'],
+  globals: { colorMode: 'dark' },
+  ...Playground,
+  args: {
+    ...Playground.args,
+    position: 'bottom',
+  },
+};
+
+export const HighContrastMode: Story = {
+  tags: ['vrt-only'],
+  globals: { highContrastMode: true, colorMode: 'dark' },
+  ...Playground,
+  args: {
+    ...Playground.args,
+    position: 'left',
+  },
 };

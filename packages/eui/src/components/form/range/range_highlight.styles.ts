@@ -8,6 +8,8 @@
 
 import { css } from '@emotion/react';
 import { UseEuiTheme } from '../../../services';
+import { preventForcedColors } from '../../../global_styling/functions/high_contrast';
+
 import { euiRangeVariables } from './range.styles';
 
 export const euiRangeHighlightStyles = (euiThemeContext: UseEuiTheme) => {
@@ -40,6 +42,7 @@ export const euiRangeHighlightProgressStyles = (
       block-size: ${range.highlightHeight};
       border-radius: ${range.trackBorderRadius};
       background-color: ${range.highlightColor};
+      ${preventForcedColors(euiThemeContext)}
 
       /* Change highlight color to focus on keyboard focus and on mouse drag */
       .euiRangeSlider:focus-visible ~ .euiRangeHighlight &,

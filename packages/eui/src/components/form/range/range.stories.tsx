@@ -9,6 +9,7 @@
 import React, { useEffect, useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 
+import { LOKI_SELECTORS } from '../../../../.storybook/loki';
 import {
   enableFunctionToggleControls,
   moveStorybookControlsToCategory,
@@ -66,6 +67,13 @@ const meta: Meta<EuiRangeProps> = {
         undefined: undefined,
       },
     },
+    showInput: {
+      control: 'radio',
+      options: [false, true, 'inputWithPopover'],
+    },
+    inputPopoverProps: {
+      if: { arg: 'showInput', eq: 'inputWithPopover' },
+    },
   },
   args: {
     min: 0,
@@ -88,7 +96,6 @@ const meta: Meta<EuiRangeProps> = {
     // adding tickInterval value to prevent error about
     // too many ticks when enabling showTicks
     tickInterval: 10,
-    ticks: [],
   },
 };
 
@@ -200,6 +207,7 @@ export const Levels: Story = {
       { min: 20, max: 100, color: 'success' },
     ],
     showLabels: true,
+    showRange: true,
   },
   render: (args) => <StatefulPlayground {...args} />,
 };
@@ -213,10 +221,79 @@ const StatefulPlayground = ({ value, onChange, ...rest }: EuiRangeProps) => {
     }
   }, [value]);
 
-  const handelOnChange = (e: _SingleRangeChangeEvent, isValid: boolean) => {
+  const handleOnChange = (e: _SingleRangeChangeEvent, isValid: boolean) => {
     setValue(e.currentTarget.value);
     onChange?.(e, isValid);
   };
 
-  return <EuiRange value={_value} onChange={handelOnChange} {...rest} />;
+  return <EuiRange value={_value} onChange={handleOnChange} {...rest} />;
+};
+
+/**
+ * VRT only
+ */
+
+export const InputWithPopover: Story = {
+  tags: ['vrt-only'],
+  parameters: {
+    loki: { chromeSelector: LOKI_SELECTORS.portal },
+  },
+  args: {
+    showInput: 'inputWithPopover',
+    min: 0,
+    max: 100,
+    value: 50,
+    // Should render ticks, levels, highlights, and tooltips in their correct positions
+    showLabels: true,
+    showValue: true,
+    showRange: true,
+    showTicks: true,
+    tickInterval: 20,
+    levels: [
+      { min: 0, max: 20, color: 'danger' },
+      { min: 20, max: 100, color: 'success' },
+    ],
+  },
+  // Force input popover open via programmatic ref
+  render: function Render(args) {
+    const [ref, setRef] = useState<any>();
+    useEffect(() => {
+      // For some reason Loki throws a width/render error if not wrapped in a timeout.
+      // This doesn't happen on production
+      if (ref) setTimeout(() => ref.onInputFocus(), 1);
+    }, [ref]);
+    return <EuiRange {...args} ref={setRef} />;
+  },
+};
+
+export const HighContrast: Story = {
+  tags: ['vrt-only'],
+  globals: { highContrastMode: true },
+  args: {
+    fullWidth: true,
+    compressed: true,
+    showInput: true,
+    min: 0,
+    max: 100,
+    value: 50,
+    showLabels: true,
+    showValue: true,
+    showRange: true,
+    showTicks: true,
+    tickInterval: 20,
+  },
+};
+
+export const DarkMode: Story = {
+  tags: ['vrt-only'],
+  globals: { colorMode: 'dark' },
+  args: {
+    min: 0,
+    max: 100,
+    value: 50,
+    showValue: true,
+    showRange: true,
+    showTicks: true,
+    tickInterval: 50,
+  },
 };

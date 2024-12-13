@@ -41,3 +41,9 @@ export const Playground: Story = {
     },
   },
 };
+
+export const HighContrast: Story = {
+  ...Playground,
+  tags: ['vrt-only'],
+  globals: { highContrastMode: true },
+};

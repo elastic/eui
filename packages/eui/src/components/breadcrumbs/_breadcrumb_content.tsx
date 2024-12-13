@@ -54,7 +54,10 @@ export const EuiBreadcrumbContent: FunctionComponent<
   const classes = classNames('euiBreadcrumb__content', className);
 
   const styles = useEuiMemoizedStyles(euiBreadcrumbContentStyles);
-  const cssStyles = [styles.euiBreadcrumb__content, styles[type]];
+  const cssStyles: ArrayCSSInterpolation = [
+    styles.euiBreadcrumb__content,
+    styles[type],
+  ];
   if (isApplication) {
     if (isOnlyBreadcrumb) {
       cssStyles.push(styles.applicationStyles.onlyChild);
@@ -62,6 +65,8 @@ export const EuiBreadcrumbContent: FunctionComponent<
       cssStyles.push(styles.applicationStyles.firstChild);
     } else if (isLastBreadcrumb) {
       cssStyles.push(styles.applicationStyles.lastChild);
+    } else {
+      cssStyles.push(styles.applicationStyles.intermediateChild);
     }
   }
   const truncationStyles = [
