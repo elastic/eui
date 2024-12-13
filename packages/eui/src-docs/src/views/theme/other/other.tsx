@@ -1,4 +1,5 @@
 import React, { useContext, useMemo } from 'react';
+import { Link } from 'react-router-dom';
 
 import { GuideTabbedPage } from '../../../components/guide_tabbed_page';
 import { ThemeContext } from '../../../components/with_theme';
@@ -139,11 +140,7 @@ export default () => {
 
         <EuiSpacer />
 
-        <EuiCallOut
-          color="warning"
-          iconType="accessibility"
-          title={<code>euiCanAnimate</code>}
-        >
+        <EuiCallOut iconType="accessibility" title={<code>euiCanAnimate</code>}>
           <p>
             For accessbility support, we highly recommend always wrapping
             animations and transitions with this{' '}
@@ -173,6 +170,20 @@ export default () => {
         <EuiText grow={false}>
           <h2 id={`${otherSections[1].id}`}>{`${otherSections[1].title}`}</h2>
         </EuiText>
+
+        <EuiSpacer />
+        <EuiCallOut iconType="accessibility" title="Shadows in high contrast">
+          <p>
+            Keep in mind that shadows will not render in{' '}
+            <Link to="/theming/high-contrast-mode">
+              forced high contrast modes
+            </Link>
+            . EUI's shadow utilities automatically replace shadows with bottom
+            borders, which will render better in high contrast modes. These
+            utilities can also be configured to render their high contrast
+            borders around the entire element.
+          </p>
+        </EuiCallOut>
 
         {shadowContent}
       </GuideSection>

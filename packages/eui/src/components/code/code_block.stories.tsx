@@ -123,6 +123,7 @@ export const HighContrast: Story = {
   tags: ['vrt-only'],
   globals: { highContrastMode: true },
   args: {
+    whiteSpace: 'pre',
     language: 'json',
     lineNumbers: {
       start: 32,

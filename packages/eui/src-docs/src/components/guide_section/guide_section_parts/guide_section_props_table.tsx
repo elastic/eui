@@ -23,7 +23,7 @@ export const GuideSectionPropsTable: FunctionComponent<
   const { props } = docgenInfo;
 
   return (
-    <div>
+    <>
       {componentName && (
         <GuideSectionPropsDescription
           componentName={componentName}
@@ -38,7 +38,7 @@ export const GuideSectionPropsTable: FunctionComponent<
           scope: component,
         }}
       />
-    </div>
+    </>
   );
 };
 

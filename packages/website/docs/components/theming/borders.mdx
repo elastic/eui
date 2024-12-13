@@ -53,9 +53,10 @@ import { ColorPreview } from './borders/color_preview';
   <Example.Description>
     ### `euiTheme.border.color` <Badge color="hollow">token</Badge>
 
-    Color for all borders; Default is `colors.lightShade`
-
     You can apply this color directly to any `border-color` property.
+    - Default is `colors.lightShade`
+    - In high contrast mode, this value becomes `colors.fullShade` and cannot be overridden.
+
   </Example.Description>
   <Example.Preview>
     <ColorPreview />

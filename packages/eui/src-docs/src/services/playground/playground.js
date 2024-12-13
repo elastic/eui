@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { css } from '@emotion/react';
 import classNames from 'classnames';
 import format from 'html-format';
 
@@ -7,7 +8,6 @@ import {
   EuiCodeBlock,
   EuiFlyoutBody,
   EuiFlyoutHeader,
-  EuiPanel,
   useEuiTheme,
 } from '../../../../src';
 import {
@@ -22,7 +22,6 @@ export default ({
   setGhostBackground,
   playgroundClassName,
   playgroundCssStyles,
-  playgroundPanelProps,
 }) => {
   const getSnippet = (code) => {
     let regex = /return \(([\S\s]*?)(;)$/gm;
@@ -84,27 +83,24 @@ export default ({
             component={config.scope[config.componentName]}
           />
         </EuiFlyoutHeader>
-        <EuiFlyoutHeader className="playground__demoWrapper" hasBorder>
-          <EuiPanel
-            hasBorder={false}
-            color="transparent"
-            borderRadius="none"
-            className={classNames('playground__panel', {
-              guideDemo__ghostBackground: isGhost,
-            })}
-            {...playgroundPanelProps}
-            paddingSize={
-              thrownError ? 'none' : playgroundPanelProps?.paddingSize
-            }
-          >
-            <Compiler
-              css={playgroundCssStyles?.(euiTheme)}
-              {...params.compilerProps}
-              placeholder={Placeholder}
-              className={classNames('playground__demo', playgroundClassName)}
-            />
-            {thrownError && <EuiErrorMessage errorMessage={thrownError} />}
-          </EuiPanel>
+        <EuiFlyoutHeader
+          className={classNames('playground__demoWrapper', {
+            guideDemo__ghostBackground: isGhost,
+          })}
+          hasBorder
+        >
+          <Compiler
+            css={css([
+              !thrownError
+                ? { padding: euiTheme.euiTheme.size.base }
+                : undefined,
+              playgroundCssStyles?.(euiTheme),
+            ])}
+            {...params.compilerProps}
+            placeholder={Placeholder}
+            className={classNames('playground__demo', playgroundClassName)}
+          />
+          {thrownError && <EuiErrorMessage errorMessage={thrownError} />}
         </EuiFlyoutHeader>
         <EuiFlyoutHeader className="playground__codeWrapper" hasBorder>
           <EuiCodeBlock
@@ -113,6 +109,7 @@ export default ({
             fontSize="m"
             paddingSize="m"
             isCopyable
+            css={{ border: 'none' }} // Avoid duplicate borders in high contrast mode
           >
             {getSnippet(params.editorProps.code)}
           </EuiCodeBlock>

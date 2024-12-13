@@ -203,6 +203,19 @@ const euiScaleText = (
     code:not(.euiCode):not(.euiCodeBlock__code)  {
       font-size: .9em; /* 90% of parent font size */
     }
+    ${highContrastModeStyles(euiThemeContext, {
+      // For EuiCodeBlocks, set the margin on the wrapper instead of on the <pre>
+      // so that high contrast mode borders render as expected
+      preferred: `
+        .euiCodeBlock {
+          ${logicalCSS('margin-bottom', lineHeightSize)}
+
+          pre {
+            ${logicalCSS('margin-bottom', 0)}
+          }
+        }
+      `,
+    })}
     ${
       // when textSize is 'm', the 'kbd' element gets a line between the text and the border-bottom
       _customScale === 'm'

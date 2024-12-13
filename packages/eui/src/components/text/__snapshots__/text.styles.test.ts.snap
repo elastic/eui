@@ -143,6 +143,7 @@ exports[`euiTextStyles sizes m 1`] = `
       font-size: .9em; /* 90% of parent font size */
     }
     
+    
     kbd {
       padding-block-end: 4px;
       /* Ensures the shape still looks like a square when only one character */
@@ -304,6 +305,7 @@ exports[`euiTextStyles sizes relative 1`] = `
       font-size: .9em; /* 90% of parent font size */
     }
     
+    
   ;;label:relative;"
 `;
 
@@ -450,6 +452,7 @@ exports[`euiTextStyles sizes s 1`] = `
       font-size: .9em; /* 90% of parent font size */
     }
     
+    
   ;;label:s;"
 `;
 
@@ -595,6 +598,7 @@ exports[`euiTextStyles sizes xs 1`] = `
     code:not(.euiCode):not(.euiCodeBlock__code)  {
       font-size: .9em; /* 90% of parent font size */
     }
+    
     
   ;;label:xs;"
 `;

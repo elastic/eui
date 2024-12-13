@@ -30,6 +30,8 @@ export const euiCodeBlockStyles = (euiThemeContext: UseEuiTheme) => {
       background: ${codeSyntaxVariables.backgroundColor};
       ${highContrastModeStyles(euiThemeContext, {
         preferred: `border: ${euiTheme.border.thin};`,
+        // Fix scrolling text occluding the border in Windows high contrast mode
+        forced: 'overflow: hidden;',
       })}
 
       ${codeSyntaxVariables.tokensCss}
