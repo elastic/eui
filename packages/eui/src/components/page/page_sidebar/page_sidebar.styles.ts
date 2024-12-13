@@ -8,13 +8,10 @@
 
 import { css } from '@emotion/react';
 
-import { UseEuiTheme, transparentize } from '../../../services';
+import { UseEuiTheme } from '../../../services';
 import { euiYScroll } from '../../../global_styling';
 
 export const euiPageSidebarStyles = (euiThemeContext: UseEuiTheme) => {
-  const { euiTheme } = euiThemeContext;
-
-  const embellishColor = transparentize(euiTheme.colors.lightShade, 0.3);
 
   return {
     euiPageSidebar: css`
@@ -25,20 +22,6 @@ export const euiPageSidebarStyles = (euiThemeContext: UseEuiTheme) => {
       ${euiYScroll(euiThemeContext, { height: 'auto' })}
       flex-grow: 1;
       position: sticky;
-    `,
-    embellish: css`
-      background: linear-gradient(
-          160deg,
-          ${embellishColor} 0,
-          ${embellishColor} ${euiTheme.size.xl},
-          transparent 0
-        ),
-        linear-gradient(
-          175deg,
-          ${embellishColor} 0,
-          ${embellishColor} ${euiTheme.size.base},
-          transparent 0
-        );
     `,
   };
 };
