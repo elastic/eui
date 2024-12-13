@@ -76,7 +76,6 @@ export const EuiPageSidebar: FunctionComponent<EuiPageSidebarProps> = ({
   const cssStyles = [
     styles.euiPageSidebar,
     !isResponding && sticky && styles.sticky,
-    hasEmbellish && styles.embellish,
     useEuiPaddingCSS()[paddingSize],
   ];
 
