@@ -16,8 +16,8 @@ import { _tourFooterBgColor } from './_tour_footer.styles';
 export const euiTourStyles = (euiThemeContext: UseEuiTheme) => ({
   // Targets EuiPopoverPanel
   euiTour: css`
-    [data-popover-arrow='top']::before {
-      ${logicalCSS('border-top-color', _tourFooterBgColor(euiThemeContext))}
+    [data-popover-arrow='top'] {
+      background-color: ${_tourFooterBgColor(euiThemeContext)};
     }
   `,
 });
