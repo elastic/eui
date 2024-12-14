@@ -5,9 +5,7 @@ id: forms_selection_checkboxes_radios
 
 # Checkboxes and radios
 
-EUI provides three types of selection controls: **EuiCheckbox**, **EuiRadio** and **EuiSwitch**. These controls allow users to select options among a list or switch settings on/off. They are ideal for a small list of options.
-
-For longer lists of options, consider using a [EuiSelect](/docs/forms/form-controls#select), [EuiSuperSelect](/docs/forms/super-select) or [EuiComboBox](/docs/forms/combo-box).
+Checkboxes and radios are are ideal for allowing users to select options among a small list of options, or to [switch settings on/off](./switch.mdx). For longer lists of options, consider using [dropdrown selection](../overview.mdx) components.
 
 ## Checkbox
 
@@ -287,117 +285,6 @@ export default () => {
 };
 ```
 
-## Switch
-
-A switch can be substituted for a checkbox when the semantics of the label dictate a true on/off state.
-
-```tsx interactive
-import React, { useState } from 'react';
-import { EuiSwitch } from '@elastic/eui';
-
-export default () => {
-  const [checked, setChecked] = useState(false);
-
-  const onChange = (e) => {
-    setChecked(e.target.checked);
-  };
-
-  return (
-    /* DisplayToggles wrapper for Docs only */
-    <DisplayToggles
-      canReadOnly={false}
-      canLoading={false}
-      canInvalid={false}
-      canFullWidth={false}
-    >
-      <EuiSwitch
-        label="Malware protection"
-        checked={checked}
-        onChange={(e) => onChange(e)}
-      />
-    </DisplayToggles>
-  );
-};
-```
-
-Make sure to pass a `label` to ensure a larger clickable area and ensure that screen readers will read out the label when the user is focused on the input. You can find more about labels usage in the [guidelines tab](/docs/forms/selection-controls/guidelines).
-
-If the switch is described in some other manner, like when using an [**EuiFormRow**](/docs/forms/form-layouts#form-and-form-rows), you can eliminate the visible label with `showLabel={false}` or use it to further describe the state.
-
-:::note Accessibility requirement
-When providing the state as the label, you'll need to provide an `aria-describedby` with the label's `id` to associate it with the switch.
-:::
-
-```tsx interactive
-import React, { useState } from 'react';
-import { EuiSwitch, EuiFormRow, useGeneratedHtmlId } from '@elastic/eui';
-
-export default () => {
-  const [checked1, setChecked1] = useState(false);
-  const [checked2, setChecked2] = useState(false);
-  const toggleTextSwitchId = useGeneratedHtmlId({ prefix: 'toggleTextSwitch' });
-
-  const onChange1 = (e: {
-    target: { checked: React.SetStateAction<boolean> };
-  }) => {
-    setChecked1(e.target.checked);
-  };
-
-  const onChange2 = (e: {
-    target: { checked: React.SetStateAction<boolean> };
-  }) => {
-    setChecked2(e.target.checked);
-  };
-
-  return (
-    <>
-      <EuiFormRow display="columnCompressed" label="Autoscaling">
-        <EuiSwitch
-          showLabel={false}
-          label="Autoscaling"
-          checked={checked1}
-          onChange={onChange1}
-          compressed
-        />
-      </EuiFormRow>
-      <EuiFormRow
-        display="columnCompressed"
-        label={<span id={toggleTextSwitchId}>Show something</span>}
-      >
-        <EuiSwitch
-          label={checked2 ? 'on' : 'off'}
-          checked={checked2}
-          onChange={onChange2}
-          aria-describedby={toggleTextSwitchId}
-          compressed
-        />
-      </EuiFormRow>
-    </>
-  );
-};
-```
-
-## Fieldset and legend
-
-:::note Accessibility recommendation
-"\[Use a fieldset and legend\] for groups of related controls where the individual labels for each control do not provide a sufficient description, and an additional group level description is needed." [WCAG Spec](https://www.w3.org/WAI/WCAG21/Techniques/html/H71)
-:::
-
-**EuiFormFieldset** simply wraps its children in a `<fieldset>` with the option to add a `<legend>` via the `legend` object prop. Find more examples in the [guidelines tab](/docs/forms/selection-controls/guidelines).
-
-```tsx interactive
-import React from 'react';
-import { EuiFormFieldset, EuiSwitch, EuiSpacer } from '@elastic/eui';
-
-export default () => (
-  <EuiFormFieldset legend={{ children: 'Enable these objects' }}>
-    <EuiSwitch label="Object 1" onChange={() => {}} checked={false} />
-    <EuiSpacer size="s" />
-    <EuiSwitch label="Object 2" onChange={() => {}} checked={true} />
-  </EuiFormFieldset>
-);
-```
-
 ## Props
 
 import docgen from '@elastic/eui-docgen/dist/components/form';
@@ -406,5 +293,3 @@ import docgen from '@elastic/eui-docgen/dist/components/form';
 <PropTable definition={docgen.EuiCheckboxGroup} />
 <PropTable definition={docgen.EuiRadio} />
 <PropTable definition={docgen.EuiRadioGroup} />
-<PropTable definition={docgen.EuiSwitch} />
-<PropTable definition={docgen.EuiFormFieldset} />
