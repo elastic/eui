@@ -6,11 +6,11 @@ sidebar_position: 4
 
 # Combo box
 
-Use a **EuiComboBox** when the input has so many options that the user needs to be able to search them, the user needs to be able to select multiple options, and/or the user should have the ability to specify a custom value in addition to selecting from a predetermined list. If you're unsure of which selection component to use, see [EUI's in-depth guide to selection components](https://github.com/elastic/eui/discussions/7049) for more information.
+import EuiFormRowCallout from '../form_layouts/_form_row_callout.mdx';
 
-:::note Accessibility requirement
-Add an accessible label to each instance of **EuiComboBox**. Labels can be created by wrapping the combo box in an **EuiFormRow** with a `label`, adding an `aria-label` prop, or passing a text node ID to the `aria-labelledby` prop.
-:::
+<EuiFormRowCallout />
+
+Use a **EuiComboBox** when the input has so many options that the user needs to be able to search them, the user needs to be able to select multiple options, and/or the user should have the ability to specify a custom value in addition to selecting from a predetermined list.
 
 ```tsx interactive
 import React, { useState } from 'react';
