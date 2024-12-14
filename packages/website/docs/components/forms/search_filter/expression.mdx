@@ -1,0 +1,625 @@
+---
+slug: /forms/search-filter/expression
+id: forms_expression
+sidebar_position: 4
+---
+
+# Expression
+
+Use the **EuiExpression** component to surface expressions. It requires both a `description` (left side) and `value` (right side). Optionally, you can pass it an `onClick` function that will convert it to a button and add some additional styling to indicate that it is clickable.
+
+```tsx interactive
+import React, { useState } from 'react';
+import {
+  EuiPopoverTitle,
+  EuiFlexItem,
+  EuiFlexGroup,
+  EuiPopover,
+  EuiFieldNumber,
+  EuiExpression,
+  EuiSelectable,
+  useGeneratedHtmlId,
+} from '@elastic/eui';
+
+export default () => {
+  const [example1, setExample1] = useState({
+    isOpen: false,
+    options: [
+      { label: 'count()', checked: 'on' },
+      { label: 'average()' },
+      { label: 'sum()' },
+      { label: 'median()' },
+      { label: 'min()' },
+      { label: 'max()' },
+    ],
+    value: 'count()',
+  });
+
+  const [example2, setExample2] = useState({
+    isOpen: false,
+    options: [
+      { label: 'Is above', checked: 'on' },
+      { label: 'Is below' },
+      { label: 'Is exactly' },
+    ],
+    value: 'Is above',
+  });
+
+  const [example3, setExample3] = useState({
+    isOpen: false,
+    value: 100,
+  });
+
+  const expressionPopoverId__1 = useGeneratedHtmlId({
+    prefix: 'expressionPopover',
+    suffix: 'first',
+  });
+  const expressionPopoverId__2 = useGeneratedHtmlId({
+    prefix: 'expressionPopover',
+    suffix: 'second',
+  });
+
+  const expressionPopoverId__3 = useGeneratedHtmlId({
+    prefix: 'expressionPopover',
+    suffix: 'third',
+  });
+
+  const openExample1 = () => {
+    setExample1({
+      ...example1,
+      isOpen: true,
+    });
+    setExample2({
+      ...example2,
+      isOpen: false,
+    });
+    setExample3({
+      ...example3,
+      isOpen: false,
+    });
+  };
+
+  const openExample2 = () => {
+    setExample1({
+      ...example1,
+      isOpen: false,
+    });
+    setExample2({
+      ...example2,
+      isOpen: true,
+    });
+    setExample3({
+      ...example3,
+      isOpen: false,
+    });
+  };
+
+  const openExample3 = () => {
+    setExample1({
+      ...example1,
+      isOpen: false,
+    });
+    setExample2({
+      ...example2,
+      isOpen: false,
+    });
+    setExample3({
+      ...example3,
+      isOpen: true,
+    });
+  };
+
+  const closeExample1 = () => {
+    setExample1({
+      ...example1,
+      isOpen: false,
+    });
+  };
+
+  const closeExample2 = () => {
+    setExample2({
+      ...example2,
+      isOpen: false,
+    });
+  };
+
+  const closeExample3 = () => {
+    setExample3({
+      ...example3,
+      isOpen: false,
+    });
+  };
+
+  const changeExample1 = (options) => {
+    setExample1({
+      options: options,
+      isOpen: false,
+      value: options.filter((option) => option.checked === 'on')[0]?.label,
+    });
+  };
+
+  const changeExample2 = (options) => {
+    setExample2({
+      options: options,
+      isOpen: false,
+      value: options.filter((option) => option.checked === 'on')[0]?.label,
+    });
+  };
+
+  const changeExample3 = (e) => {
+    setExample3({
+      ...example3,
+      value: e.target.value,
+    });
+  };
+
+  const renderPopover1 = () => (
+    <EuiSelectable
+      singleSelection="always"
+      options={example1.options}
+      onChange={changeExample1}
+    >
+      {(list) => (
+        <div style={{ width: 240 }}>
+          <EuiPopoverTitle>When</EuiPopoverTitle>
+          {list}
+        </div>
+      )}
+    </EuiSelectable>
+  );
+
+  const renderPopover2 = () => (
+    <EuiSelectable
+      singleSelection="always"
+      options={example2.options}
+      onChange={changeExample2}
+    >
+      {(list) => (
+        <div style={{ width: 240 }}>
+          <EuiPopoverTitle>When</EuiPopoverTitle>
+          {list}
+        </div>
+      )}
+    </EuiSelectable>
+  );
+
+  return (
+    <EuiFlexGroup gutterSize="s">
+      <EuiFlexItem grow={false}>
+        <EuiPopover
+          id={expressionPopoverId__1}
+          button={
+            <EuiExpression
+              description="when"
+              value={example1.value}
+              isActive={example1.isOpen}
+              onClick={openExample1}
+            />
+          }
+          isOpen={example1.isOpen}
+          closePopover={closeExample1}
+          panelPaddingSize="s"
+          anchorPosition="downLeft"
+        >
+          {renderPopover1()}
+        </EuiPopover>
+      </EuiFlexItem>
+
+      <EuiFlexItem grow={false}>
+        <EuiPopover
+          id={expressionPopoverId__2}
+          panelPaddingSize="s"
+          button={
+            <EuiExpression
+              description={example2.value}
+              isActive={example2.isOpen}
+              onClick={openExample2}
+            />
+          }
+          isOpen={example2.isOpen}
+          closePopover={closeExample2}
+          anchorPosition="downLeft"
+        >
+          {renderPopover2()}
+        </EuiPopover>
+      </EuiFlexItem>
+
+      <EuiFlexItem grow={false}>
+        <EuiPopover
+          id={expressionPopoverId__3}
+          panelPaddingSize="s"
+          button={
+            <EuiExpression
+              description=""
+              value={example3.value}
+              isActive={example3.isOpen}
+              onClick={openExample3}
+            />
+          }
+          isOpen={example3.isOpen}
+          closePopover={closeExample3}
+          anchorPosition="downLeft"
+        >
+          <EuiFieldNumber
+            compressed
+            value={example3.value}
+            onChange={changeExample3}
+          />
+        </EuiPopover>
+      </EuiFlexItem>
+    </EuiFlexGroup>
+  );
+};
+```
+
+## Colors
+
+You can pass a `color` prop but it will only color the `description`.
+
+```tsx interactive
+import React from 'react';
+import { EuiExpression, EuiSpacer } from '@elastic/eui';
+
+export default () => (
+  <div>
+    <EuiExpression description="Success" value="isDefault()" />
+    <EuiSpacer size="s" />
+    <EuiExpression description="Primary" value="color()" color="primary" />
+    <EuiSpacer size="s" />
+    <EuiExpression description="accent" value="color()" color="accent" />
+    <EuiSpacer size="s" />
+    <EuiExpression description="warning" value="color()" color="warning" />
+    <EuiSpacer size="s" />
+    <EuiExpression description="danger" value="color()" color="danger" />
+    <EuiSpacer size="s" />
+    <EuiExpression description="subdued" value="color()" color="subdued" />
+    <EuiSpacer size="s" />
+    <EuiExpression
+      description="active"
+      value="state will get color() as well"
+      color="accent"
+      isActive
+    />
+  </div>
+);
+```
+
+## Stringing a bunch together
+
+If the expression is more than one description and value, you can string multiple expressions together and they should inline together and wrap at logical points.
+
+```tsx interactive
+import React from 'react';
+import { EuiExpression } from '@elastic/eui';
+
+export default () => (
+  <div>
+    <EuiExpression description="Select" value="count(*)" onClick={() => {}} />
+    <EuiExpression
+      description="From"
+      value="kibana_sample_data_ky_counties left"
+    />
+    <EuiExpression
+      description="join"
+      value="kibana_sample_data_ky_avl right"
+      onClick={() => {}}
+    />
+    <EuiExpression description="on" value="left.smis = right.kytccountynmbr" />
+    <EuiExpression
+      description="group by"
+      value="right.kytccountynmbr"
+      onClick={() => {}}
+      color="accent"
+    />
+    <EuiExpression description="sort by" value="count" />
+  </div>
+);
+```
+
+## Column display
+
+There might be cases where displaying multiple **EuiExpression**s in a paragraph is not ideal. For example, when both the `description` and the `value` are variable or when their text is quite long. To use a column display instead, pass `display="columns"`.
+
+In column display, each expression is its own line and the `description` column is aligned to the right. The default width for the `description` is 20%, but you can customize this with the`descriptionWidth` prop. When displaying a group of **EuiExpression**s, make sure to set the same width for all descriptions.
+
+```tsx interactive
+import React, { useState, Fragment } from 'react';
+import {
+  EuiPopoverTitle,
+  EuiPopover,
+  EuiSelect,
+  EuiComboBox,
+  EuiExpression,
+  EuiTitle,
+  EuiSpacer,
+  useGeneratedHtmlId,
+} from '@elastic/eui';
+
+export default () => {
+  const [example1, setExample1] = useState({
+    isOpen: false,
+    value: (
+      <Fragment>
+        <p>.kibana_task_manager,</p>
+        <p>kibana_sample_data_ecommerce</p>
+      </Fragment>
+    ),
+  });
+
+  const [example2, setExample2] = useState({
+    isOpen: false,
+    value: 'count()',
+  });
+
+  const columnsPopoverId__1 = useGeneratedHtmlId({
+    prefix: 'columnsPopover',
+    suffix: 'first',
+  });
+  const columnsPopoverId__2 = useGeneratedHtmlId({
+    prefix: 'columnsPopover',
+    suffix: 'second',
+  });
+
+  const options = [
+    {
+      label: '.kibana_task_manager',
+    },
+    {
+      label: 'kibana_sample_data_ecommerce',
+    },
+    {
+      label: '.kibana-event-log-8.0.0-000001',
+    },
+    {
+      label: 'kibana_sample_data_flights',
+    },
+    {
+      label: '.kibana-event-log-8.0.0',
+    },
+  ];
+
+  const [selectedOptions, setSelected] = useState([options[0], options[1]]);
+
+  const openExample1 = () => {
+    setExample1({
+      ...example1,
+      isOpen: !example1.isOpen,
+    });
+  };
+
+  const closeExample1 = () => {
+    setExample1({
+      ...example1,
+      isOpen: false,
+    });
+  };
+
+  const openExample2 = () => {
+    setExample2({
+      ...example2,
+      isOpen: !example2.isOpen,
+    });
+  };
+
+  const closeExample2 = () => {
+    setExample2({
+      ...example2,
+      isOpen: false,
+    });
+  };
+
+  const changeExample2 = (e) => {
+    setExample2({
+      value: e.target.value,
+      isOpen: false,
+    });
+  };
+
+  const onChange = (selectedOptions) => {
+    setSelected(selectedOptions);
+    const indices = selectedOptions.map((s, index) => {
+      return (
+        <p key={index}>
+          {s.label}
+          {index < selectedOptions.length - 1 ? ',' : null}
+        </p>
+      );
+    });
+    setExample1({
+      ...example1,
+      value: indices,
+    });
+  };
+
+  const renderPopover1 = () => (
+    <div style={{ width: 300 }}>
+      <EuiPopoverTitle>INDICES</EuiPopoverTitle>
+      <EuiComboBox
+        placeholder="Select one or more indices"
+        options={options}
+        selectedOptions={selectedOptions}
+        onChange={onChange}
+        isClearable={true}
+        data-test-subj="demoComboBox"
+      />
+    </div>
+  );
+
+  const renderPopover2 = () => (
+    <div style={{ width: 150 }}>
+      <EuiPopoverTitle>WHEN</EuiPopoverTitle>
+      <EuiSelect
+        compressed
+        value={example2.value}
+        onChange={changeExample2}
+        options={[
+          {
+            value: 'count()',
+            text: 'count()',
+          },
+          {
+            value: 'sum()',
+            text: 'sum()',
+          },
+          {
+            value: 'min()',
+            text: 'min()',
+          },
+          { value: 'max()', text: 'max()' },
+        ]}
+      />
+    </div>
+  );
+
+  return (
+    <div style={{ maxWidth: 500 }}>
+      <EuiPopover
+        id={columnsPopoverId__1}
+        button={
+          <EuiExpression
+            description="indices"
+            display="columns"
+            value={example1.value}
+            isInvalid={
+              selectedOptions && selectedOptions.length > 0 ? false : true
+            }
+            isActive={example1.isOpen}
+            onClick={openExample1}
+          />
+        }
+        isOpen={example1.isOpen}
+        closePopover={closeExample1}
+        display="block"
+        panelPaddingSize="s"
+        anchorPosition="downLeft"
+      >
+        {renderPopover1()}
+      </EuiPopover>
+
+      <EuiPopover
+        id={columnsPopoverId__2}
+        panelPaddingSize="s"
+        button={
+          <EuiExpression
+            description="when"
+            display="columns"
+            value={example2.value}
+            isActive={example2.isOpen}
+            onClick={openExample2}
+          />
+        }
+        isOpen={example2.isOpen}
+        closePopover={closeExample2}
+        display="block"
+        anchorPosition="downLeft"
+      >
+        {renderPopover2()}
+      </EuiPopover>
+      <EuiExpression
+        display="columns"
+        description="Except"
+        value="kibana_sample_data_ky_counties"
+      />
+      <EuiSpacer />
+      <EuiTitle size="xxs">
+        <h3>Description width at 50px</h3>
+      </EuiTitle>
+      <EuiExpression
+        description="join"
+        display="columns"
+        descriptionWidth={50}
+        value="kibana_sample_data_ky_avl"
+        onClick={() => {}}
+      />
+    </div>
+  );
+};
+```
+
+## Invalid state
+
+Set `isInvalid` to true to display **EuiExpression**'s error state. This state will override the `color` prop with danger.
+
+```tsx interactive
+import React from 'react';
+import { EuiExpression, EuiSpacer } from '@elastic/eui';
+
+export default () => (
+  <div>
+    <EuiExpression
+      onClick={() => {}}
+      description="sort by"
+      value="count"
+      isInvalid
+    />
+    <EuiSpacer />
+    <div style={{ maxWidth: 220 }}>
+      <EuiExpression
+        description="email"
+        display="columns"
+        isInvalid
+        value="example@mail."
+        onClick={() => {}}
+      />
+    </div>
+  </div>
+);
+```
+
+## Truncate text
+
+To truncate **EuiExpression**'s content, pass `textWrap="truncate"`. Text truncation only works properly if the prop types of `description` and `value` are strings. If you're using nodes, use the `.eui-textTruncate` utility class on all their sub-children.
+
+```tsx interactive
+import React, { Fragment } from 'react';
+import { EuiExpression, EuiSpacer, EuiTitle } from '@elastic/eui';
+
+const value = 'and a very long string as value';
+const description = 'some very very long description';
+const nodes = (
+  <Fragment>
+    <p className="eui-textTruncate">.kibana_task_manager</p>
+    <p className="eui-textTruncate">kibana_sample_data_ecommerce</p>
+  </Fragment>
+);
+
+export default () => (
+  <div>
+    <div style={{ maxWidth: 240 }}>
+      <EuiExpression
+        onClick={() => {}}
+        description={description}
+        value={value}
+        textWrap="truncate"
+      />
+      <EuiSpacer />
+      <EuiExpression
+        description={description}
+        display="columns"
+        textWrap="truncate"
+        value={value}
+        onClick={() => {}}
+      />
+      <EuiSpacer />
+    </div>
+    <EuiTitle size="xxs">
+      <h3>eui-textTruncate applied to sub-children</h3>
+    </EuiTitle>
+    <div style={{ maxWidth: 310 }}>
+      <EuiExpression
+        value={nodes}
+        display="columns"
+        textWrap="truncate"
+        description="indices"
+        onClick={() => {}}
+      />
+    </div>
+  </div>
+);
+```
+
+## Props
+
+import docgen from '@elastic/eui-docgen/dist/components/expression';
+
+<PropTable definition={docgen.EuiExpression} />
