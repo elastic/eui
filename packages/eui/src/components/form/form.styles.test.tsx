@@ -30,7 +30,7 @@ describe('euiFormVariables', () => {
         "appendPrependBackground": "#e9edf3",
         "backgroundColor": "#f9fbfd",
         "backgroundDisabledColor": "#eef1f7",
-        "backgroundReadOnlyColor": "#FFF",
+        "backgroundReadOnlyColor": "#FFFFFF",
         "borderColor": "rgba(32,38,47,0.1)",
         "controlBorderRadius": "6px",
         "controlBoxShadow": "0 0 transparent",
@@ -123,8 +123,8 @@ describe('euiFormControlStyles', () => {
 
         ",
         "focus": "
-        --euiFormControlStateColor: #07C;
-        background-color: #FFF;
+        --euiFormControlStateColor: #0077CC;
+        background-color: #FFFFFF;
         background-size: 100% 100%;
         outline: none; /* Remove all outlines and rely on our own bottom border gradient */
       ",
@@ -150,7 +150,7 @@ describe('euiFormControlStyles', () => {
           color: #343741;
           -webkit-text-fill-color: #343741; /* Required for Safari */
 
-          background-color: #FFF;
+          background-color: #FFFFFF;
           --euiFormControlStateColor: transparent;
         ",
         "shared": "
@@ -237,16 +237,16 @@ describe('euiFormCustomControlStyles', () => {
           },
           "enabled": {
             "selected": "
-                color: #FFF;
-                background-color: #07C;
+                color: #FFFFFF;
+                background-color: #0077CC;
               ",
             "unselected": "
                 color: transparent;
-                background-color: #FFF;
+                background-color: #FFFFFF;
                 border: 1px solid #919296;
 
                 &:has(input:focus) {
-                  border-color: #07C;
+                  border-color: #0077CC;
                 }
               ",
           },
@@ -259,7 +259,7 @@ describe('euiFormCustomControlStyles', () => {
               align-items: center;
 
               &:has(input:focus-visible) {
-                outline: 2px solid #07C;
+                outline: 2px solid #0077CC;
                 outline-offset: 2px;
               }
 

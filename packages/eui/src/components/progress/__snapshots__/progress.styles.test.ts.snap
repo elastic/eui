@@ -19,7 +19,7 @@ exports[`euiProgressStyles indeterminate div CSS colors danger 1`] = `
 exports[`euiProgressStyles indeterminate div CSS colors primary 1`] = `
 "
   &::before {
-    background-color: #07C;
+    background-color: #0077CC;
   }
 ;;label:primary;"
 `;
@@ -175,10 +175,10 @@ exports[`euiProgressStyles native progress CSS colors danger 1`] = `
 exports[`euiProgressStyles native progress CSS colors primary 1`] = `
 "
   &::-webkit-progress-value {
-    background-color: #07C;
+    background-color: #0077CC;
   }
   &::-moz-progress-bar {
-    background-color: #07C;
+    background-color: #0077CC;
   }
 ;;label:primary;"
 `;

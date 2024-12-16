@@ -26,11 +26,11 @@ describe('EuiEmotionThemeProvider', () => {
       </EuiEmotionThemeProvider>
     );
 
-    expect(getByTestSubject('consumer')).toHaveStyleRule('color', '#07C');
+    expect(getByTestSubject('consumer')).toHaveStyleRule('color', '#0077CC');
 
     expect(container.firstChild).toMatchInlineSnapshot(`
       <div
-        class="css-cs4x42"
+        class="css-1hfqh59"
         data-test-subj="consumer"
       >
         hello world
