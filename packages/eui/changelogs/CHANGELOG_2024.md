@@ -1,3 +1,16 @@
+## [`v98.2.0`](https://github.com/elastic/eui/releases/v98.2.0)
+
+- Added two new icons: `contrast` and `contrastHigh` ([#8216](https://github.com/elastic/eui/pull/8216))
+- Updated `EuiDataGrid` content to have a transparent background. ([#8220](https://github.com/elastic/eui/pull/8220))
+
+**Accessibility**
+
+- When the tooltips components (`EuiTooltip`, `EuiIconTip`) are used inside components that handle the Escape key (like `EuiFlyout` or `EuiModal`), pressing the Escape key will now only close the tooltip and not the entire wrapping component. ([#8140](https://github.com/elastic/eui/pull/8140))
+- Improved the accessibility of `EuiCodeBlock`s by ([#8195](https://github.com/elastic/eui/pull/8195))
+  - adding screen reader only labels
+  - adding `role="dialog"` on in fullscreen mode
+  - ensuring focus is returned on closing fullscreen mode
+
 ## [`v98.1.0`](https://github.com/elastic/eui/releases/v98.1.0)
 
 - Updated `EuiBetaBadge` with a new `warning` color variant ([#8177](https://github.com/elastic/eui/pull/8177))
