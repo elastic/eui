@@ -1,6 +1,6 @@
 {
   "name": "@elastic/eui-theme-borealis",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "A visual theme for EUI",
   "license": "SEE LICENSE IN LICENSE.txt",
   "scripts": {
@@ -54,7 +54,7 @@
     "typescript": "^5.6.2"
   },
   "peerDependencies": {
-    "@elastic/eui-theme-common": "0.0.1"
+    "@elastic/eui-theme-common": "0.0.5"
   },
   "main": "lib/cjs/index.js",
   "exports": {
