@@ -437,14 +437,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 46,
+        "line": 54,
         "column": 31,
-        "index": 1569
+        "index": 1895
       },
       "end": {
-        "line": 46,
+        "line": 54,
         "column": 74,
-        "index": 1612
+        "index": 1938
       }
     },
     "filepath": "src/components/code/code_block_copy.tsx"
@@ -455,14 +455,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 55,
+        "line": 72,
         "column": 49,
-        "index": 1759
+        "index": 2157
       },
       "end": {
-        "line": 61,
+        "line": 78,
         "column": 3,
-        "index": 1914
+        "index": 2312
       }
     },
     "filepath": "src/components/code/code_block_full_screen.tsx"
@@ -473,17 +473,53 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 55,
+        "line": 72,
         "column": 49,
-        "index": 1759
+        "index": 2157
       },
       "end": {
-        "line": 61,
+        "line": 78,
         "column": 3,
-        "index": 1914
+        "index": 2312
       }
     },
     "filepath": "src/components/code/code_block_full_screen.tsx"
+  },
+  {
+    "token": "euiCodeBlockFullScreen.ariaLabel",
+    "defString": "Expanded code block",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 131,
+        "column": 20,
+        "index": 3749
+      },
+      "end": {
+        "line": 134,
+        "column": 3,
+        "index": 3830
+      }
+    },
+    "filepath": "src/components/code/code_block_full_screen.tsx"
+  },
+  {
+    "token": "euiCodeBlock.label",
+    "defString": "{language} code block:",
+    "highlighting": "string",
+    "loc": {
+      "start": {
+        "line": 268,
+        "column": 25,
+        "index": 7636
+      },
+      "end": {
+        "line": 274,
+        "column": 3,
+        "index": 7735
+      }
+    },
+    "filepath": "src/components/code/code_block.tsx"
   },
   {
     "token": "euiCollapsibleNavKibanaSolution.switcherTitle",
@@ -545,14 +581,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 180,
+        "line": 181,
         "column": 27,
-        "index": 5946
+        "index": 6023
       },
       "end": {
-        "line": 183,
+        "line": 184,
         "column": 3,
-        "index": 6016
+        "index": 6093
       }
     },
     "filepath": "src/components/collapsible_nav_beta/collapsible_nav_beta.tsx"

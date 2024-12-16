@@ -1,5 +1,20 @@
 [
   {
+    "version": "98.2.0",
+    "changes": [
+      {
+        "token": "euiCodeBlockFullScreen.ariaLabel",
+        "changeType": "added",
+        "value": "Expanded code block"
+      },
+      {
+        "token": "euiCodeBlock.label",
+        "changeType": "added",
+        "value": "{language} code block:"
+      }
+    ]
+  },
+  {
     "version": "98.1.0",
     "changes": [
       {
