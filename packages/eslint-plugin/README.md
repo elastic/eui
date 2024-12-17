@@ -5,7 +5,7 @@ This package contains an eslint plugin that enforces some default rules for usin
 ## Setup
 
 1. Install `@elastic/eslint-plugin-eui` as a dev dependency.
-2. Extend `plugin:@elastic/eui/recommended` in your eslint config.
+2. Extend `plugin:@elastic/eui/recommended` in your ESLint config.
 
 ## Rules
 
@@ -22,6 +22,15 @@ At times, we deprecate features that may need more highlighting and/or that are 
 We don't use `no-restricted-imports` because ESLint doesn't allow multiple error levels at once and it may conflict with the consumer's existing ESLint configuration for that rule. We need to assure that our rule will produce a warning (as a recommendation).
 
 All deprecations still must follow our [deprecation process](../../wiki/eui-team-processes/deprecations.md).
+
+## Testing
+
+### Against an existing package
+
+To test the local changes to the plugin, you must:
+
+1. Run `yarn pack` in the directory.
+3. In your project's `package.json`, point `@elastic/eslint-plugin-eui` to `file:/path/to/eslint-plugin-custom-rules-1.0.0.tgz`.
 
 ## Publishing
 
