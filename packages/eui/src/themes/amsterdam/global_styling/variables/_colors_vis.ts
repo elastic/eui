@@ -86,6 +86,22 @@ export const colorVis: _EuiThemeVisColors = {
 
   euiColorVisNeutral0: '#FFFFFF',
 
+  euiColorSeverity0: '#D3DAE6',
+  euiColorSeverity1: '#CC5642',
+  euiColorSeverity2: '#D2634E',
+  euiColorSeverity3: '#D66E5C',
+  euiColorSeverity4: '#DD7B67',
+  euiColorSeverity5: '#E18773',
+  euiColorSeverity6: '#E2907F',
+  euiColorSeverity7: '#E69D8F',
+  euiColorSeverity8: '#D6BF57',
+  euiColorSeverity9: '#DECC79',
+  euiColorSeverity10: '#BECFE3',
+  euiColorSeverity11: '#A6C0DA',
+  euiColorSeverity12: '#90B0D1',
+  euiColorSeverity13: '#78A2C9',
+  euiColorSeverity14: '#6092C0',
+
   euiColorVisGrey0: '#d3dae6',
   euiColorVisGrey1: '#98a2b3',
   euiColorVisGrey2: '#69707d',
