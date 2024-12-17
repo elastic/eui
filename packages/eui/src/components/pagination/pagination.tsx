@@ -159,8 +159,8 @@ export const EuiPagination: FunctionComponent<Props> = ({
             token="euiPagination.pageOfTotalCompressed"
             default="{page} of {total}"
             values={{
-              page: <span>{activePage + 1}</span>,
-              total: <span>{pageCount}</span>,
+              page: <span key="activePage">{activePage + 1}</span>,
+              total: <span key="pageCount">{pageCount}</span>,
             }}
           />
         </EuiText>
