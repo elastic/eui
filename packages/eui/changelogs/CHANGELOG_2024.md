@@ -1,3 +1,7 @@
+## [`v98.2.1`](https://github.com/elastic/eui/releases/v98.2.1)
+
+- Updated the EUI theme color values to use a full 6 char hex code format ([#8244](https://github.com/elastic/eui/pull/8244))
+
 ## [`v98.2.0`](https://github.com/elastic/eui/releases/v98.2.0)
 
 - Added two new icons: `contrast` and `contrastHigh` ([#8216](https://github.com/elastic/eui/pull/8216))
