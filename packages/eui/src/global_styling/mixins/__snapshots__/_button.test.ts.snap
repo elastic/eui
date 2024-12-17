@@ -133,9 +133,9 @@ exports[`useEuiButtonColorCSS fill 1`] = `
   },
   "accentSecondary": {
     "map": undefined,
-    "name": "14js5l7-displaysColorsMap-display-color",
+    "name": "1lwffh1-displaysColorsMap-display-color",
     "next": undefined,
-    "styles": "color:#000000;background-color:#f583b7;outline-color:#000;;label:fill-accentSecondary;",
+    "styles": "color:#000000;background-color:#f583b7;outline-color:#000000;;label:fill-accentSecondary;",
     "toString": [Function],
   },
   "danger": {
