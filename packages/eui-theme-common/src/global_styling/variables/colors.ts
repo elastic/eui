@@ -291,6 +291,22 @@ export type _EuiThemeVisColors = {
 
   euiColorVisNeutral0: string;
 
+  euiColorSeverity0: string;
+  euiColorSeverity1: string;
+  euiColorSeverity2: string;
+  euiColorSeverity3: string;
+  euiColorSeverity4: string;
+  euiColorSeverity5: string;
+  euiColorSeverity6: string;
+  euiColorSeverity7: string;
+  euiColorSeverity8: string;
+  euiColorSeverity9: string;
+  euiColorSeverity10: string;
+  euiColorSeverity11: string;
+  euiColorSeverity12: string;
+  euiColorSeverity13: string;
+  euiColorSeverity14: string;
+
   euiColorVisGrey0: string;
   euiColorVisGrey1: string;
   euiColorVisGrey2: string;
