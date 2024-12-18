@@ -9,7 +9,7 @@
 import React, { HTMLAttributes, FunctionComponent } from 'react';
 import { CommonProps } from '../../common';
 import { euiPopoverArrowStyles } from './_popover_arrow.styles';
-import { useEuiTheme } from '../../../services';
+import { useEuiMemoizedStyles } from '../../../services';
 
 export const POSITIONS = ['top', 'left', 'right', 'bottom'] as const;
 export type EuiPopoverArrowPositions = (typeof POSITIONS)[number];
@@ -24,8 +24,7 @@ export const EuiPopoverArrow: FunctionComponent<EuiPopoverArrowProps> = ({
   position,
   ...rest
 }) => {
-  const euiTheme = useEuiTheme();
-  const styles = euiPopoverArrowStyles(euiTheme);
+  const styles = useEuiMemoizedStyles(euiPopoverArrowStyles);
   const cssStyles = [styles.euiPopoverArrow, styles[position]];
 
   return (
