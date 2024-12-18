@@ -1928,7 +1928,6 @@ exports[`EuiIcon props type createGenericJob is rendered 1`] = `
   class="euiIcon emotion-euiIcon-m-app-isLoaded"
   data-icon-type="createGenericJob"
   data-is-loaded="true"
-  fill="none"
   height="32"
   role="img"
   viewBox="0 0 32 32"
