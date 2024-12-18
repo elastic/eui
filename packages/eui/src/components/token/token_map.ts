@@ -310,8 +310,8 @@ export const TOKEN_MAP_BOREALIS: {
   [mapType in EuiTokenMapType]: Omit<TokenProps, 'iconType'>;
 } = {
   tokenAlias: {
-    shape: 'circle',
-    color: 'euiColorVis1',
+    shape: 'square',
+    color: 'euiColorVis0',
   },
   tokenAnnotation: {
     shape: 'square',
@@ -319,15 +319,15 @@ export const TOKEN_MAP_BOREALIS: {
   },
   tokenArray: {
     shape: 'square',
-    color: 'euiColorVis3',
+    color: 'euiColorVis4',
   },
   tokenBinary: {
     shape: 'square',
-    color: 'euiColorVis5',
+    color: 'euiColorVis6',
   },
   tokenBoolean: {
     shape: 'square',
-    color: 'euiColorVis3',
+    color: 'euiColorVis4',
   },
   tokenClass: {
     shape: 'circle',
@@ -343,7 +343,7 @@ export const TOKEN_MAP_BOREALIS: {
   },
   tokenDate: {
     shape: 'square',
-    color: 'euiColorVis9',
+    color: 'euiColorVis8',
   },
   tokenDimension: {
     shape: 'square',
@@ -351,19 +351,19 @@ export const TOKEN_MAP_BOREALIS: {
   },
   tokenElement: {
     shape: 'square',
-    color: 'euiColorVis1',
+    color: 'euiColorVis0',
   },
   tokenEnum: {
     shape: 'circle',
-    color: 'euiColorVis1',
+    color: 'euiColorVis0',
   },
   tokenEnumMember: {
     shape: 'square',
-    color: 'euiColorVis3',
+    color: 'euiColorVis4',
   },
   tokenEvent: {
     shape: 'circle',
-    color: 'euiColorVis5',
+    color: 'euiColorVis6',
   },
   tokenException: {
     shape: 'circle',
@@ -379,7 +379,7 @@ export const TOKEN_MAP_BOREALIS: {
   },
   tokenFlattened: {
     shape: 'square',
-    color: 'euiColorVis3',
+    color: 'euiColorVis4',
   },
   tokenFunction: {
     shape: 'circle',
@@ -391,7 +391,7 @@ export const TOKEN_MAP_BOREALIS: {
   },
   tokenHistogram: {
     shape: 'square',
-    color: 'euiColorVis9',
+    color: 'euiColorVis0',
   },
   tokenInterface: {
     shape: 'circle',
@@ -427,7 +427,7 @@ export const TOKEN_MAP_BOREALIS: {
   },
   tokenModule: {
     shape: 'square',
-    color: 'euiColorVis5',
+    color: 'euiColorVis6',
   },
   tokenNamespace: {
     shape: 'square',
@@ -447,11 +447,11 @@ export const TOKEN_MAP_BOREALIS: {
   },
   tokenObject: {
     shape: 'circle',
-    color: 'euiColorVis1',
+    color: 'euiColorVis0',
   },
   tokenOperator: {
     shape: 'circle',
-    color: 'euiColorVis5',
+    color: 'euiColorVis6',
   },
   tokenPackage: {
     shape: 'square',
@@ -459,11 +459,11 @@ export const TOKEN_MAP_BOREALIS: {
   },
   tokenParameter: {
     shape: 'square',
-    color: 'euiColorVis5',
+    color: 'euiColorVis6',
   },
   tokenPercolator: {
     shape: 'square',
-    color: 'euiColorVis9',
+    color: 'euiColorVis0',
   },
   tokenProperty: {
     shape: 'circle',
@@ -471,15 +471,15 @@ export const TOKEN_MAP_BOREALIS: {
   },
   tokenRange: {
     shape: 'circle',
-    color: 'euiColorVis5',
+    color: 'euiColorVis6',
   },
   tokenRankFeature: {
     shape: 'square',
-    color: 'euiColorVis7',
+    color: 'euiColorVis8',
   },
   tokenRankFeatures: {
     shape: 'square',
-    color: 'euiColorVis1',
+    color: 'euiColorVis0',
   },
   tokenRepo: {
     shape: 'square',
@@ -495,7 +495,7 @@ export const TOKEN_MAP_BOREALIS: {
   },
   tokenShape: {
     shape: 'circle',
-    color: 'euiColorVis7',
+    color: 'euiColorVis8',
   },
   tokenString: {
     shape: 'square',
@@ -515,15 +515,15 @@ export const TOKEN_MAP_BOREALIS: {
   },
   tokenText: {
     shape: 'square',
-    color: 'euiColorVis1',
+    color: 'euiColorVis0',
   },
   tokenTokenCount: {
     shape: 'square',
-    color: 'euiColorVis5',
+    color: 'euiColorVis6',
   },
   tokenVariable: {
     shape: 'circle',
-    color: 'euiColorVis3',
+    color: 'euiColorVis4',
   },
   tokenVectorDense: {
     shape: 'square',

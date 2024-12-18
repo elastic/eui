@@ -49,7 +49,7 @@ const getTokenColor = (
     : euiTheme.colors.darkShade;
 
   const backgroundLightColor = isDarkMode
-    ? shade(iconColor, 0.7)
+    ? shade(iconColor, 0.9)
     : tint(iconColor, 0.9);
 
   const getIconVisColor = (
@@ -68,12 +68,12 @@ const getTokenColor = (
   const lightColor = hasVisColorAdjustment
     ? makeHighContrastColor(iconColor)(backgroundLightColor)
     : isVizColor
-    ? getIconVisColor(euiTheme, color)
+    ? shade(getIconVisColor(euiTheme, color), .3)
     : iconColor;
 
   const boxShadowColor = isDarkMode
     ? shade(iconColor, 0.6)
-    : tint(iconColor, 0.7);
+    : tint(iconColor, 0.2);
 
   const darkColor = isColorDark(...chroma(backgroundDarkColor).rgb())
     ? euiTheme.colors.ghost
