@@ -148,51 +148,53 @@ const _semantic_colors = {
   shade145: PRIMITIVE_COLORS.blueGrey145,
 };
 
-const plainLightRGB = chroma(_semantic_colors.plainLight);
-const primary70RGB = chroma(_semantic_colors.primary70);
-const primary100RGB = chroma(_semantic_colors.primary100);
-const accent70RGB = chroma(_semantic_colors.accent70);
-const accentSecondary70RGB = chroma(_semantic_colors.accentSecondary70);
-const success70RGB = chroma(_semantic_colors.success70);
-const warning40RGB = chroma(_semantic_colors.warning40);
-const danger70RGB = chroma(_semantic_colors.danger70);
-const shade100RGB = chroma(_semantic_colors.shade100);
-const shade120RGB = chroma(_semantic_colors.shade120);
+const plainLightRGB = chroma(_semantic_colors.plainLight).rgb().join();
+const primary70RGB = chroma(_semantic_colors.primary70).rgb().join();
+const primary100RGB = chroma(_semantic_colors.primary100).rgb().join();
+const accent70RGB = chroma(_semantic_colors.accent70).rgb().join();
+const accentSecondary70RGB = chroma(_semantic_colors.accentSecondary70)
+  .rgb()
+  .join();
+const success70RGB = chroma(_semantic_colors.success70).rgb().join();
+const warning40RGB = chroma(_semantic_colors.warning40).rgb().join();
+const danger70RGB = chroma(_semantic_colors.danger70).rgb().join();
+const shade100RGB = chroma(_semantic_colors.shade100).rgb().join();
+const shade120RGB = chroma(_semantic_colors.shade120).rgb().join();
 
 const _semantic_alpha_colors = {
-  plainLightAlpha8: `rgba(${chroma(plainLightRGB)}, 0.08)`,
-  plainLightAlpha12: `rgba(${chroma(plainLightRGB)}, 0.12)`,
-  plainLightAlpha16: `rgba(${chroma(plainLightRGB)}, 0.16)`,
-  plainLightAlpha32: `rgba(${chroma(plainLightRGB)}, 0.32)`,
+  plainLightAlpha8: `rgba(${plainLightRGB}, 0.08)`,
+  plainLightAlpha12: `rgba(${plainLightRGB}, 0.12)`,
+  plainLightAlpha16: `rgba(${plainLightRGB}, 0.16)`,
+  plainLightAlpha32: `rgba(${plainLightRGB}, 0.32)`,
 
-  primary70Alpha12: `rgba(${chroma(primary70RGB)}, 0.12)`,
-  primary70Alpha16: `rgba(${chroma(primary70RGB)}, 0.16)`,
+  primary70Alpha12: `rgba(${primary70RGB}, 0.12)`,
+  primary70Alpha16: `rgba(${primary70RGB}, 0.16)`,
 
-  primary100Alpha4: `rgba(${chroma(primary100RGB)}, 0.04)`,
-  primary100Alpha8: `rgba(${chroma(primary100RGB)}, 0.08)`,
-  primary100Alpha12: `rgba(${chroma(primary100RGB)}, 0.12)`,
+  primary100Alpha4: `rgba(${primary100RGB}, 0.04)`,
+  primary100Alpha8: `rgba(${primary100RGB}, 0.08)`,
+  primary100Alpha12: `rgba(${primary100RGB}, 0.12)`,
 
-  accent70Alpha12: `rgba(${chroma(accent70RGB)}, 0.12)`,
-  accent70Alpha16: `rgba(${chroma(accent70RGB)}, 0.16)`,
+  accent70Alpha12: `rgba(${accent70RGB}, 0.12)`,
+  accent70Alpha16: `rgba(${accent70RGB}, 0.16)`,
 
-  accentSecondary70Alpha12: `rgba(${chroma(accentSecondary70RGB)}, 0.12)`,
-  accentSecondary70Alpha16: `rgba(${chroma(accentSecondary70RGB)}, 0.16)`,
+  accentSecondary70Alpha12: `rgba(${accentSecondary70RGB}, 0.12)`,
+  accentSecondary70Alpha16: `rgba(${accentSecondary70RGB}, 0.16)`,
 
-  success70Alpha12: `rgba(${chroma(success70RGB)}, 0.12)`,
-  success70Alpha16: `rgba(${chroma(success70RGB)}, 0.16)`,
+  success70Alpha12: `rgba(${success70RGB}, 0.12)`,
+  success70Alpha16: `rgba(${success70RGB}, 0.16)`,
 
-  warning40Alpha12: `rgba(${chroma(warning40RGB)}, 0.12)`,
-  warning40Alpha24: `rgba(${chroma(warning40RGB)}, 0.24)`,
+  warning40Alpha12: `rgba(${warning40RGB}, 0.12)`,
+  warning40Alpha24: `rgba(${warning40RGB}, 0.24)`,
 
-  danger70Alpha12: `rgba(${chroma(danger70RGB)}, 0.12)`,
-  danger70Alpha16: `rgba(${chroma(danger70RGB)}, 0.16)`,
+  danger70Alpha12: `rgba(${danger70RGB}, 0.12)`,
+  danger70Alpha16: `rgba(${danger70RGB}, 0.16)`,
 
-  shade100Alpha4: `rgba(${chroma(shade100RGB)}, 0.04)`,
-  shade100Alpha16: `rgba(${chroma(shade100RGB)}, 0.16)`,
-  shade100Alpha24: `rgba(${chroma(shade100RGB)}, 0.24)`,
-  shade100Alpha70: `rgba(${chroma(shade100RGB)}, 0.7)`,
+  shade100Alpha4: `rgba(${shade100RGB}, 0.04)`,
+  shade100Alpha16: `rgba(${shade100RGB}, 0.16)`,
+  shade100Alpha24: `rgba(${shade100RGB}, 0.24)`,
+  shade100Alpha70: `rgba(${shade100RGB}, 0.7)`,
 
-  shade120Alpha70: `rgba(${chroma(shade120RGB)}, 0.7)`,
+  shade120Alpha70: `rgba(${shade120RGB}, 0.7)`,
 };
 
 export const SEMANTIC_COLORS = {
