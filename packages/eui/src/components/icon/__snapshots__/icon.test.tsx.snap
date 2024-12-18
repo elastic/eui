@@ -1922,6 +1922,29 @@ exports[`EuiIcon props type createAdvancedJob is rendered 1`] = `
 </svg>
 `;
 
+exports[`EuiIcon props type createGenericJob is rendered 1`] = `
+<svg
+  aria-hidden="true"
+  class="euiIcon emotion-euiIcon-m-app-isLoaded"
+  data-icon-type="createGenericJob"
+  data-is-loaded="true"
+  fill="none"
+  height="32"
+  role="img"
+  viewBox="0 0 32 32"
+  width="32"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    d="M16 32C7.163 32 0 24.837 0 16S7.163 0 16 0s16 7.163 16 16h-2c0-7.732-6.268-14-14-14S2 8.268 2 16s6.268 14 14 14v2Z"
+  />
+  <path
+    class="euiIcon__fillSecondary"
+    d="M17 15h6v2h-6v6h-2v-6H9v-2h6V9h2v6Zm15 15v2H20v-2h12Zm0-8H20v2h12v-2Zm0 4v2H20v-2h12Z"
+  />
+</svg>
+`;
+
 exports[`EuiIcon props type createMultiMetricJob is rendered 1`] = `
 <svg
   aria-hidden="true"
