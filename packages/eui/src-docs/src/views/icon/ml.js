@@ -20,6 +20,7 @@ const iconTypes = [
   'regressionJob',
   'createSingleMetricJob',
   'createGenericJob',
+  'createGeoJob',
 ];
 
 export default () => (

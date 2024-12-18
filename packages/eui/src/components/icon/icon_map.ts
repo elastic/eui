@@ -77,6 +77,7 @@ export const typeToPathMap = {
   copyClipboard: 'copy_clipboard',
   createAdvancedJob: 'ml_create_advanced_job',
   createGenericJob: 'ml_create_generic_job',
+  createGeoJob: 'ml_create_geo_job',
   createMultiMetricJob: 'ml_create_multi_metric_job',
   createPopulationJob: 'ml_create_population_job',
   createSingleMetricJob: 'ml_create_single_metric_job',

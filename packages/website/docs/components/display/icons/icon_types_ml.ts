@@ -10,4 +10,5 @@ export const iconTypesML: Array<IconType> = [
   'regressionJob',
   'createSingleMetricJob',
   'createGenericJob',
+  'createGeoJob',
 ];
