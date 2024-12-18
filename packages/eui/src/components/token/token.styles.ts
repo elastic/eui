@@ -68,7 +68,7 @@ const getTokenColor = (
   const lightColor = hasVisColorAdjustment
     ? makeHighContrastColor(iconColor)(backgroundLightColor)
     : isVizColor
-    ? shade(getIconVisColor(euiTheme, color), .3)
+    ? shade(getIconVisColor(euiTheme, color), 0.3)
     : iconColor;
 
   const boxShadowColor = isDarkMode
