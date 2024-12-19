@@ -146,7 +146,7 @@ export type _EuiThemeSpecialColors = {
   /**
    * The background color for the **whole window (body)** and is a computed value of `colors.lightestShade`.
    * Provides denominator (background) value for **contrast calculations**.
-   * @deprecated - use backgroundPage instead
+   * @deprecated - use backgroundBasePlain or backgroundBaseSubdued instead
    */
   body: ColorModeSwitch;
   /**
@@ -155,7 +155,7 @@ export type _EuiThemeSpecialColors = {
   highlight: ColorModeSwitch;
   /**
    * Computed against `colors.darkestShade`
-   * @deprecated - use specific semantic tokens instead (e.g. backgroundDisabled, borderDisabled etc)
+   * @deprecated - use specific semantic tokens instead (e.g. backgroundBaseDisabled, borderBaseDisabled etc)
    */
   disabled: ColorModeSwitch;
   /**
@@ -166,7 +166,6 @@ export type _EuiThemeSpecialColors = {
   /**
    * The base color for shadows that gets `transparentized`
    * at a value based on the `colorMode` and then layered.
-   * @deprecated - use specific shadow tokens instead
    */
   shadow: ColorModeSwitch;
 };
@@ -209,25 +208,25 @@ export type _EuiThemeBackgroundColors = {
 
 /** TODO: remove once usages are re-mapped */
 export type _EuiThemeTransparentBackgroundColors = {
-  /** @deprecated */
+  /** @deprecated - temp. token, was never in use */
   backgroundTransparent: string;
-  /** @deprecated */
+  /** @deprecated - temp. token, was never in use */
   backgroundTransparentPrimary: ColorModeSwitch;
-  /** @deprecated */
+  /** @deprecated - temp. token, was never in use */
   backgroundTransparentAccent: ColorModeSwitch;
-  /** @deprecated */
+  /** @deprecated - temp. token, was never in use */
   backgroundTransparentAccentSecondary: ColorModeSwitch;
-  /** @deprecated */
+  /** @deprecated - temp. token, was never in use */
   backgroundTransparentSuccess: ColorModeSwitch;
-  /** @deprecated */
+  /** @deprecated - temp. token, was never in use */
   backgroundTransparentWarning: ColorModeSwitch;
-  /** @deprecated */
+  /** @deprecated - temp. token, was never in use */
   backgroundTransparentDanger: ColorModeSwitch;
-  /** @deprecated */
+  /** @deprecated - temp. token, was never in use */
   backgroundTransparentSubdued: ColorModeSwitch;
-  /** @deprecated */
+  /** @deprecated - temp. token, was never in use */
   backgroundTransparentHighlighted: ColorModeSwitch;
-  /** @deprecated */
+  /** @deprecated - temp. token, was never in use */
   backgroundTransparentPlain: ColorModeSwitch;
 };
 
