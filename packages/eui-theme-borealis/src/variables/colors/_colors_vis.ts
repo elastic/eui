@@ -59,6 +59,17 @@ export const colorVis: _EuiThemeVisColors = {
   euiColorVis8: euiPaletteColorBlind.euiColorVis8.graphic,
   euiColorVis9: euiPaletteColorBlind.euiColorVis9.graphic,
 
+  euiColorVisBehindText0: euiPaletteColorBlind.euiColorVis0.graphic,
+  euiColorVisBehindText1: euiPaletteColorBlind.euiColorVis1.graphic,
+  euiColorVisBehindText2: euiPaletteColorBlind.euiColorVis2.graphic,
+  euiColorVisBehindText3: euiPaletteColorBlind.euiColorVis3.graphic,
+  euiColorVisBehindText4: euiPaletteColorBlind.euiColorVis4.graphic,
+  euiColorVisBehindText5: euiPaletteColorBlind.euiColorVis5.graphic,
+  euiColorVisBehindText6: euiPaletteColorBlind.euiColorVis6.graphic,
+  euiColorVisBehindText7: euiPaletteColorBlind.euiColorVis7.graphic,
+  euiColorVisBehindText8: euiPaletteColorBlind.euiColorVis8.graphic,
+  euiColorVisBehindText9: euiPaletteColorBlind.euiColorVis9.graphic,
+
   euiColorVisAsTextLight0: SEMANTIC_COLORS.accentSecondary100,
   euiColorVisAsTextLight1: SEMANTIC_COLORS.primary100,
   euiColorVisAsTextLight2: SEMANTIC_COLORS.accent100,
