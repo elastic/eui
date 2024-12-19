@@ -62,6 +62,17 @@ export const colorVis: _EuiThemeVisColors = {
   euiColorVis8: euiPaletteColorBlind.euiColorVis8.graphic,
   euiColorVis9: euiPaletteColorBlind.euiColorVis9.graphic,
 
+  euiColorVisBehindText0: '#6dccb1',
+  euiColorVisBehindText1: '#79aad9',
+  euiColorVisBehindText2: '#ee789d',
+  euiColorVisBehindText3: '#a987d1',
+  euiColorVisBehindText4: '#e4a6c7',
+  euiColorVisBehindText5: '#f1d86f',
+  euiColorVisBehindText6: '#d2c0a0',
+  euiColorVisBehindText7: '#f5a35c',
+  euiColorVisBehindText8: '#c47c6c',
+  euiColorVisBehindText9: '#ff7e62',
+
   euiColorVisAsTextLight0: '#006BB4',
   euiColorVisAsTextLight1: '#017D73',
   euiColorVisAsTextLight2: '#F5A700',
