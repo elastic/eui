@@ -36,7 +36,7 @@ const main = async () => {
   for (const file of files) {
     const fileRelativePath = path.relative(euiSrcPath, file);
 
-    const componentExtends: Array<string> = [];
+    const componentExtends: Record<string, string[]> = {};
     const parser = docgen.withCustomConfig(path.join(euiPackagePath, 'tsconfig.json'), {
       propFilter: (prop, component) => filterProp(prop, component, componentExtends),
       shouldExtractLiteralValuesFromEnum: true,
@@ -51,7 +51,7 @@ const main = async () => {
       const processedComponent = processComponent({
         componentDoc: parsedComponent,
         filePath: fileRelativePath,
-        componentExtends: componentExtends,
+        componentExtends: componentExtends[parsedComponent.displayName] || [],
       });
 
       if (!processedComponent) {
