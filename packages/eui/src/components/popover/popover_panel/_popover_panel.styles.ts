@@ -12,7 +12,6 @@ import {
   euiShadowFlat,
   euiShadowMedium,
 } from '../../../themes/amsterdam/global_styling/mixins';
-import { getShadowColor } from '../../../themes/amsterdam/global_styling/functions';
 import { UseEuiTheme, tint } from '../../../services';
 import {
   euiCanAnimate,
@@ -30,7 +29,7 @@ export const openAnimationTiming = 'slow';
  */
 
 export const euiPopoverPanelStyles = (euiThemeContext: UseEuiTheme) => {
-  const { euiTheme, colorMode } = euiThemeContext;
+  const { euiTheme } = euiThemeContext;
 
   const translateDistance = euiTheme.size.s;
   const animationSpeed = euiTheme.animation[openAnimationTiming];
