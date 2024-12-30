@@ -59,7 +59,7 @@ export const euiBetaBadgeStyles = (euiThemeContext: UseEuiTheme) => {
     s: css`
       font-size: 0.7rem;
       ${logicalCSS('height', '20px')}
-      line-height: ${mathWithUnits('20px', (x) => x * 0.97)};
+      line-height: ${mathWithUnits('20px', (x) => x * 0.98)};
     `,
     // Padding/width sizes
     badgeSizes: {
@@ -70,7 +70,7 @@ export const euiBetaBadgeStyles = (euiThemeContext: UseEuiTheme) => {
         `,
         s: `
         ${logicalCSS('padding-horizontal', euiTheme.size.m)}
-        padding-block-start: ${mathWithUnits('20px', (x) => x * 0.03)};
+        padding-block-start: ${mathWithUnits('20px', (x) => x * 0.02)};
         `,
       },
       // When it's just an icon or a single letter, make the badge a circle
