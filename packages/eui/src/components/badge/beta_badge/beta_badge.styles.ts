@@ -27,7 +27,7 @@ export const euiBetaBadgeStyles = (euiThemeContext: UseEuiTheme) => {
       border-radius: ${euiTheme.size.l};
       cursor: default;
 
-      font-weight: ${euiTheme.font.weight.bold};
+      font-weight: ${euiTheme.font.weight.semiBold};
       text-transform: uppercase;
       letter-spacing: 0.05em;
       text-align: center;
@@ -53,19 +53,25 @@ export const euiBetaBadgeStyles = (euiThemeContext: UseEuiTheme) => {
     // Font sizes
     m: css`
       font-size: ${euiFontSizeFromScale('xs', euiTheme)};
-      line-height: ${euiTheme.size.l};
+      ${logicalCSS('height', euiTheme.size.l)}
+      line-height: ${mathWithUnits(euiTheme.size.l, (x) => x * 0.95)};
     `,
     s: css`
-      font-size: 0.625rem;
-      line-height: ${mathWithUnits(euiTheme.size.xs, (x) => x + euiTheme.base)};
+      font-size: 0.7rem;
+      ${logicalCSS('height', '20px')}
+      line-height: ${mathWithUnits('20px', (x) => x * 0.97)};
     `,
     // Padding/width sizes
     badgeSizes: {
       default: {
         m: `
-        ${logicalCSS('padding-horizontal', euiTheme.size.base)}`,
+        ${logicalCSS('padding-horizontal', euiTheme.size.base)}
+        padding-block-start: ${mathWithUnits(euiTheme.size.l, (x) => x * 0.05)}
+        `,
         s: `
-        ${logicalCSS('padding-horizontal', euiTheme.size.m)}`,
+        ${logicalCSS('padding-horizontal', euiTheme.size.m)}
+        padding-block-start: ${mathWithUnits('20px', (x) => x * 0.03)};
+        `,
       },
       // When it's just an icon or a single letter, make the badge a circle
       circle: {
@@ -82,7 +88,7 @@ export const euiBetaBadgeStyles = (euiThemeContext: UseEuiTheme) => {
     },
     euiBetaBadge__icon: css`
       position: relative;
-      transform: translate(0, -1px);
+      transform: translate(0, -0.05em);
     `,
     // Alignments
     baseline: css`
