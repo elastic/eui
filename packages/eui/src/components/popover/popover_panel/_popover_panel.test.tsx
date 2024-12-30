@@ -36,12 +36,6 @@ describe('EuiPopoverPanel', () => {
       expect(container.firstChild).toMatchSnapshot();
     });
 
-    test('hasDragDrop is rendered', () => {
-      const { container } = render(<EuiPopoverPanel hasDragDrop />);
-
-      expect(container.firstChild).toMatchSnapshot();
-    });
-
     describe('position', () => {
       POSITIONS.forEach((position) => {
         test(`${position} is rendered`, () => {

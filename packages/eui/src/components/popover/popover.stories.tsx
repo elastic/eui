@@ -41,7 +41,6 @@ const meta: Meta<EuiPopoverProps> = {
     // adding defaults for quicker/easier QA
     arrowChildren: '',
     attachToAnchor: false,
-    hasDragDrop: false,
     panelClassName: '',
     popoverScreenReaderText: '',
   },
