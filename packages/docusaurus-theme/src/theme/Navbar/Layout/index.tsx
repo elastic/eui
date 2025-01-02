@@ -1,4 +1,4 @@
-import React, { type ComponentProps } from 'react';
+import { type ComponentProps, JSX } from 'react';
 import clsx from 'clsx';
 import { css } from '@emotion/react';
 import { useThemeConfig } from '@docusaurus/theme-common';

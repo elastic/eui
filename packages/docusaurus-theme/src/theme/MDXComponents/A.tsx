@@ -6,6 +6,7 @@
  * Side Public License, v 1.
  */
 
+import { JSX } from 'react';
 import type AType from '@theme-init/MDXComponents/A';
 import type { WrapperProps } from '@docusaurus/types';
 import { css } from '@emotion/react';

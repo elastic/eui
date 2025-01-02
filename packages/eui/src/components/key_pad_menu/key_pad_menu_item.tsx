@@ -13,6 +13,7 @@ import React, {
   Ref,
   LabelHTMLAttributes,
   useMemo,
+  JSX,
 } from 'react';
 import classNames from 'classnames';
 

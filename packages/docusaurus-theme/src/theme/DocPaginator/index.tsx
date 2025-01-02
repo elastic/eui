@@ -1,3 +1,4 @@
+import { JSX } from 'react';
 import { css } from '@emotion/react';
 import Translate, { translate } from '@docusaurus/Translate';
 import PaginatorNavLink from '@theme-original/PaginatorNavLink';
