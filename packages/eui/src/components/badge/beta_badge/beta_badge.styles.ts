@@ -50,7 +50,7 @@ export const euiBetaBadgeStyles = (euiThemeContext: UseEuiTheme) => {
         ${badgeColors.hollow.borderColor};
     `,
     warning: css(badgeColors.warning),
-    // Font sizes
+    // Font sizes (line height + padding-block-start = height of the badge)
     m: css`
       font-size: ${euiFontSizeFromScale('xs', euiTheme)};
       line-height: ${mathWithUnits(euiTheme.size.l, (x) => x * 0.96)};
