@@ -20,33 +20,43 @@ import { _EuiThemeVisColors } from '@elastic/eui-theme-common';
 const euiPaletteColorBlind = {
   euiColorVis0: {
     graphic: '#54B399',
+    behindText: '#6DCCB1',
   },
   euiColorVis1: {
     graphic: '#6092C0',
+    behindText: '#79AAD9',
   },
   euiColorVis2: {
     graphic: '#D36086',
+    behindText: '#EE789D',
   },
   euiColorVis3: {
     graphic: '#9170B8',
+    behindText: '#A987D1',
   },
   euiColorVis4: {
     graphic: '#CA8EAE',
+    behindText: '#E4A6C7',
   },
   euiColorVis5: {
     graphic: '#D6BF57',
+    behindText: '#F1D86F',
   },
   euiColorVis6: {
     graphic: '#B9A888',
+    behindText: '#D2C0A0',
   },
   euiColorVis7: {
     graphic: '#DA8B45',
+    behindText: '#F5A35C',
   },
   euiColorVis8: {
     graphic: '#AA6556',
+    behindText: '#C47C6C',
   },
   euiColorVis9: {
     graphic: '#E7664C',
+    behindText: '#FF7E62',
   },
 };
 
@@ -62,16 +72,20 @@ export const colorVis: _EuiThemeVisColors = {
   euiColorVis8: euiPaletteColorBlind.euiColorVis8.graphic,
   euiColorVis9: euiPaletteColorBlind.euiColorVis9.graphic,
 
-  euiColorVisBehindText0: '#6dccb1',
-  euiColorVisBehindText1: '#79aad9',
-  euiColorVisBehindText2: '#ee789d',
-  euiColorVisBehindText3: '#a987d1',
-  euiColorVisBehindText4: '#e4a6c7',
-  euiColorVisBehindText5: '#f1d86f',
-  euiColorVisBehindText6: '#d2c0a0',
-  euiColorVisBehindText7: '#f5a35c',
-  euiColorVisBehindText8: '#c47c6c',
-  euiColorVisBehindText9: '#ff7e62',
+  /**
+   * behindText variables are temp tokens; used only during theme migration.
+   * TODO: remove once Amsterdam is fully migrated
+   */
+  euiColorVisBehindText0: euiPaletteColorBlind.euiColorVis0.behindText,
+  euiColorVisBehindText1: euiPaletteColorBlind.euiColorVis1.behindText,
+  euiColorVisBehindText2: euiPaletteColorBlind.euiColorVis2.behindText,
+  euiColorVisBehindText3: euiPaletteColorBlind.euiColorVis3.behindText,
+  euiColorVisBehindText4: euiPaletteColorBlind.euiColorVis4.behindText,
+  euiColorVisBehindText5: euiPaletteColorBlind.euiColorVis5.behindText,
+  euiColorVisBehindText6: euiPaletteColorBlind.euiColorVis6.behindText,
+  euiColorVisBehindText7: euiPaletteColorBlind.euiColorVis7.behindText,
+  euiColorVisBehindText8: euiPaletteColorBlind.euiColorVis8.behindText,
+  euiColorVisBehindText9: euiPaletteColorBlind.euiColorVis9.behindText,
 
   euiColorVisAsTextLight0: '#006BB4',
   euiColorVisAsTextLight1: '#017D73',
