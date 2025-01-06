@@ -88,7 +88,7 @@ export const euiBetaBadgeStyles = (euiThemeContext: UseEuiTheme) => {
     },
     euiBetaBadge__icon: css`
       position: relative;
-      transform: translate(0, -0.05em);
+      transform: translate(0, -1px);
     `,
     // Alignments
     baseline: css`
