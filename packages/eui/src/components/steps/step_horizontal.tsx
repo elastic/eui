@@ -10,11 +10,12 @@ import classNames from 'classnames';
 import React, {
   ButtonHTMLAttributes,
   FunctionComponent,
-  MouseEvent as ReactMouseEvent,
   MouseEventHandler,
 } from 'react';
+
+import { useEuiMemoizedStyles } from '../../services';
 import { CommonProps } from '../common';
-import { useEuiTheme } from '../../services';
+
 import {
   EuiStepNumber,
   EuiStepNumberProps,
@@ -31,11 +32,7 @@ import {
   useI18nErrorsStep,
   useI18nLoadingStep,
 } from './step_strings';
-import {
-  euiStepHorizontalStyles,
-  euiStepHorizontalNumberStyles,
-  euiStepHorizontalTitleStyles,
-} from './step_horizontal.styles';
+import { euiStepHorizontalStyles } from './step_horizontal.styles';
 
 export interface EuiStepHorizontalProps
   extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'onClick'>,
@@ -79,22 +76,15 @@ export const EuiStepHorizontal: FunctionComponent<EuiStepHorizontalProps> = ({
   if (disabled) status = 'disabled';
 
   const classes = classNames('euiStepHorizontal', className);
-
-  const euiTheme = useEuiTheme();
-  const styles = euiStepHorizontalStyles(euiTheme);
+  const styles = useEuiMemoizedStyles(euiStepHorizontalStyles);
   const cssStyles = [
     styles.euiStepHorizontal,
     styles[size],
     status === 'disabled' ? styles.disabled : styles.enabled,
   ];
-
-  const numberStyles = euiStepHorizontalNumberStyles(euiTheme);
-  const cssNumberStyles = [numberStyles.euiStepHorizontal__number];
-
-  const titleStyles = euiStepHorizontalTitleStyles(euiTheme);
   const cssTitleStyles = [
-    titleStyles.euiStepHorizontal__title,
-    status === 'disabled' && titleStyles.disabled,
+    styles.title.euiStepHorizontal__title,
+    status === 'disabled' && styles.title.disabled,
   ];
 
   const titleAttrsMap: Record<EuiStepStatus | 'step', string> = {
@@ -109,18 +99,14 @@ export const EuiStepHorizontal: FunctionComponent<EuiStepHorizontalProps> = ({
   };
   const titleAttr = titleAttrsMap[status || 'step'];
 
-  const onStepClick = (
-    event: ReactMouseEvent<HTMLButtonElement, MouseEvent>
-  ) => {
-    if (!disabled) onClick(event);
-  };
-
   return (
     <button
       aria-disabled={status === 'disabled' ? true : undefined}
       className={classes}
       title={titleAttr}
-      onClick={onStepClick}
+      onClick={(event) => {
+        if (!disabled) onClick(event);
+      }}
       disabled={disabled}
       css={cssStyles}
       data-step-status={status}
@@ -131,7 +117,7 @@ export const EuiStepHorizontal: FunctionComponent<EuiStepHorizontalProps> = ({
         status={status}
         number={step}
         titleSize={stepNumberSizeMap[size]}
-        css={cssNumberStyles}
+        css={styles.number.euiStepHorizontal__number}
       />
 
       <span className="euiStepHorizontal__title" css={cssTitleStyles}>

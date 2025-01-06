@@ -15,7 +15,7 @@ import React, {
 import classNames from 'classnames';
 
 import { CommonProps } from '../../common';
-import { useEuiTheme } from '../../../services';
+import { useEuiTheme, useEuiMemoizedStyles } from '../../../services';
 import { logicalStyles } from '../../../global_styling';
 import {
   EuiResizeObserver,
@@ -75,9 +75,9 @@ export const EuiRangeSlider: FunctionComponent<EuiRangeSliderProps> = ({
 }) => {
   const classes = classNames('euiRangeSlider', className);
 
-  const euiTheme = useEuiTheme();
-  const styles = euiRangeSliderStyles(euiTheme);
-  const thumbStyles = euiRangeSliderThumbStyles(euiTheme);
+  const { euiTheme } = useEuiTheme();
+  const styles = useEuiMemoizedStyles(euiRangeSliderStyles);
+  const thumbStyles = useEuiMemoizedStyles(euiRangeSliderThumbStyles);
   const cssStyles = [
     styles.euiRangeSlider,
     showTicks && styles.hasTicks,
@@ -87,7 +87,7 @@ export const EuiRangeSlider: FunctionComponent<EuiRangeSliderProps> = ({
 
   const sliderStyle = useMemo(() => {
     return logicalStyles({
-      color: thumbColor && euiRangeLevelColor(thumbColor, euiTheme.euiTheme),
+      color: thumbColor && euiRangeLevelColor(thumbColor, euiTheme),
       ...style,
     });
   }, [thumbColor, euiTheme, style]);

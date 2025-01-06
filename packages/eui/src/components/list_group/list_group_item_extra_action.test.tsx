@@ -19,12 +19,10 @@ describe('EuiListGroupItem', () => {
     iconType: 'star',
   };
 
-  shouldRenderCustomStyles(<EuiListGroupItemExtraAction iconType="star" />);
+  shouldRenderCustomStyles(<EuiListGroupItemExtraAction {...props} />);
 
   test('is rendered', () => {
-    const { container } = render(
-      <EuiListGroupItemExtraAction {...requiredProps} iconType="star" />
-    );
+    const { container } = render(<EuiListGroupItemExtraAction {...props} />);
 
     expect(container.firstChild).toMatchSnapshot();
   });

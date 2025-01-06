@@ -12,19 +12,15 @@ exports[`EuiTimeline is rendered with items 1`] = `
       class="emotion-euiTimelineItemIcon-center"
     >
       <div
-        class="emotion-euiTimelineItemIcon__content"
+        aria-label="email"
+        class="euiAvatar euiAvatar--m euiAvatar--user emotion-euiAvatar-user-m-uppercase-subdued"
+        role="img"
+        title="email"
       >
-        <div
-          aria-label="email"
-          class="euiAvatar euiAvatar--m euiAvatar--user emotion-euiAvatar-user-m-uppercase-subdued"
-          role="img"
-          title="email"
-        >
-          <span
-            class="euiAvatar__icon"
-            data-euiicon-type="email"
-          />
-        </div>
+        <span
+          class="euiAvatar__icon"
+          data-euiicon-type="email"
+        />
       </div>
     </div>
     <div
@@ -45,19 +41,15 @@ exports[`EuiTimeline is rendered with items 1`] = `
       class="emotion-euiTimelineItemIcon-top"
     >
       <div
-        class="emotion-euiTimelineItemIcon__content"
+        aria-label=""
+        class="euiAvatar euiAvatar--m euiAvatar--user emotion-euiAvatar-user-m-uppercase-subdued"
+        role="img"
+        title=""
       >
-        <div
-          aria-label=""
-          class="euiAvatar euiAvatar--m euiAvatar--user emotion-euiAvatar-user-m-uppercase-subdued"
-          role="img"
-          title=""
-        >
-          <span
-            class="euiAvatar__icon"
-            data-euiicon-type="bolt"
-          />
-        </div>
+        <span
+          class="euiAvatar__icon"
+          data-euiicon-type="bolt"
+        />
       </div>
     </div>
     <div
@@ -86,19 +78,15 @@ exports[`EuiTimeline props gutterSize l is rendered 1`] = `
       class="emotion-euiTimelineItemIcon-center"
     >
       <div
-        class="emotion-euiTimelineItemIcon__content"
+        aria-label="email"
+        class="euiAvatar euiAvatar--m euiAvatar--user emotion-euiAvatar-user-m-uppercase-subdued"
+        role="img"
+        title="email"
       >
-        <div
-          aria-label="email"
-          class="euiAvatar euiAvatar--m euiAvatar--user emotion-euiAvatar-user-m-uppercase-subdued"
-          role="img"
-          title="email"
-        >
-          <span
-            class="euiAvatar__icon"
-            data-euiicon-type="email"
-          />
-        </div>
+        <span
+          class="euiAvatar__icon"
+          data-euiicon-type="email"
+        />
       </div>
     </div>
     <div
@@ -119,19 +107,15 @@ exports[`EuiTimeline props gutterSize l is rendered 1`] = `
       class="emotion-euiTimelineItemIcon-top"
     >
       <div
-        class="emotion-euiTimelineItemIcon__content"
+        aria-label=""
+        class="euiAvatar euiAvatar--m euiAvatar--user emotion-euiAvatar-user-m-uppercase-subdued"
+        role="img"
+        title=""
       >
-        <div
-          aria-label=""
-          class="euiAvatar euiAvatar--m euiAvatar--user emotion-euiAvatar-user-m-uppercase-subdued"
-          role="img"
-          title=""
-        >
-          <span
-            class="euiAvatar__icon"
-            data-euiicon-type="bolt"
-          />
-        </div>
+        <span
+          class="euiAvatar__icon"
+          data-euiicon-type="bolt"
+        />
       </div>
     </div>
     <div
@@ -160,19 +144,15 @@ exports[`EuiTimeline props gutterSize m is rendered 1`] = `
       class="emotion-euiTimelineItemIcon-center"
     >
       <div
-        class="emotion-euiTimelineItemIcon__content"
+        aria-label="email"
+        class="euiAvatar euiAvatar--m euiAvatar--user emotion-euiAvatar-user-m-uppercase-subdued"
+        role="img"
+        title="email"
       >
-        <div
-          aria-label="email"
-          class="euiAvatar euiAvatar--m euiAvatar--user emotion-euiAvatar-user-m-uppercase-subdued"
-          role="img"
-          title="email"
-        >
-          <span
-            class="euiAvatar__icon"
-            data-euiicon-type="email"
-          />
-        </div>
+        <span
+          class="euiAvatar__icon"
+          data-euiicon-type="email"
+        />
       </div>
     </div>
     <div
@@ -193,19 +173,15 @@ exports[`EuiTimeline props gutterSize m is rendered 1`] = `
       class="emotion-euiTimelineItemIcon-top"
     >
       <div
-        class="emotion-euiTimelineItemIcon__content"
+        aria-label=""
+        class="euiAvatar euiAvatar--m euiAvatar--user emotion-euiAvatar-user-m-uppercase-subdued"
+        role="img"
+        title=""
       >
-        <div
-          aria-label=""
-          class="euiAvatar euiAvatar--m euiAvatar--user emotion-euiAvatar-user-m-uppercase-subdued"
-          role="img"
-          title=""
-        >
-          <span
-            class="euiAvatar__icon"
-            data-euiicon-type="bolt"
-          />
-        </div>
+        <span
+          class="euiAvatar__icon"
+          data-euiicon-type="bolt"
+        />
       </div>
     </div>
     <div
@@ -234,19 +210,15 @@ exports[`EuiTimeline props gutterSize xl is rendered 1`] = `
       class="emotion-euiTimelineItemIcon-center"
     >
       <div
-        class="emotion-euiTimelineItemIcon__content"
+        aria-label="email"
+        class="euiAvatar euiAvatar--m euiAvatar--user emotion-euiAvatar-user-m-uppercase-subdued"
+        role="img"
+        title="email"
       >
-        <div
-          aria-label="email"
-          class="euiAvatar euiAvatar--m euiAvatar--user emotion-euiAvatar-user-m-uppercase-subdued"
-          role="img"
-          title="email"
-        >
-          <span
-            class="euiAvatar__icon"
-            data-euiicon-type="email"
-          />
-        </div>
+        <span
+          class="euiAvatar__icon"
+          data-euiicon-type="email"
+        />
       </div>
     </div>
     <div
@@ -267,19 +239,15 @@ exports[`EuiTimeline props gutterSize xl is rendered 1`] = `
       class="emotion-euiTimelineItemIcon-top"
     >
       <div
-        class="emotion-euiTimelineItemIcon__content"
+        aria-label=""
+        class="euiAvatar euiAvatar--m euiAvatar--user emotion-euiAvatar-user-m-uppercase-subdued"
+        role="img"
+        title=""
       >
-        <div
-          aria-label=""
-          class="euiAvatar euiAvatar--m euiAvatar--user emotion-euiAvatar-user-m-uppercase-subdued"
-          role="img"
-          title=""
-        >
-          <span
-            class="euiAvatar__icon"
-            data-euiicon-type="bolt"
-          />
-        </div>
+        <span
+          class="euiAvatar__icon"
+          data-euiicon-type="bolt"
+        />
       </div>
     </div>
     <div

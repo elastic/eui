@@ -7,7 +7,6 @@
  */
 
 import React, {
-  Fragment,
   HTMLAttributes,
   AnchorHTMLAttributes,
   ButtonHTMLAttributes,
@@ -18,23 +17,22 @@ import React, {
 } from 'react';
 import classNames from 'classnames';
 
+import {
+  getSecureRelForTarget,
+  useEuiMemoizedStyles,
+  cloneElementWithCss,
+} from '../../services';
+import { validateHref } from '../../services/security/href_validator';
+import { ExclusiveUnion, CommonProps } from '../common';
+import { useInnerText } from '../inner_text';
 import { EuiIcon, IconType, EuiIconProps } from '../icon';
 import { EuiToolTip, EuiToolTipProps } from '../tool_tip';
-import { useInnerText } from '../inner_text';
-import { ExclusiveUnion, CommonProps } from '../common';
+import { EuiExternalLinkIcon } from '../link/external_link_icon';
+
 import {
   EuiListGroupItemExtraAction,
   EuiListGroupItemExtraActionProps,
 } from './list_group_item_extra_action';
-
-import {
-  getSecureRelForTarget,
-  useEuiTheme,
-  cloneElementWithCss,
-} from '../../services';
-import { validateHref } from '../../services/security/href_validator';
-import { EuiExternalLinkIcon } from '../link/external_link_icon';
-
 import {
   euiListGroupItemStyles,
   euiListGroupItemIconStyles,
@@ -185,9 +183,7 @@ export const EuiListGroupItem: FunctionComponent<EuiListGroupItemProps> = ({
   const isHrefValid = !href || validateHref(href);
   const isDisabled = _isDisabled || !isHrefValid;
 
-  const euiTheme = useEuiTheme();
-
-  const iconStyles = euiListGroupItemIconStyles(euiTheme);
+  const iconStyles = useEuiMemoizedStyles(euiListGroupItemIconStyles);
   const cssIconStyles = [iconStyles.euiListGroupItem__icon, iconProps?.css];
 
   let iconNode;
@@ -243,7 +239,7 @@ export const EuiListGroupItem: FunctionComponent<EuiListGroupItemProps> = ({
     );
   }
 
-  const labelStyles = euiListGroupItemLabelStyles();
+  const labelStyles = euiListGroupItemLabelStyles;
   const cssLabelStyles = [
     labelStyles.euiListGroupItem__label,
     wrapText ? labelStyles.wrapText : labelStyles.truncate,
@@ -271,7 +267,7 @@ export const EuiListGroupItem: FunctionComponent<EuiListGroupItemProps> = ({
   // Handle the variety of interaction behavior
   let itemContent;
 
-  const innerStyles = euiListGroupItemInnerStyles(euiTheme);
+  const innerStyles = useEuiMemoizedStyles(euiListGroupItemInnerStyles);
   const cssInnerStyles = [
     innerStyles.euiListGroupItem__inner,
     innerStyles[size],
@@ -321,7 +317,7 @@ export const EuiListGroupItem: FunctionComponent<EuiListGroupItemProps> = ({
     );
   }
 
-  const styles = euiListGroupItemStyles(euiTheme);
+  const styles = useEuiMemoizedStyles(euiListGroupItemStyles);
   const cssStyles = [
     styles.euiListGroupItem,
     !isDisabled && isActive && styles.colors.isActive[color],
@@ -333,7 +329,7 @@ export const EuiListGroupItem: FunctionComponent<EuiListGroupItemProps> = ({
   const classes = classNames('euiListGroupItem', className);
 
   if (showToolTip) {
-    const tooltipStyles = euiListGroupItemTooltipStyles();
+    const tooltipStyles = euiListGroupItemTooltipStyles;
     const cssTooltipStyles = [
       tooltipStyles.euiListGroupItem__tooltip,
       toolTipProps?.anchorProps?.css,
@@ -375,5 +371,5 @@ export const EuiListGroupItem: FunctionComponent<EuiListGroupItemProps> = ({
     );
   }
 
-  return <Fragment>{itemContent}</Fragment>;
+  return <>{itemContent}</>;
 };
