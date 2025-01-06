@@ -2,45 +2,53 @@
 
 exports[`ExpandedItemActions renders 1`] = `
 <div>
-  <span
-    class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
+  <div
+    class=" icon-wrapper css-1j3nbwz-isDisabled"
   >
-    <button
-      class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-s-empty-primary-flush-right"
-      type="button"
+    <span
+      class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
     >
-      <span
-        class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
+      <button
+        class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-s-empty-primary-flush-right"
+        type="button"
       >
         <span
-          class="eui-textTruncate euiButtonEmpty__text"
+          class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
         >
-          default1
+          <span
+            class="eui-textTruncate euiButtonEmpty__text"
+          >
+            default1
+          </span>
         </span>
-      </span>
-    </button>
-  </span>
+      </button>
+    </span>
+  </div>
   <div
     class=""
   />
-  <span
-    class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
+  <div
+    class="euiBasicTableAction-showOnHover icon-wrapper css-1j3nbwz-isDisabled"
   >
-    <a
-      class="euiButtonEmpty euiBasicTableAction-showOnHover emotion-euiButtonDisplay-euiButtonEmpty-s-empty-primary-flush-right"
-      href="#"
-      rel="noreferrer"
+    <span
+      class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
     >
-      <span
-        class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
+      <a
+        class="euiButtonEmpty euiBasicTableAction-showOnHover emotion-euiButtonDisplay-euiButtonEmpty-s-empty-primary-flush-right"
+        href="#"
+        rel="noreferrer"
       >
         <span
-          class="eui-textTruncate euiButtonEmpty__text"
+          class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
         >
-          showOnHover
+          <span
+            class="eui-textTruncate euiButtonEmpty__text"
+          >
+            showOnHover
+          </span>
         </span>
-      </span>
-    </a>
-  </span>
+      </a>
+    </span>
+  </div>
 </div>
 `;
