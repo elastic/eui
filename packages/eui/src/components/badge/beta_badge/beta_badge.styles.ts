@@ -53,22 +53,22 @@ export const euiBetaBadgeStyles = (euiThemeContext: UseEuiTheme) => {
     // Font sizes
     m: css`
       font-size: ${euiFontSizeFromScale('xs', euiTheme)};
-      ${logicalCSS('height', euiTheme.size.l)}
       line-height: ${mathWithUnits(euiTheme.size.l, (x) => x * 0.96)};
     `,
     s: css`
       font-size: 0.7rem;
-      ${logicalCSS('height', '20px')}
       line-height: ${mathWithUnits('20px', (x) => x * 0.98)};
     `,
     // Padding/width sizes
     badgeSizes: {
       default: {
         m: `
+        ${logicalCSS('height', euiTheme.size.l)}
         ${logicalCSS('padding-horizontal', euiTheme.size.base)}
         padding-block-start: ${mathWithUnits(euiTheme.size.l, (x) => x * 0.04)}
         `,
         s: `
+        ${logicalCSS('height', '20px')}
         ${logicalCSS('padding-horizontal', euiTheme.size.m)}
         padding-block-start: ${mathWithUnits('20px', (x) => x * 0.02)};
         `,
