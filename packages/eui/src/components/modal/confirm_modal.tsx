@@ -118,7 +118,7 @@ export const EuiConfirmModal: FunctionComponent<EuiConfirmModalProps> = ({
 
   if (title) {
     modalTitle = (
-      <EuiModalHeader>
+      <EuiModalHeader onClose={onCancel}>
         <EuiModalHeaderTitle
           data-test-subj="confirmModalTitleText"
           {...titleProps}

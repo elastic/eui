@@ -18,18 +18,6 @@ exports[`EuiConfirmModal renders EuiConfirmModal 1`] = `
       role="alertdialog"
       tabindex="0"
     >
-      <button
-        aria-label="Closes this modal window"
-        class="euiButtonIcon euiModal__closeIcon emotion-euiButtonIcon-xs-empty-text-euiModal__closeIcon"
-        type="button"
-      >
-        <span
-          aria-hidden="true"
-          class="euiButtonIcon__icon"
-          color="inherit"
-          data-euiicon-type="cross"
-        />
-      </button>
       <div
         class="euiModalHeader emotion-euiModalHeader"
       >
@@ -39,6 +27,18 @@ exports[`EuiConfirmModal renders EuiConfirmModal 1`] = `
         >
           A confirmation modal
         </h1>
+        <button
+          aria-label="Closes this modal window"
+          class="euiButtonIcon euiModal__closeIcon emotion-euiButtonIcon-xs-empty-text-euiModal__closeIcon"
+          type="button"
+        >
+          <span
+            aria-hidden="true"
+            class="euiButtonIcon__icon"
+            color="inherit"
+            data-euiicon-type="cross"
+          />
+        </button>
       </div>
       <div
         class="euiModalBody emotion-euiModalBody"
@@ -118,18 +118,6 @@ exports[`EuiConfirmModal renders EuiConfirmModal without EuiModalBody, if empty 
       role="alertdialog"
       tabindex="0"
     >
-      <button
-        aria-label="Closes this modal window"
-        class="euiButtonIcon euiModal__closeIcon emotion-euiButtonIcon-xs-empty-text-euiModal__closeIcon"
-        type="button"
-      >
-        <span
-          aria-hidden="true"
-          class="euiButtonIcon__icon"
-          color="inherit"
-          data-euiicon-type="cross"
-        />
-      </button>
       <div
         class="euiModalHeader emotion-euiModalHeader"
       >
@@ -139,6 +127,18 @@ exports[`EuiConfirmModal renders EuiConfirmModal without EuiModalBody, if empty 
         >
           A confirmation modal
         </h1>
+        <button
+          aria-label="Closes this modal window"
+          class="euiButtonIcon euiModal__closeIcon emotion-euiButtonIcon-xs-empty-text-euiModal__closeIcon"
+          type="button"
+        >
+          <span
+            aria-hidden="true"
+            class="euiButtonIcon__icon"
+            color="inherit"
+            data-euiicon-type="cross"
+          />
+        </button>
       </div>
       <div
         class="euiModalFooter emotion-euiModalFooter"

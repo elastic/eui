@@ -73,11 +73,5 @@ export const euiModalStyles = (euiThemeContext: UseEuiTheme) => {
         inset-block-start: auto;
       }
     `,
-    euiModal__closeIcon: css`
-      position: absolute;
-      inset-inline-end: ${euiTheme.size.xs};
-      inset-block-start: ${euiTheme.size.xs};
-      z-index: 3;
-    `,
   };
 };
