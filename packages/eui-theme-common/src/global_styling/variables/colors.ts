@@ -266,6 +266,27 @@ export type _EuiThemeVisColors = {
   euiColorVis8: string;
   euiColorVis9: string;
 
+  /** @deprecated - temp token; used only during theme migration */
+  euiColorVisBehindText0: string;
+  /** @deprecated - temp token; used only during theme migration */
+  euiColorVisBehindText1: string;
+  /** @deprecated - temp token; used only during theme migration */
+  euiColorVisBehindText2: string;
+  /** @deprecated - temp token; used only during theme migration */
+  euiColorVisBehindText3: string;
+  /** @deprecated - temp token; used only during theme migration */
+  euiColorVisBehindText4: string;
+  /** @deprecated - temp token; used only during theme migration */
+  euiColorVisBehindText5: string;
+  /** @deprecated - temp token; used only during theme migration */
+  euiColorVisBehindText6: string;
+  /** @deprecated - temp token; used only during theme migration */
+  euiColorVisBehindText7: string;
+  /** @deprecated - temp token; used only during theme migration */
+  euiColorVisBehindText8: string;
+  /** @deprecated - temp token; used only during theme migration */
+  euiColorVisBehindText9: string;
+
   euiColorVisAsTextLight0: string;
   euiColorVisAsTextLight1: string;
   euiColorVisAsTextLight2: string;
