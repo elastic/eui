@@ -365,6 +365,7 @@ export const typeToPathMap = {
   scale: 'scale',
   search: 'search',
   searchProfilerApp: 'app_search_profiler',
+  section: 'section',
   securityAnalyticsApp: 'app_security_analytics',
   securityApp: 'app_security',
   securitySignal: 'securitySignal',
