@@ -69,7 +69,6 @@ export const euiBetaBadgeStyles = (euiThemeContext: UseEuiTheme) => {
         m: `
         ${logicalCSS('height', badgeSizes.m)}
         ${logicalCSS('padding-horizontal', euiTheme.size.base)}
-        padding-block-start: 1px
         `,
         s: `
         ${logicalCSS('height', badgeSizes.s)}
