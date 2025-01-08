@@ -20,12 +20,14 @@
 module.exports = {
   rules: {
     'href-or-on-click': require('./rules/href_or_on_click'),
+    'no-restricted-eui-imports': require('./rules/no_restricted_eui_imports'),
   },
   configs: {
     recommended: {
       plugins: ['@elastic/eslint-plugin-eui'],
       rules: {
         '@elastic/eui/href-or-on-click': 'warn',
+        '@elastic/eui/no-restricted-eui-imports': 'warn',
       },
     },
   },

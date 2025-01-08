@@ -60,7 +60,8 @@ ruleTester.run('@elastic/eui/href-or-on-click', rule, {
 
       errors: [
         {
-          message: '<EuiButton> accepts either `href` or `onClick`, not both.',
+          message:
+            '<EuiButton> supplied with both `href` and `onClick`; is this intentional? (Valid use cases include programmatic navigation via `onClick` while preserving \"Open in new tab\" style functionality via `href`.)',
         },
       ],
     },
@@ -74,7 +75,7 @@ ruleTester.run('@elastic/eui/href-or-on-click', rule, {
       errors: [
         {
           message:
-            '<EuiButtonEmpty> accepts either `href` or `onClick`, not both.',
+            '<EuiButtonEmpty> supplied with both `href` and `onClick`; is this intentional? (Valid use cases include programmatic navigation via `onClick` while preserving "Open in new tab" style functionality via `href`.)',
         },
       ],
     },
@@ -87,7 +88,8 @@ ruleTester.run('@elastic/eui/href-or-on-click', rule, {
 
       errors: [
         {
-          message: '<EuiLink> accepts either `href` or `onClick`, not both.',
+          message:
+            '<EuiLink> supplied with both `href` and `onClick`; is this intentional? (Valid use cases include programmatic navigation via `onClick` while preserving "Open in new tab" style functionality via `href`.)',
         },
       ],
     },
