@@ -20,6 +20,10 @@ import { euiBadgeColors } from '../color_utils';
 export const euiBetaBadgeStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme, colorMode } = euiThemeContext;
   const badgeColors = euiBadgeColors(euiThemeContext);
+  const badgeSizes = {
+    m: euiTheme.size.l,
+    s: mathWithUnits(euiTheme.size.base, (x) => x * 1.25),
+  };
 
   return {
     euiBetaBadge: css`
@@ -50,27 +54,26 @@ export const euiBetaBadgeStyles = (euiThemeContext: UseEuiTheme) => {
         ${badgeColors.hollow.borderColor};
     `,
     warning: css(badgeColors.warning),
-    // Font sizes (line height + padding-block-start = height of the badge)
+    // Font sizes
     m: css`
       font-size: ${euiFontSizeFromScale('xs', euiTheme)};
-      line-height: ${mathWithUnits(euiTheme.size.l, (x) => x * 0.96)};
+      line-height: ${badgeSizes.m};
     `,
     s: css`
       font-size: 0.7rem;
-      line-height: ${mathWithUnits('20px', (x) => x * 0.98)};
+      line-height: ${badgeSizes.s};
     `,
     // Padding/width sizes
     badgeSizes: {
       default: {
         m: `
-        ${logicalCSS('height', euiTheme.size.l)}
+        ${logicalCSS('height', badgeSizes.m)}
         ${logicalCSS('padding-horizontal', euiTheme.size.base)}
-        padding-block-start: ${mathWithUnits(euiTheme.size.l, (x) => x * 0.04)}
+        padding-block-start: 1px
         `,
         s: `
-        ${logicalCSS('height', '20px')}
+        ${logicalCSS('height', badgeSizes.s)}
         ${logicalCSS('padding-horizontal', euiTheme.size.m)}
-        padding-block-start: ${mathWithUnits('20px', (x) => x * 0.02)};
         `,
       },
       // When it's just an icon or a single letter, make the badge a circle
