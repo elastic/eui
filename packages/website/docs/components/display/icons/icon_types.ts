@@ -224,6 +224,7 @@ export const iconTypes: Array<IconType> = [
   'save',
   'scale',
   'search',
+  'section',
   'securitySignal',
   'securitySignalDetected',
   'securitySignalResolved',
