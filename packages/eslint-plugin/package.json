@@ -13,6 +13,10 @@
   "devDependencies": {
     "@babel/core": "^7.6.0",
     "babel-eslint": "^10.0.3",
-    "eslint": "^6.4.0"
+    "eslint": "^6.4.0",
+    "jest": "^29.7.0"
+  },
+  "scripts": {
+    "test": "jest"
   }
 }
