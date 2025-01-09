@@ -95,26 +95,26 @@ $euiColorTextDanger: $euiColorDangerText !default;
 $euiLinkColor: $euiColorPrimaryText !default;
 
 // Borders
-$euiColorBorderBasePrimary: shade($euiColorPrimary, 0.6);
-$euiColorBorderBaseAccent: shade($euiColorAccent, 0.6);
-$euiColorBorderBaseAccentSecondary: shade($euiColorAccentSecondary, 0.6);
-$euiColorBorderBaseSuccess: shade($euiColorSuccess, 0.6);
-$euiColorBorderBaseWarning: shade($euiColorWarning, 0.6);
-$euiColorBorderBaseDanger: shade($euiColorDanger, 0.6);
+$euiColorBorderBasePrimary: shade($euiColorPrimary, 0.6) !default;
+$euiColorBorderBaseAccent: shade($euiColorAccent, 0.6) !default;
+$euiColorBorderBaseAccentSecondary: shade($euiColorAccentSecondary, 0.6) !default;
+$euiColorBorderBaseSuccess: shade($euiColorSuccess, 0.6) !default;
+$euiColorBorderBaseWarning: shade($euiColorWarning, 0.6) !default;
+$euiColorBorderBaseDanger: shade($euiColorDanger, 0.6) !default;
 
-$euiColorBorderBasePlain: $euiColorLightShade;
-$euiColorBorderBaseSubdued: $euiColorLightShade;
-$euiColorBorderBaseDisabled: transparentize($euiColorGhost, 0.1);
-$euiColorBorderBaseFloating: $euiColorLightShade;
-$euiColorBorderBaseFormsColorSwatch: transparentize($euiColorFullShade, 0.1);
-$euiColorBorderBaseFormsControl: tint($euiColorLightestShade, 0.31);
+$euiColorBorderBasePlain: $euiColorLightShade !default;
+$euiColorBorderBaseSubdued: $euiColorLightShade !default;
+$euiColorBorderBaseDisabled: transparentize($euiColorGhost, 0.1) !default;
+$euiColorBorderBaseFloating: $euiColorLightShade !default;
+$euiColorBorderBaseFormsColorSwatch: transparentize($euiColorFullShade, 0.1) !default;
+$euiColorBorderBaseFormsControl: tint($euiColorLightestShade, 0.31) !default;
 
-$euiColorBorderStrongPrimary: $euiColorBorderBasePrimary;
-$euiColorBorderStrongAccent: $euiColorBorderBaseAccent;
-$euiColorBorderStrongAccentSecondary: $euiColorBorderBaseAccentSecondary;
-$euiColorBorderStrongSuccess: $euiColorBorderBaseSuccess;
-$euiColorBorderStrongWarning: $euiColorBorderBaseWarning;
-$euiColorBorderStrongDanger: $euiColorBorderBaseDanger;
+$euiColorBorderStrongPrimary: $euiColorBorderBasePrimary !default;
+$euiColorBorderStrongAccent: $euiColorBorderBaseAccent !default;
+$euiColorBorderStrongAccentSecondary: $euiColorBorderBaseAccentSecondary !default;
+$euiColorBorderStrongSuccess: $euiColorBorderBaseSuccess !default;
+$euiColorBorderStrongWarning: $euiColorBorderBaseWarning !default;
+$euiColorBorderStrongDanger: $euiColorBorderBaseDanger !default;
 
 // Charts
 $euiColorChartLines: $euiColorLightShade !default;

@@ -96,26 +96,26 @@ $euiColorTextWarning: $euiColorWarning30 !default;
 $euiColorTextDanger: $euiColorDanger60 !default;
 
 // Borders
-$euiColorBorderBasePrimary: $euiColorPrimary120;
-$euiColorBorderBaseAccent: $euiColorAccent120;
-$euiColorBorderBaseAccentSecondary: $euiColorAccentSecondary120;
-$euiColorBorderBaseSuccess: $euiColorSuccess120;
-$euiColorBorderBaseWarning: $euiColorWarning120;
-$euiColorBorderBaseDanger: $euiColorDanger120;
+$euiColorBorderBasePrimary: $euiColorPrimary120 !default;
+$euiColorBorderBaseAccent: $euiColorAccent120 !default;
+$euiColorBorderBaseAccentSecondary: $euiColorAccentSecondary120 !default;
+$euiColorBorderBaseSuccess: $euiColorSuccess120 !default;
+$euiColorBorderBaseWarning: $euiColorWarning120 !default;
+$euiColorBorderBaseDanger: $euiColorDanger120 !default;
 
-$euiColorBorderBasePlain: $euiColorShade100;
-$euiColorBorderBaseSubdued: $euiColorShade120;
-$euiColorBorderBaseDisabled: $euiColorShade100;
-$euiColorBorderBaseFloating: $euiColorShade120;
-$euiColorBorderBaseFormsColorSwatch: $euiColorPlainLightAlpha32;
-$euiColorBorderBaseFormsControl: $euiColorShade80;
+$euiColorBorderBasePlain: $euiColorShade100 !default;
+$euiColorBorderBaseSubdued: $euiColorShade120 !default;
+$euiColorBorderBaseDisabled: $euiColorShade100 !default;
+$euiColorBorderBaseFloating: $euiColorShade120 !default;
+$euiColorBorderBaseFormsColorSwatch: $euiColorPlainLightAlpha32 !default;
+$euiColorBorderBaseFormsControl: $euiColorShade80 !default;
 
-$euiColorStrongBasePrimary: $euiColorPrimary60;
-$euiColorStrongBaseAccent: $euiColorAccent60;
-$euiColorStrongBaseAccentSecondary: $euiColorAccentSecondary60;
-$euiColorStrongBaseSuccess: $euiColorSuccess60;
-$euiColorStrongBaseWarning: $euiColorWarning40;
-$euiColorStrongBaseDanger: $euiColorDanger60;
+$euiColorBorderStrongPrimary: $euiColorPrimary60 !default;
+$euiColorBorderStrongAccent: $euiColorAccent60 !default;
+$euiColorBorderStrongAccentSecondary: $euiColorAccentSecondary60 !default;
+$euiColorBorderStrongSuccess: $euiColorSuccess60 !default;
+$euiColorBorderStrongWarning: $euiColorWarning40 !default;
+$euiColorBorderStrongDanger: $euiColorDanger60 !default;
 
 // Charts
 $euiColorChartLines: $euiColorShade85 !default;
