@@ -151,12 +151,12 @@ exports[`euiMarkdownFormat text colors default 1`] = `
 exports[`euiMarkdownFormat text colors ghost 1`] = `
 "
     .euiMarkdownFormat__blockquote {
-      border-inline-start-color: #FFF;
+      border-inline-start-color: #FFFFFF;
     }
 
     .euiHorizontalRule {
-      background-color: #FFF;
-      color: #FFF; /* ensure that firefox gets the currentColor */
+      background-color: #FFFFFF;
+      color: #FFFFFF; /* ensure that firefox gets the currentColor */
     }
 
     /* Tables */
@@ -167,20 +167,20 @@ exports[`euiMarkdownFormat text colors ghost 1`] = `
       overflow: auto;
       border-spacing: 0;
       border-collapse: collapse;
-      border-inline-start: 1px solid #FFF;
+      border-inline-start: 1px solid #FFFFFF;
     }
 
     .euiMarkdownFormat__table th,
     .euiMarkdownFormat__table td {
-      border-block: 1px solid #FFF;
+      border-block: 1px solid #FFFFFF;
 
       &:last-child {
-        border-inline-end: 1px solid #FFF;
+        border-inline-end: 1px solid #FFFFFF;
       }
     }
 
     .euiMarkdownFormat__table tr {
-      border-block-start: 1px solid #FFF;
+      border-block-start: 1px solid #FFFFFF;
     }
   ;label:ghost;"
 `;

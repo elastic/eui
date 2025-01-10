@@ -115,13 +115,17 @@ describe('EuiAbsoluteTab', () => {
         locale: LocaleSpecifier;
         dateString: string;
       }>([
-        { locale: 'en', dateString: 'Mon Jan 1st' },
-        { locale: 'zh-CN', dateString: '周一 1月 1日' },
-        { locale: 'ja-JP', dateString: '月 1月 1日' },
-        { locale: 'fr-FR', dateString: 'lun. janv. 1er' },
+        { locale: 'en', dateString: 'Mon Jan 2024 1st' },
+        { locale: 'zh-CN', dateString: '周一 1月 2024 1日' },
+        { locale: 'ja-JP', dateString: '月 1月 2024 1日' },
+        { locale: 'fr-FR', dateString: 'lun. janv. 2024 1er' },
       ])('%p', ({ locale, dateString }) => {
         const { getByTestSubject } = render(
-          <EuiAbsoluteTab {...props} dateFormat="ddd MMM Do" locale={locale} />
+          <EuiAbsoluteTab
+            {...props}
+            dateFormat="ddd MMM YYYY Do"
+            locale={locale}
+          />
         );
         const input = getByTestSubject('superDatePickerAbsoluteDateInput');
 

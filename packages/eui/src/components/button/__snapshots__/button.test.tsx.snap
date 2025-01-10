@@ -288,7 +288,7 @@ exports[`EuiButton props isLoading is rendered 1`] = `
       aria-label="Loading"
       class="euiLoadingSpinner emotion-euiLoadingSpinner-m"
       role="progressbar"
-      style="border-color: #07c currentcolor currentcolor currentcolor;"
+      style="border-color: #0077cc currentcolor currentcolor currentcolor;"
     />
   </span>
 </button>

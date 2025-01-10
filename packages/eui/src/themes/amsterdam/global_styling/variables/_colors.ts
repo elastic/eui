@@ -28,7 +28,7 @@ import {
  */
 
 export const brand_colors: _EuiThemeBrandColors = {
-  primary: '#07C',
+  primary: '#0077CC',
   accent: '#F04E98',
   success: '#00BFB3',
   warning: '#FEC514',
@@ -44,13 +44,13 @@ export const brand_text_colors: _EuiThemeBrandTextColors = {
 };
 
 export const shade_colors: _EuiThemeShadeColors = {
-  emptyShade: '#FFF',
+  emptyShade: '#FFFFFF',
   lightestShade: '#F1F4FA',
   lightShade: '#D3DAE6',
   mediumShade: '#98A2B3',
   darkShade: '#69707D',
   darkestShade: '#343741',
-  fullShade: '#000',
+  fullShade: '#000000',
 };
 
 export const special_colors: _EuiThemeSpecialColors = {
@@ -91,7 +91,7 @@ export const dark_shades: _EuiThemeShadeColors = {
   mediumShade: '#535966',
   darkShade: '#98A2B3',
   darkestShade: '#D4DAE5',
-  fullShade: '#FFF',
+  fullShade: '#FFFFFF',
 };
 
 export const dark_colors_ams: _EuiThemeColorsMode = {
@@ -130,8 +130,8 @@ export const dark_colors_ams: _EuiThemeColorsMode = {
  */
 
 export const colors: _EuiThemeColors = {
-  ghost: '#FFF',
-  ink: '#000',
+  ghost: '#FFFFFF',
+  ink: '#000000',
   LIGHT: light_colors,
   DARK: dark_colors_ams,
 };

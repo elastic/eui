@@ -1781,6 +1781,45 @@ exports[`EuiIcon props type continuityWithin is rendered 1`] = `
 </svg>
 `;
 
+exports[`EuiIcon props type contrast is rendered 1`] = `
+<svg
+  aria-hidden="true"
+  class="euiIcon emotion-euiIcon-m-isLoaded"
+  data-icon-type="contrast"
+  data-is-loaded="true"
+  height="16"
+  role="img"
+  viewBox="0 0 16 16"
+  width="16"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    clip-rule="evenodd"
+    d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14Zm.5-1.5h1.902a6.004 6.004 0 0 0 1.567-1H8.5v1Zm0-2h4.374c.225-.312.42-.647.582-1H8.5v1Zm0-2h5.311c.083-.324.14-.658.168-1H8.5v1Zm0-2h5.48a5.988 5.988 0 0 0-.169-1H8.5v1Zm0-2h4.956a5.996 5.996 0 0 0-.582-1H8.5v1Zm0-2h3.469a6.004 6.004 0 0 0-1.567-1H8.5v1ZM2 8a6 6 0 0 1 5.5-5.98v11.96A6 6 0 0 1 2 8Z"
+    fill-rule="evenodd"
+  />
+</svg>
+`;
+
+exports[`EuiIcon props type contrastHigh is rendered 1`] = `
+<svg
+  aria-hidden="true"
+  class="euiIcon emotion-euiIcon-m-isLoaded"
+  data-icon-type="contrastHigh"
+  data-is-loaded="true"
+  height="16"
+  role="img"
+  viewBox="0 0 16 16"
+  width="16"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    clip-rule="evenodd"
+    d="M15 8A7 7 0 1 1 1 8a7 7 0 0 1 14 0Zm-7 6V2a6 6 0 1 0 0 12Z"
+  />
+</svg>
+`;
+
 exports[`EuiIcon props type controlsHorizontal is rendered 1`] = `
 <svg
   aria-hidden="true"
@@ -1879,6 +1918,50 @@ exports[`EuiIcon props type createAdvancedJob is rendered 1`] = `
   <path
     class="euiIcon__fillSecondary"
     d="M27 20v12h-2V20h2zm-5 4v8h-2v-8h2zm10-2v10h-2V22h2zM17 9v6h6v2h-6v6h-2v-6H9v-2h6V9h2z"
+  />
+</svg>
+`;
+
+exports[`EuiIcon props type createGenericJob is rendered 1`] = `
+<svg
+  aria-hidden="true"
+  class="euiIcon emotion-euiIcon-m-app-isLoaded"
+  data-icon-type="createGenericJob"
+  data-is-loaded="true"
+  height="32"
+  role="img"
+  viewBox="0 0 32 32"
+  width="32"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    d="M16 32C7.163 32 0 24.837 0 16S7.163 0 16 0s16 7.163 16 16h-2c0-7.732-6.268-14-14-14S2 8.268 2 16s6.268 14 14 14v2Z"
+  />
+  <path
+    class="euiIcon__fillSecondary"
+    d="M17 15h6v2h-6v6h-2v-6H9v-2h6V9h2v6Zm15 15v2H20v-2h12Zm0-8H20v2h12v-2Zm0 4v2H20v-2h12Z"
+  />
+</svg>
+`;
+
+exports[`EuiIcon props type createGeoJob is rendered 1`] = `
+<svg
+  aria-hidden="true"
+  class="euiIcon emotion-euiIcon-m-app-isLoaded"
+  data-icon-type="createGeoJob"
+  data-is-loaded="true"
+  height="32"
+  role="img"
+  viewBox="0 0 32 32"
+  width="32"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    d="M16 32C7.163 32 0 24.837 0 16S7.163 0 16 0s16 7.163 16 16h-2c0-7.732-6.268-14-14-14S2 8.268 2 16s6.268 14 14 14v2Z"
+  />
+  <path
+    class="euiIcon__fillSecondary"
+    d="M23 15h-6V9h-2v6H9v2h6v6h2v-6h6v-2Zm-1 9.196C22 27.329 25.427 32 27 32s5-4.67 5-7.804V24a5 5 0 1 0-10 .096v.1ZM27 26a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z"
   />
 </svg>
 `;
@@ -8959,6 +9042,24 @@ exports[`EuiIcon props type searchProfilerApp is rendered 1`] = `
   />
   <path
     d="M13 0C5.82 0 0 5.82 0 13s5.82 13 13 13 13-5.82 13-13A13 13 0 0 0 13 0Zm0 24C6.925 24 2 19.075 2 13S6.925 2 13 2s11 4.925 11 11-4.925 11-11 11ZM22.581 23.993l1.414-1.414 7.708 7.708-1.414 1.414z"
+  />
+</svg>
+`;
+
+exports[`EuiIcon props type section is rendered 1`] = `
+<svg
+  aria-hidden="true"
+  class="euiIcon emotion-euiIcon-m-isLoaded"
+  data-icon-type="section"
+  data-is-loaded="true"
+  height="16"
+  role="img"
+  viewBox="0 0 16 16"
+  width="16"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    d="M1.5 1a.5.5 0 1 0 0 1 .5.5 0 0 0 0-1Zm1.5.5a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5ZM1.5 4a.5.5 0 0 0-.5.5v4a.5.5 0 0 0 .5.5H7a.5.5 0 0 0 .5-.5v-4A.5.5 0 0 0 7 4H1.5Zm7 .5A.5.5 0 0 1 9 4h5.5a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-.5.5H9a.5.5 0 0 1-.5-.5v-4Zm-7 5.5a.5.5 0 0 0-.5.5v4a.5.5 0 0 0 .5.5h13a.5.5 0 0 0 .5-.5v-4a.5.5 0 0 0-.5-.5h-13Z"
   />
 </svg>
 `;

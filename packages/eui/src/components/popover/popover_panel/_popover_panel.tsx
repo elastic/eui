@@ -28,7 +28,6 @@ type EuiPopoverPanelInternalProps = {
   isOpen?: boolean;
   isAttached?: boolean;
   position?: EuiPopoverArrowPositions | null;
-  hasDragDrop?: boolean;
 };
 
 /**
@@ -37,15 +36,7 @@ type EuiPopoverPanelInternalProps = {
  */
 export const EuiPopoverPanel: FunctionComponent<
   EuiPopoverPanelProps & EuiPopoverPanelInternalProps
-> = ({
-  children,
-  className,
-  isOpen,
-  isAttached,
-  hasDragDrop,
-  position,
-  ...rest
-}) => {
+> = ({ children, className, isOpen, isAttached, position, ...rest }) => {
   const classes = classNames('euiPopover__panel', className);
 
   const euiThemeContext = useEuiTheme();
@@ -61,13 +52,6 @@ export const EuiPopoverPanel: FunctionComponent<
       isOpen && styles.isOpen,
     ];
 
-    if (hasDragDrop) {
-      return [
-        ...sharedStyles,
-        styles.hasDragDrop.hasDragDrop,
-        position && styles.hasDragDrop[position],
-      ];
-    }
     if (isAttached) {
       return [
         ...sharedStyles,
@@ -80,7 +64,7 @@ export const EuiPopoverPanel: FunctionComponent<
       styles.hasTransform.hasTransform,
       isOpen && position && styles.hasTransform[position],
     ];
-  }, [euiThemeContext, isOpen, position, isAttached, hasDragDrop]);
+  }, [euiThemeContext, isOpen, position, isAttached]);
 
   return (
     <EuiPopoverPanelContext.Provider
