@@ -22,6 +22,7 @@ import {
 } from '../../form/super_select'; // Note: needs to be pointed at this specific subdir for Storybook to inherit types correctly??
 
 import { EuiColorPaletteDisplay } from '../color_palette_display';
+import { EuiFlexGroup, EuiFlexItem } from '../../flex';
 
 export interface PaletteColorStop {
   stop: number;
@@ -36,7 +37,8 @@ export interface EuiColorPalettePickerPaletteTextProps extends CommonProps {
   /**
    *  The name of your palette
    */
-  title: NonNullable<ReactNode>;
+  title: string;
+  append?: never;
   /**
    * `text`: a text only option (a title is required).
    */
@@ -55,7 +57,11 @@ export interface EuiColorPalettePickerPaletteFixedProps extends CommonProps {
   /**
    *  The name of your palette
    */
-  title: ReactNode;
+  title: string;
+  /**
+   * Node appended to right of title
+   */
+  append?: ReactNode;
   /**
    * `fixed`: individual color blocks
    */
@@ -74,7 +80,11 @@ export interface EuiColorPalettePickerPaletteGradientProps extends CommonProps {
   /**
    *  The name of your palette
    */
-  title: ReactNode;
+  title: string;
+  /**
+   * Node appended to right of title
+   */
+  append?: ReactNode;
   /**
    * `gradient`: each color fades into the next
    */
@@ -132,11 +142,7 @@ export const EuiColorPalettePicker: FunctionComponent<
       | EuiColorPalettePickerPaletteFixedProps
       | EuiColorPalettePickerPaletteGradientProps) => {
       return (
-        <EuiColorPaletteDisplay
-          type={type}
-          palette={palette}
-          title={typeof title === 'string' ? title : undefined}
-        />
+        <EuiColorPaletteDisplay type={type} palette={palette} title={title} />
       );
     },
     []
@@ -145,7 +151,7 @@ export const EuiColorPalettePicker: FunctionComponent<
   const paletteOptions = useMemo(
     () =>
       palettes.map((item: EuiColorPalettePickerPaletteProps) => {
-        const { type, value, title, palette, ...rest } = item;
+        const { type, value, title, append, palette, ...rest } = item;
         const paletteForDisplay =
           item.type !== 'text' ? getPalette(item) : null;
 
@@ -162,17 +168,20 @@ export const EuiColorPalettePicker: FunctionComponent<
                 // color_palette_display_gradient. Adding the aria-hidden attribute
                 // here to ensure screen readers don't speak the listbox options twice.
                 <>
-                  {typeof title !== 'string' ? (
-                    title
-                  ) : (
-                    <EuiText
-                      aria-hidden="true"
-                      className="euiColorPalettePicker__itemTitle"
-                      size="xs"
-                    >
-                      {title}
-                    </EuiText>
-                  )}
+                  <EuiFlexGroup>
+                    <EuiFlexItem>
+                      <EuiText
+                        aria-hidden="true"
+                        className="euiColorPalettePicker__itemTitle"
+                        size="xs"
+                      >
+                        {title}
+                      </EuiText>
+                    </EuiFlexItem>
+                    {append && <EuiFlexItem grow={0}>
+                      {append}
+                    </EuiFlexItem>}
+                  </EuiFlexGroup>
                   <EuiSpacer size="xs" />
                 </>
               )}

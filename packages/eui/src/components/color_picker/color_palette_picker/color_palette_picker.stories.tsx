@@ -72,32 +72,20 @@ export const CustomTitles: Story = {
     palettes: [
       {
         value: 'palette1',
-        title: (
-          <div
-            css={({ euiTheme }) => css`
-              display: flex;
-              flex-direction: row;
-              align-items: center;
-              justify-content: space-between;
-              gap: ${euiTheme.size.xs};
+        title: 'Elastic',
+        append: (
+          <EuiText
+            css={css`
+              text-decoration: none;
+              // breaks flow to prevent parent text-decoration
+              float: left;
+              clear: both;
             `}
+            color="subdued"
+            size="xs"
           >
-            <EuiText aria-hidden="true" size="xs">
-              Elastic
-            </EuiText>
-            <EuiText
-              css={css`
-                text-decoration: none;
-                // breaks flow to prevent parent text-decoration
-                float: left;
-                clear: both;
-              `}
-              color="subdued"
-              size="xs"
-            >
-              Default
-            </EuiText>
-          </div>
+            Default
+          </EuiText>
         ),
         palette: euiPaletteColorBlind(),
         type: 'fixed',
