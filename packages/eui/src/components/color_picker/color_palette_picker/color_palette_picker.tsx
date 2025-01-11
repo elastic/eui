@@ -178,9 +178,7 @@ export const EuiColorPalettePicker: FunctionComponent<
                         {title}
                       </EuiText>
                     </EuiFlexItem>
-                    {append && <EuiFlexItem grow={0}>
-                      {append}
-                    </EuiFlexItem>}
+                    {append && <EuiFlexItem grow={0}>{append}</EuiFlexItem>}
                   </EuiFlexGroup>
                   <EuiSpacer size="xs" />
                 </>
