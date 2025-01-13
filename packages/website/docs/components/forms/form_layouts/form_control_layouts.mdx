@@ -1,0 +1,424 @@
+---
+title: Form control layouts
+slug: /forms/layouts/controls
+id: forms_form_control_layouts
+sidebar_position: 6
+---
+
+import { EuiSpacer } from '@elastic/eui';
+
+<EuiSpacer />
+<Badge color="warning">Building block only</Badge>
+
+# Form control layout
+
+**EuiFormControlLayout** is generally used internally to consistently style form controls, but it’s published in case you want to create your own form control which matches those of EUI. The examples below demonstrate its various states and utilize the `controlOnly` and `type` props of **EuiFieldText** as the wrapped control.
+
+```tsx interactive
+import React from 'react';
+import {
+  EuiFormControlLayout,
+  EuiFormLabel,
+  EuiButtonEmpty,
+  EuiText,
+  useGeneratedHtmlId,
+  useEuiTheme,
+  EuiFieldText,
+} from '@elastic/eui';
+
+export default () => {
+  const { euiTheme } = useEuiTheme();
+  const labelInputId = useGeneratedHtmlId({ prefix: 'labelInput' });
+  const readOnlyInputId = useGeneratedHtmlId({ prefix: 'readOnlyInput' });
+
+  return (
+    <div
+      css={{
+        display: 'inline-flex',
+        flexWrap: 'wrap',
+        gap: euiTheme.size.l,
+      }}
+    >
+      <EuiFormControlLayout icon="search">
+        <EuiFieldText
+          type="search"
+          controlOnly
+          aria-label="Use aria labels when no actual label is in use"
+        />
+      </EuiFormControlLayout>
+
+      <EuiFormControlLayout isLoading>
+        <EuiFieldText
+          type="text"
+          controlOnly
+          aria-label="Use aria labels when no actual label is in use"
+        />
+      </EuiFormControlLayout>
+
+      <EuiFormControlLayout clear={{ onClick: () => {} }}>
+        <EuiFieldText
+          type="text"
+          controlOnly
+          aria-label="Use aria labels when no actual label is in use"
+        />
+      </EuiFormControlLayout>
+
+      <EuiFormControlLayout isInvalid>
+        <EuiFieldText
+          type="text"
+          controlOnly
+          isInvalid
+          aria-label="Use aria labels when no actual label is in use"
+        />
+      </EuiFormControlLayout>
+
+      <EuiFormControlLayout clear={{ onClick: () => {} }} icon="search">
+        <EuiFieldText
+          type="search"
+          controlOnly
+          aria-label="Use aria labels when no actual label is in use"
+        />
+      </EuiFormControlLayout>
+
+      <EuiFormControlLayout isLoading isDropdown>
+        <EuiFieldText
+          type="text"
+          controlOnly
+          aria-label="Use aria labels when no actual label is in use"
+        />
+      </EuiFormControlLayout>
+
+      <EuiFormControlLayout
+        clear={{ onClick: () => {} }}
+        isDropdown
+        icon={{ type: 'stopFilled', color: 'success', side: 'left' }}
+      >
+        <EuiFieldText
+          type="text"
+          controlOnly
+          aria-label="Use aria labels when no actual label is in use"
+        />
+      </EuiFormControlLayout>
+
+      <EuiFormControlLayout
+        isLoading
+        clear={{ onClick: () => {} }}
+        icon={{ type: 'bolt', side: 'right' }}
+        isDropdown
+      >
+        <EuiFieldText
+          type="text"
+          controlOnly
+          aria-label="Use aria labels when no actual label is in use"
+        />
+      </EuiFormControlLayout>
+
+      <EuiFormControlLayout
+        prepend={<EuiFormLabel htmlFor={labelInputId}>Label</EuiFormLabel>}
+      >
+        <EuiFieldText type="text" controlOnly id={labelInputId} />
+      </EuiFormControlLayout>
+
+      <EuiFormControlLayout
+        readOnly
+        prepend={
+          <EuiFormLabel htmlFor={readOnlyInputId}>Read only</EuiFormLabel>
+        }
+        append={<EuiButtonEmpty size="xs">Button</EuiButtonEmpty>}
+      >
+        <EuiFieldText type="text" id={readOnlyInputId} controlOnly readOnly />
+      </EuiFormControlLayout>
+
+      <EuiFormControlLayout
+        append={
+          <EuiText size="xs">
+            <strong>%</strong>
+          </EuiText>
+        }
+      >
+        <EuiFieldText
+          type="number"
+          controlOnly
+          aria-label="Use aria labels when no actual label is in use"
+        />
+      </EuiFormControlLayout>
+
+      <EuiFormControlLayout
+        isLoading
+        clear={{ onClick: () => {} }}
+        prepend={
+          <EuiButtonEmpty size="xs" iconType="arrowDown" iconSide="right">
+            Button
+          </EuiButtonEmpty>
+        }
+      >
+        <EuiFieldText
+          type="text"
+          controlOnly
+          aria-label="Use aria labels when no actual label is in use"
+        />
+      </EuiFormControlLayout>
+    </div>
+  );
+};
+```
+
+## Delimited layout
+
+Like **EuiFormControlLayout**, **EuiFormControlLayoutDelimited** is generally used internally to consistently style form controls. This component specifically lays out two form controls with center text or icon.
+
+It takes all of the same props as **EuiFormControlLayout** except for `children`. Instead it requires both a **single** `startControl` and a **single** `endControl`. You can optionally change the center content to a different string or node (like an EuiIcon).
+
+```tsx interactive
+import React from 'react';
+import {
+  EuiFormControlLayoutDelimited,
+  EuiFormLabel,
+  EuiFieldNumber,
+  EuiIcon,
+} from '@elastic/eui';
+
+export default () => (
+  <div
+    css={{
+      display: 'flex',
+      flexWrap: 'wrap',
+      gap: 24,
+    }}
+  >
+    <EuiFormControlLayoutDelimited
+      fullWidth
+      startControl={
+        <EuiFieldNumber
+          controlOnly
+          placeholder="0"
+          aria-label="Use aria labels when no actual label is in use"
+        />
+      }
+      endControl={
+        <EuiFieldNumber
+          controlOnly
+          placeholder="100"
+          aria-label="Use aria labels when no actual label is in use"
+        />
+      }
+    />
+
+    <EuiFormControlLayoutDelimited
+      startControl={
+        <EuiFieldNumber
+          controlOnly
+          placeholder="0"
+          aria-label="Use aria labels when no actual label is in use"
+        />
+      }
+      endControl={
+        <EuiFieldNumber
+          controlOnly
+          placeholder="100"
+          aria-label="Use aria labels when no actual label is in use"
+        />
+      }
+    />
+
+    <EuiFormControlLayoutDelimited
+      append={<EuiFormLabel>px</EuiFormLabel>}
+      startControl={
+        <EuiFieldNumber
+          controlOnly
+          placeholder="0"
+          aria-label="Use aria labels when no actual label is in use"
+        />
+      }
+      endControl={
+        <EuiFieldNumber
+          controlOnly
+          placeholder="100"
+          aria-label="Use aria labels when no actual label is in use"
+        />
+      }
+    />
+
+    <EuiFormControlLayoutDelimited
+      icon="vector"
+      startControl={
+        <EuiFieldNumber
+          placeholder="0"
+          controlOnly
+          aria-label="Use aria labels when no actual label is in use"
+        />
+      }
+      endControl={
+        <EuiFieldNumber
+          controlOnly
+          placeholder="100"
+          aria-label="Use aria labels when no actual label is in use"
+        />
+      }
+    />
+
+    <EuiFormControlLayoutDelimited
+      clear={{ onClick: () => {} }}
+      isLoading
+      startControl={
+        <EuiFieldNumber
+          controlOnly
+          placeholder="0"
+          aria-label="Use aria labels when no actual label is in use"
+        />
+      }
+      endControl={
+        <EuiFieldNumber
+          controlOnly
+          placeholder="100"
+          aria-label="Use aria labels when no actual label is in use"
+        />
+      }
+    />
+
+    <EuiFormControlLayoutDelimited
+      isLoading
+      startControl={
+        <EuiFieldNumber
+          controlOnly
+          placeholder="0"
+          aria-label="Use aria labels when no actual label is in use"
+        />
+      }
+      endControl={
+        <EuiFieldNumber
+          controlOnly
+          placeholder="100"
+          aria-label="Use aria labels when no actual label is in use"
+        />
+      }
+    />
+
+    <EuiFormControlLayoutDelimited
+      compressed
+      startControl={
+        <EuiFieldNumber
+          controlOnly
+          placeholder="0"
+          aria-label="Use aria labels when no actual label is in use"
+        />
+      }
+      endControl={
+        <EuiFieldNumber
+          controlOnly
+          placeholder="100"
+          aria-label="Use aria labels when no actual label is in use"
+        />
+      }
+    />
+
+    <EuiFormControlLayoutDelimited
+      prepend={<EuiFormLabel>Add</EuiFormLabel>}
+      startControl={
+        <EuiFieldNumber
+          controlOnly
+          placeholder="0"
+          aria-label="Use aria labels when no actual label is in use"
+        />
+      }
+      delimiter="+"
+      endControl={
+        <EuiFieldNumber
+          controlOnly
+          placeholder="100"
+          aria-label="Use aria labels when no actual label is in use"
+        />
+      }
+    />
+
+    <EuiFormControlLayoutDelimited
+      prepend={<EuiFormLabel>Merge</EuiFormLabel>}
+      startControl={
+        <EuiFieldNumber
+          controlOnly
+          placeholder="0"
+          aria-label="Use aria labels when no actual label is in use"
+        />
+      }
+      delimiter={<EuiIcon type="merge" />}
+      endControl={
+        <EuiFieldNumber
+          controlOnly
+          placeholder="100"
+          aria-label="Use aria labels when no actual label is in use"
+        />
+      }
+    />
+
+    <EuiFormControlLayoutDelimited
+      readOnly
+      prepend={<EuiFormLabel>Read only</EuiFormLabel>}
+      startControl={
+        <EuiFieldNumber
+          controlOnly
+          placeholder="0"
+          readOnly
+          aria-label="Use aria labels when no actual label is in use"
+        />
+      }
+      endControl={
+        <EuiFieldNumber
+          controlOnly
+          placeholder="100"
+          readOnly
+          aria-label="Use aria labels when no actual label is in use"
+        />
+      }
+    />
+
+    <EuiFormControlLayoutDelimited
+      isDisabled
+      prepend={<EuiFormLabel>Disabled</EuiFormLabel>}
+      startControl={
+        <EuiFieldNumber
+          controlOnly
+          placeholder="0"
+          disabled
+          aria-label="Use aria labels when no actual label is in use"
+        />
+      }
+      endControl={
+        <EuiFieldNumber
+          controlOnly
+          placeholder="100"
+          disabled
+          aria-label="Use aria labels when no actual label is in use"
+        />
+      }
+    />
+
+    <EuiFormControlLayoutDelimited
+      isInvalid
+      prepend={<EuiFormLabel>Invalid</EuiFormLabel>}
+      startControl={
+        <EuiFieldNumber
+          isInvalid
+          controlOnly
+          placeholder="0"
+          aria-label="Use aria labels when no actual label is in use"
+        />
+      }
+      endControl={
+        <EuiFieldNumber
+          isInvalid
+          controlOnly
+          placeholder="100"
+          aria-label="Use aria labels when no actual label is in use"
+        />
+      }
+    />
+  </div>
+);
+```
+
+## Props
+
+import docgen from '@elastic/eui-docgen/dist/components/form';
+
+<PropTable definition={docgen.EuiFormControlLayout} />
+<PropTable definition={docgen.EuiFormControlLayoutDelimited} />
