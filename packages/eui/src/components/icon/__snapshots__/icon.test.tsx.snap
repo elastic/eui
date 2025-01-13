@@ -1961,9 +1961,7 @@ exports[`EuiIcon props type createGeoJob is rendered 1`] = `
   />
   <path
     class="euiIcon__fillSecondary"
-    clip-rule="evenodd"
     d="M23 15h-6V9h-2v6H9v2h6v6h2v-6h6v-2Zm-1 9.196C22 27.329 25.427 32 27 32s5-4.67 5-7.804V24a5 5 0 1 0-10 .096v.1ZM27 26a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z"
-    fill-rule="evenodd"
   />
 </svg>
 `;
@@ -9044,6 +9042,24 @@ exports[`EuiIcon props type searchProfilerApp is rendered 1`] = `
   />
   <path
     d="M13 0C5.82 0 0 5.82 0 13s5.82 13 13 13 13-5.82 13-13A13 13 0 0 0 13 0Zm0 24C6.925 24 2 19.075 2 13S6.925 2 13 2s11 4.925 11 11-4.925 11-11 11ZM22.581 23.993l1.414-1.414 7.708 7.708-1.414 1.414z"
+  />
+</svg>
+`;
+
+exports[`EuiIcon props type section is rendered 1`] = `
+<svg
+  aria-hidden="true"
+  class="euiIcon emotion-euiIcon-m-isLoaded"
+  data-icon-type="section"
+  data-is-loaded="true"
+  height="16"
+  role="img"
+  viewBox="0 0 16 16"
+  width="16"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    d="M1.5 1a.5.5 0 1 0 0 1 .5.5 0 0 0 0-1Zm1.5.5a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5ZM1.5 4a.5.5 0 0 0-.5.5v4a.5.5 0 0 0 .5.5H7a.5.5 0 0 0 .5-.5v-4A.5.5 0 0 0 7 4H1.5Zm7 .5A.5.5 0 0 1 9 4h5.5a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-.5.5H9a.5.5 0 0 1-.5-.5v-4Zm-7 5.5a.5.5 0 0 0-.5.5v4a.5.5 0 0 0 .5.5h13a.5.5 0 0 0 .5-.5v-4a.5.5 0 0 0-.5-.5h-13Z"
   />
 </svg>
 `;
