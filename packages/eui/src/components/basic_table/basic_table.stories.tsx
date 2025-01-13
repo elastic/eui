@@ -67,6 +67,7 @@ type User = {
     city: string;
     country: string;
   };
+  github: string; // FIXME testing during implementation
 };
 
 const users: User[] = [];
@@ -81,6 +82,7 @@ for (let i = 0; i < 5; i++) {
       city: faker.location.city(),
       country: faker.location.country(),
     },
+    github: faker.internet.userName(),
   });
 }
 
@@ -121,8 +123,19 @@ const columns: Array<EuiBasicTableColumn<User>> = [
     },
   },
   {
+    field: 'github',
+    name: 'GitHub',
+    nameTooltip: {
+      content: 'Their mascot is Octokitty',
+    },
+  },
+  {
     field: 'online',
     name: 'Online',
+    nameTooltip: {
+      content: 'The more you know',
+      iconProps: { color: 'success' },
+    },
     dataType: 'boolean',
     render: (online: User['online']) => {
       const color = online ? 'success' : 'danger';
@@ -136,6 +149,13 @@ const columns: Array<EuiBasicTableColumn<User>> = [
   },
   {
     name: 'Actions',
+    nameTooltip: {
+      content: 'This is self-explainatory',
+      tooltipProps: {
+        delay: 'long',
+        position: 'left',
+      },
+    },
     actions: [
       {
         name: 'User profile',
