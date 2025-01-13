@@ -18,6 +18,23 @@ import {
 export const euiPanelStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
 
+  const borderStyle = `
+    position: relative;
+
+    /* Using a pseudo element for the border instead of floating border only 
+      because the transparent border might otherwise be visible with arbitrary 
+      full-width/height content in light mode. */
+    ::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border: ${euiTheme.border.width.thin} solid
+        ${euiTheme.colors.borderBaseFloating};
+      border-radius: inherit;
+      pointer-events: none;
+    }
+  `;
+
   return {
     // Base
     euiPanel: css`
@@ -30,8 +47,8 @@ export const euiPanelStyles = (euiThemeContext: UseEuiTheme) => {
 
     hasShadow: css`
       ${euiShadow(euiThemeContext, 'm')}
-      border: ${euiTheme.border.width.thin} solid ${euiTheme.colors
-        .borderBaseFloating};
+
+      ${borderStyle}
     `,
 
     hasBorder: css`
