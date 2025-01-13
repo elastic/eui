@@ -234,6 +234,7 @@ export const iconTypes = [
   'save',
   'scale',
   'search',
+  'section',
   'securitySignal',
   'securitySignalDetected',
   'securitySignalResolved',
