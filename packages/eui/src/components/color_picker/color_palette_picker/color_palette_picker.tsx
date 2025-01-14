@@ -38,6 +38,9 @@ export interface EuiColorPalettePickerPaletteTextProps extends CommonProps {
    *  The name of your palette
    */
   title: string;
+  /**
+   * Node appended to right of title - disallowed for text-only options
+   */
   append?: never;
   /**
    * `text`: a text only option (a title is required).

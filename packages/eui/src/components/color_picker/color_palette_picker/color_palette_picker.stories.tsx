@@ -63,10 +63,8 @@ export const Playground: Story = {
 };
 
 export const CustomTitles: Story = {
-  argTypes: {
-    palettes: {
-      control: false,
-    },
+  parameters: {
+    controls: { include: ['palettes', 'valueOfSelected'] },
   },
   args: {
     palettes: [
@@ -74,17 +72,14 @@ export const CustomTitles: Story = {
         value: 'palette1',
         title: 'Elastic',
         append: (
-          <EuiText
-            css={css`
-              text-decoration: none;
-              // breaks flow to prevent parent text-decoration
-              float: left;
-              clear: both;
-            `}
-            color="subdued"
-            size="xs"
-          >
-            Default
+          <EuiText color="subdued" size="xs">
+            <span
+              css={css`
+                display: inline-block;
+              `}
+            >
+              Default
+            </span>
           </EuiText>
         ),
         palette: euiPaletteColorBlind(),
