@@ -148,6 +148,142 @@ export default () => {
 };
 ```
 
+## Color palette picker - Appended titles
+
+Each of the `palettes`, excluding `type='text'` palettes, can use the `append` prop to append an element to the right of the title.
+
+```tsx interactive
+import React, { useState } from 'react';
+import { css } from '@emotion/react';
+import {
+  euiPaletteColorBlind,
+  euiPaletteForStatus,
+  euiPaletteForTemperature,
+  EuiSwitch,
+  EuiSpacer,
+  EuiCode,
+  EuiText,
+  EuiColorPalettePicker,
+} from '@elastic/eui';
+
+/** Text wrapper to remove text-decoration on appended text */
+const AppendedTitleText = ({ label }) => (
+  <EuiText color="subdued" size="xs">
+    <span
+      css={css`
+        display: inline-block;
+      `}
+    >
+      {label}
+    </span>
+  </EuiText>
+);
+
+const getPalettes = (appendTitles) => [
+  {
+    value: 'pallette_1',
+    title: 'EUI color blind',
+    palette: euiPaletteColorBlind(),
+    append: appendTitles && <AppendedTitleText label="fixed" />,
+    type: 'fixed',
+  },
+  {
+    value: 'pallette_2',
+    title: 'EUI palette for status',
+    palette: euiPaletteForStatus(5),
+    append: appendTitles && <AppendedTitleText label="gradient" />,
+    type: 'gradient',
+  },
+  {
+    value: 'pallette_3',
+    title: 'EUI palette for temperature',
+    palette: euiPaletteForTemperature(5),
+    append: appendTitles && <AppendedTitleText label="fixed" />,
+    type: 'fixed',
+  },
+  {
+    value: 'pallette_4',
+    title: 'Grayscale',
+    palette: [
+      {
+        stop: 100,
+        color: 'white',
+      },
+      {
+        stop: 250,
+        color: 'lightgray',
+      },
+      {
+        stop: 320,
+        color: 'gray',
+      },
+      {
+        stop: 470,
+        color: 'black',
+      },
+    ],
+    append: appendTitles && <AppendedTitleText label="gradient with stops" />,
+    type: 'gradient',
+  },
+  {
+    value: 'pallette_5',
+    title: 'Grayscale',
+    palette: [
+      {
+        stop: 100,
+        color: 'white',
+      },
+      {
+        stop: 250,
+        color: 'lightgray',
+      },
+      {
+        stop: 320,
+        color: 'gray',
+      },
+      {
+        stop: 470,
+        color: 'black',
+      },
+    ],
+    append: appendTitles && <AppendedTitleText label="fixed with stops" />,
+    type: 'fixed',
+  },
+  {
+    value: 'custom',
+    title: 'Plain text as a custom option',
+    type: 'text',
+  },
+];
+
+export default () => {
+  const [showAppendedTitles, setShowAppendedTitles] = useState(true);
+  const [pallette, setPallette] = useState('pallette_1');
+
+  return (
+    <>
+      <EuiSwitch
+        label={
+          <span>
+            Display <EuiCode>append</EuiCode> element on title
+          </span>
+        }
+        checked={showAppendedTitles}
+        onChange={() => setShowAppendedTitles(!showAppendedTitles)}
+      />
+      <EuiSpacer />
+      <DisplayToggles canPrepend={true} canAppend={true} canReadOnly={false}>
+        <EuiColorPalettePicker
+          palettes={getPalettes(showAppendedTitles)}
+          onChange={setPallette}
+          valueOfSelected={pallette}
+        />
+      </DisplayToggles>
+    </>
+  );
+};
+```
+
 ## Color palette display
 
 Use **EuiColorPaletteDisplay** to show the palette in use for a data visualization.
