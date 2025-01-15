@@ -171,7 +171,7 @@ export const EuiColorPalettePicker: FunctionComponent<
                 // color_palette_display_gradient. Adding the aria-hidden attribute
                 // here to ensure screen readers don't speak the listbox options twice.
                 <>
-                  <EuiFlexGroup>
+                  <EuiFlexGroup responsive={false}>
                     <EuiFlexItem>
                       <EuiText
                         aria-hidden="true"
