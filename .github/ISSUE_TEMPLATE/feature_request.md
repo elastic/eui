@@ -1,8 +1,9 @@
 ---
 name: ✨ Feature request
-about: Suggest an idea for this project
+about: A request, idea, or new functionality
 title: ''
 labels: feature request
+type: 'Enhancement'
 assignees: ''
 
 ---
