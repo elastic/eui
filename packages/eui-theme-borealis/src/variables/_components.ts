@@ -242,10 +242,10 @@ export const components: _EuiThemeComponents = {
     listGroupItemBackgroundPrimaryHover:
       dark_background_colors.backgroundBaseInteractiveHover,
 
-    loadingChartMonoBackground0: SEMANTIC_COLORS.shade95,
-    loadingChartMonoBackground1: SEMANTIC_COLORS.shade105,
-    loadingChartMonoBackground2: SEMANTIC_COLORS.shade115,
-    loadingChartMonoBackground3: SEMANTIC_COLORS.shade125,
+    loadingChartMonoBackground0: SEMANTIC_COLORS.shade110,
+    loadingChartMonoBackground1: SEMANTIC_COLORS.shade100,
+    loadingChartMonoBackground2: SEMANTIC_COLORS.shade90,
+    loadingChartMonoBackground3: SEMANTIC_COLORS.shade80,
 
     markBackground: dark_background_colors.backgroundLightPrimary,
 
