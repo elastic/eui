@@ -9,7 +9,10 @@
 import React from 'react';
 import { css } from '@emotion/react';
 import type { Meta, StoryObj } from '@storybook/react';
+import { fireEvent, waitFor } from '@storybook/test';
 
+import { within } from '../../../../.storybook/test';
+import { LOKI_SELECTORS } from '../../../../.storybook/loki';
 import { euiPaletteColorBlind, euiPaletteForStatus } from '../../../services';
 
 import {
@@ -62,9 +65,12 @@ export const Playground: Story = {
   },
 };
 
-export const CustomTitles: Story = {
+export const AppendedTitles: Story = {
   parameters: {
     controls: { include: ['palettes', 'valueOfSelected'] },
+    loki: {
+      chromeSelector: LOKI_SELECTORS.portal,
+    },
   },
   args: {
     palettes: [
@@ -93,5 +99,14 @@ export const CustomTitles: Story = {
       },
     ],
     valueOfSelected: 'palette1',
+  },
+  play: async ({ canvasElement, step }) => {
+    const canvas = within(canvasElement);
+    await step('show popover on click', async () => {
+      await waitFor(async () => {
+        await fireEvent.click(canvas.getByRole('button'));
+      });
+      await canvas.waitForEuiPopoverVisible();
+    });
   },
 };

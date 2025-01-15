@@ -71,30 +71,6 @@ const colorPalettePickerSnippet = `<EuiColorPalettePicker
 />
 `;
 
-import ColorPalettePickerAppendedTitle from './color_palette_picker_appended_title';
-const colorPalettePickerAppendedTitleSource = require('!!raw-loader!./color_palette_picker_appended_title');
-const colorPalettePickerAppendedTitleSnippet = `<EuiColorPalettePicker
-  palettes={[
-    {
-      value: 'palette1',
-      title: 'EUI color blind',
-      palette: euiPaletteColorBlind(),
-      append: 'fixed',
-      type: 'fixed',
-    },
-    {
-      value: 'palette2',
-      title: 'EUI palette for status',
-      palette: euiPaletteForStatus(5),
-      append: <EuiText color="subdued" size="xs">gradient</EuiText>,
-      type: 'gradient',
-    },
-  ]}
-  onChange={onPaletteChange}
-  valueOfSelected={palette}
-/>
-`;
-
 import Alpha from './alpha';
 const alphaSource = require('!!raw-loader!./alpha');
 const alphaSnippet = `<EuiColorPicker
@@ -289,6 +265,12 @@ export const ColorPickerExample = {
               palettes for categorical data and <EuiCode>gradient</EuiCode>{' '}
               palettes for continuous data.
             </p>
+            <p>
+              Each of the <EuiCode>palettes</EuiCode>, excluding{' '}
+              <EuiCode>type='text'</EuiCode> palettes, can use the{' '}
+              <EuiCode>append</EuiCode> prop to append an element to the right
+              of the title.
+            </p>
           </EuiText>
         </>
       ),
@@ -307,36 +289,6 @@ export const ColorPickerExample = {
       },
       snippet: colorPalettePickerSnippet,
       demo: <ColorPalettePicker />,
-    },
-    {
-      title: 'Color palette picker - Appended titles',
-      text: (
-        <>
-          <EuiText>
-            <p>
-              Each of the <EuiCode>palettes</EuiCode>, excluding{' '}
-              <EuiCode>type='text'</EuiCode> palettes, can use the{' '}
-              <EuiCode>append</EuiCode> prop to append an element to the right
-              of the title.
-            </p>
-          </EuiText>
-        </>
-      ),
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: colorPalettePickerAppendedTitleSource,
-        },
-      ],
-      props: {
-        EuiColorPalettePicker,
-        EuiColorPalettePickerPaletteTextProps,
-        EuiColorPalettePickerPaletteFixedProps,
-        EuiColorPalettePickerPaletteGradientProps,
-        PaletteColorStop,
-      },
-      snippet: colorPalettePickerAppendedTitleSnippet,
-      demo: <ColorPalettePickerAppendedTitle />,
     },
     {
       title: 'Color palette display',
