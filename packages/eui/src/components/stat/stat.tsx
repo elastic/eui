@@ -28,6 +28,7 @@ export const COLORS = [
   'subdued',
   'primary',
   'success',
+  'warning',
   'danger',
   'accent',
 ] as const;
