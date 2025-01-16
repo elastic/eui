@@ -18,10 +18,6 @@ import {
   EuiLoadingSpinnerSize,
   EuiLoadingSpinnerColor,
 } from './loading_spinner';
-import {
-  _EuiThemeComponentColors,
-  _EuiThemeComponents,
-} from '@elastic/eui-theme-common';
 
 const _loadingSpinner = keyframes`
   from {

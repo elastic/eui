@@ -250,7 +250,7 @@ const component_colors: _EuiThemeComponentColors = {
     ([lightShade]) => lightShade,
     ['colors.lightShade']
   ),
-  
+
   loadingChartMonoBackground1: computed(
     ([lightShade]) => shade(lightShade, 0.04),
     ['colors.lightShade']
