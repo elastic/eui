@@ -18,6 +18,10 @@ import {
   EuiLoadingSpinnerSize,
   EuiLoadingSpinnerColor,
 } from './loading_spinner';
+import {
+  _EuiThemeComponentColors,
+  _EuiThemeComponents,
+} from '@elastic/eui-theme-common';
 
 const _loadingSpinner = keyframes`
   from {
@@ -44,8 +48,8 @@ export const euiSpinnerBorderColorsCSS = (
   colors: EuiLoadingSpinnerColor = {}
 ): string => {
   const {
-    border = euiTheme.colors.borderBasePlain,
-    highlight = euiTheme.colors.borderStrongPrimary,
+    border = euiTheme.components.loadingSpinnerBorder,
+    highlight = euiTheme.components.loadingSpinnerHighlight,
   } = colors;
   return `${highlight} ${border} ${border} ${border}`;
 };
