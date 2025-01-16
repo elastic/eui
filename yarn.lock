@@ -4639,15 +4639,6 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@elastic/eui-theme-borealis@npm:0.0.8":
-  version: 0.0.8
-  resolution: "@elastic/eui-theme-borealis@npm:0.0.8"
-  peerDependencies:
-    "@elastic/eui-theme-common": 0.0.8
-  checksum: 10c0/85a7251ca31d7a359fe7d81a4b91ece68de0c0cd35dda0df4634f82617477f2b49b75156074f22b54b29d03d431ddc897225de6508ff4172d00cccdf1b4faeef
-  languageName: node
-  linkType: hard
-
 "@elastic/eui-theme-borealis@workspace:^, @elastic/eui-theme-borealis@workspace:packages/eui-theme-borealis":
   version: 0.0.0-use.local
   resolution: "@elastic/eui-theme-borealis@workspace:packages/eui-theme-borealis"
@@ -4678,23 +4669,9 @@ __metadata:
     stylelint-config-standard-scss: "npm:^9.0.0"
     typescript: "npm:^5.6.2"
   peerDependencies:
-    "@elastic/eui-theme-common": 0.0.5
+    "@elastic/eui-theme-common": 0.0.8
   languageName: unknown
   linkType: soft
-
-"@elastic/eui-theme-common@npm:0.0.8":
-  version: 0.0.8
-  resolution: "@elastic/eui-theme-common@npm:0.0.8"
-  dependencies:
-    "@types/lodash": "npm:^4.14.202"
-    lodash: "npm:^4.17.21"
-  peerDependencies:
-    "@emotion/react": 11.x
-    react: ^16.12 || ^17.0 || ^18.0
-    react-dom: ^16.12 || ^17.0 || ^18.0
-  checksum: 10c0/5cc579d79a99b695dc38cd5a4a42c14e0db5b0d9ad5f1d655a8a0e64974a014ab2950d52a99badc93f0596186e0c3fdbda217467a1972f271fcb7d5e27bdd153
-  languageName: node
-  linkType: hard
 
 "@elastic/eui-theme-common@workspace:^, @elastic/eui-theme-common@workspace:packages/eui-theme-common":
   version: 0.0.0-use.local
@@ -4797,8 +4774,8 @@ __metadata:
     "@cypress/webpack-dev-server": "npm:^1.7.0"
     "@elastic/charts": "npm:^64.1.0"
     "@elastic/datemath": "npm:^5.0.3"
-    "@elastic/eui-theme-borealis": "npm:0.0.8"
-    "@elastic/eui-theme-common": "npm:0.0.8"
+    "@elastic/eui-theme-borealis": "workspace:^"
+    "@elastic/eui-theme-common": "workspace:^"
     "@emotion/babel-preset-css-prop": "npm:^11.11.0"
     "@emotion/cache": "npm:^11.11.0"
     "@emotion/css": "npm:^11.11.0"
