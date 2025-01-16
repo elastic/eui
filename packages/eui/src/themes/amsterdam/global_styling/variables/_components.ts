@@ -241,8 +241,7 @@ const component_colors: _EuiThemeComponentColors = {
     ['colors.lightShade']
   ),
   loadingSpinnerHighlight: computed(
-    ([primary]) => primary,
-    ['colors.primary']
+    ([primary]) => primary, ['colors.primary']
   ),
 
   loadingChartMonoBackground0: computed(
