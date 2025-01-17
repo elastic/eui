@@ -78,6 +78,9 @@ export type _EuiThemeComponentColors = {
   listGroupItemBackgroundHover: ColorModeSwitch;
   listGroupItemBackgroundPrimaryHover: ColorModeSwitch;
 
+  loadingSpinnerBorder: ColorModeSwitch;
+  loadingSpinnerHighlight: ColorModeSwitch;
+
   loadingChartMonoBackground0: ColorModeSwitch;
   loadingChartMonoBackground1: ColorModeSwitch;
   loadingChartMonoBackground2: ColorModeSwitch;
