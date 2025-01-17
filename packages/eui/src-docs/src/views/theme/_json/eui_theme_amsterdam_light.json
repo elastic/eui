@@ -219,67 +219,67 @@
   "euiZContent": 0,
   "euiPaletteColorBlind": {
     "euiColorVis0": {
-      "graphic": "#54b399",
-      "behindText": "#6dccb1"
+      "graphic": "#54B399",
+      "behindText": "#6DCCB1"
     },
     "euiColorVis1": {
-      "graphic": "#6092c0",
-      "behindText": "#79aad9"
+      "graphic": "#6092C0",
+      "behindText": "#79AAD9"
     },
     "euiColorVis2": {
-      "graphic": "#d36086",
-      "behindText": "#ee789d"
+      "graphic": "#D36086",
+      "behindText": "#EE789D"
     },
     "euiColorVis3": {
-      "graphic": "#9170b8",
-      "behindText": "#a987d1"
+      "graphic": "#9170B8",
+      "behindText": "#A987D1"
     },
     "euiColorVis4": {
-      "graphic": "#ca8eae",
-      "behindText": "#e4a6c7"
+      "graphic": "#CA8EAE",
+      "behindText": "#E4A6C7"
     },
     "euiColorVis5": {
-      "graphic": "#d6bf57",
-      "behindText": "#f1d86f"
+      "graphic": "#D6BF57",
+      "behindText": "#F1D86F"
     },
     "euiColorVis6": {
-      "graphic": "#b9a888",
-      "behindText": "#d2c0a0"
+      "graphic": "#B9A888",
+      "behindText": "#D2C0A0"
     },
     "euiColorVis7": {
-      "graphic": "#da8b45",
-      "behindText": "#f5a35c"
+      "graphic": "#DA8B45",
+      "behindText": "#F5A35C"
     },
     "euiColorVis8": {
-      "graphic": "#aa6556",
-      "behindText": "#c47c6c"
+      "graphic": "#AA6556",
+      "behindText": "#C47C6C"
     },
     "euiColorVis9": {
-      "graphic": "#e7664c",
-      "behindText": "#ff7e62"
+      "graphic": "#E7664C",
+      "behindText": "#FF7E62"
     }
   },
   "euiPaletteColorBlindKeys": "'euiColorVis0', 'euiColorVis1', 'euiColorVis2', 'euiColorVis3', 'euiColorVis4', 'euiColorVis5', 'euiColorVis6', 'euiColorVis7', 'euiColorVis8', 'euiColorVis9'",
-  "euiColorVis0": "#54b399",
-  "euiColorVis1": "#6092c0",
-  "euiColorVis2": "#d36086",
-  "euiColorVis3": "#9170b8",
-  "euiColorVis4": "#ca8eae",
-  "euiColorVis5": "#d6bf57",
-  "euiColorVis6": "#b9a888",
-  "euiColorVis7": "#da8b45",
-  "euiColorVis8": "#aa6556",
-  "euiColorVis9": "#e7664c",
-  "euiColorVis0_behindText": "#6dccb1",
-  "euiColorVis1_behindText": "#79aad9",
-  "euiColorVis2_behindText": "#ee789d",
-  "euiColorVis3_behindText": "#a987d1",
-  "euiColorVis4_behindText": "#e4a6c7",
-  "euiColorVis5_behindText": "#f1d86f",
-  "euiColorVis6_behindText": "#d2c0a0",
-  "euiColorVis7_behindText": "#f5a35c",
-  "euiColorVis8_behindText": "#c47c6c",
-  "euiColorVis9_behindText": "#ff7e62",
+  "euiColorVis0": "#54B399",
+  "euiColorVis1": "#6092C0",
+  "euiColorVis2": "#D36086",
+  "euiColorVis3": "#9170B8",
+  "euiColorVis4": "#CA8EAE",
+  "euiColorVis5": "#D6BF57",
+  "euiColorVis6": "#B9A888",
+  "euiColorVis7": "#DA8B45",
+  "euiColorVis8": "#AA6556",
+  "euiColorVis9": "#E7664C",
+  "euiColorVis0_behindText": "#6DCCB1",
+  "euiColorVis1_behindText": "#79AAD9",
+  "euiColorVis2_behindText": "#EE789D",
+  "euiColorVis3_behindText": "#A987D1",
+  "euiColorVis4_behindText": "#E4A6C7",
+  "euiColorVis5_behindText": "#F1D86F",
+  "euiColorVis6_behindText": "#D2C0A0",
+  "euiColorVis7_behindText": "#F5A35C",
+  "euiColorVis8_behindText": "#C47C6C",
+  "euiColorVis9_behindText": "#FF7E62",
   "euiColorVisAsTextLight0": "#006BB4",
   "euiColorVisAsTextLight1": "#017D73",
   "euiColorVisAsTextLight2": "#F5A700",
