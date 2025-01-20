@@ -247,6 +247,129 @@ exports[`EuiTableHeaderCell sorting renders with a sortable icon if \`onSort\` i
 </table>
 `;
 
+exports[`EuiTableHeaderCell tooltip handles expected props 1`] = `
+<div>
+  <table>
+    <thead>
+      <tr>
+        <th
+          class="euiTableHeaderCell emotion-euiTableHeaderCell"
+          role="columnheader"
+          scope="col"
+        >
+          <div
+            class="euiTableCellContent emotion-euiTableCellContent-euiTableHeaderCell__content"
+          >
+            <span
+              class="eui-textTruncate"
+              title="Test"
+            >
+              Test
+            </span>
+            <span
+              class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
+            >
+              <span
+                color="subdued"
+                data-euiicon-type="iInCircle"
+                data-test-subj="icon"
+                tabindex="0"
+              >
+                Info
+              </span>
+            </span>
+          </div>
+        </th>
+      </tr>
+    </thead>
+  </table>
+</div>
+`;
+
+exports[`EuiTableHeaderCell tooltip renders correctly with tooltip next to the sortable icon 1`] = `
+<table>
+  <thead>
+    <tr>
+      <th
+        aria-sort="none"
+        class="euiTableHeaderCell emotion-euiTableHeaderCell"
+        role="columnheader"
+        scope="col"
+      >
+        <button
+          class="euiTableHeaderButton emotion-euiTableHeaderCell__button"
+          data-test-subj="tableHeaderSortButton"
+          type="button"
+        >
+          <div
+            class="euiTableCellContent emotion-euiTableCellContent-euiTableHeaderCell__content"
+          >
+            <span
+              class="eui-textTruncate"
+              title="Test"
+            >
+              Test
+            </span>
+            <span
+              class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
+            >
+              <span
+                color="subdued"
+                data-euiicon-type="questionInCircle"
+                tabindex="0"
+              >
+                Info
+              </span>
+            </span>
+            <span
+              class="euiTableSortIcon euiTableSortIcon--sortable"
+              color="subdued"
+              data-euiicon-type="sortable"
+            />
+          </div>
+        </button>
+      </th>
+    </tr>
+  </thead>
+</table>
+`;
+
+exports[`EuiTableHeaderCell tooltip renders with a tooltip if \`tooltip\` is passed 1`] = `
+<table>
+  <thead>
+    <tr>
+      <th
+        class="euiTableHeaderCell emotion-euiTableHeaderCell"
+        role="columnheader"
+        scope="col"
+      >
+        <div
+          class="euiTableCellContent emotion-euiTableCellContent-euiTableHeaderCell__content"
+        >
+          <span
+            class="eui-textTruncate"
+            title="Test"
+          >
+            Test
+          </span>
+          <span
+            class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
+          >
+            <span
+              color="subdued"
+              data-euiicon-type="questionInCircle"
+              tabindex="0"
+            >
+              Info
+            </span>
+          </span>
+        </div>
+      </th>
+    </tr>
+  </thead>
+</table>
+`;
+
 exports[`EuiTableHeaderCell width and style accepts style attribute 1`] = `
 <table>
   <thead>

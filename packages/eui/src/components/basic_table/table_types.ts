@@ -46,7 +46,7 @@ export interface EuiTableFieldDataColumnType<T>
    */
   name: ReactNode;
   /**
-   * Allows configuring an icon with a tooltip, to be displayed next to the name
+   * Allows adding an icon with a tooltip displayed next to the name
    */
   nameTooltip?: EuiTableHeaderCellTooltip;
   /**

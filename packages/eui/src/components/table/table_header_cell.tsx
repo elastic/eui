@@ -90,7 +90,8 @@ export type EuiTableHeaderCellProps = CommonProps &
     onSort?: NoArgCallback<void>;
     scope?: TableHeaderCellScope;
     width?: string | number;
-    tooltip?: EuiTableHeaderCellTooltip; // should this here be called `tooltip` only?
+    /** Allows adding an icon with a tooltip displayed next to the name */
+    tooltip?: EuiTableHeaderCellTooltip;
     description?: string;
     /**
      * Shows the sort indicator but removes the button

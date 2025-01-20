@@ -8,7 +8,8 @@
 
 import React from 'react';
 import { requiredProps } from '../../test/required_props';
-import { render } from '../../test/rtl';
+import { render, waitForEuiToolTipVisible } from '../../test/rtl';
+import { fireEvent } from '@testing-library/react';
 
 import { RIGHT_ALIGNMENT, CENTER_ALIGNMENT } from '../../services';
 import { WARNING_MESSAGE } from './utils';
@@ -183,6 +184,70 @@ describe('EuiTableHeaderCell', () => {
         </EuiTableHeaderCell>
       );
       expect(container.firstChild).toMatchSnapshot();
+    });
+  });
+
+  describe('tooltip', () => {
+    it('renders with a tooltip if `tooltip` is passed', () => {
+      const { container } = renderInTableHeader(
+        <EuiTableHeaderCell
+          tooltip={{
+            content: 'This is the content of the tooltip',
+          }}
+        >
+          Test
+        </EuiTableHeaderCell>
+      );
+
+      expect(container.firstChild).toMatchSnapshot();
+    });
+
+    it('renders correctly with tooltip next to the sortable icon', () => {
+      const { container } = renderInTableHeader(
+        <EuiTableHeaderCell
+          tooltip={{
+            content: 'This is the content of the tooltip',
+          }}
+          onSort={() => {}}
+        >
+          Test
+        </EuiTableHeaderCell>
+      );
+
+      expect(container.firstChild).toMatchSnapshot();
+    });
+
+    it('handles expected props', async () => {
+      const { container, getByTestSubject } = renderInTableHeader(
+        <EuiTableHeaderCell
+          tooltip={{
+            content: 'This is the content of the tooltip',
+            icon: 'iInCircle',
+            iconProps: {
+              'data-test-subj': 'icon',
+            },
+            tooltipProps: {
+              'data-test-subj': 'tooltip',
+            },
+          }}
+        >
+          Test
+        </EuiTableHeaderCell>
+      );
+
+      expect(container).toMatchSnapshot();
+
+      expect(getByTestSubject('icon')).toHaveAttribute(
+        'data-euiicon-type',
+        'iInCircle'
+      );
+
+      fireEvent.focus(getByTestSubject('icon'));
+      await waitForEuiToolTipVisible();
+
+      expect(getByTestSubject('tooltip')).toHaveTextContent(
+        'This is the content of the tooltip'
+      );
     });
   });
 });
