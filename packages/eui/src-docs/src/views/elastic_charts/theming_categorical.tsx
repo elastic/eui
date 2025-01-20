@@ -18,17 +18,18 @@ import {
 
 import { CHART_COMPONENTS, type ChartType, ChartCard } from './shared';
 import {
-  euiPaletteColorBlind,
   euiPaletteGreen,
   euiPaletteForStatus,
   euiPaletteGray,
+  useEuiPaletteColorBlind,
 } from '../../../../src/services';
 import type { EuiPalette } from '../../../../src/services/color/eui_palettes';
 import { useChartBaseTheme } from './utils/use_chart_base_theme';
 
 export default () => {
+  const euiPaletteColorBlind = useEuiPaletteColorBlind();
   const chartBaseTheme = useChartBaseTheme();
-  const highlightColor = euiPaletteColorBlind()[2];
+  const highlightColor = euiPaletteColorBlind[2];
 
   const idPrefix = 'colorType';
 
@@ -246,7 +247,7 @@ export default () => {
           data={data}
           xAccessor={'x'}
           yAccessors={['y']}
-          color={[euiPaletteColorBlind()[index < 2 ? 0 : 1]]}
+          color={[euiPaletteColorBlind[index < 2 ? 0 : 1]]}
           lineSeriesStyle={{
             line: {
               strokeWidth: isOdd ? 1 : 6,

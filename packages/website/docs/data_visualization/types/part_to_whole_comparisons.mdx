@@ -184,7 +184,7 @@ import { GITHUB_DATASET_MOD } from '../data';
     EuiFlexItem,
     EuiTitle,
     EuiSpacer,
-    euiPaletteColorBlind,
+    useEuiPaletteColorBlind,
   } from '@elastic/eui';
   import { Chart, Partition, Settings, PartitionLayout } from '@elastic/charts';
 
@@ -197,7 +197,7 @@ import { GITHUB_DATASET_MOD } from '../data';
     /**
      * Create a 3 rotation palette (one for each level)
      */
-    const groupedPalette = euiPaletteColorBlind({
+    const groupedPalette = useEuiPaletteColorBlind({
       rotations: 3,
       order: 'group',
       sortBy: 'natural',

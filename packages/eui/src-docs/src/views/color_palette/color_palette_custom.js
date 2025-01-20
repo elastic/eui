@@ -8,17 +8,22 @@ import {
   EuiSpacer,
 } from '../../../../src/components';
 
-import { euiPaletteColorBlind, colorPalette } from '../../../../src/services';
+import {
+  colorPalette,
+  useEuiPaletteColorBlind,
+} from '../../../../src/services';
 import { ColorPaletteFlexItem, ColorPaletteCopyCode } from './shared';
-
-const customPalettes = [
-  [euiPaletteColorBlind()[3]],
-  [euiPaletteColorBlind()[3], euiPaletteColorBlind()[4]],
-  [euiPaletteColorBlind()[3], euiPaletteColorBlind()[4]],
-];
 
 export default () => {
   const [length, setLength] = useState(10);
+
+  const euiPaletteColorBlind = useEuiPaletteColorBlind();
+
+  const customPalettes = [
+    [euiPaletteColorBlind[3]],
+    [euiPaletteColorBlind[3], euiPaletteColorBlind[4]],
+    [euiPaletteColorBlind[3], euiPaletteColorBlind[4]],
+  ];
 
   const onLengthChange = (e) => {
     setLength(e.currentTarget.value);
