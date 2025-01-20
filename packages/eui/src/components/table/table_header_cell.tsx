@@ -162,7 +162,7 @@ const CellContents = ({
           size="m"
           color="subdued"
           iconProps={tooltip.iconProps}
-          {...tooltip.tooltipProps}
+          {...{ position: 'top', ...tooltip.tooltipProps }}
         />
       )}
       {isSorted ? (
