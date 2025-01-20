@@ -14,9 +14,9 @@ import {
   isColorDark,
   hexToRgb,
   isValidHex,
-  euiPaletteColorBlindBehindText,
+  useEuiPaletteColorBlindBehindText,
 } from '../../services/color';
-import { toInitials, useEuiMemoizedStyles, useEuiTheme } from '../../services';
+import { toInitials, useEuiMemoizedStyles } from '../../services';
 import { IconType, EuiIcon, IconSize, IconColor } from '../icon';
 
 import { euiAvatarStyles } from './avatar.styles';
@@ -127,13 +127,7 @@ export const EuiAvatar: FunctionComponent<EuiAvatarProps> = ({
   checkValidInitials(initials);
   const { casing = type === 'space' ? 'none' : 'uppercase', ...rest } = props;
 
-  const { euiTheme } = useEuiTheme();
-
-  const visColors = useMemo(
-    () => euiPaletteColorBlindBehindText(),
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [euiTheme]
-  );
+  const visColors = useEuiPaletteColorBlindBehindText();
 
   const isPlain = color === 'plain';
   const isSubdued = color === 'subdued';
