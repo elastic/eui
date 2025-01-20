@@ -48,7 +48,9 @@ import {
   EuiCode,
   EuiColorPalettePicker,
   EuiFlexGroup
+  EUI_VIS_COLOR_STORE
 } from '@elastic/eui';
+import { VIS_COLOR_STORE_EVENTS } from '@elastic/eui-theme-common';
 
 const getPalettes = (appendTitles) => [
   {
@@ -143,7 +145,21 @@ const AppendedTitleText = ({ label }) => (
 export default () => {
   const [selectionDisplay, setSelectionDisplay] = useState(false);
   const [showAppendedTitles, setShowAppendedTitles] = useState(false);
-  const [pallette, setPallette] = useState('pallette_1');
+  const [palettes, setPalettes] = useState(getPalettes());
+  const [selectedPalette, setSelectedPalette] = useState('palette_1');
+
+  useEffect(() => {
+    const storeId = EUI_VIS_COLOR_STORE.subscribe(
+      VIS_COLOR_STORE_EVENTS.UPDATE,
+      () => {
+        setPalettes(getPalettes());
+      }
+    );
+
+    return () => {
+      EUI_VIS_COLOR_STORE.unsubscribe(VIS_COLOR_STORE_EVENTS.UPDATE, storeId);
+    };
+  }, []);
 
   return (
     <>
@@ -171,8 +187,8 @@ export default () => {
       <DisplayToggles canPrepend={true} canAppend={true} canReadOnly={false}>
         <EuiColorPalettePicker
           palettes={getPalettes(showAppendedTitles)}
-          onChange={setPallette}
-          valueOfSelected={pallette}
+          onChange={setSelectedPalette}
+          valueOfSelected={selectedPalette}
           selectionDisplay={selectionDisplay ? 'title' : 'palette'}
         />
       </DisplayToggles>
