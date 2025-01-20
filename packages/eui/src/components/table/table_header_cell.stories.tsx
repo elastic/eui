@@ -66,3 +66,14 @@ export const Playground: Story = {
     onSort: false,
   },
 };
+
+export const Tooltip: Story = {
+  args: {
+    children: 'Header cell content',
+    // @ts-ignore - overwrite meta default to align with base behavior
+    onSort: false,
+    tooltip: {
+      content: 'tooltip content',
+    },
+  },
+};
