@@ -22,8 +22,7 @@ import chroma, { ColorSpaces } from 'chroma-js';
 import {
   useEuiMemoizedStyles,
   keys,
-  euiPaletteColorBlind,
-  useEuiTheme,
+  useEuiPaletteColorBlind,
 } from '../../services';
 import { CommonProps } from '../common';
 import {
@@ -239,13 +238,8 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
     ]
   );
 
-  const { euiTheme } = useEuiTheme();
-
-  const swatches = useMemo(
-    () => _swatches ?? euiPaletteColorBlind(),
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [_swatches, euiTheme]
-  );
+  const defaultSwatches = useEuiPaletteColorBlind();
+  const swatches = _swatches ?? defaultSwatches;
 
   const preferredFormat = useMemo(() => {
     if (format) return format;
