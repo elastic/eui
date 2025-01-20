@@ -36,8 +36,8 @@ import { HEADER_CELL_SCOPE } from './table_header_cell_shared';
 export type TableHeaderCellScope = (typeof HEADER_CELL_SCOPE)[number];
 
 /*
-  To discuss
-  ==========
+  To discuss during PR review
+  ===========================
 
   I wonder if we could make this just match the API from EuiIconTip?
 
