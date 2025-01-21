@@ -31,6 +31,11 @@ export type EuiFieldTextProps = InputHTMLAttributes<HTMLInputElement> &
      */
     fullWidth?: boolean;
     isLoading?: boolean;
+    /**
+     * Prevents user from changing input.
+     *
+     * Defaults to the value of `disabled` unless explicity defined otherwise.
+     */
     readOnly?: boolean;
     inputRef?: Ref<HTMLInputElement>;
 
