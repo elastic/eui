@@ -220,6 +220,7 @@ export const iconTypes = [
   'pivot',
   'play',
   'playFilled',
+  'plugs',
   'plus',
   'plusInCircle',
   'plusInCircleFilled',

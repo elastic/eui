@@ -346,6 +346,7 @@ export const typeToPathMap = {
   pivot: 'pivot',
   play: 'play',
   playFilled: 'playFilled',
+  plugs: 'plugs',
   plus: 'plus',
   plusInCircle: 'plus_in_circle',
   plusInCircleFilled: 'plus_in_circle_filled',

@@ -210,6 +210,7 @@ export const iconTypes: Array<IconType> = [
   'pivot',
   'play',
   'playFilled',
+  'plugs',
   'plus',
   'plusInCircle',
   'plusInCircleFilled',
