@@ -459,6 +459,7 @@ export const typeToPathMap = {
   warningFilled: 'warningFilled',
   alert: 'warning', // NOTE: This is an undocumented alias for `warning`, added for legacy compatability with Elastic Charts
   watchesApp: 'app_watches',
+  web: 'web',
   wordWrap: 'wordWrap',
   wordWrapDisabled: 'wordWrapDisabled',
   workplaceSearchApp: 'app_workplace_search',

@@ -315,6 +315,7 @@ export const iconTypes = [
   'visVisualBuilder',
   'warning',
   'warningFilled',
+  'web',
   'wordWrap',
   'wordWrapDisabled',
   'wrench',

@@ -305,6 +305,7 @@ export const iconTypes: Array<IconType> = [
   'visVisualBuilder',
   'warning',
   'warningFilled',
+  'web',
   'wordWrap',
   'wordWrapDisabled',
   'wrench',
