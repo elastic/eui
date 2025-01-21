@@ -24,7 +24,7 @@ import {
   shade,
   tint,
   transparentize,
-} from '../../../../services/color';
+} from '../../../../services/color/manipulation';
 import { computed } from '../../../../services/theme/utils';
 import {
   makeHighContrastColor,

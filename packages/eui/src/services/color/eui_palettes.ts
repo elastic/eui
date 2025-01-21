@@ -31,7 +31,21 @@ const euiPalette = function (
   return colorPalette(colors, steps, diverge, categorical);
 };
 
-export interface EuiPaletteColorBlindProps {
+export type EuiPaletteCommonProps = {
+  /**
+   * Defines the default set of colors the palette uses.
+   * Defaults to vis colors from `EUI_VIS_COLOR_STORE`.
+   * Use this to specify colors when you can't rely on the EuiProvider updates.
+   */
+  colors?: _EuiThemeVisColors;
+  /**
+   * Specifies if some color asdjustments for vis colors are required.
+   * Has to be passed when `colors` are set
+   */
+  hasVisColorAdjustment?: boolean;
+};
+
+export type EuiPaletteRotationProps = {
   /**
    * How many variations of the series is needed
    */
@@ -53,7 +67,10 @@ export interface EuiPaletteColorBlindProps {
    * Defaults to a number close to green.
    */
   sortShift?: string;
-}
+};
+
+export type EuiPaletteColorBlindProps = EuiPaletteCommonProps &
+  EuiPaletteRotationProps;
 
 /**
  * NOTE: These functions rely on base vis colors of the theme which are provided via a global
@@ -69,10 +86,11 @@ export const euiPaletteColorBlind = ({
   direction = 'lighter',
   sortBy = 'default',
   sortShift = '-100',
+  colors,
 }: EuiPaletteColorBlindProps = {}): EuiPalette => {
-  let colors: string[] = [];
+  let _colors: string[] = [];
 
-  const { visColors } = EUI_VIS_COLOR_STORE;
+  const visColors = colors ?? EUI_VIS_COLOR_STORE.visColors;
 
   let base = [
     visColors.euiColorVis0,
@@ -116,18 +134,18 @@ export const euiPaletteColorBlind = ({
     });
 
     if (order === 'group') {
-      colors = flatten(palettes);
+      _colors = flatten(palettes);
     } else {
       for (let i = 0; i < rotations; i++) {
         const rotation = palettes.map((palette) => palette[i]);
-        colors.push(...rotation);
+        _colors.push(...rotation);
       }
     }
   } else {
-    colors = base;
+    _colors = base;
   }
 
-  return colors;
+  return _colors;
 };
 
 /**
@@ -140,12 +158,14 @@ export const euiPaletteColorBlind = ({
 export const euiPaletteColorBlindBehindText = (
   paletteProps: EuiPaletteColorBlindProps = {}
 ) => {
-  const { hasVisColorAdjustment } = EUI_VIS_COLOR_STORE;
+  const { hasVisColorAdjustment } = paletteProps;
+  const _hasVisColorAdjustment =
+    hasVisColorAdjustment ?? EUI_VIS_COLOR_STORE.hasVisColorAdjustment;
 
   const originalPalette = euiPaletteColorBlind(paletteProps);
 
   // new theme palette has required contrast, we don't need to adjust them
-  if (!hasVisColorAdjustment) return originalPalette;
+  if (!_hasVisColorAdjustment) return originalPalette;
 
   const newPalette = originalPalette.map((color) =>
     chroma(color).brighten(0.5).hex()
@@ -165,8 +185,10 @@ const _getVisColorsAsText = (
  * NOTE: This function is not pure. It relies on `EUI_VIS_COLOR_STORE` which is updated by the
  * EuiProvider on theme change. Ensure to recall the function on theme change or subscribe to the store.
  */
-export const euiPaletteForLightBackground = function (): EuiPalette {
-  const { visColors } = EUI_VIS_COLOR_STORE;
+export const euiPaletteForLightBackground = function ({
+  colors,
+}: EuiPaletteCommonProps = {}): EuiPalette {
+  const visColors = colors ?? EUI_VIS_COLOR_STORE.visColors;
 
   const visColorsAsTextKeys = Object.keys(visColors).filter((color) =>
     color.includes('AsTextLight')
@@ -179,8 +201,10 @@ export const euiPaletteForLightBackground = function (): EuiPalette {
  * NOTE: This function is not pure. It relies on `EUI_VIS_COLOR_STORE` which is updated by the
  * EuiProvider on theme change. Ensure to recall the function on theme change or subscribe to the store.
  */
-export const euiPaletteForDarkBackground = function (): EuiPalette {
-  const { visColors } = EUI_VIS_COLOR_STORE;
+export const euiPaletteForDarkBackground = function ({
+  colors,
+}: EuiPaletteCommonProps = {}): EuiPalette {
+  const visColors = colors ?? EUI_VIS_COLOR_STORE.visColors;
 
   const visColorsAsTextKeys = Object.keys(visColors).filter((color) =>
     color.includes('AsTextDark')
@@ -193,8 +217,11 @@ export const euiPaletteForDarkBackground = function (): EuiPalette {
  * NOTE: This function is not pure. It relies on `EUI_VIS_COLOR_STORE` which is updated by the
  * EuiProvider on theme change. Ensure to recall the function on theme change or subscribe to the store.
  */
-export const euiPaletteForStatus = function (steps: number): EuiPalette {
-  const { visColors } = EUI_VIS_COLOR_STORE;
+export const euiPaletteForStatus = function (
+  steps: number,
+  { colors }: EuiPaletteCommonProps = {}
+): EuiPalette {
+  const visColors = colors ?? EUI_VIS_COLOR_STORE.visColors;
 
   if (steps === 1) {
     return [visColors.euiColorVisSuccess0];
@@ -227,8 +254,13 @@ export const euiPaletteForStatus = function (steps: number): EuiPalette {
  * NOTE: This function is not pure. It relies on `EUI_VIS_COLOR_STORE` which is updated by the
  * EuiProvider on theme change. Ensure to recall the function on theme change or subscribe to the store.
  */
-export const euiPaletteForTemperature = function (steps: number): EuiPalette {
-  const { hasVisColorAdjustment, visColors } = EUI_VIS_COLOR_STORE;
+export const euiPaletteForTemperature = function (
+  steps: any,
+  { colors, hasVisColorAdjustment }: EuiPaletteCommonProps = {}
+): EuiPalette {
+  const visColors = colors ?? EUI_VIS_COLOR_STORE.visColors;
+  const _hasVisColorAdjustment =
+    hasVisColorAdjustment ?? EUI_VIS_COLOR_STORE.hasVisColorAdjustment;
 
   if (steps === 1) {
     return [visColors.euiColorVisCool2];
@@ -257,7 +289,7 @@ export const euiPaletteForTemperature = function (steps: number): EuiPalette {
     3
   );
 
-  const paletteColors = hasVisColorAdjustment
+  const paletteColors = _hasVisColorAdjustment
     ? [...cools, ...warms]
     : [...cools, visColors.euiColorVisNeutral0, ...warms];
 
@@ -268,14 +300,19 @@ export const euiPaletteForTemperature = function (steps: number): EuiPalette {
  * NOTE: This function is not pure. It relies on `EUI_VIS_COLOR_STORE` which is updated by the
  * EuiProvider on theme change. Ensure to recall the function on theme change or subscribe to the store.
  */
-export const euiPaletteComplementary = function (steps: number): EuiPalette {
-  const { hasVisColorAdjustment, visColors } = EUI_VIS_COLOR_STORE;
+export const euiPaletteComplementary = function (
+  steps: number,
+  { colors, hasVisColorAdjustment }: EuiPaletteCommonProps = {}
+): EuiPalette {
+  const visColors = colors ?? EUI_VIS_COLOR_STORE.visColors;
+  const _hasVisColorAdjustment =
+    hasVisColorAdjustment ?? EUI_VIS_COLOR_STORE.hasVisColorAdjustment;
 
   if (steps === 1) {
     return [visColors.euiColorVisComplementary0];
   }
 
-  const paletteColors = hasVisColorAdjustment
+  const paletteColors = _hasVisColorAdjustment
     ? [visColors.euiColorVisComplementary0, visColors.euiColorVisComplementary1]
     : [
         visColors.euiColorVisComplementary0,
@@ -290,8 +327,11 @@ export const euiPaletteComplementary = function (steps: number): EuiPalette {
  * NOTE: This function is not pure. It relies on `EUI_VIS_COLOR_STORE` which is updated by the
  * EuiProvider on theme change. Ensure to recall the function on theme change or subscribe to the store.
  */
-export const euiPaletteRed = function (steps: number): EuiPalette {
-  const { visColors } = EUI_VIS_COLOR_STORE;
+export const euiPaletteRed = function (
+  steps: number,
+  { colors }: EuiPaletteCommonProps = {}
+): EuiPalette {
+  const visColors = colors ?? EUI_VIS_COLOR_STORE.visColors;
 
   if (steps === 1) {
     return [visColors.euiColorVisDanger1];
@@ -307,8 +347,11 @@ export const euiPaletteRed = function (steps: number): EuiPalette {
  * NOTE: This function is not pure. It relies on `EUI_VIS_COLOR_STORE` which is updated by the
  * EuiProvider on theme change. Ensure to recall the function on theme change or subscribe to the store.
  */
-export const euiPaletteGreen = function (steps: number): EuiPalette {
-  const { visColors } = EUI_VIS_COLOR_STORE;
+export const euiPaletteGreen = function (
+  steps: number,
+  { colors }: EuiPaletteCommonProps = {}
+): EuiPalette {
+  const visColors = colors ?? EUI_VIS_COLOR_STORE.visColors;
 
   if (steps === 1) {
     return [visColors.euiColorVisSuccess1];
@@ -324,8 +367,13 @@ export const euiPaletteGreen = function (steps: number): EuiPalette {
  * NOTE: This function is not pure. It relies on `EUI_VIS_COLOR_STORE` which is updated by the
  * EuiProvider on theme change. Ensure to recall the function on theme change or subscribe to the store.
  */
-export const euiPaletteCool = function (steps: number): EuiPalette {
-  const { hasVisColorAdjustment, visColors } = EUI_VIS_COLOR_STORE;
+export const euiPaletteCool = function (
+  steps: number,
+  { colors, hasVisColorAdjustment }: EuiPaletteCommonProps = {}
+): EuiPalette {
+  const visColors = colors ?? EUI_VIS_COLOR_STORE.visColors;
+  const _hasVisColorAdjustment =
+    hasVisColorAdjustment ?? EUI_VIS_COLOR_STORE.hasVisColorAdjustment;
 
   if (steps === 1) {
     return [visColors.euiColorVisCool1];
@@ -333,7 +381,7 @@ export const euiPaletteCool = function (steps: number): EuiPalette {
 
   return euiPalette(
     [
-      hasVisColorAdjustment
+      _hasVisColorAdjustment
         ? visColors.euiColorVisNeutral0
         : visColors.euiColorVisCool0,
       visColors.euiColorVisCool1,
@@ -347,8 +395,11 @@ export const euiPaletteCool = function (steps: number): EuiPalette {
  * NOTE: This function is not pure. It relies on `EUI_VIS_COLOR_STORE` which is updated by the
  * EuiProvider on theme change. Ensure to recall the function on theme change or subscribe to the store.
  */
-export const euiPaletteWarm = function (steps: number): EuiPalette {
-  const { visColors } = EUI_VIS_COLOR_STORE;
+export const euiPaletteWarm = function (
+  steps: number,
+  { colors }: EuiPaletteCommonProps = {}
+): EuiPalette {
+  const visColors = colors ?? EUI_VIS_COLOR_STORE.visColors;
 
   if (steps === 1) {
     return [visColors.euiColorVisWarm2];
@@ -368,8 +419,11 @@ export const euiPaletteWarm = function (steps: number): EuiPalette {
  * NOTE: This function is not pure. It relies on `EUI_VIS_COLOR_STORE` which is updated by the
  * EuiProvider on theme change. Ensure to recall the function on theme change or subscribe to the store.
  */
-export const euiPaletteGray = function (steps: number): EuiPalette {
-  const { visColors } = EUI_VIS_COLOR_STORE;
+export const euiPaletteGray = function (
+  steps: number,
+  { colors }: EuiPaletteCommonProps = {}
+): EuiPalette {
+  const visColors = colors ?? EUI_VIS_COLOR_STORE.visColors;
 
   if (steps === 1) {
     return [visColors.euiColorVisGrey1];

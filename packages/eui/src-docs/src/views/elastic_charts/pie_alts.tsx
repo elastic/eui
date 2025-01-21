@@ -18,10 +18,10 @@ import {
 } from '../../../../src/components';
 
 import {
-  euiPaletteForTemperature,
-  euiPaletteColorBlind,
-  euiPaletteGray,
   useEuiTheme,
+  useEuiPaletteColorBlind,
+  useEuiPaletteForTemperature,
+  useEuiPaletteGray,
 } from '../../../../src/services';
 
 import { GITHUB_DATASET, GITHUB_DATASET_MOD, DAYS_OF_RAIN } from './data';
@@ -40,15 +40,16 @@ export default () => {
   const [formattedData, setFormattedData] = useState(false);
   const [grouped, setGrouped] = useState(false);
 
-  let color = euiPaletteColorBlind({ rotations: 2, order: 'group' }).slice(
+  const paletteTemperature0 = useEuiPaletteForTemperature(0);
+  const paletteTemperature3 = useEuiPaletteForTemperature(3);
+  const paletteGray = useEuiPaletteGray(5);
+
+  let color = useEuiPaletteColorBlind({ rotations: 2, order: 'group' }).slice(
     18,
     20
   );
   if (formatted) {
-    color = [
-      euiPaletteForTemperature(0)[0],
-      euiPaletteGray(5)[isDarkTheme ? 4 : 0],
-    ];
+    color = [paletteTemperature0[0], paletteGray[isDarkTheme ? 4 : 0]];
   }
 
   let data;
@@ -58,7 +59,7 @@ export default () => {
       ? orderBy(DAYS_OF_RAIN, ['precipitation', 'days'], ['desc', 'asc'])
       : DAYS_OF_RAIN;
     usesRainData = true;
-    color = euiPaletteForTemperature(3);
+    color = paletteTemperature3;
   } else {
     const DATASET = grouped ? GITHUB_DATASET_MOD : GITHUB_DATASET;
     data = orderBy(DATASET, 'issueType', 'asc');

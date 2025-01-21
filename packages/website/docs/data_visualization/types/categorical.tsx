@@ -14,18 +14,19 @@ import {
   EuiRadioGroup,
   EuiIcon,
   EuiTitle,
-  euiPaletteColorBlind,
   euiPaletteGreen,
   euiPaletteForStatus,
   euiPaletteGray,
+  useEuiPaletteColorBlind,
 } from '@elastic/eui';
 import { CHART_COMPONENTS, type ChartType, ChartCard } from './shared';
 
 import { useChartBaseTheme } from '../use_chart_base_theme';
 
 export const Categorical = () => {
+  const euiPaletteColorBlind = useEuiPaletteColorBlind();
   const chartBaseTheme = useChartBaseTheme();
-  const highlightColor = euiPaletteColorBlind()[2];
+  const highlightColor = euiPaletteColorBlind[2];
 
   const idPrefix = 'colorType';
 
@@ -245,7 +246,7 @@ export const Categorical = () => {
           data={data}
           xAccessor={'x'}
           yAccessors={['y']}
-          color={[euiPaletteColorBlind()[index < 2 ? 0 : 1]]}
+          color={[euiPaletteColorBlind[index < 2 ? 0 : 1]]}
           lineSeriesStyle={{
             line: {
               strokeWidth: isOdd ? 1 : 6,

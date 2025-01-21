@@ -18,6 +18,8 @@ import { font } from './variables/_typography';
 import { focus } from './variables/_states';
 import { components } from './variables/_components';
 
+export { colorVis } from './variables/colors/_colors_vis';
+
 export const EUI_THEME_BOREALIS_KEY = 'EUI_THEME_BOREALIS';
 
 export const euiThemeBorealis: EuiThemeShape = {

@@ -19,7 +19,7 @@ import {
 
 import {
   useGeneratedHtmlId,
-  euiPaletteColorBlindBehindText,
+  useEuiPaletteColorBlindBehindText,
 } from '../../../../src/services';
 
 export default () => {
@@ -33,7 +33,7 @@ export default () => {
   // We could use the `euiPaletteColorBlind` for coloring the avatars
   // But because we're placing an icon on top of these colors
   // The `euiPaletteColorBlindBehindText` is a better choice to ensure better contrast
-  const colorBlindBehindText = euiPaletteColorBlindBehindText({
+  const colorBlindBehindText = useEuiPaletteColorBlindBehindText({
     sortBy: 'natural',
   });
 
