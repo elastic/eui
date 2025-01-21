@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { css } from '@emotion/react';
 import { VIS_COLOR_STORE_EVENTS } from '@elastic/eui-theme-common';
 import {
   EUI_VIS_COLOR_STORE,
@@ -12,32 +13,50 @@ import {
   EuiSpacer,
   EuiCode,
   EuiColorPalettePicker,
+  EuiText,
+  EuiFlexGroup,
 } from '../../../../src/components/';
 
 import { DisplayToggles } from '../form_controls/display_toggles';
 
-const getPalettes = () => [
+/** Text wrapper to remove text-decoration on appended text */
+const AppendedTitleText = ({ label }) => (
+  <EuiText color="subdued" size="xs">
+    <span
+      css={css`
+        display: inline-block;
+      `}
+    >
+      {label}
+    </span>
+  </EuiText>
+);
+
+const getPalettes = (appendTitles) => [
   {
     value: 'palette_1',
-    title: 'EUI color blind (fixed)',
+    title: 'EUI color blind',
     palette: euiPaletteColorBlind(),
+    append: appendTitles && <AppendedTitleText label="fixed" />,
     type: 'fixed',
   },
   {
     value: 'palette_2',
-    title: 'EUI palette for status (gradient)',
+    title: 'EUI palette for status',
     palette: euiPaletteForStatus(5),
+    append: appendTitles && <AppendedTitleText label="gradient" />,
     type: 'gradient',
   },
   {
     value: 'palette_3',
-    title: 'EUI palette for temperature (fixed)',
+    title: 'EUI palette for temperature',
     palette: euiPaletteForTemperature(5),
+    append: appendTitles && <AppendedTitleText label="fixed" />,
     type: 'fixed',
   },
   {
     value: 'palette_4',
-    title: 'Grayscale (gradient with stops)',
+    title: 'Grayscale',
     palette: [
       {
         stop: 100,
@@ -56,11 +75,12 @@ const getPalettes = () => [
         color: 'black',
       },
     ],
+    append: appendTitles && <AppendedTitleText label="gradient with stops" />,
     type: 'gradient',
   },
   {
     value: 'pallette_5',
-    title: 'Grayscale (fixed with stops)',
+    title: 'Grayscale',
     palette: [
       {
         stop: 100,
@@ -79,6 +99,7 @@ const getPalettes = () => [
         color: 'black',
       },
     ],
+    append: appendTitles && <AppendedTitleText label="fixed with stops" />,
     type: 'fixed',
   },
   {
@@ -90,8 +111,13 @@ const getPalettes = () => [
 
 export default () => {
   const [selectionDisplay, setSelectionDisplay] = useState(false);
-  const [palettes, setPalettes] = useState(getPalettes());
+  const [showAppendedTitles, setShowAppendedTitles] = useState(false);
+  const [palettes, setPalettes] = useState(getPalettes(showAppendedTitles));
   const [selectedPalette, setSelectedPalette] = useState('palette_1');
+
+  useEffect(() => {
+    setPalettes(getPalettes(showAppendedTitles));
+  }, [showAppendedTitles]);
 
   useEffect(() => {
     const storeId = EUI_VIS_COLOR_STORE.subscribe(
@@ -108,15 +134,26 @@ export default () => {
 
   return (
     <>
-      <EuiSwitch
-        label={
-          <span>
-            Display selected item as a <EuiCode>title</EuiCode>
-          </span>
-        }
-        checked={selectionDisplay}
-        onChange={() => setSelectionDisplay(!selectionDisplay)}
-      />
+      <EuiFlexGroup>
+        <EuiSwitch
+          label={
+            <span>
+              Display selected item as a <EuiCode>title</EuiCode>
+            </span>
+          }
+          checked={selectionDisplay}
+          onChange={() => setSelectionDisplay(!selectionDisplay)}
+        />
+        <EuiSwitch
+          label={
+            <span>
+              Display <EuiCode>append</EuiCode> element on title
+            </span>
+          }
+          checked={showAppendedTitles}
+          onChange={() => setShowAppendedTitles(!showAppendedTitles)}
+        />
+      </EuiFlexGroup>
       <EuiSpacer />
       <DisplayToggles canPrepend={true} canAppend={true} canReadOnly={false}>
         <EuiColorPalettePicker
