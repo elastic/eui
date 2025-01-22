@@ -62,7 +62,7 @@ exports[`global utility styles generates static global styles 1`] = `
     }
 
     &::-webkit-scrollbar-thumb {
-      background-color: rgba(105,112,125,0.5);
+      background-color: rgba(90,109,140,0.5);
       background-clip: content-box;
       border-radius: 16px;
       border: calc(8px * 0.75) solid transparent;
@@ -73,7 +73,7 @@ exports[`global utility styles generates static global styles 1`] = `
       background-color: transparent;
     }
 
-    scrollbar-color: rgba(105,112,125,0.5) transparent;
+    scrollbar-color: rgba(90,109,140,0.5) transparent;
   ;}
 .eui-yScroll{
   scrollbar-width: thin;
@@ -84,7 +84,7 @@ exports[`global utility styles generates static global styles 1`] = `
     }
 
     &::-webkit-scrollbar-thumb {
-      background-color: rgba(105,112,125,0.5);
+      background-color: rgba(90,109,140,0.5);
       background-clip: content-box;
       border-radius: 16px;
       border: calc(8px * 0.75) solid transparent;
@@ -95,7 +95,7 @@ exports[`global utility styles generates static global styles 1`] = `
       background-color: transparent;
     }
 
-    scrollbar-color: rgba(105,112,125,0.5) transparent;
+    scrollbar-color: rgba(90,109,140,0.5) transparent;
   
   block-size: 100%;
   
@@ -119,7 +119,7 @@ exports[`global utility styles generates static global styles 1`] = `
     }
 
     &::-webkit-scrollbar-thumb {
-      background-color: rgba(105,112,125,0.5);
+      background-color: rgba(90,109,140,0.5);
       background-clip: content-box;
       border-radius: 16px;
       border: calc(8px * 0.75) solid transparent;
@@ -130,7 +130,7 @@ exports[`global utility styles generates static global styles 1`] = `
       background-color: transparent;
     }
 
-    scrollbar-color: rgba(105,112,125,0.5) transparent;
+    scrollbar-color: rgba(90,109,140,0.5) transparent;
   
   
   overflow-x: auto;
@@ -150,7 +150,7 @@ exports[`global utility styles generates static global styles 1`] = `
     }
 
     &::-webkit-scrollbar-thumb {
-      background-color: rgba(105,112,125,0.5);
+      background-color: rgba(90,109,140,0.5);
       background-clip: content-box;
       border-radius: 16px;
       border: calc(8px * 0.75) solid transparent;
@@ -161,7 +161,7 @@ exports[`global utility styles generates static global styles 1`] = `
       background-color: transparent;
     }
 
-    scrollbar-color: rgba(105,112,125,0.5) transparent;
+    scrollbar-color: rgba(90,109,140,0.5) transparent;
   
   block-size: 100%;
   
@@ -194,7 +194,7 @@ exports[`global utility styles generates static global styles 1`] = `
     }
 
     &::-webkit-scrollbar-thumb {
-      background-color: rgba(105,112,125,0.5);
+      background-color: rgba(90,109,140,0.5);
       background-clip: content-box;
       border-radius: 16px;
       border: calc(8px * 0.75) solid transparent;
@@ -205,7 +205,7 @@ exports[`global utility styles generates static global styles 1`] = `
       background-color: transparent;
     }
 
-    scrollbar-color: rgba(105,112,125,0.5) transparent;
+    scrollbar-color: rgba(90,109,140,0.5) transparent;
   
   
   overflow-x: auto;

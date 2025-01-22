@@ -19,7 +19,7 @@ exports[`useEuiFocusRing hook returns a string for any color: blue 1`] = `
 
 exports[`useEuiFocusRing hook returns a string for each offset: 16px 1`] = `
 "
-    outline: 2px solid currentColor;
+    outline: 2px solid #1750BA;
     outline-offset: 16px;
 
     // 👀 Chrome respects :focus-visible and allows coloring the \`auto\` style
@@ -36,7 +36,7 @@ exports[`useEuiFocusRing hook returns a string for each offset: 16px 1`] = `
 
 exports[`useEuiFocusRing hook returns a string for each offset: center 1`] = `
 "
-    outline: 2px solid currentColor;
+    outline: 2px solid #1750BA;
     outline-offset: -1px;
 
     // 👀 Chrome respects :focus-visible and allows coloring the \`auto\` style
@@ -53,7 +53,7 @@ exports[`useEuiFocusRing hook returns a string for each offset: center 1`] = `
 
 exports[`useEuiFocusRing hook returns a string for each offset: inset 1`] = `
 "
-    outline: 2px solid currentColor;
+    outline: 2px solid #1750BA;
     outline-offset: -2px;
 
     // 👀 Chrome respects :focus-visible and allows coloring the \`auto\` style
@@ -70,7 +70,7 @@ exports[`useEuiFocusRing hook returns a string for each offset: inset 1`] = `
 
 exports[`useEuiFocusRing hook returns a string for each offset: outset 1`] = `
 "
-    outline: 2px solid currentColor;
+    outline: 2px solid #1750BA;
     outline-offset: 2px;
 
     // 👀 Chrome respects :focus-visible and allows coloring the \`auto\` style

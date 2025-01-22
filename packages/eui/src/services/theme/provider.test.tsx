@@ -47,7 +47,7 @@ describe('EuiThemeProvider', () => {
         </>
       );
 
-      expect(getByText('Light mode')).toHaveStyleRule('color', '#000000');
+      expect(getByText('Light mode')).toHaveStyleRule('color', '#07101F');
       expect(getByText('Dark mode')).toHaveStyleRule('color', '#FFFFFF');
       expect(getByText('Inverse of light mode')).toHaveStyleRule(
         'color',
@@ -55,7 +55,7 @@ describe('EuiThemeProvider', () => {
       );
       expect(getByText('Inverse of dark mode')).toHaveStyleRule(
         'color',
-        '#000000'
+        '#07101F'
       );
     });
   });

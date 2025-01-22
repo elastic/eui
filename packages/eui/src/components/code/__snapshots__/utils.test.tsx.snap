@@ -12,7 +12,7 @@ exports[`line utils highlightByLine with line numbers renders two elements per l
               "aria-hidden": true,
               "className": [
                 "euiCodeBlock__lineNumber",
-                "css-19pu25o-euiCodeBlock__lineNumber",
+                "css-tbmk9f-euiCodeBlock__lineNumber",
               ],
               "data-line-number": 1,
             },
@@ -65,7 +65,7 @@ exports[`line utils highlightByLine with line numbers renders two elements per l
         "properties": {
           "className": [
             "euiCodeBlock__lineText",
-            "css-rnrc4n-euiCodeBlock__lineText",
+            "css-alqp5p-euiCodeBlock__lineText",
           ],
         },
         "tagName": "span",
@@ -91,7 +91,7 @@ exports[`line utils highlightByLine with line numbers renders two elements per l
               "aria-hidden": true,
               "className": [
                 "euiCodeBlock__lineNumber",
-                "css-19pu25o-euiCodeBlock__lineNumber",
+                "css-tbmk9f-euiCodeBlock__lineNumber",
               ],
               "data-line-number": 2,
             },
@@ -216,7 +216,7 @@ exports[`line utils highlightByLine with line numbers renders two elements per l
         "properties": {
           "className": [
             "euiCodeBlock__lineText",
-            "css-rnrc4n-euiCodeBlock__lineText",
+            "css-alqp5p-euiCodeBlock__lineText",
           ],
         },
         "tagName": "span",
@@ -242,7 +242,7 @@ exports[`line utils highlightByLine with line numbers renders two elements per l
               "aria-hidden": true,
               "className": [
                 "euiCodeBlock__lineNumber",
-                "css-19pu25o-euiCodeBlock__lineNumber",
+                "css-tbmk9f-euiCodeBlock__lineNumber",
               ],
               "data-line-number": 3,
             },
@@ -294,7 +294,7 @@ exports[`line utils highlightByLine with line numbers renders two elements per l
         "properties": {
           "className": [
             "euiCodeBlock__lineText",
-            "css-rnrc4n-euiCodeBlock__lineText",
+            "css-alqp5p-euiCodeBlock__lineText",
           ],
         },
         "tagName": "span",
@@ -325,7 +325,7 @@ exports[`line utils highlightByLine with line numbers with a custom starting num
               "aria-hidden": true,
               "className": [
                 "euiCodeBlock__lineNumber",
-                "css-19pu25o-euiCodeBlock__lineNumber",
+                "css-tbmk9f-euiCodeBlock__lineNumber",
               ],
               "data-line-number": 10,
             },
@@ -378,7 +378,7 @@ exports[`line utils highlightByLine with line numbers with a custom starting num
         "properties": {
           "className": [
             "euiCodeBlock__lineText",
-            "css-rnrc4n-euiCodeBlock__lineText",
+            "css-alqp5p-euiCodeBlock__lineText",
           ],
         },
         "tagName": "span",
@@ -404,7 +404,7 @@ exports[`line utils highlightByLine with line numbers with a custom starting num
               "aria-hidden": true,
               "className": [
                 "euiCodeBlock__lineNumber",
-                "css-19pu25o-euiCodeBlock__lineNumber",
+                "css-tbmk9f-euiCodeBlock__lineNumber",
               ],
               "data-line-number": 11,
             },
@@ -529,7 +529,7 @@ exports[`line utils highlightByLine with line numbers with a custom starting num
         "properties": {
           "className": [
             "euiCodeBlock__lineText",
-            "css-rnrc4n-euiCodeBlock__lineText",
+            "css-alqp5p-euiCodeBlock__lineText",
           ],
         },
         "tagName": "span",
@@ -555,7 +555,7 @@ exports[`line utils highlightByLine with line numbers with a custom starting num
               "aria-hidden": true,
               "className": [
                 "euiCodeBlock__lineNumber",
-                "css-19pu25o-euiCodeBlock__lineNumber",
+                "css-tbmk9f-euiCodeBlock__lineNumber",
               ],
               "data-line-number": 12,
             },
@@ -607,7 +607,7 @@ exports[`line utils highlightByLine with line numbers with a custom starting num
         "properties": {
           "className": [
             "euiCodeBlock__lineText",
-            "css-rnrc4n-euiCodeBlock__lineText",
+            "css-alqp5p-euiCodeBlock__lineText",
           ],
         },
         "tagName": "span",
@@ -638,7 +638,7 @@ exports[`line utils highlightByLine with line numbers with annotations adds a cu
               "aria-hidden": true,
               "className": [
                 "euiCodeBlock__lineNumber",
-                "css-19pu25o-euiCodeBlock__lineNumber",
+                "css-tbmk9f-euiCodeBlock__lineNumber",
               ],
               "data-line-number": 1,
             },
@@ -696,7 +696,7 @@ exports[`line utils highlightByLine with line numbers with annotations adds a cu
         "properties": {
           "className": [
             "euiCodeBlock__lineText",
-            "css-rnrc4n-euiCodeBlock__lineText",
+            "css-alqp5p-euiCodeBlock__lineText",
           ],
         },
         "tagName": "span",
@@ -722,7 +722,7 @@ exports[`line utils highlightByLine with line numbers with annotations adds a cu
               "aria-hidden": true,
               "className": [
                 "euiCodeBlock__lineNumber",
-                "css-19pu25o-euiCodeBlock__lineNumber",
+                "css-tbmk9f-euiCodeBlock__lineNumber",
               ],
               "data-line-number": 2,
             },
@@ -847,7 +847,7 @@ exports[`line utils highlightByLine with line numbers with annotations adds a cu
         "properties": {
           "className": [
             "euiCodeBlock__lineText",
-            "css-rnrc4n-euiCodeBlock__lineText",
+            "css-alqp5p-euiCodeBlock__lineText",
           ],
         },
         "tagName": "span",
@@ -873,7 +873,7 @@ exports[`line utils highlightByLine with line numbers with annotations adds a cu
               "aria-hidden": true,
               "className": [
                 "euiCodeBlock__lineNumber",
-                "css-19pu25o-euiCodeBlock__lineNumber",
+                "css-tbmk9f-euiCodeBlock__lineNumber",
               ],
               "data-line-number": 3,
             },
@@ -925,7 +925,7 @@ exports[`line utils highlightByLine with line numbers with annotations adds a cu
         "properties": {
           "className": [
             "euiCodeBlock__lineText",
-            "css-rnrc4n-euiCodeBlock__lineText",
+            "css-alqp5p-euiCodeBlock__lineText",
           ],
         },
         "tagName": "span",
@@ -956,7 +956,7 @@ exports[`line utils highlightByLine with line numbers with highlighted lines add
               "aria-hidden": true,
               "className": [
                 "euiCodeBlock__lineNumber",
-                "css-19pu25o-euiCodeBlock__lineNumber",
+                "css-tbmk9f-euiCodeBlock__lineNumber",
               ],
               "data-line-number": 1,
             },
@@ -1009,7 +1009,7 @@ exports[`line utils highlightByLine with line numbers with highlighted lines add
         "properties": {
           "className": [
             "euiCodeBlock__lineText",
-            "css-1l6uyoo-euiCodeBlock__lineText-isHighlighted",
+            "css-yk5w7l-euiCodeBlock__lineText-isHighlighted",
           ],
         },
         "tagName": "span",
@@ -1035,7 +1035,7 @@ exports[`line utils highlightByLine with line numbers with highlighted lines add
               "aria-hidden": true,
               "className": [
                 "euiCodeBlock__lineNumber",
-                "css-19pu25o-euiCodeBlock__lineNumber",
+                "css-tbmk9f-euiCodeBlock__lineNumber",
               ],
               "data-line-number": 2,
             },
@@ -1160,7 +1160,7 @@ exports[`line utils highlightByLine with line numbers with highlighted lines add
         "properties": {
           "className": [
             "euiCodeBlock__lineText",
-            "css-1l6uyoo-euiCodeBlock__lineText-isHighlighted",
+            "css-yk5w7l-euiCodeBlock__lineText-isHighlighted",
           ],
         },
         "tagName": "span",
@@ -1186,7 +1186,7 @@ exports[`line utils highlightByLine with line numbers with highlighted lines add
               "aria-hidden": true,
               "className": [
                 "euiCodeBlock__lineNumber",
-                "css-19pu25o-euiCodeBlock__lineNumber",
+                "css-tbmk9f-euiCodeBlock__lineNumber",
               ],
               "data-line-number": 3,
             },
@@ -1238,7 +1238,7 @@ exports[`line utils highlightByLine with line numbers with highlighted lines add
         "properties": {
           "className": [
             "euiCodeBlock__lineText",
-            "css-rnrc4n-euiCodeBlock__lineText",
+            "css-alqp5p-euiCodeBlock__lineText",
           ],
         },
         "tagName": "span",

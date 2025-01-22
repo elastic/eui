@@ -20,7 +20,6 @@ import React, {
 import { Global, type CSSObject } from '@emotion/react';
 import isEqual from 'lodash/isEqual';
 
-import { EUI_EXPERIMENTAL_THEME_ENABLED_KEY } from '../../themes/themes';
 import type { CommonProps } from '../../components/common';
 import { cloneElementWithCss } from '../emotion';
 import { css, cx } from '../emotion/css';
@@ -136,18 +135,6 @@ export const EuiThemeProvider = <T extends {} = {}>({
       ? { ...parentTheme } // Intentionally create a new object to break referential equality
       : getInitialTheme()
   );
-
-  // TODO: temp. testing code only, remove once obsolete
-  useEffect(() => {
-    if (process.env.NODE_ENV === 'development') {
-      const isEnabled =
-        localStorage.getItem(EUI_EXPERIMENTAL_THEME_ENABLED_KEY) != null;
-
-      if (!isEnabled) {
-        localStorage.setItem(EUI_EXPERIMENTAL_THEME_ENABLED_KEY, 'true');
-      }
-    }
-  }, []);
 
   useEffect(() => {
     const newSystem = _system || parentSystem;

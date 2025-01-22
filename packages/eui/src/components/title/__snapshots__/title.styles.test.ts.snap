@@ -2,54 +2,54 @@
 
 exports[`euiTitle mixin returns a static object of title font properties for each title size l 1`] = `
 {
-  "color": "#1a1c21",
-  "fontSize": "2.4286rem",
-  "fontWeight": 700,
-  "lineHeight": "2.8571rem",
+  "color": "#111C2C",
+  "fontSize": "2.1429rem",
+  "fontWeight": 600,
+  "lineHeight": "2.5714rem",
 }
 `;
 
 exports[`euiTitle mixin returns a static object of title font properties for each title size m 1`] = `
 {
-  "color": "#1a1c21",
-  "fontSize": "1.9286rem",
-  "fontWeight": 700,
-  "lineHeight": "2.2857rem",
+  "color": "#111C2C",
+  "fontSize": "1.7143rem",
+  "fontWeight": 600,
+  "lineHeight": "2.0000rem",
 }
 `;
 
 exports[`euiTitle mixin returns a static object of title font properties for each title size s 1`] = `
 {
-  "color": "#1a1c21",
-  "fontSize": "1.5714rem",
-  "fontWeight": 700,
+  "color": "#111C2C",
+  "fontSize": "1.4286rem",
+  "fontWeight": 600,
   "lineHeight": "1.7143rem",
 }
 `;
 
 exports[`euiTitle mixin returns a static object of title font properties for each title size xs 1`] = `
 {
-  "color": "#1a1c21",
+  "color": "#111C2C",
   "fontSize": "1.1429rem",
-  "fontWeight": 700,
+  "fontWeight": 600,
   "lineHeight": "1.7143rem",
 }
 `;
 
 exports[`euiTitle mixin returns a static object of title font properties for each title size xxs 1`] = `
 {
-  "color": "#1a1c21",
+  "color": "#111C2C",
   "fontSize": "1.0000rem",
-  "fontWeight": 700,
+  "fontWeight": 600,
   "lineHeight": "1.4286rem",
 }
 `;
 
 exports[`euiTitle mixin returns a static object of title font properties for each title size xxxs 1`] = `
 {
-  "color": "#1a1c21",
+  "color": "#111C2C",
   "fontSize": "0.8571rem",
-  "fontWeight": 700,
+  "fontWeight": 600,
   "lineHeight": "1.1429rem",
 }
 `;

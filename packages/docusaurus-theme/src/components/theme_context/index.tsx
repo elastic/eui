@@ -14,21 +14,17 @@ import { EuiThemeBorealis } from '@elastic/eui-theme-borealis';
 
 import { EuiThemeOverrides } from './theme_overrides';
 
-const EXPERIMENTAL_THEMES = [
+export const AVAILABLE_THEMES = [
   {
     text: 'Borealis',
     value: EuiThemeBorealis.key,
     provider: EuiThemeBorealis,
   },
-];
-
-export const AVAILABLE_THEMES = [
   {
     text: 'Amsterdam',
     value: EuiThemeAmsterdam.key,
     provider: EuiThemeAmsterdam,
   },
-  ...EXPERIMENTAL_THEMES,
 ];
 
 const EUI_COLOR_MODES = ['light', 'dark'] as EuiThemeColorMode[];

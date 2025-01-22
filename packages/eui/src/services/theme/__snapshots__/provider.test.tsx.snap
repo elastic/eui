@@ -23,7 +23,7 @@ exports[`EuiThemeProvider nested EuiThemeProviders allows customizing the span w
   Top-level provider
    
   <span
-    class="euiThemeProvider test css-1q6x6jl-customCss-euiColorMode-dark"
+    class="euiThemeProvider test css-1pe5bh9-customCss-euiColorMode-dark"
     data-test-subj="nested"
   >
     Nested

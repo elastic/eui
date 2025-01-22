@@ -13,8 +13,8 @@
 import React from 'react';
 import { EuiDataGrid } from '../../data_grid';
 
-const EXPECTED_HOVER_COLOR = 'rgb(105, 112, 125)';
-const EXPECTED_FOCUS_COLOR = 'rgb(0, 119, 204)';
+const EXPECTED_HOVER_COLOR = 'rgb(90, 109, 140)';
+const EXPECTED_FOCUS_COLOR = 'rgb(11, 100, 221)';
 const ANIMATION = {
   DELAY: 350,
   DURATION: 150,

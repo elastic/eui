@@ -105,7 +105,7 @@ exports[`EuiDualRange props levels renders levels when levels prop is set 1`] = 
       aria-valuenow="1"
       class="euiRangeThumb emotion-euiRangeThumb"
       role="slider"
-      style="inset-inline-start: 0; background-color: rgb(189, 39, 30);"
+      style="inset-inline-start: 0; background-color: rgb(198, 30, 37);"
       tabindex="0"
     />
     <div
@@ -115,7 +115,7 @@ exports[`EuiDualRange props levels renders levels when levels prop is set 1`] = 
       aria-valuenow="8"
       class="euiRangeThumb emotion-euiRangeThumb"
       role="slider"
-      style="inset-inline-start: 0; background-color: rgb(189, 39, 30);"
+      style="inset-inline-start: 0; background-color: rgb(198, 30, 37);"
       tabindex="0"
     />
     <div
