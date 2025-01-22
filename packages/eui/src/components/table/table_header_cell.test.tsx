@@ -187,55 +187,22 @@ describe('EuiTableHeaderCell', () => {
     });
   });
 
-  describe('tooltip', () => {
-    it('renders with a tooltip if `tooltip` is passed', () => {
-      const { container } = renderInTableHeader(
+  describe('iconTip', () => {
+    it('renders an icon with tooltip', async () => {
+      const { getByTestSubject } = renderInTableHeader(
         <EuiTableHeaderCell
-          tooltip={{
+          iconTipProps={{
             content: 'This is the content of the tooltip',
-          }}
-        >
-          Test
-        </EuiTableHeaderCell>
-      );
-
-      expect(container.firstChild).toMatchSnapshot();
-    });
-
-    it('renders correctly with tooltip next to the sortable icon', () => {
-      const { container } = renderInTableHeader(
-        <EuiTableHeaderCell
-          tooltip={{
-            content: 'This is the content of the tooltip',
-          }}
-          onSort={() => {}}
-        >
-          Test
-        </EuiTableHeaderCell>
-      );
-
-      expect(container.firstChild).toMatchSnapshot();
-    });
-
-    it('handles expected props', async () => {
-      const { container, getByTestSubject } = renderInTableHeader(
-        <EuiTableHeaderCell
-          tooltip={{
-            content: 'This is the content of the tooltip',
-            icon: 'iInCircle',
+            type: 'iInCircle',
             iconProps: {
               'data-test-subj': 'icon',
             },
-            tooltipProps: {
-              'data-test-subj': 'tooltip',
-            },
+            'data-test-subj': 'tooltip',
           }}
         >
           Test
         </EuiTableHeaderCell>
       );
-
-      expect(container).toMatchSnapshot();
 
       expect(getByTestSubject('icon')).toHaveAttribute(
         'data-euiicon-type',
@@ -247,6 +214,26 @@ describe('EuiTableHeaderCell', () => {
 
       expect(getByTestSubject('tooltip')).toHaveTextContent(
         'This is the content of the tooltip'
+      );
+    });
+
+    it('renders the icon next to the text', () => {
+      const { getByTestSubject, queryByText } = renderInTableHeader(
+        <EuiTableHeaderCell
+          iconTipProps={{
+            content: 'This is the content of the tooltip',
+            iconProps: {
+              'data-test-subj': 'icon',
+            },
+          }}
+          onSort={() => {}}
+        >
+          Test
+        </EuiTableHeaderCell>
+      );
+
+      expect(queryByText('Test')?.nextSibling).toEqual(
+        getByTestSubject('icon').parentElement
       );
     });
   });

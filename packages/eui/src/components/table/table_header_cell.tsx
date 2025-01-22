@@ -22,9 +22,9 @@ import {
 import { EuiI18n } from '../i18n';
 import { EuiScreenReaderOnly } from '../accessibility';
 import { CommonProps, NoArgCallback } from '../common';
-import { EuiIcon, IconType } from '../icon';
+import { EuiIcon } from '../icon';
 import { EuiInnerText } from '../inner_text';
-import { EuiIconTip, EuiIconTipProps, EuiToolTipProps } from '../tool_tip';
+import { EuiIconTip, EuiIconTipProps } from '../tool_tip';
 
 import type { EuiTableRowCellMobileOptionsShape } from './table_row_cell';
 import { resolveWidthAsStyle } from './utils';
@@ -34,52 +34,6 @@ import { euiTableHeaderFooterCellStyles } from './table_cells_shared.styles';
 import { HEADER_CELL_SCOPE } from './table_header_cell_shared';
 
 export type TableHeaderCellScope = (typeof HEADER_CELL_SCOPE)[number];
-
-/*
-  To discuss during PR review
-  ===========================
-
-  I wonder if we could make this just match the API from EuiIconTip?
-
-  So instead of, as currently implemented:
-    ```tsx
-    <EuiIconTip
-      content={tooltip.content}
-      type={tooltip.icon || 'questionInCircle'}
-      size="m"
-      color="subdued"
-      iconProps={tooltip.iconProps}
-      {...tooltip.tooltipProps}
-    />
-    ```
-
-  we could do:
-    ```tsx
-    <EuiIconTip
-      size="m"
-      color="subdued"
-      {...tooltip}
-    />
-    ```
-
-  and this type would also just be (or extend?) `EuiIconTipProps`
-*/
-export type EuiTableHeaderCellTooltip = {
-  /** The main content of the tooltip */
-  content: ReactNode;
-  /**
-   * The icon type to display
-   * @default 'questionInCircle'
-   */
-  icon?: IconType;
-  /** Additional props for EuiIcon */
-  iconProps?: EuiIconTipProps['iconProps'];
-  /** Additional props for the EuiToolip */
-  tooltipProps?: Omit<EuiToolTipProps, 'children' | 'delay' | 'position'> & {
-    delay?: EuiToolTipProps['delay'];
-    position?: EuiToolTipProps['position'];
-  };
-};
 
 export type EuiTableHeaderCellProps = CommonProps &
   Omit<ThHTMLAttributes<HTMLTableHeaderCellElement>, 'align' | 'scope'> & {
@@ -91,7 +45,7 @@ export type EuiTableHeaderCellProps = CommonProps &
     scope?: TableHeaderCellScope;
     width?: string | number;
     /** Allows adding an icon with a tooltip displayed next to the name */
-    tooltip?: EuiTableHeaderCellTooltip;
+    iconTipProps?: EuiIconTipProps;
     description?: string;
     /**
      * Shows the sort indicator but removes the button
@@ -108,21 +62,21 @@ export type EuiTableHeaderCellProps = CommonProps &
 const CellContents = ({
   className,
   align,
+  iconTipProps,
   description,
   children,
   canSort,
   isSorted,
   isSortAscending,
-  tooltip,
 }: {
   className?: string;
   align: HorizontalAlignment;
+  iconTipProps?: EuiIconTipProps;
   description: EuiTableHeaderCellProps['description'];
   children: EuiTableHeaderCellProps['children'];
   canSort?: boolean;
   isSorted: EuiTableHeaderCellProps['isSorted'];
   isSortAscending?: EuiTableHeaderCellProps['isSortAscending'];
-  tooltip?: EuiTableHeaderCellProps['tooltip'];
 }) => {
   return (
     <EuiTableCellContent
@@ -155,14 +109,13 @@ const CellContents = ({
           <span>{description}</span>
         </EuiScreenReaderOnly>
       )}
-      {tooltip && (
+      {iconTipProps && (
         <EuiIconTip
-          content={tooltip.content}
-          type={tooltip.icon || 'questionInCircle'}
+          type="questionInCircle"
           size="m"
           color="subdued"
-          iconProps={tooltip.iconProps}
-          {...{ position: 'top', ...tooltip.tooltipProps }}
+          position="top"
+          {...iconTipProps}
         />
       )}
       {isSorted ? (
@@ -195,7 +148,7 @@ export const EuiTableHeaderCell: FunctionComponent<EuiTableHeaderCellProps> = ({
   width,
   style,
   readOnly,
-  tooltip,
+  iconTipProps,
   description,
   append,
   ...rest
@@ -224,7 +177,7 @@ export const EuiTableHeaderCell: FunctionComponent<EuiTableHeaderCellProps> = ({
   const cellContentsProps = {
     css: styles.euiTableHeaderCell__content,
     align,
-    tooltip,
+    iconTipProps,
     description,
     canSort,
     isSorted,

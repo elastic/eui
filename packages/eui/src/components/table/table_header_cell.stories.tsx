@@ -67,12 +67,17 @@ export const Playground: Story = {
   },
 };
 
-export const Tooltip: Story = {
+export const IconTip: Story = {
+  parameters: {
+    controls: {
+      include: ['iconTip'],
+    },
+  },
   args: {
     children: 'Header cell content',
     // @ts-ignore - overwrite meta default to align with base behavior
     onSort: false,
-    tooltip: {
+    iconTip: {
       content: 'tooltip content',
     },
   },
