@@ -9,6 +9,7 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 
+import { LOKI_SELECTORS } from '../../../.storybook/loki';
 import {
   enableFunctionToggleControls,
   hideStorybookControls,
@@ -51,6 +52,12 @@ const meta: Meta<EuiTableHeaderCellProps> = {
       only: false,
     },
     description: '',
+  },
+  // FIXME I couldn't get this to work
+  parameters: {
+    loki: {
+      chromeSelector: LOKI_SELECTORS.portal,
+    },
   },
 };
 hideStorybookControls(meta, ['aria-label']);
