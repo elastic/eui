@@ -3,11 +3,11 @@ import {
   EUI_THEME_BOREALIS_KEY,
   EuiThemeBorealis,
 } from '@elastic/eui-theme-borealis';
+
 import {
-  EUI_THEMES,
   EUI_THEME,
   AMSTERDAM_NAME_KEY,
-  isExperimentalThemeEnabled,
+  EuiThemeAmsterdam,
 } from '../../../../src/themes';
 import { EuiThemeColorModeStandard } from '../../../../src/services';
 // @ts-ignore importing from a JS file
@@ -34,17 +34,18 @@ const THEME_CSS_MAP = {
   },
 };
 
-const EXPERIMENTAL_THEMES: EUI_THEME[] = isExperimentalThemeEnabled()
-  ? [
-      {
-        text: 'Borealis',
-        value: EuiThemeBorealis.key,
-        provider: EuiThemeBorealis,
-      },
-    ]
-  : [];
-
-export const AVAILABLE_THEMES = [...EUI_THEMES, ...EXPERIMENTAL_THEMES];
+export const AVAILABLE_THEMES = [
+  {
+    text: 'Borealis',
+    value: EuiThemeBorealis.key,
+    provider: EuiThemeBorealis,
+  },
+  {
+    text: 'Amsterdam',
+    value: AMSTERDAM_NAME_KEY,
+    provider: EuiThemeAmsterdam,
+  },
+];
 const THEME_NAMES = AVAILABLE_THEMES.map(({ value }) => value);
 
 AVAILABLE_THEMES.forEach((theme) => {

@@ -21,21 +21,17 @@ import { EuiThemeColorMode } from '../src/services';
 import { EuiProvider, EuiProviderProps } from '../src/components/provider';
 import { EuiThemeAmsterdam } from '../src/themes';
 
-const EXPERIMENTAL_THEMES = [
+export const AVAILABLE_THEMES = [
   {
     text: 'Borealis',
     value: EuiThemeBorealis.key,
     provider: EuiThemeBorealis,
   },
-];
-
-export const AVAILABLE_THEMES = [
   {
     text: 'Amsterdam',
     value: EuiThemeAmsterdam.key,
     provider: EuiThemeAmsterdam,
   },
-  ...EXPERIMENTAL_THEMES,
 ];
 
 /**
@@ -167,17 +163,14 @@ export const euiProviderDecoratorGlobals: Preview['globalTypes'] = {
       dynamicTitle: true,
     },
   },
-};
-
-export const euiProviderDecoratorGlobalsExperimental = {
   theme: {
     description: 'Theme for EuiProvider',
-    defaultValue: EuiThemeAmsterdam.key,
+    defaultValue: EuiThemeBorealis.key,
     toolbar: {
       title: 'Theme',
       items: [
-        { value: EuiThemeAmsterdam.key, title: 'Amsterdam', icon: 'box' },
         { value: EuiThemeBorealis.key, title: 'Borealis', icon: 'box' },
+        { value: EuiThemeAmsterdam.key, title: 'Amsterdam', icon: 'box' },
       ],
       dynamicTitle: true,
     },
