@@ -4581,6 +4581,7 @@ __metadata:
     "@babel/core": "npm:^7.6.0"
     babel-eslint: "npm:^10.0.3"
     eslint: "npm:^6.4.0"
+    jest: "npm:^29.7.0"
   peerDependencies:
     eslint: ">=5 <7"
   languageName: unknown
