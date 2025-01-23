@@ -485,42 +485,50 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
           <div
             class="euiTableCellContent emotion-euiTableCellContent-right-wrapText-actions-desktop"
           >
-            <span
-              class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
+            <div
+              class=" icon-wrapper css-1j3nbwz-isDisabled"
             >
-              <button
-                class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-s-empty-primary-flush-right"
-                type="button"
+              <span
+                class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
               >
-                <span
-                  class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
+                <button
+                  class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-s-empty-primary-flush-right"
+                  type="button"
                 >
                   <span
-                    class="eui-textTruncate euiButtonEmpty__text"
+                    class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
                   >
-                    Edit
+                    <span
+                      class="eui-textTruncate euiButtonEmpty__text"
+                    >
+                      Edit
+                    </span>
                   </span>
-                </span>
-              </button>
-            </span>
-            <span
-              class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
+                </button>
+              </span>
+            </div>
+            <div
+              class=" icon-wrapper css-1j3nbwz-isDisabled"
             >
-              <button
-                class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-s-empty-primary-flush-right"
-                type="button"
+              <span
+                class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
               >
-                <span
-                  class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
+                <button
+                  class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-s-empty-primary-flush-right"
+                  type="button"
                 >
                   <span
-                    class="eui-textTruncate euiButtonEmpty__text"
+                    class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
                   >
-                    Delete
+                    <span
+                      class="eui-textTruncate euiButtonEmpty__text"
+                    >
+                      Delete
+                    </span>
                   </span>
-                </span>
-              </button>
-            </span>
+                </button>
+              </span>
+            </div>
           </div>
           <span
             aria-hidden="true"
@@ -631,42 +639,50 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
           <div
             class="euiTableCellContent emotion-euiTableCellContent-right-wrapText-actions-desktop"
           >
-            <span
-              class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
+            <div
+              class=" icon-wrapper css-1j3nbwz-isDisabled"
             >
-              <button
-                class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-s-empty-primary-flush-right"
-                type="button"
+              <span
+                class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
               >
-                <span
-                  class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
+                <button
+                  class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-s-empty-primary-flush-right"
+                  type="button"
                 >
                   <span
-                    class="eui-textTruncate euiButtonEmpty__text"
+                    class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
                   >
-                    Edit
+                    <span
+                      class="eui-textTruncate euiButtonEmpty__text"
+                    >
+                      Edit
+                    </span>
                   </span>
-                </span>
-              </button>
-            </span>
-            <span
-              class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
+                </button>
+              </span>
+            </div>
+            <div
+              class=" icon-wrapper css-1j3nbwz-isDisabled"
             >
-              <button
-                class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-s-empty-primary-flush-right"
-                type="button"
+              <span
+                class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
               >
-                <span
-                  class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
+                <button
+                  class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-s-empty-primary-flush-right"
+                  type="button"
                 >
                   <span
-                    class="eui-textTruncate euiButtonEmpty__text"
+                    class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
                   >
-                    Delete
+                    <span
+                      class="eui-textTruncate euiButtonEmpty__text"
+                    >
+                      Delete
+                    </span>
                   </span>
-                </span>
-              </button>
-            </span>
+                </button>
+              </span>
+            </div>
           </div>
           <span
             aria-hidden="true"
@@ -777,42 +793,50 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
           <div
             class="euiTableCellContent emotion-euiTableCellContent-right-wrapText-actions-desktop"
           >
-            <span
-              class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
+            <div
+              class=" icon-wrapper css-1j3nbwz-isDisabled"
             >
-              <button
-                class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-s-empty-primary-flush-right"
-                type="button"
+              <span
+                class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
               >
-                <span
-                  class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
+                <button
+                  class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-s-empty-primary-flush-right"
+                  type="button"
                 >
                   <span
-                    class="eui-textTruncate euiButtonEmpty__text"
+                    class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
                   >
-                    Edit
+                    <span
+                      class="eui-textTruncate euiButtonEmpty__text"
+                    >
+                      Edit
+                    </span>
                   </span>
-                </span>
-              </button>
-            </span>
-            <span
-              class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
+                </button>
+              </span>
+            </div>
+            <div
+              class=" icon-wrapper css-1j3nbwz-isDisabled"
             >
-              <button
-                class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-s-empty-primary-flush-right"
-                type="button"
+              <span
+                class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
               >
-                <span
-                  class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
+                <button
+                  class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-s-empty-primary-flush-right"
+                  type="button"
                 >
                   <span
-                    class="eui-textTruncate euiButtonEmpty__text"
+                    class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
                   >
-                    Delete
+                    <span
+                      class="eui-textTruncate euiButtonEmpty__text"
+                    >
+                      Delete
+                    </span>
                   </span>
-                </span>
-              </button>
-            </span>
+                </button>
+              </span>
+            </div>
           </div>
           <span
             aria-hidden="true"
