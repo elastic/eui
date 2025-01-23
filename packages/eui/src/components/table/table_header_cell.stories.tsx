@@ -77,14 +77,14 @@ export const Playground: Story = {
 export const IconTip: Story = {
   parameters: {
     controls: {
-      include: ['iconTip'],
+      include: ['iconTipProps'],
     },
   },
   args: {
     children: 'Header cell content',
     // @ts-ignore - overwrite meta default to align with base behavior
     onSort: false,
-    iconTip: {
+    iconTipProps: {
       content: 'tooltip content',
     },
   },
