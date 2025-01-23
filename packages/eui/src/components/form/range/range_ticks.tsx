@@ -14,7 +14,7 @@ import React, {
   useMemo,
 } from 'react';
 
-import { useEuiTheme } from '../../../services';
+import { useEuiTheme, useEuiMemoizedStyles } from '../../../services';
 import { logicalStyles } from '../../../global_styling';
 import { useInnerText } from '../../inner_text';
 
@@ -54,8 +54,6 @@ const EuiTickValue: FunctionComponent<
   compressed,
   trackWidth,
 }) => {
-  const euiTheme = useEuiTheme();
-
   const hasCustomTicks = !!ticks;
 
   const tickObject = useMemo(() => {
@@ -107,19 +105,20 @@ const EuiTickValue: FunctionComponent<
   ]);
 
   // Some ticks need an actual DOM element instead of using a ::before
+  const { euiTheme } = useEuiTheme();
   const pseudoTick = tickObject && !!labelShiftVal && (isMinTick || isMaxTick);
   const pseudoShift = useMemo(() => {
     if (!labelShiftVal) return {};
 
     const marginProperty = isMaxTick ? 'marginRight' : 'marginLeft';
-    const tickOffset = euiTheme.euiTheme.size.xs; // xs derived from .euiRangeTicks left/right offset
+    const tickOffset = euiTheme.size.xs; // xs derived from .euiRangeTicks left/right offset
 
     return logicalStyles({
       [marginProperty]: `calc(${labelShiftVal}em + ${tickOffset})`,
     });
-  }, [labelShiftVal, isMaxTick, euiTheme.euiTheme.size.xs]);
+  }, [labelShiftVal, isMaxTick, euiTheme.size.xs]);
 
-  const styles = euiRangeTickStyles(euiTheme);
+  const styles = useEuiMemoizedStyles(euiRangeTickStyles);
   const cssTickStyles = [
     styles.euiRangeTick,
     value === String(tickValue) && styles.selected,

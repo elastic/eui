@@ -7,11 +7,12 @@
  */
 
 import React, { HTMLAttributes, FunctionComponent } from 'react';
-import { CommonProps } from '../common';
 import classNames from 'classnames';
-import { useEuiTheme } from '../../services';
-import { EuiTimelineItem, EuiTimelineItemProps } from './timeline_item';
 
+import { useEuiMemoizedStyles } from '../../services';
+import { CommonProps } from '../common';
+
+import { EuiTimelineItem, EuiTimelineItemProps } from './timeline_item';
 import { euiTimelineStyles } from './timeline.styles';
 
 export const GUTTER_SIZES = ['m', 'l', 'xl'] as const;
@@ -38,10 +39,7 @@ export const EuiTimeline: FunctionComponent<EuiTimelineProps> = ({
   ...rest
 }) => {
   const classes = classNames('euiTimeline', className);
-
-  const euiTheme = useEuiTheme();
-  const styles = euiTimelineStyles(euiTheme);
-
+  const styles = useEuiMemoizedStyles(euiTimelineStyles);
   const cssStyles = [styles.euiTimeline, styles[gutterSize]];
 
   return (

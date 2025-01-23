@@ -9,7 +9,7 @@
 import React, { FunctionComponent, useMemo } from 'react';
 import classNames from 'classnames';
 
-import { useEuiTheme } from '../../../services';
+import { useEuiMemoizedStyles } from '../../../services';
 import { logicalStyles } from '../../../global_styling';
 
 import type { EuiRangeProps } from './types';
@@ -54,12 +54,10 @@ export const EuiRangeHighlight: FunctionComponent<EuiRangeHighlightProps> = ({
 
   const classes = classNames('euiRangeHighlight', className);
 
-  const euiTheme = useEuiTheme();
-
-  const styles = euiRangeHighlightStyles(euiTheme);
+  const styles = useEuiMemoizedStyles(euiRangeHighlightStyles);
   const cssStyles = [styles.euiRangeHighlight, showTicks && styles.hasTicks];
 
-  const progressStyles = euiRangeHighlightProgressStyles(euiTheme);
+  const progressStyles = useEuiMemoizedStyles(euiRangeHighlightProgressStyles);
   const cssProgressStyles = [progressStyles.euiRangeHighlight__progress];
   const progressStyle = useMemo(() => {
     return logicalStyles({
@@ -69,7 +67,9 @@ export const EuiRangeHighlight: FunctionComponent<EuiRangeHighlightProps> = ({
     });
   }, [background, leftPosition, rangeWidth]);
 
-  const levelsWrapperStyles = euiRangeHighlightLevelsWrapperStyles(euiTheme);
+  const levelsWrapperStyles = useEuiMemoizedStyles(
+    euiRangeHighlightLevelsWrapperStyles
+  );
   const cssLevelsWrapperStyles = [
     levelsWrapperStyles.euiRangeHighlight__levelsWrapper,
   ];
@@ -80,7 +80,7 @@ export const EuiRangeHighlight: FunctionComponent<EuiRangeHighlightProps> = ({
     });
   }, [leftPosition, rangeWidth]);
 
-  const levelsStyles = euiRangeHighlightLevelsStyles(euiTheme);
+  const levelsStyles = useEuiMemoizedStyles(euiRangeHighlightLevelsStyles);
   const cssLevelsStyles = [levelsStyles.euiRangeHighlight__levels];
   const levelsStyle = useMemo(() => {
     return logicalStyles({
