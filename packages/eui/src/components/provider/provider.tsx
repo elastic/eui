@@ -55,12 +55,12 @@ export interface EuiProviderProps<T>
    * Provide global styles via `@emotion/react` `Global` for your custom theme.
    * Pass `false` to remove the default EUI global styles.
    */
-  globalStyles?: false | ((params: any) => JSX.Element | null);
+  globalStyles?: false | ((params: any) => React.JSX.Element | null);
   /**
    * Provide utility classes.
    * Pass `false` to remove the default EUI utility classes.
    */
-  utilityClasses?: false | ((params: any) => JSX.Element | null);
+  utilityClasses?: false | ((params: any) => React.JSX.Element | null);
   /**
    * Provide a cache configuration(s) from `@emotion/cache`.
    *

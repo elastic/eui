@@ -218,7 +218,7 @@ describe('EuiMarkdownEditor', () => {
       render(<EuiMarkdownEditor {...testProps} {...requiredProps} />);
 
       expect(testProps.onParse).toHaveBeenCalledTimes(1);
-      expect(testProps.onParse).toBeCalledWith(null, {
+      expect(testProps.onParse).toHaveBeenCalledWith(null, {
         ast: expect.anything(),
         messages: testMessage,
       });

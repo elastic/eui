@@ -1,4 +1,4 @@
-import React from 'react';
+import { JSX } from 'react';
 import { useNavbarMobileSidebar } from '@docusaurus/theme-common/internal';
 import { translate } from '@docusaurus/Translate';
 import NavbarColorModeToggle from '@theme-original/Navbar/ColorModeToggle';
