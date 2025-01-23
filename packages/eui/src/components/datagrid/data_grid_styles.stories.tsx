@@ -14,13 +14,13 @@ import { enableFunctionToggleControls } from '../../../.storybook/utils';
 import {
   StatefulDataGrid,
   defaultStorybookArgs,
-  EuiDataGridStylePropsComponent,
 } from './data_grid.stories.utils';
+import { EuiDataGridStyle as Component } from './data_grid_types.docgen';
 import type { EuiDataGridStyle } from './data_grid_types';
 
 const meta: Meta = {
   title: 'Tabular Content/EuiDataGrid/gridStyle (prop)',
-  component: EuiDataGridStylePropsComponent,
+  component: Component,
 };
 
 export default meta;
