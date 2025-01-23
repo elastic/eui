@@ -16,7 +16,7 @@ import React, {
 } from 'react';
 import classNames from 'classnames';
 import { CommonProps } from '../common';
-import { useEuiTheme } from '../../services';
+import { useEuiMemoizedStyles } from '../../services';
 import { euiToolTipStyles } from './tool_tip.styles';
 
 export type ToolTipPositions = 'top' | 'right' | 'bottom' | 'left';
@@ -41,8 +41,7 @@ export const EuiToolTipPopover: FunctionComponent<Props> = ({
 }) => {
   const popover = useRef<HTMLDivElement>();
 
-  const euiTheme = useEuiTheme();
-  const styles = euiToolTipStyles(euiTheme);
+  const styles = useEuiMemoizedStyles(euiToolTipStyles);
   const cssStyles = [
     styles.euiToolTip,
     calculatedPosition && styles[calculatedPosition],
