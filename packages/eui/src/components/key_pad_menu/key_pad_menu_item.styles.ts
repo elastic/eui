@@ -56,7 +56,7 @@ export const euiKeyPadMenuItemStyles = (euiThemeContext: UseEuiTheme) => {
       }
 
       ${hasVisColorAdjustment
-        ? `
+        ? css`
         &:hover,
         &:focus,
         &:focus-within {
@@ -70,15 +70,15 @@ export const euiKeyPadMenuItemStyles = (euiThemeContext: UseEuiTheme) => {
         }
 
         &:focus {
-          background-color: ${euiTheme.focus.backgroundColor}
-          box-shadow: none
+          background-color: ${euiTheme.focus.backgroundColor};
+          box-shadow: none;
         }
 	    `
-        : `
+        : css`
         &:hover,
         &:focus,
         &:focus-within {
-          background-color: ${euiTheme.colors.backgroundBaseInteractiveHover}
+          background-color: ${euiTheme.colors.backgroundBaseInteractiveHover};
         }
 	    `}
     `,
@@ -87,25 +87,25 @@ export const euiKeyPadMenuItemStyles = (euiThemeContext: UseEuiTheme) => {
       color: ${euiTheme.colors.textPrimary};
 
       ${hasVisColorAdjustment
-        ? `
+        ? css`
         &,
         &:hover,
         &:focus,
         &:focus-within {
-          background-color: ${euiTheme.focus.backgroundColor}
+          background-color: ${euiTheme.focus.backgroundColor};
         }
 	    `
-        : `
+        : css`
         &,
         &:hover,
         &:focus,
         &:focus-within {
-          background-color: ${euiTheme.colors.backgroundBaseInteractiveSelect}
+          background-color: ${euiTheme.colors.backgroundBaseInteractiveSelect};
         }
 
         .euiKeyPadMenuItem__icon {
           svg * {
-            fill: ${euiTheme.colors.textPrimary}
+            fill: ${euiTheme.colors.textPrimary};
           }
         }
 	    `}
