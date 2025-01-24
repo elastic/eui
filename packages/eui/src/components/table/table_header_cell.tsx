@@ -24,6 +24,7 @@ import { EuiScreenReaderOnly } from '../accessibility';
 import { CommonProps, NoArgCallback } from '../common';
 import { EuiIcon } from '../icon';
 import { EuiInnerText } from '../inner_text';
+import { EuiIconTip, EuiIconTipProps } from '../tool_tip';
 
 import type { EuiTableRowCellMobileOptionsShape } from './table_row_cell';
 import { resolveWidthAsStyle } from './utils';
@@ -43,6 +44,8 @@ export type EuiTableHeaderCellProps = CommonProps &
     onSort?: NoArgCallback<void>;
     scope?: TableHeaderCellScope;
     width?: string | number;
+    /** Allows adding an icon with a tooltip displayed next to the name */
+    iconTipProps?: EuiIconTipProps;
     description?: string;
     /**
      * Shows the sort indicator but removes the button
@@ -59,6 +62,7 @@ export type EuiTableHeaderCellProps = CommonProps &
 const CellContents = ({
   className,
   align,
+  iconTipProps,
   description,
   children,
   canSort,
@@ -67,6 +71,7 @@ const CellContents = ({
 }: {
   className?: string;
   align: HorizontalAlignment;
+  iconTipProps?: EuiIconTipProps;
   description: EuiTableHeaderCellProps['description'];
   children: EuiTableHeaderCellProps['children'];
   canSort?: boolean;
@@ -104,6 +109,15 @@ const CellContents = ({
           <span>{description}</span>
         </EuiScreenReaderOnly>
       )}
+      {iconTipProps && (
+        <EuiIconTip
+          type="questionInCircle"
+          size="m"
+          color="subdued"
+          position="top"
+          {...iconTipProps}
+        />
+      )}
       {isSorted ? (
         <EuiIcon
           className="euiTableSortIcon"
@@ -134,6 +148,7 @@ export const EuiTableHeaderCell: FunctionComponent<EuiTableHeaderCellProps> = ({
   width,
   style,
   readOnly,
+  iconTipProps,
   description,
   append,
   ...rest
@@ -162,6 +177,7 @@ export const EuiTableHeaderCell: FunctionComponent<EuiTableHeaderCellProps> = ({
   const cellContentsProps = {
     css: styles.euiTableHeaderCell__content,
     align,
+    iconTipProps,
     description,
     canSort,
     isSorted,

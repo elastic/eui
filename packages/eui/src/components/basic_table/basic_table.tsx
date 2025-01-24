@@ -753,6 +753,7 @@ export class EuiBasicTable<T extends object = any> extends Component<
         field,
         width,
         name,
+        nameIconTip,
         align,
         dataType,
         sortable,
@@ -765,6 +766,7 @@ export class EuiBasicTable<T extends object = any> extends Component<
 
       const sharedProps = {
         width,
+        iconTipProps: nameIconTip,
         description,
         mobileOptions,
         align: columnAlign,
@@ -1280,6 +1282,8 @@ export class EuiBasicTable<T extends object = any> extends Component<
       sortable,
       footer,
       mobileOptions,
+      // Do not pass `nameIconTip` down, we don't want it in the DOM
+      nameIconTip,
       ...rest
     } = column as EuiTableFieldDataColumnType<T>;
     const columnAlign = align || this.getAlignForDataType(dataType);
