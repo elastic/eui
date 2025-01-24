@@ -23,6 +23,7 @@ import { euiKeyPadMenuVariables } from './key_pad_menu.styles';
 export const euiKeyPadMenuItemStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
   const { euiKeyPadMenuSize } = euiKeyPadMenuVariables(euiThemeContext);
+  const hasVisColorAdjustment = euiTheme.flags?.hasVisColorAdjustment;
 
   return {
     euiKeyPadMenuItem: css`
@@ -30,61 +31,114 @@ export const euiKeyPadMenuItemStyles = (euiThemeContext: UseEuiTheme) => {
       padding: ${euiTheme.size.xs};
       ${logicalSizeCSS(euiKeyPadMenuSize)}
       border-radius: ${euiTheme.border.radius.medium};
-      color: ${euiTheme.colors.text}; /* Override possible link color */
+      color: ${euiTheme.colors
+        .textParagraph}; /* Override possible link color */
 
       ${euiCanAnimate} {
-        transition: background-color ${euiTheme.animation.fast} ease-in,
-          box-shadow ${euiTheme.animation.fast} ease-in;
+        transition: background-color ${euiTheme.animation.fast} ease-in;
       }
+
+      ${hasVisColorAdjustment
+        ? `
+	      ${euiCanAnimate} {
+          transition: 
+            box-shadow ${euiTheme.animation.fast} ease-in /* As shadow is only in Amsterdam */
+          }`
+        : ``}
     `,
+
     enabled: css`
       &:hover,
       &:focus,
       &:focus-within {
         cursor: pointer;
         text-decoration: underline;
-        ${euiShadow(euiThemeContext, 's')}
+      }
 
-        ${euiCanAnimate} {
-          .euiKeyPadMenuItem__icon {
-            transform: translateY(0);
+      ${hasVisColorAdjustment
+        ? `
+        &:hover,
+        &:focus,
+        &:focus-within {
+          ${euiShadow(euiThemeContext, 's')}
+
+          ${euiCanAnimate} {
+            .euiKeyPadMenuItem__icon {
+              transform: translateY(0)
+            }
+          }
+
+        &:focus {
+          box-shadow: none
+          background-color: ${euiTheme.focus.backgroundColor}
+        }
+	    `
+        : `
+        &:hover,
+        &:focus,
+        &:focus-within {
+          background-color: ${euiTheme.colors.backgroundBaseInteractiveHover}
+        }
+	    `}
+    `,
+
+    selected: css`
+      color: ${euiTheme.colors.textPrimary};
+
+      ${hasVisColorAdjustment
+        ? `
+        &,
+        &:hover,
+        &:focus,
+        &:focus-within {
+          background-color: ${euiTheme.focus.backgroundColor}
+        }
+	    `
+        : `
+        &,
+        &:hover,
+        &:focus,
+        &:focus-within {
+          background-color: ${euiTheme.colors.backgroundBaseInteractiveSelect}
+        }
+
+        .euiKeyPadMenuItem__icon {
+          svg * {
+            fill: ${euiTheme.colors.textPrimary}
           }
         }
-      }
-
-      &:focus {
-        background-color: ${euiTheme.focus.backgroundColor};
-        box-shadow: none;
-      }
+	    `}
     `,
-    selected: css`
-      color: ${euiTheme.colors.title};
-      background-color: ${euiTheme.focus.backgroundColor};
 
-      &,
-      &:hover,
-      &:focus,
-      &:focus-within {
-        color: ${euiTheme.colors.primaryText};
-      }
-    `,
     disabled: {
       disabled: css`
         cursor: not-allowed;
-        color: ${euiTheme.colors.disabledText};
+        color: ${euiTheme.colors.textDisabled};
 
         .euiKeyPadMenuItem__icon {
-          filter: grayscale(100%);
-
           svg * {
-            fill: ${euiTheme.colors.disabledText};
+            fill: ${euiTheme.colors.textDisabled};
           }
         }
+
+        ${hasVisColorAdjustment
+          ? `
+          .euiKeyPadMenuItem__icon {
+            filter: grayscale(100%) /* As grey filter needed only in Amsterdam */
+            }
+          }
+	      `
+          : ``}
       `,
-      selected: css`
-        background-color: ${euiTheme.components
-          .keyPadMenuItemBackgroundDisabledSelect};
-      `,
+
+      selected: hasVisColorAdjustment
+        ? css`
+            background-color: ${euiTheme.components
+              .keyPadMenuItemBackgroundDisabledSelect}; /* Remove this component token together with Amsterdam */
+          `
+        : css`
+            background-color: ${euiTheme.colors.backgroundBaseDisabled};
+          `,
     },
   };
 };
