@@ -56,61 +56,59 @@ export const euiKeyPadMenuItemStyles = (euiThemeContext: UseEuiTheme) => {
       }
 
       ${hasVisColorAdjustment
-        ? css`
-            &:hover,
-            &:focus,
-            &:focus-within {
-              ${euiShadow(euiThemeContext, 's')}
+        ? `
+        &:hover,
+        &:focus,
+        &:focus-within {
+          ${euiShadow(euiThemeContext, 's')}
 
-              ${euiCanAnimate} {
-                .euiKeyPadMenuItem__icon {
-                  transform: translateY(0);
-                }
-              }
+          ${euiCanAnimate} {
+            .euiKeyPadMenuItem__icon {
+              transform: translateY(0)
             }
+          }
+        }
 
-            &:focus {
-              background-color: ${euiTheme.focus.backgroundColor};
-              box-shadow: none;
-            }
-          `
-        : css`
-            &:hover,
-            &:focus,
-            &:focus-within {
-              background-color: ${euiTheme.colors
-                .backgroundBaseInteractiveHover};
-            }
-          `}
+        &:focus {
+          background-color: ${euiTheme.focus.backgroundColor}
+          box-shadow: none
+        }
+	    `
+        : `
+        &:hover,
+        &:focus,
+        &:focus-within {
+          background-color: ${euiTheme.colors.backgroundBaseInteractiveHover}
+        }
+	    `}
     `,
 
     selected: css`
       color: ${euiTheme.colors.textPrimary};
 
       ${hasVisColorAdjustment
-        ? css`
-            &,
-            &:hover,
-            &:focus,
-            &:focus-within {
-              background-color: ${euiTheme.focus.backgroundColor};
-            }
-          `
-        : css`
-            &,
-            &:hover,
-            &:focus,
-            &:focus-within {
-              background-color: ${euiTheme.colors
-                .backgroundBaseInteractiveSelect};
-            }
+        ? `
+        &,
+        &:hover,
+        &:focus,
+        &:focus-within {
+          background-color: ${euiTheme.focus.backgroundColor}
+        }
+	    `
+        : `
+        &,
+        &:hover,
+        &:focus,
+        &:focus-within {
+          background-color: ${euiTheme.colors.backgroundBaseInteractiveSelect}
+        }
 
-            .euiKeyPadMenuItem__icon {
-              svg * {
-                fill: ${euiTheme.colors.textPrimary};
-              }
-            }
-          `}
+        .euiKeyPadMenuItem__icon {
+          svg * {
+            fill: ${euiTheme.colors.textPrimary}
+          }
+        }
+	    `}
     `,
 
     disabled: {
