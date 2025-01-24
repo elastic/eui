@@ -118,7 +118,7 @@ export const euiKeyPadMenuItemStyles = (euiThemeContext: UseEuiTheme) => {
 
         .euiKeyPadMenuItem__icon {
           svg * {
-            fill: ${euiTheme.colors.textDisabled}
+            fill: ${euiTheme.colors.textDisabled};
           }
         }
 
