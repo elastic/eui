@@ -7,13 +7,19 @@
  */
 
 import React, { useEffect, useState } from 'react';
+import { css } from '@emotion/react';
 import type { Meta, StoryObj } from '@storybook/react';
+import { fireEvent, waitFor } from '@storybook/test';
 
+import { within } from '../../../../.storybook/test';
+import { LOKI_SELECTORS } from '../../../../.storybook/loki';
 import {
   EUI_VIS_COLOR_STORE,
   euiPaletteColorBlind,
+  euiPaletteForStatus,
   useUpdateEffect,
 } from '../../../services';
+import { EuiText } from '../../text';
 
 import {
   EuiColorPalettePicker,
@@ -53,6 +59,12 @@ const getInitialPalettes = (): EuiColorPalettePickerPaletteProps[] => [
     palette: euiPaletteColorBlind(),
     type: 'fixed',
   },
+  {
+    value: 'palette2',
+    title: 'Palette 2',
+    palette: euiPaletteForStatus(10),
+    type: 'gradient',
+  },
 ];
 
 export const Playground: Story = {
@@ -85,5 +97,51 @@ export const Playground: Story = {
     }, [palettes]);
 
     return <EuiColorPalettePicker palettes={_palettes} {...rest} />;
+  },
+};
+
+export const AppendedTitles: Story = {
+  parameters: {
+    controls: { include: ['palettes', 'valueOfSelected'] },
+    loki: {
+      chromeSelector: LOKI_SELECTORS.portal,
+    },
+  },
+  args: {
+    palettes: [
+      {
+        value: 'palette1',
+        title: 'Elastic',
+        append: (
+          <EuiText color="subdued" size="xs">
+            <span
+              css={css`
+                display: inline-block;
+              `}
+            >
+              Default
+            </span>
+          </EuiText>
+        ),
+        palette: euiPaletteColorBlind(),
+        type: 'fixed',
+      },
+      {
+        value: 'pallette2',
+        title: 'Status',
+        palette: euiPaletteForStatus(10),
+        type: 'gradient',
+      },
+    ],
+    valueOfSelected: 'palette1',
+  },
+  play: async ({ canvasElement, step }) => {
+    const canvas = within(canvasElement);
+    await step('show popover on click', async () => {
+      await waitFor(async () => {
+        await fireEvent.click(canvas.getByRole('button'));
+      });
+      await canvas.waitForEuiPopoverVisible();
+    });
   },
 };

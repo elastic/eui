@@ -4669,7 +4669,7 @@ __metadata:
     stylelint-config-standard-scss: "npm:^9.0.0"
     typescript: "npm:^5.6.2"
   peerDependencies:
-    "@elastic/eui-theme-common": 0.0.8
+    "@elastic/eui-theme-common": 0.0.9
   languageName: unknown
   linkType: soft
 
@@ -4959,7 +4959,7 @@ __metadata:
     yo: "npm:^4.3.1"
   peerDependencies:
     "@elastic/datemath": ^5.0.2
-    "@elastic/eui-theme-borealis": 0.0.8
+    "@elastic/eui-theme-borealis": 0.0.9
     "@emotion/css": 11.x
     "@emotion/react": 11.x
     "@types/react": ^16.9 || ^17.0 || ^18.0
