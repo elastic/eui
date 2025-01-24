@@ -70,8 +70,8 @@ export const euiKeyPadMenuItemStyles = (euiThemeContext: UseEuiTheme) => {
         }
 
         &:focus {
-          background-color: ${euiTheme.focus.backgroundColor};
-          box-shadow: none;
+          background-color: ${euiTheme.focus.backgroundColor}
+          box-shadow: none
         }
 	    `
         : `
