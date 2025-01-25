@@ -23,7 +23,6 @@ import { euiKeyPadMenuVariables } from './key_pad_menu.styles';
 export const euiKeyPadMenuItemStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
   const { euiKeyPadMenuSize } = euiKeyPadMenuVariables(euiThemeContext);
-  const hasVisColorAdjustment = euiTheme.flags?.hasVisColorAdjustment;
 
   return {
     euiKeyPadMenuItem: css`
@@ -31,19 +30,12 @@ export const euiKeyPadMenuItemStyles = (euiThemeContext: UseEuiTheme) => {
       padding: ${euiTheme.size.xs};
       ${logicalSizeCSS(euiKeyPadMenuSize)}
       border-radius: ${euiTheme.border.radius.medium};
-      color: ${euiTheme.colors.textParagraph}; /* Override possible link color */
+      color: ${euiTheme.colors.text}; /* Override possible link color */
 
       ${euiCanAnimate} {
-        transition: background-color ${euiTheme.animation.fast} ease-in;
+        transition: background-color ${euiTheme.animation.fast} ease-in,
+          box-shadow ${euiTheme.animation.fast} ease-in;
       }
-
-      ${hasVisColorAdjustment
-        ? css`
-            ${euiCanAnimate} {
-              transition: box-shadow ${euiTheme.animation.fast} ease-in; /* As shadow is only in Amsterdam */
-            }
-          `
-        : css``}
     `,
     enabled: css`
       &:hover,
