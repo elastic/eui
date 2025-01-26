@@ -27,11 +27,13 @@ export const euiKeyPadMenuItemStyles = (euiThemeContext: UseEuiTheme) => {
 
   return {
     euiKeyPadMenuItem: css`
+      /* stylelint-disable no-extra-semicolons */
       display: block;
       padding: ${euiTheme.size.xs};
       ${logicalSizeCSS(euiKeyPadMenuSize)}
       border-radius: ${euiTheme.border.radius.medium};
-      color: ${euiTheme.colors.textParagraph}; /* Override possible link color */
+      color: ${euiTheme.colors
+        .textParagraph}; /* Override possible link color */
 
       ${euiCanAnimate} {
         transition: background-color ${euiTheme.animation.fast} ease-in,
@@ -45,15 +47,16 @@ export const euiKeyPadMenuItemStyles = (euiThemeContext: UseEuiTheme) => {
         cursor: pointer;
         text-decoration: underline;
 
-        ${hasVisColorAdjustment ? `
-          ${euiShadow(euiThemeContext, 's')}
+        ${hasVisColorAdjustment
+          ? `
+            ${euiShadow(euiThemeContext, 's')}
 
-          ${euiCanAnimate} {
-            .euiKeyPadMenuItem__icon {
-              transform: translateY(0);
-            }
-          }`
-        : `
+            ${euiCanAnimate} {
+              .euiKeyPadMenuItem__icon {
+                transform: translateY(0);
+              }
+            }`
+          : `
           background-color: ${euiTheme.colors.backgroundBaseInteractiveHover};
         `}
       }
@@ -61,18 +64,20 @@ export const euiKeyPadMenuItemStyles = (euiThemeContext: UseEuiTheme) => {
       &:focus {
         box-shadow: none;
 
-        ${hasVisColorAdjustment ? `
-          background-color: ${euiTheme.focus.backgroundColor};
-        `
-        : `
-          background-color: ${euiTheme.colors.backgroundBaseInteractiveSelect};
+        ${hasVisColorAdjustment
+          ? `
+            background-color: ${euiTheme.focus.backgroundColor};
+          `
+          : `
+            background-color: ${euiTheme.colors.backgroundBaseInteractiveSelect};
         `}
       }
     `,
     selected: css`
       color: ${euiTheme.colors.textHeading};
-      
-        ${hasVisColorAdjustment ? `
+
+      ${hasVisColorAdjustment
+        ? `
           background-color: ${euiTheme.focus.backgroundColor};
         `
         : `
@@ -83,7 +88,6 @@ export const euiKeyPadMenuItemStyles = (euiThemeContext: UseEuiTheme) => {
       &:hover,
       &:focus,
       &:focus-within {
-        
         color: ${euiTheme.colors.textPrimary};
       }
     `,
@@ -93,22 +97,23 @@ export const euiKeyPadMenuItemStyles = (euiThemeContext: UseEuiTheme) => {
         color: ${euiTheme.colors.textDisabled};
 
         .euiKeyPadMenuItem__icon {
-
-          ${hasVisColorAdjustment ? `
-            filter: grayscale(100%);
-          `
-          : ``}
+          ${hasVisColorAdjustment
+            ? `
+              filter: grayscale(100%);
+            `
+            : ``}
 
           svg * {
             fill: ${euiTheme.colors.textDisabled};
           }
         }
       `,
-      selected: hasVisColorAdjustment ? css`
-        background-color: ${euiTheme.components
-          .keyPadMenuItemBackgroundDisabledSelect};
-        `
-      : `
+      selected: hasVisColorAdjustment
+        ? css`
+            background-color: ${euiTheme.components
+              .keyPadMenuItemBackgroundDisabledSelect};
+          `
+        : `
         background-color: ${euiTheme.colors.backgroundBaseDisabled};
       `,
     },
