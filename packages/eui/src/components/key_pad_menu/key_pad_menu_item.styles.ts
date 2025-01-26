@@ -27,7 +27,6 @@ export const euiKeyPadMenuItemStyles = (euiThemeContext: UseEuiTheme) => {
 
   return {
     euiKeyPadMenuItem: css`
-      /* stylelint-disable no-extra-semicolons */
       display: block;
       padding: ${euiTheme.size.xs};
       ${logicalSizeCSS(euiKeyPadMenuSize)}
@@ -41,6 +40,7 @@ export const euiKeyPadMenuItemStyles = (euiThemeContext: UseEuiTheme) => {
       }
     `,
     enabled: css`
+      /* stylelint-disable no-extra-semicolons */
       &:hover,
       &:focus,
       &:focus-within {
