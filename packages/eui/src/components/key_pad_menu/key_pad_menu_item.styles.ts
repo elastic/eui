@@ -80,20 +80,20 @@ export const euiKeyPadMenuItemStyles = (euiThemeContext: UseEuiTheme) => {
         ? `
           background-color: ${euiTheme.focus.backgroundColor};
         `
-        : `
-          &,
-          &:hover,
-          &:focus,
-          &:focus-within {
-            background-color: ${euiTheme.colors.backgroundBaseInteractiveSelect};
-          }
-        `}
+        : ``}
 
       &,
       &:hover,
       &:focus,
       &:focus-within {
         color: ${euiTheme.colors.textPrimary};
+
+        ${hasVisColorAdjustment
+          ? ``
+          : `
+          background-color: ${euiTheme.colors.backgroundBaseInteractiveSelect};
+          `
+        }
       }
     `,
     disabled: {
