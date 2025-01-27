@@ -1,6 +1,6 @@
 const DEFAULT_RESTRICTED_IMPORT_PATTERNS = [
   {
-    pattern: '@elastic/eui/dist/eui_theme_*.json',
+    pattern: '@elastic/eui/dist/eui_theme_*\\.json',
     message:
       'For client-side, please use `useEuiTheme` instead. Direct JSON token imports will be removed as per the EUI Deprecation schedule: https://github.com/elastic/eui/issues/1469.',
   },
@@ -10,8 +10,7 @@ module.exports = {
   meta: {
     type: 'problem',
     docs: {
-      description: 'Disallow deprecated EUI imports.',
-      category: 'Possible Errors',
+      description: 'Discourage the use of deprecated EUI imports.',
       recommended: false,
     },
     schema: [
