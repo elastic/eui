@@ -223,8 +223,8 @@ describe('EuiAccordion', () => {
         );
 
         fireEvent.click(getAllByRole('button')[0]);
-        expect(onToggleHandler).toBeCalled();
-        expect(onToggleHandler).toBeCalledWith(true);
+        expect(onToggleHandler).toHaveBeenCalled();
+        expect(onToggleHandler).toHaveBeenCalledWith(true);
       });
     });
 
@@ -330,12 +330,12 @@ describe('EuiAccordion', () => {
       );
 
       fireEvent.click(getAllByRole('button')[0]);
-      expect(onToggleHandler).toBeCalled();
-      expect(onToggleHandler).toBeCalledWith(true);
+      expect(onToggleHandler).toHaveBeenCalled();
+      expect(onToggleHandler).toHaveBeenCalledWith(true);
 
       fireEvent.click(getAllByRole('button')[0]);
-      expect(onToggleHandler).toBeCalled();
-      expect(onToggleHandler).toBeCalledWith(false);
+      expect(onToggleHandler).toHaveBeenCalled();
+      expect(onToggleHandler).toHaveBeenCalledWith(false);
     });
   });
 });

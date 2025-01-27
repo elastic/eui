@@ -1,4 +1,4 @@
-import React, { isValidElement, type ReactNode } from 'react';
+import React, { isValidElement, type ReactNode, JSX } from 'react';
 import { EuiCodeBlock } from '@elastic/eui';
 import type { Props } from '@theme/CodeBlock';
 import { Demo } from '../../components/demo';

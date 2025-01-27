@@ -73,7 +73,7 @@ describe('EUI provider dev warnings', () => {
     it('throws an error when level is error', () => {
       setEuiDevProviderWarning('error');
 
-      expect(() => emitEuiProviderWarning(providerMessage)).toThrowError(
+      expect(() => emitEuiProviderWarning(providerMessage)).toThrow(
         'hello world'
       );
 

@@ -49,7 +49,7 @@ const getStyles = ({ euiTheme }: UseEuiTheme) => ({
   `,
 });
 
-export default function Home(): JSX.Element {
+export default function Home(): React.JSX.Element {
   const { siteConfig } = useDocusaurusContext();
   const isBrowser = useIsBrowser();
   const styles = useEuiMemoizedStyles(getStyles);

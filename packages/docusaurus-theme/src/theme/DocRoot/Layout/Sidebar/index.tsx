@@ -1,4 +1,4 @@
-import React, { type ReactNode, useState, useCallback } from 'react';
+import React, { type ReactNode, useState, useCallback, JSX } from 'react';
 import clsx from 'clsx';
 import { css } from '@emotion/react';
 import {

@@ -13,6 +13,7 @@ import React, {
   useCallback,
   useMemo,
   forwardRef,
+  JSX,
 } from 'react';
 import classNames from 'classnames';
 

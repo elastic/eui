@@ -1,4 +1,4 @@
-import React from 'react';
+import { JSX } from 'react';
 import clsx from 'clsx';
 import { css } from '@emotion/react';
 import { useDocsSidebar } from '@docusaurus/plugin-content-docs/client';

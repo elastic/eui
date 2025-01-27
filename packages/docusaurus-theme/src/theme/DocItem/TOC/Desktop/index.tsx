@@ -1,4 +1,4 @@
-import React from 'react';
+import { JSX } from 'react';
 import { ThemeClassNames } from '@docusaurus/theme-common';
 import { useDoc } from '@docusaurus/plugin-content-docs/client';
 
