@@ -91,8 +91,7 @@ export const euiKeyPadMenuItemStyles = (euiThemeContext: UseEuiTheme) => {
         ${hasVisColorAdjustment
           ? ``
           : `
-          background-color: ${euiTheme.colors.backgroundBaseInteractiveSelect};
-          `
+          background-color: ${euiTheme.colors.backgroundBaseInteractiveSelect};`
         }
       }
     `,
