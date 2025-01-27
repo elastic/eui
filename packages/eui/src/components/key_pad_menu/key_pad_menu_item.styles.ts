@@ -90,8 +90,7 @@ export const euiKeyPadMenuItemStyles = (euiThemeContext: UseEuiTheme) => {
 
         ${hasVisColorAdjustment
           ? ``
-          : `background-color: ${euiTheme.colors.backgroundBaseInteractiveSelect};`
-        }
+          : `background-color: ${euiTheme.colors.backgroundBaseInteractiveSelect};`}
       }
     `,
     disabled: {
@@ -100,10 +99,7 @@ export const euiKeyPadMenuItemStyles = (euiThemeContext: UseEuiTheme) => {
         color: ${euiTheme.colors.textDisabled};
 
         .euiKeyPadMenuItem__icon {
-          ${hasVisColorAdjustment
-            ? `filter: grayscale(100%);`
-            : ``}
-
+          ${hasVisColorAdjustment ? `filter: grayscale(100%);` : ``}
           svg * {
             fill: ${euiTheme.colors.textDisabled};
           }
