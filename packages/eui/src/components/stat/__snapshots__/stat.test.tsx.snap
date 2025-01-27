@@ -353,6 +353,25 @@ exports[`EuiStat props title and description are reversed 1`] = `
 </div>
 `;
 
+exports[`EuiStat props warning is rendered 1`] = `
+<div
+  class="euiStat emotion-euiStat-left"
+>
+  <div
+    class="euiText euiStat__description emotion-euiText-s"
+  >
+    <p>
+      description
+    </p>
+  </div>
+  <p
+    class="euiTitle euiStat__title emotion-euiTitle-l-euiStat__title-warning"
+  >
+    title
+  </p>
+</div>
+`;
+
 exports[`EuiStat props xs is rendered 1`] = `
 <div
   class="euiStat emotion-euiStat-left"

@@ -6,14 +6,20 @@
  * Side Public License, v 1.
  */
 
+import React from 'react';
+import { css } from '@emotion/react';
 import type { Meta, StoryObj } from '@storybook/react';
+import { fireEvent, waitFor } from '@storybook/test';
 
-import { euiPaletteColorBlind } from '../../../services';
+import { within } from '../../../../.storybook/test';
+import { LOKI_SELECTORS } from '../../../../.storybook/loki';
+import { euiPaletteColorBlind, euiPaletteForStatus } from '../../../services';
 
 import {
   EuiColorPalettePicker,
   EuiColorPalettePickerProps,
 } from './color_palette_picker';
+import { EuiText } from '../../text';
 
 const meta: Meta<EuiColorPalettePickerProps<string>> = {
   title: 'Forms/EuiColorPalettePicker/EuiColorPalettePicker',
@@ -48,7 +54,59 @@ export const Playground: Story = {
         palette: euiPaletteColorBlind(),
         type: 'fixed',
       },
+      {
+        value: 'palette2',
+        title: 'Palette 2',
+        palette: euiPaletteForStatus(10),
+        type: 'gradient',
+      },
     ],
     valueOfSelected: 'palette1',
+  },
+};
+
+export const AppendedTitles: Story = {
+  parameters: {
+    controls: { include: ['palettes', 'valueOfSelected'] },
+    loki: {
+      chromeSelector: LOKI_SELECTORS.portal,
+    },
+  },
+  args: {
+    palettes: [
+      {
+        value: 'palette1',
+        title: 'Elastic',
+        append: (
+          <EuiText color="subdued" size="xs">
+            <span
+              css={css`
+                display: inline-block;
+              `}
+            >
+              Default
+            </span>
+          </EuiText>
+        ),
+        palette: euiPaletteColorBlind(),
+        type: 'fixed',
+      },
+      {
+        value: 'pallette2',
+        title: 'Status',
+        palette: euiPaletteForStatus(10),
+        type: 'gradient',
+      },
+    ],
+    valueOfSelected: 'palette1',
+  },
+  play: async ({ canvasElement, step }) => {
+    const canvas = within(canvasElement);
+    await step('show popover on click', async () => {
+      await waitFor(async () => {
+        await fireEvent.click(canvas.getByRole('button'));
+      });
+      await canvas.waitForEuiPopoverVisible();
+    });
   },
 };
