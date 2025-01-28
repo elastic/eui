@@ -427,10 +427,18 @@ exports[`EuiColorPalettePicker more props are propagated to each option 1`] = `
                     class="euiColorPalettePicker__item"
                   >
                     <div
-                      aria-hidden="true"
-                      class="euiText euiColorPalettePicker__itemTitle emotion-euiText-xs"
+                      class="euiFlexGroup emotion-euiFlexGroup-l-flexStart-stretch-row"
                     >
-                      Palette 1
+                      <div
+                        class="euiFlexItem emotion-euiFlexItem-grow-1"
+                      >
+                        <div
+                          aria-hidden="true"
+                          class="euiText euiColorPalettePicker__itemTitle emotion-euiText-xs"
+                        >
+                          Palette 1
+                        </div>
+                      </div>
                     </div>
                     <div
                       class="euiSpacer euiSpacer--xs emotion-euiSpacer-xs"
@@ -487,10 +495,18 @@ exports[`EuiColorPalettePicker more props are propagated to each option 1`] = `
                     class="euiColorPalettePicker__item"
                   >
                     <div
-                      aria-hidden="true"
-                      class="euiText euiColorPalettePicker__itemTitle emotion-euiText-xs"
+                      class="euiFlexGroup emotion-euiFlexGroup-l-flexStart-stretch-row"
                     >
-                      Linear Gradient
+                      <div
+                        class="euiFlexItem emotion-euiFlexItem-grow-1"
+                      >
+                        <div
+                          aria-hidden="true"
+                          class="euiText euiColorPalettePicker__itemTitle emotion-euiText-xs"
+                        >
+                          Linear Gradient
+                        </div>
+                      </div>
                     </div>
                     <div
                       class="euiSpacer euiSpacer--xs emotion-euiSpacer-xs"
@@ -527,10 +543,18 @@ exports[`EuiColorPalettePicker more props are propagated to each option 1`] = `
                     class="euiColorPalettePicker__item"
                   >
                     <div
-                      aria-hidden="true"
-                      class="euiText euiColorPalettePicker__itemTitle emotion-euiText-xs"
+                      class="euiFlexGroup emotion-euiFlexGroup-l-flexStart-stretch-row"
                     >
-                      Linear Gradient with stops
+                      <div
+                        class="euiFlexItem emotion-euiFlexItem-grow-1"
+                      >
+                        <div
+                          aria-hidden="true"
+                          class="euiText euiColorPalettePicker__itemTitle emotion-euiText-xs"
+                        >
+                          Linear Gradient with stops
+                        </div>
+                      </div>
                     </div>
                     <div
                       class="euiSpacer euiSpacer--xs emotion-euiSpacer-xs"
