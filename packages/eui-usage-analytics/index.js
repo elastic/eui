@@ -1,16 +1,9 @@
-/**
- * Run this command from directly in this folder.
- * 
- * This command scans file in the kibana repository with react-scanner, analyzing all component usage, and upload that usage
- * to an Elastic instance.
- * 
- * To run this, you need to have this repository (the eui repository) checked out side by side.
- * 
- * The elasticsearch index will be called "eui_components"
- * 
- * Usage:
- *   CLOUD_ID=****** AUTH_APIKEY=****** node index.js
- * 
+/*
+ * Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
+ * or more contributor license agreements. Licensed under the Elastic License
+ * 2.0 and the Server Side Public License, v 1; you may not use this file except
+ * in compliance with, at your election, the Elastic License 2.0 or the Server
+ * Side Public License, v 1.
  */
 
 const { scan } = require('./scan');
