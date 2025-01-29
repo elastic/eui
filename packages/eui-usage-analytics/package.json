@@ -1,5 +1,6 @@
 {
-  "name": "eui-usage-analytics",
+  "name": "@elastic/eui-usage-analytics",
+  "private": true,
   "version": "0.1.0",
   "description": "Scripts to collect analytics on EUI usage",
   "dependencies": {
