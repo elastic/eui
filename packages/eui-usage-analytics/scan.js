@@ -14,6 +14,7 @@ const codeowners = new Codeowners('../../../kibana');
 const path = require('path');
 const cwd = path.resolve(__dirname);
 
+// NOTE: Do not add private repos to this list. If we plan to add private repos, we should do so via configuration rather than source.
 const repos = {
   kibana: {
     linkPrefix: 'https://github.com/elastic/kibana/blob/main/',
