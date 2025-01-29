@@ -13,5 +13,15 @@
       "esnext",
       "dom"
     ],
+    "jsx": "react",
+    "typeRoots": [
+      "./node_modules/@types",
+      "../../node_modules/@types",
+      "../../node_modules/@testing-library"
+    ],
+    "types": [
+      "jest",
+      "jest-dom"
+    ]
   },
 }
