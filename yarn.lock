@@ -4649,6 +4649,17 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@elastic/eui-usage-analytics@workspace:packages/eui-usage-analytics":
+  version: 0.0.0-use.local
+  resolution: "@elastic/eui-usage-analytics@workspace:packages/eui-usage-analytics"
+  dependencies:
+    "@elastic/elasticsearch": "npm:^8.14.0"
+    codeowners: "npm:^5.1.1"
+    escodegen-wallaby: "npm:^1.6.44"
+    react-scanner: "npm:^1.1.0"
+  languageName: unknown
+  linkType: soft
+
 "@elastic/eui-website@workspace:packages/website":
   version: 0.0.0-use.local
   resolution: "@elastic/eui-website@workspace:packages/website"
@@ -16817,17 +16828,6 @@ __metadata:
   checksum: 10c0/12be11ef62fb9817314d790089a0a49fae4e1b50594135dcb8076312b7d7e470884b5100d249b28c18581b7fd52f8b485689ffae22a11ed9ec17377a33a08f84
   languageName: node
   linkType: hard
-
-"eui-usage-analytics@workspace:packages/eui-usage-analytics":
-  version: 0.0.0-use.local
-  resolution: "eui-usage-analytics@workspace:packages/eui-usage-analytics"
-  dependencies:
-    "@elastic/elasticsearch": "npm:^8.14.0"
-    codeowners: "npm:^5.1.1"
-    escodegen-wallaby: "npm:^1.6.44"
-    react-scanner: "npm:^1.1.0"
-  languageName: unknown
-  linkType: soft
 
 "eval@npm:^0.1.8":
   version: 0.1.8

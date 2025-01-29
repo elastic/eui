@@ -10,7 +10,7 @@ const { scan } = require('./scan');
 
 const { Client } = require('@elastic/elasticsearch');
 
-if (!process.env.CLOUD_ID_SECRET || process.env.AUTH_APIKEY_SECRET) {
+if (!process.env.CLOUD_ID_SECRET || !process.env.AUTH_APIKEY_SECRET) {
   console.error(
     'CLOUD_ID_SECRET and AUTH_APIKEY_SECRET environment variables must be set before running this script.'
   );
