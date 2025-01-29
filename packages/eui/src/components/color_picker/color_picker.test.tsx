@@ -254,9 +254,9 @@ describe('EuiColorPicker', () => {
     fireEvent.click(swatches[0]);
     expect(onChange).toBeCalled();
     expect(onChange).toBeCalledWith(VISUALIZATION_COLORS[0], {
-      hex: '#54b399',
+      hex: '#16c5c0',
       isValid: true,
-      rgba: [84, 179, 153, 1],
+      rgba: [22, 197, 192, 1],
     });
   });
 

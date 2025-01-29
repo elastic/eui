@@ -6,13 +6,13 @@ exports[`EuiLoadingSpinner custom colors 1`] = `
     aria-label="Loading"
     class="euiLoadingSpinner emotion-euiLoadingSpinner-m"
     role="progressbar"
-    style="border-color: #0077cc white white white;"
+    style="border-color: #1750ba white white white;"
   />
   <span
     aria-label="Loading"
     class="euiLoadingSpinner emotion-euiLoadingSpinner-m"
     role="progressbar"
-    style="border-color: black #d3dae6 #d3dae6 #d3dae6;"
+    style="border-color: black #cad3e2 #cad3e2 #cad3e2;"
   />
   <span
     aria-label="Loading"
