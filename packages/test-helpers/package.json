@@ -1,0 +1,31 @@
+{
+  "name": "@elastic/eui-test-helpers",
+  "version": "99.1.0",
+  "description": "A library of EUI components test helpers for Cypress and react-testing-library",
+  "main": "lib/index.js",
+  "module": "es/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build:esm": "tsc --project tsconfig.esm.json",
+    "build:cjs": "tsc --project tsconfig.cjs.json",
+    "build": "concurrently \"yarn run build:esm\" \"yarn run build:cjs\"",
+    "clean": "rimraf es lib"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/elastic/eui.git",
+    "directory": "packages/test-helpers"
+  },
+  "files": [
+    "lib",
+    "es",
+    "licenses"
+  ],
+  "dependencies": {
+    "typescript": "^5.7.3"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2",
+    "rimraf": "^6.0.1"
+  }
+}
