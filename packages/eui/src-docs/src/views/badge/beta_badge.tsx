@@ -24,7 +24,8 @@ export default () => (
       `}
     >
       {colors.map((item) => {
-        const label = item == 'hollow' || item == 'accent' ? 'Beta' : 'Deprecated';
+        const label =
+          item === 'hollow' || item === 'accent' ? 'Beta' : 'Deprecated';
 
         return (
           <>
@@ -39,16 +40,30 @@ export default () => (
               size="s"
               tooltipContent="This module is not GA. Please help us by reporting any bugs."
             />
-            {label == 'Beta' ? (
+            {label === 'Beta' ? (
               <>
                 <EuiBetaBadge label={label} color={item} iconType="beta" />
-                <EuiBetaBadge label="Tech preview" color={item} iconType="beaker" />
-                <EuiBetaBadge size="s" label={label} color={item} iconType="beta" />
-                <EuiBetaBadge size="s" label="Tech preview" color={item} iconType="beaker" />
+                <EuiBetaBadge
+                  label="Tech preview"
+                  color={item}
+                  iconType="beaker"
+                />
+                <EuiBetaBadge
+                  size="s"
+                  label={label}
+                  color={item}
+                  iconType="beta"
+                />
+                <EuiBetaBadge
+                  size="s"
+                  label="Tech preview"
+                  color={item}
+                  iconType="beaker"
+                />
               </>
-            ): null}
+            ) : null}
           </>
-        )
+        );
       })}
     </div>
     <EuiSpacer />
@@ -77,6 +92,6 @@ export default () => (
           tooltipContent="This module is not GA. Please help us by reporting any bugs."
         />
       </h3>
-    </EuiTitle>    
+    </EuiTitle>
   </>
 );
