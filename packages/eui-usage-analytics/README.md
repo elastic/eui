@@ -19,14 +19,14 @@ There is not a lot of magic to this script, it does 2 key things:
 This script requires the following to run:
 
 1. The [kibana](https://github.com/elastic/kibana) directory must be cloned to the same directory as the eui repository.
-2. `CLOUD_ID` and `AUTH_APIKEY` of the Elatic Cloud instance for which you would like to ship the data.
+2. `CLOUD_ID_SECRET` and `AUTH_APIKEY_SECRET` of the Elatic Cloud instance for which you would like to ship the data.
 
 ## Usage
 ****
 This script must be run from this directory.
 
 ```
-CLOUD_ID=****** AUTH_APIKEY=****** node index.js
+CLOUD_ID_SECRET=****** AUTH_APIKEY_SECRET=****** node index.js
 ```
 
 ## Schema

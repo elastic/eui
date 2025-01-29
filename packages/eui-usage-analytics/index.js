@@ -9,18 +9,29 @@
 const { scan } = require('./scan');
 
 const { Client } = require('@elastic/elasticsearch');
+
+if (!process.env.CLOUD_ID_SECRET || process.env.AUTH_APIKEY_SECRET) {
+  console.error(
+    'CLOUD_ID_SECRET and AUTH_APIKEY_SECRET environment variables must be set before running this script.'
+  );
+  process.exit(1);
+}
+
 const client = new Client({
   cloud: {
-    id: process.env.CLOUD_ID
+    id: process.env.CLOUD_ID_SECRET,
   },
   auth: {
-    apiKey: process.env.AUTH_APIKEY
-  }
+    apiKey: process.env.AUTH_APIKEY_SECRET,
+  },
 });
 
 const run = async () => {
   const result = await scan();
-  const operations = result.flatMap(doc => [{ index: { _index: 'eui_components' } }, doc]);
+  const operations = result.flatMap((doc) => [
+    { index: { _index: 'eui_components' } },
+    doc,
+  ]);
   const response = await client.bulk({ refresh: true, operations });
   console.log(response);
 };
