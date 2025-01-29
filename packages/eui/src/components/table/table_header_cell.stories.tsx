@@ -9,6 +9,7 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 
+import { LOKI_SELECTORS } from '../../../.storybook/loki';
 import {
   enableFunctionToggleControls,
   hideStorybookControls,
@@ -52,6 +53,12 @@ const meta: Meta<EuiTableHeaderCellProps> = {
     },
     description: '',
   },
+  // FIXME I couldn't get this to work
+  parameters: {
+    loki: {
+      chromeSelector: LOKI_SELECTORS.portal,
+    },
+  },
 };
 hideStorybookControls(meta, ['aria-label']);
 enableFunctionToggleControls(meta, ['onSort']);
@@ -64,5 +71,21 @@ export const Playground: Story = {
     children: 'Header cell content',
     // @ts-ignore - overwrite meta default to align with base behavior
     onSort: false,
+  },
+};
+
+export const IconTip: Story = {
+  parameters: {
+    controls: {
+      include: ['iconTipProps'],
+    },
+  },
+  args: {
+    children: 'Header cell content',
+    // @ts-ignore - overwrite meta default to align with base behavior
+    onSort: false,
+    iconTipProps: {
+      content: 'tooltip content',
+    },
   },
 };

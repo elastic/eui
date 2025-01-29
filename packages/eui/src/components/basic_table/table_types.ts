@@ -16,6 +16,7 @@ import {
   EuiTableRowCellProps,
   EuiTableRowCellMobileOptionsShape,
 } from '../table/table_row_cell';
+import { EuiIconTipProps } from '../tool_tip';
 
 export type ItemId<T> = string | number | ((item: T) => string);
 export type ItemIdResolved = string | number;
@@ -44,6 +45,10 @@ export interface EuiTableFieldDataColumnType<T>
    * The display name of the column
    */
   name: ReactNode;
+  /**
+   * Allows adding an icon with a tooltip displayed next to the name
+   */
+  nameIconTip?: EuiIconTipProps;
   /**
    * A description of the column (will be presented as a title over the column header)
    */
@@ -119,6 +124,10 @@ export type EuiTableComputedColumnType<T> = CommonProps &
      */
     name?: ReactNode;
     /**
+     * Allows configuring an icon with a tooltip, to be displayed next to the name
+     */
+    nameIconTip?: EuiIconTipProps;
+    /**
      * If provided, allows this column to be sorted on. Must return the value to sort against.
      */
     sortable?: (item: T) => Primitive;
@@ -141,6 +150,10 @@ export type EuiTableActionsColumnType<T extends object> = {
    * The display name of the column
    */
   name?: ReactNode;
+  /**
+   * Allows configuring an icon with a tooltip, to be displayed next to the name
+   */
+  nameIconTip?: EuiIconTipProps;
 } & Pick<EuiTableFieldDataColumnType<T>, 'description' | 'width'>;
 
 export interface EuiTableSortingType<T> {
