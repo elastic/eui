@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import {
   EuiComboBox,
@@ -6,13 +6,11 @@ import {
   EuiHealth,
 } from '../../../../src/components';
 import {
-  euiPaletteColorBlind,
-  euiPaletteColorBlindBehindText,
+  useEuiPaletteColorBlind,
+  useEuiPaletteColorBlindBehindText,
 } from '../../../../src/services';
 
-const visColors = euiPaletteColorBlind();
-const visColorsBehindText = euiPaletteColorBlindBehindText();
-const optionsStatic = [
+const getOptionsStatic = (visColorsBehindText) => [
   {
     value: {
       size: 5,
@@ -88,8 +86,17 @@ const optionsStatic = [
 ];
 
 export default () => {
-  const [options, setOptions] = useState(optionsStatic);
+  const visColors = useEuiPaletteColorBlind();
+  const visColorsBehindText = useEuiPaletteColorBlindBehindText();
+
+  const [options, setOptions] = useState(getOptionsStatic(visColorsBehindText));
   const [selectedOptions, setSelected] = useState([options[2], options[5]]);
+
+  useEffect(() => {
+    const updatedOptions = getOptionsStatic(visColorsBehindText);
+    setOptions(updatedOptions);
+    setSelected([updatedOptions[2], updatedOptions[5]]);
+  }, [visColorsBehindText]);
 
   const onChange = (selectedOptions) => {
     setSelected(selectedOptions);

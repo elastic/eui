@@ -1,11 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { EuiComboBox } from '../../../../src/components';
-import { euiPaletteColorBlindBehindText } from '../../../../src/services';
+import { useEuiPaletteColorBlindBehindText } from '../../../../src/services';
 import { DisplayToggles } from '../form_controls/display_toggles';
 
-const visColorsBehindText = euiPaletteColorBlindBehindText();
-const optionsStatic = [
+const getOptionsStatic = (visColorsBehindText) => [
   {
     label: 'Titan',
     'data-test-subj': 'titanOption',
@@ -51,8 +50,16 @@ const optionsStatic = [
 ];
 
 export default () => {
-  const [options, setOptions] = useState(optionsStatic);
+  const visColorsBehindText = useEuiPaletteColorBlindBehindText();
+
+  const [options, setOptions] = useState(getOptionsStatic(visColorsBehindText));
   const [selectedOptions, setSelected] = useState([options[2], options[5]]);
+
+  useEffect(() => {
+    const updatedOptions = getOptionsStatic(visColorsBehindText);
+    setOptions(updatedOptions);
+    setSelected([updatedOptions[2], updatedOptions[5]]);
+  }, [visColorsBehindText]);
 
   const onChange = (selectedOptions) => {
     setSelected(selectedOptions);

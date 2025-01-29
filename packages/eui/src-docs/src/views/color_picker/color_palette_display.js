@@ -1,7 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { VIS_COLOR_STORE_EVENTS } from '@elastic/eui-theme-common';
 import {
-  euiPaletteColorBlind,
   euiPaletteForStatus,
   euiPaletteForTemperature,
   euiPaletteComplementary,
@@ -11,6 +10,7 @@ import {
   euiPaletteWarm,
   euiPaletteGray,
   EUI_VIS_COLOR_STORE,
+  useEuiPaletteColorBlind,
 } from '../../../../src/services/color';
 
 import {
@@ -75,6 +75,8 @@ export default () => {
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
   const [size, setSize] = useState(sizes[1].value);
 
+  const euiPaletteColorBlind = useEuiPaletteColorBlind();
+
   const getPalettes = useCallback(
     () =>
       paletteNames.map((paletteName, index) => {
@@ -135,16 +137,13 @@ export default () => {
         <h3>Fixed</h3>
       </EuiTitle>
       <EuiSpacer size="s" />
-      <EuiColorPaletteDisplay type="fixed" palette={euiPaletteColorBlind()} />
+      <EuiColorPaletteDisplay type="fixed" palette={euiPaletteColorBlind} />
       <EuiSpacer />
       <EuiTitle size="xxxs">
         <h3>Gradient</h3>
       </EuiTitle>
       <EuiSpacer size="s" />
-      <EuiColorPaletteDisplay
-        type="gradient"
-        palette={euiPaletteColorBlind()}
-      />
+      <EuiColorPaletteDisplay type="gradient" palette={euiPaletteColorBlind} />
       <EuiSpacer />
       <EuiTitle size="xxxs">
         <h3>Fixed with stops</h3>

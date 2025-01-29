@@ -15,12 +15,12 @@ import {
 } from '../../../services';
 import { euiFontSize, logicalCSS } from '../../../global_styling';
 
-const visColors = euiPaletteColorBlind();
-
 export const euiSelectableTemplateSitewideStyles = (
   euiThemeContext: UseEuiTheme
 ) => {
   const { euiTheme } = euiThemeContext;
+
+  const visColors = euiPaletteColorBlind();
 
   return {
     euiSelectableTemplateSitewide: css`
