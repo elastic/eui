@@ -1,11 +1,12 @@
 ---
-slug: /tabular-content/in-memory-tables
-id: tabular_content_in_memory_tables
+slug: /tabular-content/tables/in-memory
+id: tabular_content_tables_in_memory
+sidebar_position: 2
 ---
 
 # In-memory tables
 
-The **EuiInMemoryTable** is a higher level component wrapper around **EuiBasicTable** aimed at displaying tables data when all the data is in memory. It takes the full set of data (all possible items) and based on its configuration, will display it handling all configured functionality (pagination and sorting) for you.
+**EuiInMemoryTable** is a higher level component wrapper around [**EuiBasicTable**](../basic) aimed at automatically handling certain functionality (selection, search, sorting, and pagination) in-memory for you, within certain preset configurations. It takes the full set of data that must include all possible items.
 
 :::warning Column names must be referentially stable
 
@@ -21,7 +22,6 @@ import {
   formatDate,
   EuiInMemoryTable,
   EuiBasicTableColumn,
-  EuiLink,
   EuiHealth,
 } from '@elastic/eui';
 import { faker } from '@faker-js/faker';
@@ -30,7 +30,6 @@ type User = {
   id: number;
   firstName: string | null | undefined;
   lastName: string;
-  github: string;
   dateOfBirth: Date;
   online: boolean;
   location: {
@@ -46,7 +45,6 @@ for (let i = 0; i < 20; i++) {
     id: i + 1,
     firstName: faker.person.firstName(),
     lastName: faker.person.lastName(),
-    github: faker.internet.userName(),
     dateOfBirth: faker.date.past(),
     online: faker.datatype.boolean(),
     location: {
@@ -81,15 +79,6 @@ const columns: Array<EuiBasicTableColumn<User>> = [
     mobileOptions: {
       show: false,
     },
-  },
-  {
-    field: 'github',
-    name: 'Github',
-    render: (username: User['github']) => (
-      <EuiLink href="#" target="_blank">
-        {username}
-      </EuiLink>
-    ),
   },
   {
     field: 'dateOfBirth',
@@ -159,7 +148,7 @@ import InMemoryTableSelection from './table_selection';
 
 ## In-memory table with search
 
-The example shows how to configure **EuiInMemoryTable** to display a search bar by passing the search prop. You can read more about the search bar's properties and its syntax [**here**](/docs/forms/search-bar) .
+This example shows how to configure **EuiInMemoryTable** to display a search bar by passing the `search` prop. For more detailed information about the syntax and configuration accepted by this prop, see [**EuiSearchBar**](../../forms/search-bar).
 
 ```tsx interactive
 import React, { useState } from 'react';
@@ -168,7 +157,6 @@ import {
   EuiInMemoryTable,
   EuiBasicTableColumn,
   EuiSearchBarProps,
-  EuiLink,
   EuiHealth,
   EuiSpacer,
   EuiSwitch,
@@ -182,7 +170,6 @@ type User = {
   id: number;
   firstName: string | null | undefined;
   lastName: string;
-  github: string;
   dateOfBirth: Date;
   online: boolean;
   location: string;
@@ -196,7 +183,6 @@ for (let i = 0; i < 20; i++) {
     id: i + 1,
     firstName: faker.person.firstName(),
     lastName: faker.person.lastName(),
-    github: faker.internet.userName(),
     dateOfBirth: faker.date.past(),
     online: faker.datatype.boolean(),
     location: faker.location.country(),
@@ -234,15 +220,6 @@ const columns: Array<EuiBasicTableColumn<User>> = [
     mobileOptions: {
       show: false,
     },
-  },
-  {
-    field: 'github',
-    name: 'Github',
-    render: (username: User['github']) => (
-      <EuiLink href="#" target="_blank">
-        {username}
-      </EuiLink>
-    ),
   },
   {
     field: 'dateOfBirth',
@@ -315,8 +292,9 @@ export default () => {
         />
         <EuiSwitch
           label="With Filters"
-          checked={filters}
+          checked={filters && !textSearchFormat}
           onChange={() => setFilters(!filters)}
+          disabled={textSearchFormat}
         />
         <EuiSwitch
           label="Content between"
@@ -355,7 +333,6 @@ export default () => {
     </>
   );
 };
-
 ```
 
 ## In-memory table with search callback
@@ -369,7 +346,6 @@ import {
   EuiInMemoryTable,
   EuiBasicTableColumn,
   EuiSearchBarProps,
-  EuiLink,
   EuiHealth,
 } from '@elastic/eui';
 import { faker } from '@faker-js/faker';
@@ -378,7 +354,6 @@ type User = {
   id: number;
   firstName: string | null | undefined;
   lastName: string;
-  github: string;
   dateOfBirth: Date;
   online: boolean;
   location: {
@@ -394,7 +369,6 @@ for (let i = 0; i < 20; i++) {
     id: i + 1,
     firstName: faker.person.firstName(),
     lastName: faker.person.lastName(),
-    github: faker.internet.userName(),
     dateOfBirth: faker.date.past(),
     online: faker.datatype.boolean(),
     location: {
@@ -429,15 +403,6 @@ const columns: Array<EuiBasicTableColumn<User>> = [
     mobileOptions: {
       show: false,
     },
-  },
-  {
-    field: 'github',
-    name: 'Github',
-    render: (username: User['github']) => (
-      <EuiLink href="#" target="_blank">
-        {username}
-      </EuiLink>
-    ),
   },
   {
     field: 'dateOfBirth',
@@ -519,7 +484,6 @@ export default () => {
     />
   );
 };
-
 ```
 
 ## In-memory table with search and external state
@@ -533,7 +497,6 @@ import {
   EuiInMemoryTable,
   EuiBasicTableColumn,
   EuiSearchBarProps,
-  EuiLink,
   EuiHealth,
   EuiFlexGroup,
   EuiFlexItem,
@@ -573,8 +536,6 @@ type User = {
   id: number;
   firstName: string | null | undefined;
   lastName: string;
-  github: string;
-  dateOfBirth: Date;
   online: boolean;
   location: string;
   locationData: (typeof countries)[number];
@@ -589,8 +550,6 @@ for (let i = 0; i < 20; i++) {
     id: i + 1,
     firstName: faker.person.firstName(),
     lastName: faker.person.lastName(),
-    github: faker.internet.userName(),
-    dateOfBirth: faker.date.past(),
     online: faker.datatype.boolean(),
     location: randomCountry.code,
     locationData: randomCountry,
@@ -622,23 +581,6 @@ const columns: Array<EuiBasicTableColumn<User>> = [
     mobileOptions: {
       show: false,
     },
-  },
-  {
-    field: 'github',
-    name: 'Github',
-    render: (username: User['github']) => (
-      <EuiLink href="#" target="_blank">
-        {username}
-      </EuiLink>
-    ),
-  },
-  {
-    field: 'dateOfBirth',
-    name: 'Date of Birth',
-    dataType: 'date',
-    render: (dateOfBirth: User['dateOfBirth']) =>
-      formatDate(dateOfBirth, 'dobLong'),
-    sortable: true,
   },
   {
     field: 'location',
@@ -794,7 +736,6 @@ export default () => {
     </>
   );
 };
-
 ```
 
 ## In-memory table with custom sort values
@@ -859,7 +800,6 @@ export default () => {
     />
   );
 };
-
 ```
 
 ## In-memory table with controlled pagination
@@ -876,7 +816,6 @@ import {
   EuiInMemoryTableProps,
   EuiBasicTableColumn,
   CriteriaWithPagination,
-  EuiLink,
   EuiHealth,
 } from '@elastic/eui';
 import { faker } from '@faker-js/faker';
@@ -885,7 +824,6 @@ type User = {
   id: number;
   firstName: string | null | undefined;
   lastName: string;
-  github: string;
   dateOfBirth: Date;
   online: boolean;
   location: {
@@ -901,7 +839,6 @@ for (let i = 0; i < 20; i++) {
     id: i + 1,
     firstName: faker.person.firstName(),
     lastName: faker.person.lastName(),
-    github: faker.internet.userName(),
     dateOfBirth: faker.date.past(),
     online: faker.datatype.boolean(),
     location: {
@@ -936,15 +873,6 @@ const columns: Array<EuiBasicTableColumn<User>> = [
     mobileOptions: {
       show: false,
     },
-  },
-  {
-    field: 'github',
-    name: 'Github',
-    render: (username: User['github']) => (
-      <EuiLink href="#" target="_blank">
-        {username}
-      </EuiLink>
-    ),
   },
   {
     field: 'dateOfBirth',
@@ -1022,7 +950,6 @@ export default () => {
     />
   );
 };
-
 ```
 
 ## Props
