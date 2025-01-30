@@ -23,7 +23,12 @@ const componentNames = ['EuiButton', 'EuiButtonEmpty', 'EuiLink', 'EuiBadge'];
 
 export const HrefOnClick: Rule.RuleModule = {
   meta: {
-    fixable: null,
+    type: 'problem',
+    docs: {
+      description:
+        'Discourage supplying both `href` and `onClick` to certain EUI components.',
+      recommended: false,
+    },
   },
   create(context) {
     return {
