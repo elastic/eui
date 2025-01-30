@@ -17,9 +17,11 @@
  * under the License.
  */
 
+import { Rule } from 'eslint';
+
 const componentNames = ['EuiButton', 'EuiButtonEmpty', 'EuiLink', 'EuiBadge'];
 
-module.exports = {
+export const HrefOnClick: Rule.RuleModule = {
   meta: {
     fixable: null,
   },
@@ -34,17 +36,17 @@ module.exports = {
         }
 
         const hasHref = node.attributes.some(
-          attr => attr.type === 'JSXAttribute' && attr.name.name === 'href'
+          (attr) => attr.type === 'JSXAttribute' && attr.name.name === 'href'
         );
         const hasOnClick = node.attributes.some(
-          attr => attr.type === 'JSXAttribute' && attr.name.name === 'onClick'
+          (attr) => attr.type === 'JSXAttribute' && attr.name.name === 'onClick'
         );
 
         if (hasHref && hasOnClick) {
-          context.report(
+          context.report({
             node,
-            `<${node.name.name}> supplied with both \`href\` and \`onClick\`; is this intentional? (Valid use cases include programmatic navigation via \`onClick\` while preserving "Open in new tab" style functionality via \`href\`.)`
-          );
+            message: `<${node.name.name}> supplied with both \`href\` and \`onClick\`; is this intentional? (Valid use cases include programmatic navigation via \`onClick\` while preserving "Open in new tab" style functionality via \`href\`.)`,
+          });
         }
       },
     };

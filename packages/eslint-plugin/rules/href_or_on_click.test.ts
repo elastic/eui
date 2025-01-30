@@ -17,20 +17,22 @@
  * under the License.
  */
 
-/* eslint-disable @typescript-eslint/no-var-requires */
+import { RuleTester } from 'eslint';
+import dedent from 'dedent';
 
-const { RuleTester } = require('eslint');
-const rule = require('./href_or_on_click');
-const dedent = require('dedent');
+import { HrefOnClick } from './href_or_on_click';
 
 const ruleTester = new RuleTester({
-  parser: require.resolve('babel-eslint'),
   parserOptions: {
-    ecmaVersion: 2018,
+    sourceType: 'module',
+    ecmaVersion: 6,
+    ecmaFeatures: {
+      jsx: true,
+    },
   },
 });
 
-ruleTester.run('@elastic/eui/href-or-on-click', rule, {
+ruleTester.run('@elastic/eui/href-or-on-click', HrefOnClick, {
   valid: [
     {
       code: dedent(`
@@ -80,7 +82,7 @@ ruleTester.run('@elastic/eui/href-or-on-click', rule, {
       errors: [
         {
           message:
-            '<EuiButton> supplied with both `href` and `onClick`; is this intentional? (Valid use cases include programmatic navigation via `onClick` while preserving \"Open in new tab\" style functionality via `href`.)',
+            '<EuiButton> supplied with both `href` and `onClick`; is this intentional? (Valid use cases include programmatic navigation via `onClick` while preserving "Open in new tab" style functionality via `href`.)',
         },
       ],
     },

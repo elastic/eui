@@ -17,10 +17,15 @@
  * under the License.
  */
 
-module.exports = {
+import { ESLint } from 'eslint';
+
+import { HrefOnClick } from './rules/href_or_on_click';
+import { NoRestrictedEuiImports } from './rules/no_restricted_eui_imports';
+
+const config: ESLint.Plugin = {
   rules: {
-    'href-or-on-click': require('./rules/href_or_on_click'),
-    'no-restricted-eui-imports': require('./rules/no_restricted_eui_imports'),
+    'href-or-on-click': HrefOnClick,
+    'no-restricted-eui-imports': NoRestrictedEuiImports,
   },
   configs: {
     recommended: {
@@ -32,3 +37,5 @@ module.exports = {
     },
   },
 };
+
+export default config;

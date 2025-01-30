@@ -2,6 +2,7 @@
   "name": "@elastic/eslint-plugin-eui",
   "version": "0.0.3",
   "license": "Apache-2.0",
+  "type": "module",
   "repository": {
     "type": "git",
     "url": "https://github.com/elastic/eui.git"
@@ -11,12 +12,16 @@
     "eslint": ">=5 <7"
   },
   "devDependencies": {
-    "@babel/core": "^7.6.0",
-    "babel-eslint": "^10.0.3",
+    "@types/dedent": "^0.7.2",
+    "@types/jest": "^29.5.14",
+    "dedent": "^1.5.3",
     "eslint": "^6.4.0",
-    "jest": "^29.7.0"
+    "jest": "^29.7.0",
+    "ts-jest": "^29.2.5",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.7.3"
   },
   "scripts": {
-    "test": "jest"
+    "test": "node --experimental-vm-modules node_modules/.bin/jest"
   }
 }
