@@ -7,6 +7,13 @@
     "@elastic/elasticsearch": "^8.14.0",
     "codeowners": "^5.1.1",
     "escodegen-wallaby": "^1.6.44",
-    "react-scanner": "^1.1.0"
+    "react-scanner": "^1.1.0",
+    "yargs": "^17.7.2"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0"
   }
 }

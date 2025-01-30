@@ -27,9 +27,29 @@ This script must be run from this directory.
 
 ```
 CLOUD_ID_SECRET=****** AUTH_APIKEY_SECRET=****** node index.js
+
+# Repository roots can be overridden as well. Check --help for more info
+CLOUD_ID_SECRET=****** AUTH_APIKEY_SECRET=****** node index.js --kibana-root=/path/to/kibana
 ```
 
-## Schema
+To do a dry run for testing:
+```
+node index.js --dry
+```
+
+## If you ever need to delete a bad scan:
+```
+POST /eui_components/_delete_by_query
+{
+  "query": {
+    "term": {
+      "@timestamp": "2024-07-22T20:39:38.992Z"
+    }
+  }
+}
+```
+
+## Record Schema
 
 This script will store data in an Elastic index named `eui_components`.
 
