@@ -17,6 +17,9 @@
  * under the License.
  */
 
+import { Rule } from 'eslint';
+import { ImportDeclaration } from 'estree';
+
 const DEFAULT_RESTRICTED_IMPORT_PATTERNS = [
   {
     pattern: '@elastic/eui/dist/eui_theme_*\\.json',
@@ -25,7 +28,7 @@ const DEFAULT_RESTRICTED_IMPORT_PATTERNS = [
   },
 ];
 
-module.exports = {
+export const NoRestrictedEuiImports: Rule.RuleModule = {
   meta: {
     type: 'problem',
     docs: {
@@ -66,14 +69,13 @@ module.exports = {
     ];
 
     return {
-      ImportDeclaration(node) {
+      ImportDeclaration(node: ImportDeclaration) {
         allPatterns.forEach(({ pattern, message }) => {
           const regex = new RegExp(pattern.replace('*', '.*'));
-          if (regex.test(node.source.value)) {
+          if (regex.test(node.source.value as string)) {
             context.report({
               node,
-              message:
-                message || `Importing "${node.source.value}" is restricted.`,
+              message,
             });
           }
         });
