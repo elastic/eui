@@ -13,7 +13,10 @@ const Codeowners = require('codeowners');
 const path = require('path');
 const cwd = path.resolve(__dirname);
 
-const getRepoConfig = ({ kibanaRoot = '../../../kibana' }) => {
+const getRepoConfig = ({
+  kibanaRoot = '../../../kibana',
+  cloudRoot = '../../../cloud',
+}) => {
   // NOTE: Do not add private repos to this list. If we plan to add private repos, we should do so via configuration rather than source.
   return {
     kibana: {
@@ -30,6 +33,12 @@ const getRepoConfig = ({ kibanaRoot = '../../../kibana' }) => {
         `${kibanaRoot}/x-pack`,
         `${kibanaRoot}/packages`,
       ],
+    },
+    cloud: {
+      linkPrefix: 'https://github.com/elastic/cloud/blob/master/',
+      codeownersPath: '',
+      repoRoot: cloudRoot,
+      crawlFrom: [`${cloudRoot}/cloud-ui/apps/monolith`],
     },
   };
 };

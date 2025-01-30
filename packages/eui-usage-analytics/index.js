@@ -44,7 +44,10 @@ if (!argv['dry']) {
 }
 
 const run = async () => {
-  const result = await scan({ kibanaRoot: argv['kibana-root'] });
+  const result = await scan({
+    kibanaRoot: argv['kibana-root'],
+    cloudRoot: argv['cloud-root'],
+  });
   const operations = result.flatMap((doc) => [
     { index: { _index: 'eui_components' } },
     doc,
