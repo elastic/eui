@@ -16,7 +16,14 @@ import React from 'react';
 import { EuiBetaBadge, EuiSpacer, EuiTitle } from '@elastic/eui';
 import { css } from '@emotion/react';
 
-const colors = ['hollow', 'accent', 'subdued', 'warning'] as const;
+const defaultColors = ['hollow', 'accent'] as const;
+const deprecationColors = ['subdued', 'warning'] as const;
+
+const wrapperStyles = css`
+  display: grid;
+  align-items: flex-start;
+  gap: 1rem;
+`;
 
 export default () => (
   <>
@@ -25,21 +32,15 @@ export default () => (
     </EuiTitle>
     <EuiSpacer size="m" />
     <div
-      css={css`
-        display: grid;
-        align-items: flex-start;
-        grid: repeat(4, max-content) / repeat(6, max-content);
-        gap: 1rem;
-
-        span:nth-child(2n + 14) {
-          grid-column: span 5;
-        }
-      `}
+      css={[
+        wrapperStyles,
+        css`
+          grid: repeat(2, max-content) / repeat(6, max-content);
+        `,
+      ]}
     >
-      {colors.map((item) => {
-        const label =
-          item === 'hollow' || item === 'accent' ? 'Beta' : 'Deprecated';
-
+      {defaultColors.map((item) => {
+        const label = 'Beta';
         return (
           <>
             <EuiBetaBadge
@@ -53,28 +54,43 @@ export default () => (
               size="s"
               tooltipContent="This module is not GA. Please help us by reporting any bugs."
             />
-            {label === 'Beta' ? (
-              <>
-                <EuiBetaBadge label={label} color={item} iconType="beta" />
-                <EuiBetaBadge
-                  label="Tech preview"
-                  color={item}
-                  iconType="beaker"
-                />
-                <EuiBetaBadge
-                  size="s"
-                  label={label}
-                  color={item}
-                  iconType="beta"
-                />
-                <EuiBetaBadge
-                  size="s"
-                  label="Tech preview"
-                  color={item}
-                  iconType="beaker"
-                />
-              </>
-            ) : null}
+            <EuiBetaBadge label={label} color={item} iconType="beta" />
+            <EuiBetaBadge label="Tech preview" color={item} iconType="beaker" />
+            <EuiBetaBadge size="s" label={label} color={item} iconType="beta" />
+            <EuiBetaBadge
+              size="s"
+              label="Tech preview"
+              color={item}
+              iconType="beaker"
+            />
+          </>
+        );
+      })}
+    </div>
+    <EuiSpacer />
+    <div
+      css={[
+        wrapperStyles,
+        css`
+          grid: repeat(2, max-content) / repeat(2, max-content);
+        `,
+      ]}
+    >
+      {deprecationColors.map((item) => {
+        const label = 'Deprecated';
+        return (
+          <>
+            <EuiBetaBadge
+              label={label}
+              color={item}
+              tooltipContent="This module is not GA. Please help us by reporting any bugs."
+            />
+            <EuiBetaBadge
+              label={label}
+              color={item}
+              size="s"
+              tooltipContent="This module is not GA. Please help us by reporting any bugs."
+            />
           </>
         );
       })}
