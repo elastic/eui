@@ -27,7 +27,7 @@ export const COLORS = [
   'success',
   'warning',
   'danger',
-  'accent'
+  'accent',
 ] as const;
 export type Color = (typeof COLORS)[number];
 

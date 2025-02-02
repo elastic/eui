@@ -12,7 +12,8 @@ export default () => (
       Dull thing can now be forgotten.{' '}
       <EuiLink external href="#">
         Learn more
-      </EuiLink>.
+      </EuiLink>
+      .
     </p>
   </EuiCallOut>
 );
