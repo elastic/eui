@@ -70,6 +70,9 @@ export const euiCallOutHeaderStyles = ({ euiTheme }: UseEuiTheme) => {
     danger: css`
       color: ${euiTheme.colors.dangerText};
     `,
+    accent: css`
+      color: ${euiTheme.colors.accentText};
+    `,
     euiCallOut__icon: css`
       position: relative;
       ${logicalCSS('top', '-1px')}

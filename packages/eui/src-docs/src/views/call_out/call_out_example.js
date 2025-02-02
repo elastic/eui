@@ -46,6 +46,15 @@ const dangerSnippet = [
 `,
 ];
 
+import Accent from './accent';
+const accentSource = require('!!raw-loader!./accent');
+const accentSnippet = [
+  `<EuiCallOut title="Shiny new thing has arrived" color="accent" iconType="cheer">
+  <p><!-- Content --></p>
+</EuiCallOut>
+`,
+];
+
 import OnDismiss from './on_dismiss';
 const onDismissSource = require('!!raw-loader!./on_dismiss');
 const onDismissSnippet = [
@@ -172,6 +181,23 @@ export const CallOutExample = {
       ),
       snippet: dangerSnippet,
       demo: <Danger />,
+    },
+    {
+      title: 'Accent',
+      source: [
+        {
+          type: GuideSectionTypes.TSX,
+          code: accentSource,
+        },
+      ],
+      text: (
+        <p>
+          Use this callout to announce new capabilities. For example if you want
+          to highlight a feature.
+        </p>
+      ),
+      snippet: accentSnippet,
+      demo: <Accent />,
     },
     {
       title: 'Dismissible callouts',
