@@ -192,8 +192,8 @@ export const CallOutExample = {
       ],
       text: (
         <p>
-          Use this callout to announce new capabilities. For
-          example if you want to highlight a feature.
+          Use this callout to announce new capabilities. For example if you want
+          to highlight a feature.
         </p>
       ),
       snippet: accentSnippet,
