@@ -22,6 +22,10 @@ import { RuleTester } from '@typescript-eslint/rule-tester';
 
 import { HrefOnClick } from './href_or_on_click.ts';
 
+/**
+ * For some reason, `languageOptions` is defined in `RuleTesterConfig` but causes an error: "Object literal may only specify known properties".
+ * Documented way (per each test case) works as expected: https://typescript-eslint.io/packages/rule-tester/.
+ */
 const languageOptions = {
   parserOptions: {
     ecmaFeatures: {
