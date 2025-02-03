@@ -17,22 +17,22 @@
  * under the License.
  */
 
-import { RuleTester } from 'eslint';
 import dedent from 'dedent';
+import { RuleTester } from '@typescript-eslint/rule-tester';
 
-import { HrefOnClick } from './href_or_on_click';
+import { HrefOnClick } from './href_or_on_click.ts';
 
-const ruleTester = new RuleTester({
+const languageOptions = {
   parserOptions: {
-    sourceType: 'module',
-    ecmaVersion: 6,
     ecmaFeatures: {
       jsx: true,
     },
   },
-});
+};
 
-ruleTester.run('@elastic/eui/href-or-on-click', HrefOnClick, {
+const ruleTester = new RuleTester();
+
+ruleTester.run('href-or-on-click', HrefOnClick, {
   valid: [
     {
       code: dedent(`
@@ -40,6 +40,7 @@ ruleTester.run('@elastic/eui/href-or-on-click', HrefOnClick, {
           <EuiButton />
         )
       `),
+      languageOptions,
     },
     {
       code: dedent(`
@@ -47,6 +48,7 @@ ruleTester.run('@elastic/eui/href-or-on-click', HrefOnClick, {
           <EuiButton href="/" />
         )
       `),
+      languageOptions,
     },
     {
       code: dedent(`
@@ -54,6 +56,7 @@ ruleTester.run('@elastic/eui/href-or-on-click', HrefOnClick, {
           <EuiButton href={'/' + 'home'} />
         )
       `),
+      languageOptions,
     },
     {
       code: dedent(`
@@ -61,6 +64,7 @@ ruleTester.run('@elastic/eui/href-or-on-click', HrefOnClick, {
           <EuiButton onClick={executeAction} />
         )
       `),
+      languageOptions,
     },
     {
       code: dedent(`
@@ -68,6 +72,7 @@ ruleTester.run('@elastic/eui/href-or-on-click', HrefOnClick, {
           <EuiButton onClick={() => executeAction()} />
         )
       `),
+      languageOptions,
     },
   ],
 
@@ -78,11 +83,10 @@ ruleTester.run('@elastic/eui/href-or-on-click', HrefOnClick, {
           <EuiButton href="/" onClick={fooBar} />
         )
       `),
-
+      languageOptions,
       errors: [
         {
-          message:
-            '<EuiButton> supplied with both `href` and `onClick`; is this intentional? (Valid use cases include programmatic navigation via `onClick` while preserving "Open in new tab" style functionality via `href`.)',
+          messageId: 'hrefOrOnClick',
         },
       ],
     },
@@ -92,11 +96,10 @@ ruleTester.run('@elastic/eui/href-or-on-click', HrefOnClick, {
           <EuiButtonEmpty href="/" onClick={fooBar} />
         )
       `),
-
+      languageOptions,
       errors: [
         {
-          message:
-            '<EuiButtonEmpty> supplied with both `href` and `onClick`; is this intentional? (Valid use cases include programmatic navigation via `onClick` while preserving "Open in new tab" style functionality via `href`.)',
+          messageId: 'hrefOrOnClick',
         },
       ],
     },
@@ -106,11 +109,10 @@ ruleTester.run('@elastic/eui/href-or-on-click', HrefOnClick, {
           <EuiLink href="/" onClick={fooBar} />
         )
       `),
-
+      languageOptions,
       errors: [
         {
-          message:
-            '<EuiLink> supplied with both `href` and `onClick`; is this intentional? (Valid use cases include programmatic navigation via `onClick` while preserving "Open in new tab" style functionality via `href`.)',
+          messageId: 'hrefOrOnClick',
         },
       ],
     },
