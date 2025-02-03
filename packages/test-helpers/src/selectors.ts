@@ -6,5 +6,7 @@
  * Side Public License, v 1.
  */
 
-export * as rtl from './rtl';
-export * as selectors from './selectors';
+export { EuiComboBoxSelectors } from './components/combo_box/selectors';
+export { EuiContextMenuSelectors } from './components/context_menu/selectors';
+export { EuiPopoverSelectors } from './components/popover/selectors';
+export { EuiToolTipSelectors } from './components/tool_tip/selectors';

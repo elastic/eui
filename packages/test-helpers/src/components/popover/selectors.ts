@@ -6,5 +6,13 @@
  * Side Public License, v 1.
  */
 
-export * as rtl from './rtl';
-export * as selectors from './selectors';
+/**
+ * List of available stable selectors for
+ * {@link https://eui.elastic.co/#/layout/popover|EuiPopover}
+ */
+export const EuiPopoverSelectors = {
+  /**
+   * CSS selector to find open EuiPopover(s)
+   */
+  OPEN: '[data-popover-open]'
+}

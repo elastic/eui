@@ -7,25 +7,51 @@
  */
 
 import { waitFor } from '@testing-library/react';
+import { WaitForOptions } from '../../utils/rtl/internal';
+import { EuiToolTipSelectors } from './selectors';
 
-const waitForVisible = () => {
-  return waitFor(
-    () => {
-      const tooltip = document.querySelector('.euiToolTipPopover');
-      expect(tooltip).toBeVisible();
-    },
-    { timeout: 3000 } // Account for long delay on tooltips
-  );
+// EuiToolTip waits until the end of animation before
+// removing the popover element from DOM
+const ANIMATION_TIMEOUT = 3000;
+
+/**
+ * Get EuiToolTip popover element if it's currently rendered
+ */
+const getPopoverElement = (container?: HTMLElement) => {
+  const target = container ?? document;
+  return target.querySelector(EuiToolTipSelectors.POPOVER);
 };
 
-const waitForHidden = () => {
+/**
+ * Wait until the <EuiToolTip> popover is visible
+ */
+const waitForVisible = (
+  container?: HTMLElement,
+  options: WaitForOptions = {
+    timeout: ANIMATION_TIMEOUT, // Account for long delay on tooltips
+  }
+) => {
   return waitFor(() => {
-    const tooltip = document.querySelector('.euiToolTipPopover');
-    expect(tooltip).toBeNull();
-  });
+    expect(getPopoverElement(container)).toBeVisible();
+  }, options);
+};
+
+/**
+ * Wait until the <EuiToolTip> popover is hidden
+ */
+const waitForHidden = (
+  container?: HTMLElement,
+  options: WaitForOptions = {
+    timeout: ANIMATION_TIMEOUT, // Account for long delay on tooltips
+  }
+) => {
+  return waitFor(() => {
+    expect(getPopoverElement(container)).toBeNull();
+  }, options);
 };
 
 export const EuiToolTipTestHelpers = {
+  getPopoverElement,
   waitForVisible,
   waitForHidden,
 };

@@ -6,5 +6,6 @@
  * Side Public License, v 1.
  */
 
-export * as rtl from './rtl';
-export * as selectors from './selectors';
+export { dataTestSubjQueries } from './data_test_subj_queries';
+export { withEuiProvider } from './with_eui_provider'
+export { withQueries } from './with_queries';

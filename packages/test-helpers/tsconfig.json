@@ -1,3 +1,6 @@
+// This file exists purely so that IDEs can see the correct TypeScript settings
+// Please don't put any configuration options here.
+
 {
   "extends": "./tsconfig.base.json"
 }

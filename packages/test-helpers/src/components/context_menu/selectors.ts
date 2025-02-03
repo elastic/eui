@@ -6,5 +6,13 @@
  * Side Public License, v 1.
  */
 
-export * as rtl from './rtl';
-export * as selectors from './selectors';
+/**
+ * List of available stable selectors for
+ * {@link https://eui.elastic.co/#/navigation/context-menu|EuiContextMenu}
+ */
+export const EuiContextMenuSelectors = {
+  /**
+   * CSS selector to find EuiContextMenu's panels
+   */
+  PANEL: '.euiContextMenuPanel',
+};

@@ -7,11 +7,21 @@
  */
 
 import { fireEvent, waitFor } from '@testing-library/react';
+import { EuiContextMenuSelectors } from './selectors';
 
+/**
+ * Get all EuiContextMenu panel elements
+ */
+const getPanels = () => {
+  // Querying document instead of an optional container because
+  // panels are portalled
+  return document.querySelectorAll(EuiContextMenuSelectors.PANEL);
+};
+
+/**
+ * Wait for EuiContextMenu to transition to a different panel
+ */
 const waitForPanelTransition = async () => {
-  // Used document instead of container or screen due to context menus living in portals
-  const getPanels = () => document.querySelectorAll('.euiContextMenuPanel');
-
   // 2 panels will appear for the transition animation
   await waitFor(() => {
     expect(getPanels().length).toEqual(2);
@@ -28,5 +38,6 @@ const waitForPanelTransition = async () => {
 };
 
 export const EuiContextMenuTestHelpers = {
+  getPanels,
   waitForPanelTransition,
 };

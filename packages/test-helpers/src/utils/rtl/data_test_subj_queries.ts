@@ -36,7 +36,7 @@ const [
   findByTestSubject,
 ] = buildQueries(queryAllByTestSubject, getMultipleError, getMissingError);
 
-export {
+export const dataTestSubjQueries = {
   queryByTestSubject,
   queryAllByTestSubject,
   getByTestSubject,
