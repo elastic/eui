@@ -17,60 +17,97 @@
  * under the License.
  */
 
-import { RuleTester } from 'eslint';
+import { RuleTester } from '@typescript-eslint/rule-tester';
 
-import { NoRestrictedEuiImports } from './no_restricted_eui_imports';
+import { NoRestrictedEuiImports } from './no_restricted_eui_imports.ts';
 
-const ruleTester = new RuleTester({
-  parserOptions: {
-    sourceType: 'module',
-    ecmaVersion: 6,
-  },
+const ruleTester = new RuleTester();
+
+ruleTester.run('no-restricted-eui-imports', NoRestrictedEuiImports, {
+  valid: [
+    {
+      code: "import { EuiButton } from '@elastic/eui';",
+    },
+    {
+      code: "import theme from '@project/package';",
+    },
+    {
+      code: "import theme from '@elastic/eui/dist/eui_themesomething_else.json';",
+    },
+  ],
+
+  invalid: [
+    {
+      code: "import theme from '@elastic/eui/dist/eui_theme_something.json';",
+      errors: [
+        {
+          messageId: 'restrictedEuiImport',
+        },
+      ],
+    },
+    {
+      code: "import theme from '@elastic/eui/dist/eui_theme_light.json';",
+      errors: [
+        {
+          messageId: 'restrictedEuiImport',
+        },
+      ],
+    },
+    {
+      code: "import theme from '@project/package';",
+      options: [
+        {
+          patterns: ['@project/package'],
+          messageId: 'restrictedEuiImport',
+        },
+      ],
+      errors: [
+        {
+          messageId: 'restrictedEuiImport',
+        },
+      ],
+    },
+    {
+      code: "import { EuiIcon } from '@elastic/eui/lib/components/icon/icon';",
+      options: [
+        {
+          patterns: ['@elastic/eui/lib/components/icon/*'],
+          messageId: 'restrictedEuiImport',
+        },
+      ],
+      errors: [
+        {
+          messageId: 'restrictedEuiImport',
+        },
+      ],
+    },
+    {
+      code: "import { EuiIcon } from '@elastic/eui/lib/components/icon/icon';",
+      options: [
+        {
+          patterns: ['@elastic/eui/lib/**/icon'],
+          messageId: 'restrictedEuiImport',
+        },
+      ],
+      errors: [
+        {
+          messageId: 'restrictedEuiImport',
+        },
+      ],
+    },
+    {
+      code: "import { EuiIcon } from '@elastic/eui/lib/components/icon/icon';",
+      options: [
+        {
+          patterns: ['@elastic/eui/lib/components/**'],
+          messageId: 'restrictedEuiImport',
+        },
+      ],
+      errors: [
+        {
+          messageId: 'restrictedEuiImport',
+        },
+      ],
+    },
+  ],
 });
-
-ruleTester.run(
-  '@elastic/eui/no-restricted-eui-imports',
-  NoRestrictedEuiImports,
-  {
-    valid: [
-      {
-        code: "import { EuiButton } from '@elastic/eui';",
-      },
-      {
-        code: "import theme from '@kbn/ui-theme';",
-      },
-    ],
-
-    invalid: [
-      {
-        code: "import theme from '@elastic/eui/dist/eui_theme_light.json';",
-        errors: [
-          {
-            message:
-              'For client-side, please use `useEuiTheme` instead. Direct JSON token imports will be removed as per the EUI Deprecation schedule: https://github.com/elastic/eui/issues/1469.',
-          },
-        ],
-      },
-      {
-        code: "import theme from '@kbn/ui-theme';",
-        options: [
-          {
-            patterns: [
-              {
-                pattern: '@kbn/ui-theme',
-                message:
-                  'For client-side, please use `useEuiTheme` from `@elastic/eui` instead.',
-              },
-            ],
-          },
-        ],
-        errors: [
-          {
-            message:
-              'For client-side, please use `useEuiTheme` from `@elastic/eui` instead.',
-          },
-        ],
-      },
-    ],
-  }
-);
