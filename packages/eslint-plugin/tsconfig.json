@@ -1,8 +1,17 @@
 {
 	"compilerOptions": {
-    "module": "ESNext",
     "target": "ESNext",
-    "esModuleInterop": true
+    "module": "NodeNext",
+    "moduleResolution": "nodenext",
+    "strict": true,
+    "esModuleInterop": true,
+    "declaration": true,
+    "declarationMap": true,
+    "emitDeclarationOnly": true,
+    "allowImportingTsExtensions": true,
+    "outDir": "./dist",
+    "resolveJsonModule": true,
+    "isolatedModules": true
   },
   "exclude": ["node_modules"]
 }

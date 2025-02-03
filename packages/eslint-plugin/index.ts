@@ -17,12 +17,10 @@
  * under the License.
  */
 
-import { ESLint } from 'eslint';
+import { HrefOnClick } from './rules/href_or_on_click.ts';
+import { NoRestrictedEuiImports } from './rules/no_restricted_eui_imports.ts';
 
-import { HrefOnClick } from './rules/href_or_on_click';
-import { NoRestrictedEuiImports } from './rules/no_restricted_eui_imports';
-
-const config: ESLint.Plugin = {
+const config = {
   rules: {
     'href-or-on-click': HrefOnClick,
     'no-restricted-eui-imports': NoRestrictedEuiImports,

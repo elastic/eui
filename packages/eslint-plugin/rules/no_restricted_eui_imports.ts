@@ -17,50 +17,29 @@
  * under the License.
  */
 
-import { Rule } from 'eslint';
-import { ImportDeclaration } from 'estree';
+import micromatch from 'micromatch';
+import { TSESTree, ESLintUtils } from '@typescript-eslint/utils';
+
+type MessageIds = 'restrictedEuiImport';
+
+type Options = Array<{
+  patterns: string[];
+  messageId: MessageIds;
+}>;
 
 const DEFAULT_RESTRICTED_IMPORT_PATTERNS = [
   {
-    pattern: '@elastic/eui/dist/eui_theme_*\\.json',
-    message:
-      'For client-side, please use `useEuiTheme` instead. Direct JSON token imports will be removed as per the EUI Deprecation schedule: https://github.com/elastic/eui/issues/1469.',
+    patterns: ['@elastic/eui/dist/eui_theme_*\\.json'],
+    messageId: 'restrictedEuiImport' as const,
   },
 ];
 
-export const NoRestrictedEuiImports: Rule.RuleModule = {
-  meta: {
-    type: 'problem',
-    docs: {
-      description: 'Discourage the use of deprecated EUI imports.',
-      recommended: false,
-    },
-    schema: [
-      {
-        type: 'object',
-        properties: {
-          patterns: {
-            type: 'array',
-            items: {
-              type: 'object',
-              properties: {
-                pattern: { type: 'string' },
-                message: { type: 'string' },
-              },
-              required: ['pattern'],
-              additionalProperties: false,
-            },
-            uniqueItems: true,
-          },
-        },
-        additionalProperties: false,
-      },
-    ],
-  },
-
+export const NoRestrictedEuiImports = ESLintUtils.RuleCreator.withoutDocs<
+  Options,
+  MessageIds
+>({
   create(context) {
-    const options = context.options[0] || {};
-    const userPatterns = options.patterns || [];
+    const userPatterns = context.options || [];
 
     // Combine the default patterns with the user-defined patterns
     const allPatterns = [
@@ -69,17 +48,45 @@ export const NoRestrictedEuiImports: Rule.RuleModule = {
     ];
 
     return {
-      ImportDeclaration(node: ImportDeclaration) {
-        allPatterns.forEach(({ pattern, message }) => {
-          const regex = new RegExp(pattern.replace('*', '.*'));
-          if (regex.test(node.source.value as string)) {
+      ImportDeclaration(node: TSESTree.ImportDeclaration) {
+        allPatterns.forEach(({ patterns, messageId }) => {
+          if (micromatch.isMatch(node.source.value, patterns)) {
             context.report({
               node,
-              message,
+              messageId,
             });
           }
         });
       },
     };
   },
-};
+  meta: {
+    type: 'problem',
+    docs: {
+      description: 'Discourage the use of deprecated EUI imports.',
+    },
+    schema: [
+      {
+        type: 'object',
+        properties: {
+          patterns: {
+            type: 'array',
+            items: {
+              type: 'string',
+            },
+          },
+          messageId: {
+            type: 'string',
+            enum: ['restrictedEuiImport'],
+          },
+        },
+        additionalProperties: false,
+      },
+    ],
+    messages: {
+      restrictedEuiImport:
+        'For client-side, please use `useEuiTheme` instead. Direct JSON token imports will be removed as per the EUI Deprecation schedule: https://github.com/elastic/eui/issues/1469.',
+    },
+  },
+  defaultOptions: [],
+});
