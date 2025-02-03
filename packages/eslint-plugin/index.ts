@@ -19,11 +19,14 @@
 
 import { HrefOnClick } from './rules/href_or_on_click.ts';
 import { NoRestrictedEuiImports } from './rules/no_restricted_eui_imports.ts';
+import { PreferCSSAttributeForEuiComponents } from './rules/prefer_css_attribute_for_eui_components.ts';
 
 const config = {
   rules: {
     'href-or-on-click': HrefOnClick,
     'no-restricted-eui-imports': NoRestrictedEuiImports,
+    'prefer-css-attributes-for-eui-components':
+      PreferCSSAttributeForEuiComponents,
   },
   configs: {
     recommended: {
@@ -31,6 +34,7 @@ const config = {
       rules: {
         '@elastic/eui/href-or-on-click': 'warn',
         '@elastic/eui/no-restricted-eui-imports': 'warn',
+        '@elastic/eui/prefer-css-attributes-for-eui-components': 'warn',
       },
     },
   },
