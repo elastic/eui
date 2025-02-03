@@ -23,6 +23,116 @@ We don't use `no-restricted-imports` because ESLint doesn't allow multiple error
 
 All deprecations still must follow our [deprecation process](../../wiki/eui-team-processes/deprecations.md).
 
+### `@elastic/eui/no-css-color`
+
+This rule warns engineers to not use literal css color in the codebase, particularly for CSS properties that apply color to 
+either the html element or text nodes, but rather urge users to defer to using the color tokens provided by EUI.
+
+This rule kicks in on the following JSXAttributes; `style`, `className` and `css` and supports various approaches to providing styling declarations.
+
+#### Example
+
+The following code:
+
+```
+// Filename: /x-pack/plugins/observability_solution/observability/public/my_component.tsx
+
+import React from 'react';
+import { EuiText } from '@elastic/eui';
+
+function MyComponent() {
+    return (
+        <EuiText style={{ color: 'red' }}>You know, for search</EuiText>
+    )
+}
+```
+
+```
+// Filename: /x-pack/plugins/observability_solution/observability/public/my_component.tsx
+
+import React from 'react';
+import { EuiText } from '@elastic/eui';
+
+function MyComponent() {
+
+    const style = {
+        color: 'red'
+    }
+
+    return (
+        <EuiText style={{ color: style.color }}>You know, for search</EuiText>
+    )
+}
+```
+
+```
+// Filename: /x-pack/plugins/observability_solution/observability/public/my_component.tsx
+
+import React from 'react';
+import { EuiText } from '@elastic/eui';
+
+function MyComponent() {
+    const colorValue = '#dd4040';
+
+    return (
+        <EuiText style={{ color: colorValue }}>You know, for search</EuiText>
+    )
+}
+```
+
+will all raise an eslint report with an appropriate message of severity that matches the configuration of the rule, further more all the examples above
+will also match for when the attribute in question is `css`. The `css` attribute will also raise a report the following cases below;
+
+```
+// Filename: /x-pack/plugins/observability_solution/observability/public/my_component.tsx
+
+import React from 'react';
+import { css } from '@emotion/css';
+import { EuiText } from '@elastic/eui';
+
+function MyComponent() {
+    return (
+        <EuiText css={css`color: '#dd4040' `}>You know, for search</EuiText>
+    )
+}
+```
+
+```
+// Filename: /x-pack/plugins/observability_solution/observability/public/my_component.tsx
+
+import React from 'react';
+import { EuiText } from '@elastic/eui';
+
+function MyComponent() {
+    return (
+        <EuiText css={() => ({ color: '#dd4040' })}>You know, for search</EuiText>
+    )
+}
+```
+
+A special case is also covered for the `className` attribute, where the rule will also raise a report for the following case below;
+
+
+```
+// Filename: /x-pack/plugins/observability_solution/observability/public/my_component.tsx
+
+import React from 'react';
+import { css } from '@emotion/css';
+import { EuiText } from '@elastic/eui';
+
+function MyComponent() {
+    return (
+        <EuiText className={css`color: '#dd4040'`}>You know, for search</EuiText>
+    )
+}
+```
+
+It's worth pointing out that although the examples provided are specific to EUI components, this rule applies to all JSX elements.
+
+## `@elastic/eui/prefer-css-attributes-for-eui-components`
+
+This rule warns engineers to use the `css` attribute for EUI components instead of the `style` attribute. 
+
 ## Testing
 
 ### Against an existing package
@@ -31,7 +141,7 @@ To test the local changes to the plugin, you must:
 
 1. Run `yarn pack` in the directory.
 2. In your project's `package.json`, point `@elastic/eslint-plugin-eui` to `file:/path/to/package.tgz`.
-3. Install dependencies: `yarn`.
+3. Install dependencies: `yarn kbn bootstrap --no-validate`.
 
 ## Publishing
 
