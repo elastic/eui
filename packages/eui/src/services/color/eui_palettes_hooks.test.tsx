@@ -7,11 +7,11 @@
  */
 
 import React, { PropsWithChildren } from 'react';
+import { colorVis } from '@elastic/eui-theme-borealis';
 
 import { renderHook } from '../../test/rtl';
 
 import { EuiProvider } from '../../components/provider';
-import { colorVis } from '../../themes';
 import {
   useEuiPaletteColorBlind,
   useEuiPaletteColorBlindBehindText,
@@ -56,16 +56,16 @@ describe('useEuiPaletteColorBlindBehindText', () => {
     });
 
     expect(result.current).toEqual([
-      colorVis.euiColorVisBehindText0.toLowerCase(),
-      colorVis.euiColorVisBehindText1.toLowerCase(),
-      colorVis.euiColorVisBehindText2.toLowerCase(),
-      colorVis.euiColorVisBehindText3.toLowerCase(),
-      colorVis.euiColorVisBehindText4.toLowerCase(),
-      colorVis.euiColorVisBehindText5.toLowerCase(),
-      colorVis.euiColorVisBehindText6.toLowerCase(),
-      colorVis.euiColorVisBehindText7.toLowerCase(),
-      colorVis.euiColorVisBehindText8.toLowerCase(),
-      colorVis.euiColorVisBehindText9.toLowerCase(),
+      colorVis.euiColorVisBehindText0,
+      colorVis.euiColorVisBehindText1,
+      colorVis.euiColorVisBehindText2,
+      colorVis.euiColorVisBehindText3,
+      colorVis.euiColorVisBehindText4,
+      colorVis.euiColorVisBehindText5,
+      colorVis.euiColorVisBehindText6,
+      colorVis.euiColorVisBehindText7,
+      colorVis.euiColorVisBehindText8,
+      colorVis.euiColorVisBehindText9,
     ]);
   });
 });
@@ -91,7 +91,7 @@ describe('useEuiPaletteForTemperature', () => {
     });
 
     // testing static start/end colors only as the rest is generated
-    expect(result.current[0]).toEqual(colorVis.euiColorVisCool1.toLowerCase());
+    expect(result.current[0]).toEqual(colorVis.euiColorVisCool2.toLowerCase());
     expect(result.current[2]).toEqual(colorVis.euiColorVisWarm2.toLowerCase());
   });
 });
