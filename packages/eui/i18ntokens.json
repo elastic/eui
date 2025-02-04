@@ -149,14 +149,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 1134,
+        "line": 1132,
         "column": 8,
-        "index": 31431
+        "index": 31375
       },
       "end": {
-        "line": 1138,
+        "line": 1136,
         "column": 9,
-        "index": 31586
+        "index": 31530
       }
     },
     "filepath": "src/components/basic_table/basic_table.tsx"
@@ -167,14 +167,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 1383,
+        "line": 1379,
         "column": 8,
-        "index": 38780
+        "index": 38636
       },
       "end": {
-        "line": 1387,
+        "line": 1383,
         "column": 9,
-        "index": 38939
+        "index": 38795
       }
     },
     "filepath": "src/components/basic_table/basic_table.tsx"
@@ -6845,14 +6845,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 90,
+        "line": 85,
         "column": 10,
-        "index": 2860
+        "index": 2640
       },
       "end": {
-        "line": 94,
+        "line": 89,
         "column": 11,
-        "index": 3034
+        "index": 2814
       }
     },
     "filepath": "src/components/table/table_header_cell.tsx"
@@ -7025,14 +7025,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 63,
+        "line": 65,
         "column": 27,
-        "index": 1819
+        "index": 1862
       },
       "end": {
-        "line": 63,
+        "line": 65,
         "column": 76,
-        "index": 1868
+        "index": 1911
       }
     },
     "filepath": "src/components/tool_tip/icon_tip.tsx"
