@@ -9,7 +9,7 @@ import { TextSections } from './_functions_isDark';
 import { TintShadeSections } from './_functions_shadeTint';
 import { TransparencySections } from './_functions_transparency';
 
-import { UtilsJS, UtilsValuesJS } from './_color_js';
+import { UtilsJS } from './_color_js';
 
 // This array is used inside routes.js to create the sidenav sub-sections
 export const colorsFunctionsSections = [
