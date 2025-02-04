@@ -19,9 +19,6 @@ const consumingEmotionThemeSource = require('!!raw-loader!./consuming_emotion_th
 import OverrideSimple from './override_simple';
 const overrideSimpleSource = require('!!raw-loader!./override_simple');
 
-import Computed from './computed';
-const computedSource = require('!!raw-loader!./computed');
-
 import CreateComputed from './create_computed';
 import { ThemeNotice } from './_components/_theme_notice';
 const createComputedSource = require('!!raw-loader!./create_computed');
@@ -199,34 +196,6 @@ export const ThemeExample = {
         </>
       ),
       demo: <OverrideSimple />,
-    },
-    {
-      title: 'Understanding computed values',
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: computedSource,
-        },
-      ],
-      text: (
-        <>
-          <p>
-            The benefit of EUI&apos;s theme structure is that it only hard-codes
-            a few color and size variables. The rest are{' '}
-            <strong>computed</strong> values based on this base few. When you
-            update a core variable, this will cascade into the other computed
-            values.
-          </p>
-          <p>
-            For instance, we compute text variants of our base colors. So
-            locally overriding the <EuiCode>colors.primary</EuiCode> color will
-            automatically cascade to the <EuiCode>colors.primaryText</EuiCode>.
-            You can however, directly override computed values as well by
-            passing a custom value to this theme variable.
-          </p>
-        </>
-      ),
-      demo: <Computed />,
     },
     {
       title: 'Creating custom keys',

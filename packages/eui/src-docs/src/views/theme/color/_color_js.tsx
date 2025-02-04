@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useState } from 'react';
+import React, { FunctionComponent } from 'react';
 import { Link } from 'react-router-dom';
 import { css } from '@emotion/react';
 import { transparentize, useEuiTheme } from '../../../../../src/services';
@@ -10,18 +10,17 @@ import {
   EuiColorPickerSwatch,
   EuiText,
   BACKGROUND_COLORS,
-  EuiButtonGroup,
-  EuiDescribedFormGroup,
-  EuiPanel,
-  EuiSpacer,
   logicalCSS,
   useEuiPaddingCSS,
+  AMSTERDAM_NAME_KEY,
 } from '../../../../../src';
 
 import { EuiThemeColors, ThemeRowType } from '../_props';
 
 import { ThemeExample } from '../_components/_theme_example';
 import {
+  background_colors,
+  border_colors,
   brand_colors,
   brand_text_colors,
   shade_colors,
@@ -29,11 +28,6 @@ import {
   text_colors,
 } from '../../../../../src/themes/amsterdam/global_styling/variables/_colors';
 import { ThemeValuesTable } from '../_components/_theme_values_table';
-import {
-  _EuiThemeBackgroundColors,
-  _EuiThemeTransparentBackgroundColors,
-  getTokenName,
-} from '@elastic/eui-theme-common';
 
 export const brandKeys = Object.keys(brand_colors);
 
@@ -98,27 +92,31 @@ export const TextJS: FunctionComponent<ThemeRowType> = ({ description }) => {
         description={
           <>
             {description}
-            <p>
-              If your background color is anything other than or darker than the{' '}
-              <EuiCode>body</EuiCode> color, you will want to re-calculate the
-              high contrast version by using the{' '}
-              <Link to="/theming/colors/utilities">
-                <EuiCode>makeHighContrastColor(foreground)(background)</EuiCode>
-              </Link>{' '}
-              method.
-            </p>
+            {euiTheme.themeName === AMSTERDAM_NAME_KEY && (
+              <p>
+                If your background color is anything other than or darker than
+                the <EuiCode>body</EuiCode> color, you will want to re-calculate
+                the high contrast version by using the{' '}
+                <Link to="/theming/colors/utilities">
+                  <EuiCode>
+                    makeHighContrastColor(foreground)(background)
+                  </EuiCode>
+                </Link>{' '}
+                method.
+              </p>
+            )}
           </>
         }
         example={
           <div
             css={css`
-              color: ${euiTheme.colors.warningText};
+              color: ${euiTheme.colors.textWarning};
             `}
           >
-            <strong>color: {euiTheme.colors.warningText}</strong>
+            <strong>color: {euiTheme.colors.textWarning}</strong>
           </div>
         }
-        snippet={'color: ${euiTheme.colors.warningText};'}
+        snippet={'color: ${euiTheme.colors.textWarning};'}
         snippetLanguage="emotion"
       />
     </>
@@ -134,6 +132,131 @@ export const TextValuesJS = () => {
     <>
       <ThemeValuesTable
         items={textColors.map((color) => {
+          return {
+            id: color,
+            token: `colors.${color}`,
+            type: props[color],
+            // @ts-ignore TODO
+            value: euiTheme.colors[color],
+          };
+        })}
+        render={(item) => (
+          <div
+            css={css`
+              color: ${item.value};
+              ${logicalCSS('min-width', euiTheme.size.l)}
+              ${logicalCSS('min-height', euiTheme.size.l)}
+            `}
+          >
+            <strong>Aa</strong>
+          </div>
+        )}
+      />
+    </>
+  );
+};
+
+export const backgroundKeys = Object.keys(background_colors);
+
+export const BackgroundJS: FunctionComponent<ThemeRowType> = ({
+  description,
+}) => {
+  const { euiTheme } = useEuiTheme();
+
+  return (
+    <>
+      <ThemeExample
+        title={<code>euiTheme.colors[background]</code>}
+        description={<>{description}</>}
+        example={
+          <div
+            css={css`
+              padding: ${euiTheme.size.s};
+              color: ${euiTheme.colors.textInverse};
+              background-color: ${euiTheme.colors.backgroundFilledWarning};
+            `}
+          >
+            <strong>
+              background: {euiTheme.colors.backgroundFilledWarning}
+            </strong>
+          </div>
+        }
+        snippet={
+          'background-color: ${euiTheme.colors.backgroundFilledWarning};'
+        }
+        snippetLanguage="emotion"
+      />
+    </>
+  );
+};
+
+export const BackgroundValuesJS = () => {
+  const { euiTheme } = useEuiTheme();
+  const props = getPropsFromComponent(EuiThemeColors);
+
+  return (
+    <>
+      <ThemeValuesTable
+        items={backgroundKeys.map((color) => {
+          return {
+            id: color,
+            token: `colors.${color}`,
+            type: props[color],
+            // @ts-ignore TODO
+            value: euiTheme.colors[color],
+          };
+        })}
+        render={(item) => (
+          <div
+            css={css`
+              color: ${item.value};
+              ${logicalCSS('min-width', euiTheme.size.l)}
+              ${logicalCSS('min-height', euiTheme.size.l)}
+            `}
+          >
+            <strong>Aa</strong>
+          </div>
+        )}
+      />
+    </>
+  );
+};
+
+export const borderKeys = Object.keys(border_colors);
+
+export const BorderJS: FunctionComponent<ThemeRowType> = ({ description }) => {
+  const { euiTheme } = useEuiTheme();
+
+  return (
+    <>
+      <ThemeExample
+        title={<code>euiTheme.colors[border]</code>}
+        description={<>{description}</>}
+        example={
+          <div
+            css={css`
+              padding: ${euiTheme.size.s};
+              border: 1px solid ${euiTheme.colors.borderBaseWarning};
+            `}
+          >
+            <strong>border-color: {euiTheme.colors.borderBaseWarning}</strong>
+          </div>
+        }
+        snippet={'border-color: ${euiTheme.colors.borderBaseWarning};'}
+        snippetLanguage="emotion"
+      />
+    </>
+  );
+};
+
+export const BorderValuesJS = () => {
+  const { euiTheme } = useEuiTheme();
+  const props = getPropsFromComponent(EuiThemeColors);
+
+  return (
+    <>
+      <ThemeValuesTable
+        items={borderKeys.map((color) => {
           return {
             id: color,
             token: `colors.${color}`,
@@ -225,17 +348,17 @@ export const SpecialJS: FunctionComponent<ThemeRowType> = ({ description }) => {
           <div
             css={css`
               padding: ${euiTheme.size.s};
-              color: ${euiTheme.colors.ghost};
-              background-color: ${euiTheme.colors.ink};
+              color: ${euiTheme.colors.plainLight};
+              background-color: ${euiTheme.colors.plainDark};
             `}
           >
             <strong>
-              This text is always white and the background always black.
+              This text is always light and the background always dark.
             </strong>
           </div>
         }
-        snippet={`color: \${euiTheme.colors.ghost};
-  background-color: \${euiTheme.colors.ink};`}
+        snippet={`color: \${euiTheme.colors.plainLight};
+  background-color: \${euiTheme.colors.plainDark};`}
         snippetLanguage="emotion"
       />
     </>
@@ -245,7 +368,12 @@ export const SpecialJS: FunctionComponent<ThemeRowType> = ({ description }) => {
 export const SpecialValuesJS = () => {
   const { euiTheme } = useEuiTheme();
   const props = getPropsFromComponent(EuiThemeColors);
-  const allSpecialKeys = specialKeys.concat(['ghost', 'ink']);
+  const allSpecialKeys = specialKeys.concat([
+    'ghost',
+    'ink',
+    'plainLight',
+    'plainDark',
+  ]);
 
   return (
     <>
@@ -273,8 +401,8 @@ export const UtilsJS = () => {
       <EuiText grow={false}>
         <p>
           To all but ensure proper contrast of text to background, we recommend
-          using our pre-defined shades of background colors based on the{' '}
-          <strong>EuiTheme</strong> brand colors. You can also use{' '}
+          using the semantic background tokens like{' '}
+          <EuiCode>backgroundBasePrimary</EuiCode>. You can also use{' '}
           <Link to="/layout/panel">
             <strong>EuiPanel</strong>
           </Link>{' '}
@@ -313,77 +441,6 @@ const cssStyles = [colorStyles['accent']];
 <span css={cssStyles}>
   /* Your content */
 </span>`}
-      />
-    </>
-  );
-};
-
-export const UtilsValuesJS = () => {
-  const { euiTheme } = useEuiTheme();
-  const backgroundButtons = ['opaque', 'transparent'].map((m) => {
-    return {
-      id: m,
-      label: m,
-    };
-  });
-  const [backgroundSelected, setBackgroundSelected] = useState(
-    backgroundButtons[0].id
-  );
-
-  return (
-    <>
-      <EuiPanel color="accent">
-        <EuiDescribedFormGroup
-          fullWidth
-          title={<h3>Different colors for different contexts</h3>}
-          description={
-            <p>
-              While the hook accepts rendering the value as opaque or
-              transparent, we highly suggest reserving transparent for use only
-              during interactive states like hover and focus.
-            </p>
-          }
-        >
-          <EuiSpacer />
-          <EuiButtonGroup
-            buttonSize="m"
-            legend="Value measurement to show in table"
-            options={backgroundButtons}
-            idSelected={backgroundSelected}
-            onChange={(id) => setBackgroundSelected(id)}
-            color="accent"
-            isFullWidth
-          />
-        </EuiDescribedFormGroup>
-      </EuiPanel>
-      <EuiSpacer />
-
-      <ThemeValuesTable
-        items={BACKGROUND_COLORS.map((color) => {
-          const backgroundToken = getTokenName('backgroundBase', color);
-          const transparentBackgroundToken =
-            color === 'transparent'
-              ? backgroundToken
-              : getTokenName('backgroundTransparent', color);
-
-          const token =
-            backgroundSelected === 'transparent'
-              ? (transparentBackgroundToken as keyof _EuiThemeTransparentBackgroundColors)
-              : (backgroundToken as keyof _EuiThemeBackgroundColors);
-
-          return {
-            id: color,
-            token,
-            value: euiTheme.colors[token],
-          };
-        })}
-        render={(item) => (
-          <EuiColorPickerSwatch
-            color={item.value}
-            style={{ background: item.value }}
-            disabled
-          />
-        )}
       />
     </>
   );

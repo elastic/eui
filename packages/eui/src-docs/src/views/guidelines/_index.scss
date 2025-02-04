@@ -230,6 +230,17 @@
   color: $euiColorWarningText;
 }
 
+.guideSass__euiColorBackgroundFilledWarning {
+  padding: $euiSizeS;
+  color: $euiColorInk;
+  background: $euiColorBackgroundFilledWarning;
+}
+
+.guideSass__euiColorBorderBaseWarning {
+  padding: $euiSizeS;
+  border: $euiBorderWidthThin solid $euiColorBorderBaseWarning;
+}
+
 .guideSass__tintMediumShade {
   padding: $euiSizeS;
   background: tintOrShade($euiColorMediumShade, 90%, 70%);

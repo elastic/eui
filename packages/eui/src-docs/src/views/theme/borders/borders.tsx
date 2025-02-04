@@ -1,5 +1,7 @@
 import React, { useContext, useMemo } from 'react';
 
+import { useEuiTheme } from '../../../../../src/services';
+import { AMSTERDAM_NAME_KEY } from '../../../../../src/themes';
 import { EuiCode, EuiText } from '../../../../../src/components';
 
 import { GuideTabbedPage } from '../../../components/guide_tabbed_page';
@@ -38,6 +40,7 @@ export const bordersSections = [
 ];
 
 export default () => {
+  const { euiTheme } = useEuiTheme();
   const themeContext = useContext(ThemeContext);
   const currentLanguage = themeContext.themeLanguage;
   const showSass = currentLanguage.includes('sass');
@@ -113,10 +116,24 @@ export default () => {
           <h2
             id={`${bordersSections[1].id}`}
           >{`${bordersSections[1].title}`}</h2>
-          <p>
-            EUI only has one base color it uses for all borders (or calculated
-            borders).
-          </p>
+          {euiTheme.themeName === AMSTERDAM_NAME_KEY ? (
+            <p>
+              EUI only has one base color it uses for all borders (or calculated
+              borders).
+            </p>
+          ) : (
+            <>
+              <p>
+                EUI has one main base color it uses for almost all borders (or
+                calculated borders).
+              </p>
+              <p>
+                Only form specific borders use the
+                <EuiCode>euiTheme.colors.borderBasePlain</EuiCode> color token
+                instead.
+              </p>
+            </>
+          )}
         </EuiText>
 
         {colorContent}

@@ -55,14 +55,10 @@ export default () => {
 
             <UtilsJS />
           </GuideSection>
-
-          <GuideSection color="transparent">
-            <UtilsValuesJS />
-          </GuideSection>
         </>
       )}
 
-      <GuideSection color={'subdued'}>
+      <GuideSection color={'transparent'}>
         <EuiText grow={false}>
           <h2>Utilities</h2>
         </EuiText>
@@ -76,7 +72,7 @@ export default () => {
         <ContrastSections /> <TextSections />
       </GuideSection>
 
-      <GuideSection color={'transparent'}>
+      <GuideSection color={'subdued'}>
         <EuiText grow={false}>
           <h3
             id={`${colorsFunctionsSections[2].id}`}
@@ -86,7 +82,7 @@ export default () => {
         <TransparencySections />
       </GuideSection>
 
-      <GuideSection color={'subdued'}>
+      <GuideSection color={'transparent'}>
         <EuiText grow={false}>
           <h3
             id={`${colorsFunctionsSections[3].id}`}

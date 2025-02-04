@@ -4,10 +4,23 @@ import {
   EuiText,
   EuiCodeBlock,
   useEuiTheme,
+  EuiThemeAmsterdam,
 } from '../../../../../src';
 
 export default () => {
-  const { colorMode } = useEuiTheme();
+  const { euiTheme, colorMode } = useEuiTheme();
+
+  const isAmsterdam = euiTheme.themeName === EuiThemeAmsterdam.key;
+  const themePaths = isAmsterdam
+    ? {
+        light: '@elastic/eui/src/themes/amsterdam/theme_light',
+        dark: '@elastic/eui/src/themes/amsterdam/theme_dark',
+      }
+    : {
+        light: '@elastic/eui-theme-borealis/src/theme_light',
+        dark: '@elastic/eui-theme-borealis/src/theme_dark',
+      };
+
   return (
     <>
       <EuiText>
@@ -32,8 +45,8 @@ $euiColorPrimary: #7B61FF;
 // The following rebuilds the entire EUI component styles
 ${
   colorMode === 'DARK'
-    ? "@import '@elastic/eui/src/themes/amsterdam/theme_dark';"
-    : "@import '@elastic/eui/src/themes/amsterdam/theme_light';"
+    ? `@import ${themePaths.dark};`
+    : `@import ${themePaths.light};`
 }
 
 @import 'your/custom/styles';`}
