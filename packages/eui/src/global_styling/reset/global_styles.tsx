@@ -106,7 +106,7 @@ export const EuiGlobalStyles = ({}: EuiGlobalStylesProps) => {
     }
 
     a {
-      color: ${colors.primaryText};
+      color: ${colors.textPrimary};
 
       &,
       &:hover,

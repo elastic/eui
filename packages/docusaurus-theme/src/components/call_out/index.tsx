@@ -8,7 +8,7 @@ import {
 import { FunctionComponent, PropsWithChildren } from 'react';
 
 type VARIANTS = 'info' | 'tip' | 'note' | 'danger' | 'warning';
-type TEXT_COLORS = 'primaryText' | 'successText' | 'dangerText' | 'warningText';
+type TEXT_COLORS = 'textPrimary' | 'textSuccess' | 'textDanger' | 'textWarning';
 
 const VARIANT_TO_COLOR_MAP: Record<
   VARIANTS,
@@ -16,23 +16,23 @@ const VARIANT_TO_COLOR_MAP: Record<
 > = {
   info: {
     backgroundVariable: 'var(--eui-background-color-primary)',
-    colorKey: 'primaryText',
+    colorKey: 'textPrimary',
   },
   note: {
     backgroundVariable: 'var(--eui-background-color-primary)',
-    colorKey: 'primaryText',
+    colorKey: 'textPrimary',
   },
   tip: {
     backgroundVariable: 'var(--eui-background-color-success)',
-    colorKey: 'successText',
+    colorKey: 'textSuccess',
   },
   danger: {
     backgroundVariable: 'var(--eui-background-color-danger)',
-    colorKey: 'dangerText',
+    colorKey: 'textDanger',
   },
   warning: {
     backgroundVariable: 'var(--eui-background-color-warning)',
-    colorKey: 'warningText',
+    colorKey: 'textWarning',
   },
 };
 
@@ -52,7 +52,7 @@ const getStyles = (theme: UseEuiTheme, variant: VARIANTS) => {
       .alert {
         --ifm-alert-background-color: ${VARIANT_TO_COLOR_MAP[variant]
           .backgroundVariable};
-        --ifm-alert-foreground-color: ${euiTheme.colors.text};
+        --ifm-alert-foreground-color: ${euiTheme.colors.textParagraph};
         --ifm-alert-padding-horizontal: ${euiTheme.size.base};
         --ifm-alert-padding-vertical: ${euiTheme.size.base};
         --ifm-alert-border-width: ${euiTheme.border.width.thin};

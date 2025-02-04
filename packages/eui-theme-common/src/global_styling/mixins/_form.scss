@@ -40,7 +40,7 @@
 @mixin euiFormControlText {
   @include euiFont;
   font-size: $euiFontSizeS;
-  color: $euiTextColor;
+  color: $euiColorTextParagraph;
 
   @include euiPlaceholderPerBrowser {
     color: $euiFormControlPlaceholderText;
@@ -168,8 +168,8 @@
 
 @mixin euiFormControlReadOnlyStyle {
   cursor: default;
-  color: $euiTextColor;
-  -webkit-text-fill-color: $euiTextColor; // Required for Safari
+  color: $euiColorTextParagraph;
+  -webkit-text-fill-color: $euiColorTextParagraph; // Required for Safari
   // Use transparency since there is no border and in case form is on a non-white background
   background: $euiFormBackgroundReadOnlyColor;
   border-color: transparent;
