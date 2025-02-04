@@ -265,6 +265,12 @@ export const ColorPickerExample = {
               palettes for categorical data and <EuiCode>gradient</EuiCode>{' '}
               palettes for continuous data.
             </p>
+            <p>
+              Each of the <EuiCode>palettes</EuiCode>, excluding{' '}
+              <EuiCode>type='text'</EuiCode> palettes, can use the{' '}
+              <EuiCode>append</EuiCode> prop to append an element to the right
+              of the title.
+            </p>
           </EuiText>
         </>
       ),

@@ -6521,14 +6521,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 94,
+        "line": 95,
         "column": 32,
-        "index": 2304
+        "index": 2317
       },
       "end": {
-        "line": 97,
+        "line": 98,
         "column": 3,
-        "index": 2373
+        "index": 2386
       }
     },
     "filepath": "src/components/stat/stat.tsx"
