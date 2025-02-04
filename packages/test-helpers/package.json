@@ -6,7 +6,7 @@
   "main": "lib/index.js",
   "module": "es/index.js",
   "scripts": {
-    "test": "jest",
+    "test": "jest src",
     "build:esm": "tsc --project tsconfig.esm.json",
     "build:cjs": "tsc --project tsconfig.cjs.json",
     "build": "concurrently \"yarn run build:esm\" \"yarn run build:cjs\"",
