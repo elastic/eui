@@ -13,13 +13,13 @@ import { enableFunctionToggleControls } from '../../../.storybook/utils';
 import {
   StatefulDataGrid,
   defaultStorybookArgs,
-  EuiDataGridRowHeightsPropsComponent,
 } from './data_grid.stories.utils';
+import { EuiDataGridRowHeightsOptions as Component } from './data_grid_types.docgen';
 import type { EuiDataGridRowHeightsOptions } from './data_grid_types';
 
 const meta: Meta<EuiDataGridRowHeightsOptions> = {
   title: 'Tabular Content/EuiDataGrid/rowHeightsOptions (prop)',
-  component: EuiDataGridRowHeightsPropsComponent,
+  component: Component,
   parameters: {
     codeSnippet: {
       snippet: `<EuiDataGrid rowHeightOptions={{{STORY_ARGS}}} />`,
