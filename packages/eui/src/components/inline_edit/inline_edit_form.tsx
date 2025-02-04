@@ -96,6 +96,7 @@ export type EuiInlineEditCommonProps = Omit<
        * Initial inline edit text value
        */
       defaultValue: string;
+      onCancel?: (perviousValue: string) => void;
     },
     {
       /**
