@@ -187,17 +187,19 @@ describe('EuiTableHeaderCell', () => {
     });
   });
 
-  describe('iconTip', () => {
+  describe('tooltip', () => {
     it('renders an icon with tooltip', async () => {
       const { getByTestSubject } = renderInTableHeader(
         <EuiTableHeaderCell
-          iconTipProps={{
+          tooltipProps={{
             content: 'This is the content of the tooltip',
-            type: 'iInCircle',
+            icon: 'iInCircle',
             iconProps: {
               'data-test-subj': 'icon',
             },
-            'data-test-subj': 'tooltip',
+            tooltipProps: {
+              'data-test-subj': 'tooltip',
+            },
           }}
         >
           Test
@@ -220,7 +222,7 @@ describe('EuiTableHeaderCell', () => {
     it('renders the icon next to the text', () => {
       const { getByTestSubject, queryByText } = renderInTableHeader(
         <EuiTableHeaderCell
-          iconTipProps={{
+          tooltipProps={{
             content: 'This is the content of the tooltip',
             iconProps: {
               'data-test-subj': 'icon',

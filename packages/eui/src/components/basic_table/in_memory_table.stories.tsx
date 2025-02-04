@@ -102,7 +102,7 @@ const columns: Array<EuiBasicTableColumn<User>> = [
   {
     field: 'location',
     name: 'Location',
-    nameIconTip: {
+    nameTooltip: {
       content: 'The city and country in which this person resides',
     },
     truncateText: true,

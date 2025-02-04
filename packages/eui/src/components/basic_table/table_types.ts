@@ -12,11 +12,12 @@ import { Pagination } from './pagination_bar';
 import { Action } from './action_types';
 import { Primitive } from '../../services/sort/comparators';
 import { CommonProps } from '../common';
+import { IconType } from '../icon';
 import {
   EuiTableRowCellProps,
   EuiTableRowCellMobileOptionsShape,
 } from '../table/table_row_cell';
-import { EuiIconTipProps } from '../tool_tip';
+import { EuiToolTipProps, EuiIconTipProps } from '../tool_tip';
 
 export type ItemId<T> = string | number | ((item: T) => string);
 export type ItemIdResolved = string | number;
@@ -32,6 +33,24 @@ export interface EuiTableFooterProps<T> {
   items: T[];
   pagination?: Pagination;
 }
+
+export type EuiTableColumnNameTooltipProps = {
+  /** The main content of the tooltip */
+  content: ReactNode;
+  /**
+   * The icon type to display
+   * @default 'questionInCircle'
+   */
+  icon?: IconType;
+  /** Additional props for EuiIcon */
+  iconProps?: EuiIconTipProps['iconProps'];
+  /** Additional props for the EuiToolip */
+  tooltipProps?: Omit<EuiToolTipProps, 'children' | 'delay' | 'position'> & {
+    delay?: EuiToolTipProps['delay'];
+    position?: EuiToolTipProps['position'];
+  };
+};
+
 export interface EuiTableFieldDataColumnType<T>
   extends CommonProps,
     Omit<TdHTMLAttributes<HTMLTableCellElement>, 'width' | 'align'> {
@@ -48,7 +67,7 @@ export interface EuiTableFieldDataColumnType<T>
   /**
    * Allows adding an icon with a tooltip displayed next to the name
    */
-  nameIconTip?: EuiIconTipProps;
+  nameTooltip?: EuiTableColumnNameTooltipProps;
   /**
    * A description of the column (will be presented as a title over the column header)
    */
@@ -126,7 +145,7 @@ export type EuiTableComputedColumnType<T> = CommonProps &
     /**
      * Allows configuring an icon with a tooltip, to be displayed next to the name
      */
-    nameIconTip?: EuiIconTipProps;
+    nameTooltip?: EuiTableColumnNameTooltipProps;
     /**
      * If provided, allows this column to be sorted on. Must return the value to sort against.
      */
@@ -153,7 +172,7 @@ export type EuiTableActionsColumnType<T extends object> = {
   /**
    * Allows configuring an icon with a tooltip, to be displayed next to the name
    */
-  nameIconTip?: EuiIconTipProps;
+  nameTooltip?: EuiTableColumnNameTooltipProps;
 } & Pick<EuiTableFieldDataColumnType<T>, 'description' | 'width'>;
 
 export interface EuiTableSortingType<T> {

@@ -85,7 +85,7 @@ const columns: Array<EuiBasicTableColumn<User>> = [
   {
     field: 'github',
     name: 'Github',
-    nameIconTip: {
+    nameTooltip: {
       content: 'Their mascot is the Octokitty',
     },
     render: (username: User['github']) => (
@@ -97,7 +97,7 @@ const columns: Array<EuiBasicTableColumn<User>> = [
   {
     field: 'dateOfBirth',
     name: 'Date of Birth',
-    nameIconTip: {
+    nameTooltip: {
       content: "Colloquially known as a 'birthday'",
     },
     dataType: 'date',
@@ -108,7 +108,7 @@ const columns: Array<EuiBasicTableColumn<User>> = [
   {
     field: 'location',
     name: 'Location',
-    nameIconTip: {
+    nameTooltip: {
       content: 'The city and country in which this person resides',
     },
     truncateText: true,
@@ -120,7 +120,7 @@ const columns: Array<EuiBasicTableColumn<User>> = [
   {
     field: 'online',
     name: 'Online',
-    nameIconTip: {
+    nameTooltip: {
       content: 'Free to talk or busy with business',
     },
     dataType: 'boolean',
