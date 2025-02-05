@@ -96,7 +96,7 @@ export type EuiInlineEditCommonProps = Omit<
        * Initial inline edit text value
        */
       defaultValue: string;
-      onCancel?: (perviousValue: string) => void;
+      onCancel?: (previousValue: string) => void;
     },
     {
       /**
@@ -110,7 +110,7 @@ export type EuiInlineEditCommonProps = Omit<
       /**
        * Callback required to reset `value` to the previous read mode text value.
        */
-      onCancel: (perviousValue: string) => void;
+      onCancel: (previousValue: string) => void;
     }
   >;
 
