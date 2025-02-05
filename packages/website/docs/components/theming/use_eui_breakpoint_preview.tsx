@@ -11,19 +11,18 @@ export const UseEuiBreakpointPreview = () => {
           font-weight: ${euiTheme.font.weight.bold};
         }
         ${useEuiBreakpoint(['xs', 's'])} {
-          color: ${euiTheme.colors.dangerText};
+          color: ${euiTheme.colors.textDanger};
         }
         ${useEuiBreakpoint(['m'])} {
-          color: ${euiTheme.colors.warningText};
+          color: ${euiTheme.colors.textWarning};
         }
         ${useEuiBreakpoint(['l', 'xl'])} {
-          color: ${euiTheme.colors.successText};
+          color: ${euiTheme.colors.textSuccess};
         }
       `}
     >
       This text is bold on small to large screens, red on small and below
-      screens, yellow on medium screens, and green on large and above
-      screens.
+      screens, yellow on medium screens, and green on large and above screens.
     </p>
   );
 };

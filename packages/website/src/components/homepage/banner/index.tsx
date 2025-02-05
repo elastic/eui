@@ -14,7 +14,7 @@ const STORAGE_VALUE_DISMISSED = 'dismissed';
 const getStyles = ({ euiTheme }: UseEuiTheme) => ({
   banner: css`
     .euiLink {
-      color: ${euiTheme.colors.warningText};
+      color: ${euiTheme.colors.textWarning};
       text-decoration: underline;
     }
   `,

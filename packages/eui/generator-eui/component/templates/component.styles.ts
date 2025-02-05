@@ -12,7 +12,7 @@ import { UseEuiTheme } from '../../services';
 export const <%= cssClassName %>Styles = ({ euiTheme }: UseEuiTheme) => {
   return {
     <%= cssClassName %>: css` // Always start the object with the first key being the name of the component
-      color: ${euiTheme.colors.primaryText};
+      color: ${euiTheme.colors.textPrimary};
     `,
   };
 };

@@ -44,14 +44,14 @@ export const euiSelectableListItemStyles = (euiThemeContext: UseEuiTheme) => {
       }
 
       &[aria-disabled='true'] {
-        color: ${euiTheme.colors.disabledText};
+        color: ${euiTheme.colors.textDisabled};
         cursor: not-allowed;
       }
 
       &:hover,
       &.euiSelectableListItem-isFocused {
         &:not([aria-disabled='true']) {
-          color: ${euiTheme.colors.primaryText};
+          color: ${euiTheme.colors.textPrimary};
           background-color: ${euiTheme.focus.backgroundColor};
 
           .euiSelectableListItem__text {

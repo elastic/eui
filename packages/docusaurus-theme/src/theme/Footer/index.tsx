@@ -15,7 +15,8 @@ const SSPL_LICENSE_URL =
 const getFooterStyles = ({ euiTheme }: UseEuiTheme) => {
   return {
     root: css`
-      background: #1c1e23; // Color not available in EUI
+      background: ${euiTheme.colors
+        .backgroundBaseSubdued}; // Color not available in EUI
       padding: ${euiTheme.size.l};
       text-align: center;
     `,

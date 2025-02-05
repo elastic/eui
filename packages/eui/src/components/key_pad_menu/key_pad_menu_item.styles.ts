@@ -65,19 +65,19 @@ export const euiKeyPadMenuItemStyles = (euiThemeContext: UseEuiTheme) => {
       &:hover,
       &:focus,
       &:focus-within {
-        color: ${euiTheme.colors.primaryText};
+        color: ${euiTheme.colors.textPrimary};
       }
     `,
     disabled: {
       disabled: css`
         cursor: not-allowed;
-        color: ${euiTheme.colors.disabledText};
+        color: ${euiTheme.colors.textDisabled};
 
         .euiKeyPadMenuItem__icon {
           filter: grayscale(100%);
 
           svg * {
-            fill: ${euiTheme.colors.disabledText};
+            fill: ${euiTheme.colors.textDisabled};
           }
         }
       `,

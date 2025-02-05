@@ -96,7 +96,10 @@ export const GuideThemeSelector: React.FunctionComponent<
       <EuiHorizontalRule margin="none" />
       {toggles.map((item) =>
         item ? (
-          <div css={({ euiTheme }) => ({ padding: euiTheme.size.s })}>
+          <div
+            key={item.label}
+            css={({ euiTheme }) => ({ padding: euiTheme.size.s })}
+          >
             <EuiSwitch
               compressed
               label={item.label}

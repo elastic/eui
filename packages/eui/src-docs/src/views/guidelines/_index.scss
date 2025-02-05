@@ -227,7 +227,18 @@
 }
 
 .guideSass__euiColorWarningText {
-  color: $euiColorWarningText;
+  color: $euiColorTextWarning;
+}
+
+.guideSass__euiColorBackgroundFilledWarning {
+  padding: $euiSizeS;
+  color: $euiColorInk;
+  background: $euiColorBackgroundFilledWarning;
+}
+
+.guideSass__euiColorBorderBaseWarning {
+  padding: $euiSizeS;
+  border: $euiBorderWidthThin solid $euiColorBorderBaseWarning;
 }
 
 .guideSass__tintMediumShade {

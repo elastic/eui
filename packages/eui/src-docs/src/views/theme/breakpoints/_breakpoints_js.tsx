@@ -124,13 +124,13 @@ useIsWithinMinBreakpoint('s')`}
                 font-weight: ${euiTheme.font.weight.bold};
               }
               ${useEuiBreakpoint(['xs', 's'])} {
-                color: ${euiTheme.colors.dangerText};
+                color: ${euiTheme.colors.textDanger};
               }
               ${useEuiBreakpoint(['m'])} {
-                color: ${euiTheme.colors.warningText};
+                color: ${euiTheme.colors.textWarning};
               }
               ${useEuiBreakpoint(['l', 'xl'])} {
-                color: ${euiTheme.colors.successText};
+                color: ${euiTheme.colors.textSuccess};
               }
             `}
           >
@@ -174,10 +174,10 @@ useIsWithinMinBreakpoint('s')`}
           <p
             css={css`
               ${useEuiMaxBreakpoint('m')} {
-                color: ${euiTheme.colors.dangerText};
+                color: ${euiTheme.colors.textDanger};
               }
               ${useEuiMinBreakpoint('m')} {
-                color: ${euiTheme.colors.successText};
+                color: ${euiTheme.colors.textSuccess};
               }
             `}
           >

@@ -13,11 +13,11 @@ export const euiTextDiffStyles = ({ euiTheme }: UseEuiTheme) => ({
   // Base
   euiTextDiff: css`
     del {
-      color: ${euiTheme.colors.dangerText};
+      color: ${euiTheme.colors.textDanger};
     }
 
     ins {
-      color: ${euiTheme.colors.successText};
+      color: ${euiTheme.colors.textSuccess};
     }
   `,
 });

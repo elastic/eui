@@ -82,12 +82,12 @@ const getStyles = ({ euiTheme }: UseEuiTheme) => {
     card: css`
       &:hover [data-icon-variant='regular'] {
         background-color: var(--eui-background-color-success);
-        color: ${euiTheme.colors.successText};
+        color: ${euiTheme.colors.textSuccess};
       }
 
       &:hover [data-icon-variant='alternative'] {
         background-color: var(--eui-background-color-accent);
-        color: ${euiTheme.colors.accentText};
+        color: ${euiTheme.colors.textAccent};
       }
 
       .euiCard__content {
@@ -128,7 +128,7 @@ const getStyles = ({ euiTheme }: UseEuiTheme) => {
     `,
     icon: css`
       background-color: ${euiTheme.colors.lightestShade};
-      color: ${euiTheme.colors.subduedText};
+      color: ${euiTheme.colors.textSubdued};
     `,
     text: css`
       font-size: var(--eui-font-size-m);

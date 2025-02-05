@@ -1,5 +1,5 @@
 @function shadowOpacity($opacity) {
-  @if (lightness($euiTextColor) < 50) {
+  @if (lightness($euiColorTextParagraph) < 50) {
     @return $opacity * 1;
   } @else {
     @return $opacity * 2.5;

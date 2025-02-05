@@ -28,11 +28,11 @@
 }
 
 .euiSideNavItem--trunk > .euiSideNavItemButton .guideSideNav__item--inSearch .euiMark {
-  color: $euiColorPrimaryText;
+  color: $euiColorTextPrimary;
 }
 
 .guideSideNav__item--openSubTitle {
-  color: $euiTitleColor;
+  color: $euiColorTextHeading;
 }
 
 @include euiBreakpoint('xs', 's') {

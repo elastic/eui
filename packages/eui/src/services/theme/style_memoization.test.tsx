@@ -28,7 +28,7 @@ describe('useEuiMemoizedStyles', () => {
 
   const componentStyles = jest.fn(({ euiTheme }: UseEuiTheme) => ({
     someComponent: css`
-      color: ${euiTheme.colors.primaryText};
+      color: ${euiTheme.colors.textPrimary};
     `,
   }));
   const Component = () => {
@@ -99,7 +99,7 @@ describe('withEuiStylesMemoizer', () => {
 
   const componentStyles = jest.fn(({ euiTheme }: UseEuiTheme) => ({
     someComponent: css`
-      color: ${euiTheme.colors.dangerText};
+      color: ${euiTheme.colors.textDanger};
     `,
   }));
 
@@ -161,7 +161,7 @@ describe('RenderWithEuiStylesMemoizer', () => {
 
   const componentStyles = jest.fn(({ euiTheme }: UseEuiTheme) => ({
     someComponent: css`
-      color: ${euiTheme.colors.successText};
+      color: ${euiTheme.colors.textSuccess};
     `,
   }));
 

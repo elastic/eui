@@ -9,42 +9,46 @@ export const TextColorsTable = () => {
       sampleType="text"
       colors={[
         {
-          value: euiTheme.colors.text,
-          token: 'colors.text',
+          value: euiTheme.colors.textParagraph,
+          token: 'colors.textParagraph',
         },
         {
-          value: euiTheme.colors.title,
-          token: 'colors.title',
+          value: euiTheme.colors.textHeading,
+          token: 'colors.textHeading',
         },
         {
-          value: euiTheme.colors.subduedText,
-          token: 'colors.subduedText',
+          value: euiTheme.colors.textSubdued,
+          token: 'colors.textSubdued',
         },
         {
           value: euiTheme.colors.link,
           token: 'colors.link',
         },
         {
-          value: euiTheme.colors.primaryText,
-          token: 'colors.primaryText',
+          value: euiTheme.colors.textPrimary,
+          token: 'colors.textPrimary',
         },
         {
-          value: euiTheme.colors.accentText,
-          token: 'colors.accentText',
+          value: euiTheme.colors.textAccent,
+          token: 'colors.textAccent',
         },
         {
-          value: euiTheme.colors.successText,
-          token: 'colors.successText',
+          value: euiTheme.colors.textAccentSecondary,
+          token: 'colors.textAccentSecondary',
         },
         {
-          value: euiTheme.colors.warningText,
-          token: 'colors.warningText',
+          value: euiTheme.colors.textSuccess,
+          token: 'colors.textSuccess',
         },
         {
-          value: euiTheme.colors.dangerText,
-          token: 'colors.dangerText',
+          value: euiTheme.colors.textWarning,
+          token: 'colors.textWarning',
+        },
+        {
+          value: euiTheme.colors.textDanger,
+          token: 'colors.textDanger',
         },
       ]}
     />
-  )
+  );
 };

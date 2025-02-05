@@ -26,7 +26,7 @@ export const euiTableHeaderFooterCellStyles = (
   const sharedStyles = {
     ...euiFontSize(euiThemeContext, 'xs'),
     fontWeight: euiTheme.font.weight.semiBold,
-    color: euiTheme.colors.title,
+    color: euiTheme.colors.textHeading,
     verticalAlign: 'middle',
   };
 
@@ -50,11 +50,11 @@ export const euiTableHeaderFooterCellStyles = (
 
       &:hover,
       &:focus {
-        color: ${euiTheme.colors.primaryText};
+        color: ${euiTheme.colors.textPrimary};
         text-decoration: underline;
 
         .euiTableSortIcon--sortable {
-          color: ${euiTheme.colors.primaryText};
+          color: ${euiTheme.colors.textPrimary};
         }
       }
     `,

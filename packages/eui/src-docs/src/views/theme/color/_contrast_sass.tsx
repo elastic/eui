@@ -18,6 +18,7 @@ import { useJsonVars } from '../_json/_get_json_vars';
 export const coreColors = [
   'euiColorPrimary',
   'euiColorAccent',
+  'euiColorAccentSecondary',
   'euiColorSuccess',
   'euiColorWarning',
   'euiColorDanger',
@@ -29,6 +30,12 @@ export const coreTextVariants = [
   'euiColorSuccessText',
   'euiColorWarningText',
   'euiColorDangerText',
+  'euiColorTextPrimary',
+  'euiColorTextAccent',
+  'euiColorTextAccentSecondary',
+  'euiColorTextSuccess',
+  'euiColorTextWarning',
+  'euiColorTextDanger',
 ];
 
 export const grayColors = [
@@ -43,13 +50,64 @@ export const grayColors = [
 
 export const textOnly = [
   'euiTextColor',
-  'euiTextSubduedColor',
   'euiTitleColor',
+  'euiTextSubduedColor',
+  'euiLinkColor',
+  'euiColorTextParagraph',
+  'euiColorTextHeading',
+  'euiColorTextSubdued',
+  'euiColorTextDisabled',
+  'euiColorTextInverse',
+];
+
+export const backgroundBaseColors = [
+  'euiColorBackgroundBasePrimary',
+  'euiColorBackgroundBaseAccent',
+  'euiColorBackgroundBaseAccentSecondary',
+  'euiColorBackgroundBaseSuccess',
+  'euiColorBackgroundBaseWarning',
+  'euiColorBackgroundBaseDanger',
+  'euiColorBackgroundBaseSubdued',
+  'euiColorBackgroundBaseDisabled',
+  'euiColorBackgroundBaseHighlighted',
+  'euiColorBackgroundBasePlain',
+];
+
+export const backgroundLightColors = [
+  'euiColorBackgroundLightPrimary',
+  'euiColorBackgroundLightAccent',
+  'euiColorBackgroundLightAccentSecondary',
+  'euiColorBackgroundLightSuccess',
+  'euiColorBackgroundLightWarning',
+  'euiColorBackgroundLightDanger',
+  'euiColorBackgroundLightText',
+];
+
+export const backgroundFilledColors = [
+  'euiColorBackgroundFilledPrimary',
+  'euiColorBackgroundFilledAccent',
+  'euiColorBackgroundFilledAccentSecondary',
+  'euiColorBackgroundFilledSuccess',
+  'euiColorBackgroundFilledWarning',
+  'euiColorBackgroundFilledDanger',
+  'euiColorBackgroundFilledText',
+];
+
+export const backgroundColors = [
+  ...backgroundBaseColors,
+  ...backgroundLightColors,
+  ...backgroundFilledColors,
 ];
 
 export const textColors = [...textOnly, 'euiColorGhost', 'euiColorInk'];
 
-export const allowedColors = [...coreColors, ...grayColors];
+export const allowedColors = [
+  ...coreColors,
+  ...grayColors,
+  'euiColorDisabled',
+  'euiColorGhost',
+  'euiColorInk',
+];
 
 export const textVariants = [...coreTextVariants, ...textColors];
 
@@ -70,6 +128,15 @@ export const ColorSectionSass: FunctionComponent<ColorSection> = ({
 }) => {
   const palette = useJsonVars();
   const colorsForContrast = showTextVariants ? textVariants : allowedColors;
+
+  const colorsWithMinContrast = colorsForContrast.filter((_color) => {
+    const backgroundColor = palette[color];
+    const foregroundColor = palette[_color];
+
+    const contrast = chroma.contrast(backgroundColor, foregroundColor);
+
+    return contrast && contrast >= minimumContrast;
+  });
 
   function colorIsCore(color: string) {
     return coreColors.includes(color) || coreTextVariants.includes(color);
@@ -96,7 +163,7 @@ export const ColorSectionSass: FunctionComponent<ColorSection> = ({
               minimumContrast={minimumContrast}
             />
           )}
-          {colorsForContrast.map((color2) => {
+          {colorsWithMinContrast.map((color2) => {
             if (colorIsCore(color) && colorIsCore(color2)) {
               // i.e. don't render if both are core colors
               return;
@@ -201,8 +268,10 @@ color: $${foreground};`;
 
 function sanitizeColorName(color: string) {
   const string = color.split('euiColor').pop();
+  // Make sure `Color` is removed where `Color` is used at the end of the name
+  const noColor = string?.replace('Color', '');
   // Make sure `eui` is removed if it wasnt the full `euiColor` string
-  const noEui = string?.split('eui').pop();
+  const noEui = noColor?.split('eui').pop();
   // Add space between caplital letters
   return noEui?.replace(/([A-Z])/g, ' $1').trim();
 }

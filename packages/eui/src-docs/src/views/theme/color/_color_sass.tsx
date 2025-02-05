@@ -85,10 +85,10 @@ export const TextSass: FunctionComponent<ThemeRowType> = ({ description }) => {
         }
         example={
           <div className="guideSass__euiColorWarningText">
-            <strong>color: {values.euiColorWarningText}</strong>
+            <strong>color: {values.euiColorTextWarning}</strong>
           </div>
         }
-        snippet={'color: $euiColorWarningText;'}
+        snippet={'color: $euiColorTextWarning;'}
         snippetLanguage="scss"
       />
     </>
@@ -97,11 +97,105 @@ export const TextSass: FunctionComponent<ThemeRowType> = ({ description }) => {
 
 export const TextValuesSass = () => {
   const values = useJsonVars();
+  const textColors = [
+    ...Object.keys(values).filter((v) => v.startsWith('euiColorText')),
+    ...euiTextColors,
+  ];
 
   return (
     <>
       <ThemeValuesTable
-        items={euiTextColors.map((color) => {
+        items={textColors.map((color) => {
+          return {
+            id: color,
+            token: `$${color}`,
+            value: values[color],
+          };
+        })}
+        render={(item) => <EuiColorPickerSwatch color={item.value} disabled />}
+      />
+    </>
+  );
+};
+
+export const BackgroundSass: FunctionComponent<ThemeRowType> = ({
+  description,
+}) => {
+  const values = useJsonVars();
+
+  return (
+    <>
+      <ThemeExample
+        title={<code>$euiColor[Background]</code>}
+        description={<>{description}</>}
+        example={
+          <div className="guideSass__euiColorBackgroundFilledWarning">
+            <strong>
+              background: {values.euiColorBackgroundFilledWarning}
+            </strong>
+          </div>
+        }
+        snippet={'background-color: $euiColorBackgroundFilledWarning;'}
+        snippetLanguage="scss"
+      />
+    </>
+  );
+};
+
+export const BackgroundValuesSass = () => {
+  const values = useJsonVars();
+  const backgroundColors = Object.keys(values).filter((v) =>
+    v.startsWith('euiColorBackground')
+  );
+
+  return (
+    <>
+      <ThemeValuesTable
+        items={backgroundColors.map((color) => {
+          return {
+            id: color,
+            token: `$${color}`,
+            value: values[color],
+          };
+        })}
+        render={(item) => <EuiColorPickerSwatch color={item.value} disabled />}
+      />
+    </>
+  );
+};
+
+export const BorderSass: FunctionComponent<ThemeRowType> = ({
+  description,
+}) => {
+  const values = useJsonVars();
+
+  return (
+    <>
+      <ThemeExample
+        title={<code>$euiColor[Border]</code>}
+        description={<>{description}</>}
+        example={
+          <div className="guideSass__euiColorBorderBaseWarning">
+            <strong>border-color: {values.euiColorBorderBaseWarning}</strong>
+          </div>
+        }
+        snippet={'border-color: $euiColorBorderBaseWarning;'}
+        snippetLanguage="scss"
+      />
+    </>
+  );
+};
+
+export const BorderValuesSass = () => {
+  const values = useJsonVars();
+  const borderColors = Object.keys(values).filter((v) =>
+    v.startsWith('euiColorBorder')
+  );
+
+  return (
+    <>
+      <ThemeValuesTable
+        items={borderColors.map((color) => {
           return {
             id: color,
             token: `$${color}`,
@@ -162,6 +256,8 @@ const euiSpecialColors = [
   'euiColorDisabledText',
   'euiColorGhost',
   'euiColorInk',
+  'euiColorPlainLight',
+  'euiColorPlainDark',
 ];
 
 export const SpecialSass: FunctionComponent<ThemeRowType> = ({
@@ -175,12 +271,12 @@ export const SpecialSass: FunctionComponent<ThemeRowType> = ({
         example={
           <div className="guideSass__special">
             <strong>
-              This text is always white and the background always black.
+              This text is always light and the background always dark.
             </strong>
           </div>
         }
-        snippet={`color: \$euiColorGhost;
-background-color: \$euiColorInk;`}
+        snippet={`color: \$euiColorPlainLight;
+background-color: \$euiColorPlainDark;`}
         snippetLanguage="scss"
       />
     </>

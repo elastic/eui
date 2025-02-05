@@ -53,13 +53,13 @@
 }
 
 @mixin euiText {
-  color: $euiTextColor;
+  color: $euiColorTextParagraph;
   font-weight: $euiFontWeightRegular;
 }
 
 @mixin euiTitle($size: 'm') {
   @include euiTextBreakWord;
-  color: $euiTitleColor;
+  color: $euiColorTextHeading;
 
   @if (map-has-key($euiTitles, $size)) {
     @each $property, $value in map-get($euiTitles, $size) {

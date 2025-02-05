@@ -23,7 +23,7 @@ export const euiTabStyles = ({ euiTheme }: UseEuiTheme) => {
 
       /* Font-weight used by append/prepend nodes - the tab title receives a heavier weight */
       font-weight: ${euiTheme.font.weight.semiBold};
-      color: ${euiTheme.colors.title};
+      color: ${euiTheme.colors.textHeading};
 
       &:focus {
         outline-offset: -${euiTheme.focus.width};
@@ -37,7 +37,7 @@ export const euiTabStyles = ({ euiTheme }: UseEuiTheme) => {
     `,
     selected: css`
       box-shadow: inset 0 -${euiTheme.border.width.thick} 0 ${euiTheme.colors.primary};
-      color: ${euiTheme.colors.primaryText};
+      color: ${euiTheme.colors.textPrimary};
     `,
     disabled: {
       disabled: css`
