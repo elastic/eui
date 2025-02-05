@@ -1282,7 +1282,6 @@ export class EuiBasicTable<T extends object = any> extends Component<
       sortable,
       footer,
       mobileOptions,
-      // Do not pass `nameTooltip` down, we don't want it in the DOM
       nameTooltip,
       ...rest
     } = column as EuiTableFieldDataColumnType<T>;

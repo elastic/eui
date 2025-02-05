@@ -67,7 +67,7 @@ export const Playground: Story = {
   },
 };
 
-export const IconTip: Story = {
+export const Tooltip: Story = {
   parameters: {
     controls: {
       include: ['tooltipProps'],
