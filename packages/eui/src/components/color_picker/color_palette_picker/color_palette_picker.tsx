@@ -60,7 +60,7 @@ export interface EuiColorPalettePickerPaletteFixedProps extends CommonProps {
   /**
    *  The name of your palette
    */
-  title: string;
+  title?: string;
   /**
    * Node appended to right of title
    */
@@ -83,7 +83,7 @@ export interface EuiColorPalettePickerPaletteGradientProps extends CommonProps {
   /**
    *  The name of your palette
    */
-  title: string;
+  title?: string;
   /**
    * Node appended to right of title
    */
