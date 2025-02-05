@@ -85,6 +85,9 @@ const columns: Array<EuiBasicTableColumn<User>> = [
   {
     field: 'github',
     name: 'Github',
+    nameTooltip: {
+      content: 'Their mascot is the Octokitty',
+    },
     render: (username: User['github']) => (
       <EuiLink href="#" target="_blank">
         {username}
@@ -94,6 +97,9 @@ const columns: Array<EuiBasicTableColumn<User>> = [
   {
     field: 'dateOfBirth',
     name: 'Date of Birth',
+    nameTooltip: {
+      content: "Colloquially known as a 'birthday'",
+    },
     dataType: 'date',
     render: (dateOfBirth: User['dateOfBirth']) =>
       formatDate(dateOfBirth, 'dobLong'),
@@ -102,6 +108,9 @@ const columns: Array<EuiBasicTableColumn<User>> = [
   {
     field: 'location',
     name: 'Location',
+    nameTooltip: {
+      content: 'The city and country in which this person resides',
+    },
     truncateText: true,
     textOnly: true,
     render: (location: User['location']) => {
@@ -111,6 +120,9 @@ const columns: Array<EuiBasicTableColumn<User>> = [
   {
     field: 'online',
     name: 'Online',
+    nameTooltip: {
+      content: 'Free to talk or busy with business',
+    },
     dataType: 'boolean',
     render: (online: User['online']) => {
       const color = online ? 'success' : 'danger';
@@ -135,6 +147,7 @@ export default () => {
   return (
     <EuiInMemoryTable
       tableCaption="Demo of EuiInMemoryTable"
+      responsiveBreakpoint={false}
       items={users}
       columns={columns}
       pagination={true}
@@ -332,6 +345,7 @@ export default () => {
       <EuiSpacer size="l" />
       <EuiInMemoryTable
         tableCaption="Demo of EuiInMemoryTable with search"
+        responsiveBreakpoint={false}
         items={textSearchFormat ? usersWithSpecialCharacters : users}
         columns={columns}
         search={search}
@@ -510,6 +524,7 @@ export default () => {
   return (
     <EuiInMemoryTable
       tableCaption="Demo of EuiInMemoryTable with search callback"
+      responsiveBreakpoint={false}
       items={items}
       loading={isLoading}
       columns={columns}
@@ -783,6 +798,7 @@ export default () => {
         <EuiFlexItem grow={3}>
           <EuiInMemoryTable
             tableCaption="Demo of EuiInMemoryTable with search and external state"
+            responsiveBreakpoint={false}
             items={users}
             columns={columns}
             search={search}
@@ -852,6 +868,7 @@ export default () => {
   return (
     <EuiInMemoryTable
       tableCaption="Demo of EuiInMemoryTable with custom sorting"
+      responsiveBreakpoint={false}
       items={data}
       columns={columns}
       pagination={false}
@@ -1011,6 +1028,7 @@ export default () => {
   return (
     <EuiInMemoryTable
       tableCaption="Demo of EuiInMemoryTable with controlled pagination"
+      responsiveBreakpoint={false}
       items={users}
       columns={columns}
       sorting={sorting}
