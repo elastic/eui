@@ -22,7 +22,13 @@ import { EuiI18n } from '../i18n';
 
 import { euiCallOutStyles, euiCallOutHeaderStyles } from './call_out.styles';
 
-export const COLORS = ['primary', 'success', 'warning', 'danger'] as const;
+export const COLORS = [
+  'primary',
+  'success',
+  'warning',
+  'danger',
+  'accent',
+] as const;
 export type Color = (typeof COLORS)[number];
 
 export const HEADINGS = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p'] as const;
