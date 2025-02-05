@@ -6,7 +6,7 @@ export const BackgroundColorsTable = () => {
 
   return (
     <ColorsTable
-      sampleType="text"
+      sampleType="swatch"
       colors={[
         {
           value: euiTheme.colors.backgroundBasePrimary,

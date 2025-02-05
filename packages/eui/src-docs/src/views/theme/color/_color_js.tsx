@@ -206,17 +206,7 @@ export const BackgroundValuesJS = () => {
             value: euiTheme.colors[color],
           };
         })}
-        render={(item) => (
-          <div
-            css={css`
-              color: ${item.value};
-              ${logicalCSS('min-width', euiTheme.size.l)}
-              ${logicalCSS('min-height', euiTheme.size.l)}
-            `}
-          >
-            <strong>Aa</strong>
-          </div>
-        )}
+        render={(item) => <EuiColorPickerSwatch color={item.value} disabled />}
       />
     </>
   );
@@ -265,17 +255,7 @@ export const BorderValuesJS = () => {
             value: euiTheme.colors[color],
           };
         })}
-        render={(item) => (
-          <div
-            css={css`
-              color: ${item.value};
-              ${logicalCSS('min-width', euiTheme.size.l)}
-              ${logicalCSS('min-height', euiTheme.size.l)}
-            `}
-          >
-            <strong>Aa</strong>
-          </div>
-        )}
+        render={(item) => <EuiColorPickerSwatch color={item.value} disabled />}
       />
     </>
   );
