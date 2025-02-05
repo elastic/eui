@@ -42,26 +42,53 @@ import {
   TextValuesSass,
 } from './_color_sass';
 
+const Intro = () => {
+  const { euiTheme } = useEuiTheme();
+
+  const description =
+    euiTheme.themeName === AMSTERDAM_NAME_KEY ? (
+      <>
+        <p>
+          Elastic UI builds with a very limited palette. It uses a core set of
+          three colors with a green / orange / red qualitative set and combined
+          with a six-color grayscale. Variation beyond these colors is minimal
+          and always done with math manipulation against the original set.
+        </p>
+        <p>
+          When switching between light and dark color modes, the theme keys do
+          not change, only their values do. This is why most keys are not named
+          for their <strong>evaluated</strong> value but by their{' '}
+          <strong>purpose</strong>.
+        </p>
+      </>
+    ) : (
+      <>
+        <p>
+          Elastic UI builds with a color palette that is based on predefined
+          14-step scales for a core set of three colors (blue / teal / pink) as
+          well as a green / yellow / red qualitative set and combined with a
+          28-step grayscale. Colors are defined to work well when combined for
+          their semantic purpose.
+        </p>
+        <p>
+          When switching between light and dark color modes, the theme keys do
+          not change, only their values do.
+        </p>
+      </>
+    );
+
+  return (
+    <EuiText grow={false}>
+      <p>{description}</p>
+    </EuiText>
+  );
+};
+
 export const colorsInfo = {
   title: 'Colors',
   notice: <ThemeNotice />,
   showThemeLanguageToggle: true,
-  intro: (
-    <EuiText grow={false}>
-      <p>
-        Elastic UI builds with a very limited palette. It uses a core set of
-        three colors with a green / orange / red qualitative set and combined
-        with a six-color grayscale. Variation beyond these colors is minimal and
-        always done with math manipulation against the original set.
-      </p>
-      <p>
-        When switching between light and dark color modes, the theme keys do not
-        change, only their values do. This is why most keys are not named for
-        their <strong>evaluated</strong> value but by their{' '}
-        <strong>purpose</strong>.
-      </p>
-    </EuiText>
-  ),
+  intro: <Intro />,
 };
 
 // This array is used inside routes.js to create the sidenav sub-sections
