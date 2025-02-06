@@ -156,6 +156,7 @@ export default () => {
   return (
     <EuiBasicTable
       tableCaption="Demo of EuiBasicTable"
+      responsiveBreakpoint={false}
       items={users}
       rowHeader="firstName"
       columns={columns}
@@ -357,6 +358,7 @@ export default () => {
       <EuiHorizontalRule margin="none" style={{ height: 2 }} />
       <EuiBasicTable
         tableCaption="Demo for EuiBasicTable with pagination"
+        responsiveBreakpoint={false}
         items={pageOfItems}
         columns={columns}
         pagination={pagination}
@@ -451,19 +453,10 @@ const columns: Array<EuiBasicTableColumn<User>> = [
   },
   {
     field: 'github',
-    name: (
-      <EuiToolTip content="Their mascot is the Octokitty">
-        <>
-          Github{' '}
-          <EuiIcon
-            size="s"
-            color="subdued"
-            type="questionInCircle"
-            className="eui-alignTop"
-          />
-        </>
-      </EuiToolTip>
-    ),
+    name: 'Github',
+    nameTooltip: {
+      content: 'Their mascot is the Octokitty',
+    },
     render: (username: User['github']) => (
       <EuiLink href="#" target="_blank">
         {username}
@@ -472,37 +465,19 @@ const columns: Array<EuiBasicTableColumn<User>> = [
   },
   {
     field: 'dateOfBirth',
-    name: (
-      <EuiToolTip content="Colloquially known as a 'birthday'">
-        <>
-          Date of Birth{' '}
-          <EuiIcon
-            size="s"
-            color="subdued"
-            type="questionInCircle"
-            className="eui-alignTop"
-          />
-        </>
-      </EuiToolTip>
-    ),
+    name: 'Date of Birth',
+    nameTooltip: {
+      content: "Colloquially known as a 'birthday'",
+    },
     render: (dateOfBirth: User['dateOfBirth']) =>
       formatDate(dateOfBirth, 'dobLong'),
   },
   {
     field: 'location',
-    name: (
-      <EuiToolTip content="The city and country in which this person resides">
-        <>
-          Nationality{' '}
-          <EuiIcon
-            size="s"
-            color="subdued"
-            type="questionInCircle"
-            className="eui-alignTop"
-          />
-        </>
-      </EuiToolTip>
-    ),
+    name: 'Nationality',
+    nameTooltip: {
+      content: 'The city and country in which this person resides',
+    },
     render: (location: User['location']) => {
       return `${location.city}, ${location.country}`;
     },
@@ -511,19 +486,10 @@ const columns: Array<EuiBasicTableColumn<User>> = [
   },
   {
     field: 'online',
-    name: (
-      <EuiToolTip content="Free to talk or busy with business">
-        <>
-          Online{' '}
-          <EuiIcon
-            size="s"
-            color="subdued"
-            type="questionInCircle"
-            className="eui-alignTop"
-          />
-        </>
-      </EuiToolTip>
-    ),
+    name: 'Online',
+    nameTooltip: {
+      content: 'Free to talk or busy with business',
+    },
     render: (online: User['online']) => {
       const color = online ? 'success' : 'danger';
       const label = online ? 'Online' : 'Offline';
@@ -637,6 +603,7 @@ export default () => {
       <EuiSpacer />
       <EuiBasicTable
         tableCaption="Demo for EuiBasicTable with sorting"
+        responsiveBreakpoint={false}
         items={pageOfItems}
         columns={columns}
         pagination={pagination}
@@ -880,6 +847,7 @@ export default () => {
   return (
     <EuiBasicTable
       tableCaption="Demo of EuiBasicTable with footer"
+      responsiveBreakpoint={false}
       items={pageOfItems}
       itemId="id"
       columns={columns}
@@ -1158,6 +1126,7 @@ export default () => {
   return (
     <EuiBasicTable
       tableCaption="Demo of EuiBasicTable with expanding rows"
+      responsiveBreakpoint={false}
       items={pageOfItems}
       itemId="id"
       itemIdToExpandedRowMap={itemIdToExpandedRowMap}
@@ -1579,6 +1548,7 @@ export default () => {
 
       <EuiBasicTable
         tableCaption="Demo of EuiBasicTable with actions"
+        responsiveBreakpoint={false}
         items={pageOfItems}
         itemId="id"
         columns={columnsWithActions}
@@ -1816,6 +1786,7 @@ export default () => {
       <EuiSpacer size="m" />
       <EuiBasicTable
         tableCaption="Demo of EuiBasicTable's table layout options"
+        responsiveBreakpoint={false}
         items={users}
         columns={columns}
         rowHeader="firstName"
