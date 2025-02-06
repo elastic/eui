@@ -16,7 +16,7 @@
 // For theming. Checks the text color and tells us whether it's light or dark.
 // Based on that we either tint (add white) or shade (add black).
 @function tintOrShade($color, $tint, $shade) {
-  @if (lightness($euiTextColor) > 50) {
+  @if (lightness($euiColorTextParagraph) > 50) {
     @return shade($color, $shade);
   } @else {
     @return tint($color, $tint);
@@ -25,7 +25,7 @@
 
 // The reverse of the above
 @function shadeOrTint($color, $shade, $tint) {
-  @if (lightness($euiTextColor) < 50) {
+  @if (lightness($euiColorTextParagraph) < 50) {
     @return shade($color, $shade);
   } @else {
     @return tint($color, $tint);
@@ -35,7 +35,7 @@
 // Similar to above, but uses the light or dark color based
 // on whether it's the light or dark theme
 @function lightOrDarkTheme($lightColor, $darkColor) {
-  @if (lightness($euiTextColor) < 50) {
+  @if (lightness($euiColorTextParagraph) < 50) {
     @return $lightColor;
   } @else {
     @return $darkColor;

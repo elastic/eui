@@ -9,7 +9,7 @@ import { TextSections } from './_functions_isDark';
 import { TintShadeSections } from './_functions_shadeTint';
 import { TransparencySections } from './_functions_transparency';
 
-import { UtilsJS, UtilsValuesJS } from './_color_js';
+import { UtilsJS } from './_color_js';
 
 // This array is used inside routes.js to create the sidenav sub-sections
 export const colorsFunctionsSections = [
@@ -55,14 +55,10 @@ export default () => {
 
             <UtilsJS />
           </GuideSection>
-
-          <GuideSection color="transparent">
-            <UtilsValuesJS />
-          </GuideSection>
         </>
       )}
 
-      <GuideSection color={'subdued'}>
+      <GuideSection color={'transparent'}>
         <EuiText grow={false}>
           <h2>Utilities</h2>
         </EuiText>
@@ -76,7 +72,7 @@ export default () => {
         <ContrastSections /> <TextSections />
       </GuideSection>
 
-      <GuideSection color={'transparent'}>
+      <GuideSection color={'subdued'}>
         <EuiText grow={false}>
           <h3
             id={`${colorsFunctionsSections[2].id}`}
@@ -86,7 +82,7 @@ export default () => {
         <TransparencySections />
       </GuideSection>
 
-      <GuideSection color={'subdued'}>
+      <GuideSection color={'transparent'}>
         <EuiText grow={false}>
           <h3
             id={`${colorsFunctionsSections[3].id}`}

@@ -23,7 +23,7 @@ import { UseEuiBackgroundColorCSSPreview } from './utilities/use_eui_background_
     This is best used to map component prop styles to padding output.
 
     ```tsx
-    color: 'transparent' | 'plain' | 'subdued' | 'accent' | 'primary' | 'success' | 'warning' | 'danger';
+    color: 'transparent' | 'plain' | 'subdued' | 'accent' | 'accentSecondary' | 'primary' | 'success' | 'warning' | 'danger';
     ```
   </Example.Description>
   <Example.Preview>
@@ -40,41 +40,6 @@ import { UseEuiBackgroundColorCSSPreview } from './utilities/use_eui_background_
     ```
   </Example.Snippet>
 </Example>
-
-```mdx-code-block
-import { UseEuiBackgroundColorPreview } from './utilities/use_eui_background_color_preview';
-```
-
-<Example>
-  <Example.Description>
-    ### `useEuiBackgroundColor(color, method?)` <Badge color="hollow">hook</Badge>
-
-    Returns just the computed background color for the given `color`.
-
-    ```
-    color: 'transparent' | 'plain' | 'subdued' | 'accent' | 'primary' | 'success' | 'warning' | 'danger';
-
-    method? 'opaque' | 'transparent';
-    ```
-  </Example.Description>
-  <Example.Preview>
-    <UseEuiBackgroundColorPreview />
-  </Example.Preview>
-  <Example.Snippet>
-    ```
-    css`
-      background: ${useEuiBackgroundColor('subdued')};
-    `
-    ```
-  </Example.Snippet>
-</Example>
-
-```mdx-code-block
-import { UseEuiBackgroundColorTable } from './utilities/use_eui_background_color_table';
-```
-
-<br />
-<UseEuiBackgroundColorTable />
 
 ## Utilities
 
