@@ -3,7 +3,7 @@
 exports[`EuiSkipLink is rendered 1`] = `
 <a
   aria-label="aria-label"
-  class="euiButton euiSkipLink testClass1 testClass2 emotion-euiButtonDisplay-s-defaultMinWidth-fill-primary-euiSkipLink-euiScreenReaderOnly-showOnFocus-euiTestCss"
+  class="euiButton euiSkipLink testClass1 testClass2 emotion-euiButtonDisplay-s-defaultMinWidth-s-fill-primary-euiSkipLink-euiScreenReaderOnly-showOnFocus-euiTestCss"
   data-test-subj="test subject string"
   href="#somewhere"
   rel="noreferrer"
@@ -22,7 +22,7 @@ exports[`EuiSkipLink is rendered 1`] = `
 
 exports[`EuiSkipLink props position absolute is rendered 1`] = `
 <a
-  class="euiButton euiSkipLink emotion-euiButtonDisplay-s-defaultMinWidth-fill-primary-euiSkipLink-absolute-euiScreenReaderOnly-showOnFocus"
+  class="euiButton euiSkipLink emotion-euiButtonDisplay-s-defaultMinWidth-s-fill-primary-euiSkipLink-absolute-euiScreenReaderOnly-showOnFocus"
   href="#somewhere"
   rel="noreferrer"
 >
@@ -34,7 +34,7 @@ exports[`EuiSkipLink props position absolute is rendered 1`] = `
 
 exports[`EuiSkipLink props position fixed is rendered 1`] = `
 <a
-  class="euiButton euiSkipLink emotion-euiButtonDisplay-s-defaultMinWidth-fill-primary-euiSkipLink-fixed-euiScreenReaderOnly-showOnFocus"
+  class="euiButton euiSkipLink emotion-euiButtonDisplay-s-defaultMinWidth-s-fill-primary-euiSkipLink-fixed-euiScreenReaderOnly-showOnFocus"
   href="#somewhere"
   rel="noreferrer"
   tabindex="0"
@@ -47,7 +47,7 @@ exports[`EuiSkipLink props position fixed is rendered 1`] = `
 
 exports[`EuiSkipLink props position static is rendered 1`] = `
 <a
-  class="euiButton euiSkipLink emotion-euiButtonDisplay-s-defaultMinWidth-fill-primary-euiSkipLink-euiScreenReaderOnly-showOnFocus"
+  class="euiButton euiSkipLink emotion-euiButtonDisplay-s-defaultMinWidth-s-fill-primary-euiSkipLink-euiScreenReaderOnly-showOnFocus"
   href="#somewhere"
   rel="noreferrer"
 >
@@ -59,7 +59,7 @@ exports[`EuiSkipLink props position static is rendered 1`] = `
 
 exports[`EuiSkipLink props tabIndex is rendered 1`] = `
 <a
-  class="euiButton euiSkipLink emotion-euiButtonDisplay-s-defaultMinWidth-fill-primary-euiSkipLink-euiScreenReaderOnly-showOnFocus"
+  class="euiButton euiSkipLink emotion-euiButtonDisplay-s-defaultMinWidth-s-fill-primary-euiSkipLink-euiScreenReaderOnly-showOnFocus"
   href="#somewhere"
   rel="noreferrer"
   tabindex="-1"
