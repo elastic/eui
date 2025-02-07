@@ -49,6 +49,9 @@ const _buttons = {
     ['colors.lightShade']
   ),
 
+  backgroundHover: 'transparent',
+  backgroundActive: 'transparent',
+
   backgroundFilledPrimary: computed(
     ([backgroundFilledPrimary]) => backgroundFilledPrimary,
     ['colors.backgroundFilledPrimary']
@@ -82,6 +85,64 @@ const _buttons = {
     ['colors.lightShade']
   ),
 
+  backgroundFilledPrimaryHover: computed(
+    ([backgroundFilledPrimary]) => backgroundFilledPrimary,
+    ['components.buttons.backgroundFilledPrimary']
+  ),
+  backgroundFilledAccentHover: computed(
+    ([backgroundFilledPrimary]) => backgroundFilledPrimary,
+    ['components.buttons.backgroundFilledAccent']
+  ),
+  backgroundFilledAccentSecondaryHover: computed(
+    ([backgroundFilledPrimary]) => backgroundFilledPrimary,
+    ['components.buttons.backgroundFilledAccentSecondary']
+  ),
+  backgroundFilledSuccessHover: computed(
+    ([backgroundFilledPrimary]) => backgroundFilledPrimary,
+    ['components.buttons.backgroundFilledSuccess']
+  ),
+  backgroundFilledWarningHover: computed(
+    ([backgroundFilledPrimary]) => backgroundFilledPrimary,
+    ['components.buttons.backgroundFilledWarning']
+  ),
+  backgroundFilledDangerHover: computed(
+    ([backgroundFilledPrimary]) => backgroundFilledPrimary,
+    ['components.buttons.backgroundFilledDanger']
+  ),
+  backgroundFilledTextHover: computed(
+    ([backgroundFilledPrimary]) => backgroundFilledPrimary,
+    ['components.buttons.backgroundFilledText']
+  ),
+
+  backgroundFilledPrimaryActive: computed(
+    ([backgroundFilledPrimary]) => backgroundFilledPrimary,
+    ['components.buttons.backgroundFilledPrimary']
+  ),
+  backgroundFilledAccentActive: computed(
+    ([backgroundFilledPrimary]) => backgroundFilledPrimary,
+    ['components.buttons.backgroundFilledAccent']
+  ),
+  backgroundFilledAccentSecondaryActive: computed(
+    ([backgroundFilledPrimary]) => backgroundFilledPrimary,
+    ['components.buttons.backgroundFilledAccentSecondary']
+  ),
+  backgroundFilledSuccessActive: computed(
+    ([backgroundFilledPrimary]) => backgroundFilledPrimary,
+    ['components.buttons.backgroundFilledSuccess']
+  ),
+  backgroundFilledWarningActive: computed(
+    ([backgroundFilledPrimary]) => backgroundFilledPrimary,
+    ['components.buttons.backgroundFilledWarning']
+  ),
+  backgroundFilledDangerActive: computed(
+    ([backgroundFilledPrimary]) => backgroundFilledPrimary,
+    ['components.buttons.backgroundFilledDanger']
+  ),
+  backgroundFilledTextActive: computed(
+    ([backgroundFilledPrimary]) => backgroundFilledPrimary,
+    ['components.buttons.backgroundFilledText']
+  ),
+
   backgroundEmptyPrimaryHover: computed(
     ([primary]) => transparentize(primary, 0.1),
     ['colors.primary']
@@ -107,6 +168,35 @@ const _buttons = {
     ['colors.danger']
   ),
   backgroundEmptyTextHover: computed(
+    ([lightShade]) => transparentize(lightShade, 0.2),
+    ['colors.lightShade']
+  ),
+
+  backgroundEmptyPrimaryActive: computed(
+    ([primary]) => transparentize(primary, 0.1),
+    ['colors.primary']
+  ),
+  backgroundEmptyAccentActive: computed(
+    ([accent]) => transparentize(accent, 0.1),
+    ['colors.accent']
+  ),
+  backgroundEmptyAccentSecondaryActive: computed(
+    ([success]) => transparentize(success, 0.1),
+    ['colors.success']
+  ),
+  backgroundEmptySuccessActive: computed(
+    ([success]) => transparentize(success, 0.1),
+    ['colors.success']
+  ),
+  backgroundEmptyWarningActive: computed(
+    ([warning]) => transparentize(warning, 0.1),
+    ['colors.warning']
+  ),
+  backgroundEmptyDangerActive: computed(
+    ([danger]) => transparentize(danger, 0.1),
+    ['colors.danger']
+  ),
+  backgroundEmptyTextActive: computed(
     ([lightShade]) => transparentize(lightShade, 0.2),
     ['colors.lightShade']
   ),

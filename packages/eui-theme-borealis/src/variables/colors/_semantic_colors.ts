@@ -170,6 +170,7 @@ const _semantic_alpha_colors = {
 
   primary70Alpha12: `rgba(${_semantic_rgb_colors.primary70RGB}, 0.12)`,
   primary70Alpha16: `rgba(${_semantic_rgb_colors.primary70RGB}, 0.16)`,
+  primary70Alpha20: `rgba(${_semantic_rgb_colors.primary70RGB}, 0.2)`,
 
   primary100Alpha4: `rgba(${_semantic_rgb_colors.primary100RGB}, 0.04)`,
   primary100Alpha8: `rgba(${_semantic_rgb_colors.primary100RGB}, 0.08)`,
@@ -177,18 +178,24 @@ const _semantic_alpha_colors = {
 
   accent70Alpha12: `rgba(${_semantic_rgb_colors.accent70RGB}, 0.12)`,
   accent70Alpha16: `rgba(${_semantic_rgb_colors.accent70RGB}, 0.16)`,
+  accent70Alpha20: `rgba(${_semantic_rgb_colors.accent70RGB}, 0.2)`,
 
   accentSecondary70Alpha12: `rgba(${_semantic_rgb_colors.accentSecondary70RGB}, 0.12)`,
   accentSecondary70Alpha16: `rgba(${_semantic_rgb_colors.accentSecondary70RGB}, 0.16)`,
+  accentSecondary70Alpha20: `rgba(${_semantic_rgb_colors.accentSecondary70RGB}, 0.2)`,
 
   success70Alpha12: `rgba(${_semantic_rgb_colors.success70RGB}, 0.12)`,
   success70Alpha16: `rgba(${_semantic_rgb_colors.success70RGB}, 0.16)`,
+  success70Alpha20: `rgba(${_semantic_rgb_colors.success70RGB}, 0.2)`,
 
   warning40Alpha12: `rgba(${_semantic_rgb_colors.warning40RGB}, 0.12)`,
+  warning40Alpha16: `rgba(${_semantic_rgb_colors.warning40RGB}, 0.16)`,
   warning40Alpha24: `rgba(${_semantic_rgb_colors.warning40RGB}, 0.24)`,
+  warning40Alpha28: `rgba(${_semantic_rgb_colors.warning40RGB}, 0.28)`,
 
   danger70Alpha12: `rgba(${_semantic_rgb_colors.danger70RGB}, 0.12)`,
   danger70Alpha16: `rgba(${_semantic_rgb_colors.danger70RGB}, 0.16)`,
+  danger70Alpha20: `rgba(${_semantic_rgb_colors.danger70RGB}, 0.2)`,
 
   shade100Alpha4: `rgba(${_semantic_rgb_colors.shade100RGB}, 0.04)`,
   shade100Alpha16: `rgba(${_semantic_rgb_colors.shade100RGB}, 0.16)`,
