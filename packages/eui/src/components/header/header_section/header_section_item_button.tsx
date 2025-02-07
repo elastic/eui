@@ -10,18 +10,21 @@ import React, {
   PropsWithChildren,
   forwardRef,
   useImperativeHandle,
+  useMemo,
   useRef,
 } from 'react';
 import classNames from 'classnames';
 
-import { useEuiTheme } from '../../../services';
+import {
+  useEuiMemoizedStyles,
+  useIsWithinMaxBreakpoint,
+} from '../../../services';
 import {
   EuiNotificationBadgeProps,
   EuiNotificationBadge,
 } from '../../badge/notification_badge/badge_notification';
 import { EuiIcon } from '../../icon';
 import { EuiButtonEmpty, EuiButtonEmptyProps } from '../../button';
-import { EuiHideFor, EuiShowFor } from '../../responsive';
 
 import { euiHeaderSectionItemButtonStyles } from './header_section_item_button.styles';
 
@@ -190,46 +193,41 @@ export const EuiHeaderSectionItemButton = forwardRef<
       []
     );
 
-    const euiTheme = useEuiTheme();
-    const styles = euiHeaderSectionItemButtonStyles(euiTheme);
-
+    const styles = useEuiMemoizedStyles(euiHeaderSectionItemButtonStyles);
     const classes = classNames('euiHeaderSectionItemButton', className);
 
-    const notificationDot = (
-      <EuiIcon
-        className="euiHeaderSectionItemButton__notification euiHeaderSectionItemButton__notification--dot"
-        css={[
-          styles.notification.euiHeaderSectionItemButton__notification,
-          styles.notification.dot,
-        ]}
-        color={notificationColor}
-        type="dot"
-        size="l"
-      />
-    );
+    const isSmallScreen = useIsWithinMaxBreakpoint('s');
+    const shouldShowDot =
+      notification === true || !!(notification && isSmallScreen);
 
-    let buttonNotification;
-    if (notification === true) {
-      buttonNotification = notificationDot;
-    } else if (notification) {
-      buttonNotification = (
-        <>
-          <EuiHideFor sizes={['xs']}>
-            <EuiNotificationBadge
-              className="euiHeaderSectionItemButton__notification euiHeaderSectionItemButton__notification--badge"
-              css={[
-                styles.notification.euiHeaderSectionItemButton__notification,
-                styles.notification.badge,
-              ]}
-              color={notificationColor}
-            >
-              {notification}
-            </EuiNotificationBadge>
-          </EuiHideFor>
-          <EuiShowFor sizes={['xs']}>{notificationDot}</EuiShowFor>
-        </>
-      );
-    }
+    const buttonNotification = useMemo(() => {
+      const cssStyles = [
+        styles.notification.euiHeaderSectionItemButton__notification,
+        shouldShowDot ? styles.notification.dot : styles.notification.badge,
+      ];
+
+      if (shouldShowDot) {
+        return (
+          <EuiIcon
+            className="euiHeaderSectionItemButton__notification euiHeaderSectionItemButton__notification--dot"
+            css={cssStyles}
+            color={notificationColor}
+            type="dot"
+            size="l"
+          />
+        );
+      } else if (notification) {
+        return (
+          <EuiNotificationBadge
+            className="euiHeaderSectionItemButton__notification euiHeaderSectionItemButton__notification--badge"
+            css={cssStyles}
+            color={notificationColor}
+          >
+            {notification}
+          </EuiNotificationBadge>
+        );
+      }
+    }, [notification, notificationColor, styles.notification, shouldShowDot]);
 
     return (
       <EuiButtonEmpty

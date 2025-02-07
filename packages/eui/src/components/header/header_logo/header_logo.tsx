@@ -13,7 +13,7 @@ import React, {
 } from 'react';
 import classNames from 'classnames';
 
-import { useEuiTheme, getSecureRelForTarget } from '../../../services';
+import { useEuiMemoizedStyles, getSecureRelForTarget } from '../../../services';
 import { validateHref } from '../../../services/security/href_validator';
 import { EuiIcon, IconType } from '../../icon';
 import { CommonProps } from '../../common';
@@ -44,8 +44,7 @@ export const EuiHeaderLogo: FunctionComponent<EuiHeaderLogoProps> = ({
   ...rest
 }) => {
   const classes = classNames('euiHeaderLogo', className);
-  const euiTheme = useEuiTheme();
-  const styles = euiHeaderLogoStyles(euiTheme);
+  const styles = useEuiMemoizedStyles(euiHeaderLogoStyles);
 
   const secureRel = getSecureRelForTarget({ href, rel, target });
   const isHrefValid = !href || validateHref(href);
