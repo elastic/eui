@@ -88,7 +88,7 @@ const raiseReportIfPropertyHasInvalidCssColor = (
     const identifierDeclaration = context.sourceCode
       .getScope(propertyNode)
       .variables.find(
-        (variable) =>
+        (variable: { name: string }) =>
           variable.name === (propertyNode.value as TSESTree.Identifier).name!
       );
 
@@ -126,7 +126,10 @@ const raiseReportIfPropertyHasInvalidCssColor = (
 
     const expressionRootDeclaration = context.sourceCode
       .getScope(propertyNode)
-      .variables.find((variable) => variable.name === memberExpressionRootName);
+      .variables.find(
+        (variable: { name: string }) =>
+          variable.name === memberExpressionRootName
+      );
 
     const expressionRootDeclarationInit = (
       expressionRootDeclaration?.defs[0].node as TSESTree.VariableDeclarator
@@ -183,7 +186,8 @@ const handleObjectProperties = (
       // @ts-expect-error
       .getScope(propertyParentNode!.value.expression!)
       .references.find(
-        (ref) => ref.identifier.name === spreadElementIdentifierName
+        (ref: { identifier: { name: string } }) =>
+          ref.identifier.name === spreadElementIdentifierName
       )?.resolved;
 
     if (!spreadElementDeclaration) {
