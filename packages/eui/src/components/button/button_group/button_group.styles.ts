@@ -41,6 +41,7 @@ export const euiButtonGroupButtonsStyles = (euiThemeContext: UseEuiTheme) => {
     euiButtonGroup__buttons: css`
       ${logicalCSS('max-width', '100%')}
       display: flex;
+      align-items: center;
     `,
     fullWidth: css`
       ${logicalCSS('width', '100%')}
