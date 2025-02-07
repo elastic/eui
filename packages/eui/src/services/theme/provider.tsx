@@ -167,13 +167,47 @@ export const EuiThemeProvider = <T extends {} = {}>({
 
   useEffect(() => {
     if (!isParentTheme.current) {
-      setTheme(
-        getComputed(
-          system,
-          buildTheme(modifications, `_${system.key}`) as typeof system,
-          colorMode
-        )
+      /* Enables recomputation of component colors when flags are overridden on the provider 
+      by adding the respective key to modifications to trigger a recomputation. */
+      // TODO: remove once flags and experimental updates are obsolete
+      const flagsToRecompute = [
+        { flag: 'buttonVariant', componentKey: 'buttons' },
+      ];
+
+      const keys: { [key: string]: { LIGHT: {}; DARK: {} } } = {};
+
+      const forceRecomputeComponents = flagsToRecompute.some((item) => {
+        if (
+          Object.keys(modifications.flags ?? {}).includes(item.flag) &&
+          !Object.keys(modifications.components ?? {}).includes(
+            item.componentKey
+          )
+        ) {
+          keys[item.componentKey] = { LIGHT: {}, DARK: {} };
+
+          return true;
+        }
+
+        return false;
+      });
+
+      const componentModifications = forceRecomputeComponents
+        ? { components: keys }
+        : {};
+
+      // force recomputing of color & component tokens based on flag changes
+      const enhancedModifications = {
+        ...modifications,
+        ...componentModifications,
+      };
+
+      const rebuiltTheme = getComputed(
+        system,
+        buildTheme(enhancedModifications, `_${system.key}`) as typeof system,
+        colorMode
       );
+
+      setTheme(rebuiltTheme);
     }
   }, [colorMode, system, modifications]);
 
