@@ -22,7 +22,6 @@ import {
 export const BUTTON_COLORS = [
   'text',
   'accent',
-  'accentSecondary',
   'primary',
   'success',
   'warning',
@@ -36,6 +35,54 @@ export interface _EuiButtonOptions {
   display?: _EuiButtonDisplay;
 }
 
+type ButtonVariantColors = {
+  color: string;
+  background: string;
+  backgroundHover: string;
+  backgroundActive: string;
+};
+
+const getButtonVariantTokenValues = (
+  { euiTheme }: UseEuiTheme,
+  color: _EuiButtonColor | 'disabled',
+  variant: 'base' | 'filled' | 'empty'
+): ButtonVariantColors => {
+  const backgroundTokenBase =
+    variant === 'base'
+      ? 'background'
+      : `background${variant.charAt(0).toUpperCase() + variant.slice(1)}`;
+  const textTokenBase = variant === 'filled' ? 'textColorFilled' : 'textColor';
+
+  const backgroundTokenName = getTokenName(
+    backgroundTokenBase,
+    color
+  ) as keyof _EuiThemeButtonColors;
+
+  const textTokenName = getTokenName(
+    textTokenBase,
+    color
+  ) as keyof _EuiThemeButtonColors;
+
+  const backgroundHoverTokenName = getTokenName(
+    backgroundTokenBase,
+    variant === 'base' ? undefined : color,
+    'hover'
+  ) as keyof _EuiThemeButtonColors;
+
+  const backgroundActiveTokenName = getTokenName(
+    backgroundTokenBase,
+    variant === 'base' ? undefined : color,
+    'active'
+  ) as keyof _EuiThemeButtonColors;
+
+  return {
+    color: euiTheme.components.buttons[textTokenName],
+    background: euiTheme.components.buttons[backgroundTokenName],
+    backgroundHover: euiTheme.components.buttons[backgroundHoverTokenName],
+    backgroundActive: euiTheme.components.buttons[backgroundActiveTokenName],
+  };
+};
+
 /**
  * Creates the `base` version of button styles with proper text contrast.
  * @param euiThemeContext
@@ -46,20 +93,14 @@ export const euiButtonColor = (
   euiThemeContext: UseEuiTheme,
   color: _EuiButtonColor | 'disabled'
 ) => {
-  const { euiTheme } = euiThemeContext;
+  const buttonColors = getButtonVariantTokenValues(
+    euiThemeContext,
+    color,
+    'base'
+  );
 
-  const backgroundTokenName = getTokenName(
-    'background',
-    color
-  ) as keyof _EuiThemeButtonColors;
-
-  const textTokenName = getTokenName(
-    'textColor',
-    color
-  ) as keyof _EuiThemeButtonColors;
-
-  const foreground = euiTheme.components.buttons[textTokenName];
-  const background = euiTheme.components.buttons[backgroundTokenName];
+  const foreground = buttonColors.color;
+  const background = buttonColors.background;
 
   return {
     color:
@@ -80,20 +121,14 @@ export const euiButtonFillColor = (
   euiThemeContext: UseEuiTheme,
   color: _EuiButtonColor | 'disabled'
 ) => {
-  const { euiTheme } = euiThemeContext;
+  const buttonColors = getButtonVariantTokenValues(
+    euiThemeContext,
+    color,
+    'filled'
+  );
 
-  const backgroundTokenName = getTokenName(
-    'backgroundFilled',
-    color
-  ) as keyof _EuiThemeButtonColors;
-
-  const textColorTokenName = getTokenName(
-    'textColorFilled',
-    color
-  ) as keyof _EuiThemeButtonColors;
-
-  const foreground = euiTheme.components.buttons[textColorTokenName];
-  const background = euiTheme.components.buttons[backgroundTokenName];
+  const foreground = buttonColors.color;
+  const background = buttonColors.background;
 
   return {
     color: foreground,
@@ -120,14 +155,14 @@ export const euiButtonEmptyColor = (
       background = 'transparent';
       break;
     default: {
-      const backgroundToken = getTokenName(
-        'backgroundEmpty',
+      const buttonColors = getButtonVariantTokenValues(
+        euiThemeContext,
         color,
-        'hover'
-      ) as keyof _EuiThemeButtonColors;
+        'empty'
+      );
 
       foreground = euiButtonColor(euiThemeContext, color).color;
-      background = euiThemeContext.euiTheme.components.buttons[backgroundToken];
+      background = buttonColors.backgroundHover;
 
       break;
     }
@@ -152,6 +187,9 @@ export const useEuiButtonColorCSS = (options: _EuiButtonOptions = {}) => {
 };
 
 const euiButtonDisplaysColors = (euiThemeContext: UseEuiTheme) => {
+  const { euiTheme } = euiThemeContext;
+  const isExperimental = euiTheme.flags?.buttonVariant === 'experimental';
+
   const COLORS = [...BUTTON_COLORS, 'disabled'] as const;
   type Colors = (typeof COLORS)[number];
 
@@ -160,38 +198,96 @@ const euiButtonDisplaysColors = (euiThemeContext: UseEuiTheme) => {
     Record<Colors, SerializedStyles>
   >;
 
+  const interactiveStyles = (buttonColors: ButtonVariantColors) => `
+    &:hover:not(:disabled) {
+      background-color: ${buttonColors.backgroundHover};
+    }
+
+    &:active:not(:disabled) {
+      background-color: ${buttonColors.backgroundActive};
+    }
+  `;
+
   BUTTON_DISPLAYS.forEach((display) => {
     displaysColorsMap[display] = {} as Record<Colors, SerializedStyles>;
 
     COLORS.forEach((color) => {
       switch (display) {
-        case 'base':
+        case 'base': {
+          const buttonColors = getButtonVariantTokenValues(
+            euiThemeContext,
+            color,
+            'base'
+          );
+
+          const exerimentalStyles =
+            isExperimental &&
+            `
+            border: ${euiTheme.border.width.thin} solid ${
+              euiTheme.colors.borderBasePlain
+            };
+
+            ${interactiveStyles(buttonColors)}
+          `;
+
           displaysColorsMap[display][color] = css`
             ${euiButtonColor(euiThemeContext, color)}
+            ${exerimentalStyles}
           `;
           break;
-        case 'fill':
+        }
+        case 'fill': {
+          const buttonColors = getButtonVariantTokenValues(
+            euiThemeContext,
+            color,
+            'filled'
+          );
+
+          const exerimentalStyles =
+            isExperimental && interactiveStyles(buttonColors);
+
           displaysColorsMap[display][color] = css`
             ${euiButtonFillColor(euiThemeContext, color)}
 
             /* Use full shade for outline-color except for dark mode text buttons which need to stay currentColor */
-            outline-color: ${euiThemeContext.colorMode === 'DARK' &&
+              outline-color: ${euiThemeContext.colorMode === 'DARK' &&
             color === 'text'
               ? 'currentColor'
               : euiThemeContext.euiTheme.colors.fullShade};
+
+            ${exerimentalStyles}
           `;
           break;
-        case 'empty':
+        }
+        case 'empty': {
+          const buttonColors = getButtonVariantTokenValues(
+            euiThemeContext,
+            color,
+            'empty'
+          );
+
+          const defaultStyles =
+            !isExperimental &&
+            `
+              &:focus,
+              &:active {
+                background-color: ${
+                  euiButtonEmptyColor(euiThemeContext, color).backgroundColor
+                };
+              }
+          `;
+
+          const exerimentalStyles =
+            isExperimental && interactiveStyles(buttonColors);
+
           displaysColorsMap[display][color] = css`
             color: ${euiButtonEmptyColor(euiThemeContext, color).color};
 
-            &:focus,
-            &:active {
-              background-color: ${euiButtonEmptyColor(euiThemeContext, color)
-                .backgroundColor};
-            }
+            ${defaultStyles}
+            ${exerimentalStyles}
           `;
           break;
+        }
       }
 
       // Tweak auto-generated Emotion label/className output
@@ -218,26 +314,31 @@ const euiButtonFocusAnimation = keyframes`
     transform: translateY(1px);
   }
 `;
-const euiButtonFocusCSS = ({ euiTheme }: UseEuiTheme) => {
-  const focusCSS = css`
-    ${euiCanAnimate} {
-      transition: transform ${euiTheme.animation.normal} ease-in-out,
-        background-color ${euiTheme.animation.normal} ease-in-out;
+const euiButtonFocusCSS = (euiThemeContext: UseEuiTheme) => {
+  const { euiTheme } = euiThemeContext;
+  const isExperimental = euiTheme.flags?.buttonVariant === 'experimental';
 
-      &:hover:not(:disabled) {
-        transform: translateY(-1px);
-      }
+  const focusCSS = isExperimental
+    ? css``
+    : css`
+        ${euiCanAnimate} {
+          transition: transform ${euiTheme.animation.normal} ease-in-out,
+            background-color ${euiTheme.animation.normal} ease-in-out;
 
-      &:focus {
-        animation: ${euiButtonFocusAnimation} ${euiTheme.animation.normal}
-          ${euiTheme.animation.bounce};
-      }
+          &:hover:not(:disabled) {
+            transform: translateY(-1px);
+          }
 
-      &:active:not(:disabled) {
-        transform: translateY(1px);
-      }
-    }
-  `;
+          &:focus {
+            animation: ${euiButtonFocusAnimation} ${euiTheme.animation.normal}
+              ${euiTheme.animation.bounce};
+          }
+
+          &:active:not(:disabled) {
+            transform: translateY(1px);
+          }
+        }
+      `;
   // Remove the auto-generated label.
   // We could typically avoid a label by using a plain string `` instead of css``,
   // but we need css`` for keyframes`` to work for the focus animation
@@ -251,16 +352,23 @@ const euiButtonFocusCSS = ({ euiTheme }: UseEuiTheme) => {
  */
 export const euiButtonSizeMap = ({ euiTheme }: UseEuiTheme) => ({
   xs: {
+    minWidth:
+      euiTheme.base *
+      (euiTheme.flags?.buttonVariant === 'experimental' ? 6 : 7),
     height: euiTheme.size.l,
     radius: euiTheme.border.radius.small,
     fontScale: 'xs' as const,
   },
   s: {
+    minWidth:
+      euiTheme.base *
+      (euiTheme.flags?.buttonVariant === 'experimental' ? 6 : 7),
     height: euiTheme.size.xl,
     radius: euiTheme.border.radius.small,
     fontScale: 's' as const,
   },
   m: {
+    minWidth: euiTheme.base * 7,
     height: euiTheme.size.xxl,
     radius: euiTheme.border.radius.medium,
     fontScale: 's' as const,
