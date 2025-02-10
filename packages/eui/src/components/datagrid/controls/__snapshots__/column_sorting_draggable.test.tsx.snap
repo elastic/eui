@@ -84,7 +84,7 @@ exports[`EuiDataGridColumnSortingDraggable [React 16] renders an EuiDraggable co
         >
           <button
             aria-pressed="true"
-            class="euiButtonGroupButton euiButtonGroupButton-isSelected emotion-euiButtonDisplay-s-defaultMinWidth-euiButtonGroupButton-compressed-fill-text"
+            class="euiButtonGroupButton euiButtonGroupButton-isSelected emotion-euiButtonDisplay-s-defaultMinWidth-s-euiButtonGroupButton-compressed-fill-text"
             data-test-subj="euiDataGridColumnSorting-sortColumn-columnA-asc"
             title="Low-High"
             type="button"
@@ -102,7 +102,7 @@ exports[`EuiDataGridColumnSortingDraggable [React 16] renders an EuiDraggable co
           </button>
           <button
             aria-pressed="false"
-            class="euiButtonGroupButton emotion-euiButtonDisplay-s-defaultMinWidth-euiButtonGroupButton-compressed-empty-text"
+            class="euiButtonGroupButton emotion-euiButtonDisplay-s-defaultMinWidth-s-euiButtonGroupButton-compressed-empty-text"
             data-test-subj="euiDataGridColumnSorting-sortColumn-columnA-desc"
             title="High-Low"
             type="button"
@@ -224,7 +224,7 @@ exports[`EuiDataGridColumnSortingDraggable [React 17] renders an EuiDraggable co
         >
           <button
             aria-pressed="true"
-            class="euiButtonGroupButton euiButtonGroupButton-isSelected emotion-euiButtonDisplay-s-defaultMinWidth-euiButtonGroupButton-compressed-fill-text"
+            class="euiButtonGroupButton euiButtonGroupButton-isSelected emotion-euiButtonDisplay-s-defaultMinWidth-s-euiButtonGroupButton-compressed-fill-text"
             data-test-subj="euiDataGridColumnSorting-sortColumn-columnA-asc"
             title="Low-High"
             type="button"
@@ -242,7 +242,7 @@ exports[`EuiDataGridColumnSortingDraggable [React 17] renders an EuiDraggable co
           </button>
           <button
             aria-pressed="false"
-            class="euiButtonGroupButton emotion-euiButtonDisplay-s-defaultMinWidth-euiButtonGroupButton-compressed-empty-text"
+            class="euiButtonGroupButton emotion-euiButtonDisplay-s-defaultMinWidth-s-euiButtonGroupButton-compressed-empty-text"
             data-test-subj="euiDataGridColumnSorting-sortColumn-columnA-desc"
             title="High-Low"
             type="button"
