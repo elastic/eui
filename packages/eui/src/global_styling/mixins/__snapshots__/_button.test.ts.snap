@@ -4,134 +4,267 @@ exports[`useEuiButtonColorCSS base 1`] = `
 {
   "accent": {
     "map": undefined,
-    "name": "9via4l-displaysColorsMap-display-color",
+    "name": "1vdzqtw-displaysColorsMap-display-color",
     "next": undefined,
     "styles": "color:#a11262;background-color:#FFFFFF; 
             border: 1px solid #CAD3E2;
 
             
-    &:hover:not(:disabled) {
-      background-color: rgba(23,80,186, 0.04);
-    }
+        position: relative;
+        overflow: hidden;
 
-    &:active:not(:disabled) {
-      background-color: rgba(23,80,186, 0.08);
-    }
-  
+        &:hover:not(:disabled) {
+          &::after {
+            inline-size: 100%;
+            block-size: 100%;
+
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-color: rgba(23,80,186, 0.04);
+          }
+        }
+
+        &:active:not(:disabled) {
+          &::after {
+            inline-size: 100%;
+            block-size: 100%;
+
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-color: rgba(23,80,186, 0.08);
+          }
+        }
+      ;
           ;;label:base-accent;",
     "toString": [Function],
   },
   "danger": {
     "map": undefined,
-    "name": "1ucga9h-displaysColorsMap-display-color",
+    "name": "ei1eem-displaysColorsMap-display-color",
     "next": undefined,
     "styles": "color:#a71627;background-color:#FFFFFF; 
             border: 1px solid #CAD3E2;
 
             
-    &:hover:not(:disabled) {
-      background-color: rgba(23,80,186, 0.04);
-    }
+        position: relative;
+        overflow: hidden;
 
-    &:active:not(:disabled) {
-      background-color: rgba(23,80,186, 0.08);
-    }
-  
+        &:hover:not(:disabled) {
+          &::after {
+            inline-size: 100%;
+            block-size: 100%;
+
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-color: rgba(23,80,186, 0.04);
+          }
+        }
+
+        &:active:not(:disabled) {
+          &::after {
+            inline-size: 100%;
+            block-size: 100%;
+
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-color: rgba(23,80,186, 0.08);
+          }
+        }
+      ;
           ;;label:base-danger;",
     "toString": [Function],
   },
   "disabled": {
     "map": undefined,
-    "name": "j0b3ln-displaysColorsMap-display-color",
+    "name": "1xs1g9f-displaysColorsMap-display-color",
     "next": undefined,
     "styles": "color:#798EAF;background-color:#FFFFFF; 
             border: 1px solid #CAD3E2;
 
             
-    &:hover:not(:disabled) {
-      background-color: rgba(23,80,186, 0.04);
-    }
+        position: relative;
+        overflow: hidden;
 
-    &:active:not(:disabled) {
-      background-color: rgba(23,80,186, 0.08);
-    }
-  
+        &:hover:not(:disabled) {
+          &::after {
+            inline-size: 100%;
+            block-size: 100%;
+
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-color: rgba(23,80,186, 0.04);
+          }
+        }
+
+        &:active:not(:disabled) {
+          &::after {
+            inline-size: 100%;
+            block-size: 100%;
+
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-color: rgba(23,80,186, 0.08);
+          }
+        }
+      ;
           ;;label:base-disabled;",
     "toString": [Function],
   },
   "primary": {
     "map": undefined,
-    "name": "1sg1l59-displaysColorsMap-display-color",
+    "name": "1043h5l-displaysColorsMap-display-color",
     "next": undefined,
     "styles": "color:#1750ba;background-color:#FFFFFF; 
             border: 1px solid #CAD3E2;
 
             
-    &:hover:not(:disabled) {
-      background-color: rgba(23,80,186, 0.04);
-    }
+        position: relative;
+        overflow: hidden;
 
-    &:active:not(:disabled) {
-      background-color: rgba(23,80,186, 0.08);
-    }
-  
+        &:hover:not(:disabled) {
+          &::after {
+            inline-size: 100%;
+            block-size: 100%;
+
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-color: rgba(23,80,186, 0.04);
+          }
+        }
+
+        &:active:not(:disabled) {
+          &::after {
+            inline-size: 100%;
+            block-size: 100%;
+
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-color: rgba(23,80,186, 0.08);
+          }
+        }
+      ;
           ;;label:base-primary;",
     "toString": [Function],
   },
   "success": {
     "map": undefined,
-    "name": "ixxrge-displaysColorsMap-display-color",
+    "name": "1gvlatw-displaysColorsMap-display-color",
     "next": undefined,
     "styles": "color:#09724d;background-color:#FFFFFF; 
             border: 1px solid #CAD3E2;
 
             
-    &:hover:not(:disabled) {
-      background-color: rgba(23,80,186, 0.04);
-    }
+        position: relative;
+        overflow: hidden;
 
-    &:active:not(:disabled) {
-      background-color: rgba(23,80,186, 0.08);
-    }
-  
+        &:hover:not(:disabled) {
+          &::after {
+            inline-size: 100%;
+            block-size: 100%;
+
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-color: rgba(23,80,186, 0.04);
+          }
+        }
+
+        &:active:not(:disabled) {
+          &::after {
+            inline-size: 100%;
+            block-size: 100%;
+
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-color: rgba(23,80,186, 0.08);
+          }
+        }
+      ;
           ;;label:base-success;",
     "toString": [Function],
   },
   "text": {
     "map": undefined,
-    "name": "1s83e9q-displaysColorsMap-display-color",
+    "name": "1vphzy1-displaysColorsMap-display-color",
     "next": undefined,
     "styles": "color:#1d2a3e;background-color:#FFFFFF; 
             border: 1px solid #CAD3E2;
 
             
-    &:hover:not(:disabled) {
-      background-color: rgba(23,80,186, 0.04);
-    }
+        position: relative;
+        overflow: hidden;
 
-    &:active:not(:disabled) {
-      background-color: rgba(23,80,186, 0.08);
-    }
-  
+        &:hover:not(:disabled) {
+          &::after {
+            inline-size: 100%;
+            block-size: 100%;
+
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-color: rgba(23,80,186, 0.04);
+          }
+        }
+
+        &:active:not(:disabled) {
+          &::after {
+            inline-size: 100%;
+            block-size: 100%;
+
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-color: rgba(23,80,186, 0.08);
+          }
+        }
+      ;
           ;;label:base-text;",
     "toString": [Function],
   },
   "warning": {
     "map": undefined,
-    "name": "5lnems-displaysColorsMap-display-color",
+    "name": "1apa06b-displaysColorsMap-display-color",
     "next": undefined,
     "styles": "color:#6a4906;background-color:#FFFFFF; 
             border: 1px solid #CAD3E2;
 
             
-    &:hover:not(:disabled) {
-      background-color: rgba(23,80,186, 0.04);
-    }
+        position: relative;
+        overflow: hidden;
 
-    &:active:not(:disabled) {
-      background-color: rgba(23,80,186, 0.08);
-    }
-  
+        &:hover:not(:disabled) {
+          &::after {
+            inline-size: 100%;
+            block-size: 100%;
+
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-color: rgba(23,80,186, 0.04);
+          }
+        }
+
+        &:active:not(:disabled) {
+          &::after {
+            inline-size: 100%;
+            block-size: 100%;
+
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-color: rgba(23,80,186, 0.08);
+          }
+        }
+      ;
           ;;label:base-warning;",
     "toString": [Function],
   },
@@ -142,107 +275,107 @@ exports[`useEuiButtonColorCSS empty 1`] = `
 {
   "accent": {
     "map": undefined,
-    "name": "jnalhp-displaysColorsMap-display-color",
+    "name": "1wr44ht-displaysColorsMap-display-color",
     "next": undefined,
     "styles": "color:#a11262; 
-    &:hover:not(:disabled) {
-      background-color: rgba(229,74,145, 0.12);
-    }
+        &:hover:not(:disabled) {
+          background-color: rgba(229,74,145, 0.12);
+        }
 
-    &:active:not(:disabled) {
-      background-color: rgba(229,74,145, 0.16);
-    }
-  ;;label:empty-accent;",
+        &:active:not(:disabled) {
+          background-color: rgba(229,74,145, 0.16);
+        }
+      ;;label:empty-accent;",
     "toString": [Function],
   },
   "danger": {
     "map": undefined,
-    "name": "4v1g0v-displaysColorsMap-display-color",
+    "name": "hy4b7p-displaysColorsMap-display-color",
     "next": undefined,
     "styles": "color:#a71627; 
-    &:hover:not(:disabled) {
-      background-color: rgba(238,76,72, 0.12);
-    }
+        &:hover:not(:disabled) {
+          background-color: rgba(238,76,72, 0.12);
+        }
 
-    &:active:not(:disabled) {
-      background-color: rgba(238,76,72, 0.16);
-    }
-  ;;label:empty-danger;",
+        &:active:not(:disabled) {
+          background-color: rgba(238,76,72, 0.16);
+        }
+      ;;label:empty-danger;",
     "toString": [Function],
   },
   "disabled": {
     "map": undefined,
-    "name": "1nenw38-displaysColorsMap-display-color",
+    "name": "1j0vlnj-displaysColorsMap-display-color",
     "next": undefined,
     "styles": "color:#798EAF; 
-    &:hover:not(:disabled) {
-      background-color: undefined;
-    }
+        &:hover:not(:disabled) {
+          background-color: undefined;
+        }
 
-    &:active:not(:disabled) {
-      background-color: undefined;
-    }
-  ;;label:empty-disabled;",
+        &:active:not(:disabled) {
+          background-color: undefined;
+        }
+      ;;label:empty-disabled;",
     "toString": [Function],
   },
   "primary": {
     "map": undefined,
-    "name": "1mdv2rx-displaysColorsMap-display-color",
+    "name": "abxzey-displaysColorsMap-display-color",
     "next": undefined,
     "styles": "color:#1750ba; 
-    &:hover:not(:disabled) {
-      background-color: rgba(55,136,255, 0.12);
-    }
+        &:hover:not(:disabled) {
+          background-color: rgba(55,136,255, 0.12);
+        }
 
-    &:active:not(:disabled) {
-      background-color: rgba(55,136,255, 0.16);
-    }
-  ;;label:empty-primary;",
+        &:active:not(:disabled) {
+          background-color: rgba(55,136,255, 0.16);
+        }
+      ;;label:empty-primary;",
     "toString": [Function],
   },
   "success": {
     "map": undefined,
-    "name": "873vqf-displaysColorsMap-display-color",
+    "name": "1k9tjc7-displaysColorsMap-display-color",
     "next": undefined,
     "styles": "color:#09724d; 
-    &:hover:not(:disabled) {
-      background-color: rgba(4,174,126, 0.12);
-    }
+        &:hover:not(:disabled) {
+          background-color: rgba(4,174,126, 0.12);
+        }
 
-    &:active:not(:disabled) {
-      background-color: rgba(4,174,126, 0.16);
-    }
-  ;;label:empty-success;",
+        &:active:not(:disabled) {
+          background-color: rgba(4,174,126, 0.16);
+        }
+      ;;label:empty-success;",
     "toString": [Function],
   },
   "text": {
     "map": undefined,
-    "name": "1luzja6-displaysColorsMap-display-color",
+    "name": "i30dt6-displaysColorsMap-display-color",
     "next": undefined,
     "styles": "color:#1d2a3e; 
-    &:hover:not(:disabled) {
-      background-color: rgba(23,80,186, 0.08);
-    }
+        &:hover:not(:disabled) {
+          background-color: rgba(23,80,186, 0.08);
+        }
 
-    &:active:not(:disabled) {
-      background-color: rgba(23,80,186, 0.12);
-    }
-  ;;label:empty-text;",
+        &:active:not(:disabled) {
+          background-color: rgba(23,80,186, 0.12);
+        }
+      ;;label:empty-text;",
     "toString": [Function],
   },
   "warning": {
     "map": undefined,
-    "name": "1ee34jl-displaysColorsMap-display-color",
+    "name": "11x9t9l-displaysColorsMap-display-color",
     "next": undefined,
     "styles": "color:#6a4906; 
-    &:hover:not(:disabled) {
-      background-color: rgba(250,203,61, 0.24);
-    }
+        &:hover:not(:disabled) {
+          background-color: rgba(250,203,61, 0.24);
+        }
 
-    &:active:not(:disabled) {
-      background-color: rgba(250,203,61, 0.28);
-    }
-  ;;label:empty-warning;",
+        &:active:not(:disabled) {
+          background-color: rgba(250,203,61, 0.28);
+        }
+      ;;label:empty-warning;",
     "toString": [Function],
   },
 }
@@ -252,107 +385,107 @@ exports[`useEuiButtonColorCSS fill 1`] = `
 {
   "accent": {
     "map": undefined,
-    "name": "1v2j30n-displaysColorsMap-display-color",
+    "name": "husk4z-displaysColorsMap-display-color",
     "next": undefined,
     "styles": "color:#FFFFFF;background-color:#BC1E70;outline-color:#07101F;
-    &:hover:not(:disabled) {
-      background-color: #A11262;
-    }
+        &:hover:not(:disabled) {
+          background-color: #A11262;
+        }
 
-    &:active:not(:disabled) {
-      background-color: #831652;
-    }
-  ;;label:fill-accent;",
+        &:active:not(:disabled) {
+          background-color: #831652;
+        }
+      ;;label:fill-accent;",
     "toString": [Function],
   },
   "danger": {
     "map": undefined,
-    "name": "1uircvs-displaysColorsMap-display-color",
+    "name": "fker02-displaysColorsMap-display-color",
     "next": undefined,
     "styles": "color:#FFFFFF;background-color:#C61E25;outline-color:#07101F;
-    &:hover:not(:disabled) {
-      background-color: #A71627;
-    }
+        &:hover:not(:disabled) {
+          background-color: #A71627;
+        }
 
-    &:active:not(:disabled) {
-      background-color: #7F1F27;
-    }
-  ;;label:fill-danger;",
+        &:active:not(:disabled) {
+          background-color: #7F1F27;
+        }
+      ;;label:fill-danger;",
     "toString": [Function],
   },
   "disabled": {
     "map": undefined,
-    "name": "24lq74-displaysColorsMap-display-color",
+    "name": "zcwa6u-displaysColorsMap-display-color",
     "next": undefined,
     "styles": "color:#798EAF;background-color:#ECF1F9;outline-color:#07101F;
-    &:hover:not(:disabled) {
-      background-color: undefined;
-    }
+        &:hover:not(:disabled) {
+          background-color: undefined;
+        }
 
-    &:active:not(:disabled) {
-      background-color: undefined;
-    }
-  ;;label:fill-disabled;",
+        &:active:not(:disabled) {
+          background-color: undefined;
+        }
+      ;;label:fill-disabled;",
     "toString": [Function],
   },
   "primary": {
     "map": undefined,
-    "name": "g4k7z7-displaysColorsMap-display-color",
+    "name": "1hc3fw4-displaysColorsMap-display-color",
     "next": undefined,
     "styles": "color:#FFFFFF;background-color:#0B64DD;outline-color:#07101F;
-    &:hover:not(:disabled) {
-      background-color: #1750BA;
-    }
+        &:hover:not(:disabled) {
+          background-color: #1750BA;
+        }
 
-    &:active:not(:disabled) {
-      background-color: #154399;
-    }
-  ;;label:fill-primary;",
+        &:active:not(:disabled) {
+          background-color: #154399;
+        }
+      ;;label:fill-primary;",
     "toString": [Function],
   },
   "success": {
     "map": undefined,
-    "name": "dnnm97-displaysColorsMap-display-color",
+    "name": "10l5ase-displaysColorsMap-display-color",
     "next": undefined,
     "styles": "color:#FFFFFF;background-color:#008A5E;outline-color:#07101F;
-    &:hover:not(:disabled) {
-      background-color: #09724D;
-    }
+        &:hover:not(:disabled) {
+          background-color: #09724D;
+        }
 
-    &:active:not(:disabled) {
-      background-color: #0C5A3F;
-    }
-  ;;label:fill-success;",
+        &:active:not(:disabled) {
+          background-color: #0C5A3F;
+        }
+      ;;label:fill-success;",
     "toString": [Function],
   },
   "text": {
     "map": undefined,
-    "name": "zwh3vb-displaysColorsMap-display-color",
+    "name": "1acxa7i-displaysColorsMap-display-color",
     "next": undefined,
     "styles": "color:#FFFFFF;background-color:#5A6D8C;outline-color:#07101F;
-    &:hover:not(:disabled) {
-      background-color: #485975;
-    }
+        &:hover:not(:disabled) {
+          background-color: #485975;
+        }
 
-    &:active:not(:disabled) {
-      background-color: #384861;
-    }
-  ;;label:fill-text;",
+        &:active:not(:disabled) {
+          background-color: #384861;
+        }
+      ;;label:fill-text;",
     "toString": [Function],
   },
   "warning": {
     "map": undefined,
-    "name": "9zb6bv-displaysColorsMap-display-color",
+    "name": "1f6zp9y-displaysColorsMap-display-color",
     "next": undefined,
     "styles": "color:#6A4906;background-color:#FACB3D;outline-color:#07101F;
-    &:hover:not(:disabled) {
-      background-color: #F5BC00;
-    }
+        &:hover:not(:disabled) {
+          background-color: #F5BC00;
+        }
 
-    &:active:not(:disabled) {
-      background-color: #EAAE01;
-    }
-  ;;label:fill-warning;",
+        &:active:not(:disabled) {
+          background-color: #EAAE01;
+        }
+      ;;label:fill-warning;",
     "toString": [Function],
   },
 }
