@@ -26,12 +26,12 @@ import { SEMANTIC_COLORS } from './_semantic_colors';
  */
 
 export const dark_brand_colors: _EuiThemeBrandColors = {
-  primary: SEMANTIC_COLORS.primary70,
-  accent: SEMANTIC_COLORS.accent70,
-  accentSecondary: SEMANTIC_COLORS.accentSecondary70,
+  primary: SEMANTIC_COLORS.primary60,
+  accent: SEMANTIC_COLORS.accent60,
+  accentSecondary: SEMANTIC_COLORS.accentSecondary60,
   success: SEMANTIC_COLORS.success60,
   warning: SEMANTIC_COLORS.warning40,
-  danger: SEMANTIC_COLORS.danger70,
+  danger: SEMANTIC_COLORS.danger60,
 };
 
 export const dark_brand_text_colors: _EuiThemeBrandTextColors = {

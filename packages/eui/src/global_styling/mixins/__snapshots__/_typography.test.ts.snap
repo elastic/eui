@@ -2,7 +2,7 @@
 
 exports[`euiFontSize handles the optional customScale property by multiplying it against the passed scale: l scale with xxs customScale 1`] = `
 {
-  "fontSize": "1.0804rem",
+  "fontSize": "0.9821rem",
   "lineHeight": "1.4286rem",
 }
 `;
@@ -16,14 +16,14 @@ exports[`euiFontSize handles the optional customScale property by multiplying it
 
 exports[`euiFontSize handles the optional customScale property by multiplying it against the passed scale: s scale with xl customScale 1`] = `
 {
-  "fontSize": "1.6875rem",
-  "lineHeight": "2.0000rem",
+  "fontSize": "1.5000rem",
+  "lineHeight": "1.7143rem",
 }
 `;
 
 exports[`euiFontSize returns an object of font-size and line-height for each scale em l 1`] = `
 {
-  "fontSize": "1.375em",
+  "fontSize": "1.25em",
   "lineHeight": "1.2495",
 }
 `;
@@ -44,7 +44,7 @@ exports[`euiFontSize returns an object of font-size and line-height for each sca
 
 exports[`euiFontSize returns an object of font-size and line-height for each scale em xl 1`] = `
 {
-  "fontSize": "1.6875em",
+  "fontSize": "1.5em",
   "lineHeight": "1.2495",
 }
 `;
@@ -58,7 +58,7 @@ exports[`euiFontSize returns an object of font-size and line-height for each sca
 
 exports[`euiFontSize returns an object of font-size and line-height for each scale em xxl 1`] = `
 {
-  "fontSize": "2.125em",
+  "fontSize": "1.875em",
   "lineHeight": "1.2495",
 }
 `;
@@ -79,7 +79,7 @@ exports[`euiFontSize returns an object of font-size and line-height for each sca
 
 exports[`euiFontSize returns an object of font-size and line-height for each scale px l 1`] = `
 {
-  "fontSize": "22px",
+  "fontSize": "20px",
   "lineHeight": "24px",
 }
 `;
@@ -100,8 +100,8 @@ exports[`euiFontSize returns an object of font-size and line-height for each sca
 
 exports[`euiFontSize returns an object of font-size and line-height for each scale px xl 1`] = `
 {
-  "fontSize": "27px",
-  "lineHeight": "32px",
+  "fontSize": "24px",
+  "lineHeight": "28px",
 }
 `;
 
@@ -114,8 +114,8 @@ exports[`euiFontSize returns an object of font-size and line-height for each sca
 
 exports[`euiFontSize returns an object of font-size and line-height for each scale px xxl 1`] = `
 {
-  "fontSize": "34px",
-  "lineHeight": "40px",
+  "fontSize": "30px",
+  "lineHeight": "36px",
 }
 `;
 
@@ -135,7 +135,7 @@ exports[`euiFontSize returns an object of font-size and line-height for each sca
 
 exports[`euiFontSize returns an object of font-size and line-height for each scale rem l 1`] = `
 {
-  "fontSize": "1.5714rem",
+  "fontSize": "1.4286rem",
   "lineHeight": "1.7143rem",
 }
 `;
@@ -156,8 +156,8 @@ exports[`euiFontSize returns an object of font-size and line-height for each sca
 
 exports[`euiFontSize returns an object of font-size and line-height for each scale rem xl 1`] = `
 {
-  "fontSize": "1.9286rem",
-  "lineHeight": "2.2857rem",
+  "fontSize": "1.7143rem",
+  "lineHeight": "2.0000rem",
 }
 `;
 
@@ -170,8 +170,8 @@ exports[`euiFontSize returns an object of font-size and line-height for each sca
 
 exports[`euiFontSize returns an object of font-size and line-height for each scale rem xxl 1`] = `
 {
-  "fontSize": "2.4286rem",
-  "lineHeight": "2.8571rem",
+  "fontSize": "2.1429rem",
+  "lineHeight": "2.5714rem",
 }
 `;
 

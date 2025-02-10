@@ -7,10 +7,10 @@ export const TextColorPreview = () => {
   return (
     <div
       css={css`
-        color: ${euiTheme.colors.warningText};
+        color: ${euiTheme.colors.textWarning};
       `}
     >
-      <strong>color: {euiTheme.colors.warningText}</strong>
+      <strong>color: {euiTheme.colors.textWarning}</strong>
     </div>
-  )
-}
+  );
+};

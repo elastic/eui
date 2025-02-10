@@ -346,6 +346,7 @@ export const typeToPathMap = {
   pivot: 'pivot',
   play: 'play',
   playFilled: 'playFilled',
+  plugs: 'plugs',
   plus: 'plus',
   plusInCircle: 'plus_in_circle',
   plusInCircleFilled: 'plus_in_circle_filled',
@@ -458,6 +459,7 @@ export const typeToPathMap = {
   warningFilled: 'warningFilled',
   alert: 'warning', // NOTE: This is an undocumented alias for `warning`, added for legacy compatability with Elastic Charts
   watchesApp: 'app_watches',
+  web: 'web',
   wordWrap: 'wordWrap',
   wordWrapDisabled: 'wordWrapDisabled',
   workplaceSearchApp: 'app_workplace_search',

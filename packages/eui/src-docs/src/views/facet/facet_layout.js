@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 
+import { useEuiPaletteColorBlind } from '../../../../src/services';
 import {
   EuiFacetButton,
   EuiFacetGroup,
@@ -7,14 +8,14 @@ import {
   EuiAvatar,
 } from '../../../../src/components';
 
-import { euiPaletteColorBlind } from '../../../../src/services';
-
 export default () => {
   const [icon, setIcon] = useState(false);
   const [disabled, setDisabled] = useState(false);
   const [avatars, setAvatars] = useState(false);
   const [loading, setLoading] = useState(false);
   const [selectedOptionId, setSelectedOptionId] = useState(undefined);
+
+  const euiPaletteColorBlind = useEuiPaletteColorBlind();
 
   const facet0Clicked = (id) => {
     setIcon(false);
@@ -65,42 +66,42 @@ export default () => {
       id: 'facet0',
       label: 'Simple, no icon',
       quantity: 6,
-      iconColor: euiPaletteColorBlind()[0],
+      iconColor: euiPaletteColorBlind[0],
       onClick: facet0Clicked,
     },
     {
       id: 'facet1',
       label: 'Label or color indicator',
       quantity: 60,
-      iconColor: euiPaletteColorBlind()[1],
+      iconColor: euiPaletteColorBlind[1],
       onClick: facet1Clicked,
     },
     {
       id: 'facet2',
       label: 'Disable all others',
       quantity: 600,
-      iconColor: euiPaletteColorBlind()[2],
+      iconColor: euiPaletteColorBlind[2],
       onClick: facet2Clicked,
     },
     {
       id: 'facet3',
       label: 'Avatars instead of icons',
       quantity: 60,
-      iconColor: euiPaletteColorBlind()[3],
+      iconColor: euiPaletteColorBlind[3],
       onClick: facet3Clicked,
     },
     {
       id: 'facet4',
       label: 'Show all as loading',
       quantity: 6,
-      iconColor: euiPaletteColorBlind()[4],
+      iconColor: euiPaletteColorBlind[4],
       onClick: facet4Clicked,
     },
     {
       id: 'facet5',
       label: 'Just here to show truncation of really long labels',
       quantity: 0,
-      iconColor: euiPaletteColorBlind()[5],
+      iconColor: euiPaletteColorBlind[5],
     },
   ];
 

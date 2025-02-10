@@ -6,12 +6,14 @@
  * Side Public License, v 1.
  */
 
-import { isDefaultTheme } from './themes';
+const Codeowners = require('codeowners');
+const temp = new Codeowners("../../../kibana");
 
-describe('isDefaultTheme', () => {
-  it('returns true for the default name', () => {
-    expect(isDefaultTheme('EUI_THEME_LEGACY')).toBe(false);
-    expect(isDefaultTheme('EUI_THEME_AMSTERDAM')).toBe(true);
-    expect(isDefaultTheme('CUSTOM_DEFAULT')).toBe(false);
-  });
-});
+const { scan } = require('./scan');
+
+const runScan = async () => {
+  const scanResult = await scan();
+  console.log(scanResult);
+};
+
+runScan();

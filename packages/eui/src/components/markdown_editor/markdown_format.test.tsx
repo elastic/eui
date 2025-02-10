@@ -38,7 +38,7 @@ describe('EuiMarkdownFormat', () => {
       );
 
       expect(getByTestSubject('first')).toHaveStyle({
-        color: 'rgb(189, 39, 30)',
+        color: 'rgb(167, 22, 39)',
       });
       expect(getByTestSubject('second')).toHaveStyle({
         color: '#ffffff',

@@ -20,7 +20,6 @@ import {
   euiTextTruncate,
   useEuiMemoizedStyles,
   UseEuiTheme,
-  isExperimentalThemeEnabled,
 } from '@elastic/eui';
 import {
   euiFormControlText,
@@ -235,7 +234,7 @@ export default function NavbarContent(): JSX.Element {
             <NavbarColorModeToggle className="colorModeToggle" />
             <NavbarItems items={rightItems} />
 
-            {isBrowser && isExperimentalThemeEnabled() && (
+            {isBrowser && (
               <div css={styles.themeSwitcher}>
                 <ThemeSwitcher />
               </div>

@@ -1,5 +1,9 @@
 import { css } from '@emotion/react';
-import { useEuiTheme, useEuiMinBreakpoint, useEuiMaxBreakpoint } from '@elastic/eui';
+import {
+  useEuiTheme,
+  useEuiMinBreakpoint,
+  useEuiMaxBreakpoint,
+} from '@elastic/eui';
 
 export const UseEuiMinMaxMaxBreakpointPreview = () => {
   const { euiTheme } = useEuiTheme();
@@ -8,15 +12,15 @@ export const UseEuiMinMaxMaxBreakpointPreview = () => {
     <p
       css={css`
         ${useEuiMaxBreakpoint('m')} {
-          color: ${euiTheme.colors.dangerText};
+          color: ${euiTheme.colors.textDanger};
         }
         ${useEuiMinBreakpoint('m')} {
-          color: ${euiTheme.colors.successText};
+          color: ${euiTheme.colors.textSuccess};
         }
       `}
     >
-      This text is red on screens below the medium breakpoint, and green
-      on screens above.
+      This text is red on screens below the medium breakpoint, and green on
+      screens above.
     </p>
   );
 };

@@ -8,6 +8,7 @@ import {
   BarSeries,
   DataGenerator,
 } from '@elastic/charts';
+import { VIS_COLOR_STORE_EVENTS } from '@elastic/eui-theme-common';
 
 import {
   EuiSpacer,
@@ -29,7 +30,6 @@ import {
   EUI_VIS_COLOR_STORE,
 } from '../../../../src/services';
 import { useChartBaseTheme } from './utils/use_chart_base_theme';
-import { VIS_COLOR_STORE_EVENTS } from '@elastic/eui-theme-common';
 
 const getPaletteData = () => ({
   euiPaletteColorBlind,

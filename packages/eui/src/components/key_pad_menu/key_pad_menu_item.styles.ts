@@ -79,7 +79,6 @@ export const euiKeyPadMenuItemStyles = (euiThemeContext: UseEuiTheme) => {
       &:focus,
       &:focus-within {
         color: ${euiTheme.colors.textPrimary};
-
         background-color: ${!hasVisColorAdjustment
         ? euiTheme.colors.backgroundBaseInteractiveSelect
         : ''};

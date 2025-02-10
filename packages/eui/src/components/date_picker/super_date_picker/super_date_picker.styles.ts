@@ -162,7 +162,7 @@ export const euiSuperDatePickerStyles = (euiThemeContext: UseEuiTheme) => {
       `,
       invalid: css`
         .euiFormControlLayout__childrenWrapper {
-          color: ${euiTheme.colors.dangerText};
+          color: ${euiTheme.colors.textDanger};
           background-color: ${forms.backgroundColor};
           ${euiFormControlInvalidStyles(euiThemeContext)}
         }
