@@ -1,4 +1,4 @@
-import { useState, useCallback, useMemo } from 'react';
+import React, { useState, useCallback, useMemo } from 'react';
 import { css } from '@emotion/react';
 import {
   EuiDataGrid,
@@ -23,9 +23,11 @@ const data = Array.from({ length: 5 }).map((_) => ({
   name: `${faker.person.lastName()}, ${faker.person.firstName()} ${faker.person.suffix()}`,
   account: faker.finance.accountNumber(),
 }));
+
 const footerCellValues = {
   account: '5 accounts',
 };
+
 const renderFooterCellValue = ({ columnId }) =>
   footerCellValues[columnId] || null;
 
@@ -90,8 +92,7 @@ export default () => {
     } as EuiDataGridStyle;
 
     const snippet = `const gridStyle = ${objectConfigToSnippet(gridStyle)};
-
-<EuiDataGrid {...rest} gridStyle={gridStyle} />`;
+    <EuiDataGrid {...rest} gridStyle={gridStyle} />`;
 
     return [gridStyle, snippet];
   }, [

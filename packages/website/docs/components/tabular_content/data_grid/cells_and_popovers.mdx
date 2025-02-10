@@ -16,7 +16,7 @@ In addition to making a cell expandable, you can add more custom actions by sett
 
 `columns.cellActions` accepts an array of render functions. Behind the scenes, the functions are treated as a React components allowing hooks, context, and other React concepts to be used. Because different button types are used between the cell and the cell popover, we pass your render function a `Component` prop which you must render in order for your cell actions to switch correctly between button icons and buttons.
 
-To close a cell's expansion popover upon clicking an action, use the [closeCellPopover](/docs/tabular-content/data-grid-advanced#ref-methods) API available via the `ref` prop.
+To close a cell's expansion popover upon clicking an action, use the [closeCellPopover](/docs/tabular-content/data-grid/advanced#ref-methods) API available via the `ref` prop.
 
 In the below example, the email and city columns provide 1 `cellAction` each, while the country column provides 2 `cellAction`s.
 

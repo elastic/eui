@@ -159,7 +159,9 @@ export default () => {
 };
 ```
 
-## Column widths
+## Columns
+
+### Column widths
 
 By default, visible columns are given equal widths to fill up available space in the grid and can be resized by the user to any desired width. There are two parameters on **EuiDataGridColumn** to change this default behavior. `initialWidth` is a numeric value providing the starting width of a column, in pixels. Second, the `isResizable` value can be set to `false` to remove the user's ability to resize column.
 
@@ -254,7 +256,7 @@ export default () => {
 };
 ```
 
-## Column actions
+### Column actions
 
 By default, columns provide actions for sorting, moving and hiding. These can be extended with custom actions. You can customize the actions by setting the `actions` value of **EuiDataGridColumn**. Setting it to `false` removes the action menu displayed. You can configure it by passing an object of type **EuiDataGridColumnAction**. This allows you a hide, configure the existing actions and add new ones.
 
@@ -372,7 +374,7 @@ export default () => {
 };
 ```
 
-## Draggable columns
+### Draggable columns
 
 To reorder columns directly instead of via the actions menu popover, you can enable draggable **EuiDataGrid** header columns via the `columnVisibility.canDragAndDropColumns` prop. This will allow you to reorder the column by dragging them.
 
@@ -466,7 +468,7 @@ export default () => {
 };
 ```
 
-## Control columns
+### Control columns
 
 Control columns can be used to include ancillary cells not based on the dataset, such as row selection checkboxes or action buttons. These columns can be placed at either side of the data grid, and users are unable to resize, sort, or rearrange them.
 
@@ -825,6 +827,7 @@ export default function DataGrid() {
     ({ rowIndex, columnId }) => data[rowIndex][columnId],
     []
   );
+
   return (
     <SelectionContext.Provider value={rowSelection}>
       <div>
@@ -936,6 +939,7 @@ const leadingControlColumns = [
   {
     id: 'selection',
     width: 32,
+
     // Check state doesn't actually work - this is just a static example
     headerCellRender: () => (
       <EuiCheckbox
@@ -994,8 +998,8 @@ const RenderFooterCellValue = ({ columnId, setCellProps }) => {
 };
 
 export default () => {
-  // Pagination
   const [pagination, setPagination] = useState({ pageIndex: 0 });
+
   const onChangeItemsPerPage = useCallback(
     (pageSize) =>
       setPagination((pagination) => ({
@@ -1011,12 +1015,10 @@ export default () => {
     [setPagination]
   );
 
-  // Column visibility
   const [visibleColumns, setVisibleColumns] = useState(
     columns.map(({ id }) => id)
   );
 
-  // Footer row
   const [showFooterRow, setShowFooterRow] = useState(true);
 
   return (
