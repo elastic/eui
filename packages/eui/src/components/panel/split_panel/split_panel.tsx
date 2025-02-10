@@ -78,6 +78,7 @@ export const _EuiSplitPanelOuter: FunctionComponent<
   children,
   className,
   direction = 'column',
+  hasBorder = true,
   responsive = ['xs', 's'],
   ...rest
 }) => {
@@ -100,6 +101,7 @@ export const _EuiSplitPanelOuter: FunctionComponent<
       grow={false}
       className={classes}
       css={cssStyles}
+      hasBorder={hasBorder}
       {...(rest as _EuiPanelProps)}
     >
       {children}

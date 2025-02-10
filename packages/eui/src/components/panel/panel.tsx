@@ -100,7 +100,7 @@ export const EuiPanel: FunctionComponent<EuiPanelProps> = ({
   paddingSize = 'm',
   borderRadius = 'm',
   color = 'plain',
-  hasShadow = true,
+  hasShadow = false,
   hasBorder = false,
   grow = true,
   panelRef,
