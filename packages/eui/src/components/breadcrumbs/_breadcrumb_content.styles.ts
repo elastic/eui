@@ -25,7 +25,11 @@ export const euiBreadcrumbContentStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
 
   // Reuse button colors for `type="application`" clickable breadcrumbs
-  const applicationButtonColors = euiButtonColor(euiThemeContext, 'primary');
+  const buttonColors = euiButtonColor(euiThemeContext, 'primary');
+  const applicationButtonColors = {
+    backgroundColor: euiTheme.colors.backgroundLightPrimary,
+    color: buttonColors.color,
+  };
 
   // Create custom darker gray colors for non-clickable application breadcrumbs
   // The numbers/ratios are fairly specific here to pass WCAG AA contrast minimums
