@@ -891,6 +891,9 @@ const columns: Array<EuiBasicTableColumn<User>> = [
   {
     field: 'dateOfBirth',
     name: 'Date of Birth',
+    nameTooltip: {
+      content: "Colloquially known as a 'birthday'",
+    },
     dataType: 'date',
     render: (dateOfBirth: User['dateOfBirth']) =>
       formatDate(dateOfBirth, 'dobLong'),
@@ -899,6 +902,9 @@ const columns: Array<EuiBasicTableColumn<User>> = [
   {
     field: 'location',
     name: 'Location',
+    nameTooltip: {
+      content: 'The city and country in which this person resides',
+    },
     truncateText: true,
     textOnly: true,
     render: (location: User['location']) => {
@@ -908,6 +914,9 @@ const columns: Array<EuiBasicTableColumn<User>> = [
   {
     field: 'online',
     name: 'Online',
+    nameTooltip: {
+      content: 'Free to talk or busy with business',
+    },
     dataType: 'boolean',
     render: (online: User['online']) => {
       const color = online ? 'success' : 'danger';

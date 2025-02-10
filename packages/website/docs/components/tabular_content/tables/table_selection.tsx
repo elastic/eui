@@ -185,6 +185,7 @@ export default () => {
         tableCaption="Demo for an EuiBasicTable with ${
           isControlled ? 'controlled' : 'uncontrolled'
         } selection"
+        responsiveBreakpoint={false}
         items={users}
         itemId="id"
         rowHeader="firstName"
