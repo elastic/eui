@@ -144,7 +144,7 @@ export default () => {
 
 ```
 
-## In-memory table selection
+## Table selection
 
 To enable selection, both the `itemId` and `selection` props must be passed. The following example shows how to use **EuiInMemoryTable** with both controlled and uncontrolled item selection. It also shows how you can display messages, errors and show loading indication.
 
@@ -156,9 +156,11 @@ import InMemoryTableSelection from './table_selection';
 
 <InMemoryTableSelection type="inMemory" />
 
-## In-memory table with search
+## Searching
 
-This example shows how to configure **EuiInMemoryTable** to display a search bar by passing the `search` prop. For more detailed information about the syntax and configuration accepted by this prop, see [**EuiSearchBar**](../../forms/search-bar).
+### Search bar
+
+This example shows how to configure **EuiInMemoryTable** to display a search bar by passing the `search` prop. For more detailed information about the syntax and configuration accepted by this prop, see [**EuiSearchBar**](../../../forms/search-bar).
 
 ```tsx interactive
 import React, { useState } from 'react';
@@ -346,7 +348,7 @@ export default () => {
 };
 ```
 
-## In-memory table with search callback
+### Search callback
 
 The example shows how to configure **EuiInMemoryTable** to display a search bar and intercept the search value when it changes so you can perform your own search logic.
 
@@ -498,7 +500,7 @@ export default () => {
 };
 ```
 
-## In-memory table with search and external state
+### External state
 
 The example shows how to configure **EuiInMemoryTable** when both external and internal search/filter states are in use.
 
@@ -751,7 +753,7 @@ export default () => {
 };
 ```
 
-## In-memory table with custom sort values
+## Custom sort values
 
 Sometimes the value displayed in a column is not appropriate to use for sorting, such as pre-formatting values to be human-readable. In these cases it's possible to pass the `sortable` prop as a function instead of `true` or `false`. The function is used to extract or calculate the intended sort value for each `item`.
 
@@ -816,7 +818,7 @@ export default () => {
 };
 ```
 
-## In-memory table with controlled pagination
+## Controlled pagination
 
 By default `EuiInMemoryTable` resets its page index when receiving a new `EuiInMemoryTable` array. To avoid this behavior the pagination object optionally takes a `pageIndex` value to control this yourself. Additionally, `pageSize` can also be controlled the same way. Both of these are provided to your app during the `onTableChange` callback.
 
