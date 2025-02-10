@@ -18,6 +18,7 @@ import {
   UseEuiTheme,
   useEuiMemoizedStyles,
 } from '../../services';
+import { logicalCSS } from '../functions';
 
 export const BUTTON_COLORS = [
   'text',
@@ -212,15 +213,51 @@ const euiButtonDisplaysColors = (euiThemeContext: UseEuiTheme) => {
     Record<Colors, SerializedStyles>
   >;
 
-  const interactiveStyles = (buttonColors: ButtonVariantColors) => `
-    &:hover:not(:disabled) {
-      background-color: ${buttonColors.backgroundHover};
+  const interactiveStyles = (
+    buttonColors: ButtonVariantColors,
+    type: 'fill' | 'overlay' = 'fill'
+  ) => {
+    if (type === 'overlay') {
+      return `
+        position: relative;
+        overflow: hidden;
+
+        &:hover:not(:disabled) {
+          &::after {
+            ${logicalCSS('width', '100%')}
+            ${logicalCSS('height', '100%')}
+
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-color: ${buttonColors.backgroundHover};
+          }
+        }
+
+        &:active:not(:disabled) {
+          &::after {
+            ${logicalCSS('width', '100%')}
+            ${logicalCSS('height', '100%')}
+
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-color: ${buttonColors.backgroundActive};
+          }
+        }
+      `;
     }
 
-    &:active:not(:disabled) {
-      background-color: ${buttonColors.backgroundActive};
-    }
-  `;
+    return `
+        &:hover:not(:disabled) {
+          background-color: ${buttonColors.backgroundHover};
+        }
+
+        &:active:not(:disabled) {
+          background-color: ${buttonColors.backgroundActive};
+        }
+      `;
+  };
 
   BUTTON_DISPLAYS.forEach((display) => {
     displaysColorsMap[display] = {} as Record<Colors, SerializedStyles>;
@@ -241,7 +278,7 @@ const euiButtonDisplaysColors = (euiThemeContext: UseEuiTheme) => {
               euiTheme.colors.borderBasePlain
             };
 
-            ${interactiveStyles(buttonColors)}
+            ${interactiveStyles(buttonColors, 'overlay')};
           `;
 
           displaysColorsMap[display][color] = css`
