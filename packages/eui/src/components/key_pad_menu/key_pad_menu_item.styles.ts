@@ -55,17 +55,16 @@ export const euiKeyPadMenuItemStyles = (euiThemeContext: UseEuiTheme) => {
         cursor: pointer;
         text-decoration: underline;
 
-      ${hasVisColorAdjustment
-        ? focusTransformStyles
-        : `background-color: ${euiTheme.colors.backgroundBaseInteractiveHover}`}
+        ${hasVisColorAdjustment
+          ? focusTransformStyles
+          : `background-color: ${euiTheme.colors.backgroundBaseInteractiveHover}`}
       }
 
       &:focus {
         box-shadow: none;
         background-color: ${hasVisColorAdjustment
-        ? euiTheme.focus.backgroundColor
-        : euiTheme.colors.backgroundBaseInteractiveHover
-      };
+          ? euiTheme.focus.backgroundColor
+          : euiTheme.colors.backgroundBaseInteractiveHover};
       }
     `,
     selected: css`
@@ -80,8 +79,8 @@ export const euiKeyPadMenuItemStyles = (euiThemeContext: UseEuiTheme) => {
       &:focus-within {
         color: ${euiTheme.colors.textPrimary};
         background-color: ${!hasVisColorAdjustment
-        ? euiTheme.colors.backgroundBaseInteractiveSelect
-        : ''};
+          ? euiTheme.colors.backgroundBaseInteractiveSelect
+          : ''};
       }
     `,
     disabled: {
@@ -91,16 +90,17 @@ export const euiKeyPadMenuItemStyles = (euiThemeContext: UseEuiTheme) => {
 
         .euiKeyPadMenuItem__icon {
           filter: ${hasVisColorAdjustment ? 'grayscale(100%)' : ''};
+
           svg * {
             fill: ${euiTheme.colors.textDisabled};
           }
         }
       `,
       selected: css`
-      background-color: ${hasVisColorAdjustment
+        background-color: ${hasVisColorAdjustment
           ? euiTheme.components.keyPadMenuItemBackgroundDisabledSelect
           : euiTheme.colors.backgroundBaseDisabled};
-       `,
+      `,
     },
   };
 };
