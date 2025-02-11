@@ -118,7 +118,7 @@ const _buttons = {
   backgroundAccentHover: SEMANTIC_COLORS.accent70Alpha12,
   backgroundAccentSecondaryHover: SEMANTIC_COLORS.accentSecondary70Alpha12,
   backgroundSuccessHover: SEMANTIC_COLORS.success70Alpha12,
-  backgroundWarningHover: SEMANTIC_COLORS.warning40Alpha20,
+  backgroundWarningHover: SEMANTIC_COLORS.warning60Alpha16,
   backgroundDangerHover: SEMANTIC_COLORS.danger70Alpha12,
   backgroundTextHover: SEMANTIC_COLORS.primary100Alpha8,
 
@@ -126,7 +126,7 @@ const _buttons = {
   backgroundAccentActive: SEMANTIC_COLORS.accent70Alpha16,
   backgroundAccentSecondaryActive: SEMANTIC_COLORS.accentSecondary70Alpha16,
   backgroundSuccessActive: SEMANTIC_COLORS.success70Alpha16,
-  backgroundWarningActive: SEMANTIC_COLORS.warning40Alpha24,
+  backgroundWarningActive: SEMANTIC_COLORS.warning60Alpha20,
   backgroundDangerActive: SEMANTIC_COLORS.danger70Alpha16,
   backgroundTextActive: SEMANTIC_COLORS.primary100Alpha12,
 
@@ -160,7 +160,7 @@ const _buttons = {
   backgroundEmptyAccentHover: SEMANTIC_COLORS.accent70Alpha12,
   backgroundEmptyAccentSecondaryHover: SEMANTIC_COLORS.accentSecondary70Alpha12,
   backgroundEmptySuccessHover: SEMANTIC_COLORS.success70Alpha12,
-  backgroundEmptyWarningHover: SEMANTIC_COLORS.warning40Alpha20,
+  backgroundEmptyWarningHover: SEMANTIC_COLORS.warning60Alpha16,
   backgroundEmptyDangerHover: SEMANTIC_COLORS.danger70Alpha12,
   backgroundEmptyTextHover: SEMANTIC_COLORS.primary100Alpha8,
 
@@ -169,7 +169,7 @@ const _buttons = {
   backgroundEmptyAccentSecondaryActive:
     SEMANTIC_COLORS.accentSecondary70Alpha16,
   backgroundEmptySuccessActive: SEMANTIC_COLORS.success70Alpha16,
-  backgroundEmptyWarningActive: SEMANTIC_COLORS.warning40Alpha24,
+  backgroundEmptyWarningActive: SEMANTIC_COLORS.warning60Alpha20,
   backgroundEmptyDangerActive: SEMANTIC_COLORS.danger70Alpha16,
   backgroundEmptyTextActive: SEMANTIC_COLORS.primary100Alpha12,
 
@@ -270,7 +270,7 @@ const _dark_buttons = {
   backgroundAccentHover: SEMANTIC_COLORS.accent70Alpha16,
   backgroundAccentSecondaryHover: SEMANTIC_COLORS.accentSecondary70Alpha16,
   backgroundSuccessHover: SEMANTIC_COLORS.success70Alpha16,
-  backgroundWarningHover: SEMANTIC_COLORS.warning40Alpha12,
+  backgroundWarningHover: SEMANTIC_COLORS.warning60Alpha12,
   backgroundDangerHover: SEMANTIC_COLORS.danger70Alpha16,
   backgroundTextHover: SEMANTIC_COLORS.plainLightAlpha12,
 
@@ -278,7 +278,7 @@ const _dark_buttons = {
   backgroundAccentActive: SEMANTIC_COLORS.accent70Alpha20,
   backgroundAccentSecondaryActive: SEMANTIC_COLORS.accentSecondary70Alpha20,
   backgroundSuccessActive: SEMANTIC_COLORS.success70Alpha20,
-  backgroundWarningActive: SEMANTIC_COLORS.warning40Alpha16,
+  backgroundWarningActive: SEMANTIC_COLORS.warning60Alpha16,
   backgroundDangerActive: SEMANTIC_COLORS.danger70Alpha20,
   backgroundTextActive: SEMANTIC_COLORS.plainLightAlpha16,
 
@@ -312,7 +312,7 @@ const _dark_buttons = {
   backgroundEmptyAccentHover: SEMANTIC_COLORS.accent70Alpha16,
   backgroundEmptyAccentSecondaryHover: SEMANTIC_COLORS.accentSecondary70Alpha16,
   backgroundEmptySuccessHover: SEMANTIC_COLORS.success70Alpha16,
-  backgroundEmptyWarningHover: SEMANTIC_COLORS.warning40Alpha12,
+  backgroundEmptyWarningHover: SEMANTIC_COLORS.warning60Alpha12,
   backgroundEmptyDangerHover: SEMANTIC_COLORS.danger70Alpha16,
   backgroundEmptyTextHover: SEMANTIC_COLORS.plainLightAlpha12,
 
@@ -321,7 +321,7 @@ const _dark_buttons = {
   backgroundEmptyAccentSecondaryActive:
     SEMANTIC_COLORS.accentSecondary70Alpha20,
   backgroundEmptySuccessActive: SEMANTIC_COLORS.success70Alpha20,
-  backgroundEmptyWarningActive: SEMANTIC_COLORS.warning40Alpha16,
+  backgroundEmptyWarningActive: SEMANTIC_COLORS.warning60Alpha16,
   backgroundEmptyDangerActive: SEMANTIC_COLORS.danger70Alpha20,
   backgroundEmptyTextActive: SEMANTIC_COLORS.plainLightAlpha16,
 
