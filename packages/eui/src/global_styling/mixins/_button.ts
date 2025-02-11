@@ -66,13 +66,13 @@ const getButtonVariantTokenValues = (
 
   const backgroundHoverTokenName = getTokenName(
     backgroundTokenBase,
-    variant === 'base' ? undefined : color,
+    color,
     'hover'
   ) as keyof _EuiThemeButtonColors;
 
   const backgroundActiveTokenName = getTokenName(
     backgroundTokenBase,
-    variant === 'base' ? undefined : color,
+    color,
     'active'
   ) as keyof _EuiThemeButtonColors;
 
@@ -209,7 +209,7 @@ const euiButtonDisplaysColors = (euiThemeContext: UseEuiTheme) => {
         overflow: hidden;
 
         &:hover:not(:disabled) {
-          &::after {
+          &::before {
             ${logicalCSS('width', '100%')}
             ${logicalCSS('height', '100%')}
 
@@ -221,7 +221,7 @@ const euiButtonDisplaysColors = (euiThemeContext: UseEuiTheme) => {
         }
 
         &:active:not(:disabled) {
-          &::after {
+          &::before {
             ${logicalCSS('width', '100%')}
             ${logicalCSS('height', '100%')}
 
