@@ -7,8 +7,8 @@
  */
 
 import { createContext } from 'react';
-import { EuiThemeBorealis } from '@elastic/eui-theme-borealis';
 
+import { EuiThemeAmsterdam } from '../../themes/amsterdam/theme';
 import {
   EuiThemeColorModeStandard,
   EuiThemeSystem,
@@ -19,12 +19,13 @@ import {
 
 import { DEFAULT_COLOR_MODE, getComputed } from './utils';
 
-export const EuiSystemContext = createContext<EuiThemeSystem>(EuiThemeBorealis);
+export const EuiSystemContext =
+  createContext<EuiThemeSystem>(EuiThemeAmsterdam);
 export const EuiModificationsContext = createContext<EuiThemeModifications>({});
 export const EuiColorModeContext =
   createContext<EuiThemeColorModeStandard>(DEFAULT_COLOR_MODE);
 export const defaultComputedTheme = getComputed(
-  EuiThemeBorealis,
+  EuiThemeAmsterdam,
   {},
   DEFAULT_COLOR_MODE
 );
