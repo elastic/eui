@@ -4,7 +4,7 @@ exports[`useEuiButtonColorCSS base 1`] = `
 {
   "accent": {
     "map": undefined,
-    "name": "1vdzqtw-displaysColorsMap-display-color",
+    "name": "1y2o0j1-displaysColorsMap-display-color",
     "next": undefined,
     "styles": "color:#a11262;background-color:#FFFFFF; 
             border: 1px solid #CAD3E2;
@@ -14,26 +14,26 @@ exports[`useEuiButtonColorCSS base 1`] = `
         overflow: hidden;
 
         &:hover:not(:disabled) {
-          &::after {
+          &::before {
             inline-size: 100%;
             block-size: 100%;
 
             content: '';
             position: absolute;
             inset: 0;
-            background-color: rgba(23,80,186, 0.04);
+            background-color: rgba(229,74,145, 0.12);
           }
         }
 
         &:active:not(:disabled) {
-          &::after {
+          &::before {
             inline-size: 100%;
             block-size: 100%;
 
             content: '';
             position: absolute;
             inset: 0;
-            background-color: rgba(23,80,186, 0.08);
+            background-color: rgba(229,74,145, 0.16);
           }
         }
       ;
@@ -42,7 +42,7 @@ exports[`useEuiButtonColorCSS base 1`] = `
   },
   "danger": {
     "map": undefined,
-    "name": "ei1eem-displaysColorsMap-display-color",
+    "name": "25te9b-displaysColorsMap-display-color",
     "next": undefined,
     "styles": "color:#a71627;background-color:#FFFFFF; 
             border: 1px solid #CAD3E2;
@@ -52,26 +52,26 @@ exports[`useEuiButtonColorCSS base 1`] = `
         overflow: hidden;
 
         &:hover:not(:disabled) {
-          &::after {
+          &::before {
             inline-size: 100%;
             block-size: 100%;
 
             content: '';
             position: absolute;
             inset: 0;
-            background-color: rgba(23,80,186, 0.04);
+            background-color: rgba(238,76,72, 0.12);
           }
         }
 
         &:active:not(:disabled) {
-          &::after {
+          &::before {
             inline-size: 100%;
             block-size: 100%;
 
             content: '';
             position: absolute;
             inset: 0;
-            background-color: rgba(23,80,186, 0.08);
+            background-color: rgba(238,76,72, 0.16);
           }
         }
       ;
@@ -80,7 +80,7 @@ exports[`useEuiButtonColorCSS base 1`] = `
   },
   "disabled": {
     "map": undefined,
-    "name": "1xs1g9f-displaysColorsMap-display-color",
+    "name": "1u1jjoj-displaysColorsMap-display-color",
     "next": undefined,
     "styles": "color:#798EAF;background-color:#FFFFFF; 
             border: 1px solid #CAD3E2;
@@ -90,26 +90,26 @@ exports[`useEuiButtonColorCSS base 1`] = `
         overflow: hidden;
 
         &:hover:not(:disabled) {
-          &::after {
+          &::before {
             inline-size: 100%;
             block-size: 100%;
 
             content: '';
             position: absolute;
             inset: 0;
-            background-color: rgba(23,80,186, 0.04);
+            background-color: undefined;
           }
         }
 
         &:active:not(:disabled) {
-          &::after {
+          &::before {
             inline-size: 100%;
             block-size: 100%;
 
             content: '';
             position: absolute;
             inset: 0;
-            background-color: rgba(23,80,186, 0.08);
+            background-color: undefined;
           }
         }
       ;
@@ -118,7 +118,7 @@ exports[`useEuiButtonColorCSS base 1`] = `
   },
   "primary": {
     "map": undefined,
-    "name": "1043h5l-displaysColorsMap-display-color",
+    "name": "urkbuo-displaysColorsMap-display-color",
     "next": undefined,
     "styles": "color:#1750ba;background-color:#FFFFFF; 
             border: 1px solid #CAD3E2;
@@ -128,26 +128,26 @@ exports[`useEuiButtonColorCSS base 1`] = `
         overflow: hidden;
 
         &:hover:not(:disabled) {
-          &::after {
+          &::before {
             inline-size: 100%;
             block-size: 100%;
 
             content: '';
             position: absolute;
             inset: 0;
-            background-color: rgba(23,80,186, 0.04);
+            background-color: rgba(55,136,255, 0.12);
           }
         }
 
         &:active:not(:disabled) {
-          &::after {
+          &::before {
             inline-size: 100%;
             block-size: 100%;
 
             content: '';
             position: absolute;
             inset: 0;
-            background-color: rgba(23,80,186, 0.08);
+            background-color: rgba(55,136,255, 0.16);
           }
         }
       ;
@@ -156,7 +156,7 @@ exports[`useEuiButtonColorCSS base 1`] = `
   },
   "success": {
     "map": undefined,
-    "name": "1gvlatw-displaysColorsMap-display-color",
+    "name": "135xpoa-displaysColorsMap-display-color",
     "next": undefined,
     "styles": "color:#09724d;background-color:#FFFFFF; 
             border: 1px solid #CAD3E2;
@@ -166,26 +166,26 @@ exports[`useEuiButtonColorCSS base 1`] = `
         overflow: hidden;
 
         &:hover:not(:disabled) {
-          &::after {
+          &::before {
             inline-size: 100%;
             block-size: 100%;
 
             content: '';
             position: absolute;
             inset: 0;
-            background-color: rgba(23,80,186, 0.04);
+            background-color: rgba(4,174,126, 0.12);
           }
         }
 
         &:active:not(:disabled) {
-          &::after {
+          &::before {
             inline-size: 100%;
             block-size: 100%;
 
             content: '';
             position: absolute;
             inset: 0;
-            background-color: rgba(23,80,186, 0.08);
+            background-color: rgba(4,174,126, 0.16);
           }
         }
       ;
@@ -194,7 +194,7 @@ exports[`useEuiButtonColorCSS base 1`] = `
   },
   "text": {
     "map": undefined,
-    "name": "1vphzy1-displaysColorsMap-display-color",
+    "name": "18upw7n-displaysColorsMap-display-color",
     "next": undefined,
     "styles": "color:#1d2a3e;background-color:#FFFFFF; 
             border: 1px solid #CAD3E2;
@@ -204,19 +204,7 @@ exports[`useEuiButtonColorCSS base 1`] = `
         overflow: hidden;
 
         &:hover:not(:disabled) {
-          &::after {
-            inline-size: 100%;
-            block-size: 100%;
-
-            content: '';
-            position: absolute;
-            inset: 0;
-            background-color: rgba(23,80,186, 0.04);
-          }
-        }
-
-        &:active:not(:disabled) {
-          &::after {
+          &::before {
             inline-size: 100%;
             block-size: 100%;
 
@@ -226,13 +214,25 @@ exports[`useEuiButtonColorCSS base 1`] = `
             background-color: rgba(23,80,186, 0.08);
           }
         }
+
+        &:active:not(:disabled) {
+          &::before {
+            inline-size: 100%;
+            block-size: 100%;
+
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-color: rgba(23,80,186, 0.12);
+          }
+        }
       ;
           ;;label:base-text;",
     "toString": [Function],
   },
   "warning": {
     "map": undefined,
-    "name": "1apa06b-displaysColorsMap-display-color",
+    "name": "l5dk9q-displaysColorsMap-display-color",
     "next": undefined,
     "styles": "color:#6a4906;background-color:#FFFFFF; 
             border: 1px solid #CAD3E2;
@@ -242,26 +242,26 @@ exports[`useEuiButtonColorCSS base 1`] = `
         overflow: hidden;
 
         &:hover:not(:disabled) {
-          &::after {
+          &::before {
             inline-size: 100%;
             block-size: 100%;
 
             content: '';
             position: absolute;
             inset: 0;
-            background-color: rgba(23,80,186, 0.04);
+            background-color: rgba(250,203,61, 0.20);
           }
         }
 
         &:active:not(:disabled) {
-          &::after {
+          &::before {
             inline-size: 100%;
             block-size: 100%;
 
             content: '';
             position: absolute;
             inset: 0;
-            background-color: rgba(23,80,186, 0.08);
+            background-color: rgba(250,203,61, 0.24);
           }
         }
       ;
@@ -365,15 +365,15 @@ exports[`useEuiButtonColorCSS empty 1`] = `
   },
   "warning": {
     "map": undefined,
-    "name": "11x9t9l-displaysColorsMap-display-color",
+    "name": "rt4nbt-displaysColorsMap-display-color",
     "next": undefined,
     "styles": "color:#6a4906; 
         &:hover:not(:disabled) {
-          background-color: rgba(250,203,61, 0.24);
+          background-color: rgba(250,203,61, 0.20);
         }
 
         &:active:not(:disabled) {
-          background-color: rgba(250,203,61, 0.28);
+          background-color: rgba(250,203,61, 0.24);
         }
       ;;label:empty-warning;",
     "toString": [Function],

@@ -21,8 +21,21 @@ export type _EuiThemeButtonColors = {
   backgroundText: ColorModeSwitch;
   backgroundDisabled: ColorModeSwitch;
 
-  backgroundHover: ColorModeSwitch;
-  backgroundActive: ColorModeSwitch;
+  backgroundPrimaryHover: ColorModeSwitch;
+  backgroundAccentHover: ColorModeSwitch;
+  backgroundAccentSecondaryHover: ColorModeSwitch;
+  backgroundSuccessHover: ColorModeSwitch;
+  backgroundWarningHover: ColorModeSwitch;
+  backgroundDangerHover: ColorModeSwitch;
+  backgroundTextHover: ColorModeSwitch;
+
+  backgroundPrimaryActive: ColorModeSwitch;
+  backgroundAccentActive: ColorModeSwitch;
+  backgroundAccentSecondaryActive: ColorModeSwitch;
+  backgroundSuccessActive: ColorModeSwitch;
+  backgroundWarningActive: ColorModeSwitch;
+  backgroundDangerActive: ColorModeSwitch;
+  backgroundTextActive: ColorModeSwitch;
 
   backgroundFilledPrimary: ColorModeSwitch;
   backgroundFilledAccent: ColorModeSwitch;
