@@ -8,7 +8,8 @@
 
 import React, { PropsWithChildren, JSX } from 'react';
 import type { EmotionCache } from '@emotion/css';
-import { EuiThemeBorealis } from '@elastic/eui-theme-borealis';
+
+import { EuiThemeAmsterdam } from '../../themes';
 
 import {
   EuiThemeProvider,
@@ -43,7 +44,7 @@ export interface EuiProviderProps<T>
     EuiGlobalStylesProps,
     Pick<EuiThemeProviderProps<T>, 'modify'> {
   /**
-   * Provide a specific EuiTheme; Defaults to EuiThemeBorealis;
+   * Provide a specific EuiTheme; Defaults to EuiThemeAmsterdam;
    * Pass `null` to remove all theming including global reset
    */
   theme?: EuiThemeSystem | null;
@@ -100,7 +101,7 @@ export interface EuiProviderProps<T>
 
 export const EuiProvider = <T extends {} = {}>({
   cache = fallbackCache,
-  theme = EuiThemeBorealis,
+  theme = EuiThemeAmsterdam,
   globalStyles: Globals = EuiGlobalStyles,
   utilityClasses: Utilities = EuiUtilityClasses,
   colorMode,
