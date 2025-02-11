@@ -119,6 +119,56 @@ export default () => {
 };
 ```
 
+### Dynamic `minDate` and `maxDate`
+
+By using `minDate` and `maxDate`, and updating the values based on `startDate` and `endDate`, users get immediate feedback on what range values are allowed.
+
+```tsx interactive
+import React, { useState } from 'react';
+import { EuiDatePicker, EuiDatePickerRange } from '@elastic/eui';
+import moment from 'moment';
+
+export default () => {
+  const minDate = moment().subtract(2, 'y');
+  const maxDate = moment();
+  const [startDate, setStartDate] = useState(minDate);
+  const [endDate, setEndDate] = useState(maxDate);
+
+  const isInvalid =
+    startDate > endDate || startDate < minDate || endDate > maxDate;
+
+  return (
+    <EuiDatePickerRange
+      isInvalid={isInvalid}
+      startDateControl={
+        <EuiDatePicker
+          selected={startDate}
+          onChange={(date) => date && setStartDate(date)}
+          startDate={startDate}
+          endDate={endDate}
+          minDate={minDate}
+          maxDate={endDate}
+          aria-label="Start date"
+          showTimeSelect
+        />
+      }
+      endDateControl={
+        <EuiDatePicker
+          selected={endDate}
+          onChange={(date) => date && setEndDate(date)}
+          startDate={startDate}
+          endDate={endDate}
+          minDate={startDate}
+          maxDate={maxDate}
+          aria-label="End date"
+          showTimeSelect
+        />
+      }
+    />
+  );
+};
+```
+
 ## Props
 
 import docgen from '@elastic/eui-docgen/dist/components/date_picker';
