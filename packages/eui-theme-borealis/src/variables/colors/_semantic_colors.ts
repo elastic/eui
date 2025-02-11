@@ -190,8 +190,8 @@ const _semantic_alpha_colors = {
 
   warning40Alpha12: `rgba(${_semantic_rgb_colors.warning40RGB}, 0.12)`,
   warning40Alpha16: `rgba(${_semantic_rgb_colors.warning40RGB}, 0.16)`,
+  warning40Alpha20: `rgba(${_semantic_rgb_colors.warning40RGB}, 0.2)`,
   warning40Alpha24: `rgba(${_semantic_rgb_colors.warning40RGB}, 0.24)`,
-  warning40Alpha28: `rgba(${_semantic_rgb_colors.warning40RGB}, 0.28)`,
 
   danger70Alpha12: `rgba(${_semantic_rgb_colors.danger70RGB}, 0.12)`,
   danger70Alpha16: `rgba(${_semantic_rgb_colors.danger70RGB}, 0.16)`,

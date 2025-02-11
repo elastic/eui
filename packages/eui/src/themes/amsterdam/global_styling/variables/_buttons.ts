@@ -49,8 +49,63 @@ const _buttons = {
     ['colors.lightShade']
   ),
 
-  backgroundHover: 'transparent',
-  backgroundActive: 'transparent',
+  backgroundPrimaryHover: computed(
+    ([primary]) => transparentize(primary, 0.1),
+    ['colors.primary']
+  ),
+  backgroundAccentHover: computed(
+    ([accent]) => transparentize(accent, 0.1),
+    ['colors.accent']
+  ),
+  backgroundAccentSecondaryHover: computed(
+    ([success]) => transparentize(success, 0.1),
+    ['colors.success']
+  ),
+  backgroundSuccessHover: computed(
+    ([success]) => transparentize(success, 0.1),
+    ['colors.success']
+  ),
+  backgroundWarningHover: computed(
+    ([warning]) => transparentize(warning, 0.1),
+    ['colors.warning']
+  ),
+  backgroundDangerHover: computed(
+    ([danger]) => transparentize(danger, 0.1),
+    ['colors.danger']
+  ),
+  backgroundTextHover: computed(
+    ([lightShade]) => transparentize(lightShade, 0.2),
+    ['colors.lightShade']
+  ),
+
+  backgroundPrimaryActive: computed(
+    ([primary]) => transparentize(primary, 0.1),
+    ['colors.primary']
+  ),
+  backgroundAccentActive: computed(
+    ([accent]) => transparentize(accent, 0.1),
+    ['colors.accent']
+  ),
+  backgroundAccentSecondaryActive: computed(
+    ([success]) => transparentize(success, 0.1),
+    ['colors.success']
+  ),
+  backgroundSuccessActive: computed(
+    ([success]) => transparentize(success, 0.1),
+    ['colors.success']
+  ),
+  backgroundWarningActive: computed(
+    ([warning]) => transparentize(warning, 0.1),
+    ['colors.warning']
+  ),
+  backgroundDangerActive: computed(
+    ([danger]) => transparentize(danger, 0.1),
+    ['colors.danger']
+  ),
+  backgroundTextActive: computed(
+    ([lightShade]) => transparentize(lightShade, 0.2),
+    ['colors.lightShade']
+  ),
 
   backgroundFilledPrimary: computed(
     ([backgroundFilledPrimary]) => backgroundFilledPrimary,
