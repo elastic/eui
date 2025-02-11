@@ -43,7 +43,7 @@ const component_colors: _EuiThemeComponentColors = {
 
   buttonGroupBorderColor: border_colors.borderBasePlain,
   buttonGroupBorderColorSelected: border_colors.borderBasePlain,
-  buttonGroupFocusColor: brand_text_colors.textPrimary,
+  buttonGroupFocusColor: SEMANTIC_COLORS.plainDark,
 
   codeBackground: background_colors.backgroundBaseHighlighted,
   codeBackgroundSelected: 'inherit',
@@ -107,10 +107,8 @@ const component_colors: _EuiThemeComponentColors = {
   listGroupItemBackgroundPrimaryHover:
     background_colors.backgroundBaseInteractiveHover,
 
-  loadingSpinnerBorder:
-    border_colors.borderBasePlain,
-  loadingSpinnerHighlight:
-    border_colors.borderStrongPrimary,
+  loadingSpinnerBorder: border_colors.borderBasePlain,
+  loadingSpinnerHighlight: border_colors.borderStrongPrimary,
 
   loadingChartMonoBackground0: SEMANTIC_COLORS.shade20,
   loadingChartMonoBackground1: SEMANTIC_COLORS.shade30,
@@ -184,7 +182,7 @@ export const components: _EuiThemeComponents = {
 
     buttonGroupBorderColor: dark_border_colors.borderBasePlain,
     buttonGroupBorderColorSelected: dark_border_colors.borderBasePlain,
-    buttonGroupFocusColor: dark_brand_text_colors.textPrimary,
+    buttonGroupFocusColor: SEMANTIC_COLORS.plainLight,
 
     codeBackground: dark_background_colors.backgroundBaseHighlighted,
     codeBackgroundSelected: 'inherit',
@@ -247,11 +245,9 @@ export const components: _EuiThemeComponents = {
     listGroupItemBackgroundPrimaryHover:
       dark_background_colors.backgroundBaseInteractiveHover,
 
-    loadingSpinnerBorder: 
-      dark_border_colors.borderBasePlain,
-    loadingSpinnerHighlight: 
-      dark_border_colors.borderStrongPrimary,
-    
+    loadingSpinnerBorder: dark_border_colors.borderBasePlain,
+    loadingSpinnerHighlight: dark_border_colors.borderStrongPrimary,
+
     loadingChartMonoBackground0: SEMANTIC_COLORS.shade110,
     loadingChartMonoBackground1: SEMANTIC_COLORS.shade100,
     loadingChartMonoBackground2: SEMANTIC_COLORS.shade90,
