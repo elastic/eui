@@ -61,8 +61,11 @@ export const euiCollapsibleNavSubItemsStyles = ({ euiTheme }: UseEuiTheme) => {
     `,
     isSubItem: css`
       ${logicalCSS('border-left', euiTheme.border.thin)}
-      ${logicalCSS('margin-left', euiTheme.size.s)}
-        ${logicalCSS(
+      ${logicalCSS(
+        'margin-left',
+        mathWithUnits([euiTheme.size.xs], (x) => x * 4)
+      )}
+      ${logicalCSS(
         'padding-left',
         mathWithUnits(
           [euiTheme.size.s, euiTheme.border.width.thin],
