@@ -36,9 +36,9 @@ export default () => {
 };
 ```
 
-Make sure to pass a `label` to ensure a larger clickable area and ensure that screen readers will read out the label when the user is focused on the input. You can find more about labels usage in the [guidelines tab](/docs/forms/selection-controls/guidelines).
+Make sure to pass a `label` to ensure a larger clickable area and ensure that screen readers will read out the label when the user is focused on the input. You can find more about labels usage in the [guidelines tab](/docs/forms/selection/checkboxes-and-radios/guidelines).
 
-If the switch is described in some other manner, like when using an [**EuiFormRow**](/docs/forms/form-layouts#form-and-form-rows), you can eliminate the visible label with `showLabel={false}` or use it to further describe the state.
+If the switch is described in some other manner, like when using an [**EuiFormRow**](/docs/forms/layouts/row), you can eliminate the visible label with `showLabel={false}` or use it to further describe the state.
 
 :::note Accessibility requirement
 When providing the state as the label, you'll need to provide an `aria-describedby` with the label's `id` to associate it with the switch.
