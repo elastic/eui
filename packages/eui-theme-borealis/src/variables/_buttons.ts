@@ -114,8 +114,21 @@ const _buttons = {
     ['flags.buttonVariant']
   ),
 
-  backgroundHover: background_colors.backgroundBaseInteractiveHover,
-  backgroundActive: SEMANTIC_COLORS.primary100Alpha8,
+  backgroundPrimaryHover: SEMANTIC_COLORS.primary70Alpha12,
+  backgroundAccentHover: SEMANTIC_COLORS.accent70Alpha12,
+  backgroundAccentSecondaryHover: SEMANTIC_COLORS.accentSecondary70Alpha12,
+  backgroundSuccessHover: SEMANTIC_COLORS.success70Alpha12,
+  backgroundWarningHover: SEMANTIC_COLORS.warning40Alpha20,
+  backgroundDangerHover: SEMANTIC_COLORS.danger70Alpha12,
+  backgroundTextHover: SEMANTIC_COLORS.primary100Alpha8,
+
+  backgroundPrimaryActive: SEMANTIC_COLORS.primary70Alpha16,
+  backgroundAccentActive: SEMANTIC_COLORS.accent70Alpha16,
+  backgroundAccentSecondaryActive: SEMANTIC_COLORS.accentSecondary70Alpha16,
+  backgroundSuccessActive: SEMANTIC_COLORS.success70Alpha16,
+  backgroundWarningActive: SEMANTIC_COLORS.warning40Alpha24,
+  backgroundDangerActive: SEMANTIC_COLORS.danger70Alpha16,
+  backgroundTextActive: SEMANTIC_COLORS.primary100Alpha12,
 
   backgroundFilledPrimary: background_colors.backgroundFilledPrimary,
   backgroundFilledAccent: background_colors.backgroundFilledAccent,
@@ -147,7 +160,7 @@ const _buttons = {
   backgroundEmptyAccentHover: SEMANTIC_COLORS.accent70Alpha12,
   backgroundEmptyAccentSecondaryHover: SEMANTIC_COLORS.accentSecondary70Alpha12,
   backgroundEmptySuccessHover: SEMANTIC_COLORS.success70Alpha12,
-  backgroundEmptyWarningHover: SEMANTIC_COLORS.warning40Alpha24,
+  backgroundEmptyWarningHover: SEMANTIC_COLORS.warning40Alpha20,
   backgroundEmptyDangerHover: SEMANTIC_COLORS.danger70Alpha12,
   backgroundEmptyTextHover: SEMANTIC_COLORS.primary100Alpha8,
 
@@ -156,7 +169,7 @@ const _buttons = {
   backgroundEmptyAccentSecondaryActive:
     SEMANTIC_COLORS.accentSecondary70Alpha16,
   backgroundEmptySuccessActive: SEMANTIC_COLORS.success70Alpha16,
-  backgroundEmptyWarningActive: SEMANTIC_COLORS.warning40Alpha28,
+  backgroundEmptyWarningActive: SEMANTIC_COLORS.warning40Alpha24,
   backgroundEmptyDangerActive: SEMANTIC_COLORS.danger70Alpha16,
   backgroundEmptyTextActive: SEMANTIC_COLORS.primary100Alpha12,
 
@@ -180,16 +193,6 @@ const _buttons = {
 };
 
 const _dark_buttons = {
-  // backgroundPrimary: dark_background_colors.backgroundLightPrimary,
-  // backgroundAccent: dark_background_colors.backgroundLightAccent,
-  // backgroundAccentSecondary:
-  //   dark_background_colors.backgroundLightAccentSecondary,
-  // backgroundSuccess: dark_background_colors.backgroundLightSuccess,
-  // backgroundWarning: dark_background_colors.backgroundLightWarning,
-  // backgroundDanger: dark_background_colors.backgroundLightDanger,
-  // backgroundText: dark_background_colors.backgroundLightText,
-  // backgroundDisabled: dark_background_colors.backgroundBaseDisabled,
-
   backgroundPrimary: computed(
     ([buttonVariant]) => {
       return getTokenByVariant(buttonVariant, {
@@ -263,8 +266,21 @@ const _dark_buttons = {
     ['flags.buttonVariant']
   ),
 
-  backgroundHover: dark_background_colors.backgroundBaseInteractiveHover,
-  backgroundActive: SEMANTIC_COLORS.plainLightAlpha12,
+  backgroundPrimaryHover: SEMANTIC_COLORS.primary70Alpha16,
+  backgroundAccentHover: SEMANTIC_COLORS.accent70Alpha16,
+  backgroundAccentSecondaryHover: SEMANTIC_COLORS.accentSecondary70Alpha16,
+  backgroundSuccessHover: SEMANTIC_COLORS.success70Alpha16,
+  backgroundWarningHover: SEMANTIC_COLORS.warning40Alpha12,
+  backgroundDangerHover: SEMANTIC_COLORS.danger70Alpha16,
+  backgroundTextHover: SEMANTIC_COLORS.plainLightAlpha12,
+
+  backgroundPrimaryActive: SEMANTIC_COLORS.primary70Alpha20,
+  backgroundAccentActive: SEMANTIC_COLORS.accent70Alpha20,
+  backgroundAccentSecondaryActive: SEMANTIC_COLORS.accentSecondary70Alpha20,
+  backgroundSuccessActive: SEMANTIC_COLORS.success70Alpha20,
+  backgroundWarningActive: SEMANTIC_COLORS.warning40Alpha16,
+  backgroundDangerActive: SEMANTIC_COLORS.danger70Alpha20,
+  backgroundTextActive: SEMANTIC_COLORS.plainLightAlpha16,
 
   backgroundFilledPrimary: dark_background_colors.backgroundFilledPrimary,
   backgroundFilledAccent: dark_background_colors.backgroundFilledAccent,
