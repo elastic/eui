@@ -6,7 +6,10 @@
  * Side Public License, v 1.
  */
 
-import { ColorModeSwitch, StrictColorModeSwitch } from '../types';
+import {
+  ColorModeSwitch,
+  StrictColorModeSwitch,
+} from '../../services/theme/types';
 import { _EuiThemeButtonColors } from './buttons';
 import { _EuiThemeForm, _EuiThemeFormColors } from './forms';
 

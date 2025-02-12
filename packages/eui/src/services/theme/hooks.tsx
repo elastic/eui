@@ -7,6 +7,7 @@
  */
 
 import React, { forwardRef, useContext, useMemo } from 'react';
+import { type UseEuiTheme } from '@elastic/eui-theme-common';
 
 import {
   EuiThemeContext,
@@ -16,11 +17,9 @@ import {
   EuiNestedThemeContext,
 } from './context';
 import { emitEuiProviderWarning } from './warning';
-import {
-  EuiThemeColorModeStandard,
-  EuiThemeModifications,
-  EuiThemeComputed,
-} from './types';
+import { EuiThemeModifications, EuiThemeComputed } from './types';
+
+export { type UseEuiTheme } from '@elastic/eui-theme-common';
 
 const providerMessage = `\`EuiProvider\` is missing which can result in negative effects.
 Wrap your component in \`EuiProvider\`: https://ela.st/euiprovider.`;
@@ -28,11 +27,6 @@ Wrap your component in \`EuiProvider\`: https://ela.st/euiprovider.`;
 /**
  * Hook for function components
  */
-export interface UseEuiTheme<T extends {} = {}> {
-  euiTheme: EuiThemeComputed<T>;
-  colorMode: EuiThemeColorModeStandard;
-  modifications: EuiThemeModifications<T>;
-}
 
 export const useEuiTheme = <T extends {} = {}>(): UseEuiTheme<T> => {
   const theme = useContext(EuiThemeContext);

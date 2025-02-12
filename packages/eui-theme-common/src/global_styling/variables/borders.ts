@@ -7,7 +7,7 @@
  */
 
 import { CSSProperties } from 'react';
-import { ColorModeSwitch } from '../types';
+import { ColorModeSwitch } from '../../services/theme/types';
 
 export interface _EuiThemeBorderWidthValues {
   /**

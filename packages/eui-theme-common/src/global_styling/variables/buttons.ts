@@ -6,7 +6,10 @@
  * Side Public License, v 1.
  */
 
-import { ColorModeSwitch, StrictColorModeSwitch } from '../types';
+import {
+  ColorModeSwitch,
+  StrictColorModeSwitch,
+} from '../../services/theme/types';
 
 export type _EuiThemeButtonColors = {
   backgroundPrimary: ColorModeSwitch;
