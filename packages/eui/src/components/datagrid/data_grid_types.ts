@@ -366,23 +366,21 @@ export type CommonGridProps = CommonProps &
     /**
      * Allows customizing the underlying [react-window grid](https://react-window.vercel.app/#/api/VariableSizeGrid) props.
      */
-    virtualizationOptions?: Partial<
-      Omit<
-        VariableSizeGridProps,
-        | 'children'
-        | 'itemData'
-        | 'height'
-        | 'width'
-        | 'rowCount'
-        | 'rowHeight'
-        | 'columnCount'
-        | 'columnWidth'
-        | 'ref'
-        | 'innerRef'
-        | 'outerRef'
-        | 'innerElementType'
-        | 'useIsScrolling'
-      >
+    virtualizationOptions?: Pick<
+      VariableSizeGridProps,
+      | 'className'
+      | 'style'
+      | 'direction'
+      | 'estimatedRowHeight'
+      | 'estimatedColumnWidth'
+      | 'overscanRowCount'
+      | 'overscanColumnCount'
+      | 'initialScrollTop'
+      | 'initialScrollLeft'
+      | 'onScroll'
+      | 'onItemsRendered'
+      | 'itemKey'
+      | 'outerElementType'
     >;
     /**
      * A #EuiDataGridRowHeightsOptions object that provides row heights options.
@@ -944,12 +942,16 @@ export interface EuiDataGridToolBarVisibilityDisplaySelectorOptions {
   customRender?: EuiDataGridDisplaySelectorCustomRender;
 }
 
-export type EuiDataGridDisplaySelectorCustomRender = (args: {
+export type EuiDataGridDisplaySelectorCustomRenderProps = {
   densityControl: ReactNode;
   rowHeightControl: ReactNode;
   additionalDisplaySettings: ReactNode;
   resetButton: ReactNode;
-}) => ReactNode;
+};
+
+export type EuiDataGridDisplaySelectorCustomRender = (
+  args: EuiDataGridDisplaySelectorCustomRenderProps
+) => ReactNode;
 
 export interface EuiDataGridToolBarVisibilityOptions {
   /**
