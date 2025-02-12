@@ -12,9 +12,15 @@ import React, {
   ReactNode,
   HTMLAttributes,
 } from 'react';
-import { listLanguages, highlight, AST, RefractorNode, register } from 'refractor';
+import {
+  listLanguages,
+  highlight,
+  AST,
+  RefractorNode,
+  register,
+} from 'refractor';
 import { cx } from '@emotion/css';
-import { esql as esqlLanguage } from '@elastic/prismjs-esql'
+import { esql as esqlLanguage } from '@elastic/prismjs-esql';
 
 import { CommonProps } from '../common';
 import { UseEuiTheme } from '../../services';
