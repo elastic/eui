@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { css } from '@emotion/react';
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
@@ -25,8 +25,7 @@ import { MultipleSnippet } from './multiple_snippet';
 import { isUseCaseTypeKey } from './utils';
 
 const keyPadMenuItemCss = css`
-  width: 120px;
-  height: auto;
+  block-size: initial !important;
 `;
 
 const OPTIONS = Object.values(TYPES_OF_USE_CASES).map((item) => ({
