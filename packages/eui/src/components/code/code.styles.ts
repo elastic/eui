@@ -26,8 +26,14 @@ export const euiCodeStyles = (euiThemeContext: UseEuiTheme) => {
       background: ${codeSyntaxVariables.backgroundColor};
       border-radius: ${euiTheme.border.radius.small};
       font-weight: ${euiTheme.font.weight.bold};
+      color: ${codeSyntaxVariables.inlineCodeColor};
 
       ${codeSyntaxVariables.tokensCss}
+
+      .token.atrule .token.rule,
+      .token.keyword {
+        color: ${codeSyntaxVariables.inlineCodeKeywordColor};
+      }
     `,
     transparentBackground: css`
       background: transparent;
