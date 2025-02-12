@@ -235,7 +235,7 @@ export default () => {
       direction: sortDirection,
     },
   };
-  
+
   return (
     <>
       <EuiFlexGroup alignItems="center" justifyContent="spaceBetween">
@@ -262,6 +262,7 @@ export default () => {
         tableCaption="Demo for an EuiBasicTable with ${
           isControlled ? 'controlled' : 'uncontrolled'
         } selection"
+        responsiveBreakpoint={false}
         items={pageOfItems}
         itemId="id"
         rowHeader="firstName"
@@ -434,12 +435,13 @@ export default () => {
     initialPageSize: 5,
     pageSizeOptions: [3, 5, 8],
   };
-  
+
   return (
     <EuiInMemoryTable
       tableCaption="Demo for an EuiInMemoryTable with ${
         isControlled ? 'controlled' : 'uncontrolled'
       } selection"
+      responsiveBreakpoint={false}
       items={users}
       itemId="id"
       rowHeader="firstName"

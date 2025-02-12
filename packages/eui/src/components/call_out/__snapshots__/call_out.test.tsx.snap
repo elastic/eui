@@ -14,6 +14,12 @@ exports[`EuiCallOut is rendered 1`] = `
 </div>
 `;
 
+exports[`EuiCallOut props color accent is rendered 1`] = `
+<div
+  class="euiPanel euiPanel--accent euiPanel--paddingMedium euiCallOut euiCallOut--accent emotion-euiPanel-none-m-accent-euiCallOut"
+/>
+`;
+
 exports[`EuiCallOut props color danger is rendered 1`] = `
 <div
   class="euiPanel euiPanel--danger euiPanel--paddingMedium euiCallOut euiCallOut--danger emotion-euiPanel-none-m-danger-euiCallOut"

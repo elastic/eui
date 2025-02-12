@@ -8,9 +8,7 @@ import {
   EuiTableSortingType,
   Criteria,
   EuiHealth,
-  EuiIcon,
   EuiLink,
-  EuiToolTip,
   EuiFlexGroup,
   EuiFlexItem,
   EuiSwitch,
@@ -76,19 +74,10 @@ const columns: Array<EuiBasicTableColumn<User>> = [
   },
   {
     field: 'github',
-    name: (
-      <EuiToolTip content="Their mascot is the Octokitty">
-        <>
-          Github{' '}
-          <EuiIcon
-            size="s"
-            color="subdued"
-            type="questionInCircle"
-            className="eui-alignTop"
-          />
-        </>
-      </EuiToolTip>
-    ),
+    name: 'GibHub',
+    nameTooltip: {
+      content: 'Their mascot is the Octokitty',
+    },
     render: (username: User['github']) => (
       <EuiLink href="#" target="_blank">
         {username}
@@ -97,37 +86,19 @@ const columns: Array<EuiBasicTableColumn<User>> = [
   },
   {
     field: 'dateOfBirth',
-    name: (
-      <EuiToolTip content="Colloquially known as a 'birthday'">
-        <>
-          Date of Birth{' '}
-          <EuiIcon
-            size="s"
-            color="subdued"
-            type="questionInCircle"
-            className="eui-alignTop"
-          />
-        </>
-      </EuiToolTip>
-    ),
+    name: 'Date of Birth',
+    nameTooltip: {
+      content: "Colloquially known as a 'birthday'",
+    },
     render: (dateOfBirth: User['dateOfBirth']) =>
       formatDate(dateOfBirth, 'dobLong'),
   },
   {
     field: 'location',
-    name: (
-      <EuiToolTip content="The city and country in which this person resides">
-        <>
-          Nationality{' '}
-          <EuiIcon
-            size="s"
-            color="subdued"
-            type="questionInCircle"
-            className="eui-alignTop"
-          />
-        </>
-      </EuiToolTip>
-    ),
+    name: 'Nationality',
+    nameTooltip: {
+      content: 'The city and country in which this person resides',
+    },
     render: (location: User['location']) => {
       return `${location.city}, ${location.country}`;
     },
@@ -136,19 +107,10 @@ const columns: Array<EuiBasicTableColumn<User>> = [
   },
   {
     field: 'online',
-    name: (
-      <EuiToolTip content="Free to talk or busy with business">
-        <>
-          Online{' '}
-          <EuiIcon
-            size="s"
-            color="subdued"
-            type="questionInCircle"
-            className="eui-alignTop"
-          />
-        </>
-      </EuiToolTip>
-    ),
+    name: 'Online',
+    nameTooltip: {
+      content: 'Free to talk or busy with business',
+    },
     render: (online: User['online']) => {
       const color = online ? 'success' : 'danger';
       const label = online ? 'Online' : 'Offline';

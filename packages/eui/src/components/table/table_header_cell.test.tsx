@@ -8,7 +8,8 @@
 
 import React from 'react';
 import { requiredProps } from '../../test/required_props';
-import { render } from '../../test/rtl';
+import { render, waitForEuiToolTipVisible } from '../../test/rtl';
+import { fireEvent } from '@testing-library/react';
 
 import { RIGHT_ALIGNMENT, CENTER_ALIGNMENT } from '../../services';
 import { WARNING_MESSAGE } from './utils';
@@ -183,6 +184,59 @@ describe('EuiTableHeaderCell', () => {
         </EuiTableHeaderCell>
       );
       expect(container.firstChild).toMatchSnapshot();
+    });
+  });
+
+  describe('tooltip', () => {
+    it('renders an icon with tooltip', async () => {
+      const { getByTestSubject } = renderInTableHeader(
+        <EuiTableHeaderCell
+          tooltipProps={{
+            content: 'This is the content of the tooltip',
+            icon: 'iInCircle',
+            iconProps: {
+              'data-test-subj': 'icon',
+            },
+            tooltipProps: {
+              'data-test-subj': 'tooltip',
+            },
+          }}
+        >
+          Test
+        </EuiTableHeaderCell>
+      );
+
+      expect(getByTestSubject('icon')).toHaveAttribute(
+        'data-euiicon-type',
+        'iInCircle'
+      );
+
+      fireEvent.focus(getByTestSubject('icon'));
+      await waitForEuiToolTipVisible();
+
+      expect(getByTestSubject('tooltip')).toHaveTextContent(
+        'This is the content of the tooltip'
+      );
+    });
+
+    it('renders the icon next to the text', () => {
+      const { getByTestSubject, queryByText } = renderInTableHeader(
+        <EuiTableHeaderCell
+          tooltipProps={{
+            content: 'This is the content of the tooltip',
+            iconProps: {
+              'data-test-subj': 'icon',
+            },
+          }}
+          onSort={() => {}}
+        >
+          Test
+        </EuiTableHeaderCell>
+      );
+
+      expect(queryByText('Test')?.nextSibling).toEqual(
+        getByTestSubject('icon').parentElement
+      );
     });
   });
 });
