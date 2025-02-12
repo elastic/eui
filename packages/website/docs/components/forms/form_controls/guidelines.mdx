@@ -20,7 +20,7 @@ Avoid long labels, but don't sacrifice clarity. If needed, put additional inform
       <EuiFieldText placeholder="2.*" />
     </EuiFormRow>
   </Guideline>
-  <Guideline type="dont" text="Put everything in the label. It's hard to scan.">
+  <Guideline panelStyle={{ minHeight: 130 }} type="dont" text="Put everything in the label. It's hard to scan.">
     <EuiFormRow label="Numeric version (e.g. `2.*`)">
       <EuiFieldText />
     </EuiFormRow>
@@ -44,7 +44,7 @@ Place hints and instructions outside a text field so it is always visible to the
       <EuiFieldText />
     </EuiFormRow>
   </Guideline>
-  <Guideline type="dont" text="Use complete sentences and ending punctuation.">
+  <Guideline type="do" text="Use complete sentences and ending punctuation.">
     <EuiFormRow
       label="Name"
       helpText="This is the name that will be visible to other users."
@@ -95,7 +95,7 @@ Add placeholder text in addition to field labels and help text, not as a replace
 </EuiFlexGroup>
 
 <EuiFlexGroup gutterSize="m">
-  <Guideline type="do" text="When space is limited and the UI is very simple, you can use field labels as placeholder text. This must stay an exception.">
+  <Guideline panelStyle={{ minHeight: 94 }} type="do" text="When space is limited and the UI is very simple, you can use field labels as placeholder text. This must stay an exception.">
     <EuiFlexGroup style={{ maxWidth: 600 }}>
       <EuiFlexItem>
         <EuiFormRow>
@@ -114,7 +114,7 @@ Add placeholder text in addition to field labels and help text, not as a replace
       </EuiFlexItem>
     </EuiFlexGroup>
   </Guideline>
-  <Guideline type="dont" text="If space allows it, prefer following the rule described earlier with labels outside of the fields.">
+  <Guideline type="do" text="If space allows it, prefer following the rule described earlier with labels outside of the fields.">
     <EuiFlexGroup style={{ maxWidth: 600 }}>
       <EuiFlexItem>
         <EuiFormRow label="Key">
