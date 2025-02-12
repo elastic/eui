@@ -9,3 +9,4 @@
 export * from '../services/theme/types';
 export * from './functions';
 export * from './variables';
+export * from './mixins';

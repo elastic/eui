@@ -6,4 +6,4 @@
  * Side Public License, v 1.
  */
 
-export { getShadowColor } from '@elastic/eui-theme-common';
+export * from './shadow';
