@@ -3,11 +3,13 @@ slug: /display/empty-prompt
 id: display_empty_prompt
 ---
 
+import useBaseUrl from '@docusaurus/useBaseUrl';
+
 # Empty prompt
 
 The **EuiEmptyPrompt** is the building block to create an empty state. You can use it as a placeholder for any type of empty content. They are especially helpful for replacing entire pages or parts of a product that contain no content.
 
-Be sure to read the full [empty prompt usage guidelines](/docs/guidelines/empty-prompt).
+Be sure to read the full [empty prompt usage guidelines](./guidelines).
 
 While no one piece of content is required, each **EuiEmptyPrompt** should contain at least a `title` (wrapped in an HTML heading element) and/or a `description`. They usually contain one or more `actions` that promotes the primary call-to-actions. You can also provide a `footer` to direct users towards making informed decisions.
 
@@ -172,9 +174,7 @@ You can supply a `layout` of either `"horizontal"` or `"vertical"` with the defa
 
 When you have longer body text with multiple calls to action, you can use the `horizontal` layout. This layout works best when you can provide a larger graphic like an illustration as the `icon`. For consistency, we recommend providing the illustration using a [**EuiImage**](/docs/display/image) with `size="fullWidth"`.
 
-import illustration from '!url-loader!./illustration.svg';
-
-<Demo scope={{ illustration }}>
+<Demo scope={{ useBaseUrl }}>
   ```tsx
   import React from 'react';
   import {
@@ -189,7 +189,7 @@ import illustration from '!url-loader!./illustration.svg';
     return (
       <>
         <EuiEmptyPrompt
-          icon={<EuiImage size="fullWidth" src={illustration} alt="" />}
+          icon={<EuiImage size="fullWidth" src={useBaseUrl('/images/empty_prompt/illustration.svg')} alt="" />}
           title={<h2>Create your first visualization</h2>}
           layout="horizontal"
           color="plain"
@@ -241,7 +241,7 @@ When using a **EuiEmptyPrompt** in a [**EuiPageTemplate**](/docs/templates/page-
 
 The following example shows the usage of the [**EuiPageTemplate.EmptyPrompt**](/docs/templates/page-template#empty-pages-or-content) namespaced component.
 
-<Demo scope={{ illustration }}>
+<Demo scope={{ useBaseUrl }}>
   ```tsx
   import React from 'react';
   import {
@@ -256,7 +256,7 @@ The following example shows the usage of the [**EuiPageTemplate.EmptyPrompt**](/
     <EuiPageTemplate minHeight="0">
       <EuiPageTemplate.EmptyPrompt
         title={<h2>Create your first visualization</h2>}
-        icon={<EuiImage size="fullWidth" src={illustration} alt="" />}
+        icon={<EuiImage size="fullWidth" src={useBaseUrl('/images/empty_prompt/illustration.svg')} alt="" />}
         color="plain"
         layout="horizontal"
         body={
