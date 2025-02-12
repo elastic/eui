@@ -6,7 +6,8 @@
  * Side Public License, v 1.
  */
 
-import { colorVis } from '../../themes';
+import { renderHook } from '@testing-library/react';
+
 import {
   euiPaletteColorBlind,
   euiPaletteColorBlindBehindText,
@@ -21,6 +22,12 @@ import {
   euiPaletteRed,
   euiPaletteWarm,
 } from './eui_palettes';
+import { useEuiTheme } from '../theme';
+
+const colorVis = renderHook(() => {
+  const { euiTheme } = useEuiTheme();
+  return euiTheme.colors.vis;
+}).result.current;
 
 describe('euiPaletteColorBlind', () => {
   it('should return custom colors', () => {
