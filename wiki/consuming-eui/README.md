@@ -51,9 +51,9 @@ import { findByTestSubject, render, screen } from '@elastic/eui/lib/test/rtl'; /
 
 ### Custom styles
 
-EUI uses a CSS-in-JS approach for styling, specifically [Emotion](https://emotion.sh) library. We recommend using the `css` function from `@emotion/react`, which automatically sets the generated `className` and combines all passed styles into a single ruleset. To enable `css` concatenation, you'll need the [Babel preset](https://www.npmjs.com/package/@emotion/babel-preset-css-prop).
+EUI uses a CSS-in-JS approach for styling, specifically [Emotion](https://emotion.sh) library. We recommend using the `css` function (read more [here](https://emotion.sh/docs/css-prop#use-the-css-prop)) from `@emotion/react`, which automatically sets the generated `className` and combines all passed styles into a single ruleset. To enable `css` concatenation, you'll need the [Babel preset](https://www.npmjs.com/package/@emotion/babel-preset-css-prop).
 
-You can find more information [here](https://github.com/elastic/eui/discussions/6828).
+You can find more information regarding Emotion usage with EUI [here](https://github.com/elastic/eui/discussions/6828).
 
 ### Theming
 
