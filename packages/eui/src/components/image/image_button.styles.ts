@@ -7,9 +7,10 @@
  */
 
 import { css } from '@emotion/react';
+import { euiShadow } from '@elastic/eui-theme-common';
+
 import { euiFocusRing, logicalCSS, euiCanAnimate } from '../../global_styling';
 import { UseEuiTheme } from '../../services';
-import { euiShadow } from '../../themes/amsterdam/global_styling/mixins';
 
 export const euiImageButtonStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;

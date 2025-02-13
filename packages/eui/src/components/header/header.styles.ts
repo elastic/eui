@@ -7,8 +7,8 @@
  */
 
 import { css } from '@emotion/react';
+import { euiShadowSmall } from '@elastic/eui-theme-common';
 
-import { euiShadowSmall } from '../../themes/amsterdam/global_styling/mixins';
 import { logicalCSS } from '../../global_styling';
 import { UseEuiTheme, makeHighContrastColor } from '../../services';
 

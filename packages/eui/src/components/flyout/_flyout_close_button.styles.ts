@@ -7,13 +7,13 @@
  */
 
 import { css } from '@emotion/react';
+import { euiShadowXLarge } from '@elastic/eui-theme-common';
 
 import {
   euiMaxBreakpoint,
   euiMinBreakpoint,
   logicalCSS,
 } from '../../global_styling';
-import { euiShadowXLarge } from '../../themes/amsterdam/global_styling/mixins';
 import { UseEuiTheme } from '../../services';
 
 import { FLYOUT_BREAKPOINT } from './flyout.styles';

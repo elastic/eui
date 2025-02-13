@@ -7,6 +7,8 @@
  */
 
 import { css, keyframes } from '@emotion/react';
+import { euiShadowXLarge } from '@elastic/eui-theme-common';
+
 import { _EuiFlyoutPaddingSize, EuiFlyoutSize } from './flyout';
 import {
   euiCanAnimate,
@@ -16,7 +18,6 @@ import {
   mathWithUnits,
 } from '../../global_styling';
 import { UseEuiTheme } from '../../services';
-import { euiShadowXLarge } from '../../themes/amsterdam/global_styling/mixins';
 import { euiFormMaxWidth } from '../form/form.styles';
 
 export const FLYOUT_BREAKPOINT = 'm' as const;

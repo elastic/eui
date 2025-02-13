@@ -11,7 +11,8 @@ import {
   euiShadow,
   euiShadowFlat,
   euiShadowMedium,
-} from '../../../themes/amsterdam/global_styling/mixins';
+} from '@elastic/eui-theme-common';
+
 import { UseEuiTheme } from '../../../services';
 import {
   euiCanAnimate,

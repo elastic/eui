@@ -7,6 +7,7 @@
  */
 
 import { css } from '@emotion/react';
+import { euiShadow } from '@elastic/eui-theme-common';
 
 import { UseEuiTheme } from '../../services';
 import {
@@ -15,7 +16,6 @@ import {
   euiCanAnimate,
   euiFontSize,
 } from '../../global_styling';
-import { euiShadow } from '../../themes/amsterdam/global_styling/mixins';
 import { euiScreenReaderOnly } from '../accessibility';
 
 import { euiKeyPadMenuVariables } from './key_pad_menu.styles';

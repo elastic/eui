@@ -10,7 +10,7 @@ import {
   keysOf,
 } from '../../../../../src';
 
-import { breakpoint as breakpoints } from '../../../../../src/themes/amsterdam/global_styling/variables/_breakpoint';
+import { breakpoint as breakpoints } from '@elastic/eui-theme-common';
 const breakpointKeys = keysOf(breakpoints);
 
 import { GuideSection } from '../../../components/guide_section/guide_section';

@@ -15,7 +15,7 @@ import {
   _EuiButtonColor,
   euiButtonEmptyColor,
   euiButtonSizeMap,
-} from '../../../themes/amsterdam/global_styling/mixins/button';
+} from '../../../global_styling/mixins/_button';
 
 import { euiButtonBaseCSS } from '../button_display/_button_display.styles';
 

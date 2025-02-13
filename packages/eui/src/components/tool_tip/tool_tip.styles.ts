@@ -7,10 +7,11 @@
  */
 
 import { css, keyframes } from '@emotion/react';
+import { euiShadow } from '@elastic/eui-theme-common';
+
 import { logicalCSS, euiFontSize, euiCanAnimate } from '../../global_styling';
 import { UseEuiTheme } from '../../services';
 import { _popoverArrowStyles } from '../../services/popover';
-import { euiShadow } from '../../themes/amsterdam';
 
 export const euiToolTipBackgroundColor = (euiTheme: UseEuiTheme['euiTheme']) =>
   euiTheme.components.tooltipBackground;

@@ -7,10 +7,10 @@
  */
 
 import { css, keyframes } from '@emotion/react';
+import { euiShadow } from '@elastic/eui-theme-common';
 
 import { UseEuiTheme } from '../../services';
 import { euiCanAnimate, logicalCSS } from '../../global_styling';
-import { euiShadow } from '../../themes/amsterdam/global_styling/mixins';
 
 import { euiTableVariables } from './table.styles';
 

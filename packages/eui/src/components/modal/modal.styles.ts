@@ -7,7 +7,8 @@
  */
 
 import { css } from '@emotion/react';
-import { euiShadowXLarge } from '../../themes/amsterdam/global_styling/mixins';
+import { euiShadowXLarge } from '@elastic/eui-theme-common';
+
 import {
   euiCanAnimate,
   euiMaxBreakpoint,
