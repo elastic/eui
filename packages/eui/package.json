@@ -51,6 +51,7 @@
     "url": "https://github.com/elastic/eui.git"
   },
   "dependencies": {
+    "@elastic/prismjs-esql": "^1.0.0",
     "@hello-pangea/dnd": "^16.6.0",
     "@types/lodash": "^4.14.202",
     "@types/numeral": "^2.0.5",
