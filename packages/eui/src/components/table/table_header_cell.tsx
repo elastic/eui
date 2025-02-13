@@ -24,8 +24,10 @@ import { EuiScreenReaderOnly } from '../accessibility';
 import { CommonProps, NoArgCallback } from '../common';
 import { EuiIcon } from '../icon';
 import { EuiInnerText } from '../inner_text';
+import { EuiIconTip } from '../tool_tip';
 
 import type { EuiTableRowCellMobileOptionsShape } from './table_row_cell';
+import type { EuiTableColumnNameTooltipProps } from '../basic_table/table_types';
 import { resolveWidthAsStyle } from './utils';
 import { useEuiTableIsResponsive } from './mobile/responsive_context';
 import { EuiTableCellContent } from './_table_cell_content';
@@ -43,6 +45,8 @@ export type EuiTableHeaderCellProps = CommonProps &
     onSort?: NoArgCallback<void>;
     scope?: TableHeaderCellScope;
     width?: string | number;
+    /** Allows adding an icon with a tooltip displayed next to the name */
+    tooltipProps?: EuiTableColumnNameTooltipProps;
     description?: string;
     /**
      * Shows the sort indicator but removes the button
@@ -59,6 +63,7 @@ export type EuiTableHeaderCellProps = CommonProps &
 const CellContents = ({
   className,
   align,
+  tooltipProps,
   description,
   children,
   canSort,
@@ -67,6 +72,7 @@ const CellContents = ({
 }: {
   className?: string;
   align: HorizontalAlignment;
+  tooltipProps?: EuiTableColumnNameTooltipProps;
   description: EuiTableHeaderCellProps['description'];
   children: EuiTableHeaderCellProps['children'];
   canSort?: boolean;
@@ -104,6 +110,17 @@ const CellContents = ({
           <span>{description}</span>
         </EuiScreenReaderOnly>
       )}
+      {tooltipProps && (
+        <EuiIconTip
+          content={tooltipProps.content}
+          type={tooltipProps.icon || 'questionInCircle'}
+          size="m"
+          color="subdued"
+          position="top"
+          iconProps={tooltipProps.iconProps}
+          {...tooltipProps.tooltipProps}
+        />
+      )}
       {isSorted ? (
         <EuiIcon
           className="euiTableSortIcon"
@@ -134,6 +151,7 @@ export const EuiTableHeaderCell: FunctionComponent<EuiTableHeaderCellProps> = ({
   width,
   style,
   readOnly,
+  tooltipProps,
   description,
   append,
   ...rest
@@ -162,6 +180,7 @@ export const EuiTableHeaderCell: FunctionComponent<EuiTableHeaderCellProps> = ({
   const cellContentsProps = {
     css: styles.euiTableHeaderCell__content,
     align,
+    tooltipProps,
     description,
     canSort,
     isSorted,

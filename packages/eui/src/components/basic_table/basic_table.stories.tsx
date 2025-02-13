@@ -114,6 +114,9 @@ const columns: Array<EuiBasicTableColumn<User>> = [
   {
     field: 'location',
     name: 'Location',
+    nameTooltip: {
+      content: 'The city and country in which this person resides',
+    },
     truncateText: true,
     textOnly: true,
     render: (location: User['location']) => {

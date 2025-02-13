@@ -188,6 +188,10 @@ export const EuiAbsoluteTab: FunctionComponent<EuiAbsoluteTabProps> = ({
             value={textInputValue}
             onChange={handleTextChange}
             onPaste={(event) => {
+              // preventing default here ensures no additional onChange is
+              // triggered which otherwise results in input duplication
+              event.preventDefault();
+
               setTextInputValue(event.clipboardData.getData('text'));
               setIsReadyToParse(true);
             }}
