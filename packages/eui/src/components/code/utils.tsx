@@ -18,6 +18,7 @@ import {
   AST,
   RefractorNode,
   register,
+  type RefractorSyntax
 } from 'refractor';
 import { cx } from '@emotion/css';
 import { esql as esqlLanguage } from '@elastic/prismjs-esql';
@@ -31,7 +32,7 @@ import {
 } from './code_block_annotations';
 import { euiCodeBlockLineStyles } from './code_block_line.styles';
 
-register(esqlLanguage as any);
+register(esqlLanguage as RefractorSyntax);
 
 /**
  * Utils shared between EuiCode and EuiCodeBlock
