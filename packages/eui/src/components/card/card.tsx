@@ -133,9 +133,13 @@ export type EuiCardProps = Omit<CommonProps, 'aria-label'> &
      */
     selectable?: EuiCardSelectProps;
     /**
-     * Use a border style of card instead of shadow
+     * Follows card styles. Default to border when `display` is `undefined`.
      */
     hasBorder?: EuiPanelProps['hasBorder'];
+    /**
+     * Follows card styles. Only applied when `display` is `plain`.
+     */
+    hasShadow?: EuiPanelProps['hasShadow'];
   };
 
 export const EuiCard: FunctionComponent<EuiCardProps> = ({
@@ -159,6 +163,7 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
   selectable,
   display,
   paddingSize = 'm',
+  hasShadow = false,
   ...rest
 }) => {
   const isHrefValid = !href || validateHref(href);
@@ -403,8 +408,8 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
       css={[...cardStyles, optionalBetaCSS]}
       onClick={isClickable ? outerOnClick : undefined}
       color={isDisabled ? 'subdued' : display}
-      hasShadow={isDisabled || display ? false : true}
-      hasBorder={display ? false : undefined}
+      hasShadow={hasShadow}
+      hasBorder={display ? false : true}
       paddingSize={paddingSize}
       {...rest}
     >
