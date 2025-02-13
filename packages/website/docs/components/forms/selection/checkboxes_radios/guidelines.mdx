@@ -1,0 +1,264 @@
+---
+slug: /forms/selection/checkboxes-and-radios/guidelines
+id: forms_selection_checkboxes_radios_guidelines
+---
+
+# Guidelines
+
+import {
+  EuiFlexGrid,
+  EuiFormRow,
+  EuiRadioGroup,
+  EuiCheckboxGroup,
+  EuiSwitch,
+  EuiBasicTable,
+  useEuiTheme,
+} from '@elastic/eui';
+
+## Checkbox and radio button labels
+
+A label should be succinct, short, and descriptive with one to two words. This way users can quickly scan the available options.
+
+<EuiFlexGrid columns={2}>
+  <Guideline type="do" text="Use one to two descriptive words.">
+    <EuiRadioGroup
+      options={[
+        { id: 'easy_scan_do_one', label: 'Canceled' },
+        { id: 'easy_scan_do_two', label: 'In progress' },
+        { id: 'easy_scan_do_three', label: 'On hold' },
+        { id: 'easy_scan_do_four', label: 'Resolved' },
+      ]}
+      onChange={() => {}}
+    />
+  </Guideline>
+  <Guideline type="dont" text="Repeat the same words. They make labels difficult to scan.">
+    <EuiRadioGroup
+      options={[
+        { id: 'easy_scan_dont_one', label: 'Case is canceled' },
+        { id: 'easy_scan_dont_two', label: 'Case is in progress' },
+        { id: 'easy_scan_dont_three', label: 'Case is on hold' },
+        { id: 'easy_scan_dont_four', label: 'Case is resolved' },
+      ]}
+      onChange={() => {}}
+    />
+  </Guideline>
+</EuiFlexGrid>
+
+Use positive and active wording.
+
+<EuiFlexGrid columns={2}>
+  <Guideline type="do" text="Tell users what happens when the selection control is on.">
+    <EuiRadioGroup
+      options={[
+        { id: 'positive_do_one', label: 'Use logs' },
+        { id: 'positive_do_two', label: 'Use metrics' },
+      ]}
+      idSelected="positive_do_one"
+      onChange={() => {}}
+    />
+  </Guideline>
+  <Guideline type="dont" text="Use negatives. They're unnatural and confusing.">
+    <EuiRadioGroup
+      options={[
+        { id: 'positive_dont_one', label: 'Do not include logs' },
+        { id: 'positive_dont_two', label: 'Do not include metrics' },
+      ]}
+      idSelected="positive_dont_one"
+      onChange={() => {}}
+    />
+  </Guideline>
+</EuiFlexGrid>
+
+Use sentence case (capitalize the first word).
+
+<EuiFlexGrid columns={2}>
+  <Guideline type="do" text="Sentence case makes titles easier to read.">
+    <EuiCheckboxGroup
+      options={[
+        { id: 'sentence_case_do_one', label: 'Read access' },
+        { id: 'sentence_case_do_two', label: 'Write access' },
+        { id: 'sentence_case_do_three', label: 'Create access' },
+        { id: 'sentence_case_do_four', label: 'Delete access' },
+      ]}
+      idToSelectedMap={{ sentence_case_do_one: true }}
+      onChange={() => {}}
+    />
+  </Guideline>
+  <Guideline type="dont" text="Title case can feel more cluttered.">
+    <EuiCheckboxGroup
+      options={[
+        { id: 'sentence_case_dont_one', label: 'Read Access' },
+        { id: 'sentence_case_dont_two', label: 'Write Access' },
+        { id: 'sentence_case_dont_three', label: 'Create Access' },
+        { id: 'sentence_case_dont_four', label: 'Delete Access' },
+      ]}
+      idToSelectedMap={{ sentence_case_dont_one: true }}
+      onChange={() => {}}
+    />
+  </Guideline>
+</EuiFlexGrid>
+
+Use consistent label structures for options within the same group.
+
+<EuiFlexGrid columns={2}>
+  <Guideline type="do" text="Use sentences only or fragments only.">
+    <EuiCheckboxGroup
+      legend={{ children: 'Data to ship' }}
+      options={[
+        { id: 'group_title_do_one', label: 'Logs' },
+        { id: 'group_title_do_two', label: 'Metric' },
+      ]}
+      idToSelectedMap={{ group_title_do_one: true }}
+      onChange={() => {}}
+    />
+  </Guideline>
+  <Guideline type="dont" text="Mix label structure within the same group of options.">
+    <EuiCheckboxGroup
+      legend={{ children: 'Data to ship' }}
+      options={[
+        { id: 'group_title_dont_one', label: 'Use Logs' },
+        { id: 'group_title_dont_two', label: 'Metric' },
+      ]}
+      idToSelectedMap={{ group_title_dont_one: true }}
+      onChange={() => {}}
+    />
+  </Guideline>
+  <Guideline type="do" text="Start all with a verb, all with a noun, or all with a number.">
+    <EuiRadioGroup
+      legend={{ children: 'Availability zones' }}
+      options={[
+        { id: 'consistent_do_one', label: '1 zone' },
+        { id: 'consistent_do_two', label: '2 zones' },
+        { id: 'consistent_do_three', label: '3 zones' },
+      ]}
+      onChange={() => {}}
+    />
+  </Guideline>
+  <Guideline type="dont" text="Use ending punctuation. Exception: Question marks can be used if they add clarity.">
+    <EuiRadioGroup
+      legend={{ children: 'Availability zones' }}
+      options={[
+        { id: 'consistent_dont_one', label: 'One zone' },
+        { id: 'consistent_dont_two', label: '2 zones.' },
+        { id: 'consistent_dont_three', label: '3 zones' },
+      ]}
+      onChange={() => {}}
+    />
+  </Guideline>
+</EuiFlexGrid>
+
+## Switch labels
+
+The label should be static, action-oriented, and describe the feature. Avoid verbs that are less conversational such as "enable" unless they are your only option.
+
+<EuiFlexGrid columns={2}>
+  <Guideline type="do" text="Use a static noun describing the setting to turn on or off.">
+    <EuiSwitch
+      checked={false}
+      onChange={() => {}}
+      label="Malware protection"
+    />
+  </Guideline>
+  <Guideline type="dont" text='Start with statements such as "If true" or "If enabled".'>
+    <EuiSwitch
+      checked={false}
+      onChange={() => {}}
+      label="If enabled, uses malware protection"
+    />
+  </Guideline>
+  <Guideline type="do" text='If relevant, start with a verb ("Use A", "Show B") and add help text to provide more info.'>
+    <EuiFormRow helpText="Rollover when an index is 30 days old or reaches 50 gigabytes.">
+      <EuiSwitch
+        checked={false}
+        onChange={() => {}}
+        label="Use recommended defaults"
+      />
+    </EuiFormRow>
+  </Guideline>
+  <Guideline type="dont" text="Use only a verb. Generic verbs alone make options unclear.">
+    <EuiSwitch checked={false} onChange={() => {}} label="Enable" />
+  </Guideline>
+</EuiFlexGrid>
+
+Use past tense only when labelling a list of previously created items, like in a table header.
+
+export const MockTableCell = () => {
+  const { euiTheme } = useEuiTheme();
+  return (
+    <div
+      style={{
+        blockSize: euiTheme.size.s,
+        inlineSize: euiTheme.base * 7,
+        borderRadius: euiTheme.border.radius.small,
+        backgroundColor: euiTheme.colors.lightestShade,
+      }}
+      role="presentation"
+    />
+  );
+};
+
+<EuiFlexGrid columns={2}>
+  <Guideline type="do" text="In a list of already created items, use the past tense.">
+    <EuiBasicTable
+      responsiveBreakpoint={false}
+      columns={[
+        {
+          field: 'enabled',
+          name: 'Enabled',
+          render: (enabled) => (
+            <EuiSwitch
+              checked={enabled}
+              onChange={() => {}}
+              compressed
+              showLabel={false}
+              label="Enabled"
+            />
+          ),
+        },
+        { name: <MockTableCell />, render: () => <MockTableCell /> },
+        { name: <MockTableCell />, render: () => <MockTableCell /> },
+      ]}
+      items={[
+        { id: '1', enabled: true },
+        { id: '2', enabled: false },
+      ]}
+      tableLayout="auto"
+    />
+  </Guideline>
+  <Guideline type="dont" text="Change the label to represent the current state of the switch.">
+    <EuiSwitch
+      checked={true}
+      onChange={() => {}}
+      label="Log enabled"
+    />
+  </Guideline>
+</EuiFlexGrid>
+
+## Legends
+
+For groups of options, add a legend that gives meaning to the options. Legends appear like a title.
+
+<EuiFlexGrid columns={2}>
+  <Guideline type="do" text="Use nouns that describe the choices to make.">
+    <EuiCheckboxGroup
+      legend={{ children: 'Data to ship' }}
+      options={[
+        { id: 'group_title_do_one', label: 'Logs' },
+        { id: 'group_title_do_two', label: 'Metrics' },
+      ]}
+      onChange={() => {}}
+      idToSelectedMap={{ group_title_do_one: true }}
+    />
+  </Guideline>
+  <Guideline type="dont" text="Repeat choices or use the title as instructions.">
+    <EuiCheckboxGroup
+      legend={{ children: 'Data to ship' }}
+      options={[
+        { id: 'group_title_dont_one', label: 'Logs' },
+        { id: 'group_title_dont_two', label: 'Metrics' },
+      ]}
+      onChange={() => {}}
+      idToSelectedMap={{ group_title_dont_one: true }}
+    />
+  </Guideline>
+</EuiFlexGrid>

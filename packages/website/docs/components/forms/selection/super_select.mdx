@@ -1,0 +1,199 @@
+---
+slug: /forms/selection/super-select
+id: forms_selection_super_select
+sidebar_position: 3
+---
+
+# Super select
+
+import EuiFormRowCallout from '../form_layouts/_form_row_callout.mdx';
+
+<EuiFormRowCallout />
+
+This is a simple replacement component for [**EuiSelect**](./select.mdx) if you need more customization in either the display of the input or option. Simply pass an array of option objects:
+
+*   `value`: for storing unique value of item,
+*   `inputDisplay`: what shows inside the form input when selected,
+*   `dropdownDisplay`: (optional) what shows for the item in the dropdown
+`EuiSuperSelect` gives you more control over the display of the options in the dropdown. The `dropdownDisplay` prop gives you the ability to pass in custom React nodes for each option, allowing for multi-line option text or descriptions.
+
+and the component will create a select styled button that triggers a popover of selectable items.
+
+```tsx interactive
+import React, { useState } from 'react';
+import { EuiSuperSelect, EuiHealth, EuiFormRow } from '@elastic/eui';
+
+export default () => {
+  const options = [
+    {
+      value: 'warning',
+      inputDisplay: (
+        <EuiHealth color="subdued" style={{ lineHeight: 'inherit' }}>
+          Warning
+        </EuiHealth>
+      ),
+      'data-test-subj': 'option-warning',
+      disabled: true,
+    },
+    {
+      value: 'minor',
+      inputDisplay: (
+        <EuiHealth color="warning" style={{ lineHeight: 'inherit' }}>
+          Minor
+        </EuiHealth>
+      ),
+      'data-test-subj': 'option-minor',
+    },
+    {
+      value: 'critical',
+      inputDisplay: (
+        <EuiHealth color="danger" style={{ lineHeight: 'inherit' }}>
+          Critical
+        </EuiHealth>
+      ),
+      'data-test-subj': 'option-critical',
+    },
+  ];
+  const [value, setValue] = useState(options[1].value);
+
+  const onChange = (value) => {
+    setValue(value);
+  };
+
+  return (
+    <EuiFormRow
+      label="Status"
+      helpText="This super select is inside a form row."
+    >
+      <EuiSuperSelect
+        options={options}
+        valueOfSelected={value}
+        onChange={(value) => onChange(value)}
+      />
+    </EuiFormRow>
+  );
+};
+```
+
+## More complex
+
+Both `inputDisplay` and `dropdownDisplay` accept React nodes. Therefore you can pass some descriptions with each option to show in the dropdown. If your options will most likely be multi-line, add the `hasDividers` prop to show borders between options.
+
+A `placeholder` prop may also be passed that accepts string as well as React nodes (to match your `inputDisplay` if necessary). This placeholder will only show when `valueOfSelected` is empty.
+
+```tsx interactive
+import React, { Fragment, useState } from 'react';
+import { EuiSuperSelect, EuiText } from '@elastic/eui';
+
+export default () => {
+  const options = [
+    {
+      value: 'option_one',
+      inputDisplay: 'Option one',
+      dropdownDisplay: (
+        <Fragment>
+          <strong>Option one</strong>
+          <EuiText size="s" color="subdued">
+            <p>Has a short description giving more detail to the option.</p>
+          </EuiText>
+        </Fragment>
+      ),
+    },
+    {
+      value: 'option_two',
+      inputDisplay: 'Option two',
+      dropdownDisplay: (
+        <Fragment>
+          <strong>Option two</strong>
+          <EuiText size="s" color="subdued">
+            <p>Has a short description giving more detail to the option.</p>
+          </EuiText>
+        </Fragment>
+      ),
+    },
+    {
+      value: 'option_three',
+      inputDisplay: 'Option three',
+      dropdownDisplay: (
+        <Fragment>
+          <strong>Option three</strong>
+          <EuiText size="s" color="subdued">
+            <p>Has a short description giving more detail to the option.</p>
+          </EuiText>
+        </Fragment>
+      ),
+    },
+  ];
+
+  const [value, setValue] = useState();
+
+  const onChange = (value) => {
+    setValue(value);
+  };
+
+  return (
+    <EuiSuperSelect
+      options={options}
+      valueOfSelected={value}
+      placeholder="Select an option"
+      onChange={(value) => onChange(value)}
+      itemLayoutAlign="top"
+      hasDividers
+    />
+  );
+};
+```
+
+## States
+
+You can pass the same props as you normally would to **EuiSelect** like disabled, isLoading, compressed, etc.
+
+```tsx interactive
+import React, { useState } from 'react';
+import { EuiSuperSelect } from '@elastic/eui';
+
+export default () => {
+  const options = [
+    {
+      value: 'option_one',
+      inputDisplay: 'Option one',
+      disabled: true,
+      'data-test-subj': 'option one',
+    },
+    {
+      value: 'option_two',
+      inputDisplay: 'Option two',
+    },
+    {
+      value: 'option_three',
+      inputDisplay: (
+        <span className="eui-textTruncate eui-displayBlock">
+          Option three has a super long text and added truncation
+        </span>
+      ),
+    },
+  ];
+  const [value, setValue] = useState(options[1].value);
+
+  const onChange = (value) => {
+    setValue(value);
+  };
+
+  return (
+    /* DisplayToggles wrapper for Docs only */
+    <DisplayToggles canPrepend={true} canAppend={true}>
+      <EuiSuperSelect
+        options={options}
+        valueOfSelected={value}
+        onChange={(value) => onChange(value)}
+      />
+    </DisplayToggles>
+  );
+};
+```
+
+## Props
+
+import docgen from '@elastic/eui-docgen/dist/components/form';
+
+<PropTable definition={docgen.EuiSuperSelect} />

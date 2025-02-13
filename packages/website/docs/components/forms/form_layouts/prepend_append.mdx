@@ -1,0 +1,199 @@
+---
+slug: /forms/layouts/prepend-append
+id: forms_prepend_append
+sidebar_position: 5
+---
+
+# Prepends and appends
+
+Most form controls accept a `prepend` and `append` prop that allows passing a single node/string or an array of nodes/strings. Strings will be converted into form labels and connected to the input via `htmlFor` for accessibility.
+
+These are great for demarcating the input's metric like "px" or "ms". You can also pass buttons for input settings or additional filters. Just be sure to use `<EuiButtonEmpty size="xs" />`.
+
+```tsx interactive
+import React, { useState } from 'react';
+import {
+  EuiFlexGroup,
+  EuiButtonEmpty,
+  EuiButtonIcon,
+  EuiFieldText,
+  EuiIcon,
+  EuiIconTip,
+  EuiPopover,
+  EuiSpacer,
+  EuiSwitch,
+  EuiText,
+  EuiToolTip,
+} from '@elastic/eui';
+
+export default () => {
+  const [isCompressed, setCompressed] = useState(false);
+  const [isDisabled, setDisabled] = useState(false);
+  const [isReadOnly, setReadOnly] = useState(false);
+
+  return (
+    <>
+      <EuiFlexGroup responsive={false}>
+        <EuiSwitch
+          label="compressed"
+          checked={isCompressed}
+          onChange={(e) => setCompressed(e.target.checked)}
+        />
+        <EuiSwitch
+          label="disabled"
+          checked={isDisabled}
+          onChange={(e) => setDisabled(e.target.checked)}
+        />
+        <EuiSwitch
+          label="readOnly"
+          checked={isReadOnly}
+          onChange={(e) => setReadOnly(e.target.checked)}
+        />
+      </EuiFlexGroup>
+      <EuiSpacer />
+      <EuiFieldText
+        placeholder="String & text in a tooltip"
+        prepend="String"
+        append={
+          <EuiToolTip content="content">
+            <EuiText size="s">Tooltip</EuiText>
+          </EuiToolTip>
+        }
+        compressed={isCompressed}
+        disabled={isDisabled}
+        readOnly={isReadOnly}
+        aria-label="Use aria labels when no actual label is in use"
+      />
+      <EuiSpacer />
+      <EuiFieldText
+        placeholder="XS empty button in a popover & tooltip"
+        prepend={
+          <EuiPopover
+            button={
+              <EuiButtonEmpty size="xs" iconType="arrowDown" iconSide="right">
+                Popover
+              </EuiButtonEmpty>
+            }
+            closePopover={() => {}}
+          />
+        }
+        append={
+          <EuiToolTip content="content">
+            <EuiButtonEmpty size="xs">Tooltip</EuiButtonEmpty>
+          </EuiToolTip>
+        }
+        compressed={isCompressed}
+        disabled={isDisabled}
+        readOnly={isReadOnly}
+        aria-label="Use aria labels when no actual label is in use"
+      />
+      <EuiSpacer />
+      <EuiFieldText
+        placeholder="XS empty buttons with icons"
+        prepend={
+          <EuiButtonEmpty
+            role="button"
+            size="xs"
+            iconType="arrowDown"
+            iconSide="right"
+            aria-label="Calendar dropdown"
+          >
+            <EuiIcon type="calendar" />
+          </EuiButtonEmpty>
+        }
+        append={
+          <EuiButtonEmpty size="xs" iconType="gear">
+            Tooltip
+          </EuiButtonEmpty>
+        }
+        compressed={isCompressed}
+        disabled={isDisabled}
+        readOnly={isReadOnly}
+        aria-label="Use aria labels when no actual label is in use"
+      />
+      <EuiSpacer />
+      <EuiFieldText
+        placeholder="Icon & button icon"
+        prepend={<EuiIcon type="vector" />}
+        append={<EuiButtonIcon iconType="gear" aria-label="Gear this" />}
+        compressed={isCompressed}
+        disabled={isDisabled}
+        readOnly={isReadOnly}
+        aria-label="Use aria labels when no actual label is in use"
+      />
+      <EuiSpacer />
+      <EuiFieldText
+        placeholder="Icons in buttons and popovers and tooltips"
+        prepend={[
+          <EuiIcon type="vector" />,
+          <EuiButtonIcon iconType="gear" aria-label="Gear this" />,
+        ]}
+        append={[
+          <EuiPopover
+            button={<EuiButtonIcon iconType="gear" aria-label="Gear this" />}
+            closePopover={() => {}}
+          />,
+          <EuiIconTip content="content" />,
+        ]}
+        compressed={isCompressed}
+        disabled={isDisabled}
+        readOnly={isReadOnly}
+        aria-label="Use aria labels when no actual label is in use"
+      />
+      <EuiSpacer />
+      <EuiFieldText
+        placeholder="Icon button in popover & tooltip"
+        append={
+          <EuiPopover
+            button={<EuiButtonIcon iconType="arrowDown" aria-label="Popover" />}
+            closePopover={() => {}}
+          />
+        }
+        prepend={
+          <EuiToolTip content="content">
+            <EuiButtonIcon iconType="gear" aria-label="Gear this" />
+          </EuiToolTip>
+        }
+        compressed={isCompressed}
+        disabled={isDisabled}
+        readOnly={isReadOnly}
+        aria-label="Use aria labels when no actual label is in use"
+      />
+      <EuiSpacer />
+      <EuiFieldText
+        placeholder="Icon and string & string and icon button"
+        prepend={[<EuiIcon type="vector" />, 'String']}
+        append={[
+          'String',
+          <EuiButtonIcon iconType="gear" aria-label="Gear this" />,
+        ]}
+        compressed={isCompressed}
+        disabled={isDisabled}
+        readOnly={isReadOnly}
+        aria-label="Use aria labels when no actual label is in use"
+      />
+      <EuiSpacer />
+      <EuiFieldText
+        placeholder="String and button icon in tooltip & button icon in popover and string "
+        prepend={[
+          'String',
+          <EuiToolTip content="content">
+            <EuiButtonIcon iconType="gear" aria-label="Gear this" />
+          </EuiToolTip>,
+        ]}
+        append={[
+          <EuiPopover
+            button={<EuiButtonIcon iconType="gear" aria-label="Gear this" />}
+            closePopover={() => {}}
+          />,
+          'String',
+        ]}
+        compressed={isCompressed}
+        disabled={isDisabled}
+        readOnly={isReadOnly}
+        aria-label="Use aria labels when no actual label is in use"
+      />
+    </>
+  );
+};
+```

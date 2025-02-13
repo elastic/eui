@@ -1,0 +1,132 @@
+---
+slug: /forms/search-filter
+id: forms_search_field
+sidebar_position: 0
+---
+
+# Basic search field
+
+Use **EuiFieldSearch** to allow users to enter search queries. This component renders a basic HTML `<input type="search">` element. 
+
+import EuiFormRowCallout from '../form_layouts/_form_row_callout.mdx';
+
+<EuiFormRowCallout />
+
+```tsx interactive
+import React, { useState } from 'react';
+import { EuiFieldSearch, EuiSwitch } from '@elastic/eui';
+
+export default () => {
+  const [isClearable, setIsClearable] = useState(true);
+  const [value, setValue] = useState('');
+
+  const onChange = (e) => {
+    setValue(e.target.value);
+  };
+
+  return (
+    /* DisplayToggles wrapper for Docs only */
+    <DisplayToggles
+      canPrepend
+      canAppend
+      extras={[
+        <EuiSwitch
+          compressed
+          label={'clearable'}
+          checked={isClearable}
+          onChange={(e) => {
+            setIsClearable(e.target.checked);
+          }}
+        />,
+      ]}
+    >
+      <EuiFieldSearch
+        placeholder="Search this"
+        value={value}
+        onChange={(e) => onChange(e)}
+        isClearable={isClearable}
+        aria-label="Use aria labels when no actual label is in use"
+      />
+    </DisplayToggles>
+  );
+};
+```
+
+## Searching on enter key
+
+Use the `onSearch` callback prop to receive **EuiFieldSearch**'s current value when a user triggers a search via the <kbd>Enter</kbd> key.
+
+```tsx interactive
+import React, { useState } from 'react';
+import { EuiFieldSearch, EuiFormRow, EuiSpacer } from '@elastic/eui';
+
+export default () => {
+  const [searchValue, setSearchValue] = useState('');
+
+  const onSearch = (value: string) => {
+    setSearchValue(value);
+  };
+
+  return (
+    <>
+      <EuiFormRow
+        label="Search widgets"
+        helpText="Type any text and press the enter key to trigger a search."
+      >
+        <EuiFieldSearch
+          placeholder="Widget 22A"
+          onSearch={onSearch}
+          isClearable={true}
+        />
+      </EuiFormRow>
+      <EuiSpacer />
+      {searchValue && (
+        <>You searched for: <strong>{searchValue}</strong></>
+      )}
+    </>
+  );
+};
+```
+
+## Incremental search
+
+To search as the user types into the field, set the `incremental` prop to `true`.
+
+```tsx interactive
+import React, { useState } from 'react';
+import { EuiFieldSearch, EuiSwitch } from '@elastic/eui';
+
+export default () => {
+  const [searchValue, setSearchValue] = useState('');
+
+  const onSearch = (value: string) => {
+    setSearchValue(value);
+  };
+
+  return (
+    <>
+      <EuiFormRow
+        label="Search forms"
+        helpText="Type any text to begin searching."
+      >
+        <EuiFieldSearch
+          placeholder="Form 413B"
+          onSearch={onSearch}
+          incremental={true}
+          isClearable={true}
+        />
+      </EuiFormRow>
+      <EuiSpacer />
+      {searchValue && (
+        <>Searching for: <strong>{searchValue}</strong></>
+      )}
+    </>
+  );
+};
+```
+
+## Props
+
+import docgen from '@elastic/eui-docgen/dist/components/form';
+
+<PropTable definition={docgen.EuiFieldSearch} />
