@@ -18,7 +18,7 @@ import {
   AST,
   RefractorNode,
   register,
-  type RefractorSyntax
+  type RefractorSyntax,
 } from 'refractor';
 import { cx } from '@emotion/css';
 import { esql as esqlLanguage } from '@elastic/prismjs-esql';
