@@ -3,7 +3,6 @@
 - Updated `EuiColorPalettePicker` - adds `append` to `EuiColorPalettePickerPaletteProps` to support appending custom content to the title ([#8208](https://github.com/elastic/eui/pull/8208))
 - Updated font-weight and font-size of `EuiBetaBadge`s to improve legibility ([#8255](https://github.com/elastic/eui/pull/8255))
 - Added support for `titleColor` variant `warning` on `EuiStat` ([#8278](https://github.com/elastic/eui/pull/8278))
-- ES|QL syntax highlighting was added. `EuiCode`, `EuiCodeBlock`, `EuiMarkdownFormat`, and `EuiMarkdownEditor` components now can syntax highlight ES|QL code ([#8317](https://github.com/elastic/eui/pull/8317))
 
 ## [`v99.0.0`](https://github.com/elastic/eui/releases/v99.0.0)
 
