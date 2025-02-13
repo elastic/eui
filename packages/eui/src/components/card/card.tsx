@@ -409,7 +409,7 @@ export const EuiCard: FunctionComponent<EuiCardProps> = ({
       onClick={isClickable ? outerOnClick : undefined}
       color={isDisabled ? 'subdued' : display}
       hasShadow={hasShadow}
-      hasBorder={display ? false : true}
+      hasBorder={!display ? true : undefined}
       paddingSize={paddingSize}
       {...rest}
     >
