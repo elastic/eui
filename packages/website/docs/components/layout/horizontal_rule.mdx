@@ -12,14 +12,14 @@ import React from 'react';
 import { EuiHorizontalRule, EuiCode } from '@elastic/eui';
 
 export default () => (
-  <>
+  <div css={{ textAlign: "center" }}>
     <EuiCode>quarter</EuiCode>
     <EuiHorizontalRule size="quarter" />
     <EuiCode>half</EuiCode>
     <EuiHorizontalRule size="half" />
     <EuiCode>full (default)</EuiCode>
     <EuiHorizontalRule />
-  </>
+  </div>
 );
 ```
 
@@ -31,37 +31,46 @@ The spacing added before and after **EuiHorizontalRule** can be adjusted using t
 import React from 'react';
 import { EuiHorizontalRule, EuiCode } from '@elastic/eui';
 
+const Container = ({ children }) => (
+  <div css={({ euiTheme }) => ({
+    padding: 0.01,
+    marginBottom: euiTheme.size.base,
+    background: '#047471', /* TODO replace with euiTheme.colors.??? */
+    '--ifm-hr-margin-vertical': 0, /* override docusaurus' global for <hr> */
+  })}>{children}</div>
+);
+
 export default () => (
-  <>
-    <EuiCode>none</EuiCode>
-    <div>
-      <EuiHorizontalRule margin="none" />
-    </div>
-    <EuiCode>xs</EuiCode>
-    <div>
-      <EuiHorizontalRule margin="xs" />
-    </div>
-    <EuiCode>s</EuiCode>
-    <div>
-      <EuiHorizontalRule margin="s" />
-    </div>
-    <EuiCode>m</EuiCode>
-    <div>
-      <EuiHorizontalRule margin="m" />
-    </div>
-    <EuiCode>l (default)</EuiCode>
-    <div>
-      <EuiHorizontalRule margin="l" />
-    </div>
-    <EuiCode>xl</EuiCode>
-    <div>
-      <EuiHorizontalRule margin="xl" />
-    </div>
-    <EuiCode>xxl</EuiCode>
-    <div>
-      <EuiHorizontalRule margin="xxl" />
-    </div>
-  </>
+    <>
+      <EuiCode>none</EuiCode>
+      <Container>
+        <EuiHorizontalRule margin="none" />
+      </Container>
+      <EuiCode>xs</EuiCode>
+      <Container>
+        <EuiHorizontalRule margin="xs" />
+      </Container>
+      <EuiCode>s</EuiCode>
+      <Container>
+        <EuiHorizontalRule margin="s" />
+      </Container>
+      <EuiCode>m</EuiCode>
+      <Container>
+        <EuiHorizontalRule margin="m" />
+      </Container>
+      <EuiCode>l (default)</EuiCode>
+      <Container>
+        <EuiHorizontalRule margin="l" />
+      </Container>
+      <EuiCode>xl</EuiCode>
+      <Container>
+        <EuiHorizontalRule margin="xl" />
+      </Container>
+      <EuiCode>xxl</EuiCode>
+      <Container>
+        <EuiHorizontalRule margin="xxl" />
+      </Container>
+    </>
 );
 ```
 
