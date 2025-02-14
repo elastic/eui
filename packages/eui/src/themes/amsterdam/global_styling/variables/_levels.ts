@@ -14,7 +14,7 @@ export const levels: _EuiThemeLevels = {
   mask: 6000,
   navigation: 6000,
   menu: 2000,
-  header: 1000,
+  header: 2000,
   flyout: 1000,
   maskBelowHeader: 1000,
   content: 0,

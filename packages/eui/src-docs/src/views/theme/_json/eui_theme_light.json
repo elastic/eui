@@ -274,7 +274,7 @@
   "euiZMask": 6000,
   "euiZNavigation": 6000,
   "euiZContentMenu": 2000,
-  "euiZHeader": 1000,
+  "euiZHeader": 2000,
   "euiZFlyout": 1000,
   "euiZMaskBelowHeader": 1000,
   "euiZContent": 0,
