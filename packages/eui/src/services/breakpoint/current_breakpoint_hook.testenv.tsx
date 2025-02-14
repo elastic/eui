@@ -7,9 +7,9 @@
  */
 
 import { useContext } from 'react';
+import { breakpoint as breakpoints } from '@elastic/eui-theme-common';
 
 import { keysOf } from '../../components/common';
-import { breakpoint as breakpoints } from '../../themes/amsterdam/global_styling/variables/_breakpoint';
 import { CurrentEuiBreakpointContext } from './current_breakpoint';
 
 /**

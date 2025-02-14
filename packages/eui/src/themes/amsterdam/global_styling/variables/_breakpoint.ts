@@ -6,12 +6,4 @@
  * Side Public License, v 1.
  */
 
-import { _EuiThemeBreakpoints } from '../../../../global_styling/variables';
-
-export const breakpoint: _EuiThemeBreakpoints = {
-  xl: 1200,
-  l: 992,
-  m: 768,
-  s: 575,
-  xs: 0,
-};
+export { breakpoint } from '@elastic/eui-theme-common';

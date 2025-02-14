@@ -6,4 +6,12 @@
  * Side Public License, v 1.
  */
 
-export { getShadowColor } from '@elastic/eui-theme-common';
+import { _EuiThemeBreakpoints } from './breakpoint';
+
+export const breakpoint: _EuiThemeBreakpoints = {
+  xl: 1200,
+  l: 992,
+  m: 768,
+  s: 575,
+  xs: 0,
+};

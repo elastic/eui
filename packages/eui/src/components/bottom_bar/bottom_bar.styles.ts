@@ -7,9 +7,10 @@
  */
 
 import { css, keyframes } from '@emotion/react';
+import { euiShadowFlat } from '@elastic/eui-theme-common';
+
 import { euiCanAnimate } from '../../global_styling';
 import { UseEuiTheme } from '../../services';
-import { euiShadowFlat } from '../../themes/amsterdam/global_styling/mixins';
 
 const euiBottomBarAppear = keyframes`
   0% {

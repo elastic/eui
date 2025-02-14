@@ -7,10 +7,13 @@
  */
 
 import { css } from '@emotion/react';
+import {
+  euiShadowXSmall,
+  euiSlightShadowHover,
+} from '@elastic/eui-theme-common';
 
 import { UseEuiTheme } from '../../services';
 import { logicalCSS, mathWithUnits } from '../../global_styling';
-import { euiShadowXSmall, euiSlightShadowHover } from '../../themes/amsterdam';
 
 export const euiResizableCollapseButtonStyles = (
   euiThemeContext: UseEuiTheme

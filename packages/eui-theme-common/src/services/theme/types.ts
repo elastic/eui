@@ -8,18 +8,21 @@
 
 import type { CSSObject } from '@emotion/react';
 
-import type { RecursivePartial, ValueOf } from '../types';
+import type { RecursivePartial, ValueOf } from '../../types';
 
-import { _EuiThemeAnimation } from './variables/animations';
-import { _EuiThemeBreakpoints } from './variables/breakpoint';
-import { _EuiThemeBorder } from './variables/borders';
-import { _EuiThemeColors } from './variables/colors';
-import { _EuiThemeBase, _EuiThemeSizes } from './variables/size';
-import { _EuiThemeFont } from './variables/typography';
-import { _EuiThemeFocus } from './variables/states';
-import { _EuiThemeLevels } from './variables/levels';
-import { _EuiThemeComponents } from './variables/components';
-import { _EuiThemeFlags } from './variables';
+import { _EuiThemeAnimation } from '../../global_styling/variables/animations';
+import { _EuiThemeBreakpoints } from '../../global_styling/variables/breakpoint';
+import { _EuiThemeBorder } from '../../global_styling/variables/borders';
+import { _EuiThemeColors } from '../../global_styling/variables/colors';
+import {
+  _EuiThemeBase,
+  _EuiThemeSizes,
+} from '../../global_styling/variables/size';
+import { _EuiThemeFont } from '../../global_styling/variables/typography';
+import { _EuiThemeFocus } from '../../global_styling/variables/states';
+import { _EuiThemeLevels } from '../../global_styling/variables/levels';
+import { _EuiThemeComponents } from '../../global_styling/variables/components';
+import { _EuiThemeFlags } from '../../global_styling/variables';
 
 export const COLOR_MODES_STANDARD = {
   light: 'LIGHT',
@@ -108,3 +111,9 @@ export type EuiThemeNested = {
   setNearestThemeCSSVariables: Function;
   themeCSSVariables?: CSSObject;
 };
+
+export interface UseEuiTheme<T extends {} = {}> {
+  euiTheme: EuiThemeComputed<T>;
+  colorMode: EuiThemeColorModeStandard;
+  modifications: EuiThemeModifications<T>;
+}

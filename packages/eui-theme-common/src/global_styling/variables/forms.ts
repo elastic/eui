@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import { ColorModeSwitch } from '../types';
+import { ColorModeSwitch } from '../../services/theme/types';
 
 export type _EuiThemeForm = {
   maxWidth: string;

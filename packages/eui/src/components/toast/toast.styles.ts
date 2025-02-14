@@ -7,9 +7,10 @@
  */
 
 import { css } from '@emotion/react';
+import { euiShadowLarge } from '@elastic/eui-theme-common';
+
 import { euiTextBreakWord, logicalCSS } from '../../global_styling';
 import { UseEuiTheme } from '../../services';
-import { euiShadowLarge } from '../../themes/amsterdam';
 import { euiTitle } from '../title/title.styles';
 
 export const euiToastStyles = (euiThemeContext: UseEuiTheme) => {

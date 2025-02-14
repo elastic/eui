@@ -7,8 +7,9 @@
  */
 
 import { css } from '@emotion/react';
+import { euiShadowMedium } from '@elastic/eui-theme-common';
+
 import { logicalCSS } from '../../global_styling';
-import { euiShadowMedium } from '../../themes/amsterdam/global_styling/mixins';
 import { UseEuiTheme } from '../../services';
 
 export const euiDatePickerRangeStyles = {

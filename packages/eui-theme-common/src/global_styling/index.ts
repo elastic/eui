@@ -6,6 +6,7 @@
  * Side Public License, v 1.
  */
 
-export * from './types';
+export * from '../services/theme/types';
 export * from './functions';
 export * from './variables';
+export * from './mixins';
