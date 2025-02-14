@@ -35,8 +35,11 @@ const Container = ({ children }) => (
   <div css={({ euiTheme }) => ({
     padding: 0.01,
     marginBottom: euiTheme.size.base,
-    background: '#047471', /* TODO replace with euiTheme.colors.??? */
-    '--ifm-hr-margin-vertical': 0, /* override docusaurus' global for <hr> */
+    /* FIXME color contrast for this is too low (~1.25) */
+    /* TODO replace with euiTheme.colors.??? */
+    background: 'oklch(46.39% 0.1774 261.49 / 8%)',
+    /* override docusaurus' global for <hr> */
+    '--ifm-hr-margin-vertical': 0,
   })}>{children}</div>
 );
 
