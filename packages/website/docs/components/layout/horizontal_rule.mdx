@@ -31,48 +31,50 @@ The spacing added before and after **EuiHorizontalRule** can be adjusted using t
 import React from 'react';
 import { EuiHorizontalRule, EuiCode } from '@elastic/eui';
 
-const Container = ({ children }) => (
+const ColorMarginContainer = ({ children }) => (
   <div css={({ euiTheme }) => ({
-    padding: 0.01,
+    display: 'flex',
     marginBottom: euiTheme.size.base,
-    /* FIXME color contrast for this is too low (~1.25) */
-    /* TODO replace with euiTheme.colors.??? */
-    background: 'oklch(46.39% 0.1774 261.49 / 8%)',
+    backgroundColor: 'var(--eui-background-color-primary)',
     /* override docusaurus' global for <hr> */
     '--ifm-hr-margin-vertical': 0,
+    /* ensure enough contrast with background */
+    '.euiHorizontalRule': {
+      backgroundColor: euiTheme.colors.text,
+    }
   })}>{children}</div>
 );
 
 export default () => (
     <>
       <EuiCode>none</EuiCode>
-      <Container>
+      <ColorMarginContainer>
         <EuiHorizontalRule margin="none" />
-      </Container>
+      </ColorMarginContainer>
       <EuiCode>xs</EuiCode>
-      <Container>
+      <ColorMarginContainer>
         <EuiHorizontalRule margin="xs" />
-      </Container>
+      </ColorMarginContainer>
       <EuiCode>s</EuiCode>
-      <Container>
+      <ColorMarginContainer>
         <EuiHorizontalRule margin="s" />
-      </Container>
+      </ColorMarginContainer>
       <EuiCode>m</EuiCode>
-      <Container>
+      <ColorMarginContainer>
         <EuiHorizontalRule margin="m" />
-      </Container>
+      </ColorMarginContainer>
       <EuiCode>l (default)</EuiCode>
-      <Container>
+      <ColorMarginContainer>
         <EuiHorizontalRule margin="l" />
-      </Container>
+      </ColorMarginContainer>
       <EuiCode>xl</EuiCode>
-      <Container>
+      <ColorMarginContainer>
         <EuiHorizontalRule margin="xl" />
-      </Container>
+      </ColorMarginContainer>
       <EuiCode>xxl</EuiCode>
-      <Container>
+      <ColorMarginContainer>
         <EuiHorizontalRule margin="xxl" />
-      </Container>
+      </ColorMarginContainer>
     </>
 );
 ```
