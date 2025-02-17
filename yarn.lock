@@ -4692,6 +4692,7 @@ __metadata:
     moment: "npm:^2.30.1"
     moment-timezone: "npm:^0.5.46"
     prism-react-renderer: "npm:^2.3.0"
+    raw-loader: "npm:^4.0.2"
     react: "npm:^18.0.0"
     react-dom: "npm:^18.0.0"
     typescript: "npm:~5.5.4"
@@ -4770,6 +4771,7 @@ __metadata:
     "@cypress/webpack-dev-server": "npm:^1.7.0"
     "@elastic/charts": "npm:^64.1.0"
     "@elastic/datemath": "npm:^5.0.3"
+    "@elastic/prismjs-esql": "npm:^1.0.0"
     "@emotion/babel-preset-css-prop": "npm:^11.11.0"
     "@emotion/cache": "npm:^11.11.0"
     "@emotion/css": "npm:^11.11.0"
@@ -4963,6 +4965,13 @@ __metadata:
     typescript: ~4.5.3 || ^5
   languageName: unknown
   linkType: soft
+
+"@elastic/prismjs-esql@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "@elastic/prismjs-esql@npm:1.0.0"
+  checksum: 10c0/3cdf879859da03f5e68d6e730972e4142556c9dfb0eb2bc96bceb2ae2463e2c76a62af7335dd181c5b24716060879c8eac87ee98ae23a218aae3c2e1aabd63ef
+  languageName: node
+  linkType: hard
 
 "@elastic/transport@npm:^8.9.1":
   version: 8.9.4
@@ -29273,6 +29282,18 @@ __metadata:
   peerDependencies:
     webpack: ^4.0.0 || ^5.0.0
   checksum: 10c0/89e2e1475f79d69b476e7fe77e0792600e9f56adc4a4daad7a1c7f41f4e29203d2d7afa4233cab49691ff28ab86b16f1670c5405989758f087e6ddcd6f09efa6
+  languageName: node
+  linkType: hard
+
+"raw-loader@npm:^4.0.2":
+  version: 4.0.2
+  resolution: "raw-loader@npm:4.0.2"
+  dependencies:
+    loader-utils: "npm:^2.0.0"
+    schema-utils: "npm:^3.0.0"
+  peerDependencies:
+    webpack: ^4.0.0 || ^5.0.0
+  checksum: 10c0/981ebe65e1cee7230300d21ba6dcd8bd23ea81ef4ad2b167c0f62d93deba347f27921d330be848634baab3831cf9f38900af6082d6416c2e937fe612fa6a74ff
   languageName: node
   linkType: hard
 
