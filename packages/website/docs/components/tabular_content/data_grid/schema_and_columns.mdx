@@ -1,9 +1,10 @@
 ---
 slug: /tabular-content/data-grid/schema-and-columns
 id: tabular_content_data_grid_schema_columns
+sidebar_position: 1
 ---
 
-# Data grid schema & columns
+# Schema & columns
 
 ## Schemas
 
@@ -11,10 +12,11 @@ Schemas are data types you pass to grid columns to affect how the columns and ex
 
 ### Defining custom schemas
 
-Custom schemas are passed as an array to `schemaDetectors` and are constructed against the **EuiDataGridSchemaDetector** interface. You can see an example of a simple custom schema used on the last column below. In addition to schemas being useful to map against for cell and expansion rendering, any schema will also add a`className="euiDataGridRowCell--schemaName"` to each matching cell.
+Custom schemas are passed as an array to `schemaDetectors` and are constructed against the **EuiDataGridSchemaDetector** interface. You can see an example of a simple custom schema used on the last column below. In addition to schemas being useful to map against for cell and expansion rendering, any schema will also add a `className="euiDataGridRowCell--schemaName"` to each matching cell.
 
 ```tsx interactive
 import React, { useState } from 'react';
+import { css } from '@emotion/react';
 import { EuiDataGrid } from '@elastic/eui';
 import { faker } from '@faker-js/faker';
 
@@ -143,13 +145,23 @@ export default () => {
           color: '#800080',
         },
       ]}
+      css={css`
+        .euiDataGridRowCell--favoriteFranchise {
+          background-color: rgba(128, 0, 128, 0.05);
+        }
+
+        .euiDataGridHeaderCell--favoriteFranchise {
+          background-color: rgba(128, 0, 128, 0.1);
+        }
+      `}
     />
   );
 };
-
 ```
 
-## Column widths
+## Columns
+
+### Column widths
 
 By default, visible columns are given equal widths to fill up available space in the grid and can be resized by the user to any desired width. There are two parameters on **EuiDataGridColumn** to change this default behavior. `initialWidth` is a numeric value providing the starting width of a column, in pixels. Second, the `isResizable` value can be set to `false` to remove the user's ability to resize column.
 
@@ -242,10 +254,9 @@ export default () => {
     />
   );
 };
-
 ```
 
-## Column actions
+### Column actions
 
 By default, columns provide actions for sorting, moving and hiding. These can be extended with custom actions. You can customize the actions by setting the `actions` value of **EuiDataGridColumn**. Setting it to `false` removes the action menu displayed. You can configure it by passing an object of type **EuiDataGridColumnAction**. This allows you a hide, configure the existing actions and add new ones.
 
@@ -361,10 +372,103 @@ export default () => {
     />
   );
 };
-
 ```
 
-## Control columns
+### Draggable columns
+
+To reorder columns directly instead of via the actions menu popover, you can enable draggable **EuiDataGrid** header columns via the `columnVisibility.canDragAndDropColumns` prop. This will allow you to reorder the column by dragging them.
+
+```tsx interactive
+import React, { useState, useCallback } from 'react';
+import { EuiDataGrid, EuiAvatar } from '@elastic/eui';
+import { faker } from '@faker-js/faker';
+
+const columns = [
+  {
+    id: 'avatar',
+    initialWidth: 40,
+    isResizable: false,
+  },
+  {
+    id: 'name',
+    initialWidth: 100,
+  },
+  {
+    id: 'email',
+  },
+  {
+    id: 'city',
+  },
+  {
+    id: 'country',
+  },
+  {
+    id: 'account',
+  },
+];
+
+const data = [];
+
+for (let i = 1; i < 5; i++) {
+  data.push({
+    avatar: (
+      <EuiAvatar
+        size="s"
+        name={`${faker.person.lastName()}, ${faker.person.firstName()}`}
+      />
+    ),
+    name: `${faker.person.lastName()}, ${faker.person.firstName()} ${faker.person.suffix()}`,
+    email: faker.internet.email(),
+    city: faker.location.city(),
+    country: faker.location.country(),
+    account: faker.finance.accountNumber(),
+  });
+}
+
+export default () => {
+  const [pagination, setPagination] = useState({ pageIndex: 0 });
+
+  const [visibleColumns, setVisibleColumns] = useState(
+    columns.map(({ id }) => id)
+  );
+
+  const setPageIndex = useCallback(
+    (pageIndex) =>
+      setPagination((pagination) => ({ ...pagination, pageIndex })),
+    []
+  );
+  const setPageSize = useCallback(
+    (pageSize) =>
+      setPagination((pagination) => ({
+        ...pagination,
+        pageSize,
+        pageIndex: 0,
+      })),
+    []
+  );
+
+  return (
+    <EuiDataGrid
+      aria-label="DataGrid demonstrating draggable column headers"
+      columns={columns}
+      columnVisibility={{
+        visibleColumns: visibleColumns,
+        setVisibleColumns: setVisibleColumns,
+        canDragAndDropColumns: true,
+      }}
+      rowCount={data.length}
+      renderCellValue={({ rowIndex, columnId }) => data[rowIndex][columnId]}
+      pagination={{
+        ...pagination,
+        onChangeItemsPerPage: setPageSize,
+        onChangePage: setPageIndex,
+      }}
+    />
+  );
+};
+```
+
+### Control columns
 
 Control columns can be used to include ancillary cells not based on the dataset, such as row selection checkboxes or action buttons. These columns can be placed at either side of the data grid, and users are unable to resize, sort, or rearrange them.
 
@@ -379,7 +483,6 @@ import React, {
   useCallback,
   useReducer,
   useState,
-  Fragment,
 } from 'react';
 import {
   EuiDataGrid,
@@ -564,10 +667,10 @@ const FlyoutRowCell = (rowIndex) => {
 
     const details = Object.entries(rowData).map(([key, value]) => {
       return (
-        <Fragment>
+        <>
           <EuiDescriptionListTitle>{key}</EuiDescriptionListTitle>
           <EuiDescriptionListDescription>{value}</EuiDescriptionListDescription>
-        </Fragment>
+        </>
       );
     });
 
@@ -588,7 +691,7 @@ const FlyoutRowCell = (rowIndex) => {
   }
 
   return (
-    <Fragment>
+    <>
       <EuiButtonIcon
         color="text"
         iconType="eye"
@@ -597,7 +700,7 @@ const FlyoutRowCell = (rowIndex) => {
         onClick={() => setIsFlyoutOpen(!isFlyoutOpen)}
       />
       {flyout}
-    </Fragment>
+    </>
   );
 };
 
@@ -724,6 +827,7 @@ export default function DataGrid() {
     ({ rowIndex, columnId }) => data[rowIndex][columnId],
     []
   );
+
   return (
     <SelectionContext.Provider value={rowSelection}>
       <div>
@@ -751,7 +855,6 @@ export default function DataGrid() {
     </SelectionContext.Provider>
   );
 }
-
 ```
 
 ## Footer row
@@ -836,6 +939,7 @@ const leadingControlColumns = [
   {
     id: 'selection',
     width: 32,
+
     // Check state doesn't actually work - this is just a static example
     headerCellRender: () => (
       <EuiCheckbox
@@ -894,8 +998,8 @@ const RenderFooterCellValue = ({ columnId, setCellProps }) => {
 };
 
 export default () => {
-  // Pagination
   const [pagination, setPagination] = useState({ pageIndex: 0 });
+
   const onChangeItemsPerPage = useCallback(
     (pageSize) =>
       setPagination((pagination) => ({
@@ -911,12 +1015,10 @@ export default () => {
     [setPagination]
   );
 
-  // Column visibility
   const [visibleColumns, setVisibleColumns] = useState(
     columns.map(({ id }) => id)
   );
 
-  // Footer row
   const [showFooterRow, setShowFooterRow] = useState(true);
 
   return (
@@ -958,5 +1060,15 @@ export default () => {
     </EuiFlexGroup>
   );
 };
-
 ```
+
+## Props
+
+import docgen from '@elastic/eui-docgen/dist/components/datagrid/data_grid_types.docgen.json';
+
+<PropTable definition={docgen.EuiDataGridColumn} />
+<PropTable definition={docgen.EuiDataGridColumnActions} />
+<PropTable definition={docgen.EuiDataGridColumnCellActionProps} />
+<PropTable definition={docgen.EuiDataGridColumnVisibility} />
+<PropTable definition={docgen.EuiDataGridControlColumn} />
+<PropTable definition={docgen.EuiDataGridSchemaDetector} />

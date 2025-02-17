@@ -1,17 +1,17 @@
 ---
-slug: /editors-syntax/markdown-editor
+slug: /editors-syntax/markdown/editor
 id: editors_syntax_markdown_editor
 ---
 
-# Markdown editor
+# Editor
 
-**EuiMarkdownEditor** provides a markdown authoring experience for the user. The component consists of a toolbar, text area, and a drag-and-drop zone to accept files (if configured to do so). There are two modes: a textarea that keeps track of cursor position, and a rendered preview mode that is powered by **[EuiMarkdownFormat](/docs/editors-syntax/markdown-format/)**. State is maintained between the two and it is possible to pass changes from the preview area to the textarea and vice versa.
+**EuiMarkdownEditor** provides a markdown authoring experience for the user. The component consists of a toolbar, text area, and a drag-and-drop zone to accept files (if configured to do so). There are two modes: a textarea that keeps track of cursor position, and a rendered preview mode that is powered by **[EuiMarkdownFormat](../format)**. State is maintained between the two and it is possible to pass changes from the preview area to the textarea and vice versa.
 
 ## Base editor
 
-Use the base editor to produce technical content in markdown which can contain text, code, and images. Besides this default markdown content, the base editor comes with built-in plugins that let you add emojis, to-do lists, and tooltips.
+Use the base editor to produce technical content in markdown which can contain text, code, and images. Besides this default markdown content, the base editor comes with several [default plugins](../plugins#default-plugins) that let you add emojis, to-do lists, and tooltips, which can be [configured](../plugins#configuring-the-default-plugins) or [removed](../plugins#unregistering-plugins) as needed.
 
-Consider applying the `readOnly` prop to restrict editing during asynchronous submit events, like when submitting a [comment](/docs/display/comment-list). This will ensure users understand that the content cannot be changed while the comment is being submitted.
+Consider applying the `readOnly` prop to restrict editing during asynchronous submit events, like when submitting a [comment](../../../display/comment-list). This will ensure users understand that the content cannot be changed while the comment is being submitted.
 
 ```tsx interactive
 import React, { useCallback, useState } from 'react';
@@ -118,128 +118,9 @@ export default () => {
 
 ```
 
-## Unregistering plugins
-
-The **EuiMarkdownEditor** comes with several default plugins, demo'd below. If these defaults are unnecessary for your use-case or context, you can unregister these plugins by excluding them from the `parsingPlugins`, `processingPlugins` and `uiPlugins` options with a single `exclude` parameter passed to `getDefaultEuiMarkdownPlugins()`. This will ensure the syntax won't be identified or rendered, and no additional UI (like toolbar buttons or help syntax) will be displayed by the unregistered plugins.
-
-```tsx interactive
-import React, { useState, useMemo } from 'react';
-import {
-  EuiMarkdownEditor,
-  getDefaultEuiMarkdownPlugins,
-  EuiFlexGroup,
-  EuiFlexItem,
-  EuiSwitch,
-} from '@elastic/eui';
-
-const initialContent = `
-### tooltip
-
-When disabled, the button in the toolbar and the help syntax won't be displayed, and the following syntax will no longer works.
-
-!{tooltip[anchor text](Tooltip content)}
-
-### checkbox
-
-When disabled, a EuiCheckbox will no longer render.
-
-- [ ] TODO: Disable some default plugins
-
-### emoji
-
-When disabled, text will render instead of an emoji.
-
-:smile:
-
-### linkValidator
-
-When disabled, all links will render as links instead of as text.
-
-[This is a sus link](file://)
-
-### lineBreaks
-
-When disabled, these sentence will be in the same line.
-When enabled, these sentences will be separated by a line break.
-
-Two blank lines in a row will create a new paragraph as usual.
-`;
-
-export default () => {
-  const [value, setValue] = useState(initialContent);
-
-  const [tooltip, excludeTooltips] = useState(false);
-  const [checkbox, excludeCheckboxes] = useState(true);
-  const [emoji, excludeEmojis] = useState(true);
-  const [linkValidator, excludeLinkValidator] = useState(true);
-  const [lineBreaks, excludeLineBreaks] = useState(false);
-
-  const { parsingPlugins, processingPlugins, uiPlugins } = useMemo(() => {
-    const excludedPlugins = [];
-    if (!tooltip) excludedPlugins.push('tooltip');
-    if (!checkbox) excludedPlugins.push('checkbox');
-    if (!emoji) excludedPlugins.push('emoji');
-    if (!linkValidator) excludedPlugins.push('linkValidator');
-    if (!lineBreaks) excludedPlugins.push('lineBreaks');
-
-    return getDefaultEuiMarkdownPlugins({
-      exclude: excludedPlugins,
-    });
-  }, [tooltip, checkbox, emoji, linkValidator, lineBreaks]);
-
-  return (
-    <>
-      <EuiFlexGroup>
-        <EuiFlexItem grow={false} css={{ gap: 20 }}>
-          <EuiSwitch
-            label="tooltip"
-            checked={tooltip}
-            onChange={() => excludeTooltips(!tooltip)}
-          />
-          <EuiSwitch
-            label="checkbox"
-            checked={checkbox}
-            onChange={() => excludeCheckboxes(!checkbox)}
-          />
-          <EuiSwitch
-            label="emoji"
-            checked={emoji}
-            onChange={() => excludeEmojis(!emoji)}
-          />
-          <EuiSwitch
-            label="linkValidator"
-            checked={linkValidator}
-            onChange={() => excludeLinkValidator(!linkValidator)}
-          />
-          <EuiSwitch
-            label="lineBreaks"
-            checked={lineBreaks}
-            onChange={() => excludeLineBreaks(!lineBreaks)}
-          />
-        </EuiFlexItem>
-        <EuiFlexItem>
-          <EuiMarkdownEditor
-            aria-label="Demo with excluded default plugins"
-            value={value}
-            onChange={setValue}
-            parsingPluginList={parsingPlugins}
-            processingPluginList={processingPlugins}
-            uiPlugins={uiPlugins}
-            initialViewMode="viewing"
-            autoExpandPreview={false}
-            height={400}
-          />
-        </EuiFlexItem>
-      </EuiFlexGroup>
-    </>
-  );
-};
-
-```
-
 ## Error handling and feedback
 
-The `errors` prop allows you to pass an array of errors if syntax is malformed. The below example starts with an incomplete tooltip tag, showing this error message by default. These errors are meant to be ephemeral and part of the editing experience. They should not be a substitute for [form validation](/docs/forms/form-validation).
+The `errors` prop allows you to pass an array of errors if syntax is malformed. The below example starts with an incomplete tooltip tag, showing this error message by default. These errors are meant to be ephemeral and part of the editing experience. They should not be a substitute for [form validation](../../../forms/form-validation).
 
 ```tsx interactive
 import React, { useCallback, useState, useRef } from 'react';

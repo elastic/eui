@@ -14,6 +14,7 @@ const IGNORE_TESTS = [
   '**/*.spec.tsx',
   '**/*.stories.ts',
   '**/*.stories.tsx',
+  '**/*.docgen.tsx',
   '**/**.stories.utils.ts',
   '**/**.stories.utils.tsx',
   '**/*.mdx',
