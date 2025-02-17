@@ -32,6 +32,9 @@ export const euiCodeSyntaxVariables = ({ euiTheme }: UseEuiTheme) => {
     nameColor: makeHighContrastColor(visColors[1])(backgroundColor),
     numberColor: makeHighContrastColor(visColors[0])(backgroundColor),
     keywordColor: makeHighContrastColor(visColors[3])(backgroundColor),
+    inlineCodeKeywordColor: makeHighContrastColor(visColors[6])(
+      backgroundColor
+    ),
     functionTitleColor: 'inherit',
     typeColor: makeHighContrastColor(visColors[1])(backgroundColor),
     attributeColor: 'inherit',
