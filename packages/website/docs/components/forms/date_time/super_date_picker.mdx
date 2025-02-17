@@ -8,7 +8,7 @@ sidebar_position: 3
 
 **EuiSuperDatePicker** is a complex date picker that supports relative and absolute dates. It offers a convenient **Quick select menu** which includes **Commonly used dates**, **Recently used date ranges** and **Auto refresh** features.
 
-Pass `start` and `end` date times as strings in either datemath format (e.g.: `now`, `now-15m`, `now-15m/m`) or as absolute date in the format `YYYY-MM-DDTHH:mm:ss.SSSZ`. Use [datemath](https://github.com/elastic/datemath-js) to convert start and end strings into moment objects.
+Pass `start` and `end` date times as strings in either datemath format (e.g.: `now`, `now-15m`, `now-15m/m`) or as absolute date in the format `YYYY-MM-DDTHH:mm:ss.SSSZ`. Use <a href="https://github.com/elastic/datemath-js" target="_blank">datemath</a> to convert start and end strings into moment objects.
 
 ```
 import dateMath from '@elastic/datemath';
@@ -668,7 +668,7 @@ export default () => {
 
 ## Locale
 
-Locale formatting is achieved by using the `locale`,`timeFormat`, and `dateFormat` props. The latter will take any `moment()` notation. Check [Date format by country](https://en.wikipedia.org/wiki/Date_format_by_country) for formatting examples.
+Locale formatting is achieved by using the `locale`,`timeFormat`, and `dateFormat` props. The latter will take any `moment()` notation. Check <a href="https://en.wikipedia.org/wiki/Date_format_by_country" target="_blank">Date format by country</a> for formatting examples.
 
 :::warning
 Moment will try to load the locale on demand when it is used. Bundlers that do not support dynamic require statements will need to explicitly import the locale, e.g. `import 'moment/locale/zh-cn'`. See the below demo TSX for examples.

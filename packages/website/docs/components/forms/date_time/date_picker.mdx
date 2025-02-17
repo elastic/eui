@@ -6,7 +6,7 @@ sidebar_position: 1
 
 # Date picker
 
-**EuiDatePicker** is the foundational component that all other EUI date and time controls are built upon. It itself depends upon [moment](https://momentjs.com/docs/) for all of its formatting, and a forked and modified version of [react-datepicker](https://github.com/Hacker0x01/react-datepicker/tree/v2.0.0) for accessibility.
+**EuiDatePicker** is the foundational component that all other EUI date and time controls are built upon. It itself depends upon <a href="https://momentjs.com/docs/" target="_blank">moment</a> for all of its formatting, and a forked and modified version of <a href="https://github.com/Hacker0x01/react-datepicker/tree/v2.0.0" target="_blank">react-datepicker</a> for accessibility.
 
 At minimum, the **EuiDatePicker** requires the `selected` and `onChange` props to be passed.
 
@@ -151,7 +151,7 @@ export default () => {
 
 ## Locale
 
-Locale formatting is achieved by using the `locale`,`timeFormat`, and `dateFormat` props. The latter will take any `moment()` notation. Check [Date format by country](https://en.wikipedia.org/wiki/Date_format_by_country) for formatting examples.
+Locale formatting is achieved by using the `locale`,`timeFormat`, and `dateFormat` props. The latter will take any `moment()` notation. Check <a href="https://en.wikipedia.org/wiki/Date_format_by_country" target="_blank">Date format by country</a> for formatting examples.
 
 :::warning
 Moment will try to load the locale on demand when it is used. Bundlers that do not support dynamic require statements will need to explicitly import the locale, e.g. `import 'moment/locale/zh-cn'`. See the below demo JS for examples.
