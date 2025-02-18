@@ -227,7 +227,7 @@ export const EuiCollapsibleNavItemTitle: FunctionComponent<
       )}
 
       <TitleElement
-        className="euiCollapsibleNavItem__title eui-textTruncate"
+        className="euiCollapsibleNavItem__title"
         css={styles.euiCollapsibleNavItem__title}
       >
         {title}
