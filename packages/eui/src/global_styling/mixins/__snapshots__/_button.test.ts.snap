@@ -232,7 +232,7 @@ exports[`useEuiButtonColorCSS base 1`] = `
   },
   "warning": {
     "map": undefined,
-    "name": "l5dk9q-displaysColorsMap-display-color",
+    "name": "fpmgmg-displaysColorsMap-display-color",
     "next": undefined,
     "styles": "color:#6a4906;background-color:#FFFFFF; 
             border: 1px solid #CAD3E2;
@@ -249,7 +249,7 @@ exports[`useEuiButtonColorCSS base 1`] = `
             content: '';
             position: absolute;
             inset: 0;
-            background-color: rgba(250,203,61, 0.20);
+            background-color: rgba(234,174,1, 0.16);
           }
         }
 
@@ -261,7 +261,7 @@ exports[`useEuiButtonColorCSS base 1`] = `
             content: '';
             position: absolute;
             inset: 0;
-            background-color: rgba(250,203,61, 0.24);
+            background-color: rgba(234,174,1, 0.20);
           }
         }
       ;
@@ -365,15 +365,15 @@ exports[`useEuiButtonColorCSS empty 1`] = `
   },
   "warning": {
     "map": undefined,
-    "name": "rt4nbt-displaysColorsMap-display-color",
+    "name": "1rveqw1-displaysColorsMap-display-color",
     "next": undefined,
     "styles": "color:#6a4906; 
         &:hover:not(:disabled) {
-          background-color: rgba(250,203,61, 0.20);
+          background-color: rgba(234,174,1, 0.16);
         }
 
         &:active:not(:disabled) {
-          background-color: rgba(250,203,61, 0.24);
+          background-color: rgba(234,174,1, 0.20);
         }
       ;;label:empty-warning;",
     "toString": [Function],
