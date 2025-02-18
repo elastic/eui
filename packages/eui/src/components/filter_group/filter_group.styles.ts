@@ -16,6 +16,7 @@ import { euiFilterButtonDisplay } from './filter_button.styles';
 
 export const euiFilterGroupStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
+  const isExperimental = euiTheme.flags?.buttonVariant === 'experimental';
 
   const {
     backgroundColor,
@@ -25,14 +26,39 @@ export const euiFilterGroupStyles = (euiThemeContext: UseEuiTheme) => {
     controlCompressedHeight,
   } = euiFormVariables(euiThemeContext);
 
+  const borderRadius = isExperimental
+    ? euiTheme.border.radius.small
+    : controlBorderRadius;
+
+  const borderRadiusCompressed = isExperimental
+    ? euiTheme.border.radius.small
+    : controlCompressedBorderRadius;
+
+  const borderStyle = isExperimental
+    ? `
+      /* Adds the border on a pseudo element to prevent height differences between wrapper and buttons.
+      Uses ::after to ensure overlap and prevents blocking by setting pointer-events: none */
+      &::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        border: ${euiTheme.border.width.thin} solid ${euiTheme.colors.borderBasePlain};
+        border-radius: inherit;
+        pointer-events: none;
+      }
+    `
+    : `box-shadow: inset 0 0 0 ${euiTheme.border.width.thin} ${borderColor};`;
+
   return {
     euiFilterGroup: css`
+      position: relative;
       display: inline-flex;
       ${logicalCSS('max-width', '100%')}
       overflow: hidden;
 
       background-color: ${backgroundColor};
-      box-shadow: inset 0 0 0 ${euiTheme.border.width.thin} ${borderColor};
+
+      ${borderStyle}
 
       /* Account for popover or tooltip wrappers around EuiFilterButtons */
       > *:not(.euiFilterButton) {
@@ -59,12 +85,12 @@ export const euiFilterGroupStyles = (euiThemeContext: UseEuiTheme) => {
       display: flex;
     `,
     uncompressed: css`
-      border-radius: ${controlBorderRadius};
-      ${buttonChildrenBorderRadii(controlBorderRadius)}
+      border-radius: ${borderRadius};
+      ${!isExperimental && buttonChildrenBorderRadii(borderRadius)}
     `,
     compressed: css`
-      border-radius: ${controlCompressedBorderRadius};
-      ${buttonChildrenBorderRadii(controlCompressedBorderRadius)}
+      border-radius: ${borderRadiusCompressed};
+      ${!isExperimental && buttonChildrenBorderRadii(borderRadiusCompressed)}
 
       .euiFilterButton {
         ${logicalCSS('height', controlCompressedHeight)}
