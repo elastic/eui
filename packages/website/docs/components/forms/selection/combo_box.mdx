@@ -1,0 +1,2035 @@
+---
+slug: /forms/selection/combo-box
+id: forms_selection_combo_box
+sidebar_position: 4
+---
+
+# Combo box
+
+import EuiFormRowCallout from '../form_layouts/_form_row_callout.mdx';
+
+<EuiFormRowCallout />
+
+Use a **EuiComboBox** when the input has so many options that the user needs to be able to search them, the user needs to be able to select multiple options, and/or the user should have the ability to specify a custom value in addition to selecting from a predetermined list.
+
+```tsx interactive
+import React, { useState } from 'react';
+import { EuiComboBox } from '@elastic/eui';
+
+const optionsStatic = [
+  {
+    label: 'Titan',
+    'data-test-subj': 'titanOption',
+  },
+  {
+    label: 'Enceladus is disabled',
+    disabled: true,
+  },
+  {
+    label: 'Mimas',
+  },
+  {
+    label: 'Dione',
+  },
+  {
+    label: 'Iapetus',
+  },
+  {
+    label: 'Phoebe',
+  },
+  {
+    label: 'Rhea',
+  },
+  {
+    label:
+      "Pandora is one of Saturn's moons, named for a Titaness of Greek mythology",
+  },
+  {
+    label: 'Tethys',
+  },
+  {
+    label: 'Hyperion',
+  },
+];
+
+export default () => {
+  const [options, setOptions] = useState(optionsStatic);
+  const [selectedOptions, setSelected] = useState([options[2], options[4]]);
+
+  const onChange = (selectedOptions) => {
+    setSelected(selectedOptions);
+  };
+
+  const onCreateOption = (searchValue, flattenedOptions = []) => {
+    const normalizedSearchValue = searchValue.trim().toLowerCase();
+
+    if (!normalizedSearchValue) {
+      return;
+    }
+
+    const newOption = {
+      label: searchValue,
+    };
+
+    // Create the option if it doesn't exist.
+    if (
+      flattenedOptions.findIndex(
+        (option) => option.label.trim().toLowerCase() === normalizedSearchValue
+      ) === -1
+    ) {
+      setOptions([...options, newOption]);
+    }
+
+    // Select the option.
+    setSelected([...selectedOptions, newOption]);
+  };
+
+  return (
+    /* DisplayToggles wrapper for Docs only */
+    <DisplayToggles canDisabled={false} canReadOnly={false} canIsDisabled>
+      <EuiComboBox
+        aria-label="Accessible screen reader label"
+        placeholder="Select or create options"
+        options={options}
+        selectedOptions={selectedOptions}
+        onChange={onChange}
+        onCreateOption={onCreateOption}
+        isClearable={true}
+        data-test-subj="demoComboBox"
+      />
+    </DisplayToggles>
+  );
+};
+```
+
+## Disabled
+
+Set the prop `isDisabled` to make the combo box disabled.
+
+```tsx interactive
+import React, { useState } from 'react';
+import { EuiComboBox } from '@elastic/eui';
+
+export default () => {
+  const [options, updateOptions] = useState([
+    {
+      label: 'Titan',
+      'data-test-subj': 'titanOption',
+    },
+    {
+      label: 'Enceladus is disabled',
+      disabled: true,
+    },
+    {
+      label: 'Mimas',
+    },
+    {
+      label: 'Dione',
+    },
+    {
+      label: 'Iapetus',
+    },
+    {
+      label: 'Phoebe',
+    },
+    {
+      label: 'Rhea',
+    },
+    {
+      label:
+        "Pandora is one of Saturn's moons, named for a Titaness of Greek mythology",
+    },
+    {
+      label: 'Tethys',
+    },
+    {
+      label: 'Hyperion',
+    },
+  ]);
+
+  const [selectedOptions, setSelected] = useState([options[2], options[4]]);
+
+  const onChange = (selectedOptions) => {
+    setSelected(selectedOptions);
+  };
+
+  const onCreateOption = (searchValue, flattenedOptions) => {
+    const normalizedSearchValue = searchValue.trim().toLowerCase();
+
+    if (!normalizedSearchValue) {
+      return;
+    }
+
+    const newOption = {
+      label: searchValue,
+    };
+
+    // Create the option if it doesn't exist.
+    if (
+      flattenedOptions.findIndex(
+        (option) => option.label.trim().toLowerCase() === normalizedSearchValue
+      ) === -1
+    ) {
+      updateOptions([...options, newOption]);
+    }
+
+    // Select the option.
+    setSelected((prevSelected) => [...prevSelected, newOption]);
+  };
+
+  return (
+    <EuiComboBox
+      aria-label="Accessible screen reader label"
+      placeholder="Select or create options"
+      options={options}
+      selectedOptions={selectedOptions}
+      onChange={onChange}
+      onCreateOption={onCreateOption}
+      isClearable={true}
+      isDisabled
+    />
+  );
+};
+```
+
+## Virtualized
+
+**EuiComboBoxList** uses <a href="https://github.com/bvaughn/react-window" target="_blank">react-window</a> to only render visible options to be super fast no matter how many options there are.
+
+```tsx interactive
+import React, { useState } from 'react';
+import { EuiComboBox } from '@elastic/eui';
+
+const options = [];
+let groupOptions = [];
+for (let i = 1; i < 5000; i++) {
+  groupOptions.push({ label: `option${i}` });
+  if (i % 25 === 0) {
+    options.push({
+      label: `Options ${i - (groupOptions.length - 1)} to ${i}`,
+      options: groupOptions,
+    });
+    groupOptions = [];
+  }
+}
+
+export default () => {
+  const [selectedOptions, setSelected] = useState([]);
+
+  const onChange = (selectedOptions) => {
+    setSelected(selectedOptions);
+  };
+
+  return (
+    <EuiComboBox
+      aria-label="Accessible screen reader label"
+      placeholder="Select one or more options"
+      options={options}
+      selectedOptions={selectedOptions}
+      onChange={onChange}
+    />
+  );
+};
+
+```
+
+## Containers
+
+This example demonstrates how the combo box works within containers. Because this component uses portals, it’s important that it works within other portal-using components.
+
+```tsx interactive
+import React, { useState, Fragment } from 'react';
+import {
+  EuiComboBox,
+  EuiButton,
+  EuiPopover,
+  EuiFormRow,
+  EuiModal,
+  EuiModalBody,
+  EuiModalHeader,
+  EuiModalHeaderTitle,
+  EuiSpacer,
+  useGeneratedHtmlId,
+} from '@elastic/eui';
+
+const optionsStatic = [
+  {
+    label: 'Titan',
+    'data-test-subj': 'titanOption',
+  },
+  {
+    label: 'Enceladus',
+  },
+  {
+    label: 'Mimas',
+  },
+  {
+    label: 'Dione',
+  },
+  {
+    label: 'Iapetus',
+  },
+  {
+    label: 'Phoebe',
+  },
+  {
+    label: 'Rhea',
+  },
+  {
+    label:
+      "Pandora is one of Saturn's moons, named for a Titaness of Greek mythology",
+  },
+  {
+    label: 'Tethys',
+  },
+  {
+    label: 'Hyperion',
+  },
+];
+
+export default () => {
+  const [options, setOptions] = useState(optionsStatic);
+  const [selectedOptions, setSelected] = useState([options[2], options[4]]);
+  const [isModalVisible, setModalVisible] = useState(false);
+  const [isPopoverOpen, setPopover] = useState(false);
+  const containerPopoverId = useGeneratedHtmlId({ prefix: 'containerPopover' });
+
+  const closeModal = () => {
+    setModalVisible(false);
+  };
+
+  const showModal = () => {
+    setModalVisible(true);
+  };
+
+  const togglePopover = () => {
+    setPopover(!isPopoverOpen);
+  };
+
+  const closePopover = () => {
+    setPopover(false);
+  };
+
+  const onChange = (selectedOptions) => {
+    setSelected(selectedOptions);
+  };
+
+  const onCreateOption = (searchValue, flattenedOptions = []) => {
+    if (!searchValue) {
+      return;
+    }
+
+    const normalizedSearchValue = searchValue.trim().toLowerCase();
+
+    if (!normalizedSearchValue) {
+      return;
+    }
+
+    const newOption = {
+      label: searchValue,
+    };
+
+    // Create the option if it doesn't exist.
+    if (
+      flattenedOptions.findIndex(
+        (option) => option.label.trim().toLowerCase() === normalizedSearchValue
+      ) === -1
+    ) {
+      setOptions([...options, newOption]);
+    }
+
+    // Select the option.
+    setSelected((prevSelected) => [...prevSelected, newOption]);
+  };
+
+  const comboBox = (
+    <EuiComboBox
+      placeholder="Select or create options"
+      options={options}
+      selectedOptions={selectedOptions}
+      onChange={onChange}
+      onCreateOption={onCreateOption}
+    />
+  );
+
+  const button = (
+    <EuiButton iconType="arrowDown" iconSide="right" onClick={togglePopover}>
+      Open popover
+    </EuiButton>
+  );
+
+  let modal;
+
+  if (isModalVisible) {
+    modal = (
+      <EuiModal onClose={closeModal} style={{ width: '800px' }}>
+        <EuiModalHeader>
+          <EuiModalHeaderTitle>Combo box in a modal</EuiModalHeaderTitle>
+        </EuiModalHeader>
+
+        <EuiModalBody>{comboBox}</EuiModalBody>
+      </EuiModal>
+    );
+  }
+
+  return (
+    <Fragment>
+      <EuiFormRow
+        label="Combo box"
+        helpText="This combo box is inside of a form row"
+      >
+        {comboBox}
+      </EuiFormRow>
+
+      <EuiSpacer />
+
+      <EuiPopover
+        id={containerPopoverId}
+        button={button}
+        isOpen={isPopoverOpen}
+        closePopover={closePopover}
+      >
+        <div style={{ width: '300px' }}>{comboBox}</div>
+      </EuiPopover>
+
+      <EuiSpacer size="m" />
+
+      <EuiButton onClick={showModal}>Show modal</EuiButton>
+
+      {modal}
+    </Fragment>
+  );
+};
+```
+
+## Pill colors
+
+Useful for visualization or tagging systems. You can also pass a color in your option list. The color can be a hex value (like `#000`) or any other named color value accepted by the [**EuiBadge**](../../display/badge/badge.mdx) component.
+
+```tsx interactive
+import React, { useState } from 'react';
+import { EuiComboBox, euiPaletteColorBlindBehindText } from '@elastic/eui';
+
+const visColorsBehindText = euiPaletteColorBlindBehindText();
+const optionsStatic = [
+  {
+    label: 'Titan',
+    'data-test-subj': 'titanOption',
+    color: visColorsBehindText[0],
+  },
+  {
+    label: 'Enceladus',
+    color: visColorsBehindText[1],
+  },
+  {
+    label: 'Mimas',
+    color: visColorsBehindText[2],
+  },
+  {
+    label: 'Dione',
+    color: visColorsBehindText[3],
+  },
+  {
+    label: 'Iapetus',
+    color: visColorsBehindText[4],
+  },
+  {
+    label: 'Phoebe',
+    color: visColorsBehindText[5],
+  },
+  {
+    label: 'Rhea',
+    color: visColorsBehindText[6],
+  },
+  {
+    label:
+      "Pandora is one of Saturn's moons, named for a Titaness of Greek mythology",
+    color: visColorsBehindText[7],
+  },
+  {
+    label: 'Tethys',
+    color: visColorsBehindText[8],
+  },
+  {
+    label: 'Hyperion',
+    color: visColorsBehindText[9],
+  },
+];
+
+export default () => {
+  const [options, setOptions] = useState(optionsStatic);
+  const [selectedOptions, setSelected] = useState([options[2], options[5]]);
+
+  const onChange = (selectedOptions) => {
+    setSelected(selectedOptions);
+  };
+
+  const onCreateOption = (searchValue, flattenedOptions = []) => {
+    if (!searchValue) {
+      return;
+    }
+
+    const normalizedSearchValue = searchValue.trim().toLowerCase();
+
+    if (!normalizedSearchValue) {
+      return;
+    }
+
+    const newOption = {
+      label: searchValue,
+    };
+
+    // Create the option if it doesn't exist.
+    if (
+      flattenedOptions.findIndex(
+        (option) => option.label.trim().toLowerCase() === normalizedSearchValue
+      ) === -1
+    ) {
+      setOptions([...options, newOption]);
+    }
+
+    // Select the option.
+    setSelected((prevSelected) => [...prevSelected, newOption]);
+  };
+
+  return (
+    /* DisplayToggles wrapper for Docs only */
+    <DisplayToggles canDisabled={false} canReadOnly={false} canIsDisabled>
+      <EuiComboBox
+        aria-label="Accessible screen reader label"
+        placeholder="Select or create options"
+        options={options}
+        selectedOptions={selectedOptions}
+        onChange={onChange}
+        onCreateOption={onCreateOption}
+        isDisabled
+      />
+    </DisplayToggles>
+  );
+};
+```
+
+## Option rendering
+
+There are two object properties you can add to enhance the content of your options, `option.prepend` and `option.append`. These will add nodes before and after the option label respectively, to both the dropdown option and selected pill. They will not be included in the searchable content as this only matches against the label property.
+
+```tsx interactive
+import React, { useState, useMemo } from 'react';
+import { EuiComboBox, EuiIcon, EuiSwitch, EuiSpacer } from '@elastic/eui';
+
+const options = [
+  {
+    label: 'Titan',
+    'data-test-subj': 'titanOption',
+    prepend: <EuiIcon size="s" type="bell" />,
+  },
+  {
+    label: 'Enceladus',
+    prepend: <EuiIcon size="s" type="bolt" />,
+  },
+  {
+    label: 'Mimas',
+    prepend: <EuiIcon size="s" type="bug" />,
+  },
+  {
+    label:
+      "Pandora is one of Saturn's moons, named for a Titaness of Greek mythology",
+    prepend: <EuiIcon size="s" type="discuss" />,
+    append: '(10)',
+  },
+  {
+    label: 'Iapetus',
+    prepend: <EuiIcon size="s" type="flag" color="danger" />,
+    append: '(2)',
+  },
+  {
+    label: 'Phoebe',
+    prepend: <EuiIcon size="s" type="tag" color="success" />,
+    append: '(5)',
+  },
+];
+
+export default () => {
+  const [selectedOptions, setSelected] = useState([options[0], options[5]]);
+  const [singleSelection, setSingleSelection] = useState(false);
+
+  const singleSelectedOption = useMemo(() => {
+    return selectedOptions.length ? [selectedOptions[0]] : [];
+  }, [selectedOptions]);
+
+  const onChange = (selectedOptions) => {
+    setSelected(selectedOptions);
+  };
+
+  return (
+    <>
+      <EuiSwitch
+        checked={singleSelection}
+        onChange={() => setSingleSelection(!singleSelection)}
+        label="Single selection"
+      />
+      <EuiSpacer />
+      <EuiComboBox
+        aria-label="Combo box demo with option prepend/append nodes"
+        options={options}
+        onChange={onChange}
+        singleSelection={singleSelection ? { asPlainText: true } : false}
+        selectedOptions={
+          singleSelection ? singleSelectedOption : selectedOptions
+        }
+        placeholder={`Select one ${
+          singleSelection ? 'option' : 'or more options'
+        }`}
+      />
+    </>
+  );
+};
+
+```
+
+### Custom dropdown content
+
+While it is best to stick to the `option.label`, `option.append`, and `option.prepend` props, you can pass a custom `renderOption` function which will pass back the single option `option` and the `searchValue` to use for highlighting.
+
+You can use the `value` prop of the `option` object to store metadata about the option for use in this callback.
+
+**Note:** virtualization (above) requires that each option have the same height. Ensure that you render the options so that wrapping text is truncated instead of causing the height of the option to change.
+
+```tsx interactive
+import React, { useState } from 'react';
+import {
+  EuiComboBox,
+  EuiHighlight,
+  EuiHealth,
+  euiPaletteColorBlind,
+  euiPaletteColorBlindBehindText,
+} from '@elastic/eui';
+
+const visColors = euiPaletteColorBlind();
+const visColorsBehindText = euiPaletteColorBlindBehindText();
+const optionsStatic = [
+  {
+    value: {
+      size: 5,
+    },
+    label: 'Titan',
+    'data-test-subj': 'titanOption',
+    color: visColorsBehindText[0],
+  },
+  {
+    value: {
+      size: 2,
+    },
+    label: 'Enceladus',
+    color: visColorsBehindText[1],
+  },
+  {
+    value: {
+      size: 15,
+    },
+    label: 'Mimas',
+    color: visColorsBehindText[2],
+  },
+  {
+    value: {
+      size: 1,
+    },
+    label: 'Dione',
+    color: visColorsBehindText[3],
+  },
+  {
+    value: {
+      size: 8,
+    },
+    label: 'Iapetus',
+    color: visColorsBehindText[4],
+  },
+  {
+    value: {
+      size: 2,
+    },
+    label: 'Phoebe',
+    color: visColorsBehindText[5],
+  },
+  {
+    value: {
+      size: 33,
+    },
+    label: 'Rhea',
+    color: visColorsBehindText[6],
+  },
+  {
+    value: {
+      size: 18,
+    },
+    label:
+      "Pandora is one of Saturn's moons, named for a Titaness of Greek mythology",
+    color: visColorsBehindText[7],
+  },
+  {
+    value: {
+      size: 9,
+    },
+    label: 'Tethys',
+    color: visColorsBehindText[8],
+  },
+  {
+    value: {
+      size: 4,
+    },
+    label: 'Hyperion',
+    color: visColorsBehindText[9],
+  },
+];
+
+export default () => {
+  const [options, setOptions] = useState(optionsStatic);
+  const [selectedOptions, setSelected] = useState([options[2], options[5]]);
+
+  const onChange = (selectedOptions) => {
+    setSelected(selectedOptions);
+  };
+
+  const onCreateOption = (searchValue, flattenedOptions = []) => {
+    if (!searchValue) {
+      return;
+    }
+
+    const normalizedSearchValue = searchValue.trim().toLowerCase();
+
+    if (!normalizedSearchValue) {
+      return;
+    }
+
+    const newOption = {
+      value: searchValue,
+      label: searchValue,
+    };
+
+    // Create the option if it doesn't exist.
+    if (
+      flattenedOptions.findIndex(
+        (option) => option.label.trim().toLowerCase() === normalizedSearchValue
+      ) === -1
+    ) {
+      options.push(newOption);
+      setOptions([...options, newOption]);
+    }
+
+    // Select the option.
+    setSelected((prevSelected) => [...prevSelected, newOption]);
+  };
+
+  const renderOption = (option, searchValue, contentClassName) => {
+    const { color, label, value } = option;
+    const dotColor = visColors[visColorsBehindText.indexOf(color)];
+    return (
+      <EuiHealth color={dotColor}>
+        <span className={contentClassName}>
+          <EuiHighlight search={searchValue}>{label}</EuiHighlight>
+          &nbsp;
+          <span>({value.size})</span>
+        </span>
+      </EuiHealth>
+    );
+  };
+
+  return (
+    <EuiComboBox
+      aria-label="Accessible screen reader label"
+      placeholder="Select or create options"
+      options={options}
+      selectedOptions={selectedOptions}
+      onChange={onChange}
+      onCreateOption={onCreateOption}
+      renderOption={renderOption}
+    />
+  );
+};
+```
+
+## Tooltips
+
+You can add tooltips to the options by passing `toolTipContent`. Use `toolTipProps` to pass additional `EuiToolTipProps` to the tooltip.
+
+```tsx interactive
+import React, { useState } from 'react';
+import { EuiComboBox, EuiComboBoxOptionOption } from '@elastic/eui';
+
+const options: Array<EuiComboBoxOptionOption<string>> = [
+  {
+    label: 'Titan',
+    toolTipContent:
+      'Titan is the largest moon of Saturn and the second-largest in the Solar System',
+  },
+  {
+    label: 'Pandora',
+    toolTipContent:
+      "Pandora is one of Saturn's moons, named for a Titaness of Greek mythology",
+  },
+  {
+    label: 'Iapetus',
+    toolTipContent: "Iapetus is the outermost of Saturn's large moons",
+    toolTipProps: { position: 'bottom' },
+  },
+];
+export default () => {
+  const [selectedOptions, setSelected] = useState([options[2]]);
+
+  const onChange = (
+    selectedOptions: Array<EuiComboBoxOptionOption<string>>
+  ) => {
+    setSelected(selectedOptions);
+  };
+
+  return (
+    <EuiComboBox
+      aria-label="Example of combobox options with tooltips"
+      options={options}
+      selectedOptions={selectedOptions}
+      onChange={onChange}
+      isClearable={true}
+    />
+  );
+};
+```
+
+## Truncation
+
+By default, **EuiComboBox** truncates long option text at the end of the string. You can use `truncationProps` and almost any prop that [**EuiTextTruncate**](/docs/utilities/text-truncation) accepts to configure this behavior. This can be configured at the **EuiComboBox** level, as well as by each individual option.
+
+```tsx interactive
+import React, { useState } from 'react';
+import {
+  useGeneratedHtmlId,
+  EuiFlexGroup,
+  EuiFlexItem,
+  EuiButtonGroup,
+  EuiFieldNumber,
+  EuiTextTruncationTypes,
+  EuiTitle,
+  EuiSpacer,
+  EuiComboBox,
+  EuiComboBoxOptionOption,
+} from '@elastic/eui';
+
+const options: EuiComboBoxOptionOption[] = [
+  {
+    label:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, lorem ispum',
+  },
+  {
+    label:
+      'Phasellus enim turpis, molestie ut nisi ut, suscipit tristique libero',
+  },
+  {
+    label: 'Ut sagittis interdum nisi, pellentesque laoreet arcu blandit a',
+  },
+  {
+    label: 'Fusce sed viverra nisl',
+  },
+  {
+    label: 'Donec maximus est justo, eget semper lorem lacinia nec',
+  },
+  {
+    label: 'Vestibulum lobortis ipsum sit amet tellus scelerisque vestibulum',
+  },
+  {
+    label: 'This combobox option has an individual `truncationProps` override',
+    // Option `truncationProps` will override EuiComboBox `truncationProps`
+    truncationProps: {
+      truncation: 'start',
+      truncationOffset: 5,
+    },
+  },
+];
+
+export default () => {
+  const [selectedOptions, setSelected] = useState<EuiComboBoxOptionOption[]>(
+    []
+  );
+  const onChange = (selectedOptions: EuiComboBoxOptionOption[]) => {
+    setSelected(selectedOptions);
+  };
+
+  const [truncation, setTruncation] = useState<EuiTextTruncationTypes>('end');
+  const [truncationOffset, setTruncationOffset] = useState(0);
+  const offsetId = useGeneratedHtmlId();
+
+  return (
+    <>
+      <EuiFlexGroup>
+        <EuiFlexItem grow={false}>
+          <EuiTitle size="xxs">
+            <h3>Truncation type</h3>
+          </EuiTitle>
+          <EuiSpacer size="xs" />
+          <EuiButtonGroup
+            legend="Truncation type"
+            idSelected={truncation}
+            onChange={(id) => setTruncation(id as EuiTextTruncationTypes)}
+            options={[
+              { id: 'start', label: 'start ' },
+              { id: 'end', label: 'end' },
+              { id: 'startEnd', label: 'startEnd' },
+              { id: 'middle', label: 'middle' },
+            ]}
+            color="primary"
+          />
+        </EuiFlexItem>
+        {(truncation === 'start' || truncation === 'end') && (
+          <EuiFlexItem grow={false}>
+            <EuiTitle size="xxs">
+              <h3 id={offsetId}>Truncation offset</h3>
+            </EuiTitle>
+            <EuiSpacer size="xs" />
+            <EuiFieldNumber
+              aria-labelledby={offsetId}
+              value={truncationOffset}
+              onChange={(e) => setTruncationOffset(Number(e.target.value))}
+              compressed
+            />
+          </EuiFlexItem>
+        )}
+      </EuiFlexGroup>
+      <EuiSpacer />
+      <EuiComboBox
+        placeholder="Select options"
+        options={options}
+        selectedOptions={selectedOptions}
+        onChange={onChange}
+        isClearable={true}
+        truncationProps={{
+          truncation,
+          truncationOffset,
+        }}
+      />
+    </>
+  );
+};
+
+```
+
+## Groups
+
+You can group options together. The group labels _won’t_ match against the search value.
+
+```tsx interactive
+import React, { useState } from 'react';
+import { EuiComboBox } from '@elastic/eui';
+
+const colorGroup = {
+  label: 'Colors',
+  options: [
+    {
+      label: 'Red',
+    },
+    {
+      label: 'Blue',
+    },
+    {
+      label: 'Yellow',
+    },
+    {
+      label: 'Green',
+    },
+  ],
+};
+
+const soundGroup = {
+  label: 'Sounds',
+  options: [
+    {
+      label: 'Pop',
+    },
+    {
+      label: 'Hiss',
+    },
+    {
+      label: 'Screech',
+    },
+    {
+      label: 'Ding',
+    },
+  ],
+};
+
+export default () => {
+  const [allOptions, setAllOptions] = useState([colorGroup, soundGroup]);
+  const [selectedOptions, setSelected] = useState([
+    colorGroup.options[2],
+    soundGroup.options[3],
+  ]);
+
+  const onChange = (selectedOptions) => {
+    setSelected(selectedOptions);
+  };
+
+  const onCreateOption = (searchValue) => {
+    const newOption = {
+      label: searchValue,
+    };
+
+    setAllOptions((allOptions) => {
+      const [colors, sounds, custom = { label: 'Custom', options: [] }] =
+        allOptions;
+      return [
+        colors,
+        sounds,
+        {
+          ...custom,
+          options: [...custom.options, newOption],
+        },
+      ];
+    });
+
+    // Select the option.
+    setSelected([...selectedOptions, newOption]);
+  };
+
+  return (
+    <EuiComboBox
+      aria-label="EuiComboBox example with groups"
+      placeholder="These options are grouped"
+      options={allOptions}
+      selectedOptions={selectedOptions}
+      onChange={onChange}
+      onCreateOption={onCreateOption}
+    />
+  );
+};
+```
+
+## Single selection
+
+To only allow the user to select a single option, provide the `singleSelection` prop. You may want to render the selected option as plain text instead of pill form. To do this, pass `singleSelection={{ asPlainText: true }}`
+
+```tsx interactive
+import React, { useState } from 'react';
+import { EuiComboBox } from '@elastic/eui';
+
+const options = [
+  {
+    label: 'Titan',
+    'data-test-subj': 'titanOption',
+  },
+  {
+    label: 'Enceladus',
+  },
+  {
+    label: 'Mimas',
+  },
+  {
+    label: 'Dione',
+  },
+  {
+    label: 'Iapetus',
+  },
+  {
+    label: 'Phoebe',
+  },
+  {
+    label: 'Rhea',
+  },
+  {
+    label:
+      "Pandora is one of Saturn's moons, named for a Titaness of Greek mythology",
+  },
+  {
+    label: 'Tethys',
+  },
+  {
+    label: 'Hyperion',
+  },
+];
+
+export default () => {
+  const [selectedOptions, setSelected] = useState([options[2]]);
+
+  const onChange = (selectedOptions) => {
+    // We should only get back either 0 or 1 options.
+    setSelected(selectedOptions);
+  };
+
+  return (
+    <DisplayToggles
+      canDisabled={false}
+      canReadOnly={false}
+      canLoading={false}
+      canIsDisabled
+      canAppend
+      canPrepend
+    >
+      <EuiComboBox
+        aria-label="Accessible screen reader label"
+        placeholder="Select a single option"
+        singleSelection={{ asPlainText: true }}
+        options={options}
+        selectedOptions={selectedOptions}
+        onChange={onChange}
+        isDisabled
+      />
+    </DisplayToggles>
+  );
+};
+```
+
+### Single selection with prepended label
+
+`append` and `prepend` props only work if`singleSelection` prop is not set to `false` to avoid multi-lines that makes combobox height greater than that of `append` and `prepend`.
+
+```tsx interactive
+import React, { useState } from 'react';
+import { EuiComboBox } from '@elastic/eui';
+
+const options = [
+  {
+    label: 'Titan',
+    'data-test-subj': 'titanOption',
+  },
+  {
+    label: 'Enceladus',
+  },
+  {
+    label: 'Mimas',
+  },
+  {
+    label: 'Dione',
+  },
+  {
+    label: 'Iapetus',
+  },
+  {
+    label: 'Phoebe',
+  },
+  {
+    label: 'Rhea',
+  },
+  {
+    label:
+      "Pandora is one of Saturn's moons, named for a Titaness of Greek mythology",
+  },
+  {
+    label: 'Tethys',
+  },
+  {
+    label: 'Hyperion',
+  },
+];
+
+export default () => {
+  const [selectedOptions, setSelected] = useState([options[2]]);
+
+  const onChange = (selectedOptions) => {
+    // We should only get back either 0 or 1 options.
+    setSelected(selectedOptions);
+  };
+
+  return (
+    <EuiComboBox
+      prepend="Prepend"
+      singleSelection={{ asPlainText: true }}
+      options={options}
+      selectedOptions={selectedOptions}
+      onChange={onChange}
+    />
+  );
+};
+```
+
+### Single selection with custom options
+
+You can allow the user to select a single option and also allow the creation of custom options. To do that, use the `singleSelection` in conjunction with the `onCreateOption` prop.
+
+**Note:** Creating custom options might not be obvious to the user, so provide help text explaining that this option is available. You can also customize the custom option text by passing a text to `customOptionText` prop.
+
+```tsx interactive
+import React, { useState } from 'react';
+import { EuiComboBox, EuiFormRow } from '@elastic/eui';
+
+const options = [
+  {
+    label: 'Software Developer',
+    'data-test-subj': 'softDevOption',
+  },
+  {
+    label: 'Mobile Developer',
+  },
+  {
+    label: 'Javascript Engineer',
+  },
+  {
+    label: 'UX Designer',
+  },
+  {
+    label: 'UI Designer',
+  },
+  {
+    label: 'Product Designer',
+  },
+  {
+    label: 'QA Engineer',
+  },
+];
+
+export default () => {
+  const [selectedOptions, setSelected] = useState([options[2]]);
+
+  const onChange = (selectedOptions) => {
+    // We should only get back either 0 or 1 options.
+    setSelected(selectedOptions);
+  };
+
+  const onCreateOption = (searchValue = []) => {
+    const normalizedSearchValue = searchValue.trim().toLowerCase();
+
+    if (!normalizedSearchValue) {
+      return;
+    }
+
+    const newOption = {
+      label: searchValue,
+    };
+
+    // Select the option.
+    setSelected([newOption]);
+  };
+
+  return (
+    <EuiFormRow
+      label="Your occupation"
+      helpText="Select an occupation from the list. If your occupation isn’t available, create a custom one."
+    >
+      <EuiComboBox
+        aria-label="Accessible screen reader label"
+        placeholder="Select a single option"
+        singleSelection={{ asPlainText: true }}
+        options={options}
+        selectedOptions={selectedOptions}
+        onChange={onChange}
+        onCreateOption={onCreateOption}
+        customOptionText="Add {searchValue} as your occupation"
+      />
+    </EuiFormRow>
+  );
+};
+```
+
+## Disallowing custom options
+
+Leave out the `onCreateOption` prop to disallow the creation of custom options.
+
+```tsx interactive
+import React, { useState } from 'react';
+import { EuiComboBox, EuiFormRow } from '@elastic/eui';
+
+const options = [
+  {
+    label: 'Titan',
+    'data-test-subj': 'titanOption',
+  },
+  {
+    label: 'Enceladus',
+  },
+  {
+    label: 'Mimas',
+  },
+  {
+    label: 'Dione',
+  },
+  {
+    label: 'Iapetus',
+  },
+  {
+    label: 'Phoebe',
+  },
+  {
+    label: 'Rhea',
+  },
+  {
+    label:
+      "Pandora is one of Saturn's moons, named for a Titaness of Greek mythology",
+  },
+  {
+    label: 'Tethys',
+  },
+  {
+    label: 'Hyperion',
+  },
+];
+
+export default () => {
+  const [selectedOptions, setSelected] = useState([options[2], options[4]]);
+  const [error, setError] = useState(undefined);
+  const [inputRef, setInputRef] = useState(undefined);
+
+  const onChange = (selectedOptions) => {
+    setSelected(selectedOptions);
+    setError(undefined);
+  };
+
+  const onSearchChange = (value, hasMatchingOptions) => {
+    setError(
+      value.length === 0 || hasMatchingOptions
+        ? undefined
+        : `"${value}" is not a valid option`
+    );
+  };
+
+  const onBlur = () => {
+    if (inputRef) {
+      const { value } = inputRef;
+      setError(
+        value.length === 0 ? undefined : `"${value}" is not a valid option`
+      );
+    }
+  };
+
+  return (
+    <EuiFormRow error={error} isInvalid={error !== undefined}>
+      <EuiComboBox
+        aria-label="Accessible screen reader label"
+        placeholder="Select one or more options"
+        options={options}
+        selectedOptions={selectedOptions}
+        inputRef={setInputRef}
+        onChange={onChange}
+        onSearchChange={onSearchChange}
+        onBlur={onBlur}
+      />
+    </EuiFormRow>
+  );
+};
+
+```
+
+## Custom options only, with validation
+
+Alternatively, provide the `noSuggestions` prop to hide the suggestions list and _only_ allow the creation of custom options.
+
+```tsx interactive
+import React, { useState } from 'react';
+import { EuiComboBox, EuiFormRow } from '@elastic/eui';
+
+const isValid = (value) => {
+  // Only allow letters. No spaces, numbers, or special characters.
+  return value.match(/^[a-zA-Z]+$/) !== null;
+};
+
+export default () => {
+  const [selectedOptions, setSelected] = useState([]);
+  const [isInvalid, setInvalid] = useState(false);
+
+  const onCreateOption = (searchValue) => {
+    if (!isValid(searchValue)) {
+      // Return false to explicitly reject the user's input.
+      return false;
+    }
+
+    const newOption = {
+      label: searchValue,
+    };
+
+    // Select the option.
+    setSelected([...selectedOptions, newOption]);
+  };
+
+  const onSearchChange = (searchValue) => {
+    if (!searchValue) {
+      setInvalid(false);
+
+      return;
+    }
+
+    setInvalid(!isValid(searchValue));
+  };
+
+  const onChange = (selectedOptions) => {
+    setSelected(selectedOptions);
+    setInvalid(false);
+  };
+
+  return (
+    <EuiFormRow
+      label="Only custom options"
+      isInvalid={isInvalid}
+      error={isInvalid ? 'Only letters are allowed' : undefined}
+    >
+      <EuiComboBox
+        noSuggestions
+        placeholder="Create some tags (letters only)"
+        selectedOptions={selectedOptions}
+        onCreateOption={onCreateOption}
+        onChange={onChange}
+        onSearchChange={onSearchChange}
+        isInvalid={isInvalid}
+      />
+    </EuiFormRow>
+  );
+};
+```
+
+## Async
+
+Use the `onSearchChange` code to handle searches asynchronously. Use the`isLoading` prop to let the user know that something async is happening.
+
+```tsx interactive
+import React, { useState, useEffect, useCallback } from 'react';
+import { EuiComboBox } from '@elastic/eui';
+
+const allOptionsStatic = [
+  {
+    label: 'Titan',
+    'data-test-subj': 'titanOption',
+  },
+  {
+    label: 'Enceladus',
+  },
+  {
+    label: 'Mimas',
+  },
+  {
+    label: 'Dione',
+  },
+  {
+    label: 'Iapetus',
+  },
+  {
+    label: 'Phoebe',
+  },
+  {
+    label: 'Rhea',
+  },
+  {
+    label:
+      "Pandora is one of Saturn's moons, named for a Titaness of Greek mythology",
+  },
+  {
+    label: 'Tethys',
+  },
+  {
+    label: 'Hyperion',
+  },
+];
+
+export default () => {
+  const [allOptions, setAllOptions] = useState(allOptionsStatic);
+  const [selectedOptions, setSelected] = useState([]);
+  const [isLoading, setLoading] = useState(false);
+  const [options, setOptions] = useState([]);
+  let searchTimeout;
+  const onChange = (selectedOptions) => {
+    setSelected(selectedOptions);
+  };
+
+  const onSearchChange = useCallback((searchValue) => {
+    setLoading(true);
+    setOptions([]);
+
+    clearTimeout(searchTimeout);
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    searchTimeout = setTimeout(() => {
+      // Simulate a remotely-executed search.
+      setLoading(false);
+      setOptions(
+        allOptions.filter((option) =>
+          option.label.toLowerCase().includes(searchValue.toLowerCase())
+        )
+      );
+    }, 1200);
+  }, []);
+
+  const onCreateOption = (searchValue, flattenedOptions = []) => {
+    const normalizedSearchValue = searchValue.trim().toLowerCase();
+
+    if (!normalizedSearchValue) {
+      return;
+    }
+
+    const newOption = {
+      label: searchValue,
+    };
+
+    // Create the option if it doesn't exist.
+    if (
+      flattenedOptions.findIndex(
+        (option) => option.label.trim().toLowerCase() === normalizedSearchValue
+      ) === -1
+    ) {
+      // Simulate creating this option on the server.
+      setAllOptions([...allOptions, newOption]);
+      setOptions([...options, newOption]);
+    }
+
+    // Select the option.
+    setSelected((prevSelected) => [...prevSelected, newOption]);
+  };
+
+  useEffect(() => {
+    // Simulate initial load.
+    onSearchChange('');
+  }, [onSearchChange]);
+
+  return (
+    <EuiComboBox
+      aria-label="Accessible screen reader label"
+      placeholder="Search asynchronously"
+      async
+      options={options}
+      selectedOptions={selectedOptions}
+      isLoading={isLoading}
+      onChange={onChange}
+      onSearchChange={onSearchChange}
+      onCreateOption={onCreateOption}
+    />
+  );
+};
+```
+
+## With delimiter
+
+Pass a unique character to the `delimiter` prop to aid in option creation. This is best used when knowing that content may be pasted from elsewhere such as a comma separated list.
+
+```tsx interactive
+import React, { useState } from 'react';
+import { EuiComboBox } from '@elastic/eui';
+
+const staticOptions = [
+  {
+    label: 'Titan',
+    'data-test-subj': 'titanOption',
+  },
+  {
+    label: 'Enceladus is disabled',
+    disabled: true,
+  },
+  {
+    label: 'Mimas',
+  },
+  {
+    label: 'Dione',
+  },
+  {
+    label: 'Iapetus',
+  },
+  {
+    label: 'Phoebe',
+  },
+  {
+    label: 'Rhea',
+  },
+  {
+    label:
+      "Pandora is one of Saturn's moons, named for a Titaness of Greek mythology",
+  },
+  {
+    label: 'Tethys',
+  },
+  {
+    label: 'Hyperion',
+  },
+];
+
+export default () => {
+  const [options, setOptions] = useState(staticOptions);
+  const [selectedOptions, setSelected] = useState([options[2], options[4]]);
+
+  const onChange = (selectedOptions) => {
+    setSelected(selectedOptions);
+  };
+
+  const onCreateOption = (searchValue, flattenedOptions = []) => {
+    const normalizedSearchValue = searchValue.trim().toLowerCase();
+
+    if (!normalizedSearchValue) {
+      return;
+    }
+
+    const newOption = {
+      label: searchValue,
+    };
+
+    // Create the option if it doesn't exist.
+    if (
+      flattenedOptions.findIndex(
+        (option) => option.label.trim().toLowerCase() === normalizedSearchValue
+      ) === -1
+    ) {
+      setOptions([...options, newOption]);
+    }
+
+    // Select the option.
+    // Use the previousState parameter (prevSelected) from the setState
+    // instance (setSelected) to ensure looped calls do not override each other
+    setSelected((prevSelected) => [...prevSelected, newOption]);
+  };
+
+  return (
+    <EuiComboBox
+      aria-label="Accessible screen reader label"
+      placeholder="Select or create options"
+      options={options}
+      delimiter=","
+      selectedOptions={selectedOptions}
+      onChange={onChange}
+      onCreateOption={onCreateOption}
+      isClearable={true}
+      data-test-subj="demoComboBox"
+    />
+  );
+};
+```
+
+## Matches
+
+### Case-sensitive matching
+
+Set the prop `isCaseSensitive` to make the combo box option matching case sensitive.
+
+```tsx interactive
+import React, { useState } from 'react';
+import { EuiComboBox } from '@elastic/eui';
+
+export default () => {
+  const [options, updateOptions] = useState([
+    {
+      label: 'Titan',
+      'data-test-subj': 'titanOption',
+    },
+    {
+      label: 'Enceladus is disabled',
+      disabled: true,
+    },
+    {
+      label: 'Mimas',
+    },
+    {
+      label: 'Dione',
+    },
+    {
+      label: 'Iapetus',
+    },
+    {
+      label: 'Phoebe',
+    },
+    {
+      label: 'Rhea',
+    },
+    {
+      label:
+        "Pandora is one of Saturn's moons, named for a Titaness of Greek mythology",
+    },
+    {
+      label: 'Tethys',
+    },
+    {
+      label: 'Hyperion',
+    },
+  ]);
+
+  const [selectedOptions, setSelected] = useState([]);
+
+  const onChange = (selectedOptions) => {
+    setSelected(selectedOptions);
+  };
+
+  const onCreateOption = (searchValue, flattenedOptions) => {
+    const normalizedSearchValue = searchValue.trim().toLowerCase();
+
+    if (!normalizedSearchValue) {
+      return;
+    }
+
+    const newOption = {
+      label: searchValue,
+    };
+
+    // Create the option if it doesn't exist.
+    if (
+      flattenedOptions.findIndex(
+        (option) => option.label.trim().toLowerCase() === normalizedSearchValue
+      ) === -1
+    ) {
+      updateOptions([...options, newOption]);
+    }
+
+    // Select the option.
+    setSelected((prevSelected) => [...prevSelected, newOption]);
+  };
+
+  return (
+    <EuiComboBox
+      aria-label="Accessible screen reader label"
+      placeholder="Select or create options"
+      options={options}
+      selectedOptions={selectedOptions}
+      onChange={onChange}
+      onCreateOption={onCreateOption}
+      isClearable={true}
+      isCaseSensitive
+    />
+  );
+};
+```
+
+### Sorting matches
+
+By default, the matched options will keep their original sort order. If you would like to prioritize those options that **start with** the searched string, pass `sortMatchesBy="startsWith"`to display those options at the top of the list.
+
+```tsx interactive
+import React, { useState } from 'react';
+import { EuiComboBox } from '@elastic/eui';
+
+const optionsStatic = [
+  {
+    label: 'Titan',
+    'data-test-subj': 'titanOption',
+  },
+  {
+    label: 'Enceladus is disabled',
+    disabled: true,
+  },
+  {
+    label: 'Mimas',
+  },
+  {
+    label: 'Dione',
+  },
+  {
+    label: 'Iapetus',
+  },
+  {
+    label: 'Phoebe',
+  },
+  {
+    label: 'Rhea',
+  },
+  {
+    label:
+      "Pandora is one of Saturn's moons, named for a Titaness of Greek mythology",
+  },
+  {
+    label: 'Tethys',
+  },
+  {
+    label: 'Hyperion',
+  },
+];
+
+export default () => {
+  const [options, setOptions] = useState(optionsStatic);
+  const [selectedOptions, setSelected] = useState([options[2], options[4]]);
+
+  const onChange = (selectedOptions) => {
+    setSelected(selectedOptions);
+  };
+
+  const onCreateOption = (searchValue, flattenedOptions = []) => {
+    const normalizedSearchValue = searchValue.trim().toLowerCase();
+
+    if (!normalizedSearchValue) {
+      return;
+    }
+
+    const newOption = {
+      label: searchValue,
+    };
+
+    // Create the option if it doesn't exist.
+    if (
+      flattenedOptions.findIndex(
+        (option) => option.label.trim().toLowerCase() === normalizedSearchValue
+      ) === -1
+    ) {
+      setOptions([...options, newOption]);
+    }
+
+    // Select the option.
+    setSelected((prevSelected) => [...prevSelected, newOption]);
+  };
+
+  return (
+    <EuiComboBox
+      aria-label="Accessible screen reader label"
+      sortMatchesBy="startsWith"
+      placeholder="Select or create options"
+      options={options}
+      selectedOptions={selectedOptions}
+      onChange={onChange}
+      onCreateOption={onCreateOption}
+      isClearable={true}
+      data-test-subj="demoComboBox"
+    />
+  );
+};
+```
+
+### Custom option matcher
+
+When searching for options, `EuiComboBox` uses a partial equality string matcher by default, displaying all options whose labels include the searched string and taking `isCaseSensitive` prop value into account.
+
+In rare cases, you may want to customize this behavior. You can do so by passing a custom option matcher function to the `optionMatcher` prop. The function must be of type `EuiComboBoxOptionMatcher` and return`true` for options that should be visible for given search string.
+
+```tsx interactive
+import React, { useCallback, useState } from 'react';
+import {
+  EuiComboBox,
+  EuiComboBoxOptionOption,
+  EuiComboBoxOptionMatcher,
+} from '@elastic/eui';
+
+const options: EuiComboBoxOptionOption[] = [
+  {
+    label: 'Titan',
+    'data-test-subj': 'titanOption',
+  },
+  {
+    label: 'Enceladus',
+  },
+  {
+    label: 'Mimas',
+  },
+  {
+    label: 'Dione',
+  },
+  {
+    label: 'Iapetus',
+  },
+  {
+    label: 'Phoebe',
+  },
+  {
+    label: 'Rhea',
+  },
+  {
+    label:
+      "Pandora is one of Saturn's moons, named for a Titaness of Greek mythology",
+  },
+  {
+    label: 'Tethys',
+  },
+  {
+    label: 'Hyperion',
+  },
+];
+
+export default () => {
+  const [selectedOptions, setSelected] = useState<EuiComboBoxOptionOption[]>(
+    []
+  );
+  const onChange = (selectedOptions: EuiComboBoxOptionOption[]) => {
+    setSelected(selectedOptions);
+  };
+
+  const startsWithMatcher = useCallback<EuiComboBoxOptionMatcher<unknown>>(
+    ({ option, searchValue }) => {
+      return option.label.startsWith(searchValue);
+    },
+    []
+  );
+
+  return (
+    <EuiComboBox
+      placeholder="Select options"
+      options={options}
+      selectedOptions={selectedOptions}
+      onChange={onChange}
+      isClearable={true}
+      optionMatcher={startsWithMatcher}
+    />
+  );
+};
+```
+
+## Labels
+
+### Duplicate labels
+
+In general, it is not recommended to use duplicate labels on the options because the user has no way to distinguish between them. If you need duplicate labels, you will need to add a unique `key` for each option.
+
+```tsx interactive
+import React, { useState } from 'react';
+import { EuiComboBox } from '@elastic/eui';
+
+const optionsStatic = [
+  {
+    label: 'Titan',
+    key: 'titan1',
+  },
+  {
+    label: 'Titan',
+    key: 'titan2',
+  },
+  {
+    label: 'Enceladus is disabled',
+    disabled: true,
+  },
+  {
+    label: 'Titan',
+    key: 'titan3',
+  },
+  {
+    label: 'Dione',
+  },
+];
+export default () => {
+  const [options, setOptions] = useState(optionsStatic);
+  const [selectedOptions, setSelected] = useState([options[2], options[4]]);
+
+  const onChange = (selectedOptions) => {
+    setSelected(selectedOptions);
+  };
+
+  const onCreateOption = (searchValue, flattenedOptions = []) => {
+    const normalizedSearchValue = searchValue.trim().toLowerCase();
+
+    if (!normalizedSearchValue) {
+      return;
+    }
+
+    const newOption = {
+      label: searchValue,
+    };
+
+    // Create the option if it doesn't exist.
+    if (
+      flattenedOptions.findIndex(
+        (option) => option.label.trim().toLowerCase() === normalizedSearchValue
+      ) === -1
+    ) {
+      setOptions([...options, newOption]);
+    }
+
+    // Select the option.
+    setSelected([...selectedOptions, newOption]);
+  };
+
+  return (
+    <EuiComboBox
+      aria-label="Accessible screen reader label"
+      placeholder="Select or create options"
+      options={options}
+      selectedOptions={selectedOptions}
+      onChange={onChange}
+      onCreateOption={onCreateOption}
+      isClearable={true}
+      data-test-subj="demoComboBox"
+    />
+  );
+};
+```
+
+### Accessible label with aria-labelledby
+
+Sometimes it's preferable to label a combobox with a heading or paragraph. You can easily create a unique ID for a text element using the [HTML ID generator](/#/utilities/html-id-generator), then pass your unique ID to the `aria-labelledby` prop.
+
+```tsx interactive
+import React, { useState } from 'react';
+import {
+  EuiComboBox,
+  EuiSpacer,
+  EuiText,
+  useGeneratedHtmlId,
+} from '@elastic/eui';
+
+interface optionsInterface {
+  label: string;
+  'data-test-subj'?: string;
+}
+
+export default () => {
+  const generatedId = useGeneratedHtmlId({ prefix: 'generated-heading' });
+  const [options, updateOptions] = useState([
+    {
+      label: 'Titan',
+      'data-test-subj': 'titanOption',
+    },
+    {
+      label: 'Enceladus is disabled',
+    },
+    {
+      label: 'Mimas',
+    },
+    {
+      label: 'Dione',
+    },
+    {
+      label: 'Iapetus',
+    },
+    {
+      label: 'Phoebe',
+    },
+    {
+      label: 'Rhea',
+    },
+    {
+      label:
+        "Pandora is one of Saturn's moons, named for a Titaness of Greek mythology",
+    },
+    {
+      label: 'Tethys',
+    },
+    {
+      label: 'Hyperion',
+    },
+  ]);
+
+  const [selectedOptions, setSelected] = useState([options[2], options[4]]);
+
+  const onChange = (selectedOptions: optionsInterface[]) => {
+    setSelected(selectedOptions);
+  };
+
+  const onCreateOption = (
+    searchValue: string,
+    flattenedOptions: optionsInterface[]
+  ) => {
+    const normalizedSearchValue = searchValue.trim().toLowerCase();
+
+    if (!normalizedSearchValue) {
+      return;
+    }
+
+    const newOption = {
+      label: searchValue,
+    };
+
+    // Create the option if it doesn't exist.
+    if (
+      flattenedOptions.findIndex(
+        (option) => option.label.trim().toLowerCase() === normalizedSearchValue
+      ) === -1
+    ) {
+      updateOptions([...options, newOption]);
+    }
+
+    // Select the option.
+    setSelected((prevSelected) => [...prevSelected, newOption]);
+  };
+
+  return (
+    <React.Fragment>
+      <EuiText>
+        <h3 id={generatedId}>Heading as a label</h3>
+      </EuiText>
+      <EuiSpacer size="s" />
+      <EuiComboBox
+        aria-labelledby={generatedId}
+        placeholder="Select or create options"
+        options={options}
+        selectedOptions={selectedOptions}
+        onChange={onChange}
+        onCreateOption={onCreateOption}
+        isClearable={true}
+      />
+    </React.Fragment>
+  );
+};
+```
+
+## Props
+
+import docgen from '@elastic/eui-docgen/dist/components/combo_box';
+
+<PropTable definition={docgen.EuiComboBox} />

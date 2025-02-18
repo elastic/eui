@@ -1,0 +1,75 @@
+---
+slug: /forms/text
+id: forms_text_basic
+---
+
+# Basic text controls
+
+import EuiFormRowCallout from '../form_layouts/_form_row_callout.mdx';
+
+<EuiFormRowCallout />
+
+## Text field
+
+Use a **EuiFieldText** to allow users to enter or edit text. This component renders a basic HTML `<input type="text">` element.
+
+```tsx interactive
+import React, { useState } from 'react';
+import { EuiFieldText } from '@elastic/eui';
+
+export default function () {
+  const [value, setValue] = useState('');
+
+  const onChange = (e) => {
+    setValue(e.target.value);
+  };
+
+  return (
+    /* DisplayToggles wrapper for Docs only */
+    <DisplayToggles canPrepend canAppend>
+      <EuiFieldText
+        placeholder="Placeholder text"
+        value={value}
+        onChange={(e) => onChange(e)}
+        aria-label="Use aria labels when no actual label is in use"
+      />
+    </DisplayToggles>
+  );
+}
+```
+
+## Textarea
+
+Use **EuiTextArea** to allow users to enter multi-line text. This component renders a basic HTML `<textarea />` element.
+
+```tsx interactive
+import React, { useState } from 'react';
+import { EuiTextArea } from '@elastic/eui';
+
+export default () => {
+  const [value, setValue] = useState('');
+
+  const onChange = (e) => {
+    setValue(e.target.value);
+  };
+
+  return (
+    /* DisplayToggles wrapper for Docs only */
+    <DisplayToggles canClear>
+      <EuiTextArea
+        placeholder="Placeholder text"
+        aria-label="Use aria labels when no actual label is in use"
+        value={value}
+        onChange={(e) => onChange(e)}
+      />
+    </DisplayToggles>
+  );
+};
+```
+
+## Props
+
+import docgen from '@elastic/eui-docgen/dist/components/form';
+
+<PropTable definition={docgen.EuiFieldText} />
+<PropTable definition={docgen.EuiTextArea} />

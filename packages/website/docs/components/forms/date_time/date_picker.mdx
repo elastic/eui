@@ -1,0 +1,565 @@
+---
+slug: /forms/date-picker
+id: forms_date_picker
+sidebar_position: 1
+---
+
+# Date picker
+
+**EuiDatePicker** is the foundational component that all other EUI date and time controls are built upon. It itself depends upon <a href="https://momentjs.com/docs/" target="_blank">moment</a> for all of its formatting, and a forked and modified version of <a href="https://github.com/Hacker0x01/react-datepicker/tree/v2.0.0" target="_blank">react-datepicker</a> for accessibility.
+
+At minimum, the **EuiDatePicker** requires the `selected` and `onChange` props to be passed.
+
+```tsx interactive
+import React, { useState } from 'react';
+import { EuiDatePicker, EuiFormRow } from '@elastic/eui';
+import moment from 'moment';
+
+export default () => {
+  const [startDate, setStartDate] = useState(moment());
+
+  const handleChange = (date) => {
+    setStartDate(date);
+  };
+
+  return (
+    <EuiFormRow label="Select a date">
+      <EuiDatePicker selected={startDate} onChange={handleChange} />
+    </EuiFormRow>
+  );
+};
+```
+
+## Date picker states
+
+Examples of how the input can appear within a form. This should match our other form styles.
+
+```tsx interactive
+import React, { useState } from 'react';
+import { EuiDatePicker, EuiSpacer, EuiFormRow } from '@elastic/eui';
+
+export default () => {
+  const [startDate, setStartDate] = useState(null);
+
+  const handleChange = (date) => {
+    setStartDate(date);
+  };
+
+  const errors = [
+    "Here's an example of an error",
+    'You might have more than one error, so pass an array.',
+  ];
+
+  return (
+    /* DisplayToggles wrapper for Docs only */
+    <>
+      <DisplayToggles canPrepend={true} canAppend={true}>
+        <EuiDatePicker
+          showTimeSelect
+          selected={startDate}
+          onChange={handleChange}
+          placeholder="Placeholder text"
+        />
+      </DisplayToggles>
+
+      <EuiSpacer size="l" />
+
+      <EuiDatePicker
+        showTimeSelect
+        selected={startDate}
+        onChange={handleChange}
+        onClear={() => handleChange(null)}
+        placeholder="Clearable"
+      />
+
+      <EuiSpacer size="m" />
+
+      <EuiFormRow label="Form row validation" isInvalid error={errors}>
+        <EuiDatePicker
+          showTimeSelect
+          isInvalid
+          selected={startDate}
+          onChange={handleChange}
+          placeholder="Example of an error"
+        />
+      </EuiFormRow>
+    </>
+  );
+};
+```
+
+## Time selection
+
+Two props control time selection. `showTimeSelect` will make time selection appear next to the calendar and `showTimeSelectOnly` will exclude the calendar and make the time selection the only thing you see. Make sure to adjust your `dateFormat` and `timeFormat` values to match.
+
+```tsx interactive
+import React, { useState } from 'react';
+import { EuiDatePicker, EuiFormRow, EuiSpacer } from '@elastic/eui';
+import moment from 'moment';
+
+export default () => {
+  const [startDate, setStartDate] = useState(moment());
+
+  const handleChange = (date) => {
+    setStartDate(date);
+  };
+
+  return (
+    <div>
+      <EuiFormRow label="Time select on">
+        <EuiDatePicker
+          showTimeSelect
+          selected={startDate}
+          onChange={handleChange}
+        />
+      </EuiFormRow>
+
+      <EuiSpacer />
+
+      <EuiFormRow label="Only time select, 24 hour clock">
+        <EuiDatePicker
+          showTimeSelect
+          showTimeSelectOnly
+          selected={startDate}
+          onChange={handleChange}
+          dateFormat="HH:mm"
+          timeFormat="HH:mm"
+        />
+      </EuiFormRow>
+
+      <EuiSpacer />
+
+      <EuiFormRow label="Inject additional times into the list">
+        <EuiDatePicker
+          showTimeSelect
+          showTimeSelectOnly
+          selected={startDate}
+          onChange={handleChange}
+          dateFormat="hh:mm a"
+          timeFormat="hh:mm a"
+          injectTimes={[
+            moment().hours(0).minutes(1),
+            moment().hours(0).minutes(5),
+            moment().hours(23).minutes(59),
+          ]}
+        />
+      </EuiFormRow>
+    </div>
+  );
+};
+```
+
+## Locale
+
+Locale formatting is achieved by using the `locale`,`timeFormat`, and `dateFormat` props. The latter will take any `moment()` notation. Check <a href="https://en.wikipedia.org/wiki/Date_format_by_country" target="_blank">Date format by country</a> for formatting examples.
+
+:::warning
+Moment will try to load the locale on demand when it is used. Bundlers that do not support dynamic require statements will need to explicitly import the locale, e.g. `import 'moment/locale/zh-cn'`. See the below demo JS for examples.
+:::
+
+```tsx interactive
+import React, { useState } from 'react';
+import { EuiDatePicker, EuiFormRow, EuiSpacer } from '@elastic/eui';
+import moment from 'moment';
+
+// NOTE: These explicit imports are required for CodeSandbox and any
+// bundler that does not support Moment dynamically loading locales
+// import 'moment/locale/zh-cn';
+// import 'moment/locale/ko';
+// import 'moment/locale/de';
+
+export default () => {
+  const [startDate, setStartDate] = useState(moment());
+
+  const handleChange = (date) => {
+    setStartDate(date);
+  };
+
+  return (
+    <div>
+      <EuiFormRow label="US with fractional seconds">
+        <EuiDatePicker
+          selected={startDate}
+          showTimeSelect
+          onChange={handleChange}
+          dateFormat="YYYY-MM-DD hh:mm:ss:SSS A"
+        />
+      </EuiFormRow>
+
+      <EuiSpacer size="m" />
+
+      <EuiFormRow label="China">
+        <EuiDatePicker
+          selected={startDate}
+          showTimeSelect
+          onChange={handleChange}
+          dateFormat="YYYY-MM-DD hh:mm A"
+          locale="zh-cn"
+        />
+      </EuiFormRow>
+
+      <EuiSpacer size="m" />
+
+      <EuiFormRow label="Korea">
+        <EuiDatePicker
+          selected={startDate}
+          showTimeSelect
+          onChange={handleChange}
+          locale="ko"
+          dateFormat="YYYY-MM-DD hh:mm A"
+        />
+      </EuiFormRow>
+
+      <EuiSpacer size="m" />
+
+      <EuiFormRow label="Germany on 24 hour clock">
+        <EuiDatePicker
+          selected={startDate}
+          showTimeSelect
+          onChange={handleChange}
+          dateFormat="DD-MM-YYYY HH:mm"
+          timeFormat="HH:mm"
+          locale="de"
+        />
+      </EuiFormRow>
+    </div>
+  );
+};
+```
+
+## Only allow specific dates and times
+
+Use the `minDate`,`maxDate`,`minTime`, and `maxTime`props to specify specific ranges the `selected` code must must fall into. You can also use the `excludeDates` and`excludeTimes` property to disallow a specific array of items from selection.
+
+```tsx interactive
+import React, { useState } from 'react';
+import { EuiDatePicker, EuiFormRow, EuiSpacer } from '@elastic/eui';
+import moment from 'moment';
+
+export default () => {
+  const [startDate, setStartDate] = useState(moment());
+  const [startDate2, setStartDate2] = useState(moment());
+  const [startDate3, setStartDate3] = useState(moment().add(1, 'days'));
+  const [startDate4, setStartDate4] = useState(moment().add(1, 'days'));
+  const [startDate5, setStartDate5] = useState(moment());
+
+  const isWeekday = (date) => {
+    const day = date.day();
+    return day !== 0 && day !== 6;
+  };
+
+  return (
+    <div>
+      <EuiFormRow label="Only allow a certain range of dates">
+        <EuiDatePicker
+          showTimeSelect
+          selected={startDate}
+          onChange={setStartDate}
+          minDate={moment().subtract(2, 'days')}
+          maxDate={moment().add(5, 'days')}
+        />
+      </EuiFormRow>
+
+      <EuiSpacer />
+
+      <EuiFormRow label="Only allow a certain range of times">
+        <EuiDatePicker
+          showTimeSelect
+          selected={startDate2}
+          onChange={setStartDate2}
+          minTime={moment().hours(17).minutes(0)}
+          maxTime={moment().hours(20).minutes(30)}
+        />
+      </EuiFormRow>
+
+      <EuiSpacer />
+
+      <EuiFormRow label="Exclude yesterday and today">
+        <EuiDatePicker
+          showTimeSelect
+          selected={startDate3}
+          onChange={setStartDate3}
+          excludeDates={[moment(), moment().add(1, 'days')]}
+        />
+      </EuiFormRow>
+
+      <EuiSpacer />
+
+      <EuiFormRow label="Exclude 12AM and 5PM from selection">
+        <EuiDatePicker
+          showTimeSelect
+          selected={startDate4}
+          onChange={setStartDate4}
+          excludeTimes={[
+            moment().hours(0).minutes(0),
+            moment().hours(17).minutes(0),
+          ]}
+        />
+      </EuiFormRow>
+
+      <EuiSpacer />
+
+      <EuiFormRow label="Filter so only weekdays are selectable">
+        <EuiDatePicker
+          showTimeSelect
+          selected={startDate5}
+          onChange={setStartDate5}
+          filterDate={isWeekday}
+        />
+      </EuiFormRow>
+    </div>
+  );
+};
+```
+
+## Open to a specific date
+
+Use `openToDate` to default selection to a specific date.
+
+```tsx interactive
+import React, { useState } from 'react';
+import { EuiDatePicker, EuiFormRow } from '@elastic/eui';
+import moment from 'moment';
+
+export default () => {
+  const [startDate, setStartDate] = useState(null);
+
+  const handleChange = (date) => {
+    setStartDate(date);
+  };
+
+  return (
+    <EuiFormRow label="Select a date">
+      <EuiDatePicker
+        selected={startDate}
+        onChange={handleChange}
+        openToDate={moment('1993-09-28')}
+        placeholder="Back to 1993"
+      />
+    </EuiFormRow>
+  );
+};
+```
+
+## Custom input
+
+Use `customInput` to pass a custom input to trigger your calendar.
+
+```tsx interactive
+import React, { forwardRef, useState, FunctionComponent, ReactNode } from 'react';
+import { EuiDatePicker, EuiButton } from '@elastic/eui';
+import PropTypes from 'prop-types';
+import moment from 'moment';
+
+// Should be a component because the date picker does some ref stuff behind the scenes
+const ExampleCustomInput: FunctionComponent<{
+  onClick: Function;
+  value: ReactNode;
+}> = forwardRef(({ onClick, value }, ref) => {
+  return (
+    <EuiButton className="example-custom-input" onClick={onClick}>
+      {value}
+    </EuiButton>
+  );
+});
+
+export default () => {
+  const [startDate, setStartDate] = useState(moment());
+
+  return (
+    <EuiDatePicker
+      selected={startDate}
+      onChange={setStartDate}
+      customInput={<ExampleCustomInput />}
+    />
+  );
+};
+```
+
+## UTC offsets
+
+Use `utcOffset` to apply an offset to the datetime.
+
+```tsx interactive
+import React, { useState } from 'react';
+import { EuiDatePicker, EuiFormRow, EuiSelect } from '@elastic/eui';
+import moment from 'moment';
+
+export default () => {
+  const options = [
+    { value: -1, text: 'GMT -01:00' },
+    { value: -2, text: 'GMT -02:00' },
+    { value: -3, text: 'GMT -03:00' },
+  ];
+  const [startDate, setStartDate] = useState(moment());
+  const [utcOffset, setUtcOffset] = useState(options[1].value);
+
+  const onSelectChange = (e) => {
+    setUtcOffset(parseInt(e.target.value, 10));
+  };
+
+  const selected = startDate && startDate.clone().utcOffset(utcOffset);
+
+  return (
+    <div>
+      <EuiFormRow label="Select a date">
+        <EuiDatePicker
+          selected={selected}
+          showTimeSelect
+          onChange={setStartDate}
+          utcOffset={utcOffset * 60}
+        />
+      </EuiFormRow>
+      <EuiFormRow label="UTC offset">
+        <EuiSelect
+          options={options}
+          value={utcOffset}
+          onChange={onSelectChange}
+        />
+      </EuiFormRow>
+    </div>
+  );
+};
+```
+
+## Inline display
+
+Use the `inline` prop to display the date picker directly in the page instead of inside a popover. If you do not need the default inline shadow effect, apply the `shadow={false}` prop.
+
+```tsx interactive
+import React, { useState } from 'react';
+import {
+  EuiDatePicker,
+  EuiFlexGroup,
+  EuiSwitch,
+  EuiSpacer,
+} from '@elastic/eui';
+import moment from 'moment';
+
+export default () => {
+  const [shadow, setShadow] = useState(true);
+  const [showTimeSelect, setShowTimeSelect] = useState(true);
+
+  const [startDate, setStartDate] = useState(moment());
+  const [endDate, setEndDate] = useState(moment().add(11, 'd'));
+
+  return (
+    <>
+      <EuiFlexGroup>
+        <EuiSwitch
+          label="Show shadow"
+          checked={shadow}
+          onChange={() => setShadow((toggle) => !toggle)}
+        />
+        <EuiSwitch
+          label="Show time select"
+          checked={showTimeSelect}
+          onChange={() => setShowTimeSelect((toggle) => !toggle)}
+        />
+      </EuiFlexGroup>
+      <EuiSpacer />
+      <DisplayToggles spacerSize="s" canCompressed={false} canFullWidth={false}>
+        <EuiDatePicker
+          selected={startDate}
+          onChange={(date) => date && setStartDate(date)}
+          inline
+          showTimeSelect={showTimeSelect}
+          shadow={shadow}
+        />
+      </DisplayToggles>
+    </>
+  );
+};
+```
+
+## Custom classes
+
+Custom classes can be passed to various bits of the calendar and input.
+
+*   `className` will pass onto the input.
+*   `calendarClassName` will pass onto the calendar itself.
+*   `dayClassName` will pass onto specificed days.
+*   `popperClassName` will pass onto the popover.
+
+import { css } from '@emotion/css';
+
+<Demo scope={{ css }}>
+  ```tsx interactive
+  import React, { useState } from 'react';
+  import { EuiDatePicker, EuiFormRow, EuiSpacer } from '@elastic/eui';
+  import moment from 'moment';
+  import { css } from '@emotion/css'; // Generates a vanilla JS className
+
+  const visColors = euiPaletteColorBlind();
+  const backgroundCss = css`
+    background-color: ${visColors[3]};
+  `;
+  const outlineCss = css`
+    outline: solid 2px ${visColors[3]};
+  `;
+
+  export default () => {
+    const [startDate, setStartDate] = useState(moment());
+
+    const handleChange = (date) => {
+      setStartDate(date);
+    };
+
+    return (
+      <>
+        <EuiFormRow label="className example">
+          <EuiDatePicker
+            selected={startDate}
+            showTimeSelect
+            onChange={handleChange}
+            className={outlineCss}
+          />
+        </EuiFormRow>
+
+        <EuiSpacer size="m" />
+
+        <EuiFormRow label="calendarClassName example">
+          <EuiDatePicker
+            selected={startDate}
+            showTimeSelect
+            onChange={handleChange}
+            calendarClassName={backgroundCss}
+          />
+        </EuiFormRow>
+
+        <EuiSpacer size="m" />
+
+        <EuiFormRow label="dayClassName example">
+          <EuiDatePicker
+            selected={startDate}
+            showTimeSelect
+            onChange={handleChange}
+            dayClassName={(date) =>
+              date.date() < Math.random() * 31
+                ? backgroundCss
+                : undefined
+            }
+          />
+        </EuiFormRow>
+
+        <EuiSpacer size="m" />
+
+        <EuiFormRow label="popperClassName example">
+          <EuiDatePicker
+            selected={startDate}
+            showTimeSelect
+            onChange={handleChange}
+            popperClassName={outlineCss}
+          />
+        </EuiFormRow>
+      </>
+    );
+  };
+  ```
+</Demo>
+
+## Props
+
+import docgen from '@elastic/eui-docgen/dist/components/date_picker';
+
+<PropTable definition={docgen.EuiDatePicker} />

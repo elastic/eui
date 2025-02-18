@@ -1,0 +1,813 @@
+---
+slug: /forms/date-picker/super
+id: forms_super_date_picker
+sidebar_position: 3
+---
+
+# Super date picker
+
+**EuiSuperDatePicker** is a complex date picker that supports relative and absolute dates. It offers a convenient **Quick select menu** which includes **Commonly used dates**, **Recently used date ranges** and **Auto refresh** features.
+
+Pass `start` and `end` date times as strings in either datemath format (e.g.: `now`, `now-15m`, `now-15m/m`) or as absolute date in the format `YYYY-MM-DDTHH:mm:ss.SSSZ`. Use <a href="https://github.com/elastic/datemath-js" target="_blank">datemath</a> to convert start and end strings into moment objects.
+
+```
+import dateMath from '@elastic/datemath';
+
+const startMoment = dateMath.parse(start);
+// dateMath.parse is inconsistent with unparsable strings.
+// Sometimes undefined is returned, other times an invalid moment is returned
+if (!startMoment || !startMoment.isValid()) {
+  throw new Error('Unable to parse start string');
+}
+
+// Pass roundUp when parsing end string
+const endMoment = dateMath.parse(end, { roundUp: true });
+if (!endMoment || !endMoment.isValid()) {
+  throw new Error('Unable to parse end string');
+}
+```
+
+```tsx interactive
+import React, { useState } from 'react';
+import {
+  EuiSuperDatePicker,
+  EuiSpacer,
+  EuiFormControlLayoutDelimited,
+  EuiFormLabel,
+  EuiFieldText,
+  EuiPanel,
+  EuiText,
+  OnRefreshProps,
+  OnTimeChangeProps,
+} from '@elastic/eui';
+
+export default () => {
+  const [isLoading, setIsLoading] = useState(false);
+  const [start, setStart] = useState('now-30m');
+  const [end, setEnd] = useState('now');
+
+  const onTimeChange = ({ start, end }: OnTimeChangeProps) => {
+    setStart(start);
+    setEnd(end);
+    setIsLoading(true);
+    startLoading();
+  };
+
+  const onRefresh = ({ start, end, refreshInterval }: OnRefreshProps) => {
+    return new Promise((resolve) => {
+      setTimeout(resolve, 100);
+    }).then(() => {
+      console.log(start, end, refreshInterval);
+    });
+  };
+
+  const onStartInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setStart(e.target.value);
+  };
+
+  const onEndInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setEnd(e.target.value);
+  };
+
+  const startLoading = () => {
+    setTimeout(stopLoading, 1000);
+  };
+
+  const stopLoading = () => {
+    setIsLoading(false);
+  };
+
+  const renderTimeRange = () => {
+    return (
+      <EuiPanel color="subdued" paddingSize="m">
+        <EuiText size="s">
+          EuiSuperDatePicker should be resilient to invalid date values. You can
+          try to break it with unexpected values here.
+        </EuiText>
+        <EuiSpacer />
+        <EuiFormControlLayoutDelimited
+          prepend={<EuiFormLabel>Dates</EuiFormLabel>}
+          startControl={
+            <EuiFieldText
+              controlOnly
+              onChange={onStartInputChange}
+              value={start}
+              placeholder="start"
+            />
+          }
+          endControl={
+            <EuiFieldText
+              controlOnly
+              onChange={onEndInputChange}
+              placeholder="end"
+              value={end}
+            />
+          }
+        />
+      </EuiPanel>
+    );
+  };
+
+  return (
+    <>
+      {renderTimeRange()}
+      <EuiSpacer />
+      <EuiSuperDatePicker
+        isLoading={isLoading}
+        start={start}
+        end={end}
+        onTimeChange={onTimeChange}
+        onRefresh={onRefresh}
+      />
+    </>
+  );
+};
+```
+
+## Update button
+
+When `start` and `end` change from interactions with **Quick select**, **Commonly used**, or **Recently used date ranges**,`onTimeChange` will be immediately invoked. This is because these interactions set both `start` and `end` in a single event.
+
+When `start` and `end` change from interactions with **Absolute**, **Relative**, and **Now** tabs,`onTimeChange` will **not** be invoked. In these cases,`onTimeChange` will be invoked when the user clicks the **Update** button. This gives users the ability to set both `start` and `end` before triggering `onTimeChange`. Set `showUpdateButton` to `false` to immediately invoke `onTimeChange` for all `start` and `end` changes.
+
+### More configurations
+
+Instead of hiding completely, you can reduce the footprint of the update button to just an icon with `showUpdateButton="iconOnly"`. You can further configure the button using `updateButtonProps`, like setting the `fill` to `false`.
+
+```tsx interactive
+import React, { useState } from 'react';
+import {
+  EuiSuperDatePicker,
+  EuiSwitch,
+  EuiSpacer,
+  OnRefreshProps,
+  OnTimeChangeProps,
+  useEuiTheme,
+} from '@elastic/eui';
+
+export default () => {
+  const { euiTheme } = useEuiTheme();
+  const [showUpdateButton, setShowUpdateButton] = useState(true);
+  const [showIconOnly, setShowIconOnly] = useState(false);
+  const [showFill, setShowFill] = useState(true);
+
+  const [isLoading, setIsLoading] = useState(false);
+  const [start, setStart] = useState('now-30m');
+  const [end, setEnd] = useState('now');
+
+  const onTimeChange = ({ start, end }: OnTimeChangeProps) => {
+    setStart(start);
+    setEnd(end);
+    setIsLoading(true);
+    startLoading();
+  };
+
+  const onRefresh = ({ start, end, refreshInterval }: OnRefreshProps) => {
+    return new Promise((resolve) => {
+      setTimeout(resolve, 100);
+    }).then(() => {
+      console.log(start, end, refreshInterval);
+    });
+  };
+
+  const startLoading = () => {
+    setTimeout(stopLoading, 1000);
+  };
+  const stopLoading = () => {
+    setIsLoading(false);
+  };
+
+  const toggleShowApplyButton = () => {
+    setShowUpdateButton(!showUpdateButton);
+  };
+  const toggleShowIconOnly = () => {
+    setShowIconOnly(!showIconOnly);
+  };
+  const toggleShowFill = () => {
+    setShowFill(!showFill);
+  };
+
+  return (
+    <>
+      <EuiSwitch
+        label="Show update button"
+        onChange={toggleShowApplyButton}
+        checked={showUpdateButton}
+      />
+      <EuiSwitch
+        label="Fill"
+        onChange={toggleShowFill}
+        checked={showFill}
+        disabled={!showUpdateButton}
+        style={{ marginLeft: euiTheme.size.xl }}
+      />
+      <EuiSwitch
+        label="Icon only"
+        onChange={toggleShowIconOnly}
+        checked={showIconOnly}
+        disabled={!showUpdateButton}
+        style={{ marginLeft: euiTheme.size.xl }}
+      />
+      <EuiSpacer />
+      <EuiSuperDatePicker
+        isLoading={isLoading}
+        start={start}
+        end={end}
+        onTimeChange={onTimeChange}
+        onRefresh={onRefresh}
+        showUpdateButton={
+          showUpdateButton && showIconOnly ? 'iconOnly' : showUpdateButton
+        }
+        updateButtonProps={{ fill: showFill }}
+      />
+      <EuiSpacer />
+    </>
+  );
+};
+```
+
+## Quick select panels
+
+**EuiSuperDatePicker**'s quick select menu provides the user with single-click options for quick selection with the following panels.
+
+*   `commonlyUsedRanges`: A default set of common date ranges is automatically provided but can be overridden with this prop.
+*   `recentlyUsedRanges`: Store the users previously submitted time ranges and pass them back to date picker with this props. It's best to limit this list to around 10 items.
+*   `customQuickSelectPanels`: Accepts an array of panel objects as `{ title: string, content: ReactElement }`.
+
+You can also reduce the **EuiSuperDatePicker** to display **just** the quick select button and dropdown by passing `isQuickSelectOnly={true}`. Be sure you display the rendered time period elsewhere in your interface.
+
+```tsx interactive
+import React, { useState } from 'react';
+import {
+  EuiSuperDatePicker,
+  EuiSwitch,
+  EuiSpacer,
+  EuiLink,
+  OnTimeChangeProps,
+  OnRefreshProps,
+  ApplyTime,
+  EuiSuperDatePickerProps,
+  useEuiTheme,
+} from '@elastic/eui';
+
+function MyCustomQuickSelectPanel({ applyTime }: { applyTime?: ApplyTime }) {
+  function applyMyCustomTime() {
+    applyTime!({ start: 'now-30d', end: 'now+7d' });
+  }
+
+  return (
+    <EuiLink onClick={applyMyCustomTime}>Entire dataset timerange</EuiLink>
+  );
+}
+
+export default () => {
+  const { euiTheme } = useEuiTheme();
+  const [showCustomQuickSelectPanel, setShowCustomQuickSelectPanel] =
+    useState(true);
+  const [showRecentlyUsed, setShowRecentlyUsed] = useState(true);
+  const [showQuickSelectOnly, setShowQuickSelectOnly] = useState(false);
+
+  const toggleShowCustomQuickSelectPanel = () => {
+    setShowCustomQuickSelectPanel(!showCustomQuickSelectPanel);
+  };
+
+  const toggleShowRecentlyUsed = () => {
+    setShowRecentlyUsed(!showRecentlyUsed);
+  };
+
+  const toggleShowQuickSelectOnly = () => {
+    setShowQuickSelectOnly(!showQuickSelectOnly);
+  };
+
+  const [recentlyUsedRanges, setRecentlyUsedRanges] = useState<
+    NonNullable<EuiSuperDatePickerProps['recentlyUsedRanges']>
+  >([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [start, setStart] = useState('now-30m');
+  const [end, setEnd] = useState('now');
+
+  const onTimeChange = ({ start, end }: OnTimeChangeProps) => {
+    const recentlyUsedRange = recentlyUsedRanges.filter((recentlyUsedRange) => {
+      const isDuplicate =
+        recentlyUsedRange.start === start && recentlyUsedRange.end === end;
+      return !isDuplicate;
+    });
+    recentlyUsedRange.unshift({ start, end });
+    setStart(start);
+    setEnd(end);
+    setRecentlyUsedRanges(
+      recentlyUsedRange.length > 10
+        ? recentlyUsedRange.slice(0, 9)
+        : recentlyUsedRange
+    );
+    setIsLoading(true);
+    startLoading();
+  };
+
+  const onRefresh = ({ start, end, refreshInterval }: OnRefreshProps) => {
+    return new Promise((resolve) => {
+      setTimeout(resolve, 100);
+    }).then(() => {
+      console.log(start, end, refreshInterval);
+    });
+  };
+
+  const startLoading = () => {
+    setTimeout(stopLoading, 1000);
+  };
+
+  const stopLoading = () => {
+    setIsLoading(false);
+  };
+
+  const customQuickSelectPanels = [
+    {
+      title: 'My custom panel',
+      content: <MyCustomQuickSelectPanel />,
+    },
+  ];
+
+  return (
+    <>
+      <EuiSwitch
+        label="Show recently used"
+        onChange={toggleShowRecentlyUsed}
+        checked={showRecentlyUsed}
+      />
+      <EuiSwitch
+        label="Show custom panel"
+        onChange={toggleShowCustomQuickSelectPanel}
+        checked={showCustomQuickSelectPanel}
+        style={{ marginLeft: euiTheme.size.xl }}
+      />
+      <EuiSwitch
+        label="Show quick select only"
+        onChange={toggleShowQuickSelectOnly}
+        checked={showQuickSelectOnly}
+        style={{ marginLeft: euiTheme.size.xl }}
+      />
+      <EuiSpacer />
+      <EuiSuperDatePicker
+        isLoading={isLoading}
+        start={start}
+        end={end}
+        onTimeChange={onTimeChange}
+        onRefresh={onRefresh}
+        recentlyUsedRanges={showRecentlyUsed ? recentlyUsedRanges : undefined}
+        customQuickSelectPanels={
+          showCustomQuickSelectPanel ? customQuickSelectPanels : undefined
+        }
+        isQuickSelectOnly={showQuickSelectOnly}
+      />
+      <EuiSpacer />
+    </>
+  );
+};
+```
+
+### Custom rendering
+
+You can optionally pass the `customQuickSelectRender` prop that passes default panels as arguments and allows you to re-order panels, omit certain panels entirely, or pass in your own fully custom content.
+
+import CustomRenderExample from './custom_quick_select_render';
+
+<CustomRenderExample />
+
+## Sizing
+
+By default the `width` of the **EuiSuperDatePicker** is set to `'restricted'` which sets the size to a reasonable max-width necessary to display full start and end date strings.
+
+You can adjust the `width` by passing:
+
+*   `'full'` to expand the width to 100% of the parent
+*   `'auto'` to grow and shrink as the contents does
+
+The **EuiSuperDatePicker** also supports the `compressed` form control option.
+
+```tsx interactive
+import React, { useState } from 'react';
+import {
+  EuiSuperDatePicker,
+  EuiSuperDatePickerProps,
+  OnTimeChangeProps,
+} from '@elastic/eui';
+
+export default ({
+  width,
+  compressed,
+}: {
+  width: EuiSuperDatePickerProps['width'];
+  compressed: boolean;
+}) => {
+  const [start, setStart] = useState('now-30m');
+  const [end, setEnd] = useState('now');
+
+  const onTimeChange = ({ start, end }: OnTimeChangeProps) => {
+    setStart(start);
+    setEnd(end);
+  };
+
+  return (
+    <EuiSuperDatePicker
+      start={start}
+      end={end}
+      onTimeChange={onTimeChange}
+      width={width}
+      compressed={compressed}
+    />
+  );
+};
+```
+
+## Auto refresh
+
+By supplying a callback function to `onRefreshChange`, the **EuiSuperDatePicker** will display the `refreshInterval` configuration UI in the **Quick select menu**.
+
+```tsx interactive
+import React, { useState } from 'react';
+import {
+  EuiSuperDatePicker,
+  OnRefreshChangeProps,
+  OnRefreshProps,
+  OnTimeChangeProps,
+  RefreshUnitsOptions,
+  EuiSwitch,
+} from '@elastic/eui';
+
+export default () => {
+  const [doNotRoundUnits, setDoNotRoundUnits] = useState(false);
+  const [intervalUnits, setIntervalUnits] = useState<RefreshUnitsOptions>();
+
+  const [refreshInterval, setRefreshInterval] = useState(1000);
+  const [isPaused, setIsPaused] = useState(true);
+  const [start, setStart] = useState('now-30m');
+  const [end, setEnd] = useState('now');
+
+  const onTimeChange = ({ start, end }: OnTimeChangeProps) => {
+    setStart(start);
+    setEnd(end);
+  };
+
+  const onRefresh = ({ start, end, refreshInterval }: OnRefreshProps) => {
+    return new Promise((resolve) => {
+      setTimeout(resolve, 100);
+    }).then(() => {
+      console.log(start, end, refreshInterval);
+    });
+  };
+
+  const onRefreshChange = ({
+    isPaused,
+    refreshInterval,
+    intervalUnits,
+  }: OnRefreshChangeProps) => {
+    setIsPaused(isPaused);
+    setRefreshInterval(refreshInterval);
+    setIntervalUnits(intervalUnits);
+  };
+
+  return (
+    <EuiSuperDatePicker
+      start={start}
+      end={end}
+      onTimeChange={onTimeChange}
+      onRefresh={onRefresh}
+      isPaused={isPaused}
+      onRefreshChange={onRefreshChange}
+      refreshInterval={refreshInterval}
+      refreshIntervalUnits={doNotRoundUnits ? intervalUnits : undefined}
+      customQuickSelectRender={({ refreshInterval }) => (
+        <>
+          <EuiSwitch
+            label="Round refresh interval up to the next largest unit"
+            checked={!doNotRoundUnits}
+            onChange={() => setDoNotRoundUnits(!doNotRoundUnits)}
+            compressed
+          />
+          {refreshInterval}
+        </>
+      )}
+    />
+  );
+};
+```
+
+Set `isAutoRefreshOnly` to `true` to limit the component to only display auto refresh content. This is useful in cases where there is no time data but auto-refresh configuration is still desired.
+
+However, since this is still the full **EuiSuperDatePicker** component it requires other props that may not be necessary for the refresh only UI. In this case, you can use the [**EuiAutoRefresh**](./auto_refresh.mdx) component directly. You will just need to manage the refresh counter yourself.
+
+```tsx interactive
+import React, { useState } from 'react';
+import {
+  EuiSuperDatePicker,
+  OnRefreshChangeProps,
+  OnRefreshProps,
+  OnTimeChangeProps,
+} from '@elastic/eui';
+
+export default () => {
+  const [refreshInterval, setRefreshInterval] = useState(1000);
+  const [isPaused, setIsPaused] = useState(true);
+  const [start, setStart] = useState('now-30m');
+  const [end, setEnd] = useState('now');
+
+  const onTimeChange = ({ start, end }: OnTimeChangeProps) => {
+    setStart(start);
+    setEnd(end);
+  };
+
+  const onRefresh = ({ start, end, refreshInterval }: OnRefreshProps) => {
+    return new Promise((resolve) => {
+      setTimeout(resolve, 100);
+    }).then(() => {
+      console.log(start, end, refreshInterval);
+    });
+  };
+
+  const onRefreshChange = ({
+    isPaused,
+    refreshInterval,
+  }: OnRefreshChangeProps) => {
+    setIsPaused(isPaused);
+    setRefreshInterval(refreshInterval);
+  };
+
+  return (
+    <EuiSuperDatePicker
+      start={start}
+      end={end}
+      onTimeChange={onTimeChange}
+      onRefresh={onRefresh}
+      isPaused={isPaused}
+      refreshInterval={refreshInterval}
+      onRefreshChange={onRefreshChange}
+      isAutoRefreshOnly
+    />
+  );
+};
+```
+
+## Elastic pattern with KQL
+
+The following is a demo pattern of how to layout the **EuiSuperDatePicker** alongside Elastic's KQL search bar using [**EuiSearchBar**](../search_filter/search_bar.mdx) and shrinking to fit when the search bar is in focus.
+
+```tsx interactive
+import React, { useState } from 'react';
+import {
+  EuiButtonEmpty,
+  EuiButtonIcon,
+  EuiFlexGroup,
+  EuiFlexItem,
+  EuiSearchBar,
+  EuiSuperDatePicker,
+  EuiSuperDatePickerProps,
+  OnRefreshChangeProps,
+  OnRefreshProps,
+  OnTimeChangeProps,
+  EuiOutsideClickDetector,
+} from '@elastic/eui';
+
+export default () => {
+  const [recentlyUsedRanges, setRecentlyUsedRanges] = useState<
+    NonNullable<EuiSuperDatePickerProps['recentlyUsedRanges']>
+  >([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [refreshInterval, setRefreshInterval] = useState(1000);
+  const [isPaused, setIsPaused] = useState(true);
+  const [start, setStart] = useState('now-30m');
+  const [end, setEnd] = useState('now');
+  const [showQuickSelectOnly, setShowQuickSelectOnly] = useState(false);
+
+  const onTimeChange = ({ start, end }: OnTimeChangeProps) => {
+    const recentlyUsedRange = recentlyUsedRanges.filter((recentlyUsedRange) => {
+      const isDuplicate =
+        recentlyUsedRange.start === start && recentlyUsedRange.end === end;
+      return !isDuplicate;
+    });
+    recentlyUsedRange.unshift({ start, end });
+    setStart(start);
+    setEnd(end);
+    setRecentlyUsedRanges(
+      recentlyUsedRange.length > 10
+        ? recentlyUsedRange.slice(0, 9)
+        : recentlyUsedRange
+    );
+    setIsLoading(true);
+    startLoading();
+  };
+
+  const onRefresh = ({ start, end, refreshInterval }: OnRefreshProps) => {
+    return new Promise((resolve) => {
+      setTimeout(resolve, 100);
+    }).then(() => {
+      console.log(start, end, refreshInterval);
+    });
+  };
+
+  const startLoading = () => {
+    setTimeout(stopLoading, 1000);
+  };
+
+  const stopLoading = () => {
+    setIsLoading(false);
+  };
+
+  const onRefreshChange = ({
+    isPaused,
+    refreshInterval,
+  }: OnRefreshChangeProps) => {
+    setIsPaused(isPaused);
+    setRefreshInterval(refreshInterval);
+  };
+
+  return (
+    <>
+      <EuiFlexGroup gutterSize="s">
+        <EuiFlexItem style={{ minWidth: '50%' }}>
+          <EuiOutsideClickDetector
+            onOutsideClick={() => setShowQuickSelectOnly(false)}
+            isDisabled={!showQuickSelectOnly}
+          >
+            <EuiSearchBar
+              box={{
+                onClick: () => setShowQuickSelectOnly(true),
+                onFocus: () => setShowQuickSelectOnly(true),
+                onBlur: () => setShowQuickSelectOnly(false),
+                prepend: (
+                  <EuiButtonIcon aria-label="Saved searches" iconType="save" />
+                ),
+                append: <EuiButtonEmpty>KQL</EuiButtonEmpty>,
+                'aria-label': 'Filter using KQL',
+                placeholder: 'type:visualization -dashboard',
+              }}
+            />
+          </EuiOutsideClickDetector>
+        </EuiFlexItem>
+        <EuiFlexItem grow={false}>
+          <div>
+            <EuiSuperDatePicker
+              start={start}
+              end={end}
+              onTimeChange={onTimeChange}
+              onRefresh={onRefresh}
+              isPaused={isPaused}
+              isLoading={isLoading}
+              refreshInterval={refreshInterval}
+              onRefreshChange={onRefreshChange}
+              recentlyUsedRanges={recentlyUsedRanges}
+              width="auto"
+              isQuickSelectOnly={showQuickSelectOnly}
+            />
+          </div>
+        </EuiFlexItem>
+      </EuiFlexGroup>
+    </>
+  );
+};
+```
+
+## Locale
+
+Locale formatting is achieved by using the `locale`,`timeFormat`, and `dateFormat` props. The latter will take any `moment()` notation. Check <a href="https://en.wikipedia.org/wiki/Date_format_by_country" target="_blank">Date format by country</a> for formatting examples.
+
+:::warning
+Moment will try to load the locale on demand when it is used. Bundlers that do not support dynamic require statements will need to explicitly import the locale, e.g. `import 'moment/locale/zh-cn'`. See the below demo TSX for examples.
+:::
+
+```tsx interactive
+import React, { useState } from 'react';
+import {
+  EuiButtonGroup,
+  EuiComboBox,
+  EuiComboBoxOptionOption,
+  EuiFlexGroup,
+  EuiFlexItem,
+  EuiSpacer,
+  EuiSuperDatePicker,
+  OnTimeChangeProps,
+  htmlIdGenerator,
+} from '@elastic/eui';
+
+// NOTE: These explicit imports are required for CodeSandbox and any
+// bundler that does not support Moment dynamically loading locales
+// import 'moment/locale/zh-cn';
+// import 'moment/locale/ja';
+// import 'moment/locale/fr';
+
+const localeId = htmlIdGenerator('locale');
+const locales = [
+  { id: localeId(), label: 'en' },
+  { id: localeId(), label: 'zh-CN' },
+  { id: localeId(), label: 'ja-JP' },
+  { id: localeId(), label: 'fr-FR' },
+];
+const dateFormats = [
+  { label: 'MMM D, YYYY @ HH:mm:ss.SSS' },
+  { label: 'dddd, MMMM Do YYYY, h:mm:ss a' },
+  { label: 'YYYY-MM-DDTHH:mm:ss.SSSZ' },
+];
+
+export default () => {
+  const [start, setStart] = useState('now-1h');
+  const [end, setEnd] = useState('now-15m');
+  const onTimeChange = ({ start, end }: OnTimeChangeProps) => {
+    setStart(start);
+    setEnd(end);
+  };
+
+  const [locale, setLocale] = useState<string | undefined>();
+  const [localeSelected, setLocaleSelected] = useState(locales[0].id);
+  const onLocaleChange = (optionId: React.SetStateAction<string>) => {
+    setLocale(locales.find(({ id }) => id === optionId)!.label);
+    setLocaleSelected(optionId);
+  };
+
+  const [dateFormat, setDateFormat] = useState<string | undefined>();
+  const [dateFormatsSelected, setDateFormatsSelected] = useState([
+    dateFormats[0],
+  ]);
+  const onDateFormatChange = (selectedOptions: EuiComboBoxOptionOption[]) => {
+    setDateFormat(selectedOptions.length ? selectedOptions[0].label : '');
+    setDateFormatsSelected(selectedOptions);
+  };
+  const onDateFormatCreate = (searchValue: string) => {
+    const normalizedSearchValue = searchValue.trim().toLowerCase();
+    if (!normalizedSearchValue) return;
+
+    setDateFormat(searchValue);
+    setDateFormatsSelected([{ label: searchValue }]);
+  };
+
+  return (
+    <>
+      <EuiFlexGroup alignItems="center">
+        <EuiFlexItem grow={false}>
+          <EuiButtonGroup
+            legend={'Locale'}
+            options={locales}
+            idSelected={localeSelected}
+            onChange={onLocaleChange}
+          />
+        </EuiFlexItem>
+        <EuiFlexItem>
+          <EuiComboBox
+            prepend="dateFormat"
+            placeholder="Select a dateFormat"
+            customOptionText="Add {searchValue} as a dateFormat"
+            singleSelection={{ asPlainText: true }}
+            options={dateFormats}
+            selectedOptions={dateFormatsSelected}
+            onChange={onDateFormatChange}
+            onCreateOption={onDateFormatCreate}
+          />
+        </EuiFlexItem>
+      </EuiFlexGroup>
+      <EuiSpacer />
+      <EuiSuperDatePicker
+        showUpdateButton={false}
+        start={start}
+        end={end}
+        locale={locale}
+        dateFormat={dateFormat}
+        onTimeChange={onTimeChange}
+      />
+    </>
+  );
+};
+```
+
+## Restricted range
+
+To limit the range from which users can choose a date, you can use `minDate` and `maxDate`. By updating the date input values for `start` and `end`, users get immediate feedback on what range values are allowed.
+
+```tsx interactive
+import React, { useState } from 'react';
+import { EuiSuperDatePicker, OnTimeChangeProps } from '@elastic/eui';
+import moment from 'moment';
+
+export default () => {
+  const [start, setStart] = useState('now-30m');
+  const [end, setEnd] = useState('now');
+  const minDate = moment().subtract(1, 'M');
+  const maxDate = moment().add(1, 'M');
+  const onTimeChange = ({ start, end }: OnTimeChangeProps) => {
+    setStart(start);
+    setEnd(end);
+  };
+  return (
+    <EuiSuperDatePicker
+      start={start}
+      end={end}
+      minDate={minDate}
+      maxDate={maxDate}
+      onTimeChange={onTimeChange}
+    />
+  );
+};
+```
+
+## Props
+
+import docgen from '@elastic/eui-docgen/dist/components/date_picker';
+
+<PropTable definition={docgen.EuiSuperDatePicker} />

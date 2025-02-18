@@ -76,3 +76,7 @@ searching is not possible when running the development server.
 Please refer to the [Building the website](#building-the-website) section
 to learn how to build the documentation site locally
 and serve it to use local search.
+
+## Links
+
+For external links, we use `<a>` tag to open them in a new tab, while for internal links (between documentation pages) we use [relative file paths](https://docusaurus.io/docs/markdown-features/links) as recommended by Docusaurus. 
