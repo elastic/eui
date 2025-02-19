@@ -49,7 +49,7 @@ export type _EuiThemeLevels = {
   navigation: NonNullable<CSSProperties['zIndex']>;
   /** - Default value: 2000 */
   menu: NonNullable<CSSProperties['zIndex']>;
-  /** - Default value: 1000 */
+  /** - Default value: 2000 */
   header: NonNullable<CSSProperties['zIndex']>;
   /** - Default value: 1000 */
   flyout: NonNullable<CSSProperties['zIndex']>;
