@@ -432,8 +432,6 @@ describe('EuiComboBox', () => {
           'have.text',
           'Item 1'
         );
-        cy.get('[data-test-subj="comboBoxSearchInput"]').click();
-        cy.realType('Item 1,');
       });
 
       it('adds only one item when pasting duplicated elements', () => {
