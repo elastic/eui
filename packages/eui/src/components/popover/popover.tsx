@@ -636,6 +636,7 @@ export class EuiPopover extends Component<Props, State> {
       buffer,
       'aria-label': ariaLabel,
       'aria-labelledby': ariaLabelledBy,
+      'aria-live': ariaLiveProp,
       container,
       focusTrapProps,
       initialFocus: initialFocusProp,
@@ -678,7 +679,7 @@ export class EuiPopover extends Component<Props, State> {
           initialFocus = () => this.panel!;
         }
       } else {
-        ariaLive = 'assertive';
+        ariaLive = ariaLiveProp ?? 'assertive';
       }
 
       let focusTrapScreenReaderText;

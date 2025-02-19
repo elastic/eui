@@ -167,7 +167,10 @@ export class EuiComboBoxOptionsList<T> extends Component<
       renderOption,
       searchValue,
       rootId,
+      matchingOptions,
     } = this.props;
+
+    const optionIndex = matchingOptions.indexOf(option);
 
     const hasTruncationProps = this.props.truncationProps || _truncationProps;
     const truncationProps = hasTruncationProps
@@ -215,6 +218,8 @@ export class EuiComboBoxOptionsList<T> extends Component<
         showIcons={singleSelection ? true : false}
         id={rootId(`_option-${index}`)}
         title={label}
+        aria-setsize={matchingOptions.length}
+        aria-posinset={optionIndex + 1}
         {...rest}
       >
         <span className="euiComboBoxOption__contentWrapper">

@@ -379,6 +379,7 @@ export class EuiComboBoxInput<T> extends Component<
                     aria-label={ariaLabel}
                     aria-labelledby={ariaLabelledby}
                     aria-invalid={isInvalid}
+                    aria-haspopup="listbox"
                     css={styles.euiComboBoxInput}
                     className="euiComboBox__input"
                     data-test-subj="comboBoxSearchInput"

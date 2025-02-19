@@ -143,7 +143,7 @@ export class EuiFilterSelectItemClass extends Component<
         ref={(ref) => (this.buttonRef = ref)}
         role="option"
         type="button"
-        aria-selected={isFocused}
+        aria-selected={checked === 'on'}
         className={classes}
         css={cssStyles}
         disabled={disabled}
