@@ -516,6 +516,26 @@ describe('EuiComboBox', () => {
 
             expect(onCreateOptionHandler).not.toHaveBeenCalled();
           });
+
+          it('fires the callback only once when adding duplicated values', () => {
+            const onCreateOptionHandler = jest.fn();
+
+            const { getByTestSubject } = render(
+              <EuiComboBox
+                delimiter=","
+                options={options}
+                selectedOptions={[options[2]]}
+                onCreateOption={onCreateOptionHandler}
+              />
+            );
+            const input = getByTestSubject('comboBoxSearchInput');
+
+            fireEvent.change(input, { target: { value: 'a, a,  a,   a' } });
+            fireEvent.keyDown(input, { key: 'Enter' });
+
+            expect(onCreateOptionHandler).toHaveBeenCalledTimes(1);
+            expect(onCreateOptionHandler).toHaveBeenCalledWith('a', options);
+          });
         });
       });
 

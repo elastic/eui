@@ -460,7 +460,10 @@ export class EuiComboBox<T> extends Component<
     const { searchValue } = this.state;
     const { delimiter } = this.props;
     if (delimiter) {
-      searchValue.split(delimiter).forEach((option: string) => {
+      const trimmed = searchValue.split(delimiter).map((value) => value.trim());
+      const values = [...new Set([...trimmed])];
+
+      values.forEach((option: string) => {
         if (option.length > 0) this.addCustomOption(isContainerBlur, option);
       });
     } else {
