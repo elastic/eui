@@ -9,13 +9,12 @@
 import React, { FunctionComponent, useState } from 'react';
 import classNames from 'classnames';
 
-import { useEuiTheme } from '../../services';
+import { useEuiMemoizedStyles } from '../../services';
 
 import { EuiImageWrapper } from './image_wrapper';
 import { euiImageStyles } from './image.styles';
 import { EuiImageFullScreenWrapper } from './image_fullscreen_wrapper';
 import type { EuiImageProps, EuiImageSize } from './image_types';
-
 import { SIZES } from './image_types';
 
 export const EuiImage: FunctionComponent<EuiImageProps> = ({
@@ -35,17 +34,13 @@ export const EuiImage: FunctionComponent<EuiImageProps> = ({
   onFullScreen,
   ...rest
 }) => {
-  const [isFullScreen, setIsFullScreen] = useState(false);
-
+  const isFullWidth = size === 'fullWidth';
   const isNamedSize =
     typeof size === 'string' && SIZES.includes(size as EuiImageSize);
+  const isCustomSize = !isNamedSize && size !== 'original';
 
   const classes = classNames('euiImage', className);
-
-  const euiTheme = useEuiTheme();
-
-  const styles = euiImageStyles(euiTheme);
-
+  const styles = useEuiMemoizedStyles(euiImageStyles);
   const cssStyles = [
     styles.euiImage,
     isNamedSize && styles[size as EuiImageSize],
@@ -53,9 +48,9 @@ export const EuiImage: FunctionComponent<EuiImageProps> = ({
     hasShadow && styles.hasShadow,
   ];
 
+  const [isFullScreen, setIsFullScreen] = useState(false);
   const cssIsFullScreenStyles = [styles.euiImage, styles.isFullScreen];
 
-  const isCustomSize = !isNamedSize && size !== 'original';
   const customSize = typeof size === 'string' ? size : `${size}px`;
   const imageStyleWithCustomSize = isCustomSize
     ? {
@@ -64,8 +59,6 @@ export const EuiImage: FunctionComponent<EuiImageProps> = ({
         maxHeight: customSize,
       }
     : style;
-
-  const isFullWidth = size === 'fullWidth';
 
   const commonWrapperProps = {
     hasShadow,

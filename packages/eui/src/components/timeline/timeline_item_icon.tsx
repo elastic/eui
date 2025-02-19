@@ -7,9 +7,11 @@
  */
 
 import React, { FunctionComponent, isValidElement, ReactNode } from 'react';
+
+import { useEuiMemoizedStyles } from '../../services';
 import { IconType } from '../icon';
 import { EuiAvatar } from '../avatar';
-import { useEuiTheme } from '../../services';
+
 import { euiTimelineItemIconStyles } from './timeline_item_icon.styles';
 import { EuiTimelineItemVerticalAlign } from './timeline_item';
 
@@ -29,23 +31,20 @@ export interface EuiTimelineItemIconProps {
 export const EuiTimelineItemIcon: FunctionComponent<
   EuiTimelineItemIconProps
 > = ({ icon, verticalAlign = 'center', iconAriaLabel }) => {
-  const euiTheme = useEuiTheme();
-  const styles = euiTimelineItemIconStyles(euiTheme);
-
+  const styles = useEuiMemoizedStyles(euiTimelineItemIconStyles);
   const cssStyles = [styles.euiTimelineItemIcon, styles[verticalAlign]];
-  const cssContentStyles = styles.euiTimelineItemIcon__content;
-
-  const ariaLabel = iconAriaLabel ? iconAriaLabel : '';
-
-  const iconRender = isValidElement(icon) ? (
-    icon
-  ) : (
-    <EuiAvatar color="subdued" name={ariaLabel} iconType={icon as IconType} />
-  );
 
   return (
     <div css={cssStyles}>
-      <div css={cssContentStyles}>{iconRender}</div>
+      {isValidElement(icon) ? (
+        icon
+      ) : (
+        <EuiAvatar
+          color="subdued"
+          name={iconAriaLabel ? iconAriaLabel : ''}
+          iconType={icon as IconType}
+        />
+      )}
     </div>
   );
 };

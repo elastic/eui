@@ -102,43 +102,39 @@ export const euiStepHorizontalStyles = (euiThemeContext: UseEuiTheme) => {
     disabled: css`
       cursor: not-allowed;
     `,
-  };
-};
 
-export const euiStepHorizontalNumberStyles = (euiThemeContext: UseEuiTheme) => {
-  const { euiTheme } = euiThemeContext;
+    /**
+     * Child elements
+     */
 
-  return {
-    euiStepHorizontal__number: css`
-      position: relative; /* 1 */
-      z-index: ${Number(euiTheme.levels.content) + 1}; /* 1 */
+    number: {
+      euiStepHorizontal__number: css`
+        position: relative; /* 1 */
+        z-index: ${Number(euiTheme.levels.content) + 1}; /* 1 */
 
-      ${euiCanAnimate} {
-        transition: all ${euiTheme.animation.fast} ease-in-out;
-      }
-    `,
-  };
-};
+        ${euiCanAnimate} {
+          transition: all ${euiTheme.animation.fast} ease-in-out;
+        }
+      `,
+    },
 
-export const euiStepHorizontalTitleStyles = (euiThemeContext: UseEuiTheme) => {
-  const { euiTheme } = euiThemeContext;
+    title: {
+      euiStepHorizontal__title: css`
+        ${euiTitle(euiThemeContext, 'xs')}
+        margin-block-start: ${euiTheme.size.s};
+        font-weight: ${euiTheme.font.weight.bold};
+        text-align: center;
 
-  return {
-    euiStepHorizontal__title: css`
-      ${euiTitle(euiThemeContext, 'xs')}
-      margin-block-start: ${euiTheme.size.s};
-      font-weight: ${euiTheme.font.weight.bold};
-      text-align: center;
-
-      /* Hide titles on small screens */
-      ${euiBreakpoint(euiThemeContext, ['xs', 's'])} {
-        display: none;
-      }
-    `,
-    disabled: css`
-      color: ${makeHighContrastColor(euiTheme.colors.disabledText)(
-        euiTheme.colors.body
-      )};
-    `,
+        /* Hide titles on small screens */
+        ${euiBreakpoint(euiThemeContext, ['xs', 's'])} {
+          display: none;
+        }
+      `,
+      disabled: css`
+        color: ${makeHighContrastColor(euiTheme.colors.disabledText)(
+          euiTheme.colors.body
+        )};
+      `,
+    },
   };
 };
