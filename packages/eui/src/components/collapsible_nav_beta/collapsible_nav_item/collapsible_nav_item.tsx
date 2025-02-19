@@ -43,26 +43,31 @@ export type _SharedEuiCollapsibleNavItemProps = HTMLAttributes<HTMLElement> &
     isSelected?: boolean;
   };
 
-export type EuiCollapsibleNavItemProps = _SharedEuiCollapsibleNavItemProps & {
-  /**
-   * Required text to render as the nav item title
-   */
-  title: string;
-  /**
-   * Allows customizing the title element.
-   * Consider using a heading element for better accessibility.
-   * Defaults to an unsemantic `span` or `div`, depending on context.
-   */
-  titleElement?: 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'span' | 'div';
-  /**
-   * Optional icon to render to the left of title content
-   */
-  icon?: IconType;
-  /**
-   * Optional props to pass to the title icon
-   */
-  iconProps?: Partial<EuiIconProps>;
-} & ExclusiveUnion<
+export type EuiCollapsibleNavItemProps = _SharedEuiCollapsibleNavItemProps &
+  ExclusiveUnion<
+    {
+      /**
+       * Required text to render as the nav item title
+       */
+      title: string;
+      /**
+       * Allows customizing the title element.
+       * Consider using a heading element for better accessibility.
+       * Defaults to an unsemantic `span` or `div`, depending on context.
+       */
+      titleElement?: 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'span' | 'div';
+      /**
+       * Optional icon to render to the left of title content
+       */
+      icon?: IconType;
+      /**
+       * Optional props to pass to the title icon
+       */
+      iconProps?: Partial<EuiIconProps>;
+    },
+    {}
+  > &
+  ExclusiveUnion<
     {
       /**
        * The nav item link.
@@ -150,7 +155,7 @@ const EuiCollapsibleNavItemDisplay: FunctionComponent<
   children, // Ensure children isn't spread
   ...props
 }) => {
-  const headerContent = (
+  const headerContent = title != null && (
     <EuiCollapsibleNavItemTitle
       title={title}
       titleElement={titleElement}
@@ -160,7 +165,7 @@ const EuiCollapsibleNavItemDisplay: FunctionComponent<
   );
 
   if (items) {
-    if (isCollapsible) {
+    if (title != null && isCollapsible) {
       return (
         <EuiCollapsibleNavAccordion
           buttonContent={headerContent}
@@ -222,7 +227,7 @@ export const EuiCollapsibleNavItemTitle: FunctionComponent<
       )}
 
       <TitleElement
-        className="euiCollapsibleNavItem__title eui-textTruncate"
+        className="euiCollapsibleNavItem__title"
         css={styles.euiCollapsibleNavItem__title}
       >
         {title}

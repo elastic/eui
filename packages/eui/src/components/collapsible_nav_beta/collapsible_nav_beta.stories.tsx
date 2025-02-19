@@ -26,6 +26,7 @@ import {
   EuiCollapsibleNavBetaProps,
   EuiCollapsibleNavItemProps,
 } from './';
+import { EuiSpacer } from '../spacer';
 
 const meta: Meta<EuiCollapsibleNavBetaProps> = {
   title: 'Navigation/EuiCollapsibleNav (beta)/EuiCollapsibleNavBeta',
@@ -72,12 +73,14 @@ const renderGroup = (
 ) => {
   return [
     {
+      renderItem: () => <EuiSpacer size="m" />,
+    },
+    {
       renderItem: () => (
         <EuiTitle
           size="xxxs"
           className="eui-textTruncate"
           css={({ euiTheme }) => ({
-            marginTop: euiTheme.size.base,
             paddingBlock: euiTheme.size.xs,
             paddingInline: euiTheme.size.s,
           })}
@@ -85,6 +88,15 @@ const renderGroup = (
           <div>{groupTitle}</div>
         </EuiTitle>
       ),
+    },
+    ...groupItems,
+  ];
+};
+
+const renderSection = (groupItems: EuiCollapsibleNavItemProps[]) => {
+  return [
+    {
+      renderItem: () => <EuiSpacer size="m" />,
     },
     ...groupItems,
   ];
@@ -99,17 +111,19 @@ export const Playground: Story = {
           icon="logoElasticsearch"
           isCollapsible={false}
           items={[
-            { title: 'Get started', href: '#' },
+            { title: 'Get started', href: '#', icon: 'launch' },
             ...renderGroup('Explore', [
               {
                 title: 'Discover',
                 onClick: () => action('Discover')('clicked!'),
+                icon: 'iInCircle',
               },
-              { title: 'Dashboards', href: '#' },
-              { title: 'Visualize library', href: '#' },
+              { title: 'Dashboards', href: '#', icon: 'iInCircle' },
+              { title: 'Visualize library', href: '#', icon: 'iInCircle' },
             ]),
             {
               title: 'Machine learning',
+              icon: 'iInCircle',
               items: [
                 { title: 'Anomaly detection', href: '#' },
                 { title: 'Data frame analytics', href: '#' },
@@ -129,63 +143,68 @@ export const Playground: Story = {
                 </EuiButtonEmpty>
               ),
             },
-            ...renderGroup('Content', [
-              { title: 'Indices', href: '#' },
-              { title: 'Transforms', href: '#' },
-              { title: 'Indexing API', href: '#' },
+            ...renderSection([
+              {
+                title: 'Standalone item with long name',
+                href: '#',
+                icon: 'iInCircle',
+              },
             ]),
-            ...renderGroup('Security', [{ title: 'API keys', href: '#' }]),
+            ...renderGroup('Content', [
+              { title: 'Indices', href: '#', icon: 'iInCircle' },
+              { title: 'Transforms', href: '#', icon: 'iInCircle' },
+              { title: 'Indexing API', href: '#', icon: 'iInCircle' },
+            ]),
+            ...renderGroup('Security', [
+              { title: 'API keys', href: '#', icon: 'gear' },
+            ]),
           ]}
         />
       </EuiCollapsibleNavBeta.Body>
       <EuiCollapsibleNavBeta.Footer>
         <EuiCollapsibleNavBeta.Item
-          title="Recent"
-          icon="clock"
-          items={[
-            { title: 'Lorem ipsum', icon: 'visMapRegion', href: '#' },
-            { title: 'Consectetur cursus', icon: 'visPie', href: '#' },
-            { title: 'Ultricies tellus', icon: 'visMetric', href: '#' },
-          ]}
-        />
-        <EuiCollapsibleNavBeta.Item
-          title="Developer tools"
-          icon="editorCodeBlock"
-          items={[
-            { title: 'Console', href: '#' },
-            { title: 'Search profiler', href: '#' },
-            { title: 'Grok debugger', href: '#' },
-            { title: 'Painless lab', href: '#' },
-          ]}
-        />
-        <EuiCollapsibleNavBeta.Item
-          title="Project settings"
-          icon="gear"
+          isCollapsible={false}
           items={[
             {
-              title: 'Management',
+              title: 'Recent',
+              icon: 'clock',
               items: [
-                { title: 'Integrations', href: '#' },
-                { title: 'Fleet', href: '#' },
-                { title: 'Osquery', href: '#' },
-                { title: 'Stack monitoring', href: '#' },
-                { title: 'Stack management', href: '#' },
+                { title: 'Lorem ipsum', icon: 'visMapRegion', href: '#' },
+                { title: 'Consectetur cursus', icon: 'visPie', href: '#' },
+                { title: 'Ultricies tellus', icon: 'visMetric', href: '#' },
               ],
             },
+            { title: 'Developer tools', icon: 'editorCodeBlock', href: '#' },
             {
-              title: 'Users and roles',
-              href: '#',
-              linkProps: { target: '_blank' },
-            },
-            {
-              title: 'Performance',
-              href: '#',
-              linkProps: { target: '_blank' },
-            },
-            {
-              title: 'Billing and subscription',
-              href: '#',
-              linkProps: { target: '_blank' },
+              title: 'Project settings',
+              icon: 'gear',
+              items: [
+                {
+                  title: 'Management',
+                  items: [
+                    { title: 'Integrations', href: '#' },
+                    { title: 'Fleet', href: '#' },
+                    { title: 'Osquery', href: '#' },
+                    { title: 'Stack monitoring', href: '#' },
+                    { title: 'Stack management', href: '#' },
+                  ],
+                },
+                {
+                  title: 'Users and roles',
+                  href: '#',
+                  linkProps: { target: '_blank' },
+                },
+                {
+                  title: 'Performance',
+                  href: '#',
+                  linkProps: { target: '_blank' },
+                },
+                {
+                  title: 'Billing and subscription',
+                  href: '#',
+                  linkProps: { target: '_blank' },
+                },
+              ],
             },
           ]}
         />

@@ -23,7 +23,7 @@ import { EuiCollapsibleNavLink } from './collapsible_nav_link';
 type EuiCollapsibleNavGroupProps = _SharedEuiCollapsibleNavItemProps &
   _EuiCollapsibleNavItemDisplayProps &
   Required<Pick<EuiCollapsibleNavItemProps, 'items'>> & {
-    header: ReactNode;
+    header?: ReactNode;
   };
 
 /**
@@ -61,14 +61,16 @@ export const EuiCollapsibleNavGroup: FunctionComponent<
 
   return (
     <div className={classes} {...cssStyles} {...rest}>
-      <EuiCollapsibleNavLink
-        id={labelledById}
-        isSelected={isSelected}
-        isSubItem={isSubItem}
-        isInteractive={false}
-      >
-        {header}
-      </EuiCollapsibleNavLink>
+      {header ? (
+        <EuiCollapsibleNavLink
+          id={labelledById}
+          isSelected={isSelected}
+          isSubItem={isSubItem}
+          isInteractive={false}
+        >
+          {header}
+        </EuiCollapsibleNavLink>
+      ) : null}
       <EuiCollapsibleNavSubItems
         items={items}
         isSubItem={isSubItem}
