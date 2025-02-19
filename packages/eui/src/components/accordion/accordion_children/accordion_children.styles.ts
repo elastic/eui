@@ -59,6 +59,15 @@ export const euiAccordionChildWrapperStyles = (
          users on Chrome & FF */
       ${euiFocusRing(euiThemeContext)}
     `,
+    // choosing to override transition instead of applying it conditionally
+    // to keep a more logical style appliance:
+    // default case = has transition as part of default styles (all cases expect initial isOpen=true when initialIsOpen=true)
+    // special case: no transition for initial isOpen=true when initialIsOpen=true
+    noTransition: css`
+      ${euiCanAnimate} {
+        transition: none;
+      }
+    `,
     isClosed: css`
       ${logicalCSS('height', 0)}
       opacity: 0;

@@ -7,11 +7,12 @@
  */
 
 import React from 'react';
-import { fireEvent } from '@testing-library/react';
+import { fireEvent, waitFor } from '@testing-library/react';
 import { render } from '../../../../test/rtl';
 
 import { EuiAbsoluteTab } from './absolute_tab';
 import { LocaleSpecifier } from 'moment';
+import { userEvent } from '@storybook/test';
 
 // Mock EuiDatePicker - 3rd party datepicker lib causes render issues
 jest.mock('../../date_picker', () => ({
@@ -69,7 +70,7 @@ describe('EuiAbsoluteTab', () => {
       expect(queryByText(formatHelpText)).toHaveClass('euiFormErrorText');
     });
 
-    it('immediately parses pasted text without needing an extra click or keypress', () => {
+    it('immediately parses pasted text without needing an extra click or keypress', async () => {
       const { getByTestSubject, queryByText } = render(
         <EuiAbsoluteTab {...props} />
       );
@@ -80,8 +81,20 @@ describe('EuiAbsoluteTab', () => {
       fireEvent.paste(input, {
         clipboardData: { getData: () => '1970-01-01' },
       });
+
       expect(input).not.toBeInvalid();
       expect(input.value).toContain('Jan 1, 1970');
+
+      // Additional pasting check as userEvent.paste more accurately simulates
+      // the pasting behavior with side effects
+      await waitFor(() => {
+        input.focus();
+        userEvent.paste('1970-01-02');
+      });
+
+      // ensure value is replaced, not appended
+      expect(input.value).not.toEqual('Jan 1, 1970 @ 00:00:00.0001970-01-02');
+      expect(input.value).toEqual('Jan 2, 1970 @ 00:00:00.000');
 
       input.value = '';
       fireEvent.paste(input, {

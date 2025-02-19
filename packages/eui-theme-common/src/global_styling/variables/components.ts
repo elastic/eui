@@ -38,6 +38,7 @@ export type _EuiThemeComponentColors = {
   codeTagColor: ColorModeSwitch;
   codeNameColor: ColorModeSwitch;
   codeNumberColor: ColorModeSwitch;
+  codeInlineCodeKeywordColor: ColorModeSwitch;
   codeKeywordColor: ColorModeSwitch;
   codeFunctionTitleColor: ColorModeSwitch;
   codeTypeColor: ColorModeSwitch;

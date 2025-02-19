@@ -55,7 +55,8 @@ const component_colors: _EuiThemeComponentColors = {
   codeTagColor: colorVis.euiColorVisAsTextLight1,
   codeNameColor: colorVis.euiColorVisAsTextLight1,
   codeNumberColor: colorVis.euiColorVisAsTextLight0,
-  codeKeywordColor: colorVis.euiColorVisAsTextLight6,
+  codeInlineCodeKeywordColor: colorVis.euiColorVisAsTextLight6,
+  codeKeywordColor: colorVis.euiColorVisAsTextLight1,
   codeFunctionTitleColor: 'inherit',
   codeTypeColor: colorVis.euiColorVisAsTextLight1,
   codeAttributeColor: 'inherit',
@@ -107,10 +108,8 @@ const component_colors: _EuiThemeComponentColors = {
   listGroupItemBackgroundPrimaryHover:
     background_colors.backgroundBaseInteractiveHover,
 
-  loadingSpinnerBorder:
-    border_colors.borderBasePlain,
-  loadingSpinnerHighlight:
-    border_colors.borderStrongPrimary,
+  loadingSpinnerBorder: border_colors.borderBasePlain,
+  loadingSpinnerHighlight: border_colors.borderStrongPrimary,
 
   loadingChartMonoBackground0: SEMANTIC_COLORS.shade20,
   loadingChartMonoBackground1: SEMANTIC_COLORS.shade30,
@@ -247,11 +246,9 @@ export const components: _EuiThemeComponents = {
     listGroupItemBackgroundPrimaryHover:
       dark_background_colors.backgroundBaseInteractiveHover,
 
-    loadingSpinnerBorder: 
-      dark_border_colors.borderBasePlain,
-    loadingSpinnerHighlight: 
-      dark_border_colors.borderStrongPrimary,
-    
+    loadingSpinnerBorder: dark_border_colors.borderBasePlain,
+    loadingSpinnerHighlight: dark_border_colors.borderStrongPrimary,
+
     loadingChartMonoBackground0: SEMANTIC_COLORS.shade110,
     loadingChartMonoBackground1: SEMANTIC_COLORS.shade100,
     loadingChartMonoBackground2: SEMANTIC_COLORS.shade90,

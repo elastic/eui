@@ -234,6 +234,7 @@ export class EuiAccordionClass extends Component<
           isLoading={isLoading}
           isLoadingMessage={isLoadingMessage}
           isOpen={this.isOpen}
+          initialIsOpen={initialIsOpen}
         >
           {children}
         </EuiAccordionChildren>

@@ -105,6 +105,11 @@ const component_colors: _EuiThemeComponentColors = {
       makeHighContrastColor(colorVis.euiColorVis0)(lightestShade),
     ['colors.lightestShade']
   ),
+  codeInlineCodeKeywordColor: computed(
+    ([lightestShade]) =>
+      makeHighContrastColor(colorVis.euiColorVis6)(lightestShade),
+    ['colors.lightestShade']
+  ),
   codeKeywordColor: computed(
     ([lightestShade]) =>
       makeHighContrastColor(colorVis.euiColorVis3)(lightestShade),

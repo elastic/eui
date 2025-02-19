@@ -22,6 +22,7 @@ export const euiCodeSyntaxVariables = ({ euiTheme }: UseEuiTheme) => {
     nameColor: euiTheme.components.codeNameColor,
     numberColor: euiTheme.components.codeNumberColor,
     keywordColor: euiTheme.components.codeKeywordColor,
+    inlineCodeKeywordColor: euiTheme.components.codeInlineCodeKeywordColor,
     functionTitleColor: euiTheme.components.codeFunctionTitleColor,
     typeColor: euiTheme.components.codeTypeColor,
     attributeColor: euiTheme.components.codeAttributeColor,
