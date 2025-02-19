@@ -863,6 +863,10 @@ export class EuiComboBox<T> extends Component<
                 {...inputPopoverProps}
                 isOpen={isListOpen}
                 closePopover={this.closeList}
+                /* we don't want content changes to be announced via aria-live 
+                because ComboBox uses a virtualized list that updates itself
+                on scroll and would result in unexpected screen reader output */
+                aria-live="off"
                 input={
                   <EuiComboBoxInput
                     compressed={compressed}
