@@ -162,7 +162,7 @@ exports[`DataGridSortingControl renders a toolbar button/popover allowing users 
                     >
                       <button
                         aria-pressed="true"
-                        class="euiButtonGroupButton euiButtonGroupButton-isSelected emotion-euiButtonDisplay-s-defaultMinWidth-euiButtonGroupButton-compressed-fill-text"
+                        class="euiButtonGroupButton euiButtonGroupButton-isSelected emotion-euiButtonDisplay-s-defaultMinWidth-s-euiButtonGroupButton-compressed-fill-text"
                         data-test-subj="euiDataGridColumnSorting-sortColumn-columnA-asc"
                         title="Low-High"
                         type="button"
@@ -180,7 +180,7 @@ exports[`DataGridSortingControl renders a toolbar button/popover allowing users 
                       </button>
                       <button
                         aria-pressed="false"
-                        class="euiButtonGroupButton emotion-euiButtonDisplay-s-defaultMinWidth-euiButtonGroupButton-compressed-empty-text"
+                        class="euiButtonGroupButton emotion-euiButtonDisplay-s-defaultMinWidth-s-euiButtonGroupButton-compressed-empty-text"
                         data-test-subj="euiDataGridColumnSorting-sortColumn-columnA-desc"
                         title="High-Low"
                         type="button"

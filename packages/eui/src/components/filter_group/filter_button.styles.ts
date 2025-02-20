@@ -26,18 +26,38 @@ export const euiFilterButtonDisplay = ({ euiTheme }: UseEuiTheme) => {
 
 export const euiFilterButtonStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
+  const isExperimental = euiTheme.flags?.buttonVariant === 'experimental';
   const { controlHeight, borderColor } = euiFormVariables(euiThemeContext);
 
   // Box shadow simulates borders without affecting width
   const leftBoxShadow = `-${euiTheme.border.width.thin} 0 0 0 ${borderColor}`;
   // Bottom borders are needed for responsive flex-wrap behavior
   const bottomBoxShadow = `0 ${euiTheme.border.width.thin} 0 0 ${borderColor}`;
+  const border = `${euiTheme.border.width.thin} solid ${borderColor}`;
 
-  return {
-    euiFilterButton: css`
-      ${euiFilterButtonDisplay(euiThemeContext)}
-      ${logicalCSS('height', controlHeight)}
-      border-radius: 0;
+  // Pseudo elements create borders without affecting width. We also prefer them
+  // over box-shadow for Windows high contrast theme compatibility
+  const leftBorder = `
+    &::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      ${logicalCSS('border-left', border)}
+    }
+  `;
+  // Bottom borders are needed for responsive flex-wrap behavior
+  const bottomBorder = `
+    &::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      ${logicalCSS('border-bottom', border)}
+    }
+  `;
+
+  const defaultStyles =
+    !isExperimental &&
+    `
       box-shadow: ${leftBoxShadow}, ${bottomBoxShadow};
 
       /* :not(:disabled) specificity needed to override EuiButtonEmpty styles */
@@ -51,6 +71,34 @@ export const euiFilterButtonStyles = (euiThemeContext: UseEuiTheme) => {
           text-decoration: underline;
         }
       }
+    `;
+
+  const experimentalStyles =
+    isExperimental &&
+    `
+      ${leftBorder}
+      ${bottomBorder}
+    `;
+
+  const withNextStyles = isExperimental
+    ? `
+      &::before {
+        border: none;
+      }
+    `
+    : `
+      box-shadow: ${bottomBoxShadow};
+    `;
+
+  return {
+    euiFilterButton: css`
+      position: relative;
+      ${euiFilterButtonDisplay(euiThemeContext)}
+      ${logicalCSS('height', controlHeight)}
+      border-radius: 0;
+
+      ${defaultStyles}
+      ${experimentalStyles}
 
       &:focus-visible {
         outline-offset: -${euiTheme.focus.width};
@@ -59,8 +107,9 @@ export const euiFilterButtonStyles = (euiThemeContext: UseEuiTheme) => {
     withNext: css`
       & + .euiFilterButton {
         ${logicalCSS('margin-left', `-${euiTheme.size.xs}`)}
+
         /* Remove just the left faux border */
-        box-shadow: ${bottomBoxShadow};
+        ${withNextStyles}
       }
     `,
     noGrow: css`

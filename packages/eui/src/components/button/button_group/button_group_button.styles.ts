@@ -28,13 +28,17 @@ import { euiFormVariables } from '../../form/form.styles';
 
 export const euiButtonGroupButtonStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
+  const isExperimental = euiTheme.flags?.buttonVariant === 'experimental';
 
   const { controlCompressedHeight, controlCompressedBorderRadius } =
     euiFormVariables(euiThemeContext);
   const compressedButtonHeight = mathWithUnits(
     [controlCompressedHeight, euiTheme.border.width.thin],
-    (x, y) => x - y * 2
+    (x, y) => (isExperimental ? x - y * 6 : x - y * 2)
   );
+
+  const selectedSelectors =
+    '.euiButtonGroupButton-isSelected, .euiButtonGroup__tooltipWrapper-isSelected';
 
   const uncompressedBorderRadii = (
     radiusSize: CSSProperties['borderRadius']
@@ -50,6 +54,49 @@ export const euiButtonGroupButtonStyles = (euiThemeContext: UseEuiTheme) => {
     }
   `;
 
+  const defaultUncompressedStyles =
+    !isExperimental &&
+    `
+      &:is(.euiButtonGroupButton-isSelected) {
+        font-weight: ${euiTheme.font.weight.bold};
+      }
+    `;
+
+  const defaultCompressedStyles =
+    !isExperimental &&
+    `
+      background-clip: content-box;
+      /* Tweak border radius to account for the padding & background-clip */
+      border-radius: ${mathWithUnits(
+        [controlCompressedBorderRadius, euiTheme.border.width.thin],
+        (x, y) => x + y
+      )};
+
+      &:is(.euiButtonGroupButton-isSelected) {
+        font-weight: ${euiTheme.font.weight.semiBold};
+      }
+    `;
+
+  const experimentalUncompressedStyles =
+    isExperimental &&
+    `
+      &:is(.euiButtonGroupButton-isSelected) {
+        z-index: 1;
+        /* prevent layout jumps due to missing border for selected/filled buttons */
+        border: ${euiTheme.border.width.thin} solid transparent;
+      }
+    `;
+
+  const experimentalCompressedStyles =
+    isExperimental &&
+    `
+      margin: ${euiTheme.size.xxs};
+      border-radius: ${mathWithUnits(
+        euiTheme.border.radius.small,
+        (x) => x / 2
+      )};
+    `;
+
   return {
     // Base
     euiButtonGroupButton: css`
@@ -60,7 +107,7 @@ export const euiButtonGroupButtonStyles = (euiThemeContext: UseEuiTheme) => {
       z-index: 0;
 
       &:focus-visible {
-        z-index: 1;
+        z-index: 2;
       }
 
       ${euiCanAnimate} {
@@ -74,10 +121,6 @@ export const euiButtonGroupButtonStyles = (euiThemeContext: UseEuiTheme) => {
     // Sizes
     uncompressed: {
       uncompressed: css`
-        &:is(.euiButtonGroupButton-isSelected) {
-          font-weight: ${euiTheme.font.weight.bold};
-        }
-
         &:focus-visible {
           ${euiOutline(
             euiThemeContext,
@@ -85,14 +128,25 @@ export const euiButtonGroupButtonStyles = (euiThemeContext: UseEuiTheme) => {
             euiTheme.components.buttonGroupFocusColor
           )}
         }
+
+        ${defaultUncompressedStyles}
+        ${experimentalUncompressedStyles}
       `,
       get borders() {
-        const selectors =
-          '.euiButtonGroupButton-isSelected, .euiButtonGroup__tooltipWrapper-isSelected';
+        const selectors = selectedSelectors;
         const selectedColor =
           euiTheme.components.buttonGroupBorderColorSelected;
         const unselectedColor = euiTheme.components.buttonGroupBorderColor;
         const borderWidth = euiTheme.border.width.thin;
+
+        if (isExperimental) {
+          // reduce double border
+          return `
+            &:not(:first-child) {
+              margin-inline-start: -${borderWidth};
+            }
+          `;
+        }
 
         // "Borders" between buttons should be present between two of the same colored buttons,
         // and absent between selected vs non-selected buttons (different colors)
@@ -112,9 +166,12 @@ export const euiButtonGroupButtonStyles = (euiThemeContext: UseEuiTheme) => {
         `;
       },
       get m() {
+        const radius = isExperimental
+          ? euiTheme.border.radius.small
+          : euiTheme.border.radius.medium;
         return css`
           ${this.borders}
-          ${uncompressedBorderRadii(euiTheme.border.radius.medium)}
+          ${uncompressedBorderRadii(radius)}
         `;
       },
       hasToolTip: css`
@@ -125,21 +182,12 @@ export const euiButtonGroupButtonStyles = (euiThemeContext: UseEuiTheme) => {
     compressed: css`
       ${logicalCSS('height', compressedButtonHeight)}
       line-height: ${compressedButtonHeight};
+      font-weight: ${euiTheme.font.weight.regular};
 
       /* Offset the background color from the border by clipping background to before the padding starts */
       padding: ${mathWithUnits(euiTheme.border.width.thin, (x) => x * 2)};
-      background-clip: content-box;
-      /* Tweak border radius to account for the padding & background-clip */
-      border-radius: ${mathWithUnits(
-        [controlCompressedBorderRadius, euiTheme.border.width.thin],
-        (x, y) => x + y
-      )};
-
-      font-weight: ${euiTheme.font.weight.regular};
-
-      &:is(.euiButtonGroupButton-isSelected) {
-        font-weight: ${euiTheme.font.weight.semiBold};
-      }
+      ${defaultCompressedStyles}
+      ${experimentalCompressedStyles}
     `,
     // States
     disabledAndSelected: css`
@@ -173,7 +221,17 @@ export const euiButtonGroupButtonStyles = (euiThemeContext: UseEuiTheme) => {
 };
 
 export const _compressedButtonFocusColors = (euiThemeContext: UseEuiTheme) => {
+  const { euiTheme } = euiThemeContext;
+  const isExperimental = euiTheme.flags?.buttonVariant === 'experimental';
   const colors = [...BUTTON_COLORS, 'disabled'] as const;
+
+  const defaultStyles =
+    !isExperimental &&
+    `
+    &:is(.euiButtonGroupButton-isSelected) {
+      outline-offset: 0;
+    }
+  `;
 
   return colors.reduce((acc, color) => {
     const { backgroundColor } = euiButtonFillColor(euiThemeContext, color);
@@ -182,11 +240,13 @@ export const _compressedButtonFocusColors = (euiThemeContext: UseEuiTheme) => {
       ...acc,
       [color]: css`
         &:focus-visible {
-          ${euiOutline(euiThemeContext, 'center', backgroundColor)}
+          ${euiOutline(
+            euiThemeContext,
+            isExperimental ? 'outset' : 'center',
+            backgroundColor
+          )}
 
-          &:is(.euiButtonGroupButton-isSelected) {
-            outline-offset: 0;
-          }
+          ${defaultStyles}
         }
       `,
     };
