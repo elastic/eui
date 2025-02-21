@@ -1,3 +1,17 @@
+## [`v99.3.0`](https://github.com/elastic/eui/releases/v99.3.0)
+
+- Updated table components to support adding tooltips to header cells ([#8273](https://github.com/elastic/eui/pull/8273))
+  - Added `columns.nameTooltip` on `EuiBasicTable`
+  - Added `tooltipProps` prop on `EuiTableHeaderCell`
+- Added `accent` color option to `EuiCallOut` ([#8303](https://github.com/elastic/eui/pull/8303))
+- Updated `EuiInlineEditForm`'s `onCancel` prop type to allow uncontrolled mode usage ([#8307](https://github.com/elastic/eui/pull/8307))
+- Added ES|QL syntax highlighting for `EuiCode`, `EuiCodeBlock`, `EuiMarkdownFormat`, and `EuiMarkdownEditor` components. ([#8317](https://github.com/elastic/eui/pull/8317))
+- Updated `EuiAccordion` to prevent content from being transitioned on initial render when `initialIsOpen=true` ([#8327](https://github.com/elastic/eui/pull/8327))
+
+**Bug fixes**
+
+- Fixed a bug on `EuiSuperDatePicker` where pasting an absolute date would append the date instead of replace it ([#8311](https://github.com/elastic/eui/pull/8311))
+
 ## [`v99.2.0`](https://github.com/elastic/eui/releases/v99.2.0)
 
 - Changed `EuiFieldText` styles to prioritize `disabled` styling over `readonly`. ([#8271](https://github.com/elastic/eui/pull/8271))
