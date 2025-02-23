@@ -245,20 +245,3 @@ export type RecursivePartial<T> = {
     : RecursivePartial<T[P]>; // recurse for all non-array and non-primitive values
 };
 type NonAny = number | boolean | string | symbol | null;
-
-/**
- * Replace deprecated type from React as its marked as
- * not relevant by eslint deprecation plugin.
- * @example
- * ```ts
- * export function processStringToChildren(
- *   input: string,
- *   values: RenderableValues,
- *   i18nMappingFunc?: (token: string) => string
- *   ): string | ReactChild[]
- * ```
- */
-export type ReactChild =
-  | string
-  | number
-  | ReactElement<any, string | JSXElementConstructor<any>>;

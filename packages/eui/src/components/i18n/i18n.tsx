@@ -11,9 +11,10 @@ import React, {
   FunctionComponent,
   useContext,
   ReactElement,
+  ReactNode,
 } from 'react';
 import { EuiI18nConsumer } from '../context';
-import { ExclusiveUnion, ReactChild } from '../common';
+import { ExclusiveUnion } from '../common';
 import {
   I18nContext,
   I18nShape,
@@ -71,7 +72,7 @@ function lookupToken<
 
   const children = processStringToChildren(renderable, values, i18nMappingFunc);
   if (typeof children === 'string') {
-    // likewise, `processStringToChildren` returns a string or ReactChild[] depending on
+    // likewise, `processStringToChildren` returns a string or ReactNode[] depending on
     // the type of `values`, so we will make the assumption that the default value is correct.
     return children as RESOLVED;
   }
@@ -92,7 +93,7 @@ interface I18nTokenShape<T, DEFAULT extends Renderable<T>> {
   /**
    * Render function that returns a ReactElement
    */
-  children?: (x: ResolvedType<DEFAULT>) => ReactChild;
+  children?: (x: ResolvedType<DEFAULT>) => ReactNode;
   values?: T;
 }
 
@@ -102,8 +103,8 @@ export interface I18nTokensShape<T extends any[]> {
   /**
    * Render function that returns a ReactElement
    */
-  children: (x: Array<T[number]>) => ReactChild;
-  values?: Record<string, ReactChild>;
+  children: (x: Array<T[number]>) => ReactNode;
+  values?: Record<string, ReactNode>;
 }
 
 export type EuiI18nProps<
@@ -165,7 +166,7 @@ const EuiI18n = <
 );
 
 // A single default could be a string, react child, or render function
-type DefaultRenderType<T, K extends Renderable<T>> = K extends ReactChild
+type DefaultRenderType<T, K extends Renderable<T>> = K extends ReactNode
   ? K
   : K extends () => infer RetValue
   ? RetValue

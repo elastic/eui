@@ -6,13 +6,12 @@
  * Side Public License, v 1.
  */
 
-import React from 'react';
+import React, { ReactNode } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { LOKI_SELECTORS } from '../../../.storybook/loki';
 import { EuiI18nNumber, EuiI18nNumberProps } from './i18n_number';
 import { EuiText } from '../text';
-import { ReactChild } from '../common';
 
 const meta: Meta<EuiI18nNumberProps> = {
   title: 'Utilities/EuiI18nNumber',
@@ -47,7 +46,7 @@ export const MultipleValues: Story = {
   },
   args: {
     values: [0, 1, 2],
-    children: (values: ReactChild[]) => (
+    children: (values: ReactNode[]) => (
       <>
         {values.map((value, index) => (
           <EuiText key={index}>

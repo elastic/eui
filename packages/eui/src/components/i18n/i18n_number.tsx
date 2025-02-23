@@ -6,9 +6,9 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent, ReactElement } from 'react';
+import React, { FunctionComponent, ReactElement, ReactNode } from 'react';
 import { EuiI18nConsumer } from '../context';
-import { ExclusiveUnion, ReactChild } from '../common';
+import { ExclusiveUnion } from '../common';
 
 const defaultFormatter = new Intl.NumberFormat('en');
 function defaultFormatNumber(value: number) {
@@ -17,7 +17,7 @@ function defaultFormatNumber(value: number) {
 
 interface EuiI18nNumberValueShape {
   value: number;
-  children?: (x: ReactChild) => ReactElement<any>;
+  children?: (x: ReactNode) => ReactElement<any>;
 }
 
 interface EuiI18nNumberValuesShape {
@@ -25,7 +25,7 @@ interface EuiI18nNumberValuesShape {
   /**
    * ReactNode to render as this component's content
    */
-  children: (x: ReactChild[]) => ReactElement<any>;
+  children: (x: ReactNode[]) => ReactElement<any>;
 }
 
 export type EuiI18nNumberProps = ExclusiveUnion<

@@ -12,14 +12,13 @@ import React, {
   FunctionComponent,
   ReactNode,
 } from 'react';
-import { ReactChild } from '../common';
 
 export interface RenderableValues {
   // undefined values are ignored, but including support here improves usability
-  [key: string]: ReactChild | undefined;
+  [key: string]: ReactNode | undefined;
 }
 
-export type Renderable<T> = ReactChild | ((values: T) => ReactChild);
+export type Renderable<T> = ReactNode | ((values: T) => ReactNode);
 
 export interface I18nShape {
   mapping?: {
