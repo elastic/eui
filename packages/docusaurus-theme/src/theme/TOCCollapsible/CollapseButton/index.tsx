@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { JSX } from 'react';
 import clsx from 'clsx';
 import { css } from '@emotion/react';
 import Translate from '@docusaurus/Translate';
@@ -23,7 +23,7 @@ const getStyles = ({ euiTheme }: UseEuiTheme) => {
 export default function TOCCollapsibleCollapseButton({
   collapsed,
   ...props
-}: Props): React.JSX.Element {
+}: Props): JSX.Element {
   const styles = useEuiMemoizedStyles(getStyles);
 
   return (
