@@ -12,6 +12,7 @@ import React, {
   Fragment,
   forwardRef,
   useContext,
+  ReactNode,
 } from 'react';
 
 import { useEuiMemoizedStyles } from '../../services';
@@ -41,7 +42,6 @@ import { EuiMarkdownContext } from './markdown_context';
 // @ts-ignore a react svg
 import MarkdownLogo from './icons/markdown_logo';
 import { euiMarkdownEditorFooterStyles } from './markdown_editor_footer.styles';
-import { ReactChild } from '../common';
 
 interface EuiMarkdownEditorFooterProps {
   uiPlugins: EuiMarkdownEditorUiPlugin[];
@@ -256,7 +256,7 @@ export const EuiMarkdownEditorFooter = forwardRef<
                   {([
                     syntaxModalDescriptionPrefix,
                     syntaxModalDescriptionSuffix,
-                  ]: ReactChild[]) => (
+                  ]: ReactNode[]) => (
                     <p>
                       {syntaxModalDescriptionPrefix} {mdSyntaxLink}.{' '}
                       {syntaxModalDescriptionSuffix}
@@ -315,7 +315,7 @@ export const EuiMarkdownEditorFooter = forwardRef<
           tokens={['euiMarkdownEditorFooter.syntaxPopoverDescription']}
           defaults={['This editor uses']}
         >
-          {([syntaxPopoverDescription]: ReactChild[]) => (
+          {([syntaxPopoverDescription]: ReactNode[]) => (
             <p>
               {syntaxPopoverDescription} {mdSyntaxLink}.
             </p>
