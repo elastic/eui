@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { HTMLAttributes, useMemo, ElementType } from 'react';
+import React, { HTMLAttributes, useMemo, ElementType, JSX } from 'react';
 import Diff from 'text-diff';
 import classNames from 'classnames';
 import { useEuiMemoizedStyles } from '../../services';
@@ -85,7 +85,7 @@ export const useEuiTextDiff = ({
 
   // specifically defining the return type here as the
   // inferred type is not correct: array vs tuple
-  const textDiffResult: [React.JSX.Element, typeof textDiff] = [
+  const textDiffResult: [JSX.Element, typeof textDiff] = [
     <span css={styles.euiTextDiff} className={classes} {...rest}>
       {rendereredHtml}
     </span>,

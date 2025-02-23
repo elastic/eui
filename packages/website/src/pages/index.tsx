@@ -6,6 +6,7 @@
  * Side Public License, v 1.
  */
 
+import { JSX } from 'react';
 import { css } from '@emotion/react';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import useIsBrowser from '@docusaurus/useIsBrowser';
@@ -49,7 +50,7 @@ const getStyles = ({ euiTheme }: UseEuiTheme) => ({
   `,
 });
 
-export default function Home(): React.JSX.Element {
+export default function Home(): JSX.Element {
   const { siteConfig } = useDocusaurusContext();
   const isBrowser = useIsBrowser();
   const styles = useEuiMemoizedStyles(getStyles);

@@ -1,3 +1,4 @@
+import { JSX } from 'react';
 import clsx from 'clsx';
 import { css } from '@emotion/react';
 import Link from '@docusaurus/Link';
@@ -37,7 +38,7 @@ const getStyles = ({ euiTheme }: UseEuiTheme) => {
   };
 };
 
-export default function PaginatorNavLink(props: Props): React.JSX.Element {
+export default function PaginatorNavLink(props: Props): JSX.Element {
   const { permalink, title, subLabel, isNext } = props;
   const isPrev = !isNext;
   const styles = useEuiMemoizedStyles(getStyles);
