@@ -7,5 +7,4 @@
  */
 
 export type { EuiSetColorMethod } from './color_picker';
-// eslint-disable-next-line deprecation/deprecation
 export { useColorPickerState, useColorStopsState } from './color_picker';
