@@ -11,18 +11,25 @@ import fs from 'node:fs/promises';
 
 export const getRootWorkspaceDir = () => path.resolve(__dirname, '../../..');
 
-export const getWorkspacePackageVersion = async (workspaceDir: string) => {
-  const packageJsonPath = path.join(workspaceDir, 'package.json');
+export const getWorkspacePackageJsonPath = (workspaceDir: string) => {
+  return path.join(workspaceDir, 'package.json');
+};
 
-  let packageJson: any;
+export const getWorkspacePackageJson = async (workspaceDir: string) => {
+  const packageJsonPath = getWorkspacePackageJsonPath(workspaceDir);
+
   try {
     const packageJsonContent= await fs.readFile(packageJsonPath, 'utf8');
-    packageJson = JSON.parse(packageJsonContent);
+    return JSON.parse(packageJsonContent);
   } catch (err) {
-    const newErr =  new Error(`Unable to read package.json version from ${packageJsonPath}`);
+    const newErr =  new Error(`Unable to read package.json from ${packageJsonPath}`);
     newErr.stack = (err as Error).stack;
     throw newErr;
   }
+}
+
+export const getWorkspacePackageVersion = async (workspaceDir: string) => {
+  const packageJson = await getWorkspacePackageJson(workspaceDir);
 
   return packageJson.version as string;
 };

@@ -29,6 +29,8 @@ export const collateChangelogFiles = async (packageRootDir: string) => {
     'Breaking changes': [],
   };
 
+  const processedChangelogFiles: string[] = [];
+
   try {
     await fs.stat(upcomingChangelogsDir);
   } catch (err) {
@@ -36,7 +38,8 @@ export const collateChangelogFiles = async (packageRootDir: string) => {
     return {
       changelogMap: upcomingChangelogMap,
       changelog: '',
-      hasChanges: false
+      hasChanges: false,
+      processedChangelogFiles,
     };
   }
 
@@ -50,6 +53,8 @@ export const collateChangelogFiles = async (packageRootDir: string) => {
     const filePath = path.join(upcomingChangelogsDir, fileName);
     const pullRequestId = path.basename(filePath, '.md');
     const pullRequestMarkdownLink = `([#${pullRequestId}](https://github.com/elastic/eui/pull/${pullRequestId}))`;
+
+    processedChangelogFiles.push(filePath);
 
     const content = await fs.readFile(filePath, 'utf8');
     for (const section of content.split(/\r?\n\*\*/)) {
@@ -105,6 +110,7 @@ export const collateChangelogFiles = async (packageRootDir: string) => {
     changelogMap: upcomingChangelogMap,
     changelog: upcomingChangelog,
     hasChanges: !!upcomingChangelog.length,
+    processedChangelogFiles,
   };
 };
 
@@ -140,6 +146,9 @@ export const updateChangelogContent = async (packageRootDir: string, upcomingCha
   const updatedChangelog = `${latestVersionHeading}\n\n${upcomingChangelog}\n\n${changelogArchive}`;
   await fs.writeFile(pathToChangelog, updatedChangelog);
 
-  // Delete upcoming changelogs
-  await rimraf(path.join(packageRootDir, CHANGELOGS_DIR_PATH, 'upcoming/!(_template).md'));
+  return pathToChangelog;
 };
+
+export const deleteObsoleteChangelogs = async (changelogFiles: string[]) => {
+  return rimraf(changelogFiles);
+}

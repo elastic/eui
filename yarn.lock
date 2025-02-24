@@ -4661,8 +4661,10 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@elastic/eui-release-cli@workspace:packages/release-cli"
   dependencies:
+    "@types/prompts": "npm:^2.4.9"
     chalk: "npm:^4"
     glob: "npm:^11.0.1"
+    prompts: "npm:^2.4.2"
     rimraf: "npm:^6.0.1"
     typescript: "npm:^5.7.3"
     yargs: "npm:^17.7.2"
@@ -8489,6 +8491,16 @@ __metadata:
   version: 1.26.4
   resolution: "@types/prismjs@npm:1.26.4"
   checksum: 10c0/996be7d119779c4cbe66e58342115a12d35a02226dae3aaa4a744c9652d5a3939c93c26182e18156965ac4f93575ebb309c3469c36f52e60ee5c0f8f27e874df
+  languageName: node
+  linkType: hard
+
+"@types/prompts@npm:^2.4.9":
+  version: 2.4.9
+  resolution: "@types/prompts@npm:2.4.9"
+  dependencies:
+    "@types/node": "npm:*"
+    kleur: "npm:^3.0.3"
+  checksum: 10c0/22fe0da6807681c85e88ba283184f4be4c8a95c744ea12a638865c98c4e0c22e7f733542f6b0f1fbca02245cdc3fe84feacf9c9adf4ddd8bc98a337fd679d8d2
   languageName: node
   linkType: hard
 

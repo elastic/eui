@@ -14,11 +14,13 @@
     "directory": "packages/release-cli"
   },
   "devDependencies": {
+    "@types/prompts": "^2.4.9",
     "typescript": "^5.7.3"
   },
   "dependencies": {
     "chalk": "^4",
     "glob": "^11.0.1",
+    "prompts": "^2.4.2",
     "rimraf": "^6.0.1",
     "yargs": "^17.7.2"
   }

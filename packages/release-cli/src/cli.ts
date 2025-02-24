@@ -46,10 +46,30 @@ export const cli = () => {
             type: 'boolean',
             description: 'Enable verbose logging',
             default: false,
+          })
+          .option('skipPrompts', {
+            type: 'boolean',
+            description:
+              'Skip user prompts and proceed with recommended settings. Use in CI only!',
+            default: false,
+          })
+          .option('useAuthToken', {
+            type: 'boolean',
+            description:
+              'Use npm auth token instead of the regular npm user authentication and one-time passwords (OTP). Use in CI only!',
+            default: false,
           });
       },
       async (argv) => {
-        const { type, tag, workspaces, allowCustom, verbose } = argv;
+        const {
+          type,
+          tag,
+          workspaces,
+          allowCustom,
+          verbose,
+          skipPrompts,
+          useAuthToken,
+        } = argv;
         const logger = new Logger(verbose);
 
         try {
@@ -58,6 +78,8 @@ export const cli = () => {
             tag,
             workspaces,
             logger,
+            skipPrompts,
+            useAuthToken,
             allowCustomReleases: allowCustom,
           });
         } catch (err) {
