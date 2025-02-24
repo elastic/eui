@@ -47,7 +47,8 @@ export const euiHeaderStyles = (euiThemeContext: UseEuiTheme) => {
       position: relative;
     `,
     fixed: css`
-      z-index: ${euiTheme.levels.header};
+      /* Ensure it's above EuiFlyout */
+      z-index: ${Number(euiTheme.levels.header!) + 1};
       position: fixed;
       ${logicalCSS('top', 0)}
       ${logicalCSS('horizontal', 0)}
