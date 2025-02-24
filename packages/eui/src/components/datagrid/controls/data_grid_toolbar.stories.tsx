@@ -22,15 +22,15 @@ import type {
   EuiDataGridToolBarVisibilityOptions,
   EuiDataGridToolBarAdditionalControlsOptions,
 } from '../data_grid_types';
+import { ToolbarStorybookComponent } from '../data_grid_types.docgen';
 import {
-  EuiDataGridToolbarPropsComponent,
   StatefulDataGrid,
   defaultStorybookArgs,
 } from '../data_grid.stories.utils';
 
 const meta: Meta = {
   title: 'Tabular Content/EuiDataGrid/toolbarVisibility (prop)',
-  component: EuiDataGridToolbarPropsComponent,
+  component: ToolbarStorybookComponent,
 };
 
 export default meta;

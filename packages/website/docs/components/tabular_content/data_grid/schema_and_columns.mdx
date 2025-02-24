@@ -1,0 +1,1074 @@
+---
+slug: /tabular-content/data-grid/schema-and-columns
+id: tabular_content_data_grid_schema_columns
+sidebar_position: 1
+---
+
+# Schema & columns
+
+## Schemas
+
+Schemas are data types you pass to grid columns to affect how the columns and expansion popovers render. Schemas also allow you to define individual sorting comparators so that sorts can do more than just A-Z comparisons. By default, **EuiDataGrid** ships with a few built-in schemas for `numeric, currency, datetime, boolean and json` data. When the `inMemory` prop is in use it will automatically try to figure out the best schema based on the `inMemory:{{ level: value }}` you set, but this will come with the caveat that you will need to provide and manage sorting outside the component. In general we recommend passing schema information to your columns instead of using auto-detection when you have that knowledge of your data available during ingestion.
+
+### Defining custom schemas
+
+Custom schemas are passed as an array to `schemaDetectors` and are constructed against the **EuiDataGridSchemaDetector** interface. You can see an example of a simple custom schema used on the last column below. In addition to schemas being useful to map against for cell and expansion rendering, any schema will also add a `className="euiDataGridRowCell--schemaName"` to each matching cell.
+
+```tsx interactive
+import React, { useState } from 'react';
+import { css } from '@emotion/react';
+import { EuiDataGrid } from '@elastic/eui';
+import { faker } from '@faker-js/faker';
+
+const columns = [
+  {
+    id: 'default',
+  },
+  {
+    id: 'boolean',
+  },
+  {
+    id: 'numeric',
+  },
+  {
+    id: 'currency',
+  },
+  {
+    id: 'datetime',
+    schema: 'datetime',
+  },
+  {
+    id: 'json',
+  },
+  {
+    id: 'custom',
+    schema: 'favoriteFranchise',
+  },
+];
+
+const storeData = [];
+
+for (let i = 1; i < 5; i++) {
+  storeData.push({
+    default: `${faker.person.lastName()}, ${faker.person.firstName()} ${faker.person.suffix()}`,
+    boolean: `${faker.datatype.boolean()}`,
+    numeric: faker.finance.accountNumber(),
+    currency: faker.finance.amount(),
+    datetime: `${faker.date.past()}`,
+    json: JSON.stringify([
+      {
+        default: `${faker.person.lastName()}, ${faker.person.firstName()} ${faker.person.suffix()}`,
+        boolean: `${faker.datatype.boolean()}`,
+        numeric: faker.finance.accountNumber(),
+        currency: faker.finance.amount(),
+        date: `${faker.date.past()}`,
+        custom: `${faker.date.past()}`,
+      },
+    ]),
+    custom: i % 2 === 0 ? 'Star Wars' : 'Star Trek',
+  });
+}
+
+const commaSeparateNumbers = (numberString) => {
+  // extract the groups-of-three digits that are right-aligned
+  return numberString.replace(/((\d{3})+)$/, (match) =>
+    // then replace each group of xyz digits with ,xyz
+    match.replace(/(\d{3})/g, ',$1')
+  );
+};
+
+export default () => {
+  const [visibleColumns, setVisibleColumns] = useState(
+    columns.map(({ id }) => id)
+  );
+
+  const [data, setData] = useState(storeData);
+  const [sortingColumns, setSortingColumns] = useState([
+    { id: 'custom', direction: 'asc' },
+  ]);
+
+  const setSorting = (sortingColumns) => {
+    const sortedData = [...data].sort((a, b) => {
+      for (let i = 0; i < sortingColumns.length; i++) {
+        const column = sortingColumns[i];
+        const aValue = a[column.id];
+        const bValue = b[column.id];
+
+        if (aValue < bValue) return column.direction === 'asc' ? -1 : 1;
+        if (aValue > bValue) return column.direction === 'asc' ? 1 : -1;
+      }
+
+      return 0;
+    });
+
+    setData(sortedData);
+    setSortingColumns(sortingColumns);
+  };
+
+  return (
+    <EuiDataGrid
+      aria-label="Data grid schema example"
+      columns={columns}
+      columnVisibility={{ visibleColumns, setVisibleColumns }}
+      rowCount={data.length}
+      inMemory={{ level: 'sorting' }}
+      renderCellValue={({ rowIndex, columnId, schema }) => {
+        let value = data[rowIndex][columnId];
+
+        if (schema === 'numeric') {
+          value = commaSeparateNumbers(value);
+        }
+
+        return value;
+      }}
+      sorting={{ columns: sortingColumns, onSort: setSorting }}
+      schemaDetectors={[
+        {
+          type: 'favoriteFranchise',
+          textTransform: 'capitalize',
+          detector(value) {
+            return value.toLowerCase() === 'star wars' ||
+              value.toLowerCase() === 'star trek'
+              ? 1
+              : 0;
+          },
+          comparator(a, b, direction) {
+            const aValue = a.toLowerCase() === 'star wars';
+            const bValue = b.toLowerCase() === 'star wars';
+            if (aValue < bValue) return direction === 'asc' ? 1 : -1;
+            if (aValue > bValue) return direction === 'asc' ? -1 : 1;
+            return 0;
+          },
+          sortTextAsc: 'Star wars-Star trek',
+          sortTextDesc: 'Star trek-Star wars',
+          icon: 'starFilled',
+          color: '#800080',
+        },
+      ]}
+      css={css`
+        .euiDataGridRowCell--favoriteFranchise {
+          background-color: rgba(128, 0, 128, 0.05);
+        }
+
+        .euiDataGridHeaderCell--favoriteFranchise {
+          background-color: rgba(128, 0, 128, 0.1);
+        }
+      `}
+    />
+  );
+};
+```
+
+## Columns
+
+### Column widths
+
+By default, visible columns are given equal widths to fill up available space in the grid and can be resized by the user to any desired width. There are two parameters on **EuiDataGridColumn** to change this default behavior. `initialWidth` is a numeric value providing the starting width of a column, in pixels. Second, the `isResizable` value can be set to `false` to remove the user's ability to resize column.
+
+Below, the first column is given an initial width and is not resizable. The second column is also given an initial width but its width can still be changed.
+
+```tsx interactive
+import React, { useState, useCallback } from 'react';
+import { EuiDataGrid, EuiAvatar } from '@elastic/eui';
+import { faker } from '@faker-js/faker';
+
+const columns = [
+  {
+    id: 'avatar',
+    initialWidth: 40,
+    isResizable: false,
+  },
+  {
+    id: 'name',
+    initialWidth: 100,
+  },
+  {
+    id: 'email',
+  },
+  {
+    id: 'city',
+  },
+  {
+    id: 'country',
+  },
+  {
+    id: 'account',
+  },
+];
+
+const data = [];
+
+for (let i = 1; i < 5; i++) {
+  data.push({
+    avatar: (
+      <EuiAvatar
+        size="s"
+        name={`${faker.person.lastName()}, ${faker.person.firstName()}`}
+      />
+    ),
+    name: `${faker.person.lastName()}, ${faker.person.firstName()} ${faker.person.suffix()}`,
+    email: faker.internet.email(),
+    city: faker.location.city(),
+    country: faker.location.country(),
+    account: faker.finance.accountNumber(),
+  });
+}
+
+export default () => {
+  const [pagination, setPagination] = useState({ pageIndex: 0 });
+
+  const [visibleColumns, setVisibleColumns] = useState(
+    columns.map(({ id }) => id)
+  );
+
+  const setPageIndex = useCallback(
+    (pageIndex) =>
+      setPagination((pagination) => ({ ...pagination, pageIndex })),
+    []
+  );
+  const setPageSize = useCallback(
+    (pageSize) =>
+      setPagination((pagination) => ({
+        ...pagination,
+        pageSize,
+        pageIndex: 0,
+      })),
+    []
+  );
+
+  return (
+    <EuiDataGrid
+      aria-label="DataGrid demonstrating column sizing constraints"
+      columns={columns}
+      columnVisibility={{
+        visibleColumns: visibleColumns,
+        setVisibleColumns: setVisibleColumns,
+      }}
+      rowCount={data.length}
+      renderCellValue={({ rowIndex, columnId }) => data[rowIndex][columnId]}
+      pagination={{
+        ...pagination,
+        onChangeItemsPerPage: setPageSize,
+        onChangePage: setPageIndex,
+      }}
+    />
+  );
+};
+```
+
+### Column actions
+
+By default, columns provide actions for sorting, moving and hiding. These can be extended with custom actions. You can customize the actions by setting the `actions` value of **EuiDataGridColumn**. Setting it to `false` removes the action menu displayed. You can configure it by passing an object of type **EuiDataGridColumnAction**. This allows you a hide, configure the existing actions and add new ones.
+
+Below, the first column provides no action, the second doesn't provide the ability to hide the columns, the 3rd provides an additional action, the 4th overwrites the hide action with a custom label and icon.
+
+```tsx interactive
+import React, { useState, useCallback } from 'react';
+import { EuiDataGrid, EuiAvatar } from '@elastic/eui';
+import { faker } from '@faker-js/faker';
+
+const columns = [
+  {
+    id: 'avatar',
+    initialWidth: 40,
+    isResizable: false,
+    actions: false,
+  },
+  {
+    id: 'name',
+    initialWidth: 100,
+    isSortable: true,
+    actions: {
+      showHide: false,
+    },
+  },
+  {
+    id: 'email',
+    isSortable: true,
+    actions: {
+      additional: [
+        {
+          iconType: 'heart',
+          label: 'Send Email',
+          size: 'xs',
+          onClick: () => {},
+        },
+      ],
+    },
+  },
+  {
+    id: 'city',
+    isSortable: true,
+    actions: {
+      showHide: {
+        iconType: 'cross',
+        label: 'Remove column',
+      },
+    },
+  },
+  {
+    id: 'country',
+  },
+  {
+    id: 'account',
+  },
+];
+
+const data = [];
+
+for (let i = 1; i < 5; i++) {
+  data.push({
+    avatar: (
+      <EuiAvatar
+        size="s"
+        name={`${faker.person.lastName()}, ${faker.person.firstName()}`}
+      />
+    ),
+    name: `${faker.person.lastName()}, ${faker.person.firstName()} ${faker.person.suffix()}`,
+    email: faker.internet.email(),
+    city: faker.location.city(),
+    country: faker.location.country(),
+    account: faker.finance.accountNumber(),
+  });
+}
+
+export default () => {
+  const [pagination, setPagination] = useState({ pageIndex: 0 });
+
+  const [visibleColumns, setVisibleColumns] = useState(
+    columns.map(({ id }) => id)
+  );
+
+  const setPageIndex = useCallback(
+    (pageIndex) =>
+      setPagination((pagination) => ({ ...pagination, pageIndex })),
+    []
+  );
+  const setPageSize = useCallback(
+    (pageSize) =>
+      setPagination((pagination) => ({
+        ...pagination,
+        pageSize,
+        pageIndex: 0,
+      })),
+    []
+  );
+
+  return (
+    <EuiDataGrid
+      aria-label="DataGrid demonstrating column sizing constraints"
+      columns={columns}
+      columnVisibility={{
+        visibleColumns: visibleColumns,
+        setVisibleColumns: setVisibleColumns,
+      }}
+      rowCount={data.length}
+      renderCellValue={({ rowIndex, columnId }) => data[rowIndex][columnId]}
+      pagination={{
+        ...pagination,
+        onChangeItemsPerPage: setPageSize,
+        onChangePage: setPageIndex,
+      }}
+    />
+  );
+};
+```
+
+### Draggable columns
+
+To reorder columns directly instead of via the actions menu popover, you can enable draggable **EuiDataGrid** header columns via the `columnVisibility.canDragAndDropColumns` prop. This will allow you to reorder the column by dragging them.
+
+```tsx interactive
+import React, { useState, useCallback } from 'react';
+import { EuiDataGrid, EuiAvatar } from '@elastic/eui';
+import { faker } from '@faker-js/faker';
+
+const columns = [
+  {
+    id: 'avatar',
+    initialWidth: 40,
+    isResizable: false,
+  },
+  {
+    id: 'name',
+    initialWidth: 100,
+  },
+  {
+    id: 'email',
+  },
+  {
+    id: 'city',
+  },
+  {
+    id: 'country',
+  },
+  {
+    id: 'account',
+  },
+];
+
+const data = [];
+
+for (let i = 1; i < 5; i++) {
+  data.push({
+    avatar: (
+      <EuiAvatar
+        size="s"
+        name={`${faker.person.lastName()}, ${faker.person.firstName()}`}
+      />
+    ),
+    name: `${faker.person.lastName()}, ${faker.person.firstName()} ${faker.person.suffix()}`,
+    email: faker.internet.email(),
+    city: faker.location.city(),
+    country: faker.location.country(),
+    account: faker.finance.accountNumber(),
+  });
+}
+
+export default () => {
+  const [pagination, setPagination] = useState({ pageIndex: 0 });
+
+  const [visibleColumns, setVisibleColumns] = useState(
+    columns.map(({ id }) => id)
+  );
+
+  const setPageIndex = useCallback(
+    (pageIndex) =>
+      setPagination((pagination) => ({ ...pagination, pageIndex })),
+    []
+  );
+  const setPageSize = useCallback(
+    (pageSize) =>
+      setPagination((pagination) => ({
+        ...pagination,
+        pageSize,
+        pageIndex: 0,
+      })),
+    []
+  );
+
+  return (
+    <EuiDataGrid
+      aria-label="DataGrid demonstrating draggable column headers"
+      columns={columns}
+      columnVisibility={{
+        visibleColumns: visibleColumns,
+        setVisibleColumns: setVisibleColumns,
+        canDragAndDropColumns: true,
+      }}
+      rowCount={data.length}
+      renderCellValue={({ rowIndex, columnId }) => data[rowIndex][columnId]}
+      pagination={{
+        ...pagination,
+        onChangeItemsPerPage: setPageSize,
+        onChangePage: setPageIndex,
+      }}
+    />
+  );
+};
+```
+
+### Control columns
+
+Control columns can be used to include ancillary cells not based on the dataset, such as row selection checkboxes or action buttons. These columns can be placed at either side of the data grid, and users are unable to resize, sort, or rearrange them.
+
+These custom columns are defined by passing an array of EuiDataGridControlColumn objects (see _Props_ tab below) to `leadingControlColumns` and/or `trailingControlColumns`.
+
+As with the data grid's `renderCellValue`, the control columns' `headerCellRender` and `rowCellRender` props are treated as React components.
+
+```tsx interactive
+import React, {
+  createContext,
+  useContext,
+  useCallback,
+  useReducer,
+  useState,
+} from 'react';
+import {
+  EuiDataGrid,
+  EuiAvatar,
+  EuiCheckbox,
+  EuiButtonIcon,
+  EuiPopover,
+  EuiButtonEmpty,
+  EuiFlexGroup,
+  EuiFlexItem,
+  EuiPopoverTitle,
+  EuiSpacer,
+  EuiPortal,
+  EuiFlyout,
+  EuiFlyoutBody,
+  EuiFlyoutHeader,
+  EuiTitle,
+  EuiDescriptionList,
+  EuiDescriptionListTitle,
+  EuiDescriptionListDescription,
+  EuiContextMenuItem,
+  EuiContextMenuPanel,
+} from '@elastic/eui';
+import { faker } from '@faker-js/faker';
+
+const columns = [
+  {
+    id: 'avatar',
+    initialWidth: 38,
+    isExpandable: false,
+    isResizable: false,
+    headerCellRender: () => null,
+  },
+  {
+    id: 'name',
+  },
+  {
+    id: 'email',
+  },
+  {
+    id: 'city',
+  },
+  {
+    id: 'country',
+  },
+  {
+    id: 'account',
+  },
+];
+
+const data = [];
+
+for (let i = 1; i < 500; i++) {
+  data.push({
+    avatar: (
+      <EuiAvatar
+        size="s"
+        name={`${faker.person.lastName()}, ${faker.person.firstName()}`}
+      />
+    ),
+    name: `${faker.person.lastName()}, ${faker.person.firstName()} ${faker.person.suffix()}`,
+    email: faker.internet.email(),
+    city: faker.location.city(),
+    country: faker.location.country(),
+    account: faker.finance.accountNumber(),
+  });
+}
+
+const SelectionContext = createContext();
+
+const SelectionButton = () => {
+  const [selectedRows] = useContext(SelectionContext);
+  const [isPopoverOpen, setIsPopoverOpen] = useState(false);
+  const alertAndClosePopover = () => {
+    setIsPopoverOpen(false);
+    window.alert('This is not a real control.');
+  };
+
+  if (selectedRows.size > 0) {
+    return (
+      <EuiPopover
+        isOpen={isPopoverOpen}
+        anchorPosition="upCenter"
+        panelPaddingSize="s"
+        button={
+          <EuiButtonEmpty
+            size="xs"
+            iconType="arrowDown"
+            iconSide="right"
+            onClick={() => setIsPopoverOpen(!isPopoverOpen)}
+          >
+            {selectedRows.size} {selectedRows.size > 1 ? 'items' : 'item'}{' '}
+            selected
+          </EuiButtonEmpty>
+        }
+        closePopover={() => setIsPopoverOpen(false)}
+      >
+        <EuiPopoverTitle>
+          {selectedRows.size} {selectedRows.size > 1 ? 'items' : 'item'}
+        </EuiPopoverTitle>
+        <EuiContextMenuPanel
+          size="s"
+          items={[
+            <EuiContextMenuItem
+              key="pin"
+              icon="pin"
+              onClick={alertAndClosePopover}
+            >
+              Pin items
+            </EuiContextMenuItem>,
+            <EuiContextMenuItem
+              key="delete"
+              icon="trash"
+              onClick={alertAndClosePopover}
+            >
+              Delete item
+            </EuiContextMenuItem>,
+          ]}
+        />
+      </EuiPopover>
+    );
+  } else {
+    return null;
+  }
+};
+
+const SelectionHeaderCell = () => {
+  const [selectedRows, updateSelectedRows] = useContext(SelectionContext);
+  const isIndeterminate =
+    selectedRows.size > 0 && selectedRows.size < data.length;
+  return (
+    <EuiCheckbox
+      id="selection-toggle"
+      aria-label="Select all rows"
+      indeterminate={isIndeterminate}
+      checked={selectedRows.size > 0}
+      onChange={(e) => {
+        if (isIndeterminate) {
+          // clear selection
+          updateSelectedRows({ action: 'clear' });
+        } else {
+          if (e.target.checked) {
+            // select everything
+            updateSelectedRows({ action: 'selectAll' });
+          } else {
+            // clear selection
+            updateSelectedRows({ action: 'clear' });
+          }
+        }
+      }}
+    />
+  );
+};
+
+const SelectionRowCell = ({ rowIndex }) => {
+  const [selectedRows, updateSelectedRows] = useContext(SelectionContext);
+  const isChecked = selectedRows.has(rowIndex);
+
+  return (
+    <div>
+      <EuiCheckbox
+        id={`${rowIndex}`}
+        aria-label={`Select row ${rowIndex}, ${data[rowIndex].name}`}
+        checked={isChecked}
+        onChange={(e) => {
+          if (e.target.checked) {
+            updateSelectedRows({ action: 'add', rowIndex });
+          } else {
+            updateSelectedRows({ action: 'delete', rowIndex });
+          }
+        }}
+      />
+    </div>
+  );
+};
+
+const FlyoutRowCell = (rowIndex) => {
+  let flyout;
+  const [isFlyoutOpen, setIsFlyoutOpen] = useState(false);
+  if (isFlyoutOpen) {
+    const rowData = data[rowIndex.rowIndex];
+
+    const details = Object.entries(rowData).map(([key, value]) => {
+      return (
+        <>
+          <EuiDescriptionListTitle>{key}</EuiDescriptionListTitle>
+          <EuiDescriptionListDescription>{value}</EuiDescriptionListDescription>
+        </>
+      );
+    });
+
+    flyout = (
+      <EuiPortal>
+        <EuiFlyout ownFocus onClose={() => setIsFlyoutOpen(!isFlyoutOpen)}>
+          <EuiFlyoutHeader hasBorder>
+            <EuiTitle size="m">
+              <h2>{rowData.name}</h2>
+            </EuiTitle>
+          </EuiFlyoutHeader>
+          <EuiFlyoutBody>
+            <EuiDescriptionList>{details}</EuiDescriptionList>
+          </EuiFlyoutBody>
+        </EuiFlyout>
+      </EuiPortal>
+    );
+  }
+
+  return (
+    <>
+      <EuiButtonIcon
+        color="text"
+        iconType="eye"
+        iconSize="s"
+        aria-label="View details"
+        onClick={() => setIsFlyoutOpen(!isFlyoutOpen)}
+      />
+      {flyout}
+    </>
+  );
+};
+
+const leadingControlColumns = [
+  {
+    id: 'selection',
+    width: 32,
+    headerCellRender: SelectionHeaderCell,
+    rowCellRender: SelectionRowCell,
+  },
+  {
+    id: 'View',
+    width: 36,
+    headerCellRender: () => null,
+    rowCellRender: FlyoutRowCell,
+  },
+];
+
+const trailingControlColumns = [
+  {
+    id: 'actions',
+    width: 40,
+    headerCellRender: () => null,
+    rowCellRender: function RowCellRender() {
+      const [isPopoverOpen, setIsPopoverOpen] = useState(false);
+      return (
+        <div>
+          <EuiPopover
+            isOpen={isPopoverOpen}
+            anchorPosition="upCenter"
+            panelPaddingSize="s"
+            button={
+              <EuiButtonIcon
+                aria-label="show actions"
+                iconType="boxesHorizontal"
+                color="text"
+                onClick={() => setIsPopoverOpen(!isPopoverOpen)}
+              />
+            }
+            closePopover={() => setIsPopoverOpen(false)}
+          >
+            <EuiPopoverTitle>Actions</EuiPopoverTitle>
+            <div style={{ width: 150 }}>
+              <button onClick={() => {}} component="span">
+                <EuiFlexGroup
+                  alignItems="center"
+                  component="span"
+                  gutterSize="s"
+                >
+                  <EuiFlexItem grow={false}>
+                    <EuiButtonIcon
+                      aria-label="Pin selected items"
+                      iconType="pin"
+                      color="text"
+                    />
+                  </EuiFlexItem>
+                  <EuiFlexItem>Pin</EuiFlexItem>
+                </EuiFlexGroup>
+              </button>
+              <EuiSpacer size="s" />
+              <button onClick={() => {}}>
+                <EuiFlexGroup
+                  alignItems="center"
+                  component="span"
+                  gutterSize="s"
+                >
+                  <EuiFlexItem grow={false}>
+                    <EuiButtonIcon
+                      aria-label="Delete selected items"
+                      iconType="trash"
+                      color="text"
+                    />
+                  </EuiFlexItem>
+                  <EuiFlexItem>Delete</EuiFlexItem>
+                </EuiFlexGroup>
+              </button>
+            </div>
+          </EuiPopover>
+        </div>
+      );
+    },
+  },
+];
+
+export default function DataGrid() {
+  const [pagination, setPagination] = useState({ pageIndex: 0 });
+  const setPageIndex = useCallback(
+    (pageIndex) =>
+      setPagination((pagination) => ({ ...pagination, pageIndex })),
+    []
+  );
+  const setPageSize = useCallback(
+    (pageSize) =>
+      setPagination((pagination) => ({
+        ...pagination,
+        pageSize,
+        pageIndex: 0,
+      })),
+    []
+  );
+
+  const [visibleColumns, setVisibleColumns] = useState(
+    columns.map(({ id }) => id)
+  );
+
+  const rowSelection = useReducer((rowSelection, { action, rowIndex }) => {
+    if (action === 'add') {
+      const nextRowSelection = new Set(rowSelection);
+      nextRowSelection.add(rowIndex);
+      return nextRowSelection;
+    } else if (action === 'delete') {
+      const nextRowSelection = new Set(rowSelection);
+      nextRowSelection.delete(rowIndex);
+      return nextRowSelection;
+    } else if (action === 'clear') {
+      return new Set();
+    } else if (action === 'selectAll') {
+      return new Set(data.map((_, index) => index));
+    }
+    return rowSelection;
+  }, new Set());
+
+  const renderCellValue = useCallback(
+    ({ rowIndex, columnId }) => data[rowIndex][columnId],
+    []
+  );
+
+  return (
+    <SelectionContext.Provider value={rowSelection}>
+      <div>
+        <EuiDataGrid
+          aria-label="Top EUI contributors"
+          leadingControlColumns={leadingControlColumns}
+          trailingControlColumns={trailingControlColumns}
+          columns={columns}
+          columnVisibility={{
+            visibleColumns,
+            setVisibleColumns,
+          }}
+          rowCount={data.length}
+          renderCellValue={renderCellValue}
+          pagination={{
+            ...pagination,
+            onChangeItemsPerPage: setPageSize,
+            onChangePage: setPageIndex,
+          }}
+          toolbarVisibility={{
+            additionalControls: <SelectionButton />,
+          }}
+        />
+      </div>
+    </SelectionContext.Provider>
+  );
+}
+```
+
+## Footer row
+
+A footer row can be used to include value aggregations to the grid. Values could be based on the dataset, such as sum/average/min/max of numeric values in a column, or any other necessary data.
+
+The footer row is defined by passing `renderFooterCellValue` function prop into **EuiDataGrid**. This function acts like a React component, receiving `EuiDataGridCellValueElementProps` and returning a React node.
+
+When rendering footer cell values, we encourage turning off cell expansion on cells without content with `setCellProps({ isExpandable: false })`.
+
+Control columns will render empty footer cells by default, unless a custom `footerCellRender` function is passed.
+
+```tsx interactive
+import React, { useCallback, useEffect, useState } from 'react';
+import {
+  EuiDataGrid,
+  EuiCheckbox,
+  EuiButtonIcon,
+  EuiSwitch,
+  EuiFlexGroup,
+  EuiFlexItem,
+} from '@elastic/eui';
+import { faker } from '@faker-js/faker';
+
+const raw_data = [];
+
+for (let i = 1; i < 20; i++) {
+  raw_data.push({
+    name: `${faker.person.lastName()}, ${faker.person.firstName()} ${faker.person.suffix()}`,
+    date: `${faker.date.past()}`,
+    amount: `$${faker.commerce.price()}`,
+    phone: faker.phone.number(),
+    version: faker.system.semver(),
+  });
+}
+
+const RenderCellValue = ({ rowIndex, columnId, setCellProps }) => {
+  useEffect(() => {
+    if (columnId === 'amount') {
+      if (raw_data.hasOwnProperty(rowIndex)) {
+        const numeric = parseFloat(
+          raw_data[rowIndex][columnId].match(/\d+\.\d+/)[0]
+        );
+        setCellProps({
+          style: {
+            backgroundColor: `rgba(0, 255, 0, ${numeric * 0.0002})`,
+          },
+        });
+      }
+    }
+  }, [rowIndex, columnId, setCellProps]);
+
+  return raw_data.hasOwnProperty(rowIndex)
+    ? raw_data[rowIndex][columnId]
+    : null;
+};
+
+const columns = [
+  {
+    id: 'name',
+    displayAsText: 'Name',
+    defaultSortDirection: 'asc',
+  },
+  {
+    id: 'date',
+    defaultSortDirection: 'desc',
+  },
+  {
+    id: 'amount',
+  },
+  {
+    id: 'phone',
+    isSortable: false,
+  },
+  {
+    id: 'version',
+    defaultSortDirection: 'desc',
+  },
+];
+
+const leadingControlColumns = [
+  {
+    id: 'selection',
+    width: 32,
+
+    // Check state doesn't actually work - this is just a static example
+    headerCellRender: () => (
+      <EuiCheckbox
+        id="selectAllHeader"
+        aria-label="Select all rows"
+        onChange={() => {}}
+      />
+    ),
+    rowCellRender: ({ rowIndex }) => (
+      <EuiCheckbox
+        id={`selectRow${rowIndex}`}
+        aria-label="Select this row"
+        onChange={() => {}}
+      />
+    ),
+    footerCellRender: () => (
+      <EuiCheckbox
+        id="selectAllFooter"
+        aria-label="Select all rows"
+        onChange={() => {}}
+      />
+    ),
+  },
+];
+const trailingControlColumns = [
+  {
+    id: 'actions',
+    width: 36,
+    headerCellRender: () => (
+      <span className="euiScreenReaderOnly">Actions</span>
+    ),
+    rowCellRender: () => (
+      <EuiButtonIcon aria-label="Show actions" iconType="boxesHorizontal" />
+    ),
+  },
+];
+
+const footerCellValues = {
+  amount: `Total: ${raw_data
+    .reduce((acc, { amount }) => acc + Number(amount.split('$')[1]), 0)
+    .toLocaleString('en-US', { style: 'currency', currency: 'USD' })}`,
+  version: `Latest: ${
+    raw_data.map(({ version }) => version).sort()[raw_data.length - 1]
+  }`,
+};
+
+const RenderFooterCellValue = ({ columnId, setCellProps }) => {
+  const value = footerCellValues[columnId];
+
+  useEffect(() => {
+    // Turn off the cell expansion button if the footer cell is empty
+    if (!value) setCellProps({ isExpandable: false });
+  }, [value, setCellProps]);
+
+  return value || null;
+};
+
+export default () => {
+  const [pagination, setPagination] = useState({ pageIndex: 0 });
+
+  const onChangeItemsPerPage = useCallback(
+    (pageSize) =>
+      setPagination((pagination) => ({
+        ...pagination,
+        pageSize,
+        pageIndex: 0,
+      })),
+    [setPagination]
+  );
+  const onChangePage = useCallback(
+    (pageIndex) =>
+      setPagination((pagination) => ({ ...pagination, pageIndex })),
+    [setPagination]
+  );
+
+  const [visibleColumns, setVisibleColumns] = useState(
+    columns.map(({ id }) => id)
+  );
+
+  const [showFooterRow, setShowFooterRow] = useState(true);
+
+  return (
+    <EuiFlexGroup direction="column">
+      <EuiFlexItem>
+        <EuiSwitch
+          label="Show footer row"
+          checked={showFooterRow}
+          onChange={(e) => setShowFooterRow(e.target.checked)}
+        />
+      </EuiFlexItem>
+      <EuiFlexItem>
+        <EuiDataGrid
+          aria-label="Data grid footer row demo"
+          columns={columns}
+          columnVisibility={{ visibleColumns, setVisibleColumns }}
+          leadingControlColumns={leadingControlColumns}
+          trailingControlColumns={trailingControlColumns}
+          rowCount={raw_data.length}
+          renderCellValue={RenderCellValue}
+          renderFooterCellValue={
+            showFooterRow ? RenderFooterCellValue : undefined
+          }
+          pagination={{
+            ...pagination,
+            onChangeItemsPerPage: onChangeItemsPerPage,
+            onChangePage: onChangePage,
+          }}
+          onColumnResize={(eventData) => {
+            console.log(eventData);
+          }}
+          gridStyle={{
+            border: 'horizontal',
+            rowHover: 'highlight',
+            header: 'underline',
+          }}
+        />
+      </EuiFlexItem>
+    </EuiFlexGroup>
+  );
+};
+```
+
+## Props
+
+import docgen from '@elastic/eui-docgen/dist/components/datagrid/data_grid_types.docgen.json';
+
+<PropTable definition={docgen.EuiDataGridColumn} />
+<PropTable definition={docgen.EuiDataGridColumnActions} />
+<PropTable definition={docgen.EuiDataGridColumnCellActionProps} />
+<PropTable definition={docgen.EuiDataGridColumnVisibility} />
+<PropTable definition={docgen.EuiDataGridControlColumn} />
+<PropTable definition={docgen.EuiDataGridSchemaDetector} />

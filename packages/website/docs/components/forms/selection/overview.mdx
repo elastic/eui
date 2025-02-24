@@ -1,0 +1,62 @@
+---
+slug: /forms/selection
+id: forms_selection_controls
+---
+
+# Selection controls
+
+EUI currently offers over 4 ways to select an option from a list (6 including checkboxes and radios).
+
+While it can get overwhelming figuring out which component to use, this page should serve as a handy guide to help you make that decision depending on what features you need.
+
+## Which selection component should I use?
+
+### Single selection
+
+- When you have a small set of options (\<7) and all options are equally important in terms of visibility, use [EuiRadioGroup](./checkboxes_radios/overview.mdx#radio-group).
+- When you have a small set of options (\<12) and only the current selected option has UI importance, reach for [EuiSelect](./select.mdx) first when possible, over other more complex selection components.
+    - Native form controls tend to have better cross-browser and cross-device affordances (particularly for mobile devices), and are more familiar to end users due to their ubiquity across the internet.
+- When you have a small set of options (\<12) _and_ if you need to customize how the options are rendered and selected, use [EuiSuperSelect](./super_select.mdx).
+    - We recommend reaching for **EuiSuperSelect** only if custom option display is absolutely necessary (e.g. for multi-line option text/descriptions), as **EuiSelect** is natively more accessible.
+- Large sets of options (\>12) should use a selection component that supports searching/filtering options. This requires the use of one of the more advanced multiselect components with `singleSelection` set.
+
+### Multiple selections
+
+- When you have a small set of options (\<7), and all options are equally important in terms of visibility, use [EuiCheckboxGroup](./checkboxes_radios/overview.mdx#checkbox-group).
+
+<!-- TODO: Once EuiComboBox is rewritten to dogfood EuiSelectable, the below will no longer be as true, and we can recommend either EuiSelectable or EuiComboBox equally -->
+
+- In general, we recommend using [EuiSelectable](./selectable.mdx) for most multi-selection purposes. It renders a searchable, vertically-oriented list with icons next to the option representing selection state.
+    - **EuiSelectable** can optionally be rendered with a search box for filtering through many options, or as just a list for fewer options.
+    - **EuiSelectable** is by far our most accessible and flexible selection component (although customization may require extra development). It can be used within popovers and flyouts, or as a standalone list.
+    - If you need the ability to exclude options, **EuiSelectable** is the only component that offers that functionality.
+- In general, for multi-select scenarios, we recommend using [EuiComboBox](./combo_box.mdx) over [EuiSelectable](./selectable.mdx) primarily when selections should be immediately visible and unselected options should not. Selections are rendered as a horizontally-oriented list of pills.
+    - **EuiComboBox** also allows users to search through a list of dropdown options. This functionality is core to the component and cannot be removed, unlike **EuiSelectable**.
+    - If you need the ability to dynamically add custom user-generated input outside of the available options, **EuiComboBox** is the only component that offers that functionality.
+
+## Feature comparison chart
+
+Below is a handy reference for comparing the selection components.
+
+import { EuiIconTip } from '@elastic/eui';
+
+export const tooltipProps = {
+  anchorProps: { css: { position: 'absolute', marginBlockStart: -1 } },
+  color: 'subdued',
+};
+
+<!-- TODO: convert to basic table with borders + add checkbox/radio? -->
+
+| Feature | &emsp;[EuiSelect](./select.mdx)&emsp; | &emsp;[EuiSuperSelect](./super_select.mdx)&emsp; | &emsp;[EuiSelectable](./selectable.mdx)&emsp; | &emsp;[EuiComboBox](./combo_box.mdx)&emsp; | 
+|:---|:---:|:---:|:---:|:---:|
+| Select a single option | ✅ | ✅ | ✅ | ✅ | 
+| Select multiple options | ❌ | ❌ | ✅ | ✅ | 
+| Accepts custom values from user input | ❌ | ❌ | ❌ | ✅ | 
+| Option exclusion | ❌ | ❌ | ✅ | ❌ |
+| Customizable option display | ❌ | ✅ | ✅ | ✅ |
+| Customizable loading/error messages | ❌ | ❌ | ✅ | ❌ |
+| Searchable | ❌ <EuiIconTip type="iInCircle" content="Native select behavior will jump to options based on user typing" {...tooltipProps} /> | ❌ | ✅ | ✅ |
+| `disabled` state | ✅ <EuiIconTip type="iInCircle" content="Disables whole component" {...tooltipProps} /> | ✅ <EuiIconTip type="iInCircle" content="Disables individual option" {...tooltipProps} /> | ✅ <EuiIconTip type="iInCircle" content="Disables individual option" {...tooltipProps} /> | ✅ <EuiIconTip type="iInCircle" content="Disables whole component" {...tooltipProps} /> |
+| `readOnly` state | ❌ | ✅ | ❌ | ❌ |
+| Built in utility function for clearing user input | ❌ | ❌ | ✅ <EuiIconTip type="iInCircle" content="Clears search input" {...tooltipProps} /> | ✅ <EuiIconTip type="iInCircle" content="Clears all selections" {...tooltipProps} /> |
+| Supports virtualization | ❌ | ❌ | ✅ | ✅ |

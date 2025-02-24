@@ -1,0 +1,1131 @@
+---
+slug: /forms/selection/selectable
+id: forms_selection_selectable
+sidebar_position: 5
+---
+
+# Selectable
+
+**EuiSelectable** aims to make the pattern of a selectable list (with or without search) consistent across implementations. It is the same concept used in [**EuiComboBox**](./combo_box.mdx) and [**EuiFilterGroup**](../search_filter/filter_group.mdx). **This is not intended for [primary navigation](../../display/list_group.mdx)** but can be used to simplify the construction of popover navigational menus; i.e. the spaces menu in the [header](../../layout/header.mdx). See EUI's <a href="https://github.com/elastic/eui/discussions/7049" target="_blank">in-depth guide on which selection component to choose</a> for more information.
+
+## The basics
+
+At its simplest, **EuiSelectable** requires an array of `options` and an `onChange` handler which passes back the altered `selectedOptions` array. The `children` is a function that return the `list` and `search` nodes.
+
+:::tip Selected options are based on the checked = on property
+
+**EuiSelectable** offers the ability to **exclude** selections or **include selections for some** (mixed). Therefore, the `checked` property is one of `undefined | 'on' | 'off' | 'mixed'`.
+
+`'on'` is the default for selected options when `allowExclusions = false`.
+
+:::
+
+```tsx interactive
+import React, { useState } from 'react';
+import { EuiSelectable, EuiSelectableOption } from '@elastic/eui';
+
+export default () => {
+  const [options, setOptions] = useState<EuiSelectableOption[]>([
+    {
+      label: 'Titan',
+      'data-test-subj': 'titanOption',
+    },
+    {
+      label: 'Enceladus is disabled',
+      disabled: true,
+    },
+    {
+      label: 'Mimas',
+      checked: 'on',
+    },
+    {
+      label: 'Dione',
+    },
+    {
+      label: 'Iapetus',
+      checked: 'on',
+    },
+    {
+      label: 'Phoebe',
+    },
+    {
+      label: 'Rhea',
+    },
+    {
+      label:
+        "Pandora is one of Saturn's moons, named for a Titaness of Greek mythology",
+    },
+    {
+      label: 'Tethys',
+    },
+    {
+      label: 'Hyperion',
+    },
+  ]);
+
+  return (
+    <EuiSelectable
+      aria-label="Basic example"
+      options={options}
+      listProps={{ bordered: true }}
+      onChange={(newOptions) => setOptions(newOptions)}
+    >
+      {(list) => list}
+    </EuiSelectable>
+  );
+};
+```
+
+## Searchable
+
+To add a search component to the list, simply add the `searchable` prop. You can optionally pass in a `searchProps` object which will get passed down to the actual **EuiFieldSearch** used. In this example,`onSearch` will return a second parameter, enabling you to access the list of filtered items
+
+:::tip
+The search is performed as a string match against the `option.label` unless a separate `option.searchableLabel` is provided.
+:::
+
+```tsx interactive
+import React, { useState } from 'react';
+import { EuiSelectable, EuiSelectableOption } from '@elastic/eui';
+
+export default () => {
+  const [options, setOptions] = useState<EuiSelectableOption[]>([
+    {
+      label: 'Titan',
+      'data-test-subj': 'titanOption',
+    },
+    {
+      label: 'Enceladus is disabled',
+      disabled: true,
+    },
+    {
+      label: 'Mimas',
+      checked: 'on',
+    },
+    {
+      label: 'Dione',
+    },
+    {
+      label: 'Iapetus',
+      checked: 'on',
+    },
+    {
+      label: 'Phoebe',
+    },
+    {
+      label: 'Rhea',
+    },
+    {
+      label:
+        "Pandora is one of Saturn's moons, named for a Titaness of Greek mythology",
+    },
+    {
+      label: 'Tethys',
+    },
+    {
+      label: 'Hyperion',
+    },
+  ]);
+
+  return (
+    <EuiSelectable
+      aria-label="Searchable example"
+      searchable
+      searchProps={{
+        'data-test-subj': 'selectableSearchHere',
+      }}
+      options={options}
+      onChange={(newOptions) => setOptions(newOptions)}
+    >
+      {(list, search) => (
+        <>
+          {search}
+          {list}
+        </>
+      )}
+    </EuiSelectable>
+  );
+};
+```
+
+## Single selection
+
+Selection can be restricted to a single option at a time with the `singleSelection` prop. Passing `true` allows for 0 or 1 option to be selected, while `"always"` requires 1 option to be selected at all times. The default value is `false`.
+
+```tsx interactive
+import React, { useState } from 'react';
+import {
+  EuiSwitch,
+  EuiSpacer,
+  EuiSelectable,
+  EuiSelectableOption,
+} from '@elastic/eui';
+
+export default () => {
+  const [options, setOptions] = useState<EuiSelectableOption[]>([
+    {
+      label: 'Titan',
+      'data-test-subj': 'titanOption',
+      checked: 'on',
+    },
+    {
+      label: 'Enceladus is disabled',
+      disabled: true,
+    },
+    {
+      label: 'Mimas',
+    },
+    {
+      label: 'Dione',
+    },
+    {
+      label: 'Iapetus',
+    },
+    {
+      label: 'Phoebe',
+    },
+    {
+      label: 'Rhea',
+    },
+    {
+      label:
+        "Pandora is one of Saturn's moons, named for a Titaness of Greek mythology",
+    },
+    {
+      label: 'Tethys',
+    },
+    {
+      label: 'Hyperion',
+    },
+  ]);
+
+  const [always, setAlways] = useState(true);
+
+  return (
+    <>
+      <EuiSwitch
+        label="Show as 'always'"
+        checked={always}
+        onChange={(e) => setAlways(e.target.checked)}
+      />
+      <EuiSpacer />
+      <EuiSelectable
+        aria-label="Single selection example"
+        options={options}
+        onChange={(newOptions) => setOptions(newOptions)}
+        singleSelection={always ? 'always' : true}
+        listProps={{ bordered: true }}
+      >
+        {(list) => list}
+      </EuiSelectable>
+    </>
+  );
+};
+```
+
+## Options can be excluded
+
+Adding `allowExclusions` allows cycling through the checked options (on -> off -> undefined).
+
+```tsx interactive
+import React, { useState } from 'react';
+import { EuiSelectable, EuiSelectableOption } from '@elastic/eui';
+
+export default () => {
+  const [options, setOptions] = useState<EuiSelectableOption[]>([
+    {
+      label: 'Titan',
+      'data-test-subj': 'titanOption',
+    },
+    {
+      label: 'Enceladus is disabled',
+      disabled: true,
+    },
+    {
+      label: 'Mimas',
+      checked: 'on',
+    },
+    {
+      label: 'Dione',
+      checked: 'off',
+    },
+    {
+      label: 'Iapetus',
+      checked: 'off',
+    },
+    {
+      label: 'Phoebe',
+      checked: 'on',
+    },
+    {
+      label: 'Rhea',
+    },
+    {
+      label:
+        "Pandora is one of Saturn's moons, named for a Titaness of Greek mythology",
+    },
+    {
+      label: 'Tethys',
+    },
+    {
+      label: 'Hyperion',
+    },
+  ]);
+
+  return (
+    <EuiSelectable
+      aria-label="Example of Selectable supporting exclusions"
+      allowExclusions
+      options={options}
+      onChange={(newOptions) => setOptions(newOptions)}
+    >
+      {(list) => list}
+    </EuiSelectable>
+  );
+};
+```
+
+## Options can be mixed (indeterminate)
+
+Setting an option to `checked: “mixed”` allows showing an indeterminate/mixed state. This state can only be set by the consuming application, and should typically be used to show that another state being controlled by the **EuiSelectable** has some, but not all, items selected.
+
+When clicking a mixed option, the option will cycle to "on", and after that cycle between on -> off (if `allowExclusions` is true) -> undefined). Users cannot manually cycle back to mixed.
+
+```tsx interactive
+import React, { useState } from 'react';
+import {
+  EuiSelectable,
+  EuiSelectableOption,
+  EuiButton,
+  EuiSpacer,
+} from '@elastic/eui';
+
+const initialOptions: EuiSelectableOption[] = [
+  {
+    label: 'Titan',
+    'data-test-subj': 'titanOption',
+    checked: 'mixed',
+  },
+  {
+    label: 'Enceladus is disabled',
+    disabled: true,
+  },
+  {
+    label: 'Mimas',
+    checked: 'on',
+  },
+  {
+    label: 'Dione',
+    checked: 'mixed',
+  },
+  {
+    label: 'Iapetus',
+  },
+  {
+    label: 'Phoebe',
+    checked: 'mixed',
+  },
+  {
+    label: 'Rhea',
+  },
+  {
+    label:
+      "Pandora is one of Saturn's moons, named for a Titaness of Greek mythology",
+  },
+  {
+    label: 'Tethys',
+  },
+  {
+    label: 'Hyperion',
+  },
+];
+
+export default () => {
+  const [options, setOptions] = useState(initialOptions);
+
+  return (
+    <>
+      <EuiSelectable
+        aria-label="Example of Selectable supporting mixed state"
+        options={options}
+        onChange={(newOptions) => setOptions(newOptions)}
+      >
+        {(list) => list}
+      </EuiSelectable>
+      <EuiSpacer size="s" />
+      <EuiButton onClick={() => setOptions(initialOptions)}>
+        Reset mixed options
+      </EuiButton>
+    </>
+  );
+};
+```
+
+## Messages and loading
+
+The component comes with pre-composed messages for loading, empty, and no search result states. To display your own messages, pass `loadingMessage`, `emptyMessage`, `errorMessage`, or `noMatchesMessage` respectively. Alternatively, you can replace the entire `list` display with your own message for any state. In which case, we recommend wrapping your custom message in an **EuiSelectableMessage** component.
+
+```tsx interactive
+import React, { useState } from 'react';
+import { EuiSelectable, EuiSwitch, EuiSpacer } from '@elastic/eui';
+
+export default () => {
+  const [useCustomMessage, setUseCustomMessage] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [hasError, setHasError] = useState(false);
+
+  const emptyMessage = 'You have no spice';
+  const loadingMessage = "Hey, I'm loading here!";
+  const errorMessage = 'Error!';
+
+  return (
+    <>
+      <EuiSwitch
+        label="Custom message"
+        onChange={(e) => setUseCustomMessage(e.target.checked)}
+        checked={useCustomMessage}
+      />
+      &emsp;
+      <EuiSwitch
+        label="Show loading"
+        onChange={(e) => setIsLoading(e.target.checked)}
+        checked={isLoading}
+      />
+      &emsp;
+      <EuiSwitch
+        label="Show error"
+        onChange={(e) => setHasError(e.target.checked)}
+        checked={hasError}
+      />
+      <EuiSpacer />
+      <EuiSelectable
+        aria-label="Messaging example"
+        options={[]}
+        style={{ width: 300 }}
+        listProps={{ bordered: true }}
+        isLoading={isLoading}
+        loadingMessage={useCustomMessage ? loadingMessage : undefined}
+        emptyMessage={useCustomMessage ? emptyMessage : undefined}
+        errorMessage={hasError ? errorMessage : undefined}
+      >
+        {(list) => list}
+      </EuiSelectable>
+    </>
+  );
+};
+```
+
+## Sizing and containers
+
+The component's children, `list, search`, are returned via the `children` function, which means you can wrap the indivial elements in anything you want.
+
+### Width and height
+
+The width has been made to always be 100% of its container, including stretching the search input. When used inside of [**EuiPopover**](../../layout/popover.mdx), we recommend setting a width (or min/max values) via CSS on the element containing the list to avoid expansion and contraction. By default, the height is capped at showing up to 7.5 items. It shows half of the last one to help indicate that there are more options to scroll to. To stretch the box to fill its container, pass 'full' to the `height` prop.
+
+### Flexbox
+
+Be aware that `display: flex` with column layout is applied to the wrapping container. This is so that you can opt in to allow the height of the list stretch to fill its container. See the flyout example.
+
+```tsx interactive
+import React, { useState } from 'react';
+import {
+  EuiButton,
+  EuiCode,
+  EuiFlyout,
+  EuiFlyoutFooter,
+  EuiFlyoutHeader,
+  EuiPopover,
+  EuiPopoverFooter,
+  EuiPopoverTitle,
+  EuiSelectable,
+  EuiSelectableOption,
+  EuiSelectableProps,
+  EuiSpacer,
+  EuiTitle,
+  EuiInputPopover,
+} from '@elastic/eui';
+
+const OPTIONS: EuiSelectableOption[] = [
+  { label: 'Titan' },
+  { label: 'Enceladus' },
+  { label: 'Mimas', checked: 'on' },
+  { label: 'Dione' },
+  { label: 'Iapetus' },
+  { label: 'Phoebe' },
+  { label: 'Rhea' },
+  { label: 'Pandora' },
+  { label: 'Tethys' },
+  { label: 'Hyperion' },
+  { label: 'Pan' },
+  { label: 'Atlas' },
+  { label: 'Prometheus' },
+  { label: 'Janus' },
+  { label: 'Epimetheus' },
+  { label: 'Amalthea' },
+  { label: 'Thebe' },
+  { label: 'Io' },
+  { label: 'Europa' },
+  { label: 'Ganymede' },
+  { label: 'Callisto' },
+  { label: 'Himalia' },
+  { label: 'Phobos' },
+  { label: 'Deimos' },
+  { label: 'Puck' },
+  { label: 'Miranda' },
+  { label: 'Ariel' },
+  { label: 'Umbriel' },
+  { label: 'Titania' },
+  { label: 'Oberon' },
+  { label: 'Despina' },
+  { label: 'Galatea' },
+  { label: 'Larissa' },
+  { label: 'Triton' },
+  { label: 'Nereid' },
+  { label: 'Charon' },
+  { label: 'Styx' },
+  { label: 'Nix' },
+  { label: 'Kerberos' },
+  { label: 'Hydra' },
+];
+
+const SelectablePopover = (
+  props: Pick<EuiSelectableProps, 'options' | 'onChange'>
+) => {
+  const [isPopoverOpen, setIsPopoverOpen] = useState(false);
+  const { options, onChange } = props;
+
+  return (
+    <EuiPopover
+      panelPaddingSize="none"
+      button={
+        <EuiButton
+          iconType="arrowDown"
+          iconSide="right"
+          onClick={() => setIsPopoverOpen(!isPopoverOpen)}
+        >
+          Show popover
+        </EuiButton>
+      }
+      isOpen={isPopoverOpen}
+      closePopover={() => setIsPopoverOpen(false)}
+    >
+      <EuiSelectable
+        aria-label="Selectable + popover example"
+        searchable
+        searchProps={{
+          placeholder: 'Filter list',
+          compressed: true,
+        }}
+        options={options}
+        onChange={onChange}
+      >
+        {(list, search) => (
+          <div style={{ width: 240 }}>
+            <EuiPopoverTitle paddingSize="s">{search}</EuiPopoverTitle>
+            {list}
+            <EuiPopoverFooter paddingSize="s">
+              <EuiButton size="s" fullWidth>
+                Manage this list
+              </EuiButton>
+            </EuiPopoverFooter>
+          </div>
+        )}
+      </EuiSelectable>
+    </EuiPopover>
+  );
+};
+
+const SelectableFlyout = (
+  props: Pick<EuiSelectableProps, 'options' | 'onChange'>
+) => {
+  const [isFlyoutVisible, setIsFlyoutVisible] = useState(false);
+  const { options, onChange } = props;
+
+  return (
+    <>
+      <EuiButton onClick={() => setIsFlyoutVisible(true)}>
+        Show flyout
+      </EuiButton>
+
+      {isFlyoutVisible && (
+        <EuiFlyout
+          ownFocus
+          onClose={() => setIsFlyoutVisible(false)}
+          aria-labelledby="selectableFlyout"
+        >
+          <EuiSelectable
+            aria-label="Selectable + flyout example"
+            searchable
+            options={options}
+            onChange={onChange}
+            height="full"
+          >
+            {(list, search) => (
+              <>
+                <EuiFlyoutHeader hasBorder>
+                  <EuiTitle size="m">
+                    <h2 id="selectableFlyout">Be mindful of the flexbox</h2>
+                  </EuiTitle>
+                  <EuiSpacer />
+                  {search}
+                </EuiFlyoutHeader>
+                <EuiSpacer size="xs" />
+                {list}
+              </>
+            )}
+          </EuiSelectable>
+          <EuiSpacer size="xs" />
+          <EuiFlyoutFooter>
+            <EuiButton fill>Some extra action</EuiButton>
+          </EuiFlyoutFooter>
+        </EuiFlyout>
+      )}
+    </>
+  );
+};
+
+const SelectableInputPopover = () => {
+  const [options, setOptions] = useState<EuiSelectableOption[]>(OPTIONS);
+  const [isOpen, setIsOpen] = useState(false);
+  const [inputValue, setInputValue] = useState('');
+  const [isSearching, setIsSearching] = useState(true);
+
+  return (
+    <EuiSelectable
+      aria-label="Selectable + input popover example"
+      options={options}
+      onChange={(newOptions, event, changedOption) => {
+        setOptions(newOptions);
+        setIsOpen(false);
+
+        if (changedOption.checked === 'on') {
+          setInputValue(changedOption.label);
+          setIsSearching(false);
+        } else {
+          setInputValue('');
+        }
+      }}
+      singleSelection
+      searchable
+      searchProps={{
+        value: inputValue,
+        onChange: (value) => {
+          setInputValue(value);
+          setIsSearching(true);
+        },
+        onKeyDown: (event) => {
+          if (event.key === 'Tab') return setIsOpen(false);
+          if (event.key !== 'Escape') return setIsOpen(true);
+        },
+        onClick: () => setIsOpen(true),
+        onFocus: () => setIsOpen(true),
+      }}
+      isPreFiltered={isSearching ? false : { highlightSearch: false }} // Shows the full list when not actively typing to search
+      listProps={{
+        css: { '.euiSelectableList__list': { maxBlockSize: 200 } },
+      }}
+    >
+      {(list, search) => (
+        <EuiInputPopover
+          closePopover={() => setIsOpen(false)}
+          disableFocusTrap
+          closeOnScroll
+          isOpen={isOpen}
+          input={search!}
+          panelPaddingSize="none"
+        >
+          {list}
+        </EuiInputPopover>
+      )}
+    </EuiSelectable>
+  );
+};
+
+export default () => {
+  const [options, setOptions] = useState<EuiSelectableOption[]>(OPTIONS);
+  const onChange = (options: EuiSelectableOption[]) => {
+    setOptions(options);
+  };
+
+  return (
+    <>
+      <SelectablePopover options={options} onChange={onChange} />
+      <EuiSpacer />
+
+      <SelectableFlyout options={options} onChange={onChange} />
+      <EuiSpacer />
+
+      <EuiTitle size="xxs">
+        <h4>In an input popover</h4>
+      </EuiTitle>
+      <EuiSpacer size="s" />
+      <SelectableInputPopover />
+      <EuiSpacer />
+
+      <EuiTitle size="xxs">
+        <h4>
+          Using <EuiCode language="js">listProps.bordered=true</EuiCode> and{' '}
+          <EuiCode language="js">
+            listProps.paddingSize=&quot;none&quot;
+          </EuiCode>
+        </h4>
+      </EuiTitle>
+      <EuiSpacer size="s" />
+      <EuiSelectable
+        aria-label="Bordered selectable example"
+        options={options}
+        onChange={onChange}
+        style={{ width: 300 }}
+        listProps={{ bordered: true, paddingSize: 'none' }}
+      >
+        {(list) => list}
+      </EuiSelectable>
+    </>
+  );
+};
+```
+
+## Truncation
+
+**EuiSelectable** defaults to `listProps.textWrap="truncate"`, which truncates long option text at the end of the string.
+
+You can use `listProps.truncationProps` and almost any prop that [**EuiTextTruncate**](/docs/utilities/text-truncation) accepts to configure this behavior. This can be configured at the **EuiSelectable** level, as well as by each individual option.
+
+```tsx interactive
+import React, { useState } from 'react';
+import {
+  useGeneratedHtmlId,
+  EuiFlexGroup,
+  EuiFlexItem,
+  EuiButtonGroup,
+  EuiFieldNumber,
+  EuiTextTruncationTypes,
+  EuiTitle,
+  EuiSpacer,
+  EuiSelectable,
+  EuiSelectableOptionsListProps,
+  EuiSelectableOption,
+  EuiPanel,
+  EuiIcon,
+  EuiText,
+} from '@elastic/eui';
+
+export default () => {
+  const [options, setOptions] = useState<EuiSelectableOption[]>([
+    {
+      label:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, lorem ispum',
+      checked: 'on',
+    },
+    {
+      label:
+        'Phasellus enim turpis, molestie ut nisi ut, suscipit tristique libero',
+    },
+    {
+      label: 'Ut sagittis interdum nisi, pellentesque laoreet arcu blandit a',
+    },
+    {
+      label: 'Fusce sed viverra nisl',
+    },
+    {
+      label: 'Donec maximus est justo, eget semper lorem lacinia nec',
+    },
+    {
+      label: 'Vestibulum lobortis ipsum sit amet tellus scelerisque vestibulum',
+    },
+    {
+      prepend: <EuiIcon type="alert" color="warning" aria-label="Note!" />,
+      label:
+        'This option has `textWrap` and `truncationProps` settings that will override the parent',
+      textWrap: 'truncate',
+      truncationProps: {
+        truncation: 'start',
+        truncationOffset: 5,
+      },
+    },
+  ]);
+
+  type TextWrap = NonNullable<EuiSelectableOptionsListProps['textWrap']>;
+  const [textWrap, setTextWrap] = useState<TextWrap>('truncate');
+  const [truncation, setTruncation] = useState<EuiTextTruncationTypes>('end');
+  const [truncationOffset, setTruncationOffset] = useState(0);
+  const offsetId = useGeneratedHtmlId();
+
+  return (
+    <>
+      <EuiFlexGroup>
+        <EuiFlexItem grow={false}>
+          <EuiTitle size="xxs">
+            <h3>Text wrap</h3>
+          </EuiTitle>
+          <EuiSpacer size="xs" />
+          <EuiButtonGroup
+            legend="Text wrap"
+            idSelected={textWrap}
+            onChange={(id) => setTextWrap(id as TextWrap)}
+            options={[
+              { id: 'truncate', label: 'truncate' },
+              { id: 'wrap', label: 'wrap' },
+            ]}
+            color="primary"
+          />
+        </EuiFlexItem>
+        {textWrap === 'wrap' && (
+          <EuiFlexItem grow={false} css={{ alignSelf: 'center' }}>
+            <EuiText color="danger" size="s">
+              <EuiIcon type="alert" /> Wrapping text requires disabling
+              virtualization. We do not recommend this for large (50+) amounts
+              of options.
+            </EuiText>
+          </EuiFlexItem>
+        )}
+        {textWrap === 'truncate' && (
+          <EuiFlexItem grow={false}>
+            <EuiTitle size="xxs">
+              <h3>Truncation type</h3>
+            </EuiTitle>
+            <EuiSpacer size="xs" />
+            <EuiButtonGroup
+              legend="Truncation type"
+              idSelected={truncation}
+              onChange={(id) => setTruncation(id as EuiTextTruncationTypes)}
+              options={[
+                { id: 'start', label: 'start ' },
+                { id: 'end', label: 'end' },
+                { id: 'startEnd', label: 'startEnd' },
+                { id: 'middle', label: 'middle' },
+              ]}
+              color="primary"
+            />
+          </EuiFlexItem>
+        )}
+        {textWrap === 'truncate' &&
+          (truncation === 'start' || truncation === 'end') && (
+            <EuiFlexItem grow={false}>
+              <EuiTitle size="xxs">
+                <h3 id={offsetId}>Truncation offset</h3>
+              </EuiTitle>
+              <EuiSpacer size="xs" />
+              <EuiFieldNumber
+                aria-labelledby={offsetId}
+                value={truncationOffset}
+                onChange={(e) => setTruncationOffset(Number(e.target.value))}
+                compressed
+              />
+            </EuiFlexItem>
+          )}
+      </EuiFlexGroup>
+      <EuiSpacer />
+      <EuiPanel
+        paddingSize="s"
+        style={{ inlineSize: 400, resize: 'horizontal', overflow: 'auto' }}
+      >
+        <EuiSelectable
+          searchable={true}
+          options={options}
+          onChange={(updatedOptions) => setOptions(updatedOptions)}
+          listProps={{
+            isVirtualized: textWrap !== 'wrap',
+            textWrap,
+            truncationProps: {
+              truncation,
+              truncationOffset,
+            },
+          }}
+        >
+          {(list, search) => (
+            <>
+              {search}
+              {list}
+            </>
+          )}
+        </EuiSelectable>
+      </EuiPanel>
+    </>
+  );
+};
+
+```
+
+## Tooltips
+
+If you have longer information that you need to make available to users outside of truncated text, one approach could be adding tooltip descriptions to individual options by passing `toolTipContent`.
+
+You can additionally customize individual tooltip behavior by passing `toolTipProps`, which accepts any configuration that [**EuiToolTip**](../../display/tooltip.mdx) accepts.
+
+```tsx interactive
+import React, { useState } from 'react';
+import { EuiSelectable, EuiSelectableOption } from '@elastic/eui';
+
+export default () => {
+  const [options, setOptions] = useState<EuiSelectableOption[]>([
+    {
+      label: 'Titan',
+      toolTipContent:
+        'Titan is the largest moon of Saturn and the second-largest in the Solar System',
+    },
+    {
+      label: 'Pandora',
+      toolTipContent:
+        "Pandora is one of Saturn's moons, named for a Titaness of Greek mythology",
+    },
+    {
+      label: 'Iapetus',
+      toolTipContent: "Iapetus is the outermost of Saturn's large moons",
+      toolTipProps: { position: 'bottom' },
+    },
+  ]);
+
+  return (
+    <EuiSelectable
+      aria-label="Example with option tooltips"
+      options={options}
+      listProps={{ bordered: true, style: { maxInlineSize: 400 } }}
+      onChange={(newOptions) => setOptions(newOptions)}
+    >
+      {(list) => list}
+    </EuiSelectable>
+  );
+};
+```
+
+## Rendering the options
+
+There are two object properties you can add to enhance the content of your options, `option.prepend` and `option.append`. These will add nodes before and after the option label respectively. They will not be included in the searchable content as this only matches against the label property.
+
+### Selection icons
+
+You can choose not to display the check and cross icons indicating selection by setting `listProps.showIcons` to false. This is useful for instances that navigate elsewhere on selection or hide their selected options from the list.
+
+### Group labels
+
+An option is allowed to be passed that is just a header for the options that follow it. It takes no mouse handlers and renders similar to a title. Add one of these by setting the `option.isGroupLabel` to true.
+
+### Row height and virtualization
+
+When virtualization is on, **every row must be the same height** in order for the list to know how to scroll to the selected or highlighted option. It applies the `listProps.rowHeight` (in pixels) directly to each option hiding any overflow.
+
+If `listProps.isVirtualized` is set to `false`, each row will fit its content. You can also remove truncation by setting `textWrap="wrap"` when virtualization is off. Note that while this is useful for dynamic options, it can also be computationally expensive as _all_ off-screen options will be rendered to the DOM. We do not recommend turning off virtualization for high numbers of options, but if you absolutely must do so, we suggest using methods such as async loading more options.
+
+### Custom content
+
+While it is best to stick to the `option.label, option.append, option.prepend` and `listProps.showIcons` props, you can pass a custom `renderOption` function which will pass back the single `option` object and the `searchValue` to use for highlighting.
+
+To provide data that can be used by the `renderOption` function that does not match the standard option API, use `option.data` which will make custom data available in the `option` parameter. See the `secondaryContent` configuration in the following example.
+
+Also, if your custom content is taller than the default `listProps.rowHeight` of `32px` tall, you will need to pass in a custom value to this prop.
+
+```tsx interactive
+import React, { useState } from 'react';
+import {
+  EuiBadge,
+  EuiHighlight,
+  EuiSpacer,
+  EuiText,
+  EuiSwitch,
+  EuiSelectable,
+  EuiSelectableOption,
+} from '@elastic/eui';
+
+const countryData = [
+  { code: 'NL', name: 'Netherlands', flag: '🇳🇱' },
+  { code: 'CZ', name: 'Czech Republic', flag: '🇨🇿' },
+  { code: 'ZA', name: 'South Africa', flag: '🇿🇦' },
+  { code: 'US', name: 'United States', flag: '🇺🇲' },
+  { code: 'AU', name: 'Australia', flag: '🇦🇺' },
+  { code: 'IL', name: 'Israel', flag: '🇮🇱' },
+  { code: 'NO', name: 'Norway', flag: '🇳🇴' },
+  { code: 'IT', name: 'Italy', flag: '🇮🇹' },
+  { code: 'CA', name: 'Canada', flag: '🇨🇦' },
+  { code: 'CG', name: 'Congo', flag: '🇨🇬' },
+  { code: 'CL', name: 'Chile', flag: '🇨🇱' },
+  { code: 'FJ', name: 'Fiji', flag: '🇫🇯' },
+  { code: 'GB', name: 'United Kingdom', flag: '🇬🇧' },
+  { code: 'GR', name: 'Greece', flag: '🇬🇷' },
+  { code: 'HT', name: 'Haiti', flag: '🇭🇹' },
+  { code: 'LB', name: 'Lebanon', flag: '🇱🇧' },
+  { code: 'MM', name: 'Myanmar', flag: '🇲🇲' },
+  { code: 'MX', name: 'Mexico', flag: '🇲🇽' },
+  { code: 'NG', name: 'Nigeria', flag: '🇳🇬' },
+  { code: 'SG', name: 'Singapore', flag: '🇸🇬' },
+  { code: 'SO', name: 'Somalia', flag: '🇸🇴' },
+  { code: 'TN', name: 'Tunisia', flag: '🇹🇳' },
+  { code: 'VE', name: 'Venezuela', flag: '🇻🇪' },
+  { code: 'ZM', name: 'Zambia', flag: '🇿🇲' },
+];
+
+interface OptionData {
+  secondaryContent?: string;
+}
+
+export default () => {
+  const [options, setOptions] = useState<
+    Array<EuiSelectableOption<OptionData>>
+  >([
+    {
+      label: 'Country options',
+      isGroupLabel: true,
+    },
+    ...countryData.map(
+      (country): EuiSelectableOption => ({
+        label: `${country.name}`,
+        searchableLabel: `${country.name} ${'I am secondary content, I am!'}`,
+        prepend: country.flag,
+        append: <EuiBadge>{country.code}</EuiBadge>,
+        data: {
+          secondaryContent: 'I am secondary content, I am!',
+        },
+      })
+    ),
+  ]);
+
+  const renderCountryOption = (
+    option: EuiSelectableOption<OptionData>,
+    searchValue: string
+  ) => {
+    return (
+      <>
+        <EuiHighlight search={searchValue}>{option.label}</EuiHighlight>
+        <EuiText size="xs" color="subdued" className="eui-displayBlock">
+          <small>
+            <EuiHighlight search={searchValue}>
+              {option.secondaryContent || ''}
+            </EuiHighlight>
+          </small>
+        </EuiText>
+      </>
+    );
+  };
+
+  const [useCustomContent, setUseCustomContent] = useState(true);
+  const [isVirtualized, setIsVirtualized] = useState(true);
+
+  return (
+    <>
+      <EuiSwitch
+        label="Virtualized"
+        checked={isVirtualized}
+        onChange={(e) => setIsVirtualized(e.target.checked)}
+      />
+      &emsp;&emsp;
+      <EuiSwitch
+        label="Custom content"
+        checked={useCustomContent}
+        onChange={(e) => setUseCustomContent(e.target.checked)}
+      />
+      <EuiSpacer />
+      <EuiSelectable
+        aria-label="Selectable example with custom list items"
+        searchable
+        options={options}
+        onChange={(options) => setOptions(options)}
+        listProps={{
+          isVirtualized,
+          rowHeight: useCustomContent ? 50 : undefined,
+          showIcons: false,
+        }}
+        renderOption={useCustomContent ? renderCountryOption : undefined}
+        height={240}
+      >
+        {(list, search) => (
+          <>
+            {search}
+            {list}
+          </>
+        )}
+      </EuiSelectable>
+    </>
+  );
+};
+
+```
+
+## Custom option matcher
+
+When searching for options, `EuiSelectable` uses a partial equality string matcher by default, displaying all options whose labels include the searched string.
+
+In rare cases, you may want to customize this behavior. You can do so by passing a custom option matcher function to the `optionMatcher` prop. The function must be of type `EuiSelectableOptionMatcher` and return`true` for options that should be visible for given search string.
+
+```tsx interactive
+import React, { useCallback, useState } from 'react';
+import {
+  EuiSelectable,
+  EuiSelectableOption,
+  EuiSelectableOptionMatcher,
+} from '@elastic/eui';
+
+export default () => {
+  const [options, setOptions] = useState<EuiSelectableOption[]>([
+    {
+      label: 'Titan',
+      'data-test-subj': 'titanOption',
+    },
+    {
+      label: 'Enceladus is disabled',
+      disabled: true,
+    },
+    {
+      label: 'Mimas',
+      checked: 'on',
+    },
+    {
+      label: 'Dione',
+    },
+    {
+      label: 'Iapetus',
+      checked: 'on',
+    },
+    {
+      label: 'Phoebe',
+    },
+    {
+      label: 'Rhea',
+    },
+    {
+      label:
+        "Pandora is one of Saturn's moons, named for a Titaness of Greek mythology",
+    },
+    {
+      label: 'Tethys',
+    },
+    {
+      label: 'Hyperion',
+    },
+  ]);
+
+  const startsWithMatcher = useCallback<EuiSelectableOptionMatcher<unknown>>(
+    ({ option, searchValue }) => {
+      return option.label.startsWith(searchValue);
+    },
+    []
+  );
+
+  return (
+    <EuiSelectable
+      aria-label="Searchable example"
+      searchable
+      searchProps={{
+        'data-test-subj': 'selectableSearchHere',
+      }}
+      options={options}
+      onChange={(newOptions) => setOptions(newOptions)}
+      optionMatcher={startsWithMatcher}
+    >
+      {(list, search) => (
+        <>
+          {search}
+          {list}
+        </>
+      )}
+    </EuiSelectable>
+  );
+};
+```
+
+## Props
+
+import docgen from '@elastic/eui-docgen/dist/components/selectable';
+
+<PropTable definition={docgen.EuiSelectable} />
+<PropTable definition={docgen.EuiSelectableMessage} />

@@ -1,0 +1,598 @@
+---
+slug: /tabular-content/data-grid/container-constraints
+id: tabular_content_data_grid_container_constraints
+sidebar_position: 5
+---
+
+# Container constraints
+
+## Data grid adapts to its container
+
+When wrapped inside a container, like a dashboard panel, the grid will start hiding controls and adopt a more strict flex layout. Use the `minSizeForControls` prop to control the min width to enables/disables grid controls based on available width.
+
+```tsx interactive
+import React, { useState, useCallback } from 'react';
+import { EuiDataGrid, EuiPanel, EuiLink } from '@elastic/eui';
+import { faker } from '@faker-js/faker';
+
+const columns = [
+  {
+    id: 'name',
+  },
+  {
+    id: 'email',
+  },
+  {
+    id: 'city',
+  },
+  {
+    id: 'country',
+  },
+  {
+    id: 'account',
+  },
+];
+
+const data = [];
+
+for (let i = 1; i < 20; i++) {
+  data.push({
+    name: `${faker.person.lastName()}, ${faker.person.firstName()} ${faker.person.suffix()}`,
+    email: faker.internet.email(),
+    city: <EuiLink href="http://google.com">{faker.location.city()}</EuiLink>,
+    country: faker.location.country(),
+    account: faker.finance.accountNumber(),
+  });
+}
+
+export default () => {
+  const [pagination, setPagination] = useState({ pageIndex: 0 });
+
+  const [visibleColumns, setVisibleColumns] = useState(
+    columns.map(({ id }) => id)
+  );
+
+  const setPageIndex = useCallback(
+    (pageIndex) =>
+      setPagination((pagination) => ({ ...pagination, pageIndex })),
+    []
+  );
+  const setPageSize = useCallback(
+    (pageSize) =>
+      setPagination(
+        (pagination) => ({ ...pagination, pageSize, pageIndex: 0 }),
+        []
+      ),
+    []
+  );
+
+  return (
+    <EuiPanel
+      style={{ maxWidth: 400, height: 300, overflow: 'hidden' }}
+      paddingSize="none"
+    >
+      <EuiDataGrid
+        aria-label="Container constrained data grid demo"
+        columns={columns}
+        columnVisibility={{
+          visibleColumns: visibleColumns,
+          setVisibleColumns: setVisibleColumns,
+        }}
+        rowCount={data.length}
+        gridStyle={{
+          border: 'horizontal',
+          header: 'underline',
+        }}
+        renderCellValue={({ rowIndex, columnId }) => data[rowIndex][columnId]}
+        pagination={{
+          ...pagination,
+          onChangeItemsPerPage: setPageSize,
+          onChangePage: setPageIndex,
+        }}
+      />
+    </EuiPanel>
+  );
+};
+```
+
+When placed within an [**EuiFlexGroup** and **EuiFlexItem**](/docs/layout/flex), the data grid will have trouble shrinking to fit. To fix this, you will need to manually add a style of `min-width: 0` to the **EuiFlexItem**.
+
+```tsx interactive
+import React, { useState, useCallback } from 'react';
+import {
+  EuiDataGrid,
+  EuiPanel,
+  EuiLink,
+  EuiFlexItem,
+  EuiFlexGroup,
+} from '@elastic/eui';
+import { faker } from '@faker-js/faker';
+
+const columns = [
+  {
+    id: 'name',
+  },
+  {
+    id: 'email',
+  },
+  {
+    id: 'city',
+  },
+  {
+    id: 'country',
+  },
+  {
+    id: 'account',
+  },
+];
+
+const data = [];
+
+for (let i = 1; i < 20; i++) {
+  data.push({
+    name: `${faker.person.lastName()}, ${faker.person.firstName()} ${faker.person.suffix()}`,
+    email: faker.internet.email(),
+    city: <EuiLink href="http://google.com">{faker.location.city()}</EuiLink>,
+    country: faker.location.country(),
+    account: faker.finance.accountNumber(),
+  });
+}
+
+export default () => {
+  const [pagination, setPagination] = useState({ pageIndex: 0 });
+
+  const [visibleColumns, setVisibleColumns] = useState(
+    columns.map(({ id }) => id)
+  );
+
+  const setPageIndex = useCallback(
+    (pageIndex) =>
+      setPagination((pagination) => ({ ...pagination, pageIndex })),
+    []
+  );
+  const setPageSize = useCallback(
+    (pageSize) =>
+      setPagination((pagination) => ({
+        ...pagination,
+        pageSize,
+        pageIndex: 0,
+      })),
+    []
+  );
+
+  return (
+    <EuiFlexGroup>
+      <EuiFlexItem style={{ minWidth: 120 }} grow={false}>
+        <EuiPanel color="subdued">Sidebar</EuiPanel>
+      </EuiFlexItem>
+      <EuiFlexItem style={{ minWidth: 0 }}>
+        <EuiPanel
+          style={{ height: 300, overflow: 'hidden' }}
+          hasBorder
+          paddingSize="none"
+        >
+          <EuiDataGrid
+            aria-label="Container flex data grid demo"
+            columns={columns}
+            columnVisibility={{
+              visibleColumns: visibleColumns,
+              setVisibleColumns: setVisibleColumns,
+            }}
+            rowCount={data.length}
+            gridStyle={{
+              border: 'horizontal',
+              header: 'underline',
+            }}
+            renderCellValue={({ rowIndex, columnId }) =>
+              data[rowIndex][columnId]
+            }
+            pagination={{
+              ...pagination,
+              onChangeItemsPerPage: setPageSize,
+              onChangePage: setPageIndex,
+            }}
+          />
+        </EuiPanel>
+      </EuiFlexItem>
+    </EuiFlexGroup>
+  );
+};
+```
+
+## Virtualization
+
+Creating a lot of DOM nodes is computationally expensive, and **EuiDataGrid** uses a couple wrapping divs to build each cell. To help offset the cost of larger tables, cell virtualization can be opted into by constraining the grid's height and/or width. There are two ways to enable this functionality. First, `height` and/or `width` can be passed as props, which are applied to the grid's container style. Alternatively, if **EuiDataGrid** is unable to render at the full dimensions it needs due to screen real estate or other DOM constraints, it will overflow within a scrollable container and only render the visible cells.
+
+:::warning Never toggle the height between a value and `undefined`.
+
+Similar to React's rule of not switching between a controlled and uncontrolled input, `EuiDataGrid` does not accommodate for its height switching to or from `undefined`. For demonstration purposes, the example below uses a `key` to force **EuiDataGrid** to completely remount when its height changes between constrained & constrained heights.
+
+:::
+
+```tsx interactive
+import React, {
+  useCallback,
+  useState,
+  createContext,
+  useContext,
+  useMemo,
+  useEffect,
+} from 'react';
+import {
+  EuiDataGrid,
+  EuiLink,
+  EuiText,
+  EuiSpacer,
+  EuiButtonGroup,
+  EuiFormRow,
+} from '@elastic/eui';
+import { faker } from '@faker-js/faker';
+
+const DataContext = createContext();
+
+const columns = [
+  {
+    id: 'name',
+    displayAsText: 'Name',
+    defaultSortDirection: 'asc',
+  },
+  {
+    id: 'email',
+  },
+  {
+    id: 'location',
+  },
+  {
+    id: 'account',
+  },
+  {
+    id: 'date',
+    defaultSortDirection: 'desc',
+  },
+  {
+    id: 'amount',
+  },
+  {
+    id: 'phone',
+    isSortable: false,
+  },
+  {
+    id: 'version',
+    defaultSortDirection: 'desc',
+    initialWidth: 65,
+    isResizable: false,
+  },
+];
+
+// it is expensive to compute 10000 rows of fake data
+// instead of loading up front, generate entries on the fly
+const raw_data = [];
+function RenderCellValue({ rowIndex, columnId }) {
+  const { data, adjustMountedCellCount } = useContext(DataContext);
+
+  useEffect(() => {
+    adjustMountedCellCount(1);
+    return () => adjustMountedCellCount(-1);
+  }, [adjustMountedCellCount]);
+
+  if (data[rowIndex] == null) {
+    const email = faker.internet.email();
+    const name = `${faker.person.lastName()}, ${faker.person.firstName()}`;
+    const suffix = faker.person.suffix();
+    data[rowIndex] = {
+      name: `${name} ${suffix}`,
+      email: <EuiLink href="">{email}</EuiLink>,
+      location: (
+        <>
+          {`${faker.location.city()}, `}
+          <EuiLink href="https://google.com">
+            {faker.location.country()}
+          </EuiLink>
+        </>
+      ),
+      date: `${faker.date.past()}`,
+      account: faker.finance.accountNumber(),
+      amount: faker.commerce.price(),
+      phone: faker.phone.number(),
+      version: faker.system.semver(),
+    };
+  }
+  return data.hasOwnProperty(rowIndex) ? data[rowIndex][columnId] : null;
+}
+
+const dimensionSizes = {
+  'height-300px': 300,
+  'height-600px': 600,
+
+  'width-200px': 200,
+  'width-50%': '50%',
+  'width-unconstrained': undefined,
+};
+
+export default () => {
+  // Pagination
+  const [pagination, setPagination] = useState({ pageIndex: 0, pageSize: 50 });
+  const onChangeItemsPerPage = useCallback(
+    (pageSize) =>
+      setPagination((pagination) => ({
+        ...pagination,
+        pageSize,
+        pageIndex: 0,
+      })),
+    [setPagination]
+  );
+  const onChangePage = useCallback(
+    (pageIndex) =>
+      setPagination((pagination) => ({ ...pagination, pageIndex })),
+    [setPagination]
+  );
+
+  // Column visibility
+  const [visibleColumns, setVisibleColumns] = useState(
+    columns.map(({ id }) => id)
+  );
+
+  const [mountedCellCount, setMountedCellCount] = useState(0);
+
+  const dataContext = useMemo(
+    () => ({
+      data: raw_data,
+      adjustMountedCellCount: (adjustment) =>
+        setMountedCellCount(
+          (mountedCellCount) => mountedCellCount + adjustment
+        ),
+    }),
+    []
+  );
+
+  const [height, setHeight] = useState('height-300px');
+  const [width, setWidth] = useState('width-50%');
+
+  return (
+    <>
+      <EuiFormRow label="Height">
+        <EuiButtonGroup
+          legend="Set a height for the following grid"
+          options={[
+            { id: 'height-300px', label: '300px' },
+            { id: 'height-600px', label: '600px' },
+            { id: 'height-unconstrained', label: 'Unconstrained' },
+          ]}
+          idSelected={height}
+          onChange={setHeight}
+        />
+      </EuiFormRow>
+
+      <EuiFormRow label="Width">
+        <EuiButtonGroup
+          legend="Set a width for the following grid"
+          options={[
+            { id: 'width-200px', label: '200px' },
+            { id: 'width-50%', label: '50%' },
+            { id: 'width-unconstrained', label: 'Unconstrained' },
+          ]}
+          idSelected={width}
+          onChange={setWidth}
+        />
+      </EuiFormRow>
+
+      <EuiSpacer />
+
+      <EuiText>
+        <p>There are {mountedCellCount} rendered cells</p>
+      </EuiText>
+
+      <DataContext.Provider value={dataContext}>
+        <EuiDataGrid
+          // completely reset the grid when switching between controlled & uncontrolled heights
+          // otherwise, going from constrained->unconstrained is ignored.
+          // this is for example only, don't switch between controlled & uncontrolled heights
+          key={
+            height === 'height-unconstrained' ? 'unconstrained' : 'constrained'
+          }
+          aria-label="Virtualized data grid demo"
+          height={dimensionSizes[height]}
+          width={dimensionSizes[width]}
+          columns={columns}
+          columnVisibility={{ visibleColumns, setVisibleColumns }}
+          rowCount={10000}
+          renderCellValue={RenderCellValue}
+          pagination={{
+            ...pagination,
+            pageSizeOptions: [50, 250, 1000],
+            onChangeItemsPerPage: onChangeItemsPerPage,
+            onChangePage: onChangePage,
+          }}
+          rowHeightsOptions={{
+            defaultHeight: 'auto',
+            scrollAnchorRow: 'start',
+          }}
+        />
+      </DataContext.Provider>
+    </>
+  );
+};
+```
+
+### Constrained by DOM
+
+```tsx interactive
+import React, {
+  useCallback,
+  useState,
+  createContext,
+  useContext,
+  useMemo,
+  useEffect,
+} from 'react';
+import {
+  EuiDataGrid,
+  EuiLink,
+  EuiText,
+  EuiResizableContainer,
+} from '@elastic/eui';
+import { faker } from '@faker-js/faker';
+
+const DataContext = createContext();
+
+const columns = [
+  {
+    id: 'name',
+    displayAsText: 'Name',
+    defaultSortDirection: 'asc',
+  },
+  {
+    id: 'email',
+  },
+  {
+    id: 'location',
+  },
+  {
+    id: 'account',
+  },
+  {
+    id: 'date',
+    defaultSortDirection: 'desc',
+  },
+  {
+    id: 'amount',
+  },
+  {
+    id: 'phone',
+    isSortable: false,
+  },
+  {
+    id: 'version',
+    defaultSortDirection: 'desc',
+    initialWidth: 65,
+    isResizable: false,
+  },
+];
+
+// it is expensive to compute 10000 rows of fake data
+// instead of loading up front, generate entries on the fly
+const raw_data = [];
+function RenderCellValue({ rowIndex, columnId }) {
+  const { data, adjustMountedCellCount } = useContext(DataContext);
+
+  useEffect(() => {
+    adjustMountedCellCount(1);
+    return () => adjustMountedCellCount(-1);
+  }, [adjustMountedCellCount]);
+
+  if (data[rowIndex] == null) {
+    const email = faker.internet.email();
+    const name = `${faker.person.lastName()}, ${faker.person.firstName()}`;
+    const suffix = faker.person.suffix();
+    data[rowIndex] = {
+      name: `${name} ${suffix}`,
+      email: <EuiLink href="">{email}</EuiLink>,
+      location: (
+        <>
+          {`${faker.location.city()}, `}
+          <EuiLink href="https://google.com">
+            {faker.location.country()}
+          </EuiLink>
+        </>
+      ),
+      date: `${faker.date.past()}`,
+      account: faker.finance.accountNumber(),
+      amount: faker.commerce.price(),
+      phone: faker.phone.number(),
+      version: faker.system.semver(),
+    };
+  }
+
+  return data[rowIndex][columnId];
+}
+
+export default () => {
+  // Pagination
+  const [pagination, setPagination] = useState({ pageIndex: 0, pageSize: 50 });
+  const onChangeItemsPerPage = useCallback(
+    (pageSize) =>
+      setPagination((pagination) => ({
+        ...pagination,
+        pageSize,
+        pageIndex: 0,
+      })),
+    [setPagination]
+  );
+  const onChangePage = useCallback(
+    (pageIndex) =>
+      setPagination((pagination) => ({ ...pagination, pageIndex })),
+    [setPagination]
+  );
+
+  // Column visibility
+  const [visibleColumns, setVisibleColumns] = useState(
+    columns.map(({ id }) => id)
+  );
+
+  const [mountedCellCount, setMountedCellCount] = useState(0);
+
+  const dataContext = useMemo(
+    () => ({
+      data: raw_data,
+      adjustMountedCellCount: (adjustment) =>
+        setMountedCellCount(
+          (mountedCellCount) => mountedCellCount + adjustment
+        ),
+    }),
+    []
+  );
+
+  const grid = (
+    <EuiDataGrid
+      aria-label="Virtualized and constrained data grid demo"
+      columns={columns}
+      columnVisibility={{ visibleColumns, setVisibleColumns }}
+      rowCount={10000}
+      renderCellValue={RenderCellValue}
+      pagination={{
+        ...pagination,
+        pageSizeOptions: [50, 250, 1000],
+        onChangeItemsPerPage: onChangeItemsPerPage,
+        onChangePage: onChangePage,
+      }}
+    />
+  );
+
+  return (
+    <DataContext.Provider value={dataContext}>
+      <EuiText>
+        <p>There are {mountedCellCount} rendered cells</p>
+      </EuiText>
+
+      <EuiResizableContainer style={{ height: '400px' }}>
+        {(EuiResizablePanel, EuiResizableButton) => (
+          <>
+            <EuiResizablePanel initialSize={50} minSize="30%">
+              {grid}
+            </EuiResizablePanel>
+
+            <EuiResizableButton />
+
+            <EuiResizablePanel initialSize={50} minSize="200px">
+              <EuiText>
+                <p>
+                  This panel is constraining the datagrid. You can resize it
+                  using the drag handle and <strong>EuiDataGrid</strong>{' '}
+                  automatically detects the changes to its container size.
+                </p>
+              </EuiText>
+            </EuiResizablePanel>
+          </>
+        )}
+      </EuiResizableContainer>
+    </DataContext.Provider>
+  );
+};
+```
+
+## Props
+
+import docgen from '@elastic/eui-docgen/dist/components/datagrid/data_grid_types.docgen.json';
+
+<PropTable definition={{ ...docgen.EuiDataGridHeightWidthProps, displayName: 'EuiDataGridProps' }} />
+<PropTable definition={docgen.EuiDataGridVirtualizationOptions} />

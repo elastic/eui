@@ -830,7 +830,7 @@ exports[`EuiAccordion props initialIsOpen is rendered 1`] = `
   </div>
   <div
     aria-labelledby="generated-id"
-    class="euiAccordion__childWrapper emotion-euiAccordion__childWrapper-isOpen"
+    class="euiAccordion__childWrapper emotion-euiAccordion__childWrapper-isOpen-noTransition"
     id="12"
     role="group"
     style="block-size: 0;"

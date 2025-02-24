@@ -1,0 +1,432 @@
+---
+slug: /forms/color/picker
+id: forms_color_picker
+sidebar_position: 2
+---
+
+# Color picker
+
+Color input component allowing for multiple methods of entry and selection.
+
+Direct text entry will match hexadecimal (hex) and RGB(a) colors, and output will return both hex and RGBa values. Spatial selection involves HSV manipulaton, which is converted to hex.
+
+Swatches allow consumers to predefine preferred or suggested choices. The swatches must also be entered in hex or RGBa format.
+
+```tsx interactive
+import React from 'react';
+import { EuiColorPicker, EuiFormRow, useColorPickerState } from '@elastic/eui';
+
+export default () => {
+  const [color, setColor, errors] = useColorPickerState('#D36086');
+  return (
+    <EuiFormRow label="Pick a color" isInvalid={!!errors} error={errors}>
+      <EuiColorPicker onChange={setColor} color={color} isInvalid={!!errors} />
+    </EuiFormRow>
+  );
+};
+```
+
+## Format selection
+
+Format selection does _not_ limit the format of text input the picker will allow, but instead attempts to keep consistency during HSV selection. By default, the color picker will automatically use the last input value format. Notice in following the examples how hue and saturation selection behave differently.
+
+Swatches will always show the "as-authored" color value, as will the value provided via the `color` prop.
+
+```tsx interactive
+import React from 'react';
+import { EuiColorPicker, EuiFormRow, useColorPickerState } from '@elastic/eui';
+
+export default () => {
+  const [color, setColor, errors] = useColorPickerState('#D36086');
+  const [color2, setColor2, errors2] = useColorPickerState('#D36086');
+  const [color3, setColor3, errors3] = useColorPickerState('211, 96, 134');
+  return (
+    <>
+      <EuiFormRow label="Auto format" isInvalid={!!errors} error={errors}>
+        <EuiColorPicker
+          onChange={setColor}
+          color={color}
+          isInvalid={!!errors}
+        />
+      </EuiFormRow>
+      <EuiFormRow label="Hex format" isInvalid={!!errors2} error={errors2}>
+        <EuiColorPicker
+          format="hex"
+          onChange={setColor2}
+          color={color2}
+          isInvalid={!!errors2}
+        />
+      </EuiFormRow>
+      <EuiFormRow label="RGB(a) format" isInvalid={!!errors3} error={errors3}>
+        <EuiColorPicker
+          format="rgba"
+          onChange={setColor3}
+          color={color3}
+          isInvalid={!!errors3}
+          showAlpha={true}
+        />
+      </EuiFormRow>
+    </>
+  );
+};
+```
+
+## Alpha channel (opacity) selection
+
+To allow color opacity via alpha channel, set `showAlpha=true`. This will also display a range slider allowing manual opacity updates.
+
+```tsx interactive
+import React from 'react';
+import { EuiColorPicker, EuiFormRow, useColorPickerState } from '@elastic/eui';
+
+export default () => {
+  const [color, setColor, errors] = useColorPickerState('#D36086');
+  const [color2, setColor2, errors2] = useColorPickerState('211, 96, 134');
+
+  const customSwatches = [
+    '#54B399',
+    '#6092C0',
+    '#D36086',
+    '#9170B8',
+    '#CA8EAE',
+    '#54B39940',
+    '#6092C040',
+    '#D3608640',
+    '#9170B840',
+    '#CA8EAE40',
+  ];
+
+  const customSwatches2 = [
+    '211, 96, 134, 0.25',
+    '211, 96, 134, 0.5',
+    '211, 96, 134, 0.75',
+    '211, 96, 134',
+  ];
+
+  return (
+    <>
+      <EuiFormRow
+        label="Pick a color with optional opacity"
+        isInvalid={!!errors}
+        error={errors}
+      >
+        <EuiColorPicker
+          onChange={setColor}
+          color={color}
+          showAlpha={true}
+          isInvalid={!!errors}
+          swatches={customSwatches}
+        />
+      </EuiFormRow>
+
+      <EuiFormRow
+        label="Using RGBa format"
+        isInvalid={!!errors2}
+        error={errors2}
+      >
+        <EuiColorPicker
+          onChange={setColor2}
+          color={color2}
+          showAlpha={true}
+          format="rgba"
+          isInvalid={!!errors2}
+          swatches={customSwatches2}
+        />
+      </EuiFormRow>
+    </>
+  );
+};
+```
+
+## Custom color swatches
+
+By default the colors provided are the ten color blind safe visualization colors. You can however pass in your own color set with the `swatches` prop.
+
+```tsx interactive
+import React from 'react';
+import { EuiColorPicker, EuiFormRow, useColorPickerState } from '@elastic/eui';
+
+export default () => {
+  const [color, setColor, errors] = useColorPickerState();
+
+  const customSwatches = ['#333', '#666', '#999', '#CCC'];
+
+  return (
+    <EuiFormRow label="Pick a color" isInvalid={!!errors} error={errors}>
+      <EuiColorPicker
+        onChange={setColor}
+        color={color}
+        isInvalid={!!errors}
+        swatches={customSwatches}
+      />
+    </EuiFormRow>
+  );
+};
+```
+
+## Limited selection modes
+
+By default, both swatch selection and the gradient color map will be rendered. Use the `mode` prop to pass `swatch` for swatch-only selection, or pass `picker` for gradient map and hue slider selection without swatches.
+
+```tsx interactive
+import React from 'react';
+import { EuiColorPicker, EuiFormRow, useColorPickerState } from '@elastic/eui';
+
+export default () => {
+  const [color, setColor, errors] = useColorPickerState('#D36086');
+
+  return (
+    <>
+      <EuiFormRow label="Pick a swatch" isInvalid={!!errors} error={errors}>
+        <EuiColorPicker
+          mode="swatch"
+          onChange={setColor}
+          color={color}
+          isInvalid={!!errors}
+        />
+      </EuiFormRow>
+      <EuiFormRow label="Pick a color" isInvalid={!!errors} error={errors}>
+        <EuiColorPicker
+          mode="picker"
+          onChange={setColor}
+          color={color}
+          isInvalid={!!errors}
+        />
+      </EuiFormRow>
+    </>
+  );
+};
+```
+
+## Custom button
+
+Available only in **EuiColorPicker**. You can optionally use a custom button as the trigger for selection using the `button` prop. Please remember to add accessibility to this component, using proper button markup and aria labeling.
+
+Additionally, use the `secondaryInputDisplay` prop to show a secondary or alternative color value input. Options include `top` and `bottom` placement.
+
+```tsx interactive
+import React, { Fragment, useState } from 'react';
+import {
+  EuiColorPicker,
+  EuiFormRow,
+  EuiColorPickerSwatch,
+  EuiBadge,
+  EuiSpacer,
+  useColorPickerState,
+} from '@elastic/eui';
+
+export default () => {
+  const [color, setColor, errors] = useColorPickerState('');
+  const [selectedColor, setSelectedColor] = useState(color);
+  const handleColorChange = (text, { hex, isValid }) => {
+    setColor(text, { hex, isValid });
+    setSelectedColor(hex);
+  };
+  return (
+    <Fragment>
+      <EuiFormRow label="Pick a color" error={errors}>
+        <EuiColorPicker
+          onChange={handleColorChange}
+          color={color}
+          secondaryInputDisplay="top"
+          button={
+            <EuiColorPickerSwatch
+              color={selectedColor}
+              aria-label="Select a new color"
+            />
+          }
+          isClearable={true}
+        />
+      </EuiFormRow>
+      <EuiSpacer />
+      <EuiColorPicker
+        onChange={handleColorChange}
+        color={color}
+        isInvalid={!!errors}
+        secondaryInputDisplay="bottom"
+        button={
+          <EuiBadge
+            color={selectedColor ? selectedColor : 'hollow'}
+            onClickAriaLabel="Select a new color"
+          >
+            Color this badge
+          </EuiBadge>
+        }
+      />
+    </Fragment>
+  );
+};
+```
+
+## Empty state
+
+For instances where an "empty" color picker has meaning other than transparent color value, use the `placeholder` prop to provide context. Removing color selection and returning to the default state can be made easier by setting `isClearable=true`.
+
+```tsx interactive
+import React, { useMemo } from 'react';
+import { EuiColorPicker, EuiFormRow, useColorPickerState } from '@elastic/eui';
+
+export default () => {
+  const [color, setColor, errors] = useColorPickerState();
+  const isInvalid = useMemo(() => color !== '' && !!errors, [color, errors]);
+
+  return (
+    <React.Fragment>
+      <EuiFormRow label="Pick a color" isInvalid={isInvalid} error={errors}>
+        <EuiColorPicker
+          onChange={setColor}
+          color={color}
+          isInvalid={isInvalid}
+          placeholder="Auto"
+          isClearable={true}
+        />
+      </EuiFormRow>
+    </React.Fragment>
+  );
+};
+```
+
+## Inline
+
+Available only in **EuiColorPicker**. Set the `display` prop to `inline` to display the color picker without an input or popover. Note that the `button` prop will be ignored in this case.
+
+```tsx interactive
+import React from 'react';
+import { EuiColorPicker, useColorPickerState } from '@elastic/eui';
+
+export default () => {
+  const [color, setColor, errors] = useColorPickerState('#D36086');
+  return (
+    <EuiColorPicker
+      onChange={setColor}
+      color={color}
+      isInvalid={!!errors}
+      display="inline"
+    />
+  );
+};
+```
+
+## Containers
+
+Demonstrating that both color selection components can exist in portal containers and that their popover positioning works in nested contexts.
+
+```tsx interactive
+import React, { useState } from 'react';
+import {
+  EuiColorPicker,
+  EuiButton,
+  EuiPopover,
+  EuiFormRow,
+  EuiModal,
+  EuiModalBody,
+  EuiModalHeader,
+  EuiModalHeaderTitle,
+  EuiSpacer,
+  useColorPickerState,
+  useGeneratedHtmlId,
+} from '@elastic/eui';
+
+export default () => {
+  const [color, setColor] = useColorPickerState('#FFF');
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [isPopoverOpen, setIsPopoverOpen] = useState(false);
+  const containerPopoverId = useGeneratedHtmlId({ prefix: 'containerPopover' });
+
+  const closeModal = () => {
+    setIsModalVisible(false);
+  };
+
+  const showModal = () => {
+    setIsModalVisible(true);
+  };
+
+  const togglePopover = () => {
+    setIsPopoverOpen(!isPopoverOpen);
+  };
+
+  const closePopover = () => {
+    setIsPopoverOpen(false);
+  };
+
+  const colorPicker = <EuiColorPicker color={color} onChange={setColor} />;
+
+  const button = (
+    <EuiButton iconType="arrowDown" iconSide="right" onClick={togglePopover}>
+      Open popover
+    </EuiButton>
+  );
+
+  let modal;
+
+  if (isModalVisible) {
+    modal = (
+      <EuiModal onClose={closeModal} style={{ width: '800px' }}>
+        <EuiModalHeader>
+          <EuiModalHeaderTitle>Color picker in a modal</EuiModalHeaderTitle>
+        </EuiModalHeader>
+
+        <EuiModalBody>
+          <EuiFormRow label="Color picker">{colorPicker}</EuiFormRow>
+        </EuiModalBody>
+      </EuiModal>
+    );
+  }
+
+  return (
+    <>
+      <EuiFormRow
+        label="Color picker"
+        helpText="This color picker is inside of a form row"
+      >
+        {colorPicker}
+      </EuiFormRow>
+
+      <EuiSpacer />
+
+      <EuiFormRow label="Unruly focus management">
+        <EuiPopover
+          id={containerPopoverId}
+          button={button}
+          isOpen={isPopoverOpen}
+          closePopover={closePopover}
+        >
+          <div style={{ width: '300px' }}>
+            <EuiFormRow label="Color picker">{colorPicker}</EuiFormRow>
+          </div>
+        </EuiPopover>
+      </EuiFormRow>
+
+      <EuiSpacer size="m" />
+
+      <EuiButton onClick={showModal}>Show modal</EuiButton>
+
+      {modal}
+    </>
+  );
+};
+```
+
+## Option toggling
+
+```tsx interactive
+import React from 'react';
+import { EuiColorPicker, useColorPickerState } from '@elastic/eui';
+
+export default () => {
+  const [color, setColor] = useColorPickerState('#D36086');
+
+  return (
+    /* DisplayToggles wrapper for Docs only */
+    <DisplayToggles canLoading={false} canPrepend canAppend canClear>
+      <EuiColorPicker color={color} onChange={setColor} />
+    </DisplayToggles>
+  );
+};
+```
+
+## Props
+
+import docgen from '@elastic/eui-docgen/dist/components/color_picker';
+
+<PropTable definition={docgen.EuiColorPicker} />

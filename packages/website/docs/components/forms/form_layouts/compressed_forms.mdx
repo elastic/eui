@@ -1,0 +1,819 @@
+---
+slug: /forms/layouts/compressed-forms
+id: forms_compressed_forms
+sidebar_position: 3
+---
+
+# Compressed forms
+
+Also known as **editor-style controls**, compressed forms and controls were specifically created for use when space is at a premium. They are not intended for use when the form is the main objective of the page. They work best in editor-style applications where form controls are being used to create or edit content on the page.
+
+:::danger
+Do not use compressed and non-compressed form controls in the same form.
+:::
+
+To use compressed forms, pass `compressed=true` to all form controls.
+
+```tsx interactive
+import React, { useState } from 'react';
+import {
+  EuiCheckboxGroup,
+  EuiComboBox,
+  EuiFieldText,
+  EuiFormRow,
+  EuiFilePicker,
+  EuiRange,
+  EuiSelect,
+  EuiSwitch,
+  EuiPanel,
+  EuiSpacer,
+  useGeneratedHtmlId,
+} from '@elastic/eui';
+
+export default () => {
+  const compressedFormCheckboxId__1 = useGeneratedHtmlId({
+    prefix: 'compressedFormCheckbox',
+    suffix: 'first',
+  });
+  const compressedFormCheckboxId__2 = useGeneratedHtmlId({
+    prefix: 'compressedFormCheckbox',
+    suffix: 'second',
+  });
+  const compressedFormCheckboxId__3 = useGeneratedHtmlId({
+    prefix: 'compressedFormCheckbox',
+    suffix: 'third',
+  });
+  const compressedFormRangeId = useGeneratedHtmlId({
+    prefix: 'compressedFormRange',
+  });
+
+  const [checkboxes] = useState([
+    {
+      id: compressedFormCheckboxId__1,
+      label: 'Option one',
+    },
+    {
+      id: compressedFormCheckboxId__2,
+      label: 'Option two is checked by default',
+    },
+    {
+      id: compressedFormCheckboxId__3,
+      label: 'Option three',
+    },
+  ]);
+  const [isSwitchChecked, setIsSwitchChecked] = useState(false);
+  const [checkboxIdToSelectedMap, setCheckboxIdToSelectedMap] = useState({
+    [compressedFormCheckboxId__2]: true,
+  });
+
+  const [comboBoxSelectionOptions, setComboBoxSelectionOptions] = useState([]);
+
+  const [value, setValue] = useState(20);
+
+  const onRangeChange = (e) => {
+    setValue(e.target.value);
+  };
+
+  const onSwitchChange = () => {
+    setIsSwitchChecked(!isSwitchChecked);
+  };
+
+  const onCheckboxChange = (optionId) => {
+    const newCheckboxIdToSelectedMap = {
+      ...checkboxIdToSelectedMap,
+      ...{
+        [optionId]: !checkboxIdToSelectedMap[optionId],
+      },
+    };
+    setCheckboxIdToSelectedMap(newCheckboxIdToSelectedMap);
+  };
+  return (
+    <EuiPanel style={{ maxWidth: 300 }}>
+      <EuiFormRow
+        label="Text field"
+        helpText="I am some friendly help text."
+      >
+        <EuiFieldText name="first" isLoading compressed />
+      </EuiFormRow>
+
+      <EuiFormRow label="Select">
+        <EuiSelect
+          options={[
+            { value: 'option_one', text: 'Option one' },
+            { value: 'option_two', text: 'Option two' },
+            { value: 'option_three', text: 'Option three' },
+          ]}
+          compressed
+        />
+      </EuiFormRow>
+
+      <EuiFormRow label="File picker">
+        <EuiFilePicker compressed display="default" />
+      </EuiFormRow>
+
+      <EuiFormRow label="Combobox">
+        <EuiComboBox
+          options={[
+            { label: 'Option one' },
+            { label: 'Option two' },
+            { label: 'Option three' },
+          ]}
+          compressed
+          selectedOptions={comboBoxSelectionOptions}
+          onChange={(comboBoxSelectionOptions) =>
+            setComboBoxSelectionOptions(comboBoxSelectionOptions)
+          }
+        />
+      </EuiFormRow>
+
+      <EuiFormRow label="Range">
+        <EuiRange
+          min={0}
+          max={100}
+          name="range"
+          id={compressedFormRangeId}
+          showInput
+          compressed
+          value={value}
+          onChange={onRangeChange}
+        />
+      </EuiFormRow>
+
+      <EuiFormRow label="Switch" hasChildLabel={false}>
+        <EuiSwitch
+          label="Setting name"
+          name="switch"
+          checked={isSwitchChecked}
+          onChange={onSwitchChange}
+          compressed
+        />
+      </EuiFormRow>
+
+      <EuiSpacer size="m" />
+
+      <EuiCheckboxGroup
+        options={checkboxes}
+        idToSelectedMap={checkboxIdToSelectedMap}
+        onChange={onCheckboxChange}
+        legend={{
+          children: 'Checkboxes',
+        }}
+        compressed
+      />
+    </EuiPanel>
+  );
+};
+```
+
+## Column layout
+
+Editor-style controls can be displayed in a two column layout for even better use of limited space, just pass `display="columnCompressed"` to align the labels and inputs side by side.
+
+```tsx interactive
+import React, { useState } from 'react';
+import {
+  EuiComboBox,
+  EuiFieldText,
+  EuiFormRow,
+  EuiFilePicker,
+  EuiRange,
+  EuiSelect,
+  EuiSwitch,
+  EuiPanel,
+  useGeneratedHtmlId,
+} from '@elastic/eui';
+
+export default () => {
+  const [isSwitchChecked, setIsSwitchChecked] = useState(false);
+  const [comboBoxSelectionOptions, setComboBoxSelectionOptions] = useState([]);
+  const [value, setValue] = useState('20');
+
+  const horizontalFormRangeId = useGeneratedHtmlId({
+    prefix: 'horizontalFormRange',
+  });
+
+  const onRangeChange = (e) => {
+    setValue(e.target.value);
+  };
+
+  const onSwitchChange = () => {
+    setIsSwitchChecked(!isSwitchChecked);
+  };
+
+  return (
+    <EuiPanel style={{ maxWidth: 300 }}>
+      <EuiFormRow
+        label="Text field"
+        helpText="I am some friendly help text."
+        display="columnCompressed"
+      >
+        <EuiFieldText name="first" isLoading compressed />
+      </EuiFormRow>
+
+      <EuiFormRow label="Select" display="columnCompressed">
+        <EuiSelect
+          options={[
+            { value: 'option_one', text: 'Option one' },
+            { value: 'option_two', text: 'Option two' },
+            { value: 'option_three', text: 'Option three' },
+          ]}
+          compressed
+        />
+      </EuiFormRow>
+
+      <EuiFormRow label="File picker" display="columnCompressed">
+        <EuiFilePicker compressed display="default" />
+      </EuiFormRow>
+
+      <EuiFormRow label="Comboboxwithalonglabelname" display="columnCompressed">
+        <EuiComboBox
+          options={[
+            { label: 'Option one' },
+            { label: 'Option two' },
+            { label: 'Option three' },
+          ]}
+          compressed
+          selectedOptions={comboBoxSelectionOptions}
+          onChange={(comboBoxSelectionOptions) =>
+            setComboBoxSelectionOptions(comboBoxSelectionOptions)
+          }
+        />
+      </EuiFormRow>
+
+      <EuiFormRow label="Range" display="columnCompressed">
+        <EuiRange
+          min={0}
+          max={100}
+          name="range"
+          id={horizontalFormRangeId}
+          showInput
+          compressed
+          value={value}
+          onChange={onRangeChange}
+        />
+      </EuiFormRow>
+
+      <EuiFormRow display="columnCompressed" label="Switch">
+        <EuiSwitch
+          showLabel={false}
+          label="Switch"
+          name="switch"
+          checked={isSwitchChecked}
+          onChange={onSwitchChange}
+          compressed
+        />
+      </EuiFormRow>
+    </EuiPanel>
+  );
+};
+```
+
+## Contextual help
+
+When using compressed, horizontal form styles, it is best not to overload the UI with expansive help text. If it's short and part of the validation, use `helpText`. However, if it's an explanation of the control, consider wraping the label with an [**EuiToolTip**](../../display/tooltip.mdx) and appending the `questionInCircle` icon to it.
+
+```tsx interactive
+import React from 'react';
+import {
+  EuiFieldText,
+  EuiFormRow,
+  EuiSelect,
+  EuiPanel,
+  EuiIcon,
+  EuiToolTip,
+} from '@elastic/eui';
+
+export default () => (
+  <EuiPanel style={{ maxWidth: 300 }}>
+    <EuiFormRow
+      label="Text field"
+      helpText="Show validation help text only."
+      display="columnCompressed"
+    >
+      <EuiFieldText name="first" compressed />
+    </EuiFormRow>
+
+    <EuiFormRow
+      label={
+        <EuiToolTip content="Otherwise use an EuiToolTip around the label of the form row.">
+          <span>
+            Label <EuiIcon type="questionInCircle" color="subdued" />
+          </span>
+        </EuiToolTip>
+      }
+      display="columnCompressed"
+    >
+      <EuiSelect
+        options={[
+          { value: 'option_one', text: 'Option one' },
+          { value: 'option_two', text: 'Option two' },
+          { value: 'option_three', text: 'Option three' },
+        ]}
+        compressed
+      />
+    </EuiFormRow>
+  </EuiPanel>
+);
+```
+
+## In a popover
+
+Always use the compressed version of forms and elements when they exist inside of a [popover](../../layout/popover.mdx).
+
+```tsx interactive
+import React, { useState } from 'react';
+import {
+  EuiFieldText,
+  EuiFormRow,
+  EuiSelect,
+  EuiButton,
+  EuiPopover,
+  EuiButtonGroup,
+} from '@elastic/eui';
+
+export default () => {
+  const [isPopoverOpen, setIsPopoverOpen] = useState(false);
+  const [granularityIdSelected, setGranularityIdSelected] =
+    useState('granularityButton1');
+
+  const onButtonClick = () =>
+    setIsPopoverOpen((isPopoverOpen) => !isPopoverOpen);
+  const closePopover = () => setIsPopoverOpen(false);
+
+  const onGranularityChange = (optionId) => {
+    setGranularityIdSelected(optionId);
+  };
+
+  const button = (
+    <EuiButton iconType="arrowDown" iconSide="right" onClick={onButtonClick}>
+      Open form in popover
+    </EuiButton>
+  );
+
+  const granularityToggleButtons = [
+    {
+      id: 'granularityButton1',
+      label: 'Left',
+    },
+    {
+      id: 'granularityButton2',
+      label: 'Middle',
+    },
+    {
+      id: 'granularityButton3',
+      label: 'Right',
+    },
+  ];
+
+  return (
+    <EuiPopover
+      button={button}
+      isOpen={isPopoverOpen}
+      closePopover={closePopover}
+    >
+      <div style={{ width: 300 }}>
+        <EuiFormRow label="Button group" display="columnCompressed">
+          <EuiButtonGroup
+            legend="Granulariy of zoom levels"
+            options={granularityToggleButtons}
+            idSelected={granularityIdSelected}
+            onChange={onGranularityChange}
+            buttonSize="compressed"
+            isFullWidth
+          />
+        </EuiFormRow>
+        <EuiFormRow label="Text field" display="columnCompressed">
+          <EuiFieldText name="first" compressed />
+        </EuiFormRow>
+
+        <EuiFormRow label={'Select'} display="columnCompressed">
+          <EuiSelect
+            options={[
+              { value: 'option_one', text: 'Option one' },
+              { value: 'option_two', text: 'Option two' },
+              { value: 'option_three', text: 'Option three' },
+            ]}
+            compressed
+          />
+        </EuiFormRow>
+      </div>
+    </EuiPopover>
+  );
+};
+```
+
+## Complex example
+
+This is an example of how to combine compressed form controls with from rows, labels, prepend and appends in a column layout.
+
+:::note Accessibility recommendation
+Pay close attention to the patterns of using `htmlFor` and `aria-label`. For best results, each form control that is not wrapped in an EuiFormRow should be supplied an `id`.
+:::
+
+```tsx interactive
+import React, { useState } from 'react';
+import {
+  EuiButtonGroup,
+  EuiButtonIcon,
+  EuiColorPicker,
+  EuiColorPickerSwatch,
+  EuiDualRange,
+  EuiFieldNumber,
+  EuiFieldText,
+  EuiFlexGroup,
+  EuiFlexItem,
+  EuiFormLabel,
+  EuiFormRow,
+  EuiHorizontalRule,
+  EuiIcon,
+  EuiPanel,
+  EuiRange,
+  EuiScreenReaderOnly,
+  EuiSelect,
+  EuiSpacer,
+  EuiSuperSelect,
+  EuiToolTip,
+  useGeneratedHtmlId,
+} from '@elastic/eui';
+
+export default () => {
+  const typeStyleToggleButtonId__1 = useGeneratedHtmlId({
+    prefix: 'typeStyleToggleButton',
+    suffix: 'first',
+  });
+  const typeStyleToggleButtonId__2 = useGeneratedHtmlId({
+    prefix: 'typeStyleToggleButton',
+    suffix: 'second',
+  });
+  const typeStyleToggleButtonId__3 = useGeneratedHtmlId({
+    prefix: 'typeStyleToggleButton',
+    suffix: 'third',
+  });
+  const typeStyleToggleButtonId__4 = useGeneratedHtmlId({
+    prefix: 'typeStyleToggleButton',
+    suffix: 'fourth',
+  });
+
+  const typeStyleToggleButtons = [
+    {
+      id: typeStyleToggleButtonId__1,
+      label: 'Bold',
+      name: 'bold',
+      iconType: 'editorBold',
+    },
+    {
+      id: typeStyleToggleButtonId__2,
+      label: 'Italic',
+      name: 'italic',
+      iconType: 'editorItalic',
+    },
+    {
+      id: typeStyleToggleButtonId__3,
+      label: 'Underline',
+      name: 'underline',
+      iconType: 'editorUnderline',
+    },
+    {
+      id: typeStyleToggleButtonId__4,
+      label: 'Strikethrough',
+      name: 'strikethrough',
+      iconType: 'editorStrike',
+    },
+  ];
+
+  const granularityToggleButtonId__1 = useGeneratedHtmlId({
+    prefix: 'granularityToggleButton',
+    suffix: 'first',
+  });
+  const granularityToggleButtonId__2 = useGeneratedHtmlId({
+    prefix: 'granularityToggleButton',
+    suffix: 'second',
+  });
+  const granularityToggleButtonId__3 = useGeneratedHtmlId({
+    prefix: 'granularityToggleButton',
+    suffix: 'third',
+  });
+
+  const granularityToggleButtons = [
+    {
+      id: granularityToggleButtonId__1,
+      label: 'fine',
+    },
+    {
+      id: granularityToggleButtonId__2,
+      label: 'rough',
+    },
+    {
+      id: granularityToggleButtonId__3,
+      label: 'coarse',
+    },
+  ];
+
+  const superSelectOptions = [
+    { value: 'option_one', inputDisplay: 'Option one' },
+    { value: 'option_two', inputDisplay: 'Option two' },
+    { value: 'option_three', inputDisplay: 'Option three' },
+  ];
+
+  const selectTooltipContent =
+    'Otherwise use an EuiToolTip around the label of the form row.';
+
+  const [opacityValue, setOpacityValue] = useState('20');
+  const [color, setColor] = useState('#D36086');
+  const [popoverSliderValues, setPopoverSliderValues] = useState(16);
+  const [dualValue, setDualValue] = useState([5, 10]);
+  const [
+    typeStyleToggleButtonsIdToSelectedMap,
+    setTypeStyleToggleButtonsIdToSelectedMap,
+  ] = useState({});
+  const [
+    granularityToggleButtonsIdSelected,
+    setGranularityToggleButtonsIdSelected,
+  ] = useState(granularityToggleButtonId__2);
+  const [superSelectValue] = useState(superSelectOptions[0].value);
+
+  const onPopoverSliderValueChange = (e) => {
+    setPopoverSliderValues(e.target.value);
+  };
+
+  const onColorChange = (value) => {
+    setColor(value);
+  };
+
+  const onRangeChange = (e) => {
+    setOpacityValue(e.target.value);
+  };
+
+  const onDualChange = (value) => {
+    setDualValue(value);
+  };
+
+  const onTypeStyleChange = (optionId) => {
+    const newTypeStyleToggleButtonsIdToSelectedMap = {
+      ...typeStyleToggleButtonsIdToSelectedMap,
+      ...{
+        [optionId]: !typeStyleToggleButtonsIdToSelectedMap[optionId],
+      },
+    };
+
+    setTypeStyleToggleButtonsIdToSelectedMap(
+      newTypeStyleToggleButtonsIdToSelectedMap
+    );
+  };
+
+  const onGranularityChange = (optionId) => {
+    setGranularityToggleButtonsIdSelected(optionId);
+  };
+
+  const complexFormCompressedRangeId = useGeneratedHtmlId({
+    prefix: 'complexFormCompressedRange',
+  });
+  const docsExampleSelectTooltipContentId = useGeneratedHtmlId({
+    prefix: 'docsExampleSelectTooltipContent',
+  });
+  const docsExampleLabelFontSelectId = useGeneratedHtmlId({
+    prefix: 'docsExampleLabelFontSelect',
+  });
+  const docsExampleBorderSizeRangeId = useGeneratedHtmlId({
+    prefix: 'docsExampleBorderSizeRange',
+  });
+  const docsExampleBorderStyleSelectId = useGeneratedHtmlId({
+    prefix: 'docsExampleBorderStyleSelect',
+  });
+
+  return (
+    <EuiPanel style={{ maxWidth: 432 }}>
+      <EuiFormRow label="Name" display="columnCompressed">
+        <EuiFieldText prepend="Label" placeholder="Input" compressed />
+      </EuiFormRow>
+
+      <EuiFormRow label="Visibility" display="columnCompressed">
+        <EuiDualRange
+          value={dualValue}
+          onChange={onDualChange}
+          min={0}
+          max={26}
+          compressed
+          showInput="inputWithPopover"
+          showLabels
+          aria-label="EuiDualRange within compressed form"
+          prepend="Zoom levels"
+        />
+      </EuiFormRow>
+
+      <EuiFormRow label="Opacity" display="columnCompressed">
+        <EuiRange
+          min={0}
+          max={100}
+          name="range"
+          id={complexFormCompressedRangeId}
+          showInput
+          compressed
+          value={opacityValue}
+          onChange={onRangeChange}
+          append="%"
+        />
+      </EuiFormRow>
+
+      <EuiSpacer size="s" />
+
+      <EuiScreenReaderOnly>
+        <span id={docsExampleSelectTooltipContentId}>
+          {selectTooltipContent}
+        </span>
+      </EuiScreenReaderOnly>
+      <EuiFormRow
+        label={
+          <EuiToolTip content={selectTooltipContent}>
+            <span>
+              Label <EuiIcon type="questionInCircle" color="subdued" />
+            </span>
+          </EuiToolTip>
+        }
+        display="columnCompressed"
+      >
+        <EuiSelect
+          options={[
+            { value: 'option_one', text: 'Option one' },
+            { value: 'option_two', text: 'Option two' },
+            { value: 'option_three', text: 'Option three' },
+          ]}
+          compressed
+          aria-describedby={docsExampleSelectTooltipContentId}
+        />
+      </EuiFormRow>
+
+      <EuiFormRow label="Granularity" display="columnCompressed">
+        <EuiButtonGroup
+          legend="Granulariy of zoom levels"
+          options={granularityToggleButtons}
+          idSelected={granularityToggleButtonsIdSelected}
+          onChange={onGranularityChange}
+          buttonSize="compressed"
+          isFullWidth
+        />
+      </EuiFormRow>
+
+      <EuiFormRow label="Fill" display="columnCompressed">
+        <EuiColorPicker onChange={onColorChange} color={color} compressed />
+      </EuiFormRow>
+
+      <EuiFormRow label="Select one" display="columnCompressed">
+        <EuiSuperSelect
+          options={superSelectOptions}
+          valueOfSelected={superSelectValue}
+          compressed
+        />
+      </EuiFormRow>
+
+      <EuiFormRow label="With button" display="columnCompressed">
+        <EuiFieldNumber
+          min={1}
+          max={100}
+          defaultValue={10}
+          compressed
+          prepend={[
+            <EuiButtonIcon
+              iconType="magnet"
+              aria-label="Dynamic toggle"
+              title="Make dynamic"
+            />,
+            'kibana_sample_ecommerce_data',
+          ]}
+          append="px"
+        />
+      </EuiFormRow>
+
+      <EuiHorizontalRule />
+
+      <EuiFormRow label="Container" display="columnCompressed">
+        <EuiFlexGroup gutterSize="s" responsive={false} wrap>
+          <EuiFlexItem grow={false}>
+            <EuiColorPicker
+              onChange={onColorChange}
+              color={color}
+              button={
+                <EuiColorPickerSwatch
+                  color={color}
+                  aria-label="Container color"
+                  title="Container color"
+                  style={{ width: 32, height: 32 }}
+                />
+              }
+            />
+          </EuiFlexItem>
+          <EuiFlexItem>
+            <EuiRange
+              showInput="inputWithPopover"
+              min={0}
+              max={240}
+              value={popoverSliderValues}
+              onChange={onPopoverSliderValueChange}
+              compressed
+              append="px"
+              prepend="Padding"
+              aria-label="Container padding in pixels"
+            />
+          </EuiFlexItem>
+        </EuiFlexGroup>
+      </EuiFormRow>
+
+      <EuiSpacer size="s" />
+
+      <EuiFormRow label="Label" display="columnCompressed">
+        <div>
+          <EuiSelect
+            id={docsExampleLabelFontSelectId}
+            options={[
+              { value: 'inter', text: 'Inter UI' },
+              { value: 'roboto', text: 'Roboto' },
+              { value: 'comic', text: 'Comic sans' },
+            ]}
+            compressed
+            prepend="Font"
+            aria-label="Label font family"
+          />
+          <EuiSpacer size="xs" />
+          <EuiFlexGroup
+            gutterSize="s"
+            responsive={false}
+            wrap
+            justifyContent="flexEnd"
+          >
+            <EuiFlexItem>
+              <EuiRange
+                showInput="inputWithPopover"
+                min={7}
+                max={140}
+                value={popoverSliderValues}
+                onChange={onPopoverSliderValueChange}
+                compressed
+                append="px"
+                aria-label="Label font size in pixels"
+              />
+            </EuiFlexItem>
+            <EuiFlexItem grow={false}>
+              <EuiButtonGroup
+                legend="Label text style"
+                className="eui-displayInlineBlock"
+                options={typeStyleToggleButtons}
+                idToSelectedMap={typeStyleToggleButtonsIdToSelectedMap}
+                onChange={onTypeStyleChange}
+                type="multi"
+                isIconOnly
+                buttonSize="compressed"
+              />
+            </EuiFlexItem>
+          </EuiFlexGroup>
+        </div>
+      </EuiFormRow>
+
+      <EuiSpacer size="s" />
+
+      <EuiFormLabel htmlFor={docsExampleBorderSizeRangeId}>Border</EuiFormLabel>
+      <EuiSpacer size="xs" />
+      <EuiFlexGroup gutterSize="s" responsive={false} wrap>
+        <EuiFlexItem style={{ flexBasis: 72 }}>
+          <EuiRange
+            id={docsExampleBorderSizeRangeId}
+            showInput="inputWithPopover"
+            min={0}
+            max={32}
+            value={popoverSliderValues}
+            onChange={onPopoverSliderValueChange}
+            compressed
+            append="px"
+          />
+        </EuiFlexItem>
+        <EuiFlexItem grow={4} style={{ minWidth: 160 }}>
+          <EuiSelect
+            id={docsExampleBorderStyleSelectId}
+            options={[
+              { value: 'dashed', text: 'Dashed' },
+              { value: 'dotted', text: 'Dotted' },
+              { value: 'solid', text: 'Solid' },
+            ]}
+            compressed
+            prepend="Style"
+            aria-label="Border style"
+          />
+        </EuiFlexItem>
+        <EuiFlexItem grow={false}>
+          <EuiColorPicker
+            onChange={onColorChange}
+            color={color}
+            button={
+              <EuiColorPickerSwatch
+                color={color}
+                aria-label="Border color"
+                title="Border color"
+                style={{ width: 32, height: 32 }}
+              />
+            }
+          />
+        </EuiFlexItem>
+      </EuiFlexGroup>
+    </EuiPanel>
+  );
+};
+```

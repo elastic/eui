@@ -10,6 +10,7 @@ import React, {
   FunctionComponent,
   HTMLAttributes,
   useCallback,
+  useEffect,
   useMemo,
   useState,
 } from 'react';
@@ -28,7 +29,12 @@ import {
 type _EuiAccordionChildrenProps = HTMLAttributes<HTMLDivElement> &
   Pick<
     EuiAccordionProps,
-    'role' | 'children' | 'paddingSize' | 'isLoading' | 'isLoadingMessage'
+    | 'role'
+    | 'children'
+    | 'paddingSize'
+    | 'initialIsOpen'
+    | 'isLoading'
+    | 'isLoadingMessage'
   > & {
     isOpen: boolean;
   };
@@ -41,6 +47,7 @@ export const EuiAccordionChildren: FunctionComponent<
   isLoading,
   isLoadingMessage,
   isOpen,
+  initialIsOpen,
   ...rest
 }) => {
   /**
@@ -61,11 +68,21 @@ export const EuiAccordionChildren: FunctionComponent<
   /**
    * Wrapper
    */
+  const [hasTransition, setHasTransition] = useState(false);
   const wrapperStyles = euiAccordionChildWrapperStyles(euiTheme);
   const wrapperCssStyles = [
     wrapperStyles.euiAccordion__childWrapper,
     isOpen ? wrapperStyles.isOpen : wrapperStyles.isClosed,
+    initialIsOpen && !hasTransition && isOpen && wrapperStyles.noTransition,
   ];
+
+  /* Controls enabling opening/closing transitions on first interaction
+  when initialIsOpen=true; this only runs once */
+  useEffect(() => {
+    if (initialIsOpen && !isOpen && !hasTransition) {
+      setHasTransition(true);
+    }
+  }, [isOpen, initialIsOpen, hasTransition]);
 
   /**
    * Update the accordion wrapper height whenever the accordion opens, and also
