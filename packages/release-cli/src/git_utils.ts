@@ -58,3 +58,8 @@ export const commitFiles = async (message: string, files: string[]) => {
   // This isn't the best at handling unusual formatting like messages with quotes
   return execPromise(`git commit ${files.join(' ')} -m "${message}"`);
 }
+
+export const isFileAddedToGit = async (file: string) => {
+  const result = await execPromise(`git ls-files --exclude-standard "${file}"`);
+  return result.stdout.length > 0;
+}

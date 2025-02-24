@@ -20,7 +20,7 @@ import {
   updateChangelogContent,
 } from '../update_changelog';
 import { getUpcomingVersion, getVersionTypeFromChangelog } from '../version';
-import { commitFiles, stageFiles } from '../git_utils';
+import { commitFiles, isFileAddedToGit, stageFiles } from '../git_utils';
 
 /**
  * Update version numbers and yearly changelogs based on workspace
@@ -75,7 +75,13 @@ export const stepUpdateVersions = async (
 
     filesToCommit.push(getWorkspacePackageJsonPath(workspaceDir));
     filesToCommit.push(updatedYearChangelogPath);
-    filesToCommit.push(...processedChangelogFiles);
+
+    // Only stage and commit changelog files that are added to git (versioned)
+    for (const file of processedChangelogFiles) {
+      if (await isFileAddedToGit(file)) {
+        filesToCommit.push(file);
+      }
+    }
 
     changedWorkspaces.push(workspace);
   }
