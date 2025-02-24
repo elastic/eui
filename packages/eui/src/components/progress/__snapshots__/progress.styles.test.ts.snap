@@ -139,7 +139,7 @@ exports[`euiProgressStyles indeterminate div CSS positions absolute 1`] = `
 `;
 
 exports[`euiProgressStyles indeterminate div CSS positions fixed 1`] = `
-"position:fixed;z-index:2001;
+"position:fixed;z-index:1001;
   inset-block-start: 0;
   inset-inline-start: 0;
   inset-inline-end: 0;
@@ -340,7 +340,7 @@ exports[`euiProgressStyles native progress CSS positions absolute 1`] = `
 `;
 
 exports[`euiProgressStyles native progress CSS positions fixed 1`] = `
-"position:fixed;z-index:2001;
+"position:fixed;z-index:1001;
   inset-block-start: 0;
   inset-inline-start: 0;
   inset-inline-end: 0;
