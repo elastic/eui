@@ -97,3 +97,12 @@ export const usePropsWithComponentDefaults = <
     [componentDefaults, props]
   );
 };
+
+/*
+ * Utilities
+ */
+
+// Used to generate a "component" that is parsed for its types and used to generate a prop table
+export const EuiComponentDefaultsProps: FunctionComponent<
+  EuiComponentDefaults
+> = () => <></>;
