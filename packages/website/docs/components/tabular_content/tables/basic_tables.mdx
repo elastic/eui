@@ -147,7 +147,7 @@ In the above example, some columns displayed the value as-is (e.g. `firstName` a
 - Provide a `render` function that given the value (and the item as a second argument) returns the React node that should be displayed as the content of the cell. This can be as simple as formatting values (e.g. the "Date of Birth" column), to utilizing more complex React components (e.g. the "Online" and "Github" columns).
   - **Note:** the basic table will treat any cells that use a `render` function as being `textOnly: false`. This may cause unnecessary word breaks. Apply `textOnly: true` to ensure it breaks properly.
 
-If a column name needs a longer description, an icon with a tooltip can be used. This can be done using the `columns.nameTooltip` property. This approach ensures that the icon remains visible even if the text gets cut off, unlike manually using a React node for `columns.name`.
+If a column name needs a longer description, an icon with a tooltip can be used. This can be done using the `columns.nameTooltip` property. This approach ensures that the icon remains visible even if the text gets truncated, unlike manually using a React node for `columns.name`.
 
 ## Row selection
 
