@@ -7,9 +7,13 @@ import {
   EuiCode,
   UseEuiTheme,
   EuiTitle,
-  useEuiMemoizedStyles, EuiLink,
+  useEuiMemoizedStyles,
+  EuiLink,
 } from '@elastic/eui';
-import { ProcessedComponent, ProcessedComponentProp } from '@elastic/eui-docgen';
+import {
+  ProcessedComponent,
+  ProcessedComponentProp,
+} from '@elastic/eui-docgen';
 import { useCallback, useMemo } from 'react';
 import { css } from '@emotion/react';
 import { PropTableExtendedTypes } from './extended_types';
@@ -17,11 +21,11 @@ import { PropTableExtendedTypes } from './extended_types';
 export interface PropTableProps {
   definition: ProcessedComponent;
   headingLevel?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
+  showTitle?: boolean;
 }
 
-const getPropId = (prop: ProcessedComponentProp, componentName: string) => (
-  `${encodeURIComponent(componentName)}-prop-${prop.name}`
-);
+const getPropId = (prop: ProcessedComponentProp, componentName: string) =>
+  `${encodeURIComponent(componentName)}-prop-${prop.name}`;
 
 const getPropTableStyles = ({ euiTheme }: UseEuiTheme) => ({
   propTable: css`
@@ -74,23 +78,28 @@ const getPropTableStyles = ({ euiTheme }: UseEuiTheme) => ({
 export const PropTable = ({
   definition,
   headingLevel: HeadingLevel = 'h3',
+  showTitle = true,
 }: PropTableProps) => {
   const styles = useEuiMemoizedStyles(getPropTableStyles);
 
   const tableItems = useMemo<Array<ProcessedComponentProp>>(
-    () => Object.values(definition.props).sort(
-      (a, b) => +b.isRequired - +a.isRequired
-    ),
-    [definition.props],
+    () =>
+      Object.values(definition.props).sort(
+        (a, b) => +b.isRequired - +a.isRequired
+      ),
+    [definition.props]
   );
 
   const columns = useMemo<Array<EuiBasicTableColumn<ProcessedComponentProp>>>(
-    () => ([
+    () => [
       {
         field: 'name',
         name: 'Prop',
-        width: "150",
-        render(value: ProcessedComponentProp['name'], prop: ProcessedComponentProp) {
+        width: '150',
+        render(
+          value: ProcessedComponentProp['name'],
+          prop: ProcessedComponentProp
+        ) {
           return (
             <span css={styles.propName}>
               {value}
@@ -110,15 +119,24 @@ export const PropTable = ({
       {
         field: 'description',
         name: 'Description and type',
-        render(value: ProcessedComponentProp['description'], prop: ProcessedComponentProp) {
+        render(
+          value: ProcessedComponentProp['description'],
+          prop: ProcessedComponentProp
+        ) {
           return (
-            <EuiFlexGroup direction="column" alignItems="flexStart" gutterSize="s">
+            <EuiFlexGroup
+              direction="column"
+              alignItems="flexStart"
+              gutterSize="s"
+            >
               {value?.trim() && (
-                <EuiMarkdownFormat css={styles.description}>{value}</EuiMarkdownFormat>
+                <EuiMarkdownFormat css={styles.description}>
+                  {value}
+                </EuiMarkdownFormat>
               )}
               {prop.type && (
                 <span css={styles.type}>
-                  Type: {' '}
+                  Type:{' '}
                   <EuiCode language="ts">
                     {prop.type.raw || prop.type.name}
                   </EuiCode>
@@ -126,28 +144,34 @@ export const PropTable = ({
               )}
             </EuiFlexGroup>
           );
-        }
+        },
       },
       {
         field: 'defaultValue',
         name: 'Default value',
-        width: "120",
-        render(value: ProcessedComponentProp['defaultValue'], prop: ProcessedComponentProp) {
+        width: '120',
+        render(
+          value: ProcessedComponentProp['defaultValue'],
+          prop: ProcessedComponentProp
+        ) {
           if (prop.isRequired && !value?.trim().length) {
-            return <EuiTextColor css={styles.required}>Required</EuiTextColor>
+            return <EuiTextColor css={styles.required}>Required</EuiTextColor>;
           }
 
           return value && <EuiCode>{value}</EuiCode>;
         },
-      }
-    ]),
-    [],
+      },
+    ],
+    []
   );
 
-  const rowProps = useCallback((item: ProcessedComponentProp) => ({
-    id: getPropId(item, definition.displayName),
-    css: styles.tableRow,
-  }), [definition.displayName]);
+  const rowProps = useCallback(
+    (item: ProcessedComponentProp) => ({
+      id: getPropId(item, definition.displayName),
+      css: styles.tableRow,
+    }),
+    [definition.displayName]
+  );
 
   return (
     <EuiFlexGroup
@@ -157,9 +181,11 @@ export const PropTable = ({
       css={styles.propTable}
     >
       <header css={styles.header}>
-        <EuiTitle size="m">
-          <HeadingLevel>{definition.displayName}</HeadingLevel>
-        </EuiTitle>
+        {showTitle && (
+          <EuiTitle size="m">
+            <HeadingLevel>{definition.displayName}</HeadingLevel>
+          </EuiTitle>
+        )}
         <PropTableExtendedTypes definition={definition} />
       </header>
       <EuiBasicTable
