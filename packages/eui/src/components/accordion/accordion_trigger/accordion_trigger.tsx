@@ -62,6 +62,7 @@ export const EuiAccordionTrigger: FunctionComponent<
       aria-controls={ariaControlsId}
       aria-expanded={isOpen}
       aria-labelledby={buttonId}
+      aria-hidden={buttonIsInteractive ? 'true' : 'false'}
       tabIndex={buttonIsInteractive ? -1 : 0}
     />
   );
