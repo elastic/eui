@@ -27,6 +27,11 @@ const options = [
   { label: 'Item 3' },
   { label: 'Item 4', disabled: true },
   { label: 'Item 5' },
+  { label: 'Item 6' },
+  { label: 'Item 7' },
+  { label: 'Item 8' },
+  { label: 'Item 9' },
+  { label: 'Item 10' },
 ];
 
 const meta: Meta<EuiComboBoxProps<{}>> = {
