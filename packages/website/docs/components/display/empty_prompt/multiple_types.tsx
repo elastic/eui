@@ -2,17 +2,7 @@ import React, { useState } from 'react';
 
 import { EuiSelect, useEuiTheme } from '@elastic/eui';
 
-// @ts-expect-error Docusaurus theme is missing types for this component
-import { Demo } from '@elastic/eui-docusaurus-theme/lib/components/demo';
-
-// @ts-ignore - not typed
-import pageNotFoundDark from './pageNotFound--dark.png';
-// @ts-ignore - not typed
-import pageNotFoundLight from './pageNotFound--light.png';
-// @ts-ignore - not typed
-import accessDeniedDark from './accessDenied--dark.png';
-// @ts-ignore - not typed
-import accessDeniedLight from './accessDenied--light.png';
+import { Demo } from '@elastic/eui-docusaurus-theme/lib/components/demo/demo.js';
 
 const types: Array<{
   value: string;
@@ -27,7 +17,11 @@ const types: Array<{
   icon={
     <EuiImage
       size="fullWidth"
-      src="${colorMode === 'DARK' ? pageNotFoundDark : pageNotFoundLight}"
+      src="${
+        colorMode === 'DARK'
+          ? '/images/empty_prompt/pageNotFound--dark.png'
+          : '/images/empty_prompt/pageNotFound--light.png'
+      }"
       alt="An outer space illustration. In the background is a large moon and two planets. In the foreground is an astronaut floating in space and the numbers '404'."
     />
   }
@@ -57,7 +51,11 @@ const types: Array<{
   icon={
     <EuiImage
       size="fullWidth"
-      src="${colorMode === 'DARK' ? accessDeniedDark : accessDeniedLight}"
+      src="${
+        colorMode === 'DARK'
+          ? '/images/empty_prompt/accessDenied--dark.png'
+          : '/images/empty_prompt/accessDenied--light.png'
+      }"
       alt=""
     />
   }

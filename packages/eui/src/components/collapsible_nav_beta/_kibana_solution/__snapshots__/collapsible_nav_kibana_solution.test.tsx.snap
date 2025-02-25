@@ -168,7 +168,7 @@ exports[`KibanaCollapsibleNavSolution renders with a solution switcher 1`] = `
       class="euiCollapsibleNavLink euiCollapsibleNavSubItem emotion-euiCollapsibleNavLink-isSubItem"
     >
       <span
-        class="euiCollapsibleNavItem__title eui-textTruncate emotion-euiCollapsibleNavItem__title"
+        class="euiCollapsibleNavItem__title emotion-euiCollapsibleNavItem__title"
       >
         Some navigation link
       </span>

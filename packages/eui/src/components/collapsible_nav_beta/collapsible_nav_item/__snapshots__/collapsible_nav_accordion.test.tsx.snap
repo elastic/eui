@@ -27,6 +27,7 @@ exports[`EuiCollapsibleNavAccordion renders as a sub item 1`] = `
     <button
       aria-controls="generated-id"
       aria-expanded="false"
+      aria-hidden="true"
       aria-labelledby="generated-id"
       class="euiButtonIcon euiAccordion__arrow emotion-euiButtonIcon-xs-empty-text-euiAccordion__arrow-right-isClosed-euiCollapsibleNavAccordion__arrow"
       tabindex="-1"
@@ -58,7 +59,7 @@ exports[`EuiCollapsibleNavAccordion renders as a sub item 1`] = `
           class="euiCollapsibleNavLink euiCollapsibleNavSubItem emotion-euiCollapsibleNavLink-isSubItem"
         >
           <span
-            class="euiCollapsibleNavItem__title eui-textTruncate emotion-euiCollapsibleNavItem__title"
+            class="euiCollapsibleNavItem__title emotion-euiCollapsibleNavItem__title"
           >
             sub item
           </span>
@@ -98,6 +99,7 @@ exports[`EuiCollapsibleNavAccordion renders as a top level item 1`] = `
     <button
       aria-controls="generated-id"
       aria-expanded="false"
+      aria-hidden="true"
       aria-labelledby="generated-id"
       class="euiButtonIcon euiAccordion__arrow emotion-euiButtonIcon-xs-empty-text-euiAccordion__arrow-right-isClosed-euiCollapsibleNavAccordion__arrow"
       tabindex="-1"
@@ -129,7 +131,7 @@ exports[`EuiCollapsibleNavAccordion renders as a top level item 1`] = `
           class="euiCollapsibleNavLink euiCollapsibleNavSubItem emotion-euiCollapsibleNavLink-isSubItem"
         >
           <span
-            class="euiCollapsibleNavItem__title eui-textTruncate emotion-euiCollapsibleNavItem__title"
+            class="euiCollapsibleNavItem__title emotion-euiCollapsibleNavItem__title"
           >
             sub item
           </span>
