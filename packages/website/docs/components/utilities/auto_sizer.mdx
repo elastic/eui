@@ -1,0 +1,56 @@
+---
+slug: /utilities/auto-sizer
+id: utilities_auto_sizer
+---
+
+# Auto sizer
+
+`EuiAutoSizer` helps components that use virtualized rendering and/or require explicit dimensions to fill all available space in the parent container. See the [react-virtualized AutoSizer](https://github.com/bvaughn/react-virtualized/blob/master/docs/AutoSizer.md) documentation as `EuiAutoSizer` is a passthrough component for `AutoSizer`.
+
+<Demo>
+  ```tsx
+  import React from 'react';
+  import { css } from '@emotion/react';
+
+  import {
+  EuiAutoSizer,
+  EuiAutoSize,
+  EuiCode,
+  EuiPanel,
+  logicalSizeCSS,
+  } from '@elastic/eui';
+
+  export default () => {
+    const containerStyles = css`
+      ${logicalSizeCSS('100%', '200px')}
+    `;
+
+    const panelStyles = css`
+      position: absolute;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    `;
+
+    return (
+      <div css={containerStyles}>
+        <EuiAutoSizer>
+          {({ height, width }: EuiAutoSize) => (
+            <EuiPanel css={[panelStyles, { height, width }]}>
+              <EuiCode>
+                height: {height}, width: {width}
+              </EuiCode>
+            </EuiPanel>
+          )}
+        </EuiAutoSizer>
+      </div>
+    );
+  };
+  ```
+</Demo>
+
+## Props
+
+import docgen from '@elastic/eui-docgen/dist/components/auto_sizer';
+
+<PropTable definition={docgen.EuiAutoSizer} />
