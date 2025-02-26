@@ -45,9 +45,6 @@ const headerStackedSource = require('!!raw-loader!./header_stacked');
 import HeaderElasticPattern from './header_elastic_pattern';
 const headerElasticPatternSource = require('!!raw-loader!./header_elastic_pattern');
 
-import HeaderElasticPatternProject from './header_elastic_pattern_project';
-const headerElasticPatternProjectSource = require('!!raw-loader!./header_elastic_pattern_project');
-
 const headerSnippet = `<EuiHeader>
   <EuiHeaderSection>
     <EuiHeaderSectionItem>
@@ -504,27 +501,6 @@ export const HeaderExample = {
       fullScreen: {
         slug: 'elastic-pattern',
         demo: <HeaderElasticPattern />,
-      },
-    },
-    {
-      title: 'The Elastic navigation pattern (project)',
-      source: [
-        {
-          type: GuideSectionTypes.TSX,
-          code: headerElasticPatternProjectSource,
-        },
-      ],
-      text: (
-        <>
-          <h3>
-            Debugging{' '}
-            <a href="https://github.com/elastic/eui/issues/8206">#8206</a>
-          </h3>
-        </>
-      ),
-      fullScreen: {
-        slug: 'elastic-pattern-project',
-        demo: <HeaderElasticPatternProject />,
       },
     },
   ],
