@@ -24,6 +24,7 @@ exports[`EuiComboBox renders 1`] = `
             aria-autocomplete="list"
             aria-controls=""
             aria-expanded="false"
+            aria-haspopup="listbox"
             aria-invalid="false"
             aria-label="aria-label"
             autocomplete="off"
@@ -84,6 +85,7 @@ exports[`EuiComboBox renders the options list dropdown 1`] = `
                 aria-autocomplete="list"
                 aria-controls="generated-id_listbox"
                 aria-expanded="true"
+                aria-haspopup="listbox"
                 aria-invalid="false"
                 autocomplete="off"
                 class="euiComboBox__input emotion-euiComboBoxInput"
@@ -135,7 +137,7 @@ exports[`EuiComboBox renders the options list dropdown 1`] = `
       data-focus-lock-disabled="disabled"
     >
       <div
-        aria-live="assertive"
+        aria-live="off"
         aria-modal="true"
         class="euiPanel euiPanel--plain euiPopover__panel emotion-euiPanel-grow-m-plain-euiPopover__panel-light-isOpen-isAttached-bottom"
         data-popover-open="true"
@@ -168,7 +170,9 @@ exports[`EuiComboBox renders the options list dropdown 1`] = `
                   tabindex="0"
                 >
                   <button
+                    aria-posinset="1"
                     aria-selected="false"
+                    aria-setsize="10"
                     class="euiFilterSelectItem emotion-euiFilterSelectItem"
                     data-test-subj="titanOption"
                     id="generated-id__option-0"
@@ -196,7 +200,9 @@ exports[`EuiComboBox renders the options list dropdown 1`] = `
                     </span>
                   </button>
                   <button
+                    aria-posinset="2"
                     aria-selected="false"
+                    aria-setsize="10"
                     class="euiFilterSelectItem emotion-euiFilterSelectItem"
                     id="generated-id__option-1"
                     role="option"
@@ -223,7 +229,9 @@ exports[`EuiComboBox renders the options list dropdown 1`] = `
                     </span>
                   </button>
                   <button
+                    aria-posinset="3"
                     aria-selected="false"
+                    aria-setsize="10"
                     class="euiFilterSelectItem emotion-euiFilterSelectItem"
                     id="generated-id__option-2"
                     role="option"
@@ -250,7 +258,9 @@ exports[`EuiComboBox renders the options list dropdown 1`] = `
                     </span>
                   </button>
                   <button
+                    aria-posinset="4"
                     aria-selected="false"
+                    aria-setsize="10"
                     class="euiFilterSelectItem emotion-euiFilterSelectItem"
                     id="generated-id__option-3"
                     role="option"
@@ -277,7 +287,9 @@ exports[`EuiComboBox renders the options list dropdown 1`] = `
                     </span>
                   </button>
                   <button
+                    aria-posinset="5"
                     aria-selected="false"
+                    aria-setsize="10"
                     class="euiFilterSelectItem emotion-euiFilterSelectItem"
                     id="generated-id__option-4"
                     role="option"
@@ -304,7 +316,9 @@ exports[`EuiComboBox renders the options list dropdown 1`] = `
                     </span>
                   </button>
                   <button
+                    aria-posinset="6"
                     aria-selected="false"
+                    aria-setsize="10"
                     class="euiFilterSelectItem emotion-euiFilterSelectItem"
                     id="generated-id__option-5"
                     role="option"
@@ -331,7 +345,9 @@ exports[`EuiComboBox renders the options list dropdown 1`] = `
                     </span>
                   </button>
                   <button
+                    aria-posinset="7"
                     aria-selected="false"
+                    aria-setsize="10"
                     class="euiFilterSelectItem emotion-euiFilterSelectItem"
                     id="generated-id__option-6"
                     role="option"
@@ -358,7 +374,9 @@ exports[`EuiComboBox renders the options list dropdown 1`] = `
                     </span>
                   </button>
                   <button
+                    aria-posinset="8"
                     aria-selected="false"
+                    aria-setsize="10"
                     class="euiFilterSelectItem emotion-euiFilterSelectItem"
                     id="generated-id__option-7"
                     role="option"
@@ -385,7 +403,9 @@ exports[`EuiComboBox renders the options list dropdown 1`] = `
                     </span>
                   </button>
                   <button
+                    aria-posinset="9"
                     aria-selected="false"
+                    aria-setsize="10"
                     class="euiFilterSelectItem emotion-euiFilterSelectItem"
                     id="generated-id__option-8"
                     role="option"

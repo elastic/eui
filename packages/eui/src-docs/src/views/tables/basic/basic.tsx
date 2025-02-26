@@ -69,6 +69,9 @@ export default () => {
     {
       field: 'github',
       name: 'Github',
+      nameTooltip: {
+        content: 'Their mascot is the Octokitty',
+      },
       render: (username: User['github']) => (
         <EuiLink href="#" target="_blank">
           {username}
