@@ -13,9 +13,15 @@
 import React, { useState } from 'react';
 
 import { EuiGlobalToastList } from '../toast';
-import { EuiHeader, EuiHeaderSection } from '../header';
+import {
+  EuiHeader,
+  EuiHeaderSection,
+  EuiHeaderSectionItemButton,
+} from '../header';
 import { EuiCollapsibleNavBeta } from '../collapsible_nav_beta';
 import { EuiFlyout } from './flyout';
+import { EuiCollapsibleNav, EuiCollapsibleNavGroup } from '../collapsible_nav';
+import { EuiIcon } from '../icon';
 
 const childrenDefault = (
   <>
@@ -174,29 +180,60 @@ describe('EuiFlyout', () => {
   describe('EuiHeader shards', () => {
     const FlyoutWithHeader = ({
       children = childrenDefault,
-      showCollapsibleNav = false,
+      collapsibleNavVariant = undefined,
       ...rest
+    }: {
+      children?: React.ReactNode;
+      collapsibleNavVariant?: 'beta' | 'default';
     }) => {
       const [isOpen, setIsOpen] = useState(false);
+      const [navIsOpen, setNavIsOpen] = useState(false);
+
+      // We need to toggle it in order to properly test
+      // the expected focus behavior
+      const collapsibleNav = (
+        <EuiCollapsibleNav
+          isOpen={navIsOpen}
+          button={
+            <EuiHeaderSectionItemButton
+              data-test-subj="toggleNavButton"
+              onClick={() => setNavIsOpen(!navIsOpen)}
+            >
+              <EuiIcon type={'menu'} size="m" aria-hidden="true" />
+            </EuiHeaderSectionItemButton>
+          }
+          onClose={() => setNavIsOpen(false)}
+        >
+          <EuiCollapsibleNavGroup>
+            <a href="#">Link A</a>
+          </EuiCollapsibleNavGroup>
+        </EuiCollapsibleNav>
+      );
+      // No need to toggle…
+      const collapsibleNavBeta = (
+        <EuiCollapsibleNavBeta>
+          <EuiCollapsibleNavBeta.Body>
+            <EuiCollapsibleNavBeta.Item
+              title="Items"
+              isCollapsible={false}
+              items={[
+                { title: 'Item A', href: '#' },
+                { title: 'Item B', href: '#' },
+                { title: 'Item C', href: '#' },
+              ]}
+            />
+          </EuiCollapsibleNavBeta.Body>
+        </EuiCollapsibleNavBeta>
+      );
 
       return (
         <>
           <EuiHeader position="fixed">
-            {showCollapsibleNav && (
+            {collapsibleNavVariant && (
               <EuiHeaderSection>
-                <EuiCollapsibleNavBeta>
-                  <EuiCollapsibleNavBeta.Body>
-                    <EuiCollapsibleNavBeta.Item
-                      title="Items"
-                      isCollapsible={false}
-                      items={[
-                        { title: 'Item A', href: '#' },
-                        { title: 'Item B', href: '#' },
-                        { title: 'Item C', href: '#' },
-                      ]}
-                    />
-                  </EuiCollapsibleNavBeta.Body>
-                </EuiCollapsibleNavBeta>
+                {collapsibleNavVariant === 'beta'
+                  ? collapsibleNavBeta
+                  : collapsibleNav}
               </EuiHeaderSection>
             )}
             <EuiHeaderSection>
@@ -238,13 +275,45 @@ describe('EuiFlyout', () => {
       );
     });
 
-    it('includes collapsible nav items inside EuiHeaders shards', () => {
+    it('includes EuiCollapsibleNavBeta items in tab rotation, inside EuiHeaders shards', () => {
       cy.viewport(800, 600);
-      cy.mount(<FlyoutWithHeader showCollapsibleNav> </FlyoutWithHeader>);
+      cy.mount(
+        <FlyoutWithHeader collapsibleNavVariant="beta"> </FlyoutWithHeader>
+      );
       cy.get('[data-test-subj="toggleFlyoutFromHeader"]').click();
       cy.repeatRealPress('Tab', 4);
       cy.focused().should('have.text', 'Item B');
       cy.repeatRealPress('Tab', 2);
+      cy.focused().should(
+        'have.attr',
+        'data-test-subj',
+        'toggleFlyoutFromHeader'
+      );
+    });
+
+    it('includes EuiCollapsibleNav items in tab rotation, inside EuiHeaders shards, while behaving as expected relative to other flyouts', () => {
+      cy.viewport(800, 600);
+      cy.mount(
+        <FlyoutWithHeader collapsibleNavVariant="default"> </FlyoutWithHeader>
+      );
+      // Open the collapsible nav
+      // should be accessible by tabbing
+      cy.get('[data-test-subj="toggleNavButton"]').click();
+      cy.repeatRealPress('Tab', 2);
+      cy.focused().should('have.text', 'Link A');
+      cy.repeatRealPress('Tab', 1);
+      cy.focused().should('have.attr', 'data-test-subj', 'toggleNavButton');
+      // Open the flyout, without closing the collapsible nav;
+      // nav should not be accessible by tabbing
+      // though it's visible, behind the overlay
+      cy.get('[data-test-subj="toggleFlyoutFromHeader"]').click();
+      cy.realPress('Tab');
+      cy.focused().should('not.have.text', 'Link A');
+      cy.realPress('Tab');
+      cy.focused().should('not.have.text', 'Link A');
+      cy.realPress('Tab');
+      cy.focused().should('not.have.text', 'Link A');
+      cy.realPress('Tab');
       cy.focused().should(
         'have.attr',
         'data-test-subj',
