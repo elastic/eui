@@ -259,7 +259,8 @@ const MockConsumerFlyout: FunctionComponent = () => {
         <EuiFlyout onClose={() => setFlyoutOpen(false)}>
           <EuiCollapsibleNavBeta.Body>
             This flyout's mask should overlay / sit on top of the collapsible
-            nav, on both desktop and mobile
+            nav only on mobile. On desktop, the collapsible nav should always be
+            visible and reachable.
           </EuiCollapsibleNavBeta.Body>
         </EuiFlyout>
       )}
