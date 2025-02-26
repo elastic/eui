@@ -13,7 +13,8 @@
 import React, { useState } from 'react';
 
 import { EuiGlobalToastList } from '../toast';
-import { EuiHeader } from '../header';
+import { EuiHeader, EuiHeaderSection } from '../header';
+import { EuiCollapsibleNavBeta } from '../collapsible_nav_beta';
 import { EuiFlyout } from './flyout';
 
 const childrenDefault = (
@@ -171,18 +172,41 @@ describe('EuiFlyout', () => {
   });
 
   describe('EuiHeader shards', () => {
-    const FlyoutWithHeader = ({ children = childrenDefault, ...rest }) => {
+    const FlyoutWithHeader = ({
+      children = childrenDefault,
+      showCollapsibleNav = false,
+      ...rest
+    }) => {
       const [isOpen, setIsOpen] = useState(false);
 
       return (
         <>
           <EuiHeader position="fixed">
-            <button
-              data-test-subj="toggleFlyoutFromHeader"
-              onClick={() => setIsOpen(!isOpen)}
-            >
-              Toggle flyout
-            </button>
+            {showCollapsibleNav && (
+              <EuiHeaderSection>
+                <EuiCollapsibleNavBeta>
+                  <EuiCollapsibleNavBeta.Body>
+                    <EuiCollapsibleNavBeta.Item
+                      title="Items"
+                      isCollapsible={false}
+                      items={[
+                        { title: 'Item A', href: '#' },
+                        { title: 'Item B', href: '#' },
+                        { title: 'Item C', href: '#' },
+                      ]}
+                    />
+                  </EuiCollapsibleNavBeta.Body>
+                </EuiCollapsibleNavBeta>
+              </EuiHeaderSection>
+            )}
+            <EuiHeaderSection>
+              <button
+                data-test-subj="toggleFlyoutFromHeader"
+                onClick={() => setIsOpen(!isOpen)}
+              >
+                Toggle flyout
+              </button>
+            </EuiHeaderSection>
           </EuiHeader>
           {isOpen ? (
             <EuiFlyout
@@ -207,6 +231,20 @@ describe('EuiFlyout', () => {
       cy.mount(<FlyoutWithHeader />);
       cy.get('[data-test-subj="toggleFlyoutFromHeader"]').click();
       cy.repeatRealPress('Tab', 6);
+      cy.focused().should(
+        'have.attr',
+        'data-test-subj',
+        'toggleFlyoutFromHeader'
+      );
+    });
+
+    it('includes collapsible nav items inside EuiHeaders shards', () => {
+      cy.viewport(800, 600);
+      cy.mount(<FlyoutWithHeader showCollapsibleNav> </FlyoutWithHeader>);
+      cy.get('[data-test-subj="toggleFlyoutFromHeader"]').click();
+      cy.repeatRealPress('Tab', 4);
+      cy.focused().should('have.text', 'Item B');
+      cy.repeatRealPress('Tab', 2);
       cy.focused().should(
         'have.attr',
         'data-test-subj',
