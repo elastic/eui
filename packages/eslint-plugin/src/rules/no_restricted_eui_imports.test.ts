@@ -17,9 +17,10 @@
  * under the License.
  */
 
+// @ts-ignore
 import { RuleTester } from '@typescript-eslint/rule-tester';
 
-import { NoRestrictedEuiImports } from './no_restricted_eui_imports.ts';
+import { NoRestrictedEuiImports } from './no_restricted_eui_imports';
 
 const ruleTester = new RuleTester();
 

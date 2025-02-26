@@ -18,9 +18,10 @@
  */
 
 import dedent from 'dedent';
+// @ts-ignore
 import { RuleTester } from '@typescript-eslint/rule-tester';
 
-import { HrefOnClick } from './href_or_on_click.ts';
+import { HrefOnClick } from './href_or_on_click';
 
 /**
  * For some reason, `languageOptions` is defined in `RuleTesterConfig` but causes an error: "Object literal may only specify known properties".

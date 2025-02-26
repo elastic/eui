@@ -2,14 +2,14 @@
   "$schema": "https://json.schemastore.org/tsconfig",
   "compilerOptions": {
     "rootDir": "src",
-    "outDir": "lib/esm",
-    "target": "ES2020",
-    "module": "ESNext",
+    "outDir": "lib/cjs",
+    "target": "es6",
+    "module": "CommonJS",
     "lib": [
-      "ESNext",
+      "es6",
       "DOM"
     ],
-    "moduleResolution": "node",
+    "moduleResolution": "Node",
     "declaration": true,
     "sourceMap": true,
     "noEmitHelpers": true,
@@ -17,9 +17,9 @@
     "esModuleInterop": true,
     "strict": true,
     "skipLibCheck": true,
-    "tsBuildInfoFile": "lib/esm/.tsbuildinfo"
+    "tsBuildInfoFile": "lib/cjs/.tsbuildinfo",
+    "importHelpers": false,
   },
-  "typeRoots": ["./node_modules/@typescript-eslint/rule-tester/dist/types"],
   "include": [
     "src"
   ],
