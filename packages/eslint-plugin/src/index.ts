@@ -17,10 +17,10 @@
  * under the License.
  */
 
-import { HrefOnClick } from './rules/href_or_on_click.ts';
-import { NoRestrictedEuiImports } from './rules/no_restricted_eui_imports.ts';
-import { NoCssColor } from './rules/no_css_color.ts';
-import { PreferCSSAttributeForEuiComponents } from './rules/prefer_css_attribute_for_eui_components.ts';
+import { HrefOnClick } from './rules/href_or_on_click';
+import { NoRestrictedEuiImports } from './rules/no_restricted_eui_imports';
+import { NoCssColor } from './rules/no_css_color';
+import { PreferCSSAttributeForEuiComponents } from './rules/prefer_css_attribute_for_eui_components';
 
 const config = {
   rules: {

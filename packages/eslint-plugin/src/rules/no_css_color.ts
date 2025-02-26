@@ -10,10 +10,11 @@
 import { CSSStyleDeclaration } from 'cssstyle';
 import { TSESTree, ESLintUtils } from '@typescript-eslint/utils';
 
-import { resolveMemberExpressionRoot } from '../utils/resolve_member_expression_root.ts';
+import { resolveMemberExpressionRoot } from '../utils/resolve_member_expression_root';
 import {
   ReportDescriptor,
   RuleContext,
+  // @ts-ignore
 } from '@typescript-eslint/utils/ts-eslint';
 
 type MessageIds =

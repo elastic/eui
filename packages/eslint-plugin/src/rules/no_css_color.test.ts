@@ -18,9 +18,10 @@
  */
 
 import dedent from 'dedent';
+// @ts-ignore
 import { RuleTester } from '@typescript-eslint/rule-tester';
 
-import { NoCssColor } from './no_css_color.ts';
+import { NoCssColor } from './no_css_color';
 
 /**
  * For some reason, `languageOptions` is defined in `RuleTesterConfig` but causes an error: "Object literal may only specify known properties".
