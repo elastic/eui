@@ -271,18 +271,38 @@ const MockConsumerFlyout: FunctionComponent = () => {
 export const FlyoutOverlay: Story = {
   render: (_) => {
     return (
-      <EuiHeader position="fixed">
-        <EuiHeaderSection>
-          <EuiCollapsibleNavBeta>
-            Click the "Toggle flyout" button in the top right hand corner
-          </EuiCollapsibleNavBeta>
-        </EuiHeaderSection>
-        <EuiHeaderSection>
-          <EuiHeaderSectionItem>
-            <MockConsumerFlyout />
-          </EuiHeaderSectionItem>
-        </EuiHeaderSection>
-      </EuiHeader>
+      <>
+        <EuiHeader position="fixed">
+          <EuiHeaderSection>
+            <EuiCollapsibleNavBeta>
+              <EuiCollapsibleNavBeta.Body>
+                <EuiCollapsibleNavBeta.Item
+                  title="Curabitur ornare"
+                  icon="keyboard"
+                  isCollapsible={false}
+                  items={[
+                    { title: 'Quisque', href: '#' },
+                    { title: 'Suspendisse euismod', href: '#' },
+                    { title: 'Aenean nec', href: '#' },
+                    { title: 'Proin porta', href: '#' },
+                  ]}
+                />
+              </EuiCollapsibleNavBeta.Body>
+            </EuiCollapsibleNavBeta>
+          </EuiHeaderSection>
+          <EuiHeaderSection>
+            <EuiHeaderSectionItem>
+              <MockConsumerFlyout />
+            </EuiHeaderSectionItem>
+          </EuiHeaderSection>
+        </EuiHeader>
+        <EuiPageTemplate>
+          <EuiPageTemplate.Section>
+            Click the "Toggle flyout" button in the top right hand corner, and
+            tab through the page
+          </EuiPageTemplate.Section>
+        </EuiPageTemplate>
+      </>
     );
   },
   parameters: hideAllStorybookControls,
