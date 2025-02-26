@@ -58,7 +58,8 @@ export const euiButtonEmptyStyles = (euiThemeContext: UseEuiTheme) => {
     // uses array here to prevent adding duplicate "m" classname partial
     m: [
       displayStyles.m,
-      `
+      isExperimental &&
+        `
         ${logicalCSS('padding-horizontal', euiTheme.size.m)}
       `,
     ],
