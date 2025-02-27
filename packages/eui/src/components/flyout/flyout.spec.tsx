@@ -291,9 +291,14 @@ describe('EuiFlyout', () => {
       );
     });
 
-    // TODO investigate why this test is failing for React 17 and 16
-    // (could certainy be improved a bit also)
-    it.skip('includes EuiCollapsibleNav items in tab rotation, inside EuiHeaders shards, while behaving as expected relative to other flyouts', () => {
+    /**
+     * @todo this fails with React 18, but passes with previous versions
+     * Focus behaviour is different in React 18, depending on whether 1 or more flyouts are open
+     *
+     * @see https://github.com/elastic/eui/pull/8325#discussion_r1973266414
+     * @see https://github.com/elastic/eui/issues/8376
+     */
+    it.skip('includes EuiCollapsibleNav items in tab rotation, inside EuiHeaders shards', () => {
       cy.viewport(800, 600);
       cy.mount(
         <FlyoutWithHeader collapsibleNavVariant="default"> </FlyoutWithHeader>
@@ -309,8 +314,6 @@ describe('EuiFlyout', () => {
       // nav should not be accessible by tabbing
       // though it's visible, behind the overlay
       cy.get('[data-test-subj="toggleFlyoutFromHeader"]').click();
-      cy.realPress('Tab');
-      cy.focused().should('not.have.text', 'Link A');
       cy.realPress('Tab');
       cy.focused().should('not.have.text', 'Link A');
       cy.realPress('Tab');
