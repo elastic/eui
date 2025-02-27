@@ -18,7 +18,7 @@ import {
   getRemoteHeadCommitHash,
   isWorkingTreeClean,
 } from '../git_utils';
-import { getAuthenticatedUser } from '../yarn_utils';
+import { getAuthenticatedUser, getYarnRegistryServer } from '../yarn_utils';
 
 /**
  * Check current git branch, working tree status and more to ensure
@@ -84,11 +84,22 @@ export const stepInitChecks = async (options: ReleaseOptions) => {
     throw new ValidationError(
       'Authentication to npmjs is required. Please log in before running this command again.',
       `To authenticate run the following command:\n` +
-      `  ${chalk.yellowBright('yarn npm login')}`
+        `  ${chalk.yellowBright('yarn npm login')}`
     );
   }
 
   logger.info(`Logged in to npmjs as ${registryUser}`);
+
+  const npmRegistry = await getYarnRegistryServer();
+  if (npmRegistry) {
+    logger.warning(
+      chalk.yellow(
+        `A custom npm registry server (${npmRegistry}) will be used!`
+      )
+    );
+  } else {
+    logger.info('The official npm registry server will be used');
+  }
 
   if (!options.skipPrompts) {
     const { proceed } = await prompts({
