@@ -15,6 +15,8 @@ import { type ReleaseOptions } from '../release';
 const workspacesToExclude = [
   // exclude itself to prevent any unexpected behavior
   '@elastic/eui-release-cli',
+  // the monorepo is just a "wrapper" workspace and doesn't need building
+  `@elastic/eui-monorepo`,
   // only needed by @elastic/eui-website
   '@elastic/eui-docgen',
   // private and fully independent
