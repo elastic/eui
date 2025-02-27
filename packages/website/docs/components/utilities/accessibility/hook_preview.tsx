@@ -22,7 +22,7 @@ export const HookPreview = () => {
           `}
         >
           I am an unstyled <EuiCode>button</EuiCode> with an{' '}
-          <EuiCode>outset, accent</EuiCode> outline
+          <EuiCode>center, accent</EuiCode> outline
         </button>
       </p>
     </EuiText>
