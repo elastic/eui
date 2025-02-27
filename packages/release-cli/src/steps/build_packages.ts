@@ -10,6 +10,17 @@ import { execSync } from 'node:child_process';
 
 import { type ReleaseOptions } from '../release';
 
+// A list of very specific packages to exclude when building
+// Should probably become a configuration option at some point
+const workspacesToExclude = [
+  // exclude itself to prevent any unexpected behavior
+  '@elastic/eui-release-cli',
+  // only needed by @elastic/eui-website
+  '@elastic/eui-docgen',
+  // private and fully independent
+  '@elastic/eui-website',
+];
+
 /**
  * Install dependencies and run the `build` script in all workspaces
  */
@@ -21,12 +32,22 @@ export const stepBuildPackages = async (options: ReleaseOptions) => {
   // Install dependencies in case something's missing
   execSync('yarn', { stdio: 'inherit' });
 
-  // Build all packages in topological order from the monorepo root
-  // while ignoring the monorepo root package.json
-  execSync(
-    'yarn workspaces foreach --topological --worktree --from @elastic/eui-monorepo --exclude @elastic/eui-monorepo run build',
-    {
-      stdio: 'inherit',
-    }
-  );
+  const cmd = [
+    'yarn workspaces foreach',
+
+    // consider both "dependencies" and "devDependencies" package.json fields
+    // in topological order
+    '--topological-dev',
+
+    // include all local workspaces
+    '--all',
+
+    // exclude selected independent and fully private workspaces
+    workspacesToExclude.map((name) => `--exclude ${name}`).join(' '),
+
+    'run build',
+  ].join(' ');
+  execSync(cmd, {
+    stdio: 'inherit',
+  });
 };
