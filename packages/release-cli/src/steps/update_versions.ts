@@ -90,8 +90,15 @@ export const stepUpdateVersions = async (
     throw new Error('There are no changes to release');
   }
 
-  // Commit updated package.json files
+  // Stage yarn.lock changes
+  const yarnLockPath = path.join(rootWorkspaceDir, 'yarn.lock');
+  filesToCommit.push(yarnLockPath);
+  await stageFiles([yarnLockPath]);
+
+  // Stage updated package.json files
   await stageFiles(filesToCommit);
+
+  // Commit all package.json files and yarn.lock
   await commitFiles('chore: update package versions [skip ci]', filesToCommit);
 
   return changedWorkspaces;
