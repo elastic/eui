@@ -4601,6 +4601,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@elastic/eui-docgen@workspace:packages/eui-docgen"
   dependencies:
+    "@elastic/eui": "workspace:^"
     glob: "npm:^11.0.0"
     react-docgen-typescript: "npm:^2.2.2"
     rimraf: "npm:^6.0.1"
