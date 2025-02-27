@@ -32,10 +32,10 @@ export const cli = () => {
               'npm tag for the release. It is forced to `latest` for official releases and defaults to `snapshot` for snapshot releases.',
           })
           .option('workspaces', {
-            type: 'array',
+            type: 'string',
+            array: true,
             describe:
               'An optional space-separated list of workspaces to release. Defaults to all workspaces changed since the last release.',
-            choices: [] as string[],
           })
           .option('allowCustom', {
             type: 'boolean',
