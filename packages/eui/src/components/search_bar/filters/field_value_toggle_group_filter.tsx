@@ -78,6 +78,7 @@ export class FieldValueToggleGroupFilter extends Component<FieldValueToggleGroup
         <EuiFilterButton
           key={key}
           onClick={onClick}
+          isSelected={active}
           hasActiveFilters={active}
           aria-pressed={!!active}
           withNext={!isLastItem}
