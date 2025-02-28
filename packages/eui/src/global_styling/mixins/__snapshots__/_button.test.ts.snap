@@ -232,7 +232,7 @@ exports[`useEuiButtonColorCSS base 1`] = `
   },
   "warning": {
     "map": undefined,
-    "name": "l5dk9q-displaysColorsMap-display-color",
+    "name": "fpmgmg-displaysColorsMap-display-color",
     "next": undefined,
     "styles": "color:#6a4906;background-color:#FFFFFF; 
             border: 1px solid #CAD3E2;
@@ -249,7 +249,7 @@ exports[`useEuiButtonColorCSS base 1`] = `
             content: '';
             position: absolute;
             inset: 0;
-            background-color: rgba(250,203,61, 0.20);
+            background-color: rgba(234,174,1, 0.16);
           }
         }
 
@@ -261,7 +261,7 @@ exports[`useEuiButtonColorCSS base 1`] = `
             content: '';
             position: absolute;
             inset: 0;
-            background-color: rgba(250,203,61, 0.24);
+            background-color: rgba(234,174,1, 0.20);
           }
         }
       ;
@@ -275,105 +275,238 @@ exports[`useEuiButtonColorCSS empty 1`] = `
 {
   "accent": {
     "map": undefined,
-    "name": "1wr44ht-displaysColorsMap-display-color",
+    "name": "1gcoqlx-displaysColorsMap-display-color",
     "next": undefined,
     "styles": "color:#a11262; 
+        position: relative;
+        overflow: hidden;
+
         &:hover:not(:disabled) {
-          background-color: rgba(229,74,145, 0.12);
+          &::before {
+            inline-size: 100%;
+            block-size: 100%;
+
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-color: rgba(229,74,145, 0.12);
+          }
         }
 
         &:active:not(:disabled) {
-          background-color: rgba(229,74,145, 0.16);
+          &::before {
+            inline-size: 100%;
+            block-size: 100%;
+
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-color: rgba(229,74,145, 0.16);
+          }
         }
       ;;label:empty-accent;",
     "toString": [Function],
   },
   "danger": {
     "map": undefined,
-    "name": "hy4b7p-displaysColorsMap-display-color",
+    "name": "x1dz9b-displaysColorsMap-display-color",
     "next": undefined,
     "styles": "color:#a71627; 
+        position: relative;
+        overflow: hidden;
+
         &:hover:not(:disabled) {
-          background-color: rgba(238,76,72, 0.12);
+          &::before {
+            inline-size: 100%;
+            block-size: 100%;
+
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-color: rgba(238,76,72, 0.12);
+          }
         }
 
         &:active:not(:disabled) {
-          background-color: rgba(238,76,72, 0.16);
+          &::before {
+            inline-size: 100%;
+            block-size: 100%;
+
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-color: rgba(238,76,72, 0.16);
+          }
         }
       ;;label:empty-danger;",
     "toString": [Function],
   },
   "disabled": {
     "map": undefined,
-    "name": "1j0vlnj-displaysColorsMap-display-color",
+    "name": "1mc4y5h-displaysColorsMap-display-color",
     "next": undefined,
     "styles": "color:#798EAF; 
+        position: relative;
+        overflow: hidden;
+
         &:hover:not(:disabled) {
-          background-color: undefined;
+          &::before {
+            inline-size: 100%;
+            block-size: 100%;
+
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-color: undefined;
+          }
         }
 
         &:active:not(:disabled) {
-          background-color: undefined;
+          &::before {
+            inline-size: 100%;
+            block-size: 100%;
+
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-color: undefined;
+          }
         }
       ;;label:empty-disabled;",
     "toString": [Function],
   },
   "primary": {
     "map": undefined,
-    "name": "abxzey-displaysColorsMap-display-color",
+    "name": "j2avnk-displaysColorsMap-display-color",
     "next": undefined,
     "styles": "color:#1750ba; 
+        position: relative;
+        overflow: hidden;
+
         &:hover:not(:disabled) {
-          background-color: rgba(55,136,255, 0.12);
+          &::before {
+            inline-size: 100%;
+            block-size: 100%;
+
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-color: rgba(55,136,255, 0.12);
+          }
         }
 
         &:active:not(:disabled) {
-          background-color: rgba(55,136,255, 0.16);
+          &::before {
+            inline-size: 100%;
+            block-size: 100%;
+
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-color: rgba(55,136,255, 0.16);
+          }
         }
       ;;label:empty-primary;",
     "toString": [Function],
   },
   "success": {
     "map": undefined,
-    "name": "1k9tjc7-displaysColorsMap-display-color",
+    "name": "1eqjqyp-displaysColorsMap-display-color",
     "next": undefined,
     "styles": "color:#09724d; 
+        position: relative;
+        overflow: hidden;
+
         &:hover:not(:disabled) {
-          background-color: rgba(4,174,126, 0.12);
+          &::before {
+            inline-size: 100%;
+            block-size: 100%;
+
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-color: rgba(4,174,126, 0.12);
+          }
         }
 
         &:active:not(:disabled) {
-          background-color: rgba(4,174,126, 0.16);
+          &::before {
+            inline-size: 100%;
+            block-size: 100%;
+
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-color: rgba(4,174,126, 0.16);
+          }
         }
       ;;label:empty-success;",
     "toString": [Function],
   },
   "text": {
     "map": undefined,
-    "name": "i30dt6-displaysColorsMap-display-color",
+    "name": "x2pph5-displaysColorsMap-display-color",
     "next": undefined,
     "styles": "color:#1d2a3e; 
+        position: relative;
+        overflow: hidden;
+
         &:hover:not(:disabled) {
-          background-color: rgba(23,80,186, 0.08);
+          &::before {
+            inline-size: 100%;
+            block-size: 100%;
+
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-color: rgba(23,80,186, 0.08);
+          }
         }
 
         &:active:not(:disabled) {
-          background-color: rgba(23,80,186, 0.12);
+          &::before {
+            inline-size: 100%;
+            block-size: 100%;
+
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-color: rgba(23,80,186, 0.12);
+          }
         }
       ;;label:empty-text;",
     "toString": [Function],
   },
   "warning": {
     "map": undefined,
-    "name": "rt4nbt-displaysColorsMap-display-color",
+    "name": "yo17mn-displaysColorsMap-display-color",
     "next": undefined,
     "styles": "color:#6a4906; 
+        position: relative;
+        overflow: hidden;
+
         &:hover:not(:disabled) {
-          background-color: rgba(250,203,61, 0.20);
+          &::before {
+            inline-size: 100%;
+            block-size: 100%;
+
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-color: rgba(234,174,1, 0.16);
+          }
         }
 
         &:active:not(:disabled) {
-          background-color: rgba(250,203,61, 0.24);
+          &::before {
+            inline-size: 100%;
+            block-size: 100%;
+
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-color: rgba(234,174,1, 0.20);
+          }
         }
       ;;label:empty-warning;",
     "toString": [Function],
