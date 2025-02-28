@@ -18,7 +18,7 @@
  */
 
 import dedent from 'dedent';
-// @ts-ignore
+// @ts-expect-error -- types are available, doesn't work with current TS config
 import { RuleTester } from '@typescript-eslint/rule-tester';
 
 import { HrefOnClick } from './href_or_on_click';
@@ -40,54 +40,54 @@ const ruleTester = new RuleTester();
 ruleTester.run('href-or-on-click', HrefOnClick, {
   valid: [
     {
-      code: dedent(`
+      code: dedent`
         module.export = () => (
           <EuiButton />
         )
-      `),
+      `,
       languageOptions,
     },
     {
-      code: dedent(`
+      code: dedent`
         module.export = () => (
           <EuiButton href="/" />
         )
-      `),
+      `,
       languageOptions,
     },
     {
-      code: dedent(`
+      code: dedent`
         module.export = () => (
           <EuiButton href={'/' + 'home'} />
         )
-      `),
+      `,
       languageOptions,
     },
     {
-      code: dedent(`
+      code: dedent`
         module.export = () => (
           <EuiButton onClick={executeAction} />
         )
-      `),
+      `,
       languageOptions,
     },
     {
-      code: dedent(`
+      code: dedent`
         module.export = () => (
           <EuiButton onClick={() => executeAction()} />
         )
-      `),
+      `,
       languageOptions,
     },
   ],
 
   invalid: [
     {
-      code: dedent(`
+      code: dedent`
         module.export = () => (
           <EuiButton href="/" onClick={fooBar} />
         )
-      `),
+      `,
       languageOptions,
       errors: [
         {
@@ -96,11 +96,11 @@ ruleTester.run('href-or-on-click', HrefOnClick, {
       ],
     },
     {
-      code: dedent(`
+      code: dedent`
         module.export = () => (
           <EuiButtonEmpty href="/" onClick={fooBar} />
         )
-      `),
+      `,
       languageOptions,
       errors: [
         {
@@ -109,11 +109,11 @@ ruleTester.run('href-or-on-click', HrefOnClick, {
       ],
     },
     {
-      code: dedent(`
+      code: dedent`
         module.export = () => (
           <EuiLink href="/" onClick={fooBar} />
         )
-      `),
+      `,
       languageOptions,
       errors: [
         {

@@ -18,7 +18,7 @@
  */
 
 import dedent from 'dedent';
-// @ts-ignore
+// @ts-expect-error -- types are available, doesn't work with current TS config
 import { RuleTester } from '@typescript-eslint/rule-tester';
 
 import { PreferCSSAttributeForEuiComponents } from './prefer_css_attribute_for_eui_components';
@@ -43,42 +43,42 @@ ruleTester.run(
   {
     valid: [
       {
-        code: dedent(`
+        code: dedent`
         import React from 'react';
         
         function TestComponent() {
           return (
             <EuiCode css={{ color: '#dd4040' }}>This is a test</EuiCode>
           )
-        }`),
+        }`,
         languageOptions,
       },
     ],
 
     invalid: [
       {
-        code: dedent(`
+        code: dedent`
         import React from 'react';
         
         function TestComponent() {
           return (
             <EuiCode style={{ color: '#dd4040' }}>This is a test</EuiCode>
           )
-        }`),
+        }`,
         languageOptions,
         errors: [
           {
             messageId: 'preferCSSAttributeForEuiComponents',
           },
         ],
-        output: dedent(`
+        output: dedent`
         import React from 'react';
         
         function TestComponent() {
           return (
             <EuiCode css={{ color: '#dd4040' }}>This is a test</EuiCode>
           )
-        }`),
+        }`,
       },
     ],
   }
