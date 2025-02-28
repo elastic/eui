@@ -309,11 +309,13 @@ export class FieldValueSelectionFilter extends Component<
             <EuiFilterButton
               iconType="arrowDown"
               iconSide="right"
+              isSelected={active}
               hasActiveFilters={active}
               numActiveFilters={active ? activeItemsCount : undefined}
               grow
               aria-label={ariaLabel}
               onClick={this.onButtonClick.bind(this)}
+              isToggle={false}
             >
               {config.name}
             </EuiFilterButton>
