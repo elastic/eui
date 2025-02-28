@@ -185,7 +185,9 @@ export const euiButtonGroupButtonStyles = (euiThemeContext: UseEuiTheme) => {
       font-weight: ${euiTheme.font.weight.regular};
 
       /* Offset the background color from the border by clipping background to before the padding starts */
-      padding: ${mathWithUnits(euiTheme.border.width.thin, (x) => x * 2)};
+      padding: ${isExperimental
+        ? '0'
+        : mathWithUnits(euiTheme.border.width.thin, (x) => x * 2)};
       ${defaultCompressedStyles}
       ${experimentalCompressedStyles}
     `,
