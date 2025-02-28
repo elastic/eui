@@ -28,7 +28,11 @@ describe('EuiFilterGroup single filter example', () => {
 
     return (
       <EuiFilterGroup>
-        <EuiFilterButton hasActiveFilters={isFilterOn} onClick={toggleFilter}>
+        <EuiFilterButton
+          isSelected={isFilterOn}
+          hasActiveFilters={isFilterOn}
+          onClick={toggleFilter}
+        >
           Single filter
         </EuiFilterButton>
       </EuiFilterGroup>
@@ -45,8 +49,8 @@ describe('EuiFilterGroup single filter example', () => {
     });
 
     it('has zero violations when toggled on', () => {
-      cy.get('button.euiButtonEmpty').first().realClick();
-      cy.get('button.euiButtonEmpty')
+      cy.get('button.euiFilterButton').first().realClick();
+      cy.get('button.euiFilterButton')
         .first()
         .should('have.class', 'euiFilterButton-hasActiveFilters');
       cy.checkAxe();
@@ -65,6 +69,7 @@ describe('EuiFilterGroup filter with long name example', () => {
     return (
       <EuiFilterGroup>
         <EuiFilterButton
+          isSelected={isFilterOn}
           hasActiveFilters={isFilterOn}
           numFilters={12}
           onClick={toggleFilter}
@@ -85,8 +90,8 @@ describe('EuiFilterGroup filter with long name example', () => {
     });
 
     it('has zero violations when toggled on', () => {
-      cy.get('button.euiButtonEmpty').first().realClick();
-      cy.get('button.euiButtonEmpty')
+      cy.get('button.euiFilterButton').first().realClick();
+      cy.get('button.euiFilterButton')
         .first()
         .should('have.class', 'euiFilterButton-hasActiveFilters');
       cy.checkAxe();
@@ -113,6 +118,7 @@ describe('EuiFilterGroup two filter example', () => {
       <EuiFilterGroup>
         <EuiFilterButton
           withNext
+          isSelected={isOnFilterOn}
           hasActiveFilters={isOnFilterOn}
           onClick={toggleOnFilter}
         >
@@ -120,6 +126,7 @@ describe('EuiFilterGroup two filter example', () => {
         </EuiFilterButton>
         <EuiFilterButton
           withNext
+          isSelected={isOffFilterOn}
           hasActiveFilters={isOffFilterOn}
           onClick={toggleOffFilter}
         >
@@ -139,8 +146,8 @@ describe('EuiFilterGroup two filter example', () => {
     });
 
     it('has zero violations when toggled on', () => {
-      cy.get('button.euiButtonEmpty').first().realClick();
-      cy.get('button.euiButtonEmpty')
+      cy.get('button.euiFilterButton').first().realClick();
+      cy.get('button.euiFilterButton')
         .first()
         .should('have.class', 'euiFilterButton-hasActiveFilters');
       cy.checkAxe();
@@ -242,7 +249,7 @@ describe('EuiFilterGroup multiselect example', () => {
     });
 
     it('has zero violations when toggled on', () => {
-      cy.get('button.euiButtonEmpty').first().realClick();
+      cy.get('button.euiFilterButton').first().realClick();
       cy.get('div[data-test-subj="euiSelectableList"]').should('exist');
       cy.checkAxe();
     });
