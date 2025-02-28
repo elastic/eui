@@ -8,7 +8,7 @@
 
 import { css } from '@emotion/react';
 
-import { euiShadowSmall } from '../../themes/amsterdam/global_styling/mixins';
+import { euiShadowXSmall } from '../../themes/amsterdam/global_styling/mixins';
 import { logicalCSS } from '../../global_styling';
 import {
   UseEuiTheme,
@@ -38,7 +38,7 @@ export const euiHeaderStyles = (euiThemeContext: UseEuiTheme) => {
       ${logicalCSS('height', height)}
       ${logicalCSS('padding-horizontal', padding)}
       ${logicalCSS('border-bottom', euiTheme.border.thin)}
-      ${euiShadowSmall(euiThemeContext)}
+      ${euiShadowXSmall(euiThemeContext)}
     `,
     // Position
     static: css`
@@ -47,7 +47,8 @@ export const euiHeaderStyles = (euiThemeContext: UseEuiTheme) => {
       position: relative;
     `,
     fixed: css`
-      z-index: ${euiTheme.levels.header};
+      /* Ensure it's above EuiFlyout */
+      z-index: ${Number(euiTheme.levels.header!) + 1};
       position: fixed;
       ${logicalCSS('top', 0)}
       ${logicalCSS('horizontal', 0)}
