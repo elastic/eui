@@ -329,7 +329,7 @@ const euiButtonDisplaysColors = (euiThemeContext: UseEuiTheme) => {
           `;
 
           const exerimentalStyles =
-            isExperimental && interactiveStyles(buttonColors);
+            isExperimental && interactiveStyles(buttonColors, 'overlay');
 
           displaysColorsMap[display][color] = css`
             color: ${euiButtonEmptyColor(euiThemeContext, color).color};
