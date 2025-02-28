@@ -202,7 +202,7 @@ describe('EuiSearchBar', () => {
     });
 
     it('has zero violations after filtering on Open items', () => {
-      cy.get('button.euiButtonEmpty').first().focus();
+      cy.get('button.euiFilterButton').first().focus();
       cy.realPress('Enter');
       cy.get('table.euiTable tbody').find('tr').should('have.length', 3);
       cy.checkAxe();
@@ -214,12 +214,12 @@ describe('EuiSearchBar', () => {
     });
 
     it('has zero violations after filtering by Tags', () => {
-      cy.get('button.euiButtonEmpty').last().focus();
+      cy.get('button.euiFilterButton').last().focus();
       cy.realPress('Enter');
       cy.realPress('ArrowDown');
       cy.realPress('Enter');
       cy.realPress('Escape');
-      cy.get('button.euiButtonEmpty').last().should('have.focus');
+      cy.get('button.euiFilterButton').last().should('have.focus');
       cy.get('table.euiTable tbody').find('tr').should('have.length', 3);
       cy.checkAxe();
       cy.repeatRealPress(['Shift', 'Tab'], 3);
