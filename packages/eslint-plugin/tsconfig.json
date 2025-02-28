@@ -3,23 +3,21 @@
   "compilerOptions": {
     "rootDir": "src",
     "outDir": "lib/esm",
-    "target": "ES2020",
-    "module": "ESNext",
+    "target": "es2020",
+    "module": "esnext",
     "lib": [
-      "ESNext",
+      "esnext",
       "DOM"
     ],
     "moduleResolution": "node",
     "declaration": true,
     "sourceMap": true,
-    "noEmitHelpers": true,
     "incremental": true,
     "esModuleInterop": true,
     "strict": true,
     "skipLibCheck": true,
     "tsBuildInfoFile": "lib/esm/.tsbuildinfo"
   },
-  "typeRoots": ["./node_modules/@typescript-eslint/rule-tester/dist/types"],
   "include": [
     "src"
   ],
