@@ -159,7 +159,7 @@ export const EuiFilterButton: FunctionComponent<EuiFilterButtonProps> = ({
     { count: badgeCount }
   );
 
-  const badgeElement = (
+  const badgeContent = (
     <EuiNotificationBadge
       className="euiFilterButton__notification"
       css={[
@@ -174,16 +174,16 @@ export const EuiFilterButton: FunctionComponent<EuiFilterButtonProps> = ({
     </EuiNotificationBadge>
   );
 
-  const badgeContent =
+  const badgeElement =
     showBadge &&
     (isExperimental ? (
       <EuiThemeProvider
-        colorMode={isToggle && hasActiveFilters ? 'INVERSE' : colorMode}
+        colorMode={isToggle && isSelected ? 'INVERSE' : colorMode}
       >
-        {badgeElement}
+        {badgeContent}
       </EuiThemeProvider>
     ) : (
-      badgeElement
+      badgeContent
     ));
 
   /**
@@ -240,7 +240,7 @@ export const EuiFilterButton: FunctionComponent<EuiFilterButtonProps> = ({
       {...rest}
     >
       {textContent}
-      {badgeContent}
+      {badgeElement}
     </EuiButtonEmpty>
   );
 
@@ -259,7 +259,7 @@ export const EuiFilterButton: FunctionComponent<EuiFilterButtonProps> = ({
             label={
               <>
                 {textContent}
-                {badgeContent}
+                {badgeElement}
               </>
             }
             className={classes}
