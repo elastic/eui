@@ -190,6 +190,7 @@ describe('EuiFilterGroup multiselect example', () => {
         numFilters={items.filter((item) => item.checked !== 'off').length}
         hasActiveFilters={!!items.find((item) => item.checked === 'on')}
         numActiveFilters={items.filter((item) => item.checked === 'on').length}
+        isToggle={false}
       >
         Composers
       </EuiFilterButton>
