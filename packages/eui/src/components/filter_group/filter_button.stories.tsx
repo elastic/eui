@@ -26,6 +26,7 @@ const meta: Meta<EuiFilterButtonProps> = {
     color: 'text',
     badgeColor: 'accent',
     grow: true,
+    isToggle: true,
     isSelected: false,
     isDisabled: false,
     withNext: false,
@@ -81,10 +82,10 @@ export const FullWidthAndGrow: Story = {
       <EuiFilterButton
         {...args}
         iconType="arrowDown"
-        isSelected={true}
         numFilters={12}
         hasActiveFilters={true}
         numActiveFilters={2}
+        isToggle={false}
       >
         Selected filter
       </EuiFilterButton>
