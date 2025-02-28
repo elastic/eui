@@ -17,7 +17,7 @@
  * under the License.
  */
 
-// @ts-ignore
+// @ts-expect-error -- types are available, doesn't work with current TS config
 import { RuleTester } from '@typescript-eslint/rule-tester';
 
 import { NoRestrictedEuiImports } from './no_restricted_eui_imports';
