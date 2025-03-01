@@ -191,7 +191,7 @@ describe('euiFormControlStyles', () => {
           background-size: 0% 100%;
           background-image: linear-gradient(to top,
             var(--euiFormControlStateColor),
-            var(--euiFormControlStateColor) 2px,
+            var(--euiFormControlStateColor) 3px,
             transparent 2px,
             transparent 100%
           );

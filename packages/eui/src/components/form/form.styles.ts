@@ -177,6 +177,8 @@ export const euiFormControlDefaultShadow = (
   } = {}
 ) => {
   const { euiTheme } = euiThemeContext;
+  /* TODO: use input flag instead once added */
+  const isExperimental = euiTheme.flags?.buttonVariant === 'experimental';
   const form = euiFormVariables(euiThemeContext);
 
   // We use inset box-shadow instead of border to skip extra height calculations
@@ -194,7 +196,14 @@ export const euiFormControlDefaultShadow = (
     background-size: 0% 100%;
     background-image: linear-gradient(to top,
       var(--euiFormControlStateColor),
-      var(--euiFormControlStateColor) ${euiTheme.border.width.thick},
+      var(--euiFormControlStateColor) ${
+        isExperimental
+          ? mathWithUnits(
+              [euiTheme.border.width.thick, euiTheme.border.width.thin],
+              (x, y) => x + y // account for pseudo element border
+            )
+          : euiTheme.border.width.thick
+      },
       transparent ${euiTheme.border.width.thick},
       transparent 100%
     );
