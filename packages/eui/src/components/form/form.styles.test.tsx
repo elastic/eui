@@ -190,13 +190,13 @@ describe('euiFormControlStyles', () => {
             box-shadow: inset 0 0 0 1px #CAD3E2;
           background-color: #FFFFFF;
           background-repeat: no-repeat;
-            background-size: 0% 100%;
-            background-image: linear-gradient(to top,
-              var(--euiFormControlStateColor),
-              var(--euiFormControlStateColor) 2px,
-              transparent 2px,
-              transparent 100%
-            );
+          background-size: 0% 100%;
+          background-image: linear-gradient(to top,
+            var(--euiFormControlStateColor),
+            var(--euiFormControlStateColor) 3px,
+            transparent 2px,
+            transparent 100%
+          );
           @media screen and (prefers-reduced-motion: no-preference) {
             transition:
               background-image 150ms ease-in,
