@@ -97,7 +97,6 @@ describe('euiFormControlStyles', () => {
           /* Required for Safari */
           -webkit-text-fill-color: #798EAF;
           background-color: #ECF1F9;
-          box-shadow: inset 0 0 0 1px #CAD3E2;
           cursor: not-allowed;
           --euiFormControlStateColor: transparent;
 
@@ -192,7 +191,7 @@ describe('euiFormControlStyles', () => {
           background-size: 0% 100%;
           background-image: linear-gradient(to top,
             var(--euiFormControlStateColor),
-            var(--euiFormControlStateColor) 2px,
+            var(--euiFormControlStateColor) 3px,
             transparent 2px,
             transparent 100%
           );
