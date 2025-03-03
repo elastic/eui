@@ -18,42 +18,34 @@
  */
 
 import micromatch from 'micromatch';
-import { TSESTree, ESLintUtils } from '@typescript-eslint/utils';
+import { Rule } from 'eslint';
+import { TSESTree } from '@typescript-eslint/utils';
 
-type MessageIds = 'restrictedEuiImport';
-
-type Options = Array<{
+type Option = {
   patterns: string[];
-  messageId: MessageIds;
-}>;
+  message: string;
+};
 
-const DEFAULT_RESTRICTED_IMPORT_PATTERNS = [
+const DEFAULT_RESTRICTED_IMPORT_OPTIONS: Option[] = [
   {
     patterns: ['@elastic/eui/dist/eui_theme_*\\.json'],
-    messageId: 'restrictedEuiImport' as const,
+    message:
+      'For client-side, please use `useEuiTheme` instead. Direct JSON token imports will be removed as per the EUI Deprecation schedule: https://github.com/elastic/eui/issues/1469.',
   },
 ];
 
-export const NoRestrictedEuiImports = ESLintUtils.RuleCreator.withoutDocs<
-  Options,
-  MessageIds
->({
-  create(context) {
-    const userPatterns = context.options || [];
-
-    // Combine the default patterns with the user-defined patterns
-    const allPatterns = [
-      ...DEFAULT_RESTRICTED_IMPORT_PATTERNS,
-      ...userPatterns,
-    ];
+export const NoRestrictedEuiImports = {
+  create(context: Rule.RuleContext) {
+    const userOptions = context.options || [];
+    const options = [...DEFAULT_RESTRICTED_IMPORT_OPTIONS, ...userOptions];
 
     return {
       ImportDeclaration(node: TSESTree.ImportDeclaration) {
-        allPatterns.forEach(({ patterns, messageId }) => {
+        options.forEach(({ patterns, message }: Option) => {
           if (micromatch.isMatch(node.source.value, patterns)) {
             context.report({
-              node,
-              messageId,
+              loc: node.source.loc,
+              message,
             });
           }
         });
@@ -75,18 +67,13 @@ export const NoRestrictedEuiImports = ESLintUtils.RuleCreator.withoutDocs<
               type: 'string',
             },
           },
-          messageId: {
+          message: {
             type: 'string',
-            enum: ['restrictedEuiImport'],
           },
         },
         additionalProperties: false,
       },
     ],
-    messages: {
-      restrictedEuiImport:
-        'For client-side, please use `useEuiTheme` instead. Direct JSON token imports will be removed as per the EUI Deprecation schedule: https://github.com/elastic/eui/issues/1469.',
-    },
   },
   defaultOptions: [],
-});
+};
