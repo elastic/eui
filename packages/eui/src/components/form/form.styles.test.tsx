@@ -97,7 +97,6 @@ describe('euiFormControlStyles', () => {
           /* Required for Safari */
           -webkit-text-fill-color: #798EAF;
           background-color: #ECF1F9;
-          box-shadow: inset 0 0 0 1px #CAD3E2;
           cursor: not-allowed;
           --euiFormControlStateColor: transparent;
 
