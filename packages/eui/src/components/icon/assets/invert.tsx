@@ -28,8 +28,11 @@ const EuiIconInvert = ({
     {...props}
   >
     {title ? <title id={titleId}>{title}</title> : null}
-    <path d="M8 13.25a5.25 5.25 0 1 0 0-10.5 5.25 5.25 0 0 0 0 10.5ZM8 14A6 6 0 1 1 8 2a6 6 0 0 1 0 12Z" />
-    <path d="M8 2a6 6 0 1 0 0 12V2Z" />
+    <path
+      fillRule="evenodd"
+      d="M10.354 8.354 14.207 4.5 10.353.646l-.707.708L12.293 4H2v1h10.293L9.646 7.646l.707.708Zm-4.707 7L1.793 11.5l3.854-3.854.707.708L3.707 11H14v1H3.707l2.647 2.646-.707.708Z"
+      clipRule="evenodd"
+    />
   </svg>
 );
 export const icon = EuiIconInvert;

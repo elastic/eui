@@ -31,7 +31,7 @@ const EuiIconArrowRight = ({
     {title ? <title id={titleId}>{title}</title> : null}
     <path
       fillRule="evenodd"
-      d="M4.982 14.043a.75.75 0 0 1-.025-1.06l4.591-4.81a.25.25 0 0 0 0-.346l-4.59-4.81a.75.75 0 0 1 1.085-1.035l4.59 4.81a1.75 1.75 0 0 1 0 2.416l-4.59 4.81a.75.75 0 0 1-1.06.024Z"
+      d="M10.293 8 4.646 2.354l.708-.708L11.707 8l-6.353 6.354-.708-.708L10.293 8Z"
       clipRule="evenodd"
     />
   </svg>

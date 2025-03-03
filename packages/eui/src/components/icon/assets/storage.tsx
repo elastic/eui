@@ -28,15 +28,12 @@ const EuiIconStorage = ({
     {...props}
   >
     {title ? <title id={titleId}>{title}</title> : null}
-    <g fillRule="evenodd" transform="translate(0 2)">
-      <path
-        fillRule="nonzero"
-        d="M2 6a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1H2Zm13 2v3a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1Zm1-3V2a2 2 0 0 0-2-2H2a2 2 0 0 0-2 2v3c0 .601.271 1.133.69 1.5C.271 6.867 0 7.399 0 8v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8c0-.601-.271-1.133-.689-1.5.418-.367.689-.899.689-1.5Z"
-      />
-      <circle cx={4.5} cy={9.5} r={1.5} />
-      <circle cx={4.5} cy={3.5} r={1.5} />
-      <path d="M12 8h1v3h-1zM10 8h1v3h-1zM12 2h1v3h-1zM10 2h1v3h-1z" />
-    </g>
+    <path d="M5 5H3V4h2v1Zm0 2H3V6h2v1Zm-1 4a1 1 0 1 0 0-2 1 1 0 0 0 0 2Zm5-7v3H8V4h1Zm4 3V4h-1v3h1Z" />
+    <path
+      fillRule="evenodd"
+      d="M1 3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1h-1v1h-1v-1H4v1H3v-1H2a1 1 0 0 1-1-1V3Zm5 0H2v9h4V3Zm1 0v9h3V3H7Zm4 0v9h3V3h-3Z"
+      clipRule="evenodd"
+    />
   </svg>
 );
 export const icon = EuiIconStorage;

@@ -23,6 +23,7 @@ const EuiIconArrowEnd = ({
     xmlns="http://www.w3.org/2000/svg"
     width={16}
     height={16}
+    fill="none"
     viewBox="0 0 16 16"
     aria-labelledby={titleId}
     {...props}
@@ -30,10 +31,9 @@ const EuiIconArrowEnd = ({
     {title ? <title id={titleId}>{title}</title> : null}
     <path
       fillRule="evenodd"
-      d="M2.857 14.043a.75.75 0 0 1-.025-1.06l4.591-4.81a.25.25 0 0 0 0-.346l-4.59-4.81a.75.75 0 0 1 1.085-1.035l4.59 4.81a1.75 1.75 0 0 1 0 2.416l-4.59 4.81a.75.75 0 0 1-1.06.024Z"
+      d="M8.293 8 2.646 2.354l.708-.708L9.707 8l-6.353 6.354-.708-.707L8.293 8ZM12 13V3h1v10h-1Z"
       clipRule="evenodd"
     />
-    <path d="M10.5 2.75a.75.75 0 0 1 1.5 0v10.5a.75.75 0 0 1-1.5 0V2.75Z" />
   </svg>
 );
 export const icon = EuiIconArrowEnd;

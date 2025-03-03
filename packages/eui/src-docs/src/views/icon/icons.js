@@ -25,7 +25,7 @@ export const iconTypes = [
   'arrowUp',
   'arrowStart',
   'arrowEnd',
-  'article',
+  'article', // TODO deprecate
   'asterisk',
   'at',
   'beaker',
@@ -36,7 +36,7 @@ export const iconTypes = [
   'boxesHorizontal',
   'boxesVertical',
   'branch',
-  'branchUser',
+  'branchUser', // TODO deprecate
   'broom',
   'brush',
   'bug',
@@ -57,7 +57,7 @@ export const iconTypes = [
   'color',
   'compute',
   'console',
-  'container',
+  'container', // TODO deprecate
   'continuityAbove',
   'continuityAboveBelow',
   'continuityBelow',
@@ -65,13 +65,13 @@ export const iconTypes = [
   'contrast',
   'contrastHigh',
   'controlsHorizontal',
-  'controlsVertical',
+  'controlsVertical', // TODO deprecate (replace with controlsHorizontal)
   'copy',
   'copyClipboard',
   'cross',
   'crossInCircle',
   'crosshairs',
-  'currency',
+  'currency', // TODO deprecate
   'cut',
   'database',
   'desktop',
@@ -119,7 +119,7 @@ export const iconTypes = [
   'framePrevious',
   'fullScreen',
   'fullScreenExit',
-  'function',
+  'function', // TODO deprecate
   'gear',
   'glasses',
   'globe',
@@ -148,7 +148,7 @@ export const iconTypes = [
   'inputOutput',
   'inspect',
   'invert',
-  'ip',
+  'ip', // TODO deprecate (used by token?)
   'key',
   'keyboard',
   'kqlField',
@@ -179,15 +179,15 @@ export const iconTypes = [
   'magnifyWithExclamation',
   'magnifyWithMinus',
   'magnifyWithPlus',
-  'magnet',
+  'magnet', // TODO deprecate
   'mapMarker',
   'memory',
   'merge',
   'menu',
-  'menuDown',
+  'menuDown', // TODO deprecate
   'menuLeft',
   'menuRight',
-  'menuUp',
+  'menuUp', // TODO deprecate
   'minimize',
   'minus',
   'minusInCircle',
@@ -204,10 +204,10 @@ export const iconTypes = [
   'offline',
   'online',
   'package',
-  'pageSelect',
+  'pageSelect', // TODO deprecate
   'pagesSelect',
   'palette',
-  'paperClip',
+  'paperClip', // TODO deprecate
   'partial',
   'pause',
   'payment',
@@ -230,15 +230,15 @@ export const iconTypes = [
   'questionInCircle',
   'quote',
   'refresh',
-  'reporter',
+  'reporter', // TODO deprecate
   'returnKey',
   'save',
-  'scale',
+  'scale', // TODO deprecate (used once in ML)
   'search',
   'section',
   'securitySignal',
-  'securitySignalDetected',
-  'securitySignalResolved',
+  'securitySignalDetected', // TODO deprecate
+  'securitySignalResolved', // TODO deprecate
   'sessionViewer',
   'shard',
   'share',
@@ -254,9 +254,9 @@ export const iconTypes = [
   'spaces',
   'sparkles',
   'starEmpty',
-  'starEmptySpace',
+  'starEmptySpace', // TODO deprecate
   'starFilled',
-  'starFilledSpace',
+  'starFilledSpace', // TODO deprecate (one use in Monitoring)
   'starMinusEmpty',
   'starMinusFilled',
   'starPlusEmpty',
@@ -267,7 +267,7 @@ export const iconTypes = [
   'stopSlash',
   'storage',
   'string',
-  'submodule',
+  'submodule', // TODO deprecate (only used in Kibana examples)
   'sun',
   'symlink',
   'tableOfContents',
@@ -275,7 +275,7 @@ export const iconTypes = [
   'tableDensityCompact',
   'tableDensityNormal',
   'tag',
-  'tear',
+  'tear', // TODO deprecate
   'temperature',
   'timeline',
   'timelineWithArrow',
@@ -290,7 +290,7 @@ export const iconTypes = [
   'unfold',
   'unlink',
   'user',
-  'userAvatar',
+  'userAvatar', // TODO deprecate (replace wit user)
   'users',
   'vector',
   'videoPlayer',
@@ -311,8 +311,8 @@ export const iconTypes = [
   'visTagCloud',
   'visText',
   'visTimelion',
-  'visVega',
-  'visVisualBuilder',
+  'visVega', // TODO deprecate (identical to editorCodeBlock)
+  'visVisualBuilder', // TODO deprecate
   'warning',
   'warningFilled',
   'web',
