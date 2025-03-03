@@ -42,7 +42,8 @@ ruleTester.run('no-restricted-eui-imports', NoRestrictedEuiImports, {
       code: "import theme from '@elastic/eui/dist/eui_theme_something.json';",
       errors: [
         {
-          messageId: 'restrictedEuiImport',
+          message:
+            'For client-side, please use `useEuiTheme` instead. Direct JSON token imports will be removed as per the EUI Deprecation schedule: https://github.com/elastic/eui/issues/1469.',
         },
       ],
     },
@@ -50,7 +51,8 @@ ruleTester.run('no-restricted-eui-imports', NoRestrictedEuiImports, {
       code: "import theme from '@elastic/eui/dist/eui_theme_light.json';",
       errors: [
         {
-          messageId: 'restrictedEuiImport',
+          message:
+            'For client-side, please use `useEuiTheme` instead. Direct JSON token imports will be removed as per the EUI Deprecation schedule: https://github.com/elastic/eui/issues/1469.',
         },
       ],
     },
@@ -59,12 +61,12 @@ ruleTester.run('no-restricted-eui-imports', NoRestrictedEuiImports, {
       options: [
         {
           patterns: ['@project/package'],
-          messageId: 'restrictedEuiImport',
+          message: 'Please use `theme` from `@project/package` instead.',
         },
       ],
       errors: [
         {
-          messageId: 'restrictedEuiImport',
+          message: 'Please use `theme` from `@project/package` instead.',
         },
       ],
     },
@@ -73,12 +75,12 @@ ruleTester.run('no-restricted-eui-imports', NoRestrictedEuiImports, {
       options: [
         {
           patterns: ['@elastic/eui/lib/components/icon/*'],
-          messageId: 'restrictedEuiImport',
+          message: 'Please use `EuiIcon` from `@elastic/eui` instead.',
         },
       ],
       errors: [
         {
-          messageId: 'restrictedEuiImport',
+          message: 'Please use `EuiIcon` from `@elastic/eui` instead.',
         },
       ],
     },
@@ -87,12 +89,12 @@ ruleTester.run('no-restricted-eui-imports', NoRestrictedEuiImports, {
       options: [
         {
           patterns: ['@elastic/eui/lib/**/icon'],
-          messageId: 'restrictedEuiImport',
+          message: 'Please use `EuiIcon` from `@elastic/eui` instead.',
         },
       ],
       errors: [
         {
-          messageId: 'restrictedEuiImport',
+          message: 'Please use `EuiIcon` from `@elastic/eui` instead.',
         },
       ],
     },
@@ -101,12 +103,12 @@ ruleTester.run('no-restricted-eui-imports', NoRestrictedEuiImports, {
       options: [
         {
           patterns: ['@elastic/eui/lib/components/**'],
-          messageId: 'restrictedEuiImport',
+          message: 'Please use `EuiIcon` from `@elastic/eui` instead.',
         },
       ],
       errors: [
         {
-          messageId: 'restrictedEuiImport',
+          message: 'Please use `EuiIcon` from `@elastic/eui` instead.',
         },
       ],
     },
