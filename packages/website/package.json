@@ -41,7 +41,8 @@
     "prism-react-renderer": "^2.3.0",
     "raw-loader": "^4.0.2",
     "react": "^18.0.0",
-    "react-dom": "^18.0.0"
+    "react-dom": "^18.0.0",
+    "react-element-to-jsx-string": "^15.0.0"
   },
   "devDependencies": {
     "@babel/preset-react": "^7.24.7",

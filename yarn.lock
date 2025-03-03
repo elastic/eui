@@ -4796,6 +4796,7 @@ __metadata:
     raw-loader: "npm:^4.0.2"
     react: "npm:^18.0.0"
     react-dom: "npm:^18.0.0"
+    react-element-to-jsx-string: "npm:^15.0.0"
     typescript: "npm:~5.5.4"
   languageName: unknown
   linkType: soft
