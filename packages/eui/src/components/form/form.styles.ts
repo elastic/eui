@@ -231,21 +231,12 @@ export const euiFormControlInvalidStyles = ({ euiTheme }: UseEuiTheme) => `
 
 export const euiFormControlDisabledStyles = (euiThemeContext: UseEuiTheme) => {
   const form = euiFormVariables(euiThemeContext);
-  const { euiTheme } = euiThemeContext;
-  const hasGlobalFocusColor = euiTheme.flags?.hasGlobalFocusColor;
-
-  const border =
-    hasGlobalFocusColor &&
-    `
-    box-shadow: inset 0 0 0 ${euiTheme.border.width.thin} ${euiTheme.colors.borderBaseDisabled};
-  `.trim();
 
   return `
     color: ${form.textColorDisabled};
     /* Required for Safari */
     -webkit-text-fill-color: ${form.textColorDisabled};
     background-color: ${form.backgroundDisabledColor};
-    ${border}
     cursor: not-allowed;
     --euiFormControlStateColor: transparent;
 
