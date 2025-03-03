@@ -44,6 +44,7 @@ import {
 import {
   EuiQuickSelectPopover,
   CustomQuickSelectRenderOptions,
+  EuiQuickSelectButtonProps,
 } from './quick_select_popover/quick_select_popover';
 import { EuiDatePopoverButton } from './date_popover/date_popover_button';
 
@@ -206,6 +207,10 @@ export type EuiSuperDatePickerProps = CommonProps & {
    * Props passed to the update button #EuiSuperUpdateButtonProps
    */
   updateButtonProps?: EuiSuperUpdateButtonProps;
+  /**
+   * Props passed to the quick select button #EuiQuickSelectButtonProps
+   */
+  quickSelectButtonProps?: EuiQuickSelectButtonProps;
 
   /**
    * By default, relative units will be rounded up to next largest unit of time
@@ -498,6 +503,7 @@ export class EuiSuperDatePickerInternal extends Component<
       refreshIntervalUnits,
       isPaused,
       isDisabled,
+      quickSelectButtonProps,
     } = this.props;
 
     return (
@@ -519,6 +525,7 @@ export class EuiSuperDatePickerInternal extends Component<
         intervalUnits={refreshIntervalUnits}
         start={start}
         timeOptions={timeOptions}
+        buttonProps={quickSelectButtonProps}
       />
     );
   };

@@ -85,7 +85,7 @@ exports[`EuiCollapsedNavPopover renders 1`] = `
               rel="noreferrer"
             >
               <span
-                class="euiCollapsibleNavItem__title eui-textTruncate emotion-euiCollapsibleNavItem__title"
+                class="euiCollapsibleNavItem__title emotion-euiCollapsibleNavItem__title"
               >
                 Sub-item A
               </span>
@@ -97,7 +97,7 @@ exports[`EuiCollapsedNavPopover renders 1`] = `
               rel="noreferrer"
             >
               <span
-                class="euiCollapsibleNavItem__title eui-textTruncate emotion-euiCollapsibleNavItem__title"
+                class="euiCollapsibleNavItem__title emotion-euiCollapsibleNavItem__title"
               >
                 Sub-item B
               </span>

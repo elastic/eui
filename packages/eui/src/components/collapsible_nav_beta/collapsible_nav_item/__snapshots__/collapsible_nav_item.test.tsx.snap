@@ -45,7 +45,7 @@ exports[`EuiCollapsibleNavItem renders a top level accordion if items exist 1`] 
           class="euiCollapsibleNavLink emotion-euiCollapsibleNavLink-isTopItem"
         >
           <span
-            class="euiCollapsibleNavItem__title eui-textTruncate emotion-euiCollapsibleNavItem__title"
+            class="euiCollapsibleNavItem__title emotion-euiCollapsibleNavItem__title"
           >
             Item
           </span>
@@ -55,6 +55,7 @@ exports[`EuiCollapsibleNavItem renders a top level accordion if items exist 1`] 
     <button
       aria-controls="generated-id"
       aria-expanded="false"
+      aria-hidden="true"
       aria-labelledby="generated-id"
       class="euiButtonIcon euiAccordion__arrow emotion-euiButtonIcon-xs-empty-text-euiAccordion__arrow-right-isClosed-euiCollapsibleNavAccordion__arrow"
       tabindex="-1"
@@ -88,7 +89,7 @@ exports[`EuiCollapsibleNavItem renders a top level accordion if items exist 1`] 
           data-test-subj="test subject string"
         >
           <span
-            class="euiCollapsibleNavItem__title eui-textTruncate emotion-euiCollapsibleNavItem__title"
+            class="euiCollapsibleNavItem__title emotion-euiCollapsibleNavItem__title"
           >
             Sub-item
           </span>
@@ -110,7 +111,7 @@ exports[`EuiCollapsibleNavItem renders a top level group if items exist and \`is
     id="generated-id"
   >
     <span
-      class="euiCollapsibleNavItem__title eui-textTruncate emotion-euiCollapsibleNavItem__title"
+      class="euiCollapsibleNavItem__title emotion-euiCollapsibleNavItem__title"
     >
       Item
     </span>
@@ -126,7 +127,7 @@ exports[`EuiCollapsibleNavItem renders a top level group if items exist and \`is
       data-test-subj="test subject string"
     >
       <span
-        class="euiCollapsibleNavItem__title eui-textTruncate emotion-euiCollapsibleNavItem__title"
+        class="euiCollapsibleNavItem__title emotion-euiCollapsibleNavItem__title"
       >
         Sub-item
       </span>
