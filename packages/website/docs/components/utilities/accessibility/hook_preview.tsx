@@ -1,3 +1,4 @@
+import React from 'react';
 import { css } from '@emotion/react';
 
 import { EuiText, EuiCode, useEuiFocusRing, useEuiTheme } from '@elastic/eui';
