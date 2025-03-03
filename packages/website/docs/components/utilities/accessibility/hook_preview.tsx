@@ -17,12 +17,12 @@ export const HookPreview = () => {
         <button
           css={css`
             &:focus {
-              ${useEuiFocusRing('outset', euiTheme.colors.primary)}
+              ${useEuiFocusRing('outset', euiTheme.colors.accent)}
             }
           `}
         >
           I am an unstyled <EuiCode>button</EuiCode> with an{' '}
-          <EuiCode>outset, primary</EuiCode> outline
+          <EuiCode>outset, accent</EuiCode> outline
         </button>
       </p>
     </EuiText>
