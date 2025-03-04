@@ -76,28 +76,34 @@ export const theme_languages: THEME_LANGUAGES[] = [
 const THEME_LANGS = theme_languages.map(({ id }) => id);
 
 export type ThemeContextType = {
-  theme?: EUI_THEME['value'];
-  colorMode?: EuiThemeColorModeStandard;
+  theme: EUI_THEME['value'];
+  colorMode: EuiThemeColorModeStandard;
   themeLanguage: THEME_LANGUAGES['id'];
   setContext: (context: Partial<State>) => void;
 };
 export const ThemeContext = React.createContext<ThemeContextType>({
-  theme: undefined,
-  colorMode: undefined,
+  theme: THEME_NAMES[0],
+  colorMode: 'LIGHT',
   themeLanguage: THEME_LANGS[0],
   setContext: () => {},
 });
 
 type State = Pick<ThemeContextType, 'theme' | 'colorMode' | 'themeLanguage'>;
 
+const stateToSetInLocalStorage = [
+  'theme',
+  'colorMode',
+  'themeLanguage',
+] as const;
+
 export class ThemeProvider extends React.Component<PropsWithChildren, State> {
   constructor(props: object) {
     super(props);
 
-    const theme = localStorage.getItem('theme') || undefined;
+    const theme = localStorage.getItem('theme') || THEME_NAMES[0];
     const colorMode =
       (localStorage.getItem('colorMode') as EuiThemeColorModeStandard) ||
-      undefined;
+      'LIGHT';
 
     applyTheme(
       theme && THEME_NAMES.includes(theme) ? theme : THEME_NAMES[0],
@@ -111,22 +117,32 @@ export class ThemeProvider extends React.Component<PropsWithChildren, State> {
       colorMode,
       themeLanguage,
     };
+
+    stateToSetInLocalStorage.forEach((key) =>
+      this.updateLocalStorage(key, this.state)
+    );
   }
 
   setContext = (state: Partial<State>) => {
-    this.setState(state as State);
+    this.setState((prevState) => {
+      return { ...prevState, ...state };
+    });
+  };
+
+  updateLocalStorage = (
+    key: (typeof stateToSetInLocalStorage)[number],
+    state: State
+  ) => {
+    localStorage.setItem(key, String(state[key]));
   };
 
   componentDidUpdate(_prevProps: never, prevState: State) {
-    const stateToSetInLocalStorage = [
-      'theme',
-      'colorMode',
-      'themeLanguage',
-    ] as const;
-
     stateToSetInLocalStorage.forEach((key) => {
-      if (prevState[key] !== this.state[key]) {
-        localStorage.setItem(key, String(this.state[key]));
+      if (
+        prevState[key] !== this.state[key] ||
+        localStorage.getItem(key) === null
+      ) {
+        this.updateLocalStorage(key, this.state);
 
         // Side effects
         if (key === 'theme' || key === 'colorMode') {
