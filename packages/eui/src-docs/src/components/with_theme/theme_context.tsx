@@ -90,17 +90,19 @@ export const ThemeContext = React.createContext<ThemeContextType>({
 
 type State = Pick<ThemeContextType, 'theme' | 'colorMode' | 'themeLanguage'>;
 
-const stateToSetInLocalStorage = [
-  'theme',
-  'colorMode',
-  'themeLanguage',
-] as const;
+const localStorageKeyToStateMap = {
+  themeName: 'theme',
+  colorMode: 'colorMode',
+  themeLanguage: 'themeLanguage',
+} as const;
+
+type LocalStorageKey = keyof typeof localStorageKeyToStateMap;
 
 export class ThemeProvider extends React.Component<PropsWithChildren, State> {
   constructor(props: object) {
     super(props);
 
-    const theme = localStorage.getItem('theme') || THEME_NAMES[0];
+    const theme = localStorage.getItem('themeName') || THEME_NAMES[0];
     const colorMode =
       (localStorage.getItem('colorMode') as EuiThemeColorModeStandard) ||
       'LIGHT';
@@ -118,8 +120,8 @@ export class ThemeProvider extends React.Component<PropsWithChildren, State> {
       themeLanguage,
     };
 
-    stateToSetInLocalStorage.forEach((key) =>
-      this.updateLocalStorage(key, this.state)
+    Object.keys(localStorageKeyToStateMap).forEach((key) =>
+      this.updateLocalStorage(key as LocalStorageKey, this.state)
     );
   }
 
@@ -129,26 +131,26 @@ export class ThemeProvider extends React.Component<PropsWithChildren, State> {
     });
   };
 
-  updateLocalStorage = (
-    key: (typeof stateToSetInLocalStorage)[number],
-    state: State
-  ) => {
-    localStorage.setItem(key, String(state[key]));
+  updateLocalStorage = (key: LocalStorageKey, state: State) => {
+    localStorage.setItem(key, String(state[localStorageKeyToStateMap[key]]));
   };
 
   componentDidUpdate(_prevProps: never, prevState: State) {
-    stateToSetInLocalStorage.forEach((key) => {
+    Object.keys(localStorageKeyToStateMap).forEach((key) => {
+      const _key = key as LocalStorageKey;
+      const stateKey = localStorageKeyToStateMap[_key];
+
       if (
-        prevState[key] !== this.state[key] ||
-        localStorage.getItem(key) === null
+        prevState[stateKey] !== this.state[stateKey] ||
+        localStorage.getItem(_key) === null
       ) {
-        this.updateLocalStorage(key, this.state);
+        this.updateLocalStorage(_key, this.state);
 
         // Side effects
-        if (key === 'theme' || key === 'colorMode') {
+        if (_key === 'themeName' || _key === 'colorMode') {
           applyTheme(this.state.theme, this.state.colorMode);
         }
-        if (key === 'themeLanguage') {
+        if (_key === 'themeLanguage') {
           this.setThemeLanguageParam(this.state.themeLanguage!);
         }
       }
