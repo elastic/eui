@@ -17,7 +17,7 @@ export const HookPreview = () => {
         <button
           css={css`
             &:focus {
-              ${useEuiFocusRing('outset', euiTheme.colors.accent)}
+              ${useEuiFocusRing('center', euiTheme.colors.accent)}
             }
           `}
         >
