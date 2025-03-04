@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent, ComponentType, HTMLAttributes } from 'react';
+import React, { FunctionComponent, ComponentType, HTMLAttributes, JSX } from 'react';
 import { CommonProps } from '../../common';
 
 import {
@@ -56,7 +56,7 @@ export type EuiPageSectionProps = CommonProps &
     /**
      * Sets which HTML element to render.
      */
-    component?: keyof React.JSX.IntrinsicElements | ComponentType;
+    component?: keyof JSX.IntrinsicElements | ComponentType;
   } & Omit<HTMLAttributes<Element>, 'color'>;
 
 export const EuiPageSection: FunctionComponent<EuiPageSectionProps> = ({
