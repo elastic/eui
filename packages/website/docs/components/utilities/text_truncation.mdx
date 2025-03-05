@@ -3,6 +3,10 @@ slug: /utilities/text-truncation
 id: utilities_text_truncation
 ---
 
+import { throttle } from 'lodash';
+import { faker } from '@faker-js/faker';
+import { FixedSizeList } from 'react-window';
+
 # Text truncation
 
 ## Single line
@@ -279,13 +283,10 @@ These functionalities can cause performance issues if the component is rendered 
 
 3. If necessary, consider pulling out the underlying `TruncationUtils` and re-using the same canvas context, as opposed to repeatedly creating new ones.
 
-<Demo>
+<Demo scope={{ FixedSizeList, faker, throttle }}>
 ```tsx interactive
 import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { css } from '@emotion/react';
-import { throttle } from 'lodash';
-import { faker } from '@faker-js/faker';
-import { FixedSizeList } from 'react-window';
 
 import {
   EuiFlexGroup,
