@@ -102,7 +102,11 @@ export const usePropsWithComponentDefaults = <
  * Utilities
  */
 
-// Used to generate a "component" that is parsed for its types and used to generate a prop table
-export const EuiComponentDefaultsProps: FunctionComponent<
+/**
+ * Used only to generate prop type definitions (via `@elastic/eui-docgen`) to document `EuiComponentDefaults` in a props table.
+ *
+ * @see https://github.com/elastic/eui/issues/8388
+ */
+export const EuiProviderComponentDefaultsProps: FunctionComponent<
   EuiComponentDefaults
 > = () => <></>;
