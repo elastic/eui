@@ -1,0 +1,167 @@
+---
+slug: /utilities/resize-observer
+id: utilities_resize_observer
+---
+
+# Resize observer
+
+**EuiResizeObserver** is a wrapper around the <a href="https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserver" target="_blank" rel="noopener noreferrer">**Resizer Observer API**</a> which allows watching for changes to the content rectangle of DOM elements. Unlike [EuiMutationObserver](./mutation_observer.mdx), **EuiResizeObserver** does not take parameters, but it does fire a more efficient and informative callback when resize events occur.
+
+This is a render prop component, **EuiResizeObserver** will pass a `ref` callback which you must put on the element you wish to observe.
+
+<Demo>
+```tsx interactive
+import React, { useState } from 'react';
+
+import {
+  EuiButton,
+  EuiButtonEmpty,
+  EuiCode,
+  EuiResizeObserver,
+  EuiPanel,
+  EuiSpacer,
+  EuiText,
+} from '@elastic/eui';
+
+export default () => {
+  const [paddingSize, setPaddingSize] = useState('s');
+  const [items, setItems] = useState(['Item 1', 'Item 2', 'Item 3']);
+  const [height, setHeight] = useState(0);
+  const [width, setWidth] = useState(0);
+
+  const togglePaddingSize = () => {
+    setPaddingSize((paddingSize) => (paddingSize === 's' ? 'l' : 's'));
+  };
+
+  const addItem = () => {
+    setItems((items) => [...items, `Item ${items.length + 1}`]);
+  };
+
+  const onResize = ({ height, width }) => {
+    setHeight(height);
+    setWidth(width);
+  };
+
+  return (
+    <div>
+      <EuiText>
+        <p>
+          <EuiCode>
+            height: {height}; width: {width}
+          </EuiCode>
+        </p>
+      </EuiText>
+      <EuiSpacer />
+      <EuiButton fill={true} onClick={togglePaddingSize}>
+        Toggle container padding
+      </EuiButton>
+      <EuiSpacer />
+      <EuiResizeObserver onResize={onResize}>
+        {(resizeRef) => (
+          <div className="eui-displayInlineBlock" ref={resizeRef}>
+            <EuiPanel
+              className="eui-displayInlineBlock"
+              paddingSize={paddingSize}
+            >
+              <ul>
+                {items.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+              <EuiSpacer size="s" />
+              <EuiButtonEmpty onClick={addItem}>add item</EuiButtonEmpty>
+            </EuiPanel>
+          </div>
+        )}
+      </EuiResizeObserver>
+    </div>
+  );
+};
+```
+</Demo>
+
+## useResizeObserver hook
+
+There is also a React hook, `useResizeObserver`, which provides the same observation functionality.
+
+<Demo>
+```tsx interactive
+import React, { useState } from 'react';
+
+import {
+  EuiButton,
+  EuiButtonEmpty,
+  EuiCode,
+  EuiIcon,
+  EuiPanel,
+  EuiSpacer,
+  EuiText,
+  useResizeObserver,
+} from '@elastic/eui';
+
+export default () => {
+  const hasResizeObserver = typeof ResizeObserver !== 'undefined';
+
+  const [paddingSize, setPaddingSize] = useState('s');
+  const [items, setItems] = useState(['Item 1', 'Item 2', 'Item 3']);
+
+  const togglePaddingSize = () => {
+    setPaddingSize((paddingSize) => (paddingSize === 's' ? 'l' : 's'));
+  };
+
+  const addItem = () => {
+    setItems((items) => [...items, `Item ${items.length + 1}`]);
+  };
+
+  // Note: This must be a `useState` and not a `useRef` to correctly update on mount & unmount
+  const [resizeRef, setResizeRef] = useState();
+
+  const dimensions = useResizeObserver(resizeRef);
+
+  return (
+    <div>
+      <EuiText>
+        {hasResizeObserver ? (
+          <p>
+            <EuiIcon type="checkInCircleFilled" color="success" /> Browser
+            supports ResizeObserver API.
+          </p>
+        ) : (
+          <p>
+            <EuiIcon type="error" color="danger" /> Browser does not support
+            ResizeObserver API. Using MutationObserver.
+          </p>
+        )}
+        <p>
+          <EuiCode>
+            height: {dimensions.height}; width: {dimensions.width}
+          </EuiCode>
+        </p>
+      </EuiText>
+      <EuiSpacer />
+      <EuiButton fill={true} onClick={togglePaddingSize}>
+        Toggle container padding
+      </EuiButton>
+      <EuiSpacer />
+      <div className="eui-displayInlineBlock" ref={setResizeRef}>
+        <EuiPanel className="eui-displayInlineBlock" paddingSize={paddingSize}>
+          <ul>
+            {items.map((item) => (
+              <li key={item}>{item}</li>
+            ))}
+          </ul>
+          <EuiSpacer size="s" />
+          <EuiButtonEmpty onClick={addItem}>add item</EuiButtonEmpty>
+        </EuiPanel>
+      </div>
+    </div>
+  );
+};
+```
+</Demo>
+
+## Props
+
+import docgen from '@elastic/eui-docgen/dist/components/observer/resize_observer';
+
+<PropTable definition={docgen.EuiResizeObserver} />
