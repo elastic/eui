@@ -17,16 +17,30 @@
  * under the License.
  */
 
-module.exports = {
+import { HrefOnClick } from './rules/href_or_on_click';
+import { NoRestrictedEuiImports } from './rules/no_restricted_eui_imports';
+import { NoCssColor } from './rules/no_css_color';
+import { PreferCSSAttributeForEuiComponents } from './rules/prefer_css_attribute_for_eui_components';
+
+const config = {
   rules: {
-    'href-or-on-click': require('./rules/href_or_on_click'),
+    'href-or-on-click': HrefOnClick,
+    'no-restricted-eui-imports': NoRestrictedEuiImports,
+    'no-css-color': NoCssColor,
+    'prefer-css-attributes-for-eui-components':
+      PreferCSSAttributeForEuiComponents,
   },
   configs: {
     recommended: {
       plugins: ['@elastic/eslint-plugin-eui'],
       rules: {
         '@elastic/eui/href-or-on-click': 'warn',
+        '@elastic/eui/no-restricted-eui-imports': 'warn',
+        '@elastic/eui/no-css-color': 'warn',
+        '@elastic/eui/prefer-css-attributes-for-eui-components': 'warn',
       },
     },
   },
 };
+
+module.exports = config;
