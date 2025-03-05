@@ -1,3 +1,176 @@
+## [`v100.0.0`](https://github.com/elastic/eui/releases/v100.0.0)
+
+# eui-theme/borealis Changelog ([#8386](https://github.com/elastic/eui/pull/8386))
+ ([#8386](https://github.com/elastic/eui/pull/8386))
+- Added new "Borealis" theme as `@elastic/eui-theme-borealis` package ([#8030](https://github.com/elastic/eui/pull/8030)) ([#8386](https://github.com/elastic/eui/pull/8386))
+- Updated the default `theme` value on `EuiProvider` to "Borealis" ([#8288](https://github.com/elastic/eui/pull/8288)) ([#8386](https://github.com/elastic/eui/pull/8386))
+- Added shared theme code as `@elastic/eui-theme-common` package ([#8030](https://github.com/elastic/eui/pull/8030)) ([#8386](https://github.com/elastic/eui/pull/8386))
+- Added new semantic color tokens on `euiTheme.colors` ([#8097](https://github.com/elastic/eui/pull/8097)) ([#8386](https://github.com/elastic/eui/pull/8386))
+  - `textPrimary`
+  - `textAccent`
+  - `textAccentSecondary`
+  - `textSuccess`
+  - `textWarning`
+  - `textDanger`
+  - `textParagraph`
+  - `textHeading`
+  - `textSubdued`
+  - `textDisabled`
+  - `textInverse`
+  - `backgroundBasePrimary`
+  - `backgroundBaseAccent`
+  - `backgroundBaseAccentSecondary`
+  - `backgroundBaseSuccess`
+  - `backgroundBaseWarning`
+  - `backgroundBaseDanger`
+  - `backgroundBaseSubdued`
+  - `backgroundBasePlain`
+  - `backgroundBaseDisabled`
+  - `backgroundBaseHighlighted`
+  - `backgroundBaseFormsPrepend`
+  - `backgroundBaseFormsControlDisabled`
+  - `backgroundBaseInteractiveHover`
+  - `backgroundBaseInteractiveSelect`
+  - `backgroundBaseInteractiveOverlay`
+  - `backgroundBaseSkeletonEdge`
+  - `backgroundBaseSkeletonMiddle`
+  - `backgroundLightPrimary`
+  - `backgroundLightAccent`
+  - `backgroundLightAccentSecondary`
+  - `backgroundLightSuccess`
+  - `backgroundLightWarning`
+  - `backgroundLightDanger`
+  - `backgroundLightText`
+  - `backgroundFilledPrimary`
+  - `backgroundFilledAccent`
+  - `backgroundFilledAccentSecondary`
+  - `backgroundFilledSuccess`
+  - `backgroundFilledWarning`
+  - `backgroundFilledDanger`
+  - `backgroundFilledText`
+  - `borderBasePrimary`
+  - `borderBaseAccent`
+  - `borderBaseAccentSecondary`
+  - `borderBaseSuccess`
+  - `borderBaseWarning`
+  - `borderBaseDanger`
+  - `borderBasePlain`
+  - `borderBaseSubdued`
+  - `borderBaseDisabled`
+  - `borderBaseFloating`
+  - `borderBaseFormsColorSwatch`
+  - `borderBaseFormsControl`
+  - `borderStrongPrimary`
+  - `borderStrongAccent`
+  - `borderStrongAccentSecondary`
+  - `borderStrongSuccess`
+  - `borderStrongWarning`
+  - `borderStrongDanger`
+- Added deprecation for non-semantic color tokens ([#8097](https://github.com/elastic/eui/pull/8097)) ([#8386](https://github.com/elastic/eui/pull/8386))
+- Added new component specific tokens on `euiTheme.components` ([#8097](https://github.com/elastic/eui/pull/8097)) ([#8386](https://github.com/elastic/eui/pull/8386))
+  - added `components.buttons`, `components.forms` for shared tokens (e.g. `components.forms.maxWidth`)
+- Added data vis color tokens on `euiTheme.colors.vis` ([#8112](https://github.com/elastic/eui/pull/8112)) ([#8386](https://github.com/elastic/eui/pull/8386))
+  - `euiColorVis0`
+  - `euiColorVis1`
+  - `euiColorVis2`
+  - `euiColorVis3`
+  - `euiColorVis4`
+  - `euiColorVis5`
+  - `euiColorVis6`
+  - `euiColorVis7`
+  - `euiColorVis8`
+  - `euiColorVis9`
+  - `euiColorVisBehindText0`
+  - `euiColorVisBehindText1`
+  - `euiColorVisBehindText2`
+  - `euiColorVisBehindText3`
+  - `euiColorVisBehindText4`
+  - `euiColorVisBehindText5`
+  - `euiColorVisBehindText6`
+  - `euiColorVisBehindText7`
+  - `euiColorVisBehindText8`
+  - `euiColorVisBehindText9`
+  - `euiColorVisAsTextLight0`
+  - `euiColorVisAsTextLight1`
+  - `euiColorVisAsTextLight2`
+  - `euiColorVisAsTextLight3`
+  - `euiColorVisAsTextLight4`
+  - `euiColorVisAsTextLight5`
+  - `euiColorVisAsTextLight6`
+  - `euiColorVisAsTextDark0`
+  - `euiColorVisAsTextDark1`
+  - `euiColorVisAsTextDark2`
+  - `euiColorVisAsTextDark3`
+  - `euiColorVisAsTextDark4`
+  - `euiColorVisAsTextDark5`
+  - `euiColorVisAsTextDark6`
+  - `euiColorVisSuccess0`
+  - `euiColorVisSuccess1`
+  - `euiColorVisWarning0`
+  - `euiColorVisDanger0`
+  - `euiColorVisDanger1`
+  - `euiColorVisNeutral0`
+  - `euiColorVisGrey0`
+  - `euiColorVisGrey1`
+  - `euiColorVisGrey2`
+  - `euiColorVisGrey3`
+  - `euiColorVisWarm0`
+  - `euiColorVisWarm1`
+  - `euiColorVisWarm2`
+  - `euiColorVisCool0`
+  - `euiColorVisCool1`
+  - `euiColorVisCool2`
+  - `euiColorVisComplementary0`
+  - `euiColorVisComplementary1`
+- Added severity colors to `euiTheme.colors.vis` ([#8247](https://github.com/elastic/eui/pull/8247)) ([#8386](https://github.com/elastic/eui/pull/8386))
+  - `euiColorSeverity0`
+  - `euiColorSeverity1`
+  - `euiColorSeverity2`
+  - `euiColorSeverity3`
+  - `euiColorSeverity4`
+  - `euiColorSeverity5`
+  - `euiColorSeverity6`
+  - `euiColorSeverity7`
+  - `euiColorSeverity8`
+  - `euiColorSeverity9`
+  - `euiColorSeverity10`
+  - `euiColorSeverity11`
+  - `euiColorSeverity12`
+  - `euiColorSeverity13`
+  - `euiColorSeverity14`
+- Updated color palette functions to support multiple themes by retrieving colors from the new `EuiVisColorStore` ([#8112](https://github.com/elastic/eui/pull/8112)) ([#8386](https://github.com/elastic/eui/pull/8386))
+- Added new semantic tokens to SCSS variables ([#8097](https://github.com/elastic/eui/pull/8097)) ([#8386](https://github.com/elastic/eui/pull/8386))
+- Added new semantic tokens to static JSON exports ([#8115](https://github.com/elastic/eui/pull/8115)) ([#8386](https://github.com/elastic/eui/pull/8386))
+- Updated mixin functions `euiBackgroundColor`, `euiBorderColor`, `euiButtonColor`, `euiButtonFilledColor` and `euiButtonEmptyColor` to return tokens ([#8097](https://github.com/elastic/eui/pull/8097)) ([#8386](https://github.com/elastic/eui/pull/8386))
+- Updated usages of `transparentize`, `shade` and `tint` with tokens ([#8097](https://github.com/elastic/eui/pull/8097)) ([#8386](https://github.com/elastic/eui/pull/8386))
+- Added hooks for color palette functions ([#8284](https://github.com/elastic/eui/pull/8284)) ([#8386](https://github.com/elastic/eui/pull/8386))
+  - `useEuiPaletteColorBlind`
+  - `useEuiPaletteColorBlindBehindText`
+  - `useEuiPaletteForStatus`
+  - `useEuiPaletteForTemperature`
+  - `useEuiPaletteComplementary`
+  - `useEuiPaletteRed`
+  - `useEuiPaletteGreen`
+  - `useEuiPaletteCool`
+  - `useEuiPaletteWarm`
+  - `useEuiPaletteGray`
+- Updated `EuiPopover`, `EuiToolTip`, `EuiTour` and `EuiRange` with shared popover arrow styles ([#8212](https://github.com/elastic/eui/)pull/8212) ([#8386](https://github.com/elastic/eui/pull/8386))
+- Updated border styles on `EuiPanel` to use pseudo element borders ([#8270](https://github.com/elastic/eui/pull/8270)) ([#8386](https://github.com/elastic/eui/pull/8386))
+
+**Bug fixes**
+
+- Fixed `EuiComboBox` by cleaning duplicated values when having a delimiter prop. ([#8335](https://github.com/elastic/eui/pull/8335))
+
+**Breaking changes**
+
+- Renamed `eui_theme_light.json` and `eui_theme_dark.json` to `eui_theme_amsterdam_light.json` and `eui_theme_amsterdam_dark.json` ([#8115](https://github.com/elastic/eui/pull/8115)) ([#8386](https://github.com/elastic/eui/pull/8386))
+- Removed `isDefaultTheme` ([#8288](https://github.com/elastic/eui/pull/8288)) ([#8386](https://github.com/elastic/eui/pull/8386))
+
+**Accessibility**
+
+- Updated colors of `EuiToken` to increase contrast ([#8250](https://github.com/elastic/eui/pull/8250)) ([#8386](https://github.com/elastic/eui/pull/8386))
+- Added background to hovered `EuiKeypadMenuItem` to increase visibility ([#8294](https://github.com/elastic/eui/pull/8294)) ([#8386](https://github.com/elastic/eui/pull/8386))
+
 ## [`v99.4.0`](https://github.com/elastic/eui/releases/v99.4.0)
 
 - Minor design updates to `EuiCollapsibleNavBeta` ([#8332](https://github.com/elastic/eui/pull/8332))
