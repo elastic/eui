@@ -1,0 +1,186 @@
+---
+slug: /utilities/css-utility-classes
+id: utilities_css_utility_classes
+---
+
+import { Example } from '@site/src/components';
+import { css } from '@emotion/react';
+
+import { EuiIcon, EuiMark } from '@elastic/eui';
+
+# CSS utility classes
+
+The following CSS-only classes are provided as helper utilities. They are useful for making micro-adjustments to existing React components.
+
+:::info Scroll utilities have moved
+
+For overflow and scrolling specific utilities, go to [the Scroll documentation page](./scroll/overview.mdx).
+:::
+
+:::info Text utilities have moved
+
+For text and typography specific utilities, go to [the Text documentation page](../theming/typography.mdx).
+:::
+
+:::info Responsive utilities have moved
+
+For responsive specific utilities, go to [the Breakpoint utilities page](../theming/breakpoints.mdx).
+:::
+
+## Display
+
+<Example>
+  <Example.Description>
+    ### `eui-displayBlock` <Badge color="hollow">className</Badge>
+
+    Changes the element's display property to `display: block;`
+  </Example.Description>
+  <Example.Preview>
+    <EuiMark css={css`background: 'rgba(254, 228, 181, 0.25)';`} className="eui-displayBlock">Displaying block</EuiMark>
+  </Example.Preview>
+  <Example.Snippet>
+    ```tsx
+    <span className="eui-displayBlock">
+    /* Your content */
+    </span>
+    ```
+  </Example.Snippet>
+</Example>
+<Example>
+  <Example.Description>
+    ### `eui-displayInline` <Badge color="hollow">className</Badge>
+
+    Changes the element's display property to `display: inline;`
+  </Example.Description>
+  <Example.Preview>
+    <EuiMark css={css`background: 'rgba(254, 228, 181, 0.25)';`} className="eui-displayInline">Displaying inline</EuiMark>
+  </Example.Preview>
+  <Example.Snippet>
+    ```tsx
+    <div className="eui-displayInline">
+    /* Your content */
+    </div>
+    ```
+  </Example.Snippet>
+</Example>
+<Example>
+  <Example.Description>
+    ### `eui-displayInlineBlock` <Badge color="hollow">className</Badge>
+
+    Changes the element's display property to `display: inline-block;`
+  </Example.Description>
+  <Example.Preview>
+    <EuiMark css={css`background: 'rgba(254, 228, 181, 0.25)';`}className="eui-displayInlineBlock">Displaying inline block</EuiMark>
+  </Example.Preview>
+  <Example.Snippet>
+    ```tsx
+    <span className="eui-displayInlineBlock">
+    /* Your content */
+    </span>
+    ```
+  </Example.Snippet>
+</Example>
+<Example>
+  <Example.Description>
+    ### `eui-fullWidth` <Badge color="hollow">className</Badge>
+
+    Changes the element's display property to `display: inline-block;` and adds `width: 100%;`
+  </Example.Description>
+  <Example.Preview>
+    <EuiMark css={css`background: 'rgba(254, 228, 181, 0.25)';`} className="eui-fullWidth">Displaying full width</EuiMark>
+  </Example.Preview>
+  <Example.Snippet>
+    ```tsx
+    <span className="eui-fullWidth">
+    /* Your content */
+    </span>
+    ```
+  </Example.Snippet>
+</Example>
+
+## Vertical alignment
+
+<Example>
+  <Example.Description>
+    ### `eui-alignTop` <Badge color="hollow">className</Badge>
+
+    Changes the element's vertical alignment property to `vertical-align: top;`
+  </Example.Description>
+  <Example.Preview>
+    <p>
+      <EuiIcon
+        type="logoElasticStack"
+        size="xxl"
+        className="eui-alignTop"
+      /> Icon is aligned to the top of the text
+    </p>
+  </Example.Preview>
+  <Example.Snippet>
+    ```tsx
+    <EuiIcon className="eui-alignTop" type="logoElasticStack" />
+    ```
+  </Example.Snippet>
+</Example>
+<Example>
+  <Example.Description>
+    ### `eui-alignMiddle` <Badge color="hollow">className</Badge>
+
+    Changes the element's vertical alignment property to `vertical-align: middle;`
+  </Example.Description>
+  <Example.Preview>
+    <p>
+      <EuiIcon
+        type="logoElasticStack"
+        size="xxl"
+        className="eui-alignMiddle"
+      /> Icon is aligned to the middle of the text
+    </p>
+  </Example.Preview>
+  <Example.Snippet>
+    ```tsx
+    <EuiIcon className="eui-alignMiddle" type="logoElasticStack" />
+    ```
+  </Example.Snippet>
+</Example>
+<Example>
+  <Example.Description>
+    ### `eui-alignBottom` <Badge color="hollow">className</Badge>
+
+    Changes the element's vertical alignment property to `vertical-align: bottom;`
+  </Example.Description>
+  <Example.Preview>
+    <p>
+      <EuiIcon
+        type="logoElasticStack"
+        size="xxl"
+        className="eui-alignBottom"
+      /> Icon is aligned to the bottom of the text
+    </p>
+  </Example.Preview>
+  <Example.Snippet>
+    ```tsx
+    <EuiIcon className="eui-alignBottom" type="logoElasticStack" />
+    ```
+  </Example.Snippet>
+</Example>
+<Example>
+  <Example.Description>
+    ### `eui-alignBaseline` <Badge color="hollow">className</Badge>
+
+    Changes the element's vertical alignment property to `vertical-align: baseline;`
+  </Example.Description>
+  <Example.Preview>
+    <p>
+      <EuiIcon
+        type="logoElasticStack"
+        size="xxl"
+        className="eui-alignBaseline"
+      /> Icon is aligned to the baseline of the text
+    </p>
+  </Example.Preview>
+  <Example.Snippet>
+    ```tsx
+    <EuiIcon className="eui-alignBaseline" type="logoElasticStack" />
+    ```
+  </Example.Snippet>
+</Example>
