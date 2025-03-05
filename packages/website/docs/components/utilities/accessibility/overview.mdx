@@ -1,0 +1,292 @@
+---
+slug: /utilities/accessibility
+id: utilities_accessibility
+---
+
+import { Example } from '@site/src/components';
+
+# Accessibility
+
+## Screen reader only
+
+Using `EuiScreenReaderOnly` hides the wrapped element from the page, but keeps it accessible for screen readers to provide more context. It should be used primarily to mask **text** and requires the child to be a single React element for cloning.
+
+:::warning WebAIM recommendation for screen reader-only content
+"In most cases, if content (particularly content that provides functionality or interactivity) is important enough to provide to screen reader users, it should probably be made available to all users." [Learn more about invisible content](https://webaim.org/techniques/css/invisiblecontent/)
+:::
+
+*Using a screen reader, verify that there is a second paragraph.*
+
+<Demo>
+  ```tsx
+  <EuiText>
+    <p>This is the first paragraph. It is visible to all.</p>
+    <EuiScreenReaderOnly>
+      <p>
+      This is the second paragraph. It is hidden for sighted users but visible
+      to screen readers.
+      </p>
+    </EuiScreenReaderOnly>
+    <p>This is the third paragraph. It is visible to all.</p>
+  </EuiText>
+  ```
+</Demo>
+
+### Showing on focus
+
+If the wrapped element is **focusable**, you must use the `showOnFocus` prop to visibly show the element to all users when focused.
+
+*Tab through the following example with your keyboard to verify the element is visible on focus.*
+
+<Demo>
+  ```tsx
+  <EuiText>
+    <p>
+      This link is visible to all on focus:{' '}
+      <EuiScreenReaderOnly showOnFocus>
+        <EuiLink href="./utilities/accessibility">Link text</EuiLink>
+      </EuiScreenReaderOnly>
+    </p>
+    <p>
+      This tooltip + button is visible on focus within:{' '}
+      <EuiScreenReaderOnly showOnFocus>
+        <span>
+          <EuiToolTip content="Information">
+            <EuiButtonIcon iconType="iInCircle" aria-label="Information" />
+          </EuiToolTip>
+        </span>
+      </EuiScreenReaderOnly>
+    </p>
+  </EuiText>
+  ```
+</Demo>
+
+## Screen reader live region
+
+Using `EuiScreenReaderLive` to announce dynamic content, such as status changes based on user interaction.
+
+The configurable `role` and `aria-live` props default to `status` and `polite` respectively for unintrusive but timely update announcements. When not using the default values, be sure to follow [ARIA guidelines](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Live_Regions) for `role` to `aria-live` mapping.
+
+Also consider other live region guidelines, such as that live regions must be present on initial page load, and should not be in a conditional JSX wrapper.
+
+import ScreenReaderLiveRegion from './screen_reader_live_region';
+
+<Demo>
+  ```tsx
+  import { useState, useCallback } from 'react';
+
+  import {
+    EuiButton,
+    EuiCode,
+    EuiScreenReaderLive,
+    EuiSpacer,
+    EuiText,
+  } from '@elastic/eui';
+
+  export default () => {
+    const [screenReaderText, setScreenReaderText] = useState(
+      'You have no notifications.'
+    );
+
+    const startAnnouncements = useCallback(() => {
+      const randomNumber = Math.floor(Math.random() * 10) + 1;
+
+      setScreenReaderText(
+        `You have ${randomNumber} new notification${randomNumber > 1 ? 's' : ''}.`
+      );
+    }, []);
+
+    return (
+      <>
+        <EuiButton onClick={startAnnouncements}>
+          Create screen reader announcement
+        </EuiButton>
+        <EuiSpacer />
+        <EuiText>
+          <p>
+            <em>Content announced by screen reader: </em>
+            <EuiCode>{screenReaderText}</EuiCode>
+          </p>
+          <EuiScreenReaderLive>
+            <p>{screenReaderText}</p>
+          </EuiScreenReaderLive>
+        </EuiText>
+      </>
+    );
+  };
+  ```
+</Demo>
+
+### Auto-focusing the live region on text change
+
+The `focusRegionOnTextChange` prop will automatically focus the `EuiScreenReaderLive` region (causing screen readers to read out the text content) whenever `children` changes.
+
+This is primarily useful for announcing navigation or page changes, when programmatically resetting focus location back to a certain part of the page (where the `EuiScreenReaderLive` is placed) is desired.
+
+*Using a screen reader, click the following navigation links and notice that when the new page is announced, focus is also set to the top of the body content.*
+
+<Demo previewPadding="s">
+  ```tsx
+  import React, { useState } from 'react';
+
+  import {
+    EuiScreenReaderLive,
+    EuiPageTemplate,
+    EuiSideNav,
+    EuiButton,
+    htmlIdGenerator,
+  } from '@elastic/eui';
+
+  export default () => {
+    const idGenerator = htmlIdGenerator('focusRegionOnTextChange');
+
+    const [pageTitle, setPageTitle] = useState('Home');
+
+    const sideNav = [
+      {
+        name: 'Example side nav',
+        id: idGenerator(),
+        items: [
+          {
+            name: 'Home',
+            id: idGenerator(),
+            onClick: () => setPageTitle('Home'),
+          },
+          {
+            name: 'About',
+            id: idGenerator(),
+            onClick: () => setPageTitle('About'),
+          },
+          {
+            name: 'Docs',
+            id: idGenerator(),
+            onClick: () => setPageTitle('Docs'),
+          },
+          {
+            name: 'Contact',
+            id: idGenerator(),
+            onClick: () => setPageTitle('Contact'),
+          },
+        ],
+      },
+    ];
+
+    return (
+      <EuiPageTemplate grow={false} offset={0}>
+        <EuiPageTemplate.Sidebar>
+          <EuiSideNav items={sideNav} isOpenOnMobile />
+        </EuiPageTemplate.Sidebar>
+        <EuiPageTemplate.Header iconType="logoElastic" pageTitle={pageTitle} />
+        <EuiPageTemplate.Section>
+          <EuiScreenReaderLive focusRegionOnTextChange>
+            {pageTitle}
+          </EuiScreenReaderLive>
+          <EuiButton>
+            Clicking a nav link and then pressing tab should focus this button
+          </EuiButton>
+        </EuiPageTemplate.Section>
+      </EuiPageTemplate>
+    );
+  };
+  ```
+</Demo>
+
+## Skip link
+
+The `EuiSkipLink` component allows users to bypass navigation, or ornamental elements, and quickly reach the main content of the page. It requires a `destinationId` which should match the `id` of your main content. If your ID does not correspond to a valid element, the skip link will fall back to focusing the `<main>` tag on your page, if it exists.
+
+*Tab through the following section to verify the Skip to content button is visible on focus.*
+
+<Demo>
+  ```tsx
+  import React from 'react';
+
+  import { EuiSkipLink, EuiText } from '@elastic/eui';
+
+  export default () => {
+    return (
+      <EuiText id="skip-link-example">
+        <p>The following skip links are only visible on focus:</p>
+        <EuiSkipLink destinationId="skip-link-example" overrideLinkBehavior>
+          Skips to this example container
+        </EuiSkipLink>
+        <EuiSkipLink destinationId="" overrideLinkBehavior>
+          Falls back to main container
+        </EuiSkipLink>
+      </EuiText>
+    );
+  };
+  ```
+</Demo>
+
+## Styles helpers 
+
+import { ClassNamePreview } from './class_name_preview';
+import { FunctionPreview } from './function_preview';
+import { HookPreview } from './hook_preview';
+
+<Example>
+  <Example.Description>
+    ### `.euiScreenReaderOnly` <Badge color="hollow">className</Badge>
+
+    This utility class allows you to apply the screen reader only CSS styles directly to your component.
+  </Example.Description>
+  <Example.Preview>
+    <ClassNamePreview />
+  </Example.Preview>
+  <Example.Snippet>
+    ```tsx
+    <p className="euiScreenReaderOnly" />
+    ```
+  </Example.Snippet>
+</Example>
+
+<Example>
+  <Example.Description>
+    ### `euiScreenReaderOnly()` <Badge color="hollow">function</Badge>
+
+    This function allows you to apply the screen reader only CSS styles directly to your component.
+  </Example.Description>
+  <Example.Preview>
+    <FunctionPreview />
+  </Example.Preview>
+  <Example.Snippet>
+    ```tsx
+    css`
+      ${euiScreenReaderOnly()}
+    `
+    ```
+  </Example.Snippet>
+</Example>
+
+<Example>
+  <Example.Description>
+    ### `useEuiFocusRing(offset?, color?)` <Badge color="hollow">hook</Badge>
+
+    By default, all interactive elements will inherit the `outline` property from the reset file. However, some instances require adjustment to the `offset` and `color` of this outline. This helper function allows that customization of the focus outline.
+
+    `offset: 'inset' | 'outset' | 'center' | CSSProperties['outlineOffset'];`
+
+    `color: CSSProperties['outlineColor'];`
+  </Example.Description>
+  <Example.Preview>
+    <HookPreview />
+  </Example.Preview>
+  <Example.Snippet>
+    ```tsx
+    css`
+      &:focus {
+        ${useEuiFocusRing('center', euiTheme.colors.accent)}
+      }
+    `
+    ```
+  </Example.Snippet>
+</Example>
+
+## Props
+
+import docgen from '@elastic/eui-docgen/dist/components';
+
+<PropTable definition={docgen.EuiScreenReaderOnly} />
+<PropTable definition={docgen.EuiScreenReaderLive} />
+<PropTable definition={docgen.EuiSkipLink} />
