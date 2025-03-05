@@ -128,6 +128,12 @@ yarn release run snapshot --allow-custom --workspaces @elastic/eui-theme-common 
 Once the script finishes the snapshot releases have been published to npm and can be installed for testing.
 
 
+(Optional) log out of your NPM account:
+```sh
+yarn npm logout
+yarn npm whoami # Should return an error about not being logged in
+```
+
 #### Local testing
 
 Ensure you're logged out of npm: 
@@ -178,6 +184,12 @@ yarn release run snapshot --allow-custom --workspaces @elastic/eui-theme-common 
 ```
 
 The defined snapshot packages will be now be "released" to the local registry which is available at `http://localhost:4873`.
+
+Log out of your NPM account:
+```sh
+yarn npm logout
+yarn npm whoami # Should return an error about not being logged in
+```
 
 
 
