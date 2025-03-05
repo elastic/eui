@@ -90,7 +90,7 @@ EUI's class names are not a guaranteed API and are prone to change, which will r
 
 :::
 
-While EUI's styles are generally low in [specificity](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity) due to our usage of CSS-in-JS, you may need to ensure that your CSS is defined after ours in your `<head>`. See [**EuiProvider's** cache customization for more style injection options](/utilities/provider#cache-customization).
+While EUI's styles are generally low in <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity" target="_blank" rel="noopener noreferrer">**specificity**</a> due to our usage of CSS-in-JS, you may need to ensure that your CSS is defined after ours in your `<head>`. See [**EuiProvider's** cache customization for more style injection options](../utilities/provider.mdx#emotioncache-customization).
 
 ```tsx
 import React from 'react';
@@ -222,7 +222,7 @@ import { findByTestSubject, render, screen } from '@elastic/eui/lib/test/rtl'; /
 
 ## Customizing component defaults
 
-While all props can be individually customized via props, some components can have their default props customized globally via **EuiProvider's** `componentDefaults` API. [Read more in EuiProvider's documentation](/docs/utilities/provider#component-defaults).
+While all props can be individually customized via props, some components can have their default props customized globally via **EuiProvider's** `componentDefaults` API. [Read more in EuiProvider's documentation](../utilities/provider.mdx#component-defaults).
 
 ```tsx
 <EuiProvider

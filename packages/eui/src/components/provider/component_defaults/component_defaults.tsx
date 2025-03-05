@@ -97,3 +97,16 @@ export const usePropsWithComponentDefaults = <
     [componentDefaults, props]
   );
 };
+
+/*
+ * Utilities
+ */
+
+/**
+ * Used only to generate prop type definitions (via `@elastic/eui-docgen`) to document `EuiComponentDefaults` in a props table.
+ *
+ * @see https://github.com/elastic/eui/issues/8388
+ */
+export const EuiProviderComponentDefaultsProps: FunctionComponent<
+  EuiComponentDefaults
+> = () => <></>;
