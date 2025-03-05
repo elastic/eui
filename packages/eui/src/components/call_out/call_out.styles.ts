@@ -59,16 +59,16 @@ export const euiCallOutHeaderStyles = ({ euiTheme }: UseEuiTheme) => {
       )}
     `,
     primary: css`
-      color: ${euiTheme.colors.primaryText};
+      color: ${euiTheme.colors.textPrimary};
     `,
     success: css`
-      color: ${euiTheme.colors.successText};
+      color: ${euiTheme.colors.textSuccess};
     `,
     warning: css`
-      color: ${euiTheme.colors.warningText};
+      color: ${euiTheme.colors.textWarning};
     `,
     danger: css`
-      color: ${euiTheme.colors.dangerText};
+      color: ${euiTheme.colors.textDanger};
     `,
     accent: css`
       color: ${euiTheme.colors.accentText};

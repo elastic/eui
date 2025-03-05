@@ -7,14 +7,10 @@
  */
 
 import { css } from '@emotion/react';
-import {
-  UseEuiTheme,
-  COLOR_MODES_STANDARD,
-  tint,
-  shade,
-} from '../../../services';
-import { euiRangeVariables } from './range.styles';
+import { UseEuiTheme } from '../../../services';
 import { euiFontSize, mathWithUnits } from '../../../global_styling';
+import { _popoverArrowStyles } from '../../../services/popover';
+import { euiRangeVariables } from './range.styles';
 
 export const euiRangeTooltipStyles = (euiThemeContext: UseEuiTheme) => {
   const range = euiRangeVariables(euiThemeContext);
@@ -35,21 +31,17 @@ export const euiRangeTooltipStyles = (euiThemeContext: UseEuiTheme) => {
   };
 };
 
-const euiToolTipBackgroundColor = (
-  euiTheme: UseEuiTheme['euiTheme'],
-  colorMode: UseEuiTheme['colorMode']
-) =>
-  colorMode === COLOR_MODES_STANDARD.dark
-    ? shade(euiTheme.colors.emptyShade, 1)
-    : tint(euiTheme.colors.fullShade, 0.25);
-
 export const euiRangeTooltipValueStyles = (euiThemeContext: UseEuiTheme) => {
   const range = euiRangeVariables(euiThemeContext);
   const { euiTheme, colorMode } = euiThemeContext;
 
+  const toolTipBackgroundColor = euiTheme.components.tooltipBackground;
+  const borderColor =
+    colorMode === 'DARK' ? toolTipBackgroundColor : 'transparent';
+
   const arrowSize = euiTheme.size.m;
-  const arrowSizeInt = parseInt(arrowSize, 10);
-  const arrowMinusSize = `${(arrowSizeInt / 2 - 1) * -1}px`; // Shift arrow 1px more than half its size to account for border radius
+  const arrowOffset = euiTheme.size.l;
+  const arrowStyles = _popoverArrowStyles(euiThemeContext, arrowSize);
 
   return {
     euiRangeTooltip__value: css`
@@ -58,43 +50,39 @@ export const euiRangeTooltipValueStyles = (euiThemeContext: UseEuiTheme) => {
       max-inline-size: ${mathWithUnits(euiTheme.size.base, (x) => x * 16)};
       padding-block: ${euiTheme.size.xxs};
       padding-inline: ${euiTheme.size.s};
-      transform: translateX(0) translateY(-50%);
+      transform: translateY(-50%);
 
       ${euiFontSize(euiThemeContext, 's')}
       line-height: ${euiFontSize(euiThemeContext, 's').lineHeight};
       color: ${euiTheme.colors.ghost};
-      background-color: ${euiToolTipBackgroundColor(euiTheme, colorMode)};
-      border: ${euiTheme.border.width.thin} solid
-        ${euiToolTipBackgroundColor(euiTheme, colorMode)};
+      background-color: ${toolTipBackgroundColor};
+      border: ${euiTheme.border.width.thin} solid ${toolTipBackgroundColor};
+      border: ${euiTheme.border.width.thin} solid ${borderColor};
       border-radius: ${euiTheme.border.radius.small};
 
       &::before {
         content: '';
-        position: absolute;
-        inset-block-end: 50%;
-        inline-size: ${arrowSize};
-        block-size: ${arrowSize};
-        transform-origin: center;
-        transform: translateY(50%) rotateZ(45deg);
-        background-color: ${euiToolTipBackgroundColor(euiTheme, colorMode)};
-        border-radius: ${mathWithUnits(
-          euiTheme.border.radius.small,
-          (x) => x / 2
-        )};
+        ${arrowStyles._arrowStyles}
+        inset-block-start: 50%;
+        margin-block-start: ${mathWithUnits(arrowSize, (x) => x / -2)};
+        background-color: inherit;
+        border: inherit;
       }
     `,
     left: css`
-      margin-inline-end: ${euiTheme.size.l};
+      margin-inline-end: ${arrowOffset};
 
       &::before {
-        inset-inline-end: ${arrowMinusSize};
+        ${arrowStyles.positions.left}
+        inset-inline-start: 100%;
       }
     `,
     right: css`
-      margin-inline-start: ${euiTheme.size.l};
+      margin-inline-start: ${arrowOffset};
 
       &::before {
-        inset-inline-start: ${arrowMinusSize};
+        ${arrowStyles.positions.right}
+        inset-inline-end: 100%;
       }
     `,
     hasTicks: css`

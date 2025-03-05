@@ -536,7 +536,7 @@ export class EuiPopover extends Component<Props, State> {
         ? 16 + offset
         : 8 + offset,
       arrowConfig: this.props.hasArrow
-        ? { arrowWidth: 24, arrowBuffer: 10 }
+        ? { arrowWidth: 16, arrowBuffer: 10 }
         : { arrowWidth: 0, arrowBuffer: 0 },
       returnBoundingBox: this.props.attachToAnchor,
       allowCrossAxis: this.props.repositionToCrossAxis,
@@ -636,6 +636,7 @@ export class EuiPopover extends Component<Props, State> {
       buffer,
       'aria-label': ariaLabel,
       'aria-labelledby': ariaLabelledBy,
+      'aria-live': ariaLiveProp,
       container,
       focusTrapProps,
       initialFocus: initialFocusProp,
@@ -678,7 +679,7 @@ export class EuiPopover extends Component<Props, State> {
           initialFocus = () => this.panel!;
         }
       } else {
-        ariaLive = 'assertive';
+        ariaLive = ariaLiveProp ?? 'assertive';
       }
 
       let focusTrapScreenReaderText;

@@ -60,9 +60,14 @@ export {
   tintOrShade,
   transparentize,
   VISUALIZATION_COLORS,
+  EUI_VIS_COLOR_STORE,
   wcagContrastMin,
+  type EuiPaletteColorBlindProps,
+  type EuiPaletteRotationProps,
+  type EuiPaletteCommonProps,
 } from './color';
 export type { HSV } from './color';
+export * from './color/eui_palettes_hooks';
 export { useColorPickerState, useColorStopsState } from './color_picker';
 export type { EuiSetColorMethod } from './color_picker';
 export * from './console';

@@ -8,17 +8,14 @@
 
 import { css } from '@emotion/react';
 
-import { UseEuiTheme, transparentize } from '../../../services';
+import { UseEuiTheme } from '../../../services';
 import { logicalCSS } from '../../../global_styling';
 
 export const euiColorPaletteDisplayStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
 
   // Border is a pseudo element with transparency
-  const border = `${euiTheme.border.width.thin} solid ${transparentize(
-    euiTheme.colors.darkestShade,
-    0.2
-  )}`;
+  const border = `${euiTheme.border.width.thin} solid ${euiTheme.colors.borderBaseFormsColorSwatch}`;
 
   return {
     euiColorPaletteDisplay: css`

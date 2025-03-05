@@ -9,11 +9,7 @@
 import { css, type SerializedStyles } from '@emotion/react';
 import { CSSProperties } from 'react';
 
-import {
-  UseEuiTheme,
-  makeDisabledContrastColor,
-  transparentize,
-} from '../../../services';
+import { UseEuiTheme, makeDisabledContrastColor } from '../../../services';
 import {
   mathWithUnits,
   logicalCSS,
@@ -26,7 +22,7 @@ import {
   euiButtonFillColor,
   _EuiButtonColor,
   BUTTON_COLORS,
-} from '../../../themes/amsterdam/global_styling/mixins/button';
+} from '../../../global_styling/mixins/_button';
 import { euiScreenReaderOnly } from '../../accessibility';
 import { euiFormVariables } from '../../form/form.styles';
 
@@ -61,6 +57,11 @@ export const euiButtonGroupButtonStyles = (euiThemeContext: UseEuiTheme) => {
       ${logicalCSS('min-width', 0)}
       flex-shrink: 1;
       flex-grow: 0;
+      z-index: 0;
+
+      &:focus-visible {
+        z-index: 1;
+      }
 
       ${euiCanAnimate} {
         transition: background-color ${euiTheme.animation.normal} ease-in-out,
@@ -78,14 +79,19 @@ export const euiButtonGroupButtonStyles = (euiThemeContext: UseEuiTheme) => {
         }
 
         &:focus-visible {
-          ${euiOutline(euiThemeContext, 'inset', euiTheme.colors.fullShade)}
+          ${euiOutline(
+            euiThemeContext,
+            'inset',
+            euiTheme.components.buttonGroupFocusColor
+          )}
         }
       `,
       get borders() {
         const selectors =
           '.euiButtonGroupButton-isSelected, .euiButtonGroup__tooltipWrapper-isSelected';
-        const selectedColor = transparentize(euiTheme.colors.emptyShade, 0.2);
-        const unselectedColor = transparentize(euiTheme.colors.fullShade, 0.1);
+        const selectedColor =
+          euiTheme.components.buttonGroupBorderColorSelected;
+        const unselectedColor = euiTheme.components.buttonGroupBorderColor;
         const borderWidth = euiTheme.border.width.thin;
 
         // "Borders" between buttons should be present between two of the same colored buttons,

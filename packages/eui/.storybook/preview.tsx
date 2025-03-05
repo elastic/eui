@@ -48,12 +48,13 @@ const preview: Preview = {
         colorMode={context.globals.colorMode}
         {...(context.componentId === 'theming-euiprovider' && context.args)}
         writingMode={context.globals.writingMode}
+        themeName={context.globals.theme}
       >
         <Story />
       </EuiProviderDecorator>
     ),
   ],
-  globalTypes: { ...euiProviderDecoratorGlobals },
+  globalTypes: euiProviderDecoratorGlobals,
   parameters: {
     backgrounds: { disable: true }, // Use colorMode instead
     options: {

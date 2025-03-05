@@ -1,3 +1,20 @@
+## [`v99.4.0`](https://github.com/elastic/eui/releases/v99.4.0)
+
+- Minor design updates to `EuiCollapsibleNavBeta` ([#8332](https://github.com/elastic/eui/pull/8332))
+  - Allow section without a title
+  - Second-level icons should be horizontally aligned with the top-level icon
+  - Turn off text truncation for nav items
+- Added `quickSelectButtonProps` to `EuiSuperDatePicker` ([#8380](https://github.com/elastic/eui/pull/8380))
+
+**Bug fixes**
+
+- Fixed a bug in `EuiHeader` where the navigation of `EuiCollapsibleNavBeta` would render below the `EuiFlyout`'s overlay ([#8325](https://github.com/elastic/eui/pull/8325))
+
+**Accessibility**
+
+- Improved the accessibility of `EuiComboBox` by adding `aria-setsize` and `aria-posinset` to ensure correct information is provided for its virtualized listbox ([#8333](https://github.com/elastic/eui/pull/8333))
+- Improved the `EuiAccordionTrigger`'s screen reader UX by passed `aria-hidden` to the `EuiAccordionArrow` to avoid duplicated announcements by screen readers. ([#8342](https://github.com/elastic/eui/pull/8342))
+
 ## [`v99.3.0`](https://github.com/elastic/eui/releases/v99.3.0)
 
 - Updated table components to support adding tooltips to header cells ([#8273](https://github.com/elastic/eui/pull/8273))

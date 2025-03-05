@@ -34,6 +34,7 @@ export interface EuiTableFooterProps<T> {
   pagination?: Pagination;
 }
 
+/** Allows adding an icon with a tooltip to column names */
 export type EuiTableColumnNameTooltipProps = {
   /** The main content of the tooltip */
   content: ReactNode;

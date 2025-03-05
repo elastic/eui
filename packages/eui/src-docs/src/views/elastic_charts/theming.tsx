@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 
 import {
   Chart,
@@ -8,6 +8,7 @@ import {
   BarSeries,
   DataGenerator,
 } from '@elastic/charts';
+import { VIS_COLOR_STORE_EVENTS } from '@elastic/eui-theme-common';
 
 import {
   EuiSpacer,
@@ -26,10 +27,11 @@ import {
   euiPaletteRed,
   euiPaletteGreen,
   euiPaletteGray,
+  EUI_VIS_COLOR_STORE,
 } from '../../../../src/services';
 import { useChartBaseTheme } from './utils/use_chart_base_theme';
 
-const paletteData = {
+const getPaletteData = () => ({
   euiPaletteColorBlind,
   euiPaletteForStatus,
   euiPaletteForTemperature,
@@ -39,24 +41,45 @@ const paletteData = {
   euiPaletteCool,
   euiPaletteWarm,
   euiPaletteGray,
-};
-
-const palettes = Object.entries(paletteData).map(([paletteName, palette]) => {
-  return {
-    value: paletteName,
-    title: paletteName,
-    palette:
-      palette === euiPaletteColorBlind
-        ? euiPaletteColorBlind({ sortBy: 'natural' })
-        : palette(10),
-    type: 'fixed' as const,
-  };
 });
+
+const getPalettes = () =>
+  Object.entries(getPaletteData()).map(([paletteName, palette]) => {
+    return {
+      value: paletteName,
+      title: paletteName,
+      palette:
+        palette === euiPaletteColorBlind
+          ? euiPaletteColorBlind({ sortBy: 'natural' })
+          : palette(10),
+      type: 'fixed' as const,
+    };
+  });
 
 export default () => {
   const chartBaseTheme = useChartBaseTheme();
 
+  const [palettes, setPalettes] = useState(getPalettes());
   const [barPalette, setBarPalette] = useState('euiPaletteColorBlind');
+
+  const paletteData = useMemo(
+    () => getPaletteData(),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [palettes]
+  );
+
+  useEffect(() => {
+    const storeId = EUI_VIS_COLOR_STORE.subscribe(
+      VIS_COLOR_STORE_EVENTS.UPDATE,
+      () => {
+        setPalettes(getPalettes());
+      }
+    );
+
+    return () => {
+      EUI_VIS_COLOR_STORE.unsubscribe(VIS_COLOR_STORE_EVENTS.UPDATE, storeId);
+    };
+  }, []);
 
   /**
    * Create data

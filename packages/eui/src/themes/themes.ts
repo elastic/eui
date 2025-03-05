@@ -7,27 +7,9 @@
  */
 
 import { EuiThemeSystem } from '../services';
-import { EuiThemeAmsterdam, AMSTERDAM_NAME_KEY } from './amsterdam/theme';
 
 export interface EUI_THEME {
   text: string;
   value: string;
   provider?: EuiThemeSystem;
 }
-
-export const EUI_THEMES: EUI_THEME[] = [
-  {
-    text: 'Light',
-    value: 'light',
-    provider: EuiThemeAmsterdam,
-  },
-  {
-    text: 'Dark',
-    value: 'dark',
-    provider: EuiThemeAmsterdam,
-  },
-];
-
-export const isDefaultTheme = (name: string) => {
-  return name === AMSTERDAM_NAME_KEY;
-};

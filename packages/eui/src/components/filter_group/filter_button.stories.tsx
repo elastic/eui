@@ -9,7 +9,7 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { BUTTON_COLORS } from '../../themes/amsterdam/global_styling/mixins';
+import { BUTTON_COLORS } from '../../global_styling/mixins/_button';
 
 import { EuiFilterGroup } from './filter_group';
 import { EuiFilterButton, EuiFilterButtonProps } from './filter_button';

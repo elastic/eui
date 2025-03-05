@@ -1,0 +1,273 @@
+@mixin euiFormControlLayoutPadding($numOfIcons, $side: 'right', $compressed: false) {
+  $iconSize: $euiSize;
+  $iconPadding: $euiFormControlPadding;
+  $marginBetweenIcons: $euiFormControlPadding / 2;
+
+  @if ($compressed) {
+    $iconPadding: $euiFormControlCompressedPadding;
+  }
+
+  @if variable-exists(numOfIcons) == false {
+    @error '$numOfIcons:integer (1-3) must be provided to @mixin euiFormControlLayoutPadding().';
+  } @else if $numOfIcons == 1 {
+    padding-#{$side}: $iconPadding + $iconSize + $iconPadding;
+  } @else if $numOfIcons == 2 {
+    padding-#{$side}: $iconPadding + $iconSize + $marginBetweenIcons + $iconSize + $iconPadding;
+  } @else if $numOfIcons == 3 {
+    padding-#{$side}: $iconPadding + $iconSize + $marginBetweenIcons + $iconSize + $marginBetweenIcons + $iconSize + $iconPadding;
+  }
+}
+
+@mixin euiPlaceholderPerBrowser {
+  // stylelint-disable selector-no-vendor-prefix
+  // Each prefix must be its own content block
+  &::-webkit-input-placeholder { @content; opacity: 1; }
+  &::-moz-placeholder { @content; opacity: 1; }
+  &:-ms-input-placeholder { @content; opacity: 1; }
+  &:-moz-placeholder { @content; opacity: 1; }
+  &::placeholder { @content; opacity: 1; }
+}
+
+@function euiFormControlGradient($color: $euiColorPrimary) {
+  @return linear-gradient(to top,
+    $color,
+    $color 2px,
+    transparent 2px,
+    transparent 100%
+  );
+}
+
+@mixin euiFormControlText {
+  @include euiFont;
+  font-size: $euiFontSizeS;
+  color: $euiColorTextParagraph;
+
+  @include euiPlaceholderPerBrowser {
+    color: $euiFormControlPlaceholderText;
+  }
+}
+
+@mixin euiFormControlSize(
+  $height: $euiFormControlHeight,
+  $includeAlternates: false
+) {
+  // Default
+  max-width: $euiFormMaxWidth;
+  width: 100%;
+  height: $height;
+
+  @if ($includeAlternates) {
+    &--fullWidth {
+      max-width: 100%;
+    }
+
+    &--compressed {
+      height: $euiFormControlCompressedHeight;
+    }
+
+    &--inGroup {
+      height: 100%;
+    }
+  }
+}
+
+@mixin euiFormControlWithIcon($isIconOptional: false, $side: 'left', $compressed: false) {
+  @if ($isIconOptional) {
+    @at-root {
+      #{&}--withIcon {
+        @include euiFormControlLayoutPadding(1, $side, $compressed);
+      }
+    }
+  } @else {
+    @include euiFormControlLayoutPadding(1, $side, $compressed);
+  }
+}
+
+@mixin euiFormControlIsLoading($isNextToIcon: false) {
+  @at-root {
+    #{&}-isLoading {
+      @if ($isNextToIcon) {
+        @include euiFormControlLayoutPadding(2);
+      } @else {
+        @include euiFormControlLayoutPadding(1);
+      }
+    }
+
+    #{&}-isLoading#{&}--compressed {
+      @if ($isNextToIcon) {
+        @include euiFormControlLayoutPadding(2, $compressed: true);
+      } @else {
+        @include euiFormControlLayoutPadding(1, $compressed: true);
+      }
+    }
+  }
+}
+
+// 1. Must supply both values to background-size or some browsers apply the single value to both directions
+
+@mixin euiFormControlDefaultShadow($borderOnly: false) {
+  background-color: $euiFormBackgroundColor;
+  background-repeat: no-repeat;
+  background-size: 0% 100%; // 1
+
+  @if ($borderOnly) {
+    box-shadow: inset 0 0 0 1px $euiFormBorderColor;
+  } @else {
+    box-shadow:
+      #{$euiFormControlBoxShadow},
+      inset 0 0 0 1px $euiFormBorderColor;
+  }
+
+  transition:
+    box-shadow $euiAnimSpeedFast ease-in,
+    background-image $euiAnimSpeedFast ease-in,
+    background-size $euiAnimSpeedFast ease-in,
+    background-color $euiAnimSpeedFast ease-in;
+
+  // Fixes bug in Firefox where adding a transition to the background-color
+  // caused a flash of differently styled dropdown.
+  @supports (-moz-appearance: none) {
+    // List *must* be in the same order as the above.
+    transition-property: box-shadow, background-image, background-size;
+  }
+}
+
+@mixin euiFormControlFocusStyle($borderOnly: false) {
+  background-color: tintOrShade($euiColorEmptyShade, 0%, 40%);
+  background-image: euiFormControlGradient();
+  background-size: 100% 100%; // 1
+  outline: none; // Blanket remove all outlines relying on our own bottom border
+
+  @if ($borderOnly) {
+    box-shadow: inset 0 0 0 1px $euiFormBorderColor;
+  } @else {
+    box-shadow: inset 0 0 0 1px $euiFormBorderColor;
+  }
+}
+
+@mixin euiFormControlInvalidStyle {
+  background-image: euiFormControlGradient($euiColorDanger);
+  background-size: 100%;
+}
+
+@mixin euiFormControlDisabledTextStyle {
+  color: $euiFormControlDisabledColor;
+  -webkit-text-fill-color: $euiFormControlDisabledColor; // Required for Safari
+}
+
+@mixin euiFormControlDisabledStyle {
+  @include euiFormControlDisabledTextStyle;
+  cursor: not-allowed;
+  background: $euiFormBackgroundDisabledColor;
+  box-shadow: inset 0 0 0 1px $euiFormBorderDisabledColor;
+
+  @include euiPlaceholderPerBrowser {
+    color: $euiFormControlDisabledColor;
+  }
+}
+
+@mixin euiFormControlReadOnlyStyle {
+  cursor: default;
+  color: $euiColorTextParagraph;
+  -webkit-text-fill-color: $euiColorTextParagraph; // Required for Safari
+  // Use transparency since there is no border and in case form is on a non-white background
+  background: $euiFormBackgroundReadOnlyColor;
+  border-color: transparent;
+  box-shadow: inset 0 0 0 1px $euiFormBorderDisabledColor;
+}
+
+// 2. Override invalid state with focus state.
+
+@mixin euiFormControlStyle($borderOnly: false, $includeStates: true, $includeSizes: true) {
+  @include euiFormControlSize($includeAlternates: $includeSizes);
+  @include euiFormControlDefaultShadow;
+  @include euiFormControlText;
+
+  border: none;
+  border-radius: $euiFormControlBorderRadius;
+  padding: $euiFormControlPadding;
+
+  @if ($includeStates) {
+    &:invalid { // 2
+      @include euiFormControlInvalidStyle;
+    }
+
+    &:focus { // 2
+      @include euiFormControlFocusStyle;
+    }
+
+    &:disabled {
+      @include euiFormControlDisabledStyle;
+    }
+
+    &[readOnly] {
+      @include euiFormControlReadOnlyStyle;
+    }
+
+    // Needs to be set for autofill
+    &:-webkit-autofill {
+      -webkit-text-fill-color: lightOrDarkTheme($euiColorDarkestShade, $euiColorLightShade);
+
+      ~ .euiFormControlLayoutIcons {
+        color: lightOrDarkTheme($euiColorDarkestShade, $euiColorLightShade);
+      }
+    }
+  }
+
+  @if ($includeSizes) {
+    &--compressed {
+      @include euiFormControlStyleCompressed($borderOnly, $includeStates);
+    }
+
+    &--inGroup {
+      // stylelint-disable-next-line declaration-no-important
+      box-shadow: none !important;
+      border-radius: 0;
+    }
+  }
+}
+
+@mixin euiFormControlStyleCompressed($borderOnly: false, $includeStates: true) {
+  @include euiFormControlDefaultShadow($borderOnly: true);
+  padding: $euiFormControlCompressedPadding;
+  border-radius: $euiFormControlCompressedBorderRadius;
+
+  @if ($includeStates) {
+    &:invalid { // 2
+      @include euiFormControlInvalidStyle;
+    }
+
+    &:focus { // 2
+      @include euiFormControlFocusStyle($borderOnly: true);
+    }
+
+    &:disabled {
+      @include euiFormControlDisabledStyle;
+    }
+
+    &[readOnly] {
+      @include euiFormControlReadOnlyStyle;
+    }
+  }
+}
+
+@mixin euiHiddenSelectableInput {
+  position: absolute;
+  // stylelint-disable-next-line declaration-no-important
+  opacity: 0 !important; // Make sure it's still hidden when :disabled
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+
+// Adjusts form controls border radius
+@mixin euiFormControlSideBorderRadius($borderRadius, $side, $internal: false) {
+  @if $internal == true {
+    $borderRadius: $borderRadius - 1;
+  }
+  @if $side == 'left' {
+    border-radius: $borderRadius 0 0 $borderRadius;
+  } @else if $side == 'right' {
+    border-radius: 0 $borderRadius $borderRadius 0;
+  }
+}

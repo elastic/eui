@@ -13,11 +13,13 @@ import React, {
   useMemo,
   ReactNode,
   ReactElement,
+  MouseEvent,
 } from 'react';
 
 import { useEuiMemoizedStyles } from '../../../../services';
 import { useEuiI18n } from '../../../i18n';
 import { EuiButtonEmpty } from '../../../button';
+import { EuiButtonEmptyPropsForButton } from '../../../button/button_empty/button_empty';
 import { EuiIcon } from '../../../icon';
 import { EuiPopover } from '../../../popover';
 
@@ -37,6 +39,10 @@ import {
   QuickSelectPanel,
   Milliseconds,
 } from '../../types';
+
+export type EuiQuickSelectButtonProps = Partial<
+  Omit<EuiButtonEmptyPropsForButton, 'children' | 'isDisabled' | 'isLoading'>
+>;
 
 export type CustomQuickSelectRenderOptions = {
   quickSelect: ReactElement<typeof EuiQuickSelect>;
@@ -64,11 +70,18 @@ export interface EuiQuickSelectPopoverProps {
   intervalUnits?: RefreshUnitsOptions;
   start: string;
   timeOptions: TimeOptions;
+  buttonProps?: EuiQuickSelectButtonProps;
 }
 
 export const EuiQuickSelectPopover: FunctionComponent<
   EuiQuickSelectPopoverProps
-> = ({ applyTime: _applyTime, ...props }) => {
+> = ({ applyTime: _applyTime, buttonProps = {}, ...props }) => {
+  const {
+    contentProps: buttonContentProps,
+    onClick: buttonOnClick,
+    ...quickSelectButtonProps
+  } = buttonProps;
+
   const [prevQuickSelect, setQuickSelect] = useState<QuickSelect>();
   const [isOpen, setIsOpen] = useState(false);
   const closePopover = useCallback(() => setIsOpen(false), []);
@@ -94,11 +107,21 @@ export const EuiQuickSelectPopover: FunctionComponent<
 
   const styles = useEuiMemoizedStyles(euiQuickSelectPopoverStyles);
 
+  const quickSelectButtonOnClick = (
+    e: MouseEvent<HTMLButtonElement> & MouseEvent<HTMLAnchorElement>
+  ) => {
+    togglePopover();
+    buttonOnClick?.(e);
+  };
+
   const quickSelectButton = (
     <EuiButtonEmpty
       css={styles.euiQuickSelectPopoverButton}
-      contentProps={{ css: styles.euiQuickSelectPopoverButton__content }}
-      onClick={togglePopover}
+      contentProps={{
+        css: styles.euiQuickSelectPopoverButton__content,
+        ...buttonContentProps,
+      }}
+      onClick={quickSelectButtonOnClick}
       aria-label={buttonlabel}
       title={buttonlabel}
       size="xs"
@@ -106,6 +129,7 @@ export const EuiQuickSelectPopover: FunctionComponent<
       iconSide="right"
       isDisabled={props.isDisabled}
       data-test-subj="superDatePickerToggleQuickMenuButton"
+      {...quickSelectButtonProps}
     >
       <EuiIcon type="calendar" />
     </EuiButtonEmpty>
@@ -128,7 +152,7 @@ export const EuiQuickSelectPopover: FunctionComponent<
 };
 
 export const EuiQuickSelectPanels: FunctionComponent<
-  Omit<EuiQuickSelectPopoverProps, 'isDisabled'> & {
+  Omit<EuiQuickSelectPopoverProps, 'isDisabled' | 'buttonProps'> & {
     prevQuickSelect?: QuickSelect;
   }
 > = ({

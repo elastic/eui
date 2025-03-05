@@ -22,6 +22,7 @@ export {
   VISUALIZATION_COLORS,
   DEFAULT_VISUALIZATION_COLOR,
 } from './visualization_colors';
+export { EUI_VIS_COLOR_STORE } from './vis_color_store';
 export { colorPalette } from './color_palette';
 export {
   euiPaletteForLightBackground,
@@ -36,7 +37,11 @@ export {
   euiPaletteCool,
   euiPaletteWarm,
   euiPaletteGray,
+  type EuiPaletteColorBlindProps,
+  type EuiPaletteRotationProps,
+  type EuiPaletteCommonProps,
 } from './eui_palettes';
+export * from './eui_palettes_hooks';
 export type { rgbDef, HSV, RGB } from './color_types';
 export { getSteppedGradient } from './stepped_gradient';
 export * from './manipulation';

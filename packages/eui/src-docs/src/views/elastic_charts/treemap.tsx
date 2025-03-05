@@ -8,7 +8,7 @@ import {
   EuiTitle,
   EuiSpacer,
 } from '../../../../src/components';
-import { euiPaletteColorBlind } from '../../../../src/services';
+import { useEuiPaletteColorBlind } from '../../../../src/services';
 
 import { GITHUB_DATASET_MOD } from './data';
 import { useChartBaseTheme } from './utils/use_chart_base_theme';
@@ -20,7 +20,7 @@ export default () => {
   /**
    * Create a 3 rotation palette (one for each level)
    */
-  const groupedPalette = euiPaletteColorBlind({
+  const groupedPalette = useEuiPaletteColorBlind({
     rotations: 3,
     order: 'group',
     sortBy: 'natural',

@@ -7,15 +7,10 @@
  */
 
 import { css } from '@emotion/react';
+import { euiShadowXSmall } from '@elastic/eui-theme-common';
 
-import { euiShadowSmall } from '../../themes/amsterdam/global_styling/mixins';
 import { logicalCSS } from '../../global_styling';
-import {
-  UseEuiTheme,
-  shade,
-  transparentize,
-  makeHighContrastColor,
-} from '../../services';
+import { UseEuiTheme, makeHighContrastColor } from '../../services';
 
 export const euiHeaderVariables = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
@@ -38,7 +33,7 @@ export const euiHeaderStyles = (euiThemeContext: UseEuiTheme) => {
       ${logicalCSS('height', height)}
       ${logicalCSS('padding-horizontal', padding)}
       ${logicalCSS('border-bottom', euiTheme.border.thin)}
-      ${euiShadowSmall(euiThemeContext)}
+      ${euiShadowXSmall(euiThemeContext)}
     `,
     // Position
     static: css`
@@ -47,14 +42,15 @@ export const euiHeaderStyles = (euiThemeContext: UseEuiTheme) => {
       position: relative;
     `,
     fixed: css`
-      z-index: ${euiTheme.levels.header};
+      /* Ensure it's above EuiFlyout */
+      z-index: ${Number(euiTheme.levels.header!) + 1};
       position: fixed;
       ${logicalCSS('top', 0)}
       ${logicalCSS('horizontal', 0)}
     `,
     // Theme
     default: css`
-      background-color: ${euiTheme.colors.emptyShade};
+      background-color: ${euiTheme.components.headerBackground};
     `,
     dark: css(euiHeaderDarkStyles(euiThemeContext)),
   };
@@ -72,18 +68,15 @@ export const euiHeaderStyles = (euiThemeContext: UseEuiTheme) => {
 import { euiFormVariables } from '../form/form.styles';
 
 const euiHeaderDarkStyles = (euiThemeContext: UseEuiTheme) => {
-  const { euiTheme, colorMode } = euiThemeContext;
+  const { euiTheme } = euiThemeContext;
   const { controlPlaceholderText } = euiFormVariables(euiThemeContext);
 
-  const backgroundColor =
-    colorMode === 'DARK'
-      ? shade(euiTheme.colors.lightestShade, 0.5)
-      : shade(euiTheme.colors.darkestShade, 0.28);
+  const backgroundColor = euiTheme.components.headerDarkBackground;
 
   // Specific color overrides for EuiSelectableTemplateSitewide
   const selectableSitewide = {
     color: euiTheme.colors.ghost,
-    borderColor: transparentize(euiTheme.colors.ghost, 0.3),
+    borderColor: euiTheme.components.headerDarkSearchBorderColor,
     placeholderColor: makeHighContrastColor(
       controlPlaceholderText,
       8
@@ -107,7 +100,9 @@ const euiHeaderDarkStyles = (euiThemeContext: UseEuiTheme) => {
     .euiHeaderLink,
     .euiHeaderSectionItemButton {
       &:focus {
-        background-color: ${shade(euiTheme.colors.primary, 0.5)};
+        background-color: ${
+          euiTheme.components.headerDarkSectionItemBackgroundFocus
+        };
       }
     }
 
@@ -129,7 +124,7 @@ const euiHeaderDarkStyles = (euiThemeContext: UseEuiTheme) => {
       }
 
       &--group {
-        border-color: ${selectableSitewide.borderColor};
+        border-color: ${euiTheme.components.headerDarkSearchBorderColor};
 
         input {
           box-shadow: none;

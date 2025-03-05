@@ -15,7 +15,12 @@ import SearchBar from '@theme-original/SearchBar';
 import NavbarMobileSidebarToggle from '@theme-original/Navbar/MobileSidebar/Toggle';
 import NavbarLogo from '@theme-original/Navbar/Logo';
 import NavbarSearch from '@theme-original/Navbar/Search';
-import { euiFocusRing, useEuiMemoizedStyles, UseEuiTheme } from '@elastic/eui';
+import {
+  euiFocusRing,
+  euiTextTruncate,
+  useEuiMemoizedStyles,
+  UseEuiTheme,
+} from '@elastic/eui';
 import {
   euiFormControlText,
   euiFormVariables,
@@ -24,6 +29,7 @@ import {
 import euiVersions from '@site/static/versions.json';
 
 import { VersionSwitcher } from '../../../components/version_switcher';
+import { ThemeSwitcher } from '../../../components/theme_switcher';
 
 const DOCS_PATH = '/docs';
 
@@ -66,6 +72,10 @@ const getStyles = (euiThemeContext: UseEuiTheme) => {
 
       @media (min-width: 997px) {
         gap: ${euiTheme.size.l};
+      }
+
+      .navbar__link {
+        ${euiTextTruncate()}
       }
     `,
     navbarItemsRight: css`
@@ -121,6 +131,11 @@ const getStyles = (euiThemeContext: UseEuiTheme) => {
       }
     `,
     versionSwitcher: css`
+      @media (max-width: 996px) {
+        display: none;
+      }
+    `,
+    themeSwitcher: css`
       @media (max-width: 996px) {
         display: none;
       }
@@ -218,6 +233,12 @@ export default function NavbarContent(): JSX.Element {
             )}
             <NavbarColorModeToggle className="colorModeToggle" />
             <NavbarItems items={rightItems} />
+
+            {isBrowser && (
+              <div css={styles.themeSwitcher}>
+                <ThemeSwitcher />
+              </div>
+            )}
           </>
         }
       />

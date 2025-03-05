@@ -34,6 +34,21 @@ exports[`EuiButtonEmpty props color accent is rendered 1`] = `
 </button>
 `;
 
+exports[`EuiButtonEmpty props color accentSecondary is rendered 1`] = `
+<button
+  class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-m-empty-accentSecondary"
+  type="button"
+>
+  <span
+    class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
+  >
+    <span
+      class="eui-textTruncate euiButtonEmpty__text"
+    />
+  </span>
+</button>
+`;
+
 exports[`EuiButtonEmpty props color danger is rendered 1`] = `
 <button
   class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-m-empty-danger"
@@ -312,7 +327,7 @@ exports[`EuiButtonEmpty props isLoading is rendered 1`] = `
       aria-label="Loading"
       class="euiLoadingSpinner emotion-euiLoadingSpinner-m"
       role="progressbar"
-      style="border-color: #0077cc currentcolor currentcolor currentcolor;"
+      style="border-color: #1750ba currentcolor currentcolor currentcolor;"
     />
     <span
       class="eui-textTruncate euiButtonEmpty__text"

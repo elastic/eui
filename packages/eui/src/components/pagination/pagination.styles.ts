@@ -38,7 +38,7 @@ export const euiPaginationStyles = (euiThemeContext: UseEuiTheme) => {
         font-weight: ${euiTheme.font.weight.semiBold};
 
         &:first-of-type {
-          color: ${euiTheme.colors.primaryText};
+          color: ${euiTheme.colors.textPrimary};
         }
       }
     `,
@@ -47,7 +47,7 @@ export const euiPaginationStyles = (euiThemeContext: UseEuiTheme) => {
       align-items: baseline;
     `,
     euiPagination__ellipsis: css`
-      color: ${euiTheme.colors.disabledText};
+      color: ${euiTheme.colors.textDisabled};
       font-size: ${euiFontSize(euiThemeContext, 's').fontSize};
       ${logicalCSS('padding-horizontal', euiTheme.size.s)}
       ${logicalCSS('height', euiTheme.size.l)}

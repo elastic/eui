@@ -96,7 +96,7 @@ export const euiExpressionStyles = (euiThemeContext: UseEuiTheme) => {
         ${logicalCSS('border-bottom-style', 'solid')}
       `,
       subdued: css`
-        border-color: ${euiTheme.colors.subduedText};
+        border-color: ${euiTheme.colors.textSubdued};
       `,
       primary: css`
         border-color: ${euiTheme.colors.primary};
@@ -115,12 +115,12 @@ export const euiExpressionStyles = (euiThemeContext: UseEuiTheme) => {
       `,
     },
 
-    subdued: css(_colorCSS(euiTheme.colors.subduedText)),
-    primary: css(_colorCSS(euiTheme.colors.primaryText)),
-    success: css(_colorCSS(euiTheme.colors.successText)),
-    warning: css(_colorCSS(euiTheme.colors.warningText)),
-    danger: css(_colorCSS(euiTheme.colors.dangerText)),
-    accent: css(_colorCSS(euiTheme.colors.accentText)),
+    subdued: css(_colorCSS(euiTheme.colors.textSubdued)),
+    primary: css(_colorCSS(euiTheme.colors.textPrimary)),
+    success: css(_colorCSS(euiTheme.colors.textSuccess)),
+    warning: css(_colorCSS(euiTheme.colors.textWarning)),
+    danger: css(_colorCSS(euiTheme.colors.textDanger)),
+    accent: css(_colorCSS(euiTheme.colors.textAccent)),
   };
 };
 
@@ -133,22 +133,22 @@ export const euiExpressionDescriptionStyles = ({ euiTheme }: UseEuiTheme) => {
       vertical-align: bottom;
     `,
     subdued: css`
-      color: ${euiTheme.colors.subduedText};
+      color: ${euiTheme.colors.textSubdued};
     `,
     primary: css`
-      color: ${euiTheme.colors.primaryText};
+      color: ${euiTheme.colors.textPrimary};
     `,
     success: css`
-      color: ${euiTheme.colors.successText};
+      color: ${euiTheme.colors.textSuccess};
     `,
     warning: css`
-      color: ${euiTheme.colors.warningText};
+      color: ${euiTheme.colors.textWarning};
     `,
     danger: css`
-      color: ${euiTheme.colors.dangerText};
+      color: ${euiTheme.colors.textDanger};
     `,
     accent: css`
-      color: ${euiTheme.colors.accentText};
+      color: ${euiTheme.colors.textAccent};
     `,
     isUppercase: css`
       text-transform: uppercase;

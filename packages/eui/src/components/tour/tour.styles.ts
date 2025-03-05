@@ -10,23 +10,21 @@ import { css } from '@emotion/react';
 import { UseEuiTheme } from '../../services';
 import { logicalCSS, mathWithUnits, euiCanAnimate } from '../../global_styling';
 import { openAnimationTiming } from '../popover/popover_panel/_popover_panel.styles';
-import { popoverArrowSize } from '../popover/popover_arrow/_popover_arrow.styles';
 
 import { _tourFooterBgColor } from './_tour_footer.styles';
 
 export const euiTourStyles = (euiThemeContext: UseEuiTheme) => ({
   // Targets EuiPopoverPanel
   euiTour: css`
-    [data-popover-arrow='top']::before {
-      ${logicalCSS('border-top-color', _tourFooterBgColor(euiThemeContext))}
+    [data-popover-arrow='top'] {
+      background-color: ${_tourFooterBgColor(euiThemeContext)};
     }
   `,
 });
 
 export const euiTourBeaconStyles = ({ euiTheme }: UseEuiTheme) => {
-  const arrowSize = euiTheme.size[popoverArrowSize];
-  const arrowHalfSize = mathWithUnits(arrowSize, (x) => x / 2);
-  const arrowOffset = mathWithUnits(arrowSize, (x) => x * -2);
+  const beaconSize = euiTheme.size.m;
+  const beaconOffset = mathWithUnits(beaconSize, (x) => x / -2);
 
   return {
     // Base
@@ -45,20 +43,24 @@ export const euiTourBeaconStyles = ({ euiTheme }: UseEuiTheme) => {
     `,
     // Positions
     right: css`
-      ${logicalCSS('top', arrowHalfSize)}
-      ${logicalCSS('left', arrowOffset)}
+      ${logicalCSS('top', '50%')}
+      ${logicalCSS('left', '-50%')}
+      ${logicalCSS('margin-top', beaconOffset)}
     `,
     left: css`
-      ${logicalCSS('top', arrowHalfSize)}
-      ${logicalCSS('left', arrowSize)}
+      ${logicalCSS('top', '50%')}
+      ${logicalCSS('right', '-50%')}
+      ${logicalCSS('margin-top', beaconOffset)}
     `,
     top: css`
-      ${logicalCSS('top', arrowSize)}
-      ${logicalCSS('left', arrowHalfSize)}
+      ${logicalCSS('left', '50%')}
+      ${logicalCSS('bottom', '-50%')}
+      ${logicalCSS('margin-left', beaconOffset)}
     `,
     bottom: css`
-      ${logicalCSS('top', arrowOffset)}
-      ${logicalCSS('left', arrowHalfSize)}
+      ${logicalCSS('left', '50%')}
+      ${logicalCSS('top', '-50%')}
+      ${logicalCSS('margin-left', beaconOffset)}
     `,
   };
 };

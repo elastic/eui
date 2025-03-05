@@ -8,8 +8,12 @@
 
 import { css } from '@emotion/react';
 
-import { UseEuiTheme, shade, tint } from '../../services';
-import { euiCanAnimate, logicalCSS } from '../../global_styling';
+import { UseEuiTheme } from '../../services';
+import {
+  euiCanAnimate,
+  euiCantAnimate,
+  logicalCSS,
+} from '../../global_styling';
 import { euiAnimSlideX } from '../../global_styling/utility/animations';
 
 type AnimationOptions = {
@@ -18,20 +22,16 @@ type AnimationOptions = {
 };
 
 export const euiSkeletonGradientAnimation = (
-  { euiTheme, colorMode }: UseEuiTheme,
+  { euiTheme }: UseEuiTheme,
   { slideSize = '-53%', gradientSize = '220%' }: AnimationOptions = {}
 ) => {
-  const gradientStartStop =
-    colorMode === 'DARK'
-      ? shade(euiTheme.colors.lightShade, 0.12)
-      : tint(euiTheme.colors.lightShade, 0.65);
-  const gradientMiddle =
-    colorMode === 'DARK'
-      ? shade(euiTheme.colors.lightShade, 0.24)
-      : tint(euiTheme.colors.lightShade, 0.8);
+  const gradientStartStop = euiTheme.colors.backgroundBaseSkeletonEdge;
+  const gradientMiddle = euiTheme.colors.backgroundBaseSkeletonMiddle;
 
   return css`
-    background-color: ${gradientStartStop};
+    ${euiCantAnimate} {
+      background-color: ${gradientStartStop}; // static background when no animation is played
+    }
 
     ${euiCanAnimate} {
       overflow: hidden;

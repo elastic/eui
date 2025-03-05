@@ -4601,6 +4601,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@elastic/eui-docgen@workspace:packages/eui-docgen"
   dependencies:
+    "@elastic/eui": "workspace:^"
     glob: "npm:^11.0.0"
     react-docgen-typescript: "npm:^2.2.2"
     rimraf: "npm:^6.0.1"
@@ -4620,8 +4621,9 @@ __metadata:
     "@docusaurus/types": "npm:^3.5.2"
     "@docusaurus/utils-validation": "npm:^3.5.2"
     "@elastic/datemath": "npm:^5.0.3"
-    "@elastic/eui": "npm:97.2.0"
+    "@elastic/eui": "workspace:^"
     "@elastic/eui-docgen": "workspace:^"
+    "@elastic/eui-theme-borealis": "workspace:^"
     "@emotion/css": "npm:^11.11.2"
     "@emotion/react": "npm:^11.11.4"
     "@types/react": "npm:^18.3.3"
@@ -4645,7 +4647,105 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@elastic/eui-monorepo@workspace:."
   dependencies:
+    "@elastic/eui-release-cli": "link:packages/release-cli"
     pre-push: "npm:^0.1.4"
+  languageName: unknown
+  linkType: soft
+
+"@elastic/eui-release-cli@link:packages/release-cli::locator=%40elastic%2Feui-monorepo%40workspace%3A.":
+  version: 0.0.0-use.local
+  resolution: "@elastic/eui-release-cli@link:packages/release-cli::locator=%40elastic%2Feui-monorepo%40workspace%3A."
+  languageName: node
+  linkType: soft
+
+"@elastic/eui-release-cli@workspace:packages/release-cli":
+  version: 0.0.0-use.local
+  resolution: "@elastic/eui-release-cli@workspace:packages/release-cli"
+  dependencies:
+    "@types/prompts": "npm:^2.4.9"
+    chalk: "npm:^4"
+    glob: "npm:^11.0.1"
+    prompts: "npm:^2.4.2"
+    rimraf: "npm:^6.0.1"
+    typescript: "npm:^5.7.3"
+    yargs: "npm:^17.7.2"
+  languageName: unknown
+  linkType: soft
+
+"@elastic/eui-theme-borealis@workspace:*, @elastic/eui-theme-borealis@workspace:^, @elastic/eui-theme-borealis@workspace:packages/eui-theme-borealis":
+  version: 0.0.0-use.local
+  resolution: "@elastic/eui-theme-borealis@workspace:packages/eui-theme-borealis"
+  dependencies:
+    "@babel/cli": "npm:^7.21.5"
+    "@babel/core": "npm:^7.21.8"
+    "@babel/preset-env": "npm:^7.21.5"
+    "@babel/preset-react": "npm:^7.18.6"
+    "@babel/preset-typescript": "npm:^7.21.5"
+    "@elastic/eui-theme-common": "workspace:*"
+    "@types/chroma-js": "npm:^2.4.0"
+    "@types/jest": "npm:^29.5.12"
+    "@types/prettier": "npm:2.7.3"
+    "@typescript-eslint/eslint-plugin": "npm:^5.59.7"
+    "@typescript-eslint/parser": "npm:^5.59.7"
+    eslint: "npm:^8.41.0"
+    eslint-config-prettier: "npm:^8.8.0"
+    eslint-plugin-import: "npm:^2.27.5"
+    eslint-plugin-jest: "npm:^28.5.0"
+    eslint-plugin-local: "npm:^1.0.0"
+    eslint-plugin-prettier: "npm:^4.2.1"
+    jest: "npm:^29.7.0"
+    prettier: "npm:^2.8.8"
+    rimraf: "npm:^6.0.1"
+    stylelint: "npm:^15.7.0"
+    stylelint-config-prettier-scss: "npm:^1.0.0"
+    stylelint-config-standard: "npm:^33.0.0"
+    stylelint-config-standard-scss: "npm:^9.0.0"
+    typescript: "npm:^5.6.2"
+  peerDependencies:
+    "@elastic/eui-theme-common": 0.0.9
+  languageName: unknown
+  linkType: soft
+
+"@elastic/eui-theme-common@workspace:*, @elastic/eui-theme-common@workspace:^, @elastic/eui-theme-common@workspace:packages/eui-theme-common":
+  version: 0.0.0-use.local
+  resolution: "@elastic/eui-theme-common@workspace:packages/eui-theme-common"
+  dependencies:
+    "@babel/cli": "npm:^7.21.5"
+    "@babel/core": "npm:^7.21.8"
+    "@babel/preset-env": "npm:^7.21.5"
+    "@babel/preset-react": "npm:^7.18.6"
+    "@babel/preset-typescript": "npm:^7.21.5"
+    "@emotion/react": "npm:^11.11.0"
+    "@types/chroma-js": "npm:^2.4.0"
+    "@types/jest": "npm:^29.5.12"
+    "@types/lodash": "npm:^4.14.202"
+    "@types/prettier": "npm:2.7.3"
+    "@types/react": "npm:^16.9 || ^17.0 || ^18.0"
+    "@types/react-dom": "npm:^16.9 || ^17.0 || ^18.0"
+    "@typescript-eslint/eslint-plugin": "npm:^5.59.7"
+    "@typescript-eslint/parser": "npm:^5.59.7"
+    chroma-js: "npm:^2.4.2"
+    eslint: "npm:^8.41.0"
+    eslint-config-prettier: "npm:^8.8.0"
+    eslint-plugin-import: "npm:^2.27.5"
+    eslint-plugin-jest: "npm:^28.5.0"
+    eslint-plugin-local: "npm:^1.0.0"
+    eslint-plugin-prettier: "npm:^4.2.1"
+    jest: "npm:^29.7.0"
+    lodash: "npm:^4.17.21"
+    prettier: "npm:^2.8.8"
+    react: "npm:^18.2.0"
+    react-dom: "npm:^18.2.0"
+    rimraf: "npm:^6.0.1"
+    stylelint: "npm:^15.7.0"
+    stylelint-config-prettier-scss: "npm:^1.0.0"
+    stylelint-config-standard: "npm:^33.0.0"
+    stylelint-config-standard-scss: "npm:^9.0.0"
+    typescript: "npm:4.5.3"
+  peerDependencies:
+    "@emotion/react": 11.x
+    react: ^16.12 || ^17.0 || ^18.0
+    react-dom: ^16.12 || ^17.0 || ^18.0
   languageName: unknown
   linkType: soft
 
@@ -4675,6 +4775,7 @@ __metadata:
     "@elastic/eui": "workspace:^"
     "@elastic/eui-docgen": "workspace:^"
     "@elastic/eui-docusaurus-theme": "workspace:^"
+    "@elastic/eui-theme-common": "workspace:^"
     "@emotion/css": "npm:^11.11.2"
     "@emotion/react": "npm:^11.11.4"
     "@faker-js/faker": "npm:^8.4.1"
@@ -4695,60 +4796,10 @@ __metadata:
     raw-loader: "npm:^4.0.2"
     react: "npm:^18.0.0"
     react-dom: "npm:^18.0.0"
+    react-element-to-jsx-string: "npm:^15.0.0"
     typescript: "npm:~5.5.4"
   languageName: unknown
   linkType: soft
-
-"@elastic/eui@npm:97.2.0":
-  version: 97.2.0
-  resolution: "@elastic/eui@npm:97.2.0"
-  dependencies:
-    "@hello-pangea/dnd": "npm:^16.6.0"
-    "@types/lodash": "npm:^4.14.202"
-    "@types/numeral": "npm:^2.0.5"
-    "@types/react-window": "npm:^1.8.8"
-    "@types/refractor": "npm:^3.4.0"
-    chroma-js: "npm:^2.4.2"
-    classnames: "npm:^2.5.1"
-    lodash: "npm:^4.17.21"
-    mdast-util-to-hast: "npm:^10.2.0"
-    numeral: "npm:^2.0.6"
-    prop-types: "npm:^15.8.1"
-    react-dropzone: "npm:^11.7.1"
-    react-element-to-jsx-string: "npm:^15.0.0"
-    react-focus-on: "npm:^3.9.1"
-    react-is: "npm:^17.0.2"
-    react-remove-scroll-bar: "npm:^2.3.4"
-    react-virtualized-auto-sizer: "npm:^1.0.24"
-    react-window: "npm:^1.8.10"
-    refractor: "npm:^3.6.0"
-    rehype-raw: "npm:^5.1.0"
-    rehype-react: "npm:^6.2.1"
-    rehype-stringify: "npm:^8.0.0"
-    remark-breaks: "npm:^2.0.2"
-    remark-emoji: "npm:^2.1.0"
-    remark-parse-no-trim: "npm:^8.0.4"
-    remark-rehype: "npm:^8.1.0"
-    tabbable: "npm:^5.3.3"
-    text-diff: "npm:^1.0.1"
-    unified: "npm:^9.2.2"
-    unist-util-visit: "npm:^2.0.3"
-    url-parse: "npm:^1.5.10"
-    uuid: "npm:^8.3.0"
-    vfile: "npm:^4.2.1"
-  peerDependencies:
-    "@elastic/datemath": ^5.0.2
-    "@emotion/css": 11.x
-    "@emotion/react": 11.x
-    "@types/react": ^16.9 || ^17.0 || ^18.0
-    "@types/react-dom": ^16.9 || ^17.0 || ^18.0
-    moment: ^2.13.0
-    react: ^16.12 || ^17.0 || ^18.0
-    react-dom: ^16.12 || ^17.0 || ^18.0
-    typescript: ~4.5.3 || ^5
-  checksum: 10c0/c8fed61d39cc6d06f00caf8234b97e9579ca4d11d7bf0d3cf4cb5d09a6782d8866a7db66b02d3d5eb4f2947a213aca03837b38b166020d21c9bda2e7eb20ad11
-  languageName: node
-  linkType: hard
 
 "@elastic/eui@workspace:^, @elastic/eui@workspace:packages/eui":
   version: 0.0.0-use.local
@@ -4771,6 +4822,8 @@ __metadata:
     "@cypress/webpack-dev-server": "npm:^1.7.0"
     "@elastic/charts": "npm:^64.1.0"
     "@elastic/datemath": "npm:^5.0.3"
+    "@elastic/eui-theme-borealis": "workspace:*"
+    "@elastic/eui-theme-common": "workspace:*"
     "@elastic/prismjs-esql": "npm:^1.0.0"
     "@emotion/babel-preset-css-prop": "npm:^11.11.0"
     "@emotion/cache": "npm:^11.11.0"
@@ -4955,6 +5008,7 @@ __metadata:
     yo: "npm:^4.3.1"
   peerDependencies:
     "@elastic/datemath": ^5.0.2
+    "@elastic/eui-theme-borealis": 0.0.11
     "@emotion/css": 11.x
     "@emotion/react": 11.x
     "@types/react": ^16.9 || ^17.0 || ^18.0
@@ -8442,6 +8496,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/prompts@npm:^2.4.9":
+  version: 2.4.9
+  resolution: "@types/prompts@npm:2.4.9"
+  dependencies:
+    "@types/node": "npm:*"
+    kleur: "npm:^3.0.3"
+  checksum: 10c0/22fe0da6807681c85e88ba283184f4be4c8a95c744ea12a638865c98c4e0c22e7f733542f6b0f1fbca02245cdc3fe84feacf9c9adf4ddd8bc98a337fd679d8d2
+  languageName: node
+  linkType: hard
+
 "@types/prop-types@npm:*":
   version: 15.7.3
   resolution: "@types/prop-types@npm:15.7.3"
@@ -8479,21 +8543,21 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/react-dom@npm:^16.9 || ^17.0 || ^18.0, @types/react-dom@npm:^18.3.0":
+  version: 18.3.0
+  resolution: "@types/react-dom@npm:18.3.0"
+  dependencies:
+    "@types/react": "npm:*"
+  checksum: 10c0/6c90d2ed72c5a0e440d2c75d99287e4b5df3e7b011838cdc03ae5cd518ab52164d86990e73246b9d812eaf02ec351d74e3b4f5bd325bf341e13bf980392fd53b
+  languageName: node
+  linkType: hard
+
 "@types/react-dom@npm:^18.0.0, @types/react-dom@npm:^18.2.6":
   version: 18.2.6
   resolution: "@types/react-dom@npm:18.2.6"
   dependencies:
     "@types/react": "npm:*"
   checksum: 10c0/bd734ca04c52b3c96891a7f9c1139486807dac7a2449fb72e8f8e23018bc6eeeb87a490a105cb39d05ccb7ddf80ed7a441e5bd3e5866c6f6ae8870cd723599e8
-  languageName: node
-  linkType: hard
-
-"@types/react-dom@npm:^18.3.0":
-  version: 18.3.0
-  resolution: "@types/react-dom@npm:18.3.0"
-  dependencies:
-    "@types/react": "npm:*"
-  checksum: 10c0/6c90d2ed72c5a0e440d2c75d99287e4b5df3e7b011838cdc03ae5cd518ab52164d86990e73246b9d812eaf02ec351d74e3b4f5bd325bf341e13bf980392fd53b
   languageName: node
   linkType: hard
 
@@ -12133,7 +12197,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"chalk@npm:4.1.2, chalk@npm:^4.0.0, chalk@npm:^4.0.2, chalk@npm:^4.1.0, chalk@npm:^4.1.1, chalk@npm:^4.1.2":
+"chalk@npm:4.1.2, chalk@npm:^4, chalk@npm:^4.0.0, chalk@npm:^4.0.2, chalk@npm:^4.1.0, chalk@npm:^4.1.1, chalk@npm:^4.1.2":
   version: 4.1.2
   resolution: "chalk@npm:4.1.2"
   dependencies:
@@ -18613,6 +18677,22 @@ __metadata:
   bin:
     glob: dist/esm/bin.mjs
   checksum: 10c0/419866015d8795258a8ac51de5b9d1a99c72634fc3ead93338e4da388e89773ab21681e494eac0fbc4250b003451ca3110bb4f1c9393d15d14466270094fdb4e
+  languageName: node
+  linkType: hard
+
+"glob@npm:^11.0.1":
+  version: 11.0.1
+  resolution: "glob@npm:11.0.1"
+  dependencies:
+    foreground-child: "npm:^3.1.0"
+    jackspeak: "npm:^4.0.1"
+    minimatch: "npm:^10.0.0"
+    minipass: "npm:^7.1.2"
+    package-json-from-dist: "npm:^1.0.0"
+    path-scurry: "npm:^2.0.0"
+  bin:
+    glob: dist/esm/bin.mjs
+  checksum: 10c0/2b32588be52e9e90f914c7d8dec32f3144b81b84054b0f70e9adfebf37cd7014570489f2a79d21f7801b9a4bd4cca94f426966bfd00fb64a5b705cfe10da3a03
   languageName: node
   linkType: hard
 
@@ -34676,13 +34756,23 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@npm:5.6.2":
+"typescript@npm:5.6.2, typescript@npm:^5.6.2":
   version: 5.6.2
   resolution: "typescript@npm:5.6.2"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
   checksum: 10c0/3ed8297a8c7c56b7fec282532503d1ac795239d06e7c4966b42d4330c6cf433a170b53bcf93a130a7f14ccc5235de5560df4f1045eb7f3550b46ebed16d3c5e5
+  languageName: node
+  linkType: hard
+
+"typescript@npm:^5.7.3":
+  version: 5.7.3
+  resolution: "typescript@npm:5.7.3"
+  bin:
+    tsc: bin/tsc
+    tsserver: bin/tsserver
+  checksum: 10c0/b7580d716cf1824736cc6e628ab4cd8b51877408ba2be0869d2866da35ef8366dd6ae9eb9d0851470a39be17cbd61df1126f9e211d8799d764ea7431d5435afa
   languageName: node
   linkType: hard
 
@@ -34706,13 +34796,23 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@patch:typescript@npm%3A5.6.2#optional!builtin<compat/typescript>":
+"typescript@patch:typescript@npm%3A5.6.2#optional!builtin<compat/typescript>, typescript@patch:typescript@npm%3A^5.6.2#optional!builtin<compat/typescript>":
   version: 5.6.2
   resolution: "typescript@patch:typescript@npm%3A5.6.2#optional!builtin<compat/typescript>::version=5.6.2&hash=8c6c40"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
   checksum: 10c0/94eb47e130d3edd964b76da85975601dcb3604b0c848a36f63ac448d0104e93819d94c8bdf6b07c00120f2ce9c05256b8b6092d23cf5cf1c6fa911159e4d572f
+  languageName: node
+  linkType: hard
+
+"typescript@patch:typescript@npm%3A^5.7.3#optional!builtin<compat/typescript>":
+  version: 5.7.3
+  resolution: "typescript@patch:typescript@npm%3A5.7.3#optional!builtin<compat/typescript>::version=5.7.3&hash=5786d5"
+  bin:
+    tsc: bin/tsc
+    tsserver: bin/tsserver
+  checksum: 10c0/6fd7e0ed3bf23a81246878c613423730c40e8bdbfec4c6e4d7bf1b847cbb39076e56ad5f50aa9d7ebd89877999abaee216002d3f2818885e41c907caaa192cc4
   languageName: node
   linkType: hard
 
@@ -37049,7 +37149,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"yargs@npm:^17.3.1, yargs@npm:^17.5.1":
+"yargs@npm:^17.3.1, yargs@npm:^17.5.1, yargs@npm:^17.7.2":
   version: 17.7.2
   resolution: "yargs@npm:17.7.2"
   dependencies:

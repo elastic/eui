@@ -10,11 +10,12 @@ import { css } from '@emotion/react';
 import {
   euiMinBreakpoint,
   euiPaddingSize,
-  euiBorderColor,
   logicalCSS,
   mathWithUnits,
+  _EuiBackgroundColor,
 } from '../../global_styling';
 import { UseEuiTheme } from '../../services';
+import { _EuiThemeBorderColors, getTokenName } from '@elastic/eui-theme-common';
 
 export const euiEmptyPromptStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
@@ -34,12 +35,14 @@ export const euiEmptyPromptStyles = (euiThemeContext: UseEuiTheme) => {
     `,
   });
 
-  const generateFooterBorder = (color: Parameters<typeof euiBorderColor>[1]) =>
-    `${euiTheme.border.width.thin} solid ${euiBorderColor(
-      euiThemeContext,
+  const generateFooterBorder = (color: _EuiBackgroundColor) => {
+    const borderToken = getTokenName(
+      ['plain', 'subdued'].includes(color) ? 'borderBase' : 'borderStrong',
       color
-    )}`;
+    ) as keyof _EuiThemeBorderColors;
 
+    return `${euiTheme.border.width.thin} solid ${euiTheme.colors[borderToken]}`;
+  };
   return {
     euiEmptyPrompt: css`
       text-align: center;
@@ -148,11 +151,17 @@ export const euiEmptyPromptStyles = (euiThemeContext: UseEuiTheme) => {
       subdued: css`
         ${logicalCSS('border-top', generateFooterBorder('subdued'))}
       `,
+      highlighted: css`
+        ${logicalCSS('border-top', generateFooterBorder('plain'))}
+      `,
       primary: css`
         ${logicalCSS('border-top', generateFooterBorder('primary'))}
       `,
       accent: css`
         ${logicalCSS('border-top', generateFooterBorder('accent'))}
+      `,
+      accentSecondary: css`
+        ${logicalCSS('border-top', generateFooterBorder('accentSecondary'))}
       `,
       danger: css`
         ${logicalCSS('border-top', generateFooterBorder('danger'))}

@@ -7,20 +7,21 @@
  */
 
 import { css, SerializedStyles } from '@emotion/react';
+import { UseEuiTheme, useEuiMemoizedStyles } from '../../services';
 import {
-  shade,
-  tint,
-  tintOrShade,
-  transparentize,
-  UseEuiTheme,
-  useEuiMemoizedStyles,
-} from '../../services';
+  _EuiThemeBackgroundColors,
+  _EuiThemeBorderColors,
+  _EuiThemeTransparentBackgroundColors,
+  getTokenName,
+} from '@elastic/eui-theme-common';
 
 export const BACKGROUND_COLORS = [
   'transparent',
   'plain',
   'subdued',
+  'highlighted',
   'accent',
+  'accentSecondary',
   'primary',
   'success',
   'warning',
@@ -37,42 +38,35 @@ export interface _EuiBackgroundColorOptions {
 }
 
 /**
+ * @deprecated - use background tokens directly
  * @returns A single background color with optional alpha transparency
  */
 export const euiBackgroundColor = (
-  { euiTheme, colorMode }: UseEuiTheme,
+  { euiTheme }: UseEuiTheme,
   color: _EuiBackgroundColor,
   { method }: _EuiBackgroundColorOptions = {}
 ) => {
   if (color === 'transparent') return 'transparent';
 
   if (method === 'transparent') {
-    if (color === 'plain') {
-      return transparentize(euiTheme.colors.ghost, 0.2);
-    } else if (color === 'subdued') {
-      return colorMode === 'DARK'
-        ? transparentize(euiTheme.colors.lightShade, 0.4)
-        : transparentize(euiTheme.colors.lightShade, 0.2);
-    } else {
-      return transparentize(euiTheme.colors[color], 0.1);
-    }
-  } else {
-    function tintOrShade(color: string) {
-      return colorMode === 'DARK' ? shade(color, 0.8) : tint(color, 0.9);
-    }
+    const tokenName = getTokenName(
+      'backgroundTransparent',
+      color
+    ) as keyof _EuiThemeTransparentBackgroundColors;
 
-    switch (color) {
-      case 'plain':
-        return euiTheme.colors.emptyShade;
-      case 'subdued':
-        return euiTheme.colors.body;
-      default:
-        return tintOrShade(euiTheme.colors[color]);
-    }
+    return euiTheme.colors[tokenName];
+  } else {
+    const tokenName = getTokenName(
+      'backgroundBase',
+      color
+    ) as keyof _EuiThemeBackgroundColors;
+
+    return euiTheme.colors[tokenName];
   }
 };
 
 /**
+ * @deprecated
  * @returns An object map of color keys to color values, categorized by
  * opaque (default) vs transparency (hover/focus states) methods.
  * e.g. {
@@ -99,6 +93,9 @@ const _euiBackgroundColorMap = (euiThemeContext: UseEuiTheme) => ({
   ),
 });
 
+/**
+ * @deprecated
+ */
 export const useEuiBackgroundColor = (
   color: _EuiBackgroundColor,
   { method }: _EuiBackgroundColorOptions = {}
@@ -112,37 +109,55 @@ export const useEuiBackgroundColor = (
  * e.g. { danger: css``, success: css``, ... }
  */
 const _euiBackgroundColors = (euiThemeContext: UseEuiTheme) =>
-  BACKGROUND_COLORS.reduce(
-    (acc, color) => ({
+  BACKGROUND_COLORS.reduce((acc, color) => {
+    const tokenName = getTokenName(
+      'backgroundBase',
+      color
+    ) as keyof _EuiThemeBackgroundColors;
+
+    const backgroundColor =
+      color === 'transparent'
+        ? 'transparent'
+        : euiThemeContext.euiTheme.colors[tokenName];
+
+    return {
       ...acc,
       [color]: css`
-        background-color: ${euiBackgroundColor(euiThemeContext, color)};
+        background-color: ${backgroundColor};
         label: ${color};
       `,
-    }),
-    {} as Record<_EuiBackgroundColor, SerializedStyles>
-  );
+    };
+  }, {} as Record<_EuiBackgroundColor, SerializedStyles>);
 
+/**
+ * Hook to retrieve background style for a background color variant
+ * @returns An object map of color keys to CSS,
+ * e.g. { danger: css``, success: css``, ... }
+ */
 export const useEuiBackgroundColorCSS = () =>
   useEuiMemoizedStyles(_euiBackgroundColors);
 
 /**
  * Border colors
+ * @deprecated - use border tokens directly or use
+ * `useEuiBorderColorCSS()` for composed styles
  */
 
 export const euiBorderColor = (
-  { euiTheme, colorMode }: UseEuiTheme,
+  { euiTheme }: UseEuiTheme,
   color: _EuiBackgroundColor
 ) => {
   switch (color) {
     case 'transparent':
-    case 'plain':
-    case 'subdued':
       return euiTheme.border.color;
-    case 'warning':
-      return tintOrShade(euiTheme.colors.warning, 0.4, colorMode);
-    default:
-      return tintOrShade(euiTheme.colors[color], 0.6, colorMode);
+    default: {
+      const tokenName = getTokenName(
+        'borderBase',
+        color
+      ) as keyof _EuiThemeBorderColors;
+
+      return euiTheme.colors[tokenName];
+    }
   }
 };
 
@@ -151,16 +166,29 @@ export const euiBorderColor = (
  * e.g. { danger: css``, success: css``, ... }
  */
 const _euiBorderColors = (euiThemeContext: UseEuiTheme) =>
-  BACKGROUND_COLORS.reduce(
-    (acc, color) => ({
+  BACKGROUND_COLORS.reduce((acc, color) => {
+    const borderToken = getTokenName(
+      'borderBase',
+      color
+    ) as keyof _EuiThemeBorderColors;
+    const borderColor =
+      color === 'transparent'
+        ? euiThemeContext.euiTheme.border.color
+        : euiThemeContext.euiTheme.colors[borderToken];
+
+    return {
       ...acc,
       [color]: css`
-        border-color: ${euiBorderColor(euiThemeContext, color)};
+        border-color: ${borderColor};
         label: ${color};
       `,
-    }),
-    {} as Record<_EuiBackgroundColor, SerializedStyles>
-  );
+    };
+  }, {} as Record<_EuiBackgroundColor, SerializedStyles>);
 
+/**
+ * Hook to retrieve border style for a border variant
+ * @returns An object map of color keys to CSS,
+ * e.g. { danger: css``, success: css``, ... }
+ */
 export const useEuiBorderColorCSS = () =>
   useEuiMemoizedStyles(_euiBorderColors);

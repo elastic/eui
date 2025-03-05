@@ -905,14 +905,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 347,
+        "line": 352,
         "column": 12,
-        "index": 9757
+        "index": 9924
       },
       "end": {
-        "line": 350,
+        "line": 355,
         "column": 14,
-        "index": 9880
+        "index": 10047
       }
     },
     "filepath": "src/components/combo_box/combo_box_options_list/combo_box_options_list.tsx"
@@ -923,14 +923,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 360,
+        "line": 365,
         "column": 16,
-        "index": 10319
+        "index": 10486
       },
       "end": {
-        "line": 364,
+        "line": 369,
         "column": 18,
-        "index": 10550
+        "index": 10717
       }
     },
     "filepath": "src/components/combo_box/combo_box_options_list/combo_box_options_list.tsx"
@@ -941,14 +941,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 379,
+        "line": 384,
         "column": 16,
-        "index": 10979
+        "index": 11146
       },
       "end": {
-        "line": 385,
+        "line": 390,
         "column": 18,
-        "index": 11252
+        "index": 11419
       }
     },
     "filepath": "src/components/combo_box/combo_box_options_list/combo_box_options_list.tsx"
@@ -959,14 +959,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 414,
+        "line": 419,
         "column": 20,
-        "index": 12243
+        "index": 12410
       },
       "end": {
-        "line": 420,
+        "line": 425,
         "column": 22,
-        "index": 12541
+        "index": 12708
       }
     },
     "filepath": "src/components/combo_box/combo_box_options_list/combo_box_options_list.tsx"
@@ -977,14 +977,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 431,
+        "line": 436,
         "column": 12,
-        "index": 12745
+        "index": 12912
       },
       "end": {
-        "line": 435,
+        "line": 440,
         "column": 14,
-        "index": 12966
+        "index": 13133
       }
     },
     "filepath": "src/components/combo_box/combo_box_options_list/combo_box_options_list.tsx"
@@ -995,14 +995,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 442,
+        "line": 447,
         "column": 10,
-        "index": 13085
+        "index": 13252
       },
       "end": {
-        "line": 445,
+        "line": 450,
         "column": 12,
-        "index": 13225
+        "index": 13392
       }
     },
     "filepath": "src/components/combo_box/combo_box_options_list/combo_box_options_list.tsx"
@@ -1013,14 +1013,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 451,
+        "line": 456,
         "column": 10,
-        "index": 13338
+        "index": 13505
       },
       "end": {
-        "line": 454,
+        "line": 459,
         "column": 12,
-        "index": 13481
+        "index": 13648
       }
     },
     "filepath": "src/components/combo_box/combo_box_options_list/combo_box_options_list.tsx"
@@ -3803,14 +3803,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 90,
+        "line": 103,
         "column": 22,
-        "index": 2948
+        "index": 3370
       },
       "end": {
-        "line": 93,
+        "line": 106,
         "column": 3,
-        "index": 3028
+        "index": 3450
       }
     },
     "filepath": "src/components/date_picker/super_date_picker/quick_select_popover/quick_select_popover.tsx"
@@ -5945,14 +5945,14 @@
     "highlighting": "string",
     "loc": {
       "start": {
-        "line": 692,
+        "line": 693,
         "column": 16,
-        "index": 20560
+        "index": 20609
       },
       "end": {
-        "line": 695,
+        "line": 696,
         "column": 18,
-        "index": 20754
+        "index": 20803
       }
     },
     "filepath": "src/components/popover/popover.tsx"

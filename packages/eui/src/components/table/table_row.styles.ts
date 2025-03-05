@@ -7,14 +7,10 @@
  */
 
 import { css, keyframes } from '@emotion/react';
+import { euiShadow } from '@elastic/eui-theme-common';
 
-import { UseEuiTheme, tint, shade, transparentize } from '../../services';
-import {
-  euiCanAnimate,
-  euiBackgroundColor,
-  logicalCSS,
-} from '../../global_styling';
-import { euiShadow } from '../../themes/amsterdam/global_styling/mixins';
+import { UseEuiTheme } from '../../services';
+import { euiCanAnimate, logicalCSS } from '../../global_styling';
 
 import { euiTableVariables } from './table.styles';
 
@@ -80,7 +76,7 @@ export const euiTableRowStyles = (euiThemeContext: UseEuiTheme) => {
 
         /* EuiPanel styling */
         ${euiShadow(euiThemeContext, 's')}
-        background-color: ${euiBackgroundColor(euiThemeContext, 'plain')};
+        background-color: ${euiTheme.colors.backgroundBasePlain};
         border-radius: ${euiTheme.border.radius.medium};
       `,
       selected: css`
@@ -159,23 +155,14 @@ const _expandedRowAnimation = ({ euiTheme }: UseEuiTheme) => {
   `;
 };
 
-const _rowColorVariables = ({ euiTheme, colorMode }: UseEuiTheme) => ({
-  hover:
-    colorMode === 'DARK'
-      ? euiTheme.colors.lightestShade
-      : tint(euiTheme.colors.lightestShade, 0.5),
+const _rowColorVariables = ({ euiTheme }: UseEuiTheme) => ({
+  hover: euiTheme.components.tableRowBackgroundHover,
   selected: {
-    color:
-      colorMode === 'DARK'
-        ? shade(euiTheme.colors.primary, 0.7)
-        : tint(euiTheme.colors.primary, 0.96),
-    hover:
-      colorMode === 'DARK'
-        ? shade(euiTheme.colors.primary, 0.75)
-        : tint(euiTheme.colors.primary, 0.9),
+    color: euiTheme.components.tableRowBackgroundSelected,
+    hover: euiTheme.components.tableRowBackgroundSelectedHover,
   },
   clickable: {
-    hover: transparentize(euiTheme.colors.primary, 0.05),
-    focus: transparentize(euiTheme.colors.primary, 0.1),
+    hover: euiTheme.components.tableRowInteractiveBackgroundHover,
+    focus: euiTheme.components.tableRowInteractiveBackgroundFocus,
   },
 });
