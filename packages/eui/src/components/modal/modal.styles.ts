@@ -7,7 +7,8 @@
  */
 
 import { css } from '@emotion/react';
-import { euiShadowXLarge } from '../../themes/amsterdam/global_styling/mixins';
+import { euiShadowXLarge } from '@elastic/eui-theme-common';
+
 import {
   euiCanAnimate,
   euiMaxBreakpoint,
@@ -28,6 +29,8 @@ export const euiModalStyles = (euiThemeContext: UseEuiTheme) => {
       position: relative;
       background-color: ${euiTheme.colors.emptyShade};
       border-radius: ${euiTheme.border.radius.medium};
+      border: ${euiTheme.border.width.thin} solid
+        ${euiTheme.colors.borderBaseFloating};
       z-index: ${euiTheme.levels.modal};
       min-inline-size: ${euiFormVariables(euiThemeContext).maxWidth};
       max-inline-size: calc(100vw - ${euiTheme.size.base});

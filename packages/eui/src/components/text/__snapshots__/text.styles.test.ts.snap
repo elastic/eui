@@ -6,16 +6,16 @@ exports[`euiTextStyles sizes m 1`] = `
     line-height: 1.7143rem;
 
     h1 {
-      font-size: 2.4286rem;
-      line-height: 2.8571rem;
+      font-size: 2.1429rem;
+      line-height: 2.5714rem;
     }
     h1:not(:last-child) {
       margin-block-end: 12px;
     }
 
     h2 {
-      font-size: 1.9286rem;
-      line-height: 2.2857rem;
+      font-size: 1.7143rem;
+      line-height: 2.0000rem;
 
       &:not(:first-child) {
         margin-block-start: 24px;
@@ -27,7 +27,7 @@ exports[`euiTextStyles sizes m 1`] = `
     }
 
     h3 {
-      font-size: 1.5714rem;
+      font-size: 1.4286rem;
       line-height: 1.7143rem;
 
       &:not(:first-child) {
@@ -128,7 +128,7 @@ exports[`euiTextStyles sizes m 1`] = `
 
     .eui-definitionListReverse dt {
       font-size: 0.8571rem;
-      color: #343741;
+      color: #1D2A3E;
     }
 
     small {
@@ -152,7 +152,7 @@ exports[`euiTextStyles sizes m 1`] = `
     
     kbd::after {
       content: '';
-      border-block-end: 1px solid #343741;
+      border-block-end: 1px solid #1D2A3E;
       position: absolute;
       inset-block-end: 2px;
       inset-inline-start: 0;
@@ -167,7 +167,7 @@ exports[`euiTextStyles sizes relative 1`] = `
     line-height: 1.5000;
 
     h1 {
-      font-size: 2.125em;
+      font-size: 1.875em;
       line-height: 1.2495;
     }
     h1:not(:last-child) {
@@ -175,7 +175,7 @@ exports[`euiTextStyles sizes relative 1`] = `
     }
 
     h2 {
-      font-size: 1.6875em;
+      font-size: 1.5em;
       line-height: 1.2495;
 
       &:not(:first-child) {
@@ -188,7 +188,7 @@ exports[`euiTextStyles sizes relative 1`] = `
     }
 
     h3 {
-      font-size: 1.375em;
+      font-size: 1.25em;
       line-height: 1.2495;
 
       &:not(:first-child) {
@@ -289,7 +289,7 @@ exports[`euiTextStyles sizes relative 1`] = `
 
     .eui-definitionListReverse dt {
       font-size: 0.75em;
-      color: #343741;
+      color: #1D2A3E;
     }
 
     small {
@@ -313,16 +313,16 @@ exports[`euiTextStyles sizes s 1`] = `
     line-height: 1.4286rem;
 
     h1 {
-      font-size: 2.1250rem;
-      line-height: 2.5714rem;
+      font-size: 1.8750rem;
+      line-height: 2.2857rem;
     }
     h1:not(:last-child) {
       margin-block-end: 8px;
     }
 
     h2 {
-      font-size: 1.6875rem;
-      line-height: 2.0000rem;
+      font-size: 1.5000rem;
+      line-height: 1.7143rem;
 
       &:not(:first-child) {
         margin-block-start: 16px;
@@ -334,8 +334,8 @@ exports[`euiTextStyles sizes s 1`] = `
     }
 
     h3 {
-      font-size: 1.3750rem;
-      line-height: 1.7143rem;
+      font-size: 1.2500rem;
+      line-height: 1.4286rem;
 
       &:not(:first-child) {
         margin-block-start: 16px;
@@ -435,7 +435,7 @@ exports[`euiTextStyles sizes s 1`] = `
 
     .eui-definitionListReverse dt {
       font-size: 0.7500rem;
-      color: #343741;
+      color: #1D2A3E;
     }
 
     small {
@@ -459,16 +459,16 @@ exports[`euiTextStyles sizes xs 1`] = `
     line-height: 1.1429rem;
 
     h1 {
-      font-size: 1.8214rem;
-      line-height: 2.2857rem;
+      font-size: 1.6071rem;
+      line-height: 2.0000rem;
     }
     h1:not(:last-child) {
       margin-block-end: 4px;
     }
 
     h2 {
-      font-size: 1.4464rem;
-      line-height: 1.7143rem;
+      font-size: 1.2857rem;
+      line-height: 1.4286rem;
 
       &:not(:first-child) {
         margin-block-start: 8px;
@@ -480,7 +480,7 @@ exports[`euiTextStyles sizes xs 1`] = `
     }
 
     h3 {
-      font-size: 1.1786rem;
+      font-size: 1.0714rem;
       line-height: 1.4286rem;
 
       &:not(:first-child) {
@@ -581,7 +581,7 @@ exports[`euiTextStyles sizes xs 1`] = `
 
     .eui-definitionListReverse dt {
       font-size: 0.6429rem;
-      color: #343741;
+      color: #1D2A3E;
     }
 
     small {

@@ -486,20 +486,20 @@ import { css } from '@emotion/css';
 <Demo scope={{ css }}>
   ```tsx interactive
   import React, { useState } from 'react';
-  import { EuiDatePicker, EuiFormRow, EuiSpacer } from '@elastic/eui';
+  import { EuiDatePicker, EuiFormRow, EuiSpacer, useEuiPaletteColorBlind } from '@elastic/eui';
   import moment from 'moment';
   import { css } from '@emotion/css'; // Generates a vanilla JS className
 
-  const visColors = euiPaletteColorBlind();
-  const backgroundCss = css`
-    background-color: ${visColors[3]};
-  `;
-  const outlineCss = css`
-    outline: solid 2px ${visColors[3]};
-  `;
-
   export default () => {
     const [startDate, setStartDate] = useState(moment());
+
+    const visColors = useEuiPaletteColorBlind();
+    const backgroundCss = css`
+      background-color: ${visColors[3]};
+    `;
+    const outlineCss = css`
+      outline: solid 2px ${visColors[3]};
+    `;
 
     const handleChange = (date) => {
       setStartDate(date);

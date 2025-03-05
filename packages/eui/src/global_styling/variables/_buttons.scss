@@ -1,18 +1,1 @@
-$euiButtonHeight: $euiSizeXXL !default;
-$euiButtonHeightSmall: $euiSizeXL !default;
-$euiButtonHeightXSmall: $euiSizeL !default;
-
-// Modifier naming and colors.
-$euiButtonTypes: (
-  primary: $euiColorPrimary,
-  accent: $euiColorAccent,
-  success: $euiColorSuccess,
-  warning: $euiColorWarning,
-  danger: $euiColorDanger,
-  ghost: $euiColorGhost, // Ghost is special, and does not care about theming.
-  text: $euiColorDarkShade, // Reserved for special use cases
-) !default;
-
-// TODO: Remove this once elastic-charts no longer uses this variable
-// @see https://github.com/elastic/elastic-charts/pull/2528
-$euiButtonColorDisabledText: $euiColorDisabledText;
+@import 'node_modules/@elastic/eui-theme-common/src/global_styling/variables/buttons'

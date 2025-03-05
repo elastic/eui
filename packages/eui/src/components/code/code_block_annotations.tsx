@@ -14,7 +14,7 @@ import React, {
 } from 'react';
 
 import { useEuiTheme, useEuiMemoizedStyles } from '../../services';
-import { useEuiButtonFocusCSS } from '../../themes/amsterdam/global_styling/mixins/button';
+import { useEuiButtonFocusCSS } from '../../global_styling/mixins/_button';
 import { CommonProps } from '../common';
 import { useEuiI18n } from '../i18n';
 import { EuiPopover } from '../popover';

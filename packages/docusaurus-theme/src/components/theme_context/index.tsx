@@ -5,17 +5,35 @@ import {
   useState,
 } from 'react';
 import useIsBrowser from '@docusaurus/useIsBrowser';
-import { EUI_THEMES, EuiProvider, EuiThemeColorMode } from '@elastic/eui';
+import {
+  EuiProvider,
+  EuiThemeAmsterdam,
+  EuiThemeColorMode,
+} from '@elastic/eui';
+import { EuiThemeBorealis } from '@elastic/eui-theme-borealis';
 
 import { EuiThemeOverrides } from './theme_overrides';
 
-const EUI_THEME_NAMES = EUI_THEMES.map(
-  ({ value }) => value
-) as EuiThemeColorMode[];
+export const AVAILABLE_THEMES = [
+  {
+    text: 'Borealis',
+    value: EuiThemeBorealis.key,
+    provider: EuiThemeBorealis,
+  },
+  {
+    text: 'Amsterdam',
+    value: EuiThemeAmsterdam.key,
+    provider: EuiThemeAmsterdam,
+  },
+];
+
+const EUI_COLOR_MODES = ['light', 'dark'] as EuiThemeColorMode[];
 
 const defaultState = {
-  theme: EUI_THEME_NAMES[0] as EuiThemeColorMode,
-  changeTheme: (themeValue: EuiThemeColorMode) => {},
+  colorMode: EUI_COLOR_MODES[0] as EuiThemeColorMode,
+  changeColorMode: (colorMode: EuiThemeColorMode) => {},
+  theme: AVAILABLE_THEMES[0]!,
+  changeTheme: (themeValue: string) => {},
 };
 
 export const AppThemeContext = createContext(defaultState);
@@ -24,25 +42,39 @@ export const AppThemeProvider: FunctionComponent<PropsWithChildren> = ({
   children,
 }) => {
   const isBrowser = useIsBrowser();
-  const [theme, setTheme] = useState<EuiThemeColorMode>(() => {
+  const [colorMode, setColorMode] = useState<EuiThemeColorMode>(() => {
     if (isBrowser) {
-      return localStorage.getItem('theme') as EuiThemeColorMode ?? defaultState.theme;
+      return (
+        (localStorage.getItem('theme') as EuiThemeColorMode) ??
+        defaultState.colorMode
+      );
     }
 
-    return defaultState.theme;
+    return defaultState.colorMode;
   });
+
+  const [theme, setTheme] = useState(defaultState.theme);
+
+  const handleChangeTheme = (themeValue: string) => {
+    const themeObj = AVAILABLE_THEMES.find((t) => t.value === themeValue);
+
+    setTheme((currentTheme) => themeObj ?? currentTheme);
+  };
 
   return (
     <AppThemeContext.Provider
       value={{
+        colorMode,
         theme,
-        changeTheme: setTheme,
+        changeColorMode: setColorMode,
+        changeTheme: handleChangeTheme,
       }}
     >
       <EuiProvider
         globalStyles={false}
         modify={EuiThemeOverrides}
-        colorMode={theme}
+        colorMode={colorMode}
+        theme={theme.provider}
       >
         {children}
       </EuiProvider>

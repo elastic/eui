@@ -407,11 +407,10 @@ export default () => {
 Useful for visualization or tagging systems. You can also pass a color in your option list. The color can be a hex value (like `#000`) or any other named color value accepted by the [**EuiBadge**](../../display/badge/badge.mdx) component.
 
 ```tsx interactive
-import React, { useState } from 'react';
-import { EuiComboBox, euiPaletteColorBlindBehindText } from '@elastic/eui';
+import React, { useState, useEffect } from 'react';
+import { EuiComboBox, useEuiPaletteColorBlindBehindText } from '@elastic/eui';
 
-const visColorsBehindText = euiPaletteColorBlindBehindText();
-const optionsStatic = [
+const getOptionsStatic = (visColorsBehindText) => [
   {
     label: 'Titan',
     'data-test-subj': 'titanOption',
@@ -457,8 +456,16 @@ const optionsStatic = [
 ];
 
 export default () => {
-  const [options, setOptions] = useState(optionsStatic);
+  const visColorsBehindText = useEuiPaletteColorBlindBehindText();
+
+  const [options, setOptions] = useState(getOptionsStatic(visColorsBehindText));
   const [selectedOptions, setSelected] = useState([options[2], options[5]]);
+
+  useEffect(() => {
+    const updatedOptions = getOptionsStatic(visColorsBehindText);
+    setOptions(updatedOptions);
+    setSelected([updatedOptions[2], updatedOptions[5]]);
+  }, [visColorsBehindText]);
 
   const onChange = (selectedOptions) => {
     setSelected(selectedOptions);
@@ -601,13 +608,11 @@ import {
   EuiComboBox,
   EuiHighlight,
   EuiHealth,
-  euiPaletteColorBlind,
-  euiPaletteColorBlindBehindText,
+  useEuiPaletteColorBlind,
+  useEuiPaletteColorBlindBehindText,
 } from '@elastic/eui';
 
-const visColors = euiPaletteColorBlind();
-const visColorsBehindText = euiPaletteColorBlindBehindText();
-const optionsStatic = [
+const getOptionsStatic = (visColorsBehindText) => [
   {
     value: {
       size: 5,
@@ -683,8 +688,17 @@ const optionsStatic = [
 ];
 
 export default () => {
-  const [options, setOptions] = useState(optionsStatic);
+  const visColors = useEuiPaletteColorBlind();
+  const visColorsBehindText = useEuiPaletteColorBlindBehindText();
+
+  const [options, setOptions] = useState(getOptionsStatic(visColorsBehindText));
   const [selectedOptions, setSelected] = useState([options[2], options[5]]);
+
+  useEffect(() => {
+    const updatedOptions = getOptionsStatic(visColorsBehindText);
+    setOptions(updatedOptions);
+    setSelected([updatedOptions[2], updatedOptions[5]]);
+  }, [visColorsBehindText]);
 
   const onChange = (selectedOptions) => {
     setSelected(selectedOptions);

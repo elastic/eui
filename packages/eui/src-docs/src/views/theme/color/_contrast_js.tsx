@@ -27,6 +27,7 @@ type ColorSection = {
   showTextVariants: boolean;
   matchPanelColor?: boolean;
   hookName?: string;
+  tokenName?: string;
 };
 
 export const ColorSectionJS: FunctionComponent<ColorSection> = ({
@@ -36,15 +37,27 @@ export const ColorSectionJS: FunctionComponent<ColorSection> = ({
   showTextVariants,
   matchPanelColor,
   hookName,
+  tokenName,
 }) => {
   const { euiTheme } = useEuiTheme();
+
+  const colorValue = _colorValue || euiTheme.colors[color];
+
   const colorsForContrast = showTextVariants ? textVariants : allowedColors;
+
+  const colorsWithMinContrast = colorsForContrast.filter((_color) => {
+    const backgroundColor = colorValue;
+    const foregroundColor =
+      euiTheme.colors[_color as keyof _EuiThemeColorsMode] ?? _color;
+
+    const contrast = chroma.contrast(backgroundColor, foregroundColor) ?? 0;
+
+    return contrast && contrast >= minimumContrast;
+  });
 
   function colorIsCore(color: string) {
     return brandKeys.includes(color) || brandTextKeys.includes(color);
   }
-
-  const colorValue = _colorValue || euiTheme.colors[color];
 
   return (
     <EuiPanel
@@ -69,7 +82,7 @@ export const ColorSectionJS: FunctionComponent<ColorSection> = ({
               minimumContrast={minimumContrast}
             />
           )}
-          {colorsForContrast.map((color2) => {
+          {colorsWithMinContrast.map((color2) => {
             if (colorIsCore(colorValue) && colorIsCore(color2)) {
               // i.e. don't render if both are core colors
               return;
@@ -80,7 +93,9 @@ export const ColorSectionJS: FunctionComponent<ColorSection> = ({
                 background={_colorValue ? colorValue : color}
                 key={color2}
                 minimumContrast={minimumContrast}
-                styleString={hookName && `${hookName}('${color}')`}
+                styleString={
+                  tokenName ?? (hookName && `${hookName}('${color}')`)
+                }
               />
             );
           })}

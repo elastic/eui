@@ -7,13 +7,10 @@
  */
 
 import { css } from '@emotion/react';
-import { UseEuiTheme, shade } from '../../../services';
+import { UseEuiTheme } from '../../../services';
 import { logicalCSS } from '../../../global_styling';
 
-export const euiCollapsibleNavGroupStyles = ({
-  euiTheme,
-  colorMode,
-}: UseEuiTheme) => {
+export const euiCollapsibleNavGroupStyles = ({ euiTheme }: UseEuiTheme) => {
   return {
     euiCollapsibleNavGroup: css`
       &:not(:first-child) {
@@ -23,12 +20,11 @@ export const euiCollapsibleNavGroupStyles = ({
     // Background colors
     none: css``,
     light: css`
-      background-color: ${euiTheme.colors.body};
+      background-color: ${euiTheme.components.collapsibleNavGroupBackground};
     `,
     dark: css`
-      background-color: ${colorMode === 'DARK'
-        ? shade(euiTheme.colors.lightestShade, 0.5)
-        : shade(euiTheme.colors.darkestShade, 0.2)};
+      background-color: ${euiTheme.components
+        .collapsibleNavGroupBackgroundDark};
 
       .euiCollapsibleNavGroup__title,
       .euiCollapsibleNavGroup__heading,

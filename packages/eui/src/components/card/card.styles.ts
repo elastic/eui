@@ -13,9 +13,10 @@ import {
   logicalCSS,
   logicals,
   logicalTextAlignCSS,
+  mathWithUnits,
 } from '../../global_styling';
 import { UseEuiTheme } from '../../services';
-import { euiButtonColor } from '../../themes/amsterdam/global_styling/mixins';
+import { euiButtonColor } from '../../global_styling/mixins';
 
 import { EuiCardProps } from './card';
 const paddingKey = 'm';
@@ -33,6 +34,12 @@ export const euiCardStyles = (
 ) => {
   const { euiTheme } = euiThemeContext;
   const paddingAmount = euiPaddingSize(euiThemeContext, paddingSize!);
+  const cardPaddingAmount = paddingAmount
+    ? mathWithUnits(
+        [paddingAmount, euiTheme.border.width.thin],
+        (x, y) => x + y
+      )
+    : '0';
   const spacing = euiPaddingSize(euiThemeContext, paddingKey);
   const halfSpacing = euiPaddingSize(euiThemeContext, halfPaddingKey);
 
@@ -150,9 +157,9 @@ export const euiCardStyles = (
         overflow: hidden;
 
         /* Padding based sizing & negative margins */
-        ${logicalCSS('width', `calc(100% + (${paddingAmount} * 2))`)}
-        ${logicalCSS('left', `-${paddingAmount}`)}
-        ${logicalCSS('top', `-${paddingAmount}`)}
+        ${logicalCSS('width', `calc(100% + (${cardPaddingAmount} * 2))`)}
+        ${logicalCSS('left', `-${cardPaddingAmount}`)}
+        ${logicalCSS('top', `-${cardPaddingAmount}`)}
         /* Ensure the parent is only as tall as the image */
         ${logicalCSS('margin-bottom', `-${paddingAmount}`)}
 

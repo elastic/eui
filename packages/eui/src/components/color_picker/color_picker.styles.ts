@@ -8,7 +8,7 @@
 
 import { css } from '@emotion/react';
 
-import { UseEuiTheme, transparentize } from '../../services';
+import { UseEuiTheme } from '../../services';
 import { logicalCSS, mathWithUnits } from '../../global_styling';
 
 export const euiColorPickerStyles = (euiThemeContext: UseEuiTheme) => {
@@ -48,7 +48,7 @@ export const euiColorPickerStyles = (euiThemeContext: UseEuiTheme) => {
     euiColorPicker__swatchInputIcon: css`
       .euiSwatchInput__stroke {
         fill: none;
-        stroke: ${transparentize(euiTheme.colors.fullShade, 0.2)};
+        stroke: ${euiTheme.colors.borderBaseFormsColorSwatch};
       }
     `,
   };

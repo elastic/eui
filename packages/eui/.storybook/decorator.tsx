@@ -6,12 +6,33 @@
  * Side Public License, v 1.
  */
 
-import React, { useState, useMemo, FunctionComponent } from 'react';
+import React, {
+  useState,
+  useMemo,
+  FunctionComponent,
+  useEffect,
+  useCallback,
+} from 'react';
 import { css } from '@emotion/react';
 import type { Preview } from '@storybook/react';
+import { EuiThemeBorealis } from '@elastic/eui-theme-borealis';
 
 import { EuiThemeColorMode } from '../src/services';
 import { EuiProvider, EuiProviderProps } from '../src/components/provider';
+import { EuiThemeAmsterdam } from '../src/themes';
+
+export const AVAILABLE_THEMES = [
+  {
+    text: 'Borealis',
+    value: EuiThemeBorealis.key,
+    provider: EuiThemeBorealis,
+  },
+  {
+    text: 'Amsterdam',
+    value: EuiThemeAmsterdam.key,
+    provider: EuiThemeAmsterdam,
+  },
+];
 
 /**
  * Primary EuiProvider decorator to wrap around all stories
@@ -20,8 +41,9 @@ import { EuiProvider, EuiProviderProps } from '../src/components/provider';
 export const EuiProviderDecorator: FunctionComponent<
   EuiProviderProps<{}> & {
     writingMode: WritingModes;
+    themeName: string;
   }
-> = ({ children, writingMode, ...euiProviderProps }) => {
+> = ({ children, writingMode, themeName, theme, ...euiProviderProps }) => {
   // Append portals into Storybook's root div (rather than <body>)
   // so that loki correctly captures them for VRT screenshots
   const [sibling, setPortalSibling] = useState<HTMLElement | null>(null);
@@ -39,8 +61,28 @@ export const EuiProviderDecorator: FunctionComponent<
     [writingMode]
   );
 
+  const getTheme = useCallback(() => {
+    return AVAILABLE_THEMES.find((t) => themeName?.includes(t.value));
+  }, [themeName]);
+
+  const [_theme, setTheme] = useState(getTheme);
+
+  useEffect(() => {
+    if (!themeName || theme) return;
+
+    setTheme(getTheme);
+  }, [themeName, theme, getTheme]);
+
+  const euiThemeProp = {
+    theme: theme ?? _theme?.provider,
+  };
+
   return (
-    <EuiProvider componentDefaults={portalInsert} {...euiProviderProps}>
+    <EuiProvider
+      componentDefaults={portalInsert}
+      {...euiThemeProp}
+      {...euiProviderProps}
+    >
       <div id="story-wrapper" ref={setPortalSibling} css={writingModeCss}>
         {portalInsert && children}
       </div>
@@ -118,6 +160,18 @@ export const euiProviderDecoratorGlobals: Preview['globalTypes'] = {
     toolbar: {
       title: 'Writing mode',
       items: storybookToolbarWritingModes,
+      dynamicTitle: true,
+    },
+  },
+  theme: {
+    description: 'Theme for EuiProvider',
+    defaultValue: EuiThemeBorealis.key,
+    toolbar: {
+      title: 'Theme',
+      items: [
+        { value: EuiThemeBorealis.key, title: 'Borealis', icon: 'box' },
+        { value: EuiThemeAmsterdam.key, title: 'Amsterdam', icon: 'box' },
+      ],
       dynamicTitle: true,
     },
   },

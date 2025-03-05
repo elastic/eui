@@ -143,7 +143,7 @@ exports[`EuiComboBox renders the options list dropdown 1`] = `
         data-popover-open="true"
         data-popover-panel="true"
         role="dialog"
-        style="top: 0px; left: -22px; z-index: 2000; inline-size: 0px;"
+        style="top: 0px; left: -18px; z-index: 2000; inline-size: 0px;"
       >
         <div>
           <div

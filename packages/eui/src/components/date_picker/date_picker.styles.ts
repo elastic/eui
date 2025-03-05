@@ -7,10 +7,10 @@
  */
 
 import { css } from '@emotion/react';
+import { euiShadowMedium } from '@elastic/eui-theme-common';
 
 import { UseEuiTheme } from '../../services';
 import { logicalCSS } from '../../global_styling';
-import { euiShadowMedium } from '../../themes/amsterdam/global_styling/mixins';
 import {
   euiFormControlDisabledStyles,
   euiFormControlReadOnlyStyles,

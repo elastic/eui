@@ -8,7 +8,7 @@
 
 import { css } from '@emotion/react';
 
-import { UseEuiTheme, tintOrShade } from '../../services';
+import { UseEuiTheme } from '../../services';
 import {
   euiFontSize,
   logicalCSS,
@@ -43,9 +43,11 @@ export const euiDataGridVariables = (euiThemeContext: UseEuiTheme) => {
 };
 
 export const euiDataGridStyles = (euiThemeContext: UseEuiTheme) => {
-  const { euiTheme, colorMode } = euiThemeContext;
+  const { euiTheme } = euiThemeContext;
   const { cellPadding, lineHeight, fontSize } =
     euiDataGridVariables(euiThemeContext);
+
+  const border = `${euiTheme.border.width.thin} solid ${euiTheme.components.dataGridBorderColor}`;
 
   return {
     euiDataGrid: css`
@@ -65,11 +67,11 @@ export const euiDataGridStyles = (euiThemeContext: UseEuiTheme) => {
       }
 
       *:where(&.euiDataGrid--stripes .euiDataGridRow--striped) {
-        background-color: ${euiTheme.colors.lightestShade};
+        background-color: ${euiTheme.components.dataGridRowBackgroundStriped};
       }
 
       *:where(&.euiDataGrid--rowHoverHighlight .euiDataGridRow:hover) {
-        background-color: ${euiTheme.colors.highlight};
+        background-color: ${euiTheme.components.dataGridRowBackgroundHover};
       }
     `,
     cellPadding: {
@@ -133,16 +135,16 @@ export const euiDataGridStyles = (euiThemeContext: UseEuiTheme) => {
         .euiDataGridRowCell:not(.euiDataGridFooterCell),
         .euiDataGridFooter,
         &:not(.euiDataGrid--headerUnderline) .euiDataGridHeader {
-          ${logicalCSS('border-bottom', euiTheme.border.thin)}
+          ${logicalCSS('border-bottom', border)}
         }
 
         &:not(.euiDataGrid--footerOverline) .euiDataGridFooter {
-          ${logicalCSS('border-top', euiTheme.border.thin)}
+          ${logicalCSS('border-top', border)}
           ${logicalCSS('margin-top', `-${euiTheme.border.width.thin}`)}
         }
 
         .euiDataGridHeader {
-          ${logicalCSS('border-top', euiTheme.border.thin)}
+          ${logicalCSS('border-top', border)}
         }
       `,
       all: css`
@@ -150,55 +152,54 @@ export const euiDataGridStyles = (euiThemeContext: UseEuiTheme) => {
 
         .euiDataGridRowCell {
           &:not(.euiDataGridFooterCell) {
-            ${logicalCSS('border-bottom', euiTheme.border.thin)}
+            ${logicalCSS('border-bottom', border)}
             ${logicalCSS(
               'border-right',
               // Visually lighten vertical borders
-              `${euiTheme.border.width.thin} solid ${tintOrShade(
-                euiTheme.border.color,
-                0.3,
-                colorMode
-              )}`
+              `${euiTheme.border.width.thin} solid ${euiTheme.components.dataGridVerticalLineBorderColor}`
             )}
           }
 
           &--firstColumn {
-            ${logicalCSS('border-left', euiTheme.border.thin)}
+            ${logicalCSS('border-left', border)}
           }
 
           &--lastColumn {
-            ${logicalCSS('border-right-color', euiTheme.border.color)}
+            ${logicalCSS(
+              'border-right-color',
+              euiTheme.components.dataGridBorderColor
+            )}
           }
         }
 
         .euiDataGridFooterCell,
         .euiDataGridHeaderCell {
-          ${logicalCSS('border-right', euiTheme.border.thin)}
+          ${logicalCSS('border-right', border)}
 
           &:first-of-type {
-            ${logicalCSS('border-left', euiTheme.border.thin)}
+            ${logicalCSS('border-left', border)}
           }
         }
 
         .euiDataGridFooter {
-          ${logicalCSS('border-bottom', euiTheme.border.thin)}
+          ${logicalCSS('border-bottom', border)}
         }
 
         &:not(.euiDataGrid--footerOverline) .euiDataGridFooter {
-          ${logicalCSS('border-top', euiTheme.border.thin)}
+          ${logicalCSS('border-top', border)}
           ${logicalCSS('margin-top', `-${euiTheme.border.width.thin}`)}
         }
 
         &:not(.euiDataGrid--headerUnderline) .euiDataGridHeader {
-          ${logicalCSS('border-bottom', euiTheme.border.thin)}
+          ${logicalCSS('border-bottom', border)}
         }
 
         &:is(.euiDataGrid--noControls) .euiDataGridHeader {
-          ${logicalCSS('border-top', euiTheme.border.thin)}
+          ${logicalCSS('border-top', border)}
         }
 
         .euiDataGrid__controls {
-          border: ${euiTheme.border.thin};
+          border: ${border};
           background-color: ${euiTheme.colors.body};
         }
       `,

@@ -11,6 +11,7 @@ export const COLORS = [
   'primary',
   'success',
   'accent',
+  'accentSecondary',
   'warning',
   'danger',
   'text',

@@ -11,8 +11,9 @@ import {
   euiShadow,
   euiShadowFlat,
   euiShadowMedium,
-} from '../../../themes/amsterdam/global_styling/mixins';
-import { UseEuiTheme, tint } from '../../../services';
+} from '@elastic/eui-theme-common';
+
+import { UseEuiTheme } from '../../../services';
 import {
   euiCanAnimate,
   logicalCSS,
@@ -29,7 +30,7 @@ export const openAnimationTiming = 'slow';
  */
 
 export const euiPopoverPanelStyles = (euiThemeContext: UseEuiTheme) => {
-  const { euiTheme } = euiThemeContext;
+  const { euiTheme, colorMode } = euiThemeContext;
 
   const translateDistance = euiTheme.size.s;
   const animationSpeed = euiTheme.animation[openAnimationTiming];
@@ -38,6 +39,8 @@ export const euiPopoverPanelStyles = (euiThemeContext: UseEuiTheme) => {
   const transformTransition = `transform ${
     euiTheme.animation.bounce
   } ${mathWithUnits(animationSpeed, (x) => x + 100)}`;
+
+  const hasVisibleBorder = colorMode === 'DARK';
 
   return {
     // Base
@@ -49,6 +52,8 @@ export const euiPopoverPanelStyles = (euiThemeContext: UseEuiTheme) => {
       pointer-events: none;
       opacity: 0; /* 2 */
       background-color: var(--euiPopoverBackgroundColor); /* 4 */
+      border: ${euiTheme.border.width.thin} solid
+        ${hasVisibleBorder ? euiTheme.border.color : 'transparent'};
 
       ${euiCanAnimate} {
         /* 2 */
@@ -66,10 +71,12 @@ export const euiPopoverPanelStyles = (euiThemeContext: UseEuiTheme) => {
 
     /* 4 */
     light: css`
-      --euiPopoverBackgroundColor: ${euiTheme.colors.emptyShade};
+      --euiPopoverBackgroundColor: ${euiTheme.components
+        .popoverPanelBackground};
     `,
     dark: css`
-      --euiPopoverBackgroundColor: ${tint(euiTheme.colors.emptyShade, 0.025)};
+      --euiPopoverBackgroundColor: ${euiTheme.components
+        .popoverPanelBackground};
     `,
 
     // Regular popover with an arrow, a transform animation/transition, and a

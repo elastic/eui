@@ -21,8 +21,8 @@ import chroma, { ColorSpaces } from 'chroma-js';
 
 import {
   useEuiMemoizedStyles,
-  VISUALIZATION_COLORS,
   keys,
+  useEuiPaletteColorBlind,
 } from '../../services';
 import { CommonProps } from '../common';
 import {
@@ -198,7 +198,7 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
   onChange,
   onFocus,
   readOnly = false,
-  swatches = VISUALIZATION_COLORS,
+  swatches: _swatches,
   popoverZIndex,
   prepend,
   append,
@@ -237,6 +237,9 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
       'Press the down key to open a popover containing color options',
     ]
   );
+
+  const defaultSwatches = useEuiPaletteColorBlind();
+  const swatches = _swatches ?? defaultSwatches;
 
   const preferredFormat = useMemo(() => {
     if (format) return format;

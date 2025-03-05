@@ -16,6 +16,7 @@ export const COLORS = [
   'subdued',
   'success',
   'accent',
+  'accentSecondary',
   'danger',
   'warning',
   'ghost',

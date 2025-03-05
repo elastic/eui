@@ -10,7 +10,7 @@ import React from 'react';
 import { Global, css } from '@emotion/react';
 import { euiFocusRing, euiScrollBarStyles } from '../mixins';
 import { logicalCSS } from '../functions';
-import { shade, tint, transparentize } from '../../services/color';
+import { transparentize } from '../../services/color';
 import { useEuiTheme } from '../../services/theme';
 import { resetStyles as reset } from './reset';
 
@@ -26,10 +26,7 @@ export const EuiGlobalStyles = ({}: EuiGlobalStylesProps) => {
    * so that it knows to use custom styles. Therefore, we just reuse the same scrollbar mixin with thick size.
    */
   const scrollbarStyles = euiScrollBarStyles(euiThemeContext, {
-    trackColor:
-      colorMode === 'LIGHT'
-        ? shade(colors.body, 0.03)
-        : tint(colors.body, 0.07),
+    trackColor: euiTheme.components.scrollbarTrackColor,
     width: 'auto',
   });
 
@@ -109,7 +106,7 @@ export const EuiGlobalStyles = ({}: EuiGlobalStylesProps) => {
     }
 
     a {
-      color: ${colors.primaryText};
+      color: ${colors.textPrimary};
 
       &,
       &:hover,

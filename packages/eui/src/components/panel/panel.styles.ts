@@ -7,7 +7,8 @@
  */
 
 import { css } from '@emotion/react';
-import { euiShadow } from '../../themes/amsterdam/global_styling/mixins';
+import { euiShadow } from '@elastic/eui-theme-common';
+
 import { UseEuiTheme } from '../../services';
 import {
   euiCanAnimate,
@@ -17,6 +18,23 @@ import {
 
 export const euiPanelStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
+
+  const borderStyle = `
+    position: relative;
+
+    /* Using a pseudo element for the border instead of floating border only 
+      because the transparent border might otherwise be visible with arbitrary 
+      full-width/height content in light mode. */
+    ::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border: ${euiTheme.border.width.thin} solid
+        ${euiTheme.colors.borderBaseFloating};
+      border-radius: inherit;
+      pointer-events: none;
+    }
+  `;
 
   return {
     // Base
@@ -30,6 +48,8 @@ export const euiPanelStyles = (euiThemeContext: UseEuiTheme) => {
 
     hasShadow: css`
       ${euiShadow(euiThemeContext, 'm')}
+
+      ${borderStyle}
     `,
 
     hasBorder: css`

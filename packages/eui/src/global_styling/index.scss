@@ -1,12 +1,3 @@
 // Core
 
-// Functions need to be first, since we use them in our variables and mixin definitions
-@import 'functions/index';
-
-// Variables come next, and are used in some mixins
-@import 'variables/index';
-
-// Mixins provide generic code expansion through helpers
-@import 'mixins/index';
-
-// The reset file has moved to global_styles.tsx
+@import 'node_modules/@elastic/eui-theme-common/src/global_styling/index';

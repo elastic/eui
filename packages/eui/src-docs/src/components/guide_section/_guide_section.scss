@@ -26,7 +26,7 @@
 }
 
 .guideDemo__ghostBackground {
-  @if (lightness($euiTextColor) < 50) {
+  @if (lightness($euiColorTextParagraph) < 50) {
     color: $euiColorGhost;
     // Override EuiPanel specificity
     background: $euiColorDarkestShade !important; // stylelint-disable-line declaration-no-important

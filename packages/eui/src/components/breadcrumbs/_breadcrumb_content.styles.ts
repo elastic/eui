@@ -8,7 +8,6 @@
 
 import { css } from '@emotion/react';
 import { UseEuiTheme } from '../../services';
-import { tintOrShade } from '../../services/color';
 import {
   euiFontSize,
   euiTextTruncate,
@@ -17,13 +16,13 @@ import {
   logicalBorderRadiusCSS,
   mathWithUnits,
 } from '../../global_styling';
-import { euiButtonColor } from '../../themes/amsterdam/global_styling/mixins/button';
+import { euiButtonColor } from '../../global_styling/mixins/_button';
 
 /**
  * Styles cast to inner <a>, <button>, <span> elements
  */
 export const euiBreadcrumbContentStyles = (euiThemeContext: UseEuiTheme) => {
-  const { euiTheme, colorMode } = euiThemeContext;
+  const { euiTheme } = euiThemeContext;
 
   // Reuse button colors for `type="application`" clickable breadcrumbs
   const applicationButtonColors = euiButtonColor(euiThemeContext, 'primary');
@@ -31,12 +30,8 @@ export const euiBreadcrumbContentStyles = (euiThemeContext: UseEuiTheme) => {
   // Create custom darker gray colors for non-clickable application breadcrumbs
   // The numbers/ratios are fairly specific here to pass WCAG AA contrast minimums
   const applicationTextColors = {
-    backgroundColor: tintOrShade(
-      euiTheme.colors.darkestShade,
-      colorMode === 'DARK' ? 0.7 : 0.85,
-      colorMode
-    ),
-    color: tintOrShade(euiTheme.colors.darkestShade, 0.2, colorMode),
+    backgroundColor: euiTheme.components.breadcrumbsApplicationBackground,
+    color: euiTheme.components.breadcrumbsApplicationColor,
   };
 
   return {
@@ -49,7 +44,7 @@ export const euiBreadcrumbContentStyles = (euiThemeContext: UseEuiTheme) => {
       /* TODO: Remove this ':not()' selector and simply have this be
       baseline CSS once the 'color' prop is removed */
       &:not(.euiLink) {
-        color: ${euiTheme.colors.subduedText};
+        color: ${euiTheme.colors.textSubdued};
       }
     `,
 

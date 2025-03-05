@@ -5,9 +5,10 @@ id: theming_colors
 
 # Colors
 
-Elastic UI builds with a very limited palette. It uses a core set of three colors with a green / orange / red qualitative set and combined with a six-color grayscale. Variation beyond these colors is minimal and always done with math manipulation against the original set.
+Elastic UI builds with a color palette that is based on predefined 14-step scales for a core set of three colors (blue / teal / pink) as well as a green / yellow / red qualitative set and combined with a 28-step grayscale. 
+Colors are defined to work well when combined for their semantic purpose.
 
-When switching between light and dark color modes, the theme keys do not change, only their values do. This is why most keys are not named for their **evaluated** value but by their **purpose**.
+When switching between light and dark color modes, the theme keys do not change, only their values do.
 
 ## Brand colors
 
@@ -43,9 +44,7 @@ import { BrandColorsTable } from './brand_colors_table';
 
 ## Text colors
 
-Specific text colors calculated off either the brand or shade colors.
-
-Each brand color also has a corresponding text variant that has been calculated for proper (at least 4.5) contrast against `colors.body` and should be used specifically when coloring text. As is used in [**EuiTextColor**](/docs/display/text#coloring-text).
+Each brand color also has a corresponding text variant that should be used specifically when coloring text. As is used in [**EuiTextColor**](/docs/display/text#coloring-text).
 
 ```mdx-code-block
 import { TextColorPreview } from './text_color_preview';
@@ -57,8 +56,6 @@ import { TextColorsTable } from './text_colors_table';
     ### `euiTheme.colors[colorText]` <Badge color="hollow">token</Badge>
 
     Remember, when using any of the EUI colors for text, **use the text specific variant**.
-
-    If your background color is anything other than or darker than the `body` color, you will want to re-calculate the high contrast version by using the [`makeHighContrastColor(foreground)(background)`](/docs/theming/colors/utilities) method.
   </Example.Description>
   <Example.Preview>
     <TextColorPreview />
@@ -66,7 +63,7 @@ import { TextColorsTable } from './text_colors_table';
   <Example.Snippet>
     ```tsx
     css`
-      color: ${euiTheme.colors.warningText};
+      color: ${euiTheme.colors.textWarning};
     `
     ```
   </Example.Snippet>
@@ -75,6 +72,69 @@ import { TextColorsTable } from './text_colors_table';
 <br />
 
 <TextColorsTable />
+
+## Background colors
+
+Semantic background colors. These should be used according to their semantic purpose.
+
+If a border is needed use the semantically related border color, e.g. `backgroundBasePrimary` with `borderBasePrimary`.
+
+```mdx-code-block
+import { BackgroundColorPreview } from './background_color_preview';
+import { BackgroundColorsTable } from './background_colors_table';
+```
+
+<Example>
+  <Example.Description>
+    ### `euiTheme.colors[background]` <Badge color="hollow">token</Badge>
+  </Example.Description>
+  <Example.Preview>
+    <BackgroundColorPreview />
+  </Example.Preview>
+  <Example.Snippet>
+    ```tsx
+    css`
+      background-color: ${euiTheme.colors.backgroundFilledWarning};
+    `
+    ```
+  </Example.Snippet>
+</Example>
+
+<br />
+
+<BackgroundColorsTable />
+
+## Borders
+
+Semantic border colors. These should be used according to their semantic purpose.
+
+The default border color (used as `border.color`) `borderBaseSubdued`.
+Use the `base` border colors for most cases. Use `borderBasePlain` for a slightly stronger border (e.g. for forms).
+
+```mdx-code-block
+import { BorderColorPreview } from './border_color_preview';
+import { BorderColorsTable } from './border_colors_table';
+```
+
+<Example>
+  <Example.Description>
+    ### `euiTheme.colors[border]` <Badge color="hollow">token</Badge>
+  </Example.Description>
+  <Example.Preview>
+    <BorderColorPreview />
+  </Example.Preview>
+  <Example.Snippet>
+    ```tsx
+    css`
+      border-color: ${euiTheme.colors.borderBaseWarning};
+    `
+    ```
+  </Example.Snippet>
+</Example>
+
+<br />
+
+<BorderColorsTable />
 
 ## Shades
 

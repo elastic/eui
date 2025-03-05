@@ -7,8 +7,9 @@
  */
 
 import chroma from 'chroma-js';
-import { HEX } from './color_types';
 import { colorPalette } from './color_palette';
+import { EUI_VIS_COLOR_STORE } from './vis_color_store';
+import { _EuiThemeVisColors } from '@elastic/eui-theme-common';
 
 export type EuiPalette = string[];
 
@@ -30,7 +31,21 @@ const euiPalette = function (
   return colorPalette(colors, steps, diverge, categorical);
 };
 
-export interface EuiPaletteColorBlindProps {
+export type EuiPaletteCommonProps = {
+  /**
+   * Defines the default set of colors the palette uses.
+   * Defaults to vis colors from `EUI_VIS_COLOR_STORE`.
+   * Use this to specify colors when you can't rely on the EuiProvider updates.
+   */
+  colors?: _EuiThemeVisColors;
+  /**
+   * Specifies if some color asdjustments for vis colors are required.
+   * Has to be passed when `colors` are set
+   */
+  hasVisColorAdjustment?: boolean;
+};
+
+export type EuiPaletteRotationProps = {
   /**
    * How many variations of the series is needed
    */
@@ -52,28 +67,42 @@ export interface EuiPaletteColorBlindProps {
    * Defaults to a number close to green.
    */
   sortShift?: string;
-}
+};
 
+export type EuiPaletteColorBlindProps = EuiPaletteCommonProps &
+  EuiPaletteRotationProps;
+
+/**
+ * NOTE: These functions rely on base vis colors of the theme which are provided via a global
+ * singleton instance `EUI_VIS_COLOR_STORE` that's updated by the EuiProvider on theme change.
+ * Make sure the function is recalled on theme change to retrieve theme-related colors.
+ *
+ * Outside of a react component you can use the `subscibe()` method on the `EUI_VIS_COLOR_STORE`
+ * to subscribe to updates and update your usages to ensure latest colors are loaded.
+ */
 export const euiPaletteColorBlind = ({
   rotations = 1,
   order = 'append',
   direction = 'lighter',
   sortBy = 'default',
   sortShift = '-100',
+  colors,
 }: EuiPaletteColorBlindProps = {}): EuiPalette => {
-  let colors: string[] = [];
+  let _colors: string[] = [];
+
+  const visColors = colors ?? EUI_VIS_COLOR_STORE.visColors;
 
   let base = [
-    '#54B399', // 0 green
-    '#6092C0', // 1 blue
-    '#D36086', // 2 dark pink
-    '#9170B8', // 3 purple
-    '#CA8EAE', // 4 light pink
-    '#D6BF57', // 5 yellow
-    '#B9A888', // 6 tan
-    '#DA8B45', // 7 orange
-    '#AA6556', // 8 brown
-    '#E7664C', // 9 red
+    visColors.euiColorVis0,
+    visColors.euiColorVis1,
+    visColors.euiColorVis2,
+    visColors.euiColorVis3,
+    visColors.euiColorVis4,
+    visColors.euiColorVis5,
+    visColors.euiColorVis6,
+    visColors.euiColorVis7,
+    visColors.euiColorVis8,
+    visColors.euiColorVis9,
   ];
 
   if (sortBy === 'natural') {
@@ -105,136 +134,309 @@ export const euiPaletteColorBlind = ({
     });
 
     if (order === 'group') {
-      colors = flatten(palettes);
+      _colors = flatten(palettes);
     } else {
       for (let i = 0; i < rotations; i++) {
         const rotation = palettes.map((palette) => palette[i]);
-        colors.push(...rotation);
+        _colors.push(...rotation);
       }
     }
   } else {
-    colors = base;
+    _colors = base;
   }
 
-  return colors;
+  return _colors;
 };
 
 /**
  * Color blind palette with text is meant for use when text is applied on top of the color.
  * It increases the brightness of the color to give the text more contrast.
+ *
+ * NOTE: This function is not pure. It relies on `EUI_VIS_COLOR_STORE` which is updated by the
+ * EuiProvider on theme change. Ensure to recall the function on theme change or subscribe to the store.
  */
 export const euiPaletteColorBlindBehindText = (
   paletteProps: EuiPaletteColorBlindProps = {}
 ) => {
+  const { hasVisColorAdjustment } = paletteProps;
+  const _hasVisColorAdjustment =
+    hasVisColorAdjustment ?? EUI_VIS_COLOR_STORE.hasVisColorAdjustment;
+
   const originalPalette = euiPaletteColorBlind(paletteProps);
+
+  // new theme palette has required contrast, we don't need to adjust them
+  if (!_hasVisColorAdjustment) return originalPalette;
+
   const newPalette = originalPalette.map((color) =>
     chroma(color).brighten(0.5).hex()
   );
   return newPalette;
 };
 
-export const euiPaletteForLightBackground = function (): EuiPalette {
-  return ['#006BB4', '#017D73', '#F5A700', '#BD271E', '#DD0A73'];
+const _getVisColorsAsText = (
+  visColors: _EuiThemeVisColors,
+  keys: Array<keyof _EuiThemeVisColors>
+) =>
+  keys.reduce((colors, curr) => {
+    return [...colors, visColors[curr]];
+  }, [] as EuiPalette);
+
+/**
+ * NOTE: This function is not pure. It relies on `EUI_VIS_COLOR_STORE` which is updated by the
+ * EuiProvider on theme change. Ensure to recall the function on theme change or subscribe to the store.
+ */
+export const euiPaletteForLightBackground = function ({
+  colors,
+}: EuiPaletteCommonProps = {}): EuiPalette {
+  const visColors = colors ?? EUI_VIS_COLOR_STORE.visColors;
+
+  const visColorsAsTextKeys = Object.keys(visColors).filter((color) =>
+    color.includes('AsTextLight')
+  ) as Array<keyof typeof visColors>;
+
+  return _getVisColorsAsText(visColors, visColorsAsTextKeys);
 };
 
-export const euiPaletteForDarkBackground = function (): EuiPalette {
-  return ['#1BA9F5', '#7DE2D1', '#F990C0', '#F66', '#FFCE7A'];
+/**
+ * NOTE: This function is not pure. It relies on `EUI_VIS_COLOR_STORE` which is updated by the
+ * EuiProvider on theme change. Ensure to recall the function on theme change or subscribe to the store.
+ */
+export const euiPaletteForDarkBackground = function ({
+  colors,
+}: EuiPaletteCommonProps = {}): EuiPalette {
+  const visColors = colors ?? EUI_VIS_COLOR_STORE.visColors;
+
+  const visColorsAsTextKeys = Object.keys(visColors).filter((color) =>
+    color.includes('AsTextDark')
+  ) as Array<keyof typeof visColors>;
+
+  return _getVisColorsAsText(visColors, visColorsAsTextKeys);
 };
 
-const greenColor: HEX = '#209280';
-const redColor: HEX = '#CC5642';
-const lightRedColor: HEX = euiPaletteColorBlind()[9];
-const coolArray: HEX[] = [euiPaletteColorBlind()[1], '#6092C0'];
-const warmArray: HEX[] = [euiPaletteColorBlind()[7], euiPaletteColorBlind()[9]];
+/**
+ * NOTE: This function is not pure. It relies on `EUI_VIS_COLOR_STORE` which is updated by the
+ * EuiProvider on theme change. Ensure to recall the function on theme change or subscribe to the store.
+ */
+export const euiPaletteForStatus = function (
+  steps: number,
+  { colors }: EuiPaletteCommonProps = {}
+): EuiPalette {
+  const visColors = colors ?? EUI_VIS_COLOR_STORE.visColors;
 
-export const euiPaletteForStatus = function (steps: number): EuiPalette {
   if (steps === 1) {
-    return [greenColor];
+    return [visColors.euiColorVisSuccess0];
   }
   if (steps <= 3) {
     return euiPalette(
-      [greenColor, euiPaletteColorBlind()[5], redColor],
+      [
+        visColors.euiColorVisSuccess0,
+        visColors.euiColorVisWarning0,
+        visColors.euiColorVisDanger0,
+      ],
       steps,
       true
     );
   }
   return euiPalette(
     [
-      greenColor,
-      euiPaletteColorBlind()[0],
-      euiPaletteColorBlind()[5],
-      lightRedColor,
-      redColor,
+      visColors.euiColorVisSuccess0,
+      visColors.euiColorVisSuccess1,
+      visColors.euiColorVisWarning0,
+      visColors.euiColorVisDanger1,
+      visColors.euiColorVisDanger0,
     ],
     steps,
     true
   );
 };
 
-export const euiPaletteForTemperature = function (steps: number): EuiPalette {
-  const cools = colorPalette([...coolArray.slice().reverse(), '#EBEFF5'], 3);
-  const warms = colorPalette(['#F4F3DB', ...warmArray], 3);
+/**
+ * NOTE: This function is not pure. It relies on `EUI_VIS_COLOR_STORE` which is updated by the
+ * EuiProvider on theme change. Ensure to recall the function on theme change or subscribe to the store.
+ */
+export const euiPaletteForTemperature = function (
+  steps: any,
+  { colors, hasVisColorAdjustment }: EuiPaletteCommonProps = {}
+): EuiPalette {
+  const visColors = colors ?? EUI_VIS_COLOR_STORE.visColors;
+  const _hasVisColorAdjustment =
+    hasVisColorAdjustment ?? EUI_VIS_COLOR_STORE.hasVisColorAdjustment;
 
   if (steps === 1) {
-    return [cools[0]];
+    return [visColors.euiColorVisCool2];
   } else if (steps <= 3) {
-    return euiPalette([cools[0], lightRedColor], steps, true);
+    return euiPalette(
+      [visColors.euiColorVisCool2, visColors.euiColorVisWarm2],
+      steps,
+      true
+    );
   }
 
-  return euiPalette([...cools, ...warms], steps, true);
+  const cools = colorPalette(
+    [
+      visColors.euiColorVisCool2,
+      visColors.euiColorVisCool1,
+      visColors.euiColorVisCool0,
+    ],
+    3
+  );
+  const warms = colorPalette(
+    [
+      visColors.euiColorVisWarm0,
+      visColors.euiColorVisWarm1,
+      visColors.euiColorVisWarm2,
+    ],
+    3
+  );
+
+  const paletteColors = _hasVisColorAdjustment
+    ? [...cools, ...warms]
+    : [...cools, visColors.euiColorVisNeutral0, ...warms];
+
+  return euiPalette(paletteColors, steps, true);
 };
 
-export const euiPaletteComplementary = function (steps: number): EuiPalette {
+/**
+ * NOTE: This function is not pure. It relies on `EUI_VIS_COLOR_STORE` which is updated by the
+ * EuiProvider on theme change. Ensure to recall the function on theme change or subscribe to the store.
+ */
+export const euiPaletteComplementary = function (
+  steps: number,
+  { colors, hasVisColorAdjustment }: EuiPaletteCommonProps = {}
+): EuiPalette {
+  const visColors = colors ?? EUI_VIS_COLOR_STORE.visColors;
+  const _hasVisColorAdjustment =
+    hasVisColorAdjustment ?? EUI_VIS_COLOR_STORE.hasVisColorAdjustment;
+
   if (steps === 1) {
-    return [euiPaletteColorBlind()[1]];
+    return [visColors.euiColorVisComplementary0];
+  }
+
+  const paletteColors = _hasVisColorAdjustment
+    ? [visColors.euiColorVisComplementary0, visColors.euiColorVisComplementary1]
+    : [
+        visColors.euiColorVisComplementary0,
+        visColors.euiColorVisNeutral0,
+        visColors.euiColorVisComplementary1,
+      ];
+
+  return euiPalette(paletteColors, steps, true);
+};
+
+/**
+ * NOTE: This function is not pure. It relies on `EUI_VIS_COLOR_STORE` which is updated by the
+ * EuiProvider on theme change. Ensure to recall the function on theme change or subscribe to the store.
+ */
+export const euiPaletteRed = function (
+  steps: number,
+  { colors }: EuiPaletteCommonProps = {}
+): EuiPalette {
+  const visColors = colors ?? EUI_VIS_COLOR_STORE.visColors;
+
+  if (steps === 1) {
+    return [visColors.euiColorVisDanger1];
   }
 
   return euiPalette(
-    [euiPaletteColorBlind()[1], euiPaletteColorBlind()[7]],
-    steps,
-    true
+    [visColors.euiColorVisNeutral0, visColors.euiColorVisDanger0],
+    steps
   );
 };
 
-export const euiPaletteRed = function (steps: number): EuiPalette {
+/**
+ * NOTE: This function is not pure. It relies on `EUI_VIS_COLOR_STORE` which is updated by the
+ * EuiProvider on theme change. Ensure to recall the function on theme change or subscribe to the store.
+ */
+export const euiPaletteGreen = function (
+  steps: number,
+  { colors }: EuiPaletteCommonProps = {}
+): EuiPalette {
+  const visColors = colors ?? EUI_VIS_COLOR_STORE.visColors;
+
   if (steps === 1) {
-    return [lightRedColor];
-  }
-
-  return euiPalette(['white', redColor], steps);
-};
-
-export const euiPaletteGreen = function (steps: number): EuiPalette {
-  if (steps === 1) {
-    return [euiPaletteColorBlind()[0]];
-  }
-
-  return euiPalette(['white', greenColor], steps);
-};
-
-export const euiPaletteCool = function (steps: number): EuiPalette {
-  if (steps === 1) {
-    return [coolArray[1]];
-  }
-
-  return euiPalette(['white', ...coolArray], steps);
-};
-
-export const euiPaletteWarm = function (steps: number): EuiPalette {
-  if (steps === 1) {
-    return [lightRedColor];
-  }
-
-  return euiPalette(['#FBFBDC', ...warmArray], steps);
-};
-
-export const euiPaletteGray = function (steps: number): EuiPalette {
-  if (steps === 1) {
-    return ['#98a2b3'];
+    return [visColors.euiColorVisSuccess1];
   }
 
   return euiPalette(
-    ['white', '#d3dae6', '#98a2b3', '#69707d', '#343741'],
+    [visColors.euiColorVisNeutral0, visColors.euiColorVisSuccess0],
+    steps
+  );
+};
+
+/**
+ * NOTE: This function is not pure. It relies on `EUI_VIS_COLOR_STORE` which is updated by the
+ * EuiProvider on theme change. Ensure to recall the function on theme change or subscribe to the store.
+ */
+export const euiPaletteCool = function (
+  steps: number,
+  { colors, hasVisColorAdjustment }: EuiPaletteCommonProps = {}
+): EuiPalette {
+  const visColors = colors ?? EUI_VIS_COLOR_STORE.visColors;
+  const _hasVisColorAdjustment =
+    hasVisColorAdjustment ?? EUI_VIS_COLOR_STORE.hasVisColorAdjustment;
+
+  if (steps === 1) {
+    return [visColors.euiColorVisCool1];
+  }
+
+  return euiPalette(
+    [
+      _hasVisColorAdjustment
+        ? visColors.euiColorVisNeutral0
+        : visColors.euiColorVisCool0,
+      visColors.euiColorVisCool1,
+      visColors.euiColorVisCool2,
+    ],
+    steps
+  );
+};
+
+/**
+ * NOTE: This function is not pure. It relies on `EUI_VIS_COLOR_STORE` which is updated by the
+ * EuiProvider on theme change. Ensure to recall the function on theme change or subscribe to the store.
+ */
+export const euiPaletteWarm = function (
+  steps: number,
+  { colors }: EuiPaletteCommonProps = {}
+): EuiPalette {
+  const visColors = colors ?? EUI_VIS_COLOR_STORE.visColors;
+
+  if (steps === 1) {
+    return [visColors.euiColorVisWarm2];
+  }
+
+  return euiPalette(
+    [
+      visColors.euiColorVisWarm0,
+      visColors.euiColorVisWarm1,
+      visColors.euiColorVisWarm2,
+    ],
+    steps
+  );
+};
+
+/**
+ * NOTE: This function is not pure. It relies on `EUI_VIS_COLOR_STORE` which is updated by the
+ * EuiProvider on theme change. Ensure to recall the function on theme change or subscribe to the store.
+ */
+export const euiPaletteGray = function (
+  steps: number,
+  { colors }: EuiPaletteCommonProps = {}
+): EuiPalette {
+  const visColors = colors ?? EUI_VIS_COLOR_STORE.visColors;
+
+  if (steps === 1) {
+    return [visColors.euiColorVisGrey1];
+  }
+
+  return euiPalette(
+    [
+      visColors.euiColorVisNeutral0,
+      visColors.euiColorVisGrey0,
+      visColors.euiColorVisGrey1,
+      visColors.euiColorVisGrey2,
+      visColors.euiColorVisGrey3,
+    ],
     steps,
     false
   );
