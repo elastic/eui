@@ -3,7 +3,7 @@ slug: /utilities/provider
 id: utilities_provider
 ---
 
-import { EuiBetaBadge } from '@elastic/eui';
+import { EuiBetaBadge, EuiSpacer } from '@elastic/eui';
 
 # Provider
 
@@ -47,6 +47,8 @@ The <a href="https://emotion.sh/docs/@emotion/cache" target="_blank" rel="noopen
 
 * **Injection location**: In the case that your app has its own static stylesheet, Emotion's styles may not be injected into the correct location in the `<head>`, causing unintentional overrides or unapplied styles. You can use the `container` option and `<meta>` tags to achieve this.
 
+<EuiSpacer />
+
 ```html
 <!-- index.html -->
 <!DOCTYPE html>
@@ -61,6 +63,8 @@ The <a href="https://emotion.sh/docs/@emotion/cache" target="_blank" rel="noopen
   </body>
 </html>
 ```
+
+<EuiSpacer />
 
 ```jsx
 // App.js
