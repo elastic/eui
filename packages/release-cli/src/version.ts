@@ -56,6 +56,16 @@ export const getUpcomingVersion = (currentVersion: string, target: string): stri
   return [major, minor, patch].join('.');
 };
 
+export const getUpcomingSnapshotVersion = (currentVersion: string, uniqueId: string): string => {
+  // remove preid part of the version string if exists
+  const [version, _] = currentVersion.split('-');
+  return `${version}-snapshot.${uniqueId}`;
+};
+
+export const getUniqueSnapshotId = () => {
+  return Date.now().toString();
+}
+
 export const getVersionTypeFromChangelog = (changelogMap: ChangelogMap): VersionType => {
   const hasFeatures = changelogMap['Features'].length > 0;
   const hasBugFixes = changelogMap['Bug fixes'].length > 0;

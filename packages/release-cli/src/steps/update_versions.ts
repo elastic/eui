@@ -19,7 +19,12 @@ import {
   deleteObsoleteChangelogs,
   updateChangelogContent,
 } from '../update_changelog';
-import { getUpcomingVersion, getVersionTypeFromChangelog } from '../version';
+import {
+  getUniqueSnapshotId,
+  getUpcomingSnapshotVersion,
+  getUpcomingVersion,
+  getVersionTypeFromChangelog,
+} from '../version';
 import { commitFiles, isFileAddedToGit, stageFiles } from '../git_utils';
 
 /**
@@ -37,6 +42,7 @@ export const stepUpdateVersions = async (
   const filesToCommit: string[] = [];
   const changedWorkspaces: YarnWorkspace[] = [];
   const rootWorkspaceDir = getRootWorkspaceDir();
+  const snapshotId = getUniqueSnapshotId();
 
   for (const workspace of workspaces) {
     logger.debug(`Calculating changes in ${workspace.name}`);
@@ -44,42 +50,49 @@ export const stepUpdateVersions = async (
     const workspaceDir = path.join(rootWorkspaceDir, workspace.location);
     const currentVersion = await getWorkspacePackageVersion(workspaceDir);
 
-    const { changelogMap, changelog, hasChanges, processedChangelogFiles } =
-      await collateChangelogFiles(workspaceDir);
+    if (options.type === 'snapshot') {
+      const newVersion = getUpcomingSnapshotVersion(currentVersion, snapshotId);
+      await updateWorkspaceVersion(workspace.name, newVersion);
 
-    if (!hasChanges) {
-      logger.debug(`[${workspace.name}] No changes detected`);
-      continue;
-    }
+      logger.info(`[${workspace.name}] Updating version ${currentVersion} -> ${newVersion}`);
+    } else {
+      const { changelogMap, changelog, hasChanges, processedChangelogFiles } =
+        await collateChangelogFiles(workspaceDir);
 
-    const versionType = getVersionTypeFromChangelog(changelogMap);
-    const newVersion = getUpcomingVersion(currentVersion, versionType);
+      if (!hasChanges) {
+        logger.debug(`[${workspace.name}] No changes detected`);
+        continue;
+      }
 
-    const statsStr = Object.entries(changelogMap)
-      .filter(([_, items]) => items.length)
-      .map(([name, items]) => `${items.length} ${name.toLowerCase()}`);
+      const versionType = getVersionTypeFromChangelog(changelogMap);
+      const newVersion = getUpcomingVersion(currentVersion, versionType);
 
-    logger.info(
-      `[${workspace.name}] Updating version ${currentVersion} -> ${newVersion} (${versionType} update; ${statsStr})`
-    );
+      const statsStr = Object.entries(changelogMap)
+        .filter(([_, items]) => items.length)
+        .map(([name, items]) => `${items.length} ${name.toLowerCase()}`);
 
-    const updatedYearChangelogPath = await updateChangelogContent(
-      workspaceDir,
-      changelog,
-      newVersion
-    );
-    await deleteObsoleteChangelogs(processedChangelogFiles);
+      logger.info(
+        `[${workspace.name}] Updating version ${currentVersion} -> ${newVersion} (${versionType} update; ${statsStr})`
+      );
 
-    // Update package.json version string
-    await updateWorkspaceVersion(workspace.name, newVersion);
+      const updatedYearChangelogPath = await updateChangelogContent(
+        workspaceDir,
+        changelog,
+        newVersion
+      );
+      await deleteObsoleteChangelogs(processedChangelogFiles);
 
-    filesToCommit.push(getWorkspacePackageJsonPath(workspaceDir));
-    filesToCommit.push(updatedYearChangelogPath);
+      // Update package.json version string
+      await updateWorkspaceVersion(workspace.name, newVersion);
 
-    // Only stage and commit changelog files that are added to git (versioned)
-    for (const file of processedChangelogFiles) {
-      if (await isFileAddedToGit(file)) {
-        filesToCommit.push(file);
+      filesToCommit.push(getWorkspacePackageJsonPath(workspaceDir));
+      filesToCommit.push(updatedYearChangelogPath);
+
+      // Only stage and commit changelog files that are added to git (versioned)
+      for (const file of processedChangelogFiles) {
+        if (await isFileAddedToGit(file)) {
+          filesToCommit.push(file);
+        }
       }
     }
 
@@ -90,16 +103,18 @@ export const stepUpdateVersions = async (
     throw new Error('There are no changes to release');
   }
 
-  // Stage yarn.lock changes
-  const yarnLockPath = path.join(rootWorkspaceDir, 'yarn.lock');
-  filesToCommit.push(yarnLockPath);
-  await stageFiles([yarnLockPath]);
+  if (options.type !== 'snapshot') {
+    // Stage yarn.lock changes
+    const yarnLockPath = path.join(rootWorkspaceDir, 'yarn.lock');
+    filesToCommit.push(yarnLockPath);
+    await stageFiles([yarnLockPath]);
 
-  // Stage updated package.json files
-  await stageFiles(filesToCommit);
+    // Stage updated package.json files
+    await stageFiles(filesToCommit);
 
-  // Commit all package.json files and yarn.lock
-  await commitFiles('chore: update package versions [skip ci]', filesToCommit);
+    // Commit all package.json files and yarn.lock
+    await commitFiles('chore: update package versions [skip ci]', filesToCommit);
+  }
 
   return changedWorkspaces;
 };
