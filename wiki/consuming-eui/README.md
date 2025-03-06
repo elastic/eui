@@ -115,6 +115,24 @@ appendIconComponentCache({
 });
 ```
 
+#### Usage with TypeScript
+
+To ensure the icons are correctly typed, you need to declare a module for the icon assets. This declaration will allow TypeScript to understand the expected type of the icon components.
+
+```ts
+// .d.ts
+declare module "@elastic/eui/es/components/icon/assets/*" {
+    import * as React from 'react';
+	import type { SVGProps } from 'react';
+	interface SVGRProps {
+	    title?: string;
+	    titleId?: string;
+	}
+	export const icon: ({ title, titleId, ...props }: SVGProps<SVGSVGElement> & SVGRProps) => React.JSX.Element;
+	export {};
+}
+```
+
 ## Using the `test-env` build
 
 EUI provides a separate babel-transformed and partially mocked commonjs build for testing environments in consuming projects. The output is identical to that of `lib/`, but has transformed async functions and dynamic import statements, and also applies some useful mocks. This build mainly targets Kibana's Jest environment, but may be helpful for testing environments in other projects.
