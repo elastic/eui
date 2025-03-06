@@ -460,7 +460,10 @@ export class EuiComboBox<T> extends Component<
     const { searchValue } = this.state;
     const { delimiter } = this.props;
     if (delimiter) {
-      searchValue.split(delimiter).forEach((option: string) => {
+      const trimmed = searchValue.split(delimiter).map((value) => value.trim());
+      const values = [...new Set([...trimmed])];
+
+      values.forEach((option: string) => {
         if (option.length > 0) this.addCustomOption(isContainerBlur, option);
       });
     } else {
@@ -863,6 +866,10 @@ export class EuiComboBox<T> extends Component<
                 {...inputPopoverProps}
                 isOpen={isListOpen}
                 closePopover={this.closeList}
+                /* we don't want content changes to be announced via aria-live 
+                because ComboBox uses a virtualized list that updates itself
+                on scroll and would result in unexpected screen reader output */
+                aria-live="off"
                 input={
                   <EuiComboBoxInput
                     compressed={compressed}

@@ -8,7 +8,7 @@
 
 import { css } from '@emotion/css';
 import { logicalCSS, euiAnimFadeIn } from '../../global_styling';
-import { transparentize, UseEuiTheme } from '../../services';
+import { UseEuiTheme } from '../../services';
 
 export const euiOverlayMaskStyles = ({ euiTheme }: UseEuiTheme) => ({
   euiOverlayMask: css`
@@ -22,7 +22,7 @@ export const euiOverlayMaskStyles = ({ euiTheme }: UseEuiTheme) => ({
     justify-content: center;
     ${logicalCSS('padding-bottom', '10vh')}
     animation: ${euiAnimFadeIn} ${euiTheme.animation.fast} ease-in;
-    background: ${transparentize(euiTheme.colors.ink, 0.5)};
+    background: ${euiTheme.colors.backgroundBaseInteractiveOverlay};
   `,
   aboveHeader: css`
     z-index: ${euiTheme.levels.mask};

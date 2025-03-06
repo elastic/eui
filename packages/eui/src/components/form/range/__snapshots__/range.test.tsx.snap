@@ -22,7 +22,7 @@ exports[`EuiRange allows value prop to accept a number 1`] = `
       class="euiRangeTooltip emotion-euiRangeTooltip"
     >
       <output
-        class="euiRangeTooltip__value emotion-euiRangeTooltip__value-right"
+        class="euiRangeTooltip__value emotion-euiRangeTooltip__value-right-right"
         style="inset-inline-start: 8%;"
       >
         8
@@ -331,7 +331,7 @@ exports[`EuiRange props levels should render 1`] = `
       max="100"
       min="0"
       step="1"
-      style="color: rgb(189, 39, 30);"
+      style="color: rgb(198, 30, 37);"
       type="range"
       value="20"
     />
@@ -454,7 +454,7 @@ exports[`EuiRange props slider should display in popover 1`] = `
         data-popover-panel="true"
         data-test-subj="test"
         role="dialog"
-        style="top: 0px; left: -22px; will-change: transform, opacity; z-index: 2000; inline-size: 0px;"
+        style="top: 0px; left: -18px; will-change: transform, opacity; z-index: 2000; inline-size: 0px;"
       >
         <p
           class="emotion-euiScreenReaderOnly"
@@ -619,7 +619,7 @@ exports[`EuiRange props value should render 1`] = `
       class="euiRangeTooltip emotion-euiRangeTooltip"
     >
       <output
-        class="euiRangeTooltip__value emotion-euiRangeTooltip__value-left"
+        class="euiRangeTooltip__value emotion-euiRangeTooltip__value-left-left"
         style="inset-inline-end: 0%;"
       >
         before

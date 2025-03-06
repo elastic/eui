@@ -1,0 +1,202 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`useEuiButtonColorCSS base 1`] = `
+{
+  "accent": {
+    "map": undefined,
+    "name": "1s9ak2j-displaysColorsMap-display-color",
+    "next": undefined,
+    "styles": "color:#a11262;background-color:#FDDDE9;;;label:base-accent;",
+    "toString": [Function],
+  },
+  "accentSecondary": {
+    "map": undefined,
+    "name": "l7co5e-displaysColorsMap-display-color",
+    "next": undefined,
+    "styles": "color:#046e6b;background-color:#C9F3F0;;;label:base-accentSecondary;",
+    "toString": [Function],
+  },
+  "danger": {
+    "map": undefined,
+    "name": "imzzne-displaysColorsMap-display-color",
+    "next": undefined,
+    "styles": "color:#a71627;background-color:#FDDDD8;;;label:base-danger;",
+    "toString": [Function],
+  },
+  "disabled": {
+    "map": undefined,
+    "name": "w9bf0z-displaysColorsMap-display-color",
+    "next": undefined,
+    "styles": "color:#798EAF;background-color:#ECF1F9;;;label:base-disabled;",
+    "toString": [Function],
+  },
+  "primary": {
+    "map": undefined,
+    "name": "nzkzxt-displaysColorsMap-display-color",
+    "next": undefined,
+    "styles": "color:#1750ba;background-color:#D9E8FF;;;label:base-primary;",
+    "toString": [Function],
+  },
+  "success": {
+    "map": undefined,
+    "name": "nkw4q7-displaysColorsMap-display-color",
+    "next": undefined,
+    "styles": "color:#09724d;background-color:#C9F3E3;;;label:base-success;",
+    "toString": [Function],
+  },
+  "text": {
+    "map": undefined,
+    "name": "1qxdqy4-displaysColorsMap-display-color",
+    "next": undefined,
+    "styles": "color:#1d2a3e;background-color:#E3E8F2;;;label:base-text;",
+    "toString": [Function],
+  },
+  "warning": {
+    "map": undefined,
+    "name": "1cacn07-displaysColorsMap-display-color",
+    "next": undefined,
+    "styles": "color:#6a4906;background-color:#FDE9B5;;;label:base-warning;",
+    "toString": [Function],
+  },
+}
+`;
+
+exports[`useEuiButtonColorCSS empty 1`] = `
+{
+  "accent": {
+    "map": undefined,
+    "name": "6nx0ov-displaysColorsMap-display-color",
+    "next": undefined,
+    "styles": "color:#a11262;&:focus,&:active{background-color:rgba(23,80,186, 0.04);};label:empty-accent;",
+    "toString": [Function],
+  },
+  "accentSecondary": {
+    "map": undefined,
+    "name": "eugem9-displaysColorsMap-display-color",
+    "next": undefined,
+    "styles": "color:#046e6b;&:focus,&:active{background-color:rgba(23,80,186, 0.04);};label:empty-accentSecondary;",
+    "toString": [Function],
+  },
+  "danger": {
+    "map": undefined,
+    "name": "tlly31-displaysColorsMap-display-color",
+    "next": undefined,
+    "styles": "color:#a71627;&:focus,&:active{background-color:rgba(23,80,186, 0.04);};label:empty-danger;",
+    "toString": [Function],
+  },
+  "disabled": {
+    "map": undefined,
+    "name": "1riraik-displaysColorsMap-display-color",
+    "next": undefined,
+    "styles": "color:#798EAF;&:focus,&:active{background-color:transparent;};label:empty-disabled;",
+    "toString": [Function],
+  },
+  "primary": {
+    "map": undefined,
+    "name": "134brx-displaysColorsMap-display-color",
+    "next": undefined,
+    "styles": "color:#1750ba;&:focus,&:active{background-color:rgba(23,80,186, 0.04);};label:empty-primary;",
+    "toString": [Function],
+  },
+  "success": {
+    "map": undefined,
+    "name": "1sisv9i-displaysColorsMap-display-color",
+    "next": undefined,
+    "styles": "color:#09724d;&:focus,&:active{background-color:rgba(23,80,186, 0.04);};label:empty-success;",
+    "toString": [Function],
+  },
+  "text": {
+    "map": undefined,
+    "name": "pyzzr1-displaysColorsMap-display-color",
+    "next": undefined,
+    "styles": "color:#1d2a3e;&:focus,&:active{background-color:rgba(23,80,186, 0.04);};label:empty-text;",
+    "toString": [Function],
+  },
+  "warning": {
+    "map": undefined,
+    "name": "ou8n3e-displaysColorsMap-display-color",
+    "next": undefined,
+    "styles": "color:#6a4906;&:focus,&:active{background-color:rgba(23,80,186, 0.04);};label:empty-warning;",
+    "toString": [Function],
+  },
+}
+`;
+
+exports[`useEuiButtonColorCSS fill 1`] = `
+{
+  "accent": {
+    "map": undefined,
+    "name": "1x15kz9-displaysColorsMap-display-color",
+    "next": undefined,
+    "styles": "color:#FFFFFF;background-color:#BC1E70;outline-color:#07101F;;label:fill-accent;",
+    "toString": [Function],
+  },
+  "accentSecondary": {
+    "map": undefined,
+    "name": "nn2r8y-displaysColorsMap-display-color",
+    "next": undefined,
+    "styles": "color:#FFFFFF;background-color:#008B87;outline-color:#07101F;;label:fill-accentSecondary;",
+    "toString": [Function],
+  },
+  "danger": {
+    "map": undefined,
+    "name": "1e8fk7p-displaysColorsMap-display-color",
+    "next": undefined,
+    "styles": "color:#FFFFFF;background-color:#C61E25;outline-color:#07101F;;label:fill-danger;",
+    "toString": [Function],
+  },
+  "disabled": {
+    "map": undefined,
+    "name": "1mgqlj7-displaysColorsMap-display-color",
+    "next": undefined,
+    "styles": "color:#798EAF;background-color:#ECF1F9;outline-color:#07101F;;label:fill-disabled;",
+    "toString": [Function],
+  },
+  "primary": {
+    "map": undefined,
+    "name": "jlyla4-displaysColorsMap-display-color",
+    "next": undefined,
+    "styles": "color:#FFFFFF;background-color:#0B64DD;outline-color:#07101F;;label:fill-primary;",
+    "toString": [Function],
+  },
+  "success": {
+    "map": undefined,
+    "name": "1vkmljm-displaysColorsMap-display-color",
+    "next": undefined,
+    "styles": "color:#FFFFFF;background-color:#008A5E;outline-color:#07101F;;label:fill-success;",
+    "toString": [Function],
+  },
+  "text": {
+    "map": undefined,
+    "name": "d8tzvz-displaysColorsMap-display-color",
+    "next": undefined,
+    "styles": "color:#FFFFFF;background-color:#5A6D8C;outline-color:#07101F;;label:fill-text;",
+    "toString": [Function],
+  },
+  "warning": {
+    "map": undefined,
+    "name": "16cnufy-displaysColorsMap-display-color",
+    "next": undefined,
+    "styles": "color:#6A4906;background-color:#FACB3D;outline-color:#07101F;;label:fill-warning;",
+    "toString": [Function],
+  },
+}
+`;
+
+exports[`useEuiButtonFocusCSS 1`] = `
+{
+  "map": undefined,
+  "name": "1s8jae7-focusCSS",
+  "next": {
+    "name": "animation-70pju1",
+    "next": undefined,
+    "styles": "@keyframes animation-70pju1{
+  50% {
+    transform: translateY(1px);
+  }
+}",
+  },
+  "styles": "@media screen and (prefers-reduced-motion: no-preference){transition:transform 250ms ease-in-out,background-color 250ms ease-in-out;&:hover:not(:disabled){transform:translateY(-1px);}&:focus{animation:animation-70pju1 250ms cubic-bezier(.34, 1.61, .7, 1);}&:active:not(:disabled){transform:translateY(1px);}};",
+  "toString": [Function],
+}
+`;

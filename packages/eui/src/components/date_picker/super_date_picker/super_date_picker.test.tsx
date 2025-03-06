@@ -150,6 +150,29 @@ describe('EuiSuperDatePicker', () => {
       expect(updateButton.className).toContain('danger');
     });
 
+    test('quickSelectButtonProps', () => {
+      const onMouseDown = jest.fn();
+      const quickSelectButtonProps: EuiSuperDatePickerProps['quickSelectButtonProps'] =
+        {
+          onMouseDown,
+          color: 'danger',
+        };
+
+      const { getByTestSubject } = render(
+        <EuiSuperDatePicker
+          onTimeChange={noop}
+          quickSelectButtonProps={quickSelectButtonProps}
+        />
+      );
+      const quickSelectButton = getByTestSubject(
+        'superDatePickerToggleQuickMenuButton'
+      )!;
+      expect(quickSelectButton.className).toContain('danger');
+      fireEvent.mouseDown(quickSelectButton);
+
+      expect(onMouseDown).toHaveBeenCalledTimes(1);
+    });
+
     it('invokes onFocus callbacks on the date popover buttons', () => {
       const focusMock = jest.fn();
       const { getByTestSubject } = render(

@@ -337,8 +337,8 @@ describe('popover_positioning', () => {
           top: 40,
           left: 25,
           arrow: {
-            top: 50,
-            left: 22.5,
+            top: '100%',
+            left: 21.5,
           },
         });
       });
@@ -359,8 +359,8 @@ describe('popover_positioning', () => {
           top: -15,
           left: 37.5,
           arrow: {
-            top: 50,
-            left: 10,
+            top: '100%',
+            left: 9,
           },
         });
       });
@@ -382,8 +382,8 @@ describe('popover_positioning', () => {
           top: -15,
           left: 37.5,
           arrow: {
-            top: 50,
-            left: 10,
+            top: '100%',
+            left: 9,
           },
         });
       });
@@ -406,8 +406,8 @@ describe('popover_positioning', () => {
           top: 50,
           left: 75,
           arrow: {
-            top: 50,
-            left: 22,
+            top: '100%',
+            left: 21,
           },
         });
 
@@ -426,8 +426,8 @@ describe('popover_positioning', () => {
           top: 110,
           left: 25,
           arrow: {
-            top: 0,
-            left: 72,
+            bottom: '100%',
+            left: 71,
           },
         });
       });
@@ -448,8 +448,8 @@ describe('popover_positioning', () => {
           top: -82,
           left: 125,
           arrow: {
-            top: 184,
-            left: 0,
+            top: 183,
+            right: '100%',
           },
         });
       });

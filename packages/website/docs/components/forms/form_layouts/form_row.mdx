@@ -1,0 +1,401 @@
+---
+slug: /forms/layouts/row
+id: forms_form_row
+sidebar_position: 1
+---
+
+# Form rows
+
+Use the **EuiFormRow** component to easily associate form components with labels, help text, and error text. Use the **EuiForm** component to group **EuiFormRows**. By default, **EuiForm** will render as a simple div unless you pass `component="form"`.
+
+:::info Accessibility requirement
+Whenever possible, pass a `label` to **EuiFormRow**. If not using the `label` prop, you must instead apply an `aria-label` directly to the wrapped form control, or an `aria-labelledby` with the text node ID of an external label.
+:::
+
+```tsx interactive
+import React, { useState } from 'react';
+import {
+  EuiButton,
+  EuiCheckboxGroup,
+  EuiFieldText,
+  EuiForm,
+  EuiFormRow,
+  EuiFilePicker,
+  EuiLink,
+  EuiRange,
+  EuiSelect,
+  EuiSpacer,
+  EuiSwitch,
+  EuiText,
+  useGeneratedHtmlId,
+} from '@elastic/eui';
+
+export default () => {
+  const [isSwitchChecked, setIsSwitchChecked] = useState(false);
+
+  const formRowCheckboxItemId__1 = useGeneratedHtmlId({
+    prefix: 'formRowCheckboxItem',
+    suffix: 'first',
+  });
+  const formRowCheckboxItemId__2 = useGeneratedHtmlId({
+    prefix: 'formRowCheckboxItem',
+    suffix: 'second',
+  });
+  const formRowCheckboxItemId__3 = useGeneratedHtmlId({
+    prefix: 'formRowCheckboxItem',
+    suffix: 'third',
+  });
+
+  const formRowRangeId = useGeneratedHtmlId({ prefix: 'formRowRange' });
+  const checkboxes = [
+    {
+      id: formRowCheckboxItemId__1,
+      label: 'Option one',
+    },
+    {
+      id: formRowCheckboxItemId__2,
+      label: 'Option two is checked by default',
+    },
+    {
+      id: formRowCheckboxItemId__3,
+      label: 'Option three',
+    },
+  ];
+  const [checkboxIdToSelectedMap, setCheckboxIdToSelectedMap] = useState({
+    [formRowCheckboxItemId__2]: true,
+  });
+
+  const onSwitchChange = () => {
+    setIsSwitchChecked(!isSwitchChecked);
+  };
+
+  const onCheckboxChange = (optionId) => {
+    const newCheckboxIdToSelectedMap = {
+      ...checkboxIdToSelectedMap,
+      ...{
+        [optionId]: !checkboxIdToSelectedMap[optionId],
+      },
+    };
+
+    setCheckboxIdToSelectedMap(newCheckboxIdToSelectedMap);
+  };
+
+  return (
+    <EuiForm component="form">
+      <EuiFormRow label="Text field" helpText="I am some friendly help text.">
+        <EuiFieldText name="first" />
+      </EuiFormRow>
+
+      <EuiFormRow label="Disabled through form row" isDisabled>
+        <EuiFieldText name="last" />
+      </EuiFormRow>
+
+      <EuiFormRow
+        label="Select (with no initial selection)"
+        labelAppend={
+          <EuiText size="xs">
+            <EuiLink>Link to some help</EuiLink>
+          </EuiText>
+        }
+      >
+        <EuiSelect
+          hasNoInitialSelection
+          onChange={() => {}}
+          options={[
+            { value: 'option_one', text: 'Option one' },
+            { value: 'option_two', text: 'Option two' },
+            { value: 'option_three', text: 'Option three' },
+          ]}
+        />
+      </EuiFormRow>
+
+      <EuiFormRow label="File picker">
+        <EuiFilePicker />
+      </EuiFormRow>
+
+      <EuiFormRow label="Range">
+        <EuiRange min={0} max={100} name="range" id={formRowRangeId} />
+      </EuiFormRow>
+
+      <EuiSpacer />
+
+      <EuiCheckboxGroup
+        options={checkboxes}
+        idToSelectedMap={checkboxIdToSelectedMap}
+        onChange={onCheckboxChange}
+        legend={{
+          children:
+            'Checkbox groups should use the `legend` prop instead of form row',
+        }}
+      />
+
+      <EuiSpacer />
+
+      <EuiFormRow
+        label="Use a switch instead of a single checkbox"
+        hasChildLabel={false}
+      >
+        <EuiSwitch
+          name="switch"
+          label="Setting name"
+          checked={isSwitchChecked}
+          onChange={onSwitchChange}
+        />
+      </EuiFormRow>
+
+      <EuiSpacer />
+
+      <EuiButton type="submit" fill>
+        Save form
+      </EuiButton>
+    </EuiForm>
+  );
+};
+
+```
+
+## Full-width
+
+Form elements will automatically flex to a max-width of `400px`. You can optionally pass the `fullWidth` prop to the row and form control to expand to their container. This should be done rarely and usually you will only need it for isolated controls like search bars and sliders.
+
+```tsx interactive
+import React, { Fragment } from 'react';
+import {
+  EuiFieldSearch,
+  EuiRange,
+  EuiTextArea,
+  EuiFormRow,
+  EuiFlexGroup,
+  EuiFlexItem,
+  EuiSpacer,
+  EuiButton,
+} from '@elastic/eui';
+
+export default () => (
+  <Fragment>
+    <EuiFlexGroup>
+      <EuiFlexItem>
+        <EuiFieldSearch
+          placeholder="Search..."
+          fullWidth
+          aria-label="An example of search with fullWidth"
+        />
+      </EuiFlexItem>
+      <EuiFlexItem grow={false}>
+        <EuiButton>Search</EuiButton>
+      </EuiFlexItem>
+    </EuiFlexGroup>
+
+    <EuiSpacer size="l" />
+
+    <EuiFormRow
+      label="Works on form rows too"
+      fullWidth
+      helpText="Note that the fullWidth prop is not passed to the form row's child"
+    >
+      <EuiRange fullWidth min={0} max={100} name="range" />
+    </EuiFormRow>
+
+    <EuiFormRow label="Often useful for text areas" fullWidth>
+      <EuiTextArea
+        fullWidth
+        placeholder="There is a reason we do not make forms ALWAYS 100% width.
+          See how this text area becomes extremely hard to read when the individual
+          lines get this long? It is much more readable when contained to a scannable max-width."
+      />
+    </EuiFormRow>
+  </Fragment>
+);
+```
+
+### Global full-width
+
+To set all the row and controls in a form to `fullWidth`, specify the prop on the root `EuiForm` component.
+
+```tsx interactive
+import React from 'react';
+import {
+  EuiForm,
+  EuiFieldSearch,
+  EuiRange,
+  EuiTextArea,
+  EuiFormRow,
+  EuiFlexGroup,
+  EuiFlexItem,
+  EuiSpacer,
+  EuiDescribedFormGroup,
+  EuiSelect,
+  EuiFilePicker,
+  EuiButton,
+} from '@elastic/eui';
+
+export default () => {
+  const [range, setRange] = React.useState(42);
+
+  return (
+    <EuiForm
+      fullWidth
+      onSubmit={(e) => {
+        e.preventDefault();
+      }}
+    >
+      <EuiFlexGroup>
+        <EuiFlexItem>
+          <EuiFieldSearch
+            placeholder="Search..."
+            aria-label="An example of search with fullWidth"
+          />
+        </EuiFlexItem>
+        <EuiFlexItem grow={false}>
+          <EuiButton>Search</EuiButton>
+        </EuiFlexItem>
+      </EuiFlexGroup>
+
+      <EuiSpacer size="l" />
+
+      <EuiFormRow
+        label="Works on form rows too"
+        helpText="Note that the fullWidth prop is not passed to any of these elements, it's read from the parent <EuiForm> component."
+      >
+        <EuiRange
+          min={0}
+          max={100}
+          name="range"
+          value={range}
+          onChange={(e) => {
+            if (e.target instanceof HTMLInputElement) {
+              setRange(Number.parseInt(e.target.value, 10));
+            }
+          }}
+        />
+      </EuiFormRow>
+
+      <EuiSpacer />
+
+      <EuiDescribedFormGroup
+        title={<h3>Works with all form controls and layout components</h3>}
+        description={
+          <>
+            <p>
+              Any component that supports the <code>fullWidth</code> prop that
+              is.
+            </p>
+            <p>
+              Make sure it is appropriate at all of the widths that the
+              container can take. There are many situations where a full-width
+              form is inappropriate.
+            </p>
+          </>
+        }
+      >
+        <EuiFormRow label="Text area">
+          <EuiTextArea placeholder="" />
+        </EuiFormRow>
+      </EuiDescribedFormGroup>
+
+      <EuiFormRow label="Works on EuiSelect">
+        <EuiSelect
+          options={[
+            {
+              value: 'option_one',
+              text: 'Option one is very long in order to try justifying the use of fullWidth on a select box',
+            },
+            { value: 'option_two', text: 'Option two' },
+            { value: 'option_three', text: 'Option three' },
+          ]}
+        />
+      </EuiFormRow>
+
+      <EuiFormRow label="It can be disabled for a specific control">
+        <EuiFilePicker display="default" fullWidth={false} />
+      </EuiFormRow>
+    </EuiForm>
+  );
+};
+```
+
+## Inline
+
+Inline forms can be made with [**EuiFlexGroup**](../../layout/flex/flex_group.mdx). Apply `grow={false}` on any of the items you want to collapse (like the button below). Note that the button's **EuiFormRow** wrapper also requires an additional prop when it’s missing a label `hasEmptyLabelSpace`.
+
+```tsx interactive
+import React from 'react';
+import {
+  EuiFlexGroup,
+  EuiFlexItem,
+  EuiFormRow,
+  EuiButton,
+  EuiFieldText,
+} from '@elastic/eui';
+
+export default () => (
+  <EuiFlexGroup style={{ maxWidth: 600 }}>
+    <EuiFlexItem>
+      <EuiFormRow label="First name" helpText="I am helpful help text!">
+        <EuiFieldText />
+      </EuiFormRow>
+    </EuiFlexItem>
+    <EuiFlexItem>
+      <EuiFormRow label="Last name">
+        <EuiFieldText />
+      </EuiFormRow>
+    </EuiFlexItem>
+    <EuiFlexItem grow={false}>
+      <EuiFormRow hasEmptyLabelSpace>
+        <EuiButton>Save</EuiButton>
+      </EuiFormRow>
+    </EuiFlexItem>
+  </EuiFlexGroup>
+);
+```
+
+### Sizing inline form rows
+
+Apply a `width` or change the `grow` prop on the wrapping **EuiFlexItem** to size individual controls. When you need to make a field smaller, always apply the width to the flex item, not the input. The input inside will resize as needed.
+
+When supplying children to an **EuiFormRow** that is **not** a form control, and you need to the content to vertically center with the other form controls, change the `display` prop to `center` or `centerCompressed`.
+
+```tsx interactive
+import React from 'react';
+import {
+  EuiFlexGroup,
+  EuiFlexItem,
+  EuiFormRow,
+  EuiButton,
+  EuiFieldText,
+  EuiFieldNumber,
+  EuiAvatar,
+} from '@elastic/eui';
+
+export default () => (
+  <EuiFlexGroup style={{ maxWidth: 600 }}>
+    <EuiFlexItem grow={false} style={{ width: 100 }}>
+      <EuiFormRow label="Age">
+        <EuiFieldNumber max={10} placeholder={42} />
+      </EuiFormRow>
+    </EuiFlexItem>
+    <EuiFlexItem>
+      <EuiFormRow label="Full name">
+        <EuiFieldText icon="user" placeholder="John Doe" />
+      </EuiFormRow>
+    </EuiFlexItem>
+    <EuiFlexItem grow={false}>
+      <EuiFormRow label="Avatar" display="center">
+        <EuiAvatar name="John Doe" size="s" />
+      </EuiFormRow>
+    </EuiFlexItem>
+    <EuiFlexItem grow={false}>
+      <EuiFormRow hasEmptyLabelSpace display="center">
+        <EuiButton>Save</EuiButton>
+      </EuiFormRow>
+    </EuiFlexItem>
+  </EuiFlexGroup>
+);
+```
+
+## Props
+
+import docgen from '@elastic/eui-docgen/dist/components/form';
+
+<PropTable definition={docgen.EuiForm} />
+<PropTable definition={docgen.EuiFormRow} />

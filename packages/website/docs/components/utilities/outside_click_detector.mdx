@@ -1,0 +1,56 @@
+---
+slug: /utilities/outside-click-detector
+id: utilities_outside_click_detector
+---
+
+# Outside click detector
+
+Use **EuiOutsideClickDetector** to trigger a handler when the user clicks outside of the child element.
+
+:::warning
+**EuiSelect** normalizes browser event inconsistencies with `<select />` elements and as a result may not trigger **EuiOutsideClickDetector** when targeted with mouse events.
+:::
+
+<Demo>
+```tsx interactive
+import React, { useState } from 'react';
+
+import { EuiButton, EuiOutsideClickDetector, EuiSpacer } from '@elastic/eui';
+
+export default () => {
+  const [isDisabled, setIsDisabled] = useState(false);
+
+  const toggleDisabled = () => {
+    setIsDisabled(!isDisabled);
+  };
+
+  return (
+    <div>
+      <EuiOutsideClickDetector
+        onOutsideClick={() => {
+          window.alert('Clicked outside');
+        }}
+        isDisabled={isDisabled}
+      >
+        <p>
+          {isDisabled
+            ? 'This detector is disabled, so clicking outside will do nothing.'
+            : 'Clicking inside here will do nothing, but clicking outside will trigger an alert.'}
+        </p>
+      </EuiOutsideClickDetector>
+      <EuiSpacer size="l" />
+      <EuiButton onClick={toggleDisabled}>
+        {isDisabled ? 'Enable' : 'Disable'} the detector
+      </EuiButton>
+    </div>
+  );
+};
+```
+</Demo>
+
+## Props
+
+import docgen from '@elastic/eui-docgen/dist/components/outside_click_detector';
+
+<PropTable definition={docgen.EuiOutsideClickDetector} />
+

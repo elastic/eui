@@ -7,9 +7,10 @@
  */
 
 import { css } from '@emotion/react';
+import { euiShadowLarge } from '@elastic/eui-theme-common';
+
 import { euiTextBreakWord, logicalCSS } from '../../global_styling';
 import { UseEuiTheme } from '../../services';
-import { euiShadowLarge } from '../../themes/amsterdam';
 import { euiTitle } from '../title/title.styles';
 
 export const euiToastStyles = (euiThemeContext: UseEuiTheme) => {
@@ -26,6 +27,8 @@ export const euiToastStyles = (euiThemeContext: UseEuiTheme) => {
       ${logicalCSS('padding-vertical', euiTheme.size.base)}
       background-color: ${euiTheme.colors.emptyShade};
       ${logicalCSS('width', '100%')}
+      border: ${euiTheme.border.width.thin} solid ${euiTheme.colors
+        .borderBaseFloating};
 
       ${euiTextBreakWord()} /* Prevent long lines from overflowing */
 

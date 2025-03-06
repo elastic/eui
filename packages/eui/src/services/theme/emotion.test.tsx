@@ -26,11 +26,11 @@ describe('EuiEmotionThemeProvider', () => {
       </EuiEmotionThemeProvider>
     );
 
-    expect(getByTestSubject('consumer')).toHaveStyleRule('color', '#07C');
+    expect(getByTestSubject('consumer')).toHaveStyleRule('color', '#0B64DD');
 
     expect(container.firstChild).toMatchInlineSnapshot(`
       <div
-        class="css-cs4x42"
+        class="css-14koqkv"
         data-test-subj="consumer"
       >
         hello world
@@ -62,7 +62,7 @@ describe('EuiEmotionThemeProvider', () => {
     );
 
     expect(getByTestSubject('consumer')).toHaveStyleRule('color', 'pink');
-    expect(getByTestSubject('eui')).toHaveStyleRule('color', '#ba3d76');
+    expect(getByTestSubject('eui')).toHaveStyleRule('color', '#A11262');
 
     expect(container).toMatchInlineSnapshot(`
       <div>

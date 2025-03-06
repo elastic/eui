@@ -36,12 +36,35 @@ describe('EuiComboBox', () => {
     const onChange = (selectedOptions: typeof options) => {
       setSelected(selectedOptions);
     };
+
     return (
       <EuiComboBox
         options={options}
         selectedOptions={selectedOptions}
         {...rest}
         onChange={onChange}
+      />
+    );
+  };
+
+  const CreateComboBox = () => {
+    const [options, setOptions] = useState([]);
+    const [selectedOptions, setSelected] = useState([]);
+
+    const onCreateOption = (searchValue: string) => {
+      const newOption = { label: searchValue };
+
+      setOptions([...options, newOption]);
+
+      setSelected((prevSelected) => [...prevSelected, newOption]);
+    };
+
+    return (
+      <EuiComboBox
+        options={options}
+        selectedOptions={selectedOptions}
+        onCreateOption={onCreateOption}
+        delimiter=","
       />
     );
   };
@@ -409,6 +432,25 @@ describe('EuiComboBox', () => {
           'have.text',
           'Item 1'
         );
+      });
+
+      it('adds only one item when pasting duplicated elements', () => {
+        cy.realMount(<CreateComboBox />);
+        cy.get('[data-test-subj="euiComboBoxPill"]').should('not.exist');
+
+        cy.get('[data-test-subj="comboBoxSearchInput"]').click();
+
+        // Simulate pasting text
+        cy.get('[data-test-subj="comboBoxSearchInput"]')
+          .clear()
+          .invoke('val', 'a, a,  a,   a')
+          .trigger('input');
+        cy.get('[data-test-subj="comboBoxSearchInput"]').type(' {backspace}');
+
+        cy.realPress('Enter');
+
+        cy.get('[data-test-subj="euiComboBoxPill"]').should('have.length', 1);
+        cy.get('[data-test-subj="euiComboBoxPill"]').should('have.text', 'a');
       });
     });
 

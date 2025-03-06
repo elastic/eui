@@ -11,7 +11,7 @@ exports[`EuiCollapsibleNavGroup is rendered 1`] = `
 
 exports[`EuiCollapsibleNavGroup props background dark is rendered 1`] = `
 <div
-  class="euiCollapsibleNavGroup emotion-euiCollapsibleNavGroup-notCollapsible-dark-euiColorMode-dark"
+  class="euiCollapsibleNavGroup css-vz0z-euiCollapsibleNavGroup-notCollapsible-dark-euiColorMode-dark"
   id="id"
 />
 `;
@@ -236,6 +236,7 @@ exports[`EuiCollapsibleNavGroup when isCollapsible is true accepts accordion pro
     <button
       aria-controls="id"
       aria-expanded="false"
+      aria-hidden="true"
       aria-labelledby="generated-id"
       class="euiButtonIcon euiAccordion__arrow emotion-euiButtonIcon-xs-empty-text-euiAccordion__arrow-right-isClosed"
       tabindex="-1"
@@ -300,6 +301,7 @@ exports[`EuiCollapsibleNavGroup when isCollapsible is true will render an accord
     <button
       aria-controls="id"
       aria-expanded="false"
+      aria-hidden="true"
       aria-labelledby="generated-id"
       class="euiButtonIcon euiAccordion__arrow emotion-euiButtonIcon-xs-empty-text-euiAccordion__arrow-right-isClosed"
       tabindex="-1"

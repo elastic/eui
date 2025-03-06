@@ -22,7 +22,7 @@ export const CHARS = {
   NO_COPY_BOUND: '✄𐘗',
 };
 // This regex finds all content between two bounds
-const noCopyBoundsRegex = new RegExp(
+export const noCopyBoundsRegex = new RegExp(
   `${CHARS.NO_COPY_BOUND}[^${CHARS.NO_COPY_BOUND}]*${CHARS.NO_COPY_BOUND}`,
   'gs'
 );

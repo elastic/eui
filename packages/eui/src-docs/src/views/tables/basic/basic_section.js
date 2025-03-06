@@ -88,6 +88,14 @@ export const section = {
           properly.
         </li>
       </ul>
+      <p>
+        If a column name needs a longer description, an icon with a tooltip can
+        be used. This can be done using the{' '}
+        <EuiCode language="js">columns.nameTooltip</EuiCode> property (e.g. the
+        "GitHub" column as seen below). This approach ensures that the icon
+        remains visible even if the text gets truncated, unlike manually using a
+        React node for <EuiCode language="js">columns.name</EuiCode>.
+      </p>
     </>
   ),
   props: {

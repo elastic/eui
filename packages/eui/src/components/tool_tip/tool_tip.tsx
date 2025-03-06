@@ -17,6 +17,7 @@ import classNames from 'classnames';
 
 import { CommonProps } from '../common';
 import { findPopoverPosition, htmlIdGenerator, keys } from '../../services';
+import { type EuiPopoverPosition } from '../../services/popover';
 import { enqueueStateChange } from '../../services/react';
 import { EuiResizeObserver } from '../observer/resize_observer';
 import { EuiPortal } from '../portal';
@@ -117,7 +118,7 @@ interface State {
   hasFocus: boolean;
   calculatedPosition: ToolTipPositions;
   toolTipStyles: ToolTipStyles;
-  arrowStyles: undefined | { left: number; top: number };
+  arrowStyles?: Record<EuiPopoverPosition, number | string>;
   id: string;
 }
 
@@ -280,6 +281,7 @@ export class EuiToolTip extends Component<EuiToolTipProps, State> {
 
   onEscapeKey = (event: React.KeyboardEvent<HTMLSpanElement>) => {
     if (event.key === keys.ESCAPE) {
+      if (this.state.visible) event.stopPropagation();
       this.setState({ hasFocus: false }); // Allows mousing over back into the tooltip to work correctly
       this.hideToolTip();
     }

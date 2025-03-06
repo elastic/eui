@@ -44,8 +44,8 @@ export const euiSpinnerBorderColorsCSS = (
   colors: EuiLoadingSpinnerColor = {}
 ): string => {
   const {
-    border = euiTheme.colors.lightShade,
-    highlight = euiTheme.colors.primary,
+    border = euiTheme.components.loadingSpinnerBorder,
+    highlight = euiTheme.components.loadingSpinnerHighlight,
   } = colors;
   return `${highlight} ${border} ${border} ${border}`;
 };

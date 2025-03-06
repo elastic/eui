@@ -571,7 +571,7 @@ export default () => {
 
 Most consumers need a header that does not scroll away with the page contents. You can set this display by applying the property `position="fixed"`. Multiple fixed headers will automatically stack underneath one another. No manual positioning is required.
 
-If you're using [**EuiPageTemplate**](/docs/templates/page-template), a padding top will be automatically set based on the number of fixed headers on the page. [**EuiFlyouts**](/docs/layout/flyout) will also automatically account for and sit below fixed headers.
+If you're using [**EuiPageTemplate**](/docs/templates/page-template), a padding top will be automatically set based on the number of fixed headers on the page. [**EuiFlyouts**](../layout/flyout/flyout.mdx) will also automatically account for and sit below fixed headers.
 
 If you're using your own custom layout, or have custom UI that needs to sit below your fixed header(s), EUI provides a global CSS `var(--euiFixedHeadersOffset)` variable. You can use this variable anywhere, or even override it, to correctly offset any and all fixed header heights.
 
@@ -673,9 +673,9 @@ export default () => {
 
 ## Portal content in the header
 
-Use an **EuiHeaderSectionItemButton** to display additional information in [popovers](/docs/layout/popover) or [flyouts](/docs/layout/flyout), such as a user profile or news feed. When using [**EuiFlyout**](/docs/layout/flyout), be sure to wrap it in a [**EuiPortal**](/docs/utilities/portal). When using an [**EuiPopover**](/docs/layout/popover) in conjunction with a **fixed** header, be sure to add the `repositionOnScroll` prop to the popover.
+Use an **EuiHeaderSectionItemButton** to display additional information in [popovers](../layout/popover.mdx) or [flyouts](../layout/flyout/flyout.mdx), such as a user profile or news feed. When using [**EuiFlyout**](../layout/flyout/flyout.mdx), be sure to wrap it in a [**EuiPortal**](../utilities/portal.mdx). When using an [**EuiPopover**](../layout/popover.mdx) in conjunction with a **fixed** header, be sure to add the `repositionOnScroll` prop to the popover.
 
-The example below shows how to incorporate **EuiHeaderAlert** components to show a list of updates inside a [**EuiFlyout**](/docs/layout/flyout) and a [**EuiPopover**](/docs/layout/popover) .
+The example below shows how to incorporate **EuiHeaderAlert** components to show a list of updates inside a [**EuiFlyout**](../layout/flyout/flyout.mdx) and a [**EuiPopover**](../layout/popover.mdx) .
 
 ```tsx interactive
 import React, { useState } from 'react';

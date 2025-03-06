@@ -175,13 +175,6 @@ export interface EuiPopoverProps extends PropsWithChildren, CommonProps {
    */
   repositionToCrossAxis?: boolean;
   /**
-   * Must be set to true if using `EuiDragDropContext` within a popover,
-   * otherwise your nested drag & drop will have incorrect positioning
-   *
-   * @deprecated - use `usePortal` prop on children `EuiDraggable` components instead.
-   */
-  hasDragDrop?: boolean;
-  /**
    * By default, popover content inherits the z-index of the anchor
    * component; pass `zIndex` to override
    */
@@ -543,7 +536,7 @@ export class EuiPopover extends Component<Props, State> {
         ? 16 + offset
         : 8 + offset,
       arrowConfig: this.props.hasArrow
-        ? { arrowWidth: 24, arrowBuffer: 10 }
+        ? { arrowWidth: 16, arrowBuffer: 10 }
         : { arrowWidth: 0, arrowBuffer: 0 },
       returnBoundingBox: this.props.attachToAnchor,
       allowCrossAxis: this.props.repositionToCrossAxis,
@@ -635,7 +628,6 @@ export class EuiPopover extends Component<Props, State> {
       arrowChildren,
       repositionOnScroll,
       repositionToCrossAxis,
-      hasDragDrop,
       zIndex,
       attachToAnchor,
       display,
@@ -644,6 +636,7 @@ export class EuiPopover extends Component<Props, State> {
       buffer,
       'aria-label': ariaLabel,
       'aria-labelledby': ariaLabelledBy,
+      'aria-live': ariaLiveProp,
       container,
       focusTrapProps,
       initialFocus: initialFocusProp,
@@ -686,7 +679,7 @@ export class EuiPopover extends Component<Props, State> {
           initialFocus = () => this.panel!;
         }
       } else {
-        ariaLive = 'assertive';
+        ariaLive = ariaLiveProp ?? 'assertive';
       }
 
       let focusTrapScreenReaderText;
@@ -730,7 +723,6 @@ export class EuiPopover extends Component<Props, State> {
               position={this.state.arrowPosition}
               isAttached={attachToAnchor}
               className={classNames(panelClassName, panelProps?.className)}
-              hasDragDrop={hasDragDrop}
               hasShadow={false}
               paddingSize={panelPaddingSize}
               tabIndex={tabIndex}

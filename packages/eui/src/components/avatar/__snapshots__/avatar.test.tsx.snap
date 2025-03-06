@@ -6,7 +6,7 @@ exports[`EuiAvatar allows a name composed entirely of whitespace 1`] = `
   class="euiAvatar euiAvatar--m euiAvatar--user testClass1 testClass2 emotion-euiAvatar-user-m-uppercase-euiTestCss"
   data-test-subj="test subject string"
   role="img"
-  style="background-color: rgb(238, 120, 157); color: rgb(0, 0, 0);"
+  style="background-color: rgb(97, 162, 255); color: rgb(0, 0, 0);"
   title="  "
 >
   <span
@@ -23,7 +23,7 @@ exports[`EuiAvatar is rendered 1`] = `
   class="euiAvatar euiAvatar--m euiAvatar--user testClass1 testClass2 emotion-euiAvatar-user-m-uppercase-euiTestCss"
   data-test-subj="test subject string"
   role="img"
-  style="background-color: rgb(228, 166, 199); color: rgb(0, 0, 0);"
+  style="background-color: rgb(238, 114, 166); color: rgb(0, 0, 0);"
   title="name"
 >
   <span
@@ -39,7 +39,7 @@ exports[`EuiAvatar props casing capitalize is rendered 1`] = `
   aria-label="name"
   class="euiAvatar euiAvatar--m euiAvatar--user emotion-euiAvatar-user-m-capitalize"
   role="img"
-  style="background-color: rgb(228, 166, 199); color: rgb(0, 0, 0);"
+  style="background-color: rgb(238, 114, 166); color: rgb(0, 0, 0);"
   title="name"
 >
   <span
@@ -55,7 +55,7 @@ exports[`EuiAvatar props casing lowercase is rendered 1`] = `
   aria-label="name"
   class="euiAvatar euiAvatar--m euiAvatar--user emotion-euiAvatar-user-m-lowercase"
   role="img"
-  style="background-color: rgb(228, 166, 199); color: rgb(0, 0, 0);"
+  style="background-color: rgb(238, 114, 166); color: rgb(0, 0, 0);"
   title="name"
 >
   <span
@@ -71,7 +71,7 @@ exports[`EuiAvatar props casing none is rendered 1`] = `
   aria-label="name"
   class="euiAvatar euiAvatar--m euiAvatar--user emotion-euiAvatar-user-m-none"
   role="img"
-  style="background-color: rgb(228, 166, 199); color: rgb(0, 0, 0);"
+  style="background-color: rgb(238, 114, 166); color: rgb(0, 0, 0);"
   title="name"
 >
   <span
@@ -87,7 +87,7 @@ exports[`EuiAvatar props casing uppercase is rendered 1`] = `
   aria-label="name"
   class="euiAvatar euiAvatar--m euiAvatar--user emotion-euiAvatar-user-m-uppercase"
   role="img"
-  style="background-color: rgb(228, 166, 199); color: rgb(0, 0, 0);"
+  style="background-color: rgb(238, 114, 166); color: rgb(0, 0, 0);"
   title="name"
 >
   <span
@@ -164,7 +164,7 @@ exports[`EuiAvatar props iconType and iconColor as null is rendered 1`] = `
   aria-label="name"
   class="euiAvatar euiAvatar--m euiAvatar--user emotion-euiAvatar-user-m-uppercase"
   role="img"
-  style="background-color: rgb(228, 166, 199); color: rgb(0, 0, 0);"
+  style="background-color: rgb(238, 114, 166); color: rgb(0, 0, 0);"
   title="name"
 >
   <span
@@ -179,7 +179,7 @@ exports[`EuiAvatar props iconType and iconColor is rendered 1`] = `
   aria-label="name"
   class="euiAvatar euiAvatar--m euiAvatar--user emotion-euiAvatar-user-m-uppercase"
   role="img"
-  style="background-color: rgb(228, 166, 199); color: rgb(0, 0, 0);"
+  style="background-color: rgb(238, 114, 166); color: rgb(0, 0, 0);"
   title="name"
 >
   <span
@@ -195,7 +195,7 @@ exports[`EuiAvatar props iconType and iconSize is rendered 1`] = `
   aria-label="name"
   class="euiAvatar euiAvatar--m euiAvatar--user emotion-euiAvatar-user-m-uppercase"
   role="img"
-  style="background-color: rgb(228, 166, 199); color: rgb(0, 0, 0);"
+  style="background-color: rgb(238, 114, 166); color: rgb(0, 0, 0);"
   title="name"
 >
   <span
@@ -211,7 +211,7 @@ exports[`EuiAvatar props iconType is rendered 1`] = `
   aria-label="name"
   class="euiAvatar euiAvatar--m euiAvatar--user emotion-euiAvatar-user-m-uppercase"
   role="img"
-  style="background-color: rgb(228, 166, 199); color: rgb(0, 0, 0);"
+  style="background-color: rgb(238, 114, 166); color: rgb(0, 0, 0);"
   title="name"
 >
   <span
@@ -237,7 +237,7 @@ exports[`EuiAvatar props initials is rendered 1`] = `
   aria-label="name"
   class="euiAvatar euiAvatar--m euiAvatar--user emotion-euiAvatar-user-m-uppercase"
   role="img"
-  style="background-color: rgb(228, 166, 199); color: rgb(0, 0, 0);"
+  style="background-color: rgb(238, 114, 166); color: rgb(0, 0, 0);"
   title="name"
 >
   <span
@@ -253,7 +253,7 @@ exports[`EuiAvatar props initialsLength is rendered 1`] = `
   aria-label="name"
   class="euiAvatar euiAvatar--m euiAvatar--user emotion-euiAvatar-user-m-uppercase"
   role="img"
-  style="background-color: rgb(228, 166, 199); color: rgb(0, 0, 0);"
+  style="background-color: rgb(238, 114, 166); color: rgb(0, 0, 0);"
   title="name"
 >
   <span
@@ -268,7 +268,7 @@ exports[`EuiAvatar props isDisabled is rendered 1`] = `
 <div
   class="euiAvatar euiAvatar--m euiAvatar--user euiAvatar-isDisabled emotion-euiAvatar-user-m-uppercase-isDisabled"
   role="presentation"
-  style="background-color: rgb(228, 166, 199); color: rgb(0, 0, 0);"
+  style="background-color: rgb(238, 114, 166); color: rgb(0, 0, 0);"
   title="name"
 >
   <span
@@ -284,7 +284,7 @@ exports[`EuiAvatar props size l is rendered 1`] = `
   aria-label="name"
   class="euiAvatar euiAvatar--l euiAvatar--user emotion-euiAvatar-user-l-uppercase"
   role="img"
-  style="background-color: rgb(228, 166, 199); color: rgb(0, 0, 0);"
+  style="background-color: rgb(238, 114, 166); color: rgb(0, 0, 0);"
   title="name"
 >
   <span
@@ -300,7 +300,7 @@ exports[`EuiAvatar props size m is rendered 1`] = `
   aria-label="name"
   class="euiAvatar euiAvatar--m euiAvatar--user emotion-euiAvatar-user-m-uppercase"
   role="img"
-  style="background-color: rgb(228, 166, 199); color: rgb(0, 0, 0);"
+  style="background-color: rgb(238, 114, 166); color: rgb(0, 0, 0);"
   title="name"
 >
   <span
@@ -316,7 +316,7 @@ exports[`EuiAvatar props size s is rendered 1`] = `
   aria-label="name"
   class="euiAvatar euiAvatar--s euiAvatar--user emotion-euiAvatar-user-s-uppercase"
   role="img"
-  style="background-color: rgb(228, 166, 199); color: rgb(0, 0, 0);"
+  style="background-color: rgb(238, 114, 166); color: rgb(0, 0, 0);"
   title="name"
 >
   <span
@@ -332,7 +332,7 @@ exports[`EuiAvatar props size xl is rendered 1`] = `
   aria-label="name"
   class="euiAvatar euiAvatar--xl euiAvatar--user emotion-euiAvatar-user-xl-uppercase"
   role="img"
-  style="background-color: rgb(228, 166, 199); color: rgb(0, 0, 0);"
+  style="background-color: rgb(238, 114, 166); color: rgb(0, 0, 0);"
   title="name"
 >
   <span
@@ -348,7 +348,7 @@ exports[`EuiAvatar props type is rendered 1`] = `
   aria-label="name"
   class="euiAvatar euiAvatar--m euiAvatar--space emotion-euiAvatar-space-m-none"
   role="img"
-  style="background-color: rgb(228, 166, 199); color: rgb(0, 0, 0);"
+  style="background-color: rgb(238, 114, 166); color: rgb(0, 0, 0);"
   title="name"
 >
   <span

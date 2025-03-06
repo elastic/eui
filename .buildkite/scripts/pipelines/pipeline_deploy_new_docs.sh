@@ -33,7 +33,7 @@ analytics_vault="secret/ci/elastic-eui/analytics"
 export DOCS_BASE_URL="/${bucket_directory}"
 export DOCS_GOOGLE_TAG_MANAGER_ID="$(retry 5 vault read -field=google_tag_manager_id "${analytics_vault}")"
 
-yarn workspaces foreach -Rpt --from @elastic/eui-website run build
+yarn workspace @elastic/eui-website run build:workspaces
 
 echo "+++ Configuring environment for website deployment"
 

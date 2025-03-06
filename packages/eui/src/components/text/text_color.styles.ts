@@ -15,19 +15,22 @@ export const euiTextColorStyles = ({ euiTheme }: UseEuiTheme) => ({
     color: ${euiTheme.colors.text};
   `,
   subdued: css`
-    color: ${euiTheme.colors.subduedText};
+    color: ${euiTheme.colors.textSubdued};
   `,
   success: css`
-    color: ${euiTheme.colors.successText};
+    color: ${euiTheme.colors.textSuccess};
   `,
   accent: css`
-    color: ${euiTheme.colors.accentText};
+    color: ${euiTheme.colors.textAccent};
+  `,
+  accentSecondary: css`
+    color: ${euiTheme.colors.textAccentSecondary};
   `,
   danger: css`
-    color: ${euiTheme.colors.dangerText};
+    color: ${euiTheme.colors.textDanger};
   `,
   warning: css`
-    color: ${euiTheme.colors.warningText};
+    color: ${euiTheme.colors.textWarning};
   `,
   ghost: css`
     color: ${euiTheme.colors

@@ -16,6 +16,8 @@ import {
 } from '../../../../../src';
 
 import {
+  background_colors,
+  border_colors,
   brand_colors,
   brand_text_colors,
   shade_colors,
@@ -31,6 +33,8 @@ import { EuiThemeColors } from '../_props';
 
 const brandKeys = Object.keys(brand_colors);
 const brandTextKeys = Object.keys(brand_text_colors);
+const backgroundKeys = Object.keys(background_colors);
+const borderKeys = Object.keys(border_colors);
 const shadeKeys = Object.keys(shade_colors);
 const specialKeys = Object.keys(special_colors);
 const textKeys = Object.keys(text_colors);
@@ -159,30 +163,6 @@ export default ({ onThemeUpdate }) => {
       <EuiPanel color="subdued">
         <EuiTitle size="xs">
           <h3>
-            <code>_EuiThemeShadeColors</code>
-          </h3>
-        </EuiTitle>
-
-        <EuiSpacer />
-
-        {shadeKeys.map((color) => (
-          <ThemeValue
-            key={color}
-            property="colors"
-            type={props[color]}
-            name={color}
-            value={colors[color].toUpperCase()}
-            example={<EuiColorPickerSwatch color={colors[color]} />}
-            onUpdate={(hex) => updateColor(color, hex)}
-          />
-        ))}
-      </EuiPanel>
-
-      <EuiSpacer size="l" />
-
-      <EuiPanel color="subdued">
-        <EuiTitle size="xs">
-          <h3>
             <code>_EuiThemeTextColors</code>
           </h3>
         </EuiTitle>
@@ -208,6 +188,78 @@ export default ({ onThemeUpdate }) => {
                 <strong>Aa</strong>
               </button>
             }
+          />
+        ))}
+      </EuiPanel>
+
+      <EuiSpacer size="l" />
+
+      <EuiPanel color="subdued">
+        <EuiTitle size="xs">
+          <h3>
+            <code>_EuiThemeBackgroundColors</code>
+          </h3>
+        </EuiTitle>
+
+        <EuiSpacer />
+
+        {backgroundKeys.map((color) => (
+          <ThemeValue
+            key={color}
+            property="colors"
+            type={props[color]}
+            name={color}
+            value={colors[color].toUpperCase()}
+            example={<EuiColorPickerSwatch color={colors[color]} />}
+            onUpdate={(hex) => updateColor(color, hex)}
+          />
+        ))}
+      </EuiPanel>
+
+      <EuiSpacer size="l" />
+
+      <EuiPanel color="subdued">
+        <EuiTitle size="xs">
+          <h3>
+            <code>_EuiThemeBorderColors</code>
+          </h3>
+        </EuiTitle>
+
+        <EuiSpacer />
+
+        {borderKeys.map((color) => (
+          <ThemeValue
+            key={color}
+            property="colors"
+            type={props[color]}
+            name={color}
+            value={colors[color].toUpperCase()}
+            example={<EuiColorPickerSwatch color={colors[color]} />}
+            onUpdate={(hex) => updateColor(color, hex)}
+          />
+        ))}
+      </EuiPanel>
+
+      <EuiSpacer size="l" />
+
+      <EuiPanel color="subdued">
+        <EuiTitle size="xs">
+          <h3>
+            <code>_EuiThemeShadeColors</code>
+          </h3>
+        </EuiTitle>
+
+        <EuiSpacer />
+
+        {shadeKeys.map((color) => (
+          <ThemeValue
+            key={color}
+            property="colors"
+            type={props[color]}
+            name={color}
+            value={colors[color].toUpperCase()}
+            example={<EuiColorPickerSwatch color={colors[color]} />}
+            onUpdate={(hex) => updateColor(color, hex)}
           />
         ))}
       </EuiPanel>

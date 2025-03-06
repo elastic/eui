@@ -7,68 +7,31 @@
  */
 
 import { css } from '@emotion/react';
-import { logicals, logicalSizeCSS } from '../../../global_styling';
+import { logicalSizeCSS } from '../../../global_styling';
+import { _popoverArrowStyles } from '../../../services/popover';
 import { UseEuiTheme } from '../../../services';
 
-export const popoverArrowSize = 'm';
-
 export const euiPopoverArrowStyles = (euiThemeContext: UseEuiTheme) => {
-  const { euiTheme } = euiThemeContext;
+  const { euiTheme, colorMode } = euiThemeContext;
+  const hasBorder = colorMode === 'DARK';
 
-  const borderColor = 'var(--euiPopoverBackgroundColor)';
-  const arrowSize = euiTheme.size[popoverArrowSize];
+  const arrowSize = euiTheme.size.base;
+  const arrowStyles = _popoverArrowStyles(euiThemeContext, arrowSize);
 
   return {
+    // Wrapper
+    euiPopoverArrowWrapper: css`
+      position: absolute;
+      ${logicalSizeCSS(arrowSize)}
+    `,
+
     // Base
     euiPopoverArrow: css`
-      position: absolute;
-      ${logicalSizeCSS(0, 0)}
-
-      /* This part of the arrow matches the panel. */
-      &::before {
-        content: '';
-        position: absolute;
-        ${logicalSizeCSS(0, 0)}
-      }
+      ${arrowStyles._arrowStyles}
+      background-color: var(--euiPopoverBackgroundColor);
+      ${hasBorder ? `border: ${euiTheme.border.thin}` : ''}
     `,
 
-    // POSITIONS
-    top: css`
-      &::before {
-        ${logicals.bottom}: -${arrowSize};
-        ${logicals['border-left']}: ${arrowSize} solid transparent;
-        ${logicals['border-right']}: ${arrowSize} solid transparent;
-        ${logicals['border-top']}: ${arrowSize} solid ${borderColor};
-      }
-    `,
-
-    bottom: css`
-      &::before {
-        ${logicals.top}: -${arrowSize};
-        ${logicals['border-left']}: ${arrowSize} solid transparent;
-        ${logicals['border-right']}: ${arrowSize} solid transparent;
-        ${logicals['border-bottom']}: ${arrowSize} solid ${borderColor};
-      }
-    `,
-
-    left: css`
-      &::before {
-        ${logicals.top}: 50%;
-        ${logicals.right}: -${arrowSize};
-        ${logicals['border-top']}: ${arrowSize} solid transparent;
-        ${logicals['border-bottom']}: ${arrowSize} solid transparent;
-        ${logicals['border-left']}: ${arrowSize} solid ${borderColor};
-      }
-    `,
-
-    right: css`
-      &::before {
-        ${logicals.top}: 50%;
-        ${logicals.left}: -${arrowSize};
-        ${logicals['border-top']}: ${arrowSize} solid transparent;
-        ${logicals['border-bottom']}: ${arrowSize} solid transparent;
-        ${logicals['border-right']}: ${arrowSize} solid ${borderColor};
-      }
-    `,
+    ...arrowStyles.positions,
   };
 };

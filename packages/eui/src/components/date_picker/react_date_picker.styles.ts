@@ -8,6 +8,7 @@
 
 // Needs to use vanilla `css` to pass a className directly to react-datepicker
 import { css } from '@emotion/css';
+import { euiShadowSmall } from '@elastic/eui-theme-common';
 
 import { UseEuiTheme } from '../../services';
 import {
@@ -22,8 +23,7 @@ import {
   euiButtonColor,
   euiButtonEmptyColor,
   euiButtonFillColor,
-  euiShadowSmall,
-} from '../../themes/amsterdam/global_styling/mixins';
+} from '../../global_styling/mixins';
 import {
   euiFormControlStyles,
   euiFormControlText,

@@ -115,6 +115,26 @@ export default () => (
 );
 ```
 
+## Accent
+
+Use this callout to announce new capabilities. For example if you want to highlight a feature.
+
+```tsx interactive
+import React from 'react';
+import { EuiCallOut, EuiLink } from '@elastic/eui';
+
+export default () => (
+  <EuiCallOut title="Shiny new thing has arrived" color="accent" iconType="cheer">
+    <p>
+      Dull thing can now be forgotten.{' '}
+      <EuiLink external href="#">
+        Learn more
+      </EuiLink>.
+    </p>
+  </EuiCallOut>
+);
+```
+
 ## Dismissible callouts
 
 To render a cross icon in the top right hand corner, pass an `onDismiss` callback that handles conditionally rendering your callout.

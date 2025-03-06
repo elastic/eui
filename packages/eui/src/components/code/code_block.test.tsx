@@ -7,11 +7,17 @@
  */
 
 import React from 'react';
-import { fireEvent } from '@testing-library/react';
+import { fireEvent, waitFor } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+
 import { requiredProps } from '../../test/required_props';
 import { render } from '../../test/rtl';
 
-import { EuiCodeBlock, FONT_SIZES, PADDING_SIZES } from './code_block';
+import {
+  EuiCodeBlock,
+  EuiCodeBlockFontSize,
+  EuiCodeBlockPaddingSize,
+} from './code_block';
 
 const code = `var some = 'code';
 console.log(some);`;
@@ -22,28 +28,42 @@ describe('EuiCodeBlock', () => {
       <EuiCodeBlock {...requiredProps}>{code}</EuiCodeBlock>
     );
 
+    expect(container).toBeInTheDocument();
     expect(container.firstChild).toMatchSnapshot();
   });
 
-  describe('props', () => {
-    describe('transparentBackground', () => {
-      it('is rendered', () => {
-        const { container } = render(
-          <EuiCodeBlock transparentBackground>{code}</EuiCodeBlock>
-        );
+  it('updates DOM when the input changes', () => {
+    const { container, rerender } = render(
+      <EuiCodeBlock language="javascript">
+        const value = &apos;State 1&apos;
+      </EuiCodeBlock>
+    );
 
-        expect(container.firstChild).toMatchSnapshot();
-      });
-    });
+    expect(container.querySelector('.euiCodeBlock__line')).toHaveTextContent(
+      "const value = 'State 1'"
+    );
 
-    describe('isCopyable', () => {
-      it('is rendered', () => {
-        const { container } = render(
-          <EuiCodeBlock isCopyable>{code}</EuiCodeBlock>
-        );
+    rerender(
+      <EuiCodeBlock language="javascript">
+        const value = &apos;State 2&apos;
+      </EuiCodeBlock>
+    );
 
-        expect(container.firstChild).toMatchSnapshot();
-      });
+    expect(container.querySelector('.euiCodeBlock__line')).toHaveTextContent(
+      "const value = 'State 2'"
+    );
+  });
+
+  describe('Props', () => {
+    it('renders "Copy" on the copy button when no `copyAriaLabel` is passed', () => {
+      const { getByTestSubject } = render(
+        <EuiCodeBlock isCopyable>{code}</EuiCodeBlock>
+      );
+
+      expect(getByTestSubject('euiCodeBlockCopy')).toHaveAttribute(
+        'aria-label',
+        'Copy'
+      );
     });
 
     it('renders `copyAriaLabel` on the copy button', () => {
@@ -60,83 +80,56 @@ describe('EuiCodeBlock', () => {
       );
     });
 
-    describe('overflowHeight', () => {
-      it('is rendered', () => {
-        const { container } = render(
-          <EuiCodeBlock overflowHeight={200}>{code}</EuiCodeBlock>
-        );
-
-        expect(container.firstChild).toMatchSnapshot();
-      });
-    });
-
-    describe('language', () => {
-      it('is rendered', () => {
-        const { container } = render(
-          <EuiCodeBlock language="html">{code}</EuiCodeBlock>
-        );
-
-        expect(container.firstChild).toMatchSnapshot();
-      });
-    });
-
-    describe('fontSize', () => {
-      FONT_SIZES.forEach((fontSize) => {
-        test(`${fontSize} is rendered`, () => {
-          const { container } = render(
-            <EuiCodeBlock fontSize={fontSize}>{code}</EuiCodeBlock>
-          );
-
-          expect(container.firstChild).toMatchSnapshot();
-        });
-      });
-    });
-
-    describe('paddingSize', () => {
-      PADDING_SIZES.forEach((paddingSize) => {
-        test(`${paddingSize} is rendered`, () => {
-          const { container } = render(
-            <EuiCodeBlock paddingSize={paddingSize}>{code}</EuiCodeBlock>
-          );
-
-          expect(container.firstChild).toMatchSnapshot();
-        });
-      });
-    });
-
-    describe('whiteSpace', () => {
-      it('renders a pre block tag with a css class modifier', () => {
-        const { container } = render(
-          <EuiCodeBlock whiteSpace="pre" {...requiredProps}>
-            {code}
-          </EuiCodeBlock>
-        );
-        expect(container.firstChild).toMatchSnapshot();
-      });
-    });
-  });
-
-  describe('dynamic content', () => {
-    it('updates DOM when input changes', () => {
-      const { container, rerender } = render(
-        <EuiCodeBlock language="javascript">
-          const value = &apos;State 1&apos;
-        </EuiCodeBlock>
+    it('renders a transparent background when `transparentBackground` is `true`', () => {
+      const { container } = render(
+        <EuiCodeBlock transparentBackground>{code}</EuiCodeBlock>
       );
 
-      expect(container).toMatchSnapshot();
-
-      rerender(
-        <EuiCodeBlock language="javascript">
-          const value = &apos;State 2&apos;
-        </EuiCodeBlock>
+      expect(container.querySelector('.euiCodeBlock')).toHaveStyleRule(
+        'background',
+        'transparent'
       );
-
-      expect(container).toMatchSnapshot();
     });
+
+    test.each<{ paddingSize: EuiCodeBlockPaddingSize; expected: string }>([
+      { paddingSize: 'none', expected: '0' },
+      { paddingSize: 's', expected: '8px' },
+      { paddingSize: 'm', expected: '16px' },
+      { paddingSize: 'l', expected: '24px' },
+    ])(
+      'renders a padding of $expected when `paddingSize` is `$paddingSize`',
+      ({ paddingSize, expected }) => {
+        const { container } = render(
+          <EuiCodeBlock paddingSize={paddingSize}>{code}</EuiCodeBlock>
+        );
+
+        expect(container.querySelector('.euiCodeBlock__pre')).toHaveStyleRule(
+          'padding',
+          expected
+        );
+      }
+    );
+
+    test.each<{ fontSize: EuiCodeBlockFontSize; expected: string }>([
+      { fontSize: 's', expected: '0.8571rem' },
+      { fontSize: 'm', expected: '1.0000rem' },
+      { fontSize: 'l', expected: '1.1429rem' },
+    ])(
+      'renders a font size of $expected when `fontSize` is `$fontSize`',
+      ({ fontSize, expected }) => {
+        const { container } = render(
+          <EuiCodeBlock fontSize={fontSize}>{code}</EuiCodeBlock>
+        );
+
+        expect(container.querySelector('.euiCodeBlock')).toHaveStyleRule(
+          'font-size',
+          expected
+        );
+      }
+    );
   });
 
-  describe('fullscreen', () => {
+  describe('Fullscreen', () => {
     it('displays content in fullscreen mode', () => {
       const { getByLabelText, baseElement } = render(
         <EuiCodeBlock
@@ -147,10 +140,68 @@ describe('EuiCodeBlock', () => {
           const value = &quot;hello&quot;
         </EuiCodeBlock>
       );
+
       fireEvent.click(getByLabelText('Expand'));
+
       expect(
         baseElement.querySelector('.euiCodeBlockFullScreen')
-      ).toMatchSnapshot();
+      ).toBeInTheDocument();
+    });
+
+    describe('keyboard navigation', () => {
+      it('correctly navigates fullscreen with keyboard', () => {
+        const { getByLabelText, baseElement } = render(
+          <EuiCodeBlock
+            {...requiredProps}
+            language="javascript"
+            overflowHeight={300}
+          >
+            const value = &quot;hello&quot;
+          </EuiCodeBlock>
+        );
+
+        (baseElement.querySelector(
+          '.euiCodeBlock__pre'
+        ) as HTMLPreElement)!.focus(); // start on focusable code block element
+
+        expect(getByLabelText('Expand')).toBeInTheDocument();
+
+        userEvent.keyboard('{tab}');
+
+        waitFor(() => expect(getByLabelText('Expand')).toHaveFocus());
+
+        userEvent.keyboard('{enter}');
+
+        waitFor(() =>
+          expect(
+            baseElement.querySelector('.euiCodeBlockFullScreen')
+          ).toBeInTheDocument()
+        );
+
+        userEvent.keyboard('{tab}');
+
+        waitFor(() =>
+          expect(
+            baseElement.querySelector(
+              '.euiCodeBlockFullScreen .euiCodeBlock__pre'
+            )
+          ).toHaveFocus()
+        );
+
+        userEvent.keyboard('{tab}');
+
+        waitFor(() => expect(getByLabelText('Collapse')).toHaveFocus());
+
+        userEvent.keyboard('{enter}');
+
+        waitFor(() => {
+          expect(
+            baseElement.querySelector('.euiCodeBlockFullScreen')
+          ).not.toBeInTheDocument();
+
+          expect(getByLabelText('Expand')).toHaveFocus();
+        });
+      });
     });
 
     it('closes fullscreen mode when the escape key is pressed', () => {
@@ -163,21 +214,24 @@ describe('EuiCodeBlock', () => {
           const value = &quot;world&quot;
         </EuiCodeBlock>
       );
-      fireEvent.click(getByLabelText('Expand'));
 
+      fireEvent.click(getByLabelText('Expand'));
       fireEvent.keyDown(
         baseElement.querySelector(
           '.euiCodeBlockFullScreen .euiCodeBlock__pre'
         )!,
         { key: 'Escape' }
       );
+
       expect(
         baseElement.querySelector('.euiCodeBlockFullScreen')
       ).not.toBeInTheDocument();
+
+      waitFor(() => expect(getByLabelText('Expand')).toHaveFocus());
     });
   });
 
-  describe('virtualization', () => {
+  describe('Virtualization', () => {
     it('renders a virtualized code block', () => {
       const { container } = render(
         <EuiCodeBlock
@@ -188,40 +242,41 @@ describe('EuiCodeBlock', () => {
           {code}
         </EuiCodeBlock>
       );
+
+      expect(
+        container.querySelector('[class*="euiCodeBlock__code-isVirtualized"]')
+      ).toBeInTheDocument();
       expect(container.firstChild).toMatchSnapshot();
     });
 
-    describe('type checks', () => {
-      it('requires overflowHeight', () => {
-        // @ts-expect-error should expect overflowHeight
-        render(<EuiCodeBlock isVirtualized overflowHeight={undefined} />);
-      });
+    it('requires overflowHeight', () => {
+      // @ts-expect-error should expect overflowHeight
+      render(<EuiCodeBlock isVirtualized overflowHeight={undefined} />);
+    });
 
-      it('only allows whiteSpace of pre', () => {
-        render(
-          // @ts-expect-error should only accept "pre"
-          <EuiCodeBlock
-            isVirtualized
-            overflowHeight={50}
-            whiteSpace="pre-wrap"
-          />
-        );
-        // OK
-        render(
-          <EuiCodeBlock isVirtualized overflowHeight={50} whiteSpace="pre" />
-        );
-      });
+    it('only allows whiteSpace of pre', () => {
+      render(
+        // @ts-expect-error should only accept "pre"
+        <EuiCodeBlock isVirtualized overflowHeight={50} whiteSpace="pre-wrap" />
+      );
+
+      render(
+        <EuiCodeBlock isVirtualized overflowHeight={50} whiteSpace="pre" />
+      );
     });
   });
 
-  describe('line numbers', () => {
+  describe('Line numbers', () => {
     it('renders line numbers', () => {
       const { container } = render(
         <EuiCodeBlock lineNumbers {...requiredProps}>
           {code}
         </EuiCodeBlock>
       );
-      expect(container.firstChild).toMatchSnapshot();
+
+      expect(
+        container.querySelectorAll('.euiCodeBlock__lineNumber').length
+      ).toBeGreaterThan(0);
     });
 
     it('renders line numbers with a start value', () => {
@@ -230,7 +285,13 @@ describe('EuiCodeBlock', () => {
           {code}
         </EuiCodeBlock>
       );
-      expect(container.firstChild).toMatchSnapshot();
+
+      const lineNumbers = container.querySelectorAll(
+        '.euiCodeBlock__lineNumber'
+      );
+
+      expect(lineNumbers[0]).toHaveAttribute('data-line-number', '10');
+      expect(lineNumbers[1]).toHaveAttribute('data-line-number', '11');
     });
 
     it('renders highlighted line numbers', () => {
@@ -239,19 +300,27 @@ describe('EuiCodeBlock', () => {
           {code}
         </EuiCodeBlock>
       );
-      expect(container.firstChild).toMatchSnapshot();
+
+      const highlightedLine = container.querySelector(
+        '[class*="euiCodeBlock__lineText-isHighlighted"]'
+      );
+
+      expect(highlightedLine).toBeInTheDocument();
     });
 
     it('renders annotated line numbers', () => {
-      const { container } = render(
+      const { getByLabelText } = render(
         <EuiCodeBlock
-          lineNumbers={{ annotations: { 1: 'hello world' } }}
+          lineNumbers={{ annotations: { 2: 'Hello world' } }}
           {...requiredProps}
         >
           {code}
         </EuiCodeBlock>
       );
-      expect(container.firstChild).toMatchSnapshot();
+
+      expect(
+        getByLabelText('Click to view a code annotation for line 2')
+      ).toBeInTheDocument();
     });
   });
 });

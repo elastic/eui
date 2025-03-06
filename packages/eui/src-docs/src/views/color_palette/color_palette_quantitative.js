@@ -1,4 +1,5 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useEffect, useMemo, useState } from 'react';
+import { VIS_COLOR_STORE_EVENTS } from '@elastic/eui-theme-common';
 
 import {
   EuiFlexGroup,
@@ -19,8 +20,10 @@ import {
   euiPaletteRed,
   euiPaletteGreen,
   euiPaletteGray,
+  EUI_VIS_COLOR_STORE,
 } from '../../../../src/services';
-const paletteData = {
+
+const getPaletteData = () => ({
   euiPaletteForStatus,
   euiPaletteForTemperature,
   euiPaletteComplementary,
@@ -29,15 +32,32 @@ const paletteData = {
   euiPaletteCool,
   euiPaletteWarm,
   euiPaletteGray,
-};
-const paletteNames = Object.keys(paletteData);
+});
 
 export default () => {
+  const [paletteData, setPaletteData] = useState(getPaletteData);
   const [length, setLength] = useState(5);
+
+  const paletteNames = useMemo(() => Object.keys(paletteData), [paletteData]);
 
   const onLengthChange = (e) => {
     setLength(e.currentTarget.value);
   };
+
+  const handleVisColorThemeChange = () => {
+    setPaletteData(getPaletteData);
+  };
+
+  useEffect(() => {
+    const storeId = EUI_VIS_COLOR_STORE.subscribe(
+      VIS_COLOR_STORE_EVENTS.UPDATE,
+      handleVisColorThemeChange
+    );
+
+    return () => {
+      EUI_VIS_COLOR_STORE.unsubscribe(VIS_COLOR_STORE_EVENTS.UPDATE, storeId);
+    };
+  }, []);
 
   return (
     <Fragment>

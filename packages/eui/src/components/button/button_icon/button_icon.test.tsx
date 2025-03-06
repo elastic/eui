@@ -13,7 +13,7 @@ import { requiredProps } from '../../../test/required_props';
 import { shouldRenderCustomStyles } from '../../../test/internal';
 
 import { EuiButtonIcon, DISPLAYS, SIZES } from './button_icon';
-import { BUTTON_COLORS } from '../../../themes/amsterdam/global_styling/mixins';
+import { BUTTON_COLORS } from '../../../global_styling/mixins';
 
 describe('EuiButtonIcon', () => {
   shouldRenderCustomStyles(

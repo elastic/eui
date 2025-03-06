@@ -1,0 +1,53 @@
+---
+slug: /forms/selection/select
+id: forms_selection_select
+sidebar_position: 2
+---
+
+# Basic select
+
+import EuiFormRowCallout from '../form_layouts/_form_row_callout.mdx';
+
+<EuiFormRowCallout />
+
+This component renders a native HTML `<select>` element. Use **EuiSelect** to allow users to choose from a list of 7 to 12 options. When there are less than 7 options consider using a [**EuiRadioGroup**](./checkboxes_radios/overview.mdx#radio-group).
+
+```tsx interactive
+import React, { useState } from 'react';
+import { EuiSelect, useGeneratedHtmlId } from '@elastic/eui';
+
+export default () => {
+  const options = [
+    { value: 'option_one', text: 'Option one' },
+    { value: 'option_two', text: 'Option two' },
+    { value: 'option_three', text: 'Option three' },
+  ];
+
+  const [value, setValue] = useState(options[1].value);
+
+  const basicSelectId = useGeneratedHtmlId({ prefix: 'basicSelect' });
+
+  const onChange = (e) => {
+    setValue(e.target.value);
+  };
+
+  return (
+    /* DisplayToggles wrapper for Docs only */
+    <DisplayToggles canPrepend canAppend canReadOnly={false}>
+      <EuiSelect
+        id={basicSelectId}
+        options={options}
+        value={value}
+        onChange={(e) => onChange(e)}
+        aria-label="Use aria labels when no actual label is in use"
+      />
+    </DisplayToggles>
+  );
+};
+```
+
+## Props
+
+import docgen from '@elastic/eui-docgen/dist/components/form';
+
+<PropTable definition={docgen.EuiSelect} />

@@ -1,17 +1,66 @@
 import React, { PropsWithChildren } from 'react';
-import { EUI_THEMES, EUI_THEME } from '../../../../src/themes';
+import {
+  EUI_THEME_BOREALIS_KEY,
+  EuiThemeBorealis,
+} from '@elastic/eui-theme-borealis';
+
+import {
+  EUI_THEME,
+  AMSTERDAM_NAME_KEY,
+  EuiThemeAmsterdam,
+} from '../../../../src/themes';
+import { EuiThemeColorModeStandard } from '../../../../src/services';
 // @ts-ignore importing from a JS file
-import { applyTheme } from '../../services';
+import { applyTheme, registerTheme } from '../../services';
 
-const STYLE_STORAGE_KEY = 'js_vs_sass_preference';
+// @ts-ignore Sass
+import amsterdamThemeLight from '../../theme_light.scss';
+// @ts-ignore Sass
+import amsterdamThemeDark from '../../theme_dark.scss';
+
+// @ts-ignore Sass
+import borealisThemeLight from '../../theme_borealis_light.scss';
+// @ts-ignore Sass
+import borealisThemeDark from '../../theme_borealis_dark.scss';
+
+const THEME_CSS_MAP = {
+  [AMSTERDAM_NAME_KEY]: {
+    LIGHT: amsterdamThemeLight,
+    DARK: amsterdamThemeDark,
+  },
+  [EUI_THEME_BOREALIS_KEY]: {
+    LIGHT: borealisThemeLight,
+    DARK: borealisThemeDark,
+  },
+};
+
+export const AVAILABLE_THEMES = [
+  {
+    text: 'Borealis',
+    value: EuiThemeBorealis.key,
+    provider: EuiThemeBorealis,
+  },
+  {
+    text: 'Amsterdam',
+    value: AMSTERDAM_NAME_KEY,
+    provider: EuiThemeAmsterdam,
+  },
+];
+const THEME_NAMES = AVAILABLE_THEMES.map(({ value }) => value);
+
+AVAILABLE_THEMES.forEach((theme) => {
+  registerTheme(
+    theme.value,
+    THEME_CSS_MAP[theme.value as keyof typeof THEME_CSS_MAP]
+  );
+});
+
 const URL_PARAM_KEY = 'themeLanguage';
-
 export type THEME_LANGUAGES = {
   id: 'language--js' | 'language--sass';
   label: string;
   title: string;
 };
-
 export const theme_languages: THEME_LANGUAGES[] = [
   {
     id: 'language--js',
@@ -24,46 +73,89 @@ export const theme_languages: THEME_LANGUAGES[] = [
     title: 'Language selector: Sass',
   },
 ];
-
-const THEME_NAMES = EUI_THEMES.map(({ value }) => value);
 const THEME_LANGS = theme_languages.map(({ id }) => id);
 
-type ThemeContextType = {
-  theme?: EUI_THEME['value'];
-  changeTheme: (themeValue: EUI_THEME['value']) => void;
+export type ThemeContextType = {
+  theme: EUI_THEME['value'];
+  colorMode: EuiThemeColorModeStandard;
   themeLanguage: THEME_LANGUAGES['id'];
-  changeThemeLanguage: (language: THEME_LANGUAGES['id']) => void;
+  setContext: (context: Partial<State>) => void;
 };
 export const ThemeContext = React.createContext<ThemeContextType>({
-  theme: undefined,
-  changeTheme: () => {},
+  theme: THEME_NAMES[0],
+  colorMode: 'LIGHT',
   themeLanguage: THEME_LANGS[0],
-  changeThemeLanguage: () => {},
+  setContext: () => {},
 });
 
-type State = Pick<ThemeContextType, 'theme' | 'themeLanguage'>;
+type State = Pick<ThemeContextType, 'theme' | 'colorMode' | 'themeLanguage'>;
+
+const localStorageKeyToStateMap = {
+  themeName: 'theme',
+  colorMode: 'colorMode',
+  themeLanguage: 'themeLanguage',
+} as const;
+
+type LocalStorageKey = keyof typeof localStorageKeyToStateMap;
 
 export class ThemeProvider extends React.Component<PropsWithChildren, State> {
   constructor(props: object) {
     super(props);
 
-    const theme = localStorage.getItem('theme') || undefined;
-    applyTheme(theme && THEME_NAMES.includes(theme) ? theme : THEME_NAMES[0]);
+    const theme = localStorage.getItem('themeName') || THEME_NAMES[0];
+    const colorMode =
+      (localStorage.getItem('colorMode') as EuiThemeColorModeStandard) ||
+      'LIGHT';
+
+    applyTheme(
+      theme && THEME_NAMES.includes(theme) ? theme : THEME_NAMES[0],
+      colorMode
+    );
 
     const themeLanguage = this.getThemeLanguage();
 
     this.state = {
       theme,
+      colorMode,
       themeLanguage,
     };
+
+    Object.keys(localStorageKeyToStateMap).forEach((key) =>
+      this.updateLocalStorage(key as LocalStorageKey, this.state)
+    );
   }
 
-  changeTheme = (themeValue: EUI_THEME['value']) => {
-    this.setState({ theme: themeValue }, () => {
-      localStorage.setItem('theme', themeValue);
-      applyTheme(themeValue);
+  setContext = (state: Partial<State>) => {
+    this.setState((prevState) => {
+      return { ...prevState, ...state };
     });
   };
+
+  updateLocalStorage = (key: LocalStorageKey, state: State) => {
+    localStorage.setItem(key, String(state[localStorageKeyToStateMap[key]]));
+  };
+
+  componentDidUpdate(_prevProps: never, prevState: State) {
+    Object.keys(localStorageKeyToStateMap).forEach((key) => {
+      const _key = key as LocalStorageKey;
+      const stateKey = localStorageKeyToStateMap[_key];
+
+      if (
+        prevState[stateKey] !== this.state[stateKey] ||
+        localStorage.getItem(_key) === null
+      ) {
+        this.updateLocalStorage(_key, this.state);
+
+        // Side effects
+        if (_key === 'themeName' || _key === 'colorMode') {
+          applyTheme(this.state.theme, this.state.colorMode);
+        }
+        if (_key === 'themeLanguage') {
+          this.setThemeLanguageParam(this.state.themeLanguage!);
+        }
+      }
+    });
+  }
 
   getThemeLanguage = () => {
     // Allow theme language to be set by URL param, so we can link people
@@ -72,7 +164,7 @@ export class ThemeProvider extends React.Component<PropsWithChildren, State> {
     const urlParams = window?.location?.href?.split('?')[1]; // Note: we can't use location.search because of our hash router
     const fromUrlParam = new URLSearchParams(urlParams).get(URL_PARAM_KEY);
     // Otherwise, obtain it from localStorage
-    const fromLocalStorage = localStorage.getItem(STYLE_STORAGE_KEY);
+    const fromLocalStorage = localStorage.getItem(URL_PARAM_KEY);
 
     let themeLanguage = (
       fromUrlParam ? `language--${fromUrlParam}` : fromLocalStorage
@@ -96,23 +188,16 @@ export class ThemeProvider extends React.Component<PropsWithChildren, State> {
     window.location.hash = `${hash[0]}?${params.toString()}`;
   };
 
-  changeThemeLanguage = (language: THEME_LANGUAGES['id']) => {
-    this.setState({ themeLanguage: language }, () => {
-      localStorage.setItem(STYLE_STORAGE_KEY, language);
-      this.setThemeLanguageParam(language);
-    });
-  };
-
   render() {
     const { children } = this.props;
-    const { theme, themeLanguage } = this.state;
+    const { theme, colorMode, themeLanguage } = this.state;
     return (
       <ThemeContext.Provider
         value={{
           theme,
+          colorMode,
           themeLanguage,
-          changeTheme: this.changeTheme,
-          changeThemeLanguage: this.changeThemeLanguage,
+          setContext: this.setContext,
         }}
       >
         {children}

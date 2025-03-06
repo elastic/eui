@@ -53,12 +53,12 @@ export const euiLinkStyles = (euiThemeContext: UseEuiTheme) => {
       }
     `,
     // Color styles
-    primary: css(_colorCSS(euiTheme.colors.primaryText)),
-    subdued: css(_colorCSS(euiTheme.colors.subduedText)),
-    success: css(_colorCSS(euiTheme.colors.successText)),
-    accent: css(_colorCSS(euiTheme.colors.accentText)),
-    danger: css(_colorCSS(euiTheme.colors.dangerText)),
-    warning: css(_colorCSS(euiTheme.colors.warningText)),
+    primary: css(_colorCSS(euiTheme.colors.textPrimary)),
+    subdued: css(_colorCSS(euiTheme.colors.textSubdued)),
+    success: css(_colorCSS(euiTheme.colors.textSuccess)),
+    accent: css(_colorCSS(euiTheme.colors.textAccent)),
+    danger: css(_colorCSS(euiTheme.colors.textDanger)),
+    warning: css(_colorCSS(euiTheme.colors.textWarning)),
     ghost: css(_colorCSS(euiTheme.colors.ghost)),
     text: css(_colorCSS(euiTheme.colors.text)),
   };

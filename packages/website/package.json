@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "docusaurus": "docusaurus",
+    "build:workspaces": "yarn workspaces foreach -R --from @elastic/eui-website run build:workspaces && yarn workspaces foreach -Rti --from @elastic/eui-website run build",
     "start": "cross-env NODE_OPTIONS=--openssl-legacy-provider docusaurus start",
     "build": "cross-env NODE_OPTIONS=--openssl-legacy-provider docusaurus build",
     "swizzle": "docusaurus swizzle",
@@ -19,9 +20,10 @@
     "@docusaurus/preset-classic": "^3.5.2",
     "@elastic/charts": "^68.0.2",
     "@elastic/datemath": "^5.0.3",
-    "@elastic/eui": "97.2.0",
+    "@elastic/eui": "workspace:^",
     "@elastic/eui-docgen": "workspace:^",
     "@elastic/eui-docusaurus-theme": "workspace:^",
+    "@elastic/eui-theme-common": "workspace:^",
     "@emotion/css": "^11.11.2",
     "@emotion/react": "^11.11.4",
     "@faker-js/faker": "^8.4.1",
@@ -37,8 +39,10 @@
     "moment": "^2.30.1",
     "moment-timezone": "^0.5.46",
     "prism-react-renderer": "^2.3.0",
+    "raw-loader": "^4.0.2",
     "react": "^18.0.0",
-    "react-dom": "^18.0.0"
+    "react-dom": "^18.0.0",
+    "react-element-to-jsx-string": "^15.0.0"
   },
   "devDependencies": {
     "@babel/preset-react": "^7.24.7",

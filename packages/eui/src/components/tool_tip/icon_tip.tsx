@@ -13,7 +13,10 @@ import { useEuiI18n } from '../i18n';
 import { EuiIcon, IconSize, IconType } from '../icon';
 import { EuiToolTip, EuiToolTipProps } from './tool_tip';
 
-export interface EuiIconTipProps {
+export type EuiIconTipProps = Omit<
+  EuiToolTipProps,
+  'children' | 'delay' | 'position'
+> & {
   /**
    * Children are not allowed as they are built using the icon props
    */
@@ -34,7 +37,6 @@ export interface EuiIconTipProps {
    * Explain what this icon means for screen readers.
    */
   'aria-label'?: string;
-
   /**
    * Pass certain props down to `EuiIcon`
    */
@@ -42,17 +44,13 @@ export interface EuiIconTipProps {
   // iconProps; however, due to TS's bivariant function arguments `type` could be
   // passed without any error/feedback so we explicitly set it to `never` type
   iconProps?: Omit<PropsOf<typeof EuiIcon>, 'type'> & { type?: never };
-}
+  // This are copied from EuiToolTipProps, but made optional. Defaults
+  // are applied below.
+  delay?: EuiToolTipProps['delay'];
+  position?: EuiToolTipProps['position'];
+};
 
-export type Props = Omit<EuiToolTipProps, 'children' | 'delay' | 'position'> &
-  EuiIconTipProps & {
-    // This are copied from EuiToolTipProps, but made optional. Defaults
-    // are applied below.
-    delay?: EuiToolTipProps['delay'];
-    position?: EuiToolTipProps['position'];
-  };
-
-export const EuiIconTip: FunctionComponent<Props> = ({
+export const EuiIconTip: FunctionComponent<EuiIconTipProps> = ({
   type = 'questionInCircle',
   'aria-label': ariaLabel,
   color,

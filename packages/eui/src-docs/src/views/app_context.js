@@ -11,7 +11,7 @@ import {
   setEuiDevProviderWarning,
   euiStylisPrefixer,
 } from '../../../src/services';
-import { EUI_THEMES } from '../../../src/themes';
+import { AVAILABLE_THEMES } from '../components/with_theme/theme_context';
 
 import favicon16Prod from '../images/favicon/prod/favicon-16x16.png';
 import favicon32Prod from '../images/favicon/prod/favicon-32x32.png';
@@ -33,7 +33,7 @@ const utilityCache = createCache({
 });
 
 export const AppContext = ({ children }) => {
-  const { theme } = useContext(ThemeContext);
+  const { theme, colorMode } = useContext(ThemeContext);
   const locale = useSelector((state) => getLocale(state));
 
   const mappingFuncs = {
@@ -55,10 +55,8 @@ export const AppContext = ({ children }) => {
         default: generalEmotionCache,
         utility: utilityCache,
       }}
-      theme={EUI_THEMES.find((t) => t.value === theme)?.provider}
-      colorMode={
-        theme ? (theme.includes('light') ? 'light' : 'dark') : undefined
-      }
+      theme={AVAILABLE_THEMES.find((t) => t.value === theme)?.provider}
+      colorMode={colorMode}
     >
       <Helmet>
         <link

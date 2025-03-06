@@ -8,11 +8,7 @@
 
 import { css } from '@emotion/react';
 
-import {
-  UseEuiTheme,
-  makeHighContrastColor,
-  tintOrShade,
-} from '../../services';
+import { UseEuiTheme } from '../../services';
 import {
   euiFontSize,
   logicalCSS,
@@ -24,13 +20,13 @@ import { euiTableVariables } from './table.styles';
 export const euiTableHeaderFooterCellStyles = (
   euiThemeContext: UseEuiTheme
 ) => {
-  const { euiTheme, colorMode } = euiThemeContext;
+  const { euiTheme } = euiThemeContext;
 
   // euiFontSize returns an object, so we keep object notation here to merge into css``
   const sharedStyles = {
     ...euiFontSize(euiThemeContext, 'xs'),
     fontWeight: euiTheme.font.weight.semiBold,
-    color: euiTheme.colors.title,
+    color: euiTheme.colors.textHeading,
     verticalAlign: 'middle',
   };
 
@@ -49,20 +45,16 @@ export const euiTableHeaderFooterCellStyles = (
 
       /* Tint the sortable icon a bit further */
       .euiTableSortIcon--sortable {
-        color: ${makeHighContrastColor(
-          // Tint it arbitrarily high, the contrast util will take care of lowering back down to WCAG
-          tintOrShade(euiTheme.colors.subduedText, 0.9, colorMode),
-          3 // 3:1 ratio from https://www.w3.org/WAI/WCAG22/Understanding/non-text-contrast.html
-        )(euiTheme.colors.emptyShade)};
+        color: ${euiTheme.components.tableCellSortableIconColor};
       }
 
       &:hover,
       &:focus {
-        color: ${euiTheme.colors.primaryText};
+        color: ${euiTheme.colors.textPrimary};
         text-decoration: underline;
 
         .euiTableSortIcon--sortable {
-          color: ${euiTheme.colors.primaryText};
+          color: ${euiTheme.colors.textPrimary};
         }
       }
     `,

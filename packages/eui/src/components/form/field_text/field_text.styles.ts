@@ -26,12 +26,12 @@ export const euiFieldTextStyles = (euiThemeContext: UseEuiTheme) => {
         ${formStyles.focus}
       }
 
-      &:disabled {
-        ${formStyles.disabled}
-      }
-
       &[readOnly] {
         ${formStyles.readOnly}
+      }
+
+      &:disabled {
+        ${formStyles.disabled}
       }
 
       &:autofill {

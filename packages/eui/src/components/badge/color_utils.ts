@@ -8,15 +8,15 @@
 
 import chroma from 'chroma-js';
 
-import { UseEuiTheme, isColorDark, tint } from '../../services';
+import { UseEuiTheme, isColorDark } from '../../services';
 import {
   euiButtonColor,
   euiButtonFillColor,
-} from '../../themes/amsterdam/global_styling/mixins';
+} from '../../global_styling/mixins/_button';
 import { chromaValid, parseColor } from '../color_picker/utils';
 
 export const euiBadgeColors = (euiThemeContext: UseEuiTheme) => {
-  const { euiTheme, colorMode } = euiThemeContext;
+  const { euiTheme } = euiThemeContext;
 
   return {
     // Colors shared between buttons and badges
@@ -25,23 +25,28 @@ export const euiBadgeColors = (euiThemeContext: UseEuiTheme) => {
     warning: euiButtonFillColor(euiThemeContext, 'warning'),
     danger: euiButtonFillColor(euiThemeContext, 'danger'),
     accent: euiButtonFillColor(euiThemeContext, 'accent'),
+    accentSecondary: euiButtonFillColor(euiThemeContext, 'accentSecondary'),
     disabled: euiButtonColor(euiThemeContext, 'disabled'),
     // Colors unique to badges
-    default: getBadgeColors(euiThemeContext, euiTheme.colors.lightShade),
+    default: getBadgeColors(
+      euiThemeContext,
+      euiTheme.components.badgeBackground
+    ),
     // Hollow has a border and is used for autocompleters and beta badges
     hollow: {
       ...getBadgeColors(euiThemeContext, euiTheme.colors.emptyShade),
-      borderColor:
-        colorMode === 'DARK'
-          ? tint(euiTheme.border.color, 0.15)
-          : euiTheme.border.color,
+      borderColor: euiTheme.components.badgeBorderColorHollow,
     },
     // Colors used by beta and notification badges
     subdued: getBadgeColors(
       euiThemeContext,
-      tint(euiTheme.colors.lightShade, 0.3)
+      euiTheme.components.badgeBackgroundSubdued
     ),
-    accentText: getBadgeColors(euiThemeContext, euiTheme.colors.accentText),
+    accentText: getBadgeColors(euiThemeContext, euiTheme.colors.textAccent),
+    accentSecondaryText: getBadgeColors(
+      euiThemeContext,
+      euiTheme.colors.textAccentSecondary
+    ),
   };
 };
 

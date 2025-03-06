@@ -11,9 +11,9 @@ import {
   euiShadow,
   euiShadowFlat,
   euiShadowMedium,
-} from '../../../themes/amsterdam/global_styling/mixins';
-import { getShadowColor } from '../../../themes/amsterdam/global_styling/functions';
-import { UseEuiTheme, tint } from '../../../services';
+} from '@elastic/eui-theme-common';
+
+import { UseEuiTheme } from '../../../services';
 import {
   euiCanAnimate,
   logicalCSS,
@@ -40,6 +40,8 @@ export const euiPopoverPanelStyles = (euiThemeContext: UseEuiTheme) => {
     euiTheme.animation.bounce
   } ${mathWithUnits(animationSpeed, (x) => x + 100)}`;
 
+  const hasVisibleBorder = colorMode === 'DARK';
+
   return {
     // Base
     euiPopover__panel: css`
@@ -50,6 +52,8 @@ export const euiPopoverPanelStyles = (euiThemeContext: UseEuiTheme) => {
       pointer-events: none;
       opacity: 0; /* 2 */
       background-color: var(--euiPopoverBackgroundColor); /* 4 */
+      border: ${euiTheme.border.width.thin} solid
+        ${hasVisibleBorder ? euiTheme.border.color : 'transparent'};
 
       ${euiCanAnimate} {
         /* 2 */
@@ -67,10 +71,12 @@ export const euiPopoverPanelStyles = (euiThemeContext: UseEuiTheme) => {
 
     /* 4 */
     light: css`
-      --euiPopoverBackgroundColor: ${euiTheme.colors.emptyShade};
+      --euiPopoverBackgroundColor: ${euiTheme.components
+        .popoverPanelBackground};
     `,
     dark: css`
-      --euiPopoverBackgroundColor: ${tint(euiTheme.colors.emptyShade, 0.025)};
+      --euiPopoverBackgroundColor: ${euiTheme.components
+        .popoverPanelBackground};
     `,
 
     // Regular popover with an arrow, a transform animation/transition, and a
@@ -118,50 +124,6 @@ export const euiPopoverPanelStyles = (euiThemeContext: UseEuiTheme) => {
       get right() {
         return this.bottom;
       },
-    },
-
-    // Has an arrow, but cannot have transform or filter CSS - they create a
-    // stacking context that messes up the drag/drop fixed positioning
-    hasDragDrop: {
-      hasDragDrop: css`
-        ${euiShadowMedium(euiThemeContext, { property: 'box-shadow' })}
-
-        ${euiCanAnimate} {
-          transition: ${opacityTransition}; /* 2 */
-        }
-      `,
-      // The offset transforms must be recreated in margins
-      top: css`
-        margin-block-start: ${translateDistance};
-        /* Existing box-shadow of the popover is sufficient to see the arrow */
-      `,
-      bottom: css`
-        margin-block-start: -${translateDistance};
-
-        .euiPopover__arrow {
-          filter: drop-shadow(
-            0 -6px 6px ${getShadowColor(euiTheme.colors.shadow, 0.12, colorMode)}
-          );
-        }
-      `,
-      left: css`
-        margin-inline-start: ${translateDistance};
-
-        .euiPopover__arrow {
-          filter: drop-shadow(
-            6px 0 6px ${getShadowColor(euiTheme.colors.shadow, 0.12, colorMode)}
-          );
-        }
-      `,
-      right: css`
-        margin-inline-start: -${translateDistance};
-
-        .euiPopover__arrow {
-          filter: drop-shadow(
-            -6px 0 6px ${getShadowColor(euiTheme.colors.shadow, 0.12, colorMode)}
-          );
-        }
-      `,
     },
   };
 };

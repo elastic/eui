@@ -110,7 +110,7 @@ export const RestrictedRange: Story = {
   },
   args: {
     minDate: moment('10/01/2024'),
-    maxDate: moment('11/01/2024'),
+    maxDate: moment('11/01/2028'),
   },
 };
 

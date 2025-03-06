@@ -125,9 +125,37 @@ exports[`EuiEmptyPrompt props color accent is rendered 1`] = `
 </div>
 `;
 
+exports[`EuiEmptyPrompt props color accentSecondary is rendered 1`] = `
+<div
+  class="euiPanel euiPanel--accentSecondary euiEmptyPrompt emotion-euiPanel-m-accentSecondary-euiEmptyPrompt-vertical"
+>
+  <div
+    class="euiEmptyPrompt__main emotion-euiEmptyPrompt__main-vertical-l"
+  >
+    <div
+      class="euiEmptyPrompt__content emotion-euiEmptyPrompt__content-vertical"
+    />
+  </div>
+</div>
+`;
+
 exports[`EuiEmptyPrompt props color danger is rendered 1`] = `
 <div
   class="euiPanel euiPanel--danger euiEmptyPrompt emotion-euiPanel-m-danger-euiEmptyPrompt-vertical"
+>
+  <div
+    class="euiEmptyPrompt__main emotion-euiEmptyPrompt__main-vertical-l"
+  >
+    <div
+      class="euiEmptyPrompt__content emotion-euiEmptyPrompt__content-vertical"
+    />
+  </div>
+</div>
+`;
+
+exports[`EuiEmptyPrompt props color highlighted is rendered 1`] = `
+<div
+  class="euiPanel euiPanel--highlighted euiEmptyPrompt emotion-euiPanel-m-highlighted-euiEmptyPrompt-vertical"
 >
   <div
     class="euiEmptyPrompt__main emotion-euiEmptyPrompt__main-vertical-l"

@@ -12,6 +12,7 @@ exports[`EuiAccordion is rendered 1`] = `
     <button
       aria-controls="0"
       aria-expanded="false"
+      aria-hidden="true"
       aria-labelledby="generated-id"
       class="euiButtonIcon euiAccordion__arrow emotion-euiButtonIcon-xs-empty-text-euiAccordion__arrow-left-isClosed"
       tabindex="-1"
@@ -61,6 +62,7 @@ exports[`EuiAccordion isDisabled is rendered 1`] = `
     <button
       aria-controls="21"
       aria-expanded="false"
+      aria-hidden="true"
       aria-labelledby="generated-id"
       class="euiButtonIcon euiAccordion__arrow emotion-euiButtonIcon-xs-empty-disabled-isDisabled-euiAccordion__arrow-left-isClosed"
       disabled=""
@@ -157,6 +159,7 @@ exports[`EuiAccordion props arrowDisplay right is rendered 1`] = `
     <button
       aria-controls="13"
       aria-expanded="false"
+      aria-hidden="true"
       aria-labelledby="generated-id"
       class="euiButtonIcon euiAccordion__arrow emotion-euiButtonIcon-xs-empty-text-euiAccordion__arrow-right-isClosed"
       tabindex="-1"
@@ -195,6 +198,7 @@ exports[`EuiAccordion props arrowProps is rendered 1`] = `
     <button
       aria-controls="15"
       aria-expanded="false"
+      aria-hidden="true"
       aria-label="aria-label"
       aria-labelledby="generated-id"
       class="euiButtonIcon euiAccordion__arrow testClass1 testClass2 emotion-euiButtonIcon-xs-empty-text-euiAccordion__arrow-left-isClosed-euiTestCss"
@@ -246,6 +250,7 @@ exports[`EuiAccordion props buttonContent is rendered 1`] = `
     <button
       aria-controls="3"
       aria-expanded="false"
+      aria-hidden="true"
       aria-labelledby="generated-id"
       class="euiButtonIcon euiAccordion__arrow emotion-euiButtonIcon-xs-empty-text-euiAccordion__arrow-left-isClosed"
       tabindex="-1"
@@ -299,6 +304,7 @@ exports[`EuiAccordion props buttonContentClassName is rendered 1`] = `
     <button
       aria-controls="2"
       aria-expanded="false"
+      aria-hidden="true"
       aria-labelledby="generated-id"
       class="euiButtonIcon euiAccordion__arrow emotion-euiButtonIcon-xs-empty-text-euiAccordion__arrow-left-isClosed"
       tabindex="-1"
@@ -348,6 +354,7 @@ exports[`EuiAccordion props buttonElement is rendered 1`] = `
     <button
       aria-controls="10"
       aria-expanded="false"
+      aria-hidden="false"
       aria-labelledby="generated-id"
       class="euiButtonIcon euiAccordion__arrow emotion-euiButtonIcon-xs-empty-text-euiAccordion__arrow-left-isClosed"
       tabindex="0"
@@ -395,6 +402,7 @@ exports[`EuiAccordion props buttonProps is rendered 1`] = `
     <button
       aria-controls="4"
       aria-expanded="false"
+      aria-hidden="true"
       aria-labelledby="generated-id"
       class="euiButtonIcon euiAccordion__arrow emotion-euiButtonIcon-xs-empty-text-euiAccordion__arrow-left-isClosed"
       tabindex="-1"
@@ -446,6 +454,7 @@ exports[`EuiAccordion props buttonProps paddingSize l 1`] = `
     <button
       aria-controls="7"
       aria-expanded="false"
+      aria-hidden="true"
       aria-labelledby="generated-id"
       class="euiButtonIcon euiAccordion__arrow emotion-euiButtonIcon-xs-empty-text-euiAccordion__arrow-left-isClosed"
       tabindex="-1"
@@ -496,6 +505,7 @@ exports[`EuiAccordion props buttonProps paddingSize m 1`] = `
     <button
       aria-controls="6"
       aria-expanded="false"
+      aria-hidden="true"
       aria-labelledby="generated-id"
       class="euiButtonIcon euiAccordion__arrow emotion-euiButtonIcon-xs-empty-text-euiAccordion__arrow-left-isClosed"
       tabindex="-1"
@@ -546,6 +556,7 @@ exports[`EuiAccordion props buttonProps paddingSize s 1`] = `
     <button
       aria-controls="5"
       aria-expanded="false"
+      aria-hidden="true"
       aria-labelledby="generated-id"
       class="euiButtonIcon euiAccordion__arrow emotion-euiButtonIcon-xs-empty-text-euiAccordion__arrow-left-isClosed"
       tabindex="-1"
@@ -596,6 +607,7 @@ exports[`EuiAccordion props element is rendered 1`] = `
     <button
       aria-controls="1"
       aria-expanded="false"
+      aria-hidden="false"
       aria-labelledby="generated-id"
       class="euiButtonIcon euiAccordion__arrow emotion-euiButtonIcon-xs-empty-text-euiAccordion__arrow-left-isClosed"
       tabindex="0"
@@ -643,6 +655,7 @@ exports[`EuiAccordion props extraAction is rendered 1`] = `
     <button
       aria-controls="11"
       aria-expanded="false"
+      aria-hidden="true"
       aria-labelledby="generated-id"
       class="euiButtonIcon euiAccordion__arrow emotion-euiButtonIcon-xs-empty-text-euiAccordion__arrow-left-isClosed"
       tabindex="-1"
@@ -699,6 +712,7 @@ exports[`EuiAccordion props forceState closed is rendered 1`] = `
     <button
       aria-controls="16"
       aria-expanded="false"
+      aria-hidden="true"
       aria-labelledby="generated-id"
       class="euiButtonIcon euiAccordion__arrow emotion-euiButtonIcon-xs-empty-text-euiAccordion__arrow-left-isClosed"
       tabindex="-1"
@@ -752,6 +766,7 @@ exports[`EuiAccordion props forceState open is rendered 1`] = `
     <button
       aria-controls="17"
       aria-expanded="true"
+      aria-hidden="true"
       aria-labelledby="generated-id"
       class="euiButtonIcon euiAccordion__arrow emotion-euiButtonIcon-xs-empty-text-euiAccordion__arrow-left-isOpen"
       tabindex="-1"
@@ -804,6 +819,7 @@ exports[`EuiAccordion props initialIsOpen is rendered 1`] = `
     <button
       aria-controls="12"
       aria-expanded="true"
+      aria-hidden="true"
       aria-labelledby="generated-id"
       class="euiButtonIcon euiAccordion__arrow emotion-euiButtonIcon-xs-empty-text-euiAccordion__arrow-left-isOpen"
       tabindex="-1"
@@ -830,7 +846,7 @@ exports[`EuiAccordion props initialIsOpen is rendered 1`] = `
   </div>
   <div
     aria-labelledby="generated-id"
-    class="euiAccordion__childWrapper emotion-euiAccordion__childWrapper-isOpen"
+    class="euiAccordion__childWrapper emotion-euiAccordion__childWrapper-isOpen-noTransition"
     id="12"
     role="group"
     style="block-size: 0;"
@@ -856,6 +872,7 @@ exports[`EuiAccordion props isLoading is rendered 1`] = `
     <button
       aria-controls="19"
       aria-expanded="false"
+      aria-hidden="true"
       aria-labelledby="generated-id"
       class="euiButtonIcon euiAccordion__arrow emotion-euiButtonIcon-xs-empty-text-euiAccordion__arrow-left-isClosed"
       tabindex="-1"
@@ -914,6 +931,7 @@ exports[`EuiAccordion props isLoadingMessage is rendered 1`] = `
     <button
       aria-controls="20"
       aria-expanded="false"
+      aria-hidden="true"
       aria-labelledby="generated-id"
       class="euiButtonIcon euiAccordion__arrow emotion-euiButtonIcon-xs-empty-text-euiAccordion__arrow-left-isClosed"
       tabindex="-1"

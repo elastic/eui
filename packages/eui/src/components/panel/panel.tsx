@@ -44,7 +44,7 @@ export const BORDER_RADII = ['none', 'm'] as const;
 export type PanelBorderRadius = (typeof BORDER_RADII)[number];
 
 export const COLORS = BACKGROUND_COLORS;
-export type PanelColor = _EuiBackgroundColor;
+export type PanelColor = _EuiBackgroundColor | 'highlighted';
 
 export interface _EuiPanelProps extends CommonProps {
   /**

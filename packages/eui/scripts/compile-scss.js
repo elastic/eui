@@ -11,10 +11,15 @@ async function compileScssFiles({
 }) {
   // Copy static JSON Sass var files from src-docs/src/views/theme/_json to dist
   const jsonFilesToCopy = [
-    'eui_theme_dark.json',
-    'eui_theme_light.json',
-    'eui_theme_dark.json.d.ts',
-    'eui_theme_light.json.d.ts',
+    'eui_theme_amsterdam_dark.json',
+    'eui_theme_amsterdam_light.json',
+    'eui_theme_amsterdam_dark.json.d.ts',
+    'eui_theme_amsterdam_light.json.d.ts',
+    /* TODO: temp files only, remove once imports from theme package work as expected */
+    'eui_theme_borealis_dark.json',
+    'eui_theme_borealis_light.json',
+    'eui_theme_borealis_dark.json.d.ts',
+    'eui_theme_borealis_light.json.d.ts',
   ];
   await Promise.all(
     jsonFilesToCopy.map((fileName) => {

@@ -1,0 +1,1656 @@
+---
+slug: /tabular-content/tables/basic
+id: tabular_content_tables_basic
+sidebar_position: 1
+---
+
+# Basic tables
+
+**EuiBasicTable** is an opinionated high level component that standardizes both display and injection. At its most simple it only accepts two properties:
+
+*   `items` are an array of objects that should be displayed in the table; one item per row. The exact item data that will be rendered in each cell in these rows is determined by the `columns` property. You can define `rowProps` and `cellProps` props which can either be objects or functions that return objects. The returned objects will be applied as props to the rendered rows and row cells, respectively.
+*   `columns` defines what columns the table has and how to extract item data to display each cell in each row.
+
+This example shows the most basic form of the **EuiBasicTable**. It is configured with the required `items` and `columns` properties, with certain display configurations per-column:
+
+```tsx interactive
+import React from 'react';
+import {
+  formatDate,
+  EuiBasicTable,
+  EuiBasicTableColumn,
+  EuiTableFieldDataColumnType,
+  EuiLink,
+  EuiHealth,
+} from '@elastic/eui';
+import { faker } from '@faker-js/faker';
+
+type User = {
+  id: string;
+  firstName: string | null | undefined;
+  lastName: string;
+  github: string;
+  dateOfBirth: Date;
+  online: boolean;
+};
+
+const users: User[] = [];
+
+for (let i = 0; i < 10; i++) {
+  users.push({
+    id: faker.string.uuid(),
+    firstName: faker.person.firstName(),
+    lastName: faker.person.lastName(),
+    github: faker.internet.userName(),
+    dateOfBirth: faker.date.past(),
+    online: faker.datatype.boolean(),
+  });
+}
+
+export default () => {
+  const columns: Array<EuiBasicTableColumn<User>> = [
+    {
+      field: 'firstName',
+      name: 'First Name',
+      'data-test-subj': 'firstNameCell',
+      mobileOptions: {
+        render: (user: User) => (
+          <>
+            {user.firstName} {user.lastName}
+          </>
+        ),
+        header: false,
+        truncateText: false,
+        enlarge: true,
+        width: '100%',
+      },
+    },
+    {
+      field: 'lastName',
+      name: 'Last Name',
+      truncateText: true,
+      mobileOptions: {
+        show: false,
+      },
+    },
+    {
+      field: 'github',
+      name: 'Github',
+      nameTooltip: {
+        content: 'Their mascot is the Octokitty'
+      },
+      render: (username: User['github']) => (
+        <EuiLink href="#" target="_blank">
+          {username}
+        </EuiLink>
+      ),
+      truncateText: true,
+    },
+    {
+      field: 'dateOfBirth',
+      name: 'Date of Birth',
+      dataType: 'date',
+      render: (dateOfBirth: User['dateOfBirth']) =>
+        formatDate(dateOfBirth, 'dobShort'),
+    },
+    {
+      field: 'online',
+      name: 'Online',
+      dataType: 'boolean',
+      render: (online: User['online']) => {
+        const color = online ? 'success' : 'danger';
+        const label = online ? 'Online' : 'Offline';
+        return <EuiHealth color={color}>{label}</EuiHealth>;
+      },
+    },
+  ];
+
+  const getRowProps = (user: User) => {
+    const { id } = user;
+    return {
+      'data-test-subj': `row-${id}`,
+      className: 'customRowClass',
+      onClick: () => {},
+    };
+  };
+
+  const getCellProps = (
+    user: User,
+    column: EuiTableFieldDataColumnType<User>
+  ) => {
+    const { id } = user;
+    const { field } = column;
+    return {
+      className: 'customCellClass',
+      'data-test-subj': `cell-${id}-${String(field)}`,
+      textOnly: true,
+    };
+  };
+
+  return (
+    <EuiBasicTable
+      tableCaption="Demo of EuiBasicTable"
+      responsiveBreakpoint={false}
+      items={users}
+      rowHeader="firstName"
+      columns={columns}
+      rowProps={getRowProps}
+      cellProps={getCellProps}
+    />
+  );
+};
+```
+
+In the above example, some columns displayed the value as-is (e.g. `firstName` and `lastName` fields). Other columns customized the display of the data before it was injected. This customization can be done in two (non-mutual exclusive) ways:
+
+- Provide a hint about the type of data (e.g. the "Date of Birth" column indicates that the data it shows is of type `date`). Providing data type hints will cause built-in display components to be adjusted (e.g. numbers will become right aligned, like in Excel).
+- Provide a `render` function that given the value (and the item as a second argument) returns the React node that should be displayed as the content of the cell. This can be as simple as formatting values (e.g. the "Date of Birth" column), to utilizing more complex React components (e.g. the "Online" and "Github" columns).
+  - **Note:** the basic table will treat any cells that use a `render` function as being `textOnly: false`. This may cause unnecessary word breaks. Apply `textOnly: true` to ensure it breaks properly.
+
+If a column name needs a longer description, an icon with a tooltip can be used. This can be done using the `columns.nameTooltip` property. This approach ensures that the icon remains visible even if the text gets truncated, unlike manually using a React node for `columns.name`.
+
+## Row selection
+
+The following example shows how to configure row selection via the `selection` property. For uncontrolled usage, where selection changes are determined entirely by the user, you can set items to be selected initially by passing an array of items to `selection.initialSelected`. You can also use `selected.onSelectionChange` to track or respond to the items that users select.
+
+To completely control table selection, use `selection.selected` instead (which requires passing `selected.onSelectionChange`). This can be useful if you want to handle table selections based on user interaction with another part of the UI.
+
+import BasicTableSelection from './table_selection';
+
+<BasicTableSelection type="basic" />
+
+## Row actions
+
+The following example demonstrates "actions" columns. These are special columns where you define per-row, item level actions. The most basic action you might define is a type `button` or `icon` though you can always make your own custom actions as well.
+
+Actions enforce some strict UI/UX guidelines:
+
+*   There can only be up to 2 actions visible per row. When more than two actions are defined, the first 2 `isPrimary` actions will stay visible, an ellipses icon button will hold all actions in a single popover.
+*   Actions change opacity when user hovers over the row with the mouse. When more than 2 actions are supplied, only the ellipses icon button stays visible at all times.
+*   When one or more table row(s) are selected, all item actions are disabled. Users should be expected to use some bulk action outside the individual table rows instead.
+
+```tsx interactive
+import React, { useState, useMemo } from 'react';
+import {
+  formatDate,
+  Comparators,
+  EuiBasicTable,
+  EuiBasicTableColumn,
+  EuiTableSelectionType,
+  EuiTableSortingType,
+  Criteria,
+  DefaultItemAction,
+  CustomItemAction,
+  EuiLink,
+  EuiHealth,
+  EuiButton,
+  EuiFlexGroup,
+  EuiFlexItem,
+  EuiSwitch,
+  EuiSpacer,
+} from '@elastic/eui';
+import { faker } from '@faker-js/faker';
+
+type User = {
+  id: number;
+  firstName: string | null | undefined;
+  lastName: string;
+  online: boolean;
+  location: {
+    city: string;
+    country: string;
+  };
+};
+
+const users: User[] = [];
+
+for (let i = 0; i < 5; i++) {
+  users.push({
+    id: i + 1,
+    firstName: faker.person.firstName(),
+    lastName: faker.person.lastName(),
+    online: faker.datatype.boolean(),
+    location: {
+      city: faker.location.city(),
+      country: faker.location.country(),
+    },
+  });
+}
+
+const cloneUserbyId = (id: number) => {
+  const index = users.findIndex((user) => user.id === id);
+  if (index >= 0) {
+    const user = users[index];
+    users.splice(index, 0, { ...user, id: users.length });
+  }
+};
+
+const deleteUsersByIds = (...ids: number[]) => {
+  ids.forEach((id) => {
+    const index = users.findIndex((user) => user.id === id);
+    if (index >= 0) {
+      users.splice(index, 1);
+    }
+  });
+};
+
+const columns: Array<EuiBasicTableColumn<User>> = [
+  {
+    field: 'firstName',
+    name: 'First Name',
+    truncateText: true,
+    sortable: true,
+    mobileOptions: {
+      render: (user: User) => (
+        <>
+          {user.firstName} {user.lastName}
+        </>
+      ),
+      header: false,
+      truncateText: false,
+      enlarge: true,
+      width: '100%',
+    },
+  },
+  {
+    field: 'lastName',
+    name: 'Last Name',
+    truncateText: true,
+    mobileOptions: {
+      show: false,
+    },
+  },
+  {
+    field: 'location',
+    name: 'Location',
+    truncateText: true,
+    textOnly: true,
+    render: (location: User['location']) => {
+      return `${location.city}, ${location.country}`;
+    },
+  },
+  {
+    field: 'online',
+    name: 'Online',
+    dataType: 'boolean',
+    render: (online: User['online']) => {
+      const color = online ? 'success' : 'danger';
+      const label = online ? 'Online' : 'Offline';
+      return <EuiHealth color={color}>{label}</EuiHealth>;
+    },
+    sortable: true,
+  },
+];
+
+export default () => {
+  /**
+   * Actions
+   */
+  const [multiAction, setMultiAction] = useState(false);
+  const [customAction, setCustomAction] = useState(false);
+
+  const deleteUser = (user: User) => {
+    deleteUsersByIds(user.id);
+    setSelectedItems([]);
+  };
+
+  const cloneUser = (user: User) => {
+    cloneUserbyId(user.id);
+    setSelectedItems([]);
+  };
+
+  const actions = useMemo(() => {
+    if (customAction) {
+      let actions: Array<CustomItemAction<User>> = [
+        {
+          render: (user: User) => {
+            return (
+              <EuiLink onClick={() => deleteUser(user)} color="danger">
+                Delete
+              </EuiLink>
+            );
+          },
+        },
+      ];
+      if (multiAction) {
+        actions = [
+          {
+            ...actions[0],
+            isPrimary: true,
+            showOnHover: true,
+          },
+          {
+            render: (user: User) => {
+              return (
+                <EuiLink color="success" onClick={() => cloneUser(user)}>
+                  Clone
+                </EuiLink>
+              );
+            },
+          },
+          {
+            render: () => {
+              return <EuiLink onClick={() => {}}>Edit</EuiLink>;
+            },
+          },
+        ];
+      }
+      return actions;
+    } else {
+      let actions: Array<DefaultItemAction<User>> = [
+        {
+          name: 'User profile',
+          description: ({ firstName, lastName }) =>
+            `Visit ${firstName} ${lastName}'s profile`,
+          icon: 'editorLink',
+          color: 'primary',
+          type: 'icon',
+          enabled: ({ online }) => !!online,
+          href: ({ id }) => `${window.location.href}?id=${id}`,
+          target: '_self',
+          'data-test-subj': 'action-outboundlink',
+        },
+      ];
+      if (multiAction) {
+        actions = [
+          {
+            name: <>Clone</>,
+            description: 'Clone this user',
+            icon: 'copy',
+            type: 'icon',
+            onClick: cloneUser,
+            'data-test-subj': 'action-clone',
+          },
+          {
+            name: (user: User) => (user.id ? 'Delete' : 'Remove'),
+            description: ({ firstName, lastName }) =>
+              `Delete ${firstName} ${lastName}`,
+            icon: 'trash',
+            color: 'danger',
+            type: 'icon',
+            onClick: deleteUser,
+            isPrimary: true,
+            'data-test-subj': ({ id }) => `action-delete-${id}`,
+          },
+          {
+            name: 'Edit',
+            isPrimary: true,
+            available: ({ online }) => !online,
+            enabled: ({ online }) => !!online,
+            description: 'Edit this user',
+            icon: 'pencil',
+            type: 'icon',
+            onClick: () => {},
+            'data-test-subj': 'action-edit',
+          },
+          {
+            name: 'Share',
+            isPrimary: true,
+            description: 'Share this user',
+            icon: 'share',
+            type: 'icon',
+            onClick: () => {},
+            'data-test-subj': 'action-share',
+          },
+          ...actions,
+        ];
+      }
+      return actions;
+    }
+  }, [customAction, multiAction]);
+
+  const columnsWithActions = [
+    ...columns,
+    {
+      name: 'Actions',
+      actions,
+    },
+  ];
+
+  /**
+   * Selection
+   */
+  const [selectedItems, setSelectedItems] = useState<User[]>([]);
+
+  const onSelectionChange = (selectedItems: User[]) => {
+    setSelectedItems(selectedItems);
+  };
+
+  const selection: EuiTableSelectionType<User> = {
+    selectable: (user: User) => user.online,
+    selectableMessage: (selectable: boolean, user: User) =>
+      !selectable
+        ? `${user.firstName} ${user.lastName} is currently offline`
+        : `Select ${user.firstName} ${user.lastName}`,
+    onSelectionChange,
+  };
+
+  const deleteSelectedUsers = () => {
+    deleteUsersByIds(...selectedItems.map((user: User) => user.id));
+    setSelectedItems([]);
+  };
+
+  const deleteButton =
+    selectedItems.length > 0 ? (
+      <EuiButton color="danger" iconType="trash" onClick={deleteSelectedUsers}>
+        Delete {selectedItems.length} Users
+      </EuiButton>
+    ) : null;
+
+  return (
+    <>
+      <EuiFlexGroup
+        alignItems="center"
+        css={({ euiTheme }) => ({ minHeight: euiTheme?.size?.xxl })}
+      >
+        <EuiFlexItem grow={false}>
+          <EuiSwitch
+            label="Multiple Actions"
+            checked={multiAction}
+            onChange={() => setMultiAction(!multiAction)}
+          />
+        </EuiFlexItem>
+        <EuiFlexItem grow={false}>
+          <EuiSwitch
+            label="Custom Actions"
+            checked={customAction}
+            onChange={() => setCustomAction(!customAction)}
+          />
+        </EuiFlexItem>
+        <EuiFlexItem />
+        {deleteButton}
+      </EuiFlexGroup>
+
+      <EuiSpacer size="l" />
+
+      <EuiBasicTable
+        tableCaption="Demo of EuiBasicTable with actions"
+        responsiveBreakpoint={false}
+        items={users}
+        itemId="id"
+        columns={columnsWithActions}
+        selection={selection}
+      />
+    </>
+  );
+};
+```
+
+## Expanding rows
+
+You can expand rows by passing in a `itemIdToExpandedRowMap` prop which will contain the content you want rendered inside the expanded row. When building out your table manually (not using EuiBasicTable), you will also need to add the prop `isExpandedRow` to the row that will be revealed.
+
+```tsx interactive
+import React, { useState, ReactNode } from 'react';
+import {
+  formatDate,
+  Comparators,
+  EuiBasicTable,
+  EuiBasicTableColumn,
+  EuiTableSelectionType,
+  EuiTableSortingType,
+  Criteria,
+  EuiButtonIcon,
+  EuiHealth,
+  EuiDescriptionList,
+  EuiScreenReaderOnly,
+} from '@elastic/eui';
+import { faker } from '@faker-js/faker';
+
+type User = {
+  id: number;
+  firstName: string | null | undefined;
+  lastName: string;
+  online: boolean;
+  location: {
+    city: string;
+    country: string;
+  };
+};
+
+const users: User[] = [];
+
+for (let i = 0; i < 5; i++) {
+  users.push({
+    id: i + 1,
+    firstName: faker.person.firstName(),
+    lastName: faker.person.lastName(),
+    online: faker.datatype.boolean(),
+    location: {
+      city: faker.location.city(),
+      country: faker.location.country(),
+    },
+  });
+}
+
+const columns: Array<EuiBasicTableColumn<User>> = [
+  {
+    field: 'firstName',
+    name: 'First Name',
+    sortable: true,
+    truncateText: true,
+    mobileOptions: {
+      render: (user: User) => (
+        <>
+          {user.firstName} {user.lastName}
+        </>
+      ),
+      header: false,
+      truncateText: false,
+      enlarge: true,
+      width: '100%',
+    },
+  },
+  {
+    field: 'lastName',
+    name: 'Last Name',
+    truncateText: true,
+    mobileOptions: {
+      show: false,
+    },
+  },
+  {
+    field: 'location',
+    name: 'Location',
+    truncateText: true,
+    textOnly: true,
+    render: (location: User['location']) => {
+      return `${location.city}, ${location.country}`;
+    },
+  },
+  {
+    field: 'online',
+    name: 'Online',
+    dataType: 'boolean',
+    render: (online: User['online']) => {
+      const color = online ? 'success' : 'danger';
+      const label = online ? 'Online' : 'Offline';
+      return <EuiHealth color={color}>{label}</EuiHealth>;
+    },
+    sortable: true,
+  },
+  {
+    name: 'Actions',
+    actions: [
+      {
+        name: 'Clone',
+        description: 'Clone this person',
+        type: 'icon',
+        icon: 'copy',
+        onClick: () => '',
+      },
+    ],
+  },
+];
+
+export default () => {
+  /**
+   * Expanding rows
+   */
+  const [itemIdToExpandedRowMap, setItemIdToExpandedRowMap] = useState<
+    Record<string, ReactNode>
+  >({});
+
+  const toggleDetails = (user: User) => {
+    const itemIdToExpandedRowMapValues = { ...itemIdToExpandedRowMap };
+
+    if (itemIdToExpandedRowMapValues[user.id]) {
+      delete itemIdToExpandedRowMapValues[user.id];
+    } else {
+      const { online, location } = user;
+
+      const color = online ? 'success' : 'danger';
+      const label = online ? 'Online' : 'Offline';
+      const listItems = [
+        {
+          title: 'Location',
+          description: `${location.city}, ${location.country}`,
+        },
+        {
+          title: 'Online',
+          description: <EuiHealth color={color}>{label}</EuiHealth>,
+        },
+      ];
+      itemIdToExpandedRowMapValues[user.id] = (
+        <EuiDescriptionList listItems={listItems} />
+      );
+    }
+    setItemIdToExpandedRowMap(itemIdToExpandedRowMapValues);
+  };
+
+  const columnsWithExpandingRowToggle: Array<EuiBasicTableColumn<User>> = [
+    ...columns,
+    {
+      align: 'right',
+      width: '40px',
+      isExpander: true,
+      name: (
+        <EuiScreenReaderOnly>
+          <span>Expand row</span>
+        </EuiScreenReaderOnly>
+      ),
+      mobileOptions: { header: false },
+      render: (user: User) => {
+        const itemIdToExpandedRowMapValues = { ...itemIdToExpandedRowMap };
+
+        return (
+          <EuiButtonIcon
+            onClick={() => toggleDetails(user)}
+            aria-label={
+              itemIdToExpandedRowMapValues[user.id] ? 'Collapse' : 'Expand'
+            }
+            iconType={
+              itemIdToExpandedRowMapValues[user.id] ? 'arrowDown' : 'arrowRight'
+            }
+          />
+        );
+      },
+    },
+  ];
+
+  return (
+    <EuiBasicTable
+      tableCaption="Demo of EuiBasicTable with expanding rows"
+      responsiveBreakpoint={false}
+      items={users}
+      itemId="id"
+      itemIdToExpandedRowMap={itemIdToExpandedRowMap}
+      columns={columnsWithExpandingRowToggle}
+      selection={{ initialSelected: [] }}
+    />
+  );
+};
+```
+
+## Adding a footer to a table
+
+The following example shows how to add a footer to your table by adding `footer` to your column definitions. If one or more of your columns contains a `footer` definition, the footer area will be visible. By default, columns with no footer specified (undefined) will render an empty cell to preserve the table layout. Check out the [custom tables](../custom) page for more examples of how you can work with table footers in EUI.
+
+```tsx interactive
+import React, { useState } from 'react';
+import {
+  formatDate,
+  Comparators,
+  EuiBasicTable,
+  EuiBasicTableColumn,
+  EuiTableSelectionType,
+  EuiTableSortingType,
+  Criteria,
+  EuiHealth,
+} from '@elastic/eui';
+import { faker } from '@faker-js/faker';
+
+type User = {
+  id: number;
+  firstName: string | null | undefined;
+  lastName: string;
+  online: boolean;
+  location: {
+    city: string;
+    country: string;
+  };
+};
+
+const users: User[] = [];
+
+for (let i = 0; i < 5; i++) {
+  users.push({
+    id: i + 1,
+    firstName: faker.person.firstName(),
+    lastName: faker.person.lastName(),
+    dateOfBirth: faker.date.past(),
+    online: faker.datatype.boolean(),
+    location: {
+      city: faker.location.city(),
+      country: faker.location.country(),
+    },
+  });
+}
+
+const columns: Array<EuiBasicTableColumn<User>> = [
+  {
+    field: 'firstName',
+    name: 'First Name',
+    footer: <em>Page totals:</em>,
+    truncateText: true,
+    mobileOptions: {
+      render: (user: User) => (
+        <>
+          {user.firstName} {user.lastName}
+        </>
+      ),
+      header: false,
+      truncateText: false,
+      enlarge: true,
+      width: '100%',
+    },
+  },
+  {
+    field: 'lastName',
+    name: 'Last Name',
+    truncateText: true,
+    mobileOptions: {
+      show: false,
+    },
+  },
+  {
+    field: 'location',
+    name: 'Location',
+    truncateText: true,
+    textOnly: true,
+    footer: ({ items }: { items: User[] }) => {
+      const uniqueCountries = new Set(
+        items.map((user) => user.location.country)
+      );
+      return <>{uniqueCountries.size} countries</>;
+    },
+    render: (location: User['location']) => {
+      return `${location.city}, ${location.country}`;
+    },
+  },
+  {
+    field: 'online',
+    name: 'Online',
+    footer: ({ items }: { items: User[] }) => {
+      return <>{items.filter((user: User) => !!user.online).length} online</>;
+    },
+    dataType: 'boolean',
+    render: (online: User['online']) => {
+      const color = online ? 'success' : 'danger';
+      const label = online ? 'Online' : 'Offline';
+      return <EuiHealth color={color}>{label}</EuiHealth>;
+    },
+  },
+];
+
+export default () => {
+  return (
+    <EuiBasicTable
+      tableCaption="Demo of EuiBasicTable with footer"
+      responsiveBreakpoint={false}
+      items={users}
+      itemId="id"
+      columns={columns}
+      selection={{ initialSelected: [] }}
+    />
+  );
+};
+```
+
+## Table layout
+
+**EuiBasicTable** has a fixed layout by default. You can change it to `auto` using the `tableLayout` prop. Note that setting `tableLayout` to `auto` prevents the `truncateText` prop from working properly. If you want to set different columns widths while still being able to use `truncateText`, set the width of each column using the `width` prop.
+
+You can also set the vertical alignment (`valign`) at the column level which will affect the cell contents for that entire column excluding the header and footer.
+
+```tsx interactive
+import React, { useState } from 'react';
+import {
+  formatDate,
+  EuiBasicTable,
+  EuiTableFieldDataColumnType,
+  EuiButtonGroup,
+  EuiButtonGroupOptionProps,
+  EuiCallOut,
+  EuiLink,
+  EuiSpacer,
+  EuiFlexGroup,
+} from '@elastic/eui';
+import { faker } from '@faker-js/faker';
+
+type User = {
+  id: number;
+  firstName: string | null | undefined;
+  lastName: string;
+  github: string;
+  dateOfBirth: Date;
+  jobTitle: string;
+  address: string;
+};
+
+const users: User[] = [];
+
+for (let i = 0; i < 10; i++) {
+  users.push({
+    id: i + 1,
+    firstName: faker.person.firstName(),
+    lastName: faker.person.lastName(),
+    github: faker.internet.userName(),
+    jobTitle: faker.person.jobTitle(),
+    address: `${faker.location.streetAddress()} ${faker.location.city()} ${faker.location.state(
+      { abbreviated: true }
+    )} ${faker.location.zipCode()}`,
+  });
+}
+
+const columns: Array<EuiTableFieldDataColumnType<User>> = [
+  {
+    field: 'firstName',
+    name: 'First Name',
+    truncateText: true,
+    mobileOptions: {
+      render: (user: User) => (
+        <>
+          {user.firstName} {user.lastName}
+        </>
+      ),
+      header: false,
+      truncateText: false,
+      enlarge: true,
+      width: '100%',
+    },
+  },
+  {
+    field: 'lastName',
+    name: 'Last Name',
+    truncateText: true,
+    mobileOptions: {
+      show: false,
+    },
+  },
+  {
+    field: 'github',
+    name: 'Github',
+    render: (username: User['github']) => (
+      <EuiLink href="#" target="_blank">
+        {username}
+      </EuiLink>
+    ),
+  },
+  {
+    field: 'jobTitle',
+    name: 'Job title',
+    truncateText: true,
+  },
+  {
+    field: 'address',
+    name: 'Address',
+    truncateText: { lines: 2 },
+  },
+];
+
+const tableLayoutButtons: EuiButtonGroupOptionProps[] = [
+  {
+    id: 'tableLayoutFixed',
+    label: 'Fixed',
+    value: 'fixed',
+  },
+  {
+    id: 'tableLayoutAuto',
+    label: 'Auto',
+    value: 'auto',
+  },
+  {
+    id: 'tableLayoutCustom',
+    label: 'Custom',
+    value: 'custom',
+  },
+];
+
+const vAlignButtons: EuiButtonGroupOptionProps[] = [
+  {
+    id: 'columnVAlignTop',
+    label: 'Top',
+    value: 'top',
+  },
+  {
+    id: 'columnVAlignMiddle',
+    label: 'Middle',
+    value: 'middle',
+  },
+  {
+    id: 'columnVAlignBottom',
+    label: 'Bottom',
+    value: 'bottom',
+  },
+];
+
+const alignButtons: EuiButtonGroupOptionProps[] = [
+  {
+    id: 'columnAlignLeft',
+    label: 'Left',
+    value: 'left',
+  },
+  {
+    id: 'columnAlignCenter',
+    label: 'Center',
+    value: 'center',
+  },
+  {
+    id: 'columnAlignRight',
+    label: 'Right',
+    value: 'right',
+  },
+];
+
+export default () => {
+  const [tableLayout, setTableLayout] = useState('tableLayoutFixed');
+  const [vAlign, setVAlign] = useState('columnVAlignMiddle');
+  const [align, setAlign] = useState('columnAlignLeft');
+
+  const onTableLayoutChange = (id: string, value: string) => {
+    setTableLayout(id);
+    columns[4].width = value === 'custom' ? '100px' : undefined;
+    columns[5].width = value === 'custom' ? '20%' : undefined;
+  };
+
+  const onVAlignChange = (id: string, value: 'top' | 'middle' | 'bottom') => {
+    setVAlign(id);
+    columns.forEach((column) => (column.valign = value));
+  };
+
+  const onAlignChange = (id: string, value: 'left' | 'center' | 'right') => {
+    setAlign(id);
+    columns.forEach((column) => (column.align = value));
+  };
+
+  let callOutText;
+
+  switch (tableLayout) {
+    case 'tableLayoutFixed':
+      callOutText =
+        'Job title has truncateText set to true. Address is set to { lines: 2 }';
+      break;
+    case 'tableLayoutAuto':
+      callOutText =
+        'Job title will not wrap or truncate since tableLayout is set to auto. Address will truncate if necessary';
+      break;
+    case 'tableLayoutCustom':
+      callOutText =
+        'Job title has a custom column width of 100px. Address has a custom column width of 20%';
+      break;
+  }
+
+  return (
+    <>
+      <EuiFlexGroup alignItems="flexStart">
+        <EuiButtonGroup
+          legend="Table layout options"
+          options={tableLayoutButtons}
+          idSelected={tableLayout}
+          onChange={onTableLayoutChange}
+        />
+        <EuiButtonGroup
+          legend="Vertical align options"
+          options={vAlignButtons}
+          idSelected={vAlign}
+          onChange={onVAlignChange}
+        />
+        <EuiButtonGroup
+          legend="Horizontal align options"
+          options={alignButtons}
+          idSelected={align}
+          onChange={onAlignChange}
+        />
+      </EuiFlexGroup>
+      <EuiSpacer size="m" />
+      <EuiCallOut
+        size="s"
+        color={tableLayout === 'tableLayoutAuto' ? 'warning' : 'primary'}
+        title={callOutText}
+      />
+      <EuiSpacer size="m" />
+      <EuiBasicTable
+        tableCaption="Demo of EuiBasicTable's table layout options"
+        responsiveBreakpoint={false}
+        items={users}
+        columns={columns}
+        rowHeader="firstName"
+        tableLayout={tableLayout === 'tableLayoutAuto' ? 'auto' : 'fixed'}
+      />
+    </>
+  );
+};
+```
+
+## Responsive tables
+
+Tables will be mobile-responsive by default, breaking down each row into its own card section and individually displaying each table header above the cell contents. The default breakpoint at which the table will responsively shift into cards is the [`m` window size](../../../theming/breakpoints/values), which can be customized with the `responsiveBreakpoint` prop (e.g., `responsiveBreakpoint="s"`).
+
+To never render your table responsively (e.g. for tables with very few columns), you may set `responsiveBreakpoint={false}`. Inversely, if you always want your table to render in a mobile-friendly manner, pass `true`. The below example table switches between `true/false` for quick/easy preview between mobile and desktop table UIs at all breakpoints.
+
+To customize your cell's appearance/rendering in mobile vs. desktop view, use the `mobileOptions` configuration. This object can be passed to each column item in **EuiBasicTable** or to **EuiTableRowCell** directly. See the "Snippet" tab in the below example, or the "Props" tab for a full list of configuration options.
+
+```tsx interactive
+import React, { useState } from 'react';
+import {
+  formatDate,
+  Comparators,
+  EuiBasicTable,
+  EuiBasicTableColumn,
+  EuiTableSelectionType,
+  EuiTableSortingType,
+  Criteria,
+  EuiLink,
+  EuiHealth,
+  EuiFlexGroup,
+  EuiFlexItem,
+  EuiSwitch,
+  EuiSpacer,
+} from '@elastic/eui';
+import { faker } from '@faker-js/faker';
+
+type User = {
+  id: number;
+  firstName: string | null | undefined;
+  lastName: string;
+  github: string;
+  dateOfBirth: Date;
+  online: boolean;
+  location: {
+    city: string;
+    country: string;
+  };
+};
+
+const users: User[] = [];
+
+for (let i = 0; i < 3; i++) {
+  users.push({
+    id: i + 1,
+    firstName: faker.person.firstName(),
+    lastName: faker.person.lastName(),
+    github: faker.internet.userName(),
+    dateOfBirth: faker.date.past(),
+    online: faker.datatype.boolean(),
+    location: {
+      city: faker.location.city(),
+      country: faker.location.country(),
+    },
+  });
+}
+
+const cloneUserbyId = (id: number) => {
+  const index = users.findIndex((user) => user.id === id);
+  if (index >= 0) {
+    const user = users[index];
+    users.splice(index, 0, { ...user, id: users.length });
+  }
+};
+
+const deleteUsersByIds = (...ids: number[]) => {
+  ids.forEach((id) => {
+    const index = users.findIndex((user) => user.id === id);
+    if (index >= 0) {
+      users.splice(index, 1);
+    }
+  });
+};
+
+export default () => {
+  /**
+   * Mobile column options
+   */
+  const [customHeader, setCustomHeader] = useState(true);
+  const [isResponsive, setIsResponsive] = useState(true);
+
+  const columns: Array<EuiBasicTableColumn<User>> = [
+    {
+      field: 'firstName',
+      name: 'First Name',
+      truncateText: true,
+      sortable: true,
+      mobileOptions: {
+        render: customHeader
+          ? (user: User) => (
+              <>
+                {user.firstName} {user.lastName}
+              </>
+            )
+          : undefined,
+        header: customHeader ? false : true,
+        width: customHeader ? '100%' : undefined,
+        enlarge: customHeader ? true : false,
+        truncateText: customHeader ? false : true,
+      },
+    },
+    {
+      field: 'lastName',
+      name: 'Last Name',
+      truncateText: true,
+      mobileOptions: {
+        show: !isResponsive || !customHeader,
+      },
+    },
+    {
+      field: 'github',
+      name: 'Github',
+      render: (username: User['github']) => (
+        <EuiLink href="#" target="_blank">
+          {username}
+        </EuiLink>
+      ),
+    },
+    {
+      field: 'dateOfBirth',
+      name: 'Date of Birth',
+      dataType: 'date',
+      render: (dateOfBirth: User['dateOfBirth']) =>
+        formatDate(dateOfBirth, 'dobLong'),
+      sortable: true,
+    },
+    {
+      field: 'location',
+      name: 'Location',
+      truncateText: true,
+      textOnly: true,
+      render: (location: User['location']) => {
+        return `${location.city}, ${location.country}`;
+      },
+    },
+    {
+      field: 'online',
+      name: 'Online',
+      dataType: 'boolean',
+      render: (online: User['online']) => {
+        const color = online ? 'success' : 'danger';
+        const label = online ? 'Online' : 'Offline';
+        return <EuiHealth color={color}>{label}</EuiHealth>;
+      },
+      sortable: true,
+    },
+    {
+      field: '',
+      name: 'Mobile only',
+      mobileOptions: {
+        only: true,
+        render: () => 'This column only appears on mobile',
+      },
+    },
+    {
+      name: 'Actions',
+      actions: [
+        {
+          name: 'Clone',
+          description: 'Clone this person',
+          icon: 'copy',
+          type: 'icon',
+          onClick: (user: User) => {
+            cloneUserbyId(user.id);
+            setSelectedItems([]);
+          },
+        },
+        {
+          name: 'Delete',
+          description: 'Delete this person',
+          icon: 'trash',
+          type: 'icon',
+          color: 'danger',
+          onClick: (user: User) => {
+            deleteUsersByIds(user.id);
+            setSelectedItems([]);
+          },
+        },
+      ],
+    },
+  ];
+
+  return (
+    <>
+      <EuiFlexGroup alignItems="center" responsive={false}>
+        <EuiFlexItem grow={false}>
+          <EuiSwitch
+            label="Responsive"
+            checked={isResponsive}
+            onChange={() => setIsResponsive(!isResponsive)}
+          />
+        </EuiFlexItem>
+        <EuiFlexItem grow={false}>
+          <EuiSwitch
+            label="Custom header"
+            disabled={!isResponsive}
+            checked={isResponsive && customHeader}
+            onChange={() => setCustomHeader(!customHeader)}
+          />
+        </EuiFlexItem>
+      </EuiFlexGroup>
+
+      <EuiSpacer size="l" />
+
+      <EuiBasicTable
+        tableCaption="Demo for responsive EuiBasicTable with mobile options"
+        items={users}
+        itemId="id"
+        columns={columns}
+        selection={{ initialSelected: [] }}
+        responsiveBreakpoint={isResponsive}
+      />
+    </>
+  );
+};
+```
+
+## Manual pagination and sorting
+
+**EuiBasicTable**'s `pagination` and `sorting` properties _only_ affect the UI displayed on the table (e.g. rendering sorting arrows or pagination numbers). They do not actually handle showing paginated or sorting your `items` data.
+
+This is primarily useful for large amounts of API-based data, where storing or sorting all rows in-memory would pose significant performance issues. Your API backend should then asynchronously handle sorting/filtering/caching your data.
+
+:::tip
+For non-asynchronous and smaller datasets use-cases (in the hundreds or less), we recommend using [**EuiInMemoryTable**](../in-memory), which automatically handles pagination, sorting, and searching in-memory.
+:::
+
+### Pagination
+
+The following example shows how to configure pagination via the `pagination` property.
+
+```tsx interactive
+import React, { useState } from 'react';
+import {
+  formatDate,
+  EuiBasicTable,
+  EuiBasicTableColumn,
+  Criteria,
+  EuiCode,
+  EuiHealth,
+  EuiSpacer,
+  EuiSwitch,
+  EuiHorizontalRule,
+  EuiText,
+} from '@elastic/eui';
+import { faker } from '@faker-js/faker';
+
+type User = {
+  id: string;
+  firstName: string | null | undefined;
+  lastName: string;
+  dateOfBirth: Date;
+  online: boolean;
+  location: {
+    city: string;
+    country: string;
+  };
+};
+
+const users: User[] = [];
+
+for (let i = 0; i < 20; i++) {
+  users.push({
+    id: faker.string.uuid(),
+    firstName: faker.person.firstName(),
+    lastName: faker.person.lastName(),
+    dateOfBirth: faker.date.past(),
+    online: faker.datatype.boolean(),
+    location: {
+      city: faker.location.city(),
+      country: faker.location.country(),
+    },
+  });
+}
+
+const columns: Array<EuiBasicTableColumn<User>> = [
+  {
+    field: 'firstName',
+    name: 'First Name',
+    truncateText: true,
+    mobileOptions: {
+      render: (user: User) => (
+        <>
+          {user.firstName} {user.lastName}
+        </>
+      ),
+      header: false,
+      truncateText: false,
+      enlarge: true,
+      width: '100%',
+    },
+  },
+  {
+    field: 'lastName',
+    name: 'Last Name',
+    truncateText: true,
+    mobileOptions: {
+      show: false,
+    },
+  },
+  {
+    field: 'dateOfBirth',
+    name: 'Date of Birth',
+    dataType: 'date',
+    render: (dateOfBirth: User['dateOfBirth']) =>
+      formatDate(dateOfBirth, 'dobLong'),
+  },
+  {
+    field: 'location',
+    name: 'Location',
+    truncateText: true,
+    textOnly: true,
+    render: (location: User['location']) => {
+      return `${location.city}, ${location.country}`;
+    },
+  },
+  {
+    field: 'online',
+    name: 'Online',
+    dataType: 'boolean',
+    render: (online: User['online']) => {
+      const color = online ? 'success' : 'danger';
+      const label = online ? 'Online' : 'Offline';
+      return <EuiHealth color={color}>{label}</EuiHealth>;
+    },
+  },
+];
+
+export default () => {
+  const [pageIndex, setPageIndex] = useState(0);
+  const [pageSize, setPageSize] = useState(5);
+  const [showPerPageOptions, setShowPerPageOptions] = useState(true);
+
+  const onTableChange = ({ page }: Criteria<User>) => {
+    if (page) {
+      const { index: pageIndex, size: pageSize } = page;
+      setPageIndex(pageIndex);
+      setPageSize(pageSize);
+    }
+  };
+
+  const togglePerPageOptions = () => setShowPerPageOptions(!showPerPageOptions);
+
+  // Manually handle pagination of data
+  const findUsers = (users: User[], pageIndex: number, pageSize: number) => {
+    let pageOfItems;
+
+    if (!pageIndex && !pageSize) {
+      pageOfItems = users;
+    } else {
+      const startIndex = pageIndex * pageSize;
+      pageOfItems = users.slice(
+        startIndex,
+        Math.min(startIndex + pageSize, users.length)
+      );
+    }
+
+    return {
+      pageOfItems,
+      totalItemCount: users.length,
+    };
+  };
+
+  const { pageOfItems, totalItemCount } = findUsers(users, pageIndex, pageSize);
+
+  const pagination = {
+    pageIndex,
+    pageSize,
+    totalItemCount,
+    pageSizeOptions: [10, 0],
+    showPerPageOptions,
+  };
+
+  const resultsCount =
+    pageSize === 0 ? (
+      <strong>All</strong>
+    ) : (
+      <>
+        <strong>
+          {pageSize * pageIndex + 1}-{pageSize * pageIndex + pageSize}
+        </strong>{' '}
+        of {totalItemCount}
+      </>
+    );
+
+  return (
+    <>
+      <EuiSwitch
+        checked={!showPerPageOptions}
+        label={
+          <>
+            Hide per page options with{' '}
+            <EuiCode>pagination.showPerPageOptions = false</EuiCode>
+          </>
+        }
+        onChange={togglePerPageOptions}
+      />
+      <EuiSpacer size="xl" />
+      <EuiText size="xs">
+        Showing {resultsCount} <strong>Users</strong>
+      </EuiText>
+      <EuiSpacer size="s" />
+      <EuiHorizontalRule margin="none" style={{ height: 2 }} />
+      <EuiBasicTable
+        tableCaption="Demo for EuiBasicTable with pagination"
+        responsiveBreakpoint={false}
+        items={pageOfItems}
+        columns={columns}
+        pagination={pagination}
+        onChange={onTableChange}
+      />
+    </>
+  );
+};
+```
+
+### Sorting
+
+The following example shows how to configure column sorting via the `sorting` property and flagging the sortable columns as `sortable: true`. To enable the default sorting ability for **every** column, pass `enableAllColumns: true` to the `sorting` prop. If you don't want the user to have control over the sort you can pass `readOnly: true` to the `sorting` prop or per column.
+
+```tsx interactive
+import React, { useState } from 'react';
+import {
+  formatDate,
+  Comparators,
+  EuiBasicTable,
+  EuiBasicTableColumn,
+  EuiTableSortingType,
+  Criteria,
+  EuiHealth,
+  EuiIcon,
+  EuiToolTip,
+  EuiFlexGroup,
+  EuiFlexItem,
+  EuiSwitch,
+  EuiSpacer,
+  EuiCode,
+} from '@elastic/eui';
+import { faker } from '@faker-js/faker';
+
+type User = {
+  id: number;
+  firstName: string | null | undefined;
+  lastName: string;
+  dateOfBirth: Date;
+  online: boolean;
+  location: {
+    city: string;
+    country: string;
+  };
+};
+
+const users: User[] = [];
+
+for (let i = 0; i < 20; i++) {
+  users.push({
+    id: i + 1,
+    firstName: faker.person.firstName(),
+    lastName: faker.person.lastName(),
+    dateOfBirth: faker.date.past(),
+    online: faker.datatype.boolean(),
+    location: {
+      city: faker.location.city(),
+      country: faker.location.country(),
+    },
+  });
+}
+
+const columns: Array<EuiBasicTableColumn<User>> = [
+  {
+    field: 'firstName',
+    name: 'First Name',
+    sortable: true,
+    truncateText: true,
+    mobileOptions: {
+      render: (user: User) => (
+        <>
+          {user.firstName} {user.lastName}
+        </>
+      ),
+      header: false,
+      truncateText: false,
+      enlarge: true,
+      width: '100%',
+    },
+  },
+  {
+    field: 'lastName',
+    name: 'Last Name',
+    truncateText: true,
+    mobileOptions: {
+      show: false,
+    },
+  },
+ {
+    field: 'dateOfBirth',
+    name: 'Date of Birth',
+    nameTooltip: {
+      content: "Colloquially known as a 'birthday'",
+    },
+    render: (dateOfBirth: User['dateOfBirth']) =>
+      formatDate(dateOfBirth, 'dobLong'),
+  },
+  {
+    field: 'location',
+    name: 'Location',
+    nameTooltip: {
+      content: 'The city and country in which this person resides',
+    },
+    render: (location: User['location']) => {
+      return `${location.city}, ${location.country}`;
+    },
+    truncateText: true,
+    textOnly: true,
+  },
+  {
+    field: 'online',
+    name: 'Online',
+    nameTooltip: {
+      content: 'Free to talk or busy with business',
+    },
+    render: (online: User['online']) => {
+      const color = online ? 'success' : 'danger';
+      const label = online ? 'Online' : 'Offline';
+      return <EuiHealth color={color}>{label}</EuiHealth>;
+    },
+  },
+];
+
+export default () => {
+  const [enableAll, setEnableAll] = useState(false);
+  const [readonly, setReadonly] = useState(false);
+
+  const [pageIndex, setPageIndex] = useState(0);
+  const [pageSize, setPageSize] = useState(5);
+  const [sortField, setSortField] = useState<keyof User>('firstName');
+  const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('asc');
+
+  const onTableChange = ({ page, sort }: Criteria<User>) => {
+    if (page) {
+      const { index: pageIndex, size: pageSize } = page;
+      setPageIndex(pageIndex);
+      setPageSize(pageSize);
+    }
+    if (sort) {
+      const { field: sortField, direction: sortDirection } = sort;
+      setSortField(sortField);
+      setSortDirection(sortDirection);
+    }
+  };
+
+  // Manually handle sorting and pagination of data
+  const findUsers = (
+    users: User[],
+    pageIndex: number,
+    pageSize: number,
+    sortField: keyof User,
+    sortDirection: 'asc' | 'desc'
+  ) => {
+    let items;
+
+    if (sortField) {
+      items = users
+        .slice(0)
+        .sort(
+          Comparators.property(sortField, Comparators.default(sortDirection))
+        );
+    } else {
+      items = users;
+    }
+
+    let pageOfItems;
+
+    if (!pageIndex && !pageSize) {
+      pageOfItems = items;
+    } else {
+      const startIndex = pageIndex * pageSize;
+      pageOfItems = items.slice(
+        startIndex,
+        Math.min(startIndex + pageSize, users.length)
+      );
+    }
+
+    return {
+      pageOfItems,
+      totalItemCount: users.length,
+    };
+  };
+
+  const { pageOfItems, totalItemCount } = findUsers(
+    users,
+    pageIndex,
+    pageSize,
+    sortField,
+    sortDirection
+  );
+
+  const pagination = {
+    pageIndex: pageIndex,
+    pageSize: pageSize,
+    totalItemCount: totalItemCount,
+    pageSizeOptions: [3, 5, 8],
+  };
+
+  const sorting: EuiTableSortingType<User> = {
+    sort: {
+      field: sortField,
+      direction: sortDirection,
+    },
+    enableAllColumns: enableAll,
+    readOnly: readonly,
+  };
+
+  return (
+    <>
+      <EuiFlexGroup>
+        <EuiFlexItem grow={false}>
+          <EuiSwitch
+            label={<EuiCode>enableAllColumns</EuiCode>}
+            checked={enableAll}
+            onChange={() => setEnableAll((enabled) => !enabled)}
+          />
+        </EuiFlexItem>
+        <EuiFlexItem grow={false}>
+          <EuiSwitch
+            label={<EuiCode>readOnly</EuiCode>}
+            checked={readonly}
+            onChange={() => setReadonly((readonly) => !readonly)}
+          />
+        </EuiFlexItem>
+      </EuiFlexGroup>
+      <EuiSpacer />
+      <EuiBasicTable
+        tableCaption="Demo for EuiBasicTable with sorting"
+        responsiveBreakpoint={false}
+        items={pageOfItems}
+        columns={columns}
+        pagination={pagination}
+        sorting={sorting}
+        onChange={onTableChange}
+      />
+    </>
+  );
+};
+```
+
+## Props
+
+import docgen from '@elastic/eui-docgen/dist/components/basic_table';
+
+<PropTable definition={docgen.EuiBasicTable} />

@@ -13,6 +13,7 @@ import React, {
   useCallback,
   useMemo,
   PropsWithChildren,
+  useRef,
 } from 'react';
 import { keys, useEuiMemoizedStyles } from '../../services';
 import { useEuiI18n } from '../i18n';
@@ -20,6 +21,7 @@ import { EuiButtonIcon } from '../button';
 import { EuiFocusTrap } from '../focus_trap';
 import { EuiOverlayMask } from '../overlay_mask';
 import { euiCodeBlockStyles } from './code_block.styles';
+import { EuiDelayRender } from '../delay_render';
 
 /**
  * Hook that returns fullscreen-related state/logic/utils
@@ -29,13 +31,26 @@ export const useFullScreen = ({
 }: {
   overflowHeight?: number | string;
 }) => {
+  const toggleButtonRef = useRef<HTMLButtonElement>(null);
+
   const showFullScreenButton = !!overflowHeight;
 
   const [isFullScreen, setIsFullScreen] = useState(false);
 
+  const returnFocus = () => {
+    // uses timeout to ensure focus is placed after potential other updates happen
+    setTimeout(() => {
+      toggleButtonRef.current?.focus();
+    });
+  };
+
   const toggleFullScreen = useCallback(() => {
     setIsFullScreen((isFullScreen) => !isFullScreen);
-  }, []);
+
+    if (isFullScreen) {
+      returnFocus();
+    }
+  }, [isFullScreen]);
 
   const onKeyDown = useCallback((event: KeyboardEvent<HTMLElement>) => {
     if (event.key === keys.ESCAPE) {
@@ -48,6 +63,8 @@ export const useFullScreen = ({
         event.preventDefault();
         event.stopPropagation();
         setIsFullScreen(false);
+
+        returnFocus();
       }
     }
   }, []);
@@ -61,14 +78,25 @@ export const useFullScreen = ({
   );
 
   const fullScreenButton = useMemo(() => {
-    return showFullScreenButton ? (
+    const button = (
       <EuiButtonIcon
+        buttonRef={toggleButtonRef}
         className="euiCodeBlock__fullScreenButton"
         onClick={toggleFullScreen}
         iconType={isFullScreen ? 'fullScreenExit' : 'fullScreen'}
         color="text"
         aria-label={isFullScreen ? fullscreenCollapse : fullscreenExpand}
       />
+    );
+
+    return showFullScreenButton ? (
+      isFullScreen ? (
+        // use delay to prevent label being updated in non-fullscreen state before fullscreen is opened
+        // otherwise this causes screen readers to read the collapse label before anything else (as the button was focused when opening)
+        <EuiDelayRender delay={10}>{button}</EuiDelayRender>
+      ) : (
+        button
+      )
     ) : null;
   }, [
     showFullScreenButton,
@@ -89,8 +117,10 @@ export const useFullScreen = ({
  * Portalled full screen wrapper
  */
 export const EuiCodeBlockFullScreenWrapper: FunctionComponent<
-  PropsWithChildren
-> = ({ children }) => {
+  PropsWithChildren & {
+    onClose: (event: React.KeyboardEvent<HTMLElement>) => void;
+  }
+> = ({ children, onClose }) => {
   const styles = useEuiMemoizedStyles(euiCodeBlockStyles);
   const cssStyles = [
     styles.euiCodeBlock,
@@ -98,10 +128,26 @@ export const EuiCodeBlockFullScreenWrapper: FunctionComponent<
     styles.isFullScreen,
   ];
 
+  const ariaLabel = useEuiI18n(
+    'euiCodeBlockFullScreen.ariaLabel',
+    'Expanded code block'
+  );
+
+  const dialogProps = {
+    role: 'dialog',
+    'aria-modal': true,
+    'aria-label': ariaLabel,
+    onKeyDown: onClose,
+  };
+
   return (
     <EuiOverlayMask>
       <EuiFocusTrap scrollLock preventScrollOnFocus clickOutsideDisables={true}>
-        <div className="euiCodeBlockFullScreen" css={cssStyles}>
+        <div
+          className="euiCodeBlockFullScreen"
+          css={cssStyles}
+          {...dialogProps}
+        >
           {children}
         </div>
       </EuiFocusTrap>
