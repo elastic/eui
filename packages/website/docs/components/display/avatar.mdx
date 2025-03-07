@@ -78,7 +78,7 @@ export default () => (
 
 ## Types
 
-The avatar `type`, which primarily defines the shape, is keyworded and can be `"user"` (default) or `"space"` (for workspaces).
+The avatar `type`, which primarily defines the shape, is a keyword and can be `"user"` (default) or `"space"` (for workspaces).
 
 ```tsx interactive
 import React from 'react';
@@ -105,7 +105,7 @@ export default () => (
 
 Icons can also be displayed instead of initials or images. When simply passing an `iconType`, it will both size and color appropriately based on the other **EuiAvatar** props. To customize these specifically, pass `iconSize` and `iconColor`.
 
-If your icon has multiples or custom colors like a logo, you can keep the default `iconColor` by passing `null`. Otherwise it will get the appropriate contrast acceptable variant. Just ensure that you also are providing an accesible background color to match that of the icon's color.
+If your icon has multiples or custom colors like a logo, you can keep the default `iconColor` by passing `null`. Otherwise it will get the appropriate contrast acceptable variant. Just ensure that you also are providing an accessible background color to match that of the icon's color.
 
 ```tsx interactive
 import React, { useContext } from 'react';
