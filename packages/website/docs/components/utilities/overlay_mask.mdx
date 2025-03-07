@@ -64,60 +64,7 @@ export default () => {
 
 ## Masks with header
 
-
-Managing z-index levels of multiple portal-positioned components and their different contexts is complicated from within the library. **EuiOverlayMask** gives you control over whether it should appear below or above an [EuiHeader](../layout/header.mdx) by providing the `headerZindexLocation` prop. By default this is set to `"above"` for common cases like with [EuiModal](../layout/modal/overview.mdx) where the header should be obscured. However, a component like [EuiFlyout](../layout/flyout/flyout.mdx) which utilizes the overlay mask but should keep the header visible should use `"below"`.
-
-<Demo>
-```tsx interactive
-import React, { useState } from 'react';
-
-import {
-  EuiOverlayMask,
-  EuiButton,
-  EuiSpacer,
-  EuiFlyout,
-  EuiFlyoutHeader,
-  EuiTitle,
-} from '@elastic/eui';
-
-export default () => {
-  const [maskOpen, changeMask] = useState(false);
-  const [showFlyout, changeFlyout] = useState(false);
-
-  const mask = (
-    <EuiOverlayMask headerZindexLocation="below">
-      <EuiButton onClick={() => changeMask(false)}>
-        Click this button to close
-      </EuiButton>
-    </EuiOverlayMask>
-  );
-
-  const flyout = (
-    <EuiFlyout size="s" onClose={() => changeFlyout(false)}>
-      <EuiFlyoutHeader>
-        <EuiTitle>
-          <h1>Click outside this flyout to close overlay. </h1>
-        </EuiTitle>
-      </EuiFlyoutHeader>
-    </EuiFlyout>
-  );
-
-  return (
-    <>
-      <EuiButton onClick={() => changeMask(true)}>
-        Overlay below header
-      </EuiButton>
-      <EuiSpacer size="xxl" />
-      <EuiButton onClick={() => changeFlyout(true)}>
-        EuiFlyout defaults to below
-      </EuiButton>
-      {maskOpen ? mask : null}
-      {showFlyout ? flyout : null}
-    </>
-  );
-};
-```
-</Demo>
+Managing z-index levels of multiple portal-positioned components and their different contexts is complicated from within the library. **EuiOverlayMask** gives you control over whether it should appear below or above an [EuiHeader](../layout/header.mdx) by providing the `headerZindexLocation` prop. By default this is set to `"above"` for common cases like with [EuiModal](../layout/modal/overview.mdx) where the header should be obscured. However, a component like [EuiFlyout](../layout/flyout/flyout.mdx) which utilizes the overlay mask but should keep the header visible should use `"below"` (which is its default value).
 
 ## Props
 
