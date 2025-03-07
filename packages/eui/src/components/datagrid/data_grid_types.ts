@@ -19,7 +19,7 @@ import {
   Component,
   ComponentClass,
   KeyboardEventHandler,
-  JSX
+  JSX,
 } from 'react';
 import {
   VariableSizeGridProps,
