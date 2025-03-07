@@ -10,9 +10,14 @@ For advanced use cases, and particularly for data grids that manage associated m
 
 * `setIsFullScreen(isFullScreen)` - controls the fullscreen state of the data grid. Accepts a true/false boolean flag.
 * `setFocusedCell({ rowIndex, colIndex })` - focuses the specified cell in the grid.
-  * Using this method is an **accessibility requirement** if your data grid toggles a modal or flyout. Your modal or flyout should restore focus into the grid on close to prevent keyboard or screen reader users from being stranded.
 * `openCellPopover({ rowIndex, colIndex })` - opens the specified cell's popover contents.
 * `closeCellPopover()` - closes any currently open cell popover.
+
+:::warning Accessibility warning regarding `setFocusedCell`
+
+If your data grid toggles a modal or flyout, using `setFocusedCell` is an **accessibility requirement**. Your modal or flyout should restore focus into the grid on close to prevent keyboard or screen reader users from being stranded.
+
+:::
 
 :::note Handling cell location
 

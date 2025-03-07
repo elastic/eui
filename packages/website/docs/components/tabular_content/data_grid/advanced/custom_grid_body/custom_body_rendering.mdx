@@ -6,10 +6,10 @@ sidebar_position: 2
 
 # Custom body rendering
 
-For **extremely** advanced use cases, the `renderCustomGridBody` prop may be used to take complete control over rendering the grid body. This may be useful for scenarios where the default [virtualized](/docs/tabular-content/data-grid#virtualization) rendering is not desired, or where custom row layouts (e.g., the conditional row details cell below) are required.
+For **extremely** advanced use cases, the `renderCustomGridBody` prop may be used to take complete control over rendering the grid body. This may be useful for scenarios where the default [virtualized](../../container_constraints.mdx#virtualization) rendering is not desired, or where custom row layouts (e.g., the conditional row details cell below) are required.
 
 :::warning
-This prop is meant to be an **escape hatch**, and should only be used if you know exactly what you are doing. Once a custom renderer is used, you are in charge of ensuring the grid has all the correct semantic and aria labels required by the [data grid spec](https://www.w3.org/WAI/ARIA/apg/patterns/grid), and that keyboard focus and navigation still work in an accessible manner.
+This prop is meant to be an **escape hatch**, and should only be used if you know exactly what you are doing. Once a custom renderer is used, you are in charge of ensuring the grid has all the correct semantic and aria labels required by the <a href="https://www.w3.org/WAI/ARIA/apg/patterns/grid" target="_blank" rel="noopenner noreferrer">data grid spec</a>, and that keyboard focus and navigation still work in an accessible manner.
 :::
 
 import Demo from './demo';

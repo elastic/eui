@@ -5,16 +5,16 @@ id: tabular_content_data_grid
 
 # Data grid
 
-**EuiDataGrid** is for displaying large amounts of tabular data. It is a better choice over [EUI tables](../tables/) when there are many columns, the data in those columns is fairly uniform, and when schemas and sorting are important for comparison. Although it is similar to traditional spreedsheet software, EuiDataGrid's current strengths are in rendering rather than creating content.
+**EuiDataGrid** is for displaying large amounts of tabular data. It is a better choice over [EUI tables](../tables/overview.mdx) when there are many columns, the data in those columns is fairly uniform, and when schemas and sorting are important for comparison. Although it is similar to traditional spreedsheet software, EuiDataGrid's current strengths are in rendering rather than creating content.
 
 ## Core concepts
 
-*   The grid allows you to optionally define an [in memory level](./advanced/in-memory/) to have the grid automatically handle updating your columns. Depending upon the level chosen, you may need to manage the content order separately from the grid.
-*   [Schemas](./schema-and-columns) allow you to tailor the render and sort methods for each column. The component ships with a few automatic schema detection and types, but you can also pass in custom ones.
-*   Unlike tables, the data grid **forces truncation**. To display more content your can customize [popovers](./cells-and-popovers#conditionally-customizing-cell-popover-content) to display more content and actions into popovers.
-*   [Grid styling](./style-and-display#grid-style) can be controlled by the engineer, but augmented by user preference depending upon the features you enable.
-*   [Control columns](./schema-and-columns#control-columns) allow you to add repeatable actions and controls like checkboxes or buttons to your grid.
-*   The [toolbar](./toolbar) offers the user ways to manipulate the display and order of the data.
+*   The grid allows you to optionally define an [in memory level](./advanced/in_memory.mdx) to have the grid automatically handle updating your columns. Depending upon the level chosen, you may need to manage the content order separately from the grid.
+*   [Schemas](./schema_and_columns.mdx) allow you to tailor the render and sort methods for each column. The component ships with a few automatic schema detection and types, but you can also pass in custom ones.
+*   Unlike tables, the data grid **forces truncation**. To display more content your can customize [popovers](./cells_and_popovers.mdx#conditionally-customizing-cell-popover-content) to display more content and actions into popovers.
+*   [Grid styling](./style_and_display.mdx#grid-style) can be controlled by the engineer, but augmented by user preference depending upon the features you enable.
+*   [Control columns](./schema_and_columns.mdx#control-columns) allow you to add repeatable actions and controls like checkboxes or buttons to your grid.
+*   The [toolbar](./toolbar.mdx) offers the user ways to manipulate the display and order of the data.
 
 ```tsx interactive
 import React, {
