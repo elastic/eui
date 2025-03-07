@@ -66,7 +66,7 @@ export const GuideSectionPropsDescription: FunctionComponent<
       <div className={classNames('guideSection__propsTableIntro', className)}>
         <EuiFlexGroup alignItems="baseline" wrap>
           <EuiFlexItem grow={false}>
-            <EuiTitle size="s">
+            <EuiTitle size="xs">
               <h3 id={componentName}>{componentName}</h3>
             </EuiTitle>
           </EuiFlexItem>

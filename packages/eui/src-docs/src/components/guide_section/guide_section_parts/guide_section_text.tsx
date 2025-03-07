@@ -30,7 +30,7 @@ export const GuideSectionExampleText: FunctionComponent<
 
     titleNode = (
       <>
-        <EuiTitle>
+        <EuiTitle size='s'>
           <h2 id={id}>
             {title}
             {badge && <>&emsp;{badge}</>}
