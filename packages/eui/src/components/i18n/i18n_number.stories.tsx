@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { ReactChild } from 'react';
+import React, { ReactNode } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { LOKI_SELECTORS } from '../../../.storybook/loki';
@@ -46,7 +46,7 @@ export const MultipleValues: Story = {
   },
   args: {
     values: [0, 1, 2],
-    children: (values: ReactChild[]) => (
+    children: (values: ReactNode[]) => (
       <>
         {values.map((value, index) => (
           <EuiText key={index}>

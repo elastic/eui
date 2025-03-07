@@ -16,13 +16,13 @@ describe('warnOnce', () => {
   it('should warn only once per id', () => {
     warnOnce('1', 'message');
     warnOnce('1', 'message');
-    expect(warn).toBeCalledTimes(1);
+    expect(warn).toHaveBeenCalledTimes(1);
     warnOnce('2', 'message');
-    expect(warn).toBeCalledTimes(2);
+    expect(warn).toHaveBeenCalledTimes(2);
     warnOnce('2', 'message');
-    expect(warn).toBeCalledTimes(2);
+    expect(warn).toHaveBeenCalledTimes(2);
     warnOnce('1', 'message');
-    expect(warn).toBeCalledTimes(2);
+    expect(warn).toHaveBeenCalledTimes(2);
   });
   afterAll(() => warn.mockRestore());
 });

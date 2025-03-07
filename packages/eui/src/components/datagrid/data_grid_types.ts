@@ -19,6 +19,7 @@ import {
   Component,
   ComponentClass,
   KeyboardEventHandler,
+  JSX,
 } from 'react';
 import {
   VariableSizeGridProps,
@@ -528,11 +529,11 @@ export interface EuiDataGridCustomBodyProps {
   /**
    * Header row component to render by custom renderer
    * */
-  headerRow: React.JSX.Element;
+  headerRow: JSX.Element;
   /**
    * Footer row component to render by custom renderer
    * */
-  footerRow: React.JSX.Element | null;
+  footerRow: JSX.Element | null;
 }
 
 export type EuiDataGridSetCustomGridBodyProps = CommonProps &

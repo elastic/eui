@@ -37,7 +37,7 @@ import { HEADER_CELL_SCOPE } from './table_header_cell_shared';
 export type TableHeaderCellScope = (typeof HEADER_CELL_SCOPE)[number];
 
 export type EuiTableHeaderCellProps = CommonProps &
-  Omit<ThHTMLAttributes<HTMLTableHeaderCellElement>, 'align' | 'scope'> & {
+  Omit<ThHTMLAttributes<HTMLTableCellElement>, 'align' | 'scope'> & {
     align?: HorizontalAlignment;
     isSortAscending?: boolean;
     isSorted?: boolean;

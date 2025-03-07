@@ -10,16 +10,15 @@ import React, {
   createContext,
   Context,
   FunctionComponent,
-  ReactChild,
   ReactNode,
 } from 'react';
 
 export interface RenderableValues {
   // undefined values are ignored, but including support here improves usability
-  [key: string]: ReactChild | undefined;
+  [key: string]: ReactNode | undefined;
 }
 
-export type Renderable<T> = ReactChild | ((values: T) => ReactChild);
+export type Renderable<T> = ReactNode | ((values: T) => ReactNode);
 
 export interface I18nShape {
   mapping?: {

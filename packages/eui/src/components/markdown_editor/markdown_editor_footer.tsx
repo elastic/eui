@@ -10,9 +10,9 @@ import React, {
   useState,
   useMemo,
   Fragment,
-  ReactChild,
   forwardRef,
   useContext,
+  ReactNode,
 } from 'react';
 
 import { useEuiMemoizedStyles } from '../../services';
@@ -256,7 +256,7 @@ export const EuiMarkdownEditorFooter = forwardRef<
                   {([
                     syntaxModalDescriptionPrefix,
                     syntaxModalDescriptionSuffix,
-                  ]: ReactChild[]) => (
+                  ]: ReactNode[]) => (
                     <p>
                       {syntaxModalDescriptionPrefix} {mdSyntaxLink}.{' '}
                       {syntaxModalDescriptionSuffix}
@@ -315,7 +315,7 @@ export const EuiMarkdownEditorFooter = forwardRef<
           tokens={['euiMarkdownEditorFooter.syntaxPopoverDescription']}
           defaults={['This editor uses']}
         >
-          {([syntaxPopoverDescription]: ReactChild[]) => (
+          {([syntaxPopoverDescription]: ReactNode[]) => (
             <p>
               {syntaxPopoverDescription} {mdSyntaxLink}.
             </p>

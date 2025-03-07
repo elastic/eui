@@ -12,6 +12,7 @@ import React, {
   HTMLAttributes,
   MouseEventHandler,
   ReactNode,
+  JSX,
 } from 'react';
 import classNames from 'classnames';
 

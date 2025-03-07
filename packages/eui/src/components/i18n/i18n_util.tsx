@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import { cloneElement, ReactChild } from 'react';
+import { cloneElement, ReactNode } from 'react';
 import {
   isBoolean,
   isString,
@@ -16,13 +16,13 @@ import {
 import { isElement } from 'react-is';
 import { RenderableValues } from '../context/context';
 
-function isPrimitive(value: ReactChild | undefined) {
+function isPrimitive(value: ReactNode | undefined) {
   return (
     isBoolean(value) || isString(value) || isNumber(value) || isUndefined(value)
   );
 }
 
-type Child = string | { propName: string } | ReactChild | undefined;
+type Child = string | { propName: string } | ReactNode | undefined;
 
 function hasPropName(child: Child): child is { propName: string } {
   return child
@@ -36,14 +36,14 @@ function hasPropName(child: Child): child is { propName: string } {
  * @param {string} input
  * @param {RenderableValues} values
  * @param {Function} i18nMappingFunc
- * @returns {string | React.ReactChild[]}
+ * @returns {string | ReactNode[]}
  */
 export function processStringToChildren(
   input: string,
   values: RenderableValues,
   i18nMappingFunc?: (token: string) => string
-): string | ReactChild[] {
-  const children: ReactChild[] = [];
+): string | ReactNode[] {
+  const children: ReactNode[] = [];
 
   let child: Child;
 

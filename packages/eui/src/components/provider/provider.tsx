@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { PropsWithChildren } from 'react';
+import React, { PropsWithChildren, JSX } from 'react';
 import type { EmotionCache } from '@emotion/css';
 import { EuiThemeBorealis } from '@elastic/eui-theme-borealis';
 

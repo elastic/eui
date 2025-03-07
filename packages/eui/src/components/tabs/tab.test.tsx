@@ -33,7 +33,7 @@ describe('EuiTab', () => {
         const $button = shallow(<EuiTab onClick={onClickHandler} />);
 
         $button.simulate('click');
-        expect(onClickHandler).toBeCalled();
+        expect(onClickHandler).toHaveBeenCalled();
       });
     });
 

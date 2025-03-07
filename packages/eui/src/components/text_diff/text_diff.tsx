@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { HTMLAttributes, useMemo, ElementType } from 'react';
+import React, { HTMLAttributes, useMemo, ElementType, JSX } from 'react';
 import Diff from 'text-diff';
 import classNames from 'classnames';
 import { useEuiMemoizedStyles } from '../../services';
