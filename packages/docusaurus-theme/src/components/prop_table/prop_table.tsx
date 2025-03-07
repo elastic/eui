@@ -21,6 +21,7 @@ import { PropTableExtendedTypes } from './extended_types';
 export interface PropTableProps {
   definition: ProcessedComponent;
   headingLevel?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
+  showTitle?: boolean;
 }
 
 const getPropId = (prop: ProcessedComponentProp, componentName: string) =>
@@ -77,6 +78,7 @@ const getPropTableStyles = ({ euiTheme }: UseEuiTheme) => ({
 export const PropTable = ({
   definition,
   headingLevel: HeadingLevel = 'h3',
+  showTitle = true,
 }: PropTableProps) => {
   const styles = useEuiMemoizedStyles(getPropTableStyles);
 
@@ -179,9 +181,11 @@ export const PropTable = ({
       css={styles.propTable}
     >
       <header css={styles.header}>
-        <EuiTitle size="m">
-          <HeadingLevel>{definition.displayName}</HeadingLevel>
-        </EuiTitle>
+        {showTitle && (
+          <EuiTitle size="m">
+            <HeadingLevel>{definition.displayName}</HeadingLevel>
+          </EuiTitle>
+        )}
         <PropTableExtendedTypes definition={definition} />
       </header>
       <EuiBasicTable
