@@ -235,7 +235,7 @@ By default, all rows get a height of **34 pixels**, but there are scenarios wher
     *   Accepts any value that the `line-height` CSS property normally takes (e.g. px, ems, rems, or unitless)
 *   `onChange`
     *   Optional callback when the user changes the data grid's internal `rowHeightsOptions` (e.g., via the toolbar display selector).
-    *   Can be used to store and preserve user display preferences on page refresh - see this [data grid styling and control example](/docs/tabular-content/data-grid/style-and-display#adjusting-your-grid-to-usertoolbar-changes).
+    *   Can be used to store and preserve user display preferences on page refresh - see this [data grid styling and control example](#adjusting-your-grid-to-usertoolbar-changes).
 *   `scrollAnchorRow`
     *   Optional indicator of the row that should be used as an anchor for vertical layout shift compensation.
     *   Can be set to the default `undefined`,`"start"`, or`"center"`.
@@ -302,7 +302,7 @@ export default () => {
       columnVisibility={{ visibleColumns, setVisibleColumns }}
       rowCount={raw_data.length}
       renderCellValue={RenderCell}
-      rowHeightsOptions={{ 
+      rowHeightsOptions={{
         defaultHeight: {
           lineCount: 3, // default every row to 3 lines of text
         },
