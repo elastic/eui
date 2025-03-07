@@ -124,7 +124,7 @@ class _Sizes extends Component<WithEuiThemeProps, State> {
       }
 
       changeDescription =
-        'If the points also start becoming to clustured, consider reducing your bin count. For line charts with dots, remove the dots.';
+        'If the points also start becoming to clustered, consider reducing your bin count. For line charts with dots, remove the dots.';
     }
 
     if (width < this.xsmallSize) {
