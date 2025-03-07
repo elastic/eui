@@ -20,10 +20,10 @@ import React, { useState } from 'react';
 import { EuiSideNav, htmlIdGenerator } from '@elastic/eui';
 
 export default () => {
-  const [isSideNavOpenOnMobile, setisSideNavOpenOnMobile] = useState(false);
+  const [isSideNavOpenOnMobile, setIsSideNavOpenOnMobile] = useState(false);
 
   const toggleOpenOnMobile = () => {
-    setisSideNavOpenOnMobile(!isSideNavOpenOnMobile);
+    setIsSideNavOpenOnMobile(!isSideNavOpenOnMobile);
   };
 
   const sideNav = [
@@ -73,7 +73,7 @@ export default () => {
 
 Since **EuiSideNav** renders a `<nav>` section element, it is recommended that the element contain a heading. Pass a string or node to the `heading` prop to display within an `<h2>`. Though you can also adjust this heading element with `headingProps.element`.
 
-If the heading is visually unnecessary for your application, pass `headingProps.screenReaderOnly` to ensure proper accessibility for those using assitive technology.
+If the heading is visually unnecessary for your application, pass `headingProps.screenReaderOnly` to ensure proper accessibility for those using assistive technology.
 
 :::note
 When providing a heading, this will then be the default display for the mobile button title.
@@ -84,10 +84,10 @@ import React, { useState } from 'react';
 import { EuiSideNav, htmlIdGenerator } from '@elastic/eui';
 
 export default () => {
-  const [isSideNavOpenOnMobile, setisSideNavOpenOnMobile] = useState(false);
+  const [isSideNavOpenOnMobile, setIsSideNavOpenOnMobile] = useState(false);
 
   const toggleOpenOnMobile = () => {
-    setisSideNavOpenOnMobile(!isSideNavOpenOnMobile);
+    setIsSideNavOpenOnMobile(!isSideNavOpenOnMobile);
   };
 
   const sideNav = [
