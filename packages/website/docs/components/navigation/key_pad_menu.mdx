@@ -209,8 +209,8 @@ export default () => {
     suffix: 'third',
   });
 
-  const [multiSelect1isSelected, setmultiSelect1isSelected] = useState(true);
-  const [multiSelect3isSelected, setmultiSelect2isSelected] = useState(false);
+  const [multiSelect1isSelected, setMultiSelect1isSelected] = useState(true);
+  const [multiSelect3isSelected, setMultiSelect2isSelected] = useState(false);
 
   return (
     <EuiKeyPadMenu checkable={{ legend: 'Multi select as checkboxes' }}>
@@ -220,7 +220,7 @@ export default () => {
         id={keypadMultiSelectButtonId__1}
         label="Check one"
         onChange={() => {
-          setmultiSelect1isSelected((selected) => !selected);
+          setMultiSelect1isSelected((selected) => !selected);
         }}
       >
         <EuiIcon type="faceHappy" size="l" />
@@ -231,7 +231,7 @@ export default () => {
         id={keypadMultiSelectButtonId__2}
         label="Check two"
         onChange={() => {
-          setmultiSelect2isSelected((selected) => !selected);
+          setMultiSelect2isSelected((selected) => !selected);
         }}
       >
         <EuiIcon type="faceNeutral" size="l" />

@@ -468,14 +468,14 @@ const Rows = () => {
   for (let i = 1; i <= counter; i++) {
     rows.push(<li key={i}>Row {i}</li>);
   }
-  const growingAccordianDescriptionId = useGeneratedHtmlId({
-    prefix: 'growingAccordianDescription',
+  const growingAccordionDescriptionId = useGeneratedHtmlId({
+    prefix: 'growingAccordionDescription',
   });
   const listId = useGeneratedHtmlId({ prefix: 'list' });
   return (
     <EuiText size="s">
       <EuiScreenReaderOnly>
-        <p id={growingAccordianDescriptionId}>
+        <p id={growingAccordionDescriptionId}>
           Currently height is set to {counter} items
         </p>
       </EuiScreenReaderOnly>
@@ -486,7 +486,7 @@ const Rows = () => {
           iconType="plusInCircleFilled"
           onClick={() => setCounter(counter + 1)}
           aria-controls={listId}
-          aria-describedby={growingAccordianDescriptionId}
+          aria-describedby={growingAccordionDescriptionId}
         >
           Increase height to {counter + 1} items
         </EuiButton>{' '}
@@ -494,7 +494,7 @@ const Rows = () => {
           size="s"
           iconType="minusInCircleFilled"
           aria-controls={listId}
-          aria-describedby={growingAccordianDescriptionId}
+          aria-describedby={growingAccordionDescriptionId}
           onClick={() => setCounter(Math.max(0, counter - 1))}
           isDisabled={counter === 1}
         >

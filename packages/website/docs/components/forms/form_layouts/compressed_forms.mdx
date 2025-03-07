@@ -270,7 +270,7 @@ export default () => {
 
 ## Contextual help
 
-When using compressed, horizontal form styles, it is best not to overload the UI with expansive help text. If it's short and part of the validation, use `helpText`. However, if it's an explanation of the control, consider wraping the label with an [**EuiToolTip**](../../display/tooltip.mdx) and appending the `questionInCircle` icon to it.
+When using compressed, horizontal form styles, it is best not to overload the UI with expansive help text. If it's short and part of the validation, use `helpText`. However, if it's an explanation of the control, consider wrapping the label with an [**EuiToolTip**](../../display/tooltip.mdx) and appending the `questionInCircle` icon to it.
 
 ```tsx interactive
 import React from 'react';
@@ -374,7 +374,7 @@ export default () => {
       <div style={{ width: 300 }}>
         <EuiFormRow label="Button group" display="columnCompressed">
           <EuiButtonGroup
-            legend="Granulariy of zoom levels"
+            legend="Granularity of zoom levels"
             options={granularityToggleButtons}
             idSelected={granularityIdSelected}
             onChange={onGranularityChange}
@@ -645,7 +645,7 @@ export default () => {
 
       <EuiFormRow label="Granularity" display="columnCompressed">
         <EuiButtonGroup
-          legend="Granulariy of zoom levels"
+          legend="Granularity of zoom levels"
           options={granularityToggleButtons}
           idSelected={granularityToggleButtonsIdSelected}
           onChange={onGranularityChange}
