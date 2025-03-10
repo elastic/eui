@@ -57,16 +57,21 @@ export const euiSuperDatePickerStyles = (euiThemeContext: UseEuiTheme) => {
   const formLayoutStyles =
     isExperimental &&
     `
-    .euiPopover:last-child {
-      ${logicalCSS('border-top-right-radius', 'inherit')}
-      ${logicalCSS('border-bottom-right-radius', 'inherit')}
-    }
+      /* using wrapper hover styles instead */
+      .euiDatePopoverButton:not(.euiDatePopoverButton-isSelected):hover {
+        outline: none;
+      }
 
-    .euiDatePopoverButton {
-      background-color: transparent;
-      border-radius: inherit;
-    }
-  `;
+      .euiPopover:last-child {
+        ${logicalCSS('border-top-right-radius', 'inherit')}
+        ${logicalCSS('border-bottom-right-radius', 'inherit')}
+      }
+
+      .euiDatePopoverButton {
+        background-color: transparent;
+        border-radius: inherit;
+      }
+    `;
 
   const popoverButtonFocusStyles = isExperimental
     ? `
@@ -197,7 +202,7 @@ export const euiSuperDatePickerStyles = (euiThemeContext: UseEuiTheme) => {
     states: {
       euiSuperDatePicker__formControlLayout: css`
         .euiFormControlLayout__childrenWrapper {
-          --euiFormControlStateHoverColor: ${forms.borderColor};
+          --euiFormControlStateHoverColor: ${forms.borderHovered};
           ${euiFormControlDefaultShadow(euiThemeContext)}
           box-shadow: none;
 
