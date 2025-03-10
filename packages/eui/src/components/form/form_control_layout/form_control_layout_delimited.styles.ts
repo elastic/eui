@@ -15,6 +15,7 @@ import {
   euiFormControlReadOnlyStyles,
   euiFormControlDefaultShadow,
   euiFormControlInvalidStyles,
+  euiFormControlHoverStyles,
 } from '../form.styles';
 
 export const euiFormControlLayoutDelimitedStyles = (
@@ -44,16 +45,44 @@ export const euiFormControlLayoutDelimitedStyles = (
       }
     `;
 
+  const delimitedStyles =
+    !isExperimental &&
+    `
+    /* Transition smoothly between disabled/readOnly background color changes */
+    ${euiFormControlDefaultShadow(euiThemeContext, {
+      withBorder: false,
+      withBackground: false,
+      withBackgroundAnimation: true,
+    })}
+  `.trim();
+
+  const delimitedWrapperStyles = (euiThemeContext: UseEuiTheme) => {
+    return (
+      isExperimental &&
+      `
+        ${euiFormControlDefaultShadow(euiThemeContext, {
+          withBorder: true,
+          withBackground: false,
+          withBackgroundAnimation: true,
+        })}
+
+        &:hover {
+          ${euiFormControlHoverStyles(euiThemeContext)}
+          box-shadow: none;
+
+          /* using hover styling on wrapper instead of the children inputs */
+          .euiFormControlLayoutDelimited__input:not(:focus) {
+            outline: none;
+            background-color: transparent;
+          }
+        }
+      `.trim()
+    );
+  };
+
   return {
     // Appended onto existing `euiFormControlLayout` styles
-    delimited: css(
-      // Transition smoothly between disabled/readOnly background color changes
-      euiFormControlDefaultShadow(euiThemeContext, {
-        withBorder: false,
-        withBackground: false,
-        withBackgroundAnimation: true,
-      })
-    ),
+    delimited: css(delimitedStyles),
     disabled: css(euiFormControlDisabledStyles(euiThemeContext)),
     readOnly: css`
       ${euiFormControlReadOnlyStyles(euiThemeContext)}
@@ -64,6 +93,8 @@ export const euiFormControlLayoutDelimitedStyles = (
     childrenWrapper: {
       delimited: css`
         display: flex;
+
+        ${delimitedWrapperStyles(euiThemeContext)}
       `,
       invalid: css(
         euiFormControlDefaultShadow(euiThemeContext, {
