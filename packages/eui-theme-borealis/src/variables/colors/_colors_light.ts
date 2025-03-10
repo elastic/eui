@@ -151,6 +151,9 @@ export const border_colors: _EuiThemeBorderColors = {
   borderBaseFormsColorSwatch: SEMANTIC_COLORS.shade100Alpha24,
   borderBaseFormsControl: SEMANTIC_COLORS.shade60,
 
+  borderInteractiveFormsHoverPlain: SEMANTIC_COLORS.shade50,
+  borderInteractiveFormsHoverDanger: SEMANTIC_COLORS.danger90,
+
   borderStrongPrimary: SEMANTIC_COLORS.primary100,
   borderStrongAccent: SEMANTIC_COLORS.accent100,
   borderStrongAccentSecondary: SEMANTIC_COLORS.accentSecondary100,
