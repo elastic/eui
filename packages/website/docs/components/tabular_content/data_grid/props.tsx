@@ -161,7 +161,7 @@ const propLinks = {
   cellContext: '../data-grid/cells-and-popovers#cell-context',
   rowHeightsOptions: '../data-grid/style-and-display#row-heights-options',
   gridStyle: '../data-grid/style-and-display#grid-style',
-  inMemory: '../data-grid/advanced#data-grid-in-memory',
+  inMemory: '../data-grid/advanced/in-memory',
   ref: '../data-grid/advanced/ref',
   renderCustomGridBody: '../data-grid/advanced/custom-body-rendering',
   renderCustomToolbar:
