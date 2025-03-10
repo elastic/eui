@@ -20,6 +20,30 @@ import {
 export const euiFormControlLayoutDelimitedStyles = (
   euiThemeContext: UseEuiTheme
 ) => {
+  const { euiTheme } = euiThemeContext;
+  const isExperimental = euiTheme.flags?.formVariant === 'experimental';
+
+  const invalidStyles =
+    isExperimental &&
+    `
+    :not(.euiFormControlLayoutDelimited__input, .euiFormControlLayoutDelimited__delimiter) {
+      ${euiFormControlInvalidStyles(euiThemeContext)}
+    }
+
+    .euiFormControlLayoutDelimited__input {
+      background-color: transparent;
+    }
+  `;
+
+  const readOnlyStyles =
+    isExperimental &&
+    `
+      & .euiFormControlLayoutDelimited__input {
+        outline: none;  
+        box-shadow: none;
+      }
+    `;
+
   return {
     // Appended onto existing `euiFormControlLayout` styles
     delimited: css(
@@ -31,7 +55,10 @@ export const euiFormControlLayoutDelimitedStyles = (
       })
     ),
     disabled: css(euiFormControlDisabledStyles(euiThemeContext)),
-    readOnly: css(euiFormControlReadOnlyStyles(euiThemeContext)),
+    readOnly: css`
+      ${euiFormControlReadOnlyStyles(euiThemeContext)}
+      ${readOnlyStyles}
+    `,
 
     // Appended onto existing `euiFormControlLayout__childrenWrapper` styles
     childrenWrapper: {
@@ -44,7 +71,9 @@ export const euiFormControlLayoutDelimitedStyles = (
           withBackgroundColor: false,
           withBackgroundAnimation: false,
         }),
-        euiFormControlInvalidStyles(euiThemeContext)
+        `
+          ${invalidStyles}
+        `
       ),
     },
   };
