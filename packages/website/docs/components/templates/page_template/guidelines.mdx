@@ -9,7 +9,7 @@ import { EuiFlexGroup } from '@elastic/eui';
 
 ## Converting from legacy layouts
 
-Try to use as much of the namespaced (e.g. `<EuiPageTemplate.Header />`) as much as possible. This will ensure that top level props are propogated through and alignment is kept through the stacking order. You can use the non-namespaced versions (e.g. `<EuiPageSection>`) if you deliberately don't want the props to inherit.
+Try to use as much of the namespaced (e.g. `<EuiPageTemplate.Header />`) as much as possible. This will ensure that top level props are propagated through and alignment is kept through the stacking order. You can use the non-namespaced versions (e.g. `<EuiPageSection>`) if you deliberately don't want the props to inherit.
 
 import contentCenterSvg from '!url-loader!./content_center.svg';
 import singleSvg from '!url-loader!./single.svg';
@@ -80,7 +80,7 @@ Whether or not the page has side navigation, any empty/loading/error states that
     ![Good example of Dashboards showing just centered content in a panel](./do_3.png)
   </Guideline>
   <Guideline type="dont" text="Duplicate content between page header and empty state contents isn't helpful.">
-    ![Bad example of Dashboards showing centered content with duplicative information from the page header](./dont_3.png)
+    ![Bad example of Dashboards showing centered content with duplicate information from the page header](./dont_3.png)
   </Guideline>
 </EuiFlexGroup>
 

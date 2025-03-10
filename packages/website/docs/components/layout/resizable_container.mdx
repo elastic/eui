@@ -815,11 +815,11 @@ mode={['collapsible', {
 
 **EuiResizableContainer** also provides action hooks for parent components to access internal methods, such as **EuiResizablePanel** collapse toggling. The actions are accessible via the third parameter of the render prop function.
 
-Note that when bypassing internal **EuiResizableContainer** logic, it is possible to create situations that would otherwise be prevented. For instance, allowing all panels to be collapsed creates a scenerio where your app will need to account for empty state and accesibility in regards to keyboard navigation.
+Note that when bypassing internal **EuiResizableContainer** logic, it is possible to create situations that would otherwise be prevented. For instance, allowing all panels to be collapsed creates a scenario where your app will need to account for empty state and accessibility in regards to keyboard navigation.
 
 ### Custom collapse button
 
-You can also provide an external collapse button for custom placement and look within your panel with `mode={['custom']}`. When collapsed, however, the default collapsed button will be used for users to uncollapse the panel.
+You can also provide an external collapse button for custom placement and look within your panel with `mode={['custom']}`. When collapsed, however, the default collapsed button will be used for users to expand the panel.
 
 For consistency, we recommend the usage of the `menuLeft`, `menuRight`, etc, icon types.
 
@@ -944,7 +944,7 @@ For consistency, we recommend the usage of the `menuLeft`, `menuRight`, etc, ico
                       <p>
                         This panel provides its own button for triggering
                         collapsibility but relies on the default collapsed button
-                        to uncollapse.
+                        to expand.
                       </p>
                     </EuiText>
                   </EuiPanel>

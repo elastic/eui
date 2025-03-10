@@ -104,8 +104,10 @@ export default <ConsumingHOC />;
 
 **EuiThemeProvider** by default sets an [Emotion theme context](https://emotion.sh/docs/theming) with the results of **useEuiTheme()**. This is a syntactical sugar convenience that allows you to take advantage of Emotion's `styled` syntax, or use a function in the `css` prop.
 
-<!-- The following section is commented out due to @emotion/react version mismatch. We can't easily fix it unless we disable nohoist for /packages/eui and that requires updating it to TypeScript 5... -->
-<!-- If you prefer to use or access your own custom Emotion theme, you can completely override EUI's passed theme at any time with your own `ThemeProvider` - see the second box below for an example.
+{/*
+The following section is commented out due to @emotion/react version mismatch. We can't easily fix it unless we disable nohoist
+for /packages/eui and that requires updating it to TypeScript 5... If you prefer to use or access your own custom Emotion theme,
+you can completely override EUI's passed theme at any time with your own `ThemeProvider` - see the second box below for an example.
 
 ```tsx interactive
 import React from 'react';
@@ -158,7 +160,7 @@ export default () => {
   );
 };
 ```
--->
+*/}
 
 If you prefer to use or access your own custom Emotion theme, you can completely override EUI's passed theme at any time with your own `ThemeProvider`.
 

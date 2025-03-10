@@ -91,7 +91,7 @@ renderCustomGridBody={({ visibleColumns, visibleRowData, Cell }) => (
   columns: [{ id: 'A', direction: 'asc' }],
   onSort: () => {},
 }}`,
-  inMemory: `// Will try to autodectect schemas and do sorting and pagination in memory.
+  inMemory: `// Will try to autodetect schemas and do sorting and pagination in memory.
 inMemory={{ level: 'sorting' }}`,
   toolbarVisibility: `toolbarVisibility={{
   showColumnSelector: false,
@@ -110,7 +110,7 @@ inMemory={{ level: 'sorting' }}`,
   stripes: true,
   rowHover: 'highlight',
   header: 'underline',
-  // If showDisplaySelector.allowDensity={true} from toolbarVisibility, fontSize and cellPadding will be superceded by what the user decides.
+  // If showDisplaySelector.allowDensity={true} from toolbarVisibility, fontSize and cellPadding will be superseded by what the user decides.
   cellPadding: 'm',
   fontSize: 'm',
   footer: 'overline'
