@@ -69,7 +69,11 @@ const _forms = {
     ['colors.lightShade']
   ),
   borderInvalidHovered: computed(([danger]) => danger, ['colors.danger']),
-  borderAutofill: computed(
+  borderAutofilled: computed(
+    ([primaryText]) => transparentize(primaryText, 0.2),
+    ['colors.primaryText']
+  ),
+  borderAutofilledHovered: computed(
     ([primaryText]) => transparentize(primaryText, 0.2),
     ['colors.primaryText']
   ),

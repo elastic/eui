@@ -307,6 +307,9 @@ export const border_colors: _EuiThemeBorderColors = {
     ['colors.lightestShade']
   ),
 
+  borderInteractiveFormsHoverPlain: 'transparent',
+  borderInteractiveFormsHoverDanger: 'transparent',
+
   borderStrongPrimary: computed(
     ([borderBasePrimary]) => borderBasePrimary,
     ['colors.borderBasePrimary']
@@ -530,6 +533,8 @@ export const dark_border_colors: _EuiThemeBorderColors = {
     ([lightestShade]) => tint(lightestShade, 0.31),
     ['colors.lightestShade']
   ),
+  borderInteractiveFormsHoverPlain: 'transparent',
+  borderInteractiveFormsHoverDanger: 'transparent',
 
   borderStrongPrimary: computed(
     ([borderBasePrimary]) => borderBasePrimary,
