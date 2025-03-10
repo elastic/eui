@@ -40,6 +40,7 @@ const _forms = {
     },
     ['colors.primary']
   ),
+  backgroundDropping: 'transparent',
   prependBackground: computed(
     ([lightShade]) => tint(lightShade, 0.5),
     ['colors.lightShade']
@@ -51,7 +52,28 @@ const _forms = {
     },
     ['colors.lightShade']
   ),
-  borderAutofilled: computed(
+  borderDisabled: computed(
+    ([lightShade]) => {
+      const color = darken(lightShade, 4);
+      return transparentize(color, 0.1);
+    },
+    ['colors.lightShade']
+  ),
+  borderFocused: computed(([primary]) => primary, ['colors.primary']),
+  borderInvalid: computed(([danger]) => danger, ['colors.danger']),
+  borderHovered: computed(
+    ([lightShade]) => {
+      const color = darken(lightShade, 4);
+      return transparentize(color, 0.1);
+    },
+    ['colors.lightShade']
+  ),
+  borderInvalidHovered: computed(([danger]) => danger, ['colors.danger']),
+  borderAutofill: computed(
+    ([primaryText]) => transparentize(primaryText, 0.2),
+    ['colors.primaryText']
+  ),
+  borderAutofillHovered: computed(
     ([primaryText]) => transparentize(primaryText, 0.2),
     ['colors.primaryText']
   ),
