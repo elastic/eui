@@ -16,8 +16,8 @@
     "typecheck": "tsc"
   },
   "dependencies": {
-    "@docusaurus/core": "^3.5.2",
-    "@docusaurus/preset-classic": "^3.5.2",
+    "@docusaurus/core": "^3.7.0",
+    "@docusaurus/preset-classic": "^3.7.0",
     "@elastic/charts": "^68.0.2",
     "@elastic/datemath": "^5.0.3",
     "@elastic/eui": "workspace:^",
@@ -47,9 +47,9 @@
   },
   "devDependencies": {
     "@babel/preset-react": "^7.24.7",
-    "@docusaurus/module-type-aliases": "^3.5.2",
-    "@docusaurus/tsconfig": "^3.5.2",
-    "@docusaurus/types": "^3.5.2",
+    "@docusaurus/module-type-aliases": "^3.7.0",
+    "@docusaurus/tsconfig": "^3.7.0",
+    "@docusaurus/types": "^3.7.0",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
     "@types/react-window": "^1",

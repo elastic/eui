@@ -5648,7 +5648,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@docusaurus/core@npm:3.7.0, @docusaurus/core@npm:^3.5.2, @docusaurus/core@npm:^3.7.0":
+"@docusaurus/core@npm:3.7.0, @docusaurus/core@npm:^3.7.0":
   version: 3.7.0
   resolution: "@docusaurus/core@npm:3.7.0"
   dependencies:
@@ -5761,7 +5761,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@docusaurus/module-type-aliases@npm:3.7.0, @docusaurus/module-type-aliases@npm:^3.5.2, @docusaurus/module-type-aliases@npm:^3.7.0":
+"@docusaurus/module-type-aliases@npm:3.7.0, @docusaurus/module-type-aliases@npm:^3.7.0":
   version: 3.7.0
   resolution: "@docusaurus/module-type-aliases@npm:3.7.0"
   dependencies:
@@ -5958,7 +5958,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@docusaurus/preset-classic@npm:^3.5.2":
+"@docusaurus/preset-classic@npm:^3.7.0":
   version: 3.7.0
   resolution: "@docusaurus/preset-classic@npm:3.7.0"
   dependencies:
@@ -6081,14 +6081,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@docusaurus/tsconfig@npm:^3.5.2":
+"@docusaurus/tsconfig@npm:^3.7.0":
   version: 3.7.0
   resolution: "@docusaurus/tsconfig@npm:3.7.0"
   checksum: 10c0/22a076fa3cf6da25a76f87fbe5b37c09997f5a8729fdc1a69c0c7955dff9f9850f16dc1de8c6d5096d258a95c428fb8839b252b9dbaa648acb7de8a0e5889dea
   languageName: node
   linkType: hard
 
-"@docusaurus/types@npm:3.7.0, @docusaurus/types@npm:^3.5.2, @docusaurus/types@npm:^3.7.0":
+"@docusaurus/types@npm:3.7.0, @docusaurus/types@npm:^3.7.0":
   version: 3.7.0
   resolution: "@docusaurus/types@npm:3.7.0"
   dependencies:
@@ -6429,11 +6429,11 @@ __metadata:
   resolution: "@elastic/eui-website@workspace:packages/website"
   dependencies:
     "@babel/preset-react": "npm:^7.24.7"
-    "@docusaurus/core": "npm:^3.5.2"
-    "@docusaurus/module-type-aliases": "npm:^3.5.2"
-    "@docusaurus/preset-classic": "npm:^3.5.2"
-    "@docusaurus/tsconfig": "npm:^3.5.2"
-    "@docusaurus/types": "npm:^3.5.2"
+    "@docusaurus/core": "npm:^3.7.0"
+    "@docusaurus/module-type-aliases": "npm:^3.7.0"
+    "@docusaurus/preset-classic": "npm:^3.7.0"
+    "@docusaurus/tsconfig": "npm:^3.7.0"
+    "@docusaurus/types": "npm:^3.7.0"
     "@elastic/charts": "npm:^68.0.2"
     "@elastic/datemath": "npm:^5.0.3"
     "@elastic/eui": "workspace:^"
