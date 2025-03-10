@@ -12,8 +12,25 @@ import { UseEuiTheme } from '../../../services';
 import { euiFormControlStyles } from '../form.styles';
 
 export const euiFieldNumberStyles = (euiThemeContext: UseEuiTheme) => {
-  const { colorMode } = euiThemeContext;
+  const { euiTheme, colorMode } = euiThemeContext;
+  const isExperimental = euiTheme.flags?.formVariant === 'experimental';
+
   const formStyles = euiFormControlStyles(euiThemeContext);
+
+  const invalidStyles = isExperimental
+    ? `
+      &:is(:invalid, [aria-invalid='true']):not(
+        .euiFormControlLayoutDelimited__input
+      ) {
+          ${formStyles.invalid}
+        }
+    `.trim()
+    : `
+      /* Account for native validity detection as well via [aria-invalid="true"] */
+      &:is(:invalid, [aria-invalid='true']) {
+        ${formStyles.invalid}
+      }
+    `.trim();
 
   return {
     euiFieldNumber: css`
@@ -22,10 +39,7 @@ export const euiFieldNumberStyles = (euiThemeContext: UseEuiTheme) => {
       /* Force the browser number stepper UI to follow EUI's light/dark mode */
       color-scheme: ${colorMode === 'DARK' ? 'dark' : 'light'};
 
-      /* Account for native validity detection as well via [aria-invalid="true"] */
-      &:is(:invalid, [aria-invalid='true']) {
-        ${formStyles.invalid}
-      }
+      ${invalidStyles}
 
       &:focus {
         ${formStyles.focus}

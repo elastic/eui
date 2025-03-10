@@ -12,15 +12,29 @@ import { UseEuiTheme } from '../../../services';
 import { euiFormControlStyles } from '../form.styles';
 
 export const euiFieldTextStyles = (euiThemeContext: UseEuiTheme) => {
+  const { euiTheme } = euiThemeContext;
+  const isExperimental = euiTheme.flags?.formVariant === 'experimental';
   const formStyles = euiFormControlStyles(euiThemeContext);
+
+  const invalidStyles = isExperimental
+    ? `
+      &:is(:invalid, [aria-invalid='true']):not(
+        .euiFormControlLayoutDelimited__input
+      ) {
+          ${formStyles.invalid}
+        }
+    `.trim()
+    : `
+      &:is(:invalid){
+        ${formStyles.invalid}
+      }
+    `.trim();
 
   return {
     euiFieldText: css`
       ${formStyles.shared}
 
-      &:invalid {
-        ${formStyles.invalid}
-      }
+      ${invalidStyles}
 
       &:focus {
         ${formStyles.focus}
