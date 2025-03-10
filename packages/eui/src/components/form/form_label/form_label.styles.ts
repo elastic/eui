@@ -30,6 +30,7 @@ export const euiFormLabel = (euiThemeContext: UseEuiTheme) => {
 
 export const euiFormLabelStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
+  const isExperimental = euiTheme.flags?.formVariant === 'experimental';
 
   return {
     euiFormLabel: css`
@@ -49,7 +50,9 @@ export const euiFormLabelStyles = (euiThemeContext: UseEuiTheme) => {
       }
     `,
     invalid: css`
-      color: ${euiTheme.colors.danger};
+      color: ${isExperimental
+        ? euiTheme.colors.textDanger
+        : euiTheme.colors.danger};
     `,
     // Focused state should override invalid state
     focused: css`
