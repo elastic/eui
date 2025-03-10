@@ -15,7 +15,6 @@ import { SEMANTIC_COLORS } from './colors/_semantic_colors';
 import {
   dark_background_colors,
   dark_border_colors,
-  dark_brand_text_colors,
   dark_text_colors,
 } from './colors/_colors_dark';
 
@@ -24,7 +23,6 @@ import { forms } from './_forms';
 import {
   background_colors,
   border_colors,
-  brand_text_colors,
   text_colors,
 } from './colors/_colors_light';
 import { colorVis } from './colors/_colors_vis';
