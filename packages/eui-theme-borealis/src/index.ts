@@ -37,6 +37,7 @@ export const euiThemeBorealis: EuiThemeShape = {
     hasGlobalFocusColor: true,
     hasVisColorAdjustment: false,
     buttonVariant: 'experimental',
+    formVariant: 'experimental',
   },
 };
 
