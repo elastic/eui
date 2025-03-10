@@ -12,20 +12,41 @@ import { euiShadowMedium } from '@elastic/eui-theme-common';
 import { logicalCSS } from '../../global_styling';
 import { UseEuiTheme } from '../../services';
 
-export const euiDatePickerRangeStyles = {
-  euiDatePickerRange: css`
-    /* Needed for correct focus/invalid underline/linear-gradient styles */
-    .euiPopover,
-    .react-datepicker__input-container,
-    .euiDatePicker {
-      ${logicalCSS('height', '100%')}
-    }
+export const euiDatePickerRangeStyles = (euiThemeContext: UseEuiTheme) => {
+  const { euiTheme } = euiThemeContext;
+  const isExperimental = euiTheme.flags?.formVariant === 'experimental';
 
-    /* Needed for the fullWidth prop: makes inputs take the whole available space */
-    .euiPopover {
-      flex: 1;
-    }
-  `,
+  const experimentalStyles =
+    isExperimental &&
+    `
+      .euiPopover:last-child {
+        ${logicalCSS('border-top-right-radius', 'inherit')}
+        ${logicalCSS('border-bottom-right-radius', 'inherit')}
+
+        * {
+          ${logicalCSS('border-top-right-radius', 'inherit')}
+          ${logicalCSS('border-bottom-right-radius', 'inherit')}
+        }
+      }
+    `;
+
+  return {
+    euiDatePickerRange: css`
+      /* Needed for correct focus/invalid underline/linear-gradient styles */
+      .euiPopover,
+      .react-datepicker__input-container,
+      .euiDatePicker {
+        ${logicalCSS('height', '100%')}
+      }
+
+      /* Needed for the fullWidth prop: makes inputs take the whole available space */
+      .euiPopover {
+        flex: 1;
+      }
+
+      ${experimentalStyles}
+    `,
+  };
 };
 
 export const euiDatePickerRangeInlineStyles = (

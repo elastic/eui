@@ -20,10 +20,14 @@ import {
   euiFormControlDefaultShadow,
   euiFormControlInvalidStyles,
   euiFormControlDisabledStyles,
+  euiFormControlHoverStyles,
+  euiFormControlFocusStyles,
 } from '../../form/form.styles';
 
 export const euiSuperDatePickerStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
+  const isExperimental = euiTheme.flags?.formVariant === 'experimental';
+
   const forms = euiFormVariables(euiThemeContext);
 
   const inputWidth = euiTheme.base * 30;
@@ -49,6 +53,64 @@ export const euiSuperDatePickerStyles = (euiThemeContext: UseEuiTheme) => {
   const needsUpdatingTextColor = makeHighContrastColor(euiTheme.colors.success)(
     needsUpdatingBackgroundColor
   );
+
+  const formLayoutStyles =
+    isExperimental &&
+    `
+    .euiPopover:last-child {
+      ${logicalCSS('border-top-right-radius', 'inherit')}
+      ${logicalCSS('border-bottom-right-radius', 'inherit')}
+    }
+
+    .euiDatePopoverButton {
+      background-color: transparent;
+      border-radius: inherit;
+    }
+  `;
+
+  const popoverButtonFocusStyles = isExperimental
+    ? `
+       ${euiFormControlFocusStyles(euiThemeContext)}
+    `
+    : `
+      --euiFormControlStateColor: ${euiTheme.colors.primary};
+      background-size: 100% 100%;
+    `;
+
+  const invalidPopoverButtonStyles =
+    isExperimental &&
+    `
+    .euiDatePopoverButton:focus,
+    .euiPopover-isOpen .euiDatePopoverButton {
+      ${euiFormControlFocusStyles(euiThemeContext)}
+    }
+
+    .euiDatePopoverButton:hover:not(:disabled) {
+      ${euiFormControlHoverStyles(euiThemeContext)}
+    }
+  `;
+
+  const needsUpdatingPopoverButtonFocusStyles = isExperimental
+    ? `
+       ${euiFormControlFocusStyles(euiThemeContext)}
+        --euiFormControlStateColor: ${euiTheme.colors.success};
+        --euiFormControlStateHoverColor: ${euiTheme.colors.borderStrongSuccess};
+    `
+    : `
+      --euiFormControlStateColor: ${euiTheme.colors.success};
+      background-size: 100% 100%;
+    `;
+
+  const prettyFormatStyles =
+    isExperimental &&
+    `
+      --euiFormControlStateHoverColor: ${forms.borderHovered};
+      ${euiFormControlDefaultShadow(euiThemeContext)}
+      
+      &:focus {
+        ${euiFormControlFocusStyles(euiThemeContext)}
+      }
+    `;
 
   return {
     euiSuperDatePicker: css`
@@ -127,14 +189,19 @@ export const euiSuperDatePickerStyles = (euiThemeContext: UseEuiTheme) => {
     euiSuperDatePicker__prettyFormat: css`
       ${_buttonStyles(euiThemeContext)}
       text-align: start;
+
+      ${prettyFormatStyles}
     `,
 
     // Form states
     states: {
       euiSuperDatePicker__formControlLayout: css`
         .euiFormControlLayout__childrenWrapper {
+          --euiFormControlStateHoverColor: ${forms.borderColor};
           ${euiFormControlDefaultShadow(euiThemeContext)}
           box-shadow: none;
+
+          ${formLayoutStyles}
         }
       `,
       default: css`
@@ -145,14 +212,14 @@ export const euiSuperDatePickerStyles = (euiThemeContext: UseEuiTheme) => {
 
         /* Focus/selection underline per-button */
         .euiDatePopoverButton {
+          --euiFormControlStateHoverColor: ${forms.borderHovered};
           ${euiFormControlDefaultShadow(euiThemeContext)}
           box-shadow: none;
         }
 
         .euiDatePopoverButton:focus,
         .euiPopover-isOpen .euiDatePopoverButton {
-          --euiFormControlStateColor: ${euiTheme.colors.primary};
-          background-size: 100% 100%;
+          ${popoverButtonFocusStyles}
         }
       `,
       disabled: css`
@@ -165,6 +232,8 @@ export const euiSuperDatePickerStyles = (euiThemeContext: UseEuiTheme) => {
           color: ${euiTheme.colors.textDanger};
           background-color: ${forms.backgroundColor};
           ${euiFormControlInvalidStyles(euiThemeContext)}
+
+          ${invalidPopoverButtonStyles}
         }
       `,
       needsUpdating: css`
@@ -179,6 +248,7 @@ export const euiSuperDatePickerStyles = (euiThemeContext: UseEuiTheme) => {
 
         /* Focus/selection underline per-button */
         .euiDatePopoverButton {
+          --euiFormControlStateHoverColor: ${euiTheme.colors.success};
           ${euiFormControlDefaultShadow(euiThemeContext)}
           background-color: inherit;
           box-shadow: none;
@@ -186,8 +256,7 @@ export const euiSuperDatePickerStyles = (euiThemeContext: UseEuiTheme) => {
 
         .euiDatePopoverButton:focus,
         .euiPopover-isOpen .euiDatePopoverButton {
-          --euiFormControlStateColor: ${euiTheme.colors.success};
-          background-size: 100% 100%;
+          ${needsUpdatingPopoverButtonFocusStyles}
         }
       `,
     },
