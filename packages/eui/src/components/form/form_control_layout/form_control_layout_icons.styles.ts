@@ -20,9 +20,11 @@ export const euiFormControlLayoutIconsStyles = (
 
   return {
     euiFormControlLayoutIcons: css`
-      pointer-events: none;
+      position: relative;
+      z-index: 1; /* Ensure the icon is visible above sibling inputs */
       display: flex;
       align-items: center;
+      pointer-events: none;
     `,
     uncompressed: `
       gap: ${mathWithUnits(controlPadding, (x) => x / 2)};
@@ -44,7 +46,7 @@ export const euiFormControlLayoutIconsStyles = (
         `,
         uncompressed: {
           left: css`
-            z-index: 1; /* Ensure the icon is visible above sibling inputs */
+            z-index: 2; /* Ensure the icon is visible above sibling focused inputs */
             ${logicalCSS('left', controlPadding)}
           `,
           right: css`
@@ -53,7 +55,7 @@ export const euiFormControlLayoutIconsStyles = (
         },
         compressed: {
           left: css`
-            z-index: 1; /* Ensure the icon is visible above sibling inputs */
+            z-index: 2; /* Ensure the icon is visible above sibling focused inputs */
             ${logicalCSS('left', controlCompressedPadding)}
           `,
           right: css`
