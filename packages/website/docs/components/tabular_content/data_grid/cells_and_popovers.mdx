@@ -8,7 +8,7 @@ sidebar_position: 2
 
 Data grid cells are rendered using the `renderCellValue` prop. This prop accepts a function which is treated as a React component behind the scenes. This means the data grid passes cell-specific props (e.g. row index, column/schema info, etc.) to your render function, which can ouput anything from a string to any JSX element.
 
-Each data grid cell will automatically render an expand action button and an expansion popover ([which can be disabled](/docs/tabular-content/data-grid/cells-and-popovers#disabling-cell-expansion-popovers)). For cells with overflowing or truncated content, this expansion popover helps display the full amount of content, or can be customized to show extra details.
+Each data grid cell will automatically render an expand action button and an expansion popover ([which can be disabled](./cells_and_popovers.mdx#disabling-cell-expansion-popovers)). For cells with overflowing or truncated content, this expansion popover helps display the full amount of content, or can be customized to show extra details.
 
 ## Cell actions
 
@@ -16,7 +16,7 @@ In addition to making a cell expandable, you can add more custom actions by sett
 
 `columns.cellActions` accepts an array of render functions. Behind the scenes, the functions are treated as a React components allowing hooks, context, and other React concepts to be used. Because different button types are used between the cell and the cell popover, we pass your render function a `Component` prop which you must render in order for your cell actions to switch correctly between button icons and buttons.
 
-To close a cell's expansion popover upon clicking an action, use the [closeCellPopover](/docs/tabular-content/data-grid/advanced#ref-methods) API available via the `ref` prop.
+To close a cell's expansion popover upon clicking an action, use the [closeCellPopover](./advanced/ref.mdx) API available via the `ref` prop.
 
 In the below example, the email and city columns provide 1 `cellAction` each, while the country column provides 2 `cellAction`s.
 
