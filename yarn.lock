@@ -4757,7 +4757,9 @@ __metadata:
     "@elastic/elasticsearch": "npm:^8.14.0"
     codeowners: "npm:^5.1.1"
     escodegen-wallaby: "npm:^1.6.44"
+    jest: "npm:^29.7.0"
     react-scanner: "npm:^1.1.0"
+    yargs: "npm:^17.7.2"
   languageName: unknown
   linkType: soft
 
