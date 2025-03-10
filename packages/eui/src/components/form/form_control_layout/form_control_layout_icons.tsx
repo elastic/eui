@@ -8,7 +8,10 @@
 
 import React, { Component } from 'react';
 
-import { RenderWithEuiStylesMemoizer } from '../../../services';
+import {
+  RenderWithEuiStylesMemoizer,
+  RenderWithEuiTheme,
+} from '../../../services';
 import { DistributiveOmit } from '../../common';
 import { EuiIcon, IconColor, IconType } from '../../icon';
 import { EuiLoadingSpinner } from '../../loading';
@@ -120,12 +123,20 @@ export class EuiFormControlLayoutIcons extends Component<EuiFormControlLayoutIco
     const { ref: iconRef, side, ...iconRest } = iconProps;
 
     return (
-      <EuiFormControlLayoutCustomIcon
-        size={compressed ? 's' : 'm'}
-        disabled={isDisabled}
-        iconRef={iconRef}
-        {...iconRest}
-      />
+      <RenderWithEuiTheme>
+        {({ euiTheme }) => {
+          const isExperimental = euiTheme.flags?.formVariant === 'experimental';
+
+          return (
+            <EuiFormControlLayoutCustomIcon
+              size={compressed && !isExperimental ? 's' : 'm'}
+              disabled={isDisabled}
+              iconRef={iconRef}
+              {...iconRest}
+            />
+          );
+        }}
+      </RenderWithEuiTheme>
     );
   }
 
@@ -137,11 +148,19 @@ export class EuiFormControlLayoutIcons extends Component<EuiFormControlLayoutIco
     }
 
     return (
-      <EuiFormControlLayoutCustomIcon
-        size={compressed ? 's' : 'm'}
-        disabled={isDisabled}
-        type="arrowDown"
-      />
+      <RenderWithEuiTheme>
+        {({ euiTheme }) => {
+          const isExperimental = euiTheme.flags?.formVariant === 'experimental';
+
+          return (
+            <EuiFormControlLayoutCustomIcon
+              size={compressed && !isExperimental ? 's' : 'm'}
+              disabled={isDisabled}
+              type="arrowDown"
+            />
+          );
+        }}
+      </RenderWithEuiTheme>
     );
   }
 
@@ -152,7 +171,19 @@ export class EuiFormControlLayoutIcons extends Component<EuiFormControlLayoutIco
       return null;
     }
 
-    return <EuiLoadingSpinner size={compressed ? 's' : 'm'} />;
+    return (
+      <RenderWithEuiTheme>
+        {({ euiTheme }) => {
+          const isExperimental = euiTheme.flags?.formVariant === 'experimental';
+
+          return (
+            <EuiLoadingSpinner
+              size={compressed && !isExperimental ? 's' : 'm'}
+            />
+          );
+        }}
+      </RenderWithEuiTheme>
+    );
   }
 
   renderClearButton() {
@@ -162,11 +193,19 @@ export class EuiFormControlLayoutIcons extends Component<EuiFormControlLayoutIco
     }
 
     return (
-      <EuiFormControlLayoutClearButton
-        size={compressed ? 's' : 'm'}
-        disabled={isDisabled}
-        {...clear}
-      />
+      <RenderWithEuiTheme>
+        {({ euiTheme }) => {
+          const isExperimental = euiTheme.flags?.formVariant === 'experimental';
+
+          return (
+            <EuiFormControlLayoutClearButton
+              size={compressed && !isExperimental ? 's' : 'm'}
+              disabled={isDisabled}
+              {...clear}
+            />
+          );
+        }}
+      </RenderWithEuiTheme>
     );
   }
 
@@ -177,7 +216,19 @@ export class EuiFormControlLayoutIcons extends Component<EuiFormControlLayoutIco
     }
 
     return (
-      <EuiIcon size={compressed ? 's' : 'm'} color="danger" type="warning" />
+      <RenderWithEuiTheme>
+        {({ euiTheme }) => {
+          const isExperimental = euiTheme.flags?.formVariant === 'experimental';
+
+          return (
+            <EuiIcon
+              size={compressed && !isExperimental ? 's' : 'm'}
+              color="danger"
+              type="warning"
+            />
+          );
+        }}
+      </RenderWithEuiTheme>
     );
   }
 }
