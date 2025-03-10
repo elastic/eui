@@ -4649,6 +4649,7 @@ __metadata:
   dependencies:
     "@elastic/eui-release-cli": "link:packages/release-cli"
     pre-push: "npm:^0.1.4"
+    rimraf: "npm:^6.0.1"
   languageName: unknown
   linkType: soft
 
