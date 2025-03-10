@@ -13,12 +13,15 @@ import { euiFontSize, logicalCSS } from '../../../global_styling';
 
 export const euiFormErrorTextStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
+  const isExperimental = euiTheme.flags?.formVariant === 'experimental';
 
   return {
     euiFormErrorText: css`
       ${logicalCSS('padding-top', euiTheme.size.xs)}
       ${euiFontSize(euiThemeContext, 'xs')}
-      color: ${euiTheme.colors.danger};
+      color: ${isExperimental
+        ? euiTheme.colors.textDanger
+        : euiTheme.colors.danger};
     `,
   };
 };
