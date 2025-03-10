@@ -94,9 +94,9 @@ Custom flyouts should only be implemented if your design diverges a lot from [Eu
 
 **Here are some accessibility considerations you should keep in mind when implementing a custom flyout.**
 
-* Use [EuiFocusTrap](./focus_trap.mdx) to prevent keyboard-initiated focus from leaving the flyout.
-* If you use a [EuiOverlayMask](./overlay_mask.mdx), it should be dismissed when clicked outside. For that you can pass to your [EuiFocusTrap](./focus_trap.mdx) `onClickOutside` prop a method to close the flyout.
-* When pressing the ESC key your flyout should close. Use a [EuiWindowEvent](./window_events.mdx) to listen for the key down event.
+* Use [EuiFocusTrap](./focus_trap/overview.mdx) to prevent keyboard-initiated focus from leaving the flyout.
+* If you use a [EuiOverlayMask](./overlay_mask.mdx), it should be dismissed when clicked outside. For that you can pass to your [EuiFocusTrap](./focus_trap/overview.mdx) `onClickOutside` prop a method to close the flyout.
+* When pressing the ESC key your flyout should close. Use a [EuiWindowEvent](./window_events/overview.mdx) to listen for the key down event.
 * Pass an ID to the first heading in the flyout `id={headingId}`.
 * Pass to your [EuiPanel](../layout/panel/overview.mdx) `aria-labelledby={headingId}` to announce the flyout to screen readers.
 

@@ -96,7 +96,7 @@ Any other options available with <a href="https://emotion.sh/docs/@emotion/cache
 This functionality is still currently in beta, and the list of components as well as defaults that EUI will be supporting is still under consideration. If you have a component you would like to see added, feel free to <a href="https://github.com/elastic/eui/discussions/6922" target="_blank" rel="noopener noreferrer">**discuss that request in EUI's GitHub repo**</a>.
 :::
 
-All EUI components ship with a set of baseline defaults that can usually be configured via props. For example, [EuiFocusTrap](./focus_trap.mdx) defaults to `crossFrame={false}` - i.e., it does not trap focus between iframes. If you wanted to change that behavior in your app across all instances of **EuiFocusTrap**, you would be stuck manually passing that prop over and over again, including in higher-level components (like modals, popovers, and flyouts) that utilize focus traps.
+All EUI components ship with a set of baseline defaults that can usually be configured via props. For example, [EuiFocusTrap](./focus_trap/overview.mdx) defaults to `crossFrame={false}` - i.e., it does not trap focus between iframes. If you wanted to change that behavior in your app across all instances of **EuiFocusTrap**, you would be stuck manually passing that prop over and over again, including in higher-level components (like modals, popovers, and flyouts) that utilize focus traps.
 
 **EuiProvider** allows overriding some component defaults across all component usages globally via the `componentDefaults` prop like so:
 
