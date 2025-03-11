@@ -42,7 +42,7 @@ export const GettingStarted = {
           <EuiText grow={false}>
             <p>
               Note that EUI has{' '}
-              <a href="https://github.com/elastic/eui/blob/main/package.json">
+              <a href="https://github.com/elastic/eui/blob/main/packages/eui/package.json#L260">
                 several <EuiCode>peerDependencies</EuiCode> requirements
               </a>{' '}
               that will also need to be installed when starting with a blank
@@ -52,7 +52,7 @@ export const GettingStarted = {
           <EuiSpacer />
           <EuiCodeBlock language="bash" isCopyable fontSize="m">
             {
-              'yarn add @elastic/eui @elastic/datemath @emotion/react @emotion/css moment'
+              'yarn add @elastic/eui @elastic/eui-theme-borealis @elastic/datemath @emotion/react @emotion/css moment'
             }
           </EuiCodeBlock>
           <EuiSpacer />
