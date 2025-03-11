@@ -20,7 +20,6 @@ import {
   euiFormControlDefaultShadow,
   euiFormControlInvalidStyles,
   euiFormControlDisabledStyles,
-  euiFormControlHoverStyles,
   euiFormControlFocusStyles,
 } from '../../form/form.styles';
 
@@ -62,9 +61,19 @@ export const euiSuperDatePickerStyles = (euiThemeContext: UseEuiTheme) => {
         outline: none;
       }
 
-      .euiPopover:last-child {
-        ${logicalCSS('border-top-right-radius', 'inherit')}
-        ${logicalCSS('border-bottom-right-radius', 'inherit')}
+      .euiPopover {
+        /* mimic input border-radius */
+        border-radius: ${forms.controlBorderRadius};
+
+        &:first-child {
+          ${logicalCSS('border-top-left-radius', 'inherit')}
+          ${logicalCSS('border-bottom-left-radius', 'inherit')}
+        }
+
+        &:last-child {
+          ${logicalCSS('border-top-right-radius', 'inherit')}
+          ${logicalCSS('border-bottom-right-radius', 'inherit')}
+        }
       }
 
       .euiDatePopoverButton {
@@ -88,10 +97,6 @@ export const euiSuperDatePickerStyles = (euiThemeContext: UseEuiTheme) => {
     .euiDatePopoverButton:focus,
     .euiPopover-isOpen .euiDatePopoverButton {
       ${euiFormControlFocusStyles(euiThemeContext)}
-    }
-
-    .euiDatePopoverButton:hover:not(:disabled) {
-      ${euiFormControlHoverStyles(euiThemeContext)}
     }
   `;
 
@@ -253,8 +258,7 @@ export const euiSuperDatePickerStyles = (euiThemeContext: UseEuiTheme) => {
 
         /* Focus/selection underline per-button */
         .euiDatePopoverButton {
-          --euiFormControlStateHoverColor: ${euiTheme.colors.success};
-          ${euiFormControlDefaultShadow(euiThemeContext)}
+          ${isExperimental && euiFormControlDefaultShadow(euiThemeContext)}
           background-color: inherit;
           box-shadow: none;
         }

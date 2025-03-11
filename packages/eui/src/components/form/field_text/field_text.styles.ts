@@ -19,7 +19,7 @@ export const euiFieldTextStyles = (euiThemeContext: UseEuiTheme) => {
   const invalidStyles = isExperimental
     ? `
       &:is(:invalid, [aria-invalid='true']):not(
-        .euiFormControlLayoutDelimited__input
+        .euiFormControlLayoutDelimited__input, :focus
       ) {
           ${formStyles.invalid}
         }
