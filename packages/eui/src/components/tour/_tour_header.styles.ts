@@ -23,7 +23,7 @@ export const euiTourHeaderStyles = ({ euiTheme }: UseEuiTheme) => ({
     ${logicalCSS('margin-top', 0)}
   `,
   euiTourHeader__subtitle: css`
-    color: ${euiTheme.colors.subduedText};
+    color: ${euiTheme.colors.textSubdued};
     padding-block-end: ${euiTheme.size.xs};
   `,
 });
