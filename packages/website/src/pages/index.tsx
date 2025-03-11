@@ -6,6 +6,7 @@
  * Side Public License, v 1.
  */
 
+import { JSX } from 'react';
 import { css } from '@emotion/react';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import useIsBrowser from '@docusaurus/useIsBrowser';

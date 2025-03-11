@@ -1,3 +1,4 @@
+import { JSX } from 'react';
 import clsx from 'clsx';
 import { css } from '@emotion/react';
 import { ThemeClassNames } from '@docusaurus/theme-common';

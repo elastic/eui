@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { ReactChild } from 'react';
+import React, { ReactNode } from 'react';
 import { mount } from 'enzyme';
 import { EuiContext } from '../context';
 import { EuiI18n, useEuiI18n } from './i18n';
@@ -63,7 +63,7 @@ describe('EuiI18n', () => {
       it('renders render prop result to the dom', () => {
         const component = mount(
           <EuiI18n token="test" default="This is a basic string.">
-            {(result: ReactChild) => `A nifty thing: ${result}`}
+            {(result: ReactNode) => `A nifty thing: ${result}`}
           </EuiI18n>
         );
         expect(component).toMatchSnapshot();
@@ -76,7 +76,7 @@ describe('EuiI18n', () => {
             default="This is a {type} with {special}."
             values={{ type: 'string', special: 'values' }}
           >
-            {(result: ReactChild) => `Here's something cool: ${result}`}
+            {(result: ReactNode) => `Here's something cool: ${result}`}
           </EuiI18n>
         );
         expect(component).toMatchSnapshot();
@@ -108,7 +108,7 @@ describe('EuiI18n', () => {
               'This is the second basic string.',
             ]}
           >
-            {([one, two]: ReactChild[]) => (
+            {([one, two]: ReactNode[]) => (
               <div>
                 {one} {two}
               </div>
@@ -128,7 +128,7 @@ describe('EuiI18n', () => {
             ]}
             values={{ placeholder: 'value' }}
           >
-            {([one, two]: ReactChild[]) => (
+            {([one, two]: ReactNode[]) => (
               <div>
                 {one} {two}
               </div>
@@ -189,7 +189,7 @@ describe('EuiI18n', () => {
         const component = mount(
           <EuiContext i18n={{ mapping: { test: 'An overridden string.' } }}>
             <EuiI18n token="test" default="This is a basic string.">
-              {(result: ReactChild) => `A nifty thing: ${result}`}
+              {(result: ReactNode) => `A nifty thing: ${result}`}
             </EuiI18n>
           </EuiContext>
         );
@@ -208,7 +208,7 @@ describe('EuiI18n', () => {
               default="This is a {type} with {special}."
               values={{ type: 'string', special: 'values' }}
             >
-              {(result: ReactChild) => `Here's something cool: ${result}`}
+              {(result: ReactNode) => `Here's something cool: ${result}`}
             </EuiI18n>
           </EuiContext>
         );
@@ -223,7 +223,7 @@ describe('EuiI18n', () => {
         const component = mount(
           <EuiContext i18n={{ mapping: { test: renderCallback } }}>
             <EuiI18n token="test" default={renderCallback} values={values}>
-              {(result: ReactChild) => `Here's something neat: ${result}`}
+              {(result: ReactNode) => `Here's something neat: ${result}`}
             </EuiI18n>
           </EuiContext>
         );
@@ -242,7 +242,7 @@ describe('EuiI18n', () => {
             'This is the second basic string.',
           ]}
         >
-          {([one, two]: ReactChild[]) => (
+          {([one, two]: ReactNode[]) => (
             <div>
               {one} {two}
             </div>

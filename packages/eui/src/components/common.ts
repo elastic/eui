@@ -14,6 +14,7 @@ import {
   FunctionComponent,
   JSXElementConstructor,
   MouseEventHandler,
+  JSX,
 } from 'react';
 import { Interpolation, Theme } from '@emotion/react';
 

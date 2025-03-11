@@ -1,3 +1,4 @@
+import { JSX } from 'react';
 import OriginalWarning from '@theme-init/Admonition/Type/Warning';
 import type WarningType from '@theme-init/Admonition/Type/Warning';
 import type { WrapperProps } from '@docusaurus/types';

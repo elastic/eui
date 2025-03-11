@@ -151,7 +151,7 @@ describe('EuiCollapsibleNavGroup', () => {
         <EuiCollapsibleNavGroup iconType="bolt" id="id" />
       );
 
-      expect(consoleStub).toBeCalled();
+      expect(consoleStub).toHaveBeenCalled();
       expect(consoleStub.mock.calls[0][0]).toMatch(
         'not render an icon without `title`'
       );

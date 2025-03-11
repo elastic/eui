@@ -33,7 +33,7 @@ import { getEventPosition } from './utils';
 import { euiSaturationStyles } from './saturation.styles';
 
 export type SaturationClientRect = Pick<
-  ClientRect,
+  DOMRect,
   'left' | 'top' | 'width' | 'height'
 >;
 

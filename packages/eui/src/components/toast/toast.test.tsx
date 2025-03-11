@@ -62,7 +62,7 @@ describe('EuiToast', () => {
         const closeButton = findTestSubject(component, 'toastCloseButton');
         closeButton.simulate('click');
 
-        expect(onCloseHandler).toBeCalledTimes(1);
+        expect(onCloseHandler).toHaveBeenCalledTimes(1);
       });
     });
   });
