@@ -309,10 +309,12 @@ export const euiSuperDatePickerStyles = (euiThemeContext: UseEuiTheme) => {
 
         /* Focus/selection underline per-button */
         .euiDatePopoverButton {
-          ${euiFormControlDefaultShadow(euiThemeContext, {
+          ${!isExperimental &&
+          euiFormControlDefaultShadow(euiThemeContext, {
             withBorder: false,
             withBackgroundColor: false,
           })}
+
           background-color: inherit;
           box-shadow: none;
         }
