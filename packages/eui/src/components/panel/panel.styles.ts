@@ -16,29 +16,37 @@ import {
   logicalTextAlignCSS,
 } from '../../global_styling';
 
-export const euiPanelStyles = (euiThemeContext: UseEuiTheme) => {
+export const euiPanelBorderStyles = (
+  euiThemeContext: UseEuiTheme,
+  borderColor?: string
+) => {
   const { euiTheme } = euiThemeContext;
 
-  const borderStyle = `
-    position: relative;
-
+  return `
     /* Using a pseudo element for the border instead of floating border only 
       because the transparent border might otherwise be visible with arbitrary 
       full-width/height content in light mode. */
-    ::before {
+    &::before {
       content: '';
       position: absolute;
+      /* ensure to keep on top of flush content */
+      z-index: 1;
       inset: 0;
       border: ${euiTheme.border.width.thin} solid
-        ${euiTheme.colors.borderBaseFloating};
+        ${borderColor ?? euiTheme.colors.borderBaseFloating};
       border-radius: inherit;
       pointer-events: none;
     }
-  `;
+`;
+};
+
+export const euiPanelStyles = (euiThemeContext: UseEuiTheme) => {
+  const { euiTheme } = euiThemeContext;
 
   return {
     // Base
     euiPanel: css`
+      position: relative;
       flex-grow: 0;
     `,
 
@@ -49,11 +57,11 @@ export const euiPanelStyles = (euiThemeContext: UseEuiTheme) => {
     hasShadow: css`
       ${euiShadow(euiThemeContext, 'm')}
 
-      ${borderStyle}
+      ${euiPanelBorderStyles(euiThemeContext)}
     `,
 
     hasBorder: css`
-      border: ${euiTheme.border.thin};
+      ${euiPanelBorderStyles(euiThemeContext, euiTheme.border.color)}
     `,
 
     radius: {
