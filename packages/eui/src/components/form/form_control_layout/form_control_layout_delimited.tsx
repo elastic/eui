@@ -9,7 +9,11 @@
 import React, { FunctionComponent, ReactElement, ReactNode } from 'react';
 import classNames from 'classnames';
 
-import { useEuiMemoizedStyles, cloneElementWithCss } from '../../../services';
+import {
+  useEuiMemoizedStyles,
+  cloneElementWithCss,
+  useEuiTheme,
+} from '../../../services';
 import { useEuiI18n } from '../../i18n';
 import { EuiIcon } from '../../icon';
 import { EuiText } from '../../text';
@@ -24,6 +28,7 @@ import {
   euiFormControlLayoutDelimited__delimiter,
   euiFormControlLayoutDelimited__input,
 } from './form_control_layout_delimited.styles';
+import { UseEuiTheme } from '@elastic/eui-theme-common';
 
 export type EuiFormControlLayoutDelimitedProps =
   Partial<EuiFormControlLayoutProps> & {
@@ -53,6 +58,10 @@ export const EuiFormControlLayoutDelimited: FunctionComponent<
   fullWidth: _fullWidth,
   ...rest
 }) => {
+  const euiThemeContext = useEuiTheme();
+  const isExperimental =
+    euiThemeContext.euiTheme.flags?.formVariant === 'experimental';
+
   const { defaultFullWidth } = useFormContext();
   const fullWidth = _fullWidth ?? defaultFullWidth;
 
@@ -73,6 +82,7 @@ export const EuiFormControlLayoutDelimited: FunctionComponent<
     styles.childrenWrapper.delimited,
     showInvalidState && styles.childrenWrapper.invalid,
     rest.wrapperProps?.css,
+    isExperimental && rest.readOnly && styles.childrenWrapper.readOnly,
   ];
 
   return (
@@ -86,22 +96,25 @@ export const EuiFormControlLayoutDelimited: FunctionComponent<
       wrapperProps={{ ...rest.wrapperProps, css: wrapperStyles }}
     >
       <FormContext.Provider value={{ defaultFullWidth: fullWidth }}>
-        {addClassesToControl(startControl)}
+        {addClassesToControl(euiThemeContext, startControl)}
         <EuiFormControlDelimiter
           delimiter={delimiter}
           isInvalid={showInvalidState}
         />
-        {addClassesToControl(endControl)}
+        {addClassesToControl(euiThemeContext, endControl)}
       </FormContext.Provider>
     </EuiFormControlLayout>
   );
 };
 
-const addClassesToControl = (control: ReactElement) => {
+const addClassesToControl = (
+  euiThemeContext: UseEuiTheme,
+  control: ReactElement
+) => {
   return cloneElementWithCss(
     control,
     {
-      css: euiFormControlLayoutDelimited__input,
+      css: euiFormControlLayoutDelimited__input(euiThemeContext),
       className: classNames(
         control.props.className,
         'euiFormControlLayoutDelimited__input'
@@ -118,6 +131,7 @@ const EuiFormControlDelimiter = ({
   delimiter?: ReactNode;
   isInvalid?: boolean;
 }) => {
+  const euiThemeContext = useEuiTheme();
   const defaultAriaLabel = useEuiI18n(
     'euiFormControlLayoutDelimited.delimiterLabel',
     'to'
@@ -125,7 +139,7 @@ const EuiFormControlDelimiter = ({
 
   return (
     <EuiText
-      css={euiFormControlLayoutDelimited__delimiter}
+      css={euiFormControlLayoutDelimited__delimiter(euiThemeContext)}
       className="euiFormControlLayoutDelimited__delimiter"
       size="s"
       color={isInvalid ? 'danger' : 'subdued'}

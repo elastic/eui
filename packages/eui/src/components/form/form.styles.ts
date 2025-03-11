@@ -204,16 +204,6 @@ export const euiFormControlDefaultShadow = (
         euiTheme.border.width.thin
       } var(--euiFormControlStateColor);
 
-      ${formControlLayoutWrapperSelector}[class*=appendOnly] > &:first-child {
-        ${logicalCSS('border-top-left-radius', 'inherit')}
-        ${logicalCSS('border-bottom-left-radius', 'inherit')}
-      }
-
-      ${formControlLayoutWrapperSelector}[class*=prependOnly] > &:last-child {
-        ${logicalCSS('border-top-right-radius', 'inherit')}
-        ${logicalCSS('border-bottom-right-radius', 'inherit')}
-      }
-
       ${euiFormControlHoverStyles(euiThemeContext)}
     `
     : `
@@ -274,13 +264,13 @@ export const euiFormControlHoverStyles = (euiThemeContext: UseEuiTheme) => {
   const form = euiFormVariables(euiThemeContext);
 
   return `
-    &:hover:not(:disabled, :focus, input[readonly]) {
-        --borderWidth: var(--euiFormControlStateWidth, ${euiTheme.border.width.thin});
-        --borderColor: var(--euiFormControlStateHoverColor, ${form.borderHovered});
-        position: relative;
-        z-index: 1;
-        outline: var(--borderWidth) solid var(--borderColor);
-        outline-offset: calc(-1 * var(--borderWidth));
+    &:hover:not(:disabled, :focus, input[readonly], [class*="readOnly"]) {
+      --borderWidth: var(--euiFormControlStateWidth, ${euiTheme.border.width.thin});
+      --borderColor: var(--euiFormControlStateHoverColor, ${form.borderHovered});
+      position: relative;
+      z-index: 1;
+      outline: var(--borderWidth) solid var(--borderColor);
+      outline-offset: calc(-1 * var(--borderWidth));
     }
   `;
 };
@@ -378,11 +368,12 @@ export const euiFormControlReadOnlyStyles = (euiThemeContext: UseEuiTheme) => {
       --euiFormControlStateHoverColor: ${form.borderColor};
       --euiFormControlStateWidth: ${euiTheme.border.width.thin};
       /* keep the input below wrapper borders */
+      position: relative;
       z-index: 0;
       outline: none;
       box-shadow: inset 0 0 0 var(--euiFormControlStateWidth) var(--euiFormControlStateColor);
 
-      ${formControlLayoutWrapperSelector}[class*=inGroup] {
+      ${formControlLayoutWrapperSelector}[class*=inGroup] & {
         box-shadow: none;
       }
 
