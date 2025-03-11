@@ -1,7 +1,5 @@
 ## [`v100.0.0`](https://github.com/elastic/eui/releases/v100.0.0)
 
-# eui-theme/borealis Changelog ([#8386](https://github.com/elastic/eui/pull/8386))
- ([#8386](https://github.com/elastic/eui/pull/8386))
 - Added new "Borealis" theme as `@elastic/eui-theme-borealis` package ([#8030](https://github.com/elastic/eui/pull/8030)) ([#8386](https://github.com/elastic/eui/pull/8386))
 - Updated the default `theme` value on `EuiProvider` to "Borealis" ([#8288](https://github.com/elastic/eui/pull/8288)) ([#8386](https://github.com/elastic/eui/pull/8386))
 - Added shared theme code as `@elastic/eui-theme-common` package ([#8030](https://github.com/elastic/eui/pull/8030)) ([#8386](https://github.com/elastic/eui/pull/8386))
