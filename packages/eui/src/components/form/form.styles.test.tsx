@@ -181,11 +181,12 @@ describe('euiFormControlStyles', () => {
             --euiFormControlStateHoverColor: #CAD3E2;
             --euiFormControlStateWidth: 1px;
             /* keep the input below wrapper borders */
+            position: relative;
             z-index: 0;
             outline: none;
             box-shadow: inset 0 0 0 var(--euiFormControlStateWidth) var(--euiFormControlStateColor);
 
-            .euiFormControlLayout__childrenWrapper[class*=inGroup] {
+            .euiFormControlLayout__childrenWrapper[class*=inGroup] & {
               box-shadow: none;
             }
         ",
@@ -223,24 +224,14 @@ describe('euiFormControlStyles', () => {
             border: none;
             box-shadow: inset 0 0 0 1px var(--euiFormControlStateColor);
 
-            .euiFormControlLayout__childrenWrapper[class*=appendOnly] > &:first-child {
-              border-start-start-radius: inherit;
-              border-end-start-radius: inherit;
-            }
-
-            .euiFormControlLayout__childrenWrapper[class*=prependOnly] > &:last-child {
-              border-start-end-radius: inherit;
-              border-end-end-radius: inherit;
-            }
-
             
-          &:hover:not(:disabled, :focus, input[readonly]) {
-              --borderWidth: var(--euiFormControlStateWidth, 1px);
-              --borderColor: var(--euiFormControlStateHoverColor, #A2B1C9);
-              position: relative;
-              z-index: 1;
-              outline: var(--borderWidth) solid var(--borderColor);
-              outline-offset: calc(-1 * var(--borderWidth));
+          &:hover:not(:disabled, :focus, input[readonly], [class*="readOnly"]) {
+            --borderWidth: var(--euiFormControlStateWidth, 1px);
+            --borderColor: var(--euiFormControlStateHoverColor, #A2B1C9);
+            position: relative;
+            z-index: 1;
+            outline: var(--borderWidth) solid var(--borderColor);
+            outline-offset: calc(-1 * var(--borderWidth));
           }
           background-color: #FFFFFF;
           
