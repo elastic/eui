@@ -318,6 +318,11 @@ export const euiFormControlInvalidStyles = (euiThemeContext: UseEuiTheme) => {
       --euiFormControlStateWidth: ${euiTheme.border.width.thin};
       
       ${euiFormControlHighlightBorderStyles}
+
+      &:focus-within {
+        --euiFormControlStateColor: ${form.borderColor};
+        --euiFormControlStateHoverColor: ${form.borderHovered};
+      }
     `.trim()
     : `
       --euiFormControlStateColor: ${euiTheme.colors.danger};

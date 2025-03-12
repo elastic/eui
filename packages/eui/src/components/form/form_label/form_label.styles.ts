@@ -56,7 +56,7 @@ export const euiFormLabelStyles = (euiThemeContext: UseEuiTheme) => {
     `,
     // Focused state should override invalid state
     focused: css`
-      color: ${euiTheme.colors.primary};
+      color: ${isExperimental ? '' : euiTheme.colors.primary};
     `,
   };
 };
