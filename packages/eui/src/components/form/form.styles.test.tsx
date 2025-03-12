@@ -32,9 +32,9 @@ describe('euiFormVariables', () => {
         "backgroundDisabledColor": "#ECF1F9",
         "backgroundReadOnlyColor": "#ECF1F9",
         "borderColor": "#CAD3E2",
-        "borderFocused": "#1750BA",
-        "borderHovered": "#A2B1C9",
-        "borderInvalid": "#A71627",
+        "borderFocused": "#0B64DD",
+        "borderHovered": "#B4C1D5",
+        "borderInvalid": "#C61E25",
         "borderInvalidHovered": "#C61E25",
         "controlBorderRadius": "4px",
         "controlBoxShadow": "0 0 transparent",
@@ -87,11 +87,11 @@ describe('euiFormControlStyles', () => {
 
             &:hover,
             &:focus {
-              -webkit-box-shadow: inset 0 0 0 1px #1750BA, inset 0 0 0 100vw #E8F1FF;
+              -webkit-box-shadow: inset 0 0 0 1px #0B64DD, inset 0 0 0 100vw #E8F1FF;
             }
 
             &:invalid {
-              -webkit-box-shadow: inset 0 0 0 1px #A71627, inset 0 0 0 100vw #E8F1FF;
+              -webkit-box-shadow: inset 0 0 0 1px #C61E25, inset 0 0 0 100vw #E8F1FF;
 
               &:hover {
                 -webkit-box-shadow: inset 0 0 0 1px #C61E25, inset 0 0 0 100vw #E8F1FF;
@@ -140,8 +140,8 @@ describe('euiFormControlStyles', () => {
            }
 
         ",
-        "focus": "--euiFormControlStateColor: #1750BA;
-            --euiFormControlStateHoverColor: #1750BA;
+        "focus": "--euiFormControlStateColor: #0B64DD;
+            --euiFormControlStateHoverColor: #0B64DD;
             --euiFormControlStateWidth: 2px;
 
             position: relative;
@@ -162,7 +162,7 @@ describe('euiFormControlStyles', () => {
             box-shadow: none;
             border-radius: inherit;
           ",
-        "invalid": "--euiFormControlStateColor: #A71627;
+        "invalid": "--euiFormControlStateColor: #C61E25;
             --euiFormControlStateHoverColor: #C61E25;
             --euiFormControlStateWidth: 1px;
             
@@ -170,7 +170,12 @@ describe('euiFormControlStyles', () => {
           z-index: 1;
           outline: var(--euiFormControlStateWidth) solid var(--euiFormControlStateColor);
           outline-offset: calc(-1 * var(--euiFormControlStateWidth));
-          box-shadow: none;",
+          box-shadow: none;
+
+            &:focus-within {
+              --euiFormControlStateColor: #CAD3E2;
+              --euiFormControlStateHoverColor: #B4C1D5;
+            }",
         "readOnly": "
           background-color: #ECF1F9;
           cursor: default;
@@ -227,7 +232,7 @@ describe('euiFormControlStyles', () => {
             
           &:hover:not(:disabled, :focus, input[readonly], [class*="readOnly"]) {
             --borderWidth: var(--euiFormControlStateWidth, 1px);
-            --borderColor: var(--euiFormControlStateHoverColor, #A2B1C9);
+            --borderColor: var(--euiFormControlStateHoverColor, #B4C1D5);
             position: relative;
             z-index: 1;
             outline: var(--borderWidth) solid var(--borderColor);
