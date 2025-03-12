@@ -20,6 +20,16 @@ import {
 
 export const euiDatePickerStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
+  const isExperimental = euiTheme.flags?.formVariant === 'experimental';
+
+  const experimentalInlineStyles =
+    isExperimental &&
+    `
+      /* removes form layout border */
+      &::after {
+        display: none;
+      }
+    `;
 
   return {
     euiDatePicker: css`
@@ -33,6 +43,8 @@ export const euiDatePickerStyles = (euiThemeContext: UseEuiTheme) => {
           ${logicalCSS('width', 'fit-content')}
           border: none;
           padding: 0;
+
+          ${experimentalInlineStyles}
         }
 
         .euiFormControlLayout__childrenWrapper {
