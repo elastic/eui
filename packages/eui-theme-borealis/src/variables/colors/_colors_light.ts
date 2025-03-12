@@ -151,15 +151,15 @@ export const border_colors: _EuiThemeBorderColors = {
   borderBaseFormsColorSwatch: SEMANTIC_COLORS.shade100Alpha24,
   borderBaseFormsControl: SEMANTIC_COLORS.shade60,
 
-  borderInteractiveFormsHoverPlain: SEMANTIC_COLORS.shade50,
+  borderInteractiveFormsHoverPlain: SEMANTIC_COLORS.shade40,
   borderInteractiveFormsHoverDanger: SEMANTIC_COLORS.danger90,
 
-  borderStrongPrimary: SEMANTIC_COLORS.primary100,
-  borderStrongAccent: SEMANTIC_COLORS.accent100,
-  borderStrongAccentSecondary: SEMANTIC_COLORS.accentSecondary100,
-  borderStrongSuccess: SEMANTIC_COLORS.success100,
-  borderStrongWarning: SEMANTIC_COLORS.warning100,
-  borderStrongDanger: SEMANTIC_COLORS.danger100,
+  borderStrongPrimary: SEMANTIC_COLORS.primary90,
+  borderStrongAccent: SEMANTIC_COLORS.accent90,
+  borderStrongAccentSecondary: SEMANTIC_COLORS.accentSecondary90,
+  borderStrongSuccess: SEMANTIC_COLORS.success90,
+  borderStrongWarning: SEMANTIC_COLORS.warning90,
+  borderStrongDanger: SEMANTIC_COLORS.danger90,
 };
 
 export const special_colors: _EuiThemeSpecialColors = {
