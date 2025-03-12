@@ -44,10 +44,7 @@ export const euiComboBoxInputStyles = (euiThemeContext: UseEuiTheme) => {
     compressed: css`
       ${formStyles.compressed}
       ${logicalCSS('height', 'auto')}
-      ${logicalCSS(
-        'padding-vertical',
-        isExperimental ? euiTheme.size.s : euiTheme.size.xs
-      )}
+      ${logicalCSS('padding-vertical', euiTheme.size.xs)}
       ${logicalCSS('padding-left', euiTheme.size.xs)}
       column-gap: ${euiTheme.size.xs};
       row-gap: ${euiTheme.size.xxs};
