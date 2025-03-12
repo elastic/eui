@@ -21,6 +21,7 @@ import {
   euiFormControlInvalidStyles,
   euiFormControlDisabledStyles,
   euiFormControlFocusStyles,
+  euiFormControlHighlightBorderStyles,
 } from '../../form/form.styles';
 
 export const euiSuperDatePickerStyles = (euiThemeContext: UseEuiTheme) => {
@@ -99,6 +100,21 @@ export const euiSuperDatePickerStyles = (euiThemeContext: UseEuiTheme) => {
       ${euiFormControlFocusStyles(euiThemeContext)}
     }
   `;
+
+  const experimentalNeedsUpdatingStyles =
+    isExperimental &&
+    `
+      --euiFormControlStateColor: ${euiTheme.colors.success};
+      --euiFormControlStateHoverColor: ${euiTheme.colors.success};
+      --euiFormControlStateWidth: ${euiTheme.border.width.thin};
+      ${euiFormControlHighlightBorderStyles}
+  
+      &:has(.euiPopover-isOpen),
+      &:focus-within {
+        --euiFormControlStateColor: ${forms.borderColor};
+        --euiFormControlStateHoverColor: ${forms.borderHovered};
+      }
+    `;
 
   const needsUpdatingPopoverButtonFocusStyles = isExperimental
     ? `
@@ -246,9 +262,10 @@ export const euiSuperDatePickerStyles = (euiThemeContext: UseEuiTheme) => {
       `,
       needsUpdating: css`
         .euiFormControlLayout__childrenWrapper {
-          --euiFormControlStateHoverColor: ${euiTheme.colors.success};
           color: ${needsUpdatingTextColor};
           background-color: ${needsUpdatingBackgroundColor};
+
+          ${experimentalNeedsUpdatingStyles}
         }
 
         .euiFormControlLayoutDelimited__delimiter {
