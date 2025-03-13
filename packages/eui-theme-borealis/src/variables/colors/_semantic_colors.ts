@@ -167,6 +167,8 @@ const _semantic_alpha_colors = {
   plainLightAlpha16: `rgba(${plainLightRGB}, 0.16)`,
   plainLightAlpha32: `rgba(${plainLightRGB}, 0.32)`,
 
+  primary70Alpha4: `rgba(${primary70RGB}, 0.04)`,
+  primary70Alpha8: `rgba(${primary70RGB}, 0.08)`,
   primary70Alpha12: `rgba(${primary70RGB}, 0.12)`,
   primary70Alpha16: `rgba(${primary70RGB}, 0.16)`,
   primary70Alpha20: `rgba(${primary70RGB}, 0.2)`,

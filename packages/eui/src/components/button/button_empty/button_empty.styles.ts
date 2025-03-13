@@ -66,6 +66,7 @@ export const euiButtonEmptyStyles = (euiThemeContext: UseEuiTheme) => {
     // Flush sides
     flush: css`
       padding-inline: 0;
+      background: none;
       ${experimentalStyles}
     `,
     left: css`

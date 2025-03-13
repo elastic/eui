@@ -47,7 +47,7 @@ export const brand_text_colors: _EuiThemeBrandTextColors = {
   textAccent: SEMANTIC_COLORS.accent100,
   textAccentSecondary: SEMANTIC_COLORS.accentSecondary100,
   textSuccess: SEMANTIC_COLORS.success100,
-  textWarning: SEMANTIC_COLORS.warning110,
+  textWarning: SEMANTIC_COLORS.warning100,
   textDanger: SEMANTIC_COLORS.danger100,
 };
 
