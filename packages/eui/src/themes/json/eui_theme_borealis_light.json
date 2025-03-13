@@ -417,7 +417,7 @@
   "euiColorBorderBaseFormsColorSwatch": "rgba(72,89,117, 0.24)",
   "euiColorBorderBaseFormsControl": "#8E9FBC",
   "euiColorBorderInteractiveFormsHoverPlain": "#B4C1D5",
-  "euiColorBorderInteractiveFormsHoverDanger": "#C61E25",
+  "euiColorBorderInteractiveFormsHoverDanger": "#DA3737",
   "euiColorBorderStrongPrimary": "#0B64DD",
   "euiColorBorderStrongAccent": "#BC1E70",
   "euiColorBorderStrongAccentSecondary": "#008B87",
