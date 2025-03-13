@@ -214,6 +214,7 @@ export const EuiThemeProvider = <T extends {} = {}>({
       // TODO: remove once flags and experimental updates are obsolete
       const flagsToRecompute = [
         { flag: 'buttonVariant', componentKey: 'buttons' },
+        { flag: 'formVariant', componentKey: 'forms' },
       ];
 
       const keys: { [key: string]: { LIGHT: {}; DARK: {} } } = {};
