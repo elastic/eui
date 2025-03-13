@@ -35,6 +35,8 @@ export const euiThemeAmsterdam: EuiThemeShape = {
   flags: {
     hasGlobalFocusColor: false,
     hasVisColorAdjustment: true,
+    buttonVariant: 'default',
+    formVariant: 'default',
   },
 };
 

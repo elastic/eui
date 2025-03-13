@@ -12,4 +12,6 @@
 export type _EuiThemeFlags = {
   hasGlobalFocusColor: boolean;
   hasVisColorAdjustment: boolean;
+  buttonVariant: 'default' | 'experimental';
+  formVariant: 'default' | 'experimental';
 };

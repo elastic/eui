@@ -15,7 +15,6 @@ import { SEMANTIC_COLORS } from './colors/_semantic_colors';
 import {
   dark_background_colors,
   dark_border_colors,
-  dark_brand_text_colors,
   dark_text_colors,
 } from './colors/_colors_dark';
 
@@ -24,7 +23,6 @@ import { forms } from './_forms';
 import {
   background_colors,
   border_colors,
-  brand_text_colors,
   text_colors,
 } from './colors/_colors_light';
 import { colorVis } from './colors/_colors_vis';
@@ -43,7 +41,7 @@ const component_colors: _EuiThemeComponentColors = {
 
   buttonGroupBorderColor: border_colors.borderBasePlain,
   buttonGroupBorderColorSelected: border_colors.borderBasePlain,
-  buttonGroupFocusColor: brand_text_colors.textPrimary,
+  buttonGroupFocusColor: SEMANTIC_COLORS.plainDark,
 
   codeBackground: background_colors.backgroundBaseHighlighted,
   codeBackgroundSelected: 'inherit',
@@ -183,7 +181,7 @@ export const components: _EuiThemeComponents = {
 
     buttonGroupBorderColor: dark_border_colors.borderBasePlain,
     buttonGroupBorderColorSelected: dark_border_colors.borderBasePlain,
-    buttonGroupFocusColor: dark_brand_text_colors.textPrimary,
+    buttonGroupFocusColor: SEMANTIC_COLORS.plainLight,
 
     codeBackground: dark_background_colors.backgroundBaseHighlighted,
     codeBackgroundSelected: 'inherit',

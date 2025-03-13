@@ -40,7 +40,7 @@ exports[`useDataGridDisplaySelector displaySelector allows consumers to customiz
         >
           <button
             aria-pressed="false"
-            class="euiButtonGroupButton emotion-euiButtonDisplay-s-defaultMinWidth-euiButtonGroupButton-compressed-empty-text"
+            class="euiButtonGroupButton emotion-euiButtonDisplay-s-defaultMinWidth-s-euiButtonGroupButton-compressed-empty-text"
             data-test-subj="compact"
             title="Compact"
             type="button"
@@ -58,7 +58,7 @@ exports[`useDataGridDisplaySelector displaySelector allows consumers to customiz
           </button>
           <button
             aria-pressed="false"
-            class="euiButtonGroupButton emotion-euiButtonDisplay-s-defaultMinWidth-euiButtonGroupButton-compressed-empty-text"
+            class="euiButtonGroupButton emotion-euiButtonDisplay-s-defaultMinWidth-s-euiButtonGroupButton-compressed-empty-text"
             data-test-subj="normal"
             title="Normal"
             type="button"
@@ -76,7 +76,7 @@ exports[`useDataGridDisplaySelector displaySelector allows consumers to customiz
           </button>
           <button
             aria-pressed="false"
-            class="euiButtonGroupButton emotion-euiButtonDisplay-s-defaultMinWidth-euiButtonGroupButton-compressed-empty-text"
+            class="euiButtonGroupButton emotion-euiButtonDisplay-s-defaultMinWidth-s-euiButtonGroupButton-compressed-empty-text"
             data-test-subj="expanded"
             title="Expanded"
             type="button"
@@ -135,7 +135,7 @@ exports[`useDataGridDisplaySelector displaySelector allows consumers to customiz
           >
             <button
               aria-pressed="false"
-              class="euiButtonGroupButton emotion-euiButtonDisplay-s-defaultMinWidth-euiButtonGroupButton-compressed-empty-text"
+              class="euiButtonGroupButton emotion-euiButtonDisplay-s-defaultMinWidth-s-euiButtonGroupButton-compressed-empty-text"
               data-test-subj="auto"
               title="Auto"
               type="button"
@@ -153,7 +153,7 @@ exports[`useDataGridDisplaySelector displaySelector allows consumers to customiz
             </button>
             <button
               aria-pressed="true"
-              class="euiButtonGroupButton euiButtonGroupButton-isSelected emotion-euiButtonDisplay-s-defaultMinWidth-euiButtonGroupButton-compressed-fill-text"
+              class="euiButtonGroupButton euiButtonGroupButton-isSelected emotion-euiButtonDisplay-s-defaultMinWidth-s-euiButtonGroupButton-compressed-fill-text"
               data-test-subj="static"
               title="Static"
               type="button"
@@ -292,7 +292,7 @@ exports[`useDataGridDisplaySelector displaySelector renders a toolbar button/pop
                 >
                   <button
                     aria-pressed="false"
-                    class="euiButtonGroupButton emotion-euiButtonDisplay-s-defaultMinWidth-euiButtonGroupButton-compressed-empty-text"
+                    class="euiButtonGroupButton emotion-euiButtonDisplay-s-defaultMinWidth-s-euiButtonGroupButton-compressed-empty-text"
                     data-test-subj="compact"
                     title="Compact"
                     type="button"
@@ -310,7 +310,7 @@ exports[`useDataGridDisplaySelector displaySelector renders a toolbar button/pop
                   </button>
                   <button
                     aria-pressed="false"
-                    class="euiButtonGroupButton emotion-euiButtonDisplay-s-defaultMinWidth-euiButtonGroupButton-compressed-empty-text"
+                    class="euiButtonGroupButton emotion-euiButtonDisplay-s-defaultMinWidth-s-euiButtonGroupButton-compressed-empty-text"
                     data-test-subj="normal"
                     title="Normal"
                     type="button"
@@ -328,7 +328,7 @@ exports[`useDataGridDisplaySelector displaySelector renders a toolbar button/pop
                   </button>
                   <button
                     aria-pressed="false"
-                    class="euiButtonGroupButton emotion-euiButtonDisplay-s-defaultMinWidth-euiButtonGroupButton-compressed-empty-text"
+                    class="euiButtonGroupButton emotion-euiButtonDisplay-s-defaultMinWidth-s-euiButtonGroupButton-compressed-empty-text"
                     data-test-subj="expanded"
                     title="Expanded"
                     type="button"
@@ -384,7 +384,7 @@ exports[`useDataGridDisplaySelector displaySelector renders a toolbar button/pop
                   >
                     <button
                       aria-pressed="false"
-                      class="euiButtonGroupButton emotion-euiButtonDisplay-s-defaultMinWidth-euiButtonGroupButton-compressed-empty-text"
+                      class="euiButtonGroupButton emotion-euiButtonDisplay-s-defaultMinWidth-s-euiButtonGroupButton-compressed-empty-text"
                       data-test-subj="auto"
                       title="Auto"
                       type="button"
@@ -402,7 +402,7 @@ exports[`useDataGridDisplaySelector displaySelector renders a toolbar button/pop
                     </button>
                     <button
                       aria-pressed="true"
-                      class="euiButtonGroupButton euiButtonGroupButton-isSelected emotion-euiButtonDisplay-s-defaultMinWidth-euiButtonGroupButton-compressed-fill-text"
+                      class="euiButtonGroupButton euiButtonGroupButton-isSelected emotion-euiButtonDisplay-s-defaultMinWidth-s-euiButtonGroupButton-compressed-fill-text"
                       data-test-subj="static"
                       title="Static"
                       type="button"
