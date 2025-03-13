@@ -1,4 +1,4 @@
-declare module '@elastic/eui/dist/eui_theme_borealis_dark.json' {
+declare module '@elastic/eui-theme-borealis/lib/eui_theme_borealis_dark.json' {
   const sassVariables: {
     euiZDataGrid: number;
     euiZHeaderBelowDataGrid: number;
@@ -414,6 +414,8 @@ declare module '@elastic/eui/dist/eui_theme_borealis_dark.json' {
     euiColorBorderBaseFloating: string;
     euiColorBorderBaseFormsColorSwatch: string;
     euiColorBorderBaseFormsControl: string;
+    euiBorderInteractiveFormsHoverPlain: string;
+    euiBorderInteractiveFormsHoverDanger: string;
     euiColorBorderStrongPrimary: string;
     euiColorBorderStrongAccent: string;
     euiColorBorderStrongAccentSecondary: string;
