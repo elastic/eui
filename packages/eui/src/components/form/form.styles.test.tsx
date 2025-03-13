@@ -35,7 +35,7 @@ describe('euiFormVariables', () => {
         "borderFocused": "#0B64DD",
         "borderHovered": "#B4C1D5",
         "borderInvalid": "#C61E25",
-        "borderInvalidHovered": "#C61E25",
+        "borderInvalidHovered": "#DA3737",
         "controlBorderRadius": "4px",
         "controlBoxShadow": "0 0 transparent",
         "controlCompressedBorderRadius": "4px",
@@ -94,7 +94,7 @@ describe('euiFormControlStyles', () => {
               -webkit-box-shadow: inset 0 0 0 1px #C61E25, inset 0 0 0 100vw #E8F1FF;
 
               &:hover {
-                -webkit-box-shadow: inset 0 0 0 1px #C61E25, inset 0 0 0 100vw #E8F1FF;
+                -webkit-box-shadow: inset 0 0 0 1px #DA3737, inset 0 0 0 100vw #E8F1FF;
               }
             }
           }
@@ -163,7 +163,7 @@ describe('euiFormControlStyles', () => {
             border-radius: inherit;
           ",
         "invalid": "--euiFormControlStateColor: #C61E25;
-            --euiFormControlStateHoverColor: #C61E25;
+            --euiFormControlStateHoverColor: #DA3737;
             --euiFormControlStateWidth: 1px;
             
             position: relative;
