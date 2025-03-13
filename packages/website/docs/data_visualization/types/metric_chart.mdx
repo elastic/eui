@@ -633,7 +633,7 @@ import { MetricChartResizing } from './metric_chart_resizing';
 
 Various situations could lead to an uncertain state. We designed two **empty states** that should cover most of those cases:
 
-*   When an applied filter makes the metric uncomputable (missing values in a windowed function, or filtered out values for a percentage calculation), then a `NaN` can be sent as the `value`. This will result in rendering a `N/A` string, making clear that the chart is working but is not possible to compute the metric correctly.
+*   When an applied filter makes the metric incomputable (missing values in a windowed function, or filtered out values for a percentage calculation), then a `NaN` can be sent as the `value`. This will result in rendering a `N/A` string, making clear that the chart is working but is not possible to compute the metric correctly.
 *   If, instead, the metric itself is filtered out (for example the metric represents a specific category, that is filtered out) the component won't be rendered, and an empty box is rendered.
 
 ```mdx-code-block

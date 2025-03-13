@@ -345,7 +345,7 @@ export default () => {
 
 ## Popover content
 
-If you want a breadcrumb that toggles a popover, e.g. for an account switcher, you can use the `popoverContent` prop for this purpose. **EuiBreadcrumbs** will automatically handle rendering a popover indicator and popover accessibility best practies for you. We recommend using components such as [**EuiContextMenu**](/docs/navigation/context-menu) or [**EuiListGroup**](/docs/display/list-group) for displaying popover options, or potentially [**EuiSelectable**](/docs/forms/selectable) if you have many items that require filtering.
+If you want a breadcrumb that toggles a popover, e.g. for an account switcher, you can use the `popoverContent` prop for this purpose. **EuiBreadcrumbs** will automatically handle rendering a popover indicator and popover accessibility best practices for you. We recommend using components such as [**EuiContextMenu**](/docs/navigation/context-menu) or [**EuiListGroup**](/docs/display/list-group) for displaying popover options, or potentially [**EuiSelectable**](/docs/forms/selectable) if you have many items that require filtering.
 
 You may also pass `popoverProps` with almost any prop that [**EuiPopover**](/docs/layout/popover) accepts, such as customizing `panelPaddingSize` or `anchorPosition`. However, props that affect popover state such as `closePopover`, `isOpen`, and `button` are not accepted as they are controlled automatically by **EuiBreadcrumbs**.
 
