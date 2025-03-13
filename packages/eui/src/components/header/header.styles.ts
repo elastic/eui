@@ -10,7 +10,11 @@ import { css } from '@emotion/react';
 import { euiShadowXSmall } from '@elastic/eui-theme-common';
 
 import { logicalCSS } from '../../global_styling';
-import { UseEuiTheme, makeHighContrastColor } from '../../services';
+import {
+  UseEuiTheme,
+  isEuiThemeRefreshVariant,
+  makeHighContrastColor,
+} from '../../services';
 
 export const euiHeaderVariables = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
@@ -34,6 +38,11 @@ export const euiHeaderStyles = (euiThemeContext: UseEuiTheme) => {
       ${logicalCSS('padding-horizontal', padding)}
       ${logicalCSS('border-bottom', euiTheme.border.thin)}
       ${euiShadowXSmall(euiThemeContext)}
+    `,
+    euiHeaderWrapper: css`
+      display: flex;
+      justify-content: space-between;
+      ${logicalCSS('width', '100%')}
     `,
     // Position
     static: css`
@@ -68,14 +77,22 @@ export const euiHeaderStyles = (euiThemeContext: UseEuiTheme) => {
 import { euiFormVariables } from '../form/form.styles';
 
 const euiHeaderDarkStyles = (euiThemeContext: UseEuiTheme) => {
-  const { euiTheme, highContrastMode } = euiThemeContext;
+  const { euiTheme, colorMode, highContrastMode } = euiThemeContext;
+  const isRefreshVariant = isEuiThemeRefreshVariant(
+    euiThemeContext,
+    'formVariant'
+  );
   const { controlPlaceholderText } = euiFormVariables(euiThemeContext);
 
   const backgroundColor = euiTheme.components.headerDarkBackground;
 
   // Specific color overrides for EuiSelectableTemplateSitewide
   const selectableSitewide = {
-    color: euiTheme.colors.ghost,
+    color: isRefreshVariant
+      ? colorMode === 'DARK'
+        ? euiTheme.colors.textParagraph
+        : euiTheme.colors.textInverse
+      : euiTheme.colors.ghost,
     borderColor: euiTheme.components.headerDarkSearchBorderColor,
     placeholderColor: makeHighContrastColor(
       controlPlaceholderText,
@@ -83,44 +100,15 @@ const euiHeaderDarkStyles = (euiThemeContext: UseEuiTheme) => {
     )(backgroundColor),
   };
 
-  return `
-    background-color: ${backgroundColor};
-
-    .euiHeaderLogo__text,
-    .euiHeaderLink,
-    .euiHeaderSectionItemButton {
-      color: ${euiTheme.colors.ghost};
-    }
-
-    .euiHeaderLink-isActive {
-      color: ${makeHighContrastColor(euiTheme.colors.primary)(backgroundColor)};
-    }
-
-    .euiHeaderLogo,
-    .euiHeaderLink,
-    .euiHeaderSectionItemButton {
-      &:focus {
-        background-color: ${
-          euiTheme.components.headerDarkSectionItemBackgroundFocus
-        };
-      }
-    }
-
-    .euiHeaderSectionItemButton__notification--badge {
-      box-shadow: 0 0 0 ${euiTheme.border.width.thin} ${backgroundColor};
-    }
-
-    .euiHeaderSectionItemButton__notification--dot {
-      stroke: ${backgroundColor};
-    }
-
+  const formControlLayoutStyles = !isRefreshVariant
+    ? `
     .euiSelectableTemplateSitewide .euiFormControlLayout {
       background-color: transparent;
 
       input {
         box-shadow: inset 0 0 0 ${euiTheme.border.width.thin} ${
-    selectableSitewide.borderColor
-  };
+        selectableSitewide.borderColor
+      };
       }
 
       &--group {
@@ -166,5 +154,44 @@ const euiHeaderDarkStyles = (euiThemeContext: UseEuiTheme) => {
         }
       }
     }
+  `
+    : `
+      .euiFormControlLayoutIcons {
+        color: ${selectableSitewide.color};
+      }
+    `;
+
+  return `
+    background-color: ${backgroundColor};
+
+    .euiHeaderLogo__text,
+    .euiHeaderLink,
+    .euiHeaderSectionItemButton {
+      color: ${euiTheme.colors.ghost};
+    }
+
+    .euiHeaderLink-isActive {
+      color: ${makeHighContrastColor(euiTheme.colors.primary)(backgroundColor)};
+    }
+
+    .euiHeaderLogo,
+    .euiHeaderLink,
+    .euiHeaderSectionItemButton {
+      &:focus {
+        background-color: ${
+          euiTheme.components.headerDarkSectionItemBackgroundFocus
+        };
+      }
+    }
+
+    .euiHeaderSectionItemButton__notification--badge {
+      box-shadow: 0 0 0 ${euiTheme.border.width.thin} ${backgroundColor};
+    }
+
+    .euiHeaderSectionItemButton__notification--dot {
+      stroke: ${backgroundColor};
+    }
+
+    ${formControlLayoutStyles}
   `;
 };

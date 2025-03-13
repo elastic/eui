@@ -14,13 +14,18 @@ import React, {
   useCallback,
   CSSProperties,
   ReactElement,
+  useContext,
 } from 'react';
 import classNames from 'classnames';
 
 import {
+  EuiNestedThemeContext,
+  EuiThemeProvider,
   useCombinedRefs,
   useCurrentEuiBreakpoint,
   useEuiMemoizedStyles,
+  useEuiTheme,
+  useEuiThemeRefreshVariant,
 } from '../../../services';
 import { EuiBreakpointSize } from '../../../services/breakpoint';
 import { ENTER } from '../../../services/keys';
@@ -87,6 +92,13 @@ export const EuiSelectableTemplateSitewide: FunctionComponent<
   popoverButtonBreakpoints,
   ...rest
 }) => {
+  const { colorMode } = useEuiTheme();
+  const isRefreshVariant = useEuiThemeRefreshVariant('formVariant');
+
+  const { hasDifferentColorFromGlobalTheme } = useContext(
+    EuiNestedThemeContext
+  );
+
   /**
    * i18n text
    */
@@ -259,34 +271,64 @@ export const EuiSelectableTemplateSitewide: FunctionComponent<
       {...rest}
       searchable
     >
-      {(list, search) => (
-        <EuiPopover
-          panelPaddingSize="none"
-          isOpen={popoverIsOpen}
-          ownFocus={!!popoverTrigger}
-          display={popoverTrigger ? 'inline-block' : 'block'}
-          {...popoverRest}
-          panelRef={setPanelRef}
-          button={popoverTrigger ? popoverTrigger : search!}
-          closePopover={closePopover}
-        >
-          <div style={{ width: popoverWidth, maxWidth: '100%' }}>
-            {popoverTitle || popoverTrigger ? (
-              <EuiPopoverTitle paddingSize="s">
-                {popoverTitle}
-                {popoverTitle && search && <EuiSpacer />}
-                {search}
-              </EuiPopoverTitle>
-            ) : undefined}
-            {list}
-            {popoverFooter && (
-              <EuiPopoverFooter paddingSize="s">
-                {popoverFooter}
-              </EuiPopoverFooter>
-            )}
-          </div>
-        </EuiPopover>
-      )}
+      {(list, search) => {
+        const _search = isRefreshVariant ? (
+          <EuiThemeProvider
+            wrapperProps={{ cloneElement: true }}
+            colorMode="DARK"
+          >
+            {search}
+          </EuiThemeProvider>
+        ) : (
+          search
+        );
+
+        const popover = (
+          <EuiPopover
+            panelPaddingSize="none"
+            isOpen={popoverIsOpen}
+            ownFocus={!!popoverTrigger}
+            display={popoverTrigger ? 'inline-block' : 'block'}
+            {...popoverRest}
+            panelRef={setPanelRef}
+            button={popoverTrigger ? popoverTrigger : _search!}
+            closePopover={closePopover}
+          >
+            <div style={{ width: popoverWidth, maxWidth: '100%' }}>
+              {popoverTitle || popoverTrigger ? (
+                <EuiPopoverTitle paddingSize="s">
+                  {popoverTitle}
+                  {popoverTitle && search && <EuiSpacer />}
+                  {search}
+                </EuiPopoverTitle>
+              ) : undefined}
+              {list}
+              {popoverFooter && (
+                <EuiPopoverFooter paddingSize="s">
+                  {popoverFooter}
+                </EuiPopoverFooter>
+              )}
+            </div>
+          </EuiPopover>
+        );
+
+        return isRefreshVariant ? (
+          <EuiThemeProvider
+            wrapperProps={{ cloneElement: true }}
+            colorMode={
+              hasDifferentColorFromGlobalTheme
+                ? colorMode === 'DARK'
+                  ? 'LIGHT'
+                  : colorMode
+                : colorMode
+            }
+          >
+            {popover}
+          </EuiThemeProvider>
+        ) : (
+          popover
+        );
+      }}
     </EuiSelectable>
   );
 };
