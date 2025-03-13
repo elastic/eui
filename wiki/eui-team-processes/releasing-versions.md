@@ -10,38 +10,68 @@ _**Before you get started**_
   - the release script assumes your origin for the [EUI root repo](https://github.com/elastic/eui) is labelled `upstream`
   - if you have 2FA enabled, you may be prompted for an [OTP or other token](https://github.com/settings/tokens)
 
-### Releasing `@elastic/eui`
+## Releasing `@elastic/eui`
 Log into your NPM account:
 ```sh
-npm login # Will prompt for credentials and 2FA token
-npm whoami # Should return your NPM username
+yarn npm login # Will prompt for credentials and 2FA token
+yarn npm whoami # Should return your NPM username
 ```
 
-Ensure you are on the `main` branch and in the `packages/eui` directory:
+Ensure you are on the `main` branch and on the directory:
 ```sh
-git checkout main && cd packages/eui
+git checkout main
+```
+
+If you're already on the `main` branch, make sure you're on the latest state:
+```sh
+yarn fetch
+yarn pull
+```
+
+Ensure the release-cli is build:
+```sh
+yarn workspace @elastic/eui-release-cli run build
 ```
 
 You can now start the release script by running the following command:
 ```sh
-npm run release
+yarn release run official --workspaces @elastic/eui-theme-common @elastic/eui-theme-borealis @elastic/eui
 ```
 
-This command ensures that you have the latest `upstream/main` and dependencies, as well as running all tests and then building the `lib` and `dist` distributions formats. Next the recent changes are read from `changelogs/upcoming/` and you will be asked to choose what part of the version to bump.
+This command ensures that the workspace dependencies are built, as well as running all tests and then building the `lib` and `dist` distributions formats. Next the recent changes are read from `changelogs/upcoming/` and the script automatically updates the most recent changelog with the new release header and collated upcoming changelogs, and then cleans the upcoming changelog directory.
+Once the script finishes the release packages have been published.
 
-![bumping a version](https://camo.githubusercontent.com/439b41058aa56f167867c4e118ef5e80c02c962f/68747470733a2f2f642e70722f692f51624b36614a2e676966)
+Next create a release tag based on the created release version:
+```sh
+git tag -a v{VERSION} -m "@elastic/eui v{VERSION}"
 
-After the version is bumped, the release script automatically updates the most recent changelog with the new release header and collated upcoming changelogs, and then cleans the upcoming changelog directory. The updates are committed to git and tagged, then pushed to your `upstream` branch.
+# example usage
+git tag -a v100.0.0 -m "@elastic/eui v100.0.0"
+```
 
-The latest changes have now been pushed to GitHub, a new `git` tag now exists on GitHub, the new release can be installed from `npm`, and the [documentation site][docs] will update momentarily.
+Then push the changes and the new tag:
+```sh
+git push upstream main
+git push upstream v100.0.0
+```
+
+The latest changes have now been pushed to GitHub, a new `git` tag now exists on GitHub, the new releases can be installed from `npm`, and the [documentation site][docs] will update momentarily.
 
 (Optional) log out of your NPM account:
 ```sh
-npm logout
-npm whoami # Should return an error about not being logged in
+yarn npm logout
+yarn npm whoami # Should return an error about not being logged in
 ```
 
-#### eui.elastic.co
+### Tag the release in GitHub
+
+We also update the [release's tag in github](https://github.com/elastic/eui/tags) by _creating a release_ for the version and copying over its _CHANGELOG_ entries. 
+* Click the three dot menu on the right side of the latest tag, then click "Create release" from the flyout menu
+* Type a lowercase "v" and the tag number into the release name field with no spaces
+* Copy the latest year's _CHANGELOG_ entry into the release description. Do not included the linked version header.
+* (TODO: screencast this next time to include a GIF here)
+
+### eui.elastic.co
 
 Buildkite automatically deploys our docs to the EUI `Bekitzur` environment. The Buildkite job is started when a new tag is pushed to the `main` branch.
 
@@ -65,13 +95,103 @@ Buildkite automatically deploys our docs to the EUI `Bekitzur` environment. The 
 * Add `DEPLOY_ROOT=true` to the Environment Variables textbox
 * Click `Create Build` to start the job manually
 
-### Tag the release in GitHub
+### Creating snapshot releases
 
-We also update the [release's tag in github](https://github.com/elastic/eui/tags) by _creating a release_ for the version and copying over its _CHANGELOG_ entries. 
-* Click the three dot menu on the right side of the latest tag, then click "Create release" from the flyout menu
-* Type a lowercase "v" and the tag number into the release name field with no spaces
-* Copy the latest year's _CHANGELOG_ entry into the release description. Do not included the linked version header.
-* (TODO: screencast this next time to include a GIF here)
+If you want to create a test release package you can create "snapshot" releases. These will be tagged as `-snapshot` with a timestamp and are standalone packages.
+
+Example name: `99.4.0-snapshot.1741184063218`
+
+#### Publishing to npm
+
+Ensure you're logged in to npm: 
+```sh
+yarn npm login
+```
+
+Build the dependencies:
+```sh
+yarn
+```
+
+Build the release-cli package:
+```sh
+yarn workspace @elastic/eui-release-cli run build
+```
+
+Build the snapshot releases from the monorepo root:
+```sh
+yarn release run snapshot --allow-custom --workspaces @elastic/eui-theme-common @elastic/eui-theme-borealis @elastic/eui
+```
+
+> There will be changed files, do not commit them.
+
+Once the script finishes the snapshot releases have been published to npm and can be installed for testing.
+
+
+(Optional) log out of your NPM account:
+```sh
+yarn npm logout
+yarn npm whoami # Should return an error about not being logged in
+```
+
+#### Local testing
+
+Ensure you're logged out of npm: 
+```sh
+npm logout
+yarn npm logout
+```
+
+Run a local registry to which the packages are publish instead of npm:
+```sh
+docker run -it --rm --name verdaccio -p 4873:4873 verdaccio/verdaccio
+```
+
+Login to the local registry (you can set any user/password, e.g. test/test)
+```sh
+yarn login
+```
+
+Update the root `.yarnrc.yml` file by adding:
+```sh
+npmRegistryServer: "http://localhost:4873"
+unsafeHttpWhitelist:
+  - localhost
+  - "localhost:4873"
+```
+
+Disable checking if the working directory is clean in `packages/release-cli/src/git_utils.ts` by returning `true` in `isWorkingTreeClean()`:
+```sh
+# example
+export const isWorkingTreeClean = async () => {
+  return true;
+};
+```
+
+Build the dependencies:
+```sh
+yarn
+```
+
+Build the release-cli package:
+```sh
+yarn workspace @elastic/eui-release-cli run build
+```
+
+Build the snapshot releases from the monorepo root:
+```sh
+yarn release run snapshot --allow-custom --workspaces @elastic/eui-theme-common @elastic/eui-theme-borealis @elastic/eui
+```
+
+The defined snapshot packages will be now be "released" to the local registry which is available at `http://localhost:4873`.
+
+Log out of your NPM account:
+```sh
+yarn npm logout
+yarn npm whoami # Should return an error about not being logged in
+```
+
+
 
 ## `@elastic/eslint-plugin-eui`
 

@@ -1,4 +1,4 @@
-import React, { type ComponentProps, useEffect, useMemo } from 'react';
+import { type ComponentProps, useEffect, useMemo, JSX } from 'react';
 import clsx from 'clsx';
 import { css, Interpolation, Theme } from '@emotion/react';
 import {

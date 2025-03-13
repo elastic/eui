@@ -402,7 +402,7 @@ describe('EuiInlineEditForm', () => {
         });
 
         fireEvent.click(getByTestSubject('euiInlineEditModeSaveButton'));
-        expect(onSave).toBeCalledTimes(1);
+        expect(onSave).toHaveBeenCalledTimes(1);
 
         await act(() => {
           promiseResolve(false);

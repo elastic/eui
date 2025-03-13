@@ -97,10 +97,10 @@ export const ChartTypeCard = <Mixed,>(props: ChartTypeCardProps<Mixed>) => {
     },
   ];
 
-  const [toggleIdSelected, setToggleIdSelectd] = useState(`${idPrefix}0`);
+  const [toggleIdSelected, setToggleIdSelected] = useState(`${idPrefix}0`);
 
   const onChartTypeChange = (optionId: string) => {
-    setToggleIdSelectd(optionId);
+    setToggleIdSelected(optionId);
 
     const chartType = toggleButtonsIcons.find(({ id }) => id === optionId)!
       .label as ChartType;

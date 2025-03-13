@@ -193,7 +193,7 @@ describe('EuiKeyPadMenuItem', () => {
       </EuiKeyPadMenuItem>
     );
 
-    expect(onClickHandler).not.toBeCalled();
+    expect(onClickHandler).not.toHaveBeenCalled();
   });
 
   test('onClick is called when the button is clicked', () => {
@@ -207,7 +207,7 @@ describe('EuiKeyPadMenuItem', () => {
 
     $button.simulate('click');
 
-    expect(onClickHandler).toBeCalledTimes(1);
+    expect(onClickHandler).toHaveBeenCalledTimes(1);
   });
 
   describe('checkable', () => {

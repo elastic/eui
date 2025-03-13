@@ -6,7 +6,12 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent, ComponentType, HTMLAttributes } from 'react';
+import React, {
+  FunctionComponent,
+  ComponentType,
+  HTMLAttributes,
+  JSX,
+} from 'react';
 import { CommonProps } from '../../common';
 
 import {

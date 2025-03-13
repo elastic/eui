@@ -14,16 +14,15 @@ function createHiddenTextElement(text: string): HTMLSpanElement {
   // prevents scrolling to the end of the page
   textElement.style.position = 'fixed';
   textElement.style.top = '0';
-  textElement.style.clip = 'rect(0, 0, 0, 0)';
+  textElement.style.clipPath = 'rect(0, 0, 0, 0)';
   // used to preserve spaces and line breaks
   textElement.style.whiteSpace = 'pre';
   // do not inherit user-select (it may be `none`)
-  textElement.style.webkitUserSelect = 'text';
+  textElement.style.userSelect = 'text';
   // @ts-ignore this one doesn't appear in the TS definitions for some reason
   textElement.style.MozUserSelect = 'text';
   // @ts-ignore this one doesn't appear in the TS definitions for some reason
   textElement.style.msUserSelect = 'text';
-  textElement.style.userSelect = 'text';
   return textElement;
 }
 
