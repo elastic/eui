@@ -22,9 +22,6 @@ export default () => {
   const multiSelectButtonGroupPrefix = useGeneratedHtmlId({
     prefix: 'multiSelectButtonGroup',
   });
-  const disabledButtonGroupPrefix = useGeneratedHtmlId({
-    prefix: 'disabledButtonGroup',
-  });
 
   const toggleButtons = [
     {
@@ -37,21 +34,6 @@ export default () => {
     },
     {
       id: `${basicButtonGroupPrefix}__2`,
-      label: 'Option three',
-    },
-  ];
-
-  const toggleButtonsDisabled = [
-    {
-      id: `${disabledButtonGroupPrefix}__0`,
-      label: 'Option one',
-    },
-    {
-      id: `${disabledButtonGroupPrefix}__1`,
-      label: 'Option two is selected by default',
-    },
-    {
-      id: `${disabledButtonGroupPrefix}__2`,
       label: 'Option three',
     },
   ];
@@ -74,19 +56,13 @@ export default () => {
   const [toggleIdSelected, setToggleIdSelected] = useState(
     `${basicButtonGroupPrefix}__1`
   );
-  const [toggleIdDisabled, setToggleIdDisabled] = useState(
-    `${disabledButtonGroupPrefix}__1`
-  );
+
   const [toggleIdToSelectedMap, setToggleIdToSelectedMap] = useState({
     [`${multiSelectButtonGroupPrefix}__1`]: true,
   });
 
   const onChange = (optionId) => {
     setToggleIdSelected(optionId);
-  };
-
-  const onChangeDisabled = (optionId) => {
-    setToggleIdDisabled(optionId);
   };
 
   const onChangeMulti = (optionId) => {
@@ -101,10 +77,7 @@ export default () => {
 
   return (
     <Fragment>
-      <EuiFlexGroup
-        gutterSize="m"
-        alignItems="center"
-      >
+      <EuiFlexGroup gutterSize="m" alignItems="center">
         <EuiFlexItem grow={false}>
           <EuiSwitch
             compressed
@@ -123,7 +96,7 @@ export default () => {
         </EuiFlexItem>
       </EuiFlexGroup>
       <EuiSpacer />
-      <EuiPanel type="plain" hasBorder css={{width: 600, maxWidth: '100%'}}>
+      <EuiPanel type="plain" hasBorder css={{ width: 600, maxWidth: '100%' }}>
         <EuiTitle size="xxs">
           <h3>Default</h3>
         </EuiTitle>

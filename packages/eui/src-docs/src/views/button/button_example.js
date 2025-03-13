@@ -372,15 +372,15 @@ export const ButtonExample = {
             can easily be confused with other states like disabled and danger.
           </p>
           <p>
-          All button components accept an <EuiCode>iconType</EuiCode> which must
-          be an acceptable{' '}
-          <Link to="/display/icons">
-            <strong>EuiIcon</strong>
-          </Link>{' '}
-          type. Multi-color icons like app icons will be converted to single
-          color. Icons can be displayed on the opposite side by passing{' '}
-          <EuiCode language="js">{'iconSide="right"'}</EuiCode>.
-        </p>
+            All button components accept an <EuiCode>iconType</EuiCode> which
+            must be an acceptable{' '}
+            <Link to="/display/icons">
+              <strong>EuiIcon</strong>
+            </Link>{' '}
+            type. Multi-color icons like app icons will be converted to single
+            color. Icons can be displayed on the opposite side by passing{' '}
+            <EuiCode language="js">{'iconSide="right"'}</EuiCode>.
+          </p>
         </>
       ),
       props: { EuiButton },
@@ -421,10 +421,11 @@ export const ButtonExample = {
         <>
           <h3 id="emptyButton-flush">Flush empty button</h3>
           <p>
-            By default, buttons contain padding. Apply the <EuiCode>flush</EuiCode> property in
-            cases where precise alignment and spacing is desired. This situation can arise
-            when <strong>EuiButtonEmpty</strong> appears within a horizontal list of buttons
-            such as a menu.
+            By default, buttons contain padding. Apply the{' '}
+            <EuiCode>flush</EuiCode> property in cases where precise alignment
+            and spacing is desired. This situation can arise when{' '}
+            <strong>EuiButtonEmpty</strong> appears within a horizontal list of
+            buttons such as a menu.
           </p>
         </>
       ),
@@ -519,8 +520,8 @@ export const ButtonExample = {
         <>
           <h3 id="buttonGroup-isIconOnly">Icon only button group</h3>
           <p>
-            If you&apos;re just displaying a group of icons, add the prop{' '}
-            <EuiCode>isIconOnly</EuiCode>.
+            Use the <EuiCode>isIconOnly</EuiCode> prop when displaying a group
+            of icon-only buttons.
           </p>
         </>
       ),
@@ -546,7 +547,7 @@ export const ButtonExample = {
             property in your <EuiCode>options</EuiCode> button configuration.
           </p>
           <p>
-            To instead display an <EuiCode>EuiToolTip</EuiCode> around your
+            To instead display an <strong>EuiToolTip</strong> around your
             button(s), pass the <EuiCode>toolTipContent</EuiCode> property. You
             can also use <EuiCode>toolTipProps</EuiCode> to customize tooltip
             placement, title, and any other prop that{' '}
@@ -611,11 +612,10 @@ export const ButtonExample = {
             <EuiLink href="https://github.com/elastic/eui/issues/4171">
               does not support
             </EuiLink>{' '}
-            split buttons specifically. Instead, use separate
-            buttons for the main and overflow actions. This pattern is achieved
-            by setting the <EuiCode>display</EuiCode> and{' '}
-            <EuiCode>size</EuiCode> props on <strong>EuiButtonIcon</strong> to
-            match that of the primary button.
+            split buttons specifically. Instead, use separate buttons for the
+            main and overflow actions. This pattern is achieved by setting the{' '}
+            <EuiCode>display</EuiCode> and <EuiCode>size</EuiCode> props on{' '}
+            <strong>EuiButtonIcon</strong> to match that of the primary button.
           </p>
         </>
       ),
@@ -636,11 +636,14 @@ export const ButtonExample = {
           <EuiBadge>Pattern</EuiBadge>
           <EuiSpacer />
           <p>
-            You can create a toggle button with any button type like the
-            standard <strong>EuiButton</strong>, <strong>EuiButtonEmpty</strong>
-            , or <strong>EuiButtonIcon</strong>. Use state management to handle
-            the visual differences for on and off. Though there are two{' '}
-            <strong>exclusive</strong> situations to consider.
+            A toggle button can be built with any button including the standard{' '}
+            <strong>EuiButton</strong>, <strong>EuiButtonEmpty</strong>, or{' '}
+            <strong>EuiButtonIcon</strong>. Use state management to handle the
+            visual differences for on and off.
+          </p>
+          <p>
+            Consider the followingn exception cases when building a toggle
+            button.
           </p>
           <ol>
             <li>
@@ -701,9 +704,9 @@ export const ButtonExample = {
       text: (
         <p>
           Setting the <EuiCode>isLoading</EuiCode> prop to true will display a
-          loading spinner, swap the current icon if one is present, and set
-          the disabled state. It is also recommended to change the
-          button label to &quot;Loading&hellip;&quot;.
+          loading spinner, swap the current icon if one is present, and set the
+          disabled state. It is also recommended to change the button label to
+          &quot;Loading&hellip;&quot;.
         </p>
       ),
       snippet: buttonLoadingSnippet,

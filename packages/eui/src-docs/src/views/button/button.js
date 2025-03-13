@@ -23,20 +23,16 @@ export default () => {
       text: name,
     };
   });
-  
+
   const [buttonColor, setButtonColor] = useState(buttonColorsOptions[3].value);
 
   const onChangeButtonColor = (e) => {
     setButtonColor(e.target.value);
   };
 
-  return(
+  return (
     <div>
-    <EuiFlexGroup
-        gutterSize="m"
-        alignItems="center"
-        wrap={true}
-      >
+      <EuiFlexGroup gutterSize="m" alignItems="center" wrap={true}>
         <EuiFlexItem grow={false}>
           <EuiSelect
             prepend="Color"
@@ -89,7 +85,11 @@ export default () => {
         </EuiFlexItem>
       </EuiFlexGroup>
       <EuiSpacer />
-      <EuiPanel className='plain' hasBorder css={{width: 400, maxWidth: '100%'}}>
+      <EuiPanel
+        className="plain"
+        hasBorder
+        css={{ width: 400, maxWidth: '100%' }}
+      >
         <EuiButton
           color={buttonColor}
           disabled={disableButton}

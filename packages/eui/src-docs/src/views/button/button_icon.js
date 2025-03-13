@@ -63,13 +63,9 @@ export default () => {
     setButtonColor(e.target.value);
   };
 
-  return(
+  return (
     <>
-      <EuiFlexGroup
-        gutterSize="m"
-        alignItems="center"
-        wrap={true}
-      >
+      <EuiFlexGroup gutterSize="m" alignItems="center" wrap={true}>
         <EuiFlexItem grow={false}>
           <EuiSelect
             prepend="Color"
@@ -124,28 +120,39 @@ export default () => {
         <h3>Icon button</h3>
       </EuiTitle>
       <EuiSpacer size="s" />
-        <EuiButtonIcon
-          color={buttonColor}
-          display={displayType}
-          size={displaySize}
-          iconSize={iconSize}
-          disabled={disableButton}
-          onClick={() => {}}
-          iconType="documentation"
-          aria-label="Open documentation"
-        />
+      <EuiButtonIcon
+        color={buttonColor}
+        display={displayType}
+        size={displaySize}
+        iconSize={iconSize}
+        disabled={disableButton}
+        onClick={() => {}}
+        iconType="documentation"
+        aria-label="Open documentation"
+      />
       <EuiSpacer />
-      <EuiPanel type="plain" hasBorder css={{display: 'inline-block'}}>
+      <EuiPanel type="plain" hasBorder css={{ display: 'inline-block' }}>
         <EuiTitle size="xxxs">
           <h4>Icons inherit button color</h4>
         </EuiTitle>
         <EuiSpacer size="s" />
-        <EuiFlexGroup responsive={false} gutterSize="s" alignItems="flexStart">          
+        <EuiFlexGroup responsive={false} gutterSize="s" alignItems="flexStart">
           <EuiFlexItem grow={false}>
-            <EuiButtonIcon display="base" iconType="lensApp" size="m" aria-label="Lens" />
+            <EuiButtonIcon
+              display="base"
+              iconType="lensApp"
+              size="m"
+              aria-label="Lens"
+            />
           </EuiFlexItem>
           <EuiFlexItem grow={false}>
-            <EuiButtonIcon display="base" iconType="warning" size="s" color="warning" aria-label="Warning" />
+            <EuiButtonIcon
+              display="base"
+              iconType="warning"
+              size="s"
+              color="warning"
+              aria-label="Warning"
+            />
           </EuiFlexItem>
           <EuiFlexItem grow={false}>
             <EuiButtonIcon

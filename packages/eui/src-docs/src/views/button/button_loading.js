@@ -1,15 +1,11 @@
 import React, { useState } from 'react';
 
-import {
-  EuiButton,
-  EuiSpacer,
-  EuiSwitch,
-} from '../../../../src/components';
+import { EuiButton, EuiSpacer, EuiSwitch } from '../../../../src/components';
 
 export default () => {
   const [loadingButton, setLoadingButton] = useState(true);
 
-  return(
+  return (
     <>
       <EuiSwitch
         compressed
