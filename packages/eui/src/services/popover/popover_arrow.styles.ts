@@ -18,10 +18,18 @@ import { UseEuiTheme } from '../../services';
  * Arrow clipping/transform/positioning CSS shared between EuiPopover and EuiToolTip
  */
 export const _popoverArrowStyles = (
-  { euiTheme }: UseEuiTheme,
+  { euiTheme, colorMode }: UseEuiTheme,
   arrowSize: string
 ) => {
-  const arrowOffset = mathWithUnits(arrowSize, (x) => x / -2);
+  const hasBorder = colorMode === 'DARK';
+
+  const arrowOffset = mathWithUnits(
+    [
+      arrowSize,
+      euiTheme.border.width.thin, // account for 1px pseudo element border on panel
+    ],
+    (x, y) => x / -2 - y
+  );
 
   const arrowBorderRadius = mathWithUnits(
     euiTheme.border.radius.small,
@@ -31,11 +39,13 @@ export const _popoverArrowStyles = (
   return {
     _arrowStyles: `
       position: absolute;
+      z-index: 1;
       ${logicalSizeCSS(arrowSize)}
       border-radius: ${arrowBorderRadius};
       /* Use clip-path to ensure that arrows don't overlap into popover content */
       clip-path: polygon(0 0, 100% 100%, 0 100%);
       transform-origin: center;
+      ${hasBorder ? `border: ${euiTheme.border.thin};` : ''}
     `,
 
     positions: {

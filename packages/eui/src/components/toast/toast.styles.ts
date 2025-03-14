@@ -12,9 +12,23 @@ import { euiShadowLarge } from '@elastic/eui-theme-common';
 import { euiTextBreakWord, logicalCSS } from '../../global_styling';
 import { UseEuiTheme } from '../../services';
 import { euiTitle } from '../title/title.styles';
+import { euiPanelBorderStyles } from '../panel/panel.styles';
 
 export const euiToastStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
+
+  const highlightStyles = (color: string) => `
+    &:after {
+      content: '';
+      position: absolute;
+      /* ensure highlight border is on top of panel border */
+      z-index: 1;
+      inset: 0;
+      border-radius: inherit;
+      ${logicalCSS('border-top', `2px solid ${color}`)}
+      pointer-events: none;
+    }
+  `;
 
   return {
     // Base
@@ -27,10 +41,10 @@ export const euiToastStyles = (euiThemeContext: UseEuiTheme) => {
       ${logicalCSS('padding-vertical', euiTheme.size.base)}
       background-color: ${euiTheme.colors.emptyShade};
       ${logicalCSS('width', '100%')}
-      border: ${euiTheme.border.width.thin} solid ${euiTheme.colors
-        .borderBaseFloating};
 
       ${euiTextBreakWord()} /* Prevent long lines from overflowing */
+
+      ${euiPanelBorderStyles(euiThemeContext, { hasFloatingBorder: false })}
 
       &:hover,
       &:focus {
@@ -47,16 +61,16 @@ export const euiToastStyles = (euiThemeContext: UseEuiTheme) => {
     `,
     // Variants
     primary: css`
-      ${logicalCSS('border-top', `2px solid ${euiTheme.colors.primary}`)}
+      ${highlightStyles(euiTheme.colors.primary)}
     `,
     success: css`
-      ${logicalCSS('border-top', `2px solid ${euiTheme.colors.success}`)}
+      ${highlightStyles(euiTheme.colors.success)}
     `,
     warning: css`
-      ${logicalCSS('border-top', `2px solid ${euiTheme.colors.warning}`)}
+      ${highlightStyles(euiTheme.colors.warning)}
     `,
     danger: css`
-      ${logicalCSS('border-top', `2px solid ${euiTheme.colors.danger}`)}
+      ${highlightStyles(euiTheme.colors.danger)}
     `,
   };
 };

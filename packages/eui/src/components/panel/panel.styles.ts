@@ -16,29 +16,49 @@ import {
   logicalTextAlignCSS,
 } from '../../global_styling';
 
-export const euiPanelStyles = (euiThemeContext: UseEuiTheme) => {
-  const { euiTheme } = euiThemeContext;
+export const euiPanelBorderStyles = (
+  euiThemeContext: UseEuiTheme,
+  options?: {
+    borderColor?: string;
+    hasFloatingBorder?: boolean;
+  }
+) => {
+  const { euiTheme, colorMode } = euiThemeContext;
+  const { borderColor, hasFloatingBorder = true } = options ?? {};
 
-  const borderStyle = `
-    position: relative;
+  /* TODO: remove `hasFloatingBorder` and `hasVisibleBorder` and once Amsterdam is removed
+   euiTheme.colors.borderBaseFloating is enough then */
+  const hasVisibleBorder = hasFloatingBorder && colorMode === 'DARK';
 
+  return `
     /* Using a pseudo element for the border instead of floating border only 
       because the transparent border might otherwise be visible with arbitrary 
       full-width/height content in light mode. */
-    ::before {
+    &::before {
       content: '';
       position: absolute;
+      /* ensure to keep on top of flush content */
+      z-index: 1;
       inset: 0;
       border: ${euiTheme.border.width.thin} solid
-        ${euiTheme.colors.borderBaseFloating};
+        ${
+          borderColor ?? hasVisibleBorder
+            ? euiTheme.border.color
+            : euiTheme.colors.borderBaseFloating
+        };
       border-radius: inherit;
       pointer-events: none;
     }
-  `;
+`;
+};
+
+export const euiPanelStyles = (euiThemeContext: UseEuiTheme) => {
+  const { euiTheme } = euiThemeContext;
 
   return {
     // Base
     euiPanel: css`
+      position: relative;
       flex-grow: 0;
     `,
 
@@ -49,11 +69,16 @@ export const euiPanelStyles = (euiThemeContext: UseEuiTheme) => {
     hasShadow: css`
       ${euiShadow(euiThemeContext, 'm')}
 
-      ${borderStyle}
+      ${euiPanelBorderStyles(euiThemeContext, {
+        hasFloatingBorder: false,
+      })}
     `,
 
     hasBorder: css`
-      border: ${euiTheme.border.thin};
+      ${euiPanelBorderStyles(euiThemeContext, {
+        borderColor: euiTheme.border.color,
+        hasFloatingBorder: false,
+      })}
     `,
 
     radius: {
