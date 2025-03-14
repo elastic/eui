@@ -27,13 +27,13 @@ exports[`EuiPageHeaderContent props alignItems bottom is rendered 1`] = `
       class="euiFlexItem emotion-euiFlexItem-grow-2-euiPageHeaderContent__leftSideItems"
     >
       <h1
-        class="euiTitle emotion-euiTitle-l"
+        class="euiTitle emotion-euiTitle-m"
       >
         Page title
       </h1>
     </div>
     <div
-      class="euiFlexGroup emotion-euiFlexGroup-wrap-l-flexStart-stretch-row-euiPageHeaderContent__rightSideItems"
+      class="euiFlexGroup emotion-euiFlexGroup-wrap-m-flexStart-stretch-row-euiPageHeaderContent__rightSideItems"
     >
       <div
         class="euiFlexItem emotion-euiFlexItem-growZero-euiPageHeaderContent__rightSideItem"
@@ -65,13 +65,13 @@ exports[`EuiPageHeaderContent props alignItems center is rendered 1`] = `
       class="euiFlexItem emotion-euiFlexItem-grow-2-euiPageHeaderContent__leftSideItems"
     >
       <h1
-        class="euiTitle emotion-euiTitle-l"
+        class="euiTitle emotion-euiTitle-m"
       >
         Page title
       </h1>
     </div>
     <div
-      class="euiFlexGroup emotion-euiFlexGroup-wrap-l-flexStart-stretch-row-euiPageHeaderContent__rightSideItems"
+      class="euiFlexGroup emotion-euiFlexGroup-wrap-m-flexStart-stretch-row-euiPageHeaderContent__rightSideItems"
     >
       <div
         class="euiFlexItem emotion-euiFlexItem-growZero-euiPageHeaderContent__rightSideItem"
@@ -103,13 +103,13 @@ exports[`EuiPageHeaderContent props alignItems stretch is rendered 1`] = `
       class="euiFlexItem emotion-euiFlexItem-grow-2-euiPageHeaderContent__leftSideItems"
     >
       <h1
-        class="euiTitle emotion-euiTitle-l"
+        class="euiTitle emotion-euiTitle-m"
       >
         Page title
       </h1>
     </div>
     <div
-      class="euiFlexGroup emotion-euiFlexGroup-wrap-l-flexStart-stretch-row-euiPageHeaderContent__rightSideItems"
+      class="euiFlexGroup emotion-euiFlexGroup-wrap-m-flexStart-stretch-row-euiPageHeaderContent__rightSideItems"
     >
       <div
         class="euiFlexItem emotion-euiFlexItem-growZero-euiPageHeaderContent__rightSideItem"
@@ -141,13 +141,13 @@ exports[`EuiPageHeaderContent props alignItems top is rendered 1`] = `
       class="euiFlexItem emotion-euiFlexItem-grow-2-euiPageHeaderContent__leftSideItems"
     >
       <h1
-        class="euiTitle emotion-euiTitle-l"
+        class="euiTitle emotion-euiTitle-m"
       >
         Page title
       </h1>
     </div>
     <div
-      class="euiFlexGroup emotion-euiFlexGroup-wrap-l-flexStart-stretch-row-euiPageHeaderContent__rightSideItems"
+      class="euiFlexGroup emotion-euiFlexGroup-wrap-m-flexStart-stretch-row-euiPageHeaderContent__rightSideItems"
     >
       <div
         class="euiFlexItem emotion-euiFlexItem-growZero-euiPageHeaderContent__rightSideItem"
@@ -258,7 +258,7 @@ exports[`EuiPageHeaderContent props children is rendered even if content props a
       class="euiFlexItem emotion-euiFlexItem-grow-2-euiPageHeaderContent__leftSideItems"
     >
       <h1
-        class="euiTitle emotion-euiTitle-l"
+        class="euiTitle emotion-euiTitle-m"
       >
         Page title
       </h1>
@@ -268,7 +268,7 @@ exports[`EuiPageHeaderContent props children is rendered even if content props a
       Child
     </div>
     <div
-      class="euiFlexGroup emotion-euiFlexGroup-wrap-l-flexStart-stretch-row-euiPageHeaderContent__rightSideItems"
+      class="euiFlexGroup emotion-euiFlexGroup-wrap-m-flexStart-stretch-row-euiPageHeaderContent__rightSideItems"
     >
       <div
         class="euiFlexItem emotion-euiFlexItem-growZero-euiPageHeaderContent__rightSideItem"
@@ -293,7 +293,7 @@ exports[`EuiPageHeaderContent props children is rendered even if content props a
       class="euiSpacer euiSpacer--l emotion-euiSpacer-l"
     />
     <div
-      class="euiTabs emotion-euiTabs-l"
+      class="euiTabs emotion-euiTabs-m"
       role="tablist"
     >
       <button
@@ -304,7 +304,7 @@ exports[`EuiPageHeaderContent props children is rendered even if content props a
         type="button"
       >
         <span
-          class="euiTab__content eui-textTruncate emotion-euiTab__content-l"
+          class="euiTab__content eui-textTruncate emotion-euiTab__content-m"
         >
           Tab 1
         </span>
@@ -317,7 +317,7 @@ exports[`EuiPageHeaderContent props children is rendered even if content props a
         type="button"
       >
         <span
-          class="euiTab__content eui-textTruncate emotion-euiTab__content-l"
+          class="euiTab__content eui-textTruncate emotion-euiTab__content-m"
         >
           Tab 2
         </span>
@@ -338,7 +338,7 @@ exports[`EuiPageHeaderContent props description is rendered 1`] = `
       class="euiFlexItem emotion-euiFlexItem-grow-2-euiPageHeaderContent__leftSideItems"
     >
       <div
-        class="euiText emotion-euiText-constrainedWidth-m"
+        class="euiText emotion-euiText-constrainedWidth-s"
       >
         <p>
           Description
@@ -360,7 +360,7 @@ exports[`EuiPageHeaderContent props pageTitle is rendered 1`] = `
       class="euiFlexItem emotion-euiFlexItem-grow-2-euiPageHeaderContent__leftSideItems"
     >
       <h1
-        class="euiTitle emotion-euiTitle-l"
+        class="euiTitle emotion-euiTitle-m"
       >
         Page title
       </h1>
@@ -380,7 +380,7 @@ exports[`EuiPageHeaderContent props pageTitle is rendered with icon 1`] = `
       class="euiFlexItem emotion-euiFlexItem-grow-2-euiPageHeaderContent__leftSideItems"
     >
       <h1
-        class="euiTitle emotion-euiTitle-l"
+        class="euiTitle emotion-euiTitle-m"
       >
         <span
           class="emotion-euiPageHeaderContent__titleIcon"
@@ -404,7 +404,7 @@ exports[`EuiPageHeaderContent props pageTitle is rendered with icon and iconProp
       class="euiFlexItem emotion-euiFlexItem-grow-2-euiPageHeaderContent__leftSideItems"
     >
       <h1
-        class="euiTitle emotion-euiTitle-l"
+        class="euiTitle emotion-euiTitle-m"
       >
         <span
           class="testClass1 testClass2 emotion-euiPageHeaderContent__titleIcon-euiTestCss"
@@ -432,7 +432,7 @@ exports[`EuiPageHeaderContent props pageTitle is rendered with pageTitleProps 1`
     >
       <h1
         aria-label="aria-label"
-        class="euiTitle testClass1 testClass2 emotion-euiTitle-l-euiTestCss"
+        class="euiTitle testClass1 testClass2 emotion-euiTitle-m-euiTestCss"
         data-test-subj="test subject string"
       >
         Page title
@@ -481,7 +481,7 @@ exports[`EuiPageHeaderContent props rightSideItems is rendered 1`] = `
       class="euiFlexItem emotion-euiFlexItem-grow-2-euiPageHeaderContent__leftSideItems"
     />
     <div
-      class="euiFlexGroup emotion-euiFlexGroup-wrap-l-flexStart-stretch-row-euiPageHeaderContent__rightSideItems"
+      class="euiFlexGroup emotion-euiFlexGroup-wrap-m-flexStart-stretch-row-euiPageHeaderContent__rightSideItems"
     >
       <div
         class="euiFlexItem emotion-euiFlexItem-growZero-euiPageHeaderContent__rightSideItem"
@@ -514,7 +514,7 @@ exports[`EuiPageHeaderContent props rightSideItems is rendered with rightSideGro
     />
     <div
       aria-label="aria-label"
-      class="euiFlexGroup testClass1 testClass2 emotion-euiFlexGroup-wrap-l-flexStart-stretch-column-euiPageHeaderContent__rightSideItems-euiTestCss"
+      class="euiFlexGroup testClass1 testClass2 emotion-euiFlexGroup-wrap-m-flexStart-stretch-column-euiPageHeaderContent__rightSideItems-euiTestCss"
       data-test-subj="test subject string"
     >
       <div
@@ -552,7 +552,7 @@ exports[`EuiPageHeaderContent props tabs is rendered 1`] = `
         Tab 1
       </h1>
       <div
-        class="euiTabs emotion-euiTabs-xl"
+        class="euiTabs emotion-euiTabs-l"
         role="tablist"
       >
         <button
@@ -563,7 +563,7 @@ exports[`EuiPageHeaderContent props tabs is rendered 1`] = `
           type="button"
         >
           <span
-            class="euiTab__content eui-textTruncate emotion-euiTab__content-xl"
+            class="euiTab__content eui-textTruncate emotion-euiTab__content-l"
           >
             Tab 1
           </span>
@@ -576,7 +576,7 @@ exports[`EuiPageHeaderContent props tabs is rendered 1`] = `
           type="button"
         >
           <span
-            class="euiTab__content eui-textTruncate emotion-euiTab__content-xl"
+            class="euiTab__content eui-textTruncate emotion-euiTab__content-l"
           >
             Tab 2
           </span>
@@ -604,7 +604,7 @@ exports[`EuiPageHeaderContent props tabs is rendered with tabsProps 1`] = `
       </h1>
       <div
         aria-label="aria-label"
-        class="euiTabs testClass1 testClass2 emotion-euiTabs-xl-euiTestCss"
+        class="euiTabs testClass1 testClass2 emotion-euiTabs-l-euiTestCss"
         data-test-subj="test subject string"
         role="tablist"
       >
@@ -616,7 +616,7 @@ exports[`EuiPageHeaderContent props tabs is rendered with tabsProps 1`] = `
           type="button"
         >
           <span
-            class="euiTab__content eui-textTruncate emotion-euiTab__content-xl"
+            class="euiTab__content eui-textTruncate emotion-euiTab__content-l"
           >
             Tab 1
           </span>
@@ -629,7 +629,7 @@ exports[`EuiPageHeaderContent props tabs is rendered with tabsProps 1`] = `
           type="button"
         >
           <span
-            class="euiTab__content eui-textTruncate emotion-euiTab__content-xl"
+            class="euiTab__content eui-textTruncate emotion-euiTab__content-l"
           >
             Tab 2
           </span>

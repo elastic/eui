@@ -209,6 +209,7 @@ export const GuideTabbedPage: FunctionComponent<GuideTabbedPageProps> = ({
     <>
       {renderNotice()}
       <EuiPageHeader
+        className="guideSectionTabs__pageHeader"
         restrictWidth
         paddingSize="l"
         pageTitle={
