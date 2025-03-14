@@ -257,7 +257,7 @@ export const EuiPageHeaderContent: FunctionComponent<
       iconProps?.css,
     ];
     const icon = iconType ? (
-      <EuiIcon size="xl" {...iconProps} css={iconCssStyles} type={iconType} />
+      <EuiIcon size="l" {...iconProps} css={iconCssStyles} type={iconType} />
     ) : undefined;
 
     pageTitleNode = (
