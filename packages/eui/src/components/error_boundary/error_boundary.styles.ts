@@ -42,7 +42,7 @@ export const euiErrorBoundaryStyles = (euiThemeContext: UseEuiTheme) => {
         // We can fake a basic danger-colored "border" with a little inline SVG trickery
         forced: `
           background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='100%25' height='100%25' fill='${encodeURIComponent(
-            euiTheme.colors.dangerText
+            euiTheme.colors.textDanger
           )}' /%3E%3C/svg%3E");
         `,
       })}

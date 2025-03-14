@@ -138,7 +138,7 @@ export const euiCodeBlockCodeStyles = (euiThemeContext: UseEuiTheme) => {
     euiCodeBlock__code: css`
       font-family: ${euiTheme.font.familyCode};
       font-size: inherit;
-      color: ${euiTheme.colors.text};
+      color: ${euiTheme.colors.textParagraph};
       display: block;
     `,
     isVirtualized: css`

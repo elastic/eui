@@ -31,7 +31,7 @@ export const euiDataGridFooterStyles = (euiThemeContext: UseEuiTheme) => {
     overline: css`
       ${logicalCSS(
         'border-top',
-        `${euiTheme.border.width.thick} solid ${euiTheme.colors.text}`
+        `${euiTheme.border.width.thick} solid ${euiTheme.colors.textParagraph}`
       )}
     `,
     shade: css`

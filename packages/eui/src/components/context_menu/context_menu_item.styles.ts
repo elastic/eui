@@ -24,7 +24,7 @@ export const euiContextMenuItemStyles = (euiThemeContext: UseEuiTheme) => {
       gap: ${euiTheme.size.s};
       ${logicalCSS('width', '100%')}
       ${logicalTextAlignCSS('left')}
-      color: ${euiTheme.colors.text};
+      color: ${euiTheme.colors.textParagraph};
       outline-offset: -${euiTheme.focus.width};
 
       &:where(a, button):not(:disabled) {
@@ -39,7 +39,7 @@ export const euiContextMenuItemStyles = (euiThemeContext: UseEuiTheme) => {
       }
     `,
     disabled: css`
-      color: ${euiTheme.colors.disabledText};
+      color: ${euiTheme.colors.textDisabled};
       cursor: default;
     `,
     layoutAlign: {

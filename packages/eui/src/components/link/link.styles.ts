@@ -60,7 +60,7 @@ export const euiLinkStyles = (euiThemeContext: UseEuiTheme) => {
     danger: css(_colorCSS(euiTheme.colors.textDanger)),
     warning: css(_colorCSS(euiTheme.colors.textWarning)),
     ghost: css(_colorCSS(euiTheme.colors.ghost)),
-    text: css(_colorCSS(euiTheme.colors.text)),
+    text: css(_colorCSS(euiTheme.colors.textParagraph)),
   };
 };
 
