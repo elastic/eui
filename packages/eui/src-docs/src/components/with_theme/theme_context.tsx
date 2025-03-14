@@ -15,9 +15,9 @@ import { applyTheme, registerTheme } from '../../services';
 import { type ThemeLanguages } from './language_selector';
 
 // @ts-ignore Sass
-import amsterdamThemeLight from '../../theme_light.scss';
+import amsterdamThemeLight from '../../theme_amsterdam_light.scss';
 // @ts-ignore Sass
-import amsterdamThemeDark from '../../theme_dark.scss';
+import amsterdamThemeDark from '../../theme_amsterdam_dark.scss';
 
 // @ts-ignore Sass
 import borealisThemeLight from '../../theme_borealis_light.scss';

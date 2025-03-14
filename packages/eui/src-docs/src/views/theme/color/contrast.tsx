@@ -153,7 +153,7 @@ export default () => {
         <GuideSection
           color="warning"
           className="guideColorsPage__stickySlider"
-          css={{ borderBlock: euiTheme.euiTheme.border.thin }}
+          css={({ euiTheme }) => ({ borderBlock: euiTheme.border.thin })}
         >
           <EuiTitle size="xs">
             <h3>

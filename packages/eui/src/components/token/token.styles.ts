@@ -7,6 +7,7 @@
  */
 
 import { css } from '@emotion/react';
+import { _EuiThemeVisColors } from '@elastic/eui-theme-common';
 import chroma from 'chroma-js';
 import {
   logicalCSS,
@@ -25,7 +26,6 @@ import {
 } from '../../services';
 import type { TokenFill } from './token_types';
 import { TOKEN_COLOR_TO_ICON_COLOR_MAP } from './token_map';
-import { _EuiThemeVisColors } from '@elastic/eui-theme-common';
 
 const getTokenColor = (
   euiThemeContext: UseEuiTheme,
