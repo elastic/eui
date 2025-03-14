@@ -17,7 +17,7 @@ exports[`EuiCheckableCard is rendered 1`] = `
       >
         <span
           class="emotion-euiRadio__icon"
-          data-euiicon-type="dot"
+          data-euiicon-type="empty"
         />
         <input
           class="euiRadio__input emotion-euiRadio__input"
@@ -96,7 +96,7 @@ exports[`EuiCheckableCard renders children 1`] = `
       >
         <span
           class="emotion-euiRadio__icon"
-          data-euiicon-type="dot"
+          data-euiicon-type="empty"
         />
         <input
           class="euiRadio__input emotion-euiRadio__input"
@@ -142,7 +142,7 @@ exports[`EuiCheckableCard renders disabled 1`] = `
       >
         <span
           class="emotion-euiRadio__icon"
-          data-euiicon-type="dot"
+          data-euiicon-type="empty"
         />
         <input
           class="euiRadio__input emotion-euiRadio__input"
@@ -182,7 +182,7 @@ exports[`EuiCheckableCard renders panel props 1`] = `
       >
         <span
           class="emotion-euiRadio__icon"
-          data-euiicon-type="dot"
+          data-euiicon-type="empty"
         />
         <input
           class="euiRadio__input emotion-euiRadio__input"

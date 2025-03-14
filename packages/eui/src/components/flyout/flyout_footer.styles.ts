@@ -8,6 +8,8 @@
 
 import { css } from '@emotion/react';
 import { UseEuiTheme } from '../../services';
+import { logicalCSS } from '../../global_styling';
+import { highContrastModeStyles } from '../../global_styling/functions/high_contrast';
 
 export const euiFlyoutFooterStyles = (euiThemeContext: UseEuiTheme) => {
   const euiTheme = euiThemeContext.euiTheme;
@@ -16,6 +18,9 @@ export const euiFlyoutFooterStyles = (euiThemeContext: UseEuiTheme) => {
     euiFlyoutFooter: css`
       background-color: ${euiTheme.components.flyoutFooterBackground};
       flex-grow: 0;
+      ${highContrastModeStyles(euiThemeContext, {
+        preferred: logicalCSS('border-top', euiTheme.border.thin),
+      })}
     `,
   };
 };

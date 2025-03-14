@@ -8,6 +8,7 @@
 
 import { css } from '@emotion/react';
 import { logicalSizeCSS, mathWithUnits } from '../../global_styling';
+import { preventForcedColors } from '../../global_styling/functions/high_contrast';
 import { UseEuiTheme } from '../../services';
 
 import { euiSkeletonGradientAnimation } from './utils';
@@ -21,8 +22,9 @@ export const euiSkeletonCircleStyles = (euiThemeContext: UseEuiTheme) => {
       border-radius: 50%;
       ${euiSkeletonGradientAnimation(euiThemeContext, {
         slideSize: '-70%',
-        gradientSize: '280%',
+        gradientSize: '350%',
       })}
+      ${preventForcedColors(euiThemeContext)}
     `,
     // Sizes
     s: css`

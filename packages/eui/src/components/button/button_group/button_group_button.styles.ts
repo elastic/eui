@@ -27,7 +27,7 @@ import { euiScreenReaderOnly } from '../../accessibility';
 import { euiFormVariables } from '../../form/form.styles';
 
 export const euiButtonGroupButtonStyles = (euiThemeContext: UseEuiTheme) => {
-  const { euiTheme } = euiThemeContext;
+  const { euiTheme, highContrastMode } = euiThemeContext;
 
   const { controlCompressedHeight, controlCompressedBorderRadius } =
     euiFormVariables(euiThemeContext);
@@ -87,21 +87,46 @@ export const euiButtonGroupButtonStyles = (euiThemeContext: UseEuiTheme) => {
         }
       `,
       get borders() {
+        // We use pseudo elements to avoid affecing button width, and to allow
+        // inheriting high contrast border colors
         const selectors =
           '.euiButtonGroupButton-isSelected, .euiButtonGroup__tooltipWrapper-isSelected';
-        const selectedColor =
-          euiTheme.components.buttonGroupBorderColorSelected;
-        const unselectedColor = euiTheme.components.buttonGroupBorderColor;
-        const borderWidth = euiTheme.border.width.thin;
+        const selectedColor = highContrastMode
+          ? euiTheme.colors.emptyShade
+          : euiTheme.components.buttonGroupBorderColorSelected;
+        const unselectedColor = highContrastMode
+          ? 'inherit'
+          : euiTheme.components.buttonGroupBorderColor;
 
         // "Borders" between buttons should be present between two of the same colored buttons,
         // and absent between selected vs non-selected buttons (different colors)
         return `
-          &:not(${selectors}) + *:not(${selectors}) {
-            box-shadow: -${borderWidth} 0 0 0 ${unselectedColor};
+          position: relative;
+
+          &::before {
+            position: absolute;
+            ${logicalCSS('left', 0)}
+            ${logicalCSS(
+              'vertical',
+              highContrastMode ? `-${euiTheme.border.width.thin}` : 0
+            )}
+            ${logicalCSS('border-left-style', 'solid')}
+            ${logicalCSS('border-left-width', euiTheme.border.width.thin)}
+            pointer-events: none;
           }
+        
+          &:not(${selectors}) + *:not(${selectors}) {
+            &::before {
+              content: '';
+              border-color: ${unselectedColor};
+            }
+          }
+
           &:is(${selectors}) + *:is(${selectors}) {
-            box-shadow: -${borderWidth} 0 0 0 ${selectedColor};
+            &::before {
+              content: '';
+              border-color: ${selectedColor};
+            }
           }
         `;
       },
@@ -143,10 +168,13 @@ export const euiButtonGroupButtonStyles = (euiThemeContext: UseEuiTheme) => {
     `,
     // States
     disabledAndSelected: css`
-      color: ${makeDisabledContrastColor(euiTheme.colors.disabledText)(
-        euiTheme.colors.disabled
+      color: ${makeDisabledContrastColor(euiTheme.colors.textDisabled)(
+        euiTheme.components.buttonGroupBackgroundDisabledSelected
       )};
-      background-color: ${euiTheme.colors.disabled};
+      background-color: ${euiTheme.components
+        .buttonGroupBackgroundDisabledSelected};
+      border: ${highContrastMode &&
+      `${euiTheme.border.width.thin} solid ${euiTheme.components.buttonGroupBackgroundDisabledSelected}`};
     `,
     // Tooltip anchor wrapper
     tooltipWrapper: css`

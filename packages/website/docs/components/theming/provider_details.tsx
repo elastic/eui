@@ -11,10 +11,16 @@ import {
 
 interface ProviderDetailsProps {
   withThemeName?: boolean;
+  withColorMode?: boolean;
+  withHighContrastMode?: boolean;
 }
 
-export const ProviderDetails = ({ withThemeName = true }: ProviderDetailsProps) => {
-  const { euiTheme, colorMode } = useEuiTheme();
+export const ProviderDetails = ({
+  withThemeName = true,
+  withColorMode = true,
+  withHighContrastMode = true,
+}: ProviderDetailsProps) => {
+  const { euiTheme, colorMode, highContrastMode } = useEuiTheme();
   return (
     <EuiPanel grow={false} paddingSize="l" color="subdued">
       <EuiFlexGroup responsive={false} alignItems="center">
@@ -47,18 +53,22 @@ export const ProviderDetails = ({ withThemeName = true }: ProviderDetailsProps) 
             </EuiText>
           </EuiFlexItem>
         )}
-        <EuiFlexItem grow={false}>
-          <EuiText size="s">
-            <EuiCode transparentBackground>colorMode:</EuiCode>
-          </EuiText>
-        </EuiFlexItem>
-        <EuiFlexItem grow={false}>
-          <EuiText size="s" color="subdued">
-            <p>
+        {withColorMode && (
+          <EuiFlexItem grow={false}>
+            <EuiText size="s">
+              <EuiCode transparentBackground>colorMode:</EuiCode>
               <code>{colorMode}</code>
-            </p>
-          </EuiText>
-        </EuiFlexItem>
+            </EuiText>
+          </EuiFlexItem>
+        )}
+        {withHighContrastMode && (
+          <EuiFlexItem grow={false}>
+            <EuiText size="s">
+              <EuiCode transparentBackground>highContrastMode:</EuiCode>
+              <code>{String(highContrastMode)}</code>
+            </EuiText>
+          </EuiFlexItem>
+        )}
       </EuiFlexGroup>
     </EuiPanel>
   );

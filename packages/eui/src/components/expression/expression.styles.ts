@@ -16,6 +16,7 @@ import {
   euiTextTruncate,
   mathWithUnits,
 } from '../../global_styling';
+import { highContrastModeStyles } from '../../global_styling/functions/high_contrast';
 import { transparentize } from '../../services/color';
 import { UseEuiTheme } from '../../services';
 
@@ -34,17 +35,13 @@ export const euiExpressionStyles = (euiThemeContext: UseEuiTheme) => {
       ${euiTextBreakWord()}
       display: inline-block;
       font-family: ${euiTheme.font.familyCode};
-      ${logicalCSS(
-        'border-bottom',
-        `${euiTheme.border.width.thick} solid transparent`
-      )}
       ${euiFontSize(euiThemeContext, 's')}
       ${logicalTextAlignCSS('left')}
       ${logicalShorthandCSS(
         'padding',
         `${mathWithUnits(euiTheme.size.s, (x) => x / 2)} 0`
       )}
-      color: ${euiTheme.colors.text};
+      color: ${euiTheme.colors.textParagraph};
 
       &:focus {
         ${logicalCSS('border-bottom-style', 'solid')}
@@ -57,15 +54,17 @@ export const euiExpressionStyles = (euiThemeContext: UseEuiTheme) => {
 
     // Variants
     columns: css`
-      border-color: transparent;
-      /* Ensures there's no flash of the dashed style before turning solid for the active state */
-      ${logicalCSS('border-bottom-style', 'solid')}
-      ${logicalCSS('margin-bottom', euiTheme.size.xs)}
-
-      ${logicalCSS('width', '100%')}
       display: flex;
+      ${logicalCSS('width', '100%')}
+      ${logicalCSS('margin-bottom', euiTheme.size.xs)}
       padding: ${euiTheme.size.xs};
-      border-radius: ${euiTheme.size.xs};
+      ${highContrastModeStyles(euiThemeContext, {
+        // Render the bottom border in high contrast mode for extra visibility
+        none: `
+          border-radius: ${euiTheme.size.xs};
+          border-color: transparent;
+        `,
+      })}
     `,
 
     truncate: css`

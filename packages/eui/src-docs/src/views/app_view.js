@@ -1,9 +1,8 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
-import { toggleLocale as _toggleLocale } from '../actions';
 import { GuidePageChrome, GuidePageHeader } from '../components';
-import { getLocale, getRoutes } from '../store';
+import { getRoutes } from '../store';
 import {
   useScrollToHash,
   useHeadingAnchorLinks,
@@ -17,9 +16,6 @@ import {
 } from '../../../src/components';
 
 export const AppView = ({ children, currentRoute = {} }) => {
-  const dispatch = useDispatch();
-  const toggleLocale = (locale) => dispatch(_toggleLocale(locale));
-  const locale = useSelector((state) => getLocale(state));
   const routes = useSelector((state) => getRoutes(state));
 
   const portalledHeadingAnchorLinks = useHeadingAnchorLinks();
@@ -43,7 +39,7 @@ export const AppView = ({ children, currentRoute = {} }) => {
         Skip to content
       </EuiSkipLink>
       {portalledHeadingAnchorLinks}
-      <GuidePageHeader onToggleLocale={toggleLocale} selectedLocale={locale} />
+      <GuidePageHeader />
       <EuiPageTemplate
         paddingSize="none"
         restrictWidth={false}
@@ -53,8 +49,6 @@ export const AppView = ({ children, currentRoute = {} }) => {
           <GuidePageChrome
             currentRoute={currentRoute}
             navigation={routes.navigation}
-            onToggleLocale={toggleLocale}
-            selectedLocale={locale}
           />
         </EuiPageTemplate.Sidebar>
 

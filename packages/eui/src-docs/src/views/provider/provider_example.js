@@ -64,20 +64,15 @@ export const ProviderExample = {
         <EuiText>
           <p>
             To customize the global theme of your app, use the{' '}
-            <EuiCode>theme</EuiCode>, <EuiCode>colorMode</EuiCode>, and{' '}
-            <EuiCode>modify</EuiCode> props (documented in{' '}
+            <EuiCode>theme</EuiCode> and <EuiCode>modify</EuiCode> props
+            (documented in{' '}
             <Link to="/theming/theme-provider">
               <strong>EuiThemeProvider</strong>
             </Link>
-            ). For instance, it&apos;s likely that you will want to implement
-            color mode switching at the top level:
+            ). The <EuiCode>colorMode</EuiCode> and{' '}
+            <EuiCode>highContrastMode</EuiCode> props automatically default to
+            the users' system settings, but can also be overridden if needed.
           </p>
-
-          <EuiCodeBlock language="tsx" fontSize="m" isCopyable>
-            {"<EuiProvider colorMode={isDark ? 'dark' : 'light'} />"}
-          </EuiCodeBlock>
-          <EuiSpacer />
-
           <p>
             If you do not wish your app to include EUI's default global reset
             CSS or{' '}

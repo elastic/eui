@@ -29,7 +29,7 @@ export const euiDataGridHeaderStyles = (euiThemeContext: UseEuiTheme) => {
       background-color: ${euiTheme.colors.emptyShade};
       ${logicalCSS(
         'border-bottom',
-        `${euiTheme.border.width.thick} solid ${euiTheme.colors.text}`
+        `${euiTheme.border.width.thick} solid ${euiTheme.colors.textParagraph}`
       )}
     `,
     shade: css`

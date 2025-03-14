@@ -7,20 +7,24 @@
  */
 
 import { css } from '@emotion/react';
-import { euiShadowLarge } from '@elastic/eui-theme-common';
+import { euiShadowLarge, mathWithUnits } from '@elastic/eui-theme-common';
 
 import { euiTextBreakWord, logicalCSS } from '../../global_styling';
+import {
+  highContrastModeStyles,
+  preventForcedColors,
+} from '../../global_styling/functions/high_contrast';
 import { UseEuiTheme } from '../../services';
 import { euiTitle } from '../title/title.styles';
 
 export const euiToastStyles = (euiThemeContext: UseEuiTheme) => {
-  const { euiTheme } = euiThemeContext;
+  const { euiTheme, highContrastMode } = euiThemeContext;
 
   return {
     // Base
     euiToast: css`
       border-radius: ${euiTheme.border.radius.medium};
-      ${euiShadowLarge(euiThemeContext)}
+      ${euiShadowLarge(euiThemeContext, { borderAllInHighContrastMode: true })}
 
       position: relative;
       ${logicalCSS('padding-horizontal', euiTheme.size.base)}
@@ -46,18 +50,45 @@ export const euiToastStyles = (euiThemeContext: UseEuiTheme) => {
       ${logicalCSS('right', euiTheme.size.base)}
     `,
     // Variants
-    primary: css`
-      ${logicalCSS('border-top', `2px solid ${euiTheme.colors.primary}`)}
-    `,
-    success: css`
-      ${logicalCSS('border-top', `2px solid ${euiTheme.colors.success}`)}
-    `,
-    warning: css`
-      ${logicalCSS('border-top', `2px solid ${euiTheme.colors.warning}`)}
-    `,
-    danger: css`
-      ${logicalCSS('border-top', `2px solid ${euiTheme.colors.danger}`)}
-    `,
+    colors: {
+      _getStyles: (color: string) => {
+        // Increase color/border thickness for all high contrast modes
+        const borderWidth = highContrastMode
+          ? mathWithUnits(euiTheme.border.width.thick, (x) => x * 2)
+          : euiTheme.border.width.thick;
+
+        return highContrastModeStyles(euiThemeContext, {
+          none: logicalCSS('border-top', `${borderWidth} solid ${color}`),
+
+          // Windows high contrast mode ignores/overrides border colors, which have semantic meaning here. To get around this, we'll use a pseudo element that ignores forced colors
+          forced: `
+            overflow: hidden;
+
+            &::before {
+              content: '';
+              position: absolute;
+              ${logicalCSS('top', 0)}
+              ${logicalCSS('horizontal', 0)}
+              ${logicalCSS('height', borderWidth)}
+              background-color: ${color};
+              ${preventForcedColors(euiThemeContext)}
+            }
+          `,
+        });
+      },
+      get primary() {
+        return css(this._getStyles(euiTheme.colors.primary));
+      },
+      get success() {
+        return css(this._getStyles(euiTheme.colors.success));
+      },
+      get warning() {
+        return css(this._getStyles(euiTheme.colors.warning));
+      },
+      get danger() {
+        return css(this._getStyles(euiTheme.colors.danger));
+      },
+    },
   };
 };
 
@@ -80,7 +111,7 @@ export const euiToastHeaderStyles = (euiThemeContext: UseEuiTheme) => {
     // Elements
     euiToastHeader__icon: css`
       flex: 0 0 auto;
-      fill: ${euiTheme.colors.title};
+      fill: ${euiTheme.colors.textHeading};
 
       /* Vertically center icon with first line of title */
       transform: translateY(2px);

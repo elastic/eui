@@ -265,3 +265,35 @@ export const InputWithPopover: Story = {
     return <EuiRange {...args} ref={setRef} />;
   },
 };
+
+export const HighContrast: Story = {
+  tags: ['vrt-only'],
+  globals: { highContrastMode: true },
+  args: {
+    fullWidth: true,
+    compressed: true,
+    showInput: true,
+    min: 0,
+    max: 100,
+    value: 50,
+    showLabels: true,
+    showValue: true,
+    showRange: true,
+    showTicks: true,
+    tickInterval: 20,
+  },
+};
+
+export const DarkMode: Story = {
+  tags: ['vrt-only'],
+  globals: { colorMode: 'dark' },
+  args: {
+    min: 0,
+    max: 100,
+    value: 50,
+    showValue: true,
+    showRange: true,
+    showTicks: true,
+    tickInterval: 50,
+  },
+};

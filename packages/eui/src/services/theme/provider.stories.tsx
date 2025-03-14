@@ -9,6 +9,8 @@
 import React, { FunctionComponent, useEffect } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 
+import { EuiPanel } from '../../components/panel';
+
 import { useEuiThemeCSSVariables } from './hooks';
 import { EuiThemeProvider, EuiThemeProviderProps } from './provider';
 
@@ -21,6 +23,9 @@ export default meta;
 type Story = StoryObj<EuiThemeProviderProps<{}>>;
 
 export const WrapperCloneElement: Story = {
+  parameters: {
+    loki: { skip: true },
+  },
   args: {
     wrapperProps: {
       cloneElement: true,
@@ -100,4 +105,24 @@ const MockComponent: FunctionComponent<{
       {children}
     </p>
   );
+};
+
+/**
+ * VRT only stories
+ */
+
+export const DarkMode: Story = {
+  tags: ['vrt-only'],
+  args: {
+    colorMode: 'dark',
+    children: <EuiPanel>Dark mode</EuiPanel>,
+  },
+};
+
+export const HighContrastMode: Story = {
+  tags: ['vrt-only'],
+  args: {
+    highContrastMode: true,
+    children: <EuiPanel>High contrast mode</EuiPanel>,
+  },
 };

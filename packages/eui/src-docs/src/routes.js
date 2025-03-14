@@ -245,6 +245,7 @@ import { SuperSelectExample } from './views/super_select/super_select_example';
 
 import { ThemeExample } from './views/theme/theme_example';
 import { ColorModeExample } from './views/theme/color_mode/color_mode_example';
+import { HighContrastModeExample } from './views/theme/high_contrast_mode/high_contrast_mode_example';
 import { BreakpointsExample } from './views/theme/breakpoints/breakpoints_example';
 import Borders, { bordersSections } from './views/theme/borders/borders';
 import Color, { colorsInfo, colorsSections } from './views/theme/color/tokens';
@@ -431,6 +432,7 @@ const navigation = [
     items: [
       createExample(ThemeExample, 'Theme provider'),
       createExample(ColorModeExample),
+      createExample(HighContrastModeExample),
       createTabbedPage(BreakpointsExample),
       {
         name: 'Borders',

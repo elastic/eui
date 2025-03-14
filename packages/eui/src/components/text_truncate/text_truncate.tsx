@@ -18,7 +18,7 @@ import React, {
 } from 'react';
 import classNames from 'classnames';
 
-import { useCombinedRefs } from '../../services';
+import { useCombinedRefs, useEuiMemoizedStyles } from '../../services';
 import {
   EuiResizeObserver,
   EuiResizeObserverProps,
@@ -26,7 +26,7 @@ import {
 import type { CommonProps } from '../common';
 
 import { TruncationUtils } from './utils';
-import { euiTextTruncateStyles as styles } from './text_truncate.styles';
+import { euiTextTruncateStyles } from './text_truncate.styles';
 
 const TRUNCATION_TYPES = ['end', 'start', 'startEnd', 'middle'] as const;
 export type EuiTextTruncationTypes = (typeof TRUNCATION_TYPES)[number];
@@ -213,6 +213,8 @@ const EuiTextTruncateWithWidth: FunctionComponent<
   ]);
 
   const isTruncating = truncatedText !== text;
+
+  const styles = useEuiMemoizedStyles(euiTextTruncateStyles);
 
   return (
     <div

@@ -17,7 +17,7 @@ export const euiInlineEditReadModeStyles = ({ euiTheme }: UseEuiTheme) => {
     isReadOnly: css`
       &:disabled {
         cursor: text;
-        color: ${euiTheme.colors.text};
+        color: ${euiTheme.colors.textParagraph};
         user-select: text;
       }
     `,

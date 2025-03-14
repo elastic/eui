@@ -57,7 +57,7 @@ export const EuiGlobalStyles = ({}: EuiGlobalStylesProps) => {
       font-kerning: normal;
       ${logicalCSS('height', '100%')}
       background-color: ${colors.body};
-      color: ${colors.text};
+      color: ${colors.textParagraph};
     }
 
     code,

@@ -28,7 +28,7 @@ const RenderShadow = ({
   size: _EuiThemeShadowSize;
   color?: string;
 }) => {
-  const style = useEuiShadow(size, color);
+  const style = useEuiShadow(size, { color });
   return (
     <div
       className="guideSass__shadow"
@@ -40,7 +40,7 @@ const RenderShadow = ({
 };
 
 const RenderFlatShadow = ({ color }: { color?: string }) => {
-  const style = useEuiShadowFlat(color);
+  const style = useEuiShadowFlat({ color });
   return (
     <div
       className="guideSass__shadow"
@@ -91,8 +91,15 @@ export default () => {
       />
 
       <ThemeExample
-        title={<code>useEuiShadow(size)</code>}
         type="hook"
+        title={<code>useEuiShadow(size, options)</code>}
+        props={`size?: '${EuiThemeShadowSizes.join("' | '")}';
+
+options?: {
+  color?: string;
+  property?: 'box-shadow' | 'filter';
+  borderAllInHighContrastMode?: boolean;
+};`}
         description={
           <>
             <p>
@@ -102,7 +109,7 @@ export default () => {
             </p>
             <p>
               Usually you want to avoid putting shadows on containers with the
-              same background color of its parent (e.g. white on white);
+              same background color of its parent (e.g. white on white).
             </p>
           </>
         }
@@ -131,7 +138,7 @@ export const ShadowValuesJS = () => {
     return {
       id: shadow,
       token: customColor
-        ? `useEuiShadow('${shadow}', euiTheme.colors.accent);`
+        ? `useEuiShadow('${shadow}', { color: euiTheme.colors.accent });`
         : `useEuiShadow('${shadow}');`,
       description: _EuiShadowSizesDescriptions[shadow],
     };
@@ -142,7 +149,7 @@ export const ShadowValuesJS = () => {
       // @ts-ignore TODO
       id: 'flat',
       token: customColor
-        ? 'useEuiShadowFlat(euiTheme.colors.accent);'
+        ? 'useEuiShadowFlat({ color: euiTheme.colors.accent });'
         : 'useEuiShadowFlat();',
       description:
         'Similar to shadow medium but without the bottom depth. Useful for popovers that drop UP rather than DOWN.',

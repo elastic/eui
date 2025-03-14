@@ -15,11 +15,13 @@ import {
   logicalCSS,
   mathWithUnits,
 } from '../../../global_styling';
+import { highContrastModeStyles } from '../../../global_styling/functions/high_contrast';
 import {
   euiFormVariables,
   euiFormControlDefaultShadow,
   euiFormControlInvalidStyles,
   euiFormControlDisabledStyles,
+  euiFormControlShowBackgroundUnderline,
 } from '../../form/form.styles';
 
 export const euiSuperDatePickerStyles = (euiThemeContext: UseEuiTheme) => {
@@ -134,7 +136,10 @@ export const euiSuperDatePickerStyles = (euiThemeContext: UseEuiTheme) => {
       euiSuperDatePicker__formControlLayout: css`
         .euiFormControlLayout__childrenWrapper {
           ${euiFormControlDefaultShadow(euiThemeContext)}
-          box-shadow: none;
+          ${highContrastModeStyles(euiThemeContext, {
+            none: 'box-shadow: none;',
+            preferred: 'border: none;',
+          })}
         }
       `,
       default: css`
@@ -145,14 +150,19 @@ export const euiSuperDatePickerStyles = (euiThemeContext: UseEuiTheme) => {
 
         /* Focus/selection underline per-button */
         .euiDatePopoverButton {
-          ${euiFormControlDefaultShadow(euiThemeContext)}
-          box-shadow: none;
+          ${euiFormControlDefaultShadow(euiThemeContext, {
+            withBorder: false,
+            withBackgroundColor: false,
+          })}
         }
 
         .euiDatePopoverButton:focus,
         .euiPopover-isOpen .euiDatePopoverButton {
           --euiFormControlStateColor: ${euiTheme.colors.primary};
-          background-size: 100% 100%;
+          ${euiFormControlShowBackgroundUnderline(
+            euiThemeContext,
+            euiTheme.colors.primary
+          )}
         }
       `,
       disabled: css`
@@ -179,16 +189,31 @@ export const euiSuperDatePickerStyles = (euiThemeContext: UseEuiTheme) => {
 
         /* Focus/selection underline per-button */
         .euiDatePopoverButton {
-          ${euiFormControlDefaultShadow(euiThemeContext)}
-          background-color: inherit;
-          box-shadow: none;
+          ${euiFormControlDefaultShadow(euiThemeContext, {
+            withBorder: false,
+            withBackgroundColor: false,
+          })}
         }
 
         .euiDatePopoverButton:focus,
         .euiPopover-isOpen .euiDatePopoverButton {
           --euiFormControlStateColor: ${euiTheme.colors.success};
-          background-size: 100% 100%;
+          ${euiFormControlShowBackgroundUnderline(
+            euiThemeContext,
+            euiTheme.colors.success
+          )}
         }
+
+        ${highContrastModeStyles(euiThemeContext, {
+          // Force the fill color of all icons/svgs to give a bit more indication of state,
+          // since Windows high contrast themes otherwise override background/text color
+          forced: `
+            svg,
+            & + * svg {
+              fill: ${euiTheme.colors.success};
+            }
+          `,
+        })}
       `,
     },
   };

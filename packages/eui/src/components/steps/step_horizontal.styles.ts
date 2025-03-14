@@ -10,8 +10,9 @@ import { css } from '@emotion/react';
 import { UseEuiTheme, makeHighContrastColor } from '../../services';
 import {
   euiBreakpoint,
+  logicalCSS,
   logicalShorthandCSS,
-  euiFocusRing,
+  euiOutline,
   euiCanAnimate,
   mathWithUnits,
 } from '../../global_styling/';
@@ -19,7 +20,7 @@ import { euiTitle } from '../title/title.styles';
 import { euiStepVariables } from './step.styles';
 
 export const euiStepHorizontalStyles = (euiThemeContext: UseEuiTheme) => {
-  const { euiTheme } = euiThemeContext;
+  const { euiTheme, highContrastMode } = euiThemeContext;
   const euiStep = euiStepVariables(euiTheme);
 
   /**
@@ -60,8 +61,7 @@ export const euiStepHorizontalStyles = (euiThemeContext: UseEuiTheme) => {
       &::after {
         content: '';
         position: absolute;
-        background-color: ${euiTheme.border.color};
-        block-size: ${euiTheme.border.width.thick};
+        ${logicalCSS('border-top', euiTheme.border.thick)}
         z-index: ${euiTheme.levels.content}; /* 1 */
       }
 
@@ -91,11 +91,11 @@ export const euiStepHorizontalStyles = (euiThemeContext: UseEuiTheme) => {
         outline: none;
 
         .euiStepHorizontal__number {
-          ${euiFocusRing(euiThemeContext)}
-        }
-
-        .euiStepHorizontal__number:not(:focus-visible) {
-          outline: ${euiTheme.focus.width} solid ${euiTheme.colors.darkestShade};
+          ${euiOutline(
+            euiThemeContext,
+            highContrastMode ? 0 : 'center', // Account for border in high contrast mode
+            euiTheme.colors.fullShade
+          )}
         }
       }
     `,
@@ -112,6 +112,11 @@ export const euiStepHorizontalNumberStyles = (euiThemeContext: UseEuiTheme) => {
     euiStepHorizontal__number: css`
       position: relative; /* 1 */
       z-index: ${Number(euiTheme.levels.content) + 1}; /* 1 */
+
+      /* Tweak number vertical alignment slightly */
+      .euiStepNumber__number {
+        margin-block-start: -0.5px;
+      }
 
       ${euiCanAnimate} {
         transition: all ${euiTheme.animation.fast} ease-in-out;

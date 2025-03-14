@@ -44,7 +44,7 @@ export const euiStatTitleStyles = ({ euiTheme }: UseEuiTheme) => {
       color: ${euiTheme.colors.textSuccess};
     `,
     warning: css`
-      color: ${euiTheme.colors.warningText};
+      color: ${euiTheme.colors.textWarning};
     `,
     danger: css`
       color: ${euiTheme.colors.textDanger};

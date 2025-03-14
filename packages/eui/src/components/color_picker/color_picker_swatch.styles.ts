@@ -14,6 +14,10 @@ import {
   mathWithUnits,
   euiOutline,
 } from '../../global_styling';
+import {
+  highContrastModeStyles,
+  preventForcedColors,
+} from '../../global_styling/functions/high_contrast';
 
 export const euiColorPickerSwatchStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
@@ -27,10 +31,16 @@ export const euiColorPickerSwatchStyles = (euiThemeContext: UseEuiTheme) => {
         euiTheme.border.radius.medium,
         (x) => x / 2
       )};
-      border: ${euiTheme.border.width.thin} solid
-        ${euiTheme.colors.borderBaseFormsColorSwatch};
-      box-shadow: inset 0 0 0 ${euiTheme.border.width.thin}
-        ${transparentize(euiTheme.colors.emptyShade, 0.05)};
+      ${highContrastModeStyles(euiThemeContext, {
+        none: `
+          border: ${euiTheme.border.width.thin} solid
+            ${euiTheme.colors.borderBaseFormsColorSwatch};
+          box-shadow: inset 0 0 0 ${euiTheme.border.width.thin}
+            ${transparentize(euiTheme.colors.emptyShade, 0.05)};
+        `,
+        preferred: `border: ${euiTheme.border.thin};`,
+        forced: preventForcedColors(euiThemeContext),
+      })}
       cursor: pointer;
 
       &:disabled {

@@ -17,7 +17,7 @@ import {
 import { UseEuiTheme } from '../../services';
 
 export const euiPopoverFooterStyles = (euiThemeContext: UseEuiTheme) => {
-  const { euiTheme } = euiThemeContext;
+  const { euiTheme, highContrastMode } = euiThemeContext;
 
   return {
     // Base
@@ -25,7 +25,11 @@ export const euiPopoverFooterStyles = (euiThemeContext: UseEuiTheme) => {
       ${euiFontSize(euiThemeContext, 's')}
       ${logicalCSS(
         'border-top',
-        `${euiTheme.border.width.thin} solid ${euiTheme.components.popoverFooterBorderColor}`
+        `${euiTheme.border.width.thin} solid ${
+          highContrastMode
+            ? euiTheme.border.color
+            : euiTheme.components.popoverFooterBorderColor
+        }`
       )}
     `,
     // If the popover's containing panel has padding applied,

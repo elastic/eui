@@ -8,6 +8,7 @@
 
 import { css } from '@emotion/react';
 import { UseEuiTheme, transparentize } from '../../../services';
+import { preventForcedColors } from '../../../global_styling/functions/high_contrast';
 
 import { euiRangeLevelColor } from './range_levels_colors';
 import { euiRangeVariables } from './range.styles';
@@ -35,6 +36,7 @@ export const euiRangeLevelsStyles = (euiThemeContext: UseEuiTheme) => {
       inset-inline: 0;
       inset-block-start: ${range.trackTopPositionWithoutTicks};
       z-index: ${range.levelsZIndex};
+      ${preventForcedColors(euiThemeContext)}
     `,
     hasRange: css`
       &::after {
@@ -54,7 +56,6 @@ export const euiRangeLevelsStyles = (euiThemeContext: UseEuiTheme) => {
 };
 
 export const euiRangeLevelStyles = (euiThemeContext: UseEuiTheme) => {
-  const { euiTheme } = euiThemeContext;
   const range = euiRangeVariables(euiThemeContext);
 
   return {
@@ -77,16 +78,16 @@ export const euiRangeLevelStyles = (euiThemeContext: UseEuiTheme) => {
       }
     `,
     primary: css`
-      background-color: ${euiRangeLevelColor('primary', euiTheme)};
+      background-color: ${euiRangeLevelColor('primary', euiThemeContext)};
     `,
     success: css`
-      background-color: ${euiRangeLevelColor('success', euiTheme)};
+      background-color: ${euiRangeLevelColor('success', euiThemeContext)};
     `,
     warning: css`
-      background-color: ${euiRangeLevelColor('warning', euiTheme)};
+      background-color: ${euiRangeLevelColor('warning', euiThemeContext)};
     `,
     danger: css`
-      background-color: ${euiRangeLevelColor('danger', euiTheme)};
+      background-color: ${euiRangeLevelColor('danger', euiThemeContext)};
     `,
     customColor: css``,
   };

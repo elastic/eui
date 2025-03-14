@@ -8,16 +8,28 @@
 
 import { css } from '@emotion/react';
 import { UseEuiTheme } from '../../services';
+import { highContrastModeStyles } from '../../global_styling/functions/high_contrast';
 import { euiScreenReaderOnly } from '../accessibility';
 
-export const euiMarkStyles = ({ euiTheme }: UseEuiTheme) => {
+export const euiMarkStyles = (euiThemeContext: UseEuiTheme) => {
+  const { euiTheme } = euiThemeContext;
   return {
     euiMark: css`
-      background-color: ${euiTheme.components.markBackground};
+      ${highContrastModeStyles(euiThemeContext, {
+        // Override the browser's black color.
+        // Can't use 'inherit' because the text to background color contrast may not be sufficient
+        none: `
+          color: ${euiTheme.colors.textParagraph};
+          background-color: ${euiTheme.components.markBackground};
+        `,
+        // `!important` is required here because some marked text links
+        // (e.g. EuiSideNav) will take precedence otherwise
+        preferred: `
+          color: ${euiTheme.colors.emptyShade} !important;
+          background-color: ${euiTheme.colors.backgroundFilledPrimary};
+        `,
+      })}
       font-weight: ${euiTheme.font.weight.bold};
-      /* Override the browser's black color.
-         Can't use 'inherit' because the text to background color contrast may not be sufficient */
-      color: ${euiTheme.colors.text};
     `,
   };
 };

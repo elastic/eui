@@ -63,23 +63,25 @@ export const GuideSectionPropsDescription: FunctionComponent<
 
   return (
     <>
-      <div className={classNames('guideSection__propsTableIntro', className)}>
-        <EuiFlexGroup alignItems="baseline" wrap>
-          <EuiFlexItem grow={false}>
-            <EuiTitle size="s">
-              <h3 id={componentName}>{componentName}</h3>
-            </EuiTitle>
+      <EuiFlexGroup
+        className={classNames('guideSection__propsTableIntro', className)}
+        alignItems="baseline"
+        wrap
+      >
+        <EuiFlexItem grow={false}>
+          <EuiTitle size="s">
+            <h3 id={componentName}>{componentName}</h3>
+          </EuiTitle>
+        </EuiFlexItem>
+        {extendedTypesElements.length > 0 && (
+          <EuiFlexItem>
+            <EuiText size="s">
+              <p>[ extends {extendedTypesElements} ]</p>
+            </EuiText>
           </EuiFlexItem>
-          {extendedTypesElements.length > 0 && (
-            <EuiFlexItem>
-              <EuiText size="s">
-                <p>[ extends {extendedTypesElements} ]</p>
-              </EuiText>
-            </EuiFlexItem>
-          )}
-        </EuiFlexGroup>
-        {descriptionElement}
-      </div>
+        )}
+      </EuiFlexGroup>
+      {descriptionElement}
     </>
   );
 };

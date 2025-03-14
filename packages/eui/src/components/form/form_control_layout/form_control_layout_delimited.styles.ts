@@ -60,6 +60,7 @@ export const euiFormControlLayoutDelimited__delimiter = css`
 
 export const euiFormControlLayoutDelimited__input = css`
   box-shadow: none;
+  border: none; /* Account for high contrast mode borders */
   border-radius: 0;
   text-align: center;
   ${logicalCSS('height', '100%')}

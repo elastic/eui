@@ -34,7 +34,7 @@ export const euiFlyoutCloseButtonStyles = (euiThemeContext: UseEuiTheme) => {
     `,
     outside: css`
       /* Match dropshadow */
-      ${euiShadowXLarge(euiThemeContext)}
+      ${euiShadowXLarge(euiThemeContext, { borderAllInHighContrastMode: true })}
       /* Override the hover and focus transitions of buttons */
       animation: none !important; /* stylelint-disable-line declaration-no-important */
     `,

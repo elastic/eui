@@ -41,6 +41,8 @@ const component_colors: _EuiThemeComponentColors = {
 
   bottomBarBackground: SEMANTIC_COLORS.plainDark,
 
+  buttonGroupBackgroundDisabledSelected:
+    background_colors.backgroundBaseFormsControlDisabled,
   buttonGroupBorderColor: border_colors.borderBasePlain,
   buttonGroupBorderColorSelected: border_colors.borderBasePlain,
   buttonGroupFocusColor: brand_text_colors.textPrimary,
@@ -120,6 +122,9 @@ const component_colors: _EuiThemeComponentColors = {
 
   markdownFormatTableBorderColor: border_colors.borderBasePlain,
 
+  overlayMaskBackground: background_colors.backgroundBaseInteractiveOverlay,
+  overlayMaskBackgroundHighContrast: `rgba(${SEMANTIC_COLORS.shade140RGB}, 0.9)`,
+
   popoverPanelBackground: background_colors.backgroundBasePlain,
   popoverFooterBorderColor: border_colors.borderBaseSubdued,
 
@@ -129,6 +134,8 @@ const component_colors: _EuiThemeComponentColors = {
     background_colors.backgroundBaseInteractiveSelect,
 
   selectableListItemBorderColor: border_colors.borderBaseSubdued,
+
+  skeletonBackgroundSkeletonMiddleHighContrast: `rgba(${SEMANTIC_COLORS.shade100RGB}, 0.04)`,
 
   superDatePickerBackgroundSuccees: background_colors.backgroundBaseSuccess,
 
@@ -181,6 +188,8 @@ export const components: _EuiThemeComponents = {
       dark_background_colors.backgroundLightText,
     breadcrumbsApplicationColor: dark_text_colors.textSubdued,
 
+    buttonGroupBackgroundDisabledSelected:
+      dark_background_colors.backgroundBaseFormsControlDisabled,
     buttonGroupBorderColor: dark_border_colors.borderBasePlain,
     buttonGroupBorderColorSelected: dark_border_colors.borderBasePlain,
     buttonGroupFocusColor: dark_brand_text_colors.textPrimary,
@@ -258,6 +267,10 @@ export const components: _EuiThemeComponents = {
 
     markdownFormatTableBorderColor: dark_border_colors.borderBasePlain,
 
+    overlayMaskBackground:
+      dark_background_colors.backgroundBaseInteractiveOverlay,
+    overlayMaskBackgroundHighContrast: `rgba(${SEMANTIC_COLORS.shade140RGB}, 0.9)`,
+
     popoverPanelBackground: dark_background_colors.backgroundBasePlain,
     popoverFooterBorderColor: dark_border_colors.borderBaseSubdued,
 
@@ -267,6 +280,8 @@ export const components: _EuiThemeComponents = {
       dark_background_colors.backgroundBaseInteractiveSelect,
 
     selectableListItemBorderColor: dark_border_colors.borderBaseSubdued,
+
+    skeletonBackgroundSkeletonMiddleHighContrast: `rgba(${SEMANTIC_COLORS.plainLightRGB}, 0.3)`,
 
     switchBackgroundOn: dark_background_colors.backgroundFilledPrimary,
     switchBackgroundOff: dark_background_colors.backgroundFilledText,

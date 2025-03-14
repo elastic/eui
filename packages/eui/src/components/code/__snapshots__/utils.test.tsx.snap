@@ -1009,7 +1009,7 @@ exports[`line utils highlightByLine with line numbers with highlighted lines add
         "properties": {
           "className": [
             "euiCodeBlock__lineText",
-            "css-yk5w7l-euiCodeBlock__lineText-isHighlighted",
+            "css-1m7r99r-euiCodeBlock__lineText-isHighlighted",
           ],
         },
         "tagName": "span",
@@ -1160,7 +1160,7 @@ exports[`line utils highlightByLine with line numbers with highlighted lines add
         "properties": {
           "className": [
             "euiCodeBlock__lineText",
-            "css-yk5w7l-euiCodeBlock__lineText-isHighlighted",
+            "css-1m7r99r-euiCodeBlock__lineText-isHighlighted",
           ],
         },
         "tagName": "span",

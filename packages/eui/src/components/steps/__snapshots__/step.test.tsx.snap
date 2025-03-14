@@ -19,7 +19,7 @@ exports[`EuiStep is rendered 1`] = `
       </span>
       <span
         aria-hidden="true"
-        class="euiStepNumber__number emotion-euiStepNumber__number"
+        class="euiStepNumber__number"
       >
         1
       </span>
@@ -57,7 +57,7 @@ exports[`EuiStep props headingElement 1`] = `
       </span>
       <span
         aria-hidden="true"
-        class="euiStepNumber__number emotion-euiStepNumber__number"
+        class="euiStepNumber__number"
       >
         1
       </span>
@@ -128,7 +128,7 @@ exports[`EuiStep props status current is rendered 1`] = `
       </span>
       <span
         aria-hidden="true"
-        class="euiStepNumber__number emotion-euiStepNumber__number-current"
+        class="euiStepNumber__number"
       >
         1
       </span>
@@ -199,7 +199,7 @@ exports[`EuiStep props status disabled is rendered 1`] = `
       </span>
       <span
         aria-hidden="true"
-        class="euiStepNumber__number emotion-euiStepNumber__number-disabled"
+        class="euiStepNumber__number"
       >
         1
       </span>
@@ -237,7 +237,7 @@ exports[`EuiStep props status incomplete is rendered 1`] = `
       </span>
       <span
         aria-hidden="true"
-        class="euiStepNumber__number emotion-euiStepNumber__number-incomplete"
+        class="euiStepNumber__number"
       >
         1
       </span>
@@ -306,7 +306,7 @@ exports[`EuiStep props status warning is rendered 1`] = `
       class="euiStepNumber emotion-euiStepNumber-s-warning"
     >
       <span
-        class="euiStepNumber__icon emotion-euiStepNumber__icon-warning"
+        class="euiStepNumber__icon emotion-euiStepNumber__icon"
         data-euiicon-type="warning"
       >
         Step 1 has warnings
@@ -345,7 +345,7 @@ exports[`EuiStep props step 1`] = `
       </span>
       <span
         aria-hidden="true"
-        class="euiStepNumber__number emotion-euiStepNumber__number"
+        class="euiStepNumber__number"
       >
         5
       </span>
@@ -383,7 +383,7 @@ exports[`EuiStep props titleSize 1`] = `
       </span>
       <span
         aria-hidden="true"
-        class="euiStepNumber__number emotion-euiStepNumber__number"
+        class="euiStepNumber__number"
       >
         1
       </span>

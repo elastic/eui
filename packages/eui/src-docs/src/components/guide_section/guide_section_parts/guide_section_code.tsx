@@ -1,6 +1,10 @@
 import React, { FunctionComponent, useState, useEffect, useMemo } from 'react';
-import { EuiCodeBlock } from '../../../../../src/components/code';
-import { EuiButtonEmpty } from '../../../../../src/components/button';
+import {
+  EuiCodeBlock,
+  EuiButtonEmpty,
+  EuiHorizontalRule,
+  useEuiTheme,
+} from '../../../../../src';
 // @ts-ignore Not TS
 import { CodeSandboxLink } from '../../codesandbox';
 // @ts-ignore Not TS
@@ -46,6 +50,8 @@ export const GuideSectionExampleCode: FunctionComponent<
     </CodeSandboxLink>
   ) : undefined;
 
+  const { highContrastMode } = useEuiTheme();
+
   return (
     <>
       <EuiCodeBlock
@@ -56,9 +62,12 @@ export const GuideSectionExampleCode: FunctionComponent<
         }
         overflowHeight={400}
         isCopyable
+        // Code block is used within a panel which already has a border - skip doubling up
+        {...(highContrastMode && { css: { border: 'none' } })}
       >
         {codeToRender}
       </EuiCodeBlock>
+      {highContrastMode && <EuiHorizontalRule margin="none" />}
       {codeSandboxLink}
     </>
   );

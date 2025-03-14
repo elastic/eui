@@ -35,7 +35,6 @@ export const euiRangeThumbStyles = (euiThemeContext: UseEuiTheme) => {
 
       &:focus {
         ${euiRangeThumbFocus(euiThemeContext)}
-        outline: none;
       }
     `,
     hasTicks: css`

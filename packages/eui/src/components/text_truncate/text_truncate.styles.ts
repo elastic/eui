@@ -7,8 +7,10 @@
  */
 
 import { css } from '@emotion/react';
+import { UseEuiTheme } from '../../services';
+import { preventForcedColors } from '../../global_styling/functions/high_contrast';
 
-export const euiTextTruncateStyles = {
+export const euiTextTruncateStyles = (euiThemeContext: UseEuiTheme) => ({
   euiTextTruncate: css`
     position: relative;
     overflow: hidden;
@@ -44,5 +46,8 @@ export const euiTextTruncateStyles = {
     @supports (-webkit-hyphens: none) {
       text-overflow: ellipsis;
     }
+
+    /* Force Windows high contrast themes to use the 0 alpha color */
+    ${preventForcedColors(euiThemeContext)}
   `,
-};
+});

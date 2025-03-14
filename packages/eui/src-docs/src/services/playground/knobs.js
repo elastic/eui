@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { assertUnreachable, PropTypes } from 'react-view';
 import {
+  useEuiTheme,
   useIsWithinBreakpoints,
   EuiTitle,
   EuiCodeBlock,
@@ -22,7 +23,6 @@ import {
   EuiTextArea,
   EuiFormRow,
   EuiText,
-  EuiPanel,
   EuiMarkdownFormat,
 } from '../../../../src';
 import {
@@ -480,7 +480,6 @@ const KnobColumn = ({ state, knobNames, error, set, isPlayground }) => {
           key={`modify__${name}-${idx}`}
           header={isPlayground ? 'Modify' : 'Default value'}
           textOnly={false}
-          className={isPlayground ? 'playgroundKnobs__rowCell' : undefined}
         >
           {isPlayground ? (
             <Knob
@@ -511,6 +510,7 @@ const KnobColumn = ({ state, knobNames, error, set, isPlayground }) => {
 };
 
 const Knobs = ({ state, set, error, isPlayground = true }) => {
+  const { euiTheme } = useEuiTheme();
   const isMobile = useIsWithinBreakpoints(['xs', 's']);
   const knobNames = Object.keys(state);
 
@@ -532,12 +532,7 @@ const Knobs = ({ state, set, error, isPlayground = true }) => {
   });
 
   return (
-    <EuiPanel
-      color="transparent"
-      paddingSize={isMobile ? 's' : 'none'}
-      hasBorder={false}
-      hasShadow={false}
-    >
+    <div style={isMobile ? { padding: euiTheme.size.s } : undefined}>
       <EuiTable style={{ background: 'transparent' }}>
         <EuiTableHeader>
           {columns.map(({ name, width }, id) => {
@@ -559,7 +554,7 @@ const Knobs = ({ state, set, error, isPlayground = true }) => {
           />
         </EuiTableBody>
       </EuiTable>
-    </EuiPanel>
+    </div>
   );
 };
 

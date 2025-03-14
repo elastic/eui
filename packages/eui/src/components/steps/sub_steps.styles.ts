@@ -8,13 +8,18 @@
 
 import { css } from '@emotion/react';
 import { UseEuiTheme } from '../../services';
+import { highContrastModeStyles } from '../../global_styling/functions/high_contrast';
 
-export const euiSubStepsStyles = ({ euiTheme }: UseEuiTheme) => {
+export const euiSubStepsStyles = (euiThemeContext: UseEuiTheme) => {
+  const { euiTheme } = euiThemeContext;
   return {
     euiSubSteps: css`
       padding: ${euiTheme.size.base};
       background-color: ${euiTheme.colors.lightestShade};
       margin-block-end: ${euiTheme.size.base};
+      ${highContrastModeStyles(euiThemeContext, {
+        preferred: `border: ${euiTheme.border.thin};`,
+      })}
 
       > *:last-child {
         margin-block-end: 0;

@@ -150,7 +150,11 @@ export default () => {
 
       {/* This wrapping div for the sticky positioning */}
       <div>
-        <GuideSection color="warning" className="guideColorsPage__stickySlider">
+        <GuideSection
+          color="warning"
+          className="guideColorsPage__stickySlider"
+          css={({ euiTheme }) => ({ borderBlock: euiTheme.border.thin })}
+        >
           <EuiTitle size="xs">
             <h3>
               Use the slider and toggle to adjust the color combinations shown

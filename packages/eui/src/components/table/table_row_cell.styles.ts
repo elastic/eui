@@ -30,7 +30,7 @@ export const euiTableRowCellStyles = (euiThemeContext: UseEuiTheme) => {
 
   return {
     euiTableRowCell: css`
-      color: ${euiTheme.colors.text};
+      color: ${euiTheme.colors.textParagraph};
     `,
     rowHeader: css`
       /* Unset the automatic browser bolding and center alignment applied to [th] elements */
@@ -120,8 +120,7 @@ export const euiTableRowCellStyles = (euiThemeContext: UseEuiTheme) => {
             content: '';
             position: absolute;
             ${logicalCSS('horizontal', 0)}
-            ${logicalCSS('height', euiTheme.border.width.thin)}
-            background-color: ${euiTheme.border.color};
+            ${logicalCSS('border-top', euiTheme.border.thin)}
           }
 
           /* Minor vertical alignment of cell content */

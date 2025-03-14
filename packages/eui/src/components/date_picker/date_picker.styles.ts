@@ -53,7 +53,9 @@ export const euiDatePickerStyles = (euiThemeContext: UseEuiTheme) => {
       shadow: css`
         .euiFormControlLayout {
           background-color: ${euiTheme.colors.emptyShade};
-          ${euiShadowMedium(euiThemeContext)}
+          ${euiShadowMedium(euiThemeContext, {
+            borderAllInHighContrastMode: true,
+          })}
         }
       `,
       // Needs to come before shadow CSS so that it doesn't override their background-colors
