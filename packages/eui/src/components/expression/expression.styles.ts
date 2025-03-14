@@ -112,9 +112,6 @@ export const euiExpressionStyles = (euiThemeContext: UseEuiTheme) => {
       accent: css`
         border-color: ${euiTheme.colors.accent};
       `,
-      accentSecondary: css`
-        border-color: ${euiTheme.colors.accentSecondary};
-      `,
     },
 
     subdued: css(_colorCSS(euiTheme.colors.textSubdued)),
