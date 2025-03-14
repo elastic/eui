@@ -36,11 +36,10 @@ export const euiRangeTooltipValueStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme, colorMode, highContrastMode } = euiThemeContext;
 
   const toolTipBackgroundColor = euiTheme.components.tooltipBackground;
-  const borderColor = highContrastMode
-    ? euiTheme.border.color
-    : colorMode === 'DARK'
-    ? toolTipBackgroundColor
-    : 'transparent';
+  const borderColor =
+    highContrastMode || colorMode === 'DARK'
+      ? euiTheme.border.color
+      : 'transparent';
 
   const arrowSize = euiTheme.size.m;
   const arrowOffset = euiTheme.size.l;

@@ -101,7 +101,7 @@ export const euiButtonFillColor = (
     backgroundColor: background,
     ..._highContrastBorder(
       euiThemeContext,
-      background // The border is necessary for Windows high contrast themes, which ignore background-color
+      color === 'disabled' ? foreground : background // The border is necessary for Windows high contrast themes, which ignore background-color
     ),
   };
 };

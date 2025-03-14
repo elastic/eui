@@ -169,9 +169,12 @@ export const euiButtonGroupButtonStyles = (euiThemeContext: UseEuiTheme) => {
     // States
     disabledAndSelected: css`
       color: ${makeDisabledContrastColor(euiTheme.colors.textDisabled)(
-        euiTheme.colors.disabled
+        euiTheme.components.buttonGroupBackgroundDisabledSelected
       )};
-      background-color: ${euiTheme.colors.disabled};
+      background-color: ${euiTheme.components
+        .buttonGroupBackgroundDisabledSelected};
+      border: ${highContrastMode &&
+      `${euiTheme.border.width.thin} solid ${euiTheme.components.buttonGroupBackgroundDisabledSelected}`};
     `,
     // Tooltip anchor wrapper
     tooltipWrapper: css`

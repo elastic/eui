@@ -49,7 +49,6 @@ export const euiPanelStyles = (euiThemeContext: UseEuiTheme) => {
 
     hasShadow: css`
       ${euiShadow(euiThemeContext, 'm')}
-
       ${borderStyle}
     `,
 

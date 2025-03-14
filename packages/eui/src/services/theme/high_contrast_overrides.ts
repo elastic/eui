@@ -14,6 +14,7 @@ import type {
   EuiThemeSystem,
   EuiThemeModifications,
 } from './types';
+import { getComputed } from '@elastic/eui-theme-common';
 
 // Rather than being calculated when the theme's styles are being computed, we're bogarting the
 // `modify` logic so we can ensure consumer modifications to border-color are also overriden.
@@ -31,11 +32,44 @@ export const useHighContrastModifications = ({
   modifications: EuiThemeModifications;
 }) => {
   const highContrastModifications = useMemo(() => {
-    const borderColor = system.root.colors[colorMode].fullShade;
+    const borderColor =
+      colorMode === 'DARK'
+        ? system.root.colors.plainLight
+        : system.root.colors.plainDark;
     const getBorderWidth = (width: 'thin' | 'thick') =>
       modifications?.border?.width?.[width] || system.root.border.width[width];
 
+    const systemTheme = getComputed(system, {}, colorMode);
+
+    const borderColorModifications = {
+      borderBasePrimary: systemTheme.colors.textPrimary,
+      borderBaseAccent: systemTheme.colors.textAccent,
+      borderBaseAccentSecondary: systemTheme.colors.textAccentSecondary,
+      borderBaseSuccess: systemTheme.colors.textSuccess,
+      borderBaseWarning: systemTheme.colors.textWarning,
+      borderBaseDanger: systemTheme.colors.textDanger,
+      borderBasePlain: borderColor,
+      borderBaseSubdued: borderColor,
+      borderBaseDisabled: systemTheme.colors.textDisabled,
+      borderBaseFloating: borderColor,
+      borderBaseFormsControl: borderColor,
+      borderStrongPrimary: systemTheme.colors.textPrimary,
+      borderStrongAccent: systemTheme.colors.textAccent,
+      borderStrongAccentSecondary: systemTheme.colors.textAccentSecondary,
+      borderStrongSuccess: systemTheme.colors.textSuccess,
+      borderStrongWarning: systemTheme.colors.textWarning,
+      borderStrongDanger: systemTheme.colors.textDanger,
+    };
+
     return {
+      colors: {
+        LIGHT: {
+          ...borderColorModifications,
+        },
+        DARK: {
+          ...borderColorModifications,
+        },
+      },
       border: {
         color: borderColor,
         thin: `${getBorderWidth('thin')} solid ${borderColor}`,

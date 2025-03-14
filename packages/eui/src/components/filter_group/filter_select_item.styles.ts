@@ -42,13 +42,10 @@ export const euiFilterSelectItemStyles = (euiThemeContext: UseEuiTheme) => {
       ${euiFontSize(euiThemeContext, 's')}
       ${logicalTextAlignCSS('left')}
 
-      color: ${euiTheme.colors.text};
+      color: ${euiTheme.colors.textParagraph};
       ${logicalCSS(
         'border-bottom',
-        `${euiTheme.border.width.thin} solid ${transparentize(
-          euiTheme.border.color,
-          0.4
-        )}`
+        `${euiTheme.border.width.thin} solid ${euiTheme.colors.borderBaseSubdued}`
       )}
 
       &:hover {
@@ -63,7 +60,7 @@ export const euiFilterSelectItemStyles = (euiThemeContext: UseEuiTheme) => {
       &:disabled {
         cursor: not-allowed;
         text-decoration: none;
-        color: ${euiTheme.colors.disabledText};
+        color: ${euiTheme.colors.textDisabled};
       }
     `,
     isFocused: css`
