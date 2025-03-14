@@ -44,7 +44,7 @@ export const euiToastStyles = (euiThemeContext: UseEuiTheme) => {
 
       ${euiTextBreakWord()} /* Prevent long lines from overflowing */
 
-      ${euiPanelBorderStyles(euiThemeContext)}
+      ${euiPanelBorderStyles(euiThemeContext, { hasFloatingBorder: false })}
 
       &:hover,
       &:focus {

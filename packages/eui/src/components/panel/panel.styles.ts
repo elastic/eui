@@ -18,9 +18,17 @@ import {
 
 export const euiPanelBorderStyles = (
   euiThemeContext: UseEuiTheme,
-  borderColor?: string
+  options?: {
+    borderColor?: string;
+    hasFloatingBorder?: boolean;
+  }
 ) => {
-  const { euiTheme } = euiThemeContext;
+  const { euiTheme, colorMode } = euiThemeContext;
+  const { borderColor, hasFloatingBorder = true } = options ?? {};
+
+  /* TODO: remove `hasFloatingBorder` and `hasVisibleBorder` and once Amsterdam is removed
+   euiTheme.colors.borderBaseFloating is enough then */
+  const hasVisibleBorder = hasFloatingBorder && colorMode === 'DARK';
 
   return `
     /* Using a pseudo element for the border instead of floating border only 
@@ -33,7 +41,11 @@ export const euiPanelBorderStyles = (
       z-index: 1;
       inset: 0;
       border: ${euiTheme.border.width.thin} solid
-        ${borderColor ?? euiTheme.colors.borderBaseFloating};
+        ${
+          borderColor ?? hasVisibleBorder
+            ? euiTheme.border.color
+            : euiTheme.colors.borderBaseFloating
+        };
       border-radius: inherit;
       pointer-events: none;
     }
@@ -57,11 +69,16 @@ export const euiPanelStyles = (euiThemeContext: UseEuiTheme) => {
     hasShadow: css`
       ${euiShadow(euiThemeContext, 'm')}
 
-      ${euiPanelBorderStyles(euiThemeContext)}
+      ${euiPanelBorderStyles(euiThemeContext, {
+        hasFloatingBorder: false,
+      })}
     `,
 
     hasBorder: css`
-      ${euiPanelBorderStyles(euiThemeContext, euiTheme.border.color)}
+      ${euiPanelBorderStyles(euiThemeContext, {
+        borderColor: euiTheme.border.color,
+        hasFloatingBorder: false,
+      })}
     `,
 
     radius: {
