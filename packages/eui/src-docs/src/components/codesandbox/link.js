@@ -117,6 +117,7 @@ import '@elastic/charts/dist/theme_only_${colorMode}.css';`
         content: {
           dependencies: {
             '@elastic/eui': pkg.version,
+            '@elastic/eui-theme-borealis': 'latest',
             ...[
               '@elastic/datemath',
               '@emotion/cache',
@@ -127,18 +128,10 @@ import '@elastic/charts/dist/theme_only_${colorMode}.css';`
               'react-dom',
               'react-scripts',
               ...Object.keys(mergedDeps),
-            ].reduce(
-              (out, pkg) => {
-                out[pkg] = getVersion(pkg);
-                return out;
-              },
-              {
-                // The dependency is set to `workspace` which cannot be resolved in CodeSandbox,
-                // therefore we're setting "latest"; the downside is that you have to release a new version
-                // of the package to see the changes in CodeSandbox.
-                '@elastic/eui-theme-borealis': 'latest',
-              }
-            ),
+            ].reduce((out, pkg) => {
+              out[pkg] = getVersion(pkg);
+              return out;
+            }, {}),
           },
         },
       },
