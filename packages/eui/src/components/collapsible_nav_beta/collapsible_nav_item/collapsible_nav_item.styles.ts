@@ -33,8 +33,8 @@ export const euiCollapsibleNavItemVariables = (
     backgroundHoverColor: euiTheme.colors.lightestShade,
     backgroundSelectedColor: euiButtonColor(euiThemeContext, 'text')
       .backgroundColor,
-    color: euiTheme.colors.text,
-    rightIconColor: euiTheme.colors.disabledText,
+    color: euiTheme.colors.textParagraph,
+    rightIconColor: euiTheme.colors.textDisabled,
   };
 };
 

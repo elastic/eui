@@ -41,7 +41,7 @@ export const euiExpressionStyles = (euiThemeContext: UseEuiTheme) => {
         'padding',
         `${mathWithUnits(euiTheme.size.s, (x) => x / 2)} 0`
       )}
-      color: ${euiTheme.colors.text};
+      color: ${euiTheme.colors.textParagraph};
 
       &:focus {
         ${logicalCSS('border-bottom-style', 'solid')}
@@ -111,6 +111,9 @@ export const euiExpressionStyles = (euiThemeContext: UseEuiTheme) => {
       `,
       accent: css`
         border-color: ${euiTheme.colors.accent};
+      `,
+      accentSecondary: css`
+        border-color: ${euiTheme.colors.accentSecondary};
       `,
     },
 

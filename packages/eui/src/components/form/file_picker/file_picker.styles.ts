@@ -96,7 +96,7 @@ export const euiFilePickerStyles = (euiThemeContext: UseEuiTheme) => {
       font-size: ${fontSize};
       line-height: 1; /* Vertically centers default display text */
       ${euiTextTruncate()}
-      color: ${euiTheme.colors.text};
+      color: ${euiTheme.colors.textParagraph};
       border: ${euiTheme.border.width.thick} dashed
         var(--euiFormControlStateColor, ${euiTheme.border.color});
 

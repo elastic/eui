@@ -55,9 +55,9 @@ export const euiDatePickerVariables = (euiThemeContext: UseEuiTheme) => {
 
     colors: {
       day: {
-        inMonth: euiTheme.colors.title,
-        outsideMonth: euiTheme.colors.subduedText,
-        header: euiTheme.colors.subduedText,
+        inMonth: euiTheme.colors.textHeading,
+        outsideMonth: euiTheme.colors.textSubdued,
+        header: euiTheme.colors.textSubdued,
         today: euiTheme.colors.primary,
       },
 
@@ -112,7 +112,7 @@ export const euiReactDatePickerStyles = (euiThemeContext: UseEuiTheme) => {
       justify-content: center;
       padding: ${paddingSize};
       font-size: ${euiFontSize(euiThemeContext, 'xs').fontSize};
-      color: ${euiTheme.colors.text};
+      color: ${euiTheme.colors.textParagraph};
       border-radius: ${euiTheme.border.radius.medium};
 
       &.react-datepicker--non-interactive {
