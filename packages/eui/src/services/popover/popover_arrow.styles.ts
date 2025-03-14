@@ -39,6 +39,7 @@ export const _popoverArrowStyles = (
   return {
     _arrowStyles: `
       position: absolute;
+      z-index: 1;
       ${logicalSizeCSS(arrowSize)}
       border-radius: ${arrowBorderRadius};
       /* Use clip-path to ensure that arrows don't overlap into popover content */
