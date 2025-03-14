@@ -117,6 +117,7 @@ import '@elastic/charts/dist/theme_only_${colorMode}.css';`
         content: {
           dependencies: {
             '@elastic/eui': pkg.version,
+            '@elastic/eui-theme-borealis': 'latest',
             ...[
               '@elastic/datemath',
               '@emotion/cache',
