@@ -54,9 +54,9 @@ describe('euiFormVariables', () => {
         "iconAffordance": "24px",
         "iconCompressedAffordance": "18px",
         "maxWidth": "400px",
+        "stateUnderlineHeight": "2px",
         "textColor": "#1D2A3E",
         "textColorDisabled": "#798EAF",
-        "stateUnderlineHeight": "2px",
       }
     `);
   });
@@ -125,11 +125,11 @@ describe('euiFormControlStyles', () => {
 
         ",
         "focus": "
-        --euiFormControlStateColor: #0B64DD;
-        background-color: #FFFFFF;
-        background-size: 100% 100%;
-        outline: none; /* Remove all outlines and rely on our own bottom border gradient */
-      ",
+          --euiFormControlStateColor: #0B64DD;
+          background-color: #FFFFFF;
+          background-size: 100% 100%;
+          outline: none; /* Remove all outlines and rely on our own bottom border gradient */
+        ",
         "formWidth": "
             max-inline-size: 400px;
             inline-size: 100%;
@@ -144,9 +144,9 @@ describe('euiFormControlStyles', () => {
             border-radius: 0;
           ",
         "invalid": "
-        --euiFormControlStateColor: #C61E25;
-        background-size: 100% 100%;
-      ",
+          --euiFormControlStateColor: #C61E25;
+          background-size: 100% 100%;
+        ",
         "readOnly": "
           cursor: default;
           color: #1D2A3E;
@@ -187,7 +187,7 @@ describe('euiFormControlStyles', () => {
         
             
           border: none;
-          box-shadow: inset 0 0 0 1px #CAD3E2;
+            box-shadow: inset 0 0 0 1px #CAD3E2;
           background-color: #FFFFFF;
           background-repeat: no-repeat;
             background-size: 0% 100%;
@@ -227,26 +227,40 @@ describe('euiFormCustomControlStyles', () => {
         "input": {
           "disabled": {
             "selected": "
-                label: disabled;
-                color: #798EAF;
-                background-color: #CAD3E2;
-              ",
+                  
+                  label: disabled;
+                  cursor: not-allowed;
+                  background-color: #CAD3E2;
+                  border-color: #CAD3E2;
+                
+                  color: #798EAF;
+                ",
+            "shared": "
+                  label: disabled;
+                  cursor: not-allowed;
+                  background-color: #CAD3E2;
+                  border-color: #CAD3E2;
+                ",
             "unselected": "
-                label: disabled;
-                color: #CAD3E2;
-                background-color: #CAD3E2;
-                cursor: not-allowed;
-              ",
+                  
+                  label: disabled;
+                  cursor: not-allowed;
+                  background-color: #CAD3E2;
+                  border-color: #CAD3E2;
+                
+                  color: #CAD3E2;
+                ",
           },
           "enabled": {
             "selected": "
                 color: #FFFFFF;
                 background-color: #0B64DD;
+                border-color: #0B64DD;
               ",
             "unselected": "
                 color: transparent;
                 background-color: transparent;
-                border: 1px solid #8E9FBC;
+                border-color: #8E9FBC;
 
                 &:has(input:focus) {
                   border-color: #0B64DD;
@@ -294,7 +308,7 @@ describe('euiFormCustomControlStyles', () => {
         "label": {
           "disabled": "
               cursor: not-allowed;
-              color: #6A7FA0;
+              color: #798EAF;
             ",
           "enabled": "
               cursor: pointer;
