@@ -22,12 +22,6 @@ describe('EuiLoadingChart', () => {
     expect(container.firstChild).toMatchSnapshot();
   });
 
-  test('mono is rendered', () => {
-    const { container } = render(<EuiLoadingChart mono />);
-
-    expect(container.firstChild).toMatchSnapshot();
-  });
-
   describe('size', () => {
     SIZES.forEach((size) => {
       test(`${size} is rendered`, () => {

@@ -7,10 +7,7 @@
  */
 
 import { css, keyframes } from '@emotion/react';
-import {
-  _EuiThemeComponentColors,
-  _EuiThemeVisColors,
-} from '@elastic/eui-theme-common';
+import { _EuiThemeComponentColors } from '@elastic/eui-theme-common';
 
 import { UseEuiTheme } from '../../services';
 import {
@@ -41,19 +38,13 @@ export const euiLoadingChartStyles = ({ euiTheme }: UseEuiTheme) => ({
 export const BARS_COUNT = 4;
 
 export const euiLoadingChartBarStyles = ({ euiTheme }: UseEuiTheme) => {
-  const nonMonoColors = Object.keys(euiTheme.colors.vis).reduce(
-    (colors, cur) => {
-      const isVisColor = cur.match(/euiColorVis[0-9]/);
+  const backgroundColors = outputNthChildCss((index) => {
+    const token =
+      `loadingChartMonoBackground${index}` as keyof _EuiThemeComponentColors;
+    const color = euiTheme.components[token];
 
-      if (isVisColor) {
-        const color = euiTheme.colors.vis[cur as keyof _EuiThemeVisColors];
-        return [...colors, color];
-      }
-
-      return colors;
-    },
-    [] as string[]
-  );
+    return `background-color: ${color}`;
+  });
 
   return {
     euiLoadingChart__bar: css`
@@ -63,28 +54,13 @@ export const euiLoadingChartBarStyles = ({ euiTheme }: UseEuiTheme) => {
       ${euiCanAnimate} {
         animation: ${barAnimation} 1s infinite;
 
-        ${outputNthChildCss((index) => `animation-delay: 0.${index}s;`)}
+        ${outputNthChildCss((index) => `animation-delay: 0.${index}s`)}
       }
       ${euiCantAnimate} {
-        ${outputNthChildCss(
-          (index) => `transform: translateY(${22 * index}%);`
-        )}
+        ${outputNthChildCss((index) => `transform: translateY(${22 * index}%)`)}
       }
-    `,
-    nonmono: css`
-      ${outputNthChildCss(
-        (index) => `background-color: ${nonMonoColors[index]}`
-      )}
-    `,
-    mono: css`
-      /* stylelint-disable no-extra-semicolons */
-      ${outputNthChildCss((index) => {
-        const token =
-          `loadingChartMonoBackground${index}` as keyof _EuiThemeComponentColors;
-        const color = euiTheme.components[token];
 
-        return `background-color: ${color}`;
-      })}
+      ${backgroundColors}
     `,
     m: css`
       ${logicalCSS('width', euiTheme.size.xxs)}

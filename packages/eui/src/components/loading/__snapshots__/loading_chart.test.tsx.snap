@@ -8,37 +8,16 @@ exports[`EuiLoadingChart is rendered 1`] = `
   role="progressbar"
 >
   <span
-    class="emotion-euiLoadingChart__bar-nonmono-m"
+    class="emotion-euiLoadingChart__bar-m"
   />
   <span
-    class="emotion-euiLoadingChart__bar-nonmono-m"
+    class="emotion-euiLoadingChart__bar-m"
   />
   <span
-    class="emotion-euiLoadingChart__bar-nonmono-m"
+    class="emotion-euiLoadingChart__bar-m"
   />
   <span
-    class="emotion-euiLoadingChart__bar-nonmono-m"
-  />
-</span>
-`;
-
-exports[`EuiLoadingChart mono is rendered 1`] = `
-<span
-  aria-label="Loading"
-  class="euiLoadingChart emotion-euiLoadingChart-m"
-  role="progressbar"
->
-  <span
-    class="emotion-euiLoadingChart__bar-mono-m"
-  />
-  <span
-    class="emotion-euiLoadingChart__bar-mono-m"
-  />
-  <span
-    class="emotion-euiLoadingChart__bar-mono-m"
-  />
-  <span
-    class="emotion-euiLoadingChart__bar-mono-m"
+    class="emotion-euiLoadingChart__bar-m"
   />
 </span>
 `;
@@ -50,16 +29,16 @@ exports[`EuiLoadingChart size l is rendered 1`] = `
   role="progressbar"
 >
   <span
-    class="emotion-euiLoadingChart__bar-nonmono-l"
+    class="emotion-euiLoadingChart__bar-l"
   />
   <span
-    class="emotion-euiLoadingChart__bar-nonmono-l"
+    class="emotion-euiLoadingChart__bar-l"
   />
   <span
-    class="emotion-euiLoadingChart__bar-nonmono-l"
+    class="emotion-euiLoadingChart__bar-l"
   />
   <span
-    class="emotion-euiLoadingChart__bar-nonmono-l"
+    class="emotion-euiLoadingChart__bar-l"
   />
 </span>
 `;
@@ -71,16 +50,16 @@ exports[`EuiLoadingChart size m is rendered 1`] = `
   role="progressbar"
 >
   <span
-    class="emotion-euiLoadingChart__bar-nonmono-m"
+    class="emotion-euiLoadingChart__bar-m"
   />
   <span
-    class="emotion-euiLoadingChart__bar-nonmono-m"
+    class="emotion-euiLoadingChart__bar-m"
   />
   <span
-    class="emotion-euiLoadingChart__bar-nonmono-m"
+    class="emotion-euiLoadingChart__bar-m"
   />
   <span
-    class="emotion-euiLoadingChart__bar-nonmono-m"
+    class="emotion-euiLoadingChart__bar-m"
   />
 </span>
 `;
@@ -92,16 +71,16 @@ exports[`EuiLoadingChart size xl is rendered 1`] = `
   role="progressbar"
 >
   <span
-    class="emotion-euiLoadingChart__bar-nonmono-xl"
+    class="emotion-euiLoadingChart__bar-xl"
   />
   <span
-    class="emotion-euiLoadingChart__bar-nonmono-xl"
+    class="emotion-euiLoadingChart__bar-xl"
   />
   <span
-    class="emotion-euiLoadingChart__bar-nonmono-xl"
+    class="emotion-euiLoadingChart__bar-xl"
   />
   <span
-    class="emotion-euiLoadingChart__bar-nonmono-xl"
+    class="emotion-euiLoadingChart__bar-xl"
   />
 </span>
 `;

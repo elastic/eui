@@ -107,14 +107,12 @@ export const LoadingExample = {
       text: (
         <p>
           To indicate that a visualization is loading, use{' '}
-          <strong>EuiLoadingChart</strong>. The multi-color version should be
-          used sparingly, and only when a single large visualization is being
-          loaded.
+          <strong>EuiLoadingChart</strong>.
         </p>
       ),
       props: { EuiLoadingChart },
       demo: <LoadingChart />,
-      snippet: ['<EuiLoadingChart size="m" />', '<EuiLoadingChart mono />'],
+      snippet: ['<EuiLoadingChart size="m" />', '<EuiLoadingChart />'],
       playground: loadingChartConfig,
     },
     {

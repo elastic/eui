@@ -9,12 +9,5 @@ export default () => (
     <EuiLoadingChart size="l" />
     &nbsp;&nbsp;
     <EuiLoadingChart size="xl" />
-    <br />
-    <br />
-    <EuiLoadingChart size="m" mono />
-    &nbsp;&nbsp;
-    <EuiLoadingChart size="l" mono />
-    &nbsp;&nbsp;
-    <EuiLoadingChart size="xl" mono />
   </div>
 );
