@@ -15,7 +15,6 @@ const meta: Meta<EuiLoadingChartProps> = {
   component: EuiLoadingChart,
   args: {
     size: 'm',
-    mono: false,
   },
 };
 
