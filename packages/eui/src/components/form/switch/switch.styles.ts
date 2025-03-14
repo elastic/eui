@@ -35,9 +35,15 @@ const euiSwitchVars = (euiThemeContext: UseEuiTheme) => {
     disabled: formVars.colors.disabled,
     thumb: formVars.colors.selectedIcon,
     thumbDisabled: euiTheme.components.switchThumbBackgroundDisabled,
-    thumbBorder: euiTheme.components.switchThumbBorderOff,
-    thumbBorderOn: euiTheme.components.switchThumbBorderOn,
-    thumbBorderDisabled: formVars.colors.disabledBorder,
+    thumbBorder: highContrastMode
+      ? euiTheme.border.color
+      : euiTheme.components.switchThumbBorderOff,
+    thumbBorderOn: highContrastMode
+      ? euiTheme.border.color
+      : euiTheme.components.switchThumbBorderOn,
+    thumbBorderDisabled: highContrastMode
+      ? euiTheme.colors.borderBaseDisabled
+      : formVars.colors.disabledBorder,
     iconDisabled: euiTheme.components.switchIconDisabled,
   };
 
@@ -165,7 +171,7 @@ const bodyStyles = (
     label: disabled;
     background-color: ${color};
     ${highContrastModeStyles(euiThemeContext, {
-      preferred: `border: ${euiTheme.border.thin};`,
+      preferred: `border: ${euiTheme.border.width.thin} solid ${euiTheme.colors.borderBaseDisabled};`,
     })}
   `;
 
