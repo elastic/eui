@@ -121,7 +121,9 @@ export const euiMarkdownFormatStyles = (euiThemeContext: UseEuiTheme) => {
       default: css(
         euiMarkdownAdjustBorderColors(
           euiThemeContext,
-          euiTheme.components.markdownFormatTableBorderColor
+          highContrastMode
+            ? euiTheme.border.color
+            : euiTheme.components.markdownFormatTableBorderColor
         )
       ),
       subdued: css(

@@ -45,10 +45,9 @@ const euiToolTipAnimationHorizontal = (size: string) => keyframes`
 `;
 
 export const euiToolTipStyles = (euiThemeContext: UseEuiTheme) => {
-  const { euiTheme, colorMode, highContrastMode } = euiThemeContext;
+  const { euiTheme, highContrastMode } = euiThemeContext;
 
   const hasShadow = !highContrastMode;
-  const hasVisibleBorder = highContrastMode || colorMode === 'DARK';
   const animationTiming = `${euiTheme.animation.slow} ease-out 0s forwards`;
 
   const arrowSize = euiTheme.size.m;
@@ -59,7 +58,9 @@ export const euiToolTipStyles = (euiThemeContext: UseEuiTheme) => {
     euiToolTip: css`
       ${hasShadow ? euiShadow(euiThemeContext) : ''}
       border: ${euiTheme.border.width.thin} solid
-        ${hasVisibleBorder ? euiTheme.border.color : 'transparent'};
+        ${highContrastMode
+        ? euiTheme.border.color
+        : euiTheme.colors.borderBaseFloating};
       border-radius: ${euiTheme.border.radius.medium};
       background-color: ${euiToolTipBackgroundColor(euiTheme)};
       color: ${euiTheme.colors.ghost};

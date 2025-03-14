@@ -20,7 +20,7 @@ export const euiSkeletonRectangleStyles = (euiThemeContext: UseEuiTheme) => {
       display: block;
       ${euiSkeletonGradientAnimation(euiThemeContext, {
         slideSize: '-75%',
-        gradientSize: '350%',
+        gradientSize: '400%',
       })}
       ${preventForcedColors(euiThemeContext)}
     `,

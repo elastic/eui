@@ -26,7 +26,7 @@ export const euiMarkStyles = (euiThemeContext: UseEuiTheme) => {
         // (e.g. EuiSideNav) will take precedence otherwise
         preferred: `
           color: ${euiTheme.colors.emptyShade} !important;
-          background-color: ${euiTheme.colors.textPrimary};
+          background-color: ${euiTheme.colors.backgroundFilledPrimary};
         `,
       })}
       font-weight: ${euiTheme.font.weight.bold};
