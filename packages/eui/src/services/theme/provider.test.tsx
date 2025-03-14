@@ -84,7 +84,7 @@ describe('EuiThemeProvider', () => {
         </EuiSystemDefaultsProvider>
       );
 
-      expect(getByText('Forced dark mode')).toHaveStyleRule('color', '#FFF');
+      expect(getByText('Forced dark mode')).toHaveStyleRule('color', '#FFFFFF');
     });
   });
 
