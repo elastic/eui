@@ -13,7 +13,7 @@ export default () => {
           setToggle0On((isOn) => !isOn);
         }}
       >
-        {toggle0On ? 'Hey there good lookin' : 'Toggle me'}
+        {toggle0On ? 'Toggled' : 'Toggle me'}
       </EuiButton>
       &emsp;
       <EuiButtonIcon

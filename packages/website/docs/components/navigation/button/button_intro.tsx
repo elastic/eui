@@ -4,26 +4,31 @@ import {
   EuiButton,
   EuiButtonEmpty,
   EuiButtonIcon,
+  EuiPanel,
   useEuiTheme,
 } from '@elastic/eui';
 
 const cards = [
   {
+    id: 1,
     title: 'EuiButton',
     children: <EuiButton fill>Primary action</EuiButton>,
     href: './',
   },
   {
+    id: 2,
     title: 'EuiButton',
     children: <EuiButton>Secondary action</EuiButton>,
     href: './',
   },
   {
+    id: 3,
     title: 'EuiButtonEmpty',
     children: <EuiButtonEmpty>Tertiary action</EuiButtonEmpty>,
     href: './empty',
   },
   {
+    id: 4,
     title: 'EuiButtonIcon',
     children: (
       <EuiButtonIcon
@@ -45,19 +50,17 @@ export default () => {
       gutterSize="m"
       css={{ maxInlineSize: euiTheme.base * 30, marginInline: 'auto' }}
     >
-      {cards.map(({ title, children, href }) => (
+      {cards.map(({ id, title, children, href }) => (
         <EuiCard
+          key={id}
           hasBorder
           href={href}
           image={
-            <div
-              css={{
-                backgroundColor: euiTheme.colors.body,
-                padding: euiTheme.size.xl,
-              }}
-            >
-              {children}
-            </div>
+            <EuiPanel color="transparent" borderRadius="none">
+              <EuiPanel color="subdued">
+                {children}
+              </EuiPanel>
+            </EuiPanel>
           }
           title={title}
           titleSize="xs"

@@ -328,14 +328,14 @@ export const InlineEditExample = {
             <li>
               <EuiCode>editMode.saveButtonProps</EuiCode> accepts any{' '}
               <Link to="/navigation/button#icon-buttons">
-                <strong>EuiIconButton</strong>
+                <strong>EuiButtonIcon</strong>
               </Link>{' '}
               properties
             </li>
             <li>
               <EuiCode>editMode.cancelButtonProps</EuiCode> accepts any{' '}
               <Link to="/navigation/button#icon-buttons">
-                <strong>EuiIconButton</strong>
+                <strong>EuiButtonIcon</strong>
               </Link>{' '}
               properties
             </li>

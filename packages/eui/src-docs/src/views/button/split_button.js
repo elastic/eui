@@ -41,8 +41,8 @@ export default () => {
     <>
       <EuiFlexGroup responsive={false} gutterSize="xs" alignItems="center">
         <EuiFlexItem grow={false}>
-          <EuiButton size="s" iconType="calendar">
-            Last 15 min
+          <EuiButton size="s" fill iconType="save">
+            Save
           </EuiButton>
         </EuiFlexItem>
         <EuiFlexItem grow={false}>
@@ -50,7 +50,7 @@ export default () => {
             id={splitButtonPopoverId}
             button={
               <EuiButtonIcon
-                display="base"
+                display="fill"
                 size="s"
                 iconType="boxesVertical"
                 aria-label="More"

@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { GuideSectionTypes } from '../../components';
 
 import {
+  EuiBadge,
   EuiButton,
   EuiButtonEmpty,
   EuiButtonIcon,
@@ -47,13 +48,6 @@ const buttonSnippet = [
 `,
 ];
 
-import ButtonWithIcon from './button_with_icon';
-const buttonWithIconSource = require('!!raw-loader!./button_with_icon');
-const buttonWithIconSnippet = [
-  '<EuiButton iconType={icon}><!-- Button text --></EuiButton>',
-  '<EuiButton iconType={icon} iconSide="right"><!-- Button text --></EuiButton>',
-];
-
 import ButtonOption from './button_empty';
 const buttonOptionSource = require('!!raw-loader!./button_empty');
 const buttonOptionSnippet = [
@@ -86,13 +80,13 @@ const splitButtonSource = require('!!raw-loader!./split_button');
 const splitButtonSnippet = [
   `<EuiFlexGroup responsive={false} gutterSize="xs" alignItems="center">
   <EuiFlexItem grow={false}>
-    <EuiButton size="s">
+    <EuiButton size="s" fill>
       Primary action
     </EuiButton>
   </EuiFlexItem>
   <EuiFlexItem grow={false}>
     <EuiButtonIcon
-      display="base"
+      display="fill"
       size="s"
       iconType="boxesVertical"
       aria-label="More"
@@ -286,7 +280,7 @@ export const ButtonExample = {
                 hasBorder
                 href="#/navigation/button#basic-button"
                 image={
-                  <EuiPanel color="subdued" borderRadius="none">
+                  <EuiPanel color="transparent" borderRadius="none">
                     <EuiPanel color="subdued">
                       <EuiButton fill>Primary action</EuiButton>
                     </EuiPanel>
@@ -301,7 +295,7 @@ export const ButtonExample = {
                 hasBorder
                 href="#/navigation/button#basic-button"
                 image={
-                  <EuiPanel color="subdued" borderRadius="none">
+                  <EuiPanel color="transparent" borderRadius="none">
                     <EuiPanel color="subdued">
                       <EuiButton>Secondary action</EuiButton>
                     </EuiPanel>
@@ -316,7 +310,7 @@ export const ButtonExample = {
                 hasBorder
                 href="#/navigation/button#empty-button"
                 image={
-                  <EuiPanel color="subdued" borderRadius="none">
+                  <EuiPanel color="transparent" borderRadius="none">
                     <EuiPanel color="subdued">
                       <EuiButtonEmpty>Tertiary action</EuiButtonEmpty>
                     </EuiPanel>
@@ -331,7 +325,7 @@ export const ButtonExample = {
                 hasBorder
                 href="#/navigation/button#icon-buttons"
                 image={
-                  <EuiPanel color="subdued" borderRadius="none">
+                  <EuiPanel color="transparent" borderRadius="none">
                     <EuiPanel color="subdued">
                       <EuiButtonIcon
                         display="base"
@@ -377,11 +371,22 @@ export const ButtonExample = {
             <EuiCode>accent</EuiCode> colors should be used sparingly as they
             can easily be confused with other states like disabled and danger.
           </p>
+          <p>
+            All button components accept an <EuiCode>iconType</EuiCode> which
+            must be an acceptable{' '}
+            <Link to="/display/icons">
+              <strong>EuiIcon</strong>
+            </Link>{' '}
+            type. Multi-color icons like app icons will be converted to single
+            color. Icons can be displayed on the opposite side by passing{' '}
+            <EuiCode language="js">{'iconSide="right"'}</EuiCode>.
+          </p>
         </>
       ),
       props: { EuiButton },
       snippet: buttonSnippet,
       demo: <Button />,
+      demoPanelProps: { color: 'subdued' },
       playground: buttonConfig,
     },
     {
@@ -406,7 +411,6 @@ export const ButtonExample = {
       playground: buttonEmptyConfig,
     },
     {
-      title: 'Flush empty button',
       source: [
         {
           type: GuideSectionTypes.JS,
@@ -414,42 +418,24 @@ export const ButtonExample = {
         },
       ],
       text: (
-        <p>
-          When aligning <strong>EuiButtonEmpty</strong> components to the left
-          or the right, you should make sure they&rsquo;re flush with the edge
-          of their container, so that they&rsquo;re horizontally aligned with
-          the other content in the container.
-        </p>
+        <>
+          <h3 id="emptyButton-flush">Flush empty button</h3>
+          <p>
+            By default, buttons contain padding. Apply the{' '}
+            <EuiCode>flush</EuiCode> property in cases where precise alignment
+            and spacing is desired. This situation can arise when{' '}
+            <strong>EuiButtonEmpty</strong> appears within a horizontal list of
+            buttons such as a menu.
+          </p>
+        </>
       ),
       props: { EuiButtonEmpty },
       snippet: buttonOptionFlushSnippet,
       demo: <ButtonOptionFlush />,
+      demoPanelProps: { color: 'subdued' },
     },
     {
-      title: 'Buttons with icons',
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: buttonWithIconSource,
-        },
-      ],
-      text: (
-        <p>
-          All button components accept an <EuiCode>iconType</EuiCode> which must
-          be an acceptable{' '}
-          <Link to="/display/icons">
-            <strong>EuiIcon</strong>
-          </Link>{' '}
-          type. Multi-color icons like app icons will be converted to single
-          color. Icons can be displayed on the opposite side by passing{' '}
-          <EuiCode language="js">{'iconSide="right"'}</EuiCode>.
-        </p>
-      ),
-      snippet: buttonWithIconSnippet,
-      demo: <ButtonWithIcon />,
-    },
-    {
-      title: 'Icon buttons',
+      title: 'Icon button',
       source: [
         {
           type: GuideSectionTypes.JS,
@@ -468,6 +454,7 @@ export const ButtonExample = {
           </p>
           <EuiCallOut
             color="warning"
+            size="s"
             iconType="accessibility"
             title={
               <>
@@ -485,62 +472,131 @@ export const ButtonExample = {
       playground: buttonIconConfig,
     },
     {
-      title: 'Buttons as links',
+      title: 'Button group',
       source: [
         {
           type: GuideSectionTypes.JS,
-          code: buttonAsLinkSource,
+          code: buttonGroupSource,
         },
       ],
       text: (
         <>
           <p>
-            Every button component accepts either an <EuiCode>href</EuiCode>{' '}
-            (rendered as an <EuiCode language="html">{'<a>'}</EuiCode>) or an{' '}
-            <EuiCode>onClick</EuiCode> (rendered as a{' '}
-            <EuiCode language="html">{'<button>'}</EuiCode>). While they also
-            accept both props to be applied simultaneously to support certain
-            routing mechansims, it is not usually recommended. For more specific
-            information on how to integrate EUI buttons with react-router,{' '}
-            <EuiLink href="https://github.com/elastic/eui/blob/main/wiki/consuming-eui/react-router.md#how-react-router-works">
-              see this wiki page
-            </EuiLink>
-            .
+            An <strong>EuiButtonGroup</strong> is for indicating{' '}
+            <strong>selection</strong> only. They utilize the{' '}
+            <EuiCode language="js">type=&quot;single&quot;</EuiCode> or{' '}
+            <EuiCode language="js">&quot;multi&quot;</EuiCode> prop to determine
+            whether multiple or only single selections are allowed per group.
           </p>
-          <p>
-            If you are creating a purely text-based link, like the one in the
-            previous paragraph, use{' '}
-            <Link to="/navigation/link">
-              <strong>EuiLink</strong>
-            </Link>{' '}
-            instead.
-          </p>
+          <EuiCallOut
+            iconType="accessibility"
+            color="warning"
+            size="s"
+            title={
+              <span>
+                In order for groups to be properly read as groups with a title,
+                the <EuiCode>legend</EuiCode> prop is <strong>required</strong>.
+                This is only for accessibility, however, so it will be visibly
+                hidden.
+              </span>
+            }
+          />
         </>
       ),
-      snippet: buttonAsLinkSnippet,
-      demo: <ButtonAsLink />,
+      demo: <ButtonGroup />,
+      demoPanelProps: { color: 'subdued' },
+      snippet: buttonGroupSnippet,
+      props: { EuiButtonGroup, EuiButtonGroupOptionProps },
+      playground: buttonGroupConfig,
     },
     {
-      title: 'Loading state',
       source: [
         {
           type: GuideSectionTypes.JS,
-          code: buttonLoadingSource,
+          code: buttonGroupIconsSource,
         },
       ],
       text: (
-        <p>
-          Setting the <EuiCode>isLoading</EuiCode> prop to true will add the
-          loading spinner or swap the existing icon for the loading spinner and
-          set the button to disabled. It is good practice to also rename the
-          button to &quot;Loading&hellip;&quot;.
-        </p>
+        <>
+          <h3 id="buttonGroup-isIconOnly">Icon only button group</h3>
+          <p>
+            Use the <EuiCode>isIconOnly</EuiCode> prop when displaying a group
+            of icon-only buttons.
+          </p>
+        </>
       ),
-      snippet: buttonLoadingSnippet,
-      demo: <ButtonLoading />,
+      demo: <ButtonGroupIcons />,
+      snippet: buttonGroupIconsSnippet,
+      props: { EuiButtonGroup, EuiButtonGroupOptionProps },
+      playground: buttonIconGroupConfig,
     },
     {
-      title: 'Split buttons',
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: buttonGroupToolTipsSource,
+        },
+      ],
+      text: (
+        <>
+          <h3 id="buttonGroup-toolTipContent">Button group tooltips</h3>
+          <p>
+            Buttons within a button group will automatically display a default
+            browser tooltip containing the button <EuiCode>label</EuiCode> text.
+            This can be customized or unset via the <EuiCode>title</EuiCode>{' '}
+            property in your <EuiCode>options</EuiCode> button configuration.
+          </p>
+          <p>
+            To instead display an <strong>EuiToolTip</strong> around your
+            button(s), pass the <EuiCode>toolTipContent</EuiCode> property. You
+            can also use <EuiCode>toolTipProps</EuiCode> to customize tooltip
+            placement, title, and any other prop that{' '}
+            <Link to="/#/display/tooltip">
+              <strong>EuiToolTip</strong>
+            </Link>{' '}
+            accepts.
+          </p>
+        </>
+      ),
+      demo: <ButtonGroupToolTips />,
+      snippet: buttonGroupToolTipsSnippet,
+      props: { EuiButtonGroupOptionProps },
+    },
+    {
+      source: [
+        {
+          type: GuideSectionTypes.JS,
+          code: buttonGroupCompressedSource,
+        },
+      ],
+      text: (
+        <>
+          <h3 id="buttonGroup-compressed">Button group in forms</h3>
+          <EuiBadge>Pattern</EuiBadge>
+          <EuiSpacer />
+          <p>
+            When using button groups within compressed forms, match the form
+            elements by adding <EuiCode>{'buttonSize="compressed"'}</EuiCode>.
+            Compressed groups should always be <EuiCode>fullWidth</EuiCode> so
+            they line up nicely in their small container <strong>unless</strong>{' '}
+            they are icon only.
+          </p>
+          <p>
+            For a more detailed example of how to integrate with forms, see the{' '}
+            <Link to="/forms/compressed-forms#complex-example">
+              &quot;Complex example&quot;
+            </Link>{' '}
+            on the compressed forms page.{' '}
+          </p>
+        </>
+      ),
+      demo: <ButtonGroupCompressed />,
+      snippet: buttonGroupCompressedSnippet,
+      props: { EuiButtonGroup, EuiButtonGroupOptionProps },
+      demoPanelProps: { color: 'subdued' },
+    },
+    {
+      title: 'Split button',
       source: [
         {
           type: GuideSectionTypes.JS,
@@ -549,16 +605,17 @@ export const ButtonExample = {
       ],
       text: (
         <>
+          <EuiBadge>Pattern</EuiBadge>
+          <EuiSpacer />
           <p>
             EUI{' '}
             <EuiLink href="https://github.com/elastic/eui/issues/4171">
               does not support
             </EuiLink>{' '}
-            split buttons specifically. Instead, we recommend using separate
-            buttons for the main and overflow actions. You can achieve this by
-            simply using the <EuiCode>display</EuiCode> and{' '}
-            <EuiCode>size</EuiCode> props <strong>EuiButtonIcon</strong> to
-            match that of the primary action button.
+            split buttons specifically. Instead, use separate buttons for the
+            main and overflow actions. This pattern is achieved by setting the{' '}
+            <EuiCode>display</EuiCode> and <EuiCode>size</EuiCode> props on{' '}
+            <strong>EuiButtonIcon</strong> to match that of the primary button.
           </p>
         </>
       ),
@@ -567,7 +624,7 @@ export const ButtonExample = {
       demo: <SplitButton />,
     },
     {
-      title: 'Toggle buttons',
+      title: 'Toggle button',
       source: [
         {
           type: GuideSectionTypes.JS,
@@ -576,12 +633,17 @@ export const ButtonExample = {
       ],
       text: (
         <>
+          <EuiBadge>Pattern</EuiBadge>
+          <EuiSpacer />
           <p>
-            You can create a toggle button with any button type like the
-            standard <strong>EuiButton</strong>, <strong>EuiButtonEmpty</strong>
-            , or <strong>EuiButtonIcon</strong>. Use state management to handle
-            the visual differences for on and off. Though there are two{' '}
-            <strong>exclusive</strong> situations to consider.
+            A toggle button can be built with any button including the standard{' '}
+            <strong>EuiButton</strong>, <strong>EuiButtonEmpty</strong>, or{' '}
+            <strong>EuiButtonIcon</strong>. Use state management to handle the
+            visual differences for on and off.
+          </p>
+          <p>
+            Consider the followingn exception cases when building a toggle
+            button.
           </p>
           <ol>
             <li>
@@ -616,6 +678,7 @@ export const ButtonExample = {
           <EuiCallOut
             iconType="accessibility"
             color="warning"
+            size="s"
             title={
               <span>
                 Do not add <EuiCode>aria-pressed</EuiCode> or{' '}
@@ -631,124 +694,59 @@ export const ButtonExample = {
       props: { EuiButton, EuiButtonIcon },
     },
     {
-      title: 'Button groups',
+      title: 'Loading state',
       source: [
         {
           type: GuideSectionTypes.JS,
-          code: buttonGroupSource,
+          code: buttonLoadingSource,
         },
       ],
       text: (
-        <>
-          <p>
-            An <strong>EuiButtonGroup</strong> is for indicating{' '}
-            <strong>selection</strong> only. They utilize the{' '}
-            <EuiCode language="js">type=&quot;single&quot;</EuiCode> or{' '}
-            <EuiCode language="js">&quot;multi&quot;</EuiCode> prop to determine
-            whether multiple or only single selections are allowed per group.
-          </p>
-          <EuiCallOut
-            iconType="accessibility"
-            color="warning"
-            title={
-              <span>
-                In order for groups to be properly read as groups with a title,
-                the <EuiCode>legend</EuiCode> prop is <strong>required</strong>.
-                This is only for accessibility, however, so it will be visibly
-                hidden.
-              </span>
-            }
-          />
-        </>
+        <p>
+          Setting the <EuiCode>isLoading</EuiCode> prop to true will display a
+          loading spinner, swap the current icon if one is present, and set the
+          disabled state. It is also recommended to change the button label to
+          &quot;Loading&hellip;&quot;.
+        </p>
       ),
-      demo: <ButtonGroup />,
-      snippet: buttonGroupSnippet,
-      props: { EuiButtonGroup, EuiButtonGroupOptionProps },
-      playground: buttonGroupConfig,
+      snippet: buttonLoadingSnippet,
+      demo: <ButtonLoading />,
     },
     {
+      title: 'Using href and onClick',
       source: [
         {
           type: GuideSectionTypes.JS,
-          code: buttonGroupIconsSource,
+          code: buttonAsLinkSource,
         },
       ],
       text: (
         <>
-          <h3 id="buttonGroup-isIconOnly">Icon only button groups</h3>
           <p>
-            If you&apos;re just displaying a group of icons, add the prop{' '}
-            <EuiCode>isIconOnly</EuiCode>.
-          </p>
-        </>
-      ),
-      demo: <ButtonGroupIcons />,
-      snippet: buttonGroupIconsSnippet,
-      props: { EuiButtonGroup, EuiButtonGroupOptionProps },
-      playground: buttonIconGroupConfig,
-    },
-    {
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: buttonGroupCompressedSource,
-        },
-      ],
-      text: (
-        <>
-          <h3 id="buttonGroup-compressed">Button groups in forms</h3>
-          <p>
-            When using button groups within compressed forms, match the form
-            elements by adding <EuiCode>{'buttonSize="compressed"'}</EuiCode>.
-            Compressed groups should always be <EuiCode>fullWidth</EuiCode> so
-            they line up nicely in their small container <strong>unless</strong>{' '}
-            they are icon only.
+            Every button component accepts either an <EuiCode>href</EuiCode>{' '}
+            (rendered as an <EuiCode language="html">{'<a>'}</EuiCode>) or an{' '}
+            <EuiCode>onClick</EuiCode> (rendered as a{' '}
+            <EuiCode language="html">{'<button>'}</EuiCode>). While they also
+            accept both props to be applied simultaneously to support certain
+            routing mechansims, it is not usually recommended. For more specific
+            information on how to integrate EUI buttons with react-router,{' '}
+            <EuiLink href="https://github.com/elastic/eui/blob/main/wiki/consuming-eui/react-router.md#how-react-router-works">
+              see this wiki page
+            </EuiLink>
+            .
           </p>
           <p>
-            For a more detailed example of how to integrate with forms, see the{' '}
-            <Link to="/forms/compressed-forms#complex-example">
-              &quot;Complex example&quot;
+            If you are creating a purely text-based link, like the one in the
+            previous paragraph, use{' '}
+            <Link to="/navigation/link">
+              <strong>EuiLink</strong>
             </Link>{' '}
-            on the compressed forms page.{' '}
+            instead.
           </p>
         </>
       ),
-      demo: <ButtonGroupCompressed />,
-      snippet: buttonGroupCompressedSnippet,
-      props: { EuiButtonGroup, EuiButtonGroupOptionProps },
-      demoPanelProps: { color: 'subdued' },
-    },
-    {
-      source: [
-        {
-          type: GuideSectionTypes.JS,
-          code: buttonGroupToolTipsSource,
-        },
-      ],
-      text: (
-        <>
-          <h3 id="buttonGroup-toolTipContent">Button group tooltips</h3>
-          <p>
-            Buttons within a button group will automatically display a default
-            browser tooltip containing the button <EuiCode>label</EuiCode> text.
-            This can be customized or unset via the <EuiCode>title</EuiCode>{' '}
-            property in your <EuiCode>options</EuiCode> button configuration.
-          </p>
-          <p>
-            To instead display an <EuiCode>EuiToolTip</EuiCode> around your
-            button(s), pass the <EuiCode>toolTipContent</EuiCode> property. You
-            can also use <EuiCode>toolTipProps</EuiCode> to customize tooltip
-            placement, title, and any other prop that{' '}
-            <Link to="/#/display/tooltip">
-              <strong>EuiToolTip</strong>
-            </Link>{' '}
-            accepts.
-          </p>
-        </>
-      ),
-      demo: <ButtonGroupToolTips />,
-      snippet: buttonGroupToolTipsSnippet,
-      props: { EuiButtonGroupOptionProps },
+      snippet: buttonAsLinkSnippet,
+      demo: <ButtonAsLink />,
     },
   ],
   guidelines: <Guidelines />,
