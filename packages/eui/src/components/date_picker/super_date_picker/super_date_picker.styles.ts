@@ -92,14 +92,25 @@ export const euiSuperDatePickerStyles = (euiThemeContext: UseEuiTheme) => {
       background-size: 100% 100%;
     `;
 
-  const invalidPopoverButtonStyles =
-    isExperimental &&
-    `
-    .euiDatePopoverButton:focus,
-    .euiPopover-isOpen .euiDatePopoverButton {
-      ${euiFormControlFocusStyles(euiThemeContext)}
-    }
-  `;
+  const invalidStyles = !isExperimental
+    ? `
+    ${euiFormControlInvalidStyles(euiThemeContext)}
+  `
+    : `
+      &:has(.euiPopover-isOpen, .euiDatePopoverButton:focus) {
+        --euiFormControlStateColor: ${forms.borderColor};
+        --euiFormControlStateHoverColor: ${forms.borderHovered};
+      }
+
+      &:not(:has(.euiPopover-isOpen, .euiDatePopoverButton:focus)) {
+        ${euiFormControlInvalidStyles(euiThemeContext)}
+      }
+
+      .euiDatePopoverButton:focus,
+      .euiPopover-isOpen .euiDatePopoverButton {
+        ${euiFormControlFocusStyles(euiThemeContext)}
+      }
+    `;
 
   const experimentalNeedsUpdatingStyles =
     isExperimental &&
@@ -255,9 +266,8 @@ export const euiSuperDatePickerStyles = (euiThemeContext: UseEuiTheme) => {
         .euiFormControlLayout__childrenWrapper {
           color: ${euiTheme.colors.textDanger};
           background-color: ${forms.backgroundColor};
-          ${euiFormControlInvalidStyles(euiThemeContext)}
 
-          ${invalidPopoverButtonStyles}
+          ${invalidStyles}
         }
       `,
       needsUpdating: css`
