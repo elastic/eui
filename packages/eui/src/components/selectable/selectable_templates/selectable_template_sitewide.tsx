@@ -274,7 +274,7 @@ export const EuiSelectableTemplateSitewide: FunctionComponent<
         const _search = isExperimental ? (
           <EuiThemeProvider
             wrapperProps={{ cloneElement: true }}
-            colorMode="DARK"
+            colorMode={colorMode}
           >
             {search}
           </EuiThemeProvider>
