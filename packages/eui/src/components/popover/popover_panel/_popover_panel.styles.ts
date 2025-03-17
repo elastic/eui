@@ -19,6 +19,7 @@ import {
   logicalCSS,
   mathWithUnits,
 } from '../../../global_styling';
+import { euiPanelBorderStyles } from '../../panel/panel.styles';
 
 export const openAnimationTiming = 'slow';
 
@@ -30,7 +31,7 @@ export const openAnimationTiming = 'slow';
  */
 
 export const euiPopoverPanelStyles = (euiThemeContext: UseEuiTheme) => {
-  const { euiTheme, colorMode } = euiThemeContext;
+  const { euiTheme } = euiThemeContext;
 
   const translateDistance = euiTheme.size.s;
   const animationSpeed = euiTheme.animation[openAnimationTiming];
@@ -39,8 +40,6 @@ export const euiPopoverPanelStyles = (euiThemeContext: UseEuiTheme) => {
   const transformTransition = `transform ${
     euiTheme.animation.bounce
   } ${mathWithUnits(animationSpeed, (x) => x + 100)}`;
-
-  const hasVisibleBorder = colorMode === 'DARK';
 
   return {
     // Base
@@ -52,13 +51,13 @@ export const euiPopoverPanelStyles = (euiThemeContext: UseEuiTheme) => {
       pointer-events: none;
       opacity: 0; /* 2 */
       background-color: var(--euiPopoverBackgroundColor); /* 4 */
-      border: ${euiTheme.border.width.thin} solid
-        ${hasVisibleBorder ? euiTheme.border.color : 'transparent'};
 
       ${euiCanAnimate} {
         /* 2 */
         transition: ${opacityTransition}, ${transformTransition};
       }
+
+      ${euiPanelBorderStyles(euiThemeContext)}
 
       &:focus {
         outline-offset: 0;
