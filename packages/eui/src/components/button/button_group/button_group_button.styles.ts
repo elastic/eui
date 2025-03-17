@@ -198,6 +198,10 @@ export const euiButtonGroupButtonStyles = (euiThemeContext: UseEuiTheme) => {
       )};
       background-color: ${euiTheme.colors.disabled};
     `,
+    hasBorder: css`
+      border: ${euiTheme.border.width.thin} solid
+        ${euiTheme.colors.borderBasePlain};
+    `,
     // Tooltip anchor wrapper
     tooltipWrapper: css`
       /* Without this on the tooltip anchor, button text truncation doesn't work */

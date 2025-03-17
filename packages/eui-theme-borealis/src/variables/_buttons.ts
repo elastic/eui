@@ -44,7 +44,7 @@ const _buttons = {
   backgroundPrimary: computed(
     ([buttonVariant]) => {
       return getTokenByVariant(buttonVariant, {
-        experimental: background_colors.backgroundBasePlain,
+        experimental: background_colors.backgroundLightPrimary,
         default: background_colors.backgroundLightPrimary,
       });
     },
@@ -53,7 +53,7 @@ const _buttons = {
   backgroundAccent: computed(
     ([buttonVariant]) => {
       return getTokenByVariant(buttonVariant, {
-        experimental: background_colors.backgroundBasePlain,
+        experimental: background_colors.backgroundLightAccent,
         default: background_colors.backgroundLightAccent,
       });
     },
@@ -62,7 +62,7 @@ const _buttons = {
   backgroundAccentSecondary: computed(
     ([buttonVariant]) => {
       return getTokenByVariant(buttonVariant, {
-        experimental: background_colors.backgroundBasePlain,
+        experimental: background_colors.backgroundLightAccentSecondary,
         default: background_colors.backgroundLightAccentSecondary,
       });
     },
@@ -71,7 +71,7 @@ const _buttons = {
   backgroundSuccess: computed(
     ([buttonVariant]) => {
       return getTokenByVariant(buttonVariant, {
-        experimental: background_colors.backgroundBasePlain,
+        experimental: background_colors.backgroundLightSuccess,
         default: background_colors.backgroundLightSuccess,
       });
     },
@@ -80,7 +80,7 @@ const _buttons = {
   backgroundWarning: computed(
     ([buttonVariant]) => {
       return getTokenByVariant(buttonVariant, {
-        experimental: background_colors.backgroundBasePlain,
+        experimental: background_colors.backgroundLightWarning,
         default: background_colors.backgroundLightWarning,
       });
     },
@@ -89,7 +89,7 @@ const _buttons = {
   backgroundDanger: computed(
     ([buttonVariant]) => {
       return getTokenByVariant(buttonVariant, {
-        experimental: background_colors.backgroundBasePlain,
+        experimental: background_colors.backgroundLightDanger,
         default: background_colors.backgroundLightDanger,
       });
     },
@@ -196,7 +196,7 @@ const _dark_buttons = {
   backgroundPrimary: computed(
     ([buttonVariant]) => {
       return getTokenByVariant(buttonVariant, {
-        experimental: dark_background_colors.backgroundBasePlain,
+        experimental: dark_background_colors.backgroundLightPrimary,
         default: dark_background_colors.backgroundLightPrimary,
       });
     },
@@ -205,7 +205,7 @@ const _dark_buttons = {
   backgroundAccent: computed(
     ([buttonVariant]) => {
       return getTokenByVariant(buttonVariant, {
-        experimental: dark_background_colors.backgroundBasePlain,
+        experimental: dark_background_colors.backgroundLightAccent,
         default: dark_background_colors.backgroundLightAccent,
       });
     },
@@ -214,7 +214,7 @@ const _dark_buttons = {
   backgroundAccentSecondary: computed(
     ([buttonVariant]) => {
       return getTokenByVariant(buttonVariant, {
-        experimental: dark_background_colors.backgroundBasePlain,
+        experimental: dark_background_colors.backgroundLightAccentSecondary,
         default: dark_background_colors.backgroundLightAccentSecondary,
       });
     },
@@ -223,7 +223,7 @@ const _dark_buttons = {
   backgroundSuccess: computed(
     ([buttonVariant]) => {
       return getTokenByVariant(buttonVariant, {
-        experimental: dark_background_colors.backgroundBasePlain,
+        experimental: dark_background_colors.backgroundLightSuccess,
         default: dark_background_colors.backgroundLightSuccess,
       });
     },
@@ -232,7 +232,7 @@ const _dark_buttons = {
   backgroundWarning: computed(
     ([buttonVariant]) => {
       return getTokenByVariant(buttonVariant, {
-        experimental: dark_background_colors.backgroundBasePlain,
+        experimental: dark_background_colors.backgroundLightWarning,
         default: dark_background_colors.backgroundLightWarning,
       });
     },
@@ -241,7 +241,7 @@ const _dark_buttons = {
   backgroundDanger: computed(
     ([buttonVariant]) => {
       return getTokenByVariant(buttonVariant, {
-        experimental: dark_background_colors.backgroundBasePlain,
+        experimental: dark_background_colors.backgroundLightDanger,
         default: dark_background_colors.backgroundLightDanger,
       });
     },
@@ -250,7 +250,7 @@ const _dark_buttons = {
   backgroundText: computed(
     ([buttonVariant]) => {
       return getTokenByVariant(buttonVariant, {
-        experimental: dark_background_colors.backgroundBasePlain,
+        experimental: dark_background_colors.backgroundLightText,
         default: dark_background_colors.backgroundLightText,
       });
     },

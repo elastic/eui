@@ -32,6 +32,10 @@ export const euiButtonEmptyStyles = (euiThemeContext: UseEuiTheme) => {
       &&:hover,
       &&:active {
         background-color: transparent;
+
+        &::before {
+          display: none;
+        }
       }
 
       &:hover:not(:disabled),

@@ -219,7 +219,7 @@ exports[`EuiButtonGroup button props buttonSize m is rendered for multi 1`] = `
     </button>
     <button
       aria-pressed="false"
-      class="euiButtonGroupButton emotion-euiButtonDisplay-m-defaultMinWidth-m-isDisabled-euiButtonGroupButton-m-uncompressed-base-disabled"
+      class="euiButtonGroupButton emotion-euiButtonDisplay-m-defaultMinWidth-m-isDisabled-euiButtonGroupButton-m-uncompressed-empty-disabled-hasBorder"
       data-test-subj="button02"
       disabled=""
       title="Option three"
@@ -299,7 +299,7 @@ exports[`EuiButtonGroup button props buttonSize m is rendered for single 1`] = `
     </button>
     <button
       aria-pressed="false"
-      class="euiButtonGroupButton emotion-euiButtonDisplay-m-defaultMinWidth-m-isDisabled-euiButtonGroupButton-m-uncompressed-base-disabled"
+      class="euiButtonGroupButton emotion-euiButtonDisplay-m-defaultMinWidth-m-isDisabled-euiButtonGroupButton-m-uncompressed-empty-disabled-hasBorder"
       data-test-subj="button02"
       disabled=""
       title="Option three"
@@ -379,7 +379,7 @@ exports[`EuiButtonGroup button props buttonSize s is rendered for multi 1`] = `
     </button>
     <button
       aria-pressed="false"
-      class="euiButtonGroupButton emotion-euiButtonDisplay-s-defaultMinWidth-s-isDisabled-euiButtonGroupButton-s-uncompressed-base-disabled"
+      class="euiButtonGroupButton emotion-euiButtonDisplay-s-defaultMinWidth-s-isDisabled-euiButtonGroupButton-s-uncompressed-empty-disabled-hasBorder"
       data-test-subj="button02"
       disabled=""
       title="Option three"
@@ -459,7 +459,7 @@ exports[`EuiButtonGroup button props buttonSize s is rendered for single 1`] = `
     </button>
     <button
       aria-pressed="false"
-      class="euiButtonGroupButton emotion-euiButtonDisplay-s-defaultMinWidth-s-isDisabled-euiButtonGroupButton-s-uncompressed-base-disabled"
+      class="euiButtonGroupButton emotion-euiButtonDisplay-s-defaultMinWidth-s-isDisabled-euiButtonGroupButton-s-uncompressed-empty-disabled-hasBorder"
       data-test-subj="button02"
       disabled=""
       title="Option three"
@@ -495,7 +495,7 @@ exports[`EuiButtonGroup button props color accent is rendered for multi 1`] = `
     <button
       aria-label="aria-label"
       aria-pressed="false"
-      class="euiButtonGroupButton testClass1 testClass2 emotion-euiButtonDisplay-s-defaultMinWidth-s-euiButtonGroupButton-s-uncompressed-base-accent-euiTestCss"
+      class="euiButtonGroupButton testClass1 testClass2 emotion-euiButtonDisplay-s-defaultMinWidth-s-euiButtonGroupButton-s-uncompressed-empty-accent-hasBorder-euiTestCss"
       data-test-subj="test subject string"
       title="Option one"
       type="button"
@@ -517,7 +517,7 @@ exports[`EuiButtonGroup button props color accent is rendered for multi 1`] = `
     </button>
     <button
       aria-pressed="false"
-      class="euiButtonGroupButton emotion-euiButtonDisplay-s-defaultMinWidth-s-euiButtonGroupButton-s-uncompressed-base-accent"
+      class="euiButtonGroupButton emotion-euiButtonDisplay-s-defaultMinWidth-s-euiButtonGroupButton-s-uncompressed-empty-accent-hasBorder"
       data-test-subj="button01"
       title="Option two"
       type="button"
@@ -539,7 +539,7 @@ exports[`EuiButtonGroup button props color accent is rendered for multi 1`] = `
     </button>
     <button
       aria-pressed="false"
-      class="euiButtonGroupButton emotion-euiButtonDisplay-s-defaultMinWidth-s-isDisabled-euiButtonGroupButton-s-uncompressed-base-disabled"
+      class="euiButtonGroupButton emotion-euiButtonDisplay-s-defaultMinWidth-s-isDisabled-euiButtonGroupButton-s-uncompressed-empty-disabled-hasBorder"
       data-test-subj="button02"
       disabled=""
       title="Option three"
@@ -575,7 +575,7 @@ exports[`EuiButtonGroup button props color accent is rendered for single 1`] = `
     <button
       aria-label="aria-label"
       aria-pressed="false"
-      class="euiButtonGroupButton testClass1 testClass2 emotion-euiButtonDisplay-s-defaultMinWidth-s-euiButtonGroupButton-s-uncompressed-base-accent-euiTestCss"
+      class="euiButtonGroupButton testClass1 testClass2 emotion-euiButtonDisplay-s-defaultMinWidth-s-euiButtonGroupButton-s-uncompressed-empty-accent-hasBorder-euiTestCss"
       data-test-subj="test subject string"
       title="Option one"
       type="button"
@@ -597,7 +597,7 @@ exports[`EuiButtonGroup button props color accent is rendered for single 1`] = `
     </button>
     <button
       aria-pressed="false"
-      class="euiButtonGroupButton emotion-euiButtonDisplay-s-defaultMinWidth-s-euiButtonGroupButton-s-uncompressed-base-accent"
+      class="euiButtonGroupButton emotion-euiButtonDisplay-s-defaultMinWidth-s-euiButtonGroupButton-s-uncompressed-empty-accent-hasBorder"
       data-test-subj="button01"
       title="Option two"
       type="button"
@@ -619,7 +619,7 @@ exports[`EuiButtonGroup button props color accent is rendered for single 1`] = `
     </button>
     <button
       aria-pressed="false"
-      class="euiButtonGroupButton emotion-euiButtonDisplay-s-defaultMinWidth-s-isDisabled-euiButtonGroupButton-s-uncompressed-base-disabled"
+      class="euiButtonGroupButton emotion-euiButtonDisplay-s-defaultMinWidth-s-isDisabled-euiButtonGroupButton-s-uncompressed-empty-disabled-hasBorder"
       data-test-subj="button02"
       disabled=""
       title="Option three"
@@ -655,7 +655,7 @@ exports[`EuiButtonGroup button props color danger is rendered for multi 1`] = `
     <button
       aria-label="aria-label"
       aria-pressed="false"
-      class="euiButtonGroupButton testClass1 testClass2 emotion-euiButtonDisplay-s-defaultMinWidth-s-euiButtonGroupButton-s-uncompressed-base-danger-euiTestCss"
+      class="euiButtonGroupButton testClass1 testClass2 emotion-euiButtonDisplay-s-defaultMinWidth-s-euiButtonGroupButton-s-uncompressed-empty-danger-hasBorder-euiTestCss"
       data-test-subj="test subject string"
       title="Option one"
       type="button"
@@ -677,7 +677,7 @@ exports[`EuiButtonGroup button props color danger is rendered for multi 1`] = `
     </button>
     <button
       aria-pressed="false"
-      class="euiButtonGroupButton emotion-euiButtonDisplay-s-defaultMinWidth-s-euiButtonGroupButton-s-uncompressed-base-danger"
+      class="euiButtonGroupButton emotion-euiButtonDisplay-s-defaultMinWidth-s-euiButtonGroupButton-s-uncompressed-empty-danger-hasBorder"
       data-test-subj="button01"
       title="Option two"
       type="button"
@@ -699,7 +699,7 @@ exports[`EuiButtonGroup button props color danger is rendered for multi 1`] = `
     </button>
     <button
       aria-pressed="false"
-      class="euiButtonGroupButton emotion-euiButtonDisplay-s-defaultMinWidth-s-isDisabled-euiButtonGroupButton-s-uncompressed-base-disabled"
+      class="euiButtonGroupButton emotion-euiButtonDisplay-s-defaultMinWidth-s-isDisabled-euiButtonGroupButton-s-uncompressed-empty-disabled-hasBorder"
       data-test-subj="button02"
       disabled=""
       title="Option three"
@@ -735,7 +735,7 @@ exports[`EuiButtonGroup button props color danger is rendered for single 1`] = `
     <button
       aria-label="aria-label"
       aria-pressed="false"
-      class="euiButtonGroupButton testClass1 testClass2 emotion-euiButtonDisplay-s-defaultMinWidth-s-euiButtonGroupButton-s-uncompressed-base-danger-euiTestCss"
+      class="euiButtonGroupButton testClass1 testClass2 emotion-euiButtonDisplay-s-defaultMinWidth-s-euiButtonGroupButton-s-uncompressed-empty-danger-hasBorder-euiTestCss"
       data-test-subj="test subject string"
       title="Option one"
       type="button"
@@ -757,7 +757,7 @@ exports[`EuiButtonGroup button props color danger is rendered for single 1`] = `
     </button>
     <button
       aria-pressed="false"
-      class="euiButtonGroupButton emotion-euiButtonDisplay-s-defaultMinWidth-s-euiButtonGroupButton-s-uncompressed-base-danger"
+      class="euiButtonGroupButton emotion-euiButtonDisplay-s-defaultMinWidth-s-euiButtonGroupButton-s-uncompressed-empty-danger-hasBorder"
       data-test-subj="button01"
       title="Option two"
       type="button"
@@ -779,7 +779,7 @@ exports[`EuiButtonGroup button props color danger is rendered for single 1`] = `
     </button>
     <button
       aria-pressed="false"
-      class="euiButtonGroupButton emotion-euiButtonDisplay-s-defaultMinWidth-s-isDisabled-euiButtonGroupButton-s-uncompressed-base-disabled"
+      class="euiButtonGroupButton emotion-euiButtonDisplay-s-defaultMinWidth-s-isDisabled-euiButtonGroupButton-s-uncompressed-empty-disabled-hasBorder"
       data-test-subj="button02"
       disabled=""
       title="Option three"
@@ -815,7 +815,7 @@ exports[`EuiButtonGroup button props color primary is rendered for multi 1`] = `
     <button
       aria-label="aria-label"
       aria-pressed="false"
-      class="euiButtonGroupButton testClass1 testClass2 emotion-euiButtonDisplay-s-defaultMinWidth-s-euiButtonGroupButton-s-uncompressed-base-primary-euiTestCss"
+      class="euiButtonGroupButton testClass1 testClass2 emotion-euiButtonDisplay-s-defaultMinWidth-s-euiButtonGroupButton-s-uncompressed-empty-primary-hasBorder-euiTestCss"
       data-test-subj="test subject string"
       title="Option one"
       type="button"
@@ -837,7 +837,7 @@ exports[`EuiButtonGroup button props color primary is rendered for multi 1`] = `
     </button>
     <button
       aria-pressed="false"
-      class="euiButtonGroupButton emotion-euiButtonDisplay-s-defaultMinWidth-s-euiButtonGroupButton-s-uncompressed-base-primary"
+      class="euiButtonGroupButton emotion-euiButtonDisplay-s-defaultMinWidth-s-euiButtonGroupButton-s-uncompressed-empty-primary-hasBorder"
       data-test-subj="button01"
       title="Option two"
       type="button"
@@ -859,7 +859,7 @@ exports[`EuiButtonGroup button props color primary is rendered for multi 1`] = `
     </button>
     <button
       aria-pressed="false"
-      class="euiButtonGroupButton emotion-euiButtonDisplay-s-defaultMinWidth-s-isDisabled-euiButtonGroupButton-s-uncompressed-base-disabled"
+      class="euiButtonGroupButton emotion-euiButtonDisplay-s-defaultMinWidth-s-isDisabled-euiButtonGroupButton-s-uncompressed-empty-disabled-hasBorder"
       data-test-subj="button02"
       disabled=""
       title="Option three"
@@ -895,7 +895,7 @@ exports[`EuiButtonGroup button props color primary is rendered for single 1`] = 
     <button
       aria-label="aria-label"
       aria-pressed="false"
-      class="euiButtonGroupButton testClass1 testClass2 emotion-euiButtonDisplay-s-defaultMinWidth-s-euiButtonGroupButton-s-uncompressed-base-primary-euiTestCss"
+      class="euiButtonGroupButton testClass1 testClass2 emotion-euiButtonDisplay-s-defaultMinWidth-s-euiButtonGroupButton-s-uncompressed-empty-primary-hasBorder-euiTestCss"
       data-test-subj="test subject string"
       title="Option one"
       type="button"
@@ -917,7 +917,7 @@ exports[`EuiButtonGroup button props color primary is rendered for single 1`] = 
     </button>
     <button
       aria-pressed="false"
-      class="euiButtonGroupButton emotion-euiButtonDisplay-s-defaultMinWidth-s-euiButtonGroupButton-s-uncompressed-base-primary"
+      class="euiButtonGroupButton emotion-euiButtonDisplay-s-defaultMinWidth-s-euiButtonGroupButton-s-uncompressed-empty-primary-hasBorder"
       data-test-subj="button01"
       title="Option two"
       type="button"
@@ -939,7 +939,7 @@ exports[`EuiButtonGroup button props color primary is rendered for single 1`] = 
     </button>
     <button
       aria-pressed="false"
-      class="euiButtonGroupButton emotion-euiButtonDisplay-s-defaultMinWidth-s-isDisabled-euiButtonGroupButton-s-uncompressed-base-disabled"
+      class="euiButtonGroupButton emotion-euiButtonDisplay-s-defaultMinWidth-s-isDisabled-euiButtonGroupButton-s-uncompressed-empty-disabled-hasBorder"
       data-test-subj="button02"
       disabled=""
       title="Option three"
@@ -975,7 +975,7 @@ exports[`EuiButtonGroup button props color success is rendered for multi 1`] = `
     <button
       aria-label="aria-label"
       aria-pressed="false"
-      class="euiButtonGroupButton testClass1 testClass2 emotion-euiButtonDisplay-s-defaultMinWidth-s-euiButtonGroupButton-s-uncompressed-base-success-euiTestCss"
+      class="euiButtonGroupButton testClass1 testClass2 emotion-euiButtonDisplay-s-defaultMinWidth-s-euiButtonGroupButton-s-uncompressed-empty-success-hasBorder-euiTestCss"
       data-test-subj="test subject string"
       title="Option one"
       type="button"
@@ -997,7 +997,7 @@ exports[`EuiButtonGroup button props color success is rendered for multi 1`] = `
     </button>
     <button
       aria-pressed="false"
-      class="euiButtonGroupButton emotion-euiButtonDisplay-s-defaultMinWidth-s-euiButtonGroupButton-s-uncompressed-base-success"
+      class="euiButtonGroupButton emotion-euiButtonDisplay-s-defaultMinWidth-s-euiButtonGroupButton-s-uncompressed-empty-success-hasBorder"
       data-test-subj="button01"
       title="Option two"
       type="button"
@@ -1019,7 +1019,7 @@ exports[`EuiButtonGroup button props color success is rendered for multi 1`] = `
     </button>
     <button
       aria-pressed="false"
-      class="euiButtonGroupButton emotion-euiButtonDisplay-s-defaultMinWidth-s-isDisabled-euiButtonGroupButton-s-uncompressed-base-disabled"
+      class="euiButtonGroupButton emotion-euiButtonDisplay-s-defaultMinWidth-s-isDisabled-euiButtonGroupButton-s-uncompressed-empty-disabled-hasBorder"
       data-test-subj="button02"
       disabled=""
       title="Option three"
@@ -1055,7 +1055,7 @@ exports[`EuiButtonGroup button props color success is rendered for single 1`] = 
     <button
       aria-label="aria-label"
       aria-pressed="false"
-      class="euiButtonGroupButton testClass1 testClass2 emotion-euiButtonDisplay-s-defaultMinWidth-s-euiButtonGroupButton-s-uncompressed-base-success-euiTestCss"
+      class="euiButtonGroupButton testClass1 testClass2 emotion-euiButtonDisplay-s-defaultMinWidth-s-euiButtonGroupButton-s-uncompressed-empty-success-hasBorder-euiTestCss"
       data-test-subj="test subject string"
       title="Option one"
       type="button"
@@ -1077,7 +1077,7 @@ exports[`EuiButtonGroup button props color success is rendered for single 1`] = 
     </button>
     <button
       aria-pressed="false"
-      class="euiButtonGroupButton emotion-euiButtonDisplay-s-defaultMinWidth-s-euiButtonGroupButton-s-uncompressed-base-success"
+      class="euiButtonGroupButton emotion-euiButtonDisplay-s-defaultMinWidth-s-euiButtonGroupButton-s-uncompressed-empty-success-hasBorder"
       data-test-subj="button01"
       title="Option two"
       type="button"
@@ -1099,7 +1099,7 @@ exports[`EuiButtonGroup button props color success is rendered for single 1`] = 
     </button>
     <button
       aria-pressed="false"
-      class="euiButtonGroupButton emotion-euiButtonDisplay-s-defaultMinWidth-s-isDisabled-euiButtonGroupButton-s-uncompressed-base-disabled"
+      class="euiButtonGroupButton emotion-euiButtonDisplay-s-defaultMinWidth-s-isDisabled-euiButtonGroupButton-s-uncompressed-empty-disabled-hasBorder"
       data-test-subj="button02"
       disabled=""
       title="Option three"
@@ -1179,7 +1179,7 @@ exports[`EuiButtonGroup button props color text is rendered for multi 1`] = `
     </button>
     <button
       aria-pressed="false"
-      class="euiButtonGroupButton emotion-euiButtonDisplay-s-defaultMinWidth-s-isDisabled-euiButtonGroupButton-s-uncompressed-base-disabled"
+      class="euiButtonGroupButton emotion-euiButtonDisplay-s-defaultMinWidth-s-isDisabled-euiButtonGroupButton-s-uncompressed-empty-disabled-hasBorder"
       data-test-subj="button02"
       disabled=""
       title="Option three"
@@ -1259,7 +1259,7 @@ exports[`EuiButtonGroup button props color text is rendered for single 1`] = `
     </button>
     <button
       aria-pressed="false"
-      class="euiButtonGroupButton emotion-euiButtonDisplay-s-defaultMinWidth-s-isDisabled-euiButtonGroupButton-s-uncompressed-base-disabled"
+      class="euiButtonGroupButton emotion-euiButtonDisplay-s-defaultMinWidth-s-isDisabled-euiButtonGroupButton-s-uncompressed-empty-disabled-hasBorder"
       data-test-subj="button02"
       disabled=""
       title="Option three"
@@ -1295,7 +1295,7 @@ exports[`EuiButtonGroup button props color warning is rendered for multi 1`] = `
     <button
       aria-label="aria-label"
       aria-pressed="false"
-      class="euiButtonGroupButton testClass1 testClass2 emotion-euiButtonDisplay-s-defaultMinWidth-s-euiButtonGroupButton-s-uncompressed-base-warning-euiTestCss"
+      class="euiButtonGroupButton testClass1 testClass2 emotion-euiButtonDisplay-s-defaultMinWidth-s-euiButtonGroupButton-s-uncompressed-empty-warning-hasBorder-euiTestCss"
       data-test-subj="test subject string"
       title="Option one"
       type="button"
@@ -1317,7 +1317,7 @@ exports[`EuiButtonGroup button props color warning is rendered for multi 1`] = `
     </button>
     <button
       aria-pressed="false"
-      class="euiButtonGroupButton emotion-euiButtonDisplay-s-defaultMinWidth-s-euiButtonGroupButton-s-uncompressed-base-warning"
+      class="euiButtonGroupButton emotion-euiButtonDisplay-s-defaultMinWidth-s-euiButtonGroupButton-s-uncompressed-empty-warning-hasBorder"
       data-test-subj="button01"
       title="Option two"
       type="button"
@@ -1339,7 +1339,7 @@ exports[`EuiButtonGroup button props color warning is rendered for multi 1`] = `
     </button>
     <button
       aria-pressed="false"
-      class="euiButtonGroupButton emotion-euiButtonDisplay-s-defaultMinWidth-s-isDisabled-euiButtonGroupButton-s-uncompressed-base-disabled"
+      class="euiButtonGroupButton emotion-euiButtonDisplay-s-defaultMinWidth-s-isDisabled-euiButtonGroupButton-s-uncompressed-empty-disabled-hasBorder"
       data-test-subj="button02"
       disabled=""
       title="Option three"
@@ -1375,7 +1375,7 @@ exports[`EuiButtonGroup button props color warning is rendered for single 1`] = 
     <button
       aria-label="aria-label"
       aria-pressed="false"
-      class="euiButtonGroupButton testClass1 testClass2 emotion-euiButtonDisplay-s-defaultMinWidth-s-euiButtonGroupButton-s-uncompressed-base-warning-euiTestCss"
+      class="euiButtonGroupButton testClass1 testClass2 emotion-euiButtonDisplay-s-defaultMinWidth-s-euiButtonGroupButton-s-uncompressed-empty-warning-hasBorder-euiTestCss"
       data-test-subj="test subject string"
       title="Option one"
       type="button"
@@ -1397,7 +1397,7 @@ exports[`EuiButtonGroup button props color warning is rendered for single 1`] = 
     </button>
     <button
       aria-pressed="false"
-      class="euiButtonGroupButton emotion-euiButtonDisplay-s-defaultMinWidth-s-euiButtonGroupButton-s-uncompressed-base-warning"
+      class="euiButtonGroupButton emotion-euiButtonDisplay-s-defaultMinWidth-s-euiButtonGroupButton-s-uncompressed-empty-warning-hasBorder"
       data-test-subj="button01"
       title="Option two"
       type="button"
@@ -1419,7 +1419,7 @@ exports[`EuiButtonGroup button props color warning is rendered for single 1`] = 
     </button>
     <button
       aria-pressed="false"
-      class="euiButtonGroupButton emotion-euiButtonDisplay-s-defaultMinWidth-s-isDisabled-euiButtonGroupButton-s-uncompressed-base-disabled"
+      class="euiButtonGroupButton emotion-euiButtonDisplay-s-defaultMinWidth-s-isDisabled-euiButtonGroupButton-s-uncompressed-empty-disabled-hasBorder"
       data-test-subj="button02"
       disabled=""
       title="Option three"
@@ -1456,7 +1456,7 @@ exports[`EuiButtonGroup button props isDisabled is rendered for multi 1`] = `
     <button
       aria-label="aria-label"
       aria-pressed="false"
-      class="euiButtonGroupButton testClass1 testClass2 emotion-euiButtonDisplay-s-defaultMinWidth-s-isDisabled-euiButtonGroupButton-s-uncompressed-base-disabled-euiTestCss"
+      class="euiButtonGroupButton testClass1 testClass2 emotion-euiButtonDisplay-s-defaultMinWidth-s-isDisabled-euiButtonGroupButton-s-uncompressed-empty-disabled-hasBorder-euiTestCss"
       data-test-subj="test subject string"
       disabled=""
       title="Option one"
@@ -1479,7 +1479,7 @@ exports[`EuiButtonGroup button props isDisabled is rendered for multi 1`] = `
     </button>
     <button
       aria-pressed="false"
-      class="euiButtonGroupButton emotion-euiButtonDisplay-s-defaultMinWidth-s-isDisabled-euiButtonGroupButton-s-uncompressed-base-disabled"
+      class="euiButtonGroupButton emotion-euiButtonDisplay-s-defaultMinWidth-s-isDisabled-euiButtonGroupButton-s-uncompressed-empty-disabled-hasBorder"
       data-test-subj="button01"
       disabled=""
       title="Option two"
@@ -1502,7 +1502,7 @@ exports[`EuiButtonGroup button props isDisabled is rendered for multi 1`] = `
     </button>
     <button
       aria-pressed="false"
-      class="euiButtonGroupButton emotion-euiButtonDisplay-s-defaultMinWidth-s-isDisabled-euiButtonGroupButton-s-uncompressed-base-disabled"
+      class="euiButtonGroupButton emotion-euiButtonDisplay-s-defaultMinWidth-s-isDisabled-euiButtonGroupButton-s-uncompressed-empty-disabled-hasBorder"
       data-test-subj="button02"
       disabled=""
       title="Option three"
@@ -1539,7 +1539,7 @@ exports[`EuiButtonGroup button props isDisabled is rendered for single 1`] = `
     <button
       aria-label="aria-label"
       aria-pressed="false"
-      class="euiButtonGroupButton testClass1 testClass2 emotion-euiButtonDisplay-s-defaultMinWidth-s-isDisabled-euiButtonGroupButton-s-uncompressed-base-disabled-euiTestCss"
+      class="euiButtonGroupButton testClass1 testClass2 emotion-euiButtonDisplay-s-defaultMinWidth-s-isDisabled-euiButtonGroupButton-s-uncompressed-empty-disabled-hasBorder-euiTestCss"
       data-test-subj="test subject string"
       disabled=""
       title="Option one"
@@ -1562,7 +1562,7 @@ exports[`EuiButtonGroup button props isDisabled is rendered for single 1`] = `
     </button>
     <button
       aria-pressed="false"
-      class="euiButtonGroupButton emotion-euiButtonDisplay-s-defaultMinWidth-s-isDisabled-euiButtonGroupButton-s-uncompressed-base-disabled"
+      class="euiButtonGroupButton emotion-euiButtonDisplay-s-defaultMinWidth-s-isDisabled-euiButtonGroupButton-s-uncompressed-empty-disabled-hasBorder"
       data-test-subj="button01"
       disabled=""
       title="Option two"
@@ -1585,7 +1585,7 @@ exports[`EuiButtonGroup button props isDisabled is rendered for single 1`] = `
     </button>
     <button
       aria-pressed="false"
-      class="euiButtonGroupButton emotion-euiButtonDisplay-s-defaultMinWidth-s-isDisabled-euiButtonGroupButton-s-uncompressed-base-disabled"
+      class="euiButtonGroupButton emotion-euiButtonDisplay-s-defaultMinWidth-s-isDisabled-euiButtonGroupButton-s-uncompressed-empty-disabled-hasBorder"
       data-test-subj="button02"
       disabled=""
       title="Option three"
@@ -1665,7 +1665,7 @@ exports[`EuiButtonGroup button props isFullWidth is rendered for multi 1`] = `
     </button>
     <button
       aria-pressed="false"
-      class="euiButtonGroupButton emotion-euiButtonDisplay-s-defaultMinWidth-s-isDisabled-euiButtonGroupButton-s-uncompressed-base-disabled"
+      class="euiButtonGroupButton emotion-euiButtonDisplay-s-defaultMinWidth-s-isDisabled-euiButtonGroupButton-s-uncompressed-empty-disabled-hasBorder"
       data-test-subj="button02"
       disabled=""
       title="Option three"
@@ -1745,7 +1745,7 @@ exports[`EuiButtonGroup button props isFullWidth is rendered for single 1`] = `
     </button>
     <button
       aria-pressed="false"
-      class="euiButtonGroupButton emotion-euiButtonDisplay-s-defaultMinWidth-s-isDisabled-euiButtonGroupButton-s-uncompressed-base-disabled"
+      class="euiButtonGroupButton emotion-euiButtonDisplay-s-defaultMinWidth-s-isDisabled-euiButtonGroupButton-s-uncompressed-empty-disabled-hasBorder"
       data-test-subj="button02"
       disabled=""
       title="Option three"
@@ -1825,7 +1825,7 @@ exports[`EuiButtonGroup button props isIconOnly is rendered for multi 1`] = `
     </button>
     <button
       aria-pressed="false"
-      class="euiButtonGroupButton euiButtonGroupButton-isIconOnly emotion-euiButtonDisplay-s-defaultMinWidth-s-isDisabled-euiButtonGroupButton-iconOnly-s-uncompressed-base-disabled"
+      class="euiButtonGroupButton euiButtonGroupButton-isIconOnly emotion-euiButtonDisplay-s-defaultMinWidth-s-isDisabled-euiButtonGroupButton-iconOnly-s-uncompressed-empty-disabled-hasBorder"
       data-test-subj="button02"
       disabled=""
       title="Option three"
@@ -1905,7 +1905,7 @@ exports[`EuiButtonGroup button props isIconOnly is rendered for single 1`] = `
     </button>
     <button
       aria-pressed="false"
-      class="euiButtonGroupButton euiButtonGroupButton-isIconOnly emotion-euiButtonDisplay-s-defaultMinWidth-s-isDisabled-euiButtonGroupButton-iconOnly-s-uncompressed-base-disabled"
+      class="euiButtonGroupButton euiButtonGroupButton-isIconOnly emotion-euiButtonDisplay-s-defaultMinWidth-s-isDisabled-euiButtonGroupButton-iconOnly-s-uncompressed-empty-disabled-hasBorder"
       data-test-subj="button02"
       disabled=""
       title="Option three"
@@ -1985,7 +1985,7 @@ exports[`EuiButtonGroup type="multi" idToSelectedMap 1`] = `
     </button>
     <button
       aria-pressed="false"
-      class="euiButtonGroupButton emotion-euiButtonDisplay-s-defaultMinWidth-s-isDisabled-euiButtonGroupButton-s-uncompressed-base-disabled"
+      class="euiButtonGroupButton emotion-euiButtonDisplay-s-defaultMinWidth-s-isDisabled-euiButtonGroupButton-s-uncompressed-empty-disabled-hasBorder"
       data-test-subj="button02"
       disabled=""
       title="Option three"
@@ -2067,7 +2067,7 @@ exports[`EuiButtonGroup type="multi" renders 1`] = `
     </button>
     <button
       aria-pressed="false"
-      class="euiButtonGroupButton emotion-euiButtonDisplay-s-defaultMinWidth-s-isDisabled-euiButtonGroupButton-s-uncompressed-base-disabled"
+      class="euiButtonGroupButton emotion-euiButtonDisplay-s-defaultMinWidth-s-isDisabled-euiButtonGroupButton-s-uncompressed-empty-disabled-hasBorder"
       data-test-subj="button02"
       disabled=""
       title="Option three"
@@ -2147,7 +2147,7 @@ exports[`EuiButtonGroup type="single" idSelected 1`] = `
     </button>
     <button
       aria-pressed="false"
-      class="euiButtonGroupButton emotion-euiButtonDisplay-s-defaultMinWidth-s-isDisabled-euiButtonGroupButton-s-uncompressed-base-disabled"
+      class="euiButtonGroupButton emotion-euiButtonDisplay-s-defaultMinWidth-s-isDisabled-euiButtonGroupButton-s-uncompressed-empty-disabled-hasBorder"
       data-test-subj="button02"
       disabled=""
       title="Option three"
@@ -2229,7 +2229,7 @@ exports[`EuiButtonGroup type="single" renders 1`] = `
     </button>
     <button
       aria-pressed="false"
-      class="euiButtonGroupButton emotion-euiButtonDisplay-s-defaultMinWidth-s-isDisabled-euiButtonGroupButton-s-uncompressed-base-disabled"
+      class="euiButtonGroupButton emotion-euiButtonDisplay-s-defaultMinWidth-s-isDisabled-euiButtonGroupButton-s-uncompressed-empty-disabled-hasBorder"
       data-test-subj="button02"
       disabled=""
       title="Option three"
