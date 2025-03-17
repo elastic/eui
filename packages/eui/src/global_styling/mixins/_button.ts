@@ -229,8 +229,11 @@ const euiButtonDisplaysColors = (euiThemeContext: UseEuiTheme) => {
 
             content: '';
             position: absolute;
+            /* :before should stay under the content */
+            z-index: 0;
             inset: 0;
             background-color: ${buttonColors.backgroundHover};
+            pointer-events: none;
           }
         }
 
