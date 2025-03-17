@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React from 'react';
+import React, { JSX } from 'react';
 import type CodeType from '@theme-init/MDXComponents/Code';
 import CodeBlock from '@theme/CodeBlock';
 import type { WrapperProps } from '@docusaurus/types';
@@ -54,7 +54,7 @@ const Code = ({ children, className, ...rest }: Props): JSX.Element => {
     <CodeBlock className={className} {...rest}>
       {children}
     </CodeBlock>
-  )
+  );
 };
 
 export default Code;

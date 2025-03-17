@@ -1,4 +1,4 @@
-import React from 'react';
+import { JSX } from 'react';
 import { css } from '@emotion/react';
 import Layout from '@theme-init/Navbar/MobileSidebar/Layout';
 import type LayoutType from '@theme-init/Navbar/MobileSidebar/Layout';

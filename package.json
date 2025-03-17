@@ -13,7 +13,8 @@
     "preinstall": "echo \"\\x1b[K\\x1b[37;41mWarning: EUI has recently migrated to a monorepo structure. Please run EUI scripts like \\x1b[1;4myarn start\\x1b[0m\\x1b[37;41m or \\x1b[1;4myarn build\\x1b[0m\\x1b[37;41m from the \\x1b[1;4mpackages/eui\\x1b[0m\\x1b[37;41m directory instead!\n\nIf this is the first time you're running EUI after the monorepo migration, please run this first from the root repository's directory to clean up your local environment:\n  \\x1b[1;4mrm -rf node_modules .cache-loader dist es lib optimize test-env types .eslintcache .loki reports docs .nyc_output eui.d.ts && yarn\\x1b[0m\\x1b[37;41m\n\nInstall process will continue in 10 seconds...\\x1b[0m\"; sleep 10",
     "start": "echo '\\x1b[K\\x1b[37;41mPlease run this script from the \\x1b[1;4mpackages/eui\\x1b[0m\\x1b[37;41m directory instead\\x1b[0m'; exit 1",
     "build": "echo '\\x1b[K\\x1b[37;41mPlease run this script from the \\x1b[1;4mpackages/eui\\x1b[0m\\x1b[37;41m directory instead\\x1b[0m'; exit 1",
-    "release": "node scripts/release"
+    "release": "node scripts/release",
+    "clean": "node scripts/clean.mjs"
   },
   "repository": {
     "type": "git",
@@ -23,7 +24,8 @@
     "pre-push"
   ],
   "devDependencies": {
-    "pre-push": "^0.1.4"
+    "pre-push": "^0.1.4",
+    "rimraf": "^6.0.1"
   },
   "dependencies": {
     "@elastic/eui-release-cli": "link:packages/release-cli"

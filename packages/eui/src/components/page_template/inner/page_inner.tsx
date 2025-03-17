@@ -6,7 +6,12 @@
  * Side Public License, v 1.
  */
 
-import React, { PropsWithChildren, ComponentType, ComponentProps } from 'react';
+import React, {
+  PropsWithChildren,
+  ComponentType,
+  ComponentProps,
+  JSX,
+} from 'react';
 import { CommonProps } from '../../common';
 import {
   EuiPaddingSize,

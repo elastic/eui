@@ -3,13 +3,15 @@ slug: /editors-syntax/code
 id: editors_syntax_code
 ---
 
+import Link from '@docusaurus/Link';
+
 # Code
 
 :::tip
 **EuiCode** and **EuiCodeBlock** are intended to render static lines or blocks of code in **read-only** contexts. If you need capabilities to edit, or want to print long code (e.g., printing JSON from an API), we recommend installing a version of Monaco. If you are building within the Kibana platform, you can use their [**CodeEditor**](https://github.com/elastic/kibana/tree/main/packages/shared-ux/code_editor/impl).
 :::
 
-The **EuiCode** and **EuiCodeBlock** components support [all language syntaxes](https://prismjs.com/#supported-languages) supported by the `prism` [library](https://prismjs.com/). The `language` prop can also be omitted to simply render formatted but unhighlighted code.
+The **EuiCode** and **EuiCodeBlock** components support <Link to="https://prismjs.com/#supported-languages">all language syntaxes</Link> available through the <Link to="https://prismjs.com/">`prismjs` library</Link> and <Link to="https://www.elastic.co/guide/en/kibana/current/esql.html">ES|QL syntax</Link> provided by <Link to="https://github.com/elastic/prismjs-esql">`prismjs-esql` plugin</Link>. The `language` prop can also be omitted to simply render formatted but non-highlighted code.
 
 JSX code (often React) has distinct language syntaxes from the base JavaScript and TypeScript languages. For these instances, use `language="jsx"` or `language="tsx"`.
 

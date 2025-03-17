@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useEffect } from 'react';
+import React, { useCallback, useContext, useEffect, JSX } from 'react';
 import { translate } from '@docusaurus/Translate';
 import type { Props } from '@theme-original/ColorModeToggle';
 

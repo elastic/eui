@@ -8,10 +8,10 @@ To install the Elastic UI Framework into an existing project, use the `yarn` CLI
 yarn add @elastic/eui
 ```
 
-Note that EUI has [several `peerDependencies` requirements](../../package.json) that will also need to be installed if starting with a blank project.
+Note that EUI has [several `peerDependencies` requirements](../../packages/eui/package.json) that will also need to be installed if starting with a blank project.
 
 ```bash
-yarn add @elastic/eui @elastic/datemath @emotion/react @emotion/css moment
+yarn add @elastic/eui @elastic/eui-theme-borealis @elastic/datemath @emotion/react @emotion/css moment
 ```
 
 ## Requirements and dependencies

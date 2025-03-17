@@ -6,11 +6,9 @@ sidebar_label: Guidelines
 sidebar_position: 1
 ---
 
-A modal says “pay attention to me and nothing else.”
-
-```mdx-code-block
 import { EuiPanel, EuiModalHeader, EuiModalHeaderTitle, EuiModalBody, EuiModalFooter, EuiButton, EuiButtonEmpty, EuiText, EuiFieldText, EuiFlexGroup, EuiFormRow, EuiSpacer, EuiTextArea, EuiTitle } from '@elastic/eui';
-```
+
+A modal says “pay attention to me and nothing else.”
 
 <EuiPanel color="subdued" paddingSize="l" hasShadow={false} style={{ justifyContent: 'center', display: 'flex' }}>
   <EuiPanel style={{ maxWidth: 520 }} paddingSize="none">
@@ -42,8 +40,6 @@ import { EuiPanel, EuiModalHeader, EuiModalHeaderTitle, EuiModalBody, EuiModalFo
 **The body is for a single task**<br /> This task should not require a lot of explanation or user interaction.
 
 **Buttons are right-aligned**<br /> The primary action is a filled button, and the secondary action is a link button. Labels should use strong action verbs.
-
----
 
 ## Use a modal to silo a single action
 
@@ -110,8 +106,6 @@ A modal can gather input necessary for continuing the current workflow. This typ
 **Avoid scrolling content**<br />Modal content should fit in a single view. If your modal has a lot of detail or a long list of items, consider a different solution, such as a form or a table.
 
 **Don't stack modals**<br />Opening a modal on top of a modal might mean your workflow is too complex. Instead, use a component that supports multiple steps, such as a form or steps.
-
----
 
 ## Use a modal to ask users to confirm an action
 

@@ -3,6 +3,8 @@ slug: /forms/selection
 id: forms_selection_controls
 ---
 
+import { EuiIconTip } from '@elastic/eui';
+
 # Selection controls
 
 EUI currently offers over 4 ways to select an option from a list (6 including checkboxes and radios).
@@ -24,7 +26,7 @@ While it can get overwhelming figuring out which component to use, this page sho
 
 - When you have a small set of options (\<7), and all options are equally important in terms of visibility, use [EuiCheckboxGroup](./checkboxes_radios/overview.mdx#checkbox-group).
 
-<!-- TODO: Once EuiComboBox is rewritten to dogfood EuiSelectable, the below will no longer be as true, and we can recommend either EuiSelectable or EuiComboBox equally -->
+{/* TODO: Once EuiComboBox is rewritten to dogfood EuiSelectable, the below will no longer be as true, and we can recommend either EuiSelectable or EuiComboBox equally */}
 
 - In general, we recommend using [EuiSelectable](./selectable.mdx) for most multi-selection purposes. It renders a searchable, vertically-oriented list with icons next to the option representing selection state.
     - **EuiSelectable** can optionally be rendered with a search box for filtering through many options, or as just a list for fewer options.
@@ -38,14 +40,12 @@ While it can get overwhelming figuring out which component to use, this page sho
 
 Below is a handy reference for comparing the selection components.
 
-import { EuiIconTip } from '@elastic/eui';
-
 export const tooltipProps = {
   anchorProps: { css: { position: 'absolute', marginBlockStart: -1 } },
   color: 'subdued',
 };
 
-<!-- TODO: convert to basic table with borders + add checkbox/radio? -->
+{/* TODO: Convert to basic table with borders */}
 
 | Feature | &emsp;[EuiSelect](./select.mdx)&emsp; | &emsp;[EuiSuperSelect](./super_select.mdx)&emsp; | &emsp;[EuiSelectable](./selectable.mdx)&emsp; | &emsp;[EuiComboBox](./combo_box.mdx)&emsp; | 
 |:---|:---:|:---:|:---:|:---:|

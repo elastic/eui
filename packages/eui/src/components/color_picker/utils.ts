@@ -15,8 +15,8 @@ export const getEventPosition = (
 ) => {
   const { x, y } = location;
   const { width, height, left, top } = container.getBoundingClientRect();
-  let leftPos = x - (left + window.pageXOffset);
-  let topPos = y - (top + window.pageYOffset);
+  let leftPos = x - (left + window.scrollX);
+  let topPos = y - (top + window.scrollY);
 
   if (leftPos < 0) {
     leftPos = 0;

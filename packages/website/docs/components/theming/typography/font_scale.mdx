@@ -1,0 +1,69 @@
+---
+sidebar_position: 1
+slug: /theming/typography/font-scale
+id: theming_typography_font_scale
+---
+
+import { Example } from '@site/src/components';
+import { EuiSpacer } from '@elastic/eui';
+
+# Font scale
+
+The typographic scale is loosely based on the <a href="https://type-scale.com/?size=16&scale=1.250&text=A%20Visual%20Type%20Scale&font=Inter&fontweight=400&bodyfont=body_font_default&bodyfontweight=400&lineheight=1.75&backgroundcolor=%23ffffff&fontcolor=%23000000&preview=false" target="_blank" rel="noopener noreferrer">Major Third (1.250) typographic scale</a>.
+
+While these functions and hooks exist to get precise font sizing and associated line-height, we still highly recommend using the [EuiText](../../display/text.mdx) and [EuiTitle](../../display/title.mdx) components as wrappers of your content instead.
+
+import { FontSizePreview } from './preview_font_scale';
+
+<Example>
+  <Example.Description>
+    ### `useEuiFontSize()` <Badge color="hollow">hook</Badge>
+
+    Font sizing is provided through this React hook (or function version) and not the global theme. It returns both the `font-size` and `line-height` for the provided `scale`.
+
+  </Example.Description>
+  <Example.Preview>
+    <FontSizePreview />
+  </Example.Preview>
+  <Example.Snippet>
+    ```tsx
+    css`
+      ${useEuiFontSize('l')}
+    `
+    ```
+  </Example.Snippet>
+</Example>
+
+<EuiSpacer size="s" />
+
+import { FontSizeIndividualPreview } from './preview_font_scale';
+
+<Example>
+  <Example.Description>
+    ### `useEuiFontSize().fontSize`
+
+    To use precisely only the `font-size` value, you will still use the same hook (or function) to grab the individual property via the returned object.
+
+  </Example.Description>
+  <Example.Preview>
+    <FontSizeIndividualPreview />
+  </Example.Preview>
+  <Example.Snippet>
+    ```tsx
+    css`
+      font-size: ${useEuiFontSize('xs').fontSize};
+    `
+    ```
+  </Example.Snippet>
+</Example>
+
+<EuiSpacer />
+
+:::tip We strongly recommend using relative (`rem` or `em`) units instead of `px` when possible
+
+Relative font units respect configured browser default font sizes, which some users may set to larger than than the 16px default due to, e.g. visual impairment, monitor size, or personal preference. <a href="https://usability.yale.edu/web-accessibility/articles/zoom-resizing-text" target="_blank" rel="noopener noreferrer">Read more on accessible text resizing.</a>
+:::
+
+import { FontScaleTable } from './preview_font_scale';
+
+<FontScaleTable />

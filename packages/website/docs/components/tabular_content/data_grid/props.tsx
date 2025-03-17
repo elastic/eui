@@ -91,7 +91,7 @@ renderCustomGridBody={({ visibleColumns, visibleRowData, Cell }) => (
   columns: [{ id: 'A', direction: 'asc' }],
   onSort: () => {},
 }}`,
-  inMemory: `// Will try to autodectect schemas and do sorting and pagination in memory.
+  inMemory: `// Will try to autodetect schemas and do sorting and pagination in memory.
 inMemory={{ level: 'sorting' }}`,
   toolbarVisibility: `toolbarVisibility={{
   showColumnSelector: false,
@@ -110,7 +110,7 @@ inMemory={{ level: 'sorting' }}`,
   stripes: true,
   rowHover: 'highlight',
   header: 'underline',
-  // If showDisplaySelector.allowDensity={true} from toolbarVisibility, fontSize and cellPadding will be superceded by what the user decides.
+  // If showDisplaySelector.allowDensity={true} from toolbarVisibility, fontSize and cellPadding will be superseded by what the user decides.
   cellPadding: 'm',
   fontSize: 'm',
   footer: 'overline'
@@ -161,14 +161,14 @@ const propLinks = {
   cellContext: '../data-grid/cells-and-popovers#cell-context',
   rowHeightsOptions: '../data-grid/style-and-display#row-heights-options',
   gridStyle: '../data-grid/style-and-display#grid-style',
-  inMemory: '../data-grid/advanced#data-grid-in-memory',
-  ref: '../data-grid/advanced#ref-methods',
-  renderCustomGridBody: '../data-grid/advanced#custom-body-renderer',
+  inMemory: '../data-grid/advanced/in-memory',
+  ref: '../data-grid/advanced/ref',
+  renderCustomGridBody: '../data-grid/advanced/custom-body-rendering',
   renderCustomToolbar:
     '../data-grid/toolbar#completely-custom-toolbar-rendering',
   toolbarVisibility: '../data-grid/toolbar#toolbar-visibility',
   minSizeForControls: '../data-grid/container-constraints',
-  virtualizationOptions: '../data-grid/container-constraints/#virtualization',
+  virtualizationOptions: '../data-grid/container-constraints#virtualization',
 };
 
 export default () => (

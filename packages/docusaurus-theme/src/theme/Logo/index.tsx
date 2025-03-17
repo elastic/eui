@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import { useContext, JSX } from 'react';
 import { css } from '@emotion/react';
 import Link from '@docusaurus/Link';
 import useBaseUrl from '@docusaurus/useBaseUrl';

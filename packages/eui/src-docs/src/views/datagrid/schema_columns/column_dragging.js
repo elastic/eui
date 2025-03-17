@@ -1,7 +1,7 @@
 import React, { useState, useCallback } from 'react';
 import { faker } from '@faker-js/faker';
 
-import { EuiDataGrid, EuiAvatar } from '../../../../src/components';
+import { EuiDataGrid, EuiAvatar } from '../../../../../src/components';
 
 const columns = [
   {

@@ -1,4 +1,4 @@
-import React from 'react';
+import { JSX } from 'react';
 import { css } from '@emotion/react';
 import Translate from '@docusaurus/Translate';
 import type { Props } from '@theme-original/EditThisPage';

@@ -1,0 +1,62 @@
+---
+sidebar_position: 2
+slug: /theming/typography/font-weight
+id: theming_typography_font_weight
+---
+
+import { Example } from '@site/src/components';
+import { EuiSpacer } from '@elastic/eui';
+
+# Font weight
+
+EUI establishes a set of 5 font-weights based on their numeric keywords values. When importing the font-family from your service of choice, ensure that you have all 5 weights contained in your import. See the [Getting Started page](../../guidelines/getting_started.mdx) for details on importing fonts.
+
+import { FontWeightPreview } from './preview_font_weight';
+
+<Example>
+  <Example.Description>
+    ### `euiTheme.font.weight[weight]` <Badge color="hollow">token</Badge>
+
+    To maintain consistency, EUI establishes the font weight patterns directly in the text and title components. However, we recommend using the theme keys instead of `font-weight: bold` in your css to ensure proper rendering with the imported font family.
+
+  </Example.Description>
+  <Example.Preview>
+    <FontWeightPreview />
+  </Example.Preview>
+  <Example.Snippet>
+    ```tsx
+    css`
+      font-weight: ${euiTheme.font.weight.bold};
+    `
+    ```
+  </Example.Snippet>
+</Example>
+
+<EuiSpacer />
+
+import { FontWeightTable } from './font_weight_table';
+
+<FontWeightTable />
+
+<EuiSpacer size="xl" />
+
+import { VariableFontWeightPreview } from './preview_font_weight';
+
+<VariableFontWeightPreview>
+  <Example>
+    <Example.Description>
+      ### Variable fonts
+
+      EUI also supports variable font families which can be <a href="https://css-tricks.com/getting-the-most-out-of-variable-fonts-on-google-fonts/" target="_blank" rel="noopener noreferrer">imported from Google fonts using their new API</a>. Though we still recommend sticking to the theme token names.
+
+      <VariableFontWeightPreview.Range />
+    </Example.Description>
+    <Example.Preview>
+      <VariableFontWeightPreview.Preview />
+    </Example.Preview>
+    <Example.Snippet>
+      <VariableFontWeightPreview.Snippet />
+    </Example.Snippet>
+
+  </Example>
+</VariableFontWeightPreview>
