@@ -9,15 +9,28 @@ import { css } from '@emotion/react';
 import { UseEuiTheme } from '../../../services';
 import { logicalCSS } from '../../../global_styling';
 
-export const euiButtonDisplayContentStyles = ({ euiTheme }: UseEuiTheme) => ({
-  // Base
-  euiButtonDisplayContent: css`
-    ${logicalCSS('height', '100%')}
-    ${logicalCSS('width', '100%')}
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    vertical-align: middle;
-    gap: ${euiTheme.size.s};
-  `,
-});
+export const euiButtonDisplayContentStyles = ({ euiTheme }: UseEuiTheme) => {
+  const isExperimental = euiTheme.flags?.buttonVariant === 'experimental';
+
+  const experimentalStyles =
+    isExperimental &&
+    `
+      /* ensure content stays ontop of hover pseudo element */
+      position: relative;
+    `;
+
+  return {
+    // Base
+    euiButtonDisplayContent: css`
+      ${logicalCSS('height', '100%')}
+      ${logicalCSS('width', '100%')}
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      vertical-align: middle;
+      gap: ${euiTheme.size.s};
+
+      ${experimentalStyles}
+    `,
+  };
+};
