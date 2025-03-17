@@ -4,11 +4,9 @@ exports[`useEuiButtonColorCSS base 1`] = `
 {
   "accent": {
     "map": undefined,
-    "name": "1y2o0j1-displaysColorsMap-display-color",
+    "name": "19oiedi-displaysColorsMap-display-color",
     "next": undefined,
-    "styles": "color:#a11262;background-color:#FFFFFF; 
-            border: 1px solid #CAD3E2;
-
+    "styles": "color:#a11262;background-color:#FDDDE9; 
             
         position: relative;
         overflow: hidden;
@@ -36,17 +34,16 @@ exports[`useEuiButtonColorCSS base 1`] = `
             background-color: rgba(229,74,145, 0.16);
           }
         }
-      ;
+      
+            false
           ;;label:base-accent;",
     "toString": [Function],
   },
   "danger": {
     "map": undefined,
-    "name": "25te9b-displaysColorsMap-display-color",
+    "name": "1lybqqr-displaysColorsMap-display-color",
     "next": undefined,
-    "styles": "color:#a71627;background-color:#FFFFFF; 
-            border: 1px solid #CAD3E2;
-
+    "styles": "color:#a71627;background-color:#FDDDD8; 
             
         position: relative;
         overflow: hidden;
@@ -74,17 +71,16 @@ exports[`useEuiButtonColorCSS base 1`] = `
             background-color: rgba(238,76,72, 0.16);
           }
         }
-      ;
+      
+            false
           ;;label:base-danger;",
     "toString": [Function],
   },
   "disabled": {
     "map": undefined,
-    "name": "1u1jjoj-displaysColorsMap-display-color",
+    "name": "tdghnv-displaysColorsMap-display-color",
     "next": undefined,
     "styles": "color:#798EAF;background-color:#FFFFFF; 
-            border: 1px solid #CAD3E2;
-
             
         position: relative;
         overflow: hidden;
@@ -112,17 +108,16 @@ exports[`useEuiButtonColorCSS base 1`] = `
             background-color: undefined;
           }
         }
-      ;
+      
+            false
           ;;label:base-disabled;",
     "toString": [Function],
   },
   "primary": {
     "map": undefined,
-    "name": "urkbuo-displaysColorsMap-display-color",
+    "name": "3rkdxy-displaysColorsMap-display-color",
     "next": undefined,
-    "styles": "color:#1750ba;background-color:#FFFFFF; 
-            border: 1px solid #CAD3E2;
-
+    "styles": "color:#1750ba;background-color:#D9E8FF; 
             
         position: relative;
         overflow: hidden;
@@ -150,17 +145,16 @@ exports[`useEuiButtonColorCSS base 1`] = `
             background-color: rgba(55,136,255, 0.16);
           }
         }
-      ;
+      
+            false
           ;;label:base-primary;",
     "toString": [Function],
   },
   "success": {
     "map": undefined,
-    "name": "135xpoa-displaysColorsMap-display-color",
+    "name": "a8qav7-displaysColorsMap-display-color",
     "next": undefined,
-    "styles": "color:#09724d;background-color:#FFFFFF; 
-            border: 1px solid #CAD3E2;
-
+    "styles": "color:#09724d;background-color:#C9F3E3; 
             
         position: relative;
         overflow: hidden;
@@ -188,17 +182,16 @@ exports[`useEuiButtonColorCSS base 1`] = `
             background-color: rgba(4,174,126, 0.16);
           }
         }
-      ;
+      
+            false
           ;;label:base-success;",
     "toString": [Function],
   },
   "text": {
     "map": undefined,
-    "name": "18upw7n-displaysColorsMap-display-color",
+    "name": "1mc5d51-displaysColorsMap-display-color",
     "next": undefined,
     "styles": "color:#1d2a3e;background-color:#FFFFFF; 
-            border: 1px solid #CAD3E2;
-
             
         position: relative;
         overflow: hidden;
@@ -226,17 +219,18 @@ exports[`useEuiButtonColorCSS base 1`] = `
             background-color: rgba(23,80,186, 0.12);
           }
         }
-      ;
+      
+            
+              border: 1px solid #CAD3E2;
+            
           ;;label:base-text;",
     "toString": [Function],
   },
   "warning": {
     "map": undefined,
-    "name": "fpmgmg-displaysColorsMap-display-color",
+    "name": "13dgtsu-displaysColorsMap-display-color",
     "next": undefined,
-    "styles": "color:#6a4906;background-color:#FFFFFF; 
-            border: 1px solid #CAD3E2;
-
+    "styles": "color:#825803;background-color:#FDE9B5; 
             
         position: relative;
         overflow: hidden;
@@ -264,7 +258,8 @@ exports[`useEuiButtonColorCSS base 1`] = `
             background-color: rgba(234,174,1, 0.20);
           }
         }
-      ;
+      
+            false
           ;;label:base-warning;",
     "toString": [Function],
   },
@@ -479,9 +474,9 @@ exports[`useEuiButtonColorCSS empty 1`] = `
   },
   "warning": {
     "map": undefined,
-    "name": "yo17mn-displaysColorsMap-display-color",
+    "name": "wdbtvz-displaysColorsMap-display-color",
     "next": undefined,
-    "styles": "color:#6a4906; 
+    "styles": "color:#825803; 
         position: relative;
         overflow: hidden;
 
@@ -518,107 +513,107 @@ exports[`useEuiButtonColorCSS fill 1`] = `
 {
   "accent": {
     "map": undefined,
-    "name": "husk4z-displaysColorsMap-display-color",
+    "name": "1moc6vv-displaysColorsMap-display-color",
     "next": undefined,
     "styles": "color:#FFFFFF;background-color:#BC1E70;outline-color:#07101F;
-        &:hover:not(:disabled) {
-          background-color: #A11262;
-        }
+      &:hover:not(:disabled) {
+        background-color: #A11262;
+      }
 
-        &:active:not(:disabled) {
-          background-color: #831652;
-        }
-      ;;label:fill-accent;",
+      &:active:not(:disabled) {
+        background-color: #831652;
+      }
+    ;;label:fill-accent;",
     "toString": [Function],
   },
   "danger": {
     "map": undefined,
-    "name": "fker02-displaysColorsMap-display-color",
+    "name": "1sww27t-displaysColorsMap-display-color",
     "next": undefined,
     "styles": "color:#FFFFFF;background-color:#C61E25;outline-color:#07101F;
-        &:hover:not(:disabled) {
-          background-color: #A71627;
-        }
+      &:hover:not(:disabled) {
+        background-color: #A71627;
+      }
 
-        &:active:not(:disabled) {
-          background-color: #7F1F27;
-        }
-      ;;label:fill-danger;",
+      &:active:not(:disabled) {
+        background-color: #7F1F27;
+      }
+    ;;label:fill-danger;",
     "toString": [Function],
   },
   "disabled": {
     "map": undefined,
-    "name": "zcwa6u-displaysColorsMap-display-color",
+    "name": "191y6d9-displaysColorsMap-display-color",
     "next": undefined,
     "styles": "color:#798EAF;background-color:#ECF1F9;outline-color:#07101F;
-        &:hover:not(:disabled) {
-          background-color: undefined;
-        }
+      &:hover:not(:disabled) {
+        background-color: undefined;
+      }
 
-        &:active:not(:disabled) {
-          background-color: undefined;
-        }
-      ;;label:fill-disabled;",
+      &:active:not(:disabled) {
+        background-color: undefined;
+      }
+    ;;label:fill-disabled;",
     "toString": [Function],
   },
   "primary": {
     "map": undefined,
-    "name": "1hc3fw4-displaysColorsMap-display-color",
+    "name": "1i1rpm0-displaysColorsMap-display-color",
     "next": undefined,
     "styles": "color:#FFFFFF;background-color:#0B64DD;outline-color:#07101F;
-        &:hover:not(:disabled) {
-          background-color: #1750BA;
-        }
+      &:hover:not(:disabled) {
+        background-color: #1750BA;
+      }
 
-        &:active:not(:disabled) {
-          background-color: #154399;
-        }
-      ;;label:fill-primary;",
+      &:active:not(:disabled) {
+        background-color: #154399;
+      }
+    ;;label:fill-primary;",
     "toString": [Function],
   },
   "success": {
     "map": undefined,
-    "name": "10l5ase-displaysColorsMap-display-color",
+    "name": "1vg5hkp-displaysColorsMap-display-color",
     "next": undefined,
     "styles": "color:#FFFFFF;background-color:#008A5E;outline-color:#07101F;
-        &:hover:not(:disabled) {
-          background-color: #09724D;
-        }
+      &:hover:not(:disabled) {
+        background-color: #09724D;
+      }
 
-        &:active:not(:disabled) {
-          background-color: #0C5A3F;
-        }
-      ;;label:fill-success;",
+      &:active:not(:disabled) {
+        background-color: #0C5A3F;
+      }
+    ;;label:fill-success;",
     "toString": [Function],
   },
   "text": {
     "map": undefined,
-    "name": "1acxa7i-displaysColorsMap-display-color",
+    "name": "1blxpv3-displaysColorsMap-display-color",
     "next": undefined,
     "styles": "color:#FFFFFF;background-color:#5A6D8C;outline-color:#07101F;
-        &:hover:not(:disabled) {
-          background-color: #485975;
-        }
+      &:hover:not(:disabled) {
+        background-color: #485975;
+      }
 
-        &:active:not(:disabled) {
-          background-color: #384861;
-        }
-      ;;label:fill-text;",
+      &:active:not(:disabled) {
+        background-color: #384861;
+      }
+    ;;label:fill-text;",
     "toString": [Function],
   },
   "warning": {
     "map": undefined,
-    "name": "1f6zp9y-displaysColorsMap-display-color",
+    "name": "52xsaj-displaysColorsMap-display-color",
     "next": undefined,
     "styles": "color:#6A4906;background-color:#FACB3D;outline-color:#07101F;
-        &:hover:not(:disabled) {
-          background-color: #F5BC00;
-        }
+      &:hover:not(:disabled) {
+        background-color: #F5BC00;
+      }
 
-        &:active:not(:disabled) {
-          background-color: #EAAE01;
-        }
-      ;;label:fill-warning;",
+      &:active:not(:disabled) {
+        background-color: #EAAE01;
+      }
+    ;;label:fill-warning;",
     "toString": [Function],
   },
 }

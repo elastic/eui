@@ -14,7 +14,7 @@ import React, {
 } from 'react';
 import { CSSInterpolation } from '@emotion/css';
 
-import { useEuiMemoizedStyles } from '../../../services';
+import { useEuiMemoizedStyles, useEuiTheme } from '../../../services';
 import { useEuiButtonColorCSS } from '../../../global_styling/mixins/_button';
 import { useInnerText } from '../../inner_text';
 
@@ -68,9 +68,17 @@ export const EuiButtonGroupButton: FunctionComponent<Props> = ({
   contentProps,
   ...rest
 }) => {
+  const { euiTheme } = useEuiTheme();
+  const isExperimental = euiTheme.flags?.buttonVariant === 'experimental';
+
   const isCompressed = size === 'compressed';
   const color = isDisabled ? 'disabled' : _color;
-  const display = isSelected ? 'fill' : isCompressed ? 'empty' : 'base';
+  const hasBorder = isExperimental && color !== 'text' && !isCompressed;
+  const display = isSelected
+    ? 'fill'
+    : isCompressed || hasBorder
+    ? 'empty'
+    : 'base';
   const hasToolTip = !!toolTipContent;
 
   const styles = useEuiMemoizedStyles(euiButtonGroupButtonStyles);
@@ -85,6 +93,7 @@ export const EuiButtonGroupButton: FunctionComponent<Props> = ({
     isCompressed ? styles.compressed : styles.uncompressed.uncompressed,
     isDisabled && isSelected ? styles.disabledAndSelected : buttonColorStyles,
     !isDisabled && isCompressed && focusColorStyles[color],
+    hasBorder && styles.hasBorder,
   ];
   const tooltipWrapperStyles = [
     styles.tooltipWrapper,

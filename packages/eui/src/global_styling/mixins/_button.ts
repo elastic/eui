@@ -249,14 +249,14 @@ const euiButtonDisplaysColors = (euiThemeContext: UseEuiTheme) => {
     }
 
     return `
-        &:hover:not(:disabled) {
-          background-color: ${buttonColors.backgroundHover};
-        }
+      &:hover:not(:disabled) {
+        background-color: ${buttonColors.backgroundHover};
+      }
 
-        &:active:not(:disabled) {
-          background-color: ${buttonColors.backgroundActive};
-        }
-      `;
+      &:active:not(:disabled) {
+        background-color: ${buttonColors.backgroundActive};
+      }
+    `;
   };
 
   BUTTON_DISPLAYS.forEach((display) => {
@@ -271,14 +271,17 @@ const euiButtonDisplaysColors = (euiThemeContext: UseEuiTheme) => {
             'base'
           );
 
+          const borderStyle =
+            color === 'text' &&
+            `
+              border: ${euiTheme.border.width.thin} solid ${euiTheme.colors.borderBasePlain};
+            `;
+
           const exerimentalStyles =
             isExperimental &&
             `
-            border: ${euiTheme.border.width.thin} solid ${
-              euiTheme.colors.borderBasePlain
-            };
-
-            ${interactiveStyles(buttonColors, 'overlay')};
+            ${interactiveStyles(buttonColors, 'overlay')}
+            ${borderStyle}
           `;
 
           displaysColorsMap[display][color] = css`
