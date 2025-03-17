@@ -132,21 +132,6 @@ export const euiSuperDatePickerStyles = (euiThemeContext: UseEuiTheme) => {
       }
     `;
 
-  const experimentalNeedsUpdatingStyles =
-    isExperimental &&
-    `
-      --euiFormControlStateColor: ${euiTheme.colors.success};
-      --euiFormControlStateHoverColor: ${euiTheme.colors.success};
-      --euiFormControlStateWidth: ${euiTheme.border.width.thin};
-      ${euiFormControlHighlightBorderStyles}
-  
-      &:has(.euiPopover-isOpen),
-      &:focus-within {
-        --euiFormControlStateColor: ${forms.borderColor};
-        --euiFormControlStateHoverColor: ${forms.borderHovered};
-      }
-    `;
-
   const needsUpdatingPopoverButtonFocusStyles = isExperimental
     ? `
       ${euiFormControlFocusStyles(euiThemeContext)}
