@@ -6,22 +6,30 @@ sidebar_position: 4
 
 # Button group
 
-An **EuiButtonGroup** is for indicating **selection** only. They utilize the `type="single"` or `"multi"` prop to determine whether multiple or only single selections are allowed per group.
+An **EuiButtonGroup** is for indicating _selection only_. They utilize the `type="single"` or `"multi"` prop to determine whether multiple or only single selections are allowed per group.
 
-:::note Accessibility requirement
+:::note Accessibility recommendation
 In order for groups to be properly read as groups with a title, the `legend` prop is **required**. This is only for accessibility, however, so it will be visibly hidden.
 :::
 
 ```tsx interactive
 import React, { useState, Fragment } from 'react';
+
 import {
   EuiButtonGroup,
+  EuiFlexGroup,
+  EuiFlexItem,
+  EuiPanel,
   EuiSpacer,
+  EuiSwitch,
   EuiTitle,
-  useGeneratedHtmlId,
+  useGeneratedHtmlId
 } from '@elastic/eui';
 
 export default () => {
+  const [disableButton, setDisableButton] = useState(false);
+  const [fullButton, setFullButton] = useState(false);
+
   const basicButtonGroupPrefix = useGeneratedHtmlId({
     prefix: 'basicButtonGroup',
   });
@@ -107,51 +115,69 @@ export default () => {
 
   return (
     <Fragment>
-      <EuiButtonGroup
-        legend="This is a basic group"
-        options={toggleButtons}
-        idSelected={toggleIdSelected}
-        onChange={(id) => onChange(id)}
-      />
-      <EuiSpacer size="m" />
-      <EuiTitle size="xxs">
-        <h3>Primary &amp; multi select</h3>
-      </EuiTitle>
-      <EuiSpacer size="s" />
-      <EuiButtonGroup
-        legend="This is a primary group"
-        options={toggleButtonsMulti}
-        idToSelectedMap={toggleIdToSelectedMap}
-        onChange={(id) => onChangeMulti(id)}
-        color="primary"
-        type="multi"
-      />
-      <EuiSpacer size="m" />
-      <EuiTitle size="xxs">
-        <h3>Disabled &amp; full width</h3>
-      </EuiTitle>
-      <EuiSpacer size="s" />
-      <EuiButtonGroup
-        legend="This is a disabled group"
-        options={toggleButtonsDisabled}
-        idSelected={toggleIdDisabled}
-        onChange={(id) => onChangeDisabled(id)}
-        buttonSize="m"
-        isDisabled
-        isFullWidth
-      />
+      <EuiFlexGroup
+        gutterSize="m"
+        alignItems="center"
+      >
+        <EuiFlexItem grow={false}>
+          <EuiSwitch
+            compressed
+            label="Full width"
+            checked={fullButton}
+            onChange={() => setFullButton(!fullButton)}
+          />
+        </EuiFlexItem>
+        <EuiFlexItem grow={false}>
+          <EuiSwitch
+            compressed
+            label="Disabled"
+            checked={disableButton}
+            onChange={() => setDisableButton(!disableButton)}
+          />
+        </EuiFlexItem>
+      </EuiFlexGroup>
+      <EuiSpacer />
+      <EuiPanel type="plain" hasBorder css={{width: 600, maxWidth: '100%'}}>
+        <EuiTitle size="xxs">
+          <h3>Default</h3>
+        </EuiTitle>
+        <EuiSpacer size="s" />
+        <EuiButtonGroup
+          legend="Default single select button group"
+          isFullWidth={fullButton}
+          isDisabled={disableButton}
+          options={toggleButtons}
+          idSelected={toggleIdSelected}
+          onChange={(id) => onChange(id)}
+        />
+        <EuiSpacer />
+        <EuiTitle size="xxs">
+          <h3>Primary color with multi select</h3>
+        </EuiTitle>
+        <EuiSpacer size="s" />
+        <EuiButtonGroup
+          legend="Primary color multi select button group"
+          isFullWidth={fullButton}
+          isDisabled={disableButton}
+          options={toggleButtonsMulti}
+          idToSelectedMap={toggleIdToSelectedMap}
+          onChange={(id) => onChangeMulti(id)}
+          color="primary"
+          type="multi"
+        />
+      </EuiPanel>
     </Fragment>
   );
 };
-
 ```
 
-### Icon only button groups
+### Icon only button group
 
-If you're just displaying a group of icons, add the prop `isIconOnly`.
+Use the `isIconOnly` prop when displaying a group of icon-only buttons.
 
 ```tsx interactive
 import React, { useState, Fragment } from 'react';
+
 import { EuiButtonGroup, htmlIdGenerator } from '@elastic/eui';
 
 const idPrefix3 = htmlIdGenerator()();
@@ -247,17 +273,69 @@ export default () => {
     </Fragment>
   );
 };
-
 ```
 
-### Button groups in forms
+### Button group tooltips
 
-When using button groups within compressed forms, match the form elements by adding `buttonSize="compressed"`. Compressed groups should always be `fullWidth` so they line up nicely in their small container **unless** they are icon only.
+Buttons within a button group will automatically display a default browser tooltip containing the button `label` text. This can be customized or unset via the `title` property in your `options` button configuration.
 
-For a more detailed example of how to integrate with forms, see the ["Complex example"](/docs/forms/compressed-forms#complex-example) on the compressed forms page.
+To instead display an **EuiToolTip** around your button(s), pass the `toolTipContent` property. You can also use `toolTipProps` to customize tooltip placement, title, and any other prop that [**EuiToolTip**](../../display/tooltip) accepts.
 
 ```tsx interactive
 import React, { useState } from 'react';
+
+import { EuiButtonGroup } from '@elastic/eui';
+
+export default () => {
+  const toggleButtons = [
+    {
+      id: 'buttonGroup__0',
+      label: 'Default title',
+    },
+    {
+      id: 'buttonGroup__1',
+      label: 'Custom tooltip content',
+      toolTipContent: 'This is a custom tooltip',
+    },
+    {
+      id: 'buttonGroup__2',
+      label: 'Custom tooltip props',
+      toolTipContent: 'This is another custom tooltip',
+      toolTipProps: {
+        title: 'My custom title',
+        position: 'right',
+      },
+    },
+  ];
+
+  const [toggleIdSelected, setToggleIdSelected] = useState('buttonGroup__1');
+
+  const onChange = (optionId) => {
+    setToggleIdSelected(optionId);
+  };
+
+  return (
+    <EuiButtonGroup
+      legend="This is a group with tooltips"
+      options={toggleButtons}
+      idSelected={toggleIdSelected}
+      onChange={(id) => onChange(id)}
+    />
+  );
+};
+```
+
+### Button group in forms
+
+<Badge>Pattern</Badge>
+
+When using button groups within compressed forms, match the form elements by adding `buttonSize="compressed"`. Compressed groups should always be `fullWidth` so they line up nicely in their small container unless they are icon only.
+
+For a more detailed example of how to integrate with forms, see the ["Complex example"](../../forms/layouts/compressed-forms#complex-example) on the compressed forms page.
+
+```tsx interactive
+import React, { useState } from 'react';
+
 import {
   EuiButtonGroup,
   EuiSpacer,
@@ -340,7 +418,7 @@ export default () => {
   return (
     <EuiPanel hasBorder style={{ maxWidth: 300 }}>
       <EuiButtonGroup
-        name="coarseness"
+        name="coarsness"
         legend="This is a basic group"
         options={toggleButtonsCompressed}
         idSelected={toggleCompressedIdSelected}
@@ -360,56 +438,6 @@ export default () => {
         isIconOnly
       />
     </EuiPanel>
-  );
-};
-
-```
-
-### Button group tooltips
-
-Buttons within a button group will automatically display a default browser tooltip containing the button `label` text. This can be customized or unset via the `title` property in your `options` button configuration.
-
-To instead display an `EuiToolTip` around your button(s), pass the `toolTipContent` property. You can also use `toolTipProps` to customize tooltip placement, title, and any other prop that [**EuiToolTip**](/docs/#/display/tooltip) accepts.
-
-```tsx interactive
-import React, { useState } from 'react';
-import { EuiButtonGroup } from '@elastic/eui';
-
-export default () => {
-  const toggleButtons = [
-    {
-      id: 'buttonGroup__0',
-      label: 'Default title',
-    },
-    {
-      id: 'buttonGroup__1',
-      label: 'Custom tooltip content',
-      toolTipContent: 'This is a custom tooltip',
-    },
-    {
-      id: 'buttonGroup__2',
-      label: 'Custom tooltip props',
-      toolTipContent: 'This is another custom tooltip',
-      toolTipProps: {
-        title: 'My custom title',
-        position: 'right',
-      },
-    },
-  ];
-
-  const [toggleIdSelected, setToggleIdSelected] = useState('buttonGroup__1');
-
-  const onChange = (optionId) => {
-    setToggleIdSelected(optionId);
-  };
-
-  return (
-    <EuiButtonGroup
-      legend="This is a group with tooltips"
-      options={toggleButtons}
-      idSelected={toggleIdSelected}
-      onChange={(id) => onChange(id)}
-    />
   );
 };
 ```

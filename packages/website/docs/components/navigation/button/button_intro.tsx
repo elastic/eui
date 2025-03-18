@@ -48,7 +48,6 @@ export default () => {
     <EuiFlexGrid
       columns={2}
       gutterSize="m"
-      css={{ maxInlineSize: euiTheme.base * 30, marginInline: 'auto' }}
     >
       {cards.map(({ id, title, children, href }) => (
         <EuiCard
