@@ -12,6 +12,7 @@ import { euiShadow } from '@elastic/eui-theme-common';
 import { logicalCSS, euiFontSize, euiCanAnimate } from '../../global_styling';
 import { UseEuiTheme } from '../../services';
 import { _popoverArrowStyles } from '../../services/popover';
+import { euiPanelBorderStyles } from '../panel/panel.styles';
 
 export const euiToolTipBackgroundColor = (euiTheme: UseEuiTheme['euiTheme']) =>
   euiTheme.components.tooltipBackground;
@@ -44,9 +45,8 @@ const euiToolTipAnimationHorizontal = (size: string) => keyframes`
 `;
 
 export const euiToolTipStyles = (euiThemeContext: UseEuiTheme) => {
-  const { euiTheme, colorMode } = euiThemeContext;
+  const { euiTheme } = euiThemeContext;
 
-  const hasVisibleBorder = colorMode === 'DARK';
   const animationTiming = `${euiTheme.animation.slow} ease-out 0s forwards`;
 
   const arrowSize = euiTheme.size.m;
@@ -56,8 +56,6 @@ export const euiToolTipStyles = (euiThemeContext: UseEuiTheme) => {
     // Base
     euiToolTip: css`
       ${euiShadow(euiThemeContext)}
-      border: ${euiTheme.border.width.thin} solid
-        ${hasVisibleBorder ? euiTheme.border.color : 'transparent'};
       border-radius: ${euiTheme.border.radius.medium};
       background-color: ${euiToolTipBackgroundColor(euiTheme)};
       color: ${euiTheme.colors.ghost};
@@ -68,6 +66,8 @@ export const euiToolTipStyles = (euiThemeContext: UseEuiTheme) => {
       ${euiFontSize(euiThemeContext, 's')}
 
       position: absolute;
+
+      ${euiPanelBorderStyles(euiThemeContext)}
 
       [class*='euiHorizontalRule'] {
         background-color: ${euiToolTipBorderColor(euiTheme)};
@@ -106,7 +106,6 @@ export const euiToolTipStyles = (euiThemeContext: UseEuiTheme) => {
     euiToolTip__arrow: css`
       ${arrowStyles._arrowStyles}
       background-color: inherit;
-      border: inherit;
     `,
     arrowPositions: arrowStyles.positions,
     // Title
