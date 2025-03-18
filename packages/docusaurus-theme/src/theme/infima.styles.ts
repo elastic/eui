@@ -279,10 +279,6 @@ export const getInfimaStyles = () => css`
     --ifm-card-border-radius: calc(var(--ifm-global-radius) * 2);
     --ifm-card-horizontal-spacing: var(--ifm-global-spacing);
     --ifm-card-vertical-spacing: var(--ifm-global-spacing);
-    --ifm-toc-border-color: var(--ifm-color-emphasis-300);
-    --ifm-toc-link-color: var(--ifm-color-content-secondary);
-    --ifm-toc-padding-vertical: 0.5rem;
-    --ifm-toc-padding-horizontal: 0.5rem;
     --ifm-dropdown-background-color: var(--ifm-background-surface-color);
     --ifm-dropdown-font-weight: var(--ifm-font-weight-semibold);
     --ifm-dropdown-link-color: var(--ifm-font-color-base);
@@ -1517,10 +1513,6 @@ export const getInfimaStyles = () => css`
   }
 
   @media print {
-    .table-of-contents {
-      display: none;
-    }
-
     .footer {
       display: none;
     }
