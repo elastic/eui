@@ -31,32 +31,35 @@ export const euiPanelBorderStyles = (
    euiTheme.colors.borderBaseFloating is enough then */
   const hasVisibleBorder = hasFloatingBorder && colorMode === 'DARK';
 
-  return `
-    /* Using a pseudo element for the border instead of floating border only 
+  return highContrastModeStyles(euiThemeContext, {
+    none: `
+      /* Using a pseudo element for the border instead of floating border only 
       because the transparent border might otherwise be visible with arbitrary 
       full-width/height content in light mode. */
-    &::before {
-      content: '';
-      position: absolute;
-      /* ensure to keep on top of flush content */
-      z-index: 1;
-      inset: 0;
-      border: ${euiTheme.border.width.thin} solid
-        ${
-          borderColor ?? hasVisibleBorder
-            ? euiTheme.border.color
-            : euiTheme.colors.borderBaseFloating
-        };
-      border-radius: inherit;
-      pointer-events: none;
-    }
-`;
+      &::before {
+        content: '';
+        position: absolute;
+        /* ensure to keep on top of flush content */
+        z-index: 1;
+        inset: 0;
+        border: ${euiTheme.border.width.thin} solid
+          ${
+            borderColor ?? hasVisibleBorder
+              ? euiTheme.border.color
+              : euiTheme.colors.borderBaseFloating
+          };
+        border-radius: inherit;
+        pointer-events: none;
+      }
+    `,
+    preferred: `
+      border: ${euiTheme.border.thin};
+    `,
+  });
 };
 
 export const euiPanelStyles = (euiThemeContext: UseEuiTheme) => {
-  const { euiTheme, highContrastMode } = euiThemeContext;
-
-  const hasShadow = !highContrastMode;
+  const { euiTheme } = euiThemeContext;
 
   return {
     // Base
@@ -70,7 +73,7 @@ export const euiPanelStyles = (euiThemeContext: UseEuiTheme) => {
     `,
 
     hasShadow: css`
-      ${hasShadow && euiShadow(euiThemeContext, 'm')}
+      ${euiShadow(euiThemeContext, 'm')}
 
       ${euiPanelBorderStyles(euiThemeContext, {
         hasFloatingBorder: false,
@@ -113,7 +116,9 @@ export const euiPanelStyles = (euiThemeContext: UseEuiTheme) => {
           none: euiShadow(euiThemeContext, 'l'),
           // Windows high contrast themes ignore box-shadows - use a filter workaround instead
           preferred: `
-            filter: drop-shadow(0 ${euiTheme.border.width.thick} 0 ${euiTheme.border.color});
+            &:not(.euiPanel--transparent) {
+              filter: drop-shadow(0 ${euiTheme.border.width.thick} 0 ${euiTheme.border.color});
+            }
           `,
         })}
         transform: translateY(-2px);

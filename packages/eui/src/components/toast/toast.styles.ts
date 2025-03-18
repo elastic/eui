@@ -6,6 +6,7 @@
  * Side Public License, v 1.
  */
 
+import { CSSProperties } from 'react';
 import { css } from '@emotion/react';
 import { euiShadowLarge, mathWithUnits } from '@elastic/eui-theme-common';
 
@@ -17,7 +18,6 @@ import {
 import { UseEuiTheme } from '../../services';
 import { euiTitle } from '../title/title.styles';
 import { euiPanelBorderStyles } from '../panel/panel.styles';
-import { CSSProperties } from 'react';
 
 export const euiToastStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme, highContrastMode } = euiThemeContext;
@@ -77,11 +77,26 @@ export const euiToastStyles = (euiThemeContext: UseEuiTheme) => {
 
         return highContrastModeStyles(euiThemeContext, {
           none: highlightStyles(color, borderWidth),
+          preferred: `
+            ${highlightStyles(color, borderWidth)}
+            
+            &::after {
+              ${logicalCSS(
+                'width',
+                `calc(100% + ${mathWithUnits(
+                  euiTheme.border.width.thin,
+                  (x) => x * 2
+                )})`
+              )}
+              ${logicalCSS('margin-top', `-${euiTheme.border.width.thin}`)}
+              ${logicalCSS('margin-left', `-${euiTheme.border.width.thin}`)}
+            }
+          `,
           // Windows high contrast mode ignores/overrides border colors, which have semantic meaning here. To get around this, we'll use a pseudo element that ignores forced colors
           forced: `
             overflow: hidden;
 
-            &::before {
+            &::after {
               content: '';
               position: absolute;
               ${logicalCSS('top', 0)}
@@ -89,6 +104,7 @@ export const euiToastStyles = (euiThemeContext: UseEuiTheme) => {
               ${logicalCSS('height', borderWidth)}
               background-color: ${color};
               ${preventForcedColors(euiThemeContext)}
+              pointer-events: none;
             }
           `,
         });

@@ -31,6 +31,8 @@ export const euiTourBeaconStyles = ({ euiTheme }: UseEuiTheme) => {
     euiTourBeacon: css`
       pointer-events: none;
       position: absolute;
+      /* ensure being on top of arrow */
+      z-index: 1;
       ${euiCanAnimate} {
         opacity: 0;
         transition: opacity 0s ${euiTheme.animation[openAnimationTiming]};

@@ -18,7 +18,7 @@ import { UseEuiTheme } from '../../services';
  * Arrow clipping/transform/positioning CSS shared between EuiPopover and EuiToolTip
  */
 export const _popoverArrowStyles = (
-  { euiTheme, colorMode }: UseEuiTheme,
+  { euiTheme, colorMode, highContrastMode }: UseEuiTheme,
   arrowSize: string
 ) => {
   const hasBorder = colorMode === 'DARK';
@@ -28,7 +28,7 @@ export const _popoverArrowStyles = (
       arrowSize,
       euiTheme.border.width.thin, // account for 1px pseudo element border on panel
     ],
-    (x, y) => x / -2 - y
+    (x, y) => (highContrastMode ? x / -2 : x / -2 - y)
   );
 
   const arrowBorderRadius = mathWithUnits(

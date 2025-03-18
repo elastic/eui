@@ -57,10 +57,6 @@ export const euiToolTipStyles = (euiThemeContext: UseEuiTheme) => {
     // Base
     euiToolTip: css`
       ${hasShadow ? euiShadow(euiThemeContext) : ''}
-      border: ${euiTheme.border.width.thin} solid
-        ${highContrastMode
-        ? euiTheme.border.color
-        : euiTheme.colors.borderBaseFloating};
       border-radius: ${euiTheme.border.radius.medium};
       background-color: ${euiToolTipBackgroundColor(euiTheme)};
       color: ${euiTheme.colors.ghost};

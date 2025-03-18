@@ -53,10 +53,6 @@ export const euiPopoverPanelStyles = (euiThemeContext: UseEuiTheme) => {
       pointer-events: none;
       opacity: 0; /* 2 */
       background-color: var(--euiPopoverBackgroundColor); /* 4 */
-      border: ${euiTheme.border.width.thin} solid
-        ${highContrastMode
-          ? euiTheme.border.color
-          : euiTheme.colors.borderBaseFloating};
 
       ${euiCanAnimate} {
         /* 2 */
