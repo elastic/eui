@@ -359,24 +359,6 @@ export const getInfimaStyles = () => css`
     word-wrap: break-word;
   }
 
-  .hero {
-    align-items: center;
-    background-color: var(--ifm-hero-background-color);
-    color: var(--ifm-hero-text-color);
-    display: flex;
-    padding: 4rem 2rem;
-  }
-
-  .hero--primary {
-    --ifm-hero-background-color: var(--ifm-color-primary);
-    --ifm-hero-text-color: var(--ifm-font-color-base-inverse);
-  }
-
-  .hero--dark {
-    --ifm-hero-background-color: #303846;
-    --ifm-hero-text-color: var(--ifm-color-white);
-  }
-
   .container {
     margin: 0 auto;
     max-width: var(--ifm-container-width);
