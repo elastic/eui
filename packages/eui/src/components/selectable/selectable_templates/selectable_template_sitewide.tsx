@@ -73,6 +73,15 @@ export type EuiSelectableTemplateSitewideProps = Partial<
    * If `undefined`, the `popoverButton` will always show (if provided)
    */
   popoverButtonBreakpoints?: EuiBreakpointSize[];
+
+  /**
+   * `default` follows the context `colorMode` and applies it to both search and listbox
+   * `reverse` applies the inverse `colorMode` to search and the default `colorMode` to the listbox
+   */
+  theme?: {
+    search: 'default' | 'inverse' | 'automatic';
+    popover: 'default' | 'inverse' | 'automatic';
+  };
 };
 
 export const EuiSelectableTemplateSitewide: FunctionComponent<
@@ -89,6 +98,7 @@ export const EuiSelectableTemplateSitewide: FunctionComponent<
   isLoading,
   popoverButton,
   popoverButtonBreakpoints,
+  theme = { search: 'automatic', popover: 'automatic' },
   ...rest
 }) => {
   const { euiTheme, colorMode } = useEuiTheme();
@@ -271,10 +281,21 @@ export const EuiSelectableTemplateSitewide: FunctionComponent<
       searchable
     >
       {(list, search) => {
+        const searchColorMode =
+          theme?.search === 'automatic'
+            ? colorMode === 'LIGHT'
+              ? 'DARK'
+              : colorMode
+            : theme?.search === 'inverse'
+            ? colorMode === 'DARK'
+              ? 'LIGHT'
+              : 'DARK'
+            : colorMode;
+
         const _search = isExperimental ? (
           <EuiThemeProvider
             wrapperProps={{ cloneElement: true }}
-            colorMode={colorMode}
+            colorMode={searchColorMode}
           >
             {search}
           </EuiThemeProvider>
@@ -311,16 +332,21 @@ export const EuiSelectableTemplateSitewide: FunctionComponent<
           </EuiPopover>
         );
 
+        const popoverColorMode =
+          theme?.popover === 'automatic'
+            ? hasDifferentColorFromGlobalTheme && colorMode === 'DARK'
+              ? 'LIGHT'
+              : colorMode
+            : theme?.popover === 'inverse'
+            ? colorMode === 'DARK'
+              ? 'LIGHT'
+              : 'DARK'
+            : colorMode;
+
         return isExperimental ? (
           <EuiThemeProvider
             wrapperProps={{ cloneElement: true }}
-            colorMode={
-              hasDifferentColorFromGlobalTheme
-                ? colorMode === 'DARK'
-                  ? 'LIGHT'
-                  : colorMode
-                : colorMode
-            }
+            colorMode={popoverColorMode}
           >
             {popover}
           </EuiThemeProvider>
