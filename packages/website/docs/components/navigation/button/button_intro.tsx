@@ -13,13 +13,13 @@ const cards = [
     id: 1,
     title: 'EuiButton',
     children: <EuiButton fill>Primary action</EuiButton>,
-    href: './',
+    href: './basic',
   },
   {
     id: 2,
     title: 'EuiButton',
     children: <EuiButton>Secondary action</EuiButton>,
-    href: './',
+    href: './basic',
   },
   {
     id: 3,

@@ -6,9 +6,7 @@ sidebar_label: Patterns
 sidebar_position: 5
 ---
 
-## Split button
-
-<Badge>Pattern</Badge>
+## Split button <Badge>Pattern</Badge>
 
 EUI [does not support](https://github.com/elastic/eui/issues/4171) split buttons specifically. Instead, use separate buttons for the main and overflow actions. This pattern is achieved by setting the `display` and `size` props on **EuiButtonIcon** to match that of the primary button.
 
@@ -86,9 +84,7 @@ export default () => {
 };
 ```
 
-## Toggle button
-
-<Badge>Pattern</Badge>
+## Toggle button <Badge>Pattern</Badge>
 
 A toggle button can be built with any button including the standard **EuiButton**, **EuiButtonEmpty** , or **EuiButtonIcon**. Use state management to handle the visual differences for on and off.
 
