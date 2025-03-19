@@ -1,90 +1,107 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import {
   EuiButton,
   EuiFlexGroup,
   EuiFlexItem,
+  EuiPanel,
   EuiSpacer,
+  EuiSelect,
+  EuiSwitch,
 } from '../../../../src/components/';
+import { COLORS } from '../../../../src/components/button/button';
 
-const buttons = [
-  'primary',
-  'success',
-  'warning',
-  'danger',
-  'text',
-  'accent',
-  'disabled',
-];
+export default () => {
+  const [disableButton, setDisableButton] = useState(false);
+  const [fillButton, setFillButton] = useState(false);
+  const [fullButton, setFullButton] = useState(false);
+  const [smallButton, setSmallButton] = useState(false);
+  const [withIconButton, setWithIconButton] = useState(false);
+  const buttonColorsOptions = COLORS.map((name) => {
+    return {
+      value: name,
+      text: name,
+    };
+  });
 
-export default () => (
-  <div>
-    {buttons.map((value) => (
-      <>
-        <EuiFlexGroup
-          key={value}
-          gutterSize="s"
-          alignItems="center"
-          responsive={false}
-          wrap
+  const [buttonColor, setButtonColor] = useState(buttonColorsOptions[3].value);
+
+  const onChangeButtonColor = (e) => {
+    setButtonColor(e.target.value);
+  };
+
+  return (
+    <div>
+      <EuiFlexGroup gutterSize="m" alignItems="center" wrap={true}>
+        <EuiFlexItem grow={false}>
+          <EuiSelect
+            prepend="Color"
+            options={buttonColorsOptions}
+            value={buttonColor}
+            onChange={(e) => onChangeButtonColor(e)}
+            compressed
+            aria-label="Button colors"
+          />
+        </EuiFlexItem>
+        <EuiFlexItem grow={false}>
+          <EuiSwitch
+            compressed
+            label="Fill"
+            checked={fillButton}
+            onChange={() => setFillButton(!fillButton)}
+          />
+        </EuiFlexItem>
+        <EuiFlexItem grow={false}>
+          <EuiSwitch
+            compressed
+            label="Full width"
+            checked={fullButton}
+            onChange={() => setFullButton(!fullButton)}
+          />
+        </EuiFlexItem>
+        <EuiFlexItem grow={false}>
+          <EuiSwitch
+            compressed
+            label="Small"
+            checked={smallButton}
+            onChange={() => setSmallButton(!smallButton)}
+          />
+        </EuiFlexItem>
+        <EuiFlexItem grow={false}>
+          <EuiSwitch
+            compressed
+            label="With icon"
+            checked={withIconButton}
+            onChange={() => setWithIconButton(!withIconButton)}
+          />
+        </EuiFlexItem>
+        <EuiFlexItem grow={false}>
+          <EuiSwitch
+            compressed
+            label="Disabled"
+            checked={disableButton}
+            onChange={() => setDisableButton(!disableButton)}
+          />
+        </EuiFlexItem>
+      </EuiFlexGroup>
+      <EuiSpacer />
+      <EuiPanel
+        className="plain"
+        hasBorder
+        css={{ width: 400, maxWidth: '100%' }}
+      >
+        <EuiButton
+          color={buttonColor}
+          disabled={disableButton}
+          fill={fillButton}
+          fullWidth={fullButton}
+          size={smallButton ? 's' : 'm'}
+          iconType={withIconButton ? 'discoverApp' : null}
+          onClick={() => {}}
         >
-          <EuiFlexItem grow={false}>
-            <EuiButton
-              color={value !== 'disabled' ? value : undefined}
-              isDisabled={value === 'disabled' ? true : false}
-              onClick={() => {}}
-            >
-              {value.charAt(0).toUpperCase() + value.slice(1)}
-            </EuiButton>
-          </EuiFlexItem>
-
-          <EuiFlexItem grow={false}>
-            <EuiButton
-              color={value !== 'disabled' ? value : undefined}
-              isDisabled={value === 'disabled' ? true : false}
-              fill
-              onClick={() => {}}
-            >
-              Filled
-            </EuiButton>
-          </EuiFlexItem>
-
-          <EuiFlexItem grow={false}>
-            <EuiButton
-              color={value !== 'disabled' ? value : undefined}
-              isDisabled={value === 'disabled' ? true : false}
-              size="s"
-              onClick={() => {}}
-            >
-              Small
-            </EuiButton>
-          </EuiFlexItem>
-
-          <EuiFlexItem grow={false}>
-            <EuiButton
-              color={value !== 'disabled' ? value : undefined}
-              isDisabled={value === 'disabled' ? true : false}
-              size="s"
-              fill
-              onClick={() => {}}
-            >
-              Small and filled
-            </EuiButton>
-          </EuiFlexItem>
-
-          <EuiFlexItem grow={true}>
-            <EuiButton
-              color={value !== 'disabled' ? value : undefined}
-              isDisabled={value === 'disabled' ? true : false}
-              fullWidth
-              onClick={() => {}}
-            >
-              Full width
-            </EuiButton>
-          </EuiFlexItem>
-        </EuiFlexGroup>
-        <EuiSpacer size="s" />
-      </>
-    ))}
-  </div>
-);
+          {!withIconButton ? 'Button' : 'Open in Discover'}
+        </EuiButton>
+      </EuiPanel>
+    </div>
+  );
+};

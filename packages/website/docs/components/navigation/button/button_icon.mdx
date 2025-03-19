@@ -4,7 +4,7 @@ id: navigation_button_icon
 sidebar_position: 3
 ---
 
-# Icon buttons
+# Icon button
 
 An **EuiButtonIcon** is a button that only contains an icon (no text). Use the `display` and `size` props to match the appearance of your **EuiButtonIcon** to other standard buttons. By default they will appear as `xs`, `empty` buttons.
 
@@ -13,135 +13,177 @@ An **EuiButtonIcon** is a button that only contains an icon (no text). Use the `
 :::
 
 ```tsx interactive
-import React from 'react';
+import React, { useState } from 'react';
+
 import {
   EuiButtonIcon,
   EuiFlexGroup,
   EuiFlexItem,
+  EuiSelect,
   EuiSpacer,
-  EuiTitle,
-  EuiCode,
+  EuiSwitch,
 } from '@elastic/eui';
+import { COLORS } from '@elastic/eui/es/components/button/button';
 
-const colors = ['primary', 'success', 'warning', 'danger', 'text', 'accent'];
+const DISPLAY_TYPES = ['empty', 'base', 'fill'];
+const DISPLAY_SIZES = ['xs', 's', 'm'];
+const ICON_SIZES = ['s', 'm', 'l', 'xl', 'xxl', 'original'];
 
-export default () => (
-  <>
-    <EuiFlexGroup responsive={false} gutterSize="s" alignItems="center">
-      {colors.map((color) => (
-        <EuiFlexItem key={color} grow={false}>
-          <EuiButtonIcon
-            color={color}
-            onClick={() => {}}
-            iconType="help"
-            aria-label="Help"
+export default () => {
+  const buttonColorsOptions = COLORS.map((name) => {
+    return {
+      value: name,
+      text: name,
+    };
+  });
+  const displayTypeOptions = DISPLAY_TYPES.map((name) => {
+    return {
+      value: name,
+      text: name,
+    };
+  });
+  const displaySizeOptions = DISPLAY_SIZES.map((name) => {
+    return {
+      value: name,
+      text: name,
+    };
+  });
+  const iconSizeOptions = ICON_SIZES.map((name) => {
+    return {
+      value: name,
+      text: name,
+    };
+  });
+  const [disableButton, setDisableButton] = useState(false);
+  const [displayType, setDisplayType] = useState(displayTypeOptions[0].value);
+  const [displaySize, setDisplaySize] = useState(displaySizeOptions[0].value);
+  const [iconSize, setIconSize] = useState(iconSizeOptions[1].value);
+  const [buttonColor, setButtonColor] = useState(buttonColorsOptions[3].value);
+
+  const onChangeDisplayType = (e) => {
+    setDisplayType(e.target.value);
+  };
+
+  const onChangeDisplaySize = (e) => {
+    setDisplaySize(e.target.value);
+  };
+
+  const onChangeIconSize = (e) => {
+    setIconSize(e.target.value);
+  };
+
+  const onChangeButtonColor = (e) => {
+    setButtonColor(e.target.value);
+  };
+
+  return(
+    <>
+      <EuiFlexGroup
+        gutterSize="m"
+        alignItems="center"
+        wrap={true}
+      >
+        <EuiFlexItem grow={false}>
+          <EuiSelect
+            prepend="Color"
+            options={buttonColorsOptions}
+            value={buttonColor}
+            onChange={(e) => onChangeButtonColor(e)}
+            compressed
+            aria-label="Button colors"
           />
         </EuiFlexItem>
-      ))}
-    </EuiFlexGroup>
-    <EuiSpacer size="m" />
-    <EuiTitle size="xxs">
-      <h3>
-        Display (<EuiCode>empty</EuiCode>, <EuiCode>base</EuiCode>,{' '}
-        <EuiCode>fill</EuiCode>)
-      </h3>
-    </EuiTitle>
-    <EuiSpacer size="s" />
-    <EuiFlexGroup responsive={false} gutterSize="s" alignItems="center">
-      <EuiFlexItem grow={false}>
-        <EuiButtonIcon iconType="arrowRight" aria-label="Next" />
-      </EuiFlexItem>
-      <EuiFlexItem grow={false}>
-        <EuiButtonIcon display="base" iconType="arrowRight" aria-label="Next" />
-      </EuiFlexItem>
-      <EuiFlexItem grow={false}>
-        <EuiButtonIcon display="fill" iconType="arrowRight" aria-label="Next" />
-      </EuiFlexItem>
-    </EuiFlexGroup>
-    <EuiSpacer size="m" />
-    <EuiTitle size="xxs">
-      <h3>Disabled </h3>
-    </EuiTitle>
-    <EuiSpacer size="s" />
-    <EuiFlexGroup responsive={false} gutterSize="s" alignItems="center">
-      <EuiFlexItem grow={false}>
-        <EuiButtonIcon iconType="arrowRight" isDisabled aria-label="Next" />
-      </EuiFlexItem>
-      <EuiFlexItem grow={false}>
-        <EuiButtonIcon
-          display="base"
-          iconType="arrowRight"
-          isDisabled
-          aria-label="Next"
-        />
-      </EuiFlexItem>
-      <EuiFlexItem grow={false}>
-        <EuiButtonIcon
-          iconType="arrowRight"
-          display="fill"
-          disabled
-          aria-label="Next"
-        />
-      </EuiFlexItem>
-    </EuiFlexGroup>
-    <EuiSpacer size="m" />
-    <EuiTitle size="xxs">
-      <h3>
-        Size (<EuiCode>xs</EuiCode>, <EuiCode>s</EuiCode>, <EuiCode>m</EuiCode>)
-      </h3>
-    </EuiTitle>
-    <EuiSpacer size="s" />
-    <EuiFlexGroup responsive={false} gutterSize="s" alignItems="center">
-      <EuiFlexItem grow={false}>
-        <EuiButtonIcon display="base" iconType="arrowRight" aria-label="Next" />
-      </EuiFlexItem>
-      <EuiFlexItem grow={false}>
-        <EuiButtonIcon
-          display="base"
-          iconType="arrowRight"
-          size="s"
-          aria-label="Next"
-        />
-      </EuiFlexItem>
-      <EuiFlexItem grow={false}>
-        <EuiButtonIcon
-          display="base"
-          iconType="arrowRight"
-          iconSize="l"
-          size="m"
-          aria-label="Next"
-        />
-      </EuiFlexItem>
-    </EuiFlexGroup>
-    <EuiSpacer size="m" />
-    <EuiTitle size="xxs">
-      <h3>All icons types inherit button color</h3>
-    </EuiTitle>
-    <EuiSpacer size="s" />
-    <EuiFlexGroup responsive={false} gutterSize="s" alignItems="center">
-      <EuiFlexItem grow={false}>
-        <EuiButtonIcon iconType="heart" aria-label="Heart" color="accent" />
-      </EuiFlexItem>
-      <EuiFlexItem grow={false}>
-        <EuiButtonIcon
-          iconType="dashboardApp"
-          aria-label="Dashboard"
-          color="success"
-        />
-      </EuiFlexItem>
-      <EuiFlexItem grow={false}>
-        <EuiButtonIcon
-          display="base"
-          iconType="trash"
-          aria-label="Delete"
-          color="danger"
-        />
-      </EuiFlexItem>
-      <EuiFlexItem grow={false}>
-        <EuiButtonIcon display="base" iconType="lensApp" aria-label="Lens" />
-      </EuiFlexItem>
-    </EuiFlexGroup>
-  </>
+        <EuiFlexItem grow={false}>
+          <EuiSelect
+            prepend="Display"
+            options={displayTypeOptions}
+            value={displayType}
+            onChange={(e) => onChangeDisplayType(e)}
+            compressed
+            aria-label="Button display styles"
+          />
+        </EuiFlexItem>
+        <EuiFlexItem grow={false}>
+          <EuiSelect
+            prepend="Size"
+            options={displaySizeOptions}
+            value={displaySize}
+            onChange={(e) => onChangeDisplaySize(e)}
+            compressed
+            aria-label="Button sizes"
+          />
+        </EuiFlexItem>
+        <EuiFlexItem grow={false}>
+          <EuiSelect
+            prepend="Icon size"
+            options={iconSizeOptions}
+            value={iconSize}
+            onChange={(e) => onChangeIconSize(e)}
+            compressed
+            aria-label="Icon in button sizes"
+          />
+        </EuiFlexItem>
+        <EuiFlexItem grow={false}>
+          <EuiSwitch
+            compressed
+            label="Disabled"
+            checked={disableButton}
+            onChange={() => setDisableButton(!disableButton)}
+          />
+        </EuiFlexItem>
+      </EuiFlexGroup>
+      <EuiSpacer size="xl" />
+      <EuiButtonIcon
+        color={buttonColor}
+        display={displayType}
+        size={displaySize}
+        iconSize={iconSize}
+        disabled={disableButton}
+        onClick={() => {}}
+        iconType="documentation"
+        aria-label="Open documentation"
+      />
+    </>
+  );
+};
+```
+
+### Icon color
+
+Icons, within the button, inherit the color set on `EuiButtonIcon` and can not be customized.
+
+```tsx interactive
+import React, { useState } from 'react';
+
+import {
+  EuiButtonIcon,
+  EuiFlexGroup,
+  EuiFlexItem,
+} from '@elastic/eui';
+
+export default () => (
+  <EuiFlexGroup responsive={false} gutterSize="s" alignItems="flexStart">          
+    <EuiFlexItem grow={false}>
+      <EuiButtonIcon display="base" iconType="lensApp" size="m" aria-label="Lens" />
+    </EuiFlexItem>
+    <EuiFlexItem grow={false}>
+      <EuiButtonIcon display="base" iconType="warning" size="s" color="warning" aria-label="Warning" />
+    </EuiFlexItem>
+    <EuiFlexItem grow={false}>
+      <EuiButtonIcon
+        iconType="dashboardApp"
+        aria-label="Dashboard"
+        color="text"
+      />
+    </EuiFlexItem>
+    <EuiFlexItem grow={false}>
+      <EuiButtonIcon
+        iconType="trash"
+        aria-label="Delete"
+        color="danger"
+      />
+    </EuiFlexItem>
+  </EuiFlexGroup>
 );
 ```
 

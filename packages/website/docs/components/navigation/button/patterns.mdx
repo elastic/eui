@@ -1,0 +1,169 @@
+---
+slug: /navigation/button/patterns
+id: navigation_button_patterns
+title: Button patterns
+sidebar_label: Patterns
+sidebar_position: 5
+---
+
+## Split button <Badge>Pattern</Badge>
+
+EUI [does not support](https://github.com/elastic/eui/issues/4171) split buttons specifically. Instead, use separate buttons for the main and overflow actions. This pattern is achieved by setting the `display` and `size` props on **EuiButtonIcon** to match that of the primary button.
+
+```tsx interactive
+import React, { useState } from 'react';
+
+import {
+  EuiButton,
+  EuiButtonIcon,
+  EuiFlexGroup,
+  EuiFlexItem,
+  EuiContextMenuPanel,
+  EuiContextMenuItem,
+  EuiPopover,
+  useGeneratedHtmlId,
+} from '@elastic/eui';
+
+export default () => {
+  const [isPopoverOpen, setPopover] = useState(false);
+  const splitButtonPopoverId = useGeneratedHtmlId({
+    prefix: 'splitButtonPopover',
+  });
+
+  const onButtonClick = () => {
+    setPopover(!isPopoverOpen);
+  };
+
+  const closePopover = () => {
+    setPopover(false);
+  };
+
+  const items = [
+    <EuiContextMenuItem key="copy" icon="copy" onClick={closePopover}>
+      Copy
+    </EuiContextMenuItem>,
+    <EuiContextMenuItem key="edit" icon="pencil" onClick={closePopover}>
+      Edit
+    </EuiContextMenuItem>,
+    <EuiContextMenuItem key="share" icon="share" onClick={closePopover}>
+      Share
+    </EuiContextMenuItem>,
+  ];
+
+  return (
+    <>
+      <EuiFlexGroup responsive={false} gutterSize="xs" alignItems="center">
+        <EuiFlexItem grow={false}>
+          <EuiButton size="s" fill iconType="save">
+            Save
+          </EuiButton>
+        </EuiFlexItem>
+        <EuiFlexItem grow={false}>
+          <EuiPopover
+            id={splitButtonPopoverId}
+            button={
+              <EuiButtonIcon
+                display="fill"
+                size="s"
+                iconType="boxesVertical"
+                aria-label="More"
+                onClick={onButtonClick}
+              />
+            }
+            isOpen={isPopoverOpen}
+            closePopover={closePopover}
+            panelPaddingSize="none"
+            anchorPosition="downLeft"
+          >
+            <EuiContextMenuPanel size="s" items={items} />
+          </EuiPopover>
+        </EuiFlexItem>
+      </EuiFlexGroup>
+    </>
+  );
+};
+```
+
+## Toggle button <Badge>Pattern</Badge>
+
+A toggle button can be built with any button including the standard **EuiButton**, **EuiButtonEmpty** , or **EuiButtonIcon**. Use state management to handle the visual differences for on and off.
+
+Consider the followingn exception cases when building a toggle button.
+
+1.  If your button changes its readable **text**, via children or `aria-label`, then there is no additional accessibility concern.
+
+```tsx interactive
+import React, { useState } from 'react';
+
+import { EuiButton, EuiButtonIcon } from '@elastic/eui';
+
+export default () => {
+  const [toggle0On, setToggle0On] = useState(false);
+  const [toggle1On, setToggle1On] = useState(true);
+
+  return (
+    <>
+      <EuiButton
+        onClick={() => {
+          setToggle0On((isOn) => !isOn);
+        }}
+      >
+        {toggle0On ? 'Toggled' : 'Toggle me'}
+      </EuiButton>
+      &emsp;
+      <EuiButtonIcon
+        title={toggle1On ? 'Play' : 'Pause'}
+        aria-label={toggle1On ? 'Play' : 'Pause'}
+        iconType={toggle1On ? 'play' : 'pause'}
+        onClick={() => {
+          setToggle1On((isOn) => !isOn);
+        }}
+      />
+    </>
+  );
+};
+```
+
+2.  If your button only changes the **visual** appearance, you must add `aria-pressed` passing a boolean for the on and off states. All EUI button types provide a helper prop for this called `isSelected`.
+
+:::note Accessibility recommendation
+Do not add `aria-pressed` or `isSelected` if you also change the readable text.
+:::
+
+```tsx interactive
+import React, { useState } from 'react';
+import { EuiButton, EuiButtonIcon } from '@elastic/eui';
+
+export default () => {
+  const [toggle2On, setToggle2On] = useState(true);
+  const [toggle3On, setToggle3On] = useState(false);
+
+  return (
+    <>
+      <EuiButton
+        isSelected={toggle2On}
+        fill={toggle2On}
+        iconType={toggle2On ? 'starFilledSpace' : 'starPlusEmpty'}
+        onClick={() => {
+          setToggle2On((isOn) => !isOn);
+        }}
+      >
+        Toggle me
+      </EuiButton>
+      &emsp;
+      <EuiButtonIcon
+        display={toggle3On ? 'base' : 'empty'}
+        size="m"
+        aria-label="Autosave"
+        title="Autosave"
+        iconType="save"
+        aria-pressed={toggle3On}
+        color={toggle3On ? 'primary' : 'text'}
+        onClick={() => {
+          setToggle3On((isOn) => !isOn);
+        }}
+      />
+    </>
+  );
+};
+```

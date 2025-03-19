@@ -6,90 +6,84 @@ sidebar_position: 2
 
 # Empty button
 
-Use **EuiButtonEmpty** when you want to reduce the importance of the button (i.e. tertiary or low prominence actions), but still want to align it to the rest of the buttons.
-
-It is also the only button component that supports down to size `xs`.
+Use **EuiButtonEmpty** when you want to reduce the importance of the button, but still want to align it to the rest of the buttons. It is also the only button component that supports down to size `xs`.
 
 ```tsx interactive
 import React from 'react';
+
 import {
   EuiButtonEmpty,
   EuiFlexGroup,
   EuiFlexItem,
-  EuiSpacer,
 } from '@elastic/eui';
 
-const buttons = ['primary', 'success', 'warning', 'danger', 'text', 'disabled'];
-
 export default () => (
-  <div>
-    {buttons.map((value) => (
-      <>
-        <EuiFlexGroup
-          key={value}
-          responsive={false}
-          gutterSize="s"
-          alignItems="center"
-        >
-          <EuiFlexItem grow={false}>
-            <EuiButtonEmpty
-              isDisabled={value === 'disabled' ? true : false}
-              color={value !== 'disabled' ? value : 'primary'}
-              onClick={() => {}}
-            >
-              {value.charAt(0).toUpperCase() + value.slice(1)}
-            </EuiButtonEmpty>
-          </EuiFlexItem>
+  <EuiFlexGroup
+    wrap={true}
+    gutterSize="s"
+    alignItems="center"
+  >
+    <EuiFlexItem grow={false}>
+      <EuiButtonEmpty
+        onClick={() => {}}
+      >
+        Empty button
+      </EuiButtonEmpty>
+    </EuiFlexItem>
 
-          <EuiFlexItem grow={false}>
-            <EuiButtonEmpty
-              size="s"
-              isDisabled={value === 'disabled' ? true : false}
-              color={value !== 'disabled' ? value : 'primary'}
-              onClick={() => {}}
-            >
-              Small
-            </EuiButtonEmpty>
-          </EuiFlexItem>
+    <EuiFlexItem grow={false}>
+      <EuiButtonEmpty
+        size="s"
+        onClick={() => {}}
+      >
+        Small empty button
+      </EuiButtonEmpty>
+    </EuiFlexItem>
 
-          <EuiFlexItem grow={false}>
-            <EuiButtonEmpty
-              size="xs"
-              isDisabled={value === 'disabled' ? true : false}
-              color={value !== 'disabled' ? value : 'primary'}
-              onClick={() => {}}
-            >
-              Extra small
-            </EuiButtonEmpty>
-          </EuiFlexItem>
-        </EuiFlexGroup>
-        <EuiSpacer size="s" />
-      </>
-    ))}
-  </div>
+    <EuiFlexItem grow={false}>
+      <EuiButtonEmpty
+        size="xs"
+        onClick={() => {}}
+      >
+        Extra small empty button
+      </EuiButtonEmpty>
+    </EuiFlexItem>
+  </EuiFlexGroup>
 );
 ```
 
-## Flush empty button
+### Flush empty button
 
-When aligning **EuiButtonEmpty** components to the left or the right, you should make sure they’re flush with the edge of their container, so that they’re horizontally aligned with the other content in the container.
+By default, buttons contain padding. Apply the `flush` property in cases where precise alignment and spacing is desired. This situation can arise when **EuiButtonEmpty** appears within a horizontal list of buttons such as a menu.
 
 ```tsx interactive
 import React from 'react';
-import { EuiButtonEmpty, EuiFlexGroup, EuiFlexItem } from '@elastic/eui';
+
+import {
+  EuiButton,
+  EuiButtonEmpty,
+  EuiFlexGroup,
+  EuiFlexItem,
+  EuiHorizontalRule,
+  EuiPanel,
+  EuiTitle,
+} from '@elastic/eui';
 
 export default () => (
-  <EuiFlexGroup responsive={false} gutterSize="s" alignItems="center">
-    <EuiFlexItem grow={false}>
-      <EuiButtonEmpty flush="left">Flush left</EuiButtonEmpty>
+  <EuiFlexGroup gutterSize="m" direction="row">
+    <EuiFlexItem css={{width: 240}} grow={false}>
+      <EuiPanel color="plain" hasBorder>
+        <EuiTitle size="xs"><h4>Title of panel</h4></EuiTitle>
+        <EuiHorizontalRule />
+        <EuiButtonEmpty flush="left">Flush left</EuiButtonEmpty>
+      </EuiPanel>
     </EuiFlexItem>
-
-    <EuiFlexItem grow={false}>
-      <EuiButtonEmpty flush="right">Flush right</EuiButtonEmpty>
-    </EuiFlexItem>
-
-    <EuiFlexItem grow={false}>
-      <EuiButtonEmpty flush="both">Flush both</EuiButtonEmpty>
+    <EuiFlexItem css={{width: 240}} grow={false}>
+      <EuiPanel css={{textAlign: "right"}} color="plain" hasBorder grow={false}>
+        <EuiButton size="s">Button</EuiButton>
+        <EuiHorizontalRule />
+        <EuiButtonEmpty flush="right">Flush right</EuiButtonEmpty>
+      </EuiPanel>
     </EuiFlexItem>
   </EuiFlexGroup>
 );

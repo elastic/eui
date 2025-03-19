@@ -70,7 +70,7 @@ export type EuiInlineEditCommonProps = Omit<
      * Multiple props objects that can be applied directly to various child components displayed in edit mode.
      * - `formRowProps` will be passed to `EuiFormRow`
      * - `inputProps` will be passed to `EuiFieldText`
-     * - `saveButtonProps` & `cancelButtonProps` will be passed to their respective `EuiIconButton`s
+     * - `saveButtonProps` & `cancelButtonProps` will be passed to their respective `EuiButtonIcon`s
      */
     editModeProps?: {
       formRowProps?: Partial<EuiFormRowProps>;
