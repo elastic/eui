@@ -3,6 +3,8 @@ slug: /theming/colors
 id: theming_colors
 ---
 
+import { EuiSpacer, EuiCodeBlock } from '@elastic/eui';
+
 # Colors
 
 Elastic UI builds with a color palette that is based on predefined 14-step scales for a core set of three colors (blue / teal / pink) as well as a green / yellow / red qualitative set and combined with a 28-step grayscale. 
@@ -14,11 +16,9 @@ When switching between light and dark color modes, the theme keys do not change,
 
 Elastic has two main brand colors. The other three are used for statefulness like indicating between successful and dangerous actions.
 
-```mdx-code-block
 import { Example } from '@site/src/components';
 import { BrandColorPreview } from './brand_color_preview';
 import { BrandColorsTable } from './brand_colors_table';
-```
 
 <Example>
   <Example.Description>
@@ -38,7 +38,7 @@ import { BrandColorsTable } from './brand_colors_table';
   </Example.Snippet>
 </Example>
 
-<br />
+<EuiSpacer />
 
 <BrandColorsTable />
 
@@ -46,10 +46,8 @@ import { BrandColorsTable } from './brand_colors_table';
 
 Each brand color also has a corresponding text variant that should be used specifically when coloring text. As is used in [**EuiTextColor**](/docs/display/text#coloring-text).
 
-```mdx-code-block
 import { TextColorPreview } from './text_color_preview';
 import { TextColorsTable } from './text_colors_table';
-```
 
 <Example>
   <Example.Description>
@@ -69,7 +67,7 @@ import { TextColorsTable } from './text_colors_table';
   </Example.Snippet>
 </Example>
 
-<br />
+<EuiSpacer />
 
 <TextColorsTable />
 
@@ -79,10 +77,8 @@ Semantic background colors. These should be used according to their semantic pur
 
 If a border is needed use the semantically related border color, e.g. `backgroundBasePrimary` with `borderBasePrimary`.
 
-```mdx-code-block
 import { BackgroundColorPreview } from './background_color_preview';
 import { BackgroundColorsTable } from './background_colors_table';
-```
 
 <Example>
   <Example.Description>
@@ -100,7 +96,7 @@ import { BackgroundColorsTable } from './background_colors_table';
   </Example.Snippet>
 </Example>
 
-<br />
+<EuiSpacer />
 
 <BackgroundColorsTable />
 
@@ -111,10 +107,8 @@ Semantic border colors. These should be used according to their semantic purpose
 The default border color (used as `border.color`) `borderBaseSubdued`.
 Use the `base` border colors for most cases. Use `borderBasePlain` for a slightly stronger border (e.g. for forms).
 
-```mdx-code-block
 import { BorderColorPreview } from './border_color_preview';
 import { BorderColorsTable } from './border_colors_table';
-```
 
 <Example>
   <Example.Description>
@@ -140,10 +134,8 @@ import { BorderColorsTable } from './border_colors_table';
 
 A six-color grayscale palette. Variation beyond these colors is minimal and always done through computations against this set.
 
-```mdx-code-block
 import { ShadeColorPreview } from './shade_color_preview';
 import { ShadeColorsTable } from './shade_colors_table';
-```
 
 <Example>
   <Example.Description>
@@ -165,7 +157,7 @@ import { ShadeColorsTable } from './shade_colors_table';
   </Example.Snippet>
 </Example>
 
-<br />
+<EuiSpacer />
 
 <ShadeColorsTable />
 
@@ -173,10 +165,8 @@ import { ShadeColorsTable } from './shade_colors_table';
 
 These are used a lot for special cases.
 
-```mdx-code-block
 import { SpecialColorsPreview } from './special_colors_preview';
 import { SpecialColorsTable } from './special_colors_table';
-```
 
 <Example>
   <Example.Description>
@@ -197,6 +187,15 @@ import { SpecialColorsTable } from './special_colors_table';
   </Example.Snippet>
 </Example>
 
-<br />
+<EuiSpacer />
 
 <SpecialColorsTable />
+
+## Data visualization colors
+
+import { DataVisColorsTable, DataVisColorsBehindTextColorsTable } from './data_vis_colors_table';
+
+### `euiTheme.colors.vis[token]` <Badge color="hollow">token</Badge>
+
+<DataVisColorsTable />
+<DataVisColorsBehindTextColorsTable />
