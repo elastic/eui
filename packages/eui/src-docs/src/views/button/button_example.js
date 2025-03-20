@@ -17,6 +17,7 @@ import {
   EuiFlexItem,
   EuiCard,
   EuiSpacer,
+  EuiPanel,
 } from '../../../../src/components';
 
 import { EuiButtonGroupOptionProps } from '!!prop-loader!../../../../src/components/button/button_group/button_group';
