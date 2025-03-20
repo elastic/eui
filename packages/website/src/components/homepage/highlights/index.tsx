@@ -1,3 +1,4 @@
+import React from 'react';
 import Heading from '@theme/Heading';
 import {
   EuiButtonEmpty,
@@ -56,7 +57,7 @@ const CONTENT_DATA = [
   },
   {
     title: 'Forms',
-    href: '/docs/components/form-controls',
+    href: '/docs/forms/text/',
     svg: SvgForm,
     description: 'Inputs with validation, grouped into a flexible form layout',
   },
@@ -101,7 +102,7 @@ const CONTENT_DATA = [
   },
   {
     title: 'Table',
-    href: '/docs/components/table',
+    href: '/docs/tabular-content/tables',
     svg: SvgTable,
     description:
       'Flexible tables with sorting, pagination, selection and actions',
@@ -263,7 +264,7 @@ export const HomepageHighlights = () => {
         </ul>
 
         <div css={styles.actions}>
-          <EuiButtonEmpty href="/docs/components/" css={styles.button}>
+          <EuiButtonEmpty href="/docs/guidelines/getting-started/" css={styles.button}>
             All components
             <EuiIcon type="sortRight" size="s" css={styles.icon} />
           </EuiButtonEmpty>

@@ -1,3 +1,4 @@
+import React from 'react';
 import { css } from '@emotion/react';
 import Heading from '@theme/Heading';
 import {
@@ -25,11 +26,12 @@ const CONTENT_DATA = {
       description: 'Help EUI improve even faster',
       href: 'https://github.com/elastic/eui/tree/main/wiki/contributing-to-eui',
       icon: 'plusInCircle',
+      target: '_blank',
     },
     {
       title: 'Tokens',
       description: 'Speed up your work by using and customizing tokens',
-      href: '/docs/',
+      href: '/docs/theming/colors/',
       icon: 'brush',
     },
   ],
@@ -49,7 +51,7 @@ const CONTENT_DATA = {
     {
       title: 'Icons',
       description: 'A wide variety of icons to enhance your designs',
-      href: '/docs/components/icons',
+      href: '/docs/display/icons',
       icon: 'package',
     },
   ],
