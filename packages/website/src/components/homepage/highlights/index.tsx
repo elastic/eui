@@ -1,3 +1,4 @@
+import React from 'react';
 import Heading from '@theme/Heading';
 import {
   EuiButtonEmpty,
@@ -28,80 +29,80 @@ import SvgTable from './svg/table.svg';
 const CONTENT_DATA = [
   {
     title: 'Flexible layout',
-    href: '/docs/layout/flex',
+    href: './docs/layout/flex',
     svg: SvgFlex,
     description:
       'Flex groups, grids, panels and items to build responsive page layout',
   },
   {
     title: 'Spacer',
-    href: '/docs/layout/spacer/',
+    href: './docs/layout/spacer/',
     svg: SvgSpacer,
     description:
       'Component with strictly defined height to organise content blocks',
   },
   {
     title: 'Text',
-    href: '/docs/display/text',
+    href: './docs/display/text',
     svg: SvgText,
     description:
       'Simple HTML text like paragraphs or lists, wrapped in a single component',
   },
   {
     title: 'Title',
-    href: '/docs/display/title',
+    href: './docs/display/title',
     svg: SvgTitle,
     description:
       'Component for styling the page, section, and content headings',
   },
   {
     title: 'Forms',
-    href: '/docs/components/form-controls',
+    href: './docs/forms/text/',
     svg: SvgForm,
     description: 'Inputs with validation, grouped into a flexible form layout',
   },
   {
     title: 'Button',
-    href: '/docs/navigation/button',
+    href: './docs/navigation/button',
     svg: SvgButton,
     description:
       'Variety of buttons and button groups with different styles and colours',
   },
   {
     title: 'Link',
-    href: '/docs/navigation/link',
+    href: './docs/navigation/link',
     svg: SvgLink,
     description: 'Component designed to display nicely within a block of text',
   },
   {
     title: 'Tooltip',
-    href: '/docs/display/tooltip',
+    href: './docs/display/tooltip',
     svg: SvgTooltip,
     description:
       'Contextual information hint with flexible positioning and behavior',
   },
   {
     title: 'Panel',
-    href: '/docs/layout/panel',
+    href: './docs/layout/panel',
     svg: SvgPanel,
     description: 'Layout helper, commonly used as a base for other components',
   },
   {
     title: 'Callout',
-    href: '/docs/display/callout',
+    href: './docs/display/callout',
     svg: SvgCallout,
     description: 'Important message directly related to content on the page',
   },
   {
     title: 'Card',
-    href: '/docs/display/card',
+    href: './docs/display/card',
     svg: SvgCard,
     description:
       'Vertical or horizontal cards, containing any custom components needed',
   },
   {
     title: 'Table',
-    href: '/docs/components/table',
+    href: './docs/tabular-content/tables',
     svg: SvgTable,
     description:
       'Flexible tables with sorting, pagination, selection and actions',
@@ -263,7 +264,7 @@ export const HomepageHighlights = () => {
         </ul>
 
         <div css={styles.actions}>
-          <EuiButtonEmpty href="/docs/components/" css={styles.button}>
+          <EuiButtonEmpty href="./docs/guidelines/getting-started/" css={styles.button}>
             All components
             <EuiIcon type="sortRight" size="s" css={styles.icon} />
           </EuiButtonEmpty>

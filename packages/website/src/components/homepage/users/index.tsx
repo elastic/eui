@@ -1,3 +1,4 @@
+import React from 'react';
 import { css } from '@emotion/react';
 import Heading from '@theme/Heading';
 import {
@@ -17,7 +18,7 @@ const CONTENT_DATA = {
     {
       title: 'Getting started',
       description: 'Install framework and make initial adjustments',
-      href: '/docs/guidelines/getting-started/',
+      href: './docs/guidelines/getting-started/',
       icon: 'keyboard',
     },
     {
@@ -25,11 +26,12 @@ const CONTENT_DATA = {
       description: 'Help EUI improve even faster',
       href: 'https://github.com/elastic/eui/tree/main/wiki/contributing-to-eui',
       icon: 'plusInCircle',
+      target: '_blank',
     },
     {
       title: 'Tokens',
       description: 'Speed up your work by using and customizing tokens',
-      href: '/docs/',
+      href: './docs/theming/colors/',
       icon: 'brush',
     },
   ],
@@ -37,19 +39,19 @@ const CONTENT_DATA = {
     {
       title: 'Patterns',
       description: 'Preferred solutions to specific user needs',
-      href: '/docs/patterns/confirmation-prompts/',
+      href: './docs/patterns/confirmation-prompts/',
       icon: 'logPatternAnalysis',
     },
     {
       title: 'Content',
       description: 'Write thoughtful and consistent in-product copy',
-      href: '/docs/content',
+      href: './docs/content',
       icon: 'pencil',
     },
     {
       title: 'Icons',
       description: 'A wide variety of icons to enhance your designs',
-      href: '/docs/components/icons',
+      href: './docs/display/icons',
       icon: 'package',
     },
   ],

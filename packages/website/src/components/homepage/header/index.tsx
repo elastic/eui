@@ -8,7 +8,6 @@ import {
   EuiDescriptionList,
   EuiDescriptionListDescription,
   EuiDescriptionListTitle,
-  EuiIcon,
   EuiLink,
   useEuiMemoizedStyles,
   UseEuiTheme,
@@ -131,12 +130,12 @@ const getStyles = (euiThemeContext: UseEuiTheme) => {
         block-size: ${form.controlHeight};
       }
 
-      // overwrride original header use case behavior
+      // override original header use case behavior
       .ds-dropdown-menu {
         position: absolute !important;
 
         &:before {
-          left: ${euiTheme.size.xl}; // align carret with search input
+          left: ${euiTheme.size.xl}; // align caret with search input
         }
       }
     `,
@@ -184,11 +183,11 @@ const getStyles = (euiThemeContext: UseEuiTheme) => {
         right: 0;
         bottom: 0;
         overflow: hidden;
+        z-index: -1;
       `,
       decor: css`
         position: absolute;
         top: 0;
-        z-index: -1;
         block-size: 100%;
         inline-size: 15%;
 
@@ -246,13 +245,23 @@ export function HomepageHeader() {
             </NavbarSearch>
           </div>
           <div css={styles.actions}>
-            <EuiButton href="/docs" fill css={styles.button}>
+            <EuiButton
+              href="./docs/guidelines/getting-started"
+              fill
+              css={styles.button}
+            >
               Get started
             </EuiButton>
-            <EuiLink href="https://github.com/elastic/eui/tree/main/packages/eui/changelogs">
+            <EuiLink
+              href="https://github.com/elastic/eui/tree/main/packages/eui/changelogs"
+              target="_blank"
+            >
               What's new?
             </EuiLink>
-            <EuiLink href="https://github.com/elastic/eui/tree/main/wiki/contributing-to-eui">
+            <EuiLink
+              href="https://github.com/elastic/eui/tree/main/wiki/contributing-to-eui"
+              target="_blank"
+            >
               Contribute
             </EuiLink>
           </div>
