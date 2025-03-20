@@ -84,6 +84,8 @@ const component_colors: _EuiThemeComponentColors = {
   dragDropDraggingBackground: background_colors.backgroundBaseSuccess,
   dragDropDraggingOverBackground: background_colors.backgroundLightSuccess,
 
+  filterButtonBadgeBackgroundHover: SEMANTIC_COLORS.shade25,
+
   filterSelectItemBackgroundFocusDisabled:
     background_colors.backgroundBaseDisabled,
 
@@ -231,6 +233,8 @@ export const components: _EuiThemeComponents = {
     dragDropDraggingBackground: dark_background_colors.backgroundBaseSuccess,
     dragDropDraggingOverBackground:
       dark_background_colors.backgroundLightSuccess,
+
+    filterButtonBadgeBackgroundHover: SEMANTIC_COLORS.shade105,
 
     filterSelectItemBackgroundFocusDisabled:
       dark_background_colors.backgroundBaseDisabled,
