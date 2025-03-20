@@ -39,9 +39,8 @@ export const euiFilterButtonStyles = (euiThemeContext: UseEuiTheme) => {
   // Bottom borders are needed for responsive flex-wrap behavior
   const bottomBoxShadow = `0 ${euiTheme.border.width.thin} 0 0 ${borderColor}`;
 
-  const defaultStyles =
-    !isExperimental &&
-    `
+  const buttonStyles = !isExperimental
+    ? `
       border-radius: 0;
       box-shadow: ${leftBoxShadow}, ${bottomBoxShadow};
 
@@ -54,6 +53,14 @@ export const euiFilterButtonStyles = (euiThemeContext: UseEuiTheme) => {
         .euiFilterButton__text {
           /* And put it only on the actual text part */
           text-decoration: underline;
+        }
+      }
+    `
+    : `
+      &:hover,
+      &:active {
+        .euiFilterButton__notification[class*="subdued"] {
+          background-color: ${euiTheme.components.filterButtonBadgeBackgroundHover}
         }
       }
     `;
@@ -92,7 +99,7 @@ export const euiFilterButtonStyles = (euiThemeContext: UseEuiTheme) => {
       ${!isExperimental && logicalCSS('height', controlHeight)}
       ${isExperimental && logicalCSS('width', '100%')}
 
-      ${defaultStyles}
+      ${buttonStyles}
     `,
     buttonType: {
       default: css`

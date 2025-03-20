@@ -70,6 +70,8 @@ export type _EuiThemeComponentColors = {
   headerDarkSearchBorderColor: ColorModeSwitch;
   headerDarkSectionItemBackgroundFocus: ColorModeSwitch;
 
+  filterButtonBadgeBackgroundHover: ColorModeSwitch;
+
   filterSelectItemBackgroundFocusDisabled: ColorModeSwitch;
 
   flyoutFooterBackground: ColorModeSwitch;
