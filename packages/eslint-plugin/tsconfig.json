@@ -2,21 +2,21 @@
   "$schema": "https://json.schemastore.org/tsconfig",
   "compilerOptions": {
     "rootDir": "src",
-    "outDir": "lib/esm",
-    "target": "es2020",
-    "module": "esnext",
+    "outDir": "lib/cjs",
+    "target": "es5",
+    "module": "node16",
     "lib": [
-      "esnext",
+      "es5",
       "DOM"
     ],
-    "moduleResolution": "node",
+    "moduleResolution": "node16",
     "declaration": true,
     "sourceMap": true,
     "incremental": true,
     "esModuleInterop": true,
     "strict": true,
     "skipLibCheck": true,
-    "tsBuildInfoFile": "lib/esm/.tsbuildinfo"
+    "tsBuildInfoFile": "lib/cjs/.tsbuildinfo",
   },
   "include": [
     "src"

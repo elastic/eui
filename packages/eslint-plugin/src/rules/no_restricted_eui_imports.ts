@@ -18,8 +18,7 @@
  */
 
 import micromatch from 'micromatch';
-import { Rule } from 'eslint';
-import { TSESTree } from '@typescript-eslint/utils';
+import { TSESTree, TSESLint } from '@typescript-eslint/utils';
 
 type Option = {
   patterns: string[];
@@ -34,8 +33,8 @@ const DEFAULT_RESTRICTED_IMPORT_OPTIONS: Option[] = [
   },
 ];
 
-export const NoRestrictedEuiImports = {
-  create(context: Rule.RuleContext) {
+export const NoRestrictedEuiImports: TSESLint.RuleModule<never, Readonly<Option>[]> = {
+  create(context) {
     const userOptions = context.options || [];
     const options = [...DEFAULT_RESTRICTED_IMPORT_OPTIONS, ...userOptions];
 
@@ -45,6 +44,7 @@ export const NoRestrictedEuiImports = {
           if (micromatch.isMatch(node.source.value, patterns)) {
             context.report({
               loc: node.source.loc,
+              // @ts-expect-error @typescript-eslint types expect `messageId` here but `message` is also allowed in eslint API
               message,
             });
           }
@@ -74,6 +74,7 @@ export const NoRestrictedEuiImports = {
         additionalProperties: false,
       },
     ],
+    messages: {},
   },
   defaultOptions: [],
 };

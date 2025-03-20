@@ -14,7 +14,6 @@ import { resolveMemberExpressionRoot } from '../utils/resolve_member_expression_
 import {
   ReportDescriptor,
   RuleContext,
-  // @ts-ignore
 } from '@typescript-eslint/utils/ts-eslint';
 
 type MessageIds =
@@ -41,7 +40,7 @@ const checkPropertySpecifiesInvalidCSSColor = ([property, value]: string[]) => {
 
   const style = new CSSStyleDeclaration();
 
-  // @ts-ignore the types for this packages specifies an index signature of number, alongside other valid CSS properties
+  // @ts-expect-error the types for this packages specifies an index signature of number, alongside other valid CSS properties
   style[property.trim()] = typeof value === 'string' ? value.trim() : value;
 
   const anchor = propertiesSupportingCssColor.find((resolvedProperty) =>
@@ -54,7 +53,7 @@ const checkPropertySpecifiesInvalidCSSColor = ([property, value]: string[]) => {
   const resolvedColorProperty = anchor === 'color' ? 'color' : anchor + 'Color';
 
   // in trying to keep this rule simple, it's enough if we get a value back, because if it was an identifier we would have been able to set a value within this invocation
-  // @ts-ignore the types for this packages specifics an index signature of number, alongside other valid CSS properties
+  // @ts-expect-error the types for this packages specifics an index signature of number, alongside other valid CSS properties
   return Boolean(style[resolvedColorProperty]);
 };
 
@@ -184,8 +183,7 @@ const handleObjectProperties = (
     ).name;
 
     const spreadElementDeclaration = context.sourceCode
-      // @ts-expect-error
-      .getScope(propertyParentNode!.value.expression!)
+      .getScope((propertyParentNode!.value as TSESTree.JSXExpressionContainer).expression!)
       .references.find(
         (ref: { identifier: { name: string } }) =>
           ref.identifier.name === spreadElementIdentifierName
@@ -306,7 +304,6 @@ export const NoCssColor = ESLintUtils.RuleCreator.withoutDocs({
               variableDeclarationMatches.defs[0].node.init)
           ) {
             if (variableInitializationNode.type === 'ObjectExpression') {
-              // @ts-ignore
               variableInitializationNode.properties.forEach((property) => {
                 handleObjectProperties(context, node, property, {
                   loc: property.loc,
@@ -332,7 +329,6 @@ export const NoCssColor = ESLintUtils.RuleCreator.withoutDocs({
                 variableInitializationNode.arguments[0];
 
               if (cssFunctionArgument.type === 'ObjectExpression') {
-                // @ts-ignore
                 cssFunctionArgument.properties.forEach((property) => {
                   handleObjectProperties(context, node, property, {
                     loc: node.loc,
@@ -447,8 +443,7 @@ export const NoCssColor = ESLintUtils.RuleCreator.withoutDocs({
             let declarationPropertiesNode: TSESTree.Property[] = [];
 
             if (node.value.expression.body.type === 'ObjectExpression') {
-              // @ts-expect-error
-              declarationPropertiesNode = node.value.expression.body.properties;
+              declarationPropertiesNode = node.value.expression.body.properties as TSESTree.Property[];
             }
 
             if (node.value.expression.body.type === 'BlockStatement') {

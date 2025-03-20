@@ -17,7 +17,6 @@
  * under the License.
  */
 
-// @ts-expect-error -- types are available, doesn't work with current TS config
 import { RuleTester } from '@typescript-eslint/rule-tester';
 
 import { NoRestrictedEuiImports } from './no_restricted_eui_imports';
@@ -42,6 +41,7 @@ ruleTester.run('no-restricted-eui-imports', NoRestrictedEuiImports, {
       code: "import theme from '@elastic/eui/dist/eui_theme_something.json';",
       errors: [
         {
+          // @ts-expect-error @typescript-eslint types expect `messageId` here but `message` is also allowed in eslint API
           message:
             'For client-side, please use `useEuiTheme` instead. Direct JSON token imports will be removed as per the EUI Deprecation schedule: https://github.com/elastic/eui/issues/1469.',
         },
@@ -51,6 +51,7 @@ ruleTester.run('no-restricted-eui-imports', NoRestrictedEuiImports, {
       code: "import theme from '@elastic/eui/dist/eui_theme_light.json';",
       errors: [
         {
+          // @ts-expect-error @typescript-eslint types expect `messageId` here but `message` is also allowed in eslint API
           message:
             'For client-side, please use `useEuiTheme` instead. Direct JSON token imports will be removed as per the EUI Deprecation schedule: https://github.com/elastic/eui/issues/1469.',
         },
@@ -66,6 +67,7 @@ ruleTester.run('no-restricted-eui-imports', NoRestrictedEuiImports, {
       ],
       errors: [
         {
+          // @ts-expect-error @typescript-eslint types expect `messageId` here but `message` is also allowed in eslint API
           message: 'Please use `theme` from `@project/package` instead.',
         },
       ],
@@ -80,6 +82,7 @@ ruleTester.run('no-restricted-eui-imports', NoRestrictedEuiImports, {
       ],
       errors: [
         {
+          // @ts-expect-error @typescript-eslint types expect `messageId` here but `message` is also allowed in eslint API
           message: 'Please use `EuiIcon` from `@elastic/eui` instead.',
         },
       ],
@@ -94,6 +97,7 @@ ruleTester.run('no-restricted-eui-imports', NoRestrictedEuiImports, {
       ],
       errors: [
         {
+          // @ts-expect-error @typescript-eslint types expect `messageId` here but `message` is also allowed in eslint API
           message: 'Please use `EuiIcon` from `@elastic/eui` instead.',
         },
       ],
@@ -108,6 +112,7 @@ ruleTester.run('no-restricted-eui-imports', NoRestrictedEuiImports, {
       ],
       errors: [
         {
+          // @ts-expect-error @typescript-eslint types expect `messageId` here but `message` is also allowed in eslint API
           message: 'Please use `EuiIcon` from `@elastic/eui` instead.',
         },
       ],

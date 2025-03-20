@@ -18,7 +18,6 @@
  */
 
 import dedent from 'dedent';
-// @ts-expect-error -- types are available, doesn't work with current TS config
 import { RuleTester } from '@typescript-eslint/rule-tester';
 
 import { NoCssColor } from './no_css_color';

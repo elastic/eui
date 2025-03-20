@@ -4,7 +4,8 @@
   "license": "Apache-2.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/elastic/eui.git"
+    "url": "https://github.com/elastic/eui.git",
+    "directory": "packages/eslint-plugin"
   },
   "homepage": "https://github.com/elastic/eui/blob/main/packages/eslint-plugin",
   "exports": {
@@ -43,11 +44,18 @@
   },
   "scripts": {
     "test": "jest src",
-    "build": "yarn build:clean && yarn build:compile && yarn build:compile:cjs && yarn build:types",
+    "build": "yarn build:clean && yarn build:compile && yarn build:compile:esm && yarn build:types",
     "build:clean": "rimraf lib/",
-    "build:compile": "tsc --project ./tsconfig.json",
-    "build:compile:cjs": "NODE_ENV=production babel src --out-dir=lib/cjs --extensions .js,.ts,.tsx",
+    "build:compile:esm": "tsc --project ./tsconfig.esm.json",
+    "build:compile": "NODE_ENV=production babel src --out-dir=lib/cjs --extensions .js,.ts,.tsx",
     "build:types": "NODE_ENV=production tsc --project tsconfig.types.json",
     "build:pack": "yarn build && npm pack"
-  }
+  },
+  "files": [
+    "lib",
+    "!**/.tsbuildinfo",
+    "!**/*.test.js",
+    "!**/*.test.js.map",
+    "!**/*.test.d.ts"
+  ]
 }
