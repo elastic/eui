@@ -5,8 +5,8 @@ import {
   EuiPanelProps,
   useEuiMemoizedStyles,
   UseEuiTheme,
+  highContrastModeStyles,
 } from '@elastic/eui';
-import { highContrastModeStyles } from '@elastic/eui/lib/global_styling/functions/high_contrast';
 import { css } from '@emotion/react';
 import { GuidelineType } from './types';
 import { GuidelineText } from './guideline_text';
@@ -19,7 +19,7 @@ export interface GuidelineProps extends PropsWithChildren {
 }
 
 const getGuidelineStyles = (euiThemeContext: UseEuiTheme) => {
-  const { euiTheme, highContrastMode } = euiThemeContext;
+  const { euiTheme } = euiThemeContext;
   return {
     root: css`
       margin-block: var(--eui-theme-content-vertical-spacing);

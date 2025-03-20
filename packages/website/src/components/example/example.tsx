@@ -20,8 +20,8 @@ import {
   useEuiTheme,
   useEuiMemoizedStyles,
   euiFontSize,
+  highContrastModeStyles,
 } from '@elastic/eui';
-import { highContrastModeStyles } from '@elastic/eui/lib/global_styling/functions/high_contrast';
 import { isElement } from 'react-is';
 
 export interface ExampleProps extends PropsWithChildren {}
