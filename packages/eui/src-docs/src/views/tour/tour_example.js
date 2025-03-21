@@ -66,13 +66,13 @@ export const TourExample = {
       wrapText: false,
       text: (
         <EuiCallOut
-          iconType="save"
-          title="The examples on this page, use localStorage to persist state to demonstrate starting a tour at different stages."
+          iconType="iInCircle"
+          title="Examples on this page use localStorage to persist state."
         />
       ),
     },
     {
-      title: 'Step options',
+      title: 'Wrap target element',
       source: [
         {
           type: GuideSectionTypes.JS,
@@ -96,6 +96,7 @@ export const TourExample = {
       snippet: stepSnippet,
     },
     {
+      title: 'Anchor to DOM element',
       source: [
         {
           type: GuideSectionTypes.JS,
@@ -104,16 +105,36 @@ export const TourExample = {
       ],
       text: (
         <>
-          <h3>Using DOM selector as anchor location</h3>
           <p>
             Instead of wrapping the target element, use the{' '}
             <EuiCode>anchor</EuiCode> prop to specify a DOM node. Accepted
-            values include an HTML element, a function returning an HTML
-            element, or a DOM query selector.
+            values include an HTML element reference, a function returning an
+            HTML element, or a CSS selector string such as{' '}
+            <EuiCode>anchor="#anchorTarget"</EuiCode>.
           </p>
         </>
       ),
       demo: <StepDom />,
+    },
+    {
+      title: 'Guided tour',
+      source: [
+        {
+          type: GuideSectionTypes.TSX,
+          code: notActionDriven,
+        },
+      ],
+      text: (
+        <>
+          <p>
+            Uers proceed through tour steps without needing to complete actions
+            on the underlying page. In this scenario, consider showing both{' '}
+            <strong>Close tour</strong> and <strong>Next</strong> buttons.
+          </p>
+        </>
+      ),
+      demo: <NotActionDriven />,
+      demoPanelProps: { color: 'subdued' },
     },
     {
       title: 'Standalone steps',
@@ -135,7 +156,7 @@ export const TourExample = {
       demo: <Tour />,
     },
     {
-      title: 'Managed state with the useEuiTour custom hook',
+      title: 'useEuiTour hook',
       source: [
         {
           type: GuideSectionTypes.JS,
@@ -144,7 +165,7 @@ export const TourExample = {
       ],
       text: (
         <p>
-          Use the <strong>useEuiTour</strong> hook for minimal state management
+          The <strong>useEuiTour</strong> hook provides minimal state management
           using a predefined React reducer. Pass an array of steps consisting of
           accepted props, and an object of global configuration. The result is a
           full configuration object for each step, a set of reducer actions to
@@ -155,7 +176,7 @@ export const TourExample = {
       demo: <ManagedHook />,
     },
     {
-      title: 'Managed state via EuiTour render prop component',
+      title: 'EuiTour render prop component',
       source: [
         {
           type: GuideSectionTypes.JS,
@@ -164,34 +185,16 @@ export const TourExample = {
       ],
       text: (
         <p>
-          Use the <strong>EuiTour</strong> render prop component for minimal
-          state management. This is an alternative to the{' '}
-          <strong>useEuiTour</strong> hook for React class components, or use
-          cases where a single wrapping component can be used.
+          The <strong>EuiTour</strong> render prop component provides minimal
+          state management. An alternative to the <strong>useEuiTour</strong>{' '}
+          hook, <strong>EuiTour</strong> can be used for React class components
+          and use cases with a single wrapping component.
         </p>
       ),
       demo: <Managed />,
     },
     {
-      title: 'Passive tour',
-      source: [
-        {
-          type: GuideSectionTypes.TSX,
-          code: notActionDriven,
-        },
-      ],
-      text: (
-        <p>
-          Use the <strong>EuiTour</strong> to provide sequential help without
-          the user performing any actions (e.g. filling out a form or copying a
-          text). In this scenario, consider using two buttons,{' '}
-          <strong>Close tour</strong> and <strong>Next</strong>.
-        </p>
-      ),
-      demo: <NotActionDriven />,
-    },
-    {
-      title: 'Fullscreen demo',
+      title: 'Tour demo',
       source: [
         {
           type: GuideSectionTypes.JS,
@@ -200,7 +203,8 @@ export const TourExample = {
       ],
       text: (
         <p>
-          Unlike the other examples on this page, this example does not use{' '}
+          A complete tour set in a more realistic application UI. Unlike other
+          examples on this page, the demo does not use{' '}
           <EuiCode>localStorage</EuiCode> to persist state.
         </p>
       ),

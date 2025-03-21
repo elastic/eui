@@ -1,7 +1,8 @@
 import React, { useRef, useState } from 'react';
 
 import {
-  EuiButtonIcon,
+  EuiButton,
+  EuiButtonEmpty,
   EuiText,
   EuiSpacer,
   EuiTourStep,
@@ -9,11 +10,23 @@ import {
 } from '../../../../src/components';
 
 export default () => {
-  const [isOpenRef, setIsOpenRef] = useState(true);
-  const [isOpenSelector, setIsOpenSelector] = useState(true);
+  const [isOpenRef, setIsOpenRef] = useState(false);
+  const [isOpenSelector, setIsOpenSelector] = useState(false);
   const anchorRef = useRef();
   return (
     <div>
+      <EuiButtonEmpty
+        size="s"
+        flush="left"
+        iconType="refresh"
+        onClick={() => {
+          setIsOpenRef(true);
+          setIsOpenSelector(false);
+        }}
+      >
+        Beign tour
+      </EuiButtonEmpty>
+      <EuiSpacer size="m" />
       <EuiTourStep
         anchor={() => anchorRef.current}
         content={
@@ -29,18 +42,27 @@ export default () => {
         step={1}
         stepsTotal={1}
         title="React ref as anchor location"
-        anchorPosition="rightDown"
+        anchorPosition="rightCenter"
+        zIndex={1}
       />
-      <EuiButtonIcon
-        onClick={() => setIsOpenRef(!isOpenRef)}
-        iconType="globe"
-        aria-label="Anchor"
-        buttonRef={anchorRef}
-      />
+      <EuiButton color="text" aria-label="Anchor" buttonRef={anchorRef}>
+        Anchor to <strong>buttonRef</strong>
+      </EuiButton>
 
       <EuiSpacer size="xxl" />
-      <EuiSpacer size="xxl" />
 
+      <EuiButtonEmpty
+        size="s"
+        flush="left"
+        iconType="refresh"
+        onClick={() => {
+          setIsOpenSelector(true);
+          setIsOpenRef(false);
+        }}
+      >
+        Beign tour
+      </EuiButtonEmpty>
+      <EuiSpacer size="m" />
       <EuiTourStep
         anchor="#anchorTarget"
         content={
@@ -56,16 +78,12 @@ export default () => {
         step={1}
         stepsTotal={1}
         title="DOM selector as anchor location"
-        anchorPosition="rightUp"
+        anchorPosition="rightDown"
+        zIndex={1}
       />
-      <EuiButtonIcon
-        onClick={() => setIsOpenSelector(!isOpenSelector)}
-        iconType="globe"
-        aria-label="Anchor"
-        id="anchorTarget"
-      />
-      <EuiSpacer size="xxl" />
-      <EuiSpacer size="xxl" />
+      <EuiButton color="text" aria-label="Anchor" id="anchorTarget">
+        Anchor to <strong>id</strong>
+      </EuiButton>
     </div>
   );
 };

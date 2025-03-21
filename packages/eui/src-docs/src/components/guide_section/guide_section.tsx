@@ -244,11 +244,10 @@ export const GuideSection: FunctionComponent<GuideSectionProps> = ({
                   <div>{demo}</div>
                 ) : demo == null ? (
                   <EuiButton
-                    fill
                     iconType="fullScreen"
                     href={`#${path}/${fullScreen.slug}`}
                   >
-                    Fullscreen demo
+                    Open demo
                   </EuiButton>
                 ) : (
                   demo

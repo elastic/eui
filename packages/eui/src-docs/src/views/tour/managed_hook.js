@@ -37,7 +37,7 @@ const demoTourSteps = [
 
 const tourConfig = {
   currentTourStep: 1,
-  isTourActive: true,
+  isTourActive: false,
   tourPopoverWidth: 360,
   tourSubtitle: 'Demo tour',
 };
@@ -82,16 +82,21 @@ export default () => {
 
   return (
     <div>
-      <EuiButtonEmpty iconType="refresh" flush="left" onClick={resetTour}>
-        Reset tour
+      <EuiButtonEmpty
+        size="s"
+        iconType="refresh"
+        flush="left"
+        onClick={resetTour}
+      >
+        Begin tour
       </EuiButtonEmpty>
-      <EuiSpacer />
+      <EuiSpacer size="m" />
       <EuiForm component="form">
-        <EuiFormRow label="Enter an ES SQL query">
-          <EuiTourStep {...euiTourStepOne}>
+        <EuiFormRow label="Query">
+          <EuiTourStep zIndex={1} {...euiTourStepOne}>
             <EuiTextArea
               placeholder="Placeholder text"
-              aria-label="Enter ES SQL query"
+              aria-label="Query"
               value={queryValue}
               onChange={onChange}
               style={{ width: 400 }}
@@ -99,10 +104,12 @@ export default () => {
           </EuiTourStep>
         </EuiFormRow>
 
-        <EuiSpacer />
+        <EuiSpacer size="m" />
 
-        <EuiTourStep {...euiTourStepTwo}>
-          <EuiButton onClick={handleClick}>Save query</EuiButton>
+        <EuiTourStep zIndex={1} {...euiTourStepTwo}>
+          <EuiButton fill size="s" onClick={handleClick}>
+            Save
+          </EuiButton>
         </EuiTourStep>
       </EuiForm>
     </div>
