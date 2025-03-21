@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "compilerOptions": {
+    "rootDir": "src",
+    "outDir": "lib/esm",
+    "target": "es2020",
+    "module": "node16",
+    "lib": [
+      "esnext",
+      "DOM"
+    ],
+    "moduleResolution": "node16",
+    "declaration": true,
+    "sourceMap": true,
+    "incremental": true,
+    "esModuleInterop": true,
+    "strict": true,
+    "skipLibCheck": true,
+    "tsBuildInfoFile": "lib/esm/.tsbuildinfo"
+  },
+  "include": [
+    "src",
+    "!**/*.test.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ],
+}

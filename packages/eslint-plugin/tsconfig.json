@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "compilerOptions": {
+    "rootDir": "src",
+    "outDir": "lib/cjs",
+    "target": "es5",
+    "module": "node16",
+    "lib": [
+      "es5",
+      "DOM"
+    ],
+    "moduleResolution": "node16",
+    "declaration": true,
+    "sourceMap": true,
+    "incremental": true,
+    "esModuleInterop": true,
+    "strict": true,
+    "skipLibCheck": true,
+    "tsBuildInfoFile": "lib/cjs/.tsbuildinfo",
+  },
+  "include": [
+    "src"
+  ],
+  "exclude": [
+    "node_modules"
+  ],
+}
