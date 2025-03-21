@@ -9,6 +9,7 @@
 import { themes as prismThemes } from 'prism-react-renderer';
 import type { Config } from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
+import type { Options as EuiPresetOptions } from '@elastic/eui-docusaurus-preset';
 
 const baseUrl = process.env.DOCS_BASE_URL || '/';
 const googleTagManagerId = process.env.DOCS_GOOGLE_TAG_MANAGER_ID || undefined;
@@ -36,11 +37,9 @@ const config: Config = {
     locales: ['en'],
   },
 
-  themes: ['@elastic/eui-docusaurus-theme'],
-
   presets: [
     [
-      'classic',
+      require.resolve('@elastic/eui-docusaurus-preset'),
       {
         docs: {
           sidebarPath: './sidebars.ts',
@@ -53,7 +52,7 @@ const config: Config = {
         googleTagManager: googleTagManagerId && {
           containerId: googleTagManagerId,
         },
-      } satisfies Preset.Options,
+      } satisfies EuiPresetOptions
     ],
   ],
 

@@ -1,5 +1,4 @@
 import { css } from '@emotion/react';
-import clsx from 'clsx';
 import Heading from '@theme/Heading';
 import NavbarSearch from '@theme/Navbar/Search';
 import SearchBar from '@theme/SearchBar';
@@ -61,6 +60,7 @@ const getStyles = (euiThemeContext: UseEuiTheme) => {
       display: flex;
       flex-direction: column;
       justify-content: center;
+      align-items: center;
       inline-size: 100%;
       min-block-size: 40rem;
       padding: 7rem 0;
@@ -221,7 +221,7 @@ export function HomepageHeader() {
   const styles = useEuiMemoizedStyles(getStyles);
 
   return (
-    <header className={clsx('hero hero--primary')} css={styles.hero}>
+    <header css={styles.hero}>
       <div css={styles.decor.wrapper}>
         <div css={[styles.decor.decor, styles.decor.left]}>
           <DecorLeft />

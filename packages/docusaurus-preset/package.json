@@ -1,0 +1,23 @@
+{
+  "name": "@elastic/eui-docusaurus-preset",
+  "description": "EUI preset for Docusaurus",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "start": "tsc --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/elastic/eui.git",
+    "directory": "packages/docusaurus-preset"
+  },
+  "devDependencies": {
+    "@docusaurus/types": "^3.7.0",
+    "typescript": "~5.5.4"
+  },
+  "peerDependencies": {
+    "react": "^18.0.0 || ^19.0.0",
+    "react-dom": "^18.0.0 || ^19.0.0"
+  }
+}

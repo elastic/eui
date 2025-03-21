@@ -100,7 +100,6 @@ export const AppThemeProvider: FunctionComponent<PropsWithChildren> = ({
       }}
     >
       <EuiProvider
-        globalStyles={false}
         modify={EuiThemeOverrides}
         colorMode={colorMode}
         theme={theme.provider}
