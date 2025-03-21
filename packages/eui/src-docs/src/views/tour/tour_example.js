@@ -108,8 +108,8 @@ export const TourExample = {
           <p>
             Instead of wrapping the target element, use the{' '}
             <EuiCode>anchor</EuiCode> prop to specify a DOM node. Accepted
-            values include an HTML element reference, a function returning
-            an HTML element, or a CSS selector string such as{' '}
+            values include an HTML element reference, a function returning an
+            HTML element, or a CSS selector string such as{' '}
             <EuiCode>anchor="#anchorTarget"</EuiCode>.
           </p>
         </>
@@ -127,10 +127,9 @@ export const TourExample = {
       text: (
         <>
           <p>
-            Uers proceed through tour steps without needing to complete
-            actions on the underlying page. In this scenario, consider
-            showing both <strong>Close tour</strong> and{' '}
-            <strong>Next</strong> buttons.
+            Uers proceed through tour steps without needing to complete actions
+            on the underlying page. In this scenario, consider showing both{' '}
+            <strong>Close tour</strong> and <strong>Next</strong> buttons.
           </p>
         </>
       ),
@@ -187,10 +186,9 @@ export const TourExample = {
       text: (
         <p>
           The <strong>EuiTour</strong> render prop component provides minimal
-          state management. An alternative to the{' '}
-          <strong>useEuiTour</strong> hook, <strong>EuiTour</strong> can be
-          used for React class components and use cases with a single wrapping
-          component.
+          state management. An alternative to the <strong>useEuiTour</strong>{' '}
+          hook, <strong>EuiTour</strong> can be used for React class components
+          and use cases with a single wrapping component.
         </p>
       ),
       demo: <Managed />,
@@ -205,8 +203,8 @@ export const TourExample = {
       ],
       text: (
         <p>
-          A complete tour set in a more realistic application UI. Unlike
-          other examples on this page, the demo does not use{' '}
+          A complete tour set in a more realistic application UI. Unlike other
+          examples on this page, the demo does not use{' '}
           <EuiCode>localStorage</EuiCode> to persist state.
         </p>
       ),

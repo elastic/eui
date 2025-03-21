@@ -94,7 +94,12 @@ export default () => {
 
   return (
     <div>
-      <EuiButtonEmpty size="s" iconType="refresh" flush="left" onClick={resetTour}>
+      <EuiButtonEmpty
+        size="s"
+        iconType="refresh"
+        flush="left"
+        onClick={resetTour}
+      >
         Begin tour
       </EuiButtonEmpty>
       <EuiSpacer size="m" />

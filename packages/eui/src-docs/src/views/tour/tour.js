@@ -97,7 +97,12 @@ export default () => {
 
   return (
     <div>
-      <EuiButtonEmpty size="s" iconType="refresh" flush="left" onClick={resetTour}>
+      <EuiButtonEmpty
+        size="s"
+        iconType="refresh"
+        flush="left"
+        onClick={resetTour}
+      >
         Begin tour
       </EuiButtonEmpty>
       <EuiSpacer size="m" />
@@ -138,7 +143,9 @@ export default () => {
           subtitle={state.tourSubtitle}
           title={demoTourSteps[1].title}
         >
-          <EuiButton fill size="s" onClick={handleClick}>Save</EuiButton>
+          <EuiButton fill size="s" onClick={handleClick}>
+            Save
+          </EuiButton>
         </EuiTourStep>
       </EuiForm>
     </div>

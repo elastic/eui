@@ -80,7 +80,12 @@ export default () => {
         };
         return (
           <React.Fragment>
-            <EuiButtonEmpty size="s" iconType="refresh" flush="left" onClick={resetTour}>
+            <EuiButtonEmpty
+              size="s"
+              iconType="refresh"
+              flush="left"
+              onClick={resetTour}
+            >
               Begin tour
             </EuiButtonEmpty>
             <EuiSpacer size="m" />
@@ -100,7 +105,9 @@ export default () => {
               <EuiSpacer size="m" />
 
               <EuiTourStep zIndex={1} {...euiTourStepTwo}>
-                <EuiButton fill size="s" onClick={handleClick}>Save</EuiButton>
+                <EuiButton fill size="s" onClick={handleClick}>
+                  Save
+                </EuiButton>
               </EuiTourStep>
             </EuiForm>
           </React.Fragment>

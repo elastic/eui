@@ -15,7 +15,15 @@ export default () => {
   const anchorRef = useRef();
   return (
     <div>
-      <EuiButtonEmpty size="s" flush="left" iconType="refresh" onClick={() => { setIsOpenRef(true); setIsOpenSelector(false); }}>
+      <EuiButtonEmpty
+        size="s"
+        flush="left"
+        iconType="refresh"
+        onClick={() => {
+          setIsOpenRef(true);
+          setIsOpenSelector(false);
+        }}
+      >
         Beign tour
       </EuiButtonEmpty>
       <EuiSpacer size="m" />
@@ -37,17 +45,21 @@ export default () => {
         anchorPosition="rightCenter"
         zIndex={1}
       />
-      <EuiButton
-        color="text"
-        aria-label="Anchor"
-        buttonRef={anchorRef}
-      >
+      <EuiButton color="text" aria-label="Anchor" buttonRef={anchorRef}>
         Anchor to <strong>buttonRef</strong>
       </EuiButton>
 
       <EuiSpacer size="xxl" />
 
-      <EuiButtonEmpty size="s" flush="left" iconType="refresh" onClick={() => { setIsOpenSelector(true); setIsOpenRef(false); }}>
+      <EuiButtonEmpty
+        size="s"
+        flush="left"
+        iconType="refresh"
+        onClick={() => {
+          setIsOpenSelector(true);
+          setIsOpenRef(false);
+        }}
+      >
         Beign tour
       </EuiButtonEmpty>
       <EuiSpacer size="m" />
@@ -69,11 +81,7 @@ export default () => {
         anchorPosition="rightDown"
         zIndex={1}
       />
-      <EuiButton
-        color="text"
-        aria-label="Anchor"
-        id="anchorTarget"
-      >
+      <EuiButton color="text" aria-label="Anchor" id="anchorTarget">
         Anchor to <strong>id</strong>
       </EuiButton>
     </div>

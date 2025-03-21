@@ -17,7 +17,12 @@ export default () => {
 
   return (
     <div>
-      <EuiButtonEmpty size="s" flush="left" iconType="refresh" onClick={beginTour}>
+      <EuiButtonEmpty
+        size="s"
+        flush="left"
+        iconType="refresh"
+        onClick={beginTour}
+      >
         Begin tour
       </EuiButtonEmpty>
       <EuiSpacer size="m" />
@@ -37,9 +42,7 @@ export default () => {
         anchorPosition="rightCenter"
         zIndex={1}
       >
-        <EuiFieldText
-          placeholder="Placeholder text"
-        />
+        <EuiFieldText placeholder="Placeholder text" />
       </EuiTourStep>
     </div>
   );

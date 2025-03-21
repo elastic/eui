@@ -175,7 +175,11 @@ export default () => {
           rightSideItems: [
             <ExampleContext.Consumer>
               {({ parentPath }) => (
-                <EuiButton fill href={`#${parentPath}`} iconType="fullScreenExit">
+                <EuiButton
+                  fill
+                  href={`#${parentPath}`}
+                  iconType="fullScreenExit"
+                >
                   Exit demo
                 </EuiButton>
               )}
