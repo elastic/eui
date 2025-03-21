@@ -16,7 +16,7 @@ import {
   euiShadowLarge,
   euiShadowXLarge,
   type _EuiThemeShadowSize,
-  type _EuiThemeShadowCustomColor,
+  type EuiShadowOptions,
 } from '@elastic/eui-theme-common';
 
 import { useEuiTheme } from '../../services/theme';
@@ -36,24 +36,20 @@ export interface EuiShadowCustomColor {
   color?: string;
 }
 
-export const useEuiSlightShadowHover = (
-  color?: _EuiThemeShadowCustomColor['color']
-) => {
+export const useEuiSlightShadowHover = (options?: EuiShadowOptions) => {
   const euiThemeContext = useEuiTheme();
-  return euiSlightShadowHover(euiThemeContext, { color });
+  return euiSlightShadowHover(euiThemeContext, options);
 };
 
-export const useEuiShadowFlat = (
-  color?: _EuiThemeShadowCustomColor['color']
-) => {
+export const useEuiShadowFlat = (options?: EuiShadowOptions) => {
   const euiThemeContext = useEuiTheme();
-  return euiShadowFlat(euiThemeContext, { color });
+  return euiShadowFlat(euiThemeContext, options);
 };
 
 export const useEuiShadow = (
   size: _EuiThemeShadowSize = 'l',
-  color?: _EuiThemeShadowCustomColor['color']
+  options?: EuiShadowOptions
 ) => {
   const euiThemeContext = useEuiTheme();
-  return euiShadow(euiThemeContext, size, { color });
+  return euiShadow(euiThemeContext, size, options);
 };

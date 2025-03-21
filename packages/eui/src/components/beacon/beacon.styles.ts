@@ -13,6 +13,7 @@ import {
   logicalCSS,
   logicalSizeCSS,
 } from '../../global_styling';
+import { preventForcedColors } from '../../global_styling/functions/high_contrast';
 
 const _colorCSS = (color: string) => {
   return `
@@ -56,48 +57,58 @@ const euiBeaconPulseSmall = keyframes`
   }
 `;
 
-export const euiBeaconStyles = ({ euiTheme }: UseEuiTheme) => ({
-  // Base
-  euiBeacon: css`
-    position: relative;
-    border-radius: 50%;
+export const euiBeaconStyles = (euiThemeContext: UseEuiTheme) => {
+  const { euiTheme } = euiThemeContext;
+  return {
+    // Base
+    euiBeacon: css`
+      position: relative;
+      display: flex;
+      justify-content: center;
+      border-radius: 50%;
+      ${preventForcedColors(euiThemeContext)}
 
-    &::before,
-    &::after {
-      position: absolute;
-      content: '';
-      ${logicalSizeCSS('100%', '100%')}
-      ${logicalCSS('left', 0)}
+      svg {
+        ${logicalSizeCSS('100%')}
+      }
+
+      &::before,
+      &::after {
+        position: absolute;
+        content: '';
+        ${logicalSizeCSS('100%')}
+        ${logicalCSS('left', 0)}
       ${logicalCSS('top', 0)}
       background-color: transparent;
-      border-radius: 50%;
-    }
+        border-radius: 50%;
+      }
 
-    /* Without the animation, we only display one ring around the circle
+      /* Without the animation, we only display one ring around the circle
        If the animation is allowed the transform and opacity are overriden */
-    &::before {
-      transform: scale(1.6);
-      opacity: 0.4;
-    }
-
-    &::after {
-      opacity: 0;
-    }
-
-    ${euiCanAnimate} {
       &::before {
-        animation: ${euiBeaconPulseLarge} 2.5s infinite ease-out;
+        transform: scale(1.6);
+        opacity: 0.4;
       }
 
       &::after {
-        animation: ${euiBeaconPulseSmall} 2.5s infinite ease-out 0.25s;
+        opacity: 0;
       }
-    }
-  `,
-  subdued: css(_colorCSS(euiTheme.colors.textSubdued)),
-  primary: css(_colorCSS(euiTheme.colors.primary)),
-  success: css(_colorCSS(euiTheme.colors.accentSecondary)),
-  warning: css(_colorCSS(euiTheme.colors.warning)),
-  danger: css(_colorCSS(euiTheme.colors.danger)),
-  accent: css(_colorCSS(euiTheme.colors.accent)),
-});
+
+      ${euiCanAnimate} {
+        &::before {
+          animation: ${euiBeaconPulseLarge} 2.5s infinite ease-out;
+        }
+
+        &::after {
+          animation: ${euiBeaconPulseSmall} 2.5s infinite ease-out 0.25s;
+        }
+      }
+    `,
+    subdued: css(_colorCSS(euiTheme.colors.textSubdued)),
+    primary: css(_colorCSS(euiTheme.colors.primary)),
+    success: css(_colorCSS(euiTheme.colors.accentSecondary)),
+    warning: css(_colorCSS(euiTheme.colors.warning)),
+    danger: css(_colorCSS(euiTheme.colors.danger)),
+    accent: css(_colorCSS(euiTheme.colors.accent)),
+  };
+};

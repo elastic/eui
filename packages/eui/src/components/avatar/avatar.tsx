@@ -16,7 +16,7 @@ import {
   isValidHex,
   useEuiPaletteColorBlindBehindText,
 } from '../../services/color';
-import { toInitials, useEuiMemoizedStyles } from '../../services';
+import { toInitials, useEuiMemoizedStyles, useEuiTheme } from '../../services';
 import { IconType, EuiIcon, IconSize, IconColor } from '../icon';
 
 import { euiAvatarStyles } from './avatar.styles';
@@ -126,12 +126,14 @@ export const EuiAvatar: FunctionComponent<EuiAvatarProps> = ({
 }) => {
   checkValidInitials(initials);
   const { casing = type === 'space' ? 'none' : 'uppercase', ...rest } = props;
+  const { highContrastMode, euiTheme } = useEuiTheme();
 
   const visColors = useEuiPaletteColorBlindBehindText();
 
   const isPlain = color === 'plain';
   const isSubdued = color === 'subdued';
   const isNamedColor = isPlain || isSubdued || color === null;
+  const isForcedColors = highContrastMode === 'forced';
 
   const classes = classNames(
     'euiAvatar',
@@ -176,20 +178,28 @@ export const EuiAvatar: FunctionComponent<EuiAvatarProps> = ({
     }
   }, [imageUrl, color, isNamedColor, name.length, visColors]);
 
+  const highContrastBorder = useMemo(
+    // Render a border since background-colors are ignored in Windows forced contrast themes
+    () => (isForcedColors ? { border: euiTheme.border.thin } : undefined),
+    [isForcedColors, euiTheme]
+  );
+
   const iconCustomColor = useMemo(() => {
+    // Force icons to single colors in forced high contrast mode
+    if (isForcedColors) return euiTheme.colors.fullShade;
     // `null` allows icons to keep their default color (e.g. app icons)
     if (iconColor === null) return undefined;
     // Otherwise continue to pass on `iconColor`
     if (iconColor) return iconColor;
     // Fall back to the adjusted text color if it exists
     return avatarStyle?.color;
-  }, [iconColor, avatarStyle?.color]);
+  }, [iconColor, avatarStyle?.color, isForcedColors, euiTheme]);
 
   return (
     <div
       css={cssStyles}
       className={classes}
-      style={{ ...style, ...avatarStyle }}
+      style={{ ...style, ...avatarStyle, ...highContrastBorder }}
       aria-label={isDisabled ? undefined : name}
       role={isDisabled ? 'presentation' : 'img'}
       title={name}

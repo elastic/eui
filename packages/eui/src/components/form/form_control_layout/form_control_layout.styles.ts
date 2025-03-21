@@ -14,6 +14,7 @@ import {
   logicalCSS,
   mathWithUnits,
 } from '../../../global_styling';
+import { highContrastModeStyles } from '../../../global_styling/functions/high_contrast';
 
 import { euiFormVariables } from '../form.styles';
 
@@ -141,8 +142,16 @@ export const euiFormControlLayoutSideNodeStyles = (
         ${logicalCSS('padding-right', euiTheme.size.s)}
       }
     `,
-    append: css``,
-    prepend: css``,
+    append: css(
+      highContrastModeStyles(euiThemeContext, {
+        preferred: logicalCSS('border-left', euiTheme.border.thin),
+      })
+    ),
+    prepend: css(
+      highContrastModeStyles(euiThemeContext, {
+        preferred: logicalCSS('border-right', euiTheme.border.thin),
+      })
+    ),
     uncompressed: `
       ${text} {
         ${logicalCSS('padding-horizontal', euiTheme.size.xs)}

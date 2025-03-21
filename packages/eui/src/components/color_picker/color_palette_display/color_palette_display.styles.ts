@@ -10,12 +10,15 @@ import { css } from '@emotion/react';
 
 import { UseEuiTheme } from '../../../services';
 import { logicalCSS } from '../../../global_styling';
+import { preventForcedColors } from '../../../global_styling/functions/high_contrast';
 
 export const euiColorPaletteDisplayStyles = (euiThemeContext: UseEuiTheme) => {
-  const { euiTheme } = euiThemeContext;
+  const { euiTheme, highContrastMode } = euiThemeContext;
 
-  // Border is a pseudo element with transparency
-  const border = `${euiTheme.border.width.thin} solid ${euiTheme.colors.borderBaseFormsColorSwatch}`;
+  const border = highContrastMode
+    ? euiTheme.border.thin
+    : // Border is a pseudo element with transparency
+      `${euiTheme.border.width.thin} solid ${euiTheme.colors.borderBaseFormsColorSwatch}`;
 
   return {
     euiColorPaletteDisplay: css`
@@ -23,6 +26,7 @@ export const euiColorPaletteDisplayStyles = (euiThemeContext: UseEuiTheme) => {
       display: flex;
       flex-direction: row;
       overflow: hidden;
+      ${preventForcedColors(euiThemeContext)}
 
       &::after {
         content: '';

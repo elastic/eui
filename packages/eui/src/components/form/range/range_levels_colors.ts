@@ -18,16 +18,16 @@ export const LEVEL_COLORS = [
 ] as const;
 export type EuiRangeLevelColor = (typeof LEVEL_COLORS)[number];
 
-export const isNamedLevelColor = (color?: EuiRangeLevelColor | string) =>
+export const isNamedLevelColor = (
+  color?: EuiRangeLevelColor | string
+): color is EuiRangeLevelColor =>
   LEVEL_COLORS.includes(color as EuiRangeLevelColor);
 
 export const euiRangeLevelColor = (
   color: EuiRangeLevelColor | string,
-  euiTheme: UseEuiTheme['euiTheme']
+  { euiTheme }: UseEuiTheme
 ) => {
-  return isNamedLevelColor(color)
-    ? euiTheme.colors[color as EuiRangeLevelColor]
-    : color;
+  return isNamedLevelColor(color) ? euiTheme.colors[color] : color;
 };
 
 export const getLevelColor = (levels: EuiRangeLevel[], value: number) => {

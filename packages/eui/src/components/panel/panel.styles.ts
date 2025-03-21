@@ -15,6 +15,7 @@ import {
   logicalCSS,
   logicalTextAlignCSS,
 } from '../../global_styling';
+import { highContrastModeStyles } from '../../global_styling/functions/high_contrast';
 
 export const euiPanelBorderStyles = (
   euiThemeContext: UseEuiTheme,
@@ -30,26 +31,31 @@ export const euiPanelBorderStyles = (
    euiTheme.colors.borderBaseFloating is enough then */
   const hasVisibleBorder = hasFloatingBorder && colorMode === 'DARK';
 
-  return `
-    /* Using a pseudo element for the border instead of floating border only 
+  return highContrastModeStyles(euiThemeContext, {
+    none: `
+      /* Using a pseudo element for the border instead of floating border only 
       because the transparent border might otherwise be visible with arbitrary 
       full-width/height content in light mode. */
-    &::before {
-      content: '';
-      position: absolute;
-      /* ensure to keep on top of flush content */
-      z-index: 1;
-      inset: 0;
-      border: ${euiTheme.border.width.thin} solid
-        ${
-          borderColor ?? hasVisibleBorder
-            ? euiTheme.border.color
-            : euiTheme.colors.borderBaseFloating
-        };
-      border-radius: inherit;
-      pointer-events: none;
-    }
-`;
+      &::before {
+        content: '';
+        position: absolute;
+        /* ensure to keep on top of flush content */
+        z-index: 1;
+        inset: 0;
+        border: ${euiTheme.border.width.thin} solid
+          ${
+            borderColor ?? hasVisibleBorder
+              ? euiTheme.border.color
+              : euiTheme.colors.borderBaseFloating
+          };
+        border-radius: inherit;
+        pointer-events: none;
+      }
+    `,
+    preferred: `
+      border: ${euiTheme.border.thin};
+    `,
+  });
 };
 
 export const euiPanelStyles = (euiThemeContext: UseEuiTheme) => {
@@ -106,7 +112,15 @@ export const euiPanelStyles = (euiThemeContext: UseEuiTheme) => {
 
       &:hover,
       &:focus {
-        ${euiShadow(euiThemeContext, 'l')}
+        ${highContrastModeStyles(euiThemeContext, {
+          none: euiShadow(euiThemeContext, 'l'),
+          // Windows high contrast themes ignore box-shadows - use a filter workaround instead
+          preferred: `
+            &:not(.euiPanel--transparent) {
+              filter: drop-shadow(0 ${euiTheme.border.width.thick} 0 ${euiTheme.border.color});
+            }
+          `,
+        })}
         transform: translateY(-2px);
         cursor: pointer;
       }

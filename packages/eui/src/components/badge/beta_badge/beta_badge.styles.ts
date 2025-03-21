@@ -9,6 +9,7 @@
 import { css } from '@emotion/react';
 import {
   logicalCSS,
+  logicalSizeCSS,
   euiFocusRing,
   euiFontSizeFromScale,
   euiTextTruncate,
@@ -31,6 +32,7 @@ export const euiBetaBadgeStyles = (euiThemeContext: UseEuiTheme) => {
     euiBetaBadge: css`
       display: inline-block;
       border-radius: ${euiTheme.size.l};
+      border: ${euiTheme.border.width.thin} solid transparent;
       cursor: default;
 
       font-weight: ${euiTheme.font.weight.semiBold};
@@ -54,8 +56,7 @@ export const euiBetaBadgeStyles = (euiThemeContext: UseEuiTheme) => {
     hollow: css`
       color: ${badgeColors.hollow.color};
       background-color: ${badgeColors.hollow.backgroundColor};
-      box-shadow: inset 0 0 0 ${euiTheme.border.width.thin}
-        ${badgeColors.hollow.borderColor};
+      border-color: ${badgeColors.hollow.borderColor};
     `,
     warning: css(badgeColors.warning),
     // Font sizes
@@ -67,7 +68,6 @@ export const euiBetaBadgeStyles = (euiThemeContext: UseEuiTheme) => {
       font-size: 0.7rem;
       line-height: ${badgeSizes.s};
     `,
-    // Padding/width sizes
     badgeSizes: {
       default: {
         m: `
@@ -81,15 +81,8 @@ export const euiBetaBadgeStyles = (euiThemeContext: UseEuiTheme) => {
       },
       // When it's just an icon or a single letter, make the badge a circle
       circle: {
-        m: `
-          ${logicalCSS('width', euiTheme.size.l)}
-        `,
-        s: `
-          ${logicalCSS(
-            'width',
-            mathWithUnits(euiTheme.size.xs, (x) => x + euiTheme.base)
-          )}
-        `,
+        m: logicalSizeCSS(badgeSizes.m),
+        s: logicalSizeCSS(badgeSizes.s),
       },
     },
     euiBetaBadge__icon: css`

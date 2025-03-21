@@ -5,6 +5,7 @@ import {
   EuiPanelProps,
   useEuiMemoizedStyles,
   UseEuiTheme,
+  highContrastModeStyles,
 } from '@elastic/eui';
 import { css } from '@emotion/react';
 import { GuidelineType } from './types';
@@ -17,23 +18,38 @@ export interface GuidelineProps extends PropsWithChildren {
   panelStyle?: EuiPanelProps['style'];
 }
 
-const getGuidelineStyles = ({ euiTheme }: UseEuiTheme) => ({
-  root: css`
-    margin-block: var(--eui-theme-content-vertical-spacing);
-  `,
-  wrapper: css`
-    border-block-end: 2px solid ${euiTheme.colors.lightShade};
-  `,
-  wrapperDo: css`
-    border-color: ${euiTheme.colors.success};
-  `,
-  wrapperDont: css`
-    border-color: ${euiTheme.colors.danger};
-  `,
-  textWrapper: css`
-    margin-block-start: var(--eui-size-xs);
-  `,
-});
+const getGuidelineStyles = (euiThemeContext: UseEuiTheme) => {
+  const { euiTheme } = euiThemeContext;
+  return {
+    root: css`
+      margin-block: var(--eui-theme-content-vertical-spacing);
+    `,
+    wrapper: css`
+      border-block-end: ${euiTheme.border.thick};
+      border-start-start-radius: ${euiTheme.border.radius.medium};
+      border-start-end-radius: ${euiTheme.border.radius.medium};
+      overflow: hidden;
+
+      ${highContrastModeStyles(euiThemeContext, {
+        // Code block is used within a panel which already has a border - skip doubling up
+        preferred: `
+          & > .euiCodeBlock {
+            border: none;
+          }
+        `,
+      })}
+    `,
+    wrapperDo: css`
+      border-color: ${euiTheme.colors.success};
+    `,
+    wrapperDont: css`
+      border-color: ${euiTheme.colors.danger};
+    `,
+    textWrapper: css`
+      margin-block-start: var(--eui-size-xs);
+    `,
+  };
+};
 
 export const Guideline = ({
   children,

@@ -19,4 +19,6 @@ export {
   type ComputedThemeShape,
   type EuiThemeComputed,
   type EuiThemeNested,
+  type EuiThemeHighContrastMode,
+  type EuiThemeHighContrastModeProp,
 } from '@elastic/eui-theme-common';

@@ -90,3 +90,9 @@ export const UnorderedSteps: Story = {
     titleSize: 'xxs',
   },
 };
+
+export const HighContrast: Story = {
+  ...Playground,
+  tags: ['vrt-only'],
+  globals: { highContrastMode: true },
+};

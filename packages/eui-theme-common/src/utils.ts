@@ -41,12 +41,14 @@ export const isInverseColorMode = (
  * Returns the parent color mode if none is explicity set.
  * @param {string} colorMode - `light`, `dark`, or `inverse`
  * @param {string} parentColorMode - `LIGHT` or `DARK`; used as the fallback
+ * @param {boolean} isForced
  */
 export const getColorMode = (
   colorMode?: EuiThemeColorMode,
-  parentColorMode?: EuiThemeColorModeStandard
+  parentColorMode?: EuiThemeColorModeStandard,
+  isForced?: boolean
 ): EuiThemeColorModeStandard => {
-  if (colorMode == null) {
+  if (isForced || colorMode == null) {
     return parentColorMode || DEFAULT_COLOR_MODE;
   }
   const mode = colorMode.toUpperCase() as

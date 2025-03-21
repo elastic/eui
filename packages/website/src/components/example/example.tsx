@@ -6,7 +6,13 @@
  * Side Public License, v 1.
  */
 
-import { PropsWithChildren, ReactNode, useMemo, Children, ReactElement } from 'react';
+import {
+  PropsWithChildren,
+  ReactNode,
+  useMemo,
+  Children,
+  ReactElement,
+} from 'react';
 import { css } from '@emotion/react';
 import {
   EuiSplitPanel,
@@ -14,6 +20,7 @@ import {
   useEuiTheme,
   useEuiMemoizedStyles,
   euiFontSize,
+  highContrastModeStyles,
 } from '@elastic/eui';
 import { isElement } from 'react-is';
 
@@ -61,7 +68,8 @@ const ExamplePreview = ({ children }: PropsWithChildren) => children;
  */
 export const Example = ({ children }: ExampleProps) => {
   const styles = useEuiMemoizedStyles(getExampleStyles);
-  const { euiTheme } = useEuiTheme();
+  const euiThemeContext = useEuiTheme();
+  const { euiTheme } = euiThemeContext;
   const { description, snippet, preview } = useMemo(() => {
     let description: ReactNode;
     let snippet: ReactNode;
@@ -97,17 +105,24 @@ export const Example = ({ children }: ExampleProps) => {
         {description}
       </EuiSplitPanel.Inner>
       <EuiSplitPanel.Inner paddingSize="none">
-        <EuiSplitPanel.Outer
-          direction="column"
-          hasBorder
-          hasShadow={false}
-          style={{ overflow: 'hidden' }}
-        >
+        <EuiSplitPanel.Outer direction="column" hasBorder hasShadow={false}>
           <EuiSplitPanel.Inner>{preview}</EuiSplitPanel.Inner>
           <EuiSplitPanel.Inner
             paddingSize="none"
             css={css`
               background: ${euiTheme.colors.lightestShade};
+              border-end-start-radius: ${euiTheme.border.radius.medium};
+              border-end-end-radius: ${euiTheme.border.radius.medium};
+              overflow: hidden;
+
+              ${highContrastModeStyles(euiThemeContext, {
+                // Code block is used within a panel which already has a border - skip doubling up
+                preferred: `
+                  & > .euiCodeBlock {
+                    border: none;
+                  }
+                `,
+              })}
             `}
           >
             {snippet}

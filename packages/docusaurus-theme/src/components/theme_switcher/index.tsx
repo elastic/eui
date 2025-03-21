@@ -4,9 +4,13 @@ import {
   EuiAvatar,
   EuiButtonEmpty,
   euiFocusRing,
+  EuiHorizontalRule,
   EuiListGroup,
   EuiListGroupItem,
   EuiPopover,
+  EuiPopoverFooter,
+  EuiSwitch,
+  EuiSwitchEvent,
   useEuiMemoizedStyles,
   useEuiTheme,
   UseEuiTheme,
@@ -33,12 +37,21 @@ const getStyles = (euiThemeContext: UseEuiTheme) => {
 };
 
 export const ThemeSwitcher = () => {
-  const { euiTheme } = useEuiTheme();
+  const euiThemeContext = useEuiTheme();
+  const { euiTheme } = euiThemeContext;
+
   const [currentTheme, setCurrentTheme] = useState(
     AVAILABLE_THEMES[0]?.value ?? ''
   );
   const [isPopoverOpen, setPopoverOpen] = useState(false);
-  const { theme, changeTheme } = useContext(AppThemeContext);
+  const appContext = useContext(AppThemeContext);
+  const { theme, changeTheme, changeHighContrastMode } = appContext;
+
+  const isForcedContrastMode = euiThemeContext.highContrastMode === 'forced';
+  const _highContrastMode =
+    appContext.colorMode && !isForcedContrastMode
+      ? appContext.highContrastMode
+      : euiThemeContext.highContrastMode;
 
   useEffect(() => {
     changeTheme(currentTheme);
@@ -63,7 +76,7 @@ export const ThemeSwitcher = () => {
       isOpen={isPopoverOpen}
       closePopover={() => setPopoverOpen(false)}
       button={button}
-      panelPaddingSize="xs"
+      panelPaddingSize="none"
       repositionOnScroll
       aria-label="EUI theme list"
     >
@@ -89,6 +102,17 @@ export const ThemeSwitcher = () => {
             );
           })}
       </EuiListGroup>
+      <EuiPopoverFooter paddingSize="s">
+        <EuiSwitch
+          compressed
+          label="High contrast"
+          checked={!!_highContrastMode}
+          onChange={(e: EuiSwitchEvent) => {
+            changeHighContrastMode(!_highContrastMode);
+          }}
+          disabled={isForcedContrastMode}
+        />
+      </EuiPopoverFooter>
     </EuiPopover>
   );
 };

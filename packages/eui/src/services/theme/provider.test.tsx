@@ -11,8 +11,17 @@ import { render } from '@testing-library/react'; // Note - don't use the EUI cus
 import { css } from '@emotion/react';
 
 import { EuiProvider } from '../../components/provider';
+import {
+  EuiSystemDefaultsProvider,
+  useWindowMediaMatcher,
+} from '../../components/provider/system_defaults';
+jest.mock('../../components/provider/system_defaults/match_media_hook', () => ({
+  useWindowMediaMatcher: jest.fn(),
+}));
 import { useCurrentEuiBreakpoint } from '../breakpoint';
 import { EuiNestedThemeContext } from './context';
+import { useEuiTheme } from './hooks';
+
 import { EuiThemeProvider } from './provider';
 
 describe('EuiThemeProvider', () => {
@@ -58,6 +67,94 @@ describe('EuiThemeProvider', () => {
         '#07101F'
       );
     });
+
+    it('detects if color mode is forced from the system and overrides any props', () => {
+      (useWindowMediaMatcher as jest.Mock).mockImplementation((media) => {
+        if (media === '(prefers-color-scheme: dark)') return true;
+        if (media === '(forced-colors: active)') return true;
+      });
+
+      const { getByText } = render(
+        <EuiSystemDefaultsProvider>
+          <EuiThemeProvider colorMode="light">
+            <div css={({ euiTheme }) => ({ color: euiTheme.colors.fullShade })}>
+              Forced dark mode
+            </div>
+          </EuiThemeProvider>
+        </EuiSystemDefaultsProvider>
+      );
+
+      expect(getByText('Forced dark mode')).toHaveStyleRule('color', '#FFFFFF');
+    });
+  });
+
+  describe('highContrastMode', () => {
+    const Output = () => {
+      const { highContrastMode } = useEuiTheme();
+      return <>{String(highContrastMode)}</>;
+    };
+
+    afterEach(() => {
+      (useWindowMediaMatcher as jest.Mock).mockReset();
+    });
+
+    it('always sets the contrast mode to forced if inherited from the system, overriding any application prop', () => {
+      (useWindowMediaMatcher as jest.Mock).mockImplementation((media) => {
+        if (media === '(forced-colors: active)') return true;
+      });
+
+      const { container } = render(
+        <EuiSystemDefaultsProvider>
+          <EuiThemeProvider highContrastMode={false}>
+            <Output />
+          </EuiThemeProvider>
+        </EuiSystemDefaultsProvider>
+      );
+
+      expect(container.textContent).toEqual('forced');
+    });
+
+    it("converts true to 'preferred'", () => {
+      const { container } = render(
+        <EuiSystemDefaultsProvider>
+          <EuiThemeProvider highContrastMode={true}>
+            <Output />
+          </EuiThemeProvider>
+        </EuiSystemDefaultsProvider>
+      );
+
+      expect(container.textContent).toEqual('preferred');
+    });
+
+    it('leaves false as `false`', () => {
+      const { container } = render(
+        <EuiSystemDefaultsProvider>
+          <EuiThemeProvider highContrastMode={false}>
+            <Output />
+          </EuiThemeProvider>
+        </EuiSystemDefaultsProvider>
+      );
+
+      expect(container.textContent).toEqual('false');
+    });
+
+    it('falls back to the system/parent contrast mode if not specified', () => {
+      (useWindowMediaMatcher as jest.Mock).mockImplementation((media) => {
+        if (media === '(prefers-contrast: more)') return true;
+      });
+
+      const { container } = render(
+        <EuiSystemDefaultsProvider>
+          <EuiThemeProvider>
+            <Output />
+          </EuiThemeProvider>
+        </EuiSystemDefaultsProvider>
+      );
+
+      expect(container.textContent).toEqual('preferred');
+    });
+
+    // see high_contrast_overrides.test.tsx for tests that output styles are correctly overridden
   });
 
   describe('modify', () => {

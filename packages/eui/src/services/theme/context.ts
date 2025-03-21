@@ -11,6 +11,7 @@ import { EuiThemeBorealis } from '@elastic/eui-theme-borealis';
 
 import {
   EuiThemeColorModeStandard,
+  EuiThemeHighContrastMode,
   EuiThemeSystem,
   EuiThemeModifications,
   EuiThemeComputed,
@@ -19,14 +20,27 @@ import {
 
 import { DEFAULT_COLOR_MODE, getComputed } from './utils';
 
-export const EuiSystemContext = createContext<EuiThemeSystem>(EuiThemeBorealis);
-export const EuiModificationsContext = createContext<EuiThemeModifications>({});
-export const EuiColorModeContext =
-  createContext<EuiThemeColorModeStandard>(DEFAULT_COLOR_MODE);
+export const DEFAULTS = {
+  system: EuiThemeBorealis,
+  modifications: {},
+  colorMode: DEFAULT_COLOR_MODE,
+  highContrastMode: false as const,
+};
+
+export const EuiSystemContext = createContext<EuiThemeSystem>(DEFAULTS.system);
+export const EuiModificationsContext = createContext<EuiThemeModifications>(
+  DEFAULTS.modifications
+);
+export const EuiColorModeContext = createContext<EuiThemeColorModeStandard>(
+  DEFAULTS.colorMode
+);
+export const EuiHighContrastModeContext =
+  createContext<EuiThemeHighContrastMode>(DEFAULTS.highContrastMode);
+
 export const defaultComputedTheme = getComputed(
-  EuiThemeBorealis,
-  {},
-  DEFAULT_COLOR_MODE
+  DEFAULTS.system,
+  DEFAULTS.modifications,
+  DEFAULTS.colorMode
 );
 export const EuiThemeContext =
   createContext<EuiThemeComputed>(defaultComputedTheme);

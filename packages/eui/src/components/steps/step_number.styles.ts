@@ -15,6 +15,10 @@ import {
   euiAnimScale,
   logicalSizeCSS,
 } from '../../global_styling';
+import {
+  highContrastModeStyles,
+  preventForcedColors,
+} from '../../global_styling/functions/high_contrast';
 import { UseEuiTheme } from '../../services';
 import { euiStepVariables } from './step.styles';
 import { euiButtonFillColor } from '../../global_styling/mixins';
@@ -25,18 +29,28 @@ export const euiStepNumberStyles = (euiThemeContext: UseEuiTheme) => {
 
   const createStepsNumber = (size: string, fontSize: string) => {
     return `
-      display: inline-block;
-      line-height: ${size};
-      border-radius: ${size};
+      display: flex;
+      justify-content: center;
+      align-items: center;
       ${logicalCSS('width', size)};
       ${logicalCSS('height', size)};
-      text-align: center;
-      color: ${euiTheme.colors.emptyShade};
-      background-color: ${euiTheme.colors.primary};
       font-size: ${fontSize};
       font-weight: ${euiTheme.font.weight.medium};
+      color: ${euiTheme.colors.emptyShade};
+      background-color: ${euiTheme.colors.primary};
+      border-radius: 50%;
+      ${highContrastModeStyles(euiThemeContext, {
+        preferred: `border: ${euiTheme.border.thick};`,
+      })}
     `;
   };
+
+  // euiButtonColor utils add colored borders in high contrast mode, but
+  // we want to set our own standardized border instead
+  const unsetButtonBorder = (buttonStyles: object) => ({
+    ...buttonStyles,
+    border: undefined,
+  });
 
   return {
     euiStepNumber: css`
@@ -70,17 +84,23 @@ export const euiStepNumberStyles = (euiThemeContext: UseEuiTheme) => {
     // status
     incomplete: css`
       background-color: transparent;
-      color: ${euiTheme.colors.text};
+      color: ${euiTheme.colors.textParagraph};
       border: ${euiTheme.border.thick};
     `,
     disabled: css`
       ${euiButtonFillColor(euiThemeContext, 'disabled')}
+      ${highContrastModeStyles(euiThemeContext, {
+        forced: 'opacity: 0.5;',
+      })}
     `,
     loading: css`
       background: transparent;
+      ${highContrastModeStyles(euiThemeContext, {
+        preferred: 'border: none;',
+      })}
     `,
     warning: css`
-      ${euiButtonFillColor(euiThemeContext, 'warning')}
+      ${unsetButtonBorder(euiButtonFillColor(euiThemeContext, 'warning'))}
 
       ${euiCanAnimate} {
         animation: ${euiAnimScale} ${euiTheme.animation.fast}
@@ -88,7 +108,7 @@ export const euiStepNumberStyles = (euiThemeContext: UseEuiTheme) => {
       }
     `,
     danger: css`
-      ${euiButtonFillColor(euiThemeContext, 'danger')}
+      ${unsetButtonBorder(euiButtonFillColor(euiThemeContext, 'danger'))}
 
       ${euiCanAnimate} {
         animation: ${euiAnimScale} ${euiTheme.animation.fast}
@@ -96,7 +116,7 @@ export const euiStepNumberStyles = (euiThemeContext: UseEuiTheme) => {
       }
     `,
     complete: css`
-      ${euiButtonFillColor(euiThemeContext, 'success')}
+      ${unsetButtonBorder(euiButtonFillColor(euiThemeContext, 'success'))}
 
       ${euiCanAnimate} {
         animation: ${euiAnimScale} ${euiTheme.animation.fast}
@@ -104,9 +124,27 @@ export const euiStepNumberStyles = (euiThemeContext: UseEuiTheme) => {
       }
     `,
     current: css`
-      border: ${euiTheme.border.width.thick} solid ${euiTheme.colors.body};
-      box-shadow: 0 0 0 ${euiTheme.border.width.thick}
-        ${euiTheme.colors.primary};
+      transform: scale(1.1);
+      box-shadow: inset 0 0 0 ${euiTheme.border.width.thick}
+        ${euiTheme.colors.emptyShade};
+
+      ${highContrastModeStyles(euiThemeContext, {
+        none: `
+          border: ${euiTheme.border.width.thick} solid ${euiTheme.colors.primary};
+        `,
+        // !important overrides horizontal steps' euiOutline usage. The extra offset
+        // is here to helps reduce subpixel gaps between the outline and the border
+        preferred: `
+          border-width: ${euiTheme.border.width.thick};
+          outline-offset: -${euiTheme.border.width.thin} !important;
+        `,
+        // For Windows forced color themes, just invert the background/foreground colors
+        forced: `
+          color: ${euiTheme.colors.emptyShade};
+          background-color: ${euiTheme.colors.fullShade};
+          ${preventForcedColors(euiThemeContext)}
+        `,
+      })}
     `,
   };
 };
@@ -114,11 +152,7 @@ export const euiStepNumberStyles = (euiThemeContext: UseEuiTheme) => {
 export const euiStepNumberContentStyles = ({ euiTheme }: UseEuiTheme) => {
   return {
     // Statuses with icon content
-    euiStepNumber__icon: css`
-      vertical-align: middle;
-      position: relative;
-      inset-block-start: -${euiTheme.border.width.thin};
-    `,
+    euiStepNumber__icon: css``,
     complete: css`
       /* Thicken the checkmark by adding a slight stroke */
       stroke: currentColor;
@@ -129,25 +163,14 @@ export const euiStepNumberContentStyles = ({ euiTheme }: UseEuiTheme) => {
       stroke: currentColor;
       stroke-width: ${mathWithUnits(euiTheme.border.width.thin, (x) => x / 2)};
     `,
-    warning: css`
-      /* Slight extra visual offset */
-      inset-block-start: -${euiTheme.border.width.thick};
-    `,
-    // Statuses with number content
-    euiStepNumber__number: css``,
-    incomplete: css`
-      /* Adjusts position because of thicker border */
-      display: unset;
-      position: relative;
-      inset-block-start: -${euiTheme.border.width.thick};
-    `,
-    loading: css``,
-    disabled: css``,
-    current: css`
-      /* Transform the step number so it appears in the center of the step circle */
-      display: inline-block;
-      transform: translateY(-${euiTheme.border.width.thick});
-    `,
+    warning: {
+      // Slight extra offset for visual balance. Intentionally uses static px and not tokens
+      m: `margin-block-start: -2px;`,
+      s: `margin-block-start: -2px;`,
+      xs: `margin-block-start: -1px;`,
+      none: `margin-block-start: -0.5px;`,
+    },
+    // Title sizes
     none: css(logicalSizeCSS(euiTheme.size.s)),
   };
 };

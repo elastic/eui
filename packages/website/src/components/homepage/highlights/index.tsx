@@ -160,11 +160,9 @@ const getStyles = ({ euiTheme, colorMode }: UseEuiTheme) => ({
     }
   `,
   card: css`
-    background-color: transparent;
-    border: none;
-
     &:hover {
       box-shadow: none;
+      filter: none;
 
       a {
         color: ${euiTheme.colors.link};
@@ -251,7 +249,7 @@ export const HomepageHighlights = () => {
                       )
                     }
                     paddingSize="s"
-                    hasBorder
+                    display="transparent"
                     css={styles.card}
                   >
                     <EuiText>

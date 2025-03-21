@@ -68,7 +68,7 @@ export const euiHeaderStyles = (euiThemeContext: UseEuiTheme) => {
 import { euiFormVariables } from '../form/form.styles';
 
 const euiHeaderDarkStyles = (euiThemeContext: UseEuiTheme) => {
-  const { euiTheme } = euiThemeContext;
+  const { euiTheme, highContrastMode } = euiThemeContext;
   const { controlPlaceholderText } = euiFormVariables(euiThemeContext);
 
   const backgroundColor = euiTheme.components.headerDarkBackground;
@@ -124,7 +124,11 @@ const euiHeaderDarkStyles = (euiThemeContext: UseEuiTheme) => {
       }
 
       &--group {
-        border-color: ${euiTheme.components.headerDarkSearchBorderColor};
+        border-color: ${
+          highContrastMode
+            ? euiTheme.border.color
+            : euiTheme.components.headerDarkSearchBorderColor
+        };
 
         input {
           box-shadow: none;

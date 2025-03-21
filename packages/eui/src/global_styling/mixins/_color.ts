@@ -151,6 +151,8 @@ export const euiBorderColor = (
     case 'transparent':
       return euiTheme.border.color;
     default: {
+      // border tokens are overridden in for high contrast mode
+      // in high_contrast_overrides.ts
       const tokenName = getTokenName(
         'borderBase',
         color
@@ -167,10 +169,13 @@ export const euiBorderColor = (
  */
 const _euiBorderColors = (euiThemeContext: UseEuiTheme) =>
   BACKGROUND_COLORS.reduce((acc, color) => {
+    // border tokens are overridden in for high contrast mode
+    // in high_contrast_overrides.ts
     const borderToken = getTokenName(
       'borderBase',
       color
     ) as keyof _EuiThemeBorderColors;
+
     const borderColor =
       color === 'transparent'
         ? euiThemeContext.euiTheme.border.color

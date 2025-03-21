@@ -134,7 +134,7 @@ export type _EuiThemeTextColors = {
    */
   subduedText: ColorModeSwitch;
   /**
-   * Computed against `colors.primaryText`
+   * Computed against `colors.textPrimary`
    */
   link: ColorModeSwitch;
 

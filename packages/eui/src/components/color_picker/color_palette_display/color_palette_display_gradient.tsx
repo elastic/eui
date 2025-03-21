@@ -19,7 +19,7 @@ export interface EuiColorPaletteDisplayGradientProps
 
 export const EuiColorPaletteDisplayGradient: FunctionComponent<
   EuiColorPaletteDisplayGradientProps
-> = ({ palette, title, style = {}, ...rest }) => {
+> = ({ palette, title, style, ...rest }) => {
   const gradient = getLinearGradient(palette);
 
   return (

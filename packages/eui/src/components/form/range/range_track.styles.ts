@@ -8,6 +8,7 @@
 
 import { css } from '@emotion/react';
 import { UseEuiTheme } from '../../../services';
+import { highContrastModeStyles } from '../../../global_styling/functions/high_contrast';
 import { euiRangeVariables } from './range.styles';
 
 export const euiRangeTrackStyles = (euiThemeContext: UseEuiTheme) => {
@@ -27,9 +28,18 @@ export const euiRangeTrackStyles = (euiThemeContext: UseEuiTheme) => {
         position: absolute;
         inset-block-start: ${range.trackTopPositionWithoutTicks};
         inset-inline-start: 0;
-        block-size: ${range.trackHeight};
         inline-size: ${range.trackWidth};
-        background: ${range.trackColor};
+        ${highContrastModeStyles(euiThemeContext, {
+          none: `
+            background: ${range.trackColor};
+            block-size: ${range.trackHeight};
+          `,
+          // Windows high contrast themes ignore background color, but will render borders
+          forced: `
+            border-block-start: ${range.trackHeight} solid ${range.trackColor};
+            opacity: 0.25;
+          `,
+        })}
         border-radius: ${range.trackBorderRadius};
       }
     `,

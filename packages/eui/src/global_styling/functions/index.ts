@@ -6,6 +6,7 @@
  * Side Public License, v 1.
  */
 
+export * from './high_contrast';
 export * from './logicals';
 export * from './logical_shorthands';
 export * from './math';

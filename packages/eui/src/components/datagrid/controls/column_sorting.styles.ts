@@ -43,7 +43,9 @@ export const euiDataGridColumnSortingStyles = (
       ${logicalCSS('padding-horizontal', euiTheme.size.s)}
 
       &.euiDataGridColumnSorting__item-isDragging {
-        ${euiShadowLarge(euiThemeContext)}
+        ${euiShadowLarge(euiThemeContext, {
+          borderAllInHighContrastMode: true,
+        })}
         background-color: ${euiTheme.colors.emptyShade};
       }
     `,

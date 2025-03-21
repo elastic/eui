@@ -10,7 +10,7 @@ import {
 } from '../../../../src';
 
 export default () => {
-  const { euiTheme, colorMode } = useEuiTheme();
+  const { euiTheme, colorMode, highContrastMode } = useEuiTheme();
   return (
     <EuiPanel grow={false} paddingSize="l" color="subdued">
       <EuiFlexGroup responsive={false} alignItems="center">
@@ -44,13 +44,13 @@ export default () => {
         <EuiFlexItem grow={false}>
           <EuiText size="s">
             <EuiCode transparentBackground>colorMode:</EuiCode>
+            <code>{colorMode}</code>
           </EuiText>
         </EuiFlexItem>
         <EuiFlexItem grow={false}>
-          <EuiText size="s" color="subdued">
-            <p>
-              <code>{colorMode}</code>
-            </p>
+          <EuiText size="s">
+            <EuiCode transparentBackground>highContrastMode:</EuiCode>
+            <code>{String(highContrastMode)}</code>
           </EuiText>
         </EuiFlexItem>
       </EuiFlexGroup>

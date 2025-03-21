@@ -1,6 +1,10 @@
 import React, { FunctionComponent } from 'react';
-import { EuiCodeBlock } from '../../../../../src/components/code';
-import { EuiSpacer } from '../../../../../src/components/spacer';
+import {
+  EuiCodeBlock,
+  EuiHorizontalRule,
+  EuiSpacer,
+  useEuiTheme,
+} from '../../../../../src';
 
 export type GuideSectionSnippets = {
   snippets: string | string[];
@@ -9,20 +13,29 @@ export type GuideSectionSnippets = {
 export const GuideSectionSnippets: FunctionComponent<GuideSectionSnippets> = ({
   snippets,
 }) => {
+  const { highContrastMode } = useEuiTheme();
+  const codeBlockProps = {
+    language: 'jsx',
+    fontSize: 'm',
+    paddingSize: 'm',
+    isCopyable: true,
+    // Code block is used within a panel which already has a border - skip doubling up
+    ...(highContrastMode && { css: { border: 'none' } }),
+  } as const;
+
   let snippetCode;
   if (typeof snippets === 'string') {
-    snippetCode = (
-      <EuiCodeBlock language="jsx" fontSize="m" paddingSize="m" isCopyable>
-        {snippets}
-      </EuiCodeBlock>
-    );
+    snippetCode = <EuiCodeBlock {...codeBlockProps}>{snippets}</EuiCodeBlock>;
   } else {
     snippetCode = snippets.map((snip, index) => (
       <React.Fragment key={`snippet${index}`}>
-        <EuiCodeBlock language="jsx" fontSize="m" paddingSize="m" isCopyable>
-          {snip}
-        </EuiCodeBlock>
-        {index < snippets.length - 1 && <EuiSpacer size="xs" />}
+        <EuiCodeBlock {...codeBlockProps}>{snip}</EuiCodeBlock>
+        {index < snippets.length - 1 &&
+          (highContrastMode ? (
+            <EuiHorizontalRule margin="xs" />
+          ) : (
+            <EuiSpacer size="xs" />
+          ))}
       </React.Fragment>
     ));
   }

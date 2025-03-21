@@ -20,6 +20,12 @@ export default () => {
             The <EuiCode>colorMode</EuiCode> determines which values to return
             based on <EuiCode>LIGHT</EuiCode> or <EuiCode>DARK</EuiCode> mode.
           </p>
+          <p>
+            By default, if this prop is not passed, <strong>EuiProvider</strong>{' '}
+            will detect and use the user's system dark mode preference. If the
+            prop <em>is</em> passed, it will override the user's system
+            settings.
+          </p>
         </EuiText>
       </EuiFlexItem>
       <EuiFlexItem>

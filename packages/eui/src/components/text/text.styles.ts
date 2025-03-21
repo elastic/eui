@@ -16,9 +16,11 @@ import {
   _FontScaleOptions,
   mathWithUnits,
 } from '../../global_styling';
+import { highContrastModeStyles } from '../../global_styling/functions/high_contrast';
 
 import { euiLinkCSS } from '../link/link.styles';
 import { euiTitle } from '../title/title.styles';
+import { euiCodeTextColors } from '../code/code_syntax.styles';
 
 /**
  * TODO: Make this a global value so it can be set by theme?
@@ -33,7 +35,7 @@ export const euiText = (
   inheritColor = false
 ) => {
   return {
-    color: inheritColor ? 'inherit' : euiTheme.colors.text,
+    color: inheritColor ? 'inherit' : euiTheme.colors.textParagraph,
     fontWeight: euiTheme.font.weight.regular,
   };
 };
@@ -187,7 +189,7 @@ const euiScaleText = (
 
     .eui-definitionListReverse dt {
       font-size: ${euiFontSize(euiThemeContext, 'xs', options).fontSize};
-      color: ${euiTheme.colors.text};
+      color: ${euiTheme.colors.textParagraph};
     }
 
     small {
@@ -201,6 +203,19 @@ const euiScaleText = (
     code:not(.euiCode):not(.euiCodeBlock__code)  {
       font-size: .9em; /* 90% of parent font size */
     }
+    ${highContrastModeStyles(euiThemeContext, {
+      // For EuiCodeBlocks, set the margin on the wrapper instead of on the <pre>
+      // so that high contrast mode borders render as expected
+      preferred: `
+        .euiCodeBlock {
+          ${logicalCSS('margin-bottom', lineHeightSize)}
+
+          pre {
+            ${logicalCSS('margin-bottom', 0)}
+          }
+        }
+      `,
+    })}
     ${
       // when textSize is 'm', the 'kbd' element gets a line between the text and the border-bottom
       _customScale === 'm'
@@ -216,7 +231,7 @@ const euiScaleText = (
       content: '';
       ${logicalCSS(
         'border-bottom',
-        `${euiTheme.border.width.thin} solid ${euiTheme.colors.text}`
+        `${euiTheme.border.width.thin} solid ${euiTheme.colors.textParagraph}`
       )}
       position: absolute;
       ${logicalCSS('bottom', euiTheme.size.xxs)}
@@ -233,6 +248,7 @@ const euiScaleText = (
  */
 export const euiTextStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
+  const codeColors = euiCodeTextColors(euiThemeContext);
 
   return {
     euiText: css`
@@ -263,7 +279,7 @@ export const euiTextStyles = (euiThemeContext: UseEuiTheme) => {
       /* The blockquote color in euiMarkdownFormat inherits the color from the parent element
          For this reason, we just apply the subdued text color for blockquotes not in markdown */
       blockquote:not(.euiMarkdownFormat__blockquote) {
-        color: ${euiTheme.colors.subduedText};
+        color: ${euiTheme.colors.textSubdued};
       }
 
       h1 {
@@ -302,12 +318,13 @@ export const euiTextStyles = (euiThemeContext: UseEuiTheme) => {
         color: inherit;
       }
 
-      pre:not(.euiCodeBlock__pre) {
+      pre:not(.euiCodeBlock > pre) {
         white-space: pre-wrap;
-        /* TODO: $euiCodeBlockBackgroundColor - switch to var once EuiCode is converted */
-        background: ${euiTheme.colors.backgroundBaseSubdued};
-        /* TODO: $euiCodeBlockColor - switch to var once EuiCode is converted */
-        color: ${euiTheme.colors.text};
+        background-color: ${codeColors.backgroundColor};
+        color: ${codeColors.color};
+        ${highContrastModeStyles(euiThemeContext, {
+          preferred: `border: ${euiTheme.border.thin}`,
+        })}
       }
 
       pre:not(.euiCodeBlock__pre),
@@ -325,11 +342,19 @@ export const euiTextStyles = (euiThemeContext: UseEuiTheme) => {
         ${logicalCSS('padding-vertical', euiTheme.size.xxs)}
         ${logicalCSS('padding-horizontal', euiTheme.size.xs)}
         line-height: 1;
-        border: ${euiTheme.border.width.thin} solid ${euiTheme.colors.text};
+        border: ${euiTheme.border.width.thin} solid
+          ${euiTheme.colors.textParagraph};
         border-radius: ${mathWithUnits(
           euiTheme.border.radius.small,
           (x) => x / 2
         )};
+        ${highContrastModeStyles(euiThemeContext, {
+          // Fixes an odd border issue in Windows high contrast themes
+          forced: `
+            overflow: hidden;
+            vertical-align: middle;
+          `,
+        })}
       }
     `,
     constrainedWidth: css`

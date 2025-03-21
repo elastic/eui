@@ -45,10 +45,7 @@ const cards = [
 export default () => {
   const { euiTheme } = useEuiTheme();
   return (
-    <EuiFlexGrid
-      columns={2}
-      gutterSize="m"
-    >
+    <EuiFlexGrid columns={2} gutterSize="m">
       {cards.map(({ id, title, children, href }) => (
         <EuiCard
           key={id}
@@ -56,9 +53,7 @@ export default () => {
           href={href}
           image={
             <EuiPanel color="transparent" borderRadius="none">
-              <EuiPanel color="subdued">
-                {children}
-              </EuiPanel>
+              <EuiPanel color="subdued">{children}</EuiPanel>
             </EuiPanel>
           }
           title={title}

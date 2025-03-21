@@ -12,7 +12,8 @@ import { _popoverArrowStyles } from '../../../services/popover';
 import { UseEuiTheme } from '../../../services';
 
 export const euiPopoverArrowStyles = (euiThemeContext: UseEuiTheme) => {
-  const { euiTheme } = euiThemeContext;
+  const { euiTheme, highContrastMode, colorMode } = euiThemeContext;
+  const hasBorder = highContrastMode || colorMode === 'DARK';
 
   const arrowSize = euiTheme.size.base;
   const arrowStyles = _popoverArrowStyles(euiThemeContext, arrowSize);
@@ -29,6 +30,7 @@ export const euiPopoverArrowStyles = (euiThemeContext: UseEuiTheme) => {
     euiPopoverArrow: css`
       ${arrowStyles._arrowStyles}
       background-color: var(--euiPopoverBackgroundColor);
+      ${hasBorder ? `border: ${euiTheme.border.thin};` : ''}
     `,
 
     ...arrowStyles.positions,
