@@ -10,7 +10,7 @@ assignees: ''
 
 <!-- Replace <FUNCTIONALITY>, <LINK> and <REASON> -->
 
-`<FUNCTIONALITY>` originates from a feature request: \<LINK\>. It has been implemented in \<LINK\> and is currently in **beta** due to \<REASON\>. This issue is intended to track the progress and necessary actions to transition the functionality out of beta status and into general availability.
+`<FUNCTIONALITY>` originates from a feature request: \<LINK\>. It has been introduced on this PR: \<LINK\> and is currently in **beta** due to \<REASON\>. This issue is intended to track the progress and necessary actions to transition the functionality out of beta status and into general availability.
 
 ### Feature Description
 
@@ -23,7 +23,7 @@ Provide a video, screenshot, links to documentation etc. -->
 
 ### Usage Notes (optional)
 
-<!-- Include any important information or special instructions regarding the current usage of the functionality. -->
+<!-- Include any important information (e.g. metrics) regarding the current usage of the functionality. -->
 
 ### Next Steps
 
