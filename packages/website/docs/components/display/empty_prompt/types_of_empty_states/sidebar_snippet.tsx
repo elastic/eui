@@ -8,7 +8,7 @@ import {
   useEuiTheme,
   useIsWithinBreakpoints,
 } from '@elastic/eui';
-import { Demo } from '@elastic/eui-docusaurus-theme/lib/components/demo/demo.js';
+import { Demo } from '@elastic/eui-docusaurus-theme/components';
 
 import { TYPES_OF_USE_CASES } from './use_cases';
 import { convertToJsxString } from './utils';

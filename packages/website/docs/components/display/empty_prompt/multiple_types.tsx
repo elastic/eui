@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import { EuiSelect, useEuiTheme } from '@elastic/eui';
 
-import { Demo } from '@elastic/eui-docusaurus-theme/lib/components/demo/demo.js';
+import { Demo } from '@elastic/eui-docusaurus-theme/components';
 
 const types: Array<{
   value: string;

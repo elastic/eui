@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
 
 import { EuiSwitch } from '@elastic/eui';
-
-// @ts-expect-error Docusaurus theme is missing types for this component
-import { Demo } from '@elastic/eui-docusaurus-theme/lib/components/demo';
+import { Demo } from '@elastic/eui-docusaurus-theme/components';
 
 const userDataSetup = (
   varName: string = 'users',
@@ -158,7 +156,7 @@ export default () => {
     });
     setSelectedItems([]);
   }
-  
+
   return (
     <>
       <EuiFlexGroup alignItems="center" justifyContent="spaceBetween">
