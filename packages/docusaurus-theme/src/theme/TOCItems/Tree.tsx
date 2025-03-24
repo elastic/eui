@@ -7,10 +7,6 @@ import { useEuiMemoizedStyles, UseEuiTheme } from '@elastic/eui';
 const getStyles = ({ euiTheme }: UseEuiTheme) => {
   return {
     list: css`
-      --ifm-toc-link-color: ${euiTheme.colors.text};
-      --ifm-toc-padding-vertical: ${euiTheme.size.s};
-      --ifm-toc-padding-horizontal: ${euiTheme.size.m};
-
       // ensure specificity to apply override
       :is(ul) li {
         margin: 0;
@@ -35,16 +31,14 @@ const getStyles = ({ euiTheme }: UseEuiTheme) => {
         .tree-item__inner {
           display: flex;
           flex-direction: column;
-          padding: var(--ifm-toc-padding-vertical)
-            var(--ifm-toc-padding-horizontal) var(--ifm-toc-padding-vertical) 0;
+          padding: ${euiTheme.size.s} ${euiTheme.size.m} ${euiTheme.size.s} 0;
           font-size: var(--eui-font-size-xs);
           line-height: var(--eui-line-height-xxs);
         }
 
         // apply the decor border only to top level tree items
         &.table-of-contents > li > .tree-item__inner {
-          padding: var(--ifm-toc-padding-vertical)
-            var(--ifm-toc-padding-horizontal);
+          padding: ${euiTheme.size.s} ${euiTheme.size.m};
           border-left: ${euiTheme.border.width.thick} solid
             ${euiTheme.border.color};
 
@@ -57,6 +51,12 @@ const getStyles = ({ euiTheme }: UseEuiTheme) => {
       .table-of-contents__link--active {
         color: ${euiTheme.colors.link};
       }
+    `,
+    listChild: css`
+      padding-inline-start: ${euiTheme.size.m};
+    `,
+    link: css`
+      color: ${euiTheme.colors.textParagraph};
     `,
   };
 };
@@ -75,12 +75,16 @@ function TOCItemTree({
   }
 
   return (
-    <ul className={isChild ? undefined : className} css={styles.list}>
+    <ul
+      className={isChild ? undefined : className}
+      css={[styles.list, isChild && styles.listChild]}
+    >
       {toc.map((heading) => (
         <li key={heading.id}>
           <span className="tree-item__inner">
             <Link
               to={`#${heading.id}`}
+              css={styles.link}
               className={linkClassName ?? undefined}
               // Developer provided the HTML, so assume it's safe.
               dangerouslySetInnerHTML={{ __html: heading.value }}

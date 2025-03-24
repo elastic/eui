@@ -20,6 +20,7 @@ import { useEuiTheme } from '@elastic/eui';
 import { AppThemeProvider } from '../components/theme_context';
 import { getGlobalStyles } from './Root.styles';
 import { getResetStyles } from './reset.styles';
+import { getInfimaStyles } from './infima.styles';
 
 const styles = {
   root: css`
@@ -34,6 +35,7 @@ const _Root: FunctionComponent<PropsWithChildren> = ({ children }) => {
   const euiTheme = useEuiTheme();
   const globalStyles = getGlobalStyles(euiTheme);
   const resetStyles = getResetStyles(euiTheme);
+  const infimaStyles = getInfimaStyles();
 
   // NOTE: This is a temp. solution
   // Emotion styles are loaded dynamically on client in contrast
@@ -55,7 +57,7 @@ const _Root: FunctionComponent<PropsWithChildren> = ({ children }) => {
           rel="stylesheet"
         />
       </Head>
-      <Global styles={[resetStyles, globalStyles]} />
+      <Global styles={[resetStyles, infimaStyles, globalStyles]} />
       <div style={!mounted ? { display: 'none' } : undefined} css={styles.root}>
         {children}
       </div>
