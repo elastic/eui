@@ -1,9 +1,13 @@
-import { useEuiTheme, useCurrentEuiBreakpoint, EuiIcon, _EuiThemeBreakpoints } from '@elastic/eui';
-import { ThemeValuesTable } from './theme_values_table';
+import {
+  useEuiTheme,
+  useCurrentEuiBreakpoint,
+  EuiIcon,
+  _EuiThemeBreakpoints,
+} from '@elastic/eui';
 
-const sortMapBySmallToLargeValues = (
-  breakpointsMap: _EuiThemeBreakpoints
-) =>
+import { ThemeValuesTable } from '../theme_values_table';
+
+const sortMapBySmallToLargeValues = (breakpointsMap: _EuiThemeBreakpoints) =>
   Object.fromEntries(
     Object.entries(breakpointsMap).sort(([, a], [, b]) => a - b)
   ) as _EuiThemeBreakpoints;
