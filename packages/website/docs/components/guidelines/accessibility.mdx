@@ -6,11 +6,12 @@ sidebar_label: Accessibility
 sidebar_position: 2
 ---
 
+import Link from '@docusaurus/Link';
 import { EuiText } from '@elastic/eui';
 
 This page provides some general accessibility guidelines. For component specific recommendations, be sure to check out their individual documentation pages.
 
-EUI provides a strong start to building accessibility into your apps. The components provided strive to meet [WCAG 2.1](https://www.w3.org/TR/WCAG21/) guidelines on semantics, keyboard functionality, color contrast, and so on. How you stitch together these components in the overall page structure also plays a large role in meeting accessibility goals. Headings, landmarks, page titles, focus management, and accessible names all work together to create accessible apps.
+EUI provides a strong start to building accessibility into your apps. The components provided strive to meet <Link to="https://www.w3.org/TR/WCAG21/">WCAG 2.1</Link> guidelines on semantics, keyboard functionality, color contrast, and so on. How you stitch together these components in the overall page structure also plays a large role in meeting accessibility goals. Headings, landmarks, page titles, focus management, and accessible names all work together to create accessible apps.
 
 Building accessibility into your app is as important as code quality, visual design, and performance, and it’s also important that you test as you go. You can approach accessibility testing from three dimensions: automated, manual, and empathetic thinking. Use automated tests to quickly cover as much ground as possible, manual tests to address more complicated scenarios, and empathy to fill in the gaps.
 
@@ -33,9 +34,9 @@ import { EuiAspectRatio } from '@elastic/eui';
 
 You can aid navigation and make pages more accessible for screen reader users by using solid headings and landmarks. **Headings** are the simplest way for screen readers to navigate pages. A good heading hierarchy:
 
-*   Uses only one `<h1>` on each page
-*   Doesn't skip levels `<h1> → <h6>`
-*   Doesn't duplicate content
+- Uses only one `<h1>` on each page
+- Doesn't skip levels `<h1> → <h6>`
+- Doesn't duplicate content
 
 ### Heading examples
 
@@ -77,7 +78,7 @@ You can aid navigation and make pages more accessible for screen reader users by
 </Guideline>
 
 :::tip
-[**EuiTitle**](/docs/display/title) gives you a way to separate your presentation from your semantic markup.
+[**EuiTitle**](../display/title.mdx) gives you a way to separate your presentation from your semantic markup.
 :::
 
 **Landmarks** are another way for screen readers to navigate pages. A benefit of landmarks is that they offer more context on the type of content to expect than a heading. This is useful for tech that offers reader modes (e.g., Firefox, Safari, and apps like Pocket) and new form factors (e.g., smartwatches). Many landmarks are mapped to HTML elements, such as `<main>`, `<aside>`, `<article>`; others are exposed through the `role` attribute.
@@ -130,13 +131,11 @@ You can implement named landmarks with `aria-label` or `aria-labelledby`. Howeve
 
 ### Further reading
 
-*   [W3C: Aria Landmarks](https://www.w3.org/TR/wai-aria-practices/examples/landmarks/HTML5.html)
-*   [W3C: Page Structure Concepts Tutorial](https://www.w3.org/WAI/tutorials/page-structure/)
-*   [MDN: Good Semantics](https://developer.mozilla.org/en-US/docs/Learn/Accessibility/HTML#Good_semantics)
-*   [Up Your A11y: Accessible Page Layouts](https://www.upyoura11y.com/page-layout/)
-*   [Up Your A11y: Heading Levels in Reusable Components](https://www.upyoura11y.com/reusable-components-with-headers/)
-
----
+- <Link to="https://www.w3.org/TR/wai-aria-practices/examples/landmarks/HTML5.html">W3C: Aria Landmarks</Link>
+- <Link to="https://www.w3.org/WAI/tutorials/page-structure/">W3C: Page Structure Concepts Tutorial</Link>
+- <Link to="https://developer.mozilla.org/en-US/docs/Learn/Accessibility/HTML#Good_semantics">MDN: Good Semantics</Link>
+- <Link to="https://www.upyoura11y.com/page-layout/">Up Your A11y: Accessible Page Layouts</Link>
+- <Link to="https://www.upyoura11y.com/reusable-components-with-headers/">Up Your A11y: Heading Levels in Reusable Components</Link>
 
 ## Page titles
 
@@ -203,9 +202,7 @@ Each page requires a unique, informative title that accurately reflects what the
 
 ### Further reading
 
-*   [WCAG 2.4.2 Page Titled - Level A](https://www.w3.org/WAI/WCAG21/quickref/?showtechniques=242#page-titled)
-
-* * *
+- <Link to="https://www.w3.org/WAI/WCAG21/quickref/?showtechniques=242#page-titled">WCAG 2.4.2 Page Titled - Level A</Link>
 
 ## Focus management
 
@@ -227,14 +224,12 @@ Navigating complex sites sometimes means your focus state will jump around (e.g.
 
 ### Further reading
 
-*   [W3C: Keyboard Compatibility](https://www.w3.org/WAI/perspective-videos/keyboard)
-*   [React docs: Programmatically managing focus](https://reactjs.org/docs/accessibility.html#programmatically-managing-focus)
-*   [MDN: Keyboard-navigable JavaScript widgets](https://developer.mozilla.org/en-US/docs/Web/Accessibility/Keyboard-navigable_JavaScript_widgets)
-*   [WebAIM: Keyboard Accessibility](https://webaim.org/techniques/keyboard)
-*   [Up Your A11y: Getting Started with Keyboard Navigation and Screen Readers](https://www.upyoura11y.com/screen-reader-keyboard-navigation)
-*   [The difference between keyboard and screen reader navigation](https://tink.uk/the-difference-between-keyboard-and-screen-reader-navigation/)
-
-* * *
+- <Link to="https://www.w3.org/WAI/perspective-videos/keyboard">W3C: Keyboard Compatibility</Link>
+- <Link to="https://reactjs.org/docs/accessibility.html#programmatically-managing-focus">React docs: Programmatically managing focus</Link>
+- <Link to="https://developer.mozilla.org/en-US/docs/Web/Accessibility/Keyboard-navigable_JavaScript_widgets">MDN: Keyboard-navigable JavaScript widgets</Link>
+- <Link to="https://webaim.org/techniques/keyboard">WebAIM: Keyboard Accessibility</Link>
+- <Link to="https://www.upyoura11y.com/screen-reader-keyboard-navigation">Up Your A11y: Getting Started with Keyboard Navigation and Screen Readers</Link>
+- <Link to="https://tink.uk/the-difference-between-keyboard-and-screen-reader-navigation/">The difference between keyboard and screen reader navigation</Link>
 
 ## Disabled elements
 
@@ -242,14 +237,12 @@ Browsers remove disabled elements from the tab order. This means keyboard users 
 
 If you disable a button or form element, you need to provide clear instructions to users how to correct errors or remove the disabled state.
 
-When you add the HTML `disabled` attribute to an element, you must remove tooltips or other focus interactions. You must also remove focus interactions if you pass the `isDisabled` prop to components like [EuiAccordion](/docs/layout/accordion#disabled-state).
+When you add the HTML `disabled` attribute to an element, you must remove tooltips or other focus interactions. You must also remove focus interactions if you pass the `isDisabled` prop to components like [EuiAccordion](../layout/accordion.mdx#disabled-state).
 
 ### Further reading
 
-*   [MDN: Tabindex](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex)
-*   [W3C: Disabled elements](https://www.w3.org/TR/2014/REC-html5-20141028/disabled-elements.html#disabled-elements)
-
-* * *
+- <Link to="https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex">MDN: Tabindex</Link>
+- <Link to="https://www.w3.org/TR/2014/REC-html5-20141028/disabled-elements.html#disabled-elements">W3C: Disabled elements</Link>
 
 ## Naming
 
@@ -351,13 +344,11 @@ Here, the 3 buttons have the same accessible name. There are a few different pat
 
 ### Further reading
 
-*   [W3c: Labeling Controls](https://www.w3.org/WAI/tutorials/forms/labels/)
-*   [The Paciello Group: What is an accessible name?](https://developer.paciellogroup.com/blog/2017/04/what-is-an-accessible-name)
-*   [WebAIM: Creating Accessible Forms](https://webaim.org/techniques/forms/controls)
-*   [Mozilla: How accessibility trees inform assistive tech](https://hacks.mozilla.org/2019/06/how-accessibility-trees-inform-assistive-tech)
-*   [A List Apart: Semantics to Screen Readers](https://alistapart.com/article/semantics-to-screen-readers)
-
-* * *
+- <Link to="https://www.w3.org/WAI/tutorials/forms/labels/">W3c: Labeling Controls</Link>
+- <Link to="https://developer.paciellogroup.com/blog/2017/04/what-is-an-accessible-name">The Paciello Group: What is an accessible name?</Link>
+- <Link to="https://webaim.org/techniques/forms/controls">WebAIM: Creating Accessible Forms</Link>
+- <Link to="https://hacks.mozilla.org/2019/06/how-accessibility-trees-inform-assistive-tech">Mozilla: How accessibility trees inform assistive tech</Link>
+- <Link to="https://alistapart.com/article/semantics-to-screen-readers">A List Apart: Semantics to Screen Readers</Link>
 
 ## Testing considerations
 
@@ -367,52 +358,55 @@ There are a lot of aspects to accessibility, and covering all the bases can be a
 
 While low-vision users may use many assistive technologies in tandem, this section focuses on zooming. Two ways that users can zoom the page are by increasing the base font-size with browser tools or by using a 3rd-party magnifier (sometimes, a physical magnifier) to better see the screen.
 
-[WCAG 1.4.4](https://www.w3.org/WAI/WCAG21/quickref/#resize-text) defines 200% browser zoom should continue to work with no further action from the user as a Level AA criteria.
+<Link to="https://www.w3.org/WAI/WCAG21/quickref/#resize-text">WCAG 1.4.4</Link> defines 200% browser zoom should continue to work with no further action from the user as a Level AA criteria.
 
-[ZoomText](https://www.youtube.com/watch?v=QjKG4Tx9ER8&t=473s) is the most popular 3rd-party magnifier that gives users a window they can drag over content to magnify and read it out loud. Testing for the best experiences here is exceptionally difficult because you must make visual judgement calls. Specifically, related pieces of information should be close enough together for a low-vision user to efficiently interact with the UI.
+<Link to="https://www.youtube.com/watch?v=QjKG4Tx9ER8&t=473s">ZoomText</Link> is the most popular 3rd-party magnifier that gives users a window they can drag over content to magnify and read it out loud. Testing for the best experiences here is exceptionally difficult because you must make visual judgement calls. Specifically, related pieces of information should be close enough together for a low-vision user to efficiently interact with the UI.
 
-### Low-vision/blind (screen readers)[](/docs/guidelines/accessibility#screen-readers)
+### Low-vision/blind (screen readers)
 
 Blind and low-vision users often rely on tools, such as screen readers and braille readers, to navigate the web. Screen and braille readers read the page from top to bottom. Building a page with a good structure, will make it quick and easy to navigate. Braille readers are a textual representation of what a screen reader would say so we can focus on screen reader compatibility.
 
 The 3 most common, desktop, screen readers, and their most common browser pairings are:
 
-*   JAWS with Chrome
-*   NVDA with Firefox
-*   VoiceOver with Safari
+- JAWS with Chrome
+- NVDA with Firefox
+- VoiceOver with Safari
 
 Mobile is a little simpler:
 
-*   VoiceOver for iOS
-*   TalkBack for Android
+- VoiceOver for iOS
+- TalkBack for Android
 
-*   [Apple docs: Learning VoiceOver Basics](https://www.apple.com/voiceover/info/guide/_1124.html)
-*   [WebAIM: Using VoiceOver to Evaluate Web Accessibility](https://webaim.org/articles/voiceover)
-*   [WebAIM: Using NVDA to Evaluate Web Accessibility](https://webaim.org/articles/nvda)
-*   [WebAIM: Using JAWS to Evaluate Web Accessibility](https://webaim.org/articles/jaws)
-*   [An Intro To Screen Reader Testing for Sighted Developers](http://uncaughtreferenceerror.com/a-crash-course-to-screenreaders-for-sighted-developers)
+- <Link to="https://www.apple.com/voiceover/info/guide/_1124.html">Apple docs: Learning VoiceOver Basics</Link>
+- <Link to="https://webaim.org/articles/voiceover">WebAIM: Using VoiceOver to Evaluate Web Accessibility</Link>
+- <Link to="https://webaim.org/articles/nvda">WebAIM: Using NVDA to Evaluate Web Accessibility</Link>
+- <Link to="https://webaim.org/articles/jaws">WebAIM: Using JAWS to Evaluate Web Accessibility</Link>
+- <Link to="http://uncaughtreferenceerror.com/a-crash-course-to-screenreaders-for-sighted-developers">An Intro To Screen Reader Testing for Sighted Developers</Link>
 
 ## Learning resources
 
-*   A wide-reaching [guide on accessibility on MDN](https://developer.mozilla.org/en-US/docs/Learn/Accessibility) covering basics and best practices for a variety of subjects
-*   The [caniuse](https://caniuse.com/) of ARIA attributes: [Accessibility support](https://a11ysupport.io)
-*   [Accessibility web fundamentals by Google](https://developers.google.com/web/fundamentals/accessibility), similar in content to the MDN guide, but more guided
-*   If you prefer videos to reading, a great “pick your subject” style series [A11ycasts](https://www.youtube.com/playlist?list=PLNYkxOF6rcICWx0C9LVWWVqvHlYJyqw7g) is available
+- A wide-reaching <Link to="https://developer.mozilla.org/en-US/docs/Learn/Accessibility">guide on accessibility on MDN</Link> covering basics and best practices for a variety of subjects
+- The <Link to="https://a11ysupport.io">caniuse of ARIA attributes: Accessibility support</Link>
+- <Link to="https://developers.google.com/web/fundamentals/accessibility">Accessibility web fundamentals by Google</Link>, similar in content to the MDN guide, but more guided
+- If you prefer videos to reading, a great “pick your subject” style series <Link to="https://www.youtube.com/playlist?list=PLNYkxOF6rcICWx0C9LVWWVqvHlYJyqw7g">A11ycasts</Link> is available
 
 ### Practical examples
 
 For many things, there’s no need to reinvent the wheel. If your component is featured in one of these two sources, feel free to borrow heavily!
 
-*   [Inclusive Components](https://inclusive-components.design)
-*   [Accessible Components](https://github.com/scottaohara/accessible_components)
+- <Link to="https://inclusive-components.design">Inclusive Components</Link>
+- <Link to="https://github.com/scottaohara/accessible_components">Accessible Components</Link>
 
 ### Tooling
 
-*   Axe plugin for [Chrome](https://chrome.google.com/webstore/detail/axe/lhdoppojpmngadmnindnejefpokejbdd) and [FF](https://addons.mozilla.org/en-US/firefox/addon/axe-devtools)
+- Axe plugin for <Link to="https://chrome.google.com/webstore/detail/axe/lhdoppojpmngadmnindnejefpokejbdd">Chrome</Link> and <Link to="https://addons.mozilla.org/en-US/firefox/addon/axe-devtools">FF</Link>
 
 ### Spec docs
 
-*   [Using ARIA](https://www.w3.org/TR/using-aria)
-*   [WCAG 2.1](https://www.w3.org/TR/WCAG21)
-*   [How to Meet WCAG (Quick Reference)](https://www.w3.org/WAI/WCAG21/quickref)
-*   [WAI ARIA 1.1](https://www.w3.org/TR/wai-aria-1.1)
+- <Link to="https://www.w3.org/TR/using-aria">Using ARIA</Link>
+- <Link to="https://www.w3.org/TR/WCAG21">WCAG 2.1</Link>
+- <Link to="https://www.w3.org/WAI/WCAG21/quickref">How to Meet WCAG (Quick Reference)</Link>
+- <Link to="https://www.w3.org/TR/wai-aria-1.1">WAI ARIA 1.1</Link>
+
+
+[def]: https://www.upyoura11y.com/reusable-components-with-headers/
