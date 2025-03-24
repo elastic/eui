@@ -29,6 +29,8 @@ export const CommentListProps = ({ snippet }: { snippet: ReactNode }) => {
           background: ${euiTheme.colors.primary};
           color: ${euiTheme.colors.emptyShade};
           ${useEuiFontSize('xs')};
+          // override due to a custom lineHeightMultiplier set
+          line-height: 1.14rem;
           text-align: center;
           border-radius: 50%;
         `}
@@ -94,25 +96,25 @@ export const CommentListProps = ({ snippet }: { snippet: ReactNode }) => {
                     name="event icon"
                     size="s"
                     color={euiTheme.colors.textPrimary}
-                    initials="B"
+                    initials="2"
                   />
                 </span>
 
                 <HighlightedArea>
-                  <CircleIndicator name="C" /> username
+                  <CircleIndicator name="3" /> username
                 </HighlightedArea>
 
                 <HighlightedArea>
-                  <CircleIndicator name="D" /> event
+                  <CircleIndicator name="4" /> event
                 </HighlightedArea>
 
                 <HighlightedArea>
-                  <CircleIndicator name="E" /> timestamp
+                  <CircleIndicator name="5" /> timestamp
                 </HighlightedArea>
               </div>
 
               <HighlightedArea>
-                <CircleIndicator name="F" />
+                <CircleIndicator name="6" />
                 <EuiButtonIcon
                   aria-hidden="true"
                   iconType="boxesVertical"
@@ -129,7 +131,7 @@ export const CommentListProps = ({ snippet }: { snippet: ReactNode }) => {
               `}
             >
               <HighlightedArea>
-                <CircleIndicator name="G" /> children
+                <CircleIndicator name="7" /> children
               </HighlightedArea>
             </div>
           </div>
