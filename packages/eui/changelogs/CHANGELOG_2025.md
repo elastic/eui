@@ -1,3 +1,9 @@
+## [`v101.0.1`](https://github.com/elastic/eui/releases/v101.0.1)
+
+**Bug fixes**
+
+- Resolved an internal issue with linked package versions ([#8490](https://github.com/elastic/eui/pull/8490))
+
 ## [`v101.0.0`](https://github.com/elastic/eui/releases/v101.0.0)
 
 - Updated `EuiProvider` and `EuiThemeProvider` with a new `highContrastMode` ([#8444](https://github.com/elastic/eui/pull/8444))
