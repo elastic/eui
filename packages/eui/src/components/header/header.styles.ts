@@ -125,14 +125,20 @@ const euiHeaderDarkStyles = (euiThemeContext: UseEuiTheme) => {
 
       &--group {
         border-color: ${
+          // the header is in a faux dark mode, we can't rely on color
+          // switch tokens as they'd be in the wrong color mode
           highContrastMode
-            ? euiTheme.border.color
+            ? euiTheme.colors.plainLight
             : euiTheme.components.headerDarkSearchBorderColor
         };
 
         input {
           box-shadow: none;
         }
+      }
+
+      &__append {
+        border-color: ${highContrastMode ? euiTheme.colors.plainLight : ''}
       }
 
       &:not(:focus-within) {
