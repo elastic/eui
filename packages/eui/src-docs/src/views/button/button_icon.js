@@ -15,9 +15,11 @@ import { COLORS } from '../../../../src/components/button/button';
 const DISPLAY_TYPES = ['empty', 'base', 'fill'];
 const DISPLAY_SIZES = ['xs', 's', 'm'];
 const ICON_SIZES = ['s', 'm', 'l', 'xl', 'xxl', 'original'];
+// While `accentSecondary` is currently available on the component, it is likely to be removed
+const filteredColors = COLORS.filter((name) => name !== 'accentSecondary');
 
 export default () => {
-  const buttonColorsOptions = COLORS.map((name) => {
+  const buttonColorsOptions = filteredColors.map((name) => {
     return {
       value: name,
       text: name,
@@ -45,7 +47,7 @@ export default () => {
   const [displayType, setDisplayType] = useState(displayTypeOptions[0].value);
   const [displaySize, setDisplaySize] = useState(displaySizeOptions[0].value);
   const [iconSize, setIconSize] = useState(iconSizeOptions[1].value);
-  const [buttonColor, setButtonColor] = useState(buttonColorsOptions[3].value);
+  const [buttonColor, setButtonColor] = useState(buttonColorsOptions[2].value);
 
   const onChangeDisplayType = (e) => {
     setDisplayType(e.target.value);
