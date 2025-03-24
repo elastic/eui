@@ -22,7 +22,7 @@ import { Options } from './options';
  */
 const ignoreInfimaPlugin: PluginModule = () => ({
   name: 'ignore-infima-plugin',
-  configureWebpack(config: any, isServer: boolean, utils: any) {
+  configureWebpack() {
     return {
       module: {
         rules: [
