@@ -17,14 +17,17 @@ export default () => {
   const [fullButton, setFullButton] = useState(false);
   const [smallButton, setSmallButton] = useState(false);
   const [withIconButton, setWithIconButton] = useState(false);
-  const buttonColorsOptions = COLORS.map((name) => {
+
+  // While `accentSecondary` is currently available on the component, it is likely to be removed
+  const filteredColors = COLORS.filter((name) => name !== 'accentSecondary');
+  const buttonColorsOptions = filteredColors.map((name) => {
     return {
       value: name,
       text: name,
     };
   });
 
-  const [buttonColor, setButtonColor] = useState(buttonColorsOptions[3].value);
+  const [buttonColor, setButtonColor] = useState(buttonColorsOptions[2].value);
 
   const onChangeButtonColor = (e) => {
     setButtonColor(e.target.value);
