@@ -1,3 +1,36 @@
+## [`v101.0.0`](https://github.com/elastic/eui/releases/v101.0.0)
+
+- Updated `EuiProvider` and `EuiThemeProvider` with a new `highContrastMode` ([#8444](https://github.com/elastic/eui/pull/8444))
+  - This prop allows toggling a higher contrast visual style that primarily affects borders and shadows
+  - On `EuiProvider`, if the `highContrastMode` prop is not passed, this setting will inherit from the user's OS/system settings
+  - If the user is using a forced colors mode (e.g. Windows' high contrast themes), this system setting will take precedence over any `highContrastMode` or `colorMode` props passed
+- Added `highContrastModeStyles` and `preventForcedColors` styling utils ([#8444](https://github.com/elastic/eui/pull/8444))
+- Updated `EuiRangeTooltip` to be easier to see in dark mode ([#8444](https://github.com/elastic/eui/pull/8444))
+- Updated some deprecated color token usages that have direct substitutes ([#8444](https://github.com/elastic/eui/pull/8444))
+  - `text` -> `textParagraph`
+  - `title` -> `textHeading`
+  - `subduedText` -> `textSubdued`
+  - `disabledText` -> `textDisabled`
+  - `accentText` -> `textAccent`
+  - `dangerText` -> `textDanger`
+  - `warningText` -> `textWarning`
+- `useEuiShadow()` now accepts a second `options` argument  ([#8234](https://github.com/elastic/eui/pull/8234))
+- `useEuiShadowFlat()` now accepts an `options` object instead of only a color ([#8234](https://github.com/elastic/eui/pull/8234))
+- Updated `EuiPopover` and `EuiToolTip` to be easier to see in dark mode. ([#8174](https://github.com/elastic/eui/pull/8174))
+
+**Bug fixes**
+
+- Fixed a visual bug where a transparent border would create visible empty space (`LIGHT` mode only) for the components: ([#8427](https://github.com/elastic/eui/pull/8427))
+  - `EuiPanel`
+  - `EuiPopover`
+  - `EuiToolTip`
+  - `EuiToast`
+  - `EuiTour`
+
+**Breaking changes**
+
+- Removed `EuiLoadingChart` non-mono version, removed `mono` prop ([#8441](https://github.com/elastic/eui/pull/8441))
+
 ## [`v100.0.0`](https://github.com/elastic/eui/releases/v100.0.0)
 
 - Added new "Borealis" theme as `@elastic/eui-theme-borealis` package ([#8030](https://github.com/elastic/eui/pull/8030)) ([#8386](https://github.com/elastic/eui/pull/8386))
