@@ -85,6 +85,7 @@ export default () => {
           <EuiSpacer />
           <EuiTourStep
             {...euiTourStepOne}
+            zIndex={1}
             content={
               <div>
                 <p>This is a neat thing. You enter queries here.</p>
@@ -136,7 +137,7 @@ export default () => {
     {
       id: 'stat',
       name: (
-        <EuiTourStep {...euiTourStepThree}>
+        <EuiTourStep zIndex={1} {...euiTourStepThree}>
           <span>Stats</span>
         </EuiTourStep>
       ),
@@ -146,6 +147,7 @@ export default () => {
           <EuiSpacer />
           <EuiTourStep
             {...euiTourStepFour}
+            zIndex={1}
             content={
               <div>
                 <p>That about does it.</p>
@@ -173,8 +175,12 @@ export default () => {
           rightSideItems: [
             <ExampleContext.Consumer>
               {({ parentPath }) => (
-                <EuiButton fill href={`#${parentPath}`} iconType="exit">
-                  Exit fullscreen demo
+                <EuiButton
+                  fill
+                  href={`#${parentPath}`}
+                  iconType="fullScreenExit"
+                >
+                  Exit demo
                 </EuiButton>
               )}
             </ExampleContext.Consumer>,
