@@ -24,8 +24,8 @@ git checkout main
 
 If you're already on the `main` branch, make sure you're on the latest state:
 ```sh
-yarn fetch
-yarn pull
+git fetch
+git pull
 ```
 
 Ensure the release-cli is build:
