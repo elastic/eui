@@ -3,15 +3,16 @@ slug: /theming/sizing
 id: theming_sizing
 ---
 
+import Link from '@docusaurus/Link';
+import { EuiSpacer } from '@elastic/eui';
+
 # Sizing
 
-```mdx-code-block
 import { Example } from '@site/src/components';
 import { BasePreview } from './sizing/base_preview';
 import { SizePreview } from './sizing/size_preview';
 import { CalcPreview } from './sizing/calc_preview';
 import { SizesTable } from './sizing/sizes_table';
-```
 
 ## Base
 
@@ -59,7 +60,7 @@ All sizing values, including font sizes, are calculated from a single base integ
   <Example.Description>
     ### `calc()` <Badge color="accent">CSS function</Badge>
 
-    When doing calculations on top of the named key values, you have to use the [CSS `calc()` function](https://developer.mozilla.org/en-US/docs/Web/CSS/calc\(\)) because the value that is returned is a string value with the appended unit.
+    When doing calculations on top of the named key values, you have to use the <Link to="https://developer.mozilla.org/en-US/docs/Web/CSS/calc()">CSS `calc()` function</Link> because the value that is returned is a string value with the appended unit.
   </Example.Description>
   <Example.Preview>
     <CalcPreview />
@@ -73,5 +74,5 @@ All sizing values, including font sizes, are calculated from a single base integ
   </Example.Snippet>
 </Example>
 
-<br />
+<EuiSpacer />
 <SizesTable />

@@ -4,24 +4,25 @@ slug: /theming/theme-provider
 id: theming_theme_provider
 ---
 
+import Link from '@docusaurus/Link';
+
 # Theme provider
 
-While [**EuiProvider**](#utilities/provider) should not be wrapped around your application root more than once, you may use multiple nested **EuiThemeProviders** to customize section-specific or component-specific [color modes](/docs/theming/color-mode#rendering-a-specific-color-mode) or theme overrides.
+While [EuiProvider](../utilities/provider.mdx) should not be wrapped around your application root more than once, you may use multiple nested **EuiThemeProviders** to customize section-specific or component-specific [color modes](../theming/color_mode.mdx#rendering-a-specific-color-mode) or theme overrides.
 
 ## EuiThemeProvider
 
 The context layer that enables theming (including the default theme styles) comes from `EuiThemeProvider`. `EuiThemeProvider` accepts four main props (all of which have default values and are therefore optional):
 
-* `theme:` Raw theme values. Calculated values are acceptable.
-     * For the full shape of an EUI theme, see the [global values](/docs/theming/customizing-themes) page.
-* `modify:` Accepts an object of overrides for theme values.
-     * For examples of this prop, see [Simple instance overrides](#simple-instance-overrides) below.
-* `colorMode:` Accepts 'light', 'dark', or 'inverse'.
-     * For usage, see the [Color mode](/docs/theming/color-mode) page.
-* `highContrastMode`: Accepts a true/false boolean.
-     * For usage, see the [High contrast mode](/docs/theming/high-contrast-mode) page.
+- `theme:` Raw theme values. Calculated values are acceptable.
+- `modify:` Accepts an object of overrides for theme values.
+    - For examples of this prop, see [Simple instance overrides](#simple-instance-overrides) below.
+- `colorMode:` Accepts 'light', 'dark', or 'inverse'.
+    - For usage, see the [Color mode](./color_mode.mdx) page.
+- `highContrastMode`: Accepts a true/false boolean.
+    - For usage, see the [High contrast mode](./high_contrast_mode.mdx) page.
 
- To use the default EUI theme, no configuration is required.
+To use the default EUI theme, no configuration is required.
 
 import { ProviderDetails } from './provider_details';
 
@@ -31,10 +32,10 @@ import { ProviderDetails } from './provider_details';
 
 Using the React hook `useEuiTheme()` makes it very easy to consume the EUI static and computed variables like colors and sizing. It simply passes back an object of the current theme which includes:
 
-* `euiTheme:` All the calculated keys including any modifications
-* `modifications:` Only the modification keys
-* `colorMode:` Either 'LIGHT' or 'DARK'
-* `highContrastMode:` Either 'forced', 'preferred', or `false`
+- `euiTheme:` All the calculated keys including any modifications
+- `modifications:` Only the modification keys
+- `colorMode:` Either 'LIGHT' or 'DARK'
+- `highContrastMode:` Either 'forced', 'preferred', or `false`
 
 When consuming the theme's keys like `euiTheme.colors.primary`, you'll want to pass them via the `css` property to take advantage of Emotion's compilation.
 
@@ -108,7 +109,7 @@ export default <ConsumingHOC />;
 
 ## Consuming with Emotion's theming
 
-**EuiThemeProvider** by default sets an [Emotion theme context](https://emotion.sh/docs/theming) with the results of **useEuiTheme()**. This is a syntactical sugar convenience that allows you to take advantage of Emotion's `styled` syntax, or use a function in the `css` prop.
+**EuiThemeProvider** by default sets an <Link to="https://emotion.sh/docs/theming">Emotion theme context</Link> with the results of **useEuiTheme()**. This is a syntactical sugar convenience that allows you to take advantage of Emotion's `styled` syntax, or use a function in the `css` prop.
 
 {/*
 The following section is commented out due to @emotion/react version mismatch. We can't easily fix it unless we disable nohoist
