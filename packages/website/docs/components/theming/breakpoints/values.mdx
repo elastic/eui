@@ -5,16 +5,32 @@ id: theming_breakpoints_values
 
 # Breakpoints
 
-For most of your usages we recommend using the [responsive utilities](/docs/theming/breakpoints/utilities) **instead** of consuming the theme values directly.
+```mdx-code-block
+import {
+  EuiIcon,
+  EuiText,
+  EuiThemeProvider,
+  useCurrentEuiBreakpoint,
+  useEuiBreakpoint,
+  useEuiTheme,
+  useIsWithinBreakpoints,
+  useIsWithinMaxBreakpoint,
+  useIsWithinMinBreakpoint,
+} from '@elastic/eui';
+
+import { Example, ExampleDescription } from '@site/src/components';
+
+import { UseEuiBreakpointPreview } from './use_eui_breakpoint_preview';
+import { UseEuiMinMaxMaxBreakpointPreview } from './use_eui_min_max_breakpoint_preview';
+import { BreakpointsTable } from './breakpoints_table.tsx';
+import { CurrentCustomBreakpointPreview } from './current_custom_breakpoint_preview';
+```
+
+For most of your usages we recommend using the [responsive utilities](utilities.mdx) **instead** of consuming the theme values directly.
 
 ## Default values
 
 If you want to align your custom responsive styles with EUI's breakpoints, or when using components that accept our named breakpoints, you'll want to utilize the following default values and provided hooks.
-
-```mdx-code-block
-import { Example, ExampleDescription } from '@site/src/components';
-import { useCurrentEuiBreakpoint } from '@elastic/eui';
-```
 
 <Example>
   <Example.Description>
@@ -33,10 +49,6 @@ import { useCurrentEuiBreakpoint } from '@elastic/eui';
     ```
   </Example.Snippet>
 </Example>
-
-```mdx-code-block
-import { EuiIcon, EuiText, useIsWithinBreakpoints, useIsWithinMaxBreakpoint, useIsWithinMinBreakpoint } from '@elastic/eui';
-```
 
 <Example>
   <Example.Description>
@@ -63,11 +75,6 @@ import { EuiIcon, EuiText, useIsWithinBreakpoints, useIsWithinMaxBreakpoint, use
     ```
   </Example.Snippet>
 </Example>
-
-```mdx-code-block
-import { useEuiBreakpoint, useEuiTheme } from '@elastic/eui';
-import { UseEuiBreakpointPreview } from './use_eui_breakpoint_preview';
-```
 
 <Example>
   <Example.Description>
@@ -96,10 +103,6 @@ import { UseEuiBreakpointPreview } from './use_eui_breakpoint_preview';
   </Example.Snippet>
 </Example>
 
-```mdx-code-block
-import { UseEuiMinMaxMaxBreakpointPreview } from './use_eui_min_max_breakpoint_preview';
-```
-
 <Example>
   <Example.Description>
     ### `useEuiMaxBreakpoint(size)` and `useEuiMinBreakpoint(size)` <Badge color="hollow">hook</Badge>
@@ -123,23 +126,11 @@ import { UseEuiMinMaxMaxBreakpointPreview } from './use_eui_min_max_breakpoint_p
   </Example.Snippet>
 </Example>
 
-```mdx-code-block
-import { BreakpointsTable } from './breakpoints_table.tsx';
-```
-
 <BreakpointsTable />
 
 ## Custom values
 
-```mdx-code-block
-import { CurrentCustomBreakpointPreview } from './current_custom_breakpoint_preview';
-```
-
 EUI's theme breakpoints can be overridden and extended. However, the default sizes (**xl** through **xs**) will always be present and cannot be removed.
-
-```mdx-code-block
-import { EuiThemeProvider } from '@elastic/eui';
-```
 
 <EuiThemeProvider
   modify={{ breakpoint: {

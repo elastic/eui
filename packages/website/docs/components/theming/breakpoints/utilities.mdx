@@ -1,0 +1,195 @@
+---
+slug: /theming/breakpoints/utilities
+id: theming_breakpoints_utilities
+sidebar_label: Utilities
+---
+
+# Breakpoint utilities
+
+## Screen sizes
+
+The sizing options correlate with the keys in `euiTheme.breakpoint`. The named breakpoint starts at the pixel value provided and ends before the next one.
+
+```tsx
+'xl': 1200, // and up
+'l': 992, // to 1199
+'m': 768, // to 991
+'s': 575, // to 767
+'xs': 0, // to 574
+```
+
+## Show for
+
+The **EuiShowFor** wrapping utility component will not render its children **unless** the window width matches the range of one of the named breakpoints provided to the `sizes` prop.
+
+<Demo>
+  ```tsx interactive
+  import React from 'react';
+
+  import { EuiCode, EuiShowFor, EuiText } from '@elastic/eui';
+
+  export default () => (
+  <EuiText>
+    <EuiShowFor sizes={'all'}>
+      <p>
+        Showing for <EuiCode>{'"all"'}</EuiCode> of the screen sizes
+      </p>
+    </EuiShowFor>
+    <EuiShowFor sizes={['xs']}>
+      <p>
+        Showing for <EuiCode>xs</EuiCode> screens only
+      </p>
+    </EuiShowFor>
+    <EuiShowFor sizes={['xs', 's']}>
+      <p>
+        Showing for <EuiCode>xs, s</EuiCode> screens
+      </p>
+    </EuiShowFor>
+    <EuiShowFor sizes={['xs', 's', 'm', 'l']}>
+      <p>
+        Showing for <EuiCode>xs, s, m, l</EuiCode> screens
+      </p>
+    </EuiShowFor>
+    <EuiShowFor sizes={['xl']}>
+      <p>
+        Showing for <EuiCode>xl</EuiCode> screen only
+      </p>
+    </EuiShowFor>
+    <EuiShowFor sizes={['m', 'l', 'xl']}>
+      <p>
+        Showing for <EuiCode>m, l, xl</EuiCode> screen only
+      </p>
+    </EuiShowFor>
+  </EuiText>
+  );
+  ```
+</Demo>
+
+## Hide for
+
+The **EuiHideFor** wrapping utility component will not render its children **while** the window width matches the range of one of the named breakpoints provided to the `sizes` prop.
+
+<Demo>
+  ```tsx interactive
+  import React from 'react';
+
+  import { EuiCode, EuiHideFor, EuiText } from '@elastic/eui';
+
+  export default () => (
+  <EuiText>
+    <EuiHideFor sizes={'none'}>
+      <p>
+        Hiding from <EuiCode>{'"none"'}</EuiCode> of the screen sizes
+      </p>
+    </EuiHideFor>
+    <EuiHideFor sizes={['xs']}>
+      <p>
+        Hiding from <EuiCode>xs</EuiCode> screens only
+      </p>
+    </EuiHideFor>
+    <EuiHideFor sizes={['xs', 's']}>
+      <p>
+        Hiding from <EuiCode>xs, s</EuiCode> screens
+      </p>
+    </EuiHideFor>
+    <EuiHideFor sizes={['xs', 's', 'm', 'l']}>
+      <p>
+        Hiding from <EuiCode>xs, s, m, l</EuiCode> screens
+      </p>
+    </EuiHideFor>
+    <EuiHideFor sizes={['xl']}>
+      <p>
+        Hiding from <EuiCode>xl</EuiCode> screens only
+      </p>
+    </EuiHideFor>
+  </EuiText>
+  );
+  ```
+</Demo>
+
+## Responsive classes
+
+Similar to the wrapping components, these classes will hide or show the element based on the current current width matching the range of the declared `size`. However, they simply utilize the `display` property which means they will still render in the DOM.
+
+import { Example } from '@site/src/components';
+import { EuiCode, EuiSpacer } from '@elastic/eui';
+
+<Example>
+  <Example.Description>
+    ### `.eui-showFor--[size]` <Badge color="hollow">className</Badge>
+
+    Shows the element only for the specified breakpoint by applying `display: none;` for all, then applying `display: inline;` when within the breakpoint size. The element will still render and exist in the DOM.
+  </Example.Description>
+  <Example.Preview>
+    <EuiCode className="eui-showFor--xs">.eui-showFor--xs</EuiCode>
+    <EuiSpacer />
+    <EuiCode className="eui-showFor--s">.eui-showFor--s</EuiCode>
+    <EuiSpacer />
+    <EuiCode className="eui-showFor--m">.eui-showFor--m</EuiCode>
+    <EuiSpacer />
+    <EuiCode className="eui-showFor--l">.eui-showFor--l</EuiCode>
+    <EuiSpacer />
+    <EuiCode className="eui-showFor--xl">.eui-showFor--xl</EuiCode>
+  </Example.Preview>
+  <Example.Snippet>
+    ```tsx
+    <span className="eui-showFor--xs">
+      {/* Your content */}
+    </span>
+    ```
+  </Example.Snippet>
+</Example>
+
+import { ShowForExamplePreview } from './show_for_example_preview';
+
+<Example>
+  <Example.Description>
+    ### `.eui-showFor--[size]--[display]` <Badge color="hollow">className</Badge>
+
+    The `eui-showFor--[size]` classes will force display of `inline` when showing the element. You can modify this display property by appending one of the following display properties `block`, `inlineBlock`, or `flex`.
+  </Example.Description>
+  <Example.Preview>
+    <ShowForExamplePreview />
+  </Example.Preview>
+  <Example.Snippet>
+    ```tsx
+    <span className="eui-showFor--xs--flex">
+      {/* Your content */}
+    </span>
+    ```
+  </Example.Snippet>
+</Example>
+
+<Example>
+  <Example.Description>
+    ### `.eui-hideFor--[size]` <Badge color="hollow">className</Badge>
+
+    Hides the element for the specified breakpoint size with `display: none;`. The element will still render and exist in the DOM.
+  </Example.Description>
+  <Example.Preview>
+    <EuiCode className="eui-hideFor--xs">.eui-hideFor--xs</EuiCode>
+    <EuiSpacer />
+    <EuiCode className="eui-hideFor--s">.eui-hideFor--s</EuiCode>
+    <EuiSpacer />
+    <EuiCode className="eui-hideFor--m">.eui-hideFor--m</EuiCode>
+    <EuiSpacer />
+    <EuiCode className="eui-hideFor--l">.eui-hideFor--l</EuiCode>
+    <EuiSpacer />
+    <EuiCode className="eui-hideFor--xl">.eui-hideFor--xl</EuiCode>
+  </Example.Preview>
+  <Example.Snippet>
+    ```tsx
+    <span className="eui-hideFor--xs">
+      {/* Your content */}
+    </span>
+    ```
+  </Example.Snippet>
+</Example>
+
+## Props
+
+import docgen from '@elastic/eui-docgen/dist/components';
+
+<PropTable definition={docgen.EuiShowFor} />
+
+<PropTable definition={docgen.EuiHideFor} />
