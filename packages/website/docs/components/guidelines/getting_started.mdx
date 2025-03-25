@@ -5,25 +5,27 @@ title: Getting started
 sidebar_position: 1
 ---
 
+import Link from '@docusaurus/Link';
+
 ## Installation
 
-EUI is published through [NPM](https://www.npmjs.com/package/@elastic/eui) as a dependency. To install EUI into an existing project, use the `yarn` CLI (`npm` is not supported).
+EUI is published through <Link to="https://www.npmjs.com/package/@elastic/eui">NPM</Link> as a dependency. To install EUI into an existing project, use the `yarn` CLI (`npm` is not supported).
 
 ```bash
 yarn add @elastic/eui
 ```
 
-Note that EUI has [several `peerDependencies` requirements](https://github.com/elastic/eui/blob/main/packages/eui/package.json) that will also need to be installed when starting with a blank project.
+Note that EUI has <Link to="https://github.com/elastic/eui/blob/main/packages/eui/package.json">several `peerDependencies` requirements</Link> that will also need to be installed when starting with a blank project.
 
 ```bash
 yarn add @elastic/eui @elastic/eui-theme-borealis @elastic/datemath @emotion/react @emotion/css moment
 ```
 
-You can read more about other ways to [consume EUI](https://github.com/elastic/eui/blob/main/wiki/consuming-eui/) in our wiki.
+You can read more about other ways to <Link to="https://github.com/elastic/eui/blob/main/wiki/consuming-eui/">consume EUI</Link> in our wiki.
 
 ## Setting up your application
 
-EUI uses CSS-in-JS (specifically [Emotion](https://emotion.sh/)) for its styles and theming. As such, we require an `<EuiProvider>` wrapper around your application in order for various theme-related UI & UX (such as dark/light mode switching) to work as expected.
+EUI uses CSS-in-JS (specifically <Link to="https://emotion.sh/">Emotion</Link>) for its styles and theming. As such, we require an `<EuiProvider>` wrapper around your application in order for various theme-related UI & UX (such as dark/light mode switching) to work as expected.
 
 ```tsx
 import React from 'react';
@@ -39,13 +41,13 @@ const MyApp = () => (
 export default MyApp;
 ```
 
-For more configuration options of the provider, see the [**EuiProvider** documentation](/docs/utilities/provider).
+For more configuration options of the provider, see the [**EuiProvider** documentation](../utilities/provider.mdx).
 
 ## Styling your application
 
 You can build custom components using EUI's theme tokens, consumed via `useEuiTheme()`. The below example uses Emotion's `css` prop, but any CSS-in-JS library should be able to interpolate the JS variables.
 
-For more ways to consume EUI's theme, see the [**EuiThemeProvider** documentation](/theming/theme-provider#consuming-with-the-react-hook).
+For more ways to consume EUI's theme, see the [**EuiThemeProvider** documentation](../theming/theme_provider.mdx#consuming-with-the-react-hook).
 
 ```tsx
 import React from 'react';
@@ -54,6 +56,7 @@ import { css } from '@emotion/react';
 
 export default () => {
   const { euiTheme } = useEuiTheme();
+
   return (
     <EuiText>
       <p>
@@ -90,16 +93,18 @@ EUI's class names are not a guaranteed API and are prone to change, which will r
 
 :::
 
-While EUI's styles are generally low in <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity" target="_blank" rel="noopener noreferrer">**specificity**</a> due to our usage of CSS-in-JS, you may need to ensure that your CSS is defined after ours in your `<head>`. See [**EuiProvider's** cache customization for more style injection options](../utilities/provider.mdx#emotioncache-customization).
+While EUI's styles are generally low in <Link to="https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity">specificity</Link> due to our usage of CSS-in-JS, you may need to ensure that your CSS is defined after ours in your `<head>`. See [**EuiProvider's** cache customization for more style injection options](../utilities/provider.mdx#emotioncache-customization).
 
 ```tsx
 import React from 'react';
 import { EuiButton } from '@elastic/eui';
+
 const myCustomCSS = `
   .myCustomButton {
     background-color: pink;
   }
 `;
+
 export default () => (
   <>
     <style>{myCustomCSS}</style>
@@ -118,7 +123,7 @@ By nature, EUI is very rigid. You shouldn't need much to make drastic changes to
 
 :::
 
-For a full list of global tokens visit [Customizing theme](/docs/theming/customizing-themes). For more examples of the `modify` prop, see the [**EuiThemeProvider** docs](/theming/theme-provider#simple-instance-overrides).
+For more examples of the `modify` prop, see the [**EuiThemeProvider** docs](../theming/theme_provider.mdx#simple-instance-overrides).
 
 ```tsx
 import React, { FunctionComponent, ReactNode } from 'react';
@@ -182,7 +187,7 @@ Or grab all weights, including italics, between 400 and 700 as a variable font.
 
 ### Embedding with `@font-face`
 
-If your application doesn't allow grabbing the font assets from a CDN, you'll need to download and locally provide the font files. You can download the files directly from their source site [rsms.me/inter/](https://rsms.me/inter/), then follow the instructions in the provided CSS file for importing. We recommend using the single variable font file and importing with the following settings:
+If your application doesn't allow grabbing the font assets from a CDN, you'll need to download and locally provide the font files. You can download the files directly from their source site <Link to="https://rsms.me/inter/">rsms.me/inter/</Link>, then follow the instructions in the provided CSS file for importing. We recommend using the single variable font file and importing with the following settings:
 
 ```css
 @font-face {

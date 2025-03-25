@@ -3,17 +3,17 @@ title: Testing recommendations
 sidebar_label: Recommendations
 ---
 
+import Link from '@docusaurus/Link';
+
 <div style={{ fontSize: '22px' }}>
   Our general set of do's and don'ts for testing components and views.
 </div>
 
 ## Choose the right selectors
 
-Follow RTL's [Guiding Principles](https://testing-library.com/docs/guiding-principles/)
-and [query priorities](https://testing-library.com/docs/queries/about/#priority) when choosing right element selectors.
+Follow RTL's <Link to="https://testing-library.com/docs/guiding-principles/">Guiding Principles</Link> and <Link to="https://testing-library.com/docs/queries/about/#priority">query priorities</Link> when choosing the right element selectors.
 
-Prioritize accessible and semantic queries (e.g., `[role="dialog"]`) followed by `data-test-subj` attributes over
-other, more complicated and prone to breaking queries (e.g. `div > span.title`) whenever possible.
+Prioritize accessible and semantic queries (e.g., `[role="dialog"]`) followed by `data-test-subj` attributes over other, more complicated and prone to breaking queries (e.g. `div > span.title`) whenever possible.
 
 Check out our component-specific testing docs to find the selectors we officially support.
 
@@ -35,13 +35,9 @@ Check out our component-specific testing docs to find the selectors we officiall
 
 ## Don't use snapshots
 
-**The EUI team strongly discourages snapshot testing**, despite its simplicity.
-Snapshot tests are prone to frequent failures due to the smallest things, like whitespace changes.
-Developers often update stored snapshots when they see them fail without thinking too much about why they fail.
+**The EUI team strongly discourages snapshot testing**, despite its simplicity. Snapshot tests are prone to frequent failures due to the smallest things, like whitespace changes. Developers often update stored snapshots when they see them fail without thinking too much about why they fail.
 
-Tests should tell a story and be considered an instant red flag whenever they fail.
-They should focus on the important details like the data a component is displaying
-or if the data is coming from a prop or being dynamically calculated.
+Tests should tell a story and be considered an instant red flag whenever they fail. They should focus on the important details like the data a component is displaying or if the data is coming from a prop or being dynamically calculated.
 
 Instead, consider writing simple but precise assertion tests.
 
@@ -62,15 +58,13 @@ Instead, consider writing simple but precise assertion tests.
 
 ## Avoid time-based waits
 
-Sometimes the easiest solution to fixing a test is adding a wait/sleep call. In most cases, though,
-this can't be considered a reliable fix, because:
+Sometimes the easiest solution to fixing a test is adding a wait/sleep call. In most cases, though, this can't be considered a reliable fix, because:
 
 1. It significantly increases total test run time, especially when used often
 2. Every machine will take a different amount of time to execute the code, and some &mdash; especially CI runners
 &mdash; are prone to lag during the test run.
 
-Instead, use the utilities available for every testing framework to wait for elements to appear
-or for asynchronous operations to finish execution.
+Instead, use the utilities available for every testing framework to wait for elements to appear or for asynchronous operations to finish execution.
 
 <Guideline type="do" panelPadding="none" text="Programmatically await changes to occur">
   ```tsx
@@ -89,8 +83,7 @@ or for asynchronous operations to finish execution.
 
 ## Write clear test names
 
-Test cases and suites should have unambiguous names and match the naming convention throughout the project.
-Use short but descriptive names written in plain English.
+Test cases and suites should have unambiguous names and match the naming convention throughout the project. Use short but descriptive names written in plain English.
 
 We recommend using the third-person singular simple present tense for its short form and ease of reading.
 
@@ -118,8 +111,7 @@ We recommend using the third-person singular simple present tense for its short 
 
 ### Wrap property names and data in  `` ` ``
 
-When including property and argument names in the test name string, wrap them in backticks (`` ` ``) to clearly
-separate them from the rest of the text.
+When including property and argument names in the test name string, wrap them in backticks (`` ` ``) to clearly separate them from the rest of the text.
 
 <Guideline type="do" panelPadding="none" text="Wrap property names in backticks">
   ```tsx
@@ -135,9 +127,7 @@ separate them from the rest of the text.
 
 ## Add debug-friendly comments or error messages
 
-Consider adding custom error messages or code comments for assertions that are not obvious.
-For [jest](https://jestjs.io/), we recommend adding a comment on top or to the right of the assertion,
-so in case of an error, it will be printed out together as the failing code fragment.
+Consider adding custom error messages or code comments for assertions that are not obvious. For <Link to="https://jestjs.io/">jest</Link>, we recommend adding a comment on top or to the right of the assertion, so in case of an error, it will be printed out together as the failing code fragment.
 
 <Guideline type="do" panelPadding="none" text="Explain the source of the asserted value in code">
   ```tsx
