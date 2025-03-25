@@ -9,4 +9,5 @@
 export { createDemo, Demo, type DemoProps } from './demo';
 export { Guideline, GuidelineText } from './guideline';
 export { PropTable } from './prop_table';
+export { StorybookLink } from './storybook_link';
 export { AppThemeContext } from './theme_context';
