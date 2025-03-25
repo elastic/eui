@@ -81,7 +81,7 @@ export const euiButtonFillColor = (
   euiThemeContext: UseEuiTheme,
   color: _EuiButtonColor | 'disabled'
 ) => {
-  const { euiTheme } = euiThemeContext;
+  const { euiTheme, highContrastMode } = euiThemeContext;
 
   const backgroundTokenName = getTokenName(
     'backgroundFilled',
@@ -93,7 +93,11 @@ export const euiButtonFillColor = (
     color
   ) as keyof _EuiThemeButtonColors;
 
-  const foreground = euiTheme.components.buttons[textColorTokenName];
+  const foreground = highContrastMode
+    ? color === 'warning'
+      ? euiTheme.colors.ink
+      : euiTheme.colors.textInverse
+    : euiTheme.components.buttons[textColorTokenName];
   const background = euiTheme.components.buttons[backgroundTokenName];
 
   return {
