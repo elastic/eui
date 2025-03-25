@@ -1,9 +1,10 @@
 ---
-name: [For maintainers] Beta issue
+name: "[For maintainers] Beta issue"
 about: Track a beta functionality
-title: '[Beta] <FUNCTIONALITY> functionality'
-labels: beta
+title: "[BETA] "
+labels: beta, meta
 assignees: ''
+
 ---
 
 ### Overview
