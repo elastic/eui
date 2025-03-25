@@ -685,9 +685,6 @@ export default () => {
 };
 ```
 
-<!--
-COMMENTED OUT AS EXAMPLECONTEXT NOT AVAILABLE IN SERVICES
-
 ## Tour demo
 
 A complete tour set in a more realistic application UI. Unlike other examples on this page, the demo does not use `localStorage` to persist state.
@@ -706,7 +703,6 @@ import {
   EuiTourStep,
   useEuiTour,
 } from '@elastic/eui';
-import { ExampleContext } from '@elastic/eui/lib/services';
 
 const demoTourSteps = [
   {
@@ -866,15 +862,6 @@ export default () => {
       <EuiPageTemplate.Header
         {...{
           pageTitle: 'My app',
-          rightSideItems: [
-            <ExampleContext.Consumer>
-              {({ parentPath }) => (
-                <EuiButton fill href={`#${parentPath}`} iconType="fullScreenExit">
-                  Exit demo
-                </EuiButton>
-              )}
-            </ExampleContext.Consumer>,
-          ],
           tabs: tabs.map((tab, index) => {
             return {
               key: index,
@@ -900,7 +887,7 @@ export default () => {
     </EuiPageTemplate>
   );
 };
-``` -->
+```
 
 ## Props
 
