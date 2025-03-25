@@ -1,3 +1,4 @@
+import { ReactNode } from 'react';
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
 import {
@@ -10,7 +11,7 @@ import {
   useEuiTheme,
   EuiLoadingSpinner,
 } from '@elastic/eui';
-import { Demo } from '@elastic/eui-docusaurus-theme/lib/components/demo/demo.js';
+import { Demo } from '@elastic/eui-docusaurus-theme/components';
 
 import { TYPES_OF_USE_CASES } from './use_cases';
 import { convertToJsxString } from './utils';
@@ -32,19 +33,21 @@ export const MultipleSnippet = ({ radioUseCaseId }: Props) => {
     isDarkTheme ? example.iconDark2x : example.iconLight2x
   );
 
-  const icon =
-    example.iconLoading && radioUseCaseId === 'loading' ? (
-      <EuiLoadingSpinner size="l" />
-    ) : (
-      example.iconType || (
-        <EuiImage
-          alt={example.alt || ''}
-          size="fullWidth"
-          src={src}
-          srcSet={`${src} 1x, ${src2x} 2x`}
-        />
-      )
-    );
+  // Conditionally set the `icon` prop if a non-standard icon is needed
+  // See EuiEmptyPrompt docs to learn more about custom icon usage
+  let icon: ReactNode | undefined;
+  if (example.iconLoading) {
+    icon = <EuiLoadingSpinner size="l" />;
+  } else if (example.iconLight && example.iconDark) {
+    icon = (
+      <EuiImage
+        size="fullWidth"
+        alt={example.alt ?? ''}
+        src={src}
+        srcSet={`${src} 1x, ${src2x} 2x`}
+      />
+    )
+  }
 
   const centerStyles = {
     alignItems: 'center',
@@ -63,6 +66,7 @@ export const MultipleSnippet = ({ radioUseCaseId }: Props) => {
             color={radioUseCaseId === 'error' ? 'danger' : 'plain'}
             hasBorder={!(radioUseCaseId === 'error')}
             icon={icon}
+            iconType={example.iconType}
             layout={example.layout ?? 'vertical'}
             style={centerStyles}
             title={example.title}

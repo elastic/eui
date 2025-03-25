@@ -1,3 +1,4 @@
+import { ReactNode } from 'react';
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
 import {
@@ -6,7 +7,7 @@ import {
   EuiEmptyPrompt,
   useEuiTheme,
 } from '@elastic/eui';
-import { Demo } from '@elastic/eui-docusaurus-theme/lib/components/demo/demo.js';
+import { Demo } from '@elastic/eui-docusaurus-theme/components';
 
 import { TYPES_OF_USE_CASES } from './use_cases';
 import { convertToJsxString } from './utils';
@@ -26,17 +27,21 @@ export const EmptySnippet = ({ radioUseCaseId }: Props) => {
     isDarkTheme ? example.iconDark2x : example.iconLight2x
   );
 
-  const icon =
-    example.iconLoading && radioUseCaseId === 'loading'
-      ? example.iconLoading
-      : example.iconType || (
-          <EuiImage
-            alt={example.alt || ''}
-            size="fullWidth"
-            src={src}
-            srcSet={`${src} 1x, ${src2x} 2x`}
-          />
-        );
+  // Conditionally set the `icon` prop if a non-standard icon is needed
+  // See EuiEmptyPrompt docs to learn more about custom icon usage
+  let icon: ReactNode | undefined;
+  if (example.iconLoading) {
+    icon = example.iconLoading;
+  } else if (example.iconLight && example.iconDark) {
+    icon = (
+      <EuiImage
+        size="fullWidth"
+        alt={example.alt ?? ''}
+        src={src}
+        srcSet={`${src} 1x, ${src2x} 2x`}
+      />
+    )
+  }
 
   const snippet = convertToJsxString(
     <EuiPageTemplate minHeight="0" panelled={false} style={{ minHeight: 420 }}>
@@ -45,6 +50,7 @@ export const EmptySnippet = ({ radioUseCaseId }: Props) => {
           actions={example.actions}
           body={example.body}
           color={radioUseCaseId === 'error' ? 'danger' : 'plain'}
+          iconType={example.iconType}
           icon={icon}
           layout={example.layout ?? 'vertical'}
           title={example.title}

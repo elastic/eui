@@ -4,5 +4,6 @@
   "compilerOptions": {
     "baseUrl": ".",
     "jsxImportSource": "@emotion/react",
+    "moduleResolution": "nodenext"
   }
 }

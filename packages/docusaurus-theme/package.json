@@ -22,10 +22,8 @@
   },
   "main": "lib/index.js",
   "exports": {
-    "./lib/*": "./lib/*",
-    ".": {
-      "default": "./lib/index.js"
-    }
+    "./components": "./lib/components/index.js",
+    ".": "./lib/index.js"
   },
   "dependencies": {
     "@docusaurus/core": "^3.7.0",
