@@ -11,6 +11,7 @@ import { euiShadow } from '@elastic/eui-theme-common';
 
 import { UseEuiTheme } from '../../services';
 import { euiCanAnimate, logicalCSS, mathWithUnits } from '../../global_styling';
+import { cssSupportsHasWithNextSibling } from '../../global_styling/functions/supports';
 
 import { euiTableVariables } from './table.styles';
 
@@ -81,10 +82,16 @@ export const euiTableRowStyles = (euiThemeContext: UseEuiTheme) => {
         background-color: ${euiTheme.colors.backgroundBasePlain};
         border-radius: ${euiTheme.border.radius.medium};
 
-        &:has(+ .euiTableRow-isExpandedRow) {
-          ${logicalCSS('border-bottom-left-radius', 0)}
-          ${logicalCSS('border-bottom-right-radius', 0)}
-        }
+        /* :has(+) is not supported in all environments (mainly not in older jsdom versions)
+        TODO: Remove the wrapper once consumers have updated their jsdom to >= 24 */
+        ${cssSupportsHasWithNextSibling(
+          `
+            &:has(+ .euiTableRow-isExpandedRow) {
+              ${logicalCSS('border-bottom-left-radius', 0)}
+              ${logicalCSS('border-bottom-right-radius', 0)}
+            }
+          `
+        )}
       `,
       selected: css`
         &,
