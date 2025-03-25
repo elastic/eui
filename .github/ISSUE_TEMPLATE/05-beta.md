@@ -3,6 +3,7 @@ name: "[For maintainers] Beta issue"
 about: Track a beta functionality
 title: "[BETA] "
 labels: beta, meta
+hidden: true
 assignees: ''
 
 ---
