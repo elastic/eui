@@ -111,6 +111,12 @@ export const getGlobalStyles = (theme: UseEuiTheme) => {
       --ifm-h6-font-size: var(--eui-font-size-xxs);
 
       --ifm-global-radius: ${euiTheme.border.radius.small};
+
+      --ifm-toc-border-color: ${euiTheme.border.color};
+
+      /* Originally defined in :root in DocRoot/Layout/Sidebar */
+      --doc-sidebar-width: 258px;
+      --doc-sidebar-hidden-width: 30px;
     }
   `;
 };

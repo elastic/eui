@@ -10,24 +10,6 @@ import { useLocation } from '@docusaurus/router';
 import DocSidebar from '@theme-original/DocSidebar';
 import type { Props } from '@theme-original/DocRoot/Layout/Sidebar';
 import ExpandButton from '@theme-original/DocRoot/Layout/Sidebar/ExpandButton';
-import { useEuiMemoizedStyles, UseEuiTheme } from '@elastic/eui';
-
-const getGlobalStyles = ({ euiTheme }: UseEuiTheme) => {
-  return {
-    sidebar: css`
-      --doc-sidebar-width: 258px;
-      --doc-sidebar-hidden-width: 30px;
-      --ifm-toc-border-color: ${euiTheme.border.color};
-
-      // ensure scrolling still works
-      display: flex;
-
-      .theme-doc-sidebar-menu.menu__list {
-        padding: 0 ${euiTheme.size.s};
-      }
-    `,
-  };
-};
 
 // converted from css modules to Emotion
 const styles = {
@@ -35,13 +17,18 @@ const styles = {
     display: none;
 
     @media (min-width: 997px) {
-      display: block;
+      // ensure scrolling still works
+      display: flex;
       width: var(--doc-sidebar-width);
       margin-top: calc(-1 * var(--ifm-navbar-height));
       border-right: 1px solid var(--ifm-toc-border-color);
       will-change: width;
       transition: width var(--ifm-transition-fast) ease;
       clip-path: inset(0);
+    }
+
+    .theme-doc-sidebar-menu.menu__list {
+      padding-inline-end: var(--eui-size-s);
     }
   `,
   docSidebarContainerHidden: css`
@@ -74,7 +61,6 @@ export default function DocRootLayoutSidebar({
   setHiddenSidebarContainer,
 }: Props): JSX.Element {
   const { pathname } = useLocation();
-  const globalStyles = useEuiMemoizedStyles(getGlobalStyles);
 
   const [hiddenSidebar, setHiddenSidebar] = useState(false);
   const toggleSidebar = useCallback(() => {
@@ -96,7 +82,6 @@ export default function DocRootLayoutSidebar({
         styles.docSidebarContainer.name // adding the name here to preserve the functionality of the class check further down
       )}
       css={[
-        globalStyles.sidebar,
         styles.docSidebarContainer,
         hiddenSidebarContainer && styles.docSidebarContainerHidden,
       ]}
