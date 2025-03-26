@@ -13,7 +13,7 @@ This package contains an eslint plugin that enforces some default rules for usin
 
 `<EuiButton />` should either be a button or a link, for a11y purposes. When given an `href` the button behaves as a link, otherwise an `onClick` handler is expected and it will behave as a button.
 
-In some cases it makes sense to disable this rule locally, such as when <kbd>cmd</kbd>+click should open the link in a new tab, but a standard click should use the `history.pushState()` API to change the URL without triggering a full page load.
+In some cases it makes sense to disable this rule locally, such as when <kbd>cmd</kbd> + click should open the link in a new tab, but a standard click should use the `history.pushState()` API to change the URL without triggering a full page load.
 
 ### `@elastic/eui/no-restricted-eui-imports`
 
@@ -25,8 +25,7 @@ All deprecations still must follow our [deprecation process](../../wiki/eui-team
 
 ### `@elastic/eui/no-css-color`
 
-This rule warns engineers to not use literal css color in the codebase, particularly for CSS properties that apply color to 
-either the html element or text nodes, but rather urge users to defer to using the color tokens provided by EUI.
+This rule warns engineers to not use literal css color in the codebase, particularly for CSS properties that apply color to either the html element or text nodes, but rather urge users to defer to using the color tokens provided by EUI.
 
 This rule kicks in on the following JSXAttributes; `style`, `className` and `css` and supports various approaches to providing styling declarations.
 
@@ -34,7 +33,7 @@ This rule kicks in on the following JSXAttributes; `style`, `className` and `css
 
 The following code:
 
-```
+```tsx
 // Filename: /x-pack/plugins/observability_solution/observability/public/my_component.tsx
 
 import React from 'react';
@@ -47,7 +46,7 @@ function MyComponent() {
 }
 ```
 
-```
+```tsx
 // Filename: /x-pack/plugins/observability_solution/observability/public/my_component.tsx
 
 import React from 'react';
@@ -65,7 +64,7 @@ function MyComponent() {
 }
 ```
 
-```
+```tsx
 // Filename: /x-pack/plugins/observability_solution/observability/public/my_component.tsx
 
 import React from 'react';
@@ -83,7 +82,7 @@ function MyComponent() {
 will all raise an eslint report with an appropriate message of severity that matches the configuration of the rule, further more all the examples above
 will also match for when the attribute in question is `css`. The `css` attribute will also raise a report the following cases below;
 
-```
+```tsx
 // Filename: /x-pack/plugins/observability_solution/observability/public/my_component.tsx
 
 import React from 'react';
@@ -97,7 +96,7 @@ function MyComponent() {
 }
 ```
 
-```
+```tsx
 // Filename: /x-pack/plugins/observability_solution/observability/public/my_component.tsx
 
 import React from 'react';
@@ -113,7 +112,7 @@ function MyComponent() {
 A special case is also covered for the `className` attribute, where the rule will also raise a report for the following case below;
 
 
-```
+```tsx
 // Filename: /x-pack/plugins/observability_solution/observability/public/my_component.tsx
 
 import React from 'react';
@@ -129,9 +128,23 @@ function MyComponent() {
 
 It's worth pointing out that although the examples provided are specific to EUI components, this rule applies to all JSX elements.
 
-## `@elastic/eui/prefer-css-attributes-for-eui-components`
+### `@elastic/eui/prefer-css-attributes-for-eui-components`
 
-This rule warns engineers to use the `css` attribute for EUI components instead of the `style` attribute. 
+This rule warns about the use of `style` attribute and encourages to replace it with `css` attribute. Using the `css` attribute ensures better integration with Emotion's styling capabilities.
+
+#### Example
+
+The following code:
+
+```jsx
+<EuiCode style={{ color: '#dd4040' }}>This is a test</EuiCode>
+```
+
+will raise an ESLint report and suggest replacing the `style` attribute with `css`:
+
+```jsx
+<EuiCode css={{ color: '#dd4040' }}>This is a test</EuiCode>
+```
 
 ## Testing
 
@@ -145,9 +158,4 @@ To test the local changes to the plugin, you must:
 
 ## Publishing
 
-This package is published separately from the rest of EUI, as required by eslint. The code is not transpiled, so make sure to use `require()` statements rather than `import`, and once the code is updated run:
-
-1. `npm version patch|minor|major`
-2. Commit version bump.
-3. `npm publish` in this directory.
-4. Push the version bump upstream.
+Refer to the [wiki](../../wiki/eui-team-processes/releasing-versions.md) for instructions on how to release this package.
