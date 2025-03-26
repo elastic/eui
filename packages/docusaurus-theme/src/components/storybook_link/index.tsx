@@ -9,6 +9,9 @@ type Props = {
 export const StorybookLink = ({ id, viewMode = 'story' }: Props) => {
   const location = useLocation();
 
+  // Determine the base URL based on the environment
+  // This is just for the sake of POC! Long-term, it'd be better to receive the base url
+  // as an environment variable
   let baseUrl: string;
 
   if (process.env.NODE_ENV === 'development') {
@@ -26,8 +29,8 @@ export const StorybookLink = ({ id, viewMode = 'story' }: Props) => {
   const href = `${baseUrl}/iframe.html?id=${id}&viewMode=${viewMode}`;
 
   return (
-    <EuiButton iconType="link" color="accent" href={href} target="_blank">
-      Open fullscreen in Storybook
+    <EuiButton iconType="popout" href={href} target="_blank">
+      Open demo
     </EuiButton>
   );
 };
