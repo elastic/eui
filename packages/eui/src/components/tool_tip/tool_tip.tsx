@@ -106,6 +106,13 @@ export interface EuiToolTipProps extends CommonProps {
    * When nesting an `EuiTooltip` in a scrollable container, `repositionOnScroll` should be `true`
    */
   repositionOnScroll?: boolean;
+
+  /**
+   * Ensures the tooltip content is read by screen readers when focusing the trigger.
+   * Disable it only when the trigger has a descriptive label that duplicates or includes the tooltip content.
+   * @default true
+   */
+  hasScreenReaderContent?: boolean;
   /**
    * If supplied, called when mouse movement causes the tool tip to be
    * hidden.
@@ -141,6 +148,7 @@ export class EuiToolTip extends Component<EuiToolTipProps, State> {
     position: 'top',
     delay: 'regular',
     display: 'inlineBlock',
+    hasScreenReaderContent: true,
   };
 
   clearAnimationTimeout = () => {
@@ -316,6 +324,7 @@ export class EuiToolTip extends Component<EuiToolTipProps, State> {
       delay,
       display,
       repositionOnScroll,
+      hasScreenReaderContent = true,
       ...rest
     } = this.props;
 
@@ -335,7 +344,8 @@ export class EuiToolTip extends Component<EuiToolTipProps, State> {
           onKeyDown={this.onEscapeKey}
           onMouseOver={this.showToolTip}
           onMouseOut={this.onMouseOut}
-          id={id}
+          // `id` defines if the trigger and tooltip are automatically linked via `aria-describedby`.
+          id={hasScreenReaderContent ? id : undefined}
           className={anchorClasses}
           display={display!}
           isVisible={visible}
