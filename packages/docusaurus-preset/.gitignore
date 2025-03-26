@@ -1,0 +1,5 @@
+# Production
+/lib
+
+yarn-debug.log*
+yarn-error.log*
