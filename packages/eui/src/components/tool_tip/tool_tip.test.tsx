@@ -167,6 +167,24 @@ describe('EuiToolTip', () => {
       ).toEqual('toolTipId');
     });
 
+    it('does not add `aria-describedby` when `hasScreenReaderContent` is `false`', async () => {
+      const { getByTestSubject } = render(
+        <EuiToolTip
+          content="Tooltip content"
+          id="toolTipId"
+          hasScreenReaderContent={false}
+        >
+          <button data-test-subj="anchor" />
+        </EuiToolTip>
+      );
+      fireEvent.mouseOver(getByTestSubject('anchor'));
+      await waitForEuiToolTipVisible();
+
+      expect(
+        getByTestSubject('anchor').getAttribute('aria-describedby')
+      ).toEqual(null);
+    });
+
     it('merges with custom consumer `aria-describedby`s', async () => {
       const { getByTestSubject } = render(
         <EuiToolTip content="Tooltip content" id="toolTipId">
@@ -179,6 +197,24 @@ describe('EuiToolTip', () => {
       expect(
         getByTestSubject('anchor').getAttribute('aria-describedby')
       ).toEqual('toolTipId customId');
+    });
+
+    it('adds custom consumer `aria-describedby` when `hasScreenReaderContent` is `false`', async () => {
+      const { getByTestSubject } = render(
+        <EuiToolTip
+          content="Tooltip content"
+          id="toolTipId"
+          hasScreenReaderContent={false}
+        >
+          <button data-test-subj="anchor" aria-describedby="customId" />
+        </EuiToolTip>
+      );
+      fireEvent.mouseOver(getByTestSubject('anchor'));
+      await waitForEuiToolTipVisible();
+
+      expect(
+        getByTestSubject('anchor').getAttribute('aria-describedby')
+      ).toEqual('customId');
     });
   });
 
