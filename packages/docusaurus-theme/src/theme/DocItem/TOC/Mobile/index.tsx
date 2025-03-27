@@ -10,7 +10,8 @@ const tocStyles = {
   tocMobile: css`
     @media (min-width: 997px) {
       /* Prevent hydration FOUC, as the mobile TOC needs to be server-rendered */
-      display: none;
+      /* ! Not needed because it's handled in DocItem/Layout */
+      /* display: none; */
     }
 
     @media print {
