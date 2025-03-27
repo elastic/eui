@@ -8,6 +8,8 @@
 
 import type { Meta, StoryObj } from '@storybook/react';
 
+import { LOKI_SELECTORS, lokiPlayDecorator } from '../../../.storybook/loki';
+import { sleep } from '../../test';
 import {
   EuiColorPickerSwatch,
   EuiColorPickerSwatchProps,
@@ -16,9 +18,35 @@ import {
 const meta: Meta<EuiColorPickerSwatchProps> = {
   title: 'Forms/EuiColorPicker/EuiColorPickerSwatch',
   component: EuiColorPickerSwatch,
+  args: {
+    showToolTip: true,
+    color: '#dddddd',
+  },
 };
 
 export default meta;
 type Story = StoryObj<EuiColorPickerSwatchProps>;
 
 export const Playground: Story = {};
+
+export const ColorLabelTooltip: Story = {
+  tags: ['vrt-only'],
+  parameters: {
+    controls: {
+      exclude: ['autoFocus'],
+    },
+    loki: {
+      chromeSelector: LOKI_SELECTORS.portal,
+    },
+  },
+  args: {
+    autoFocus: true,
+    toolTipProps: {
+      position: 'right',
+    },
+  },
+  play: lokiPlayDecorator(async () => {
+    // Reduce VRT flakiness/screenshots before tooltip is fully visible
+    await sleep(300);
+  }),
+};
