@@ -197,9 +197,30 @@ import { SpecialColorsTable } from './special_colors_table';
 
 ## Data visualization colors
 
-import { DataVisColorsTable, DataVisColorsBehindTextColorsTable } from './data_vis_colors_table';
+import { DataVisColorsTable, DataVisColorsBehindTextColorsTable, DataVisBackgroundColor } from './data_vis_colors_table';
+import { DataVisColorsPreview } from './data_vis_colors_preview'
 
-### `euiTheme.colors.vis[token]` <Badge color="hollow">token</Badge>
+
+<Example>
+  <Example.Description>
+    ### `euiTheme.colors.vis[token]` <Badge color="hollow">token</Badge>
+
+    The following colors are color-blind safe and should be used in categorically seried visualizations and graphics. 
+    They are meant to be contrasted against the value of <DataVisBackgroundColor /> for the current theme.
+  </Example.Description>
+  <Example.Preview>
+    <DataVisColorsPreview />
+  </Example.Preview>
+  <Example.Snippet>
+    ```
+    css`
+      background-color: ${euiTheme.colors.vis.euiColorVis0};
+    `
+    ```
+  </Example.Snippet>
+</Example>
+
+<EuiSpacer />
 
 <DataVisColorsTable />
 <DataVisColorsBehindTextColorsTable />
