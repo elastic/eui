@@ -112,7 +112,7 @@ export const ThemeValue: FunctionComponent<ThemeValue> = ({
       <span
         css={css`
           font-weight: ${euiTheme.font.weight.light};
-          color: ${euiTheme.colors.subduedText};
+          color: ${euiTheme.colors.textSubdued};
         `}
       >
         : {humanizeType(type.custom.origin.type)}
