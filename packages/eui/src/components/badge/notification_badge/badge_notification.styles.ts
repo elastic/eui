@@ -32,7 +32,7 @@ export const euiNotificationBadgeStyles = (euiThemeContext: UseEuiTheme) => {
       ${logicalCSS('padding-horizontal', euiTheme.size.xs)}
       border-radius: ${euiTheme.border.radius.small};
       ${highContrastModeStyles(euiThemeContext, {
-        forced: `
+        preferred: `
           border: ${euiTheme.border.thin};
           overflow: hidden; /* Fix text clipping */
         `,

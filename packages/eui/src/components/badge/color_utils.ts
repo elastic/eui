@@ -16,7 +16,12 @@ import {
 import { chromaValid, parseColor } from '../color_picker/utils';
 
 export const euiBadgeColors = (euiThemeContext: UseEuiTheme) => {
-  const { euiTheme } = euiThemeContext;
+  const { euiTheme, highContrastMode } = euiThemeContext;
+
+  const badgeColorsAccentText = getBadgeColors(
+    euiThemeContext,
+    euiTheme.colors.textAccent
+  );
 
   return {
     // Colors shared between buttons and badges
@@ -26,23 +31,36 @@ export const euiBadgeColors = (euiThemeContext: UseEuiTheme) => {
     danger: euiButtonFillColor(euiThemeContext, 'danger'),
     accent: euiButtonFillColor(euiThemeContext, 'accent'),
     accentSecondary: euiButtonFillColor(euiThemeContext, 'accentSecondary'),
-    disabled: euiButtonColor(euiThemeContext, 'disabled'),
+    disabled: {
+      ...euiButtonColor(euiThemeContext, 'disabled'),
+      borderColor: highContrastMode ? euiTheme.colors.textDisabled : '',
+    },
     // Colors unique to badges
-    default: getBadgeColors(
-      euiThemeContext,
-      euiTheme.components.badgeBackground
-    ),
+    default: {
+      ...getBadgeColors(euiThemeContext, euiTheme.components.badgeBackground),
+      borderColor: highContrastMode ? euiTheme.border.color : '',
+    },
     // Hollow has a border and is used for autocompleters and beta badges
     hollow: {
       ...getBadgeColors(euiThemeContext, euiTheme.colors.emptyShade),
-      borderColor: euiTheme.components.badgeBorderColorHollow,
+      borderColor: highContrastMode
+        ? euiTheme.border.color
+        : euiTheme.components.badgeBorderColorHollow,
     },
     // Colors used by beta and notification badges
-    subdued: getBadgeColors(
-      euiThemeContext,
-      euiTheme.components.badgeBackgroundSubdued
-    ),
-    accentText: getBadgeColors(euiThemeContext, euiTheme.colors.textAccent),
+    subdued: {
+      ...getBadgeColors(
+        euiThemeContext,
+        euiTheme.components.badgeBackgroundSubdued
+      ),
+      borderColor: highContrastMode ? euiTheme.border.color : '',
+    },
+    accentText: {
+      ...badgeColorsAccentText,
+      borderColor: highContrastMode
+        ? badgeColorsAccentText.backgroundColor
+        : '',
+    },
     accentSecondaryText: getBadgeColors(
       euiThemeContext,
       euiTheme.colors.textAccentSecondary

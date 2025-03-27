@@ -15,9 +15,11 @@ export const euiCodeTextColors = ({ euiTheme }: UseEuiTheme) => {
   };
 };
 
-// These variables are computationally expensive - do not call them outside `useEuiMemoizedStyles`
+/**
+ * These variables are computationally expensive - do not call them outside `useEuiMemoizedStyles`
+ */
 export const euiCodeSyntaxVariables = (euiThemeContext: UseEuiTheme) => {
-  const { euiTheme } = euiThemeContext;
+  const { euiTheme, highContrastMode } = euiThemeContext;
   const { backgroundColor, color } = euiCodeTextColors(euiThemeContext);
 
   return {
@@ -49,7 +51,7 @@ export const euiCodeSyntaxVariables = (euiThemeContext: UseEuiTheme) => {
     get tokensCss() {
       return `
   .token.punctuation:not(.interpolation-punctuation):not([class*='attr-']) {
-    opacity: .7;
+    opacity: ${highContrastMode ? '1' : '.7'};
   }
 
   .token.comment,

@@ -1,3 +1,7 @@
+## [`v101.1.0`](https://github.com/elastic/eui/releases/v101.1.0)
+
+- Updates `EuiTableRow` styles to check support for `:has(+)` selector ([#8498](https://github.com/elastic/eui/pull/8498))
+
 ## [`v101.0.1`](https://github.com/elastic/eui/releases/v101.0.1)
 
 **Bug fixes**

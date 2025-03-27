@@ -7,7 +7,10 @@
  */
 
 import { css } from '@emotion/react';
-import { logicalShorthandCSS } from '../../global_styling';
+import {
+  highContrastModeStyles,
+  logicalShorthandCSS,
+} from '../../global_styling';
 import { UseEuiTheme } from '../../services';
 import { euiCodeSyntaxVariables } from './code_syntax.styles';
 
@@ -23,7 +26,12 @@ export const euiCodeStyles = (euiThemeContext: UseEuiTheme) => {
       font-family: ${euiTheme.font.familyCode};
       font-size: 0.9em; /* 1 */
       ${logicalShorthandCSS('padding', '0.2em 0.5em')} /* 1 */
-      background: ${codeSyntaxVariables.backgroundColor};
+      background-color: ${codeSyntaxVariables.backgroundColor};
+      ${highContrastModeStyles(euiThemeContext, {
+        forced: `
+          border: ${euiTheme.border.thin};
+        `,
+      })}
       border-radius: ${euiTheme.border.radius.small};
       font-weight: ${euiTheme.font.weight.bold};
       color: ${codeSyntaxVariables.inlineCodeColor};

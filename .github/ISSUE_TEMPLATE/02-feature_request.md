@@ -2,7 +2,7 @@
 name: ✨ Feature request
 about: A request, idea, or new functionality
 title: ''
-labels: feature request
+labels: ''
 type: 'Enhancement'
 assignees: ''
 

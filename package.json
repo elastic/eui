@@ -31,7 +31,7 @@
     "@elastic/eui-release-cli": "link:packages/release-cli"
   },
   "resolutions": {
-    "prismjs": "1.27.0",
+    "prismjs": "1.30.0",
     "react": "^18",
     "@types/react": "^18",
     "react-focus-lock": "2.9.5",
