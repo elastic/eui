@@ -40,7 +40,7 @@ jobs:
           stale-issue-label: 'stale-issue'
           close-issue-label: 'stale-issue-closed'
           close-issue-reason: 'not_planned'
-          exempt-issue-labels: 'bug,meta,task'
+          exempt-issue-labels: 'pinned,meta'
           operations-per-run: 1000
           remove-stale-when-updated: true
           enable-statistics: true
