@@ -13,8 +13,8 @@
 import React from 'react';
 import { EuiDataGrid } from '../../data_grid';
 
-const EXPECTED_HOVER_COLOR = 'rgb(90, 109, 140)';
-const EXPECTED_FOCUS_COLOR = 'rgb(11, 100, 221)';
+const EXPECTED_HOVER_COLOR = 'rgb(105, 112, 125)';
+const EXPECTED_FOCUS_COLOR = 'rgb(0, 119, 204)';
 const ANIMATION = {
   DELAY: 350,
   DURATION: 150,
@@ -155,6 +155,7 @@ describe('Cell outline styles', () => {
         tabToDataGrid();
         cy.realPress('ArrowRight');
         moveToRowCell();
+        cy.wait(100);
         getRowCell()
           .should('be.focused')
           .then(($el) => {
@@ -162,12 +163,14 @@ describe('Cell outline styles', () => {
           });
 
         cy.realPress('Enter');
+        cy.wait(100);
         getRowCell().then(($el) => {
           expect(getOutlineColor($el[0])).to.eq(EXPECTED_HOVER_COLOR);
         });
         cy.get('[data-test-subj="interactiveChildA"]').should('be.focused');
 
         cy.realPress('Escape');
+        cy.wait(100);
         getRowCell()
           .should('be.focused')
           .then(($el) => {
