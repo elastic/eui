@@ -12,6 +12,7 @@ import type * as Preset from '@docusaurus/preset-classic';
 import type { Options as EuiPresetOptions } from '@elastic/eui-docusaurus-preset';
 
 const baseUrl = process.env.DOCS_BASE_URL || '/';
+const prRootUrl = process.env.PR_ROOT_URL || undefined;
 const googleTagManagerId = process.env.DOCS_GOOGLE_TAG_MANAGER_ID || undefined;
 
 const config: Config = {
@@ -56,7 +57,7 @@ const config: Config = {
         googleTagManager: googleTagManagerId && {
           containerId: googleTagManagerId,
         },
-      } satisfies EuiPresetOptions
+      } satisfies EuiPresetOptions,
     ],
   ],
 
@@ -130,6 +131,9 @@ const config: Config = {
       theme: prismThemes.github,
       darkTheme: prismThemes.dracula,
       additionalLanguages: ['scss'],
+    },
+    customFields: {
+      prRootUrl,
     },
   } satisfies Preset.ThemeConfig,
 };
