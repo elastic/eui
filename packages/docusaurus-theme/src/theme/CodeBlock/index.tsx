@@ -1,4 +1,5 @@
 import React, { isValidElement, type ReactNode, JSX } from 'react';
+import { css } from '@emotion/react';
 import { EuiCodeBlock } from '@elastic/eui';
 import type { Props } from '@theme/CodeBlock';
 import { Demo } from '../../components/demo';
@@ -37,6 +38,9 @@ export default function CodeBlock({
       overflowHeight={450}
       language={language}
       isCopyable
+      css={css`
+        word-break: break-word;
+      `}
     >
       {children}
     </EuiCodeBlock>

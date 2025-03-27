@@ -62,6 +62,7 @@ const getDemoStyles = (euiTheme: UseEuiTheme) => ({
     border: 1px solid var(--docs-demo-border-color);
     border-radius: var(--docs-demo-border-radius);
     margin-block: ${euiTheme.euiTheme.size.xl};
+    word-break: break-word;
   `,
 });
 
