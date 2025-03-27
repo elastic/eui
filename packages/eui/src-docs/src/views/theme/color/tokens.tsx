@@ -7,6 +7,7 @@ import {
   EuiCode,
   EuiSpacer,
   EuiText,
+  EuiThemeAmsterdam,
   useEuiTheme,
 } from '../../../../../src';
 import { GuideSection } from '../../../components/guide_section/guide_section';
@@ -21,6 +22,8 @@ import {
   BorderValuesJS,
   BrandJS,
   BrandValuesJS,
+  DataVisJS,
+  DataVisValuesJS,
   ShadeJS,
   ShadeValuesJS,
   SpecialJS,
@@ -35,6 +38,8 @@ import {
   BorderValuesSass,
   BrandSass,
   BrandValuesSass,
+  DataVisSass,
+  DataVisValuesSass,
   ShadeSass,
   ShadeValuesSass,
   SpecialSass,
@@ -125,6 +130,7 @@ export const colorsSections = [
   { title: 'Border colors', id: 'border-colors' },
   { title: 'Shades', id: 'shades' },
   { title: 'Special colors', id: 'special-colors' },
+  { title: 'Data visualization colors', id: 'data-vis-colors' },
 ];
 
 export default () => {
@@ -192,6 +198,11 @@ export default () => {
     );
     if (showSass) return <SpecialSass description={description} />;
     return <SpecialJS description={description} />;
+  }, [showSass]);
+
+  const dataVisContent = useMemo(() => {
+    if (showSass) return <DataVisSass />;
+    return <DataVisJS />;
   }, [showSass]);
 
   return (
@@ -340,6 +351,40 @@ export default () => {
 
       <GuideSection color="transparent">
         {showSass ? <SpecialValuesSass /> : <SpecialValuesJS />}
+      </GuideSection>
+
+      {/* Data vis colors */}
+      <GuideSection color="subdued">
+        <EuiText grow={false}>
+          {' '}
+          <h2 id={`${colorsSections[6].id}`}>{`${colorsSections[6].title}`}</h2>
+          <p>
+            The following colors are color-blind safe and should be used in
+            categorically seried visualizations and graphics. They are meant to
+            be contrasted against the value of{' '}
+            <EuiCode>
+              {euiTheme.themeName === EuiThemeAmsterdam.key
+                ? 'colors.emptyShade'
+                : 'colors.backgroundBasePlain'}
+            </EuiCode>{' '}
+            for the current theme.
+          </p>
+          {euiTheme.themeName === EuiThemeAmsterdam.key && (
+            <p>
+              When using the palette as a background for text (i.e. badges), use
+              the <EuiCode>BehindText</EuiCode> variant. It is a brightened
+              version of the base palette to create better contrast with text.
+            </p>
+          )}
+        </EuiText>
+
+        <EuiSpacer size="xl" />
+
+        {dataVisContent}
+      </GuideSection>
+
+      <GuideSection color="transparent">
+        {showSass ? <DataVisValuesSass /> : <DataVisValuesJS />}
       </GuideSection>
     </>
   );
