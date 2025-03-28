@@ -26,12 +26,12 @@ jobs:
             const statusFieldId = 'PVTSSF_lADOAGc3Zs4AIkjizgFVX3s';
             const doneStatusValueId = '98236657';
 
-            const closedDate = new Date().toISOString().split('T')[0];
 
+            const closedDate = new Date().toISOString().split('T')[0];
             const allItems = [];
             let hasNextPage = true;
             let endCursor = null;
-            
+
             while (hasNextPage) {
               const response = await github.graphql(`
                 query($projectId: ID!, $after: String) {
@@ -48,6 +48,7 @@ jobs:
                           }
                           fieldValues(first: 20) {
                             nodes {
+                              __typename
                               ... on ProjectV2ItemFieldSingleSelectValue {
                                 field {
                                   id
@@ -78,39 +79,51 @@ jobs:
                 projectId,
                 after: endCursor,
               });
-            
+
               const items = response.node.items.nodes;
               allItems.push(...items);
-            
               hasNextPage = response.node.items.pageInfo.hasNextPage;
               endCursor = response.node.items.pageInfo.endCursor;
             }
 
-            for (const item of items.node.items.nodes) {
-              const hasClosedDate = item.fieldValues.nodes.find(f => f.field.id === closedDateFieldId)?.date;
-              const statusValue = item.fieldValues.nodes.find(f => f.field.id === statusFieldId)?.optionId;
+            for (const item of allItems) {
+              const fieldValues = item.fieldValues.nodes;
 
-              if (!hasClosedDate && statusValue === doneStatusValueId) {
-                await github.graphql(`
-                  mutation($projectId: ID!, $itemId: ID!, $fieldId: ID!, $value: Date!) {
-                    updateProjectV2ItemFieldValue(input: {
-                      projectId: $projectId,
-                      itemId: $itemId,
-                      fieldId: $fieldId,
-                      value: { date: $value }
-                    }) {
-                      projectV2Item {
-                        id
-                      }
+              const statusValue = fieldValues.find(f => f.__typename === "ProjectV2ItemFieldSingleSelectValue" && f.field.id === statusFieldId);
+              const closedDateValue = fieldValues.find(f => f.__typename === "ProjectV2ItemFieldDateValue" && f.field.id === closedDateFieldId);
+
+              if (!statusValue) {
+                console.log(`⚠️ Skipping item (no status field): ${item.content?.title ?? '(no title)'}`);
+                continue;
+              }
+
+              if (statusValue.optionId !== doneStatusValueId) {
+                continue;
+              }
+
+              if (closedDateValue?.date) {
+                continue; // already has a Closed Date
+              }
+
+              await github.graphql(`
+                mutation($projectId: ID!, $itemId: ID!, $fieldId: ID!, $value: Date!) {
+                  updateProjectV2ItemFieldValue(input: {
+                    projectId: $projectId,
+                    itemId: $itemId,
+                    fieldId: $fieldId,
+                    value: { date: $value }
+                  }) {
+                    projectV2Item {
+                      id
                     }
                   }
-                `, {
-                  projectId,
-                  itemId: item.id,
-                  fieldId: closedDateFieldId,
-                  value: closedDate,
-                });
+                }
+              `, {
+                projectId,
+                itemId: item.id,
+                fieldId: closedDateFieldId,
+                value: closedDate,
+              });
 
-                console.log(`✅ Set Closed Date on item: ${item.content?.title ?? '(no title)'}`);
-              }
+              console.log(`✅ Set Closed Date on item: ${item.content?.title ?? '(no title)'}`);
             }
