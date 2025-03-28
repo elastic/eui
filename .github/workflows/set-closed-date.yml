@@ -16,11 +16,16 @@ on:
 jobs:
   set-closed-dates:
     runs-on: ubuntu-latest
+    env:
+      GH_PAT: ${{ secrets.EUI_PROJECTS }}
     steps:
       - name: Set Closed Dates
         uses: actions/github-script@v7
         with:
           script: |
+            const { Octokit } = require("@octokit/core");
+            const github = new Octokit({ auth: process.env.GH_PAT });
+            
             const projectId = 'PVT_kwDOAGc3Zs4AIkji';
             const closedDateFieldId = 'PVTF_lADOAGc3Zs4AIkjizgq6ywg';
             const statusFieldId = 'PVTSSF_lADOAGc3Zs4AIkjizgFVX3s';
