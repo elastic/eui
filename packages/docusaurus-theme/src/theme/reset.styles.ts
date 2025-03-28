@@ -47,6 +47,14 @@ export const getResetStyles = (theme: UseEuiTheme) => {
       ${euiFocusRing(theme, 'outset', { color: euiTheme.colors.primary })};
     }
 
+    /**
+     * Resets globals in theme/Layout
+     * https://github.com/facebook/docusaurus/blob/e64e0e7c96f695f9d63b22c0d0ee2e4001852ac6/packages/docusaurus-theme-classic/src/theme/Layout/styles.module.css#L8-L11
+     */
+    body {
+      height: initial;
+    }
+
     html, body, div, span, applet, object, iframe,
     h1, h2, h3, h4, h5, h6, p, blockquote, pre,
     a, abbr, acronym, address, big, cite, code,
