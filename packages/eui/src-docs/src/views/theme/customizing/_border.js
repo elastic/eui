@@ -77,7 +77,12 @@ export default ({ onThemeUpdate }) => {
             name={prop}
             value={borderClone[prop]}
             onUpdate={(value) => updateBorder(prop, value)}
-            example={<EuiColorPickerSwatch color={borderClone[prop]} />}
+            example={
+              <EuiColorPickerSwatch
+                showToolTip={false}
+                color={borderClone[prop]}
+              />
+            }
           />
         ))}
 

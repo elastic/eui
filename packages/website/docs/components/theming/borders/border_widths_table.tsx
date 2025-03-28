@@ -20,6 +20,7 @@ export const BorderWidthsTable = () => {
       }))}
       render={(item) => (
         <EuiColorPickerSwatch
+          showToolTip={false}
           color={euiTheme.colors.emptyShade}
           css={css`
             border: ${euiTheme.border.thick};

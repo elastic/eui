@@ -363,84 +363,124 @@ exports[`EuiColorPicker inline 1`] = `
     class="euiColorPicker__swatches emotion-euiColorPicker__swatches"
   >
     <li>
-      <button
-        aria-label="Select #16C5C0 as the color"
-        class="euiColorPickerSwatch emotion-euiColorPickerSwatch"
-        style="background: rgb(22, 197, 192);"
-        type="button"
-      />
+      <span
+        class="euiToolTipAnchor  emotion-euiToolTipAnchor-inlineBlock-tooltip"
+      >
+        <button
+          aria-label="Select #16C5C0 as the color"
+          class="euiColorPickerSwatch emotion-euiColorPickerSwatch"
+          style="background: rgb(22, 197, 192);"
+          type="button"
+        />
+      </span>
     </li>
     <li>
-      <button
-        aria-label="Select #A6EDEA as the color"
-        class="euiColorPickerSwatch emotion-euiColorPickerSwatch"
-        style="background: rgb(166, 237, 234);"
-        type="button"
-      />
+      <span
+        class="euiToolTipAnchor  emotion-euiToolTipAnchor-inlineBlock-tooltip"
+      >
+        <button
+          aria-label="Select #A6EDEA as the color"
+          class="euiColorPickerSwatch emotion-euiColorPickerSwatch"
+          style="background: rgb(166, 237, 234);"
+          type="button"
+        />
+      </span>
     </li>
     <li>
-      <button
-        aria-label="Select #61A2FF as the color"
-        class="euiColorPickerSwatch emotion-euiColorPickerSwatch"
-        style="background: rgb(97, 162, 255);"
-        type="button"
-      />
+      <span
+        class="euiToolTipAnchor  emotion-euiToolTipAnchor-inlineBlock-tooltip"
+      >
+        <button
+          aria-label="Select #61A2FF as the color"
+          class="euiColorPickerSwatch emotion-euiColorPickerSwatch"
+          style="background: rgb(97, 162, 255);"
+          type="button"
+        />
+      </span>
     </li>
     <li>
-      <button
-        aria-label="Select #BFDBFF as the color"
-        class="euiColorPickerSwatch emotion-euiColorPickerSwatch"
-        style="background: rgb(191, 219, 255);"
-        type="button"
-      />
+      <span
+        class="euiToolTipAnchor  emotion-euiToolTipAnchor-inlineBlock-tooltip"
+      >
+        <button
+          aria-label="Select #BFDBFF as the color"
+          class="euiColorPickerSwatch emotion-euiColorPickerSwatch"
+          style="background: rgb(191, 219, 255);"
+          type="button"
+        />
+      </span>
     </li>
     <li>
-      <button
-        aria-label="Select #EE72A6 as the color"
-        class="euiColorPickerSwatch emotion-euiColorPickerSwatch"
-        style="background: rgb(238, 114, 166);"
-        type="button"
-      />
+      <span
+        class="euiToolTipAnchor  emotion-euiToolTipAnchor-inlineBlock-tooltip"
+      >
+        <button
+          aria-label="Select #EE72A6 as the color"
+          class="euiColorPickerSwatch emotion-euiColorPickerSwatch"
+          style="background: rgb(238, 114, 166);"
+          type="button"
+        />
+      </span>
     </li>
     <li>
-      <button
-        aria-label="Select #FFC7DB as the color"
-        class="euiColorPickerSwatch emotion-euiColorPickerSwatch"
-        style="background: rgb(255, 199, 219);"
-        type="button"
-      />
+      <span
+        class="euiToolTipAnchor  emotion-euiToolTipAnchor-inlineBlock-tooltip"
+      >
+        <button
+          aria-label="Select #FFC7DB as the color"
+          class="euiColorPickerSwatch emotion-euiColorPickerSwatch"
+          style="background: rgb(255, 199, 219);"
+          type="button"
+        />
+      </span>
     </li>
     <li>
-      <button
-        aria-label="Select #F6726A as the color"
-        class="euiColorPickerSwatch emotion-euiColorPickerSwatch"
-        style="background: rgb(246, 114, 106);"
-        type="button"
-      />
+      <span
+        class="euiToolTipAnchor  emotion-euiToolTipAnchor-inlineBlock-tooltip"
+      >
+        <button
+          aria-label="Select #F6726A as the color"
+          class="euiColorPickerSwatch emotion-euiColorPickerSwatch"
+          style="background: rgb(246, 114, 106);"
+          type="button"
+        />
+      </span>
     </li>
     <li>
-      <button
-        aria-label="Select #FFC9C2 as the color"
-        class="euiColorPickerSwatch emotion-euiColorPickerSwatch"
-        style="background: rgb(255, 201, 194);"
-        type="button"
-      />
+      <span
+        class="euiToolTipAnchor  emotion-euiToolTipAnchor-inlineBlock-tooltip"
+      >
+        <button
+          aria-label="Select #FFC9C2 as the color"
+          class="euiColorPickerSwatch emotion-euiColorPickerSwatch"
+          style="background: rgb(255, 201, 194);"
+          type="button"
+        />
+      </span>
     </li>
     <li>
-      <button
-        aria-label="Select #EAAE01 as the color"
-        class="euiColorPickerSwatch emotion-euiColorPickerSwatch"
-        style="background: rgb(234, 174, 1);"
-        type="button"
-      />
+      <span
+        class="euiToolTipAnchor  emotion-euiToolTipAnchor-inlineBlock-tooltip"
+      >
+        <button
+          aria-label="Select #EAAE01 as the color"
+          class="euiColorPickerSwatch emotion-euiColorPickerSwatch"
+          style="background: rgb(234, 174, 1);"
+          type="button"
+        />
+      </span>
     </li>
     <li>
-      <button
-        aria-label="Select #FCD883 as the color"
-        class="euiColorPickerSwatch emotion-euiColorPickerSwatch"
-        style="background: rgb(252, 216, 131);"
-        type="button"
-      />
+      <span
+        class="euiToolTipAnchor  emotion-euiToolTipAnchor-inlineBlock-tooltip"
+      >
+        <button
+          aria-label="Select #FCD883 as the color"
+          class="euiColorPickerSwatch emotion-euiColorPickerSwatch"
+          style="background: rgb(252, 216, 131);"
+          type="button"
+        />
+      </span>
     </li>
   </ul>
 </div>

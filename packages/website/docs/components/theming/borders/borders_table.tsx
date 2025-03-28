@@ -1,8 +1,16 @@
 import { css } from '@emotion/react';
-import { useEuiTheme, EuiColorPickerSwatch, _EuiThemeBorderTypes } from '@elastic/eui';
+import {
+  useEuiTheme,
+  EuiColorPickerSwatch,
+  _EuiThemeBorderTypes,
+} from '@elastic/eui';
 import { ThemeValuesTable } from '../theme_values_table';
 
-const borderTypes: Array<keyof _EuiThemeBorderTypes> = ['thin', 'thick', 'editable'];
+const borderTypes: Array<keyof _EuiThemeBorderTypes> = [
+  'thin',
+  'thick',
+  'editable',
+];
 
 export const BordersTable = () => {
   const { euiTheme } = useEuiTheme();
@@ -16,11 +24,14 @@ export const BordersTable = () => {
       }))}
       render={(item) => (
         <EuiColorPickerSwatch
+          showToolTip={false}
           color={euiTheme.colors.emptyShade}
-          css={css`border: ${item.value}`}
+          css={css`
+            border: ${item.value};
+          `}
           disabled
         />
       )}
     />
-  )
+  );
 };
