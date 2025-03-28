@@ -11,16 +11,16 @@ id: templates_page_template
 
 All templates should start with a wrapping `EuiPageTemplate` to control some shared settings like `paddingSize`, `bottomBorder`, `restrictWidth`, and `panelled`. Then each direct child will be evaluated for if it is one of the other namespaced components. If so, it will place it in the appropriate spot and apply the appropriate props based on the full configuration of child elements. These namespaced components include:
 
-*   **EuiPageTemplate.Sidebar** extends [**EuiPageSidebar**](#providing-a-sidebar)
-*   **EuiPageTemplate.Header** extends [**EuiPageHeader**](/docs/layout/page-header)
-*   **EuiPageTemplate.Section** extends [**EuiPageSection**](/docs/layout/page-layout-components#page-sections)
-*   **EuiPageTemplate.BottomBar** extends [**EuiBottomBar**](/docs/layout/bottom-bar)
-*   **EuiPageTemplate.EmptyPrompt** extends [**EuiEmptyPrompt**](/docs/display/empty-prompt)
+- **EuiPageTemplate.Sidebar** extends [EuiPageSidebar](#providing-a-sidebar)
+- **EuiPageTemplate.Header** extends [EuiPageHeader](../../layout/page_header.mdx)
+- **EuiPageTemplate.Section** extends [EuiPageSection](../../layout/page_components/overview.mdx#page-sections)
+- **EuiPageTemplate.BottomBar** extends [EuiBottomBar](../../layout/bottom_bar.mdx)
+- **EuiPageTemplate.EmptyPrompt** extends [EuiEmptyPrompt](../../display/empty_prompt/overview.mdx)
 
 With the exception of `.Sidebar` and `.BottomBar`, the stacking order of the page contents is determined by the order they are passed in. You can also override the outer props by simply applying them directly to the child element.
 
 :::tip
-If you have a fixed position [headers](/docs/layout/header#fixed-header), the template will automatically account for the padding `offset` based on the total number of page headers. If you do not want the template to calculate this, you can pass `0` in as the manual `offset`.
+If you have a fixed position [headers](../../layout/header.mdx#fixed-header), the template will automatically account for the padding `offset` based on the total number of page headers. If you do not want the template to calculate this, you can pass `0` in as the manual `offset`.
 :::
 
 ```tsx interactive
@@ -83,7 +83,7 @@ export default ({
 
 If your application requires the use of side navigation or other sidebar content, you can pass and **EuiPageTemplate.Sidebar** component containing your sidebar content. The template will automatically adjust the layout when this content is provided.
 
-This component will set its content to stick to the top of the browser window and scroll independently of the rest of the layout. If you have any fixed [**EuiHeaders**](/docs/display/page-header), these will be accounted for as well. You can turn this behavior off with `sticky={false}`.
+This component will set its content to stick to the top of the browser window and scroll independently of the rest of the layout. If you have any fixed [**EuiHeaders**](../../layout/page_header.mdx), these will be accounted for as well. You can turn this behavior off with `sticky={false}`.
 
 Typically when a sidebar is included and `restrictedWidth` is defined, we recommend keeping the `borderBottom={true}` though you can also expand particular sections with `borderBottom="extended"`.
 
@@ -156,7 +156,7 @@ export default ({
 
 ## Showing a bottom bar
 
-Adding an [**EuiBottomBar**](/docs/layout/bottom-bar) can be tricky to use and account for any sidebars. **EuiPageTemplate** handles this nicely by supplying a **EuiPageTemplate.BottomBar** component for passing the contents of your bottom bar that extends **EuiBottomBar**.
+Adding an [**EuiBottomBar**](../../layout/bottom_bar.mdx) can be tricky to use and account for any sidebars. **EuiPageTemplate** handles this nicely by supplying a **EuiPageTemplate.BottomBar** component for passing the contents of your bottom bar that extends **EuiBottomBar**.
 
 It uses the `sticky` position so that it sticks to the bottom of and remains within the bounds of page body. This way it will never overlap the sidebar, no matter the screen size. It also means not needing to accommodate for the height of the bar in the body element.
 
@@ -220,7 +220,7 @@ export default ({
 
 ## Empty pages or content
 
-When the content is in an empty/pre-setup state, we recommend then using an [**EuiEmptyPrompt**](/docs/display/empty-prompt) to direct users on next steps. Using **EuiPageTemplate.EmptyPrompt** will automatically center the prompt vertically and horizontally.
+When the content is in an empty/pre-setup state, we recommend then using an [**EuiEmptyPrompt**](../../display/empty_prompt/overview.mdx) to direct users on next steps. Using **EuiPageTemplate.EmptyPrompt** will automatically center the prompt vertically and horizontally.
 
 The prompt's panel color depends on the other configurations but can be manually passed in via the `color` prop.
 
