@@ -81,8 +81,8 @@ export const EuiColorPickerSwatch = forwardRef<
           css: [toolTipProps?.anchorProps?.css, styles.tooltip],
         }}
         // since the button already has a descriptive `ariaLabel` we can disable
-        // the tooltip content from being read additionally for screen readers
-        hasScreenReaderContent={false}
+        // the tooltip content from being read additionally by screen readers
+        disableScreenReaderOutput={true}
       >
         {element}
       </EuiToolTip>
