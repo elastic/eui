@@ -38,6 +38,8 @@ const VARIANT_TO_PROPS_MAP: Record<
 // MDXComponents/Paragraph wraps <p> in <EuiText>,
 // this is a workaround to keep styles from <EuiText> in the admonition
 const nestedParagraphStyleReset = css`
+  margin-block: var(--eui-theme-content-vertical-spacing);
+
   p.euiText {
     font-size: inherit;
     line-height: inherit;
