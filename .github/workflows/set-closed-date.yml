@@ -6,6 +6,9 @@
 name: Add closed date to Done issues
 
 on:
+  push:
+    branches:
+      - JasonStoltz-closed-date
   schedule:
     - cron: "0 * * * *"  # runs every hour
   workflow_dispatch:      # allows manual triggering from the Actions tab
