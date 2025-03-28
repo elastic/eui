@@ -6,8 +6,7 @@
  * Side Public License, v 1.
  */
 
-// For some reason this needs to be a full path
-import { createOpenInCodeSandboxAction } from '@elastic/eui-docusaurus-theme/lib/components/demo/codesandbox/open_action';
+import { createOpenInCodeSandboxAction } from '@elastic/eui-docusaurus-theme/components/demo/codesandbox';
 
 export const extraActions = [
   createOpenInCodeSandboxAction({

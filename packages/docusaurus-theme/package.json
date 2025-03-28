@@ -22,6 +22,8 @@
   },
   "main": "lib/index.js",
   "exports": {
+    "./lib/*": "./lib/*",
+    "./components/*": "./lib/components/*",
     "./components": "./lib/components/index.js",
     ".": "./lib/index.js"
   },
