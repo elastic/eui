@@ -73,9 +73,10 @@ export const EuiToolTipAnchor = forwardRef<
             onBlur();
             children.props.onBlur && children.props.onBlur(e);
           },
-          'aria-describedby': isVisible
-            ? classNames(id, children.props['aria-describedby'])
-            : children.props['aria-describedby'],
+          'aria-describedby':
+            isVisible && id
+              ? classNames(id, children.props['aria-describedby'])
+              : children.props['aria-describedby'],
         })}
       </span>
     );
