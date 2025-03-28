@@ -105,11 +105,6 @@ export const Demo = ({
     setLiveProviderKey((liveProviderKey) => liveProviderKey + 1);
   }, []);
 
-  const onClickOpenInCodeSandbox = useCallback(() => {
-    // TODO: implement
-    console.error('Open in CodeSandbox action is not implemented yet');
-  }, []);
-
   return (
     <div css={styles.demo}>
       <DemoContext.Provider value={{ sources, addSource }}>
@@ -127,9 +122,10 @@ export const Demo = ({
           <DemoActionsBar
             isSourceOpen={isSourceOpen}
             setSourceOpen={setIsSourceOpen}
+            activeSource={activeSource}
+            sources={sources}
             onClickCopyToClipboard={onClickCopyToClipboard}
             onClickReloadExample={onClickReloadExample}
-            onClickOpenInCodeSandbox={onClickOpenInCodeSandbox}
           />
           {isSourceOpen && <DemoEditor />}
         </LiveProvider>
