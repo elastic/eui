@@ -34,7 +34,7 @@ jobs:
 
             while (hasNextPage) {
               const response = await github.graphql(`
-                query($projectId: ID!, $after: String) {
+              query($projectId: ID!, $after: String) {
                   node(id: $projectId) {
                     ... on ProjectV2 {
                       items(first: 50, after: $after) {
@@ -51,16 +51,22 @@ jobs:
                               __typename
                               ... on ProjectV2ItemFieldSingleSelectValue {
                                 field {
-                                  id
-                                  name
+                                  __typename
+                                  ... on ProjectV2Field {
+                                    id
+                                    name
+                                  }
                                 }
                                 name
                                 optionId
                               }
                               ... on ProjectV2ItemFieldDateValue {
                                 field {
-                                  id
-                                  name
+                                  __typename
+                                  ... on ProjectV2Field {
+                                    id
+                                    name
+                                  }
                                 }
                                 date
                               }
