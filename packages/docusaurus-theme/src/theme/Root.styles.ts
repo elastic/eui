@@ -114,7 +114,6 @@ export const getGlobalStyles = (theme: UseEuiTheme) => {
 
       --ifm-toc-border-color: ${euiTheme.border.color};
 
-      /* Originally defined in :root in DocRoot/Layout/Sidebar */
       --doc-sidebar-width: 258px;
       --doc-sidebar-hidden-width: 30px;
     }

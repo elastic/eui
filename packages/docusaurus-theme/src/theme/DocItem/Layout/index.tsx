@@ -70,9 +70,7 @@ function useDocTOC() {
   const hidden = frontMatter.hide_table_of_contents ?? false;
   const canRender = !hidden && toc.length > 0;
 
-  // We're using media queries to hide/show the TOC on mobile/desktop
-  // because we want to show the desktop TOC at a greater breakpoint than default AND
-  // keep the mobile TOC until then because why hide it?
+  // Hide/show for TOC elements is handled by media queries
   const mobile = canRender ? <DocItemTOCMobile /> : undefined;
   const desktop = canRender ? <DocItemTOCDesktop /> : undefined;
 
