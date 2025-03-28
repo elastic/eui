@@ -28,46 +28,63 @@ jobs:
 
             const closedDate = new Date().toISOString().split('T')[0];
 
-            const items = await github.graphql.paginate(`
-              query($projectId: ID!) {
-                node(id: $projectId) {
-                  ... on ProjectV2 {
-                    items(first: 100) {
-                      nodes {
-                        id
-                        content {
-                          ... on Issue {
-                            title
-                            number
+            const allItems = [];
+            let hasNextPage = true;
+            let endCursor = null;
+            
+            while (hasNextPage) {
+              const response = await github.graphql(`
+                query($projectId: ID!, $after: String) {
+                  node(id: $projectId) {
+                    ... on ProjectV2 {
+                      items(first: 50, after: $after) {
+                        nodes {
+                          id
+                          content {
+                            ... on Issue {
+                              title
+                              number
+                            }
+                          }
+                          fieldValues(first: 20) {
+                            nodes {
+                              ... on ProjectV2ItemFieldSingleSelectValue {
+                                field {
+                                  id
+                                  name
+                                }
+                                name
+                                optionId
+                              }
+                              ... on ProjectV2ItemFieldDateValue {
+                                field {
+                                  id
+                                  name
+                                }
+                                date
+                              }
+                            }
                           }
                         }
-                        fieldValues(first: 20) {
-                          nodes {
-                            ... on ProjectV2ItemFieldSingleSelectValue {
-                              field {
-                                id
-                                name
-                              }
-                              name
-                              optionId
-                            }
-                            ... on ProjectV2ItemFieldDateValue {
-                              field {
-                                id
-                                name
-                              }
-                              date
-                            }
-                          }
+                        pageInfo {
+                          hasNextPage
+                          endCursor
                         }
                       }
                     }
                   }
                 }
-              }
-            `, {
-              projectId,
-            });
+              `, {
+                projectId,
+                after: endCursor,
+              });
+            
+              const items = response.node.items.nodes;
+              allItems.push(...items);
+            
+              hasNextPage = response.node.items.pageInfo.hasNextPage;
+              endCursor = response.node.items.pageInfo.endCursor;
+            }
 
             for (const item of items.node.items.nodes) {
               const hasClosedDate = item.fieldValues.nodes.find(f => f.field.id === closedDateFieldId)?.date;
