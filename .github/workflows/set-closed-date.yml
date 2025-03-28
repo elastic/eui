@@ -1,0 +1,96 @@
+# This action updates the "Closed Date" field on items in the EUI project when their status is set to "Done".
+#
+# It runs every hour, but can also be triggered manually from the Actions tab.
+# 
+
+name: Add closed date to Done issues
+
+on:
+  schedule:
+    - cron: "0 * * * *"  # runs every hour
+  workflow_dispatch:      # allows manual triggering from the Actions tab
+
+jobs:
+  set-closed-dates:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set Closed Dates
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const projectId = 'PVT_kwDOAGc3Zs4AIkji';
+            const closedDateFieldId = 'PVTF_lADOAGc3Zs4AIkjizgq6ywg';
+            const statusFieldId = 'PVTSSF_lADOAGc3Zs4AIkjizgFVX3s';
+            const doneStatusValueId = '98236657';
+
+            const closedDate = new Date().toISOString().split('T')[0];
+
+            const items = await github.graphql.paginate(`
+              query($projectId: ID!) {
+                node(id: $projectId) {
+                  ... on ProjectV2 {
+                    items(first: 100) {
+                      nodes {
+                        id
+                        content {
+                          ... on Issue {
+                            title
+                            number
+                          }
+                        }
+                        fieldValues(first: 20) {
+                          nodes {
+                            ... on ProjectV2ItemFieldSingleSelectValue {
+                              field {
+                                id
+                                name
+                              }
+                              name
+                              optionId
+                            }
+                            ... on ProjectV2ItemFieldDateValue {
+                              field {
+                                id
+                                name
+                              }
+                              date
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            `, {
+              projectId,
+            });
+
+            for (const item of items.node.items.nodes) {
+              const hasClosedDate = item.fieldValues.nodes.find(f => f.field.id === closedDateFieldId)?.date;
+              const statusValue = item.fieldValues.nodes.find(f => f.field.id === statusFieldId)?.optionId;
+
+              if (!hasClosedDate && statusValue === doneStatusValueId) {
+                await github.graphql(`
+                  mutation($projectId: ID!, $itemId: ID!, $fieldId: ID!, $value: Date!) {
+                    updateProjectV2ItemFieldValue(input: {
+                      projectId: $projectId,
+                      itemId: $itemId,
+                      fieldId: $fieldId,
+                      value: { date: $value }
+                    }) {
+                      projectV2Item {
+                        id
+                      }
+                    }
+                  }
+                `, {
+                  projectId,
+                  itemId: item.id,
+                  fieldId: closedDateFieldId,
+                  value: closedDate,
+                });
+
+                console.log(`✅ Set Closed Date on item: ${item.content?.title ?? '(no title)'}`);
+              }
+            }
