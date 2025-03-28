@@ -108,11 +108,14 @@ export interface EuiToolTipProps extends CommonProps {
   repositionOnScroll?: boolean;
 
   /**
-   * Ensures the tooltip content is read by screen readers when focusing the trigger.
-   * Disable it only when the trigger has a descriptive label that duplicates or includes the tooltip content.
-   * @default true
+   * Disables the tooltip content being read by screen readers when focusing the trigger element.
+   * Do not use when the trigger `aria-label` and tooltip `content` can be rephrased to be standalone
+   * information (action & additional information).
+   * Enable this prop only when the trigger has a descriptive label that either duplicates or includes
+   * the tooltip content and would result in repetitive output.
+   * @default false
    */
-  hasScreenReaderContent?: boolean;
+  disableScreenReaderOutput?: boolean;
   /**
    * If supplied, called when mouse movement causes the tool tip to be
    * hidden.
@@ -148,7 +151,7 @@ export class EuiToolTip extends Component<EuiToolTipProps, State> {
     position: 'top',
     delay: 'regular',
     display: 'inlineBlock',
-    hasScreenReaderContent: true,
+    disableScreenReaderOutput: false,
   };
 
   clearAnimationTimeout = () => {
@@ -324,7 +327,7 @@ export class EuiToolTip extends Component<EuiToolTipProps, State> {
       delay,
       display,
       repositionOnScroll,
-      hasScreenReaderContent = true,
+      disableScreenReaderOutput = false,
       ...rest
     } = this.props;
 
@@ -345,7 +348,7 @@ export class EuiToolTip extends Component<EuiToolTipProps, State> {
           onMouseOver={this.showToolTip}
           onMouseOut={this.onMouseOut}
           // `id` defines if the trigger and tooltip are automatically linked via `aria-describedby`.
-          id={hasScreenReaderContent ? id : undefined}
+          id={!disableScreenReaderOutput ? id : undefined}
           className={anchorClasses}
           display={display!}
           isVisible={visible}

@@ -46,7 +46,7 @@ const meta: Meta<EuiToolTipProps> = {
     anchorClassName: '',
     repositionOnScroll: false,
     title: '',
-    hasScreenReaderContent: true,
+    disableScreenReaderOutput: false,
   },
 };
 enableFunctionToggleControls(meta, ['onMouseOut']);

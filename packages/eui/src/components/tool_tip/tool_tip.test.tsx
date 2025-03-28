@@ -167,12 +167,12 @@ describe('EuiToolTip', () => {
       ).toEqual('toolTipId');
     });
 
-    it('does not add `aria-describedby` when `hasScreenReaderContent` is `false`', async () => {
+    it('does not add `aria-describedby` when `disableScreenReaderOutput` is `true`', async () => {
       const { getByTestSubject } = render(
         <EuiToolTip
           content="Tooltip content"
           id="toolTipId"
-          hasScreenReaderContent={false}
+          disableScreenReaderOutput={true}
         >
           <button data-test-subj="anchor" />
         </EuiToolTip>
@@ -199,12 +199,12 @@ describe('EuiToolTip', () => {
       ).toEqual('toolTipId customId');
     });
 
-    it('adds custom consumer `aria-describedby` when `hasScreenReaderContent` is `false`', async () => {
+    it('adds custom consumer `aria-describedby` when `disableScreenReaderOutput` is `true`', async () => {
       const { getByTestSubject } = render(
         <EuiToolTip
           content="Tooltip content"
           id="toolTipId"
-          hasScreenReaderContent={false}
+          disableScreenReaderOutput={true}
         >
           <button data-test-subj="anchor" aria-describedby="customId" />
         </EuiToolTip>
