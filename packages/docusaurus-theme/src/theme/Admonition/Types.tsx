@@ -38,8 +38,6 @@ const VARIANT_TO_PROPS_MAP: Record<
 // MDXComponents/Paragraph wraps <p> in <EuiText>,
 // this is a workaround to keep styles from <EuiText> in the admonition
 const nestedParagraphStyleReset = css`
-  margin-block: var(--eui-theme-content-vertical-spacing);
-
   p.euiText {
     font-size: inherit;
     line-height: inherit;
@@ -55,7 +53,10 @@ const Callout = ({ title, type, children }: Props) => {
       iconType="iInCircle"
       color="primary"
       {...variantProps}
-      css={nestedParagraphStyleReset}
+      css={css`
+        margin-block: var(--eui-theme-content-vertical-spacing);
+        ${nestedParagraphStyleReset}
+      `}
     >
       {children}
     </EuiCallOut>
