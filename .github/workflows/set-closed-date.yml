@@ -24,13 +24,12 @@ jobs:
         with:
           script: |
             const { Octokit } = require("@octokit/core");
-            const github = new Octokit({ auth: process.env.GH_PAT });
+            const octokitClient = new Octokit({ auth: process.env.GH_PAT });
             
             const projectId = 'PVT_kwDOAGc3Zs4AIkji';
             const closedDateFieldId = 'PVTF_lADOAGc3Zs4AIkjizgq6ywg';
             const statusFieldId = 'PVTSSF_lADOAGc3Zs4AIkjizgFVX3s';
             const doneStatusValueId = '98236657';
-
 
             const closedDate = new Date().toISOString().split('T')[0];
             const allItems = [];
@@ -38,7 +37,7 @@ jobs:
             let endCursor = null;
 
             while (hasNextPage) {
-              const response = await github.graphql(`
+              const response = await octokitClient.graphql(`
               query($projectId: ID!, $after: String) {
                   node(id: $projectId) {
                     ... on ProjectV2 {
@@ -116,7 +115,7 @@ jobs:
                 continue; // already has a Closed Date
               }
 
-              await github.graphql(`
+              await octokitClient.graphql(`
                 mutation($projectId: ID!, $itemId: ID!, $fieldId: ID!, $value: Date!) {
                   updateProjectV2ItemFieldValue(input: {
                     projectId: $projectId,
