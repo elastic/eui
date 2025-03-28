@@ -1,7 +1,12 @@
 import React, { FunctionComponent } from 'react';
 import { Link } from 'react-router-dom';
 
-import { EuiCode, EuiColorPickerSwatch } from '../../../../../src';
+import {
+  EuiCode,
+  EuiColorPickerSwatch,
+  EuiThemeAmsterdam,
+  useEuiTheme,
+} from '../../../../../src';
 
 // @ts-ignore Importing from JS
 import { useJsonVars } from '../_json/_get_json_vars';
@@ -290,6 +295,56 @@ export const SpecialValuesSass = () => {
     <>
       <ThemeValuesTable
         items={euiSpecialColors.map((color) => {
+          return {
+            id: color,
+            token: `$${color}`,
+            value: values[color],
+          };
+        })}
+        render={(item) => <EuiColorPickerSwatch color={item.value} disabled />}
+      />
+    </>
+  );
+};
+
+export const DataVisSass: FunctionComponent<ThemeRowType> = ({
+  description,
+}) => {
+  const values = useJsonVars();
+
+  return (
+    <>
+      <ThemeExample
+        title={<code>$euiColor[DataVis]</code>}
+        description={description}
+        example={
+          <div className="guideSass__dataVis">
+            <strong>background: {values.euiColorVis0}</strong>
+          </div>
+        }
+        snippet={`background-color: \$euiColorVis0;`}
+        snippetLanguage="scss"
+      />
+    </>
+  );
+};
+
+export const DataVisValuesSass = () => {
+  const { euiTheme } = useEuiTheme();
+  const values = useJsonVars();
+  const dataVisKeys =
+    euiTheme.themeName === EuiThemeAmsterdam.key
+      ? Object.keys(values).filter((key: string) =>
+          key.match(/euiColorVis[0-9]$|euiColorVis[0-9]_behindText/)
+        )
+      : Object.keys(values).filter((key: string) =>
+          key.match(/euiColorVis[0-9]$/)
+        );
+
+  return (
+    <>
+      <ThemeValuesTable
+        items={dataVisKeys.map((color) => {
           return {
             id: color,
             token: `$${color}`,
