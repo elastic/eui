@@ -38,6 +38,10 @@ const config: Config = {
     locales: ['en'],
   },
 
+  customFields: {
+    prRootUrl,
+  },
+
   presets: [
     [
       require.resolve('@elastic/eui-docusaurus-preset'),
@@ -131,9 +135,6 @@ const config: Config = {
       theme: prismThemes.github,
       darkTheme: prismThemes.dracula,
       additionalLanguages: ['scss'],
-    },
-    customFields: {
-      prRootUrl,
     },
   } satisfies Preset.ThemeConfig,
 };
