@@ -15,6 +15,7 @@ type CalloutVariant =
   | 'note'
   | 'tip'
   | 'info'
+  | 'accessibility'
   | 'warning'
   | 'danger'
   | 'secondary'
@@ -30,6 +31,7 @@ const VARIANT_TO_PROPS_MAP: Record<
   note: { iconType: 'paperClip', color: 'accent' },
   tip: { iconType: 'faceHappy', color: 'success' },
   info: { iconType: 'iInCircle', color: 'primary' },
+  accessibility: { iconType: 'accessibility', color: 'primary' },
   warning: { iconType: 'alert', color: 'warning' },
   danger: { iconType: 'error', color: 'danger' },
   // Undocumented legacy admonition type aliases
@@ -71,6 +73,7 @@ const admonitionTypes: typeof AdmonitionTypes = {
   note: Callout,
   tip: Callout,
   info: Callout,
+  accessibility: Callout,
   warning: Callout,
   danger: Callout,
   secondary: Callout,
