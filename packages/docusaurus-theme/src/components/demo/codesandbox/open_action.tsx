@@ -49,15 +49,6 @@ const publicIndexHtmlSource = dedent`
   </body>
 `;
 
-const tsconfigJsonSource = dedent`
-  {
-    "compilerOptions": {
-      "jsx": "react-jsx",
-      "jsxImportSource": "@emotion/react"
-    }
-  }
-`;
-
 export const defaultCodeSandboxParameters = {
   files: {
     'index.tsx': {
@@ -66,15 +57,18 @@ export const defaultCodeSandboxParameters = {
     'public/index.html': {
       content: publicIndexHtmlSource,
     },
-    'tsconfig.json': {
-      content: tsconfigJsonSource,
-    },
   },
 };
 
 export type Options = {
   files?: Record<string, string>;
   dependencies: Record<string, string>;
+};
+
+const processTsxSource = (source: string) => {
+  // jsxImportSource pragma is needed in CodeSandbox as it doesn't seem
+  // to support that setting via tsconfig.json
+  return `/** jsxImportSource @emotion/react */\n${source}`;
 };
 
 export const createOpenInCodeSandboxAction =
@@ -96,7 +90,7 @@ export const createOpenInCodeSandboxAction =
         files: {
           ...defaultCodeSandboxParameters.files,
           'demo.tsx': {
-            content: source,
+            content: processTsxSource(source),
           },
           'package.json': {
             content: {
