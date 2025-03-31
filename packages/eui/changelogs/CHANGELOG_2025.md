@@ -1,3 +1,27 @@
+## [`v101.2.0`](https://github.com/elastic/eui/releases/v101.2.0)
+
+- Added `showToolTip` prop on `EuiColorPickerSwatch` ([#8512](https://github.com/elastic/eui/pull/8512))
+
+**Bug fixes**
+
+- Fixed a visual issue of overlapping borders for layered `EuiPanel`s ([#8519](https://github.com/elastic/eui/pull/8519))
+- Fixes wrong `colorMode` styling for the search in `EuiHeader` with `theme="dark"` ([#8496](https://github.com/elastic/eui/pull/8496))
+
+**Accessibility**
+
+- Improved the accessibility of `EuiColorPicker` by adding color label tooltips on hover and focus for color swatches ([#8512](https://github.com/elastic/eui/pull/8512))
+- Added `disableScreenReaderOutput` prop on `EuiToolTip` to manually control if the tooltip content should be read when focusing the trigger. This prevents duplicate screen reader output when the tooltip content and `aria-label` on the trigger element have the same text content. ([#8508](https://github.com/elastic/eui/pull/8508))
+- Improves text color contrast for `EuiButton` with `color="warning"` in high contrast mode ([#8496](https://github.com/elastic/eui/pull/8496))
+- Improves contrast and visible distinction of the following components in high contrast mode: ([#8496](https://github.com/elastic/eui/pull/8496))
+  - `EuiCode`
+  - `EuiBadge`
+  - `EuiBetaBadge`
+  - `EuiNotificationBadge`
+
+**Dependency updates**
+
+- Updated `prismjs` to v1.30.0 ([#8506](https://github.com/elastic/eui/pull/8506))
+
 ## [`v101.1.0`](https://github.com/elastic/eui/releases/v101.1.0)
 
 - Updates `EuiTableRow` styles to check support for `:has(+)` selector ([#8498](https://github.com/elastic/eui/pull/8498))
