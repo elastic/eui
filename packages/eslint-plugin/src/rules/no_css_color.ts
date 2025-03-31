@@ -94,7 +94,7 @@ const raiseReportIfPropertyHasInvalidCssColor = (
 
     const identifierDeclarationInit = (
       identifierDeclaration?.defs[0].node as TSESTree.VariableDeclarator
-    ).init;
+    )?.init;
 
     if (
       identifierDeclarationInit?.type === 'Literal' &&
@@ -133,7 +133,7 @@ const raiseReportIfPropertyHasInvalidCssColor = (
 
     const expressionRootDeclarationInit = (
       expressionRootDeclaration?.defs[0].node as TSESTree.VariableDeclarator
-    ).init;
+    )?.init;
 
     if (expressionRootDeclarationInit?.type === 'ObjectExpression') {
       (
