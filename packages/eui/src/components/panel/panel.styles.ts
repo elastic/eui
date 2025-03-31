@@ -36,11 +36,11 @@ export const euiPanelBorderStyles = (
       /* Using a pseudo element for the border instead of floating border only 
       because the transparent border might otherwise be visible with arbitrary 
       full-width/height content in light mode. */
-      &::before {
+      &::after {
         content: '';
         position: absolute;
         /* ensure to keep on top of flush content */
-        z-index: 1;
+        z-index: 0;
         inset: 0;
         border: ${euiTheme.border.width.thin} solid
           ${

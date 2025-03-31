@@ -26,7 +26,7 @@ export const euiToastStyles = (euiThemeContext: UseEuiTheme) => {
     color: string,
     width?: CSSProperties['borderWidth']
   ) => `
-    &:after {
+    &:before {
       content: '';
       position: absolute;
       /* ensure highlight border is on top of panel border */
@@ -80,7 +80,7 @@ export const euiToastStyles = (euiThemeContext: UseEuiTheme) => {
           preferred: `
             ${highlightStyles(color, borderWidth)}
             
-            &::after {
+            &::before {
               ${logicalCSS(
                 'width',
                 `calc(100% + ${mathWithUnits(
@@ -96,7 +96,7 @@ export const euiToastStyles = (euiThemeContext: UseEuiTheme) => {
           forced: `
             overflow: hidden;
 
-            &::after {
+            &::before {
               content: '';
               position: absolute;
               ${logicalCSS('top', 0)}
