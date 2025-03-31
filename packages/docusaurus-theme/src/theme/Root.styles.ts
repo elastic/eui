@@ -111,6 +111,11 @@ export const getGlobalStyles = (theme: UseEuiTheme) => {
       --ifm-h6-font-size: var(--eui-font-size-xxs);
 
       --ifm-global-radius: ${euiTheme.border.radius.small};
+
+      --ifm-toc-border-color: ${euiTheme.border.color};
+
+      --doc-sidebar-width: 258px;
+      --doc-sidebar-hidden-width: 30px;
     }
   `;
 };

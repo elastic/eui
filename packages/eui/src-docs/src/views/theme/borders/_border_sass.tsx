@@ -45,6 +45,7 @@ export const TypesValuesSass = () => {
         })}
         render={(item) => (
           <EuiColorPickerSwatch
+            showToolTip={false}
             color={'transparent'}
             disabled
             className={`guideSass__border--${item.id}`}
@@ -90,7 +91,9 @@ export const ColorValuesSass = () => {
             value: color,
           };
         })}
-        render={() => <EuiColorPickerSwatch color={color} disabled />}
+        render={() => (
+          <EuiColorPickerSwatch showToolTip={false} color={color} disabled />
+        )}
       />
     </>
   );
@@ -138,6 +141,7 @@ export const WidthValuesSass = () => {
         })}
         render={(item) => (
           <EuiColorPickerSwatch
+            showToolTip={false}
             color={'transparent'}
             disabled
             className={`guideSass__border--${item.id}`}
@@ -189,6 +193,7 @@ export const RadiusValuesSass = () => {
         })}
         render={(item) => (
           <EuiColorPickerSwatch
+            showToolTip={false}
             color={'transparent'}
             disabled
             className={`guideSass__border--${item.id}`}

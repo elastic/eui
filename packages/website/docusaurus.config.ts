@@ -44,6 +44,10 @@ const config: Config = {
         docs: {
           sidebarPath: './sidebars.ts',
           editUrl: 'https://github.com/elastic/eui/tree/main/packages/website/',
+          admonitions: {
+            keywords: ['accessibility'],
+            extendDefaults: true,
+          },
         },
         blog: {
           showReadingTime: true,

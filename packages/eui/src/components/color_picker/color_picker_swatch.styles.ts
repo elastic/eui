@@ -52,5 +52,8 @@ export const euiColorPickerSwatchStyles = (euiThemeContext: UseEuiTheme) => {
         ${euiOutline(euiThemeContext, 'center')}
       }
     `,
+    tooltip: css`
+      display: inline-flex;
+    `,
   };
 };

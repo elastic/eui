@@ -5,13 +5,13 @@ id: templates_sitewide_search
 
 # Sitewide search
 
-**EuiSelectableTemplateSitewide** is an opinionated wrapper around [**EuiSelectable**](/docs/forms/selectable) to provide a reusable template across the Elastic products that will share the same global search capabilities. It creates the search input that triggers a popover containing the list of options.
+**EuiSelectableTemplateSitewide** is an opinionated wrapper around [EuiSelectable](../forms/selection/selectable.mdx) to provide a reusable template across the Elastic products that will share the same global search capabilities. It creates the search input that triggers a popover containing the list of options.
 
 ## Basic setup
 
 ### Search input
 
-The search ability of [**EuiSelectable**](/docs/forms/selectable) is still hooked up to the options provided. It will highlight the portion of the label that matches the search string.
+The search ability of [EuiSelectable](../forms/selection/selectable.mdx) is still hooked up to the options provided. It will highlight the portion of the label that matches the search string.
 
 :::note
 
@@ -21,7 +21,7 @@ The demo showcases the possibility to allow a keyboard shortcut (command + K) to
 
 ### Popover
 
-The popover itself allows you to display a `popoverTitle` node, `popoverFooter` node, or pass any of the `popoverProps` to the [**EuiPopover**](/docs/layout/popover) component.
+The popover itself allows you to display a `popoverTitle` node, `popoverFooter` node, or pass any of the `popoverProps` to the [EuiPopover](../layout/popover.mdx) component.
 
 ### Selection
 
@@ -425,10 +425,10 @@ import { SitewideOption } from './sitewide_option';
   ```
 </details>
 
-*   `label` (required): The name of the item itself. By default, the search box will only use this to match the search term against, but you can supply a separate `searchableLabel` that combines the label and meta data to search on.
-*   `icon`: Only display the solution or application's logo when the option links to the application itself (Dashboard app) and not lower-level items such as individual dashboards. Size and color are predetermined but can be overridden.
-*   `avatar`: Represents the Kibana Space that the item is located in, **if** multiple spaces are present. Type and size are predetermined but can be overridden.
-*   `meta`: This bottom line should only contain items if the option is a lower-level item (individual dashboard). The display of which defaults to simple text, but if you pass one of the predetermined `types`, they will be styled according to the design pattern.
+- `label` (required): The name of the item itself. By default, the search box will only use this to match the search term against, but you can supply a separate `searchableLabel` that combines the label and meta data to search on.
+- `icon`: Only display the solution or application's logo when the option links to the application itself (Dashboard app) and not lower-level items such as individual dashboards. Size and color are predetermined but can be overridden.
+- `avatar`: Represents the Kibana Space that the item is located in, **if** multiple spaces are present. Type and size are predetermined but can be overridden.
+- `meta`: This bottom line should only contain items if the option is a lower-level item (individual dashboard). The display of which defaults to simple text, but if you pass one of the predetermined `types`, they will be styled according to the design pattern.
 
 :::note
 The demo shows how you can temporarily replace the icon for a subset of options to display a short list of recently viewed options.

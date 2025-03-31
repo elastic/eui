@@ -6,7 +6,10 @@ import {
 } from '@elastic/eui';
 import { ThemeValuesTable } from '../theme_values_table';
 
-const borderRadii: Array<keyof _EuiThemeBorderRadiusValues> = ['small', 'medium'];
+const borderRadii: Array<keyof _EuiThemeBorderRadiusValues> = [
+  'small',
+  'medium',
+];
 
 export const BorderRadiiTable = () => {
   const { euiTheme } = useEuiTheme();
@@ -20,6 +23,7 @@ export const BorderRadiiTable = () => {
       }))}
       render={(item) => (
         <EuiColorPickerSwatch
+          showToolTip={false}
           color={euiTheme.colors.emptyShade}
           css={css`
             border: ${euiTheme.border.thick};
