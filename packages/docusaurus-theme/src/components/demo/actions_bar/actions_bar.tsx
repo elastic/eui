@@ -41,8 +41,6 @@ const getDemoActionsBarStyles = (euiTheme: UseEuiTheme) => {
       }
     `,
     button: css`
-      background: var(--eui-background-color-primary);
-      border: 1px solid var(--eui-border-color-primary);
       margin-right: auto;
     `,
   };
@@ -63,6 +61,7 @@ export const DemoActionsBar = ({
         css={styles.button}
         onClick={() => setSourceOpen(!isSourceOpen)}
         size="s"
+        color="text"
         minWidth={false}
       >
         {isSourceOpen ? 'Hide source' : 'Show source'}
