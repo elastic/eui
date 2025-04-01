@@ -13,6 +13,8 @@ export const extraActions = [
     dependencies: {
       'react': '^18',
       'react-dom': '^18',
+      '@types/react': '^18',
+      '@types/react-dom': '^18',
       'react-scripts': 'latest',
       '@emotion/cache': 'latest',
       '@emotion/react': 'latest',
