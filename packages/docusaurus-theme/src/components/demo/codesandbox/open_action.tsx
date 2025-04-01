@@ -15,6 +15,7 @@ import { CodeSandboxIcon } from '../../codesandbox_icon';
 import { findExternalDependencies } from './find_external_dependencies';
 
 const indexTsxSource = dedent`
+  import React from 'react';
   import { createRoot } from 'react-dom/client';
   import createCache from '@emotion/cache';
   import { EuiProvider, euiStylisPrefixer } from '@elastic/eui';
@@ -24,11 +25,11 @@ const indexTsxSource = dedent`
   const cache = createCache({
     key: 'codesandbox',
     stylisPlugins: [euiStylisPrefixer],
-    container: document.querySelector('meta[name="emotion-styles"]'),
+    container: document.querySelector('meta[name="emotion-styles"]')!,
   });
   cache.compat = true;
 
-  const root = createRoot(document.getElementById('root'));
+  const root = createRoot(document.getElementById('root')!);
   root.render(
     <EuiProvider cache={cache}>
       <Demo />
