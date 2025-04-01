@@ -68,7 +68,7 @@ export type Options = {
 const processTsxSource = (source: string) => {
   // jsxImportSource pragma is needed in CodeSandbox as it doesn't seem
   // to support that setting via tsconfig.json
-  return `/** jsxImportSource @emotion/react */\n${source}`;
+  return `/** @jsxImportSource @emotion/react */\n${source}`;
 };
 
 export const createOpenInCodeSandboxAction =
