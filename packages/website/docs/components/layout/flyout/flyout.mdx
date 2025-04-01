@@ -5,7 +5,7 @@ id: layout_flyout
 
 # Flyout
 
-**EuiFlyout** is a fixed position panel that pops in from the side of the window. It should be used to reveal more detailed contextual information or to provide complex forms without losing the user's current state. It is a good alternative to [modals](../modal) when the action is not transient.
+**EuiFlyout** is a fixed position panel that pops in from the side of the window. It should be used to reveal more detailed contextual information or to provide complex forms without losing the user's current state. It is a good alternative to [modals](../modal/overview.mdx) when the action is not transient.
 
 Like modals, you control the visibility of the flyout using your own state management, but **EuiFlyout** requires an `onClose` handler for it's internal dismiss buttons.
 
@@ -602,7 +602,7 @@ export default () => {
 
 ## Adding a banner
 
-To highlight some information at the top of a flyout, you can pass an [**EuiCallOut**](../../display/callout) to the `banner` prop available in **EuiFlyoutBody** and its layout will adjust appropriately.
+To highlight some information at the top of a flyout, you can pass an [EuiCallOut](../../display/callout.mdx) to the `banner` prop available in **EuiFlyoutBody** and its layout will adjust appropriately.
 
 ```tsx interactive
 import React, { useState } from 'react';
@@ -672,7 +672,7 @@ export default () => {
 
 ## Without ownFocus
 
-Like modals, you will usually want to obscure the page content beneath with `ownFocus` which wraps the flyout with an [**EuiOverlayMask**](../../utilities/overlay-mask) . However, there are use-cases where flyouts present more information or controls, but need to maintain the interactions of the page content. By setting `ownFocus={false}`, the underlying page content will be visible and clickable.
+Like modals, you will usually want to obscure the page content beneath with `ownFocus` which wraps the flyout with an [EuiOverlayMask](../../utilities/overlay_mask.mdx) . However, there are use-cases where flyouts present more information or controls, but need to maintain the interactions of the page content. By setting `ownFocus={false}`, the underlying page content will be visible and clickable.
 
 ```tsx interactive
 import React, { useState } from 'react';

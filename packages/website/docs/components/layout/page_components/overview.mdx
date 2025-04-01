@@ -5,11 +5,11 @@ id: layout_page_components_overview
 
 # Page components
 
-Page layouts are modular and fit together in a precise manner, though certain parts can also be added or removed as needed. EUI provides both the **individual page components** and an [over-arching template](/docs/templates/page-template) for easily creating some pre-defined layouts.
+Page layouts are modular and fit together in a precise manner, though certain parts can also be added or removed as needed. EUI provides both the **individual page components** and an [over-arching template](../../templates/page_template/overview.mdx) for easily creating some pre-defined layouts.
 
 :::note The following examples showcase the individual components only.
 
-If you're looking for full page layout examples, we recommend using the [EuiPageTemplate](/docs/templates/page-template) and use this page to modify the props of each part of the template.
+If you're looking for full page layout examples, we recommend using the [EuiPageTemplate](../../templates/page_template/overview.mdx) and use this page to modify the props of each part of the template.
 
 :::
 
@@ -56,7 +56,7 @@ import { PageComponentsPreviewWrapper } from './preview_wrapper';
 </Demo>
 ## Page sections
 
-**EuiPageSection** is a stackable component that is essentially an [**EuiPanel**](/docs/layout/panel) with props for quickly creating common usages. It is meant to be a direct descendent of **EuiPageBody** You'll need to set `grow={false}` to any content that you don't want to stretch within the page.
+**EuiPageSection** is a stackable component that is essentially an [EuiPanel](../panel/overview.mdx) with props for quickly creating common usages. It is meant to be a direct descendent of **EuiPageBody** You'll need to set `grow={false}` to any content that you don't want to stretch within the page.
 
 To create dividers between contents, use the `bottomBorder` prop. The `'extended'` version ensures the border touches the sides of the parent. It also supports `restrictWidth` and `alignment` to align with common usages.
 
@@ -111,7 +111,7 @@ export default ({
 
 When piecing all of the different page components together, the state of your application will dictate how best to configure each component. Ideally, your main content should always live within a `'plain'` colored body or section.
 
-When using [**EuiEmptyPrompt**](/docs/display/empty-prompt) to replace the main contents of your page you will want to use a panel color opposite that of the section color. For example:
+When using [EuiEmptyPrompt](../../display/empty_prompt/overview.mdx) to replace the main contents of your page you will want to use a panel color opposite that of the section color. For example:
 
 <table>
   <tr>
@@ -181,7 +181,7 @@ When using [**EuiEmptyPrompt**](/docs/display/empty-prompt) to replace the main 
 </table>
 
 :::tip
-Reminder: [**EuiPageTemplate**](/docs/templates/page-template) can handle all these configurations for you.
+Reminder: [EuiPageTemplate](../../templates/page_template/overview.mdx) can handle all these configurations for you.
 :::
 
 <Demo scope={{ fakeParagraph, fakeSidebar }} previewPadding="none" previewWrapper={PageComponentsPreviewWrapper}>
