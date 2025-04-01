@@ -22,6 +22,8 @@
   },
   "main": "lib/index.js",
   "exports": {
+    "./lib/*": "./lib/*",
+    "./components/*": "./lib/components/*",
     "./components": "./lib/components/index.js",
     ".": "./lib/index.js"
   },
@@ -39,6 +41,8 @@
     "@emotion/react": "^11.11.4",
     "@types/react-window": "^1.8.8",
     "clsx": "^2.1.1",
+    "codesandbox": "^2.2.3",
+    "dedent": "^1.5.3",
     "moment": "^2.30.1",
     "prism-react-renderer": "^2.3.1",
     "react-is": "^18.3.1",

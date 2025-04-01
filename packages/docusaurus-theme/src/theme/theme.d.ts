@@ -574,3 +574,17 @@ declare module '@theme/Demo/default_scope' {
 
   export const demoDefaultScope: ScopeType;
 }
+
+declare module '@theme/Demo/actions' {
+  import type { ComponentType } from 'react';
+  import type { DemoSourceMeta } from '@elastic/eui-docusaurus-theme/components/demo/demo';
+
+  export type ActionComponentProps = {
+    activeSource: DemoSourceMeta;
+    sources: DemoSourceMeta[];
+  };
+
+  export type ActionComponent = ComponentType<ActionComponentProps>;
+
+  export const extraActions: ActionComponent[];
+}
