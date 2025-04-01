@@ -28,7 +28,12 @@ const EuiIconTrash = ({
     {...props}
   >
     {title ? <title id={titleId}>{title}</title> : null}
-    <path d="M11 3h5v1H0V3h5V1a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2Zm-7.056 8H7v1H4.1l.392 2.519c.042.269.254.458.493.458h6.03c.239 0 .451-.189.493-.458l1.498-9.576H14l-1.504 9.73c-.116.747-.74 1.304-1.481 1.304h-6.03c-.741 0-1.365-.557-1.481-1.304l-1.511-9.73H9V5.95H3.157L3.476 8H8v1H3.632l.312 2ZM6 3h4V1H6v2Z" />
+    <path d="M7 6H6v6h1V6Zm2.997 0h-1v6h1V6Z" />
+    <path
+      fillRule="evenodd"
+      d="M5 2v1H2v1h1v10a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4h1V3h-3V2a1 1 0 0 0-1-1H6a1 1 0 0 0-1 1Zm5 0H6v1h4V2ZM4 14V4h8v10H4Z"
+      clipRule="evenodd"
+    />
   </svg>
 );
 export const icon = EuiIconTrash;

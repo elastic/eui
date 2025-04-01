@@ -30,7 +30,14 @@ const EuiIconIInCircle = ({
     {title ? <title id={titleId}>{title}</title> : null}
     <path
       fillRule="evenodd"
-      d="M7.5 11.508 7.468 8H6.25V7h2.401l.03 3.508H9.8v1H7.5Zm-.25-6.202a.83.83 0 0 1 .207-.577c.137-.153.334-.229.59-.229.256 0 .454.076.594.23.14.152.209.345.209.576 0 .228-.07.417-.21.568-.14.15-.337.226-.593.226-.256 0-.453-.075-.59-.226a.81.81 0 0 1-.207-.568ZM8 13A5 5 0 1 0 8 3a5 5 0 0 0 0 10Zm0 1A6 6 0 1 1 8 2a6 6 0 0 1 0 12Z"
+      d="M8 14A6 6 0 1 0 8 2a6 6 0 0 0 0 12Zm0 1A7 7 0 1 0 8 1a7 7 0 0 0 0 14Z"
+      clipRule="evenodd"
+    />
+    <path d="M9 5a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z" />
+    <path
+      fillRule="evenodd"
+      d="M6.5 7h2v4H10v1H6v-1h1.5V8h-1V7Z"
+      clipRule="evenodd"
     />
   </svg>
 );

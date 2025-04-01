@@ -28,7 +28,12 @@ const EuiIconTableDensityExpanded = ({
     {...props}
   >
     {title ? <title id={titleId}>{title}</title> : null}
-    <path d="M16 3v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v1Zm-1 0V2a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v1h14Zm0 1H1v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4ZM4.5 7a.5.5 0 0 1 0 1H2.496a.5.5 0 1 1 0-1H4.5Zm9 0a.5.5 0 1 1 0 1h-6a.5.5 0 0 1 0-1h6Zm-9 4a.5.5 0 1 1 0 1H2.496a.5.5 0 1 1 0-1H4.5Zm9 0a.5.5 0 1 1 0 1h-6a.5.5 0 1 1 0-1h6Z" />
+    <path d="M3 7h2v1H3V7Zm5 0H6v1h2V7Zm1 0h4v1H9V7Zm-4 4H3v1h2v-1Zm1 0h2v1H6v-1Zm7 0H9v1h4v-1Z" />
+    <path
+      fillRule="evenodd"
+      d="M1 2a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2Zm1 0v2h12V2H2Zm12 3H2v9h12V5Z"
+      clipRule="evenodd"
+    />
   </svg>
 );
 export const icon = EuiIconTableDensityExpanded;
