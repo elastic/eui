@@ -7,7 +7,7 @@ id: navigation_collapsible_nav
 
 This is a high level component that creates a flyout-style navigational pane.
 
-**EuiCollapsibleNav** is a custom implementation of [**EuiFlyout**](/docs/layout/flyout); the visibility of which must still be maintained by the consuming application. An extra feature that it provides is the ability to `dock` the flyout. This affixes the flyout to the window and pushes the body content by adding left side padding.
+**EuiCollapsibleNav** is a custom implementation of [EuiFlyout](../layout/flyout/flyout.mdx); the visibility of which must still be maintained by the consuming application. An extra feature that it provides is the ability to `dock` the flyout. This affixes the flyout to the window and pushes the body content by adding left side padding.
 
 :::warning
 Docking is not possible on small screens because it would force less real estate for the page content.
@@ -91,7 +91,7 @@ export default () => {
 
 ## Collapsible nav group
 
-An **EuiCollapsibleNavGroup** adds some basic borders and `background` color of `none`, `light`, or `dark`. Give each section a heading by providing an optional `title` and `iconType`. Make the section collapsible ([accordion style](/docs/layout/accordion)) with `isCollapsible=true`.
+An **EuiCollapsibleNavGroup** adds some basic borders and `background` color of `none`, `light`, or `dark`. Give each section a heading by providing an optional `title` and `iconType`. Make the section collapsible ([accordion style](../layout/accordion.mdx)) with `isCollapsible=true`.
 
 When in `isCollapsible` mode, a `title` and `initialIsOpen:boolean` is required.
 
@@ -154,7 +154,7 @@ export default () => (
 
 ## Nav groups with lists and other content
 
-**EuiCollapsibleNavGroups** can contain any children. They work well with [**EuiListGroup, EuiPinnableListGroup**](/docs/display/list-group) and simple [**EuiText**](/docs/navigation/link).
+**EuiCollapsibleNavGroups** can contain any children. They work well with [EuiListGroup, EuiPinnableListGroup](../display/list_group.mdx) and simple [EuiText](./link.mdx).
 
 Below are a few established patterns to use.
 
@@ -292,7 +292,7 @@ export default () => (
 
 ### Putting it all together
 
-The button below will launch a fullscreen example that includes [**EuiHeader**](/docs/layout/header) with a toggle button to open an **EuiCollapsibleNav**. The contents of which are multiple **EuiCollapsibleNavGroups** and saves the open/closed/pinned state for each section and item in local store.
+The button below will launch a fullscreen example that includes [EuiHeader](../layout/header.mdx) with a toggle button to open an **EuiCollapsibleNav**. The contents of which are multiple **EuiCollapsibleNavGroups** and saves the open/closed/pinned state for each section and item in local store.
 
 This is just a pattern and should be treated as such. Consuming applications will need to create the navigation groups according to their context and save the states as is appropriate to their data store.
 

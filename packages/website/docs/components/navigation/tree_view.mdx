@@ -5,11 +5,11 @@ id: navigation_tree_view
 
 # Tree view
 
-**EuiTreeView** allows you to render recursive objects, such as a file directory. It is not meant to be used as primary navigation, for that we recommend using [**EuiSideNav**](/docs/navigation/side-nav).
+**EuiTreeView** allows you to render recursive objects, such as a file directory. It is not meant to be used as primary navigation, for that we recommend using [EuiSideNav](./side_nav.mdx).
 
 **EuiTreeView** does not accept `children` directly but requires an array of `EuiTreeViewNode`s through its `items` prop.
 
-Each node requires a `label` and a unique `id`. The `icon` prop accepts any [icon or token](/docs/display/icons). You can also specify a different icon for the open state with the `iconWhenExpanded` prop. Use the nodes' `children` prop to nest more nodes.
+Each node requires a `label` and a unique `id`. The `icon` prop accepts any [icon or token](../display/icons/overview.mdx). You can also specify a different icon for the open state with the `iconWhenExpanded` prop. Use the nodes' `children` prop to nest more nodes.
 
 :::accessibility Accessibility recommendation
 Provide a descriptive `aria-label` for each tree view. This component also builds in keyboard navigation allowing users to traverse the tree using the arrow keys, spacebar, and return.
