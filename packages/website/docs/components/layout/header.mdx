@@ -15,6 +15,8 @@ The header is made up of **many** individual components starting with **EuiHeade
 *   **EuiHeaderLogo**: A helpful component for creating a linked logo that fits within the header sizing.
 *   **EuiHeaderBreadcrumbs**: A set of [**EuiBreadcrumbs**](/docs/navigation/breadcrumbs) specifically stylized to fit inside the header.
 
+## Example
+
 <Demo scope={{ Link }}>
   ```tsx
   import React, { useState } from 'react';
@@ -425,7 +427,9 @@ The header is made up of **many** individual components starting with **EuiHeade
   ```
 </Demo>
 
-## Sections
+## Usage
+
+### Sections
 
 Alternatively, you can pass an array of objects to the `sections` prop that takes a key of `items` (array of children to wrap in an **EuiHeaderSectionItem**) and/or `breadcrumbs` (array of [breadcrumb](/docs/navigation/breadcrumbs) objects). Each item in the array will be wrapped in an **EuiHeaderSection**.
 
@@ -522,7 +526,7 @@ export default () => {
 };
 ```
 
-## Header links
+### Header links
 
 In addition to the components mentioned prior, which lend themselves to more application style navigation patterns, **EuiHeaderLinks** and **EuiHeaderLink** supply the ability to inline a list of navigational or menu style links.
 
@@ -567,7 +571,7 @@ export default () => {
 };
 ```
 
-## Fixed header
+### Fixed header
 
 Most consumers need a header that does not scroll away with the page contents. You can set this display by applying the property `position="fixed"`. Multiple fixed headers will automatically stack underneath one another. No manual positioning is required.
 
@@ -610,7 +614,7 @@ export default () => {
 };
 ```
 
-## Dark theme
+### Dark theme
 
 To make site-wide navigation more prominent, **EuiHeader** supports reversing the colors to dark theme with `theme="dark"`. However, it only supports a **limited set of children** that will also shift their theme. These components include **EuiHeaderLogo, EuiHeaderLink(s),** **EuiHeaderSectionItemButton** and **EuiSelectableTemplateSitewide**. Any other content may not render correctly without custom configurations.
 
@@ -671,7 +675,7 @@ export default () => {
 };
 ```
 
-## Portal content in the header
+### Portal content in the header
 
 Use an **EuiHeaderSectionItemButton** to display additional information in [popovers](../layout/popover.mdx) or [flyouts](../layout/flyout/flyout.mdx), such as a user profile or news feed. When using [**EuiFlyout**](../layout/flyout/flyout.mdx), be sure to wrap it in a [**EuiPortal**](../utilities/portal.mdx). When using an [**EuiPopover**](../layout/popover.mdx) in conjunction with a **fixed** header, be sure to add the `repositionOnScroll` prop to the popover.
 
@@ -1049,7 +1053,7 @@ export default () => {
 
 ```
 
-## Header notifications
+### Header notifications
 
 To alert or notify users about the additional information they are receiving, use the **EuiHeaderSectionItemButton** `notification` prop. You can pass a `node` that will render inside a **EuiBadgeNotification** or pass `true` to render a simple dot. You can also animate the button by calling the `euiAnimate()` method on the **EuiHeaderSectionItemButton** `ref`.
 
@@ -1198,7 +1202,7 @@ export default () => {
 
 ```
 
-## Stacked headers
+### Stacked headers
 
 Stacking multiple headers provides a great way to separate global navigation concerns.
 
@@ -1291,9 +1295,9 @@ export default () => {
 };
 ```
 
-## The Elastic navigation pattern
+## Demo
 
-### Putting it all together
+### Elastic navigation
 
 The button below will launch a fullscreen example that includes two **EuiHeaders** with all the appropriate navigation pieces including [**EuiCollapsibleNav**,](/docs/navigation/collapsible-nav) **EuiHeaderAlerts**, user menu, deployment switcher, space selector, **EuiHeaderBreadcrumbs** and **EuiHeaderLinks** for app menu items.
 
