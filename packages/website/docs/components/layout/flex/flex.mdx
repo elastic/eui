@@ -11,9 +11,9 @@ import DemoNote from './_flex_preview_note.mdx';
 
 ## Use cases
 
-- [**EuiFlexGroup**](./group) is useful for single row layouts and for quick alignment of items.
-- [**EuiFlexGrid**](./grid) should be used for repeated wrapping rows of same-width items.
-- [**EuiFlexItem**](./item) should be used as a direct child of both groups or grids. It can also, depending on the layout, be omitted if its automatic flex or grow behavior is not desired.
+- [EuiFlexGroup](./flex_group.mdx) is useful for single row layouts and for quick alignment of items.
+- [EuiFlexGrid](./flex_grid.mdx) should be used for repeated wrapping rows of same-width items.
+- [EuiFlexItem](./flex_item.mdx) should be used as a direct child of both groups or grids. It can also, depending on the layout, be omitted if its automatic flex or grow behavior is not desired.
 
 ## Shared behavior
 
@@ -27,7 +27,7 @@ export const FlexDemo = createDemo({ previewWrapper: FlexPreviewWrapper });
 
 :::warning Flex items are also a flexbox
 
-To support nested stretching of items, **EuiFlexItem** also has `display: flex` on it. If your children are not behaving correctly, consider using one of these [flex item workarounds](./item#flex-items-are-also-flex).
+To support nested stretching of items, **EuiFlexItem** also has `display: flex` on it. If your children are not behaving correctly, consider using one of these [flex item workarounds](./flex_item.mdx#flex-items-are-also-flex).
 
 :::
 

@@ -5,13 +5,13 @@ id: layout_modal
 
 # Modal
 
-A modal works best for focusing users' attention on a **short** amount of content and getting them to make a decision, such as a [confirmation](./confirm). Use it to temporarily interrupt a user’s current task and block interactions to the content below it.
+A modal works best for focusing users' attention on a **short** amount of content and getting them to make a decision, such as a [confirmation](./confirm_modal.mdx). Use it to temporarily interrupt a user’s current task and block interactions to the content below it.
 
-If your modal content is more complex, or requires considerable time to complete, consider using an [**EuiFlyout**](../flyout) instead.
+If your modal content is more complex, or requires considerable time to complete, consider using an [EuiFlyout](../flyout/flyout.mdx) instead.
 
 Each **EuiModal** requires a specific set of nested child components. They can be omitted if necessary, but the order cannot be changed or interrupted.
 
-Modals come a wrapping **EuiOverlayMask** to obscure the content beneath, but unlike flyouts, modals cannot be dismissed by clicking on the overlay mask. This is inline with our [modal usage guidelines](./guidelines) which requires there to be a primary action button, even if that button simply closes the modal.
+Modals come a wrapping **EuiOverlayMask** to obscure the content beneath, but unlike flyouts, modals cannot be dismissed by clicking on the overlay mask. This is inline with our [modal usage guidelines](./guidelines.mdx) which requires there to be a primary action button, even if that button simply closes the modal.
 
 ```tsx interactive
 import React, { useState } from 'react';

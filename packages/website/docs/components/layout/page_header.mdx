@@ -5,7 +5,7 @@ id: layout_page_header
 
 # Page header
 
-While the **EuiPageHeader** component can be placed anywhere within your page layout, we recommend using it within the [**EuiPageTemplate**](/docs/templates/page-template) component by passing the configuration props as its `pageHeader`.
+While the **EuiPageHeader** component can be placed anywhere within your page layout, we recommend using it within the [EuiPageTemplate](../templates/page_template/overview.mdx) component by passing the configuration props as its `pageHeader`.
 
 **EuiPageHeader** provides props for opinionated, consistent formatting of your header. Any combination of `pageTitle`, `description`, `tabs`, or any `children` will adjust the layout as needed.
 
@@ -32,7 +32,7 @@ export default () => (
 
 ## Tabs in the page header
 
-A set of `tabs` can be displayed inside the page header by passing an array of [**EuiTab**](/docs/navigation/tabs) objects using the `label` key for the tab content. When displaying tabs, the `bottomBorder` prop will be enforced to create separation of the header and content. You'll still need to manage the page content and selected tab in your own instance.
+A set of `tabs` can be displayed inside the page header by passing an array of [EuiTab](../navigation/tabs/overview.mdx) objects using the `label` key for the tab content. When displaying tabs, the `bottomBorder` prop will be enforced to create separation of the header and content. You'll still need to manage the page content and selected tab in your own instance.
 
 ```tsx interactive
 import React from 'react';
@@ -82,7 +82,7 @@ export default () => (
 
 ## Breadcrumbs in the page header
 
-[Breadcrumbs](/docs/navigation/breadcrumbs) are useful for tracking in-page flows that **are not part of the entire application architecture**. To make this easy **EuiPageHeader** provides a `breadcrumbs` prop that accepts the same configuration as `EuiBreadcrumbs.breadcrumbs`.
+[Breadcrumbs](../navigation/breadcrumbs.mdx) are useful for tracking in-page flows that **are not part of the entire application architecture**. To make this easy **EuiPageHeader** provides a `breadcrumbs` prop that accepts the same configuration as `EuiBreadcrumbs.breadcrumbs`.
 
 ```tsx interactive
 import React from 'react';

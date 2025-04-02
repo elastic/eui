@@ -7,7 +7,7 @@ sidebar_position: 2
 # Flex items
 
 :::warning
-To work correctly, **EuiFlexItem** must be a **direct child** of [**EuiFlexGroup**](./group) or [**EuiFlexGrid**](./grid). You cannot have any intermediate HTML wrappers between them.
+To work correctly, **EuiFlexItem** must be a **direct child** of [EuiFlexGroup](./flex_group.mdx) or [EuiFlexGrid](./flex_grid.mdx). You cannot have any intermediate HTML wrappers between them.
 :::
 
 import { createDemo } from '@elastic/eui-docusaurus-theme/components';
@@ -64,7 +64,7 @@ Alternatively, you can sometimes opt to omit **EuiFlexItem** completely.
 
 ## Panels grow vertically to fill flex items
 
-The [**EuiPanel**](/docs/layout/panel) component will naturally grow to fill the **EuiFlexItem** which contains it.
+The [EuiPanel](../panel/overview.mdx) component will naturally grow to fill the **EuiFlexItem** which contains it.
 
 ```tsx interactive
 import React from 'react';
@@ -107,7 +107,7 @@ export default () => (
 ## Grow
 
 :::warning
-The `grow` prop of **EuiFlexItem** only applies when used within [**EuiFlexGroup**](./group). It is ignored by [**EuiFlexGrid**](./grid), which enforces the same width for each item.
+The `grow` prop of **EuiFlexItem** only applies when used within [EuiFlexGroup](./flex_group.mdx). It is ignored by [EuiFlexGrid](./flex_grid.mdx), which enforces the same width for each item.
 :::
 
 ### Turning off item stretching
