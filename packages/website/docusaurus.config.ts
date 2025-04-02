@@ -12,8 +12,15 @@ import type * as Preset from '@docusaurus/preset-classic';
 import type { Options as EuiPresetOptions } from '@elastic/eui-docusaurus-preset';
 
 const baseUrl = process.env.DOCS_BASE_URL || '/';
-const prRootUrl = process.env.PR_ROOT_URL || undefined;
 const googleTagManagerId = process.env.DOCS_GOOGLE_TAG_MANAGER_ID || undefined;
+
+let storybookBaseUrl: string = 'https://eui.elastic.co/storybook';
+
+if (process.env.NODE_ENV === 'development') {
+  storybookBaseUrl = 'http://localhost:6006';
+} else if (process.env.STORYBOOK_BASE_URL) {
+  storybookBaseUrl = `https://eui.elastic.co/${process.env.STORYBOOK_BASE_URL}`;
+}
 
 const config: Config = {
   title: 'Elastic UI Framework',
@@ -39,7 +46,7 @@ const config: Config = {
   },
 
   customFields: {
-    prRootUrl,
+    storybookBaseUrl,
   },
 
   presets: [
