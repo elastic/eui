@@ -11,6 +11,8 @@ id: navigation_tree_view
 
 Each node requires a `label` and a unique `id`. The `icon` prop accepts any [icon or token](/docs/display/icons). You can also specify a different icon for the open state with the `iconWhenExpanded` prop. Use the nodes' `children` prop to nest more nodes.
 
+## Component
+
 :::note Accessibility recommendation
 Provide a descriptive `aria-label` for each tree view. This component also builds in keyboard navigation allowing users to traverse the tree using the arrow keys, spacebar, and return.
 :::
@@ -88,7 +90,9 @@ export default () => {
 };
 ```
 
-## Optional styling
+## Usage
+
+### Optional styling
 
 **EuiTreeView** supports a compressed mode with the `display="compressed"` setting. When using the compressed version it's highly recommended to use the small size of **EuiIcon** and the extra small size of **EuiToken**. This will help prevent awkward alignment issues when used alongside the `showExpansionArrows` prop.
 

@@ -1,12 +1,15 @@
 ---
 slug: /navigation/steps
 id: navigation_steps
-sidebar_position: 1
 ---
 
 # Steps
 
 **EuiSteps** presents procedural content in a numbered outline format. It is best used when presenting instructional content that must be conducted in a particular order. It requires a `title` and `children` to be present and will automatically increment the step number based on the initial `firstStepNumber`.
+
+## Components
+
+### Default
 
 ```tsx interactive
 import React from 'react';
@@ -71,7 +74,15 @@ export default () => (
 );
 ```
 
-## Complex steps
+### Horizontal Steps
+
+import HorizontalSteps from './_horizontal_steps.mdx';
+
+<HorizontalSteps />
+
+## Usage
+
+### Complex steps
 
 If you need to call out a set of substeps that are not lines of code, most likely a `<ol/>`, wrap the block in a `<EuiSubSteps/>`.
 
@@ -174,7 +185,7 @@ export default () => (
 );
 ```
 
-## Heading elements
+### Heading elements
 
 To aid with accessibility and hierarchical headings, you can and should pass in a heading element to use for each step title. The example below shows that the logical heading element should be an `h2`and therefore adds `headingElement="h2"` to the EuiSteps component.
 
@@ -208,7 +219,7 @@ export default () => (
 );
 ```
 
-## Steps status
+### Conveying status
 
 Steps can optionally include `status` prop that will alter the look of the number prefix. The options are `incomplete`, `complete`, `warning`, `danger`, `disabled` and `loading`. This is used mostly as a final step when you need to make some sort of final check.
 
@@ -316,7 +327,7 @@ export default () => {
 };
 ```
 
-## Custom title sizes
+### Custom title sizes
 
 You can set a different title size using `titleSize`. If `titleSize` is set in both **EuiSteps** and **EuiStep**, the latter value will override the former. Additionally, the title size `xs` will automatically generate smaller steps circles.
 
@@ -412,3 +423,7 @@ import docgen from '@elastic/eui-docgen/dist/components/steps';
 <PropTable definition={docgen.EuiStepNumber} />
 
 <PropTable definition={docgen.EuiSubSteps} />
+
+<PropTable definition={docgen.EuiStepsHorizontal} />
+
+<PropTable definition={docgen.EuiStepHorizontal} />

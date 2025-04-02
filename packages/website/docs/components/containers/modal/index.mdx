@@ -1,7 +1,6 @@
 ---
-slug: /containers/modals/modal
-id: containers_modals_modal
-sidebar_position: 1
+slug: /containers/modal
+id: containers_modal
 ---
 
 # Modal
@@ -12,7 +11,11 @@ If your modal content is more complex, or requires considerable time to complete
 
 Each **EuiModal** requires a specific set of nested child components. They can be omitted if necessary, but the order cannot be changed or interrupted.
 
-Modals come a wrapping **EuiOverlayMask** to obscure the content beneath, but unlike flyouts, modals cannot be dismissed by clicking on the overlay mask. This is inline with our [modal usage guidelines](./guidelines) which requires there to be a primary action button, even if that button simply closes the modal.
+## Components
+
+### Default
+
+Modals come with a wrapping **EuiOverlayMask** to obscure the content beneath, but unlike flyouts, modals cannot be dismissed by clicking on the overlay mask. This is inline with our [modal usage guidelines](#guidelines) which requires there to be a primary action button, even if that button simply closes the modal.
 
 ```tsx interactive
 import React, { useState } from 'react';
@@ -83,7 +86,15 @@ export default () => {
 
 ```
 
-## Forms in a modal
+### Confirm modal
+
+import ConfirmModal from './_confirm_modal.mdx';
+
+<ConfirmModal />
+
+## Usage
+
+### Configuring forms
 
 Since the child components of **EuiModal** are required to be in a specific order, you can only wrap the contents within **EuiModalBody** with the `<form />` element. You can then hook up your submit button inside **EuiModalFooter** by adding the `id` of the `<form />` element to the `form` prop of the button.
 
@@ -240,7 +251,7 @@ export default () => {
 };
 ```
 
-## Widths
+### Setting width
 
 Modals start with a minimum width of `400px`, just enough to display form rows. They will grow to fit the contents until it reaches the specified `maxWidth`, the default of which is set to the medium breakpoint.
 
@@ -319,6 +330,18 @@ export default () => {
 
 ```
 
+## Patterns
+
+import Patterns from './_patterns.mdx';
+
+<Patterns />
+
+## Guidelines
+
+import Guidelines from './_guidelines.mdx';
+
+<Guidelines />
+
 ## Props
 
 import docgen from '@elastic/eui-docgen/dist/components/modal';
@@ -332,3 +355,5 @@ import docgen from '@elastic/eui-docgen/dist/components/modal';
 <PropTable definition={docgen.EuiModalBody} />
 
 <PropTable definition={docgen.EuiModalFooter} />
+
+<PropTable definition={docgen.EuiConfirmModal} />

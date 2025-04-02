@@ -1,11 +1,3 @@
----
-slug: /containers/modal/confirm
-id: containers_modal_confirm
-sidebar_position: 2
----
-
-# Confirm modal
-
 Use the **EuiConfirmModal** to ask the user to confirm a decision. It is a contextual wrapper around **EuiModal** that provides some helpful props for filling in common modal pieces. By default, the button color indicates a positive or neutral action. Change the `buttonColor` property to `danger` to indicate a destructive action.
 
 ```tsx interactive
@@ -84,7 +76,7 @@ export default () => {
 };
 ```
 
-## Loading and disabling confirm button
+#### Loading and disabling confirm button
 
 **EuiConfirmModal** supports being able to apply loading and disabled states to the confirm button with the `confirmButtonDisabled` and `isLoading` props respectively. This is helpful to indicate the fetching of data and/or to wait for a user's input before enabling the confirm action.
 
@@ -164,9 +156,3 @@ export default () => {
   );
 };
 ```
-
-## Props
-
-import docgen from '@elastic/eui-docgen/dist/components/modal';
-
-<PropTable definition={docgen.EuiConfirmModal} />

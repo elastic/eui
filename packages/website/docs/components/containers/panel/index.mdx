@@ -1,14 +1,30 @@
 ---
-slug: /containers/panels/panel
-id: containers_panels_panel
-sidebar_position: 1
+slug: /containers/panel
+id: containers_panel
 ---
 
 # Panel
 
 **EuiPanel** is a building block component. Use it as a layout helper for containing content. It is also commonly used as a base for other larger components like [**EuiPage**](/docs/templates/page-template), [**EuiPopover**](/docs/layout/popover) and [**EuiCard**](/docs/display/card).
 
-## Padding
+## Component
+
+Panels have several possible style combinations with color, borders, and shadow. Use them sparingly and favor the default.
+
+```tsx interactive
+import React from 'react';
+import { EuiPanel } from '@elastic/eui';
+
+export default () => (
+  <EuiPanel>
+    Default panel
+  </EuiPanel>
+);
+```
+
+## Usage
+
+### Padding
 
 The most basic use is to simply add padding around your content.
 
@@ -43,7 +59,7 @@ export default () => (
 );
 ```
 
-## Shadow and border
+### Shadow and border
 
 **EuiPanel** can give depth to your container with `hasShadow` while `hasBorder` can add containment. Just be sure not to include too many [nested panels](/docs/layout/panel/guidelines) with these settings.
 
@@ -74,7 +90,7 @@ export default () => {
 };
 ```
 
-## Colors and corners
+### Colors and corners
 
 Use `color` to add background shading to your panel and provide an additional helpful aesthetic to your container in context. Be mindful to use color sparingly. You can also remove the rounded corners depending on the placement of your panel with `borderRadius="none"`
 
@@ -99,7 +115,7 @@ export default () => (
 );
 ```
 
-## Growing height
+### Growing height
 
 Using **EuiPanel** in an [**EuiFlexItem**](/docs/layout/flex#panels-grow-to-fill-flex-items) will always grow its height to match. This is great for rows of panels. However, you can also turn this feature off by setting `grow={false}`.
 
@@ -137,6 +153,12 @@ export default () => (
   </EuiFlexGroup>
 );
 ```
+
+## Guidelines
+
+import Guidelines from './_guidelines.mdx';
+
+ <Guidelines />
 
 ## Props
 

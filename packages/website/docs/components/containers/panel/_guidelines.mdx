@@ -1,15 +1,8 @@
----
-slug: /containers/panels/guidelines
-id: containers_panels_guidelines
-title: Panel guidelines
-sidebar_label: Guidelines
----
-
 ```mdx-code-block
 import { EuiCard, EuiPanel, EuiTitle, EuiSpacer, EuiFlexGroup, EuiFlexItem } from '@elastic/eui';
 ```
 
-## So you want to nest panels...
+### Nesting panels
 
 Panels are one of the basic building blocks of EUI and have a wide variety of styles. They are a great tool to help segment and group content. But as layouts grow in complexity, **nesting** panels becomes necessary and it can sometimes be difficult to decide what style combinations make sense within a panel stack.
 
@@ -61,7 +54,7 @@ The following are some guidelines that are meant to help reduce the design choic
   </EuiPanel>
 </EuiPanel>
 
-### When nesting 3 or more panels, use different panel styles
+### Nesting three or more panels
 
 If the same style panel is used between multiple nested panels, the hierarchy can be visually confusing and the benefit of panels breaks down. While there is no hard and fast rule in which sequence of panels styles should be used, varying the styles will help guide the user through the content relationship.
 
@@ -122,7 +115,64 @@ If the same style panel is used between multiple nested panels, the hierarchy ca
   </Guideline>
 </EuiFlexGroup>
 
-### Limit the use of shadows within a stack of panels
+
+### Do not overuse panels
+
+It’s easy to fall into the thinking that everything needs a panel. Carefully consider why you need a panel and if too many elements are fighting for attention.
+
+<EuiFlexGroup gutterSize="m">
+  <Guideline type="do" text="Reserve panels for drawing attention to certain elements.">
+    <EuiPanel
+      color="subdued"
+      hasShadow={false}
+      style={{ transform: 'scale(.9)' }}
+    >
+      <EuiTitle size="s">
+        <span>Panel 1</span>
+      </EuiTitle>
+      <EuiSpacer size="s" />
+      <EuiTitle size="xs">
+        <span>Sub-heading</span>
+      </EuiTitle>
+      <EuiSpacer />
+      <EuiPanel style={{ minHeight: 100 }}>
+        <EuiTitle size="xxs">
+          <span>Panel 2</span>
+        </EuiTitle>
+      </EuiPanel>
+    </EuiPanel>
+  </Guideline>
+
+  <Guideline type="do" text="Remove panel styles but keep the component purely for containment.">
+    <EuiPanel
+      color="subdued"
+      hasShadow={false}
+      style={{ transform: 'scale(.9)' }}
+    >
+      <EuiTitle size="s">
+        <span>Panel 1</span>
+      </EuiTitle>
+      <EuiSpacer size="s" />
+      <EuiPanel color="transparent" paddingSize="none">
+        <EuiTitle size="xs">
+          <span>Panel 2</span>
+        </EuiTitle>
+        <EuiSpacer />
+        <EuiPanel
+          hasShadow={true}
+          hasBorder={false}
+          style={{ minHeight: 100 }}
+        >
+          <EuiTitle size="xxs">
+            <span>Panel 3</span>
+          </EuiTitle>
+        </EuiPanel>
+      </EuiPanel>
+    </EuiPanel>
+  </Guideline>
+</EuiFlexGroup>
+
+### Limit use of shadows
 
 Shadows are great for drawing focus to a single single layer of a page. But if everything has a shadow it becomes too noisy. Use shadows sparingly and try to use them at either the top or bottom of the stack.
 
@@ -180,63 +230,7 @@ Shadows are great for drawing focus to a single single layer of a page. But if e
   </Guideline>
 </EuiFlexGroup>
 
-### Don’t overuse panels
-
-It’s easy to fall into the thinking that everything needs a panel. Carefully consider why you need a panel and if too many elements are fighting for attention.
-
-<EuiFlexGroup gutterSize="m">
-  <Guideline type="do" text="Reserve panels for drawing attention to certain elements.">
-    <EuiPanel
-      color="subdued"
-      hasShadow={false}
-      style={{ transform: 'scale(.9)' }}
-    >
-      <EuiTitle size="s">
-        <span>Panel 1</span>
-      </EuiTitle>
-      <EuiSpacer size="s" />
-      <EuiTitle size="xs">
-        <span>Sub-heading</span>
-      </EuiTitle>
-      <EuiSpacer />
-      <EuiPanel style={{ minHeight: 100 }}>
-        <EuiTitle size="xxs">
-          <span>Panel 2</span>
-        </EuiTitle>
-      </EuiPanel>
-    </EuiPanel>
-  </Guideline>
-
-  <Guideline type="do" text="Remove panel styles but keep the component purely for containment.">
-    <EuiPanel
-      color="subdued"
-      hasShadow={false}
-      style={{ transform: 'scale(.9)' }}
-    >
-      <EuiTitle size="s">
-        <span>Panel 1</span>
-      </EuiTitle>
-      <EuiSpacer size="s" />
-      <EuiPanel color="transparent" paddingSize="none">
-        <EuiTitle size="xs">
-          <span>Panel 2</span>
-        </EuiTitle>
-        <EuiSpacer />
-        <EuiPanel
-          hasShadow={true}
-          hasBorder={false}
-          style={{ minHeight: 100 }}
-        >
-          <EuiTitle size="xxs">
-            <span>Panel 3</span>
-          </EuiTitle>
-        </EuiPanel>
-      </EuiPanel>
-    </EuiPanel>
-  </Guideline>
-</EuiFlexGroup>
-
-### Consider the relationship between sibling panels
+### Sibling panels
 
 When sibling panels have the same meaning and interaction, like cards, it is best to keep them all visually similar. On the other hand you can use panels to separate main from aside content. In this case, you will want to ensure visual prominence of the main content.
 

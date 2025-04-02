@@ -1,21 +1,24 @@
 ---
-slug: /editors-syntax/code
-id: editors_syntax_code
+slug: /display/code
+id: display_code
 ---
 
 import Link from '@docusaurus/Link';
 
 # Code
 
-:::tip
-**EuiCode** and **EuiCodeBlock** are intended to render static lines or blocks of code in **read-only** contexts. If you need capabilities to edit, or want to print long code (e.g., printing JSON from an API), we recommend installing a version of Monaco. If you are building within the Kibana platform, you can use their [**CodeEditor**](https://github.com/elastic/kibana/tree/main/packages/shared-ux/code_editor/impl).
-:::
 
 The **EuiCode** and **EuiCodeBlock** components support <Link to="https://prismjs.com/#supported-languages">all language syntaxes</Link> available through the <Link to="https://prismjs.com/">`prismjs` library</Link> and <Link to="https://www.elastic.co/guide/en/kibana/current/esql.html">ES|QL syntax</Link> provided by <Link to="https://github.com/elastic/prismjs-esql">`prismjs-esql` plugin</Link>. The `language` prop can also be omitted to simply render formatted but non-highlighted code.
 
 JSX code (often React) has distinct language syntaxes from the base JavaScript and TypeScript languages. For these instances, use `language="jsx"` or `language="tsx"`.
 
-## Inline
+## Componenets
+
+:::tip
+**EuiCode** and **EuiCodeBlock** are intended to render static lines or blocks of code in **read-only** contexts. If you need capabilities to edit, or want to print long code (e.g., printing JSON from an API), we recommend installing a version of Monaco. If you are building within the Kibana platform, you can use their [**CodeEditor**](https://github.com/elastic/kibana/tree/main/packages/shared-ux/code_editor/impl).
+:::
+
+### Inline
 
 **EuiCode** is for making inline code snippets that can work within or next to bodies of text.
 
@@ -50,7 +53,7 @@ export default () => (
 
 ```
 
-## Code block
+### Code block
 
 **EuiCodeBlock** can be used to create multi-line code blocks with configurable font and padding sizes.
 
@@ -77,6 +80,10 @@ export default () => (
 
 ```
 
+## Usage
+
+### Copying
+
 Adding the `isCopyable` prop allows users to copy the text content of the code block.
 
 ```tsx interactive
@@ -94,6 +101,8 @@ export default () => (
 );
 
 ```
+
+### Scrolling
 
 For long content, you can set an `overflowHeight` which will scroll if the text exceeds that height, and allows users to view the code in fullscreen mode.
 
@@ -122,6 +131,8 @@ export default () => (
 
 ```
 
+### Wrapping
+
 By default, the `whiteSpace` property is set to `pre-wrap`. This makes the text wrap when needed. You can, however, pass `pre` to the `whiteSpace` prop and the text won't wrap unless line breaks are in the content.
 
 ```tsx interactive
@@ -145,7 +156,7 @@ export default () => (
 
 ```
 
-## Line numbers
+### Line numbers
 
 To render line numbers, you can add `lineNumbers` as boolean flag.
 
@@ -172,6 +183,8 @@ export default () => (
 );
 
 ```
+
+### Custom line numbers
 
 You can customize line number display further with a configuration object containing the following optional settings:
 
@@ -215,7 +228,7 @@ export default () => (
 
 ```
 
-## Code block virtualization
+### Code block virtualization
 
 For large blocks of code, add `isVirtualized` to reduce the number of rendered rows and improve load times. Note that when using virtualization:
 
@@ -1046,6 +1059,8 @@ export default () => (
 );
 
 ```
+
+### Fill vertical space
 
 In places like [flyouts](/docs/layout/flyout), you can use `overflowHeight="100%"` to stretch the code block to fill the space. Just be sure that it's parent container is also `height: 100%`.
 

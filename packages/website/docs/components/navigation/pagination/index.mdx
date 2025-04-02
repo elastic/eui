@@ -1,18 +1,17 @@
 ---
 slug: /navigation/pagination
 id: navigation_pagination
-sidebar_position: 1
 ---
 
 # Pagination
 
 Some EUI components have pagination built-in, like [**EuiBasicTable**](/docs/tabular-content/tables), but for custom built paginated interfaces you can use **EuiPagination** manually.
 
-## Basic usage with many pages
+## Component
 
 **EuiPagination** accepts a total `pageCount` and only shows up to 5 consecutive pages, with shortcuts to the first and/or last page. It also requires the parent component to maintain the current `activePage` and handle the `onPageClick`.
 
-:::note Accessibility recommendation
+:::tip Accessibility recommendation
 Provide a descriptive `aria-label` for each pagination set.
 :::
 
@@ -35,7 +34,9 @@ export default function () {
 }
 ```
 
-## Few pages
+## Usage
+
+### Few pages
 
 The UI simplifies when we have fewer than the maximum number of visible pages.
 
@@ -58,34 +59,29 @@ export default function () {
 }
 ```
 
-## Centered pagination
+### Indeterminate page count
 
-You can use [**EuiFlexGroup**](/docs/layout/flex) to center the pagination in a layout.
+If the total number of pages cannot be accurately determined, you can pass `0` as the `pageCount`. This will remove the button numbers and rely solely on the arrow icon buttons for navigation. Without a total page count, the last page button will pass back `-1` for the `activePage`.
 
 ```tsx interactive
 import React, { useState } from 'react';
-import { EuiFlexGroup, EuiFlexItem, EuiPagination } from '@elastic/eui';
+import { EuiPagination } from '@elastic/eui';
 
 export default function () {
   const [activePage, setActivePage] = useState(0);
-  const PAGE_COUNT = 15;
 
   return (
-    <EuiFlexGroup justifyContent="spaceAround">
-      <EuiFlexItem grow={false}>
-        <EuiPagination
-          aria-label="Centered pagination example"
-          pageCount={PAGE_COUNT}
-          activePage={activePage}
-          onPageClick={(activePage) => setActivePage(activePage)}
-        />
-      </EuiFlexItem>
-    </EuiFlexGroup>
+    <EuiPagination
+      aria-label="Indeterminate example"
+      pageCount={0}
+      activePage={activePage}
+      onPageClick={(activePage) => setActivePage(activePage)}
+    />
   );
 }
 ```
 
-## Compressed and responsive
+### Compressed and responsive
 
 Use the `compressed` prop to minimize the horizontal footprint. This will replace the numbered buttons with static numbers and rely on the first, last, next and previous icon buttons to navigate.
 
@@ -111,29 +107,7 @@ export default function () {
 }
 ```
 
-## Indeterminate page count
-
-If the total number of pages cannot be accurately determined, you can pass `0` as the `pageCount`. This will remove the button numbers and rely solely on the arrow icon buttons for navigation. Without a total page count, the last page button will pass back `-1` for the `activePage`.
-
-```tsx interactive
-import React, { useState } from 'react';
-import { EuiPagination } from '@elastic/eui';
-
-export default function () {
-  const [activePage, setActivePage] = useState(0);
-
-  return (
-    <EuiPagination
-      aria-label="Indeterminate example"
-      pageCount={0}
-      activePage={activePage}
-      onPageClick={(activePage) => setActivePage(activePage)}
-    />
-  );
-}
-```
-
-## Table pagination
+### Table pagination
 
 You can use **EuiTablePagination** to create a combination "Rows per page" and pagination set, commonly used with [tables](/docs/tabular-content/tables#adding-pagination-to-a-table). If you pass `0` in as one of the `itemsPerPageOptions`, it will create a "Show all" option and hide the pagination.
 
@@ -168,7 +142,34 @@ export default () => {
 };
 ```
 
-## Customizable pagination
+### Centered pagination
+
+You can use [**EuiFlexGroup**](/docs/layout/flex) to center the pagination in a layout.
+
+```tsx interactive
+import React, { useState } from 'react';
+import { EuiFlexGroup, EuiFlexItem, EuiPagination } from '@elastic/eui';
+
+export default function () {
+  const [activePage, setActivePage] = useState(0);
+  const PAGE_COUNT = 15;
+
+  return (
+    <EuiFlexGroup justifyContent="spaceAround">
+      <EuiFlexItem grow={false}>
+        <EuiPagination
+          aria-label="Centered pagination example"
+          pageCount={PAGE_COUNT}
+          activePage={activePage}
+          onPageClick={(activePage) => setActivePage(activePage)}
+        />
+      </EuiFlexItem>
+    </EuiFlexGroup>
+  );
+}
+```
+
+### Custom pagination
 
 Or you can use [**EuiFlexGroup**](/docs/layout/flex) and [**EuiContextMenu**](/docs/navigation/context-menu#with-single-panel) to set up your own custom pagination layout.
 
@@ -276,6 +277,12 @@ export default () => {
   );
 };
 ```
+
+## Guidelines
+
+import Guidelines from './_guidelines.mdx';
+
+<Guidelines />
 
 ## Props
 

@@ -1,18 +1,11 @@
----
-slug: /navigation/pagination/guidelines
-id: navigation_pagination_guidelines
-title: Pagination guidelines
-sidebar_label: Guidelines
----
-
 ```mdx-code-block
 import { EuiPanel, EuiButtonEmpty, EuiContextMenuItem, EuiFlexGroup, EuiSpacer, EuiBasicTable } from '@elastic/eui';
 import Link from '@docusaurus/Link';
 ```
 
-## Don’t rely on pagination for users to find what they’re looking for
+### Lead with filters and search
 
-For any results-style table, always provide ways to filter, search, etc for the thing that the user wants. Pagination is only helpful once the user has reduced the 1000+ results to just 100 (for example).
+For any results-style table, always provide ways to filter and search for content, first and foremost. Pagination is most effective after the user has reduced the number of results from thousands to hundreds of records, for example.
 
 <EuiPanel
   color="subdued"
@@ -29,7 +22,7 @@ For any results-style table, always provide ways to filter, search, etc for the 
   [Full prototype](https://www.figma.com/proto/RzfYLj2xmH9K7gQtbSKygn/Elastic-UI?page-id=15025%3A1&node-id=22522%3A276461&viewport=441%2C48%2C0.28&scaling=min-zoom&starting-point-node-id=22522%3A276461)
 </EuiPanel>
 
-## Don’t rely on pagination to indicate total results
+### Display total results separately
 
 When possible, always present a clear indicator of how many (and if not all results) have been returned. Just a simple count will do. Including a detailed summary of results at the top of the table or list goes a long way to signify what paging can’t.
 
@@ -41,7 +34,7 @@ _Remember that not all users understand how your data API works. They just care 
 
 ---
 
-## Give users control of pagination
+### Give users control
 
 Providing a [“Rows per page” option](/docs/navigation/pagination#customizable-pagination) is often helpful enough to provide users control over the amount of data they see at once.
 
@@ -80,7 +73,7 @@ Keep the choices simple and only show “Rows per page” if there are more rows
   </Guideline>
 </EuiFlexGroup>
 
-### Optimize your defaults
+### Optimize defaults
 
 Most users don’t customize the default view. Therefore, it’s vital that you provide optimal defaults and reduce complexity as the number of entries increase. This means choosing a default “Rows per page” that best corresponds to the total results. For instance, 1000+ results shouldn’t start with 10 rows per page, but rather 20 or 50.
 
@@ -186,7 +179,7 @@ If the total results are unknown, you can make a best guess based on the context
 
 * * *
 
-## Preserve the user-customized state of pagination
+### Preserve user settings
 
 When providing pagination, customizable display options, and data filters, always save the user’s state in some form. This is especially important if your data includes links that navigate a user away from the current view. There’s nothing more frustrating for users than going back to find their filters and pagination have been reset.
 
@@ -326,7 +319,7 @@ import { faker } from '@faker-js/faker';
   ```
 </Demo>
 
-### Don’t use infinite scrolling
+### Avoid infinite scrolling
 
 Infinite scrolling, i.e. loading data as the user scrolls, is the exact opposite of being able to save the user’s pagination state. As soon as they navigate away from the page, their position in the list is lost. It’s better to increase the quantities of rows per page or provide a “Load more” action.
 
