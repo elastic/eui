@@ -379,7 +379,7 @@ export const EuiPageHeaderContent: FunctionComponent<
 
     rightSideFlexItem = (
       <EuiFlexGroup
-        gutterSize="l"
+        gutterSize="m"
         responsive={false}
         wrap
         {...rightSideGroupProps}

@@ -38,7 +38,7 @@ exports[`EuiPageHeader props alignItems bottom is rendered 1`] = `
         </h1>
       </div>
       <div
-        class="euiFlexGroup emotion-euiFlexGroup-wrap-l-flexStart-stretch-row-euiPageHeaderContent__rightSideItems"
+        class="euiFlexGroup emotion-euiFlexGroup-wrap-m-flexStart-stretch-row-euiPageHeaderContent__rightSideItems"
       >
         <div
           class="euiFlexItem emotion-euiFlexItem-growZero-euiPageHeaderContent__rightSideItem"
@@ -80,7 +80,7 @@ exports[`EuiPageHeader props alignItems center is rendered 1`] = `
         </h1>
       </div>
       <div
-        class="euiFlexGroup emotion-euiFlexGroup-wrap-l-flexStart-stretch-row-euiPageHeaderContent__rightSideItems"
+        class="euiFlexGroup emotion-euiFlexGroup-wrap-m-flexStart-stretch-row-euiPageHeaderContent__rightSideItems"
       >
         <div
           class="euiFlexItem emotion-euiFlexItem-growZero-euiPageHeaderContent__rightSideItem"
@@ -122,7 +122,7 @@ exports[`EuiPageHeader props alignItems stretch is rendered 1`] = `
         </h1>
       </div>
       <div
-        class="euiFlexGroup emotion-euiFlexGroup-wrap-l-flexStart-stretch-row-euiPageHeaderContent__rightSideItems"
+        class="euiFlexGroup emotion-euiFlexGroup-wrap-m-flexStart-stretch-row-euiPageHeaderContent__rightSideItems"
       >
         <div
           class="euiFlexItem emotion-euiFlexItem-growZero-euiPageHeaderContent__rightSideItem"
@@ -164,7 +164,7 @@ exports[`EuiPageHeader props alignItems top is rendered 1`] = `
         </h1>
       </div>
       <div
-        class="euiFlexGroup emotion-euiFlexGroup-wrap-l-flexStart-stretch-row-euiPageHeaderContent__rightSideItems"
+        class="euiFlexGroup emotion-euiFlexGroup-wrap-m-flexStart-stretch-row-euiPageHeaderContent__rightSideItems"
       >
         <div
           class="euiFlexItem emotion-euiFlexItem-growZero-euiPageHeaderContent__rightSideItem"
@@ -307,7 +307,7 @@ exports[`EuiPageHeader props page content props are passed down is rendered 1`] 
       </div>
       <div
         aria-label="aria-label"
-        class="euiFlexGroup testClass1 testClass2 emotion-euiFlexGroup-responsive-wrap-l-flexStart-stretch-row-euiPageHeaderContent__rightSideItems-euiTestCss"
+        class="euiFlexGroup testClass1 testClass2 emotion-euiFlexGroup-responsive-wrap-m-flexStart-stretch-row-euiPageHeaderContent__rightSideItems-euiTestCss"
         data-test-subj="test subject string"
       >
         <div
