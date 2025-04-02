@@ -28,7 +28,12 @@ const EuiIconVisTable = ({
     {...props}
   >
     {title ? <title id={titleId}>{title}</title> : null}
-    <path d="M16 3v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v1Zm-1 0V2a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v1h14Zm0 1H1v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4ZM4.5 6a.5.5 0 0 1 0 1H2.496a.5.5 0 1 1 0-1H4.5Zm9 0a.5.5 0 1 1 0 1h-6a.5.5 0 0 1 0-1h6Zm-9 3a.5.5 0 0 1 0 1H2.496a.5.5 0 1 1 0-1H4.5Zm9 0a.5.5 0 1 1 0 1h-6a.5.5 0 0 1 0-1h6Zm-9 3a.5.5 0 1 1 0 1H2.496a.5.5 0 1 1 0-1H4.5Zm9 0a.5.5 0 1 1 0 1h-6a.5.5 0 1 1 0-1h6Z" />
+    <path d="M5 6H3v1h2V6Zm1 0h2v1H6V6ZM5 9H3v1h2V9Zm1 0h2v1H6V9Zm-1 3H3v1h2v-1Zm1 0h2v1H6v-1Zm7-6H9v1h4V6ZM9 9h4v1H9V9Zm4 3H9v1h4v-1Z" />
+    <path
+      fillRule="evenodd"
+      d="M2 1a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H2Zm0 3V2h12v2H2Zm0 1h12v9H2V5Z"
+      clipRule="evenodd"
+    />
   </svg>
 );
 export const icon = EuiIconVisTable;

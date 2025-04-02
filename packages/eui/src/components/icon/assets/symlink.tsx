@@ -23,7 +23,6 @@ const EuiIconSymlink = ({
     xmlns="http://www.w3.org/2000/svg"
     width={16}
     height={16}
-    fill="none"
     viewBox="0 0 16 16"
     aria-labelledby={titleId}
     {...props}
@@ -31,9 +30,10 @@ const EuiIconSymlink = ({
     {title ? <title id={titleId}>{title}</title> : null}
     <path
       fillRule="evenodd"
-      d="M10.8 0H2a1 1 0 0 0-1 1v8l1-1V1h8v3.5a.5.5 0 0 0 .5.5H14v10H2v-1a3.5 3.5 0 0 1 3.5-3.5H8V13l3-3-3-3v2.5H5.5A4.5 4.5 0 0 0 1 14v1a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4.429c0-.256-.098-.503-.274-.689l-3.2-3.428A1.002 1.002 0 0 0 10.8 0Z"
+      d="M4 2a1 1 0 0 1 1-1h4.707L14 5.293V14a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-3h1v3h8V6h-3a1 1 0 0 1-1-1V2H5v6H4V2Zm6 .707L12.293 5H10V2.707Z"
       clipRule="evenodd"
     />
+    <path d="M10.207 9.5 7.354 6.646l-.708.708L8.293 9H3a1 1 0 0 0-1 1v4h1v-4h5.293l-1.647 1.646.708.708L10.207 9.5Z" />
   </svg>
 );
 export const icon = EuiIconSymlink;

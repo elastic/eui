@@ -14,7 +14,7 @@ interface SVGRProps {
   title?: string;
   titleId?: string;
 }
-const EuiIconExpand = ({
+const EuiIconCheckCircle = ({
   title,
   titleId,
   ...props
@@ -28,12 +28,12 @@ const EuiIconExpand = ({
     {...props}
   >
     {title ? <title id={titleId}>{title}</title> : null}
-    <path d="M13.293 2H10V1h5v5h-1V2.707L9.354 7.354l-.708-.708L13.293 2Z" />
+    <path d="m7 10.707 4.354-4.353-.708-.708L7 9.293 5.354 7.646l-.708.708L7 10.707Z" />
     <path
       fillRule="evenodd"
-      d="M2.707 14H6v1H1v-5h1v3.293l4.646-4.647.708.708L2.707 14Z"
+      d="M15 8A7 7 0 1 1 1 8a7 7 0 0 1 14 0Zm-1 0A6 6 0 1 1 2 8a6 6 0 0 1 12 0Z"
       clipRule="evenodd"
     />
   </svg>
 );
-export const icon = EuiIconExpand;
+export const icon = EuiIconCheckCircle;
