@@ -16,7 +16,9 @@ echo "Yarn version: $(yarn -v)"
 
 # Calculate paths and directories
 if [[ -n "${BUILDKITE_PULL_REQUEST}" ]] && [[ "${BUILDKITE_PULL_REQUEST}" != "false" ]]; then
-  bucket_directory="pr_${BUILDKITE_PULL_REQUEST}/new-docs/"
+  PR_SLUG="pr_${BUILDKITE_PULL_REQUEST}"
+  export STORYBOOK_BASE_URL="https://eui.elastic.co/${PR_SLUG}/storybook"
+  bucket_directory="${PR_SLUG}/new-docs/"
   echo "Detected a PR preview environment configuration. The built files will be copied to ${bucket_directory}"
 else
   echo "The script has been triggered with no pull request or tag information. This is a no-op."
