@@ -32,7 +32,7 @@ exports[`EuiPageHeader props alignItems bottom is rendered 1`] = `
         class="euiFlexItem emotion-euiFlexItem-grow-2-euiPageHeaderContent__leftSideItems"
       >
         <h1
-          class="euiTitle emotion-euiTitle-l"
+          class="euiTitle emotion-euiTitle-m"
         >
           Page title
         </h1>
@@ -74,7 +74,7 @@ exports[`EuiPageHeader props alignItems center is rendered 1`] = `
         class="euiFlexItem emotion-euiFlexItem-grow-2-euiPageHeaderContent__leftSideItems"
       >
         <h1
-          class="euiTitle emotion-euiTitle-l"
+          class="euiTitle emotion-euiTitle-m"
         >
           Page title
         </h1>
@@ -116,7 +116,7 @@ exports[`EuiPageHeader props alignItems stretch is rendered 1`] = `
         class="euiFlexItem emotion-euiFlexItem-grow-2-euiPageHeaderContent__leftSideItems"
       >
         <h1
-          class="euiTitle emotion-euiTitle-l"
+          class="euiTitle emotion-euiTitle-m"
         >
           Page title
         </h1>
@@ -158,7 +158,7 @@ exports[`EuiPageHeader props alignItems top is rendered 1`] = `
         class="euiFlexItem emotion-euiFlexItem-grow-2-euiPageHeaderContent__leftSideItems"
       >
         <h1
-          class="euiTitle emotion-euiTitle-l"
+          class="euiTitle emotion-euiTitle-m"
         >
           Page title
         </h1>
@@ -276,7 +276,7 @@ exports[`EuiPageHeader props page content props are passed down is rendered 1`] 
       >
         <h1
           aria-label="aria-label"
-          class="euiTitle testClass1 testClass2 emotion-euiTitle-l-euiTestCss"
+          class="euiTitle testClass1 testClass2 emotion-euiTitle-m-euiTestCss"
           data-test-subj="test subject string"
         >
           <span
@@ -292,7 +292,7 @@ exports[`EuiPageHeader props page content props are passed down is rendered 1`] 
           class="euiSpacer euiSpacer--l emotion-euiSpacer-l"
         />
         <div
-          class="euiText emotion-euiText-constrainedWidth-m"
+          class="euiText emotion-euiText-constrainedWidth-s"
         >
           <p>
             Description
@@ -334,7 +334,7 @@ exports[`EuiPageHeader props page content props are passed down is rendered 1`] 
       />
       <div
         aria-label="aria-label"
-        class="euiTabs testClass1 testClass2 emotion-euiTabs-l-euiTestCss"
+        class="euiTabs testClass1 testClass2 emotion-euiTabs-m-euiTestCss"
         data-test-subj="test subject string"
         role="tablist"
       >
@@ -346,7 +346,7 @@ exports[`EuiPageHeader props page content props are passed down is rendered 1`] 
           type="button"
         >
           <span
-            class="euiTab__content eui-textTruncate emotion-euiTab__content-l"
+            class="euiTab__content eui-textTruncate emotion-euiTab__content-m"
           >
             Tab 1
           </span>
@@ -359,7 +359,7 @@ exports[`EuiPageHeader props page content props are passed down is rendered 1`] 
           type="button"
         >
           <span
-            class="euiTab__content eui-textTruncate emotion-euiTab__content-l"
+            class="euiTab__content eui-textTruncate emotion-euiTab__content-m"
           >
             Tab 2
           </span>

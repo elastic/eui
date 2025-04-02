@@ -1,3 +1,7 @@
+.guideSectionTabs__pageHeader h1 {
+  @include euiFontSizeXXL;
+}
+
 .guideSection__tableCodeBlock {
   padding-left: $euiSizeXS;
   padding-right: $euiSizeXS;

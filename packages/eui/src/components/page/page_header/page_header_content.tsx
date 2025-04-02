@@ -236,7 +236,7 @@ export const EuiPageHeaderContent: FunctionComponent<
     descriptionNode = (
       <>
         {(pageTitle || tabs) && <EuiSpacer />}
-        <EuiText grow={false}>
+        <EuiText grow={false} size="s">
           <p>{description}</p>
         </EuiText>
       </>
@@ -257,11 +257,11 @@ export const EuiPageHeaderContent: FunctionComponent<
       iconProps?.css,
     ];
     const icon = iconType ? (
-      <EuiIcon size="xl" {...iconProps} css={iconCssStyles} type={iconType} />
+      <EuiIcon size="l" {...iconProps} css={iconCssStyles} type={iconType} />
     ) : undefined;
 
     pageTitleNode = (
-      <EuiTitle {...pageTitleProps} size="l">
+      <EuiTitle {...pageTitleProps} size="m">
         <h1>
           {icon}
           {pageTitle}
@@ -272,7 +272,7 @@ export const EuiPageHeaderContent: FunctionComponent<
 
   let tabsNode;
   if (tabs) {
-    const tabsSize: EuiTabsProps['size'] = pageTitle ? 'l' : 'xl';
+    const tabsSize: EuiTabsProps['size'] = pageTitle ? 'm' : 'l';
 
     const renderTabs = () => {
       return tabs.map((tab, index) => {
