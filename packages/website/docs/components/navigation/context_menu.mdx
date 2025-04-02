@@ -5,7 +5,7 @@ id: navigation_context_menu
 
 # Context menu
 
-**EuiContextMenu** is a nested menu system useful for navigating complicated trees. It lives within an [**EuiPopover**](/docs/layout/popover) which itself can be wrapped around any component (like a button in this example).
+**EuiContextMenu** is a nested menu system useful for navigating complicated trees. It lives within an [EuiPopover](../layout/popover.mdx) which itself can be wrapped around any component (like a button in this example).
 
 ```tsx interactive
 import React, { useState } from 'react';
@@ -463,7 +463,7 @@ export default () => {
 };
 ```
 
-## Using panels with mixed items & content[](/docs/navigation/context-menu#using-panels-with-mixed-items-content)
+## Using panels with mixed items & content
 
 ### Custom panels
 
@@ -473,7 +473,7 @@ If your panel contents have different widths or you need to ensure that a specif
 
 ### Custom items
 
-You can add separator lines in the `items` prop if you define an item as `{isSeparator: true}`. This will pass the rest of the object properties to an [**EuiHorizontalRule**](/docs/layout/horizontal-rule) component.
+You can add separator lines in the `items` prop if you define an item as `{isSeparator: true}`. This will pass the rest of the object properties to an [EuiHorizontalRule](../layout/horizontal_rule.mdx) component.
 
 For completely custom rendered items, you can use the `{renderItem}` property to pass a component or any function that returns a JSX node.
 
