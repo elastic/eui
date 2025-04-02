@@ -19,7 +19,7 @@ let storybookBaseUrl: string = 'https://eui.elastic.co/storybook';
 if (process.env.NODE_ENV === 'development') {
   storybookBaseUrl = 'http://localhost:6006';
 } else if (process.env.STORYBOOK_BASE_URL) {
-  storybookBaseUrl = `https://eui.elastic.co/${process.env.STORYBOOK_BASE_URL}`;
+  storybookBaseUrl = process.env.STORYBOOK_BASE_URL;
 }
 
 const config: Config = {
