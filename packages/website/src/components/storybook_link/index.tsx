@@ -3,13 +3,12 @@ import { EuiButton } from '@elastic/eui';
 
 type Props = {
   id: string;
-  viewMode?: 'story' | 'docs' | 'settings';
 };
 
-export const StorybookLink = ({ id, viewMode = 'story' }: Props) => {
+export const StorybookLink = ({ id }: Props) => {
   const { siteConfig } = useDocusaurusContext();
 
-  const href = `${siteConfig.customFields.storybookBaseUrl}/iframe.html?id=${id}&viewMode=${viewMode}`;
+  const href = `${siteConfig.customFields.storybookBaseUrl}/iframe.html?id=${id}`;
 
   return (
     <EuiButton iconType="popout" href={href} target="_blank">
