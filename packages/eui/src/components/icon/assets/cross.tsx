@@ -28,7 +28,11 @@ const EuiIconCross = ({
     {...props}
   >
     {title ? <title id={titleId}>{title}</title> : null}
-    <path d="M7.293 8 3.146 3.854a.5.5 0 1 1 .708-.708L8 7.293l4.146-4.147a.5.5 0 0 1 .708.708L8.707 8l4.147 4.146a.5.5 0 0 1-.708.708L8 8.707l-4.146 4.147a.5.5 0 0 1-.708-.708L7.293 8Z" />
+    <path
+      fillRule="evenodd"
+      d="M7.293 8 2.646 3.354l.708-.708L8 7.293l4.646-4.647.708.708L8.707 8l4.647 4.646-.707.708L8 8.707l-4.646 4.647-.708-.707L7.293 8Z"
+      clipRule="evenodd"
+    />
   </svg>
 );
 export const icon = EuiIconCross;
