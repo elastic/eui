@@ -74,7 +74,7 @@ export default () => {
 
 Display **EuiListGroupItems** as links by providing an `href` value and change their state with the `isActive` and `isDisabled` properties.
 
-If your link is external or will open in a new tab, you can manually set the `external` property. However, just like with the [**EuiLink**](/docs/navigation/link) component, setting `target="_blank"` defaults to `external={true}`.
+If your link is external or will open in a new tab, you can manually set the `external` property. However, just like with the [EuiLink](../navigation/link.mdx) component, setting `target="_blank"` defaults to `external={true}`.
 
 As is done in this example, the **EuiListGroup** component can also accept an array of items via the `listItems` property.
 
@@ -362,7 +362,7 @@ export default () => (
 
 ## Pinnable list group
 
-**EuiPinnableListGroup** is simply an extra wrapper around an [**EuiListGroup**](/docs/display/list-group) that provides visual indicators for **pinning**.
+**EuiPinnableListGroup** is simply an extra wrapper around an **EuiListGroup** that provides visual indicators for **pinning**.
 
 Pinning is the concept that users can click a pin icon and add it to a subset of links (most likely shown in different list group). By providing an `onPinClick` handler, the component will automatically add the pin action to the item. However, the consuming application must manage the `listItems`and their `pinned` state.
 
