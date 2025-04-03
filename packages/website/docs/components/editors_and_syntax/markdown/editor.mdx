@@ -5,13 +5,13 @@ id: editors_syntax_markdown_editor
 
 # Editor
 
-**EuiMarkdownEditor** provides a markdown authoring experience for the user. The component consists of a toolbar, text area, and a drag-and-drop zone to accept files (if configured to do so). There are two modes: a textarea that keeps track of cursor position, and a rendered preview mode that is powered by **[EuiMarkdownFormat](../format)**. State is maintained between the two and it is possible to pass changes from the preview area to the textarea and vice versa.
+**EuiMarkdownEditor** provides a markdown authoring experience for the user. The component consists of a toolbar, text area, and a drag-and-drop zone to accept files (if configured to do so). There are two modes: a textarea that keeps track of cursor position, and a rendered preview mode that is powered by [EuiMarkdownFormat](./format.mdx). State is maintained between the two and it is possible to pass changes from the preview area to the textarea and vice versa.
 
 ## Base editor
 
-Use the base editor to produce technical content in markdown which can contain text, code, and images. Besides this default markdown content, the base editor comes with several [default plugins](../plugins#default-plugins) that let you add emojis, to-do lists, and tooltips, which can be [configured](../plugins#configuring-the-default-plugins) or [removed](../plugins#unregistering-plugins) as needed.
+Use the base editor to produce technical content in markdown which can contain text, code, and images. Besides this default markdown content, the base editor comes with several [default plugins](./plugins.mdx#default-plugins) that let you add emojis, to-do lists, and tooltips, which can be [configured](./plugins.mdx#configuring-the-default-plugins) or [removed](./plugins.mdx#unregistering-plugins) as needed.
 
-Consider applying the `readOnly` prop to restrict editing during asynchronous submit events, like when submitting a [comment](../../../display/comment-list). This will ensure users understand that the content cannot be changed while the comment is being submitted.
+Consider applying the `readOnly` prop to restrict editing during asynchronous submit events, like when submitting a [comment](../../display/comment_list.mdx). This will ensure users understand that the content cannot be changed while the comment is being submitted.
 
 ```tsx interactive
 import React, { useCallback, useState } from 'react';
@@ -115,13 +115,17 @@ export default () => {
     </>
   );
 };
-
 ```
 
 ## Error handling and feedback
 
-The `errors` prop allows you to pass an array of errors if syntax is malformed. The below example starts with an incomplete tooltip tag, showing this error message by default. These errors are meant to be ephemeral and part of the editing experience. They should not be a substitute for [form validation](../../../forms/form-validation).
+The `errors` prop allows you to pass an array of errors if syntax is malformed. The below example starts with an incomplete tooltip tag, showing this error message by default. These errors are meant to be ephemeral and part of the editing experience. They should not be a substitute for [form validation](../../forms/form_validation/overview.mdx).
 
+```mdx-code-block
+import Link from '@docusaurus/Link';
+```
+
+<Demo scope={{ Link }}>
 ```tsx interactive
 import React, { useCallback, useState, useRef } from 'react';
 import {
@@ -146,10 +150,12 @@ export default () => {
   const [messages, setMessages] = useState([]);
   const [ast, setAst] = useState(null);
   const [isAstShowing, setIsAstShowing] = useState(false);
+
   const onParse = useCallback((err, { messages, ast }) => {
     setMessages(err ? [err] : messages);
     setAst(JSON.stringify(ast, null, 2));
   }, []);
+
   return (
     <>
       <EuiMarkdownEditor
@@ -170,7 +176,7 @@ export default () => {
       >
         Utilize error text or{' '}
         <strong>
-          <a href="#/forms/form-validation">EuiFormRow</a>
+          <Link to="/docs/forms/validation">EuiFormRow</Link>
         </strong>{' '}
         for more permanent error feedback
       </EuiFormErrorText>
@@ -190,8 +196,8 @@ export default () => {
     </>
   );
 };
-
 ```
+</Demo>
 
 ## Controlling the height
 
