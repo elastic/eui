@@ -118,7 +118,7 @@ export type EuiListGroupItemProps = CommonProps &
     showToolTip?: boolean;
 
     /**
-     * An object of #EuiListGroupItemExtraAction props.
+     * An object of {@link EuiListGroupItemExtraAction} props.
      * Adds an `EuiButtonIcon` to the right side of the item; `iconType` is required;
      * pass `alwaysShow` if you don't want the default behavior of only showing on hover
      */

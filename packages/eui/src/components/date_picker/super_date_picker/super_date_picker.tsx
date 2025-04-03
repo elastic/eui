@@ -204,11 +204,11 @@ export type EuiSuperDatePickerProps = CommonProps & {
   isQuickSelectOnly?: boolean;
 
   /**
-   * Props passed to the update button #EuiSuperUpdateButtonProps
+   * Props passed to the update button {@link EuiSuperUpdateButtonProps}
    */
   updateButtonProps?: EuiSuperUpdateButtonProps;
   /**
-   * Props passed to the quick select button #EuiQuickSelectButtonProps
+   * Props passed to the quick select button {@link EuiQuickSelectButtonProps}
    */
   quickSelectButtonProps?: EuiQuickSelectButtonProps;
 

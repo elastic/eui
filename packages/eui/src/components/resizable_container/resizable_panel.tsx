@@ -80,7 +80,7 @@ export interface EuiResizablePanelControls {
     deregister: (panelId: EuiResizablePanelController['id']) => void;
   };
   /**
-   * #ToggleCollapseCallback
+   * {@link ToggleCollapseCallback}
    */
   onToggleCollapsed?: ToggleCollapseCallback;
   onToggleCollapsedInternal: ToggleCollapseCallback;
