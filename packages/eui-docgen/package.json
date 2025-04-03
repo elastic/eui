@@ -5,7 +5,8 @@
   "scripts": {
     "clear": "rimraf dist/ lib/",
     "generate": "ts-node src/main.ts",
-    "build": "tsc && yarn generate"
+    "build": "tsc && yarn generate && yarn typedoc",
+    "typedoc": "typedoc"
   },
   "repository": {
     "type": "git",
@@ -21,7 +22,8 @@
     "typescript": "~5.5.4"
   },
   "devDependencies": {
-    "rimraf": "^6.0.1"
+    "rimraf": "^6.0.1",
+    "typedoc": "^0.28.3"
   },
   "files": [
     "dist",
