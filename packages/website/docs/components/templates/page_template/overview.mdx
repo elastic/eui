@@ -13,9 +13,9 @@ All templates should start with a wrapping `EuiPageTemplate` to control some sha
 
 - **EuiPageTemplate.Sidebar** extends [EuiPageSidebar](#providing-a-sidebar)
 - **EuiPageTemplate.Header** extends [EuiPageHeader](../../layout/page_header.mdx)
-- **EuiPageTemplate.Section** extends [EuiPageSection](../../layout/page_components/overview.mdx#page-sections)
-- **EuiPageTemplate.BottomBar** extends [EuiBottomBar](../../layout/bottom_bar.mdx)
-- **EuiPageTemplate.EmptyPrompt** extends [EuiEmptyPrompt](../../display/empty_prompt/overview.mdx)
+- **EuiPageTemplate.Section** extends [EuiPageSection](../../layout/page_components/index.mdx#page-sections)
+- **EuiPageTemplate.BottomBar** extends [EuiBottomBar](../../containers/bottom_bar.mdx)
+- **EuiPageTemplate.EmptyPrompt** extends [EuiEmptyPrompt](../../display/empty_prompt/index.mdx)
 
 With the exception of `.Sidebar` and `.BottomBar`, the stacking order of the page contents is determined by the order they are passed in. You can also override the outer props by simply applying them directly to the child element.
 
@@ -149,7 +149,7 @@ export default () => {
 
 ## Showing a bottom bar
 
-Adding an [**EuiBottomBar**](../../layout/bottom_bar.mdx) can be tricky to use and account for any sidebars. **EuiPageTemplate** handles this nicely by supplying a **EuiPageTemplate.BottomBar** component for passing the contents of your bottom bar that extends **EuiBottomBar**.
+Adding an [**EuiBottomBar**](../../containers/bottom_bar.mdx) can be tricky to use and account for any sidebars. **EuiPageTemplate** handles this nicely by supplying a **EuiPageTemplate.BottomBar** component for passing the contents of your bottom bar that extends **EuiBottomBar**.
 
 It uses the `sticky` position so that it sticks to the bottom of and remains within the bounds of page body. This way it will never overlap the sidebar, no matter the screen size. It also means not needing to accommodate for the height of the bar in the body element.
 
@@ -230,7 +230,7 @@ const [showSidebar, setShowSidebar] = useState<boolean>(true);
 
 ## Empty pages or content
 
-When the content is in an empty/pre-setup state, we recommend then using an [**EuiEmptyPrompt**](../../display/empty_prompt/overview.mdx) to direct users on next steps. Using **EuiPageTemplate.EmptyPrompt** will automatically center the prompt vertically and horizontally.
+When the content is in an empty/pre-setup state, we recommend then using an [**EuiEmptyPrompt**](../../display/empty_prompt/index.mdx) to direct users on next steps. Using **EuiPageTemplate.EmptyPrompt** will automatically center the prompt vertically and horizontally.
 
 The prompt's panel color depends on the other configurations but can be manually passed in via the `color` prop.
 
