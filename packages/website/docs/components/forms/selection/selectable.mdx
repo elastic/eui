@@ -6,7 +6,7 @@ sidebar_position: 6
 
 # Selectable
 
-**EuiSelectable** aims to make the pattern of a selectable list (with or without search) consistent across implementations. It is the same concept used in [**EuiComboBox**](./combo_box.mdx) and [**EuiFilterGroup**](../search_filter/filter_group.mdx). **This is not intended for [primary navigation](../../display/list_group.mdx)** but can be used to simplify the construction of popover navigational menus; i.e. the spaces menu in the [header](../../layout/header.mdx). See EUI's <a href="https://github.com/elastic/eui/discussions/7049" target="_blank">in-depth guide on which selection component to choose</a> for more information.
+**EuiSelectable** aims to make the pattern of a selectable list (with or without search) consistent across implementations. It is the same concept used in [EuiComboBox](./combo_box.mdx) and [EuiFilterGroup](../search_filter/filter_group.mdx). **This is not intended for [primary navigation](../../display/list_group.mdx) but can be used to simplify the construction of popover navigational menus; i.e. the spaces menu in the [header](../../layout/header.mdx). See EUI's <a href="https://github.com/elastic/eui/discussions/7049" target="_blank">in-depth guide on which selection component to choose</a> for more information.
 
 ## The basics
 
@@ -421,7 +421,7 @@ The component's children, `list, search`, are returned via the `children` functi
 
 ### Width and height
 
-The width has been made to always be 100% of its container, including stretching the search input. When used inside of [**EuiPopover**](../../layout/popover.mdx), we recommend setting a width (or min/max values) via CSS on the element containing the list to avoid expansion and contraction. By default, the height is capped at showing up to 7.5 items. It shows half of the last one to help indicate that there are more options to scroll to. To stretch the box to fill its container, pass 'full' to the `height` prop.
+The width has been made to always be 100% of its container, including stretching the search input. When used inside of [EuiPopover](../../layout/popover.mdx), we recommend setting a width (or min/max values) via CSS on the element containing the list to avoid expansion and contraction. By default, the height is capped at showing up to 7.5 items. It shows half of the last one to help indicate that there are more options to scroll to. To stretch the box to fill its container, pass 'full' to the `height` prop.
 
 ### Flexbox
 
@@ -690,7 +690,7 @@ export default () => {
 
 **EuiSelectable** defaults to `listProps.textWrap="truncate"`, which truncates long option text at the end of the string.
 
-You can use `listProps.truncationProps` and almost any prop that [**EuiTextTruncate**](../../utilities/text_truncation.mdx) accepts to configure this behavior. This can be configured at the **EuiSelectable** level, as well as by each individual option.
+You can use `listProps.truncationProps` and almost any prop that [EuiTextTruncate](../../utilities/text_truncation.mdx) accepts to configure this behavior. This can be configured at the **EuiSelectable** level, as well as by each individual option.
 
 ```tsx interactive
 import React, { useState } from 'react';
@@ -852,7 +852,7 @@ export default () => {
 
 If you have longer information that you need to make available to users outside of truncated text, one approach could be adding tooltip descriptions to individual options by passing `toolTipContent`.
 
-You can additionally customize individual tooltip behavior by passing `toolTipProps`, which accepts any configuration that [**EuiToolTip**](../../display/tooltip.mdx) accepts.
+You can additionally customize individual tooltip behavior by passing `toolTipProps`, which accepts any configuration that [EuiToolTip](../../display/tooltip.mdx) accepts.
 
 ```tsx interactive
 import React, { useState } from 'react';
