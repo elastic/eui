@@ -18,7 +18,7 @@ export interface EuiHideForProps {
   children: ReactNode;
   /**
    * List of all the responsive sizes to hide the children for.
-   * Array of #EuiBreakpointSize
+   * Array of {@link EuiBreakpointSize}
    */
   sizes: EuiHideForBreakpoints[] | 'all' | 'none';
 }
