@@ -39,6 +39,11 @@ export const getResetStyles = (theme: UseEuiTheme) => {
       margin: 0;
     }
 
+    img {
+      max-inline-size: 100%;
+      height: auto;
+    }
+
     ul, ol {
       list-style: none;
     }
