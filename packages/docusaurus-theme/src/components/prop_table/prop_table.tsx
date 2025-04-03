@@ -16,8 +16,57 @@ import {
 } from '@elastic/eui-docgen';
 import { useCallback, useMemo } from 'react';
 import { css } from '@emotion/react';
-import { PropTableExtendedTypes } from './extended_types';
 import Heading from '@theme/Heading';
+import types from '@elastic/eui-docgen/dist/types.json';
+
+import { PropTableExtendedTypes } from './extended_types';
+
+export interface Source {
+  fileName: string;
+  line: number;
+  character: number;
+  url: string;
+}
+
+export interface Child {
+  id: number;
+  name: string;
+  variant: string;
+  kind: number;
+  flags: Record<string, unknown>;
+  children?: Child[];
+  groups?: Group[];
+  sources?: Source[];
+  type?: {
+    type: string;
+    types?: { type: string; value?: string }[];
+    declaration?: Record<string, unknown>;
+    target?: { qualifiedName: string };
+    name?: string;
+    package?: string;
+  };
+  defaultValue?: string;
+}
+
+export interface Group {
+  title: string;
+  children: number[];
+}
+
+export interface Types {
+  schemaVersion: string;
+  id: number;
+  name: string;
+  variant: string;
+  kind: number;
+  flags: Record<string, unknown>;
+  children: Child[];
+  groups: Group[];
+  packageName: string;
+  readme: unknown[];
+  symbolIdMap: Record<string, unknown>;
+  files: Record<string, unknown>;
+}
 
 export interface PropTableProps {
   definition: ProcessedComponent;
@@ -136,15 +185,30 @@ export const PropTable = ({
           value: ProcessedComponentProp['description'],
           prop: ProcessedComponentProp
         ) {
+          const result = value
+            .replace(/{@link (\w+)}/g, (_, componentName) => {
+              const componentSource = (types as Types).children.find(
+                (item) => item.name === componentName
+              )?.sources?.[0];
+
+              if (componentSource) {
+                const { fileName, line } = componentSource;
+                return `[${componentName}](https://github.com/elastic/eui/tree/main/packages/${fileName}#L${line})`;
+              } else {
+                return `\`${componentName}\``;
+              }
+            })
+            .trim();
+
           return (
             <EuiFlexGroup
               direction="column"
               alignItems="flexStart"
               gutterSize="s"
             >
-              {value?.trim() && (
+              {result && (
                 <EuiMarkdownFormat css={styles.description}>
-                  {value}
+                  {result}
                 </EuiMarkdownFormat>
               )}
               {prop.type && (
