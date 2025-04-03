@@ -9,7 +9,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 
 The **EuiEmptyPrompt** is the building block to create an empty state. You can use it as a placeholder for any type of empty content. They are especially helpful for replacing entire pages or parts of a product that contain no content.
 
-Be sure to read the full [empty prompt usage guidelines](./guidelines).
+Be sure to read the full [empty prompt usage guidelines](guidelines.mdx).
 
 While no one piece of content is required, each **EuiEmptyPrompt** should contain at least a `title` (wrapped in an HTML heading element) and/or a `description`. They usually contain one or more `actions` that promotes the primary call-to-actions. You can also provide a `footer` to direct users towards making informed decisions.
 
@@ -41,7 +41,7 @@ export default () => (
 );
 ```
 
-## Less content, more actions[](/docs/display/empty-prompt#less-content-more-actions)
+## Less content, more actions
 
 You can remove parts of the prompt to simplify it. You can also provide an array of multiple actions. Be sure to list primary actions first and secondary actions as empty buttons.
 
@@ -64,9 +64,9 @@ export default () => (
 
 ## Panel options
 
-The **EuiEmptyPrompt** is wrapped by [**EuiPanel**](/docs/layout/panel). By default, the panel is set to `transparent` but you can customize other panel options like `color`, `hasBorder` and `paddingSize`. Changing the `color` prop will also attempt to adjust the `iconColor` and `footer` color.
+The **EuiEmptyPrompt** is wrapped by [EuiPanel](../../layout/panel/overview.mdx). By default, the panel is set to `transparent` but you can customize other panel options like `color`, `hasBorder` and `paddingSize`. Changing the `color` prop will also attempt to adjust the `iconColor` and `footer` color.
 
-Read the [usage guidelines](/docs/guidelines/empty-prompt) to better understand when to use certain panel props.
+Read the [usage guidelines](guidelines.mdx) to better understand when to use certain panel props.
 
 ```tsx interactive
 import React, { FunctionComponent } from 'react';
@@ -107,7 +107,7 @@ export default ({ color }: { color: EuiEmptyPromptProps['color'] }) => {
 
 ## Title sizes and icon colors
 
-Other customization options include changing the`titleSize` to any of the [**EuiTitle** sizes](/docs/display/title) and `iconColor`. When using an application or solution logo as the `iconType`, you can reset to the multi-tone colors with `iconColor="default"`
+Other customization options include changing the`titleSize` to any of the [EuiTitle sizes](../title.mdx) and `iconColor`. When using an application or solution logo as the `iconType`, you can reset to the multi-tone colors with `iconColor="default"`
 
 ```tsx interactive
 import React from 'react';
@@ -133,7 +133,7 @@ export default () => (
 
 Empty prompts can also be used to emulate loading and error states, by utilizing the same patterns.
 
-For **loading** states, instead of passing a `iconType`, you can provide a custom `icon` and pass in one of our [loading components](/docs/display/loading).
+For **loading** states, instead of passing a `iconType`, you can provide a custom `icon` and pass in one of our [loading components](../loading.mdx).
 
 ```tsx interactive
 import React from 'react';
@@ -172,7 +172,7 @@ export default () => (
 
 You can supply a `layout` of either `"horizontal"` or `"vertical"` with the default being `vertical`. When creating empty states we want the content to be short and straight to the point. So most of the time, the `vertical` layout is enough. All the content will be center aligned and this type of text alignment only works with small content.
 
-When you have longer body text with multiple calls to action, you can use the `horizontal` layout. This layout works best when you can provide a larger graphic like an illustration as the `icon`. For consistency, we recommend providing the illustration using a [**EuiImage**](/docs/display/image) with `size="fullWidth"`.
+When you have longer body text with multiple calls to action, you can use the `horizontal` layout. This layout works best when you can provide a larger graphic like an illustration as the `icon`. For consistency, we recommend providing the illustration using a [EuiImage](../image.mdx) with `size="fullWidth"`.
 
 <Demo scope={{ useBaseUrl }}>
   ```tsx
@@ -229,7 +229,7 @@ When you have longer body text with multiple calls to action, you can use the `h
 
 ## More types of empty states
 
-**EuiEmptyPrompt** can be used for more than just **empty** pages. The following example showcases different types of empty states that you can create with the **EuiEmptyPrompt**. For a full list see the [usage guidelines](/docs/guidelines/empty-prompt).
+**EuiEmptyPrompt** can be used for more than just **empty** pages. The following example showcases different types of empty states that you can create with the **EuiEmptyPrompt**. For a full list see the [usage guidelines](guidelines.mdx).
 
 import MultipleTypes from './multiple_types';
 
@@ -237,9 +237,9 @@ import MultipleTypes from './multiple_types';
 
 ## Using in a page template
 
-When using a **EuiEmptyPrompt** in a [**EuiPageTemplate**](/docs/templates/page-template), we recommend using the namespaced component so the template can determine which how to display the empty prompt based on the rest of the template configuration.
+When using a **EuiEmptyPrompt** in a [EuiPageTemplate](../../templates/page_template/overview.mdx), we recommend using the namespaced component so the template can determine which how to display the empty prompt based on the rest of the template configuration.
 
-The following example shows the usage of the [**EuiPageTemplate.EmptyPrompt**](/docs/templates/page-template#empty-pages-or-content) namespaced component.
+The following example shows the usage of the [EuiPageTemplate.EmptyPrompt](../../templates/page_template/overview.mdx#empty-pages-or-content) namespaced component.
 
 <Demo scope={{ useBaseUrl }}>
   ```tsx
@@ -291,7 +291,7 @@ The following example shows the usage of the [**EuiPageTemplate.EmptyPrompt**](/
   ```
 </Demo>
 
-You can then tie multiple types of empty states together to create a seamless loading to empty or loading to error experience. The following example shows how to incorporate these states with [**EuiPageTemplate.EmptyPrompt**](/docs/templates/page-template#empty-pages-or-content).
+You can then tie multiple types of empty states together to create a seamless loading to empty or loading to error experience. The following example shows how to incorporate these states with [EuiPageTemplate.EmptyPrompt](../../templates/page_template/overview.mdx#empty-pages-or-content).
 
 ```tsx interactive
 import React, { useState, useEffect } from 'react';
