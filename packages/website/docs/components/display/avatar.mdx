@@ -7,6 +7,8 @@ id: display_avatar
 
 The **EuiAvatar** component typically creates a user icon. It will accept `name` (required) and `image` props and will configure the display and accessibility as needed. By default, the background colors come from the set of colors used for visualizations. Otherwise you can pass a hex value to the `color` prop.
 
+## Component
+
 ```tsx interactive
 import React from 'react';
 import { EuiAvatar, EuiSpacer, EuiTitle } from '@elastic/eui';
@@ -36,7 +38,9 @@ export default () => (
 );
 ```
 
-## Initials
+## Usage
+
+### Initials
 
 The initials displayed in the avatar try to be smart based on the name prop. If the name contains spaces, it will display the first character of each word, **always maxing out at 2 characters**. You can customize this by passing a combination of `initialsLength` and/or `initials` props. However, the avatar will still always max out at 2 characters.
 
@@ -76,7 +80,7 @@ export default () => (
 );
 ```
 
-## Types
+### Types
 
 The avatar `type`, which primarily defines the shape, is a keyword and can be `"user"` (default) or `"space"` (for workspaces).
 
@@ -101,7 +105,7 @@ export default () => (
 );
 ```
 
-## Icons
+### Icons
 
 Icons can also be displayed instead of initials or images. When simply passing an `iconType`, it will both size and color appropriately based on the other **EuiAvatar** props. To customize these specifically, pass `iconSize` and `iconColor`.
 
@@ -165,7 +169,7 @@ export default () => {
 };
 ```
 
-## Disabled
+### Disabled
 
 While **EuiAvatar** doesn't accept any interactive behaviors itself, you can create a visually presented disabled avatar by adding `isDisabled` when placed within a disabled element.
 
