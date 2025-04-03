@@ -259,6 +259,7 @@ export default () => {
 
 ```tsx interactive
 import React, { useState } from 'react';
+import { css } from '@emotion/react';
 import {
   EuiSkeletonRectangle,
   EuiFlexGroup,
@@ -308,6 +309,10 @@ export default () => {
               height={100}
               src="https://picsum.photos/300/300"
               alt="A randomized image"
+              css={css`
+                width: 100px;
+                height: 100px;
+              `}
             />
           </EuiSkeletonRectangle>
         </EuiFlexItem>
