@@ -5,7 +5,7 @@ id: editors_syntax_markdown_plugins
 
 # Plugins
 
-Both **[EuiMarkdownEditor](../editor)** and **[EuiMarkdownFormat](../format)** utilize the same underlying plugin architecture to transform string based syntax into React components. At a high level [Unified JS](https://www.npmjs.com/package/unified) is used in combination with [Remark](https://www.npmjs.com/package/remark-parse) to provide EUI's markdown components, which are separated into a **parsing** and **processing** layer. These two concepts are kept distinct in EUI components to provide concrete locations for your plugins to be injected, be it editing or rendering. Finally you provide **UI** to the component to handle interactions with the editor.
+Both [EuiMarkdownEditor](./editor.mdx) and [EuiMarkdownFormat](./format.mdx) utilize the same underlying plugin architecture to transform string based syntax into React components. At a high level [Unified JS](https://www.npmjs.com/package/unified) is used in combination with [Remark](https://www.npmjs.com/package/remark-parse) to provide EUI's markdown components, which are separated into a **parsing** and **processing** layer. These two concepts are kept distinct in EUI components to provide concrete locations for your plugins to be injected, be it editing or rendering. Finally you provide **UI** to the component to handle interactions with the editor.
 
 In addition to running the full pipeline, **EuiMarkdownEditor** uses just the parsing configuration to determine the input's validity, provide messages back to the application, and allow the toolbar buttons to interact with existing markdown tags.
 
@@ -39,9 +39,9 @@ These plugin definitions can be obtained by calling `getDefaultEuiMarkdownParsin
 
 The above plugin utils, as well as `getDefaultEuiMarkdownPlugins`, accept an optional configuration object of:
 
-*   `exclude`: an array of default plugins to [unregister](#unregistering-plugins)
-*   `parsingConfig`: allows overriding the configuration of any default parsing plugin
-*   `processingConfig`: currently only accepts a `linkProps` key, which accepts any prop that [EuiLink](../../../navigation/link) accepts
+- `exclude`: an array of default plugins to [unregister](#unregistering-plugins)
+- `parsingConfig`: allows overriding the configuration of any default parsing plugin
+- `processingConfig`: currently only accepts a `linkProps` key, which accepts any prop that [EuiLink](../../navigation/link.mdx) accepts
 
 The below example has the `emoji` plugin excluded, and custom configuration on the link validator parsing plugin and link processing plugin. See the **Props** table for all plugin config options.
 
