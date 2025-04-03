@@ -9,7 +9,7 @@ The **EuiTimeline** component standardizes the way a timeline thread is displaye
 
 This component allows you to create any type of timeline, but for more specific use cases you should consider:
 
-*   [EuiSteps](../navigation/steps/steps.mdx): a timeline that allows you to present instructional content that must be conducted in a particular order and might contain progress indications.
+*   [EuiSteps](../navigation/steps/index.mdx): a timeline that allows you to present instructional content that must be conducted in a particular order and might contain progress indications.
 *   [EuiCommentList](../display/comment_list.mdx): a timeline that allows you to display comments or logging actions that either a user or a system has performed.
 
 :::accessibility Accessibility requirement
@@ -91,7 +91,7 @@ You can create a timeline thread by rendering multiple **EuiTimelineItem** compo
 When passing an `icon` and `children` prop to each item, there are some design considerations to take into account:
 
 *   `icon`: use icons of the same size to create a better visual consistency.
-*   `children`: when your content is just one line of text, the recommendation is to use an [EuiText](text.mdx) as a wrapper. For multi-line content consider using a [EuiPanel](../layout/panel/overview.mdx) or a [EuiSplitPanel](../layout/panel/split_panel.mdx) instead. For other types of components like editors, the recommendation is to pass the children without any wrapper.
+*   `children`: when your content is just one line of text, the recommendation is to use an [EuiText](text.mdx) as a wrapper. For multi-line content consider using a [EuiPanel](../containers/panel/index.mdx) or a [EuiSplitPanel](../containers/panel/index.mdx#split) instead. For other types of components like editors, the recommendation is to pass the children without any wrapper.
 
 The following example shows how to display multiple **EuiTimelineItem**s and how you can use a **EuiSplitPanel** as the content wrapper.
 

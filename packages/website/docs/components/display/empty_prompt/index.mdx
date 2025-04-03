@@ -42,7 +42,6 @@ export default () => (
 ```
 ## Usage
 
-<<<<<<< HEAD:packages/website/docs/components/display/empty_prompt/overview.mdx
 ## Less content, more actions
 
 You can remove parts of the prompt to simplify it. You can also provide an array of multiple actions. Be sure to list primary actions first and secondary actions as empty buttons.
@@ -63,15 +62,11 @@ export default () => (
   />
 );
 ```
-
-## Panel options
-=======
 ### Panel options
->>>>>>> 0ad11482e (new ia):packages/website/docs/components/display/empty_prompt/index.mdx
 
-The **EuiEmptyPrompt** is wrapped by [EuiPanel](../../layout/panel/overview.mdx). By default, the panel is set to `transparent` but you can customize other panel options like `color`, `hasBorder` and `paddingSize`. Changing the `color` prop will also attempt to adjust the `iconColor` and `footer` color.
+The **EuiEmptyPrompt** is wrapped by [EuiPanel](../../containers/panel/index.mdx). By default, the panel is set to `transparent` but you can customize other panel options like `color`, `hasBorder` and `paddingSize`. Changing the `color` prop will also attempt to adjust the `iconColor` and `footer` color.
 
-Read the [usage guidelines](guidelines.mdx) to better understand when to use certain panel props.
+Read the [usage guidelines](#guidelines) to better understand when to use certain panel props.
 
 ```tsx interactive
 import React, { FunctionComponent } from 'react';
@@ -234,7 +229,7 @@ When you have longer body text with multiple calls to action, you can use the `h
 
 ### More types of empty states
 
-**EuiEmptyPrompt** can be used for more than just **empty** pages. The following example showcases different types of empty states that you can create with the **EuiEmptyPrompt**. For a full list see the [usage guidelines](guidelines.mdx).
+**EuiEmptyPrompt** can be used for more than just **empty** pages. The following example showcases different types of empty states that you can create with the **EuiEmptyPrompt**. For a full list see the [usage guidelines](#guidelines).
 
 import MultipleTypes from './_multiple_types';
 
