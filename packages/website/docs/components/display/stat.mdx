@@ -28,7 +28,7 @@ export default () => (
 
 ```tsx interactive
 import React from 'react';
-import { EuiStat, EuiFlexItem, EuiFlexGroup } from '@elastic/eui';
+import { EuiStat, EuiFlexItem, EuiFlexGroup, EuiSpacer } from '@elastic/eui';
 
 export default () => (
   <>
@@ -46,6 +46,7 @@ export default () => (
       <EuiStat title="100,000" description="Accent color" titleColor="accent" />
     </EuiFlexItem>
   </EuiFlexGroup>
+  <EuiSpacer />
   <EuiFlexGroup wrap>
     <EuiFlexItem grow={false}>
       <EuiStat title="1,000" description="Success color" titleColor="success" />
