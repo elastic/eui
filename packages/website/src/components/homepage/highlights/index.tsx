@@ -57,13 +57,13 @@ const CONTENT_DATA = [
   },
   {
     title: 'Forms',
-    href: './docs/forms/text/',
+    href: './docs/forms/form-controls/guidelines/',
     svg: SvgForm,
     description: 'Inputs with validation, grouped into a flexible form layout',
   },
   {
     title: 'Button',
-    href: './docs/navigation/button',
+    href: './docs/navigation/buttons/button',
     svg: SvgButton,
     description:
       'Variety of buttons and button groups with different styles and colours',
@@ -83,7 +83,7 @@ const CONTENT_DATA = [
   },
   {
     title: 'Panel',
-    href: './docs/layout/panel',
+    href: './docs/containers/panel',
     svg: SvgPanel,
     description: 'Layout helper, commonly used as a base for other components',
   },
@@ -95,7 +95,7 @@ const CONTENT_DATA = [
   },
   {
     title: 'Card',
-    href: './docs/display/card',
+    href: './docs/containers/card',
     svg: SvgCard,
     description:
       'Vertical or horizontal cards, containing any custom components needed',
