@@ -54,6 +54,7 @@ import { PageComponentsPreviewWrapper } from './preview_wrapper';
   );
   ```
 </Demo>
+
 ## Page sections
 
 **EuiPageSection** is a stackable component that is essentially an [EuiPanel](../panel/overview.mdx) with props for quickly creating common usages. It is meant to be a direct descendent of **EuiPageBody** You'll need to set `grow={false}` to any content that you don't want to stretch within the page.
@@ -113,72 +114,11 @@ When piecing all of the different page components together, the state of your ap
 
 When using [EuiEmptyPrompt](../../display/empty_prompt/overview.mdx) to replace the main contents of your page you will want to use a panel color opposite that of the section color. For example:
 
-<table>
-  <tr>
-    <th>EuiPageSidebar</th>
-    <th>EuiPageHeader</th>
-    <th>EuiPageBody</th>
-    <th>EuiPageSection</th>
-    <th>EuiEmptyPrompt settings</th>
-  </tr>
-  <tr>
-    <td>
-      <Icon
-        type="checkInCircleFilled"
-        color="green"
-        title="yes"
-      />
-    </td>
-    <td>
-      <Icon
-        type="minusInCircle"
-        color="subdued"
-        title="doesn't matter"
-      />
-    </td>
-    <td>`color="plain"`</td>
-    <td>
-      <span>`color="plain"`</span>
-      <br />
-      <span>`bottomBorder={true}`</span>
-    </td>
-    <td>`color="subdued"`</td>
-  </tr>
-  <tr>
-    <td>
-      <Icon type="error" color="danger" title="no" />
-    </td>
-    <td>
-      <Icon
-        type="checkInCircleFilled"
-        color="green"
-        title="yes"
-      />
-    </td>
-    <td>`color="transparent"`</td>
-    <td>
-      <span>`color="plain"`</span>
-      <br />
-      <span>`bottomBorder="extended"`</span>
-    </td>
-    <td>`color="subdued"`</td>
-  </tr>
-  <tr>
-      <td>
-        <Icon type="error" color="danger" title="no" />
-      </td>
-      <td>
-        <Icon type="error" color="danger" title="no" />
-      </td>
-      <td>`color="transparent"`</td>
-      <td>
-        <span>`color="plain"`</span>
-        <br />
-        <span>`bottomBorder="extended"`</span>
-      </td>
-      <td>`color="plain"`</td>
-    </tr>
-</table>
+```mdx-code-block
+import { ConfigurationsTable } from './configurations_table';
+```
+
+<ConfigurationsTable />
 
 :::tip
 Reminder: [EuiPageTemplate](../../templates/page_template/overview.mdx) can handle all these configurations for you.
