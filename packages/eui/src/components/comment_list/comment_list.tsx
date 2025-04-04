@@ -16,7 +16,7 @@ export type EuiCommentListProps = Omit<
   'items' | 'gutterSize'
 > & {
   /**
-   * List of comments to render. See #EuiComment
+   * List of comments to render. See {@link EuiComment}
    */
   comments?: EuiCommentProps[];
   /**
