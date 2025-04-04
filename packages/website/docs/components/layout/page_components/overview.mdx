@@ -126,62 +126,91 @@ Reminder: [EuiPageTemplate](../../templates/page_template/overview.mdx) can hand
 
 <Demo scope={{ fakeParagraph, fakeSidebar }} previewPadding="none" previewWrapper={PageComponentsPreviewWrapper}>
   ```tsx
-  import React, { ReactElement } from 'react';
+  import React, { ReactElement, useState } from 'react';
+  import { css } from '@emotion/react';
+  
   import {
-    _EuiPageRestrictWidth,
-    EuiPage,
-    EuiPageSidebar,
-    EuiPageBody,
     EuiEmptyPrompt,
+    EuiFlexGroup,
+    EuiImage,
+    EuiPage,
+    EuiPageBody,
     EuiPageHeader,
     EuiPageSection,
+    EuiPageSidebar,
+    EuiSwitch,
   } from '@elastic/eui';
 
-  export default ({
-    content = <EuiImage alt="Fake paragraph" src={fakeParagraph} size="fullWidth" />,
-    sideBar = <EuiImage alt="Fake side nav" size="original" url={fakeSidebar} />,
-    pageHeader,
-    emptyPrompt,
-  }: _EuiPageRestrictWidth & {
-    content: ReactElement;
-    sideBar?: ReactElement;
-    pageHeader?: boolean;
-    emptyPrompt?: boolean;
-  }) => {
+  export default () => {
+    const [sideBar, setSideBar] = useState(true);
+    const [pageHeader, setPageHeader] = useState(true);
+    const [emptyPrompt, setEmptyPrompt] = useState(false);
+
     return (
-      <EuiPage paddingSize="none">
-        {sideBar && (
-          <EuiPageSidebar paddingSize="l" sticky>
-            {sideBar}
-          </EuiPageSidebar>
-        )}
-
-        <EuiPageBody paddingSize="none" panelled={Boolean(sideBar)}>
-          {pageHeader && (
-            <EuiPageSection bottomBorder={sideBar ? true : 'extended'}>
-              <EuiPageHeader pageTitle="Page title" />
-            </EuiPageSection>
+      <>
+        <EuiFlexGroup css={css`
+          padding: 16px;
+        `}>
+          <EuiSwitch
+            label="Sidebar"
+            checked={sideBar}
+            onChange={(e) => setSideBar(e.target.checked)}
+          />
+          <EuiSwitch
+            label="Page header"
+            checked={pageHeader}
+            onChange={(e) => setPageHeader(e.target.checked)}
+          />
+          <EuiSwitch
+            label="Empty prompt"
+            checked={emptyPrompt}
+            onChange={(e) => setEmptyPrompt(e.target.checked)}
+          />
+        </EuiFlexGroup>
+        <EuiPage paddingSize="none">
+          {sideBar && (
+            <EuiPageSidebar paddingSize="l" sticky>
+              <EuiImage alt="Fake side nav" size="original" url={fakeSidebar} />
+            </EuiPageSidebar>
           )}
-
-          {emptyPrompt ? (
-            <EuiPageSection
-              color={pageHeader ? 'plain' : 'transparent'}
-              alignment={'center'}
-              grow
-            >
-              <EuiEmptyPrompt
-                title={<span>No spice</span>}
-                body={content}
-                color={pageHeader || sideBar ? 'subdued' : 'plain'}
-              />
-            </EuiPageSection>
-          ) : (
-            <EuiPageSection color={'plain'} alignment={'top'} grow>
-              {content}
-            </EuiPageSection>
-          )}
-        </EuiPageBody>
-      </EuiPage>
+          <EuiPageBody paddingSize="none" panelled={Boolean(sideBar)}>
+            {pageHeader && (
+              <EuiPageSection bottomBorder={sideBar ? true : 'extended'}>
+                <EuiPageHeader pageTitle="Page title" />
+              </EuiPageSection>
+            )}
+            {emptyPrompt ? (
+              <EuiPageSection
+                color={pageHeader ? 'plain' : 'transparent'}
+                alignment={'center'}
+                grow
+              >
+                <EuiEmptyPrompt
+                  title={<span>No spice</span>}
+                  body={
+                    <EuiImage
+                      alt="Fake paragraph"
+                      src={fakeParagraph}
+                      size="fullWidth"
+                    />
+                  }
+                  color={pageHeader || sideBar ? 'subdued' : 'plain'}
+                />
+              </EuiPageSection>
+            ) : (
+              <EuiPageSection color={'plain'} alignment={'top'} grow>
+                {
+                  <EuiImage
+                    alt="Fake paragraph"
+                    src={fakeParagraph}
+                    size="fullWidth"
+                  />
+                }
+              </EuiPageSection>
+            )}
+          </EuiPageBody>
+        </EuiPage>
+      </>
     );
   };
   ```
