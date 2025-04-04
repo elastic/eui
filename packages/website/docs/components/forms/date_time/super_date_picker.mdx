@@ -494,7 +494,7 @@ export default () => {
 
 Set `isAutoRefreshOnly` to `true` to limit the component to only display auto refresh content. This is useful in cases where there is no time data but auto-refresh configuration is still desired.
 
-However, since this is still the full **EuiSuperDatePicker** component it requires other props that may not be necessary for the refresh only UI. In this case, you can use the [**EuiAutoRefresh**](./auto_refresh.mdx) component directly. You will just need to manage the refresh counter yourself.
+However, since this is still the full **EuiSuperDatePicker** component it requires other props that may not be necessary for the refresh only UI. In this case, you can use the [EuiAutoRefresh](./auto_refresh.mdx) component directly. You will just need to manage the refresh counter yourself.
 
 ```tsx interactive
 import React, { useState } from 'react';
@@ -549,7 +549,7 @@ export default () => {
 
 ## Elastic pattern with KQL
 
-The following is a demo pattern of how to layout the **EuiSuperDatePicker** alongside Elastic's KQL search bar using [**EuiSearchBar**](../search_filter/search_bar.mdx) and shrinking to fit when the search bar is in focus.
+The following is a demo pattern of how to layout the **EuiSuperDatePicker** alongside Elastic's KQL search bar using [EuiSearchBar](../search_filter/search_bar.mdx) and shrinking to fit when the search bar is in focus.
 
 ```tsx interactive
 import React, { useState } from 'react';

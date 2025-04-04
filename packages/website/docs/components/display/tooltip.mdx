@@ -5,14 +5,13 @@ id: display_tooltip
 
 # Tooltip
 
-Generally, tooltips should provide short, **non-essential**, contextual information, usually naming or describing with more detail. If you need interactive content or anything other than text, we recommend using [**EuiPopover**](/docs/layout/popover) instead.
+Generally, tooltips should provide short, **non-essential**, contextual information, usually naming or describing with more detail. If you need interactive content or anything other than text, we recommend using [EuiPopover](../layout/popover.mdx) instead.
 
-:::note Tooltips have three accessibility requirements:
+:::accessibility Accessibility requirements
 
-*   Tooltips **must** be anchored to elements that accept keyboard focus.
-*   Put only plain text in tooltips so the content is accessible to keyboard and screen reader users.
-*   Do not add links, buttons, or other interactive content inside tooltips.
-
+- Tooltips **must** be anchored to elements that accept keyboard focus.
+- Put only plain text in tooltips so the content is accessible to keyboard and screen reader users.
+- Do not add links, buttons, or other interactive content inside tooltips.
 :::
 
 Wrap **EuiToolTip** around any item that you need a tooltip for and provide the `content` and optionally the `title`. The `position` prop will take a suggested position, but will change it if the tooltip gets too close to the edge of the screen.
