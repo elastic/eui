@@ -16,11 +16,6 @@ const getStyles = ({ euiTheme }: UseEuiTheme) => ({
       color: ${euiTheme.colors.text};
       font-size: var(--eui-font-size-s);
       line-height: var(--eui-line-height-s);
-
-      @media (min-width: 997px) {
-        font-size: var(--eui-font-size-xs);
-        line-height: var(--eui-line-height-xs);
-      }
     }
 
     .menu__link--active {

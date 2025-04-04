@@ -1,3 +1,2 @@
-link:
-  type: doc
-  id: display_empty_prompt
+label: Empty prompt
+collapsed: true

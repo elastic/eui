@@ -7,7 +7,7 @@ id: navigation_collapsible_nav
 
 This is a high level component that creates a flyout-style navigational pane.
 
-**EuiCollapsibleNav** is a custom implementation of [EuiFlyout](../layout/flyout/flyout.mdx); the visibility of which must still be maintained by the consuming application. An extra feature that it provides is the ability to `dock` the flyout. This affixes the flyout to the window and pushes the body content by adding left side padding.
+**EuiCollapsibleNav** is a custom implementation of [EuiFlyout](../containers/flyout/index.mdx); the visibility of which must still be maintained by the consuming application. An extra feature that it provides is the ability to `dock` the flyout. This affixes the flyout to the window and pushes the body content by adding left side padding.
 
 :::warning
 Docking is not possible on small screens because it would force less real estate for the page content.
@@ -91,7 +91,7 @@ export default () => {
 
 ## Collapsible nav group
 
-An **EuiCollapsibleNavGroup** adds some basic borders and `background` color of `none`, `light`, or `dark`. Give each section a heading by providing an optional `title` and `iconType`. Make the section collapsible ([accordion style](../layout/accordion.mdx)) with `isCollapsible=true`.
+An **EuiCollapsibleNavGroup** adds some basic borders and `background` color of `none`, `light`, or `dark`. Give each section a heading by providing an optional `title` and `iconType`. Make the section collapsible ([accordion style](../containers/accordion.mdx)) with `isCollapsible=true`.
 
 When in `isCollapsible` mode, a `title` and `initialIsOpen:boolean` is required.
 

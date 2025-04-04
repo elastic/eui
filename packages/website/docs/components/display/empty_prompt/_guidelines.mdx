@@ -1,0 +1,113 @@
+import { EuiFlexGroup } from '@elastic/eui';
+
+### Anatomy
+
+A useful empty state will let the user know what's happening, why it's happening, and what to do about it. It can contribute to a more compelling user experience and add more value to the business if done right.
+
+To make the empty state clear, follow this pattern:
+
+import { EuiAspectRatio } from '@elastic/eui';
+
+<EuiAspectRatio width={16} height={9}>
+  <iframe
+    title="Anatomy of an empty state"
+    width="1200"
+    height="550"
+    src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2FRzfYLj2xmH9K7gQtbSKygn%2FElastic-UI%3Fnode-id%3D22764%253A276515"
+  />
+</EuiAspectRatio>
+
+1. **Icon or illustration (optional):** A meaningful representation of the the solution or context.
+2. **Title:** Answers the question "What's happening?". Is it an error? Is it loading?
+3. **Description:** Why is it happening? Explain why the space is empty and guide the users through the required actions.
+4. **Action(s):** Your call to actions should answer the question "What will solve the issue?". Lead the users to take action or guide them about the next steps.
+5. **Footer (optional):** Use this section to reference documentation or link to an area where users can learn more about the issue they are facing.
+
+### Empty state types, goals, and recommendations
+
+The following scenarios detail the most common empty states use cases and provide recommendations for use with **EuiPageTemplate**.
+
+import { TypesOfEmptyStates } from './types_of_empty_states';
+
+<TypesOfEmptyStates />
+
+### Vertical vs. horizontal
+
+The vertical layout is perfect when the content is small — a title and two paragraphs at most. You can use this layout with an icon, an illustration, or no icons at all.
+
+Use the horizontal layout when you have a long description, multiple calls to action, and a footer. For this type of layout, an illustration is required.
+
+<EuiFlexGroup gutterSize="m">
+  <Guideline text="Use the vertical layout when the text is 1 to 2 sentences.">
+    ![Vertical layout](/images/empty_prompt/thumbnail_vertical.svg)
+  </Guideline>
+  <Guideline text="Use the horizontal layout when you have a long description, and you can provide an illustration.">
+    ![Horizontal layout](/images/empty_prompt/thumbnail_horizontal.svg)
+  </Guideline>
+</EuiFlexGroup>
+
+### Icons and illustrations
+
+Icons and illustrations must first and foremost communicate meaning. They are also an opportunity to delight users and show our Elastic brand.
+
+When using an illustration, bear in mind that they stand out a lot. Use one illustration per page. Having multiple illustrations might make the page too crowded.
+
+<EuiFlexGroup gutterSize="m">
+  <Guideline type="do" text="An illustration works better in a horizontal layout.">
+    ![Horizontal layout](/images/empty_prompt/thumbnail_icon-do.svg)
+  </Guideline>
+  <Guideline type="dont" text="Avoid using icons and illustrations that don't mean anything and are not related to the content.">
+    ![No meaningful icon](/images/empty_prompt/thumbnail_icon-dont.svg)
+  </Guideline>
+</EuiFlexGroup>
+
+### Learn more links
+
+"Learn more" links are optional. You can use them in your empty prompt to link to documentation where users can get more detailed help.
+
+Include the link after the description when the empty prompt doesn't contain a call to action. If there is a call to action, include the link in the footer.
+
+<EuiFlexGroup gutterSize="m">
+  <Guideline text={`Add the "Learn more" link after the description when the empty prompt doesn't contain a call to action.`}>
+    ![Inline link](/images/empty_prompt/thumbnail_inline-link.svg)
+  </Guideline>
+  <Guideline text={`Add the "Learn more" link in the footer when the empty prompt contains a call to action.`}>
+    ![Footer link](/images/empty_prompt/thumbnail_footer-link.svg)
+  </Guideline>
+</EuiFlexGroup>
+
+### Multiple empty states
+
+When a page has multiple empty states, avoid using multiple primary actions and multiple icons or illustrations.
+
+Use secondary actions and no icons or illustrations. This way, the visual noise will be reduced. Consider using an illustration or a primary action if you want to make one of the empty states stand out.
+
+<EuiFlexGroup gutterSize="m">
+  <Guideline type="do" text="Use secondary actions and no icons or illustrations when displaying multiple empty states.">
+    ![Vertical layout](/images/empty_prompt/thumbnail_multiple-do.svg)
+  </Guideline>
+  <Guideline type="dont" text="Avoid mixing different types of empty states. Be consistent.">
+    ![Multiple empty states with primary actions and icons/illustrations](/images/empty_prompt/thumbnail_multiple-dont.svg)
+  </Guideline>
+</EuiFlexGroup>
+
+### Less content, more actions
+
+Simplify the prompt by removing unneeded parts. Multiple actions can be provided as an array but list primary actions first and secondary actions as empty buttons.
+
+```tsx interactive
+import React from 'react';
+import { EuiEmptyPrompt, EuiButton, EuiButtonEmpty } from '@elastic/eui';
+
+export default () => (
+  <EuiEmptyPrompt
+    title={<h2>Upgrade your license to use Machine Learning</h2>}
+    actions={[
+      <EuiButton color="primary" fill>
+        Upgrade
+      </EuiButton>,
+      <EuiButtonEmpty color="primary">Start a trial</EuiButtonEmpty>,
+    ]}
+  />
+);
+```

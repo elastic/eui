@@ -1,0 +1,121 @@
+---
+slug: /containers/modal
+id: containers_modal
+---
+
+# Modal
+
+A modal works best for focusing users' attention on a **short** amount of content and getting them to make a decision, such as a [confirmation](#confirm-modal). Use it to temporarily interrupt a user’s current task and block interactions to the content below it.
+
+If your modal content is more complex, or requires considerable time to complete, consider using an [EuiFlyout](../flyout/index.mdx) instead.
+
+Each **EuiModal** requires a specific set of nested child components. They can be omitted if necessary, but the order cannot be changed or interrupted.
+
+## Components
+
+### Default
+
+Modals come a wrapping **EuiOverlayMask** to obscure the content beneath, but unlike flyouts, modals cannot be dismissed by clicking on the overlay mask. This is inline with our [modal usage guidelines](#guidelines) which requires there to be a primary action button, even if that button simply closes the modal.
+
+```tsx interactive
+import React, { useState } from 'react';
+import {
+  EuiButton,
+  EuiModal,
+  EuiModalBody,
+  EuiModalFooter,
+  EuiModalHeader,
+  EuiModalHeaderTitle,
+  EuiCodeBlock,
+  EuiSpacer,
+  useGeneratedHtmlId,
+} from '@elastic/eui';
+
+export default () => {
+  const [isModalVisible, setIsModalVisible] = useState(false);
+
+  const closeModal = () => setIsModalVisible(false);
+  const showModal = () => setIsModalVisible(true);
+
+  const modalTitleId = useGeneratedHtmlId();
+
+  return (
+    <>
+      <EuiButton onClick={showModal}>Show modal</EuiButton>
+
+      {isModalVisible && (
+        <EuiModal aria-labelledby={modalTitleId} onClose={closeModal}>
+          <EuiModalHeader>
+            <EuiModalHeaderTitle id={modalTitleId}>
+              Modal title
+            </EuiModalHeaderTitle>
+          </EuiModalHeader>
+
+          <EuiModalBody>
+            This modal has the following setup:
+            <EuiSpacer />
+            <EuiCodeBlock language="html" isCopyable>
+              {`<EuiModal aria-labelledby={titleId} onClose={closeModal}>
+  <EuiModalHeader>
+    <EuiModalHeaderTitle title={titleId}><!-- Modal title --></EuiModalHeaderTitle>
+  </EuiModalHeader>
+
+  <EuiModalBody>
+    <!-- Modal body -->
+  </EuiModalBody>
+
+  <EuiModalFooter>
+    <EuiButton onClick={closeModal} fill>
+      Close
+    </EuiButton>
+  </EuiModalFooter>
+</EuiModal>`}
+            </EuiCodeBlock>
+          </EuiModalBody>
+
+          <EuiModalFooter>
+            <EuiButton onClick={closeModal} fill>
+              Close
+            </EuiButton>
+          </EuiModalFooter>
+        </EuiModal>
+      )}
+    </>
+  );
+};
+
+```
+
+### Confirm modal
+
+import ConfirmModal from './_confirm_modal.mdx';
+
+<ConfirmModal />
+
+## Usage
+
+import Patterns from './_patterns.mdx';
+
+<Patterns />
+
+## Guidelines
+
+import Guidelines from './_guidelines.mdx';
+
+<Guidelines />
+
+## Props
+
+import docgen from '@elastic/eui-docgen/dist/components/modal';
+
+<PropTable definition={docgen.EuiModal} />
+
+<PropTable definition={docgen.EuiModalHeader} />
+
+<PropTable definition={docgen.EuiModalHeaderTitle} />
+
+<PropTable definition={docgen.EuiModalBody} />
+
+<PropTable definition={docgen.EuiModalFooter} />
+
+<PropTable definition={docgen.EuiConfirmModal} />

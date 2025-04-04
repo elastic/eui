@@ -5,17 +5,32 @@ id: display_callout
 
 # Callout
 
-**EuiCallOut** contains a message directly related to content on the page. This includes general information, success, warning, and error messages.
+**EuiCallOut** is used to display important messages directly related to content on the page.
 
-**Keep these guidelines in mind:**
+## Component
 
-*   Minimize the number of callouts per page.
-*   Stack callouts in the order in which they require users' attention: error, warning, info, and then success.
-*   Offer only one action per callout and ensure it's an action users can perform quickly.
-*   If the callout has a permanent spot in the UI, but needs to be less obstructive, set the `size` property to `s` (small).
-*   Use an `iconType` if it adds context.
+Default settings produce a basic, primary-colored callout.
 
-## Info
+```tsx interactive
+import React from 'react';
+import { EuiCallOut, EuiLink } from '@elastic/eui';
+
+export default () => (
+  <EuiCallOut
+    title="Callout title"
+  >
+    <p>
+      Description text goes here.
+    </p>
+  </EuiCallOut>
+);
+```
+
+## Usage
+
+Most often, callouts are configured to convey semantic meaning such as important information, confirmation, warnings, errors, and highlights. In addition to color, they may contina icons, links, and buttons.
+
+### Info
 
 Use **EuiCallOut** to communicate general information to the user.
 
@@ -58,7 +73,7 @@ export default () => (
 );
 ```
 
-## Success
+### Success
 
 Use this callout to notify the user of an action that successfully completed. Use success callouts sparingly—callouts are typically used for things that are broken rather than things that succeed.
 
@@ -76,7 +91,7 @@ export default () => (
 );
 ```
 
-## Warning
+### Warning
 
 Use this callout to warn the user against decisions they might regret. You should receive a warning message when the program detects that **something is not behaving right, but it didn't cause any termination**.
 
@@ -97,7 +112,7 @@ export default () => (
 );
 ```
 
-## Danger
+### Danger
 
 Use this callout to let the user know that something went wrong. For example if you want to communicate an error. You should receive an error message when the issue is **terminal, this doesn't always mean that the operation stops completely, but the task is not complete**.
 
@@ -115,7 +130,7 @@ export default () => (
 );
 ```
 
-## Accent
+### Accent
 
 Use this callout to announce new capabilities. For example if you want to highlight a feature.
 
@@ -135,7 +150,7 @@ export default () => (
 );
 ```
 
-## Dismissible callouts
+### Dismissible callouts
 
 To render a cross icon in the top right hand corner, pass an `onDismiss` callback that handles conditionally rendering your callout.
 
@@ -226,6 +241,16 @@ export default () => {
   );
 };
 ```
+
+## Guidelines
+
+**Keep these guidelines in mind:**
+
+*   Minimize the number of callouts per page.
+*   Stack callouts in the order in which they require users' attention: error, warning, info, and then success.
+*   Offer only one action per callout and ensure it's an action users can perform quickly.
+*   If the callout has a permanent spot in the UI, but needs to be less obstructive, set the `size` property to `s` (small).
+*   Use an `iconType` if it adds context.
 
 ## Props
 
