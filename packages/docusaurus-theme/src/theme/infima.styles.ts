@@ -156,7 +156,7 @@ export const getInfimaStyles = () => css`
 
     /* Z-index. */
     --ifm-z-index-dropdown: 100;
-    --ifm-z-index-fixed: 200;
+    --ifm-z-index-fixed: 999;
     --ifm-z-index-overlay: 400;
     --ifm-container-width: 1140px;
     --ifm-container-width-xl: 1320px;
