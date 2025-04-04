@@ -22,13 +22,14 @@ Do not use an error banner for validating information the user has entered, inst
 Do not use an error banner when you're unable to show the page the user was expecting, instead use the [error page pattern](./error_pages.mdx).
 
 ## How it works
+
 Error banners must be highly visible. Use the [EuiCallout](../../components/display/callout.mdx) component, and the props:
 - `color="danger"`
 - `iconType="alert"`
 
-Use the title prop to explain the [problem](./error_writing.mdx).
+Use the title prop to explain the [problem](./error_writing.mdx#1-the-problem).
 
-Use paragraphs to explain the [cause](./error_writing.mdx) and the [recommendation](./error_writing.mdx).
+Use paragraphs to explain the [cause](./error_writing.mdx#2-the-cause) and the [recommendation](./error_writing.mdx#3-the-recommendation).
 
 Use a button if there is an obvious action the user can take, like ‘try again’.
 
