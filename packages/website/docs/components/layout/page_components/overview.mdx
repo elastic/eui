@@ -5,6 +5,13 @@ id: layout_page_components_overview
 
 # Page components
 
+```mdx-code-block
+import fakeSidebar from '!url-loader!./fake_sidebar.svg';
+import fakeParagraph from '!url-loader!./fake_paragraph.svg';
+
+import { PageComponentsPreviewWrapper } from './preview_wrapper';
+```
+
 Page layouts are modular and fit together in a precise manner, though certain parts can also be added or removed as needed. EUI provides both the **individual page components** and an [over-arching template](../../templates/page_template/overview.mdx) for easily creating some pre-defined layouts.
 
 :::note The following examples showcase the individual components only.
@@ -18,11 +25,6 @@ If you're looking for full page layout examples, we recommend using the [EuiPage
 **EuiPage** is simply a flex wrapper that will automatically `grow` to fill the height of a flex container. You can also control the flex `direction` and the maximum width using`restrictWidth` which centers the page when it reaches the provided value (or `1200px` if set to `true`).
 
 **EuiPageSidebar** doesn't contain many configurations itself, but it does dictate how the rest of the page contents should be displayed. Typically you'll want to wrap all your page contents in **EuiPageBody** and set `panelled={true}` when you have a side bar.
-
-import fakeSidebar from '!url-loader!./fake_sidebar.svg';
-import fakeParagraph from '!url-loader!./fake_paragraph.svg';
-
-import { PageComponentsPreviewWrapper } from './preview_wrapper';
 
 <Demo scope={{ fakeParagraph, fakeSidebar }} previewPadding="none" previewWrapper={PageComponentsPreviewWrapper}>
   ```tsx
@@ -61,52 +63,70 @@ import { PageComponentsPreviewWrapper } from './preview_wrapper';
 
 To create dividers between contents, use the `bottomBorder` prop. The `'extended'` version ensures the border touches the sides of the parent. It also supports `restrictWidth` and `alignment` to align with common usages.
 
-```tsx interactive
-import React, { ReactElement } from 'react';
-import { EuiPageHeader, EuiPageSection } from '@elastic/eui';
+<Demo scope={{ fakeParagraph }} previewPadding="none" previewWrapper={PageComponentsPreviewWrapper}>
+  ```tsx interactive
+  import React, { useState } from 'react';
 
-export default ({
-  content = <></>,
-  extendedBorder,
-  restrictWidth,
-  centeredContent,
-}: {
-  content: ReactElement;
-  extendedBorder?: boolean;
-  restrictWidth?: boolean;
-  centeredContent?: boolean;
-}) => {
-  const width = restrictWidth ? '75%' : false;
-  const bottomBorder = extendedBorder ? 'extended' : true;
+  import { EuiPageHeader, EuiPageSection } from '@elastic/eui';
 
-  return (
-    <>
-      <EuiPageHeader
-        paddingSize="l"
-        restrictWidth={width}
-        bottomBorder={bottomBorder}
-        pageTitle="Page title"
-        description="EuiPageHeader accepts similar border, restrict width and padding props as EuiPageSection."
-      />
-      <EuiPageSection
-        restrictWidth={width}
-        color="subdued"
-        bottomBorder={bottomBorder}
-      >
-        Secondary content
-      </EuiPageSection>
-      <EuiPageSection
-        restrictWidth={width}
-        alignment={centeredContent ? 'center' : 'top'}
-        color={extendedBorder ? 'plain' : 'transparent'}
-        grow={centeredContent ? true : false}
-      >
-        {content}
-      </EuiPageSection>
-    </>
-  );
-};
-```
+  export default () => {
+    const [extendedBorder, setExtendedBorder] = useState(true);
+    const [centeredContent, setCenteredContent] = useState(false);
+    const [restrictWidth, setRestrictWidth] = useState(false);
+
+    const width = restrictWidth ? '75%' : false;
+    const bottomBorder = extendedBorder ? 'extended' : true;
+
+    return (
+      <>
+        <EuiFlexGroup
+          css={css`
+            padding: 16px;
+          `}
+        >
+          <EuiSwitch
+            label="Extended border"
+            checked={extendedBorder}
+            onChange={(e) => setExtendedBorder(e.target.checked)}
+          />
+          <EuiSwitch
+            label="Centered content"
+            checked={centeredContent}
+            onChange={(e) => setCenteredContent(e.target.checked)}
+          />
+          <EuiSwitch
+            label="Restrict width"
+            checked={restrictWidth}
+            onChange={(e) => setRestrictWidth(e.target.checked)}
+          />
+        </EuiFlexGroup>
+        <EuiPageHeader
+          paddingSize="l"
+          restrictWidth={width}
+          bottomBorder={bottomBorder}
+          pageTitle="Page title"
+          description="EuiPageHeader accepts similar border, restrict width and padding props as EuiPageSection."
+        />
+        <EuiPageSection
+          restrictWidth={width}
+          color="subdued"
+          bottomBorder={bottomBorder}
+        >
+          Secondary content
+        </EuiPageSection>
+        <EuiPageSection
+          restrictWidth={width}
+          alignment={centeredContent ? 'center' : 'top'}
+          color={extendedBorder ? 'plain' : 'transparent'}
+          grow={centeredContent ? true : false}
+        >
+          <EuiImage alt="Fake paragraph" src={fakeParagraph} size="fullWidth" />
+        </EuiPageSection>
+      </>
+    );
+  };
+  ```
+</Demo>
 
 ## Page configurations
 
