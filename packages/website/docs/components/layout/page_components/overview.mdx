@@ -9,7 +9,7 @@ id: layout_page_components_overview
 import fakeSidebar from '!url-loader!./fake_sidebar.svg';
 import fakeParagraph from '!url-loader!./fake_paragraph.svg';
 
-import { PageComponentsPreviewWrapper } from './preview_wrapper';
+import { PageComponentsPreviewWrapper, FixedHeightPreviewWrapper } from './preview_wrapper';
 ```
 
 Page layouts are modular and fit together in a precise manner, though certain parts can also be added or removed as needed. EUI provides both the **individual page components** and an [over-arching template](../../templates/page_template/overview.mdx) for easily creating some pre-defined layouts.
@@ -26,35 +26,84 @@ If you're looking for full page layout examples, we recommend using the [EuiPage
 
 **EuiPageSidebar** doesn't contain many configurations itself, but it does dictate how the rest of the page contents should be displayed. Typically you'll want to wrap all your page contents in **EuiPageBody** and set `panelled={true}` when you have a side bar.
 
-<Demo scope={{ fakeParagraph, fakeSidebar }} previewPadding="none" previewWrapper={PageComponentsPreviewWrapper}>
+<Demo scope={{ fakeParagraph, fakeSidebar }} previewPadding="none" previewWrapper={FixedHeightPreviewWrapper}>
   ```tsx
-  import React, { ReactElement } from 'react';
+  import React, { useState } from 'react';
+  import { css } from '@emotion/react';
+
   import {
+    EuiFlexGroup,
+    EuiImage,
     EuiPage,
-    EuiPageProps,
+    EuiPageBody,
     EuiPageSection,
     EuiPageSidebar,
-    EuiPageBody,
+    EuiSwitch,
   } from '@elastic/eui';
 
-  export default ({
-    content = <EuiImage alt="Fake paragraph" src={fakeParagraph} size="fullWidth" />,
-    sidebarContent = <EuiImage alt="Fake side nav" size="original" url={fakeSidebar} />,
-    ...rest
-  }: Omit<EuiPageProps, 'content'> & {
-    content: ReactElement;
-    sidebarContent?: ReactElement;
-  }) => (
-    <EuiPage paddingSize="none" {...rest}>
-      <EuiPageSidebar paddingSize="l">
-        {sidebarContent}
-      </EuiPageSidebar>
-      <EuiPageBody paddingSize="none" panelled={!!sidebarContent}>
-        <EuiPageSection>{content}</EuiPageSection>
-      </EuiPageBody>
-    </EuiPage>
-  );
-  ```
+  export default () => {
+    const [sideBar, setSideBar] = useState(true);
+    const [grow, setGrow] = useState(true);
+    const [column, setColumn] = useState(false);
+    const [restrictWidth, setRestrictWidth] = useState(false);
+
+    const width = restrictWidth ? '75%' : false;
+
+    return (
+      <>
+        <EuiFlexGroup
+          css={css`
+            padding: 16px;
+            // "grow" prop doesn't work here
+            flex-grow: 0;
+          `}
+        >
+          <EuiSwitch
+            label="Sidebar"
+            checked={sideBar}
+            onChange={(e) => setSideBar(e.target.checked)}
+          />
+          <EuiSwitch
+            label="Grow"
+            checked={grow}
+            onChange={(e) => setGrow(e.target.checked)}
+          />
+          <EuiSwitch
+            label="Column"
+            checked={column}
+            onChange={(e) => setColumn(e.target.checked)}
+          />
+          <EuiSwitch
+            label="Restrict width"
+            checked={restrictWidth}
+            onChange={(e) => setRestrictWidth(e.target.checked)}
+          />
+        </EuiFlexGroup>
+        <EuiPage
+          direction={column ? 'column' : 'row'}
+          grow={grow}
+          paddingSize="none"
+          restrictWidth={width}
+        >
+          {sideBar && (
+            <EuiPageSidebar paddingSize="l">
+              <EuiImage alt="Fake side nav" size="original" url={fakeSidebar} />
+            </EuiPageSidebar>
+          )}
+          <EuiPageBody paddingSize="none" panelled={sideBar}>
+            <EuiPageSection>
+              <EuiImage
+                alt="Fake paragraph"
+                src={fakeParagraph}
+                size="fullWidth"
+              />
+            </EuiPageSection>
+          </EuiPageBody>
+        </EuiPage>
+      </>
+    );
+  };
+```
 </Demo>
 
 ## Page sections
