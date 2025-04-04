@@ -76,12 +76,17 @@ const getButtonVariantTokenValues = (
     'active'
   ) as keyof _EuiThemeButtonColors;
 
+  const highContrastForeground =
+    color === 'warning'
+      ? euiTheme.colors.ink
+      : color === 'disabled'
+      ? euiTheme.components.buttons[textTokenName]
+      : euiTheme.colors.textInverse;
+
   const foreground =
     variant === 'filled'
       ? highContrastMode
-        ? color === 'warning'
-          ? euiTheme.colors.ink
-          : euiTheme.colors.textInverse
+        ? highContrastForeground
         : euiTheme.components.buttons[textTokenName]
       : euiTheme.components.buttons[textTokenName];
 
