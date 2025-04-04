@@ -5,9 +5,11 @@ id: display_icons_overview
 
 import { EuiCodeBlock, EuiSpacer, EuiSplitPanel, EuiToken } from '@elastic/eui';
 
-# Icons
+# Icon
 
 **EuiIcon** is a handy component for using our custom glyphs and logos. The `type` prop accepts either an enumerated name from one of the sets below, a location to a custom SVG asset, or a React Element.
+
+## Component
 
 ```tsx interactive
 <EuiIcon type="grid" />
@@ -17,7 +19,78 @@ import { EuiCodeBlock, EuiSpacer, EuiSplitPanel, EuiToken } from '@elastic/eui';
 If possible, provide a descriptive title based on the icon use. If no title is provided, the icon is considered purely decorative, and it will default to `aria-hidden=true`.
 :::
 
-## Glyphs
+## Usage
+
+### Sizes
+
+Use the `size` prop to automatically size your icons. Medium is the default, and will output a `16x16` icon.
+
+import { iconSizes, iconSizesText } from './icon_sizes';
+
+<Demo scope={{ iconSizes, iconSizesText }}>
+  ```tsx
+  <>
+    <EuiCodeBlock language="tsx" isCopyable paddingSize="m">
+      {'<EuiIcon type="logoElasticsearch" size="xl" />'}
+    </EuiCodeBlock>
+    <EuiSpacer />
+    <EuiFlexGrid direction="row" columns={3}>
+      {iconSizes.map((size, index) => (
+        <EuiFlexItem key={size}>
+          <EuiCopy display="block" textToCopy={size} afterMessage={`${size} copied`}>
+            {(copy) => (
+              <EuiPanel hasShadow={false} hasBorder={false} onClick={copy} paddingSize="s">
+                <EuiIcon className="eui-alignMiddle" type="logoElasticsearch" size={size} /> &emsp;{' '}
+                <small>{iconSizesText[index]}</small>
+              </EuiPanel>
+            )}
+          </EuiCopy>
+        </EuiFlexItem>
+      ))}
+    </EuiFlexGrid>
+  </>
+  ```
+</Demo>
+
+### Colors
+
+The default behavior of icons is to inherit from the text color. You can use the `color` prop to assign a custom color which accepts a named color from our palette or a valid [CSS color data type](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value) which will be passed down through the inline-style `fill`  property. **We recommend relying on the EUI named color palette** unless the custom color is initiated by the user (like as a graph color).
+
+Two-tone icons, like our app style icons, will behave similarly to normal glyphs when provided a specific color by applying the color to **all** the shapes within. You can force the icon to match the parent's text color by passing `color="inherit"` to the icon.
+
+import { iconColors } from './icon_colors.ts'
+
+<Demo scope={{ iconColors }}>
+  ```tsx
+  <>
+    <EuiCodeBlock language="tsx" isCopyable paddingSize="m">
+      {'<EuiIcon type="brush" color="primary" />'}
+    </EuiCodeBlock>
+    <EuiSpacer />
+    <EuiFlexGrid direction="row" columns={3}>
+      {iconColors.map((color) => (
+        <EuiFlexItem key={color}>
+          <EuiCopy display="block" textToCopy={color} afterMessage={`${color} copied`}>
+            {(copy) => {
+              const panel = (
+                <EuiPanel hasShadow={false} hasBorder={false} onClick={copy} paddingSize="s">
+                  <EuiIcon className="eui-alignMiddle" type="brush" color={color} /> &emsp;{' '}
+                  <small>{color}</small>
+                </EuiPanel>
+              );
+              return color === 'ghost'
+                ? <EuiThemeProvider colorMode="DARK">{panel}</EuiThemeProvider>
+                : panel;
+            }}
+          </EuiCopy>
+        </EuiFlexItem>
+      ))}
+    </EuiFlexGrid>
+  </>
+  ```
+</Demo>
+
+### Glyphs
 
 Glyphs are small, monochromatic icons that typically should always use the default size of `size="m"`. They are named according to their appearance or the action they represent. For example, `star`, `play`, etc.
 
@@ -50,7 +123,7 @@ import { iconTypes } from './icon_types';
   ```
 </Demo>
 
-## Editor controls
+### Editor controls
 
 Editor icons relate to the visual styling of elements and are commonly used within **EuiButtonGroup** components.
 
@@ -77,7 +150,7 @@ import { iconTypesEditor } from './icon_types_editor';
   ```
 </Demo>
 
-## Elastic logos
+### Elastic logos
 
 These logos are restricted in use to Elastic products or when referencing Elastic products. They are multi-color with some internal paths having a class of `.euiIcon__fillNegative` to handle flipping colors for dark mode. The only other colors most of them support are ghost and text which turn them into a solid shape.
 
@@ -147,7 +220,7 @@ import { iconTypesLogos } from './icon_types_logos';
   ```
 </Demo>
 
-## Apps
+### Apps
 
 App logos are logos for Elastic Apps, and can contain multiple colors. Normally the Elastic Design team creates those icons. They are not meant to be used outside of Elastic, because they represent our apps. App logos are usually displayed at `32x32` or above and can contain multiple colors.
 
@@ -209,7 +282,7 @@ import { iconTypesML } from './icon_types_ml';
   ```
 </Demo>
 
-## Tokens
+### Tokens
 
 Tokens are most commonly used to visually signify field or code types. An **EuiToken** accepts any valid **EuiIcon** as its `iconType` property. However, icons designed specifically for use in the **EuiToken** are prefixed with "token" in their name and have pre-defined styles.
 
@@ -241,7 +314,7 @@ import { iconTypesTokens } from './icon_types_tokens';
 </Demo>
 
 
-## Custom tokens
+### Custom tokens
 
 By default, an `iconType` with the token prefix (i.e. those listed above) will have predefined styles. However, any valid `iconType` can be passed and, in either case, the `shape`, `size`, `color`, and `fill` can be customized.
 
@@ -304,76 +377,7 @@ By default, an `iconType` with the token prefix (i.e. those listed above) will h
   </EuiSplitPanel.Inner>
 </EuiSplitPanel.Outer>
 
-## Sizes
-
-Use the `size` prop to automatically size your icons. Medium is the default, and will output a `16x16` icon.
-
-import { iconSizes, iconSizesText } from './icon_sizes';
-
-<Demo scope={{ iconSizes, iconSizesText }}>
-  ```tsx
-  <>
-    <EuiCodeBlock language="tsx" isCopyable paddingSize="m">
-      {'<EuiIcon type="logoElasticsearch" size="xl" />'}
-    </EuiCodeBlock>
-    <EuiSpacer />
-    <EuiFlexGrid direction="row" columns={3}>
-      {iconSizes.map((size, index) => (
-        <EuiFlexItem key={size}>
-          <EuiCopy display="block" textToCopy={size} afterMessage={`${size} copied`}>
-            {(copy) => (
-              <EuiPanel hasShadow={false} hasBorder={false} onClick={copy} paddingSize="s">
-                <EuiIcon className="eui-alignMiddle" type="logoElasticsearch" size={size} /> &emsp;{' '}
-                <small>{iconSizesText[index]}</small>
-              </EuiPanel>
-            )}
-          </EuiCopy>
-        </EuiFlexItem>
-      ))}
-    </EuiFlexGrid>
-  </>
-  ```
-</Demo>
-
-## Colors
-
-The default behavior of icons is to inherit from the text color. You can use the `color` prop to assign a custom color which accepts a named color from our palette or a valid [CSS color data type](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value) which will be passed down through the inline-style `fill`  property. **We recommend relying on the EUI named color palette** unless the custom color is initiated by the user (like as a graph color).
-
-Two-tone icons, like our app style icons, will behave similarly to normal glyphs when provided a specific color by applying the color to **all** the shapes within. You can force the icon to match the parent's text color by passing `color="inherit"` to the icon.
-
-import { iconColors } from './icon_colors.ts'
-
-<Demo scope={{ iconColors }}>
-  ```tsx
-  <>
-    <EuiCodeBlock language="tsx" isCopyable paddingSize="m">
-      {'<EuiIcon type="brush" color="primary" />'}
-    </EuiCodeBlock>
-    <EuiSpacer />
-    <EuiFlexGrid direction="row" columns={3}>
-      {iconColors.map((color) => (
-        <EuiFlexItem key={color}>
-          <EuiCopy display="block" textToCopy={color} afterMessage={`${color} copied`}>
-            {(copy) => {
-              const panel = (
-                <EuiPanel hasShadow={false} hasBorder={false} onClick={copy} paddingSize="s">
-                  <EuiIcon className="eui-alignMiddle" type="brush" color={color} /> &emsp;{' '}
-                  <small>{color}</small>
-                </EuiPanel>
-              );
-              return color === 'ghost'
-                ? <EuiThemeProvider colorMode="DARK">{panel}</EuiThemeProvider>
-                : panel;
-            }}
-          </EuiCopy>
-        </EuiFlexItem>
-      ))}
-    </EuiFlexGrid>
-  </>
-  ```
-</Demo>
-
-## Custom SVGs
+### Custom SVGs
 
 The `type` prop can accept a valid enum, string or React SVG Element. When using a custom SVG, please make sure it sits on a square canvas and preferably utilizes one of EUI's sizes (`16x16` or `32x32`).
 
