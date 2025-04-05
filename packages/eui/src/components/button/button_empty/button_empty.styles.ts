@@ -18,11 +18,31 @@ import { euiButtonDisplayStyles } from '../button_display/_button_display.styles
 
 export const euiButtonEmptyStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
+  const isExperimental = euiTheme.flags?.buttonVariant === 'experimental';
 
   // EuiButtonEmpty uses the same size/font styling as EuiButtonDisplay,
   // but does not share enough of the same colors/props to the point
   // of using the actual component - so we'll reuse its styles instead
   const displayStyles = euiButtonDisplayStyles(euiThemeContext);
+
+  const experimentalStyles =
+    isExperimental &&
+    `
+      /* using duplicate selector to ensure specificity */
+      &&:hover,
+      &&:active {
+        background-color: transparent;
+
+        &::before {
+          display: none;
+        }
+      }
+
+      &:hover:not(:disabled),
+      &:focus {
+        text-decoration: underline;
+      }
+  `;
 
   return {
     euiButtonEmpty: css`
@@ -39,10 +59,18 @@ export const euiButtonEmptyStyles = (euiThemeContext: UseEuiTheme) => {
     // Sizes
     xs: displayStyles.xs,
     s: displayStyles.s,
-    m: displayStyles.m,
+    // uses array here to prevent adding duplicate "m" classname partial
+    m: [
+      displayStyles.m,
+      isExperimental &&
+        `
+        ${logicalCSS('padding-horizontal', euiTheme.size.m)}
+      `,
+    ],
     // Flush sides
     flush: css`
       padding-inline: 0;
+      ${experimentalStyles}
     `,
     left: css`
       ${logicalCSS('margin-right', euiTheme.size.s)}

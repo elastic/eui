@@ -21,7 +21,11 @@ exports[`EuiHeader renders children 1`] = `
 exports[`EuiHeader renders dark theme 1`] = `
 <div
   class="euiHeader emotion-euiHeader-static-dark"
-/>
+>
+  <div
+    class="emotion-euiHeaderWrapper-euiColorMode-DARK"
+  />
+</div>
 `;
 
 exports[`EuiHeader renders in fixed position 1`] = `

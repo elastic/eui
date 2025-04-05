@@ -14,13 +14,17 @@ import React, {
   useCallback,
   CSSProperties,
   ReactElement,
+  useContext,
 } from 'react';
 import classNames from 'classnames';
 
 import {
+  EuiNestedThemeContext,
+  EuiThemeProvider,
   useCombinedRefs,
   useCurrentEuiBreakpoint,
   useEuiMemoizedStyles,
+  useEuiTheme,
 } from '../../../services';
 import { EuiBreakpointSize } from '../../../services/breakpoint';
 import { ENTER } from '../../../services/keys';
@@ -69,6 +73,15 @@ export type EuiSelectableTemplateSitewideProps = Partial<
    * If `undefined`, the `popoverButton` will always show (if provided)
    */
   popoverButtonBreakpoints?: EuiBreakpointSize[];
+
+  /**
+   * `default` follows the context `colorMode` and applies it to both search and listbox
+   * `reverse` applies the inverse `colorMode` to search and the default `colorMode` to the listbox
+   */
+  theme?: {
+    search: 'default' | 'inverse' | 'automatic';
+    popover: 'default' | 'inverse' | 'automatic';
+  };
 };
 
 export const EuiSelectableTemplateSitewide: FunctionComponent<
@@ -85,8 +98,16 @@ export const EuiSelectableTemplateSitewide: FunctionComponent<
   isLoading,
   popoverButton,
   popoverButtonBreakpoints,
+  theme = { search: 'automatic', popover: 'automatic' },
   ...rest
 }) => {
+  const { euiTheme, colorMode } = useEuiTheme();
+  const isExperimental = euiTheme.flags?.formVariant === 'experimental';
+
+  const { hasDifferentColorFromGlobalTheme } = useContext(
+    EuiNestedThemeContext
+  );
+
   /**
    * i18n text
    */
@@ -259,34 +280,80 @@ export const EuiSelectableTemplateSitewide: FunctionComponent<
       {...rest}
       searchable
     >
-      {(list, search) => (
-        <EuiPopover
-          panelPaddingSize="none"
-          isOpen={popoverIsOpen}
-          ownFocus={!!popoverTrigger}
-          display={popoverTrigger ? 'inline-block' : 'block'}
-          {...popoverRest}
-          panelRef={setPanelRef}
-          button={popoverTrigger ? popoverTrigger : search!}
-          closePopover={closePopover}
-        >
-          <div style={{ width: popoverWidth, maxWidth: '100%' }}>
-            {popoverTitle || popoverTrigger ? (
-              <EuiPopoverTitle paddingSize="s">
-                {popoverTitle}
-                {popoverTitle && search && <EuiSpacer />}
-                {search}
-              </EuiPopoverTitle>
-            ) : undefined}
-            {list}
-            {popoverFooter && (
-              <EuiPopoverFooter paddingSize="s">
-                {popoverFooter}
-              </EuiPopoverFooter>
-            )}
-          </div>
-        </EuiPopover>
-      )}
+      {(list, search) => {
+        const searchColorMode =
+          theme?.search === 'automatic'
+            ? colorMode === 'LIGHT'
+              ? 'DARK'
+              : colorMode
+            : theme?.search === 'inverse'
+            ? colorMode === 'DARK'
+              ? 'LIGHT'
+              : 'DARK'
+            : colorMode;
+
+        const _search = isExperimental ? (
+          <EuiThemeProvider
+            wrapperProps={{ cloneElement: true }}
+            colorMode={searchColorMode}
+          >
+            {search}
+          </EuiThemeProvider>
+        ) : (
+          search
+        );
+
+        const popover = (
+          <EuiPopover
+            panelPaddingSize="none"
+            isOpen={popoverIsOpen}
+            ownFocus={!!popoverTrigger}
+            display={popoverTrigger ? 'inline-block' : 'block'}
+            {...popoverRest}
+            panelRef={setPanelRef}
+            button={popoverTrigger ? popoverTrigger : _search!}
+            closePopover={closePopover}
+          >
+            <div style={{ width: popoverWidth, maxWidth: '100%' }}>
+              {popoverTitle || popoverTrigger ? (
+                <EuiPopoverTitle paddingSize="s">
+                  {popoverTitle}
+                  {popoverTitle && search && <EuiSpacer />}
+                  {search}
+                </EuiPopoverTitle>
+              ) : undefined}
+              {list}
+              {popoverFooter && (
+                <EuiPopoverFooter paddingSize="s">
+                  {popoverFooter}
+                </EuiPopoverFooter>
+              )}
+            </div>
+          </EuiPopover>
+        );
+
+        const popoverColorMode =
+          theme?.popover === 'automatic'
+            ? hasDifferentColorFromGlobalTheme && colorMode === 'DARK'
+              ? 'LIGHT'
+              : colorMode
+            : theme?.popover === 'inverse'
+            ? colorMode === 'DARK'
+              ? 'LIGHT'
+              : 'DARK'
+            : colorMode;
+
+        return isExperimental ? (
+          <EuiThemeProvider
+            wrapperProps={{ cloneElement: true }}
+            colorMode={popoverColorMode}
+          >
+            {popover}
+          </EuiThemeProvider>
+        ) : (
+          popover
+        );
+      }}
     </EuiSelectable>
   );
 };

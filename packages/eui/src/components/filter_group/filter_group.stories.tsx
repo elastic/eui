@@ -29,8 +29,14 @@ type Story = StoryObj<EuiFilterGroupProps>;
 export const Playground: Story = {
   render: ({ ...args }) => (
     <EuiFilterGroup {...args}>
-      <EuiFilterButton numFilters={5} hasActiveFilters iconType="arrowDown">
-        Filter
+      <EuiFilterButton>Toggle Filter</EuiFilterButton>
+      <EuiFilterButton
+        numFilters={5}
+        hasActiveFilters
+        iconType="arrowDown"
+        isToggle={false}
+      >
+        Selection Filter
       </EuiFilterButton>
     </EuiFilterGroup>
   ),
@@ -46,6 +52,7 @@ const FilterButtonPopover = () => {
       button={
         <EuiFilterButton
           iconType="arrowDown"
+          isToggle={false}
           onClick={() => setIsPopoverOpen(!isPopoverOpen)}
           isSelected={isPopoverOpen}
           numFilters={12}

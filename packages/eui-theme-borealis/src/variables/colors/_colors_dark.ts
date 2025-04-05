@@ -104,7 +104,7 @@ export const dark_background_colors: _EuiThemeBackgroundColors = {
   backgroundLightSuccess: SEMANTIC_COLORS.success130,
   backgroundLightWarning: SEMANTIC_COLORS.warning130,
   backgroundLightDanger: SEMANTIC_COLORS.danger130,
-  backgroundLightText: SEMANTIC_COLORS.shade130,
+  backgroundLightText: SEMANTIC_COLORS.shade120,
 
   backgroundFilledPrimary: SEMANTIC_COLORS.primary60,
   backgroundFilledAccent: SEMANTIC_COLORS.accent60,
@@ -151,6 +151,9 @@ export const dark_border_colors: _EuiThemeBorderColors = {
 
   borderBaseFormsColorSwatch: SEMANTIC_COLORS.plainLightAlpha32,
   borderBaseFormsControl: SEMANTIC_COLORS.shade80,
+
+  borderInteractiveFormsHoverPlain: SEMANTIC_COLORS.shade90,
+  borderInteractiveFormsHoverDanger: SEMANTIC_COLORS.danger70,
 
   borderStrongPrimary: SEMANTIC_COLORS.primary60,
   borderStrongAccent: SEMANTIC_COLORS.accent60,

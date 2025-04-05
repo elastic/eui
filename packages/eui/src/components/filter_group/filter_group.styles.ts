@@ -18,29 +18,58 @@ import { euiFilterButtonDisplay } from './filter_button.styles';
 
 export const euiFilterGroupStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
+  const isExperimental = euiTheme.flags?.buttonVariant === 'experimental';
 
   const {
     backgroundColor,
     borderColor,
     controlBorderRadius,
+    controlHeight,
     controlCompressedBorderRadius,
     controlCompressedHeight,
   } = euiFormVariables(euiThemeContext);
 
+  const borderRadius = isExperimental
+    ? euiTheme.border.radius.small
+    : controlBorderRadius;
+
+  const borderRadiusCompressed = isExperimental
+    ? euiTheme.border.radius.small
+    : controlCompressedBorderRadius;
+
+  const borderStyle = isExperimental
+    ? `
+      /* Adds the border on a pseudo element to prevent height differences between wrapper and buttons.
+      Uses ::after to ensure overlap and prevents blocking by setting pointer-events: none */
+      &::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        border: ${euiTheme.border.width.thin} solid ${euiTheme.colors.borderBasePlain};
+        border-radius: inherit;
+        pointer-events: none;
+      }
+    `
+    : `
+      ${highContrastModeStyles(euiThemeContext, {
+        none: `box-shadow: inset 0 0 0 ${euiTheme.border.width.thin} ${borderColor};`,
+        forced: `border: ${euiTheme.border.thin};`,
+      })}
+    `;
+
   return {
     euiFilterGroup: css`
+      position: relative;
       display: inline-flex;
       ${logicalCSS('max-width', '100%')}
       overflow: hidden;
 
       background-color: ${backgroundColor};
-      ${highContrastModeStyles(euiThemeContext, {
-        none: `box-shadow: inset 0 0 0 ${euiTheme.border.width.thin} ${borderColor};`,
-        forced: `border: ${euiTheme.border.thin};`,
-      })}
+
+      ${borderStyle}
 
       /* Account for popover or tooltip wrappers around EuiFilterButtons */
-      > *:not(.euiFilterButton) {
+      > *:not(.euiFilterButton__wrapper, .euiFilterButton) {
         ${euiFilterButtonDisplay(euiThemeContext)}
       }
       /* Force popover anchors to expand */
@@ -55,25 +84,79 @@ export const euiFilterGroupStyles = (euiThemeContext: UseEuiTheme) => {
         /* Force all tiny screens to take up the entire width */
         display: flex;
 
-        .euiFilterButton {
-          flex-grow: 1;
-        }
+        ${isExperimental
+          ? `
+            .euiPopover:focus-within {
+              z-index: 1;
+            }
+              
+            .euiFilterButton__wrapper {
+              flex-grow: 1;
+            }
+          `
+          : `
+          .euiFilterButton {
+            flex-grow: 1;
+          }
+        `}
       }
     `,
     fullWidth: css`
       display: flex;
     `,
     uncompressed: css`
-      border-radius: ${controlBorderRadius};
-      ${buttonChildrenBorderRadii(controlBorderRadius)}
+      border-radius: ${borderRadius};
+      ${!isExperimental && buttonChildrenBorderRadii(borderRadius)}
+      ${isExperimental &&
+      `
+        .euiFilterButton {
+          ${logicalCSS(
+            'height',
+            mathWithUnits(
+              [controlHeight, euiTheme.border.width.thin],
+              (x, y) => x - 2 * y
+            )
+          )}
+        }
+        .euiFilterButton-isToggle {
+          ${logicalCSS(
+            'height',
+            mathWithUnits(
+              [controlHeight, euiTheme.size.xxs],
+              (x, y) => x - 3 * y
+            )
+          )}
+        }
+      `}
     `,
     compressed: css`
-      border-radius: ${controlCompressedBorderRadius};
-      ${buttonChildrenBorderRadii(controlCompressedBorderRadius)}
+      border-radius: ${borderRadiusCompressed};
+      ${!isExperimental && buttonChildrenBorderRadii(borderRadiusCompressed)}
 
       .euiFilterButton {
-        ${logicalCSS('height', controlCompressedHeight)}
+        ${logicalCSS(
+          'height',
+          isExperimental
+            ? mathWithUnits(
+                [controlCompressedHeight, euiTheme.border.width.thin],
+                (x, y) => x - 2 * y
+              )
+            : controlCompressedHeight
+        )}
       }
+
+      ${isExperimental &&
+      `
+        .euiFilterButton-isToggle {
+          ${logicalCSS(
+            'height',
+            mathWithUnits(
+              [controlCompressedHeight, euiTheme.size.xxs],
+              (x, y) => x - 3 * y
+            )
+          )}
+        }
+      `}
     `,
     /**
      * Not used in EuiFilterGroup directly, but used by EuiSearchBar and consumers

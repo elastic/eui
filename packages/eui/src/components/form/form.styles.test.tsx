@@ -30,9 +30,13 @@ describe('euiFormVariables', () => {
         "appendPrependBackground": "#ECF1F9",
         "backgroundColor": "#FFFFFF",
         "backgroundDisabledColor": "#ECF1F9",
-        "backgroundReadOnlyColor": "#FFFFFF",
+        "backgroundReadOnlyColor": "#ECF1F9",
         "borderColor": "#CAD3E2",
-        "controlBorderRadius": "6px",
+        "borderFocused": "#0B64DD",
+        "borderHovered": "#B4C1D5",
+        "borderInvalid": "#C61E25",
+        "borderInvalidHovered": "#DA3737",
+        "controlBorderRadius": "4px",
         "controlBoxShadow": "0 0 transparent",
         "controlCompressedBorderRadius": "4px",
         "controlCompressedHeight": "32px",
@@ -50,9 +54,9 @@ describe('euiFormVariables', () => {
         "controlLayoutGroupInputCompressedHeight": "30px",
         "controlLayoutGroupInputHeight": "38px",
         "controlPadding": "12px",
-        "controlPlaceholderText": "#516381",
+        "controlPlaceholderText": "#798EAF",
         "iconAffordance": "24px",
-        "iconCompressedAffordance": "18px",
+        "iconCompressedAffordance": "24px",
         "maxWidth": "400px",
         "stateUnderlineHeight": "2px",
         "textColor": "#1D2A3E",
@@ -67,7 +71,7 @@ describe('euiFormVariables', () => {
     });
     // Check custom dark-mode logic
     expect(result.current.backgroundColor).toEqual('#0B1628');
-    expect(result.current.controlPlaceholderText).toEqual('#8e9fbc');
+    expect(result.current.controlPlaceholderText).toEqual('#6A7FA0');
   });
 });
 
@@ -81,16 +85,25 @@ describe('euiFormControlStyles', () => {
             -webkit-text-fill-color: #2B394F;
             -webkit-box-shadow: inset 0 0 0 1px #BFDBFF, inset 0 0 0 100vw #E8F1FF;
 
+            &:hover,
+            &:focus {
+              -webkit-box-shadow: inset 0 0 0 1px #0B64DD, inset 0 0 0 100vw #E8F1FF;
+            }
+
             &:invalid {
               -webkit-box-shadow: inset 0 0 0 1px #C61E25, inset 0 0 0 100vw #E8F1FF;
+
+              &:hover {
+                -webkit-box-shadow: inset 0 0 0 1px #DA3737, inset 0 0 0 100vw #E8F1FF;
+              }
             }
           }
         ",
         "compressed": "
             block-size: 32px;
             padding-block: 8px;
-            padding-inline-start: calc(8px + (18px * var(--euiFormControlLeftIconsCount, 0)));
-            padding-inline-end: calc(8px + (18px * var(--euiFormControlRightIconsCount, 0)));
+            padding-inline-start: calc(8px + (24px * var(--euiFormControlLeftIconsCount, 0)));
+            padding-inline-end: calc(8px + (24px * var(--euiFormControlRightIconsCount, 0)));
             border-radius: 4px;
           ",
         "disabled": "
@@ -100,6 +113,9 @@ describe('euiFormControlStyles', () => {
           background-color: #ECF1F9;
           cursor: not-allowed;
           --euiFormControlStateColor: transparent;
+
+          --euiFormControlStateHoverColor: transparent;
+            --euiFormControlStateColor: #CAD3E2;
 
           
         &::-webkit-input-placeholder { 
@@ -124,12 +140,15 @@ describe('euiFormControlStyles', () => {
            }
 
         ",
-        "focus": "
-          --euiFormControlStateColor: #0B64DD;
-          background-color: #FFFFFF;
-          background-size: 100% 100%;
-          outline: none; /* Remove all outlines and rely on our own bottom border gradient */
-        ",
+        "focus": "--euiFormControlStateColor: #0B64DD;
+            --euiFormControlStateHoverColor: #0B64DD;
+            --euiFormControlStateWidth: 2px;
+
+            position: relative;
+        z-index: 1;
+        outline: var(--euiFormControlStateWidth) solid var(--euiFormControlStateColor);
+        outline-offset: calc(-1 * var(--euiFormControlStateWidth));
+        box-shadow: none;",
         "formWidth": "
             max-inline-size: 400px;
             inline-size: 100%;
@@ -141,20 +160,40 @@ describe('euiFormControlStyles', () => {
         "inGroup": "
             block-size: 100%;
             box-shadow: none;
-            border-radius: 0;
+            border-radius: inherit;
           ",
-        "invalid": "
-          --euiFormControlStateColor: #C61E25;
-          background-size: 100% 100%;
-        ",
+        "invalid": "--euiFormControlStateColor: #C61E25;
+            --euiFormControlStateHoverColor: #DA3737;
+            --euiFormControlStateWidth: 1px;
+            
+            position: relative;
+        z-index: 1;
+        outline: var(--euiFormControlStateWidth) solid var(--euiFormControlStateColor);
+        outline-offset: calc(-1 * var(--euiFormControlStateWidth));
+        box-shadow: none;
+
+            &:focus-within {
+              --euiFormControlStateColor: #CAD3E2;
+              --euiFormControlStateHoverColor: #B4C1D5;
+            }",
         "readOnly": "
+          background-color: #ECF1F9;
           cursor: default;
           color: #1D2A3E;
           -webkit-text-fill-color: #1D2A3E; /* Required for Safari */
 
-          background-color: #FFFFFF;
-          --euiFormControlStateColor: transparent;
-          
+          --euiFormControlStateColor: #CAD3E2;
+            --euiFormControlStateHoverColor: #CAD3E2;
+            --euiFormControlStateWidth: 1px;
+            /* keep the input below wrapper borders */
+            position: relative;
+            z-index: 0;
+            outline: none;
+            box-shadow: inset 0 0 0 var(--euiFormControlStateWidth) var(--euiFormControlStateColor);
+
+            .euiFormControlLayout__childrenWrapper[class*=inGroup] & {
+              box-shadow: none;
+            }
         ",
         "shared": "
             
@@ -164,45 +203,44 @@ describe('euiFormControlStyles', () => {
 
           
         &::-webkit-input-placeholder { 
-            color: #516381;
+            color: #798EAF;
             opacity: 1;
            }
         &::-moz-placeholder { 
-            color: #516381;
+            color: #798EAF;
             opacity: 1;
            }
         &:-ms-input-placeholder { 
-            color: #516381;
+            color: #798EAF;
             opacity: 1;
            }
         &:-moz-placeholder { 
-            color: #516381;
+            color: #798EAF;
             opacity: 1;
            }
         &::placeholder { 
-            color: #516381;
+            color: #798EAF;
             opacity: 1;
            }
 
         
             
-          border: none;
-            box-shadow: inset 0 0 0 1px #CAD3E2;
-          background-color: #FFFFFF;
-          background-repeat: no-repeat;
-            background-size: 0% 100%;
-            background-image: linear-gradient(to top,
-              var(--euiFormControlStateColor),
-              var(--euiFormControlStateColor) 2px,
-              transparent 2px,
-              transparent 100%
-            );
-          @media screen and (prefers-reduced-motion: no-preference) {
-            transition:
-              background-image 150ms ease-in,
-              background-size 150ms ease-in,
-              background-color 150ms ease-in;
+          --euiFormControlStateColor: #CAD3E2;
+            border: none;
+            box-shadow: inset 0 0 0 1px var(--euiFormControlStateColor);
+
+            
+          &:hover:not(:disabled, :focus, input[readonly], [class*="readOnly"]) {
+            --borderWidth: var(--euiFormControlStateWidth, 1px);
+            --borderColor: var(--euiFormControlStateHoverColor, #B4C1D5);
+            position: relative;
+            z-index: 1;
+            outline: var(--borderWidth) solid var(--borderColor);
+            outline-offset: calc(-1 * var(--borderWidth));
           }
+          background-color: #FFFFFF;
+          
+          
         
           ",
         "uncompressed": "
@@ -210,7 +248,7 @@ describe('euiFormControlStyles', () => {
             padding-block: 12px;
             padding-inline-start: calc(12px + (24px * var(--euiFormControlLeftIconsCount, 0)));
             padding-inline-end: calc(12px + (24px * var(--euiFormControlRightIconsCount, 0)));
-            border-radius: 6px;
+            border-radius: 4px;
           ",
       }
     `);

@@ -16,11 +16,13 @@ export const EuiFormControlLayoutClearButtonStyles = ({
   colorMode,
   highContrastMode,
 }: UseEuiTheme) => {
-  const backgroundColor =
-    colorMode === 'DARK' || highContrastMode // mediumShade is not sufficient WCAG contrast
-      ? euiTheme.colors.darkShade
-      : euiTheme.colors.mediumShade;
+  const isExperimental = euiTheme.flags?.formVariant === 'experimental';
 
+  const backgroundColor = isExperimental
+    ? euiTheme.colors.borderInteractiveFormsHoverPlain
+    : colorMode === 'DARK' || highContrastMode
+    ? euiTheme.colors.darkShade
+    : euiTheme.colors.mediumShade;
   return {
     euiFormControlLayoutClearButton: css`
       pointer-events: all;

@@ -32,6 +32,7 @@ export const euiButtonBaseCSS = () => {
 
 export const euiButtonDisplayStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
+  const isExperimental = euiTheme.flags?.buttonVariant === 'experimental';
   const sizes = euiButtonSizeMap(euiThemeContext);
 
   const _buttonSize = (sizeKey: EuiButtonDisplaySizes) => {
@@ -40,9 +41,20 @@ export const euiButtonDisplayStyles = (euiThemeContext: UseEuiTheme) => {
       ${logicalCSS('height', size.height)}
       line-height: ${size.height}; /* Prevents descenders from getting cut off */
       ${euiFontSize(euiThemeContext, size.fontScale)}
-      border-radius: ${size.radius};
+      border-radius: ${isExperimental
+        ? euiTheme.border.radius.small
+        : size.radius};
     `;
   };
+
+  const defaultStyles =
+    !isExperimental &&
+    `
+      &:hover:not(:disabled),
+      &:focus {
+        text-decoration: underline;
+      }
+  `;
 
   return {
     // Base
@@ -50,11 +62,7 @@ export const euiButtonDisplayStyles = (euiThemeContext: UseEuiTheme) => {
       ${euiButtonBaseCSS()}
       font-weight: ${euiTheme.font.weight.medium};
       ${logicalShorthandCSS('padding', `0 ${euiTheme.size.m}`)}
-
-      &:hover:not(:disabled),
-      &:focus {
-        text-decoration: underline;
-      }
+      ${defaultStyles}
     `,
     // States
     isDisabled: css`
@@ -64,9 +72,18 @@ export const euiButtonDisplayStyles = (euiThemeContext: UseEuiTheme) => {
       display: block;
       ${logicalCSS('width', '100%')}
     `,
-    defaultMinWidth: css`
-      ${logicalCSS('min-width', `${euiTheme.base * 7}px`)}
-    `,
+    defaultMinWidth: {
+      defaultMinWidth: css``,
+      xs: css`
+        ${logicalCSS('min-width', `${sizes.xs.minWidth}px`)}
+      `,
+      s: css`
+        ${logicalCSS('min-width', `${sizes.s.minWidth}px`)}
+      `,
+      m: css`
+        ${logicalCSS('min-width', `${sizes.m.minWidth}px`)}
+      `,
+    },
     // Sizes
     xs: css(_buttonSize('xs')),
     s: css(_buttonSize('s')),

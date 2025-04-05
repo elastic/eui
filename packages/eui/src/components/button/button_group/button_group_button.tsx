@@ -14,11 +14,14 @@ import React, {
 } from 'react';
 import { CSSInterpolation } from '@emotion/css';
 
-import { useEuiMemoizedStyles } from '../../../services';
+import { useEuiMemoizedStyles, useEuiTheme } from '../../../services';
 import { useEuiButtonColorCSS } from '../../../global_styling/mixins/_button';
 import { useInnerText } from '../../inner_text';
 
-import { EuiButtonDisplay } from '../button_display/_button_display';
+import {
+  EuiButtonDisplay,
+  EuiButtonDisplayCommonProps,
+} from '../button_display/_button_display';
 import { EuiButtonGroupOptionProps, EuiButtonGroupProps } from './button_group';
 import {
   euiButtonGroupButtonStyles,
@@ -47,6 +50,7 @@ type Props = EuiButtonGroupOptionProps & {
    * Inherit from EuiButtonGroup
    */
   onClick: MouseEventHandler<HTMLButtonElement>;
+  contentProps?: EuiButtonDisplayCommonProps['contentProps'];
 };
 
 export const EuiButtonGroupButton: FunctionComponent<Props> = ({
@@ -61,11 +65,20 @@ export const EuiButtonGroupButton: FunctionComponent<Props> = ({
   color: _color = 'primary',
   toolTipContent,
   toolTipProps,
+  contentProps,
   ...rest
 }) => {
+  const { euiTheme } = useEuiTheme();
+  const isExperimental = euiTheme.flags?.buttonVariant === 'experimental';
+
   const isCompressed = size === 'compressed';
   const color = isDisabled ? 'disabled' : _color;
-  const display = isSelected ? 'fill' : isCompressed ? 'empty' : 'base';
+  const hasBorder = isExperimental && color !== 'text' && !isCompressed;
+  const display = isSelected
+    ? 'fill'
+    : isCompressed || hasBorder
+    ? 'empty'
+    : 'base';
   const hasToolTip = !!toolTipContent;
 
   const styles = useEuiMemoizedStyles(euiButtonGroupButtonStyles);
@@ -80,6 +93,7 @@ export const EuiButtonGroupButton: FunctionComponent<Props> = ({
     isCompressed ? styles.compressed : styles.uncompressed.uncompressed,
     isDisabled && isSelected ? styles.disabledAndSelected : buttonColorStyles,
     !isDisabled && isCompressed && focusColorStyles[color],
+    hasBorder && styles.hasBorder,
   ];
   const tooltipWrapperStyles = [
     styles.tooltipWrapper,
@@ -123,7 +137,10 @@ export const EuiButtonGroupButton: FunctionComponent<Props> = ({
         className={buttonClasses}
         isDisabled={isDisabled}
         size={size === 'compressed' ? 's' : size}
-        contentProps={{ css: contentStyles }}
+        contentProps={{
+          ...contentProps,
+          css: [contentStyles, contentProps?.css],
+        }}
         textProps={{
           css: textStyles,
           ref: buttonTextRef,
