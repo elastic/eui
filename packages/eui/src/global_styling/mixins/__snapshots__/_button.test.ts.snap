@@ -4,240 +4,240 @@ exports[`useEuiButtonColorCSS base 1`] = `
 {
   "accent": {
     "map": undefined,
-    "name": "1da70t-displaysColorsMap-display-color",
+    "name": "1l789up-displaysColorsMap-display-color",
     "next": undefined,
     "styles": "color:#a11262;background-color:#FDDDE9; 
-            
-        position: relative;
-        overflow: hidden;
-
-        &:hover:not(:disabled) {
-          &::before {
-            inline-size: 100%;
-            block-size: 100%;
-
-            content: '';
-            position: absolute;
-            /* :before should stay under the content */
-            z-index: 0;
-            inset: 0;
-            background-color: rgba(229,74,145, 0.12);
-            pointer-events: none;
+                
+      position: relative;
+          overflow: hidden;
+  
+          &:hover:not(:disabled) {
+            &::before {
+              inline-size: 100%;
+              block-size: 100%;
+  
+              content: '';
+              position: absolute;
+              /* :before should stay under the content */
+              z-index: 0;
+              inset: 0;
+              background-color: rgba(229,74,145, 0.12);
+              pointer-events: none;
+            }
           }
-        }
-
-        &:active:not(:disabled) {
-          &::before {
-            inline-size: 100%;
-            block-size: 100%;
-
-            content: '';
-            position: absolute;
-            inset: 0;
-            background-color: rgba(229,74,145, 0.16);
+  
+          &:active:not(:disabled) {
+            &::before {
+              inline-size: 100%;
+              block-size: 100%;
+  
+              content: '';
+              position: absolute;
+              inset: 0;
+              background-color: rgba(229,74,145, 0.16);
+            }
           }
-        }
-      
+    
             false
           ;;label:base-accent;",
     "toString": [Function],
   },
   "danger": {
     "map": undefined,
-    "name": "1bcre27-displaysColorsMap-display-color",
+    "name": "60dwvy-displaysColorsMap-display-color",
     "next": undefined,
     "styles": "color:#a71627;background-color:#FDDDD8; 
-            
-        position: relative;
-        overflow: hidden;
-
-        &:hover:not(:disabled) {
-          &::before {
-            inline-size: 100%;
-            block-size: 100%;
-
-            content: '';
-            position: absolute;
-            /* :before should stay under the content */
-            z-index: 0;
-            inset: 0;
-            background-color: rgba(238,76,72, 0.12);
-            pointer-events: none;
+                
+      position: relative;
+          overflow: hidden;
+  
+          &:hover:not(:disabled) {
+            &::before {
+              inline-size: 100%;
+              block-size: 100%;
+  
+              content: '';
+              position: absolute;
+              /* :before should stay under the content */
+              z-index: 0;
+              inset: 0;
+              background-color: rgba(238,76,72, 0.12);
+              pointer-events: none;
+            }
           }
-        }
-
-        &:active:not(:disabled) {
-          &::before {
-            inline-size: 100%;
-            block-size: 100%;
-
-            content: '';
-            position: absolute;
-            inset: 0;
-            background-color: rgba(238,76,72, 0.16);
+  
+          &:active:not(:disabled) {
+            &::before {
+              inline-size: 100%;
+              block-size: 100%;
+  
+              content: '';
+              position: absolute;
+              inset: 0;
+              background-color: rgba(238,76,72, 0.16);
+            }
           }
-        }
-      
+    
             false
           ;;label:base-danger;",
     "toString": [Function],
   },
   "disabled": {
     "map": undefined,
-    "name": "1nxhdbt-displaysColorsMap-display-color",
+    "name": "1o27jdf-displaysColorsMap-display-color",
     "next": undefined,
     "styles": "color:#798EAF;background-color:#FFFFFF; 
-            
-        position: relative;
-        overflow: hidden;
-
-        &:hover:not(:disabled) {
-          &::before {
-            inline-size: 100%;
-            block-size: 100%;
-
-            content: '';
-            position: absolute;
-            /* :before should stay under the content */
-            z-index: 0;
-            inset: 0;
-            background-color: undefined;
-            pointer-events: none;
+                
+      position: relative;
+          overflow: hidden;
+  
+          &:hover:not(:disabled) {
+            &::before {
+              inline-size: 100%;
+              block-size: 100%;
+  
+              content: '';
+              position: absolute;
+              /* :before should stay under the content */
+              z-index: 0;
+              inset: 0;
+              background-color: undefined;
+              pointer-events: none;
+            }
           }
-        }
-
-        &:active:not(:disabled) {
-          &::before {
-            inline-size: 100%;
-            block-size: 100%;
-
-            content: '';
-            position: absolute;
-            inset: 0;
-            background-color: undefined;
+  
+          &:active:not(:disabled) {
+            &::before {
+              inline-size: 100%;
+              block-size: 100%;
+  
+              content: '';
+              position: absolute;
+              inset: 0;
+              background-color: undefined;
+            }
           }
-        }
-      
+    
             false
           ;;label:base-disabled;",
     "toString": [Function],
   },
   "primary": {
     "map": undefined,
-    "name": "8rmga9-displaysColorsMap-display-color",
+    "name": "cobgsa-displaysColorsMap-display-color",
     "next": undefined,
     "styles": "color:#1750ba;background-color:#D9E8FF; 
-            
-        position: relative;
-        overflow: hidden;
-
-        &:hover:not(:disabled) {
-          &::before {
-            inline-size: 100%;
-            block-size: 100%;
-
-            content: '';
-            position: absolute;
-            /* :before should stay under the content */
-            z-index: 0;
-            inset: 0;
-            background-color: rgba(55,136,255, 0.12);
-            pointer-events: none;
+                
+      position: relative;
+          overflow: hidden;
+  
+          &:hover:not(:disabled) {
+            &::before {
+              inline-size: 100%;
+              block-size: 100%;
+  
+              content: '';
+              position: absolute;
+              /* :before should stay under the content */
+              z-index: 0;
+              inset: 0;
+              background-color: rgba(55,136,255, 0.12);
+              pointer-events: none;
+            }
           }
-        }
-
-        &:active:not(:disabled) {
-          &::before {
-            inline-size: 100%;
-            block-size: 100%;
-
-            content: '';
-            position: absolute;
-            inset: 0;
-            background-color: rgba(55,136,255, 0.16);
+  
+          &:active:not(:disabled) {
+            &::before {
+              inline-size: 100%;
+              block-size: 100%;
+  
+              content: '';
+              position: absolute;
+              inset: 0;
+              background-color: rgba(55,136,255, 0.16);
+            }
           }
-        }
-      
+    
             false
           ;;label:base-primary;",
     "toString": [Function],
   },
   "success": {
     "map": undefined,
-    "name": "nw93ue-displaysColorsMap-display-color",
+    "name": "nb9a2v-displaysColorsMap-display-color",
     "next": undefined,
     "styles": "color:#09724d;background-color:#C9F3E3; 
-            
-        position: relative;
-        overflow: hidden;
-
-        &:hover:not(:disabled) {
-          &::before {
-            inline-size: 100%;
-            block-size: 100%;
-
-            content: '';
-            position: absolute;
-            /* :before should stay under the content */
-            z-index: 0;
-            inset: 0;
-            background-color: rgba(4,174,126, 0.12);
-            pointer-events: none;
+                
+      position: relative;
+          overflow: hidden;
+  
+          &:hover:not(:disabled) {
+            &::before {
+              inline-size: 100%;
+              block-size: 100%;
+  
+              content: '';
+              position: absolute;
+              /* :before should stay under the content */
+              z-index: 0;
+              inset: 0;
+              background-color: rgba(4,174,126, 0.12);
+              pointer-events: none;
+            }
           }
-        }
-
-        &:active:not(:disabled) {
-          &::before {
-            inline-size: 100%;
-            block-size: 100%;
-
-            content: '';
-            position: absolute;
-            inset: 0;
-            background-color: rgba(4,174,126, 0.16);
+  
+          &:active:not(:disabled) {
+            &::before {
+              inline-size: 100%;
+              block-size: 100%;
+  
+              content: '';
+              position: absolute;
+              inset: 0;
+              background-color: rgba(4,174,126, 0.16);
+            }
           }
-        }
-      
+    
             false
           ;;label:base-success;",
     "toString": [Function],
   },
   "text": {
     "map": undefined,
-    "name": "1j3mevv-displaysColorsMap-display-color",
+    "name": "1vijgzd-displaysColorsMap-display-color",
     "next": undefined,
     "styles": "color:#1d2a3e;background-color:#FFFFFF; 
-            
-        position: relative;
-        overflow: hidden;
-
-        &:hover:not(:disabled) {
-          &::before {
-            inline-size: 100%;
-            block-size: 100%;
-
-            content: '';
-            position: absolute;
-            /* :before should stay under the content */
-            z-index: 0;
-            inset: 0;
-            background-color: rgba(23,80,186, 0.08);
-            pointer-events: none;
+                
+      position: relative;
+          overflow: hidden;
+  
+          &:hover:not(:disabled) {
+            &::before {
+              inline-size: 100%;
+              block-size: 100%;
+  
+              content: '';
+              position: absolute;
+              /* :before should stay under the content */
+              z-index: 0;
+              inset: 0;
+              background-color: rgba(23,80,186, 0.08);
+              pointer-events: none;
+            }
           }
-        }
-
-        &:active:not(:disabled) {
-          &::before {
-            inline-size: 100%;
-            block-size: 100%;
-
-            content: '';
-            position: absolute;
-            inset: 0;
-            background-color: rgba(23,80,186, 0.12);
+  
+          &:active:not(:disabled) {
+            &::before {
+              inline-size: 100%;
+              block-size: 100%;
+  
+              content: '';
+              position: absolute;
+              inset: 0;
+              background-color: rgba(23,80,186, 0.12);
+            }
           }
-        }
-      
+    
             
               border: 1px solid #CAD3E2;
             
@@ -246,40 +246,40 @@ exports[`useEuiButtonColorCSS base 1`] = `
   },
   "warning": {
     "map": undefined,
-    "name": "r0waib-displaysColorsMap-display-color",
+    "name": "1dj04n5-displaysColorsMap-display-color",
     "next": undefined,
     "styles": "color:#825803;background-color:#FDE9B5; 
-            
-        position: relative;
-        overflow: hidden;
-
-        &:hover:not(:disabled) {
-          &::before {
-            inline-size: 100%;
-            block-size: 100%;
-
-            content: '';
-            position: absolute;
-            /* :before should stay under the content */
-            z-index: 0;
-            inset: 0;
-            background-color: rgba(234,174,1, 0.16);
-            pointer-events: none;
+                
+      position: relative;
+          overflow: hidden;
+  
+          &:hover:not(:disabled) {
+            &::before {
+              inline-size: 100%;
+              block-size: 100%;
+  
+              content: '';
+              position: absolute;
+              /* :before should stay under the content */
+              z-index: 0;
+              inset: 0;
+              background-color: rgba(234,174,1, 0.16);
+              pointer-events: none;
+            }
           }
-        }
-
-        &:active:not(:disabled) {
-          &::before {
-            inline-size: 100%;
-            block-size: 100%;
-
-            content: '';
-            position: absolute;
-            inset: 0;
-            background-color: rgba(234,174,1, 0.20);
+  
+          &:active:not(:disabled) {
+            &::before {
+              inline-size: 100%;
+              block-size: 100%;
+  
+              content: '';
+              position: absolute;
+              inset: 0;
+              background-color: rgba(234,174,1, 0.2);
+            }
           }
-        }
-      
+    
             false
           ;;label:base-warning;",
     "toString": [Function],
@@ -291,261 +291,261 @@ exports[`useEuiButtonColorCSS empty 1`] = `
 {
   "accent": {
     "map": undefined,
-    "name": "bxam0d-displaysColorsMap-display-color",
+    "name": "104exx4-displaysColorsMap-display-color",
     "next": undefined,
-    "styles": "color:#a11262; 
-        position: relative;
-        overflow: hidden;
-
-        &:hover:not(:disabled) {
-          &::before {
-            inline-size: 100%;
-            block-size: 100%;
-
-            content: '';
-            position: absolute;
-            /* :before should stay under the content */
-            z-index: 0;
-            inset: 0;
-            background-color: rgba(229,74,145, 0.12);
-            pointer-events: none;
+    "styles": "color:#a11262;     
+      position: relative;
+          overflow: hidden;
+  
+          &:hover:not(:disabled) {
+            &::before {
+              inline-size: 100%;
+              block-size: 100%;
+  
+              content: '';
+              position: absolute;
+              /* :before should stay under the content */
+              z-index: 0;
+              inset: 0;
+              background-color: rgba(229,74,145, 0.12);
+              pointer-events: none;
+            }
           }
-        }
-
-        &:active:not(:disabled) {
-          &::before {
-            inline-size: 100%;
-            block-size: 100%;
-
-            content: '';
-            position: absolute;
-            inset: 0;
-            background-color: rgba(229,74,145, 0.16);
+  
+          &:active:not(:disabled) {
+            &::before {
+              inline-size: 100%;
+              block-size: 100%;
+  
+              content: '';
+              position: absolute;
+              inset: 0;
+              background-color: rgba(229,74,145, 0.16);
+            }
           }
-        }
-      ;;label:empty-accent;",
+    ;;label:empty-accent;",
     "toString": [Function],
   },
   "danger": {
     "map": undefined,
-    "name": "159eh8f-displaysColorsMap-display-color",
+    "name": "1eqtsdt-displaysColorsMap-display-color",
     "next": undefined,
-    "styles": "color:#a71627; 
-        position: relative;
-        overflow: hidden;
-
-        &:hover:not(:disabled) {
-          &::before {
-            inline-size: 100%;
-            block-size: 100%;
-
-            content: '';
-            position: absolute;
-            /* :before should stay under the content */
-            z-index: 0;
-            inset: 0;
-            background-color: rgba(238,76,72, 0.12);
-            pointer-events: none;
+    "styles": "color:#a71627;     
+      position: relative;
+          overflow: hidden;
+  
+          &:hover:not(:disabled) {
+            &::before {
+              inline-size: 100%;
+              block-size: 100%;
+  
+              content: '';
+              position: absolute;
+              /* :before should stay under the content */
+              z-index: 0;
+              inset: 0;
+              background-color: rgba(238,76,72, 0.12);
+              pointer-events: none;
+            }
           }
-        }
-
-        &:active:not(:disabled) {
-          &::before {
-            inline-size: 100%;
-            block-size: 100%;
-
-            content: '';
-            position: absolute;
-            inset: 0;
-            background-color: rgba(238,76,72, 0.16);
+  
+          &:active:not(:disabled) {
+            &::before {
+              inline-size: 100%;
+              block-size: 100%;
+  
+              content: '';
+              position: absolute;
+              inset: 0;
+              background-color: rgba(238,76,72, 0.16);
+            }
           }
-        }
-      ;;label:empty-danger;",
+    ;;label:empty-danger;",
     "toString": [Function],
   },
   "disabled": {
     "map": undefined,
-    "name": "juq6pk-displaysColorsMap-display-color",
+    "name": "b6mk3-displaysColorsMap-display-color",
     "next": undefined,
-    "styles": "color:#798EAF; 
-        position: relative;
-        overflow: hidden;
-
-        &:hover:not(:disabled) {
-          &::before {
-            inline-size: 100%;
-            block-size: 100%;
-
-            content: '';
-            position: absolute;
-            /* :before should stay under the content */
-            z-index: 0;
-            inset: 0;
-            background-color: undefined;
-            pointer-events: none;
+    "styles": "color:#798EAF;     
+      position: relative;
+          overflow: hidden;
+  
+          &:hover:not(:disabled) {
+            &::before {
+              inline-size: 100%;
+              block-size: 100%;
+  
+              content: '';
+              position: absolute;
+              /* :before should stay under the content */
+              z-index: 0;
+              inset: 0;
+              background-color: undefined;
+              pointer-events: none;
+            }
           }
-        }
-
-        &:active:not(:disabled) {
-          &::before {
-            inline-size: 100%;
-            block-size: 100%;
-
-            content: '';
-            position: absolute;
-            inset: 0;
-            background-color: undefined;
+  
+          &:active:not(:disabled) {
+            &::before {
+              inline-size: 100%;
+              block-size: 100%;
+  
+              content: '';
+              position: absolute;
+              inset: 0;
+              background-color: undefined;
+            }
           }
-        }
-      ;;label:empty-disabled;",
+    ;;label:empty-disabled;",
     "toString": [Function],
   },
   "primary": {
     "map": undefined,
-    "name": "5530ad-displaysColorsMap-display-color",
+    "name": "xxw7ze-displaysColorsMap-display-color",
     "next": undefined,
-    "styles": "color:#1750ba; 
-        position: relative;
-        overflow: hidden;
-
-        &:hover:not(:disabled) {
-          &::before {
-            inline-size: 100%;
-            block-size: 100%;
-
-            content: '';
-            position: absolute;
-            /* :before should stay under the content */
-            z-index: 0;
-            inset: 0;
-            background-color: rgba(55,136,255, 0.12);
-            pointer-events: none;
+    "styles": "color:#1750ba;     
+      position: relative;
+          overflow: hidden;
+  
+          &:hover:not(:disabled) {
+            &::before {
+              inline-size: 100%;
+              block-size: 100%;
+  
+              content: '';
+              position: absolute;
+              /* :before should stay under the content */
+              z-index: 0;
+              inset: 0;
+              background-color: rgba(55,136,255, 0.12);
+              pointer-events: none;
+            }
           }
-        }
-
-        &:active:not(:disabled) {
-          &::before {
-            inline-size: 100%;
-            block-size: 100%;
-
-            content: '';
-            position: absolute;
-            inset: 0;
-            background-color: rgba(55,136,255, 0.16);
+  
+          &:active:not(:disabled) {
+            &::before {
+              inline-size: 100%;
+              block-size: 100%;
+  
+              content: '';
+              position: absolute;
+              inset: 0;
+              background-color: rgba(55,136,255, 0.16);
+            }
           }
-        }
-      ;;label:empty-primary;",
+    ;;label:empty-primary;",
     "toString": [Function],
   },
   "success": {
     "map": undefined,
-    "name": "1430hbu-displaysColorsMap-display-color",
+    "name": "13bz0h2-displaysColorsMap-display-color",
     "next": undefined,
-    "styles": "color:#09724d; 
-        position: relative;
-        overflow: hidden;
-
-        &:hover:not(:disabled) {
-          &::before {
-            inline-size: 100%;
-            block-size: 100%;
-
-            content: '';
-            position: absolute;
-            /* :before should stay under the content */
-            z-index: 0;
-            inset: 0;
-            background-color: rgba(4,174,126, 0.12);
-            pointer-events: none;
+    "styles": "color:#09724d;     
+      position: relative;
+          overflow: hidden;
+  
+          &:hover:not(:disabled) {
+            &::before {
+              inline-size: 100%;
+              block-size: 100%;
+  
+              content: '';
+              position: absolute;
+              /* :before should stay under the content */
+              z-index: 0;
+              inset: 0;
+              background-color: rgba(4,174,126, 0.12);
+              pointer-events: none;
+            }
           }
-        }
-
-        &:active:not(:disabled) {
-          &::before {
-            inline-size: 100%;
-            block-size: 100%;
-
-            content: '';
-            position: absolute;
-            inset: 0;
-            background-color: rgba(4,174,126, 0.16);
+  
+          &:active:not(:disabled) {
+            &::before {
+              inline-size: 100%;
+              block-size: 100%;
+  
+              content: '';
+              position: absolute;
+              inset: 0;
+              background-color: rgba(4,174,126, 0.16);
+            }
           }
-        }
-      ;;label:empty-success;",
+    ;;label:empty-success;",
     "toString": [Function],
   },
   "text": {
     "map": undefined,
-    "name": "1x90w1h-displaysColorsMap-display-color",
+    "name": "1d9ligk-displaysColorsMap-display-color",
     "next": undefined,
-    "styles": "color:#1d2a3e; 
-        position: relative;
-        overflow: hidden;
-
-        &:hover:not(:disabled) {
-          &::before {
-            inline-size: 100%;
-            block-size: 100%;
-
-            content: '';
-            position: absolute;
-            /* :before should stay under the content */
-            z-index: 0;
-            inset: 0;
-            background-color: rgba(23,80,186, 0.08);
-            pointer-events: none;
+    "styles": "color:#1d2a3e;     
+      position: relative;
+          overflow: hidden;
+  
+          &:hover:not(:disabled) {
+            &::before {
+              inline-size: 100%;
+              block-size: 100%;
+  
+              content: '';
+              position: absolute;
+              /* :before should stay under the content */
+              z-index: 0;
+              inset: 0;
+              background-color: rgba(23,80,186, 0.08);
+              pointer-events: none;
+            }
           }
-        }
-
-        &:active:not(:disabled) {
-          &::before {
-            inline-size: 100%;
-            block-size: 100%;
-
-            content: '';
-            position: absolute;
-            inset: 0;
-            background-color: rgba(23,80,186, 0.12);
+  
+          &:active:not(:disabled) {
+            &::before {
+              inline-size: 100%;
+              block-size: 100%;
+  
+              content: '';
+              position: absolute;
+              inset: 0;
+              background-color: rgba(23,80,186, 0.12);
+            }
           }
-        }
-      ;;label:empty-text;",
+    ;;label:empty-text;",
     "toString": [Function],
   },
   "warning": {
     "map": undefined,
-    "name": "jtv2l7-displaysColorsMap-display-color",
+    "name": "52js44-displaysColorsMap-display-color",
     "next": undefined,
-    "styles": "color:#825803; 
-        position: relative;
-        overflow: hidden;
-
-        &:hover:not(:disabled) {
-          &::before {
-            inline-size: 100%;
-            block-size: 100%;
-
-            content: '';
-            position: absolute;
-            /* :before should stay under the content */
-            z-index: 0;
-            inset: 0;
-            background-color: rgba(234,174,1, 0.16);
-            pointer-events: none;
+    "styles": "color:#825803;     
+      position: relative;
+          overflow: hidden;
+  
+          &:hover:not(:disabled) {
+            &::before {
+              inline-size: 100%;
+              block-size: 100%;
+  
+              content: '';
+              position: absolute;
+              /* :before should stay under the content */
+              z-index: 0;
+              inset: 0;
+              background-color: rgba(234,174,1, 0.16);
+              pointer-events: none;
+            }
           }
-        }
-
-        &:active:not(:disabled) {
-          &::before {
-            inline-size: 100%;
-            block-size: 100%;
-
-            content: '';
-            position: absolute;
-            inset: 0;
-            background-color: rgba(234,174,1, 0.20);
+  
+          &:active:not(:disabled) {
+            &::before {
+              inline-size: 100%;
+              block-size: 100%;
+  
+              content: '';
+              position: absolute;
+              inset: 0;
+              background-color: rgba(234,174,1, 0.2);
+            }
           }
-        }
-      ;;label:empty-warning;",
+    ;;label:empty-warning;",
     "toString": [Function],
   },
 }
@@ -555,106 +555,106 @@ exports[`useEuiButtonColorCSS fill 1`] = `
 {
   "accent": {
     "map": undefined,
-    "name": "1moc6vv-displaysColorsMap-display-color",
+    "name": "kqc6in-displaysColorsMap-display-color",
     "next": undefined,
-    "styles": "color:#FFFFFF;background-color:#BC1E70;outline-color:#07101F;
+    "styles": "color:#FFFFFF;background-color:#BC1E70;outline-color:#07101F;    
       &:hover:not(:disabled) {
-        background-color: #A11262;
-      }
-
-      &:active:not(:disabled) {
-        background-color: #831652;
-      }
+          background-color: #A11262;
+        }
+  
+        &:active:not(:disabled) {
+          background-color: #831652;
+        }
     ;;label:fill-accent;",
     "toString": [Function],
   },
   "danger": {
     "map": undefined,
-    "name": "1sww27t-displaysColorsMap-display-color",
+    "name": "1epc8t4-displaysColorsMap-display-color",
     "next": undefined,
-    "styles": "color:#FFFFFF;background-color:#C61E25;outline-color:#07101F;
+    "styles": "color:#FFFFFF;background-color:#C61E25;outline-color:#07101F;    
       &:hover:not(:disabled) {
-        background-color: #A71627;
-      }
-
-      &:active:not(:disabled) {
-        background-color: #7F1F27;
-      }
+          background-color: #A71627;
+        }
+  
+        &:active:not(:disabled) {
+          background-color: #7F1F27;
+        }
     ;;label:fill-danger;",
     "toString": [Function],
   },
   "disabled": {
     "map": undefined,
-    "name": "191y6d9-displaysColorsMap-display-color",
+    "name": "1s4u3c7-displaysColorsMap-display-color",
     "next": undefined,
-    "styles": "color:#798EAF;background-color:#ECF1F9;outline-color:#07101F;
+    "styles": "color:#798EAF;background-color:#ECF1F9;outline-color:#07101F;    
       &:hover:not(:disabled) {
-        background-color: undefined;
-      }
-
-      &:active:not(:disabled) {
-        background-color: undefined;
-      }
+          background-color: undefined;
+        }
+  
+        &:active:not(:disabled) {
+          background-color: undefined;
+        }
     ;;label:fill-disabled;",
     "toString": [Function],
   },
   "primary": {
     "map": undefined,
-    "name": "1i1rpm0-displaysColorsMap-display-color",
+    "name": "1rrx1uq-displaysColorsMap-display-color",
     "next": undefined,
-    "styles": "color:#FFFFFF;background-color:#0B64DD;outline-color:#07101F;
+    "styles": "color:#FFFFFF;background-color:#0B64DD;outline-color:#07101F;    
       &:hover:not(:disabled) {
-        background-color: #1750BA;
-      }
-
-      &:active:not(:disabled) {
-        background-color: #154399;
-      }
+          background-color: #1750BA;
+        }
+  
+        &:active:not(:disabled) {
+          background-color: #154399;
+        }
     ;;label:fill-primary;",
     "toString": [Function],
   },
   "success": {
     "map": undefined,
-    "name": "1vg5hkp-displaysColorsMap-display-color",
+    "name": "a72942-displaysColorsMap-display-color",
     "next": undefined,
-    "styles": "color:#FFFFFF;background-color:#008A5E;outline-color:#07101F;
+    "styles": "color:#FFFFFF;background-color:#008A5E;outline-color:#07101F;    
       &:hover:not(:disabled) {
-        background-color: #09724D;
-      }
-
-      &:active:not(:disabled) {
-        background-color: #0C5A3F;
-      }
+          background-color: #09724D;
+        }
+  
+        &:active:not(:disabled) {
+          background-color: #0C5A3F;
+        }
     ;;label:fill-success;",
     "toString": [Function],
   },
   "text": {
     "map": undefined,
-    "name": "1blxpv3-displaysColorsMap-display-color",
+    "name": "mzsi34-displaysColorsMap-display-color",
     "next": undefined,
-    "styles": "color:#FFFFFF;background-color:#5A6D8C;outline-color:#07101F;
+    "styles": "color:#FFFFFF;background-color:#5A6D8C;outline-color:#07101F;    
       &:hover:not(:disabled) {
-        background-color: #485975;
-      }
-
-      &:active:not(:disabled) {
-        background-color: #384861;
-      }
+          background-color: #485975;
+        }
+  
+        &:active:not(:disabled) {
+          background-color: #384861;
+        }
     ;;label:fill-text;",
     "toString": [Function],
   },
   "warning": {
     "map": undefined,
-    "name": "52xsaj-displaysColorsMap-display-color",
+    "name": "hxsvwl-displaysColorsMap-display-color",
     "next": undefined,
-    "styles": "color:#6A4906;background-color:#FACB3D;outline-color:#07101F;
+    "styles": "color:#6A4906;background-color:#FACB3D;outline-color:#07101F;    
       &:hover:not(:disabled) {
-        background-color: #F5BC00;
-      }
-
-      &:active:not(:disabled) {
-        background-color: #EAAE01;
-      }
+          background-color: #F5BC00;
+        }
+  
+        &:active:not(:disabled) {
+          background-color: #EAAE01;
+        }
     ;;label:fill-warning;",
     "toString": [Function],
   },

@@ -36,6 +36,8 @@ export const euiFilterButtonStyles = (euiThemeContext: UseEuiTheme) => {
 
   const border = `${euiTheme.border.width.thin} solid ${borderColor}`;
 
+  const selectedSelector = '.euiFilterButton-isSelected';
+
   // Pseudo elements create borders without affecting width. We also prefer them
   // over box-shadow for Windows high contrast theme compatibility
   const leftBorder = `
@@ -77,10 +79,12 @@ export const euiFilterButtonStyles = (euiThemeContext: UseEuiTheme) => {
       }
     `
     : `
-      &:hover,
-      &:active {
-        .euiFilterButton__notification[class*="subdued"] {
-          background-color: ${euiTheme.components.filterButtonBadgeBackgroundHover}
+      &:not(${selectedSelector}) {
+        &:hover,
+        &:active {
+          .euiFilterButton__notification[class*="subdued"] {
+            background-color: ${euiTheme.components.filterButtonBadgeBackgroundHover}
+          }
         }
       }
     `;
@@ -247,6 +251,8 @@ export const euiFilterButtonChildStyles = ({ euiTheme }: UseEuiTheme) => {
     notification: {
       euiFilterButton__notification: css`
         cursor: inherit;
+        /* ensures correct styles in forced high contrast mode as its wrapper uses forced-color-adjust: none  */
+        forced-color-adjust: auto;
       `,
       disabled: css`
         opacity: 0.5;

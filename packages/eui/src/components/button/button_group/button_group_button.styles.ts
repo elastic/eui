@@ -17,6 +17,8 @@ import {
   euiTextShift,
   euiOutline,
   euiCanAnimate,
+  preventForcedColors,
+  highContrastModeStyles,
 } from '../../../global_styling';
 import {
   euiButtonFillColor,
@@ -54,6 +56,32 @@ export const euiButtonGroupButtonStyles = (euiThemeContext: UseEuiTheme) => {
     }
   `;
 
+  const experimentalStyles =
+    isExperimental &&
+    `
+    &:is(${selectedSelectors}) {
+    ${highContrastModeStyles(euiThemeContext, {
+      forced: `
+        --highContrastHoverIndicatorColor: ${euiTheme.colors.textInverse};
+        border: none;
+
+        &::after {
+          ${preventForcedColors(euiThemeContext)}
+        }
+
+        /* styles the content manually instead of the button itself to preserve the system
+        focus style, as otherwise preventForcedColors() would require manual styling */
+        > [class*="euiButtonDisplayContent"] {
+          ${preventForcedColors(euiThemeContext)}
+          color: ${euiTheme.colors.emptyShade};
+          border: none;
+          background-color: ${euiTheme.colors.fullShade};
+        }
+      `,
+    })}
+  }
+  `;
+
   const defaultUncompressedStyles =
     !isExperimental &&
     `
@@ -80,7 +108,7 @@ export const euiButtonGroupButtonStyles = (euiThemeContext: UseEuiTheme) => {
   const experimentalUncompressedStyles =
     isExperimental &&
     `
-      &:is(.euiButtonGroupButton-isSelected) {
+      &:is(${selectedSelectors}) {
         z-index: 1;
         /* prevent layout jumps due to missing border for selected/filled buttons */
         border: ${euiTheme.border.width.thin} solid transparent;
@@ -114,6 +142,8 @@ export const euiButtonGroupButtonStyles = (euiThemeContext: UseEuiTheme) => {
         transition: background-color ${euiTheme.animation.normal} ease-in-out,
           color ${euiTheme.animation.normal} ease-in-out;
       }
+
+      ${experimentalStyles}
     `,
     iconOnly: css`
       padding-inline: ${euiTheme.size.s};
@@ -144,32 +174,45 @@ export const euiButtonGroupButtonStyles = (euiThemeContext: UseEuiTheme) => {
           : euiTheme.components.buttonGroupBorderColor;
         const borderWidth = euiTheme.border.width.thin;
 
-        if (isExperimental) {
-          // reduce double border
-          return `
+        const borderStyles = isExperimental
+          ? `
             &:not(:first-child) {
               margin-inline-start: -${borderWidth};
             }
+
+            &:is(${selectors}) {
+              &::before {
+                position: absolute;
+                z-index: 1;
+                ${logicalCSS('left', 0)}
+                ${logicalCSS('vertical', `-${euiTheme.border.width.thin}`)}
+                ${logicalCSS('border-left-style', 'solid')}
+                ${logicalCSS('border-left-width', euiTheme.border.width.thin)}
+                pointer-events: none;
+              }
+            }
+          `
+          : `
+              &::before {
+                position: absolute;
+                ${logicalCSS('left', 0)}
+                ${logicalCSS(
+                  'vertical',
+                  highContrastMode ? `-${euiTheme.border.width.thin}` : 0
+                )}
+                ${logicalCSS('border-left-style', 'solid')}
+                ${logicalCSS('border-left-width', euiTheme.border.width.thin)}
+                pointer-events: none;
+              }
           `;
-        }
 
         // "Borders" between buttons should be present between two of the same colored buttons,
         // and absent between selected vs non-selected buttons (different colors)
         return `
           position: relative;
 
-          &::before {
-            position: absolute;
-            ${logicalCSS('left', 0)}
-            ${logicalCSS(
-              'vertical',
-              highContrastMode ? `-${euiTheme.border.width.thin}` : 0
-            )}
-            ${logicalCSS('border-left-style', 'solid')}
-            ${logicalCSS('border-left-width', euiTheme.border.width.thin)}
-            pointer-events: none;
-          }
-        
+          ${borderStyles}
+
           &:not(${selectors}) + *:not(${selectors}) {
             &::before {
               content: '';

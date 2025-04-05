@@ -18,7 +18,7 @@ import {
   UseEuiTheme,
   useEuiMemoizedStyles,
 } from '../../services';
-import { logicalCSS } from '../functions';
+import { highContrastModeStyles, logicalCSS } from '../functions';
 
 export const BUTTON_COLORS = [
   'text',
@@ -222,48 +222,62 @@ const euiButtonDisplaysColors = (euiThemeContext: UseEuiTheme) => {
     buttonColors: ButtonVariantColors,
     type: 'fill' | 'overlay' = 'fill'
   ) => {
-    if (type === 'overlay') {
+    const baseStyles = () => {
+      if (type === 'overlay') {
+        return `
+          position: relative;
+          overflow: hidden;
+  
+          &:hover:not(:disabled) {
+            &::before {
+              ${logicalCSS('width', '100%')}
+              ${logicalCSS('height', '100%')}
+  
+              content: '';
+              position: absolute;
+              /* :before should stay under the content */
+              z-index: 0;
+              inset: 0;
+              background-color: ${buttonColors.backgroundHover};
+              pointer-events: none;
+            }
+          }
+  
+          &:active:not(:disabled) {
+            &::before {
+              ${logicalCSS('width', '100%')}
+              ${logicalCSS('height', '100%')}
+  
+              content: '';
+              position: absolute;
+              inset: 0;
+              background-color: ${buttonColors.backgroundActive};
+            }
+          }
+        `;
+      }
+
       return `
-        position: relative;
-        overflow: hidden;
-
         &:hover:not(:disabled) {
-          &::before {
-            ${logicalCSS('width', '100%')}
-            ${logicalCSS('height', '100%')}
-
-            content: '';
-            position: absolute;
-            /* :before should stay under the content */
-            z-index: 0;
-            inset: 0;
-            background-color: ${buttonColors.backgroundHover};
-            pointer-events: none;
-          }
+          background-color: ${buttonColors.backgroundHover};
         }
-
+  
         &:active:not(:disabled) {
-          &::before {
-            ${logicalCSS('width', '100%')}
-            ${logicalCSS('height', '100%')}
-
-            content: '';
-            position: absolute;
-            inset: 0;
-            background-color: ${buttonColors.backgroundActive};
-          }
+          background-color: ${buttonColors.backgroundActive};
         }
       `;
-    }
+    };
 
-    return `
-      &:hover:not(:disabled) {
-        background-color: ${buttonColors.backgroundHover};
-      }
+    return `    
+      ${highContrastModeStyles(euiThemeContext, {
+        none: baseStyles(),
+        forced: `
+          position: relative;
+          overflow: hidden;
 
-      &:active:not(:disabled) {
-        background-color: ${buttonColors.backgroundActive};
-      }
+          ${highContrastHoverIndicatorStyles(euiThemeContext)}
+        `,
+      })}
     `;
   };
 
@@ -436,6 +450,27 @@ export const euiButtonSizeMap = ({ euiTheme }: UseEuiTheme) => ({
     fontScale: 's' as const,
   },
 });
+
+/**
+ * creates a bottom border on hover/focus to ensure a visible change as forced mode removed background colors
+ */
+export const highContrastHoverIndicatorStyles = ({ euiTheme }: UseEuiTheme) => `
+  &:hover:not(:disabled) {
+    transition: none;
+
+    &::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      ${logicalCSS(
+        'border-bottom',
+        `${euiTheme.border.width.thick} solid var(--highContrastHoverIndicatorColor, ${euiTheme.border.color})`
+      )}
+      background-color: transparent;
+      pointer-events: none;
+    }
+  }
+`;
 
 /**
  * Internal util for high contrast button borders

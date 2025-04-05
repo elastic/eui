@@ -145,10 +145,10 @@ describe('euiFormControlStyles', () => {
             --euiFormControlStateWidth: 2px;
 
             position: relative;
-          z-index: 1;
-          outline: var(--euiFormControlStateWidth) solid var(--euiFormControlStateColor);
-          outline-offset: calc(-1 * var(--euiFormControlStateWidth));
-          box-shadow: none;",
+        z-index: 1;
+        outline: var(--euiFormControlStateWidth) solid var(--euiFormControlStateColor);
+        outline-offset: calc(-1 * var(--euiFormControlStateWidth));
+        box-shadow: none;",
         "formWidth": "
             max-inline-size: 400px;
             inline-size: 100%;
@@ -167,10 +167,10 @@ describe('euiFormControlStyles', () => {
             --euiFormControlStateWidth: 1px;
             
             position: relative;
-          z-index: 1;
-          outline: var(--euiFormControlStateWidth) solid var(--euiFormControlStateColor);
-          outline-offset: calc(-1 * var(--euiFormControlStateWidth));
-          box-shadow: none;
+        z-index: 1;
+        outline: var(--euiFormControlStateWidth) solid var(--euiFormControlStateColor);
+        outline-offset: calc(-1 * var(--euiFormControlStateWidth));
+        box-shadow: none;
 
             &:focus-within {
               --euiFormControlStateColor: #CAD3E2;
