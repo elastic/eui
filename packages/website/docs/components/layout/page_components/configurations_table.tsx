@@ -77,7 +77,7 @@ export const ConfigurationsTable = () => {
       euiPageSidebar: true,
       euiPageHeader: 'none',
       euiPageBody: `color="plain"`,
-      euiPageSection: `color="plain" bottomBorder={false}`,
+      euiPageSection: `color="plain" bottomBorder`,
       euiEmptyPrompt: `color="subdued"`,
     },
     {
