@@ -39,9 +39,12 @@ If you're looking for full page layout examples, we recommend using the [EuiPage
     EuiPageSection,
     EuiPageSidebar,
     EuiSwitch,
+    useEuiTheme,
   } from '@elastic/eui';
 
   export default () => {
+    const { euiTheme } = useEuiTheme();
+
     const [sideBar, setSideBar] = useState(true);
     const [grow, setGrow] = useState(true);
     const [column, setColumn] = useState(false);
@@ -53,7 +56,7 @@ If you're looking for full page layout examples, we recommend using the [EuiPage
       <>
         <EuiFlexGroup
           css={css`
-            padding: 16px;
+            padding: ${euiTheme.size.m};
             // "grow" prop doesn't work here
             flex-grow: 0;
           `}
@@ -116,9 +119,11 @@ To create dividers between contents, use the `bottomBorder` prop. The `'extended
   ```tsx interactive
   import React, { useState } from 'react';
 
-  import { EuiPageHeader, EuiPageSection } from '@elastic/eui';
+  import { EuiPageHeader, EuiPageSection, useEuiTheme } from '@elastic/eui';
 
   export default () => {
+    const { euiTheme } = useEuiTheme();
+
     const [extendedBorder, setExtendedBorder] = useState(true);
     const [centeredContent, setCenteredContent] = useState(false);
     const [restrictWidth, setRestrictWidth] = useState(false);
@@ -130,7 +135,7 @@ To create dividers between contents, use the `bottomBorder` prop. The `'extended
       <>
         <EuiFlexGroup
           css={css`
-            padding: 16px;
+            padding: ${euiTheme.size.m};
           `}
         >
           <EuiSwitch
@@ -206,9 +211,12 @@ Reminder: [EuiPageTemplate](../../templates/page_template/overview.mdx) can hand
     EuiPageSection,
     EuiPageSidebar,
     EuiSwitch,
+    useEuiTheme,
   } from '@elastic/eui';
 
   export default () => {
+    const { euiTheme } = useEuiTheme();
+
     const [sideBar, setSideBar] = useState(true);
     const [pageHeader, setPageHeader] = useState(true);
     const [emptyPrompt, setEmptyPrompt] = useState(false);
@@ -216,7 +224,7 @@ Reminder: [EuiPageTemplate](../../templates/page_template/overview.mdx) can hand
     return (
       <>
         <EuiFlexGroup css={css`
-          padding: 16px;
+          padding: ${euiTheme.size.m};
         `}>
           <EuiSwitch
             label="Sidebar"
