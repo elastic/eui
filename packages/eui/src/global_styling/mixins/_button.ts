@@ -11,6 +11,7 @@ import {
   _EuiThemeButtonColors,
   getTokenName,
   euiCanAnimate,
+  mathWithUnits,
 } from '@elastic/eui-theme-common';
 
 import {
@@ -460,14 +461,18 @@ export const highContrastHoverIndicatorStyles = ({ euiTheme }: UseEuiTheme) => `
   &:hover:not(:disabled) {
     transition: none;
 
+    /* using pseudo border to be able to control the color */
     &::after {
       content: '';
       position: absolute;
-      inset: 0;
-      ${logicalCSS(
-        'border-bottom',
-        `${euiTheme.border.width.thick} solid var(--highContrastHoverIndicatorColor, ${euiTheme.border.color})`
-      )}
+      inset: ${euiTheme.border.width.thin};
+      border: ${
+        euiTheme.border.width.thick
+      } solid var(--highContrastHoverIndicatorColor, ${euiTheme.border.color});
+      border-radius: ${mathWithUnits(
+        euiTheme.border.radius.small,
+        (x) => x / 2
+      )};
       background-color: transparent;
       pointer-events: none;
     }
