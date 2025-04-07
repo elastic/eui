@@ -138,7 +138,6 @@ yarn npm whoami # Should return an error about not being logged in
 
 Ensure you're logged out of npm: 
 ```sh
-npm logout
 yarn npm logout
 ```
 
@@ -155,7 +154,9 @@ unsafeHttpWhitelist:
   - "localhost:4873"
 ```
 
-Login to the local registry (you can set any user/password, e.g. test/test)
+Login to the local registry.
+When asked for a user and password you can set anything, e.g. test/test.
+When asked for an OTP token click `Enter`, as the local registry has no two-factor authentication configured and OTP is not needed.
 ```sh
 yarn npm login
 ```
