@@ -426,30 +426,32 @@ const euiButtonFocusCSS = (euiThemeContext: UseEuiTheme) => {
  * Map of `size` props to various sizings/scales
  * that should remain consistent across all buttons
  */
-export const euiButtonSizeMap = ({ euiTheme }: UseEuiTheme) => ({
-  xs: {
-    minWidth:
-      euiTheme.base *
-      (euiTheme.flags?.buttonVariant === 'experimental' ? 6 : 7),
-    height: euiTheme.size.l,
-    radius: euiTheme.border.radius.small,
-    fontScale: 'xs' as const,
-  },
-  s: {
-    minWidth:
-      euiTheme.base *
-      (euiTheme.flags?.buttonVariant === 'experimental' ? 6 : 7),
-    height: euiTheme.size.xl,
-    radius: euiTheme.border.radius.small,
-    fontScale: 's' as const,
-  },
-  m: {
-    minWidth: euiTheme.base * 7,
-    height: euiTheme.size.xxl,
-    radius: euiTheme.border.radius.medium,
-    fontScale: 's' as const,
-  },
-});
+export const euiButtonSizeMap = ({ euiTheme }: UseEuiTheme) => {
+  const isExperimental = euiTheme.flags?.buttonVariant === 'experimental';
+
+  return {
+    xs: {
+      minWidth: euiTheme.base * (isExperimental ? 6 : 7),
+      height: euiTheme.size.l,
+      radius: euiTheme.border.radius.small,
+      fontScale: 'xs' as const,
+    },
+    s: {
+      minWidth: euiTheme.base * (isExperimental ? 6 : 7),
+      height: euiTheme.size.xl,
+      radius: euiTheme.border.radius.small,
+      fontScale: 's' as const,
+    },
+    m: {
+      minWidth: euiTheme.base * 7,
+      height: euiTheme.size.xxl,
+      radius: isExperimental
+        ? euiTheme.border.radius.small
+        : euiTheme.border.radius.medium,
+      fontScale: 's' as const,
+    },
+  };
+};
 
 /**
  * creates a bottom border on hover/focus to ensure a visible change as forced mode removed background colors
