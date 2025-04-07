@@ -2,7 +2,13 @@ import React from 'react';
 
 import { GuideSectionTypes } from '../../components';
 
-import { EuiCode, EuiI18n, EuiContext } from '../../../../src/components';
+import {
+  EuiCode,
+  EuiI18n,
+  EuiContext,
+  EuiLink,
+  EuiCallOut,
+} from '../../../../src/components';
 
 import I18nBasic from './i18n_basic';
 const i18nBasicSource = require('!!raw-loader!./i18n_basic');
@@ -46,7 +52,7 @@ const multiValueSnippet = [
   ['filename.label', 'filename.text'],
   ['Default Label', 'Default Text']
 );
-  
+
 return <p aria-label={label}>{text}</p>;
 `,
   `<EuiI18n
@@ -71,6 +77,47 @@ import { I18nShapeProps } from './props';
 export const I18nExample = {
   title: 'I18n',
   sections: [
+    {
+      text: (
+        <>
+          <p>
+            Translations for EUI components can be provided globally in an
+            application via <strong>EuiContext</strong>,{' '}
+            <EuiLink href="#/utilities/i18n%23context">
+              documented below
+            </EuiLink>
+            . A list of all <EuiCode>tokens</EuiCode> —also usually called ids—
+            can be found in the{' '}
+            <EuiLink href="/#/package/i18n-tokens">I18n tokens</EuiLink> page.
+          </p>
+          <p>
+            While developing an EUI component, any text that is included by
+            default must be translatable. <strong>EuiI18n</strong> is the proper
+            way to do this. Examples of such text are the{' '}
+            <EuiCode>aria-label</EuiCode> in the clear button of{' '}
+            <EuiLink href="/#/forms/combo-box">
+              <strong>EuiComboBox</strong>
+            </EuiLink>
+            , or the visible text in{' '}
+            <EuiLink href="/#/navigation/pagination%23compressed-and-responsive">
+              <strong>EuiPagination</strong>
+            </EuiLink>{' '}
+            compressed e.g. "1 of 24".
+          </p>
+          <EuiCallOut
+            iconType="alert"
+            color="warning"
+            title="These utilities are mostly internal"
+          >
+            <p>
+              The purpose of these utilities is to allow internationalizing EUI
+              components. This is not a full-fledged solution for
+              internationalizing your app.
+            </p>
+          </EuiCallOut>
+        </>
+      ),
+    },
     {
       title: 'Internationalization',
       source: [

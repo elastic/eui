@@ -5,6 +5,14 @@ id: utilities_i18n
 
 # I18n
 
+Translations for EUI components can be provided globally in an application via [EuiContext, documented below](#context). A list of all `tokens` —also usually called ids— can be found in the [I18n tokens](#TODO) page.
+
+While developing an EUI component, any text that is included by default must be translatable. [EuiI18n](#internalization) is the proper way to do this. Examples of such text are the `aria-label` in the clear button of [EuiComboBox](#TODO), or the visible text in [EuiPagination](#TODO) compressed e.g. "1 of 24".
+
+:::warning These utilities are mostly internal
+The purpose of these utilities is to allow internationalizing EUI components. This is not a full-fledged solution for internationalizing your app.
+:::
+
 ## Internalization
 
 **useEuiI18n** and **EuiI18n** allows localizing string and numeric values for internationalization. There are two provided ways to use this: a React hook and a render prop component. In their simplest form, these take a `token` and a `default` value. `token` provides a reference to use when mapping to a localized value and `default` provides the untranslated value when no mapping is available.
@@ -238,7 +246,7 @@ export default () => {
     ['euiI18nMulti.title', 'euiI18nMulti.description'],
     ['Card Title', 'Card Description']
   );
-  
+
   return (
     <>
       <EuiTitle size="xs">
