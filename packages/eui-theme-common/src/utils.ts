@@ -16,6 +16,9 @@ import {
   EuiThemeComputed,
   COLOR_MODES_STANDARD,
   COLOR_MODES_INVERSE,
+  EuiThemeHighContrastMode,
+  EUI_THEME_OVERRIDES_KEY,
+  EUI_THEME_HIGH_CONTRAST_MODE_KEY,
 } from './global_styling';
 
 export const DEFAULT_COLOR_MODE = COLOR_MODES_STANDARD.light;
@@ -227,9 +230,14 @@ const isComputedLike = <T>(key: object): key is Computed<T> => {
 export const getComputed = <T = EuiThemeShape>(
   base: EuiThemeSystem<T>,
   over: Partial<EuiThemeSystem<T>>,
-  colorMode: EuiThemeColorModeStandard
+  colorMode: EuiThemeColorModeStandard,
+  highContrastMode?: EuiThemeHighContrastMode
 ): EuiThemeComputed<T> => {
   const output: Partial<EuiThemeComputed> = { themeName: base.key };
+  const _hcmOverridesKey = `${EUI_THEME_OVERRIDES_KEY}.${EUI_THEME_HIGH_CONTRAST_MODE_KEY}`;
+  const _hcmOverrides = highContrastMode
+    ? getOn(base, _hcmOverridesKey)
+    : undefined;
 
   function loop(
     base: { [key: string]: any },
@@ -239,6 +247,13 @@ export const getComputed = <T = EuiThemeShape>(
   ) {
     Object.keys(base).forEach((key) => {
       let newPath = path ? `${path}.${key}` : `${key}`;
+
+      // remove the internal overrides key from the computed theme object
+      // the override values are only used internally in getComputed()
+      if (key === EUI_THEME_OVERRIDES_KEY) {
+        return;
+      }
+
       // @ts-expect-error `key` is not necessarily a colorMode key
       if ([...Object.values(COLOR_MODES_STANDARD), colorMode].includes(key)) {
         if (key !== colorMode) {
@@ -262,10 +277,29 @@ export const getComputed = <T = EuiThemeShape>(
           over[key] instanceof Computed || isComputedLike<T>(over[key])
             ? over[key].getValue(base.root, over.root, output, colorMode)
             : over[key];
+        const hcmOverValue = _hcmOverrides
+          ? _hcmOverrides[key] instanceof Computed ||
+            isComputedLike<T>(_hcmOverrides[key])
+            ? _hcmOverrides[key].getValue(
+                base.root,
+                _hcmOverrides.root,
+                output,
+                colorMode
+              )
+            : _hcmOverrides[key]
+          : undefined;
+
+        // combine internal overrides with manual overrides
+        const combinedOverValue =
+          isObject(overValue) && isObject(hcmOverValue)
+            ? mergeDeep(overValue, hcmOverValue)
+            : // we want HCM overrides to have presedence otherwise manual base overrides would break base HCM
+              hcmOverValue ?? overValue;
+
         if (isObject(baseValue) && !Array.isArray(baseValue)) {
-          loop(baseValue, overValue ?? {}, checkExisting, newPath);
+          loop(baseValue, combinedOverValue ?? {}, checkExisting, newPath);
         } else {
-          setOn(output, newPath, overValue ?? baseValue);
+          setOn(output, newPath, combinedOverValue ?? baseValue);
         }
       }
     });
