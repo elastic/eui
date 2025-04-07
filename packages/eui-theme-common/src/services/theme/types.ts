@@ -23,6 +23,7 @@ import { _EuiThemeFocus } from '../../global_styling/variables/states';
 import { _EuiThemeLevels } from '../../global_styling/variables/levels';
 import { _EuiThemeComponents } from '../../global_styling/variables/components';
 import { _EuiThemeFlags } from '../../global_styling/variables';
+import { _EuiThemeOverrides } from '../../global_styling/variables/overrides';
 
 export const COLOR_MODES_STANDARD = {
   light: 'LIGHT',
@@ -55,7 +56,10 @@ export type StrictColorModeSwitch<T = string> = {
 export type EuiThemeHighContrastModeProp = boolean;
 export type EuiThemeHighContrastMode = 'forced' | 'preferred' | false;
 
-export type EuiThemeShape = {
+export const EUI_THEME_HIGH_CONTRAST_MODE_KEY = 'HCM' as const;
+export const EUI_THEME_OVERRIDES_KEY = 'overrides' as const;
+
+export type EuiThemeShapeBase = {
   colors: _EuiThemeColors;
   /** - Default value: 16 */
   base: _EuiThemeBase;
@@ -71,6 +75,10 @@ export type EuiThemeShape = {
   levels: _EuiThemeLevels;
   components: _EuiThemeComponents;
   flags: _EuiThemeFlags;
+};
+
+export type EuiThemeShape = EuiThemeShapeBase & {
+  overrides?: _EuiThemeOverrides;
 };
 
 export type EuiThemeSystem<T = {}> = {

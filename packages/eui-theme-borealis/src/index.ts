@@ -17,6 +17,7 @@ import { levels } from './variables/_levels';
 import { font } from './variables/_typography';
 import { focus } from './variables/_states';
 import { components } from './variables/_components';
+import { PRIMITIVE_COLORS } from './variables/colors/_primitive_colors';
 
 export { colorVis } from './variables/colors/_colors_vis';
 
@@ -36,6 +37,14 @@ export const euiThemeBorealis: EuiThemeShape = {
   flags: {
     hasGlobalFocusColor: true,
     hasVisColorAdjustment: false,
+  },
+  overrides: {
+    HCM: {
+      colors: {
+        ink: PRIMITIVE_COLORS.black,
+        ghost: PRIMITIVE_COLORS.white,
+      },
+    },
   },
 };
 
