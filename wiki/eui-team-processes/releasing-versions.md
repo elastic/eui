@@ -138,7 +138,6 @@ yarn npm whoami # Should return an error about not being logged in
 
 Ensure you're logged out of npm: 
 ```sh
-npm logout
 yarn npm logout
 ```
 
@@ -147,17 +146,19 @@ Run a local registry to which the packages are publish instead of npm:
 docker run -it --rm --name verdaccio -p 4873:4873 verdaccio/verdaccio
 ```
 
-Login to the local registry (you can set any user/password, e.g. test/test)
-```sh
-yarn login
-```
-
 Update the root `.yarnrc.yml` file by adding:
 ```sh
 npmRegistryServer: "http://localhost:4873"
 unsafeHttpWhitelist:
   - localhost
   - "localhost:4873"
+```
+
+Login to the local registry.
+When asked for a user and password you can set anything, e.g. test/test.
+When asked for an OTP token click `Enter`, as the local registry has no two-factor authentication configured and OTP is not needed.
+```sh
+yarn npm login
 ```
 
 Disable checking if the working directory is clean in `packages/release-cli/src/git_utils.ts` by returning `true` in `isWorkingTreeClean()`:
