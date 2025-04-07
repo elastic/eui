@@ -41,6 +41,10 @@ export const euiButtonEmptyStyles = (euiThemeContext: UseEuiTheme) => {
       &:hover:not(:disabled),
       &:focus {
         text-decoration: underline;
+
+        &:after {
+          display: none;
+        }
       }
   `;
 
