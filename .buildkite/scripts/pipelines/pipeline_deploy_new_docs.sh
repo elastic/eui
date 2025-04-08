@@ -20,8 +20,13 @@ if [[ -n "${BUILDKITE_PULL_REQUEST}" ]] && [[ "${BUILDKITE_PULL_REQUEST}" != "fa
   export STORYBOOK_BASE_URL="https://eui.elastic.co/${PR_SLUG}/storybook"
   bucket_directory="${PR_SLUG}/new-docs/"
   echo "Detected a PR preview environment configuration. The built files will be copied to ${bucket_directory}"
+elif [[ -n "${BUILDKITE_BRANCH}" ]] && [[ "${BUILDKITE_BRANCH}" == "main" ]]; then
+  # TODO: Detect if 'main' branch updated due to a new version being released based on BUILDKITE_TAG
+  export STORYBOOK_BASE_URL="https://eui.elastic.co/storybook"
+  bucket_directory="next/"
+  echo "Detected a 'main' branch environment configuration. The built files will be copied to ${bucket_directory}"
 else
-  echo "The script has been triggered with no pull request or tag information. This is a no-op."
+  echo "The script has been triggered with no pull request or branch information. This is a no-op."
   exit 1
 fi
 
@@ -67,3 +72,5 @@ echo "Beginning to copy built files to /${bucket_directory}"
 gcloud storage cp "${GCLOUD_CP_ARGS[@]}" packages/website/build/* "gs://${GCLOUD_BUCKET_FULL}/${bucket_directory}"
 
 echo "New documentation website deployed: https://eui.elastic.co/${bucket_directory}" | buildkite-agent annotate --style "success" --context "deployed"
+
+echo "* [Documentation website](https://eui.elastic.co/${bucket_directory})" | buildkite-agent meta-data set pr_comment:docs_deployment_link:head

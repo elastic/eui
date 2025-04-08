@@ -125,6 +125,8 @@ spec:
 # Pull request - deploy docs website PR preview
 ##
 
+# TODO: Remove when the old documentation site is replaced with EUI+
+
 # yaml-language-server: $schema=https://gist.githubusercontent.com/elasticmachine/988b80dae436cafea07d9a4a460a011d/raw/e57ee3bed7a6f73077a3f55a38e76e40ec87a7cf/rre.schema.json
 apiVersion: backstage.io/v1alpha1
 kind: Resource
@@ -339,6 +341,56 @@ spec:
       teams:
         eui-team:
           access_level: MANAGE_BUILD_AND_READ
+        everyone:
+          access_level: READ_ONLY
+
+---
+##
+# buildkite-pipeline-eui-deploy-docs
+# Pull request - run tests and deploy docs website PR preview
+##
+
+# yaml-language-server: $schema=https://gist.githubusercontent.com/elasticmachine/988b80dae436cafea07d9a4a460a011d/raw/e57ee3bed7a6f73077a3f55a38e76e40ec87a7cf/rre.schema.json
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: buildkite-pipeline-eui-deploy-docs
+  description: EUI pipeline to deploy the documentation website
+  links: [
+    {
+      title: "EUI - deploy-docs",
+      url: "https://buildkite.com/elastic/eui-deploy-docs",
+    }
+  ]
+
+spec:
+  type: buildkite-pipeline
+  owner: group:eui-team
+  system: buildkite
+  implementation:
+    apiVersion: buildkite.elastic.dev/v1
+    kind: Pipeline
+    metadata:
+      name: eui-deploy-docs
+    spec:
+      repository: elastic/eui
+      pipeline_file: ".buildkite/pipelines/deploy_docs.yml"
+      default_branch: main
+      env:
+        ELASTIC_PR_COMMENTS_ENABLED: 'true'
+      cancel_intermediate_builds: true
+      # Prevent cancelling builds from 'main' to avoid cancellations during file upload
+      cancel_intermediate_builds_branch_filter: "!main"
+      provider_settings:
+        build_branches: true
+        build_pull_requests: true
+        build_tags: false
+        filter_enabled: true
+        # Allow PRs and 'main' branch updates
+        filter_condition: (build.pull_request.id != null || build.branch == "main")
+      teams:
+        eui-team:
+         access_level: MANAGE_BUILD_AND_READ
         everyone:
           access_level: READ_ONLY
 
