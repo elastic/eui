@@ -14,6 +14,13 @@ export const overrides: _EuiThemeOverrides = {
     colors: {
       ink: PRIMITIVE_COLORS.black,
       ghost: PRIMITIVE_COLORS.white,
+      // TODO: REVERT ME
+      LIGHT: {
+        backgroundFilledPrimary: '#00ff00',
+      },
+      DARK: {
+        backgroundFilledPrimary: '#ff0000',
+      },
     },
   },
 };
