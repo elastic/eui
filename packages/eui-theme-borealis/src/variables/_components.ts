@@ -9,49 +9,81 @@
 import {
   _EuiThemeComponentColors,
   _EuiThemeComponents,
+  computed,
 } from '@elastic/eui-theme-common';
 
 import { SEMANTIC_COLORS } from './colors/_semantic_colors';
 import {
   dark_background_colors,
   dark_border_colors,
-  dark_brand_text_colors,
-  dark_text_colors,
 } from './colors/_colors_dark';
 
 import { buttons } from './_buttons';
 import { forms } from './_forms';
-import {
-  background_colors,
-  border_colors,
-  brand_text_colors,
-  text_colors,
-} from './colors/_colors_light';
 import { colorVis } from './colors/_colors_vis';
+import { border_colors } from './colors/_colors_light';
 
 const component_colors: _EuiThemeComponentColors = {
-  badgeBackground: background_colors.backgroundLightText,
-  badgeBackgroundSubdued: background_colors.backgroundLightText,
-  badgeBorderColorHollow: border_colors.borderBasePlain,
-  badgeIconButtonBackgroundHover:
-    background_colors.backgroundBaseInteractiveHover,
+  badgeBackground: computed(
+    ([backgroundLightText]) => backgroundLightText,
+    ['colors.backgroundLightText']
+  ),
+  badgeBackgroundSubdued: computed(
+    ([backgroundLightText]) => backgroundLightText,
+    ['colors.backgroundLightText']
+  ),
+  badgeBorderColorHollow: computed(
+    ([borderBasePlain]) => borderBasePlain,
+    ['colors.borderBasePlain']
+  ),
+  badgeIconButtonBackgroundHover: computed(
+    ([backgroundBaseInteractiveHover]) => backgroundBaseInteractiveHover,
+    ['colors.backgroundBaseInteractiveHover']
+  ),
 
-  breadcrumbsApplicationBackground: background_colors.backgroundLightText,
-  breadcrumbsApplicationColor: text_colors.textSubdued,
+  breadcrumbsApplicationBackground: computed(
+    ([backgroundLightText]) => backgroundLightText,
+    ['colors.backgroundLightText']
+  ),
+  breadcrumbsApplicationColor: computed(
+    ([textSubdued]) => textSubdued,
+    ['colors.textSubdued']
+  ),
 
   bottomBarBackground: SEMANTIC_COLORS.plainDark,
 
-  buttonGroupBackgroundDisabledSelected:
-    background_colors.backgroundBaseFormsControlDisabled,
-  buttonGroupBorderColor: border_colors.borderBasePlain,
-  buttonGroupBorderColorSelected: border_colors.borderBasePlain,
-  buttonGroupFocusColor: brand_text_colors.textPrimary,
+  buttonGroupBackgroundDisabledSelected: computed(
+    ([backgroundBaseFormsControlDisabled]) =>
+      backgroundBaseFormsControlDisabled,
+    ['colors.backgroundBaseFormsControlDisabled']
+  ),
+  buttonGroupBorderColor: computed(
+    ([borderBasePlain]) => borderBasePlain,
+    ['colors.borderBasePlain']
+  ),
+  buttonGroupBorderColorSelected: computed(
+    ([borderBasePlain]) => borderBasePlain,
+    ['colors.borderBasePlain']
+  ),
+  buttonGroupFocusColor: computed(
+    ([textPrimary]) => textPrimary,
+    ['colors.textPrimary']
+  ),
 
-  codeBackground: background_colors.backgroundBaseHighlighted,
+  codeBackground: computed(
+    ([backgroundBaseHighlighted]) => backgroundBaseHighlighted,
+    ['colors.backgroundBaseHighlighted']
+  ),
   codeBackgroundSelected: 'inherit',
-  codeColor: text_colors.textParagraph,
+  codeColor: computed(
+    ([textParagraph]) => textParagraph,
+    ['colors.textParagraph']
+  ),
   codeInlineColor: colorVis.euiColorVisAsTextLight6,
-  codeCommentColor: text_colors.textSubdued,
+  codeCommentColor: computed(
+    ([textSubdued]) => textSubdued,
+    ['colors.textSubdued']
+  ),
   codeSelectorColor: 'inherit',
   codeStringColor: colorVis.euiColorVisAsTextLight2,
   codeTagColor: colorVis.euiColorVisAsTextLight1,
@@ -64,7 +96,10 @@ const component_colors: _EuiThemeComponentColors = {
   codeAttributeColor: 'inherit',
   codeSymbolColor: colorVis.euiColorVisAsTextLight3,
   codeParamsColor: 'inherit',
-  codeMetaColor: text_colors.textSubdued,
+  codeMetaColor: computed(
+    ([textSubdued]) => textSubdued,
+    ['colors.textSubdued']
+  ),
   codeTitleColor: colorVis.euiColorVisAsTextLight4,
   codeSectionColor: colorVis.euiColorVisAsTextLight3,
   codeAdditionColor: colorVis.euiColorVisAsTextLight0,
@@ -72,103 +107,222 @@ const component_colors: _EuiThemeComponentColors = {
   codeSelectorClassColor: 'inherit',
   codeSelectorIdColor: 'inherit',
 
-  collapsibleNavGroupBackground: background_colors.backgroundBaseSubdued,
+  collapsibleNavGroupBackground: computed(
+    ([backgroundBaseSubdued]) => backgroundBaseSubdued,
+    ['colors.backgroundBaseSubdued']
+  ),
   collapsibleNavGroupBackgroundDark:
     dark_background_colors.backgroundBaseSubdued,
 
-  dataGridBorderColor: border_colors.borderBaseSubdued,
-  dataGridVerticalLineBorderColor: border_colors.borderBaseSubdued,
-  dataGridRowBackgroundStriped: background_colors.backgroundBaseSubdued,
-  dataGridRowBackgroundHover: background_colors.backgroundBaseInteractiveHover,
-  dataGridRowBackgroundSelect:
-    background_colors.backgroundBaseInteractiveSelect,
+  dataGridBorderColor: computed(
+    ([borderBaseSubdued]) => borderBaseSubdued,
+    ['colors.borderBaseSubdued']
+  ),
+  dataGridVerticalLineBorderColor: computed(
+    ([borderBaseSubdued]) => borderBaseSubdued,
+    ['colors.borderBaseSubdued']
+  ),
+  dataGridRowBackgroundStriped: computed(
+    ([backgroundBaseSubdued]) => backgroundBaseSubdued,
+    ['colors.backgroundBaseSubdued']
+  ),
+  dataGridRowBackgroundHover: computed(
+    ([backgroundBaseInteractiveHover]) => backgroundBaseInteractiveHover,
+    ['colors.backgroundBaseInteractiveHover']
+  ),
+  dataGridRowBackgroundSelect: computed(
+    ([backgroundBaseInteractiveSelect]) => backgroundBaseInteractiveSelect,
+    ['colors.backgroundBaseInteractiveSelect']
+  ),
 
-  dragDropDraggingBackground: background_colors.backgroundBaseSuccess,
-  dragDropDraggingOverBackground: background_colors.backgroundLightSuccess,
+  dragDropDraggingBackground: computed(
+    ([backgroundBaseSuccess]) => backgroundBaseSuccess,
+    ['colors.backgroundBaseSuccess']
+  ),
+  dragDropDraggingOverBackground: computed(
+    ([backgroundLightSuccess]) => backgroundLightSuccess,
+    ['colors.backgroundLightSuccess']
+  ),
 
-  filterSelectItemBackgroundFocusDisabled:
-    background_colors.backgroundBaseDisabled,
+  filterSelectItemBackgroundFocusDisabled: computed(
+    ([backgroundBaseDisabled]) => backgroundBaseDisabled,
+    ['colors.backgroundBaseDisabled']
+  ),
 
-  flyoutFooterBackground: background_colors.backgroundBaseHighlighted,
-  flyoutCloseButtonInsideBackground: background_colors.backgroundBasePlain,
+  flyoutFooterBackground: computed(
+    ([backgroundBaseHighlighted]) => backgroundBaseHighlighted,
+    ['colors.backgroundBaseHighlighted']
+  ),
+  flyoutCloseButtonInsideBackground: computed(
+    ([backgroundBasePlain]) => backgroundBasePlain,
+    ['colors.backgroundBasePlain']
+  ),
 
-  headerBackground: background_colors.backgroundBasePlain,
+  headerBackground: computed(
+    ([backgroundBasePlain]) => backgroundBasePlain,
+    ['colors.backgroundBasePlain']
+  ),
   headerDarkBackground: dark_background_colors.backgroundBasePlain,
   headerDarkSearchBorderColor: dark_border_colors.borderBasePlain,
   headerDarkSectionItemBackgroundFocus:
     dark_background_colors.backgroundBasePrimary,
 
-  keyPadMenuItemBackgroundDisabledSelect:
-    background_colors.backgroundBaseDisabled,
+  keyPadMenuItemBackgroundDisabledSelect: computed(
+    ([backgroundBaseDisabled]) => backgroundBaseDisabled,
+    ['colors.backgroundBaseDisabled']
+  ),
 
-  listGroupItemBackgroundPrimaryActive:
-    background_colors.backgroundBaseInteractiveSelect,
-  listGroupItemBackgroundSubduedActive:
-    background_colors.backgroundBaseInteractiveSelect,
-  listGroupItemBackgroundHover:
-    background_colors.backgroundBaseInteractiveHover,
-  listGroupItemBackgroundPrimaryHover:
-    background_colors.backgroundBaseInteractiveHover,
+  listGroupItemBackgroundPrimaryActive: computed(
+    ([backgroundBaseInteractiveSelect]) => backgroundBaseInteractiveSelect,
+    ['colors.backgroundBaseInteractiveSelect']
+  ),
+  listGroupItemBackgroundSubduedActive: computed(
+    ([backgroundBaseInteractiveSelect]) => backgroundBaseInteractiveSelect,
+    ['colors.backgroundBaseInteractiveSelect']
+  ),
+  listGroupItemBackgroundHover: computed(
+    ([backgroundBaseInteractiveHover]) => backgroundBaseInteractiveHover,
+    ['colors.backgroundBaseInteractiveHover']
+  ),
+  listGroupItemBackgroundPrimaryHover: computed(
+    ([backgroundBaseInteractiveHover]) => backgroundBaseInteractiveHover,
+    ['colors.backgroundBaseInteractiveHover']
+  ),
 
+  // we don't want to inherit overrides (e.g. HCM)
   loadingSpinnerBorder: border_colors.borderBasePlain,
-  loadingSpinnerHighlight: border_colors.borderStrongPrimary,
+  loadingSpinnerHighlight: computed(
+    ([borderStrongPrimary]) => borderStrongPrimary,
+    ['colors.borderStrongPrimary']
+  ),
 
   loadingChartMonoBackground0: SEMANTIC_COLORS.shade20,
   loadingChartMonoBackground1: SEMANTIC_COLORS.shade30,
   loadingChartMonoBackground2: SEMANTIC_COLORS.shade40,
   loadingChartMonoBackground3: SEMANTIC_COLORS.shade50,
 
-  markBackground: background_colors.backgroundLightPrimary,
+  markBackground: computed(
+    ([backgroundLightPrimary]) => backgroundLightPrimary,
+    ['colors.backgroundLightPrimary']
+  ),
 
-  markdownFormatTableBorderColor: border_colors.borderBasePlain,
+  markdownFormatTableBorderColor: computed(
+    ([borderBasePlain]) => borderBasePlain,
+    ['colors.borderBasePlain']
+  ),
 
-  overlayMaskBackground: background_colors.backgroundBaseInteractiveOverlay,
+  overlayMaskBackground: computed(
+    ([backgroundBaseInteractiveOverlay]) => backgroundBaseInteractiveOverlay,
+    ['colors.backgroundBaseInteractiveOverlay']
+  ),
   overlayMaskBackgroundHighContrast: `rgba(${SEMANTIC_COLORS.shade140RGB}, 0.9)`,
 
-  popoverPanelBackground: background_colors.backgroundBasePlain,
-  popoverFooterBorderColor: border_colors.borderBaseSubdued,
+  popoverPanelBackground: computed(
+    ([backgroundBasePlain]) => backgroundBasePlain,
+    ['colors.backgroundBasePlain']
+  ),
+  popoverFooterBorderColor: computed(
+    ([borderBaseSubdued]) => borderBaseSubdued,
+    ['colors.borderBaseSubdued']
+  ),
 
   scrollbarTrackColor: SEMANTIC_COLORS.shade15,
 
-  sideNavItemEmphasizedBackground:
-    background_colors.backgroundBaseInteractiveSelect,
+  sideNavItemEmphasizedBackground: computed(
+    ([backgroundBaseInteractiveSelect]) => backgroundBaseInteractiveSelect,
+    ['colors.backgroundBaseInteractiveSelect']
+  ),
 
-  selectableListItemBorderColor: border_colors.borderBaseSubdued,
+  selectableListItemBorderColor: computed(
+    ([borderBaseSubdued]) => borderBaseSubdued,
+    ['colors.borderBaseSubdued']
+  ),
 
   skeletonBackgroundSkeletonMiddleHighContrast: `rgba(${SEMANTIC_COLORS.shade100RGB}, 0.04)`,
 
-  superDatePickerBackgroundSuccees: background_colors.backgroundBaseSuccess,
+  superDatePickerBackgroundSuccees: computed(
+    ([backgroundBaseSuccess]) => backgroundBaseSuccess,
+    ['colors.backgroundBaseSuccess']
+  ),
 
-  switchBackgroundOn: background_colors.backgroundFilledPrimary,
-  switchBackgroundOff: background_colors.backgroundFilledText,
-  switchUncompressedBackgroundDisabled:
-    background_colors.backgroundBaseFormsControlDisabled,
-  switchCompressedBackgroundDisabled:
-    background_colors.backgroundBaseFormsControlDisabled,
-  switchMiniBackgroundDisabled:
-    background_colors.backgroundBaseFormsControlDisabled,
-  switchThumbBackgroundDisabled: background_colors.backgroundBasePlain,
-  switchThumbBorderOn: background_colors.backgroundFilledPrimary,
-  switchThumbBorderOff: background_colors.backgroundFilledText,
+  switchBackgroundOn: computed(
+    ([backgroundFilledPrimary]) => backgroundFilledPrimary,
+    ['colors.backgroundFilledPrimary']
+  ),
+  switchBackgroundOff: computed(
+    ([backgroundFilledText]) => backgroundFilledText,
+    ['colors.backgroundFilledText']
+  ),
+  switchUncompressedBackgroundDisabled: computed(
+    ([backgroundBaseFormsControlDisabled]) =>
+      backgroundBaseFormsControlDisabled,
+    ['colors.backgroundBaseFormsControlDisabled']
+  ),
+  switchCompressedBackgroundDisabled: computed(
+    ([backgroundBaseFormsControlDisabled]) =>
+      backgroundBaseFormsControlDisabled,
+    ['colors.backgroundBaseFormsControlDisabled']
+  ),
+  switchMiniBackgroundDisabled: computed(
+    ([backgroundBaseFormsControlDisabled]) =>
+      backgroundBaseFormsControlDisabled,
+    ['colors.backgroundBaseFormsControlDisabled']
+  ),
+  switchThumbBackgroundDisabled: computed(
+    ([backgroundBasePlain]) => backgroundBasePlain,
+    ['colors.backgroundBasePlain']
+  ),
+  switchThumbBorderOn: computed(
+    ([backgroundFilledPrimary]) => backgroundFilledPrimary,
+    ['colors.backgroundFilledPrimary']
+  ),
+  switchThumbBorderOff: computed(
+    ([backgroundFilledText]) => backgroundFilledText,
+    ['colors.backgroundFilledText']
+  ),
   switchIconDisabled: forms.LIGHT.iconDisabled,
 
-  tableRowBackgroundHover: background_colors.backgroundBaseInteractiveHover,
-  tableRowBackgroundSelected: background_colors.backgroundBaseInteractiveSelect,
-  tableRowBackgroundSelectedHover:
-    background_colors.backgroundBaseInteractiveSelect,
-  tableRowInteractiveBackgroundHover:
-    background_colors.backgroundBaseInteractiveSelect,
-  tableRowInteractiveBackgroundFocus:
-    background_colors.backgroundBaseInteractiveSelect,
-  tableCellSortableIconColor: background_colors.backgroundFilledText,
+  tableRowBackgroundHover: computed(
+    ([backgroundBaseInteractiveHover]) => backgroundBaseInteractiveHover,
+    ['colors.backgroundBaseInteractiveHover']
+  ),
+  tableRowBackgroundSelected: computed(
+    ([backgroundBaseInteractiveSelect]) => backgroundBaseInteractiveSelect,
+    ['colors.backgroundBaseInteractiveSelect']
+  ),
+  tableRowBackgroundSelectedHover: computed(
+    ([backgroundBaseInteractiveSelect]) => backgroundBaseInteractiveSelect,
+    ['colors.backgroundBaseInteractiveSelect']
+  ),
+  tableRowInteractiveBackgroundHover: computed(
+    ([backgroundBaseInteractiveSelect]) => backgroundBaseInteractiveSelect,
+    ['colors.backgroundBaseInteractiveSelect']
+  ),
+  tableRowInteractiveBackgroundFocus: computed(
+    ([backgroundBaseInteractiveSelect]) => backgroundBaseInteractiveSelect,
+    ['colors.backgroundBaseInteractiveSelect']
+  ),
+  tableCellSortableIconColor: computed(
+    ([backgroundFilledText]) => backgroundFilledText,
+    ['colors.backgroundFilledText']
+  ),
 
   tooltipBackground: dark_background_colors.backgroundBaseSubdued,
   tooltipBorder: dark_border_colors.borderBaseSubdued,
-  tooltipBorderFloating: border_colors.borderBaseFloating,
+  tooltipBorderFloating: computed(
+    ([borderBaseFloating]) => borderBaseFloating,
+    ['colors.borderBaseFloating']
+  ),
 
-  tourFooterBackground: background_colors.backgroundBaseHighlighted,
+  tourFooterBackground: computed(
+    ([backgroundBaseHighlighted]) => backgroundBaseHighlighted,
+    ['colors.backgroundBaseHighlighted']
+  ),
 
-  treeViewItemBackgroundHover: background_colors.backgroundBaseInteractiveHover,
+  treeViewItemBackgroundHover: computed(
+    ([backgroundBaseInteractiveHover]) => backgroundBaseInteractiveHover,
+    ['colors.backgroundBaseInteractiveHover']
+  ),
 };
 
 export const components: _EuiThemeComponents = {
@@ -178,144 +332,42 @@ export const components: _EuiThemeComponents = {
   DARK: {
     ...component_colors,
 
-    badgeBackground: dark_background_colors.backgroundLightText,
-    badgeBackgroundSubdued: dark_background_colors.backgroundLightText,
-    badgeBorderColorHollow: dark_border_colors.borderBasePlain,
-    badgeIconButtonBackgroundHover:
-      dark_background_colors.backgroundBaseInteractiveHover,
-
-    breadcrumbsApplicationBackground:
-      dark_background_colors.backgroundLightText,
-    breadcrumbsApplicationColor: dark_text_colors.textSubdued,
-
-    buttonGroupBackgroundDisabledSelected:
-      dark_background_colors.backgroundBaseFormsControlDisabled,
-    buttonGroupBorderColor: dark_border_colors.borderBasePlain,
-    buttonGroupBorderColorSelected: dark_border_colors.borderBasePlain,
-    buttonGroupFocusColor: dark_brand_text_colors.textPrimary,
-
-    codeBackground: dark_background_colors.backgroundBaseHighlighted,
-    codeBackgroundSelected: 'inherit',
-    codeColor: dark_text_colors.textParagraph,
     codeInlineColor: colorVis.euiColorVisAsTextDark6,
-    codeCommentColor: dark_text_colors.textSubdued,
-    codeSelectorColor: 'inherit',
     codeStringColor: colorVis.euiColorVisAsTextDark2,
     codeTagColor: colorVis.euiColorVisAsTextDark1,
     codeNameColor: colorVis.euiColorVisAsTextDark1,
     codeNumberColor: colorVis.euiColorVisAsTextDark0,
     codeKeywordColor: colorVis.euiColorVisAsTextDark6,
-    codeFunctionTitleColor: 'inherit',
     codeTypeColor: colorVis.euiColorVisAsTextDark1,
-    codeAttributeColor: 'inherit',
     codeSymbolColor: colorVis.euiColorVisAsTextDark3,
-    codeParamsColor: 'inherit',
-    codeMetaColor: dark_text_colors.textSubdued,
     codeTitleColor: colorVis.euiColorVisAsTextDark4,
     codeSectionColor: colorVis.euiColorVisAsTextDark3,
     codeAdditionColor: colorVis.euiColorVisAsTextDark0,
     codeDeletionColor: colorVis.euiColorVisAsTextDark3,
-    codeSelectorClassColor: 'inherit',
-    codeSelectorIdColor: 'inherit',
-
-    collapsibleNavGroupBackground: dark_background_colors.backgroundBaseSubdued,
-    collapsibleNavGroupBackgroundDark:
-      dark_background_colors.backgroundBaseSubdued,
-
-    dataGridBorderColor: dark_border_colors.borderBaseSubdued,
-    dataGridVerticalLineBorderColor: dark_border_colors.borderBaseSubdued,
-    dataGridRowBackgroundStriped: dark_background_colors.backgroundBaseSubdued,
-    dataGridRowBackgroundHover:
-      dark_background_colors.backgroundBaseInteractiveHover,
-    dataGridRowBackgroundSelect:
-      dark_background_colors.backgroundBaseInteractiveSelect,
-
-    dragDropDraggingBackground: dark_background_colors.backgroundBaseSuccess,
-    dragDropDraggingOverBackground:
-      dark_background_colors.backgroundLightSuccess,
-
-    filterSelectItemBackgroundFocusDisabled:
-      dark_background_colors.backgroundBaseDisabled,
-
-    flyoutFooterBackground: dark_background_colors.backgroundBaseHighlighted,
-    flyoutCloseButtonInsideBackground:
-      dark_background_colors.backgroundBasePlain,
-
-    headerBackground: dark_background_colors.backgroundBasePlain,
-
-    keyPadMenuItemBackgroundDisabledSelect:
-      dark_background_colors.backgroundBaseDisabled,
-
-    listGroupItemBackgroundPrimaryActive:
-      dark_background_colors.backgroundBaseInteractiveSelect,
-    listGroupItemBackgroundSubduedActive:
-      dark_background_colors.backgroundBaseInteractiveSelect,
-    listGroupItemBackgroundHover:
-      dark_background_colors.backgroundBaseInteractiveHover,
-    listGroupItemBackgroundPrimaryHover:
-      dark_background_colors.backgroundBaseInteractiveHover,
 
     loadingSpinnerBorder: dark_border_colors.borderBasePlain,
-    loadingSpinnerHighlight: dark_border_colors.borderStrongPrimary,
 
     loadingChartMonoBackground0: SEMANTIC_COLORS.shade110,
     loadingChartMonoBackground1: SEMANTIC_COLORS.shade100,
     loadingChartMonoBackground2: SEMANTIC_COLORS.shade90,
     loadingChartMonoBackground3: SEMANTIC_COLORS.shade80,
 
-    markBackground: dark_background_colors.backgroundLightPrimary,
-
-    markdownFormatTableBorderColor: dark_border_colors.borderBasePlain,
-
-    overlayMaskBackground:
-      dark_background_colors.backgroundBaseInteractiveOverlay,
     overlayMaskBackgroundHighContrast: `rgba(${SEMANTIC_COLORS.shade140RGB}, 0.9)`,
-
-    popoverPanelBackground: dark_background_colors.backgroundBasePlain,
-    popoverFooterBorderColor: dark_border_colors.borderBaseSubdued,
 
     scrollbarTrackColor: SEMANTIC_COLORS.shade145,
 
-    sideNavItemEmphasizedBackground:
-      dark_background_colors.backgroundBaseInteractiveSelect,
-
-    selectableListItemBorderColor: dark_border_colors.borderBaseSubdued,
-
     skeletonBackgroundSkeletonMiddleHighContrast: `rgba(${SEMANTIC_COLORS.plainLightRGB}, 0.3)`,
 
-    switchBackgroundOn: dark_background_colors.backgroundFilledPrimary,
-    switchBackgroundOff: dark_background_colors.backgroundFilledText,
-    switchUncompressedBackgroundDisabled:
-      dark_background_colors.backgroundBaseFormsControlDisabled,
-    switchCompressedBackgroundDisabled:
-      dark_background_colors.backgroundBaseFormsControlDisabled,
-    switchMiniBackgroundDisabled:
-      dark_background_colors.backgroundBaseFormsControlDisabled,
-    switchThumbBackgroundDisabled: dark_background_colors.backgroundBasePlain,
-    switchThumbBorderOn: dark_background_colors.backgroundFilledPrimary,
-    switchThumbBorderOff: dark_background_colors.backgroundFilledText,
     switchIconDisabled: forms.DARK.iconDisabled,
 
-    superDatePickerBackgroundSuccees:
-      dark_background_colors.backgroundBaseSuccess,
-
-    tableRowBackgroundHover:
-      dark_background_colors.backgroundBaseInteractiveHover,
-    tableRowBackgroundSelected:
-      dark_background_colors.backgroundBaseInteractiveSelect,
-    tableRowBackgroundSelectedHover:
-      dark_background_colors.backgroundBaseInteractiveSelect,
-    tableRowInteractiveBackgroundHover:
-      dark_background_colors.backgroundBaseInteractiveHover,
-    tableRowInteractiveBackgroundFocus:
-      dark_background_colors.backgroundBaseInteractiveHover,
-    tableCellSortableIconColor: dark_background_colors.backgroundFilledText,
-
-    tooltipBorderFloating: dark_border_colors.borderBaseFloating,
-
-    tourFooterBackground: dark_background_colors.backgroundBaseHighlighted,
-
-    treeViewItemBackgroundHover:
-      dark_background_colors.backgroundBaseInteractiveHover,
+    // TODO: align table hover states
+    tableRowInteractiveBackgroundHover: computed(
+      ([backgroundBaseInteractiveHover]) => backgroundBaseInteractiveHover,
+      ['colors.backgroundBaseInteractiveHover']
+    ),
+    tableRowInteractiveBackgroundFocus: computed(
+      ([backgroundBaseInteractiveHover]) => backgroundBaseInteractiveHover,
+      ['colors.backgroundBaseInteractiveHover']
+    ),
   },
 };
