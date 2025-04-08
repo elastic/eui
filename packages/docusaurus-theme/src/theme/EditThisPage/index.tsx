@@ -8,16 +8,12 @@ import { EuiButton, useEuiMemoizedStyles, UseEuiTheme } from '@elastic/eui';
 import { euiButtonColor } from '@elastic/eui/lib/global_styling/mixins/_button';
 
 const getStyles = (theme: UseEuiTheme) => {
-  const { euiTheme } = theme;
   const buttonColor = euiButtonColor(theme, 'primary');
 
   return {
     editPage: css`
       // overriding Docusaurus link hover styles to preserve button styles
       --ifm-link-hover-color: ${buttonColor.color};
-
-      border: ${euiTheme.border.thin};
-      border-color: ${euiTheme.colors.primary};
     `,
   };
 };

@@ -1,0 +1,272 @@
+### Configuring forms
+
+Since the child components of **EuiModal** are required to be in a specific order, you can only wrap the contents within **EuiModalBody** with the `<form />` element. You can then hook up your submit button inside **EuiModalFooter** by adding the `id` of the `<form />` element to the `form` prop of the button.
+
+```tsx interactive
+import React, { useState } from 'react';
+import {
+  EuiButton,
+  EuiButtonEmpty,
+  EuiFieldText,
+  EuiForm,
+  type,
+  EuiFormProps,
+  EuiFormRow,
+  EuiModal,
+  EuiModalBody,
+  EuiModalFooter,
+  EuiModalHeader,
+  EuiModalHeaderTitle,
+  EuiRange,
+  EuiSwitch,
+  EuiSuperSelect,
+  EuiText,
+  useGeneratedHtmlId,
+} from '@elastic/eui';
+
+const superSelectOptions = [
+  {
+    value: 'option_one',
+    inputDisplay: 'Option one',
+    dropdownDisplay: (
+      <>
+        <strong>Option one</strong>
+        <EuiText size="s" color="subdued">
+          <p>Has a short description giving more detail to the option.</p>
+        </EuiText>
+      </>
+    ),
+  },
+  {
+    value: 'option_two',
+    inputDisplay: 'Option two',
+    dropdownDisplay: (
+      <>
+        <strong>Option two</strong>
+        <EuiText size="s" color="subdued">
+          <p>Has a short description giving more detail to the option.</p>
+        </EuiText>
+      </>
+    ),
+  },
+  {
+    value: 'option_three',
+    inputDisplay: 'Option three',
+    dropdownDisplay: (
+      <>
+        <strong>Option three</strong>
+        <EuiText size="s" color="subdued">
+          <p>Has a short description giving more detail to the option.</p>
+        </EuiText>
+      </>
+    ),
+  },
+];
+
+const ExampleForm = ({ id }: Partial<EuiFormProps>) => {
+  const modalFormSwitchId = useGeneratedHtmlId({ prefix: 'modalFormSwitch' });
+
+  const [isSwitchChecked, setIsSwitchChecked] = useState(true);
+  const onSwitchChange = () =>
+    setIsSwitchChecked((isSwitchChecked) => !isSwitchChecked);
+
+  const [superSelectvalue, setSuperSelectValue] = useState('option_one');
+  const onSuperSelectChange = (value: string) => {
+    setSuperSelectValue(value);
+  };
+
+  return (
+    <EuiForm id={id} component="form">
+      <EuiFormRow>
+        <EuiSwitch
+          id={modalFormSwitchId}
+          name="popswitch"
+          label="Cool modal form"
+          checked={isSwitchChecked}
+          onChange={onSwitchChange}
+        />
+      </EuiFormRow>
+
+      <EuiFormRow label="A text field">
+        <EuiFieldText name="popfirst" />
+      </EuiFormRow>
+
+      <EuiFormRow label="Range" helpText="Some help text for the range">
+        <EuiRange min={0} max={100} value={50} name="poprange" />
+      </EuiFormRow>
+
+      <EuiFormRow label="An EuiSuperSelect">
+        <EuiSuperSelect
+          options={superSelectOptions}
+          valueOfSelected={superSelectvalue}
+          onChange={(value) => onSuperSelectChange(value)}
+          itemLayoutAlign="top"
+          hasDividers
+        />
+      </EuiFormRow>
+    </EuiForm>
+  );
+};
+
+export default () => {
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const closeModal = () => setIsModalVisible(false);
+  const showModal = () => setIsModalVisible(true);
+
+  const modalFormId = useGeneratedHtmlId({ prefix: 'modalForm' });
+  const modalTitleId = useGeneratedHtmlId();
+
+  return (
+    <>
+      <EuiButton onClick={showModal}>Show form modal</EuiButton>
+
+      {isModalVisible && (
+        <EuiModal
+          aria-labelledby={modalTitleId}
+          onClose={closeModal}
+          initialFocus="[name=popswitch]"
+        >
+          <EuiModalHeader>
+            <EuiModalHeaderTitle id={modalTitleId}>
+              Modal title
+            </EuiModalHeaderTitle>
+          </EuiModalHeader>
+
+          <EuiModalBody>
+            <ExampleForm id={modalFormId} />
+          </EuiModalBody>
+
+          <EuiModalFooter>
+            <EuiButtonEmpty onClick={closeModal}>Cancel</EuiButtonEmpty>
+
+            <EuiButton
+              type="submit"
+              form={modalFormId}
+              onClick={closeModal}
+              fill
+            >
+              Save
+            </EuiButton>
+          </EuiModalFooter>
+        </EuiModal>
+      )}
+    </>
+  );
+};
+```
+
+### Setting width
+
+Modals start with a minimum width of `400px`, just enough to display form rows. They will grow to fit the contents until it reaches the specified `maxWidth`, the default of which is set to the medium breakpoint.
+
+If the modal is not growing wide enough to fit your contents, you can pass a specific `style.width`, just remember that modals will always shrink to fit the window width.
+
+```tsx interactive
+import React, { useState } from 'react';
+import {
+  EuiButton,
+  EuiModal,
+  EuiModalBody,
+  EuiModalFooter,
+  EuiModalHeader,
+  EuiModalHeaderTitle,
+  EuiCodeBlock,
+  EuiSpacer,
+  useGeneratedHtmlId,
+} from '@elastic/eui';
+
+export default () => {
+  const [isModalVisible, setIsModalVisible] = useState(false);
+
+  const closeModal = () => setIsModalVisible(false);
+  const showModal = () => setIsModalVisible(true);
+
+  const modalTitle = useGeneratedHtmlId();
+
+  return (
+    <>
+      <EuiButton onClick={showModal}>Show modal with custom width</EuiButton>
+
+      {isModalVisible && (
+        <EuiModal
+          aria-labelledby={modalTitle}
+          style={{ width: 800 }}
+          onClose={closeModal}
+        >
+          <EuiModalHeader>
+            <EuiModalHeaderTitle id={modalTitle}>
+              Modal title
+            </EuiModalHeaderTitle>
+          </EuiModalHeader>
+
+          <EuiModalBody>
+            This modal has the following setup:
+            <EuiSpacer />
+            <EuiCodeBlock language="html" isCopyable>
+              {`<EuiModal aria-labelledby={titleId} style={{ width: 800 }} onClose={closeModal}>
+  <EuiModalHeader>
+    <EuiModalHeaderTitle id={titleId}><!-- Modal title --></EuiModalHeaderTitle>
+  </EuiModalHeader>
+
+  <EuiModalBody>
+    <!-- Modal body -->
+  </EuiModalBody>
+
+  <EuiModalFooter>
+    <EuiButton onClick={closeModal} fill>
+      Close
+    </EuiButton>
+  </EuiModalFooter>
+</EuiModal>`}
+            </EuiCodeBlock>
+          </EuiModalBody>
+
+          <EuiModalFooter>
+            <EuiButton onClick={closeModal} fill>
+              Close
+            </EuiButton>
+          </EuiModalFooter>
+        </EuiModal>
+      )}
+    </>
+  );
+};
+
+```
+
+### Confirming an action
+
+Use a [Modal](#confirming-an-action) when you need to interrupt a user and ask them to confirm an action.
+
+<FigmaEmbed url="https://www.figma.com/file/Uo8iRqa0BaLSvD7BlyNqbp/Confirmation-prompts?type=design&node-id=6-343&mode=design&t=LrJcE5JqrDwsT5DX-0" title="Generic confirmation modal" />
+
+**Structure**
+1. **Title** _mandatory_
+    - Whenever possible, frame it as a question that provides context for the action. Don't use "Are you sure?"
+    - Focus the question on what's important to the user and in a way that assumes intent from them. For example `Discard 7 changes?` instead of `Exit without saving?`
+    - Avoid including text variables in the title, especially for things users can input without character limits, or with long limits. This is often the case with object labels.
+    For example, `Apply configuration changes?` instead of `Apply configuration changes to Loremipsum-dolorsitamet-consectetur-adipiscing-elit deployment?`
+2. **Body** _mandatory_
+    1. **Cause** _optional_
+        - If the context is important to know, add it.
+    2. **Consequences** _mandatory_
+        - Let users know what happens if they continue.
+        - If possible, list the objects that may be impacted.
+        - Don't repeat the title.
+    3. More information optional
+        - If necessary, anticipate user questions or need for help by including a link to a relevant source of information (like docs).
+3. **Calls to action** _mandatory_
+    - The main action confirms the question asked in the title.
+    - If there's enough space and it is relevant, include the number of impacted objects and their noun. For example `Invite 3 users` instead of `Send invite`.
+    - Always provide a secondary CTA that allows users to leave the prompt without taking an action.
+    - Not all choices are binary. Add a third CTA when it makes sense for common that actions users would want to do.
+    - Make sure each CTA is explicit and not ambiguous with the other CTAs next to it.
+
+### Confirming a destructive action
+Asking to confirm a delete or remove action follows the same principles as the default pattern, with 2 additions:
+
+- The main CTA is extra clear on what is about to be deleted with a clear noun, in addition to visual clues (`color.danger` token).
+- The body is unambiguous about what won’t be recoverable after the action is confirmed.
+- Optionally, and depending on the importance of the destructive action, you may include an extra confirmation within the **body** of the modal. If you do so, use something generic, such as "delete" or that users can copy easily that will remind them of what they are actually deleting.
+
+<FigmaEmbed url="https://www.figma.com/file/Uo8iRqa0BaLSvD7BlyNqbp/Confirmation-prompts?type=design&node-id=501-990&mode=design&t=LrJcE5JqrDwsT5DX-0" title="Confirmation modal for a destructive action" />

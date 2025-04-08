@@ -8,6 +8,7 @@ import {
   UseEuiTheme,
   useEuiMemoizedStyles,
   EuiLink,
+  EuiPanel,
 } from '@elastic/eui';
 import {
   ProcessedComponent,
@@ -51,6 +52,10 @@ const getPropTableStyles = ({ euiTheme }: UseEuiTheme) => ({
     font-weight: ${euiTheme.font.weight.semiBold};
   `,
   description: css`
+    p {
+      font-size: var(--eui-font-size-s);
+    }
+
     p:first-child {
       margin-block-start: 0;
     }
@@ -72,6 +77,9 @@ const getPropTableStyles = ({ euiTheme }: UseEuiTheme) => ({
     &:hover .propLink {
       display: inline-block;
     }
+  `,
+  tableCell: css`
+    vertical-align: text-top;
   `,
 });
 
@@ -173,6 +181,14 @@ export const PropTable = ({
     [definition.displayName]
   );
 
+  const cellProps = useCallback(
+    (item: ProcessedComponentProp) => ({
+      id: getPropId(item, definition.displayName),
+      css: styles.tableCell,
+    }),
+    [definition.displayName]
+  );
+
   return (
     <EuiFlexGroup
       aria-label={`Component properties table for ${definition.displayName}`}
@@ -188,13 +204,17 @@ export const PropTable = ({
         )}
         <PropTableExtendedTypes definition={definition} />
       </header>
-      <EuiBasicTable
-        css={styles.table}
-        width="100%"
-        items={tableItems}
-        columns={columns}
-        rowProps={rowProps}
-      />
+      <EuiPanel color="plain" hasBorder>
+        <EuiBasicTable
+          css={styles.table}
+          width="100%"
+          items={tableItems}
+          columns={columns}
+          rowProps={rowProps}
+          cellProps={cellProps}
+          compressed
+        />
+      </EuiPanel>
     </EuiFlexGroup>
   );
 };
