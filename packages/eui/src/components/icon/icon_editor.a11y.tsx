@@ -21,7 +21,6 @@ describe('EuiIcons', () => {
       'editorAlignRight',
       'editorBold',
       'editorChecklist',
-      'editorCodeBlock',
       'editorComment',
       'editorDistributeHorizontal',
       'editorDistributeVertical',
