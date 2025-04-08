@@ -67,9 +67,12 @@ yarn npm whoami # Should return an error about not being logged in
 
 We also update the [release's tag in github](https://github.com/elastic/eui/tags) by _creating a release_ for the version and copying over its _CHANGELOG_ entries. 
 * Click the three dot menu on the right side of the latest tag, then click "Create release" from the flyout menu
-* Type a lowercase "v" and the tag number into the release name field with no spaces
+* Type a lowercase "v" and the tag number into the "Release title" field with no spaces.
 * Copy the latest year's _CHANGELOG_ entry into the release description. Do not included the linked version header.
-* (TODO: screencast this next time to include a GIF here)
+
+Example [release notes](https://github.com/elastic/eui/releases/tag/v101.3.0).
+
+![Adding GitHub release notes](./adding-github-release-notes.gif)
 
 ### eui.elastic.co
 
