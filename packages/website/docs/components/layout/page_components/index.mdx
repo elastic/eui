@@ -9,7 +9,7 @@ id: layout_page_components_overview
 import fakeSidebar from '!url-loader!./fake_sidebar.svg';
 import fakeParagraph from '!url-loader!./fake_paragraph.svg';
 
-import { PageComponentsPreviewWrapper, FixedHeightPreviewWrapper } from './preview_wrapper';
+import { PageComponentsPreviewWrapper, FixedHeightPreviewWrapper } from './_preview_wrapper';
 ```
 
 Page layouts are modular and fit together in a precise manner, though certain parts can also be added or removed as needed. EUI provides both the **individual page components** and an [over-arching template](../../templates/page_template/overview.mdx) for easily creating some pre-defined layouts.
@@ -28,12 +28,8 @@ If you're looking for full page layout examples, we recommend using the [EuiPage
 
 **EuiPageSidebar** doesn't contain many configurations itself, but it does dictate how the rest of the page contents should be displayed. Typically you'll want to wrap all your page contents in **EuiPageBody** and set `panelled={true}` when you have a side bar.
 
-import fakeSidebar from '!url-loader!./fake_sidebar.svg';
-import fakeParagraph from '!url-loader!./fake_paragraph.svg';
+<Demo scope={{ fakeParagraph, fakeSidebar }} previewPadding="none" previewWrapper={FixedHeightPreviewWrapper}>
 
-import { PageComponentsPreviewWrapper } from './_preview_wrapper';
-
-<Demo scope={{ fakeParagraph, fakeSidebar }} previewPadding="none" previewWrapper={PageComponentsPreviewWrapper}>
   ```tsx
   import React, { useState } from 'react';
   import { css } from '@emotion/react';
