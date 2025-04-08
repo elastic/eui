@@ -24,7 +24,7 @@ const demoTourSteps = [
     title: 'Build Mode',
     content: <p>Build your project.</p>,
     anchorRef: 'notActionDrivenStep2',
-    iconType: 'editorCodeBlock',
+    iconType: 'code',
   },
   {
     step: 3,

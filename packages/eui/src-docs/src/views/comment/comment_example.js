@@ -158,7 +158,7 @@ export const CommentListExample = {
                 . Use in conjunction with{' '}
                 <EuiCode>timelineAvatarAriaLabel</EuiCode> to pass an aria label
                 to the avatar. If no avatar is provided, it will default to an
-                avatar with a <EuiCode>userAvatar</EuiCode> icon.
+                avatar with a <EuiCode>user</EuiCode> icon.
               </li>
               <li>
                 <EuiCode>eventIcon</EuiCode>: Icon that shows before the
@@ -223,7 +223,7 @@ export const CommentListExample = {
           <ul>
             <li>
               By default, each <strong>EuiComment</strong> shows an avatar with
-              the <EuiCode>userAvatar</EuiCode> icon. A{' '}
+              the <EuiCode>user</EuiCode> icon. A{' '}
               <EuiCode>timelineAvatarAriaLabel</EuiCode>
               should be provided when using this default option.
             </li>

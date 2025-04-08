@@ -56,6 +56,7 @@ export const iconTypes: Array<IconType> = [
   'continuityWithin',
   'contrast',
   'contrastHigh',
+  'controls',
   'controlsHorizontal',
   'controlsVertical',
   'copy',

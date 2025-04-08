@@ -30,7 +30,7 @@ export const typeToPathMap = {
   asterisk: 'asterisk',
   at: 'at',
   auditbeatApp: 'app_auditbeat',
-  beaker: 'beaker',
+  beaker: 'flask',
   bell: 'bell',
   bellSlash: 'bellSlash',
   beta: 'beta',
@@ -73,8 +73,9 @@ export const typeToPathMap = {
   continuityWithin: 'continuityWithin',
   contrast: 'contrast',
   contrastHigh: 'contrastHigh',
-  controlsHorizontal: 'controls_horizontal',
-  controlsVertical: 'controls_vertical',
+  controls: 'controls',
+  controlsHorizontal: 'controls', // NOTE: This is an undocumented alias for `controls`, added to avoid breaking changes
+  controlsVertical: 'controls', // NOTE: This is an undocumented alias for `controls`, added to avoid breaking changes
   copy: 'copy',
   copyClipboard: 'copy_clipboard',
   createAdvancedJob: 'ml_create_advanced_job',
@@ -111,7 +112,7 @@ export const typeToPathMap = {
   editorAlignRight: 'editor_align_right',
   editorBold: 'editor_bold',
   editorChecklist: 'editor_checklist',
-  editorCodeBlock: 'editor_code_block',
+  editorCodeBlock: 'code', // NOTE: This is an undocumented alias for `code`, added to avoid breaking changes
   editorComment: 'editor_comment',
   editorDistributeHorizontal: 'editorDistributeHorizontal',
   editorDistributeVertical: 'editorDistributeVertical',
@@ -161,6 +162,7 @@ export const typeToPathMap = {
   filterInclude: 'filterInclude',
   filterInCircle: 'filterInCircle',
   flag: 'flag',
+  flask: 'flask',
   fleetApp: 'app_agent',
   fold: 'fold',
   folderCheck: 'folder_check',
@@ -431,7 +433,7 @@ export const typeToPathMap = {
   upgradeAssistantApp: 'app_upgrade_assistant',
   uptimeApp: 'app_uptime',
   user: 'user',
-  userAvatar: 'userAvatar',
+  userAvatar: 'user', // NOTE: This is an undocumented alias for `user`, added to avoid breaking changes
   users: 'users',
   usersRolesApp: 'app_users_roles',
   vector: 'vector',
@@ -453,7 +455,7 @@ export const typeToPathMap = {
   visTagCloud: 'vis_tag_cloud',
   visText: 'vis_text',
   visTimelion: 'vis_timelion',
-  visVega: 'vis_vega',
+  visVega: 'code', // NOTE: This is an undocumented alias for `code`, added to avoid breaking changes
   visVisualBuilder: 'vis_visual_builder',
   visualizeApp: 'app_visualize',
   vulnerabilityManagementApp: 'app_vulnerability_management',
