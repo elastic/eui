@@ -58,7 +58,7 @@ describe('EuiIcons', () => {
       cy.mount(<EditorGrid />);
       cy.get('div[data-cy-root]')
         .find('svg', { timeout: 5000 })
-        .should('have.length', 29);
+        .should('have.length', 28);
       cy.checkAxe();
     });
   });
