@@ -19,6 +19,7 @@ import Heading from '@theme/Heading';
 import types from '@elastic/eui-docgen/dist/types.json';
 
 import { PropTableExtendedTypes } from './extended_types';
+import Heading from '@theme/Heading';
 
 export interface Source {
   fileName: string;

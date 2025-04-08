@@ -18,13 +18,13 @@ Example:
 
 ## When not to use this pattern
 
-Do not use an error warning when the error is directly related to the current task. Instead, use the [error page pattern](./error_pages.mdx) or the [error banner pattern](error_banners.mdx/error_).
+Do not use an error warning when the error is directly related to the current task. Instead, use the [error page pattern](./error_pages.mdx) or the [error banner pattern](error_banners.mdx#error-banner).
 
 Do not use an error warning for validating information the user has entered, instead use the [validation errors pattern](./error_validation.mdx).
 
 ## How it works
 
-Use the [EuiToast](../../../components/toast#danger) component, with the props:
+Use the [EuiToast](../../components/display/toast/overview.mdx#danger) component, with the props:
 - `color="danger"`
 - `iconType="alert"`
 

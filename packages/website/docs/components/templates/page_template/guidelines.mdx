@@ -12,7 +12,7 @@ import { EuiFlexGroup } from '@elastic/eui';
 Try to use as much of the namespaced (e.g. `<EuiPageTemplate.Header />`) as much as possible. This will ensure that top level props are propagated through and alignment is kept through the stacking order. You can use the non-namespaced versions (e.g. `<EuiPageSection>`) if you deliberately don't want the props to inherit.
 
 import contentCenterSvg from '!url-loader!./content_center.svg';
-import singleSvg from '!url-loader!./single.svg';
+import singleSvg from '!url-loader!./content_single.svg';
 
 <Demo scope={{ singleSvg, contentCenterSvg }}>
   ```tsx
@@ -154,6 +154,8 @@ If, after loading, the entire page renders as an empty or error state, the loadi
   <Guideline type="do" text="Use the empty prompt as a loading state followed by an empty prompt styled as a error/empty state (or loaded content).">
     ![Good example of loading state ending in an error state using centered empty prompt for both](./do_9.png)
   </Guideline>
+</EuiFlexGroup>
+<EuiFlexGroup gutterSize="m">
   <Guideline type="dont" text="Temporarily showing content like the page headers when loading then removing those elements on error is jarring.">
     ![Bad example of loading state not using empty prompt ending in an error state changes the whole page contents](./dont_9.png)
   </Guideline>

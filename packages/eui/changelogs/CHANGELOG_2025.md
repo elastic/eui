@@ -1,3 +1,12 @@
+## [`v101.3.0`](https://github.com/elastic/eui/releases/v101.3.0)
+
+- Updated 78 existing and added two new glyphs (`code` and `checkCircle`) for `EuiIcon` ([#8530](https://github.com/elastic/eui/pull/8530))
+- Changed `gutterSize` to `m` between right side items on `EuiPageHeader` ([#8529](https://github.com/elastic/eui/pull/8529))
+
+**Bug fixes**
+
+- Fixed a visual bug on disabled `EuiButton` in high contrast mode where wrong text colors were applied ([#8550](https://github.com/elastic/eui/pull/8550))
+
 ## [`v101.2.0`](https://github.com/elastic/eui/releases/v101.2.0)
 
 - Added `showToolTip` prop on `EuiColorPickerSwatch` ([#8512](https://github.com/elastic/eui/pull/8512))
