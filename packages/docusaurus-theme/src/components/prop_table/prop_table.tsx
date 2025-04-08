@@ -6,7 +6,6 @@ import {
   EuiFlexGroup,
   EuiCode,
   UseEuiTheme,
-  EuiTitle,
   useEuiMemoizedStyles,
   EuiLink,
 } from '@elastic/eui';
@@ -17,6 +16,7 @@ import {
 import { useCallback, useMemo } from 'react';
 import { css } from '@emotion/react';
 import { PropTableExtendedTypes } from './extended_types';
+import Heading from '@theme/Heading';
 
 export interface PropTableProps {
   definition: ProcessedComponent;
@@ -77,7 +77,7 @@ const getPropTableStyles = ({ euiTheme }: UseEuiTheme) => ({
 
 export const PropTable = ({
   definition,
-  headingLevel: HeadingLevel = 'h3',
+  headingLevel = 'h3',
   showTitle = true,
 }: PropTableProps) => {
   const styles = useEuiMemoizedStyles(getPropTableStyles);
@@ -182,9 +182,9 @@ export const PropTable = ({
     >
       <header css={styles.header}>
         {showTitle && (
-          <EuiTitle size="m">
-            <HeadingLevel>{definition.displayName}</HeadingLevel>
-          </EuiTitle>
+          <Heading as={headingLevel} id={definition.displayName}>
+            {definition.displayName}
+          </Heading>
         )}
         <PropTableExtendedTypes definition={definition} />
       </header>
