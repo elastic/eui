@@ -352,15 +352,7 @@ export type _EuiThemeVisColors = {
 };
 
 export type _EuiThemeConstantColors = {
-  /**
-   * Purest **white**
-   * @deprecated
-   */
   ghost: string;
-  /**
-   * Purest **black**
-   * @deprecated
-   */
   ink: string;
 
   plainLight: string;
