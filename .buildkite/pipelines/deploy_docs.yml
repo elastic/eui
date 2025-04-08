@@ -7,5 +7,6 @@ agents:
 
 steps:
   - label: ':docusaurus: Build and deploy documentation website'
+    image: "family/eui-ubuntu-2204"
     timeout_in_minutes: 90
     command: .buildkite/scripts/pipelines/pipeline_deploy_new_docs.sh
