@@ -20,7 +20,7 @@ exports[`EuiComment is rendered 1`] = `
       >
         <span
           class="euiAvatar__icon"
-          data-euiicon-type="userAvatar"
+          data-euiicon-type="user"
         />
       </div>
     </div>
@@ -54,7 +54,7 @@ exports[`EuiComment props event is rendered 1`] = `
       >
         <span
           class="euiAvatar__icon"
-          data-euiicon-type="userAvatar"
+          data-euiicon-type="user"
         />
       </div>
     </div>
@@ -115,7 +115,7 @@ exports[`EuiComment props timestamp is rendered 1`] = `
       >
         <span
           class="euiAvatar__icon"
-          data-euiicon-type="userAvatar"
+          data-euiicon-type="user"
         />
       </div>
     </div>
@@ -178,7 +178,7 @@ exports[`EuiComment renders a body 1`] = `
       >
         <span
           class="euiAvatar__icon"
-          data-euiicon-type="userAvatar"
+          data-euiicon-type="user"
         />
       </div>
     </div>
