@@ -9,7 +9,7 @@ exports[`EuiCommentTimeline props timelineAvatar defaults to an avatar with a \`
 >
   <span
     class="euiAvatar__icon"
-    data-euiicon-type="userAvatar"
+    data-euiicon-type="user"
   />
 </div>
 `;

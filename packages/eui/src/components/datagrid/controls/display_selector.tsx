@@ -428,7 +428,7 @@ export const useDataGridDisplaySelector = (
           <EuiToolTip content={buttonLabel} delay="long">
             <EuiButtonIcon
               size="xs"
-              iconType="controlsHorizontal"
+              iconType="controls"
               color="text"
               data-test-subj="dataGridDisplaySelectorButton"
               onClick={() => setIsOpen(!isOpen)}

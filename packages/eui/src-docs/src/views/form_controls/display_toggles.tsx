@@ -97,7 +97,7 @@ export const DisplayToggles: FunctionComponent<DisplayTogglesProps> = ({
         }}
         button={
           <EuiButtonEmpty
-            iconType="controlsHorizontal"
+            iconType="controls"
             size="xs"
             onClick={() => {
               setIsPopoverOpen(!isPopoverOpen);

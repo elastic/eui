@@ -27,7 +27,7 @@ export default () => (
       betaBadgeTooltipContent="This module is an external app."
       betaBadgeIconType="popout"
     >
-      <EuiIcon type="editorCodeBlock" size="l" />
+      <EuiIcon type="code" size="l" />
     </EuiKeyPadMenuItem>
   </EuiKeyPadMenu>
 );

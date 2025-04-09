@@ -24,7 +24,7 @@ exports[`EuiCommentList is rendered 1`] = `
         >
           <span
             class="euiAvatar__icon"
-            data-euiicon-type="userAvatar"
+            data-euiicon-type="user"
           />
         </div>
       </div>
@@ -63,7 +63,7 @@ exports[`EuiCommentList props gutterSize l is rendered 1`] = `
         >
           <span
             class="euiAvatar__icon"
-            data-euiicon-type="userAvatar"
+            data-euiicon-type="user"
           />
         </div>
       </div>
@@ -102,7 +102,7 @@ exports[`EuiCommentList props gutterSize m is rendered 1`] = `
         >
           <span
             class="euiAvatar__icon"
-            data-euiicon-type="userAvatar"
+            data-euiicon-type="user"
           />
         </div>
       </div>
@@ -141,7 +141,7 @@ exports[`EuiCommentList props gutterSize xl is rendered 1`] = `
         >
           <span
             class="euiAvatar__icon"
-            data-euiicon-type="userAvatar"
+            data-euiicon-type="user"
           />
         </div>
       </div>

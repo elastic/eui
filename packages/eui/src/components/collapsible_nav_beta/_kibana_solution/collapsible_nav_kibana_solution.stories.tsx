@@ -120,7 +120,7 @@ const meta: Meta<KibanaCollapsibleNavSolutionProps> = {
                 />
                 <EuiCollapsibleNavBeta.Item
                   title="Developer tools"
-                  icon="editorCodeBlock"
+                  icon="code"
                   href="#"
                 />
                 <EuiCollapsibleNavBeta.Item

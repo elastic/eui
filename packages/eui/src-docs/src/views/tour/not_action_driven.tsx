@@ -24,14 +24,14 @@ const demoTourSteps = [
     title: 'Build Mode',
     content: <p>Build your project.</p>,
     anchorRef: 'notActionDrivenStep2',
-    iconType: 'editorCodeBlock',
+    iconType: 'code',
   },
   {
     step: 3,
     title: 'Comment mode',
     content: <p>Collaborate with your colleagues.</p>,
     anchorRef: 'notActionDrivenStep3',
-    iconType: 'editorComment',
+    iconType: 'comment',
   },
   {
     step: 2,

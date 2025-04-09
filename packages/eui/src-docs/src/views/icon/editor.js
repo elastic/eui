@@ -14,8 +14,6 @@ const iconTypes = [
   'editorAlignRight',
   'editorBold',
   'editorChecklist',
-  'editorCodeBlock',
-  'editorComment',
   'editorDistributeHorizontal',
   'editorDistributeVertical',
   'editorHeading',
