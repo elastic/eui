@@ -23,6 +23,22 @@ export type _EuiThemeButtonColors = {
   backgroundText: ColorModeSwitch;
   backgroundDisabled: ColorModeSwitch;
 
+  backgroundPrimaryHover: ColorModeSwitch;
+  backgroundAccentHover: ColorModeSwitch;
+  backgroundAccentSecondaryHover: ColorModeSwitch;
+  backgroundSuccessHover: ColorModeSwitch;
+  backgroundWarningHover: ColorModeSwitch;
+  backgroundDangerHover: ColorModeSwitch;
+  backgroundTextHover: ColorModeSwitch;
+
+  backgroundPrimaryActive: ColorModeSwitch;
+  backgroundAccentActive: ColorModeSwitch;
+  backgroundAccentSecondaryActive: ColorModeSwitch;
+  backgroundSuccessActive: ColorModeSwitch;
+  backgroundWarningActive: ColorModeSwitch;
+  backgroundDangerActive: ColorModeSwitch;
+  backgroundTextActive: ColorModeSwitch;
+
   backgroundFilledPrimary: ColorModeSwitch;
   backgroundFilledAccent: ColorModeSwitch;
   backgroundFilledAccentSecondary: ColorModeSwitch;
@@ -34,6 +50,22 @@ export type _EuiThemeButtonColors = {
   backgroundFilledText: ColorModeSwitch;
   backgroundFilledDisabled: ColorModeSwitch;
 
+  backgroundFilledPrimaryHover: ColorModeSwitch;
+  backgroundFilledAccentHover: ColorModeSwitch;
+  backgroundFilledAccentSecondaryHover: ColorModeSwitch;
+  backgroundFilledSuccessHover: ColorModeSwitch;
+  backgroundFilledWarningHover: ColorModeSwitch;
+  backgroundFilledDangerHover: ColorModeSwitch;
+  backgroundFilledTextHover: ColorModeSwitch;
+
+  backgroundFilledPrimaryActive: ColorModeSwitch;
+  backgroundFilledAccentActive: ColorModeSwitch;
+  backgroundFilledAccentSecondaryActive: ColorModeSwitch;
+  backgroundFilledSuccessActive: ColorModeSwitch;
+  backgroundFilledWarningActive: ColorModeSwitch;
+  backgroundFilledDangerActive: ColorModeSwitch;
+  backgroundFilledTextActive: ColorModeSwitch;
+
   backgroundEmptyPrimaryHover: ColorModeSwitch;
   backgroundEmptyAccentHover: ColorModeSwitch;
   backgroundEmptyAccentSecondaryHover: ColorModeSwitch;
@@ -43,6 +75,14 @@ export type _EuiThemeButtonColors = {
   backgroundEmptyRiskHover: ColorModeSwitch;
   backgroundEmptyDangerHover: ColorModeSwitch;
   backgroundEmptyTextHover: ColorModeSwitch;
+
+  backgroundEmptyPrimaryActive: ColorModeSwitch;
+  backgroundEmptyAccentActive: ColorModeSwitch;
+  backgroundEmptyAccentSecondaryActive: ColorModeSwitch;
+  backgroundEmptySuccessActive: ColorModeSwitch;
+  backgroundEmptyWarningActive: ColorModeSwitch;
+  backgroundEmptyDangerActive: ColorModeSwitch;
+  backgroundEmptyTextActive: ColorModeSwitch;
 
   textColorPrimary: ColorModeSwitch;
   textColorAccent: ColorModeSwitch;
