@@ -210,16 +210,56 @@ export const EuiThemeProvider = <T extends {} = {}>({
 
   useEffect(() => {
     if (!isParentTheme.current) {
-      setTheme(
-        getComputed(
-          system,
-          buildTheme<any>(modificationsWithHighContrast, `_${system.key}`),
-          colorMode,
-          highContrastMode
-        )
+      /* Enables recomputation of component colors when flags are overridden on the provider 
+      by adding the respective key to modifications to trigger a recomputation. */
+      // TODO: remove once visual refresh is completed and flags are obsolete
+      const flagsToRecompute = [
+        { flag: 'buttonVariant', componentKey: 'buttons' },
+      ];
+
+      const keys: { [key: string]: { LIGHT: {}; DARK: {} } } = {};
+
+      const forceRecomputeComponents = flagsToRecompute.some((item) => {
+        if (
+          Object.keys(modifications.flags ?? {}).includes(item.flag) &&
+          !Object.keys(modifications.components ?? {}).includes(
+            item.componentKey
+          )
+        ) {
+          keys[item.componentKey] = { LIGHT: {}, DARK: {} };
+
+          return true;
+        }
+
+        return false;
+      });
+
+      const componentModifications = forceRecomputeComponents
+        ? { components: keys }
+        : {};
+
+      // force recomputing of color & component tokens based on flag changes
+      const enhancedModifications = {
+        ...modificationsWithHighContrast,
+        ...componentModifications,
+      };
+
+      const rebuiltTheme = getComputed(
+        system,
+        buildTheme<any>(enhancedModifications, `_${system.key}`),
+        colorMode,
+        highContrastMode
       );
+
+      setTheme(rebuiltTheme);
     }
-  }, [colorMode, highContrastMode, system, modificationsWithHighContrast]);
+  }, [
+    colorMode,
+    highContrastMode,
+    system,
+    modificationsWithHighContrast,
+    modifications,
+  ]);
 
   const [themeCSSVariables, _setThemeCSSVariables] = useState<CSSObject>();
   const setThemeCSSVariables = useCallback(
