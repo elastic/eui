@@ -1,5 +1,6 @@
 agents:
   provider: gcp
+  image: "family/eui-ubuntu-2204"
   # 4 AMD Rome / Milan vCPUs, 16GB RAM
   machineType: 'n2d-standard-4'
   # No spot instances to protect against agent losses during file upload
@@ -7,6 +8,5 @@ agents:
 
 steps:
   - label: ':docusaurus: Build and deploy documentation website'
-    image: "family/eui-ubuntu-2204"
     timeout_in_minutes: 90
     command: .buildkite/scripts/pipelines/pipeline_deploy_new_docs.sh
