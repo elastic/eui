@@ -84,9 +84,7 @@ For example, the document for the Modal page is `containers/modal/index.mdx`:
 
 Usage and Guidelines sections have their own file that can be imported:
 
-    ```mdx-code-block
     import Usage from './_usage.mdx';
-    ```
     
     ## Usage
     
@@ -94,9 +92,7 @@ Usage and Guidelines sections have their own file that can be imported:
     
     ## Guidelines
     
-    ```mdx-code-block
     import Guidelines from './_guidelines.mdx';
-    ```
     
     <Guidelines />
 
