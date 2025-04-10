@@ -10,19 +10,20 @@ import type { CSSObject } from '@emotion/react';
 
 import type { RecursivePartial, ValueOf } from '../../types';
 
-import { _EuiThemeAnimation } from '../../global_styling/variables/animations';
-import { _EuiThemeBreakpoints } from '../../global_styling/variables/breakpoint';
-import { _EuiThemeBorder } from '../../global_styling/variables/borders';
-import { _EuiThemeColors } from '../../global_styling/variables/colors';
-import {
+import type { _EuiThemeAnimation } from '../../global_styling/variables/animations';
+import type { _EuiThemeBreakpoints } from '../../global_styling/variables/breakpoint';
+import type { _EuiThemeBorder } from '../../global_styling/variables/borders';
+import type { _EuiThemeColors } from '../../global_styling/variables/colors';
+import type {
   _EuiThemeBase,
   _EuiThemeSizes,
 } from '../../global_styling/variables/size';
-import { _EuiThemeFont } from '../../global_styling/variables/typography';
-import { _EuiThemeFocus } from '../../global_styling/variables/states';
-import { _EuiThemeLevels } from '../../global_styling/variables/levels';
-import { _EuiThemeComponents } from '../../global_styling/variables/components';
-import { _EuiThemeFlags } from '../../global_styling/variables';
+import type { _EuiThemeFont } from '../../global_styling/variables/typography';
+import type { _EuiThemeFocus } from '../../global_styling/variables/states';
+import type { _EuiThemeLevels } from '../../global_styling/variables/levels';
+import type { _EuiThemeComponents } from '../../global_styling/variables/components';
+import type { _EuiThemeFlags } from '../../global_styling/variables';
+import type { _EuiThemeOverrides } from '../../global_styling/variables/overrides';
 
 export const COLOR_MODES_STANDARD = {
   light: 'LIGHT',
@@ -55,7 +56,10 @@ export type StrictColorModeSwitch<T = string> = {
 export type EuiThemeHighContrastModeProp = boolean;
 export type EuiThemeHighContrastMode = 'forced' | 'preferred' | false;
 
-export type EuiThemeShape = {
+export const EUI_THEME_HIGH_CONTRAST_MODE_KEY = 'HCM' as const;
+export const EUI_THEME_OVERRIDES_KEY = 'overrides' as const;
+
+export type EuiThemeShapeBase = {
   colors: _EuiThemeColors;
   /** - Default value: 16 */
   base: _EuiThemeBase;
@@ -71,6 +75,10 @@ export type EuiThemeShape = {
   levels: _EuiThemeLevels;
   components: _EuiThemeComponents;
   flags: _EuiThemeFlags;
+};
+
+export type EuiThemeShape = EuiThemeShapeBase & {
+  overrides?: _EuiThemeOverrides;
 };
 
 export type EuiThemeSystem<T = {}> = {

@@ -6,58 +6,78 @@
  * Side Public License, v 1.
  */
 import { computed, mathWithUnits } from '@elastic/eui-theme-common';
-import {
-  dark_background_colors,
-  dark_border_colors,
-  dark_text_colors,
-} from './colors/_colors_dark';
-import {
-  background_colors,
-  border_colors,
-  text_colors,
-} from './colors/_colors_light';
 
 const _forms = {
-  background: background_colors.backgroundBasePlain,
-  backgroundDisabled: background_colors.backgroundBaseDisabled,
-  backgroundReadOnly: background_colors.backgroundBasePlain,
-  backgroundFocused: background_colors.backgroundBasePlain,
-  backgroundAutofilled: background_colors.backgroundBasePrimary,
-  prependBackground: background_colors.backgroundBaseFormsPrepend,
-  border: border_colors.borderBasePlain,
-  borderDisabled: border_colors.borderBaseDisabled,
-  borderAutofilled: border_colors.borderBasePrimary,
-  controlBorder: border_colors.borderBaseFormsControl,
-  controlBorderSelected: border_colors.borderStrongPrimary,
-  controlBorderDisabled: border_colors.borderBaseDisabled,
+  background: computed(
+    ([backgroundBasePlain]) => backgroundBasePlain,
+    ['colors.backgroundBasePlain']
+  ),
+  backgroundDisabled: computed(
+    ([backgroundBaseDisabled]) => backgroundBaseDisabled,
+    ['colors.backgroundBaseDisabled']
+  ),
+  backgroundReadOnly: computed(
+    ([backgroundBasePlain]) => backgroundBasePlain,
+    ['colors.backgroundBasePlain']
+  ),
+  backgroundFocused: computed(
+    ([backgroundBasePlain]) => backgroundBasePlain,
+    ['colors.backgroundBasePlain']
+  ),
+  backgroundAutofilled: computed(
+    ([backgroundBasePrimary]) => backgroundBasePrimary,
+    ['colors.backgroundBasePrimary']
+  ),
+  prependBackground: computed(
+    ([backgroundBaseFormsPrepend]) => backgroundBaseFormsPrepend,
+    ['colors.backgroundBaseFormsPrepend']
+  ),
+  border: computed(
+    ([borderBasePlain]) => borderBasePlain,
+    ['colors.borderBasePlain']
+  ),
+  borderDisabled: computed(
+    ([borderBaseDisabled]) => borderBaseDisabled,
+    ['colors.borderBaseDisabled']
+  ),
+  borderAutofilled: computed(
+    ([borderBasePrimary]) => borderBasePrimary,
+    ['colors.borderBasePrimary']
+  ),
+  controlBorder: computed(
+    ([borderBaseFormsControl]) => borderBaseFormsControl,
+    ['colors.borderBaseFormsControl']
+  ),
+  controlBorderSelected: computed(
+    ([borderStrongPrimary]) => borderStrongPrimary,
+    ['colors.borderStrongPrimary']
+  ),
+  controlBorderDisabled: computed(
+    ([borderBaseDisabled]) => borderBaseDisabled,
+    ['colors.borderBaseDisabled']
+  ),
   controlBackgroundUnselected: 'transparent',
-  controlBackgroundDisabled:
-    background_colors.backgroundBaseFormsControlDisabled,
-  colorHasPlaceholder: text_colors.textSubdued,
-  colorDisabled: text_colors.textDisabled,
-  iconDisabled: text_colors.textDisabled,
+  controlBackgroundDisabled: computed(
+    ([backgroundBaseFormsControlDisabled]) =>
+      backgroundBaseFormsControlDisabled,
+    ['colors.backgroundBaseFormsControlDisabled']
+  ),
+  colorHasPlaceholder: computed(
+    ([textSubdued]) => textSubdued,
+    ['colors.textSubdued']
+  ),
+  colorDisabled: computed(
+    ([textDisabled]) => textDisabled,
+    ['colors.textDisabled']
+  ),
+  iconDisabled: computed(
+    ([textDisabled]) => textDisabled,
+    ['colors.textDisabled']
+  ),
 };
 
 const _dark_forms = {
   ..._forms,
-  background: dark_background_colors.backgroundBasePlain,
-  backgroundDisabled: dark_background_colors.backgroundBaseDisabled,
-  backgroundReadOnly: dark_background_colors.backgroundBasePlain,
-  backgroundFocused: dark_background_colors.backgroundBasePlain,
-  backgroundAutofilled: dark_background_colors.backgroundBasePrimary,
-  prependBackground: dark_background_colors.backgroundBaseFormsPrepend,
-  border: dark_border_colors.borderBasePlain,
-  borderDisabled: dark_border_colors.borderBaseDisabled,
-  borderAutofilled: dark_border_colors.borderBasePrimary,
-  controlBorder: dark_border_colors.borderBaseFormsControl,
-  controlBorderSelected: dark_border_colors.borderStrongPrimary,
-  controlBorderDisabled: dark_border_colors.borderBaseDisabled,
-  controlBackgroundUnselected: 'transparent',
-  controlBackgroundDisabled:
-    dark_background_colors.backgroundBaseFormsControlDisabled,
-  colorHasPlaceholder: dark_text_colors.textSubdued,
-  colorDisabled: dark_text_colors.textDisabled,
-  iconDisabled: dark_text_colors.textDisabled,
 };
 
 export const forms = {
