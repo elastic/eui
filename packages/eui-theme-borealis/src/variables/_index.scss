@@ -1,4 +1,11 @@
 // Import base theme first, then override
+
+// TODO: untangle border scss definitions by moving them and related usage to the theme 
+// package instead of the common one 
+
+@import 'node_modules/@elastic/eui-theme-common/src/global_styling/variables/size';
+// borders are used in the common package, to define them on theme level we require the size variables first
+@import 'borders';
 @import 'node_modules/@elastic/eui-theme-common/src/global_styling/variables/index';
 @import 'states';
 
