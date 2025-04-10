@@ -129,7 +129,7 @@ import { CommentListProps, CommentListStyle } from './comment_list_props.tsx';
 />
 <CommentListStyle>
 
-1.  `timelineAvatar`: Shows an avatar that should indicate who is the author of the comment. To customize, pass a `string` as an `EuiIcon['type']` or an [EuiAvatar](avatar.mdx). Use in conjunction with `timelineAvatarAriaLabel` to pass an aria label to the avatar. If no avatar is provided, it will default to an avatar with a `userAvatar` icon.
+1.  `timelineAvatar`: Shows an avatar that should indicate who is the author of the comment. To customize, pass a `string` as an `EuiIcon['type']` or an [EuiAvatar](avatar.mdx). Use in conjunction with `timelineAvatarAriaLabel` to pass an aria label to the avatar. If no avatar is provided, it will default to an avatar with a `user` icon.
 2.  `eventIcon`: Icon that shows before the username. Use in conjunction with `eventIconAriaLabel` to pass an aria label to the event icon.
 3.  `username`: Author of the comment.
 4.  `event`: Describes the event that took place.
@@ -330,7 +330,7 @@ export default () => {
 
 The timeline icon is a very important part of the comment:
 
-*   By default, each **EuiComment** shows an avatar with the `userAvatar` icon. A `timelineAvatarAriaLabel`should be provided when using this default option.
+*   By default, each **EuiComment** shows an avatar with the `user` icon. A `timelineAvatarAriaLabel`should be provided when using this default option.
 *   You can customize your avatar by passing to the `timelineAvatar` any of the icon types that [EuiIcon](./icons/overview.mdx) supports. The icon will show inside a `subdued` avatar. Consider this option when showing a system update. Providing a `timelineAvatarAriaLabel` is recommended.
 *   You can further customize the timeline icon by passing to the `timelineAvatar` a [EuiAvatar](avatar.mdx).
 

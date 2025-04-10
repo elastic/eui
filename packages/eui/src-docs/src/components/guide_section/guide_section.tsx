@@ -173,7 +173,7 @@ export const GuideSection: FunctionComponent<GuideSectionProps> = ({
       return (
         <EuiButtonEmpty
           size="xs"
-          iconType="controlsHorizontal"
+          iconType="controls"
           onClick={() => {
             setRenderingPlayground((rendering) => !rendering);
           }}

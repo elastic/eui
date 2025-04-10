@@ -174,7 +174,7 @@ export const Playground: Story = {
                 { title: 'Ultricies tellus', icon: 'visMetric', href: '#' },
               ],
             },
-            { title: 'Developer tools', icon: 'editorCodeBlock', href: '#' },
+            { title: 'Developer tools', icon: 'code', href: '#' },
             {
               title: 'Project settings',
               icon: 'gear',

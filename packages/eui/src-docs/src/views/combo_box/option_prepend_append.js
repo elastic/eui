@@ -24,7 +24,7 @@ const options = [
   {
     label:
       "Pandora is one of Saturn's moons, named for a Titaness of Greek mythology",
-    prepend: <EuiIcon size="s" type="discuss" />,
+    prepend: <EuiIcon size="s" type="comment" />,
     append: '(10)',
   },
   {

@@ -14,7 +14,7 @@ interface SVGRProps {
   title?: string;
   titleId?: string;
 }
-const EuiIconGlasses = ({
+const EuiIconReadOnly = ({
   title,
   titleId,
   ...props
@@ -52,4 +52,4 @@ const EuiIconGlasses = ({
     </g>
   </svg>
 );
-export const icon = EuiIconGlasses;
+export const icon = EuiIconReadOnly;

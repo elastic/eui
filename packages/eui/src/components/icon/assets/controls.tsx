@@ -14,7 +14,7 @@ interface SVGRProps {
   title?: string;
   titleId?: string;
 }
-const EuiIconEditorComment = ({
+const EuiIconControls = ({
   title,
   titleId,
   ...props
@@ -28,7 +28,11 @@ const EuiIconEditorComment = ({
     {...props}
   >
     {title ? <title id={titleId}>{title}</title> : null}
-    <path d="M6.111 10H12a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v4a1 1 0 0 0 1 1h1v1.297L6.111 10Zm.46 1L4 14v-3a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2H6.571Z" />
+    <path
+      fillRule="evenodd"
+      d="M10.5 8a2.5 2.5 0 0 0 2.45-2H15V5h-2.05a2.5 2.5 0 0 0-4.9 0H1v1h7.05a2.5 2.5 0 0 0 2.45 2Zm0-1a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Zm-2.55 4H15v-1H7.95a2.5 2.5 0 0 0-4.9 0H1v1h2.05a2.5 2.5 0 0 0 4.9 0ZM7 10.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Z"
+      clipRule="evenodd"
+    />
   </svg>
 );
-export const icon = EuiIconEditorComment;
+export const icon = EuiIconControls;

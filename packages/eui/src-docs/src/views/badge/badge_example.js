@@ -102,7 +102,7 @@ const betaBadgeSnippet = [
 `,
   `<EuiBetaBadge label="Lab" tooltipContent="Describe why this is considered beta." />
 `,
-  `<EuiBetaBadge label="Lab" iconType="beaker" />
+  `<EuiBetaBadge label="Lab" iconType="flask" />
 `,
 ];
 
