@@ -160,6 +160,12 @@ export const euiSuperDatePickerStyles = (euiThemeContext: UseEuiTheme) => {
     `
       --euiFormControlStateHoverColor: ${forms.borderHovered};
       ${euiFormControlDefaultShadow(euiThemeContext)}
+
+      ${highContrastModeStyles(euiThemeContext, {
+        preferred: `
+          border: none;
+        `,
+      })}
       
       &:focus {
         ${euiFormControlFocusStyles(euiThemeContext)}

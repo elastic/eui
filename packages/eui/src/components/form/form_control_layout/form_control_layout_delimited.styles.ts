@@ -21,7 +21,7 @@ import {
 export const euiFormControlLayoutDelimitedStyles = (
   euiThemeContext: UseEuiTheme
 ) => {
-  const { euiTheme } = euiThemeContext;
+  const { euiTheme, highContrastMode } = euiThemeContext;
   const isExperimental = euiTheme.flags?.formVariant === 'experimental';
 
   const invalidStyles =
@@ -49,7 +49,7 @@ export const euiFormControlLayoutDelimitedStyles = (
   const delimitedStyles = `
       /* Transition smoothly between disabled/readOnly background color changes */
       ${euiFormControlDefaultShadow(euiThemeContext, {
-        withBorder: isExperimental ? true : false,
+        withBorder: isExperimental && !highContrastMode ? true : false,
         withBackground: false,
         withBackgroundAnimation: isExperimental ? false : true,
       })}
@@ -60,7 +60,7 @@ export const euiFormControlLayoutDelimitedStyles = (
       isExperimental &&
       `
           ${euiFormControlDefaultShadow(euiThemeContext, {
-            withBorder: true,
+            withBorder: !highContrastMode,
             withBackground: false,
             withBackgroundAnimation: true,
           })}

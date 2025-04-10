@@ -19,7 +19,7 @@ import {
 import { euiFormControlStyles, euiFormVariables } from '../form.styles';
 
 export const euiFilePickerStyles = (euiThemeContext: UseEuiTheme) => {
-  const { euiTheme } = euiThemeContext;
+  const { euiTheme, highContrastMode } = euiThemeContext;
   const isExperimental = euiTheme.flags?.formVariant === 'experimental';
 
   const formStyles = euiFormControlStyles(euiThemeContext);
@@ -42,7 +42,10 @@ export const euiFilePickerStyles = (euiThemeContext: UseEuiTheme) => {
       }
 
       &:hover {
-        --euiFormControlStateColor: ${formVariables.borderHovered};
+        --euiFormControlStateColor: ${highContrastMode
+          ? euiTheme.border.color
+          : formVariables.borderHovered};
+        --euiFormControlStateStyle: ${highContrastMode ? 'solid' : 'dashed'};
       }
     `,
     isDroppingFile: css`
@@ -117,7 +120,8 @@ export const euiFilePickerStyles = (euiThemeContext: UseEuiTheme) => {
       line-height: 1; /* Vertically centers default display text */
       ${euiTextTruncate()}
       color: ${euiTheme.colors.textParagraph};
-      border: ${euiTheme.border.width.thick} dashed
+      border: ${euiTheme.border.width.thick}
+        var(--euiFormControlStateStyle, dashed)
         var(--euiFormControlStateColor, ${euiTheme.border.color});
 
       ${euiCanAnimate} {

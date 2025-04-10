@@ -68,7 +68,11 @@ export const euiFormVariables = (euiThemeContext: UseEuiTheme) => {
     controlDisabledColor: euiTheme.components.forms.controlBackgroundDisabled,
     controlBoxShadow: '0 0 transparent',
     controlPlaceholderText: isExperimental
-      ? euiTheme.components.forms.colorDisabled
+      ? highContrastMode
+        ? makeHighContrastColor(euiTheme.components.forms.colorDisabled)(
+            backgroundColor
+          )
+        : euiTheme.components.forms.colorDisabled
       : makeHighContrastColor(euiTheme.colors.textSubdued)(backgroundColor),
     appendPrependBackground: euiTheme.components.forms.prependBackground,
   };
@@ -227,6 +231,8 @@ export const euiFormControlDefaultShadow = (
     // In high contrast mode, this doesn't matter - we need to prioritize visibility
     preferred: `
       border: ${euiTheme.border.width.thin} solid ${euiTheme.border.color};
+
+      ${euiFormControlHoverStyles(euiThemeContext)}
     `,
   });
 
@@ -282,14 +288,35 @@ export const euiFormControlDefaultShadow = (
   `;
 };
 
+const hoverSelector =
+  '&:hover:not(:disabled, :focus, input[readonly], [class*="readOnly"])';
+
+export const disableFormControlHoverStyles = () => `
+  ${hoverSelector} {
+    outline: none;
+  }
+`;
+
 export const euiFormControlHoverStyles = (euiThemeContext: UseEuiTheme) => {
-  const { euiTheme } = euiThemeContext;
+  const { euiTheme, highContrastMode } = euiThemeContext;
   const form = euiFormVariables(euiThemeContext);
 
   return `
-    &:hover:not(:disabled, :focus, input[readonly], [class*="readOnly"]) {
-      --borderWidth: var(--euiFormControlStateWidth, ${euiTheme.border.width.thin});
-      --borderColor: var(--euiFormControlStateHoverColor, ${form.borderHovered});
+    ${hoverSelector} {
+      --borderWidthBase: var(--euiFormControlStateWidth, ${
+        euiTheme.border.width.thin
+      });
+      --borderWidth: ${
+        highContrastMode
+          ? euiTheme.border.width.thick
+          : 'var(--borderWidthBase)'
+      };
+      --borderColorBase: var(--euiFormControlStateHoverColor, ${
+        form.borderHovered
+      });
+      --borderColor: ${
+        highContrastMode ? euiTheme.border.color : 'var(--borderColorBase)'
+      };
       position: relative;
       z-index: 1;
       outline: var(--borderWidth) solid var(--borderColor);
@@ -299,11 +326,11 @@ export const euiFormControlHoverStyles = (euiThemeContext: UseEuiTheme) => {
 };
 
 export const euiFormControlHighlightBorderStyles = `
-  position: relative;
-  z-index: 1;
-  outline: var(--euiFormControlStateWidth) solid var(--euiFormControlStateColor);
-  outline-offset: calc(-1 * var(--euiFormControlStateWidth));
-  box-shadow: none;
+    position: relative;
+    z-index: 1;
+    outline: var(--euiFormControlStateWidth) solid var(--euiFormControlStateColor);
+    outline-offset: calc(-1 * var(--euiFormControlStateWidth));
+    box-shadow: none;
 `.trim();
 
 export const euiFormControlFocusStyles = (euiThemeContext: UseEuiTheme) => {
@@ -345,6 +372,7 @@ export const euiFormControlInvalidStyles = (euiThemeContext: UseEuiTheme) => {
       --euiFormControlStateWidth: ${euiTheme.border.width.thin};
       
       ${euiFormControlHighlightBorderStyles}
+      ${euiFormControlShowBackgroundUnderline(euiThemeContext, invalidColor)}
 
       &:focus-within {
         --euiFormControlStateColor: ${form.borderColor};
@@ -490,18 +518,42 @@ export const euiFormControlShowBackgroundUnderline = (
   euiThemeContext: UseEuiTheme,
   color: string
 ) => {
+  const { euiTheme } = euiThemeContext;
+  const isExperimental = euiTheme.flags?.formVariant === 'experimental';
+
   if (euiThemeContext.highContrastMode !== 'forced') {
     return 'background-size: 100% 100%;';
   }
+
+  const { stateUnderlineHeight } = euiFormVariables(euiThemeContext);
 
   // Windows high contrast themes ignore all background-images that aren't url-based,
   // so to restore the linear-gradient that provides important visual information, we're
   // using a static inline SVG workaround
   const fill = encodeURIComponent(color);
-  const inlineSVG = `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='100%25' height='100%25' fill='${fill}' /%3E%3C/svg%3E`;
+  const strokeWidth = stateUnderlineHeight ?? '4px';
 
-  const { stateUnderlineHeight } = euiFormVariables(euiThemeContext);
-  return `
+  const inlineSVG = `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='100%25' height='100%25' fill='${fill}' /%3E%3C/svg%3E`;
+  const experimentalInlineSVG = `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='100%25' height='100%25' style='fill:transparent;stroke-width:${strokeWidth};stroke:${fill}' /%3E%3C/svg%3E`;
+
+  /**
+   * <svg xmlns='http://www.w3.org/2000/svg'><rect width='100%25' height='100%25' fill='${fill}' /></svg>
+   */
+
+  return isExperimental
+    ? `
+      background-size: calc(100% - ${mathWithUnits(
+        strokeWidth,
+        (x) => x / 2
+      )}) calc(100% - ${mathWithUnits(strokeWidth, (x) => x / 2)});
+      background-position: ${euiTheme.border.width.thin};
+      background-image: url("${experimentalInlineSVG}");
+
+      &:hover {
+        background-image: none;
+      }
+    `
+    : `
     background-size: 100% ${stateUnderlineHeight};
     background-image: url("${inlineSVG}");
   `;
