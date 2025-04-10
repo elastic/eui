@@ -11,6 +11,7 @@ import { euiShadowMedium } from '@elastic/eui-theme-common';
 
 import { logicalCSS } from '../../global_styling';
 import { isEuiThemeRefreshVariant, UseEuiTheme } from '../../services';
+import { disableFormControlHoverStyles } from '../form/form.styles';
 
 export const euiDatePickerRangeStyles = (euiThemeContext: UseEuiTheme) => {
   const isRefreshVariant = isEuiThemeRefreshVariant(
@@ -55,6 +56,7 @@ export const euiDatePickerRangeInlineStyles = (
   euiThemeContext: UseEuiTheme
 ) => {
   const { euiTheme } = euiThemeContext;
+  const isExperimental = euiTheme.flags?.formVariant === 'experimental';
 
   // Use a container query to stack date pickers vertically if the container is
   // not wide enough to fit both. We need a fn for this to render two width queries,
@@ -105,6 +107,13 @@ export const euiDatePickerRangeInlineStyles = (
           ${logicalCSS('height', 'auto')}
           ${logicalCSS('padding-bottom', euiTheme.size.s)}
         }
+
+        ${isExperimental &&
+        `
+          &::after {
+            display: none;
+          }
+        `}
       }
 
       /* Make sure the inline date picker sets its absolute positioning based off the correct parent */
@@ -123,6 +132,17 @@ export const euiDatePickerRangeInlineStyles = (
         ${euiShadowMedium(euiThemeContext, {
           borderAllInHighContrastMode: true,
         })}
+
+        ${isExperimental &&
+        `
+          /* the form layout is not part of the interactive behavior but rather a container in this variant  */
+          ${disableFormControlHoverStyles()}
+
+          .euiFormControlLayout__childrenWrapper {
+            box-shadow: none;
+            ${disableFormControlHoverStyles()}
+          }
+        `}
       }
     `,
 

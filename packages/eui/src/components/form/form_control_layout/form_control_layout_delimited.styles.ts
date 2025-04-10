@@ -21,6 +21,7 @@ import {
 export const euiFormControlLayoutDelimitedStyles = (
   euiThemeContext: UseEuiTheme
 ) => {
+  const { highContrastMode } = euiThemeContext;
   const isRefreshVariant = isEuiThemeRefreshVariant(
     euiThemeContext,
     'formVariant'
@@ -51,7 +52,7 @@ export const euiFormControlLayoutDelimitedStyles = (
   const delimitedStyles = `
       /* Transition smoothly between disabled/readOnly background color changes */
       ${euiFormControlDefaultShadow(euiThemeContext, {
-        withBorder: isRefreshVariant ? true : false,
+        withBorder: isRefreshVariant && !highContrastMode ? true : false,
         withBackground: false,
         withBackgroundAnimation: isRefreshVariant ? false : true,
       })}
@@ -62,7 +63,7 @@ export const euiFormControlLayoutDelimitedStyles = (
       isRefreshVariant &&
       `
           ${euiFormControlDefaultShadow(euiThemeContext, {
-            withBorder: true,
+            withBorder: !highContrastMode,
             withBackground: false,
             withBackgroundAnimation: true,
           })}

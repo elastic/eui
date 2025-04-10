@@ -21,10 +21,13 @@ export const EuiFormControlLayoutClearButtonStyles = (
   );
 
   const backgroundColor = isRefreshVariant
-    ? euiTheme.colors.borderInteractiveFormsHoverPlain
+    ? highContrastMode
+      ? euiTheme.colors.darkShade
+      : euiTheme.colors.borderInteractiveFormsHoverPlain
     : colorMode === 'DARK' || highContrastMode
     ? euiTheme.colors.darkShade
     : euiTheme.colors.mediumShade;
+
   return {
     euiFormControlLayoutClearButton: css`
       pointer-events: all;
@@ -38,7 +41,9 @@ export const EuiFormControlLayoutClearButtonStyles = (
 
       &:disabled {
         cursor: not-allowed;
-        background-color: ${euiTheme.colors.disabled};
+        background-color: ${isRefreshVariant
+          ? euiTheme.colors.backgroundBaseDisabled
+          : euiTheme.colors.disabled};
       }
     `,
 
