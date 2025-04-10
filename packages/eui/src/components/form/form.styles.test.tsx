@@ -145,10 +145,10 @@ describe('euiFormControlStyles', () => {
             --euiFormControlStateWidth: 2px;
 
             position: relative;
-        z-index: 1;
-        outline: var(--euiFormControlStateWidth) solid var(--euiFormControlStateColor);
-        outline-offset: calc(-1 * var(--euiFormControlStateWidth));
-        box-shadow: none;",
+          z-index: 1;
+          outline: var(--euiFormControlStateWidth) solid var(--euiFormControlStateColor);
+          outline-offset: calc(-1 * var(--euiFormControlStateWidth));
+          box-shadow: none;",
         "formWidth": "
             max-inline-size: 400px;
             inline-size: 100%;
@@ -167,10 +167,11 @@ describe('euiFormControlStyles', () => {
             --euiFormControlStateWidth: 1px;
             
             position: relative;
-        z-index: 1;
-        outline: var(--euiFormControlStateWidth) solid var(--euiFormControlStateColor);
-        outline-offset: calc(-1 * var(--euiFormControlStateWidth));
-        box-shadow: none;
+          z-index: 1;
+          outline: var(--euiFormControlStateWidth) solid var(--euiFormControlStateColor);
+          outline-offset: calc(-1 * var(--euiFormControlStateWidth));
+          box-shadow: none;
+            background-size: 100% 100%;
 
             &:focus-within {
               --euiFormControlStateColor: #CAD3E2;
@@ -231,8 +232,10 @@ describe('euiFormControlStyles', () => {
 
             
           &:hover:not(:disabled, :focus, input[readonly], [class*="readOnly"]) {
-            --borderWidth: var(--euiFormControlStateWidth, 1px);
-            --borderColor: var(--euiFormControlStateHoverColor, #B4C1D5);
+            --borderWidthBase: var(--euiFormControlStateWidth, 1px);
+            --borderWidth: var(--borderWidthBase);
+            --borderColorBase: var(--euiFormControlStateHoverColor, #B4C1D5);
+            --borderColor: var(--borderColorBase);
             position: relative;
             z-index: 1;
             outline: var(--borderWidth) solid var(--borderColor);
