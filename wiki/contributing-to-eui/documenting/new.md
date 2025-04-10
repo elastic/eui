@@ -1,93 +1,121 @@
-# Creating documentation pages
+# Writing documentation
+
+- [Files and folders](#files-and-folders)
+- [Partials](#partials)
+- [Collapsible sidebar items](#collapsible-sidebar-items)
+- [Front matter](#front-matter)
+- [Documeting components](#documenting-components)
+- [Writing content](#writing-content)
+  - [Headings](#headings)
+  - [Links](#links)
+  - [Admonitions](#admonitions)
+  - [Code blocks](#code-blocks)
+  - [Live demos](#live-demos)
+  - [Tables](#tables)
+  - [Dos and Don'ts](#dos-and-donts)
+  - [Props table](#props-table)
 
 Code for the Elastic UI [documentation site](https://elastic.github.io/eui/#/) can be found in the `packages/website` directory. The site is built with [Docusaurus](https://docusaurus.io/).
 
-## `<Heading missing>`
+## Files and folders
 
-Documentation is written in Markdown, and files are stored in the `docs` folder. Document files use [MDX](https://mdxjs.com/docs/what-is-mdx/), thus the `.mdx` file extension. This format allows writing React code alongside Markdown. It's also possible to import React code from `.tsx` files, which is useful for more complex examples.
+Documentation is written in Markdown.
 
-The folder structure matches the navigation and content structure, similar to common static site builders like Jekyll. For instance, for editing the Components / Containers / Accordion page, the content will be found in the `docs/components/containers/accordion.mdx` file.
+Files are stored in the `docs` folder and document files use [MDX](https://mdxjs.com/docs/what-is-mdx/), thus the `.mdx` file extension. This format allows writing React code alongside Markdown. It's also possible to import React code from `.tsx` files, which is useful for more complex examples.
 
 > [!TIP]
 > For formatting content always prefer using Markdown over React
 
-### Document structure
+The folder structure matches the navigation and content structure, similar to common static site builders like Jekyll. For instance, for editing the Components / Containers / Accordion page, the content will be found in the `docs/components/containers/accordion.mdx` file.
 
-All component pages should follow the following architecture:
+Files and folder names must use [kebab-case](https://developer.mozilla.org/en-US/docs/Glossary/Kebab_case), unlike the EUI convention to use snake_case. This makes it easier to keep URLs consistent without having to override Docusaurus defaults in the front matter.
 
-- Intro
-- Component: a bare-bones example of the component in its default form
-- Usage (optional): examples of different states and use-cases
-- Guidelines (optional): dos and donts
-- Props
+## Front matter
 
-### Partials
+The front matter is a section at the top of a Markdown file that contains metadata about the document. It's enclosed in triple dashes (`---`) and written in [YAML format](https://yaml.org/).
 
-A document can be split into different files when content is too long, for easier editing.
+A few important aspects of the document can be configured here:
 
-Markdown files prefixed with an underscore will be ignored when generating the sidebar. These hidden files can then be imported and rendered in the main document.
+- `id` (unique to the document)
+- `slug` (to customize the URL)
+- `sidebar_label`
+- `sidebar_position`
+- `title` (if different from the h1)
+- `description`
 
-For example, the document for the Modal page lives in `containers/modal/index.mdx`:
+For a [full list of fields](https://docusaurus.io/docs/api/plugins/@docusaurus/plugin-content-docs#markdown-front-matter), check the Docusaurus docs.
 
-```
-containers/
-  modal/
-    _guidelines.mdx
-    _patterns.mdx
-    index.mdx
-```
-
-The Usage and Guidelines sections have their own file that can be imported:
-
-```mdx
-<!-- in index.mdx -->
-
-## Usage
-
-import Patterns from './_patterns.mdx';
-
-<Patterns />
-
-## Guidelines
-
-import Guidelines from './_guidelines.mdx';
-
-<Guidelines />
-```
-
-Read more [about importing markdown](https://docusaurus.io/docs/markdown-features/react#importing-markdown) in the Docusaurus docs.
-
-### Collapsible sidebar items
+## Collapsible sidebar items
 
 To make a folder a collapsible item in the sidebar, add a `_category_.yml` file that includes a boolean `collapsed` field. Usually set to `false`.
 
 Other fields that can be useful are `label` and `position`.
 
-It's possible to make a collapsible item be a document as well. Set the `link` field to have `type: doc` and `id: <DOCUMENT_ID>`, with the `id` from the document it should open. If the `id` is not explicitly set in the document file's front matter, it's the relative path starting from the `docs` folder, without the file extension, e.g. `docs/components/containers/accordion`
+It's possible to make a collapsible item be a document as well. Set the `link` field to have `type: doc` and `id: <DOCUMENT_ID>`, with the `id` from the document it should open. If the `id` is not explicitly set in the document file's [front matter](#front-matter), it's the relative path starting from the `docs` folder, without the file extension, e.g. `docs/components/containers/accordion`
 
 Read more about [category metadata](https://docusaurus.io/docs/sidebar/autogenerated#category-item-metadata) and [file structure](https://docusaurus.io/docs/create-doc#organizing-folder-structure) in the Docusaurus docs.
 
 > [!WARNING]
 > Nesting items in the sidebar should be avoided when possible, deeply nested items can make the menu harder to use
 
-### Markdown
+## Documenting components
+
+All component pages should follow the following architecture:
+
+- Intro
+- Component: a bare-bones example of the component in its default form
+- Usage (_optional_): examples of different states and use-cases
+- Guidelines (_optional_): e.g. dos and don'ts
+- Props
+
+## Partials
+
+A document can be split into different files when content is too long, for easier editing.
+
+Markdown files prefixed with an underscore will be ignored when generating the sidebar navigation. These hidden files can be imported and rendered in the main document.
+
+For example, the document for the Modal page is `containers/modal/index.mdx`:
+
+    containers/
+      modal/
+        _guidelines.mdx
+        _usage.mdx
+        index.mdx
+
+Usage and Guidelines sections have their own file that can be imported:
+
+    ```mdx-code-block
+    import Usage from './_usage.mdx';
+    ```
+    
+    ## Usage
+    
+    <Usage />
+    
+    ## Guidelines
+    
+    ```mdx-code-block
+    import Guidelines from './_guidelines.mdx';
+    ```
+    
+    <Guidelines />
+
+Read more about [importing markdown](https://docusaurus.io/docs/markdown-features/react#importing-markdown) in the Docusaurus docs.
+
+## Writing content
 
 As previously mentioned, using Markdown is highly encouraged. It makes it easier for anybody to contribute to the documentation.
 
 During the build step of the website, elements with a counterpart in EUI will be accordingly replaced, e.g. a link with `EuiLink`, a inline code block with `EuiCode`, etc.
 
-#### Front matter
-TODO
-https://docusaurus.io/docs/api/plugins/@docusaurus/plugin-content-docs#markdown-front-matter
+### Headings
 
-#### Headings
-
-Headings in Markdown are created with a hash symbol in a new line. The number of hashes will determine the heading level, # for 1, ## for 2, etc.
+Headings in Markdown are created with a hash symbol in a new line. The number of hashes will determine the heading level, `#` for 1, `##` for 2, etc.
 
 > [!IMPORTANT]
 > Do not use heading levels for styling, use them to properly structure the document hierarchically
 
-#### Links
+### Links
 
 Markdown is the recommended syntax for creating links. Docusaurus will take care of rendering it correctly.
 
@@ -97,7 +125,9 @@ Markdown is the recommended syntax for creating links. Docusaurus will take care
 
 To link between documents, use **relative file paths, including the file extension**, e.g. `[EuiPanel](../containers/panel/index.mdx)`
 
-#### Admonitions
+Read more about [Markdown links](https://docusaurus.io/docs/markdown-features/links) in the Docusaurus docs.
+
+### Admonitions
 
 The syntax for creating admonitions is wrapping a paragraph in three colons, e.g. `:::`. The type of admonition and title can be defined after the first three colons. This will render `EuiCallOut`.
 
@@ -109,7 +139,7 @@ Here's some content
 :::
 ```
 
-There are 5 types of admoniotions supported, with an icon and color respectively.
+There are 5 types of admonitions supported, with icon and color respectively.
 
 - note
 - tip
@@ -118,32 +148,157 @@ There are 5 types of admoniotions supported, with an icon and color respectively
 - warning
 - danger
 
-#### Code blocks, live demos
+### Code blocks
 
 A code block or code snippet can be created by wrapping text in backticks, e.g. \`code\`.
 
 For a simple one-liner, single backticks are enough. To create a multiline snippet or code block, use three backticks. For syntax highlighting, the language name can be added right after the first three backticks.
 
-\```html  
-<span>Hello World</span>  
-\```
+    ```html  
+    <span>Hello World</span>  
+    ```
 
 Code blocks can be used to generate live demos, where a React component that is exported in the snippet, will be rendered on the page. To do that, append the word "interactive" after the language name, usually `tsx`.
 
-\```tsx interactive  
-// TypeScript code goes here  
-\```
+    ```tsx interactive  
+    export default () => (
+      <div>Hello World</div>
+    )
+    ```
 
-### React content
+More advanced usage with the [`Demo` component](#live-demos) can be found right below.
 
-#### Interactive demos
-TODO
+### Live demos
 
-#### Tables with `<EuiTable>`
-TODO
+When plain code blocks are not enough, the `Demo` component can be used. It's available without being imported so it can be used straightaway.
 
-#### Do / Don't sections
-TODO
+> [!NOTE]
+> They're called "live" demos because the source code can be edited right there on the page and the preview will update
 
-#### Props table
-TODO
+The benefits of over plain code blocks are mainly:
+- the scope of the demo can be expanded with imports from the document, and already exposes all React and EUI exports
+- it's possible to add a wrapper component for the preview and adjust the padding
+
+#### `Demo` props
+
+- `children` - A `tsx` code block
+- `scope` - An object the default scope of the rendered demo and pass additional
+- `isSourceOpen` (_false_) - Whether the source code editor is open by default
+- `previewPadding` - Adjust the padding of the preview
+- `previewWrapper` - A wrapper component for the preview
+
+Check the [source code here](https://github.com/elastic/eui/tree/main/packages/docusaurus-theme/src/components/demo).
+
+#### Usage example
+
+> [!TIP]
+> Remember to wrap imports in ```mdx-code-block`
+
+    ```mdx-code-block
+    import previewWrapper from './preview_wrapper.tsx';
+    ```
+
+    <Demo previewWrapper={previewWrapper}>
+    ```tsx
+    import React, { useState } from 'react';
+    import { EuiButton } from '@elastic/eui';
+
+    export default () => {
+      const [counter, setCounter] = useState<number>(0);
+      const updateCounter = () => setCounter(x => x + 1);
+
+      return (
+        <EuiButton onClick={updateCounter}>
+          Clicked {counter} times
+        </EuiButton>
+      )
+    }
+    ```
+    </Demo>
+
+### Tables
+
+The preferred way to display content in tables is by leveraging [EuiBasicTable](https://eui.elastic.co/docs/components/tabular-content/tables/basic-tables) and not Markdown tables.
+
+Just like with [partials](#partials), the code for the table can be separated in its own file and imported into the MDX document where it'll be displayed. For example:
+
+    components/
+      my-component/
+        nice_table.tsx
+        index.mdx
+
+`nice_table.tsx` can export a component that renders [EuiBasicTable](https://eui.elastic.co/docs/components/tabular-content/tables/basic-tables):
+
+```tsx
+import { css } from '@emotion/react';
+
+import {
+  EuiBasicTable,
+  EuiBasicTableColumn,
+  // ...
+} from '@elastic/eui';
+
+export const NiceTable = () => {
+  const items = [
+    // ...
+  ];
+  const columns = [
+    // ...
+  ];
+
+  return <EuiBasicTable items={items} columns={columns} tableLayout="auto" />;
+}
+```
+
+And then in `index.mdx`:
+
+    ## A heading for the table
+
+    ```mdx-code-block
+    import { NiceTable } from './nice_table';
+    ```
+
+    <NiceTable />
+
+### Dos and Don'ts
+
+For dos and don'ts sections there's a `Guideline` component with the appropriate styles built-in. To display one next to the other, a [EuiFlexGroup](#TODO) can be used:
+
+```tsx
+<EuiFlexGroup gutterSize="m">
+  <Guideline type="do" text="Lorem ipsum dolor sit amet consectetur adipiscing elit.">
+    <div>Yep content</div>
+  </Guideline>
+  <Guideline type="dont" text="Quisque faucibus ex sapien vitae pellentesque sem placerat.">
+    <div>Nope content</div>
+  </Guideline>
+</EuiFlexGroup>
+```
+
+#### `Guideline` props
+
+- `children` - The content inside, can be other components
+- `type` - "do", "dont" or "default" 
+- `text` - The actual guideline text
+- `panelPadding`? - To adjust the padding of the panel
+- `panelStyle`? - To further customize the panel styles
+
+### Props table
+
+The Props table should always go last in a document. There is a `PropTable` component available that will take the props information from the `@elastic/eui-docgen` package in the `definition` prop.
+
+If more than one table is needed because the component has many exports, place one table after the other. It should look like this:
+
+    ## Props
+
+    ```mdx-code-block
+    import docgen from '@elastic/eui-docgen/dist/components/page';
+    ```
+
+    <PropTable definition={docgen.EuiPage} />
+
+    <PropTable definition={docgen.EuiPageBody} />
+
+    <PropTable definition={docgen.EuiPageSidebar} />
+
+To customize the table `PropTable` also takes a `headingLevel` prop (h1–h6) and a `showTitle` boolean.
