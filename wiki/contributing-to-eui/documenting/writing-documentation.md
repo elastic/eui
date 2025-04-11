@@ -63,7 +63,7 @@ For a [full list of fields](https://docusaurus.io/docs/api/plugins/@docusaurus/p
 
 To make a folder become a collapsible item in the sidebar, add a `_category_.yml` file to it that includes a boolean `collapsed` field. Usually set to `false`.
 
-Other fields that can be useful are `label` and `position`.
+Other useful fields are `label` and `position`.
 
 It's possible to make a collapsible item be a document as well, though this is not recommended. Set the `link` field to have `type: doc` and `id: <DOCUMENT_ID>`, with the `id` from the document it should point to. If the `id` is not explicitly set in the document file's [front matter](#front-matter), it's the relative path starting from the `docs` folder, without the file extension, e.g. `docs/components/containers/accordion`
 
