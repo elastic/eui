@@ -125,8 +125,17 @@ export const GuidePageHeader = () => {
         overflow-inline: auto;
       `}
     >
-      <EuiPanel borderRadius="none" color="warning">
-        <EuiText component="p" size="s">
+      <EuiPanel
+        borderRadius="none"
+        color="warning"
+        paddingSize="s"
+        css={css`
+          display: inline-flex;
+          justify-content: center;
+          align-items: center;
+        `}
+      >
+        <EuiText component="p" size="m">
           We have a new website!{' '}
           <EuiLink href="https://eui.elastic.co/next" external>
             Please help us test it and tell us what you think
