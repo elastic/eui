@@ -151,12 +151,12 @@ Here's some content
 
 There are 5 types of admonitions supported, with icon and color respectively.
 
-- note
-- tip
-- info
-- accessibility
-- warning
-- danger
+- `note`
+- `tip`
+- `info`
+- `accessibility`
+- `warning`
+- `danger`
 
 ### Code blocks
 
