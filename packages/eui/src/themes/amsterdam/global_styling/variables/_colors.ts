@@ -613,7 +613,12 @@ export const colors: _EuiThemeColors = {
   ink: '#000000',
   plainLight: '#FFFFFF',
   plainDark: '#000000',
-  LIGHT: light_colors,
-  DARK: dark_colors_ams,
-  vis: colorVis,
+  LIGHT: {
+    ...light_colors,
+    vis: colorVis,
+  },
+  DARK: {
+    ...dark_colors_ams,
+    vis: colorVis,
+  },
 };

@@ -360,8 +360,6 @@ export type _EuiThemeConstantColors = {
 
   plainLight: string;
   plainDark: string;
-
-  vis: _EuiThemeVisColors;
 };
 
 export type _EuiThemeColorsMode = _EuiThemeBrandColors &
@@ -373,5 +371,7 @@ export type _EuiThemeColorsMode = _EuiThemeBrandColors &
   _EuiThemeTransparentBackgroundColors &
   _EuiThemeBorderColors;
 
-export type _EuiThemeColors = StrictColorModeSwitch<_EuiThemeColorsMode> &
+export type _EuiThemeColors = StrictColorModeSwitch<
+  _EuiThemeColorsMode & { vis: _EuiThemeVisColors }
+> &
   _EuiThemeConstantColors;

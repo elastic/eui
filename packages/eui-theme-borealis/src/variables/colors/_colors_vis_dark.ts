@@ -47,7 +47,7 @@ const euiPaletteColorBlind = {
   },
 };
 
-export const colorVis: _EuiThemeVisColors = {
+export const visColorsDark: _EuiThemeVisColors = {
   euiColorVis0: euiPaletteColorBlind.euiColorVis0.graphic,
   euiColorVis1: euiPaletteColorBlind.euiColorVis1.graphic,
   euiColorVis2: euiPaletteColorBlind.euiColorVis2.graphic,

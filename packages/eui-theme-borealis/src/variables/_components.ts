@@ -21,7 +21,9 @@ import {
 import { buttons } from './_buttons';
 import { forms } from './_forms';
 import { border_colors } from './colors/_colors_light';
-import { colorVis } from './colors/_colors_vis';
+
+import { visColorsLight } from './colors/_colors_vis_light';
+import { visColorsDark } from './colors/_colors_vis_dark';
 
 const component_colors: _EuiThemeComponentColors = {
   badgeBackground: computed(
@@ -79,31 +81,31 @@ const component_colors: _EuiThemeComponentColors = {
     ([textParagraph]) => textParagraph,
     ['colors.textParagraph']
   ),
-  codeInlineColor: colorVis.euiColorVisAsTextLight6,
+  codeInlineColor: visColorsLight.euiColorVisAsTextLight6,
   codeCommentColor: computed(
     ([textSubdued]) => textSubdued,
     ['colors.textSubdued']
   ),
   codeSelectorColor: 'inherit',
-  codeStringColor: colorVis.euiColorVisAsTextLight2,
-  codeTagColor: colorVis.euiColorVisAsTextLight1,
-  codeNameColor: colorVis.euiColorVisAsTextLight1,
-  codeNumberColor: colorVis.euiColorVisAsTextLight0,
-  codeInlineCodeKeywordColor: colorVis.euiColorVisAsTextLight6,
-  codeKeywordColor: colorVis.euiColorVisAsTextLight1,
+  codeStringColor: visColorsLight.euiColorVisAsTextLight2,
+  codeTagColor: visColorsLight.euiColorVisAsTextLight1,
+  codeNameColor: visColorsLight.euiColorVisAsTextLight1,
+  codeNumberColor: visColorsLight.euiColorVisAsTextLight0,
+  codeInlineCodeKeywordColor: visColorsLight.euiColorVisAsTextLight6,
+  codeKeywordColor: visColorsLight.euiColorVisAsTextLight1,
   codeFunctionTitleColor: 'inherit',
-  codeTypeColor: colorVis.euiColorVisAsTextLight1,
+  codeTypeColor: visColorsLight.euiColorVisAsTextLight1,
   codeAttributeColor: 'inherit',
-  codeSymbolColor: colorVis.euiColorVisAsTextLight3,
+  codeSymbolColor: visColorsLight.euiColorVisAsTextLight3,
   codeParamsColor: 'inherit',
   codeMetaColor: computed(
     ([textSubdued]) => textSubdued,
     ['colors.textSubdued']
   ),
-  codeTitleColor: colorVis.euiColorVisAsTextLight4,
-  codeSectionColor: colorVis.euiColorVisAsTextLight3,
-  codeAdditionColor: colorVis.euiColorVisAsTextLight0,
-  codeDeletionColor: colorVis.euiColorVisAsTextLight3,
+  codeTitleColor: visColorsLight.euiColorVisAsTextLight4,
+  codeSectionColor: visColorsLight.euiColorVisAsTextLight3,
+  codeAdditionColor: visColorsLight.euiColorVisAsTextLight0,
+  codeDeletionColor: visColorsLight.euiColorVisAsTextLight3,
   codeSelectorClassColor: 'inherit',
   codeSelectorIdColor: 'inherit',
 
@@ -340,18 +342,18 @@ export const components: _EuiThemeComponents = {
     buttonGroupBorderColorSelected: dark_border_colors.borderBasePlain,
     buttonGroupFocusColor: SEMANTIC_COLORS.plainLight,
 
-    codeInlineColor: colorVis.euiColorVisAsTextDark6,
-    codeStringColor: colorVis.euiColorVisAsTextDark2,
-    codeTagColor: colorVis.euiColorVisAsTextDark1,
-    codeNameColor: colorVis.euiColorVisAsTextDark1,
-    codeNumberColor: colorVis.euiColorVisAsTextDark0,
-    codeKeywordColor: colorVis.euiColorVisAsTextDark6,
-    codeTypeColor: colorVis.euiColorVisAsTextDark1,
-    codeSymbolColor: colorVis.euiColorVisAsTextDark3,
-    codeTitleColor: colorVis.euiColorVisAsTextDark4,
-    codeSectionColor: colorVis.euiColorVisAsTextDark3,
-    codeAdditionColor: colorVis.euiColorVisAsTextDark0,
-    codeDeletionColor: colorVis.euiColorVisAsTextDark3,
+    codeInlineColor: visColorsDark.euiColorVisAsTextDark6,
+    codeStringColor: visColorsDark.euiColorVisAsTextDark2,
+    codeTagColor: visColorsDark.euiColorVisAsTextDark1,
+    codeNameColor: visColorsDark.euiColorVisAsTextDark1,
+    codeNumberColor: visColorsDark.euiColorVisAsTextDark0,
+    codeKeywordColor: visColorsDark.euiColorVisAsTextDark6,
+    codeTypeColor: visColorsDark.euiColorVisAsTextDark1,
+    codeSymbolColor: visColorsDark.euiColorVisAsTextDark3,
+    codeTitleColor: visColorsDark.euiColorVisAsTextDark4,
+    codeSectionColor: visColorsDark.euiColorVisAsTextDark3,
+    codeAdditionColor: visColorsDark.euiColorVisAsTextDark0,
+    codeDeletionColor: visColorsDark.euiColorVisAsTextDark3,
 
     filterButtonBadgeBackgroundHover: SEMANTIC_COLORS.shade105,
 

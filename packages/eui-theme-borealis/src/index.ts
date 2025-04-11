@@ -19,7 +19,7 @@ import { focus } from './variables/_states';
 import { components } from './variables/_components';
 import { overrides } from './variables/_overrides';
 
-export { colorVis } from './variables/colors/_colors_vis';
+export { visColorsLight as colorVis } from './variables/colors/_colors_vis_light';
 
 export const EUI_THEME_BOREALIS_KEY = 'EUI_THEME_BOREALIS';
 

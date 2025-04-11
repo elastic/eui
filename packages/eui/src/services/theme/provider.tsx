@@ -142,12 +142,17 @@ export const EuiThemeProvider = <T extends {} = {}>({
           isEqual(parentModifications, modifications)
   );
 
-  const updateVisColorStore = useCallback((theme: EuiThemeComputed) => {
-    EUI_VIS_COLOR_STORE.setVisColors(
-      theme.colors.vis,
-      theme.flags?.hasVisColorAdjustment ?? true
-    );
-  }, []);
+  const updateVisColorStore = useCallback(
+    (theme: EuiThemeComputed, isGlobalTheme: boolean) => {
+      if (isGlobalTheme) {
+        EUI_VIS_COLOR_STORE.setVisColors(
+          theme.colors.vis,
+          theme.flags?.hasVisColorAdjustment ?? true
+        );
+      }
+    },
+    []
+  );
 
   const getInitialTheme = () => {
     const theme = getComputed(
@@ -161,7 +166,7 @@ export const EuiThemeProvider = <T extends {} = {}>({
     );
 
     setTimeout(() => {
-      updateVisColorStore(theme);
+      updateVisColorStore(theme, isGlobalTheme);
     });
 
     return theme;
@@ -179,10 +184,12 @@ export const EuiThemeProvider = <T extends {} = {}>({
       setSystem(newSystem);
       prevSystemKey.current = newSystem.key;
       isParentTheme.current = false;
-
-      updateVisColorStore(theme);
     }
   }, [_system, parentSystem, theme, updateVisColorStore]);
+
+  useEffect(() => {
+    updateVisColorStore(theme, isGlobalTheme);
+  }, [theme]);
 
   useEffect(() => {
     const newModifications = mergeDeep(parentModifications, _modifications);
@@ -210,7 +217,7 @@ export const EuiThemeProvider = <T extends {} = {}>({
 
   useEffect(() => {
     if (!isParentTheme.current) {
-      /* Enables recomputation of component colors when flags are overridden on the provider 
+      /* Enables recomputation of component colors when flags are overridden on the provider
       by adding the respective key to modifications to trigger a recomputation. */
       // TODO: remove once flags and experimental updates are obsolete
       const flagsToRecompute = [
@@ -254,7 +261,7 @@ export const EuiThemeProvider = <T extends {} = {}>({
 
       setTheme(rebuiltTheme);
     }
-  }, [colorMode, system, modificationsWithHighContrast]);
+  }, [system, colorMode, highContrastMode, modificationsWithHighContrast]);
 
   const [themeCSSVariables, _setThemeCSSVariables] = useState<CSSObject>();
   const setThemeCSSVariables = useCallback(
