@@ -9,11 +9,10 @@
 import React, { FunctionComponent } from 'react';
 import classNames from 'classnames';
 
-import { useEuiTheme } from '../../services';
+import { useEuiMemoizedStyles } from '../../services';
 import { useInnerText } from '../inner_text';
 
 import type { EuiImageWrapperProps } from './image_types';
-
 import { euiImageWrapperStyles } from './image_wrapper.styles';
 import { EuiImageButton } from './image_button';
 import { EuiImageCaption } from './image_caption';
@@ -32,19 +31,12 @@ export const EuiImageWrapper: FunctionComponent<EuiImageWrapperProps> = ({
   isFullWidth,
   onFullScreen,
 }) => {
-  const openFullScreen = () => {
-    setIsFullScreen(true);
-    onFullScreen?.(true);
-  };
-
   const classes = classNames(
     'euiImageWrapper',
     wrapperProps && wrapperProps.className
   );
 
-  const euiTheme = useEuiTheme();
-
-  const styles = euiImageWrapperStyles(euiTheme);
+  const styles = useEuiMemoizedStyles(euiImageWrapperStyles);
   const cssFigureStyles = [
     styles.euiImageWrapper,
     float && styles[float],
@@ -64,18 +56,19 @@ export const EuiImageWrapper: FunctionComponent<EuiImageWrapperProps> = ({
       css={cssFigureStyles}
     >
       {allowFullScreen ? (
-        <>
-          <EuiImageButton
-            hasAlt={!!alt}
-            hasShadow={hasShadow}
-            onClick={openFullScreen}
-            data-test-subj="activateFullScreenButton"
-            isFullWidth={isFullWidth}
-            fullScreenIconColor={fullScreenIconColor}
-          >
-            {children}
-          </EuiImageButton>
-        </>
+        <EuiImageButton
+          hasAlt={!!alt}
+          hasShadow={hasShadow}
+          onClick={() => {
+            setIsFullScreen(true);
+            onFullScreen?.(true);
+          }}
+          data-test-subj="activateFullScreenButton"
+          isFullWidth={isFullWidth}
+          fullScreenIconColor={fullScreenIconColor}
+        >
+          {children}
+        </EuiImageButton>
       ) : (
         children
       )}
