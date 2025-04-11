@@ -92,6 +92,7 @@ export const getGlobalStyles = (theme: UseEuiTheme) => {
 
       --eui-size-xs: ${size.xs};
       --eui-size-s: ${size.s};
+      --eui-size-m: ${size.m};
 
       --eui-border-color-primary: ${colors.borderStrongPrimary};
 

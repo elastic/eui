@@ -1,5 +1,4 @@
 import React, { useContext } from 'react';
-import clsx from 'clsx';
 import { css } from '@emotion/react';
 import useIsBrowser from '@docusaurus/useIsBrowser';
 import {
@@ -118,7 +117,7 @@ export const NavbarItem = (props: Props) => {
         href={href}
         target={target ?? '_blank'}
         title={title}
-        className={clsx('clean-btn', className)}
+        className={className}
         css={cssStyles}
         onClick={onClick}
         aria-label={title}
@@ -133,7 +132,7 @@ export const NavbarItem = (props: Props) => {
     <button
       type="button"
       disabled={!isBrowser}
-      className={clsx('clean-btn', className)}
+      className={className}
       css={cssStyles}
       onClick={onClick}
       title={title}
