@@ -110,7 +110,7 @@ Usage and Guidelines sections have their own file that can be imported:
     
     <Guidelines />
 
-Read more about [importing markdown](https://docusaurus.io/docs/markdown-features/react#importing-markdown) in the Docusaurus docs.
+Read more about [importing Markdown files](https://docusaurus.io/docs/markdown-features/react#importing-markdown) in the Docusaurus docs.
 
 ## Writing content
 
