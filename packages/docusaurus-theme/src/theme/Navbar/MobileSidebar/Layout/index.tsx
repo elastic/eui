@@ -21,6 +21,8 @@ const styles = {
     .navbar-sidebar__back {
       font-size: var(--eui-font-size-s);
       line-height: var(--eui-fline-height-xs);
+      padding-block: var(--eui-size-m);
+      padding-inline: var(--eui-size-s);
     }
   `,
 };
