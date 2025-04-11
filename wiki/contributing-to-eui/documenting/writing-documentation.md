@@ -57,7 +57,7 @@ A few important aspects of the document can be configured here:
 - `title` (if different from the h1)
 - `description`
 
-For a [full list of fields](https://docusaurus.io/docs/api/plugins/@docusaurus/plugin-content-docs#markdown-front-matter), check the Docusaurus docs.
+Check the Docusaurus docs for a [full list of fields](https://docusaurus.io/docs/api/plugins/@docusaurus/plugin-content-docs#markdown-front-matter).
 
 ## Collapsible sidebar items
 
