@@ -82,4 +82,22 @@ describe('EuiCheckableCard', () => {
 
     expect(container.firstChild).toMatchSnapshot();
   });
+
+  test('applies labelProps to the label element', () => {
+    const labelProps = {
+      'data-test-subj': 'testLabel',
+      title: 'Test Title',
+    };
+
+    const { getByText } = render(
+      <EuiCheckableCard
+        {...checkablePanelRequiredProps}
+        labelProps={labelProps}
+      />
+    );
+
+    const labelElement = getByText('Label');
+    expect(labelElement).toHaveAttribute('data-test-subj', 'testLabel');
+    expect(labelElement).toHaveAttribute('title', 'Test Title');
+  });
 });

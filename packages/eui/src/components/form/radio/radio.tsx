@@ -29,7 +29,7 @@ export interface RadioProps {
   disabled?: boolean;
   onChange: ChangeEventHandler<HTMLInputElement>;
   /**
-   * Object of props passed to the <label/>
+   * Object of props passed to the `label` element
    */
   labelProps?: CommonProps & LabelHTMLAttributes<HTMLLabelElement>;
 }
