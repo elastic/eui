@@ -232,7 +232,7 @@ The convention for creating full-screen examples, where the entire browser scree
 
 There's a `StorybookLink` component that makes this easy and consistent, by handling the URL appropriately depending on the environment.
 
-It's expected for the link to be preceeded by a heading a some text briefly describing the example.
+It's expected for the link to be preceded by a heading and a short description.
 
 The story's `id` can be found in the URL. It's the part after `/index.html?path=/story/`.
 
