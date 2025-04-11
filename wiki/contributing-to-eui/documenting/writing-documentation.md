@@ -308,7 +308,7 @@ For dos and don'ts sections there's a `Guideline` component with the appropriate
 #### `Guideline` props
 
 - `children` - The content inside, can be other components
-- `type` - "do", "dont" or "default" 
+- `type` - `do`, `dont` or `default` 
 - `text` - The actual guideline text
 - `panelPadding` (optional) - To adjust the padding of the panel
 - `panelStyle` (optional) - To further customize the panel styles
