@@ -18,7 +18,7 @@
   - [Figma embed](#figma-embed)
   - [Props table](#props-table)
 
-Code for the Elastic UI [documentation site](https://elastic.github.io/eui/#/) can be found in the `packages/website` directory. The site is built with [Docusaurus](https://docusaurus.io/).
+Code for the Elastic UI [documentation site](https://eui.elastic.co) can be found in the `packages/website` directory. The site is built with [Docusaurus](https://docusaurus.io/).
 
 ## Files and folders
 
