@@ -75,7 +75,7 @@ export type EuiComboBoxOptionsListProps<T> = CommonProps & {
   onOptionEnterKey?: OptionHandler<T>;
   onScroll?: ListProps['onScroll'];
   /**
-   * Array of EuiComboBoxOptionOption objects. See #EuiComboBoxOptionOption
+   * Array of EuiComboBoxOptionOption objects. See {@link EuiComboBoxOptionOption}
    */
   options: Array<EuiComboBoxOptionOption<T>>;
   renderOption?: (

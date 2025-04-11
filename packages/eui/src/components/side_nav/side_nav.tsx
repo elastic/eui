@@ -40,7 +40,7 @@ export type EuiSideNavProps<T = {}> = T &
      */
     heading?: ReactNode;
     /**
-     * Adds a couple extra #EuiSideNavHeading props and extends the props of EuiTitle that wraps the `heading`
+     * Adds a couple extra {@link EuiSideNavHeading} props and extends the props of EuiTitle that wraps the `heading`
      */
     headingProps?: Partial<EuiSideNavHeadingProps>;
     /**
@@ -61,7 +61,7 @@ export type EuiSideNavProps<T = {}> = T &
      */
     mobileBreakpoints?: EuiBreakpointSize[];
     /**
-     *  An array of #EuiSideNavItem objects. Lists navigation menu items.
+     *  An array of {@link EuiSideNavItem} objects. Lists navigation menu items.
      */
     items: Array<EuiSideNavItemType<T>>;
     /**

@@ -29,7 +29,7 @@ export type EuiColorPaletteDisplaySize = (typeof SIZES)[number];
 
 export interface EuiColorPaletteDisplayShared {
   /**
-   * Array of color `strings` or an array of #PaletteColorStop. The stops must be numbers in an ordered range.
+   * Array of color `strings` or an array of {@link PaletteColorStop}. The stops must be numbers in an ordered range.
    */
   palette: string[] | PaletteColorStop[];
 }

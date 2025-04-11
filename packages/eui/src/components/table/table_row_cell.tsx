@@ -102,7 +102,7 @@ export interface EuiTableRowCellProps extends EuiTableRowCellSharedPropsShape {
   isExpander?: boolean;
   /**
    * Mobile options for displaying differently at small screens;
-   * See #EuiTableRowCellMobileOptionsShape
+   * See {@link EuiTableRowCellMobileOptionsShape}
    */
   mobileOptions?: EuiTableRowCellMobileOptionsShape;
   /**

@@ -21,7 +21,7 @@ export interface EuiTimelineProps
   extends HTMLAttributes<HTMLOListElement>,
     CommonProps {
   /**
-   * List of timeline items to render. See #EuiTimelineItem
+   * List of timeline items to render. See {@link EuiTimelineItem}
    */
   items?: EuiTimelineItemProps[];
   /**

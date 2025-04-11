@@ -34,7 +34,7 @@ export interface EuiPinnableListGroupProps
     EuiListGroupProps {
   /**
    * Extends `EuiListGroupItemProps`, at the very least, expecting a `label`.
-   * See #EuiPinnableListGroupItem
+   * See {@link EuiPinnableListGroupItem}
    */
   listItems: EuiPinnableListGroupItemProps[];
   /**
