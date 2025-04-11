@@ -6,71 +6,100 @@
  * Side Public License, v 1.
  */
 import { computed, mathWithUnits } from '@elastic/eui-theme-common';
-import {
-  dark_background_colors,
-  dark_border_colors,
-  dark_text_colors,
-} from './colors/_colors_dark';
-import {
-  background_colors,
-  border_colors,
-  text_colors,
-} from './colors/_colors_light';
 import { SEMANTIC_COLORS } from './colors/_semantic_colors';
 
 const _forms = {
-  background: background_colors.backgroundBasePlain,
-  backgroundDisabled: background_colors.backgroundBaseDisabled,
-  backgroundReadOnly: background_colors.backgroundBaseDisabled,
-  backgroundFocused: background_colors.backgroundBasePlain,
-  backgroundAutofilled: background_colors.backgroundBasePrimary,
+  background: computed(
+    ([backgroundBasePlain]) => backgroundBasePlain,
+    ['colors.backgroundBasePlain']
+  ),
+  backgroundDisabled: computed(
+    ([backgroundBaseDisabled]) => backgroundBaseDisabled,
+    ['colors.backgroundBaseDisabled']
+  ),
+  backgroundReadOnly: computed(
+    ([backgroundBaseDisabled]) => backgroundBaseDisabled,
+    ['colors.backgroundBaseDisabled']
+  ),
+  backgroundFocused: computed(
+    ([backgroundBasePlain]) => backgroundBasePlain,
+    ['colors.backgroundBasePlain']
+  ),
+  backgroundAutofilled: computed(
+    ([backgroundBasePrimary]) => backgroundBasePrimary,
+    ['colors.backgroundBasePrimary']
+  ),
   backgroundDropping: SEMANTIC_COLORS.success70Alpha16,
-  prependBackground: background_colors.backgroundBaseFormsPrepend,
-  border: border_colors.borderBasePlain,
-  borderDisabled: border_colors.borderBaseDisabled,
-  borderFocused: border_colors.borderStrongPrimary,
-  borderInvalid: border_colors.borderStrongDanger,
-  borderHovered: border_colors.borderInteractiveFormsHoverPlain,
-  borderInvalidHovered: border_colors.borderInteractiveFormsHoverDanger,
-  borderAutofilled: border_colors.borderBasePrimary,
-  borderAutofilledHovered: border_colors.borderStrongPrimary,
-  controlBorder: border_colors.borderBaseFormsControl,
-  controlBorderSelected: border_colors.borderStrongPrimary,
-  controlBorderDisabled: border_colors.borderBaseDisabled,
+  prependBackground: computed(
+    ([backgroundBaseFormsPrepend]) => backgroundBaseFormsPrepend,
+    ['colors.backgroundBaseFormsPrepend']
+  ),
+  border: computed(
+    ([borderBasePlain]) => borderBasePlain,
+    ['colors.borderBasePlain']
+  ),
+  borderDisabled: computed(
+    ([borderBaseDisabled]) => borderBaseDisabled,
+    ['colors.borderBaseDisabled']
+  ),
+  borderFocused: computed(
+    ([borderStrongPrimary]) => borderStrongPrimary,
+    ['colors.borderStrongPrimary']
+  ),
+  borderInvalid: computed(
+    ([borderStrongDanger]) => borderStrongDanger,
+    ['colors.borderStrongDanger']
+  ),
+  borderHovered: computed(
+    ([borderInteractiveFormsHoverPlain]) => borderInteractiveFormsHoverPlain,
+    ['colors.borderInteractiveFormsHoverPlain']
+  ),
+  borderInvalidHovered: computed(
+    ([borderInteractiveFormsHoverDanger]) => borderInteractiveFormsHoverDanger,
+    ['colors.borderInteractiveFormsHoverDanger']
+  ),
+  borderAutofilled: computed(
+    ([borderBasePrimary]) => borderBasePrimary,
+    ['colors.borderBasePrimary']
+  ),
+  borderAutofilledHovered: computed(
+    ([borderStrongPrimary]) => borderStrongPrimary,
+    ['colors.borderStrongPrimary']
+  ),
+  controlBorder: computed(
+    ([borderBaseFormsControl]) => borderBaseFormsControl,
+    ['colors.borderBaseFormsControl']
+  ),
+  controlBorderSelected: computed(
+    ([borderStrongPrimary]) => borderStrongPrimary,
+    ['colors.borderStrongPrimary']
+  ),
+  controlBorderDisabled: computed(
+    ([borderBaseDisabled]) => borderBaseDisabled,
+    ['colors.borderBaseDisabled']
+  ),
   controlBackgroundUnselected: 'transparent',
-  controlBackgroundDisabled:
-    background_colors.backgroundBaseFormsControlDisabled,
-  colorHasPlaceholder: text_colors.textSubdued,
-  colorDisabled: text_colors.textDisabled,
-  iconDisabled: text_colors.textDisabled,
+  controlBackgroundDisabled: computed(
+    ([backgroundBaseFormsControlDisabled]) =>
+      backgroundBaseFormsControlDisabled,
+    ['colors.backgroundBaseFormsControlDisabled']
+  ),
+  colorHasPlaceholder: computed(
+    ([textSubdued]) => textSubdued,
+    ['colors.textSubdued']
+  ),
+  colorDisabled: computed(
+    ([textDisabled]) => textDisabled,
+    ['colors.textDisabled']
+  ),
+  iconDisabled: computed(
+    ([textDisabled]) => textDisabled,
+    ['colors.textDisabled']
+  ),
 };
 
 const _dark_forms = {
   ..._forms,
-  background: dark_background_colors.backgroundBasePlain,
-  backgroundDisabled: dark_background_colors.backgroundBaseDisabled,
-  backgroundReadOnly: dark_background_colors.backgroundBasePlain,
-  backgroundFocused: dark_background_colors.backgroundBasePlain,
-  backgroundAutofilled: dark_background_colors.backgroundBasePrimary,
-  backgroundDropping: SEMANTIC_COLORS.success70Alpha20,
-  prependBackground: dark_background_colors.backgroundBaseFormsPrepend,
-  border: dark_border_colors.borderBasePlain,
-  borderDisabled: dark_border_colors.borderBaseDisabled,
-  borderFocused: dark_border_colors.borderStrongPrimary,
-  borderInvalid: dark_border_colors.borderStrongDanger,
-  borderHovered: dark_border_colors.borderInteractiveFormsHoverPlain,
-  borderInvalidHovered: dark_border_colors.borderInteractiveFormsHoverDanger,
-  borderAutofilled: dark_border_colors.borderBasePrimary,
-  borderAutofilledHovered: dark_border_colors.borderStrongPrimary,
-  controlBorder: dark_border_colors.borderBaseFormsControl,
-  controlBorderSelected: dark_border_colors.borderStrongPrimary,
-  controlBorderDisabled: dark_border_colors.borderBaseDisabled,
-  controlBackgroundUnselected: 'transparent',
-  controlBackgroundDisabled:
-    dark_background_colors.backgroundBaseFormsControlDisabled,
-  colorHasPlaceholder: dark_text_colors.textSubdued,
-  colorDisabled: dark_text_colors.textDisabled,
-  iconDisabled: dark_text_colors.textDisabled,
 };
 
 export const forms = {

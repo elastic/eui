@@ -13,16 +13,6 @@ import {
   computed,
 } from '@elastic/eui-theme-common';
 import { SEMANTIC_COLORS } from './colors/_semantic_colors';
-import {
-  background_colors,
-  brand_text_colors,
-  text_colors,
-} from './colors/_colors_light';
-import {
-  dark_background_colors,
-  dark_brand_text_colors,
-  dark_text_colors,
-} from './colors/_colors_dark';
 
 const getTokenByVariant = (
   buttonVariant: _EuiThemeFlags['buttonVariant'],
@@ -42,76 +32,45 @@ const getTokenByVariant = (
 
 const _buttons = {
   backgroundPrimary: computed(
-    ([buttonVariant]) => {
-      return getTokenByVariant(buttonVariant, {
-        experimental: background_colors.backgroundLightPrimary,
-        default: background_colors.backgroundLightPrimary,
-      });
-    },
-    ['flags.buttonVariant']
+    ([backgroundLightPrimary]) => backgroundLightPrimary,
+    ['colors.backgroundLightPrimary']
   ),
   backgroundAccent: computed(
-    ([buttonVariant]) => {
-      return getTokenByVariant(buttonVariant, {
-        experimental: background_colors.backgroundLightAccent,
-        default: background_colors.backgroundLightAccent,
-      });
-    },
-    ['flags.buttonVariant']
+    ([backgroundLightAccent]) => backgroundLightAccent,
+    ['colors.backgroundLightAccent']
   ),
   backgroundAccentSecondary: computed(
-    ([buttonVariant]) => {
-      return getTokenByVariant(buttonVariant, {
-        experimental: background_colors.backgroundLightAccentSecondary,
-        default: background_colors.backgroundLightAccentSecondary,
-      });
-    },
-    ['flags.buttonVariant']
+    ([backgroundLightAccentSecondary]) => backgroundLightAccentSecondary,
+    ['colors.backgroundLightAccentSecondary']
   ),
   backgroundSuccess: computed(
-    ([buttonVariant]) => {
-      return getTokenByVariant(buttonVariant, {
-        experimental: background_colors.backgroundLightSuccess,
-        default: background_colors.backgroundLightSuccess,
-      });
-    },
-    ['flags.buttonVariant']
+    ([backgroundLightSuccess]) => backgroundLightSuccess,
+    ['colors.backgroundLightSuccess']
   ),
   backgroundWarning: computed(
-    ([buttonVariant]) => {
-      return getTokenByVariant(buttonVariant, {
-        experimental: background_colors.backgroundLightWarning,
-        default: background_colors.backgroundLightWarning,
-      });
-    },
-    ['flags.buttonVariant']
+    ([backgroundLightWarning]) => backgroundLightWarning,
+    ['colors.backgroundLightWarning']
   ),
   backgroundDanger: computed(
-    ([buttonVariant]) => {
-      return getTokenByVariant(buttonVariant, {
-        experimental: background_colors.backgroundLightDanger,
-        default: background_colors.backgroundLightDanger,
-      });
-    },
-    ['flags.buttonVariant']
+    ([backgroundLightDanger]) => backgroundLightDanger,
+    ['colors.backgroundLightDanger']
   ),
   backgroundText: computed(
-    ([buttonVariant]) => {
+    ([buttonVariant, backgroundBasePlain, backgroundLightText]) => {
       return getTokenByVariant(buttonVariant, {
-        experimental: background_colors.backgroundBasePlain,
-        default: background_colors.backgroundLightText,
+        experimental: backgroundBasePlain,
+        default: backgroundLightText,
       });
     },
-    ['flags.buttonVariant']
+    [
+      'flags.buttonVariant',
+      'colors.backgroundBasePlain',
+      'colors.backgroundLightText',
+    ]
   ),
   backgroundDisabled: computed(
-    ([buttonVariant]) => {
-      return getTokenByVariant(buttonVariant, {
-        experimental: background_colors.backgroundBasePlain,
-        default: background_colors.backgroundBaseDisabled,
-      });
-    },
-    ['flags.buttonVariant']
+    ([backgroundBaseDisabled]) => backgroundBaseDisabled,
+    ['colors.backgroundBaseDisabled']
   ),
 
   backgroundPrimaryHover: SEMANTIC_COLORS.primary70Alpha12,
@@ -130,15 +89,38 @@ const _buttons = {
   backgroundDangerActive: SEMANTIC_COLORS.danger70Alpha16,
   backgroundTextActive: SEMANTIC_COLORS.primary100Alpha12,
 
-  backgroundFilledPrimary: background_colors.backgroundFilledPrimary,
-  backgroundFilledAccent: background_colors.backgroundFilledAccent,
-  backgroundFilledAccentSecondary:
-    background_colors.backgroundFilledAccentSecondary,
-  backgroundFilledSuccess: background_colors.backgroundFilledSuccess,
-  backgroundFilledWarning: background_colors.backgroundFilledWarning,
-  backgroundFilledDanger: background_colors.backgroundFilledDanger,
-  backgroundFilledText: background_colors.backgroundFilledText,
-  backgroundFilledDisabled: background_colors.backgroundBaseDisabled,
+  backgroundFilledPrimary: computed(
+    ([backgroundFilledPrimary]) => backgroundFilledPrimary,
+    ['colors.backgroundFilledPrimary']
+  ),
+  backgroundFilledAccent: computed(
+    ([backgroundFilledAccent]) => backgroundFilledAccent,
+    ['colors.backgroundFilledAccent']
+  ),
+  backgroundFilledAccentSecondary: computed(
+    ([backgroundFilledAccentSecondary]) => backgroundFilledAccentSecondary,
+    ['colors.backgroundFilledAccentSecondary']
+  ),
+  backgroundFilledSuccess: computed(
+    ([backgroundFilledSuccess]) => backgroundFilledSuccess,
+    ['colors.backgroundFilledSuccess']
+  ),
+  backgroundFilledWarning: computed(
+    ([backgroundFilledWarning]) => backgroundFilledWarning,
+    ['colors.backgroundFilledWarning']
+  ),
+  backgroundFilledDanger: computed(
+    ([backgroundFilledDanger]) => backgroundFilledDanger,
+    ['colors.backgroundFilledDanger']
+  ),
+  backgroundFilledText: computed(
+    ([backgroundFilledText]) => backgroundFilledText,
+    ['colors.backgroundFilledText']
+  ),
+  backgroundFilledDisabled: computed(
+    ([backgroundBaseDisabled]) => backgroundBaseDisabled,
+    ['colors.backgroundBaseDisabled']
+  ),
 
   backgroundFilledPrimaryHover: SEMANTIC_COLORS.primary100,
   backgroundFilledAccentHover: SEMANTIC_COLORS.accent100,
@@ -173,98 +155,72 @@ const _buttons = {
   backgroundEmptyDangerActive: SEMANTIC_COLORS.danger70Alpha16,
   backgroundEmptyTextActive: SEMANTIC_COLORS.primary100Alpha12,
 
-  textColorPrimary: brand_text_colors.textPrimary,
-  textColorAccent: brand_text_colors.textAccent,
-  textColorAccentSecondary: brand_text_colors.textAccentSecondary,
-  textColorSuccess: brand_text_colors.textSuccess,
-  textColorWarning: brand_text_colors.textWarning,
-  textColorDanger: brand_text_colors.textDanger,
-  textColorText: text_colors.textParagraph,
-  textColorDisabled: text_colors.textDisabled,
+  textColorPrimary: computed(
+    ([textPrimary]) => textPrimary,
+    ['colors.textPrimary']
+  ),
+  textColorAccent: computed(
+    ([textAccent]) => textAccent,
+    ['colors.textAccent']
+  ),
+  textColorAccentSecondary: computed(
+    ([textAccentSecondary]) => textAccentSecondary,
+    ['colors.textAccentSecondary']
+  ),
+  textColorSuccess: computed(
+    ([textSuccess]) => textSuccess,
+    ['colors.textSuccess']
+  ),
+  textColorWarning: computed(
+    ([textWarning]) => textWarning,
+    ['colors.textWarning']
+  ),
+  textColorDanger: computed(
+    ([textDanger]) => textDanger,
+    ['colors.textDanger']
+  ),
+  textColorText: computed(
+    ([textParagraph]) => textParagraph,
+    ['colors.textParagraph']
+  ),
+  textColorDisabled: computed(
+    ([textDisabled]) => textDisabled,
+    ['colors.textDisabled']
+  ),
 
-  textColorFilledPrimary: text_colors.textInverse,
-  textColorFilledAccent: text_colors.textInverse,
-  textColorFilledAccentSecondary: text_colors.textInverse,
-  textColorFilledSuccess: text_colors.textInverse,
+  textColorFilledPrimary: computed(
+    ([textInverse]) => textInverse,
+    ['colors.textInverse']
+  ),
+  textColorFilledAccent: computed(
+    ([textInverse]) => textInverse,
+    ['colors.textInverse']
+  ),
+  textColorFilledAccentSecondary: computed(
+    ([textInverse]) => textInverse,
+    ['colors.textInverse']
+  ),
+  textColorFilledSuccess: computed(
+    ([textInverse]) => textInverse,
+    ['colors.textInverse']
+  ),
   textColorFilledWarning: SEMANTIC_COLORS.warning110,
-  textColorFilledDanger: text_colors.textInverse,
-  textColorFilledText: text_colors.textInverse,
-  textColorFilledDisabled: text_colors.textDisabled,
+  textColorFilledDanger: computed(
+    ([textInverse]) => textInverse,
+    ['colors.textInverse']
+  ),
+  textColorFilledText: computed(
+    ([textInverse]) => textInverse,
+    ['colors.textInverse']
+  ),
+  textColorFilledDisabled: computed(
+    ([textDisabled]) => textDisabled,
+    ['colors.textDisabled']
+  ),
 };
 
 const _dark_buttons = {
-  backgroundPrimary: computed(
-    ([buttonVariant]) => {
-      return getTokenByVariant(buttonVariant, {
-        experimental: dark_background_colors.backgroundLightPrimary,
-        default: dark_background_colors.backgroundLightPrimary,
-      });
-    },
-    ['flags.buttonVariant']
-  ),
-  backgroundAccent: computed(
-    ([buttonVariant]) => {
-      return getTokenByVariant(buttonVariant, {
-        experimental: dark_background_colors.backgroundLightAccent,
-        default: dark_background_colors.backgroundLightAccent,
-      });
-    },
-    ['flags.buttonVariant']
-  ),
-  backgroundAccentSecondary: computed(
-    ([buttonVariant]) => {
-      return getTokenByVariant(buttonVariant, {
-        experimental: dark_background_colors.backgroundLightAccentSecondary,
-        default: dark_background_colors.backgroundLightAccentSecondary,
-      });
-    },
-    ['flags.buttonVariant']
-  ),
-  backgroundSuccess: computed(
-    ([buttonVariant]) => {
-      return getTokenByVariant(buttonVariant, {
-        experimental: dark_background_colors.backgroundLightSuccess,
-        default: dark_background_colors.backgroundLightSuccess,
-      });
-    },
-    ['flags.buttonVariant']
-  ),
-  backgroundWarning: computed(
-    ([buttonVariant]) => {
-      return getTokenByVariant(buttonVariant, {
-        experimental: dark_background_colors.backgroundLightWarning,
-        default: dark_background_colors.backgroundLightWarning,
-      });
-    },
-    ['flags.buttonVariant']
-  ),
-  backgroundDanger: computed(
-    ([buttonVariant]) => {
-      return getTokenByVariant(buttonVariant, {
-        experimental: dark_background_colors.backgroundLightDanger,
-        default: dark_background_colors.backgroundLightDanger,
-      });
-    },
-    ['flags.buttonVariant']
-  ),
-  backgroundText: computed(
-    ([buttonVariant]) => {
-      return getTokenByVariant(buttonVariant, {
-        experimental: dark_background_colors.backgroundLightText,
-        default: dark_background_colors.backgroundLightText,
-      });
-    },
-    ['flags.buttonVariant']
-  ),
-  backgroundDisabled: computed(
-    ([buttonVariant]) => {
-      return getTokenByVariant(buttonVariant, {
-        experimental: dark_background_colors.backgroundBasePlain,
-        default: dark_background_colors.backgroundBaseDisabled,
-      });
-    },
-    ['flags.buttonVariant']
-  ),
+  ..._buttons,
 
   backgroundPrimaryHover: SEMANTIC_COLORS.primary70Alpha16,
   backgroundAccentHover: SEMANTIC_COLORS.accent70Alpha16,
@@ -281,16 +237,6 @@ const _dark_buttons = {
   backgroundWarningActive: SEMANTIC_COLORS.warning60Alpha16,
   backgroundDangerActive: SEMANTIC_COLORS.danger70Alpha20,
   backgroundTextActive: SEMANTIC_COLORS.plainLightAlpha16,
-
-  backgroundFilledPrimary: dark_background_colors.backgroundFilledPrimary,
-  backgroundFilledAccent: dark_background_colors.backgroundFilledAccent,
-  backgroundFilledAccentSecondary:
-    dark_background_colors.backgroundFilledAccentSecondary,
-  backgroundFilledSuccess: dark_background_colors.backgroundFilledSuccess,
-  backgroundFilledWarning: dark_background_colors.backgroundFilledWarning,
-  backgroundFilledDanger: dark_background_colors.backgroundFilledDanger,
-  backgroundFilledText: dark_background_colors.backgroundFilledText,
-  backgroundFilledDisabled: dark_background_colors.backgroundBaseDisabled,
 
   backgroundFilledPrimaryHover: SEMANTIC_COLORS.primary70,
   backgroundFilledAccentHover: SEMANTIC_COLORS.accent70,
@@ -325,23 +271,7 @@ const _dark_buttons = {
   backgroundEmptyDangerActive: SEMANTIC_COLORS.danger70Alpha20,
   backgroundEmptyTextActive: SEMANTIC_COLORS.plainLightAlpha16,
 
-  textColorPrimary: dark_brand_text_colors.textPrimary,
-  textColorAccent: dark_brand_text_colors.textAccent,
-  textColorAccentSecondary: dark_brand_text_colors.textAccentSecondary,
-  textColorSuccess: dark_brand_text_colors.textSuccess,
-  textColorWarning: dark_brand_text_colors.textWarning,
-  textColorDanger: dark_brand_text_colors.textDanger,
-  textColorText: dark_text_colors.textParagraph,
-  textColorDisabled: dark_text_colors.textDisabled,
-
-  textColorFilledPrimary: dark_text_colors.textInverse,
-  textColorFilledAccent: dark_text_colors.textInverse,
-  textColorFilledAccentSecondary: dark_text_colors.textInverse,
-  textColorFilledSuccess: dark_text_colors.textInverse,
   textColorFilledWarning: SEMANTIC_COLORS.warning110,
-  textColorFilledDanger: dark_text_colors.textInverse,
-  textColorFilledText: dark_text_colors.textInverse,
-  textColorFilledDisabled: dark_text_colors.textDisabled,
 };
 
 export const buttons: _EuiThemeButton = {

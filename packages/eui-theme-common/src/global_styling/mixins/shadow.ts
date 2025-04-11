@@ -8,10 +8,7 @@
 
 import type { UseEuiTheme } from '../../services/theme/types';
 import { getShadowColor } from '../functions';
-import {
-  _EuiThemeShadowSize,
-  _EuiThemeShadowCustomColor,
-} from '../variables/shadow';
+import { _EuiThemeShadowSize } from '../variables/shadow';
 
 export interface EuiShadowOptions {
   color?: string;
