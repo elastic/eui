@@ -53,7 +53,7 @@
   },
   "dependencies": {
     "@elastic/eui-theme-common": "workspace:*",
-    "@elastic/prismjs-esql": "^1.0.0",
+    "@elastic/prismjs-esql": "^1.1.0",
     "@hello-pangea/dnd": "^16.6.0",
     "@types/lodash": "^4.14.202",
     "@types/numeral": "^2.0.5",
