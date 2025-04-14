@@ -54,6 +54,10 @@ export const euiButtonGroupButtonStyles = (euiThemeContext: UseEuiTheme) => {
     &:last-child {
       ${logicalShorthandCSS('border-radius', `0 ${radiusSize} ${radiusSize} 0`)}
     }
+
+    &:first-child:last-child {
+      ${logicalShorthandCSS('border-radius', `${radiusSize}`)}
+    }
   `;
 
   const experimentalStyles =
