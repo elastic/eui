@@ -33,7 +33,7 @@ export interface EuiCheckboxProps
   disabled?: boolean;
   indeterminate?: boolean;
   /**
-   * Object of props passed to the <label/>
+   * Object of props passed to the `label` element
    */
   labelProps?: CommonProps & LabelHTMLAttributes<HTMLLabelElement>;
 }
