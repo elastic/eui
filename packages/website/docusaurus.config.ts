@@ -91,7 +91,7 @@ const config: Config = {
       items: [
         {
           type: 'docSidebar',
-          sidebarId: 'gettingstarted',
+          sidebarId: 'getting-started',
           position: 'left',
           label: 'Getting started',
         },
