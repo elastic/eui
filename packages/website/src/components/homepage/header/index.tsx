@@ -246,7 +246,7 @@ export function HomepageHeader() {
           </div>
           <div css={styles.actions}>
             <EuiButton
-              href="./docs/guidelines/getting-started"
+              href="./docs/getting-started/setup/"
               fill
               css={styles.button}
             >
