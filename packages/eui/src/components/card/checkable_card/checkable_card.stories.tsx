@@ -16,6 +16,10 @@ const meta: Meta<EuiCheckableCardProps> = {
   // NOTE: Storybook isn't correctly inheriting certain props due to the exclusive union,
   // so we have to do some manual polyfilling
   argTypes: {
+    labelProps: {
+      control: 'object',
+      type: { name: 'object', value: { key: { name: 'string' } } },
+    },
     checkableType: {
       options: ['radio', 'checkbox'],
       control: 'radio',
