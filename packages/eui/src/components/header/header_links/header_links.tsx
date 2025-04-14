@@ -17,7 +17,7 @@ import React, {
 } from 'react';
 import classNames from 'classnames';
 
-import { useEuiTheme } from '../../../services';
+import { useEuiMemoizedStyles } from '../../../services';
 import { CommonProps } from '../../common';
 import { EuiIcon, IconType } from '../../icon';
 import { EuiPopover, EuiPopoverProps } from '../../popover';
@@ -76,8 +76,7 @@ export const EuiHeaderLinks: FunctionComponent<EuiHeaderLinksProps> = ({
   popoverProps,
   ...rest
 }) => {
-  const euiTheme = useEuiTheme();
-  const styles = euiHeaderLinksStyles(euiTheme);
+  const styles = useEuiMemoizedStyles(euiHeaderLinksStyles);
 
   const {
     onClick,
@@ -110,20 +109,6 @@ export const EuiHeaderLinks: FunctionComponent<EuiHeaderLinksProps> = ({
 
   const classes = classNames('euiHeaderLinks', className);
 
-  const button = (
-    <EuiI18n token="euiHeaderLinks.openNavigationMenu" default="Open menu">
-      {(openNavigationMenu: string) => (
-        <EuiHeaderSectionItemButton
-          aria-label={openNavigationMenu}
-          onClick={onMenuButtonClick}
-          {...popoverButtonRest}
-        >
-          <EuiIcon type={iconType} size="m" />
-        </EuiHeaderSectionItemButton>
-      )}
-    </EuiI18n>
-  );
-
   const renderedChildren =
     typeof children === 'function' ? children(closeMenu) : children;
 
@@ -150,7 +135,22 @@ export const EuiHeaderLinks: FunctionComponent<EuiHeaderLinksProps> = ({
 
           <EuiShowFor sizes={popoverBreakpoints}>
             <EuiPopover
-              button={button}
+              button={
+                <EuiI18n
+                  token="euiHeaderLinks.openNavigationMenu"
+                  default="Open menu"
+                >
+                  {(openNavigationMenu: string) => (
+                    <EuiHeaderSectionItemButton
+                      aria-label={openNavigationMenu}
+                      onClick={onMenuButtonClick}
+                      {...popoverButtonRest}
+                    >
+                      <EuiIcon type={iconType} size="m" />
+                    </EuiHeaderSectionItemButton>
+                  )}
+                </EuiI18n>
+              }
               isOpen={mobileMenuIsOpen}
               anchorPosition="downRight"
               closePopover={closeMenu}

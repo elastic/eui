@@ -6,14 +6,19 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent, HTMLAttributes, CSSProperties } from 'react';
+import React, {
+  FunctionComponent,
+  HTMLAttributes,
+  CSSProperties,
+  useMemo,
+} from 'react';
 import classNames from 'classnames';
 
-import { EuiListGroupItem, EuiListGroupItemProps } from './list_group_item';
-import { CommonProps } from '../common';
-import { useEuiTheme, cloneElementWithCss } from '../../services';
+import { useEuiMemoizedStyles, cloneElementWithCss } from '../../services';
 import { logicalStyle } from '../../global_styling';
+import { CommonProps } from '../common';
 
+import { EuiListGroupItem, EuiListGroupItemProps } from './list_group_item';
 import { euiListGroupStyles } from './list_group.styles';
 
 export const GUTTER_SIZES = ['none', 's', 'm'] as const;
@@ -89,17 +94,8 @@ export const EuiListGroup: FunctionComponent<EuiListGroupProps> = ({
   ariaLabelledby,
   ...rest
 }) => {
-  let newStyle = style;
-
-  if (maxWidth && maxWidth !== true) {
-    newStyle = { ...newStyle, ...logicalStyle('max-width', maxWidth) };
-  }
-
   const classes = classNames('euiListGroup', className);
-
-  const euiTheme = useEuiTheme();
-  const styles = euiListGroupStyles(euiTheme);
-
+  const styles = useEuiMemoizedStyles(euiListGroupStyles);
   const cssStyles = [
     styles.euiListGroup,
     styles[gutterSize],
@@ -108,11 +104,15 @@ export const EuiListGroup: FunctionComponent<EuiListGroupProps> = ({
     maxWidth === true && styles.maxWidthDefault,
   ];
 
-  let childrenOrListItems = null;
+  const maxWidthStyle = useMemo(() => {
+    if (maxWidth && maxWidth !== true) {
+      return logicalStyle('max-width', maxWidth);
+    }
+  }, [maxWidth]);
 
-  if (listItems) {
-    childrenOrListItems = listItems.map((item, index) => {
-      return [
+  const renderedListItems = useMemo(() => {
+    if (listItems && listItems.length) {
+      return listItems.map((item, index) => (
         <EuiListGroupItem
           key={`title-${index}`}
           showToolTip={showToolTips}
@@ -122,35 +122,36 @@ export const EuiListGroup: FunctionComponent<EuiListGroupProps> = ({
           color={color}
           size={size}
           {...item}
-        />,
-      ];
-    });
-  } else {
-    const showToolTipObj = showToolTips && { showToolTip: true };
+        />
+      ));
+    }
+  }, [listItems, color, size, wrapText, showToolTips]);
 
-    childrenOrListItems = React.Children.map(children, (child) => {
+  const listItemsOrChildren =
+    renderedListItems ||
+    // Note that there's no point in memoizing `children`, as JSX changes every rerender
+    React.Children.map(children, (child) => {
       if (React.isValidElement(child)) {
         return cloneElementWithCss(child, {
           // we're passing the parent `color` and `size` down to the children
           // so that they can inherit it if they don't have one
           color: color,
           size: size,
-          ...showToolTipObj,
+          ...(showToolTips && { showToolTip: true }),
           ...child.props,
         });
       }
     });
-  }
 
   return (
     <ul
       className={classes}
       css={cssStyles}
-      style={newStyle}
+      style={{ ...style, ...maxWidthStyle }}
       aria-labelledby={ariaLabelledby}
       {...rest}
     >
-      {childrenOrListItems}
+      {listItemsOrChildren}
     </ul>
   );
 };

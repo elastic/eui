@@ -14,14 +14,15 @@ import React, {
   FunctionComponent,
 } from 'react';
 import classNames from 'classnames';
+
+import { useEuiMemoizedStyles } from '../../services';
 import { CommonProps, ExclusiveUnion } from '../common';
 import { EuiIcon } from '../icon';
-import { useEuiTheme } from '../../services';
 
 import {
   euiExpressionStyles,
   euiExpressionDescriptionStyles,
-  euiExpressionValueStyles,
+  euiExpressionValueStyles as valueStyles,
   euiExpressionIconStyles,
 } from './expression.styles';
 
@@ -112,8 +113,7 @@ export const EuiExpression: FunctionComponent<
 }) => {
   const calculatedColor = isInvalid ? 'danger' : color;
 
-  const theme = useEuiTheme();
-  const styles = euiExpressionStyles(theme);
+  const styles = useEuiMemoizedStyles(euiExpressionStyles);
   const cssStyles = [
     styles.euiExpression,
     onClick && styles.isClickable,
@@ -123,7 +123,9 @@ export const EuiExpression: FunctionComponent<
     display === 'columns' && styles.columns,
     textWrap === 'truncate' && styles.truncate,
   ];
-  const descriptionStyles = euiExpressionDescriptionStyles(theme);
+  const descriptionStyles = useEuiMemoizedStyles(
+    euiExpressionDescriptionStyles
+  );
   const cssDescriptionStyles = [
     descriptionStyles.euiExpression__description,
     isInvalid ? descriptionStyles.danger : descriptionStyles[color],
@@ -131,14 +133,13 @@ export const EuiExpression: FunctionComponent<
     textWrap === 'truncate' && descriptionStyles.truncate,
     display === 'columns' && descriptionStyles.columns,
   ];
-  const valueStyles = euiExpressionValueStyles(theme);
   const cssValueStyles = [
     valueStyles.euiExpression__value,
     textWrap === 'truncate' && valueStyles.truncate,
     display === 'columns' && valueStyles.columns,
   ];
 
-  const iconStyles = euiExpressionIconStyles(theme);
+  const iconStyles = useEuiMemoizedStyles(euiExpressionIconStyles);
   const cssIconStyles = [
     iconStyles.euiExpression__icon,
     display === 'columns' && iconStyles.columns,
@@ -152,15 +153,6 @@ export const EuiExpression: FunctionComponent<
     display === 'columns' && descriptionWidth
       ? { flexBasis: descriptionWidth }
       : undefined;
-
-  const invalidIcon = isInvalid ? (
-    <EuiIcon
-      className="euiExpression__icon"
-      type="warning"
-      css={cssIconStyles}
-      color={calculatedColor}
-    />
-  ) : undefined;
 
   return (
     <Component css={cssStyles} className={classes} onClick={onClick} {...rest}>
@@ -184,7 +176,14 @@ export const EuiExpression: FunctionComponent<
           {value}
         </span>
       )}
-      {invalidIcon}
+      {isInvalid && (
+        <EuiIcon
+          className="euiExpression__icon"
+          type="warning"
+          css={cssIconStyles}
+          color={calculatedColor}
+        />
+      )}
     </Component>
   );
 };

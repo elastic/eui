@@ -9,7 +9,7 @@
 import React, { FunctionComponent, ReactNode } from 'react';
 import classNames from 'classnames';
 
-import { useEuiTheme } from '../../../services';
+import { useEuiMemoizedStyles } from '../../../services';
 import { CommonProps } from '../../common';
 
 import { euiHeaderSectionItemStyles } from './header_section_item.styles';
@@ -27,8 +27,7 @@ export type EuiHeaderSectionItemProps = CommonProps & {
 export const EuiHeaderSectionItem: FunctionComponent<
   EuiHeaderSectionItemProps
 > = ({ children, className, ...rest }) => {
-  const euiTheme = useEuiTheme();
-  const styles = euiHeaderSectionItemStyles(euiTheme);
+  const styles = useEuiMemoizedStyles(euiHeaderSectionItemStyles);
 
   const classes = classNames('euiHeaderSectionItem', className);
 
