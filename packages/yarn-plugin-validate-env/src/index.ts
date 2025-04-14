@@ -8,7 +8,13 @@
 
 import path from 'node:path';
 import fs from 'node:fs';
-import { ReportError, MessageName, formatUtils, type Project } from '@yarnpkg/core';
+import {
+  ReportError,
+  MessageName,
+  formatUtils,
+  type Project,
+  type Plugin
+} from '@yarnpkg/core';
 
 /**
  * Validate Node.js version and OS used
@@ -46,11 +52,10 @@ const validateProject = (project: Project) => {
   }
 };
 
-module.exports = {
-  name: 'plugin-eui-validate-env',
-  factory: () => ({
-    hooks: {
-      validateProject,
-    },
-  }),
+const plugin: Plugin = {
+  hooks: {
+    validateProject,
+  },
 };
+
+export default plugin;

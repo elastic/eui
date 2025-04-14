@@ -5,7 +5,8 @@
   "description": "",
   "main": "src/index.ts",
   "scripts": {
-    "build": "builder build plugin"
+    "build": "builder build plugin",
+    "build:dev": "builder build plugin --no-minify"
   },
   "repository": {
     "type": "git",
