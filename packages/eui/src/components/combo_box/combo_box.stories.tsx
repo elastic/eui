@@ -197,6 +197,23 @@ export const NestedOptionsGroups: Story = {
   render: (args) => <StatefulComboBox {...args} />,
 };
 
+/**
+ * VRT only
+ */
+
+export const IconsAndManyOptionsSelected: Story = {
+  tags: ['vrt-only'],
+  args: {
+    singleSelection: false,
+    selectedOptions: options,
+  },
+  render: (args) => <StatefulComboBox {...args} />,
+};
+
+/**
+ * Helpers
+ */
+
 const StatefulComboBox = ({
   singleSelection,
   onCreateOption,
