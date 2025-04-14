@@ -7139,7 +7139,6 @@ __metadata:
   resolution: "@elastic/eui-monorepo@workspace:."
   dependencies:
     "@elastic/eui-release-cli": "link:packages/release-cli"
-    "@yarnpkg/core": "npm:^4.2.1"
     pre-push: "npm:^0.1.4"
     rimraf: "npm:^6.0.1"
   languageName: unknown
