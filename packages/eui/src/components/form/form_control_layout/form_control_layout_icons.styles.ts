@@ -21,6 +21,8 @@ export const euiFormControlLayoutIconsStyles = (
     controlDisabledColor,
     controlHeight,
     controlIconSize,
+    controlLayoutGroupInputCompressedHeight,
+    controlLayoutGroupInputHeight,
     controlPadding,
   } = euiFormVariables(euiThemeContext);
 
@@ -86,6 +88,18 @@ export const euiFormControlLayoutIconsStyles = (
         uncompressed: logicalCSS('padding-horizontal', controlPadding),
         compressed: logicalCSS('padding-horizontal', controlCompressedPadding),
       },
+    },
+
+    inGroup: {
+      uncompressed: `
+      ${iconPaddingTop(controlLayoutGroupInputHeight, controlIconSize.m)}
+    `,
+      compressed: css`
+        ${iconPaddingTop(
+          controlLayoutGroupInputCompressedHeight,
+          controlIconSize.s
+        )}
+      `,
     },
   };
 };

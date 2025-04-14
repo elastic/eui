@@ -184,6 +184,7 @@ export const EuiFormControlLayout: FunctionComponent<
             iconsPosition={iconsPosition}
             compressed={compressed}
             isDisabled={isDisabled}
+            isGroup={isGroup}
           />
         )}
 
