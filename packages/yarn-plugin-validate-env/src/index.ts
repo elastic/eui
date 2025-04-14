@@ -6,14 +6,14 @@
  * Side Public License, v 1.
  */
 
-const path = require('node:path');
-const fs = require('node:fs');
-const { ReportError, MessageName, formatUtils } = require('@yarnpkg/core');
+import path from 'node:path';
+import fs from 'node:fs';
+import { ReportError, MessageName, formatUtils, type Project } from '@yarnpkg/core';
 
 /**
  * Validate Node.js version and OS used
  */
-const validateProject = (project) => {
+const validateProject = (project: Project) => {
   const { cwd, configuration } = project;
   const nvmrcPath = path.resolve(cwd, '.nvmrc');
 
@@ -39,7 +39,8 @@ const validateProject = (project) => {
   if (process.platform === 'win32') {
     const message = formatUtils.pretty(
       configuration,
-      `Development on Windows is not supported. We recommend using WSL with your preferred Linux distro - https://learn.microsoft.com/en-us/windows/wsl/install`
+      `Development on Windows is not supported. We recommend using WSL with your preferred Linux distro - https://learn.microsoft.com/en-us/windows/wsl/install`,
+      formatUtils.Type.NO_HINT,
     );
     throw new ReportError(MessageName.UNNAMED, message);
   }

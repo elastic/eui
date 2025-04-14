@@ -1,0 +1,9 @@
+/* eslint-disable */
+//prettier-ignore
+module.exports = {
+name: "@yarnpkg/plugin-eui-validate-env",
+factory: function (require) {
+"use strict";var plugin=(()=>{var u=Object.create;var a=Object.defineProperty;var v=Object.getOwnPropertyDescriptor;var w=Object.getOwnPropertyNames;var h=Object.getPrototypeOf,y=Object.prototype.hasOwnProperty;var c=(e=>typeof require<"u"?require:typeof Proxy<"u"?new Proxy(e,{get:(r,o)=>(typeof require<"u"?require:r)[o]}):e)(function(e){if(typeof require<"u")return require.apply(this,arguments);throw Error('Dynamic require of "'+e+'" is not supported')});var N=(e,r)=>()=>(r||e((r={exports:{}}).exports,r),r.exports);var g=(e,r,o,s)=>{if(r&&typeof r=="object"||typeof r=="function")for(let n of w(r))!y.call(e,n)&&n!==o&&a(e,n,{get:()=>r[n],enumerable:!(s=v(r,n))||s.enumerable});return e};var m=(e,r,o)=>(o=e!=null?u(h(e)):{},g(r||!e||!e.__esModule?a(o,"default",{value:e,enumerable:!0}):o,e));var E=N((U,l)=>{var p=m(c("path")),d=m(c("fs")),t=c("@yarnpkg/core"),x=e=>{let{cwd:r,configuration:o}=e,s=p.default.resolve(r,".nvmrc"),n;try{n=d.default.readFileSync(s,"utf8").trim()}catch{throw new Error(`Unexpected error occurred - .nvmrc not found in EUI root (${s})`)}let f=process.version.substring(1);if(n!==f){let i=t.formatUtils.pretty(o,`Detected incorrect Node.js version ${process.version} instead of the expected v${n}. Please run "nvm install && nvm use" and try again.`,"red");throw new t.ReportError(t.MessageName.UNNAMED,i)}if(process.platform==="win32"){let i=t.formatUtils.pretty(o,"Development on Windows is not supported. We recommend using WSL with your preferred Linux distro - https://learn.microsoft.com/en-us/windows/wsl/install",t.formatUtils.Type.NO_HINT);throw new t.ReportError(t.MessageName.UNNAMED,i)}};l.exports={name:"plugin-eui-validate-env",factory:()=>({hooks:{validateProject:x}})}});return E();})();
+return plugin;
+}
+};
