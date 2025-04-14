@@ -15,20 +15,34 @@ import { euiFormVariables } from '../form.styles';
 export const euiFormControlLayoutIconsStyles = (
   euiThemeContext: UseEuiTheme
 ) => {
-  const { controlPadding, controlCompressedPadding, controlDisabledColor } =
-    euiFormVariables(euiThemeContext);
+  const {
+    controlCompressedHeight,
+    controlCompressedPadding,
+    controlDisabledColor,
+    controlHeight,
+    controlIconSize,
+    controlPadding,
+  } = euiFormVariables(euiThemeContext);
+
+  const iconPaddingTop = (controlHeight: string, iconSize: string) =>
+    logicalCSS(
+      'padding-top',
+      mathWithUnits([controlHeight, iconSize], (x, y) => (x - y) / 2)
+    );
 
   return {
     euiFormControlLayoutIcons: css`
+      ${logicalCSS('height', 'fit-content')}
       pointer-events: none;
       display: flex;
-      align-items: center;
     `,
     uncompressed: `
       gap: ${mathWithUnits(controlPadding, (x) => x / 2)};
+      ${iconPaddingTop(controlHeight, controlIconSize.m)}
     `,
     compressed: css`
       gap: ${mathWithUnits(controlCompressedPadding, (x) => x / 2)};
+      ${iconPaddingTop(controlCompressedHeight, controlIconSize.s)}
     `,
     disabled: css`
       cursor: not-allowed;
