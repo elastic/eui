@@ -409,6 +409,7 @@ export const EuiFlyout = forwardRef(
             ref={setRef}
             {...(rest as ComponentPropsWithRef<T>)}
             role={!isPushed ? 'dialog' : rest.role}
+            aria-modal={!isPushed || undefined}
             tabIndex={!isPushed ? 0 : rest.tabIndex}
             aria-describedby={!isPushed ? ariaDescribedBy : _ariaDescribedBy}
             data-autofocus={!isPushed || undefined}
