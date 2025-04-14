@@ -18,7 +18,7 @@ const CONTENT_DATA = {
     {
       title: 'Getting started',
       description: 'Install framework and make initial adjustments',
-      href: './docs/guidelines/getting-started/',
+      href: './docs/getting-started/setup/',
       icon: 'keyboard',
     },
     {
@@ -31,7 +31,7 @@ const CONTENT_DATA = {
     {
       title: 'Tokens',
       description: 'Speed up your work by using and customizing tokens',
-      href: './docs/theming/colors/',
+      href: './docs/getting-started/theming/tokens/colors/',
       icon: 'brush',
     },
   ],
@@ -39,7 +39,7 @@ const CONTENT_DATA = {
     {
       title: 'Patterns',
       description: 'Preferred solutions to specific user needs',
-      href: './docs/patterns/confirmation-prompts/',
+      href: './docs/patterns/',
       icon: 'logPatternAnalysis',
     },
     {

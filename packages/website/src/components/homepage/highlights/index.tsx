@@ -262,7 +262,7 @@ export const HomepageHighlights = () => {
         </ul>
 
         <div css={styles.actions}>
-          <EuiButtonEmpty href="./docs/guidelines/getting-started/" css={styles.button}>
+          <EuiButtonEmpty href="./docs/components/" css={styles.button}>
             All components
             <EuiIcon type="sortRight" size="s" css={styles.icon} />
           </EuiButtonEmpty>
