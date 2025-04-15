@@ -227,6 +227,7 @@ import {
   EuiFlexItem,
   EuiHorizontalRule,
   EuiButtonGroup,
+  useEuiTheme,
 } from '@elastic/eui';
 
 const text = [
@@ -303,17 +304,19 @@ const text = [
   <h6 key={13}>This is Heading Six</h6>,
 ];
 
-const textLinesCss = ({ euiTheme }) => css`
-  background-image: linear-gradient(${euiTheme.focus.backgroundColor} 1px, transparent 1px);
-  background-size: 100% 4px;
-  background-position-y: -1px;
-
-  & > * {
-    background-color: ${euiTheme.colors.highlight};
-  }
-`;
-
 export default () => {
+  const { euiTheme } = useEuiTheme();
+
+  const textLinesCss = () => css`
+    background-image: linear-gradient(${euiTheme.focus.backgroundColor} 1px, transparent 1px);
+    background-size: 100% 4px;
+    background-position-y: -1px;
+
+    & > * {
+      background-color: ${euiTheme.colors.highlight};
+    }
+  `;
+
   const textSizeArray = ['xs', 's', 'm'];
   const textSizeNamesArray = ['Extra small', 'Small', 'Medium'];
 
