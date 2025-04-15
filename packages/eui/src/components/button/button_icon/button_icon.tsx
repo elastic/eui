@@ -14,7 +14,12 @@ import React, {
 } from 'react';
 import classNames from 'classnames';
 
-import { getSecureRelForTarget, useEuiMemoizedStyles } from '../../../services';
+import {
+  getSecureRelForTarget,
+  isEuiThemeRefreshVariant,
+  useEuiMemoizedStyles,
+  useEuiTheme,
+} from '../../../services';
 import {
   CommonProps,
   ExclusiveUnion,
@@ -118,6 +123,12 @@ export const EuiButtonIcon: FunctionComponent<Props> = ({
   isLoading,
   ...rest
 }) => {
+  const euiThemeContext = useEuiTheme();
+  const isRefreshVariant = isEuiThemeRefreshVariant(
+    euiThemeContext,
+    'buttonVariant'
+  );
+
   const isDisabled = isButtonDisabled({
     isDisabled: _isDisabled || disabled,
     href,
@@ -144,7 +155,10 @@ export const EuiButtonIcon: FunctionComponent<Props> = ({
     styles[size],
     buttonColorStyles[isDisabled ? 'disabled' : color],
     buttonFocusStyle,
-    display === 'empty' && !isDisabled && emptyHoverStyles[color],
+    !isRefreshVariant &&
+      display === 'empty' &&
+      !isDisabled &&
+      emptyHoverStyles[color],
     isDisabled && styles.isDisabled,
   ];
 
