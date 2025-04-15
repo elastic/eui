@@ -1,11 +1,8 @@
 ---
-slug: /navigation/breadcrumbs
-id: navigation_breadcrumbs
+title: Breadcrumbs
 ---
 
-# Breadcrumbs
-
-**EuiBreadcrumbs** let the user track their progress within and back out of a UX flow and work well when used in combination with [EuiPageHeader](../layout/page_header.mdx). They are meant to be used at lower page level flows, while [EuiHeaderBreadcrumbs](../layout/header.mdx) should be used for application-wide navigation.
+**EuiBreadcrumbs** let the user track their progress within and back out of a UX flow and work well when used in combination with [EuiPageHeader](../layout/page-header.mdx). They are meant to be used at lower page level flows, while [EuiHeaderBreadcrumbs](../layout/header.mdx) should be used for application-wide navigation.
 
 See [EuiTabs guidelines](../containers/tabs/index.mdx#guidelines) if your application requires breadcrumbs and tabs on the same view.
 
@@ -345,7 +342,7 @@ export default () => {
 
 ## Popover content
 
-If you want a breadcrumb that toggles a popover, e.g. for an account switcher, you can use the `popoverContent` prop for this purpose. **EuiBreadcrumbs** will automatically handle rendering a popover indicator and popover accessibility best practices for you. We recommend using components such as [EuiContextMenu](./context_menu.mdx) or [EuiListGroup](../display/list_group.mdx) for displaying popover options, or potentially [EuiSelectable](../forms/selection/selectable.mdx) if you have many items that require filtering.
+If you want a breadcrumb that toggles a popover, e.g. for an account switcher, you can use the `popoverContent` prop for this purpose. **EuiBreadcrumbs** will automatically handle rendering a popover indicator and popover accessibility best practices for you. We recommend using components such as [EuiContextMenu](./context-menu.mdx) or [EuiListGroup](../display/list-group.mdx) for displaying popover options, or potentially [EuiSelectable](../forms/selection/selectable.mdx) if you have many items that require filtering.
 
 You may also pass `popoverProps` with almost any prop that [EuiPopover](../containers/popover.mdx) accepts, such as customizing `panelPaddingSize` or `anchorPosition`. However, props that affect popover state such as `closePopover`, `isOpen`, and `button` are not accepted as they are controlled automatically by **EuiBreadcrumbs**.
 

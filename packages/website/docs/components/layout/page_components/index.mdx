@@ -12,13 +12,13 @@ import fakeParagraph from '!url-loader!./fake_paragraph.svg';
 import { PageComponentsPreviewWrapper, FixedHeightPreviewWrapper } from './_preview_wrapper';
 ```
 
-Page layouts are modular and fit together in a precise manner, though certain parts can also be added or removed as needed. EUI provides both the **individual page components** and an [over-arching template](../../templates/page_template/overview.mdx) for easily creating some pre-defined layouts.
+Page layouts are modular and fit together in a precise manner, though certain parts can also be added or removed as needed. EUI provides both the **individual page components** and an [over-arching template](../../templates/page-template/index.mdx) for easily creating some pre-defined layouts.
 
 ## Components
 
 :::note The following examples showcase the individual components only.
 
-If you're looking for full page layout examples, we recommend using the [EuiPageTemplate](../../templates/page_template/overview.mdx) and use this page to modify the props of each part of the template.
+If you're looking for full page layout examples, we recommend using the [EuiPageTemplate](../../templates/page-template/index.mdx) and use this page to modify the props of each part of the template.
 
 :::
 
@@ -189,7 +189,7 @@ To create dividers between contents, use the `bottomBorder` prop. The `'extended
 
 When piecing all of the different page components together, the state of your application will dictate how best to configure each component. Ideally, your main content should always live within a `'plain'` colored body or section.
 
-When using [EuiEmptyPrompt](../../display/empty_prompt/index.mdx) to replace the main contents of your page you will want to use a panel color opposite that of the section color. For example:
+When using [EuiEmptyPrompt](../../display/empty-prompt/index.mdx) to replace the main contents of your page you will want to use a panel color opposite that of the section color. For example:
 
 ```mdx-code-block
 import { ConfigurationsTable } from './configurations_table';
@@ -200,7 +200,7 @@ import { ConfigurationsTable } from './configurations_table';
 ### Configuration example
 
 :::tip
-Reminder: [EuiPageTemplate](../../templates/page_template/overview.mdx) can handle all these configurations for you.
+Reminder: [EuiPageTemplate](../../templates/page-template/index.mdx) can handle all these configurations for you.
 :::
 
 <Demo scope={{ fakeParagraph, fakeSidebar }} previewPadding="none" previewWrapper={PageComponentsPreviewWrapper}>
