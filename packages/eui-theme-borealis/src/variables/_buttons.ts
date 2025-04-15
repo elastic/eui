@@ -56,15 +56,7 @@ const _buttons = {
     },
     ['flags.buttonVariant']
   ),
-  backgroundDisabled: computed(
-    ([buttonVariant]) => {
-      return getTokenByVariant(buttonVariant, {
-        refresh: background_colors.backgroundBasePlain,
-        classic: background_colors.backgroundBaseDisabled,
-      });
-    },
-    ['flags.buttonVariant']
-  ),
+  backgroundDisabled: background_colors.backgroundBaseDisabled,
 
   backgroundPrimaryHover: SEMANTIC_COLORS.primary70Alpha12,
   backgroundAccentHover: SEMANTIC_COLORS.accent70Alpha12,
@@ -161,15 +153,7 @@ const _dark_buttons = {
     },
     ['flags.buttonVariant']
   ),
-  backgroundDisabled: computed(
-    ([buttonVariant]) => {
-      return getTokenByVariant(buttonVariant, {
-        refresh: dark_background_colors.backgroundBasePlain,
-        classic: dark_background_colors.backgroundBaseDisabled,
-      });
-    },
-    ['flags.buttonVariant']
-  ),
+  backgroundDisabled: dark_background_colors.backgroundBaseDisabled,
 
   backgroundPrimaryHover: SEMANTIC_COLORS.primary70Alpha16,
   backgroundAccentHover: SEMANTIC_COLORS.accent70Alpha16,
