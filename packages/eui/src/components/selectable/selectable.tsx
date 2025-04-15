@@ -109,7 +109,7 @@ export type EuiSelectableProps<T = {}> = CommonProps &
       search: ReactElement<typeof EuiSelectableSearch> | undefined
     ) => ReactNode;
     /**
-     * Array of EuiSelectableOption objects. See #EuiSelectableOptionProps
+     * Array of EuiSelectableOption objects. See #EuiSelectableOption
      */
     options: Array<EuiSelectableOption<T>>;
     /**
@@ -149,7 +149,7 @@ export type EuiSelectableProps<T = {}> = CommonProps &
      */
     height?: number | 'full';
     /**
-     * See #EuiSelectableOptionsList
+     * See #EuiSelectableOptionsListProps
      */
     listProps?: EuiSelectableOptionsListPropsWithDefaults;
     /**
