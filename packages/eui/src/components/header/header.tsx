@@ -33,7 +33,7 @@ type EuiHeaderSectionItemType = EuiHeaderSectionItemProps['children'];
 
 export interface EuiHeaderSections {
   /**
-   * An arry of items that will be wrapped in a #EuiHeaderSectionItem
+   * An array of items that will be wrapped in a #EuiHeaderSectionItem
    */
   items?: EuiHeaderSectionItemType[];
   /**
@@ -58,7 +58,7 @@ export type EuiHeaderProps = CommonProps &
     /**
      * An array of objects to wrap in a #EuiHeaderSection.
      * Each section is spaced using `space-between`.
-     * See #EuiHeaderSectionsProp for object details.
+     * See #EuiHeaderSections for object details.
      * This prop disregards the prop `children` if both are passed.
      */
     sections?: EuiHeaderSections[];
