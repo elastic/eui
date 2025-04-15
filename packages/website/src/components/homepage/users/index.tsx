@@ -45,13 +45,13 @@ const CONTENT_DATA = {
     {
       title: 'Content',
       description: 'Write thoughtful and consistent in-product copy',
-      href: './docs/content',
+      href: './docs/content/',
       icon: 'pencil',
     },
     {
       title: 'Icons',
       description: 'A wide variety of icons to enhance your designs',
-      href: './docs/display/icons',
+      href: './docs/components/display/icons/',
       icon: 'package',
     },
   ],
