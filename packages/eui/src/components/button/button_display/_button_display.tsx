@@ -144,7 +144,10 @@ export const EuiButtonDisplay = forwardRef<HTMLElement, EuiButtonDisplayProps>(
       styles.euiButtonDisplay,
       styles[size],
       fullWidth && styles.fullWidth,
-      minWidth == null && styles.defaultMinWidth,
+      minWidth == null && [
+        styles.defaultMinWidth.defaultMinWidth,
+        styles.defaultMinWidth[size],
+      ],
       buttonIsDisabled && styles.isDisabled,
     ];
 
