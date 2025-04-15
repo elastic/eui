@@ -1,6 +1,4 @@
----
-title: Plugins
----
+# Plugins
 
 Both [EuiMarkdownEditor](./editor.mdx) and [EuiMarkdownFormat](./format.mdx) utilize the same underlying plugin architecture to transform string based syntax into React components. At a high level [Unified JS](https://www.npmjs.com/package/unified) is used in combination with [Remark](https://www.npmjs.com/package/remark-parse) to provide EUI's markdown components, which are separated into a **parsing** and **processing** layer. These two concepts are kept distinct in EUI components to provide concrete locations for your plugins to be injected, be it editing or rendering. Finally you provide **UI** to the component to handle interactions with the editor.
 
