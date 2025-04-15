@@ -89,7 +89,6 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
     />
   </a>
   <ul
-    aria-label="Pagination for table: "
     class="euiPagination__list emotion-euiPagination__list"
   >
     <li
@@ -119,7 +118,7 @@ exports[`EuiInMemoryTable behavior pagination 1`] = `
     >
       <button
         aria-controls="__table_generated-id"
-        aria-current="true"
+        aria-current="page"
         aria-label="Page 2 of 2"
         class="euiButtonEmpty euiPaginationButton emotion-euiButtonDisplay-euiButtonEmpty-s-empty-disabled-isDisabled-euiPaginationButton-isActive"
         data-test-subj="pagination-button-1"
