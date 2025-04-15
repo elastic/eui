@@ -6,9 +6,12 @@
  * Side Public License, v 1.
  */
 
+import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { EuiButtonIcon, EuiButtonIconProps } from './button_icon';
+import { EuiThemeProvider } from '../../../services';
+import { EuiFlexGroup } from '../../flex';
 
 const meta: Meta<EuiButtonIconProps> = {
   title: 'Navigation/EuiButtonIcon',
@@ -32,4 +35,24 @@ export const Playground: Story = {
   args: {
     iconType: 'faceHappy',
   },
+};
+
+// TODO: REVERT ME
+export const Testing: Story = {
+  parameters: {
+    loki: {
+      skip: true,
+    },
+  },
+  args: {
+    iconType: 'faceHappy',
+  },
+  render: (args: EuiButtonIconProps) => (
+    <EuiFlexGroup>
+      <EuiButtonIcon {...args} />
+      <EuiThemeProvider modify={{ flags: { buttonVariant: 'classic' } }}>
+        <EuiButtonIcon {...args} />
+      </EuiThemeProvider>
+    </EuiFlexGroup>
+  ),
 };
