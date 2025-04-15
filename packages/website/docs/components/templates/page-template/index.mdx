@@ -35,48 +35,40 @@ import centerSvg from '!url-loader!./content_center.svg';
     EuiPageTemplateProps,
   } from '@elastic/eui';
 
-const panelled: EuiPageTemplateProps['panelled'] = undefined;
-const restrictWidth: EuiPageTemplateProps['restrictWidth'] = false;
-const bottomBorder: EuiPageTemplateProps['bottomBorder'] = "extended";
+  const panelled: EuiPageTemplateProps['panelled'] = undefined;
+  const restrictWidth: EuiPageTemplateProps['restrictWidth'] = false;
+  const bottomBorder: EuiPageTemplateProps['bottomBorder'] = "extended";
 
-export default () => {
-return (
-<EuiPageTemplate
+  export default () => {
+    return (
+      <EuiPageTemplate
         panelled={panelled}
         restrictWidth={restrictWidth}
         bottomBorder={bottomBorder}
         offset={0}
         grow={false}
       >
-<EuiPageTemplate.Section
-grow={false}
-color="subdued"
-bottomBorder={bottomBorder} >
-<EuiText textAlign="center">
-<strong>
-Stack EuiPageTemplate sections and headers to create your custom
-content order.
-</strong>
-</EuiText>
-</EuiPageTemplate.Section>
-<EuiPageTemplate.Header
-iconType="logoElastic"
-pageTitle="Page title"
-rightSideItems={[<EuiButton>Right side item</EuiButton>]}
-description="Header description."
-tabs={[
-{ label: 'Tab 1', isSelected: true },
-{ label: 'Tab 2' },
-]}
-/>
-<EuiPageTemplate.Section>
-<EuiImage size={'fullWidth'} alt="Fake paragraph" url={contentSvg} />
-</EuiPageTemplate.Section>
-</EuiPageTemplate>
-);
-};
-
-````
+        <EuiPageTemplate.Section grow={false} color="subdued" bottomBorder={bottomBorder}>
+          <EuiText textAlign="center">
+            <strong>
+              Stack EuiPageTemplate sections and headers to create your custom content order.
+            </strong>
+          </EuiText>
+        </EuiPageTemplate.Section>
+        <EuiPageTemplate.Header
+          iconType="logoElastic"
+          pageTitle="Page title"
+          rightSideItems={[<EuiButton>Right side item</EuiButton>]}
+          description="Header description."
+          tabs={[{ label: "Tab 1", isSelected: true }, { label: "Tab 2" }]}
+        />
+        <EuiPageTemplate.Section>
+          <EuiImage size={"fullWidth"} alt="Fake paragraph" url={contentSvg} />
+        </EuiPageTemplate.Section>
+      </EuiPageTemplate>
+    );
+  };
+  ```
 </Demo>
 
 ## Providing a sidebar
