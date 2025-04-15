@@ -16,6 +16,8 @@ import {
 
 import { EuiButtonEmpty } from './button_empty';
 import { EuiButton, Props as EuiButtonProps } from './button';
+import { EuiThemeProvider } from '../../services';
+import { EuiFlexGroup } from '../flex';
 
 const meta: Meta<EuiButtonProps> = {
   title: 'Navigation/EuiButton',
@@ -51,6 +53,26 @@ export const Playground: Story = {
   },
 };
 disableStorybookControls(Playground, ['buttonRef']);
+
+// TODO: REVERT ME
+export const Testing: Story = {
+  parameters: {
+    loki: {
+      skip: true,
+    },
+  },
+  args: {
+    children: 'Button',
+  },
+  render: (args: EuiButtonProps) => (
+    <EuiFlexGroup>
+      <EuiButton {...args} />
+      <EuiThemeProvider modify={{ flags: { buttonVariant: 'classic' } }}>
+        <EuiButton {...args} />
+      </EuiThemeProvider>
+    </EuiFlexGroup>
+  ),
+};
 
 export const HighContrast: Story = {
   tags: ['vrt-only'],

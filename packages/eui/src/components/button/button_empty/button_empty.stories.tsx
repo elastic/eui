@@ -6,10 +6,13 @@
  * Side Public License, v 1.
  */
 
+import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { disableStorybookControls } from '../../../../.storybook/utils';
 
 import { EuiButtonEmpty, EuiButtonEmptyProps } from './button_empty';
+import { EuiFlexGroup } from '../../flex';
+import { EuiThemeProvider } from '../../../services';
 
 const meta: Meta<EuiButtonEmptyProps> = {
   title: 'Navigation/EuiButtonEmpty',
@@ -43,3 +46,23 @@ export const Playground: Story = {
   },
 };
 disableStorybookControls(Playground, ['buttonRef']);
+
+// TODO: REVERT ME
+export const Testing: Story = {
+  parameters: {
+    loki: {
+      skip: true,
+    },
+  },
+  args: {
+    children: 'Button',
+  },
+  render: (args: EuiButtonEmptyProps) => (
+    <EuiFlexGroup>
+      <EuiButtonEmpty {...args} />
+      <EuiThemeProvider modify={{ flags: { buttonVariant: 'classic' } }}>
+        <EuiButtonEmpty {...args} />
+      </EuiThemeProvider>
+    </EuiFlexGroup>
+  ),
+};
