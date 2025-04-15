@@ -251,7 +251,7 @@ export const EuiThemeProvider = <T extends {} = {}>({
 
       setTheme(rebuiltTheme);
     }
-  }, [colorMode, system, modificationsWithHighContrast]);
+  }, [colorMode, system, modificationsWithHighContrast, modifications]);
 
   const [themeCSSVariables, _setThemeCSSVariables] = useState<CSSObject>();
   const setThemeCSSVariables = useCallback(
