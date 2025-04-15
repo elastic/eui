@@ -103,6 +103,12 @@ const config: Config = {
         },
         {
           type: 'docSidebar',
+          sidebarId: 'utilities',
+          position: 'left',
+          label: 'Utilities',
+        },
+        {
+          type: 'docSidebar',
           sidebarId: 'patterns',
           position: 'left',
           label: 'Patterns',

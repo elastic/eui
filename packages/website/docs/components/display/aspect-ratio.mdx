@@ -1,0 +1,69 @@
+# Aspect ratio
+
+:::warning
+In some cases, aspect ratio sizing may not be supported by the embed. This component will only work with ones that do, like YouTube.
+:::
+
+**EuiAspectRatio** provides a way to responsively resize a single block level child element to a specified ratio. This is useful for things like YouTube iframes or other embeds that initially have a fixed size. If you need something similar for images, take a look at CSS's [object-fit property](https://www.w3schools.com/css/css3_object-fit.asp).
+
+## Component
+
+```tsx interactive
+import React, { Fragment } from 'react';
+import { EuiAspectRatio, EuiSpacer, EuiTitle } from '@elastic/eui';
+
+export default () => (
+  <Fragment>
+    <EuiTitle size="s">
+      <p>16x9 aspect</p>
+    </EuiTitle>
+    <EuiSpacer size="s" />
+    <EuiAspectRatio width={16} height={9}>
+      <iframe
+        title="Elastic is a search company"
+        width="560"
+        height="315"
+        src="https://www.youtube.com/embed/yJarWSLRM24"
+        frameBorder="0"
+        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+        allowFullScreen
+      />
+    </EuiAspectRatio>
+    <EuiSpacer size="xl" />
+    <EuiTitle size="s">
+      <p>4x3 aspect</p>
+    </EuiTitle>
+    <EuiSpacer size="s" />
+    <EuiAspectRatio width={4} height={3}>
+      <iframe
+        title="Elastic is a search company"
+        width="560"
+        height="315"
+        src="https://www.youtube.com/embed/yJarWSLRM24"
+        frameBorder="0"
+        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+        allowFullScreen
+      />
+    </EuiAspectRatio>
+    <EuiSpacer size="xl" />
+    <EuiTitle size="s">
+      <p>220x150 with a maxWidth set to 500</p>
+    </EuiTitle>
+    <EuiSpacer size="s" />
+    <EuiAspectRatio width={220} height={150} maxWidth={500}>
+      <iframe
+        src="https://app.stitcher.com/splayer/f/13377/54057816"
+        title="something"
+        frameBorder="0"
+        scrolling="no"
+      />
+    </EuiAspectRatio>
+  </Fragment>
+);
+```
+
+## Props
+
+import docgen from '@elastic/eui-docgen/dist/components/aspect_ratio';
+
+<PropTable definition={docgen.EuiAspectRatio} />

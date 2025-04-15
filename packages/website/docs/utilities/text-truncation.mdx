@@ -1,0 +1,446 @@
+# Text truncation
+
+import { throttle } from 'lodash';
+import { faker } from '@faker-js/faker';
+import { FixedSizeList } from 'react-window';
+
+## Single line
+
+**EuiTextTruncate** provides customizable and size-aware single line text truncation.
+
+The four truncation styles supported are `start`, `end`, `startEnd`, and `middle`. Resize the below demo to see how different truncation styles respond to dynamic width changes.
+
+<Demo>
+```tsx interactive
+import React from 'react';
+import { css } from '@emotion/react';
+
+import { EuiPanel, EuiText, EuiTextTruncate } from '@elastic/eui';
+
+export default () => {
+  return (
+    <EuiText>
+      <EuiPanel
+        css={css`
+          overflow: auto;
+          resize: horizontal; /* Not all browsers support resize logical properties yet */
+          resize: inline;
+          inline-size: 35ch;
+          max-inline-size: 100%;
+        `}
+      >
+        <EuiTextTruncate
+          text="The quick brown fox jumps over the lazy dog."
+          truncation="start"
+        />
+        <EuiTextTruncate
+          text="But the dog wasn’t lazy, it was just practicing mindfulness, so it had a greater sense of life-satisfaction than that fox with all its silly jumping."
+          truncation="end"
+        />
+        <EuiTextTruncate
+          text="And from the fox’s perspective, life was full of hoops to jump through, low-hanging fruit to jump for, and dead car batteries to jump-start."
+          truncation="startEnd"
+        />
+        <EuiTextTruncate
+          text="So it thought the dog was making a poor life choice by focusing so much on mindfulness. What if its car broke down?"
+          truncation="middle"
+        />
+      </EuiPanel>
+    </EuiText>
+  );
+};
+```
+</Demo>
+
+:::info Accessibility and comparison to text-overflow
+
+**EuiTextTruncate** attempts to mimic the behavior of `text-overflow: ellipsis` as closely as possible, although there may be edge cases and cross-browser issues, as this is essentially <a href="https://github.com/w3c/csswg-drafts/issues/3937" target="_blank" rel="noopener noreferrer">**a browser implementation**</a> we are trying to polyfill.
+
+* Screen readers should ignore the truncated text and only read out the full text.
+
+* Sighted mouse users will be able to briefly hover over the truncated text and read the full text in a native browser title tooltip.
+
+* For mouse users, double clicking to select the truncated line should allow copying the full untruncated text.
+:::
+
+### Custom ellipsis
+
+By default, **EuiTextTruncate** uses the unicode character for horizontal ellipsis. It can be customized via the `ellipsis` prop as necessary (e.g. for specific languages, extra punctuation, etc).
+
+<Demo>
+```tsx interactive
+import React from 'react';
+
+import { EuiPanel, EuiText, EuiTextTruncate } from '@elastic/eui';
+
+export default () => {
+  return (
+    <EuiText>
+      <EuiPanel css={{ inlineSize: '40ch', maxInlineSize: '100%' }}>
+        <EuiTextTruncate
+          text="Opinions differ as to how to render ellipses in printed material. According to The Chicago Manual of Style, it should consist of three periods, each separated from its neighbor by a non-breaking space. According to the AP Stylebook, the periods should be rendered with no space between them."
+          ellipsis=". . ."
+        />
+        <EuiTextTruncate
+          text="In some legal writing, an ellipsis is written as three asterisks, to make it obvious that text has been omitted or to signal that the omitted text extends beyond the end of the paragraph."
+          ellipsis=" ***"
+        />
+        <EuiTextTruncate
+          text="Brackets are often used to indicate that a quotation has been condensed for space, brevity or relevance."
+          truncation="middle"
+          ellipsis="[...]"
+        />
+      </EuiPanel>
+    </EuiText>
+  );
+};
+```
+</Demo>
+
+### Truncation offset
+
+The `start` and `end` truncation types support a `truncationOffset` property that allows preserving a specified number of characters at either the start or end of the text. Increase or decrease the number control below to see the prop in action.
+
+<Demo>
+```tsx interactive
+import React, { useState } from 'react';
+
+import {
+  EuiPanel,
+  EuiFormRow,
+  EuiFieldNumber,
+  EuiSpacer,
+  EuiText,
+  EuiTextTruncate,
+} from '@elastic/eui';
+
+export default () => {
+  const [truncationOffset, setTruncationOffset] = useState(3);
+
+  return (
+    <EuiText>
+      <EuiFormRow label="Truncation offset">
+        <EuiFieldNumber
+          compressed
+          value={truncationOffset}
+          onChange={(e) => setTruncationOffset(Number(e.target.value))}
+          max={30}
+        />
+      </EuiFormRow>
+      <EuiSpacer />
+      <EuiPanel css={{ inlineSize: '40ch', maxInlineSize: '100%' }}>
+        <EuiTextTruncate
+          text="But the dog wasn’t lazy, it was just practicing mindfulness, so it had a greater sense of life-satisfaction than that fox with all its silly jumping."
+          truncation="start"
+          truncationOffset={truncationOffset}
+        />
+        <EuiTextTruncate
+          text="And from the fox’s perspective, life was full of hoops to jump through, low-hanging fruit to jump for, and dead car batteries to jump-start."
+          truncation="end"
+          truncationOffset={truncationOffset}
+        />
+      </EuiPanel>
+    </EuiText>
+  );
+};
+```
+</Demo>
+
+### Truncation position
+
+The `startEnd` truncation type supports a `truncationPosition` property. By default, `startEnd` anchors the displayed text to the middle of the string. However, you may prefer to display a specific subsection of the full text closer to the start or end, which this prop allows.
+
+This behavior will intelligently detect when positions are near enough to the start or end of the text to omit leading or trailing ellipses when necessary.
+
+Increase or decrease the number control below to see the prop in action.
+
+<Demo>
+```tsx interactive
+import React, { useState } from 'react';
+
+import {
+  EuiPanel,
+  EuiFormRow,
+  EuiFieldNumber,
+  EuiSpacer,
+  EuiText,
+  EuiTextTruncate,
+} from '@elastic/eui';
+
+export default () => {
+  const [truncationPosition, setTruncationPosition] = useState(45);
+
+  return (
+    <EuiText>
+      <EuiFormRow label="Truncation position">
+        <EuiFieldNumber
+          compressed
+          value={truncationPosition}
+          onChange={(e) => setTruncationPosition(Number(e.target.value))}
+        />
+      </EuiFormRow>
+      <EuiSpacer />
+      <EuiPanel css={{ inlineSize: '40ch', maxInlineSize: '100%' }}>
+        <EuiTextTruncate
+          text="But the dog wasn’t lazy, it was just practicing mindfulness, so it had a greater sense of life-satisfaction than that fox with all its silly jumping."
+          truncation="startEnd"
+          truncationPosition={truncationPosition}
+        />
+      </EuiPanel>
+    </EuiText>
+  );
+};
+```
+</Demo>
+
+### Render prop
+
+By default, **EuiTextTruncate** will automatically output the calculated truncated string. You can optionally override this by passing a render prop function to `children`, which allows for more flexible text rendering.
+
+The below example demonstrates a primary use case for the render prop and the `truncationPosition` prop. If a user is searching for a specific word in truncated text, you can use [EuiHighlight](./highlight-and-mark.mdx#highlight) or [EuiMark](./highlight-and-mark.mdx#mark) to highlight the search term, and passing the index of the found word to `truncationPosition` ensures the search term is always visible to the user.
+
+:::warning
+Do not render excessive extra content alongside the text. The sizing logic will not account for it, and the truncation calculations will be off.
+:::
+
+<Demo>
+```tsx interactive
+import React, { useState } from 'react';
+
+import {
+  EuiText,
+  EuiFormRow,
+  EuiFieldText,
+  EuiSpacer,
+  EuiPanel,
+  EuiHighlight,
+  EuiMark,
+  EuiTextTruncate,
+} from '@elastic/eui';
+
+const text =
+  "But the dog wasn't lazy, it was just practicing mindfulness, so it had a greater sense of life-satisfaction than that fox with all its silly jumping.";
+
+export default () => {
+  const [highlight, setHighlight] = useState('');
+
+  const highlightStartPosition = text
+    .toLowerCase()
+    .indexOf(highlight.toLowerCase());
+  const highlightCenterPosition =
+    highlightStartPosition + Math.floor(highlight.length / 2);
+
+  return (
+    <EuiText>
+      <EuiFormRow label="Type to highlight text">
+        <EuiFieldText
+          value={highlight}
+          onChange={(e) => setHighlight(e.target.value)}
+          placeholder={
+            'For example, try typing "lazy", "mindful", "life", or "silly"'
+          }
+        />
+      </EuiFormRow>
+      <EuiSpacer />
+      <EuiPanel css={{ inlineSize: '40ch', maxInlineSize: '100%' }}>
+        <EuiTextTruncate
+          text={text}
+          truncation="startEnd"
+          truncationPosition={highlightCenterPosition}
+        >
+          {(truncatedText) => (
+            <>
+              {truncatedText.length > highlight.length ? (
+                <EuiHighlight search={highlight}>{truncatedText}</EuiHighlight>
+              ) : (
+                // Highlight everything if the search match is greater than the visible text
+                <EuiMark>{truncatedText}</EuiMark>
+              )}
+            </>
+          )}
+        </EuiTextTruncate>
+      </EuiPanel>
+    </EuiText>
+  );
+};
+```
+</Demo>
+
+### Performance
+
+**EuiTextTruncate** uses a canvas element under the hood to manipulate text and calculate whether the text width fits within the available width. Additionally, by default, the component will include its own resize observer in order to react to width changes.
+
+These functionalities can cause performance issues if the component is rendered over hundreds of times per page, and we would strongly recommend using caution when doing so. Several escape hatches are available for performance improvements:
+
+1. Pass a `width` prop to skip initializing a resize observer for each component instance. For text within a container of the same width, we would strongly recommend applying a single resize observer to the parent container and passing that width to all child **EuiTextTruncates**. Additionally, you may want to consider <a href="https://lodash.com/docs/#throttle" target="_blank" rel="noopener noreferrer">**throttling**</a> any resize observers or width-based logic.
+
+2. Use <a href="https://github.com/bvaughn/react-window" target="_blank" rel="noopener noreferrer">**virtualization**</a> to reduce the number of rendered elements visible at any given time. For over hundreds of instances, this will generally be the most effective solution for performance or rerender issues.
+
+3. If necessary, consider pulling out the underlying `TruncationUtils` and re-using the same canvas context, as opposed to repeatedly creating new ones.
+
+<Demo scope={{ FixedSizeList, faker, throttle }}>
+```tsx interactive
+import React, { useState, useEffect, useRef, useMemo } from 'react';
+import { css } from '@emotion/react';
+
+import {
+  EuiFlexGroup,
+  EuiPanel,
+  EuiText,
+  EuiFormRow,
+  EuiFieldNumber,
+  EuiSwitch,
+  EuiSpacer,
+  EuiTextTruncate,
+} from '@elastic/eui';
+
+export default () => {
+  // Testing toggles
+  const [virtualization, setVirtualization] = useState(false);
+  const [throttleMs, setThrottleMs] = useState(0);
+  const [lineCount, setLineCount] = useState(100);
+
+  // Number of lines of text to render
+  const text = useMemo(() => {
+    return Array.from({ length: lineCount }, () => faker.lorem.lines(5));
+  }, [lineCount]);
+
+  // Width resize observer
+  const widthRef = useRef<HTMLDivElement | null>(null);
+
+  const [width, setWidth] = useState(200);
+
+  useEffect(() => {
+    if (!widthRef.current) return;
+
+    const onObserve = throttle((entries) => {
+      // Skipping a forEach as we're only observing one element
+      setWidth(entries[0].contentRect.width);
+    }, throttleMs);
+
+    const resizeObserver = new ResizeObserver(onObserve);
+
+    document.fonts.ready.then(() => {
+      resizeObserver.observe(widthRef.current!);
+    });
+    () => resizeObserver.disconnect();
+  }, [throttleMs]);
+
+  return (
+    <EuiText>
+      <EuiFlexGroup alignItems="center" gutterSize="xl">
+        <EuiFormRow label="Lines" display="columnCompressed">
+          <EuiFieldNumber
+            value={lineCount}
+            onChange={(e) => setLineCount(Number(e.target.value))}
+            style={{ width: 100 }}
+            compressed
+          />
+        </EuiFormRow>
+        <EuiSwitch
+          label="Toggle virtualization"
+          checked={virtualization}
+          onChange={() => setVirtualization(!virtualization)}
+        />
+        <EuiFormRow label="Resize throttle" display="columnCompressed">
+          <EuiFieldNumber
+            value={throttleMs}
+            onChange={(e) => setThrottleMs(Number(e.target.value))}
+            style={{ width: 100 }}
+            compressed
+          />
+        </EuiFormRow>
+      </EuiFlexGroup>
+      <EuiSpacer size="m" />
+      <EuiPanel
+        panelRef={widthRef}
+        css={css`
+          overflow: auto;
+          resize: horizontal; /* Not all browsers support resize logical properties yet */
+          resize: inline;
+          max-inline-size: 100%;
+          inline-size: 600px;
+          block-size: 300px;
+        `}
+      >
+        {virtualization ? (
+          <FixedSizeList
+            width={width}
+            height={268}
+            itemCount={100}
+            itemSize={24}
+          >
+            {({ index, style }) => (
+              <EuiTextTruncate
+                style={style}
+                key={index}
+                text={text[index]}
+                truncation="middle"
+                width={width}
+              />
+            )}
+          </FixedSizeList>
+        ) : (
+          text.map((text, i) => (
+            <EuiTextTruncate
+              key={i}
+              text={text}
+              truncation="middle"
+              width={width}
+            />
+          ))
+        )}
+      </EuiPanel>
+      <EuiSpacer />
+      <p>
+        Drag the panel resize handle to test performance. Use the controls above
+        to compare the performance of different approaches.
+      </p>
+    </EuiText>
+  );
+};
+```
+</Demo>
+
+## Multi line
+
+**EuiTextBlockTruncate** allows truncating text after a set number of wrapping `lines`.
+
+Please note: This component is currently a quick shortcut for <a href="https://css-tricks.com/line-clampin/" target="_blank" rel="noopener noreferrer">**the CSS `line-clamp`**</a> property. This means that truncating at the end of the text is the default, and there are currently no plans to add JavaScript customization for this behavior.
+
+<Demo>
+```tsx interactive
+import React from 'react';
+import { css } from '@emotion/react';
+import { faker } from '@faker-js/faker';
+
+import { EuiPanel, EuiText, EuiTextBlockTruncate } from '@elastic/eui';
+
+export default () => {
+  return (
+    <EuiText>
+      <EuiPanel
+        css={css`
+          overflow: auto;
+          resize: horizontal; /* Not all browsers support resize logical properties yet */
+          resize: inline;
+          inline-size: 50ch;
+          max-inline-size: 100%;
+        `}
+      >
+        <EuiTextBlockTruncate lines={3}>
+          {faker.lorem.lines(10)}
+        </EuiTextBlockTruncate>
+      </EuiPanel>
+    </EuiText>
+  );
+};
+```
+</Demo>
+
+## Props
+
+import docgen from '@elastic/eui-docgen/dist/components/text_truncate';
+
+<PropTable definition={docgen.EuiTextTruncate} />
+<PropTable definition={docgen.EuiTextBlockTruncate} />

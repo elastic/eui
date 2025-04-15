@@ -1,0 +1,520 @@
+# Icons
+
+import { EuiCodeBlock, EuiSpacer, EuiSplitPanel, EuiToken } from '@elastic/eui';
+
+**EuiIcon** is a handy component for using our custom glyphs and logos. The `type` prop accepts either an enumerated name from one of the sets below, a location to a custom SVG asset, or a React Element.
+
+## Component
+
+```tsx interactive
+<EuiIcon type="grid" />
+```
+
+:::accessibility Accessibility recommendation
+If possible, provide a descriptive title based on the icon use. If no title is provided, the icon is considered purely decorative, and it will default to `aria-hidden=true`.
+:::
+
+## Usage
+
+### Sizes
+
+Use the `size` prop to automatically size your icons. Medium is the default, and will output a `16x16` icon.
+
+import { iconSizes, iconSizesText } from './icon_sizes';
+
+<Demo scope={{ iconSizes, iconSizesText }}>
+  ```tsx
+  <>
+    <EuiCodeBlock language="tsx" isCopyable paddingSize="m">
+      {'<EuiIcon type="logoElasticsearch" size="xl" />'}
+    </EuiCodeBlock>
+    <EuiSpacer />
+    <EuiFlexGrid direction="row" columns={3}>
+      {iconSizes.map((size, index) => (
+        <EuiFlexItem key={size}>
+          <EuiCopy display="block" textToCopy={size} afterMessage={`${size} copied`}>
+            {(copy) => (
+              <EuiPanel hasShadow={false} hasBorder={false} onClick={copy} paddingSize="s">
+                <EuiIcon className="eui-alignMiddle" type="logoElasticsearch" size={size} /> &emsp;{' '}
+                <small>{iconSizesText[index]}</small>
+              </EuiPanel>
+            )}
+          </EuiCopy>
+        </EuiFlexItem>
+      ))}
+    </EuiFlexGrid>
+  </>
+  ```
+</Demo>
+
+### Colors
+
+The default behavior of icons is to inherit from the text color. You can use the `color` prop to assign a custom color which accepts a named color from our palette or a valid [CSS color data type](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value) which will be passed down through the inline-style `fill`  property. **We recommend relying on the EUI named color palette** unless the custom color is initiated by the user (like as a graph color).
+
+Two-tone icons, like our app style icons, will behave similarly to normal glyphs when provided a specific color by applying the color to **all** the shapes within. You can force the icon to match the parent's text color by passing `color="inherit"` to the icon.
+
+import { iconColors } from './icon_colors.ts'
+
+<Demo scope={{ iconColors }}>
+  ```tsx
+  <>
+    <EuiCodeBlock language="tsx" isCopyable paddingSize="m">
+      {'<EuiIcon type="brush" color="primary" />'}
+    </EuiCodeBlock>
+    <EuiSpacer />
+    <EuiFlexGrid direction="row" columns={3}>
+      {iconColors.map((color) => (
+        <EuiFlexItem key={color}>
+          <EuiCopy display="block" textToCopy={color} afterMessage={`${color} copied`}>
+            {(copy) => {
+              const panel = (
+                <EuiPanel hasShadow={false} hasBorder={false} onClick={copy} paddingSize="s">
+                  <EuiIcon className="eui-alignMiddle" type="brush" color={color} /> &emsp;{' '}
+                  <small>{color}</small>
+                </EuiPanel>
+              );
+              return color === 'ghost'
+                ? <EuiThemeProvider colorMode="DARK">{panel}</EuiThemeProvider>
+                : panel;
+            }}
+          </EuiCopy>
+        </EuiFlexItem>
+      ))}
+    </EuiFlexGrid>
+  </>
+  ```
+</Demo>
+
+### Glyphs
+
+Glyphs are small, monochromatic icons that typically should always use the default size of `size="m"`. They are named according to their appearance or the action they represent. For example, `star`, `play`, etc.
+
+If you would like to contribute to our growing list of glyphs, you can follow [these guidelines](https://github.com/elastic/eui/blob/main/wiki/contributing-to-eui/developing/creating-icons.md).
+
+import { iconTypes } from './icon_types';
+
+<Demo scope={{ iconTypes }}>
+  ```tsx
+  <>
+    <EuiCodeBlock language="tsx" isCopyable paddingSize="m">
+      {'<EuiIcon type="warning" />'}
+    </EuiCodeBlock>
+    <EuiSpacer />
+    <EuiFlexGrid direction="row" columns={3}>
+      {iconTypes.map((iconType) => (
+        <EuiFlexItem key={iconType}>
+          <EuiCopy display="block" textToCopy={iconType} afterMessage={`${iconType} copied`}>
+            {(copy) => (
+              <EuiPanel hasShadow={false} hasBorder={false} onClick={copy} paddingSize="s">
+                <EuiIcon className="eui-alignMiddle" type={iconType} /> &emsp;{' '}
+                <small>{iconType}</small>
+              </EuiPanel>
+            )}
+          </EuiCopy>
+        </EuiFlexItem>
+      ))}
+    </EuiFlexGrid>
+  </>
+  ```
+</Demo>
+
+### Editor controls
+
+Editor icons relate to the visual styling of elements and are commonly used within **EuiButtonGroup** components.
+
+import { iconTypesEditor } from './icon_types_editor';
+
+<Demo scope={{ iconTypes: iconTypesEditor }}>
+  ```tsx
+  <>
+    <EuiFlexGrid direction="row" columns={3}>
+      {iconTypes.map((iconType) => (
+        <EuiFlexItem key={iconType}>
+          <EuiCopy display="block" textToCopy={iconType} afterMessage={`${iconType} copied`}>
+            {(copy) => (
+              <EuiPanel hasShadow={false} hasBorder={false} onClick={copy} paddingSize="s">
+                <EuiIcon className="eui-alignMiddle" type={iconType} /> &emsp;{' '}
+                <small>{iconType}</small>
+              </EuiPanel>
+            )}
+          </EuiCopy>
+        </EuiFlexItem>
+      ))}
+    </EuiFlexGrid>
+  </>
+  ```
+</Demo>
+
+### Elastic logos
+
+These logos are restricted in use to Elastic products or when referencing Elastic products. They are multi-color with some internal paths having a class of `.euiIcon__fillNegative` to handle flipping colors for dark mode. The only other colors most of them support are ghost and text which turn them into a solid shape.
+
+import { iconTypesLogos } from './icon_types_logos';
+
+<Demo scope={{ iconTypes: iconTypesLogos }} previewPadding="none">
+  ```tsx
+  const allowedColors = ['multi', 'ghost', 'text'];
+  const getPanelGhostStyles = ({ euiTheme }: UseEuiTheme) => css`
+    color: ${euiTheme.colors.ghost};
+    background: ${euiTheme.colors.darkestShade};
+  `;
+
+  export default () => {
+    const [iconColor, setIconColor] = useState(allowedColors[0]);
+    const panelGhostStyles = useEuiMemoizedStyles(getPanelGhostStyles);
+
+    return (
+      <EuiSplitPanel.Outer hasBorder={false} hasShadow={false}>
+        <EuiSplitPanel.Inner color="subdued">
+          <EuiButtonGroup
+            legend="Logo color"
+            name="logoColor"
+            idSelected={iconColor}
+            onChange={(optionId) => {
+              setIconColor(optionId);
+            }}
+            options={allowedColors.map((color) => {
+              return {
+                id: color,
+                label: color,
+              };
+            })}
+          />
+        </EuiSplitPanel.Inner>
+        <EuiSplitPanel.Inner css={iconColor === 'ghost' && panelGhostStyles} color="transparent">
+          <EuiCodeBlock language="tsx" isCopyable paddingSize="m">
+            {iconColor === 'multi'
+              ? '<EuiIcon type="logoElasticsearch" size="xl" />'
+              : `<EuiIcon type="logoElasticsearch" size="xl" color="${iconColor}" />`
+            }
+          </EuiCodeBlock>
+          <EuiSpacer />
+          <EuiFlexGrid direction="row" columns={3}>
+            {iconTypes.map((iconType) => (
+              <EuiFlexItem key={iconType}>
+                <EuiCopy display="block" textToCopy={iconType} afterMessage={`${iconType} copied`}>
+                  {(copy) => (
+                    <EuiPanel hasShadow={false} hasBorder={false} onClick={copy} paddingSize="s" color="transparent">
+                      <EuiIcon
+                        className="eui-alignMiddle"
+                        type={iconType}
+                        size="xl"
+                        color={iconColor === 'multi' ? undefined : iconColor}
+                      /> &emsp;{' '}
+                      <small>{iconType}</small>
+                    </EuiPanel>
+                  )}
+                </EuiCopy>
+              </EuiFlexItem>
+            ))}
+          </EuiFlexGrid>
+        </EuiSplitPanel.Inner>
+      </EuiSplitPanel.Outer>
+    );
+  }
+  ```
+</Demo>
+
+### Apps
+
+App logos are logos for Elastic Apps, and can contain multiple colors. Normally the Elastic Design team creates those icons. They are not meant to be used outside of Elastic, because they represent our apps. App logos are usually displayed at `32x32` or above and can contain multiple colors.
+
+import { iconTypesApps } from './icon_types_apps';
+
+<Demo scope={{ iconTypes: iconTypesApps }}>
+  ```tsx
+  <>
+    <EuiCodeBlock language="tsx" isCopyable paddingSize="m">
+      {'<EuiIcon type="addDataApp" size="xl" />'}
+    </EuiCodeBlock>
+    <EuiSpacer />
+    <EuiFlexGrid direction="row" columns={3}>
+      {iconTypes.map((iconType) => (
+        <EuiFlexItem key={iconType}>
+          <EuiCopy display="block" textToCopy={iconType} afterMessage={`${iconType} copied`}>
+            {(copy) => (
+              <EuiPanel hasShadow={false} hasBorder={false} onClick={copy} paddingSize="s">
+                <EuiIcon className="eui-alignMiddle" type={iconType} size="xl" /> &emsp;{' '}
+                <small>{iconType}</small>
+              </EuiPanel>
+            )}
+          </EuiCopy>
+        </EuiFlexItem>
+      ))}
+    </EuiFlexGrid>
+  </>
+  ```
+</Demo>
+
+### Machine learning icons
+
+Machine learning has some specific icons for job creation. Again, these are made for `32x32`.
+
+import { iconTypesML } from './icon_types_ml';
+
+<Demo scope={{ iconTypes: iconTypesML }}>
+  ```tsx
+  <>
+    <EuiCodeBlock language="tsx" isCopyable paddingSize="m">
+      {'<EuiIcon type="addDataApp" size="xl" />'}
+    </EuiCodeBlock>
+    <EuiSpacer />
+    <EuiFlexGrid direction="row" columns={3}>
+      {iconTypes.map((iconType) => (
+        <EuiFlexItem key={iconType}>
+          <EuiCopy display="block" textToCopy={iconType} afterMessage={`${iconType} copied`}>
+            {(copy) => (
+              <EuiPanel hasShadow={false} hasBorder={false} onClick={copy} paddingSize="s">
+                <EuiIcon className="eui-alignMiddle" type={iconType} size="xl" /> &emsp;{' '}
+                <small>{iconType}</small>
+              </EuiPanel>
+            )}
+          </EuiCopy>
+        </EuiFlexItem>
+      ))}
+    </EuiFlexGrid>
+  </>
+  ```
+</Demo>
+
+### Tokens
+
+Tokens are most commonly used to visually signify field or code types. An **EuiToken** accepts any valid **EuiIcon** as its `iconType` property. However, icons designed specifically for use in the **EuiToken** are prefixed with "token" in their name and have pre-defined styles.
+
+import { iconTypesTokens } from './icon_types_tokens';
+
+<Demo scope={{ iconTypes: iconTypesTokens }}>
+  ```tsx
+  <>
+    <EuiCodeBlock language="tsx" isCopyable paddingSize="m">
+      {'<EuiToken type="tokenAlias" />'}
+    </EuiCodeBlock>
+    <EuiSpacer />
+    <EuiFlexGrid direction="row" columns={3}>
+      {iconTypes.map((iconType) => (
+        <EuiFlexItem key={iconType}>
+          <EuiCopy display="block" textToCopy={iconType} afterMessage={`${iconType} copied`}>
+            {(copy) => (
+              <EuiPanel hasShadow={false} hasBorder={false} onClick={copy} paddingSize="s">
+                <EuiToken className="eui-alignMiddle" iconType={iconType} /> &emsp;{' '}
+                <small>{iconType}</small>
+              </EuiPanel>
+            )}
+          </EuiCopy>
+        </EuiFlexItem>
+      ))}
+    </EuiFlexGrid>
+  </>
+  ```
+</Demo>
+
+
+### Custom tokens
+
+By default, an `iconType` with the token prefix (i.e. those listed above) will have predefined styles. However, any valid `iconType` can be passed and, in either case, the `shape`, `size`, `color`, and `fill` can be customized.
+
+<EuiSplitPanel.Outer hasShadow={false} hasBorder direction="row">
+  <EuiSplitPanel.Inner grow={false} style={{ minWidth: 96 }} className="eui-textCenter">
+    <EuiToken iconType="tokenStruct" size="xs" color="gray" />
+  </EuiSplitPanel.Inner>
+  <EuiSplitPanel.Inner paddingSize="none" color="subdued">
+    <EuiCodeBlock language="tsx" isCopyable transparentBackground paddingSize="m">
+      {'<EuiToken iconType="tokenStruct" size="xs" color="gray" />'}
+    </EuiCodeBlock>
+  </EuiSplitPanel.Inner>
+</EuiSplitPanel.Outer>
+
+<EuiSpacer />
+<EuiSplitPanel.Outer hasShadow={false} hasBorder direction="row">
+  <EuiSplitPanel.Inner grow={false} style={{ minWidth: 96 }} className="eui-textCenter">
+    <EuiToken iconType="tokenStruct" fill="none" />
+  </EuiSplitPanel.Inner>
+  <EuiSplitPanel.Inner paddingSize="none" color="subdued">
+    <EuiCodeBlock language="tsx" isCopyable transparentBackground paddingSize="m">
+      {'<EuiToken iconType="tokenStruct" fill="none" />'}
+    </EuiCodeBlock>
+  </EuiSplitPanel.Inner>
+</EuiSplitPanel.Outer>
+
+<EuiSpacer />
+<EuiSplitPanel.Outer hasShadow={false} hasBorder direction="row">
+  <EuiSplitPanel.Inner grow={false} style={{ minWidth: 96 }} className="eui-textCenter">
+    <EuiToken iconType="tokenStruct" size="m" shape="circle" color="#b9f6c8" />
+  </EuiSplitPanel.Inner>
+  <EuiSplitPanel.Inner paddingSize="none" color="subdued">
+    <EuiCodeBlock language="tsx" isCopyable transparentBackground paddingSize="m">
+      {'<EuiToken iconType="tokenStruct" size="m" shape="circle" color="#b9f6c8" />'}
+    </EuiCodeBlock>
+  </EuiSplitPanel.Inner>
+</EuiSplitPanel.Outer>
+
+<EuiSpacer />
+<EuiSplitPanel.Outer hasShadow={false} hasBorder direction="row">
+  <EuiSplitPanel.Inner grow={false} style={{ minWidth: 96 }} className="eui-textCenter">
+    <EuiToken iconType="faceHappy"  />
+  </EuiSplitPanel.Inner>
+  <EuiSplitPanel.Inner paddingSize="none" color="subdued">
+    <EuiCodeBlock language="tsx" isCopyable transparentBackground paddingSize="m">
+      {'<EuiToken iconType="faceHappy"  />'}
+    </EuiCodeBlock>
+  </EuiSplitPanel.Inner>
+</EuiSplitPanel.Outer>
+
+<EuiSpacer />
+<EuiSplitPanel.Outer hasShadow={false} hasBorder direction="row">
+  <EuiSplitPanel.Inner grow={false} style={{ minWidth: 96 }} className="eui-textCenter">
+    <EuiToken iconType="faceHappy" size="l" color="euiColorVis7" shape="rectangle" fill="dark" />
+  </EuiSplitPanel.Inner>
+  <EuiSplitPanel.Inner paddingSize="none" color="subdued">
+    <EuiCodeBlock language="tsx" isCopyable transparentBackground paddingSize="m">
+      {'<EuiToken iconType="faceHappy" size="l" color="euiColorVis7" shape="rectangle" fill="dark" />'}
+    </EuiCodeBlock>
+  </EuiSplitPanel.Inner>
+</EuiSplitPanel.Outer>
+
+### Custom SVGs
+
+The `type` prop can accept a valid enum, string or React SVG Element. When using a custom SVG, please make sure it sits on a square canvas and preferably utilizes one of EUI's sizes (`16x16` or `32x32`).
+
+When using custom SVGs for simple glyphs, **remove all fill attributes** on the SVG and utilize the CSS helpers if you have complex logos that need to work with theming.
+
+:::warning Important considerations when importing SVGs as components
+
+When importing an SVG as a component like `import { ReactComponent as ReactLogo } from './logo.svg';`, keep in mind that the component will not support the `title` prop. The `title` prop is designed to only work with our icons or SVGs imported as images or passed as a Data URL. So, if you're importing your SVG as a component, be sure to use an`aria-label` instead of a `title` prop to enhance accessibility and avoid potential issues.
+
+:::
+
+import customSvg from '!url-loader!./custom.svg';
+
+<Demo scope={{ customSvg }}>
+  ```tsx
+  import React from 'react';
+  import {
+    EuiFlexGroup,
+    EuiFlexItem,
+    EuiIcon,
+    EuiText,
+    EuiSpacer,
+    EuiButton,
+    EuiSplitPanel,
+    EuiCodeBlock,
+  } from '@elastic/eui';
+
+  export default () => (
+    <div>
+      <EuiSplitPanel.Outer hasShadow={false} direction="row">
+        <EuiSplitPanel.Inner
+          className="eui-textCenter"
+          grow={false}
+          style={{ minWidth: 96 }}
+        >
+          <EuiIcon
+            type="https://upload.wikimedia.org/wikipedia/commons/0/02/SVG_logo.svg"
+            size="xl"
+            title="My SVG logo"
+          />
+        </EuiSplitPanel.Inner>
+        <EuiSplitPanel.Inner paddingSize="s" color="subdued">
+          <EuiCodeBlock
+            className="eui-textBreakWord"
+            language="html"
+            isCopyable
+            transparentBackground
+            paddingSize="m"
+          >
+            {
+              '<EuiIcon type="https://upload.wikimedia.org/wikipedia/commons/0/02/SVG_logo.svg" size="xl" title="My SVG logo" />'
+            }
+          </EuiCodeBlock>
+        </EuiSplitPanel.Inner>
+      </EuiSplitPanel.Outer>
+      <EuiSpacer />
+      <EuiSplitPanel.Outer hasShadow={false} direction="row">
+        <EuiSplitPanel.Inner
+          className="eui-textCenter"
+          grow={false}
+          style={{ minWidth: 96 }}
+        >
+          <EuiIcon
+            type="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1Ni4zMSA1Ni4zMSI+PGRlZnM+PHN0eWxlPi5jbHMtMXtmaWxsOiNmZmY7c3Ryb2tlOiMwMDc4YTA7c3Ryb2tlLW1pdGVybGltaXQ6MTA7c3Ryb2tlLXdpZHRoOjJweDt9PC9zdHlsZT48L2RlZnM+PHRpdGxlPlBsYW5lIEljb248L3RpdGxlPjxnIGlkPSJMYXllcl8yIiBkYXRhLW5hbWU9IkxheWVyIDIiPjxnIGlkPSJMYXllcl8xLTIiIGRhdGEtbmFtZT0iTGF5ZXIgMSI+PHBhdGggY2xhc3M9ImNscy0xIiBkPSJNNDkuNTEsNDguOTMsNDEuMjYsMjIuNTIsNTMuNzYsMTBhNS4yOSw1LjI5LDAsMCwwLTcuNDgtNy40N2wtMTIuNSwxMi41TDcuMzgsNi43OUEuNy43LDAsMCwwLDYuNjksN0wxLjIsMTIuNDVhLjcuNywwLDAsMCwwLDFMMTkuODUsMjlsLTcuMjQsNy4yNC03Ljc0LS42YS43MS43MSwwLDAsMC0uNTMuMkwxLjIxLDM5YS42Ny42NywwLDAsMCwuMDgsMUw5LjQ1LDQ2bC4wNywwYy4xMS4xMy4yMi4yNi4zNC4zOHMuMjUuMjMuMzguMzRhLjM2LjM2LDAsMCwwLDAsLjA3TDE2LjMzLDU1YS42OC42OCwwLDAsMCwxLC4wN0wyMC40OSw1MmEuNjcuNjcsMCwwLDAsLjE5LS41NGwtLjU5LTcuNzQsNy4yNC03LjI0TDQyLjg1LDU1LjA2YS42OC42OCwwLDAsMCwxLDBsNS41LTUuNUEuNjYuNjYsMCwwLDAsNDkuNTEsNDguOTNaIi8+PC9nPjwvZz48L3N2Zz4="
+            size="xl"
+            title="My SVG icon"
+          />
+        </EuiSplitPanel.Inner>
+        <EuiSplitPanel.Inner paddingSize="s" color="subdued">
+          <EuiCodeBlock
+            className="eui-textBreakWord"
+            language="html"
+            isCopyable
+            transparentBackground
+            paddingSize="m"
+          >
+            {
+              '<EuiIcon type="data:image/svg+xml;base64,PHN2...=" size="xl" title="My SVG icon" />'
+            }
+          </EuiCodeBlock>
+        </EuiSplitPanel.Inner>
+      </EuiSplitPanel.Outer>
+      <EuiSpacer />
+      <EuiSplitPanel.Outer hasShadow={false} direction="row">
+        <EuiSplitPanel.Inner
+          className="eui-textCenter"
+          grow={false}
+          style={{ minWidth: 96 }}
+        >
+          <EuiIcon type={customSvg} size="xl" title="Custom SVG icon" />
+        </EuiSplitPanel.Inner>
+        <EuiSplitPanel.Inner paddingSize="s" color="subdued">
+          <EuiCodeBlock
+            language="html"
+            isCopyable
+            transparentBackground
+            paddingSize="m"
+          >
+            {'<EuiIcon type={customSvg} size="xl" title="Custom SVG icon" />'}
+          </EuiCodeBlock>
+        </EuiSplitPanel.Inner>
+      </EuiSplitPanel.Outer>
+
+      <EuiSpacer />
+
+      <EuiText>
+        <p>
+          Any component that utilizes <strong>EuiIcon</strong> can use custom SVGs
+          as well.
+        </p>
+      </EuiText>
+
+      <EuiSpacer />
+
+      <EuiFlexGroup>
+        <EuiFlexItem grow={false}>
+          <EuiButton
+            iconType="https://upload.wikimedia.org/wikipedia/commons/0/02/SVG_logo.svg"
+            title="Another SVG Logo"
+          >
+            http://some.svg
+          </EuiButton>
+        </EuiFlexItem>
+        <EuiFlexItem grow={false}>
+          <EuiButton
+            iconType="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1Ni4zMSA1Ni4zMSI+PGRlZnM+PHN0eWxlPi5jbHMtMXtmaWxsOiNmZmY7c3Ryb2tlOiMwMDc4YTA7c3Ryb2tlLW1pdGVybGltaXQ6MTA7c3Ryb2tlLXdpZHRoOjJweDt9PC9zdHlsZT48L2RlZnM+PHRpdGxlPlBsYW5lIEljb248L3RpdGxlPjxnIGlkPSJMYXllcl8yIiBkYXRhLW5hbWU9IkxheWVyIDIiPjxnIGlkPSJMYXllcl8xLTIiIGRhdGEtbmFtZT0iTGF5ZXIgMSI+PHBhdGggY2xhc3M9ImNscy0xIiBkPSJNNDkuNTEsNDguOTMsNDEuMjYsMjIuNTIsNTMuNzYsMTBhNS4yOSw1LjI5LDAsMCwwLTcuNDgtNy40N2wtMTIuNSwxMi41TDcuMzgsNi43OUEuNy43LDAsMCwwLDYuNjksN0wxLjIsMTIuNDVhLjcuNywwLDAsMCwwLDFMMTkuODUsMjlsLTcuMjQsNy4yNC03Ljc0LS42YS43MS43MSwwLDAsMC0uNTMuMkwxLjIxLDM5YS42Ny42NywwLDAsMCwuMDgsMUw5LjQ1LDQ2bC4wNywwYy4xMS4xMy4yMi4yNi4zNC4zOHMuMjUuMjMuMzguMzRhLjM2LjM2LDAsMCwwLDAsLjA3TDE2LjMzLDU1YS42OC42OCwwLDAsMCwxLC4wN0wyMC40OSw1MmEuNjcuNjcsMCwwLDAsLjE5LS41NGwtLjU5LTcuNzQsNy4yNC03LjI0TDQyLjg1LDU1LjA2YS42OC42OCwwLDAsMCwxLDBsNS41LTUuNUEuNjYuNjYsMCwwLDAsNDkuNTEsNDguOTNaIi8+PC9nPjwvZz48L3N2Zz4="
+            title="Another SVG icon"
+          >
+            data:uri
+          </EuiButton>
+        </EuiFlexItem>
+        <EuiFlexItem grow={false}>
+          <EuiButton iconType={customSvg}>{'{customSvg}'}</EuiButton>
+        </EuiFlexItem>
+      </EuiFlexGroup>
+    </div>
+  );
+  ```
+</Demo>
+
+## Props
+
+import docgen from '@elastic/eui-docgen/dist/components/icon';
+
+<PropTable definition={docgen.EuiIcon} />

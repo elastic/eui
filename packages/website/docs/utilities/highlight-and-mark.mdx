@@ -1,0 +1,100 @@
+# Highlight and mark
+
+## Highlight
+
+Use **EuiHighlight** to highlight substrings within a string, typically in response to user input.
+
+<Demo>
+```tsx interactive
+import React, { useState, useMemo } from 'react';
+
+import {
+  EuiHighlight,
+  EuiFieldSearch,
+  EuiFormRow,
+  EuiSpacer,
+  EuiSwitch,
+  EuiFlexGroup,
+} from '@elastic/eui';
+
+export default () => {
+  const [searchInput, setSearchInput] = useState('jumped over');
+  const [isHighlightAll, setHighlightAll] = useState(false);
+  const [searchMultiple, setSearchMultiple] = useState(false);
+  const [caseSensitive, setCaseSensitive] = useState(false);
+
+  const searchValues = useMemo(() => {
+    return searchMultiple && isHighlightAll
+      ? searchInput.split(' ')
+      : searchInput;
+  }, [searchMultiple, searchInput, isHighlightAll]);
+
+  return (
+    <>
+      <EuiFlexGroup>
+        <EuiSwitch
+          label="Case sensitive"
+          checked={caseSensitive}
+          onChange={(e) => setCaseSensitive(e.target.checked)}
+        />
+        <EuiSwitch
+          label="Highlight all"
+          checked={isHighlightAll}
+          onChange={(e) => setHighlightAll(e.target.checked)}
+        />
+        {isHighlightAll && (
+          <EuiSwitch
+            label="Search for an array of separate words"
+            checked={searchMultiple}
+            onChange={(e) => setSearchMultiple(e.target.checked)}
+          />
+        )}
+      </EuiFlexGroup>
+      <EuiSpacer size="xl" />
+      <EuiFormRow label="Enter text to highlight substrings within a string">
+        <EuiFieldSearch
+          value={searchInput}
+          onChange={(e) => setSearchInput(e.target.value)}
+        />
+      </EuiFormRow>
+      <EuiSpacer size="m" />
+      <EuiHighlight
+        strict={caseSensitive}
+        highlightAll={isHighlightAll}
+        search={searchValues}
+      >
+        The quick brown fox jumped over the lazy dog
+      </EuiHighlight>
+    </>
+  );
+};
+```
+</Demo>
+
+## Mark
+
+Use **EuiMark** to wrap a string in a `mark` element.
+
+<Demo>
+```tsx interactive
+import React from 'react';
+
+import { EuiMark } from '@elastic/eui';
+
+export default () => {
+  return (
+    <>
+      The quick brown fox <EuiMark>jumped over</EuiMark> the lazy dog
+    </>
+  );
+};
+```
+</Demo>
+
+## Props
+
+import highlightDocgen from '@elastic/eui-docgen/dist/components/highlight';
+import markDocgen from '@elastic/eui-docgen/dist/components/mark';
+
+<PropTable definition={highlightDocgen.EuiHighlight} />
+<PropTable definition={markDocgen.EuiMark} />

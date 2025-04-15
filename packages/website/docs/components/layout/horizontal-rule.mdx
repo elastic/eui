@@ -1,0 +1,81 @@
+# Horizontal rule
+
+**EuiHorizontalRule** is a styled `<hr>` element. It can be one of three provided sizes (lengths), by default it will be `full`.
+
+```tsx interactive
+import React from 'react';
+import { EuiHorizontalRule, EuiCode } from '@elastic/eui';
+
+export default () => (
+  <div css={{ textAlign: "center" }}>
+    <EuiCode>quarter</EuiCode>
+    <EuiHorizontalRule size="quarter" />
+    <EuiCode>half</EuiCode>
+    <EuiHorizontalRule size="half" />
+    <EuiCode>full (default)</EuiCode>
+    <EuiHorizontalRule />
+  </div>
+);
+```
+
+## Margins
+
+The spacing added before and after **EuiHorizontalRule** can be adjusted using the `margin` prop. Don’t forget that margins will collapse against items that proceed and/or follow.
+
+```tsx interactive
+import React from 'react';
+import { EuiHorizontalRule, EuiCode } from '@elastic/eui';
+
+const ColorMarginContainer = ({ children }) => (
+  <div css={({ euiTheme }) => ({
+    display: 'flex',
+    marginBottom: euiTheme.size.base,
+    backgroundColor: 'var(--eui-background-color-primary)',
+    /* override docusaurus' global for <hr> */
+    '--ifm-hr-margin-vertical': 0,
+    /* ensure enough contrast with background */
+    '.euiHorizontalRule': {
+      backgroundColor: euiTheme.colors.text,
+    }
+  })}>{children}</div>
+);
+
+export default () => (
+    <>
+      <EuiCode>none</EuiCode>
+      <ColorMarginContainer>
+        <EuiHorizontalRule margin="none" />
+      </ColorMarginContainer>
+      <EuiCode>xs</EuiCode>
+      <ColorMarginContainer>
+        <EuiHorizontalRule margin="xs" />
+      </ColorMarginContainer>
+      <EuiCode>s</EuiCode>
+      <ColorMarginContainer>
+        <EuiHorizontalRule margin="s" />
+      </ColorMarginContainer>
+      <EuiCode>m</EuiCode>
+      <ColorMarginContainer>
+        <EuiHorizontalRule margin="m" />
+      </ColorMarginContainer>
+      <EuiCode>l (default)</EuiCode>
+      <ColorMarginContainer>
+        <EuiHorizontalRule margin="l" />
+      </ColorMarginContainer>
+      <EuiCode>xl</EuiCode>
+      <ColorMarginContainer>
+        <EuiHorizontalRule margin="xl" />
+      </ColorMarginContainer>
+      <EuiCode>xxl</EuiCode>
+      <ColorMarginContainer>
+        <EuiHorizontalRule margin="xxl" />
+      </ColorMarginContainer>
+    </>
+);
+```
+
+## Props
+
+import docgen from '@elastic/eui-docgen/dist/components/horizontal_rule';
+
+<PropTable definition={docgen.EuiHorizontalRule} />

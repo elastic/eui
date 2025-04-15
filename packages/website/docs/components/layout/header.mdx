@@ -1,17 +1,12 @@
----
-slug: /layout/header
-id: layout_header
----
+# Header
 
 import Link from '@docusaurus/Link';
-
-# Header
 
 The header is made up of **many** individual components starting with **EuiHeader** as the container. You can manually configure your header with the following related components:
 
 *   **EuiHeaderSection**: Left/right containers with flex properties.
 *   **EuiHeaderSectionItem**: Containers for individual header items as flex items.
-*   **EuiHeaderSectionItemButton**: Specialized button that extends [EuiButtonEmpty](../navigation/button/button_empty.mdx) but styled to fit the height of the header with additional `notification` props.
+*   **EuiHeaderSectionItemButton**: Specialized button that extends [EuiButtonEmpty](../navigation/buttons/empty.mdx) but styled to fit the height of the header with additional `notification` props.
 *   **EuiHeaderLogo**: A helpful component for creating a linked logo that fits within the header sizing.
 *   **EuiHeaderBreadcrumbs**: A set of [EuiBreadcrumbs](../navigation/breadcrumbs.mdx) specifically stylized to fit inside the header.
 
@@ -575,7 +570,7 @@ export default () => {
 
 Most consumers need a header that does not scroll away with the page contents. You can set this display by applying the property `position="fixed"`. Multiple fixed headers will automatically stack underneath one another. No manual positioning is required.
 
-If you're using [EuiPageTemplate](../templates/page_template/overview.mdx), a padding top will be automatically set based on the number of fixed headers on the page. [EuiFlyouts](../containers/flyout/index.mdx) will also automatically account for and sit below fixed headers.
+If you're using [EuiPageTemplate](../templates/page-template/index.mdx), a padding top will be automatically set based on the number of fixed headers on the page. [EuiFlyouts](../containers/flyout/index.mdx) will also automatically account for and sit below fixed headers.
 
 If you're using your own custom layout, or have custom UI that needs to sit below your fixed header(s), EUI provides a global CSS `var(--euiFixedHeadersOffset)` variable. You can use this variable anywhere, or even override it, to correctly offset any and all fixed header heights.
 
@@ -677,7 +672,7 @@ export default () => {
 
 ### Portal content in the header
 
-Use an **EuiHeaderSectionItemButton** to display additional information in [popovers](../containers/popover.mdx) or [flyouts](../containers/flyout/index.mdx), such as a user profile or news feed. When using [EuiFlyout](../containers/flyout/index.mdx), be sure to wrap it in a [EuiPortal](../../getting-started/utilities/portal.mdx). When using an [EuiPopover](../containers/popover.mdx) in conjunction with a **fixed** header, be sure to add the `repositionOnScroll` prop to the popover.
+Use an **EuiHeaderSectionItemButton** to display additional information in [popovers](../containers/popover.mdx) or [flyouts](../containers/flyout/index.mdx), such as a user profile or news feed. When using [EuiFlyout](../containers/flyout/index.mdx), be sure to wrap it in a [EuiPortal](../../utilities/portal.mdx). When using an [EuiPopover](../containers/popover.mdx) in conjunction with a **fixed** header, be sure to add the `repositionOnScroll` prop to the popover.
 
 The example below shows how to incorporate **EuiHeaderAlert** components to show a list of updates inside a [EuiFlyout](../containers/flyout/index.mdx) and a [EuiPopover](../containers/popover.mdx) .
 
@@ -1297,7 +1292,7 @@ export default () => {
 
 ### Elastic navigation
 
-The button below will launch a fullscreen example that includes two **EuiHeaders** with all the appropriate navigation pieces including [EuiCollapsibleNav,](../navigation/collapsible_nav.mdx) **EuiHeaderAlerts**, user menu, deployment switcher, space selector, **EuiHeaderBreadcrumbs** and **EuiHeaderLinks** for app menu items.
+The button below will launch a fullscreen example that includes two **EuiHeaders** with all the appropriate navigation pieces including [EuiCollapsibleNav,](../navigation/collapsible-nav.mdx) **EuiHeaderAlerts**, user menu, deployment switcher, space selector, **EuiHeaderBreadcrumbs** and **EuiHeaderLinks** for app menu items.
 
 This is just a pattern and should be treated as such. Consuming applications will need to recreate the pattern according to their context and save the states as is appropriate to their data store.
 

@@ -1,0 +1,168 @@
+# Pretty duration
+
+Use the `<PrettyDuration />` component (for JSX display) or `usePrettyDuration()` hook (for attribute strings) to convert a start and end date string to a human-friendly format. Both utilities take the following props:
+
+* `timeFrom` and `timeTo` accept start and end date values for the duration. These can be timestamps (`2018-01-17T18:57:57.149Z`) or relative times (`now-15m`).
+
+* `dateFormat` specifies the output date/time format.
+
+* `quickRanges` optionally accepts an array of quick range values that are used to pretty format custom ranges. If no custom quick ranges are passed, EUI will default to a set of common duration ranges defined below.
+
+<details style={{ marginTop: 16 }}>
+<summary>Show default common duration ranges</summary>
+```json
+[
+  {
+    "start": "now/d",
+    "end": "now/d",
+    "label": "Today"
+  },
+  {
+    "start": "now/w",
+    "end": "now/w",
+    "label": "This week"
+  },
+  {
+    "start": "now/M",
+    "end": "now/M",
+    "label": "This month"
+  },
+  {
+    "start": "now/y",
+    "end": "now/y",
+    "label": "This year"
+  },
+  {
+    "start": "now-1d/d",
+    "end": "now-1d/d",
+    "label": "Yesterday"
+  },
+  {
+    "start": "now/w",
+    "end": "now",
+    "label": "Week to date"
+  },
+  {
+    "start": "now/M",
+    "end": "now",
+    "label": "Month to date"
+  },
+  {
+    "start": "now/y",
+    "end": "now",
+    "label": "Year to date"
+  }
+]
+```
+</details>
+
+<Demo>
+```tsx interactive
+import React, { Fragment } from 'react';
+
+import {
+  EuiSpacer,
+  EuiCodeBlock,
+  EuiText,
+  usePrettyDuration,
+} from '@elastic/eui';
+
+const examples = [
+  {
+    start: '2018-01-17T18:57:57.149Z',
+    end: '2018-01-17T20:00:00.000Z',
+    quickRanges: [],
+    dateFormat: 'MMMM Do YYYY, HH:mm:ss.SSS',
+  },
+  {
+    start: '2018-01-17T18:57:57.149Z',
+    end: '2018-01-17T20:00:00.000Z',
+    quickRanges: [],
+    dateFormat: 'MMMM Do YYYY @ HH:mm:ss.SSS',
+  },
+  {
+    start: '2018-01-17T18:57:57.149Z',
+    end: 'now-2h',
+    quickRanges: [],
+    dateFormat: 'MMMM Do YYYY @ HH:mm:ss.SSS',
+  },
+  {
+    start: 'now-17m',
+    end: 'now',
+    quickRanges: [],
+    dateFormat: 'MMMM Do YYYY @ HH:mm:ss.SSS',
+  },
+  {
+    start: 'now-17m',
+    end: 'now-1m',
+    quickRanges: [],
+    dateFormat: 'MMMM Do YYYY @ HH:mm:ss.SSS',
+  },
+  {
+    start: 'now-15m',
+    end: 'now',
+    quickRanges: [
+      {
+        start: 'now-15m',
+        end: 'now',
+        label: 'quick range 15 minutes custom display',
+      },
+    ],
+    dateFormat: 'MMMM Do YYYY, HH:mm:ss.SSS',
+  },
+  {
+    // Example that will use a default common quick range label
+    start: 'now/w',
+    end: 'now',
+    dateFormat: 'MMMM Do YYYY, HH:mm:ss.SSS',
+  },
+];
+
+export default function prettyDurationExample() {
+  return (
+    <Fragment>
+      {examples.map(({ start, end, quickRanges, dateFormat }, idx) => (
+        <div key={idx}>
+          <EuiCodeBlock
+            paddingSize="s"
+            isCopyable
+            language="js"
+          >{
+            `<PrettyDuration
+                timeFrom="${start}"
+                timeTo="${end}"
+                dateFormat="${dateFormat}"
+                quickRanges={${JSON.stringify(quickRanges)}}
+            />
+            usePrettyDuration({
+                timeFrom: '${start}',
+                timeTo: '${end}',
+                dateFormat: '${dateFormat}',
+                quickRanges: ${JSON.stringify(quickRanges)},
+            })`}
+          </EuiCodeBlock>
+          <EuiSpacer size="s" />
+          <EuiText>
+            <p>
+              {usePrettyDuration({
+                timeFrom: start,
+                timeTo: end,
+                quickRanges,
+                dateFormat,
+              })}
+            </p>
+          </EuiText>
+          <EuiSpacer size="xl" />
+        </div>
+      ))}
+    </Fragment>
+  );
+}
+```
+</Demo>
+
+## Props
+
+import docgen from '@elastic/eui-docgen/dist/components/date_picker';
+
+<PropTable definition={docgen.usePrettyDuration} />

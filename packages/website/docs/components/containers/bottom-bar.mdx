@@ -1,0 +1,212 @@
+# Bottom bar
+
+:::tip
+**EuiPageTemplate** offers a quick way to [apply a bottom bar to your page layouts](../templates/page-template/index.mdx#showing-a-bottom-bar).
+:::
+
+**EuiBottomBar** is a simple wrapper component that does nothing but affix a dark bar (usually filled with buttons) to the bottom of the page. Use it when you have really long pages or complicated, multi-page forms. In the case of forms, only invoke it if a form is in a savable state.
+
+## Component
+
+Like many of our other wrapper components, **EuiBottomBar** accepts a `paddingSize` prop, which can be set to `s | m (default) | l | none`.
+
+```tsx interactive
+import React, { useState } from 'react';
+import {
+  EuiBottomBar,
+  EuiFlexGroup,
+  EuiFlexItem,
+  EuiButton,
+  EuiButtonEmpty,
+  EuiPopover,
+  EuiContextMenuPanel,
+  EuiContextMenuItem,
+} from '@elastic/eui';
+
+export default () => {
+  const [showBar, setShowBar] = useState(false);
+  const [showBarPopover, setShowBarPopover] = useState(false);
+  const closePopover = () => setShowBarPopover(false);
+
+  const button = (
+    <EuiButton color="primary" onClick={() => setShowBar((show) => !show)}>
+      Toggle appearance of the bottom bar
+    </EuiButton>
+  );
+
+  let bottomBar;
+  if (showBar) {
+    bottomBar = (
+      <EuiBottomBar>
+        <EuiFlexGroup justifyContent="spaceBetween">
+          <EuiFlexItem grow={false}>
+            <EuiFlexGroup gutterSize="s">
+              <EuiFlexItem grow={false}>
+                <EuiPopover
+                  isOpen={showBarPopover}
+                  closePopover={closePopover}
+                  button={
+                    <EuiButton
+                      color="text"
+                      size="s"
+                      iconType="help"
+                      onClick={() => setShowBarPopover(!showBarPopover)}
+                    >
+                      Help
+                    </EuiButton>
+                  }
+                  panelPaddingSize="none"
+                  repositionOnScroll
+                >
+                  <EuiContextMenuPanel
+                    items={[
+                      <EuiContextMenuItem icon="link" onClick={closePopover}>
+                        Link A
+                      </EuiContextMenuItem>,
+                      <EuiContextMenuItem icon="link" onClick={closePopover}>
+                        Link B
+                      </EuiContextMenuItem>,
+                    ]}
+                  />
+                </EuiPopover>
+              </EuiFlexItem>
+              <EuiFlexItem grow={false}>
+                <EuiButton color="text" size="s" iconType="user">
+                  Add user
+                </EuiButton>
+              </EuiFlexItem>
+            </EuiFlexGroup>
+          </EuiFlexItem>
+          <EuiFlexItem grow={false}>
+            <EuiFlexGroup gutterSize="s">
+              <EuiFlexItem grow={false}>
+                <EuiButtonEmpty color="text" size="s" iconType="cross">
+                  Discard
+                </EuiButtonEmpty>
+              </EuiFlexItem>
+              <EuiFlexItem grow={false}>
+                <EuiButton color="primary" fill size="s" iconType="check">
+                  Save
+                </EuiButton>
+              </EuiFlexItem>
+            </EuiFlexGroup>
+          </EuiFlexItem>
+        </EuiFlexGroup>
+      </EuiBottomBar>
+    );
+  }
+
+  return (
+    <div>
+      {button}
+      {bottomBar}
+    </div>
+  );
+};
+```
+
+## Usage
+
+### Positions
+
+Bottom bars default to a fixed position, in a portal at the bottom of the browser window. Alternatively, you can change the `position` to `sticky` where it will render in place but stick to the window only as the window edge nears. The `static` position reverts back to default DOM behavior.
+
+You can also apply a different set of positioning locations just by adjusting them in with the `top | right | bottom | left` props.
+
+```tsx interactive
+import React from 'react';
+import { EuiBottomBar, EuiText } from '@elastic/eui';
+
+export default () => {
+  return (
+    <div css={{ overflow: 'auto', blockSize: 200 }}>
+      <EuiText>
+        <p>
+          When scrolling within this example, the <strong>EuiBottomBar</strong>{' '}
+          will stick to the bottom of scrollable container (with a 10px offset),
+          but will not scroll with the page itself.
+        </p>
+      </EuiText>
+      <div css={{ blockSize: 400 }} />
+      <EuiBottomBar position="sticky" bottom={10}>
+        <EuiText textAlign="center">
+          <p>Scroll to see!</p>
+        </EuiText>
+      </EuiBottomBar>
+    </div>
+  );
+};
+```
+
+### Displacement
+
+There is an `affordForDisplacement` prop (defaulting to `true`), which determines whether the component makes room for itself by adding bottom padding equivalent to its own height on the document `<body>` element. Setting this to `false` can be useful to minimize scrollbar visibility but will cause the bottom bar to overlap body content.
+
+```tsx interactive
+import React, { useState } from 'react';
+import {
+  EuiBottomBar,
+  EuiButtonGroup,
+  EuiButton,
+  EuiFlexGroup,
+  EuiFlexItem,
+} from '@elastic/eui';
+
+export default () => {
+  const [toggleIdSelected, setToggleIdSelected] = useState(null);
+
+  const toggleButtons = [
+    {
+      id: 'bottomBarStandard',
+      label: 'Show bottom bar',
+    },
+    {
+      id: 'bottomBarWithoutAffordForDisplacement',
+      label: 'Show bottom bar (without affordForDisplacement behavior)',
+    },
+  ];
+
+  const onChange = (optionId) => {
+    setToggleIdSelected(optionId);
+  };
+
+  return (
+    <div>
+      <EuiButtonGroup
+        legend="Bottom Bar demo toggle buttons group"
+        type="single"
+        buttonSize="m"
+        color="primary"
+        options={toggleButtons}
+        idSelected={toggleIdSelected}
+        onChange={(id) => onChange(id)}
+      />
+
+      {toggleIdSelected && (
+        <EuiBottomBar
+          affordForDisplacement={toggleIdSelected === 'bottomBarStandard'}
+        >
+          <EuiFlexGroup justifyContent="flexEnd">
+            <EuiFlexItem grow={false}>
+              <EuiButton
+                onClick={() => setToggleIdSelected(null)}
+                color="text"
+                size="s"
+                iconType="cross"
+              >
+                close
+              </EuiButton>
+            </EuiFlexItem>
+          </EuiFlexGroup>
+        </EuiBottomBar>
+      )}
+    </div>
+  );
+};
+```
+
+## Props
+
+import docgen from '@elastic/eui-docgen/dist/components/bottom_bar';
+
+<PropTable definition={docgen.EuiBottomBar} />

@@ -1,0 +1,1042 @@
+# Drag and drop
+
+An extension of [@hello-pangea/dnd](https://github.com/hello-pangea/dnd) (which is an actively maintained fork of [react-beautiful-dnd](https://github.com/atlassian/react-beautiful-dnd)) with a compatible API and built-in style opinions. Functionality results from 3 components working together:
+
+*   `<EuiDragDropContext />`: Section of your application containing the draggable elements and the drop targets.
+*   `<EuiDroppable />`: Area into which items can be dropped. Contains one or more `<EuiDraggable />`.
+*   `<EuiDraggable />`: Items that can be dragged. Must be part of an `<EuiDroppable />`
+
+:::warning Consider your users and use case
+
+Drag and drop interfaces are not well-adapted to many cases, and may be less suitable than other form types for data operations. For instance, drag and drop interaction relies heavily on spatial orientation that may not be entirely valid to all users (e.g., screen readers as the sole source of information). Similarly, users navigating by keyboard may not be afforded nuanced, dual-axis drag item manipulation.
+
+EUI (largely due to the great work already in @hello-pangea/dnd) has and will continue to ensure accessibility where possible. With that in mind, keep your users' working context in mind.
+
+:::
+
+## Just the facts
+
+**EuiDraggable** makes very few assumptions about what content it contains. To give affordance to draggable elements and to ensure a consistent experience, child elements must be able to accept a border and drop shadow (automatically applied via CSS). No other style opinions are applied, however.
+
+Similarly, **EuiDroppable** must accept a background color overlay (automatically applied via CSS), but has no other restrictions.
+
+All **EuiDragDropContext** elements are discrete and isolated; **EuiDroppables** and **EuiDraggables** cannot be shared/transferred between instances. Also, **EuiDragDropContexts** cannot be nested. It is recommended that a single, high-level **EuiDragDropContext** is used and **EuiDroppables** account for categorical and functional separation (see later examples).
+
+**EuiDragDropContext** handles all events but makes no assumptions about the result of a drop event. As such, the following event handlers are available:
+
+*   `onBeforeDragStart`
+*   `onDragStart`
+*   `onDragUpdate`
+*   `onDragEnd` (required)
+
+EUI also provides methods for helping to deal to common action types:
+
+*   `reorder`: change an item's location in a droppable area
+*   `copy`: create a duplicate of an item in a different droppable area
+*   `move`: move an item to a different droppable area
+
+```tsx interactive
+import React, { useState } from 'react';
+import {
+  EuiDragDropContext,
+  EuiDraggable,
+  EuiDroppable,
+  htmlIdGenerator,
+} from '@elastic/eui';
+
+const makeId = htmlIdGenerator();
+
+const makeList = (number, start = 1) =>
+  Array.from({ length: number }, (v, k) => k + start).map((el) => {
+    return {
+      content: `Item ${el}`,
+      id: makeId(),
+    };
+  });
+
+export default () => {
+  const [list] = useState(makeList(3));
+
+  const onDragEnd = ({ source, destination }) => {
+    console.log(source, destination);
+  };
+
+  return (
+    <EuiDragDropContext onDragEnd={onDragEnd}>
+      <EuiDroppable droppableId="DROPPABLE_AREA_BARE">
+        {list.map(({ content, id }, idx) => (
+          <EuiDraggable key={id} index={idx} draggableId={id}>
+            {() => <div>{content}</div>}
+          </EuiDraggable>
+        ))}
+      </EuiDroppable>
+    </EuiDragDropContext>
+  );
+};
+
+```
+
+## Simple item reorder
+
+The simplest case, demonstrating a single **EuiDroppable** with `reorder` behavior.
+
+Notice the ability to change rendered content based on dragging state. **EuiDraggable** `children` is a render prop that mush return a `ReactElement`. The `snapshot` parameter on that function has state data that can be used to alter appearance or behavior (e.g., `isDragging`).
+
+```tsx interactive
+import React, { useState } from 'react';
+import {
+  EuiDragDropContext,
+  EuiDraggable,
+  EuiDroppable,
+  EuiPanel,
+  euiDragDropReorder,
+  htmlIdGenerator,
+} from '@elastic/eui';
+
+const makeId = htmlIdGenerator();
+
+const makeList = (number, start = 1) =>
+  Array.from({ length: number }, (v, k) => k + start).map((el) => {
+    return {
+      content: `Item ${el}`,
+      id: makeId(),
+    };
+  });
+
+export default () => {
+  const [list, setList] = useState(makeList(3));
+  const onDragEnd = ({ source, destination }) => {
+    if (source && destination) {
+      const items = euiDragDropReorder(list, source.index, destination.index);
+
+      setList(items);
+    }
+  };
+  return (
+    <EuiDragDropContext onDragEnd={onDragEnd}>
+      <EuiDroppable droppableId="DROPPABLE_AREA" spacing="m" withPanel>
+        {list.map(({ content, id }, idx) => (
+          <EuiDraggable spacing="m" key={id} index={idx} draggableId={id}>
+            {(provided, state) => (
+              <EuiPanel hasShadow={state.isDragging}>
+                {content}
+                {state.isDragging && ' ✨'}
+              </EuiPanel>
+            )}
+          </EuiDraggable>
+        ))}
+      </EuiDroppable>
+    </EuiDragDropContext>
+  );
+};
+
+```
+
+## Custom drag handle
+
+By default the entire element surface can initiate a drag. To specify an element within as the handle and create a containing group, set `customDragHandle=true` and `hasInteractiveChildren=true` on the **EuiDraggable**.
+
+The `provided` parameter on the **EuiDraggable** `children` render prop has all data required for functionality. Along with the `customDragHandle` flag,`provided.dragHandleProps` needs to be added to the intended handle element.
+
+:::accessibility Accessibility requirement
+**Icon-only** custom drag handles require an accessible label. Add an `aria-label="Drag handle"` attribute to your React component or HTML element that receives`provided.dragHandleProps`.
+:::
+
+```tsx interactive
+import React, { useState } from 'react';
+import {
+  EuiDragDropContext,
+  EuiDraggable,
+  EuiDroppable,
+  EuiFlexGroup,
+  EuiFlexItem,
+  EuiIcon,
+  EuiPanel,
+  euiDragDropReorder,
+  htmlIdGenerator,
+} from '@elastic/eui';
+
+const makeId = htmlIdGenerator();
+
+const makeList = (number, start = 1) =>
+  Array.from({ length: number }, (v, k) => k + start).map((el) => {
+    return {
+      content: `Item ${el}`,
+      id: makeId(),
+    };
+  });
+
+export default () => {
+  const [list, setList] = useState(makeList(3));
+  const onDragEnd = ({ source, destination }) => {
+    if (source && destination) {
+      const items = euiDragDropReorder(list, source.index, destination.index);
+
+      setList(items);
+    }
+  };
+  return (
+    <EuiDragDropContext onDragEnd={onDragEnd}>
+      <EuiDroppable
+        droppableId="CUSTOM_HANDLE_DROPPABLE_AREA"
+        spacing="m"
+        withPanel
+      >
+        {list.map(({ content, id }, idx) => (
+          <EuiDraggable
+            spacing="m"
+            key={id}
+            index={idx}
+            draggableId={id}
+            customDragHandle={true}
+            hasInteractiveChildren={true}
+          >
+            {(provided) => (
+              <EuiPanel paddingSize="s">
+                <EuiFlexGroup alignItems="center" gutterSize="s">
+                  <EuiFlexItem grow={false}>
+                    <EuiPanel
+                      color="transparent"
+                      paddingSize="s"
+                      {...provided.dragHandleProps}
+                      aria-label="Drag Handle"
+                    >
+                      <EuiIcon type="grab" />
+                    </EuiPanel>
+                  </EuiFlexItem>
+                  <EuiFlexItem>{content}</EuiFlexItem>
+                </EuiFlexGroup>
+              </EuiPanel>
+            )}
+          </EuiDraggable>
+        ))}
+      </EuiDroppable>
+    </EuiDragDropContext>
+  );
+};
+
+```
+
+## Interactive elements
+
+**EuiDraggable** can contain interactive elements such as buttons and form fields. Interactive elements require `customDragHandle=true` and `hasInteractiveChildren=true` on the **EuiDraggable**. These props will maintain drag functionality and accessibility, while enabling click, keypress, etc., events on the interactive child elements.
+
+```tsx interactive
+import React, { useState } from 'react';
+import {
+  EuiButton,
+  EuiDragDropContext,
+  EuiDraggable,
+  EuiDroppable,
+  EuiFlexGroup,
+  EuiFlexItem,
+  EuiIcon,
+  EuiPanel,
+  euiDragDropReorder,
+  htmlIdGenerator,
+} from '@elastic/eui';
+
+const makeId = htmlIdGenerator();
+
+const makeList = (number, start = 1) =>
+  Array.from({ length: number }, (v, k) => k + start).map((el) => {
+    return {
+      content: `Item ${el}`,
+      id: makeId(),
+    };
+  });
+
+export default () => {
+  const [list, setList] = useState(makeList(3));
+  const onDragEnd = ({ source, destination }) => {
+    if (source && destination) {
+      const items = euiDragDropReorder(list, source.index, destination.index);
+
+      setList(items);
+    }
+  };
+  return (
+    <EuiDragDropContext onDragEnd={onDragEnd}>
+      <EuiDroppable
+        droppableId="CUSTOM_HANDLE_DROPPABLE_AREA"
+        spacing="m"
+        withPanel
+      >
+        {list.map(({ content, id }, idx) => (
+          <EuiDraggable
+            spacing="m"
+            key={id}
+            index={idx}
+            draggableId={id}
+            customDragHandle={true}
+            hasInteractiveChildren={true}
+          >
+            {(provided) => (
+              <EuiPanel paddingSize="s">
+                <EuiFlexGroup alignItems="center" gutterSize="s">
+                  <EuiFlexItem grow={false}>
+                    <EuiPanel
+                      color="transparent"
+                      paddingSize="s"
+                      {...provided.dragHandleProps}
+                      aria-label="Drag Handle"
+                    >
+                      <EuiIcon type="grab" />
+                    </EuiPanel>
+                  </EuiFlexItem>
+                  <EuiFlexItem grow={true}>
+                    <EuiButton fullWidth onClick={() => {}}>
+                      {content}
+                    </EuiButton>
+                  </EuiFlexItem>
+                </EuiFlexGroup>
+              </EuiPanel>
+            )}
+          </EuiDraggable>
+        ))}
+      </EuiDroppable>
+    </EuiDragDropContext>
+  );
+};
+
+```
+
+## Move between lists
+
+By default, all **EuiDroppable** elements are of the same type and will accept **EuiDraggable** elements from others in the same **EuiDragDropContext**.
+
+The EUI `move` method is demonstrated in this example.
+
+```tsx interactive
+import React, { useState } from 'react';
+import {
+  EuiDragDropContext,
+  EuiFlexGroup,
+  EuiFlexItem,
+  EuiDraggable,
+  EuiDroppable,
+  EuiIcon,
+  EuiPanel,
+  euiDragDropMove,
+  euiDragDropReorder,
+  htmlIdGenerator,
+} from '@elastic/eui';
+
+const makeId = htmlIdGenerator();
+
+const makeList = (number, start = 1) =>
+  Array.from({ length: number }, (v, k) => k + start).map((el) => {
+    return {
+      content: `Item ${el}`,
+      id: makeId(),
+    };
+  });
+
+export default () => {
+  const [list1, setList1] = useState(makeList(3));
+  const [list2, setList2] = useState(makeList(3, 4));
+  const onDragEnd = ({ source, destination }) => {
+    const lists = { DROPPABLE_AREA_1: list1, DROPPABLE_AREA_2: list2 };
+    const actions = { DROPPABLE_AREA_1: setList1, DROPPABLE_AREA_2: setList2 };
+    if (source && destination) {
+      if (source.droppableId === destination.droppableId) {
+        const items = euiDragDropReorder(
+          lists[destination.droppableId],
+          source.index,
+          destination.index
+        );
+
+        actions[destination.droppableId](items);
+      } else {
+        const sourceId = source.droppableId;
+        const destinationId = destination.droppableId;
+        const result = euiDragDropMove(
+          lists[sourceId],
+          lists[destinationId],
+          source,
+          destination
+        );
+
+        actions[sourceId](result[sourceId]);
+        actions[destinationId](result[destinationId]);
+      }
+    }
+  };
+  return (
+    <EuiDragDropContext onDragEnd={onDragEnd}>
+      <EuiFlexGroup>
+        <EuiFlexItem>
+          <EuiDroppable
+            droppableId="DROPPABLE_AREA_1"
+            spacing="m"
+            withPanel
+            grow={false}
+          >
+            {list1.length > 0 ? (
+              list1.map(({ content, id }, idx) => (
+                <EuiDraggable spacing="m" key={id} index={idx} draggableId={id}>
+                  {(provided, state) => (
+                    <EuiPanel>
+                      {content}
+                      {state.isDragging && ' ✨'}
+                    </EuiPanel>
+                  )}
+                </EuiDraggable>
+              ))
+            ) : (
+              <EuiFlexGroup
+                alignItems="center"
+                justifyContent="spaceAround"
+                gutterSize="none"
+                style={{ height: '100%' }}
+              >
+                <EuiFlexItem grow={false}>
+                  <EuiIcon type="faceSad" />
+                </EuiFlexItem>
+              </EuiFlexGroup>
+            )}
+          </EuiDroppable>
+        </EuiFlexItem>
+        <EuiFlexItem>
+          <EuiDroppable
+            droppableId="DROPPABLE_AREA_2"
+            spacing="m"
+            withPanel
+            grow={false}
+          >
+            {list2.length > 0 ? (
+              list2.map(({ content, id }, idx) => (
+                <EuiDraggable spacing="m" key={id} index={idx} draggableId={id}>
+                  {(provided, state) => (
+                    <EuiPanel>
+                      {content}
+                      {state.isDragging && ' ✨'}
+                    </EuiPanel>
+                  )}
+                </EuiDraggable>
+              ))
+            ) : (
+              <EuiFlexGroup
+                alignItems="center"
+                justifyContent="spaceAround"
+                gutterSize="none"
+                style={{ height: '100%' }}
+              >
+                <EuiFlexItem grow={false}>
+                  <EuiIcon type="faceSad" />
+                </EuiFlexItem>
+              </EuiFlexGroup>
+            )}
+          </EuiDroppable>
+        </EuiFlexItem>
+      </EuiFlexGroup>
+    </EuiDragDropContext>
+  );
+};
+
+```
+
+## Distinguish droppable areas by type
+
+Setting the `type` prop on an **EuiDroppable** element will ensure that it will only accept **EuiDraggable** elements from the same type of **EuiDroppable**.
+
+Notice that the enabled, compatible **EuiDroppable** elements have a visual change that indicates they can accept the actively moving/focused **EuiDraggable** element.
+
+```tsx interactive
+import React, { useState } from 'react';
+import {
+  EuiDragDropContext,
+  EuiFlexGroup,
+  EuiFlexItem,
+  EuiDraggable,
+  EuiDroppable,
+  EuiPanel,
+  euiDragDropMove,
+  euiDragDropReorder,
+  htmlIdGenerator,
+} from '@elastic/eui';
+
+const makeId = htmlIdGenerator();
+
+const makeList = (number, start = 1) =>
+  Array.from({ length: number }, (v, k) => k + start).map((el) => {
+    return {
+      content: `Item ${el}`,
+      id: makeId(),
+    };
+  });
+
+export default () => {
+  const [list1, setList1] = useState(makeList(3));
+  const [list2, setList2] = useState(makeList(3, 4));
+  const [list3, setList3] = useState(makeList(3, 7));
+  const onDragEnd = ({ source, destination }) => {
+    const lists = {
+      DROPPABLE_AREA_TYPE_1: list1,
+      DROPPABLE_AREA_TYPE_2: list2,
+      DROPPABLE_AREA_TYPE_3: list3,
+    };
+    const actions = {
+      DROPPABLE_AREA_TYPE_1: setList1,
+      DROPPABLE_AREA_TYPE_2: setList2,
+      DROPPABLE_AREA_TYPE_3: setList3,
+    };
+    if (source && destination) {
+      if (source.droppableId === destination.droppableId) {
+        const items = euiDragDropReorder(
+          lists[destination.droppableId],
+          source.index,
+          destination.index
+        );
+
+        actions[destination.droppableId](items);
+      } else {
+        const sourceId = source.droppableId;
+        const destinationId = destination.droppableId;
+        const result = euiDragDropMove(
+          lists[sourceId],
+          lists[destinationId],
+          source,
+          destination
+        );
+
+        actions[sourceId](result[sourceId]);
+        actions[destinationId](result[destinationId]);
+      }
+    }
+  };
+  return (
+    <EuiDragDropContext onDragEnd={onDragEnd}>
+      <EuiFlexGroup>
+        <EuiFlexItem>
+          <EuiDroppable
+            droppableId="DROPPABLE_AREA_TYPE_1"
+            type="TYPE_ONE"
+            spacing="m"
+            withPanel
+            grow={false}
+          >
+            {list1.map(({ content, id }, idx) => (
+              <EuiDraggable key={id} index={idx} draggableId={id} spacing="m">
+                {(provided, state) => (
+                  <EuiPanel hasShadow={state.isDragging}>
+                    {content}
+                    {state.isDragging && ' ✨'}
+                  </EuiPanel>
+                )}
+              </EuiDraggable>
+            ))}
+          </EuiDroppable>
+        </EuiFlexItem>
+        <EuiFlexItem>
+          <EuiDroppable
+            droppableId="DROPPABLE_AREA_TYPE_2"
+            type="TYPE_ONE"
+            spacing="m"
+            withPanel
+            grow={false}
+          >
+            {list2.map(({ content, id }, idx) => (
+              <EuiDraggable key={id} index={idx} draggableId={id} spacing="m">
+                {(provided, state) => (
+                  <EuiPanel hasShadow={state.isDragging}>
+                    {content}
+                    {state.isDragging && ' ✨'}
+                  </EuiPanel>
+                )}
+              </EuiDraggable>
+            ))}
+          </EuiDroppable>
+        </EuiFlexItem>
+        <EuiFlexItem>
+          <EuiDroppable
+            droppableId="DROPPABLE_AREA_TYPE_3"
+            type="TYPE_TWO"
+            spacing="m"
+            withPanel
+            grow={true}
+          >
+            {list3.map(({ content, id }, idx) => (
+              <EuiDraggable key={id} index={idx} draggableId={id} spacing="m">
+                {(provided, state) => (
+                  <EuiPanel hasShadow={state.isDragging}>
+                    {content}
+                    {state.isDragging && ' ✨'}
+                  </EuiPanel>
+                )}
+              </EuiDraggable>
+            ))}
+          </EuiDroppable>
+        </EuiFlexItem>
+      </EuiFlexGroup>
+    </EuiDragDropContext>
+  );
+};
+
+```
+
+## Copyable items
+
+For cases where collections of **EuiDraggable** elements are static or can be used in multiple places set `cloneDraggables=true` on the parent **EuiDroppable**. The **EuiDroppable** becomes disabled (does not accept new **EuiDraggable** elements) in this scenario to avoid mixed content intentions.
+
+The EUI `copy` method is available and demonstrated in the example below. Note that the data point used as`draggableId` in **EuiDraggable** must change to allow for real duplication.
+
+`isRemovable` is used in the example for cloned items. This API is likely to change, but currently provides the visual changes with drop-to-remove interactions.
+
+```tsx interactive
+import React, { useState } from 'react';
+import {
+  EuiButtonIcon,
+  EuiDragDropContext,
+  EuiFlexGroup,
+  EuiFlexItem,
+  EuiDraggable,
+  EuiDroppable,
+  EuiIcon,
+  EuiPanel,
+  euiDragDropCopy,
+  euiDragDropReorder,
+  htmlIdGenerator,
+} from '@elastic/eui';
+
+const makeId = htmlIdGenerator();
+
+const makeList = (number, start = 1) =>
+  Array.from({ length: number }, (v, k) => k + start).map((el) => {
+    return {
+      content: `Item ${el}`,
+      id: makeId(),
+    };
+  });
+
+export default () => {
+  const [isItemRemovable, setIsItemRemovable] = useState(false);
+  const [list1, setList1] = useState(makeList(3));
+  const [list2, setList2] = useState([]);
+  const lists = { DROPPABLE_AREA_COPY_1: list1, DROPPABLE_AREA_COPY_2: list2 };
+  const actions = {
+    DROPPABLE_AREA_COPY_1: setList1,
+    DROPPABLE_AREA_COPY_2: setList2,
+  };
+  const remove = (droppableId, index) => {
+    const list = Array.from(lists[droppableId]);
+    list.splice(index, 1);
+
+    actions[droppableId](list);
+  };
+  const onDragUpdate = ({ source, destination }) => {
+    const shouldRemove =
+      !destination && source.droppableId === 'DROPPABLE_AREA_COPY_2';
+    setIsItemRemovable(shouldRemove);
+  };
+  const onDragEnd = ({ source, destination }) => {
+    if (source && destination) {
+      if (source.droppableId === destination.droppableId) {
+        const items = euiDragDropReorder(
+          lists[destination.droppableId],
+          source.index,
+          destination.index
+        );
+
+        actions[destination.droppableId](items);
+      } else {
+        const sourceId = source.droppableId;
+        const destinationId = destination.droppableId;
+        const result = euiDragDropCopy(
+          lists[sourceId],
+          lists[destinationId],
+          source,
+          destination,
+          {
+            property: 'id',
+            modifier: makeId,
+          }
+        );
+
+        actions[sourceId](result[sourceId]);
+        actions[destinationId](result[destinationId]);
+      }
+    } else if (!destination && source.droppableId === 'DROPPABLE_AREA_COPY_2') {
+      remove(source.droppableId, source.index);
+    }
+  };
+  return (
+    <EuiDragDropContext onDragEnd={onDragEnd} onDragUpdate={onDragUpdate}>
+      <EuiFlexGroup>
+        <EuiFlexItem style={{ width: '50%' }}>
+          <EuiDroppable
+            droppableId="DROPPABLE_AREA_COPY_1"
+            cloneDraggables={true}
+            spacing="l"
+            grow
+          >
+            {list1.map(({ content, id }, idx) => (
+              <EuiDraggable key={id} index={idx} draggableId={id} spacing="l">
+                <EuiPanel>{content}</EuiPanel>
+              </EuiDraggable>
+            ))}
+          </EuiDroppable>
+        </EuiFlexItem>
+        <EuiFlexItem style={{ width: '50%' }}>
+          <EuiDroppable droppableId="DROPPABLE_AREA_COPY_2" withPanel grow>
+            {list2.length ? (
+              list2.map(({ content, id }, idx) => (
+                <EuiDraggable
+                  key={id}
+                  index={idx}
+                  draggableId={id}
+                  spacing="l"
+                  isRemovable={isItemRemovable}
+                >
+                  <EuiPanel>
+                    <EuiFlexGroup gutterSize="none" alignItems="center">
+                      <EuiFlexItem>{content}</EuiFlexItem>
+                      <EuiFlexItem grow={false}>
+                        {isItemRemovable ? (
+                          <EuiIcon type="trash" color="danger" />
+                        ) : (
+                          <EuiButtonIcon
+                            iconType="cross"
+                            aria-label="Remove"
+                            onClick={() => remove('DROPPABLE_AREA_COPY_2', idx)}
+                          />
+                        )}
+                      </EuiFlexItem>
+                    </EuiFlexGroup>
+                  </EuiPanel>
+                </EuiDraggable>
+              ))
+            ) : (
+              <EuiFlexGroup
+                alignItems="center"
+                justifyContent="spaceAround"
+                gutterSize="none"
+                style={{ height: '100%' }}
+              >
+                <EuiFlexItem grow={false}>Drop Items Here</EuiFlexItem>
+              </EuiFlexGroup>
+            )}
+          </EuiDroppable>
+        </EuiFlexItem>
+      </EuiFlexGroup>
+    </EuiDragDropContext>
+  );
+};
+```
+
+## Portalled items
+
+**EuiDraggables** use fixed positioning to render and animate the item being dragged. This positioning logic does not work as expected when used inside of containers that have their own [stacking context](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_positioned_layout/Understanding_z-index/Stacking_context).
+
+To ensure dragging works as expected inside e.g. **EuiFlyout**, **EuiModal** or **EuiPopover**, use the prop `usePortal` on **EuiDraggable** components. This will render the currently dragged element inside a portal appended to the document body (or wherever **EuiPortal** is configured to `insert` to by default).
+
+:::warning Style inheritance
+If the styling of the draggable content is scoped to a parent component, the styling won't be applied while dragging it when using `usePortal`. This is due to the portalled position in the DOM, which changes previous hierarchical relations to other ancestor elements. To prevent this from happening, we recommend applying styling from within the **EuiDraggable** scope without any parent selectors.
+:::
+
+```tsx interactive
+import React, { FunctionComponent, ReactElement, useState } from 'react';
+import {
+  EuiButton,
+  EuiDragDropContext,
+  EuiDraggable,
+  EuiDroppable,
+  EuiFlyout,
+  EuiFlyoutBody,
+  EuiFlyoutHeader,
+  EuiModal,
+  EuiModalBody,
+  EuiModalHeader,
+  EuiPanel,
+  EuiPopover,
+  EuiSpacer,
+  EuiTitle,
+  euiDragDropReorder,
+  htmlIdGenerator,
+} from '@elastic/eui';
+import { DroppableProps, OnDragEndResponder } from '@hello-pangea/dnd';
+
+const makeId = htmlIdGenerator();
+
+const makeList = (number: number, start = 1) =>
+  Array.from({ length: number }, (v, k) => k + start).map((el) => {
+    return {
+      content: `Item ${el}`,
+      id: makeId(),
+    };
+  });
+
+const DragContainer: FunctionComponent<{
+  children: ReactElement | ReactElement[] | DroppableProps['children'];
+  onDragEnd: OnDragEndResponder;
+}> = ({ children, onDragEnd }) => (
+  <EuiDragDropContext onDragEnd={onDragEnd}>
+    <EuiDroppable droppableId="DROPPABLE_AREA" spacing="m">
+      {children}
+    </EuiDroppable>
+  </EuiDragDropContext>
+);
+
+export default () => {
+  const [isFlyoutOpen, setFlyoutOpen] = useState(false);
+  const [isModalOpen, setModalOpen] = useState(false);
+  const [isPopoverOpen, setIsPopoverOpen] = useState(false);
+
+  const [list, setList] = useState(makeList(3));
+  const onDragEnd: OnDragEndResponder = ({ source, destination }) => {
+    if (source && destination) {
+      const items = euiDragDropReorder(list, source.index, destination.index);
+
+      setList(items);
+    }
+  };
+
+  return (
+    <>
+      <EuiButton onClick={() => setFlyoutOpen(!isFlyoutOpen)}>
+        Toggle flyout
+      </EuiButton>
+      <EuiSpacer />
+      <EuiButton onClick={() => setModalOpen(!isModalOpen)}>
+        Toggle modal
+      </EuiButton>
+
+      {isFlyoutOpen && (
+        <EuiFlyout onClose={() => setFlyoutOpen(false)}>
+          <EuiFlyoutHeader>
+            <EuiTitle size="s">
+              <h2>
+                Portalled <strong>EuiDraggable</strong> items
+              </h2>
+            </EuiTitle>
+          </EuiFlyoutHeader>
+          <EuiFlyoutBody>
+            <DragContainer onDragEnd={onDragEnd}>
+              {list.map(({ content, id }, idx) => (
+                <EuiDraggable
+                  spacing="m"
+                  key={id}
+                  index={idx}
+                  draggableId={id}
+                  usePortal
+                >
+                  {(provided, state) => (
+                    <EuiPanel hasShadow={state.isDragging}>
+                      {content}
+                      {state.isDragging && ' ✨'}
+                    </EuiPanel>
+                  )}
+                </EuiDraggable>
+              ))}
+            </DragContainer>
+          </EuiFlyoutBody>
+        </EuiFlyout>
+      )}
+
+      {isModalOpen && (
+        <EuiModal onClose={() => setModalOpen(false)}>
+          <EuiModalHeader>
+            <EuiTitle size="s">
+              <h2>
+                Portalled <strong>EuiDraggable</strong> items
+              </h2>
+            </EuiTitle>
+          </EuiModalHeader>
+          <EuiModalBody>
+            <DragContainer onDragEnd={onDragEnd}>
+              {list.map(({ content, id }, idx) => (
+                <EuiDraggable
+                  spacing="m"
+                  key={id}
+                  index={idx}
+                  draggableId={id}
+                  usePortal
+                >
+                  {(provided, state) => (
+                    <EuiPanel hasShadow={state.isDragging}>
+                      {content}
+                      {state.isDragging && ' ✨'}
+                    </EuiPanel>
+                  )}
+                </EuiDraggable>
+              ))}
+            </DragContainer>
+          </EuiModalBody>
+        </EuiModal>
+      )}
+
+      <EuiSpacer />
+
+      <EuiPopover
+        isOpen={isPopoverOpen}
+        closePopover={() => setIsPopoverOpen(false)}
+        button={
+          <EuiButton onClick={() => setIsPopoverOpen(!isPopoverOpen)}>
+            Toggle popover
+          </EuiButton>
+        }
+        panelPaddingSize="none"
+        panelProps={{ css: { inlineSize: 200 } }}
+      >
+        <DragContainer
+          onDragEnd={({ source, destination }) => {
+            if (source && destination) {
+              const items = euiDragDropReorder(
+                list,
+                source.index,
+                destination.index
+              );
+              setList(items);
+            }
+          }}
+        >
+          {list.map(({ content, id }, idx) => (
+            <EuiDraggable
+              spacing="m"
+              key={id}
+              index={idx}
+              draggableId={id}
+              usePortal
+            >
+              {(provided, state) => (
+                <EuiPanel hasShadow={state.isDragging}>{content}</EuiPanel>
+              )}
+            </EuiDraggable>
+          ))}
+        </DragContainer>
+      </EuiPopover>
+    </>
+  );
+};
+```
+
+## Kitchen sink
+
+**EuiDraggables** in **EuiDroppables**, **EuiDroppables** in **EuiDraggables**, custom drag handles, horizontal movement, vertical movement, flexbox, panel inception, you name it.
+
+```tsx interactive
+import React, { useState } from 'react';
+import {
+  EuiDragDropContext,
+  EuiDraggable,
+  EuiDroppable,
+  EuiButtonIcon,
+  EuiPanel,
+  euiDragDropMove,
+  euiDragDropReorder,
+  htmlIdGenerator,
+} from '@elastic/eui';
+
+const makeId = htmlIdGenerator();
+
+const makeList = (number, start = 1) =>
+  Array.from({ length: number }, (v, k) => k + start).map((el) => {
+    return {
+      content: `Item ${el}`,
+      id: makeId(),
+    };
+  });
+
+export default () => {
+  const [list, setList] = useState([1, 2]);
+  const [list1, setList1] = useState(makeList(3));
+  const [list2, setList2] = useState(makeList(3, 4));
+  const lists = {
+    COMPLEX_DROPPABLE_PARENT: list,
+    COMPLEX_DROPPABLE_AREA_1: list1,
+    COMPLEX_DROPPABLE_AREA_2: list2,
+  };
+  const actions = {
+    COMPLEX_DROPPABLE_PARENT: setList,
+    COMPLEX_DROPPABLE_AREA_1: setList1,
+    COMPLEX_DROPPABLE_AREA_2: setList2,
+  };
+  const onDragEnd = ({ source, destination }) => {
+    if (source && destination) {
+      if (source.droppableId === destination.droppableId) {
+        const items = euiDragDropReorder(
+          lists[destination.droppableId],
+          source.index,
+          destination.index
+        );
+
+        actions[destination.droppableId](items);
+      } else {
+        const sourceId = source.droppableId;
+        const destinationId = destination.droppableId;
+        const result = euiDragDropMove(
+          lists[sourceId],
+          lists[destinationId],
+          source,
+          destination
+        );
+
+        actions[sourceId](result[sourceId]);
+        actions[destinationId](result[destinationId]);
+      }
+    }
+  };
+  return (
+    <EuiDragDropContext onDragEnd={onDragEnd}>
+      <EuiDroppable
+        droppableId="COMPLEX_DROPPABLE_PARENT"
+        type="MACRO"
+        direction="horizontal"
+        withPanel
+        spacing="l"
+        style={{ display: 'flex' }}
+      >
+        {list.map((did, didx) => (
+          <EuiDraggable
+            key={did}
+            index={didx}
+            draggableId={`COMPLEX_DRAGGABLE_${did}`}
+            spacing="l"
+            style={{ flex: '1 0 50%' }}
+            disableInteractiveElementBlocking // Allows button to be drag handle
+            hasInteractiveChildren={true}
+          >
+            {(provided) => (
+              <EuiPanel color="subdued" paddingSize="s">
+                <EuiButtonIcon
+                  iconType="grab"
+                  aria-label="Drag Handle"
+                  {...provided.dragHandleProps}
+                />
+                <EuiDroppable
+                  droppableId={`COMPLEX_DROPPABLE_AREA_${did}`}
+                  type="MICRO"
+                  spacing="m"
+                  style={{ flex: '1 0 50%' }}
+                >
+                  {lists[`COMPLEX_DROPPABLE_AREA_${did}`].map(
+                    ({ content, id }, idx) => (
+                      <EuiDraggable
+                        key={id}
+                        index={idx}
+                        draggableId={id}
+                        spacing="m"
+                      >
+                        <EuiPanel>{content}</EuiPanel>
+                      </EuiDraggable>
+                    )
+                  )}
+                </EuiDroppable>
+              </EuiPanel>
+            )}
+          </EuiDraggable>
+        ))}
+      </EuiDroppable>
+    </EuiDragDropContext>
+  );
+};
+
+```
+
+## Props
+
+import docgen from '@elastic/eui-docgen/dist/components/drag_and_drop';
+
+<PropTable definition={docgen.EuiDragDropContext} />
+<PropTable definition={docgen.EuiDraggable} />
+<PropTable definition={docgen.EuiDroppable} />

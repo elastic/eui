@@ -1,0 +1,273 @@
+# Page template
+
+**EuiPageTemplate** is a namespaced component for creating the different types of page layout patterns described in these docs. It is somewhat opinionated, but still has the ability to customize most of the inner components directly on their instance.
+
+## Simple page with header and sections
+
+All templates should start with a wrapping `EuiPageTemplate` to control some shared settings like `paddingSize`, `bottomBorder`, `restrictWidth`, and `panelled`. Then each direct child will be evaluated for if it is one of the other namespaced components. If so, it will place it in the appropriate spot and apply the appropriate props based on the full configuration of child elements. These namespaced components include:
+
+- **EuiPageTemplate.Sidebar** extends [EuiPageSidebar](#providing-a-sidebar)
+- **EuiPageTemplate.Header** extends [EuiPageHeader](../../layout/page-header.mdx)
+- **EuiPageTemplate.Section** extends [EuiPageSection](../../layout/page_components/index.mdx#page-sections)
+- **EuiPageTemplate.BottomBar** extends [EuiBottomBar](../../containers/bottom-bar.mdx)
+- **EuiPageTemplate.EmptyPrompt** extends [EuiEmptyPrompt](../../display/empty-prompt/index.mdx)
+
+With the exception of `.Sidebar` and `.BottomBar`, the stacking order of the page contents is determined by the order they are passed in. You can also override the outer props by simply applying them directly to the child element.
+
+:::tip
+If you have a fixed position [headers](../../layout/header.mdx#fixed-header), the template will automatically account for the padding `offset` based on the total number of page headers. If you do not want the template to calculate this, you can pass `0` in as the manual `offset`.
+:::
+
+import contentSvg from '!url-loader!./content_paragraph.svg';
+import sideNavSvg from '!url-loader!./content_side_nav.svg';
+import centerSvg from '!url-loader!./content_center.svg';
+
+<Demo scope={{ contentSvg }}>
+  ```tsx
+  import React from 'react';
+  import {
+    EuiText,
+    EuiButton,
+    EuiImage,
+    EuiPageTemplate,
+    EuiPageTemplateProps,
+  } from '@elastic/eui';
+
+  const panelled: EuiPageTemplateProps['panelled'] = undefined;
+  const restrictWidth: EuiPageTemplateProps['restrictWidth'] = false;
+  const bottomBorder: EuiPageTemplateProps['bottomBorder'] = "extended";
+
+  export default () => {
+    return (
+      <EuiPageTemplate
+        panelled={panelled}
+        restrictWidth={restrictWidth}
+        bottomBorder={bottomBorder}
+        offset={0}
+        grow={false}
+      >
+        <EuiPageTemplate.Section grow={false} color="subdued" bottomBorder={bottomBorder}>
+          <EuiText textAlign="center">
+            <strong>
+              Stack EuiPageTemplate sections and headers to create your custom content order.
+            </strong>
+          </EuiText>
+        </EuiPageTemplate.Section>
+        <EuiPageTemplate.Header
+          iconType="logoElastic"
+          pageTitle="Page title"
+          rightSideItems={[<EuiButton>Right side item</EuiButton>]}
+          description="Header description."
+          tabs={[{ label: "Tab 1", isSelected: true }, { label: "Tab 2" }]}
+        />
+        <EuiPageTemplate.Section>
+          <EuiImage size={"fullWidth"} alt="Fake paragraph" url={contentSvg} />
+        </EuiPageTemplate.Section>
+      </EuiPageTemplate>
+    );
+  };
+  ```
+</Demo>
+
+## Providing a sidebar
+
+If your application requires the use of side navigation or other sidebar content, you can pass and **EuiPageTemplate.Sidebar** component containing your sidebar content. The template will automatically adjust the layout when this content is provided.
+
+This component will set its content to stick to the top of the browser window and scroll independently of the rest of the layout. If you have any fixed [**EuiHeaders**](../../layout/page-header.mdx), these will be accounted for as well. You can turn this behavior off with `sticky={false}`.
+
+Typically when a sidebar is included and `restrictedWidth` is defined, we recommend keeping the `borderBottom={true}` though you can also expand particular sections with `borderBottom="extended"`.
+
+:::warning Sidebars must be direct children declared in the same component.
+In order for the template configurations to properly account for the existence of a sidebar, it needs to clone the element which can only be performed on direct children.
+:::
+
+<Demo scope={{ contentSvg, sideNavSvg }}>
+```tsx
+import React from 'react';
+import {
+  EuiText,
+  EuiButton,
+  EuiImage,
+  EuiPageTemplate,
+  EuiPageTemplateProps,
+} from '@elastic/eui';
+
+const panelled: EuiPageTemplateProps['panelled'] = true;
+const restrictWidth: EuiPageTemplateProps['restrictWidth'] = false;
+const bottomBorder: EuiPageTemplateProps['bottomBorder'] = true;
+
+export default () => {
+  return (
+    <EuiPageTemplate
+      panelled={panelled}
+      restrictWidth={restrictWidth}
+      bottomBorder={bottomBorder}
+      offset={0}
+      grow={false}
+    >
+      <EuiPageTemplate.Sidebar>
+        <EuiImage size={'fullWidth'} alt="Fake navigation" url={sideNavSvg} />
+      </EuiPageTemplate.Sidebar>
+      <EuiPageTemplate.Header
+        iconType="logoElastic"
+        pageTitle="Page title"
+        rightSideItems={[<EuiButton>Right side item</EuiButton>]}
+      />
+      <EuiPageTemplate.Section
+        grow={false}
+        bottomBorder={bottomBorder}
+      >
+        <EuiText textAlign="center">
+          <strong>
+            Stack EuiPageTemplate sections and headers to create your custom
+            content order.
+          </strong>
+        </EuiText>
+      </EuiPageTemplate.Section>
+      <EuiPageTemplate.Section>
+        <EuiImage size={'fullWidth'} alt="Fake paragraph" url={contentSvg} />
+      </EuiPageTemplate.Section>
+    </EuiPageTemplate>
+  );
+};
+````
+
+</Demo>
+
+## Showing a bottom bar
+
+Adding an [**EuiBottomBar**](../../containers/bottom-bar.mdx) can be tricky to use and account for any sidebars. **EuiPageTemplate** handles this nicely by supplying a **EuiPageTemplate.BottomBar** component for passing the contents of your bottom bar that extends **EuiBottomBar**.
+
+It uses the `sticky` position so that it sticks to the bottom of and remains within the bounds of page body. This way it will never overlap the sidebar, no matter the screen size. It also means not needing to accommodate for the height of the bar in the body element.
+
+It will also keep its content constrained to the `restrictedWidth` value so the contents are always horizontally aligned.
+
+:::warning
+For proper alignment in case of short content, at least one **EuiPageTemplate.Section** must have `grow={true}`.
+:::
+
+<Demo scope={{ contentSvg, sideNavSvg }}>
+  ```tsx
+  import React, { useState } from 'react';
+  import {
+    EuiText,
+    EuiButton,
+    EuiImage,
+    EuiFlexGroup,
+    EuiFlexItem,
+    EuiPageTemplate,
+    EuiPageTemplateProps,
+  } from '@elastic/eui';
+
+const panelled: EuiPageTemplateProps['panelled'] = undefined;
+const restrictWidth: EuiPageTemplateProps['restrictWidth'] = false;
+const bottomBorder: EuiPageTemplateProps['bottomBorder'] = "extended";
+
+export default () => {
+const [showSidebar, setShowSidebar] = useState<boolean>(true);
+
+    return (
+      <EuiPageTemplate
+        panelled={panelled}
+        restrictWidth={restrictWidth}
+        bottomBorder={bottomBorder}
+        offset={0}
+        grow={false}
+      >
+        {showSidebar && (<EuiPageTemplate.Sidebar>
+          <EuiImage size={'fullWidth'} alt="Fake navigation" url={sideNavSvg} />
+        </EuiPageTemplate.Sidebar>)}
+        <EuiPageTemplate.Header
+          iconType="logoElastic"
+          pageTitle="Page title"
+          rightSideItems={[<EuiButton>Right side item</EuiButton>]}
+          description="Header description."
+        />
+        <EuiPageTemplate.Section>
+          <EuiImage size={'fullWidth'} alt="Fake paragraph" url={contentSvg} />
+        </EuiPageTemplate.Section>
+        <EuiPageTemplate.BottomBar paddingSize="s">
+          <EuiFlexGroup
+            alignItems="center"
+            justifyContent="spaceBetween"
+            responsive={false}
+          >
+            <EuiFlexItem grow={false}>
+              <EuiText size="s">
+                <p>Bottom text</p>
+              </EuiText>
+            </EuiFlexItem>
+            <EuiFlexItem grow={false}>
+              <EuiButton
+                color="text"
+                onClick={() => setShowSidebar(x => !x)}
+                isSelected={showSidebar}
+              >
+                Toggle Sidebar
+              </EuiButton>
+            </EuiFlexItem>
+          </EuiFlexGroup>
+        </EuiPageTemplate.BottomBar>
+      </EuiPageTemplate>
+    );
+};
+
+````
+</Demo>
+
+## Empty pages or content
+
+When the content is in an empty/pre-setup state, we recommend then using an [**EuiEmptyPrompt**](../../display/empty-prompt/index.mdx) to direct users on next steps. Using **EuiPageTemplate.EmptyPrompt** will automatically center the prompt vertically and horizontally.
+
+The prompt's panel color depends on the other configurations but can be manually passed in via the `color` prop.
+
+<Demo scope={{ centerSvg, sideNavSvg }}>
+```tsx
+import React from 'react';
+import {
+  EuiText,
+  EuiButton,
+  EuiImage,
+  EuiPageTemplate,
+  EuiPageTemplateProps,
+} from '@elastic/eui';
+
+const panelled: EuiPageTemplateProps['panelled'] = true;
+const restrictWidth: EuiPageTemplateProps['restrictWidth'] = false;
+const bottomBorder: EuiPageTemplateProps['bottomBorder'] = true;
+
+export default () => {
+  return (
+    <EuiPageTemplate
+      panelled={panelled}
+      restrictWidth={restrictWidth}
+      bottomBorder={bottomBorder}
+      offset={0}
+      grow={false}
+    >
+      <EuiPageTemplate.Sidebar>
+        <EuiImage size={'fullWidth'} alt="Fake navigation" url={sideNavSvg} />
+      </EuiPageTemplate.Sidebar>
+      <EuiPageTemplate.Header
+        iconType="logoElastic"
+        pageTitle="Page title"
+        rightSideItems={[<EuiButton>Right side item</EuiButton>]}
+      />
+      <EuiPageTemplate.EmptyPrompt
+        title={<span>No spice</span>}
+        footer={<EuiButton>Footer action</EuiButton>}
+      >
+        <EuiImage size={'fullWidth'} alt="Fake paragraph" url={centerSvg} />
+      </EuiPageTemplate.EmptyPrompt>
+    </EuiPageTemplate>
+  );
+};
+````
+
+</Demo>
+
+## Props
+
+import docgen from '@elastic/eui-docgen/dist/components/page_template';
+
+<PropTable definition={docgen.EuiPageTemplate} />

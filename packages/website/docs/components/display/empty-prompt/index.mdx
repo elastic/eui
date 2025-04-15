@@ -1,0 +1,374 @@
+# Empty prompt
+
+import useBaseUrl from '@docusaurus/useBaseUrl';
+
+The **EuiEmptyPrompt** is the building block to create an empty state. You can use it as a placeholder for any type of empty content. They are especially helpful for replacing entire pages or parts of a product that contain no content.
+
+## Component
+
+While no one piece of content is required, each **EuiEmptyPrompt** should contain at least a `title` (wrapped in an HTML heading element) and/or a `description`. They usually contain one or more `actions` that promotes the primary call-to-actions. You can also provide a `footer` to direct users towards making informed decisions.
+
+```tsx interactive
+import React from 'react';
+import { EuiEmptyPrompt, EuiButton, EuiTitle, EuiLink } from '@elastic/eui';
+
+export default () => (
+  <EuiEmptyPrompt
+    iconType="logoSecurity"
+    title={<h2>Start adding cases</h2>}
+    body={<p>Add a new case or change your filter settings.</p>}
+    actions={
+      <EuiButton color="primary" fill>
+        Add a case
+      </EuiButton>
+    }
+    footer={
+      <>
+        <EuiTitle size="xxs">
+          <h3>Want to learn more?</h3>
+        </EuiTitle>
+        <EuiLink href="#" target="_blank">
+          Read the docs
+        </EuiLink>
+      </>
+    }
+  />
+);
+```
+## Usage
+
+### Less content, more actions
+
+You can remove parts of the prompt to simplify it. You can also provide an array of multiple actions. Be sure to list primary actions first and secondary actions as empty buttons.
+
+```tsx interactive
+import React from 'react';
+import { EuiEmptyPrompt, EuiButton, EuiButtonEmpty } from '@elastic/eui';
+
+export default () => (
+  <EuiEmptyPrompt
+    title={<h2>Upgrade your license to use Machine Learning</h2>}
+    actions={[
+      <EuiButton color="primary" fill>
+        Upgrade
+      </EuiButton>,
+      <EuiButtonEmpty color="primary">Start a trial</EuiButtonEmpty>,
+    ]}
+  />
+);
+```
+### Panel options
+
+The **EuiEmptyPrompt** is wrapped by [EuiPanel](../../containers/panel/index.mdx). By default, the panel is set to `transparent` but you can customize other panel options like `color`, `hasBorder` and `paddingSize`. Changing the `color` prop will also attempt to adjust the `iconColor` and `footer` color.
+
+Read the [usage guidelines](#guidelines) to better understand when to use certain panel props.
+
+```tsx interactive
+import React, { FunctionComponent } from 'react';
+import {
+  EuiEmptyPrompt,
+  EuiButton,
+  EuiTitle,
+  EuiLink,
+  EuiEmptyPromptProps,
+} from '@elastic/eui';
+
+export default ({ color }: { color: EuiEmptyPromptProps['color'] }) => {
+  return (
+    <EuiEmptyPrompt
+      iconType="securityAnalyticsApp"
+      title={<h2>Start adding cases</h2>}
+      color={color}
+      body={<p>Add a new case or change your filter settings.</p>}
+      actions={
+        <EuiButton color="primary" fill>
+          Add a case
+        </EuiButton>
+      }
+      footer={
+        <>
+          <EuiTitle size="xxs">
+            <h3>Want to learn more?</h3>
+          </EuiTitle>
+          <EuiLink href="#" target="_blank">
+            Read the docs
+          </EuiLink>
+        </>
+      }
+    />
+  );
+};
+```
+
+### Title sizes and icon colors
+
+Other customization options include changing the`titleSize` to any of the [EuiTitle sizes](../title.mdx) and `iconColor`. When using an application or solution logo as the `iconType`, you can reset to the multi-tone colors with `iconColor="default"`
+
+```tsx interactive
+import React from 'react';
+import { EuiEmptyPrompt, EuiButton } from '@elastic/eui';
+
+export default () => (
+  <EuiEmptyPrompt
+    iconType="securityAnalyticsApp"
+    iconColor="default"
+    title={<h2>Start adding cases</h2>}
+    titleSize="xs"
+    body={<p>Add a new case or change your filter settings.</p>}
+    actions={
+      <EuiButton size="s" color="primary" fill>
+        Add a case
+      </EuiButton>
+    }
+  />
+);
+```
+
+### Loading and error prompts
+
+Empty prompts can also be used to emulate loading and error states, by utilizing the same patterns.
+
+For **loading** states, instead of passing a `iconType`, you can provide a custom `icon` and pass in one of our [loading components](../loading.mdx).
+
+```tsx interactive
+import React from 'react';
+import { EuiEmptyPrompt, EuiLoadingLogo } from '@elastic/eui';
+
+export default () => (
+  <EuiEmptyPrompt
+    icon={<EuiLoadingLogo logo="logoKibana" size="xl" />}
+    title={<h2>Loading Dashboards</h2>}
+  />
+);
+```
+
+For **error** states, you can simply set the `color` to `danger`.
+
+```tsx interactive
+import React from 'react';
+import { EuiEmptyPrompt } from '@elastic/eui';
+
+export default () => (
+  <EuiEmptyPrompt
+    iconType="error"
+    color="danger"
+    title={<h2>Unable to load your dashboards</h2>}
+    body={
+      <p>
+        There was an error loading the Dashboard application. Contact your
+        administrator for help.
+      </p>
+    }
+  />
+);
+```
+
+### Layout
+
+You can supply a `layout` of either `"horizontal"` or `"vertical"` with the default being `vertical`. When creating empty states we want the content to be short and straight to the point. So most of the time, the `vertical` layout is enough. All the content will be center aligned and this type of text alignment only works with small content.
+
+When you have longer body text with multiple calls to action, you can use the `horizontal` layout. This layout works best when you can provide a larger graphic like an illustration as the `icon`. For consistency, we recommend providing the illustration using a [EuiImage](../image.mdx) with `size="fullWidth"`.
+
+<Demo scope={{ useBaseUrl }}>
+  ```tsx
+  import React from 'react';
+  import {
+    EuiEmptyPrompt,
+    EuiButton,
+    EuiTitle,
+    EuiLink,
+    EuiImage,
+  } from '@elastic/eui';
+
+  export default () => {
+    return (
+      <>
+        <EuiEmptyPrompt
+          icon={<EuiImage size="fullWidth" src={useBaseUrl('/images/empty_prompt/illustration.svg')} alt="" />}
+          title={<h2>Create your first visualization</h2>}
+          layout="horizontal"
+          color="plain"
+          body={
+            <>
+              <p>
+                There are no visualizations to display. This tool allows you to
+                create a wide range of charts, graphs, maps, and other graphics.
+              </p>
+              <p>
+                The visualizations you create can be easily shared with your
+                peers.
+              </p>
+            </>
+          }
+          actions={
+            <EuiButton color="primary" fill>
+              Create visualization
+            </EuiButton>
+          }
+          footer={
+            <>
+              <EuiTitle size="xxs">
+                <span>Want to learn more?</span>
+              </EuiTitle>{' '}
+              <EuiLink href="#" target="_blank">
+                Read the docs
+              </EuiLink>
+            </>
+          }
+        />
+      </>
+    );
+  };
+  ```
+</Demo>
+
+### More types of empty states
+
+**EuiEmptyPrompt** can be used for more than just **empty** pages. The following example showcases different types of empty states that you can create with the **EuiEmptyPrompt**. For a full list see the [usage guidelines](#guidelines).
+
+import MultipleTypes from './_multiple_types';
+
+<MultipleTypes />
+
+### Using in a page template
+
+When using a **EuiEmptyPrompt** in a [EuiPageTemplate](../../templates/page-template/index.mdx), we recommend using the namespaced component so the template can determine which how to display the empty prompt based on the rest of the template configuration.
+
+The following example shows the usage of the [EuiPageTemplate.EmptyPrompt](../../templates/page-template/index.mdx#empty-pages-or-content) namespaced component.
+
+<Demo scope={{ useBaseUrl }}>
+  ```tsx
+  import React from 'react';
+  import {
+    EuiPageTemplate,
+    EuiButton,
+    EuiTitle,
+    EuiLink,
+    EuiImage,
+  } from '@elastic/eui';
+
+  export default () => (
+    <EuiPageTemplate minHeight="0">
+      <EuiPageTemplate.EmptyPrompt
+        title={<h2>Create your first visualization</h2>}
+        icon={<EuiImage size="fullWidth" src={useBaseUrl('/images/empty_prompt/illustration.svg')} alt="" />}
+        color="plain"
+        layout="horizontal"
+        body={
+          <>
+            <p>
+              There are no visualizations to display. This tool allows you to
+              create a wide range of charts, graphs, maps, and other graphics.
+            </p>
+            <p>
+              The visualizations you create can be easily shared with your peers.
+            </p>
+          </>
+        }
+        actions={
+          <EuiButton color="primary" fill>
+            Create visualization
+          </EuiButton>
+        }
+        footer={
+          <>
+            <EuiTitle size="xxs">
+              <span>Want to learn more?</span>
+            </EuiTitle>{' '}
+            <EuiLink href="#" target="_blank">
+              Read the docs
+            </EuiLink>
+          </>
+        }
+      />
+    </EuiPageTemplate>
+  );
+  ```
+</Demo>
+
+You can then tie multiple types of empty states together to create a seamless loading to empty or loading to error experience. The following example shows how to incorporate these states with [EuiPageTemplate.EmptyPrompt](../../templates/page-template/index.mdx#empty-pages-or-content).
+
+```tsx interactive
+import React, { useState, useEffect } from 'react';
+import {
+  EuiPageTemplate,
+  EuiLoadingLogo,
+  EuiButton,
+  EuiEmptyPromptProps,
+} from '@elastic/eui';
+
+export default () => {
+  const states = ['loading1', 'error', 'loading2', 'empty'];
+
+  const [currentState, setCurrentState] = useState(states[0]);
+
+  const searchTimeout = setTimeout(() => {
+    // Cycle through the array of states
+    const index = states.indexOf(currentState);
+    setCurrentState(index < states.length - 1 ? states[index + 1] : states[0]);
+  }, 3000);
+
+  useEffect(() => {
+    return () => {
+      clearTimeout(searchTimeout);
+    };
+  });
+
+  let emptyPromptProps: Partial<EuiEmptyPromptProps>;
+  switch (currentState) {
+    case 'error':
+      emptyPromptProps = {
+        color: 'danger',
+        iconType: 'error',
+        title: <h2>Unable to load your dashboards</h2>,
+        body: (
+          <p>
+            There was an error loading the Dashboard application. Contact your
+            administrator for help.
+          </p>
+        ),
+      };
+      break;
+    case 'empty':
+      emptyPromptProps = {
+        color: 'plain',
+        iconType: 'dashboardApp',
+        iconColor: 'default',
+        title: <h2>Dashboards</h2>,
+        body: <p>You don&apos;t have any dashboards yet.</p>,
+        actions: [
+          <EuiButton fill iconType="plusInCircleFilled">
+            Create new dashboard
+          </EuiButton>,
+        ],
+      };
+      break;
+
+    default:
+      emptyPromptProps = {
+        color: 'subdued',
+        icon: <EuiLoadingLogo logo="logoKibana" size="xl" />,
+        title: <h2>Loading Dashboards</h2>,
+      };
+      break;
+  }
+
+  return (
+    <EuiPageTemplate minHeight="0">
+      <EuiPageTemplate.EmptyPrompt {...emptyPromptProps} />
+    </EuiPageTemplate>
+  );
+};
+```
+
+## Guidelines
+
+import Guidelines from './_guidelines.mdx';
+
+<Guidelines />
+
+## Props
+
+import docgen from '@elastic/eui-docgen/dist/components/empty_prompt';
+
+<PropTable definition={docgen.EuiEmptyPrompt} />
