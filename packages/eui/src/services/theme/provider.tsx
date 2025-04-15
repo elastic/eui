@@ -219,7 +219,7 @@ export const EuiThemeProvider = <T extends {} = {}>({
         )
       );
     }
-  }, [colorMode, system, modificationsWithHighContrast]);
+  }, [colorMode, highContrastMode, system, modificationsWithHighContrast]);
 
   const [themeCSSVariables, _setThemeCSSVariables] = useState<CSSObject>();
   const setThemeCSSVariables = useCallback(

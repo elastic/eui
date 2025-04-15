@@ -235,8 +235,11 @@ export const getComputed = <T = EuiThemeShape>(
 ): EuiThemeComputed<T> => {
   const output: Partial<EuiThemeComputed> = { themeName: base.key };
   const _hcmOverridesKey = `${EUI_THEME_OVERRIDES_KEY}.${EUI_THEME_HIGH_CONTRAST_MODE_KEY}`;
-  const _hcmOverrides = highContrastMode
+  const _hcmBaseOverrides = highContrastMode
     ? getOn(base, _hcmOverridesKey)
+    : undefined;
+  const _hcmOverOverrides = highContrastMode
+    ? getOn(over, _hcmOverridesKey)
     : undefined;
 
   function loop(
@@ -277,24 +280,38 @@ export const getComputed = <T = EuiThemeShape>(
           over[key] instanceof Computed || isComputedLike<T>(over[key])
             ? over[key].getValue(base.root, over.root, output, colorMode)
             : over[key];
-        const hcmOverValue = _hcmOverrides
-          ? _hcmOverrides[key] instanceof Computed ||
-            isComputedLike<T>(_hcmOverrides[key])
-            ? _hcmOverrides[key].getValue(
+
+        const hcmBaseValue = _hcmBaseOverrides
+          ? _hcmBaseOverrides[key] instanceof Computed ||
+            isComputedLike<T>(_hcmBaseOverrides[key])
+            ? _hcmBaseOverrides[key].getValue(
                 base.root,
-                _hcmOverrides.root,
+                _hcmBaseOverrides.root,
                 output,
                 colorMode
               )
-            : _hcmOverrides[key]
+            : _hcmBaseOverrides[key]
           : undefined;
+        const hcmOverValue = _hcmOverOverrides
+          ? _hcmOverOverrides[key] instanceof Computed ||
+            isComputedLike<T>(_hcmOverOverrides[key])
+            ? _hcmOverOverrides[key].getValue(
+                base.root,
+                _hcmOverOverrides.root,
+                output,
+                colorMode
+              )
+            : _hcmOverOverrides[key]
+          : undefined;
+
+        const hcmCombinedOverValue = hcmOverValue ?? hcmBaseValue;
 
         // combine internal overrides with manual overrides
         const combinedOverValue =
           isObject(overValue) && isObject(hcmOverValue)
-            ? mergeDeep(overValue, hcmOverValue)
-            : // we want HCM overrides to have presedence otherwise manual base overrides would break base HCM
-              hcmOverValue ?? overValue;
+            ? mergeDeep(overValue, hcmCombinedOverValue)
+            : // optional overrides e.g. on provider level should still override theme level
+              overValue ?? hcmCombinedOverValue;
 
         if (isObject(baseValue) && !Array.isArray(baseValue)) {
           loop(baseValue, combinedOverValue ?? {}, checkExisting, newPath);
