@@ -63,7 +63,6 @@ exports[`EuiDataGrid pagination renders 1`] = `
         />
       </a>
       <ul
-        aria-label="Pagination for preceding grid: test grid"
         class="euiPagination__list emotion-euiPagination__list"
       >
         <li
@@ -93,7 +92,7 @@ exports[`EuiDataGrid pagination renders 1`] = `
         >
           <button
             aria-controls="generated-id"
-            aria-current="true"
+            aria-current="page"
             aria-label="Page 2 of 2"
             class="euiButtonEmpty euiPaginationButton emotion-euiButtonDisplay-euiButtonEmpty-s-empty-disabled-isDisabled-euiPaginationButton-isActive"
             data-test-subj="pagination-button-1"
