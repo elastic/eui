@@ -6,14 +6,3 @@ steps:
     build:
       branch: "${BUILDKITE_BRANCH}"
       commit: "${BUILDKITE_COMMIT}"
-  - trigger: "eui-pull-request-deploy-docs"
-    label: ":newspaper: EUI pull request deploy docs"
-    build:
-      message: "${BUILDKITE_MESSAGE}"
-      branch: "${BUILDKITE_BRANCH}"
-      commit: "${BUILDKITE_COMMIT}"
-      env:
-        BUILDKITE_PULL_REQUEST: "${BUILDKITE_PULL_REQUEST}"
-        BUILDKITE_PULL_REQUEST_BASE_BRANCH: "${BUILDKITE_PULL_REQUEST_BASE_BRANCH}"
-        GIT_BRANCH: "${BUILDKITE_BRANCH}"
-        GIT_PULL_REQUEST_ID: "${BUILDKITE_PULL_REQUEST}"
