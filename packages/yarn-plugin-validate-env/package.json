@@ -1,0 +1,23 @@
+{
+  "name": "@elastic/yarn-plugin-eui-validate-env",
+  "private": true,
+  "version": "0.0.0",
+  "description": "",
+  "main": "src/index.ts",
+  "scripts": {
+    "build": "builder build plugin",
+    "build:dev": "builder build plugin --no-minify"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/elastic/eui.git",
+    "directory": "packages/yarn-plugin-validate-env"
+  },
+  "dependencies": {
+    "@yarnpkg/builder": "^4.2.1",
+    "@yarnpkg/core": "^4.4.1"
+  },
+  "devDependencies": {
+    "typescript": "^5.8.3"
+  }
+}

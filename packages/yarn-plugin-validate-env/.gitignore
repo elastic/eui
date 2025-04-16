@@ -1,0 +1,8 @@
+# Dependencies
+/node_modules
+
+# Production
+/bundles
+
+yarn-debug.log*
+yarn-error.log*
