@@ -7,6 +7,8 @@ set -eo pipefail
 source ~/.bash_profile
 source .buildkite/scripts/common/utils.sh
 
+release_tag_pattern="v[0-9]+\.[0-9]+\.[0-9]+"
+
 # Enable corepack to expose yarn cli command
 corepack enable
 
@@ -14,19 +16,32 @@ corepack enable
 echo "Node.js version: $(node -v)"
 echo "Yarn version: $(yarn -v)"
 
+# Default to production deployment of Storybook
+export STORYBOOK_BASE_URL="https://eui.elastic.co/storybook"
+
+copy_to_root_directory=false
+
 # Calculate paths and directories
 if [[ -n "${BUILDKITE_PULL_REQUEST}" ]] && [[ "${BUILDKITE_PULL_REQUEST}" != "false" ]]; then
   PR_SLUG="pr_${BUILDKITE_PULL_REQUEST}"
   export STORYBOOK_BASE_URL="https://eui.elastic.co/${PR_SLUG}/storybook"
-  bucket_directory="${PR_SLUG}/new-docs/"
+  bucket_directory="${PR_SLUG}/"
   echo "Detected a PR preview environment configuration. The built files will be copied to ${bucket_directory}"
+elif [[ -n "${BUILDKITE_TAG}" ]] && [[ "${BUILDKITE_TAG}" =~ $release_tag_pattern ]]; then
+  bucket_directory="${BUILDKITE_TAG}/"
+
+  latest_release_tag_on_main=$(git describe --tags "$(git rev-list --branches=main --tags --max-count=1)")
+  if [[ "${BUILDKITE_TAG}" == "${latest_release_tag_on_main}" ]]; then
+    copy_to_root_directory=true
+    echo "Detected a tagged release. The built files will be copied to ${bucket_directory} and the root directory"
+  else
+    echo "Detected a tagged release. The built files will be copied to ${bucket_directory}"
+  fi
 elif [[ -n "${BUILDKITE_BRANCH}" ]] && [[ "${BUILDKITE_BRANCH}" == "main" ]]; then
-  # TODO: Detect if 'main' branch updated due to a new version being released based on BUILDKITE_TAG
-  export STORYBOOK_BASE_URL="https://eui.elastic.co/storybook"
   bucket_directory="next/"
   echo "Detected a 'main' branch environment configuration. The built files will be copied to ${bucket_directory}"
 else
-  echo "The script has been triggered with no pull request or branch information. This is a no-op."
+  echo "The script has been triggered with no pull request, branch or tag information. This is a no-op."
   exit 1
 fi
 
@@ -65,11 +80,21 @@ echo "+++ :bucket: Copying built files to the bucket"
 
 # additional protection layer in case bucket_directory is ever unset
 if [[ -z "${bucket_directory}" ]]; then
-  bucket_directory="new-docs/"
+  echo >&2 "Detected an unset 'bucket_directory' variable. This is likely a mistake."
+  exit 2
 fi
 
 echo "Beginning to copy built files to /${bucket_directory}"
 gcloud storage cp "${GCLOUD_CP_ARGS[@]}" packages/website/build/* "gs://${GCLOUD_BUCKET_FULL}/${bucket_directory}"
+echo "Successfully copied files to /${bucket_directory}"
+
+# Copy deployed tagged release to /
+if [[ $copy_to_root_directory == true ]]; then
+  echo "Beginning to copy built files to /"
+  # Use "copy in the cloud" to speed up the process
+  gcloud storage cp "${GCLOUD_CP_ARGS[@]}" "gs://${GCLOUD_BUCKET_FULL}/${bucket_directory}" "gs://${GCLOUD_BUCKET_FULL}/"
+  echo "Successfully copied files to /"
+fi
 
 echo "New documentation website deployed: https://eui.elastic.co/${bucket_directory}" | buildkite-agent annotate --style "success" --context "deployed"
 
