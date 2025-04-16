@@ -203,6 +203,8 @@ spec:
         filter_enabled: true
         # TODO: remove the test-automatic-releases condition when the pipeline is production-ready
         filter_condition: build.branch == "main" || build.branch == "build/test-automatic-releases"
+        # Disable the pipeline for now
+        trigger_mode: none
       teams:
         eui-team:
           access_level: MANAGE_BUILD_AND_READ
