@@ -384,10 +384,10 @@ spec:
       provider_settings:
         build_branches: true
         build_pull_requests: true
-        build_tags: false
+        build_tags: true
         filter_enabled: true
         # Allow PRs and 'main' branch updates
-        filter_condition: (build.pull_request.id != null || build.branch == "main")
+        filter_condition: (build.pull_request.id != null || build.branch == "main" || build.tag =~ /^v[0-9]+\.[0-9]+\.[0-9]+$/)
       teams:
         eui-team:
          access_level: MANAGE_BUILD_AND_READ
