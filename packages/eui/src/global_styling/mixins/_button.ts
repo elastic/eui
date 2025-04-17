@@ -24,8 +24,10 @@ export const BUTTON_COLORS = [
   'accent',
   'accentSecondary',
   'primary',
+  'neutral',
   'success',
   'warning',
+  'risk',
   'danger',
 ] as const;
 export type _EuiButtonColor = (typeof BUTTON_COLORS)[number];
@@ -93,12 +95,11 @@ export const euiButtonFillColor = (
     color
   ) as keyof _EuiThemeButtonColors;
 
-  const highContrastForeground =
-    color === 'warning'
-      ? euiTheme.colors.ink
-      : color === 'disabled'
-      ? euiTheme.components.buttons[textColorTokenName]
-      : euiTheme.colors.textInverse;
+  const highContrastForeground = ['warning', 'neutral', 'risk'].includes(color)
+    ? euiTheme.colors.ink
+    : color === 'disabled'
+    ? euiTheme.components.buttons[textColorTokenName]
+    : euiTheme.colors.textInverse;
 
   const foreground = highContrastMode
     ? highContrastForeground

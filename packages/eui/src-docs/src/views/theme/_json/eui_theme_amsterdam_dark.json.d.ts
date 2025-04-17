@@ -40,8 +40,10 @@ declare module '@elastic/eui/dist/eui_theme_amsterdam_dark.json' {
       primary: string;
       accent: string;
       accentSecondary: string;
+      neutral: string;
       success: string;
       warning: string;
+      risk: string;
       danger: string;
       ghost: string;
       text: string;

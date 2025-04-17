@@ -40,8 +40,10 @@ declare module '@elastic/eui-theme-borealis/lib/eui_theme_borealis_dark.json' {
       primary: string;
       accent: string;
       accentSecondary: string;
+      neutral: string;
       success: string;
       warning: string;
+      risk: string;
       danger: string;
       ghost: string;
       text: string;

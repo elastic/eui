@@ -11,6 +11,7 @@ import { _EuiThemeButton, computed } from '@elastic/eui-theme-common';
 import { hexToRgb } from '../../../../services/color/hex_to_rgb';
 import { isColorDark } from '../../../../services/color/is_color_dark';
 import { tint, transparentize } from '../../../../services/color/manipulation';
+import { severityColors } from './_colors_severity';
 
 const isDark = (background: string) =>
   background ? isColorDark(...hexToRgb(background)) : false;
@@ -28,6 +29,10 @@ const _buttons = {
     ([backgroundLightAccentSecondary]) => backgroundLightAccentSecondary,
     ['colors.backgroundLightAccentSecondary']
   ),
+  backgroundNeutral: computed(
+    ([backgroundLightNeutral]) => backgroundLightNeutral,
+    ['colors.backgroundLightNeutral']
+  ),
   backgroundSuccess: computed(
     ([backgroundLightSuccess]) => backgroundLightSuccess,
     ['colors.backgroundLightSuccess']
@@ -35,6 +40,10 @@ const _buttons = {
   backgroundWarning: computed(
     ([backgroundLightWarning]) => backgroundLightWarning,
     ['colors.backgroundLightWarning']
+  ),
+  backgroundRisk: computed(
+    ([backgroundLightRisk]) => backgroundLightRisk,
+    ['colors.backgroundLightRisk']
   ),
   backgroundDanger: computed(
     ([backgroundLightDanger]) => backgroundLightDanger,
@@ -61,6 +70,10 @@ const _buttons = {
     ([backgroundFilledAccent]) => backgroundFilledAccent,
     ['colors.backgroundFilledAccent']
   ),
+  backgroundFilledNeutral: computed(
+    ([backgroundFilledNeutral]) => backgroundFilledNeutral,
+    ['colors.backgroundFilledNeutral']
+  ),
   backgroundFilledSuccess: computed(
     ([backgroundFilledSuccess]) => backgroundFilledSuccess,
     ['colors.backgroundFilledSuccess']
@@ -68,6 +81,10 @@ const _buttons = {
   backgroundFilledWarning: computed(
     ([backgroundFilledWarning]) => backgroundFilledWarning,
     ['colors.backgroundFilledWarning']
+  ),
+  backgroundFilledRisk: computed(
+    ([backgroundFilledRisk]) => backgroundFilledRisk,
+    ['colors.backgroundFilledRisk']
   ),
   backgroundFilledDanger: computed(
     ([backgroundFilledDanger]) => backgroundFilledDanger,
@@ -94,6 +111,7 @@ const _buttons = {
     ([success]) => transparentize(success, 0.1),
     ['colors.success']
   ),
+  backgroundEmptyNeutralHover: transparentize(severityColors.neutral, 0.1),
   backgroundEmptySuccessHover: computed(
     ([success]) => transparentize(success, 0.1),
     ['colors.success']
@@ -102,6 +120,7 @@ const _buttons = {
     ([warning]) => transparentize(warning, 0.1),
     ['colors.warning']
   ),
+  backgroundEmptyRiskHover: transparentize(severityColors.risk, 0.1),
   backgroundEmptyDangerHover: computed(
     ([danger]) => transparentize(danger, 0.1),
     ['colors.danger']
@@ -123,6 +142,10 @@ const _buttons = {
     ([successText]) => successText,
     ['colors.successText']
   ),
+  textColorNeutral: computed(
+    ([textNeutral]) => textNeutral,
+    ['colors.textNeutral']
+  ),
   textColorSuccess: computed(
     ([successText]) => successText,
     ['colors.successText']
@@ -131,6 +154,7 @@ const _buttons = {
     ([warningText]) => warningText,
     ['colors.warningText']
   ),
+  textColorRisk: computed(([textRisk]) => textRisk, ['colors.textRisk']),
   textColorDanger: computed(
     ([dangerText]) => dangerText,
     ['colors.dangerText']
@@ -157,6 +181,14 @@ const _buttons = {
     },
     ['colors.success', 'colors.ghost', 'colors.ink']
   ),
+  textColorFilledNeutral: computed(
+    ([ghost, ink]) => {
+      const background = tint(severityColors.neutral, 0.3);
+
+      return isDark(background) ? ghost : ink;
+    },
+    ['colors.ghost', 'colors.ink']
+  ),
   textColorFilledSuccess: computed(
     ([success, ghost, ink]) => {
       const background = tint(success, 0.3);
@@ -168,6 +200,14 @@ const _buttons = {
   textColorFilledWarning: computed(
     ([warning, ghost, ink]) => (isDark(warning) ? ghost : ink),
     ['colors.warning', 'colors.ghost', 'colors.ink']
+  ),
+  textColorFilledRisk: computed(
+    ([ghost, ink]) => {
+      const background = tint(severityColors.risk, 0.3);
+
+      return isDark(background) ? ghost : ink;
+    },
+    ['colors.ghost', 'colors.ink']
   ),
   textColorFilledDanger: computed(
     ([danger, ghost, ink]) => (isDark(danger) ? ghost : ink),

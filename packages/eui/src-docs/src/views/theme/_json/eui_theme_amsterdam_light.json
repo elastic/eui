@@ -39,8 +39,10 @@
     "primary": "#0077cc",
     "accent": "#f04e98",
     "accentSecondary": "#00bfb3",
+    "neutral": "#bedfe3",
     "success": "#00bfb3",
     "warning": "#fec514",
+    "risk": "#da8b45",
     "danger": "#bd271e",
     "ghost": "#ffffff",
     "text": "#69707d"
