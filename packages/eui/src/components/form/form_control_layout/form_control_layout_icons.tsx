@@ -81,8 +81,14 @@ export class EuiFormControlLayoutIcons extends Component<EuiFormControlLayoutIco
               ? [
                   styles.position.absolute.absolute,
                   compressed
-                    ? styles.position.absolute.compressed[side]
-                    : styles.position.absolute.uncompressed[side],
+                    ? [
+                        styles.position.absolute.compressed.paddingTop,
+                        styles.position.absolute.compressed[side],
+                      ]
+                    : [
+                        styles.position.absolute.uncompressed.paddingTop,
+                        styles.position.absolute.uncompressed[side],
+                      ],
                 ]
               : [
                   styles.position.static.static,
