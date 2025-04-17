@@ -31,6 +31,7 @@ import {
   makeDisabledContrastColor,
 } from '../../../../services/color/contrast';
 import { colorVis } from './_colors_vis';
+import { severityColors } from './_colors_severity';
 
 /*
  * LIGHT THEME
@@ -611,4 +612,5 @@ export const colors: _EuiThemeColors = {
   LIGHT: light_colors,
   DARK: dark_colors_ams,
   vis: colorVis,
+  severity: severityColors,
 };
