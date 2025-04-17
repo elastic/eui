@@ -156,7 +156,8 @@ export const EuiThemeProvider = <T extends {} = {}>({
         modificationsWithHighContrast,
         `_${system.key}`
       ) as typeof system,
-      colorMode
+      colorMode,
+      highContrastMode
     );
 
     setTimeout(() => {
@@ -213,11 +214,12 @@ export const EuiThemeProvider = <T extends {} = {}>({
         getComputed(
           system,
           buildTheme<any>(modificationsWithHighContrast, `_${system.key}`),
-          colorMode
+          colorMode,
+          highContrastMode
         )
       );
     }
-  }, [colorMode, system, modificationsWithHighContrast]);
+  }, [colorMode, highContrastMode, system, modificationsWithHighContrast]);
 
   const [themeCSSVariables, _setThemeCSSVariables] = useState<CSSObject>();
   const setThemeCSSVariables = useCallback(
