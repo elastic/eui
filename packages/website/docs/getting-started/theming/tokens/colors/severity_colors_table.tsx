@@ -8,7 +8,7 @@ export const SeverityColorsTable = () => {
     <ColorsTable
       colors={[
         {
-          value: euiTheme.colors.severityunknown,
+          value: euiTheme.colors.severity.unknown,
           token: 'colors.severity.unknown',
         },
         {
