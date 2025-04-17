@@ -173,11 +173,17 @@ export const euiEmptyPromptStyles = (euiThemeContext: UseEuiTheme) => {
       danger: css`
         ${logicalCSS('border-top', generateFooterBorder('danger'))}
       `,
+      risk: css`
+        ${logicalCSS('border-top', generateFooterBorder('risk'))}
+      `,
       warning: css`
         ${logicalCSS('border-top', generateFooterBorder('warning'))}
       `,
       success: css`
         ${logicalCSS('border-top', generateFooterBorder('success'))}
+      `,
+      neutral: css`
+        ${logicalCSS('border-top', generateFooterBorder('neutral'))}
       `,
       ...generatePaddingStyles(),
     },

@@ -258,6 +258,12 @@
   background: $euiColorVis0;
 }
 
+.guideSass__severity {
+  padding: $euiSizeS;
+  color: $euiColorInk;
+  background: $euiColorSeverityRisk;
+}
+
 .guideSass__fontFamily {
   font-size: $euiSizeL;
   background: $euiColorDarkestShade;

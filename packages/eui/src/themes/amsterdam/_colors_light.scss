@@ -2,6 +2,7 @@
 
 // This extra import allows any variables that are created via functions to work when loaded into JS
 @import 'node_modules/@elastic/eui-theme-common/src/global_styling/functions/index';
+@import './global_styling/variables/colors_severity';
 
 // Constants
 $euiColorGhost: #FFF !default;
@@ -34,8 +35,10 @@ $euiColorHighlight: tint($euiColorWarning, 90%) !default;
 $euiColorBackgroundBasePrimary: tint($euiColorPrimary, 90%) !default;
 $euiColorBackgroundBaseAccent: tint($euiColorAccent, 90%) !default;
 $euiColorBackgroundBaseAccentSecondary: tint($euiColorAccentSecondary, 90%) !default;
+$euiColorBackgroundBaseNeutral: tint($euiColorSeverityNeutral, 90%) !default;
 $euiColorBackgroundBaseSuccess: tint($euiColorSuccess, 90%) !default;
 $euiColorBackgroundBaseWarning: tint($euiColorWarning, 90%) !default;
+$euiColorBackgroundBaseRisk: tint($euiColorSeverityRisk, 90%) !default;
 $euiColorBackgroundBaseDanger: tint($euiColorDanger, 90%) !default;
 $euiColorBackgroundBaseSubdued: $euiPageBackgroundColor !default;
 $euiColorBackgroundBaseDisabled: transparentize($euiColorLightShade, 0.15) !default;
@@ -52,16 +55,20 @@ $euiColorBackgroundBaseSkeletonMiddle: tint($euiColorLightShade, 0.8) !default;
 $euiColorBackgroundLightPrimary: tint($euiColorPrimary, 0.8) !default;
 $euiColorBackgroundLightAccent: tint($euiColorAccent, 0.8) !default;
 $euiColorBackgroundLightAccentSecondary: tint($euiColorAccentSecondary, 0.8)  !default;
+$euiColorBackgroundLightNeutral: tint($euiColorSeverityNeutral, 0.8) !default;
 $euiColorBackgroundLightSuccess: tint($euiColorSuccess, 0.8)  !default;
 $euiColorBackgroundLightWarning: tint($euiColorWarning, 0.8)  !default;
+$euiColorBackgroundLightRisk: tint($euiColorSeverityRisk, 0.8)  !default;
 $euiColorBackgroundLightDanger: tint($euiColorDanger, 0.8)  !default;
 $euiColorBackgroundLightText: tint($euiColorLightShade, 0.5) !default;
 
 $euiColorBackgroundFilledPrimary: $euiColorPrimary !default;
 $euiColorBackgroundFilledAccent: tint($euiColorAccent, 0.3) !default;
 $euiColorBackgroundFilledAccentSecondary: tint($euiColorAccentSecondary, 0.3) !default;
+$euiColorBackgroundFilledNeutral: $euiColorSeverityNeutral !default;
 $euiColorBackgroundFilledSuccess: tint($euiColorSuccess, 0.3) !default;
 $euiColorBackgroundFilledWarning: $euiColorWarning !default;
+$euiColorBackgroundFilledRisk: $euiColorSeverityRisk !default;
 $euiColorBackgroundFilledDanger: $euiColorDanger !default;
 $euiColorBackgroundFilledText: $euiColorDarkShade !default;
 
@@ -88,8 +95,10 @@ $euiColorDisabledText: makeDisabledContrastColor($euiColorDisabled) !default;
 $euiColorTextPrimary: $euiColorPrimaryText !default;
 $euiColorTextAccent: $euiColorAccentText !default;
 $euiColorTextAccentSecondary: $euiColorSuccessText !default;
+$euiColorTextNeutral: makeHighContrastColor($euiColorSeverityNeutral) !default;
 $euiColorTextSuccess: $euiColorSuccessText !default;
 $euiColorTextWarning: $euiColorWarningText !default;
+$euiColorTextRisk: makeHighContrastColor($euiColorSeverityRisk) !default;
 $euiColorTextDanger: $euiColorDangerText !default;
 
 $euiLinkColor: $euiColorPrimaryText !default;
@@ -98,8 +107,10 @@ $euiLinkColor: $euiColorPrimaryText !default;
 $euiColorBorderBasePrimary: tint($euiColorPrimary, 0.6) !default;
 $euiColorBorderBaseAccent: tint($euiColorAccent, 0.6) !default;
 $euiColorBorderBaseAccentSecondary: tint($euiColorAccentSecondary, 0.6) !default;
+$euiColorBorderBaseNeutral: tint($euiColorSeverityNeutral, 0.6) !default;
 $euiColorBorderBaseSuccess: tint($euiColorSuccess, 0.6) !default;
 $euiColorBorderBaseWarning: tint($euiColorWarning, 0.6) !default;
+$euiColorBorderBaseRisk: tint($euiColorSeverityRisk, 0.6) !default;
 $euiColorBorderBaseDanger: tint($euiColorDanger, 0.6) !default;
 
 $euiColorBorderBasePlain: $euiColorLightShade !default;
@@ -112,8 +123,10 @@ $euiColorBorderBaseFormsControl: shade($euiColorLightestShade, 0.4) !default;
 $euiColorBorderStrongPrimary: $euiColorBorderBasePrimary !default;
 $euiColorBorderStrongAccent: $euiColorBorderBaseAccent !default;
 $euiColorBorderStrongAccentSecondary: $euiColorBorderBaseAccentSecondary !default;
+$euiColorBorderStrongNeutral: $euiColorBorderBasePrimary !default;
 $euiColorBorderStrongSuccess: $euiColorBorderBaseSuccess !default;
 $euiColorBorderStrongWarning: $euiColorBorderBaseWarning !default;
+$euiColorBorderStrongRisk: $euiColorBorderBaseWarning !default;
 $euiColorBorderStrongDanger: $euiColorBorderBaseDanger !default;
 
 // Charts

@@ -74,8 +74,10 @@ export type _EuiThemeBrandTextColors = {
   textPrimary: ColorModeSwitch;
   textAccent: ColorModeSwitch;
   textAccentSecondary: ColorModeSwitch;
+  textNeutral: ColorModeSwitch;
   textSuccess: ColorModeSwitch;
   textWarning: ColorModeSwitch;
+  textRisk: ColorModeSwitch;
   textDanger: ColorModeSwitch;
 };
 
@@ -177,8 +179,10 @@ export type _EuiThemeBackgroundColors = {
   backgroundBasePrimary: ColorModeSwitch;
   backgroundBaseAccent: ColorModeSwitch;
   backgroundBaseAccentSecondary: ColorModeSwitch;
+  backgroundBaseNeutral: ColorModeSwitch;
   backgroundBaseSuccess: ColorModeSwitch;
   backgroundBaseWarning: ColorModeSwitch;
+  backgroundBaseRisk: ColorModeSwitch;
   backgroundBaseDanger: ColorModeSwitch;
   backgroundBaseSubdued: ColorModeSwitch;
   backgroundBasePlain: ColorModeSwitch;
@@ -195,16 +199,20 @@ export type _EuiThemeBackgroundColors = {
   backgroundLightPrimary: ColorModeSwitch;
   backgroundLightAccent: ColorModeSwitch;
   backgroundLightAccentSecondary: ColorModeSwitch;
+  backgroundLightNeutral: ColorModeSwitch;
   backgroundLightSuccess: ColorModeSwitch;
   backgroundLightWarning: ColorModeSwitch;
+  backgroundLightRisk: ColorModeSwitch;
   backgroundLightDanger: ColorModeSwitch;
   backgroundLightText: ColorModeSwitch;
 
   backgroundFilledPrimary: ColorModeSwitch;
   backgroundFilledAccent: ColorModeSwitch;
   backgroundFilledAccentSecondary: ColorModeSwitch;
+  backgroundFilledNeutral: ColorModeSwitch;
   backgroundFilledSuccess: ColorModeSwitch;
   backgroundFilledWarning: ColorModeSwitch;
+  backgroundFilledRisk: ColorModeSwitch;
   backgroundFilledDanger: ColorModeSwitch;
   backgroundFilledText: ColorModeSwitch;
 };
@@ -220,9 +228,13 @@ export type _EuiThemeTransparentBackgroundColors = {
   /** @deprecated - temp. token, was never in use */
   backgroundTransparentAccentSecondary: ColorModeSwitch;
   /** @deprecated - temp. token, was never in use */
+  backgroundTransparentNeutral: ColorModeSwitch;
+  /** @deprecated - temp. token, was never in use */
   backgroundTransparentSuccess: ColorModeSwitch;
   /** @deprecated - temp. token, was never in use */
   backgroundTransparentWarning: ColorModeSwitch;
+  /** @deprecated - temp. token, was never in use */
+  backgroundTransparentRisk: ColorModeSwitch;
   /** @deprecated - temp. token, was never in use */
   backgroundTransparentDanger: ColorModeSwitch;
   /** @deprecated - temp. token, was never in use */
@@ -237,8 +249,10 @@ export type _EuiThemeBorderColors = {
   borderBasePrimary: ColorModeSwitch;
   borderBaseAccent: ColorModeSwitch;
   borderBaseAccentSecondary: ColorModeSwitch;
+  borderBaseNeutral: ColorModeSwitch;
   borderBaseSuccess: ColorModeSwitch;
   borderBaseWarning: ColorModeSwitch;
+  borderBaseRisk: ColorModeSwitch;
   borderBaseDanger: ColorModeSwitch;
 
   borderBasePlain: ColorModeSwitch;
@@ -256,8 +270,10 @@ export type _EuiThemeBorderColors = {
   borderStrongPrimary: ColorModeSwitch;
   borderStrongAccent: ColorModeSwitch;
   borderStrongAccentSecondary: ColorModeSwitch;
+  borderStrongNeutral: ColorModeSwitch;
   borderStrongSuccess: ColorModeSwitch;
   borderStrongWarning: ColorModeSwitch;
+  borderStrongRisk: ColorModeSwitch;
   borderStrongDanger: ColorModeSwitch;
 };
 
@@ -318,22 +334,6 @@ export type _EuiThemeVisColors = {
 
   euiColorVisNeutral0: string;
 
-  euiColorSeverity0: string;
-  euiColorSeverity1: string;
-  euiColorSeverity2: string;
-  euiColorSeverity3: string;
-  euiColorSeverity4: string;
-  euiColorSeverity5: string;
-  euiColorSeverity6: string;
-  euiColorSeverity7: string;
-  euiColorSeverity8: string;
-  euiColorSeverity9: string;
-  euiColorSeverity10: string;
-  euiColorSeverity11: string;
-  euiColorSeverity12: string;
-  euiColorSeverity13: string;
-  euiColorSeverity14: string;
-
   euiColorVisGrey0: string;
   euiColorVisGrey1: string;
   euiColorVisGrey2: string;
@@ -351,6 +351,15 @@ export type _EuiThemeVisColors = {
   euiColorVisComplementary1: string;
 };
 
+export type _EuiThemeSeverityColors = {
+  unknown: string;
+  success: string;
+  neutral: string;
+  warning: string;
+  risk: string;
+  danger: string;
+};
+
 export type _EuiThemeConstantColors = {
   ghost: string;
   ink: string;
@@ -359,6 +368,7 @@ export type _EuiThemeConstantColors = {
   plainDark: string;
 
   vis: _EuiThemeVisColors;
+  severity: _EuiThemeSeverityColors;
 };
 
 export type _EuiThemeColorsMode = _EuiThemeBrandColors &

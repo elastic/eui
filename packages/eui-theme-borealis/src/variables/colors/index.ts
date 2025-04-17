@@ -12,6 +12,7 @@ import { SEMANTIC_COLORS } from './_semantic_colors';
 import { light_colors } from './_colors_light';
 import { dark_colors } from './_colors_dark';
 import { colorVis } from './_colors_vis';
+import { severityColors } from './_colors_severity';
 
 export const colors: _EuiThemeColors = {
   ghost: SEMANTIC_COLORS.plainLight,
@@ -21,4 +22,5 @@ export const colors: _EuiThemeColors = {
   LIGHT: light_colors,
   DARK: dark_colors,
   vis: colorVis,
+  severity: severityColors,
 };

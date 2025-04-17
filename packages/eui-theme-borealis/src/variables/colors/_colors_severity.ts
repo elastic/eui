@@ -6,24 +6,13 @@
  * Side Public License, v 1.
  */
 
-export const COLORS = [
-  'default',
-  'primary',
-  'neutral',
-  'success',
-  'accent',
-  'accentSecondary',
-  'warning',
-  'risk',
-  'danger',
-  'text',
-  'subdued',
-  'ghost',
-  'inherit',
-] as const;
+import { SEMANTIC_COLORS } from './_semantic_colors';
 
-export type NamedColor = (typeof COLORS)[number];
-
-export function isNamedColor(name: string): boolean {
-  return COLORS.includes(name as NamedColor);
-}
+export const severityColors = {
+  unknown: SEMANTIC_COLORS.shade20,
+  neutral: SEMANTIC_COLORS.neutral30,
+  success: SEMANTIC_COLORS.success60,
+  warning: SEMANTIC_COLORS.warning30,
+  risk: SEMANTIC_COLORS.risk50,
+  danger: SEMANTIC_COLORS.danger70,
+};

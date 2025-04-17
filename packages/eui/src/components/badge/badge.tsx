@@ -38,9 +38,11 @@ export const COLORS = [
   'default',
   'hollow',
   'primary',
-  'success',
   'accent',
+  'neutral',
+  'success',
   'warning',
+  'risk',
   'danger',
 ] as const;
 type BadgeColor = (typeof COLORS)[number];

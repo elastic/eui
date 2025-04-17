@@ -15,8 +15,10 @@ export type _EuiThemeButtonColors = {
   backgroundPrimary: ColorModeSwitch;
   backgroundAccent: ColorModeSwitch;
   backgroundAccentSecondary: ColorModeSwitch;
+  backgroundNeutral: ColorModeSwitch;
   backgroundSuccess: ColorModeSwitch;
   backgroundWarning: ColorModeSwitch;
+  backgroundRisk: ColorModeSwitch;
   backgroundDanger: ColorModeSwitch;
   backgroundText: ColorModeSwitch;
   backgroundDisabled: ColorModeSwitch;
@@ -24,8 +26,10 @@ export type _EuiThemeButtonColors = {
   backgroundFilledPrimary: ColorModeSwitch;
   backgroundFilledAccent: ColorModeSwitch;
   backgroundFilledAccentSecondary: ColorModeSwitch;
+  backgroundFilledNeutral: ColorModeSwitch;
   backgroundFilledSuccess: ColorModeSwitch;
   backgroundFilledWarning: ColorModeSwitch;
+  backgroundFilledRisk: ColorModeSwitch;
   backgroundFilledDanger: ColorModeSwitch;
   backgroundFilledText: ColorModeSwitch;
   backgroundFilledDisabled: ColorModeSwitch;
@@ -33,16 +37,20 @@ export type _EuiThemeButtonColors = {
   backgroundEmptyPrimaryHover: ColorModeSwitch;
   backgroundEmptyAccentHover: ColorModeSwitch;
   backgroundEmptyAccentSecondaryHover: ColorModeSwitch;
+  backgroundEmptyNeutralHover: ColorModeSwitch;
   backgroundEmptySuccessHover: ColorModeSwitch;
   backgroundEmptyWarningHover: ColorModeSwitch;
+  backgroundEmptyRiskHover: ColorModeSwitch;
   backgroundEmptyDangerHover: ColorModeSwitch;
   backgroundEmptyTextHover: ColorModeSwitch;
 
   textColorPrimary: ColorModeSwitch;
   textColorAccent: ColorModeSwitch;
   textColorAccentSecondary: ColorModeSwitch;
+  textColorNeutral: ColorModeSwitch;
   textColorSuccess: ColorModeSwitch;
   textColorWarning: ColorModeSwitch;
+  textColorRisk: ColorModeSwitch;
   textColorDanger: ColorModeSwitch;
   textColorText: ColorModeSwitch;
   textColorDisabled: ColorModeSwitch;
@@ -50,8 +58,10 @@ export type _EuiThemeButtonColors = {
   textColorFilledPrimary: ColorModeSwitch;
   textColorFilledAccent: ColorModeSwitch;
   textColorFilledAccentSecondary: ColorModeSwitch;
+  textColorFilledNeutral: ColorModeSwitch;
   textColorFilledSuccess: ColorModeSwitch;
   textColorFilledWarning: ColorModeSwitch;
+  textColorFilledRisk: ColorModeSwitch;
   textColorFilledDanger: ColorModeSwitch;
   textColorFilledText: ColorModeSwitch;
   textColorFilledDisabled: ColorModeSwitch;

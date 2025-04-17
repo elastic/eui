@@ -109,9 +109,11 @@ export const euiBadgeStyles = (euiThemeContext: UseEuiTheme) => {
     `,
     primary: css(setBadgeColorVars(badgeColors.primary)),
     accent: css(setBadgeColorVars(badgeColors.accent)),
-    warning: css(setBadgeColorVars(badgeColors.warning)),
-    danger: css(setBadgeColorVars(badgeColors.danger)),
+    neutral: css(setBadgeColorVars(badgeColors.neutral)),
     success: css(setBadgeColorVars(badgeColors.success)),
+    warning: css(setBadgeColorVars(badgeColors.warning)),
+    risk: css(setBadgeColorVars(badgeColors.risk)),
+    danger: css(setBadgeColorVars(badgeColors.danger)),
     disabled: css`
       ${setBadgeColorVars(badgeColors.disabled)}
       border-color: ${badgeColors.disabled.borderColor};

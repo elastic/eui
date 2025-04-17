@@ -204,6 +204,26 @@ exports[`EuiIcon props color inherit is rendered 1`] = `
 </svg>
 `;
 
+exports[`EuiIcon props color neutral is rendered 1`] = `
+<svg
+  aria-hidden="true"
+  class="euiIcon emotion-euiIcon-m-neutral-isLoaded"
+  data-icon-type="search"
+  data-is-loaded="true"
+  height="16"
+  role="img"
+  viewBox="0 0 16 16"
+  width="16"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    clip-rule="evenodd"
+    d="M10.775 12.896a7 7 0 1 1 2.121-2.121l2.665 2.664a1.5 1.5 0 0 1-2.121 2.122l-2.665-2.665ZM13 7A6 6 0 1 1 1 7a6 6 0 0 1 12 0Zm-1.416 5.29 2.563 2.564a.5.5 0 1 0 .707-.708l-2.563-2.562a7.045 7.045 0 0 1-.707.707Z"
+    fill-rule="evenodd"
+  />
+</svg>
+`;
+
 exports[`EuiIcon props color primary is rendered 1`] = `
 <svg
   aria-hidden="true"
@@ -233,6 +253,26 @@ exports[`EuiIcon props color rgb(100, 150, 200) is rendered 1`] = `
   height="16"
   role="img"
   style="color: rgb(100, 150, 200);"
+  viewBox="0 0 16 16"
+  width="16"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    clip-rule="evenodd"
+    d="M10.775 12.896a7 7 0 1 1 2.121-2.121l2.665 2.664a1.5 1.5 0 0 1-2.121 2.122l-2.665-2.665ZM13 7A6 6 0 1 1 1 7a6 6 0 0 1 12 0Zm-1.416 5.29 2.563 2.564a.5.5 0 1 0 .707-.708l-2.563-2.562a7.045 7.045 0 0 1-.707.707Z"
+    fill-rule="evenodd"
+  />
+</svg>
+`;
+
+exports[`EuiIcon props color risk is rendered 1`] = `
+<svg
+  aria-hidden="true"
+  class="euiIcon emotion-euiIcon-m-risk-isLoaded"
+  data-icon-type="search"
+  data-is-loaded="true"
+  height="16"
+  role="img"
   viewBox="0 0 16 16"
   width="16"
   xmlns="http://www.w3.org/2000/svg"

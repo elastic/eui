@@ -26,8 +26,10 @@ export const euiBadgeColors = (euiThemeContext: UseEuiTheme) => {
   return {
     // Colors shared between buttons and badges
     primary: euiButtonFillColor(euiThemeContext, 'primary'),
+    neutral: euiButtonFillColor(euiThemeContext, 'neutral'),
     success: euiButtonFillColor(euiThemeContext, 'success'),
     warning: euiButtonFillColor(euiThemeContext, 'warning'),
+    risk: euiButtonFillColor(euiThemeContext, 'risk'),
     danger: euiButtonFillColor(euiThemeContext, 'danger'),
     accent: euiButtonFillColor(euiThemeContext, 'accent'),
     accentSecondary: euiButtonFillColor(euiThemeContext, 'accentSecondary'),

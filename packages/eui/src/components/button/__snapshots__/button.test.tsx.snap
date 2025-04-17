@@ -52,9 +52,31 @@ exports[`EuiButton props color danger is rendered 1`] = `
 </button>
 `;
 
+exports[`EuiButton props color neutral is rendered 1`] = `
+<button
+  class="euiButton emotion-euiButtonDisplay-m-defaultMinWidth-base-neutral"
+  type="button"
+>
+  <span
+    class="emotion-euiButtonDisplayContent"
+  />
+</button>
+`;
+
 exports[`EuiButton props color primary is rendered 1`] = `
 <button
   class="euiButton emotion-euiButtonDisplay-m-defaultMinWidth-base-primary"
+  type="button"
+>
+  <span
+    class="emotion-euiButtonDisplayContent"
+  />
+</button>
+`;
+
+exports[`EuiButton props color risk is rendered 1`] = `
+<button
+  class="euiButton emotion-euiButtonDisplay-m-defaultMinWidth-base-risk"
   type="button"
 >
   <span

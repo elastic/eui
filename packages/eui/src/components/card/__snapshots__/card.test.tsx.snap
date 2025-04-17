@@ -446,6 +446,39 @@ exports[`EuiCard props display highlighted is rendered 1`] = `
 </div>
 `;
 
+exports[`EuiCard props display neutral is rendered 1`] = `
+<div
+  class="euiPanel euiPanel--neutral euiPanel--paddingMedium euiCard emotion-euiPanel-grow-m-m-neutral-euiCard-center"
+>
+  <div
+    class="euiCard__main emotion-euiCard__main-vertical"
+  >
+    <div
+      class="euiCard__content emotion-euiCard__content-vertical"
+    >
+      <p
+        class="euiTitle euiCard__title emotion-euiTitle-s"
+        id="generated-idTitle"
+      >
+        <span
+          class="emotion-euiCard__text-center"
+        >
+          Card title
+        </span>
+      </p>
+      <div
+        class="euiText emotion-euiText-s-euiCard__description"
+        id="generated-idDescription"
+      >
+        <p>
+          Card description
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
 exports[`EuiCard props display plain is rendered 1`] = `
 <div
   class="euiPanel euiPanel--plain euiPanel--paddingMedium euiCard emotion-euiPanel-grow-m-m-plain-euiCard-center"
@@ -482,6 +515,39 @@ exports[`EuiCard props display plain is rendered 1`] = `
 exports[`EuiCard props display primary is rendered 1`] = `
 <div
   class="euiPanel euiPanel--primary euiPanel--paddingMedium euiCard emotion-euiPanel-grow-m-m-primary-euiCard-center"
+>
+  <div
+    class="euiCard__main emotion-euiCard__main-vertical"
+  >
+    <div
+      class="euiCard__content emotion-euiCard__content-vertical"
+    >
+      <p
+        class="euiTitle euiCard__title emotion-euiTitle-s"
+        id="generated-idTitle"
+      >
+        <span
+          class="emotion-euiCard__text-center"
+        >
+          Card title
+        </span>
+      </p>
+      <div
+        class="euiText emotion-euiText-s-euiCard__description"
+        id="generated-idDescription"
+      >
+        <p>
+          Card description
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`EuiCard props display risk is rendered 1`] = `
+<div
+  class="euiPanel euiPanel--risk euiPanel--paddingMedium euiCard emotion-euiPanel-grow-m-m-risk-euiCard-center"
 >
   <div
     class="euiCard__main emotion-euiCard__main-vertical"

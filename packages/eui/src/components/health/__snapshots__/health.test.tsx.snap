@@ -177,6 +177,28 @@ exports[`EuiHealth props color inherit is rendered 1`] = `
 </div>
 `;
 
+exports[`EuiHealth props color neutral is rendered 1`] = `
+<div
+  class="euiHealth emotion-euiHealth-s"
+>
+  <div
+    class="euiFlexGroup emotion-euiFlexGroup-xs-flexStart-center-row"
+  >
+    <div
+      class="euiFlexItem emotion-euiFlexItem-growZero"
+    >
+      <span
+        color="neutral"
+        data-euiicon-type="dot"
+      />
+    </div>
+    <div
+      class="euiFlexItem emotion-euiFlexItem-growZero"
+    />
+  </div>
+</div>
+`;
+
 exports[`EuiHealth props color primary is rendered 1`] = `
 <div
   class="euiHealth emotion-euiHealth-s"
@@ -189,6 +211,28 @@ exports[`EuiHealth props color primary is rendered 1`] = `
     >
       <span
         color="primary"
+        data-euiicon-type="dot"
+      />
+    </div>
+    <div
+      class="euiFlexItem emotion-euiFlexItem-growZero"
+    />
+  </div>
+</div>
+`;
+
+exports[`EuiHealth props color risk is rendered 1`] = `
+<div
+  class="euiHealth emotion-euiHealth-s"
+>
+  <div
+    class="euiFlexGroup emotion-euiFlexGroup-xs-flexStart-center-row"
+  >
+    <div
+      class="euiFlexItem emotion-euiFlexItem-growZero"
+    >
+      <span
+        color="risk"
         data-euiicon-type="dot"
       />
     </div>

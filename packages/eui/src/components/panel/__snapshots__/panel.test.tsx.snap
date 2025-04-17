@@ -52,6 +52,12 @@ exports[`EuiPanel props color highlighted is rendered 1`] = `
 />
 `;
 
+exports[`EuiPanel props color neutral is rendered 1`] = `
+<div
+  class="euiPanel euiPanel--neutral euiPanel--paddingMedium emotion-euiPanel-grow-m-m-neutral"
+/>
+`;
+
 exports[`EuiPanel props color plain is rendered 1`] = `
 <div
   class="euiPanel euiPanel--plain euiPanel--paddingMedium emotion-euiPanel-grow-m-m-plain-hasShadow"
@@ -61,6 +67,12 @@ exports[`EuiPanel props color plain is rendered 1`] = `
 exports[`EuiPanel props color primary is rendered 1`] = `
 <div
   class="euiPanel euiPanel--primary euiPanel--paddingMedium emotion-euiPanel-grow-m-m-primary"
+/>
+`;
+
+exports[`EuiPanel props color risk is rendered 1`] = `
+<div
+  class="euiPanel euiPanel--risk euiPanel--paddingMedium emotion-euiPanel-grow-m-m-risk"
 />
 `;
 
