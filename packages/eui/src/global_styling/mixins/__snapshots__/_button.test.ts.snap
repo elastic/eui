@@ -46,9 +46,9 @@ exports[`useEuiButtonColorCSS base 1`] = `
   },
   "risk": {
     "map": undefined,
-    "name": "4x2op1-displaysColorsMap-display-color",
+    "name": "16ebbxg-displaysColorsMap-display-color",
     "next": undefined,
-    "styles": "color:#a71627;background-color:#FFDEBF;;;label:base-risk;",
+    "styles": "color:#9e3a16;background-color:#FFDEBF;;;label:base-risk;",
     "toString": [Function],
   },
   "success": {
@@ -121,9 +121,9 @@ exports[`useEuiButtonColorCSS empty 1`] = `
   },
   "risk": {
     "map": undefined,
-    "name": "tlly31-displaysColorsMap-display-color",
+    "name": "1vuw7lh-displaysColorsMap-display-color",
     "next": undefined,
-    "styles": "color:#a71627;&:focus,&:active{background-color:rgba(23,80,186, 0.04);};label:empty-risk;",
+    "styles": "color:#9e3a16;&:focus,&:active{background-color:rgba(23,80,186, 0.04);};label:empty-risk;",
     "toString": [Function],
   },
   "success": {
