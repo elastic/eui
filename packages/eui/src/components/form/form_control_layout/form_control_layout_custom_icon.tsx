@@ -16,6 +16,7 @@ import classNames from 'classnames';
 
 import { CommonProps, ExclusiveUnion } from '../../common';
 import { EuiIcon, EuiIconProps, IconType } from '../../icon';
+import { logicalCSS } from '../../../global_styling';
 
 export type EuiFormControlLayoutCustomIconProps = CommonProps &
   ExclusiveUnion<
@@ -74,8 +75,11 @@ export const EuiFormControlLayoutCustomIcon: FunctionComponent<
 };
 
 const styles = {
+  // Ensures the icon stays vertically centered
   euiFormControlLayoutCustomIcon: css`
-    font-size: 0; /* Ensures the icon stays vertically centered */
+    ${logicalCSS('height', 'fit-content')}
+    line-height: initial;
+    font-size: 0;
   `,
   // Skip css`` here to avoid generating an Emotion className
   unclickable: `

@@ -15,14 +15,28 @@ import { euiFormVariables } from '../form.styles';
 export const euiFormControlLayoutIconsStyles = (
   euiThemeContext: UseEuiTheme
 ) => {
-  const { controlPadding, controlCompressedPadding, controlDisabledColor } =
-    euiFormVariables(euiThemeContext);
+  const {
+    controlCompressedHeight,
+    controlCompressedPadding,
+    controlDisabledColor,
+    controlHeight,
+    controlIconSize,
+    controlLayoutGroupInputCompressedHeight,
+    controlLayoutGroupInputHeight,
+    controlPadding,
+  } = euiFormVariables(euiThemeContext);
+
+  const iconPaddingTop = (controlHeight: string, iconSize: string) =>
+    logicalCSS(
+      'padding-top',
+      mathWithUnits([controlHeight, iconSize], (x, y) => (x - y) / 2)
+    );
 
   return {
     euiFormControlLayoutIcons: css`
+      ${logicalCSS('height', 'fit-content')}
       pointer-events: none;
       display: flex;
-      align-items: center;
     `,
     uncompressed: `
       gap: ${mathWithUnits(controlPadding, (x) => x / 2)};
@@ -43,6 +57,9 @@ export const euiFormControlLayoutIconsStyles = (
           ${logicalCSS('vertical', 0)}
         `,
         uncompressed: {
+          paddingTop: css`
+            ${iconPaddingTop(controlHeight, controlIconSize.m)}
+          `,
           left: css`
             z-index: 1; /* Ensure the icon is visible above sibling inputs */
             ${logicalCSS('left', controlPadding)}
@@ -52,6 +69,9 @@ export const euiFormControlLayoutIconsStyles = (
           `,
         },
         compressed: {
+          paddingTop: css`
+            ${iconPaddingTop(controlCompressedHeight, controlIconSize.s)}
+          `,
           left: css`
             z-index: 1; /* Ensure the icon is visible above sibling inputs */
             ${logicalCSS('left', controlCompressedPadding)}
@@ -69,9 +89,30 @@ export const euiFormControlLayoutIconsStyles = (
           flex-grow: 0;
           ${logicalCSS('padding-horizontal', '100%')}
         `,
-        uncompressed: logicalCSS('padding-horizontal', controlPadding),
-        compressed: logicalCSS('padding-horizontal', controlCompressedPadding),
+        uncompressed: css`
+          ${iconPaddingTop(controlLayoutGroupInputHeight, controlIconSize.m)}
+          ${logicalCSS('padding-horizontal', controlPadding)}
+        `,
+        compressed: css`
+          ${iconPaddingTop(
+            controlLayoutGroupInputCompressedHeight,
+            controlIconSize.s
+          )}
+          ${logicalCSS('padding-horizontal', controlCompressedPadding)}
+        `,
       },
+    },
+
+    inGroup: {
+      uncompressed: `
+      ${iconPaddingTop(controlLayoutGroupInputHeight, controlIconSize.m)}
+    `,
+      compressed: css`
+        ${iconPaddingTop(
+          controlLayoutGroupInputCompressedHeight,
+          controlIconSize.s
+        )}
+      `,
     },
   };
 };

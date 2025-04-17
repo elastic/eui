@@ -51,6 +51,7 @@ export interface EuiFormControlLayoutIconsProps {
   isDropdown?: boolean;
   compressed?: boolean;
   isDisabled?: boolean;
+  isGroup?: boolean;
 }
 
 export class EuiFormControlLayoutIcons extends Component<EuiFormControlLayoutIconsProps> {
@@ -60,6 +61,7 @@ export class EuiFormControlLayoutIcons extends Component<EuiFormControlLayoutIco
       iconsPosition = 'absolute',
       compressed,
       isDisabled,
+      isGroup = false,
     } = this.props;
 
     const customIcon = this.renderCustomIcon();
@@ -79,8 +81,14 @@ export class EuiFormControlLayoutIcons extends Component<EuiFormControlLayoutIco
               ? [
                   styles.position.absolute.absolute,
                   compressed
-                    ? styles.position.absolute.compressed[side]
-                    : styles.position.absolute.uncompressed[side],
+                    ? [
+                        styles.position.absolute.compressed.paddingTop,
+                        styles.position.absolute.compressed[side],
+                      ]
+                    : [
+                        styles.position.absolute.uncompressed.paddingTop,
+                        styles.position.absolute.uncompressed[side],
+                      ],
                 ]
               : [
                   styles.position.static.static,
@@ -89,6 +97,10 @@ export class EuiFormControlLayoutIcons extends Component<EuiFormControlLayoutIco
                     : styles.position.static.uncompressed,
                 ]),
             isDisabled && styles.disabled,
+            isGroup &&
+              (compressed
+                ? styles.inGroup.compressed
+                : styles.inGroup.uncompressed),
           ];
           return (
             <div css={cssStyles} className="euiFormControlLayoutIcons">
