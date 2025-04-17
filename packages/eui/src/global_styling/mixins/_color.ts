@@ -23,8 +23,10 @@ export const BACKGROUND_COLORS = [
   'accent',
   'accentSecondary',
   'primary',
+  'neutral',
   'success',
   'warning',
+  'risk',
   'danger',
 ] as const;
 

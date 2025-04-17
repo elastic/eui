@@ -9,10 +9,12 @@
 export const COLORS = [
   'default',
   'primary',
+  'neutral',
   'success',
   'accent',
   'accentSecondary',
   'warning',
+  'risk',
   'danger',
   'text',
   'subdued',
