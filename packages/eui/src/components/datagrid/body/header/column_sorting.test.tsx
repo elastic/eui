@@ -56,42 +56,19 @@ describe('useColumnSorting', () => {
     });
 
     describe('when only the current column is being sorted', () => {
-      describe('when the header cell has no actions', () => {
-        it('renders aria-sort but not sortingScreenReaderText', () => {
-          const { ariaSort, sortingScreenReaderText } = renderHook(() =>
-            useColumnSorting({
-              ...mockSortingArgs,
-              sorting: {
-                onSort,
-                columns: [{ id: columnId, direction: 'asc' }],
-              },
-              hasColumnActions: false,
-            })
-          ).result.current;
+      it('renders aria-sort but not sortingScreenReaderText', () => {
+        const { ariaSort, sortingScreenReaderText } = renderHook(() =>
+          useColumnSorting({
+            ...mockSortingArgs,
+            sorting: {
+              onSort,
+              columns: [{ id: columnId, direction: 'asc' }],
+            },
+          })
+        ).result.current;
 
-          expect(ariaSort).toEqual('ascending');
-          expect(getRender(sortingScreenReaderText)).toHaveTextContent('');
-        });
-      });
-
-      describe('when the header cell has actions', () => {
-        it('renders aria-sort and sortingScreenReaderText', () => {
-          const { ariaSort, sortingScreenReaderText } = renderHook(() =>
-            useColumnSorting({
-              ...mockSortingArgs,
-              sorting: {
-                onSort,
-                columns: [{ id: columnId, direction: 'desc' }],
-              },
-              hasColumnActions: true,
-            })
-          ).result.current;
-
-          expect(ariaSort).toEqual('descending');
-          expect(getRender(sortingScreenReaderText)).toHaveTextContent(
-            'Sorted descending.'
-          );
-        });
+        expect(ariaSort).toEqual('ascending');
+        expect(getRender(sortingScreenReaderText)).toHaveTextContent('');
       });
     });
   });
