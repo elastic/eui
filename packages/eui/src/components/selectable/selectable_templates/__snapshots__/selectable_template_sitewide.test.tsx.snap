@@ -16,7 +16,7 @@ exports[`EuiSelectableTemplateSitewide is rendered 1`] = `
         style="--euiFormControlLeftIconsCount: 1;"
       >
         <div
-          class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-absolute-left"
+          class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-base-absoluteStyles-absolute-left"
         >
           <span
             class="euiFormControlLayoutCustomIcon emotion-euiFormControlLayoutCustomIcon"
@@ -87,7 +87,7 @@ exports[`EuiSelectableTemplateSitewide props popoverFooter is rendered 1`] = `
         style="--euiFormControlLeftIconsCount: 1;"
       >
         <div
-          class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-absolute-left"
+          class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-base-absoluteStyles-absolute-left"
         >
           <span
             class="euiFormControlLayoutCustomIcon emotion-euiFormControlLayoutCustomIcon"
@@ -138,7 +138,7 @@ exports[`EuiSelectableTemplateSitewide props popoverProps is rendered 1`] = `
         style="--euiFormControlLeftIconsCount: 1;"
       >
         <div
-          class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-absolute-left"
+          class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-base-absoluteStyles-absolute-left"
         >
           <span
             class="euiFormControlLayoutCustomIcon emotion-euiFormControlLayoutCustomIcon"
@@ -189,7 +189,7 @@ exports[`EuiSelectableTemplateSitewide props popoverTitle is rendered 1`] = `
         style="--euiFormControlLeftIconsCount: 1;"
       >
         <div
-          class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-absolute-left"
+          class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-base-absoluteStyles-absolute-left"
         >
           <span
             class="euiFormControlLayoutCustomIcon emotion-euiFormControlLayoutCustomIcon"

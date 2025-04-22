@@ -363,7 +363,7 @@ exports[`EuiRange props loading should display when showInput="inputWithPopover"
         value="8"
       />
       <div
-        class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-absolute-right"
+        class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-base-absoluteStyles-absolute-right"
       >
         <span
           aria-label="Loading"

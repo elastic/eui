@@ -236,7 +236,7 @@ exports[`EuiDualRange props maxInputProps allows overriding default props 1`] = 
         value="123"
       />
       <div
-        class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-absolute-right"
+        class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-base-absoluteStyles-absolute-right"
       >
         <span
           color="danger"
@@ -366,7 +366,7 @@ exports[`EuiDualRange props minInputProps allows overriding default props 1`] = 
         value="123"
       />
       <div
-        class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-absolute-right"
+        class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-base-absoluteStyles-absolute-right"
       >
         <span
           color="danger"

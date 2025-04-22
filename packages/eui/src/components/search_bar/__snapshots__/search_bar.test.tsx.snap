@@ -15,7 +15,7 @@ exports[`SearchBar render - box 1`] = `
         style="--euiFormControlLeftIconsCount: 1;"
       >
         <div
-          class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-absolute-left"
+          class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-base-absoluteStyles-absolute-left"
         >
           <span
             class="euiFormControlLayoutCustomIcon emotion-euiFormControlLayoutCustomIcon"
@@ -56,7 +56,7 @@ exports[`SearchBar render - no config, no query 1`] = `
         style="--euiFormControlLeftIconsCount: 1;"
       >
         <div
-          class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-absolute-left"
+          class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-base-absoluteStyles-absolute-left"
         >
           <span
             class="euiFormControlLayoutCustomIcon emotion-euiFormControlLayoutCustomIcon"
@@ -96,7 +96,7 @@ exports[`SearchBar render - provided query, filters 1`] = `
         style="--euiFormControlLeftIconsCount: 1; --euiFormControlRightIconsCount: 1;"
       >
         <div
-          class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-absolute-left"
+          class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-base-absoluteStyles-absolute-left"
         >
           <span
             class="euiFormControlLayoutCustomIcon emotion-euiFormControlLayoutCustomIcon"
@@ -116,7 +116,7 @@ exports[`SearchBar render - provided query, filters 1`] = `
           value="this is a query"
         />
         <div
-          class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-absolute-right"
+          class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-base-absoluteStyles-absolute-right"
         >
           <button
             aria-label="Clear search input"
@@ -208,7 +208,7 @@ exports[`SearchBar render - tools 1`] = `
         style="--euiFormControlLeftIconsCount: 1;"
       >
         <div
-          class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-absolute-left"
+          class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-base-absoluteStyles-absolute-left"
         >
           <span
             class="euiFormControlLayoutCustomIcon emotion-euiFormControlLayoutCustomIcon"

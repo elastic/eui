@@ -396,7 +396,7 @@ exports[`EuiInlineEditForm edit mode isInvalid 1`] = `
                 value="Hello World!"
               />
               <div
-                class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-absolute-right"
+                class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-base-absoluteStyles-absolute-right"
               >
                 <span
                   color="danger"
@@ -492,7 +492,7 @@ exports[`EuiInlineEditForm edit mode isLoading 1`] = `
                 value="Hello World!"
               />
               <div
-                class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-absolute-right"
+                class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-base-absoluteStyles-absolute-right"
               >
                 <span
                   aria-label="Loading"

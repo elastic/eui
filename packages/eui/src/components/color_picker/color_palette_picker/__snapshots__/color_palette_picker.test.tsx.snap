@@ -23,7 +23,7 @@ exports[`EuiColorPalettePicker is rendered 1`] = `
         type="button"
       />
       <div
-        class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-absolute-right"
+        class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-base-absoluteStyles-absolute-right"
       >
         <span
           class="euiFormControlLayoutCustomIcon emotion-euiFormControlLayoutCustomIcon"
@@ -65,7 +65,7 @@ exports[`EuiColorPalettePicker is rendered with a selected custom text 1`] = `
         Plain text as a custom option
       </button>
       <div
-        class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-absolute-right"
+        class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-base-absoluteStyles-absolute-right"
       >
         <span
           class="euiFormControlLayoutCustomIcon emotion-euiFormControlLayoutCustomIcon"
@@ -135,7 +135,7 @@ exports[`EuiColorPalettePicker is rendered with a selected fixed palette 1`] = `
         </span>
       </button>
       <div
-        class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-absolute-right"
+        class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-base-absoluteStyles-absolute-right"
       >
         <span
           class="euiFormControlLayoutCustomIcon emotion-euiFormControlLayoutCustomIcon"
@@ -185,7 +185,7 @@ exports[`EuiColorPalettePicker is rendered with a selected gradient palette 1`] 
         />
       </button>
       <div
-        class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-absolute-right"
+        class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-base-absoluteStyles-absolute-right"
       >
         <span
           class="euiFormControlLayoutCustomIcon emotion-euiFormControlLayoutCustomIcon"
@@ -235,7 +235,7 @@ exports[`EuiColorPalettePicker is rendered with a selected gradient palette with
         />
       </button>
       <div
-        class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-absolute-right"
+        class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-base-absoluteStyles-absolute-right"
       >
         <span
           class="euiFormControlLayoutCustomIcon emotion-euiFormControlLayoutCustomIcon"
@@ -277,7 +277,7 @@ exports[`EuiColorPalettePicker is rendered with the prop selectionDisplay set as
         Palette 1
       </button>
       <div
-        class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-absolute-right"
+        class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-base-absoluteStyles-absolute-right"
       >
         <span
           class="euiFormControlLayoutCustomIcon emotion-euiFormControlLayoutCustomIcon"
@@ -348,7 +348,7 @@ exports[`EuiColorPalettePicker more props are propagated to each option 1`] = `
             </span>
           </button>
           <div
-            class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-absolute-right"
+            class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-base-absoluteStyles-absolute-right"
           >
             <span
               class="euiFormControlLayoutCustomIcon emotion-euiFormControlLayoutCustomIcon"

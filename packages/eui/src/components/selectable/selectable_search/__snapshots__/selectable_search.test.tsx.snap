@@ -9,7 +9,7 @@ exports[`EuiSelectableSearch is rendered 1`] = `
     style="--euiFormControlLeftIconsCount: 1;"
   >
     <div
-      class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-absolute-left"
+      class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-base-absoluteStyles-absolute-left"
     >
       <span
         class="euiFormControlLayoutCustomIcon emotion-euiFormControlLayoutCustomIcon"
@@ -43,7 +43,7 @@ exports[`EuiSelectableSearch renders aria props if a listId is present 1`] = `
     style="--euiFormControlLeftIconsCount: 1;"
   >
     <div
-      class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-absolute-left"
+      class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-base-absoluteStyles-absolute-left"
     >
       <span
         class="euiFormControlLayoutCustomIcon emotion-euiFormControlLayoutCustomIcon"
@@ -82,7 +82,7 @@ exports[`EuiSelectableSearch renders placeholder, value, name, and other remaini
     style="--euiFormControlLeftIconsCount: 1; --euiFormControlRightIconsCount: 1;"
   >
     <div
-      class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-absolute-left"
+      class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-base-absoluteStyles-absolute-left"
     >
       <span
         class="euiFormControlLayoutCustomIcon emotion-euiFormControlLayoutCustomIcon"
@@ -107,7 +107,7 @@ exports[`EuiSelectableSearch renders placeholder, value, name, and other remaini
       value="typed"
     />
     <div
-      class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-absolute-right"
+      class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-base-absoluteStyles-absolute-right"
     >
       <button
         aria-label="Clear search input"

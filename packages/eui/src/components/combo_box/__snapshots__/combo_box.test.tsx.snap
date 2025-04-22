@@ -37,7 +37,7 @@ exports[`EuiComboBox renders 1`] = `
           />
         </div>
         <div
-          class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-absolute-right"
+          class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-base-absoluteStyles-absolute-right"
         >
           <button
             aria-label="Open list of options"
@@ -104,7 +104,7 @@ exports[`EuiComboBox renders the options list dropdown 1`] = `
               </span>
             </div>
             <div
-              class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-absolute-right"
+              class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-base-absoluteStyles-absolute-right"
             >
               <button
                 aria-label="Close list of options"

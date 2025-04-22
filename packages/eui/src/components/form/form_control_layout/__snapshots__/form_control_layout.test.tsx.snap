@@ -23,7 +23,7 @@ exports[`EuiFormControlLayout props clear onClick is rendered 1`] = `
     style="--euiFormControlRightIconsCount: 1;"
   >
     <div
-      class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-absolute-right"
+      class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-base-absoluteStyles-absolute-right"
     >
       <button
         aria-label="Clear input"
@@ -50,7 +50,7 @@ exports[`EuiFormControlLayout props compressed renders small-sized icon, clear b
     style="--euiFormControlLeftIconsCount: 1; --euiFormControlRightIconsCount: 2;"
   >
     <div
-      class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-compressed-absolute-left"
+      class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-base-absoluteStyles-absolute-left"
     >
       <span
         class="euiFormControlLayoutCustomIcon emotion-euiFormControlLayoutCustomIcon"
@@ -63,7 +63,7 @@ exports[`EuiFormControlLayout props compressed renders small-sized icon, clear b
       </span>
     </div>
     <div
-      class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-compressed-absolute-right"
+      class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-base-absoluteStyles-absolute-right"
     >
       <button
         aria-label="Clear input"
@@ -104,7 +104,7 @@ exports[`EuiFormControlLayout props icon is rendered as a string 1`] = `
     style="--euiFormControlLeftIconsCount: 1;"
   >
     <div
-      class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-absolute-left"
+      class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-base-absoluteStyles-absolute-left"
     >
       <span
         class="euiFormControlLayoutCustomIcon emotion-euiFormControlLayoutCustomIcon"
@@ -129,7 +129,7 @@ exports[`EuiFormControlLayout props icon is rendered as an object 1`] = `
     style="--euiFormControlLeftIconsCount: 1;"
   >
     <div
-      class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-absolute-left"
+      class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-base-absoluteStyles-absolute-left"
     >
       <span
         class="euiFormControlLayoutCustomIcon customClass emotion-euiFormControlLayoutCustomIcon"
@@ -155,7 +155,7 @@ exports[`EuiFormControlLayout props icon side left is rendered 1`] = `
     style="--euiFormControlLeftIconsCount: 1;"
   >
     <div
-      class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-absolute-left"
+      class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-base-absoluteStyles-absolute-left"
     >
       <span
         class="euiFormControlLayoutCustomIcon emotion-euiFormControlLayoutCustomIcon"
@@ -180,7 +180,7 @@ exports[`EuiFormControlLayout props icon side right is rendered 1`] = `
     style="--euiFormControlRightIconsCount: 1;"
   >
     <div
-      class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-absolute-right"
+      class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-base-absoluteStyles-absolute-right"
     >
       <span
         class="euiFormControlLayoutCustomIcon emotion-euiFormControlLayoutCustomIcon"
@@ -206,7 +206,7 @@ exports[`EuiFormControlLayout props iconsPosition 1`] = `
     class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper"
   >
     <div
-      class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-static"
+      class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-base-staticStyles-static"
     >
       <span
         class="euiFormControlLayoutCustomIcon emotion-euiFormControlLayoutCustomIcon"
@@ -219,7 +219,7 @@ exports[`EuiFormControlLayout props iconsPosition 1`] = `
       </span>
     </div>
     <div
-      class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-static"
+      class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-base-staticStyles-static"
     >
       <span
         aria-label="Loading"
@@ -244,7 +244,7 @@ exports[`EuiFormControlLayout props isDropdown is rendered 1`] = `
     style="--euiFormControlRightIconsCount: 1;"
   >
     <div
-      class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-absolute-right"
+      class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-base-absoluteStyles-absolute-right"
     >
       <span
         class="euiFormControlLayoutCustomIcon emotion-euiFormControlLayoutCustomIcon"
@@ -269,7 +269,7 @@ exports[`EuiFormControlLayout props isInvalid is rendered 1`] = `
     style="--euiFormControlRightIconsCount: 1;"
   >
     <div
-      class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-absolute-right"
+      class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-base-absoluteStyles-absolute-right"
     >
       <span
         color="danger"
@@ -289,7 +289,7 @@ exports[`EuiFormControlLayout props isLoading is rendered 1`] = `
     style="--euiFormControlRightIconsCount: 1;"
   >
     <div
-      class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-absolute-right"
+      class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-base-absoluteStyles-absolute-right"
     >
       <span
         aria-label="Loading"

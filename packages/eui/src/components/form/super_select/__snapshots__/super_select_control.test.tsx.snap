@@ -21,7 +21,7 @@ exports[`EuiSuperSelectControl is rendered 1`] = `
         type="button"
       />
       <div
-        class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-absolute-right"
+        class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-base-absoluteStyles-absolute-right"
       >
         <span
           class="euiFormControlLayoutCustomIcon emotion-euiFormControlLayoutCustomIcon"
@@ -57,7 +57,7 @@ exports[`EuiSuperSelectControl props compressed is rendered 1`] = `
         type="button"
       />
       <div
-        class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-compressed-absolute-right"
+        class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-base-absoluteStyles-absolute-right"
       >
         <span
           class="euiFormControlLayoutCustomIcon emotion-euiFormControlLayoutCustomIcon"
@@ -93,7 +93,7 @@ exports[`EuiSuperSelectControl props disabled options are rendered 1`] = `
         type="button"
       />
       <div
-        class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-absolute-right"
+        class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-base-absoluteStyles-absolute-right"
       >
         <span
           class="euiFormControlLayoutCustomIcon emotion-euiFormControlLayoutCustomIcon"
@@ -129,7 +129,7 @@ exports[`EuiSuperSelectControl props empty value option is rendered 1`] = `
         type="button"
       />
       <div
-        class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-absolute-right"
+        class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-base-absoluteStyles-absolute-right"
       >
         <span
           class="euiFormControlLayoutCustomIcon emotion-euiFormControlLayoutCustomIcon"
@@ -165,7 +165,7 @@ exports[`EuiSuperSelectControl props fullWidth is rendered 1`] = `
         type="button"
       />
       <div
-        class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-absolute-right"
+        class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-base-absoluteStyles-absolute-right"
       >
         <span
           class="euiFormControlLayoutCustomIcon emotion-euiFormControlLayoutCustomIcon"
@@ -201,7 +201,7 @@ exports[`EuiSuperSelectControl props isInvalid is rendered 1`] = `
         type="button"
       />
       <div
-        class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-absolute-right"
+        class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-base-absoluteStyles-absolute-right"
       >
         <span
           color="danger"
@@ -241,7 +241,7 @@ exports[`EuiSuperSelectControl props isLoading is rendered 1`] = `
         type="button"
       />
       <div
-        class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-absolute-right"
+        class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-base-absoluteStyles-absolute-right"
       >
         <span
           aria-label="Loading"
@@ -288,7 +288,7 @@ exports[`EuiSuperSelectControl props placeholder is rendered 1`] = `
         </span>
       </button>
       <div
-        class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-absolute-right"
+        class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-base-absoluteStyles-absolute-right"
       >
         <span
           class="euiFormControlLayoutCustomIcon emotion-euiFormControlLayoutCustomIcon"
@@ -326,7 +326,7 @@ exports[`EuiSuperSelectControl props value option is rendered 1`] = `
         Option #1
       </button>
       <div
-        class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-absolute-right"
+        class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-base-absoluteStyles-absolute-right"
       >
         <span
           class="euiFormControlLayoutCustomIcon emotion-euiFormControlLayoutCustomIcon"

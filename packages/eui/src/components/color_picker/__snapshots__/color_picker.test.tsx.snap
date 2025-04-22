@@ -12,7 +12,7 @@ exports[`EuiColorPicker color empty string 1`] = `
       style="--euiFormControlLeftIconsCount: 1; --euiFormControlRightIconsCount: 1;"
     >
       <div
-        class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-absolute-left"
+        class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-base-absoluteStyles-absolute-left"
       >
         <span
           class="euiFormControlLayoutCustomIcon emotion-euiFormControlLayoutCustomIcon"
@@ -35,7 +35,7 @@ exports[`EuiColorPicker color empty string 1`] = `
         value=""
       />
       <div
-        class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-absolute-right"
+        class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-base-absoluteStyles-absolute-right"
       >
         <span
           class="euiFormControlLayoutCustomIcon emotion-euiFormControlLayoutCustomIcon"
@@ -64,7 +64,7 @@ exports[`EuiColorPicker color null 1`] = `
       style="--euiFormControlLeftIconsCount: 1; --euiFormControlRightIconsCount: 1;"
     >
       <div
-        class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-absolute-left"
+        class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-base-absoluteStyles-absolute-left"
       >
         <span
           class="euiFormControlLayoutCustomIcon emotion-euiFormControlLayoutCustomIcon"
@@ -87,7 +87,7 @@ exports[`EuiColorPicker color null 1`] = `
         value=""
       />
       <div
-        class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-absolute-right"
+        class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-base-absoluteStyles-absolute-right"
       >
         <span
           class="euiFormControlLayoutCustomIcon emotion-euiFormControlLayoutCustomIcon"
@@ -116,7 +116,7 @@ exports[`EuiColorPicker color valid string 1`] = `
       style="--euiFormControlLeftIconsCount: 1; --euiFormControlRightIconsCount: 1;"
     >
       <div
-        class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-absolute-left"
+        class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-base-absoluteStyles-absolute-left"
       >
         <span
           class="euiFormControlLayoutCustomIcon emotion-euiFormControlLayoutCustomIcon-euiColorPicker__swatchInputIcon"
@@ -138,7 +138,7 @@ exports[`EuiColorPicker color valid string 1`] = `
         value="#FFFFFF"
       />
       <div
-        class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-absolute-right"
+        class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-base-absoluteStyles-absolute-right"
       >
         <span
           class="euiFormControlLayoutCustomIcon emotion-euiFormControlLayoutCustomIcon"
@@ -167,7 +167,7 @@ exports[`EuiColorPicker compressed 1`] = `
       style="--euiFormControlLeftIconsCount: 1; --euiFormControlRightIconsCount: 1;"
     >
       <div
-        class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-compressed-absolute-left"
+        class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-base-absoluteStyles-absolute-left"
       >
         <span
           class="euiFormControlLayoutCustomIcon emotion-euiFormControlLayoutCustomIcon-euiColorPicker__swatchInputIcon"
@@ -189,7 +189,7 @@ exports[`EuiColorPicker compressed 1`] = `
         value="#FFEEDD"
       />
       <div
-        class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-compressed-absolute-right"
+        class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-base-absoluteStyles-absolute-right"
       >
         <span
           class="euiFormControlLayoutCustomIcon emotion-euiFormControlLayoutCustomIcon"
@@ -218,7 +218,7 @@ exports[`EuiColorPicker disabled 1`] = `
       style="--euiFormControlLeftIconsCount: 1;"
     >
       <div
-        class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-absolute-left-disabled"
+        class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-disabled-base-absoluteStyles-absolute-left"
       >
         <span
           class="euiFormControlLayoutCustomIcon emotion-euiFormControlLayoutCustomIcon-euiColorPicker__swatchInputIcon"
@@ -257,7 +257,7 @@ exports[`EuiColorPicker fullWidth 1`] = `
       style="--euiFormControlLeftIconsCount: 1; --euiFormControlRightIconsCount: 1;"
     >
       <div
-        class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-absolute-left"
+        class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-base-absoluteStyles-absolute-left"
       >
         <span
           class="euiFormControlLayoutCustomIcon emotion-euiFormControlLayoutCustomIcon-euiColorPicker__swatchInputIcon"
@@ -279,7 +279,7 @@ exports[`EuiColorPicker fullWidth 1`] = `
         value="#FFEEDD"
       />
       <div
-        class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-absolute-right"
+        class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-base-absoluteStyles-absolute-right"
       >
         <span
           class="euiFormControlLayoutCustomIcon emotion-euiFormControlLayoutCustomIcon"
@@ -498,7 +498,7 @@ exports[`EuiColorPicker isClearable 1`] = `
       style="--euiFormControlLeftIconsCount: 1; --euiFormControlRightIconsCount: 2;"
     >
       <div
-        class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-absolute-left"
+        class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-base-absoluteStyles-absolute-left"
       >
         <span
           class="euiFormControlLayoutCustomIcon emotion-euiFormControlLayoutCustomIcon-euiColorPicker__swatchInputIcon"
@@ -520,7 +520,7 @@ exports[`EuiColorPicker isClearable 1`] = `
         value="#FFEEDD"
       />
       <div
-        class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-absolute-right"
+        class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-base-absoluteStyles-absolute-right"
       >
         <button
           aria-label="Clear input"
@@ -559,7 +559,7 @@ exports[`EuiColorPicker placeholder 1`] = `
       style="--euiFormControlLeftIconsCount: 1; --euiFormControlRightIconsCount: 1;"
     >
       <div
-        class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-absolute-left"
+        class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-base-absoluteStyles-absolute-left"
       >
         <span
           class="euiFormControlLayoutCustomIcon emotion-euiFormControlLayoutCustomIcon"
@@ -582,7 +582,7 @@ exports[`EuiColorPicker placeholder 1`] = `
         value=""
       />
       <div
-        class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-absolute-right"
+        class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-base-absoluteStyles-absolute-right"
       >
         <span
           class="euiFormControlLayoutCustomIcon emotion-euiFormControlLayoutCustomIcon"
@@ -620,7 +620,7 @@ exports[`EuiColorPicker prepend and append 1`] = `
       style="--euiFormControlLeftIconsCount: 1; --euiFormControlRightIconsCount: 1;"
     >
       <div
-        class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-absolute-left"
+        class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-base-absoluteStyles-absolute-left-inGroup"
       >
         <span
           class="euiFormControlLayoutCustomIcon emotion-euiFormControlLayoutCustomIcon-euiColorPicker__swatchInputIcon"
@@ -642,7 +642,7 @@ exports[`EuiColorPicker prepend and append 1`] = `
         value="#FFEEDD"
       />
       <div
-        class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-absolute-right"
+        class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-base-absoluteStyles-absolute-right"
       >
         <span
           class="euiFormControlLayoutCustomIcon emotion-euiFormControlLayoutCustomIcon"
@@ -680,7 +680,7 @@ exports[`EuiColorPicker readOnly 1`] = `
       style="--euiFormControlLeftIconsCount: 1;"
     >
       <div
-        class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-absolute-left"
+        class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-base-absoluteStyles-absolute-left"
       >
         <span
           class="euiFormControlLayoutCustomIcon emotion-euiFormControlLayoutCustomIcon-euiColorPicker__swatchInputIcon"
@@ -719,7 +719,7 @@ exports[`EuiColorPicker renders 1`] = `
       style="--euiFormControlLeftIconsCount: 1; --euiFormControlRightIconsCount: 1;"
     >
       <div
-        class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-absolute-left"
+        class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-base-absoluteStyles-absolute-left"
       >
         <span
           class="euiFormControlLayoutCustomIcon emotion-euiFormControlLayoutCustomIcon-euiColorPicker__swatchInputIcon"
@@ -741,7 +741,7 @@ exports[`EuiColorPicker renders 1`] = `
         value="#FFEEDD"
       />
       <div
-        class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-absolute-right"
+        class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-base-absoluteStyles-absolute-right"
       >
         <span
           class="euiFormControlLayoutCustomIcon emotion-euiFormControlLayoutCustomIcon"
@@ -770,7 +770,7 @@ exports[`EuiColorPicker showAlpha 1`] = `
       style="--euiFormControlLeftIconsCount: 1; --euiFormControlRightIconsCount: 1;"
     >
       <div
-        class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-absolute-left"
+        class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-base-absoluteStyles-absolute-left"
       >
         <span
           class="euiFormControlLayoutCustomIcon emotion-euiFormControlLayoutCustomIcon-euiColorPicker__swatchInputIcon"
@@ -792,7 +792,7 @@ exports[`EuiColorPicker showAlpha 1`] = `
         value="#FFEEDD"
       />
       <div
-        class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-absolute-right"
+        class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-base-absoluteStyles-absolute-right"
       >
         <span
           class="euiFormControlLayoutCustomIcon emotion-euiFormControlLayoutCustomIcon"

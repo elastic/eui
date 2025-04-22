@@ -9,7 +9,7 @@ exports[`EuiSearchBox render - custom placeholder and incremental 1`] = `
     style="--euiFormControlLeftIconsCount: 1;"
   >
     <div
-      class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-absolute-left"
+      class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-base-absoluteStyles-absolute-left"
     >
       <span
         class="euiFormControlLayoutCustomIcon emotion-euiFormControlLayoutCustomIcon"
@@ -42,7 +42,7 @@ exports[`EuiSearchBox render - no config 1`] = `
     style="--euiFormControlLeftIconsCount: 1;"
   >
     <div
-      class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-absolute-left"
+      class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-base-absoluteStyles-absolute-left"
     >
       <span
         class="euiFormControlLayoutCustomIcon emotion-euiFormControlLayoutCustomIcon"

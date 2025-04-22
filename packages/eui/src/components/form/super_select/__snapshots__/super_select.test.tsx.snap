@@ -21,7 +21,7 @@ exports[`EuiSuperSelect props compressed 1`] = `
         type="button"
       />
       <div
-        class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-compressed-absolute-right"
+        class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-base-absoluteStyles-absolute-right"
       >
         <span
           class="euiFormControlLayoutCustomIcon emotion-euiFormControlLayoutCustomIcon"
@@ -59,7 +59,7 @@ exports[`EuiSuperSelect props fullWidth 1`] = `
         type="button"
       />
       <div
-        class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-absolute-right"
+        class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-base-absoluteStyles-absolute-right"
       >
         <span
           class="euiFormControlLayoutCustomIcon emotion-euiFormControlLayoutCustomIcon"
@@ -106,7 +106,7 @@ exports[`EuiSuperSelect props prepend and append 1`] = `
         type="button"
       />
       <div
-        class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-absolute-right"
+        class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-base-absoluteStyles-absolute-right"
       >
         <span
           class="euiFormControlLayoutCustomIcon emotion-euiFormControlLayoutCustomIcon"
@@ -157,7 +157,7 @@ exports[`EuiSuperSelect renders 1`] = `
             type="button"
           />
           <div
-            class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-absolute-right"
+            class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-base-absoluteStyles-absolute-right"
           >
             <span
               class="euiFormControlLayoutCustomIcon emotion-euiFormControlLayoutCustomIcon"

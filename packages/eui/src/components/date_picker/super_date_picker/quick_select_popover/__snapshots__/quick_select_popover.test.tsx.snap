@@ -92,7 +92,7 @@ exports[`EuiQuickSelectPanels customQuickSelectPanels should render custom panel
                 </option>
               </select>
               <div
-                class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-compressed-absolute-right"
+                class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-base-absoluteStyles-absolute-right"
               >
                 <span
                   class="euiFormControlLayoutCustomIcon emotion-euiFormControlLayoutCustomIcon"
@@ -179,7 +179,7 @@ exports[`EuiQuickSelectPanels customQuickSelectPanels should render custom panel
                 </option>
               </select>
               <div
-                class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-compressed-absolute-right"
+                class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-base-absoluteStyles-absolute-right"
               >
                 <span
                   class="euiFormControlLayoutCustomIcon emotion-euiFormControlLayoutCustomIcon"

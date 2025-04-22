@@ -357,7 +357,7 @@ exports[`EuiSelectable search value supports inheriting initialSearchValue from 
       style="--euiFormControlLeftIconsCount: 1; --euiFormControlRightIconsCount: 1;"
     >
       <div
-        class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-absolute-left"
+        class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-base-absoluteStyles-absolute-left"
       >
         <span
           class="euiFormControlLayoutCustomIcon emotion-euiFormControlLayoutCustomIcon"
@@ -382,7 +382,7 @@ exports[`EuiSelectable search value supports inheriting initialSearchValue from 
         value="default value"
       />
       <div
-        class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-absolute-right"
+        class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-base-absoluteStyles-absolute-right"
       >
         <button
           aria-label="Clear search input"
