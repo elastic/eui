@@ -7193,8 +7193,6 @@ __metadata:
     stylelint-config-standard: "npm:^33.0.0"
     stylelint-config-standard-scss: "npm:^9.0.0"
     typescript: "npm:^5.6.2"
-  peerDependencies:
-    "@elastic/eui-theme-common": 0.0.9
   languageName: unknown
   linkType: soft
 

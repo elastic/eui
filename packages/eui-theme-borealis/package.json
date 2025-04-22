@@ -24,6 +24,7 @@
     "directory": "packages/eui-theme-borealis"
   },
   "dependency": {
+    "@elastic/eui-theme-common": "workspace:*",
     "chroma-js": "^2.4.2"
   },
   "devDependencies": {
@@ -52,9 +53,6 @@
     "stylelint-config-standard": "^33.0.0",
     "stylelint-config-standard-scss": "^9.0.0",
     "typescript": "^5.6.2"
-  },
-  "peerDependencies": {
-    "@elastic/eui-theme-common": "0.0.9"
   },
   "main": "lib/cjs/index.js",
   "exports": {
