@@ -1,3 +1,21 @@
+## [`v101.4.0`](https://github.com/elastic/eui/releases/v101.4.0)
+
+- Spread `labelProps` to the `label` element in `EuiCheckableCard` ([#8586](https://github.com/elastic/eui/pull/8586))
+- Add `controls`, `flask`, `comment`, and `readOnly` glyphs to `EuiIcon` ([#8580](https://github.com/elastic/eui/pull/8580))
+- Refactored `EuiExpression`, `EuiFacetGroup`, `EuiFacetButton`, `EuiFilterGroup`, `EuiHeader`, `EuiImage` and `EuiListGroup` to memoize their internal Emotion styles ([#8565](https://github.com/elastic/eui/pull/8565))
+- Updated global `border.radius.medium` token value for default `Borealis` theme to `4px` ([#8563](https://github.com/elastic/eui/pull/8563))
+- Updated `EuiProvider` to build themes including `highContrastMode` ([#8558](https://github.com/elastic/eui/pull/8558))
+
+**Accessibility**
+
+- Removed the `aria-label` attribute from the `ul` element in `EuiPagination` to avoid duplicate screen reader output ([#8597](https://github.com/elastic/eui/pull/8597))
+- Set a more specific `aria-current="page"` on list items in `EuiPagination` ([#8597](https://github.com/elastic/eui/pull/8597))
+- Added `aria-modal` to `EuiFlyout` with `type="overlay"` ([#8591](https://github.com/elastic/eui/pull/8591))
+
+**Dependency updates**
+
+- Updated `@elastic/prismjs-esql` to v1.1.0 ([#8587](https://github.com/elastic/eui/pull/8587))
+
 ## [`v101.3.0`](https://github.com/elastic/eui/releases/v101.3.0)
 
 - Updated 78 existing and added two new glyphs (`code` and `checkCircle`) for `EuiIcon` ([#8530](https://github.com/elastic/eui/pull/8530))
