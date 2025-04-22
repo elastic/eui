@@ -52,9 +52,9 @@ export const useColumnSorting = ({
    * @see https://www.w3.org/WAI/ARIA/apg/example-index/table/sortable-table.html
    * @see https://github.com/w3c/aria/issues/283 for potential future multi-column usage
    */
-  const useAriaSortOnly = isColumnSorted && hasOnlyOneSort;
+  const hasAriaSortOnly = isColumnSorted && hasOnlyOneSort;
 
-  const ariaSort: AriaAttributes['aria-sort'] = useAriaSortOnly
+  const ariaSort: AriaAttributes['aria-sort'] = hasAriaSortOnly
     ? sorting.columns[0].direction === 'asc'
       ? 'ascending'
       : 'descending'
@@ -72,7 +72,7 @@ export const useColumnSorting = ({
    * Screen-reader-only sorting status, an alternative to `aria-sort` for multi-column sorting
    */
   const sortingScreenReaderText = useMemo(() => {
-    if (!isColumnSorted || useAriaSortOnly) return null;
+    if (!isColumnSorted || hasAriaSortOnly) return null;
     return (
       <p id={sortingAriaId} hidden>
         {sorting?.columns?.map(({ id: columnId, direction }, index) => {
@@ -141,7 +141,7 @@ export const useColumnSorting = ({
     );
   }, [
     isColumnSorted,
-    useAriaSortOnly,
+    hasAriaSortOnly,
     sortingAriaId,
     sorting?.columns,
     hasOnlyOneSort,
