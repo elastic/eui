@@ -35,7 +35,7 @@
     "classnames": "^2.5.1",
     "clsx": "^2.0.0",
     "cross-env": "^7.0.3",
-    "docusaurus-lunr-search": "^3.4.0",
+    "docusaurus-lunr-search": "^3.6.1",
     "hast-util-is-element": "1.1.0",
     "lodash": "^4.17.21",
     "moment": "^2.30.1",
