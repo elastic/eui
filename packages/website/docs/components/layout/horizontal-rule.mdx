@@ -24,21 +24,26 @@ The spacing added before and after **EuiHorizontalRule** can be adjusted using t
 
 ```tsx interactive
 import React from 'react';
-import { EuiHorizontalRule, EuiCode } from '@elastic/eui';
+import { css } from '@emotion/react';
+import { EuiHorizontalRule, EuiCode, useEuiTheme } from '@elastic/eui';
 
-const ColorMarginContainer = ({ children }) => (
-  <div css={({ euiTheme }) => ({
-    display: 'flex',
-    marginBottom: euiTheme.size.base,
-    backgroundColor: 'var(--eui-background-color-primary)',
-    /* override docusaurus' global for <hr> */
-    '--ifm-hr-margin-vertical': 0,
-    /* ensure enough contrast with background */
-    '.euiHorizontalRule': {
-      backgroundColor: euiTheme.colors.text,
-    }
-  })}>{children}</div>
-);
+const ColorMarginContainer = ({ children }) => {
+  const { euiTheme } = useEuiTheme();
+
+  return (
+    <div css={css`
+      display: flex;
+      margin-block-end: ${euiTheme.size.base};
+      background-color: var(--eui-background-color-primary);
+      /* override docusaurus' global for <hr> */
+      --ifm-hr-margin-vertical: 0;
+      /* ensure enough contrast with background */
+      .euiHorizontalRule {
+        background-color: ${euiTheme.colors.text};
+      }
+    `}>{children}</div>
+  )
+};
 
 export default () => (
     <>

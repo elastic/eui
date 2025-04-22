@@ -1,6 +1,6 @@
 {
   "name": "@elastic/eui-theme-common",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "EUI theme common",
   "license": "SEE LICENSE IN LICENSE.txt",
   "scripts": {
