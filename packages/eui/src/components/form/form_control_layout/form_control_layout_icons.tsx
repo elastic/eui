@@ -76,32 +76,24 @@ export class EuiFormControlLayoutIcons extends Component<EuiFormControlLayoutIco
           const styles = stylesMemoizer(euiFormControlLayoutIconsStyles);
           const cssStyles = [
             styles.euiFormControlLayoutIcons,
-            compressed ? styles.compressed : styles.uncompressed,
-            ...(iconsPosition === 'absolute'
+            isDisabled && styles.disabled,
+            compressed
               ? [
-                  styles.position.absolute.absolute,
-                  compressed
-                    ? [
-                        styles.position.absolute.compressed.paddingTop,
-                        styles.position.absolute.compressed[side],
-                      ]
-                    : [
-                        styles.position.absolute.uncompressed.paddingTop,
-                        styles.position.absolute.uncompressed[side],
-                      ],
+                  styles.compressed.base,
+                  ...(iconsPosition === 'absolute'
+                    ? [styles.compressed.absolute, styles.compressed[side]]
+                    : [styles.compressed.static]),
+                  isGroup && styles.compressed.inGroup,
                 ]
               : [
-                  styles.position.static.static,
-                  compressed
-                    ? styles.position.static.compressed
-                    : styles.position.static.uncompressed,
-                ]),
-            isDisabled && styles.disabled,
-            isGroup &&
-              (compressed
-                ? styles.inGroup.compressed
-                : styles.inGroup.uncompressed),
+                  styles.uncompressed.base,
+                  ...(iconsPosition === 'absolute'
+                    ? [styles.uncompressed.absolute, styles.uncompressed[side]]
+                    : [styles.uncompressed.static]),
+                  isGroup && styles.uncompressed.inGroup,
+                ],
           ];
+
           return (
             <div css={cssStyles} className="euiFormControlLayoutIcons">
               {clearButton}
