@@ -29,7 +29,7 @@ const DEFAULT_RESTRICTED_IMPORT_OPTIONS: Option[] = [
   {
     patterns: ['@elastic/eui/dist/eui_theme_*\\.json'],
     message:
-      'For client-side, please use `useEuiTheme` instead. Direct JSON token imports will be removed as per the EUI Deprecation schedule: https://github.com/elastic/eui/issues/1469.',
+      'For client-side, please use `useEuiTheme` instead.',
   },
 ];
 
