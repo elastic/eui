@@ -1,8 +1,0 @@
-## 🏠/.buildkite/pipelines/pipeline_pull_request_deploy_docs.yml
-
-steps:
-  - command: .buildkite/scripts/pipelines/pipeline_deploy_docs.sh
-    label: ":newspaper: Build and deploy EUI documentation website"
-    agents:
-      provider: "gcp"
-    if: build.branch != "main" # We don't want to deploy docs on main, only on manual release
