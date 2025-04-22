@@ -80,7 +80,6 @@ export const EuiDataGridHeaderCell: FunctionComponent<EuiDataGridHeaderCellProps
         useColumnSorting({
           sorting,
           id,
-          hasColumnActions,
         });
 
       const columnResizer = useMemo(() => {
