@@ -15,8 +15,13 @@ import { euiFormVariables } from '../form.styles';
 export const euiFormControlLayoutIconsStyles = (
   euiThemeContext: UseEuiTheme
 ) => {
-  const { controlPadding, controlCompressedPadding, controlDisabledColor } =
-    euiFormVariables(euiThemeContext);
+  const {
+    controlHeight,
+    controlCompressedHeight,
+    controlPadding,
+    controlCompressedPadding,
+    controlDisabledColor,
+  } = euiFormVariables(euiThemeContext);
 
   return {
     euiFormControlLayoutIcons: css`
@@ -26,9 +31,11 @@ export const euiFormControlLayoutIconsStyles = (
     `,
     uncompressed: `
       gap: ${mathWithUnits(controlPadding, (x) => x / 2)};
+      max-block-size: ${controlHeight};
     `,
     compressed: css`
       gap: ${mathWithUnits(controlCompressedPadding, (x) => x / 2)};
+      max-block-size: ${controlCompressedHeight};
     `,
     disabled: css`
       cursor: not-allowed;
