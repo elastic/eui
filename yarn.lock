@@ -7282,7 +7282,7 @@ __metadata:
     clsx: "npm:^2.0.0"
     cross-env: "npm:^7.0.3"
     cspell: "npm:^8.17.5"
-    docusaurus-lunr-search: "npm:^3.4.0"
+    docusaurus-lunr-search: "npm:^3.6.1"
     hast-util-is-element: "npm:1.1.0"
     lodash: "npm:^4.17.21"
     moment: "npm:^2.30.1"
@@ -14600,7 +14600,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"autocomplete.js@npm:^0.37.0":
+"autocomplete.js@npm:^0.37.1":
   version: 0.37.1
   resolution: "autocomplete.js@npm:0.37.1"
   dependencies:
@@ -16735,13 +16735,6 @@ __metadata:
     process-nextick-args: "npm:^1.0.6"
     through2: "npm:^2.0.1"
   checksum: 10c0/0ea667e28d3c171ffa1000eaff57452bbe0e315586ad4c57881ba8b46b8bf93e628861796067bbf3d16d01c4a512ff226d309901814a31f4816695e7c7de3755
-  languageName: node
-  linkType: hard
-
-"clsx@npm:^1.2.1":
-  version: 1.2.1
-  resolution: "clsx@npm:1.2.1"
-  checksum: 10c0/34dead8bee24f5e96f6e7937d711978380647e936a22e76380290e35486afd8634966ce300fc4b74a32f3762c7d4c0303f442c3e259f4ce02374eb0c82834f27
   languageName: node
   linkType: hard
 
@@ -19421,29 +19414,29 @@ __metadata:
   languageName: node
   linkType: hard
 
-"docusaurus-lunr-search@npm:^3.4.0":
-  version: 3.4.0
-  resolution: "docusaurus-lunr-search@npm:3.4.0"
+"docusaurus-lunr-search@npm:^3.6.1":
+  version: 3.6.1
+  resolution: "docusaurus-lunr-search@npm:3.6.1"
   dependencies:
-    autocomplete.js: "npm:^0.37.0"
-    clsx: "npm:^1.2.1"
-    gauge: "npm:^3.0.0"
-    hast-util-select: "npm:^4.0.0"
-    hast-util-to-text: "npm:^2.0.0"
+    autocomplete.js: "npm:^0.37.1"
+    clsx: "npm:^2.1.1"
+    gauge: "npm:^3.0.2"
+    hast-util-select: "npm:^4.0.2"
+    hast-util-to-text: "npm:^2.0.1"
     hogan.js: "npm:^3.0.2"
-    lunr: "npm:^2.3.8"
+    lunr: "npm:^2.3.9"
     lunr-languages: "npm:^1.4.0"
     mark.js: "npm:^8.11.1"
-    minimatch: "npm:^3.0.4"
+    minimatch: "npm:^3.1.2"
     rehype-parse: "npm:^7.0.1"
     to-vfile: "npm:^6.1.0"
-    unified: "npm:^9.0.0"
-    unist-util-is: "npm:^4.0.2"
+    unified: "npm:^9.2.2"
+    unist-util-is: "npm:^4.1.0"
   peerDependencies:
     "@docusaurus/core": ^2.0.0-alpha.60 || ^2.0.0 || ^3.0.0
-    react: ^16.8.4 || ^17 || ^18
-    react-dom: ^16.8.4 || ^17 || ^18
-  checksum: 10c0/81aac7d8aa4a8be2f54c83198978d5a2a9a8a88eb798f54c075fe10860fd0b52b35f5943b5b2e18f24bdb96a97fe386349837905b386477a5d635177e4ed7f68
+    react: ^16.8.4 || ^17 || ^18 || ^19
+    react-dom: ^16.8.4 || ^17 || ^18 || ^19
+  checksum: 10c0/89962e2a8004bac0fa0999cd189c05ee0b34a4268c038f10db62d5ec41de89d9b672375832a21d93776d277c4a14bc022a717dffdc7a85048255969cc0eeb583
   languageName: node
   linkType: hard
 
@@ -22611,7 +22604,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"gauge@npm:^3.0.0":
+"gauge@npm:^3.0.0, gauge@npm:^3.0.2":
   version: 3.0.2
   resolution: "gauge@npm:3.0.2"
   dependencies:
@@ -23833,7 +23826,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"hast-util-select@npm:^4.0.0":
+"hast-util-select@npm:^4.0.2":
   version: 4.0.2
   resolution: "hast-util-select@npm:4.0.2"
   dependencies:
@@ -23955,7 +23948,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"hast-util-to-text@npm:^2.0.0":
+"hast-util-to-text@npm:^2.0.1":
   version: 2.0.1
   resolution: "hast-util-to-text@npm:2.0.1"
   dependencies:
@@ -28003,7 +27996,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lunr@npm:^2.3.8":
+"lunr@npm:^2.3.9":
   version: 2.3.9
   resolution: "lunr@npm:2.3.9"
   checksum: 10c0/77d7dbb4fbd602aac161e2b50887d8eda28c0fa3b799159cee380fbb311f1e614219126ecbbd2c3a9c685f1720a8109b3c1ca85cc893c39b6c9cc6a62a1d8a8b
@@ -40296,7 +40289,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"unified@npm:^9.0.0, unified@npm:^9.2.2":
+"unified@npm:^9.2.2":
   version: 9.2.2
   resolution: "unified@npm:9.2.2"
   dependencies:
@@ -40472,7 +40465,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"unist-util-is@npm:^4.0.2":
+"unist-util-is@npm:^4.1.0":
   version: 4.1.0
   resolution: "unist-util-is@npm:4.1.0"
   checksum: 10c0/21ca3d7bacc88853b880b19cb1b133a056c501617d7f9b8cce969cd8b430ed7e1bc416a3a11b02540d5de6fb86807e169d00596108a459d034cf5faec97c055e
