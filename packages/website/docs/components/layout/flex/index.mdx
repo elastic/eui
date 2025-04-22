@@ -1,0 +1,84 @@
+# Flex
+
+import { createDemo } from '@elastic/eui-docusaurus-theme/components';
+import { FlexPreviewWrapper } from './flex_preview_wrapper';
+import DemoNote from './_flex_preview_note.mdx';
+
+## Use cases
+
+- [EuiFlexGroup](./group.mdx) is useful for single row layouts and for quick alignment of items.
+- [EuiFlexGrid](./grid.mdx) should be used for repeated wrapping rows of same-width items.
+- [EuiFlexItem](./item.mdx) should be used as a direct child of both groups or grids. It can also, depending on the layout, be omitted if its automatic flex or grow behavior is not desired.
+
+## Shared behavior
+
+export const FlexDemo = createDemo({ previewWrapper: FlexPreviewWrapper });
+
+<DemoNote />
+
+### Nesting flex layouts
+
+**EuiFlexGroup** and **EuiFlexGrid** can nest within themselves indefinitely. For example, here we turn off the growth on a **EuiFlexGroup**, then nest a grid inside of it.
+
+:::warning Flex items are also a flexbox
+
+To support nested stretching of items, **EuiFlexItem** also has `display: flex` on it. If your children are not behaving correctly, consider using one of these [flex item workarounds](./item.mdx#flex-items-are-also-flex).
+
+:::
+
+<FlexDemo>
+  ```tsx
+  import React from 'react';
+  import { EuiFlexGrid, EuiFlexGroup, EuiFlexItem, EuiSpacer } from '@elastic/eui';
+
+  export default () => (
+    <>
+      <EuiFlexGroup>
+        <EuiFlexItem grow={false}>
+          <div>Flex Group</div>
+          <EuiSpacer />
+          <EuiFlexGroup>
+            <EuiFlexItem>Nested Group One</EuiFlexItem>
+            <EuiFlexItem>Nested Group Two</EuiFlexItem>
+          </EuiFlexGroup>
+        </EuiFlexItem>
+        <EuiFlexItem grow={false}>
+          <div>Flex Grid</div>
+          <EuiSpacer />
+          <EuiFlexGrid columns={3}>
+            <EuiFlexItem>Nested Grid One</EuiFlexItem>
+            <EuiFlexItem>Nested Grid Two</EuiFlexItem>
+            <EuiFlexItem>Nested Grid Three</EuiFlexItem>
+            <EuiFlexItem>Nested Grid Four</EuiFlexItem>
+          </EuiFlexGrid>
+        </EuiFlexItem>
+      </EuiFlexGroup>
+    </>
+  );
+  ```
+</FlexDemo>
+
+### Overriding output component type
+
+The `component` prop can be passed to either the parent **EuiFlexGroup** or **EuiFlexGrid**, or the child **EuiFlexItem**, to change the rendered component type from the default `div`. It can be any valid React component type like a tag name string such as `div`or `span` or a React component.
+
+This allows you to use semantic tags such as `<form>` with flex layouts, or obey rules around nesting block elements within inline elements.
+
+<FlexDemo>
+  ```tsx
+  import React from 'react';
+  import { EuiFlexGroup, EuiFlexItem } from '@elastic/eui';
+
+  export default () => (
+    <EuiFlexGroup component="p">
+      <EuiFlexItem component="span">
+        These items are nested within a paragraph tag
+      </EuiFlexItem>
+
+      <EuiFlexItem component="span">
+        So they use inline span tags to avoid HTML validation issues
+      </EuiFlexItem>
+    </EuiFlexGroup>
+  );
+  ```
+</FlexDemo>

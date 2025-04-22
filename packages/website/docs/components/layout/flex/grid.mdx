@@ -1,0 +1,145 @@
+---
+sidebar_position: 3
+---
+
+# Flex grids
+
+import { createDemo } from '@elastic/eui-docusaurus-theme/components';
+import { FlexPreviewWrapper } from './flex_preview_wrapper';
+import DemoNote from './_flex_preview_note.mdx';
+
+export const FlexDemo = createDemo({ previewWrapper: FlexPreviewWrapper });
+
+<DemoNote />
+
+**EuiFlexGrid** is a more rigid component, used for repeatable rows of same-width items. You can set a `columns` prop to specify anywhere between 1-4 columns. Any more would likely break on laptop screens.
+
+<FlexDemo>
+  ```tsx
+  import React from 'react';
+  import { EuiFlexGrid, EuiFlexItem } from '@elastic/eui';
+
+  export default () => (
+    <EuiFlexGrid columns={3}>
+      <EuiFlexItem>One</EuiFlexItem>
+      <EuiFlexItem>Two</EuiFlexItem>
+      <EuiFlexItem>Three</EuiFlexItem>
+      <EuiFlexItem>Four</EuiFlexItem>
+      <EuiFlexItem>Five</EuiFlexItem>
+      <EuiFlexItem>Six</EuiFlexItem>
+      <EuiFlexItem>Seven</EuiFlexItem>
+    </EuiFlexGrid>
+  );
+  ```
+</FlexDemo>
+
+## Responsive flex grids
+
+**EuiFlexGrid** is responsive by default, stacking items vertically on smaller screens. Should you want to customize the number of items on small or large screens, apply the `responsive={false}` prop and then conditionally pass a column number based on the current breakpoint.
+
+<FlexDemo>
+  ```tsx
+  import React from 'react';
+  import { EuiFlexGrid, EuiFlexItem, useIsWithinBreakpoints } from '@elastic/eui';
+
+  export default () => {
+    const isMobile = useIsWithinBreakpoints(['xs', 's']);
+
+    return (
+      <EuiFlexGrid responsive={false} columns={isMobile ? 2 : 4}>
+        <EuiFlexItem>One</EuiFlexItem>
+        <EuiFlexItem>Two</EuiFlexItem>
+        <EuiFlexItem>Three</EuiFlexItem>
+        <EuiFlexItem>Four</EuiFlexItem>
+        <EuiFlexItem>Five</EuiFlexItem>
+        <EuiFlexItem>Six</EuiFlexItem>
+      </EuiFlexGrid>
+    );
+  };
+  ```
+</FlexDemo>
+
+## Display customization
+
+### Align
+
+Flex grids support vertically aligning children via the `alignItems` prop. Unlike flex groups, they do not support `justifyContent`, as grid columns are always evenly distributed.
+
+<FlexDemo>
+  ```tsx
+  import React from 'react';
+  import { EuiFlexGrid, EuiFlexItem } from '@elastic/eui';
+
+  export default () => (
+    <EuiFlexGrid columns={2} alignItems="center">
+      <EuiFlexItem>I<br />am<br />a<br />tall<br />item</EuiFlexItem>
+      <EuiFlexItem>I am vertically centered!</EuiFlexItem>
+    </EuiFlexGrid>
+  );
+  ```
+</FlexDemo>
+
+### Gutter sizing
+
+The `gutterSize` prop can be applied to a parent **EuiFlexGrid** to adjust the spacing between child **EuiFlexItems**.
+
+<FlexDemo>
+  ```tsx
+  import React, { Fragment } from 'react';
+  import { EuiFlexGroup, EuiFlexItem, EuiSpacer } from '@elastic/eui';
+
+  const gutterSizes = {
+    'none': 'None',
+    'xs': 'Extra small',
+    's': 'Small',
+    'm': 'Medium',
+    'l': 'Large (default)',
+    'xl': 'Extra large',
+  } as const;
+
+  export default () => (
+    <>
+      {Object.entries(gutterSizes).map(([gutterSize, text]) => (
+        <Fragment key={gutterSize}>
+          <EuiFlexGrid columns={4} gutterSize={gutterSize}>
+            <EuiFlexItem>{text}</EuiFlexItem>
+            <EuiFlexItem>{text}</EuiFlexItem>
+            <EuiFlexItem>{text}</EuiFlexItem>
+            <EuiFlexItem>{text}</EuiFlexItem>
+          </EuiFlexGroup>
+          <EuiSpacer size="m" />
+        </Fragment>
+      ))}
+    </>
+  );
+  ```
+</FlexDemo>
+
+### Changing direction
+
+Adding `direction="column"` will re-orient the flex items so they display top-down **then** left to right.
+
+<FlexDemo>
+  ```tsx
+  import React from 'react';
+  import { EuiFlexGrid, EuiFlexItem } from '@elastic/eui';
+
+  export default () => (
+    <EuiFlexGrid columns={2} direction="column">
+      <EuiFlexItem>One</EuiFlexItem>
+      <EuiFlexItem>Two</EuiFlexItem>
+      <EuiFlexItem>Three</EuiFlexItem>
+      <EuiFlexItem>Four</EuiFlexItem>
+      <EuiFlexItem>Five</EuiFlexItem>
+      <EuiFlexItem>Six</EuiFlexItem>
+      <EuiFlexItem>Seven</EuiFlexItem>
+    </EuiFlexGrid>
+  );
+  ```
+</FlexDemo>
+
+## Props
+
+import docgen from '@elastic/eui-docgen/dist/components/flex';
+
+<PropTable definition={docgen.EuiFlexGrid} />

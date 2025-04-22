@@ -1,0 +1,94 @@
+---
+sidebar_position: 2
+---
+
+# Empty button
+
+Use **EuiButtonEmpty** when you want to reduce the importance of the button, but still want to align it to the rest of the buttons. It is also the only button component that supports down to size `xs`.
+
+```tsx interactive
+import React from 'react';
+
+import {
+  EuiButtonEmpty,
+  EuiFlexGroup,
+  EuiFlexItem,
+} from '@elastic/eui';
+
+export default () => (
+  <EuiFlexGroup
+    wrap={true}
+    gutterSize="s"
+    alignItems="center"
+  >
+    <EuiFlexItem grow={false}>
+      <EuiButtonEmpty
+        onClick={() => {}}
+      >
+        Empty button
+      </EuiButtonEmpty>
+    </EuiFlexItem>
+
+    <EuiFlexItem grow={false}>
+      <EuiButtonEmpty
+        size="s"
+        onClick={() => {}}
+      >
+        Small empty button
+      </EuiButtonEmpty>
+    </EuiFlexItem>
+
+    <EuiFlexItem grow={false}>
+      <EuiButtonEmpty
+        size="xs"
+        onClick={() => {}}
+      >
+        Extra small empty button
+      </EuiButtonEmpty>
+    </EuiFlexItem>
+  </EuiFlexGroup>
+);
+```
+
+### Flush empty button
+
+By default, buttons contain padding. Apply the `flush` property in cases where precise alignment and spacing is desired. This situation can arise when **EuiButtonEmpty** appears within a horizontal list of buttons such as a menu.
+
+```tsx interactive
+import React from 'react';
+
+import {
+  EuiButton,
+  EuiButtonEmpty,
+  EuiFlexGroup,
+  EuiFlexItem,
+  EuiHorizontalRule,
+  EuiPanel,
+  EuiTitle,
+} from '@elastic/eui';
+
+export default () => (
+  <EuiFlexGroup gutterSize="m" direction="row">
+    <EuiFlexItem css={{width: 240}} grow={false}>
+      <EuiPanel color="plain" hasBorder>
+        <EuiTitle size="xs"><h4>Title of panel</h4></EuiTitle>
+        <EuiHorizontalRule />
+        <EuiButtonEmpty flush="left">Flush left</EuiButtonEmpty>
+      </EuiPanel>
+    </EuiFlexItem>
+    <EuiFlexItem css={{width: 240}} grow={false}>
+      <EuiPanel css={{textAlign: "right"}} color="plain" hasBorder grow={false}>
+        <EuiButton size="s">Button</EuiButton>
+        <EuiHorizontalRule />
+        <EuiButtonEmpty flush="right">Flush right</EuiButtonEmpty>
+      </EuiPanel>
+    </EuiFlexItem>
+  </EuiFlexGroup>
+);
+```
+
+## Props
+
+import docgen from '@elastic/eui-docgen/dist/components/button';
+
+<PropTable definition={docgen.EuiButtonEmpty} />

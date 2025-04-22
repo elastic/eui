@@ -1,0 +1,86 @@
+# Mutation observer
+
+**EuiMutationObserver** is a wrapper around the <a href="https://developer.mozilla.org/en-US/docs/Web/API/MutationObserver" target="_blank" rel="noopener noreferrer">Mutation Observer API</a> which allows watching for DOM changes to elements and their children. **EuiMutationObserver** takes the same configuration object as the browser API to describe what to watch for, and fires the callback when that mutation happens.
+
+This is a render prop component, **EuiMutationObserver** will pass a `ref` callback which you must put on the element you wish to observe the mutations.
+
+<Demo>
+```tsx interactive
+import React, { useState } from 'react';
+
+import {
+  EuiButton,
+  EuiButtonColor,
+  EuiButtonEmpty,
+  EuiFlexGroup,
+  EuiFlexItem,
+  EuiMutationObserver,
+  EuiPanel,
+  EuiSpacer,
+} from '@elastic/eui';
+
+export default () => {
+  const [lastMutation, setLastMutation] = useState('no changes detected');
+  const [buttonColor, setButtonColor] = useState<EuiButtonColor>('primary');
+  const [items, setItems] = useState(['Item 1', 'Item 2', 'Item 3']);
+
+  const toggleButtonColor = () => {
+    setButtonColor(buttonColor === 'primary' ? 'warning' : 'primary');
+  };
+
+  const addItem = () => {
+    setItems([...items, `Item ${items.length + 1}`]);
+  };
+
+  const onMutation: MutationCallback = (mutations) => {
+    const { type } = mutations[0];
+    setLastMutation(
+      type === 'attributes' ? 'button class name changed' : 'DOM tree changed'
+    );
+  };
+
+  return (
+    <div>
+      <p>{lastMutation}</p>
+      <EuiSpacer />
+      <EuiMutationObserver
+        observerOptions={{ subtree: true, attributes: true, childList: true }}
+        onMutation={onMutation}
+      >
+        {(mutationRef) => (
+          <div ref={mutationRef}>
+            <EuiButton
+              color={buttonColor}
+              fill={true}
+              onClick={toggleButtonColor}
+            >
+              Toggle button color
+            </EuiButton>
+            <EuiSpacer />
+            <EuiFlexGroup>
+              <EuiFlexItem grow={false}>
+                <EuiPanel grow={false}>
+                  <ul>
+                    {items.map((item) => (
+                      <li key={item}>{item}</li>
+                    ))}
+                  </ul>
+                  <EuiSpacer size="s" />
+                  <EuiButtonEmpty onClick={addItem}>add item</EuiButtonEmpty>
+                </EuiPanel>
+              </EuiFlexItem>
+            </EuiFlexGroup>
+          </div>
+        )}
+      </EuiMutationObserver>
+    </div>
+  );
+};
+```
+</Demo>
+
+## Props
+
+import docgen from '@elastic/eui-docgen/dist/components/observer/mutation_observer';
+
+<PropTable definition={docgen.EuiMutationObserver} />

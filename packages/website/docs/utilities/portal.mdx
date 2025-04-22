@@ -1,0 +1,330 @@
+# Portal
+
+**EuiPortal** allows you to append its contained children onto the document body. It is useful for moving fixed elements like modals, tooltips or toasts when you are worried about a z-index or overflow conflict.
+
+<Demo>
+```tsx interactive
+import React, { useState } from 'react';
+
+import { EuiPortal, EuiButton, EuiBottomBar } from '@elastic/eui';
+
+export default () => {
+  const [isPortalVisible, setIsPortalVisible] = useState(false);
+
+  const togglePortal = () => {
+    setIsPortalVisible(!isPortalVisible);
+  };
+
+  let portal;
+
+  if (isPortalVisible) {
+    portal = (
+      <EuiPortal>
+        <EuiBottomBar>
+          <p>This element is appended to the body in the DOM if you inspect</p>
+        </EuiBottomBar>
+      </EuiPortal>
+    );
+  }
+
+  return (
+    <div>
+      <EuiButton onClick={togglePortal}>Toggle portal</EuiButton>
+      {portal}
+    </div>
+  );
+};
+```
+</Demo>
+
+## Inserting portals
+
+There is an optional `insert` prop that can specify the portal's location in the DOM. When used, it is important to consider how the location relates to the component lifecycle, as it could be removed from the DOM by another component update.
+
+`insert` is an object with two key-value pairs: `sibling` and `position`. `sibling` is the React node or HTMLElement to insert the portal next to, and `position` specifies the portal's relative position, either `before` or `after`.
+
+<Demo>
+```tsx interactive
+import React, { useState } from 'react';
+
+import { EuiPortal, EuiButton, EuiSpacer } from '@elastic/eui';
+
+let buttonRef = null;
+
+export default () => {
+  const [isPortalVisible, setIsPortalVisible] = useState(false);
+
+  const setButtonRef = (node) => (buttonRef = node);
+
+  const togglePortal = () => {
+    setIsPortalVisible(!isPortalVisible);
+  };
+
+  let portal;
+
+  if (isPortalVisible) {
+    portal = (
+      <EuiPortal insert={{ sibling: buttonRef, position: 'after' }}>
+        <EuiSpacer />
+        <p>This element is appended immediately after the button.</p>
+      </EuiPortal>
+    );
+  }
+
+  return (
+    <div>
+      <EuiButton onClick={togglePortal} buttonRef={setButtonRef}>
+        Toggle portal
+      </EuiButton>
+      {portal}
+    </div>
+  );
+};
+```
+</Demo>
+
+## A custom flyout
+
+Custom flyouts should only be implemented if your design diverges a lot from [EuiFlyout](../components/containers/flyout/index.mdx). You need to implement accessibility features, which can be challenging.
+
+**Here are some accessibility considerations you should keep in mind when implementing a custom flyout.**
+
+* Use [EuiFocusTrap](./focus-trap/index.mdx) to prevent keyboard-initiated focus from leaving the flyout.
+* If you use a [EuiOverlayMask](./overlay-mask.mdx), it should be dismissed when clicked outside. For that you can pass to your [EuiFocusTrap](./focus-trap/index.mdx) `onClickOutside` prop a method to close the flyout.
+* When pressing the ESC key your flyout should close. Use a [EuiWindowEvent](./window-events/index.mdx) to listen for the key down event.
+* Pass an ID to the first heading in the flyout `id={headingId}`.
+* Pass to your [EuiPanel](../components/containers/panel/index.mdx) `aria-labelledby={headingId}` to announce the flyout to screen readers.
+
+You should also take into account some design considerations:
+
+* Use a [EuiPanel](../components/containers/panel/index.mdx) for the background.
+* A flyout should always have a close button on the right top corner. This gives a visual clue that the flyout can be closed.
+* For writing CSS consider using our theme tokens.
+
+In the following demo, you can see how to create your own flyout with all the recommended accessibility and design features:
+
+<Demo>
+```tsx interactive
+import React, { useState } from 'react';
+import { css } from '@emotion/react';
+
+import {
+  EuiPortal,
+  EuiButton,
+  EuiPanel,
+  EuiTitle,
+  EuiOverlayMask,
+  EuiButtonIcon,
+  EuiText,
+  EuiTextColor,
+  EuiEmptyPrompt,
+  EuiFocusTrap,
+  EuiHorizontalRule,
+  EuiLink,
+  EuiSpacer,
+  EuiButtonEmpty,
+  euiFlyoutSlideInRight,
+  keys,
+  EuiWindowEvent,
+  useGeneratedHtmlId,
+  useEuiTheme,
+  euiCanAnimate,
+  logicalCSS,
+  logicalCSSWithFallback,
+  euiYScrollWithShadows,
+} from '@elastic/eui';
+
+export default () => {
+  const [isCustomFlyoutVisible, setIsCustomFlyoutVisible] = useState(false);
+  const euiThemeContext = useEuiTheme();
+  const euiTheme = euiThemeContext.euiTheme;
+
+  const toggleCustomFlyout = () => {
+    setIsCustomFlyoutVisible(!isCustomFlyoutVisible);
+  };
+
+  const closeCustomFlyout = () => {
+    setIsCustomFlyoutVisible(false);
+  };
+
+  const customFlyoutTitleId = useGeneratedHtmlId({
+    prefix: 'customFlyoutTitle',
+  });
+
+  /**
+   * ESC key closes CustomFlyout
+   */
+  const onKeyDown = (event: any) => {
+    if (event.key === keys.ESCAPE) {
+      event.preventDefault();
+      event.stopPropagation();
+      closeCustomFlyout();
+    }
+  };
+
+  let customFlyout;
+
+  if (isCustomFlyoutVisible) {
+    customFlyout = (
+      <EuiPortal>
+        <EuiOverlayMask>
+          <EuiFocusTrap onClickOutside={closeCustomFlyout}>
+            <EuiPanel
+              aria-labelledby={customFlyoutTitleId}
+              role="dialog"
+              paddingSize="l"
+              css={css`
+                position: fixed;
+                max-inline-size: 480px;
+                max-block-size: auto;
+                inset-inline-end: ${euiTheme.size.l};
+                inset-block-start: ${euiTheme.size.l};
+                block-size: calc(100% - (${euiTheme.size.l} * 2));
+                ${euiCanAnimate} {
+                  animation: ${euiFlyoutSlideInRight}
+                    ${euiTheme.animation.normal}
+                    ${euiTheme.animation.resistance};
+                }
+              `}
+            >
+              <div
+                css={css`
+                  display: flex;
+                  block-size: 100%;
+                  justify-content: space-between;
+                  flex-direction: column;
+                `}
+              >
+                {/* Flyout Header */}
+                <div
+                  css={css`
+                    flex-grow: 0;
+                  `}
+                >
+                  <EuiSpacer size="s" />
+                  <EuiTitle size="m">
+                    <h2 id={customFlyoutTitleId}>Let&apos;s get started!</h2>
+                  </EuiTitle>
+                  <EuiButtonIcon
+                    iconType="cross"
+                    aria-label="Close modal"
+                    onClick={closeCustomFlyout}
+                    onKeyDown={onKeyDown}
+                    color="text"
+                    css={css`
+                      position: absolute;
+                      inset-block-start: ${euiTheme.size.base};
+                      inset-inline-end: ${euiTheme.size.base};
+                    `}
+                  />
+                  <EuiHorizontalRule />
+                </div>
+                {/* Flyout Body */}
+                <div
+                  css={css`
+                    ${logicalCSS('height', '100%')}
+                    ${logicalCSSWithFallback('overflow-y', 'hidden')}
+                    flex-grow: 1;
+                  `}
+                >
+                  <div
+                    css={css`
+                      ${logicalCSS('height', '100%')}
+                      ${euiYScrollWithShadows(euiThemeContext, {
+                        side: 'end',
+                      })}
+                    `}
+                  >
+                    <EuiText size="s">
+                      <p>
+                        Elastic Observability provides a unified view into the
+                        health and performance of your entire digital ecosystem.
+                        With easy ingest of multiple kinds of data via pre-built
+                        collectors for hundreds of data sources.
+                      </p>
+                      <EuiHorizontalRule />
+                      <ol
+                        css={css`
+                          > li {
+                            list-style-type: none;
+                          }
+                          margin-inline-start: 0 !important;
+                        `}
+                      >
+                        <li>
+                          <h3>Step 1</h3>
+                          <p>Select an ingestion method</p>
+                          <EuiHorizontalRule />
+                        </li>
+                        <li>
+                          <EuiTextColor color="subdued">
+                            <h3>Step 2</h3>
+                            <p>Select an ingestion method</p>
+                          </EuiTextColor>
+                          <EuiHorizontalRule />
+                        </li>
+                        <li>
+                          <EuiTextColor color="subdued">
+                            <h3>Step 3</h3>
+                            <p>Select an ingestion method</p>
+                          </EuiTextColor>
+                          <EuiHorizontalRule />
+                        </li>
+                      </ol>
+                    </EuiText>
+                  </div>
+                </div>
+                {/* Flyout Footer */}
+                <div
+                  css={css`
+                    flex-grow: 0;
+                  `}
+                >
+                  <EuiText textAlign="center" color="subdued" size="s">
+                    <EuiButtonEmpty onClick={closeCustomFlyout} size="s">
+                      Exit setup guide
+                    </EuiButtonEmpty>
+                    <EuiSpacer size="s" />
+                    <p>
+                      How’s onboarding? We’d love your{' '}
+                      <EuiLink href="#">feedback</EuiLink>.
+                    </p>
+                  </EuiText>
+                </div>
+              </div>
+            </EuiPanel>
+          </EuiFocusTrap>
+        </EuiOverlayMask>
+      </EuiPortal>
+    );
+  }
+
+  return (
+    <div>
+      <EuiWindowEvent event="keydown" handler={onKeyDown} />
+      <EuiEmptyPrompt
+        color="subdued"
+        iconType="logoObservability"
+        iconColor="default"
+        title={<h2>Observe my data</h2>}
+        titleSize="xs"
+        body={
+          <p>
+            Choose one of our many integrations to bring your data in, and start
+            visualizing it.
+          </p>
+        }
+        actions={<EuiButton onClick={toggleCustomFlyout}>View guide</EuiButton>}
+      />
+      {customFlyout}
+    </div>
+  );
+};
+```
+</Demo>
+
+## Props
+
+import docgen from '@elastic/eui-docgen/dist/components/portal';
+
+<PropTable definition={docgen.EuiPortal} />

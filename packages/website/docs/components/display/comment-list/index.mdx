@@ -1,0 +1,766 @@
+# Comment list
+
+The **EuiCommentList** is a timeline component built on top of [EuiTimeline](../timeline.mdx). It allows you to display comments or logged actions that either a user or a system has performed.
+
+:::accessibility Accessibility recommendation
+Provide a descriptive `aria-label` or the ID of an external label to the `aria-labelledby` prop of the **EuiCommentList**. A `timelineAvatarAriaLabel` should be provided for every **EuiComment** with or without a `timelineAvatar` as `IconType`.
+:::
+
+## Basic comment list
+
+Use **EuiCommentList** to display a list of **EuiComments**. Pass an array of **EuiComment** objects and **EuiCommentList** will generate a comment thread.
+
+```tsx interactive
+import React from 'react';
+import {
+  EuiCommentList,
+  EuiCommentProps,
+  EuiButtonIcon,
+  EuiText,
+  EuiBadge,
+  EuiFlexGroup,
+  EuiFlexItem,
+} from '@elastic/eui';
+
+const body = (
+  <EuiText size="s">
+    <p>
+      Far out in the uncharted backwaters of the unfashionable end of the
+      western spiral arm of the Galaxy lies a small unregarded yellow sun.
+    </p>
+  </EuiText>
+);
+
+const copyAction = (
+  <EuiButtonIcon
+    title="Custom action"
+    aria-label="Custom action"
+    color="text"
+    iconType="copy"
+  />
+);
+
+const complexEvent = (
+  <EuiFlexGroup responsive={false} alignItems="center" gutterSize="xs" wrap>
+    <EuiFlexItem grow={false}>added tags</EuiFlexItem>
+    <EuiFlexItem grow={false}>
+      <EuiBadge>case</EuiBadge>
+    </EuiFlexItem>
+    <EuiFlexItem grow={false}>
+      <EuiBadge>phishing</EuiBadge>
+    </EuiFlexItem>
+    <EuiFlexItem grow={false}>
+      <EuiBadge>security</EuiBadge>
+    </EuiFlexItem>
+  </EuiFlexGroup>
+);
+
+const comments: EuiCommentProps[] = [
+  {
+    username: 'janed',
+    timelineAvatarAriaLabel: 'Jane Doe',
+    event: 'added a comment',
+    timestamp: 'on Jan 1, 2020',
+    children: body,
+    actions: copyAction,
+  },
+  {
+    username: 'juanab',
+    timelineAvatarAriaLabel: 'Juana Barros',
+    actions: copyAction,
+    event: 'pushed incident X0Z235',
+    timestamp: 'on Jan 3, 2020',
+  },
+  {
+    username: 'pancho1',
+    timelineAvatarAriaLabel: 'Pancho Pérez',
+    event: 'edited case',
+    timestamp: 'on Jan 9, 2020',
+    eventIcon: 'pencil',
+    eventIconAriaLabel: 'edit',
+  },
+  {
+    username: 'pedror',
+    timelineAvatarAriaLabel: 'Pedro Rodriguez',
+    actions: copyAction,
+    event: complexEvent,
+    timestamp: 'on Jan 11, 2020',
+    eventIcon: 'tag',
+    eventIconAriaLabel: 'tag',
+  },
+  {
+    username: 'Assistant',
+    timelineAvatarAriaLabel: 'Assistant',
+    timestamp: 'on Jan 14, 2020, 1:39:04 PM',
+    children: <p>An error occurred sending your message.</p>,
+    actions: copyAction,
+    eventColor: 'danger',
+  },
+];
+
+export default () => (
+  <EuiCommentList comments={comments} aria-label="Comment list example" />
+);
+```
+
+## Comment
+
+The **EuiComment** is flexible and adapts the design according to the props passed.
+
+import { CommentListProps, CommentListStyle } from './comment_list_props.tsx';
+
+<CommentListProps
+  snippet={`<EuiCommentList aria-label="Comment example">
+    <EuiComment
+      eventIcon="pencil"
+      username="janed"
+      event={event}
+      timestamp={timestamp}
+      actions={customActions}
+    >
+      {children}
+    </EuiComment>
+  </EuiCommentList>`}
+/>
+<CommentListStyle>
+
+1.  `timelineAvatar`: Shows an avatar that should indicate who is the author of the comment. To customize, pass a `string` as an `EuiIcon['type']` or an [EuiAvatar](../avatar.mdx). Use in conjunction with `timelineAvatarAriaLabel` to pass an aria label to the avatar. If no avatar is provided, it will default to an avatar with a `user` icon.
+2.  `eventIcon`: Icon that shows before the username. Use in conjunction with `eventIconAriaLabel` to pass an aria label to the event icon.
+3.  `username`: Author of the comment.
+4.  `event`: Describes the event that took place.
+5.  `timestamp`: Time of occurrence of the event.
+6.  `actions`: Custom actions that the user can perform from the comment's header. When having multiple actions, consider grouping them in a nested menu system using a [EuiPopover](../../containers/popover.mdx) with a [EuiContextMenu](../../navigation/context-menu.mdx).
+7.  `children`: A user message or any custom component.
+
+</CommentListStyle>
+
+The following demo shows how you can combine different props to create different types of comments events like a regular, update, update with a danger background and a custom one.
+
+```tsx interactive
+import React, { useState } from 'react';
+import {
+  EuiTextArea,
+  EuiCommentList,
+  EuiComment,
+  EuiButtonGroup,
+  EuiButtonIcon,
+  EuiText,
+  EuiBadge,
+  EuiFlexGroup,
+  EuiFlexItem,
+  EuiSpacer,
+  EuiCommentListProps,
+  EuiSelect,
+  EuiCode,
+  EuiCommentEventProps,
+} from '@elastic/eui';
+
+const body = (
+  <EuiText size="s">
+    <p>
+      Far out in the uncharted backwaters of the unfashionable end of the
+      western spiral arm of the Galaxy lies a small unregarded yellow sun.
+    </p>
+  </EuiText>
+);
+
+const copyAction = (
+  <EuiButtonIcon
+    title="Custom action"
+    aria-label="Custom action"
+    color="text"
+    iconType="copy"
+  />
+);
+
+const eventWithMultipleTags = (
+  <EuiFlexGroup responsive={false} alignItems="center" gutterSize="xs" wrap>
+    <EuiFlexItem grow={false}>added tags</EuiFlexItem>
+    <EuiFlexItem grow={false}>
+      <EuiBadge>case</EuiBadge>
+    </EuiFlexItem>
+    <EuiFlexItem grow={false}>
+      <EuiBadge>phishing</EuiBadge>
+    </EuiFlexItem>
+    <EuiFlexItem grow={false}>
+      <EuiBadge>security</EuiBadge>
+    </EuiFlexItem>
+  </EuiFlexGroup>
+);
+
+const commentsData: EuiCommentListProps['comments'] = [
+  {
+    username: 'janed',
+    timelineAvatarAriaLabel: 'Jane Doe',
+    event: 'added a comment',
+    timestamp: 'on Jan 1, 2020',
+    children: body,
+    actions: copyAction,
+  },
+  {
+    username: 'luisg',
+    timelineAvatarAriaLabel: 'Luis G',
+    event: eventWithMultipleTags,
+    timestamp: '22 hours ago',
+    eventIcon: 'tag',
+    eventIconAriaLabel: 'tag',
+    actions: copyAction,
+  },
+  {
+    username: 'pancho1',
+    timelineAvatarAriaLabel: 'Pancho Pérez',
+    children: (
+      <EuiTextArea
+        fullWidth
+        placeholder="I'm a textarea in a EuiComment"
+        value=""
+        onChange={() => {}}
+      />
+    ),
+  },
+];
+
+const toggleButtons = [
+  {
+    id: 'regular',
+    label: 'Regular',
+  },
+  {
+    id: 'update',
+    label: 'Update',
+  },
+  {
+    id: 'custom',
+    label: 'Custom',
+  },
+];
+
+export default () => {
+  const colors: Array<{
+    value: EuiCommentEventProps['eventColor'];
+    text: string;
+  }> = [
+    { value: 'subdued', text: 'subdued' },
+    { value: 'transparent', text: 'transparent' },
+    { value: 'plain', text: 'plain' },
+    { value: 'danger', text: 'danger' },
+    { value: 'warning', text: 'warning' },
+    { value: 'accent', text: 'accent' },
+    { value: 'primary', text: 'primary' },
+    { value: 'success', text: 'success' },
+    { value: undefined, text: 'undefined' },
+  ];
+  const [toggleIdSelected, setToggleIdSelected] = useState('regular');
+  const [color, setColor] = useState(colors[0].value);
+  const [comment, setComment] = useState(commentsData[0]);
+
+  const onChangeButtonGroup = (optionId: any) => {
+    setToggleIdSelected(optionId);
+    const buttonId = optionId.replace('Button', '');
+
+    const selectedCommentIndex = toggleButtons.findIndex(
+      ({ id }) => id === buttonId
+    );
+    setComment(commentsData[selectedCommentIndex]);
+  };
+
+  const onChangeSize = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const color = e.target.value;
+    setColor(
+      color && color !== 'undefined'
+        ? (color as EuiCommentEventProps['eventColor'])
+        : undefined
+    );
+  };
+
+  return (
+    <>
+      <EuiFlexGroup alignItems="center">
+        <EuiFlexItem grow={false}>
+          <EuiButtonGroup
+            legend="Pick an example"
+            options={toggleButtons}
+            onChange={onChangeButtonGroup}
+            idSelected={toggleIdSelected}
+            type="single"
+            color="primary"
+          />
+        </EuiFlexItem>
+        {toggleIdSelected !== 'custom' ? (
+          <EuiFlexItem grow={false}>
+            <EuiSelect
+              prepend="eventColor"
+              options={colors}
+              value={color}
+              onChange={(e) => onChangeSize(e)}
+              compressed
+            />
+          </EuiFlexItem>
+        ) : undefined}
+        <EuiFlexItem>
+          {toggleIdSelected === 'regular' && color === 'subdued' && (
+            <span>
+              subdued is the default <EuiCode>eventColor</EuiCode> for regular{' '}
+              <strong>EuiComment</strong>
+            </span>
+          )}
+          {toggleIdSelected === 'update' && color === 'transparent' && (
+            <span>
+              transparent is the default <EuiCode>eventColor</EuiCode> for
+              update <strong>EuiComment</strong>
+            </span>
+          )}
+        </EuiFlexItem>
+      </EuiFlexGroup>
+      <EuiSpacer />
+      <EuiCommentList>
+        <EuiComment {...comment} eventColor={color} />
+      </EuiCommentList>
+    </>
+  );
+};
+```
+
+## Timeline avatar
+
+The timeline icon is a very important part of the comment:
+
+*   By default, each **EuiComment** shows an avatar with the `user` icon. A `timelineAvatarAriaLabel`should be provided when using this default option.
+*   You can customize your avatar by passing to the `timelineAvatar` any of the icon types that [EuiIcon](../icons/index.mdx) supports. The icon will show inside a `subdued` avatar. Consider this option when showing a system update. Providing a `timelineAvatarAriaLabel` is recommended.
+*   You can further customize the timeline icon by passing to the `timelineAvatar` a [EuiAvatar](../avatar.mdx).
+
+```tsx interactive
+import React from 'react';
+import {
+  EuiCommentList,
+  EuiComment,
+  EuiCode,
+  EuiText,
+  EuiAvatar,
+} from '@elastic/eui';
+
+export default () => (
+  <EuiCommentList aria-label="An example with different timeline icons">
+    <EuiComment
+      username="andred"
+      timelineAvatarAriaLabel="Andre Diaz"
+      event="is using a default avatar"
+    >
+      <EuiText size="s">
+        <p>
+          The avatar initials is generated from the <EuiCode>username</EuiCode>{' '}
+          prop.
+        </p>
+      </EuiText>
+    </EuiComment>
+
+    <EuiComment
+      username="system"
+      timelineAvatarAriaLabel="System"
+      timelineAvatar="dot"
+      event={
+        <>
+          The <EuiCode>timelineAvatar</EuiCode> is using a{' '}
+          <EuiCode>dot</EuiCode> icon.
+        </>
+      }
+    />
+
+    <EuiComment
+      username="cat"
+      timelineAvatarAriaLabel="Beautiful cat"
+      event="is using a custom avatar"
+      timelineAvatar={
+        <EuiAvatar name="Cat" imageUrl="https://picsum.photos/id/40/64" />
+      }
+    >
+      <EuiText size="s">
+        <p>
+          The <EuiCode>timelineAvatar</EuiCode> is using a custom{' '}
+          <strong>EuiAvatar</strong>.
+        </p>
+      </EuiText>
+    </EuiComment>
+  </EuiCommentList>
+);
+```
+
+## Comment event actions
+
+There are scenarios where you might want to allow the user to perform `actions` related to each comment. Some common `actions` include: editing, deleting, sharing and copying. To add custom `actions` to a comment, use the `actions`prop. These will be placed to the right of the metadata in the comment's header. We recommend using a [EuiButtonIcon](../../navigation/buttons/icon.mdx) to trigger an action. When having multiple actions, consider grouping them in a nested menu system using a [EuiPopover](../../containers/popover.mdx) with a [EuiContextMenu](../../navigation/context-menu.mdx).
+
+```tsx interactive
+import React, { useState } from 'react';
+import {
+  EuiCommentList,
+  EuiComment,
+  EuiButtonIcon,
+  EuiText,
+  EuiPopover,
+  EuiContextMenuPanel,
+  EuiContextMenuItem,
+  EuiLink,
+  EuiFlyout,
+  EuiFlyoutHeader,
+  EuiFlyoutBody,
+  EuiTitle,
+  useGeneratedHtmlId,
+} from '@elastic/eui';
+
+const body = (
+  <EuiText size="s">
+    <p>
+      This comment has custom actions available. See the upper right corner.
+    </p>
+  </EuiText>
+);
+
+export default () => {
+  const [isPopoverOpen, setIsPopoverOpen] = useState(false);
+  const [isFlyoutVisible, setIsFlyoutVisible] = useState(false);
+
+  const flyoutTitleId = useGeneratedHtmlId({
+    prefix: 'flyoutTitleId',
+  });
+
+  const togglePopover = () => {
+    setIsPopoverOpen(!isPopoverOpen);
+  };
+
+  const closePopover = () => {
+    setIsPopoverOpen(false);
+  };
+
+  const toggleFlyout = () => {
+    setIsFlyoutVisible(!isFlyoutVisible);
+  };
+
+  const flyout = isFlyoutVisible && (
+    <EuiFlyout
+      ownFocus
+      onClose={() => setIsFlyoutVisible(false)}
+      aria-labelledby={flyoutTitleId}
+    >
+      <EuiFlyoutHeader hasBorder>
+        <EuiTitle size="m">
+          <h2 id={flyoutTitleId}>Malware detection alert</h2>
+        </EuiTitle>
+      </EuiFlyoutHeader>
+      <EuiFlyoutBody>
+        <EuiText>
+          <p>
+            Use a flyout to show more details related to your comment event.
+          </p>
+        </EuiText>
+      </EuiFlyoutBody>
+    </EuiFlyout>
+  );
+
+  const customActions = (
+    <EuiPopover
+      button={
+        <EuiButtonIcon
+          aria-label="Actions"
+          iconType="boxesHorizontal"
+          size="xs"
+          color="text"
+          onClick={togglePopover}
+        />
+      }
+      isOpen={isPopoverOpen}
+      closePopover={togglePopover}
+      panelPaddingSize="none"
+      anchorPosition="leftCenter"
+    >
+      <EuiContextMenuPanel
+        items={[
+          <EuiContextMenuItem key="A" icon="pencil" onClick={closePopover}>
+            Edit
+          </EuiContextMenuItem>,
+          <EuiContextMenuItem key="B" icon="share" onClick={closePopover}>
+            Share
+          </EuiContextMenuItem>,
+          <EuiContextMenuItem key="C" icon="copy" onClick={closePopover}>
+            Copy
+          </EuiContextMenuItem>,
+        ]}
+      />
+    </EuiPopover>
+  );
+
+  const updateActions = [
+    <EuiButtonIcon
+      key="copy-alert"
+      title="Copy alert link"
+      aria-label="Copy alert link"
+      iconType="link"
+      size="xs"
+      color="text"
+    />,
+    <EuiButtonIcon
+      key="show-details"
+      title="Show the alert details in a flyout"
+      aria-label="Show details"
+      iconType="popout"
+      size="xs"
+      color="text"
+      onClick={toggleFlyout}
+    />,
+  ];
+
+  return (
+    <>
+      <EuiCommentList aria-label="Actions">
+        <EuiComment
+          username="janed"
+          timelineAvatarAriaLabel="Jane Doe"
+          event="added a comment"
+          actions={customActions}
+          timestamp="on Jan 1, 2020"
+        >
+          {body}
+        </EuiComment>
+        <EuiComment
+          username="system"
+          timelineAvatarAriaLabel="System"
+          timelineAvatar="dot"
+          event={
+            <>
+              pushed a new incident <EuiLink>malware detection</EuiLink>
+            </>
+          }
+          actions={updateActions}
+          timestamp="on Jan 2, 2020"
+          eventColor="danger"
+        />
+      </EuiCommentList>
+      {flyout}
+    </>
+  );
+};
+```
+
+## A comment system
+
+The below example uses a list of **EuiComments**, a [EuiMarkdownEditor](../../editors-and-syntax/markdown/editor.mdx), and a [**EuiMarkdownFormat**](../../editors-and-syntax/markdown/format.mdx) to create a simple comment system.
+
+*   Each comment renders in a **EuiComment**.
+*   We use the **EuiMarkdownEditor** to post the `EuiComment.children`. This means the content uses Markdown.
+*   When the new **EuiComment** is posted, we use the **EuiMarkdownFormat** to wrap the `EuiComment.children` and render the Markdown correctly.
+
+When dealing with asynchronous events like posting a message we recommend setting the **EuiMarkdownEditor** to a `readOnly` state and the "Add comment" **EuiButton** to a `isLoading` state. This will ensure users understand that the content cannot be changed while the comment is being submitted.
+
+```tsx interactive
+import React, { useState, useEffect, useRef } from 'react';
+import {
+  formatDate,
+  htmlIdGenerator,
+  EuiCommentList,
+  EuiComment,
+  EuiCommentProps,
+  EuiButtonIcon,
+  EuiBadge,
+  EuiMarkdownEditor,
+  EuiMarkdownFormat,
+  EuiSpacer,
+  EuiFlexGroup,
+  EuiFlexItem,
+  EuiButton,
+  EuiToolTip,
+  EuiAvatar,
+} from '@elastic/eui';
+
+const actionButton = (
+  <EuiButtonIcon
+    title="Custom action"
+    aria-label="Custom action"
+    color="text"
+    iconType="copy"
+  />
+);
+
+const complexEvent = (
+  <EuiFlexGroup responsive={false} alignItems="center" gutterSize="xs" wrap>
+    <EuiFlexItem grow={false}>added tags</EuiFlexItem>
+    <EuiFlexItem grow={false}>
+      <EuiBadge>case</EuiBadge>
+    </EuiFlexItem>
+    <EuiFlexItem grow={false}>
+      <EuiBadge>phishing</EuiBadge>
+    </EuiFlexItem>
+    <EuiFlexItem grow={false}>
+      <EuiBadge>security</EuiBadge>
+    </EuiFlexItem>
+  </EuiFlexGroup>
+);
+
+const UserActionUsername = ({
+  username,
+  fullname,
+}: {
+  username: string;
+  fullname: string;
+}) => {
+  return (
+    <EuiToolTip position="top" content={<p>{fullname}</p>}>
+      <strong>{username}</strong>
+    </EuiToolTip>
+  );
+};
+
+const initialComments: EuiCommentProps[] = [
+  {
+    username: <UserActionUsername username="emma" fullname="Emma Watson" />,
+    timelineAvatar: <EuiAvatar name="emma" />,
+    event: 'added a comment',
+    timestamp: 'on 3rd March 2022',
+    children: (
+      <EuiMarkdownFormat textSize="s">
+        Phishing emails have been on the rise since February
+      </EuiMarkdownFormat>
+    ),
+    actions: actionButton,
+  },
+  {
+    username: <UserActionUsername username="emma" fullname="Emma Watson" />,
+    timelineAvatar: <EuiAvatar name="emma" />,
+    event: complexEvent,
+    timestamp: 'on 3rd March 2022',
+    eventIcon: 'tag',
+    eventIconAriaLabel: 'tag',
+  },
+  {
+    username: 'system',
+    timelineAvatar: 'dot',
+    timelineAvatarAriaLabel: 'System',
+    event: 'pushed a new incident',
+    timestamp: 'on 4th March 2022',
+    eventColor: 'danger',
+  },
+  {
+    username: <UserActionUsername username="tiago" fullname="Tiago Pontes" />,
+    timelineAvatar: <EuiAvatar name="tiago" />,
+    event: 'added a comment',
+    timestamp: 'on 4th March 2022',
+    actions: actionButton,
+    children: (
+      <EuiMarkdownFormat textSize="s">
+        Take a look at this
+        [Office.exe](http://my-drive.elastic.co/suspicious-file)
+      </EuiMarkdownFormat>
+    ),
+  },
+  {
+    username: <UserActionUsername username="emma" fullname="Emma Watson" />,
+    timelineAvatar: <EuiAvatar name="emma" />,
+    event: (
+      <>
+        marked case as <EuiBadge color="warning">In progress</EuiBadge>
+      </>
+    ),
+    timestamp: 'on 4th March 2022',
+  },
+];
+
+const replyMsg = `Thanks, Tiago for taking a look. :tada:
+
+I also found something suspicious: [Update.exe](http://my-drive.elastic.co/suspicious-file).
+`;
+
+export default () => {
+  const errorElementId = useRef(htmlIdGenerator()());
+  const [editorValue, setEditorValue] = useState(replyMsg);
+  const [comments, setComments] = useState(initialComments);
+  const [isLoading, setIsLoading] = useState(false);
+  const [editorError, setEditorError] = useState(true);
+
+  useEffect(() => {
+    if (editorValue === '') {
+      setEditorError(true);
+    } else {
+      setEditorError(false);
+    }
+  }, [editorValue, editorError]);
+
+  const onAddComment = () => {
+    setIsLoading(true);
+
+    const date = formatDate(Date.now(), 'dobLong');
+
+    setTimeout(() => {
+      setIsLoading(false);
+      setEditorValue('');
+
+      setComments([
+        ...comments,
+        {
+          username: (
+            <UserActionUsername username="emma" fullname="Emma Watson" />
+          ),
+          timelineAvatar: <EuiAvatar name="emma" />,
+          event: 'added a comment',
+          timestamp: `on ${date}`,
+          actions: actionButton,
+          children: (
+            <EuiMarkdownFormat textSize="s">{editorValue}</EuiMarkdownFormat>
+          ),
+        },
+      ]);
+    }, 3000);
+  };
+
+  const commentsList = comments.map((comment, index) => {
+    return (
+      <EuiComment key={`comment-${index}`} {...comment}>
+        {comment.children}
+      </EuiComment>
+    );
+  });
+
+  return (
+    <>
+      <EuiCommentList aria-label="Comment system example">
+        {commentsList}
+        <EuiComment
+          username="juana"
+          timelineAvatar={<EuiAvatar name="juana" />}
+        >
+          <EuiMarkdownEditor
+            aria-label="Markdown editor"
+            aria-describedby={errorElementId.current}
+            placeholder="Add a comment..."
+            value={editorValue}
+            onChange={setEditorValue}
+            readOnly={isLoading}
+            initialViewMode="editing"
+            markdownFormatProps={{ textSize: 's' }}
+          />
+        </EuiComment>
+      </EuiCommentList>
+      <EuiSpacer />
+
+      <EuiFlexGroup justifyContent="flexEnd" responsive={false}>
+        <EuiFlexItem grow={false}>
+          <div>
+            <EuiButton
+              onClick={onAddComment}
+              isLoading={isLoading}
+              isDisabled={editorError}
+            >
+              Add comment
+            </EuiButton>
+          </div>
+        </EuiFlexItem>
+      </EuiFlexGroup>
+    </>
+  );
+};
+```
+
+## Props
+
+import docgen from '@elastic/eui-docgen/dist/components/comment_list';
+
+<PropTable definition={docgen.EuiCommentList} />
+<PropTable definition={docgen.EuiComment} />
+<PropTable definition={docgen.EuiCommentEvent} />

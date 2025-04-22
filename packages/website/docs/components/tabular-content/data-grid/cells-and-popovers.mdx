@@ -1,0 +1,1046 @@
+---
+sidebar_position: 2
+---
+
+# Cells & popovers
+
+Data grid cells are rendered using the `renderCellValue` prop. This prop accepts a function which is treated as a React component behind the scenes. This means the data grid passes cell-specific props (e.g. row index, column/schema info, etc.) to your render function, which can output anything from a string to any JSX element.
+
+Each data grid cell will automatically render an expand action button and an expansion popover ([which can be disabled](./cells-and-popovers.mdx#disabling-cell-expansion-popovers)). For cells with overflowing or truncated content, this expansion popover helps display the full amount of content, or can be customized to show extra details.
+
+## Cell actions
+
+In addition to making a cell expandable, you can add more custom actions by setting `columns.cellActions`. These actions will render as icon buttons in the cell on hover/focus, and render as full buttons in the cell expansion popover. Note that once any `cellActions` are passed, the cell becomes automatically expandable - this ensures keyboard and screen reader users have access to all cell actions.
+
+`columns.cellActions` accepts an array of render functions. Behind the scenes, the functions are treated as a React components allowing hooks, context, and other React concepts to be used. Because different button types are used between the cell and the cell popover, we pass your render function a `Component` prop which you must render in order for your cell actions to switch correctly between button icons and buttons.
+
+To close a cell's expansion popover upon clicking an action, use the [closeCellPopover](./advanced/ref.mdx) API available via the `ref` prop.
+
+In the below example, the email and city columns provide 1 `cellAction` each, while the country column provides 2 `cellAction`s.
+
+```tsx interactive
+import React, { useState, useCallback } from 'react';
+import { EuiDataGrid, EuiAvatar } from '@elastic/eui';
+import { faker } from '@faker-js/faker';
+
+const columns = [
+  {
+    id: 'avatar',
+    initialWidth: 40,
+    isResizable: false,
+    actions: false,
+  },
+  {
+    id: 'name',
+    initialWidth: 100,
+    isSortable: true,
+    actions: {
+      showHide: false,
+    },
+  },
+  {
+    id: 'email',
+    isSortable: true,
+    cellActions: [
+      ({ rowIndex, columnId, Component, closePopover }) => {
+        const row = ++rowIndex;
+        return (
+          <Component
+            onClick={() => {
+              alert(`Love sent from row ${row}, column "${columnId}"`);
+              closePopover();
+            }}
+            iconType="heart"
+            aria-label={`Send love to ${row}, column "${columnId}" `}
+          >
+            Send love
+          </Component>
+        );
+      },
+    ],
+  },
+  {
+    id: 'city',
+    isSortable: true,
+    cellActions: [
+      ({ rowIndex, columnId, Component, isExpanded }) => {
+        const row = ++rowIndex;
+        const message = isExpanded
+          ? `Cheers sent in Popover to row "${row}" column "${columnId}"`
+          : `Cheers sent from row ${row}, column "${columnId}"`;
+
+        return (
+          <Component
+            onClick={() => alert(message)}
+            iconType="cheer"
+            aria-label={message}
+          >
+            Cheer
+          </Component>
+        );
+      },
+    ],
+  },
+  {
+    id: 'country',
+    cellActions: [
+      ({ rowIndex, columnId, Component }) => {
+        const row = ++rowIndex;
+        const label = `Love sent from row ${row}, column "${columnId}"`;
+        return (
+          <Component
+            onClick={() =>
+              alert(`Love sent from row ${row}, column "${columnId}"`)
+            }
+            iconType="heart"
+            aria-label={label}
+          >
+            Love this city
+          </Component>
+        );
+      },
+      ({ rowIndex, columnId, Component }) => {
+        const row = ++rowIndex;
+        const label = `Paint country at row ${row}, column "${columnId}"`;
+        return (
+          <Component
+            onClick={() =>
+              alert(`Paint sent from row ${row}, column "${columnId}"`)
+            }
+            iconType="brush"
+            aria-label={label}
+          >
+            Paint this city
+          </Component>
+        );
+      },
+    ],
+  },
+  {
+    id: 'account',
+  },
+];
+
+const data = [];
+
+for (let i = 1; i < 5; i++) {
+  data.push({
+    avatar: (
+      <EuiAvatar
+        size="s"
+        name={`${faker.person.lastName()}, ${faker.person.firstName()}`}
+      />
+    ),
+    name: `${faker.person.lastName()}, ${faker.person.firstName()} ${faker.person.suffix()}`,
+    email: faker.internet.email(),
+    city: faker.location.city(),
+    country: faker.location.country(),
+    account: faker.finance.accountNumber(),
+  });
+}
+
+export default () => {
+  const [pagination, setPagination] = useState({ pageIndex: 0 });
+
+  const [visibleColumns, setVisibleColumns] = useState(
+    columns.map(({ id }) => id)
+  );
+
+  const setPageIndex = useCallback(
+    (pageIndex) =>
+      setPagination((pagination) => ({ ...pagination, pageIndex })),
+    []
+  );
+  const setPageSize = useCallback(
+    (pageSize) =>
+      setPagination((pagination) => ({
+        ...pagination,
+        pageSize,
+        pageIndex: 0,
+      })),
+    []
+  );
+
+  return (
+    <EuiDataGrid
+      aria-label="DataGrid demonstrating column sizing constraints"
+      columns={columns}
+      columnVisibility={{
+        visibleColumns: visibleColumns,
+        setVisibleColumns: setVisibleColumns,
+      }}
+      rowCount={data.length}
+      renderCellValue={({ rowIndex, columnId }) => data[rowIndex][columnId]}
+      pagination={{
+        ...pagination,
+        onChangeItemsPerPage: setPageSize,
+        onChangePage: setPageIndex,
+      }}
+    />
+  );
+};
+```
+
+## Visible cell actions and cell popovers
+
+By default, only the first 2 cell actions of a cell will be displayed to the left of the expand action button, and remaining actions will be displayed in the footer of the cell expansion popover.
+
+This number is configurable by setting `columns.visibleCellActions`, should you need to display more cell actions immediately. However, we advise caution when increasing this limit - the default is set to ensure cell action buttons do not crowd out content.
+
+The below example shows an increasing number of `cellActions` in each column. The third column shows `visibleCellActions` set to 3, and the fourth column shows excess actions overflowing into the popover.
+
+```tsx interactive
+import React, { useState, ReactNode } from 'react';
+import {
+  RenderCellValue as RenderCellValueType,
+  EuiDataGrid,
+  EuiDataGridColumnCellAction,
+  EuiDataGridColumn,
+} from '@elastic/eui';
+import { faker } from '@faker-js/faker';
+
+const cellActions1: EuiDataGridColumnCellAction[] = [
+  ({ Component }) => (
+    <Component onClick={() => {}} iconType="timeline">
+      Add to timeline
+    </Component>
+  ),
+];
+const cellActions2: EuiDataGridColumnCellAction[] = [
+  ({ Component }) => (
+    <Component iconType="plusInCircle" aria-label="Filter in">
+      Filter in
+    </Component>
+  ),
+  ({ Component }) => (
+    <Component iconType="minusInCircle" aria-label="Filter out">
+      Filter out
+    </Component>
+  ),
+];
+const cellActions3 = [...cellActions2, ...cellActions1];
+const cellActions5: EuiDataGridColumnCellAction[] = [
+  ...cellActions3,
+  ({ Component }) => (
+    <Component onClick={() => {}} iconType="starEmpty">
+      Custom action 1
+    </Component>
+  ),
+  ({ Component }) => (
+    <Component onClick={() => {}} iconType="starEmpty">
+      Custom action 2
+    </Component>
+  ),
+];
+
+const columns: EuiDataGridColumn[] = [
+  {
+    id: 'default',
+    cellActions: cellActions1,
+  },
+  {
+    id: 'datetime',
+    cellActions: cellActions2,
+  },
+  {
+    id: 'json',
+    schema: 'json',
+    cellActions: cellActions3,
+    visibleCellActions: 3,
+  },
+  {
+    id: 'custom',
+    schema: 'favoriteFranchise',
+    cellActions: cellActions5,
+  },
+];
+
+const data: Array<{ [key: string]: ReactNode }> = [];
+for (let i = 1; i < 5; i++) {
+  data.push({
+    default: `${faker.person.lastName()}, ${faker.person.firstName()} ${faker.person.suffix()}`,
+    datetime: `${faker.date.past()}`,
+    json: JSON.stringify([
+      {
+        numeric: faker.finance.accountNumber(),
+        currency: faker.finance.amount(),
+        date: `${faker.date.past()}`,
+      },
+    ]),
+    custom: i % 2 === 0 ? 'Star Wars' : 'Star Trek',
+  });
+}
+
+const renderCellValue: RenderCellValueType = ({ rowIndex, columnId }) =>
+  data[rowIndex][columnId];
+
+export default () => {
+  const [visibleColumns, setVisibleColumns] = useState(
+    columns.map(({ id }) => id)
+  );
+
+  return (
+    <EuiDataGrid
+      aria-label="Data grid example of cellActions within popovers"
+      columns={columns}
+      columnVisibility={{ visibleColumns, setVisibleColumns }}
+      rowCount={data.length}
+      renderCellValue={renderCellValue}
+    />
+  );
+};
+```
+
+## Conditionally customizing cell popover content
+
+Cell popover content values can be conditionally customized using the `isDetails` flag passed to `renderCellValue`. If you need basic customization of cell popover values based on, e.g. schema or column, this is the most straightforward approach.
+
+By default, all cell popover contents are rendered with an **EuiText** wrapper, and cell actions are rendered within an **EuiPopoverFooter** as **EuiEmptyButton**s. Columns with a `json` schema will additionally have an automatic formatter that indents and displays the popover content within an **EuiCodeBlock**.
+
+```tsx interactive
+import React, { useState, ReactNode } from 'react';
+import {
+  EuiDataGrid,
+  EuiDataGridCellValueElementProps,
+  EuiDataGridColumnCellAction,
+  EuiDataGridColumn,
+  EuiTitle,
+} from '@elastic/eui';
+import { faker } from '@faker-js/faker';
+
+const cellActions: EuiDataGridColumnCellAction[] = [
+  ({ Component }) => (
+    <Component iconType="plusInCircle" aria-label="Filter in">
+      Filter in
+    </Component>
+  ),
+  ({ Component }) => (
+    <Component iconType="minusInCircle" aria-label="Filter out">
+      Filter out
+    </Component>
+  ),
+];
+
+const columns: EuiDataGridColumn[] = [
+  {
+    id: 'default',
+    cellActions,
+  },
+  {
+    id: 'datetime',
+    cellActions,
+  },
+  {
+    id: 'json',
+    schema: 'json',
+    cellActions,
+  },
+  {
+    id: 'custom',
+    schema: 'favoriteFranchise',
+    cellActions,
+  },
+];
+
+const data: Array<{ [key: string]: ReactNode }> = [];
+for (let i = 1; i < 5; i++) {
+  data.push({
+    default: `${faker.person.lastName()}, ${faker.person.firstName()} ${faker.person.suffix()}`,
+    datetime: `${faker.date.past()}`,
+    json: JSON.stringify([
+      {
+        numeric: faker.finance.accountNumber(),
+        currency: faker.finance.amount(),
+        date: `${faker.date.past()}`,
+      },
+    ]),
+    custom: i % 2 === 0 ? 'Star Wars' : 'Star Trek',
+  });
+}
+
+const RenderCellValue = ({
+  rowIndex,
+  columnId,
+  schema,
+  isDetails,
+}: EuiDataGridCellValueElementProps) => {
+  let value = data[rowIndex][columnId];
+
+  if (schema === 'favoriteFranchise' && isDetails) {
+    value = (
+      <EuiTitle size="xs">
+        <h3>{value} is the best!</h3>
+      </EuiTitle>
+    );
+  }
+
+  return value;
+};
+
+export default () => {
+  const [visibleColumns, setVisibleColumns] = useState(
+    columns.map(({ id }) => id)
+  );
+
+  return (
+    <EuiDataGrid
+      aria-label="Data grid example of renderCellValue.isDetails"
+      columns={columns}
+      columnVisibility={{ visibleColumns, setVisibleColumns }}
+      rowCount={data.length}
+      renderCellValue={RenderCellValue}
+    />
+  );
+};
+```
+
+## Completely customizing cell popover rendering
+
+If you want complete control over the rendering of the entire cell popover, use the `renderCellPopover` prop to pass a component. This allows you to do things like set your own wrappers and replace the default cell actions rendering with your own.
+
+To make falling back to atoms of the default cell popover easier, several props are passed to your custom `renderCellPopover` function:
+
+* `children` - the direct JSX output of the cell's returned `renderCellValue`. It can be used (e.g.) if you want a custom wrapper or cell actions, but default popover content.
+* `cellContentsElement` - a direct reference to the cell's HTML content node, which allows accessing the cell's `innerText` for cases where raw non-JSX text is useful (e.g. copying).
+* `cellActions` - the direct JSX output of the default popover footer and buttons. Use this prop if you want custom popover content but default cell actions.
+  * If deliberately leaving out the default `cellActions`, you **must** re-implement your cell actions in the popover in some form. Leaving out cell actions available in the cell but not in the popover introduces UX inconsistencies and will confuse the end user.
+* `DefaultCellPopover` - the default popover component. Use this component if you only want custom popover content for certain schemas or columns and default popover rendering for other cells.
+* `setCellPopoverProps` - this callback is passed to allow customizing the cell expansion popover. Accepts any prop that `EuiPopover` accepts, except for `button` & `closePopover`, which is controlled by the data grid.
+
+Take a look at the below example's demo code to see the above props in action.
+
+```tsx interactive
+import React, { useState, useEffect, ReactNode } from 'react';
+import {
+  RenderCellValue as RenderCellValueType,
+  EuiDataGrid,
+  EuiDataGridCellPopoverElementProps,
+  EuiDataGridColumnCellAction,
+  EuiDataGridColumn,
+  EuiPopoverTitle,
+  EuiPopoverFooter,
+  EuiFlexGroup,
+  EuiFlexItem,
+  EuiButtonEmpty,
+  EuiCopy,
+  EuiText,
+  EuiImage,
+} from '@elastic/eui';
+import { faker } from '@faker-js/faker';
+
+const cellActions: EuiDataGridColumnCellAction[] = [
+  ({ Component }) => (
+    <Component iconType="plusInCircle" aria-label="Filter in">
+      Filter in
+    </Component>
+  ),
+  ({ Component }) => (
+    <Component iconType="minusInCircle" aria-label="Filter out">
+      Filter out
+    </Component>
+  ),
+];
+
+const columns: EuiDataGridColumn[] = [
+  {
+    id: 'default',
+    cellActions,
+  },
+  {
+    id: 'datetime',
+    cellActions,
+  },
+  {
+    id: 'json',
+    cellActions,
+  },
+  {
+    id: 'custom',
+    schema: 'favoriteFranchise',
+    cellActions,
+  },
+];
+
+const data: Array<{ [key: string]: ReactNode }> = [];
+for (let i = 1; i < 5; i++) {
+  data.push({
+    default: `${faker.person.lastName()}, ${faker.person.firstName()} ${faker.person.suffix()}`,
+    datetime: `${faker.date.past()}`,
+    json: JSON.stringify([
+      {
+        numeric: faker.finance.accountNumber(),
+        currency: faker.finance.amount(),
+        date: `${faker.date.past()}`,
+      },
+    ]),
+    custom: i % 2 === 0 ? 'Star Wars' : 'Star Trek',
+  });
+}
+
+const RenderCellPopover = (props: EuiDataGridCellPopoverElementProps) => {
+  const {
+    columnId,
+    schema,
+    children,
+    cellActions,
+    cellContentsElement,
+    DefaultCellPopover,
+    setCellPopoverProps,
+  } = props;
+
+  let title: ReactNode = 'Custom popover';
+  let content: ReactNode = <EuiText size="s">{children}</EuiText>;
+  let footer: ReactNode = cellActions;
+
+  // Set custom cell expansion popover props
+  useEffect(() => {
+    setCellPopoverProps({ panelClassName: 'customCellPopover' });
+  }, [setCellPopoverProps]);
+
+  // An example of custom popover content
+  if (schema === 'favoriteFranchise') {
+    title = 'Custom popover with custom content';
+    const franchise = cellContentsElement.innerText;
+    const caption = `${franchise} is the best!`;
+    content = (
+      <>
+        {franchise === 'Star Wars' ? (
+          <EuiImage
+            allowFullScreen
+            size="m"
+            hasShadow
+            caption={caption}
+            alt="Random Star Wars image"
+            url="https://picsum.photos/id/35/600"
+          />
+        ) : (
+          <EuiImage
+            allowFullScreen
+            size="m"
+            hasShadow
+            caption={caption}
+            alt="Random Star Trek image"
+            url="https://picsum.photos/id/120/600"
+          />
+        )}
+      </>
+    );
+  }
+
+  // An example of a custom cell actions footer, and of using
+  // `cellContentsElement` to directly access a cell's raw text
+  if (columnId === 'datetime') {
+    title = 'Custom popover with custom actions';
+    footer = (
+      <EuiPopoverFooter>
+        <EuiFlexGroup
+          justifyContent="spaceBetween"
+          gutterSize="none"
+          responsive={false}
+        >
+          <EuiFlexItem className="eui-displayBlock">
+            {/* When not using the default cellActions, be sure to replace them
+            with your own action buttons to ensure a consistent user experience */}
+            <EuiButtonEmpty size="xs">Filter in</EuiButtonEmpty>
+            <EuiButtonEmpty size="xs">Filter out</EuiButtonEmpty>
+          </EuiFlexItem>
+          <EuiFlexItem grow={false}>
+            <EuiCopy textToCopy={cellContentsElement.innerText}>
+              {(copy) => (
+                <EuiButtonEmpty size="xs" onClick={copy} color="success">
+                  Click to copy
+                </EuiButtonEmpty>
+              )}
+            </EuiCopy>
+          </EuiFlexItem>
+        </EuiFlexGroup>
+      </EuiPopoverFooter>
+    );
+  }
+
+  // An example of conditionally falling back back to the default cell popover render.
+  // Note that JSON schemas have automatic EuiCodeBlock and isCopyable formatting
+  // which can be nice to keep intact. For cells that have non-JSON content but
+  // JSON popovers, you can also manually pass a `json` schema to force this formatting.
+  if (columnId === 'json') {
+    return <DefaultCellPopover {...props} schema="json" />;
+  }
+
+  return (
+    <>
+      <EuiPopoverTitle>{title}</EuiPopoverTitle>
+      {content}
+      {footer}
+    </>
+  );
+};
+
+const renderCellValue: RenderCellValueType = ({ rowIndex, columnId }) =>
+  data[rowIndex][columnId];
+
+export default () => {
+  const [visibleColumns, setVisibleColumns] = useState(
+    columns.map(({ id }) => id)
+  );
+
+  return (
+    <EuiDataGrid
+      aria-label="Data grid renderCellPopover example"
+      columns={columns}
+      columnVisibility={{ visibleColumns, setVisibleColumns }}
+      rowCount={data.length}
+      renderCellValue={renderCellValue}
+      renderCellPopover={RenderCellPopover}
+    />
+  );
+};
+```
+
+## Disabling cell expansion popovers
+
+Popovers can sometimes be unnecessary for short form content, and can be disabled by setting `columns.isExpandable` to `false`. In the example below, we've turned off expansion on the suffix column.
+
+To set `isExpandable` at a per-cell level instead of per-column, you can use the `setCellProps` callback passed by `renderCellValue`. The below example conditionally disables the expansion popover for boolean cells that are 'false'.
+
+:::warning Cells with actions are always expandable
+
+If `columns.cellActions` is defined, `isExpandable` will always be forced to true. This ensures that keyboard and screen reader users have access to all cell actions.
+
+:::
+
+```tsx interactive
+import React, { useEffect, useState, ReactNode } from 'react';
+import {
+  RenderCellValue as RenderCellValueType,
+  EuiDataGrid,
+  EuiDataGridColumnCellAction,
+  EuiDataGridColumn,
+} from '@elastic/eui';
+import { faker } from '@faker-js/faker';
+
+const cellActions: EuiDataGridColumnCellAction[] = [
+  ({ Component }) => (
+    <Component iconType="plusInCircle" aria-label="Filter in">
+      Filter in
+    </Component>
+  ),
+  ({ Component }) => (
+    <Component iconType="minusInCircle" aria-label="Filter out">
+      Filter out
+    </Component>
+  ),
+];
+
+const columns: EuiDataGridColumn[] = [
+  {
+    id: 'firstName',
+    cellActions,
+  },
+  {
+    id: 'lastName',
+    isExpandable: false, // Overridden by the fact that cellActions is set
+    cellActions,
+  },
+  {
+    id: 'suffix',
+    isExpandable: false,
+  },
+  {
+    id: 'boolean',
+    isExpandable: true, // Overridden by setCellProps for specific cells
+  },
+];
+
+const data: Array<{ [key: string]: ReactNode }> = [];
+for (let i = 1; i < 5; i++) {
+  data.push({
+    firstName: faker.person.firstName(),
+    lastName: faker.person.lastName(),
+    suffix: faker.person.suffix(),
+    boolean: `${faker.datatype.boolean()}`,
+  });
+}
+
+const RenderCellValue: RenderCellValueType = ({
+  rowIndex,
+  columnId,
+  setCellProps,
+}) => {
+  const value = data[rowIndex][columnId];
+
+  useEffect(() => {
+    if (columnId === 'boolean' && value === 'false') {
+      setCellProps({ isExpandable: false });
+    }
+  }, [columnId, value, setCellProps]);
+
+  return value;
+};
+
+export default () => {
+  const [visibleColumns, setVisibleColumns] = useState(
+    columns.map(({ id }) => id)
+  );
+
+  return (
+    <EuiDataGrid
+      aria-label="Data grid example of isExpandable false"
+      columns={columns}
+      columnVisibility={{ visibleColumns, setVisibleColumns }}
+      rowCount={data.length}
+      renderCellValue={RenderCellValue}
+    />
+  );
+};
+```
+
+## Focus
+
+**EuiDataGrid** tracks and manages complicated focus state management based upon the content of the individual inner cells. The following scenarios are supported and tested:
+
+### Initial focus
+
+*   When tabbing to the grid before it has received focus, the header cell is focused.
+*   When tabbing away from the grid and then returning, the last focused cell will regain focus.
+*   If the last focused cell has been scrolled out of view, the first header cell receives focus instead.
+
+### Click and key events
+
+*   Clicking on an interactive cell or its content should focus on the cell.
+*   The up, down, left, and right arrow keys can be pressed to navigate between cells.
+*   For expandable cells, either the Enter or F2 keys can be pressed interchangeably to toggle the cell popover. The Escape key will close the popover.
+*   For non-expandable cells with interactive content, either the Enter or F2 keys can be pressed to enter a focus trap, allowing users to Tab between the cell's content. The Escape key will exit the cell trap.
+*   For non-expandable cells with no interactive content, the cell alone will receive focus, with no inner content action.
+
+:::warning Don't turn off cell expansion when the width of the column is unknown
+
+In general, you should change `isExpandable` to `false` only when you know the exact width and number of items that a cell will include. Control columns that contain row actions are a good example of when to use them. In certain scenarios, allowing multiple interactive elements in cells when you cannot control the width can lead to hidden focus because the content is truncated.
+
+:::
+
+```tsx interactive
+import React, { useState, useCallback } from 'react';
+import {
+  EuiDataGrid,
+  EuiButtonIcon,
+  EuiLink,
+  EuiBadge,
+  EuiToken,
+  EuiFlexGroup,
+  EuiFlexItem,
+  EuiTextColor,
+} from '@elastic/eui';
+import { faker } from '@faker-js/faker';
+
+/* eslint-disable jsx-a11y/accessible-emoji */
+
+const data = [];
+
+for (let i = 0; i < 10; i++) {
+  data.push([
+    <span>{faker.person.firstName()}</span>,
+    <span>{faker.person.firstName()}</span>,
+
+    <span>
+      <EuiLink href="#/tabular-content/data-grid/cells-and-popovers#focus">
+        {faker.internet.email()}
+      </EuiLink>
+    </span>,
+    <span>
+      <EuiLink href="#/tabular-content/data-grid/cells-and-popovers#focus">
+        {faker.internet.email()}
+      </EuiLink>
+    </span>,
+
+    <EuiTextColor color="subdued">
+      <EuiLink size="s" color="success" onClick={() => {}}>
+        Yes
+      </EuiLink>
+      {' | '}
+      <EuiLink size="s" color="danger" onClick={() => {}}>
+        No
+      </EuiLink>
+    </EuiTextColor>,
+    <EuiTextColor color="subdued">
+      <EuiLink size="s" color="success" onClick={() => {}}>
+        Yes
+      </EuiLink>
+      {' | '}
+      <EuiLink size="s" color="danger" onClick={() => {}}>
+        No
+      </EuiLink>
+    </EuiTextColor>,
+  ]);
+}
+
+export default () => {
+  const columns = [
+    {
+      id: 'no-interactives not expandable',
+      display: <EuiBadge>0 interactive</EuiBadge>,
+      isExpandable: false,
+      actions: false,
+    },
+    {
+      id: 'no-interactives is expandable',
+      display: (
+        <EuiFlexGroup alignItems="center" gutterSize="xs" responsive={false}>
+          <EuiFlexItem grow={false}>
+            <EuiToken
+              iconType="expandMini"
+              color="euiColorVis0"
+              shape="square"
+              fill="dark"
+              title="Expandable"
+            />
+          </EuiFlexItem>
+          <EuiFlexItem grow={false}>
+            <EuiBadge>0 interactive</EuiBadge>
+          </EuiFlexItem>
+        </EuiFlexGroup>
+      ),
+      actions: false,
+    },
+    {
+      id: 'one-interactive not expandable',
+      display: (
+        <EuiFlexGroup alignItems="center" gutterSize="xs" responsive={false}>
+          <EuiButtonIcon
+            aria-label="column settings"
+            iconType="gear"
+            onClick={() => {}}
+          />
+          <EuiBadge>1 interactive</EuiBadge>
+        </EuiFlexGroup>
+      ),
+      isExpandable: false,
+      actions: false,
+    },
+    {
+      id: 'one-interactives is expandable',
+      display: (
+        <EuiFlexGroup alignItems="center" gutterSize="xs" responsive={false}>
+          <EuiFlexItem grow={false}>
+            <EuiToken
+              iconType="expandMini"
+              color="euiColorVis0"
+              shape="square"
+              fill="dark"
+              title="Expandable"
+            />
+          </EuiFlexItem>
+          <EuiFlexItem grow={false}>
+            <EuiBadge>1 interactive</EuiBadge>
+          </EuiFlexItem>
+        </EuiFlexGroup>
+      ),
+      actions: false,
+    },
+    {
+      id: 'two-interactives not expandable',
+      display: (
+        <EuiFlexGroup alignItems="center" gutterSize="xs" responsive={false}>
+          <EuiButtonIcon
+            aria-label="column settings"
+            iconType="gear"
+            onClick={() => {}}
+          />
+          <EuiButtonIcon
+            aria-label="column settings"
+            iconType="gear"
+            onClick={() => {}}
+          />
+          <EuiBadge>2 interactive</EuiBadge>
+        </EuiFlexGroup>
+      ),
+      isExpandable: false,
+      actions: false,
+    },
+    {
+      id: 'two-interactives is expandable',
+      display: (
+        <EuiFlexGroup alignItems="center" gutterSize="xs" responsive={false}>
+          <EuiFlexItem grow={false}>
+            <EuiToken
+              iconType="expandMini"
+              color="euiColorVis0"
+              shape="square"
+              fill="dark"
+              title="Expandable"
+            />
+          </EuiFlexItem>
+          <EuiFlexItem grow={false}>
+            <EuiBadge>2 interactive</EuiBadge>
+          </EuiFlexItem>
+        </EuiFlexGroup>
+      ),
+      actions: false,
+    },
+  ];
+
+  const columnIdToIndex = columns.reduce((acc, { id }, index) => {
+    acc[id] = index;
+    return acc;
+  }, {});
+
+  const renderCellValue = useCallback(
+    ({ rowIndex, columnId }) => {
+      const columnIndex = columnIdToIndex[columnId];
+      return data[rowIndex][columnIndex];
+    },
+    [columnIdToIndex]
+  );
+
+  const [visibleColumns, setVisibleColumns] = useState(
+    columns.map(({ id }) => id)
+  );
+
+  const [pagination, setPagination] = useState({
+    pageSize: 4,
+    pageIndex: 0,
+    pageSizeOptions: [4],
+  });
+  const onChangeItemsPerPage = useCallback(
+    (pageSize) => setPagination((pagination) => ({ ...pagination, pageSize })),
+    [setPagination]
+  );
+  const onChangePage = useCallback(
+    (pageIndex) =>
+      setPagination((pagination) => ({ ...pagination, pageIndex })),
+    [setPagination]
+  );
+
+  return (
+    <EuiDataGrid
+      aria-label="Focus"
+      columns={columns}
+      columnVisibility={{ visibleColumns, setVisibleColumns }}
+      rowCount={data.length}
+      renderCellValue={renderCellValue}
+      pagination={{
+        ...pagination,
+        onChangeItemsPerPage,
+        onChangePage,
+      }}
+    />
+  );
+};
+```
+
+## Cell context
+
+The `cellContext` prop is an easy way of passing your custom data or context from the top level of **EuiDataGrid** down to the cell content rendered by your `renderCellValue` function component.
+
+The primary use of the cell context API is performance: if your data relies on state from your app, it allows you to more easily define your `renderCellValue` function statically, instead of within your app, which in turn reduces the number of rerenders within your data grid.
+
+```tsx interactive
+import React, { useState, useEffect, useCallback, ReactNode } from 'react';
+import {
+  EuiDataGrid,
+  EuiDataGridColumn,
+  type,
+  RenderCellValue,
+  EuiButton,
+  EuiSpacer,
+  EuiSkeletonText,
+} from '@elastic/eui';
+import { faker } from '@faker-js/faker';
+
+type DataType = Array<{ [key: string]: ReactNode }>;
+
+const columns: EuiDataGridColumn[] = [
+  { id: 'firstName' },
+  { id: 'lastName' },
+  { id: 'suffix' },
+  { id: 'boolean' },
+];
+
+const CellValue: RenderCellValue = ({
+  rowIndex,
+  columnId,
+  // Props from cellContext
+  data,
+  isLoading,
+}) => {
+  if (isLoading) {
+    return <EuiSkeletonText lines={1} />;
+  }
+
+  const value = data[rowIndex][columnId];
+  return value;
+};
+
+export default () => {
+  const [visibleColumns, setVisibleColumns] = useState(
+    columns.map(({ id }) => id)
+  );
+
+  const [data, setData] = useState<DataType>([]);
+  const [cellContext, setCellContext] = useState({
+    data,
+    isLoading: false,
+  });
+
+  // Mock fetching data from an async API
+  const mockLoading = useCallback(() => {
+    setCellContext((context) => ({
+      ...context,
+      isLoading: true,
+    }));
+
+    // End the loading state after 3 seconds
+    const timeout = setTimeout(() => {
+      setCellContext((context) => ({
+        ...context,
+        isLoading: false,
+      }));
+    }, 3000);
+    return () => clearTimeout(timeout);
+  }, []);
+
+  const fetchData = useCallback(() => {
+    mockLoading();
+
+    const data: DataType = [];
+    for (let i = 1; i < 5; i++) {
+      data.push({
+        firstName: faker.person.firstName(),
+        lastName: faker.person.lastName(),
+        suffix: faker.person.suffix(),
+        boolean: `${faker.datatype.boolean()}`,
+      });
+    }
+    setData(data);
+    setCellContext((context) => ({ ...context, data }));
+  }, [mockLoading]);
+
+  // Fetch data on page load
+  useEffect(() => {
+    fetchData();
+  }, [fetchData]);
+
+  return (
+    <>
+      <EuiButton size="s" onClick={fetchData}>
+        Fetch grid data
+      </EuiButton>
+      <EuiSpacer size="s" />
+      <EuiDataGrid
+        aria-label="Data grid example of cellContext"
+        columns={columns}
+        columnVisibility={{ visibleColumns, setVisibleColumns }}
+        rowCount={data.length}
+        renderCellValue={CellValue}
+        cellContext={cellContext}
+      />
+    </>
+  );
+};
+```
+
+## Props
+
+import docgen from '@elastic/eui-docgen/dist/components/datagrid/data_grid_types.docgen.json';
+
+<PropTable definition={docgen.EuiDataGridCellValueElementProps} />
+<PropTable definition={docgen.EuiDataGridCellPopoverElementProps} />

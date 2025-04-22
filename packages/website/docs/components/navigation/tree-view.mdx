@@ -1,0 +1,199 @@
+# Tree view
+
+**EuiTreeView** allows you to render recursive objects, such as a file directory. It is not meant to be used as primary navigation, for that we recommend using [EuiSideNav](./side-nav.mdx).
+
+**EuiTreeView** does not accept `children` directly but requires an array of `EuiTreeViewNode`s through its `items` prop.
+
+Each node requires a `label` and a unique `id`. The `icon` prop accepts any [icon or token](../display/icons/index.mdx). You can also specify a different icon for the open state with the `iconWhenExpanded` prop. Use the nodes' `children` prop to nest more nodes.
+
+## Component
+
+:::accessibility Accessibility recommendation
+Provide a descriptive `aria-label` for each tree view. This component also builds in keyboard navigation allowing users to traverse the tree using the arrow keys, spacebar, and return.
+:::
+
+```tsx interactive
+import React from 'react';
+import { EuiIcon, EuiTreeView, EuiToken } from '@elastic/eui';
+
+export default () => {
+  const items = [
+    {
+      label: 'Item One',
+      id: 'item_one',
+      icon: <EuiIcon type="folderClosed" />,
+      iconWhenExpanded: <EuiIcon type="folderOpen" />,
+      isExpanded: true,
+      children: [
+        {
+          label: 'Item A',
+          id: 'item_a',
+          icon: <EuiIcon type="document" />,
+        },
+        {
+          label: 'Item B',
+          id: 'item_b',
+          icon: <EuiIcon type="arrowRight" />,
+          iconWhenExpanded: <EuiIcon type="arrowDown" />,
+          children: [
+            {
+              label: 'A Cloud',
+              id: 'item_cloud',
+              icon: <EuiToken iconType="tokenConstant" />,
+            },
+            {
+              label: "I'm a Bug",
+              id: 'item_bug',
+              icon: <EuiToken iconType="tokenEnum" />,
+              callback: () => {},
+            },
+          ],
+        },
+        {
+          label: 'Item C',
+          id: 'item_c',
+          icon: <EuiIcon type="arrowRight" />,
+          iconWhenExpanded: <EuiIcon type="arrowDown" />,
+          children: [
+            {
+              label: 'Another Cloud',
+              id: 'item_cloud2',
+              icon: <EuiToken iconType="tokenConstant" />,
+            },
+            {
+              label:
+                'This one is a really long string that we will check truncates correctly',
+              id: 'item_bug2',
+              icon: <EuiToken iconType="tokenEnum" />,
+              callback: () => {},
+            },
+          ],
+        },
+      ],
+    },
+    {
+      label: 'Item Two',
+      id: 'item_two',
+    },
+  ];
+
+  return (
+    <div style={{ width: '20rem' }}>
+      <EuiTreeView items={items} aria-label="Sample Folder Tree" />
+    </div>
+  );
+};
+```
+
+## Usage
+
+### Optional styling
+
+**EuiTreeView** supports a compressed mode with the `display="compressed"` setting. When using the compressed version it's highly recommended to use the small size of **EuiIcon** and the extra small size of **EuiToken**. This will help prevent awkward alignment issues when used alongside the `showExpansionArrows` prop.
+
+The `showExpansionArrows` prop provides an additional visual indicator. Ideal for when a tree's items use icons that don't immediately let a user know that there are nested nodes that may not be visible.
+
+In some cases, you may want to automatically expand all the items with children. In those instances, you can use the `expandByDefault` prop, as seen in the example below.
+
+Lastly, each node can also accept a custom `className` should you need to style them individually.
+
+```tsx interactive
+import React from 'react';
+import { EuiTreeView, EuiToken } from '@elastic/eui';
+
+export default () => {
+  const items = [
+    {
+      label: 'transporter',
+      id: 'transporter',
+      icon: <EuiToken size="xs" iconType="tokenObject" />,
+      children: [
+        {
+          label: 'service',
+          id: 'service',
+          icon: <EuiToken size="xs" iconType="tokenString" />,
+        },
+        {
+          label: 'auth',
+          id: 'auth',
+          icon: <EuiToken size="xs" iconType="tokenObject" />,
+          children: [
+            {
+              label: 'user',
+              id: 'user',
+              icon: <EuiToken size="xs" iconType="tokenVariable" />,
+            },
+            {
+              label: 'pass',
+              id: 'pass',
+              icon: <EuiToken size="xs" iconType="tokenVariable" />,
+            },
+          ],
+        },
+      ],
+    },
+    {
+      label: 'getContact',
+      id: 'getContact',
+      icon: <EuiToken size="xs" iconType="tokenFunction" />,
+      children: [
+        {
+          label: 'render',
+          id: 'render',
+          icon: <EuiToken size="xs" iconType="tokenFunction" />,
+          children: [
+            {
+              label: 'title',
+              id: 'title',
+              icon: <EuiToken size="xs" iconType="tokenString" />,
+            },
+          ],
+        },
+      ],
+    },
+    {
+      label: 'postContact',
+      id: 'postContact',
+      icon: <EuiToken size="xs" iconType="tokenFunction" />,
+      children: [
+        {
+          label: 'errors',
+          id: 'errors',
+          icon: <EuiToken size="xs" iconType="tokenConstant" />,
+        },
+        {
+          label: 'A custom class is on this one',
+          id: 'customClass',
+          icon: <EuiToken size="xs" iconType="tokenObject" />,
+          className: 'guideDemo__treeViewNode',
+        },
+      ],
+    },
+    {
+      label: 'smokeMonster',
+      id: 'smokeMonster',
+      icon: <EuiToken size="xs" iconType="tokenMethod" />,
+    },
+  ];
+
+  return (
+    <div style={{ width: '20rem' }}>
+      <EuiTreeView
+        items={items}
+        display="compressed"
+        expandByDefault
+        showExpansionArrows
+        aria-label="Document Outline"
+      />
+    </div>
+  );
+};
+```
+
+## Props
+
+import treeViewDocgen from '@elastic/eui-docgen/dist/components/tree_view';
+import treeViewItemDocgen from '@elastic/eui-docgen/dist/components/tree_view/tree_view_item';
+
+<PropTable definition={treeViewDocgen.EuiTreeView} />
+<PropTable definition={treeViewItemDocgen.EuiTreeViewItem} />

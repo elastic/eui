@@ -1,12 +1,10 @@
 ---
-slug: /forms/selection/selectable
-id: forms_selection_selectable
 sidebar_position: 6
 ---
 
 # Selectable
 
-**EuiSelectable** aims to make the pattern of a selectable list (with or without search) consistent across implementations. It is the same concept used in [EuiComboBox](./combo_box.mdx) and [EuiFilterGroup](../search_filter/filter_group.mdx). **This is not intended for [primary navigation](../../display/list_group.mdx) but can be used to simplify the construction of popover navigational menus; i.e. the spaces menu in the [header](../../layout/header.mdx). See EUI's <a href="https://github.com/elastic/eui/discussions/7049" target="_blank">in-depth guide on which selection component to choose</a> for more information.
+**EuiSelectable** aims to make the pattern of a selectable list (with or without search) consistent across implementations. It is the same concept used in [EuiComboBox](./combo-box.mdx) and [EuiFilterGroup](../search-and-filter/filter-group.mdx). **This is not intended for [primary navigation](../../display/list-group.mdx) but can be used to simplify the construction of popover navigational menus; i.e. the spaces menu in the [header](../../layout/header.mdx). See EUI's <a href="https://github.com/elastic/eui/discussions/7049" target="_blank">in-depth guide on which selection component to choose</a> for more information.
 
 ## The basics
 
@@ -690,7 +688,7 @@ export default () => {
 
 **EuiSelectable** defaults to `listProps.textWrap="truncate"`, which truncates long option text at the end of the string.
 
-You can use `listProps.truncationProps` and almost any prop that [**EuiTextTruncate**](../../../getting-started/utilities/text_truncation.mdx) accepts to configure this behavior. This can be configured at the **EuiSelectable** level, as well as by each individual option.
+You can use `listProps.truncationProps` and almost any prop that [**EuiTextTruncate**](../../../utilities/text-truncation.mdx) accepts to configure this behavior. This can be configured at the **EuiSelectable** level, as well as by each individual option.
 
 ```tsx interactive
 import React, { useState } from 'react';

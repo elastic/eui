@@ -1,0 +1,171 @@
+# Window events
+
+import { ModalExample } from './modal_example';
+
+## Basic example: closing a modal on escape
+
+Use an **EuiWindowEvent** to safely and declaratively manage adding and auto-removing event listeners to the `window`. This is preferable to setting up your own window event listeners because it will remove old listeners when your component unmounts, preventing you from accidentally leaving them around forever.
+
+This modal example registers a listener on the `keydown` event and listens for ESC key presses, which closes the open modal.
+
+<Demo scope={{ ModalExample }}>
+```tsx interactive
+import React from 'react';
+
+import {
+  EuiModal,
+  EuiModalBody,
+  EuiModalHeader,
+  EuiModalHeaderTitle,
+} from '@elastic/eui';
+
+const BasicModal = ({ onClose }) => (
+  <EuiModal onClose={onClose} style={{ width: '800px' }}>
+    <EuiModalHeader>
+      <EuiModalHeaderTitle>Example modal</EuiModalHeaderTitle>
+    </EuiModalHeader>
+    <EuiModalBody>
+      <p>
+        This modal closes when you press ESC, using a window event listener.
+      </p>
+    </EuiModalBody>
+  </EuiModal>
+);
+
+export default () => <ModalExample modal={BasicModal} />;
+```
+</Demo>
+
+## Avoiding event conflicts
+
+:::warning Be careful with global listeners
+
+Since window event listeners are global, they can conflict with other event listeners if you aren't careful.
+:::
+
+The safest and best way to avoid these conflicts is to use `event.stopPropagation()` at the lowest, most specific level where you are responding to a DOM event. This will prevent the event from bubbling up to the window, and the **EuiWindowEvent** listener will never be triggered, avoiding the conflict.
+
+<Demo scope={{ ModalExample }}>
+```tsx interactive
+import React, { useState } from 'react';
+
+import {
+  EuiModal,
+  EuiModalBody,
+  EuiModalHeader,
+  EuiModalHeaderTitle,
+  EuiFieldText,
+  EuiSpacer,
+  keys,
+} from '@elastic/eui';
+
+const ConflictModal = (props) => {
+  const [inputValue, setInputValue] = useState('');
+
+  const updateInputValue = (e) => {
+    setInputValue(e.target.value);
+  };
+
+  const clearInputValueOnEscape = (event) => {
+    if (event.key === keys.ESCAPE) {
+      setInputValue('');
+      event.stopPropagation();
+    }
+  };
+
+  return (
+    <EuiModal onClose={props.onClose} style={{ width: '800px' }}>
+      <EuiModalHeader>
+        <EuiModalHeaderTitle>Example modal</EuiModalHeaderTitle>
+      </EuiModalHeader>
+      <EuiModalBody>
+        <EuiFieldText
+          value={inputValue}
+          onChange={updateInputValue}
+          onKeyDown={clearInputValueOnEscape}
+        />
+        <EuiSpacer size="s" />
+        <p>While typing in this field, ESC will clear the field.</p>
+        <EuiSpacer size="l" />
+        <p>
+          Otherwise, the event bubbles up to the window and ESC closes the
+          modal.
+        </p>
+      </EuiModalBody>
+    </EuiModal>
+  );
+};
+
+export default () => (
+  <ModalExample
+    modal={ConflictModal}
+    buttonText="Open Modal with Conflicting Listener"
+  />
+);
+```
+</Demo>
+
+## Tracking mouse position
+
+For some DOM events, you have to listen on the window. One example of this is tracking mouse position. Below, when you click the toggle switch, your mouse position is tracked. When you toggle off, tracking stops.
+
+If you were manually attaching window listeners, you might forget to remove the listener and be silently responding to mouse events in the background for the life of your app. The **EuiWindowEvent** component manages that unmount/unregister process for you.
+
+<Demo>
+```tsx interactive
+import React, { useState } from 'react';
+
+import {
+  EuiSwitch,
+  EuiDescriptionList,
+  EuiSpacer,
+  EuiWindowEvent,
+} from '@elastic/eui';
+
+export default () => {
+  const [tracking, setTracking] = useState(false);
+  const [coordinates, setCoordinates] = useState({});
+
+  const onSwitchChange = () => {
+    setTracking(!tracking);
+  };
+
+  const onMouseMove = ({ clientX, clientY }) => {
+    setCoordinates({ clientX, clientY });
+  };
+
+  const listItems = [
+    {
+      title: 'Position X',
+      description: coordinates.clientX || '??',
+    },
+    {
+      title: 'Position Y',
+      description: coordinates.clientY || '??',
+    },
+  ];
+
+  return (
+    <div>
+      <EuiSwitch
+        label="Track mouse position"
+        checked={tracking}
+        onChange={onSwitchChange}
+      />
+      {tracking ? (
+        <EuiWindowEvent event="mousemove" handler={onMouseMove} />
+      ) : null}
+      <EuiSpacer size="l" />
+      <EuiDescriptionList listItems={listItems} />
+      <EuiSpacer size="xxl" />
+    </div>
+  );
+};
+```
+</Demo>
+
+## Props
+
+import docgen from '@elastic/eui-docgen/dist/services/window_event';
+
+<PropTable definition={docgen.EuiWindowEvent} />

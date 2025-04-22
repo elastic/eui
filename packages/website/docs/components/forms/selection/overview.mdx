@@ -1,11 +1,10 @@
 ---
-slug: /forms/selection
-id: forms_selection_controls
+sidebar_position: 1
 ---
 
-import { EuiIconTip } from '@elastic/eui';
-
 # Selection controls
+
+import { EuiIconTip } from '@elastic/eui';
 
 EUI currently offers over 4 ways to select an option from a list (6 including checkboxes and radios).
 
@@ -15,16 +14,16 @@ While it can get overwhelming figuring out which component to use, this page sho
 
 ### Single selection
 
-- When you have a small set of options (\<7) and all options are equally important in terms of visibility, use [EuiRadioGroup](./checkboxes_radios/overview.mdx#radio-group).
+- When you have a small set of options (\<7) and all options are equally important in terms of visibility, use [EuiRadioGroup](./checkboxes-and-radios/index.mdx#radio-group).
 - When you have a small set of options (\<12) and only the current selected option has UI importance, reach for [EuiSelect](./select.mdx) first when possible, over other more complex selection components.
     - Native form controls tend to have better cross-browser and cross-device affordances (particularly for mobile devices), and are more familiar to end users due to their ubiquity across the internet.
-- When you have a small set of options (\<12) _and_ if you need to customize how the options are rendered and selected, use [EuiSuperSelect](./super_select.mdx).
+- When you have a small set of options (\<12) _and_ if you need to customize how the options are rendered and selected, use [EuiSuperSelect](./super-select.mdx).
     - We recommend reaching for **EuiSuperSelect** only if custom option display is absolutely necessary (e.g. for multi-line option text/descriptions), as **EuiSelect** is natively more accessible.
 - Large sets of options (\>12) should use a selection component that supports searching/filtering options. This requires the use of one of the more advanced multiselect components with `singleSelection` set.
 
 ### Multiple selections
 
-- When you have a small set of options (\<7), and all options are equally important in terms of visibility, use [EuiCheckboxGroup](./checkboxes_radios/overview.mdx#checkbox-group).
+- When you have a small set of options (\<7), and all options are equally important in terms of visibility, use [EuiCheckboxGroup](./checkboxes-and-radios/index.mdx#checkbox-group).
 
 {/* TODO: Once EuiComboBox is rewritten to dogfood EuiSelectable, the below will no longer be as true, and we can recommend either EuiSelectable or EuiComboBox equally */}
 
@@ -32,7 +31,7 @@ While it can get overwhelming figuring out which component to use, this page sho
     - **EuiSelectable** can optionally be rendered with a search box for filtering through many options, or as just a list for fewer options.
     - **EuiSelectable** is by far our most accessible and flexible selection component (although customization may require extra development). It can be used within popovers and flyouts, or as a standalone list.
     - If you need the ability to exclude options, **EuiSelectable** is the only component that offers that functionality.
-- In general, for multi-select scenarios, we recommend using [EuiComboBox](./combo_box.mdx) over [EuiSelectable](./selectable.mdx) primarily when selections should be immediately visible and unselected options should not. Selections are rendered as a horizontally-oriented list of pills.
+- In general, for multi-select scenarios, we recommend using [EuiComboBox](./combo-box.mdx) over [EuiSelectable](./selectable.mdx) primarily when selections should be immediately visible and unselected options should not. Selections are rendered as a horizontally-oriented list of pills.
     - **EuiComboBox** also allows users to search through a list of dropdown options. This functionality is core to the component and cannot be removed, unlike **EuiSelectable**.
     - If you need the ability to dynamically add custom user-generated input outside of the available options, **EuiComboBox** is the only component that offers that functionality.
 
@@ -47,11 +46,11 @@ export const tooltipProps = {
 
 {/* TODO: Convert to basic table with borders */}
 
-| Feature | &emsp;[EuiSelect](./select.mdx)&emsp; | &emsp;[EuiSuperSelect](./super_select.mdx)&emsp; | &emsp;[EuiSelectable](./selectable.mdx)&emsp; | &emsp;[EuiComboBox](./combo_box.mdx)&emsp; | 
+| Feature | &emsp;[EuiSelect](./select.mdx)&emsp; | &emsp;[EuiSuperSelect](./super-select.mdx)&emsp; | &emsp;[EuiSelectable](./selectable.mdx)&emsp; | &emsp;[EuiComboBox](./combo-box.mdx)&emsp; |
 |:---|:---:|:---:|:---:|:---:|
-| Select a single option | ✅ | ✅ | ✅ | ✅ | 
-| Select multiple options | ❌ | ❌ | ✅ | ✅ | 
-| Accepts custom values from user input | ❌ | ❌ | ❌ | ✅ | 
+| Select a single option | ✅ | ✅ | ✅ | ✅ |
+| Select multiple options | ❌ | ❌ | ✅ | ✅ |
+| Accepts custom values from user input | ❌ | ❌ | ❌ | ✅ |
 | Option exclusion | ❌ | ❌ | ✅ | ❌ |
 | Customizable option display | ❌ | ✅ | ✅ | ✅ |
 | Customizable loading/error messages | ❌ | ❌ | ✅ | ❌ |

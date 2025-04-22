@@ -1,0 +1,60 @@
+# Focus trap
+
+Use **EuiFocusTrap** to prevent keyboard-initiated focus from leaving a defined area. Temporary flows and UX escapes that occur in components such as [EuiModal](../../components/containers/modal/index.mdx) and [EuiFlyout](../../components/containers/flyout/index.mdx) are prime examples.
+
+For components that project content in a React portal, **EuiFocusTrap** will maintain the tab order expected by users.
+
+* Use `clickOutsideDisables` to disable the focus trap when the user clicks outside the trap.
+* Use `noIsolation={false}` when pointer events on outside elements should be disallowed.
+* Use `crossFrame={true}` when focus should not be allowed on other iframes on the page.
+
+import FormExample from './form_compressed';
+
+<Demo scope={{ FormExample }}>
+```tsx interactive
+import React, { useState } from 'react';
+
+import {
+  EuiBadge,
+  EuiButton,
+  EuiFocusTrap,
+  EuiPanel,
+  EuiSpacer,
+  EuiText,
+} from '@elastic/eui';
+
+export default () => {
+  const [isDisabled, changeDisabled] = useState(true);
+
+  const toggleDisabled = () => changeDisabled(!isDisabled);
+
+  return (
+    <div>
+      <EuiBadge>Trap is {isDisabled ? 'disabled' : 'enabled'}</EuiBadge>
+      <EuiSpacer size="s" />
+      <EuiFocusTrap disabled={isDisabled}>
+        <EuiPanel>
+          <FormExample />
+          <EuiSpacer size="m" />
+          <EuiButton onClick={toggleDisabled}>
+            {`${!isDisabled ? 'Disable' : 'Enable'} Focus Trap`}
+          </EuiButton>
+        </EuiPanel>
+      </EuiFocusTrap>
+      <EuiSpacer size="l" />
+      <EuiText>
+        The button below is not focusable by keyboard as long as the focus trap
+        is enabled.
+      </EuiText>
+      <EuiButton onClick={() => {}}>External Focusable Element</EuiButton>
+    </div>
+  );
+};
+```
+</Demo>
+
+## Props
+
+import docgen from '@elastic/eui-docgen/dist/components/focus_trap';
+
+<PropTable definition={docgen.EuiFocusTrap} />

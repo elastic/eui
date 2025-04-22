@@ -281,19 +281,8 @@ export const EuiPagination: FunctionComponent<Props> = ({
 
       const selectablePages = pages;
 
-      const accessibleName = {
-        ...(rest['aria-label'] && { 'aria-label': rest['aria-label'] }),
-        ...(rest['aria-labelledby'] && {
-          'aria-labelledby': rest['aria-labelledby'],
-        }),
-      };
-
       centerPageCount = (
-        <ul
-          className="euiPagination__list"
-          css={styles.euiPagination__list}
-          {...accessibleName}
-        >
+        <ul className="euiPagination__list" css={styles.euiPagination__list}>
           {firstPageButtons}
           {selectablePages}
           {lastPageButtons}

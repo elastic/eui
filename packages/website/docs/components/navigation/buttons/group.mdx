@@ -1,0 +1,447 @@
+---
+sidebar_position: 4
+---
+
+# Button group
+
+An **EuiButtonGroup** is for indicating _selection only_. They utilize the `type="single"` or `"multi"` prop to determine whether multiple or only single selections are allowed per group.
+
+:::accessibility Accessibility recommendation
+In order for groups to be properly read as groups with a title, the `legend` prop is **required**. This is only for accessibility, however, so it will be visibly hidden.
+:::
+
+```tsx interactive
+import React, { useState, Fragment } from 'react';
+
+import {
+  EuiButtonGroup,
+  EuiFlexGroup,
+  EuiFlexItem,
+  EuiPanel,
+  EuiSpacer,
+  EuiSwitch,
+  EuiTitle,
+  useGeneratedHtmlId
+} from '@elastic/eui';
+
+export default () => {
+  const [disableButton, setDisableButton] = useState(false);
+  const [fullButton, setFullButton] = useState(false);
+
+  const basicButtonGroupPrefix = useGeneratedHtmlId({
+    prefix: 'basicButtonGroup',
+  });
+  const multiSelectButtonGroupPrefix = useGeneratedHtmlId({
+    prefix: 'multiSelectButtonGroup',
+  });
+  const disabledButtonGroupPrefix = useGeneratedHtmlId({
+    prefix: 'disabledButtonGroup',
+  });
+
+  const toggleButtons = [
+    {
+      id: `${basicButtonGroupPrefix}__0`,
+      label: 'Option one',
+    },
+    {
+      id: `${basicButtonGroupPrefix}__1`,
+      label: 'Option two is selected by default',
+    },
+    {
+      id: `${basicButtonGroupPrefix}__2`,
+      label: 'Option three',
+    },
+  ];
+
+  const toggleButtonsDisabled = [
+    {
+      id: `${disabledButtonGroupPrefix}__0`,
+      label: 'Option one',
+    },
+    {
+      id: `${disabledButtonGroupPrefix}__1`,
+      label: 'Option two is selected by default',
+    },
+    {
+      id: `${disabledButtonGroupPrefix}__2`,
+      label: 'Option three',
+    },
+  ];
+
+  const toggleButtonsMulti = [
+    {
+      id: `${multiSelectButtonGroupPrefix}__0`,
+      label: 'Option 1',
+    },
+    {
+      id: `${multiSelectButtonGroupPrefix}__1`,
+      label: 'Option 2 is selected by default',
+    },
+    {
+      id: `${multiSelectButtonGroupPrefix}__2`,
+      label: 'Option 3',
+    },
+  ];
+
+  const [toggleIdSelected, setToggleIdSelected] = useState(
+    `${basicButtonGroupPrefix}__1`
+  );
+  const [toggleIdDisabled, setToggleIdDisabled] = useState(
+    `${disabledButtonGroupPrefix}__1`
+  );
+  const [toggleIdToSelectedMap, setToggleIdToSelectedMap] = useState({
+    [`${multiSelectButtonGroupPrefix}__1`]: true,
+  });
+
+  const onChange = (optionId) => {
+    setToggleIdSelected(optionId);
+  };
+
+  const onChangeDisabled = (optionId) => {
+    setToggleIdDisabled(optionId);
+  };
+
+  const onChangeMulti = (optionId) => {
+    const newToggleIdToSelectedMap = {
+      ...toggleIdToSelectedMap,
+      ...{
+        [optionId]: !toggleIdToSelectedMap[optionId],
+      },
+    };
+    setToggleIdToSelectedMap(newToggleIdToSelectedMap);
+  };
+
+  return (
+    <Fragment>
+      <EuiFlexGroup
+        gutterSize="m"
+        alignItems="center"
+      >
+        <EuiFlexItem grow={false}>
+          <EuiSwitch
+            compressed
+            label="Full width"
+            checked={fullButton}
+            onChange={() => setFullButton(!fullButton)}
+          />
+        </EuiFlexItem>
+        <EuiFlexItem grow={false}>
+          <EuiSwitch
+            compressed
+            label="Disabled"
+            checked={disableButton}
+            onChange={() => setDisableButton(!disableButton)}
+          />
+        </EuiFlexItem>
+      </EuiFlexGroup>
+      <EuiSpacer />
+      <EuiPanel type="plain" hasBorder css={{width: 600, maxWidth: '100%'}}>
+        <EuiTitle size="xxs">
+          <h3>Default</h3>
+        </EuiTitle>
+        <EuiSpacer size="s" />
+        <EuiButtonGroup
+          legend="Default single select button group"
+          isFullWidth={fullButton}
+          isDisabled={disableButton}
+          options={toggleButtons}
+          idSelected={toggleIdSelected}
+          onChange={(id) => onChange(id)}
+        />
+        <EuiSpacer />
+        <EuiTitle size="xxs">
+          <h3>Primary color with multi select</h3>
+        </EuiTitle>
+        <EuiSpacer size="s" />
+        <EuiButtonGroup
+          legend="Primary color multi select button group"
+          isFullWidth={fullButton}
+          isDisabled={disableButton}
+          options={toggleButtonsMulti}
+          idToSelectedMap={toggleIdToSelectedMap}
+          onChange={(id) => onChangeMulti(id)}
+          color="primary"
+          type="multi"
+        />
+      </EuiPanel>
+    </Fragment>
+  );
+};
+```
+
+### Icon only button group
+
+Use the `isIconOnly` prop when displaying a group of icon-only buttons.
+
+```tsx interactive
+import React, { useState, Fragment } from 'react';
+
+import { EuiButtonGroup, htmlIdGenerator } from '@elastic/eui';
+
+const idPrefix3 = htmlIdGenerator()();
+
+export default () => {
+  const toggleButtonsIcons = [
+    {
+      id: `${idPrefix3}0`,
+      label: 'Align left',
+      iconType: 'editorAlignLeft',
+    },
+    {
+      id: `${idPrefix3}1`,
+      label: 'Align center',
+      iconType: 'editorAlignCenter',
+    },
+    {
+      id: `${idPrefix3}2`,
+      label: 'Align right',
+      iconType: 'editorAlignRight',
+      isDisabled: true,
+    },
+  ];
+
+  const toggleButtonsIconsMulti = [
+    {
+      id: `${idPrefix3}3`,
+      label: 'Bold',
+      name: 'bold',
+      iconType: 'editorBold',
+    },
+    {
+      id: `${idPrefix3}4`,
+      label: 'Italic',
+      name: 'italic',
+      iconType: 'editorItalic',
+      isDisabled: true,
+    },
+    {
+      id: `${idPrefix3}5`,
+      label: 'Underline',
+      name: 'underline',
+      iconType: 'editorUnderline',
+    },
+    {
+      id: `${idPrefix3}6`,
+      label: 'Strikethrough',
+      name: 'strikethrough',
+      iconType: 'editorStrike',
+    },
+  ];
+
+  const [toggleIconIdSelected, setToggleIconIdSelected] = useState(
+    `${idPrefix3}1`
+  );
+  const [toggleIconIdToSelectedMap, setToggleIconIdToSelectedMap] = useState(
+    {}
+  );
+
+  const onChangeIcons = (optionId) => {
+    setToggleIconIdSelected(optionId);
+  };
+
+  const onChangeIconsMulti = (optionId) => {
+    const newToggleIconIdToSelectedMap = {
+      ...toggleIconIdToSelectedMap,
+      ...{
+        [optionId]: !toggleIconIdToSelectedMap[optionId],
+      },
+    };
+
+    setToggleIconIdToSelectedMap(newToggleIconIdToSelectedMap);
+  };
+
+  return (
+    <Fragment>
+      <EuiButtonGroup
+        legend="Text align"
+        options={toggleButtonsIcons}
+        idSelected={toggleIconIdSelected}
+        onChange={(id) => onChangeIcons(id)}
+        isIconOnly
+      />
+      &nbsp;&nbsp;
+      <EuiButtonGroup
+        legend="Text style"
+        options={toggleButtonsIconsMulti}
+        idToSelectedMap={toggleIconIdToSelectedMap}
+        onChange={(id) => onChangeIconsMulti(id)}
+        type="multi"
+        isIconOnly
+      />
+    </Fragment>
+  );
+};
+```
+
+### Button group tooltips
+
+Buttons within a button group will automatically display a default browser tooltip containing the button `label` text. This can be customized or unset via the `title` property in your `options` button configuration.
+
+To instead display an **EuiToolTip** around your button(s), pass the `toolTipContent` property. You can also use `toolTipProps` to customize tooltip placement, title, and any other prop that [EuiToolTip](../../display/tooltip.mdx) accepts.
+
+```tsx interactive
+import React, { useState } from 'react';
+
+import { EuiButtonGroup } from '@elastic/eui';
+
+export default () => {
+  const toggleButtons = [
+    {
+      id: 'buttonGroup__0',
+      label: 'Default title',
+    },
+    {
+      id: 'buttonGroup__1',
+      label: 'Custom tooltip content',
+      toolTipContent: 'This is a custom tooltip',
+    },
+    {
+      id: 'buttonGroup__2',
+      label: 'Custom tooltip props',
+      toolTipContent: 'This is another custom tooltip',
+      toolTipProps: {
+        title: 'My custom title',
+        position: 'right',
+      },
+    },
+  ];
+
+  const [toggleIdSelected, setToggleIdSelected] = useState('buttonGroup__1');
+
+  const onChange = (optionId) => {
+    setToggleIdSelected(optionId);
+  };
+
+  return (
+    <EuiButtonGroup
+      legend="This is a group with tooltips"
+      options={toggleButtons}
+      idSelected={toggleIdSelected}
+      onChange={(id) => onChange(id)}
+    />
+  );
+};
+```
+
+### Button group in forms
+
+<Badge>Pattern</Badge>
+
+When using button groups within compressed forms, match the form elements by adding `buttonSize="compressed"`. Compressed groups should always be `fullWidth` so they line up nicely in their small container unless they are icon only.
+
+For a more detailed example of how to integrate with forms, see the ["Complex example"](../../forms/layouts/compressed-forms.mdx#complex-example) on the compressed forms page.
+
+```tsx interactive
+import React, { useState } from 'react';
+
+import {
+  EuiButtonGroup,
+  EuiSpacer,
+  EuiPanel,
+  useGeneratedHtmlId,
+} from '@elastic/eui';
+
+export default () => {
+  const compressedToggleButtonGroupPrefix = useGeneratedHtmlId({
+    prefix: 'compressedToggleButtonGroup',
+  });
+  const multiSelectButtonGroupPrefix = useGeneratedHtmlId({
+    prefix: 'multiSelectButtonGroup',
+  });
+
+  const toggleButtonsCompressed = [
+    {
+      id: `${compressedToggleButtonGroupPrefix}__0`,
+      label: 'fine',
+    },
+    {
+      id: `${compressedToggleButtonGroupPrefix}__1`,
+      label: 'rough',
+    },
+    {
+      id: `${compressedToggleButtonGroupPrefix}__2`,
+      label: 'coarse',
+    },
+  ];
+
+  const toggleButtonsIconsMulti = [
+    {
+      id: `${multiSelectButtonGroupPrefix}__0`,
+      label: 'Bold',
+      name: 'bold',
+      iconType: 'editorBold',
+    },
+    {
+      id: `${multiSelectButtonGroupPrefix}__1`,
+      label: 'Italic',
+      name: 'italic',
+      iconType: 'editorItalic',
+      isDisabled: true,
+    },
+    {
+      id: `${multiSelectButtonGroupPrefix}__2`,
+      label: 'Underline',
+      name: 'underline',
+      iconType: 'editorUnderline',
+    },
+    {
+      id: `${multiSelectButtonGroupPrefix}__3`,
+      label: 'Strikethrough',
+      name: 'strikethrough',
+      iconType: 'editorStrike',
+    },
+  ];
+
+  const [toggleIconIdToSelectedMapIcon, setToggleIconIdToSelectedMapIcon] =
+    useState({});
+  const [toggleCompressedIdSelected, setToggleCompressedIdSelected] = useState(
+    `${compressedToggleButtonGroupPrefix}__1`
+  );
+
+  const onChangeCompressed = (optionId) => {
+    setToggleCompressedIdSelected(optionId);
+  };
+
+  const onChangeIconsMultiIcons = (optionId) => {
+    const newToggleIconIdToSelectedMapIcon = {
+      ...toggleIconIdToSelectedMapIcon,
+      ...{
+        [optionId]: !toggleIconIdToSelectedMapIcon[optionId],
+      },
+    };
+
+    setToggleIconIdToSelectedMapIcon(newToggleIconIdToSelectedMapIcon);
+  };
+
+  return (
+    <EuiPanel hasBorder style={{ maxWidth: 300 }}>
+      <EuiButtonGroup
+        name="coarsness"
+        legend="This is a basic group"
+        options={toggleButtonsCompressed}
+        idSelected={toggleCompressedIdSelected}
+        onChange={(id) => onChangeCompressed(id)}
+        buttonSize="compressed"
+        isFullWidth
+      />
+      <EuiSpacer />
+      <EuiButtonGroup
+        legend="Text style"
+        className="eui-displayInlineBlock"
+        options={toggleButtonsIconsMulti}
+        idToSelectedMap={toggleIconIdToSelectedMapIcon}
+        onChange={(id) => onChangeIconsMultiIcons(id)}
+        type="multi"
+        buttonSize="compressed"
+        isIconOnly
+      />
+    </EuiPanel>
+  );
+};
+```
+
+## Props
+
+import docgen from '@elastic/eui-docgen/dist/components/button';
+
+<PropTable definition={docgen.EuiButtonGroup} />

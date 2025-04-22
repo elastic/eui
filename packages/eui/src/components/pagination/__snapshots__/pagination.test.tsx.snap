@@ -29,14 +29,13 @@ exports[`EuiPagination is rendered 1`] = `
     />
   </button>
   <ul
-    aria-label="aria-label"
     class="euiPagination__list emotion-euiPagination__list"
   >
     <li
       class="euiPagination__item"
     >
       <button
-        aria-current="true"
+        aria-current="page"
         aria-label="Page 1 of 1"
         class="euiButtonEmpty euiPaginationButton emotion-euiButtonDisplay-euiButtonEmpty-s-empty-disabled-isDisabled-euiPaginationButton-isActive"
         data-test-subj="pagination-button-0"
@@ -242,7 +241,7 @@ exports[`EuiPagination props activePage is rendered 1`] = `
       class="euiPagination__item"
     >
       <button
-        aria-current="true"
+        aria-current="page"
         aria-label="Page 6 of 10"
         class="euiButtonEmpty euiPaginationButton emotion-euiButtonDisplay-euiButtonEmpty-s-empty-disabled-isDisabled-euiPaginationButton-isActive"
         data-test-subj="pagination-button-5"
@@ -392,7 +391,7 @@ exports[`EuiPagination props aria-controls is rendered 1`] = `
     >
       <button
         aria-controls="idOfTable"
-        aria-current="true"
+        aria-current="page"
         aria-label="Page 1 of 1"
         class="euiButtonEmpty euiPaginationButton emotion-euiButtonDisplay-euiButtonEmpty-s-empty-disabled-isDisabled-euiPaginationButton-isActive"
         data-test-subj="pagination-button-0"
@@ -614,7 +613,7 @@ exports[`EuiPagination props pageCount is rendered 1`] = `
       class="euiPagination__item"
     >
       <button
-        aria-current="true"
+        aria-current="page"
         aria-label="Page 1 of 10"
         class="euiButtonEmpty euiPaginationButton emotion-euiButtonDisplay-euiButtonEmpty-s-empty-disabled-isDisabled-euiPaginationButton-isActive"
         data-test-subj="pagination-button-0"
@@ -789,7 +788,7 @@ exports[`EuiPagination props responsive can be customized 1`] = `
       class="euiPagination__item"
     >
       <button
-        aria-current="true"
+        aria-current="page"
         aria-label="Page 1 of 1"
         class="euiButtonEmpty euiPaginationButton emotion-euiButtonDisplay-euiButtonEmpty-s-empty-disabled-isDisabled-euiPaginationButton-isActive"
         data-test-subj="pagination-button-0"
@@ -858,7 +857,7 @@ exports[`EuiPagination props responsive can be false 1`] = `
       class="euiPagination__item"
     >
       <button
-        aria-current="true"
+        aria-current="page"
         aria-label="Page 1 of 1"
         class="euiButtonEmpty euiPaginationButton emotion-euiButtonDisplay-euiButtonEmpty-s-empty-disabled-isDisabled-euiPaginationButton-isActive"
         data-test-subj="pagination-button-0"

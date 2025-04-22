@@ -1,0 +1,431 @@
+# Description list
+
+**EuiDescriptionList** is a component for listing pairs of information together. You can use the component on its own, passing in an object for the list.
+
+```tsx interactive
+import React from 'react';
+import { EuiDescriptionList } from '@elastic/eui';
+
+const favoriteVideoGames = [
+  {
+    title: 'The Elder Scrolls: Morrowind',
+    description: 'The opening music alone evokes such strong memories.',
+  },
+  {
+    title: 'TIE Fighter',
+    description:
+      'The sequel to XWING, join the dark side and fly for the Emperor.',
+  },
+  {
+    title: 'Quake 2',
+    description: 'The game that made me drop out of college.',
+  },
+];
+export default () => <EuiDescriptionList listItems={favoriteVideoGames} />;
+```
+
+You can also use the **EuiDescriptionListTitle** and **EuiDescriptionListDescription** components separately to build a list manually.
+
+```tsx interactive
+import React from 'react';
+import {
+  EuiDescriptionList,
+  EuiDescriptionListTitle,
+  EuiDescriptionListDescription,
+} from '@elastic/eui';
+
+export default () => (
+  <EuiDescriptionList>
+    <EuiDescriptionListTitle>
+      The Elder Scrolls: Morrowind
+    </EuiDescriptionListTitle>
+    <EuiDescriptionListDescription>
+      The opening music alone evokes such strong memories.
+    </EuiDescriptionListDescription>
+    <EuiDescriptionListTitle>TIE Fighter</EuiDescriptionListTitle>
+    <EuiDescriptionListDescription>
+      The sequel to XWING, join the dark side and fly for the Emperor.
+    </EuiDescriptionListDescription>
+    <EuiDescriptionListTitle>Quake 2</EuiDescriptionListTitle>
+    <EuiDescriptionListDescription>
+      The game that made me drop out of college.
+    </EuiDescriptionListDescription>
+  </EuiDescriptionList>
+);
+```
+
+## Reverse style
+
+Setting the `textStyle` prop to `reverse` will reverse the text styles of the `title` and `description` elements so that the description is more prominent. This works best for key/value type content.
+
+Adding this property to the `inline` type will not change anything.
+
+```tsx interactive
+import React from 'react';
+import { EuiDescriptionList } from '@elastic/eui';
+
+const favoriteVideoGame = [
+  {
+    title: 'Name',
+    description: 'The Elder Scrolls: Morrowind',
+  },
+  {
+    title: 'Game style',
+    description: 'Open-world, fantasy, action role-playing',
+  },
+  {
+    title: 'Release date',
+    description: '2002',
+  },
+];
+
+export default () => (
+  <EuiDescriptionList textStyle="reverse" listItems={favoriteVideoGame} />
+);
+```
+
+## As columns
+
+Using the prop `type` set to `column` description lists can be presented in an inline, column format.
+
+```tsx interactive
+import React from 'react';
+import { EuiDescriptionList } from '@elastic/eui';
+
+const favoriteVideoGames = [
+  {
+    title: 'The Elder Scrolls: Morrowind',
+    description: 'The opening music alone evokes such strong memories.',
+  },
+  {
+    title: 'TIE Fighter',
+    description:
+      'The sequel to XWING, join the dark side and fly for the Emperor.',
+  },
+  {
+    title: 'Quake 2',
+    description: 'The game that made me drop out of college.',
+  },
+];
+export default () => (
+  <EuiDescriptionList
+    type="column"
+    listItems={favoriteVideoGames}
+    style={{ maxWidth: '400px' }}
+  />
+);
+```
+
+To return to the typical row format on smaller screens set `type` to `responsiveColumn`. The following list will only show the column format on larger screens.
+
+```tsx interactive
+import React from 'react';
+import { EuiDescriptionList } from '@elastic/eui';
+
+const favoriteVideoGames = [
+  {
+    title: 'The Elder Scrolls: Morrowind',
+    description: 'The opening music alone evokes such strong memories.',
+  },
+  {
+    title: 'TIE Fighter',
+    description:
+      'The sequel to XWING, join the dark side and fly for the Emperor.',
+  },
+  {
+    title: 'Quake 2',
+    description: 'The game that made me drop out of college.',
+  },
+];
+export default () => (
+  <EuiDescriptionList
+    type="responsiveColumn"
+    listItems={favoriteVideoGames}
+    style={{ maxWidth: '400px' }}
+  />
+);
+```
+
+The optional `columnWidths` prop allows customizing specific column widths (e.g. `['100px', '200px']`). The first array value applies to the title column, and the second applies to the description column.
+
+Passing numbers instead of CSS width strings will use a ratio of widths. For example, `[1, 3]` will render a description column 3x the width of the title column. In other words, titles will have a width of 25% descriptions will have a width of 75%.
+
+For advanced usage, column width strings also accept [CSS grid special units, sizing, keywords, and sizing functions](https://css-tricks.com/snippets/css/complete-guide-grid/#aa-special-units-functions).
+
+```tsx interactive
+import React from 'react';
+import { EuiDescriptionList } from '@elastic/eui';
+
+const listItems = [
+  {
+    title: '25% width',
+    description: '75% width',
+  },
+  {
+    title: 'TIE Fighter',
+    description:
+      'The sequel to XWING, join the dark side and fly for the Emperor.',
+  },
+  {
+    title: 'Quake 2',
+    description: 'The game that made me drop out of college.',
+  },
+];
+
+export default () => (
+  <EuiDescriptionList
+    listItems={listItems}
+    type="column"
+    columnWidths={[1, 3]} // Same as [25, 75]
+    style={{ maxInlineSize: '400px' }}
+  />
+);
+```
+
+## Inline
+
+Using a prop `type` set to `inline` description lists can be presented in an inline, blob format. This is useful for JSON code blocks. Inline description lists are sized smaller than normal lists due to their compact nature.
+
+```tsx interactive
+import React from 'react';
+import { EuiDescriptionList } from '@elastic/eui';
+
+const favoriteVideoGames = [
+  {
+    title: 'The Elder Scrolls: Morrowind',
+    description: 'The opening music alone evokes such strong memories.',
+  },
+  {
+    title: 'TIE Fighter',
+    description:
+      'The sequel to XWING, join the dark side and fly for the Emperor.',
+  },
+  {
+    title: 'Quake 2',
+    description: 'The game that made me drop out of college.',
+  },
+];
+export default () => (
+  <EuiDescriptionList
+    type="inline"
+    listItems={favoriteVideoGames}
+    style={{ maxWidth: '400px' }}
+  />
+);
+```
+
+## Customizing appearance
+
+#### Alignment & Compression
+
+Utilize the `align` and`compressed` props to refine the presentation of your description list. These are compatible with both column and inline types.
+
+#### Vertical spacing
+
+Modify the `rowGutterSize` prop to control the vertical spacing between `EuiDescriptionList` elements. This will not affect inline list types.
+
+#### Horizontal spacing
+
+Adjust the spacing between the title and description with the `columnGutterSize` prop. This will not affect inline or row types.
+
+```tsx interactive
+import React, { useState } from 'react';
+import {
+  EuiDescriptionList,
+  EuiSpacer,
+  EuiButtonGroup,
+  EuiSwitch,
+  EuiTitle,
+  EuiFlexGroup,
+  EuiFlexItem,
+} from '@elastic/eui';
+
+export default () => {
+  const favoriteVideoGames = [
+    {
+      title: 'The Elder Scrolls: Morrowind',
+      description: 'The opening music alone evokes such strong memories.',
+    },
+    {
+      title: 'TIE Fighter',
+      description:
+        'The sequel to XWING, join the dark side and fly for the Emperor.',
+    },
+    {
+      title: 'Quake 2',
+      description: 'The game that made me drop out of college.',
+    },
+  ];
+
+  const alignToggleButtons = [
+    {
+      id: 'left',
+      label: 'Left',
+    },
+    {
+      id: 'center',
+      label: 'Center',
+    },
+  ];
+
+  const [alignSelected, setAlignSelected] = useState('center');
+
+  const rowGutterSizeOptions = [
+    {
+      id: 's',
+      label: 'Small',
+    },
+    {
+      id: 'm',
+      label: 'Medium',
+    },
+  ];
+
+  const [rowGutterSize, setRowGutterSize] = useState('m');
+
+  const columnGutterSizeOptions = [
+    {
+      id: 's',
+      label: 'Small',
+    },
+    {
+      id: 'm',
+      label: 'Medium',
+    },
+  ];
+
+  const [columnGutterSize, setColumnGutterSize] = useState('m');
+
+  const [compressed, setCompressed] = useState(true);
+
+  const compressedOnChange = () => {
+    setCompressed(!compressed);
+  };
+
+  return (
+    <div style={{ maxWidth: '400px' }}>
+      <EuiFlexGroup>
+        <EuiFlexItem>
+          <EuiTitle size="xxs">
+            <h3>Align options</h3>
+          </EuiTitle>
+          <EuiButtonGroup
+            legend="Toggle for the EuiDescription align prop"
+            options={alignToggleButtons}
+            idSelected={alignSelected}
+            onChange={(id) => setAlignSelected(id)}
+          />
+        </EuiFlexItem>
+
+        <EuiFlexItem>
+          <EuiTitle size="xxs">
+            <h3>Row gutter sizes</h3>
+          </EuiTitle>
+          <EuiButtonGroup
+            legend="Toggle for the EuiDescription rowGutterSize prop"
+            options={rowGutterSizeOptions}
+            idSelected={rowGutterSize}
+            onChange={(id) => setRowGutterSize(id)}
+          />
+        </EuiFlexItem>
+
+        <EuiFlexItem>
+          <EuiTitle size="xxs">
+            <h3>Column gap sizes</h3>
+          </EuiTitle>
+          <EuiButtonGroup
+            legend="Toggle for the EuiDescription columnGutterSize prop"
+            options={columnGutterSizeOptions}
+            idSelected={columnGutterSize}
+            onChange={(id) => setColumnGutterSize(id)}
+          />
+        </EuiFlexItem>
+
+        <EuiFlexItem>
+          <EuiTitle size="xxs">
+            <h3>Compressed</h3>
+          </EuiTitle>
+          <EuiSwitch
+            label="Compressed"
+            checked={compressed}
+            onChange={compressedOnChange}
+          />
+        </EuiFlexItem>
+      </EuiFlexGroup>
+
+      <EuiSpacer />
+
+      <EuiDescriptionList
+        listItems={favoriteVideoGames}
+        align={alignSelected}
+        compressed={compressed}
+        rowGutterSize={rowGutterSize}
+      />
+
+      <EuiSpacer size="l" />
+
+      <EuiDescriptionList
+        listItems={favoriteVideoGames}
+        type="column"
+        align={alignSelected}
+        compressed={compressed}
+        rowGutterSize={rowGutterSize}
+        columnGutterSize={columnGutterSize}
+      />
+
+      <EuiSpacer size="l" />
+
+      <EuiDescriptionList
+        listItems={favoriteVideoGames}
+        type="inline"
+        align={alignSelected}
+        compressed={compressed}
+      />
+    </div>
+  );
+};
+```
+
+## Passing className
+
+When using the `listItems` prop to pass an object of items and you need to also add a `className` (or other available prop) to the individual pieces, you can use the `titleProps` and `descriptionProps` to do so.
+
+```tsx interactive
+import React from 'react';
+import { EuiDescriptionList } from '@elastic/eui';
+
+const favoriteVideoGames = [
+  {
+    title: 'The Elder Scrolls: Morrowind',
+    description: 'The opening music alone evokes such strong memories.',
+  },
+  {
+    title: 'TIE Fighter',
+    description:
+      'The sequel to XWING, join the dark side and fly for the Emperor.',
+  },
+  {
+    title: 'Quake 2',
+    description: 'The game that made me drop out of college.',
+  },
+];
+export default () => (
+  <div style={{ maxWidth: '400px' }}>
+    <EuiDescriptionList
+      listItems={favoriteVideoGames}
+      type="column"
+      align="center"
+      titleProps={{ className: 'eui-textTruncate' }}
+      descriptionProps={{ className: 'eui-textTruncate' }}
+    />
+  </div>
+);
+```
+
+## Props
+
+import docgen from '@elastic/eui-docgen/dist/components/description_list';
+
+<PropTable definition={docgen.EuiDescriptionList} />
+<PropTable definition={docgen.EuiDescriptionListTitle} />
+<PropTable definition={docgen.EuiDescriptionListDescription} />

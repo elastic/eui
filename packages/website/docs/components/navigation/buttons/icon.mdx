@@ -1,0 +1,194 @@
+---
+sidebar_position: 3
+---
+
+# Icon button
+
+An **EuiButtonIcon** is a button that only contains an icon (no text). Use the `display` and `size` props to match the appearance of your **EuiButtonIcon** to other standard buttons. By default they will appear as `xs`, `empty` buttons.
+
+:::accessibility Accessibility requirement
+**EuiButtonIcon** requires an `aria-label` to express the meaning to screen readers.
+:::
+
+```tsx interactive
+import React, { useState } from 'react';
+
+import {
+  EuiButtonIcon,
+  EuiFlexGroup,
+  EuiFlexItem,
+  EuiSelect,
+  EuiSpacer,
+  EuiSwitch,
+} from '@elastic/eui';
+import { COLORS } from '@elastic/eui/es/components/button/button';
+
+const DISPLAY_TYPES = ['empty', 'base', 'fill'];
+const DISPLAY_SIZES = ['xs', 's', 'm'];
+const ICON_SIZES = ['s', 'm', 'l', 'xl', 'xxl', 'original'];
+// While `accentSecondary` is currently available on the component, it is likely to be removed
+const filteredColors = COLORS.filter((name) => name !== 'accentSecondary');
+
+export default () => {
+  const buttonColorsOptions = filteredColors.map((name) => {
+    return {
+      value: name,
+      text: name,
+    };
+  });
+  const displayTypeOptions = DISPLAY_TYPES.map((name) => {
+    return {
+      value: name,
+      text: name,
+    };
+  });
+  const displaySizeOptions = DISPLAY_SIZES.map((name) => {
+    return {
+      value: name,
+      text: name,
+    };
+  });
+  const iconSizeOptions = ICON_SIZES.map((name) => {
+    return {
+      value: name,
+      text: name,
+    };
+  });
+  const [disableButton, setDisableButton] = useState(false);
+  const [displayType, setDisplayType] = useState(displayTypeOptions[0].value);
+  const [displaySize, setDisplaySize] = useState(displaySizeOptions[0].value);
+  const [iconSize, setIconSize] = useState(iconSizeOptions[1].value);
+  const [buttonColor, setButtonColor] = useState(buttonColorsOptions[2].value);
+
+  const onChangeDisplayType = (e) => {
+    setDisplayType(e.target.value);
+  };
+
+  const onChangeDisplaySize = (e) => {
+    setDisplaySize(e.target.value);
+  };
+
+  const onChangeIconSize = (e) => {
+    setIconSize(e.target.value);
+  };
+
+  const onChangeButtonColor = (e) => {
+    setButtonColor(e.target.value);
+  };
+
+  return(
+    <>
+      <EuiFlexGroup
+        gutterSize="m"
+        alignItems="center"
+        wrap={true}
+      >
+        <EuiFlexItem grow={false}>
+          <EuiSelect
+            prepend="Color"
+            options={buttonColorsOptions}
+            value={buttonColor}
+            onChange={(e) => onChangeButtonColor(e)}
+            compressed
+            aria-label="Button colors"
+          />
+        </EuiFlexItem>
+        <EuiFlexItem grow={false}>
+          <EuiSelect
+            prepend="Display"
+            options={displayTypeOptions}
+            value={displayType}
+            onChange={(e) => onChangeDisplayType(e)}
+            compressed
+            aria-label="Button display styles"
+          />
+        </EuiFlexItem>
+        <EuiFlexItem grow={false}>
+          <EuiSelect
+            prepend="Size"
+            options={displaySizeOptions}
+            value={displaySize}
+            onChange={(e) => onChangeDisplaySize(e)}
+            compressed
+            aria-label="Button sizes"
+          />
+        </EuiFlexItem>
+        <EuiFlexItem grow={false}>
+          <EuiSelect
+            prepend="Icon size"
+            options={iconSizeOptions}
+            value={iconSize}
+            onChange={(e) => onChangeIconSize(e)}
+            compressed
+            aria-label="Icon in button sizes"
+          />
+        </EuiFlexItem>
+        <EuiFlexItem grow={false}>
+          <EuiSwitch
+            compressed
+            label="Disabled"
+            checked={disableButton}
+            onChange={() => setDisableButton(!disableButton)}
+          />
+        </EuiFlexItem>
+      </EuiFlexGroup>
+      <EuiSpacer size="xl" />
+      <EuiButtonIcon
+        color={buttonColor}
+        display={displayType}
+        size={displaySize}
+        iconSize={iconSize}
+        disabled={disableButton}
+        onClick={() => {}}
+        iconType="documentation"
+        aria-label="Open documentation"
+      />
+    </>
+  );
+};
+```
+
+### Icon color
+
+Icons, within the button, inherit the color set on `EuiButtonIcon` and can not be customized.
+
+```tsx interactive
+import React, { useState } from 'react';
+
+import {
+  EuiButtonIcon,
+  EuiFlexGroup,
+  EuiFlexItem,
+} from '@elastic/eui';
+
+export default () => (
+  <EuiFlexGroup responsive={false} gutterSize="s" alignItems="flexStart">
+    <EuiFlexItem grow={false}>
+      <EuiButtonIcon display="base" iconType="lensApp" size="m" aria-label="Lens" />
+    </EuiFlexItem>
+    <EuiFlexItem grow={false}>
+      <EuiButtonIcon display="base" iconType="warning" size="s" color="warning" aria-label="Warning" />
+    </EuiFlexItem>
+    <EuiFlexItem grow={false}>
+      <EuiButtonIcon
+        iconType="dashboardApp"
+        aria-label="Dashboard"
+        color="text"
+      />
+    </EuiFlexItem>
+    <EuiFlexItem grow={false}>
+      <EuiButtonIcon
+        iconType="trash"
+        aria-label="Delete"
+        color="danger"
+      />
+    </EuiFlexItem>
+  </EuiFlexGroup>
+);
+```
+
+## Props
+
+import docgen from '@elastic/eui-docgen/dist/components/button';
+
+<PropTable definition={docgen.EuiButtonIcon} />

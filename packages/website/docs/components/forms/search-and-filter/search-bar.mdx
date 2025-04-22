@@ -1,0 +1,1074 @@
+---
+sidebar_position: 2
+---
+
+# Search bar
+
+:::tip
+**EuiSearchBar**'s usage is specific to <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl.html" target="_blank">Elasticsearch's Query DSL</a> (domain specific language).<br />
+For more generic search use cases, consider using the basic [EuiFieldSearch](./search.mdx) component.
+:::
+
+An **EuiSearchBar** is a toolbar that enables the user to create/define a search query. This can be done either by entering the query syntax in a search box or by clicking any of the configured filters. The query language is not meant to be full blown search language for arbitrary data (e.g. as required in the Discover App in Kibana), yet it does provide some useful features:
+
+*   Search `terms` - one can simply type search terms (free text words) - Example,`website -production`. In this example the intention is to find all items that have the "website" terms in them but do not have the word "production". Terms are AND'd together by default.
+*   Phrases can be matched by surrounding multiple words with quotes - Example, `"website url"`.
+*   Field/value search - one can search for terms within specific fields - Example,`tag:bug -severity:high`. In this example the intention is to find all items that have "bug" in their `tag` field but do not have "high" in their`severity` field. It is also possible to define range queries on numeric and date fields. For example, `followers>=10` will only match items that have 10 followers or above. And`created>'12 Jan 2018'` will only match items that were created after 12th January 2018.
+*   `is` clauses - a simple boolean filter over a flag - Example,`is:open -is:assigned`. In this example the intention is to find all items that are flagged as `open` but are not flagged as `assigned`
+*   `or group` clauses - allowing multiple clauses to be OR'd together - Example,`(is:active OR owner:dewey) followers>5`. In this example the intention is to find all items that are`active` OR owned by `dewey`, and have more than 5 `followers`
+*   Operators for partial text match `:`, exact text match `=`, greater than `>`, greater than or equal `>=`, less than `<`, and less than or equal `<=`.
+
+While the user can use the syntax described above to enter queries in the search box, it is possible to provide the user help with the syntax using filters. The filters are UI controls that can manipulate the query. The available filters are:
+
+*   `field_value_selection` - A filter to manipulate field/value clauses. The filter is associated with a field name, and provides the user a list of value options to choose from. This filter can be configured to be single or multi select. In a single select mode, only one field filter will be added and replaced when the user changes the selection. In multi-select mode, a new filter will be added for each value selection. It is the intention for all these field clauses to be ANDed.
+*   `field_value_toggle` - A filter to manipulate a single field/value clause. The filter is associated with a field name and a value. When the user clicks the control (button) the field/value filter is added/removed to/from the query.
+*   `field_value_toggle_group` - Similar to the `field_value_toggle` above, except here you can define multiple values that will be displayed as a group of toggle buttons.
+*   `is` - A toggle button that is associated with a flag name and when clicked it toggles this flag back and forth (adds/removed an `is:` clause to/from the query).
+
+## Date parsing
+
+Date values can be used for equality or range tests when the `schema` prop specifies the field as a `date` type (the `created` field in the demo below is a date), and must be enclosed in single quotes. E.g. `created:'2019-01-01'`, `created>='3rd January 2017'`
+
+Formats understood by the parser
+
+*   relative
+    *   `yesterday`
+    *   `today`
+    *   `tomorrow`
+*   absolute (parsed by Moment.js's <a href="https://momentjs.com/docs/#/parsing/utc/" target="_blank">\`utc\` method</a>)
+    *   `ddd`
+    *   `dddd`
+    *   `D MMM YY`
+    *   `Do MMM YY`
+    *   `D MMM YYYY`
+    *   `Do MMM YYYY`
+    *   `DD MMM YY`
+    *   `DD MMM YYYY`
+    *   `D MMMM YY`
+    *   `Do MMMM YY`
+    *   `D MMMM YYYY`
+    *   `Do MMMM YYYY`
+    *   `DD MMMM YY`
+    *   `DD MMMM YYYY`
+    *   `YYYY-MM-DD`
+
+```tsx interactive
+import React, { useState } from 'react';
+import {
+  EuiHealth,
+  EuiCallOut,
+  EuiSpacer,
+  EuiFlexGroup,
+  EuiFlexItem,
+  EuiCodeBlock,
+  EuiTitle,
+  EuiSwitch,
+  EuiBasicTable,
+  EuiSearchBar,
+} from '@elastic/eui';
+import { faker } from '@faker-js/faker';
+
+const tags = [
+  { name: 'marketing', color: 'danger' },
+  { name: 'finance', color: 'success' },
+  { name: 'eng', color: 'success' },
+  { name: 'sales', color: 'warning' },
+  { name: 'ga', color: 'success' },
+];
+
+const types = ['dashboard', 'visualization', 'watch'];
+
+const users = ['dewey', 'wanda', 'carrie', 'jmack', 'gabic'];
+
+const items = [...Array(10).keys()].map((id) => {
+  return {
+    id,
+    status: faker.helpers.arrayElement(['open', 'closed']),
+    type: faker.helpers.arrayElement(types),
+    tag: faker.helpers.arrayElements(
+      tags.map((tag) => tag.name),
+      { min: 0, max: 3 }
+    ),
+    active: faker.datatype.boolean(),
+    owner: faker.helpers.arrayElement(users),
+    followers: faker.number.int({ min: 0, max: 20 }),
+    comments: faker.number.int({ min: 0, max: 10 }),
+    stars: faker.number.int({ min: 0, max: 5 }),
+  };
+});
+
+const loadTags = () => {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(
+        tags.map((tag) => ({
+          value: tag.name,
+          view: <EuiHealth color={tag.color}>{tag.name}</EuiHealth>,
+        }))
+      );
+    }, 2000);
+  });
+};
+
+const initialQuery = EuiSearchBar.Query.MATCH_ALL;
+
+export default () => {
+  const [query, setQuery] = useState(initialQuery);
+  const [error, setError] = useState(null);
+  const [incremental, setIncremental] = useState(false);
+  const [showHint, setShowHint] = useState(false);
+
+  const onChange = ({ query, error }) => {
+    if (error) {
+      setError(error);
+    } else {
+      setError(null);
+      setQuery(query);
+    }
+  };
+
+  const toggleIncremental = () => {
+    setIncremental((prev) => !prev);
+  };
+
+  const toggleHint = () => {
+    setShowHint((prev) => !prev);
+  };
+
+  const renderSearch = () => {
+    const filters = [
+      {
+        type: 'field_value_toggle_group',
+        field: 'status',
+        items: [
+          {
+            value: 'open',
+            name: 'Open',
+          },
+          {
+            value: 'closed',
+            name: 'Closed',
+          },
+        ],
+      },
+      {
+        type: 'is',
+        field: 'active',
+        name: 'Active',
+        negatedName: 'Inactive',
+      },
+      {
+        type: 'field_value_toggle',
+        name: 'Mine',
+        field: 'owner',
+        value: 'dewey',
+      },
+      {
+        type: 'field_value_toggle',
+        name: 'Popular',
+        field: 'followers',
+        value: 5,
+        operator: 'gt',
+      },
+      {
+        type: 'field_value_selection',
+        field: 'tag',
+        name: 'Tag',
+        multiSelect: 'or',
+        operator: 'exact',
+        cache: 10000, // will cache the loaded tags for 10 sec
+        options: () => loadTags(),
+      },
+    ];
+
+    const schema = {
+      strict: true,
+      fields: {
+        type: {
+          type: 'string',
+        },
+        active: {
+          type: 'boolean',
+        },
+        status: {
+          type: 'string',
+        },
+        followers: {
+          type: 'number',
+        },
+        comments: {
+          type: 'number',
+        },
+        stars: {
+          type: 'number',
+        },
+        created: {
+          type: 'date',
+        },
+        owner: {
+          type: 'string',
+        },
+        tag: {
+          type: 'string',
+          validate: (value) => {
+            if (value !== '' && !tags.some((tag) => tag.name === value)) {
+              throw new Error(
+                `unknown tag (possible values: ${tags
+                  .map((tag) => tag.name)
+                  .join(',')})`
+              );
+            }
+          },
+        },
+      },
+    };
+
+    return (
+      <EuiSearchBar
+        defaultQuery={initialQuery}
+        box={{
+          placeholder: 'type:visualization -is:active joe',
+          incremental,
+          schema,
+        }}
+        filters={filters}
+        onChange={onChange}
+        hint={
+          showHint
+            ? {
+                content: (
+                  <span>
+                    Type search terms, e.g. <strong>visualization</strong> or{' '}
+                    <strong>-dashboard</strong>
+                  </span>
+                ),
+                popoverProps: { panelStyle: { backgroundColor: '#f7f8fc' } },
+              }
+            : undefined
+        }
+      />
+    );
+  };
+
+  const renderError = () => {
+    if (!error) {
+      return;
+    }
+    return (
+      <>
+        <EuiCallOut
+          iconType="faceSad"
+          color="danger"
+          title={`Invalid search: ${error.message}`}
+        />
+        <EuiSpacer size="l" />
+      </>
+    );
+  };
+
+  const renderTable = () => {
+    const columns = [
+      {
+        name: 'Type',
+        field: 'type',
+      },
+      {
+        name: 'Open',
+        field: 'status',
+        render: (status) => (status === 'open' ? 'Yes' : 'No'),
+      },
+      {
+        name: 'Active',
+        field: 'active',
+        dataType: 'boolean',
+      },
+      {
+        name: 'Tags',
+        field: 'tag',
+      },
+      {
+        name: 'Owner',
+        field: 'owner',
+      },
+      {
+        name: 'Stats',
+        width: '150px',
+        render: (item) => {
+          return (
+            <div>
+              <div>{`${item.stars} Stars`}</div>
+              <div>{`${item.followers} Followers`}</div>
+              <div>{`${item.comments} Comments`}</div>
+            </div>
+          );
+        },
+      },
+    ];
+
+    const queriedItems = EuiSearchBar.Query.execute(query, items, {
+      defaultFields: ['owner', 'tag', 'type'],
+    });
+
+    return <EuiBasicTable items={queriedItems} columns={columns} />;
+  };
+
+  let esQueryDsl;
+  let esQueryString;
+
+  try {
+    esQueryDsl = EuiSearchBar.Query.toESQuery(query);
+  } catch (e) {
+    esQueryDsl = e.toString();
+  }
+  try {
+    esQueryString = EuiSearchBar.Query.toESQueryString(query);
+  } catch (e) {
+    esQueryString = e.toString();
+  }
+
+  const content = renderError() || (
+    <EuiFlexGroup wrap>
+      <EuiFlexItem>
+        <EuiTitle size="s">
+          <h3>Elasticsearch Query String</h3>
+        </EuiTitle>
+        <EuiSpacer size="s" />
+        <EuiCodeBlock language="js">
+          {esQueryString ? esQueryString : ''}
+        </EuiCodeBlock>
+      </EuiFlexItem>
+      <EuiFlexItem>
+        <EuiTitle size="s">
+          <h3>Elasticsearch Query DSL</h3>
+        </EuiTitle>
+        <EuiSpacer size="s" />
+        <EuiCodeBlock language="js">
+          {esQueryDsl ? JSON.stringify(esQueryDsl, null, 2) : ''}
+        </EuiCodeBlock>
+      </EuiFlexItem>
+
+      <EuiFlexItem style={{ flexBasis: '100%' }}>
+        <EuiTitle size="s">
+          <h3>JS execution</h3>
+        </EuiTitle>
+
+        <EuiSpacer size="s" />
+
+        {renderTable()}
+      </EuiFlexItem>
+    </EuiFlexGroup>
+  );
+
+  return (
+    <>
+      {renderSearch()}
+      <EuiSpacer size="s" />
+      <EuiFlexGroup justifyContent="flexEnd">
+        <EuiFlexItem grow={false}>
+          <EuiSwitch
+            label="Incremental"
+            checked={incremental}
+            onChange={toggleIncremental}
+          />
+        </EuiFlexItem>
+
+        <EuiFlexItem grow={false}>
+          <EuiSwitch
+            label="Show hint"
+            checked={showHint}
+            onChange={toggleHint}
+          />
+        </EuiFlexItem>
+      </EuiFlexGroup>
+      <EuiSpacer size="l" />
+      {content}
+    </>
+  );
+};
+```
+
+## Controlled search bar
+
+An **EuiSearchBar** can have its query controlled by a parent component by passing the `query` prop. Changes to the query will be passed back up through the `onChange` callback where the new query must be stored in state and passed back into the search bar.
+
+```tsx interactive
+import React, { useState } from 'react';
+import {
+  EuiHealth,
+  EuiCallOut,
+  EuiSpacer,
+  EuiFlexGroup,
+  EuiFlexItem,
+  EuiSwitch,
+  EuiBasicTable,
+  EuiSearchBar,
+  EuiButton,
+} from '@elastic/eui';
+import { faker } from '@faker-js/faker';
+
+const tags = [
+  { name: 'marketing', color: 'danger' },
+  { name: 'finance', color: 'success' },
+  { name: 'eng', color: 'success' },
+  { name: 'sales', color: 'warning' },
+  { name: 'ga', color: 'success' },
+];
+
+const types = ['dashboard', 'visualization', 'watch'];
+
+const users = ['dewey', 'wanda', 'carrie', 'jmack', 'gabic'];
+
+const items = [...Array(10).keys()].map((id) => {
+  return {
+    id,
+    status: faker.helpers.arrayElement(['open', 'closed']),
+    type: faker.helpers.arrayElement(types),
+    tag: faker.helpers.arrayElements(
+      tags.map((tag) => tag.name),
+      { min: 0, max: 3 }
+    ),
+    active: faker.datatype.boolean(),
+    owner: faker.helpers.arrayElement(users),
+    followers: faker.number.int({ min: 0, max: 20 }),
+    comments: faker.number.int({ min: 0, max: 10 }),
+    stars: faker.number.int({ min: 0, max: 5 }),
+  };
+});
+
+const loadTags = () => {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(
+        tags.map((tag) => ({
+          value: tag.name,
+          view: <EuiHealth color={tag.color}>{tag.name}</EuiHealth>,
+        }))
+      );
+    }, 2000);
+  });
+};
+
+const initialQuery = 'status:open';
+
+export default () => {
+  const [query, setQuery] = useState(initialQuery);
+  const [error, setError] = useState(null);
+  const [incremental, setIncremental] = useState(false);
+
+  const onChange = ({ query, error }) => {
+    if (error) {
+      setError(error);
+    } else {
+      setError(null);
+      setQuery(query);
+    }
+  };
+
+  const toggleIncremental = () => {
+    setIncremental(!incremental);
+  };
+
+  const renderBookmarks = () => {
+    return (
+      <>
+        <p>Enter a query, or select one from a bookmark</p>
+        <EuiSpacer size="s" />
+        <EuiFlexGroup>
+          <EuiFlexItem grow={false}>
+            <EuiButton
+              size="s"
+              onClick={() => setQuery('status:open owner:dewey')}
+            >
+              mine, open
+            </EuiButton>
+          </EuiFlexItem>
+          <EuiFlexItem grow={false}>
+            <EuiButton
+              size="s"
+              onClick={() => setQuery('status:closed owner:dewey')}
+            >
+              mine, closed
+            </EuiButton>
+          </EuiFlexItem>
+        </EuiFlexGroup>
+        <EuiSpacer size="m" />
+      </>
+    );
+  };
+
+  const renderSearch = () => {
+    const filters = [
+      {
+        type: 'field_value_toggle_group',
+        field: 'status',
+        items: [
+          {
+            value: 'open',
+            name: 'Open',
+          },
+          {
+            value: 'closed',
+            name: 'Closed',
+          },
+        ],
+      },
+      {
+        type: 'is',
+        field: 'active',
+        name: 'Active',
+        negatedName: 'Inactive',
+      },
+      {
+        type: 'field_value_toggle',
+        name: 'Mine',
+        field: 'owner',
+        value: 'dewey',
+      },
+      {
+        type: 'field_value_selection',
+        field: 'tag',
+        name: 'Tag',
+        multiSelect: 'or',
+        cache: 10000, // will cache the loaded tags for 10 sec
+        options: () => loadTags(),
+      },
+    ];
+
+    const schema = {
+      strict: true,
+      fields: {
+        type: {
+          type: 'string',
+        },
+        active: {
+          type: 'boolean',
+        },
+        status: {
+          type: 'string',
+        },
+        followers: {
+          type: 'number',
+        },
+        comments: {
+          type: 'number',
+        },
+        stars: {
+          type: 'number',
+        },
+        created: {
+          type: 'date',
+        },
+        owner: {
+          type: 'string',
+        },
+        tag: {
+          type: 'string',
+          validate: (value) => {
+            if (!tags.some((tag) => tag.name === value)) {
+              throw new Error(
+                `unknown tag (possible values: ${tags
+                  .map((tag) => tag.name)
+                  .join(',')})`
+              );
+            }
+          },
+        },
+      },
+    };
+
+    return (
+      <EuiSearchBar
+        query={query}
+        box={{
+          placeholder: 'type:visualization -is:active joe',
+          incremental,
+          schema,
+        }}
+        filters={filters}
+        onChange={onChange}
+      />
+    );
+  };
+
+  const renderError = () => {
+    if (!error) {
+      return;
+    }
+    return (
+      <>
+        <EuiCallOut
+          iconType="faceSad"
+          color="danger"
+          title={`Invalid search: ${error.message}`}
+        />
+        <EuiSpacer size="l" />
+      </>
+    );
+  };
+
+  const renderTable = () => {
+    const columns = [
+      {
+        name: 'Type',
+        field: 'type',
+      },
+      {
+        name: 'Open',
+        field: 'status',
+        render: (status) => (status === 'open' ? 'Yes' : 'No'),
+      },
+      {
+        name: 'Active',
+        field: 'active',
+        dataType: 'boolean',
+      },
+      {
+        name: 'Tags',
+        field: 'tag',
+      },
+      {
+        name: 'Owner',
+        field: 'owner',
+      },
+      {
+        name: 'Stats',
+        width: '150px',
+        render: (item) => {
+          return (
+            <div>
+              <div>{`${item.stars} Stars`}</div>
+              <div>{`${item.followers} Followers`}</div>
+              <div>{`${item.comments} Comments`}</div>
+            </div>
+          );
+        },
+      },
+    ];
+
+    const queriedItems = EuiSearchBar.Query.execute(query, items, {
+      defaultFields: ['owner', 'tag', 'type'],
+    });
+
+    return <EuiBasicTable items={queriedItems} columns={columns} />;
+  };
+
+  const content = renderError() || (
+    <EuiFlexGroup>
+      <EuiFlexItem grow={6}>{renderTable()}</EuiFlexItem>
+    </EuiFlexGroup>
+  );
+
+  return (
+    <>
+      <EuiFlexGroup>
+        <EuiFlexItem>{renderBookmarks()}</EuiFlexItem>
+      </EuiFlexGroup>
+      <EuiFlexGroup alignItems="center">
+        <EuiFlexItem>{renderSearch()}</EuiFlexItem>
+
+        <EuiFlexItem grow={false}>
+          <EuiSwitch
+            label="Incremental"
+            checked={incremental}
+            onChange={toggleIncremental}
+          />
+        </EuiFlexItem>
+      </EuiFlexGroup>
+      <EuiSpacer size="l" />
+      {content}
+    </>
+  );
+};
+
+```
+
+## Search bar filters
+
+An **EuiSearchBar** can have custom filter dropdowns that control how a user can search.
+
+```tsx interactive
+import React, { useState } from 'react';
+import {
+  EuiHealth,
+  EuiCallOut,
+  EuiSpacer,
+  EuiFlexGroup,
+  EuiFlexItem,
+  EuiCodeBlock,
+  EuiTitle,
+  EuiBasicTable,
+  EuiSearchBar,
+  EuiFilterButton,
+  EuiPopover,
+  EuiButton,
+  EuiPanel,
+} from '@elastic/eui';
+import { faker } from '@faker-js/faker';
+
+const tags = [
+  { name: 'marketing', color: 'danger' },
+  { name: 'finance', color: 'success' },
+  { name: 'eng', color: 'success' },
+  { name: 'sales', color: 'warning' },
+  { name: 'ga', color: 'success' },
+  { name: 'pre-sales', color: 'success' },
+  { name: 'product', color: 'warning' },
+  { name: 'engineering', color: 'success' },
+  { name: 'design', color: 'warning' },
+  { name: 'early-birds', color: 'success' },
+  { name: 'people-ops', color: 'danger' },
+  { name: 'solutions', color: 'success' },
+  { name: 'elasticsearch', color: 'success' },
+  { name: 'kibana', color: 'success' },
+  { name: 'cloud', color: 'danger' },
+  { name: 'logstash', color: 'warning' },
+  { name: 'beats', color: 'warning' },
+  { name: 'legal', color: 'danger' },
+  { name: 'revenue', color: 'success' },
+  { name: 'public-relations', color: 'success' },
+  { name: 'social-media-management', color: 'warning' },
+];
+
+const types = ['dashboard', 'visualization', 'watch'];
+
+const users = ['dewey', 'wanda', 'carrie', 'jmack', 'gabic'];
+
+const items = [...Array(10).keys()].map((id) => {
+  return {
+    id,
+    status: faker.helpers.arrayElement(['open', 'closed']),
+    type: faker.helpers.arrayElement(types),
+    tag: faker.helpers.arrayElements(
+      tags.map((tag) => tag.name),
+      { min: 0, max: 3 }
+    ),
+    active: faker.datatype.boolean(),
+    owner: faker.helpers.arrayElement(users),
+    followers: faker.number.int({ min: 0, max: 20 }),
+    comments: faker.number.int({ min: 0, max: 10 }),
+    stars: faker.number.int({ min: 0, max: 5 }),
+  };
+});
+
+const initialQuery = EuiSearchBar.Query.MATCH_ALL;
+
+const CustomComponent = ({ query, onChange }) => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const orTagsClause = query.getOrFieldClause('tag');
+  const selectedTags = orTagsClause?.value ?? [];
+  const isOnlySales =
+    !!(selectedTags.length === 1 && selectedTags[0] === 'sales') &&
+    !hasCloudExcluded;
+
+  const simpleTagClause = query.getSimpleFieldClause('tag');
+  const hasCloudExcluded = !!(
+    simpleTagClause &&
+    simpleTagClause.match === 'must_not' &&
+    simpleTagClause.operator === 'eq'
+  );
+
+  const hasFiltersApplied = query.hasClauses();
+
+  const closePopover = () => {
+    setIsOpen(false);
+  };
+
+  const button = (
+    <EuiFilterButton
+      iconType="arrowDown"
+      iconSide="right"
+      onClick={() => setIsOpen((prev) => !prev)}
+      hasActiveFilters={isOnlySales}
+      numActiveFilters={isOnlySales ? 1 : undefined}
+      grow
+    >
+      Custom
+    </EuiFilterButton>
+  );
+
+  return (
+    <EuiPopover
+      button={button}
+      isOpen={isOpen}
+      closePopover={closePopover}
+      panelPaddingSize="none"
+      anchorPosition="downCenter"
+    >
+      <EuiPanel paddingSize="m">
+        <EuiFlexGroup>
+          <EuiFlexItem>
+            <EuiButton
+              onClick={() => {
+                const q = query
+                  .removeSimpleFieldValue('tag', 'cloud')
+                  .removeOrFieldClauses('tag')
+                  .addOrFieldValue('tag', 'sales', true, 'eq');
+                onChange(q);
+                closePopover();
+              }}
+              disabled={isOnlySales}
+            >
+              Only sales
+            </EuiButton>
+          </EuiFlexItem>
+          <EuiFlexItem>
+            <EuiButton
+              onClick={() => {
+                const q = query.addSimpleFieldValue(
+                  'tag',
+                  'cloud',
+                  false,
+                  'eq'
+                );
+                onChange(q);
+                closePopover();
+              }}
+              disabled={hasCloudExcluded}
+            >
+              Exclude cloud
+            </EuiButton>
+          </EuiFlexItem>
+          <EuiFlexItem>
+            <EuiButton
+              onClick={() => {
+                const q = query.removeAllClauses();
+                onChange(q);
+                closePopover();
+              }}
+              disabled={!hasFiltersApplied}
+            >
+              All
+            </EuiButton>
+          </EuiFlexItem>
+        </EuiFlexGroup>
+      </EuiPanel>
+    </EuiPopover>
+  );
+};
+
+export default () => {
+  const [query, setQuery] = useState(initialQuery);
+  const [error, setError] = useState(null);
+
+  const onChange = ({ query, error }) => {
+    if (error) {
+      setError(error);
+    } else {
+      setError(null);
+      setQuery(query);
+    }
+  };
+
+  const renderSearch = () => {
+    const filters = [
+      {
+        type: 'field_value_selection',
+        field: 'tag',
+        name: 'Tag ("prefix" filter, default)',
+        multiSelect: 'or',
+        options: tags.map((tag) => ({
+          value: tag.name,
+          view: <EuiHealth color={tag.color}>{tag.name}</EuiHealth>,
+        })),
+      },
+      {
+        type: 'field_value_selection',
+        field: 'tag',
+        name: 'Tag ("includes" filter)',
+        filterWith: 'includes',
+        multiSelect: 'or',
+        options: tags.map((tag) => ({
+          value: tag.name,
+          view: <EuiHealth color={tag.color}>{tag.name}</EuiHealth>,
+        })),
+      },
+      {
+        type: 'field_value_selection',
+        field: 'tag',
+        name: 'Tag (custom filter)',
+        filterWith: () => Math.random() > 0.5,
+        multiSelect: 'or',
+        options: tags.map((tag) => ({
+          value: tag.name,
+          view: <EuiHealth color={tag.color}>{tag.name}</EuiHealth>,
+        })),
+        autoSortOptions: false,
+      },
+      {
+        type: 'custom_component',
+        component: CustomComponent,
+      },
+    ];
+
+    const schema = {
+      strict: true,
+      fields: {
+        type: {
+          type: 'string',
+        },
+        active: {
+          type: 'boolean',
+        },
+        status: {
+          type: 'string',
+        },
+        followers: {
+          type: 'number',
+        },
+        comments: {
+          type: 'number',
+        },
+        stars: {
+          type: 'number',
+        },
+        created: {
+          type: 'date',
+        },
+        owner: {
+          type: 'string',
+        },
+        tag: {
+          type: 'string',
+          validate: (value) => {
+            if (!tags.some((tag) => tag.name === value)) {
+              throw new Error(
+                `unknown tag (possible values: ${tags
+                  .map((tag) => tag.name)
+                  .join(',')})`
+              );
+            }
+          },
+        },
+      },
+    };
+
+    return (
+      <EuiSearchBar
+        defaultQuery={initialQuery}
+        box={{
+          placeholder: 'type:visualization -is:active joe',
+          incremental: true,
+          schema,
+        }}
+        filters={filters}
+        onChange={onChange}
+      />
+    );
+  };
+
+  const renderError = () => {
+    if (!error) {
+      return;
+    }
+    return (
+      <>
+        <EuiCallOut
+          iconType="faceSad"
+          color="danger"
+          title={`Invalid search: ${error.message}`}
+        />
+        <EuiSpacer size="l" />
+      </>
+    );
+  };
+
+  const renderTable = () => {
+    const columns = [
+      {
+        name: 'Type',
+        field: 'type',
+      },
+      {
+        name: 'Open',
+        field: 'status',
+        render: (status) => (status === 'open' ? 'Yes' : 'No'),
+      },
+      {
+        name: 'Active',
+        field: 'active',
+        dataType: 'boolean',
+      },
+      {
+        name: 'Tags',
+        field: 'tag',
+      },
+      {
+        name: 'Owner',
+        field: 'owner',
+      },
+      {
+        name: 'Stats',
+        width: '150px',
+        render: (item) => {
+          return (
+            <div>
+              <div>{`${item.stars} Stars`}</div>
+              <div>{`${item.followers} Followers`}</div>
+              <div>{`${item.comments} Comments`}</div>
+            </div>
+          );
+        },
+      },
+    ];
+
+    const queriedItems = EuiSearchBar.Query.execute(query, items, {
+      defaultFields: ['owner', 'tag', 'type'],
+    });
+
+    return <EuiBasicTable items={queriedItems} columns={columns} />;
+  };
+
+  const esQueryDsl = EuiSearchBar.Query.toESQuery(query);
+  const esQueryString = EuiSearchBar.Query.toESQueryString(query);
+
+  const content = renderError() || (
+    <EuiFlexGroup wrap>
+      <EuiFlexItem>
+        <EuiTitle size="s">
+          <h3>Elasticsearch Query String</h3>
+        </EuiTitle>
+        <EuiSpacer size="s" />
+        <EuiCodeBlock language="js">
+          {esQueryString ? esQueryString : ''}
+        </EuiCodeBlock>
+      </EuiFlexItem>
+      <EuiFlexItem>
+        <EuiTitle size="s">
+          <h3>Elasticsearch Query DSL</h3>
+        </EuiTitle>
+        <EuiSpacer size="s" />
+        <EuiCodeBlock language="js">
+          {esQueryDsl ? JSON.stringify(esQueryDsl, null, 2) : ''}
+        </EuiCodeBlock>
+      </EuiFlexItem>
+
+      <EuiFlexItem style={{ flexBasis: '100%' }}>
+        <EuiTitle size="s">
+          <h3>JS execution</h3>
+        </EuiTitle>
+
+        <EuiSpacer size="s" />
+
+        {renderTable()}
+      </EuiFlexItem>
+    </EuiFlexGroup>
+  );
+
+  return (
+    <>
+      {renderSearch()}
+      <EuiSpacer size="l" />
+      {content}
+    </>
+  );
+};
+
+```
+
+## Props
+
+import docgen from '@elastic/eui-docgen/dist/components/search_bar';
+
+<PropTable definition={docgen.EuiSearchBar} />
+<PropTable definition={docgen.EuiSearchBarFilters} />

@@ -1,0 +1,287 @@
+# HTML ID generator
+
+Use `htmlIdGenerator()()` to generate unique IDs for elements with an optional `prefix` and/or `suffix`. The first call to `htmlIdGenerator` accepts the prefix as an optional argument and returns a second function which accepts an optional suffix and returns the generated ID.
+
+<Demo>
+```tsx interactive
+import React, { useState, Fragment } from 'react';
+
+import {
+  EuiFlexGroup,
+  EuiFlexItem,
+  EuiButton,
+  EuiCode,
+  htmlIdGenerator,
+} from '@elastic/eui';
+
+export default () => {
+  const [value, setValue] = useState(htmlIdGenerator()());
+
+  const reGenerate = () => {
+    setValue(htmlIdGenerator()());
+  };
+
+  return (
+    <Fragment>
+      <EuiFlexGroup
+        justifyContent="flexStart"
+        gutterSize="m"
+        alignItems="center"
+      >
+        <EuiFlexItem grow={false}>
+          <EuiCode>{value}</EuiCode>
+        </EuiFlexItem>
+        <EuiFlexItem grow={false}>
+          <EuiButton onClick={reGenerate}>Regenerate</EuiButton>
+        </EuiFlexItem>
+      </EuiFlexGroup>
+    </Fragment>
+  );
+};
+```
+</Demo>
+
+## ID generator with prefix
+
+Provide a `prefix` to the generator to get an ID that starts with the specified prefix.
+
+<Demo>
+```tsx interactive
+import React, { useState, Fragment } from 'react';
+
+import {
+  EuiFieldText,
+  EuiFlexGroup,
+  EuiFlexItem,
+  EuiSpacer,
+  EuiCode,
+  EuiFormRow,
+  htmlIdGenerator,
+} from '@elastic/eui';
+
+export default () => {
+  const [prefix, setPrefix] = useState('Id');
+  const [customId, setCustomId] = useState(htmlIdGenerator('Id')());
+
+  const onSearchChange = (e) => {
+    const prefix = e.target.value;
+    setPrefix(prefix);
+    setCustomId(htmlIdGenerator(prefix)());
+  };
+
+  return (
+    <Fragment>
+      <EuiFlexGroup
+        justifyContent="flexStart"
+        gutterSize="m"
+        alignItems="center"
+      >
+        <EuiFlexItem grow={false}>
+          <EuiFormRow label="Prefix">
+            <EuiFieldText
+              value={prefix}
+              onChange={onSearchChange}
+              placeholder="Enter prefix"
+            />
+          </EuiFormRow>
+        </EuiFlexItem>
+      </EuiFlexGroup>
+      <EuiSpacer size="xl" />
+      <EuiCode>{customId} </EuiCode>
+    </Fragment>
+  );
+};
+```
+</Demo>
+
+## ID generator with suffix
+
+Provide a `suffix` to the generator to get an ID that starts with the specified suffix.
+
+<Demo>
+```tsx interactive
+import React, { useState, Fragment } from 'react';
+
+import {
+  EuiFieldText,
+  EuiFlexGroup,
+  EuiFlexItem,
+  EuiSpacer,
+  EuiCode,
+  EuiFormRow,
+  htmlIdGenerator,
+} from '@elastic/eui';
+
+export default () => {
+  const [suffix, setSuffix] = useState('Id');
+  const [customId, setCustomId] = useState(htmlIdGenerator()('Id'));
+
+  const onSuffixChange = (e) => {
+    const suffix = e.target.value;
+    setSuffix(suffix);
+    setCustomId(htmlIdGenerator()(suffix));
+  };
+
+  return (
+    <Fragment>
+      <EuiFlexGroup
+        justifyContent="flexStart"
+        gutterSize="m"
+        alignItems="center"
+      >
+        <EuiFlexItem grow={false}>
+          <EuiFormRow label="Suffix">
+            <EuiFieldText
+              value={suffix}
+              onChange={onSuffixChange}
+              placeholder="Enter suffix"
+            />
+          </EuiFormRow>
+        </EuiFlexItem>
+      </EuiFlexGroup>
+      <EuiSpacer size="xl" />
+      <EuiCode>{customId} </EuiCode>
+    </Fragment>
+  );
+};
+```
+</Demo>
+
+## ID generator with both prefix and suffix
+
+The `htmlIdGenerator` is capable of generating an ID with both a specified prefix **and** suffix.
+
+<Demo>
+```tsx interactive
+import React, { useState, Fragment } from 'react';
+
+import {
+  EuiFieldText,
+  EuiFlexGroup,
+  EuiFlexItem,
+  EuiSpacer,
+  EuiCode,
+  EuiFormRow,
+  htmlIdGenerator,
+} from '@elastic/eui';
+
+export default () => {
+  const [prefix, setPrefix] = useState('Some');
+  const [suffix, setSuffix] = useState('Id');
+  const [customId, setCustomId] = useState(htmlIdGenerator('Some')('Id'));
+
+  const onPrefixChange = (e) => {
+    const prefix = e.target.value;
+    setPrefix(prefix);
+    setCustomId(htmlIdGenerator(prefix)(suffix));
+  };
+
+  const onSuffixChange = (e) => {
+    const suffix = e.target.value;
+    setSuffix(suffix);
+    setCustomId(htmlIdGenerator(prefix)(suffix));
+  };
+
+  return (
+    <Fragment>
+      <EuiFlexGroup
+        justifyContent="flexStart"
+        gutterSize="m"
+        alignItems="center"
+      >
+        <EuiFlexItem grow={false}>
+          <EuiFormRow label="Prefix">
+            <EuiFieldText
+              value={prefix}
+              onChange={onPrefixChange}
+              placeholder="Enter prefix"
+            />
+          </EuiFormRow>
+        </EuiFlexItem>
+        <EuiFlexItem grow={false}>
+          <EuiFormRow label="Suffix">
+            <EuiFieldText
+              value={suffix}
+              onChange={onSuffixChange}
+              placeholder="Enter suffix"
+            />
+          </EuiFormRow>
+        </EuiFlexItem>
+      </EuiFlexGroup>
+      <EuiSpacer size="xl" />
+      <EuiCode>{customId} </EuiCode>
+    </Fragment>
+  );
+};
+```
+</Demo>
+
+## Reusing the generator for multiple IDs
+
+As you may have noticed, `htmlIdGenerator` is a curried function. This means you can reuse the original `htmlIdGenerator()` call to generate multiple IDs. Additionally, if you pass in suffixes to your second call, the generated ID(s) will share the same unique ID.
+
+<Demo>
+```tsx interactive
+import React from 'react';
+
+import { EuiCode, htmlIdGenerator } from '@elastic/eui';
+
+const generateId = htmlIdGenerator('test');
+
+export default () => {
+  return (
+    <>
+      <EuiCode>{generateId()}</EuiCode>
+      <br />
+      <EuiCode>{generateId()}</EuiCode>
+      <br />
+      <EuiCode>{generateId()}</EuiCode>
+      <br />
+      <EuiCode>{generateId('hello')}</EuiCode>
+      <br />
+      <EuiCode>{generateId('world')}</EuiCode>
+    </>
+  );
+};
+```
+</Demo>
+
+## Memoized hook for component use
+
+`useGeneratedHtmlId` is a custom React hook that automatically memoizes a randomly generated ID, preventing the ID from regenerating on every component rerender. The ID will only change if the component fully unmounts/mounts, or if you dynamically pass in new hook arguments.
+
+Please note that unlike `htmlIdGenerator`, `useGeneratedHtmlId` is a single function and does not support generating multiple IDs that share the same unique ID. It is instead best used for simple one-off IDs, rather than groups of them.
+
+<Demo>
+```tsx interactive
+import React, { useState, Fragment } from 'react';
+
+import { EuiSwitch, EuiSpacer, EuiCode, useGeneratedHtmlId } from '@elastic/eui';
+
+export default () => {
+  const generatedId = useGeneratedHtmlId({ prefix: 'Some', suffix: 'id' });
+
+  const [isChecked, setIsChecked] = useState(false);
+
+  const onChange = (e) => setIsChecked(e.target.checked);
+
+  return (
+    <Fragment>
+      <EuiSwitch
+        label="Clicking me changes component state"
+        checked={isChecked}
+        onChange={onChange}
+      />
+      <EuiSpacer size="xl" />
+      <EuiCode>{generatedId} </EuiCode>
+    </Fragment>
+  );
+};
+```
+</Demo>
+
+## Props
+
+import docgen from '@elastic/eui-docgen/dist/services/accessibility';
+
+<PropTable definition={docgen.useGeneratedHtmlId} />

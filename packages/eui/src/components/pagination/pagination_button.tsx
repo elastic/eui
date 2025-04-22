@@ -55,7 +55,7 @@ export const EuiPaginationButton: FunctionComponent<Props> = ({
     color: 'text',
     'data-test-subj': `pagination-button-${pageIndex}`,
     isDisabled: isActive,
-    ...(isActive && { 'aria-current': true }),
+    ...(isActive && { 'aria-current': 'page' }),
     ...(rest['aria-controls'] && { href: `#${rest['aria-controls']}` }),
     ...rest,
   };

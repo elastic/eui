@@ -1,0 +1,1117 @@
+# Resizable container
+
+import { faker } from '@faker-js/faker';
+
+This component is handy for various resizable containers. **EuiResizableContainer** uses the [React Render Props](https://reactjs.org/docs/render-props.html#using-props-other-than-render) technique to provide **EuiResizablePanel** and **EuiResizableButton** components for layout, and `actions` for custom handling collapse and resize functionality in your app. Wrap parts of your content with the **EuiResizablePanel** component and put the **EuiResizableButton** component between.
+
+:::accessibility Accessibility recommendation
+Consider adding a `tabIndex=0` prop to the **EuiResizableContainer** if it is a fixed height or has a lot of content. This ensures keyboard users can set focus on the container and scroll to the bottom using arrow keys.
+:::
+
+## Horizontal resizing
+
+Simple resizable container with two panels and a resizer between. This is the most common case you'll need in your app. Just drag **the resizer** button between two panels to increase/decrease panel size. You could also use arrow keys **←**|**→** on **the focused resizer** button to change panel size.
+
+*   add `initialSize` in percents to each panel to specify the initial size of it. Other calculations will be encapsulated, you don't worry about it.
+*   add `scrollable=false` prop to a panel to eliminate overflow scrolling
+
+<Demo scope={{ faker }}>
+  ```tsx
+  import React from 'react';
+  import { EuiText, EuiResizableContainer } from '@elastic/eui';
+  import { faker } from '@faker-js/faker';
+
+  const text = (
+    <>
+      <p>{faker.lorem.paragraphs()}</p>
+      <p>{faker.lorem.paragraphs()}</p>
+      <p>{faker.lorem.paragraphs()}</p>
+    </>
+  );
+
+  export default () => (
+    <EuiResizableContainer style={{ height: '200px' }}>
+      {(EuiResizablePanel, EuiResizableButton) => (
+        <>
+          <EuiResizablePanel initialSize={50} minSize="30%" tabIndex={0}>
+            <EuiText>
+              <div>{text}</div>
+              <a href="">Hello world</a>
+            </EuiText>
+          </EuiResizablePanel>
+
+          <EuiResizableButton accountForScrollbars="before" />
+
+          <EuiResizablePanel initialSize={50} minSize="200px" tabIndex={0}>
+            <EuiText>{text}</EuiText>
+          </EuiResizablePanel>
+        </>
+      )}
+    </EuiResizableContainer>
+  );
+  ```
+</Demo>
+
+## Resizable panel options
+
+Each **EuiResizablePanel** is simply an **EuiPanel** wrapped with a `<div>` for controlling the width. It stretches to fill its container and accepts all of the same [EuiPanel](./panel/index.mdx) props to style your panel.
+
+The default props clear most of the **EuiPanel** styles, but you can add them back in with `color`, `hasShadow`, and `paddingSize`.
+
+<Demo scope={{ faker }}>
+  ```tsx
+  import React from 'react';
+  import { EuiText, EuiCode, EuiResizableContainer, EuiPanel } from '@elastic/eui';
+
+  export default () => (
+    <EuiResizableContainer style={{ height: '200px' }}>
+      {(EuiResizablePanel, EuiResizableButton) => (
+        <>
+          <EuiResizablePanel initialSize={20} color="subdued">
+            <EuiText size="s">
+              <p>
+                This <strong>EuiResizablePanel</strong> changes the background
+                with <EuiCode>{'color="subdued"'}</EuiCode>.
+              </p>
+            </EuiText>
+          </EuiResizablePanel>
+
+          <EuiResizableButton accountForScrollbars="before" />
+
+          <EuiResizablePanel
+            initialSize={40}
+            color="plain"
+            hasShadow
+            borderRadius="m"
+            wrapperPadding="m"
+            minSize="20%"
+            tabIndex={0}
+          >
+            <EuiText size="s">
+              <p>
+                This <strong>EuiResizablePanel</strong> resets most of the{' '}
+                <strong>EuiPanel</strong> props back to default with{' '}
+                <EuiCode>{'color="plain" hasShadow borderRadius="m"'}</EuiCode>.
+              </p>
+              <p>
+                It also adds padding to the wrapping div with{' '}
+                <EuiCode>{'wrapperPadding="m"'}</EuiCode> to maintain the scroll{' '}
+                <strong>inside</strong> the panel.
+              </p>
+            </EuiText>
+          </EuiResizablePanel>
+
+          <EuiResizableButton />
+
+          <EuiResizablePanel initialSize={40} color="subdued">
+            <EuiPanel>
+              <EuiText size="s">
+                <p>
+                  This <strong>EuiResizablePanel</strong> also changes the
+                  background color but adds an internal <strong>EuiPanel</strong>{' '}
+                  that will not stretch and will scroll within the{' '}
+                  <strong>EuiResizablePanel</strong>.
+                </p>
+              </EuiText>
+            </EuiPanel>
+          </EuiResizablePanel>
+        </>
+      )}
+    </EuiResizableContainer>
+  );
+  ```
+</Demo>
+
+## Horizontal resizing with controlled widths
+
+Sometimes it's necessary to control panel sizes from the outside. For example to store sizes in `localStorage` or change the layout with predefined sizes. Here is the `onPanelWidthChange` and `size` props for help. If you use such an approach, you have to specify an `id` prop for each panel to track their sizes.
+
+:::warning Required properties
+
+Either `initialSize` or `size` must be specified. The `size` prop is for cases where a parent component will control sizing updates.
+
+:::
+
+<Demo scope={{ faker }}>
+  ```tsx
+  import React, { useCallback, useState } from 'react';
+  import {
+    EuiFlexGroup,
+    EuiFlexItem,
+    EuiText,
+    EuiResizableContainer,
+    EuiButton,
+    EuiSpacer,
+    htmlIdGenerator,
+  } from '@elastic/eui';
+  import { faker } from '@faker-js/faker';
+
+  const text = (
+    <>
+      <p>{faker.lorem.paragraphs()}</p>
+      <p>{faker.lorem.paragraphs()}</p>
+      <p>{faker.lorem.paragraphs()}</p>
+    </>
+  );
+
+  const firstPanelId = htmlIdGenerator('firstPanel')();
+  const secondPanelId = htmlIdGenerator('secondPanel')();
+  const stored = localStorage.getItem('resizableContainer');
+  const storedSizes = stored && JSON.parse(stored);
+  const defaultSizes = storedSizes || {
+    [firstPanelId]: 50,
+    [secondPanelId]: 50,
+  };
+
+  export default () => {
+    const [savedSizes, setSavedSizes] = useState(storedSizes);
+    const [sizes, setSizes] = useState(defaultSizes);
+    const onPanelWidthChange = useCallback((newSizes: Record<string, number>) => {
+      setSizes((prevSizes: Record<string, number>) => ({
+        ...prevSizes,
+        ...newSizes,
+      }));
+    }, []);
+    const onClickDefault = useCallback(() => setSizes(defaultSizes), []);
+    const onClick30x70 = useCallback(
+      () =>
+        setSizes({
+          [firstPanelId]: 30,
+          [secondPanelId]: 70,
+        }),
+      []
+    );
+    const onClick80x20 = useCallback(
+      () =>
+        setSizes({
+          [firstPanelId]: 80,
+          [secondPanelId]: 20,
+        }),
+      []
+    );
+    const onSaveToLocalStorage = useCallback(() => {
+      setSavedSizes(sizes);
+      localStorage.setItem('resizableContainer', JSON.stringify(sizes));
+    }, [sizes]);
+
+    return (
+      <>
+        <EuiFlexGroup>
+          <EuiFlexItem>
+            <EuiButton onClick={onClickDefault}>{'Reset to defaults'}</EuiButton>
+          </EuiFlexItem>
+          <EuiFlexItem>
+            <EuiButton onClick={onClick30x70}>{'30x70'}</EuiButton>
+          </EuiFlexItem>
+          <EuiFlexItem>
+            <EuiButton onClick={onClick80x20}>{'80x20'}</EuiButton>
+          </EuiFlexItem>
+          <EuiFlexItem>
+            <EuiButton
+              fill={savedSizes === sizes}
+              iconType={savedSizes === sizes ? 'check' : undefined}
+              onClick={onSaveToLocalStorage}
+            >
+              {'Store in localStorage'}
+            </EuiButton>
+          </EuiFlexItem>
+        </EuiFlexGroup>
+
+        <EuiSpacer />
+
+        <EuiResizableContainer
+          style={{ height: '200px' }}
+          onPanelWidthChange={onPanelWidthChange}
+        >
+          {(EuiResizablePanel, EuiResizableButton) => (
+            <>
+              <EuiResizablePanel
+                id={firstPanelId}
+                size={sizes[firstPanelId]}
+                minSize="30%"
+                tabIndex={0}
+              >
+                <EuiText>
+                  <div>{text}</div>
+                </EuiText>
+              </EuiResizablePanel>
+
+              <EuiResizableButton accountForScrollbars="before" />
+
+              <EuiResizablePanel
+                id={secondPanelId}
+                size={sizes[secondPanelId]}
+                minSize="200px"
+                tabIndex={0}
+              >
+                <EuiText>
+                  <div>{text}</div>
+                </EuiText>
+              </EuiResizablePanel>
+            </>
+          )}
+        </EuiResizableContainer>
+      </>
+    );
+  };
+  ```
+</Demo>
+
+## Vertical resizing
+
+Set `direction=vertical` on **EuiResizableContainer** to set a vertical orientation of the resizable panels.
+
+<Demo scope={{ faker }}>
+  ```tsx
+  import React from 'react';
+  import { EuiText, EuiResizableContainer } from '@elastic/eui';
+  import { faker } from '@faker-js/faker';
+
+  const text = (
+    <>
+      <p>{faker.lorem.paragraphs()}</p>
+      <p>{faker.lorem.paragraphs()}</p>
+      <p>{faker.lorem.paragraphs()}</p>
+    </>
+  );
+  export default () => (
+    <EuiResizableContainer style={{ height: '400px' }} direction="vertical">
+      {(EuiResizablePanel, EuiResizableButton) => (
+        <>
+          <EuiResizablePanel initialSize={60} minSize="40%" tabIndex={0}>
+            <EuiText>
+              <div>{text}</div>
+            </EuiText>
+          </EuiResizablePanel>
+
+          <EuiResizableButton accountForScrollbars="both" />
+
+          <EuiResizablePanel initialSize={40} minSize="10%" tabIndex={0}>
+            <EuiText>
+              <div>{text}</div>
+            </EuiText>
+          </EuiResizablePanel>
+        </>
+      )}
+    </EuiResizableContainer>
+  );
+  ```
+</Demo>
+
+## Resizable container callbacks
+
+**EuiResizableContainer** supports `onResizeStart` and `onResizeEnd` callback props to listen for when resizing starts and ends. The `onResizeStart` callback is passed a `trigger: 'pointer' | 'key'` parameter to determine which user action triggered the resize.
+
+<Demo scope={{ faker }}>
+  ```tsx
+  import React, { useState } from 'react';
+  import {
+    EuiText,
+    EuiResizableContainer,
+    EuiFlexGroup,
+    EuiFlexItem,
+    EuiStat,
+    EuiPanel,
+    useGeneratedHtmlId,
+  } from '@elastic/eui';
+  import { faker } from '@faker-js/faker';
+
+  const text = (
+    <>
+      <p>{faker.lorem.paragraphs()}</p>
+      <p>{faker.lorem.paragraphs()}</p>
+      <p>{faker.lorem.paragraphs()}</p>
+    </>
+  );
+
+  export default () => {
+    const firstPanelId = useGeneratedHtmlId({ prefix: 'firstPanel' });
+    const secondPanelId = useGeneratedHtmlId({ prefix: 'secondPanel' });
+    const [resizeTrigger, setResizeTrigger] = useState<'pointer' | 'key'>();
+    const [sizes, setSizes] = useState({
+      [firstPanelId]: 50,
+      [secondPanelId]: 50,
+    });
+
+    return (
+      <EuiFlexGroup direction="column">
+        <EuiFlexItem>
+          <EuiFlexGroup>
+            <EuiFlexItem>
+              <EuiPanel>
+                <EuiStat
+                  title={resizeTrigger ?? ''}
+                  titleSize="m"
+                  description="Trigger"
+                  isLoading={!resizeTrigger}
+                />
+              </EuiPanel>
+            </EuiFlexItem>
+            <EuiFlexItem>
+              <EuiPanel>
+                <EuiStat
+                  title={`${Math.round(sizes[firstPanelId])}%`}
+                  titleSize="m"
+                  description="First panel"
+                  isLoading={!resizeTrigger}
+                />
+              </EuiPanel>
+            </EuiFlexItem>
+            <EuiFlexItem>
+              <EuiPanel>
+                <EuiStat
+                  title={`${Math.round(sizes[secondPanelId])}%`}
+                  titleSize="m"
+                  description="Second panel"
+                  isLoading={!resizeTrigger}
+                />
+              </EuiPanel>
+            </EuiFlexItem>
+          </EuiFlexGroup>
+        </EuiFlexItem>
+        <EuiFlexItem>
+          <EuiResizableContainer
+            style={{ height: '200px' }}
+            onPanelWidthChange={(newSizes) => {
+              setSizes((prevSizes) => ({ ...prevSizes, ...newSizes }));
+            }}
+            onResizeStart={(trigger) => setResizeTrigger(trigger)}
+            onResizeEnd={() => setResizeTrigger(undefined)}
+          >
+            {(EuiResizablePanel, EuiResizableButton) => (
+              <>
+                <EuiResizablePanel
+                  id={firstPanelId}
+                  size={sizes[firstPanelId]}
+                  minSize="30%"
+                  tabIndex={0}
+                >
+                  <EuiText>
+                    <div>{text}</div>
+                    <a href="">Hello world</a>
+                  </EuiText>
+                </EuiResizablePanel>
+
+                <EuiResizableButton accountForScrollbars="before" />
+
+                <EuiResizablePanel
+                  id={secondPanelId}
+                  size={sizes[secondPanelId]}
+                  minSize="200px"
+                  tabIndex={0}
+                >
+                  <EuiText>{text}</EuiText>
+                </EuiResizablePanel>
+              </>
+            )}
+          </EuiResizableContainer>
+        </EuiFlexItem>
+      </EuiFlexGroup>
+    );
+  };
+  ```
+</Demo>
+
+## Collapsible resizable panels
+
+Panels can be designated as collapsible, which allows them to hide content and automatically resize to a minimal width. The intent of collapsible panels is to enable large, layout-level content areas to cede space to a main content area. For instance, collapsing an action panel to allow more focus on the primary display panel.
+
+Use the `mode` prop on an **EuiResizablePanel** to mark it as `collapsible` or `main`. From the provided `mode` configuration, the **EuiResizableContainer** will determine placement of the toggle button and functionality of panel collapsing. To prevent empty states, not all panels can be `mode=collapsible` (there must be at least one `mode=main` panel).
+
+<Demo scope={{ faker }}>
+  ```tsx
+  import React, { useState } from 'react';
+  import {
+    EuiText,
+    EuiResizableContainer,
+    EuiListGroup,
+    EuiListGroupItem,
+    EuiPanel,
+    EuiTitle,
+    EuiSpacer,
+    EuiPage,
+  } from '@elastic/eui';
+  import { faker } from '@faker-js/faker';
+
+  export default () => {
+    const items = [
+      {
+        id: 1,
+        label: 'First item',
+        text: <p>{faker.lorem.paragraphs()}</p>,
+        active: true,
+      },
+      {
+        id: 2,
+        label: 'Second item',
+        text: <p>{faker.lorem.paragraphs()}</p>,
+      },
+      {
+        id: 3,
+        label: 'Third item',
+        text: <p>{faker.lorem.paragraphs()}</p>,
+      },
+      {
+        id: 4,
+        label: 'Forth item',
+        text: <p>{faker.lorem.paragraphs()}</p>,
+      },
+    ];
+
+    const [itemSelected, setItemSelected] = useState(items[0]);
+    const itemElements = items.map((item, index) => (
+      <EuiListGroupItem
+        key={index}
+        onClick={() => setItemSelected(item)}
+        label={item.label}
+        size="s"
+      />
+    ));
+
+    return (
+      <>
+        <EuiText>
+          <h3>Simple</h3>
+        </EuiText>
+        <EuiSpacer />
+        <EuiPage paddingSize="none">
+          <EuiResizableContainer>
+            {(EuiResizablePanel, EuiResizableButton) => (
+              <>
+                <EuiResizablePanel
+                  mode="collapsible"
+                  initialSize={20}
+                  minSize="10%"
+                >
+                  <EuiListGroup flush>{itemElements}</EuiListGroup>
+                </EuiResizablePanel>
+
+                <EuiResizableButton />
+
+                <EuiResizablePanel mode="main" initialSize={80} minSize="50px">
+                  <EuiPanel paddingSize="l" style={{ minHeight: '100%' }}>
+                    <EuiTitle>
+                      <p>{itemSelected.label}</p>
+                    </EuiTitle>
+                    <EuiSpacer />
+                    <EuiText>{itemSelected.text}</EuiText>
+                  </EuiPanel>
+                </EuiResizablePanel>
+              </>
+            )}
+          </EuiResizableContainer>
+        </EuiPage>
+
+        <EuiSpacer />
+        <EuiText>
+          <h3>Multiple collapsible panels</h3>
+        </EuiText>
+        <EuiSpacer />
+
+        <EuiPage paddingSize="none">
+          <EuiResizableContainer>
+            {(EuiResizablePanel, EuiResizableButton) => (
+              <>
+                <EuiResizablePanel
+                  mode="collapsible"
+                  initialSize={20}
+                  minSize="10%"
+                >
+                  <EuiListGroup flush>{itemElements}</EuiListGroup>
+                </EuiResizablePanel>
+
+                <EuiResizableButton />
+
+                <EuiResizablePanel
+                  mode="main"
+                  initialSize={60}
+                  minSize="50px"
+                  tabIndex={0}
+                >
+                  <EuiPanel paddingSize="l" style={{ minHeight: '100%' }}>
+                    <EuiTitle>
+                      <p>{itemSelected.label}</p>
+                    </EuiTitle>
+                    <EuiSpacer />
+                    <EuiText>{itemSelected.text}</EuiText>
+                  </EuiPanel>
+                </EuiResizablePanel>
+
+                <EuiResizableButton />
+
+                <EuiResizablePanel
+                  mode="collapsible"
+                  initialSize={20}
+                  minSize="10%"
+                >
+                  <EuiListGroup flush>{itemElements}</EuiListGroup>
+                </EuiResizablePanel>
+              </>
+            )}
+          </EuiResizableContainer>
+        </EuiPage>
+
+        <EuiSpacer />
+        <EuiText>
+          <h3>Vertical collapsible panels</h3>
+        </EuiText>
+        <EuiSpacer />
+
+        <EuiPage paddingSize="none">
+          <EuiResizableContainer direction="vertical" style={{ height: '400px' }}>
+            {(EuiResizablePanel, EuiResizableButton) => (
+              <>
+                <EuiResizablePanel
+                  mode="collapsible"
+                  initialSize={20}
+                  minSize="10%"
+                >
+                  <EuiListGroup flush>{itemElements}</EuiListGroup>
+                </EuiResizablePanel>
+
+                <EuiResizableButton accountForScrollbars="before" />
+
+                <EuiResizablePanel mode="main" initialSize={80} minSize="50px">
+                  <EuiPanel paddingSize="l" style={{ height: '100%' }}>
+                    <EuiTitle>
+                      <p>{itemSelected.label}</p>
+                    </EuiTitle>
+                    <EuiSpacer />
+                    <EuiText>{itemSelected.text}</EuiText>
+                  </EuiPanel>
+                </EuiResizablePanel>
+              </>
+            )}
+          </EuiResizableContainer>
+        </EuiPage>
+      </>
+    );
+  };
+  ```
+</Demo>
+
+## Responsive layout
+
+It is possible to dynamically change the `direction` prop to allow for adapting layouts to screen size. Resize the window to see the panel orientation change.
+
+<Demo scope={{ faker }}>
+  ```tsx
+  import React, { useState } from 'react';
+  import {
+    EuiText,
+    EuiResizableContainer,
+    EuiListGroup,
+    EuiListGroupItem,
+    EuiPanel,
+    EuiTitle,
+    EuiSpacer,
+    EuiPage,
+    useIsWithinBreakpoints,
+  } from '@elastic/eui';
+  import { faker } from '@faker-js/faker';
+
+  export default () => {
+    const items = [
+      {
+        id: 1,
+        label: 'First item',
+        text: <p>{faker.lorem.paragraphs()}</p>,
+        active: true,
+      },
+      {
+        id: 2,
+        label: 'Second item',
+        text: <p>{faker.lorem.paragraphs()}</p>,
+      },
+      {
+        id: 3,
+        label: 'Third item',
+        text: <p>{faker.lorem.paragraphs()}</p>,
+      },
+      {
+        id: 4,
+        label: 'Fourth item',
+        text: <p>{faker.lorem.paragraphs()}</p>,
+      },
+    ];
+
+    const [itemSelected, setItemSelected] = useState(items[0]);
+    const itemElements = items.map((item, index) => (
+      <EuiListGroupItem
+        key={index}
+        onClick={() => setItemSelected(item)}
+        label={item.label}
+        size="s"
+      />
+    ));
+
+    const isMobile = useIsWithinBreakpoints(['xs', 's']);
+    const style = isMobile ? { height: '100%' } : { minHeight: '100%' };
+
+    return (
+      <EuiPage paddingSize="none">
+        <EuiResizableContainer
+          direction={isMobile ? 'vertical' : 'horizontal'}
+          style={{ height: '400px' }}
+        >
+          {(EuiResizablePanel, EuiResizableButton) => (
+            <>
+              <EuiResizablePanel
+                mode="collapsible"
+                initialSize={20}
+                minSize="10%"
+              >
+                <EuiListGroup flush>{itemElements}</EuiListGroup>
+              </EuiResizablePanel>
+
+              <EuiResizableButton />
+
+              <EuiResizablePanel mode="main" initialSize={80} minSize="50px">
+                <EuiPanel paddingSize="l" style={style}>
+                  <EuiTitle>
+                    <p>{itemSelected.label}</p>
+                  </EuiTitle>
+                  <EuiSpacer />
+                  <EuiText>{itemSelected.text}</EuiText>
+                </EuiPanel>
+              </EuiResizablePanel>
+            </>
+          )}
+        </EuiResizableContainer>
+      </EuiPage>
+    );
+  };
+  ```
+</Demo>
+
+## Collapsible panel options
+
+An **EuiResizablePanel** marked as `mode={['collapsible']}` also accepts configuration options for the collapsible button by passing a second parameter, in the form of:
+
+```ts
+mode={['collapsible', {
+  'data-test-subj': 'panel-1-toggle',
+  className: 'panel-toggle',
+  position: 'top',
+}]}
+```
+
+<Demo scope={{ faker }}>
+  ```tsx
+  import React, { useState } from 'react';
+  import {
+    EuiResizableContainer,
+    EuiListGroup,
+    EuiListGroupItem,
+    EuiPanel,
+    EuiTitle,
+    EuiSpacer,
+    EuiText,
+    EuiPage,
+  } from '@elastic/eui';
+  import { faker } from '@faker-js/faker';
+
+  export default () => {
+    const items = [
+      {
+        id: 1,
+        label: 'First item',
+        text: <p>{faker.lorem.paragraphs(1)}</p>,
+      },
+      {
+        id: 2,
+        label: 'Second item',
+        text: <p>{faker.lorem.paragraphs()}</p>,
+      },
+      {
+        id: 3,
+        label: 'Third item',
+        text: <p>{faker.lorem.paragraphs()}</p>,
+      },
+      {
+        id: 4,
+        label: 'Fourth item',
+        text: <p>{faker.lorem.paragraphs()}</p>,
+      },
+    ];
+
+    const [itemSelected, setItemSelected] = useState(items[0]);
+    const itemElements = items.map((item, index) => (
+      <EuiListGroupItem
+        key={index}
+        onClick={() => setItemSelected(item)}
+        label={item.label}
+        size="s"
+      />
+    ));
+    return (
+      <EuiPage paddingSize="none">
+        <EuiResizableContainer>
+          {(EuiResizablePanel, EuiResizableButton) => (
+            <>
+              <EuiResizablePanel
+                mode={[
+                  'collapsible',
+                  {
+                    className: 'panel-toggle',
+                    'data-test-subj': 'panel-1-toggle',
+                    position: 'top',
+                  },
+                ]}
+                initialSize={20}
+                minSize="10%"
+              >
+                <EuiListGroup flush>{itemElements}</EuiListGroup>
+              </EuiResizablePanel>
+
+              <EuiResizableButton alignIndicator="start" />
+
+              <EuiResizablePanel
+                mode="main"
+                initialSize={60}
+                minSize="20%"
+                tabIndex={0}
+              >
+                <EuiPanel paddingSize="l" style={{ minHeight: '100%' }}>
+                  <EuiTitle>
+                    <p>{itemSelected.label}</p>
+                  </EuiTitle>
+                  <EuiSpacer />
+                  <EuiText>{itemSelected.text}</EuiText>
+                </EuiPanel>
+              </EuiResizablePanel>
+
+              <EuiResizableButton alignIndicator="end" />
+
+              <EuiResizablePanel
+                mode={[
+                  'collapsible',
+                  {
+                    className: 'panel-toggle',
+                    'data-test-subj': 'panel-3-toggle',
+                    position: 'bottom',
+                  },
+                ]}
+                initialSize={20}
+                minSize="10%"
+              >
+                <EuiListGroup flush>{itemElements}</EuiListGroup>
+              </EuiResizablePanel>
+            </>
+          )}
+        </EuiResizableContainer>
+      </EuiPage>
+    );
+  };
+  ```
+</Demo>
+
+## Collapsible panels with external control
+
+**EuiResizableContainer** also provides action hooks for parent components to access internal methods, such as **EuiResizablePanel** collapse toggling. The actions are accessible via the third parameter of the render prop function.
+
+Note that when bypassing internal **EuiResizableContainer** logic, it is possible to create situations that would otherwise be prevented. For instance, allowing all panels to be collapsed creates a scenario where your app will need to account for empty state and accessibility in regards to keyboard navigation.
+
+### Custom collapse button
+
+You can also provide an external collapse button for custom placement and look within your panel with `mode={['custom']}`. When collapsed, however, the default collapsed button will be used for users to expand the panel.
+
+For consistency, we recommend the usage of the `menuLeft`, `menuRight`, etc, icon types.
+
+<Demo scope={{ faker }}>
+  ```tsx
+  import React, { useRef, useState } from 'react';
+  import {
+    EuiResizableContainer,
+    EuiPanel,
+    EuiTitle,
+    EuiSpacer,
+    EuiButtonGroup,
+    EuiButtonIcon,
+    EuiFlexGroup,
+    EuiFlexItem,
+    EuiText,
+  } from '@elastic/eui';
+
+  const toggleButtons = [
+    {
+      id: '1',
+      label: 'Toggle Panel 1',
+    },
+    {
+      id: '2',
+      label: 'Toggle Panel 2',
+    },
+  ];
+
+  export default () => {
+    const collapseFn = useRef<Function>(() => {});
+
+    const [toggleIdToSelectedMap, setToggleIdToSelectedMap] = useState<
+      Record<string, boolean>
+    >({});
+
+    const onCollapse = (optionId: string) => {
+      const newToggleIdToSelectedMap = {
+        ...toggleIdToSelectedMap,
+        [optionId]: !toggleIdToSelectedMap[optionId],
+      };
+      setToggleIdToSelectedMap(newToggleIdToSelectedMap);
+    };
+
+    const onChange = (optionId: string) => {
+      onCollapse(optionId);
+      collapseFn.current(`panel${optionId}`, optionId === '3' ? 'right' : 'left');
+    };
+
+    return (
+      <>
+        <div className="eui-textCenter">
+          <EuiButtonGroup
+            legend="Collapsible panels"
+            options={toggleButtons}
+            idToSelectedMap={toggleIdToSelectedMap}
+            onChange={onChange}
+            color="primary"
+            type="multi"
+          />
+        </div>
+        <EuiSpacer />
+        <EuiResizableContainer
+          onToggleCollapsed={onCollapse}
+          style={{ height: '250px' }}
+        >
+          {(EuiResizablePanel, EuiResizableButton, { togglePanel }) => {
+            collapseFn.current = (
+              id: string,
+              direction: 'left' | 'right' = 'left'
+            ) => togglePanel?.(id, { direction });
+
+            return (
+              <>
+                <EuiResizablePanel id="panel1" initialSize={30} minSize="10%">
+                  <EuiPanel paddingSize="l" style={{ height: '100%' }}>
+                    <EuiTitle>
+                      <p>Panel 1</p>
+                    </EuiTitle>
+                  </EuiPanel>
+                </EuiResizablePanel>
+
+                <EuiResizableButton />
+
+                <EuiResizablePanel id="panel2" initialSize={35} minSize="50px">
+                  <EuiPanel paddingSize="l" style={{ height: '100%' }}>
+                    <EuiTitle>
+                      <p>Panel 2</p>
+                    </EuiTitle>
+                  </EuiPanel>
+                </EuiResizablePanel>
+
+                <EuiResizableButton />
+
+                <EuiResizablePanel
+                  mode={['custom', { position: 'top' }]}
+                  id="panel3"
+                  initialSize={35}
+                  minSize="10%"
+                >
+                  <EuiPanel paddingSize="l" style={{ height: '100%' }}>
+                    <EuiFlexGroup
+                      justifyContent="spaceBetween"
+                      alignItems="center"
+                    >
+                      <EuiFlexItem>
+                        <EuiTitle>
+                          <p>Panel 3</p>
+                        </EuiTitle>
+                      </EuiFlexItem>
+                      <EuiFlexItem grow={false}>
+                        <EuiButtonIcon
+                          color="text"
+                          aria-label={'Toggle panel 3'}
+                          iconType="menuRight"
+                          onClick={() => onChange('3')}
+                        />
+                      </EuiFlexItem>
+                    </EuiFlexGroup>
+                    <EuiSpacer />
+                    <EuiText size="s">
+                      <p>
+                        This panel provides its own button for triggering
+                        collapsibility but relies on the default collapsed button
+                        to expand.
+                      </p>
+                    </EuiText>
+                  </EuiPanel>
+                </EuiResizablePanel>
+              </>
+            );
+          }}
+        </EuiResizableContainer>
+      </>
+    );
+  };
+  ```
+</Demo>
+
+## Resizable button indicator
+
+By default, **EuiResizableButton** shows a grab handle indicator as a UI hint. For use cases where the resize behavior is "nice to have" but not a primary UX focus, or where there are many other busy UI elements on the page, you can set `indicator="border"` to display a subdued border element instead, which only provides resize affordance on hover or focus.
+
+<Demo scope={{ faker }}>
+  ```tsx
+  import React from 'react';
+  import { EuiText, EuiResizableContainer } from '@elastic/eui';
+  import { faker } from '@faker-js/faker';
+
+  const text = (
+    <>
+      <p>{faker.lorem.paragraphs()}</p>
+      <p>{faker.lorem.paragraphs()}</p>
+      <p>{faker.lorem.paragraphs()}</p>
+    </>
+  );
+
+  export default () => (
+    <EuiResizableContainer style={{ height: '300px' }}>
+      {(EuiResizablePanel, EuiResizableButton) => (
+        <>
+          <EuiResizablePanel initialSize={50} minSize="50px" tabIndex={0}>
+            <EuiText>{text}</EuiText>
+          </EuiResizablePanel>
+
+        <EuiResizableButton indicator="border" accountForScrollbars="before" />
+
+          <EuiResizablePanel
+            initialSize={50}
+            minSize="50px"
+            tabIndex={0}
+            paddingSize="none"
+          >
+            <EuiResizableContainer
+              direction="vertical"
+              style={{ height: '100%', overflow: 'hidden' }}
+            >
+              {(EuiResizablePanel, EuiResizableButton) => (
+                <>
+                  <EuiResizablePanel initialSize={50} minSize="50px" tabIndex={0}>
+                    <EuiText style={{ width: '110%' }}>{text}</EuiText>
+                  </EuiResizablePanel>
+
+                  <EuiResizableButton indicator="border" accountForScrollbars="both" />
+
+                  <EuiResizablePanel initialSize={50} minSize="50px" tabIndex={0}>
+                    <EuiText>{text}</EuiText>
+                  </EuiResizablePanel>
+                </>
+              )}
+            </EuiResizableContainer>
+          </EuiResizablePanel>
+        </>
+      )}
+    </EuiResizableContainer>
+  );
+  ```
+</Demo>
+
+## Custom resize logic
+
+If you want to break out of **EuiResizableContainer** usage completely, you may import the standalone **EuiResizableButton** component. You will need to attach your own mouse, touch, and keyboard events and logic to the button - see the example below.
+
+```tsx interactive
+import React, { useState, useCallback, useRef } from 'react';
+import { EuiResizableButton, EuiPanel, keys } from '@elastic/eui';
+
+const MIN_PANEL_WIDTH = 20;
+
+const getMouseOrTouchX = (
+  e: TouchEvent | MouseEvent | React.MouseEvent | React.TouchEvent
+): number => {
+  // Some Typescript fooling is needed here
+  const x = (e as TouchEvent).targetTouches
+    ? (e as TouchEvent).targetTouches[0].pageX
+    : (e as MouseEvent).pageX;
+  return x;
+};
+
+export default () => {
+  const [panelWidth, setPanelWidth] = useState(200);
+  const initialPanelWidth = useRef(panelWidth);
+  const initialMouseX = useRef(0);
+
+  const onMouseMove = useCallback((e: MouseEvent | TouchEvent) => {
+    const mouseOffset = getMouseOrTouchX(e) - initialMouseX.current;
+    const changedPanelWidth = initialPanelWidth.current + mouseOffset;
+
+    setPanelWidth(Math.max(changedPanelWidth, MIN_PANEL_WIDTH));
+  }, []);
+
+  const onMouseUp = useCallback(() => {
+    initialMouseX.current = 0;
+
+    window.removeEventListener('mousemove', onMouseMove);
+    window.removeEventListener('mouseup', onMouseUp);
+    window.removeEventListener('touchmove', onMouseMove);
+    window.removeEventListener('touchend', onMouseUp);
+  }, [onMouseMove]);
+
+  const onMouseDown = useCallback(
+    (e: React.MouseEvent | React.TouchEvent) => {
+      initialMouseX.current = getMouseOrTouchX(e);
+      initialPanelWidth.current = panelWidth;
+
+      // Window event listeners instead of React events are used
+      // in case the user's mouse leaves the component
+      window.addEventListener('mousemove', onMouseMove);
+      window.addEventListener('mouseup', onMouseUp);
+      window.addEventListener('touchmove', onMouseMove);
+      window.addEventListener('touchend', onMouseUp);
+    },
+    [panelWidth, onMouseMove, onMouseUp]
+  );
+
+  const onKeyDown = useCallback((e: React.KeyboardEvent) => {
+    const KEYBOARD_OFFSET = 10;
+
+    switch (e.key) {
+      case keys.ARROW_RIGHT:
+        e.preventDefault(); // Safari+VO will screen reader navigate off the button otherwise
+        setPanelWidth((panelWidth) => panelWidth + KEYBOARD_OFFSET);
+        break;
+      case keys.ARROW_LEFT:
+        e.preventDefault(); // Safari+VO will screen reader navigate off the button otherwise
+        setPanelWidth((panelWidth) =>
+          Math.max(panelWidth - KEYBOARD_OFFSET, MIN_PANEL_WIDTH)
+        );
+    }
+  }, []);
+
+  return (
+    <EuiPanel
+      paddingSize="s"
+      style={{
+        display: 'flex',
+        justifyContent: 'flex-end',
+        blockSize: 200,
+        inlineSize: panelWidth,
+        maxInlineSize: '100%',
+      }}
+    >
+      <EuiResizableButton
+        isHorizontal
+        onMouseDown={onMouseDown}
+        onTouchStart={onMouseDown}
+        onKeyDown={onKeyDown}
+      />
+    </EuiPanel>
+  );
+};
+```
+
+## Props
+
+import docgen from '@elastic/eui-docgen/dist/components/resizable_container';
+
+<PropTable definition={docgen.EuiResizableContainer} />
+
+<PropTable definition={docgen.EuiResizableButton} />

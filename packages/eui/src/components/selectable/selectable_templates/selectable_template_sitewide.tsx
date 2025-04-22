@@ -43,7 +43,7 @@ export type EuiSelectableTemplateSitewideProps = Partial<
   Omit<EuiSelectableProps<{ [key: string]: any }>, 'options'>
 > & {
   /**
-   * Extends the typical EuiSelectable #Options with the addition of pre-composed elements
+   * Extends the typical #EuiSelectableTemplateSitewideOption with the addition of pre-composed elements
    * such as `icon`, `avatar`and `meta`
    */
   options: EuiSelectableTemplateSitewideOption[];

@@ -962,7 +962,6 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
             />
           </button>
           <ul
-            aria-label="Pagination for table: "
             class="euiPagination__list emotion-euiPagination__list"
           >
             <li
@@ -970,7 +969,7 @@ exports[`EuiBasicTable renders (kitchen sink) with pagination, selection, sortin
             >
               <button
                 aria-controls="__table_generated-id"
-                aria-current="true"
+                aria-current="page"
                 aria-label="Page 1 of 2"
                 class="euiButtonEmpty euiPaginationButton emotion-euiButtonDisplay-euiButtonEmpty-s-empty-disabled-isDisabled-euiPaginationButton-isActive"
                 data-test-subj="pagination-button-0"
