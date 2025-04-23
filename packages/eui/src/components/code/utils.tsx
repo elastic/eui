@@ -13,7 +13,7 @@ import React, {
   HTMLAttributes,
 } from 'react';
 // uses refractor/all to ensure all languages are supported OOTB
-import { refractor } from 'refractor/lib/all.js';
+import { refractor } from 'refractor/all';
 import { type Syntax } from 'refractor';
 import type { Element, Text, Comment } from 'hast';
 
