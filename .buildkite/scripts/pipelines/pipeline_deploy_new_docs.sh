@@ -147,8 +147,7 @@ echo "Successfully copied files to /${bucket_directory}"
 # Copy deployed tagged release to /
 if [[ $copy_to_root_directory == true ]]; then
   echo "Beginning to copy built files to /"
-  # Use "copy in the cloud" to speed up the process
-  gcloud storage cp "${GCLOUD_CP_ARGS[@]}" "gs://${GCLOUD_BUCKET_FULL}/${bucket_directory}" "gs://${GCLOUD_BUCKET_FULL}/"
+  gcloud storage cp "${GCLOUD_CP_ARGS[@]}" packages/website/build/* "gs://${GCLOUD_BUCKET_FULL}/"
   echo "Successfully copied files to /"
 fi
 
