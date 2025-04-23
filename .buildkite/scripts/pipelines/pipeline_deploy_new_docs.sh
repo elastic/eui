@@ -86,13 +86,14 @@ if is_pipeline_trigger_pull_request; then
   bucket_directory="${PR_SLUG}/"
   echo "Detected a PR preview environment configuration. The built files will be copied to ${bucket_directory}"
 elif is_pipeline_trigger_tag; then
-  bucket_directory="${BUILDKITE_TAG}/"
-
   latest_release_tag_on_main=$(git describe --tags "$(git rev-list --branches=main --tags --max-count=1)")
   if [[ "${BUILDKITE_TAG}" == "${latest_release_tag_on_main}" ]]; then
+    # Deploy to root directory. No trailing slash here
+    bucket_directory=""
     copy_to_root_directory=true
-    echo "Detected a tagged release. The built files will be copied to ${bucket_directory} and the root directory"
+    echo "Detected a tagged release. The built files will be copied to the root directory"
   else
+    bucket_directory="${BUILDKITE_TAG}/"
     echo "Detected a tagged release. The built files will be copied to ${bucket_directory}"
   fi
 elif is_pipeline_trigger_branch "main"; then
@@ -135,7 +136,7 @@ unset GCE_ACCOUNT
 echo "+++ :bucket: Copying built files to the bucket"
 
 # additional protection layer in case bucket_directory is ever unset
-if [[ -z "${bucket_directory}" ]]; then
+if [[ -z "${bucket_directory}" ]] && [[ "${copy_to_root_directory}" != true ]]; then
   echo >&2 "Detected an unset 'bucket_directory' variable. This is likely a mistake."
   exit 2
 fi
@@ -143,13 +144,6 @@ fi
 echo "Beginning to copy built files to /${bucket_directory}"
 gcloud storage cp "${GCLOUD_CP_ARGS[@]}" packages/website/build/* "gs://${GCLOUD_BUCKET_FULL}/${bucket_directory}"
 echo "Successfully copied files to /${bucket_directory}"
-
-# Copy deployed tagged release to /
-if [[ $copy_to_root_directory == true ]]; then
-  echo "Beginning to copy built files to /"
-  gcloud storage cp "${GCLOUD_CP_ARGS[@]}" packages/website/build/* "gs://${GCLOUD_BUCKET_FULL}/"
-  echo "Successfully copied files to /"
-fi
 
 ############################################################
 #                      Step 5 - Notify                     #
