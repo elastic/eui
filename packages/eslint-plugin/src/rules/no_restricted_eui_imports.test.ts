@@ -43,7 +43,7 @@ ruleTester.run('no-restricted-eui-imports', NoRestrictedEuiImports, {
         {
           // @ts-expect-error @typescript-eslint types expect `messageId` here but `message` is also allowed in eslint API
           message:
-            'For client-side, please use `useEuiTheme` instead. Direct JSON token imports will be removed as per the EUI Deprecation schedule: https://github.com/elastic/eui/issues/1469.',
+            'For client-side, please use `useEuiTheme` instead.',
         },
       ],
     },
@@ -53,7 +53,7 @@ ruleTester.run('no-restricted-eui-imports', NoRestrictedEuiImports, {
         {
           // @ts-expect-error @typescript-eslint types expect `messageId` here but `message` is also allowed in eslint API
           message:
-            'For client-side, please use `useEuiTheme` instead. Direct JSON token imports will be removed as per the EUI Deprecation schedule: https://github.com/elastic/eui/issues/1469.',
+            'For client-side, please use `useEuiTheme` instead.',
         },
       ],
     },
