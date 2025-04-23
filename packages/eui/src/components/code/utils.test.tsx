@@ -17,6 +17,7 @@ import {
   nodeToHtml,
   highlightByLine,
   parseLineRanges,
+  AnnotationElement,
 } from './utils';
 
 describe('shared utils', () => {
@@ -83,7 +84,7 @@ describe('shared utils', () => {
             },
           ],
           properties: { className: ['hello-world'] },
-        },
+        } as unknown as AnnotationElement,
         0,
         []
       );

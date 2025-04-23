@@ -7362,7 +7362,6 @@ __metadata:
     "@types/react-is": "npm:^17.0.3"
     "@types/react-router-dom": "npm:^5.3.3"
     "@types/react-window": "npm:^1.8.8"
-    "@types/refractor": "npm:^3.4.0"
     "@types/stylis": "npm:^4.2.1"
     "@types/testing-library__jest-dom": "npm:^5.14.3"
     "@types/url-parse": "npm:^1.4.8"
@@ -7465,7 +7464,7 @@ __metadata:
     react-window: "npm:^1.8.10"
     redux: "npm:^4.0.5"
     redux-thunk: "npm:^2.3.0"
-    refractor: "npm:^3.6.0"
+    refractor: "npm:4.9.0"
     rehype-raw: "npm:^5.1.0"
     rehype-react: "npm:^6.2.1"
     rehype-stringify: "npm:^8.0.0"
@@ -11229,10 +11228,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/prismjs@npm:*":
-  version: 1.26.0
-  resolution: "@types/prismjs@npm:1.26.0"
-  checksum: 10c0/dce1388a626c20b95fa2715917deef5a401eec33e9e181f202840ee3b3c7d8a84d5558c834af4c29b8e007741a6a18639b074db8ecccdd6e7de15280fc4dfdd2
+"@types/prismjs@npm:^1.0.0":
+  version: 1.26.5
+  resolution: "@types/prismjs@npm:1.26.5"
+  checksum: 10c0/5619cb449e0d8df098c8759d6f47bf8fdd510abf5dbdfa999e55c6a2545efbd1e209cc85a33d8d9f4ff2898089a1a6d9a70737c9baffaae635c46852c40d384a
   languageName: node
   linkType: hard
 
@@ -11405,15 +11404,6 @@ __metadata:
     "@types/prop-types": "npm:*"
     csstype: "npm:^3.0.2"
   checksum: 10c0/fe455f805c5da13b89964c3d68060cebd43e73ec15001a68b34634604a78140e6fc202f3f61679b9d809dde6d7a7c2cb3ed51e0fd1462557911db09879b55114
-  languageName: node
-  linkType: hard
-
-"@types/refractor@npm:^3.4.0":
-  version: 3.4.1
-  resolution: "@types/refractor@npm:3.4.1"
-  dependencies:
-    "@types/prismjs": "npm:*"
-  checksum: 10c0/c8d74657f912266b7df1b4c0d598ca766f0df3ee86347f6b26354d67768ab33a7a64052c3e27464c92f58159215f6a56df7d2ba722050a967d3d22ccabd78fe8
   languageName: node
   linkType: hard
 
@@ -23775,6 +23765,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"hast-util-parse-selector@npm:^3.0.0":
+  version: 3.1.1
+  resolution: "hast-util-parse-selector@npm:3.1.1"
+  dependencies:
+    "@types/hast": "npm:^2.0.0"
+  checksum: 10c0/34ac1707a477fd9764e328087163f1f21857bdb0f8d425bf41f6def7baf840e50e4bca2eb03072e3da4e39856de28893c4b688dcba0cc305160d53afcece4df4
+  languageName: node
+  linkType: hard
+
 "hast-util-parse-selector@npm:^4.0.0":
   version: 4.0.0
   resolution: "hast-util-parse-selector@npm:4.0.0"
@@ -23985,16 +23984,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"hastscript@npm:^6.0.0":
-  version: 6.0.0
-  resolution: "hastscript@npm:6.0.0"
+"hastscript@npm:^7.0.0":
+  version: 7.2.0
+  resolution: "hastscript@npm:7.2.0"
   dependencies:
     "@types/hast": "npm:^2.0.0"
-    comma-separated-tokens: "npm:^1.0.0"
-    hast-util-parse-selector: "npm:^2.0.0"
-    property-information: "npm:^5.0.0"
-    space-separated-tokens: "npm:^1.0.0"
-  checksum: 10c0/f76d9cf373cb075c8523c8ad52709f09f7e02b7c9d3152b8d35c65c265b9f1878bed6023f215a7d16523921036d40a7da292cb6f4399af9b5eccac2a5a5eb330
+    comma-separated-tokens: "npm:^2.0.0"
+    hast-util-parse-selector: "npm:^3.0.0"
+    property-information: "npm:^6.0.0"
+    space-separated-tokens: "npm:^2.0.0"
+  checksum: 10c0/579912b03ff4a5b19eb609df7403c6dba2505ef1a1e2bc47cbf467cbd7cffcd51df40e74d882de1ccdda40aaf18487f82619eb9cb9f2077cba778017e95e868e
   languageName: node
   linkType: hard
 
@@ -35388,14 +35387,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"refractor@npm:^3.6.0":
-  version: 3.6.0
-  resolution: "refractor@npm:3.6.0"
+"refractor@npm:4.9.0":
+  version: 4.9.0
+  resolution: "refractor@npm:4.9.0"
   dependencies:
-    hastscript: "npm:^6.0.0"
-    parse-entities: "npm:^2.0.0"
-    prismjs: "npm:~1.27.0"
-  checksum: 10c0/63ab62393c8c2fd7108c2ea1eff721c0ad2a1a6eee60fdd1b47f4bb25cf298667dc97d041405b3e718b0817da12b37a86ed07ebee5bd2ca6405611f1bae456db
+    "@types/hast": "npm:^2.0.0"
+    "@types/prismjs": "npm:^1.0.0"
+    hastscript: "npm:^7.0.0"
+    parse-entities: "npm:^4.0.0"
+  checksum: 10c0/58c9471d17d4e2d19436c0917d94c214366b43de090da679880d01d47a3ca5e9da1790aaa55d23da14222bc82d61bb9fd27ad17ab4bc5218e1fa026893c2b5d7
   languageName: node
   linkType: hard
 

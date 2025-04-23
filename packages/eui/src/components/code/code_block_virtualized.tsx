@@ -8,14 +8,13 @@
 
 import React, { HTMLAttributes, forwardRef, useMemo } from 'react';
 import { FixedSizeList, ListChildComponentProps } from 'react-window';
-import { RefractorNode } from 'refractor';
 import { logicalStyles } from '../../global_styling';
 import {
   EuiAutoSizer,
   EuiAutoSize,
   EuiAutoSizeHorizontal,
 } from '../auto_sizer';
-import { nodeToHtml } from './utils';
+import { nodeToHtml, type RefractorNode } from './utils';
 
 export const EuiCodeBlockVirtualized = ({
   data,

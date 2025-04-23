@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import refractor from 'refractor';
+import { refractor } from 'refractor';
 import visit from 'unist-util-visit';
 import { Plugin } from 'unified';
 
@@ -23,7 +23,7 @@ const attacher: Plugin = () => {
     }
 
     node.data = data;
-    data.hChildren = refractor.highlight(node.value, language);
+    data.hChildren = refractor.highlight(node.value, language).children;
     data.hProperties = {
       ...data.hProperties,
       language,

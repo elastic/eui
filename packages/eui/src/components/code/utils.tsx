@@ -12,14 +12,11 @@ import React, {
   ReactNode,
   HTMLAttributes,
 } from 'react';
-import {
-  listLanguages,
-  highlight,
-  AST,
-  RefractorNode,
-  register,
-  type RefractorSyntax,
-} from 'refractor';
+// uses refractor/all to ensure all languages are supported OOTB
+import { refractor } from 'refractor/lib/all.js';
+import { type Syntax } from 'refractor';
+import type { Element, Text, Comment } from 'hast';
+
 import { cx } from '@emotion/css';
 import { esql as esqlLanguage } from '@elastic/prismjs-esql';
 
@@ -32,7 +29,13 @@ import {
 } from './code_block_annotations';
 import { euiCodeBlockLineStyles } from './code_block_line.styles';
 
-register(esqlLanguage as RefractorSyntax);
+export type RefractorBaseNode = Element | Text;
+export type RefractorNode = RefractorBaseNode | Comment;
+export type AnnotationElement = Element & { annotation: string };
+
+const { listLanguages, highlight, register } = refractor;
+
+register(esqlLanguage as Syntax);
 
 /**
  * Utils shared between EuiCode and EuiCodeBlock
@@ -81,8 +84,11 @@ export const getHtmlContent = (
   return data.map(nodeToHtml);
 };
 
-export const isAstElement = (node: RefractorNode): node is AST.Element =>
+export const isAstElement = (node: RefractorNode): node is Element =>
   node.hasOwnProperty('type') && node.type === 'element';
+
+export const isAstTextElement = (node: RefractorNode): node is Text =>
+  node.hasOwnProperty('type') && node.type === 'text';
 
 export const nodeToHtml = (
   node: RefractorNode,
@@ -100,7 +106,11 @@ export const nodeToHtml = (
       {
         ...properties,
         key,
-        className: cx(properties.className),
+        className: Array.isArray(properties?.className)
+          ? cx(properties?.className.join(' '))
+          : typeof properties?.className === 'string'
+          ? cx(properties?.className)
+          : undefined,
       },
       children &&
         children.map((el, i) =>
@@ -168,7 +178,7 @@ const addLineData = (
 ): ExtendedRefractorNode[] => {
   return nodes.reduce<ExtendedRefractorNode[]>((result, node) => {
     const lineStart = data.lineNumber;
-    if (node.type === 'text') {
+    if (isAstTextElement(node) && node.type === 'text') {
       if (!node.value.match(NEW_LINE_REGEX)) {
         node.lineStart = lineStart;
         node.lineEnd = lineStart;
@@ -188,7 +198,7 @@ const addLineData = (
       return result;
     }
 
-    if (node.children && node.children.length) {
+    if (isAstElement(node) && node.children && node.children.length) {
       const children = addLineData(node.children, data);
       const first = children[0];
       const last = children[children.length - 1];
@@ -249,7 +259,7 @@ function wrapLines(
         styles.lineText.euiCodeBlock__lineText,
         highlights.includes(lineNumber) && styles.lineText.isHighlighted,
       ]);
-      const lineTextElement: RefractorNode = {
+      const lineTextElement: Element = {
         type: 'element',
         tagName: 'span',
         properties: {
@@ -262,10 +272,11 @@ function wrapLines(
       const lineNumberWrapperStyles = cx(
         styles.lineNumber.euiCodeBlock__lineNumberWrapper
       );
-      const lineNumberWrapperElement: RefractorNode = {
+      const lineNumberWrapperElement: Element = {
         type: 'element',
         tagName: 'span',
         properties: {
+          // @ts-expect-error - expects string style but we're relying on object notation
           style: { inlineSize: width },
           className: [
             'euiCodeBlock__lineNumberWrapper',
@@ -277,7 +288,7 @@ function wrapLines(
 
       // Line number element
       const lineNumberStyles = cx(styles.lineNumber.euiCodeBlock__lineNumber);
-      const lineNumberElement: RefractorNode = {
+      const lineNumberElement: Element = {
         type: 'element',
         tagName: 'span',
         properties: {
@@ -287,6 +298,7 @@ function wrapLines(
         },
         children: [],
       };
+
       lineNumberWrapperElement.children.push(lineNumberElement);
 
       // Annotation element
@@ -296,7 +308,7 @@ function wrapLines(
           type: 'annotation',
           annotation: options.annotations[lineNumber],
           lineNumber,
-        } as unknown as RefractorNode;
+        } as unknown as AnnotationElement;
         lineNumberWrapperElement.children.push(annotationElement);
       }
 
@@ -322,7 +334,10 @@ export const highlightByLine = (
   euiTheme: UseEuiTheme
 ) => {
   return wrapLines(
-    addLineData(highlight(children, language), { lineNumber: data.start }),
+    // @ts-expect-error RefractorNode
+    addLineData(highlight(children, language).children, {
+      lineNumber: data.start,
+    }),
     {
       showLineNumbers: data.show,
       highlight: data.highlight,

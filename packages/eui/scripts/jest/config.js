@@ -1,5 +1,18 @@
 const jestConfig = require('jest-config');
+const babelConfig = require('../../scripts/jest/.babelrc.js');
+
 const getCacheDirectory = () => jestConfig.defaults.cacheDirectory;
+
+// dependencies that provide ESM only,
+// we'll need to manually transform them to commonJS for Jest
+const esModules = [
+  'refractor',
+  'hastscript',
+  'hast-util-parse-selector',
+  'parse-entities',
+  'character-reference-invalid',
+  'decode-named-character-reference',
+].join('|');
 
 // Set REACT_VERSION env variable to latest if empty or invalid
 if (!['16', '17', '18'].includes(process.env.REACT_VERSION)) {
@@ -62,8 +75,10 @@ const config = {
   testEnvironment: 'jsdom',
   testMatch: ['**/*.test.js', '**/*.test.ts', '**/*.test.tsx'],
   transform: {
+    [`^.+\\/(${esModules})\\/.*\\.js$`]: ['babel-jest', babelConfig],
     '^.+\\.(js|tsx?)$': 'babel-jest',
   },
+  transformIgnorePatterns: [`<rootDir>/node_modules/(?!${esModules})`],
   snapshotSerializers: [
     '<rootDir>/node_modules/enzyme-to-json/serializer',
     '<rootDir>/scripts/jest/setup/emotion',
