@@ -513,6 +513,10 @@ import customSvg from '!url-loader!./custom.svg';
   ```
 </Demo>
 
+### Using icons as background images
+
+EUI currently only supports icon usage via name references passed to various components (ex.: `<EuiIcon type="grid" />`). We do not export the underlying asset, which precludes referencing it directly for use in CSS as a background image.
+
 ## Props
 
 import docgen from '@elastic/eui-docgen/dist/components/icon';
