@@ -2,17 +2,15 @@ name: "Changelog required"
 on:
   pull_request:
     types: [opened, synchronize, reopened, ready_for_review, labeled, unlabeled]
-    branches: [ main ]
+    branches: [main]
 
 jobs:
   # Enforces the update of a changelog file on every pull request
   changelog:
+    if: ${{ !contains(github.event.pull_request.labels.*.name, 'skip-changelog') }}
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - uses: dangoslen/changelog-enforcer@v2
+    - uses: ./.github/actions/check-changelog
       with:
-        # This should eventually by replaced with a monorepo-compatible changelog checker
-        changeLogPath: "packages/eui/changelogs/upcoming/${{ github.event.pull_request.number }}.md"
-        skipLabels: 'skip-changelog'
-        missingUpdateErrorMessage: 'You need to add a changelog to this PR before it can be merged. @see https://github.com/elastic/eui/blob/main/wiki/contributing-to-eui/documenting/changelogs.md'
+        pr-number: ${{ github.event.pull_request.number }}
