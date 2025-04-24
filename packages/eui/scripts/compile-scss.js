@@ -9,7 +9,7 @@ async function compileScssFiles({
   destinationDirectory,
   docsVariablesDirectory,
 }) {
-  // Copy static JSON Sass var files from src-docs/src/views/theme/_json to dist
+  // Copy static JSON Sass var files from src/themes/json to dist
   const jsonFilesToCopy = [
     'eui_theme_amsterdam_dark.json',
     'eui_theme_amsterdam_light.json',
@@ -39,6 +39,6 @@ async function compileScssFiles({
 if (require.main === module) {
   compileScssFiles({
     destinationDirectory: 'dist',
-    docsVariablesDirectory: 'src-docs/src/views/theme/_json',
+    docsVariablesDirectory: 'src/themes/json',
   });
 }
