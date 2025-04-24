@@ -116,7 +116,6 @@ const updateChangelog = (upcomingChangelog, version) => {
 
   const year = new Date().getUTCFullYear();
   const pathToChangelog = path.resolve(changelogDir, `CHANGELOG_${year}.md`);
-  updateChangelogYears(year);
 
   let changelogArchive = '';
   try {
@@ -145,28 +144,7 @@ const updateChangelog = (upcomingChangelog, version) => {
   execSync('git add changelogs/');
 };
 
-/**
- * Automatically update the docs' site array of changelog years
- * whenever a new year changelog file is added
- */
-const changelogYears =
-  rootDir + '/src-docs/src/views/package/changelog_years.json';
-
-const updateChangelogYears = (year) => {
-  const { years } = JSON.parse(fs.readFileSync(changelogYears).toString());
-
-  if (!years.includes(year)) {
-    console.log(
-      chalk.magenta(`Adding new changelog year ${year} to docs site`)
-    );
-    years.unshift(year);
-    fs.writeFileSync(changelogYears, JSON.stringify({ years }, null, 2));
-    execSync(`git add ${changelogYears}`);
-  }
-};
-
 module.exports = {
   collateChangelogFiles,
   updateChangelog,
-  updateChangelogYears,
 };

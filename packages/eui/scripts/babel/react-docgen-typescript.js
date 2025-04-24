@@ -23,7 +23,6 @@ let program;
 function buildProgram() {
   const files = [
     ...glob.sync('src/!(test)/**/!(*.test).{ts,tsx}', { absolute: true }),
-    ...glob.sync('src-docs/**/!(*.test).{ts,tsx}', { absolute: true }),
   ];
   program = null;
   gc();
@@ -33,7 +32,7 @@ buildProgram();
 
 if (isDevelopment && !bypassWatch) {
   chokidar
-    .watch(['./src/**/*.(ts|tsx)', './src-docs/**/*.(ts|tsx)'], {
+    .watch(['./src/**/*.(ts|tsx)'], {
       ignoreInitial: true, // don't emit `add` event during file discovery
       ignored: ['__snapshots__', /\.test\./],
     })

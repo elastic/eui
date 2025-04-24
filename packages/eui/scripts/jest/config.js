@@ -28,7 +28,6 @@ const config = {
   rootDir: '../../',
   roots: [
     '<rootDir>/src/',
-    '<rootDir>/src-docs/src/components',
     '<rootDir>/scripts/babel',
     '<rootDir>/scripts/tests',
     '<rootDir>/scripts/eslint-plugin',
