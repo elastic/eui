@@ -60,7 +60,7 @@ export const TYPES_OF_USE_CASES: {
           <p>Help users understand how they can start using the product.</p>
           <p>
             For no data use cases, consider using a{' '}
-            <EuiLink href="/docs/display/card/">EuiCard</EuiLink>. In Kibana,
+            <EuiLink href="/docs/components/containers/card">EuiCard</EuiLink>. In Kibana,
             you just need to pass a no data configuration into your{' '}
             <EuiLink
               href="https://github.com/elastic/kibana/blob/main/dev_docs/tutorials/kibana_page_template.mdx"
