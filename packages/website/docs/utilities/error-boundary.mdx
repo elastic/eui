@@ -2,6 +2,18 @@
 
 Use **EuiErrorBoundary** to prevent errors from taking down the entire app.
 
+Ideally end-users should never see an actual error boundary rendered. If a React component can throw errors during rendering, those should be caught internally and the component should render specific error messages that help the user understand what happened and how to correct it. See the [Error messages](docs/patterns/error-messages/index.mdx) pattern for more guidance.
+
+**EuiErrorBoundary** should only be used to surround components at a high level, where we don't know how lower-level code works and we don't trust it to catch all of its own errors. Wrapping lazy-loaded components in boundaries is a good practice.
+
+In Kibana, we try to preserve the integrity of server-side data by not allowing the user to make state changes using a UI with an active error state; for this reason, the error boundary should cover up UI controls that trigger updates to server-side data. Or the controls should be hidden some other way, like having the component be aware of when it's in an error state.
+
+:::note Kibana engineers
+
+All error boundaries should have the same look and feel in Kibana, and for that reason it's not recommended to use **EuiErrorBoundary** at all. Use **KibanaErrorBoundary** instead
+
+:::
+
 <Demo>
 ```tsx interactive
 import React from 'react';
