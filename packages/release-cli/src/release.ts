@@ -47,8 +47,8 @@ export const release = async (options: ReleaseOptions) => {
 
     if (options.tag !== 'latest') {
       logger.warning(
-        `A custom tag "${options.tag}" provided for the \`official\` ` +
-        `release type. This should be used only for special releases like` +
+        `A custom tag "${options.tag}" was provided for the official` +
+        ` release type. This should be used only for special releases like` +
         ` backports. Stop here if you don't know what you're doing!`
       );
     }

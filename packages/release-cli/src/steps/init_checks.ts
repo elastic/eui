@@ -56,12 +56,6 @@ export const stepInitChecks = async (options: ReleaseOptions) => {
   logger.debug(`Local HEAD = ${localHash}`);
 
   if (localHash !== remoteHash) {
-    if (type === 'official') {
-      throw new ValidationError(
-        'Local `main` branch is out of sync with the upstream branch. Please pull the latest changes and try again.'
-      );
-    }
-
     if (!allowCustomReleases) {
       throw new ValidationError(
         'Local HEAD does not match the remote HEAD. Use --allow-custom to create a custom non-official release ' +
