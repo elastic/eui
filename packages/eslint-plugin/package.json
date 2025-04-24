@@ -1,6 +1,6 @@
 {
   "name": "@elastic/eslint-plugin-eui",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "license": "Apache-2.0",
   "repository": {
     "type": "git",
