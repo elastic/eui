@@ -71,8 +71,12 @@ export const release = async (options: ReleaseOptions) => {
     throw new ValidationError('Skipping prompts is not allowed when not using auth tokens');
   }
 
-  if (options.skipUpdateVersions && !options.workspaces?.length) {
-    throw new ValidationError('--workspaces must be set when --skip-update-version is used');
+  if (options.skipUpdateVersions) {
+    logger.warning('--skip-update-versions is set');
+
+    if (!options.workspaces?.length) {
+      throw new ValidationError('--workspaces must be set when --skip-update-version is used');
+    }
   }
 
   const allWorkspaces = await getYarnWorkspaces();
