@@ -94,6 +94,7 @@ describe('useGeneratedHtmlId', () => {
     rerender({ conditionalId: 'world' });
     expect(result.current).toEqual('world');
 
+    // @ts-expect-error we need to assign `undefined` to assert the fallback
     rerender({ conditionalId: undefined });
     expect(result.current).toBeTruthy(); // Should fall back to a generated ID
   });

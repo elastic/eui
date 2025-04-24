@@ -257,7 +257,7 @@ export const ConditionalDroppableColumns: FunctionComponent<
   canDragAndDropColumns ? (
     <DroppableColumns {...rest}>{children}</DroppableColumns>
   ) : (
-    <>{children}</>
+    <>{children as ReactNode}</>
   )
 );
 ConditionalDroppableColumns.displayName = 'ConditionalDroppableColumns';
