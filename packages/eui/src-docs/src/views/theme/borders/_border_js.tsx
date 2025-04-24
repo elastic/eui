@@ -65,6 +65,7 @@ export const TypesValuesJS = () => {
         })}
         render={(item) => (
           <EuiColorPickerSwatch
+            showToolTip={false}
             color={euiTheme.colors.emptyShade}
             disabled
             css={[
@@ -130,7 +131,13 @@ export const ColorValuesJS = () => {
             value: euiTheme.border[type],
           };
         })}
-        render={(item) => <EuiColorPickerSwatch color={item.value} disabled />}
+        render={(item) => (
+          <EuiColorPickerSwatch
+            showToolTip={false}
+            color={item.value}
+            disabled
+          />
+        )}
       />
     </>
   );
@@ -193,6 +200,7 @@ export const WidthValuesJS = () => {
         })}
         render={(item) => (
           <EuiColorPickerSwatch
+            showToolTip={false}
             color={euiTheme.colors.emptyShade}
             disabled
             css={css`
@@ -252,6 +260,7 @@ export const RadiusValuesJS = () => {
         })}
         render={(item) => (
           <EuiColorPickerSwatch
+            showToolTip={false}
             color={euiTheme.colors.emptyShade}
             disabled
             css={css`

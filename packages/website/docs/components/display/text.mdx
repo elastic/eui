@@ -1,8 +1,3 @@
----
-slug: /display/text
-id: display_text
----
-
 # Text
 
 **EuiText** is a generic catchall wrapper that will apply our standard typography styling and spacing to naked HTML. Because of its forced styles, it **only accepts raw XHTML**.
@@ -227,6 +222,7 @@ import {
   EuiFlexItem,
   EuiHorizontalRule,
   EuiButtonGroup,
+  useEuiTheme,
 } from '@elastic/eui';
 
 const text = [
@@ -303,17 +299,19 @@ const text = [
   <h6 key={13}>This is Heading Six</h6>,
 ];
 
-const textLinesCss = ({ euiTheme }) => css`
-  background-image: linear-gradient(${euiTheme.focus.backgroundColor} 1px, transparent 1px);
-  background-size: 100% 4px;
-  background-position-y: -1px;
-
-  & > * {
-    background-color: ${euiTheme.colors.highlight};
-  }
-`;
-
 export default () => {
+  const { euiTheme } = useEuiTheme();
+
+  const textLinesCss = () => css`
+    background-image: linear-gradient(${euiTheme.focus.backgroundColor} 1px, transparent 1px);
+    background-size: 100% 4px;
+    background-position-y: -1px;
+
+    & > * {
+      background-color: ${euiTheme.colors.highlight};
+    }
+  `;
+
   const textSizeArray = ['xs', 's', 'm'];
   const textSizeNamesArray = ['Extra small', 'Small', 'Medium'];
 

@@ -1,0 +1,576 @@
+# Tabs
+
+Use tabs to organize related but unique content for a single idea or subject. Tabs show and hide content using **in-page** navigation UI.
+
+**EuiTabs** is a wrapping component that requires **EuiTab** components as direct children. You control the displayed contents and current state through props on EuiTab like `isSelected` and `onClick`.
+
+Use the `prepend` and `append` tab props to add content before and after the tab label respectively.
+
+## Component
+
+```tsx interactive
+import React, { useState, Fragment, useMemo } from 'react';
+import {
+  EuiIcon,
+  EuiTabs,
+  EuiTab,
+  EuiSpacer,
+  EuiText,
+  EuiNotificationBadge,
+} from '@elastic/eui';
+
+const tabs = [
+  {
+    id: 'cobalt--id',
+    name: 'Cobalt',
+    content: (
+      <Fragment>
+        <EuiSpacer />
+        <EuiText>
+          <p>
+            Cobalt is a chemical element with symbol Co and atomic number 27.
+            Like nickel, cobalt is found in the Earth&rsquo;s crust only in
+            chemically combined form, save for small deposits found in alloys of
+            natural meteoric iron. The free element, produced by reductive
+            smelting, is a hard, lustrous, silver-gray metal.
+          </p>
+        </EuiText>
+      </Fragment>
+    ),
+  },
+  {
+    id: 'dextrose--id',
+    name: 'Dextrose',
+    content: (
+      <Fragment>
+        <EuiSpacer />
+        <EuiText>
+          <p>
+            Intravenous sugar solution, also known as dextrose solution, is a
+            mixture of dextrose (glucose) and water. It is used to treat low
+            blood sugar or water loss without electrolyte loss.
+          </p>
+        </EuiText>
+      </Fragment>
+    ),
+  },
+  {
+    id: 'hydrogen--id',
+    disabled: true,
+    name: 'Hydrogen',
+    prepend: <EuiIcon type="heatmap" />,
+    content: (
+      <Fragment>
+        <EuiSpacer />
+        <EuiText>
+          <p>
+            Hydrogen is a chemical element with symbol H and atomic number 1.
+            With a standard atomic weight of 1.008, hydrogen is the lightest
+            element on the periodic table
+          </p>
+        </EuiText>
+      </Fragment>
+    ),
+  },
+  {
+    id: 'monosodium_glutamate--id',
+    name: 'Monosodium Glutamate',
+    append: (
+      <EuiNotificationBadge className="eui-alignCenter" size="m">
+        10
+      </EuiNotificationBadge>
+    ),
+    href: '#/navigation/tabs#monosodium',
+    content: (
+      <Fragment>
+        <EuiSpacer />
+        <EuiText>
+          <p>
+            Monosodium glutamate (MSG, also known as sodium glutamate) is the
+            sodium salt of glutamic acid, one of the most abundant naturally
+            occurring non-essential amino acids. Monosodium glutamate is found
+            naturally in tomatoes, cheese and other foods.
+          </p>
+        </EuiText>
+      </Fragment>
+    ),
+  },
+];
+
+export default () => {
+  const [selectedTabId, setSelectedTabId] = useState('cobalt--id');
+  const selectedTabContent = useMemo(() => {
+    return tabs.find((obj) => obj.id === selectedTabId)?.content;
+  }, [selectedTabId]);
+
+  const onSelectedTabChanged = (id: string) => {
+    setSelectedTabId(id);
+  };
+
+  const renderTabs = () => {
+    return tabs.map((tab, index) => (
+      <EuiTab
+        key={index}
+        href={tab.href}
+        onClick={() => onSelectedTabChanged(tab.id)}
+        isSelected={tab.id === selectedTabId}
+        disabled={tab.disabled}
+        prepend={tab.prepend}
+        append={tab.append}
+      >
+        {tab.name}
+      </EuiTab>
+    ));
+  };
+
+  return (
+    <>
+      <EuiTabs>{renderTabs()}</EuiTabs>
+      {selectedTabContent}
+    </>
+  );
+};
+```
+
+## Usage
+
+### Tab sizes
+
+**EuiTabs** allow a `size` prop. In general you should always use the default (medium) size. The small size is best for when placing inside popovers or other small containers. Reserve using the large size for when using as primary page navigation, like inside of [EuiPageHeader](../../layout/page-header.mdx).
+
+You can also use the `expand` prop to evenly stretch each tab horizontally.
+
+```tsx interactive
+import React, { useState } from 'react';
+import {
+  EuiIcon,
+  EuiTabs,
+  EuiTab,
+  EuiButton,
+  EuiPopover,
+  EuiSpacer,
+  useGeneratedHtmlId,
+} from '@elastic/eui';
+
+const tabs = [
+  {
+    id: 'cobalt',
+    name: 'Cobalt',
+    disabled: false,
+  },
+  {
+    id: 'dextrose',
+    name: 'Dextrose',
+    disabled: false,
+  },
+  {
+    id: 'hydrogen',
+    name: 'Hydrogen',
+    prepend: <EuiIcon type="heatmap" size="s" />,
+    disabled: true,
+  },
+];
+
+export default () => {
+  const [isPopoverOpen, setPopover] = useState(false);
+  const [selectedTabId, setSelectedTabId] = useState('cobalt');
+  const contentPopoverId = useGeneratedHtmlId({ prefix: 'contentPopover' });
+
+  const onSelectedTabChanged = (id: string) => {
+    setSelectedTabId(id);
+  };
+
+  const renderTabs = () => {
+    return tabs.map((tab, index) => (
+      <EuiTab
+        key={index}
+        onClick={() => onSelectedTabChanged(tab.id)}
+        isSelected={tab.id === selectedTabId}
+        disabled={tab.disabled}
+        prepend={tab.prepend}
+      >
+        {tab.name}
+      </EuiTab>
+    ));
+  };
+
+  const onButtonClick = () => {
+    setPopover(!isPopoverOpen);
+  };
+
+  const closePopover = () => {
+    setPopover(false);
+  };
+
+  const button = (
+    <EuiButton iconType="arrowDown" iconSide="right" onClick={onButtonClick}>
+      Click to show small tabs in a popover
+    </EuiButton>
+  );
+
+  return (
+    <EuiPopover
+      id={contentPopoverId}
+      button={button}
+      isOpen={isPopoverOpen}
+      closePopover={closePopover}
+      anchorPosition="downLeft"
+    >
+      <div style={{ width: 300 }}>
+        <EuiTabs size="s" expand>
+          {renderTabs()}
+        </EuiTabs>
+        <EuiSpacer size="m" /> A spacer is usually needed between the tabs and
+        the content. Try to use the same size as the surrounding padding.
+      </div>
+    </EuiPopover>
+  );
+};
+```
+
+### Bottom border
+
+The `bottomBorder` helps to separate the tab group from the content below and is on by default. However, some components like [flyouts](../../containers/flyout/index.mdx) already provide borders which can act as the divider. In this case you can turn the border off with `bottomBorder={false}`.
+
+```tsx interactive
+import React, { useState } from 'react';
+import {
+  EuiButton,
+  EuiButtonEmpty,
+  EuiFlexGroup,
+  EuiFlexItem,
+  EuiFlyout,
+  EuiFlyoutBody,
+  EuiFlyoutFooter,
+  EuiFlyoutHeader,
+  EuiSpacer,
+  EuiTab,
+  EuiTabs,
+  EuiText,
+  EuiTitle,
+  useGeneratedHtmlId,
+} from '@elastic/eui';
+
+export default () => {
+  const [isFlyoutVisible, setIsFlyoutVisible] = useState(false);
+  const [selectedTabId, setSelectedTabId] = useState('1');
+  const complicatedFlyoutTitleId = useGeneratedHtmlId({
+    prefix: 'complicatedFlyoutTitle',
+  });
+
+  const tabs = [
+    {
+      id: '1',
+      name: 'Tab 1',
+    },
+    {
+      id: '2',
+      name: 'Tab 2',
+    },
+  ];
+
+  const closeFlyout = () => setIsFlyoutVisible(false);
+
+  const showFlyout = () => setIsFlyoutVisible(true);
+
+  const onSelectedTabChanged = (id: string) => setSelectedTabId(id);
+
+  const renderTabs = tabs.map((tab, index) => (
+    <EuiTab
+      onClick={() => onSelectedTabChanged(tab.id)}
+      isSelected={tab.id === selectedTabId}
+      key={index}
+    >
+      {tab.name}
+    </EuiTab>
+  ));
+
+  let flyout;
+
+  if (isFlyoutVisible) {
+    flyout = (
+      <EuiFlyout
+        ownFocus
+        onClose={closeFlyout}
+        aria-labelledby={complicatedFlyoutTitleId}
+      >
+        <EuiFlyoutHeader hasBorder>
+          <EuiTitle size="m">
+            <h2 id={complicatedFlyoutTitleId}>Flyout header</h2>
+          </EuiTitle>
+          <EuiSpacer size="s" />
+          <EuiText color="subdued">
+            <p>
+              Put navigation items in the header, and cross tab actions in a
+              footer.
+            </p>
+          </EuiText>
+          <EuiSpacer size="s" />
+          <EuiTabs bottomBorder={false} style={{ marginBottom: '-24px' }}>
+            {renderTabs}
+          </EuiTabs>
+        </EuiFlyoutHeader>
+        <EuiFlyoutBody>
+          <EuiText>
+            <p>Tab {selectedTabId} content</p>
+          </EuiText>
+        </EuiFlyoutBody>
+        <EuiFlyoutFooter>
+          <EuiFlexGroup justifyContent="spaceBetween">
+            <EuiFlexItem grow={false}>
+              <EuiButtonEmpty
+                iconType="cross"
+                onClick={closeFlyout}
+                flush="left"
+              >
+                Close
+              </EuiButtonEmpty>
+            </EuiFlexItem>
+            <EuiFlexItem grow={false}>
+              <EuiButton onClick={closeFlyout} fill>
+                Save
+              </EuiButton>
+            </EuiFlexItem>
+          </EuiFlexGroup>
+        </EuiFlyoutFooter>
+      </EuiFlyout>
+    );
+  }
+
+  return (
+    <div>
+      <EuiButton onClick={showFlyout}>Show tabs flyout header</EuiButton>
+
+      {flyout}
+    </div>
+  );
+};
+```
+
+### Tabbed content
+
+**EuiTabbedContent** makes it easier to associate tabs with content based on the selected tab. Use the `initialSelectedTab` prop to specify which tab to initially select.
+
+```tsx interactive
+import React, { Fragment } from 'react';
+import { EuiIcon, EuiTabbedContent, EuiText, EuiSpacer } from '@elastic/eui';
+
+export default () => {
+  const tabs = [
+    {
+      id: 'cobalt--id',
+      name: 'Cobalt',
+      content: (
+        <Fragment>
+          <EuiSpacer />
+          <EuiText>
+            <p>
+              Cobalt is a chemical element with symbol Co and atomic number 27.
+              Like nickel, cobalt is found in the Earth&rsquo;s crust only in
+              chemically combined form, save for small deposits found in alloys
+              of natural meteoric iron. The free element, produced by reductive
+              smelting, is a hard, lustrous, silver-gray metal.
+            </p>
+          </EuiText>
+        </Fragment>
+      ),
+    },
+    {
+      id: 'dextrose--id',
+      name: 'Dextrose',
+      content: (
+        <Fragment>
+          <EuiSpacer />
+          <EuiText>
+            <p>
+              Intravenous sugar solution, also known as dextrose solution, is a
+              mixture of dextrose (glucose) and water. It is used to treat low
+              blood sugar or water loss without electrolyte loss.
+            </p>
+          </EuiText>
+        </Fragment>
+      ),
+    },
+    {
+      id: 'hydrogen--id',
+      name: 'Hydrogen',
+      prepend: <EuiIcon type="heatmap" />,
+      content: (
+        <Fragment>
+          <EuiSpacer />
+          <EuiText>
+            <p>
+              Hydrogen is a chemical element with symbol H and atomic number 1.
+              With a standard atomic weight of 1.008, hydrogen is the lightest
+              element on the periodic table
+            </p>
+          </EuiText>
+        </Fragment>
+      ),
+    },
+    {
+      id: 'monosodium_glutamate--id',
+      name: 'Monosodium Glutamate',
+      content: (
+        <Fragment>
+          <EuiSpacer />
+          <EuiText>
+            <p>
+              Monosodium glutamate (MSG, also known as sodium glutamate) is the
+              sodium salt of glutamic acid, one of the most abundant naturally
+              occurring non-essential amino acids. Monosodium glutamate is found
+              naturally in tomatoes, cheese and other foods.
+            </p>
+          </EuiText>
+        </Fragment>
+      ),
+    },
+  ];
+
+  return (
+    <EuiTabbedContent
+      tabs={tabs}
+      initialSelectedTab={tabs[1]}
+      autoFocus="selected"
+      onTabClick={(tab) => {
+        console.log('clicked tab', tab);
+      }}
+    />
+  );
+};
+```
+
+### Controlled tabbed content
+
+You can also use the `selectedTab` and `onTabClick` props to take complete control over tab selection. This can be useful if you want to change tabs based on user interaction with another part of the UI.
+
+```tsx interactive
+import React, { Fragment, useState } from 'react';
+import {
+  EuiButton,
+  EuiIcon,
+  EuiTabbedContent,
+  EuiText,
+  EuiSpacer,
+  EuiTabbedContentProps,
+  EuiTabbedContentTab,
+} from '@elastic/eui';
+
+const tabs: EuiTabbedContentProps['tabs'] = [
+  {
+    id: 'cobalt',
+    name: 'Cobalt',
+    content: (
+      <Fragment>
+        <EuiSpacer />
+        <EuiText>
+          <p>
+            Cobalt is a chemical element with symbol Co and atomic number 27.
+            Like nickel, cobalt is found in the Earth&rsquo;s crust only in
+            chemically combined form, save for small deposits found in alloys of
+            natural meteoric iron. The free element, produced by reductive
+            smelting, is a hard, lustrous, silver-gray metal.
+          </p>
+        </EuiText>
+      </Fragment>
+    ),
+  },
+  {
+    id: 'dextrose',
+    name: 'Dextrose',
+    content: (
+      <Fragment>
+        <EuiSpacer />
+        <EuiText>
+          <p>
+            Intravenous sugar solution, also known as dextrose solution, is a
+            mixture of dextrose (glucose) and water. It is used to treat low
+            blood sugar or water loss without electrolyte loss.
+          </p>
+        </EuiText>
+      </Fragment>
+    ),
+  },
+  {
+    id: 'hydrogen',
+    name: 'Hydrogen',
+    prepend: <EuiIcon type="heatmap" />,
+    content: (
+      <Fragment>
+        <EuiSpacer />
+        <EuiText>
+          <p>
+            Hydrogen is a chemical element with symbol H and atomic number 1.
+            With a standard atomic weight of 1.008, hydrogen is the lightest
+            element on the periodic table
+          </p>
+        </EuiText>
+      </Fragment>
+    ),
+  },
+  {
+    id: 'monosodium_glutamate',
+    name: 'Monosodium Glutamate',
+    content: (
+      <Fragment>
+        <EuiSpacer />
+        <EuiText>
+          <p>
+            Monosodium glutamate (MSG, also known as sodium glutamate) is the
+            sodium salt of glutamic acid, one of the most abundant naturally
+            occurring non-essential amino acids. Monosodium glutamate is found
+            naturally in tomatoes, cheese and other foods.
+          </p>
+        </EuiText>
+      </Fragment>
+    ),
+  },
+];
+
+export default () => {
+  const [selectedTab, setSelectedTab] = useState(tabs[1]);
+
+  const onTabClick = (selectedTab: EuiTabbedContentTab) => {
+    setSelectedTab(selectedTab);
+  };
+
+  const cycleTab = () => {
+    const selectedTabIndex = tabs.indexOf(selectedTab);
+    const nextTabIndex =
+      selectedTabIndex < tabs.length - 1 ? selectedTabIndex + 1 : 0;
+    setSelectedTab(tabs[nextTabIndex]);
+  };
+
+  return (
+    <Fragment>
+      <EuiButton iconType="arrowRight" iconSide="right" onClick={cycleTab}>
+        Cycle through the tabs
+      </EuiButton>
+
+      <EuiSpacer size="m" />
+
+      <EuiTabbedContent
+        tabs={tabs}
+        selectedTab={selectedTab}
+        onTabClick={onTabClick}
+      />
+    </Fragment>
+  );
+};
+```
+
+## Guidelines
+
+import Guidelines from './_guidelines.mdx';
+
+<Guidelines />
+
+## Props
+
+import docgen from '@elastic/eui-docgen/dist/components/tabs';
+
+<PropTable definition={docgen.EuiTabs} />
+
+<PropTable definition={docgen.EuiTab} />
+
+<PropTable definition={docgen.EuiTabbedContent} />

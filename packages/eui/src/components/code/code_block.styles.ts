@@ -13,6 +13,7 @@ import {
   euiScrollBarStyles,
   mathWithUnits,
 } from '../../global_styling';
+import { highContrastModeStyles } from '../../global_styling/functions/high_contrast';
 import { UseEuiTheme } from '../../services';
 
 import { euiCodeSyntaxVariables } from './code_syntax.styles';
@@ -27,6 +28,11 @@ export const euiCodeBlockStyles = (euiThemeContext: UseEuiTheme) => {
       display: block;
       position: relative;
       background: ${codeSyntaxVariables.backgroundColor};
+      ${highContrastModeStyles(euiThemeContext, {
+        preferred: `border: ${euiTheme.border.thin};`,
+        // Fix scrolling text occluding the border in Windows high contrast mode
+        forced: 'overflow: hidden;',
+      })}
 
       ${codeSyntaxVariables.tokensCss}
     `,
@@ -132,7 +138,7 @@ export const euiCodeBlockCodeStyles = (euiThemeContext: UseEuiTheme) => {
     euiCodeBlock__code: css`
       font-family: ${euiTheme.font.familyCode};
       font-size: inherit;
-      color: ${euiTheme.colors.text};
+      color: ${euiTheme.colors.textParagraph};
       display: block;
     `,
     isVirtualized: css`

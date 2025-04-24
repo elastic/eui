@@ -28,7 +28,11 @@ const EuiIconLock = ({
     {...props}
   >
     {title ? <title id={titleId}>{title}</title> : null}
-    <path d="M4 5v-.8C4 1.88 5.79 0 8 0s4 1.88 4 4.2V5h1.143c.473 0 .857.448.857 1v9c0 .552-.384 1-.857 1H2.857C2.384 16 2 15.552 2 15V6c0-.552.384-1 .857-1H4ZM3 15h10V6H3v9Zm5.998-3.706L9.5 12.5h-3l.502-1.206A1.644 1.644 0 0 1 6.5 10.1c0-.883.672-1.6 1.5-1.6s1.5.717 1.5 1.6c0 .475-.194.901-.502 1.194ZM11 4.36C11 2.504 9.657 1 8 1S5 2.504 5 4.36V5h6v-.64Z" />
+    <path
+      fillRule="evenodd"
+      d="M4 7V5a4 4 0 1 1 8 0v2h1a1 1 0 0 1 1 1v6a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h1Zm1-2a3 3 0 0 1 6 0v2H5V5Zm-2 9V8h10v6H3Z"
+      clipRule="evenodd"
+    />
   </svg>
 );
 export const icon = EuiIconLock;

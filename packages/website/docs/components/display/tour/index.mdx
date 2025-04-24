@@ -1,0 +1,900 @@
+# Tour
+
+The tour components provided by EUI allow for a flexible and customizable way to showcase items on a page in an ordered manner by augmenting existing elements on the page without altering functionality.
+
+:::note
+Examples on this page use localStorage to persist state.
+:::
+
+## Usage
+
+### Wrap target element
+
+The **EuiTourStep** component is the base for building a feature tour or an individual popover for onboarding.
+
+All content and actions including titles, headings, and buttons are customizable via props.
+
+```tsx interactive
+import React, { useState } from 'react';
+import { EuiButtonEmpty, EuiFieldText, EuiText, EuiSpacer, EuiTourStep } from '@elastic/eui';
+
+export default () => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const beginTour = () => {
+    setIsOpen(true);
+  };
+
+  return (
+    <div>
+      <EuiButtonEmpty size="s" flush="left" iconType="refresh" onClick={beginTour}>
+        Begin tour
+      </EuiButtonEmpty>
+      <EuiSpacer size="m" />
+      <EuiTourStep
+        content={
+          <EuiText>
+            <p>The tour step content.</p>
+          </EuiText>
+        }
+        isStepOpen={isOpen}
+        minWidth={300}
+        onFinish={() => setIsOpen(false)}
+        step={1}
+        stepsTotal={1}
+        title="Title of the current step"
+        subtitle="Title of the full tour (optional)"
+        anchorPosition="rightCenter"
+        zIndex={1}
+      >
+        <EuiFieldText
+          placeholder="Placeholder text"
+        />
+      </EuiTourStep>
+    </div>
+  );
+};
+```
+
+### Anchor to DOM element
+
+Instead of wrapping the target element, use the `anchor` prop to specify a DOM node. Accepted values include an HTML element reference, a function returning an HTML element, or a CSS selector string such as `anchor="#anchorTarget"`.
+
+```tsx interactive
+import React, { useRef, useState } from 'react';
+import {
+  EuiButton,
+  EuiButtonEmpty,
+  EuiText,
+  EuiSpacer,
+  EuiTourStep,
+  EuiCode,
+} from '@elastic/eui';
+
+export default () => {
+  const [isOpenRef, setIsOpenRef] = useState(false);
+  const [isOpenSelector, setIsOpenSelector] = useState(false);
+  const anchorRef = useRef();
+  return (
+    <div>
+      <EuiButtonEmpty size="s" flush="left" iconType="refresh" onClick={() => { setIsOpenRef(true); setIsOpenSelector(false); }}>
+        Beign tour
+      </EuiButtonEmpty>
+      <EuiSpacer size="m" />
+      <EuiTourStep
+        anchor={() => anchorRef.current}
+        content={
+          <EuiText>
+            <p>
+              Popover is attached to the <EuiCode>anchorRef</EuiCode> button
+            </p>
+          </EuiText>
+        }
+        isStepOpen={isOpenRef}
+        minWidth={300}
+        onFinish={() => setIsOpenRef(false)}
+        step={1}
+        stepsTotal={1}
+        title="React ref as anchor location"
+        anchorPosition="rightCenter"
+        zIndex={1}
+      />
+      <EuiButton
+        color="text"
+        aria-label="Anchor"
+        buttonRef={anchorRef}
+      >
+        Anchor to <strong>buttonRef</strong>
+      </EuiButton>
+
+      <EuiSpacer size="xxl" />
+
+      <EuiButtonEmpty size="s" flush="left" iconType="refresh" onClick={() => { setIsOpenSelector(true); setIsOpenRef(false); }}>
+        Beign tour
+      </EuiButtonEmpty>
+      <EuiSpacer size="m" />
+      <EuiTourStep
+        anchor="#anchorTarget"
+        content={
+          <EuiText>
+            <p>
+              Popover is attached to the <EuiCode>#anchorTarget</EuiCode> button
+            </p>
+          </EuiText>
+        }
+        isStepOpen={isOpenSelector}
+        minWidth={300}
+        onFinish={() => setIsOpenSelector(false)}
+        step={1}
+        stepsTotal={1}
+        title="DOM selector as anchor location"
+        anchorPosition="rightDown"
+        zIndex={1}
+      />
+      <EuiButton
+        color="text"
+        aria-label="Anchor"
+        id="anchorTarget"
+      >
+        Anchor to <strong>id</strong>
+      </EuiButton>
+    </div>
+  );
+};
+```
+
+### Guided tour
+
+Uers proceed through tour steps without needing to complete actions on the underlying page. In this scenario, consider showing both **Close tour** and **Next** buttons.
+
+```tsx interactive
+import React, { useEffect, useState } from 'react';
+import {
+  EuiButton,
+  EuiButtonEmpty,
+  EuiSpacer,
+  EuiTourStep,
+  EuiFlexGroup,
+  EuiFlexItem,
+  EuiPanel,
+  EuiButtonIcon,
+} from '@elastic/eui';
+
+const demoTourSteps = [
+  {
+    step: 1,
+    title: 'Preview mode',
+    content: <p>See what your project looks like.</p>,
+    anchorRef: 'notActionDrivenStep1',
+    iconType: 'eye',
+  },
+  {
+    step: 2,
+    title: 'Build Mode',
+    content: <p>Build your project.</p>,
+    anchorRef: 'notActionDrivenStep2',
+    iconType: 'code',
+  },
+  {
+    step: 3,
+    title: 'Comment mode',
+    content: <p>Collaborate with your colleagues.</p>,
+    anchorRef: 'notActionDrivenStep3',
+    iconType: 'comment',
+  },
+  {
+    step: 2,
+    title: 'Share',
+    content: <p>Share your project.</p>,
+    anchorRef: 'notActionDrivenStep4',
+    iconType: 'share',
+  },
+];
+
+const tourConfig = {
+  currentTourStep: 1,
+  isTourActive: false,
+  tourPopoverWidth: 360,
+  tourSubtitle: 'Demo tour',
+};
+
+const STORAGE_KEY = 'notActionDrivenDemoTour';
+
+export default () => {
+  const [state, setState] = useState(() => {
+    let initialState: any = localStorage.getItem(STORAGE_KEY);
+    if (initialState) {
+      initialState = JSON.parse(initialState);
+    } else {
+      initialState = tourConfig;
+    }
+    return initialState;
+  });
+  useEffect(() => {
+    // Store the tour data
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  }, [state]);
+
+  const incrementStep = () => {
+    setState({
+      ...state,
+      currentTourStep: state.currentTourStep + 1,
+    });
+  };
+
+  const handleClick = () => {
+    incrementStep();
+  };
+
+  const resetTour = () => {
+    setState({
+      ...state,
+      currentTourStep: 1,
+      isTourActive: true,
+    });
+  };
+
+  const finishTour = () => {
+    setState({
+      ...state,
+      isTourActive: false,
+    });
+  };
+
+  return (
+    <div>
+      <EuiButtonEmpty size="s" iconType="refresh" flush="left" onClick={resetTour}>
+        Begin tour
+      </EuiButtonEmpty>
+      <EuiSpacer size="m" />
+      <EuiPanel hasBorder style={{ width: 'max-content' }}>
+        <EuiFlexGroup gutterSize="s" responsive={false}>
+          {demoTourSteps.map((step, index) => (
+            <EuiFlexItem grow={false}>
+              <EuiTourStep
+                content={step.content}
+                isStepOpen={
+                  state.isTourActive && state.currentTourStep === index + 1
+                }
+                minWidth={state.tourPopoverWidth}
+                onFinish={finishTour}
+                step={index + 1}
+                stepsTotal={demoTourSteps.length}
+                subtitle={state.tourSubtitle}
+                title={step.title}
+                anchorPosition="downLeft"
+                zIndex={1}
+                footerAction={
+                  // if it's the last step, we don't want to show the next button
+                  index === demoTourSteps.length - 1 ? (
+                    <EuiButton color="success" size="s" onClick={finishTour}>
+                      Finish tour
+                    </EuiButton>
+                  ) : (
+                    [
+                      <EuiButtonEmpty
+                        size="s"
+                        color="text"
+                        onClick={finishTour}
+                      >
+                        Close tour
+                      </EuiButtonEmpty>,
+                      <EuiButton color="success" size="s" onClick={handleClick}>
+                        Next
+                      </EuiButton>,
+                    ]
+                  )
+                }
+              >
+                <EuiButtonIcon size="m" iconType={step.iconType} color="text" />
+              </EuiTourStep>
+            </EuiFlexItem>
+          ))}
+        </EuiFlexGroup>
+      </EuiPanel>
+    </div>
+  );
+};
+```
+
+### Standalone steps
+
+Each **EuiTourStep** can be configured independently via props. In this case, each component is stateless and needs to be paired with some form of state management for navigation. The later examples showcase other ways to handle state management via **useEuiTour** and **EuiTour**.
+
+```tsx interactive
+import React, { useEffect, useState } from 'react';
+import {
+  EuiButton,
+  EuiButtonEmpty,
+  EuiCodeBlock,
+  EuiForm,
+  EuiFormRow,
+  EuiSpacer,
+  EuiTextArea,
+  EuiTourStep,
+} from '@elastic/eui';
+
+const demoTourSteps = [
+  {
+    step: 1,
+    title: 'Step 1',
+    content: (
+      <span>
+        <p>Copy and paste this sample query.</p>
+        <EuiSpacer />
+        <EuiCodeBlock language="html" paddingSize="s" isCopyable>
+          {'SELECT email FROM “kibana_sample_data_ecommerce”'}
+        </EuiCodeBlock>
+      </span>
+    ),
+    anchorRef: 'tourStep2',
+  },
+  {
+    step: 2,
+    title: 'Step 2',
+    content: <p>Save your changes.</p>,
+    anchorRef: 'tourStep1',
+  },
+];
+
+const tourConfig = {
+  currentTourStep: 1,
+  isTourActive: false,
+  tourPopoverWidth: 360,
+  tourSubtitle: 'Demo tour',
+};
+
+const STORAGE_KEY = 'tourDemo';
+
+export default () => {
+  const [state, setState] = useState(() => {
+    let initialState = localStorage.getItem(STORAGE_KEY);
+    if (initialState) {
+      initialState = JSON.parse(initialState);
+    } else {
+      initialState = tourConfig;
+    }
+    return initialState;
+  });
+  const [queryValue, setQueryValue] = useState('');
+
+  useEffect(() => {
+    // Store the tour data
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  }, [state]);
+
+  const incrementStep = () => {
+    setState({
+      ...state,
+      currentTourStep: state.currentTourStep + 1,
+    });
+  };
+
+  const handleClick = () => {
+    incrementStep();
+  };
+
+  const resetTour = () => {
+    setState({
+      ...state,
+      currentTourStep: 1,
+      isTourActive: true,
+    });
+    setQueryValue('');
+  };
+
+  const finishTour = () => {
+    setState({
+      ...state,
+      isTourActive: false,
+    });
+  };
+
+  const onChange = (e) => {
+    setQueryValue(e.target.value);
+
+    if (state.currentTourStep < 2) {
+      incrementStep();
+    }
+  };
+
+  return (
+    <div>
+      <EuiButtonEmpty size="s" iconType="refresh" flush="left" onClick={resetTour}>
+        Begin tour
+      </EuiButtonEmpty>
+      <EuiSpacer size="m" />
+      <EuiForm component="form">
+        <EuiFormRow label="Query">
+          <EuiTourStep
+            content={demoTourSteps[0].content}
+            isStepOpen={state.currentTourStep === 1 && state.isTourActive}
+            minWidth={state.tourPopoverWidth}
+            onFinish={finishTour}
+            step={1}
+            stepsTotal={demoTourSteps.length}
+            subtitle={state.tourSubtitle}
+            title={demoTourSteps[0].title}
+            anchorPosition="rightUp"
+            zIndex={1}
+          >
+            <EuiTextArea
+              placeholder="Placeholder text"
+              aria-label="Query"
+              value={queryValue}
+              onChange={onChange}
+              style={{ width: 400 }}
+            />
+          </EuiTourStep>
+        </EuiFormRow>
+
+        <EuiSpacer size="m" />
+
+        <EuiTourStep
+          anchorPosition="rightUp"
+          content={demoTourSteps[1].content}
+          isStepOpen={state.currentTourStep === 2 && state.isTourActive}
+          minWidth={state.tourPopoverWidth}
+          onFinish={finishTour}
+          step={2}
+          stepsTotal={demoTourSteps.length}
+          subtitle={state.tourSubtitle}
+          title={demoTourSteps[1].title}
+        >
+          <EuiButton fill size="s" onClick={handleClick}>Save</EuiButton>
+        </EuiTourStep>
+      </EuiForm>
+    </div>
+  );
+};
+```
+
+### useEuiTour hook
+
+The **useEuiTour** hook provides minimal state management using a predefined React reducer. Pass an array of steps consisting of accepted props, and an object of global configuration. The result is a full configuration object for each step, a set of reducer actions to perform state changes, and an up-to-date state object derived from the internal reducer.
+
+```tsx interactive
+import React, { useEffect, useState } from 'react';
+import {
+  EuiButton,
+  EuiButtonEmpty,
+  EuiCodeBlock,
+  EuiForm,
+  EuiFormRow,
+  EuiSpacer,
+  EuiTextArea,
+  EuiTourStep,
+  useEuiTour,
+} from '@elastic/eui';
+
+const demoTourSteps = [
+  {
+    step: 1,
+    title: 'Step 1',
+    content: (
+      <span>
+        <p>Copy and paste this sample query.</p>
+        <EuiSpacer />
+        <EuiCodeBlock language="html" paddingSize="s" isCopyable>
+          {'SELECT email FROM “kibana_sample_data_ecommerce”'}
+        </EuiCodeBlock>
+      </span>
+    ),
+    anchorPosition: 'rightUp',
+  },
+  {
+    step: 2,
+    title: 'Step 2',
+    content: <p>Save your changes.</p>,
+    anchorPosition: 'rightUp',
+  },
+];
+
+const tourConfig = {
+  currentTourStep: 1,
+  isTourActive: false,
+  tourPopoverWidth: 360,
+  tourSubtitle: 'Demo tour',
+};
+
+const STORAGE_KEY = 'tourDemo_Managed';
+
+export default () => {
+  const [queryValue, setQueryValue] = useState('');
+
+  let state = localStorage.getItem(STORAGE_KEY);
+  if (state) {
+    state = JSON.parse(state);
+  } else {
+    state = tourConfig;
+  }
+
+  const [[euiTourStepOne, euiTourStepTwo], actions, reducerState] = useEuiTour(
+    demoTourSteps,
+    state
+  );
+
+  useEffect(() => {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(reducerState));
+  }, [reducerState]);
+
+  const handleClick = () => {
+    actions.finishTour();
+  };
+
+  const resetTour = () => {
+    actions.resetTour();
+    setQueryValue('');
+  };
+
+  const onChange = (e) => {
+    setQueryValue(e.target.value);
+
+    if (reducerState.currentTourStep < 2) {
+      actions.incrementStep();
+    }
+  };
+
+  return (
+    <div>
+      <EuiButtonEmpty size="s" iconType="refresh" flush="left" onClick={resetTour}>
+        Begin tour
+      </EuiButtonEmpty>
+      <EuiSpacer size="m" />
+      <EuiForm component="form">
+        <EuiFormRow label="Query">
+          <EuiTourStep zIndex={1} {...euiTourStepOne}>
+            <EuiTextArea
+              placeholder="Placeholder text"
+              aria-label="Query"
+              value={queryValue}
+              onChange={onChange}
+              style={{ width: 400 }}
+            />
+          </EuiTourStep>
+        </EuiFormRow>
+
+        <EuiSpacer size="m" />
+
+        <EuiTourStep zIndex={1} {...euiTourStepTwo}>
+          <EuiButton fill size="s" onClick={handleClick}>Save</EuiButton>
+        </EuiTourStep>
+      </EuiForm>
+    </div>
+  );
+};
+```
+
+### EuiTour render prop component
+
+The **EuiTour** render prop component provides minimal state management. An alternative to the **useEuiTour** hook, **EuiTour** can be used for React class components and use cases with a single wrapping component.
+
+```tsx interactive
+import React, { useEffect, useState } from 'react';
+import {
+  EuiButton,
+  EuiButtonEmpty,
+  EuiCodeBlock,
+  EuiForm,
+  EuiFormRow,
+  EuiSpacer,
+  EuiTextArea,
+  EuiTour,
+  EuiTourStep,
+} from '@elastic/eui';
+
+const demoTourSteps = [
+  {
+    step: 1,
+    title: 'Step 1',
+    content: (
+      <span>
+        <p>Copy and paste this sample query.</p>
+        <EuiSpacer />
+        <EuiCodeBlock language="html" paddingSize="s" isCopyable>
+          {'SELECT email FROM “kibana_sample_data_ecommerce”'}
+        </EuiCodeBlock>
+      </span>
+    ),
+    anchorPosition: 'rightUp',
+  },
+  {
+    step: 2,
+    title: 'Step 2',
+    content: <p>Save your changes.</p>,
+    anchorPosition: 'rightUp',
+  },
+];
+
+const tourConfig = {
+  currentTourStep: 1,
+  isTourActive: false,
+  tourPopoverWidth: 360,
+  tourSubtitle: 'Demo tour',
+};
+
+const STORAGE_KEY = 'tourDemo_Managed_v2';
+
+export default () => {
+  const [queryValue, setQueryValue] = useState('');
+
+  let state = localStorage.getItem(STORAGE_KEY);
+  if (state) {
+    state = JSON.parse(state);
+    state = { ...state, isTourActive: false };
+  } else {
+    state = tourConfig;
+  }
+
+  return (
+    <EuiTour zIndex={1} steps={demoTourSteps} initialState={state}>
+      {([euiTourStepOne, euiTourStepTwo], actions, reducerState) => {
+        useEffect(() => {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(reducerState));
+        }, [reducerState]);
+
+        const handleClick = () => {
+          actions.finishTour();
+        };
+
+        const resetTour = () => {
+          actions.resetTour();
+          setQueryValue('');
+        };
+
+        const onChange = (e) => {
+          setQueryValue(e.target.value);
+
+          if (reducerState.currentTourStep < 2) {
+            actions.incrementStep();
+          }
+        };
+        return (
+          <React.Fragment>
+            <EuiButtonEmpty size="s" iconType="refresh" flush="left" onClick={resetTour}>
+              Begin tour
+            </EuiButtonEmpty>
+            <EuiSpacer size="m" />
+            <EuiForm component="form">
+              <EuiFormRow label="Query">
+                <EuiTourStep zIndex={1} {...euiTourStepOne}>
+                  <EuiTextArea
+                    placeholder="Placeholder text"
+                    aria-label="Query"
+                    value={queryValue}
+                    onChange={onChange}
+                    style={{ width: 400 }}
+                  />
+                </EuiTourStep>
+              </EuiFormRow>
+
+              <EuiSpacer size="m" />
+
+              <EuiTourStep zIndex={1} {...euiTourStepTwo}>
+                <EuiButton fill size="s" onClick={handleClick}>Save</EuiButton>
+              </EuiTourStep>
+            </EuiForm>
+          </React.Fragment>
+        );
+      }}
+    </EuiTour>
+  );
+};
+```
+
+### Tour demo
+
+A complete tour set in a more realistic application UI. Unlike other examples on this page, the demo does not use `localStorage` to persist state.
+
+```tsx interactive
+import React, { Fragment, useState } from 'react';
+import {
+  EuiButton,
+  EuiButtonEmpty,
+  EuiColorPicker,
+  EuiColorPickerSwatch,
+  EuiPageTemplate,
+  EuiSpacer,
+  EuiStat,
+  EuiTextArea,
+  EuiTourStep,
+  useEuiTour,
+} from '@elastic/eui';
+
+const demoTourSteps = [
+  {
+    step: 1,
+    title: 'Step 1',
+  },
+  {
+    step: 2,
+    title: 'Step 2',
+    anchorPosition: 'upCenter',
+    content: <p>What is your favorite color?</p>,
+  },
+  {
+    step: 3,
+    title: 'Step 3',
+    content: <p>Click here for more cool things.</p>,
+    anchorPosition: 'downRight',
+    minWidth: 'auto',
+  },
+  {
+    step: 4,
+    title: 'Step 4',
+    anchorPosition: 'downLeft',
+    decoration: 'none',
+  },
+];
+
+const tourConfig = {
+  currentTourStep: 1,
+  isTourActive: true,
+  tourPopoverWidth: true,
+  tourSubtitle: 'Demo tour',
+};
+
+export default () => {
+  const [color, setColor] = useState('#000');
+  const [selectedTabId, setSelectedTabId] = useState('query');
+  const [
+    [euiTourStepOne, euiTourStepTwo, euiTourStepThree, euiTourStepFour],
+    actions,
+    reducerState,
+  ] = useEuiTour(demoTourSteps, tourConfig);
+
+  const onSelectColor = (color) => {
+    setColor(color);
+    if (reducerState.currentTourStep === 2) {
+      actions.goToStep(3);
+    }
+  };
+
+  const onTabClick = (id) => {
+    if (id === 'stat' && reducerState.currentTourStep === 3) {
+      actions.goToStep(4);
+    }
+    setSelectedTabId(id);
+  };
+
+  const onReset = () => {
+    actions.resetTour();
+    setSelectedTabId('query');
+  };
+
+  const tabs = [
+    {
+      id: 'query',
+      name: 'Query',
+      disabled: false,
+      content: (
+        <div>
+          <EuiSpacer />
+          <EuiTourStep
+            {...euiTourStepOne}
+            zIndex={1}
+            content={
+              <div>
+                <p>This is a neat thing. You enter queries here.</p>
+                <EuiSpacer />
+                <EuiButton color="primary" onClick={actions.incrementStep}>
+                  Ok, got it.
+                </EuiButton>
+              </div>
+            }
+          >
+            <EuiTextArea
+              placeholder="Placeholder text"
+              aria-label="Enter ES SQL query"
+              defaultValue="{queryValue}"
+              style={{ width: 400 }}
+            />
+          </EuiTourStep>
+
+          <EuiSpacer />
+
+          <EuiTourStep
+            {...euiTourStepTwo}
+            footerAction={
+              <EuiButtonEmpty
+                color="text"
+                flush="right"
+                size="xs"
+                onClick={actions.incrementStep}
+              >
+                {"I don't have a favorite color"}
+              </EuiButtonEmpty>
+            }
+          >
+            <EuiColorPicker
+              onChange={onSelectColor}
+              color={color}
+              mode="swatch"
+              button={
+                <EuiColorPickerSwatch
+                  color={color}
+                  aria-label="Select a color"
+                />
+              }
+            />
+          </EuiTourStep>
+        </div>
+      ),
+    },
+    {
+      id: 'stat',
+      name: (
+        <EuiTourStep zIndex={1} {...euiTourStepThree}>
+          <span>Stats</span>
+        </EuiTourStep>
+      ),
+      disabled: false,
+      content: (
+        <div>
+          <EuiSpacer />
+          <EuiTourStep
+            {...euiTourStepFour}
+            zIndex={1}
+            content={
+              <div>
+                <p>That about does it.</p>
+                <EuiSpacer />
+                <EuiButton color="primary" onClick={onReset}>
+                  Take me to the start.
+                </EuiButton>
+              </div>
+            }
+          >
+            <div>
+              <EuiStat title="22,123" description="Queries" />
+            </div>
+          </EuiTourStep>
+        </div>
+      ),
+    },
+  ];
+
+  return (
+    <EuiPageTemplate>
+      <EuiPageTemplate.Header
+        {...{
+          pageTitle: 'My app',
+          tabs: tabs.map((tab, index) => {
+            return {
+              key: index,
+              label: tab.name,
+              id: tab.id,
+              onClick: () => onTabClick(tab.id),
+              isSelected: tab.id === selectedTabId,
+            };
+          }),
+        }}
+      />
+      <EuiPageTemplate.Section>
+        {tabs.map((tab, index) => (
+          <Fragment key={index}>
+            {tab.id === selectedTabId && (
+              <div role="tabpanel" aria-labelledby={tab.id}>
+                {tab.content}
+              </div>
+            )}
+          </Fragment>
+        ))}
+      </EuiPageTemplate.Section>
+    </EuiPageTemplate>
+  );
+};
+```
+## Guidelines
+
+import Guidelines from './_guidelines.mdx';
+
+<Guidelines />
+
+## Props
+
+import docgen from '@elastic/eui-docgen/dist/components/tour';
+
+<PropTable definition={docgen.EuiTourStep} />
+<PropTable definition={docgen.EuiTourStepIndicator} />
+<PropTable definition={docgen.EuiTour} />

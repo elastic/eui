@@ -17,21 +17,33 @@ import {
   logicalSizeCSS,
   mathWithUnits,
 } from '../../../global_styling';
+import {
+  highContrastModeStyles,
+  preventForcedColors,
+} from '../../../global_styling/functions/high_contrast';
 import { euiFormCustomControlVariables } from '../form.styles';
 
 const euiSwitchVars = (euiThemeContext: UseEuiTheme) => {
-  const { euiTheme } = euiThemeContext;
+  const { euiTheme, highContrastMode } = euiThemeContext;
   const formVars = euiFormCustomControlVariables(euiThemeContext);
 
   const colors = {
     on: euiTheme.components.switchBackgroundOn,
-    off: euiTheme.components.switchBackgroundOff,
+    off: highContrastMode
+      ? euiTheme.colors.darkShade
+      : euiTheme.components.switchBackgroundOff,
     disabled: formVars.colors.disabled,
     thumb: formVars.colors.selectedIcon,
     thumbDisabled: euiTheme.components.switchThumbBackgroundDisabled,
-    thumbBorder: euiTheme.components.switchThumbBorderOff,
-    thumbBorderOn: euiTheme.components.switchThumbBorderOn,
-    thumbBorderDisabled: formVars.colors.disabledBorder,
+    thumbBorder: highContrastMode
+      ? euiTheme.border.color
+      : euiTheme.components.switchThumbBorderOff,
+    thumbBorderOn: highContrastMode
+      ? euiTheme.border.color
+      : euiTheme.components.switchThumbBorderOn,
+    thumbBorderDisabled: highContrastMode
+      ? euiTheme.colors.borderBaseDisabled
+      : formVars.colors.disabledBorder,
     iconDisabled: euiTheme.components.switchIconDisabled,
   };
 
@@ -145,7 +157,24 @@ const buttonStyles = (
   };
 };
 
-const bodyStyles = ({ euiTheme }: UseEuiTheme, { colors }: EuiSwitchVars) => {
+const bodyStyles = (
+  euiThemeContext: UseEuiTheme,
+  { colors }: EuiSwitchVars
+) => {
+  const { euiTheme } = euiThemeContext;
+
+  // This is probably very extra, but the visual weight of the default
+  // disabled custom control feels different in light mode depending
+  // on the size of the switch, so I'm tinting it based on that.
+  // Gotta justify my stupidly expensive art degree!
+  const _disabledStyles = (color: string) => css`
+    label: disabled;
+    background-color: ${color};
+    ${highContrastModeStyles(euiThemeContext, {
+      preferred: `border: ${euiTheme.border.width.thin} solid ${euiTheme.colors.borderBaseDisabled};`,
+    })}
+  `;
+
   return {
     euiSwitch__body: css`
       position: absolute;
@@ -153,25 +182,33 @@ const bodyStyles = ({ euiTheme }: UseEuiTheme, { colors }: EuiSwitchVars) => {
       overflow: hidden;
       border-radius: inherit;
       pointer-events: none; /* Required for Kibana's Selenium driver to be able to click switches in FTR tests */
+      ${highContrastModeStyles(euiThemeContext, {
+        forced: `border: ${euiTheme.border.thin};`,
+      })}
     `,
-    on: css`
-      background-color: ${colors.on};
-    `,
+    on: css(
+      highContrastModeStyles(euiThemeContext, {
+        none: `
+          background-color: ${colors.on};
+        `,
+        forced: `
+          background-color: ${euiTheme.border.color};
+          ${preventForcedColors(euiThemeContext)}
+        `,
+      })
+    ),
     off: css`
       background-color: ${colors.off};
     `,
     disabled: {
-      uncompressed: css`
-        background-color: ${euiTheme.components
-          .switchUncompressedBackgroundDisabled};
-      `,
-      compressed: css`
-        background-color: ${euiTheme.components
-          .switchCompressedBackgroundDisabled};
-      `,
-      mini: css`
-        background-color: ${euiTheme.components.switchMiniBackgroundDisabled};
-      `,
+      uncompressed: _disabledStyles(
+        euiTheme.components.switchUncompressedBackgroundDisabled
+      ),
+
+      compressed: _disabledStyles(
+        euiTheme.components.switchCompressedBackgroundDisabled
+      ),
+      mini: _disabledStyles(euiTheme.components.switchMiniBackgroundDisabled),
     },
   };
 };

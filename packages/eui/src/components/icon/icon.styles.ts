@@ -104,7 +104,7 @@ export const euiIconStyles = ({ euiTheme }: UseEuiTheme) => ({
   // Variants
   // App icons are two-toned. This provides the base color.
   app: css`
-    fill: ${euiTheme.colors.text};
+    fill: ${euiTheme.colors.textParagraph};
 
     /* Note: This className is hard-coded into our SVGs and cannot be converted to Emotion */
     .euiIcon__fillSecondary {

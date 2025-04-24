@@ -1,0 +1,987 @@
+# Flyout
+
+**EuiFlyout** is a fixed position panel that pops in from the side of the window. It should be used to reveal more detailed contextual information or to provide complex forms without losing the user's current state. It is a good alternative to [modals](../modal/index.mdx) when the action is not transient.
+
+Like modals, you control the visibility of the flyout using your own state management, but **EuiFlyout** requires an `onClose` handler for it's internal dismiss buttons.
+
+## Component
+
+:::accessibility Accessibility recommendation
+Use `aria-labelledby={headingId}` to announce the flyout to screen readers.
+:::
+
+```tsx interactive
+import React, { useState } from 'react';
+import {
+  EuiFlyout,
+  EuiFlyoutBody,
+  EuiFlyoutHeader,
+  EuiButton,
+  EuiText,
+  EuiTitle,
+  EuiCodeBlock,
+  useGeneratedHtmlId,
+} from '@elastic/eui';
+
+export default () => {
+  const [isFlyoutVisible, setIsFlyoutVisible] = useState(false);
+  const simpleFlyoutTitleId = useGeneratedHtmlId({
+    prefix: 'simpleFlyoutTitle',
+  });
+
+  let flyout;
+
+  const htmlCode = `<EuiFlyout ...>
+  <EuiFlyoutHeader hasBorder>
+    <EuiTitle size="m">
+      <h2></h2>
+    </EuiTitle>
+  </EuiFlyoutHeader>
+  <EuiFlyoutBody>
+    ...
+  </EuiFlyoutBody>
+</EuiFlyout>
+`;
+
+  if (isFlyoutVisible) {
+    flyout = (
+      <EuiFlyout
+        ownFocus
+        onClose={() => setIsFlyoutVisible(false)}
+        aria-labelledby={simpleFlyoutTitleId}
+      >
+        <EuiFlyoutHeader hasBorder>
+          <EuiTitle size="m">
+            <h2 id={simpleFlyoutTitleId}>A typical flyout</h2>
+          </EuiTitle>
+        </EuiFlyoutHeader>
+        <EuiFlyoutBody>
+          <EuiText>
+            <p>
+              For consistency across the many flyouts, please utilize the
+              following code for implementing the flyout with a header.
+            </p>
+          </EuiText>
+          <EuiCodeBlock language="html">{htmlCode}</EuiCodeBlock>
+        </EuiFlyoutBody>
+      </EuiFlyout>
+    );
+  }
+
+  return (
+    <div>
+      <EuiButton onClick={() => setIsFlyoutVisible(true)}>
+        Show flyout
+      </EuiButton>
+      {flyout}
+    </div>
+  );
+};
+
+```
+
+## Usage
+
+### More complicated flyout
+
+This component also comes with related child components for ease of creating headers, footers and scrolling body content. **EuiFlyoutHeader** and **EuiFlyoutFooter** are pinned to the top and bottom of the flyout, respectively, to allow for always visible navigation and actions. The **EuiFlyoutBody** component will then automatically overflow.
+
+```tsx interactive
+import React, { useState, Fragment } from 'react';
+import {
+  EuiButton,
+  EuiButtonEmpty,
+  EuiCode,
+  EuiCodeBlock,
+  EuiComboBox,
+  EuiExpression,
+  EuiFlexGroup,
+  EuiFlexItem,
+  EuiFlyout,
+  EuiFlyoutBody,
+  EuiFlyoutFooter,
+  EuiFlyoutHeader,
+  EuiForm,
+  EuiFormRow,
+  EuiPopover,
+  EuiSpacer,
+  EuiTab,
+  EuiTabs,
+  EuiText,
+  EuiTitle,
+  EuiSuperSelect,
+  useGeneratedHtmlId,
+} from '@elastic/eui';
+
+export default () => {
+  const [isFlyoutVisible, setIsFlyoutVisible] = useState(false);
+  const [selectedTabId, setSelectedTabId] = useState('1');
+  const [isPopoverOpen, setIsPopoverOpen] = useState(false);
+  const [superSelectvalue, setSuperSelectValue] = useState('option_one');
+  const [isExpressionOpen, setIsExpressionOpen] = useState(false);
+  const complicatedFlyoutTitleId = useGeneratedHtmlId({
+    prefix: 'complicatedFlyoutTitle',
+  });
+
+  const tabs = [
+    {
+      id: '1',
+      name: 'Tab 1',
+    },
+    {
+      id: '2',
+      name: 'Tab 2',
+    },
+  ];
+
+  const closeFlyout = () => setIsFlyoutVisible(false);
+
+  const showFlyout = () => setIsFlyoutVisible(true);
+
+  const closePopover = () => setIsPopoverOpen(false);
+
+  const togglePopover = () =>
+    setIsPopoverOpen((isPopoverOpen) => !isPopoverOpen);
+
+  const renderTabs = tabs.map((tab, index) => (
+    <EuiTab
+      onClick={() => setSelectedTabId(tab.id)}
+      isSelected={tab.id === selectedTabId}
+      key={index}
+    >
+      {tab.name}
+    </EuiTab>
+  ));
+
+  const superSelectOptions = [
+    {
+      value: 'option_one',
+      inputDisplay: 'Option one',
+      dropdownDisplay: (
+        <Fragment>
+          <strong>Option one</strong>
+          <EuiText size="s" color="subdued">
+            <p>Has a short description giving more detail to the option.</p>
+          </EuiText>
+        </Fragment>
+      ),
+    },
+    {
+      value: 'option_two',
+      inputDisplay: 'Option two',
+      dropdownDisplay: (
+        <Fragment>
+          <strong>Option two</strong>
+          <EuiText size="s" color="subdued">
+            <p>Has a short description giving more detail to the option.</p>
+          </EuiText>
+        </Fragment>
+      ),
+    },
+    {
+      value: 'option_three',
+      inputDisplay: 'Option three',
+      dropdownDisplay: (
+        <Fragment>
+          <strong>Option three</strong>
+          <EuiText size="s" color="subdued">
+            <p>Has a short description giving more detail to the option.</p>
+          </EuiText>
+        </Fragment>
+      ),
+    },
+  ];
+
+  const flyoutContent = (
+    <EuiText>
+      <p>
+        Far out in the uncharted backwaters of the unfashionable end of the
+        western spiral arm of the Galaxy lies a small unregarded yellow sun.
+      </p>
+
+      <p>
+        Orbiting this at a distance of roughly ninety-two million miles is an
+        utterly insignificant little blue green planet whose ape- descended life
+        forms are so amazingly primitive that they still think digital watches
+        are a pretty neat idea.
+      </p>
+
+      <ul>
+        <li>List item one</li>
+        <li>List item two</li>
+        <li>Dolphins</li>
+      </ul>
+
+      <p>
+        This planet has - or rather had - a problem, which was this: most of the
+        people living on it were unhappy for pretty much of the time. Many
+        solutions were suggested for this problem, but most of these were
+        largely concerned with the movements of small green pieces of paper,
+        which is odd because on the whole it was not the small green pieces of
+        paper that were unhappy.
+      </p>
+
+      <h2>This is Heading Two</h2>
+
+      <ol>
+        <li>Number one</li>
+        <li>Number two</li>
+        <li>Dolphins again</li>
+      </ol>
+
+      <p>
+        But the dog wasn&rsquo;t lazy, it was just practicing mindfulness, so it
+        had a greater sense of life-satisfaction than that fox with all its
+        silly jumping.
+      </p>
+
+      <p>
+        And from the fox&rsquo;s perspective, life was full of hoops to jump{' '}
+        <em>through</em>, low-hanging fruit to jump <em>for</em>, and dead car
+        batteries to jump-<em>start</em>.
+      </p>
+
+      <h3>This is Heading Three</h3>
+
+      <p>
+        So it thought the dog was making a poor life choice by focusing so much
+        on mindfulness. What if its car broke down?
+      </p>
+    </EuiText>
+  );
+
+  const htmlCode = `<!--I'm an example of HTML-->
+<div>
+  asdf
+</div>
+`;
+
+  let flyout;
+
+  if (isFlyoutVisible) {
+    flyout = (
+      <EuiFlyout
+        ownFocus
+        onClose={closeFlyout}
+        hideCloseButton
+        aria-labelledby={complicatedFlyoutTitleId}
+      >
+        <EuiFlyoutHeader hasBorder>
+          <EuiTitle size="m">
+            <h2 id={complicatedFlyoutTitleId}>Flyout header</h2>
+          </EuiTitle>
+          <EuiSpacer size="s" />
+          <EuiText color="subdued">
+            <p>
+              Put navigation items in the header, and cross tab actions in a
+              footer.
+            </p>
+          </EuiText>
+          <EuiTabs style={{ marginBottom: '-25px' }}>{renderTabs}</EuiTabs>
+        </EuiFlyoutHeader>
+        <EuiFlyoutBody>
+          <EuiPopover
+            closePopover={closePopover}
+            button={
+              <EuiButton onClick={togglePopover}>
+                Even popovers can be included
+              </EuiButton>
+            }
+            isOpen={isPopoverOpen}
+            repositionOnScroll={true}
+          >
+            <p>
+              This is the popover content, notice how it can overflow the
+              flyout!
+            </p>
+            <p>
+              When placed in a flyout, the <EuiCode>repositionOnScroll</EuiCode>{' '}
+              prop ensures that the popover scrolls with body of the flyout.
+            </p>
+          </EuiPopover>
+          <EuiSpacer size="m" />
+          <EuiForm component="form">
+            <EuiFormRow label="A SuperSelect field">
+              <EuiSuperSelect
+                options={superSelectOptions}
+                valueOfSelected={superSelectvalue}
+                onChange={(value) => setSuperSelectValue(value)}
+                itemLayoutAlign="top"
+                popoverProps={{ repositionOnScroll: true }}
+                hasDividers
+              />
+            </EuiFormRow>
+          </EuiForm>
+          <EuiSpacer />
+          <EuiPopover
+            isOpen={isExpressionOpen}
+            closePopover={() => setIsExpressionOpen(false)}
+            repositionOnScroll={true}
+            button={
+              <EuiExpression
+                description="expression"
+                value="configurations"
+                onClick={() => setIsExpressionOpen(!isExpressionOpen)}
+              />
+            }
+          >
+            <EuiComboBox
+              selectedOptions={[{ label: 'Option one' }]}
+              options={[
+                { label: 'Option one' },
+                { label: 'Option two' },
+                { label: 'Option three' },
+              ]}
+            />
+          </EuiPopover>
+          <EuiSpacer />
+          {flyoutContent}
+          <EuiCodeBlock language="html">{htmlCode}</EuiCodeBlock>
+        </EuiFlyoutBody>
+        <EuiFlyoutFooter>
+          <EuiFlexGroup justifyContent="spaceBetween">
+            <EuiFlexItem grow={false}>
+              <EuiButtonEmpty
+                iconType="cross"
+                onClick={closeFlyout}
+                flush="left"
+              >
+                Close
+              </EuiButtonEmpty>
+            </EuiFlexItem>
+            <EuiFlexItem grow={false}>
+              <EuiButton onClick={closeFlyout} fill>
+                Save
+              </EuiButton>
+            </EuiFlexItem>
+          </EuiFlexGroup>
+        </EuiFlyoutFooter>
+      </EuiFlyout>
+    );
+  }
+
+  return (
+    <div>
+      <EuiButton onClick={showFlyout}>Show flyout</EuiButton>
+
+      {flyout}
+    </div>
+  );
+};
+
+```
+
+### Sizing
+
+Flyouts come in three predefined `size`s of `'s' | 'm' | 'l'`, which define the width **relative to the window size** with a minimum width defined in pixels. You can otherwise supply your own fixed width in number or string format.
+
+```tsx interactive
+import React, { useState } from 'react';
+import {
+  EuiFlyout,
+  EuiFlyoutHeader,
+  EuiFlyoutBody,
+  EuiButton,
+  EuiTitle,
+  EuiFormRow,
+  EuiButtonGroup,
+  useGeneratedHtmlId,
+} from '@elastic/eui';
+
+export default () => {
+  const [isFlyoutVisible, setIsFlyoutVisible] = useState(false);
+  const [size, setSize] = useState('l');
+  const [sizeName, setSizeName] = useState('large');
+  const largeFlyoutTitleId = useGeneratedHtmlId({ prefix: 'largeFlyoutTitle' });
+
+  const sizes = [
+    {
+      id: 's',
+      label: 'Small',
+    },
+    {
+      id: 'm',
+      label: 'Medium',
+    },
+    {
+      id: 'l',
+      label: 'Large',
+    },
+    {
+      id: '400px',
+      label: 'Fixed (400)',
+    },
+  ];
+
+  const closeFlyout = () => setIsFlyoutVisible(false);
+
+  const showFlyout = () => setIsFlyoutVisible(true);
+
+  let flyout;
+  if (isFlyoutVisible) {
+    flyout = (
+      <EuiFlyout
+        ownFocus
+        onClose={closeFlyout}
+        size={size}
+        aria-labelledby={largeFlyoutTitleId}
+      >
+        <EuiFlyoutHeader hasBorder>
+          <EuiTitle size="m">
+            <h2 id={largeFlyoutTitleId}>A {sizeName.toLowerCase()} flyout</h2>
+          </EuiTitle>
+        </EuiFlyoutHeader>
+        <EuiFlyoutBody>
+          <EuiFormRow label="Change the flyout size">
+            <EuiButtonGroup
+              legend="Flyout size"
+              color="primary"
+              buttonSize="s"
+              options={sizes}
+              idSelected={size}
+              onChange={(id) => {
+                const newName = sizes
+                  .find((size) => size.id === id)!
+                  .label.toLowerCase();
+                setSize(id);
+                setSizeName(newName);
+              }}
+            />
+          </EuiFormRow>
+        </EuiFlyoutBody>
+      </EuiFlyout>
+    );
+  }
+  return (
+    <div>
+      <EuiButton onClick={showFlyout}>Show flyout to test widths</EuiButton>
+      {flyout}
+    </div>
+  );
+};
+```
+
+### Padding
+
+All the inner flyout components inherit their padding from the wrapping **EuiFlyout** component. This ensures that all the horizontal edges line up no matter the `paddingSize`. When using the `"none"` size, you will need to accommodate your content with some other way of creating distance to the edges of the flyout.
+
+```tsx interactive
+import React, { useState } from 'react';
+import {
+  EuiButtonEmpty,
+  EuiCallOut,
+  EuiFlexGroup,
+  EuiFlexItem,
+  EuiFlyout,
+  EuiFlyoutProps,
+  EuiFlyoutHeader,
+  EuiFlyoutBody,
+  EuiFlyoutFooter,
+  EuiButtonGroup,
+  EuiButton,
+  EuiFormRow,
+  EuiTitle,
+  useGeneratedHtmlId,
+} from '@elastic/eui';
+
+export default () => {
+  const [isFlyoutVisible, setIsFlyoutVisible] = useState(false);
+  const [paddingSize, setPaddingSize] = useState('l');
+  const [paddingSizeName, setPaddingSizeName] = useState('large');
+  const mediumPaddingFlyoutTitleId = useGeneratedHtmlId({
+    prefix: 'mediumPaddingFlyoutTitle',
+  });
+  const mediumPaddingFlyoutId = useGeneratedHtmlId({
+    prefix: 'mediumPaddingFlyout',
+  });
+
+  const sizes = [
+    {
+      id: 'none',
+      label: 'None',
+    },
+    {
+      id: 's',
+      label: 'Small',
+    },
+    {
+      id: 'm',
+      label: 'Medium',
+    },
+    {
+      id: 'l',
+      label: 'Large',
+    },
+  ];
+
+  const closeFlyout = () => setIsFlyoutVisible(false);
+
+  const showFlyout = () => setIsFlyoutVisible(true);
+
+  const callOut = (
+    <EuiCallOut
+      title={`The banner left and right padding is ${paddingSizeName} to match that of flyout`}
+    />
+  );
+
+  let flyout;
+  if (isFlyoutVisible) {
+    flyout = (
+      <EuiFlyout
+        ownFocus
+        onClose={closeFlyout}
+        paddingSize={paddingSize as EuiFlyoutProps['paddingSize']}
+        id={mediumPaddingFlyoutId}
+        aria-labelledby={mediumPaddingFlyoutTitleId}
+      >
+        <EuiFlyoutHeader hasBorder>
+          <EuiTitle size="m">
+            <h2 id={mediumPaddingFlyoutTitleId}>
+              A flyout with a {paddingSizeName} padding
+            </h2>
+          </EuiTitle>
+        </EuiFlyoutHeader>
+        <EuiFlyoutBody banner={callOut}>
+          <EuiFormRow label="Change the paddingSize">
+            {/* @ts-ignore - EuiButtonGroup is not correctly detecting type="single" */}
+            <EuiButtonGroup
+              legend="Flyout paddingSize"
+              color="primary"
+              buttonSize="s"
+              options={sizes}
+              idSelected={paddingSize}
+              onChange={(id: string) => {
+                const newName = sizes
+                  .find((size) => size.id === id)!
+                  .label.toLowerCase();
+                setPaddingSize(id);
+                setPaddingSizeName(newName);
+              }}
+            />
+          </EuiFormRow>
+        </EuiFlyoutBody>
+        <EuiFlyoutFooter>
+          <EuiFlexGroup justifyContent="spaceBetween">
+            <EuiFlexItem grow={false}>
+              <EuiButtonEmpty
+                iconType="cross"
+                onClick={closeFlyout}
+                flush="left"
+              >
+                Close
+              </EuiButtonEmpty>
+            </EuiFlexItem>
+            <EuiFlexItem grow={false}>
+              <EuiButton onClick={closeFlyout} fill>
+                Save
+              </EuiButton>
+            </EuiFlexItem>
+          </EuiFlexGroup>
+        </EuiFlyoutFooter>
+      </EuiFlyout>
+    );
+  }
+  return (
+    <>
+      <EuiButton
+        onClick={showFlyout}
+        aria-controls="flyoutMediumPadding"
+        aria-expanded={isFlyoutVisible}
+        aria-haspopup="true"
+        aria-label="Show padding size flyout"
+      >
+        Show flyout to test padding sizes
+      </EuiButton>
+      {flyout}
+    </>
+  );
+};
+
+```
+
+### Banners
+
+To highlight some information at the top of a flyout, you can pass an [EuiCallOut](../../display/callout.mdx) to the `banner` prop available in **EuiFlyoutBody** and its layout will adjust appropriately.
+
+```tsx interactive
+import React, { useState } from 'react';
+import {
+  EuiCallOut,
+  EuiFlyout,
+  EuiFlyoutHeader,
+  EuiFlyoutBody,
+  EuiLink,
+  EuiButton,
+  EuiText,
+  EuiTitle,
+  useGeneratedHtmlId,
+} from '@elastic/eui';
+
+export default () => {
+  const [isFlyoutVisible, setIsFlyoutVisible] = useState(false);
+  const bannerFlyoutTitleId = useGeneratedHtmlId({
+    prefix: 'bannerFlyoutTitle',
+  });
+  const closeFlyout = () => setIsFlyoutVisible(false);
+
+  const showFlyout = () => setIsFlyoutVisible(true);
+
+  let flyout;
+
+  const callOut = (
+    <EuiCallOut iconType="help">
+      <p>
+        Here&rsquo;s some stuff that you need to know. This banner helps
+        highlight important information. <EuiLink href="#">View docs</EuiLink>
+      </p>
+    </EuiCallOut>
+  );
+
+  if (isFlyoutVisible) {
+    flyout = (
+      <EuiFlyout
+        ownFocus
+        onClose={closeFlyout}
+        aria-labelledby={bannerFlyoutTitleId}
+      >
+        <EuiFlyoutHeader hasBorder>
+          <EuiTitle size="m">
+            <h2 id={bannerFlyoutTitleId}>A flyout with a banner</h2>
+          </EuiTitle>
+        </EuiFlyoutHeader>
+        <EuiFlyoutBody banner={callOut}>
+          <EuiText>
+            <p>
+              This flyout is using the banner prop in{' '}
+              <strong>EuiFlyoutBody</strong>.
+            </p>
+          </EuiText>
+        </EuiFlyoutBody>
+      </EuiFlyout>
+    );
+  }
+  return (
+    <div>
+      <EuiButton onClick={showFlyout}>Show flyout with banner</EuiButton>
+      {flyout}
+    </div>
+  );
+};
+```
+
+### Without ownFocus
+
+Like modals, you will usually want to obscure the page content beneath with `ownFocus` which wraps the flyout with an [EuiOverlayMask](../../../utilities/overlay-mask.mdx) . However, there are use-cases where flyouts present more information or controls, but need to maintain the interactions of the page content. By setting `ownFocus={false}`, the underlying page content will be visible and clickable.
+
+```tsx interactive
+import React, { useState } from 'react';
+import {
+  EuiFlyout,
+  EuiFlyoutHeader,
+  EuiFlyoutBody,
+  EuiButton,
+  EuiText,
+  EuiTitle,
+  useGeneratedHtmlId,
+} from '@elastic/eui';
+
+export default () => {
+  const [isFlyoutVisible, setIsFlyoutVisible] = useState(false);
+
+  const closeFlyout = () => setIsFlyoutVisible(false);
+
+  const toggleFlyout = () => setIsFlyoutVisible((isVisible) => !isVisible);
+
+  const withoutFocusFlyoutTitleId = useGeneratedHtmlId({
+    prefix: 'withoutFocusFlyoutTitle',
+  });
+
+  let flyout;
+  if (isFlyoutVisible) {
+    flyout = (
+      <EuiFlyout
+        ownFocus={false}
+        onClose={closeFlyout}
+        aria-labelledby={withoutFocusFlyoutTitleId}
+      >
+        <EuiFlyoutHeader hasBorder>
+          <EuiTitle size="s">
+            <h2 id={withoutFocusFlyoutTitleId}>A flyout without ownFocus</h2>
+          </EuiTitle>
+        </EuiFlyoutHeader>
+        <EuiFlyoutBody>
+          <EuiText>
+            <p>
+              The page contents is still interactive though screen reader users
+              will find themselves still within the bounds of the flyout.
+            </p>
+          </EuiText>
+        </EuiFlyoutBody>
+      </EuiFlyout>
+    );
+  }
+  return (
+    <div>
+      <EuiButton onClick={toggleFlyout}>Toggle flyout</EuiButton>
+
+      {flyout}
+    </div>
+  );
+};
+```
+
+### Understanding max-width
+
+By default, flyouts will continue to grow with the width of the window. To stop this growth at an ideal width, set `maxWidth` to `true`, or pass your own custom size.
+
+:::warning
+Note that there are some caveats to providing a maxWidth that is smaller than the minWidth.
+:::
+
+```tsx interactive
+import React, { useState } from 'react';
+import {
+  EuiFlyout,
+  EuiFlyoutProps,
+  EuiFlyoutBody,
+  EuiFlyoutHeader,
+  EuiLink,
+  EuiText,
+  EuiTitle,
+  EuiFieldText,
+  EuiForm,
+  EuiFormRow,
+  EuiFilePicker,
+  EuiRange,
+  EuiSelect,
+  EuiSpacer,
+  useGeneratedHtmlId,
+} from '@elastic/eui';
+
+export default () => {
+  const [isFlyoutVisible, setIsFlyoutVisible] = useState(false);
+  const [flyoutSize, setFlyoutSize] = useState<EuiFlyoutProps['size']>('m');
+  const [flyoutMaxWidth, setFlyoutMaxWidth] =
+    useState<EuiFlyoutProps['maxWidth']>(false);
+  const maxWidthFlyoutTitleId = useGeneratedHtmlId({
+    prefix: 'maxWidthFlyoutTitle',
+  });
+  const maxWidthFlyoutRangeId = useGeneratedHtmlId({
+    prefix: 'maxWidthFlyoutRange',
+  });
+
+  const closeFlyout = () => setIsFlyoutVisible(false);
+
+  const showFlyout = (
+    size: EuiFlyoutProps['size'] = 'm',
+    maxWidth: EuiFlyoutProps['maxWidth'] = false
+  ) => {
+    setFlyoutSize(size);
+    setFlyoutMaxWidth(maxWidth);
+    setIsFlyoutVisible(true);
+  };
+
+  let flyout;
+
+  if (isFlyoutVisible) {
+    let maxWidthTitle;
+    switch (flyoutMaxWidth) {
+      case true:
+        maxWidthTitle = 'Default';
+        break;
+      case false:
+        maxWidthTitle = 'No';
+        break;
+      default:
+        maxWidthTitle = `${flyoutMaxWidth}px`;
+        break;
+    }
+
+    flyout = (
+      <EuiFlyout
+        ownFocus
+        onClose={closeFlyout}
+        aria-labelledby={maxWidthFlyoutTitleId}
+        size={flyoutSize}
+        maxWidth={flyoutMaxWidth}
+      >
+        <EuiFlyoutHeader hasBorder>
+          <EuiTitle size="m">
+            <h2 id={maxWidthFlyoutTitleId}>{maxWidthTitle} maxWidth</h2>
+          </EuiTitle>
+        </EuiFlyoutHeader>
+        <EuiFlyoutBody>
+          <EuiText>
+            <p>
+              In many cases, you&rsquo;ll want to set a custom width
+              that&rsquo;s tailored to your content. In this case, the flyout is
+              an ideal width for form elements.
+            </p>
+          </EuiText>
+
+          <EuiSpacer />
+
+          <EuiForm component="form">
+            <EuiFormRow
+              label="Text field"
+              helpText="I am some friendly help text."
+            >
+              <EuiFieldText name="first" />
+            </EuiFormRow>
+
+            <EuiFormRow label="Select (with no initial selection)">
+              <EuiSelect
+                hasNoInitialSelection
+                options={[
+                  { value: 'option_one', text: 'Option one' },
+                  { value: 'option_two', text: 'Option two' },
+                  { value: 'option_three', text: 'Option three' },
+                ]}
+              />
+            </EuiFormRow>
+
+            <EuiFormRow label="File picker">
+              <EuiFilePicker />
+            </EuiFormRow>
+
+            <EuiFormRow label="Range">
+              <EuiRange
+                min={0}
+                max={100}
+                name="range"
+                id={maxWidthFlyoutRangeId}
+                value={50}
+              />
+            </EuiFormRow>
+          </EuiForm>
+        </EuiFlyoutBody>
+      </EuiFlyout>
+    );
+  }
+  return (
+    <div>
+      <EuiLink color="success" onClick={() => showFlyout('s')}>
+        Show <strong>small</strong> flyout with <strong>no max-width</strong>
+      </EuiLink>
+      <EuiSpacer size="s" />
+      <EuiLink color="success" onClick={() => showFlyout('s', true)}>
+        Show <strong>small</strong> flyout with{' '}
+        <strong>default max-width</strong>
+      </EuiLink>
+      <EuiSpacer size="s" />
+      <EuiLink color="danger" onClick={() => showFlyout('s', 200)}>
+        Show <strong>small</strong> flyout with{' '}
+        <strong>smaller custom max-width</strong> -- minWidth wins except for on
+        small screens
+      </EuiLink>
+      <EuiSpacer size="s" />
+      <EuiLink color="danger" onClick={() => showFlyout('s', 448)}>
+        Show <strong>small</strong> flyout with{' '}
+        <strong>larger custom max-width</strong> -- minWidth wins except for on
+        small screens
+      </EuiLink>
+
+      <EuiSpacer />
+
+      <EuiLink color="success" onClick={() => showFlyout('m')}>
+        Show <strong>medium</strong> flyout with <strong>no max-width</strong>
+      </EuiLink>
+      <EuiSpacer size="s" />
+      <EuiLink color="success" onClick={() => showFlyout('m', true)}>
+        Show <strong>medium</strong> flyout with{' '}
+        <strong>default max-width</strong>
+      </EuiLink>
+      <EuiSpacer size="s" />
+      <EuiLink color="danger" onClick={() => showFlyout('m', 448)}>
+        Show <strong>medium</strong> flyout with{' '}
+        <strong>smaller custom max-width</strong> -- minWidth wins and full
+        100vw wins on small screens
+      </EuiLink>
+      <EuiSpacer size="s" />
+      <EuiLink color="success" onClick={() => showFlyout('m', 900)}>
+        Show <strong>medium</strong> flyout with{' '}
+        <strong>larger custom max-width</strong>
+      </EuiLink>
+
+      <EuiSpacer />
+
+      <EuiLink color="success" onClick={() => showFlyout('l')}>
+        Show <strong>large</strong> flyout with <strong>no max-width</strong>
+      </EuiLink>
+      <EuiSpacer size="s" />
+      <EuiLink color="success" onClick={() => showFlyout('l', true)}>
+        Show <strong>large</strong> flyout with{' '}
+        <strong>default max-width</strong>
+      </EuiLink>
+      <EuiSpacer size="s" />
+      <EuiLink color="danger" onClick={() => showFlyout('l', 448)}>
+        Show <strong>large</strong> flyout with{' '}
+        <strong>smaller custom max-width</strong> -- minWidth wins and full
+        100vw wins on small screens
+      </EuiLink>
+      <EuiSpacer size="s" />
+      <EuiLink color="success" onClick={() => showFlyout('l', 1600)}>
+        Show <strong>large</strong> flyout with{' '}
+        <strong>larger custom max-width</strong>
+      </EuiLink>
+
+      <EuiSpacer />
+
+      <EuiLink color="success" onClick={() => showFlyout(240)}>
+        Show <strong>240</strong> flyout with <strong>no max-width</strong>
+      </EuiLink>
+      <EuiSpacer size="s" />
+      <EuiLink color="success" onClick={() => showFlyout(240, true)}>
+        Show <strong>240</strong> flyout with <strong>default max-width</strong>
+      </EuiLink>
+      <EuiSpacer size="s" />
+      <EuiLink color="danger" onClick={() => showFlyout(240, 110)}>
+        Show <strong>240</strong> flyout with{' '}
+        <strong>smaller custom max-width</strong> -- max-width wins but width
+        wins on small screens
+      </EuiLink>
+      <EuiSpacer size="s" />
+      <EuiLink color="success" onClick={() => showFlyout(240, 1600)}>
+        Show <strong>240</strong> flyout with{' '}
+        <strong>larger custom max-width</strong>
+      </EuiLink>
+
+      <EuiSpacer />
+
+      <EuiLink color="primary" onClick={() => showFlyout('m', 0)}>
+        Trick for forms: <strong>Medium</strong> flyout with{' '}
+        <strong>0 as max-width</strong>
+      </EuiLink>
+
+      {flyout}
+    </div>
+  );
+};
+```
+
+### Push flyout
+
+import PushFlyout from './_flyout_push.mdx';
+
+<PushFlyout />
+
+### Resizable flyout
+
+import ResizableFlyout from './_flyout_resizable.mdx';
+
+<ResizableFlyout />
+
+## Props
+
+import docgen from '@elastic/eui-docgen/dist/components/flyout';
+import flyoutDocgen from '@elastic/eui-docgen/dist/components/flyout/flyout.json';
+
+<PropTable definition={flyoutDocgen.EuiFlyout} />
+
+<PropTable definition={docgen.EuiFlyoutBody} />
+
+<PropTable definition={docgen.EuiFlyoutFooter} />
+
+<PropTable definition={docgen.EuiFlyoutHeader} />
+
+<PropTable definition={docgen.EuiFlyoutResizable} />

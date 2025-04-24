@@ -70,3 +70,9 @@ export const KitchenSink: Story = {
     );
   },
 };
+
+export const KitchenSinkHighContrast: Story = {
+  ...KitchenSink,
+  tags: ['vrt-only'],
+  globals: { highContrastMode: true },
+};

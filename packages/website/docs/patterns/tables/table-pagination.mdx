@@ -1,0 +1,55 @@
+---
+sidebar_position: 1
+---
+
+# Table Pagination for basic tables
+
+Patterns and recommendations for handling table pagination on basic tables
+
+
+Pagination is important for providing better page load times by only loading a subset of items of a long list. However it should be possible for the user to customize this setting to match their needs. The following recommendations are suggested for basic tables, typically in a content management scenario. Large data grid tables or otherwise complex tables may have their unique needs which are not covered here. If possible, it's recommended to use these as a starting point and diverge only when necessary.
+
+
+### Set a reasonable default
+
+We should default to showing 25 as this provides a balance between a long enough usable list and any performance concerns.
+
+<FigmaEmbed url="https://www.figma.com/file/nemD75hQd2KHEddjVcVbrB/Table-Pagination-%5B184%5D?type=design&node-id=413%3A91091&t=ehLjtX0PIei6US7B-1" />
+
+
+- - -
+
+
+### Provide options of 10, 25, 50, 100
+
+This set of options provides a balance between load performance and ease-of-use.
+
+Optionally, you can include ‘Show all rows’ as the last option if it makes sense with the amount of content.
+
+<FigmaEmbed url="https://www.figma.com/file/nemD75hQd2KHEddjVcVbrB/Table-Pagination-%5B184%5D?type=design&node-id=429%3A91091&t=ehLjtX0PIei6US7B-1" />
+
+
+- - -
+
+
+### Persist choice across pages
+
+If a user decides to choose a different row count, we should save this so it is persisted on subsequent page loads.
+
+<FigmaEmbed url="https://www.figma.com/file/nemD75hQd2KHEddjVcVbrB/Table-Pagination-%5B184%5D?type=design&node-id=429%3A91092&t=ehLjtX0PIei6US7B-1" />
+
+
+- - -
+
+### Allow customization
+
+This list of options should be customizable to allow for user preferences.  For Kibana, this should be shown within Advanced settings.
+
+<FigmaEmbed url="https://www.figma.com/file/nemD75hQd2KHEddjVcVbrB/Table-Pagination-%5B184%5D?type=design&node-id=429%3A91093&t=ehLjtX0PIei6US7B-1" />
+
+
+- - -
+
+### Avoid infinite scrolling
+
+Our current recommendation is to avoid infinite scrolling for basic management tables. There are concerns with performance aside from general UX issues. However, note that this pertains to basic tables and their are viable scenarios where infinite scrolling makes sense.

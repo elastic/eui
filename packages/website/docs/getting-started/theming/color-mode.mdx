@@ -1,0 +1,281 @@
+---
+sidebar_position: 3
+---
+
+# Color mode
+
+The `colorMode` determines which values to return based on `LIGHT` or `DARK` mode.
+
+By default, if this prop is not passed, **EuiProvider** will detect and use the user's system dark mode preference. If the prop _is_ passed, it will override the user's system settings.
+
+import { ProviderDetails } from './provider_details';
+
+<ProviderDetails withThemeName={false} withHighContrastMode={false} />
+
+## Rendering a specific color mode
+
+While it is usually best to keep all consumptions of the global variables rendering in the same light or dark color mode, some instances benefit from an exaggerated change in contrast from the current theme. For this you can specify **EuiThemeProvider**'s `colorMode` to always be `"light"`, `"dark"`, or `"inverse"` which sets it to the opposite of the current color mode.
+
+When nesting or overriding **EuiThemeProvider**, a wrapping `<span>` element that sets the correct default text color (normally set at the global `<body>` level) will be rendered. You can customize the display of this wrapping element by passing `wrapperProps`.
+
+Alternatively, if a wrapper will significantly impact the DOM layout/flow of your content, and if your child is a single React component, you may pass `wrapperProps={{ cloneElement: true }}` to avoid rendering an extra wrapper and to clone the correct color classes onto your child content.
+
+```tsx interactive
+import React, { useState, FC, PropsWithChildren } from 'react';
+import {
+  EuiThemeProvider,
+  useEuiTheme,
+  EuiIcon,
+  EuiSpacer,
+  EuiText,
+  EuiCode,
+  EuiPanel,
+  EuiFlexGroup,
+  EuiFlexItem,
+  EuiButton,
+  EuiPopover,
+  EuiModal,
+  EuiModalHeader,
+  EuiModalHeaderTitle,
+  EuiModalBody,
+  EuiModalFooter,
+  EuiFlyout,
+  EuiFlyoutHeader,
+  EuiTitle,
+  EuiFlyoutBody,
+} from '@elastic/eui';
+
+const ThemedChildren: FC<PropsWithChildren> = ({ children, ...rest }) => {
+  const { colorMode: _colorMode } = useEuiTheme();
+  const colorMode = _colorMode.toLowerCase();
+  return (
+    <EuiPanel {...rest}>
+      <EuiFlexGroup gutterSize="m">
+        <EuiFlexItem>
+          <EuiText>
+            <p>
+              <EuiIcon type="faceHappy" /> The colors of this panel and its
+              portalled content are in <strong>{colorMode}</strong> mode.
+            </p>
+          </EuiText>
+        </EuiFlexItem>
+        <EuiFlexItem grow={false}>
+          <Popover>
+            This popover should render in <strong>{colorMode}</strong> mode.
+          </Popover>
+        </EuiFlexItem>
+        <EuiFlexItem grow={false}>
+          <Modal>
+            This modal should render in <strong>{colorMode}</strong> mode.
+          </Modal>
+        </EuiFlexItem>
+        <EuiFlexItem grow={false}>
+          <Flyout>
+            This flyout should render in <strong>{colorMode}</strong> mode.
+          </Flyout>
+        </EuiFlexItem>
+      </EuiFlexGroup>
+      {children}
+    </EuiPanel>
+  );
+};
+
+const Popover: FC<PropsWithChildren> = ({ children }) => {
+  const [isPopoverOpen, setIsPopoverOpen] = useState(false);
+  return (
+    <EuiPopover
+      isOpen={isPopoverOpen}
+      closePopover={() => setIsPopoverOpen(false)}
+      button={
+        <EuiButton
+          onClick={() => setIsPopoverOpen((isOpen) => !isOpen)}
+          fullWidth
+          size="s"
+        >
+          Open popover
+        </EuiButton>
+      }
+      display="block"
+    >
+      {children}
+    </EuiPopover>
+  );
+};
+
+const Modal: FC<PropsWithChildren> = ({ children }) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  return (
+    <>
+      <EuiButton onClick={() => setIsModalOpen(true)} size="s">
+        Open modal
+      </EuiButton>
+      {isModalOpen && (
+        <EuiModal onClose={() => setIsModalOpen(false)}>
+          <EuiModalHeader>
+            <EuiModalHeaderTitle>Modal title</EuiModalHeaderTitle>
+          </EuiModalHeader>
+          <EuiModalBody>
+            <EuiText>
+              <p>{children}</p>
+            </EuiText>
+          </EuiModalBody>
+          <EuiModalFooter>
+            <EuiButton onClick={() => setIsModalOpen(false)} fill>
+              Close
+            </EuiButton>
+          </EuiModalFooter>
+        </EuiModal>
+      )}
+    </>
+  );
+};
+
+const Flyout: FC<PropsWithChildren> = ({ children }) => {
+  const [isFlyoutOpen, setIsFlyoutOpen] = useState(false);
+  return (
+    <>
+      <EuiButton onClick={() => setIsFlyoutOpen(true)} size="s">
+        Open flyout
+      </EuiButton>
+      {isFlyoutOpen && (
+        <EuiFlyout
+          ownFocus
+          onClose={() => setIsFlyoutOpen(false)}
+          aria-labelledby="flyoutTitle"
+        >
+          <EuiFlyoutHeader hasBorder>
+            <EuiTitle size="m">
+              <h2 id="flyoutTitle">Flyout title</h2>
+            </EuiTitle>
+          </EuiFlyoutHeader>
+          <EuiFlyoutBody>
+            <EuiText>
+              <p>{children}</p>
+            </EuiText>
+          </EuiFlyoutBody>
+        </EuiFlyout>
+      )}
+    </>
+  );
+};
+
+export default () => {
+  return (
+    <>
+      <EuiThemeProvider colorMode="light">
+        <ThemedChildren />
+      </EuiThemeProvider>
+      <EuiSpacer />
+
+      <EuiThemeProvider colorMode="dark">
+        <ThemedChildren />
+      </EuiThemeProvider>
+      <EuiSpacer />
+
+      <EuiThemeProvider colorMode="inverse">
+        <ThemedChildren>
+          <EuiSpacer size="m" />
+          <EuiText>
+            <p>
+              This panel is in <strong>inverse</strong> mode (the opposite of
+              the global color mode), and renders a 3rd level nested theme
+              provider that inverses color mode yet again.
+            </p>
+          </EuiText>
+          <EuiSpacer size="m" />
+
+          <EuiThemeProvider
+            colorMode="inverse"
+            wrapperProps={{ cloneElement: true }}
+          >
+            <ThemedChildren>
+              <EuiText>
+                <p>
+                  This panel demonstrates the <EuiCode>cloneElement</EuiCode>{' '}
+                  property.
+                </p>
+              </EuiText>
+            </ThemedChildren>
+          </EuiThemeProvider>
+        </ThemedChildren>
+      </EuiThemeProvider>
+    </>
+  );
+};
+```
+
+## Using color tokens in a specific color mode
+
+The following example demonstrates how you can use color tokens in any of the color modes: `"light"`, `"dark"`, or `"inverse"`.
+
+```tsx interactive
+import React, { FunctionComponent, ReactNode, useState } from 'react';
+import {
+  EuiIcon,
+  EuiSpacer,
+  EuiText,
+  EuiThemeProvider,
+  useEuiTheme,
+  EuiButtonGroup,
+  EuiThemeColorMode,
+} from '@elastic/eui';
+
+const Box: FunctionComponent<{ children: ReactNode }> = ({ children }) => {
+  const { euiTheme } = useEuiTheme();
+
+  return (
+    <EuiText
+      css={{
+        background: euiTheme.colors.lightShade,
+        padding: euiTheme.size.xl,
+      }}
+    >
+      <p>{children}</p>
+    </EuiText>
+  );
+};
+
+export default () => {
+  const boxColorButtons = [
+    {
+      id: 'light',
+      label: 'Light',
+    },
+    {
+      id: 'dark',
+      label: 'Dark',
+    },
+    {
+      id: 'inverse',
+      label: 'Inverse',
+    },
+  ];
+
+  const [boxColorModeSelected, setBoxColorMode] =
+    useState<EuiThemeColorMode>('light');
+
+  const onChange = (colorMode: EuiThemeColorMode) => {
+    setBoxColorMode(colorMode);
+  };
+
+  return (
+    <>
+      <EuiButtonGroup
+        legend="Change color mode"
+        options={boxColorButtons}
+        idSelected={boxColorModeSelected}
+        onChange={(id) => onChange(id as EuiThemeColorMode)}
+      />
+
+      <EuiSpacer />
+
+      <EuiThemeProvider colorMode={boxColorModeSelected}>
+        <Box>
+          <EuiIcon type="faceHappy" /> The colors of this box is in{' '}
+          <strong>{boxColorModeSelected}</strong> color mode
+        </Box>
+      </EuiThemeProvider>
+    </>
+  );
+};
+```

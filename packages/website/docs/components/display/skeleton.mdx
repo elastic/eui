@@ -1,13 +1,8 @@
----
-slug: /display/skeleton
-id: display_skeleton
----
-
 # Skeleton
 
 The **EuiSkeleton** components are placeholder components for content which has yet to load. They provide meaningful previews, avoid layout content shifts, and add accessible announcements to screen readers when content is done loading.
 
-:::note Accessibility recommendation
+:::accessibility Accessibility recommendation
 The `contentAriaLabel` prop should be used to help describe the type of content that is loading to screen reader users. If you do not provide a descriptive label and have have multiple loading skeletons on the page, screen reader users may hear a multitude of “Loaded” messages in a row, with no meaningful indication of what actually loaded.
 :::
 
@@ -259,6 +254,7 @@ export default () => {
 
 ```tsx interactive
 import React, { useState } from 'react';
+import { css } from '@emotion/react';
 import {
   EuiSkeletonRectangle,
   EuiFlexGroup,
@@ -308,6 +304,10 @@ export default () => {
               height={100}
               src="https://picsum.photos/300/300"
               alt="A randomized image"
+              css={css`
+                width: 100px;
+                height: 100px;
+              `}
             />
           </EuiSkeletonRectangle>
         </EuiFlexItem>
@@ -445,7 +445,7 @@ export default () => {
 
 In scenarios where that is not the case (i.e., transitioning to loading), you can customize what statuses are announced to screen readers by setting `announceLoadingStatus` to true, or `announceLoadedStatus` to false. Submitting the below example announces a loading status, but not a loaded status.
 
-As an optional escape hatch, `ariaLiveProps` is also available and accepts any [**EuiScreenReaderLive**](../utilities/accessibility/overview.mdx#screen-reader-live-region) props.
+As an optional escape hatch, `ariaLiveProps` is also available and accepts any [**EuiScreenReaderLive**](../../utilities/accessibility/index.mdx#screen-reader-live-region) props.
 
 ```tsx interactive
 import React, { useState } from 'react';

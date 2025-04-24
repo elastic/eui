@@ -22,11 +22,14 @@ type AnimationOptions = {
 };
 
 export const euiSkeletonGradientAnimation = (
-  { euiTheme }: UseEuiTheme,
+  { euiTheme, highContrastMode }: UseEuiTheme,
   { slideSize = '-53%', gradientSize = '220%' }: AnimationOptions = {}
 ) => {
   const gradientStartStop = euiTheme.colors.backgroundBaseSkeletonEdge;
-  const gradientMiddle = euiTheme.colors.backgroundBaseSkeletonMiddle;
+  // Increase "shine" visibility in high contrast modes
+  const gradientMiddle = highContrastMode
+    ? euiTheme.components.skeletonBackgroundSkeletonMiddleHighContrast
+    : euiTheme.colors.backgroundBaseSkeletonMiddle;
 
   return css`
     ${euiCantAnimate} {

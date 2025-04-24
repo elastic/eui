@@ -53,6 +53,7 @@ export const EuiCheckableCard: FunctionComponent<EuiCheckableCardProps> = ({
   css,
   checkableType = 'radio',
   label,
+  labelProps,
   checked,
   disabled,
   hasShadow,
@@ -118,6 +119,7 @@ export const EuiCheckableCard: FunctionComponent<EuiCheckableCardProps> = ({
       </EuiSplitPanel.Inner>
       <EuiSplitPanel.Inner>
         <label
+          {...labelProps}
           ref={labelEl}
           className={labelClasses}
           css={labelStyles}

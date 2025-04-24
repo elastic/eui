@@ -6,6 +6,7 @@ import {
 } from 'react';
 import useIsBrowser from '@docusaurus/useIsBrowser';
 import {
+  EUI_THEME,
   EuiProvider,
   EuiThemeAmsterdam,
   EuiThemeColorMode,
@@ -29,10 +30,19 @@ export const AVAILABLE_THEMES = [
 
 const EUI_COLOR_MODES = ['light', 'dark'] as EuiThemeColorMode[];
 
-const defaultState = {
+const defaultState: {
+  colorMode: EuiThemeColorMode;
+  highContrastMode: boolean | undefined;
+  theme: EUI_THEME;
+  changeColorMode: (colorMode: EuiThemeColorMode) => void;
+  changeHighContrastMode: (highContrastMode: boolean) => void;
+  changeTheme: (themeValue: string) => void;
+} = {
   colorMode: EUI_COLOR_MODES[0] as EuiThemeColorMode,
-  changeColorMode: (colorMode: EuiThemeColorMode) => {},
+  highContrastMode: undefined,
   theme: AVAILABLE_THEMES[0]!,
+  changeColorMode: (colorMode: EuiThemeColorMode) => {},
+  changeHighContrastMode: (highContrastMode: boolean) => {},
   changeTheme: (themeValue: string) => {},
 };
 
@@ -45,13 +55,25 @@ export const AppThemeProvider: FunctionComponent<PropsWithChildren> = ({
   const [colorMode, setColorMode] = useState<EuiThemeColorMode>(() => {
     if (isBrowser) {
       return (
-        (localStorage.getItem('theme') as EuiThemeColorMode) ??
+        (localStorage.getItem('colorMode') as EuiThemeColorMode) ??
         defaultState.colorMode
       );
     }
 
     return defaultState.colorMode;
   });
+
+  const [highContrastMode, setHighContrastMode] = useState<boolean | undefined>(
+    () => {
+      if (isBrowser) {
+        return localStorage.getItem('highContrastMode')
+          ? localStorage.getItem('highContrastMode') === 'true'
+          : defaultState.highContrastMode;
+      }
+
+      return defaultState.highContrastMode;
+    }
+  );
 
   const [theme, setTheme] = useState(defaultState.theme);
 
@@ -61,20 +83,27 @@ export const AppThemeProvider: FunctionComponent<PropsWithChildren> = ({
     setTheme((currentTheme) => themeObj ?? currentTheme);
   };
 
+  const handleChangeHighContrastMode = (highContrastMode: boolean) => {
+    localStorage.setItem('highContrastMode', highContrastMode.toString());
+    setHighContrastMode(highContrastMode);
+  };
+
   return (
     <AppThemeContext.Provider
       value={{
         colorMode,
+        highContrastMode,
         theme,
         changeColorMode: setColorMode,
+        changeHighContrastMode: handleChangeHighContrastMode,
         changeTheme: handleChangeTheme,
       }}
     >
       <EuiProvider
-        globalStyles={false}
         modify={EuiThemeOverrides}
         colorMode={colorMode}
         theme={theme.provider}
+        highContrastMode={highContrastMode}
       >
         {children}
       </EuiProvider>

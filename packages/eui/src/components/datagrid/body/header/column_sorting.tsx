@@ -21,11 +21,9 @@ import { EuiDataGridSorting } from '../../data_grid_types';
 export const useColumnSorting = ({
   sorting,
   id,
-  hasColumnActions,
 }: {
   sorting?: EuiDataGridSorting;
   id: string;
-  hasColumnActions: boolean;
 }) => {
   const sortedColumn = useMemo(
     () => sorting?.columns.find((col) => col.id === id),
@@ -49,30 +47,32 @@ export const useColumnSorting = ({
   }, [id, isColumnSorted, sortedColumn]);
 
   /**
-   * aria-sort attribute - should only be used when a single column is being sorted
+   * `aria-sort` attribute - should only be used when a single column is being sorted
    * @see https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-sort
    * @see https://www.w3.org/WAI/ARIA/apg/example-index/table/sortable-table.html
    * @see https://github.com/w3c/aria/issues/283 for potential future multi-column usage
    */
-  const ariaSort: AriaAttributes['aria-sort'] =
-    isColumnSorted && hasOnlyOneSort
-      ? sorting.columns[0].direction === 'asc'
-        ? 'ascending'
-        : 'descending'
-      : undefined;
+  const hasAriaSortOnly = isColumnSorted && hasOnlyOneSort;
 
-  // aria-describedby ID for when aria-sort isn't sufficient
+  const ariaSort: AriaAttributes['aria-sort'] = hasAriaSortOnly
+    ? sorting.columns[0].direction === 'asc'
+      ? 'ascending'
+      : 'descending'
+    : undefined;
+
+  /**
+   * `aria-describedby` ID for when `aria-sort` cannot be used
+   */
   const sortingAriaId = useGeneratedHtmlId({
     prefix: 'euiDataGridCellHeader',
     suffix: 'sorting',
   });
 
   /**
-   * Sorting status - screen reader text
+   * Screen-reader-only sorting status, an alternative to `aria-sort` for multi-column sorting
    */
   const sortingScreenReaderText = useMemo(() => {
-    if (!isColumnSorted) return null;
-    if (!hasColumnActions && hasOnlyOneSort) return null; // in this scenario, the `aria-sort` attribute will be used by screen readers
+    if (!isColumnSorted || hasAriaSortOnly) return null;
     return (
       <p id={sortingAriaId} hidden>
         {sorting?.columns?.map(({ id: columnId, direction }, index) => {
@@ -141,10 +141,10 @@ export const useColumnSorting = ({
     );
   }, [
     isColumnSorted,
-    hasColumnActions,
-    hasOnlyOneSort,
-    sorting,
+    hasAriaSortOnly,
     sortingAriaId,
+    sorting?.columns,
+    hasOnlyOneSort,
   ]);
 
   return { sortingArrow, ariaSort, sortingAriaId, sortingScreenReaderText };

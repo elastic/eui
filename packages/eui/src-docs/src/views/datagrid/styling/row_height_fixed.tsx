@@ -115,13 +115,13 @@ const RenderCellValue: RenderCellValueType = ({
         <EuiSpacer size="s" />
 
         {item.comments === 1 && (
-          <EuiBadge iconType="editorComment" iconSide="left" color="hollow">
+          <EuiBadge iconType="comment" iconSide="left" color="hollow">
             {`${item.comments} comment`}
           </EuiBadge>
         )}
 
         {item.comments >= 2 && (
-          <EuiBadge iconType="editorComment" iconSide="left" color="hollow">
+          <EuiBadge iconType="comment" iconSide="left" color="hollow">
             {`${item.comments} comments`}
           </EuiBadge>
         )}

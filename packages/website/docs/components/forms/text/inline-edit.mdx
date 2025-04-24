@@ -1,0 +1,406 @@
+# Inline edit
+
+The **EuiInlineEdit** components are useful for updating single lines of text outside a form. The component has two states: `readMode` shows editable text inside of a button and `editMode` displays a form control to update the text.
+
+## Display and edit basic text
+
+Use **EuiInlineEditText** to display and edit basic text. Adjust the `size` property to change the font size in both `readMode` and `editMode`.
+
+```tsx interactive
+import React, { useState } from 'react';
+import {
+  EuiInlineEditText,
+  EuiSpacer,
+  EuiButtonGroup,
+  EuiInlineEditTextProps,
+} from '@elastic/eui';
+
+export default () => {
+  const textSizeButtons = [
+    {
+      id: 'xs',
+      label: 'Extra Small',
+    },
+    {
+      id: 's',
+      label: 'Small',
+    },
+    {
+      id: 'm',
+      label: 'Medium',
+    },
+  ];
+
+  const [toggleTextButtonSize, setToggleTextButtonSize] =
+    useState<EuiInlineEditTextProps['size']>('m');
+
+  const textSizeOnChange = (optionId: EuiInlineEditTextProps['size']) => {
+    setToggleTextButtonSize(optionId);
+  };
+
+  return (
+    <>
+      <EuiButtonGroup
+        legend="Text size"
+        options={textSizeButtons}
+        idSelected={toggleTextButtonSize as string}
+        onChange={(id) =>
+          textSizeOnChange(id as EuiInlineEditTextProps['size'])
+        }
+      />
+
+      <EuiSpacer />
+
+      <EuiInlineEditText
+        size={toggleTextButtonSize}
+        inputAriaLabel="Edit text inline"
+        defaultValue="Hello World!"
+      />
+    </>
+  );
+};
+```
+
+## Display and edit headings and titles
+
+Use **EuiInlineEditTitle** to display and edit titles. Use the `heading` property to set the heading level in `readMode`.
+
+```tsx interactive
+import React, { useState } from 'react';
+import {
+  EuiInlineEditTitle,
+  EuiSpacer,
+  EuiButtonGroup,
+  EuiTitleSize,
+} from '@elastic/eui';
+
+export default () => {
+  const titleSizeButtons = [
+    {
+      id: 'xxxs',
+      label: '3X Small',
+    },
+    {
+      id: 'xxs',
+      label: '2X Small',
+    },
+    {
+      id: 'xs',
+      label: 'Extra small',
+    },
+    {
+      id: 's',
+      label: 'Small',
+    },
+    {
+      id: 'm',
+      label: 'Medium',
+    },
+    {
+      id: 'l',
+      label: 'Large',
+    },
+  ];
+
+  const [toggleTitleButtonSize, setToggleTitleButtonSize] =
+    useState<EuiTitleSize>('m');
+
+  const titleSizeOnChange = (optionId: EuiTitleSize) => {
+    setToggleTitleButtonSize(optionId);
+  };
+
+  return (
+    <>
+      <EuiButtonGroup
+        legend="Title size"
+        options={titleSizeButtons}
+        idSelected={toggleTitleButtonSize}
+        onChange={(id) => titleSizeOnChange(id as EuiTitleSize)}
+      />
+
+      <EuiSpacer />
+
+      <EuiInlineEditTitle
+        heading="h3"
+        size={toggleTitleButtonSize}
+        inputAriaLabel="Edit title inline"
+        defaultValue="Hello World (but as a title)!"
+      />
+    </>
+  );
+};
+```
+
+## Controlled values
+
+To control the text value for inline edit, use the `value` prop to continually pass a text value. An`onChange` callback is required to receive and update `value` based on user input. An `onCancel` callback is required to reset the value to the previous read mode text value.
+
+```tsx interactive
+import React, { useState, ChangeEvent } from 'react';
+import { EuiInlineEditText } from '@elastic/eui';
+
+export default () => {
+  const [inlineEditValue, setInlineEditValue] = useState('Hello World!');
+
+  const inlineEditOnChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setInlineEditValue(e.target.value);
+  };
+
+  return (
+    <EuiInlineEditText
+      inputAriaLabel="Edit title inline"
+      value={inlineEditValue}
+      onChange={inlineEditOnChange}
+      onCancel={(previousValue) => {
+        setInlineEditValue(previousValue);
+      }}
+    />
+  );
+};
+```
+
+## Saving edited text
+
+Use the `onSave` property to retrieve the value of the edited text when the save button is pressed. `onSave` does not fire if the user cancels their edit.
+
+```tsx interactive
+import React from 'react';
+import { EuiInlineEditText } from '@elastic/eui';
+
+export default () => {
+  const saveToLocalStorage = (newInlineEditValue: string) => {
+    localStorage.setItem('inlineEditValue', newInlineEditValue);
+  };
+
+  const defaultInlineEditValue =
+    localStorage.getItem('inlineEditValue') ||
+    'This value will persist when you refresh the page!';
+
+  return (
+    <EuiInlineEditText
+      inputAriaLabel="Edit text inline"
+      defaultValue={defaultInlineEditValue}
+      onSave={saveToLocalStorage}
+    />
+  );
+};
+```
+
+## Validating edited text
+
+Validation states (`isLoading` and `isInvalid`) only display while the user is in edit mode.
+
+Return a boolean from your `onSave` callback to validate text after pressing Save. You can also return a boolean from a promise. Validation happens before the user returns to read mode.
+
+Returning `false` from `onSave` will keep the user in edit mode, where you can then display validation state and messages. Returning `true` or `undefined` will return the user to read mode.
+
+```tsx interactive
+import React, { useState } from 'react';
+import { EuiInlineEditText } from '@elastic/eui';
+
+export default () => {
+  const [isLoading, setIsLoading] = useState(false);
+  const [errors, setErrors] = useState<string[]>([]);
+  const isInvalid = errors.length > 0;
+
+  const mockApiCall = (value: string) =>
+    new Promise((resolve) => {
+      localStorage.setItem('inlineEditValueValidated', value);
+      setTimeout(resolve, 3000);
+    });
+
+  const defaultInlineEditValue =
+    localStorage.getItem('inlineEditValueValidated') ||
+    'This value will persist when you refresh the page!';
+
+  return (
+    <>
+      <EuiInlineEditText
+        inputAriaLabel="This input will validate on save"
+        defaultValue={defaultInlineEditValue}
+        editModeProps={{
+          formRowProps: { error: errors },
+          cancelButtonProps: { onClick: () => setErrors([]) },
+          inputProps: { readOnly: isLoading },
+        }}
+        isInvalid={isInvalid}
+        isLoading={isLoading}
+        onSave={async (value) => {
+          // Validate edited text
+          if (!value) {
+            setErrors(['Please enter text.']);
+            return false;
+          } else if (value.length > 20) {
+            setErrors([
+              'Your text is too long - please enter less than 20 characters',
+            ]);
+            return false;
+          }
+
+          // Clear errors, set loading state, and "call" an API
+          setErrors([]);
+          setIsLoading(true);
+          await mockApiCall(value);
+          setIsLoading(false);
+          return true;
+        }}
+      />
+    </>
+  );
+};
+```
+
+## Setting placeholder instructions
+
+The `placeholder` property will display in both read and edit mode whenever the **EuiInlineEdit**'s value is empty. Use placeholder text to provide guidance or instructions to consumers as to what they're editing.
+
+```tsx interactive
+import React from 'react';
+import { EuiInlineEditText, EuiInlineEditTitle, EuiSpacer } from '@elastic/eui';
+
+export default () => {
+  return (
+    <>
+      <EuiInlineEditText
+        inputAriaLabel="Placeholder text example"
+        defaultValue=""
+        placeholder="Add a description"
+      />
+
+      <EuiSpacer />
+
+      <EuiInlineEditTitle
+        heading="h3"
+        inputAriaLabel="Placeholder title example"
+        defaultValue=""
+        placeholder="Set your username"
+      />
+    </>
+  );
+};
+```
+
+## Start in edit mode
+
+Use the `startWithEditOpen` prop to default to opening in edit mode.
+
+```tsx interactive
+import React from 'react';
+import { EuiInlineEditText, EuiInlineEditTitle, EuiSpacer } from '@elastic/eui';
+
+export default () => {
+  return (
+    <>
+      <EuiInlineEditText
+        inputAriaLabel="Edit text inline"
+        defaultValue="This text starts in edit mode"
+        startWithEditOpen={true}
+      />
+
+      <EuiSpacer />
+
+      <EuiInlineEditTitle
+        heading="h3"
+        inputAriaLabel="Edit title inline"
+        defaultValue="This title starts in edit mode"
+        startWithEditOpen={true}
+      />
+    </>
+  );
+};
+```
+
+## Read only
+
+Use the `isReadOnly` prop to lock `EuiInlineEdit` in read mode and display the text value. This does not affect the input form control in edit mode.
+
+```tsx interactive
+import React, { useState } from 'react';
+import {
+  EuiInlineEditText,
+  EuiInlineEditTitle,
+  EuiSpacer,
+  EuiSwitch,
+} from '@elastic/eui';
+
+export default () => {
+  const [isReadOnly, setIsReadOnly] = useState(true);
+
+  return (
+    <>
+      <EuiSwitch
+        label="Toggle read only"
+        checked={isReadOnly}
+        onChange={(e) => setIsReadOnly(e.target.checked)}
+      />
+
+      <EuiSpacer />
+
+      <EuiInlineEditText
+        inputAriaLabel="Edit text inline"
+        defaultValue="This is read only text!"
+        isReadOnly={isReadOnly}
+      />
+
+      <EuiSpacer />
+
+      <EuiInlineEditTitle
+        heading="h3"
+        inputAriaLabel="Edit title inline"
+        defaultValue="This is a read only title!"
+        isReadOnly={isReadOnly}
+      />
+    </>
+  );
+};
+```
+
+## Customizing read and edit modes
+
+Customize the read mode by passing `readModeProps`, which accepts any [EuiButtonEmpty](../../navigation/buttons/empty.mdx#props) properties.
+
+Customize the edit mode by passing `editModeProps`. This prop contains nested object properties that are applied to various child components in edit mode:
+
+*   `editMode.formRowProps` accepts any [EuiFormRow](../layouts/row.mdx#props) properties
+*   `editMode.inputProps` accepts any [EuiFieldText](../text/basic.mdx#props) properties
+*   `editMode.saveButtonProps` accepts any [EuiButtonIcon](../../navigation/buttons/icon.mdx) properties
+*   `editMode.cancelButtonProps` accepts any [EuiButtonIcon](../../navigation/buttons/icon.mdx) properties
+
+```tsx interactive
+import React from 'react';
+import { EuiInlineEditText } from '@elastic/eui';
+
+export default () => {
+  return (
+    <EuiInlineEditText
+      inputAriaLabel="Edit text inline for readMode and editMode props"
+      defaultValue="This inline edit component has been customized!"
+      readModeProps={{
+        color: 'primary',
+        iconSide: 'left',
+      }}
+      editModeProps={{
+        inputProps: {
+          prepend: 'Prepend example',
+        },
+        formRowProps: {
+          helpText: 'Example help text',
+        },
+        saveButtonProps: {
+          color: 'primary',
+        },
+        cancelButtonProps: {
+          display: 'empty',
+        },
+      }}
+    />
+  );
+};
+```
+
+## Props
+
+import docgen from '@elastic/eui-docgen/dist/components/inline_edit';
+
+<PropTable definition={docgen.EuiInlineEditText} />
+<PropTable definition={docgen.EuiInlineEditTitle} />

@@ -1,0 +1,65 @@
+# Error messages
+
+## What is an error?
+
+An error happens when the system couldn’t do something it was trying to do.
+
+There are lots of reasons why errors happen, but they’re not always obvious to the user. It could be because instructions were not clear, data is missing, or there are bugs in the application.
+
+We should do everything we can to [help users to avoid errors](./help-users-avoid-errors.mdx). When an error occurs, we **must** tell the user. You should tell them exactly what went wrong, and any actions they can take to fix it.
+
+Missing or badly written error messages can be frustrating, time consuming and difficult to recover from. They can also make the user believe the task is more complex than it is, and can give the impression that our product is low quality.
+
+We have written guidance on [how to write good error messages](./how-to-write-good-error-messages.mdx).
+
+### Primary errors
+
+Primary errors are as bad as it gets. They block the user from completing the current task, and we can’t even show them the page they expected. For example, when a user does not have permission to view a page, error code 403. A primary error should redirect the user to an error page.
+
+Read more about the [error page pattern](./error-page.mdx).
+
+### Secondary errors
+
+Secondary errors happen when there is an error which blocks the current task, but we can still show them the page they expected. For example, an API or cluster that is not responding, error code `504`. A secondary error should reload the page without the user losing any information, and display an error banner.
+
+Read more about the [error banner pattern](./error-banners.mdx).
+
+### Validation errors
+
+Validation errors happen when the user enters information in a different format than expected, blocking the current task, error code `400`. Validation errors should reload the page without the user losing any information, display an error summary, and highlight any fields which caused errors.
+
+Read more about the [validation errors pattern](./error-validation.mdx).
+
+### Unrelated errors (Warnings)
+
+Unrelated errors are warnings. They don’t impact the user right now, but they’re useful to know. For example, there may be an error in another part of the application, but it’s not blocking the current task.
+
+Read more about the [error warning pattern](./error-warning.mdx).
+
+## Error codes
+
+When an error happens, there is usually an error code provided by the client (browser) or the server, which can help us to explain to the user what went wrong.
+
+It can be tempting to just tell the user, ‘hey, error 504’. But, most users won’t know what that means. Rather than just quoting the error code, we should translate what it means to the user in plain language.
+
+See examples for common error codes:
+- [400: Bad request](./examples.mdx#400-bad-request)
+- [401: Unauthorized](./examples.mdx#401-unauthorized)
+- [403: Forbidden](./examples.mdx#403-forbidden)
+- [404: Not found](./examples.mdx#404-not-found)
+- [408: Request timeout](./examples.mdx#408-request-timeout)
+- [410: Gone](./examples.mdx#410-gone)
+- [429: Too many requests](./examples.mdx#429-too-many-requests)
+- [500: Internal server error](./examples.mdx#500-internal-server-error)
+- [502: Bad gateway](./examples.mdx#502-bad-gateway)
+- [503: Service unavailable](./examples.mdx#503-service-unavailable)
+- [504: Gateway timeout](./examples.mdx#504-gateway-timeout)
+- [507: Insufficient storage](./examples.mdx#507-insufficient-storage)
+
+
+You can read in-depth about all the different [client errors](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status#client_error_responses) and [server errors](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status#server_error_responses) on [MDN Web Docs](https://developer.mozilla.org/en-US/).
+
+## Related patterns and documentation
+
+- [Confirmation prompts](../../components/containers/modal/index.mdx#confirming-an-action)
+- [Content patterns](../../content/index.mdx)

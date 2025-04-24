@@ -12,7 +12,7 @@ import { UseEuiTheme } from '../../services';
 export const euiTextColorStyles = ({ euiTheme }: UseEuiTheme) => ({
   euiTextColor: css``,
   default: css`
-    color: ${euiTheme.colors.text};
+    color: ${euiTheme.colors.textParagraph};
   `,
   subdued: css`
     color: ${euiTheme.colors.textSubdued};

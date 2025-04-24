@@ -1,0 +1,289 @@
+# Pagination
+
+Some EUI components have pagination built-in, like [EuiBasicTable](../../tabular-content/tables/basic.mdx), but for custom built paginated interfaces you can use **EuiPagination** manually.
+
+## Component
+
+**EuiPagination** accepts a total `pageCount` and only shows up to 5 consecutive pages, with shortcuts to the first and/or last page. It also requires the parent component to maintain the current `activePage` and handle the `onPageClick`.
+
+:::accessibility Accessibility recommendation
+Provide a descriptive `aria-label` for each pagination set.
+:::
+
+```tsx interactive
+import React, { useState } from 'react';
+import { EuiPagination } from '@elastic/eui';
+
+export default function () {
+  const [activePage, setActivePage] = useState(0);
+  const PAGE_COUNT = 22;
+
+  return (
+    <EuiPagination
+      aria-label="Many pages example"
+      pageCount={PAGE_COUNT}
+      activePage={activePage}
+      onPageClick={(activePage) => setActivePage(activePage)}
+    />
+  );
+}
+```
+
+## Usage
+
+### Few pages
+
+The UI simplifies when we have fewer than the maximum number of visible pages.
+
+```tsx interactive
+import React, { useState } from 'react';
+import { EuiPagination } from '@elastic/eui';
+
+export default function () {
+  const [activePage, setActivePage] = useState(0);
+  const PAGE_COUNT = 4;
+
+  return (
+    <EuiPagination
+      aria-label="Few pages example"
+      pageCount={PAGE_COUNT}
+      activePage={activePage}
+      onPageClick={(activePage) => setActivePage(activePage)}
+    />
+  );
+}
+```
+
+### Centered pagination
+
+You can use [EuiFlexGroup](../../layout/flex/group.mdx) to center the pagination in a layout.
+
+```tsx interactive
+import React, { useState } from 'react';
+import { EuiFlexGroup, EuiFlexItem, EuiPagination } from '@elastic/eui';
+
+export default function () {
+  const [activePage, setActivePage] = useState(0);
+  const PAGE_COUNT = 15;
+
+  return (
+    <EuiFlexGroup justifyContent="spaceAround">
+      <EuiFlexItem grow={false}>
+        <EuiPagination
+          aria-label="Centered pagination example"
+          pageCount={PAGE_COUNT}
+          activePage={activePage}
+          onPageClick={(activePage) => setActivePage(activePage)}
+        />
+      </EuiFlexItem>
+    </EuiFlexGroup>
+  );
+}
+```
+
+### Compressed and responsive
+
+Use the `compressed` prop to minimize the horizontal footprint. This will replace the numbered buttons with static numbers and rely on the first, last, next and previous icon buttons to navigate.
+
+This is also the same display that will occur when `responsive` is **not** `false`. You can adjust the responsiveness by supplying an array of [named breakpoints](../../../getting-started/theming/tokens/breakpoints/index.mdx) to `responsive`. The default is `['xs', 's']`.
+
+```tsx interactive
+import React, { useState } from 'react';
+import { EuiPagination } from '@elastic/eui';
+
+export default function () {
+  const [activePage, setActivePage] = useState(0);
+  const PAGE_COUNT = 24;
+
+  return (
+    <EuiPagination
+      aria-label="Compressed example"
+      pageCount={PAGE_COUNT}
+      activePage={activePage}
+      onPageClick={(activePage) => setActivePage(activePage)}
+      compressed
+    />
+  );
+}
+```
+
+### Indeterminate page count
+
+If the total number of pages cannot be accurately determined, you can pass `0` as the `pageCount`. This will remove the button numbers and rely solely on the arrow icon buttons for navigation. Without a total page count, the last page button will pass back `-1` for the `activePage`.
+
+```tsx interactive
+import React, { useState } from 'react';
+import { EuiPagination } from '@elastic/eui';
+
+export default function () {
+  const [activePage, setActivePage] = useState(0);
+
+  return (
+    <EuiPagination
+      aria-label="Indeterminate example"
+      pageCount={0}
+      activePage={activePage}
+      onPageClick={(activePage) => setActivePage(activePage)}
+    />
+  );
+}
+```
+
+### Table pagination
+
+You can use **EuiTablePagination** to create a combination "Rows per page" and pagination set, commonly used with [tables](../../tabular-content/tables/basic.mdx#pagination). If you pass `0` in as one of the `itemsPerPageOptions`, it will create a "Show all" option and hide the pagination.
+
+```tsx interactive
+import React, { useState } from 'react';
+import { EuiTablePagination } from '@elastic/eui';
+
+export default () => {
+  const totalEntries = 1250;
+  const [activePage, setActivePage] = useState(0);
+  const [rowSize, setRowSize] = useState(50);
+  const [pageCount, setPageCount] = useState(Math.ceil(totalEntries / 50));
+
+  const goToPage = (pageNumber: number) => setActivePage(pageNumber);
+  const changeItemsPerPage = (pageSize: number) => {
+    setPageCount(Math.ceil(totalEntries / pageSize));
+    setRowSize(pageSize);
+    setActivePage(0);
+  };
+
+  return (
+    <EuiTablePagination
+      aria-label="Table pagination example"
+      pageCount={pageCount}
+      activePage={activePage}
+      onChangePage={goToPage}
+      itemsPerPage={rowSize}
+      onChangeItemsPerPage={changeItemsPerPage}
+      itemsPerPageOptions={[10, 20, 0]}
+    />
+  );
+};
+```
+
+### Custom pagination
+
+Or you can use [EuiFlexGroup](../../layout/flex/group.mdx) and [EuiContextMenu](../context-menu.mdx#with-single-panel) to set up your own custom pagination layout.
+
+```tsx interactive
+import React, { useState } from 'react';
+import {
+  EuiButtonEmpty,
+  EuiContextMenuItem,
+  EuiContextMenuPanel,
+  EuiFlexGroup,
+  EuiFlexItem,
+  EuiPagination,
+  EuiPopover,
+} from '@elastic/eui';
+
+export default () => {
+  const [isPopoverOpen, setIsPopoverOpen] = useState(false);
+  const [activePage, setActivePage] = useState(0);
+  const [rowSize, setRowSize] = useState(50);
+
+  const PAGE_COUNT = 10;
+
+  const onButtonClick = () =>
+    setIsPopoverOpen((isPopoverOpen) => !isPopoverOpen);
+  const closePopover = () => setIsPopoverOpen(false);
+
+  const goToPage = (pageNumber: number) => setActivePage(pageNumber);
+
+  const getIconType = (size: number) => {
+    return size === rowSize ? 'check' : 'empty';
+  };
+
+  const button = (
+    <EuiButtonEmpty
+      size="xs"
+      color="text"
+      iconType="arrowDown"
+      iconSide="right"
+      onClick={onButtonClick}
+    >
+      Rows per page: {rowSize}
+    </EuiButtonEmpty>
+  );
+
+  const items = [
+    <EuiContextMenuItem
+      key="10 rows"
+      icon={getIconType(10)}
+      onClick={() => {
+        closePopover();
+        setRowSize(10);
+      }}
+    >
+      10 rows
+    </EuiContextMenuItem>,
+    <EuiContextMenuItem
+      key="20 rows"
+      icon={getIconType(20)}
+      onClick={() => {
+        closePopover();
+        setRowSize(20);
+      }}
+    >
+      20 rows
+    </EuiContextMenuItem>,
+    <EuiContextMenuItem
+      key="50 rows"
+      icon={getIconType(50)}
+      onClick={() => {
+        closePopover();
+        setRowSize(50);
+      }}
+    >
+      50 rows
+    </EuiContextMenuItem>,
+  ];
+
+  return (
+    <EuiFlexGroup
+      justifyContent="spaceBetween"
+      alignItems="center"
+      responsive={false}
+      wrap
+    >
+      <EuiFlexItem grow={false}>
+        <EuiPopover
+          button={button}
+          isOpen={isPopoverOpen}
+          closePopover={closePopover}
+          panelPaddingSize="none"
+        >
+          <EuiContextMenuPanel items={items} />
+        </EuiPopover>
+      </EuiFlexItem>
+
+      <EuiFlexItem grow={false}>
+        <EuiPagination
+          aria-label="Custom pagination example"
+          pageCount={PAGE_COUNT}
+          activePage={activePage}
+          onPageClick={goToPage}
+        />
+      </EuiFlexItem>
+    </EuiFlexGroup>
+  );
+};
+```
+
+## Guidelines
+
+import Guidelines from './_guidelines.mdx';
+
+<Guidelines />
+
+## Props
+
+import paginationDocgen from '@elastic/eui-docgen/dist/components/pagination';
+import tableDocgen from '@elastic/eui-docgen/dist/components/table';
+
+<PropTable definition={paginationDocgen.EuiPagination} />
+<PropTable definition={paginationDocgen.EuiPaginationButton} />
+<PropTable definition={tableDocgen.EuiTablePagination} />

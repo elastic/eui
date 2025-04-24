@@ -1,0 +1,193 @@
+---
+sidebar_position: 3
+---
+
+# Described form groups
+
+Use **EuiDescribedFormGroup** component to create sections of associated form controls and rows. It can also simply be used with one **EuiFormRow** as a way to display additional text next to the field (on mobile, it will revert to being stacked).
+
+Read more about appropriate layout usage of **EuiDescribedFormGroup** in the [guidelines](./guidelines.mdx#described-groups).
+
+```tsx interactive
+import React from 'react';
+import {
+  EuiFieldText,
+  EuiForm,
+  EuiFormRow,
+  EuiDescribedFormGroup,
+  EuiFilePicker,
+  EuiRange,
+  EuiSelect,
+  EuiLink,
+  useGeneratedHtmlId,
+} from '@elastic/eui';
+
+export default () => {
+  const describedFormRangeId = useGeneratedHtmlId({
+    prefix: 'describedFormRange',
+  });
+
+  return (
+    <EuiForm component="form">
+      <EuiDescribedFormGroup
+        title={<h3>Single text field</h3>}
+        description={
+          <p>
+            Descriptions are wrapped in a small, subdued{' '}
+            <EuiLink href="../../../display/text">
+              <strong>EuiTextBlock</strong>
+            </EuiLink>
+            . It can have links or any other type of content. Be sure to wrap
+            nodes in a paragraph tag.
+          </p>
+        }
+      >
+        <EuiFormRow label="Text field">
+          <EuiFieldText name="first" aria-label="Example" />
+        </EuiFormRow>
+      </EuiDescribedFormGroup>
+      <EuiDescribedFormGroup title={<h3>No description</h3>}>
+        <EuiFormRow label="Text field">
+          <EuiFieldText name="first" />
+        </EuiFormRow>
+      </EuiDescribedFormGroup>
+      <EuiDescribedFormGroup
+        title={<h3>Multiple fields</h3>}
+        description="Here are three form rows. The first form row does not have a label."
+      >
+        <EuiFormRow
+          hasEmptyLabelSpace
+          helpText={<span>This is a help text</span>}
+        >
+          <EuiSelect
+            hasNoInitialSelection
+            onChange={() => {}}
+            options={[
+              { value: 'option_one', text: 'Option one' },
+              { value: 'option_two', text: 'Option two' },
+              { value: 'option_three', text: 'Option three' },
+            ]}
+            aria-label="An example of a form element without a visible label"
+          />
+        </EuiFormRow>
+
+        <EuiFormRow label="File picker">
+          <EuiFilePicker />
+        </EuiFormRow>
+
+        <EuiFormRow label="Range">
+          <EuiRange
+            min={0}
+            value={50}
+            max={100}
+            name="range"
+            id={describedFormRangeId}
+          />
+        </EuiFormRow>
+      </EuiDescribedFormGroup>
+    </EuiForm>
+  );
+};
+```
+
+### Sizing described form rows
+
+By default, **EuiDescribedFormGroup** has a max-width of 800px for best readability. To expand the group to 100%, add the `fullWidth` prop to this, the **EuiFormRow**, **and** the individual fields.
+
+```tsx interactive
+import React, { Fragment } from 'react';
+import {
+  EuiFieldText,
+  EuiForm,
+  EuiFormRow,
+  EuiDescribedFormGroup,
+  EuiFilePicker,
+} from '@elastic/eui';
+
+export default () => {
+  return (
+    <EuiForm component="form">
+      <EuiDescribedFormGroup
+        fullWidth
+        title={<h2>Full width</h2>}
+        description={
+          <Fragment>
+            The title and description will grow to fill the left side column at
+            any width. Be mindful that it doesn&apos;t get too wide.
+          </Fragment>
+        }
+      >
+        <EuiFormRow
+          fullWidth
+          label="Text field"
+          helpText={
+            <span>
+              Be sure to add fullWidth to EuiFormRow and nested fields.
+            </span>
+          }
+        >
+          <EuiFieldText fullWidth name="first" aria-label="Example" />
+        </EuiFormRow>
+
+        <EuiFormRow fullWidth label="File picker">
+          <EuiFilePicker fullWidth />
+        </EuiFormRow>
+      </EuiDescribedFormGroup>
+    </EuiForm>
+  );
+};
+```
+
+You can also change the ratio of the width of the description column versus the field column. By default it is `'half'`, but you can also change to `'third'` or `'quarter'` which prioritizes the field column. You will most likely still need to apply `fullWidth` to all the components. The description column does have a minimum readable width applied to it so that it cannot shrink too far.
+
+Both the description and field columns are simply **EuiFlexItem** wrappers. If you need more customization of these columns you can pass flex item props to `descriptionFlexItemProps` and `fieldFlexItemProps` respectively.
+
+```tsx interactive
+import React, { Fragment } from 'react';
+import {
+  EuiFieldText,
+  EuiForm,
+  EuiFormRow,
+  EuiDescribedFormGroup,
+  EuiFilePicker,
+} from '@elastic/eui';
+
+export default () => {
+  return (
+    <EuiForm component="form">
+      <EuiDescribedFormGroup
+        ratio="third"
+        title={<h2>Ratio of thirds</h2>}
+        description={
+          <Fragment>
+            The title and description will shrink to fit inside the left side
+            but retains a readable minimum width.
+          </Fragment>
+        }
+      >
+        <EuiFormRow
+          fullWidth
+          label="Text field"
+          helpText={
+            <span>
+              Be sure to add fullWidth to EuiFormRow and nested fields.
+            </span>
+          }
+        >
+          <EuiFieldText fullWidth name="first" aria-label="Example" />
+        </EuiFormRow>
+
+        <EuiFormRow fullWidth label="File picker">
+          <EuiFilePicker fullWidth />
+        </EuiFormRow>
+      </EuiDescribedFormGroup>
+    </EuiForm>
+  );
+};
+```
+
+## Props
+
+import docgen from '@elastic/eui-docgen/dist/components/form';
+
+<PropTable definition={docgen.EuiDescribedFormGroup} />

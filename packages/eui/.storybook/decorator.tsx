@@ -128,6 +128,13 @@ const storybookToolbarColorModes: Array<
   { value: 'dark', title: 'Dark mode', icon: 'circle' },
 ];
 
+const storybookToolbarHighContrastMode: Array<
+  ToolbarDisplay & { value: boolean }
+> = [
+  { value: false, title: 'High contrast off', icon: 'circlehollow' },
+  { value: true, title: 'High contrast on', icon: 'circle' },
+];
+
 const storybookToolbarWritingModes: Array<
   ToolbarDisplay & { value: WritingModes }
 > = [
@@ -151,6 +158,17 @@ export const euiProviderDecoratorGlobals: Preview['globalTypes'] = {
     toolbar: {
       title: 'Color mode',
       items: storybookToolbarColorModes,
+      dynamicTitle: true,
+    },
+  },
+  highContrastMode: {
+    description: 'High contrast mode for EuiProvider theme',
+    defaultValue: window?.matchMedia?.('(prefers-contrast: more)').matches
+      ? true
+      : false,
+    toolbar: {
+      title: 'Contrast mode',
+      items: storybookToolbarHighContrastMode,
       dynamicTitle: true,
     },
   },

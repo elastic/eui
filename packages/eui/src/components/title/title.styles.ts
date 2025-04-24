@@ -52,7 +52,7 @@ export const euiTitle = (
       options
     ),
     fontWeight: euiTheme.font.weight[euiTheme.font.title.weight],
-    color: euiTheme.colors.title,
+    color: euiTheme.colors.textHeading,
   };
 };
 

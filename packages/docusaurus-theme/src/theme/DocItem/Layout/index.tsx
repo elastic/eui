@@ -23,6 +23,10 @@ import DocItemTOCDesktop from '../TOC/Desktop';
 import DocItemContent from '../Content';
 import DocItemFooter from '../Footer';
 
+// At 1280px there's enough space to show the TOC,
+// until then we show the mobile/collapsible TOC
+const BREAKPOINT_TOC = 1280;
+
 // converted from css modules to emotion
 const styles = {
   docItemContainer: css`
@@ -36,7 +40,22 @@ const styles = {
   `,
   docItemCol: css`
     @media (min-width: 997px) {
-      max-width: 830px;
+      font-size: 100%;
+      max-width: 94ch;
+      /* Ensure TOC won't wrap */
+      overflow-x: auto;
+    }
+  `,
+  docItemTOCDesktopContainter: css`
+    display: none;
+
+    @media (min-width: ${BREAKPOINT_TOC}px) {
+      display: block;
+    }
+  `,
+  docItemTOCMobileContainter: css`
+    @media (min-width: ${BREAKPOINT_TOC}px) {
+      display: none;
     }
   `,
 };
@@ -51,12 +70,9 @@ function useDocTOC() {
   const hidden = frontMatter.hide_table_of_contents ?? false;
   const canRender = !hidden && toc.length > 0;
 
+  // Hide/show for TOC elements is handled by media queries
   const mobile = canRender ? <DocItemTOCMobile /> : undefined;
-
-  const desktop =
-    canRender && (windowSize === 'desktop' || windowSize === 'ssr') ? (
-      <DocItemTOCDesktop />
-    ) : undefined;
+  const desktop = canRender ? <DocItemTOCDesktop /> : undefined;
 
   return {
     hidden,
@@ -78,7 +94,7 @@ export default function DocItemLayout({ children }: typeof Props): JSX.Element {
           <article>
             <DocBreadcrumbs />
             <DocVersionBadge />
-            {docTOC.mobile}
+            <div css={styles.docItemTOCMobileContainter}>{docTOC.mobile}</div>
             <DocItemContent>{children}</DocItemContent>
             <DocItemFooter />
           </article>
@@ -86,7 +102,11 @@ export default function DocItemLayout({ children }: typeof Props): JSX.Element {
           <DocItemPaginator />
         </div>
       </div>
-      {docTOC.desktop && <div className="col col--3">{docTOC.desktop}</div>}
+      {docTOC.desktop && (
+        <div className="col col--3" css={styles.docItemTOCDesktopContainter}>
+          {docTOC.desktop}
+        </div>
+      )}
     </div>
   );
 }

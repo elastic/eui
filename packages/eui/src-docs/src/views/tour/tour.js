@@ -36,7 +36,7 @@ const demoTourSteps = [
 
 const tourConfig = {
   currentTourStep: 1,
-  isTourActive: true,
+  isTourActive: false,
   tourPopoverWidth: 360,
   tourSubtitle: 'Demo tour',
 };
@@ -97,12 +97,17 @@ export default () => {
 
   return (
     <div>
-      <EuiButtonEmpty iconType="refresh" flush="left" onClick={resetTour}>
-        Reset tour
+      <EuiButtonEmpty
+        size="s"
+        iconType="refresh"
+        flush="left"
+        onClick={resetTour}
+      >
+        Begin tour
       </EuiButtonEmpty>
-      <EuiSpacer />
+      <EuiSpacer size="m" />
       <EuiForm component="form">
-        <EuiFormRow label="Enter an ES SQL query">
+        <EuiFormRow label="Query">
           <EuiTourStep
             content={demoTourSteps[0].content}
             isStepOpen={state.currentTourStep === 1 && state.isTourActive}
@@ -113,10 +118,11 @@ export default () => {
             subtitle={state.tourSubtitle}
             title={demoTourSteps[0].title}
             anchorPosition="rightUp"
+            zIndex={1}
           >
             <EuiTextArea
               placeholder="Placeholder text"
-              aria-label="Enter ES SQL query"
+              aria-label="Query"
               value={queryValue}
               onChange={onChange}
               style={{ width: 400 }}
@@ -124,7 +130,7 @@ export default () => {
           </EuiTourStep>
         </EuiFormRow>
 
-        <EuiSpacer />
+        <EuiSpacer size="m" />
 
         <EuiTourStep
           anchorPosition="rightUp"
@@ -137,7 +143,9 @@ export default () => {
           subtitle={state.tourSubtitle}
           title={demoTourSteps[1].title}
         >
-          <EuiButton onClick={handleClick}>Save query</EuiButton>
+          <EuiButton fill size="s" onClick={handleClick}>
+            Save
+          </EuiButton>
         </EuiTourStep>
       </EuiForm>
     </div>

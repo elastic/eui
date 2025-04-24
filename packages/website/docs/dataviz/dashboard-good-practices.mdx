@@ -1,0 +1,202 @@
+---
+sidebar_position: 2
+---
+
+# Dashboard good practices
+
+import VersionBadge from './version_badge';
+
+<VersionBadge />
+
+Dashboards are the most common way to monitor our own data, to be alerted of important events and to gather insights. They typically work combining different charts that might be completely unrelated as they can share the same data source from different points of view.
+
+To understand the role of dashboards it's important to frame what they are and what is their function, to avoid using them in the wrong way. We will use the definition that Stephen Few uses in his “Information design dashboard”, where he states:
+
+**A dashboard is a visual display of the most important information needed to
+achieve one or more objectives; consolidated and arranged on a single screen
+so the information can be monitored at a glance.**
+
+It's important to learn how to get the best out of this tool, to do so we put together a series of high level principles that could help you to create a dashboard that leverages your data and facilitates its understanding.
+
+NOTE: if you are looking for a practical guide of the functionalities of dashboards and a basic tutorial on how to handle them, have a look at this page: [Kibana Guide](https://www.elastic.co/guide/en/kibana/current/dashboard.html "Kibana Guide")
+
+---
+
+## Structure
+
+A preliminary research conducted on dashboards made by Elastic customers showed a tendency to relate on one of the following templates when building a monitoring application. Unfortunately, we don't offer (yet) a simplified way to re-created on of these templates but we suggest to take inspiration from one of these four major categories when building your own dashboard, according to your needs and to the goal of your product.
+
+<FigmaEmbed url="https://www.figma.com/file/ljx7zNE8mIzGtXA39k4dMU/Dashboard-Good-Practices-%5B220%5D?type=design&node-id=1713-24059&mode=design&t=NfN1OtaqWM9sHBJN-4"
+    title="Most common dashboard templates"
+/>
+
+---
+
+## Context
+
+A wide assumption in design is that everything depends on the context and dashboards are not different. Similar charts could work differently in different environments and therefore we should always try to understand as much as possible what kind of context we are working with.
+
+To help this process you can try asking yourself questions like:
+
+#### 1 / <u>Who is going to use this dashboard?</u>
+
+Identifying your users is the most important thing that you have to do. This will help you understand how descriptive you have to be with title, charts typologies and explanation according to users skills and field knowledge.
+
+#### 2 / <u>How much time will the users have?</u>
+
+Dashboards should always be conceived for an immediate, clear and fast fruition. Don't overcomplicate it, give the users the information they need in the best and clearest way possible.
+
+#### 3 / <u>What is the main goal of this dashboard and if there are, what are the secondary ones?</u>
+
+This could help you identify your primary charts and how to build up a narrative that could go from primary to secondary charts, creating a comprehensive overview of the context.
+
+#### 4 / <u>What kind of charts can help users identify insights in the most immediate and clear way?</u>
+
+We know this is not a simple task and we are currently working on a proper series of guidance on how to choose a chart, our plan is to have a dedicated page for each chart typology where you will be able to find all the information needed to use it properly. In the meanwhile we can recommend two great resources that will help you decide what to do with a set of data. First, the chart classification made by dr. Andrew Abela is a classic in the determination of the best charts based on function. You can find it [here](https://flowingdata.com/wp-content/uploads/2009/01/chart-chart1.jpg?w=640 "Andrew Abela chart suggestions").
+Second, this great archive made by the Danish design studio Ferdio helps you learn about charts and filter by purpose. You can find the archive [here](https://datavizproject.com/ "Ferdio Dataviz Project").
+
+---
+
+## Organization and hierarchy
+
+Studies such as Gestalt show how the positioning of elements in space can define their belonging, with a certain degree this can be applied to dashboards.
+
+### Closure
+
+Charts that are related to the same typology of data or that are somehow connected by meaning should stay close together. When two related charts are placed away from each other the effort required of the user to move from one to the other could be too much, it's better to try to reduce this effort by putting them close together.
+
+Sometimes they can also work together. In the following example we show how two Metric Charts could live next to a Line Chart that share a more detailed version of the same data.
+As you can see the charts colors match, this way we can safely remove the legend from the line chart which is no longer necessary and we can have a wider understanding of the data.
+
+<FigmaEmbed url="https://www.figma.com/file/ljx7zNE8mIzGtXA39k4dMU/Dashboard-Good-Practices-%5B220%5D?type=design&node-id=1713-24245&mode=design&t=NfN1OtaqWM9sHBJN-4"
+    title="Concept of closure for dashboard panels."
+/>
+
+### Hierarchy
+
+There are two main concepts that you have to keep in mind when organizing charts in a dashboard:
+
+<u>Reading Direction</u>
+
+Most people are used to reading from top to bottom, this concept can be applied on dashboards as well. Place at the top of your page the most important charts and the ones that could give a brief and immediate summary of the context. A good general suggestion would be to increase the level of detail while you reach the bottom of the dashboard, this way users that are interested in getting all the information can obtain them without requiring too much effort from user that only need a quick glance of the situation.
+
+<u>Central focal point</u>
+
+Placing a big chart, especially with big visual shapes such as rectangles, at the center of the dashboard would help reinforce a natural visual focal point that lies in the center of the interface. As you can see in the following example, the barchart with blue bears is clearly the predominant piece of information and where we want the users to focus primarily.
+
+Keep in mind these two concepts and use them according to your needs.
+
+<FigmaEmbed url="https://www.figma.com/file/ljx7zNE8mIzGtXA39k4dMU/Dashboard-Good-Practices-%5B220%5D?type=design&node-id=1732-43337&mode=design&t=NfN1OtaqWM9sHBJN-4"
+    title="Concept of hierarchy for dashboard panels."
+/>
+
+### Rows
+
+A simple and common practice to structure your dashboard would consist in dividing it into rows. Placing charts in rows would make them belong to “sections” and therefore they will be considered related among each other.
+It's a good principle to follow when structuring a dashboard from top to bottom into different layers of detail and complexity.
+
+## Aspect ratio
+
+Within the data visualization field there have been multiple attempts to create a solid and unique rule to guide people in designing well proportioned charts. When is it ok to have an horizontal layout, how much can we shrink it without losing readability?
+
+There is no universal answer to these questions and the rules that currently are shared among the data community are far too complex to be understood and correctly used by anybody. We believe that a high level concept could do the work in our case.
+
+We suggest avoiding charts that are too narrow or too short, since we mainly deal with time series data and keep in mind that an horizontal proportion might be the best in showing trends and small variations.
+
+There are as usual exceptions, some charts (e.g. scatterplot) might benefit from squared proportions, look for specific instructions on each chart's page.
+
+<FigmaEmbed url="https://www.figma.com/file/ljx7zNE8mIzGtXA39k4dMU/Dashboard-Good-Practices-%5B220%5D?type=design&node-id=1732-45544&mode=design&t=NfN1OtaqWM9sHBJN-4"
+    title="Different chart proportions."
+/>
+
+---
+
+## Pick the right chart model
+
+When creating a new chart please consider its implied features. In the following example we can see how the area chart on the left is hard to read when we have really small numbers. Lines that move diagonally tend to hide small numbers due to the oblique direction that they follow, a stacked barchart instead is way better in showing details such as the one described.
+
+This is just an example useful to explain the concept and can be applied to several typologies of visualization, if you are stuck and don't know which chart to pick please feel free to reach out to the datavis team.
+
+<FigmaEmbed url="https://www.figma.com/file/ljx7zNE8mIzGtXA39k4dMU/Dashboard-Good-Practices-%5B220%5D?type=design&node-id=1701-19998&mode=design&t=NfN1OtaqWM9sHBJN-4"
+    title="Good and bad example of correct chart according to context."
+/>
+
+---
+
+## Colors
+
+#### Consistency
+
+The most important thing to keep in mind is that the best option is always to stick with the guidelines provided by our EUI. Colors provided there for visualization have been tested for accessibility contrast and using them you would be sure to properly serving the biggest audience. You can find this documentation [here](https://elastic.github.io/eui/#/elastic-charts/creating-charts "EUI Charts page")
+
+In addition to that, following these guidelines you'll be sure to get a consistent interface that will work perfectly with all other solutions.
+
+#### Relevance
+
+If your dashboard is made to identify specific behaviors it might be interesting to consider a color setting that could help pointing it out. Use a neutral color for generic elements and an accent one for the things that you are looking for.
+
+<FigmaEmbed url="https://www.figma.com/file/ljx7zNE8mIzGtXA39k4dMU/Dashboard-Good-Practices-%5B220%5D?type=design&node-id=1732-43797&mode=design&t=NfN1OtaqWM9sHBJN-4"
+    title="Use of color to highlight specific element."
+/>
+
+#### Custom brands
+
+Sometimes it happens that a dashboard needs to be customized according to a client brand identity. When so, be cautious and pick really few colors to work with, try to make the charts consistent among each other and don't forget about accessibility.
+
+If you want to go deeper and study how to work with colors, consider reading [this](https://blog.datawrapper.de/colors-for-data-vis-style-guides/ "Colors for data vis styleguides") great summary by Lisa Charlotte Muth from Datawrapper.
+
+---
+
+## Titles, labels and margins
+
+### Titles
+
+Titles can have a strong visual impact on dashboards, especially when there are a lot of small charts. Two principles can generally be followed:
+
+<ol>
+    <li>
+        remove unnecessary or repetitive titles when the information is already
+        explained or written within the chart (e.g. Metric Charts)
+    </li>
+    <li>
+        when title is needed make it self explanatory and exhaustive, this way
+        you will be able to remove axis titles and other specifications leaving
+        more space for the charts itself.
+    </li>
+</ol>
+
+<FigmaEmbed url="https://www.figma.com/file/ljx7zNE8mIzGtXA39k4dMU/Dashboard-Good-Practices-%5B220%5D?type=design&node-id=1732-45159&mode=design&t=NfN1OtaqWM9sHBJN-4"
+    title="Good and bad use of titles in panels."
+/>
+
+### Margins
+
+Kibana dashboards offer the possibility to apply margins between chart panels, we would suggest to always do that.
+Margins create separation between charts which is an important visual feature, it helps identifying when two elements belong together or not while, at the same time, they provide more spacing and empty spaces that are always useful in making our interface more clean and elegant.
+
+Using margins will also automatically apply little shadows to panels, this will make them stand out from the background.
+
+<FigmaEmbed url="https://www.figma.com/file/ljx7zNE8mIzGtXA39k4dMU/Dashboard-Good-Practices-%5B220%5D?type=design&node-id=1732-45435&mode=design&t=NfN1OtaqWM9sHBJN-4"
+    title="Example of panels with and without margins"
+/>
+
+### Labels, numbers and formatting
+
+<ol>
+    <li>
+        Reduce the number of decimal places to the absolutely necessary ones.
+        Use tables whenever you need precise numbers.
+    </li>
+    <li>
+        If possible, remove redundant labels. If we are talking about Usage
+        metrics, then you can easily remove the Usage word used across 7 charts
+        out of 8 charts in the prev example.
+    </li>
+</ol>
+
+---
+
+## Lens
+
+Always use Lens, when possible. There are still a few functionalities that you might not find in Lens (within [this document](https://docs.google.com/document/d/1uyyFGx6xA5Kvl8c-ZdvXdvBGrHTylxU9F69TGqfzdmw/edit?usp=sharing "Integration dashboard best practices") you can learn more about them) but everything is gradually moving into this application.
+It's the best choice to be consistent and up to date and it should always be your first choice when creating new visualizations.

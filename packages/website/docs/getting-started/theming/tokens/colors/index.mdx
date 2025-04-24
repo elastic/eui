@@ -1,0 +1,225 @@
+---
+sidebar_position: 3
+---
+
+# Colors
+
+import { EuiSpacer, EuiCodeBlock } from '@elastic/eui';
+
+Elastic UI builds with a color palette that is based on predefined 14-step scales for a core set of three colors (blue / teal / pink) as well as a green / yellow / red qualitative set and combined with a 28-step grayscale.
+Colors are defined to work well when combined for their semantic purpose.
+
+When switching between light and dark color modes, the theme keys do not change, only their values do.
+
+import ForcedColorsWarning from './_forced_colors_warning.mdx';
+
+<ForcedColorsWarning />
+
+## Brand colors
+
+Elastic has two main brand colors. The other three are used for statefulness like indicating between successful and dangerous actions.
+
+import { Example } from '@site/src/components';
+import { BrandColorPreview } from './brand_color_preview';
+import { BrandColorsTable } from './brand_colors_table';
+
+<Example>
+  <Example.Description>
+    ### `euiTheme.colors[brand]` <Badge color="hollow">token</Badge>
+
+    Most usages of the colors can be implemented simply by pulling and applying the values.
+  </Example.Description>
+  <Example.Preview>
+    <BrandColorPreview />
+  </Example.Preview>
+  <Example.Snippet>
+    ```tsx
+    css`
+      background: ${euiTheme.colors.warning};
+    `
+    ```
+  </Example.Snippet>
+</Example>
+
+<EuiSpacer />
+
+<BrandColorsTable />
+
+## Text colors
+
+Each brand color also has a corresponding text variant that should be used specifically when coloring text. As is used in [EuiTextColor](../../../../components/display/text.mdx#coloring-text).
+
+import { TextColorPreview } from './text_color_preview';
+import { TextColorsTable } from './text_colors_table';
+
+<Example>
+  <Example.Description>
+    ### `euiTheme.colors[colorText]` <Badge color="hollow">token</Badge>
+
+    Remember, when using any of the EUI colors for text, **use the text specific variant**.
+  </Example.Description>
+  <Example.Preview>
+    <TextColorPreview />
+  </Example.Preview>
+  <Example.Snippet>
+    ```tsx
+    css`
+      color: ${euiTheme.colors.textWarning};
+    `
+    ```
+  </Example.Snippet>
+</Example>
+
+<EuiSpacer />
+
+<TextColorsTable />
+
+## Background colors
+
+Semantic background colors. These should be used according to their semantic purpose.
+
+If a border is needed use the semantically related border color, e.g. `backgroundBasePrimary` with `borderBasePrimary`.
+
+import { BackgroundColorPreview } from './background_color_preview';
+import { BackgroundColorsTable } from './background_colors_table';
+
+<Example>
+  <Example.Description>
+    ### `euiTheme.colors[background]` <Badge color="hollow">token</Badge>
+  </Example.Description>
+  <Example.Preview>
+    <BackgroundColorPreview />
+  </Example.Preview>
+  <Example.Snippet>
+    ```tsx
+    css`
+      background-color: ${euiTheme.colors.backgroundFilledWarning};
+    `
+    ```
+  </Example.Snippet>
+</Example>
+
+<EuiSpacer />
+
+<BackgroundColorsTable />
+
+## Borders
+
+Semantic border colors. These should be used according to their semantic purpose.
+
+The default border color (used as `border.color`) `borderBaseSubdued`.
+Use the `base` border colors for most cases. Use `borderBasePlain` for a slightly stronger border (e.g. for forms).
+
+import { BorderColorPreview } from './border_color_preview';
+import { BorderColorsTable } from './border_colors_table';
+
+<Example>
+  <Example.Description>
+    ### `euiTheme.colors[border]` <Badge color="hollow">token</Badge>
+  </Example.Description>
+  <Example.Preview>
+    <BorderColorPreview />
+  </Example.Preview>
+  <Example.Snippet>
+    ```tsx
+    css`
+      border-color: ${euiTheme.colors.borderBaseWarning};
+    `
+    ```
+  </Example.Snippet>
+</Example>
+
+<br />
+
+<BorderColorsTable />
+
+## Shades
+
+A six-color grayscale palette. Variation beyond these colors is minimal and always done through computations against this set.
+
+import { ShadeColorPreview } from './shade_color_preview';
+import { ShadeColorsTable } from './shade_colors_table';
+
+<Example>
+  <Example.Description>
+    ### `euiTheme.colors[colorShade]` <Badge color="hollow">token</Badge>
+
+    Since the EUI colors usually evaluate to a hex value, the easiest way to perform color operations like transparency, shading, or tinting is by using the EUI provided methods of `transparentize()`, `shade()`, and `tint()` respectively.
+
+    For all available color functions see the [Colors Utilities page](../../utilities/colors.mdx).
+  </Example.Description>
+  <Example.Preview>
+    <ShadeColorPreview />
+  </Example.Preview>
+  <Example.Snippet>
+    ```tsx
+    css`
+      background: ${euiTheme.colors.lightShade};
+    `
+    ```
+  </Example.Snippet>
+</Example>
+
+<EuiSpacer />
+
+<ShadeColorsTable />
+
+## Special colors
+
+These are used a lot for special cases.
+
+import { SpecialColorsPreview } from './special_colors_preview';
+import { SpecialColorsTable } from './special_colors_table';
+
+<Example>
+  <Example.Description>
+    ### `euiTheme.colors[special]` <Badge color="hollow">token</Badge>
+
+    Constant colors are those that do not change no matter the theme or color mode and typically represent the polar extremes.
+  </Example.Description>
+  <Example.Preview>
+    <SpecialColorsPreview />
+  </Example.Preview>
+  <Example.Snippet>
+    ```
+    css`
+      color: ${euiTheme.colors.ghost};
+      background-color: ${euiTheme.colors.ink};
+    `
+    ```
+  </Example.Snippet>
+</Example>
+
+<EuiSpacer />
+
+<SpecialColorsTable />
+
+## Data visualization colors
+
+import { DataVisColorsTable, DataVisColorsBehindTextColorsTable, DataVisBackgroundColor } from './data_vis_colors_table';
+import { DataVisColorsPreview } from './data_vis_colors_preview'
+
+
+<Example>
+  <Example.Description>
+    ### `euiTheme.colors.vis[token]` <Badge color="hollow">token</Badge>
+
+    The following colors are color-blind safe and should be used in categorically seried visualizations and graphics.
+    They are meant to be contrasted against the value of <DataVisBackgroundColor /> for the current theme.
+  </Example.Description>
+  <Example.Preview>
+    <DataVisColorsPreview />
+  </Example.Preview>
+  <Example.Snippet>
+    ```
+    css`
+      background-color: ${euiTheme.colors.vis.euiColorVis0};
+    `
+    ```
+  </Example.Snippet>
+</Example>
+
+<EuiSpacer />
+
+<DataVisColorsTable />
+<DataVisColorsBehindTextColorsTable />

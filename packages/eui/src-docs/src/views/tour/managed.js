@@ -56,7 +56,7 @@ export default () => {
   }
 
   return (
-    <EuiTour steps={demoTourSteps} initialState={state}>
+    <EuiTour zIndex={1} steps={demoTourSteps} initialState={state}>
       {([euiTourStepOne, euiTourStepTwo], actions, reducerState) => {
         useEffect(() => {
           localStorage.setItem(STORAGE_KEY, JSON.stringify(reducerState));
@@ -80,16 +80,21 @@ export default () => {
         };
         return (
           <React.Fragment>
-            <EuiButtonEmpty iconType="refresh" flush="left" onClick={resetTour}>
-              Start or reset tour
+            <EuiButtonEmpty
+              size="s"
+              iconType="refresh"
+              flush="left"
+              onClick={resetTour}
+            >
+              Begin tour
             </EuiButtonEmpty>
-            <EuiSpacer />
+            <EuiSpacer size="m" />
             <EuiForm component="form">
-              <EuiFormRow label="Enter an ES SQL query">
-                <EuiTourStep {...euiTourStepOne}>
+              <EuiFormRow label="Query">
+                <EuiTourStep zIndex={1} {...euiTourStepOne}>
                   <EuiTextArea
                     placeholder="Placeholder text"
-                    aria-label="Enter ES SQL query"
+                    aria-label="Query"
                     value={queryValue}
                     onChange={onChange}
                     style={{ width: 400 }}
@@ -97,10 +102,12 @@ export default () => {
                 </EuiTourStep>
               </EuiFormRow>
 
-              <EuiSpacer />
+              <EuiSpacer size="m" />
 
-              <EuiTourStep {...euiTourStepTwo}>
-                <EuiButton onClick={handleClick}>Save query</EuiButton>
+              <EuiTourStep zIndex={1} {...euiTourStepTwo}>
+                <EuiButton fill size="s" onClick={handleClick}>
+                  Save
+                </EuiButton>
               </EuiTourStep>
             </EuiForm>
           </React.Fragment>

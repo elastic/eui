@@ -1,0 +1,282 @@
+# Toast
+
+import previewWrapper from './_preview_wrapper';
+
+**EuiToast** allows for small notes that appear in the bottom right of the screen. They should be used for ephemeral, live actions (think **save complete** or **something just finished right now**).
+
+They should not be used for historical actions (**your report built 30 minutes ago**). This means that a user should never be greeted with toasts when starting a session. Toasts should be brief and avoid long paragraphs of text or titling.
+
+## Component
+
+<Demo previewWrapper={previewWrapper}>
+  ```tsx interactive
+  import React from 'react';
+  import { EuiToast } from '@elastic/eui';
+
+  export default () => (
+    <EuiToast title="Example of a good toast" onClose={() => {}}>
+      <p>
+        A good toast message is short and to the point. It should very rarely
+        include multiple paragraphs.
+      </p>
+    </EuiToast>
+  );
+  ```
+</Demo>
+
+## Usage
+
+### Toast list
+
+```tsx interactive
+import React, { useState } from 'react';
+import {
+  EuiCode,
+  EuiGlobalToastList,
+  EuiLink,
+  EuiFlexGroup,
+  EuiFlexItem,
+  EuiButton,
+} from '@elastic/eui';
+
+let addToastHandler;
+let removeAllToastsHandler;
+let toastId = 0;
+
+const addToast = () => {
+  addToastHandler();
+}
+
+const removeAllToasts = () => {
+  removeAllToastsHandler();
+}
+
+export default () => {
+  const [toasts, setToasts] = useState([]);
+
+  addToastHandler = () => {
+    const toast = getRandomToast();
+    setToasts(toasts.concat(toast));
+  };
+
+  const removeToast = (removedToast) => {
+    setToasts((toasts) =>
+      toasts.filter((toast) => toast.id !== removedToast.id)
+    );
+  };
+
+  removeAllToastsHandler = () => {
+    setToasts([]);
+  };
+
+  const getRandomToast = () => {
+    const toasts = [
+      {
+        title:
+          "Check it out, here's a really long title that will wrap within a narrower browser",
+        text: (
+          <>
+            <p>
+              Here&rsquo;s some stuff that you need to know. We can make this
+              text really long so that, when viewed within a browser
+              that&rsquo;s fairly narrow, it will wrap, too.
+            </p>
+            <p>
+              And some other stuff on another line, just for kicks. And{' '}
+              <EuiLink href="#">here&rsquo;s a link</EuiLink>.
+            </p>
+          </>
+        ),
+      },
+      {
+        title: 'Download complete!',
+        color: 'success',
+        text: <p>Thanks for your patience!</p>,
+      },
+      {
+        title: 'Logging you out soon, due to inactivity',
+        color: 'warning',
+        iconType: 'user',
+        text: (
+          <>
+            <p>This is a security measure.</p>
+            <p>
+              Please move your mouse to show that you&rsquo;re still using
+              Kibana.
+            </p>
+          </>
+        ),
+      },
+      {
+        title: 'Oops, there was an error',
+        color: 'danger',
+        iconType: 'help',
+        text: <p>Sorry. We&rsquo;ll try not to let it happen it again.</p>,
+      },
+      {
+        title: 'Long toast',
+        color: 'warning',
+        iconType: 'clock',
+        toastLifeTimeMs: 15000,
+        text: (
+          <p>
+            This toast overrides the default <EuiCode>toastLifeTimeMs</EuiCode>{' '}
+            value and will be around for 15 seconds.
+          </p>
+        ),
+      },
+    ];
+
+    return {
+      id: `toast${toastId++}`,
+      ...toasts[Math.floor(Math.random() * toasts.length)],
+    };
+  };
+
+  return (
+    <div style={{ maxWidth: 320 }}>
+      <EuiFlexGroup gutterSize="s">
+        <EuiFlexItem>
+          <EuiButton onClick={addToast}>
+            Add toast to global toast list
+          </EuiButton>
+        </EuiFlexItem>
+        <EuiFlexItem>
+          <EuiButton onClick={removeAllToasts} color="danger">
+            Remove all toasts
+          </EuiButton>
+        </EuiFlexItem>
+      </EuiFlexGroup>
+      <EuiGlobalToastList
+        toasts={toasts}
+        dismissToast={removeToast}
+        toastLifeTimeMs={6000}
+      />
+    </div>
+  );
+};
+```
+
+### Info
+
+For informative messages use `type="info"`.
+
+<Demo previewWrapper={previewWrapper}>
+  ```tsx interactive
+  import React from 'react';
+  import { EuiToast } from '@elastic/eui';
+
+  export default () => (
+    <EuiToast title="Icons should be rare" type="info" onClose={() => {}}>
+      <p>
+        Icons should be used rarely. They are good for warnings, but when paired
+        with long titles they look out of place.
+      </p>
+    </EuiToast>
+  );
+  ```
+</Demo>
+
+### Success
+
+For success messages use `color="success"`.
+
+<Demo previewWrapper={previewWrapper}>
+  ```tsx interactive
+  import React from 'react';
+  import {
+    EuiButton,
+    EuiLink,
+    EuiToast,
+    EuiFlexGroup,
+    EuiFlexItem,
+  } from '@elastic/eui';
+
+  export default () => (
+    <EuiToast
+      title="Created report for dashboard 'Tuba Sales by Region'"
+      color="success"
+      iconType="check"
+    >
+      <p>
+        While the layout will adjust properly for wrapping titles, they do not
+        look particularly good. Similarly, do not use a whole lot of text in your
+        body either. At a certain point people will not have enough time to read
+        these things. Like, you probably are not even reading this now.
+      </p>
+
+      <p>
+        And some other stuff on another line, just for kicks. And{' '}
+        <EuiLink href="#">here&rsquo;s a link</EuiLink>.
+      </p>
+
+      <EuiFlexGroup justifyContent="flexEnd" gutterSize="s">
+        <EuiFlexItem grow={false}>
+          <EuiButton size="s">Download report</EuiButton>
+        </EuiFlexItem>
+      </EuiFlexGroup>
+    </EuiToast>
+  );
+  ```
+</Demo>
+
+### Warning
+
+Use this callout to warn the user against decisions they might regret. Show a warning message when the program detects that **something is not behaving right, but it didn't cause any termination.** For warning messages use `color="warning"`.
+
+<Demo previewWrapper={previewWrapper}>
+  ```tsx interactive
+  import React from 'react';
+  import { EuiToast } from '@elastic/eui';
+
+  export default () => (
+    <EuiToast
+      title="Sometimes a title is enough!"
+      color="warning"
+      iconType="warning"
+    />
+  );
+  ```
+</Demo>
+
+### Danger
+
+Use this callout to let the user know that something went wrong. For example if you want to communicate an error. You should show an error message when the issue is **terminal, this doesn't always mean that the operation stops completely, but the task is not complete**. For errors messages use `color="danger"`.
+
+<Demo previewWrapper={previewWrapper}>
+  ```tsx interactive
+  import React from 'react';
+  import { EuiToast } from '@elastic/eui';
+
+  const esError =
+    'Error: expected _scroll_id in the polling Elasticsearch response: ' +
+    '{"took":0,"timed_out":false,"_shards":{"total":0,"successful":0,"skipped":0,"failed":0},' +
+    '"hits":{"total":0,"max_score":0,"hits":[]}}';
+
+  export default () => (
+    <EuiToast
+      title="Couldn't complete the search"
+      color="danger"
+      iconType="error"
+    >
+      <p>{esError}</p>
+    </EuiToast>
+  );
+  ```
+</Demo>
+
+## Guidelines
+
+import Guidelines from './_guidelines.mdx';
+
+ <Guidelines />
+
+## Props
+
+import docgen from '@elastic/eui-docgen/dist/components/toast';
+
+<PropTable definition={docgen.EuiToast} />
+
+<PropTable definition={docgen.EuiGlobalToastList} />
+
+<PropTable definition={docgen.EuiGlobalToastListItem} />

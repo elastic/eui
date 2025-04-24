@@ -1,0 +1,77 @@
+---
+sidebar_position: 4
+---
+
+# Sizing
+
+import Link from '@docusaurus/Link';
+import { EuiSpacer } from '@elastic/eui';
+
+import { Example } from '@site/src/components';
+import { BasePreview } from '../sizing/base_preview';
+import { SizePreview } from '../sizing/size_preview';
+import { CalcPreview } from '../sizing/calc_preview';
+import { SizesTable } from '../sizing/sizes_table';
+
+## Base
+
+All sizing values, including font sizes, are calculated from a single base integer and converted to pixel or rem string values.
+
+<Example>
+  <Example.Description>
+    ### `euiTheme.base = 16` <Badge color="hollow">token</Badge>
+
+    This `base` integer sets the scale for the entire theme. You can use calculations on top of the base value, just be sure to append the `px` unit to the end.
+  </Example.Description>
+  <Example.Preview>
+    <BasePreview />
+  </Example.Preview>
+  <Example.Snippet>
+    ```tsx
+    css`
+      padding: ${euiTheme.base * 2}px;
+    `
+    ```
+  </Example.Snippet>
+</Example>
+
+## Scale
+
+<Example>
+  <Example.Description>
+    ### `euiTheme.size[size]` token
+
+    Use the named keys as as much as possible.
+  </Example.Description>
+  <Example.Preview>
+    <SizePreview />
+  </Example.Preview>
+  <Example.Snippet>
+    ```tsx
+    css`
+      padding: ${euiTheme.size.xl};
+    `
+    ```
+  </Example.Snippet>
+</Example>
+
+<Example>
+  <Example.Description>
+    ### `calc()` <Badge color="accent">CSS function</Badge>
+
+    When doing calculations on top of the named key values, you have to use the <Link to="https://developer.mozilla.org/en-US/docs/Web/CSS/calc()">CSS `calc()` function</Link> because the value that is returned is a string value with the appended unit.
+  </Example.Description>
+  <Example.Preview>
+    <CalcPreview />
+  </Example.Preview>
+  <Example.Snippet>
+    ```tsx
+    css`
+      padding: calc(${euiTheme.size.base} * 2);
+    `
+    ```
+  </Example.Snippet>
+</Example>
+
+<EuiSpacer />
+<SizesTable />

@@ -1,7 +1,7 @@
 {
   "name": "@elastic/eui",
   "description": "Elastic UI Component Library",
-  "version": "100.0.0",
+  "version": "101.4.0",
   "license": "SEE LICENSE IN LICENSE.txt",
   "main": "lib",
   "module": "es",
@@ -53,7 +53,7 @@
   },
   "dependencies": {
     "@elastic/eui-theme-common": "workspace:*",
-    "@elastic/prismjs-esql": "^1.0.0",
+    "@elastic/prismjs-esql": "^1.1.0",
     "@hello-pangea/dnd": "^16.6.0",
     "@types/lodash": "^4.14.202",
     "@types/numeral": "^2.0.5",
@@ -259,7 +259,7 @@
   },
   "peerDependencies": {
     "@elastic/datemath": "^5.0.2",
-    "@elastic/eui-theme-borealis": "0.0.11",
+    "@elastic/eui-theme-borealis": "0.2.0",
     "@emotion/css": "11.x",
     "@emotion/react": "11.x",
     "@types/react": "^16.9 || ^17.0 || ^18.0",

@@ -6,9 +6,9 @@ import {
   EuiFlexGroup,
   EuiCode,
   UseEuiTheme,
-  EuiTitle,
   useEuiMemoizedStyles,
   EuiLink,
+  EuiPanel,
 } from '@elastic/eui';
 import {
   ProcessedComponent,
@@ -17,6 +17,7 @@ import {
 import { useCallback, useMemo } from 'react';
 import { css } from '@emotion/react';
 import { PropTableExtendedTypes } from './extended_types';
+import Heading from '@theme/Heading';
 
 export interface PropTableProps {
   definition: ProcessedComponent;
@@ -51,6 +52,10 @@ const getPropTableStyles = ({ euiTheme }: UseEuiTheme) => ({
     font-weight: ${euiTheme.font.weight.semiBold};
   `,
   description: css`
+    p {
+      font-size: var(--eui-font-size-s);
+    }
+
     p:first-child {
       margin-block-start: 0;
     }
@@ -73,11 +78,14 @@ const getPropTableStyles = ({ euiTheme }: UseEuiTheme) => ({
       display: inline-block;
     }
   `,
+  tableCell: css`
+    vertical-align: text-top;
+  `,
 });
 
 export const PropTable = ({
   definition,
-  headingLevel: HeadingLevel = 'h3',
+  headingLevel = 'h3',
   showTitle = true,
 }: PropTableProps) => {
   const styles = useEuiMemoizedStyles(getPropTableStyles);
@@ -173,6 +181,14 @@ export const PropTable = ({
     [definition.displayName]
   );
 
+  const cellProps = useCallback(
+    (item: ProcessedComponentProp) => ({
+      id: getPropId(item, definition.displayName),
+      css: styles.tableCell,
+    }),
+    [definition.displayName]
+  );
+
   return (
     <EuiFlexGroup
       aria-label={`Component properties table for ${definition.displayName}`}
@@ -182,19 +198,23 @@ export const PropTable = ({
     >
       <header css={styles.header}>
         {showTitle && (
-          <EuiTitle size="m">
-            <HeadingLevel>{definition.displayName}</HeadingLevel>
-          </EuiTitle>
+          <Heading as={headingLevel} id={definition.displayName}>
+            {definition.displayName}
+          </Heading>
         )}
         <PropTableExtendedTypes definition={definition} />
       </header>
-      <EuiBasicTable
-        css={styles.table}
-        width="100%"
-        items={tableItems}
-        columns={columns}
-        rowProps={rowProps}
-      />
+      <EuiPanel color="plain" hasBorder>
+        <EuiBasicTable
+          css={styles.table}
+          width="100%"
+          items={tableItems}
+          columns={columns}
+          rowProps={rowProps}
+          cellProps={cellProps}
+          compressed
+        />
+      </EuiPanel>
     </EuiFlexGroup>
   );
 };

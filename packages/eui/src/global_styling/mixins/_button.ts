@@ -67,6 +67,7 @@ export const euiButtonColor = (
         ? foreground
         : makeHighContrastColor(foreground)(background),
     backgroundColor: background,
+    ..._highContrastBorder(euiThemeContext, foreground),
   };
 };
 
@@ -80,7 +81,7 @@ export const euiButtonFillColor = (
   euiThemeContext: UseEuiTheme,
   color: _EuiButtonColor | 'disabled'
 ) => {
-  const { euiTheme } = euiThemeContext;
+  const { euiTheme, highContrastMode } = euiThemeContext;
 
   const backgroundTokenName = getTokenName(
     'backgroundFilled',
@@ -92,12 +93,25 @@ export const euiButtonFillColor = (
     color
   ) as keyof _EuiThemeButtonColors;
 
-  const foreground = euiTheme.components.buttons[textColorTokenName];
+  const highContrastForeground =
+    color === 'warning'
+      ? euiTheme.colors.ink
+      : color === 'disabled'
+      ? euiTheme.components.buttons[textColorTokenName]
+      : euiTheme.colors.textInverse;
+
+  const foreground = highContrastMode
+    ? highContrastForeground
+    : euiTheme.components.buttons[textColorTokenName];
   const background = euiTheme.components.buttons[backgroundTokenName];
 
   return {
     color: foreground,
     backgroundColor: background,
+    ..._highContrastBorder(
+      euiThemeContext,
+      color === 'disabled' ? foreground : background // The border is necessary for Windows high contrast themes, which ignore background-color
+    ),
   };
 };
 
@@ -266,3 +280,14 @@ export const euiButtonSizeMap = ({ euiTheme }: UseEuiTheme) => ({
     fontScale: 's' as const,
   },
 });
+
+/**
+ * Internal util for high contrast button borders
+ */
+const _highContrastBorder = (
+  { highContrastMode, euiTheme }: UseEuiTheme,
+  color: string
+) =>
+  highContrastMode
+    ? { border: `${euiTheme.border.width.thin} solid ${color}` }
+    : {};

@@ -1,0 +1,334 @@
+---
+sidebar_position: 1
+---
+
+# Theme provider
+
+import Link from '@docusaurus/Link';
+
+While [EuiProvider](../../utilities/provider.mdx) should not be wrapped around your application root more than once, you may use multiple nested **EuiThemeProviders** to customize section-specific or component-specific [color modes](../theming/color-mode.mdx#rendering-a-specific-color-mode) or theme overrides.
+
+## EuiThemeProvider
+
+The context layer that enables theming (including the default theme styles) comes from `EuiThemeProvider`. `EuiThemeProvider` accepts four main props (all of which have default values and are therefore optional):
+
+- `theme:` Raw theme values. Calculated values are acceptable.
+- `modify:` Accepts an object of overrides for theme values.
+    - For examples of this prop, see [Simple instance overrides](#simple-instance-overrides) below.
+- `colorMode:` Accepts 'light', 'dark', or 'inverse'.
+    - For usage, see the [Color mode](./color-mode.mdx) page.
+- `highContrastMode`: Accepts a true/false boolean.
+    - For usage, see the [High contrast mode](./high-contrast-mode.mdx) page.
+
+To use the default EUI theme, no configuration is required.
+
+import { ProviderDetails } from './provider_details';
+
+<ProviderDetails />
+
+## Consuming with the React hook
+
+Using the React hook `useEuiTheme()` makes it very easy to consume the EUI static and computed variables like colors and sizing. It simply passes back an object of the current theme which includes:
+
+- `euiTheme:` All the calculated keys including any modifications
+- `modifications:` Only the modification keys
+- `colorMode:` Either 'LIGHT' or 'DARK'
+- `highContrastMode:` Either 'forced', 'preferred', or `false`
+
+When consuming the theme's keys like `euiTheme.colors.primary`, you'll want to pass them via the `css` property to take advantage of Emotion's compilation.
+
+```tsx interactive
+import React from 'react';
+import { EuiIcon, EuiCode, EuiText, useEuiTheme } from '@elastic/eui';
+import { css } from '@emotion/react';
+
+export default () => {
+  const { euiTheme } = useEuiTheme();
+  return (
+    <EuiText>
+      <p>
+        <EuiIcon
+          type="stopFilled"
+          size="xxl"
+          css={{ color: euiTheme.colors.primary }}
+        />{' '}
+        This primary color will adjust based on the light or dark theme value
+      </p>
+
+      <p
+        css={css`
+          background: ${euiTheme.colors.lightShade};
+          padding: calc(${euiTheme.size.base} * 2);
+        `}
+      >
+        The padding of this box is created using <EuiCode>calc()</EuiCode>{' '}
+        because EUI&apos;s theme sizes are string pixel values that are
+        calculated off the theme&apos;s <EuiCode>base</EuiCode>
+      </p>
+    </EuiText>
+  );
+};
+
+```
+
+## Consuming with the React HOC
+
+When using inside of a React Component, you can wrap your exported component with **withEuiTheme()**.
+
+```tsx interactive
+import React from 'react';
+import { withEuiTheme, WithEuiThemeProps, EuiIcon, EuiText } from '@elastic/eui';
+import { css } from '@emotion/react';
+
+class Block extends React.Component<WithEuiThemeProps> {
+  render() {
+    const { theme } = this.props;
+
+    const divStyle = css`
+      background: ${theme.euiTheme.colors.lightShade};
+      padding: ${theme.euiTheme.size.xl};
+      border-radius: ${theme.euiTheme.border.radius.medium};
+    `;
+
+    return (
+      <EuiText css={divStyle}>
+        <p>
+          <EuiIcon type="faceHappy" /> This box has it&apos;s background,
+          padding, and border-radius controlled by custom css
+        </p>
+      </EuiText>
+    );
+  }
+}
+
+const ConsumingHOC = withEuiTheme(Block);
+export default <ConsumingHOC />;
+```
+
+## Consuming with Emotion's theming
+
+**EuiThemeProvider** by default sets an <Link to="https://emotion.sh/docs/theming">Emotion theme context</Link> with the results of **useEuiTheme()**. This is a syntactical sugar convenience that allows you to take advantage of Emotion's `styled` syntax, or use a function in the `css` prop.
+
+{/*
+The following section is commented out due to @emotion/react version mismatch. We can't easily fix it unless we disable nohoist
+for /packages/eui and that requires updating it to TypeScript 5... If you prefer to use or access your own custom Emotion theme,
+you can completely override EUI's passed theme at any time with your own `ThemeProvider` - see the second box below for an example.
+
+```tsx interactive
+import React from 'react';
+import { EuiIcon, EuiText } from '@elastic/eui';
+import { ThemeProvider, css } from '@emotion/react';
+
+export default () => {
+  return (
+    <EuiText>
+      <p
+        css={({ euiTheme }) => css`
+          background-color: ${euiTheme.colors.lightestShade};
+          padding: ${euiTheme.size.l};
+        `}
+      >
+        <EuiIcon
+          type="faceHappy"
+          // The current `colorMode` is also available in the passed Emotion theme
+          // which may be useful for certain conditional styles
+          css={({ euiTheme, colorMode }) => ({
+            color:
+              colorMode === 'LIGHT'
+                ? euiTheme.colors.primary
+                : euiTheme.colors.accent,
+          })}
+        />{' '}
+        This box sets its icon color, background color, and padding via Emotion
+        theme context
+      </p>
+
+      <ThemeProvider
+        theme={{
+          // @ts-ignore - if providing your own Emotion theme, create your own emotion.d.ts - see https://emotion.sh/docs/typescript#define-a-theme
+          brandColor: 'pink',
+          backgroundColor: 'black',
+          padding: '1rem',
+        }}
+      >
+        <p
+          css={(theme: any) => css`
+            color: ${theme.brandColor};
+            background-color: ${theme.backgroundColor};
+            padding: ${theme.padding};
+          `}
+        >
+          This box sets its own Emotion ThemeProvider and theme variables
+        </p>
+      </ThemeProvider>
+    </EuiText>
+  );
+};
+```
+*/}
+
+If you prefer to use or access your own custom Emotion theme, you can completely override EUI's passed theme at any time with your own `ThemeProvider`.
+
+```tsx interactive
+import React from 'react';
+import { EuiText } from '@elastic/eui';
+import { ThemeProvider, css } from '@emotion/react';
+
+export default () => {
+  return (
+    <EuiText>
+      <ThemeProvider
+        theme={{
+          // @ts-ignore - if providing your own Emotion theme, create your own emotion.d.ts - see https://emotion.sh/docs/typescript#define-a-theme
+          brandColor: 'pink',
+          backgroundColor: 'black',
+          padding: '1rem',
+        }}
+      >
+        <p
+          css={(theme: any) => css`
+            color: ${theme.brandColor};
+            background-color: ${theme.backgroundColor};
+            padding: ${theme.padding};
+          `}
+        >
+          This box sets its own Emotion ThemeProvider and theme variables
+        </p>
+      </ThemeProvider>
+    </EuiText>
+  );
+};
+```
+
+## Simple instance overrides
+
+Usually, you won't need to actually override an EUI theme variable at the instance level. Instead, you'd just create a new variable local to that component. However, if you cannot alter the component that is using the EUI variable then you can wrap that component with the **EuiThemeProvider** and pass your custom object to `modify`.
+
+```tsx interactive
+import React, { FunctionComponent, ReactNode } from 'react';
+import { EuiCode, EuiText, EuiThemeProvider, useEuiTheme } from '@elastic/eui';
+
+const Box: FunctionComponent<{ children: ReactNode }> = ({ children }) => {
+  const { euiTheme } = useEuiTheme();
+
+  return (
+    <EuiText
+      css={{
+        background: euiTheme.colors.lightShade,
+        padding: euiTheme.size.xl,
+      }}
+    >
+      <p>{children}</p>
+    </EuiText>
+  );
+};
+
+export default () => {
+  const overrides = {
+    colors: {
+      LIGHT: { lightShade: '#d3e6df' },
+      DARK: { lightShade: '#394c4b' },
+    },
+  };
+
+  return (
+    <div>
+      <EuiThemeProvider modify={overrides}>
+        <Box>
+          The background of this box is using the locally overridden value of{' '}
+          <EuiCode>euiTheme.colors.lightShade</EuiCode>
+        </Box>
+      </EuiThemeProvider>
+    </div>
+  );
+};
+```
+
+## Creating custom keys
+
+Because of the computed values and possible cascade effects, it may not be advisable to locally **override** any EUI specific theme variables. Instead, you should append custom keys to the theme.
+
+```tsx interactive
+import React, { FunctionComponent, ReactNode } from 'react';
+import {
+  EuiIcon,
+  EuiCode,
+  EuiText,
+  computed,
+  EuiThemeProvider,
+  useEuiTheme,
+  shade,
+  tint,
+} from '@elastic/eui';
+
+interface ThemeExtensions {
+  colors: {
+    customColorPrimary: string;
+    customColorPrimaryHighlight: string;
+    customColorPrimaryText: string;
+  };
+}
+
+const Box: FunctionComponent<{ children: ReactNode }> = ({ children }) => {
+  const { euiTheme } = useEuiTheme<ThemeExtensions>();
+
+  return (
+    <EuiText
+      css={{
+        background: euiTheme.colors.customColorPrimaryHighlight,
+        padding: euiTheme.size.xl,
+        color: euiTheme.colors.customColorPrimaryText,
+      }}
+    >
+      <p>
+        <EuiIcon type="stopFilled" color={euiTheme.colors.customColorPrimary} />{' '}
+        {children}
+      </p>
+    </EuiText>
+  );
+};
+
+export default () => {
+  const primaryOverrides = {
+    colors: {
+      LIGHT: {
+        customColorPrimary: 'rgb(29, 222, 204)',
+        customColorPrimaryHighlight: computed(
+          (customColorPrimary) => tint(customColorPrimary, 0.8),
+          'colors.customColorPrimary'
+        ),
+        customColorPrimaryText: computed(
+          (customColorPrimary) => shade(customColorPrimary, 0.8),
+          'colors.customColorPrimary'
+        ),
+      },
+      DARK: {
+        customColorPrimary: 'rgb(29, 222, 204)',
+        customColorPrimaryHighlight: computed(
+          ([customColorPrimary]) => shade(customColorPrimary, 0.8),
+          ['colors.customColorPrimary']
+        ),
+        customColorPrimaryText: computed(
+          ([customColorPrimary]) => tint(customColorPrimary, 0.8),
+          ['colors.customColorPrimary']
+        ),
+      },
+    },
+  };
+
+  return (
+    <div>
+      <EuiThemeProvider modify={primaryOverrides}>
+        <Box>
+          A new key of <EuiCode>customColorPrimary</EuiCode> has been added as{' '}
+          <EuiCode>rgb(29, 222, 204)</EuiCode>.
+          <br />
+          <br />
+          There is also two new computed color keys create off of this for
+          better contrast.
+        </Box>
+      </EuiThemeProvider>
+    </div>
+  );
+};
+```

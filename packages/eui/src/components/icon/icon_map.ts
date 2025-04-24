@@ -30,7 +30,7 @@ export const typeToPathMap = {
   asterisk: 'asterisk',
   at: 'at',
   auditbeatApp: 'app_auditbeat',
-  beaker: 'beaker',
+  beaker: 'flask', // NOTE: To be deprecated in favor of `flask`
   bell: 'bell',
   bellSlash: 'bellSlash',
   beta: 'beta',
@@ -48,6 +48,7 @@ export const typeToPathMap = {
   casesApp: 'app_cases',
   changePointDetection: 'change_point_detection',
   check: 'check',
+  checkCircle: 'checkCircle',
   checkInCircleFilled: 'checkInCircleFilled',
   cheer: 'cheer',
   classificationJob: 'ml_classification_job',
@@ -59,8 +60,10 @@ export const typeToPathMap = {
   cloudStormy: 'cloudStormy',
   cloudSunny: 'cloudSunny',
   cluster: 'cluster',
+  code: 'code',
   codeApp: 'app_code',
   color: 'color',
+  comment: 'comment',
   compute: 'compute',
   console: 'console',
   consoleApp: 'app_console',
@@ -71,8 +74,9 @@ export const typeToPathMap = {
   continuityWithin: 'continuityWithin',
   contrast: 'contrast',
   contrastHigh: 'contrastHigh',
-  controlsHorizontal: 'controls_horizontal',
-  controlsVertical: 'controls_vertical',
+  controls: 'controls',
+  controlsHorizontal: 'controls', // NOTE: To be deprecated in favor of `controls`
+  controlsVertical: 'controls', // NOTE: To be deprecated in favor of `controls`
   copy: 'copy',
   copyClipboard: 'copy_clipboard',
   createAdvancedJob: 'ml_create_advanced_job',
@@ -94,7 +98,7 @@ export const typeToPathMap = {
   devToolsApp: 'app_devtools',
   diff: 'diff',
   discoverApp: 'app_discover',
-  discuss: 'discuss',
+  discuss: 'comment', // NOTE: To be deprecated in favor of `comment`
   document: 'document',
   documentEdit: 'documentEdit',
   documentation: 'documentation',
@@ -109,8 +113,8 @@ export const typeToPathMap = {
   editorAlignRight: 'editor_align_right',
   editorBold: 'editor_bold',
   editorChecklist: 'editor_checklist',
-  editorCodeBlock: 'editor_code_block',
-  editorComment: 'editor_comment',
+  editorCodeBlock: 'code', // NOTE: To be deprecated in favor of `code`
+  editorComment: 'comment', // NOTE: To be deprecated in favor of `comment`
   editorDistributeHorizontal: 'editorDistributeHorizontal',
   editorDistributeVertical: 'editorDistributeVertical',
   editorHeading: 'editor_heading',
@@ -145,7 +149,8 @@ export const typeToPathMap = {
   exit: 'exit',
   expand: 'expand',
   expandMini: 'expandMini',
-  exportAction: 'export',
+  export: 'export',
+  exportAction: 'export', // NOTE: To be deprecated in favor of `export`
   eye: 'eye',
   eyeClosed: 'eye_closed',
   faceHappy: 'face_happy',
@@ -158,6 +163,7 @@ export const typeToPathMap = {
   filterIgnore: 'filterIgnore',
   filterInclude: 'filterInclude',
   filterInCircle: 'filterInCircle',
+  flask: 'flask',
   flag: 'flag',
   fleetApp: 'app_agent',
   fold: 'fold',
@@ -172,7 +178,7 @@ export const typeToPathMap = {
   function: 'function',
   gear: 'gear',
   gisApp: 'app_gis',
-  glasses: 'glasses',
+  glasses: 'readOnly', // NOTE: To be deprecated in favor of `readOnly`
   globe: 'globe',
   grab: 'grab',
   grabHorizontal: 'grab_horizontal',
@@ -355,6 +361,7 @@ export const typeToPathMap = {
   push: 'push',
   questionInCircle: 'question_in_circle',
   quote: 'quote',
+  readOnly: 'readOnly',
   recentlyViewedApp: 'app_recently_viewed',
   refresh: 'refresh',
   regressionJob: 'ml_regression_job',
@@ -429,7 +436,7 @@ export const typeToPathMap = {
   upgradeAssistantApp: 'app_upgrade_assistant',
   uptimeApp: 'app_uptime',
   user: 'user',
-  userAvatar: 'userAvatar',
+  userAvatar: 'user', // NOTE: To be deprecated in favor of `user`
   users: 'users',
   usersRolesApp: 'app_users_roles',
   vector: 'vector',
@@ -451,7 +458,7 @@ export const typeToPathMap = {
   visTagCloud: 'vis_tag_cloud',
   visText: 'vis_text',
   visTimelion: 'vis_timelion',
-  visVega: 'vis_vega',
+  visVega: 'code', // NOTE: To be deprecated in favor of `code`
   visVisualBuilder: 'vis_visual_builder',
   visualizeApp: 'app_visualize',
   vulnerabilityManagementApp: 'app_vulnerability_management',

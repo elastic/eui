@@ -1,0 +1,388 @@
+# Side nav
+
+**EuiSideNav** is a responsive menu system that usually sits on the left side of a page layout. It will expand to the width of its container. This is the same menu system used for the EUI documentation.
+
+Configure the content of a **EuiSideNav** by passing in an `items` prop. Refer to the source code for an example of this data structure’s anatomy.
+
+:::note The responsive behavior converts the list into an accordion style component with a mobile only button.
+
+You will need to pass a string to the prop `mobileTitle` to label the mobile button.
+
+:::
+
+```tsx interactive
+import React, { useState } from 'react';
+import { EuiSideNav, htmlIdGenerator } from '@elastic/eui';
+
+export default () => {
+  const [isSideNavOpenOnMobile, setIsSideNavOpenOnMobile] = useState(false);
+
+  const toggleOpenOnMobile = () => {
+    setIsSideNavOpenOnMobile(!isSideNavOpenOnMobile);
+  };
+
+  const sideNav = [
+    {
+      name: 'Root item',
+      id: htmlIdGenerator('basicExample')(),
+      items: [
+        {
+          name: 'Item with onClick',
+          id: htmlIdGenerator('basicExample')(),
+          onClick: () => {},
+        },
+        {
+          name: 'Item with href',
+          id: htmlIdGenerator('basicExample')(),
+          href: '#/navigation/side-nav',
+        },
+        {
+          name: 'Selected item',
+          id: htmlIdGenerator('basicExample')(),
+          onClick: () => {},
+          isSelected: true,
+        },
+        {
+          name: 'Disabled item',
+          id: htmlIdGenerator('basicExample')(),
+          disabled: true,
+        },
+      ],
+    },
+  ];
+
+  return (
+    <EuiSideNav
+      aria-label="Basic example"
+      mobileTitle="Basic example"
+      toggleOpenOnMobile={() => toggleOpenOnMobile()}
+      isOpenOnMobile={isSideNavOpenOnMobile}
+      style={{ width: 192 }}
+      items={sideNav}
+    />
+  );
+};
+```
+
+## Side nav heading
+
+Since **EuiSideNav** renders a `<nav>` section element, it is recommended that the element contain a heading. Pass a string or node to the `heading` prop to display within an `<h2>`. Though you can also adjust this heading element with `headingProps.element`.
+
+If the heading is visually unnecessary for your application, pass `headingProps.screenReaderOnly` to ensure proper accessibility for those using assistive technology.
+
+:::note
+When providing a heading, this will then be the default display for the mobile button title.
+:::
+
+```tsx interactive
+import React, { useState } from 'react';
+import { EuiSideNav, htmlIdGenerator } from '@elastic/eui';
+
+export default () => {
+  const [isSideNavOpenOnMobile, setIsSideNavOpenOnMobile] = useState(false);
+
+  const toggleOpenOnMobile = () => {
+    setIsSideNavOpenOnMobile(!isSideNavOpenOnMobile);
+  };
+
+  const sideNav = [
+    {
+      name: 'Root item',
+      id: htmlIdGenerator('basicExample')(),
+      items: [
+        {
+          name: 'Item with onClick',
+          id: htmlIdGenerator('basicExample')(),
+          onClick: () => {},
+        },
+        {
+          name: 'Item with href',
+          id: htmlIdGenerator('basicExample')(),
+          href: '#/navigation/side-nav',
+        },
+        {
+          name: 'Selected item',
+          id: htmlIdGenerator('basicExample')(),
+          onClick: () => {},
+          isSelected: true,
+        },
+        {
+          name: 'Disabled item',
+          id: htmlIdGenerator('basicExample')(),
+          disabled: true,
+        },
+      ],
+    },
+  ];
+
+  return (
+    <EuiSideNav
+      heading="Nav heading"
+      toggleOpenOnMobile={() => toggleOpenOnMobile()}
+      isOpenOnMobile={isSideNavOpenOnMobile}
+      style={{ width: 192 }}
+      items={sideNav}
+    />
+  );
+};
+```
+
+## Complex side nav
+
+**EuiSideNav** also supports multiple top level sections and deeply-nested tree-based data.
+
+We recommend being consistent with the use of the root level item and whether it is used solely for labelling a section. Intermixing linked and non-linked root items will confuse the user. Stay consistent throughout your entire application and platform.
+
+```tsx interactive
+import React, { useState } from 'react';
+import { EuiIcon, EuiSideNav, slugify } from '@elastic/eui';
+
+export default () => {
+  const [isSideNavOpenOnMobile, setIsSideNavOpenOnMobile] = useState(false);
+  const [selectedItemName, setSelectedItem] = useState('Time stuff');
+
+  const toggleOpenOnMobile = () => {
+    setIsSideNavOpenOnMobile(!isSideNavOpenOnMobile);
+  };
+
+  const selectItem = (name) => {
+    setSelectedItem(name);
+  };
+
+  const createItem = (name, data = {}) => {
+    // NOTE: Duplicate `name` values will cause `id` collisions.
+    return {
+      id: slugify(name),
+      name,
+      isSelected: selectedItemName === name,
+      onClick: () => selectItem(name),
+      ...data,
+    };
+  };
+
+  const sideNav = [
+    createItem('Elasticsearch', {
+      onClick: undefined,
+      icon: <EuiIcon type="logoElasticsearch" />,
+      items: [
+        createItem('Data sources'),
+        createItem('Users'),
+        createItem('Roles'),
+        createItem('Watches'),
+        createItem(
+          'Extremely long title will become truncated when the browser is narrow enough'
+        ),
+      ],
+    }),
+    createItem('Kibana', {
+      onClick: undefined,
+      icon: <EuiIcon type="logoKibana" />,
+      items: [
+        createItem('Advanced settings', {
+          items: [
+            createItem('General', { disabled: true }),
+            createItem('Timelion', {
+              items: [
+                createItem('Time stuff', {
+                  icon: <EuiIcon type="clock" />,
+                }),
+                createItem('Lion stuff', {
+                  icon: <EuiIcon type="stats" />,
+                }),
+              ],
+            }),
+            createItem('Visualizations'),
+          ],
+        }),
+        createItem('Index Patterns'),
+        createItem('Saved Objects'),
+        createItem('Reporting'),
+      ],
+    }),
+    createItem('Logstash', {
+      onClick: undefined,
+      icon: <EuiIcon type="logoLogstash" />,
+      items: [createItem('Pipeline viewer')],
+    }),
+  ];
+
+  return (
+    <EuiSideNav
+      aria-label="Complex example"
+      mobileTitle="Navigate within $APP_NAME"
+      toggleOpenOnMobile={toggleOpenOnMobile}
+      isOpenOnMobile={isSideNavOpenOnMobile}
+      items={sideNav}
+      style={{ width: 192 }}
+    />
+  );
+};
+
+```
+
+## Nested item options
+
+Typically, the children of nested items progressively shows as users traverse the pages themselves. However, you can bypass this functionality and force open items by setting `items[n].forceOpen = true`.
+
+Arrow indicators will show only if the item has children but **does not** have an interaction itself. The component will then handle the toggling of the displayed children as well.
+
+```tsx interactive
+import React, { useState } from 'react';
+import { EuiIcon, EuiSideNav } from '@elastic/eui';
+
+export default () => {
+  const [isSideNavOpenOnMobile, setIsSideNavOpenOnMobile] = useState(false);
+  const [selectedItemName, setSelectedItem] = useState(null);
+
+  const toggleOpenOnMobile = () => {
+    setIsSideNavOpenOnMobile(!isSideNavOpenOnMobile);
+  };
+
+  const selectItem = (name) => {
+    setSelectedItem(name);
+  };
+
+  const createItem = (name, data = {}) => {
+    // NOTE: Duplicate `name` values will cause `id` collisions.
+    return {
+      id: name,
+      name,
+      isSelected: selectedItemName === name,
+      onClick: () => selectItem(name),
+      ...data,
+    };
+  };
+
+  const sideNav = [
+    {
+      name: 'Kibana',
+      id: 'Kibana',
+      icon: <EuiIcon type="logoKibana" />,
+      items: [
+        createItem('Has normal children', {
+          items: [
+            createItem('Without forceOpen', {
+              items: [createItem('Child 1'), createItem('Child 2')],
+            }),
+          ],
+        }),
+        createItem('Normally not open', {
+          items: [
+            createItem('Has forceOpen:true', {
+              forceOpen: true,
+              items: [createItem('Child 3'), createItem('Child 4')],
+            }),
+          ],
+        }),
+        createItem('With forceOpen:true', {
+          forceOpen: true,
+          items: [
+            createItem('Normal child', {
+              items: [createItem('Child 5'), createItem('Child 6')],
+            }),
+          ],
+        }),
+        createItem('Children only, no link', {
+          onClick: undefined,
+          items: [
+            createItem('Another child', {
+              items: [createItem('Child 7'), createItem('Child 8')],
+            }),
+          ],
+        }),
+      ],
+    },
+  ];
+
+  return (
+    <EuiSideNav
+      aria-label="Force-open example"
+      mobileTitle="Navigate within $APP_NAME"
+      toggleOpenOnMobile={toggleOpenOnMobile}
+      isOpenOnMobile={isSideNavOpenOnMobile}
+      items={sideNav}
+      style={{ width: 192 }}
+    />
+  );
+};
+
+```
+
+## Emphasized side nav sections
+
+Adding the `emphasize = true` prop to a **EuiSideNav** item will enhance the visual appearance of that section and its nested items. This is helpful for when you need to indicate a dynamic navigational item like a user-created object.
+
+:::note Extra style needed
+
+The emphasized nav item's background color extends beyond the horizontal bounds of the component to allow it to reach it's parents bounds. Be sure to add `overflow: hidden` to whichever container you'd like it to stop at.
+
+:::
+
+```tsx interactive
+import React, { useState } from 'react';
+import { EuiSideNav } from '@elastic/eui';
+
+export default () => {
+  const [isSideNavOpenOnMobile, setIsSideNavOpenOnMobile] = useState(false);
+  const [selectedItemName, setSelectedItem] = useState('Transactions');
+
+  const toggleOpenOnMobile = () => {
+    setIsSideNavOpenOnMobile(!isSideNavOpenOnMobile);
+  };
+
+  const selectItem = (name) => {
+    setSelectedItem(name);
+  };
+
+  const createItem = (name, data = {}) => {
+    // NOTE: Duplicate `name` values will cause `id` collisions.
+    return {
+      ...data,
+      id: name,
+      name,
+      isSelected: selectedItemName === name,
+      onClick: () => selectItem(name),
+    };
+  };
+
+  const sideNav = [
+    createItem('APM', {
+      items: [
+        createItem('Services', {
+          items: [
+            createItem('opbeans-java', {
+              emphasize: true,
+              isOpen: true,
+              items: [
+                createItem('Transactions'),
+                createItem('Errors'),
+                createItem('JVMs'),
+              ],
+            }),
+          ],
+        }),
+        createItem('Traces'),
+        createItem('Service map'),
+      ],
+    }),
+  ];
+
+  return (
+    <EuiSideNav
+      aria-label="Emphasized side nav example"
+      mobileTitle="Navigate within $APP_NAME"
+      toggleOpenOnMobile={toggleOpenOnMobile}
+      isOpenOnMobile={isSideNavOpenOnMobile}
+      items={sideNav}
+      style={{ width: 192, overflow: 'hidden' }}
+    />
+  );
+};
+
+```
+
+## Props
+
+import docgen from '@elastic/eui-docgen/dist/components/side_nav';
+
+<PropTable definition={docgen.EuiSideNav} />

@@ -122,7 +122,7 @@ export default () => {
   const button = (
     <EuiButtonEmpty
       onClick={onButtonClick}
-      iconType="controlsVertical"
+      iconType="controls"
       aria-label="Open settings"
       color="text"
       size="xs"

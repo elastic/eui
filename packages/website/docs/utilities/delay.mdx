@@ -1,0 +1,134 @@
+# Delay
+
+## Delay render
+
+**EuiDelayRender** is a component for conditionally toggling the visibility of a child component. It will ensure that the child is hidden for at least 500ms (default). This allows delay UI rendering. That is helpful when you need to update aria live region(s) repeatedly.
+
+<Demo>
+```tsx interactive
+import React, { useState, Fragment } from 'react';
+
+import {
+  EuiDelayRender,
+  EuiFlexItem,
+  EuiCheckbox,
+  EuiFormRow,
+  EuiFieldNumber,
+  EuiLoadingSpinner,
+} from '@elastic/eui';
+
+export default () => {
+  const [minimumDelay, setDelay] = useState(3000);
+  const [render, setRender] = useState(false);
+
+  const onChangeMinimumDelay = (event) => {
+    setDelay(parseInt(event.target.value, 10));
+  };
+
+  const onChangeHide = (event) => {
+    setRender(event.target.checked);
+  };
+
+  const status = render ? 'showing' : 'hidden';
+  const label = `Child (${status})`;
+
+  return (
+    <Fragment>
+      <EuiFlexItem>
+        <EuiFormRow>
+          <EuiCheckbox
+            id="dummy-id"
+            checked={render}
+            onChange={onChangeHide}
+            label="Show child"
+          />
+        </EuiFormRow>
+        <EuiFormRow label="Minimum delay">
+          <EuiFieldNumber
+            value={minimumDelay}
+            onChange={onChangeMinimumDelay}
+          />
+        </EuiFormRow>
+        <EuiFormRow label={label}>
+          {render ? (
+            <EuiDelayRender delay={minimumDelay}>
+              <EuiLoadingSpinner size="m" />
+            </EuiDelayRender>
+          ) : (
+            <Fragment />
+          )}
+        </EuiFormRow>
+      </EuiFlexItem>
+    </Fragment>
+  );
+};
+```
+</Demo>
+
+## Delay hide
+
+**EuiDelayHide** is a component for conditionally toggling the visibility of a child component. It will ensure that the child is visible for at least 1000ms (default). This avoids UI glitches that are common with loading spinners and other elements that are rendered conditionally and potentially for a short amount of time.
+
+<Demo>
+```tsx interactive
+import React, { useState, Fragment } from 'react';
+
+import {
+  EuiDelayHide,
+  EuiFlexItem,
+  EuiCheckbox,
+  EuiFormRow,
+  EuiFieldNumber,
+  EuiLoadingSpinner,
+} from '@elastic/eui';
+
+export default () => {
+  const [minimumDuration, setDuration] = useState(3000);
+  const [hide, setHide] = useState(false);
+
+  const onChangeMinimumDuration = (event) => {
+    setDuration(parseInt(event.target.value, 10));
+  };
+
+  const onChangeHide = (event) => {
+    setHide(event.target.checked);
+  };
+
+  return (
+    <Fragment>
+      <EuiFlexItem>
+        <EuiFormRow>
+          <EuiCheckbox
+            id="dummy-id"
+            checked={hide}
+            onChange={onChangeHide}
+            label="Hide child"
+          />
+        </EuiFormRow>
+        <EuiFormRow label="Minimum duration">
+          <EuiFieldNumber
+            value={minimumDuration}
+            onChange={onChangeMinimumDuration}
+          />
+        </EuiFormRow>
+        <EuiFormRow label="Child to render">
+          <EuiDelayHide
+            hide={hide}
+            minimumDuration={minimumDuration}
+            render={() => <EuiLoadingSpinner size="m" />}
+          />
+        </EuiFormRow>
+      </EuiFlexItem>
+    </Fragment>
+  );
+};
+```
+</Demo>
+
+## Props
+
+import delayRenderDocgen from '@elastic/eui-docgen/dist/components/delay_render';
+import delayHideDocgen from '@elastic/eui-docgen/dist/components/delay_hide';
+
+<PropTable definition={delayRenderDocgen.EuiDelayRender} />
+<PropTable definition={delayHideDocgen.EuiDelayHide} />

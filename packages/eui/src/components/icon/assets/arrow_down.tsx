@@ -23,7 +23,6 @@ const EuiIconArrowDown = ({
     xmlns="http://www.w3.org/2000/svg"
     width={16}
     height={16}
-    fill="none"
     viewBox="0 0 16 16"
     aria-labelledby={titleId}
     {...props}
@@ -31,7 +30,7 @@ const EuiIconArrowDown = ({
     {title ? <title id={titleId}>{title}</title> : null}
     <path
       fillRule="evenodd"
-      d="M1.957 4.982a.75.75 0 0 1 1.06-.025l4.81 4.591a.25.25 0 0 0 .346 0l4.81-4.59a.75.75 0 0 1 1.035 1.085l-4.81 4.59a1.75 1.75 0 0 1-2.416 0l-4.81-4.59a.75.75 0 0 1-.025-1.06Z"
+      d="m8 10.293 5.646-5.647.708.708L8 11.707 1.646 5.354l.708-.708L8 10.293Z"
       clipRule="evenodd"
     />
   </svg>

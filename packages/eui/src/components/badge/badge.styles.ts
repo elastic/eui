@@ -99,7 +99,10 @@ export const euiBadgeStyles = (euiThemeContext: UseEuiTheme) => {
     `,
 
     // Colors
-    default: css(setBadgeColorVars(badgeColors.default)),
+    default: css`
+      ${setBadgeColorVars(badgeColors.default)}
+      border-color: ${badgeColors.default.borderColor};
+    `,
     hollow: css`
       ${setBadgeColorVars(badgeColors.hollow)}
       border-color: ${badgeColors.hollow.borderColor};
@@ -111,6 +114,7 @@ export const euiBadgeStyles = (euiThemeContext: UseEuiTheme) => {
     success: css(setBadgeColorVars(badgeColors.success)),
     disabled: css`
       ${setBadgeColorVars(badgeColors.disabled)}
+      border-color: ${badgeColors.disabled.borderColor};
 
       /* Override selection color, since disabled badges have rgba backgrounds with opacity */
       *::selection {

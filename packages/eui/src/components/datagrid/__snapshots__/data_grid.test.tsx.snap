@@ -63,7 +63,6 @@ exports[`EuiDataGrid pagination renders 1`] = `
         />
       </a>
       <ul
-        aria-label="Pagination for preceding grid: test grid"
         class="euiPagination__list emotion-euiPagination__list"
       >
         <li
@@ -93,7 +92,7 @@ exports[`EuiDataGrid pagination renders 1`] = `
         >
           <button
             aria-controls="generated-id"
-            aria-current="true"
+            aria-current="page"
             aria-label="Page 2 of 2"
             class="euiButtonEmpty euiPaginationButton emotion-euiButtonDisplay-euiButtonEmpty-s-empty-disabled-isDisabled-euiPaginationButton-isActive"
             data-test-subj="pagination-button-1"
@@ -548,7 +547,7 @@ exports[`EuiDataGrid rendering renders additional toolbar controls 1`] = `
                   aria-hidden="true"
                   class="euiButtonIcon__icon"
                   color="inherit"
-                  data-euiicon-type="controlsHorizontal"
+                  data-euiicon-type="controls"
                 />
               </button>
             </span>
@@ -981,7 +980,7 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
                   aria-hidden="true"
                   class="euiButtonIcon__icon"
                   color="inherit"
-                  data-euiicon-type="controlsHorizontal"
+                  data-euiicon-type="controls"
                 />
               </button>
             </span>
@@ -1611,7 +1610,7 @@ exports[`EuiDataGrid rendering renders custom column headers 1`] = `
                   aria-hidden="true"
                   class="euiButtonIcon__icon"
                   color="inherit"
-                  data-euiicon-type="controlsHorizontal"
+                  data-euiicon-type="controls"
                 />
               </button>
             </span>
@@ -2043,7 +2042,7 @@ exports[`EuiDataGrid rendering renders with common and div attributes 1`] = `
                   aria-hidden="true"
                   class="euiButtonIcon__icon"
                   color="inherit"
-                  data-euiicon-type="controlsHorizontal"
+                  data-euiicon-type="controls"
                 />
               </button>
             </span>

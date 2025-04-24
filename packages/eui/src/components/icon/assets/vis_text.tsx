@@ -28,7 +28,7 @@ const EuiIconVisText = ({
     {...props}
   >
     {title ? <title id={titleId}>{title}</title> : null}
-    <path d="M8.5 5v6h2a.5.5 0 1 1 0 1h-5a.5.5 0 1 1 0-1h2V5H5v.5a.5.5 0 0 1-1 0v-1a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 .5.51l-.021 1a.5.5 0 1 1-1-.02l.01-.49H8.5ZM1 15h1.5a.5.5 0 1 1 0 1h-2a.5.5 0 0 1-.5-.5v-1.996a.5.5 0 0 1 1 0V15ZM1 1v1.497a.5.5 0 1 1-1 0V.5A.5.5 0 0 1 .5 0h2a.5.5 0 0 1 0 1H1Zm14 0h-1.495a.5.5 0 0 1 0-1H15.5a.5.5 0 0 1 .5.5v2a.5.5 0 1 1-1 0V1Zm0 14v-1.5a.5.5 0 1 1 1 0v2a.5.5 0 0 1-.5.5h-2a.5.5 0 1 1 0-1H15ZM0 6.5a.5.5 0 0 1 1 0v3a.5.5 0 0 1-1 0v-3ZM9.5 0a.5.5 0 0 1 0 1h-3a.5.5 0 0 1 0-1h3ZM15 6.5a.5.5 0 1 1 1 0v3a.5.5 0 1 1-1 0v-3ZM9.5 15a.5.5 0 1 1 0 1h-3a.5.5 0 1 1 0-1h3Z" />
+    <path d="M6 1h4v1H6V1Zm0 13h4v1H6v-1Zm9-4V6h-1v4h1ZM2 6v4H1V6h1ZM1 2a1 1 0 0 1 1-1h2v1H2v2H1V2Zm1 13a1 1 0 0 1-1-1v-2h1v2h2v1H2ZM15 2a1 1 0 0 0-1-1h-2v1h2v2h1V2Zm-1 13a1 1 0 0 0 1-1v-2h-1v2h-2v1h2ZM12 4H4v2h1V5h2.5v6h-1v1h3v-1h-1V5H11v1h1V4Z" />
   </svg>
 );
 export const icon = EuiIconVisText;

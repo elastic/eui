@@ -46,6 +46,7 @@ const meta: Meta<EuiToolTipProps> = {
     anchorClassName: '',
     repositionOnScroll: false,
     title: '',
+    disableScreenReaderOutput: false,
   },
 };
 enableFunctionToggleControls(meta, ['onMouseOut']);
@@ -64,4 +65,28 @@ export const Playground: Story = {
     // Reduce VRT flakiness/screenshots before tooltip is fully visible
     await sleep(300);
   }),
+};
+
+/**
+ * VRT only stories
+ */
+
+export const DarkMode: Story = {
+  tags: ['vrt-only'],
+  globals: { colorMode: 'dark' },
+  ...Playground,
+  args: {
+    ...Playground.args,
+    position: 'bottom',
+  },
+};
+
+export const HighContrastMode: Story = {
+  tags: ['vrt-only'],
+  globals: { highContrastMode: true, colorMode: 'dark' },
+  ...Playground,
+  args: {
+    ...Playground.args,
+    position: 'left',
+  },
 };

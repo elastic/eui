@@ -72,6 +72,21 @@ If another process is already listening on port 8030, the next free port will be
 yarn start --port 9000
 ```
 
+### Updating theme code
+
+Theme specific code lives in standalone workspace packages in the EUI repo. `/eui-theme-common` holds shared code for base theme building and types, while `/eui-theme-borealis` holds theme specific token and style definitions.
+When making changes to either of these packages you need to manually build the packages for the updates to be available in your local development environment.
+
+For building both packages at the same time, run the following in `/packages/eui`:
+```shell
+yarn build:workspaces
+```
+
+For building the packages separately, run the following in the respective package directory:
+```shell
+yarn build
+```
+
 ## VSCode setup
 
 ### Eslint

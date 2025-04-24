@@ -70,6 +70,10 @@ export const ThemeSection: FunctionComponent<ThemeSection> = ({
                   paddingSize="none"
                   transparentBackground={true}
                   language="jsx"
+                  // Code block is used within a panel which already has a border - skip doubling up
+                  css={({ highContrastMode }) =>
+                    highContrastMode ? { border: 'none' } : undefined
+                  }
                 >
                   {finalSnippet}
                 </EuiCodeBlock>

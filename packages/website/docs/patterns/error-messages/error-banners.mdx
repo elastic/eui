@@ -1,0 +1,37 @@
+---
+sidebar_position: 4
+---
+
+# Error banner
+
+Use an error banner when something’s gone wrong, but it’s still possible to show the user the page they expected to see.
+
+![A red banner which reads, we could not save your data to AWS. AWS took too long to respond. It might just be busy. Wait 1 minute and try again. If this keeps happening, contact your administrator: admin@example.co.](./images/error-banner.webp)
+
+## When to use this pattern
+
+Use an error banner when something’s gone wrong, but it’s still possible to show the user the page they expected to see.
+
+## When not to use this pattern
+
+Do not use an error banner to display a warning about an unrelated error, instead use the [error warning pattern](./error-warning.mdx).
+
+Do not use an error banner for validating information the user has entered, instead use the [validation errors pattern](./error-validation.mdx).
+
+Do not use an error banner when you're unable to show the page the user was expecting, instead use the [error page pattern](./error-page.mdx).
+
+## How it works
+
+Error banners must be highly visible. Use the [EuiCallout](../../components/display/callout.mdx) component, and the props:
+- `color="danger"`
+- `iconType="alert"`
+
+Use the title prop to explain the [problem](./how-to-write-good-error-messages.mdx#1-the-problem).
+
+Use paragraphs to explain the [cause](./how-to-write-good-error-messages.mdx#2-the-cause) and the [recommendation](./how-to-write-good-error-messages.mdx#3-the-recommendation).
+
+Use a button if there is an obvious action the user can take, like ‘try again’.
+
+## Help improve this pattern
+
+To help make sure that this page is useful, relevant and up to date, you can join our [#ux&#8209;wg&#8209;patterns](https://elastic.slack.com/archives/C049ADQE99S) discussions on Slack.

@@ -105,12 +105,24 @@ export const CodeExample = {
           <EuiLink external href="https://prismjs.com/#supported-languages">
             all language syntaxes
           </EuiLink>{' '}
-          supported by the <EuiCode>prism</EuiCode>{' '}
+          available through the{' '}
           <EuiLink external href="https://prismjs.com/">
-            library
+            <EuiCode>prismjs</EuiCode> library
+          </EuiLink>{' '}
+          and{' '}
+          <EuiLink
+            external
+            href="https://www.elastic.co/guide/en/kibana/current/esql.html"
+          >
+            {' '}
+            ES|QL syntax{' '}
+          </EuiLink>{' '}
+          provided by{' '}
+          <EuiLink external href="https://github.com/elastic/prismjs-esql">
+            <EuiCode>prismjs-esql</EuiCode> plugin
           </EuiLink>
           . The <EuiCode>language</EuiCode> prop can also be omitted to simply
-          render formatted but unhighlighted code.
+          render formatted but non-highlighted code.
         </p>
         <p>
           JSX code (often React) has distinct language syntaxes from the base

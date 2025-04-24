@@ -1,8 +1,3 @@
----
-slug: /display/progress
-id: display_progress
----
-
 # Progress
 
 The **EuiProgress** component by default will display in an indeterminate loading state (rendered as a single div) until you define a `max` and `value` prop. The `size` prop refers to its vertical height. It will always stretch `100%` to its container.
@@ -90,7 +85,7 @@ Using the `position` prop we can align our bar to be `fixed` or `absolute`. In b
 
 :::warning Progress bars over fixed headers
 
-Using the `fixed` position may result in **EuiProgress** being overlayed when its parent wrapper has a `z-index` value lower than another fixed element, such as **EuiHeader**. In this scenario, wrap **EuiProgress** in an **EuiPortal** (example below).
+Using the `fixed` position may result in **EuiProgress** being overlaid when its parent wrapper has a `z-index` value lower than another fixed element, such as **EuiHeader**. In this scenario, wrap **EuiProgress** in an **EuiPortal** (example below).
 
 :::
 
@@ -261,7 +256,7 @@ export default () => (
 
 ## Colors
 
-**EuiProgress** supports a few options for `color`. You can pass any value from our basic color set or from our visualization palette (`vis0` through `vis9`). To learn more about color usage, go to the [Colors](/docs/theming/colors/values) page.
+**EuiProgress** supports a few options for `color`. You can pass any value from our basic color set or from our visualization palette (`vis0` through `vis9`). To learn more about color usage, go to the [Colors](../../getting-started/theming/tokens/colors/index.mdx) page.
 
 Additionally, you can pass any valid color string like a hex value or named color. Each `valueText` renders with a high contrast version of the color.
 

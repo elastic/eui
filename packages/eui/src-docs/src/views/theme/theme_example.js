@@ -30,16 +30,13 @@ export const ThemeExample = {
     <>
       <EuiText>
         <p>
-          EUI is in the progress of switching it&apos;s core styles processor
-          from Sass to <EuiLink href="https://emotion.sh">Emotion</EuiLink>. To
-          take full advantage of this context layer, wrap the root of your
-          application with a single{' '}
+          While{' '}
           <EuiLink href="#utilities/provider">
             <strong>EuiProvider</strong>
-          </EuiLink>
-          . While <strong>EuiProvider</strong> should not be included more than
-          once, you may use multiple nested <strong>EuiThemeProviders</strong>{' '}
-          to customize section-specific or component-specific{' '}
+          </EuiLink>{' '}
+          should not be included more than once at the top level of your app,
+          you may use multiple nested <strong>EuiThemeProviders</strong> to
+          customize section-specific or component-specific{' '}
           <Link to="/theming/color-mode#rendering-a-specific-color-mode">
             color modes
           </Link>{' '}
@@ -54,32 +51,44 @@ export const ThemeExample = {
       text: (
         <>
           <p>
-            The context layer that enables theming (including the default theme
-            styles) comes from <EuiCode>EuiThemeProvider</EuiCode>.{' '}
-            <EuiCode>EuiThemeProvider</EuiCode> accepts three props, all of
-            which have default values and are therefore optional. To use the
-            default EUI theme, no configuration is required.
+            The context layer that enables theming comes from{' '}
+            <EuiCode>EuiThemeProvider</EuiCode>.{' '}
+            <EuiCode>EuiThemeProvider</EuiCode> accepts four main props (all of
+            which have default values and are therefore optional):
           </p>
           <ul>
             <li>
-              <EuiCode language="ts">theme: EuiThemeSystem</EuiCode> Raw theme
-              values. Calculated values are acceptable.
+              <EuiCode language="ts">theme:</EuiCode> Raw theme values.
+              Calculated values are acceptable. For the full shape of an EUI
+              theme, see the{' '}
+              <EuiLink href="#/theming/customizing-themes">
+                global values
+              </EuiLink>{' '}
+              page.
             </li>
             <li>
-              <EuiCode language="ts">colorMode: EuiThemeColorMode</EuiCode>{' '}
-              Simply {"'light'"} or {"'dark'"}
+              <EuiCode language="ts">modify:</EuiCode> Accepts an object of
+              overrides for theme values. For usage examples, see{' '}
+              <EuiLink href="#/theming/theme-provider#simple-instance-overrides">
+                Simple instance overrides
+              </EuiLink>{' '}
+              below.
             </li>
             <li>
-              <EuiCode language="ts">modify: EuiThemeModifications</EuiCode>{' '}
-              Overrides and modifications for theme values.
+              <EuiCode language="ts">colorMode:</EuiCode> Accepts 'light',
+              'dark', or 'inverse'. For usage, see the{' '}
+              <EuiLink href="#/theming/color-mode">Color mode</EuiLink> page.
+            </li>
+            <li>
+              <EuiCode language="ts">highContrastMode:</EuiCode> Accepts a
+              true/false boolean. For usage, see the{' '}
+              <EuiLink href="#/theming/high-contrast-mode">
+                High contrast mode
+              </EuiLink>{' '}
+              page.
             </li>
           </ul>
-          <p>
-            The concept for each prop is explained in subsequent sections. More
-            information on the full shape of an EUI theme, see the{' '}
-            <EuiLink href="#/theming/customizing-themes">Global Values</EuiLink>{' '}
-            page.
-          </p>
+          <p>To use the default EUI theme, no configuration is required.</p>
         </>
       ),
       demo: <Provider />,
@@ -96,25 +105,27 @@ export const ThemeExample = {
       text: (
         <>
           <p>
-            Using the react hook <strong>useEuiTheme()</strong> makes it very
-            easy to consume the EUI static and computed variables like colors
-            and sizing. It simply passes back an object of the current theme
-            which includes
+            Using the React hook <EuiCode>useEuiTheme()</EuiCode> makes it very
+            easy to consume EUI's static and computed variables, like colors and
+            sizing. It simply passes back an object of the current theme which
+            includes:
           </p>
           <ul>
             <li>
-              <EuiCode language="ts">euiTheme: EuiThemeComputed</EuiCode> All
-              the calculated keys including any modifications
+              <EuiCode language="ts">euiTheme:</EuiCode> All the calculated keys
+              including any modifications
             </li>
             <li>
-              <EuiCode language="ts">colorMode: EuiThemeColorMode</EuiCode>{' '}
-              Simply {"'light'"} or {"'dark'"}
+              <EuiCode language="ts">modifications:</EuiCode> Only the
+              modification keys
             </li>
             <li>
-              <EuiCode language="ts">
-                modifications: EuiThemeModifications
-              </EuiCode>{' '}
-              Only the modification keys
+              <EuiCode language="ts">colorMode:</EuiCode> Either "LIGHT" or
+              "DARK"
+            </li>
+            <li>
+              <EuiCode language="ts">highContrastMode:</EuiCode> Either
+              'forced', 'preferred', or <EuiCode>false</EuiCode>
             </li>
           </ul>
           <p>

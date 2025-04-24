@@ -7,6 +7,32 @@ declare module '@site/*';
 // NOTE: when using swizzle --wrap there is the approach to do the following:
 // type Props = WrapperProps<typeof NameOfComponent> but it will result in `any` type
 
+// original: https://github.com/facebook/docusaurus/blob/8b877d27d4b1bcd5c2ee13dde8332407a1c26447/packages/docusaurus-theme-classic/src/theme-classic.d.ts#L42
+declare module '@theme-original/Admonition' {
+  import type {ReactNode} from 'react';
+
+  export interface Props {
+    readonly children: ReactNode;
+    readonly type: string;
+    readonly icon?: ReactNode;
+    readonly title?: ReactNode;
+    readonly className?: string;
+  }
+
+  export default function Admonition(props: Props): JSX.Element;
+}
+
+declare module '@theme/Admonition/Types' {
+  import type {ComponentType} from 'react';
+  import type {Props} from '@theme-original/Admonition';
+
+  const AdmonitionTypes: {
+    [admonitionType: string]: ComponentType<Props>;
+  };
+
+  export default AdmonitionTypes;
+}
+
 // original: https://github.com/facebook/docusaurus/blob/8b877d27d4b1bcd5c2ee13dde8332407a1c26447/packages/docusaurus-plugin-content-docs/src/plugin-content-docs.d.ts#L635
 declare module '@theme-original/DocRoot' {
   import type { RouteConfigComponentProps } from 'react-router-config';
@@ -547,4 +573,18 @@ declare module '@theme/Demo/default_scope' {
   export type ScopeType = Record<string, unknown>;
 
   export const demoDefaultScope: ScopeType;
+}
+
+declare module '@theme/Demo/actions' {
+  import type { ComponentType } from 'react';
+  import type { DemoSourceMeta } from '@elastic/eui-docusaurus-theme/components/demo/demo';
+
+  export type ActionComponentProps = {
+    activeSource: DemoSourceMeta;
+    sources: DemoSourceMeta[];
+  };
+
+  export type ActionComponent = ComponentType<ActionComponentProps>;
+
+  export const extraActions: ActionComponent[];
 }

@@ -92,6 +92,7 @@ export const getGlobalStyles = (theme: UseEuiTheme) => {
 
       --eui-size-xs: ${size.xs};
       --eui-size-s: ${size.s};
+      --eui-size-m: ${size.m};
 
       --eui-border-color-primary: ${colors.borderStrongPrimary};
 
@@ -111,6 +112,11 @@ export const getGlobalStyles = (theme: UseEuiTheme) => {
       --ifm-h6-font-size: var(--eui-font-size-xxs);
 
       --ifm-global-radius: ${euiTheme.border.radius.small};
+
+      --ifm-toc-border-color: ${euiTheme.border.color};
+
+      --doc-sidebar-width: 258px;
+      --doc-sidebar-hidden-width: 30px;
     }
   `;
 };

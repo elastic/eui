@@ -13,6 +13,8 @@ import {
   logicalCSS,
   useEuiPaddingCSS,
   AMSTERDAM_NAME_KEY,
+  EuiThemeAmsterdam,
+  colorVis,
 } from '../../../../../src';
 
 import { EuiThemeColors, ThemeRowType } from '../_props';
@@ -365,6 +367,65 @@ export const SpecialValuesJS = () => {
             type: props[color],
             // @ts-ignore TODO
             value: euiTheme.colors[color],
+          };
+        })}
+        render={(item) => <EuiColorPickerSwatch color={item.value} disabled />}
+      />
+    </>
+  );
+};
+
+export const DataVisJS: FunctionComponent<ThemeRowType> = ({ description }) => {
+  const { euiTheme } = useEuiTheme();
+
+  return (
+    <>
+      <ThemeExample
+        title={<code>euiTheme.colors.vis[dataVis]</code>}
+        description={description}
+        example={
+          <div
+            css={css`
+              padding: ${euiTheme.size.s};
+              color: ${euiTheme.colors.plainDark};
+              background-color: ${euiTheme.colors.vis.euiColorVis0};
+            `}
+          >
+            <strong>background: {euiTheme.colors.vis.euiColorVis0}</strong>
+          </div>
+        }
+        snippet={`background-color: \${euiTheme.colors.vis.euiColorVis0};`}
+        snippetLanguage="emotion"
+      />
+    </>
+  );
+};
+
+const dataVisKeys = Object.keys(colorVis).filter((key) =>
+  key.match(/euiColorVis[0-9]/)
+);
+const dataVisAdditionalKeys = Object.keys(colorVis).filter((key) =>
+  key.match(/euiColorVisBehindText[0-9]/)
+);
+
+export const DataVisValuesJS = () => {
+  const { euiTheme } = useEuiTheme();
+  const props = getPropsFromComponent(EuiThemeColors);
+  const colorKeys =
+    euiTheme.themeName === EuiThemeAmsterdam.key
+      ? [...dataVisKeys, ...dataVisAdditionalKeys]
+      : dataVisKeys;
+
+  return (
+    <>
+      <ThemeValuesTable
+        items={colorKeys.map((color) => {
+          return {
+            id: color,
+            token: `colors.vis.${color}`,
+            type: props[color],
+            // @ts-ignore TODO
+            value: euiTheme.colors.vis[color],
           };
         })}
         render={(item) => <EuiColorPickerSwatch color={item.value} disabled />}

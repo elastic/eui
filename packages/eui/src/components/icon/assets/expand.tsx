@@ -28,9 +28,11 @@ const EuiIconExpand = ({
     {...props}
   >
     {title ? <title id={titleId}>{title}</title> : null}
+    <path d="M13.293 2H10V1h5v5h-1V2.707L9.354 7.354l-.708-.708L13.293 2Z" />
     <path
       fillRule="evenodd"
-      d="m4.354 12.354 8-8a.5.5 0 0 0-.708-.708l-8 8a.5.5 0 0 0 .708.708ZM1 10.5a.5.5 0 1 1 1 0v3a.5.5 0 0 0 .5.5h3a.5.5 0 1 1 0 1h-3A1.5 1.5 0 0 1 1 13.5v-3Zm14-5a.5.5 0 1 1-1 0v-3a.5.5 0 0 0-.5-.5h-3a.5.5 0 1 1 0-1h3A1.5 1.5 0 0 1 15 2.5v3Z"
+      d="M2.707 14H6v1H1v-5h1v3.293l4.646-4.647.708.708L2.707 14Z"
+      clipRule="evenodd"
     />
   </svg>
 );

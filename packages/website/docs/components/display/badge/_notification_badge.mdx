@@ -1,0 +1,14 @@
+**EuiNotificationBadge** should be used to showcase the number of notifications, alerts, or hidden selections. This badge type is commonly used in the [EuiHeader](../../layout/header.mdx) and [EuiFilterButton](../../forms/search-and-filter/filter-group.mdx) components.
+
+```tsx interactive
+import React from 'react';
+import { EuiFlexGroup, EuiNotificationBadge } from '@elastic/eui';
+
+export default () => (
+  <EuiFlexGroup responsive={false} gutterSize="s">
+    <EuiNotificationBadge>1</EuiNotificationBadge>
+    <EuiNotificationBadge color="success">2</EuiNotificationBadge>
+    <EuiNotificationBadge color="subdued">3</EuiNotificationBadge>
+  </EuiFlexGroup>
+);
+```

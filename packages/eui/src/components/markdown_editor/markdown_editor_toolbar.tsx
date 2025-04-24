@@ -83,7 +83,7 @@ const quoteCodeLinkButtons = [
     id: 'mdCode',
     label: 'Code',
     name: 'inlineCode',
-    iconType: 'editorCodeBlock',
+    iconType: 'code',
   },
   {
     id: 'mdLink',
@@ -242,7 +242,7 @@ export const EuiMarkdownEditorToolbar = forwardRef<
         {isPreviewing ? (
           <EuiButtonEmpty
             data-test-subj="markdown_editor_edit_button"
-            iconType="editorCodeBlock"
+            iconType="code"
             color="text"
             size="s"
             onClick={onClickPreview}

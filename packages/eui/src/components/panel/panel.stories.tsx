@@ -6,6 +6,7 @@
  * Side Public License, v 1.
  */
 
+import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 
 import {
@@ -43,5 +44,33 @@ type Story = StoryObj<EuiPanelProps>;
 export const Playground: Story = {
   args: {
     children: 'Panel content',
+  },
+};
+
+/* Verifying that borders are applied in correct order */
+export const OverlappingPanels: Story = {
+  tags: ['vrt-only'],
+  globals: { colorMode: 'dark' },
+  args: {
+    children: 'Panel content',
+  },
+  render: function Render(args: EuiPanelProps) {
+    return (
+      <>
+        <EuiPanel {...args} />
+        <EuiPanel
+          {...args}
+          css={({ euiTheme }) => ({
+            top: `-${euiTheme.size.m}`,
+          })}
+        />
+        <EuiPanel
+          {...args}
+          css={({ euiTheme }) => ({
+            top: `-${euiTheme.size.l}`,
+          })}
+        />
+      </>
+    );
   },
 };

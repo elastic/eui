@@ -379,7 +379,7 @@ export const SideNavExample = {
             need to indicate a dynamic navigational item like a user-created
             object.
           </p>
-          <EuiCallOut iconType="editorCodeBlock" title="Extra style needed">
+          <EuiCallOut iconType="code" title="Extra style needed">
             <p>
               The emphasized nav item&apos;s background color extends beyond the
               horizontal bounds of the component to allow it to reach it&apos;s

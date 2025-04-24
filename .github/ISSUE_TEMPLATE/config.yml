@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: 💡 Not sure what to choose?
+    url: https://github.com/elastic/eui/discussions
+    about: If this is a proposal or idea that would need some vetting from the team first, start with a discussion.

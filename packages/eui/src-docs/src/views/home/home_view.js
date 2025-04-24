@@ -89,7 +89,7 @@ export const HomeView = () => (
         </EuiFlexItem>
         <EuiFlexItem>
           <EuiCard
-            icon={<EuiIcon size="l" type="controlsHorizontal" />}
+            icon={<EuiIcon size="l" type="controls" />}
             layout="horizontal"
             display="plain"
             titleSize="xs"

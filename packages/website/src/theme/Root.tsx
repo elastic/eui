@@ -1,5 +1,5 @@
 import { useContext, useEffect } from 'react';
-import { AppThemeContext } from '@elastic/eui-docusaurus-theme/lib/components/theme_context';
+import { AppThemeContext } from '@elastic/eui-docusaurus-theme/components';
 import chartsLightThemeUrl from '!file-loader!@elastic/charts/dist/theme_only_light.css';
 import chartsDarkThemeUrl from '!file-loader!@elastic/charts/dist/theme_only_dark.css';
 import Root from '@theme-original/Root';

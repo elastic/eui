@@ -1,0 +1,124 @@
+---
+sidebar_position: 1
+---
+
+# Borders
+
+```mdx-code-block
+import { Example } from '@site/src/components';
+```
+
+The border tokens contain both individual border property values and full shorthand border properties.
+
+## Types
+
+```mdx-code-block
+import { BorderPreview } from './border_preview';
+import { BordersTable } from './borders_table';
+```
+
+<Example>
+  <Example.Description>
+    ### `euiTheme.border[type]` <Badge color="hollow">token</Badge>
+
+    These common border types string together the base properties of color, width and style to form common full `border` properties.
+  </Example.Description>
+  <Example.Preview>
+    <BorderPreview />
+  </Example.Preview>
+  <Example.Snippet>
+    ```tsx
+    css`
+      border: ${euiTheme.border.thin};
+    `
+    ```
+  </Example.Snippet>
+</Example>
+
+<BordersTable />
+
+
+## Color
+
+EUI has one main base color it uses for almost all borders (or calculated borders).
+
+Only form specific borders use the `euiTheme.colors.borderBasePlain` color token instead.
+
+```mdx-code-block
+import { ColorPreview } from './color_preview';
+```
+
+<Example>
+  <Example.Description>
+    ### `euiTheme.border.color` <Badge color="hollow">token</Badge>
+
+    You can apply this color directly to any `border-color` property.
+    - Default is `colors.lightShade`
+    - In high contrast mode, this value becomes `colors.fullShade` and cannot be overridden.
+
+  </Example.Description>
+  <Example.Preview>
+    <ColorPreview />
+  </Example.Preview>
+  <Example.Snippet>
+    ```tsx
+    css`
+      border-color: ${euiTheme.border.color};
+    `
+    ```
+  </Example.Snippet>
+</Example>
+
+## Width
+
+```mdx-code-block
+import { BorderWidthPreview } from './border_width';
+import { BorderWidthsTable } from './border_widths_table';
+```
+
+<Example>
+  <Example.Description>
+    ### `euiTheme.border.width[size]` token
+
+    These basic properties make up the border thickness which can be used individually or in conjunction with`border.color`.
+  </Example.Description>
+  <Example.Preview>
+    <BorderWidthPreview />
+  </Example.Preview>
+  <Example.Snippet>
+    ```
+    css`
+      border: ${euiTheme.border.width.thick} dashed ${euiTheme.border.color};
+    `
+    ```
+  </Example.Snippet>
+</Example>
+
+<BorderWidthsTable />
+
+## Radius
+
+```mdx-code-block
+import { BorderRadiusPreview } from './border_radius_preview';
+import { BorderRadiiTable } from './border_radii_table';
+```
+
+<Example>
+  <Example.Description>
+    ### `euiTheme.border.radius[size]` <Badge color="hollow">token</Badge>
+
+    These basic properties make up the corner radii which can be used individually.
+  </Example.Description>
+  <Example.Preview>
+    <BorderRadiusPreview />
+  </Example.Preview>
+  <Example.Snippet>
+    ```tsx
+    css`
+      border-radius: ${euiTheme.border.radius.medium};
+    `
+    ```
+  </Example.Snippet>
+</Example>
+
+<BorderRadiiTable />

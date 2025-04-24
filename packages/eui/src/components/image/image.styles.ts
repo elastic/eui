@@ -10,6 +10,7 @@ import { css } from '@emotion/react';
 import { euiShadow } from '@elastic/eui-theme-common';
 
 import { logicalCSS } from '../../global_styling';
+import { highContrastModeStyles } from '../../global_styling/functions/high_contrast';
 import { UseEuiTheme } from '../../services';
 
 export const euiImageStyles = (euiThemeContext: UseEuiTheme) => ({
@@ -28,9 +29,12 @@ export const euiImageStyles = (euiThemeContext: UseEuiTheme) => ({
     position: relative;
     ${logicalCSS('max-height', '80vh')}
     ${logicalCSS('max-width', '80vw')}
+    ${highContrastModeStyles(euiThemeContext, {
+      preferred: `border: ${euiThemeContext.euiTheme.border.thin};`,
+    })}
   `,
   hasShadow: css`
-    ${euiShadow(euiThemeContext, 's')}
+    ${euiShadow(euiThemeContext, 's', { borderAllInHighContrastMode: true })}
   `,
   // Sizes
   // These sizes are mostly suggestions. Don't look too hard for meaning in their values.

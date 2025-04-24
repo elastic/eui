@@ -1,0 +1,242 @@
+---
+sidebar_position: 1
+---
+
+# Setup
+
+import Link from '@docusaurus/Link';
+
+## Installation
+
+EUI is published through <Link to="https://www.npmjs.com/package/@elastic/eui">NPM</Link> as a dependency. To install EUI into an existing project, use the `yarn` CLI (`npm` is not supported).
+
+```bash
+yarn add @elastic/eui
+```
+
+Note that EUI has <Link to="https://github.com/elastic/eui/blob/main/packages/eui/package.json">several `peerDependencies` requirements</Link> that will also need to be installed when starting with a blank project.
+
+```bash
+yarn add @elastic/eui @elastic/eui-theme-borealis @elastic/datemath @emotion/react @emotion/css moment
+```
+
+You can read more about other ways to <Link to="https://github.com/elastic/eui/blob/main/wiki/consuming-eui/">consume EUI</Link> in our wiki.
+
+## Setting up your application
+
+EUI uses CSS-in-JS (specifically <Link to="https://emotion.sh/">Emotion</Link>) for its styles and theming. As such, we require an `<EuiProvider>` wrapper around your application in order for various theme-related UI & UX (such as dark/light mode switching) to work as expected.
+
+```tsx
+import React from 'react';
+
+import { EuiProvider, EuiText } from '@elastic/eui';
+
+const MyApp = () => (
+  <EuiProvider>
+    <EuiText><p>Hello World!</p></EuiText>
+  </EuiProvider>
+);
+
+export default MyApp;
+```
+
+For more configuration options of the provider, see the [**EuiProvider** documentation](../utilities/provider.mdx).
+
+## Styling your application
+
+You can build custom components using EUI's theme tokens, consumed via `useEuiTheme()`. The below example uses Emotion's `css` prop, but any CSS-in-JS library should be able to interpolate the JS variables.
+
+For more ways to consume EUI's theme, see the [**EuiThemeProvider** documentation](./theming/theme-provider.mdx#consuming-with-the-react-hook).
+
+```tsx
+import React from 'react';
+import { EuiIcon, EuiCode, EuiText, useEuiTheme } from '@elastic/eui';
+import { css } from '@emotion/react';
+
+export default () => {
+  const { euiTheme } = useEuiTheme();
+
+  return (
+    <EuiText>
+      <p>
+        <EuiIcon
+          type="stopFilled"
+          size="xxl"
+          css={{ color: euiTheme.colors.primary }}
+        />{' '}
+        This primary color will adjust based on the light or dark theme value
+      </p>
+
+      <p
+        css={css`
+          background: ${euiTheme.colors.lightShade};
+          padding: calc(${euiTheme.size.base} * 2);
+        `}
+      >
+        The padding of this box is created using <EuiCode>calc()</EuiCode>{' '}
+        because EUI&apos;s theme sizes are string pixel values that are
+        calculated off the theme&apos;s <EuiCode>base</EuiCode>
+      </p>
+    </EuiText>
+  );
+};
+```
+
+### Customizing with classes
+
+For consumers using vanilla or preprocessed CSS, all components allow you to pass a custom `className` prop, which will be appended onto the component.
+
+:::warning Avoid overwriting `.eui` class names
+
+EUI's class names are not a guaranteed API and are prone to change, which will risk breaking your theme. Target your custom classNames instead.
+
+:::
+
+While EUI's styles are generally low in <Link to="https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity">specificity</Link> due to our usage of CSS-in-JS, you may need to ensure that your CSS is defined after ours in your `<head>`. See [**EuiProvider's** cache customization for more style injection options](../utilities/provider.mdx#emotioncache-customization).
+
+```tsx
+import React from 'react';
+import { EuiButton } from '@elastic/eui';
+
+const myCustomCSS = `
+  .myCustomButton {
+    background-color: pink;
+  }
+`;
+
+export default () => (
+  <>
+    <style>{myCustomCSS}</style>
+    <EuiButton className="myCustomButton">Hello world!</EuiButton>
+  </>
+);
+```
+
+### Customizing the style tokens
+
+EUI can be slightly customized to fit your branding needs by altering the base tokens like color and typography. You can pass a full or partial list of override tokens to the **EuiProvider**'s `modify` prop.
+
+:::warning Touch the least amount of variables possible
+
+By nature, EUI is very rigid. You shouldn't need much to make drastic changes to color. Most themes are less then a dozen variable overwrites in total.
+
+:::
+
+For more examples of the `modify` prop, see the [**EuiThemeProvider** docs](./theming/theme-provider.mdx#simple-instance-overrides).
+
+```tsx
+import React, { FunctionComponent, ReactNode } from 'react';
+import { EuiCode, EuiText, EuiThemeProvider, useEuiTheme } from '@elastic/eui';
+
+const Box: FunctionComponent<{ children: ReactNode }> = ({ children }) => {
+  const { euiTheme } = useEuiTheme();
+
+  return (
+    <EuiText
+      css={{
+        background: euiTheme.colors.lightShade,
+        padding: euiTheme.size.xl,
+      }}
+    >
+      <p>{children}</p>
+    </EuiText>
+  );
+};
+
+export default () => {
+  const overrides = {
+    colors: {
+      LIGHT: { lightShade: '#d3e6df' },
+      DARK: { lightShade: '#394c4b' },
+    },
+  };
+
+  return (
+    <div>
+      <EuiThemeProvider modify={overrides}>
+        <Box>
+          The background of this box is using the locally overridden value of{' '}
+          <EuiCode>euiTheme.colors.lightShade</EuiCode>
+        </Box>
+      </EuiThemeProvider>
+    </div>
+  );
+};
+```
+
+## Fonts
+
+By default, EUI ships with a font stack that includes some outside, open source fonts. If your system is internet available you can include these by adding the following imports to your SCSS/CSS files, otherwise you'll need to bundle the physical fonts in your build. EUI will drop to System Fonts (which you may prefer) in their absence.
+
+```html
+<link
+  href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@300;400;500;600;700&family=Roboto+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+  rel="stylesheet"
+/>
+```
+
+Or grab all weights, including italics, between 400 and 700 as a variable font.
+
+```html
+<link
+  href="https://fonts.googleapis.com/css2?family=Inter:slnt,wght@-10,300..700;0,300..700&family=Roboto+Mono:ital,wght@0,400..700;1,400..700&display=swap"
+  rel="stylesheet"
+/>
+```
+
+### Embedding with `@font-face`
+
+If your application doesn't allow grabbing the font assets from a CDN, you'll need to download and locally provide the font files. You can download the files directly from their source site <Link to="https://rsms.me/inter/">rsms.me/inter/</Link>, then follow the instructions in the provided CSS file for importing. We recommend using the single variable font file and importing with the following settings:
+
+```css
+@font-face {
+  font-family: 'Inter';
+  font-weight: 300 900;
+  font-display: swap;
+  font-style: oblique 0deg 10deg;
+  src: url("Inter.var.woff2") format("woff2");
+}
+```
+
+## Components, Services and Testing imports
+
+You can import React components from the top-level EUI module.
+
+```tsx
+import {
+  EuiButton,
+  EuiCallOut,
+  EuiPanel,
+} from '@elastic/eui';
+```
+
+Most services are published from the `lib/services` directory. Some are published from their module directories in this directory.
+
+```tsx
+import { keys } from '@elastic/eui/lib/services';
+import { Timer } from '@elastic/eui/lib/services/time';
+```
+
+Test utilities are published from the `lib/test` directory.
+
+```tsx
+import { findTestSubject } from '@elastic/eui/lib/test'; // Enzyme
+import { findByTestSubject, render, screen } from '@elastic/eui/lib/test/rtl'; // React Testing Library
+```
+
+## Customizing component defaults
+
+While all props can be individually customized via props, some components can have their default props customized globally via **EuiProvider's** `componentDefaults` API. [Read more in EuiProvider's documentation](../utilities/provider.mdx#component-defaults).
+
+```tsx
+<EuiProvider
+  componentDefaults={{
+    EuiTable: { responsiveBreakpoint: 's', },
+    EuiTablePagination: { itemsPerPage: 20, },
+    EuiFocusTrap: { crossFrame: true },
+    EuiPortal: { insert },
+  }}
+>
+  <App />
+</EuiProvider>
+```

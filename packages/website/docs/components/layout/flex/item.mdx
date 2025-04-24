@@ -1,0 +1,171 @@
+---
+sidebar_position: 2
+---
+
+# Flex items
+
+:::warning
+To work correctly, **EuiFlexItem** must be a **direct child** of [EuiFlexGroup](./group.mdx) or [EuiFlexGrid](./grid.mdx). You cannot have any intermediate HTML wrappers between them.
+:::
+
+import { createDemo } from '@elastic/eui-docusaurus-theme/components';
+import { FlexPreviewWrapper } from './flex_preview_wrapper';
+import DemoNote from './_flex_preview_note.mdx';
+
+export const FlexDemo = createDemo({ previewWrapper: FlexPreviewWrapper });
+
+<DemoNote />
+
+## Flex items are also flex
+
+To allow for continued stretching of nested flex groups/grids and their items, each **EuiFlexItem** also has the property of `display: flex`.
+
+This can sometimes cause unwanted layouts of your content when there are multiple elements, or if the element itself also has some specific `display` property. To alleviate this, the simplest method is to wrap your inner children with a HTML wrapper like a `<div />` or `<span />`.
+
+<FlexDemo>
+  ```tsx
+  import React from 'react';
+  import { EuiFlexGroup, EuiFlexItem, EuiButton } from '@elastic/eui';
+
+  export default () => (
+    <EuiFlexGroup>
+      <EuiFlexItem>
+        <EuiButton fill>Buttons will widen</EuiButton>
+      </EuiFlexItem>
+      <EuiFlexItem>
+        <div>
+          <EuiButton fill>Unless you wrap them</EuiButton>
+        </div>
+      </EuiFlexItem>
+    </EuiFlexGroup>
+  );
+  ```
+</FlexDemo>
+
+Alternatively, you can sometimes opt to omit **EuiFlexItem** completely.
+
+<FlexDemo>
+  ```tsx
+  import React from 'react';
+  import { EuiFlexGroup, EuiFlexItem, EuiButton } from '@elastic/eui';
+
+  export default () => (
+    <EuiFlexGroup justifyContent="spaceBetween" alignItems="center">
+      <EuiPanel grow={false}>
+        Flex group parents will still <br /> align children as usual
+      </EuiPanel>
+      <EuiButton fill>Look ma, no EuiFlexItem</EuiButton>
+    </EuiFlexGroup>
+  );
+  ```
+</FlexDemo>
+
+## Panels grow vertically to fill flex items
+
+The [EuiPanel](../../containers/panel/index.mdx) component will naturally grow to fill the **EuiFlexItem** which contains it.
+
+```tsx interactive
+import React from 'react';
+import {
+  EuiFlexItem,
+  EuiFlexGroup,
+  EuiPanel,
+  EuiCode,
+  EuiText,
+} from '@elastic/eui';
+
+export default () => (
+  <EuiFlexGroup>
+    <EuiFlexItem>
+      <EuiText>
+        <p>
+          <EuiCode>FlexItem</EuiCode>
+        </p>
+        <p>A side nav might be in this one.</p>
+        <p>And you would want the panel on the right to expand with it.</p>
+      </EuiText>
+    </EuiFlexItem>
+
+    <EuiFlexItem>
+      <EuiPanel>
+        <strong>EuiPanel</strong>
+      </EuiPanel>
+    </EuiFlexItem>
+
+    <EuiFlexItem>
+      <EuiPanel grow={false}>
+        Another <strong>EuiPanel</strong>, with{' '}
+        <EuiCode>grow=&#123;false&#125;</EuiCode>.
+      </EuiPanel>
+    </EuiFlexItem>
+  </EuiFlexGroup>
+);
+```
+
+## Grow
+
+:::warning
+The `grow` prop of **EuiFlexItem** only applies when used within [EuiFlexGroup](./group.mdx). It is ignored by [EuiFlexGrid](./grid.mdx), which enforces the same width for each item.
+:::
+
+### Turning off item stretching
+
+By default, all **EuiFlexItems** will grow horizontally within their flex group if the `grow` prop is not specified. This can be turned off for each item individually via `grow={false}`.
+
+<FlexDemo>
+  ```tsx
+  import React from 'react';
+  import { EuiFlexGroup, EuiFlexItem } from '@elastic/eui';
+
+  export default () => (
+    <EuiFlexGroup>
+      <EuiFlexItem grow={false}>This item won&rsquo;t grow</EuiFlexItem>
+      <EuiFlexItem>But this item will.</EuiFlexItem>
+    </EuiFlexGroup>
+  );
+  ```
+</FlexDemo>
+
+### Proportional widths of items
+
+Alternatively, you can specify a `grow` number between 1 and 10 for each **EuiFlexItem** to take up a proportional percentage of the **EuiFlexGroup** it is in.
+
+<FlexDemo>
+  ```tsx
+  import React from 'react';
+  import { EuiFlexGroup, EuiFlexItem, EuiSpacer } from '@elastic/eui';
+
+  export default () => (
+    <div>
+      <EuiFlexGroup>
+        <EuiFlexItem grow={1}>1</EuiFlexItem>
+        <EuiFlexItem grow={2}>
+          2<br />
+          wraps content if necessary
+        </EuiFlexItem>
+        <EuiFlexItem grow={3}>
+          3<br />
+          expands_to_fit_if_content_cannot_wrap
+        </EuiFlexItem>
+        <EuiFlexItem grow={4}>4</EuiFlexItem>
+      </EuiFlexGroup>
+
+      <EuiSpacer />
+
+      <EuiFlexGroup>
+        <EuiFlexItem grow={6}>6</EuiFlexItem>
+        <EuiFlexItem grow={3}>3</EuiFlexItem>
+        <EuiFlexItem grow={1}>1</EuiFlexItem>
+        <EuiFlexItem grow={3}>3</EuiFlexItem>
+        <EuiFlexItem grow={6}>6</EuiFlexItem>
+      </EuiFlexGroup>
+    </div>
+  );
+  ```
+</FlexDemo>
+
+## Props
+
+import docgen from '@elastic/eui-docgen/dist/components/flex';
+
+<PropTable definition={docgen.EuiFlexItem} />

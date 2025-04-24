@@ -1,0 +1,1279 @@
+# Popover
+
+Use the **EuiPopover** component to hide controls or options behind a clickable element. A popover is temporary so keep tasks simple and narrowly focused.
+
+:::note Popovers have three accessibility requirements:
+
+*   Popover triggers **must** be anchored to elements that accept keyboard focus.
+*   Popovers can contain interactive elements. They **must** be controlled by a click handler.
+*   Popovers must not be activated by hover or focus events.
+
+:::
+
+While the visibility of the popover is maintained by the consuming application, popovers will automatically close when clicking outside of the popover bounds. Therefore all work done in a popover should automatically be saved.
+
+Avoid popover inception (popover triggering another popover), and instead use a [EuiContextMenu](../navigation/context-menu.mdx) to swap the popover panel content.
+
+```tsx interactive
+import React, { useState } from 'react';
+import { EuiPopover, EuiButtonEmpty, EuiText } from '@elastic/eui';
+
+export default () => {
+  const [isPopoverOpen, setIsPopoverOpen] = useState(false);
+
+  const onButtonClick = () =>
+    setIsPopoverOpen((isPopoverOpen) => !isPopoverOpen);
+  const closePopover = () => setIsPopoverOpen(false);
+
+  const button = (
+    <EuiButtonEmpty
+      iconType="documentation"
+      iconSide="right"
+      onClick={onButtonClick}
+    >
+      How it works
+    </EuiButtonEmpty>
+  );
+
+  return (
+    <EuiPopover
+      button={button}
+      isOpen={isPopoverOpen}
+      closePopover={closePopover}
+    >
+      <EuiText style={{ width: 300 }}>
+        <p>Popover content that&rsquo;s wider than the default width</p>
+      </EuiText>
+    </EuiPopover>
+  );
+};
+```
+
+## Anchor position
+
+The alignment and arrow on your popover can be set with the `anchorPosition` prop. These positions will update based upon screen real estate.
+
+**Some tips:**
+
+*   The first word in the `anchorPosition` denotes where the popover will appear relative to the button.
+*   The second word in the `anchorPosition` denotes where the gravity / pin position will appear relative to the popover.
+
+```tsx interactive
+import React, { useState } from 'react';
+import {
+  EuiPopover,
+  EuiButtonEmpty,
+  EuiFlexGroup,
+  EuiFlexItem,
+  EuiSpacer,
+  EuiText,
+} from '@elastic/eui';
+
+export default () => {
+  const [isPopoverOpen1, setIsPopoverOpen1] = useState(false);
+  const [isPopoverOpen2, setIsPopoverOpen2] = useState(false);
+  const [isPopoverOpen3, setIsPopoverOpen3] = useState(false);
+  const [isPopoverOpen4, setIsPopoverOpen4] = useState(false);
+  const [isPopoverOpen5, setIsPopoverOpen5] = useState(false);
+  const [isPopoverOpen6, setIsPopoverOpen6] = useState(false);
+  const [isPopoverOpen7, setIsPopoverOpen7] = useState(false);
+  const [isPopoverOpen8, setIsPopoverOpen8] = useState(false);
+  const [isPopoverOpen9, setIsPopoverOpen9] = useState(false);
+  const [isPopoverOpen10, setIsPopoverOpen10] = useState(false);
+  const [isPopoverOpen11, setIsPopoverOpen11] = useState(false);
+  const [isPopoverOpen12, setIsPopoverOpen12] = useState(false);
+
+  const onButtonClick1 = () =>
+    setIsPopoverOpen1((isPopoverOpen1) => !isPopoverOpen1);
+  const closePopover1 = () => setIsPopoverOpen1(false);
+
+  const onButtonClick2 = () =>
+    setIsPopoverOpen2((isPopoverOpen2) => !isPopoverOpen2);
+  const closePopover2 = () => setIsPopoverOpen2(false);
+
+  const onButtonClick3 = () =>
+    setIsPopoverOpen3((isPopoverOpen3) => !isPopoverOpen3);
+  const closePopover3 = () => setIsPopoverOpen3(false);
+
+  const onButtonClick4 = () =>
+    setIsPopoverOpen4((isPopoverOpen4) => !isPopoverOpen4);
+  const closePopover4 = () => setIsPopoverOpen4(false);
+
+  const onButtonClick5 = () =>
+    setIsPopoverOpen5((isPopoverOpen5) => !isPopoverOpen5);
+  const closePopover5 = () => setIsPopoverOpen5(false);
+
+  const onButtonClick6 = () =>
+    setIsPopoverOpen6((isPopoverOpen6) => !isPopoverOpen6);
+  const closePopover6 = () => setIsPopoverOpen6(false);
+
+  const onButtonClick7 = () =>
+    setIsPopoverOpen7((isPopoverOpen7) => !isPopoverOpen7);
+  const closePopover7 = () => setIsPopoverOpen7(false);
+
+  const onButtonClick8 = () =>
+    setIsPopoverOpen8((isPopoverOpen8) => !isPopoverOpen8);
+  const closePopover8 = () => setIsPopoverOpen8(false);
+
+  const onButtonClick9 = () =>
+    setIsPopoverOpen9((isPopoverOpen9) => !isPopoverOpen9);
+  const closePopover9 = () => setIsPopoverOpen9(false);
+
+  const onButtonClick10 = () =>
+    setIsPopoverOpen10((isPopoverOpen10) => !isPopoverOpen10);
+  const closePopover10 = () => setIsPopoverOpen10(false);
+
+  const onButtonClick11 = () =>
+    setIsPopoverOpen11((isPopoverOpen11) => !isPopoverOpen11);
+  const closePopover11 = () => setIsPopoverOpen11(false);
+
+  const onButtonClick12 = () =>
+    setIsPopoverOpen12((isPopoverOpen12) => !isPopoverOpen12);
+  const closePopover12 = () => setIsPopoverOpen12(false);
+
+  const noteHeight = (
+    <EuiText>
+      <p style={{ width: 200 }}>
+        For left- or right-aligned popovers, make sure there is sufficient
+        content. If the popover height is too short, the arrow positioning will
+        appear off.
+      </p>
+    </EuiText>
+  );
+
+  return (
+    <div>
+      <EuiFlexGroup>
+        <EuiFlexItem grow={false}>
+          <EuiPopover
+            button={
+              <EuiButtonEmpty
+                iconType="questionInCircle"
+                iconSide="right"
+                onClick={onButtonClick1}
+              >
+                downLeft
+              </EuiButtonEmpty>
+            }
+            isOpen={isPopoverOpen1}
+            closePopover={closePopover1}
+            anchorPosition="downLeft"
+          >
+            Popover content
+          </EuiPopover>
+        </EuiFlexItem>
+
+        <EuiFlexItem grow={false}>
+          <EuiPopover
+            button={
+              <EuiButtonEmpty
+                iconType="questionInCircle"
+                iconSide="right"
+                onClick={onButtonClick2}
+              >
+                downCenter
+              </EuiButtonEmpty>
+            }
+            isOpen={isPopoverOpen2}
+            closePopover={closePopover2}
+            anchorPosition="downCenter"
+          >
+            Popover content
+          </EuiPopover>
+        </EuiFlexItem>
+
+        <EuiFlexItem grow={false}>
+          <EuiPopover
+            button={
+              <EuiButtonEmpty
+                iconType="questionInCircle"
+                iconSide="right"
+                onClick={onButtonClick3}
+              >
+                downRight
+              </EuiButtonEmpty>
+            }
+            isOpen={isPopoverOpen3}
+            closePopover={closePopover3}
+            anchorPosition="downRight"
+          >
+            Popover content
+          </EuiPopover>
+        </EuiFlexItem>
+      </EuiFlexGroup>
+
+      <EuiSpacer size="l" />
+
+      <EuiFlexGroup>
+        <EuiFlexItem grow={false}>
+          <EuiPopover
+            button={
+              <EuiButtonEmpty
+                iconType="questionInCircle"
+                iconSide="right"
+                onClick={onButtonClick4}
+              >
+                upLeft
+              </EuiButtonEmpty>
+            }
+            isOpen={isPopoverOpen4}
+            closePopover={closePopover4}
+            anchorPosition="upLeft"
+          >
+            Popover content
+          </EuiPopover>
+        </EuiFlexItem>
+
+        <EuiFlexItem grow={false}>
+          <EuiPopover
+            button={
+              <EuiButtonEmpty
+                iconType="questionInCircle"
+                iconSide="right"
+                onClick={onButtonClick5}
+              >
+                upCenter
+              </EuiButtonEmpty>
+            }
+            isOpen={isPopoverOpen5}
+            closePopover={closePopover5}
+            anchorPosition="upCenter"
+          >
+            Popover content
+          </EuiPopover>
+        </EuiFlexItem>
+
+        <EuiFlexItem grow={false}>
+          <EuiPopover
+            button={
+              <EuiButtonEmpty
+                iconType="questionInCircle"
+                iconSide="right"
+                onClick={onButtonClick6}
+              >
+                upRight
+              </EuiButtonEmpty>
+            }
+            isOpen={isPopoverOpen6}
+            closePopover={closePopover6}
+            anchorPosition="upRight"
+          >
+            Popover content
+          </EuiPopover>
+        </EuiFlexItem>
+      </EuiFlexGroup>
+
+      <EuiSpacer size="l" />
+
+      <EuiFlexGroup>
+        <EuiFlexItem grow={false}>
+          <EuiPopover
+            button={
+              <EuiButtonEmpty
+                iconType="questionInCircle"
+                iconSide="right"
+                onClick={onButtonClick7}
+              >
+                leftUp
+              </EuiButtonEmpty>
+            }
+            isOpen={isPopoverOpen7}
+            closePopover={closePopover7}
+            anchorPosition="leftUp"
+          >
+            {noteHeight}
+          </EuiPopover>
+        </EuiFlexItem>
+
+        <EuiFlexItem grow={false}>
+          <EuiPopover
+            button={
+              <EuiButtonEmpty
+                iconType="questionInCircle"
+                iconSide="right"
+                onClick={onButtonClick8}
+              >
+                leftCenter
+              </EuiButtonEmpty>
+            }
+            isOpen={isPopoverOpen8}
+            closePopover={closePopover8}
+            anchorPosition="leftCenter"
+          >
+            Popover content
+          </EuiPopover>
+        </EuiFlexItem>
+
+        <EuiFlexItem grow={false}>
+          <EuiPopover
+            button={
+              <EuiButtonEmpty
+                iconType="questionInCircle"
+                iconSide="right"
+                onClick={onButtonClick9}
+              >
+                leftDown
+              </EuiButtonEmpty>
+            }
+            isOpen={isPopoverOpen9}
+            closePopover={closePopover9}
+            anchorPosition="leftDown"
+          >
+            {noteHeight}
+          </EuiPopover>
+        </EuiFlexItem>
+      </EuiFlexGroup>
+
+      <EuiSpacer size="l" />
+
+      <EuiFlexGroup>
+        <EuiFlexItem grow={false}>
+          <EuiPopover
+            button={
+              <EuiButtonEmpty
+                iconType="questionInCircle"
+                iconSide="right"
+                onClick={onButtonClick10}
+              >
+                rightUp
+              </EuiButtonEmpty>
+            }
+            isOpen={isPopoverOpen10}
+            closePopover={closePopover10}
+            anchorPosition="rightUp"
+          >
+            {noteHeight}
+          </EuiPopover>
+        </EuiFlexItem>
+
+        <EuiFlexItem grow={false}>
+          <EuiPopover
+            button={
+              <EuiButtonEmpty
+                iconType="questionInCircle"
+                iconSide="right"
+                onClick={onButtonClick11}
+              >
+                rightCenter
+              </EuiButtonEmpty>
+            }
+            isOpen={isPopoverOpen11}
+            closePopover={closePopover11}
+            anchorPosition="rightCenter"
+          >
+            Popover content
+          </EuiPopover>
+        </EuiFlexItem>
+
+        <EuiFlexItem grow={false}>
+          <EuiPopover
+            button={
+              <EuiButtonEmpty
+                iconType="questionInCircle"
+                iconSide="right"
+                onClick={onButtonClick12}
+              >
+                rightDown
+              </EuiButtonEmpty>
+            }
+            isOpen={isPopoverOpen12}
+            closePopover={closePopover12}
+            anchorPosition="rightDown"
+          >
+            {noteHeight}
+          </EuiPopover>
+        </EuiFlexItem>
+      </EuiFlexGroup>
+    </div>
+  );
+};
+```
+
+## Popover titles and footers
+
+Popovers often need titling. Use the **EuiPopoverTitle** component nested somewhere inside the popover contents.
+
+You can also add a similarly styled **EuiPopoverFooter** for smaller captions or call to action buttons.
+
+```tsx interactive
+import React, { useState } from 'react';
+import {
+  EuiPopover,
+  EuiPopoverTitle,
+  EuiPopoverFooter,
+  EuiButton,
+  EuiButtonEmpty,
+  EuiFlexGroup,
+  EuiFlexItem,
+  EuiText,
+  EuiTextColor,
+} from '@elastic/eui';
+
+export default () => {
+  const [isPopoverOpen1, setIsPopoverOpen1] = useState(false);
+  const [isPopoverOpen2, setIsPopoverOpen2] = useState(false);
+  const [isPopoverOpen3, setIsPopoverOpen3] = useState(false);
+
+  const onButtonClick1 = () =>
+    setIsPopoverOpen1((isPopoverOpen1) => !isPopoverOpen1);
+  const closePopover1 = () => setIsPopoverOpen1(false);
+
+  const onButtonClick2 = () =>
+    setIsPopoverOpen2((isPopoverOpen2) => !isPopoverOpen2);
+  const closePopover2 = () => setIsPopoverOpen2(false);
+
+  const onButtonClick3 = () =>
+    setIsPopoverOpen3((isPopoverOpen3) => !isPopoverOpen3);
+  const closePopover3 = () => setIsPopoverOpen3(false);
+
+  return (
+    <EuiFlexGroup>
+      <EuiFlexItem grow={false}>
+        <EuiPopover
+          button={
+            <EuiButtonEmpty
+              iconType="questionInCircle"
+              iconSide="right"
+              onClick={onButtonClick1}
+            >
+              With title
+            </EuiButtonEmpty>
+          }
+          isOpen={isPopoverOpen1}
+          closePopover={closePopover1}
+          anchorPosition="downCenter"
+        >
+          <EuiPopoverTitle>Hello, I&rsquo;m a popover title</EuiPopoverTitle>
+          <div style={{ width: '300px' }}>
+            <EuiText size="s">
+              <p>
+                Selfies migas stumptown hot chicken quinoa wolf green juice,
+                mumblecore tattooed trust fund hammock truffaut taxidermy kogi.
+              </p>
+            </EuiText>
+          </div>
+        </EuiPopover>
+      </EuiFlexItem>
+
+      <EuiFlexItem grow={false}>
+        <EuiPopover
+          button={
+            <EuiButtonEmpty
+              iconType="questionInCircle"
+              iconSide="right"
+              onClick={onButtonClick2}
+            >
+              With footer
+            </EuiButtonEmpty>
+          }
+          isOpen={isPopoverOpen2}
+          closePopover={closePopover2}
+          anchorPosition="upCenter"
+        >
+          <div style={{ width: '300px' }}>
+            <EuiText size="s">
+              <p>
+                Selfies migas stumptown hot chicken quinoa wolf green juice,
+                mumblecore tattooed trust fund hammock truffaut taxidermy kogi.
+              </p>
+            </EuiText>
+          </div>
+          <EuiPopoverFooter>
+            <EuiTextColor color="subdued">
+              Hello, I&rsquo;m a small popover footer caption
+            </EuiTextColor>
+          </EuiPopoverFooter>
+        </EuiPopover>
+      </EuiFlexItem>
+
+      <EuiFlexItem grow={false}>
+        <EuiPopover
+          button={
+            <EuiButtonEmpty
+              iconType="questionInCircle"
+              iconSide="right"
+              onClick={onButtonClick3}
+            >
+              With title and footer button
+            </EuiButtonEmpty>
+          }
+          isOpen={isPopoverOpen3}
+          closePopover={closePopover3}
+          anchorPosition="upCenter"
+        >
+          <EuiPopoverTitle>Hello, I&rsquo;m a popover title</EuiPopoverTitle>
+          <div style={{ width: '300px' }}>
+            <EuiText size="s">
+              <p>
+                Selfies migas stumptown hot chicken quinoa wolf green juice,
+                mumblecore tattooed trust fund hammock truffaut taxidermy kogi.
+              </p>
+            </EuiText>
+          </div>
+          <EuiPopoverFooter>
+            <EuiButton fullWidth size="s">
+              Manage this thing
+            </EuiButton>
+          </EuiPopoverFooter>
+        </EuiPopover>
+      </EuiFlexItem>
+    </EuiFlexGroup>
+  );
+};
+```
+
+## Popover padding sizes
+
+Use the `panelPaddingSize` prop to adjust the padding of the panel content. When using popover titles and footers, this setting will propagate to them. Or you can supply a custom `paddingSize` to either the **EuiPopoverTitle** of **EuiPopoverFooter**.
+
+```tsx interactive
+import React, { useState } from 'react';
+import {
+  EuiPopover,
+  EuiPopoverTitle,
+  EuiPopoverFooter,
+  EuiButton,
+  EuiButtonEmpty,
+  EuiFlexGroup,
+  EuiFlexItem,
+  EuiText,
+  EuiCode,
+} from '@elastic/eui';
+
+export default () => {
+  const [isPopoverOpen1, setIsPopoverOpen1] = useState(false);
+  const [isPopoverOpen2, setIsPopoverOpen2] = useState(false);
+  const [isPopoverOpen3, setIsPopoverOpen3] = useState(false);
+  const [isPopoverOpen4, setIsPopoverOpen4] = useState(false);
+  const [isPopoverOpen5, setIsPopoverOpen5] = useState(false);
+  const [isPopoverOpen6, setIsPopoverOpen6] = useState(false);
+
+  const onButtonClick1 = () =>
+    setIsPopoverOpen1((isPopoverOpen1) => !isPopoverOpen1);
+  const closePopover1 = () => setIsPopoverOpen1(false);
+
+  const onButtonClick2 = () =>
+    setIsPopoverOpen2((isPopoverOpen2) => !isPopoverOpen2);
+  const closePopover2 = () => setIsPopoverOpen2(false);
+
+  const onButtonClick3 = () =>
+    setIsPopoverOpen3((isPopoverOpen3) => !isPopoverOpen3);
+  const closePopover3 = () => setIsPopoverOpen3(false);
+
+  const onButtonClick4 = () =>
+    setIsPopoverOpen4((isPopoverOpen4) => !isPopoverOpen4);
+  const closePopover4 = () => setIsPopoverOpen4(false);
+
+  const onButtonClick5 = () =>
+    setIsPopoverOpen5((isPopoverOpen5) => !isPopoverOpen5);
+  const closePopover5 = () => setIsPopoverOpen5(false);
+
+  const onButtonClick6 = () =>
+    setIsPopoverOpen6((isPopoverOpen6) => !isPopoverOpen6);
+  const closePopover6 = () => setIsPopoverOpen6(false);
+
+  return (
+    <>
+      <EuiFlexGroup wrap={true}>
+        <EuiFlexItem grow={false}>
+          <EuiPopover
+            panelPaddingSize="s"
+            button={
+              <EuiButtonEmpty
+                iconType="questionInCircle"
+                iconSide="right"
+                onClick={onButtonClick2}
+              >
+                Small panel padding
+              </EuiButtonEmpty>
+            }
+            isOpen={isPopoverOpen2}
+            closePopover={closePopover2}
+          >
+            <EuiPopoverTitle>Hello, I&rsquo;m a popover title</EuiPopoverTitle>
+            <EuiText size="s" style={{ width: 300 }}>
+              <p>
+                Only changing the <EuiCode>panelPaddingSize</EuiCode> will get
+                inherited by the title.
+              </p>
+            </EuiText>
+            <EuiPopoverFooter>
+              <EuiButton fullWidth size="s">
+                Footer button
+              </EuiButton>
+            </EuiPopoverFooter>
+          </EuiPopover>
+        </EuiFlexItem>
+
+        <EuiFlexItem grow={false}>
+          <EuiPopover
+            panelPaddingSize="none"
+            button={
+              <EuiButtonEmpty
+                iconType="questionInCircle"
+                iconSide="right"
+                onClick={onButtonClick1}
+              >
+                No panel padding (none)
+              </EuiButtonEmpty>
+            }
+            isOpen={isPopoverOpen1}
+            closePopover={closePopover1}
+          >
+            <EuiPopoverTitle>Hello, I&rsquo;m a popover title</EuiPopoverTitle>
+            <EuiText size="s" style={{ width: 300 }}>
+              <p>
+                Removing the <EuiCode>panelPaddingSize</EuiCode> completely is
+                good for lists that should extend to the edges.
+              </p>
+            </EuiText>
+            <EuiPopoverFooter>
+              <EuiButton fullWidth size="s">
+                Footer button
+              </EuiButton>
+            </EuiPopoverFooter>
+          </EuiPopover>
+        </EuiFlexItem>
+      </EuiFlexGroup>
+
+      <EuiFlexGroup wrap={true}>
+        <EuiFlexItem grow={false}>
+          <EuiPopover
+            button={
+              <EuiButtonEmpty
+                iconType="questionInCircle"
+                iconSide="right"
+                onClick={onButtonClick4}
+              >
+                No title padding (none)
+              </EuiButtonEmpty>
+            }
+            isOpen={isPopoverOpen4}
+            closePopover={closePopover4}
+          >
+            <EuiPopoverTitle paddingSize="none">
+              Hello, I&rsquo;m a popover title
+            </EuiPopoverTitle>
+            <EuiText size="s" style={{ width: 300 }}>
+              <p>
+                Removing the padding from titles only with{' '}
+                <EuiCode>paddingSize</EuiCode> on{' '}
+                <strong>EuiPopoverTitle</strong>.
+              </p>
+            </EuiText>
+            <EuiPopoverFooter>
+              <EuiButton fullWidth size="s">
+                Footer button
+              </EuiButton>
+            </EuiPopoverFooter>
+          </EuiPopover>
+        </EuiFlexItem>
+
+        <EuiFlexItem grow={false}>
+          <EuiPopover
+            panelPaddingSize="none"
+            button={
+              <EuiButtonEmpty
+                iconType="questionInCircle"
+                iconSide="right"
+                onClick={onButtonClick3}
+              >
+                No panel padding with small title padding
+              </EuiButtonEmpty>
+            }
+            isOpen={isPopoverOpen3}
+            closePopover={closePopover3}
+          >
+            <EuiPopoverTitle paddingSize="s">
+              Hello, I&rsquo;m a popover title
+            </EuiPopoverTitle>
+            <EuiText size="s" style={{ width: 300 }}>
+              <p>
+                You can adjust both the <EuiCode>panelPaddingSize</EuiCode> and
+                the <EuiCode>paddingSize</EuiCode> at the same time.
+              </p>
+            </EuiText>
+            <EuiPopoverFooter>
+              <EuiButton fullWidth size="s">
+                Footer button
+              </EuiButton>
+            </EuiPopoverFooter>
+          </EuiPopover>
+        </EuiFlexItem>
+      </EuiFlexGroup>
+
+      <EuiFlexGroup wrap={true}>
+        <EuiFlexItem grow={false}>
+          <EuiPopover
+            button={
+              <EuiButtonEmpty
+                iconType="questionInCircle"
+                iconSide="right"
+                onClick={onButtonClick5}
+              >
+                No footer padding (none)
+              </EuiButtonEmpty>
+            }
+            isOpen={isPopoverOpen5}
+            closePopover={closePopover5}
+          >
+            <EuiPopoverTitle>Hello, I&rsquo;m a popover title</EuiPopoverTitle>
+            <EuiText size="s" style={{ width: 300 }}>
+              <p>
+                Removing the padding from footers only with{' '}
+                <EuiCode>paddingSize</EuiCode> on{' '}
+                <strong>EuiPopoverFooter</strong>.
+              </p>
+            </EuiText>
+            <EuiPopoverFooter paddingSize="none">
+              <EuiButton fullWidth size="s">
+                Footer button
+              </EuiButton>
+            </EuiPopoverFooter>
+          </EuiPopover>
+        </EuiFlexItem>
+
+        <EuiFlexItem grow={false}>
+          <EuiPopover
+            panelPaddingSize="none"
+            button={
+              <EuiButtonEmpty
+                iconType="questionInCircle"
+                iconSide="right"
+                onClick={onButtonClick6}
+              >
+                Set each padding individually
+              </EuiButtonEmpty>
+            }
+            isOpen={isPopoverOpen6}
+            closePopover={closePopover6}
+          >
+            <EuiPopoverTitle paddingSize="s">
+              Hello, I&rsquo;m a popover title
+            </EuiPopoverTitle>
+            <EuiText size="s" style={{ width: 300 }}>
+              <p>
+                For the most reliable padding display, set the{' '}
+                <EuiCode>panelPaddingSize</EuiCode> and the{' '}
+                <EuiCode>paddingSize</EuiCode> props for each component
+                individually.
+              </p>
+            </EuiText>
+            <EuiPopoverFooter paddingSize="s">
+              <EuiButton fullWidth size="s">
+                Footer button
+              </EuiButton>
+            </EuiPopoverFooter>
+          </EuiPopover>
+        </EuiFlexItem>
+      </EuiFlexGroup>
+    </>
+  );
+};
+```
+
+## Popover with block level display
+
+Popover anchors default to `display: inline-block;` so they do not force a display on inline triggers. If you do need to change this, just add `display="block"`
+
+```tsx interactive
+import React, { useState } from 'react';
+import { EuiButton, EuiPopover } from '@elastic/eui';
+
+export default () => {
+  const [isPopoverOpen, setIsPopoverOpen] = useState(false);
+
+  const onButtonClick = () =>
+    setIsPopoverOpen((isPopoverOpen) => !isPopoverOpen);
+  const closePopover = () => setIsPopoverOpen(false);
+
+  const button = (
+    <EuiButton onClick={onButtonClick} fullWidth>
+      This button is expanded
+    </EuiButton>
+  );
+
+  return (
+    <EuiPopover
+      button={button}
+      isOpen={isPopoverOpen}
+      closePopover={closePopover}
+      display="block"
+    >
+      <div>This is a popover</div>
+    </EuiPopover>
+  );
+};
+```
+
+## Popover on a fixed element
+
+Popover content even works on `position: fixed;` elements. Add the `repositionOnScroll` boolean prop to ensure the popover realigns to the fixed button on scroll.
+
+```tsx interactive
+import React, { useState } from 'react';
+import { EuiButtonEmpty, EuiPopover, EuiButton } from '@elastic/eui';
+
+export default () => {
+  const [isExampleShown, setIsExampleShown] = useState(false);
+  const [isPopoverOpen, setIsPopoverOpen] = useState(false);
+
+  const toggleExample = () =>
+    setIsExampleShown((isExampleShown) => !isExampleShown);
+
+  const onButtonClick = () =>
+    setIsPopoverOpen((isPopoverOpen) => !isPopoverOpen);
+  const closePopover = () => setIsPopoverOpen(false);
+
+  const button = (
+    <EuiButtonEmpty iconType="help" iconSide="right" onClick={onButtonClick}>
+      Show fixed popover
+    </EuiButtonEmpty>
+  );
+
+  return (
+    <React.Fragment>
+      <EuiButton onClick={toggleExample}>Toggle example</EuiButton>
+      {isExampleShown && (
+        <EuiPopover
+          button={button}
+          isOpen={isPopoverOpen}
+          closePopover={closePopover}
+          style={{ position: 'fixed', bottom: 50, right: 50, zIndex: 10 }}
+          repositionOnScroll={true}
+        >
+          <div>This popover scrolls with the button element!</div>
+        </EuiPopover>
+      )}
+    </React.Fragment>
+  );
+};
+```
+
+## Constraining a popover inside a container
+
+**EuiPopover** can accept a React or DOM element as a `container` prop and restrict the popover from overflowing that container.
+
+```tsx interactive
+import React, { useState } from 'react';
+import {
+  EuiButtonEmpty,
+  EuiCode,
+  EuiPanel,
+  EuiPopover,
+  EuiSpacer,
+} from '@elastic/eui';
+
+export default () => {
+  const [isPopoverOpen, setIsPopoverOpen] = useState(false);
+  const [panelRef, setPanelRef] = useState(null);
+
+  const onButtonClick = () =>
+    setIsPopoverOpen((isPopoverOpen1) => !isPopoverOpen1);
+  const closePopover = () => setIsPopoverOpen(false);
+
+  const button = (
+    <EuiButtonEmpty
+      iconType="help"
+      iconSide="right"
+      onClick={onButtonClick}
+      style={{ position: 'relative', left: 50 }}
+    >
+      Show constrained popover
+    </EuiButtonEmpty>
+  );
+
+  return (
+    <EuiPanel panelRef={setPanelRef}>
+      <EuiPopover
+        button={button}
+        isOpen={isPopoverOpen}
+        closePopover={closePopover}
+        container={panelRef}
+      >
+        <div>
+          Popover is positioned <EuiCode>downCenter</EuiCode> but constrained to
+          fit within the panel.
+        </div>
+      </EuiPopover>
+
+      {/* create adequate room for the popover */}
+      <EuiSpacer size="xxl" />
+      <EuiSpacer size="xxl" />
+    </EuiPanel>
+  );
+};
+```
+
+## Popover attached to input element
+
+**EuiInputPopover** is a specialized popover component intended to be used with form elements. Stylistically, the popover panel is "attached" to the input. As a result, the popover will always try to set its width to match the width of the input, although this can be configured via `panelMinWidth`.
+
+Functionally, consumers have control over what events open and close the popover, and it can allow for natural tab order. Although some assumptions are made about keyboard behavior, consumers should provide specific key event handlers depending on the use case. For instance, a `type=text` input could use the down key to trigger popover opening, but this interaction would not be appropriate for `type=number` inputs as they natively bind to the down key.
+
+```tsx interactive
+import React, { useState } from 'react';
+import {
+  EuiInputPopover,
+  EuiInputPopoverProps,
+  EuiFieldText,
+  EuiTextArea,
+  EuiButtonGroup,
+  EuiFormRow,
+  EuiSpacer,
+} from '@elastic/eui';
+
+export default () => {
+  const [isPopoverOpen, setIsPopoverOpen] = useState(false);
+  const [isResizablePopoverOpen, setIsResizablePopoverOpen] = useState(false);
+  const [anchorPosition, setAnchorPosition] =
+    useState<EuiInputPopoverProps['anchorPosition']>('downLeft');
+
+  return (
+    <>
+      <EuiInputPopover
+        isOpen={isPopoverOpen}
+        closePopover={() => setIsPopoverOpen(false)}
+        closeOnScroll={true}
+        input={
+          <EuiFieldText
+            onFocus={() => setIsPopoverOpen(true)}
+            placeholder="Focus me to toggle an input popover"
+            aria-label="Popover attached to input element"
+          />
+        }
+      >
+        Popover content
+      </EuiInputPopover>
+
+      <EuiSpacer />
+
+      <EuiInputPopover
+        display="inline-block"
+        isOpen={isResizablePopoverOpen}
+        closePopover={() => setIsResizablePopoverOpen(false)}
+        input={
+          <EuiTextArea
+            onKeyDown={(e) => {
+              if (e.key === 'ArrowDown') {
+                e.preventDefault();
+                setIsResizablePopoverOpen(true);
+              }
+            }}
+            placeholder="Focus me, press the down arrow key, then drag the resize handle"
+            aria-label="Press the down arrow key to toggle the popover attached to this textarea element."
+            rows={2}
+            resize="horizontal"
+          />
+        }
+        panelMinWidth={300}
+        anchorPosition={anchorPosition}
+      >
+        This popover has a minimum width of 300px, and will adjust in size as
+        the textarea does.
+        <EuiSpacer size="s" />
+        <EuiFormRow label="Anchor position" display="columnCompressed">
+          <EuiButtonGroup
+            buttonSize="compressed"
+            legend="Anchor position"
+            name="anchorPosition"
+            idSelected={anchorPosition!}
+            onChange={(id) =>
+              setAnchorPosition(id as EuiInputPopoverProps['anchorPosition'])
+            }
+            options={[
+              { id: 'downLeft', label: 'Left' },
+              { id: 'downCenter', label: 'Center' },
+              { id: 'downRight', label: 'Right' },
+            ]}
+          />
+        </EuiFormRow>
+      </EuiInputPopover>
+    </>
+  );
+};
+```
+
+## Setting an initial focus
+
+If you want a specific child element of the popover to immediately gain focus when the popover is open, use the `initialFocus` prop to pass either a selector or DOM node.
+
+:::accessibility Accessibility recommendation
+It can be jarring for keyboard and screen reader users to immediately land on an element with no other context. To alleviate this, ensure that your initial focus target makes sense alone or is the primary goal of the popover.
+:::
+
+```tsx interactive
+import React, { useState } from 'react';
+import {
+  EuiButtonEmpty,
+  EuiButton,
+  EuiFormRow,
+  EuiPopover,
+  EuiSpacer,
+  EuiFieldText,
+} from '@elastic/eui';
+
+export default () => {
+  const [isPopoverOpen, setIsPopoverOpen] = useState(false);
+
+  const onButtonClick = () =>
+    setIsPopoverOpen((isPopoverOpen) => !isPopoverOpen);
+  const closePopover = () => setIsPopoverOpen(false);
+
+  const button = (
+    <EuiButtonEmpty iconType="help" iconSide="right" onClick={onButtonClick}>
+      Show popover
+    </EuiButtonEmpty>
+  );
+
+  return (
+    <EuiPopover
+      initialFocus="#name"
+      button={button}
+      isOpen={isPopoverOpen}
+      closePopover={closePopover}
+    >
+      <EuiFormRow label="Enter name" id="name">
+        <EuiFieldText compressed name="input" />
+      </EuiFormRow>
+
+      <EuiSpacer />
+
+      <EuiButton size="s" fill>
+        Submit
+      </EuiButton>
+    </EuiPopover>
+  );
+};
+```
+
+## Custom outside click behavior
+
+If you do not wish the popover to auto-close on outside clicks, you can use `focusTrapProps` to customize this behavior. The below example triggers a confirmation modal which can leave the popover open if the user presses 'No'.
+
+```tsx interactive
+import React, { useState } from 'react';
+import {
+  EuiPopover,
+  EuiButtonEmpty,
+  EuiText,
+  EuiConfirmModal,
+} from '@elastic/eui';
+
+export default () => {
+  const [isPopoverOpen, setIsPopoverOpen] = useState(false);
+  const togglePopover = () =>
+    setIsPopoverOpen((isPopoverOpen) => !isPopoverOpen);
+
+  const button = (
+    <EuiButtonEmpty iconType="help" iconSide="right" onClick={togglePopover}>
+      This popover toggles a confirm modal on close
+    </EuiButtonEmpty>
+  );
+
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const closeModal = () => setIsModalVisible(false);
+  const showModal = () => setIsModalVisible(true);
+
+  const modal = isModalVisible ? (
+    <EuiConfirmModal
+      title="You have unsaved work"
+      onCancel={closeModal}
+      onConfirm={() => {
+        closeModal();
+        setIsPopoverOpen(false);
+      }}
+      cancelButtonText="No, don't do it"
+      confirmButtonText="Yes, do it"
+      defaultFocusedButton="cancel"
+    >
+      <p>Are you sure you to close the popover?</p>
+    </EuiConfirmModal>
+  ) : null;
+
+  return (
+    <>
+      <EuiPopover
+        button={button}
+        isOpen={isPopoverOpen}
+        closePopover={() => setIsPopoverOpen(false)}
+        focusTrapProps={{
+          clickOutsideDisables: false,
+          onClickOutside: showModal,
+        }}
+      >
+        <EuiText>
+          <p>
+            Clicking outside this popover toggles a confirm modal.
+            <br />
+            The confirm modal either keeps the popover open or closes the
+            popover.
+          </p>
+        </EuiText>
+      </EuiPopover>
+      {modal}
+    </>
+  );
+};
+```
+
+## Removing the focus trap
+
+If the popover should not trap focus within itself, then you can remove it with `ownFocus={false}`.
+
+:::warning Accessibility warning
+Removing `ownFocus` makes it difficult for keyboard-only and screen reader users to navigate to and from your popover.
+:::
+
+```tsx interactive
+import React, { useState, useEffect } from 'react';
+import {
+  EuiButtonEmpty,
+  EuiButton,
+  EuiFormRow,
+  EuiPopover,
+  EuiSpacer,
+  EuiSwitch,
+  useGeneratedHtmlId,
+} from '@elastic/eui';
+
+export default () => {
+  const [isPopoverOpen, setIsPopoverOpen] = useState(false);
+
+  const onButtonClick = () =>
+    setIsPopoverOpen((isPopoverOpen) => !isPopoverOpen);
+  const closePopover = () => setIsPopoverOpen(false);
+
+  const button = (
+    <EuiButtonEmpty iconType="help" iconSide="right" onClick={onButtonClick}>
+      Show popover
+    </EuiButtonEmpty>
+  );
+
+  // Since `hasFocus={false}` disables popover auto focus, we need to manually set it ourselves
+  const focusId = useGeneratedHtmlId();
+  useEffect(() => {
+    if (isPopoverOpen) {
+      // Wait a tick for element to finish rendering
+      setTimeout(() => {
+        document.getElementById(focusId)!.focus({ preventScroll: true });
+      });
+    }
+  }, [isPopoverOpen, focusId]);
+
+  return (
+    <EuiPopover
+      ownFocus={false}
+      button={button}
+      isOpen={isPopoverOpen}
+      closePopover={closePopover}
+    >
+      <EuiFormRow
+        label="Generate a public snapshot?"
+        id={focusId}
+        hasChildLabel={false}
+      >
+        <EuiSwitch
+          name="switch"
+          label="Snapshot data"
+          checked={true}
+          onChange={() => {}}
+        />
+      </EuiFormRow>
+
+      <EuiFormRow label="Include the following in the embed">
+        <EuiSwitch
+          name="switch"
+          label="Current time range"
+          checked={true}
+          onChange={() => {}}
+        />
+      </EuiFormRow>
+
+      <EuiSpacer />
+
+      <EuiButton fill>Copy IFRAME code</EuiButton>
+    </EuiPopover>
+  );
+};
+
+```
+
+## Popover using an HTMLElement as the anchor
+
+**EuiWrappingPopover** is an extra popover component that allows any existing DOM element to be passed as the `button` prop.
+
+import { createRoot } from 'react-dom/client';
+
+<Demo scope={{ createRoot }}>
+  ```tsx
+  import React, { useState, useEffect } from 'react';
+  import { EuiWrappingPopover } from '@elastic/eui';
+  import { createRoot } from 'react-dom/client';
+
+  const PopoverApp = (props) => {
+    const [isPopoverOpen, setIsPopoverOpen] = useState(false);
+
+    useEffect(() => {
+      props.anchor.addEventListener('click', onButtonClick);
+      return () => props.anchor.removeEventListener('click', onButtonClick);
+    }, [props.anchor]);
+
+    const onButtonClick = () =>
+      setIsPopoverOpen((isPopoverOpen) => !isPopoverOpen);
+    const closePopover = () => setIsPopoverOpen(false);
+
+    return (
+      <EuiWrappingPopover
+        button={props.anchor}
+        isOpen={isPopoverOpen}
+        closePopover={closePopover}
+      >
+        <div>Normal JSX content populates the popover.</div>
+      </EuiWrappingPopover>
+    );
+  };
+
+  export default () => {
+    useEffect(() => {
+      const thisAnchor = document.querySelector('#popoverAnchorButton');
+
+      // `container` can be created here or use an existing DOM element
+      // the popover DOM is positioned independently of where the container exists
+      const container = document.createElement('div');
+      document.body.appendChild(container);
+      const root = createRoot(container);
+      root.render(<PopoverApp anchor={thisAnchor} />);
+
+      // Without the setTimeout, React will error about attempting to synchronously unmount
+      return () => setTimeout(() => root.unmount());
+    }, []);
+
+    return (
+      <div
+        dangerouslySetInnerHTML={{
+          __html: `
+    <button id="popoverAnchorButton" class="EuiButtonEmpty EuiButtonEmpty--primary">
+      <span class="EuiButtonEmpty__content">This is an HTML button</span>
+    </button>
+          `,
+        }}
+      />
+    );
+  };
+  ```
+</Demo>
+
+## Props
+
+import docgen from '@elastic/eui-docgen/dist/components/popover';
+
+<PropTable definition={docgen.EuiPopover} />
+
+<PropTable definition={docgen.EuiPopoverTitle} />
+
+<PropTable definition={docgen.EuiPopoverFooter} />
+
+<PropTable definition={docgen.EuiInputPopover} />
+
+<PropTable definition={docgen.EuiWrappingPopover} />

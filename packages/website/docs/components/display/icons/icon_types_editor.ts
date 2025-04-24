@@ -6,8 +6,6 @@ export const iconTypesEditor: Array<IconType> = [
   'editorAlignRight',
   'editorBold',
   'editorChecklist',
-  'editorCodeBlock',
-  'editorComment',
   'editorDistributeHorizontal',
   'editorDistributeVertical',
   'editorHeading',

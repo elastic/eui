@@ -173,7 +173,7 @@ export const GuideSection: FunctionComponent<GuideSectionProps> = ({
       return (
         <EuiButtonEmpty
           size="xs"
-          iconType="controlsHorizontal"
+          iconType="controls"
           onClick={() => {
             setRenderingPlayground((rendering) => !rendering);
           }}
@@ -244,11 +244,10 @@ export const GuideSection: FunctionComponent<GuideSectionProps> = ({
                   <div>{demo}</div>
                 ) : demo == null ? (
                   <EuiButton
-                    fill
                     iconType="fullScreen"
                     href={`#${path}/${fullScreen.slug}`}
                   >
-                    Fullscreen demo
+                    Open demo
                   </EuiButton>
                 ) : (
                   demo

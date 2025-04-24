@@ -26,10 +26,8 @@ export const Paragraph = ({ children }: HTMLAttributes<HTMLParagraphElement>) =>
   const styles = useEuiMemoizedStyles(getParagraphStyles);
 
   return (
-    <EuiText size="m" css={styles}>
-      <p>
-        {children}
-      </p>
+    <EuiText size="m" css={styles} component="p">
+      {children}
     </EuiText>
   );
 };

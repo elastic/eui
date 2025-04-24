@@ -68,7 +68,7 @@ export const euiHeaderStyles = (euiThemeContext: UseEuiTheme) => {
 import { euiFormVariables } from '../form/form.styles';
 
 const euiHeaderDarkStyles = (euiThemeContext: UseEuiTheme) => {
-  const { euiTheme } = euiThemeContext;
+  const { euiTheme, highContrastMode } = euiThemeContext;
   const { controlPlaceholderText } = euiFormVariables(euiThemeContext);
 
   const backgroundColor = euiTheme.components.headerDarkBackground;
@@ -124,11 +124,21 @@ const euiHeaderDarkStyles = (euiThemeContext: UseEuiTheme) => {
       }
 
       &--group {
-        border-color: ${euiTheme.components.headerDarkSearchBorderColor};
+        border-color: ${
+          // the header is in a faux dark mode, we can't rely on color
+          // switch tokens as they'd be in the wrong color mode
+          highContrastMode
+            ? euiTheme.colors.plainLight
+            : euiTheme.components.headerDarkSearchBorderColor
+        };
 
         input {
           box-shadow: none;
         }
+      }
+
+      &__append {
+        border-color: ${highContrastMode ? euiTheme.colors.plainLight : ''}
       }
 
       &:not(:focus-within) {

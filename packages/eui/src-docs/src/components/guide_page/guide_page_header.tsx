@@ -1,4 +1,5 @@
 import React, { useMemo } from 'react';
+import { css } from '@emotion/react';
 
 import {
   EuiBadge,
@@ -9,6 +10,9 @@ import {
   EuiHeaderSectionItemButton,
   EuiIcon,
   EuiToolTip,
+  EuiPanel,
+  EuiText,
+  EuiLink,
 } from '../../../../src/components';
 import { useIsWithinBreakpoints } from '../../../../src/services';
 
@@ -21,15 +25,7 @@ import { VersionSwitcher } from './version_switcher';
 
 const GITHUB_URL = 'https://github.com/elastic/eui';
 
-export type GuidePageHeaderProps = {
-  onToggleLocale: () => {};
-  selectedLocale: string;
-};
-
-export const GuidePageHeader: React.FunctionComponent<GuidePageHeaderProps> = ({
-  onToggleLocale,
-  selectedLocale,
-}) => {
+export const GuidePageHeader = () => {
   const isMobileSize = useIsWithinBreakpoints(['xs', 's']);
 
   const logo = useMemo(() => {
@@ -112,25 +108,46 @@ export const GuidePageHeader: React.FunctionComponent<GuidePageHeaderProps> = ({
   }, [codesandbox, github]);
 
   const rightSideItems = isMobileSize
-    ? [
-        <GuideThemeSelector
-          onToggleLocale={onToggleLocale}
-          selectedLocale={selectedLocale}
-        />,
-        mobileMenu,
-      ]
+    ? [<GuideThemeSelector />, mobileMenu]
     : [
-        <GuideThemeSelector
-          onToggleLocale={onToggleLocale}
-          selectedLocale={selectedLocale}
-        />,
+        <GuideThemeSelector />,
         github,
         <GuideFigmaLink key="figma" />,
         codesandbox,
       ];
 
+  const goodbyeBanner = (
+    <EuiHeader
+      position="fixed"
+      css={css`
+        padding-inline: 0px;
+        white-space: nowrap;
+        overflow-inline: auto;
+      `}
+    >
+      <EuiPanel
+        borderRadius="none"
+        color="warning"
+        paddingSize="s"
+        css={css`
+          display: inline-flex;
+          justify-content: center;
+          align-items: center;
+        `}
+      >
+        <EuiText component="p" size="m">
+          We have a new website!{' '}
+          <EuiLink href="https://eui.elastic.co/next" external>
+            Please help us test it and tell us what you think
+          </EuiLink>
+        </EuiText>
+      </EuiPanel>
+    </EuiHeader>
+  );
+
   return (
     <header aria-label="EUI Docs app bar">
+      {goodbyeBanner}
       <EuiHeader
         position="fixed"
         theme="dark"

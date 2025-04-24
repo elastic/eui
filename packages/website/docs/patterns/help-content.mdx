@@ -1,0 +1,167 @@
+---
+sidebar_position: 4
+---
+
+# Help content
+
+Help content includes any copy added to the product experience to help users understand a concept or complete a task. It can be definitions, context, explanations, hints, references, and more.
+
+## Considering help content
+
+Before thinking about how to display and write help content, it's important to consider the messaging, importance, scope and role of that content in the user experience.
+
+- **The right content at the right time**. Focus on what users need to reach their next step. They don't need to know everything from the start. If anything, too much information will confuse them. Consider what you're sure they know, and what they may not know that they need.
+- **Be intentional**. Don't push everything to the user's face. While some information is absolutely critical, some might be useful for specific cases or for a particular type of users only. Some might even just be additional context that would digress from the user's flow. Consider letting users choose to consume or not that non-critical, yet useful, content through a simple and recognizable interaction.
+- **Anticipate errors and questions**. Don't wait for errors or questions to provide guidance. We help users avoid them, and when they happen, [we're here](./error-messages/index.mdx) for them.
+
+
+## Short definitions
+Defining terms is particularly useful in onboarding experiences or in the first few steps that users go through when using a feature.
+
+<FigmaEmbed url="https://www.figma.com/file/1ryJM0lhbUopALKHwPUhFC/Help-content?type=design&node-id=6-343&mode=design&t=vZqFprizypJOJryZ-0" />
+
+**Interaction**
+- Question mark icon <Icon type="questionInCircle" title="question mark in a circle" /> with the `primary` color directly following the term to explain.
+- On hover, a [tooltip](../components/display/tooltip.mdx) appears.
+- Use it anywhere needed: navigation, titles, or inline.
+
+**Tooltip content**
+- Body
+  - Less than 40 words (that’s about 2 short sentences).
+    > If you need more, you are likely [explaining a concept](#concepts) instead.
+  - Sentence case.
+  - Full punctuation.
+  - Start the definition with the full term you are defining to leave no ambiguity.
+  - Audience level: beginners.
+  - Don’t include interactions inside of the tooltip (like links). If you need some or rich formatting, you're likely not just providing a simple definition and are instead [explaining a concept](#concepts).
+- No header, title, footer or call to action.
+
+
+## Concepts
+Concepts are more than quick definitions. They help users understand how something works, why they should or shouldn't use something, and can include resources or links with further details.
+
+### For a specific setting or group
+
+<FigmaEmbed url="https://www.figma.com/file/1ryJM0lhbUopALKHwPUhFC/Help-content?type=design&node-id=1-192&mode=design&t=vZqFprizypJOJryZ-0" title="Help popover with additional context" />
+
+
+**Interaction**
+- Information icon <Icon type="iInCircle" title="information icon" /> with the `primary` color directly following the setting to explain.
+- On click, a [popover](../components/containers/popover.mdx) appears. It is dismissed by a second click outside of the popover area.
+
+**Popover content**
+- Header _required_
+  - Be explicit about what users are about to read.
+  - Sentence case.
+  - No punctuation.
+- Body _required_
+  - If necessary, structure the content into sections. It should be no more than 2 to 3 short paragraphs. If the content is longer than that, use a flyout to avoid disrupting the user from their main task.
+  - Format keywords, code blocks, input examples, links, etc.
+  - You can add images or gifs.
+  - Sentence case.
+  - Full punctuation.
+  - Audience level: beginners.
+- Footer _optional_
+  - For any call to action.
+
+### For an entire page or app
+
+<FigmaEmbed url="https://www.figma.com/file/1ryJM0lhbUopALKHwPUhFC/Help-content?type=design&node-id=6-278&mode=design&t=vZqFprizypJOJryZ-0" title="Help flyout with additional information" />
+
+_Note: the formatting of the flyout here is just an example._
+
+
+**Interaction**
+- Use a [Flyout](../components/containers/flyout/index.mdx), in `push` mode if possible, as overlays can be disruptive.
+- Locate the interaction to open the flyout somewhere visible and that matches with the context of the content:
+  - If that is for an entire app, use the help button from the header
+  - If that is for a significant section or area of the UI, use an explicit link near the top of the area or section or a button.
+- Add an explicit **Close** action to the footer as a way to dismiss the flyout.
+
+**Flyout content**
+- Header
+  - Action-oriented title.
+  - Sentence case.
+  - No punctuation.
+- Body
+  - Structure content to help users scan.
+  - Keep it short, it doesn't have to be the fully-detailed documentation. Keep the most important to keep it readable.
+  - Format keywords, code blocks, input examples, etc.
+  - You can add images or gifs.
+  - Sentence case.
+  - Full punctuation.
+  - Audience: all levels.
+- Footer
+  - Call to action to **Close** the flyout.
+  - If necessary, add another call to action to read the full documentation.
+
+## Fields and settings
+Several mechanisms exist to provide additional help around a specific field. All of these mechanisms are **optional**.
+
+<FigmaEmbed url="https://www.figma.com/file/1ryJM0lhbUopALKHwPUhFC/Help-content?type=design&node-id=60-6885&mode=design&t=vZqFprizypJOJryZ-0" title="Different types of help for form controls and fields" />
+
+
+**Hint text (shows below a field)**
+- Use it for explaining:
+  - the accepted syntax, the format, range or number of accepted values, or how to enter multiple values if needed.
+  - the consequences of changing the value or enabling the setting if they're critical to know.
+- Hint text should be short. If the text is more than 2 lines, there might be an underlying design issue, or you need a different help mechanism like a [syntax reference](#syntax-references).
+
+**Placeholder text**
+- Important help should show outside of a field, not as placeholder, as the information will disappear as soon as users start typing.
+- Use it for input examples.
+- Exception: in search and filter bars, use it to guide users on what they can search for or filter.
+- Defaults are different from placeholders and shouldn't look like placeholders. They should pre-populate the field.
+
+**Additional information**
+
+Add a tooltip or popover next to the label of a field to provide additional context on the concept or to provide usage guidance. For example, "When should I use this?".
+
+<FigmaEmbed url="https://www.figma.com/file/1ryJM0lhbUopALKHwPUhFC/Help-content?type=design&node-id=617-386&mode=design&t=gMQHqaXMvQB3A4BX-0" title="Additional information" />
+
+
+## Syntax references
+Providing reference docs directly in the product can help users stay focused on filling any field requiring functions or advanced syntax.
+
+<FigmaEmbed url="https://www.figma.com/file/1ryJM0lhbUopALKHwPUhFC/Help-content?type=design&node-id=65-56594&mode=design&t=o9mXncfMtIGAHvEG-0" title="Syntax reference best practices" />
+
+**Interaction**
+- Use the <Icon type="documentation" title="book icon" /> icon with the `primary` color to indicate a reference. When possible, add an explicit link text.
+- Locate the interaction for opening the reference right next to or under the field, depending on the UI layout.
+- On click, a [Flyout](../components/containers/flyout/index.mdx) in `push` mode or a [popover](../components/containers/popover.mdx) opens.
+- For popovers, clicking outside closes the help.
+- For flyouts, add an explicit Close button to the footer.
+
+
+**Reference content**
+- Header
+  - Make the scope of the reference content clear to users.
+- Body
+  - Structure content to help users scan. Use sections or pages depending on the size of the reference.
+  - Format the content so that code samples and input text are easy to identify and copy.
+  - Sentence case.
+  - Full punctuation.
+- Functionality
+  - For large sets of functions, make it possible to browse using navigation and a search or nav filter.
+
+
+## Legends for graphs and tables
+Elastic visualizations often show acronyms or depths of details that require legends.
+
+<FigmaEmbed url="https://www.figma.com/file/1ryJM0lhbUopALKHwPUhFC/Help-content?type=design&node-id=121-56743&mode=design&t=o9mXncfMtIGAHvEG-0" title="Legend and definitions for visualizations" />
+
+**Interaction**
+- Use an explicit text link with the <Icon type="list" title="list icon" /> icon with the `primary` color to indicate a list of definitions.
+- This link must be within the context of what it applies to, generally near the upper right corner of the visualization or UI section.
+- On click, a [popover](../components/containers/popover.mdx) appears.
+
+**Legend content**
+- Header
+  - Use the same word as the link text used to open the popover.
+- Body
+  - Format the content of the popover in a way that helps users scan. It can be a simple definition list, or a table with one icon and definition per row, etc.
+  - For acronyms, make sure to repeat them as they appear on the visualization, accompanied by their full form.
+
+## Other forms of in-product help
+More forms of indirect ways to help users exist in the product experience and have their own dedicated patterns. Related patterns:
+* [Error messages](./error-messages/index.mdx)

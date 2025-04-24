@@ -246,7 +246,7 @@ describe('EuiBasicTable', () => {
 
     expect(getByRole('list')).toBeTruthy();
     expect(
-      container.querySelector('[aria-current="true"]')?.textContent
+      container.querySelector('[aria-current="page"]')?.textContent
     ).toEqual('1');
   });
 
@@ -264,7 +264,7 @@ describe('EuiBasicTable', () => {
     const { container } = render(<EuiBasicTable {...props} />);
 
     expect(
-      container.querySelector('[aria-current="true"]')?.textContent
+      container.querySelector('[aria-current="page"]')?.textContent
     ).toEqual('2');
   });
 

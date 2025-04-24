@@ -6,6 +6,7 @@
  * Side Public License, v 1.
  */
 
-export { createDemo } from './demo';
+export { createDemo, Demo, type DemoProps } from './demo';
 export { Guideline, GuidelineText } from './guideline';
+export { PropTable } from './prop_table';
 export { AppThemeContext } from './theme_context';

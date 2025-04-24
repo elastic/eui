@@ -13,7 +13,7 @@ export const tooltipPlugin = {
   name: 'tooltipPlugin',
   button: {
     label: 'Tooltip',
-    iconType: 'editorComment',
+    iconType: 'comment',
   },
   formatting: {
     prefix: '!{tooltip[',

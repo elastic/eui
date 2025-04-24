@@ -216,7 +216,7 @@ export default () => {
   const closePopover = () => setIsPopoverOpen(false);
 
   const button = (
-    <EuiButton onClick={onButtonClick} iconType="controlsVertical" size="s">
+    <EuiButton onClick={onButtonClick} iconType="controls" size="s">
       Customize props
     </EuiButton>
   );

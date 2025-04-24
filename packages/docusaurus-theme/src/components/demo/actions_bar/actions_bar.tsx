@@ -16,14 +16,16 @@ import {
   darken,
 } from '@elastic/eui';
 import { css } from '@emotion/react';
-import { CodeSandboxIcon } from '../../codesandbox_icon';
+import { extraActions } from '@theme/Demo/actions';
+import { DemoSourceMeta } from '../demo';
 
 export interface DemoActionsBarProps {
+  activeSource: DemoSourceMeta | null;
+  sources: DemoSourceMeta[];
   isSourceOpen: boolean;
   setSourceOpen(isOpen: boolean): void;
   onClickReloadExample(): void;
   onClickCopyToClipboard(): void;
-  onClickOpenInCodeSandbox(): void;
 }
 
 const getDemoActionsBarStyles = (euiTheme: UseEuiTheme) => {
@@ -41,8 +43,6 @@ const getDemoActionsBarStyles = (euiTheme: UseEuiTheme) => {
       }
     `,
     button: css`
-      background: var(--eui-background-color-primary);
-      border: 1px solid var(--eui-border-color-primary);
       margin-right: auto;
     `,
   };
@@ -51,7 +51,8 @@ const getDemoActionsBarStyles = (euiTheme: UseEuiTheme) => {
 export const DemoActionsBar = ({
   isSourceOpen,
   setSourceOpen,
-  onClickOpenInCodeSandbox,
+  activeSource,
+  sources,
   onClickReloadExample,
   onClickCopyToClipboard,
 }: DemoActionsBarProps) => {
@@ -63,19 +64,14 @@ export const DemoActionsBar = ({
         css={styles.button}
         onClick={() => setSourceOpen(!isSourceOpen)}
         size="s"
+        color="text"
         minWidth={false}
       >
         {isSourceOpen ? 'Hide source' : 'Show source'}
       </EuiButton>
-      <EuiToolTip content="Open in CodeSandbox">
-        <EuiButtonIcon
-          size="s"
-          iconType={CodeSandboxIcon}
-          color="text"
-          aria-label="Open in CodeSandbox"
-          onClick={onClickOpenInCodeSandbox}
-        />
-      </EuiToolTip>
+      {extraActions.map((ActionComponent) => (
+        <ActionComponent sources={sources} activeSource={activeSource} />
+      ))}
       <EuiToolTip content="Copy to clipboard">
         <EuiButtonIcon
           size="s"

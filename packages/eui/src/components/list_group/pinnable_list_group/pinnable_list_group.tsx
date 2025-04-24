@@ -6,15 +6,15 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, useMemo } from 'react';
 import classNames from 'classnames';
-import { CommonProps } from '../../common';
 
-import { EuiI18n } from '../../i18n';
+import { useEuiMemoizedStyles } from '../../../services';
+import { CommonProps } from '../../common';
+import { useEuiI18n } from '../../i18n';
+
 import { EuiListGroup, EuiListGroupProps } from '../list_group';
 import { EuiListGroupItemProps } from '../list_group_item';
-import { useEuiTheme } from '../../../services';
-
 import { euiPinnableListGroupItemExtraActionStyles } from './pinnable_list_group.styles';
 
 export type EuiPinnableListGroupItemProps = EuiListGroupItemProps & {
@@ -34,7 +34,7 @@ export interface EuiPinnableListGroupProps
     EuiListGroupProps {
   /**
    * Extends `EuiListGroupItemProps`, at the very least, expecting a `label`.
-   * See #EuiPinnableListGroupItem
+   * See #EuiPinnableListGroupItemProps
    */
   listItems: EuiPinnableListGroupItemProps[];
   /**
@@ -60,32 +60,22 @@ export const EuiPinnableListGroup: FunctionComponent<
   EuiPinnableListGroupProps
 > = ({ className, listItems, pinTitle, unpinTitle, onPinClick, ...rest }) => {
   const classes = classNames('euiPinnableListGroup', className);
-  const euiTheme = useEuiTheme();
-  const itemExtraActionStyles =
-    euiPinnableListGroupItemExtraActionStyles(euiTheme);
+  const styles = useEuiMemoizedStyles(
+    euiPinnableListGroupItemExtraActionStyles
+  );
 
-  const pinExtraAction: EuiListGroupItemProps['extraAction'] = {
-    iconType: 'pinFilled',
-    iconSize: 's',
-    css: itemExtraActionStyles.euiPinnableListGroup__itemExtraAction,
-  };
-
-  const pinnedExtraAction: EuiListGroupItemProps['extraAction'] = {
-    iconType: 'pinFilled',
-    iconSize: 's',
-    css: [
-      itemExtraActionStyles.euiPinnableListGroup__itemExtraAction,
-      itemExtraActionStyles.pinned,
-    ],
-    alwaysShow: true,
-  };
+  const pinExtraActionLabel = useEuiI18n(
+    'euiPinnableListGroup.pinExtraActionLabel',
+    'Pin item'
+  );
+  const pinnedExtraActionLabel = useEuiI18n(
+    'euiPinnableListGroup.pinnedExtraActionLabel',
+    'Unpin item'
+  );
 
   // Alter listItems object with extra props
-  const getNewListItems = (
-    pinExtraActionLabel: string,
-    pinnedExtraActionLabel: string
-  ) =>
-    listItems.map((item) => {
+  const pinnableListItems = useMemo(() => {
+    return listItems.map((item) => {
       const { pinned, pinnable = true, ...itemProps } = item;
       // Make some declarations of props for the nav implementation
       itemProps.className = classNames(
@@ -93,22 +83,33 @@ export const EuiPinnableListGroup: FunctionComponent<
         item.className
       );
 
-      // Add the pinning action unless the item has it's own extra action
+      // Add the pinning action unless the item has its own extra action
       if (pinnable && !itemProps.extraAction) {
         // Different displays for pinned vs unpinned
+        const sharedProps: EuiListGroupItemProps['extraAction'] = {
+          iconType: 'pinFilled',
+          iconSize: 's',
+          css: [
+            styles.euiPinnableListGroup__itemExtraAction,
+            pinned && styles.pinned,
+          ],
+        };
         if (pinned) {
+          const title = unpinTitle ? unpinTitle(item) : pinnedExtraActionLabel;
+
           itemProps.extraAction = {
-            ...pinnedExtraAction,
-            title: unpinTitle ? unpinTitle(item) : pinnedExtraActionLabel,
-            'aria-label': unpinTitle
-              ? unpinTitle(item)
-              : pinnedExtraActionLabel,
+            ...sharedProps,
+            alwaysShow: true,
+            'aria-label': title,
+            title,
           };
         } else {
+          const title = pinTitle ? pinTitle(item) : pinExtraActionLabel;
+
           itemProps.extraAction = {
-            ...pinExtraAction,
-            title: pinTitle ? pinTitle(item) : pinExtraActionLabel,
-            'aria-label': pinTitle ? pinTitle(item) : pinExtraActionLabel,
+            ...sharedProps,
+            'aria-label': title,
+            title,
           };
         }
         // Return the item on click
@@ -117,28 +118,17 @@ export const EuiPinnableListGroup: FunctionComponent<
 
       return itemProps;
     });
+  }, [
+    listItems,
+    pinTitle,
+    pinExtraActionLabel,
+    unpinTitle,
+    pinnedExtraActionLabel,
+    onPinClick,
+    styles,
+  ]);
 
   return (
-    <EuiI18n
-      tokens={[
-        'euiPinnableListGroup.pinExtraActionLabel',
-        'euiPinnableListGroup.pinnedExtraActionLabel',
-      ]}
-      defaults={['Pin item', 'Unpin item']}
-    >
-      {([pinExtraActionLabel, pinnedExtraActionLabel]: string[]) => {
-        const newListItems = getNewListItems(
-          pinExtraActionLabel,
-          pinnedExtraActionLabel
-        );
-        return (
-          <EuiListGroup
-            className={classes}
-            listItems={newListItems}
-            {...rest}
-          />
-        );
-      }}
-    </EuiI18n>
+    <EuiListGroup className={classes} listItems={pinnableListItems} {...rest} />
   );
 };

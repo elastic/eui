@@ -25,12 +25,10 @@ export type EuiLoadingChartSize = (typeof SIZES)[number];
 export type EuiLoadingChartProps = CommonProps &
   HTMLAttributes<HTMLDivElement> & {
     size?: EuiLoadingChartSize;
-    mono?: boolean;
   };
 
 export const EuiLoadingChart: FunctionComponent<EuiLoadingChartProps> = ({
   size = 'm',
-  mono = false,
   className,
   'aria-label': ariaLabel,
   ...rest
@@ -41,11 +39,7 @@ export const EuiLoadingChart: FunctionComponent<EuiLoadingChartProps> = ({
   const cssStyles = [styles.euiLoadingChart, styles[size]];
 
   const barStyles = useEuiMemoizedStyles(euiLoadingChartBarStyles);
-  const barCssStyles = [
-    barStyles.euiLoadingChart__bar,
-    mono ? barStyles.mono : barStyles.nonmono,
-    barStyles[size],
-  ];
+  const barCssStyles = [barStyles.euiLoadingChart__bar, barStyles[size]];
 
   const defaultAriaLabel = useLoadingAriaLabel();
 

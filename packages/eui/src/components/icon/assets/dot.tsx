@@ -28,7 +28,7 @@ const EuiIconDot = ({
     {...props}
   >
     {title ? <title id={titleId}>{title}</title> : null}
-    <circle cx={8} cy={8} r={4} />
+    <path d="M12 8a4 4 0 1 1-8 0 4 4 0 0 1 8 0Z" />
   </svg>
 );
 export const icon = EuiIconDot;

@@ -9,9 +9,18 @@
 import { themes as prismThemes } from 'prism-react-renderer';
 import type { Config } from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
+import type { Options as EuiPresetOptions } from '@elastic/eui-docusaurus-preset';
 
 const baseUrl = process.env.DOCS_BASE_URL || '/';
 const googleTagManagerId = process.env.DOCS_GOOGLE_TAG_MANAGER_ID || undefined;
+
+let storybookBaseUrl: string = 'https://eui.elastic.co/storybook';
+
+if (process.env.NODE_ENV === 'development') {
+  storybookBaseUrl = 'http://localhost:6006';
+} else if (process.env.STORYBOOK_BASE_URL) {
+  storybookBaseUrl = process.env.STORYBOOK_BASE_URL;
+}
 
 const config: Config = {
   title: 'Elastic UI Framework',
@@ -36,15 +45,21 @@ const config: Config = {
     locales: ['en'],
   },
 
-  themes: ['@elastic/eui-docusaurus-theme'],
+  customFields: {
+    storybookBaseUrl,
+  },
 
   presets: [
     [
-      'classic',
+      require.resolve('@elastic/eui-docusaurus-preset'),
       {
         docs: {
           sidebarPath: './sidebars.ts',
           editUrl: 'https://github.com/elastic/eui/tree/main/packages/website/',
+          admonitions: {
+            keywords: ['accessibility'],
+            extendDefaults: true,
+          },
         },
         blog: {
           showReadingTime: true,
@@ -53,7 +68,7 @@ const config: Config = {
         googleTagManager: googleTagManagerId && {
           containerId: googleTagManagerId,
         },
-      } satisfies Preset.Options,
+      } satisfies EuiPresetOptions,
     ],
   ],
 
@@ -62,6 +77,46 @@ const config: Config = {
       'docusaurus-lunr-search',
       {
         disableVersioning: true, // We don't use docusaurus docs versioning
+        /*
+         * Configure lunr fields to increase search boost on page titles.
+         *
+         * There are two types of `title` fields indexed under the same `title`
+         * name. One is the actual page titles (h1 tags) with no other
+         * `content` and the other is other headings (h2 and h3 tags) with
+         * the `content` field pointing to that section's text content.
+         *
+         * Since we don't have access to the internal `type` property that
+         * distinguishes these two, we distinguish these by the `content`
+         * field.
+         */
+        fields: {
+          // Page titles (h1 tags)
+          title: {
+            boost: 20,
+            extractor(doc) {
+              if (doc.content.trim().length) {
+                return null;
+              }
+
+              return doc.title;
+            },
+          },
+          // We can't create new fields, so reusing the defined keywords
+          // field seems like the next best thing.
+          // This makes `keywords` the h2 and h3 headings
+          keywords: {
+            boost: 3,
+            extractor(doc) {
+              if (doc.content.trim().length) {
+                return doc.title;
+              }
+
+              return null;
+            },
+          },
+          // No boost to other content (page body)
+          content: { boost: 1 },
+        },
       },
     ],
   ],
@@ -76,9 +131,21 @@ const config: Config = {
       items: [
         {
           type: 'docSidebar',
+          sidebarId: 'getting-started',
+          position: 'left',
+          label: 'Getting started',
+        },
+        {
+          type: 'docSidebar',
           sidebarId: 'components',
           position: 'left',
           label: 'Components',
+        },
+        {
+          type: 'docSidebar',
+          sidebarId: 'utilities',
+          position: 'left',
+          label: 'Utilities',
         },
         {
           type: 'docSidebar',

@@ -56,12 +56,13 @@ export interface DemoProps extends PropsWithChildren {
 
 const getDemoStyles = (euiTheme: UseEuiTheme) => ({
   demo: css`
-    --docs-demo-border-color: ${euiTheme.euiTheme.colors.lightShade};
+    --docs-demo-border-color: ${euiTheme.euiTheme.border.color};
     --docs-demo-border-radius: ${euiTheme.euiTheme.size.s};
 
     border: 1px solid var(--docs-demo-border-color);
     border-radius: var(--docs-demo-border-radius);
     margin-block: ${euiTheme.euiTheme.size.xl};
+    word-break: break-word;
   `,
 });
 
@@ -104,11 +105,6 @@ export const Demo = ({
     setLiveProviderKey((liveProviderKey) => liveProviderKey + 1);
   }, []);
 
-  const onClickOpenInCodeSandbox = useCallback(() => {
-    // TODO: implement
-    console.error('Open in CodeSandbox action is not implemented yet');
-  }, []);
-
   return (
     <div css={styles.demo}>
       <DemoContext.Provider value={{ sources, addSource }}>
@@ -126,9 +122,10 @@ export const Demo = ({
           <DemoActionsBar
             isSourceOpen={isSourceOpen}
             setSourceOpen={setIsSourceOpen}
+            activeSource={activeSource}
+            sources={sources}
             onClickCopyToClipboard={onClickCopyToClipboard}
             onClickReloadExample={onClickReloadExample}
-            onClickOpenInCodeSandbox={onClickOpenInCodeSandbox}
           />
           {isSourceOpen && <DemoEditor />}
         </LiveProvider>

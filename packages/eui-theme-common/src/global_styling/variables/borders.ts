@@ -25,7 +25,7 @@ export interface _EuiThemeBorderWidthValues {
 export interface _EuiThemeBorderRadiusValues {
   /**
    * Primary corner radius size
-   * - Default value: 6px
+   * - Default value: 4px (6px in Amsterdam)
    */
   medium: CSSProperties['borderRadius'];
   /**
@@ -37,7 +37,8 @@ export interface _EuiThemeBorderRadiusValues {
 
 export interface _EuiThemeBorderColorValues {
   /**
-   * Color for all borders; Default is `colors.lightShade`
+   * Color for all borders; Default is `colors.lightShade`.
+   * In high contrast mode, this value becomes `colors.fullShade` and cannot be overridden.
    */
   color: ColorModeSwitch;
 }

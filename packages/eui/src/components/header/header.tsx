@@ -16,7 +16,7 @@ import React, {
 } from 'react';
 import classNames from 'classnames';
 
-import { useEuiTheme, useEuiThemeCSSVariables } from '../../services';
+import { useEuiMemoizedStyles, useEuiThemeCSSVariables } from '../../services';
 import { mathWithUnits, logicalStyles } from '../../global_styling';
 import { CommonProps } from '../common';
 import { EuiBreadcrumb, EuiBreadcrumbsProps } from '../breadcrumbs';
@@ -33,7 +33,7 @@ type EuiHeaderSectionItemType = EuiHeaderSectionItemProps['children'];
 
 export interface EuiHeaderSections {
   /**
-   * An arry of items that will be wrapped in a #EuiHeaderSectionItem
+   * An array of items that will be wrapped in a #EuiHeaderSectionItem
    */
   items?: EuiHeaderSectionItemType[];
   /**
@@ -58,7 +58,7 @@ export type EuiHeaderProps = CommonProps &
     /**
      * An array of objects to wrap in a #EuiHeaderSection.
      * Each section is spaced using `space-between`.
-     * See #EuiHeaderSectionsProp for object details.
+     * See #EuiHeaderSections for object details.
      * This prop disregards the prop `children` if both are passed.
      */
     sections?: EuiHeaderSections[];
@@ -84,45 +84,44 @@ export const EuiHeader: FunctionComponent<EuiHeaderProps> = ({
 }) => {
   const classes = classNames('euiHeader', className);
 
-  const euiTheme = useEuiTheme();
-  const styles = euiHeaderStyles(euiTheme);
+  const styles = useEuiMemoizedStyles(euiHeaderStyles);
   const cssStyles = [styles.euiHeader, styles[position], styles[theme]];
 
-  let contents;
-  if (sections) {
-    if (children) {
-      // In case both children and sections are passed, warn in the console that the children will be disregarded
-      console.warn(
-        'EuiHeader cannot accept both `children` and `sections`. It will disregard the `children`.'
-      );
-    }
-
-    contents = sections.map((section, index) => {
-      const content = [];
-      if (section.items) {
-        // Items get wrapped in EuiHeaderSection and each item in a EuiHeaderSectionItem
-        content.push(
-          <EuiHeaderSection key={`items-${index}`}>
-            {createHeaderSection(section.items)}
-          </EuiHeaderSection>
-        );
-      }
-      if (section.breadcrumbs) {
-        content.push(
-          // Breadcrumbs are separate and cannot be contained in a EuiHeaderSection
-          // in order for truncation to work
-          <EuiHeaderBreadcrumbs
-            key={`breadcrumbs-${index}`}
-            breadcrumbs={section.breadcrumbs}
-            {...section.breadcrumbProps}
-          />
-        );
-      }
-      return content;
-    });
-  } else {
-    contents = children;
+  if (sections && children) {
+    // In case both children and sections are passed, warn in the console that the children will be disregarded
+    console.warn(
+      'EuiHeader cannot accept both `children` and `sections`. It will disregard the `children`.'
+    );
   }
+
+  const contents =
+    useMemo(() => {
+      if (!sections || !sections.length) return null;
+
+      return sections.map((section, index) => {
+        const content = [];
+        if (section.items) {
+          // Items get wrapped in EuiHeaderSection and each item in a EuiHeaderSectionItem
+          content.push(
+            <EuiHeaderSection key={`items-${index}`}>
+              {createHeaderSection(section.items)}
+            </EuiHeaderSection>
+          );
+        }
+        if (section.breadcrumbs) {
+          content.push(
+            // Breadcrumbs are separate and cannot be contained in a EuiHeaderSection
+            // in order for truncation to work
+            <EuiHeaderBreadcrumbs
+              key={`breadcrumbs-${index}`}
+              breadcrumbs={section.breadcrumbs}
+              {...section.breadcrumbProps}
+            />
+          );
+        }
+        return content;
+      });
+    }, [sections]) || children;
 
   return position === 'fixed' ? (
     <EuiFixedHeader css={cssStyles} className={classes} {...rest}>
@@ -151,8 +150,7 @@ export const EuiFixedHeader: FunctionComponent<EuiHeaderProps> = ({
   ...rest
 }) => {
   const { setGlobalCSSVariables } = useEuiThemeCSSVariables();
-  const euiTheme = useEuiTheme();
-  const headerHeight = euiHeaderVariables(euiTheme).height;
+  const headerHeight = useEuiMemoizedStyles(euiHeaderVariables).height;
   const getHeaderOffset = useCallback(
     () => mathWithUnits(headerHeight, (x) => x * euiFixedHeadersCount),
     [headerHeight]

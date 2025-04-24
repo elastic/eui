@@ -14,6 +14,7 @@ import {
   euiNumberFormat,
   mathWithUnits,
 } from '../../../global_styling';
+import { highContrastModeStyles } from '../../../global_styling/functions/high_contrast';
 import { UseEuiTheme } from '../../../services';
 import { euiBadgeColors } from '../color_utils';
 
@@ -24,10 +25,18 @@ export const euiNotificationBadgeStyles = (euiThemeContext: UseEuiTheme) => {
   return {
     euiNotificationBadge: css`
       flex-shrink: 0; /* Ensures it never scales down below its intended size */
-      display: inline-block;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
       vertical-align: middle;
       ${logicalCSS('padding-horizontal', euiTheme.size.xs)}
       border-radius: ${euiTheme.border.radius.small};
+      ${highContrastModeStyles(euiThemeContext, {
+        preferred: `
+          border: ${euiTheme.border.thin};
+          overflow: hidden; /* Fix text clipping */
+        `,
+      })}
       cursor: default;
 
       font-size: ${euiFontSizeFromScale('xs', euiTheme)};
@@ -41,12 +50,10 @@ export const euiNotificationBadgeStyles = (euiThemeContext: UseEuiTheme) => {
     `,
     // Sizes
     s: css`
-      line-height: ${euiTheme.size.base};
       ${logicalCSS('height', euiTheme.size.base)}
       ${logicalCSS('min-width', euiTheme.size.base)}
     `,
     m: css`
-      line-height: ${mathWithUnits(euiTheme.size.xs, (x) => x + euiTheme.base)};
       ${logicalCSS(
         'height',
         mathWithUnits(euiTheme.size.xs, (x) => x + euiTheme.base)

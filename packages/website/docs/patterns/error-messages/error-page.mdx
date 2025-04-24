@@ -1,0 +1,50 @@
+---
+sidebar_position: 3
+---
+
+# Error page
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+Use an error page when it is not possible to show the user the page they expected to see.
+
+<Tabs>
+  <TabItem value="403 Example" label="403 Example" default>
+    ![An empty prompt component which reads, 403, you can't access this page. You don't have permission, if you think this is a mistake, contact your administrator: admin@example.co.](./images/error-page-403.webp)
+  </TabItem>
+  <TabItem value="404 Example">
+    ![An empty prompt component which reads, 404, we can't find the page you're looking for. If you typed the URL, check it's correct. If you clicked a link, contact your administrator: admin@example.co.](./images/error-page-404.webp)
+  </TabItem>
+</Tabs>
+
+
+## When to use this pattern
+
+Use an error page when it is not possible to show the user the page they expected to see. For example:
+- `403`: user does not have permission
+- `404`: cannot find page or resource
+- `410`: page or resource has been deleted
+
+We have created a list of [example error messages for common error codes](./examples.mdx).
+
+## When not to use this pattern
+
+Error pages are a hard stop in the user's journey. They can be jarring and annoying to encounter.
+
+Do not use an error page to display a warning about an unrelated error, instead use the [error warning pattern](./error-warning.mdx).
+
+Do not use an error page for validating information the user has entered, instead use the [validation errors pattern](./error-validation.mdx).
+
+Do not use an error page when you're able to still show the page the user was expecting, instead use the [error banner pattern](./error-banners.mdx).
+
+
+## How it works
+
+Use the [EuiEmptyPrompt](../../components/display/empty-prompt/index.mdx) component to build your error pages.
+
+Redirect the user to your error page in situations where an error occurs and the expected page can't be shown.
+
+## Help improve this pattern
+
+To help make sure that this page is useful, relevant and up to date, you can join our [#ux&#8209;wg&#8209;patterns](https://elastic.slack.com/archives/C049ADQE99S) discussions on Slack.

@@ -10,6 +10,10 @@ import { css } from '@emotion/react';
 
 import { UseEuiTheme, transparentize } from '../../services';
 import { logicalCSS, mathWithUnits, euiCanAnimate } from '../../global_styling';
+import {
+  highContrastModeStyles,
+  preventForcedColors,
+} from '../../global_styling/functions/high_contrast';
 
 export const euiResizableButtonStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
@@ -18,7 +22,6 @@ export const euiResizableButtonStyles = (euiThemeContext: UseEuiTheme) => {
   const negativeMargin = mathWithUnits(buttonSize, (x) => x / -2);
   const grabHandleWidth = euiTheme.size.m;
   const grabHandleHeight = euiTheme.border.width.thin;
-
   const transitionSpeed = euiTheme.animation.fast;
   const transition = `${transitionSpeed} ease`;
 
@@ -27,11 +30,13 @@ export const euiResizableButtonStyles = (euiThemeContext: UseEuiTheme) => {
     // 1. The "grab" handle transforms into a thicker straight line on :hover and :focus
     // 2. Start/end aligned grab handles should have a slight margin offset that disappears on hover/focus
     // 3. CSS hack to smooth out/anti-alias the 1px wide handles at various zoom levels
+    // 4. High contrast modes should not rely on background-color to indicate focus state, but on border width
     euiResizableButton: css`
       z-index: 1;
       flex-shrink: 0;
       display: flex;
       justify-content: center;
+      ${preventForcedColors(euiThemeContext)} /* 4 */
 
       &:disabled {
         display: none;
@@ -48,24 +53,36 @@ export const euiResizableButtonStyles = (euiThemeContext: UseEuiTheme) => {
         }
       }
 
-      /* Lighten color on :hover */
-      &:hover {
-        &::before,
-        &::after {
-          background-color: ${euiTheme.colors.mediumShade};
-        }
-      }
+      /* Lighten color on :hover for non-high-contrast modes */
+      ${highContrastModeStyles(euiThemeContext, {
+        /* 4 */
+        none: `
+          &:hover {
+            &::before,
+            &::after {
+              background-color: ${euiTheme.colors.mediumShade};
+            }
+          }`,
+      })}
 
       /* Add a transparent background to the container and color the border primary
          with primary color on :focus (NOTE - :active is needed for Safari) */
       &:focus,
       &:active {
-        background-color: ${transparentize(euiTheme.colors.primary, 0.1)};
+        ${highContrastModeStyles(euiThemeContext, {
+          /* 4 */
+          none: `
+            background-color: ${transparentize(euiTheme.colors.primary, 0.1)};
+
+            &::before,
+            &::after {
+              background-color: ${euiTheme.colors.primary};
+            }
+          `,
+        })}
 
         &::before,
         &::after {
-          background-color: ${euiTheme.colors.primary};
-
           /* Overrides default transition so that "grab" background-color doesn't animate */
           ${euiCanAnimate} {
             transition: width ${transition}, height ${transition};
@@ -121,6 +138,7 @@ export const euiResizableButtonStyles = (euiThemeContext: UseEuiTheme) => {
             ${logicalCSS('height', '100%')}
           }
         }
+        ${_highContrastForcedBorder(euiThemeContext, 'horizontal')}
       `,
       vertical: css`
         &::before {
@@ -136,6 +154,7 @@ export const euiResizableButtonStyles = (euiThemeContext: UseEuiTheme) => {
             ${logicalCSS('width', '100%')}
           }
         }
+        ${_highContrastForcedBorder(euiThemeContext, 'vertical')}
       `,
     },
 
@@ -190,6 +209,7 @@ export const euiResizableButtonStyles = (euiThemeContext: UseEuiTheme) => {
             transform: none; /* 3 */
           }
         }
+        ${_highContrastForcedBorder(euiThemeContext, 'horizontal')}
       `,
       vertical: css`
         &::before,
@@ -210,6 +230,7 @@ export const euiResizableButtonStyles = (euiThemeContext: UseEuiTheme) => {
             transform: none; /* 3 */
           }
         }
+        ${_highContrastForcedBorder(euiThemeContext, 'vertical')}
       `,
     },
     alignIndicator: {
@@ -224,4 +245,28 @@ export const euiResizableButtonStyles = (euiThemeContext: UseEuiTheme) => {
       `,
     },
   };
+};
+
+/* 4 */
+const _highContrastForcedBorder = (
+  euiThemeContext: UseEuiTheme,
+  direction: 'horizontal' | 'vertical'
+) => {
+  const { highContrastMode, euiTheme } = euiThemeContext;
+  if (!highContrastMode) return '';
+
+  const dimension = direction === 'horizontal' ? 'width' : 'height';
+
+  return `
+    &:focus, &:active {
+      &::before, &::after {
+        ${logicalCSS(dimension, euiTheme.border.width.thick)}
+        background-color: ${
+          highContrastMode === 'forced'
+            ? euiTheme.border.color
+            : euiTheme.colors.primary
+        };
+      }
+    }
+  `;
 };

@@ -8,11 +8,6 @@ import TOCCollapsible from '@theme-original/TOCCollapsible';
 // converted from css modules to emotion
 const tocStyles = {
   tocMobile: css`
-    @media (min-width: 997px) {
-      /* Prevent hydration FOUC, as the mobile TOC needs to be server-rendered */
-      display: none;
-    }
-
     @media print {
       display: none;
     }

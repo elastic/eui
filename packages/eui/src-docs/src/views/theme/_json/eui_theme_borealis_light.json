@@ -24,7 +24,7 @@
   "euiBorderWidthThin": "1px",
   "euiBorderWidthThick": "2px",
   "euiBorderColor": "#E3E8F2",
-  "euiBorderRadius": "6px",
+  "euiBorderRadius": "4px",
   "euiBorderRadiusSmall": "4px",
   "euiBorderThick": "2px solid #E3E8F2",
   "euiBorderThin": "1px solid #E3E8F2",
@@ -57,7 +57,7 @@
   "euiFormControlCompressedHeight": "32px",
   "euiFormControlPadding": "12px",
   "euiFormControlCompressedPadding": "8px",
-  "euiFormControlBorderRadius": "6px",
+  "euiFormControlBorderRadius": "4px",
   "euiFormControlCompressedBorderRadius": "4px",
   "euiRadioSize": "16px",
   "euiCheckBoxSize": "16px",
@@ -112,7 +112,7 @@
   },
   "euiPanelBorderRadiusModifiers": {
     "borderRadiusNone": 0,
-    "borderRadiusMedium": "6px"
+    "borderRadiusMedium": "4px"
   },
   "euiPanelBackgroundColorModifiers": {
     "transparent": "rgba(0, 0, 0, 0)",

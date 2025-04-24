@@ -25,4 +25,5 @@ export const _EuiShadowSizesDescriptions: Record<_EuiThemeShadowSize, string> =
 export interface _EuiThemeShadowCustomColor {
   color?: string;
   property?: 'box-shadow' | 'filter';
+  borderAllInHighContrastMode?: boolean;
 }

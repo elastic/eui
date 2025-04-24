@@ -24,14 +24,14 @@ const demoTourSteps = [
     title: 'Build Mode',
     content: <p>Build your project.</p>,
     anchorRef: 'notActionDrivenStep2',
-    iconType: 'editorCodeBlock',
+    iconType: 'code',
   },
   {
     step: 3,
     title: 'Comment mode',
     content: <p>Collaborate with your colleagues.</p>,
     anchorRef: 'notActionDrivenStep3',
-    iconType: 'editorComment',
+    iconType: 'comment',
   },
   {
     step: 2,
@@ -44,7 +44,7 @@ const demoTourSteps = [
 
 const tourConfig = {
   currentTourStep: 1,
-  isTourActive: true,
+  isTourActive: false,
   tourPopoverWidth: 360,
   tourSubtitle: 'Demo tour',
 };
@@ -94,8 +94,17 @@ export default () => {
 
   return (
     <div>
-      <EuiPanel style={{ width: 'max-content' }}>
-        <EuiFlexGroup responsive={false}>
+      <EuiButtonEmpty
+        size="s"
+        iconType="refresh"
+        flush="left"
+        onClick={resetTour}
+      >
+        Begin tour
+      </EuiButtonEmpty>
+      <EuiSpacer size="m" />
+      <EuiPanel hasBorder style={{ width: 'max-content' }}>
+        <EuiFlexGroup gutterSize="s" responsive={false}>
           {demoTourSteps.map((step, index) => (
             <EuiFlexItem grow={false}>
               <EuiTourStep
@@ -109,7 +118,8 @@ export default () => {
                 stepsTotal={demoTourSteps.length}
                 subtitle={state.tourSubtitle}
                 title={step.title}
-                anchorPosition="rightUp"
+                anchorPosition="downLeft"
+                zIndex={1}
                 footerAction={
                   // if it's the last step, we don't want to show the next button
                   index === demoTourSteps.length - 1 ? (
@@ -132,16 +142,12 @@ export default () => {
                   )
                 }
               >
-                <EuiButtonIcon iconType={step.iconType} color="text" />
+                <EuiButtonIcon size="m" iconType={step.iconType} color="text" />
               </EuiTourStep>
             </EuiFlexItem>
           ))}
         </EuiFlexGroup>
       </EuiPanel>
-      <EuiSpacer size="m" />
-      <EuiButtonEmpty iconType="refresh" onClick={resetTour}>
-        Reset tour
-      </EuiButtonEmpty>
     </div>
   );
 };

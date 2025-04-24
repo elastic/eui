@@ -326,12 +326,12 @@ exports[`EuiRange props levels should render 1`] = `
     </div>
     <input
       aria-hidden="false"
-      class="euiRangeSlider emotion-euiRangeSlider-thumb"
+      class="euiRangeSlider emotion-euiRangeSlider"
       id="generated-id"
       max="100"
       min="0"
       step="1"
-      style="color: rgb(198, 30, 37);"
+      style="--euiRangeThumbColor: #C61E25;"
       type="range"
       value="20"
     />
