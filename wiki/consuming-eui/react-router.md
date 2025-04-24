@@ -104,7 +104,7 @@ Note that if using HMR, you'll need to re-register the router after a hot reload
 ### `routing.js` service
 
 You can create a `routing.js` service to surface the `registerRouter` method as well as your
-conversion function (called `getRouterLinkProps` here). The EUI documentation site [uses this approach](../src-docs/src/services/routing/routing.ts).
+conversion function (called `getRouterLinkProps` here).
 
 ```js
 // routing.js

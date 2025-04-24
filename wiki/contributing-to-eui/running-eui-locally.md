@@ -54,23 +54,31 @@ If you're on an Apple arm64 machine and receive an error on `yarn` about Puppete
 
 ## Running
 
-Go to `packages/eui` directory:
+### Storybook
 
-```shell
-cd packages/eui
-```
+This is the recommended way to work with components locally.
 
-You can run the documentation locally at [http://localhost:8030/](http://localhost:8030/) with the following command:
+You can run Storybook with the following command:
 
 ```shell
 yarn start
 ```
 
-If another process is already listening on port 8030, the next free port will be used. Alternatively, you can specify a port:
+### Website
+
+You can run the documentation locally at [http://localhost:3000/](http://localhost:3000/) with the following command:
 
 ```shell
-yarn start --port 9000
+yarn workspace @elastic/eui-website start
 ```
+
+If another process is already listening on port 3000, the next free port will be used. Alternatively, you can specify a port:
+
+```shell
+yarn workspace @elastic/eui-website start --port 9000
+```
+
+See http://docusaurus.io/docs/cli#docusaurus-cli-commands.
 
 ### Updating theme code
 
