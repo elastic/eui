@@ -434,6 +434,59 @@ export const DataVisValuesJS = () => {
   );
 };
 
+export const SeverityJS: FunctionComponent<ThemeRowType> = ({
+  description,
+}) => {
+  const { euiTheme } = useEuiTheme();
+
+  return (
+    <>
+      <ThemeExample
+        title={<code>euiTheme.colors.severity[severity]</code>}
+        description={description}
+        example={
+          <div
+            css={css`
+              padding: ${euiTheme.size.s};
+              color: ${euiTheme.colors.plainDark};
+              background-color: ${euiTheme.colors.severity.risk};
+            `}
+          >
+            <strong>background: {euiTheme.colors.severity.risk}</strong>
+          </div>
+        }
+        snippet={`background-color: \${euiTheme.colors.severity.risk};`}
+        snippetLanguage="emotion"
+      />
+    </>
+  );
+};
+
+export const SeverityValuesJS = () => {
+  const { euiTheme } = useEuiTheme();
+  const props = getPropsFromComponent(EuiThemeColors);
+  const colorKeys = Object.keys(euiTheme.colors.severity).filter(
+    (item) => item !== '__docgenInfo'
+  );
+
+  return (
+    <>
+      <ThemeValuesTable
+        items={colorKeys.map((color) => {
+          return {
+            id: color,
+            token: `colors.severity.${color}`,
+            type: props[color],
+            // @ts-ignore TODO
+            value: euiTheme.colors.severity[color],
+          };
+        })}
+        render={(item) => <EuiColorPickerSwatch color={item.value} disabled />}
+      />
+    </>
+  );
+};
+
 export const UtilsJS = () => {
   const { euiTheme } = useEuiTheme();
 

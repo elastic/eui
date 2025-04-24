@@ -6,8 +6,10 @@ $euiButtonHeightXSmall: $euiSizeL !default;
 $euiButtonTypes: (
   primary: $euiColorBackgroundFilledPrimary,
   accent: $euiColorBackgroundFilledAccent,
+  neutral: $euiColorBackgroundFilledNeutral,
   success: $euiColorBackgroundFilledSuccess,
   warning: $euiColorBackgroundFilledWarning,
+  risk: $euiColorBackgroundFilledRisk,
   danger: $euiColorBackgroundFilledDanger,
   ghost: $euiColorGhost, // Ghost is special, and does not care about theming.
   text: $euiColorBackgroundFilledText, // Reserved for special use cases

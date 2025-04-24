@@ -102,15 +102,15 @@ export const TextSass: FunctionComponent<ThemeRowType> = ({ description }) => {
 
 export const TextValuesSass = () => {
   const values = useJsonVars();
-  const textColors = [
+  const textColors = new Set([
     ...Object.keys(values).filter((v) => v.startsWith('euiColorText')),
     ...euiTextColors,
-  ];
+  ]);
 
   return (
     <>
       <ThemeValuesTable
-        items={textColors.map((color) => {
+        items={[...textColors].map((color) => {
           return {
             id: color,
             token: `$${color}`,
@@ -345,6 +345,50 @@ export const DataVisValuesSass = () => {
     <>
       <ThemeValuesTable
         items={dataVisKeys.map((color) => {
+          return {
+            id: color,
+            token: `$${color}`,
+            value: values[color],
+          };
+        })}
+        render={(item) => <EuiColorPickerSwatch color={item.value} disabled />}
+      />
+    </>
+  );
+};
+
+export const SeveritySass: FunctionComponent<ThemeRowType> = ({
+  description,
+}) => {
+  const values = useJsonVars();
+
+  return (
+    <>
+      <ThemeExample
+        title={<code>$euiColorSeverity[Severity]</code>}
+        description={description}
+        example={
+          <div className="guideSass__severity">
+            <strong>background: {values.euiColorSeverityRisk}</strong>
+          </div>
+        }
+        snippet={`background-color: \$euiColorSeverityRisk;`}
+        snippetLanguage="scss"
+      />
+    </>
+  );
+};
+
+export const SeverityValuesSass = () => {
+  const values = useJsonVars();
+  const severityKeys = Object.keys(values).filter((key: string) =>
+    key.match(/euiColorSeverity/)
+  );
+
+  return (
+    <>
+      <ThemeValuesTable
+        items={severityKeys.map((color) => {
           return {
             id: color,
             token: `$${color}`,

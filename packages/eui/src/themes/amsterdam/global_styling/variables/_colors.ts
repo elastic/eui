@@ -31,6 +31,7 @@ import {
   makeDisabledContrastColor,
 } from '../../../../services/color/contrast';
 import { colorVis } from './_colors_vis';
+import { severityColors } from './_colors_severity';
 
 /*
  * LIGHT THEME
@@ -56,8 +57,10 @@ export const brand_text_colors: _EuiThemeBrandTextColors = {
   textPrimary: computed(makeHighContrastColor('colors.primary')),
   textAccent: computed(makeHighContrastColor('colors.accent')),
   textAccentSecondary: computed(makeHighContrastColor('colors.success')),
+  textNeutral: computed(makeHighContrastColor(severityColors.neutral)),
   textSuccess: computed(makeHighContrastColor('colors.success')),
   textWarning: computed(makeHighContrastColor('colors.warning')),
+  textRisk: computed(makeHighContrastColor(severityColors.risk)),
   textDanger: computed(makeHighContrastColor('colors.danger')),
 };
 
@@ -111,6 +114,7 @@ export const background_colors: _EuiThemeBackgroundColors = {
     ([success]) => tint(success, 0.9),
     ['colors.success']
   ),
+  backgroundBaseNeutral: tint(severityColors.neutral, 0.9),
   backgroundBaseSuccess: computed(
     ([success]) => tint(success, 0.9),
     ['colors.success']
@@ -119,6 +123,7 @@ export const background_colors: _EuiThemeBackgroundColors = {
     ([warning]) => tint(warning, 0.9),
     ['colors.warning']
   ),
+  backgroundBaseRisk: tint(severityColors.risk, 0.9),
   backgroundBaseDanger: computed(
     ([danger]) => tint(danger, 0.9),
     ['colors.danger']
@@ -179,6 +184,7 @@ export const background_colors: _EuiThemeBackgroundColors = {
     ([success]) => tint(success, 0.8),
     ['colors.success']
   ),
+  backgroundLightNeutral: tint(severityColors.neutral, 0.8),
   backgroundLightSuccess: computed(
     ([success]) => tint(success, 0.8),
     ['colors.success']
@@ -187,6 +193,7 @@ export const background_colors: _EuiThemeBackgroundColors = {
     ([warning]) => tint(warning, 0.8),
     ['colors.warning']
   ),
+  backgroundLightRisk: tint(severityColors.risk, 0.8),
   backgroundLightDanger: computed(
     ([danger]) => tint(danger, 0.8),
     ['colors.danger']
@@ -205,11 +212,13 @@ export const background_colors: _EuiThemeBackgroundColors = {
     ([success]) => tint(success, 0.3),
     ['colors.success']
   ),
+  backgroundFilledNeutral: severityColors.neutral,
   backgroundFilledSuccess: computed(
     ([success]) => tint(success, 0.3),
     ['colors.success']
   ),
   backgroundFilledWarning: computed(([warning]) => warning, ['colors.warning']),
+  backgroundFilledRisk: severityColors.risk,
   backgroundFilledDanger: computed(([danger]) => danger, ['colors.danger']),
   backgroundFilledText: computed(
     ([darkShade]) => darkShade,
@@ -232,6 +241,7 @@ export const transparent_background_colors: _EuiThemeTransparentBackgroundColors
       ([success]) => transparentize(success, 0.1),
       ['colors.success']
     ),
+    backgroundTransparentNeutral: transparentize(severityColors.neutral, 0.1),
     backgroundTransparentSuccess: computed(
       ([success]) => transparentize(success, 0.1),
       ['colors.success']
@@ -240,6 +250,7 @@ export const transparent_background_colors: _EuiThemeTransparentBackgroundColors
       ([warning]) => transparentize(warning, 0.1),
       ['colors.warning']
     ),
+    backgroundTransparentRisk: transparentize(severityColors.risk, 0.1),
     backgroundTransparentDanger: computed(
       ([danger]) => transparentize(danger, 0.1),
       ['colors.danger']
@@ -271,6 +282,7 @@ export const border_colors: _EuiThemeBorderColors = {
     ([success]) => tint(success, 0.6),
     ['colors.success']
   ),
+  borderBaseNeutral: tint(severityColors.neutral, 0.6),
   borderBaseSuccess: computed(
     ([success]) => tint(success, 0.6),
     ['colors.success']
@@ -279,6 +291,7 @@ export const border_colors: _EuiThemeBorderColors = {
     ([warning]) => tint(warning, 0.4),
     ['colors.warning']
   ),
+  borderBaseRisk: tint(severityColors.risk, 0.4),
   borderBaseDanger: computed(
     ([danger]) => tint(danger, 0.6),
     ['colors.danger']
@@ -319,6 +332,10 @@ export const border_colors: _EuiThemeBorderColors = {
     ([borderBaseAccentSecondary]) => borderBaseAccentSecondary,
     ['colors.borderBaseAccentSecondary']
   ),
+  borderStrongNeutral: computed(
+    ([borderBaseNeutral]) => borderBaseNeutral,
+    ['colors.borderBaseNeutral']
+  ),
   borderStrongSuccess: computed(
     ([borderBaseSuccess]) => borderBaseSuccess,
     ['colors.borderBaseSuccess']
@@ -326,6 +343,10 @@ export const border_colors: _EuiThemeBorderColors = {
   borderStrongWarning: computed(
     ([borderBaseWarning]) => borderBaseWarning,
     ['colors.borderBaseWarning']
+  ),
+  borderStrongRisk: computed(
+    ([borderBaseRisk]) => borderBaseRisk,
+    ['colors.borderBaseRisk']
   ),
   borderStrongDanger: computed(
     ([borderBaseDanger]) => borderBaseDanger,
@@ -372,6 +393,7 @@ export const dark_background_colors: _EuiThemeBackgroundColors = {
     ([success]) => shade(success, 0.8),
     ['colors.success']
   ),
+  backgroundBaseNeutral: shade(severityColors.neutral, 0.8),
   backgroundBaseSuccess: computed(
     ([success]) => shade(success, 0.8),
     ['colors.success']
@@ -380,6 +402,7 @@ export const dark_background_colors: _EuiThemeBackgroundColors = {
     ([warning]) => shade(warning, 0.8),
     ['colors.warning']
   ),
+  backgroundBaseRisk: shade(severityColors.risk, 0.8),
   backgroundBaseDanger: computed(
     ([danger]) => shade(danger, 0.8),
     ['colors.danger']
@@ -440,6 +463,7 @@ export const dark_background_colors: _EuiThemeBackgroundColors = {
     ([success]) => shade(success, 0.7),
     ['colors.success']
   ),
+  backgroundLightNeutral: shade(severityColors.neutral, 0.7),
   backgroundLightSuccess: computed(
     ([success]) => shade(success, 0.7),
     ['colors.success']
@@ -448,6 +472,7 @@ export const dark_background_colors: _EuiThemeBackgroundColors = {
     ([warning]) => shade(warning, 0.7),
     ['colors.warning']
   ),
+  backgroundLightRisk: shade(severityColors.risk, 0.7),
   backgroundLightDanger: computed(
     ([danger]) => shade(danger, 0.7),
     ['colors.danger']
@@ -463,8 +488,10 @@ export const dark_background_colors: _EuiThemeBackgroundColors = {
     ([success]) => success,
     ['colors.success']
   ),
+  backgroundFilledNeutral: severityColors.neutral,
   backgroundFilledSuccess: computed(([success]) => success, ['colors.success']),
   backgroundFilledWarning: computed(([warning]) => warning, ['colors.warning']),
+  backgroundFilledRisk: severityColors.risk,
   backgroundFilledDanger: computed(([danger]) => danger, ['colors.danger']),
   backgroundFilledText: computed(([text]) => text, ['colors.text']),
 };
@@ -495,6 +522,7 @@ export const dark_border_colors: _EuiThemeBorderColors = {
     ([success]) => shade(success, 0.6),
     ['colors.success']
   ),
+  borderBaseNeutral: shade(severityColors.neutral, 0.6),
   borderBaseSuccess: computed(
     ([success]) => shade(success, 0.6),
     ['colors.success']
@@ -503,6 +531,7 @@ export const dark_border_colors: _EuiThemeBorderColors = {
     ([warning]) => shade(warning, 0.4),
     ['colors.warning']
   ),
+  borderBaseRisk: shade(severityColors.risk, 0.4),
   borderBaseDanger: computed(
     ([danger]) => shade(danger, 0.6),
     ['colors.danger']
@@ -543,6 +572,10 @@ export const dark_border_colors: _EuiThemeBorderColors = {
     ([borderBaseAccentSecondary]) => borderBaseAccentSecondary,
     ['colors.borderBaseAccentSecondary']
   ),
+  borderStrongNeutral: computed(
+    ([borderBaseNeutral]) => borderBaseNeutral,
+    ['colors.borderBaseNeutral']
+  ),
   borderStrongSuccess: computed(
     ([borderBaseSuccess]) => borderBaseSuccess,
     ['colors.borderBaseSuccess']
@@ -550,6 +583,10 @@ export const dark_border_colors: _EuiThemeBorderColors = {
   borderStrongWarning: computed(
     ([borderBaseWarning]) => borderBaseWarning,
     ['colors.borderBaseWarning']
+  ),
+  borderStrongRisk: computed(
+    ([borderBaseRisk]) => borderBaseRisk,
+    ['colors.borderBaseRisk']
   ),
   borderStrongDanger: computed(
     ([borderBaseDanger]) => borderBaseDanger,
@@ -611,4 +648,5 @@ export const colors: _EuiThemeColors = {
   LIGHT: light_colors,
   DARK: dark_colors_ams,
   vis: colorVis,
+  severity: severityColors,
 };

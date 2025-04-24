@@ -46,8 +46,10 @@ export const dark_brand_text_colors: _EuiThemeBrandTextColors = {
   textPrimary: SEMANTIC_COLORS.primary60,
   textAccent: SEMANTIC_COLORS.accent60,
   textAccentSecondary: SEMANTIC_COLORS.accentSecondary60,
+  textNeutral: SEMANTIC_COLORS.neutral60,
   textSuccess: SEMANTIC_COLORS.success60,
   textWarning: SEMANTIC_COLORS.warning30,
+  textRisk: SEMANTIC_COLORS.risk50,
   textDanger: SEMANTIC_COLORS.danger60,
 };
 
@@ -80,8 +82,10 @@ export const dark_background_colors: _EuiThemeBackgroundColors = {
   backgroundBasePrimary: SEMANTIC_COLORS.primary140,
   backgroundBaseAccent: SEMANTIC_COLORS.accent140,
   backgroundBaseAccentSecondary: SEMANTIC_COLORS.accentSecondary140,
+  backgroundBaseNeutral: SEMANTIC_COLORS.neutral140,
   backgroundBaseSuccess: SEMANTIC_COLORS.success140,
   backgroundBaseWarning: SEMANTIC_COLORS.warning140,
+  backgroundBaseRisk: SEMANTIC_COLORS.risk140,
   backgroundBaseDanger: SEMANTIC_COLORS.danger140,
   backgroundBaseSubdued: SEMANTIC_COLORS.plainDark,
   backgroundBasePlain: SEMANTIC_COLORS.shade145,
@@ -101,16 +105,20 @@ export const dark_background_colors: _EuiThemeBackgroundColors = {
   backgroundLightPrimary: SEMANTIC_COLORS.primary130,
   backgroundLightAccent: SEMANTIC_COLORS.accent130,
   backgroundLightAccentSecondary: SEMANTIC_COLORS.accentSecondary130,
+  backgroundLightNeutral: SEMANTIC_COLORS.neutral130,
   backgroundLightSuccess: SEMANTIC_COLORS.success130,
   backgroundLightWarning: SEMANTIC_COLORS.warning130,
+  backgroundLightRisk: SEMANTIC_COLORS.risk130,
   backgroundLightDanger: SEMANTIC_COLORS.danger130,
   backgroundLightText: SEMANTIC_COLORS.shade130,
 
   backgroundFilledPrimary: SEMANTIC_COLORS.primary60,
   backgroundFilledAccent: SEMANTIC_COLORS.accent60,
   backgroundFilledAccentSecondary: SEMANTIC_COLORS.accentSecondary60,
+  backgroundFilledNeutral: SEMANTIC_COLORS.neutral50,
   backgroundFilledSuccess: SEMANTIC_COLORS.success60,
   backgroundFilledWarning: SEMANTIC_COLORS.warning40,
+  backgroundFilledRisk: SEMANTIC_COLORS.risk50,
   backgroundFilledDanger: SEMANTIC_COLORS.danger60,
   backgroundFilledText: SEMANTIC_COLORS.shade60,
 };
@@ -127,8 +135,10 @@ export const dark_transparent_background_colors: _EuiThemeTransparentBackgroundC
     backgroundTransparentAccent: dark_background_colors.backgroundBaseAccent,
     backgroundTransparentAccentSecondary:
       dark_background_colors.backgroundBaseAccent,
+    backgroundTransparentNeutral: dark_background_colors.backgroundBaseNeutral,
     backgroundTransparentSuccess: dark_background_colors.backgroundBaseSuccess,
     backgroundTransparentWarning: dark_background_colors.backgroundBaseWarning,
+    backgroundTransparentRisk: dark_background_colors.backgroundBaseRisk,
     backgroundTransparentDanger: dark_background_colors.backgroundBaseDanger,
     backgroundTransparentSubdued: dark_background_colors.backgroundBaseSubdued,
     backgroundTransparentHighlighted:
@@ -140,8 +150,10 @@ export const dark_border_colors: _EuiThemeBorderColors = {
   borderBasePrimary: SEMANTIC_COLORS.primary120,
   borderBaseAccent: SEMANTIC_COLORS.accent120,
   borderBaseAccentSecondary: SEMANTIC_COLORS.accentSecondary120,
+  borderBaseNeutral: SEMANTIC_COLORS.neutral120,
   borderBaseSuccess: SEMANTIC_COLORS.success120,
   borderBaseWarning: SEMANTIC_COLORS.warning120,
+  borderBaseRisk: SEMANTIC_COLORS.risk120,
   borderBaseDanger: SEMANTIC_COLORS.danger120,
 
   borderBasePlain: SEMANTIC_COLORS.shade100,
@@ -155,8 +167,10 @@ export const dark_border_colors: _EuiThemeBorderColors = {
   borderStrongPrimary: SEMANTIC_COLORS.primary60,
   borderStrongAccent: SEMANTIC_COLORS.accent60,
   borderStrongAccentSecondary: SEMANTIC_COLORS.accentSecondary60,
+  borderStrongNeutral: SEMANTIC_COLORS.neutral60,
   borderStrongSuccess: SEMANTIC_COLORS.success60,
   borderStrongWarning: SEMANTIC_COLORS.warning40,
+  borderStrongRisk: SEMANTIC_COLORS.risk50,
   borderStrongDanger: SEMANTIC_COLORS.danger60,
 };
 

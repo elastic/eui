@@ -30,11 +30,25 @@ exports[`useEuiButtonColorCSS base 1`] = `
     "styles": "color:#798EAF;background-color:#ECF1F9;;;label:base-disabled;",
     "toString": [Function],
   },
+  "neutral": {
+    "map": undefined,
+    "name": "1cygr32-displaysColorsMap-display-color",
+    "next": undefined,
+    "styles": "color:#0f658a;background-color:#CFEEF7;;;label:base-neutral;",
+    "toString": [Function],
+  },
   "primary": {
     "map": undefined,
     "name": "nzkzxt-displaysColorsMap-display-color",
     "next": undefined,
     "styles": "color:#1750ba;background-color:#D9E8FF;;;label:base-primary;",
+    "toString": [Function],
+  },
+  "risk": {
+    "map": undefined,
+    "name": "16ebbxg-displaysColorsMap-display-color",
+    "next": undefined,
+    "styles": "color:#9e3a16;background-color:#FFDEBF;;;label:base-risk;",
     "toString": [Function],
   },
   "success": {
@@ -91,11 +105,25 @@ exports[`useEuiButtonColorCSS empty 1`] = `
     "styles": "color:#798EAF;&:focus,&:active{background-color:transparent;};label:empty-disabled;",
     "toString": [Function],
   },
+  "neutral": {
+    "map": undefined,
+    "name": "11o72vc-displaysColorsMap-display-color",
+    "next": undefined,
+    "styles": "color:#0f658a;&:focus,&:active{background-color:rgba(23,80,186, 0.04);};label:empty-neutral;",
+    "toString": [Function],
+  },
   "primary": {
     "map": undefined,
     "name": "134brx-displaysColorsMap-display-color",
     "next": undefined,
     "styles": "color:#1750ba;&:focus,&:active{background-color:rgba(23,80,186, 0.04);};label:empty-primary;",
+    "toString": [Function],
+  },
+  "risk": {
+    "map": undefined,
+    "name": "1vuw7lh-displaysColorsMap-display-color",
+    "next": undefined,
+    "styles": "color:#9e3a16;&:focus,&:active{background-color:rgba(23,80,186, 0.04);};label:empty-risk;",
     "toString": [Function],
   },
   "success": {
@@ -152,11 +180,25 @@ exports[`useEuiButtonColorCSS fill 1`] = `
     "styles": "color:#798EAF;background-color:#ECF1F9;outline-color:#07101F;;label:fill-disabled;",
     "toString": [Function],
   },
+  "neutral": {
+    "map": undefined,
+    "name": "55fmkx-displaysColorsMap-display-color",
+    "next": undefined,
+    "styles": "color:#FFFFFF;background-color:#1C8CB5;outline-color:#07101F;;label:fill-neutral;",
+    "toString": [Function],
+  },
   "primary": {
     "map": undefined,
     "name": "jlyla4-displaysColorsMap-display-color",
     "next": undefined,
     "styles": "color:#FFFFFF;background-color:#0B64DD;outline-color:#07101F;;label:fill-primary;",
+    "toString": [Function],
+  },
+  "risk": {
+    "map": undefined,
+    "name": "yiryfu-displaysColorsMap-display-color",
+    "next": undefined,
+    "styles": "color:#FFFFFF;background-color:#ED6723;outline-color:#07101F;;label:fill-risk;",
     "toString": [Function],
   },
   "success": {

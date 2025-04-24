@@ -24,6 +24,8 @@ import {
   BrandValuesJS,
   DataVisJS,
   DataVisValuesJS,
+  SeverityJS,
+  SeverityValuesJS,
   ShadeJS,
   ShadeValuesJS,
   SpecialJS,
@@ -40,6 +42,8 @@ import {
   BrandValuesSass,
   DataVisSass,
   DataVisValuesSass,
+  SeveritySass,
+  SeverityValuesSass,
   ShadeSass,
   ShadeValuesSass,
   SpecialSass,
@@ -131,6 +135,7 @@ export const colorsSections = [
   { title: 'Shades', id: 'shades' },
   { title: 'Special colors', id: 'special-colors' },
   { title: 'Data visualization colors', id: 'data-vis-colors' },
+  { title: 'Severity and Health colors', id: 'severity-colors' },
 ];
 
 export default () => {
@@ -203,6 +208,11 @@ export default () => {
   const dataVisContent = useMemo(() => {
     if (showSass) return <DataVisSass />;
     return <DataVisJS />;
+  }, [showSass]);
+
+  const severityContent = useMemo(() => {
+    if (showSass) return <SeveritySass />;
+    return <SeverityJS />;
   }, [showSass]);
 
   return (
@@ -385,6 +395,27 @@ export default () => {
 
       <GuideSection color="transparent">
         {showSass ? <DataVisValuesSass /> : <DataVisValuesJS />}
+      </GuideSection>
+
+      {/* Severity colors */}
+      <GuideSection color="subdued">
+        <EuiText grow={false}>
+          {' '}
+          <h2 id={`${colorsSections[7].id}`}>{`${colorsSections[7].title}`}</h2>
+          <p>
+            Severity indicates an increasing level of risk and Health describes
+            the status of an element that would typically be associated with
+            positive or negative values.
+          </p>
+        </EuiText>
+
+        <EuiSpacer size="xl" />
+
+        {severityContent}
+      </GuideSection>
+
+      <GuideSection color="transparent">
+        {showSass ? <SeverityValuesSass /> : <SeverityValuesJS />}
       </GuideSection>
     </>
   );

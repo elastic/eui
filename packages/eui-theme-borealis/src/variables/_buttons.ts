@@ -22,6 +22,10 @@ const _buttons = {
     ([backgroundLightAccentSecondary]) => backgroundLightAccentSecondary,
     ['colors.backgroundLightAccentSecondary']
   ),
+  backgroundNeutral: computed(
+    ([backgroundLightNeutral]) => backgroundLightNeutral,
+    ['colors.backgroundLightNeutral']
+  ),
   backgroundSuccess: computed(
     ([backgroundLightSuccess]) => backgroundLightSuccess,
     ['colors.backgroundLightSuccess']
@@ -29,6 +33,10 @@ const _buttons = {
   backgroundWarning: computed(
     ([backgroundLightWarning]) => backgroundLightWarning,
     ['colors.backgroundLightWarning']
+  ),
+  backgroundRisk: computed(
+    ([backgroundLightRisk]) => backgroundLightRisk,
+    ['colors.backgroundLightRisk']
   ),
   backgroundDanger: computed(
     ([backgroundLightDanger]) => backgroundLightDanger,
@@ -55,6 +63,10 @@ const _buttons = {
     ([backgroundFilledAccentSecondary]) => backgroundFilledAccentSecondary,
     ['colors.backgroundFilledAccentSecondary']
   ),
+  backgroundFilledNeutral: computed(
+    ([backgroundFilledNeutral]) => backgroundFilledNeutral,
+    ['colors.backgroundFilledNeutral']
+  ),
   backgroundFilledSuccess: computed(
     ([backgroundFilledSuccess]) => backgroundFilledSuccess,
     ['colors.backgroundFilledSuccess']
@@ -62,6 +74,10 @@ const _buttons = {
   backgroundFilledWarning: computed(
     ([backgroundFilledWarning]) => backgroundFilledWarning,
     ['colors.backgroundFilledWarning']
+  ),
+  backgroundFilledRisk: computed(
+    ([backgroundFilledRisk]) => backgroundFilledRisk,
+    ['colors.backgroundFilledRisk']
   ),
   backgroundFilledDanger: computed(
     ([backgroundFilledDanger]) => backgroundFilledDanger,
@@ -89,11 +105,19 @@ const _buttons = {
     ([backgroundBaseInteractiveHover]) => backgroundBaseInteractiveHover,
     ['colors.backgroundBaseInteractiveHover']
   ),
+  backgroundEmptyNeutralHover: computed(
+    ([backgroundBaseInteractiveHover]) => backgroundBaseInteractiveHover,
+    ['colors.backgroundBaseInteractiveHover']
+  ),
   backgroundEmptySuccessHover: computed(
     ([backgroundBaseInteractiveHover]) => backgroundBaseInteractiveHover,
     ['colors.backgroundBaseInteractiveHover']
   ),
   backgroundEmptyWarningHover: computed(
+    ([backgroundBaseInteractiveHover]) => backgroundBaseInteractiveHover,
+    ['colors.backgroundBaseInteractiveHover']
+  ),
+  backgroundEmptyRiskHover: computed(
     ([backgroundBaseInteractiveHover]) => backgroundBaseInteractiveHover,
     ['colors.backgroundBaseInteractiveHover']
   ),
@@ -118,6 +142,10 @@ const _buttons = {
     ([textAccentSecondary]) => textAccentSecondary,
     ['colors.textAccentSecondary']
   ),
+  textColorNeutral: computed(
+    ([textNeutral]) => textNeutral,
+    ['colors.textNeutral']
+  ),
   textColorSuccess: computed(
     ([textSuccess]) => textSuccess,
     ['colors.textSuccess']
@@ -126,6 +154,7 @@ const _buttons = {
     ([textWarning]) => textWarning,
     ['colors.textWarning']
   ),
+  textColorRisk: computed(([textRisk]) => textRisk, ['colors.textRisk']),
   textColorDanger: computed(
     ([textDanger]) => textDanger,
     ['colors.textDanger']
@@ -151,11 +180,19 @@ const _buttons = {
     ([textInverse]) => textInverse,
     ['colors.textInverse']
   ),
+  textColorFilledNeutral: computed(
+    ([textInverse]) => textInverse,
+    ['colors.textInverse']
+  ),
   textColorFilledSuccess: computed(
     ([textInverse]) => textInverse,
     ['colors.textInverse']
   ),
   textColorFilledWarning: SEMANTIC_COLORS.warning110,
+  textColorFilledRisk: computed(
+    ([textInverse]) => textInverse,
+    ['colors.textInverse']
+  ),
   textColorFilledDanger: computed(
     ([textInverse]) => textInverse,
     ['colors.textInverse']
