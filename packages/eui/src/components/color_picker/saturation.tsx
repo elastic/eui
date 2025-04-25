@@ -215,9 +215,6 @@ export const EuiSaturation = forwardRef<HTMLDivElement, EuiSaturationProps>(
           aria-label={hex}
           aria-describedby={instructionsId}
         />
-        <span hidden aria-live="assertive">
-          {hex}
-        </span>
         <span hidden id={instructionsId}>
           {instructionsString}
         </span>

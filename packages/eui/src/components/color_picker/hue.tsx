@@ -57,9 +57,6 @@ export const EuiHue: FunctionComponent<EuiHueProps> = ({
           />
         </label>
       </EuiScreenReaderOnly>
-      <EuiScreenReaderOnly>
-        <p aria-live="polite">{hex}</p>
-      </EuiScreenReaderOnly>
       <input
         id={`${id}-hue`}
         min={0}

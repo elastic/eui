@@ -35,6 +35,7 @@ import {
 } from '../form';
 import { useEuiI18n } from '../i18n';
 import { EuiPopover } from '../popover';
+import { EuiScreenReaderOnly } from '../accessibility';
 
 import { EuiColorPickerSwatch } from './color_picker_swatch';
 import { EuiHue } from './hue';
@@ -212,6 +213,7 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
   const [
     popoverLabel,
     colorLabel,
+    selectedColorLabel,
     colorErrorMessage,
     transparent,
     alphaLabel,
@@ -221,6 +223,7 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
     [
       'euiColorPicker.popoverLabel',
       'euiColorPicker.colorLabel',
+      'euiColorPicker.selectedColorLabel',
       'euiColorPicker.colorErrorMessage',
       'euiColorPicker.transparent',
       'euiColorPicker.alphaLabel',
@@ -230,6 +233,7 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
     [
       'Color selection dialog',
       'Color value',
+      'Selected color',
       'Invalid color value',
       'Transparent',
       'Alpha channel (opacity) value',
@@ -514,6 +518,13 @@ export const EuiColorPicker: FunctionComponent<EuiColorPickerProps> = ({
             onChange={handleHueSelection}
             onKeyDown={handleOnKeyDown}
           />
+          <EuiScreenReaderOnly>
+            {/* Note: using EuiScreenReaderLive didn't work as expected for VoiceOver */}
+            <p aria-live="polite" aria-atomic="true">
+              {/* use uppercase to ensure letters are spoken separately */}
+              {selectedColorLabel}: {chromaColor?.hex().toUpperCase()}
+            </p>
+          </EuiScreenReaderOnly>
         </>
       )}
       {showSwatches && (
