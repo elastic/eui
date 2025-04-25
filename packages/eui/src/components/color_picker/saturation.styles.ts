@@ -91,11 +91,17 @@ export const euiSaturationStyles = (euiThemeContext: UseEuiTheme) => {
       background: linear-gradient(to top, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
     `,
 
-    euiSaturation__indicator: css`
+    euiSaturation__tooltip: css`
       z-index: 2;
       position: absolute;
       ${logicalSizeCSS(indicatorSize)}
       transform: translateX(-50%) translateY(-50%);
+      border-radius: 100%;
+    `,
+    euiSaturation__indicator: css`
+      position: absolute;
+      inset: 0;
+      ${logicalSizeCSS(indicatorSize)}
       border-radius: 100%;
 
       ${highContrastModeStyles(euiThemeContext, {

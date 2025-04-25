@@ -59,7 +59,7 @@ export const euiHueStyles = (euiThemeContext: UseEuiTheme) => {
       })}
     `,
 
-    euiHue__range: css`
+    euiHue__tooltip: css`
       ${logicalCSS('height', thumbSize)}
       /* Allow for overlap */
       ${logicalCSS('width', `calc(100% + 2px)`)}
@@ -69,6 +69,12 @@ export const euiHueStyles = (euiThemeContext: UseEuiTheme) => {
         'margin-top',
         mathWithUnits(height, (x) => x / -2)
       )}
+    `,
+
+    euiHue__range: css`
+      ${logicalCSS('height', '100%')}
+      ${logicalCSS('width', '100%')}
+      
 
       /* Resets for the range */
       appearance: none;
