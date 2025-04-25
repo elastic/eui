@@ -47,7 +47,7 @@ describe('EuiDataGridCellActions', () => {
           aria-hidden="true"
           class="euiButtonIcon__icon"
           color="inherit"
-          data-euiicon-type="expandMini"
+          data-euiicon-type="expand"
         />
       </button>
     `);

@@ -58,8 +58,8 @@ export const EuiDataGridCellActions = ({
             data-test-subj="euiDataGridCellExpandButton"
             display="fill"
             color="primary"
-            iconSize="m"
-            iconType="expandMini"
+            iconSize="s"
+            iconType="expand"
             aria-hidden
             onClick={onExpandClick}
             title={expandButtonTitle}
