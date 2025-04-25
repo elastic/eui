@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`EuiHue accepts a color 1`] = `
+exports[`EuiSaturation accepts a color 1`] = `
 <div
   aria-label="aria-label"
   class="euiSaturation testClass1 testClass2 emotion-euiSaturation-euiTestCss"
@@ -15,17 +15,18 @@ exports[`EuiHue accepts a color 1`] = `
       class="euiSaturation__saturation emotion-euiSaturation__saturation"
     />
   </div>
-  <button
-    aria-describedby="generated-id-instructions"
-    aria-roledescription="HSV color mode saturation and value 2-axis slider"
-    class="euiSaturation__indicator emotion-euiSaturation__indicator"
-    id="generated-id-saturationIndicator"
-    style="inset-inline-start: 0; inset-block-start: 0;"
-  />
   <span
-    aria-live="assertive"
-    hidden=""
-  />
+    class="euiToolTipAnchor  emotion-euiToolTipAnchor-inlineBlock-euiSaturation__tooltip"
+    style="inset-inline-start: 0; inset-block-start: 0;"
+  >
+    <button
+      aria-describedby="generated-id-instructions"
+      aria-label="Select a color"
+      aria-roledescription="HSV color mode saturation and value 2-axis slider."
+      class="euiSaturation__indicator emotion-euiSaturation__indicator"
+      id="generated-id-saturationIndicator"
+    />
+  </span>
   <span
     hidden=""
     id="generated-id-instructions"
@@ -35,7 +36,7 @@ exports[`EuiHue accepts a color 1`] = `
 </div>
 `;
 
-exports[`EuiHue is rendered 1`] = `
+exports[`EuiSaturation is rendered 1`] = `
 <div
   aria-label="aria-label"
   class="euiSaturation testClass1 testClass2 emotion-euiSaturation-euiTestCss"
@@ -50,17 +51,18 @@ exports[`EuiHue is rendered 1`] = `
       class="euiSaturation__saturation emotion-euiSaturation__saturation"
     />
   </div>
-  <button
-    aria-describedby="generated-id-instructions"
-    aria-roledescription="HSV color mode saturation and value 2-axis slider"
-    class="euiSaturation__indicator emotion-euiSaturation__indicator"
-    id="generated-id-saturationIndicator"
-    style="inset-inline-start: 0; inset-block-start: 0;"
-  />
   <span
-    aria-live="assertive"
-    hidden=""
-  />
+    class="euiToolTipAnchor  emotion-euiToolTipAnchor-inlineBlock-euiSaturation__tooltip"
+    style="inset-inline-start: 0; inset-block-start: 0;"
+  >
+    <button
+      aria-describedby="generated-id-instructions"
+      aria-label="Select a color"
+      aria-roledescription="HSV color mode saturation and value 2-axis slider."
+      class="euiSaturation__indicator emotion-euiSaturation__indicator"
+      id="generated-id-saturationIndicator"
+    />
+  </span>
   <span
     hidden=""
     id="generated-id-instructions"

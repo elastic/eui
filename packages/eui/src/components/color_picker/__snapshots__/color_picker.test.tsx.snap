@@ -313,19 +313,17 @@ exports[`EuiColorPicker inline 1`] = `
         class="euiSaturation__saturation emotion-euiSaturation__saturation"
       />
     </div>
-    <button
-      aria-describedby="generated-id-instructions"
-      aria-label="#ffeedd"
-      aria-roledescription="HSV color mode saturation and value 2-axis slider"
-      class="euiSaturation__indicator emotion-euiSaturation__indicator"
-      id="generated-id-saturationIndicator"
-      style="inset-inline-start: 0; inset-block-start: 0;"
-    />
     <span
-      aria-live="assertive"
-      hidden=""
+      class="euiToolTipAnchor  emotion-euiToolTipAnchor-inlineBlock-euiSaturation__tooltip"
+      style="inset-inline-start: 0; inset-block-start: 0;"
     >
-      #ffeedd
+      <button
+        aria-describedby="generated-id-instructions"
+        aria-label="Select a color"
+        aria-roledescription="HSV color mode saturation and value 2-axis slider."
+        class="euiSaturation__indicator emotion-euiSaturation__indicator"
+        id="generated-id-saturationIndicator"
+      />
     </span>
     <span
       hidden=""
@@ -343,22 +341,31 @@ exports[`EuiColorPicker inline 1`] = `
     >
       Select the HSV color mode 'hue' value
     </label>
-    <p
-      aria-live="polite"
-      class="emotion-euiScreenReaderOnly"
+    <span
+      class="euiToolTipAnchor  emotion-euiToolTipAnchor-inlineBlock-euiHue__tooltip"
     >
-      #ffeedd
-    </p>
-    <input
-      class="euiHue__range emotion-euiHue__range"
-      id="undefined-hue"
-      max="359"
-      min="0"
-      step="1"
-      type="range"
-      value="30"
-    />
+      <input
+        aria-roledescription="Hue slider"
+        aria-valuetext="Hue 30°"
+        class="euiHue__range emotion-euiHue__range"
+        id="undefined-hue"
+        max="359"
+        min="0"
+        step="1"
+        type="range"
+        value="30"
+      />
+    </span>
   </div>
+  <p
+    aria-atomic="true"
+    aria-live="polite"
+    class="emotion-euiScreenReaderOnly"
+  >
+    Selected color
+    : 
+    #FFEEDD
+  </p>
   <ul
     class="euiColorPicker__swatches emotion-euiColorPicker__swatches"
   >
