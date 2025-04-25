@@ -127,6 +127,9 @@ const columns: Array<EuiBasicTableColumn<User>> = [
     field: 'online',
     name: 'Online',
     dataType: 'boolean',
+    nameTooltip: {
+      content: 'Current online status',
+    },
     render: (online: User['online']) => {
       const color = online ? 'success' : 'danger';
       const label = online ? 'Online' : 'Offline';

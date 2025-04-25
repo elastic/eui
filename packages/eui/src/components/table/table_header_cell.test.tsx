@@ -219,6 +219,38 @@ describe('EuiTableHeaderCell', () => {
       );
     });
 
+    it('renders a tooltip on the cell if sortable', async () => {
+      const { getByTestSubject } = renderInTableHeader(
+        <EuiTableHeaderCell
+          tooltipProps={{
+            content: 'This is the content of the tooltip',
+            icon: 'iInCircle',
+            iconProps: {
+              'data-test-subj': 'icon',
+            },
+            tooltipProps: {
+              'data-test-subj': 'tooltip',
+            },
+          }}
+          onSort={() => {}}
+        >
+          Test
+        </EuiTableHeaderCell>
+      );
+
+      expect(getByTestSubject('icon')).toHaveAttribute(
+        'data-euiicon-type',
+        'iInCircle'
+      );
+
+      fireEvent.focus(getByTestSubject('tableHeaderSortButton'));
+      await waitForEuiToolTipVisible();
+
+      expect(getByTestSubject('tooltip')).toHaveTextContent(
+        'This is the content of the tooltip'
+      );
+    });
+
     it('renders the icon next to the text', () => {
       const { getByTestSubject, queryByText } = renderInTableHeader(
         <EuiTableHeaderCell
@@ -235,7 +267,7 @@ describe('EuiTableHeaderCell', () => {
       );
 
       expect(queryByText('Test')?.nextSibling).toEqual(
-        getByTestSubject('icon').parentElement
+        getByTestSubject('icon')
       );
     });
   });
