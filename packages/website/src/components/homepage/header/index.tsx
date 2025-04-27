@@ -1,3 +1,4 @@
+import React, { useState, useEffect } from 'react';
 import { css } from '@emotion/react';
 import Heading from '@theme/Heading';
 import NavbarSearch from '@theme/Navbar/Search';
@@ -21,7 +22,7 @@ import { DecorRight } from './decor_right';
 import { DecorLeft } from './decor_left';
 
 const title = 'Meet the EUI framework';
-const tagline = 'powering the Elastic Stack';
+const taglines = ['powering the Elastic Stack', 'shared to build your ideas'];
 
 const DESCRIPTION_DATA = [
   {
@@ -218,7 +219,43 @@ const getStyles = (euiThemeContext: UseEuiTheme) => {
 };
 
 export function HomepageHeader() {
+  const [currentText, setCurrentText] = useState('');
+  const [fullTextIndex, setFullTextIndex] = useState(0);
+  const [isDeleting, setIsDeleting] = useState(false);
+
   const styles = useEuiMemoizedStyles(getStyles);
+
+  useEffect(() => {
+    const fullText = taglines[fullTextIndex];
+    let typingSpeed = 50; // normal typing speed
+
+    if (isDeleting) {
+      typingSpeed /= 2; // deleting is faster
+    }
+
+    const timeout = setTimeout(() => {
+      setCurrentText((prev) => {
+        if (isDeleting) {
+          return fullText.substring(0, prev.length - 1);
+        } else {
+          return fullText.substring(0, prev.length + 1);
+        }
+      });
+
+      if (!isDeleting && currentText === fullText) {
+        setTimeout(() => setIsDeleting(true), 5000);
+      }
+
+      if (isDeleting && currentText === '') {
+        setTimeout(() => {
+          setIsDeleting(false);
+          setFullTextIndex((prev) => (prev + 1) % taglines.length);
+        }, 300);
+      }
+    }, typingSpeed);
+
+    return () => clearTimeout(timeout);
+  }, [currentText, isDeleting, fullTextIndex]);
 
   return (
     <header css={styles.hero}>
@@ -235,7 +272,7 @@ export function HomepageHeader() {
           <div css={styles.title}>
             <Heading as="h1">{title},</Heading>
             <p css={styles.tagline}>
-              {tagline}
+              {currentText}
               <span css={styles.underscore}>_</span>
             </p>
           </div>
