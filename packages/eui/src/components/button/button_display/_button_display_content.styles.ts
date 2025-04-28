@@ -16,9 +16,7 @@ export const euiButtonDisplayContentStyles = (euiThemeContext: UseEuiTheme) => {
     'buttonVariant'
   );
 
-  const refreshVariantStyles =
-    isRefreshVariant &&
-    `
+  const refreshVariantStyles = `
       /* ensure content stays ontop of hover pseudo element */
       position: relative;
     `;
@@ -34,7 +32,7 @@ export const euiButtonDisplayContentStyles = (euiThemeContext: UseEuiTheme) => {
       vertical-align: middle;
       gap: ${euiTheme.size.s};
 
-      ${refreshVariantStyles}
+      ${isRefreshVariant && refreshVariantStyles}
     `,
   };
 };

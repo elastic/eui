@@ -49,9 +49,7 @@ export const euiButtonDisplayStyles = (euiThemeContext: UseEuiTheme) => {
     `;
   };
 
-  const classicVariantStyles =
-    !isRefreshVariant &&
-    `
+  const classicVariantStyles = `
       &:hover:not(:disabled),
       &:focus {
         text-decoration: underline;
@@ -65,7 +63,7 @@ export const euiButtonDisplayStyles = (euiThemeContext: UseEuiTheme) => {
       font-weight: ${euiTheme.font.weight.medium};
       ${logicalShorthandCSS('padding', `0 ${euiTheme.size.m}`)}
 
-      ${classicVariantStyles}
+      ${!isRefreshVariant && classicVariantStyles}
     `,
     // States
     isDisabled: css`

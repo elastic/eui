@@ -29,9 +29,7 @@ export const euiButtonEmptyStyles = (euiThemeContext: UseEuiTheme) => {
   // of using the actual component - so we'll reuse its styles instead
   const displayStyles = euiButtonDisplayStyles(euiThemeContext);
 
-  const refreshFlushStyles =
-    isRefreshVariant &&
-    `
+  const refreshFlushStyles = `
       /* using duplicate selector to ensure specificity */
       &&:hover,
       &&:active {
@@ -84,7 +82,7 @@ export const euiButtonEmptyStyles = (euiThemeContext: UseEuiTheme) => {
     // Flush sides
     flush: css`
       padding-inline: 0;
-      ${refreshFlushStyles}
+      ${isRefreshVariant && refreshFlushStyles}
     `,
     left: css`
       ${logicalCSS('margin-right', euiTheme.size.s)}
