@@ -70,6 +70,7 @@ const _buttons = {
     ([success]) => transparentize(success, 0.1),
     ['colors.success']
   ),
+  backgroundNeutralHover: transparentize(severityColors.neutral, 0.1),
   backgroundSuccessHover: computed(
     ([success]) => transparentize(success, 0.1),
     ['colors.success']
@@ -78,6 +79,7 @@ const _buttons = {
     ([warning]) => transparentize(warning, 0.1),
     ['colors.warning']
   ),
+  backgroundRiskHover: transparentize(severityColors.risk, 0.1),
   backgroundDangerHover: computed(
     ([danger]) => transparentize(danger, 0.1),
     ['colors.danger']
@@ -99,6 +101,7 @@ const _buttons = {
     ([success]) => transparentize(success, 0.1),
     ['colors.success']
   ),
+  backgroundNeutralActive: transparentize(severityColors.neutral, 0.1),
   backgroundSuccessActive: computed(
     ([success]) => transparentize(success, 0.1),
     ['colors.success']
@@ -107,6 +110,7 @@ const _buttons = {
     ([warning]) => transparentize(warning, 0.1),
     ['colors.warning']
   ),
+  backgroundRiskActive: transparentize(severityColors.risk, 0.1),
   backgroundDangerActive: computed(
     ([danger]) => transparentize(danger, 0.1),
     ['colors.danger']
@@ -169,6 +173,10 @@ const _buttons = {
     ([backgroundFilledPrimary]) => backgroundFilledPrimary,
     ['components.buttons.backgroundFilledAccentSecondary']
   ),
+  backgroundFilledNeutralHover: computed(
+    ([backgroundFilledNeutral]) => backgroundFilledNeutral,
+    ['components.buttons.backgroundFilledNeutral']
+  ),
   backgroundFilledSuccessHover: computed(
     ([backgroundFilledPrimary]) => backgroundFilledPrimary,
     ['components.buttons.backgroundFilledSuccess']
@@ -176,6 +184,10 @@ const _buttons = {
   backgroundFilledWarningHover: computed(
     ([backgroundFilledPrimary]) => backgroundFilledPrimary,
     ['components.buttons.backgroundFilledWarning']
+  ),
+  backgroundFilledRiskHover: computed(
+    ([backgroundFilledRisk]) => backgroundFilledRisk,
+    ['components.buttons.backgroundFilledRisk']
   ),
   backgroundFilledDangerHover: computed(
     ([backgroundFilledPrimary]) => backgroundFilledPrimary,
@@ -198,6 +210,10 @@ const _buttons = {
     ([backgroundFilledPrimary]) => backgroundFilledPrimary,
     ['components.buttons.backgroundFilledAccentSecondary']
   ),
+  backgroundFilledNeutralActive: computed(
+    ([backgroundFilledNeutral]) => backgroundFilledNeutral,
+    ['components.buttons.backgroundFilledNeutral']
+  ),
   backgroundFilledSuccessActive: computed(
     ([backgroundFilledPrimary]) => backgroundFilledPrimary,
     ['components.buttons.backgroundFilledSuccess']
@@ -205,6 +221,10 @@ const _buttons = {
   backgroundFilledWarningActive: computed(
     ([backgroundFilledPrimary]) => backgroundFilledPrimary,
     ['components.buttons.backgroundFilledWarning']
+  ),
+  backgroundFilledRiskActive: computed(
+    ([backgroundFilledRisk]) => backgroundFilledRisk,
+    ['components.buttons.backgroundFilledRisk']
   ),
   backgroundFilledDangerActive: computed(
     ([backgroundFilledPrimary]) => backgroundFilledPrimary,
@@ -258,6 +278,7 @@ const _buttons = {
     ([success]) => transparentize(success, 0.1),
     ['colors.success']
   ),
+  backgroundEmptyNeutralActive: transparentize(severityColors.neutral, 0.1),
   backgroundEmptySuccessActive: computed(
     ([success]) => transparentize(success, 0.1),
     ['colors.success']
@@ -266,6 +287,7 @@ const _buttons = {
     ([warning]) => transparentize(warning, 0.1),
     ['colors.warning']
   ),
+  backgroundEmptyRiskActive: transparentize(severityColors.risk, 0.1),
   backgroundEmptyDangerActive: computed(
     ([danger]) => transparentize(danger, 0.1),
     ['colors.danger']
