@@ -1,55 +1,55 @@
 ## [`v1.0.0`](https://github.com/elastic/eui/releases/v1.0.0)
 
 - Added semantic severity color tokens: ([#8601](https://github.com/elastic/eui/pull/8601))
-    - `colors.severity.unknown` ([#8601](https://github.com/elastic/eui/pull/8601))
-    - `colors.severity.neutral` ([#8601](https://github.com/elastic/eui/pull/8601))
-    - `colors.severity.success` ([#8601](https://github.com/elastic/eui/pull/8601))
-    - `colors.severity.warning` ([#8601](https://github.com/elastic/eui/pull/8601))
-    - `colors.severity.risk` ([#8601](https://github.com/elastic/eui/pull/8601))
-    - `colors.severity.danger` ([#8601](https://github.com/elastic/eui/pull/8601))
+    - `colors.severity.unknown`
+    - `colors.severity.neutral`
+    - `colors.severity.success`
+    - `colors.severity.warning`
+    - `colors.severity.risk`
+    - `colors.severity.danger`
 - Added semantic color tokens for variants `neutral` and `risk`: ([#8601](https://github.com/elastic/eui/pull/8601))
-    - `colors.textNeutral` ([#8601](https://github.com/elastic/eui/pull/8601))
-    - `colors.textRisk` ([#8601](https://github.com/elastic/eui/pull/8601))
-    - `colors.backgroundBaseNeutral` ([#8601](https://github.com/elastic/eui/pull/8601))
-    - `colors.backgroundBaseRisk` ([#8601](https://github.com/elastic/eui/pull/8601))
-    - `colors.backgroundLightNeutral` ([#8601](https://github.com/elastic/eui/pull/8601))
-    - `colors.backgroundLightRisk` ([#8601](https://github.com/elastic/eui/pull/8601))
-    - `colors.backgroundFilledNeutral` ([#8601](https://github.com/elastic/eui/pull/8601))
-    - `colors.backgroundFilledRisk` ([#8601](https://github.com/elastic/eui/pull/8601))
-    - `colors.borderBaseNeutral` ([#8601](https://github.com/elastic/eui/pull/8601))
-    - `colors.borderBaseRisk` ([#8601](https://github.com/elastic/eui/pull/8601))
-    - `colors.borderStrongNeutral` ([#8601](https://github.com/elastic/eui/pull/8601))
-    - `colors.borderStrongRisk` ([#8601](https://github.com/elastic/eui/pull/8601))
+    - `colors.textNeutral
+    - `colors.textRisk`
+    - `colors.backgroundBaseNeutral`
+    - `colors.backgroundBaseRisk`
+    - `colors.backgroundLightNeutral`
+    - `colors.backgroundLightRisk`
+    - `colors.backgroundFilledNeutral`
+    - `colors.backgroundFilledRisk`
+    - `colors.borderBaseNeutral`
+    - `colors.borderBaseRisk`
+    - `colors.borderStrongNeutral`
+    - `colors.borderStrongRisk
 - Added button component tokens for variants `neutral` and `risk`: ([#8601](https://github.com/elastic/eui/pull/8601))
-    - `components.buttons.backgroundNeutral` ([#8601](https://github.com/elastic/eui/pull/8601))
-    - `components.buttons.backgroundRisk` ([#8601](https://github.com/elastic/eui/pull/8601))
-    - `components.buttons.backgroundFilledNeutral` ([#8601](https://github.com/elastic/eui/pull/8601))
-    - `components.buttons.backgroundFilledRisk` ([#8601](https://github.com/elastic/eui/pull/8601))
-    - `components.buttons.backgroundEmptyNeutralHover` ([#8601](https://github.com/elastic/eui/pull/8601))
-    - `components.buttons.backgroundEmptyRiskHover` ([#8601](https://github.com/elastic/eui/pull/8601))
-    - `components.buttons.textColorNeutral` ([#8601](https://github.com/elastic/eui/pull/8601))
-    - `components.buttons.textColorRisk` ([#8601](https://github.com/elastic/eui/pull/8601))
-    - `components.buttons.textColorFilledNeutral` ([#8601](https://github.com/elastic/eui/pull/8601))
-    - `components.buttons.textColorFilledRisk` ([#8601](https://github.com/elastic/eui/pull/8601))
+    - `components.buttons.backgroundNeutral`
+    - `components.buttons.backgroundRisk`
+    - `components.buttons.backgroundFilledNeutral`
+    - `components.buttons.backgroundFilledRisk`
+    - `components.buttons.backgroundEmptyNeutralHover`
+    - `components.buttons.backgroundEmptyRiskHover`
+    - `components.buttons.textColorNeutral`
+    - `components.buttons.textColorRisk`
+    - `components.buttons.textColorFilledNeutral`
+    - `components.buttons.textColorFilledRisk`
 
 **Breaking changes**
 
 - Removed numbered severity color tokens: ([#8601](https://github.com/elastic/eui/pull/8601))
-    - `colors.vis.euiColorSeverity0` ([#8601](https://github.com/elastic/eui/pull/8601))
-    - `colors.vis.euiColorSeverity1` ([#8601](https://github.com/elastic/eui/pull/8601))
-    - `colors.vis.euiColorSeverity2` ([#8601](https://github.com/elastic/eui/pull/8601))
-    - `colors.vis.euiColorSeverity3` ([#8601](https://github.com/elastic/eui/pull/8601))
-    - `colors.vis.euiColorSeverity4` ([#8601](https://github.com/elastic/eui/pull/8601))
-    - `colors.vis.euiColorSeverity5` ([#8601](https://github.com/elastic/eui/pull/8601))
-    - `colors.vis.euiColorSeverity6` ([#8601](https://github.com/elastic/eui/pull/8601))
-    - `colors.vis.euiColorSeverity7` ([#8601](https://github.com/elastic/eui/pull/8601))
-    - `colors.vis.euiColorSeverity8` ([#8601](https://github.com/elastic/eui/pull/8601))
-    - `colors.vis.euiColorSeverity9` ([#8601](https://github.com/elastic/eui/pull/8601))
-    - `colors.vis.euiColorSeverity10` ([#8601](https://github.com/elastic/eui/pull/8601))
-    - `colors.vis.euiColorSeverity11` ([#8601](https://github.com/elastic/eui/pull/8601))
-    - `colors.vis.euiColorSeverity12` ([#8601](https://github.com/elastic/eui/pull/8601))
-    - `colors.vis.euiColorSeverity13` ([#8601](https://github.com/elastic/eui/pull/8601))
-    - `colors.vis.euiColorSeverity14` ([#8601](https://github.com/elastic/eui/pull/8601))
+    - `colors.vis.euiColorSeverity0`
+    - `colors.vis.euiColorSeverity1`
+    - `colors.vis.euiColorSeverity2`
+    - `colors.vis.euiColorSeverity3`
+    - `colors.vis.euiColorSeverity4`
+    - `colors.vis.euiColorSeverity5`
+    - `colors.vis.euiColorSeverity6`
+    - `colors.vis.euiColorSeverity7`
+    - `colors.vis.euiColorSeverity8`
+    - `colors.vis.euiColorSeverity9`
+    - `colors.vis.euiColorSeverity10`
+    - `colors.vis.euiColorSeverity11`
+    - `colors.vis.euiColorSeverity12`
+    - `colors.vis.euiColorSeverity13`
+    - `colors.vis.euiColorSeverity14`
 
 **Dependency updates**
 
