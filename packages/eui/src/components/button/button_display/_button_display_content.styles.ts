@@ -6,18 +6,33 @@
  * Side Public License, v 1.
  */
 import { css } from '@emotion/react';
-import { UseEuiTheme } from '../../../services';
+import { isEuiThemeRefreshVariant, UseEuiTheme } from '../../../services';
 import { logicalCSS } from '../../../global_styling';
 
-export const euiButtonDisplayContentStyles = ({ euiTheme }: UseEuiTheme) => ({
-  // Base
-  euiButtonDisplayContent: css`
-    ${logicalCSS('height', '100%')}
-    ${logicalCSS('width', '100%')}
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    vertical-align: middle;
-    gap: ${euiTheme.size.s};
-  `,
-});
+export const euiButtonDisplayContentStyles = (euiThemeContext: UseEuiTheme) => {
+  const { euiTheme } = euiThemeContext;
+  const isRefreshVariant = isEuiThemeRefreshVariant(
+    euiThemeContext,
+    'buttonVariant'
+  );
+
+  const refreshVariantStyles = `
+      /* ensure content stays ontop of hover pseudo element */
+      position: relative;
+    `;
+
+  return {
+    // Base
+    euiButtonDisplayContent: css`
+      ${logicalCSS('height', '100%')}
+      ${logicalCSS('width', '100%')}
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      vertical-align: middle;
+      gap: ${euiTheme.size.s};
+
+      ${isRefreshVariant && refreshVariantStyles}
+    `,
+  };
+};

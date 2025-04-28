@@ -23,6 +23,26 @@ export type _EuiThemeButtonColors = {
   backgroundText: ColorModeSwitch;
   backgroundDisabled: ColorModeSwitch;
 
+  backgroundPrimaryHover: ColorModeSwitch;
+  backgroundAccentHover: ColorModeSwitch;
+  backgroundAccentSecondaryHover: ColorModeSwitch;
+  backgroundNeutralHover: ColorModeSwitch;
+  backgroundSuccessHover: ColorModeSwitch;
+  backgroundWarningHover: ColorModeSwitch;
+  backgroundRiskHover: ColorModeSwitch;
+  backgroundDangerHover: ColorModeSwitch;
+  backgroundTextHover: ColorModeSwitch;
+
+  backgroundPrimaryActive: ColorModeSwitch;
+  backgroundAccentActive: ColorModeSwitch;
+  backgroundAccentSecondaryActive: ColorModeSwitch;
+  backgroundNeutralActive: ColorModeSwitch;
+  backgroundSuccessActive: ColorModeSwitch;
+  backgroundWarningActive: ColorModeSwitch;
+  backgroundRiskActive: ColorModeSwitch;
+  backgroundDangerActive: ColorModeSwitch;
+  backgroundTextActive: ColorModeSwitch;
+
   backgroundFilledPrimary: ColorModeSwitch;
   backgroundFilledAccent: ColorModeSwitch;
   backgroundFilledAccentSecondary: ColorModeSwitch;
@@ -34,6 +54,26 @@ export type _EuiThemeButtonColors = {
   backgroundFilledText: ColorModeSwitch;
   backgroundFilledDisabled: ColorModeSwitch;
 
+  backgroundFilledPrimaryHover: ColorModeSwitch;
+  backgroundFilledAccentHover: ColorModeSwitch;
+  backgroundFilledAccentSecondaryHover: ColorModeSwitch;
+  backgroundFilledNeutralHover: ColorModeSwitch;
+  backgroundFilledSuccessHover: ColorModeSwitch;
+  backgroundFilledWarningHover: ColorModeSwitch;
+  backgroundFilledRiskHover: ColorModeSwitch;
+  backgroundFilledDangerHover: ColorModeSwitch;
+  backgroundFilledTextHover: ColorModeSwitch;
+
+  backgroundFilledPrimaryActive: ColorModeSwitch;
+  backgroundFilledAccentActive: ColorModeSwitch;
+  backgroundFilledAccentSecondaryActive: ColorModeSwitch;
+  backgroundFilledNeutralActive: ColorModeSwitch;
+  backgroundFilledSuccessActive: ColorModeSwitch;
+  backgroundFilledWarningActive: ColorModeSwitch;
+  backgroundFilledRiskActive: ColorModeSwitch;
+  backgroundFilledDangerActive: ColorModeSwitch;
+  backgroundFilledTextActive: ColorModeSwitch;
+
   backgroundEmptyPrimaryHover: ColorModeSwitch;
   backgroundEmptyAccentHover: ColorModeSwitch;
   backgroundEmptyAccentSecondaryHover: ColorModeSwitch;
@@ -43,6 +83,16 @@ export type _EuiThemeButtonColors = {
   backgroundEmptyRiskHover: ColorModeSwitch;
   backgroundEmptyDangerHover: ColorModeSwitch;
   backgroundEmptyTextHover: ColorModeSwitch;
+
+  backgroundEmptyPrimaryActive: ColorModeSwitch;
+  backgroundEmptyAccentActive: ColorModeSwitch;
+  backgroundEmptyAccentSecondaryActive: ColorModeSwitch;
+  backgroundEmptyNeutralActive: ColorModeSwitch;
+  backgroundEmptySuccessActive: ColorModeSwitch;
+  backgroundEmptyWarningActive: ColorModeSwitch;
+  backgroundEmptyRiskActive: ColorModeSwitch;
+  backgroundEmptyDangerActive: ColorModeSwitch;
+  backgroundEmptyTextActive: ColorModeSwitch;
 
   textColorPrimary: ColorModeSwitch;
   textColorAccent: ColorModeSwitch;

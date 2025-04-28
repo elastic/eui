@@ -110,7 +110,7 @@ export const dark_background_colors: _EuiThemeBackgroundColors = {
   backgroundLightWarning: SEMANTIC_COLORS.warning130,
   backgroundLightRisk: SEMANTIC_COLORS.risk130,
   backgroundLightDanger: SEMANTIC_COLORS.danger130,
-  backgroundLightText: SEMANTIC_COLORS.shade130,
+  backgroundLightText: SEMANTIC_COLORS.shade120,
 
   backgroundFilledPrimary: SEMANTIC_COLORS.primary60,
   backgroundFilledAccent: SEMANTIC_COLORS.accent60,
