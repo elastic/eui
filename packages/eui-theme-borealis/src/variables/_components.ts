@@ -139,6 +139,8 @@ const component_colors: _EuiThemeComponentColors = {
     ['colors.backgroundLightSuccess']
   ),
 
+  filterButtonBadgeBackgroundHover: SEMANTIC_COLORS.shade25,
+
   filterSelectItemBackgroundFocusDisabled: computed(
     ([backgroundBaseDisabled]) => backgroundBaseDisabled,
     ['colors.backgroundBaseDisabled']
@@ -341,6 +343,8 @@ export const components: _EuiThemeComponents = {
     codeSectionColor: colorVis.euiColorVisAsTextDark3,
     codeAdditionColor: colorVis.euiColorVisAsTextDark0,
     codeDeletionColor: colorVis.euiColorVisAsTextDark3,
+
+    filterButtonBadgeBackgroundHover: SEMANTIC_COLORS.shade105,
 
     loadingSpinnerBorder: dark_border_colors.borderBasePlain,
 
