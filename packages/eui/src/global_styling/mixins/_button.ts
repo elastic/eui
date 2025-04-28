@@ -486,7 +486,7 @@ export const highContrastHoverIndicatorStyles = ({ euiTheme }: UseEuiTheme) => `
     transition: none;
 
     /* using pseudo border to be able to control the color */
-    &::before {
+    &::after {
       content: '';
       position: absolute;
       inset: ${euiTheme.border.width.thin};
