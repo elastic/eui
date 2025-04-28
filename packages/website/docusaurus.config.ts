@@ -77,44 +77,19 @@ const config: Config = {
       'docusaurus-lunr-search',
       {
         disableVersioning: true, // We don't use docusaurus docs versioning
-        /*
-         * Configure lunr fields to increase search boost on page titles.
-         *
-         * There are two types of `title` fields indexed under the same `title`
-         * name. One is the actual page titles (h1 tags) with no other
-         * `content` and the other is other headings (h2 and h3 tags) with
-         * the `content` field pointing to that section's text content.
-         *
-         * Since we don't have access to the internal `type` property that
-         * distinguishes these two, we distinguish these by the `content`
-         * field.
-         */
         fields: {
-          // Page titles (h1 tags)
           title: {
-            boost: 20,
+            // We need high enough boost to ensure titles are prioritized
+            // even if it's not a 100% match.
+            // lunr scoring logic seems to be very picky about that
+            boost: 200,
             extractor(doc) {
-              if (doc.content.trim().length) {
-                return null;
-              }
-
-              return doc.title;
+              // We need to include keywords in the title field/index
+              // to boost their importance when searching.
+              // They're not rendered in search results
+              return `${doc.title}${doc.keywords ? ` ${doc.keywords}` : ''}`;
             },
           },
-          // We can't create new fields, so reusing the defined keywords
-          // field seems like the next best thing.
-          // This makes `keywords` the h2 and h3 headings
-          keywords: {
-            boost: 3,
-            extractor(doc) {
-              if (doc.content.trim().length) {
-                return doc.title;
-              }
-
-              return null;
-            },
-          },
-          // No boost to other content (page body)
           content: { boost: 1 },
         },
       },
