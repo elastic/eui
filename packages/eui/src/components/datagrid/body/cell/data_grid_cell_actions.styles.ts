@@ -122,12 +122,6 @@ export const euiDataGridCellActionsStyles = (euiThemeContext: UseEuiTheme) => {
       }
       /* stylelint-enable declaration-no-important */
 
-      /* Manually increase the size of the expand cell icon - it's a bit small by default */
-      &.euiDataGridRowCell__expandCell .euiIcon {
-        ${logicalCSS('width', '120%')}
-        ${logicalCSS('height', '100%')}
-      }
-
       /* Remove button borders in high contrast mode */
       ${highContrastModeStyles(euiThemeContext, {
         preferred: 'border: none;',
