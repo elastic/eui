@@ -64,39 +64,9 @@ exports[`EuiButtonEmpty props color danger is rendered 1`] = `
 </button>
 `;
 
-exports[`EuiButtonEmpty props color neutral is rendered 1`] = `
-<button
-  class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-m-empty-neutral"
-  type="button"
->
-  <span
-    class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
-  >
-    <span
-      class="eui-textTruncate euiButtonEmpty__text"
-    />
-  </span>
-</button>
-`;
-
 exports[`EuiButtonEmpty props color primary is rendered 1`] = `
 <button
   class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-m-empty-primary"
-  type="button"
->
-  <span
-    class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
-  >
-    <span
-      class="eui-textTruncate euiButtonEmpty__text"
-    />
-  </span>
-</button>
-`;
-
-exports[`EuiButtonEmpty props color risk is rendered 1`] = `
-<button
-  class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-m-empty-risk"
   type="button"
 >
   <span
