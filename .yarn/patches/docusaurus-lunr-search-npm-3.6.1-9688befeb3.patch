@@ -1,0 +1,77 @@
+diff --git a/src/html-to-doc.js b/src/html-to-doc.js
+index 7f6bef1dc8b84a80679a6f8ca61fcbb264b91938..4b0c7b7d30e2905349ea8571392bd67955d86101 100644
+--- a/src/html-to-doc.js
++++ b/src/html-to-doc.js
+@@ -86,7 +86,7 @@ function* scanDocuments({ path, url }) {
+   for (const sectionDesc of sectionHeaders) {
+     const { title, content, ref, tagName } = sectionDesc
+     yield {
+-      title,
++      heading: title,
+       type: 1,
+       pageTitle,
+       url: `${url}#${ref}`,
+diff --git a/src/index.js b/src/index.js
+index aaf552026d126c73b2e48ee671811ade25eeaf1e..3adf0a1ec2fefb52acc404068965026606e25ee3 100644
+--- a/src/index.js
++++ b/src/index.js
+@@ -46,14 +46,15 @@ module.exports = function (context, options) {
+       if (meta.excludedCount) {
+         console.log(`docusaurus-lunr-search:: ${meta.excludedCount} documents were excluded from the search by excludeRoutes config`)
+       }
+-      
++
+       // Expose Lunr's fields configuration through docusaurus options.
+       // Fields are used to configure how Lunr treats different sources of search terms.
+       // This allows a user to boost the importance of certain fields over others.
+       const fields = {
+         title: { boost: 200, ...options.fields?.title },
+-        content: { boost: 2, ...options.fields?.content },
+-        keywords: { boost: 100, ...options.fields?.keywords },
++        heading: { boost: 20, ...options.fields?.heading },
++        keywords: { boost: 200, ...options.fields?.keywords },
++        content: { boost: 1, ...options.fields?.content },
+       };
+ 
+       const searchDocuments = []
+@@ -91,6 +92,7 @@ module.exports = function (context, options) {
+         lunrBuilder.add({
+           id: searchDocuments.length,
+           title: d.title,
++          heading: d.heading,
+           content: d.content,
+           keywords: d.keywords
+         });
+diff --git a/src/theme/SearchBar/lunar-search.js b/src/theme/SearchBar/lunar-search.js
+index 241930959ec9813b6a9b93a29b431a03c7fd784c..401dd233427ff2aafc78eb836c0c0c40b64f0d5f 100644
+--- a/src/theme/SearchBar/lunar-search.js
++++ b/src/theme/SearchBar/lunar-search.js
+@@ -23,16 +23,25 @@ class LunrSearchAdapter {
+                 boost: 10
+             });
+             query.term(tokens, {
+-                wildcard: lunr.Query.wildcard.TRAILING
++                wildcard: lunr.Query.wildcard.LEADING | lunr.Query.wildcard.TRAILING
+             });
++
++            if (input.startsWith('eui')) {
++                const euiToken = lunr.tokenizer(input.substring(3));
++                query.term(euiToken, {
++                    fields: ['title', 'keywords'],
++                    boost: 50,
++                    wildcard: lunr.Query.wildcard.TRAILING
++                });
++            }
+         });
+     }
+ 
+     getHit(doc, formattedTitle, formattedContent) {
+         return {
+             hierarchy: {
+-                lvl0: doc.pageTitle || doc.title,
+-                lvl1: doc.type === 0 ? null : doc.title
++                lvl0: doc.type === 0 ? doc.title : doc.pageTitle,
++                lvl1: doc.type === 0 ? null : doc.heading
+             },
+             url: doc.url,
+             version: doc.version,
