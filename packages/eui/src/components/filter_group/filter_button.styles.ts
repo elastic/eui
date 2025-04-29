@@ -300,6 +300,11 @@ export const euiFilterButtonChildStyles = (euiThemeContext: UseEuiTheme) => {
         cursor: inherit;
         /* ensures correct styles in forced high contrast mode as its wrapper uses forced-color-adjust: none  */
         forced-color-adjust: auto;
+
+        /* uses & to ensure override by same selector specificity instead of using !important */
+        & {
+          transition: none;
+        }
       `,
       disabled: css`
         opacity: 0.5;

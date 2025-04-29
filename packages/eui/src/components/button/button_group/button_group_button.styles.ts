@@ -123,7 +123,11 @@ export const euiButtonGroupButtonStyles = (euiThemeContext: UseEuiTheme) => {
         (x) => x / 2
       )};
 
-       &:is(${selectedSelectors}):not(:disabled) {
+      & + .euiButtonGroupButton {
+        ${logicalCSS('margin-left', '0')}
+      }
+
+      &:is(${selectedSelectors}):not(:disabled) {
         /* prevent layout jumps due to missing border for non-selected buttons */
         border: none;
 
