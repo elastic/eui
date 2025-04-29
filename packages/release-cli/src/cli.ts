@@ -39,7 +39,7 @@ export const cli = () => {
           })
           .option('allowCustom', {
             type: 'boolean',
-            description: '[UNSAFE!] Allow custom releases from unpushed changes. This should only be used with snapshot releases or',
+            description: '[UNSAFE!] Allow custom releases from unpushed changes. This should only be used with snapshot or custom releases',
             default: false,
           })
           .option('verbose', {
