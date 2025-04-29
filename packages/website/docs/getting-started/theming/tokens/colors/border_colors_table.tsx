@@ -25,12 +25,20 @@ export const BorderColorsTable = () => {
           token: 'colors.borderBaseAccentSecondary',
         },
         {
+          value: euiTheme.colors.borderBaseNeutral,
+          token: 'colors.borderBaseNeutral',
+        },
+        {
           value: euiTheme.colors.borderBaseSuccess,
           token: 'colors.borderBaseSuccess',
         },
         {
           value: euiTheme.colors.borderBaseWarning,
           token: 'colors.borderBaseWarning',
+        },
+        {
+          value: euiTheme.colors.borderBaseRisk,
+          token: 'colors.borderBaseRisk',
         },
         {
           value: euiTheme.colors.borderBaseDanger,
@@ -73,12 +81,20 @@ export const BorderColorsTable = () => {
           token: 'colors.borderStrongAccentSecondary',
         },
         {
+          value: euiTheme.colors.borderStrongNeutral,
+          token: 'colors.borderStrongNeutral',
+        },
+        {
           value: euiTheme.colors.borderStrongSuccess,
           token: 'colors.borderStrongSuccess',
         },
         {
           value: euiTheme.colors.borderStrongWarning,
           token: 'colors.borderStrongWarning',
+        },
+        {
+          value: euiTheme.colors.borderStrongRisk,
+          token: 'colors.borderStrongRisk',
         },
         {
           value: euiTheme.colors.borderStrongDanger,

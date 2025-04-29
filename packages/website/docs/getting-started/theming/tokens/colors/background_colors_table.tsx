@@ -21,12 +21,20 @@ export const BackgroundColorsTable = () => {
           token: 'colors.backgroundBaseAccentSecondary',
         },
         {
+          value: euiTheme.colors.backgroundBaseNeutral,
+          token: 'colors.backgroundBaseNeutral',
+        },
+        {
           value: euiTheme.colors.backgroundBaseSuccess,
           token: 'colors.backgroundBaseSuccess',
         },
         {
           value: euiTheme.colors.backgroundBaseWarning,
           token: 'colors.backgroundBaseWarning',
+        },
+        {
+          value: euiTheme.colors.backgroundBaseRisk,
+          token: 'colors.backgroundBaseRisk',
         },
         {
           value: euiTheme.colors.backgroundBaseDanger,
@@ -89,12 +97,20 @@ export const BackgroundColorsTable = () => {
           token: 'colors.backgroundLightAccentSecondary',
         },
         {
+          value: euiTheme.colors.backgroundLightNeutral,
+          token: 'colors.backgroundLightNeutral',
+        },
+        {
           value: euiTheme.colors.backgroundLightSuccess,
           token: 'colors.backgroundLightSuccess',
         },
         {
           value: euiTheme.colors.backgroundLightWarning,
           token: 'colors.backgroundLightWarning',
+        },
+        {
+          value: euiTheme.colors.backgroundLightRisk,
+          token: 'colors.backgroundLightRisk',
         },
         {
           value: euiTheme.colors.backgroundLightDanger,
@@ -117,12 +133,20 @@ export const BackgroundColorsTable = () => {
           token: 'colors.backgroundFilledAccentSecondary',
         },
         {
+          value: euiTheme.colors.backgroundFilledNeutral,
+          token: 'colors.backgroundFilledNeutral',
+        },
+        {
           value: euiTheme.colors.backgroundFilledSuccess,
           token: 'colors.backgroundFilledSuccess',
         },
         {
           value: euiTheme.colors.backgroundFilledWarning,
           token: 'colors.backgroundFilledWarning',
+        },
+        {
+          value: euiTheme.colors.backgroundFilledRisk,
+          token: 'colors.backgroundFilledRisk',
         },
         {
           value: euiTheme.colors.backgroundFilledDanger,

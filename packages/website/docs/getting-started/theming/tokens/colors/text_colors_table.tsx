@@ -37,12 +37,20 @@ export const TextColorsTable = () => {
           token: 'colors.textAccentSecondary',
         },
         {
+          value: euiTheme.colors.textNeutral,
+          token: 'colors.textNeutral',
+        },
+        {
           value: euiTheme.colors.textSuccess,
           token: 'colors.textSuccess',
         },
         {
           value: euiTheme.colors.textWarning,
           token: 'colors.textWarning',
+        },
+        {
+          value: euiTheme.colors.textRisk,
+          token: 'colors.textRisk',
         },
         {
           value: euiTheme.colors.textDanger,
