@@ -1,0 +1,199 @@
+---
+title: Health and Severity
+sidebar_position: 6
+---
+
+```mdx-code-block
+import { EuiTable, EuiTableBody, EuiTableHeader, EuiTableHeaderCell, EuiTableRow, EuiTableRowCell, EuiButton, EuiButtonIcon, icon, label } from '@elastic/eui';
+```
+
+Health describes the status of an element (eg. node, environment, host) that would be typically associated with positive or negative values, while in severity indicates an increasing level of risk.
+
+## Levels
+
+These levels, accordingly applied, serve both purposes of communicating Health statuses and Severity concerns among different contexts. They are willingly generic and descriptive only at a high level so that they can be applied and adapted to different contexts, while at the same time providing consistency across the product.
+
+<EuiTable>
+  <EuiTableHeader>
+    <EuiTableHeaderCell width="10%">Level</EuiTableHeaderCell>
+    <EuiTableHeaderCell>Name</EuiTableHeaderCell>
+    <EuiTableHeaderCell width="65%">Description</EuiTableHeaderCell>
+  </EuiTableHeader>
+
+  <EuiTableBody>
+    <EuiTableRow>
+      <EuiTableRowCell>0</EuiTableRowCell>
+      <EuiTableRowCell>Unknown</EuiTableRowCell>
+      <EuiTableRowCell>Created for unknown or unassigned values that can’t be associated with a specific level. It does not imply any positive or negative meaning.</EuiTableRowCell>
+    </EuiTableRow>
+
+    <EuiTableRow>
+      <EuiTableRowCell>1</EuiTableRowCell>
+      <EuiTableRowCell>Good / Success</EuiTableRowCell>
+      <EuiTableRowCell>Created for a direct association with positive meanings, used for healthy elements and positive outcomes.</EuiTableRowCell>
+    </EuiTableRow>
+
+    <EuiTableRow>
+      <EuiTableRowCell>2</EuiTableRowCell>
+      <EuiTableRowCell>Regular / Neutral</EuiTableRowCell>
+      <EuiTableRowCell>Used for usual, acceptable states that need to be recognised but don't need to stand out.</EuiTableRowCell>
+    </EuiTableRow>
+
+    <EuiTableRow>
+      <EuiTableRowCell>3</EuiTableRowCell>
+      <EuiTableRowCell>Warning</EuiTableRowCell>
+      <EuiTableRowCell>The starting level of concern, used for elements that would need attention.</EuiTableRowCell>
+    </EuiTableRow>
+
+    <EuiTableRow>
+      <EuiTableRowCell>4</EuiTableRowCell>
+      <EuiTableRowCell>Risk</EuiTableRowCell>
+      <EuiTableRowCell>Middle level of risk, used for potential escalations and increasing level of severity.</EuiTableRowCell>
+    </EuiTableRow>
+
+    <EuiTableRow>
+      <EuiTableRowCell>5</EuiTableRowCell>
+      <EuiTableRowCell>Danger</EuiTableRowCell>
+      <EuiTableRowCell>Highest level of danger, used for elements that need immediate support and attention.</EuiTableRowCell>
+    </EuiTableRow>
+  </EuiTableBody>
+
+</EuiTable>
+
+## Use cases
+
+The following mapping is not exhaustive of all use cases but it serves as an example of how the Health & Severity levels might be applied. Different contexts and environments might need dedicated terminology, therefore these levels can be used with alternative, customised variations in terms of words and naming, serving the dedicated purpose while aligning the use of colors across the product.
+
+<EuiTable>
+  <EuiTableHeader>
+    <EuiTableHeaderCell width="20%">Level</EuiTableHeaderCell>
+    <EuiTableHeaderCell>Use case A</EuiTableHeaderCell>
+    <EuiTableHeaderCell>Use case B</EuiTableHeaderCell>
+    <EuiTableHeaderCell>Use case C</EuiTableHeaderCell>
+  </EuiTableHeader>
+
+<EuiTableBody>
+  <EuiTableRow>
+    <EuiTableRowCell>Unknown</EuiTableRowCell>
+    <EuiTableRowCell>-</EuiTableRowCell>
+    <EuiTableRowCell>Unknown / No data</EuiTableRowCell>
+    <EuiTableRowCell>Other</EuiTableRowCell>
+  </EuiTableRow>
+
+  <EuiTableRow>
+    <EuiTableRowCell>Good / Success</EuiTableRowCell>
+    <EuiTableRowCell>-</EuiTableRowCell>
+    <EuiTableRowCell>Healthy</EuiTableRowCell>
+    <EuiTableRowCell>-</EuiTableRowCell>
+  </EuiTableRow>
+
+  <EuiTableRow>
+    <EuiTableRowCell>Regular / Neutral</EuiTableRowCell>
+    <EuiTableRowCell>Low</EuiTableRowCell>
+    <EuiTableRowCell>-</EuiTableRowCell>
+    <EuiTableRowCell>Low</EuiTableRowCell>
+  </EuiTableRow>
+
+  <EuiTableRow>
+    <EuiTableRowCell>Warning</EuiTableRowCell>
+    <EuiTableRowCell>Medium</EuiTableRowCell>
+    <EuiTableRowCell>Degrading</EuiTableRowCell>
+    <EuiTableRowCell>Warn</EuiTableRowCell>
+  </EuiTableRow>
+
+  <EuiTableRow>
+    <EuiTableRowCell>Risk</EuiTableRowCell>
+    <EuiTableRowCell>High</EuiTableRowCell>
+    <EuiTableRowCell>-</EuiTableRowCell>
+    <EuiTableRowCell>Minor, Major</EuiTableRowCell>
+  </EuiTableRow>
+
+  <EuiTableRow>
+    <EuiTableRowCell>Danger</EuiTableRowCell>
+    <EuiTableRowCell>Critical</EuiTableRowCell>
+    <EuiTableRowCell>Violated</EuiTableRowCell>
+    <EuiTableRowCell>Critical</EuiTableRowCell>
+  </EuiTableRow>
+</EuiTableBody>
+</EuiTable>
+
+## Colors
+
+This association between levels and colors has been created to be recognised and immediately understood, avoiding conflicts with other EUI elements and tints.
+
+<EuiTable>
+  <EuiTableHeader>
+    <EuiTableHeaderCell width="10%">Level</EuiTableHeaderCell>
+    <EuiTableHeaderCell>Name</EuiTableHeaderCell>
+    <EuiTableHeaderCell>Tint</EuiTableHeaderCell>
+  </EuiTableHeader>
+
+  <EuiTableBody>
+    <EuiTableRow>
+      <EuiTableRowCell>0</EuiTableRowCell>
+      <EuiTableRowCell>Unknown</EuiTableRowCell>
+      <EuiTableRowCell><EuiButtonIcon display="fill" iconType={icon} aria-label={label} color="text" /> Blue grey</EuiTableRowCell>
+    </EuiTableRow>
+
+    <EuiTableRow>
+      <EuiTableRowCell>1</EuiTableRowCell>
+      <EuiTableRowCell>Good / Success</EuiTableRowCell>
+      <EuiTableRowCell><EuiButtonIcon display="fill" iconType={icon} aria-label={label} color="success" /> Green</EuiTableRowCell>
+    </EuiTableRow>
+
+    <EuiTableRow>
+      <EuiTableRowCell>2</EuiTableRowCell>
+      <EuiTableRowCell>Regular / Neutral</EuiTableRowCell>
+      <EuiTableRowCell><EuiButtonIcon display="fill" iconType={icon} aria-label={label} color="neutral" /> Sky blue</EuiTableRowCell>
+    </EuiTableRow>
+
+    <EuiTableRow>
+      <EuiTableRowCell>3</EuiTableRowCell>
+      <EuiTableRowCell>Warning</EuiTableRowCell>
+      <EuiTableRowCell><EuiButtonIcon display="fill" iconType={icon} aria-label={label} color="warning" /> Yellow</EuiTableRowCell>
+    </EuiTableRow>
+
+    <EuiTableRow>
+      <EuiTableRowCell>4</EuiTableRowCell>
+      <EuiTableRowCell>Risk</EuiTableRowCell>
+      <EuiTableRowCell><EuiButtonIcon display="fill" iconType={icon} aria-label={label} color="risk" /> Orange</EuiTableRowCell>
+    </EuiTableRow>
+
+    <EuiTableRow>
+      <EuiTableRowCell>5</EuiTableRowCell>
+      <EuiTableRowCell>Danger</EuiTableRowCell>
+      <EuiTableRowCell><EuiButtonIcon display="fill" iconType={icon} aria-label={label} color="danger" /> Red</EuiTableRowCell>
+    </EuiTableRow>
+  </EuiTableBody>
+
+</EuiTable>
+
+## Text Tokens
+
+import { TextColorPreview } from '../getting-started/theming/tokens/colors/text_color_preview.tsx'; 
+import { SeverityTextColorsTable } from '../getting-started/theming/tokens/colors/severity_text_colors_table.tsx';
+import { Example } from '@site/src/components';
+
+<SeverityTextColorsTable />
+
+
+## Background Tokens
+
+import { BackgroundColorPreview } from '../getting-started/theming/tokens/colors/background_color_preview.tsx';
+import { SeverityBackgroundColorsTable } from '../getting-started/theming/tokens/colors/severity_background_colors_table.tsx';
+
+<SeverityBackgroundColorsTable />
+
+
+## Datavis Tokens
+
+import { SeverityColorsTable } from '../getting-started/theming/tokens/colors/severity_colors_table.tsx';
+import { DataVisBackgroundColor } from '../getting-started/theming/tokens/colors/data_vis_colors_table.tsx';
+import { DataVisColorsPreview } from '../getting-started/theming/tokens/colors/data_vis_colors_preview.tsx'
+
+<SeverityColorsTable />
+
+
+## Edge cases
+
+There might be cases in which these levels are not sufficient and don't fully fullfill the needs, in that case please reach out to EUI team.
