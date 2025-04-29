@@ -7,13 +7,15 @@
  */
 
 import { css, SerializedStyles } from '@emotion/react';
-import { UseEuiTheme, useEuiMemoizedStyles } from '../../services';
 import {
   _EuiThemeBackgroundColors,
   _EuiThemeBorderColors,
   _EuiThemeTransparentBackgroundColors,
   getTokenName,
 } from '@elastic/eui-theme-common';
+
+import { UseEuiTheme, useEuiMemoizedStyles } from '../../services';
+import { SEVERITY_COLORS } from './_button';
 
 export const BACKGROUND_COLORS = [
   'transparent',
@@ -23,11 +25,10 @@ export const BACKGROUND_COLORS = [
   'accent',
   'accentSecondary',
   'primary',
-  'neutral',
   'success',
   'warning',
-  'risk',
   'danger',
+  ...SEVERITY_COLORS,
 ] as const;
 
 export type _EuiBackgroundColor = (typeof BACKGROUND_COLORS)[number];

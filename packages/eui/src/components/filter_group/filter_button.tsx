@@ -10,6 +10,7 @@ import React, { FunctionComponent } from 'react';
 import classNames from 'classnames';
 
 import { useEuiMemoizedStyles } from '../../services';
+import { _EuiButtonColor } from '../../global_styling';
 import { useEuiI18n } from '../i18n';
 import { useInnerText } from '../inner_text';
 import { DistributiveOmit } from '../common';
@@ -53,7 +54,16 @@ export type EuiFilterButtonProps = {
    * Change color of the counter badge
    */
   badgeColor?: BadgeNotificationColor;
-} & DistributiveOmit<EuiButtonEmptyProps, 'flush' | 'size'>;
+  /**
+   * Any of the named color palette options.
+   *
+   * Do not use the following colors for standalone buttons directly,
+   * they exist to serve other components:
+   *  - accent
+   *  - warning
+   */
+  color?: _EuiButtonColor;
+} & DistributiveOmit<EuiButtonEmptyProps, 'flush' | 'size' | 'color'>;
 
 export const EuiFilterButton: FunctionComponent<EuiFilterButtonProps> = ({
   children,

@@ -44,6 +44,13 @@ export interface EuiButtonIconProps extends CommonProps {
   iconType: IconType;
   /**
    * Any of the named color palette options.
+   *
+   * Do not use the following colors for standalone buttons directly,
+   * they exist to serve other components:
+   *  - accent
+   *  - warning
+   *  - neutral
+   *  - risk
    */
   color?: _EuiButtonColor;
   'aria-label'?: string;
