@@ -409,15 +409,17 @@ export default () => {
       <EuiFlexGroup alignItems="center">
         <EuiFlexItem grow={false}>
           <EuiSelect
+            prepend="Width"
             fullWidth
             compressed
             value={width}
             options={[
-              { value: 'restricted', text: 'Restricted' },
-              { value: 'full', text: 'Full' },
-              { value: 'auto', text: 'Auto' },
+              { value: 'restricted', text: 'restricted' },
+              { value: 'full', text: 'full' },
+              { value: 'auto', text: 'auto' },
             ]}
             onChange={(e) => setWidth(e.target.value as EuiSuperDatePickerProps['width'])}
+            aria-label="Super date picker width"
           />
         </EuiFlexItem>
         <EuiSwitch
