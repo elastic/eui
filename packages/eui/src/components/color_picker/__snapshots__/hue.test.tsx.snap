@@ -11,23 +11,23 @@ exports[`EuiHue accepts a hex value 1`] = `
     >
       Select the HSV color mode 'hue' value
     </label>
-    <p
-      aria-live="polite"
-      class="emotion-euiScreenReaderOnly"
+    <span
+      class="euiToolTipAnchor  emotion-euiToolTipAnchor-inlineBlock-euiHue__tooltip"
     >
-      #00FFFF
-    </p>
-    <input
-      aria-label="aria-label"
-      class="euiHue__range emotion-euiHue__range"
-      data-test-subj="test subject string"
-      id="undefined-hue"
-      max="359"
-      min="0"
-      step="1"
-      type="range"
-      value="180"
-    />
+      <input
+        aria-label="aria-label"
+        aria-roledescription="Hue slider"
+        aria-valuetext="Hue 180°"
+        class="euiHue__range emotion-euiHue__range"
+        data-test-subj="test subject string"
+        id="undefined-hue"
+        max="359"
+        min="0"
+        step="1"
+        type="range"
+        value="180"
+      />
+    </span>
   </div>
 </div>
 `;
@@ -43,21 +43,23 @@ exports[`EuiHue accepts a hue value 1`] = `
     >
       Select the HSV color mode 'hue' value
     </label>
-    <p
-      aria-live="polite"
-      class="emotion-euiScreenReaderOnly"
-    />
-    <input
-      aria-label="aria-label"
-      class="euiHue__range emotion-euiHue__range"
-      data-test-subj="test subject string"
-      id="undefined-hue"
-      max="359"
-      min="0"
-      step="1"
-      type="range"
-      value="180"
-    />
+    <span
+      class="euiToolTipAnchor  emotion-euiToolTipAnchor-inlineBlock-euiHue__tooltip"
+    >
+      <input
+        aria-label="aria-label"
+        aria-roledescription="Hue slider"
+        aria-valuetext="Hue 180°"
+        class="euiHue__range emotion-euiHue__range"
+        data-test-subj="test subject string"
+        id="undefined-hue"
+        max="359"
+        min="0"
+        step="1"
+        type="range"
+        value="180"
+      />
+    </span>
   </div>
 </div>
 `;
@@ -73,21 +75,23 @@ exports[`EuiHue is rendered 1`] = `
     >
       Select the HSV color mode 'hue' value
     </label>
-    <p
-      aria-live="polite"
-      class="emotion-euiScreenReaderOnly"
-    />
-    <input
-      aria-label="aria-label"
-      class="euiHue__range emotion-euiHue__range"
-      data-test-subj="test subject string"
-      id="undefined-hue"
-      max="359"
-      min="0"
-      step="1"
-      type="range"
-      value="1"
-    />
+    <span
+      class="euiToolTipAnchor  emotion-euiToolTipAnchor-inlineBlock-euiHue__tooltip"
+    >
+      <input
+        aria-label="aria-label"
+        aria-roledescription="Hue slider"
+        aria-valuetext="Hue 1°"
+        class="euiHue__range emotion-euiHue__range"
+        data-test-subj="test subject string"
+        id="undefined-hue"
+        max="359"
+        min="0"
+        step="1"
+        type="range"
+        value="1"
+      />
+    </span>
   </div>
 </div>
 `;

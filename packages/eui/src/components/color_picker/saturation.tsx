@@ -28,6 +28,7 @@ import { isNil } from '../../services/predicate';
 import { logicalStyles } from '../../global_styling';
 import { CommonProps } from '../common';
 import { useEuiI18n } from '../i18n';
+import { EuiToolTip } from '../tool_tip';
 
 import { getEventPosition } from './utils';
 import { euiSaturationStyles } from './saturation.styles';
@@ -74,10 +75,15 @@ export const EuiSaturation = forwardRef<HTMLDivElement, EuiSaturationProps>(
     const id = useGeneratedHtmlId({ conditionalId: _id });
     const instructionsId = `${id}-instructions`;
     const indicatorId = `${id}-saturationIndicator`;
-    const [roleDescString, instructionsString] = useEuiI18n(
-      ['euiSaturation.ariaLabel', 'euiSaturation.screenReaderInstructions'],
+    const [ariaLabel, roleDescString, instructionsString] = useEuiI18n(
       [
-        'HSV color mode saturation and value 2-axis slider',
+        'euiSaturation.ariaLabel',
+        'euiSaturation.roleDescription',
+        'euiSaturation.screenReaderInstructions',
+      ],
+      [
+        'Select a color',
+        'HSV color mode saturation and value 2-axis slider.',
         "Arrow keys to navigate the square color gradient. Coordinates will be used to calculate HSV color mode 'saturation' and 'value' numbers, in the range of 0 to 1. Left and right to change the saturation. Up and down change the value.",
       ]
     );
@@ -206,18 +212,23 @@ export const EuiSaturation = forwardRef<HTMLDivElement, EuiSaturationProps>(
             className="euiSaturation__saturation"
           />
         </div>
-        <button
-          id={indicatorId}
-          css={styles.euiSaturation__indicator}
-          className="euiSaturation__indicator"
-          style={logicalStyles(indicator)}
-          aria-roledescription={roleDescString}
-          aria-label={hex}
-          aria-describedby={instructionsId}
-        />
-        <span hidden aria-live="assertive">
-          {hex}
-        </span>
+        <EuiToolTip
+          content={hex}
+          anchorProps={{
+            css: styles.euiSaturation__tooltip,
+            style: logicalStyles(indicator),
+          }}
+          disableScreenReaderOutput // required to prevent verbose screen reader output
+        >
+          <button
+            id={indicatorId}
+            css={styles.euiSaturation__indicator}
+            className="euiSaturation__indicator"
+            aria-roledescription={roleDescString}
+            aria-label={ariaLabel}
+            aria-describedby={instructionsId}
+          />
+        </EuiToolTip>
         <span hidden id={instructionsId}>
           {instructionsString}
         </span>
