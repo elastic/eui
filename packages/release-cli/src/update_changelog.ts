@@ -13,14 +13,23 @@ import { rimraf } from 'rimraf';
 
 const CHANGELOGS_DIR_PATH = 'changelogs';
 
-type ChangelogGroupName = 'Features' | 'Bug fixes' | 'Deprecations' | 'Breaking changes' | string;
+type ChangelogGroupName =
+  | 'Features'
+  | 'Bug fixes'
+  | 'Deprecations'
+  | 'Breaking changes'
+  | string;
 export type ChangelogMap = Record<ChangelogGroupName, string[]>;
 
 /**
  * Convert individual changelog files into a single changelog string
  */
 export const collateChangelogFiles = async (packageRootDir: string) => {
-  const upcomingChangelogsDir = path.resolve(packageRootDir, CHANGELOGS_DIR_PATH, 'upcoming');
+  const upcomingChangelogsDir = path.resolve(
+    packageRootDir,
+    CHANGELOGS_DIR_PATH,
+    'upcoming'
+  );
 
   const upcomingChangelogMap: ChangelogMap = {
     Features: [],
@@ -73,10 +82,13 @@ export const collateChangelogFiles = async (packageRootDir: string) => {
 
       if (text) {
         // Split changelog text into discrete log items (if there are multiple) and append a PR link for each
-        let items = text.split(/\r?\n/).map((item) =>
+        let items = text.split(/\r?\n/).map((item) => {
           // Skip indented changelog items - they're presumably a child item providing more info, and don't need individual links
-          item.startsWith('  -') ? item : `${item} ${pullRequestMarkdownLink}`
-        );
+          // (depends on indentation: 2 or 4 spaces)
+          const isNestedChild = /( ){2,}(-|\*)/.test(item);
+
+          return isNestedChild ? item : `${item} ${pullRequestMarkdownLink}`;
+        });
 
         if (!heading) {
           // No heading, so must be new features/enhancements only
@@ -117,13 +129,21 @@ export const collateChangelogFiles = async (packageRootDir: string) => {
 /**
  * Write to latest year's changelog file, delete individual upcoming changelog files, & stage changes
  */
-export const updateChangelogContent = async (packageRootDir: string, upcomingChangelog: string, version: string) => {
+export const updateChangelogContent = async (
+  packageRootDir: string,
+  upcomingChangelog: string,
+  version: string
+) => {
   if (!upcomingChangelog) {
     throw new Error('Cannot update changelog - no changes found');
   }
 
   const year = new Date().getUTCFullYear();
-  const pathToChangelog = path.resolve(packageRootDir, CHANGELOGS_DIR_PATH, `CHANGELOG_${year}.md`);
+  const pathToChangelog = path.resolve(
+    packageRootDir,
+    CHANGELOGS_DIR_PATH,
+    `CHANGELOG_${year}.md`
+  );
 
   let changelogArchive = '';
   try {
@@ -151,4 +171,4 @@ export const updateChangelogContent = async (packageRootDir: string, upcomingCha
 
 export const deleteObsoleteChangelogs = async (changelogFiles: string[]) => {
   return rimraf(changelogFiles);
-}
+};
