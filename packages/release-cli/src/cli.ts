@@ -39,6 +39,7 @@ export const cli = () => {
           })
           .option('allowCustom', {
             type: 'boolean',
+            description: '[UNSAFE!] Allow custom releases from unpushed changes. This should only be used with snapshot or custom releases',
             default: false,
           })
           .option('verbose', {
@@ -51,6 +52,11 @@ export const cli = () => {
             type: 'boolean',
             description:
               'Skip user prompts and proceed with recommended settings. Use in CI only!',
+            default: false,
+          })
+          .option('skipUpdateVersions', {
+            type: 'boolean',
+            description: '[UNSAFE!] Skip the update version step. This should only be used for special releases like backports. The --workspaces argument is required when this argument is set.',
             default: false,
           })
           .option('useAuthToken', {
@@ -68,6 +74,7 @@ export const cli = () => {
           allowCustom,
           verbose,
           skipPrompts,
+          skipUpdateVersions,
           useAuthToken,
         } = argv;
         const logger = new Logger(verbose);
@@ -79,6 +86,7 @@ export const cli = () => {
             workspaces,
             logger,
             skipPrompts,
+            skipUpdateVersions,
             useAuthToken,
             allowCustomReleases: allowCustom,
           });

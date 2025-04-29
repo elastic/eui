@@ -29,6 +29,7 @@ export interface ReleaseOptions {
   logger: Logger;
   allowCustomReleases: boolean;
   skipPrompts: boolean;
+  skipUpdateVersions: boolean;
   useAuthToken: boolean;
 }
 
@@ -45,8 +46,10 @@ export const release = async (options: ReleaseOptions) => {
     }
 
     if (options.tag !== 'latest') {
-      throw new ValidationError(
-        'Custom tags are not allowed for type `official`! Please use another type to perform custom releases'
+      logger.warning(
+        `A custom tag "${options.tag}" was provided for the official` +
+        ` release type. This should be used only for special releases like` +
+        ` backports. Stop here if you don't know what you're doing!`
       );
     }
   } else if (type === 'snapshot') {
@@ -66,6 +69,14 @@ export const release = async (options: ReleaseOptions) => {
     logger.warning('Using npmjs auth token');
   } else if (options.skipPrompts) {
     throw new ValidationError('Skipping prompts is not allowed when not using auth tokens');
+  }
+
+  if (options.skipUpdateVersions) {
+    logger.warning('--skip-update-versions is set');
+
+    if (!options.workspaces?.length) {
+      throw new ValidationError('--workspaces must be set when --skip-update-version is used');
+    }
   }
 
   const allWorkspaces = await getYarnWorkspaces();

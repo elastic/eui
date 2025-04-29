@@ -31,7 +31,7 @@ export const stepInitChecks = async (options: ReleaseOptions) => {
 
   // Check if releasing from main branch
   const currentBranch = await getCurrentBranch();
-  if (currentBranch !== 'main' && type === 'official') {
+  if (currentBranch !== 'main' && type === 'official' && !allowCustomReleases) {
     throw new ValidationError(
       'Official releases are only allowed from the `main` branch!'
     );
@@ -39,9 +39,10 @@ export const stepInitChecks = async (options: ReleaseOptions) => {
 
   if (!(await isWorkingTreeClean())) {
     throw new ValidationError(
-      'Git working tree is dirty. Please clean up your working tree from any uncommited changes and try again.',
-      `To clean local changes and restore the branch to remote state, please run:` +
-        `\n  ${chalk.yellowBright(
+      'Git working tree is dirty. Please clean up your working tree' +
+      ' from any uncommited changes and try again.',
+      `To clean local changes and restore the branch to remote state,` +
+        ` please run:\n  ${chalk.yellowBright(
           `git reset --hard upstream/${currentBranch}`
         )}\n` +
         `Please note that ${chalk.underline.bold(
@@ -56,16 +57,11 @@ export const stepInitChecks = async (options: ReleaseOptions) => {
   logger.debug(`Local HEAD = ${localHash}`);
 
   if (localHash !== remoteHash) {
-    if (type === 'official') {
-      throw new ValidationError(
-        'Local `main` branch is out of sync with the upstream branch. Please pull the latest changes and try again.'
-      );
-    }
-
     if (!allowCustomReleases) {
       throw new ValidationError(
-        'Local HEAD does not match the remote HEAD. Use --allow-custom to create a custom non-official release ' +
-          'if that really is what you were planning to do.'
+        'Local HEAD does not match the remote HEAD. Use --allow-custom to' +
+          ' create a custom non-official release if that really is what' +
+          'you were planning to do.'
       );
     } else {
       logger.warning('Local HEAD does not match the remote HEAD');
@@ -82,7 +78,8 @@ export const stepInitChecks = async (options: ReleaseOptions) => {
   const registryUser = await getAuthenticatedUser();
   if (!registryUser) {
     throw new ValidationError(
-      'Authentication to npmjs is required. Please log in before running this command again.',
+      'Authentication to npmjs is required. Please log in before running' +
+      ' this command again.',
       `To authenticate run the following command:\n` +
         `  ${chalk.yellowBright('yarn npm login')}`
     );

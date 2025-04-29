@@ -35,7 +35,12 @@ export const stepUpdateVersions = async (
   options: ReleaseOptions,
   workspaces: Array<YarnWorkspace>
 ) => {
-  const { logger } = options;
+  const { logger, skipUpdateVersions } = options;
+
+  if (skipUpdateVersions) {
+    logger.warning('Skipping the update versions step');
+    return workspaces;
+  }
 
   logger.info('Updating package versions and changelogs');
 
