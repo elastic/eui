@@ -85,7 +85,7 @@ export const collateChangelogFiles = async (packageRootDir: string) => {
         let items = text.split(/\r?\n/).map((item) => {
           // Skip indented changelog items - they're presumably a child item providing more info, and don't need individual links
           // (depends on indentation: 2 or 4 spaces)
-          const isNestedChild = Array.isArray(item.match(/( ){2,}(-|\*)/));
+          const isNestedChild = /( ){2,}(-|\*)/.test(item);
 
           return isNestedChild ? item : `${item} ${pullRequestMarkdownLink}`;
         });
