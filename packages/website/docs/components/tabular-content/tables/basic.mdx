@@ -146,6 +146,7 @@ In the above example, some columns displayed the value as-is (e.g. `firstName` a
   - **Note:** the basic table will treat any cells that use a `render` function as being `textOnly: false`. This may cause unnecessary word breaks. Apply `textOnly: true` to ensure it breaks properly.
 
 If a column name needs a longer description, an icon with a tooltip can be used. This can be done using the `columns.nameTooltip` property. This approach ensures that the icon remains visible even if the text gets truncated, unlike manually using a React node for `columns.name`.
+If the column header cell is sortable, the tooltip will be applied to the cell itself rather than the icon to ensure accessibility.
 
 ## Row selection
 
