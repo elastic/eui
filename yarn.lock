@@ -19440,7 +19440,7 @@ __metadata:
 
 "docusaurus-lunr-search@patch:docusaurus-lunr-search@npm%3A3.6.1#~/.yarn/patches/docusaurus-lunr-search-npm-3.6.1-9688befeb3.patch":
   version: 3.6.1
-  resolution: "docusaurus-lunr-search@patch:docusaurus-lunr-search@npm%3A3.6.1#~/.yarn/patches/docusaurus-lunr-search-npm-3.6.1-9688befeb3.patch::version=3.6.1&hash=b9cdf8"
+  resolution: "docusaurus-lunr-search@patch:docusaurus-lunr-search@npm%3A3.6.1#~/.yarn/patches/docusaurus-lunr-search-npm-3.6.1-9688befeb3.patch::version=3.6.1&hash=945fef"
   dependencies:
     autocomplete.js: "npm:^0.37.1"
     clsx: "npm:^2.1.1"
@@ -19460,7 +19460,7 @@ __metadata:
     "@docusaurus/core": ^2.0.0-alpha.60 || ^2.0.0 || ^3.0.0
     react: ^16.8.4 || ^17 || ^18 || ^19
     react-dom: ^16.8.4 || ^17 || ^18 || ^19
-  checksum: 10c0/d0f781ea4db7e104e3be3cda37ff546c7c305f0d56dab4fc96b5feaeada824b202b4a311895bfef5a7bc633e755df39b5e903d92c3a8f409e1307fdfc74c57f4
+  checksum: 10c0/0baf4e27243dd84fd98ef160339e22cac23fd5e6d744798cf7f25a01c800756705e95b597df9366695913bc84cf78fbd8cf92d9b1c2a9cd55cf77f4b50a16b06
   languageName: node
   linkType: hard
 
