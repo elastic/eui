@@ -32,7 +32,8 @@ export default () => {
   const [withIconButton, setWithIconButton] = useState(false);
 
   // While `accentSecondary` is currently available on the component, it is likely to be removed
-  const filteredColors = COLORS.filter((name) => name !== 'accentSecondary');
+  // `neutral` and `risk` are only tentatively added but might be removed
+  const filteredColors = COLORS.filter((name) => !['accentSecondary', 'neutral', 'risk'].includes(name));
   const buttonColorsOptions = filteredColors.map((name) => {
     return {
       value: name,
