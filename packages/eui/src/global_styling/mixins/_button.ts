@@ -28,6 +28,7 @@ export const SEVERITY_COLORS = ['neutral', 'risk'] as const;
 export const BUTTON_COLORS = [
   'text',
   'accent',
+  'accentSecondary',
   'primary',
   'success',
   'warning',
@@ -56,7 +57,7 @@ type ButtonVariantColors = {
 
 const getButtonVariantTokenValues = (
   { euiTheme, highContrastMode }: UseEuiTheme,
-  color: _EuiButtonColor | 'disabled',
+  color: _EuiExtendedButtonColor | 'disabled',
   variant: 'base' | 'filled' | 'empty'
 ): ButtonVariantColors => {
   const backgroundTokenBase =
