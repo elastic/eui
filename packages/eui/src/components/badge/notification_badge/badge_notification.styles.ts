@@ -15,12 +15,20 @@ import {
   mathWithUnits,
 } from '../../../global_styling';
 import { highContrastModeStyles } from '../../../global_styling/functions/high_contrast';
-import { UseEuiTheme } from '../../../services';
+import { isEuiThemeRefreshVariant, UseEuiTheme } from '../../../services';
 import { euiBadgeColors } from '../color_utils';
 
 export const euiNotificationBadgeStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
+  const isRefreshVariant = isEuiThemeRefreshVariant(
+    euiThemeContext,
+    'buttonVariant'
+  );
+
   const badgeColors = euiBadgeColors(euiThemeContext);
+  const borderRadius = isRefreshVariant
+    ? mathWithUnits(euiTheme.border.radius.small, (x) => x / 2)
+    : euiTheme.border.radius.small;
 
   return {
     euiNotificationBadge: css`
@@ -30,7 +38,7 @@ export const euiNotificationBadgeStyles = (euiThemeContext: UseEuiTheme) => {
       align-items: center;
       vertical-align: middle;
       ${logicalCSS('padding-horizontal', euiTheme.size.xs)}
-      border-radius: ${euiTheme.border.radius.small};
+      border-radius: ${borderRadius};
       ${highContrastModeStyles(euiThemeContext, {
         preferred: `
           border: ${euiTheme.border.thin};

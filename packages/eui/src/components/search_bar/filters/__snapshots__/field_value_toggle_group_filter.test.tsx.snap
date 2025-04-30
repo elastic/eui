@@ -1,81 +1,101 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`TermToggleGroupFilter render - active 1`] = `
-<button
-  aria-pressed="true"
-  class="euiButtonEmpty euiFilterButton euiFilterButton-hasActiveFilters emotion-euiButtonDisplay-euiButtonEmpty-m-empty-text-euiFilterButton-withNext-hasActiveFilters"
-  type="button"
+<div
+  class="euiFilterButton__wrapper css-nbqv3o-wrapper-withNext-hasToggle"
 >
-  <span
-    class="euiButtonEmpty__content emotion-euiButtonDisplayContent-euiFilterButton__content"
+  <button
+    aria-pressed="true"
+    class="euiButtonGroupButton euiButtonGroupButton-isSelected euiFilterButton euiFilterButton-isSelected euiFilterButton-hasActiveFilters euiFilterButton-isToggle emotion-euiButtonDisplay-s-defaultMinWidth-euiButtonGroupButton-compressed-fill-text-euiFilterButton-hasActiveFilters-toggle"
+    data-test-subj="filter-button_generated-id"
+    type="button"
   >
     <span
-      class="euiFilterButton__text emotion-euiFilterButton__text"
-      data-text="Kibana"
-      title="Kibana"
+      class="emotion-euiButtonDisplayContent-euiButtonGroupButton__content-compressed-euiFilterButton__content"
     >
-      Kibana
+      <span
+        class="euiFilterButton__text emotion-euiFilterButton__text"
+        data-text="Kibana"
+        title="Kibana"
+      >
+        Kibana
+      </span>
     </span>
-  </span>
-</button>
+  </button>
+</div>
 `;
 
 exports[`TermToggleGroupFilter render - active negated - custom negated name 1`] = `
-<button
-  aria-pressed="true"
-  class="euiButtonEmpty euiFilterButton euiFilterButton-hasActiveFilters emotion-euiButtonDisplay-euiButtonEmpty-m-empty-text-euiFilterButton-withNext-hasActiveFilters"
-  type="button"
+<div
+  class="euiFilterButton__wrapper css-nbqv3o-wrapper-withNext-hasToggle"
 >
-  <span
-    class="euiButtonEmpty__content emotion-euiButtonDisplayContent-euiFilterButton__content"
+  <button
+    aria-pressed="true"
+    class="euiButtonGroupButton euiButtonGroupButton-isSelected euiFilterButton euiFilterButton-isSelected euiFilterButton-hasActiveFilters euiFilterButton-isToggle emotion-euiButtonDisplay-s-defaultMinWidth-euiButtonGroupButton-compressed-fill-text-euiFilterButton-hasActiveFilters-toggle"
+    data-test-subj="filter-button_generated-id"
+    type="button"
   >
     <span
-      class="euiFilterButton__text emotion-euiFilterButton__text"
-      data-text="-Kibana"
-      title="-Kibana"
+      class="emotion-euiButtonDisplayContent-euiButtonGroupButton__content-compressed-euiFilterButton__content"
     >
-      -Kibana
+      <span
+        class="euiFilterButton__text emotion-euiFilterButton__text"
+        data-text="-Kibana"
+        title="-Kibana"
+      >
+        -Kibana
+      </span>
     </span>
-  </span>
-</button>
+  </button>
+</div>
 `;
 
 exports[`TermToggleGroupFilter render - active negated 1`] = `
-<button
-  aria-pressed="true"
-  class="euiButtonEmpty euiFilterButton euiFilterButton-hasActiveFilters emotion-euiButtonDisplay-euiButtonEmpty-m-empty-text-euiFilterButton-withNext-hasActiveFilters"
-  type="button"
+<div
+  class="euiFilterButton__wrapper css-nbqv3o-wrapper-withNext-hasToggle"
 >
-  <span
-    class="euiButtonEmpty__content emotion-euiButtonDisplayContent-euiFilterButton__content"
+  <button
+    aria-pressed="true"
+    class="euiButtonGroupButton euiButtonGroupButton-isSelected euiFilterButton euiFilterButton-isSelected euiFilterButton-hasActiveFilters euiFilterButton-isToggle emotion-euiButtonDisplay-s-defaultMinWidth-euiButtonGroupButton-compressed-fill-text-euiFilterButton-hasActiveFilters-toggle"
+    data-test-subj="filter-button_generated-id"
+    type="button"
   >
     <span
-      class="euiFilterButton__text emotion-euiFilterButton__text"
-      data-text="Not Kibana"
-      title="Not Kibana"
+      class="emotion-euiButtonDisplayContent-euiButtonGroupButton__content-compressed-euiFilterButton__content"
     >
-      Not Kibana
+      <span
+        class="euiFilterButton__text emotion-euiFilterButton__text"
+        data-text="Not Kibana"
+        title="Not Kibana"
+      >
+        Not Kibana
+      </span>
     </span>
-  </span>
-</button>
+  </button>
+</div>
 `;
 
 exports[`TermToggleGroupFilter renders 1`] = `
-<button
-  aria-pressed="false"
-  class="euiButtonEmpty euiFilterButton emotion-euiButtonDisplay-euiButtonEmpty-m-empty-text-euiFilterButton-withNext"
-  type="button"
+<div
+  class="euiFilterButton__wrapper css-nbqv3o-wrapper-withNext-hasToggle"
 >
-  <span
-    class="euiButtonEmpty__content emotion-euiButtonDisplayContent-euiFilterButton__content"
+  <button
+    aria-pressed="false"
+    class="euiButtonGroupButton euiFilterButton euiFilterButton-isToggle emotion-euiButtonDisplay-s-defaultMinWidth-euiButtonGroupButton-compressed-empty-text-euiFilterButton-toggle"
+    data-test-subj="filter-button_generated-id"
+    type="button"
   >
     <span
-      class="euiFilterButton__text emotion-euiFilterButton__text"
-      data-text="Kibana"
-      title="Kibana"
+      class="emotion-euiButtonDisplayContent-euiButtonGroupButton__content-compressed-euiFilterButton__content"
     >
-      Kibana
+      <span
+        class="euiFilterButton__text emotion-euiFilterButton__text"
+        data-text="Kibana"
+        title="Kibana"
+      >
+        Kibana
+      </span>
     </span>
-  </span>
-</button>
+  </button>
+</div>
 `;

@@ -7,7 +7,7 @@
  */
 
 import { css } from '@emotion/react';
-import { UseEuiTheme } from '../../../services';
+import { isEuiThemeRefreshVariant, UseEuiTheme } from '../../../services';
 import { logicalCSS } from '../../../global_styling';
 import {
   highContrastModeStyles,
@@ -41,6 +41,7 @@ export const euiButtonGroupButtonsStyles = (euiThemeContext: UseEuiTheme) => {
     euiButtonGroup__buttons: css`
       ${logicalCSS('max-width', '100%')}
       display: flex;
+      align-items: center;
     `,
     fullWidth: css`
       ${logicalCSS('width', '100%')}
@@ -75,6 +76,10 @@ const _highContrastStyles = (
   compressed?: boolean
 ) => {
   const { euiTheme } = euiThemeContext;
+  const isRefreshVariant = isEuiThemeRefreshVariant(
+    euiThemeContext,
+    'buttonVariant'
+  );
 
   // Account for buttons within tooltip wrappers in selectors
   const getButtonChildSelectors = (selector: string) => `
@@ -92,14 +97,19 @@ const _highContrastStyles = (
         // faux borders between selected/unselected buttons are rendered by pseudo elements,
         // and can flip colors depending on selected/unselected siblings
         `
-        ${getButtonChildSelectors(':not(:first-child, :last-child)')} {
-          ${logicalCSS('border-horizontal', 'none')}
-        }
-        ${getButtonChildSelectors(':first-child')} {
-          ${logicalCSS('border-right', 'none')}
-        }
-        ${getButtonChildSelectors(':last-child')} {
-          ${logicalCSS('border-left', 'none')}
+        ${
+          !isRefreshVariant &&
+          `
+              ${getButtonChildSelectors(':not(:first-child, :last-child)')} {
+                ${logicalCSS('border-horizontal', 'none')}
+              }
+              ${getButtonChildSelectors(':first-child')} {
+                ${logicalCSS('border-right', 'none')}
+              }
+              ${getButtonChildSelectors(':last-child')} {
+                ${logicalCSS('border-left', 'none')}
+              }
+            `
         }
       `,
     forced: `
@@ -107,6 +117,17 @@ const _highContrastStyles = (
         ${preventForcedColors(euiThemeContext)}
         color: ${euiTheme.colors.emptyShade};
         background-color: ${euiTheme.colors.fullShade};
+
+        ${
+          isRefreshVariant &&
+          `
+              &:is(:hover, :focus):not(:disabled) {
+                &::before {
+                  border-color: ${euiTheme.colors.textInverse};
+                }
+              }
+            `
+        }
       }
 
       .euiButtonGroupButton[disabled] {
