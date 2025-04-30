@@ -25,7 +25,7 @@ import {
 
 import {
   useEuiButtonColorCSS,
-  _EuiButtonColor,
+  _EuiExtendedButtonColor,
 } from '../../../global_styling/mixins/_button';
 import { isButtonDisabled } from '../button_display/_button_display';
 
@@ -54,7 +54,7 @@ export interface CommonEuiButtonEmptyProps
    *  - neutral
    *  - risk
    */
-  color?: _EuiButtonColor;
+  color?: _EuiExtendedButtonColor;
   size?: EuiButtonEmptySizes;
   /**
    * Ensure the text of the button sits flush to the left, right, or both sides of its container
