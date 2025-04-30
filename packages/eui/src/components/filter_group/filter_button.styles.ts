@@ -18,6 +18,7 @@ import {
   preventForcedColors,
   euiButtonEmptyColor,
 } from '../../global_styling';
+import { cssSupportsHasWithNextSibling } from '../../global_styling/functions/supports';
 import { euiFormVariables } from '../form/form.styles';
 
 export const euiFilterButtonDisplay = (euiThemeContext: UseEuiTheme) => {
@@ -137,6 +138,14 @@ export const euiFilterButtonStyles = (euiThemeContext: UseEuiTheme) => {
       &::before {
         border: none;
       }
+
+      ${cssSupportsHasWithNextSibling(
+        `
+          &:has(+ :not(&)) {
+            ${logicalCSS('padding-right', '0')}
+          }
+        `
+      )}
     `
     : `
       .euiFilterButton {
@@ -251,7 +260,19 @@ export const euiFilterButtonWrapperStyles = (euiThemeContext: UseEuiTheme) => {
       ${logicalCSS('padding-vertical', euiTheme.border.width.thin)}
     `,
     hasToggle: css`
-      padding: ${isRefreshVariant ? euiTheme.border.width.thin : '0'};
+      ${logicalCSS(
+        'padding-horizontal',
+        isRefreshVariant ? euiTheme.border.width.thin : '0'
+      )}
+
+      /* removes right padding for toggle buttons that have a right divider border */
+      ${cssSupportsHasWithNextSibling(
+        `
+          &:not([class*="withNext"]):has(+ :not(&)) {
+            ${logicalCSS('padding-right', '0')}
+          }
+        `
+      )}
     `,
   };
 };
