@@ -52,8 +52,13 @@ const getPropTableStyles = ({ euiTheme }: UseEuiTheme) => ({
     font-weight: ${euiTheme.font.weight.semiBold};
   `,
   description: css`
-    p {
+    p,
+    ul {
       font-size: var(--eui-font-size-s);
+    }
+
+    p {
+      margin-block-end: var(--eui-size-s);
     }
 
     p:first-child {
