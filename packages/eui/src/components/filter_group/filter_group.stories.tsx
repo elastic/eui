@@ -29,8 +29,9 @@ type Story = StoryObj<EuiFilterGroupProps>;
 export const Playground: Story = {
   render: ({ ...args }) => (
     <EuiFilterGroup {...args}>
+      <EuiFilterButton isToggle>Toggle Filter</EuiFilterButton>
       <EuiFilterButton numFilters={5} hasActiveFilters iconType="arrowDown">
-        Filter
+        Selection Filter
       </EuiFilterButton>
     </EuiFilterGroup>
   ),
