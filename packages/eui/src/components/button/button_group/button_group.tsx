@@ -85,6 +85,11 @@ export type EuiButtonGroupProps = CommonProps & {
   legend: string;
   /**
    * Any of the named color palette options.
+   *
+   * Do not use the following colors for standalone buttons directly,
+   * they exist to serve other components:
+   *  - accent
+   *  - warning
    */
   color?: _EuiButtonColor;
   /**

@@ -20,7 +20,7 @@ import {
   BUTTON_COLORS,
   useEuiButtonColorCSS,
   useEuiButtonFocusCSS,
-  _EuiButtonColor,
+  _EuiExtendedButtonColor,
 } from '../../global_styling/mixins/_button';
 import {
   EuiButtonDisplay,
@@ -29,7 +29,7 @@ import {
 } from './button_display/_button_display';
 
 export const COLORS = BUTTON_COLORS;
-export type EuiButtonColor = _EuiButtonColor;
+export type EuiButtonColor = _EuiExtendedButtonColor;
 
 export const SIZES = ['s', 'm'] as const;
 export type EuiButtonSize = (typeof SIZES)[number];
@@ -42,6 +42,13 @@ interface BaseProps {
   fill?: boolean;
   /**
    * Any of the named color palette options.
+   *
+   * Do not use the following colors for standalone buttons directly,
+   * they exist to serve other components:
+   *  - accent
+   *  - warning
+   *  - neutral
+   *  - risk
    */
   color?: EuiButtonColor;
   /**

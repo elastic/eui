@@ -12,7 +12,7 @@ import { UseEuiTheme } from '../../../services';
 import { logicalSizeCSS } from '../../../global_styling';
 import {
   BUTTON_COLORS,
-  _EuiButtonColor,
+  _EuiExtendedButtonColor,
   euiButtonEmptyColor,
   euiButtonSizeMap,
 } from '../../../global_styling/mixins/_button';
@@ -67,5 +67,5 @@ export const _emptyHoverStyles = (euiThemeContext: UseEuiTheme) =>
         }
       `,
     }),
-    {} as Record<_EuiButtonColor, SerializedStyles>
+    {} as Record<_EuiExtendedButtonColor, SerializedStyles>
   );

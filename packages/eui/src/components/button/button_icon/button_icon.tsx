@@ -29,7 +29,7 @@ import { EuiLoadingSpinner } from '../../loading';
 import {
   useEuiButtonColorCSS,
   useEuiButtonFocusCSS,
-  _EuiButtonColor,
+  _EuiExtendedButtonColor,
 } from '../../../global_styling/mixins/_button';
 import { isButtonDisabled } from '../button_display/_button_display';
 import { euiButtonIconStyles, _emptyHoverStyles } from './button_icon.styles';
@@ -44,8 +44,15 @@ export interface EuiButtonIconProps extends CommonProps {
   iconType: IconType;
   /**
    * Any of the named color palette options.
+   *
+   * Do not use the following colors for standalone buttons directly,
+   * they exist to serve other components:
+   *  - accent
+   *  - warning
+   *  - neutral
+   *  - risk
    */
-  color?: _EuiButtonColor;
+  color?: _EuiExtendedButtonColor;
   'aria-label'?: string;
   'aria-labelledby'?: string;
   isDisabled?: boolean;

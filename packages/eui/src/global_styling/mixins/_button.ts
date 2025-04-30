@@ -19,18 +19,25 @@ import {
   useEuiMemoizedStyles,
 } from '../../services';
 
+/** Tentative usage; these exist only to be used as button directly when used within other components */
+export const SEVERITY_COLORS = ['neutral', 'risk'] as const;
+
 export const BUTTON_COLORS = [
   'text',
   'accent',
   'accentSecondary',
   'primary',
-  'neutral',
   'success',
   'warning',
-  'risk',
   'danger',
 ] as const;
+
+export const EXTENDED_BUTTON_COLORS = [
+  ...BUTTON_COLORS,
+  ...SEVERITY_COLORS,
+] as const;
 export type _EuiButtonColor = (typeof BUTTON_COLORS)[number];
+export type _EuiExtendedButtonColor = (typeof EXTENDED_BUTTON_COLORS)[number];
 
 export const BUTTON_DISPLAYS = ['base', 'fill', 'empty'] as const;
 export type _EuiButtonDisplay = (typeof BUTTON_DISPLAYS)[number];
@@ -46,7 +53,7 @@ export interface _EuiButtonOptions {
  */
 export const euiButtonColor = (
   euiThemeContext: UseEuiTheme,
-  color: _EuiButtonColor | 'disabled'
+  color: _EuiExtendedButtonColor | 'disabled'
 ) => {
   const { euiTheme } = euiThemeContext;
 
@@ -81,7 +88,7 @@ export const euiButtonColor = (
  */
 export const euiButtonFillColor = (
   euiThemeContext: UseEuiTheme,
-  color: _EuiButtonColor | 'disabled'
+  color: _EuiExtendedButtonColor | 'disabled'
 ) => {
   const { euiTheme, highContrastMode } = euiThemeContext;
 
@@ -124,7 +131,7 @@ export const euiButtonFillColor = (
  */
 export const euiButtonEmptyColor = (
   euiThemeContext: UseEuiTheme,
-  color: _EuiButtonColor | 'disabled'
+  color: _EuiExtendedButtonColor | 'disabled'
 ) => {
   let foreground;
   let background;
@@ -157,7 +164,7 @@ export const euiButtonEmptyColor = (
 /**
  * Given the button display type, returns the Emotion based color keys.
  * @param options Button display type
- * @returns An object of `_EuiButtonColor` keys including `disabled`
+ * @returns An object of `_EuiExtendedButtonColor` keys including `disabled`
  */
 export const useEuiButtonColorCSS = (options: _EuiButtonOptions = {}) => {
   const { display = 'base' } = options;
@@ -167,7 +174,7 @@ export const useEuiButtonColorCSS = (options: _EuiButtonOptions = {}) => {
 };
 
 const euiButtonDisplaysColors = (euiThemeContext: UseEuiTheme) => {
-  const COLORS = [...BUTTON_COLORS, 'disabled'] as const;
+  const COLORS = [...EXTENDED_BUTTON_COLORS, 'disabled'] as const;
   type Colors = (typeof COLORS)[number];
 
   const displaysColorsMap = {} as Record<
