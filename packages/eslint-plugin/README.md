@@ -148,13 +148,27 @@ will raise an ESLint report and suggest replacing the `style` attribute with `cs
 
 ## Testing
 
+### Running unit tests
+
+Run unit tests using the following command:
+
+```bash
+yarn test
+```
+
+Unit tests are written using `RuleTester` from `@typescript-eslint/rule-tester`.
+
 ### Against an existing package
 
 To test the local changes to the plugin, you must:
 
-1. Run `yarn pack` in the directory.
-2. In your project's `package.json`, point `@elastic/eslint-plugin-eui` to `file:/path/to/package.tgz`.
-3. Install dependencies: `yarn kbn bootstrap --no-validate`.
+1. Install `yalc` globally if you haven't already: `npm install -g yalc`.
+2. Open a terminal and navigate to this folder: `cd packages/eslint-plugin`
+3. Build the package: `yarn build`
+4. Run `yalc publish` in the plugin's directory to publish it locally.
+5. In your project's directory, run `yalc add @elastic/eslint-plugin-eui` to link the locally published package.
+6. Install dependencies: `yarn` (if you're a Kibana contributor, run `yarn kbn bootstrap --no-validate`).
+7. After making further changes to the plugin, repeat the steps from 3.
 
 ## Publishing
 
