@@ -56,5 +56,5 @@ export const EuiCommentTimeline: FunctionComponent<EuiCommentTimelineProps> = ({
     );
   }
 
-  return <>{iconRender}</>;
+  return <>{iconRender as ReactNode}</>;
 };

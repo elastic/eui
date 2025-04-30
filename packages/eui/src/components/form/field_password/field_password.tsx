@@ -137,7 +137,9 @@ export const EuiFieldPassword: FunctionComponent<EuiFieldPasswordProps> = (
           title={isVisible ? maskPasswordLabel : showPasswordLabel}
           disabled={disabled}
           {...dualToggleProps}
-          onClick={(e) => handleToggle(e, isVisible)}
+          onClick={(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) =>
+            handleToggle(e, isVisible)
+          }
         />
       );
     }

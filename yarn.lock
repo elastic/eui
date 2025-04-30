@@ -7488,7 +7488,7 @@ __metadata:
     tabbable: "npm:^5.3.3"
     terser-webpack-plugin: "npm:^5.3.5"
     text-diff: "npm:^1.0.1"
-    typescript: "npm:4.5.3"
+    typescript: "npm:^5.8.3"
     uglifyjs-webpack-plugin: "npm:^2.2.0"
     unified: "npm:^9.2.2"
     unist-util-visit: "npm:^2.0.3"
