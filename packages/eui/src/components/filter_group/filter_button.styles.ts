@@ -8,26 +8,44 @@
 
 import { css } from '@emotion/react';
 
-import { UseEuiTheme } from '../../services';
+import { isEuiThemeRefreshVariant, UseEuiTheme } from '../../services';
 import {
   logicalCSS,
   mathWithUnits,
   euiTextShift,
   euiTextTruncate,
+  highContrastModeStyles,
+  preventForcedColors,
+  euiButtonEmptyColor,
 } from '../../global_styling';
+import { cssSupportsHasWithNextSibling } from '../../global_styling/functions/supports';
 import { euiFormVariables } from '../form/form.styles';
 
-export const euiFilterButtonDisplay = ({ euiTheme }: UseEuiTheme) => {
+export const euiFilterButtonDisplay = (euiThemeContext: UseEuiTheme) => {
+  const { euiTheme } = euiThemeContext;
+  const isRefreshVariant = isEuiThemeRefreshVariant(
+    euiThemeContext,
+    'buttonVariant'
+  );
+
   return {
     flex: '1 1 auto',
-    minInlineSize: mathWithUnits(euiTheme.size.base, (x) => x * 3),
+    minInlineSize: mathWithUnits(
+      euiTheme.size.base,
+      (x) => x * (isRefreshVariant ? 2.75 : 3)
+    ),
   };
 };
 
 export const euiFilterButtonStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
+  const isRefreshVariant = isEuiThemeRefreshVariant(
+    euiThemeContext,
+    'buttonVariant'
+  );
   const { controlHeight, borderColor } = euiFormVariables(euiThemeContext);
 
+  const selectedSelector = '.euiFilterButton-isSelected';
   const border = `${euiTheme.border.width.thin} solid ${borderColor}`;
 
   // Pseudo elements create borders without affecting width. We also prefer them
@@ -52,13 +70,24 @@ export const euiFilterButtonStyles = (euiThemeContext: UseEuiTheme) => {
     }
   `;
 
-  return {
-    euiFilterButton: css`
-      position: relative;
-      ${euiFilterButtonDisplay(euiThemeContext)}
+  const buttonStyles = isRefreshVariant
+    ? `
+      ${logicalCSS('width', '100%')}
+
+      &:not(${selectedSelector}) {
+        &:hover,
+        &:active {
+          .euiFilterButton__notification[class*="subdued"] {
+            background-color: ${
+              euiTheme.components.filterButtonBadgeBackgroundHover
+            }
+          }
+        }
+      }
+    `
+    : `
       ${logicalCSS('height', controlHeight)}
       border-radius: 0;
-
       ${leftBorder}
       ${bottomBorder}
 
@@ -73,19 +102,96 @@ export const euiFilterButtonStyles = (euiThemeContext: UseEuiTheme) => {
           text-decoration: underline;
         }
       }
+    `;
 
-      &:focus-visible {
-        outline-offset: -${euiTheme.focus.width};
+  const toggleTypeStyles = isRefreshVariant
+    ? `
+      ${euiFilterButtonDisplay(euiThemeContext)};
+
+      ${highContrastModeStyles(euiThemeContext, {
+        forced: `
+          &:is(${selectedSelector}) {
+            ${preventForcedColors(euiThemeContext)}
+              color: ${euiTheme.colors.emptyShade};
+              background-color: ${euiTheme.colors.fullShade};
+          }
+        `,
+      })}
+    `
+    : `
+      font-weight: ${euiTheme.font.weight.medium};
+      padding: 0;
+
+      &:is(${selectedSelector}) {
+        color: ${euiButtonEmptyColor(euiThemeContext, 'text').color};
+        background-color: transparent;
+        font-weight: ${euiTheme.font.weight.bold};
       }
+    `;
+
+  const withNextSelector = isRefreshVariant
+    ? '& + .euiFilterButton__wrapper'
+    : '.euiFilterButton__wrapper:has(&) + .euiFilterButton__wrapper';
+  // handles display of borders between buttons
+  const withNextStyles = isRefreshVariant
+    ? `
+      &::before {
+        border: none;
+      }
+
+      ${cssSupportsHasWithNextSibling(
+        `
+          &:has(+ :not(&)) {
+            ${logicalCSS('padding-right', '0')}
+          }
+        `
+      )}
+    `
+    : `
+      .euiFilterButton {
+        &::before {
+          border: none;
+        }
+      }
+    `;
+
+  return {
+    euiFilterButton: css`
+      ${!isRefreshVariant && euiFilterButtonDisplay(euiThemeContext)};
+      position: relative;
+
+      ${buttonStyles}
     `,
+    buttonType: {
+      default: css`
+        ${isRefreshVariant &&
+        `
+          border-radius: 0;
+
+          &:focus-visible {
+            z-index: 1;
+            outline-offset: -${euiTheme.border.width.thick};
+            border-radius: ${euiTheme.border.radius.small};
+            transition: none;
+          }
+        `}
+      `,
+      toggle: css`
+        &:focus-visible {
+          outline-offset: ${mathWithUnits(euiTheme.focus.width, (x) =>
+            isRefreshVariant ? x / 2 : x * -1
+          )};
+        }
+
+        ${toggleTypeStyles}
+      `,
+    },
     withNext: css`
-      & + .euiFilterButton {
+      ${withNextSelector} {
         ${logicalCSS('margin-left', `-${euiTheme.size.xs}`)}
 
         /* Remove just the left faux border */
-        &::before {
-          display: none;
-        }
+        ${withNextStyles}
       }
     `,
     noGrow: css`
@@ -98,15 +204,96 @@ export const euiFilterButtonStyles = (euiThemeContext: UseEuiTheme) => {
       )}
     `,
     hasActiveFilters: css`
-      font-weight: ${euiTheme.font.weight.bold};
+      font-weight: ${isRefreshVariant
+        ? euiTheme.font.weight.regular
+        : euiTheme.font.weight.bold};
     `,
   };
 };
 
-export const euiFilterButtonChildStyles = ({ euiTheme }: UseEuiTheme) => {
+export const euiFilterButtonWrapperStyles = (euiThemeContext: UseEuiTheme) => {
+  const { euiTheme } = euiThemeContext;
+  const isRefreshVariant = isEuiThemeRefreshVariant(
+    euiThemeContext,
+    'buttonVariant'
+  );
+
+  const { borderColor } = euiFormVariables(euiThemeContext);
+  const border = `${euiTheme.border.width.thin} solid ${borderColor}`;
+
+  // Pseudo elements create borders without affecting width. We also prefer them
+  // over box-shadow for Windows high contrast theme compatibility
+  const leftBorder = `
+    &::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      ${logicalCSS('border-left', border)}
+
+      pointer-events: none;
+    }
+  `;
+  // Bottom borders are needed for responsive flex-wrap behavior
+  const bottomBorder = `
+    &::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      ${logicalCSS('border-bottom', border)}
+      pointer-events: none;
+    }
+  `;
+
+  return {
+    wrapper: css`
+      ${euiFilterButtonDisplay(euiThemeContext)}
+      position: relative;
+      display: flex;
+      align-items: center;
+
+      ${isRefreshVariant &&
+      `
+        ${leftBorder}
+        ${bottomBorder}
+      `}
+
+      ${logicalCSS('padding-vertical', euiTheme.border.width.thin)}
+    `,
+    hasToggle: css`
+      ${logicalCSS(
+        'padding-horizontal',
+        isRefreshVariant ? euiTheme.border.width.thin : '0'
+      )}
+
+      /* removes right padding for toggle buttons that have a right divider border */
+      ${cssSupportsHasWithNextSibling(
+        `
+          &:not([class*="withNext"]):has(+ :not(&)) {
+            ${logicalCSS('padding-right', '0')}
+          }
+        `
+      )}
+    `,
+  };
+};
+
+export const euiFilterButtonChildStyles = (euiThemeContext: UseEuiTheme) => {
+  const { euiTheme } = euiThemeContext;
+  const isRefreshVariant = isEuiThemeRefreshVariant(
+    euiThemeContext,
+    'buttonVariant'
+  );
+
   return {
     content: {
-      euiFilterButton__content: css``,
+      euiFilterButton__content: css`
+        ${isRefreshVariant &&
+        `
+          .euiThemeProvider {
+            display: inline-flex;
+          }
+        `}
+      `,
       hasIcon: css`
         /* Align the dropdown arrow/caret to the right */
         & > .euiIcon:last-child {
@@ -122,13 +309,23 @@ export const euiFilterButtonChildStyles = ({ euiTheme }: UseEuiTheme) => {
       hasNotification: css`
         ${logicalCSS(
           'min-width',
-          mathWithUnits(euiTheme.size.base, (x) => x * 3)
+          mathWithUnits(
+            euiTheme.size.base,
+            (x) => x * (isRefreshVariant ? 2 : 3)
+          )
         )}
       `,
     },
     notification: {
       euiFilterButton__notification: css`
         cursor: inherit;
+        /* ensures correct styles in forced high contrast mode as its wrapper uses forced-color-adjust: none  */
+        forced-color-adjust: auto;
+
+        /* uses & to ensure override by same selector specificity instead of using !important */
+        & {
+          transition: none;
+        }
       `,
       disabled: css`
         opacity: 0.5;
