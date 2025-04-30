@@ -11,7 +11,7 @@ exports[`EuiSearchBarFilters render - with filters 1`] = `
   class="euiFilterGroup emotion-euiFilterGroup-uncompressed"
 >
   <div
-    class="euiFilterButton__wrapper css-15tw9ul-wrapper-hasToggle"
+    class="euiFilterButton__wrapper css-10m1aro-wrapper-hasToggle"
   >
     <button
       aria-pressed="false"

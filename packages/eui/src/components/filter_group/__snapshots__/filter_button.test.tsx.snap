@@ -202,7 +202,7 @@ exports[`EuiFilterButton props type renders 1`] = `
 
 exports[`EuiFilterButton props withNext renders 1`] = `
 <div
-  class="euiFilterButton__wrapper css-1r9a5wl-wrapper-withNext"
+  class="euiFilterButton__wrapper css-ey2vw6-wrapper-withNext"
 >
   <button
     class="euiButtonEmpty euiFilterButton emotion-euiButtonDisplay-euiButtonEmpty-m-empty-text-euiFilterButton-default"
