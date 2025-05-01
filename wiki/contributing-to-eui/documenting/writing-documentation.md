@@ -17,6 +17,7 @@
   - [Dos and Don'ts](#dos-and-donts)
   - [Figma embed](#figma-embed)
   - [Props table](#props-table)
+  - [Blockquotes](#blockquotes)
 
 Code for the Elastic UI [documentation site](https://eui.elastic.co) can be found in the `packages/website` directory. The site is built with [Docusaurus](https://docusaurus.io/).
 
@@ -338,3 +339,11 @@ If more than one table is needed because the component has many exports, place o
     <PropTable definition={docgen.EuiPageSidebar} />
 
 To customize the table `PropTable` also takes a `headingLevel` prop (h1–h6) and a `showTitle` boolean.
+
+### Blockquotes
+
+Must be preceeded by two spaces:
+
+```
+  > Some quote here
+```
