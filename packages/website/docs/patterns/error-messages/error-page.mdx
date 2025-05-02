@@ -2,6 +2,9 @@
 sidebar_position: 3
 ---
 
+import error403 from './images/error-page-403.webp';
+import error404 from './images/error-page-403.webp';
+
 # Error page
 
 import Tabs from '@theme/Tabs';
@@ -10,10 +13,19 @@ import TabItem from '@theme/TabItem';
 Use an error page when it is not possible to show the user the page they expected to see.
 
 **403 Example**
-![An empty prompt component which reads, 403, you can't access this page. You don't have permission, if you think this is a mistake, contact your administrator: admin@example.co.](./images/error-page-403.webp)
+<img
+  src={error403}
+  alt="An empty prompt component which reads, 403, you can't access this page. You don't have permission, if you think this is a mistake, contact your administrator: admin@example.co."
+  style={{ maxWidth: '480px' }}
+/>
+
 
 **404 Example**
-![An empty prompt component which reads, 404, we can't find the page you're looking for. If you typed the URL, check it's correct. If you clicked a link, contact your administrator: admin@example.co.](./images/error-page-404.webp)
+<img
+  src={error404}
+  alt="An empty prompt component which reads, 404, we can't find the page you're looking for. If you typed the URL, check it's correct. If you clicked a link, contact your administrator: admin@example.co."
+  style={{ maxWidth: '480px' }}
+/>
 
 ## When to use this pattern
 
