@@ -34,26 +34,37 @@ Having too many fields on the page at once increases the cognitive load and the 
 
 If something is truly optional, and there is a definite need to include it, add (optional) to the label.
 
-Good example:
-> Occupation (optional)
+**Good example**:<br/>
+:::tip
+Occupation (optional)
+:::
 
-Bad example:
-> First name *
+
+**Bad example:**<br/>
+:::danger
+First name *
+:::
 
 ### Avoid guesswork
 For interactions which may not be obvious, set the expectations for the user.
 
-For radio buttons, you might say:
+For **radio buttons**, you might say:
+:::tip
 - choose one
 - select one
+:::
 
-For checkboxes, you might say:
+For **checkboxes**, you might say:
+:::tip
 - choose as many as you like
 - select all that apply
+:::
 
-For a sortable list, you might say:
+For a **sortable list**, you might say:
+:::tip
 - drag the items to reorder the list
 - use the drag handles to reorder the items
+:::
 
 ### Avoid rigid formats
 Always expect users to enter information in different formats. Some will use uppercase, some will use lowercase, some will use a mix of both. Some may also include special characters or spaces.
@@ -70,85 +81,37 @@ For example, if you want the user to enter a percentage as just a number, they s
 
 We should work hard behind the scenes to accept the user's input in whatever format they entered. If we can’t, we should be specific about why.
 
-A good example of a sanitisation and validation process:
-<ol>
-  <li>
-    <span>validate if the input contains information</span>
-    <ol>
-      <li>
-        <span>
-          if it does, goto step 2
-        </span>
-      </li>
-      <li>
-        <span>
-          if it does not, highlight an error and tell the user it cannot be blank
-        </span>
-      </li>
-    </ol>
-  </li>
-  <li>
-    <span>
-      sanitize, remove any non-numeric characters, like letters, symbols and whitespace
-    </span>
-  </li>
-  <li>
-    <span>
-      validate the remaining number is greater than 0
-    </span>
-    <ol>
-      <li>
-        <span>
-          if it is, goto step 4
-        </span>
-      </li>
-      <li>
-        <span>
-          if it’s not, highlight an error and tell the user the number must be more more than 0
-        </span>
-      </li>
-    </ol>
-  </li>
-  <li>
-    <span>
-      validate the remaining number is less than than 100
-    </span>
-    <ol>
-      <li>
-        <span>
-          if it is, accept the input as a valid percentage
-        </span>
-      </li>
-      <li>
-        <span>
-          if it’s not, tell the user the number must be less than 100
-        </span>
-      </li>
-    </ol>
-  </li>
-</ol>
+**A good example of a sanitisation and validation process:**
+:::tip
+1. validate if the input contains information
+   - if it does, goto step 2
+   - if it does not, highlight an error and tell the user it cannot be blank
+2. sanitize, remove any non-numeric characters, like letters, symbols and whitespace
+3. validate the remaining number is greater than 0
+   - if it is, goto step 4  
+   - if it’s not, highlight an error and tell the user the number must be more more than 0
+4. validate the remaining number is less than than 100
+   - if it is, accept the input as a valid percentage
+   - if it’s not, tell the user the number must be less than 100
+:::
 
-A bad example of a sanitisation and validation process:
+
+**A bad example of a sanitisation and validation process:**
+:::danger
 1. validate if the input contains information
 2. validate if the input is a number
 3. validate the number is greater than 0
 4. validate the number is less than than 100
 5. if any of the checks failed, tell the user their input is invalid
+:::
 
 Where a specific format is required, follow [content patterns](../help-content.mdx#fields-and-settings) and provide help text to help the user fill it out correctly the first time around.
 
-For example:
-<dl>
-  <dt>
-    Label:
-  </dt>
-  <dd>
-    Temporary key
-  </dd>
-  <dt>
-    Help text:
-  </dt>
-  <dd>
-    It’s in your welcome email. For example: ES12345
-  </dd>
-</dl>
+**For example:**
+:::tip
+**Label:**<br/>
+Temporary key
+
+**Help text:**<br/>
+It’s in your welcome email. For example: ES12345
+:::

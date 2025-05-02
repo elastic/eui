@@ -13,9 +13,11 @@ Error warnings are used to tell users about unrelated errors in another part of 
 
 An unrelated error should be non-intrusive, but the user should still be told so they can make an informed decision on whether to continue or not.
 
-Example:
-> **Slack integration error**
-> You won’t receive any Slack notifications about this environment until it’s fixed.
+**Example:**<br/>
+:::tip
+**Slack integration error**<br/>
+You won’t receive any Slack notifications about this environment until it’s fixed.
+:::
 
 ## When not to use this pattern
 
@@ -30,7 +32,3 @@ Use the [EuiToast](../../components/display/toast/index.mdx#danger) component, w
 - `iconType="alert"`
 
 Use the `title` prop to tell the user what went wrong, and `<p>` tags to add any additional context.
-
-## Help improve this pattern
-
-To help make sure that this page is useful, relevant and up to date, you can join our [#ux&#8209;wg&#8209;patterns](https://elastic.slack.com/archives/C049ADQE99S) discussions on Slack.

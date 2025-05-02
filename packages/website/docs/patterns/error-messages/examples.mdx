@@ -9,10 +9,11 @@ The server can’t process the information because it’s not complete or is in 
 
 Use the [error page pattern](./error-page.mdx) for `400` errors.
 
-Good example:
-> **You must fix the following**
-> Your email must contain an @ character
-> The date you registered must be in the past
+**Good example:**
+:::tip
+**You must fix the following**<br/>
+Your email must contain an @ character. The date you registered must be in the past
+:::
 
 ## 401: Unauthorized
 Do not use error pages for authentication errors (`401` error codes). Instead, if the user is logged out automatically, actively redirect them to the login page when it happens and explain why they were logged out using the [error banner pattern](./error-banners.mdx).
@@ -22,87 +23,104 @@ The user doesn’t have permissions to do what they’re trying to do.
 
 Use the [error page pattern](./error-page.mdx) for `403` errors.
 
-Good example:
-> **You can’t access this page**
-> You don’t have permission. If you think this is a mistake, contact your administrator: [admin@example.co](#).
+**Good example:**
+:::tip
+**You can’t access this page**<br/>
+You don’t have permission. If you think this is a mistake, contact your administrator: [admin@example.co](#).
+:::
 
 ## 404: Not found
 The page is missing. This is when the user typed a bad URL or clicked on a broken link. It’s different from `410 Gone` where we know that the page has been deleted.
 
 Use the [error page pattern](./error-page.mdx) for `404` errors.
 
-Good example:
-> **We can’t find the page you’re looking for**
-> If you typed in the URL, check it’s correct. If you clicked a link, contact your administrator and tell them it’s broken: [admin@example.co](#).
+**Good example:**
+:::tip
+**We can’t find the page you’re looking for**<br/>
+If you typed in the URL, check it’s correct. If you clicked a link, contact your administrator and tell them it’s broken: [admin@example.co](#).
+:::
 
 ## 408: Request timeout
 The server did not respond after an acceptable amount of time.
 
 Use the [error page pattern](./error-page.mdx) for `408` errors.
 
-Good example:
-> **The page took too long to load**
-> This is probably temporary. Wait 1 minute and try again. If this keeps happening, contact your administrator: admin@example.co.
+**Good example:**
+:::tip
+**The page took too long to load**<br/>
+This is probably temporary. Wait 1 minute and try again. If this keeps happening, contact your administrator: admin@example.co.
+:::
 
 ## 410: Gone
 Similar to `404`, but instead of being missing we know it’s been deleted.
 
 Use the [error page pattern](./error-page.mdx) for `404` errors.
 
-Good example:
-> **This page has been permanently deleted**
-> You can go back, or go home.
+**Good example:**
+:::tip
+**This page has been permanently deleted**<br/>
+You can go back, or go home.
+:::
 
 ## 429: Too many requests
 The user has tried too many actions in a short space of time.
 
 Use the [error page pattern](./error-page.mdx) for `429` errors.
 
-Good example:
-> **We’ve temporary limited what you can do**
-> We have a limit of 30 actions per minute, per user. Wait 1 minute and then try again. If this keeps happening contact your administrator: [admin@example.co](#).
+**Good example:**
+:::tip
+**We’ve temporary limited what you can do**<br/>
+We have a limit of 30 actions per minute, per user. Wait 1 minute and then try again. If this keeps happening contact your administrator: [admin@example.co](#).
+:::
 
 ## 500: Internal server error
 A generic status code, usually used when the application crashes for some unknown reason. It is acceptable to apologize when handling a `500` error.
 
 Use the [error page pattern](./error-page.mdx) for `500` errors.
 
-Good example:
-> **Sorry, there’s a problem with the application**
-> We aren’t sure what went wrong. If this keeps happening, contact your administrator: admin@example.co with the error code: 0x000345.
-
+**Good example:**
+:::tip
+**Sorry, there’s a problem with the application**<br/>
+We aren’t sure what went wrong. If this keeps happening, contact your administrator: admin@example.co with the error code: 0x000345.
+:::
 ## 502: Bad gateway
 The server reached out to another system and got a response, but could not complete the action for some reason..
 
 Use the [error banner pattern](./error-banners.mdx) for `502` errors.
 
-Good example:
-> **We could not save your data to AWS**
-> We don’t know what went wrong. You can try again. If this keeps happening, contact your administrator: [admin@example.co](#).
-
+**Good example:**
+:::tip
+**We could not save your data to AWS**<br/>
+We don’t know what went wrong. You can try again. If this keeps happening, contact your administrator: [admin@example.co](#).
+:::
 ## 503: Service unavailable
 The server can’t do what you asked it to do. It may be overloaded or offline for maintenance. It is acceptable to apologize when handling a `503` error.
 
 Use the [error page pattern](./error-page.mdx) for `503` errors.
 
-Good example:
-> **Sorry, there’s a problem with the application**
-> It might just be busy. Wait for 1 minute and try again. If this keeps happening, contact your administrator: [admin@example.co](#).
-
+**Good example:**
+:::tip
+**Sorry, there’s a problem with the application**<br/>
+It might just be busy. Wait for 1 minute and try again. If this keeps happening, contact your administrator: [admin@example.co](#).
+:::
 ## 504: Gateway timeout
 The server reached out to another system, but the other system took too long to respond.
 
 Use the [error banner pattern](./error-banners.mdx) for `504` errors.
 
-Good example:
-> **We could not save your data to AWS**
-> AWS took too long to respond. It might just be busy. Wait 1 minute and try again. If this keeps happening, contact your administrator: [admin@example.co](#).
+**Good example:**
+:::tip
+**We could not save your data to AWS**<br/>
+AWS took too long to respond. It might just be busy. Wait 1 minute and try again. If this keeps happening, contact your administrator: [admin@example.co](#).
+:::
 
 ## 507: Insufficient storage
 The storage space on the server has run out.
 
 Use the [error banner pattern](./error-banners.mdx) for `507` errors.
 
-Good example:
-> **We could not save your dashboard**
-> Your storage is full. You can delete some data and try again, or you can contact your administrator to upgrade your storage: [admin@example.co](#).
+**Good example:**
+:::tip
+**We could not save your dashboard**<br/>
+ur storage is full. You can delete some data and try again, or you can contact your administrator to upgrade your storage: [admin@example.](#).
+:::
