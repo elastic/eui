@@ -24,7 +24,7 @@ export const BorderRadiiTable = () => {
       render={(item) => (
         <EuiColorPickerSwatch
           showToolTip={false}
-          color={euiTheme.colors.emptyShade}
+          color={euiTheme.colors.backgroundBasePlain}
           css={css`
             border: ${euiTheme.border.thick};
             border-radius: ${item.value};

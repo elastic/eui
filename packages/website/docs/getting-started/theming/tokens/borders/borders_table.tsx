@@ -25,7 +25,7 @@ export const BordersTable = () => {
       render={(item) => (
         <EuiColorPickerSwatch
           showToolTip={false}
-          color={euiTheme.colors.emptyShade}
+          color={euiTheme.colors.backgroundBasePlain}
           css={css`
             border: ${item.value};
           `}
