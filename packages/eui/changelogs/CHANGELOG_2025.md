@@ -1,3 +1,19 @@
+## [`v102.1.0`](https://github.com/elastic/eui/releases/v102.1.0)
+
+- Update `EuiDataGrid` to use `expand` glyph ([#8646](https://github.com/elastic/eui/pull/8646))
+
+**Accessibility**
+
+- Updated `EuiTableHeaderCell` to output `nameTooltip` directly on sortable cell elements, ensuring tooltips appear on focus ([#8644](https://github.com/elastic/eui/pull/8644))
+- Improved the accessibility of `EuiColorPicker` by: ([#8639](https://github.com/elastic/eui/pull/8639))
+  - preventing duplicate color output for screen readers
+  - adding tooltips with visual color labels for the selected colors on the saturation and hue sliders
+  - updated accessible labels and announcements to be more descriptive
+
+**Dependency updates**
+
+- Updated `typescript` to v5.8.3 ([#8626](https://github.com/elastic/eui/pull/8626))
+
 ## [`v102.0.0`](https://github.com/elastic/eui/releases/v102.0.0)
 
 - Added semantic severity color tokens: ([#8601](https://github.com/elastic/eui/pull/8601))
