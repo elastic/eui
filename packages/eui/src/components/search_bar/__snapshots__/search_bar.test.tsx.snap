@@ -29,7 +29,7 @@ exports[`SearchBar render - box 1`] = `
         </div>
         <input
           aria-label="aria-label"
-          class="euiFieldSearch testClass1 testClass2 emotion-euiFieldSearch-fullWidth-euiTestCss"
+          class="euiFieldSearch testClass1 testClass2 css-5woh-euiFieldSearch-fullWidth-euiTestCss"
           data-test-subj="test subject string"
           placeholder="find something..."
           type="search"

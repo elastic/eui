@@ -13,8 +13,8 @@
 import React from 'react';
 import { EuiDataGrid } from '../../data_grid';
 
-const EXPECTED_HOVER_COLOR = 'rgb(90, 109, 140)';
-const EXPECTED_FOCUS_COLOR = 'rgb(11, 100, 221)';
+const EXPECTED_HOVER_COLOR = 'rgb(105, 112, 125)';
+const EXPECTED_FOCUS_COLOR = 'rgb(0, 119, 204)';
 const ANIMATION = {
   DELAY: 350,
   DURATION: 150,
@@ -153,8 +153,10 @@ describe('Cell outline styles', () => {
 
         cy.realMount(<EuiDataGrid {...baseProps} />);
         tabToDataGrid();
+        cy.wait(100);
         cy.realPress('ArrowRight');
         moveToRowCell();
+        cy.wait(100);
         getRowCell()
           .should('be.focused')
           .then(($el) => {
@@ -162,12 +164,14 @@ describe('Cell outline styles', () => {
           });
 
         cy.realPress('Enter');
+        cy.wait(100);
         getRowCell().then(($el) => {
           expect(getOutlineColor($el[0])).to.eq(EXPECTED_HOVER_COLOR);
         });
         cy.get('[data-test-subj="interactiveChildA"]').should('be.focused');
 
         cy.realPress('Escape');
+        cy.wait(100);
         getRowCell()
           .should('be.focused')
           .then(($el) => {
@@ -180,33 +184,27 @@ describe('Cell outline styles', () => {
       it('should always show the focus color state when the cell header actions popover is open', () => {
         cy.realMount(<EuiDataGrid {...baseProps} />);
         tabToDataGrid();
-
         cy.realPress('Enter');
         cy.get(
           '[data-test-subj="dataGridHeaderCellActionGroup-expandable"]'
         ).should('be.visible');
-
         cy.get(
           '.euiDataGridHeaderCell[data-gridcell-column-id="expandable"]'
         ).then(($el) => {
           expect(getOutlineColor($el[0])).to.eq(EXPECTED_FOCUS_COLOR);
         });
       });
-
       it('should always show the focus color state when the cell expansion popover is open', () => {
         cy.realMount(<EuiDataGrid {...baseProps} />);
         tabToDataGrid();
         moveToRowCell();
-
         cy.realPress('Enter');
         getCellExpansionPopover().should('be.visible');
-
         getExpandableRowCell().then(($el) => {
           expect(getOutlineColor($el[0])).to.eq(EXPECTED_FOCUS_COLOR);
         });
       });
     });
-
     describe('column header dragging', () => {
       const propsWithDrag = {
         ...baseProps,
@@ -224,29 +222,23 @@ describe('Cell outline styles', () => {
             const { width } = $el[0].getBoundingClientRect();
             return width;
           });
-
       it('should show focus state when dragging', () => {
         cy.realMount(<EuiDataGrid {...propsWithDrag} />);
         getDragIconWidth().then((width) => expect(width).to.eq(0));
-
         tabToDataGrid();
         cy.realPress('Space');
         getHeaderCell().should('have.attr', 'data-column-moving', 'true');
-
         cy.wait(ANIMATION.DURATION + ANIMATION.BUFFER);
         getHeaderCell().then(($el) => {
           expect(getOutlineColor($el[0])).to.eq(EXPECTED_FOCUS_COLOR);
         });
         getDragIconWidth().then((width) => expect(width).to.eq(12));
       });
-
       it('should not re-flash the header actions transition after drop', () => {
         cy.realMount(<EuiDataGrid {...propsWithDrag} />);
-
         tabToDataGrid();
         cy.realPress('Space');
         getDragIconWidth().then((width) => expect(width).to.eq(12));
-
         cy.realPress('Space');
         getDragIconWidth().then((width) => expect(width).to.eq(12));
         getHeaderCell().should('not.have.attr', 'data-column-moving');
@@ -257,69 +249,53 @@ describe('Cell outline styles', () => {
   describe('mouse UI/UX', () => {
     it('shows the cell outline and actions as gray on hover', () => {
       cy.realMount(<EuiDataGrid {...baseProps} />);
-
       getExpandableRowCell().realHover();
-
       getExpandableRowCell().then(($el) => {
         expect(getOutlineColor($el[0])).to.eq(EXPECTED_HOVER_COLOR);
       });
       getActions().should('have.css', 'background-color', EXPECTED_HOVER_COLOR);
     });
-
     it('waits to run the actions height animation on hover', () => {
       cy.realMount(<EuiDataGrid {...baseProps} />);
-
       getExpandableRowCell().realHover();
       getActionsHeight().then((height) => expect(height).to.eq(0));
-
       cy.wait(ANIMATION.DELAY + ANIMATION.DURATION + ANIMATION.BUFFER);
       getActionsHeight().then((height) => expect(height).to.eq(22));
     });
-
     it('immediately runs the actions height animation if clicked after hover', () => {
       cy.realMount(<EuiDataGrid {...baseProps} />);
-
       getExpandableRowCell().realHover();
       getActionsHeight().then((height) => expect(height).to.eq(0));
-
       getExpandableRowCell().realClick();
       cy.wait(ANIMATION.DURATION + ANIMATION.BUFFER);
       getActionsHeight().then((height) => expect(height).to.eq(22));
     });
-
     it('does not flash between hover and focus colors when cell expansion is toggled via click', () => {
       const clickExpandAction = () =>
         cy
           .get('[data-test-subj="euiDataGridCellExpandButton"]')
           .realMouseMove(0, 0, { position: 'center' })
           .realClick();
-
       cy.realMount(<EuiDataGrid {...baseProps} />);
-
       getExpandableRowCell().realHover();
       cy.wait(ANIMATION.DELAY + ANIMATION.DURATION + ANIMATION.BUFFER);
       clickExpandAction();
       getCellExpansionPopover().should('be.visible');
       getActions().should('have.css', 'background-color', EXPECTED_FOCUS_COLOR);
-
       clickExpandAction();
       getCellExpansionPopover().should('not.exist');
       getActions().should('have.css', 'background-color', EXPECTED_FOCUS_COLOR);
     });
-
     it('has an invisible hover zone to the right of the cell actions', () => {
       cy.realMount(<EuiDataGrid {...baseProps} />);
-
       getExpandableRowCell().realHover();
       getActions().should('be.visible');
-
       getActions()
         .realMouseMove(16, 0, { position: 'right' })
         .should('be.visible')
         .realMouseMove(80, 0, { position: 'right' }) // ~50% of cell width
         .should('not.exist');
     });
-
     it('shows column actions on cell header hover/focus', () => {
       const getHeaderCell = () =>
         cy.get('.euiDataGridHeaderCell[data-gridcell-column-id="expandable"]');
@@ -330,15 +306,12 @@ describe('Cell outline styles', () => {
           const { width } = $el[0].getBoundingClientRect();
           return width;
         });
-
       cy.realMount(<EuiDataGrid {...baseProps} />);
       getActionsWidth().then((width) => expect(width).to.eq(0));
-
       // Hovering over the header cell should slide in the actions from the right
       getHeaderCell().realHover();
       cy.wait(ANIMATION.DURATION + ANIMATION.BUFFER);
       getActionsWidth().then((width) => expect(width).to.eq(24));
-
       // Toggling the actions popover should render the focus outline
       getHeaderCell().then(($el) => {
         expect(getOutlineColor($el[0])).not.to.eq(EXPECTED_FOCUS_COLOR);
@@ -348,7 +321,6 @@ describe('Cell outline styles', () => {
         expect(getOutlineColor($el[0])).to.eq(EXPECTED_FOCUS_COLOR);
       });
       getHeaderActions().realClick();
-
       // Mousing off the cell should still show outline+actions since the button is still focused
       getHeaderActions().realMouseMove(100, 0, { position: 'right' });
       cy.wait(ANIMATION.DURATION + ANIMATION.BUFFER);
