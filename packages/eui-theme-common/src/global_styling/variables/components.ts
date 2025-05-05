@@ -10,7 +10,7 @@ import {
   ColorModeSwitch,
   StrictColorModeSwitch,
 } from '../../services/theme/types';
-import { _EuiThemeButtonColors } from './buttons';
+import { _EuiThemeButton } from './buttons';
 import { _EuiThemeForm, _EuiThemeFormColors } from './forms';
 
 export type _EuiThemeComponentColors = {
@@ -70,6 +70,8 @@ export type _EuiThemeComponentColors = {
   headerDarkBackground: ColorModeSwitch;
   headerDarkSearchBorderColor: ColorModeSwitch;
   headerDarkSectionItemBackgroundFocus: ColorModeSwitch;
+
+  filterButtonBadgeBackgroundHover: ColorModeSwitch;
 
   filterSelectItemBackgroundFocusDisabled: ColorModeSwitch;
 
@@ -138,7 +140,7 @@ export type _EuiThemeComponentColors = {
 };
 
 export type _EuiThemeComponents = {
-  buttons: StrictColorModeSwitch<_EuiThemeButtonColors>;
+  buttons: _EuiThemeButton;
   forms: _EuiThemeForm & StrictColorModeSwitch<_EuiThemeFormColors>;
   /**
    * internal-only key that holds temporary tokens used while migrating themes

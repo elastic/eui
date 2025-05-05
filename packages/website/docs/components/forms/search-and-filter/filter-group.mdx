@@ -13,6 +13,8 @@ Add the prop `withNext` to remove the border between it and the next EuiFilterBu
 
 Set `hasActiveFilters` to true when the filter is active.
 
+Use `isToggle` to change the visual and functional type of the button element that's being rendered from a regular button to a toggle button.
+
 ```tsx interactive
 import React, { useState } from 'react';
 import { EuiFilterGroup, EuiFilterButton } from '@elastic/eui';
@@ -38,19 +40,23 @@ export default () => {
 
   return (
     <EuiFilterGroup>
-      <EuiFilterButton hasActiveFilters={isFilterOn} onClick={toggleFilter}>
+      <EuiFilterButton hasActiveFilters={isFilterOn} isSelected={isFilterOn} onClick={toggleFilter} isToggle>
         Single filter
       </EuiFilterButton>
       <EuiFilterButton
         withNext
         hasActiveFilters={isOnFilterOn}
+        isSelected={isOnFilterOn}
         onClick={toggleOnFilter}
+        isToggle
       >
         On
       </EuiFilterButton>
       <EuiFilterButton
         hasActiveFilters={isOffFilterOn}
+        isSelected={isOffFilterOn}
         onClick={toggleOffFilter}
+        isToggle
       >
         Off
       </EuiFilterButton>
@@ -254,22 +260,28 @@ export default () => {
       <EuiFilterButton
         grow={false}
         hasActiveFilters={isFilterOn}
+        isSelected={isFilterOn}
         onClick={toggleFilter}
+        isToggle
       >
         Filter
       </EuiFilterButton>
       <EuiFilterButton
         withNext
         grow={false}
-        hasActiveFilters={isOnFilterOn}
+        hasActiveFilters={isFilterOn}
+        isSelected={isOnFilterOn}
         onClick={toggleOnFilter}
+        isToggle
       >
         On
       </EuiFilterButton>
       <EuiFilterButton
         grow={false}
-        hasActiveFilters={isOffFilterOn}
+        hasActiveFilters={isFilterOn}
+        isSelected={isOffFilterOn}
         onClick={toggleOffFilter}
+        isToggle
       >
         Off
       </EuiFilterButton>
@@ -288,8 +300,10 @@ export default () => {
       </EuiPopover>
       <EuiFilterButton
         numFilters={12}
+        isSelected={isFilterOn}
         hasActiveFilters={isFilterOn}
         onClick={toggleFilter}
+        isToggle
       >
         Filter with a very long name
       </EuiFilterButton>

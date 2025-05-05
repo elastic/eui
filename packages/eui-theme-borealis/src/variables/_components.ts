@@ -17,11 +17,10 @@ import {
   dark_background_colors,
   dark_border_colors,
 } from './colors/_colors_dark';
-
+import { border_colors } from './colors/_colors_light';
+import { colorVis } from './colors/_colors_vis';
 import { buttons } from './_buttons';
 import { forms } from './_forms';
-import { colorVis } from './colors/_colors_vis';
-import { border_colors } from './colors/_colors_light';
 
 const component_colors: _EuiThemeComponentColors = {
   badgeBackground: computed(
@@ -53,9 +52,8 @@ const component_colors: _EuiThemeComponentColors = {
   bottomBarBackground: SEMANTIC_COLORS.plainDark,
 
   buttonGroupBackgroundDisabledSelected: computed(
-    ([backgroundBaseFormsControlDisabled]) =>
-      backgroundBaseFormsControlDisabled,
-    ['colors.backgroundBaseFormsControlDisabled']
+    ([backgroundBaseDisabled]) => backgroundBaseDisabled,
+    ['colors.backgroundBaseDisabled']
   ),
   buttonGroupBorderColor: computed(
     ([borderBasePlain]) => borderBasePlain,
@@ -65,10 +63,7 @@ const component_colors: _EuiThemeComponentColors = {
     ([borderBasePlain]) => borderBasePlain,
     ['colors.borderBasePlain']
   ),
-  buttonGroupFocusColor: computed(
-    ([textPrimary]) => textPrimary,
-    ['colors.textPrimary']
-  ),
+  buttonGroupFocusColor: SEMANTIC_COLORS.plainDark,
 
   codeBackground: computed(
     ([backgroundBaseHighlighted]) => backgroundBaseHighlighted,
@@ -143,6 +138,8 @@ const component_colors: _EuiThemeComponentColors = {
     ([backgroundLightSuccess]) => backgroundLightSuccess,
     ['colors.backgroundLightSuccess']
   ),
+
+  filterButtonBadgeBackgroundHover: SEMANTIC_COLORS.shade25,
 
   filterSelectItemBackgroundFocusDisabled: computed(
     ([backgroundBaseDisabled]) => backgroundBaseDisabled,
@@ -332,6 +329,8 @@ export const components: _EuiThemeComponents = {
   DARK: {
     ...component_colors,
 
+    buttonGroupFocusColor: SEMANTIC_COLORS.plainLight,
+
     codeInlineColor: colorVis.euiColorVisAsTextDark6,
     codeStringColor: colorVis.euiColorVisAsTextDark2,
     codeTagColor: colorVis.euiColorVisAsTextDark1,
@@ -344,6 +343,8 @@ export const components: _EuiThemeComponents = {
     codeSectionColor: colorVis.euiColorVisAsTextDark3,
     codeAdditionColor: colorVis.euiColorVisAsTextDark0,
     codeDeletionColor: colorVis.euiColorVisAsTextDark3,
+
+    filterButtonBadgeBackgroundHover: SEMANTIC_COLORS.shade105,
 
     loadingSpinnerBorder: dark_border_colors.borderBasePlain,
 
