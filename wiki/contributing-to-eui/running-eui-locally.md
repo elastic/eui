@@ -1,12 +1,12 @@
 # Setting up and running EUI locally
 
-The below instructions run EUI's [documentation site](https://eui.elastic.co/) locally, with any changes made in `src/` reflected. On local, EUI's favicon will be gray instead of colored.
+The below instructions run EUI's [documentation site](https://eui.elastic.co/) locally, with any changes made in `src/` reflected.
 
 > [!IMPORTANT]
 > This repository is a monorepo, meaning that it contains sources of multiple packages within a single git repository. You can find all packages in the [`packages`](../../packages) directory.
 > When dealing with EUI ([`@elastic/eui`](https://www.npmjs.com/package/@elastic/eui) package), most of the work will be done from within the [`packages/eui`](../../packages/eui) directory.
 
-## Set up
+## Setup
 
 ### Node
 
@@ -57,6 +57,12 @@ If you're on an Apple arm64 machine and receive an error on `yarn` about Puppete
 ### Storybook
 
 This is the recommended way to work with components locally.
+
+If running for the first time, build dependant workspaces:
+
+```shell
+yarn build:workspaces
+```
 
 You can run Storybook with the following command:
 
