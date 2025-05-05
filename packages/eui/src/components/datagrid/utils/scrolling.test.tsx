@@ -316,7 +316,7 @@ describe('useScrollCellIntoView', () => {
       ).result.current;
 
       scrollCellIntoView({ rowIndex: 1, colIndex: 0 });
-      expect(scrollTo).toHaveBeenCalledWith({ scrollTop: 50, scrollLeft: 0 });
+      expect(scrollTo).toHaveBeenCalledWith({ scrollTop: 29, scrollLeft: 0 });
     });
 
     it('accounts for the sticky header', () => {
@@ -330,7 +330,7 @@ describe('useScrollCellIntoView', () => {
       ).result.current;
 
       scrollCellIntoView({ rowIndex: 1, colIndex: 0 });
-      expect(scrollTo).toHaveBeenCalledWith({ scrollTop: 20, scrollLeft: 0 });
+      expect(scrollTo).toHaveBeenCalledWith({ scrollTop: -1, scrollLeft: 0 });
     });
 
     it('scrolls to the top side over the bottom if the cell height is larger than the grid height', () => {
@@ -354,7 +354,7 @@ describe('useScrollCellIntoView', () => {
       ).result.current;
 
       scrollCellIntoView({ rowIndex: 1, colIndex: 0 });
-      expect(scrollTo).toHaveBeenCalledWith({ scrollTop: 50, scrollLeft: 0 });
+      expect(scrollTo).toHaveBeenCalledWith({ scrollTop: 29, scrollLeft: 0 });
     });
 
     it('makes no vertical adjustments if the cell is a sticky header cell', () => {

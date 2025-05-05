@@ -23,6 +23,8 @@ import { EuiDataGridStyle } from '../data_grid_types';
 import { DataGridFocusContext } from './focus';
 import { euiDataGridScrollBarStyles } from './scrolling.styles';
 
+const ACTIONS_MENU_HEIGHT = 21;
+
 interface ScrollCellIntoView {
   rowIndex: number;
   colIndex: number;
@@ -180,7 +182,9 @@ export const useScrollCellIntoView = ({
         if (topHeightOutOfView > 0) {
           // Note: This overrides the bottom side being out of bounds, as we want to prefer
           // showing the top-left corner of items if a cell is larger than the grid container
-          adjustedScrollTop = cellTopPos - headerRowHeight;
+          // Additionally, add an offset for the actions menu
+          adjustedScrollTop =
+            cellTopPos - headerRowHeight - ACTIONS_MENU_HEIGHT;
         }
       }
 
