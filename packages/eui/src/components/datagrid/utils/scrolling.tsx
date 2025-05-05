@@ -23,7 +23,7 @@ import { EuiDataGridStyle } from '../data_grid_types';
 import { DataGridFocusContext } from './focus';
 import { euiDataGridScrollBarStyles } from './scrolling.styles';
 
-const ACTIONS_MENU_HEIGHT = 22;
+const ACTIONS_MENU_HEIGHT = 21;
 
 interface ScrollCellIntoView {
   rowIndex: number;
