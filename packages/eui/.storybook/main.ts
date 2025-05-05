@@ -18,7 +18,7 @@ import type { StorybookConfig } from '@storybook/react-webpack5';
  * itself would return a path to the entry point that could be anywhere within
  * that package's directory.
  *
- * @see {@link https://github.com/storybookjs/storybook/issues/21710#issuecomment-1604260157}
+ * @see https://github.com/storybookjs/storybook/issues/21710#issuecomment-1604260157
  */
 const getAbsoluteDependencyPath = (packageName: string) =>
   path.dirname(require.resolve(path.join(packageName, 'package.json')));
