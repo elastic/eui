@@ -3,12 +3,12 @@
 exports[`euiMarkdownFormat text colors accent 1`] = `
 "
     .euiMarkdownFormat__blockquote {
-      border-inline-start-color: #BC1E70;
+      border-inline-start-color: #F04E98;
     }
 
     .euiHorizontalRule {
-      background-color: #BC1E70;
-      color: #BC1E70; /* ensure that firefox gets the currentColor */
+      background-color: #F04E98;
+      color: #F04E98; /* ensure that firefox gets the currentColor */
     }
 
     /* Tables */
@@ -19,20 +19,20 @@ exports[`euiMarkdownFormat text colors accent 1`] = `
       overflow: auto;
       border-spacing: 0;
       border-collapse: collapse;
-      border-inline-start: 1px solid #BC1E70;
+      border-inline-start: 1px solid #F04E98;
     }
 
     .euiMarkdownFormat__table th,
     .euiMarkdownFormat__table td {
-      border-block: 1px solid #BC1E70;
+      border-block: 1px solid #F04E98;
 
       &:last-child {
-        border-inline-end: 1px solid #BC1E70;
+        border-inline-end: 1px solid #F04E98;
       }
     }
 
     .euiMarkdownFormat__table tr {
-      border-block-start: 1px solid #BC1E70;
+      border-block-start: 1px solid #F04E98;
     }
   ;label:accent;"
 `;
@@ -40,12 +40,12 @@ exports[`euiMarkdownFormat text colors accent 1`] = `
 exports[`euiMarkdownFormat text colors accentSecondary 1`] = `
 "
     .euiMarkdownFormat__blockquote {
-      border-inline-start-color: #008B87;
+      border-inline-start-color: #00BFB3;
     }
 
     .euiHorizontalRule {
-      background-color: #008B87;
-      color: #008B87; /* ensure that firefox gets the currentColor */
+      background-color: #00BFB3;
+      color: #00BFB3; /* ensure that firefox gets the currentColor */
     }
 
     /* Tables */
@@ -56,20 +56,20 @@ exports[`euiMarkdownFormat text colors accentSecondary 1`] = `
       overflow: auto;
       border-spacing: 0;
       border-collapse: collapse;
-      border-inline-start: 1px solid #008B87;
+      border-inline-start: 1px solid #00BFB3;
     }
 
     .euiMarkdownFormat__table th,
     .euiMarkdownFormat__table td {
-      border-block: 1px solid #008B87;
+      border-block: 1px solid #00BFB3;
 
       &:last-child {
-        border-inline-end: 1px solid #008B87;
+        border-inline-end: 1px solid #00BFB3;
       }
     }
 
     .euiMarkdownFormat__table tr {
-      border-block-start: 1px solid #008B87;
+      border-block-start: 1px solid #00BFB3;
     }
   ;label:accentSecondary;"
 `;
@@ -114,12 +114,12 @@ exports[`euiMarkdownFormat text colors custom 1`] = `
 exports[`euiMarkdownFormat text colors danger 1`] = `
 "
     .euiMarkdownFormat__blockquote {
-      border-inline-start-color: #C61E25;
+      border-inline-start-color: #BD271E;
     }
 
     .euiHorizontalRule {
-      background-color: #C61E25;
-      color: #C61E25; /* ensure that firefox gets the currentColor */
+      background-color: #BD271E;
+      color: #BD271E; /* ensure that firefox gets the currentColor */
     }
 
     /* Tables */
@@ -130,20 +130,20 @@ exports[`euiMarkdownFormat text colors danger 1`] = `
       overflow: auto;
       border-spacing: 0;
       border-collapse: collapse;
-      border-inline-start: 1px solid #C61E25;
+      border-inline-start: 1px solid #BD271E;
     }
 
     .euiMarkdownFormat__table th,
     .euiMarkdownFormat__table td {
-      border-block: 1px solid #C61E25;
+      border-block: 1px solid #BD271E;
 
       &:last-child {
-        border-inline-end: 1px solid #C61E25;
+        border-inline-end: 1px solid #BD271E;
       }
     }
 
     .euiMarkdownFormat__table tr {
-      border-block-start: 1px solid #C61E25;
+      border-block-start: 1px solid #BD271E;
     }
   ;label:danger;"
 `;
@@ -151,12 +151,12 @@ exports[`euiMarkdownFormat text colors danger 1`] = `
 exports[`euiMarkdownFormat text colors default 1`] = `
 "
     .euiMarkdownFormat__blockquote {
-      border-inline-start-color: #CAD3E2;
+      border-inline-start-color: rgba(0,0,0,0.15);
     }
 
     .euiHorizontalRule {
-      background-color: #CAD3E2;
-      color: #CAD3E2; /* ensure that firefox gets the currentColor */
+      background-color: rgba(0,0,0,0.15);
+      color: rgba(0,0,0,0.15); /* ensure that firefox gets the currentColor */
     }
 
     /* Tables */
@@ -167,20 +167,20 @@ exports[`euiMarkdownFormat text colors default 1`] = `
       overflow: auto;
       border-spacing: 0;
       border-collapse: collapse;
-      border-inline-start: 1px solid #CAD3E2;
+      border-inline-start: 1px solid rgba(0,0,0,0.15);
     }
 
     .euiMarkdownFormat__table th,
     .euiMarkdownFormat__table td {
-      border-block: 1px solid #CAD3E2;
+      border-block: 1px solid rgba(0,0,0,0.15);
 
       &:last-child {
-        border-inline-end: 1px solid #CAD3E2;
+        border-inline-end: 1px solid rgba(0,0,0,0.15);
       }
     }
 
     .euiMarkdownFormat__table tr {
-      border-block-start: 1px solid #CAD3E2;
+      border-block-start: 1px solid rgba(0,0,0,0.15);
     }
   ;label:default;"
 `;
@@ -262,12 +262,12 @@ exports[`euiMarkdownFormat text colors inherit 1`] = `
 exports[`euiMarkdownFormat text colors subdued 1`] = `
 "
     .euiMarkdownFormat__blockquote {
-      border-inline-start-color: #516381;
+      border-inline-start-color: #646a77;
     }
 
     .euiHorizontalRule {
-      background-color: #516381;
-      color: #516381; /* ensure that firefox gets the currentColor */
+      background-color: #646a77;
+      color: #646a77; /* ensure that firefox gets the currentColor */
     }
 
     /* Tables */
@@ -278,20 +278,20 @@ exports[`euiMarkdownFormat text colors subdued 1`] = `
       overflow: auto;
       border-spacing: 0;
       border-collapse: collapse;
-      border-inline-start: 1px solid #516381;
+      border-inline-start: 1px solid #646a77;
     }
 
     .euiMarkdownFormat__table th,
     .euiMarkdownFormat__table td {
-      border-block: 1px solid #516381;
+      border-block: 1px solid #646a77;
 
       &:last-child {
-        border-inline-end: 1px solid #516381;
+        border-inline-end: 1px solid #646a77;
       }
     }
 
     .euiMarkdownFormat__table tr {
-      border-block-start: 1px solid #516381;
+      border-block-start: 1px solid #646a77;
     }
   ;label:subdued;"
 `;
@@ -299,12 +299,12 @@ exports[`euiMarkdownFormat text colors subdued 1`] = `
 exports[`euiMarkdownFormat text colors success 1`] = `
 "
     .euiMarkdownFormat__blockquote {
-      border-inline-start-color: #008A5E;
+      border-inline-start-color: #00BFB3;
     }
 
     .euiHorizontalRule {
-      background-color: #008A5E;
-      color: #008A5E; /* ensure that firefox gets the currentColor */
+      background-color: #00BFB3;
+      color: #00BFB3; /* ensure that firefox gets the currentColor */
     }
 
     /* Tables */
@@ -315,20 +315,20 @@ exports[`euiMarkdownFormat text colors success 1`] = `
       overflow: auto;
       border-spacing: 0;
       border-collapse: collapse;
-      border-inline-start: 1px solid #008A5E;
+      border-inline-start: 1px solid #00BFB3;
     }
 
     .euiMarkdownFormat__table th,
     .euiMarkdownFormat__table td {
-      border-block: 1px solid #008A5E;
+      border-block: 1px solid #00BFB3;
 
       &:last-child {
-        border-inline-end: 1px solid #008A5E;
+        border-inline-end: 1px solid #00BFB3;
       }
     }
 
     .euiMarkdownFormat__table tr {
-      border-block-start: 1px solid #008A5E;
+      border-block-start: 1px solid #00BFB3;
     }
   ;label:success;"
 `;
@@ -336,12 +336,12 @@ exports[`euiMarkdownFormat text colors success 1`] = `
 exports[`euiMarkdownFormat text colors warning 1`] = `
 "
     .euiMarkdownFormat__blockquote {
-      border-inline-start-color: #FACB3D;
+      border-inline-start-color: #FEC514;
     }
 
     .euiHorizontalRule {
-      background-color: #FACB3D;
-      color: #FACB3D; /* ensure that firefox gets the currentColor */
+      background-color: #FEC514;
+      color: #FEC514; /* ensure that firefox gets the currentColor */
     }
 
     /* Tables */
@@ -352,20 +352,20 @@ exports[`euiMarkdownFormat text colors warning 1`] = `
       overflow: auto;
       border-spacing: 0;
       border-collapse: collapse;
-      border-inline-start: 1px solid #FACB3D;
+      border-inline-start: 1px solid #FEC514;
     }
 
     .euiMarkdownFormat__table th,
     .euiMarkdownFormat__table td {
-      border-block: 1px solid #FACB3D;
+      border-block: 1px solid #FEC514;
 
       &:last-child {
-        border-inline-end: 1px solid #FACB3D;
+        border-inline-end: 1px solid #FEC514;
       }
     }
 
     .euiMarkdownFormat__table tr {
-      border-block-start: 1px solid #FACB3D;
+      border-block-start: 1px solid #FEC514;
     }
   ;label:warning;"
 `;
