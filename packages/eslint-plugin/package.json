@@ -27,11 +27,11 @@
     "@types/dedent": "^0.7.2",
     "@types/jest": "^29.5.14",
     "@types/micromatch": "^4.0.9",
-    "@typescript-eslint/eslint-plugin": "^8.22.0",
-    "@typescript-eslint/parser": "^8.22.0",
-    "@typescript-eslint/rule-tester": "^8.22.0",
-    "@typescript-eslint/typescript-estree": "^8.22.0",
-    "@typescript-eslint/utils": "^8.22.0",
+    "@typescript-eslint/eslint-plugin": "^8.31.1",
+    "@typescript-eslint/parser": "^8.31.1",
+    "@typescript-eslint/rule-tester": "^8.31.1",
+    "@typescript-eslint/typescript-estree": "^8.31.1",
+    "@typescript-eslint/utils": "^8.31.1",
     "cssstyle": "^4.2.1",
     "dedent": "^1.5.3",
     "eslint": "^8.57.0",
@@ -40,7 +40,7 @@
     "rimraf": "^6.0.1",
     "ts-jest": "^29.2.5",
     "ts-node": "^10.9.2",
-    "typescript": "^5.7.3"
+    "typescript": "^5.8.3"
   },
   "scripts": {
     "test": "jest src",
@@ -48,8 +48,7 @@
     "build:clean": "rimraf lib/",
     "build:compile:esm": "tsc --project ./tsconfig.esm.json",
     "build:compile": "NODE_ENV=production babel src --out-dir=lib/cjs --extensions .js,.ts,.tsx",
-    "build:types": "NODE_ENV=production tsc --project tsconfig.types.json",
-    "build:pack": "yarn build && npm pack"
+    "build:types": "NODE_ENV=production tsc --project tsconfig.types.json"
   },
   "files": [
     "lib",
