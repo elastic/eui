@@ -18,55 +18,9 @@ import { useCallback, useMemo } from 'react';
 import { css } from '@emotion/react';
 import Heading from '@theme/Heading';
 import types from '@elastic/eui-docgen/dist/types.json';
+import { JSONOutput } from 'typedoc';
 
 import { PropTableExtendedTypes } from './extended_types';
-
-export interface Source {
-  fileName: string;
-  line: number;
-  character: number;
-  url: string;
-}
-
-export interface Child {
-  id: number;
-  name: string;
-  variant: string;
-  kind: number;
-  flags: Record<string, unknown>;
-  children?: Child[];
-  groups?: Group[];
-  sources?: Source[];
-  type?: {
-    type: string;
-    types?: { type: string; value?: string }[];
-    declaration?: Record<string, unknown>;
-    target?: { qualifiedName: string };
-    name?: string;
-    package?: string;
-  };
-  defaultValue?: string;
-}
-
-export interface Group {
-  title: string;
-  children: number[];
-}
-
-export interface Types {
-  schemaVersion: string;
-  id: number;
-  name: string;
-  variant: string;
-  kind: number;
-  flags: Record<string, unknown>;
-  children: Child[];
-  groups: Group[];
-  packageName: string;
-  readme: unknown[];
-  symbolIdMap: Record<string, unknown>;
-  files: Record<string, unknown>;
-}
 
 export interface PropTableProps {
   definition: ProcessedComponent;
@@ -187,9 +141,10 @@ export const PropTable = ({
         ) {
           const result = value
             .replace(/{@link (\w+)}/g, (_, componentName) => {
-              const componentSource = (types as Types).children.find(
-                (item) => item.name === componentName
-              )?.sources?.[0];
+              const componentSource = (
+                types as unknown as JSONOutput.ProjectReflection
+              ).children?.find((item) => item.name === componentName)
+                ?.sources?.[0];
 
               if (componentSource) {
                 const { fileName, line } = componentSource;
