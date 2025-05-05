@@ -252,7 +252,7 @@ interface BasicTableProps<T extends object>
   noItemsMessage?: ReactNode;
   /**
    * Called whenever pagination or sorting changes (this property is required when either pagination or sorting is configured).
-   * {@link Criteria} or {@link CriteriaWithPagination}
+   * See {@link Criteria} or {@link CriteriaWithPagination}
    */
   onChange?: (criteria: Criteria<T>) => void;
   /**
