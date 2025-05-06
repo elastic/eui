@@ -88,7 +88,7 @@ export type EuiCollapsibleNavItemProps = _SharedEuiCollapsibleNavItemProps &
       /**
        * Will render either an accordion or group of nested child item links.
        *
-       * Accepts any #EuiCollapsibleNavItemProps. Or, to render completely custom
+       * Accepts any {@link EuiCollapsibleNavItemProps}. Or, to render completely custom
        * subitem content, pass an object with a `renderItem` callback.
        */
       items: EuiCollapsibleNavSubItemProps[];

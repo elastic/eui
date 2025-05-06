@@ -33,16 +33,16 @@ type EuiHeaderSectionItemType = EuiHeaderSectionItemProps['children'];
 
 export interface EuiHeaderSections {
   /**
-   * An array of items that will be wrapped in a #EuiHeaderSectionItem
+   * An array of items that will be wrapped in a {@link EuiHeaderSectionItem}
    */
   items?: EuiHeaderSectionItemType[];
   /**
-   * Breadcrumbs in the header cannot be wrapped in a #EuiHeaderSection in order for truncation to work.
+   * Breadcrumbs in the header cannot be wrapped in a {@link EuiHeaderSection} in order for truncation to work.
    * Simply pass the array of EuiBreadcrumb objects
    */
   breadcrumbs?: EuiBreadcrumb[];
   /**
-   * Other props to pass to #EuiHeaderBreadcrumbs
+   * Other props to pass to {@link EuiHeaderBreadcrumbs}
    */
   breadcrumbProps?: Omit<EuiBreadcrumbsProps, 'breadcrumbs'>;
 }
@@ -56,9 +56,9 @@ const createHeaderSection = (sections: EuiHeaderSectionItemType[]) => {
 export type EuiHeaderProps = CommonProps &
   HTMLAttributes<HTMLDivElement> & {
     /**
-     * An array of objects to wrap in a #EuiHeaderSection.
+     * An array of objects to wrap in a {@link EuiHeaderSection}.
      * Each section is spaced using `space-between`.
-     * See #EuiHeaderSections for object details.
+     * See {@link EuiHeaderSections} for object details.
      * This prop disregards the prop `children` if both are passed.
      */
     sections?: EuiHeaderSections[];

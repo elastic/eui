@@ -77,7 +77,7 @@ type InMemoryTableProps<T extends object> = Omit<
 > & {
   message?: ReactNode;
   /**
-   * Configures #Search.
+   * Configures {@link Search}.
    */
   search?: Search;
   /**
@@ -93,11 +93,11 @@ type InMemoryTableProps<T extends object> = Omit<
    */
   searchFormat?: 'eql' | 'text';
   /**
-   * Configures #Pagination
+   * Configures {@link Pagination}
    */
   pagination?: undefined;
   /**
-   * Configures #EuiTableSortingType
+   * Configures {@link EuiTableSortingType}
    */
   sorting?: Sorting;
   /**
@@ -107,11 +107,13 @@ type InMemoryTableProps<T extends object> = Omit<
   /**
    * `onChange` is not required when `pagination` and/or `sorting` are configured,
    * but if `onChange` is present it is responsible for handling state for each/both.
-   * See #Criteria or #CriteriaWithPagination
+   * See {@link Criteria} or {@link CriteriaWithPagination}
    */
   onChange?: EuiBasicTableProps<T>['onChange'];
   /**
-   * Callback for when table pagination or sorting is changed. This is meant to be informational only, and not used to set any state as the in-memory table already manages this state. See #Criteria or #CriteriaWithPagination.
+   * Callback for when table pagination or sorting is changed. This is meant to be informational only,
+   * and not used to set any state as the in-memory table already manages this state.
+   * See {@link Criteria} or {@link CriteriaWithPagination}.
    */
   onTableChange?: (nextValues: Criteria<T>) => void;
   executeQueryOptions?: {

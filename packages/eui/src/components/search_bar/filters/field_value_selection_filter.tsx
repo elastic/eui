@@ -42,7 +42,7 @@ export interface FieldValueSelectionFilterConfigType {
   field?: string;
   name: string;
   /**
-   * See #FieldValueOptionType
+   * See {@link FieldValueOptionType}
    */
   options: FieldValueOptionType[] | OptionsLoader;
   filterWith?: 'prefix' | 'includes' | OptionsFilter;

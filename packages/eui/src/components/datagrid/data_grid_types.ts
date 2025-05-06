@@ -86,7 +86,7 @@ export interface SchemaTypeScore {
 }
 export interface EuiDataGridSchemaDetector {
   /**
-   * The name of this data type, matches #EuiDataGridColumn / `schema`
+   * The name of this data type, matches {@link EuiDataGridColumn} / `schema`
    */
   type: string;
   /**
@@ -119,7 +119,7 @@ export interface EuiDataGridSchemaDetector {
    */
   sortTextDesc: ReactNode;
   /**
-   * Whether columns with this schema are sortable (defaults to true). Can be overridden at the individual #EuiDataGridColumn level
+   * Whether columns with this schema are sortable (defaults to true). Can be overridden at the individual {@link EuiDataGridColumn} level
    */
   isSortable?: boolean;
   /**
@@ -127,7 +127,7 @@ export interface EuiDataGridSchemaDetector {
    */
   textTransform?: 'uppercase' | 'lowercase' | 'capitalize';
   /**
-   * Default sort direction of columns with this schema. Can be overridden at the individual #EuiDataGridColumn level
+   * Default sort direction of columns with this schema. Can be overridden at the individual {@link EuiDataGridColumn} level
    */
   defaultSortDirection?: 'asc' | 'desc';
 }
@@ -240,27 +240,27 @@ export interface DataGridCellPopoverContextShape {
 export type CommonGridProps = CommonProps &
   HTMLAttributes<HTMLDivElement> & {
     /**
-     * An array of #EuiDataGridColumn objects. Lists the columns available and the schema and settings tied to it.
+     * An array of {@link EuiDataGridColumn} objects. Lists the columns available and the schema and settings tied to it.
      */
     columns: EuiDataGridColumn[];
     /**
-     * An array of #EuiDataGridControlColumn objects. Used to define ancillary columns on the left side of the data grid.
+     * An array of {@link EuiDataGridControlColumn} objects. Used to define ancillary columns on the left side of the data grid.
      * Useful for adding items like checkboxes and buttons.
      */
     leadingControlColumns?: EuiDataGridControlColumn[];
     /**
-     * An array of #EuiDataGridControlColumn objects. Used to define ancillary columns on the right side of the data grid.
+     * An array of {@link EuiDataGridControlColumn} objects. Used to define ancillary columns on the right side of the data grid.
      * Useful for adding items like checkboxes and buttons.
      */
     trailingControlColumns?: EuiDataGridControlColumn[];
     /**
-     * An array of #EuiDataGridColumnVisibility objects.
+     * An array of {@link EuiDataGridColumnVisibility} objects.
      * Defines which columns are **intitially** visible in the grid and the order they are displayed.
      * Users can still turn their visibility on/off when `toolbarVisibility.showColumnSelector = true` (which is the default).
      */
     columnVisibility: EuiDataGridColumnVisibility;
     /**
-     * An array of custom #EuiDataGridSchemaDetector objects. You can inject custom schemas to the grid to define the classnames applied.
+     * An array of custom {@link EuiDataGridSchemaDetector} objects. You can inject custom schemas to the grid to define the classnames applied.
      */
     schemaDetectors?: EuiDataGridSchemaDetector[];
     /**
@@ -269,7 +269,7 @@ export type CommonGridProps = CommonProps &
     rowCount: number;
     /**
      * A function called to render a cell's value. Behind the scenes it is treated as a React component
-     * allowing hooks, context, and other React concepts to be used. The function receives #EuiDataGridCellValueElementProps
+     * allowing hooks, context, and other React concepts to be used. The function receives {@link EuiDataGridCellValueElementProps}
      * as its only argument.
      */
     renderCellValue: EuiDataGridCellProps['renderCellValue'];
@@ -286,7 +286,7 @@ export type CommonGridProps = CommonProps &
      * `<EuiPopoverFooter>` around the cell actions.
      *
      * Behind the scenes it is treated as a React component allowing hooks, context, and other React concepts to be used.
-     * The function receives #EuiDataGridCellPopoverElementProps as its only argument.
+     * The function receives {@link EuiDataGridCellPopoverElementProps} as its only argument.
      *
      */
     renderCellPopover?: EuiDataGridCellProps['renderCellPopover'];
@@ -294,7 +294,7 @@ export type CommonGridProps = CommonProps &
      * An optional function called to render a footer cell. If not specified, no footer row is rendered.
      *
      * Behind the scenes it is treated as a React component
-     * allowing hooks, context, and other React concepts to be used. The function receives #EuiDataGridCellValueElementProps
+     * allowing hooks, context, and other React concepts to be used. The function receives {@link EuiDataGridCellValueElementProps}
      * as its only argument.
      */
     renderFooterCellValue?: EuiDataGridCellProps['renderCellValue'];
@@ -307,7 +307,7 @@ export type CommonGridProps = CommonProps &
      *
      * Behind the scenes, this function is treated as a React component,
      * allowing hooks, context, and other React concepts to be used.
-     * It receives #EuiDataGridCustomBodyProps as its only argument.
+     * It receives {@link EuiDataGridCustomBodyProps} as its only argument.
      */
     renderCustomGridBody?: (args: EuiDataGridCustomBodyProps) => ReactNode;
     /**
@@ -316,34 +316,34 @@ export type CommonGridProps = CommonProps &
      *
      * Behind the scenes, this function is treated as a React component,
      * allowing hooks, context, and other React concepts to be used.
-     * It receives #EuiDataGridCustomToolbarProps as its only argument.
+     * It receives {@link EuiDataGridCustomToolbarProps} as its only argument.
      */
     renderCustomToolbar?: EuiDataGridToolbarProps['renderCustomToolbar'];
     /**
-     * Defines the initial style of the grid. Accepts a partial #EuiDataGridStyle object.
+     * Defines the initial style of the grid. Accepts a partial {@link EuiDataGridStyle} object.
      * Settings provided may be overwritten or merged with user defined preferences if `toolbarVisibility.showDisplaySelector.allowDensity = true` (which is the default).
      */
     gridStyle?: EuiDataGridStyle;
     /**
      * Allows you to configure what features the toolbar shows.
      *
-     * Accepts either a boolean or #EuiDataGridToolBarVisibilityOptions object.
+     * Accepts either a boolean or {@link EuiDataGridToolBarVisibilityOptions} object.
      * When used as a boolean, defines the display of the entire toolbar.
      * When passed an object allows you to turn off individual controls within the toolbar as well as add additional buttons.
      */
     toolbarVisibility?: boolean | EuiDataGridToolBarVisibilityOptions;
     /**
-     * A #EuiDataGridInMemory object to define the level of high order schema-detection and sorting logic to use on your data.
+     * A {@link EuiDataGridInMemory} object to define the level of high order schema-detection and sorting logic to use on your data.
      * **Try to set when possible**.
      * If omitted, disables all enhancements and assumes content is flat strings.
      */
     inMemory?: EuiDataGridInMemory;
     /**
-     * A #EuiDataGridPaginationProps object. Omit to disable pagination completely.
+     * A {@link EuiDataGridPaginationProps} object. Omit to disable pagination completely.
      */
     pagination?: EuiDataGridPaginationProps;
     /**
-     * A #EuiDataGridSorting object that provides the sorted columns along with their direction. Provides a callback for when it changes.
+     * A {@link EuiDataGridSorting} object that provides the sorted columns along with their direction. Provides a callback for when it changes.
      * Optional, but required when inMemory is set.
      * Omit to disable, but you'll likely want to also turn off the user sorting controls through the `toolbarVisibility` prop.
      */
@@ -384,7 +384,7 @@ export type CommonGridProps = CommonProps &
       | 'outerElementType'
     >;
     /**
-     * A #EuiDataGridRowHeightsOptions object that provides row heights options.
+     * A {@link EuiDataGridRowHeightsOptions} object that provides row heights options.
      * Allows configuring both default and specific heights of grid rows.
      * Settings provided may be overwritten or merged with user defined preferences if `toolbarVisibility.showDisplaySelector.allowRowHeight = true` (which is the default).
      */
@@ -558,7 +558,7 @@ interface SharedRenderCellElementProps {
    */
   colIndex: number;
   /**
-   * ID of the column being rendered, the value comes from the #EuiDataGridColumn `id`
+   * ID of the column being rendered, the value comes from the {@link EuiDataGridColumn} `id`
    */
   columnId: string;
   /**
@@ -583,7 +583,7 @@ export interface EuiDataGridCellValueElementProps
    */
   setCellProps: (props: EuiDataGridSetCellProps) => void;
   /**
-   * Whether or not the cell is expandable, comes from the #EuiDataGridColumn `isExpandable` which defaults to `true`
+   * Whether or not the cell is expandable, comes from the {@link EuiDataGridColumn} `isExpandable` which defaults to `true`
    */
   isExpandable: boolean;
   /**
@@ -752,12 +752,12 @@ export interface EuiDataGridColumn {
   defaultSortDirection?: 'asc' | 'desc';
   /**
    * A Schema to use for the column.
-   * Built-in values are [`boolean`, `currency`, `datetime`, `numeric`, `json`] but can be expanded by defining your own #EuiDataGrid `schemaDetectors` (for in-memory detection).
+   * Built-in values are [`boolean`, `currency`, `datetime`, `numeric`, `json`] but can be expanded by defining your own {@link EuiDataGrid} `schemaDetectors` (for in-memory detection).
    * In general, it is advised to pass in a value here when you are sure of the schema ahead of time, so that you don't need to rely on the automatic detection.
    */
   schema?: string;
   /**
-   * Configuration of column actions. Set to false to disable or use #EuiDataGridColumnActions to configure the actions displayed in the header cell of the column.
+   * Configuration of column actions. Set to false to disable or use {@link EuiDataGridColumnActions} to configure the actions displayed in the header cell of the column.
    */
   actions?: false | EuiDataGridColumnActions;
   /**
@@ -833,7 +833,7 @@ export interface EuiDataGridColumnCellActionProps {
 
 export interface EuiDataGridColumnVisibility {
   /**
-   * An array of #EuiDataGridColumn `id`s dictating the order and visibility of columns.
+   * An array of {@link EuiDataGridColumn} `id`s dictating the order and visibility of columns.
    */
   visibleColumns: string[];
   /**
@@ -878,7 +878,7 @@ export interface EuiDataGridStyle {
    */
   stripes?: boolean;
   /**
-   * Visual style for the column headers. Recommendation is to use the `underline` style in times when #EuiDataGrid `toolbarVisibility` is set to `false`.
+   * Visual style for the column headers. Recommendation is to use the `underline` style in times when {@link EuiDataGrid} `toolbarVisibility` is set to `false`.
    * @default shade
    */
   header?: EuiDataGridStyleHeader;
@@ -956,7 +956,7 @@ export type EuiDataGridDisplaySelectorCustomRender = (
 
 export interface EuiDataGridToolBarVisibilityOptions {
   /**
-   * Allows the ability for the user to hide fields and sort columns, boolean or a #EuiDataGridToolBarVisibilityColumnSelectorOptions
+   * Allows the ability for the user to hide fields and sort columns, boolean or a {@link EuiDataGridToolBarVisibilityColumnSelectorOptions}
    * @default true
    */
   showColumnSelector?:
@@ -964,7 +964,7 @@ export interface EuiDataGridToolBarVisibilityOptions {
     | EuiDataGridToolBarVisibilityColumnSelectorOptions;
   /**
    * Allows the ability for the user to customize display settings such as grid density and row heights.
-   * User changes will override what is provided in #EuiDataGridStyle and #EuiDataGridRowHeightsOptions
+   * User changes will override what is provided in {@link EuiDataGridStyle} and {@link EuiDataGridRowHeightsOptions}
    * @default true
    */
   showDisplaySelector?:
@@ -988,7 +988,7 @@ export interface EuiDataGridToolBarVisibilityOptions {
   showFullScreenSelector?: boolean;
   /**
    * If passed a `ReactNode`, appends the passed custom control into the left side of the toolbar, after the column & sort controls.
-   * Or use #EuiDataGridToolBarAdditionalControlsOptions to customize the location of your control.
+   * Or use {@link EuiDataGridToolBarAdditionalControlsOptions} to customize the location of your control.
    */
   additionalControls?: ReactNode | EuiDataGridToolBarAdditionalControlsOptions;
 }
@@ -996,7 +996,7 @@ export interface EuiDataGridToolBarVisibilityOptions {
 export interface EuiDataGridToolBarAdditionalControlsOptions {
   /**
    * If passed a `ReactNode`, appends the passed node into the left side of the toolbar, **after** the column & sort controls.
-   * Or use #EuiDataGridToolBarAdditionalControlsLeftOptions to customize the location of your control.
+   * Or use {@link EuiDataGridToolBarAdditionalControlsLeftOptions} to customize the location of your control.
    * We recommend using `<EuiButtonEmpty size="xs" />` to match the existing controls on the left.
    */
   left?: ReactNode | EuiDataGridToolBarAdditionalControlsLeftOptions;
@@ -1123,7 +1123,7 @@ export interface EuiDataGridRowHeightsOptions {
    * Defines the height for a specific row. It can be line count or just height.
    *
    * When using row height overrides, we strongly setting the `showDisplaySelector: allowRowHeight`
-   * toolbar control to `false` in #EuiDataGridToolBarVisibilityOptions
+   * toolbar control to `false` in {@link EuiDataGridToolBarVisibilityOptions}
    */
   rowHeights?: Record<number, EuiDataGridRowHeightOption>;
   /**

@@ -65,15 +65,16 @@ export type EuiSelectableOptionMatcher<T> = (
   args: EuiSelectableOptionMatcherArgs<T>
 ) => boolean;
 
-// The `searchable` prop has significant implications for a11y.
-// When present, we effectively change from adhering
-// to the ARIA `listbox` spec (https://www.w3.org/TR/wai-aria-practices-1.2/#Listbox)
-// to the ARIA `combobox` spec (https://www.w3.org/TR/wai-aria-practices-1.2/#combobox)
-// and (re)implement all relevant attributes and keyboard interactions.
-// Take note of logic that relies on `searchable` to ensure that any
-// modifications remain in alignment.
-//
-// `searchProps` can only be specified when `searchable` is true
+/**
+ * The `searchable` prop has significant implications for a11y. When present, we effectively change from adhering to the
+ * - ARIA `listbox` spec (@see https://www.w3.org/TR/wai-aria-practices-1.2/#Listbox)
+ * - ARIA `combobox` spec (@see https://www.w3.org/TR/wai-aria-practices-1.2/#combobox)
+ *
+ * and (re)implement all relevant attributes and keyboard interactions.
+ * Take note of logic that relies on `searchable` to ensure that any modifications remain in alignment.
+ *
+ * `searchProps` can only be specified when `searchable` is `true`.
+ */
 export type EuiSelectableSearchableProps<T> = ExclusiveUnion<
   {
     searchable: false;
@@ -85,7 +86,7 @@ export type EuiSelectableSearchableProps<T> = ExclusiveUnion<
     searchable: true;
     /**
      * Passes props down to the `EuiFieldSearch`.
-     * See #EuiSelectableSearchProps
+     * {@link EuiSelectableSearchProps}
      */
     searchProps?: EuiSelectableSearchableSearchProps<T>;
   }
@@ -109,7 +110,7 @@ export type EuiSelectableProps<T = {}> = CommonProps &
       search: ReactElement<typeof EuiSelectableSearch> | undefined
     ) => ReactNode;
     /**
-     * Array of EuiSelectableOption objects. See #EuiSelectableOption
+     * Array of EuiSelectableOption objects. See {@link EuiSelectableOption}
      */
     options: Array<EuiSelectableOption<T>>;
     /**
@@ -149,7 +150,7 @@ export type EuiSelectableProps<T = {}> = CommonProps &
      */
     height?: number | 'full';
     /**
-     * See #EuiSelectableOptionsListProps
+     * See {@link EuiSelectableOptionsListPropsWithDefaults}
      */
     listProps?: EuiSelectableOptionsListPropsWithDefaults;
     /**

@@ -18,7 +18,7 @@ export interface EuiShowForProps {
   children: ReactNode;
   /**
    * List of all the responsive sizes to show the children for.
-   * Array of #EuiBreakpointSize
+   * Array of {@link EuiBreakpointSize}
    */
   sizes: EuiShowForBreakpoints[] | 'all' | 'none';
 }

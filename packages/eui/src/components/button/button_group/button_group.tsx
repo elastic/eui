@@ -100,7 +100,7 @@ export type EuiButtonGroupProps = CommonProps & {
    */
   type?: 'single' | 'multi';
   /**
-   * An array of #EuiButtonGroupOptionProps
+   * An array of {@link EuiButtonGroupOptionProps}
    */
   options: EuiButtonGroupOptionProps[];
 } & (

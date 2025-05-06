@@ -32,7 +32,7 @@ export type EuiBreadcrumbResponsiveMaxCount = {
 export type EuiBreadcrumbsProps = CommonProps & {
   /**
    * Hides extra (above the max) breadcrumbs under a collapsed item as the window gets smaller.
-   * Pass a custom #EuiBreadcrumbResponsiveMaxCount object to change the number of breadcrumbs to show at the particular breakpoints.
+   * Pass a custom {@link EuiBreadcrumbResponsiveMaxCount} object to change the number of breadcrumbs to show at the particular breakpoints.
    *
    * Pass `false` to turn this behavior off.
    *
@@ -55,7 +55,7 @@ export type EuiBreadcrumbsProps = CommonProps & {
   max?: number | null;
 
   /**
-   * The array of individual #EuiBreadcrumb items
+   * The array of individual {@link EuiBreadcrumb} items
    */
   breadcrumbs: EuiBreadcrumbProps[];
 
