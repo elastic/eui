@@ -131,10 +131,6 @@ const hasStep = (step) => {
     // Update version switcher data and changelog
     if (!isSpecialRelease) {
       updateDocsVersionSwitcher(versionTarget);
-
-      // TODO: Remove this once EUI is fully on the new website and src-docs has been removed
-      const oldEuiDocsVersions = cwd + '/src-docs/src/components/guide_page/versions.json';
-      updateDocsVersionSwitcher(versionTarget, oldEuiDocsVersions);
     }
     updateChangelog(changelog, versionTarget);
     execSync('git commit -m "Updated changelog" -n');

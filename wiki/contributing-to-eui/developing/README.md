@@ -15,7 +15,7 @@ There are four steps to creating a new component:
 3. Write tests
     - All components should have at minimum [unit tests](../testing/unit-testing.md)
     - For more, see the dedicated [testing wiki docs](../testing/)
-4. Document it with examples in `src-docs`
+4. Document it with examples in `packages/website`
     - See the dedicated [documentation wiki guidelines](../documenting/)
 
 ## Component patterns

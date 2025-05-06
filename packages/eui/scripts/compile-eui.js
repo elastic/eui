@@ -121,8 +121,21 @@ function compileLib() {
     });
   });
 
-  // copy all JSON files to build outputs
-  glob('./src/**/*.json', undefined, (error, files) => {
+  // Copy all JSON files to build outputs
+  glob('./src/**/*.json', undefined, (_error, files) => {
+    const directories = new Set();
+    files.forEach((file) => {
+      const splitPath = file.split('/');
+      const basePath = splitPath.slice(2, splitPath.length - 1).join('/');
+      directories.add(`es/${basePath}`);
+      directories.add(`optimize/es/${basePath}`);
+      directories.add(`lib/${basePath}`);
+      directories.add(`optimize/lib/${basePath}`);
+      directories.add(`test-env/${basePath}`);
+    });
+
+    directories.forEach((dir) => shell.mkdir('-p', dir));
+
     files.forEach((file) => {
       const splitPath = file.split('/');
       const basePath = splitPath.slice(2, splitPath.length).join('/');
@@ -158,7 +171,18 @@ function compileLib() {
     'optimize/lib/components/icon/svgs/tokens'
   );
 
+  // Copy all SVG files to build outputs
   glob('./src/components/**/*.svg', undefined, (error, files) => {
+    const directories = new Set();
+    files.forEach((file) => {
+      const splitPath = file.split('/');
+      const basePath = splitPath.slice(2, splitPath.length - 1).join('/');
+      directories.add(`lib/${basePath}`);
+      directories.add(`optimize/lib/${basePath}`);
+    });
+
+    directories.forEach((dir) => shell.mkdir('-p', dir));
+
     files.forEach((file) => {
       const splitPath = file.split('/');
       const basePath = splitPath.slice(2, splitPath.length).join('/');

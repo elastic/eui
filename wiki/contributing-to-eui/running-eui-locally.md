@@ -1,12 +1,12 @@
 # Setting up and running EUI locally
 
-The below instructions run EUI's [documentation site](https://eui.elastic.co/) locally, with any changes made in `src/` reflected. On local, EUI's favicon will be gray instead of colored.
+The below instructions run EUI's [documentation site](https://eui.elastic.co/) locally, with any changes made in `src/` reflected.
 
 > [!IMPORTANT]
 > This repository is a monorepo, meaning that it contains sources of multiple packages within a single git repository. You can find all packages in the [`packages`](../../packages) directory.
 > When dealing with EUI ([`@elastic/eui`](https://www.npmjs.com/package/@elastic/eui) package), most of the work will be done from within the [`packages/eui`](../../packages/eui) directory.
 
-## Set up
+## Setup
 
 ### Node
 
@@ -54,23 +54,37 @@ If you're on an Apple arm64 machine and receive an error on `yarn` about Puppete
 
 ## Running
 
-Go to `packages/eui` directory:
+### Storybook
+
+This is the recommended way to work with components locally.
+
+If running for the first time, build dependant workspaces:
 
 ```shell
-cd packages/eui
+yarn build:workspaces
 ```
 
-You can run the documentation locally at [http://localhost:8030/](http://localhost:8030/) with the following command:
+You can run Storybook with the following command:
 
 ```shell
 yarn start
 ```
 
-If another process is already listening on port 8030, the next free port will be used. Alternatively, you can specify a port:
+### Website
+
+You can run the documentation locally at [http://localhost:3000/](http://localhost:3000/) with the following command:
 
 ```shell
-yarn start --port 9000
+yarn workspace @elastic/eui-website start
 ```
+
+If another process is already listening on port 3000, the next free port will be used. Alternatively, you can specify a port:
+
+```shell
+yarn workspace @elastic/eui-website start --port 9000
+```
+
+See http://docusaurus.io/docs/cli#docusaurus-cli-commands.
 
 ### Updating theme code
 

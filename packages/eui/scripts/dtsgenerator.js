@@ -38,7 +38,6 @@ const generator = dtsGenerator({
     '**/*.mock.{ts,tsx}',
     '**/__mocks__/*',
     'src/test/**/*', // Separate d.ts files are generated for test utils
-    'src-docs/**/*', // Don't include src-docs
     '**/*.docgen.tsx', // Don't include "components" generated just for react-docgen
     '**/*.mdx', // Don't include storybook mdx files
   ],

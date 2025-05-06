@@ -15,9 +15,8 @@
     "*.scss"
   ],
   "scripts": {
-    "start": "cross-env BABEL_MODULES=false webpack serve --config=src-docs/webpack.config.js",
+    "start": "yarn storybook",
     "build:workspaces": "yarn workspaces foreach -Rti --from @elastic/eui-theme-common run build && yarn workspaces foreach -Rti --from @elastic/eui --exclude @elastic/eui --exclude @elastic/eui-theme-common run build",
-    "build-docs": "cross-env BABEL_MODULES=false cross-env NODE_ENV=production NODE_OPTIONS=--max-old-space-size=4096 webpack --config=src-docs/webpack.config.js",
     "build": "node ./scripts/compile-i18n-strings.js && node ./scripts/compile-clean.js && node ./scripts/compile-eui.js && yarn compile-scss",
     "build-pack": "yarn build && npm pack",
     "compile-icons": "node ./scripts/compile-icons.js && prettier --write --loglevel=warn \"./src/components/icon/assets/**/*.tsx\"",
@@ -25,7 +24,7 @@
     "extract-i18n-strings": "node ./scripts/babel/fetch-i18n-strings",
     "lint": "yarn tsc --noEmit && yarn lint-es && yarn lint-css-in-js && yarn lint-sass",
     "lint-fix": "yarn lint-es --fix && yarn lint-css-in-js --fix",
-    "lint-es": "NODE_OPTIONS=--max-old-space-size=4096 eslint --cache \"{src,src-docs}/**/*.{ts,tsx,js}\"",
+    "lint-es": "NODE_OPTIONS=--max-old-space-size=4096 eslint --cache \"src/**/*.{ts,tsx,js}\"",
     "lint-css-in-js": "yarn stylelint \"**/*.styles.ts\" \"./src/themes/**/*.ts\" \"./src/global_styling/**/*.ts\" --quiet-deprecation-warnings",
     "lint-sass": "yarn stylelint \"**/*.scss\" --quiet-deprecation-warnings",
     "test": "yarn lint && yarn test-unit",
@@ -38,7 +37,6 @@
     "test-visual-regression": "node ./scripts/test-visual-regression.js",
     "combine-test-coverage": "sh ./scripts/combine-coverage.sh",
     "yo-component": "yo ./generator-eui/app/component.js",
-    "yo-doc": "yo ./generator-eui/app/documentation.js",
     "yo-changelog": "yo ./generator-eui/changelog/index.js",
     "release": "node ./scripts/release.js",
     "release-backport": "node ./scripts/release.js --type=backport",

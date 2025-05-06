@@ -34,7 +34,7 @@ Refer to the [Writing styles with emotion](./writing-styles-with-emotion.md) gui
 
 Your component folder should also contain `{component name}.test.tsx` unit tests for each component being created/exported. [See the testing wiki resources for more in-depth guidelines](../testing/).
 
-Your component should have a corresponding `src-docs/` documentation page or example. [See the documenting wiki resources for more guidelines](../documenting/).
+Your component should have a corresponding `packages/website/` documentation page or example. [See the documenting wiki resources for more guidelines](../documenting/).
 
 ## Creating components with Yeoman
 
