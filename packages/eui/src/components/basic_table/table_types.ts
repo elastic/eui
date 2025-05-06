@@ -163,7 +163,7 @@ export type EuiTableComputedColumnType<T> = CommonProps &
 
 export type EuiTableActionsColumnType<T extends object> = {
   /**
-   * An array of one of the objects: #DefaultItemAction or #CustomItemAction
+   * An array of one of the objects: {@link DefaultItemAction} or {@link CustomItemAction}
    */
   actions: Array<Action<T>>;
   /**

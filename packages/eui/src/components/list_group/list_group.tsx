@@ -42,7 +42,7 @@ export type EuiListGroupProps = CommonProps &
     gutterSize?: EuiListGroupGutterSize;
 
     /**
-     * Items to display in this group. See #EuiListGroupItem
+     * Items to display in this group. See {@link EuiListGroupItem}
      */
     listItems?: EuiListGroupItemProps[];
 

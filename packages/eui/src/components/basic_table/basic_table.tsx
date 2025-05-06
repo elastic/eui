@@ -227,7 +227,7 @@ interface BasicTableProps<T extends object>
    */
   cellProps?: object | CellPropsCallback<T>;
   /**
-   * An array of one of the objects: #EuiTableFieldDataColumnType, #EuiTableComputedColumnType or #EuiTableActionsColumnType.
+   * An array of one of the objects: {@link EuiTableFieldDataColumnType}, {@link EuiTableComputedColumnType} or {@link EuiTableActionsColumnType}.
    */
   columns: Array<EuiBasicTableColumn<T>>;
   /**
@@ -251,11 +251,12 @@ interface BasicTableProps<T extends object>
    */
   noItemsMessage?: ReactNode;
   /**
-   * Called whenever pagination or sorting changes (this property is required when either pagination or sorting is configured). See #Criteria or #CriteriaWithPagination
+   * Called whenever pagination or sorting changes (this property is required when either pagination or sorting is configured).
+   * See {@link Criteria} or {@link CriteriaWithPagination}
    */
   onChange?: (criteria: Criteria<T>) => void;
   /**
-   * Configures #Pagination
+   * Configures {@link Pagination}
    */
   pagination?: undefined;
   /**
@@ -263,11 +264,11 @@ interface BasicTableProps<T extends object>
    */
   rowProps?: object | RowPropsCallback<T>;
   /**
-   * Configures #EuiTableSelectionType
+   * Configures {@link EuiTableSelectionType}
    */
   selection?: EuiTableSelectionType<T>;
   /**
-   * Configures #EuiTableSortingType
+   * Configures {@link EuiTableSortingType}
    */
   sorting?: EuiTableSortingType<T>;
   /**

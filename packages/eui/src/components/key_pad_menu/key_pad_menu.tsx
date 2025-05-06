@@ -43,7 +43,7 @@ export type EuiKeyPadMenuProps = CommonProps &
   HTMLAttributes<HTMLElement> & {
     /**
      * Renders the the group as a `fieldset`.
-     * Set to `true` to customize the labelling, or pass an #_EuiKeyPadMenuCheckableProps object to add a `legend` or `ariaLegend`
+     * Set to `true` to customize the labelling, or pass an {@link _EuiKeyPadMenuCheckableProps} object to add a `legend` or `ariaLegend`
      */
     checkable?: _EuiKeyPadMenuCheckableProps | true;
   };

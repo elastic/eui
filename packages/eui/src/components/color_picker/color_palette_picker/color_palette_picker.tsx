@@ -47,7 +47,7 @@ export interface EuiColorPalettePickerPaletteTextProps extends CommonProps {
    */
   type: 'text';
   /**
-   * Array of color `strings` or an array of #PaletteColorStop. The stops must be numbers in an ordered range.
+   * Array of color `strings` or an array of {@link PaletteColorStop}. The stops must be numbers in an ordered range.
    */
   palette?: string[] | PaletteColorStop[];
 }
@@ -70,7 +70,7 @@ export interface EuiColorPalettePickerPaletteFixedProps extends CommonProps {
    */
   type: 'fixed';
   /**
-   * Array of color `strings` or an array of #PaletteColorStop. The stops must be numbers in an ordered range.
+   * Array of color `strings` or an array of {@link PaletteColorStop}. The stops must be numbers in an ordered range.
    */
   palette: string[] | PaletteColorStop[];
 }
@@ -93,7 +93,7 @@ export interface EuiColorPalettePickerPaletteGradientProps extends CommonProps {
    */
   type: 'gradient';
   /**
-   * Array of color `strings` or an array of #PaletteColorStop. The stops must be numbers in an ordered range.
+   * Array of color `strings` or an array of {@link PaletteColorStop}. The stops must be numbers in an ordered range.
    */
   palette: string[] | PaletteColorStop[];
 }
@@ -114,7 +114,7 @@ export type EuiColorPalettePickerProps<T extends string> = CommonProps &
     selectionDisplay?: 'palette' | 'title';
 
     /**
-     * An array of one of the following objects: #EuiColorPalettePickerPaletteText, #EuiColorPalettePickerPaletteFixed, #EuiColorPalettePickerPaletteGradient
+     * An array of one of the following objects: {@link EuiColorPalettePickerPaletteText}, {@link EuiColorPalettePickerPaletteFixed}, {@link EuiColorPalettePickerPaletteGradient}
      */
     palettes: EuiColorPalettePickerPaletteProps[];
   };

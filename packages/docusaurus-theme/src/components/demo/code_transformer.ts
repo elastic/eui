@@ -24,8 +24,8 @@ const COMPONENT_ONLY_REGEX = /^\(?</;
  * a JSX component definition (e.g. it contains a variable definition
  * or `export default` statement).
  *
- * @see {@link https://github.com/alangpierce/sucrase}
- * @see {@link https://github.com/FormidableLabs/react-live/blob/master/packages/react-live/src/utils/transpile/index.ts}
+ * @see https://github.com/alangpierce/sucrase
+ * @see https://github.com/FormidableLabs/react-live/blob/master/packages/react-live/src/utils/transpile/index.ts
  */
 export const demoCodeTransformer = (code: string) => {
   // Remove ESM imports

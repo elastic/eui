@@ -1,0 +1,12 @@
+{
+  "$schema": "https://typedoc.org/schema.json",
+  "entryPoints": ["../eui"],
+  "entryPointStrategy": "packages",
+  "outputs": [
+    {
+      "name": "json",
+      "path": "dist/types.json",
+    }
+  ],
+  "exclude": ["**/node_modules/**"]
+}

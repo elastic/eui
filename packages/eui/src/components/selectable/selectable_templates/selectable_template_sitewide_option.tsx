@@ -58,7 +58,7 @@ export type EuiSelectableTemplateSitewideOption<T = { [key: string]: any }> = {
    */
   avatar?: EuiAvatarProps;
   /**
-   * An array of inline #EuiSelectableTemplateSitewideMetaData displayed beneath the label and separated by bullets.
+   * An array of inline {@link EuiSelectableTemplateSitewideMetaData} displayed beneath the label and separated by bullets.
    */
   meta?: EuiSelectableTemplateSitewideMetaData[];
 } & EuiSelectableOption<T>;

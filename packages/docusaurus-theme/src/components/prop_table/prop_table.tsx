@@ -16,8 +16,11 @@ import {
 } from '@elastic/eui-docgen';
 import { useCallback, useMemo } from 'react';
 import { css } from '@emotion/react';
-import { PropTableExtendedTypes } from './extended_types';
 import Heading from '@theme/Heading';
+import types from '@elastic/eui-docgen/dist/types.json';
+import { JSONOutput } from 'typedoc';
+
+import { PropTableExtendedTypes } from './extended_types';
 
 export interface PropTableProps {
   definition: ProcessedComponent;
@@ -136,15 +139,31 @@ export const PropTable = ({
           value: ProcessedComponentProp['description'],
           prop: ProcessedComponentProp
         ) {
+          const result = value
+            .replace(/{@link (\w+)}/g, (_, componentName) => {
+              const componentSource = (
+                types as unknown as JSONOutput.ProjectReflection
+              ).children?.find((item) => item.name === componentName)
+                ?.sources?.[0];
+
+              if (componentSource) {
+                const { fileName, line } = componentSource;
+                return `[${componentName}](https://github.com/elastic/eui/tree/main/packages/${fileName}#L${line})`;
+              } else {
+                return `\`${componentName}\``;
+              }
+            })
+            .trim();
+
           return (
             <EuiFlexGroup
               direction="column"
               alignItems="flexStart"
               gutterSize="s"
             >
-              {value?.trim() && (
+              {result && (
                 <EuiMarkdownFormat css={styles.description}>
-                  {value}
+                  {result}
                 </EuiMarkdownFormat>
               )}
               {prop.type && (

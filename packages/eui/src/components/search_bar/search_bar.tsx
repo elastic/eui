@@ -92,7 +92,7 @@ export interface EuiSearchBarProps extends CommonProps {
   };
 
   /**
-   An array of search filters. See #SearchFilterConfig.
+   An array of search filters. See {@link SearchFilterConfig}.
    */
   filters?: SearchFilterConfig[];
 
