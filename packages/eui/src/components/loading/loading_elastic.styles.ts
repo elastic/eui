@@ -12,12 +12,10 @@ import { euiCanAnimate } from '../../global_styling';
 const loadingElastic = keyframes`
   0% {
     transform: scale3d(.2, .2, -.7);
-    opacity: .2;
   }
 
   40% {
     transform: scale3d(1, 1, 2);
-    opacity: 1;
   }
 
   50% {
@@ -50,9 +48,8 @@ export const euiLoadingElasticStyles = {
         transform-origin: 50% 50%;
       }
 
-      /* Hide outline mainly for dark mode */
       &:nth-of-type(1) {
-        display: none;
+        animation-delay: 0;
       }
 
       &:nth-of-type(2) {
