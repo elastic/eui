@@ -25,6 +25,7 @@ import {
   VariableSizeGridProps,
   VariableSizeGrid as Grid,
   GridOnItemsRenderedProps,
+  GridOnScrollProps,
 } from 'react-window';
 import { EuiListGroupItemProps } from '../list_group';
 import { EuiButtonEmpty, EuiButtonIcon } from '../button';
@@ -378,11 +379,26 @@ export type CommonGridProps = CommonProps &
       | 'overscanColumnCount'
       | 'initialScrollTop'
       | 'initialScrollLeft'
-      | 'onScroll'
       | 'onItemsRendered'
       | 'itemKey'
       | 'outerElementType'
-    >;
+    > & {
+      /**
+       * Called when the grid scroll positions changes, as a result of user scrolling or scroll-to method calls.
+       */
+      onScroll?: (
+        args: GridOnScrollProps & {
+          scrollHeight: number;
+          scrollWidth: number;
+          clientHeight: number;
+          clientWidth: number;
+          isScrolledToBlockStart: boolean;
+          isScrolledToBlockEnd: boolean;
+          isScrolledToInlineStart: boolean;
+          isScrolledToInlineEnd: boolean;
+        }
+      ) => void;
+    };
     /**
      * A {@link EuiDataGridRowHeightsOptions} object that provides row heights options.
      * Allows configuring both default and specific heights of grid rows.

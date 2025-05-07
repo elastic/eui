@@ -10,6 +10,7 @@ import React, { useRef, useEffect } from 'react';
 import type { Meta, StoryObj, ReactRenderer } from '@storybook/react';
 import type { PlayFunctionContext } from '@storybook/csf';
 import { expect, fireEvent, waitFor } from '@storybook/test';
+import { action } from '@storybook/addon-actions';
 import { within } from '../../../.storybook/test';
 import { enableFunctionToggleControls } from '../../../.storybook/utils';
 
@@ -60,6 +61,9 @@ export const Virtualization: Story = {
     ...defaultStorybookArgs,
     width: '300px',
     height: '300px',
+    virtualizationOptions: {
+      onScroll: action('onScroll'),
+    },
   },
   render: (args: EuiDataGridProps) => <StatefulDataGrid {...args} />,
 };
