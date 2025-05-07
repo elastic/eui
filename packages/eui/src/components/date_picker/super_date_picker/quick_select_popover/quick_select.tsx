@@ -190,7 +190,7 @@ export class EuiQuickSelect extends Component<
               default="Previous time window"
             >
               {(previousLabel: string) => (
-                <EuiToolTip content={previousLabel}>
+                <EuiToolTip content={previousLabel} disableScreenReaderOutput>
                   <EuiButtonIcon
                     aria-label={previousLabel}
                     iconType="arrowLeft"
@@ -206,7 +206,7 @@ export class EuiQuickSelect extends Component<
               default="Next time window"
             >
               {(nextLabel: string) => (
-                <EuiToolTip content={nextLabel}>
+                <EuiToolTip content={nextLabel} disableScreenReaderOutput>
                   <EuiButtonIcon
                     aria-label={nextLabel}
                     iconType="arrowRight"
