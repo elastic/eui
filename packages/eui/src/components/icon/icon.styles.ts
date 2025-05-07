@@ -115,7 +115,7 @@ export const euiIconStyles = ({ euiTheme }: UseEuiTheme) => ({
     /* Note: This className is hard-coded into our SVGs and cannot be converted to Emotion */
     .euiIcon__fillSecondary {
       /* This provides the default secondary color */
-      fill: ${euiTheme.colors.textSuccess};
+      fill: ${euiTheme.colors.primary};
     }
   `,
   logo: css``,
