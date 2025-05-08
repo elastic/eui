@@ -44,7 +44,8 @@
     "release-rc": "node ./scripts/release.js --type=prerelease",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "pre-push": "yarn test-staged"
+    "pre-push": "yarn test-staged",
+    "prerelease": "node ./scripts/prerelease.mjs"
   },
   "repository": {
     "type": "git",

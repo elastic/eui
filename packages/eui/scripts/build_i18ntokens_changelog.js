@@ -69,24 +69,6 @@ function getTokenChanges(oldTokenInstances, newTokenInstances) {
   return changes;
 }
 
-async function commitTokenChanges() {
-  try {
-    execSync('git add ./i18ntokens.json ./i18ntokens_changelog.json');
-    execSync('git commit -m "update i18ntokens" -n');
-    console.log('i18n token changes committed');
-  } catch {
-    const staging = execSync('git status').toString().trim();
-    if (staging.includes('i18ntokens')) {
-      console.error(
-        'i18n tokens updates changed, but nothing was committed. Staging is still dirty'
-      );
-      process.exit(1);
-    } else {
-      console.log('No i18n token changes found to commit');
-    }
-  }
-}
-
 async function getPreviousI18nTokens() {
   const commitID = execSync(`git rev-parse v${oldPackageVersion}`)
     .toString()
@@ -113,9 +95,6 @@ async function main(newPackageVersion) {
     });
     fs.writeFileSync(tokensChangelogPath, JSON.stringify(changeLog, null, 2));
   }
-
-  // commit pending changes to i18ntokens.json or i18ntokens_changelog.json
-  await commitTokenChanges();
 }
 
 main();
