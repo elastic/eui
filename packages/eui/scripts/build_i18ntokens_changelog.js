@@ -118,4 +118,4 @@ async function main(newPackageVersion) {
   await commitTokenChanges();
 }
 
-module.exports = main;
+main();
