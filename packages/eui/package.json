@@ -17,7 +17,8 @@
   "scripts": {
     "start": "yarn storybook",
     "build:workspaces": "yarn workspaces foreach -Rti --from @elastic/eui-theme-common run build && yarn workspaces foreach -Rti --from @elastic/eui --exclude @elastic/eui --exclude @elastic/eui-theme-common run build",
-    "build": "node ./scripts/compile-i18n-strings.js && node ./scripts/compile-clean.js && node ./scripts/compile-eui.js && yarn compile-scss",
+    "build:clean": "rimraf dist lib es optimize test-env eui.d.ts",
+    "build": "node ./scripts/compile-i18n-strings.js && yarn build:clean && node ./scripts/compile-eui.js && yarn compile-scss",
     "build-pack": "yarn build && npm pack",
     "compile-icons": "node ./scripts/compile-icons.js && prettier --write --loglevel=warn \"./src/components/icon/assets/**/*.tsx\"",
     "compile-scss": "node ./scripts/compile-scss.js",
