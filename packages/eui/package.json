@@ -18,7 +18,7 @@
     "start": "yarn storybook",
     "build:workspaces": "yarn workspaces foreach -Rti --from @elastic/eui-theme-common run build && yarn workspaces foreach -Rti --from @elastic/eui --exclude @elastic/eui --exclude @elastic/eui-theme-common run build",
     "build:clean": "rimraf dist lib es optimize test-env eui.d.ts",
-    "build:i18ntokens": "node ./scripts/build_i18ntokens.js",
+    "build:i18ntokens": "node ./scripts/build_i18ntokens.js && node ./scripts/build_i18ntokens_changelog.js",
     "build:copy-assets": "node ./scripts/build_copy_assets.js",
     "build": "yarn build:clean && yarn build:i18ntokens && node ./scripts/compile-eui.js && yarn build:copy-assets",
     "build-pack": "yarn build && yarn pack",
