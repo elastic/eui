@@ -20,6 +20,7 @@ export {
   withEuiTheme,
   RenderWithEuiTheme,
   useEuiThemeCSSVariables,
+  useIsDarkMode,
 } from './hooks';
 export type { EuiThemeProviderProps } from './provider';
 export { EuiThemeProvider } from './provider';

@@ -7,11 +7,12 @@
  */
 
 import React, { forwardRef, useContext, useMemo } from 'react';
-import type {
-  EuiThemeColorModeStandard,
-  EuiThemeHighContrastMode,
-  EuiThemeModifications,
-  EuiThemeComputed,
+import {
+  type EuiThemeColorModeStandard,
+  type EuiThemeHighContrastMode,
+  type EuiThemeModifications,
+  type EuiThemeComputed,
+  COLOR_MODES_STANDARD,
 } from '@elastic/eui-theme-common';
 
 import {
@@ -121,4 +122,14 @@ export const useEuiThemeCSSVariables = () => {
     setNearestThemeCSSVariables,
     themeCSSVariables,
   };
+};
+
+/**
+ * Checks whether the current active `colorMode` is set to `DARK`;
+ * In case of nested providers this returns the value of the nearest provider context.
+ */
+export const useIsDarkMode = () => {
+  const { colorMode } = useEuiTheme();
+
+  return colorMode === COLOR_MODES_STANDARD.dark;
 };

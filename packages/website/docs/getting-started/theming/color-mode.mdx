@@ -12,6 +12,26 @@ import { ProviderDetails } from './provider_details';
 
 <ProviderDetails withThemeName={false} withHighContrastMode={false} />
 
+## Checking the current color mode
+
+There are different ways to check which `colorMode` is currently active on the `EuiProvider`: You can either check the value provided by `useEuiTheme()` manually, 
+or you can use the `useIsDarkMode()` hook which handles the check internally and returns you a `boolean` value.
+
+import { Example } from '@site/src/components';
+
+
+<Example.Snippet>
+  ```tsx
+  import { COLOR_MODES_STANDARD, useEuiTheme, useIsDarkMode } from '@elastic/eui';
+
+  const { colorMode } = useEuiTheme();
+  const isDarkMode = colorMode === COLOR_MODES_STANDARD.dark
+
+  // or in 1 line
+  const isDarkMode = useIsDarkMode();
+  ```
+</Example.Snippet>
+
 ## Rendering a specific color mode
 
 While it is usually best to keep all consumptions of the global variables rendering in the same light or dark color mode, some instances benefit from an exaggerated change in contrast from the current theme. For this you can specify **EuiThemeProvider**'s `colorMode` to always be `"light"`, `"dark"`, or `"inverse"` which sets it to the opposite of the current color mode.
