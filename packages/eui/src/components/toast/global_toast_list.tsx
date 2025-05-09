@@ -90,7 +90,7 @@ export const EuiGlobalToastList: FunctionComponent<EuiGlobalToastListProps> = ({
   const [toastIdToDismissedMap, setToastIdToDismissedMap] = useState<{
     [toastId: string]: boolean;
   }>({});
-  const [toastToDismiss, setToastToDismiss] = useState<Toast>();
+  const [toastsToDismiss, setToastsToDismiss] = useState<Toast[]>([]);
 
   const prevToasts = useRef<Toast[]>([]);
 
@@ -186,7 +186,7 @@ export const EuiGlobalToastList: FunctionComponent<EuiGlobalToastListProps> = ({
     // Remove the toast after it's done fading out.
     dismissTimeoutIds.current.push(
       window.setTimeout(() => {
-        setToastToDismiss(toast);
+        setToastsToDismiss((toasts) => [...toasts, toast]);
       }, TOAST_FADE_OUT_MS)
     );
 
@@ -266,26 +266,27 @@ export const EuiGlobalToastList: FunctionComponent<EuiGlobalToastListProps> = ({
   // Toast dismissal side effect
   // Ensure the callback has correct state by not enclosing it in `setTimeout`
   useEffect(() => {
-    const toast = toastToDismiss;
-    // Because this is triggered by a setTimeout, and because React does not guarantee when
-    // state updates happen, it is possible to double-dismiss a toast
-    // including by double-clicking the "x" button on the toast
-    // so, first check to make sure we haven't already dismissed this toast
-    if (toast && toastIdToTimerMap.current.hasOwnProperty(toast.id)) {
-      dismissToastProp(toast);
-      toastIdToTimerMap.current[toast.id].clear();
-      delete toastIdToTimerMap.current[toast.id];
+    toastsToDismiss.forEach((toast) => {
+      // Because this is triggered by a setTimeout, and because React does not guarantee when
+      // state updates happen, it is possible to double-dismiss a toast
+      // including by double-clicking the "x" button on the toast
+      // so, first check to make sure we haven't already dismissed this toast
+      if (toast && toastIdToTimerMap.current.hasOwnProperty(toast.id)) {
+        dismissToastProp(toast);
+        toastIdToTimerMap.current[toast.id].clear();
+        delete toastIdToTimerMap.current[toast.id];
 
-      setToastIdToDismissedMap((prev) => {
-        const toastIdToDismissedMap = {
-          ...prev,
-        };
-        delete toastIdToDismissedMap[toast.id];
+        setToastIdToDismissedMap((prev) => {
+          const toastIdToDismissedMap = {
+            ...prev,
+          };
+          delete toastIdToDismissedMap[toast.id];
 
-        return toastIdToDismissedMap;
-      });
-    }
-  }, [toastToDismiss, dismissToastProp]);
+          return toastIdToDismissedMap;
+        });
+      }
+    });
+  }, [toastsToDismiss, dismissToastProp]);
 
   const renderedToasts = useMemo(
     () =>
