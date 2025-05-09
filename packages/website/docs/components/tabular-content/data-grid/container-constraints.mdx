@@ -588,6 +588,209 @@ export default () => {
 };
 ```
 
+import { Example } from '@site/src/components';
+
+### Scroll position
+
+If you need access to the current scroll position of a virtualized `EuiDataGrid` you can make use of the `virtualizationOptions.onScroll` callback. 
+It passes along the scroll data and provides scroll position checks out of the box.
+
+
+<Example.Snippet>
+  ```ts
+  onScroll(args: {
+    horizontalScrollDirection: ScrollDirection;
+    verticalScrollDirection: ScrollDirection;
+    scrollUpdateWasRequested: boolean;
+    scrollLeft: number;
+    scrollTop: number;
+    scrollHeight: number;
+    scrollWidth: number;
+    clientHeight: number;
+    clientWidth: number;
+    isScrolledToBlockStart: boolean;
+    isScrolledToBlockEnd: boolean;
+    isScrolledToInlineStart: boolean;
+    isScrolledToInlineEnd: boolean;   
+  }) => void
+  ```
+</Example.Snippet>
+
+```tsx interactive
+import React, {
+  useCallback,
+  useState,
+  createContext,
+  useContext,
+  useMemo,
+  useEffect,
+} from 'react';
+import {
+  EuiDataGrid,
+  EuiLink,
+  EuiText,
+  EuiSpacer,
+  EuiFlexGroup,
+} from '@elastic/eui';
+import { faker } from '@faker-js/faker';
+
+const DataContext = createContext();
+
+const columns = [
+  {
+    id: 'name',
+    displayAsText: 'Name',
+    defaultSortDirection: 'asc',
+  },
+  {
+    id: 'email',
+  },
+  {
+    id: 'location',
+  },
+  {
+    id: 'account',
+  },
+  {
+    id: 'date',
+    defaultSortDirection: 'desc',
+  },
+  {
+    id: 'amount',
+  },
+  {
+    id: 'phone',
+    isSortable: false,
+  },
+  {
+    id: 'version',
+    defaultSortDirection: 'desc',
+    initialWidth: 65,
+    isResizable: false,
+  },
+];
+
+// it is expensive to compute 10000 rows of fake data
+// instead of loading up front, generate entries on the fly
+const raw_data = [];
+function RenderCellValue({ rowIndex, columnId }) {
+  const { data, adjustMountedCellCount } = useContext(DataContext);
+
+  useEffect(() => {
+    adjustMountedCellCount(1);
+    return () => adjustMountedCellCount(-1);
+  }, [adjustMountedCellCount]);
+
+  if (data[rowIndex] == null) {
+    const email = faker.internet.email();
+    const name = `${faker.person.lastName()}, ${faker.person.firstName()}`;
+    const suffix = faker.person.suffix();
+    data[rowIndex] = {
+      name: `${name} ${suffix}`,
+      email: <EuiLink href="">{email}</EuiLink>,
+      location: (
+        <>
+          {`${faker.location.city()}, `}
+          <EuiLink href="https://google.com">
+            {faker.location.country()}
+          </EuiLink>
+        </>
+      ),
+      date: `${faker.date.past()}`,
+      account: faker.finance.accountNumber(),
+      amount: faker.commerce.price(),
+      phone: faker.phone.number(),
+      version: faker.system.semver(),
+    };
+  }
+  return data.hasOwnProperty(rowIndex) ? data[rowIndex][columnId] : null;
+}
+
+export default () => {
+  // Pagination
+  const [pagination, setPagination] = useState({ pageIndex: 0, pageSize: 50 });
+  const onChangeItemsPerPage = useCallback(
+    (pageSize) =>
+      setPagination((pagination) => ({
+        ...pagination,
+        pageSize,
+        pageIndex: 0,
+      })),
+    [setPagination]
+  );
+  const onChangePage = useCallback(
+    (pageIndex) =>
+      setPagination((pagination) => ({ ...pagination, pageIndex })),
+    [setPagination]
+  );
+
+  // Column visibility
+  const [visibleColumns, setVisibleColumns] = useState(
+    columns.map(({ id }) => id)
+  );
+
+  const [mountedCellCount, setMountedCellCount] = useState(0);
+
+  const dataContext = useMemo(
+    () => ({
+      data: raw_data,
+      adjustMountedCellCount: (adjustment) =>
+        setMountedCellCount(
+          (mountedCellCount) => mountedCellCount + adjustment
+        ),
+    }),
+    []
+  );
+
+  const [isScrolledToBlockEnd, setIsScrolledToBlockEnd] = useState(false);
+  const [isScrolledToInlineEnd, setIsScrolledToInlineEnd] = useState(false);
+
+  const onScroll = ({ isScrolledToBlockEnd, isScrolledToInlineEnd }) => {
+    setIsScrolledToBlockEnd(isScrolledToBlockEnd);
+    setIsScrolledToInlineEnd(isScrolledToInlineEnd);
+  }
+
+  return (
+    <>
+      <EuiFlexGroup>
+        <EuiText>
+          <p>
+            <code>isScrolledToBlockEnd</code>: <b>{isScrolledToBlockEnd.toString()}</b>
+          </p>
+        </EuiText>
+        <EuiText>
+          <p>
+            <code>isScrolledToInlineEnd:</code> <b>{isScrolledToInlineEnd.toString()}</b>
+          </p>
+        </EuiText>
+      </EuiFlexGroup>
+
+      <EuiSpacer size="m" />
+
+      <DataContext.Provider value={dataContext}>
+        <EuiDataGrid
+          aria-label="Virtualized data grid scrolling demo"
+          height={300}
+          width={400}
+          columns={columns}
+          columnVisibility={{ visibleColumns, setVisibleColumns }}
+          rowCount={10}
+          renderCellValue={RenderCellValue}
+          rowHeightsOptions={{
+            defaultHeight: 'auto',
+            scrollAnchorRow: 'start',
+          }}
+          virtualizationOptions={{
+            onScroll,
+          }}
+        />
+      </DataContext.Provider>
+    </>
+  );
+};
+```
+
+
 ## Props
 
 import docgen from '@elastic/eui-docgen/dist/components/datagrid/data_grid_types.docgen.json';

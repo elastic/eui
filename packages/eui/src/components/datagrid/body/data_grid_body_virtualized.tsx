@@ -24,6 +24,7 @@ import {
   VariableSizeGrid as Grid,
   VariableSizeGridProps,
   GridOnItemsRenderedProps,
+  GridOnScrollProps,
 } from 'react-window';
 import { useDeepEqual } from '../../../services';
 import { useResizeObserver } from '../../observer/resize_observer';
@@ -369,6 +370,68 @@ export const EuiDataGridBodyVirtualized: FunctionComponent<EuiDataGridBodyProps>
         return { headerRowHeight, headerRow, footerRow };
       }, [headerRowHeight, headerRow, footerRow]);
 
+      const onScroll = useCallback(
+        (args: GridOnScrollProps) => {
+          // check only if a callback is passed
+          if (typeof virtualizationOptions?.onScroll !== 'function') return;
+
+          let enhancedArgs = {
+            ...args,
+            scrollHeight: 0,
+            scrollWidth: 0,
+            clientHeight: 0,
+            clientWidth: 0,
+            isScrolledToBlockStart: args.scrollTop === 0,
+            isScrolledToBlockEnd: false,
+            isScrolledToInlineStart: args.scrollLeft === 0,
+            isScrolledToInlineEnd: false,
+          };
+
+          if (outerGridRef.current) {
+            const {
+              scrollTop,
+              scrollLeft,
+              scrollHeight,
+              scrollWidth,
+              clientHeight,
+              clientWidth,
+            } = outerGridRef.current;
+
+            const isScrollableVertical = scrollHeight > clientHeight;
+            const isScrolledToBlockStart = scrollTop === 0;
+
+            const isScrollableHorizontal = scrollWidth > clientWidth;
+            const isScrolledToInlineStart = scrollLeft === 0;
+
+            const isScrolledToBlockEnd =
+              isScrollableVertical &&
+              !isScrolledToBlockStart &&
+              scrollHeight - scrollTop <= clientHeight;
+            const isScrolledToInlineEnd =
+              isScrollableHorizontal &&
+              !isScrolledToInlineStart &&
+              scrollWidth - scrollLeft <= clientWidth;
+
+            enhancedArgs = {
+              ...enhancedArgs,
+              scrollTop,
+              scrollLeft,
+              scrollHeight,
+              scrollWidth,
+              clientHeight,
+              clientWidth,
+              isScrolledToBlockStart,
+              isScrolledToBlockEnd,
+              isScrolledToInlineStart,
+              isScrolledToInlineEnd,
+            };
+          }
+
+          return virtualizationOptions?.onScroll(enhancedArgs);
+        },
+        [outerGridRef, virtualizationOptions]
+      );
+
       return IS_JEST_ENVIRONMENT || finalWidth > 0 ? (
         <DataGridWrapperRowsContext.Provider value={rowWrapperContextValue}>
           <Grid
@@ -392,6 +455,7 @@ export const EuiDataGridBodyVirtualized: FunctionComponent<EuiDataGridBodyProps>
             rowCount={
               IS_JEST_ENVIRONMENT || headerRowHeight > 0 ? visibleRowCount : 0
             }
+            onScroll={onScroll}
           >
             {Cell}
           </Grid>

@@ -8,6 +8,7 @@
 
 import React from 'react';
 import { mount } from 'enzyme';
+import { fireEvent } from '@testing-library/react';
 import { render } from '../../../test/rtl';
 
 import { dataGridBodyProps } from './data_grid_body.test';
@@ -74,6 +75,55 @@ describe('EuiDataGridBodyVirtualized', () => {
     );
     expect(component.find('.test').exists()).toBe(true);
     expect(onItemsRendered).toHaveBeenCalled();
+  });
+
+  describe('scrolling', () => {
+    it('passes correct scroll position data to virtualizationOptions.onScroll', () => {
+      Object.defineProperty(Element.prototype, 'scrollHeight', {
+        configurable: true,
+        value: 200,
+      });
+
+      Object.defineProperty(Element.prototype, 'clientHeight', {
+        configurable: true,
+        value: 100,
+      });
+
+      Object.defineProperty(Element.prototype, 'scrollTop', {
+        configurable: true,
+        value: 100,
+      });
+
+      const onScroll = jest.fn();
+
+      const { container } = render(
+        <EuiDataGridBodyVirtualized
+          {...dataGridBodyProps}
+          virtualizationOptions={{
+            onScroll,
+          }}
+        />
+      );
+
+      fireEvent.scroll(container, { target: { scrollY: 50 } });
+
+      expect(onScroll).toHaveBeenCalled();
+      expect(onScroll).toHaveBeenCalledWith({
+        scrollUpdateWasRequested: false,
+        horizontalScrollDirection: 'forward',
+        verticalScrollDirection: 'forward',
+        scrollLeft: 0,
+        scrollTop: 100,
+        scrollHeight: 200,
+        scrollWidth: 0,
+        clientHeight: 100,
+        clientWidth: 0,
+        isScrolledToBlockStart: false,
+        isScrolledToBlockEnd: true,
+        isScrolledToInlineStart: true,
+        isScrolledToInlineEnd: false,
+      });
+    });
   });
 
   // TODO: Test final height/widths
