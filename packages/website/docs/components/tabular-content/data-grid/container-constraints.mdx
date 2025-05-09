@@ -746,7 +746,6 @@ export default () => {
   const [isScrolledToInlineEnd, setIsScrolledToInlineEnd] = useState(false);
 
   const onScroll = ({ isScrolledToBlockEnd, isScrolledToInlineEnd }) => {
-    console.log('scroll!', isScrolledToBlockEnd, isScrolledToInlineEnd )
     setIsScrolledToBlockEnd(isScrolledToBlockEnd);
     setIsScrolledToInlineEnd(isScrolledToInlineEnd);
   }
@@ -782,10 +781,7 @@ export default () => {
             scrollAnchorRow: 'start',
           }}
           virtualizationOptions={{
-            onScroll: (args) => {
-              console.log(args);
-              onScroll(args);
-            }
+            onScroll,
           }}
         />
       </DataContext.Provider>
