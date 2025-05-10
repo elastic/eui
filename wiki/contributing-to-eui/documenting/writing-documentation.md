@@ -17,6 +17,7 @@
   - [Dos and Don'ts](#dos-and-donts)
   - [Figma embed](#figma-embed)
   - [Props table](#props-table)
+  - [Images](#images)
 
 Code for the Elastic UI [documentation site](https://eui.elastic.co) can be found in the `packages/website` directory. The site is built with [Docusaurus](https://docusaurus.io/).
 
@@ -338,3 +339,22 @@ If more than one table is needed because the component has many exports, place o
     <PropTable definition={docgen.EuiPageSidebar} />
 
 To customize the table `PropTable` also takes a `headingLevel` prop (h1–h6) and a `showTitle` boolean.
+
+### Images
+
+Typically, just use markdown:
+```mdx
+![An empty prompt component which reads, 404, we can't find the page you're looking for. If you typed the URL, check it's correct. If you clicked a link, contact your administrator: admin@example.co.](./images/error-page-404.webp)
+```
+
+If you need to add CSS to do something like constraining the width, use an `img` tag:
+```mdx
+import error403 from './images/error-page-404.webp';
+
+<img
+  src={error404}
+  alt="An empty prompt component which reads, 404, we can't find the page you're looking for. If you typed the URL, check it's correct. If you clicked a link, contact your administrator: admin@example.co."
+  style={{ maxWidth: '480px' }}
+/>
+```
+
