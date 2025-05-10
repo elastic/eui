@@ -9,7 +9,7 @@
 import {
   createContext,
   useCallback,
-  useEffect,
+  useLayoutEffect,
   useMemo,
   useRef,
   useState,
@@ -81,7 +81,7 @@ export const useFocus = (): DataGridFocusContextShape & {
   );
 
   const previousCell = useRef<EuiDataGridFocusedCell | undefined>(undefined);
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (previousCell.current) {
       notifyCellOfFocusState(
         cellsUpdateFocus.current,
