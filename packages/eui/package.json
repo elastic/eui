@@ -50,7 +50,7 @@
     "url": "https://github.com/elastic/eui.git"
   },
   "dependencies": {
-    "@elastic/eui-theme-common": "workspace:*",
+    "@elastic/eui-theme-common": "1.0.0",
     "@elastic/prismjs-esql": "^1.1.0",
     "@hello-pangea/dnd": "^16.6.0",
     "@types/lodash": "^4.14.202",
@@ -104,7 +104,7 @@
     "@cypress/webpack-dev-server": "^1.7.0",
     "@elastic/charts": "^64.1.0",
     "@elastic/datemath": "^5.0.3",
-    "@elastic/eui-theme-borealis": "workspace:*",
+    "@elastic/eui-theme-borealis": "1.0.0",
     "@emotion/babel-preset-css-prop": "^11.11.0",
     "@emotion/cache": "^11.11.0",
     "@emotion/css": "^11.11.0",
