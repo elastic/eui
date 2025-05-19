@@ -166,7 +166,7 @@ export const EuiSelect: FunctionComponent<EuiSelectProps> = (props) => {
           disabled={disabled}
           {...rest}
         >
-          {hasNoInitialSelection && (
+          {hasNoInitialSelection && value === '' && (
             <option value="" disabled hidden style={{ display: 'none' }}>
               &nbsp;
             </option>
