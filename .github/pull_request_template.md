@@ -1,8 +1,18 @@
 ## Summary
 
+<!--
 Provide a detailed summary of your PR. Explain how you arrived at your solution. If it includes changes to UI elements include a screenshot or gif.
 
 If this is your first PR in the EUI repo, please ensure you've fully read through our [contributing to EUI](https://github.com/elastic/eui/blob/main/wiki/contributing-to-eui#how-to-ensure-the-timely-review-of-pull-requests) wiki guide.
+-->
+
+## Related issue
+
+<!--
+Generally, most PRs should have a related issue from the [public EUI repo](https://github.com/elastic/eui) that explain why we are making changes.
+
+If this is a small change that does *not* have an issue associated with, please clearly explain *why* we are making this change. Our future selves will thank you.
+-->
 
 ## QA
 
