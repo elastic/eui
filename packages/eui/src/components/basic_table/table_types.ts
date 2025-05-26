@@ -116,9 +116,11 @@ export interface EuiTableFieldDataColumnType<T>
     render?: (item: T) => ReactNode;
   };
   /**
-   * Describe a custom renderer function for the content
+   * Describe a custom renderer function for the content.
+   * Different from computed-type columns and the `mobileOptions.render` function,
+   * this one takes the `field` value as first param, and the full data item as second.
    */
-  render?: (value: any, record: T) => ReactNode;
+  render?: (value: any, item: T) => ReactNode;
   /**
    * Content to display in the footer beneath this column
    */
@@ -138,7 +140,7 @@ export type EuiTableComputedColumnType<T> = CommonProps &
     /**
      * A function that computes the value for each item and renders it
      */
-    render: (record: T) => ReactNode;
+    render: (item: T) => ReactNode;
     /**
      * The display name of the column
      */
