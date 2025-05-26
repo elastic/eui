@@ -1,3 +1,24 @@
+## [`v102.2.0`](https://github.com/elastic/eui/releases/v102.2.0)
+
+- Added `useIsDarkMode` utility ([#8701](https://github.com/elastic/eui/pull/8701))
+- Added scroll position data as arguments to `virtualizationOptions.onScroll` for the virtualized `EuiDataGrid` ([#8688](https://github.com/elastic/eui/pull/8688))
+- Updated secondary fill to `primary` on `EuiIcon` ([#8687](https://github.com/elastic/eui/pull/8687))
+- Added white outline on EuiLoadingElastic to make it compliant with the Brand requirements ([#8684](https://github.com/elastic/eui/pull/8684))
+
+**Bug fixes**
+
+- Fixed `EuiGlobalToastList` toasts not being cleaned properly when they are added and removed at the same time ([#8692](https://github.com/elastic/eui/pull/8692))
+- Resolved an issue where the `EuiDataGrid` cell actions menu was hidden by the header when a cell was clicked to scroll into view ([#8640](https://github.com/elastic/eui/pull/8640))
+
+**Accessibility**
+
+- Improved accessibility of `EuiSelect` by removing the empty `<option>` added when `hasNoInitialSelection` is `true` from the DOM, once a user makes a selection. ([#8706](https://github.com/elastic/eui/pull/8706))
+- Improved the accessibility of `EuiSuperDatePicker`'s quick select buttons by preventing duplicate screen reader output ([#8686](https://github.com/elastic/eui/pull/8686))
+
+**Dependency updates**
+
+- Updated `typescript` to v5.8.3 ([#8626](https://github.com/elastic/eui/pull/8626))
+
 ## [`v102.1.0`](https://github.com/elastic/eui/releases/v102.1.0)
 
 - Update `EuiDataGrid` to use `expand` glyph ([#8646](https://github.com/elastic/eui/pull/8646))
