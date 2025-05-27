@@ -10,7 +10,7 @@
 /// <reference types="cypress-real-events" />
 /// <reference types="../../../cypress/support" />
 
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 
 import { EuiGlobalToastList } from '../toast';
 import {
@@ -22,6 +22,7 @@ import { EuiCollapsibleNavBeta } from '../collapsible_nav_beta';
 import { EuiFlyout } from './flyout';
 import { EuiCollapsibleNav, EuiCollapsibleNavGroup } from '../collapsible_nav';
 import { EuiIcon } from '../icon';
+import { EuiButton } from '../button';
 
 const childrenDefault = (
   <>
@@ -32,11 +33,23 @@ const childrenDefault = (
   </>
 );
 
-const Flyout = ({ children = childrenDefault, ...rest }) => {
-  const [isOpen, setIsOpen] = useState(true);
+const Flyout = ({
+  children = childrenDefault,
+  hasTrigger = false,
+  ...rest
+}) => {
+  const [isOpen, setIsOpen] = useState(hasTrigger ? false : true);
 
   return (
     <>
+      {hasTrigger && (
+        <EuiButton
+          onClick={() => setIsOpen(!isOpen)}
+          data-test-subj="flyoutSpecTrigger"
+        >
+          Trigger
+        </EuiButton>
+      )}
       {isOpen ? (
         <EuiFlyout
           data-test-subj="flyoutSpec"
@@ -78,6 +91,59 @@ describe('EuiFlyout', () => {
       cy.get('body').realClick({ position: 'topLeft' }).realPress('End'); // TODO: Use cypress-real-event's `realMouseWheel` API, whenever they release it
       cy.wait(500); // Wait a tick to let scroll position update
       cy.window().its('scrollY').should('not.equal', 0);
+    });
+  });
+
+  describe('Return focus behavior', () => {
+    it('returns focus to the trigger on close', () => {
+      cy.mount(<Flyout hasTrigger />);
+
+      cy.get('[data-test-subj="flyoutSpecTrigger"]').click();
+      cy.get('[data-test-subj="flyoutSpec"]').should('be.focused');
+      cy.get('[data-test-subj="euiFlyoutCloseButton"]').click();
+      cy.get('[data-test-subj="flyoutSpecTrigger"]').should('be.focused');
+    });
+
+    it('does not return focus to the trigger when `focusTrapProps.returnFocus` is `false`', () => {
+      cy.mount(<Flyout hasTrigger focusTrapProps={{ returnFocus: false }} />);
+
+      cy.get('[data-test-subj="flyoutSpecTrigger"]').click();
+      cy.get('[data-test-subj="flyoutSpec"]').should('be.focused');
+      cy.get('[data-test-subj="euiFlyoutCloseButton"]').click();
+      cy.get('[data-test-subj="flyoutSpecTrigger"]').should('not.be.focused');
+    });
+
+    it('returns focus to a custom element', () => {
+      const FlyoutWrapper = () => {
+        const customTriggerRef = useRef<HTMLButtonElement>(null);
+
+        return (
+          <>
+            <EuiButton
+              buttonRef={customTriggerRef}
+              data-test-subj="flyoutSpecCustomTrigger"
+            >
+              Custom trigger
+            </EuiButton>
+            <Flyout
+              hasTrigger
+              focusTrapProps={{
+                returnFocus: () => {
+                  customTriggerRef.current?.focus();
+                  return false;
+                },
+              }}
+            />
+          </>
+        );
+      };
+      cy.mount(<FlyoutWrapper />);
+
+      cy.get('[data-test-subj="flyoutSpecTrigger"]').click();
+      cy.get('[data-test-subj="flyoutSpec"]').should('be.focused');
+      cy.get('[data-test-subj="euiFlyoutCloseButton"]').click();
+      cy.get('[data-test-subj="flyoutSpecTrigger"]').should('not.be.focused');
+      cy.get('[data-test-subj="flyoutSpecCustomTrigger"]').should('be.focused');
     });
   });
 
