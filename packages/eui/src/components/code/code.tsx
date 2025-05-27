@@ -7,13 +7,14 @@
  */
 
 import React, { useMemo, FunctionComponent } from 'react';
-import { highlight, RefractorNode } from 'refractor';
+import { refractor } from 'refractor';
 import classNames from 'classnames';
 import {
   EuiCodeSharedProps,
   DEFAULT_LANGUAGE,
   checkSupportedLanguage,
   getHtmlContent,
+  type RefractorBaseNode,
 } from './utils';
 import { useEuiMemoizedStyles } from '../../services';
 import { euiCodeStyles } from './code.styles';
@@ -32,11 +33,12 @@ export const EuiCode: FunctionComponent<EuiCodeProps> = ({
     [_language]
   );
 
-  const data: RefractorNode[] = useMemo(() => {
+  const data: RefractorBaseNode[] = useMemo(() => {
     if (typeof children !== 'string') {
       return [];
     }
-    return highlight(children, language);
+    return refractor.highlight(children, language)
+      .children as RefractorBaseNode[];
   }, [children, language]);
 
   const content = useMemo(

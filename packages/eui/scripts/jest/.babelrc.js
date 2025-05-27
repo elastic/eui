@@ -1,5 +1,5 @@
 module.exports = {
-  extends: '../../.babelrc.js',
+  extends: '<rootDir>/../../.babelrc.js',
   presets: [
     [
       '@babel/env',
