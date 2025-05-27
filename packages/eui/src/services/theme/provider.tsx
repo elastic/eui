@@ -296,6 +296,18 @@ export const EuiThemeProvider = <T extends {} = {}>({
     children,
   ]);
 
+  /* creates a map of css variables names to their values so it can be used via euiThemeCSSVariables
+   * const flattenedTheme = {
+   * --euiTheme_color_primary: "#0079a1",
+   * --euiTheme_animation_bounce: "cubic-bezier(.34, 1.61, .7, 1)",
+   * --euiTheme_animation_bounceIn: "cubic-bezier(.34, 1.61, .7, 1)",
+   * //etc...
+   */
+  const flattenedTheme = useMemo(() => flattenThemeToCSSVars(theme), [theme]);
+  console.log(
+    'flattenedTheme',
+    flattenedTheme)
+
   return (
     <>
       {isGlobalTheme && themeCSSVariables && (
@@ -310,7 +322,16 @@ export const EuiThemeProvider = <T extends {} = {}>({
                   <EuiThemeMemoizedStylesProvider>
                     <EuiEmotionThemeProvider>
                       <EuiConditionalBreakpointProvider>
-                        {renderedChildren}
+                        {isGlobalTheme && flattenedTheme ? ( // todo: there are still too many if these generated in the DOM 
+                          <>
+                            <Global styles={{ ':root': flattenedTheme }} />
+                            {renderedChildren}
+                          </>
+                        ) : isParentTheme.current && flattenedTheme ? (
+                          <div style={flattenedTheme}>{renderedChildren}</div>
+                        ) : (
+                          renderedChildren
+                        )}
                       </EuiConditionalBreakpointProvider>
                     </EuiEmotionThemeProvider>
                   </EuiThemeMemoizedStylesProvider>
@@ -322,4 +343,31 @@ export const EuiThemeProvider = <T extends {} = {}>({
       </EuiColorModeContext.Provider>
     </>
   );
+};
+
+const flattenThemeToCSSVars = (
+  obj: Record<string, any>,
+  prefix = '--euiTheme'
+) => {
+  const result: Record<string, string | number> = {};
+  const stack: Array<{ path: string[]; value: any }> = [
+    { path: [], value: obj },
+  ];
+
+  while (stack.length) {
+    const { path, value } = stack.pop()!;
+
+    if (typeof value === 'object' && value !== null) {
+      for (const key in value) {
+        if (Object.prototype.hasOwnProperty.call(value, key)) {
+          stack.push({ path: [...path, key], value: value[key] });
+        }
+      }
+    } else {
+      const varName = `${prefix}_${path.join('_')}`;
+      result[varName] = value;
+    }
+  }
+
+  return result;
 };
