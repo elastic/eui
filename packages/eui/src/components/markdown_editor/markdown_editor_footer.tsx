@@ -15,7 +15,7 @@ import React, {
   ReactNode,
 } from 'react';
 
-import { useEuiMemoizedStyles } from '../../services';
+import { useEuiMemoizedStyles, useGeneratedHtmlId } from '../../services';
 import { EuiLoadingSpinner } from '../loading';
 import { EuiButton, EuiButtonEmpty, EuiButtonIcon } from '../button';
 import { EuiTitle } from '../title';
@@ -119,6 +119,7 @@ export const EuiMarkdownEditorFooter = forwardRef<
   );
 
   const { readOnly } = useContext(EuiMarkdownContext);
+  const helpModalTitleId = useGeneratedHtmlId();
 
   if (isUploadingFiles) {
     uploadButton = (
@@ -235,10 +236,13 @@ export const EuiMarkdownEditorFooter = forwardRef<
         </EuiToolTip>
 
         {isShowingHelpModal && (
-          <EuiModal onClose={() => setIsShowingHelpModal(false)}>
+          <EuiModal
+            onClose={() => setIsShowingHelpModal(false)}
+            aria-labelledby={helpModalTitleId}
+          >
             <EuiModalHeader>
               <EuiTitle>
-                <h1>{syntaxTitle}</h1>
+                <h1 id={helpModalTitleId}>{syntaxTitle}</h1>
               </EuiTitle>
             </EuiModalHeader>
             <EuiModalBody>
@@ -310,6 +314,7 @@ export const EuiMarkdownEditorFooter = forwardRef<
         closePopover={() => setIsShowingHelpPopover(false)}
         panelPaddingSize="s"
         anchorPosition="upCenter"
+        aria-labelledby={helpModalTitleId}
       >
         <EuiI18n
           tokens={['euiMarkdownEditorFooter.syntaxPopoverDescription']}
