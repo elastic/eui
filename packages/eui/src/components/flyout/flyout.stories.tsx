@@ -6,11 +6,11 @@
  * Side Public License, v 1.
  */
 
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 
-import { EuiButton, EuiCallOut, EuiText, EuiTitle } from '../index';
+import { EuiButton, EuiCallOut, EuiSpacer, EuiText, EuiTitle } from '../index';
 
 import {
   EuiFlyout,
@@ -54,18 +54,29 @@ type Story = StoryObj<EuiFlyoutProps>;
 
 const onClose = action('onClose');
 
-const StatefulFlyout = (props: Partial<EuiFlyoutProps>) => {
-  const [isOpen, setIsOpen] = useState(true);
+const StatefulFlyout = (
+  props: Partial<
+    EuiFlyoutProps & { isOpen: boolean; onToggle: (open: boolean) => void }
+  >
+) => {
+  const { isOpen, onToggle } = props;
+  const [_isOpen, setIsOpen] = useState(isOpen ?? true);
+
+  const handleToggle = (open: boolean) => {
+    setIsOpen(open);
+    onToggle?.(open);
+  };
+
   return (
     <>
-      <EuiButton size="s" onClick={() => setIsOpen(!isOpen)}>
+      <EuiButton size="s" onClick={() => handleToggle(!_isOpen)}>
         Toggle flyout
       </EuiButton>
-      {isOpen && (
+      {_isOpen && (
         <EuiFlyout
           {...props}
           onClose={(...args) => {
-            setIsOpen(false);
+            handleToggle(false);
             onClose(...args);
           }}
         />
@@ -132,6 +143,59 @@ export const PushFlyouts: Story = {
           <EuiFlyoutBody>{fillerText}</EuiFlyoutBody>
         </StatefulFlyout>
         {fillerText}
+      </>
+    );
+  },
+};
+
+export const ManualReturnFocus: Story = {
+  parameters: {
+    controls: {
+      include: ['focusTrapProps'],
+    },
+  },
+  args: {
+    children: (
+      <>
+        <EuiFlyoutHeader hasBorder>
+          <EuiTitle size="m">
+            <h2>Flyout header</h2>
+          </EuiTitle>
+        </EuiFlyoutHeader>
+        <EuiFlyoutBody>Flyout body</EuiFlyoutBody>
+        <EuiFlyoutFooter>
+          <EuiButton fill>Flyout footer</EuiButton>
+        </EuiFlyoutFooter>
+      </>
+    ),
+  },
+  render: function Render({ ...args }) {
+    const manualTriggerRef = useRef<HTMLButtonElement>(null);
+
+    return (
+      <>
+        <EuiButton size="s" buttonRef={manualTriggerRef}>
+          Manual trigger
+        </EuiButton>
+        <EuiSpacer size="s" />
+        <StatefulFlyout
+          {...args}
+          focusTrapProps={{
+            ...args.focusTrapProps,
+            returnFocus: (returnTo: Element) => {
+              if (manualTriggerRef.current) {
+                manualTriggerRef.current?.focus();
+                return false;
+              }
+
+              if (returnTo && returnTo !== document.body) {
+                return true;
+              }
+
+              return false;
+            },
+          }}
+        />
       </>
     );
   },
