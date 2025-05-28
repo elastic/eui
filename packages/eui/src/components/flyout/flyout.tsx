@@ -145,8 +145,12 @@ interface _EuiFlyoutProps {
    * Object of props passed to EuiFocusTrap.
    * `shards` specifies an array of elements that will be considered part of the flyout, preventing the flyout from being closed when clicked.
    * `closeOnMouseup` will delay the close callback, allowing time for external toggle buttons to handle close behavior.
+   * `returnFocus` defines the return focus behavior and provides the possibility to check the available target element or opt out of the behavior in favor of manually returning focus
    */
-  focusTrapProps?: Pick<EuiFocusTrapProps, 'closeOnMouseup' | 'shards'>;
+  focusTrapProps?: Pick<
+    EuiFocusTrapProps,
+    'closeOnMouseup' | 'shards' | 'returnFocus'
+  >;
   /**
    * By default, EuiFlyout will consider any fixed `EuiHeader`s that sit alongside or above the EuiFlyout
    * as part of the flyout's focus trap. This prevents focus fighting with interactive elements
