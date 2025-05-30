@@ -192,6 +192,11 @@ const component_colors: _EuiThemeComponentColors = {
     ['colors.success']
   ),
 
+  filterButtonBadgeBackgroundHover: computed(
+    ([lightShade]) => tint(lightShade, 0.3),
+    ['colors.lightShade']
+  ),
+
   filterSelectItemBackgroundFocusDisabled: computed(
     ([disabled]) => transparentize(disabled, 0.1),
     ['colors.disabled']

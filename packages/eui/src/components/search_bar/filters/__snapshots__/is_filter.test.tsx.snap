@@ -1,21 +1,26 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`IsFilter render 1`] = `
-<button
-  aria-pressed="false"
-  class="euiButtonEmpty euiFilterButton emotion-euiButtonDisplay-euiButtonEmpty-m-empty-text-euiFilterButton"
-  type="button"
+<div
+  class="euiFilterButton__wrapper css-10m1aro-wrapper-hasToggle"
 >
-  <span
-    class="euiButtonEmpty__content emotion-euiButtonDisplayContent-euiFilterButton__content"
+  <button
+    aria-pressed="false"
+    class="euiButtonGroupButton euiFilterButton euiFilterButton-isToggle emotion-euiButtonDisplay-s-defaultMinWidth-euiButtonGroupButton-compressed-empty-text-euiFilterButton-toggle"
+    data-test-subj="filter-button_generated-id"
+    type="button"
   >
     <span
-      class="euiFilterButton__text emotion-euiFilterButton__text"
-      data-text="Open"
-      title="Open"
+      class="emotion-euiButtonDisplayContent-euiButtonGroupButton__content-compressed-euiFilterButton__content"
     >
-      Open
+      <span
+        class="euiFilterButton__text emotion-euiFilterButton__text"
+        data-text="Open"
+        title="Open"
+      >
+        Open
+      </span>
     </span>
-  </span>
-</button>
+  </button>
+</div>
 `;

@@ -3,7 +3,7 @@
 exports[`euiDataGridToolbarControl passes props to the underlying EuiButtonEmpty 1`] = `
 <button
   aria-label="aria-label"
-  class="euiButtonEmpty euiDataGridToolbarControl testClass1 testClass2 emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-text-underlineStyles-euiTestCss"
+  class="euiButtonEmpty euiDataGridToolbarControl testClass1 testClass2 emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-text-interactiveStyles-euiTestCss"
   data-test-subj="test subject string"
   type="button"
 >
@@ -25,7 +25,7 @@ exports[`euiDataGridToolbarControl passes props to the underlying EuiButtonEmpty
 
 exports[`euiDataGridToolbarControl renders with a badge 1`] = `
 <button
-  class="euiButtonEmpty euiDataGridToolbarControl emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-text-underlineStyles"
+  class="euiButtonEmpty euiDataGridToolbarControl emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-text-interactiveStyles"
   type="button"
 >
   <span

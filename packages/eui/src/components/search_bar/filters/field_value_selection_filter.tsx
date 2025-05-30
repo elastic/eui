@@ -309,6 +309,7 @@ export class FieldValueSelectionFilter extends Component<
             <EuiFilterButton
               iconType="arrowDown"
               iconSide="right"
+              isSelected={active}
               hasActiveFilters={active}
               numActiveFilters={active ? activeItemsCount : undefined}
               grow

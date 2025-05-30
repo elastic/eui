@@ -475,7 +475,7 @@ exports[`EuiDataGrid rendering renders additional toolbar controls 1`] = `
             data-test-subj="dataGridColumnSelectorPopover"
           >
             <button
-              class="euiButtonEmpty euiDataGridToolbarControl emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-text-underlineStyles"
+              class="euiButtonEmpty euiDataGridToolbarControl emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-text-interactiveStyles"
               data-test-subj="dataGridColumnSelectorButton"
               type="button"
             >
@@ -908,7 +908,7 @@ exports[`EuiDataGrid rendering renders control columns 1`] = `
             data-test-subj="dataGridColumnSelectorPopover"
           >
             <button
-              class="euiButtonEmpty euiDataGridToolbarControl emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-text-underlineStyles"
+              class="euiButtonEmpty euiDataGridToolbarControl emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-text-interactiveStyles"
               data-test-subj="dataGridColumnSelectorButton"
               type="button"
             >
@@ -1541,7 +1541,7 @@ exports[`EuiDataGrid rendering renders custom column headers 1`] = `
             data-test-subj="dataGridColumnSelectorPopover"
           >
             <button
-              class="euiButtonEmpty euiDataGridToolbarControl emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-text-underlineStyles"
+              class="euiButtonEmpty euiDataGridToolbarControl emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-text-interactiveStyles"
               data-test-subj="dataGridColumnSelectorButton"
               type="button"
             >
@@ -1973,7 +1973,7 @@ exports[`EuiDataGrid rendering renders with common and div attributes 1`] = `
             data-test-subj="dataGridColumnSelectorPopover"
           >
             <button
-              class="euiButtonEmpty euiDataGridToolbarControl emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-text-underlineStyles"
+              class="euiButtonEmpty euiDataGridToolbarControl emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-text-interactiveStyles"
               data-test-subj="dataGridColumnSelectorButton"
               type="button"
             >

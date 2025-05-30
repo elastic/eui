@@ -6,11 +6,17 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, MouseEvent } from 'react';
 import classNames from 'classnames';
 
-import { useEuiMemoizedStyles } from '../../services';
 import { _EuiButtonColor } from '../../global_styling';
+import {
+  EuiThemeProvider,
+  useEuiMemoizedStyles,
+  useEuiTheme,
+  useGeneratedHtmlId,
+  useEuiThemeRefreshVariant,
+} from '../../services';
 import { useEuiI18n } from '../i18n';
 import { useInnerText } from '../inner_text';
 import { DistributiveOmit } from '../common';
@@ -20,12 +26,15 @@ import { EuiButtonEmpty, EuiButtonEmptyProps } from '../button/button_empty';
 
 import {
   euiFilterButtonStyles,
+  euiFilterButtonWrapperStyles,
   euiFilterButtonChildStyles,
 } from './filter_button.styles';
+import { EuiButtonGroupButton } from '../button/button_group/button_group_button';
+import { _compressedButtonFocusColors } from '../button/button_group/button_group_button.styles';
 
 export type EuiFilterButtonProps = {
   /**
-   * Bolds the button if true
+   * Highlights active filters
    */
   hasActiveFilters?: boolean;
   /**
@@ -39,7 +48,15 @@ export type EuiFilterButtonProps = {
    */
   numActiveFilters?: number;
   /**
-   * Applies a visual state to the button useful when using with a popover.
+   * Switches between toggle and regular button
+   * @default false
+   */
+  isToggle?: boolean;
+  /**
+   * Applies a visual state to the button.
+   * Automatically applies `aria-pressed` when used with `isToggle={true}`.
+   * Otherwise applies `aria-expanded` when used with `isToggle={false}` and
+   * `iconType="arrowDown"` as trigger button for e.g. a popover.
    */
   isSelected?: boolean;
   /**
@@ -63,7 +80,10 @@ export type EuiFilterButtonProps = {
    *  - warning
    */
   color?: _EuiButtonColor;
-} & DistributiveOmit<EuiButtonEmptyProps, 'flush' | 'size' | 'color'>;
+} & DistributiveOmit<
+  EuiButtonEmptyProps,
+  'flush' | 'size' | 'color' | 'isSelected'
+>;
 
 export const EuiFilterButton: FunctionComponent<EuiFilterButtonProps> = ({
   children,
@@ -75,6 +95,7 @@ export const EuiFilterButton: FunctionComponent<EuiFilterButtonProps> = ({
   hasActiveFilters,
   numFilters,
   numActiveFilters,
+  isToggle,
   isDisabled,
   isSelected,
   type = 'button',
@@ -84,30 +105,65 @@ export const EuiFilterButton: FunctionComponent<EuiFilterButtonProps> = ({
   contentProps,
   ...rest
 }) => {
+  const id = useGeneratedHtmlId({ prefix: 'filter-button' });
   const numFiltersDefined = numFilters != null; // != instead of !== to allow for null and undefined
   const numActiveFiltersDefined =
     numActiveFilters != null && numActiveFilters > 0;
 
+  const euiThemeContext = useEuiTheme();
+  const { colorMode } = euiThemeContext;
+
+  const isRefreshVariant = useEuiThemeRefreshVariant('buttonVariant');
+
+  // assumption about type of usage based on icon usage
+  // requires manual override to apply correct aria attributes for more custom usages
+  const isCollapsible = !isToggle && iconType === 'arrowDown';
+  // NOTE: in Amsterdam `hasActiveFilters` applies selected styling while `isSelected` does not.
+  // With Borealis this is more granular as EuiFilterButton now supports proper toggle buttons next to regular buttons
+  const isExpanded = isCollapsible && (isSelected ?? hasActiveFilters);
+
   const styles = useEuiMemoizedStyles(euiFilterButtonStyles);
+  const focusColorStyles = useEuiMemoizedStyles(_compressedButtonFocusColors);
+
+  const toggleVariantStyles = isRefreshVariant
+    ? [
+        isToggle && styles.buttonType.toggle,
+        !isToggle && !isDisabled && focusColorStyles[color],
+        !isToggle && styles.buttonType.default,
+      ]
+    : [isToggle && styles.buttonType.toggle];
+
   const cssStyles = [
     styles.euiFilterButton,
-    withNext && styles.withNext,
-    !grow && styles.noGrow,
+    !isRefreshVariant && withNext && styles.withNext,
     hasActiveFilters && styles.hasActiveFilters,
-    numFiltersDefined && styles.hasNotification,
+    ...toggleVariantStyles,
   ];
+
+  const wrapperStyles = useEuiMemoizedStyles(euiFilterButtonWrapperStyles);
+
+  const wrapperCssStyles = [
+    wrapperStyles.wrapper,
+    isRefreshVariant && withNext && styles.withNext,
+    numFiltersDefined && styles.hasNotification,
+    isToggle && wrapperStyles.hasToggle,
+    !grow && styles.noGrow,
+  ];
+
   const {
     content: contentStyles,
     text: textStyles,
     notification: notificationStyles,
   } = useEuiMemoizedStyles(euiFilterButtonChildStyles);
 
+  const wrapperClasses = classNames('euiFilterButton__wrapper');
   const classes = classNames(
     'euiFilterButton',
     {
       'euiFilterButton-isSelected': isSelected,
       'euiFilterButton-hasActiveFilters': hasActiveFilters,
       'euiFilterButton-hasNotification': numFiltersDefined,
+      'euiFilterButton-isToggle': isRefreshVariant && isToggle,
     },
     className
   );
@@ -132,6 +188,30 @@ export const EuiFilterButton: FunctionComponent<EuiFilterButtonProps> = ({
     isDisabled && notificationStyles.disabled,
   ];
 
+  const badgeContent = (
+    <EuiNotificationBadge
+      className="euiFilterButton__notification"
+      css={badgeStyles}
+      aria-label={hasActiveFilters ? activeBadgeLabel : availableBadgeLabel}
+      color={isDisabled || !hasActiveFilters ? 'subdued' : badgeColor}
+      role="marquee" // https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/marquee_role
+    >
+      {badgeCount}
+    </EuiNotificationBadge>
+  );
+
+  const badgeElement =
+    showBadge &&
+    (isRefreshVariant ? (
+      <EuiThemeProvider
+        colorMode={isToggle && isSelected ? 'INVERSE' : colorMode}
+      >
+        {badgeContent}
+      </EuiThemeProvider>
+    ) : (
+      badgeContent
+    ));
+
   /**
    * Text
    */
@@ -150,7 +230,21 @@ export const EuiFilterButton: FunctionComponent<EuiFilterButtonProps> = ({
   const dataText =
     children && typeof children === 'string' ? children : innerText;
 
-  return (
+  const textContent = (
+    <span
+      ref={ref}
+      data-text={dataText}
+      title={dataText}
+      {...textProps}
+      className={buttonTextClassNames}
+      css={textCssStyles}
+    >
+      {children}
+    </span>
+  );
+
+  /** Button element */
+  const button = (
     <EuiButtonEmpty
       className={classes}
       css={cssStyles}
@@ -168,30 +262,56 @@ export const EuiFilterButton: FunctionComponent<EuiFilterButtonProps> = ({
           contentProps?.css,
         ],
       }}
+      aria-expanded={isCollapsible ? isExpanded : undefined}
       {...rest}
     >
-      <span
-        ref={ref}
-        data-text={dataText}
-        title={dataText}
-        {...textProps}
-        className={buttonTextClassNames}
-        css={textCssStyles}
-      >
-        {children}
-      </span>
-
-      {showBadge && (
-        <EuiNotificationBadge
-          className="euiFilterButton__notification"
-          css={badgeStyles}
-          aria-label={hasActiveFilters ? activeBadgeLabel : availableBadgeLabel}
-          color={isDisabled || !hasActiveFilters ? 'subdued' : badgeColor}
-          role="marquee" // https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/marquee_role
-        >
-          {badgeCount}
-        </EuiNotificationBadge>
-      )}
+      {textContent}
+      {badgeElement}
     </EuiButtonEmpty>
+  );
+
+  const onToggleClick = (
+    e: MouseEvent<HTMLButtonElement & HTMLAnchorElement>
+  ) => {
+    rest?.onClick?.(e);
+  };
+
+  return (
+    <div className={wrapperClasses} css={wrapperCssStyles}>
+      {isToggle && !isCollapsible ? (
+        <EuiButtonGroupButton
+          id={id}
+          label={
+            <>
+              {textContent}
+              {badgeElement}
+            </>
+          }
+          className={classes}
+          css={cssStyles}
+          color={color}
+          isSelected={isSelected}
+          size="compressed"
+          isDisabled={isDisabled}
+          iconSide={iconSide}
+          iconType={iconType}
+          isIconOnly={false}
+          type={type}
+          textProps={false}
+          contentProps={{
+            ...contentProps,
+            css: [
+              contentStyles.euiFilterButton__content,
+              iconType && contentStyles.hasIcon,
+              contentProps?.css,
+            ],
+          }}
+          {...rest}
+          onClick={onToggleClick}
+        />
+      ) : (
+        button
+      )}
+    </div>
   );
 };
