@@ -39,7 +39,7 @@ export type EuiFilterButtonProps = {
    *
    * Accepted values are integers and percentages (e.g., 20%).
    * Passing other values is not supported and may break the layout.
-   *ą
+   *
    * @example 10
    * @example '20%'
    */
