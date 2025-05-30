@@ -12,7 +12,7 @@
  */
 export const severityColors = {
   unknown: '#D3DAE6',
-  neutral: '#BECFE3',
+  neutral: '#B9CFE3', // tint(euiColorVis1, 0.56)
   success: '#54B399',
   warning: '#D6BF57',
   risk: '#DA8B45',

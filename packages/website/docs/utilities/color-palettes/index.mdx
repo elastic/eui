@@ -152,6 +152,7 @@ These colors are meant to be used as graphics and contrasted against the value o
 Quantitative palettes are best suited for displaying data on a continuum, as in the case of health statuses and large geographic or demographic-based data sets.
 
 EUI provides the following common palettes for quantitative data and [charts](../../dataviz/index.mdx). Just pass in the number of steps needed and the function will interpolate between the colors.
+For usages in React we recommend using the respective <a href="https://github.com/elastic/eui/blob/main/packages/eui/src/services/color/eui_palettes_hooks.ts" target="_blank" rel="noopener noreferrer">palette hooks</a>, e.g. `useEuiPaletteColorBlind`.
 
 :::warning
 The palette for status is the only palette that has proper contrast ratios. When using the other palettes, consider adding another form of the data for screen readers.
@@ -174,6 +175,9 @@ The palette for status is the only palette that has proper contrast ratios. When
     euiPaletteWarm,
     euiPaletteRed,
     euiPaletteGreen,
+    euiPaletteSkyBlue,
+    euiPaletteYellow,
+    euiPaletteOrange,
     euiPaletteGray,
     useEuiTheme,
   } from '@elastic/eui';
@@ -184,6 +188,9 @@ The palette for status is the only palette that has proper contrast ratios. When
     euiPaletteComplementary,
     euiPaletteRed,
     euiPaletteGreen,
+    euiPaletteSkyBlue,
+    euiPaletteYellow,
+    euiPaletteOrange,
     euiPaletteCool,
     euiPaletteWarm,
     euiPaletteGray,

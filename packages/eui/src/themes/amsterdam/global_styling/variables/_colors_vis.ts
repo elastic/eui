@@ -8,6 +8,8 @@
 
 import { _EuiThemeVisColors } from '@elastic/eui-theme-common';
 
+import { shade, tint } from '../../../../services';
+
 /**
  * NOTE: These were quick conversions of their Sass counterparts.
  *       They have yet to be used/tested.
@@ -103,13 +105,18 @@ export const colorVis: _EuiThemeVisColors = {
   euiColorVisAsTextDark5: '#1BA9F5',
   euiColorVisAsTextDark6: '#7DE2D1',
 
+  euiColorVisNeutral0: tint(euiPaletteColorBlind.euiColorVis1.graphic, 0.3),
+  euiColorVisNeutral1: tint(euiPaletteColorBlind.euiColorVis1.graphic, 0.56),
   euiColorVisSuccess0: '#209280',
   euiColorVisSuccess1: euiPaletteColorBlind.euiColorVis0.graphic,
-  euiColorVisWarning0: '#D6BF57',
+  euiColorVisWarning0: shade(euiPaletteColorBlind.euiColorVis5.graphic, 0.15),
+  euiColorVisWarning1: euiPaletteColorBlind.euiColorVis5.graphic,
+  euiColorVisRisk0: euiPaletteColorBlind.euiColorVis7.graphic,
+  euiColorVisRisk1: tint(euiPaletteColorBlind.euiColorVis7.graphic, 0.5),
   euiColorVisDanger0: '#CC5642',
   euiColorVisDanger1: euiPaletteColorBlind.euiColorVis9.graphic,
 
-  euiColorVisNeutral0: '#FFFFFF',
+  euiColorVisBase0: '#FFFFFF',
 
   euiColorVisGrey0: '#d3dae6',
   euiColorVisGrey1: '#98a2b3',

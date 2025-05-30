@@ -86,13 +86,18 @@ export const colorVis: _EuiThemeVisColors = {
   euiColorVisAsTextDark5: SEMANTIC_COLORS.success60,
   euiColorVisAsTextDark6: SEMANTIC_COLORS.assistance60,
 
+  euiColorVisNeutral0: SEMANTIC_COLORS.neutral60,
+  euiColorVisNeutral1: SEMANTIC_COLORS.neutral30,
   euiColorVisSuccess0: SEMANTIC_COLORS.success60,
   euiColorVisSuccess1: SEMANTIC_COLORS.success30,
-  euiColorVisWarning0: SEMANTIC_COLORS.warning30,
+  euiColorVisWarning0: SEMANTIC_COLORS.warning60,
+  euiColorVisWarning1: SEMANTIC_COLORS.warning30,
+  euiColorVisRisk0: SEMANTIC_COLORS.risk60,
+  euiColorVisRisk1: SEMANTIC_COLORS.risk30,
   euiColorVisDanger0: SEMANTIC_COLORS.danger60,
   euiColorVisDanger1: SEMANTIC_COLORS.danger30,
 
-  euiColorVisNeutral0: PRIMITIVE_COLORS.mutedGrey10,
+  euiColorVisBase0: PRIMITIVE_COLORS.mutedGrey10,
 
   euiColorVisGrey0: PRIMITIVE_COLORS.blueGrey30,
   euiColorVisGrey1: PRIMITIVE_COLORS.blueGrey60,
