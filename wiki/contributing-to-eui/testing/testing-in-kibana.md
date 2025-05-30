@@ -6,13 +6,36 @@ For changes that may have major implications on existing Kibana usages of EUI, a
 
 Note that `yarn link` currently does not work with Kibana. You'll need to manually pack and insert it into Kibana to test locally.
 
-### In EUI run:
+### In EUI:
+
+EUI is a monorepo and to build and test `eui` locally in Kibana you'll need to ensure that the internal dependency packages are correctly linked as well.
+
+First, update the `package.json` in `eui/packages/eui` as follows:
+
+- remove `@elastic/eui-theme-common` from dependencies
+- add `"@elastic/eui-theme-common": "workspace:^"` to devDependencies
+- add `"@elastic/eui-theme-common": "{CURRENT_VERSION}"` to peerDependencies, e.g. `"@elastic/eui-theme-common": "1.0.0"`
+
+Then run the following command:
 
 ```bash
+# eui/packages/eui
 yarn build-pack
 ```
 
-This will create a `.tgz` file with the changes in your EUI directory. At this point you can move it anywhere.
+If you made changes to `eui-theme-common` and/or `eui-theme-borealis` directories you'll need to build those packages as well:
+
+```bash
+# eui/packages/eui-theme-common
+yarn build-pack
+```
+
+```bash
+# eui/packages/eui-theme-borealis
+yarn build-pack
+```
+
+This will create the required `.tgz` file(s) with the changes in your `eui` (and `eui-theme-common`/ `eui-theme-borealis`) directory. At this point you can move it anywhere.
 
 ### In Kibana:
 
