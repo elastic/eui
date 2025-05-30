@@ -20,7 +20,7 @@
 import dedent from 'dedent';
 import { RuleTester } from '@typescript-eslint/rule-tester';
 
-import { PreferCSSAttributeForEuiComponents } from './prefer_css_attribute_for_eui_components';
+import { PreferCSSPropForStaticStyles } from './prefer_css_prop_for_static_styles';
 
 /**
  * For some reason, `languageOptions` is defined in `RuleTesterConfig` but causes an error: "Object literal may only specify known properties".
@@ -37,8 +37,8 @@ const languageOptions = {
 const ruleTester = new RuleTester();
 
 ruleTester.run(
-  'prefer-css-attribute-for-eui-components',
-  PreferCSSAttributeForEuiComponents,
+  'prefer-css-prop-for-static-styles',
+  PreferCSSPropForStaticStyles,
   {
     valid: [
       {
@@ -67,7 +67,7 @@ ruleTester.run(
         languageOptions,
         errors: [
           {
-            messageId: 'preferCSSAttributeForEuiComponents',
+            messageId: 'preferCSSPropForStaticStyles',
           },
         ],
         output: dedent`

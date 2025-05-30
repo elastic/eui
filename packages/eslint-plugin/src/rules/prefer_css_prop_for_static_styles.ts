@@ -19,8 +19,8 @@
 
 import { TSESTree, ESLintUtils } from '@typescript-eslint/utils';
 
-export const PreferCSSAttributeForEuiComponents =
-  ESLintUtils.RuleCreator.withoutDocs({
+export const PreferCSSPropForStaticStyles = ESLintUtils.RuleCreator.withoutDocs(
+  {
     create(context) {
       const isNamedEuiComponentRegex = /^Eui[A-Z]*/;
 
@@ -42,7 +42,7 @@ export const PreferCSSAttributeForEuiComponents =
             ) {
               context.report({
                 node: styleAttrNode?.parent,
-                messageId: 'preferCSSAttributeForEuiComponents',
+                messageId: 'preferCSSPropForStaticStyles',
                 fix(fixer) {
                   const cssAttr = node.attributes.find(
                     (attr) =>
@@ -53,10 +53,12 @@ export const PreferCSSAttributeForEuiComponents =
                     return null;
                   }
 
-                  return fixer.replaceTextRange(
-                    styleAttrNode?.name?.range!,
-                    'css'
-                  );
+                  const range = styleAttrNode?.name?.range;
+                  if (!range) {
+                    return null;
+                  }
+
+                  return fixer.replaceTextRange(range, 'css');
                 },
               });
             }
@@ -67,14 +69,16 @@ export const PreferCSSAttributeForEuiComponents =
     meta: {
       type: 'suggestion',
       docs: {
-        description: 'Prefer the JSX css attribute for EUI components',
+        description:
+          'Prefer the `css` prop for static styles in EUI components',
       },
       messages: {
-        preferCSSAttributeForEuiComponents:
-          'Prefer the css attribute for EUI components',
+        preferCSSPropForStaticStyles:
+          'Use the `css` prop instead of `style` for static styles in EUI components to ensure better performance and consistency with EUI’s styling approach. Read more: https://emotion.sh/docs/best-practices#use-the-style-prop-for-dynamic-styles',
       },
       fixable: 'code',
       schema: [],
     },
     defaultOptions: [],
-  });
+  }
+);
