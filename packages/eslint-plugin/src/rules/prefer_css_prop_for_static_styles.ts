@@ -74,7 +74,7 @@ export const PreferCSSPropForStaticStyles = ESLintUtils.RuleCreator.withoutDocs(
       },
       messages: {
         preferCSSPropForStaticStyles:
-          'Use the `css` prop instead of `style` for static styles in EUI components to ensure better performance and consistency with EUI’s styling approach.',
+          'Use the `css` prop instead of `style` for static styles in EUI components to ensure better performance and consistency with EUI’s styling approach. Read more: https://emotion.sh/docs/best-practices#use-the-style-prop-for-dynamic-styles',
       },
       fixable: 'code',
       schema: [],
