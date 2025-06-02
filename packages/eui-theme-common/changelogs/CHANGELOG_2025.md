@@ -1,3 +1,16 @@
+## [`v1.1.0`](https://github.com/elastic/eui/releases/v1.1.0)
+
+- Added type for token `filterButtonBadgeBackgroundHover` ([#8652](https://github.com/elastic/eui/pull/8652))
+- Added support for `buttonVariant` on `_EuiThemeFlags` ([#8595](https://github.com/elastic/eui/pull/8595))
+- Added support for new button background component tokens: ([#8595](https://github.com/elastic/eui/pull/8595))
+  - `background{color}Hover`
+  - `background{color}Active`
+  - `backgroundFilled{color}Hover`
+  - `backgroundFilled{color}Active`
+  - `backgroundEmpty{color}Hover`
+  - `backgroundEmpty{color}Active`
+- Updated `getTokenName` util making the `variant` argument optional ([#8595](https://github.com/elastic/eui/pull/8595))
+
 ## [`v1.0.0`](https://github.com/elastic/eui/releases/v1.0.0)
 
 - Added `severity` key on `_EuiThemeConstantColors` to support tokens on `colors.severity` ([#8601](https://github.com/elastic/eui/pull/8601))
