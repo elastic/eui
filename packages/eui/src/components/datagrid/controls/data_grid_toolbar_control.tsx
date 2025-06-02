@@ -9,7 +9,9 @@
 import React, { FunctionComponent } from 'react';
 import classNames from 'classnames';
 import { css } from '@emotion/react';
+import { UseEuiTheme } from '@elastic/eui-theme-common';
 
+import { useEuiTheme, useEuiThemeRefreshVariant } from '../../../services';
 import { EuiButtonEmpty, EuiButtonEmptyProps } from '../../button';
 import { EuiNotificationBadge } from '../../badge';
 import { useEuiI18n } from '../../i18n';
@@ -21,7 +23,14 @@ export type EuiDataGridToolbarControlProps = EuiButtonEmptyProps & {
 export const EuiDataGridToolbarControl: FunctionComponent<
   EuiDataGridToolbarControlProps
 > = ({ children, className, badgeContent, textProps, ...rest }) => {
+  const euiThemeContext = useEuiTheme();
+  const isRefreshVariant = useEuiThemeRefreshVariant('buttonVariant');
   const classes = classNames('euiDataGridToolbarControl', className);
+
+  const cssStyles = isRefreshVariant
+    ? // passes euiThemeContext here instead via `css` to ensure legacy Enzyme tests work
+      interactiveStyles(euiThemeContext)
+    : underlineStyles;
 
   const badgeAriaLabel = useEuiI18n(
     'euiDataGridToolbarControl.badgeAriaLabel',
@@ -40,7 +49,7 @@ export const EuiDataGridToolbarControl: FunctionComponent<
       size="xs"
       color="text"
       textProps={false}
-      css={underlineStyles}
+      css={cssStyles}
       {...rest}
     >
       <span
@@ -85,6 +94,16 @@ const underlineStyles = css`
     }
   }
 `;
+
+const interactiveStyles = ({ euiTheme }: UseEuiTheme) => css`
+  &:focus,
+  &:hover:not(:disabled) {
+    .euiDataGridToolbarControl__badge {
+      background-color: ${euiTheme.components.filterButtonBadgeBackgroundHover};
+    }
+  }
+`;
+
 const badgeStyles = css`
   cursor: inherit;
 `;

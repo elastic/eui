@@ -26,6 +26,7 @@ const meta: Meta<EuiFilterButtonProps> = {
     color: 'text',
     badgeColor: 'accent',
     grow: true,
+    isToggle: false,
     isSelected: false,
     isDisabled: false,
     withNext: false,
@@ -66,29 +67,28 @@ export const MultipleButtons: Story = {
 export const FullWidthAndGrow: Story = {
   render: ({ ...args }) => (
     <EuiFilterGroup fullWidth>
-      <EuiFilterButton {...args} grow={false}>
+      <EuiFilterButton {...args} grow={false} isToggle>
         Filter
       </EuiFilterButton>
-      <EuiFilterButton {...args} withNext grow={false}>
+      <EuiFilterButton {...args} withNext grow={false} isToggle>
         On
       </EuiFilterButton>
-      <EuiFilterButton {...args} grow={false}>
+      <EuiFilterButton {...args} grow={false} isToggle>
         Off
       </EuiFilterButton>
-      <EuiFilterButton {...args} grow={false}>
+      <EuiFilterButton {...args} grow={false} isToggle>
         Off
       </EuiFilterButton>
       <EuiFilterButton
         {...args}
         iconType="arrowDown"
-        isSelected={true}
         numFilters={12}
         hasActiveFilters={true}
         numActiveFilters={2}
       >
         Selected filter
       </EuiFilterButton>
-      <EuiFilterButton {...args} numFilters={12}>
+      <EuiFilterButton {...args} numFilters={12} isToggle>
         Filter with a very long name
       </EuiFilterButton>
     </EuiFilterGroup>

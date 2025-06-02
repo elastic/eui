@@ -4,72 +4,374 @@ exports[`useEuiButtonColorCSS base 1`] = `
 {
   "accent": {
     "map": undefined,
-    "name": "1s9ak2j-displaysColorsMap-display-color",
+    "name": "t2u6im-displaysColorsMap-display-color",
     "next": undefined,
-    "styles": "color:#a11262;background-color:#FDDDE9;;;label:base-accent;",
+    "styles": "color:#a11262;background-color:#FDDDE9; 
+                
+    position: relative;
+        overflow: hidden;
+
+        &:hover:not(:disabled) {
+          &::before {
+            content: '';
+            position: absolute;
+            /* should stay under the content */
+            z-index: 0;
+            inset: 0;
+            background-color: rgba(229,74,145, 0.12);
+            pointer-events: none;
+          }
+        }
+
+        &:active:not(:disabled) {
+          &::before {
+            inline-size: 100%;
+            block-size: 100%;
+
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-color: rgba(229,74,145, 0.16);
+          }
+        }
+  
+            false
+          ;;label:base-accent;",
     "toString": [Function],
   },
   "accentSecondary": {
     "map": undefined,
-    "name": "l7co5e-displaysColorsMap-display-color",
+    "name": "q87o3e-displaysColorsMap-display-color",
     "next": undefined,
-    "styles": "color:#046e6b;background-color:#C9F3F0;;;label:base-accentSecondary;",
+    "styles": "color:#046e6b;background-color:#C9F3F0; 
+                
+    position: relative;
+        overflow: hidden;
+
+        &:hover:not(:disabled) {
+          &::before {
+            content: '';
+            position: absolute;
+            /* should stay under the content */
+            z-index: 0;
+            inset: 0;
+            background-color: rgba(0,176,170, 0.12);
+            pointer-events: none;
+          }
+        }
+
+        &:active:not(:disabled) {
+          &::before {
+            inline-size: 100%;
+            block-size: 100%;
+
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-color: rgba(0,176,170, 0.16);
+          }
+        }
+  
+            false
+          ;;label:base-accentSecondary;",
     "toString": [Function],
   },
   "danger": {
     "map": undefined,
-    "name": "imzzne-displaysColorsMap-display-color",
+    "name": "1g7pp6a-displaysColorsMap-display-color",
     "next": undefined,
-    "styles": "color:#a71627;background-color:#FDDDD8;;;label:base-danger;",
+    "styles": "color:#a71627;background-color:#FDDDD8; 
+                
+    position: relative;
+        overflow: hidden;
+
+        &:hover:not(:disabled) {
+          &::before {
+            content: '';
+            position: absolute;
+            /* should stay under the content */
+            z-index: 0;
+            inset: 0;
+            background-color: rgba(238,76,72, 0.12);
+            pointer-events: none;
+          }
+        }
+
+        &:active:not(:disabled) {
+          &::before {
+            inline-size: 100%;
+            block-size: 100%;
+
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-color: rgba(238,76,72, 0.16);
+          }
+        }
+  
+            false
+          ;;label:base-danger;",
     "toString": [Function],
   },
   "disabled": {
     "map": undefined,
-    "name": "w9bf0z-displaysColorsMap-display-color",
+    "name": "up0w9g-displaysColorsMap-display-color",
     "next": undefined,
-    "styles": "color:#798EAF;background-color:#ECF1F9;;;label:base-disabled;",
+    "styles": "color:#798EAF;background-color:#ECF1F9; 
+                
+    position: relative;
+        overflow: hidden;
+
+        &:hover:not(:disabled) {
+          &::before {
+            content: '';
+            position: absolute;
+            /* should stay under the content */
+            z-index: 0;
+            inset: 0;
+            background-color: undefined;
+            pointer-events: none;
+          }
+        }
+
+        &:active:not(:disabled) {
+          &::before {
+            inline-size: 100%;
+            block-size: 100%;
+
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-color: undefined;
+          }
+        }
+  
+            false
+          ;;label:base-disabled;",
     "toString": [Function],
   },
   "neutral": {
     "map": undefined,
-    "name": "1cygr32-displaysColorsMap-display-color",
+    "name": "1uzxovy-displaysColorsMap-display-color",
     "next": undefined,
-    "styles": "color:#0f658a;background-color:#CFEEF7;;;label:base-neutral;",
+    "styles": "color:#0f658a;background-color:#CFEEF7; 
+                
+    position: relative;
+        overflow: hidden;
+
+        &:hover:not(:disabled) {
+          &::before {
+            content: '';
+            position: absolute;
+            /* should stay under the content */
+            z-index: 0;
+            inset: 0;
+            background-color: rgba(13,161,201, 0.12);
+            pointer-events: none;
+          }
+        }
+
+        &:active:not(:disabled) {
+          &::before {
+            inline-size: 100%;
+            block-size: 100%;
+
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-color: rgba(13,161,201, 0.16);
+          }
+        }
+  
+            false
+          ;;label:base-neutral;",
     "toString": [Function],
   },
   "primary": {
     "map": undefined,
-    "name": "nzkzxt-displaysColorsMap-display-color",
+    "name": "yk1sqq-displaysColorsMap-display-color",
     "next": undefined,
-    "styles": "color:#1750ba;background-color:#D9E8FF;;;label:base-primary;",
+    "styles": "color:#1750ba;background-color:#D9E8FF; 
+                
+    position: relative;
+        overflow: hidden;
+
+        &:hover:not(:disabled) {
+          &::before {
+            content: '';
+            position: absolute;
+            /* should stay under the content */
+            z-index: 0;
+            inset: 0;
+            background-color: rgba(55,136,255, 0.12);
+            pointer-events: none;
+          }
+        }
+
+        &:active:not(:disabled) {
+          &::before {
+            inline-size: 100%;
+            block-size: 100%;
+
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-color: rgba(55,136,255, 0.16);
+          }
+        }
+  
+            false
+          ;;label:base-primary;",
     "toString": [Function],
   },
   "risk": {
     "map": undefined,
-    "name": "16ebbxg-displaysColorsMap-display-color",
+    "name": "gia4ur-displaysColorsMap-display-color",
     "next": undefined,
-    "styles": "color:#9e3a16;background-color:#FFDEBF;;;label:base-risk;",
+    "styles": "color:#9e3a16;background-color:#FFDEBF; 
+                
+    position: relative;
+        overflow: hidden;
+
+        &:hover:not(:disabled) {
+          &::before {
+            content: '';
+            position: absolute;
+            /* should stay under the content */
+            z-index: 0;
+            inset: 0;
+            background-color: rgba(252,133,68, 0.16);
+            pointer-events: none;
+          }
+        }
+
+        &:active:not(:disabled) {
+          &::before {
+            inline-size: 100%;
+            block-size: 100%;
+
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-color: rgba(252,133,68, 0.2);
+          }
+        }
+  
+            false
+          ;;label:base-risk;",
     "toString": [Function],
   },
   "success": {
     "map": undefined,
-    "name": "nkw4q7-displaysColorsMap-display-color",
+    "name": "1wzbnhz-displaysColorsMap-display-color",
     "next": undefined,
-    "styles": "color:#09724d;background-color:#C9F3E3;;;label:base-success;",
+    "styles": "color:#09724d;background-color:#C9F3E3; 
+                
+    position: relative;
+        overflow: hidden;
+
+        &:hover:not(:disabled) {
+          &::before {
+            content: '';
+            position: absolute;
+            /* should stay under the content */
+            z-index: 0;
+            inset: 0;
+            background-color: rgba(4,174,126, 0.12);
+            pointer-events: none;
+          }
+        }
+
+        &:active:not(:disabled) {
+          &::before {
+            inline-size: 100%;
+            block-size: 100%;
+
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-color: rgba(4,174,126, 0.16);
+          }
+        }
+  
+            false
+          ;;label:base-success;",
     "toString": [Function],
   },
   "text": {
     "map": undefined,
-    "name": "1qxdqy4-displaysColorsMap-display-color",
+    "name": "4mvtb6-displaysColorsMap-display-color",
     "next": undefined,
-    "styles": "color:#1d2a3e;background-color:#E3E8F2;;;label:base-text;",
+    "styles": "color:#1d2a3e;background-color:#FFFFFF; 
+                
+    position: relative;
+        overflow: hidden;
+
+        &:hover:not(:disabled) {
+          &::before {
+            content: '';
+            position: absolute;
+            /* should stay under the content */
+            z-index: 0;
+            inset: 0;
+            background-color: rgba(23,80,186, 0.08);
+            pointer-events: none;
+          }
+        }
+
+        &:active:not(:disabled) {
+          &::before {
+            inline-size: 100%;
+            block-size: 100%;
+
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-color: rgba(23,80,186, 0.12);
+          }
+        }
+  
+            
+              border: 1px solid #CAD3E2;
+            
+          ;;label:base-text;",
     "toString": [Function],
   },
   "warning": {
     "map": undefined,
-    "name": "1cacn07-displaysColorsMap-display-color",
+    "name": "3ntpwv-displaysColorsMap-display-color",
     "next": undefined,
-    "styles": "color:#6a4906;background-color:#FDE9B5;;;label:base-warning;",
+    "styles": "color:#6a4906;background-color:#FDE9B5; 
+                
+    position: relative;
+        overflow: hidden;
+
+        &:hover:not(:disabled) {
+          &::before {
+            content: '';
+            position: absolute;
+            /* should stay under the content */
+            z-index: 0;
+            inset: 0;
+            background-color: rgba(234,174,1, 0.16);
+            pointer-events: none;
+          }
+        }
+
+        &:active:not(:disabled) {
+          &::before {
+            inline-size: 100%;
+            block-size: 100%;
+
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-color: rgba(234,174,1, 0.2);
+          }
+        }
+  
+            false
+          ;;label:base-warning;",
     "toString": [Function],
   },
 }
@@ -79,72 +381,342 @@ exports[`useEuiButtonColorCSS empty 1`] = `
 {
   "accent": {
     "map": undefined,
-    "name": "6nx0ov-displaysColorsMap-display-color",
+    "name": "acar8m-displaysColorsMap-display-color",
     "next": undefined,
-    "styles": "color:#a11262;&:focus,&:active{background-color:rgba(23,80,186, 0.04);};label:empty-accent;",
+    "styles": "color:#a11262;     
+    position: relative;
+        overflow: hidden;
+
+        &:hover:not(:disabled) {
+          &::before {
+            content: '';
+            position: absolute;
+            /* should stay under the content */
+            z-index: 0;
+            inset: 0;
+            background-color: rgba(229,74,145, 0.12);
+            pointer-events: none;
+          }
+        }
+
+        &:active:not(:disabled) {
+          &::before {
+            inline-size: 100%;
+            block-size: 100%;
+
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-color: rgba(229,74,145, 0.16);
+          }
+        }
+  ;;label:empty-accent;",
     "toString": [Function],
   },
   "accentSecondary": {
     "map": undefined,
-    "name": "eugem9-displaysColorsMap-display-color",
+    "name": "ci2qqz-displaysColorsMap-display-color",
     "next": undefined,
-    "styles": "color:#046e6b;&:focus,&:active{background-color:rgba(23,80,186, 0.04);};label:empty-accentSecondary;",
+    "styles": "color:#046e6b;     
+    position: relative;
+        overflow: hidden;
+
+        &:hover:not(:disabled) {
+          &::before {
+            content: '';
+            position: absolute;
+            /* should stay under the content */
+            z-index: 0;
+            inset: 0;
+            background-color: rgba(0,176,170, 0.12);
+            pointer-events: none;
+          }
+        }
+
+        &:active:not(:disabled) {
+          &::before {
+            inline-size: 100%;
+            block-size: 100%;
+
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-color: rgba(0,176,170, 0.16);
+          }
+        }
+  ;;label:empty-accentSecondary;",
     "toString": [Function],
   },
   "danger": {
     "map": undefined,
-    "name": "tlly31-displaysColorsMap-display-color",
+    "name": "ttz2kz-displaysColorsMap-display-color",
     "next": undefined,
-    "styles": "color:#a71627;&:focus,&:active{background-color:rgba(23,80,186, 0.04);};label:empty-danger;",
+    "styles": "color:#a71627;     
+    position: relative;
+        overflow: hidden;
+
+        &:hover:not(:disabled) {
+          &::before {
+            content: '';
+            position: absolute;
+            /* should stay under the content */
+            z-index: 0;
+            inset: 0;
+            background-color: rgba(238,76,72, 0.12);
+            pointer-events: none;
+          }
+        }
+
+        &:active:not(:disabled) {
+          &::before {
+            inline-size: 100%;
+            block-size: 100%;
+
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-color: rgba(238,76,72, 0.16);
+          }
+        }
+  ;;label:empty-danger;",
     "toString": [Function],
   },
   "disabled": {
     "map": undefined,
-    "name": "1riraik-displaysColorsMap-display-color",
+    "name": "ioqbxh-displaysColorsMap-display-color",
     "next": undefined,
-    "styles": "color:#798EAF;&:focus,&:active{background-color:transparent;};label:empty-disabled;",
+    "styles": "color:#798EAF;     
+    position: relative;
+        overflow: hidden;
+
+        &:hover:not(:disabled) {
+          &::before {
+            content: '';
+            position: absolute;
+            /* should stay under the content */
+            z-index: 0;
+            inset: 0;
+            background-color: undefined;
+            pointer-events: none;
+          }
+        }
+
+        &:active:not(:disabled) {
+          &::before {
+            inline-size: 100%;
+            block-size: 100%;
+
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-color: undefined;
+          }
+        }
+  ;;label:empty-disabled;",
     "toString": [Function],
   },
   "neutral": {
     "map": undefined,
-    "name": "11o72vc-displaysColorsMap-display-color",
+    "name": "1muhyse-displaysColorsMap-display-color",
     "next": undefined,
-    "styles": "color:#0f658a;&:focus,&:active{background-color:rgba(23,80,186, 0.04);};label:empty-neutral;",
+    "styles": "color:#0f658a;     
+    position: relative;
+        overflow: hidden;
+
+        &:hover:not(:disabled) {
+          &::before {
+            content: '';
+            position: absolute;
+            /* should stay under the content */
+            z-index: 0;
+            inset: 0;
+            background-color: rgba(13,161,201, 0.12);
+            pointer-events: none;
+          }
+        }
+
+        &:active:not(:disabled) {
+          &::before {
+            inline-size: 100%;
+            block-size: 100%;
+
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-color: rgba(13,161,201, 0.16);
+          }
+        }
+  ;;label:empty-neutral;",
     "toString": [Function],
   },
   "primary": {
     "map": undefined,
-    "name": "134brx-displaysColorsMap-display-color",
+    "name": "8pznf8-displaysColorsMap-display-color",
     "next": undefined,
-    "styles": "color:#1750ba;&:focus,&:active{background-color:rgba(23,80,186, 0.04);};label:empty-primary;",
+    "styles": "color:#1750ba;     
+    position: relative;
+        overflow: hidden;
+
+        &:hover:not(:disabled) {
+          &::before {
+            content: '';
+            position: absolute;
+            /* should stay under the content */
+            z-index: 0;
+            inset: 0;
+            background-color: rgba(55,136,255, 0.12);
+            pointer-events: none;
+          }
+        }
+
+        &:active:not(:disabled) {
+          &::before {
+            inline-size: 100%;
+            block-size: 100%;
+
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-color: rgba(55,136,255, 0.16);
+          }
+        }
+  ;;label:empty-primary;",
     "toString": [Function],
   },
   "risk": {
     "map": undefined,
-    "name": "1vuw7lh-displaysColorsMap-display-color",
+    "name": "19334xv-displaysColorsMap-display-color",
     "next": undefined,
-    "styles": "color:#9e3a16;&:focus,&:active{background-color:rgba(23,80,186, 0.04);};label:empty-risk;",
+    "styles": "color:#9e3a16;     
+    position: relative;
+        overflow: hidden;
+
+        &:hover:not(:disabled) {
+          &::before {
+            content: '';
+            position: absolute;
+            /* should stay under the content */
+            z-index: 0;
+            inset: 0;
+            background-color: rgba(252,133,68, 0.16);
+            pointer-events: none;
+          }
+        }
+
+        &:active:not(:disabled) {
+          &::before {
+            inline-size: 100%;
+            block-size: 100%;
+
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-color: rgba(252,133,68, 0.2);
+          }
+        }
+  ;;label:empty-risk;",
     "toString": [Function],
   },
   "success": {
     "map": undefined,
-    "name": "1sisv9i-displaysColorsMap-display-color",
+    "name": "1kafuaw-displaysColorsMap-display-color",
     "next": undefined,
-    "styles": "color:#09724d;&:focus,&:active{background-color:rgba(23,80,186, 0.04);};label:empty-success;",
+    "styles": "color:#09724d;     
+    position: relative;
+        overflow: hidden;
+
+        &:hover:not(:disabled) {
+          &::before {
+            content: '';
+            position: absolute;
+            /* should stay under the content */
+            z-index: 0;
+            inset: 0;
+            background-color: rgba(4,174,126, 0.12);
+            pointer-events: none;
+          }
+        }
+
+        &:active:not(:disabled) {
+          &::before {
+            inline-size: 100%;
+            block-size: 100%;
+
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-color: rgba(4,174,126, 0.16);
+          }
+        }
+  ;;label:empty-success;",
     "toString": [Function],
   },
   "text": {
     "map": undefined,
-    "name": "pyzzr1-displaysColorsMap-display-color",
+    "name": "1j2ow8l-displaysColorsMap-display-color",
     "next": undefined,
-    "styles": "color:#1d2a3e;&:focus,&:active{background-color:rgba(23,80,186, 0.04);};label:empty-text;",
+    "styles": "color:#1d2a3e;     
+    position: relative;
+        overflow: hidden;
+
+        &:hover:not(:disabled) {
+          &::before {
+            content: '';
+            position: absolute;
+            /* should stay under the content */
+            z-index: 0;
+            inset: 0;
+            background-color: rgba(23,80,186, 0.08);
+            pointer-events: none;
+          }
+        }
+
+        &:active:not(:disabled) {
+          &::before {
+            inline-size: 100%;
+            block-size: 100%;
+
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-color: rgba(23,80,186, 0.12);
+          }
+        }
+  ;;label:empty-text;",
     "toString": [Function],
   },
   "warning": {
     "map": undefined,
-    "name": "ou8n3e-displaysColorsMap-display-color",
+    "name": "16o0n91-displaysColorsMap-display-color",
     "next": undefined,
-    "styles": "color:#6a4906;&:focus,&:active{background-color:rgba(23,80,186, 0.04);};label:empty-warning;",
+    "styles": "color:#6a4906;     
+    position: relative;
+        overflow: hidden;
+
+        &:hover:not(:disabled) {
+          &::before {
+            content: '';
+            position: absolute;
+            /* should stay under the content */
+            z-index: 0;
+            inset: 0;
+            background-color: rgba(234,174,1, 0.16);
+            pointer-events: none;
+          }
+        }
+
+        &:active:not(:disabled) {
+          &::before {
+            inline-size: 100%;
+            block-size: 100%;
+
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-color: rgba(234,174,1, 0.2);
+          }
+        }
+  ;;label:empty-warning;",
     "toString": [Function],
   },
 }
@@ -154,72 +726,152 @@ exports[`useEuiButtonColorCSS fill 1`] = `
 {
   "accent": {
     "map": undefined,
-    "name": "1x15kz9-displaysColorsMap-display-color",
+    "name": "g1i4pl-displaysColorsMap-display-color",
     "next": undefined,
-    "styles": "color:#FFFFFF;background-color:#BC1E70;outline-color:#07101F;;label:fill-accent;",
+    "styles": "color:#FFFFFF;background-color:#BC1E70;outline-color:#07101F;    
+    &:hover:not(:disabled) {
+        background-color: #A11262;
+      }
+
+      &:active:not(:disabled) {
+        background-color: #831652;
+      }
+  ;;label:fill-accent;",
     "toString": [Function],
   },
   "accentSecondary": {
     "map": undefined,
-    "name": "nn2r8y-displaysColorsMap-display-color",
+    "name": "b8zumr-displaysColorsMap-display-color",
     "next": undefined,
-    "styles": "color:#FFFFFF;background-color:#008B87;outline-color:#07101F;;label:fill-accentSecondary;",
+    "styles": "color:#FFFFFF;background-color:#008B87;outline-color:#07101F;    
+    &:hover:not(:disabled) {
+        background-color: #047471;
+      }
+
+      &:active:not(:disabled) {
+        background-color: #065B58;
+      }
+  ;;label:fill-accentSecondary;",
     "toString": [Function],
   },
   "danger": {
     "map": undefined,
-    "name": "1e8fk7p-displaysColorsMap-display-color",
+    "name": "azzo4j-displaysColorsMap-display-color",
     "next": undefined,
-    "styles": "color:#FFFFFF;background-color:#C61E25;outline-color:#07101F;;label:fill-danger;",
+    "styles": "color:#FFFFFF;background-color:#C61E25;outline-color:#07101F;    
+    &:hover:not(:disabled) {
+        background-color: #A71627;
+      }
+
+      &:active:not(:disabled) {
+        background-color: #7F1F27;
+      }
+  ;;label:fill-danger;",
     "toString": [Function],
   },
   "disabled": {
     "map": undefined,
-    "name": "1mgqlj7-displaysColorsMap-display-color",
+    "name": "105tcc3-displaysColorsMap-display-color",
     "next": undefined,
-    "styles": "color:#798EAF;background-color:#ECF1F9;outline-color:#07101F;;label:fill-disabled;",
+    "styles": "color:#798EAF;background-color:#ECF1F9;outline-color:#07101F;    
+    &:hover:not(:disabled) {
+        background-color: undefined;
+      }
+
+      &:active:not(:disabled) {
+        background-color: undefined;
+      }
+  ;;label:fill-disabled;",
     "toString": [Function],
   },
   "neutral": {
     "map": undefined,
-    "name": "55fmkx-displaysColorsMap-display-color",
+    "name": "dfjdt8-displaysColorsMap-display-color",
     "next": undefined,
-    "styles": "color:#FFFFFF;background-color:#1C8CB5;outline-color:#07101F;;label:fill-neutral;",
+    "styles": "color:#FFFFFF;background-color:#1C8CB5;outline-color:#07101F;    
+    &:hover:not(:disabled) {
+        background-color: #0F658A;
+      }
+
+      &:active:not(:disabled) {
+        background-color: #055476;
+      }
+  ;;label:fill-neutral;",
     "toString": [Function],
   },
   "primary": {
     "map": undefined,
-    "name": "jlyla4-displaysColorsMap-display-color",
+    "name": "1kc1763-displaysColorsMap-display-color",
     "next": undefined,
-    "styles": "color:#FFFFFF;background-color:#0B64DD;outline-color:#07101F;;label:fill-primary;",
+    "styles": "color:#FFFFFF;background-color:#0B64DD;outline-color:#07101F;    
+    &:hover:not(:disabled) {
+        background-color: #1750BA;
+      }
+
+      &:active:not(:disabled) {
+        background-color: #154399;
+      }
+  ;;label:fill-primary;",
     "toString": [Function],
   },
   "risk": {
     "map": undefined,
-    "name": "yiryfu-displaysColorsMap-display-color",
+    "name": "1c96cw4-displaysColorsMap-display-color",
     "next": undefined,
-    "styles": "color:#FFFFFF;background-color:#ED6723;outline-color:#07101F;;label:fill-risk;",
+    "styles": "color:#FFFFFF;background-color:#ED6723;outline-color:#07101F;    
+    &:hover:not(:disabled) {
+        background-color: #DB541B;
+      }
+
+      &:active:not(:disabled) {
+        background-color: #C24411;
+      }
+  ;;label:fill-risk;",
     "toString": [Function],
   },
   "success": {
     "map": undefined,
-    "name": "1vkmljm-displaysColorsMap-display-color",
+    "name": "kg8lp3-displaysColorsMap-display-color",
     "next": undefined,
-    "styles": "color:#FFFFFF;background-color:#008A5E;outline-color:#07101F;;label:fill-success;",
+    "styles": "color:#FFFFFF;background-color:#008A5E;outline-color:#07101F;    
+    &:hover:not(:disabled) {
+        background-color: #09724D;
+      }
+
+      &:active:not(:disabled) {
+        background-color: #0C5A3F;
+      }
+  ;;label:fill-success;",
     "toString": [Function],
   },
   "text": {
     "map": undefined,
-    "name": "d8tzvz-displaysColorsMap-display-color",
+    "name": "9ey25n-displaysColorsMap-display-color",
     "next": undefined,
-    "styles": "color:#FFFFFF;background-color:#5A6D8C;outline-color:#07101F;;label:fill-text;",
+    "styles": "color:#FFFFFF;background-color:#5A6D8C;outline-color:#07101F;    
+    &:hover:not(:disabled) {
+        background-color: #485975;
+      }
+
+      &:active:not(:disabled) {
+        background-color: #384861;
+      }
+  ;;label:fill-text;",
     "toString": [Function],
   },
   "warning": {
     "map": undefined,
-    "name": "16cnufy-displaysColorsMap-display-color",
+    "name": "dz0udx-displaysColorsMap-display-color",
     "next": undefined,
-    "styles": "color:#6A4906;background-color:#FACB3D;outline-color:#07101F;;label:fill-warning;",
+    "styles": "color:#6A4906;background-color:#FACB3D;outline-color:#07101F;    
+    &:hover:not(:disabled) {
+        background-color: #F5BC00;
+      }
+
+      &:active:not(:disabled) {
+        background-color: #EAAE01;
+      }
+  ;;label:fill-warning;",
     "toString": [Function],
   },
 }
@@ -228,17 +880,9 @@ exports[`useEuiButtonColorCSS fill 1`] = `
 exports[`useEuiButtonFocusCSS 1`] = `
 {
   "map": undefined,
-  "name": "1s8jae7-focusCSS",
-  "next": {
-    "name": "animation-70pju1",
-    "next": undefined,
-    "styles": "@keyframes animation-70pju1{
-  50% {
-    transform: translateY(1px);
-  }
-}",
-  },
-  "styles": "@media screen and (prefers-reduced-motion: no-preference){transition:transform 250ms ease-in-out,background-color 250ms ease-in-out;&:hover:not(:disabled){transform:translateY(-1px);}&:focus{animation:animation-70pju1 250ms cubic-bezier(.34, 1.61, .7, 1);}&:active:not(:disabled){transform:translateY(1px);}};",
+  "name": "1w5psrn-focusCSS",
+  "next": undefined,
+  "styles": ";",
   "toString": [Function],
 }
 `;

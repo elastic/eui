@@ -8,7 +8,7 @@ exports[`useDataGridColumnSelector columnSelector renders a toolbar button/popov
       data-test-subj="dataGridColumnSelectorPopover"
     >
       <button
-        class="euiButtonEmpty euiDataGridToolbarControl emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-text-underlineStyles"
+        class="euiButtonEmpty euiDataGridToolbarControl emotion-euiButtonDisplay-euiButtonEmpty-xs-empty-text-interactiveStyles"
         data-test-subj="dataGridColumnSelectorButton"
         type="button"
       >
