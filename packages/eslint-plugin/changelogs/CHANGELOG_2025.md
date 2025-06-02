@@ -1,3 +1,20 @@
+## [`v1.0.0`](https://github.com/elastic/eui/releases/v1.0.0)
+
+- Changed the `prefer-css-prop-for-static-styles` rule message (formerly `prefer-css-attribute-for-eui-components`) ([#8722](https://github.com/elastic/eui/pull/8722))
+
+**Breaking changes**
+
+- Renamed the rule from `prefer-css-attribute-for-eui-components` to `prefer-css-prop-for-static-styles` to align with Emotion's best practice guidelines ([#8722](https://github.com/elastic/eui/pull/8722))
+
+**Dependency updates**
+
+- Updated `typescript` to v5.8.3 ([#8669](https://github.com/elastic/eui/pull/8669))
+- Updated `@typescript-eslint/eslint-plugin` to v8.31.1 ([#8669](https://github.com/elastic/eui/pull/8669))
+- Updated `@typescript-eslint/parser` to v8.31.1 ([#8669](https://github.com/elastic/eui/pull/8669))
+- Updated `@typescript-eslint/rule-tester` to v8.31.1 ([#8669](https://github.com/elastic/eui/pull/8669))
+- Updated `@typescript-eslint/typescript-estree` to v8.31.1 ([#8669](https://github.com/elastic/eui/pull/8669))
+- Updated `@typescript-eslint/utils` to v8.31.1 ([#8669](https://github.com/elastic/eui/pull/8669))
+
 ## [`v0.2.0`](https://github.com/elastic/eui/releases/v0.2.0)
 
 - Updated the `no-restricted-eui-imports` warning to clarify that JSON tokens remain supported for server-side or non-React use cases ([#8613](https://github.com/elastic/eui/pull/8613))
