@@ -1,3 +1,17 @@
+## [`v1.1.0`](https://github.com/elastic/eui/releases/v1.1.0)
+
+- Added token `filterButtonBadgeBackgroundHover` ([#8652](https://github.com/elastic/eui/pull/8652))
+- Updated values for tokens `buttonGroupFocusColor` and `buttonGroupBackgroundDisabledSelected` ([#8652](https://github.com/elastic/eui/pull/8652))
+- Added `flags.buttonVariant` with value `refresh` to `euiThemeBorealis` ([#8595](https://github.com/elastic/eui/pull/8595))
+- Added new button background component tokens: ([#8595](https://github.com/elastic/eui/pull/8595))
+  - `background{color}Hover`
+  - `background{color}Active`
+  - `backgroundFilled{color}Hover`
+  - `backgroundFilled{color}Active`
+  - `backgroundEmpty{color}Hover`
+  - `backgroundEmpty{color}Active`
+- Updated `backgroundLightText` token value to `shade120` ([#8595](https://github.com/elastic/eui/pull/8595))
+
 ## [`v1.0.0`](https://github.com/elastic/eui/releases/v1.0.0)
 
 - Added semantic severity color tokens: ([#8601](https://github.com/elastic/eui/pull/8601))

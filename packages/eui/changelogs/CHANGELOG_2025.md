@@ -1,3 +1,34 @@
+## [`v102.3.0`](https://github.com/elastic/eui/releases/v102.3.0)
+
+- Added support for `focusTrapProps.returnFocus` on `EuiFlyout` ([#8716](https://github.com/elastic/eui/pull/8716))
+- Updated `EuiDataGridToolbarControl` hover styles by removing text-decoration and changing the badge background-color to ensure enough contrast ([#8670](https://github.com/elastic/eui/pull/8670))
+- Added prop `isToggle` on `EuiFilterButton` to switch between regular and toggle button ([#8652](https://github.com/elastic/eui/pull/8652))
+- Updated `hasActiveFilters` on `EuiFilterButton` to only control highlighting filters, not a visual selected state ([#8652](https://github.com/elastic/eui/pull/8652))
+- Updated `EuiFilterButton` to ensure `isSelected` prop applies both semantic and visual states ([#8652](https://github.com/elastic/eui/pull/8652))
+- Updated visual styling of `EuiButtonGroup`, `EuiFilterGroup` and `EuiFilterButton` ([#8652](https://github.com/elastic/eui/pull/8652))
+- Updated `EuiNotificationBadge` border radius to `2px` ([#8652](https://github.com/elastic/eui/pull/8652))
+- Updated `EuiBreadcrumbs` text color for `type="application"` ([#8652](https://github.com/elastic/eui/pull/8652))
+- Added new `refresh` design variant for button components: ([#8595](https://github.com/elastic/eui/pull/8595))
+  - `EuiButton`
+  - `EuiButtonEmpty`
+  - `EuiButtonIcon`
+- Added `flags.buttonVariant` with value `classic` to `euiThemeAmsterdam` ([#8595](https://github.com/elastic/eui/pull/8595))
+- Added new button background component tokens to Amsterdam theme: ([#8595](https://github.com/elastic/eui/pull/8595))
+  - `background{color}Hover`
+  - `background{color}Active`
+  - `backgroundFilled{color}Hover`
+  - `backgroundFilled{color}Active`
+  - `backgroundEmpty{color}Hover`
+  - `backgroundEmpty{color}Active`
+
+**Bug fixes**
+
+- Fixed an issue with `EuiDataGrid` where navigating cells with simultaneous key presses would result in a crash in React 18 legacy mode ([#8698](https://github.com/elastic/eui/pull/8698))
+
+**Accessibility**
+
+- Improved the accessibility experience of `EuiMarkdownEditorFooter` by fixing the ARIA attributes of the `syntax help` modal. ([#8702](https://github.com/elastic/eui/pull/8702))
+
 ## [`v102.2.0`](https://github.com/elastic/eui/releases/v102.2.0)
 
 - Added `useIsDarkMode` utility ([#8701](https://github.com/elastic/eui/pull/8701))

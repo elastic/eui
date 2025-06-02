@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 import { css } from '@emotion/react';
-import { UseEuiTheme } from '../../../services';
+import { isEuiThemeRefreshVariant, UseEuiTheme } from '../../../services';
 import {
   euiFontSize,
   logicalCSS,
@@ -32,6 +32,11 @@ export const euiButtonBaseCSS = () => {
 
 export const euiButtonDisplayStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
+  const isRefreshVariant = isEuiThemeRefreshVariant(
+    euiThemeContext,
+    'buttonVariant'
+  );
+
   const sizes = euiButtonSizeMap(euiThemeContext);
 
   const _buttonSize = (sizeKey: EuiButtonDisplaySizes) => {
@@ -44,6 +49,13 @@ export const euiButtonDisplayStyles = (euiThemeContext: UseEuiTheme) => {
     `;
   };
 
+  const classicVariantStyles = `
+      &:hover:not(:disabled),
+      &:focus {
+        text-decoration: underline;
+      }
+  `;
+
   return {
     // Base
     euiButtonDisplay: css`
@@ -51,10 +63,7 @@ export const euiButtonDisplayStyles = (euiThemeContext: UseEuiTheme) => {
       font-weight: ${euiTheme.font.weight.medium};
       ${logicalShorthandCSS('padding', `0 ${euiTheme.size.m}`)}
 
-      &:hover:not(:disabled),
-      &:focus {
-        text-decoration: underline;
-      }
+      ${!isRefreshVariant && classicVariantStyles}
     `,
     // States
     isDisabled: css`
@@ -64,9 +73,19 @@ export const euiButtonDisplayStyles = (euiThemeContext: UseEuiTheme) => {
       display: block;
       ${logicalCSS('width', '100%')}
     `,
-    defaultMinWidth: css`
-      ${logicalCSS('min-width', `${euiTheme.base * 7}px`)}
-    `,
+    defaultMinWidth: {
+      defaultMinWidth: css``,
+      // Skip css`` for the sizes as we already add classes for sizes and defaultMinWidth
+      xs: `
+        ${logicalCSS('min-width', `${sizes.xs.minWidth}px`)}
+      `,
+      s: `
+        ${logicalCSS('min-width', `${sizes.s.minWidth}px`)}
+      `,
+      m: `
+        ${logicalCSS('min-width', `${sizes.m.minWidth}px`)}
+      `,
+    },
     // Sizes
     xs: css(_buttonSize('xs')),
     s: css(_buttonSize('s')),

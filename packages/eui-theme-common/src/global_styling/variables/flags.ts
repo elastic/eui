@@ -6,10 +6,14 @@
  * Side Public License, v 1.
  */
 
+export type EuiThemeVariantFlags = {
+  buttonVariant: 'classic' | 'refresh';
+};
+
 /**
  * Theme specific setting flags
  */
 export type _EuiThemeFlags = {
   hasGlobalFocusColor: boolean;
   hasVisColorAdjustment: boolean;
-};
+} & EuiThemeVariantFlags;

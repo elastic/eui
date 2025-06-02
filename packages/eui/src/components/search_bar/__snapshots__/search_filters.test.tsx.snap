@@ -10,47 +10,57 @@ exports[`EuiSearchBarFilters render - with filters 1`] = `
 <div
   class="euiFilterGroup emotion-euiFilterGroup-uncompressed"
 >
-  <button
-    aria-pressed="false"
-    class="euiButtonEmpty euiFilterButton emotion-euiButtonDisplay-euiButtonEmpty-m-empty-text-euiFilterButton"
-    type="button"
-  >
-    <span
-      class="euiButtonEmpty__content emotion-euiButtonDisplayContent-euiFilterButton__content"
-    >
-      <span
-        class="euiFilterButton__text emotion-euiFilterButton__text"
-        data-text="Open"
-        title="Open"
-      >
-        Open
-      </span>
-    </span>
-  </button>
   <div
-    class="euiPopover emotion-euiPopover-inline-block"
+    class="euiFilterButton__wrapper css-10m1aro-wrapper-hasToggle"
   >
     <button
-      aria-label="Tag Selection"
-      class="euiButtonEmpty euiFilterButton emotion-euiButtonDisplay-euiButtonEmpty-m-empty-text-euiFilterButton"
+      aria-pressed="false"
+      class="euiButtonGroupButton euiFilterButton euiFilterButton-isToggle emotion-euiButtonDisplay-s-defaultMinWidth-euiButtonGroupButton-compressed-empty-text-euiFilterButton-toggle"
+      data-test-subj="filter-button_generated-id"
       type="button"
     >
       <span
-        class="euiButtonEmpty__content emotion-euiButtonDisplayContent-euiFilterButton__content-hasIcon"
+        class="emotion-euiButtonDisplayContent-euiButtonGroupButton__content-compressed-euiFilterButton__content"
       >
         <span
           class="euiFilterButton__text emotion-euiFilterButton__text"
-          data-text="Tag"
-          title="Tag"
+          data-text="Open"
+          title="Open"
         >
-          Tag
+          Open
         </span>
-        <span
-          color="inherit"
-          data-euiicon-type="arrowDown"
-        />
       </span>
     </button>
+  </div>
+  <div
+    class="euiPopover emotion-euiPopover-inline-block"
+  >
+    <div
+      class="euiFilterButton__wrapper css-72u45h-wrapper"
+    >
+      <button
+        aria-expanded="false"
+        aria-label="Tag Selection"
+        class="euiButtonEmpty euiFilterButton emotion-euiButtonDisplay-euiButtonEmpty-m-empty-text-euiFilterButton-default"
+        type="button"
+      >
+        <span
+          class="euiButtonEmpty__content emotion-euiButtonDisplayContent-euiFilterButton__content-hasIcon"
+        >
+          <span
+            class="euiFilterButton__text emotion-euiFilterButton__text"
+            data-text="Tag"
+            title="Tag"
+          >
+            Tag
+          </span>
+          <span
+            color="inherit"
+            data-euiicon-type="arrowDown"
+          />
+        </span>
+      </button>
+    </div>
   </div>
 </div>
 `;
