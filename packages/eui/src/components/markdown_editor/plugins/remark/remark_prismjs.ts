@@ -18,7 +18,7 @@ const attacher: Plugin = () => {
   function visitor(node: any) {
     const { data = {}, lang: language } = node;
 
-    if (!language) {
+    if (!language || !refractor.registered(language)) {
       return;
     }
 
