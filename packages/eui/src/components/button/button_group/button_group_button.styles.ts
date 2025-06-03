@@ -287,7 +287,7 @@ export const euiButtonGroupButtonStyles = (euiThemeContext: UseEuiTheme) => {
     compressed: css`
       ${logicalCSS('height', compressedButtonHeight)}
       line-height: ${compressedButtonHeight};
-      font-weight: ${euiTheme.font.weight.regular};
+      font-weight: ${euiTheme.font.weight.medium};
 
       /* Offset the background color from the border by clipping background to before the padding starts */
       padding: ${isRefreshVariant
