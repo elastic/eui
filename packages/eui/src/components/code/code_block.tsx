@@ -7,7 +7,6 @@
  */
 
 import React, { FunctionComponent, useMemo } from 'react';
-import { RefractorNode } from 'refractor';
 import classNames from 'classnames';
 
 import {
@@ -23,6 +22,7 @@ import {
   checkSupportedLanguage,
   getHtmlContent,
   highlightByLine,
+  type RefractorNode,
 } from './utils';
 import { LineAnnotationMap } from './code_block_annotations';
 import { useOverflow } from './code_block_overflow';
