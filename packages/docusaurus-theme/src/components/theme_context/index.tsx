@@ -2,6 +2,7 @@ import {
   createContext,
   FunctionComponent,
   PropsWithChildren,
+  useContext,
   useState,
 } from 'react';
 import useIsBrowser from '@docusaurus/useIsBrowser';
@@ -30,14 +31,16 @@ export const AVAILABLE_THEMES = [
 
 const EUI_COLOR_MODES = ['light', 'dark'] as EuiThemeColorMode[];
 
-const defaultState: {
+export interface AppThemeContextData {
   colorMode: EuiThemeColorMode;
   highContrastMode: boolean | undefined;
   theme: EUI_THEME;
   changeColorMode: (colorMode: EuiThemeColorMode) => void;
   changeHighContrastMode: (highContrastMode: boolean) => void;
   changeTheme: (themeValue: string) => void;
-} = {
+}
+
+const defaultState: AppThemeContextData = {
   colorMode: EUI_COLOR_MODES[0] as EuiThemeColorMode,
   highContrastMode: undefined,
   theme: AVAILABLE_THEMES[0]!,
@@ -46,7 +49,13 @@ const defaultState: {
   changeTheme: (themeValue: string) => {},
 };
 
-export const AppThemeContext = createContext(defaultState);
+export const AppThemeContext = createContext<AppThemeContextData>(
+  defaultState,
+);
+
+export const useAppTheme: () => AppThemeContextData = () => {
+  return useContext(AppThemeContext);
+};
 
 export const AppThemeProvider: FunctionComponent<PropsWithChildren> = ({
   children,
