@@ -8,7 +8,7 @@
 
 import { css } from '@emotion/react';
 
-import { UseEuiTheme } from '../../../services';
+import { isEuiThemeRefreshVariant, UseEuiTheme } from '../../../services';
 import {
   logicalCSS,
   mathWithUnits,
@@ -23,6 +23,10 @@ export const euiCollapsibleNavItemVariables = (
   euiThemeContext: UseEuiTheme
 ) => {
   const { euiTheme } = euiThemeContext;
+  const isRefreshVariant = isEuiThemeRefreshVariant(
+    euiThemeContext,
+    'buttonVariant'
+  );
 
   return {
     height: euiTheme.size.xl,
@@ -31,8 +35,9 @@ export const euiCollapsibleNavItemVariables = (
     animation: `${euiTheme.animation.normal} ease-in-out`, // Matches EuiButton
     borderRadius: euiTheme.border.radius.small,
     backgroundHoverColor: euiTheme.colors.lightestShade,
-    backgroundSelectedColor: euiButtonColor(euiThemeContext, 'text')
-      .backgroundColor,
+    backgroundSelectedColor: isRefreshVariant
+      ? euiTheme.colors.backgroundBaseInteractiveSelect
+      : euiButtonColor(euiThemeContext, 'text').backgroundColor,
     color: euiTheme.colors.textParagraph,
     rightIconColor: euiTheme.colors.textDisabled,
   };
