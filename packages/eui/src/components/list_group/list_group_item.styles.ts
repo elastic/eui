@@ -113,13 +113,11 @@ export const euiListGroupItemInnerStyles = (euiThemeContext: UseEuiTheme) => {
     // Sizes
     xs: css`
       ${euiFontSize(euiThemeContext, 'xs')}
-      font-weight: ${euiTheme.font.weight.medium};
       letter-spacing: 0;
       ${logicalCSS('min-height', euiTheme.size.l)}
     `,
     s: css`
       ${euiFontSize(euiThemeContext, 's')}
-      font-weight: ${euiTheme.font.weight.medium};
       letter-spacing: 0;
       ${logicalCSS('min-height', euiTheme.size.xl)}
     `,
