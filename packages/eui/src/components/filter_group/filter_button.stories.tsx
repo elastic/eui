@@ -19,6 +19,7 @@ const meta: Meta<EuiFilterButtonProps> = {
   component: EuiFilterButton as any,
   argTypes: {
     color: { control: 'select', options: BUTTON_COLORS },
+    numActiveFilters: { control: 'text' },
   },
   args: {
     // Component defaults
