@@ -43,10 +43,16 @@ export type EuiFilterButtonProps = {
    */
   numFilters?: number;
   /**
-   * Pass the number of selected filters and it will
-   * add a bright notification badge showing the number
+   * The number of active (selected) filters.
+   * The value will be displayed as a bright notification badge.
+   *
+   * Accepted values are integers and percentages (e.g., 20%).
+   * Passing other values is not supported and may break the layout.
+   *
+   * @example 10
+   * @example '20%'
    */
-  numActiveFilters?: number;
+  numActiveFilters?: number | string;
   /**
    * Switches between toggle and regular button
    * @default false
@@ -107,8 +113,7 @@ export const EuiFilterButton: FunctionComponent<EuiFilterButtonProps> = ({
 }) => {
   const id = useGeneratedHtmlId({ prefix: 'filter-button' });
   const numFiltersDefined = numFilters != null; // != instead of !== to allow for null and undefined
-  const numActiveFiltersDefined =
-    numActiveFilters != null && numActiveFilters > 0;
+  const numActiveFiltersDefined = !!numActiveFilters;
 
   const euiThemeContext = useEuiTheme();
   const { colorMode } = euiThemeContext;
