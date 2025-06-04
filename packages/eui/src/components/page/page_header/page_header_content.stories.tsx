@@ -56,7 +56,7 @@ export const Playground: Story = {
     children: (
       <EuiCallOut
         size="s"
-        iconType="iInCircle"
+        iconType="info"
         title="Example of custom children"
       />
     ),

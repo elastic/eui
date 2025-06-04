@@ -30,7 +30,7 @@ const VARIANT_TO_PROPS_MAP: Record<
 > = {
   note: { iconType: 'paperClip', color: 'accent' },
   tip: { iconType: 'faceHappy', color: 'success' },
-  info: { iconType: 'iInCircle', color: 'primary' },
+  info: { iconType: 'info', color: 'primary' },
   accessibility: { iconType: 'accessibility', color: 'primary' },
   warning: { iconType: 'alert', color: 'warning' },
   danger: { iconType: 'error', color: 'danger' },
@@ -56,7 +56,7 @@ const Callout = ({ title, type, children }: Props) => {
   return (
     <EuiCallOut
       title={title}
-      iconType="iInCircle"
+      iconType="info"
       color="primary"
       {...variantProps}
       css={css`

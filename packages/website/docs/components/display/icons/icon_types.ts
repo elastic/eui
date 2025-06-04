@@ -122,7 +122,7 @@ export const iconTypes: Array<IconType> = [
   'heatmap',
   'help',
   'home',
-  'iInCircle',
+  'info',
   'image',
   'importAction',
   'index',

@@ -14,7 +14,7 @@ interface SVGRProps {
   title?: string;
   titleId?: string;
 }
-const EuiIconIInCircle = ({
+const EuiIconInfo = ({
   title,
   titleId,
   ...props
@@ -41,4 +41,4 @@ const EuiIconIInCircle = ({
     />
   </svg>
 );
-export const icon = EuiIconIInCircle;
+export const icon = EuiIconInfo;
