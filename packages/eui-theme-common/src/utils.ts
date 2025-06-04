@@ -308,7 +308,7 @@ export const getComputed = <T = EuiThemeShape>(
 
         // combine internal overrides with manual overrides
         const combinedOverValue =
-          isObject(overValue) && isObject(hcmOverValue)
+          isObject(overValue) && isObject(hcmCombinedOverValue)
             ? mergeDeep(overValue, hcmCombinedOverValue)
             : // optional overrides e.g. on provider level should still override theme level
               overValue ?? hcmCombinedOverValue;
