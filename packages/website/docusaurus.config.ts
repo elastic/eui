@@ -141,6 +141,12 @@ const config: Config = {
           label: 'Data visualization',
         },
         {
+          type: 'docSidebar',
+          sidebarId: 'developerGuides',
+          position: 'left',
+          label: 'Developer guides',
+        },
+        {
           href: 'https://github.com/elastic/eui/tree/main/packages/eui/changelogs',
           label: 'EUI Changelog',
           position: 'right',
