@@ -16,6 +16,7 @@ import {
 
 import { EuiButtonEmpty } from './button_empty';
 import { EuiButton, Props as EuiButtonProps } from './button';
+import { useEuiTheme } from '../../services';
 
 const meta: Meta<EuiButtonProps> = {
   title: 'Navigation/EuiButton',
@@ -63,4 +64,17 @@ export const HighContrast: Story = {
       <EuiButtonEmpty>Empty</EuiButtonEmpty>
     </div>
   ),
+};
+
+export const TESTING_EXAMPLE: Story = {
+  render: function Render() {
+    const { euiTheme } = useEuiTheme();
+
+    return (
+      <>
+        <EuiButton>ink: {euiTheme.colors.ink}</EuiButton>
+        <EuiButton>primary: {euiTheme.colors.primary}</EuiButton>
+      </>
+    );
+  },
 };
