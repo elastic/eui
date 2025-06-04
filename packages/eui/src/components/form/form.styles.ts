@@ -6,7 +6,11 @@
  * Side Public License, v 1.
  */
 
-import { UseEuiTheme, makeHighContrastColor } from '../../services';
+import {
+  UseEuiTheme,
+  isEuiThemeRefreshVariant,
+  makeHighContrastColor,
+} from '../../services';
 import {
   logicalCSS,
   mathWithUnits,
@@ -188,6 +192,10 @@ export const euiFormControlDefaultShadow = (
   } = {}
 ) => {
   const { euiTheme } = euiThemeContext;
+  const isRefreshVariant = isEuiThemeRefreshVariant(
+    euiThemeContext,
+    'formVariant'
+  );
   const form = euiFormVariables(euiThemeContext);
 
   const border = highContrastModeStyles(euiThemeContext, {
@@ -212,8 +220,15 @@ export const euiFormControlDefaultShadow = (
       background-size: 0% 100%;
       background-image: linear-gradient(to top,
         var(--euiFormControlStateColor),
-        var(--euiFormControlStateColor) ${form.stateUnderlineHeight},
-        transparent ${form.stateUnderlineHeight},
+        var(--euiFormControlStateColor) ${
+          isRefreshVariant
+            ? mathWithUnits(
+                [euiTheme.border.width.thick, euiTheme.border.width.thin],
+                (x, y) => x + y // account for pseudo element border
+              )
+            : euiTheme.border.width.thick
+        },
+        transparent ${euiTheme.border.width.thick},
         transparent 100%
       );
     `,
