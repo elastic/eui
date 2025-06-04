@@ -23,7 +23,7 @@ export const euiFieldNumberStyles = (euiThemeContext: UseEuiTheme) => {
   const invalidStyles = isRefreshVariant
     ? `
       &:is(:invalid, [aria-invalid='true']):not(
-        .euiFormControlLayoutDelimited__input
+        .euiFormControlLayoutDelimited__input, :focus
       ) {
           ${formStyles.invalid}
         }

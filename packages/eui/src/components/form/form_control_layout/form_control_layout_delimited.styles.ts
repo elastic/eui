@@ -9,7 +9,7 @@
 import { css } from '@emotion/react';
 
 import { isEuiThemeRefreshVariant, UseEuiTheme } from '../../../services';
-import { logicalCSS } from '../../../global_styling';
+import { logicalCSS, mathWithUnits } from '../../../global_styling';
 import {
   euiFormControlDisabledStyles,
   euiFormControlReadOnlyStyles,
@@ -29,14 +29,14 @@ export const euiFormControlLayoutDelimitedStyles = (
   const invalidStyles =
     isRefreshVariant &&
     `
-    :not(.euiFormControlLayoutDelimited__input, .euiFormControlLayoutDelimited__delimiter) {
-      ${euiFormControlInvalidStyles(euiThemeContext)}
-    }
+      :not(.euiFormControlLayoutDelimited__input, .euiFormControlLayoutDelimited__delimiter) {
+        ${euiFormControlInvalidStyles(euiThemeContext)}
+      }
 
-    .euiFormControlLayoutDelimited__input {
-      background-color: transparent;
-    }
-  `;
+      .euiFormControlLayoutDelimited__input {
+        background-color: transparent;
+      }
+    `;
 
   const readOnlyStyles =
     isRefreshVariant &&
@@ -44,41 +44,51 @@ export const euiFormControlLayoutDelimitedStyles = (
       & .euiFormControlLayoutDelimited__input {
         outline: none;  
         box-shadow: none;
+        --euiFormControlStateColor: transparent;
       }
     `;
 
-  const delimitedStyles =
-    !isRefreshVariant &&
-    `
-    /* Transition smoothly between disabled/readOnly background color changes */
-    ${euiFormControlDefaultShadow(euiThemeContext, {
-      withBorder: false,
-      withBackground: false,
-      withBackgroundAnimation: true,
-    })}
-  `.trim();
+  const delimitedStyles = `
+      /* Transition smoothly between disabled/readOnly background color changes */
+      ${euiFormControlDefaultShadow(euiThemeContext, {
+        withBorder: isRefreshVariant ? true : false,
+        withBackground: false,
+        withBackgroundAnimation: isRefreshVariant ? false : true,
+      })}
+    `.trim();
 
   const delimitedWrapperStyles = (euiThemeContext: UseEuiTheme) => {
     return (
       isRefreshVariant &&
       `
-        ${euiFormControlDefaultShadow(euiThemeContext, {
-          withBorder: true,
-          withBackground: false,
-          withBackgroundAnimation: true,
-        })}
-
-        &:hover {
-          ${euiFormControlHoverStyles(euiThemeContext)}
-          box-shadow: none;
-
-          /* using hover styling on wrapper instead of the children inputs */
-          .euiFormControlLayoutDelimited__input:not(:focus) {
-            outline: none;
-            background-color: transparent;
+          ${euiFormControlDefaultShadow(euiThemeContext, {
+            withBorder: true,
+            withBackground: false,
+            withBackgroundAnimation: true,
+          })}
+  
+          &:hover {
+            ${euiFormControlHoverStyles(euiThemeContext)}
+            box-shadow: none;
+  
+            /* using hover styling on wrapper instead of the children inputs */
+            .euiFormControlLayoutDelimited__input:not(:focus) {
+              outline: none;
+              background-color: transparent;
+            }
           }
-        }
-      `.trim()
+
+          /* adjust for delimited behavior differing from default form layout */
+          > :first-child {
+            ${logicalCSS('border-top-left-radius', 'inherit')}
+            ${logicalCSS('border-bottom-left-radius', 'inherit')}
+          }
+
+          > :last-child {
+            ${logicalCSS('border-top-right-radius', 'inherit')}
+            ${logicalCSS('border-bottom-right-radius', 'inherit')}
+          }
+        `.trim()
     );
   };
 
@@ -108,22 +118,53 @@ export const euiFormControlLayoutDelimitedStyles = (
           ${invalidStyles}
         `
       ),
+      readOnly: css``,
     },
   };
 };
 
-export const euiFormControlLayoutDelimited__delimiter = css`
-  align-self: stretch;
-  flex-grow: 0;
-  display: flex;
-  align-items: center;
-  line-height: 1; /* Override EuiText line-height */
-`;
+export const euiFormControlLayoutDelimited__delimiter = (
+  euiThemeContext: UseEuiTheme
+) => {
+  const { euiTheme } = euiThemeContext;
+  const isRefreshVariant = isEuiThemeRefreshVariant(
+    euiThemeContext,
+    'formVariant'
+  );
 
-export const euiFormControlLayoutDelimited__input = css`
-  box-shadow: none;
-  border: none; /* Account for high contrast mode borders */
-  border-radius: 0;
-  text-align: center;
-  ${logicalCSS('height', '100%')}
-`;
+  const experimentalStyles =
+    isRefreshVariant &&
+    `
+      ${logicalCSS(
+        'padding-horizontal',
+        mathWithUnits([euiTheme.size.xs, euiTheme.size.xxs], (x, y) => x + y)
+      )}
+  `;
+
+  return css`
+    display: flex;
+    align-self: stretch;
+    flex-grow: 0;
+    align-items: center;
+    line-height: 1; /* Override EuiText line-height */
+
+    ${experimentalStyles}
+  `;
+};
+
+export const euiFormControlLayoutDelimited__input = (
+  euiThemeContext: UseEuiTheme
+) => {
+  const isRefreshVariant = isEuiThemeRefreshVariant(
+    euiThemeContext,
+    'formVariant'
+  );
+
+  return css`
+    box-shadow: none;
+    border: none; /* Account for high contrast mode borders */
+    border-radius: ${isRefreshVariant ? '' : '0'};
+    text-align: center;
+    ${logicalCSS('height', '100%')}
+  `;
+};

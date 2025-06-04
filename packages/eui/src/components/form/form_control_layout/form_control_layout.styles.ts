@@ -57,6 +57,38 @@ export const euiFormControlLayoutStyles = (euiThemeContext: UseEuiTheme) => {
       }
   `;
 
+  const experimentalWrapperGroupStyles =
+    isRefreshVariant &&
+    `
+      > :first-child {
+        ${logicalCSS('border-top-left-radius', '0')}
+        ${logicalCSS('border-bottom-left-radius', '0')}
+      }
+
+      > :last-child {
+        ${logicalCSS('border-top-right-radius', '0')}
+        ${logicalCSS('border-bottom-right-radius', '0')}
+      }
+  `;
+
+  const experimentalPrependOnlyStyles =
+    isRefreshVariant &&
+    `
+      > :first-child {
+        ${logicalCSS('border-top-right-radius', 'inherit')}
+        ${logicalCSS('border-bottom-right-radius', 'inherit')}
+      }
+  `;
+
+  const experimentalAppendOnlyStyles =
+    isRefreshVariant &&
+    `
+      > :last-child {
+        ${logicalCSS('border-top-left-radius', 'inherit')}
+        ${logicalCSS('border-bottom-left-radius', 'inherit')}
+      }
+  `;
+
   return {
     euiFormControlLayout: css``,
     // Skip the css`` on the default height to avoid generating a className
@@ -111,14 +143,20 @@ export const euiFormControlLayoutStyles = (euiThemeContext: UseEuiTheme) => {
       inGroup: css`
         flex-grow: 1;
         overflow: hidden; /* Ensure truncation works in children elements */
+
+        ${experimentalWrapperGroupStyles}
       `,
       prependOnly: css`
         ${logicalCSS('border-top-right-radius', 'inherit')}
         ${logicalCSS('border-bottom-right-radius', 'inherit')}
+
+        ${experimentalPrependOnlyStyles}
       `,
       appendOnly: css`
         ${logicalCSS('border-top-left-radius', 'inherit')}
         ${logicalCSS('border-bottom-left-radius', 'inherit')}
+
+        ${experimentalAppendOnlyStyles}
       `,
     },
   };
