@@ -8,7 +8,7 @@
 
 import { css } from '@emotion/react';
 
-import { UseEuiTheme } from '../../../services';
+import { isEuiThemeRefreshVariant, UseEuiTheme } from '../../../services';
 import {
   logicalCSS,
   logicalSizeCSS,
@@ -23,12 +23,25 @@ export const euiHeaderSectionItemButtonStyles = (
 ) => {
   const { childHeight } = euiHeaderVariables(euiThemeContext);
   const { euiTheme } = euiThemeContext;
+  const isRefreshVariant = isEuiThemeRefreshVariant(
+    euiThemeContext,
+    'buttonVariant'
+  );
+
+  const dotSize = euiTheme.size.base;
+  const dotOffset = isRefreshVariant
+    ? mathWithUnits(dotSize, (x) => x * -0.5)
+    : 0;
+  const badgeOffset = isRefreshVariant
+    ? mathWithUnits(euiTheme.size.s, (x) => x * -0.5)
+    : '9%';
 
   return {
     euiHeaderSectionItemButton: css`
       position: relative; /* For positioning the notification */
       ${logicalCSS('height', childHeight)}
       ${logicalCSS('min-width', childHeight)}
+      ${logicalCSS('padding-horizontal', euiTheme.size.s)}
       text-align: center;
       font-size: 0; /* Aligns icons better vertically */
 
@@ -49,17 +62,17 @@ export const euiHeaderSectionItemButtonStyles = (
       `,
       dot: css`
         ${logicalCSS('top', 0)}
-        ${logicalCSS('right', 0)}
+        ${logicalCSS('right', dotOffset)}
         stroke: ${euiTheme.colors.emptyShade};
 
         ${euiMaxBreakpoint(euiThemeContext, 's')} {
-          ${logicalSizeCSS(euiTheme.size.base)}
+          ${logicalSizeCSS(dotSize)}
           ${logicalCSS('top', '9%')}
         }
       `,
       badge: css`
         ${logicalCSS('top', '9%')}
-        ${logicalCSS('right', '9%')}
+        ${logicalCSS('right', badgeOffset)}
         box-shadow: 0 0 0 ${euiTheme.border.width.thin} ${euiTheme.colors
           .emptyShade};
       `,
