@@ -8,7 +8,7 @@
 
 import { css } from '@emotion/react';
 
-import { UseEuiTheme } from '../../../services';
+import { UseEuiTheme, isEuiThemeRefreshVariant } from '../../../services';
 import {
   euiTextTruncate,
   logicalCSS,
@@ -20,7 +20,42 @@ import { euiFormVariables } from '../form.styles';
 
 export const euiFormControlLayoutStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
+  const isRefreshVariant = isEuiThemeRefreshVariant(
+    euiThemeContext,
+    'formVariant'
+  );
   const form = euiFormVariables(euiThemeContext);
+
+  const experimentalGroupStyles =
+    isRefreshVariant &&
+    `
+      /* use pseudo element for borders to prevent dimension changes and support nested elements better */
+      &::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        border: ${euiTheme.border.width.thin} solid ${form.borderColor};
+        border-radius: inherit;
+        pointer-events: none;
+      }
+
+      /* the filter group will use the form layout border instead */
+      .euiFilterGroup {
+        border-radius: 0;
+        /* creating extra space to prevent the focus indicator being cut off */
+        ${logicalCSS('padding-right', euiTheme.border.width.thin)}
+
+        &::after {
+          display: none;
+        }
+      }
+
+      .euiFilterButton__wrapper:first-of-type::before,
+      .euiFilterButton__wrapper::after {
+        display: none;
+      }
+  `;
 
   return {
     euiFormControlLayout: css``,
@@ -43,12 +78,17 @@ export const euiFormControlLayoutStyles = (euiThemeContext: UseEuiTheme) => {
 
     group: {
       group: css`
+        position: relative;
         display: flex;
         align-items: stretch;
 
-        border: ${euiTheme.border.width.thin} solid ${form.borderColor};
+        border: ${isRefreshVariant
+          ? 'none'
+          : `${euiTheme.border.width.thin} solid ${form.borderColor}`};
         background-color: ${form.backgroundColor};
         overflow: hidden; /* Keep backgrounds inside border radius */
+
+        ${experimentalGroupStyles}
 
         /* Force the stretch of any children so they expand the full height of the control */
         > * {
