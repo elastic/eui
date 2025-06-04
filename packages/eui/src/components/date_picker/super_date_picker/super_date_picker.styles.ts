@@ -304,7 +304,6 @@ export const euiSuperDatePickerStyles = (euiThemeContext: UseEuiTheme) => {
       `,
       needsUpdating: css`
         .euiFormControlLayout__childrenWrapper {
-          --euiFormControlStateHoverColor: ${euiTheme.colors.success};
           color: ${needsUpdatingTextColor};
           background-color: ${needsUpdatingBackgroundColor};
 
