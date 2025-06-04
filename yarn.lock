@@ -6986,11 +6986,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@elastic/charts@npm:^68.0.2":
-  version: 68.0.2
-  resolution: "@elastic/charts@npm:68.0.2"
+"@elastic/charts@npm:^70.0.1":
+  version: 70.0.1
+  resolution: "@elastic/charts@npm:70.0.1"
   dependencies:
     "@popperjs/core": "npm:^2.11.8"
+    "@reduxjs/toolkit": "npm:1.9.7"
     bezier-easing: "npm:^2.1.0"
     chroma-js: "npm:^2.4.2"
     classnames: "npm:^2.2.6"
@@ -7000,12 +7001,12 @@ __metadata:
     d3-interpolate: "npm:^3.0.1"
     d3-scale: "npm:^3.3.0"
     d3-shape: "npm:^2.0.0"
+    immer: "npm:^9.0.21"
     luxon: "npm:^1.25.0"
     prop-types: "npm:^15.7.2"
-    re-reselect: "npm:^3.4.0"
-    react-redux: "npm:^7.1.0"
-    redux: "npm:^4.0.4"
-    reselect: "npm:^4.0.0"
+    re-reselect: "npm:^4.0.1"
+    react-redux: "npm:^7.2.8"
+    redux: "npm:^4.2.1"
     ts-debounce: "npm:^4.0.0"
     utility-types: "npm:^3.10.0"
     uuid: "npm:^9"
@@ -7014,7 +7015,7 @@ __metadata:
     moment-timezone: ^0.5.32
     react: ^16.12 || ^17.0 || ^18.0
     react-dom: ^16.12 || ^17.0 || ^18.0
-  checksum: 10c0/bb7de8940ca560704362551f78b8087597fb2e1de069c38842a7e034fa0aff0b1c7acb7d0bbfa7dcdc99ea7c913841f17287732d728a294e6f157da35460debd
+  checksum: 10c0/2237de36286a82e08ec5683d78a5de6024b47687718fd993103642cb95ab63398f96d53bb17fd77750ea923d4673d03d6c93aef8968051a26ed346ded40e6c17
   languageName: node
   linkType: hard
 
@@ -7262,7 +7263,7 @@ __metadata:
     "@docusaurus/preset-classic": "npm:^3.7.0"
     "@docusaurus/tsconfig": "npm:^3.7.0"
     "@docusaurus/types": "npm:^3.7.0"
-    "@elastic/charts": "npm:^68.0.2"
+    "@elastic/charts": "npm:^70.0.1"
     "@elastic/datemath": "npm:^5.0.3"
     "@elastic/eui": "workspace:^"
     "@elastic/eui-docgen": "workspace:^"
@@ -9370,6 +9371,26 @@ __metadata:
   version: 2.11.8
   resolution: "@popperjs/core@npm:2.11.8"
   checksum: 10c0/4681e682abc006d25eb380d0cf3efc7557043f53b6aea7a5057d0d1e7df849a00e281cd8ea79c902a35a414d7919621fc2ba293ecec05f413598e0b23d5a1e63
+  languageName: node
+  linkType: hard
+
+"@reduxjs/toolkit@npm:1.9.7":
+  version: 1.9.7
+  resolution: "@reduxjs/toolkit@npm:1.9.7"
+  dependencies:
+    immer: "npm:^9.0.21"
+    redux: "npm:^4.2.1"
+    redux-thunk: "npm:^2.4.2"
+    reselect: "npm:^4.1.8"
+  peerDependencies:
+    react: ^16.9.0 || ^17.0.0 || ^18
+    react-redux: ^7.2.1 || ^8.0.2
+  peerDependenciesMeta:
+    react:
+      optional: true
+    react-redux:
+      optional: true
+  checksum: 10c0/fa0aa4b7c6973ac87ce0ac7e45faa02c73b66c4ee0bc950d178494539a42a1bb908d109297102458b7ea14d5e7dae356e7a7ce9a1b9849b0e8451e6dd70fca9c
   languageName: node
   linkType: hard
 
@@ -24790,7 +24811,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"immer@npm:^9.0.7":
+"immer@npm:^9.0.21, immer@npm:^9.0.7":
   version: 9.0.21
   resolution: "immer@npm:9.0.21"
   checksum: 10c0/03ea3ed5d4d72e8bd428df4a38ad7e483ea8308e9a113d3b42e0ea2cc0cc38340eb0a6aca69592abbbf047c685dbda04e3d34bf2ff438ab57339ed0a34cc0a05
@@ -34532,6 +34553,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"re-reselect@npm:^4.0.1":
+  version: 4.0.1
+  resolution: "re-reselect@npm:4.0.1"
+  peerDependencies:
+    reselect: ">1.0.0"
+  checksum: 10c0/61ee5d4a6bb68825cd2e79a4cce3dc31024f1c767fe9d7838a8d8d93d1681456fb3479e100fa540e328bbf90896b2d8d00587fc19aec41a26107a91719b50ca0
+  languageName: node
+  linkType: hard
+
 "react-16@npm:react@^16.14.0":
   version: 16.14.0
   resolution: "react@npm:16.14.0"
@@ -34936,7 +34966,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-redux@npm:^7.2.1":
+"react-redux@npm:^7.2.1, react-redux@npm:^7.2.8":
   version: 7.2.9
   resolution: "react-redux@npm:7.2.9"
   dependencies:
@@ -35494,6 +35524,15 @@ __metadata:
   version: 2.3.0
   resolution: "redux-thunk@npm:2.3.0"
   checksum: 10c0/fbf342e56809240af5f41257eee0dbba1b8165b611a1dd96d6d2831f84046e30f037a7e90cbff5636cd6e053d53237c4ed3287403f2c6d28fa1ad26543d7a016
+  languageName: node
+  linkType: hard
+
+"redux-thunk@npm:^2.4.2":
+  version: 2.4.2
+  resolution: "redux-thunk@npm:2.4.2"
+  peerDependencies:
+    redux: ^4
+  checksum: 10c0/e202d6ef7dfa7df08ed24cb221aa89d6c84dbaa7d65fe90dbd8e826d0c10d801f48388f9a7598a4fd970ecbc93d335014570a61ca7bc8bf569eab5de77b31a3c
   languageName: node
   linkType: hard
 
@@ -36124,6 +36163,13 @@ __metadata:
   version: 4.0.0
   resolution: "reselect@npm:4.0.0"
   checksum: 10c0/b5957ad2a8fa1ad0c6510da6bd199511eee8bb0ea9278ca67a6f92d8b968ca632b46955a4332de19cc983325123c5cdc88e5887c8fc5b0d4b5938d1807cc3882
+  languageName: node
+  linkType: hard
+
+"reselect@npm:^4.1.8":
+  version: 4.1.8
+  resolution: "reselect@npm:4.1.8"
+  checksum: 10c0/06a305a504affcbb67dd0561ddc8306b35796199c7e15b38934c80606938a021eadcf68cfd58e7bb5e17786601c37602a3362a4665c7bf0a96c1041ceee9d0b7
   languageName: node
   linkType: hard
 

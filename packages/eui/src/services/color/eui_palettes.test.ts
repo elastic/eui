@@ -19,8 +19,11 @@ import {
   euiPaletteForTemperature,
   euiPaletteGray,
   euiPaletteGreen,
+  euiPaletteOrange,
   euiPaletteRed,
+  euiPaletteSkyBlue,
   euiPaletteWarm,
+  euiPaletteYellow,
 } from './eui_palettes';
 import { useEuiTheme } from '../theme';
 
@@ -154,6 +157,48 @@ describe('euiPaletteGreen', () => {
     };
 
     const result = euiPaletteGreen(3, { colors });
+
+    expect(result[2]).toEqual(customColor);
+  });
+});
+
+describe('euiPaletteSkyBlue', () => {
+  it('should return custom colors', () => {
+    const customColor = '#00ff00';
+    const colors = {
+      ...colorVis,
+      euiColorVisNeutral0: customColor,
+    };
+
+    const result = euiPaletteSkyBlue(3, { colors });
+
+    expect(result[2]).toEqual(customColor);
+  });
+});
+
+describe('euiPaletteYellow', () => {
+  it('should return custom colors', () => {
+    const customColor = '#00ff00';
+    const colors = {
+      ...colorVis,
+      euiColorVisWarning0: customColor,
+    };
+
+    const result = euiPaletteYellow(3, { colors });
+
+    expect(result[2]).toEqual(customColor);
+  });
+});
+
+describe('euiPaletteOrange', () => {
+  it('should return custom colors', () => {
+    const customColor = '#00ff00';
+    const colors = {
+      ...colorVis,
+      euiColorVisRisk0: customColor,
+    };
+
+    const result = euiPaletteOrange(3, { colors });
 
     expect(result[2]).toEqual(customColor);
   });

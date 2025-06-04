@@ -305,7 +305,6 @@ export const euiTextStyles = (euiThemeContext: UseEuiTheme) => {
 
       h6 {
         ${euiTitle(euiThemeContext, 'xxxs')}
-        text-transform: uppercase;
       }
 
       h1,

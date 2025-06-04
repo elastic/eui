@@ -71,7 +71,12 @@ To provide a long list of grouped filters, we recommend wrapping the filter butt
 
 ### Indicating number of filters
 
-By passing a number to `numFilters` you can express the number of filters available. When the user has applied these filter add the prop `hasActiveFilters` as before and this will change the coloring of the indicator. You can also supply a number to `numActiveFilters`which will change the number displayed.
+You can use the `numFilters` prop to display the total number of filters
+available and `numActiveFilters` to set the number of currently active filters.
+Pass `hasActiveFilters` to visually indicate that there are active filters.
+
+`numActiveFilters` accepts integer numbers. In special cases, you may pass
+a percentage value as a string if UX justifies it.
 
 ```tsx interactive
 import React, { useEffect, useRef, useState } from 'react';

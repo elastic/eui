@@ -205,7 +205,7 @@ export const euiFilterButtonStyles = (euiThemeContext: UseEuiTheme) => {
     `,
     hasActiveFilters: css`
       font-weight: ${isRefreshVariant
-        ? euiTheme.font.weight.regular
+        ? euiTheme.font.weight.medium
         : euiTheme.font.weight.bold};
     `,
   };

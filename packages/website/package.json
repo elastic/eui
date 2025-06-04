@@ -20,7 +20,7 @@
   "dependencies": {
     "@docusaurus/core": "^3.7.0",
     "@docusaurus/preset-classic": "^3.7.0",
-    "@elastic/charts": "^68.0.2",
+    "@elastic/charts": "^70.0.1",
     "@elastic/datemath": "^5.0.3",
     "@elastic/eui": "workspace:^",
     "@elastic/eui-docgen": "workspace:^",

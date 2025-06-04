@@ -19,7 +19,10 @@ import {
   useEuiPaletteForStatus,
   useEuiPaletteForTemperature,
   useEuiPaletteGreen,
+  useEuiPaletteOrange,
   useEuiPaletteRed,
+  useEuiPaletteSkyBlue,
+  useEuiPaletteYellow,
 } from './eui_palettes_hooks';
 import { euiPaletteCool, euiPaletteGray, euiPaletteWarm } from './eui_palettes';
 
@@ -78,7 +81,7 @@ describe('useEuiPaletteForStatus', () => {
 
     expect(result.current).toEqual([
       colorVis.euiColorVisSuccess0.toLowerCase(),
-      colorVis.euiColorVisWarning0.toLowerCase(),
+      colorVis.euiColorVisWarning1.toLowerCase(),
       colorVis.euiColorVisDanger0.toLowerCase(),
     ]);
   });
@@ -130,6 +133,36 @@ describe('useEuiPaletteGreen', () => {
     });
 
     expect(result.current[4]).toBe(colorVis.euiColorVisSuccess0.toLowerCase());
+  });
+});
+
+describe('useEuiPaletteSkyBlue', () => {
+  it('should return default colors', () => {
+    const { result } = renderHook(() => useEuiPaletteSkyBlue(5), {
+      wrapper: RenderContainer,
+    });
+
+    expect(result.current[4]).toBe(colorVis.euiColorVisNeutral0.toLowerCase());
+  });
+});
+
+describe('useEuiPaletteYellow', () => {
+  it('should return default colors', () => {
+    const { result } = renderHook(() => useEuiPaletteYellow(5), {
+      wrapper: RenderContainer,
+    });
+
+    expect(result.current[4]).toBe(colorVis.euiColorVisWarning0.toLowerCase());
+  });
+});
+
+describe('useEuiPaletteOrange', () => {
+  it('should return default colors', () => {
+    const { result } = renderHook(() => useEuiPaletteOrange(5), {
+      wrapper: RenderContainer,
+    });
+
+    expect(result.current[4]).toBe(colorVis.euiColorVisRisk0.toLowerCase());
   });
 });
 

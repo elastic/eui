@@ -326,13 +326,18 @@ export type _EuiThemeVisColors = {
   euiColorVisAsTextDark5: string;
   euiColorVisAsTextDark6: string;
 
+  euiColorVisNeutral0: string;
+  euiColorVisNeutral1: string;
   euiColorVisSuccess0: string;
   euiColorVisSuccess1: string;
   euiColorVisWarning0: string;
+  euiColorVisWarning1: string;
+  euiColorVisRisk0: string;
+  euiColorVisRisk1: string;
   euiColorVisDanger0: string;
   euiColorVisDanger1: string;
 
-  euiColorVisNeutral0: string;
+  euiColorVisBase0: string;
 
   euiColorVisGrey0: string;
   euiColorVisGrey1: string;

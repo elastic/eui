@@ -230,7 +230,7 @@ export const euiPaletteForStatus = function (
     return euiPalette(
       [
         visColors.euiColorVisSuccess0,
-        visColors.euiColorVisWarning0,
+        visColors.euiColorVisWarning1,
         visColors.euiColorVisDanger0,
       ],
       steps,
@@ -241,7 +241,7 @@ export const euiPaletteForStatus = function (
     [
       visColors.euiColorVisSuccess0,
       visColors.euiColorVisSuccess1,
-      visColors.euiColorVisWarning0,
+      visColors.euiColorVisWarning1,
       visColors.euiColorVisDanger1,
       visColors.euiColorVisDanger0,
     ],
@@ -291,7 +291,7 @@ export const euiPaletteForTemperature = function (
 
   const paletteColors = _hasVisColorAdjustment
     ? [...cools, ...warms]
-    : [...cools, visColors.euiColorVisNeutral0, ...warms];
+    : [...cools, visColors.euiColorVisBase0, ...warms];
 
   return euiPalette(paletteColors, steps, true);
 };
@@ -316,7 +316,7 @@ export const euiPaletteComplementary = function (
     ? [visColors.euiColorVisComplementary0, visColors.euiColorVisComplementary1]
     : [
         visColors.euiColorVisComplementary0,
-        visColors.euiColorVisNeutral0,
+        visColors.euiColorVisBase0,
         visColors.euiColorVisComplementary1,
       ];
 
@@ -338,7 +338,7 @@ export const euiPaletteRed = function (
   }
 
   return euiPalette(
-    [visColors.euiColorVisNeutral0, visColors.euiColorVisDanger0],
+    [visColors.euiColorVisBase0, visColors.euiColorVisDanger0],
     steps
   );
 };
@@ -358,7 +358,67 @@ export const euiPaletteGreen = function (
   }
 
   return euiPalette(
-    [visColors.euiColorVisNeutral0, visColors.euiColorVisSuccess0],
+    [visColors.euiColorVisBase0, visColors.euiColorVisSuccess0],
+    steps
+  );
+};
+
+/**
+ * NOTE: This function is not pure. It relies on `EUI_VIS_COLOR_STORE` which is updated by the
+ * EuiProvider on theme change. Ensure to recall the function on theme change or subscribe to the store.
+ */
+export const euiPaletteSkyBlue = function (
+  steps: number,
+  { colors }: EuiPaletteCommonProps = {}
+): EuiPalette {
+  const visColors = colors ?? EUI_VIS_COLOR_STORE.visColors;
+
+  if (steps === 1) {
+    return [visColors.euiColorVisNeutral1];
+  }
+
+  return euiPalette(
+    [visColors.euiColorVisBase0, visColors.euiColorVisNeutral0],
+    steps
+  );
+};
+
+/**
+ * NOTE: This function is not pure. It relies on `EUI_VIS_COLOR_STORE` which is updated by the
+ * EuiProvider on theme change. Ensure to recall the function on theme change or subscribe to the store.
+ */
+export const euiPaletteYellow = function (
+  steps: number,
+  { colors }: EuiPaletteCommonProps = {}
+): EuiPalette {
+  const visColors = colors ?? EUI_VIS_COLOR_STORE.visColors;
+
+  if (steps === 1) {
+    return [visColors.euiColorVisWarning1];
+  }
+
+  return euiPalette(
+    [visColors.euiColorVisBase0, visColors.euiColorVisWarning0],
+    steps
+  );
+};
+
+/**
+ * NOTE: This function is not pure. It relies on `EUI_VIS_COLOR_STORE` which is updated by the
+ * EuiProvider on theme change. Ensure to recall the function on theme change or subscribe to the store.
+ */
+export const euiPaletteOrange = function (
+  steps: number,
+  { colors }: EuiPaletteCommonProps = {}
+): EuiPalette {
+  const visColors = colors ?? EUI_VIS_COLOR_STORE.visColors;
+
+  if (steps === 1) {
+    return [visColors.euiColorVisRisk1];
+  }
+
+  return euiPalette(
+    [visColors.euiColorVisBase0, visColors.euiColorVisRisk0],
     steps
   );
 };
@@ -382,7 +442,7 @@ export const euiPaletteCool = function (
   return euiPalette(
     [
       _hasVisColorAdjustment
-        ? visColors.euiColorVisNeutral0
+        ? visColors.euiColorVisBase0
         : visColors.euiColorVisCool0,
       visColors.euiColorVisCool1,
       visColors.euiColorVisCool2,
@@ -431,7 +491,7 @@ export const euiPaletteGray = function (
 
   return euiPalette(
     [
-      visColors.euiColorVisNeutral0,
+      visColors.euiColorVisBase0,
       visColors.euiColorVisGrey0,
       visColors.euiColorVisGrey1,
       visColors.euiColorVisGrey2,

@@ -20,9 +20,12 @@ import {
   euiPaletteForTemperature,
   euiPaletteGray,
   euiPaletteGreen,
+  euiPaletteOrange,
   euiPaletteRed,
   EuiPaletteRotationProps,
+  euiPaletteSkyBlue,
   euiPaletteWarm,
+  euiPaletteYellow,
 } from './eui_palettes';
 
 export const useEuiPaletteColorBlind = (args?: EuiPaletteColorBlindProps) => {
@@ -53,6 +56,18 @@ export const useEuiPaletteRed = (steps: number) => {
 
 export const useEuiPaletteGreen = (steps: number) => {
   return _useEuiPaletteWithStepsFn(euiPaletteGreen, steps);
+};
+
+export const useEuiPaletteSkyBlue = (steps: number) => {
+  return _useEuiPaletteWithStepsFn(euiPaletteSkyBlue, steps);
+};
+
+export const useEuiPaletteYellow = (steps: number) => {
+  return _useEuiPaletteWithStepsFn(euiPaletteYellow, steps);
+};
+
+export const useEuiPaletteOrange = (steps: number) => {
+  return _useEuiPaletteWithStepsFn(euiPaletteOrange, steps);
 };
 
 export const useEuiPaletteCool = (steps: number) => {
