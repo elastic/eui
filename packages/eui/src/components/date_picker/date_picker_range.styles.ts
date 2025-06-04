@@ -56,7 +56,10 @@ export const euiDatePickerRangeInlineStyles = (
   euiThemeContext: UseEuiTheme
 ) => {
   const { euiTheme } = euiThemeContext;
-  const isExperimental = euiTheme.flags?.formVariant === 'experimental';
+  const isRefreshVariant = isEuiThemeRefreshVariant(
+    euiThemeContext,
+    'formVariant'
+  );
 
   // Use a container query to stack date pickers vertically if the container is
   // not wide enough to fit both. We need a fn for this to render two width queries,
@@ -108,7 +111,7 @@ export const euiDatePickerRangeInlineStyles = (
           ${logicalCSS('padding-bottom', euiTheme.size.s)}
         }
 
-        ${isExperimental &&
+        ${isRefreshVariant &&
         `
           &::after {
             display: none;
@@ -133,7 +136,7 @@ export const euiDatePickerRangeInlineStyles = (
           borderAllInHighContrastMode: true,
         })}
 
-        ${isExperimental &&
+        ${isRefreshVariant &&
         `
           /* the form layout is not part of the interactive behavior but rather a container in this variant  */
           ${disableFormControlHoverStyles()}
