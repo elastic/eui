@@ -128,19 +128,63 @@ export const euiFormControlLayoutSideNodeStyles = (
   euiThemeContext: UseEuiTheme
 ) => {
   const { euiTheme } = euiThemeContext;
+  const isRefreshVariant = isEuiThemeRefreshVariant(
+    euiThemeContext,
+    'formVariant'
+  );
+
   const form = euiFormVariables(euiThemeContext);
 
   const uncompressedHeight = mathWithUnits(
     [form.controlHeight, euiTheme.border.width.thin],
-    (x, y) => x - y * 2
+    (x, y) => (isRefreshVariant ? x : x - y * 2)
   );
   const compressedHeight = mathWithUnits(
     [form.controlCompressedHeight, euiTheme.border.width.thin],
-    (x, y) => x - y * 2
+    (x, y) => (isRefreshVariant ? x : x - y * 2)
   );
 
   const buttons = '*:is(.euiButton, .euiButtonEmpty, .euiButtonIcon)';
   const text = '*:is(.euiFormLabel, .euiText)';
+
+  const experimentalAppendStyles =
+    isRefreshVariant &&
+    `
+    position: relative;
+    ${logicalCSS('margin-left', `-${euiTheme.border.width.thin}`)}
+
+    &::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      border-inline-start: ${
+        isRefreshVariant
+          ? `${euiTheme.border.width.thin} solid ${form.borderColor}`
+          : ''
+      };
+    }
+  `;
+
+  const experimentalPrependStyles =
+    isRefreshVariant &&
+    `
+    position: relative;
+    ${logicalCSS('margin-right', `-${euiTheme.border.width.thin}`)}
+
+    &::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      border-inline-end: ${
+        isRefreshVariant
+          ? `${euiTheme.border.width.thin} solid ${form.borderColor}`
+          : ''
+      };
+    }
+  `;
 
   return {
     euiFormControlLayout__side: css`
@@ -184,11 +228,17 @@ export const euiFormControlLayoutSideNodeStyles = (
     `,
     append: css(
       highContrastModeStyles(euiThemeContext, {
+        none: `
+          ${experimentalAppendStyles}
+        `,
         preferred: logicalCSS('border-left', euiTheme.border.thin),
       })
     ),
     prepend: css(
       highContrastModeStyles(euiThemeContext, {
+        none: `
+          ${experimentalPrependStyles}
+        `,
         preferred: logicalCSS('border-right', euiTheme.border.thin),
       })
     ),
