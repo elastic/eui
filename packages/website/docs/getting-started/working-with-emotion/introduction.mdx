@@ -57,6 +57,12 @@ _string styles_. It makes writing styles very similar to the native CSS styling
 experience and allows seamless usage of pseudo-classes like `:hover`
 and pseudo-elements like `::before`.
 
+:::info
+Emotion styles in EUI and Kibana are exclusively defined using
+the <EuiCode language="tsx">css\`\`</EuiCode> template literal.
+Object styles are not allowed.
+:::
+
 You can pass any regular CSS styles to the `css` template literal. The styles
 are processed by Emotion using [Stylis](https://github.com/thysultan/stylis)
 which can be configured to run plugins like vendor prefixing. By default,
