@@ -163,7 +163,9 @@ declare module '@emotion/react' {
 }
 ```
 
-You will then need to import this file into your `tsconfig.json`. See the [osquery plugin](https://github.com/elastic/kibana/blob/main/x-pack/plugins/osquery/tsconfig.json#L17-L18) for an example of their tsconfig setup.
+You will need to add this file to your `tsconfig.json`.
+
+For Kibana developers, you likely don't need to do anything. `emotion.d.ts` is defined globally. If for some reason Emotion is still untyped, make sure your `tsconfig.json` extends [`kibana/typings/emotion.d.ts`](https://github.com/elastic/kibana/blob/main/typings/emotion.d.ts) or the whole folder.
 
 #### Performance
 
