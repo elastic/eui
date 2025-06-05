@@ -16,18 +16,22 @@ import type {
 import { Options } from './options';
 
 /**
- * Docusaurus plugin to ignore any Infima stylesheet imports.
+ * Docusaurus plugin to ignore any unwanted style imports, e.g. like Infima stylesheet imports.
  * This is needed so that Infima doesn't pollute global CSS scope
  * and affect how EUI components are rendered
  */
-const ignoreInfimaPlugin: PluginModule = () => ({
-  name: 'ignore-infima-plugin',
+const ignoreInheritedStylesPlugin: PluginModule = () => ({
+  name: 'ignore-styles-plugin',
   configureWebpack() {
     return {
       module: {
         rules: [
           {
             test: /node_modules\/infima/,
+            use: 'null-loader',
+          },
+          {
+            test: /node_modules\/@docusaurus\/theme-common\/lib\/hooks\/styles.css/,
             use: 'null-loader',
           },
         ],
@@ -61,7 +65,7 @@ export default function preset(
   ];
 
   const plugins: PluginConfig[] = [
-    ignoreInfimaPlugin,
+    ignoreInheritedStylesPlugin,
     makePluginConfig('@docusaurus/plugin-content-docs', options.docs),
     makePluginConfig('@docusaurus/plugin-content-pages', options.pages),
     makePluginConfig('@docusaurus/plugin-svgr', options.svgr),
