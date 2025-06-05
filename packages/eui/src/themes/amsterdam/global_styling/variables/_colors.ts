@@ -319,6 +319,8 @@ export const border_colors: _EuiThemeBorderColors = {
     ([lightestShade]) => shade(lightestShade, 0.4),
     ['colors.lightestShade']
   ),
+  borderInteractiveFormsHoverPlain: 'transparent',
+  borderInteractiveFormsHoverDanger: 'transparent',
 
   borderStrongPrimary: computed(([primary]) => primary, ['colors.primary']),
   borderStrongAccent: computed(([accent]) => accent, ['colors.accent']),
@@ -538,6 +540,8 @@ export const dark_border_colors: _EuiThemeBorderColors = {
     ([lightestShade]) => tint(lightestShade, 0.31),
     ['colors.lightestShade']
   ),
+  borderInteractiveFormsHoverPlain: 'transparent',
+  borderInteractiveFormsHoverDanger: 'transparent',
 
   borderStrongPrimary: computed(([primary]) => primary, ['colors.primary']),
   borderStrongAccent: computed(([accent]) => accent, ['colors.accent']),

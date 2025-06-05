@@ -18,9 +18,16 @@ export type _EuiThemeFormColors = {
   backgroundReadOnly: ColorModeSwitch;
   backgroundFocused: ColorModeSwitch;
   backgroundAutofilled: ColorModeSwitch;
+  backgroundDropping: ColorModeSwitch;
   prependBackground: ColorModeSwitch;
   border: ColorModeSwitch;
+  borderDisabled: ColorModeSwitch;
+  borderFocused: ColorModeSwitch;
+  borderInvalid: ColorModeSwitch;
+  borderHovered: ColorModeSwitch;
+  borderInvalidHovered: ColorModeSwitch;
   borderAutofilled: ColorModeSwitch;
+  borderAutofilledHovered: ColorModeSwitch;
   controlBorder: ColorModeSwitch;
   controlBorderSelected: ColorModeSwitch;
   controlBorderDisabled: ColorModeSwitch;
