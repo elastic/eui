@@ -102,7 +102,7 @@ const CONTENT_DATA = [
   },
   {
     title: 'Table',
-    href: './docs/components/tabular-content/tables',
+    href: './docs/components/tables',
     svg: SvgTable,
     description:
       'Flexible tables with sorting, pagination, selection and actions',
