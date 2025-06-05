@@ -1,0 +1,561 @@
+---
+sidebar_label: Migrating from Sass
+---
+
+# Migrating from Sass to Emotion
+
+```mdx-code-block
+import { EuiTable, EuiTableHeader, EuiTableHeaderCell, EuiTableRow, EuiTableRowCell } from '@elastic/eui';
+```
+
+This page is meant as a handy reference/cheatsheet on how to migrate specific
+Sass variables and mixins to their Emotion counterparts.
+
+## Variables
+
+### Sizes
+
+For a full list of tokens, see [Sizing tokens](../../getting-started/theming/tokens/sizing.mdx).
+
+<EuiTable>
+  <EuiTableHeader>
+    <EuiTableHeaderCell>Sass</EuiTableHeaderCell>
+    <EuiTableHeaderCell>Emotion</EuiTableHeaderCell>
+  </EuiTableHeader>
+  <EuiTableRow>
+    <EuiTableRowCell>`$euiSize`</EuiTableRowCell>
+    <EuiTableRowCell>`useEuiTheme().euiTheme.size.base`</EuiTableRowCell>
+  </EuiTableRow>
+  <EuiTableRow>
+    <EuiTableRowCell>`$euiSizeM`</EuiTableRowCell>
+    <EuiTableRowCell>`useEuiTheme().euiTheme.size.m`</EuiTableRowCell>
+  </EuiTableRow>
+  <EuiTableRow>
+    <EuiTableRowCell>`$euiSizeXS`/`XL`/etc</EuiTableRowCell>
+    <EuiTableRowCell>All of these sizes convert to lowercase equivalents, `euiTheme.size.xs`/`.xl` etc</EuiTableRowCell>
+  </EuiTableRow>
+  <EuiTableRow>
+    <EuiTableRowCell>N/A</EuiTableRowCell>
+    <EuiTableRowCell>Note that there are 3 new sizes in our CSS-in-JS tokens to take advantage of,<br /> that may help simplify Sass math/calcs: `xxs` (2px), `xxxl` (48px) , and `xxxxl` (64px)</EuiTableRowCell>
+  </EuiTableRow>
+</EuiTable>
+
+#### Performing math on size tokens
+
+It's worth highlighting that these size tokens return CSS strings and **not** numbers. This means something like `$euiSize * 10` requires much more syntactical sugar than it previously did in Sass. If you need to calculate a custom size, you can use one of these 3 methods:
+
+1. `euiTheme.base` returns a number (16 by default) that can have math performed on it, e.g:
+    ```tsx
+    const width = `${useEuiTheme().euiTheme.base * 10}px`; // '160px'
+    ```
+2. EUI offers a `mathWithUnits` utility that preserves the unit of the passed string. Example usage:
+    ```tsx
+    import { mathWithUnits } from '@elastic/eui';
+
+    const SomeComponent = () => {
+      const { euiTheme } = useEuiTheme();
+
+      const width = mathWithUnits(euiTheme.size.base, (x) => x * 10); // Returns '160px'
+
+      // The util also accepts multiple tokens, e.g.
+      const height = mathWithUnits([euiTheme.size.xl, euiTheme.size.xs], (x, y) => x + y); // Returns '44px'
+    }
+    ```
+3. You can also prefer to use CSS's built-in [`calc()` function](https://developer.mozilla.org/en-US/docs/Web/CSS/calc), e.g.
+    ```
+    css`
+      width: calc(${euiTheme.size.base} * 10);
+    `
+    ```
+
+### Colors
+
+For a full list of tokens, see [Color tokens](../../getting-started/theming/tokens/colors/index.mdx).
+
+<EuiTable>
+  <EuiTableHeader>
+    <EuiTableHeaderCell>Sass</EuiTableHeaderCell>
+    <EuiTableHeaderCell>Emotion</EuiTableHeaderCell>
+  </EuiTableHeader>
+  <EuiTableRow>
+    <EuiTableRowCell>`$euiColorPrimary`/`$euiColorSuccessText`/etc</EuiTableRowCell>
+    <EuiTableRowCell>`useEuiTheme().euiTheme.colors.primary` / `useEuiTheme().euiTheme.colors.successText` (same lowercase naming scheme for all brand colors)</EuiTableRowCell>
+  </EuiTableRow>
+  <EuiTableRow>
+    <EuiTableRowCell>`$euiColorMediumShade`/`EmpyShade`/etc</EuiTableRowCell>
+    <EuiTableRowCell>
+      `useEuiTheme().euiTheme.colors.mediumShade`/`.emptyShade`
+      <br />(same naming scheme for all shade colors)
+   </EuiTableRowCell>
+  </EuiTableRow>
+  <EuiTableRow>
+    <EuiTableRowCell>`$euiPageBackgroundColor`</EuiTableRowCell>
+    <EuiTableRowCell>`useEuiTheme().euiTheme.colors.body`</EuiTableRowCell>
+  </EuiTableRow>
+  <EuiTableRow>
+    <EuiTableRowCell>`$euiTextColor`</EuiTableRowCell>
+    <EuiTableRowCell>`useEuiTheme().euiTheme.colors.text`</EuiTableRowCell>
+  </EuiTableRow>
+  <EuiTableRow>
+    <EuiTableRowCell>`$euiTitleColor`</EuiTableRowCell>
+    <EuiTableRowCell>`useEuiTheme().euiTheme.colors.title`</EuiTableRowCell>
+  </EuiTableRow>
+  <EuiTableRow>
+    <EuiTableRowCell>`$euiTextSubduedColor`</EuiTableRowCell>
+    <EuiTableRowCell>`useEuiTheme().euiTheme.colors.subduedText`</EuiTableRowCell>
+  </EuiTableRow>
+  <EuiTableRow>
+    <EuiTableRowCell>`$euiColorDisabled`/`$euiColorDisabledText`</EuiTableRowCell>
+    <EuiTableRowCell>`useEuiTheme().euiTheme.colors.disabled`/`.disabledText`</EuiTableRowCell>
+  </EuiTableRow>
+  <EuiTableRow>
+    <EuiTableRowCell>`$euiColorHighlight`</EuiTableRowCell>
+    <EuiTableRowCell>`useEuiTheme().euiTheme.colors.highlight`</EuiTableRowCell>
+  </EuiTableRow>
+  <EuiTableRow>
+    <EuiTableRowCell>`$euiColorGhost`</EuiTableRowCell>
+    <EuiTableRowCell>`useEuiTheme().euiTheme.colors.ghost`<br />(consider replacing this with `fullShade/emptyShade` instead)</EuiTableRowCell>
+  </EuiTableRow>
+  <EuiTableRow>
+    <EuiTableRowCell>`$euiColorInk`</EuiTableRowCell>
+    <EuiTableRowCell>
+      `useEuiTheme().euiTheme.colors.ink`
+      <br />(consider replacing this with `fullShade/emptyShade` instead)
+   </EuiTableRowCell>
+  </EuiTableRow>
+</EuiTable>
+
+
+#### Color palettes
+
+`$euiColorPaletteBlind` is now a function that generates a customizable array of palettes. To use it as-is from its previous Sass incarnation, simple invoke it with no arguments passed:
+
+```tsx
+import { euiColorPaletteBlind, euiPaletteColorBlindBehindText } from '@elastic/eui';
+
+// Note that these utils can be called statically / outside of hooks or react components
+const visColors = euiColorPaletteBlind();
+const visBackgroundColors = euiPaletteColorBlindBehindText();
+
+const SomeComponent = () => <div css={{ color: visColors[0], backgroundColor: visBackgroundColors[1] }} />
+```
+
+For a full list of arguments, see [Color palettes](../../utilities/color-palettes/index.mdx).
+
+<EuiTable>
+  <EuiTableHeader>
+    <EuiTableHeaderCell>Sass</EuiTableHeaderCell>
+    <EuiTableHeaderCell>CSS-in-JS</EuiTableHeaderCell>
+  </EuiTableHeader>
+  <EuiTableRow>
+    <EuiTableRowCell>`$euiColorVis0`</EuiTableRowCell>
+    <EuiTableRowCell>`euiColorPaletteBlind()[0]`</EuiTableRowCell>
+  </EuiTableRow>
+  <EuiTableRow>
+    <EuiTableRowCell>`$euiColorVis1_behindText`</EuiTableRowCell>
+    <EuiTableRowCell>`euiPaletteColorBlindBehindText()[1]`</EuiTableRowCell>
+  </EuiTableRow>
+  <EuiTableRow>
+    <EuiTableRowCell>...</EuiTableRowCell>
+    <EuiTableRowCell>And so forth for all numbers.</EuiTableRowCell>
+  </EuiTableRow>
+</EuiTable>
+
+### Typography
+
+For a full list of tokens, see [Typography tokens](../../getting-started/theming/tokens/typography/index.mdx).
+
+<EuiTable>
+  <EuiTableHeader>
+    <EuiTableHeaderCell>Sass</EuiTableHeaderCell>
+    <EuiTableHeaderCell>CSS-in-JS</EuiTableHeaderCell>
+  </EuiTableHeader>
+  <EuiTableRow>
+    <EuiTableRowCell>`$euiFontWeightBold`</EuiTableRowCell>
+    <EuiTableRowCell>`useEuiTheme().euiTheme.font.weight.bold` (same naming scheme for all weights)</EuiTableRowCell>
+  </EuiTableRow>
+  <EuiTableRow>
+    <EuiTableRowCell>`$euiFontFamily`</EuiTableRowCell>
+    <EuiTableRowCell>`useEuiTheme().euiTheme.font.family`</EuiTableRowCell>
+  </EuiTableRow>
+  <EuiTableRow>
+    <EuiTableRowCell>`$euiCodeFontFamily`</EuiTableRowCell>
+    <EuiTableRowCell>`useEuiTheme().euiTheme.font.familyCode`</EuiTableRowCell>
+  </EuiTableRow>
+  <EuiTableRow>
+    <EuiTableRowCell>`$euiFontFeatureSettings`</EuiTableRowCell>
+    <EuiTableRowCell>`useEuiTheme().euiTheme.font.featureSettings`</EuiTableRowCell>
+  </EuiTableRow>
+  <EuiTableRow>
+    <EuiTableRowCell>`$euiLineHeight`</EuiTableRowCell>
+    <EuiTableRowCell>`useEuiTheme().euiTheme.font.lineHeightMultiplier`</EuiTableRowCell>
+  </EuiTableRow>
+  <EuiTableRow>
+    <EuiTableRowCell>`$euiTextScale`</EuiTableRowCell>
+    <EuiTableRowCell>`useEuiTheme().euiTheme.font.scale`</EuiTableRowCell>
+  </EuiTableRow>
+</EuiTable>
+
+Unfortunately, **font sizes are no longer static tokens**, and must be calculated using a function/hook instead. See the below "Typography" mixin section.
+
+### Z-index levels
+
+<EuiTable>
+  <EuiTableHeader>
+    <EuiTableHeaderCell>Sass</EuiTableHeaderCell>
+    <EuiTableHeaderCell>CSS-in-JS</EuiTableHeaderCell>
+  </EuiTableHeader>
+  <EuiTableRow>
+    <EuiTableRowCell>`$euiZLevel0`</EuiTableRowCell>
+    <EuiTableRowCell>`useEuiTheme().euiTheme.levels.content`</EuiTableRowCell>
+  </EuiTableRow>
+  <EuiTableRow>
+    <EuiTableRowCell>`$euiZLevel1`</EuiTableRowCell>
+    <EuiTableRowCell>This can be either `levels.header`, `levels.flyout`, or `levels.maskBelowHeader`, depending on the context/use case.</EuiTableRowCell>
+  </EuiTableRow>
+  <EuiTableRow>
+    <EuiTableRowCell>`$euiZLevel2`</EuiTableRowCell>
+    <EuiTableRowCell>`useEuiTheme().euiTheme.levels.menu`</EuiTableRowCell>
+  </EuiTableRow>
+  <EuiTableRow>
+    <EuiTableRowCell>`$euiZLevel6`</EuiTableRowCell>
+    <EuiTableRowCell>This can be either `levels.mask` or `levels.navigation`, depending on the context</EuiTableRowCell>
+  </EuiTableRow>
+  <EuiTableRow>
+    <EuiTableRowCell>`$euiZLevel8`</EuiTableRowCell>
+    <EuiTableRowCell>`useEuiTheme().euiTheme.levels.modal`</EuiTableRowCell>
+  </EuiTableRow>
+  <EuiTableRow>
+    <EuiTableRowCell>`$euiZLevel9`</EuiTableRowCell>
+    <EuiTableRowCell>`useEuiTheme().euiTheme.levels.toast`</EuiTableRowCell>
+  </EuiTableRow>
+  <EuiTableRow>
+    <EuiTableRowCell>`$euiZLevel3`, `$euiZLevel4`, `$euiZLevel5`, `$euiZLevel7`</EuiTableRowCell>
+    <EuiTableRowCell>With our Emotion conversion, we've deprecated the use of generic numbered levels, so these levels no longer exist. We recommend adjusting to the nearest semantic meaning, or if necessary, using a static number (if no meaning is associated with EUI components).</EuiTableRowCell>
+  </EuiTableRow>
+</EuiTable>
+
+A quick note about math with z-index levels - while they're typed in our theme as potentially being either a string or number (the default type for CSS properties), the returned tokens **are** numbers and can have math performed on them as-is (e.g. addition).
+
+### Borders
+
+For a full list of tokens, see [Border tokens](../../getting-started/theming/tokens/borders/index.mdx).
+
+<EuiTable>
+  <EuiTableHeader>
+    <EuiTableHeaderCell>Sass</EuiTableHeaderCell>
+    <EuiTableHeaderCell>CSS-in-JS</EuiTableHeaderCell>
+  </EuiTableHeader>
+  <EuiTableRow>
+    <EuiTableRowCell>`$euiBorderRadius`</EuiTableRowCell>
+    <EuiTableRowCell>`useEuiTheme().euiTheme.border.radius.medium`</EuiTableRowCell>
+  </EuiTableRow>
+  <EuiTableRow>
+    <EuiTableRowCell>`$euiBorderRadiusSmall`</EuiTableRowCell>
+    <EuiTableRowCell>`useEuiTheme().euiTheme.border.radius.small`</EuiTableRowCell>
+  </EuiTableRow>
+  <EuiTableRow>
+    <EuiTableRowCell>`$euiBorderWidthThin`</EuiTableRowCell>
+    <EuiTableRowCell>`useEuiTheme().euiTheme.border.width.thin`</EuiTableRowCell>
+  </EuiTableRow>
+  <EuiTableRow>
+    <EuiTableRowCell>`$euiBorderWidthThick`</EuiTableRowCell>
+    <EuiTableRowCell>`useEuiTheme().euiTheme.border.width.thick`</EuiTableRowCell>
+  </EuiTableRow>
+  <EuiTableRow>
+    <EuiTableRowCell>`$euiBorderColor`</EuiTableRowCell>
+    <EuiTableRowCell>`useEuiTheme().euiTheme.border.color`</EuiTableRowCell>
+  </EuiTableRow>
+  <EuiTableRow>
+    <EuiTableRowCell>`$euiBorderThin`</EuiTableRowCell>
+    <EuiTableRowCell>`useEuiTheme().euiTheme.border.thin`</EuiTableRowCell>
+  </EuiTableRow>
+  <EuiTableRow>
+    <EuiTableRowCell>`$euiBorderThick`</EuiTableRowCell>
+    <EuiTableRowCell>`useEuiTheme().euiTheme.border.thick`</EuiTableRowCell>
+  </EuiTableRow>
+  <EuiTableRow>
+    <EuiTableRowCell>`$euiBorderEditable`</EuiTableRowCell>
+    <EuiTableRowCell>`useEuiTheme().euiTheme.border.editable`</EuiTableRowCell>
+  </EuiTableRow>
+</EuiTable>
+
+### Animations
+
+<EuiTable>
+  <EuiTableHeader>
+    <EuiTableHeaderCell>Sass</EuiTableHeaderCell>
+    <EuiTableHeaderCell>CSS-in-JS</EuiTableHeaderCell>
+  </EuiTableHeader>
+  <EuiTableRow>
+    <EuiTableRowCell>`$euiAnimSlightBounce`</EuiTableRowCell>
+    <EuiTableRowCell>`useEuiTheme().euiTheme.animation.bounce`</EuiTableRowCell>
+  </EuiTableRow>
+  <EuiTableRow>
+    <EuiTableRowCell>`$euiAnimSlightResistance`</EuiTableRowCell>
+    <EuiTableRowCell>`useEuiTheme().euiTheme.animation.resistance`</EuiTableRowCell>
+  </EuiTableRow>
+  <EuiTableRow>
+    <EuiTableRowCell>`$euiAnimSpeedExtraFast`</EuiTableRowCell>
+    <EuiTableRowCell>`useEuiTheme().euiTheme.animation.extraFast`</EuiTableRowCell>
+  </EuiTableRow>
+  <EuiTableRow>
+    <EuiTableRowCell>`$euiAnimSpeedFast`</EuiTableRowCell>
+    <EuiTableRowCell>`useEuiTheme().euiTheme.animation.fast`</EuiTableRowCell>
+  </EuiTableRow>
+  <EuiTableRow>
+    <EuiTableRowCell>`$euiAnimSpeedNormal`</EuiTableRowCell>
+    <EuiTableRowCell>`useEuiTheme().euiTheme.animation.normal`</EuiTableRowCell>
+  </EuiTableRow>
+  <EuiTableRow>
+    <EuiTableRowCell>`$euiAnimSpeedSlow`</EuiTableRowCell>
+    <EuiTableRowCell>`useEuiTheme().euiTheme.animation.slow`</EuiTableRowCell>
+  </EuiTableRow>
+  <EuiTableRow>
+    <EuiTableRowCell>`$euiAnimSpeedExtraSlow`</EuiTableRowCell>
+    <EuiTableRowCell>`useEuiTheme().euiTheme.animation.extraSlow`</EuiTableRowCell>
+  </EuiTableRow>
+</EuiTable>
+
+### Form variables ⚠️
+
+EUI currently does not have a migration path for `$euiForm` Sass variables. Until we have one, we will not be deprecating these variables.
+
+## Mixins
+
+### Typography
+
+As mentioned above, `$euiFontSize*` tokens no longer exist. Instead, we require using a utility that returns both a `fontSize` and `lineHeight` in object format. In general, if possible, we strongly recommend using **EuiText** and **EuiTitle** instead of directly applying font sizes via CSS.
+
+If you absolutely cannot use a component, we generally recommend the `useEuiFontSize()` hook to replace font styling:
+
+```tsx
+import { useEuiFontSize } from '@elastic/eui';
+import { css } from '@emotion/react';
+
+const SomeComponent = () => {
+  const cssStyles = [
+    useEuiFontSize('l'),
+    css`color: red;`
+  ];
+
+  return <div css={cssStyles} />
+}
+```
+
+```tsx
+import { useEuiFontSize } from '@elastic/eui';
+import { css } from '@emotion/react';
+
+const SomeComponent = () => {
+  const euiThemeContext = useEuiTheme();
+  const cssStyles = css`
+    font-size: ${useEuiFontSize('l').fontSize};
+    line-height: 1;
+  `;
+
+  return <div css={cssStyles} />
+};
+```
+
+<EuiTable>
+  <EuiTableHeader>
+    <EuiTableHeaderCell>Sass</EuiTableHeaderCell>
+    <EuiTableHeaderCell>CSS-in-JS</EuiTableHeaderCell>
+  </EuiTableHeader>
+  <EuiTableRow>
+    <EuiTableRowCell>`@include euiFontSizeS`/`L`/etc</EuiTableRowCell>
+    <EuiTableRowCell>`useEuiFontSize('xxxs' through 'xxl')`</EuiTableRowCell>
+  </EuiTableRow>
+  <EuiTableRow>
+    <EuiTableRowCell>`@include euiFont`</EuiTableRowCell>
+    <EuiTableRowCell>Deprecated. Use `font-family: ${euiTheme.font.family};` or `font-weight: ${euiTheme.font.weight.regular};` if necessary instead</EuiTableRowCell>
+  </EuiTableRow>
+  <EuiTableRow>
+    <EuiTableRowCell>`@include euiCodeFont`</EuiTableRowCell>
+    <EuiTableRowCell>Deprecated. Use `font-family: ${euiTheme.font.familyCode};` instead</EuiTableRowCell>
+  </EuiTableRow>
+  <EuiTableRow>
+    <EuiTableRowCell>`@include euiText`</EuiTableRowCell>
+    <EuiTableRowCell>Deprecated. Use `<EuiText />` or if necessary, `color: ${euiTheme.colors.text}` instead</EuiTableRowCell>
+  </EuiTableRow>
+  <EuiTableRow>
+    <EuiTableRowCell>`@include euiTitle`</EuiTableRowCell>
+    <EuiTableRowCell>Deprecated. Use `<EuiTitle />` instead (strongly recommended)<br/> If absolutely necessary, you may reach into the EuiTitle component via `import { euiTitle } from '@elastic/eui/lib/components/title/title.styles';`, <br />but this is generally not recommended as Kibana has issues typing `@elastic/eui/lib`</EuiTableRowCell>
+  </EuiTableRow>
+  <EuiTableRow>
+      <EuiTableRowCell>`@include euiTextTruncate` and `@include euiTextBreakWord`</EuiTableRowCell>
+      <EuiTableRowCell>Consider simply applying `.eui-textTruncate` or `.eui-textBreakWord` as a vanilla className (simplest option). <br/> Or, `import { euiTextBreakWord, euiTextTruncate } from '@elastic/eui';` and use it as `css={euiTextTruncate()}`</EuiTableRowCell>
+    </EuiTableRow>
+</EuiTable>
+
+See [Typography utilities](../../getting-started/theming/utilities/typography.mdx) for a full list of `className` utilities and documentation.
+
+### Responsive
+
+EUI's breakpoint utilities have been generally enhanced to exceed their Sass capabilities. With that in mind, we recommend a more nuanced approach to migrating media queries:
+
+<EuiTable>
+  <EuiTableHeader>
+    <EuiTableHeaderCell>Sass</EuiTableHeaderCell>
+    <EuiTableHeaderCell>CSS-in-JS</EuiTableHeaderCell>
+  </EuiTableHeader>
+  <EuiTableRow>
+    <EuiTableRowCell>`@include euiBreakpoint('s', 'm')`</EuiTableRowCell>
+    <EuiTableRowCell>`useEuiBreakpoint(['s', 'm'])`</EuiTableRowCell>
+  </EuiTableRow>
+  <EuiTableRow>
+    <EuiTableRowCell>Media queries ending with `@include euiBreakpoint(..., 'xl')` <br />e.g., `@include euiBreakpoint('m,' 'l', 'xl')`</EuiTableRowCell>
+    <EuiTableRowCell>`useEuiMinBreakpoint('m')`<br /> We recommend preferring a single min/max breakpoint, as this helps account for themes with [custom breakpoints](../../getting-started/theming/tokens/breakpoints/index.mdx#custom-values)</EuiTableRowCell>
+  </EuiTableRow>
+  <EuiTableRow>
+    <EuiTableRowCell>Media queries beginning with `@include euiBreakpoint('xs', ...)` <br />e.g., `@include euiBreakpoint('xs', 's')`</EuiTableRowCell>
+    <EuiTableRowCell>`useEuiMaxBreakpoint('m')`<br /> See above. If converted from `@euiBreakpoint`, should be a size higher than the ending size</EuiTableRowCell>
+  </EuiTableRow>
+</EuiTable>
+
+Example usage:
+
+```tsx
+import { useEuiMinBreakpoint, useEuiMaxBreakpoint, useEuiBreakpoint } from '@elastic/eui';
+
+const SomeComponent = () => {
+  const cssStyles = css`
+    ${useEuiMaxBreakpoint('m')} {
+      color: red; /* Text will be red under the 'm' breakpoint */
+    }
+    ${useEuiBreakpoint(['m', 'l'])} {
+      color: yellow; /* Text will be yellow between the 'm and 'xl' breakpoints */
+    }
+    ${useEuiMinBreakpoint('xl')} {
+      color: green; /* Text will be green above the 'xl' breakpoint */
+    }
+  `
+
+  return <div css={cssStyles />;
+}
+```
+
+For a list of all default breakpoints and visual demonstration of these utilities, see [Breakpoint utilities](../../getting-started/theming/utilities/breakpoints.mdx).
+
+### Shadows
+
+<EuiTable>
+  <EuiTableHeader>
+    <EuiTableHeaderCell>Sass</EuiTableHeaderCell>
+    <EuiTableHeaderCell>CSS-in-JS</EuiTableHeaderCell>
+  </EuiTableHeader>
+  <EuiTableRow>
+    <EuiTableRowCell>`@include euiSlightShadow`</EuiTableRowCell>
+    <EuiTableRowCell>`useEuiShadow('xs')`</EuiTableRowCell>
+  </EuiTableRow>
+  <EuiTableRow>
+    <EuiTableRowCell>`@include euiBottomShadowSmall`</EuiTableRowCell>
+    <EuiTableRowCell>`useEuiShadow('s')`</EuiTableRowCell>
+  </EuiTableRow>
+  <EuiTableRow>
+    <EuiTableRowCell>`@include euiBottomShadowMedium `</EuiTableRowCell>
+    <EuiTableRowCell>`useEuiShadow('m')`</EuiTableRowCell>
+  </EuiTableRow>
+  <EuiTableRow>
+    <EuiTableRowCell>`@include euiBottomShadow`</EuiTableRowCell>
+    <EuiTableRowCell>`useEuiShadow('l')`</EuiTableRowCell>
+  </EuiTableRow>
+  <EuiTableRow>
+    <EuiTableRowCell>`@include euiBottomShadowLarge`</EuiTableRowCell>
+    <EuiTableRowCell>`useEuiShadow('xl')`</EuiTableRowCell>
+  </EuiTableRow>
+  <EuiTableRow>
+    <EuiTableRowCell>`@include euiBottomShadowFlat`</EuiTableRowCell>
+    <EuiTableRowCell>`useEuiShadowFlat()`</EuiTableRowCell>
+  </EuiTableRow>
+  <EuiTableRow>
+    <EuiTableRowCell>`@include euiSlightShadowHover`</EuiTableRowCell>
+    <EuiTableRowCell>`useEuiSlightShadowHover()`</EuiTableRowCell>
+  </EuiTableRow>
+</EuiTable>
+
+### Scrolling
+
+For a visual demonstration of these mixins, see [Scroll utilities](../../utilities/scroll/index.mdx).
+
+<EuiTable>
+  <EuiTableHeader>
+    <EuiTableHeaderCell>Sass</EuiTableHeaderCell>
+    <EuiTableHeaderCell>CSS-in-JS</EuiTableHeaderCell>
+  </EuiTableHeader>
+  <EuiTableRow>
+    <EuiTableRowCell>`@include euiScrollBar`</EuiTableRowCell>
+    <EuiTableRowCell>`useEuiScrollBar()`, or apply the `.eui-scrollBar` className</EuiTableRowCell>
+  </EuiTableRow>
+  <EuiTableRow>
+    <EuiTableRowCell>`@include euiYScroll`</EuiTableRowCell>
+    <EuiTableRowCell>`useEuiOverflowScroll('y')`, or apply the `.eui-yScroll` className</EuiTableRowCell>
+  </EuiTableRow>
+  <EuiTableRow>
+    <EuiTableRowCell>`@include euiYScrollWithShadows`</EuiTableRowCell>
+    <EuiTableRowCell>`useEuiOverflowScroll('y', true)`</EuiTableRowCell>
+  </EuiTableRow>
+  <EuiTableRow>
+    <EuiTableRowCell>`@include euiXScroll`</EuiTableRowCell>
+    <EuiTableRowCell>`useEuiOverflowScroll('x')`, or apply the `.eui-xScroll` className</EuiTableRowCell>
+  </EuiTableRow>
+  <EuiTableRow>
+    <EuiTableRowCell>`@include euiXScrollWithShadows`</EuiTableRowCell>
+    <EuiTableRowCell>`useEuiOverflowScroll('x', true)`</EuiTableRowCell>
+  </EuiTableRow>
+</EuiTable>
+
+### Non-hook utilities
+
+If using a [hook](https://react.dev/reference/rules/rules-of-hooks) is onerous to migrate within the existing code for any reason (e.g. conditional returns, nested hooks, etc.), you may use non-hook versions of each utility. For example, you can import `euiFontSize` instead of `useEuiFontSize`, `euiBreakpoint` instead of `useEuiBreakpoint`, `euiShadow` instead of `useEuiShadow`, and so on and so forth.
+
+```tsx
+import { euiFontSize, useEuiTheme } from '@elastic/eui';
+import { css } from '@emotion/react';
+
+const SomeComponent = ({ isLoading, hasButton }) => {
+  const euiThemeContext = useEuiTheme();
+
+  // Conditional return before css`` is used
+  if (isLoading) return <LoadingComponent />;
+
+  // Nested hook usage
+  const someButton = useMemo(() => {
+    if (!hasButton) return null;
+
+    const cssStyles = css`
+      ${euiFontSize(euiThemeContext, 'l')}
+      color: red;
+    `;
+
+    return <button css={cssStyles}>Conditional button</button>;
+  }, [hasButton, euiThemeContext]);
+
+  return <>{someButton}{children}</>
+};
+```
+
+Alternatively, you can also take advantage of Emotion's [theme context](https://emotion.sh/docs/theming) API to obtain the current EUI theme without `useEuiTheme()` as a nice syntactical sugar shortcut. See also: [Consuming with Emotion's theming](../../getting-started/theming/theme-provider.mdx#consuming-with-emotions-theming)
+
+```tsx
+import { euiFontSize } from '@elastic/eui';
+import { css } from '@emotion/react';
+
+const SomeComponent = ({ isLoading }) => {
+  if (isLoading) return null;
+
+  return (
+    <div
+      css={(euiThemeContext) => css`
+        ${euiFontSize(euiThemeContext, 'l')}
+        color: red;
+      `
+    />
+  );
+}
+```
+
+Please note, that if you encounter type errors with the theme parameter inside of the `css` function, you'll need to make your Plugin is set up to use Kibana's [emotion.d.ts](https://github.com/elastic/kibana/blob/main/typings/emotion.d.ts) file.
+
+To do this, add in the aforementioned `emotion.d.ts` with it's path relative to location of the `typings` directory as the value of the `include` property for the `tsconfig.json` file that exists within your plugin.

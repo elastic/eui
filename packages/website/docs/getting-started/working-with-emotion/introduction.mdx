@@ -1,0 +1,184 @@
+---
+sidebar_label: Introduction
+---
+
+# Introduction to Emotion
+
+```mdx-code-block
+import { EuiCode } from '@elastic/eui';
+```
+
+[Emotion](https://emotion.sh/) is the underlying CSS-in-JS library used by EUI.
+It helps us manage CSS styles at scale injecting precisely what's needed
+to render visible components, _fast_.
+For best compatibility, we highly recommend all apps using EUI to implement
+Emotion as their primary styling method.
+
+## What's Emotion and CSS-in-JS?
+
+CSS-in-JS is a concept of writing styles directly in JS/TS files.
+While this may sound strange at first, it comes with many advantages compared
+to traditional CSS or SASS/LESS.
+
+It brings the plain old CSS syntax you already know to the JavaScript world,
+so that your style definitions reference React components directly
+and predictably. No more class name guesswork, selector specificity issues
+or loading unnecessarily large stylesheets on each page load.
+
+Emotion can compose and optimize styles, generate source maps and labels
+for easy debugging, and includes powerful testing utilities enabling assertions
+on real stylesheets and CSS properties.
+
+<Demo isSourceOpen>
+  ```tsx
+  import { css } from '@emotion/react';
+
+  // Declaring styles in a template literal is just like writing plain CSS
+  const rainbowStyles = css`
+    padding: .25rem;
+    border-radius: .5rem;
+    background: linear-gradient(90deg in hsl longer hue, red, red);
+    /* Edit me and try this out! */
+    /* filter: invert() */
+  `;
+
+  export default <div css={rainbowStyles} />;
+  ```
+</Demo>
+
+We highly encourage reading [Emotion docs](https://emotion.sh/docs/introduction)
+to better understand its underlying concepts.
+
+## Writing styles
+
+We recommend writing styles using the template literal notation
+(e.g., <EuiCode language="tsx">css\`color: red\`</EuiCode>), also called
+_string styles_. It makes writing styles very similar to the native CSS styling
+experience and allows seamless usage of pseudo-classes like `:hover`
+and pseudo-elements like `::before`.
+
+You can pass any regular CSS styles to the `css` template literal. The styles
+are processed by Emotion using [Stylis](https://github.com/thysultan/stylis)
+which can be configured to run plugins like vendor prefixing. By default,
+EUI applies CSS property prefixes targeting the latest evergreen browsers,
+following our [supported browsers matrix](https://www.elastic.co/support/matrix#matrix_browsers).
+
+## Frequently Asked Questions
+
+### What's the difference between the `css` imported from `@emotion/react` and `@emotion/css`?
+
+[`@emotion/css`](https://emotion.sh/docs/@emotion/css) is the vanilla JS
+version of Emotion. It does not require any babel setup. It generates a `css-`
+prefixed className with the attached styles, which can be applied directly
+to vanilla JS DOM nodes or passed to a React `className={}` prop, e.g.
+
+```tsx
+import { css } from '@emotion/css';
+const styles = css`
+  color: red;
+`;
+<EuiComponent className={styles} />
+```
+
+[`@emotion/react`](https://emotion.sh/docs/@emotion/react) is mostly
+syntactical sugar on top of the vanilla JS library. It allows usage
+of the `css` prop, which handles setting the generated CSS onto the underlying
+component's `className`, and automatically concatenates any other `css` styles
+passed onto the component together into a single ruleset for you. Example:
+
+```tsx
+import { css } from '@emotion/react';
+const styles = css`
+  color: red;
+`;
+<EuiComponent css={styles} />
+```
+
+Please note that `@emotion/react` usage requires a
+[babel preset](https://www.npmjs.com/package/@emotion/babel-preset-css-prop)
+setup, and that Kibana plugins already set up to use `styled-components` cannot
+use both `styled-components` and `@emotion/react` at the same time.
+
+#### When should I use one vs the other?
+
+In general, when working directly in React/JSX, we recommend using
+`@emotion/react` for the nicer `css` prop syntactical sugar.
+
+For consistency, we recommend using `@emotion/css` only when necessary.
+Examples of necessary (but hopefully rare) use-cases:
+- When styling raw JS DOM nodes
+- If your Kibana plugin is set up with `styled-components`, it will not support `@emotion/react` and you must use `@emotion/css` instead
+- If, for some reason, you absolutely do not want your styles to be automatically concatenated with other Emotion styles into a single selector, and want it to remain its own separate className/selector
+
+### Can I use both `styled-components` and `@emotion/react` at the same time?
+
+No. If your Kibana plugin uses babel to compile `styled-components` (please see this file/regex to check if your plugin is listed: https://github.com/elastic/kibana/blob/main/packages/kbn-babel-preset/styled_components_files.js), you cannot use `@emotion/react`.
+
+`styled-components` and `@emotion/react` are incompatible and Kibana can't use the babel plugins for both on the same code. While Kibana will not actively throw if you try to do so, and may actually attempt to (**very** inconsistently) render some Emotion styles, this is actually a bug on Emotion's end - they drop some validation in `NODE_ENV=production` which allows their styles to sometimes be applied even when they're not supposed to. You will still see missing CSS, however, and you should be careful not to use both. The giveaway is if you see `Styled` in the classNames of your component DOM.
+
+If you still wish to use Emotion while your plugin is setup for `styled-components`, all is not lost - you can use vanilla JS `@emotion/css` passed to the `className` prop in the interim.
+
+#### Should I migrate my plugin away from `styled-components` to Emotion?
+
+Yes, teams should begin migrating. While we don't yet have a set target date for moving entirely away from styled-components in Kibana, we expect to share one soon.
+
+Our goal is to standardize on Emotion as our CSS-in-JS solution in Kibana. This will ensure consistency, easier support, and a unified theming system across the platform.
+
+Here are a few key points to consider:
+
+- The EUI team is more able to help assist with or debug styling issues in Emotion over styled-components
+- EUI exports Emotion style utilities that we do not have available for styled-components
+- EUI has already set up cache providers for Emotion in, which help control where styles render on the page & can determine specificity/order, that we do not have set up for styled-components
+
+As a simple first step in this transition, consider using [@emotion/styled](https://emotion.sh/docs/styled). This allows you to keep the familiar styled syntax while aligning with the Emotion ecosystem
+
+We've also found [this guide](https://simonhartcher.com/migrating-from-styled-components-to-emotion) to be a useful reference for migration.
+
+### Theming and Emotion's `css` prop
+
+Emotion's `css` prop allows consumers to [receive the EUI theme](https://emotion.sh/docs/theming#css-prop) from a callback within the prop:
+
+```tsx
+<SomeComponent
+  css={({ euiTheme }) => ({
+    color: euiTheme.colors.primaryText,
+    padding: euiTheme.size.l,
+  })}
+/>
+```
+
+This allows you to skip calling `useEuiTheme()` and is a nice syntactical sugar shortcut. That being said, there **are** caveats to its usage:
+
+#### Typing
+
+By default, Emotion's args for this API are untyped. You must [define a theme](https://emotion.sh/docs/typescript#define-a-theme) in your own `emotion.d.ts` file for the above callback usage to be properly typed. You can simply extend EUI's theme like so:
+
+```ts
+import '@emotion/react';
+import type { UseEuiTheme } from '@elastic/eui';
+
+// @see https://emotion.sh/docs/typescript#define-a-theme
+declare module '@emotion/react' {
+  export interface Theme extends UseEuiTheme {}
+}
+```
+
+You will need to add this file to your `tsconfig.json`.
+
+For Kibana developers, you likely don't need to do anything. `emotion.d.ts` is defined globally. If for some reason Emotion is still untyped, make sure your `tsconfig.json` extends [`kibana/typings/emotion.d.ts`](https://github.com/elastic/kibana/blob/main/typings/emotion.d.ts) or the whole folder.
+
+#### Performance
+
+Please note that the above callback syntax **does** come with performance implications, so if a high number of renders is an issue with the component you're styling, we recommend either defining your style callback statically outside the render cycle, or using `useCallback` to memoize your style fn. For example:
+
+```tsx
+const YourStyles = ({ euiTheme }: UseEuiTheme) => ({
+  color: euiTheme.colors.primary,
+  padding: euiTheme.size.l,
+});
+
+export const YourComponent = () => (
+  (<div css={YourStyles} />
+);
+```
+
