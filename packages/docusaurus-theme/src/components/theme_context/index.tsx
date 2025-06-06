@@ -6,6 +6,7 @@ import {
   useState,
 } from 'react';
 import useIsBrowser from '@docusaurus/useIsBrowser';
+import createCache from '@emotion/cache';
 import {
   EUI_THEME,
   EuiProvider,
@@ -49,9 +50,14 @@ const defaultState: AppThemeContextData = {
   changeTheme: (themeValue: string) => {},
 };
 
-export const AppThemeContext = createContext<AppThemeContextData>(
-  defaultState,
-);
+/* creating a cache and passing it to EuiProvider ensures that injected
+Emotion style tags dev mode are in an expected order (global css before component css)
+This only applies for @emotion/react css styles, @emotion/css styles are separate  */
+const cssCache = createCache({
+  key: 'website-css',
+});
+
+export const AppThemeContext = createContext<AppThemeContextData>(defaultState);
 
 export const useAppTheme: () => AppThemeContextData = () => {
   return useContext(AppThemeContext);
@@ -113,6 +119,7 @@ export const AppThemeProvider: FunctionComponent<PropsWithChildren> = ({
         colorMode={colorMode}
         theme={theme.provider}
         highContrastMode={highContrastMode}
+        cache={cssCache}
       >
         {children}
       </EuiProvider>
