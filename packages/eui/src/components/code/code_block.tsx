@@ -108,7 +108,7 @@ export type EuiCodeBlockProps = EuiCodeSharedProps & {
   /**
    * Sets the maximum container height.
    * Accepts a pixel value (`300`) or a percentage (`'100%'`)
-   * Ensure the container has calcuable height when using a percentage
+   * Ensure the container has calculable height when using a percentage
    */
   overflowHeight?: number | string;
 
@@ -120,6 +120,11 @@ export type EuiCodeBlockProps = EuiCodeSharedProps & {
    * `whiteSpace` can only be `pre`.
    */
   isVirtualized?: boolean;
+
+  /**
+   * Additional props to be applied to the wrapper `div`.
+   */
+  wrapperProps?: React.HTMLAttributes<HTMLDivElement>;
 } & VirtualizedOptionProps;
 
 export const EuiCodeBlock: FunctionComponent<EuiCodeBlockProps> = ({
@@ -135,6 +140,7 @@ export const EuiCodeBlock: FunctionComponent<EuiCodeBlockProps> = ({
   overflowHeight,
   isVirtualized: _isVirtualized,
   lineNumbers = false,
+  wrapperProps,
   ...rest
 }) => {
   const euiTheme = useEuiTheme();
@@ -289,6 +295,7 @@ export const EuiCodeBlock: FunctionComponent<EuiCodeBlockProps> = ({
       css={cssStyles}
       className={classNames('euiCodeBlock', className)}
       style={overflowHeightStyles}
+      {...wrapperProps}
     >
       {isVirtualized ? (
         <EuiCodeBlockVirtualized
