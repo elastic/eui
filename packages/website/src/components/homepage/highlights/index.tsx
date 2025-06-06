@@ -57,7 +57,7 @@ const CONTENT_DATA = [
   },
   {
     title: 'Forms',
-    href: './docs/components/forms/form-controls/guidelines/',
+    href: './docs/components/forms/controls/guidelines/',
     svg: SvgForm,
     description: 'Inputs with validation, grouped into a flexible form layout',
   },
