@@ -4713,6 +4713,34 @@ exports[`EuiIcon props type infinity is rendered 1`] = `
 </svg>
 `;
 
+exports[`EuiIcon props type info is rendered 1`] = `
+<svg
+  aria-hidden="true"
+  class="euiIcon emotion-euiIcon-m-isLoaded"
+  data-icon-type="info"
+  data-is-loaded="true"
+  height="16"
+  role="img"
+  viewBox="0 0 16 16"
+  width="16"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    clip-rule="evenodd"
+    d="M8 14A6 6 0 1 0 8 2a6 6 0 0 0 0 12Zm0 1A7 7 0 1 0 8 1a7 7 0 0 0 0 14Z"
+    fill-rule="evenodd"
+  />
+  <path
+    d="M9 5a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z"
+  />
+  <path
+    clip-rule="evenodd"
+    d="M6.5 7h2v4H10v1H6v-1h1.5V8h-1V7Z"
+    fill-rule="evenodd"
+  />
+</svg>
+`;
+
 exports[`EuiIcon props type inputOutput is rendered 1`] = `
 <svg
   aria-hidden="true"

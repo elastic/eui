@@ -54,11 +54,7 @@ export const Playground: Story = {
     iconType: 'logoKibana',
     description: 'Example of a description.',
     children: (
-      <EuiCallOut
-        size="s"
-        iconType="iInCircle"
-        title="Example of custom children"
-      />
+      <EuiCallOut size="s" iconType="info" title="Example of custom children" />
     ),
     rightSideItems: [
       <EuiButton fill>Add something</EuiButton>,

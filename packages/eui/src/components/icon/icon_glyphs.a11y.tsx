@@ -119,7 +119,7 @@ describe('EuiIcons', () => {
       'heatmap',
       'help',
       'home',
-      'iInCircle',
+      'info',
       'image',
       'importAction',
       'indexClose',

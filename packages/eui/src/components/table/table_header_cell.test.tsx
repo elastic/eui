@@ -193,7 +193,7 @@ describe('EuiTableHeaderCell', () => {
         <EuiTableHeaderCell
           tooltipProps={{
             content: 'This is the content of the tooltip',
-            icon: 'iInCircle',
+            icon: 'info',
             iconProps: {
               'data-test-subj': 'icon',
             },
@@ -208,7 +208,7 @@ describe('EuiTableHeaderCell', () => {
 
       expect(getByTestSubject('icon')).toHaveAttribute(
         'data-euiicon-type',
-        'iInCircle'
+        'info'
       );
 
       fireEvent.focus(getByTestSubject('icon'));
@@ -224,7 +224,7 @@ describe('EuiTableHeaderCell', () => {
         <EuiTableHeaderCell
           tooltipProps={{
             content: 'This is the content of the tooltip',
-            icon: 'iInCircle',
+            icon: 'info',
             iconProps: {
               'data-test-subj': 'icon',
             },
@@ -240,7 +240,7 @@ describe('EuiTableHeaderCell', () => {
 
       expect(getByTestSubject('icon')).toHaveAttribute(
         'data-euiicon-type',
-        'iInCircle'
+        'info'
       );
 
       fireEvent.focus(getByTestSubject('tableHeaderSortButton'));

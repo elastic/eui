@@ -47,7 +47,7 @@ const Card = () => {
           description="Example of a short card description."
           footer={
             <EuiButtonEmpty
-              iconType="iInCircle"
+              iconType="info"
               size="xs"
               onClick={detailsClicked}
               aria-label="See more details about Sketch"
@@ -68,7 +68,7 @@ const Card = () => {
           description="Example of a longer card description. See how the footers stay lined up."
           footer={
             <EuiButtonEmpty
-              iconType="iInCircle"
+              iconType="info"
               size="xs"
               onClick={detailsClicked}
               aria-label="See more details about Google"
@@ -89,7 +89,7 @@ const Card = () => {
           description="Example of a short card description."
           footer={
             <EuiButtonEmpty
-              iconType="iInCircle"
+              iconType="info"
               size="xs"
               onClick={detailsClicked}
               aria-label="See more details about Not Adobe"

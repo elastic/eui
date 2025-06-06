@@ -116,14 +116,14 @@ export const Playground: Story = {
               {
                 title: 'Discover',
                 onClick: () => action('Discover')('clicked!'),
-                icon: 'iInCircle',
+                icon: 'info',
               },
-              { title: 'Dashboards', href: '#', icon: 'iInCircle' },
-              { title: 'Visualize library', href: '#', icon: 'iInCircle' },
+              { title: 'Dashboards', href: '#', icon: 'info' },
+              { title: 'Visualize library', href: '#', icon: 'info' },
             ]),
             {
               title: 'Machine learning',
-              icon: 'iInCircle',
+              icon: 'info',
               items: [
                 { title: 'Anomaly detection', href: '#' },
                 { title: 'Data frame analytics', href: '#' },
@@ -147,13 +147,13 @@ export const Playground: Story = {
               {
                 title: 'Standalone item with long name',
                 href: '#',
-                icon: 'iInCircle',
+                icon: 'info',
               },
             ]),
             ...renderGroup('Content', [
-              { title: 'Indices', href: '#', icon: 'iInCircle' },
-              { title: 'Transforms', href: '#', icon: 'iInCircle' },
-              { title: 'Indexing API', href: '#', icon: 'iInCircle' },
+              { title: 'Indices', href: '#', icon: 'info' },
+              { title: 'Transforms', href: '#', icon: 'info' },
+              { title: 'Indexing API', href: '#', icon: 'info' },
             ]),
             ...renderGroup('Security', [
               { title: 'API keys', href: '#', icon: 'gear' },

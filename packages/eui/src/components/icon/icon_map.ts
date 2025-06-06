@@ -192,7 +192,8 @@ export const typeToPathMap = {
   heatmap: 'heatmap',
   help: 'help',
   home: 'home',
-  iInCircle: 'iInCircle',
+  iInCircle: 'info', // NOTE: To be deprecated in favor of `info`
+  info: 'info',
   image: 'image',
   importAction: 'import',
   index: 'index',
