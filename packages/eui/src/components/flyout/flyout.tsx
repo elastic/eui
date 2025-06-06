@@ -45,6 +45,8 @@ import { EuiScreenReaderOnly } from '../accessibility';
 
 import { EuiFlyoutCloseButton } from './_flyout_close_button';
 import { euiFlyoutStyles } from './flyout.styles';
+import { EuiFlyoutContext } from './flyout_context';
+import { EuiFlyoutChild, EuiFlyoutChildProps } from './flyout_child';
 
 export const TYPES = ['push', 'overlay'] as const;
 type _EuiFlyoutType = (typeof TYPES)[number];
@@ -208,6 +210,46 @@ export const EuiFlyout = forwardRef(
     const Element = as || defaultElement;
     const maskRef = useRef<HTMLDivElement>(null);
 
+    // Check for child flyout (needed for prop validation)
+    const childFlyoutElement = React.Children.toArray(children).find(
+      (child) =>
+        React.isValidElement(child) &&
+        (child.type === EuiFlyoutChild ||
+          (child.type as any).displayName === 'EuiFlyoutChild')
+    ) as React.ReactElement<EuiFlyoutChildProps> | undefined;
+
+    const hasChildFlyout = !!childFlyoutElement;
+
+    // Validate props
+    if (hasChildFlyout) {
+      if (side !== 'right') {
+        throw new Error(
+          'EuiFlyout: When an EuiFlyoutChild is present, the `side` prop of EuiFlyout must be "right".'
+        );
+      }
+      if (!isEuiFlyoutSizeNamed(size) || !['s', 'm'].includes(size)) {
+        throw new Error(
+          `EuiFlyout: When an EuiFlyoutChild is present, the \`size\` prop of EuiFlyout must be "s" or "m". Received "${size}".`
+        );
+      }
+    }
+
+    // effectiveSize is the validated parent size
+    const effectiveSize = size;
+
+    const effectiveCloseButtonPosition = hasChildFlyout
+      ? 'inside'
+      : closeButtonPosition;
+
+    useEffect(() => {
+      if (hasChildFlyout && closeButtonPosition !== 'inside') {
+        // eslint-disable-next-line no-console
+        console.warn(
+          'EuiFlyout with a child panel must use "inside" closeButtonPosition. This has been automatically applied.'
+        );
+      }
+    }, [hasChildFlyout, closeButtonPosition]);
+
     const windowIsLargeEnoughToPush =
       useIsWithinMinBreakpoint(pushMinBreakpoint);
     const isPushed = type === 'push' && windowIsLargeEnoughToPush;
@@ -266,7 +308,9 @@ export const EuiFlyout = forwardRef(
      */
     const inlineStyles = useMemo(() => {
       const widthStyle =
-        !isEuiFlyoutSizeNamed(size) && logicalStyle('width', size);
+        !hasChildFlyout && !isEuiFlyoutSizeNamed(size)
+          ? logicalStyle('width', size)
+          : {};
       const maxWidthStyle =
         typeof maxWidth !== 'boolean' && logicalStyle('max-width', maxWidth);
 
@@ -275,7 +319,7 @@ export const EuiFlyout = forwardRef(
         ...widthStyle,
         ...maxWidthStyle,
       };
-    }, [style, maxWidth, size]);
+    }, [style, maxWidth, size, hasChildFlyout]);
 
     const styles = useEuiMemoizedStyles(euiFlyoutStyles);
     const cssStyles = [
@@ -289,7 +333,11 @@ export const EuiFlyout = forwardRef(
       styles[side],
     ];
 
-    const classes = classnames('euiFlyout', className);
+    const flyoutClasses = classnames(
+      'euiFlyout',
+      { 'euiFlyout--hasChild': hasChildFlyout },
+      className
+    );
 
     /*
      * If not disabled, automatically add fixed EuiHeaders as shards
@@ -407,7 +455,7 @@ export const EuiFlyout = forwardRef(
           {...focusTrapProps}
         >
           <Element
-            className={classes}
+            className={flyoutClasses}
             css={cssStyles}
             style={inlineStyles}
             ref={setRef}
@@ -423,11 +471,13 @@ export const EuiFlyout = forwardRef(
               <EuiFlyoutCloseButton
                 {...closeButtonProps}
                 onClose={onClose}
-                closeButtonPosition={closeButtonPosition}
+                closeButtonPosition={effectiveCloseButtonPosition}
                 side={side}
               />
             )}
-            {children}
+            <EuiFlyoutContext.Provider value={{ size: effectiveSize }}>
+              {children}
+            </EuiFlyoutContext.Provider>
           </Element>
         </EuiFocusTrap>
       </EuiFlyoutWrapper>

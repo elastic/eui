@@ -94,6 +94,10 @@ export const euiFlyoutStyles = (euiThemeContext: UseEuiTheme) => {
         animation: ${euiFlyoutSlideInRight} ${euiTheme.animation.normal}
           ${euiTheme.animation.resistance};
       }
+
+      &.euiFlyout--hasChild {
+        clip-path: none;
+      }
     `,
     // Left-side flyouts should only be used for navigation
     left: css`
