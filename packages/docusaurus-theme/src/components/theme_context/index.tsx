@@ -50,9 +50,9 @@ const defaultState: AppThemeContextData = {
   changeTheme: (themeValue: string) => {},
 };
 
-/* creating a cache and passing it to EuiProvider ensures that
-injected Emotion style tags dev mode are in an expected order
-(global css before component css) */
+/* creating a cache and passing it to EuiProvider ensures that injected
+Emotion style tags dev mode are in an expected order (global css before component css)
+This only applies for @emotion/react css styles, @emotion/css styles are separate  */
 const cssCache = createCache({
   key: 'website-css',
 });
