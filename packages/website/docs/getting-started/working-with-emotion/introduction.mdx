@@ -69,6 +69,98 @@ which can be configured to run plugins like vendor prefixing. By default,
 EUI applies CSS property prefixes targeting the latest evergreen browsers,
 following our [supported browsers matrix](https://www.elastic.co/support/matrix#matrix_browsers).
 
+<Demo isSourceOpen>
+  ```tsx
+  // Note we're importing from @emotion/react and not @emotion/css!
+  import { css, useTheme } from '@emotion/react';
+
+  const buttonStyles = css`
+    background: white;
+    color: black;
+
+    /* & selects the current class */
+    &:hover {
+      background: black;
+      color: white;
+    }
+  `;
+
+  // You can pass styles to elements via the custom css prop
+  export default <button css={buttonStyles}>Hover me</button>;
+```
+</Demo>
+
+### Accessing theme tokens
+
+EUI comes with a large set of theme tokens (predefined CSS values) and styling
+utilities. Whenever possible, you should rely on these to create consistent
+and maintainable layouts. This way, all theme changes are automatically
+reflected in your app upon updating EUI.
+
+As you may know, we provide the `useEuiTheme()` hook that lets you access
+all theme tokens from React components. To make things even easier,
+the same theme data is also passed to Emotion's theme context, so you can
+access it directly in the `css` prop:
+
+<Demo isSourceOpen>
+  ```tsx
+  import { css } from '@emotion/react';
+
+  // Please note that this is now a function.
+  // It receives the theme data in the first argument.
+  const boxStyles = ({ euiTheme }) => css`
+    border: 2px dashed ${euiTheme.colors.borderBasePrimary};
+    padding: ${euiTheme.size.xs};
+  `;
+
+  export default (
+    <EuiText css={boxStyles}>
+      Did you know that <kbd>⌘</kbd> + <kbd>Shift</kbd> + <kbd>C</kbd> lets you
+      quickly inspect selected DOM element? 🤔
+    </EuiText>
+  );
+  ```
+</Demo>
+
+### Styling multiple related elements
+
+Components are often built from multiple nested DOM elements that all need
+styling. Traditionally, we'd assign each of the elements a meaningful
+class name following a methodology like
+<abbr title="Block, Element, Modifier">BEM</abbr>.
+Since Emotion styles are defined in the JavaScript space, they can be assigned
+as values to variables and properties and exported if necessary.
+
+We recommend to group related styles as properties of a single object like
+in the example below. This approach naturally encapsulates component's styles,
+is easy to memoize between renders, and allows reusing the same theme context
+for all styles within.
+
+```tsx
+import { css } from '@emotion/react';
+import { useEuiTheme } from '@elastic/eui';
+
+const getFormStyles = ({ euiTheme }) => ({
+  wrapper: css`margin-block: ${euiTheme.size.l};`,
+  field: css`width: 100%`,
+  label: css`text-transform: uppercase;`,
+});
+
+export default () => {
+  const theme = useEuiTheme();
+  const styles = getFormStyles(theme);
+
+  return (
+    <div css={styles.wrapper}>
+      <label for="myInput" css={styles.label}>Your name</label>
+      <input type="text" css={styles.field} id="myInput" />
+    </div>
+  );
+};
+```
+
+---
+
 ## Frequently Asked Questions
 
 ### What's the difference between the `css` imported from `@emotion/react` and `@emotion/css`?
