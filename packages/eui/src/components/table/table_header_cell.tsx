@@ -83,7 +83,7 @@ const CellContents = ({
     canSort ? (
       <EuiIcon
         className="euiTableSortIcon"
-        type={tooltipProps.icon || 'questionInCircle'}
+        type={tooltipProps.icon || 'question'}
         size="m"
         color="subdued"
         {...tooltipProps.iconProps}
@@ -91,7 +91,7 @@ const CellContents = ({
     ) : (
       <EuiIconTip
         content={tooltipProps.content}
-        type={tooltipProps.icon || 'questionInCircle'}
+        type={tooltipProps.icon || 'question'}
         size="m"
         color="subdued"
         position="top"

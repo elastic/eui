@@ -60,7 +60,7 @@ export const Playground: Story = {
         minWidth: 300,
         maxWidth: 600,
         decoration: 'beacon',
-        children: <EuiButtonIcon iconType="questionInCircle" />,
+        children: <EuiButtonIcon iconType="question" />,
         onFinish: () => {},
         anchorPosition: 'downCenter',
       },

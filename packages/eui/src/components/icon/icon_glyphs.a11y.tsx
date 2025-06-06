@@ -201,7 +201,7 @@ describe('EuiIcons', () => {
       'plusInCircleFilled',
       'popout',
       'push',
-      'questionInCircle',
+      'question',
       'quote',
       'refresh',
       'reporter',

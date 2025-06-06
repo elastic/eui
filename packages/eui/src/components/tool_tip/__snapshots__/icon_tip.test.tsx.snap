@@ -5,7 +5,7 @@ exports[`EuiIconTip is rendered 1`] = `
   class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
 >
   <span
-    data-euiicon-type="questionInCircle"
+    data-euiicon-type="question"
     tabindex="0"
   >
     aria-label
@@ -19,7 +19,7 @@ exports[`EuiIconTip props color is rendered as the icon color 1`] = `
 >
   <span
     color="warning"
-    data-euiicon-type="questionInCircle"
+    data-euiicon-type="question"
     tabindex="0"
   >
     Info
@@ -32,7 +32,7 @@ exports[`EuiIconTip props size is rendered as the icon size 1`] = `
   class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
 >
   <span
-    data-euiicon-type="questionInCircle"
+    data-euiicon-type="question"
     tabindex="0"
   >
     Info
