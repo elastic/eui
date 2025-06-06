@@ -8,7 +8,7 @@
     "build:clean": "rimraf lib/",
     "build": "yarn build:clean && yarn build:compile && yarn build:compile:cjs && yarn build:types && yarn copy-files",
     "build:compile": "tsc --project ./tsconfig.json",
-    "build:compile:cjs": "NODE_ENV=production NO_COREJS_POLYFILL=true babel src --out-dir=lib/cjs --extensions .js,.ts,.tsx --source-maps=true",
+    "build:compile:cjs": "NODE_ENV=production NO_COREJS_POLYFILL=true babel src --out-dir=lib/cjs --extensions .js,.ts,.tsx",
     "build:types": "NODE_ENV=production tsc --project tsconfig.types.json",
     "build-pack": "yarn build && npm pack",
     "copy-files": "node ./scripts/copy-json-files.js",
