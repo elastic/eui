@@ -3,7 +3,6 @@
     "compilerOptions": {
         "outDir": "lib/cjs",
         "declaration": true,
-        "declarationMap": true,
         "isolatedModules": false,
         "noEmit": false,
         "allowJs": false,
