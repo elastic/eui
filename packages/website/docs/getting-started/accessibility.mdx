@@ -5,8 +5,10 @@ sidebar_position: 4
 
 # Accessibility guidelines
 
+```mdx-code-block
 import Link from '@docusaurus/Link';
-import { EuiText } from '@elastic/eui';
+import { EuiFlexGroup, EuiFlexItem, EuiText } from '@elastic/eui';
+```
 
 :::info Check component-level guidance
 
@@ -43,33 +45,39 @@ You can aid navigation and make pages more accessible for screen reader users by
 
 ### Heading examples
 
-<Guideline type="do" panelPadding="none" text="Descend through headings as you work your way through the document.">
-  ```tsx
-  <EuiText>
-    <h1>Discover your data</h1>
-    <p>Some content</p>
-    <h2>Drill into site metrics</h2>
-    <h3>An important site metric</h3>
-    <h3>Another important site metric</h3>
-  </EuiText>
-  ```
-</Guideline>
-
-<Guideline type="dont" panelPadding="none" text="This heading hierarchy is confusing. Also EuiText is not a good solution when you need to change heading presentation.">
-  ```tsx
-  <EuiText>
-    <EuiScreenReaderOnly>
+<EuiFlexGroup gutterSize="m">
+  <Guideline type="do" panelPadding="none" text="Descend through headings as you work your way through the document.">
+    ```tsx
+    <EuiText>
       <h1>Discover your data</h1>
-    </EuiScreenReaderOnly>
-    <p>Some content</p>
-    <h2>Discover your data</h2>
-    <!-- Missing h3 header -->
-    <h4 className="myLargeTitle">
-      An important site metric
-    </h4>
-  </EuiText>
-  ```
-</Guideline>
+      <p>Some content</p>
+      <h2>Drill into site metrics</h2>
+      <h3>An important site metric</h3>
+      <h3>Another important site metric</h3>
+    </EuiText>
+    ```
+  </Guideline>
+  <Guideline type="dont" panelPadding="none" text="This heading hierarchy is confusing. Also EuiText is not a good solution when you need to change heading presentation.">
+    ```tsx
+    <EuiText>
+      <EuiScreenReaderOnly>
+        <h1>Discover your data</h1>
+      </EuiScreenReaderOnly>
+      <p>Some content</p>
+      <h2>Discover your data</h2>
+      <!-- Missing h3 header -->
+      <h4 className="myLargeTitle">
+        An important site metric
+      </h4>
+    </EuiText>
+    ```
+  </Guideline>
+</EuiFlexGroup>
+
+
+:::tip
+[**EuiTitle**](../components/display/title.mdx) gives you a way to separate your presentation from your semantic markup.
+:::
 
 <Guideline type="do" panelPadding="none" text="This is a good heading hierarchy. Though visible headings are certainly better, sometimes that is difficult to accommodate so hidden headings can give additional context.">
   ```tsx
@@ -80,40 +88,36 @@ You can aid navigation and make pages more accessible for screen reader users by
   ```
 </Guideline>
 
-:::tip
-[**EuiTitle**](../components/display/title.mdx) gives you a way to separate your presentation from your semantic markup.
-:::
-
 **Landmarks** are another way for screen readers to navigate pages. A benefit of landmarks is that they offer more context on the type of content to expect than a heading. This is useful for tech that offers reader modes (e.g., Firefox, Safari, and apps like Pocket) and new form factors (e.g., smartwatches). Many landmarks are mapped to HTML elements, such as `<main>`, `<aside>`, `<article>`; others are exposed through the `role` attribute.
 
 You can implement named landmarks with `aria-label` or `aria-labelledby`. However, having a heading inside of the landmark (even if it is visually hidden) and referenced by `aria-labelledby` is preferred.
 
 ### Landmarks example
 
-<Guideline type="do" panelPadding="none" text="Use HTML5 elements which convey semantic meaning about their purpose. Notice that all of the content is inside of semantic elements.">
-  ```html
-  <body>
-    <header className="appHeader">
-      <!-- content -->
-    </header>
-    <main><!-- content --></main>
-    <footer className="appFooter">
-      <!-- content -->
-    </footer>
-  </body>
-  ```
-</Guideline>
-
-
-<Guideline type="dont" panelPadding="none" text="Classes provide no semantic meaning and not all elements provide semantic meaning either.">
-  ```html
-  <body>
-    <div className="appHeader"></div>
-    <discover-app></discover-app>
-    <ul className="appFooter"></ul>
-  </body>
-  ```
-</Guideline>
+<EuiFlexGroup gutterSize="m">
+  <Guideline type="do" panelPadding="none" text="Use HTML5 elements which convey semantic meaning about their purpose. Notice that all of the content is inside of semantic elements.">
+    ```tsx
+    <body>
+      <header className="appHeader">
+        <!-- content -->
+      </header>
+      <main><!-- content --></main>
+      <footer className="appFooter">
+        <!-- content -->
+      </footer>
+    </body>
+    ```
+  </Guideline>
+  <Guideline type="dont" panelPadding="none" text="Classes provide no semantic meaning and not all elements provide semantic meaning either.">
+    ```tsx
+    <body>
+      <div className="appHeader"></div>
+      <discover-app></discover-app>
+      <ul className="appFooter"></ul>
+    </body>
+    ```
+  </Guideline>
+</EuiFlexGroup>
 
 ### Headings and named landmarks example
 
