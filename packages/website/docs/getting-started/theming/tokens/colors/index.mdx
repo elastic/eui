@@ -196,6 +196,11 @@ import { SpecialColorsTable } from './special_colors_table';
 
 ## Data visualization colors
 
+:::note Guidance
+
+Data visualization colors semantically tied to data visualizations and are not meant for use in other contexts. Do not use these colors in other contexts.
+:::
+
 import { DataVisColorsTable, DataVisColorsBehindTextColorsTable, DataVisBackgroundColor } from './data_vis_colors_table';
 import { DataVisColorsPreview } from './data_vis_colors_preview'
 
@@ -206,6 +211,8 @@ import { DataVisColorsPreview } from './data_vis_colors_preview'
 
     The following colors are color-blind safe and should be used in categorically seried visualizations and graphics.
     They are meant to be contrasted against the value of <DataVisBackgroundColor /> for the current theme.
+
+    See the [Color Contrast](#contrast) section for a note about color contrast.
   </Example.Description>
   <Example.Preview>
     <DataVisColorsPreview />
@@ -237,6 +244,8 @@ import { SeverityColorsPreview } from './severity_colors_preview'
     typically be associated with positive or negative values.
 
     More guidance is available in the [**Health and Color Pattern**](../../../../patterns/severity.mdx).
+
+    See the [Color Contrast](#contrast) section for a note about color contrast.
   </Example.Description>
   <Example.Preview>
     <SeverityColorsPreview />
@@ -253,3 +262,27 @@ import { SeverityColorsPreview } from './severity_colors_preview'
 <EuiSpacer />
 
 <SeverityColorsTable />
+
+## Contrast ratios and color modes {#contrast}
+
+Our Data visualization colors and Health and Severity colors prioritize visual clarity and aesthetic appeal over strict contrast compliance in light mode. **This means some colors may not meet WCAG contrast requirements against light backgrounds**, as lighter and more saturated tones help differentiate data and create a more visually engaging experience.
+
+However, in dark mode, all colors meet the minimum 3:1 contrast ratio, ensuring accessibility compliance. 
+
+
+import { EuiTable, EuiTableHeader, EuiTableHeaderCell, EuiTableRow, EuiTableRowCell } from '@elastic/eui';
+
+<EuiTable>
+  <EuiTableHeader>
+    <EuiTableHeaderCell>Color Mode</EuiTableHeaderCell>
+    <EuiTableHeaderCell>Meets 3:1 contrast ratios?</EuiTableHeaderCell>
+  </EuiTableHeader>
+  <EuiTableRow>
+    <EuiTableRowCell>Dark</EuiTableRowCell>
+    <EuiTableRowCell>Yes</EuiTableRowCell>
+  </EuiTableRow>
+  <EuiTableRow>
+    <EuiTableRowCell>Light</EuiTableRowCell>
+    <EuiTableRowCell>No</EuiTableRowCell>
+  </EuiTableRow>
+</EuiTable>
