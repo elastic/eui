@@ -11,7 +11,6 @@
     ],
     "moduleResolution": "Node",
     "declaration": true,
-    "sourceMap": true,
     "noEmitHelpers": true,
     "incremental": true,
     "esModuleInterop": true,
