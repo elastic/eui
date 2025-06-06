@@ -2,6 +2,12 @@
 sidebar_position: 5
 ---
 
+import {
+  EuiFlexGroup,
+  EuiButton,
+  htmlIdGenerator,
+} from '@elastic/eui';
+
 # Language
 
 Guidelines for using consistent spelling and terminology in the UI.
@@ -52,15 +58,24 @@ In American English, nouns that end with 'og' usually end with 'ogue' in British
 | catalog | catalogue |
 | epilog | epilogue |
 
-## Case
+## Case and capitalization
 
 Use **sentence case** by default. This goes for navigation menus, titles and headers, buttons, and so on.
 
-- **Do:** Developer tools, **not** Developer Tools.
+<EuiFlexGroup>
+<Guideline type="do" text="Sentence case fits most situations.">
+  <EuiButton fill>Check for new data</EuiButton>
+</Guideline>
 
-The only exceptions are proper nouns and [branded terms](https://brand.elastic.co/302f66895/p/194a3b-writing-style-guide/t/159934) like solution and application names.
+<Guideline type="dont" text="Capitalize every word in buttons or titles.">
+  <EuiButton fill>Check For New Data</EuiButton>
+</Guideline>
+</EuiFlexGroup>
 
-- **Do:** Elastic Observability **not** elastic observability.
+Even with sentence case, make sure to capitalize the following terms and expressions:
+
+- [Branded terms](https://brand.elastic.co/302f66895/p/194a3b-writing-style-guide/t/159934) like solution and application names. For example, always write Elastic Observability, **not** elastic observability.
+- Acronyms, such as URL and API.
 
 Note that some names don't need to be capitalized when they're used as common names. For example, **Elastic Cloud Serverless** and **our serverless architecture** are both correct.
 
@@ -97,6 +112,19 @@ Don't use periods with:
 * titles
 * placeholders
 * list items that are incomplete sentences
+
+## Contractions
+
+Use contractions if they make your text flow more naturally, such as "didn't" instead of "did not" and "can't" instead of "cannot."
+
+<EuiFlexGroup gutterSize="m">
+  <Guideline type="do" text="Use contractions if they make the text easier to read.">
+    Didn't find what you were looking for?
+  </Guideline>
+  <Guideline type="dont" text="Without the contraction, this text sounds stilted.">
+    Did not find what you were looking for?
+  </Guideline>
+</EuiFlexGroup>
 
 ## Vocabulary
 
