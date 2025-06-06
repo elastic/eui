@@ -159,6 +159,10 @@ export const background_colors: _EuiThemeBackgroundColors = {
     ([primary]) => tint(primary, 0.96),
     ['colors.primary']
   ),
+  backgroundBaseInteractiveSelectHover: computed(
+    ([primary]) => tint(primary, 0.8),
+    ['colors.primary']
+  ),
   backgroundBaseInteractiveOverlay: computed(
     ([ink]) => transparentize(ink, 0.5),
     ['colors.ink']
@@ -352,6 +356,10 @@ export const border_colors: _EuiThemeBorderColors = {
     ([borderBaseDanger]) => borderBaseDanger,
     ['colors.borderBaseDanger']
   ),
+  borderStrongText: computed(
+    ([subduedText]) => subduedText,
+    ['colors.subduedText']
+  )
 };
 
 export const light_colors: _EuiThemeColorsMode = {
@@ -436,6 +444,10 @@ export const dark_background_colors: _EuiThemeBackgroundColors = {
   ),
   backgroundBaseInteractiveSelect: computed(
     ([primary]) => shade(primary, 0.7),
+    ['colors.primary']
+  ),
+  backgroundBaseInteractiveSelectHover: computed(
+    ([primary]) => shade(primary, 0.6),
     ['colors.primary']
   ),
   backgroundBaseInteractiveOverlay: computed(
@@ -592,6 +604,10 @@ export const dark_border_colors: _EuiThemeBorderColors = {
     ([borderBaseDanger]) => borderBaseDanger,
     ['colors.borderBaseDanger']
   ),
+  borderStrongText: computed(
+    ([subduedText]) => subduedText,
+    ['colors.subduedText']
+  )
 };
 
 export const dark_colors_ams: _EuiThemeColorsMode = {
