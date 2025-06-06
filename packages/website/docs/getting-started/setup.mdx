@@ -22,6 +22,25 @@ yarn add @elastic/eui @elastic/eui-theme-borealis @elastic/datemath @emotion/rea
 
 You can read more about other ways to <Link to="https://github.com/elastic/eui/blob/main/wiki/consuming-eui/">consume EUI</Link> in our wiki.
 
+## Supported environments
+
+EUI is designed to work in the following environments:
+
+| Environment                | Supported?  | Details |
+|----------------------------|:-----------:|---------|
+| **React 16**               |     ✅      | Fully supported (plans to [deprecate support for React 16](https://github.com/elastic/eui/issues/8578)) |
+| **React 17**               |     ✅      | Fully supported |
+| **React 18**               |     ✅      | Fully supported (recommended) |
+| **React 19**               |     ❌      | Not supported (plans to [introduce support for React 19](https://github.com/elastic/eui/issues/8720)) |
+| **Webpack**                |     ✅      | Fully supported |
+| **Vite**                   |     ⚠️      | Supported with caveats ([details](https://github.com/elastic/eui/issues/5463)) |
+| **Rollup**                 |     ⚠️      | Supported with caveats ([details](https://github.com/elastic/eui/issues/5463)) |
+| **esbuild**                |     ⚠️      | Supported with caveats ([details](https://github.com/elastic/eui/issues/5463)) |
+| **Strict Mode**            |     ❌      | Not supported ([details](https://github.com/elastic/eui/issues/7774)) |
+| **Server-side rendering**  |     ❌      | Not supported ([details](https://github.com/elastic/eui/issues/5419)) |
+
+If you have questions about your environment or run into issues, please open a [GitHub issue](https://github.com/elastic/eui/issues/new/choose) or start a [discussion](https://github.com/elastic/eui/discussions/new/choose).
+
 ## Setting up your application
 
 EUI uses CSS-in-JS (specifically <Link to="https://emotion.sh/">Emotion</Link>) for its styles and theming. As such, we require an `<EuiProvider>` wrapper around your application in order for various theme-related UI & UX (such as dark/light mode switching) to work as expected.
