@@ -7,7 +7,7 @@
  */
 
 import React from 'react';
-import { fireEvent } from '@testing-library/react';
+import { fireEvent, queryByAttribute } from '@testing-library/react';
 import {
   waitForEuiToolTipVisible,
   waitForEuiToolTipHidden,
@@ -82,6 +82,37 @@ describe('EuiCopy', () => {
       await waitForEuiToolTipVisible();
       // The afterMessage should be shown after the copy action
       expect(getByText(afterMessage)).toBeInTheDocument();
+      fireEvent.mouseOut(getByRole('button'));
+      await waitForEuiToolTipHidden();
+    });
+
+    it('tooltipProps', async () => {
+      const tooltipProps = {
+        'data-test-subj': 'customTooltip',
+        className: 'myTooltipClass',
+      };
+      const beforeMessage = 'copy this';
+      const { getByRole } = render(
+        <EuiCopy
+          textToCopy="some text"
+          beforeMessage={beforeMessage}
+          tooltipProps={tooltipProps}
+        >
+          {() => (
+            <button onMouseOver={() => {}} onFocus={() => {}}>
+              Click to copy input text
+            </button>
+          )}
+        </EuiCopy>
+      );
+      // Simulate mouse over to show the tooltip
+      fireEvent.mouseOver(getByRole('button'));
+      await waitForEuiToolTipVisible();
+      // The tooltip portalled, so search the global document
+      const queryByTestSubj = queryByAttribute.bind(null, 'data-test-subj');
+      const tooltip = queryByTestSubj(document.body, 'customTooltip');
+      expect(tooltip instanceof HTMLElement).toBe(true);
+      expect(tooltip?.className).toContain('myTooltipClass');
       fireEvent.mouseOut(getByRole('button'));
       await waitForEuiToolTipHidden();
     });
