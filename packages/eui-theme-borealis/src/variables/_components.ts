@@ -288,16 +288,16 @@ const component_colors: _EuiThemeComponentColors = {
     ['colors.backgroundBaseInteractiveSelect']
   ),
   tableRowBackgroundSelectedHover: computed(
-    ([backgroundBaseInteractiveSelect]) => backgroundBaseInteractiveSelect,
-    ['colors.backgroundBaseInteractiveSelect']
+    ([backgroundBaseInteractiveSelectHover]) => backgroundBaseInteractiveSelectHover,
+    ['colors.backgroundBaseInteractiveSelectHover']
   ),
   tableRowInteractiveBackgroundHover: computed(
     ([backgroundBaseInteractiveSelect]) => backgroundBaseInteractiveSelect,
     ['colors.backgroundBaseInteractiveSelect']
   ),
   tableRowInteractiveBackgroundFocus: computed(
-    ([backgroundBaseInteractiveSelect]) => backgroundBaseInteractiveSelect,
-    ['colors.backgroundBaseInteractiveSelect']
+    ([backgroundBaseInteractiveHover]) => backgroundBaseInteractiveHover,
+    ['colors.backgroundBaseInteractiveHover']
   ),
   tableCellSortableIconColor: computed(
     ([backgroundFilledText]) => backgroundFilledText,
