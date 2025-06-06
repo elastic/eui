@@ -405,6 +405,10 @@ export type CommonGridProps = CommonProps &
      * Settings provided may be overwritten or merged with user defined preferences if `toolbarVisibility.showDisplaySelector.allowRowHeight = true` (which is the default).
      */
     rowHeightsOptions?: EuiDataGridRowHeightsOptions;
+    /**
+     * A callback for when the fullscreen state changes. Callback receives `isFullScreen: boolean`.
+     */
+    onFullScreenChange?: (isFullScreen: boolean) => void;
   };
 
 // Force either aria-label or aria-labelledby to be defined
