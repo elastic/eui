@@ -217,7 +217,7 @@ export const iconTypes: Array<IconType> = [
   'plusInSquare',
   'popout',
   'push',
-  'questionInCircle',
+  'question',
   'quote',
   'readOnly',
   'refresh',

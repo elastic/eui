@@ -40,7 +40,7 @@ export type EuiTableColumnNameTooltipProps = {
   content: ReactNode;
   /**
    * The icon type to display
-   * @default 'questionInCircle'
+   * @default 'question'
    */
   icon?: IconType;
   /** Additional props for EuiIcon */

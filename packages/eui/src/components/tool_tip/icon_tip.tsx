@@ -51,7 +51,7 @@ export type EuiIconTipProps = Omit<
 };
 
 export const EuiIconTip: FunctionComponent<EuiIconTipProps> = ({
-  type = 'questionInCircle',
+  type = 'question',
   'aria-label': ariaLabel,
   color,
   size,

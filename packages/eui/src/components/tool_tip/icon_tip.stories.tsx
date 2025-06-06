@@ -40,7 +40,7 @@ const meta: Meta<EuiIconTipProps> = {
     ),
   ],
   args: {
-    type: 'questionInCircle',
+    type: 'question',
     position: 'top',
     delay: 'regular',
     display: 'inlineBlock',

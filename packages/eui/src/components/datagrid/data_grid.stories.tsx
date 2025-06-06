@@ -73,7 +73,7 @@ const CustomHeaderCell = ({ title }: { title: string }) => (
     <span>{title}</span>
     <EuiToolTip content="tooltip content">
       <EuiButtonIcon
-        iconType="questionInCircle"
+        iconType="question"
         aria-label="Additional information"
         color="primary"
       />

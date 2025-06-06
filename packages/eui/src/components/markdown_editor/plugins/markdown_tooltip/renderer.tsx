@@ -26,7 +26,7 @@ export const tooltipMarkdownRenderer: FunctionComponent<
         <span>
           <strong>{children}</strong>
           <EuiIcon
-            type="questionInCircle"
+            type="question"
             // This is to offset the tooltip icon, which isn't perfectly centered
             css={{ transform: 'translateY(-1px)' }}
           />

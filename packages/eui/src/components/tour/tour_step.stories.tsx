@@ -64,6 +64,6 @@ export const Playground: Story = {
     content: 'Tour step content',
     isStepOpen: true,
     stepsTotal: 3,
-    children: <EuiButtonIcon iconType="questionInCircle" />,
+    children: <EuiButtonIcon iconType="question" />,
   },
 };

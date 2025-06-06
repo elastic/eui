@@ -360,7 +360,8 @@ export const typeToPathMap = {
   plusInSquare: 'plus_in_square',
   popout: 'popout',
   push: 'push',
-  questionInCircle: 'question_in_circle',
+  questionInCircle: 'question', // NOTE: To be deprecated in favor of `question`
+  question: 'question',
   quote: 'quote',
   readOnly: 'readOnly',
   recentlyViewedApp: 'app_recently_viewed',
