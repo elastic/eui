@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import { css } from '@emotion/react';
+import { css, ThemeProvider } from '@emotion/react';
 import { LivePreview } from 'react-live';
 import {
   ComponentType,
@@ -64,11 +64,17 @@ export const DemoPreview = ({
               <ErrorBoundaryErrorMessageFallback {...params} />
             )}
           >
-            <div css={styles.previewWrapper} style={style}>
-              <WrapperComponent>
-                <LivePreview />
-              </WrapperComponent>
-            </div>
+            {/*
+            Inject Emotion's ThemeProvider (again) so that demos
+            can access theme context
+            */}
+            <ThemeProvider theme={euiTheme}>
+              <div css={styles.previewWrapper} style={style}>
+                <WrapperComponent>
+                  <LivePreview />
+                </WrapperComponent>
+              </div>
+            </ThemeProvider>
           </ErrorBoundary>
         </>
       )}
