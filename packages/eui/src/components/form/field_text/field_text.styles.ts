@@ -8,19 +8,35 @@
 
 import { css } from '@emotion/react';
 
-import { UseEuiTheme } from '../../../services';
+import { isEuiThemeRefreshVariant, UseEuiTheme } from '../../../services';
 import { euiFormControlStyles } from '../form.styles';
 
 export const euiFieldTextStyles = (euiThemeContext: UseEuiTheme) => {
+  const isRefreshVariant = isEuiThemeRefreshVariant(
+    euiThemeContext,
+    'formVariant'
+  );
   const formStyles = euiFormControlStyles(euiThemeContext);
+
+  const invalidStyles = isRefreshVariant
+    ? `
+      &:is(:invalid, [aria-invalid='true']):not(
+        .euiFormControlLayoutDelimited__input, :focus
+      ) {
+          ${formStyles.invalid}
+        }
+    `
+    : `
+      &:is(:invalid){
+        ${formStyles.invalid}
+      }
+    `;
 
   return {
     euiFieldText: css`
       ${formStyles.shared}
 
-      &:invalid {
-        ${formStyles.invalid}
-      }
+      ${invalidStyles}
 
       &:focus {
         ${formStyles.focus}
