@@ -9,17 +9,24 @@
 import { css } from '@emotion/react';
 
 import { logicalSizeCSS, mathWithUnits } from '../../../global_styling';
-import { UseEuiTheme } from '../../../services';
+import { isEuiThemeRefreshVariant, UseEuiTheme } from '../../../services';
 
-export const EuiFormControlLayoutClearButtonStyles = ({
-  euiTheme,
-  colorMode,
-  highContrastMode,
-}: UseEuiTheme) => {
-  const backgroundColor =
-    colorMode === 'DARK' || highContrastMode // mediumShade is not sufficient WCAG contrast
+export const EuiFormControlLayoutClearButtonStyles = (
+  euiThemeContext: UseEuiTheme
+) => {
+  const { euiTheme, colorMode, highContrastMode } = euiThemeContext;
+  const isRefreshVariant = isEuiThemeRefreshVariant(
+    euiThemeContext,
+    'formVariant'
+  );
+
+  const backgroundColor = isRefreshVariant
+    ? highContrastMode
       ? euiTheme.colors.darkShade
-      : euiTheme.colors.mediumShade;
+      : euiTheme.colors.borderInteractiveFormsHoverPlain
+    : colorMode === 'DARK' || highContrastMode
+    ? euiTheme.colors.darkShade
+    : euiTheme.colors.mediumShade;
 
   return {
     euiFormControlLayoutClearButton: css`
@@ -34,7 +41,9 @@ export const EuiFormControlLayoutClearButtonStyles = ({
 
       &:disabled {
         cursor: not-allowed;
-        background-color: ${euiTheme.colors.disabled};
+        background-color: ${isRefreshVariant
+          ? euiTheme.colors.backgroundBaseDisabled
+          : euiTheme.colors.disabled};
       }
     `,
 
