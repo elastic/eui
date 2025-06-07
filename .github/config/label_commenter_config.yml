@@ -20,5 +20,5 @@ labels:
               - [ ] In the PR description or in a PR comment, include a count or list with the number of custom CSS overrides in Kibana that will need to be updated (if that amount is "none", include that information as well)
           - 🔍 Tip: When searching through Kibana, consider excluding `**/target, **/*.snap, **/*.storyshot` files to reduce noise and only look at source code usages
           - ⚠️ For extremely risky changes, the EUI team should potentially consider the following precautions:
-              - Using a [pre-release](https://github.com/elastic/eui/blob/main/wiki/eui-team-processes/releasing-versions.md#pre-release-process) release candidate to test Kibana CI ahead of time
+              - Using a [pre-release](https://github.com/elastic/eui-private/wiki/Release-process#pre-release-process) release candidate to test Kibana CI ahead of time
               - Using [`kibana-a-la-carte`](https://github.com/elastic/eui/blob/main/wiki/contributing-to-eui/testing/testing-in-kibana.md#testing-in-the-cloud) for manual QA, and to give other Kibana teams a staging server to quickly test against
