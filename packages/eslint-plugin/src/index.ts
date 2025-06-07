@@ -20,14 +20,12 @@
 import { HrefOnClick } from './rules/href_or_on_click';
 import { NoRestrictedEuiImports } from './rules/no_restricted_eui_imports';
 import { NoCssColor } from './rules/no_css_color';
-import { PreferCSSPropForStaticStyles } from './rules/prefer_css_prop_for_static_styles';
 
 const config = {
   rules: {
     'href-or-on-click': HrefOnClick,
     'no-restricted-eui-imports': NoRestrictedEuiImports,
     'no-css-color': NoCssColor,
-    'prefer-css-prop-for-static-styles': PreferCSSPropForStaticStyles,
   },
   configs: {
     recommended: {
@@ -36,7 +34,6 @@ const config = {
         '@elastic/eui/href-or-on-click': 'warn',
         '@elastic/eui/no-restricted-eui-imports': 'warn',
         '@elastic/eui/no-css-color': 'warn',
-        '@elastic/eui/prefer-css-prop-for-static-styles': 'warn',
       },
     },
   },
