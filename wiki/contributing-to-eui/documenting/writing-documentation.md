@@ -247,7 +247,7 @@ The story's `id` can be found in the URL. It's the part after `/index.html?path=
 
 ### Tables
 
-The preferred way to display content in tables is by leveraging [EuiBasicTable](https://eui.elastic.co/docs/components/tabular-content/tables/basic-tables) and not Markdown tables.
+The preferred way to display content in tables is by leveraging [EuiBasicTable](https://eui.elastic.co/docs/components/tables/basic-tables) and not Markdown tables.
 
 Just like with [partials](#partials), the code for the table can be separated in its own file and imported into the MDX document where it'll be displayed. For example:
 
@@ -256,7 +256,7 @@ Just like with [partials](#partials), the code for the table can be separated in
         nice_table.tsx
         index.mdx
 
-`nice_table.tsx` can export a component that renders [EuiBasicTable](https://eui.elastic.co/docs/components/tabular-content/tables/basic-tables):
+`nice_table.tsx` can export a component that renders [EuiBasicTable](https://eui.elastic.co/docs/components/tables/basic-tables):
 
 ```tsx
 import { css } from '@emotion/react';
