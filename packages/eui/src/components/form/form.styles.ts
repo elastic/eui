@@ -368,7 +368,7 @@ export const euiFormControlFocusStyles = (euiThemeContext: UseEuiTheme) => {
 };
 
 export const euiFormControlInvalidStyles = (euiThemeContext: UseEuiTheme) => {
-  const { euiTheme } = euiThemeContext;
+  const { euiTheme, highContrastMode } = euiThemeContext;
   const isRefreshVariant = isEuiThemeRefreshVariant(
     euiThemeContext,
     'formVariant'
@@ -381,7 +381,11 @@ export const euiFormControlInvalidStyles = (euiThemeContext: UseEuiTheme) => {
     ? `
       --euiFormControlStateColor: ${form.borderInvalid};
       --euiFormControlStateHoverColor: ${form.borderInvalidHovered};
-      --euiFormControlStateWidth: ${euiTheme.border.width.thin};
+      --euiFormControlStateWidth: ${
+        highContrastMode === 'preferred'
+          ? euiTheme.border.width.thick
+          : euiTheme.border.width.thin
+      };
       
       ${euiFormControlHighlightBorderStyles}
       ${euiFormControlShowBackgroundUnderline(euiThemeContext, invalidColor)}
@@ -449,6 +453,9 @@ export const euiFormControlReadOnlyStyles = (euiThemeContext: UseEuiTheme) => {
       ${formControlLayoutWrapperSelector}[class*=inGroup] & {
         box-shadow: none;
       }
+      ${highContrastModeStyles(euiThemeContext, {
+        preferred: 'box-shadow: none;',
+      })}
     `
     : `
       --euiFormControlStateColor: transparent;

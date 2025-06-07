@@ -208,6 +208,7 @@ describe('euiFormControlStyles', () => {
             .euiFormControlLayout__childrenWrapper[class*=inGroup] & {
               box-shadow: none;
             }
+            
           
         ",
         "shared": "
