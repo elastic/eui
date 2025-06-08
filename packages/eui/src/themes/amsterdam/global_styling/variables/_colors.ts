@@ -320,6 +320,9 @@ export const border_colors: _EuiThemeBorderColors = {
     ['colors.lightestShade']
   ),
 
+  borderInteractiveFormsHoverPlain: 'transparent',
+  borderInteractiveFormsHoverDanger: 'transparent',
+
   borderStrongPrimary: computed(
     ([borderBasePrimary]) => borderBasePrimary,
     ['colors.borderBasePrimary']
@@ -559,6 +562,8 @@ export const dark_border_colors: _EuiThemeBorderColors = {
     ([lightestShade]) => tint(lightestShade, 0.31),
     ['colors.lightestShade']
   ),
+  borderInteractiveFormsHoverPlain: 'transparent',
+  borderInteractiveFormsHoverDanger: 'transparent',
 
   borderStrongPrimary: computed(
     ([borderBasePrimary]) => borderBasePrimary,
@@ -645,8 +650,13 @@ export const colors: _EuiThemeColors = {
   ink: '#000000',
   plainLight: '#FFFFFF',
   plainDark: '#000000',
-  LIGHT: light_colors,
-  DARK: dark_colors_ams,
-  vis: colorVis,
   severity: severityColors,
+  LIGHT: {
+    ...light_colors,
+    vis: colorVis,
+  },
+  DARK: {
+    ...dark_colors_ams,
+    vis: colorVis,
+  },
 };

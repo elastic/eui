@@ -267,6 +267,9 @@ export type _EuiThemeBorderColors = {
   borderBaseFormsColorSwatch: ColorModeSwitch;
   borderBaseFormsControl: ColorModeSwitch;
 
+  borderInteractiveFormsHoverPlain: ColorModeSwitch;
+  borderInteractiveFormsHoverDanger: ColorModeSwitch;
+
   borderStrongPrimary: ColorModeSwitch;
   borderStrongAccent: ColorModeSwitch;
   borderStrongAccentSecondary: ColorModeSwitch;
@@ -372,7 +375,6 @@ export type _EuiThemeConstantColors = {
   plainLight: string;
   plainDark: string;
 
-  vis: _EuiThemeVisColors;
   severity: _EuiThemeSeverityColors;
 };
 
@@ -385,5 +387,7 @@ export type _EuiThemeColorsMode = _EuiThemeBrandColors &
   _EuiThemeTransparentBackgroundColors &
   _EuiThemeBorderColors;
 
-export type _EuiThemeColors = StrictColorModeSwitch<_EuiThemeColorsMode> &
+export type _EuiThemeColors = StrictColorModeSwitch<
+  _EuiThemeColorsMode & { vis: _EuiThemeVisColors }
+> &
   _EuiThemeConstantColors;

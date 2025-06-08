@@ -16,7 +16,12 @@ import React, {
 } from 'react';
 import classNames from 'classnames';
 
-import { useEuiMemoizedStyles, useEuiThemeCSSVariables } from '../../services';
+import {
+  EuiThemeProvider,
+  useEuiMemoizedStyles,
+  useEuiThemeCSSVariables,
+  useEuiThemeRefreshVariant,
+} from '../../services';
 import { mathWithUnits, logicalStyles } from '../../global_styling';
 import { CommonProps } from '../common';
 import { EuiBreadcrumb, EuiBreadcrumbsProps } from '../breadcrumbs';
@@ -84,6 +89,8 @@ export const EuiHeader: FunctionComponent<EuiHeaderProps> = ({
 }) => {
   const classes = classNames('euiHeader', className);
 
+  const isRefreshVariant = useEuiThemeRefreshVariant('formVariant');
+
   const styles = useEuiMemoizedStyles(euiHeaderStyles);
   const cssStyles = [styles.euiHeader, styles[position], styles[theme]];
 
@@ -123,13 +130,25 @@ export const EuiHeader: FunctionComponent<EuiHeaderProps> = ({
       });
     }, [sections]) || children;
 
+  const content =
+    isRefreshVariant && theme === 'dark' ? (
+      <EuiThemeProvider
+        colorMode="DARK"
+        wrapperProps={{ cloneElement: true, css: styles.euiHeaderWrapper }}
+      >
+        <div>{contents}</div>
+      </EuiThemeProvider>
+    ) : (
+      contents
+    );
+
   return position === 'fixed' ? (
     <EuiFixedHeader css={cssStyles} className={classes} {...rest}>
-      {contents}
+      {content}
     </EuiFixedHeader>
   ) : (
     <div css={cssStyles} className={classes} {...rest}>
-      {contents}
+      {content}
     </div>
   );
 };

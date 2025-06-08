@@ -8,7 +8,7 @@
 
 import { css } from '@emotion/react';
 
-import { UseEuiTheme } from '../../../services';
+import { isEuiThemeRefreshVariant, UseEuiTheme } from '../../../services';
 import { logicalCSS } from '../../../global_styling';
 import {
   euiFormControlStyles,
@@ -18,6 +18,10 @@ import {
 
 export const euiComboBoxInputStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
+  const isRefreshVariant = isEuiThemeRefreshVariant(
+    euiThemeContext,
+    'formVariant'
+  );
   const formStyles = euiFormControlStyles(euiThemeContext);
 
   return {
@@ -33,7 +37,10 @@ export const euiComboBoxInputStyles = (euiThemeContext: UseEuiTheme) => {
       ${formStyles.uncompressed}
       ${logicalCSS('height', 'auto')}
       ${logicalCSS('padding-vertical', euiTheme.size.s)}
-      ${logicalCSS('padding-left', euiTheme.size.s)}
+      ${logicalCSS(
+        'padding-left',
+        isRefreshVariant ? euiTheme.size.m : euiTheme.size.s
+      )}
       column-gap: ${euiTheme.size.s};
       row-gap: ${euiTheme.size.xs};
     `,
@@ -75,7 +82,7 @@ export const euiComboBoxInputStyles = (euiThemeContext: UseEuiTheme) => {
       background: transparent;
 
       &:disabled {
-        color: ${euiTheme.colors.disabledText};
+        color: ${euiTheme.colors.textDisabled};
       }
 
       /* Ensure that no input states are visible on the hidden input */

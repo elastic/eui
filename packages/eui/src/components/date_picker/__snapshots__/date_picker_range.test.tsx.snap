@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`EuiDatePickerRange is rendered 1`] = `
-<span
+<div
   aria-label="aria-label"
   class="euiDatePickerRange testClass1 testClass2 emotion-euiDatePickerRange-euiTestCss"
   data-test-subj="test subject string"
@@ -64,11 +64,11 @@ exports[`EuiDatePickerRange is rendered 1`] = `
       </div>
     </div>
   </div>
-</span>
+</div>
 `;
 
 exports[`EuiDatePickerRange props compressed 1`] = `
-<span
+<div
   class="euiDatePickerRange emotion-euiDatePickerRange"
 >
   <div
@@ -129,11 +129,11 @@ exports[`EuiDatePickerRange props compressed 1`] = `
       </div>
     </div>
   </div>
-</span>
+</div>
 `;
 
 exports[`EuiDatePickerRange props disabled 1`] = `
-<span
+<div
   class="euiDatePickerRange emotion-euiDatePickerRange"
 >
   <div
@@ -196,11 +196,11 @@ exports[`EuiDatePickerRange props disabled 1`] = `
       </div>
     </div>
   </div>
-</span>
+</div>
 `;
 
 exports[`EuiDatePickerRange props fullWidth 1`] = `
-<span
+<div
   class="euiDatePickerRange emotion-euiDatePickerRange"
 >
   <div
@@ -261,11 +261,11 @@ exports[`EuiDatePickerRange props fullWidth 1`] = `
       </div>
     </div>
   </div>
-</span>
+</div>
 `;
 
 exports[`EuiDatePickerRange props inline renders 1`] = `
-<span
+<div
   class="euiDatePickerRange emotion-euiDatePickerRangeInline-responsive-shadow"
 >
   <div
@@ -1319,11 +1319,11 @@ exports[`EuiDatePickerRange props inline renders 1`] = `
       </div>
     </div>
   </div>
-</span>
+</div>
 `;
 
 exports[`EuiDatePickerRange props isInvalid 1`] = `
-<span
+<div
   class="euiDatePickerRange emotion-euiDatePickerRange"
 >
   <div
@@ -1394,11 +1394,11 @@ exports[`EuiDatePickerRange props isInvalid 1`] = `
       </div>
     </div>
   </div>
-</span>
+</div>
 `;
 
 exports[`EuiDatePickerRange props isLoading 1`] = `
-<span
+<div
   class="euiDatePickerRange emotion-euiDatePickerRange"
 >
   <div
@@ -1468,18 +1468,18 @@ exports[`EuiDatePickerRange props isLoading 1`] = `
       </div>
     </div>
   </div>
-</span>
+</div>
 `;
 
 exports[`EuiDatePickerRange props readOnly 1`] = `
-<span
+<div
   class="euiDatePickerRange emotion-euiDatePickerRange"
 >
   <div
     class="euiFormControlLayout euiFormControlLayout-readOnly euiFormControlLayoutDelimited emotion-euiFormControlLayout-group-delimited-readOnly"
   >
     <div
-      class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper-inGroup-prependOnly-appendOnly-delimited"
+      class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper-inGroup-prependOnly-appendOnly-delimited-readOnly"
     >
       <div
         class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-static"
@@ -1535,11 +1535,11 @@ exports[`EuiDatePickerRange props readOnly 1`] = `
       </div>
     </div>
   </div>
-</span>
+</div>
 `;
 
 exports[`EuiDatePickerRange uses individual EuiDatePicker props 1`] = `
-<span
+<div
   aria-label="aria-label"
   class="euiDatePickerRange testClass1 testClass2 emotion-euiDatePickerRange-euiTestCss"
   data-test-subj="test subject string"
@@ -1602,5 +1602,5 @@ exports[`EuiDatePickerRange uses individual EuiDatePicker props 1`] = `
       </div>
     </div>
   </div>
-</span>
+</div>
 `;
