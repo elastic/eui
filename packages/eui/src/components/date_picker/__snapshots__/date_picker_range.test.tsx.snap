@@ -1479,7 +1479,7 @@ exports[`EuiDatePickerRange props readOnly 1`] = `
     class="euiFormControlLayout euiFormControlLayout-readOnly euiFormControlLayoutDelimited emotion-euiFormControlLayout-group-delimited-readOnly"
   >
     <div
-      class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper-inGroup-prependOnly-appendOnly-delimited"
+      class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper-inGroup-prependOnly-appendOnly-delimited-readOnly"
     >
       <div
         class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-static"
