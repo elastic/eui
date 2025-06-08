@@ -16,6 +16,7 @@ import {
   euiFormControlDefaultShadow,
   euiFormControlInvalidStyles,
   euiFormControlHoverStyles,
+  euiFormVariables,
 } from '../form.styles';
 
 export const euiFormControlLayoutDelimitedStyles = (
@@ -27,15 +28,22 @@ export const euiFormControlLayoutDelimitedStyles = (
     'formVariant'
   );
 
+  const form = euiFormVariables(euiThemeContext);
+
   const invalidStyles = `
     :not(.euiFormControlLayoutDelimited__input, .euiFormControlLayoutDelimited__delimiter) {
       ${euiFormControlInvalidStyles(euiThemeContext)}
     }
 
-      .euiFormControlLayoutDelimited__input {
-        background-color: transparent;
-      }
-    `;
+    &:focus-within {
+      --euiFormControlStateColor: ${form.borderColor};
+      --euiFormControlStateHoverColor: ${form.borderHovered};
+    }
+
+    .euiFormControlLayoutDelimited__input {
+      background-color: transparent;
+    }
+  `;
 
   const readOnlyStyles = `
       & .euiFormControlLayoutDelimited__input {
