@@ -171,12 +171,7 @@ describe('euiFormControlStyles', () => {
           outline: var(--euiFormControlStateWidth) solid var(--euiFormControlStateColor);
           outline-offset: calc(-1 * var(--euiFormControlStateWidth));
           box-shadow: none;
-            background-size: 100% 100%;
-
-            &:focus-within {
-              --euiFormControlStateColor: #CAD3E2;
-              --euiFormControlStateHoverColor: #B4C1D5;
-            }",
+            background-size: 100% 100%;",
         "readOnly": "
           background-color: #ECF1F9;
           cursor: default;
