@@ -167,7 +167,7 @@ export const border_colors: _EuiThemeBorderColors = {
   borderInteractiveFormsHoverDanger: SEMANTIC_COLORS.danger80,
 
   borderStrongPrimary: SEMANTIC_COLORS.primary90,
-  borderStrongAccent: SEMANTIC_COLORS.accent100,
+  borderStrongAccent: SEMANTIC_COLORS.accent90,
   borderStrongAccentSecondary: SEMANTIC_COLORS.accentSecondary90,
   borderStrongNeutral: SEMANTIC_COLORS.neutral90,
   borderStrongSuccess: SEMANTIC_COLORS.success90,
