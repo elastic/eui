@@ -6,11 +6,15 @@
  * Side Public License, v 1.
  */
 
-import { createContext } from 'react';
+import { createContext, RefObject } from 'react';
 import { EuiFlyoutSize } from './flyout';
 
 interface EuiFlyoutContextValue {
   size?: EuiFlyoutSize | string | number;
+  parentFlyoutRef?: RefObject<HTMLDivElement>;
+  isChildFlyoutOpen?: boolean;
+  setIsChildFlyoutOpen?: (isOpen: boolean) => void;
+  childLayoutMode?: 'alongside' | 'stacked';
 }
 
 export const EuiFlyoutContext = createContext<EuiFlyoutContextValue | null>(
