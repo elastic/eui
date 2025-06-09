@@ -324,10 +324,7 @@ export const border_colors: _EuiThemeBorderColors = {
     ['colors.lightestShade']
   ),
 
-  borderStrongPrimary: computed(
-    ([primary]) => primary,
-    ['colors.primary']
-  ),
+  borderStrongPrimary: computed(([primary]) => primary, ['colors.primary']),
   borderStrongAccent: computed(
     ([borderBaseAccent]) => borderBaseAccent,
     ['colors.borderBaseAccent']
@@ -359,7 +356,7 @@ export const border_colors: _EuiThemeBorderColors = {
   borderStrongText: computed(
     ([subduedText]) => subduedText,
     ['colors.subduedText']
-  )
+  ),
 };
 
 export const light_colors: _EuiThemeColorsMode = {
@@ -607,7 +604,7 @@ export const dark_border_colors: _EuiThemeBorderColors = {
   borderStrongText: computed(
     ([subduedText]) => subduedText,
     ['colors.subduedText']
-  )
+  ),
 };
 
 export const dark_colors_ams: _EuiThemeColorsMode = {

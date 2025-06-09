@@ -90,8 +90,11 @@ export const euiDataGridStyles = (euiThemeContext: UseEuiTheme) => {
         background-color: ${euiTheme.components.dataGridRowBackgroundSelect};
       }
 
-      *:where(&.euiDataGrid--rowHoverHighlight .euiDataGridRow--selected:hover) {
-        background-color: ${euiTheme.components.dataGridRowBackgroundSelectHover};
+      *:where(
+          &.euiDataGrid--rowHoverHighlight .euiDataGridRow--selected:hover
+        ) {
+        background-color: ${euiTheme.components
+          .dataGridRowBackgroundSelectHover};
       }
 
       /* Hover colors are semitransparent and .euiDataGrid__content has
@@ -100,12 +103,12 @@ export const euiDataGridStyles = (euiThemeContext: UseEuiTheme) => {
        * hover colors display as expected */
 
       *:where(&.euiDataGrid--rowHoverHighlight .euiDataGridRow)::before {
-        content: "";
+        content: '';
         position: absolute;
         z-index: -1;
         pointer-events: none;
-        width: 100%;
-        height: 100%;
+        inline-size: 100%;
+        block-size: 100%;
         background-color: ${euiTheme.components.dataGridRowBackground};
       }
     `,
