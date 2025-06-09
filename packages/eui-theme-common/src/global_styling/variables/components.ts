@@ -59,9 +59,11 @@ export type _EuiThemeComponentColors = {
 
   dataGridBorderColor: ColorModeSwitch;
   dataGridVerticalLineBorderColor: ColorModeSwitch;
+  dataGridRowBackground: ColorModeSwitch;
   dataGridRowBackgroundStriped: ColorModeSwitch;
   dataGridRowBackgroundHover: ColorModeSwitch;
   dataGridRowBackgroundSelect: ColorModeSwitch;
+  dataGridRowBackgroundSelectHover: ColorModeSwitch;
 
   dragDropDraggingBackground: ColorModeSwitch;
   dragDropDraggingOverBackground: ColorModeSwitch;

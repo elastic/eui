@@ -117,6 +117,10 @@ const component_colors: _EuiThemeComponentColors = {
     ([borderBaseSubdued]) => borderBaseSubdued,
     ['colors.borderBaseSubdued']
   ),
+  dataGridRowBackground: computed(
+    ([backgroundBasePlain]) => backgroundBasePlain,
+    ['colors.backgroundBasePlain']
+  ),
   dataGridRowBackgroundStriped: computed(
     ([backgroundBaseSubdued]) => backgroundBaseSubdued,
     ['colors.backgroundBaseSubdued']
@@ -128,6 +132,10 @@ const component_colors: _EuiThemeComponentColors = {
   dataGridRowBackgroundSelect: computed(
     ([backgroundBaseInteractiveSelect]) => backgroundBaseInteractiveSelect,
     ['colors.backgroundBaseInteractiveSelect']
+  ),
+  dataGridRowBackgroundSelectHover: computed(
+    ([backgroundBaseInteractiveSelectHover]) => backgroundBaseInteractiveSelectHover,
+    ['colors.backgroundBaseInteractiveSelectHover']
   ),
 
   dragDropDraggingBackground: computed(
