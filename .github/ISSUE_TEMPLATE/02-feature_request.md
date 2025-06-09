@@ -44,18 +44,3 @@ assignees: ''
 
 **Designs or Specs (Optional)**
 
-<!-- If you don't have one yet, just leave this section here and the EUI team will fill it out as needed -->
-
-**Impact assessment (Optional)**
-
-<!-- Just leave this section here and the EUI team will fill it out as needed. 
-
-Examples:
-- Is this a breaking API change?
-- Are there structural or visual changes that would impact tests or CSS overrides?
-- If either of those are true, please consider:
-  - How many component usages in Kibana would this affect?
-  - How much effort will it take consumers to adapt to this change?
-  - How much risk is involved in making this change?
-
--->
