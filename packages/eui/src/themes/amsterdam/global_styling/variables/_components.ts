@@ -368,7 +368,8 @@ const component_colors: _EuiThemeComponentColors = {
     ['colors.backgroundBaseInteractiveSelect']
   ),
   tableRowBackgroundSelectedHover: computed(
-    ([backgroundBaseInteractiveSelectHover]) => backgroundBaseInteractiveSelectHover,
+    ([backgroundBaseInteractiveSelectHover]) =>
+      backgroundBaseInteractiveSelectHover,
     ['colors.backgroundBaseInteractiveSelectHover']
   ),
   tableRowInteractiveBackgroundHover: computed(

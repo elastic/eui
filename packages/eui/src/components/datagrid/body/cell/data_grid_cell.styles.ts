@@ -17,7 +17,7 @@ import {
 
 export const euiDataGridCellOutlineStyles = ({ euiTheme }: UseEuiTheme) => {
   const focusColor = euiTheme.colors.borderStrongPrimary;
-  const hoverColor =  euiTheme.colors.borderStrongText;
+  const hoverColor = euiTheme.colors.borderStrongText;
   const outlineWidth = euiTheme.border.width.thick;
   const borderRadius = mathWithUnits(
     euiTheme.border.radius.medium,
