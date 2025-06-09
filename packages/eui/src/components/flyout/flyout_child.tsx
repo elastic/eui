@@ -12,10 +12,13 @@ import React, {
   ReactNode,
   useContext,
   Children,
+  useState,
+  useEffect,
+  useMemo,
 } from 'react';
 import classNames from 'classnames';
 import { CommonProps } from '../common';
-import { useEuiMemoizedStyles, useIsWithinMinBreakpoint } from '../../services';
+import { useEuiTheme } from '../../services';
 import { euiFlyoutChildStyles } from './flyout_child.styles';
 import { EuiFlyoutCloseButton } from './_flyout_close_button';
 import { EuiFlyoutContext } from './flyout_context';
@@ -63,11 +66,31 @@ export const EuiFlyoutChild: EuiFlyoutChildProps = ({
   hideCloseButton = false,
   onClose,
   scrollableTabIndex = 0,
-  size = 's', // Default to 's'
+  size = 's',
   ...rest
 }) => {
+  const themeContext = useEuiTheme();
+  const { euiTheme } = themeContext;
   const flyoutContext = useContext(EuiFlyoutContext);
-  const isAboveMediumBreakpoint = useIsWithinMinBreakpoint('m');
+
+  // State for current window width
+  const [windowWidth, setWindowWidth] = useState(
+    typeof window !== 'undefined' ? window.innerWidth : Infinity
+  );
+
+  // Effect to update window width on resize
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+
+    window.addEventListener('resize', handleResize);
+    handleResize();
+
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   // Validation: EuiFlyoutChild must be used within an EuiFlyout
   // This check runs on every render. If context is not found, throw immediately.
@@ -95,25 +118,59 @@ export const EuiFlyoutChild: EuiFlyoutChildProps = ({
       'When the parent EuiFlyout size is "m", the EuiFlyoutChild size cannot be "m". Please use size "s" for the EuiFlyoutChild.'
     );
   }
-  // effectiveSize is now just the passed `size` prop, as invalid combinations are thrown.
   const effectiveSize = size;
 
-  const classes = classNames('euiFlyoutChild', className);
+  // Calculate the breakpoint for stacked vs. side-by-side layout
+  const parentSizeName = flyoutContext.size;
+  const childSizeName = effectiveSize;
 
-  const styles = useEuiMemoizedStyles(euiFlyoutChildStyles);
+  let parentNumericValue: number;
+  if (parentSizeName === 's') {
+    parentNumericValue = euiTheme.breakpoint.s;
+  } else {
+    parentNumericValue = euiTheme.breakpoint.m;
+  }
+
+  let childNumericValue: number;
+  if (childSizeName === 's') {
+    childNumericValue = euiTheme.breakpoint.s;
+  } else {
+    childNumericValue = euiTheme.breakpoint.m;
+  }
+
+  // Calculate the breakpoint for stacked vs. side-by-side layout
+  const stackingBreakpointValue = parentNumericValue + childNumericValue;
+
+  // Determine if current window width is above the calculated stacking breakpoint
+  const isAboveStackingBreakpoint = windowWidth >= stackingBreakpointValue;
+
+  // Determine the vw width string based on effectiveSize
+  const currentSideBySideVwWidth = effectiveSize === 's' ? '25vw' : '50vw';
+
+  const styles = useMemo(() => {
+    return euiFlyoutChildStyles(
+      themeContext,
+      stackingBreakpointValue,
+      currentSideBySideVwWidth
+    );
+  }, [themeContext, stackingBreakpointValue, currentSideBySideVwWidth]);
+
   const overflowCssStyles = [
     styles.overflow.euiFlyoutChild__overflow,
     banner ? styles.overflow.hasBanner : styles.overflow.noBanner,
   ];
+
+  const classes = classNames('euiFlyoutChild', className);
 
   return (
     <div
       className={classes}
       css={[
         styles.euiFlyoutChild,
-        isAboveMediumBreakpoint ? styles.sidePosition : styles.stackedPosition,
-        // Use effectiveSize which is now the validated 'size' prop
-        effectiveSize === 's' ? styles.s : styles.m,
+        isAboveStackingBreakpoint
+          ? styles.sidePosition
+          : styles.stackedPosition,
+        isAboveStackingBreakpoint && styles.sizeVariant,
       ]}
       data-test-subj="euiFlyoutChild"
       role="dialog"
