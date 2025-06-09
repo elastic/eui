@@ -1,3 +1,17 @@
+## [`v1.2.0`](https://github.com/elastic/eui/releases/v1.2.0)
+
+- Added new tokens on `colors.vis`: ([#8725](https://github.com/elastic/eui/pull/8725))
+  -  `euiColorVisBase0`
+  -  `euiColorVisNeutral1`
+  -  `euiColorVisWarning1`
+  -  `euiColorVisRisk0`
+  -  `euiColorVisRisk1`
+
+**Bug fixes**
+
+- Fixed missing source map warnings emitted by some bundlers by excluding source maps from being published ([#8764](https://github.com/elastic/eui/pull/8764))
+  - To align with `@elastic/eui` and many other popular packages, we made a call to not ship source maps anymore
+
 ## [`v1.1.0`](https://github.com/elastic/eui/releases/v1.1.0)
 
 - Added type for token `filterButtonBadgeBackgroundHover` ([#8652](https://github.com/elastic/eui/pull/8652))

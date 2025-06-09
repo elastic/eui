@@ -1,3 +1,34 @@
+## [`v103.0.0`](https://github.com/elastic/eui/releases/v103.0.0)
+
+- Replaced `question` icon glyph ([#8756](https://github.com/elastic/eui/pull/8756))
+- Updated `EuiResizableCollapseButton` to use an empty button ([#8736](https://github.com/elastic/eui/pull/8736))
+- Added `info` icon glyph ([#8744](https://github.com/elastic/eui/pull/8744))
+- Removed uppercase styling from `EuiText` `h6` headings to match `EuiTitle` ([#8732](https://github.com/elastic/eui/pull/8732))
+- Removed heavier font weight from `xs` and `s` `EuiListGroupItem` sizes for consistency ([#8732](https://github.com/elastic/eui/pull/8732))
+- Updated the `font-weight` of default `EuiFilterButton` and `EuiButtonGroupButton` to `450` ([#8734](https://github.com/elastic/eui/pull/8734))
+- Added color pallete functions and related hooks: ([#8725](https://github.com/elastic/eui/pull/8725))
+  - `euiPaletteSkyBlue`, `useEuiPaletteSkyBlue`
+  - `euiPaletteYellow`, `useEuiPaletteYellow`
+  - `euiPaletteOrange`, `useEuiPaletteOrange`
+- Added new tokens on `colors.vis`: ([#8725](https://github.com/elastic/eui/pull/8725))
+  -  `euiColorVisNeutral0`
+  -  `euiColorVisNeutral1`
+  -  `euiColorVisWarning1`
+  -  `euiColorVisRisk0`
+  -  `euiColorVisRisk1`
+- Updated the value of token `colors.vis.euiColorVisWarning0` ([#8725](https://github.com/elastic/eui/pull/8725))
+- Updated EuiFilterButton's `numActiveFilters` prop to accept percentage values ([#8705](https://github.com/elastic/eui/pull/8705))
+
+**Bug fixes**
+
+- Fixed visual positioning issue for notifications in `EuiHeaderSectionItemButton` ([#8736](https://github.com/elastic/eui/pull/8736))
+- Fixed a visual issue where `EuiCollabsibleNavItem` did not have a visible selected state ([#8736](https://github.com/elastic/eui/pull/8736))
+- Fixed handling of unregistered code block languages in `EuiMarkdownFormat` ([#8729](https://github.com/elastic/eui/pull/8729))
+
+**Breaking changes**
+
+- Renamed `colors.vis.euiColorVisNeutral0` to `euiColorVisBase0` ([#8725](https://github.com/elastic/eui/pull/8725))
+
 ## [`v102.3.0`](https://github.com/elastic/eui/releases/v102.3.0)
 
 - Added support for `focusTrapProps.returnFocus` on `EuiFlyout` ([#8716](https://github.com/elastic/eui/pull/8716))
