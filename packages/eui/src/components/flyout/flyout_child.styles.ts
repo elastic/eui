@@ -12,19 +12,22 @@ import {
   logicalCSS,
   logicalCSSWithFallback,
   euiYScrollWithShadows,
-  euiMinBreakpoint,
   highContrastModeStyles,
 } from '../../global_styling';
 
-export const euiFlyoutChildStyles = (euiThemeContext: UseEuiTheme) => {
+export const euiFlyoutChildStyles = (
+  euiThemeContext: UseEuiTheme,
+  stackingBreakpointValue: number,
+  sideBySideWidth: string
+) => {
   const { euiTheme } = euiThemeContext;
   return {
     // Base styles for the child flyout
     euiFlyoutChild: css`
       position: absolute;
-      inset-block-start: 0; // Top edge aligns with parent's top
-      inset-inline-start: 0; // Left edge aligns with parent's left edge initially
-      block-size: 100%; // Full height of parent
+      inset-block-start: 0;
+      inset-inline-start: 0;
+      block-size: 100%;
       background: ${euiTheme.colors.backgroundBaseSubdued};
       display: flex;
       flex-direction: column;
@@ -38,30 +41,19 @@ export const euiFlyoutChildStyles = (euiThemeContext: UseEuiTheme) => {
 
     // Position variants based on screen size
     sidePosition: css`
-      // This style is applied when screen width > 'm' breakpoint
-      transform: translateX(-100%); // Shift left by its own width
+      transform: translateX(-100%);
       border-inline-end: ${euiTheme.border.thin};
     `,
     stackedPosition: css`
-      // This style is applied when screen width < 'm' breakpoint
-      inset-inline-end: 0; // Takes full width of parent (effectively)
-      inline-size: 100%; // Occupy full width of parent
+      inset-inline-end: 0;
+      inline-size: 100%;
       border-block-end: ${euiTheme.border.thin};
     `,
 
-    // Size variants (these define the width of the child, which translateX(-100%) then uses)
-    s: css`
-      // On large screens, width matches parent 's' max-width.
-      // On small (stacked), it's 100% (from stackedPosition).
-      ${euiMinBreakpoint(euiThemeContext, 'm')} {
-        inline-size: ${Math.round(euiTheme.breakpoint.s * 0.7)}px;
-      }
-    `,
-    m: css`
-      // On large screens, width matches parent 'm' max-width.
-      // On small (stacked), it's 100%.
-      ${euiMinBreakpoint(euiThemeContext, 'm')} {
-        inline-size: ${euiTheme.breakpoint.m}px;
+    // Dynamic style for side-by-side width using passed vw value
+    sizeVariant: css`
+      @media (min-width: ${stackingBreakpointValue}px) {
+        inline-size: ${sideBySideWidth};
       }
     `,
 
