@@ -72,7 +72,7 @@ export const euiDataGridStyles = (euiThemeContext: UseEuiTheme) => {
        * :where to reduce specificity / allow easier overrides via rowClasses */
 
       *:where(& .euiDataGridRow) {
-        background-color: ${euiTheme.colors.emptyShade};
+        background-color: ${euiTheme.components.dataGridRowBackground};
       }
 
       *:where(&.euiDataGrid--stripes .euiDataGridRow--striped) {
@@ -81,6 +81,32 @@ export const euiDataGridStyles = (euiThemeContext: UseEuiTheme) => {
 
       *:where(&.euiDataGrid--rowHoverHighlight .euiDataGridRow:hover) {
         background-color: ${euiTheme.components.dataGridRowBackgroundHover};
+      }
+
+      /* The euiDataGridRow--selected class is not used internally,
+       * it's there for convenience, to be used by consumers */
+
+      *:where(& .euiDataGridRow--selected) {
+        background-color: ${euiTheme.components.dataGridRowBackgroundSelect};
+      }
+
+      *:where(&.euiDataGrid--rowHoverHighlight .euiDataGridRow--selected:hover) {
+        background-color: ${euiTheme.components.dataGridRowBackgroundSelectHover};
+      }
+
+      /* Hover colors are semitransparent and .euiDataGrid__content has
+       * no background color anymore (see https://github.com/elastic/eui/pull/8220),
+       * so we add this "safety" background to the row to ensure 
+       * hover colors display as expected */
+
+      *:where(&.euiDataGrid--rowHoverHighlight .euiDataGridRow)::before {
+        content: "";
+        position: absolute;
+        z-index: -1;
+        pointer-events: none;
+        width: 100%;
+        height: 100%;
+        background-color: ${euiTheme.components.dataGridRowBackground};
       }
     `,
     cellPadding: {
