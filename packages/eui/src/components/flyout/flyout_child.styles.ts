@@ -17,7 +17,6 @@ import {
 
 export const euiFlyoutChildStyles = (
   euiThemeContext: UseEuiTheme,
-  stackingBreakpointValue: number,
   sideBySideWidth: string
 ) => {
   const { euiTheme } = euiThemeContext;
@@ -52,9 +51,7 @@ export const euiFlyoutChildStyles = (
 
     // Dynamic style for side-by-side width using passed vw value
     sizeVariant: css`
-      @media (min-width: ${stackingBreakpointValue}px) {
-        inline-size: ${sideBySideWidth};
-      }
+      inline-size: ${sideBySideWidth};
     `,
 
     euiFlyoutChild__closeButton: css`
