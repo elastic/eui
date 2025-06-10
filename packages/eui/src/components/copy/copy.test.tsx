@@ -92,7 +92,7 @@ describe('EuiCopy', () => {
         className: 'myTooltipClass',
       };
       const beforeMessage = 'copy this';
-      const { getByRole } = render(
+      const { getByRole, getByTestSubject } = render(
         <EuiCopy
           textToCopy="some text"
           beforeMessage={beforeMessage}
@@ -109,9 +109,8 @@ describe('EuiCopy', () => {
       fireEvent.mouseOver(getByRole('button'));
       await waitForEuiToolTipVisible();
       // The tooltip portalled, so search the global document
-      const queryByTestSubj = queryByAttribute.bind(null, 'data-test-subj');
-      const tooltip = queryByTestSubj(document.body, 'customTooltip');
-      expect(tooltip instanceof HTMLElement).toBe(true);
+      const tooltip = getByTestSubject('customTooltip');
+      expect(tooltip).toBeInTheDocument();
       expect(tooltip?.className).toContain('myTooltipClass');
       fireEvent.mouseOut(getByRole('button'));
       await waitForEuiToolTipHidden();
