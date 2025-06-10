@@ -20,7 +20,7 @@ import { EuiFlyoutContext, EuiFlyoutContextValue } from './flyout_context';
 import { EuiFlyoutChild } from './flyout_child';
 
 interface EuiFlyoutChildManagerProps {
-  parentDesignatedSize: 's' | 'm';
+  parentSize: 's' | 'm';
   parentFlyoutRef: React.RefObject<HTMLDivElement>;
   childElement: React.ReactElement<ComponentProps<typeof EuiFlyoutChild>>;
   childrenToRender: ReactNode; // The original children passed to EuiFlyout
@@ -28,10 +28,14 @@ interface EuiFlyoutChildManagerProps {
   reportChildLayoutMode: (mode: 'alongside' | 'stacked') => void;
 }
 
+/**
+ * An intermediate component between EuiFlyout and EuiFlyoutChild.
+ * This exists to remove responsibility of managing child flyout state from EuiFlyout.
+ */
 export const EuiFlyoutChildManager: FunctionComponent<
   EuiFlyoutChildManagerProps
 > = ({
-  parentDesignatedSize,
+  parentSize,
   parentFlyoutRef,
   childElement,
   childrenToRender,
@@ -62,9 +66,10 @@ export const EuiFlyoutChildManager: FunctionComponent<
     return () => window.removeEventListener('resize', handleResize);
   }, []); // Empty dependency array, runs once on mount
 
-  // Calculate stacking breakpoint value for child flyout
+  // Calculate stacking breakpoint value for child flyout.
+  // Stacking breakpoint value is a sum of parent breakpoint value and child breakpoint value.
   const stackingBreakpointValue = useMemo(() => {
-    const parentSizeName = parentDesignatedSize;
+    const parentSizeName = parentSize;
     const childSizeName = childElement.props.size || 's';
 
     let parentNumericValue = 0;
@@ -77,9 +82,9 @@ export const EuiFlyoutChildManager: FunctionComponent<
     else if (childSizeName === 'm') childNumericValue = euiTheme.breakpoint.m;
 
     return parentNumericValue + childNumericValue;
-  }, [parentDesignatedSize, childElement.props.size, euiTheme.breakpoint]);
+  }, [parentSize, childElement.props.size, euiTheme.breakpoint]);
 
-  // update childLayoutMode based on windowWidth and stackingBreakpoint
+  // update childLayoutMode based on windowWidth and the calculated stackingBreakpoint
   useEffect(() => {
     if (windowWidth >= stackingBreakpointValue) {
       setChildLayoutMode('alongside');
@@ -100,14 +105,14 @@ export const EuiFlyoutChildManager: FunctionComponent<
 
   const contextValue = useMemo<EuiFlyoutContextValue>(
     () => ({
-      size: parentDesignatedSize,
+      parentSize,
       parentFlyoutRef,
       isChildFlyoutOpen,
       setIsChildFlyoutOpen,
       childLayoutMode,
     }),
     [
-      parentDesignatedSize,
+      parentSize,
       parentFlyoutRef,
       isChildFlyoutOpen,
       setIsChildFlyoutOpen,
