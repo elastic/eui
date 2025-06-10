@@ -72,11 +72,20 @@ export const euiFlyoutStyles = (euiThemeContext: UseEuiTheme) => {
     `,
 
     // Flyout sizes
+    // When a child flyout is stacked on top of the parent, the parent flyout size will match the child flyout size
     s: css`
       ${composeFlyoutSizing(euiThemeContext, 's')}
+
+      &.euiFlyout--hasChild--stacked.euiFlyout--hasChild--m {
+        ${composeFlyoutSizing(euiThemeContext, 'm')}
+      }
     `,
     m: css`
       ${composeFlyoutSizing(euiThemeContext, 'm')}
+
+      &.euiFlyout--hasChild--stacked.euiFlyout--hasChild--s {
+        ${composeFlyoutSizing(euiThemeContext, 's')}
+      }
     `,
     l: css`
       ${composeFlyoutSizing(euiThemeContext, 'l')}
@@ -170,7 +179,7 @@ export const euiFlyoutStyles = (euiThemeContext: UseEuiTheme) => {
   };
 };
 
-const composeFlyoutSizing = (
+export const composeFlyoutSizing = (
   euiThemeContext: UseEuiTheme,
   size: EuiFlyoutSize
 ) => {

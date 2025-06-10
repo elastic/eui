@@ -14,11 +14,9 @@ import {
   euiYScrollWithShadows,
   highContrastModeStyles,
 } from '../../global_styling';
+import { composeFlyoutSizing } from './flyout.styles';
 
-export const euiFlyoutChildStyles = (
-  euiThemeContext: UseEuiTheme,
-  sideBySideWidth: string
-) => {
+export const euiFlyoutChildStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
   return {
     // Base styles for the child flyout
@@ -49,12 +47,15 @@ export const euiFlyoutChildStyles = (
       border-block-end: ${euiTheme.border.thin};
     `,
 
-    // Dynamic style for side-by-side width using passed vw value
-    sizeVariant: css`
-      inline-size: ${sideBySideWidth};
+    s: css`
+      ${composeFlyoutSizing(euiThemeContext, 's')}
     `,
 
-    euiFlyoutChild__closeButton: css`
+    m: css`
+      ${composeFlyoutSizing(euiThemeContext, 'm')}
+    `,
+
+    closeButton: css`
       position: absolute;
       inset-block-start: ${euiTheme.size.s};
       inset-inline-end: ${euiTheme.size.s};
@@ -62,11 +63,19 @@ export const euiFlyoutChildStyles = (
     `,
 
     overflow: {
-      euiFlyoutChild__overflow: css`
+      overflow: css`
         flex-grow: 1;
         ${logicalCSS('min-height', 0)}
         display: flex;
         flex-direction: column;
+      `,
+      wrapper: css`
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+        ${logicalCSS('min-height', 0)}
+        ${logicalCSS('width', '100%')}
+        ${logicalCSS('overflow-x', 'auto')}
       `,
       noBanner: css`
         ${euiYScrollWithShadows(euiThemeContext)}
@@ -75,19 +84,11 @@ export const euiFlyoutChildStyles = (
         ${euiYScrollWithShadows(euiThemeContext, { side: 'end' })}
       `,
     },
-    euiFlyoutChild__banner: css`
+    banner: css`
       ${logicalCSSWithFallback('overflow-x', 'hidden')}
       ${highContrastModeStyles(euiThemeContext, {
         preferred: logicalCSS('border-bottom', euiTheme.border.thin),
       })}
-    `,
-    euiFlyoutChild__overflowContent: css`
-      display: flex;
-      flex-direction: column;
-      flex-grow: 1;
-      ${logicalCSS('min-height', 0)}
-      ${logicalCSS('width', '100%')}
-      ${logicalCSS('overflow-x', 'auto')}
     `,
   };
 };
