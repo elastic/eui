@@ -33,7 +33,9 @@ export interface EuiCopyProps extends CommonProps {
   /**
    * Optional props to pass to the EuiToolTip component.
    */
-  tooltipProps?: Partial<EuiToolTipProps>;
+  tooltipProps?: Partial<
+    Omit<EuiToolTipProps, 'children' | 'content' | 'onMouseOut'>
+  >;
 }
 
 interface EuiCopyState {
