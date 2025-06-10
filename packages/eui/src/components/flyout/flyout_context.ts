@@ -14,7 +14,7 @@ export interface EuiFlyoutContextValue {
   parentFlyoutRef?: RefObject<HTMLDivElement>;
   isChildFlyoutOpen?: boolean;
   setIsChildFlyoutOpen?: (isOpen: boolean) => void;
-  childLayoutMode?: 'alongside' | 'stacked';
+  childLayoutMode?: 'side-by-side' | 'stacked';
 }
 
 export const EuiFlyoutContext = createContext<EuiFlyoutContextValue | null>(

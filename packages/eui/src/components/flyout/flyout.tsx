@@ -216,8 +216,8 @@ export const EuiFlyout = forwardRef(
 
     const [isChildFlyoutOpen, setIsChildFlyoutOpen] = useState(false);
     const [childLayoutMode, setChildLayoutMode] = useState<
-      'alongside' | 'stacked'
-    >('alongside');
+      'side-by-side' | 'stacked'
+    >('side-by-side');
 
     // Check for child flyout
     const childFlyoutElement = React.Children.toArray(children).find(

@@ -23,14 +23,15 @@ interface EuiFlyoutChildManagerProps {
   parentSize: 's' | 'm';
   parentFlyoutRef: React.RefObject<HTMLDivElement>;
   childElement: React.ReactElement<ComponentProps<typeof EuiFlyoutChild>>;
-  childrenToRender: ReactNode; // The original children passed to EuiFlyout
+  childrenToRender: ReactNode;
   reportIsChildOpen: (isOpen: boolean) => void;
-  reportChildLayoutMode: (mode: 'alongside' | 'stacked') => void;
+  reportChildLayoutMode: (mode: 'side-by-side' | 'stacked') => void;
 }
 
 /**
  * An intermediate component between EuiFlyout and EuiFlyoutChild.
- * This exists to remove responsibility of managing child flyout state from EuiFlyout.
+ * It is responsible for managing the state of the child flyout, and passing it to EuiFlyoutContext.
+ * It removes the responsibility of managing child flyout state from EuiFlyout, which is especially important there might not be a child flyout.
  */
 export const EuiFlyoutChildManager: FunctionComponent<
   EuiFlyoutChildManagerProps
@@ -49,8 +50,8 @@ export const EuiFlyoutChildManager: FunctionComponent<
     typeof window !== 'undefined' ? window.innerWidth : Infinity
   );
   const [childLayoutMode, setChildLayoutMode] = useState<
-    'alongside' | 'stacked'
-  >('alongside');
+    'side-by-side' | 'stacked'
+  >('side-by-side');
 
   // update windowWidth on resize
   useEffect(() => {
@@ -61,10 +62,10 @@ export const EuiFlyoutChildManager: FunctionComponent<
     };
 
     window.addEventListener('resize', handleResize);
-    handleResize(); // Initial call
+    handleResize();
 
     return () => window.removeEventListener('resize', handleResize);
-  }, []); // Empty dependency array, runs once on mount
+  }, []);
 
   // Calculate stacking breakpoint value for child flyout.
   // Stacking breakpoint value is a sum of parent breakpoint value and child breakpoint value.
@@ -87,7 +88,7 @@ export const EuiFlyoutChildManager: FunctionComponent<
   // update childLayoutMode based on windowWidth and the calculated stackingBreakpoint
   useEffect(() => {
     if (windowWidth >= stackingBreakpointValue) {
-      setChildLayoutMode('alongside');
+      setChildLayoutMode('side-by-side');
     } else {
       setChildLayoutMode('stacked');
     }
