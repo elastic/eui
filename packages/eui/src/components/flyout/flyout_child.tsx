@@ -18,7 +18,7 @@ import React, {
 } from 'react';
 import classNames from 'classnames';
 import { CommonProps } from '../common';
-import { useEuiTheme, useGeneratedHtmlId } from '../../services';
+import { useEuiMemoizedStyles, useGeneratedHtmlId } from '../../services';
 import { euiFlyoutChildStyles } from './flyout_child.styles';
 import { EuiFlyoutCloseButton } from './_flyout_close_button';
 import { EuiFlyoutContext } from './flyout_context';
@@ -107,15 +107,6 @@ export const EuiFlyoutChild: EuiFlyoutChildProps = ({
     );
   }
 
-  const themeContext = useEuiTheme();
-
-  const effectiveSize = size;
-  const sideBySideWidth = effectiveSize === 's' ? '25vw' : '50vw';
-
-  const styles = useMemo(() => {
-    return euiFlyoutChildStyles(themeContext, sideBySideWidth);
-  }, [themeContext, sideBySideWidth]);
-
   const handleClose = (event: MouseEvent | TouchEvent | KeyboardEvent) => {
     setIsChildFlyoutOpen?.(false); // Notify parent before calling onClose
     onClose(event);
@@ -195,12 +186,13 @@ export const EuiFlyoutChild: EuiFlyoutChildProps = ({
 
   const flyoutWrapperRef = useRef<HTMLDivElement>(null);
 
+  const classes = classNames('euiFlyoutChild', className);
+
+  const styles = useEuiMemoizedStyles(euiFlyoutChildStyles);
   const overflowCssStyles = [
-    styles.overflow.euiFlyoutChild__overflow,
+    styles.overflow.overflow,
     banner ? styles.overflow.hasBanner : styles.overflow.noBanner,
   ];
-
-  const classes = classNames('euiFlyoutChild', className);
 
   return (
     <EuiFocusTrap
@@ -219,10 +211,10 @@ export const EuiFlyoutChild: EuiFlyoutChildProps = ({
         className={classes}
         css={[
           styles.euiFlyoutChild,
+          size === 's' ? styles.s : styles.m,
           childLayoutMode === 'alongside'
             ? styles.sidePosition
             : styles.stackedPosition,
-          childLayoutMode === 'alongside' && styles.sizeVariant,
         ]}
         data-test-subj="euiFlyoutChild"
         role="dialog"
@@ -245,7 +237,7 @@ export const EuiFlyoutChild: EuiFlyoutChildProps = ({
         {!hideCloseButton && (
           <EuiFlyoutCloseButton
             className="euiFlyoutChild__closeButton"
-            css={styles.euiFlyoutChild__closeButton}
+            css={styles.closeButton}
             onClose={handleClose}
             side="right"
             closeButtonPosition="inside"
@@ -260,7 +252,7 @@ export const EuiFlyoutChild: EuiFlyoutChildProps = ({
           {banner && (
             <div
               className="euiFlyoutChild__banner"
-              css={styles.euiFlyoutChild__banner}
+              css={styles.banner}
               data-test-subj="euiFlyoutChildBanner"
             >
               {banner}
@@ -268,7 +260,7 @@ export const EuiFlyoutChild: EuiFlyoutChildProps = ({
           )}
           <div
             className="euiFlyoutChild__overflowContent"
-            css={styles.euiFlyoutChild__overflowContent}
+            css={styles.overflow.wrapper}
           >
             {processedChildren}
           </div>
