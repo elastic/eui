@@ -7,7 +7,7 @@
  */
 
 import React from 'react';
-import { fireEvent, queryByAttribute } from '@testing-library/react';
+import { fireEvent } from '@testing-library/react';
 import {
   waitForEuiToolTipVisible,
   waitForEuiToolTipHidden,
