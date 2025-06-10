@@ -26,18 +26,84 @@ You can read more about other ways to <Link to="https://github.com/elastic/eui/b
 
 EUI is designed to work in the following environments:
 
-| Environment                | Supported?  | Details |
-|----------------------------|:-----------:|---------|
-| **React 16**               |     ✅      | Fully supported (plans to [deprecate support for React 16](https://github.com/elastic/eui/issues/8578)) |
-| **React 17**               |     ✅      | Fully supported |
-| **React 18**               |     ✅      | Fully supported (recommended) |
-| **React 19**               |     ❌      | Not supported (plans to [introduce support for React 19](https://github.com/elastic/eui/issues/8720)) |
-| **Webpack**                |     ✅      | Fully supported |
-| **Vite**                   |     ⚠️      | Supported with caveats ([details](https://github.com/elastic/eui/issues/5463)) |
-| **Rollup**                 |     ⚠️      | Supported with caveats ([details](https://github.com/elastic/eui/issues/5463)) |
-| **esbuild**                |     ⚠️      | Supported with caveats ([details](https://github.com/elastic/eui/issues/5463)) |
-| **Strict Mode**            |     ❌      | Not supported ([details](https://github.com/elastic/eui/issues/7774)) |
-| **Server-side Rendering**  |     ⚠️      | Supported with caveats ([details](https://github.com/elastic/eui/issues/5419)) |
+```mdx-code-block
+import { EuiTable, EuiTableHeader, EuiTableHeaderCell, EuiTableBody, EuiTableRow, EuiTableRowCell } from '@elastic/eui';
+import { css } from '@emotion/react';
+```
+
+<EuiTable>
+  <EuiTableHeader>
+    <EuiTableHeaderCell>Environment</EuiTableHeaderCell>
+    <EuiTableHeaderCell align="center">Supported?</EuiTableHeaderCell>
+    <EuiTableHeaderCell>Details</EuiTableHeaderCell>
+  </EuiTableHeader>
+  <EuiTableBody>
+    <EuiTableRow>
+      <EuiTableRowCell>React 16</EuiTableRowCell>
+      <EuiTableRowCell align="center">✅</EuiTableRowCell>
+      <EuiTableRowCell>
+        Fully supported (plans to <Link href="https://github.com/elastic/eui/issues/8578">deprecate support for React 16</Link>)
+      </EuiTableRowCell>
+    </EuiTableRow>
+    <EuiTableRow>
+      <EuiTableRowCell>React 17</EuiTableRowCell>
+      <EuiTableRowCell align="center">✅</EuiTableRowCell>
+      <EuiTableRowCell>Fully supported</EuiTableRowCell>
+    </EuiTableRow>
+    <EuiTableRow>
+      <EuiTableRowCell>React 18</EuiTableRowCell>
+      <EuiTableRowCell align="center">✅</EuiTableRowCell>
+      <EuiTableRowCell>Fully supported (recommended)</EuiTableRowCell>
+    </EuiTableRow>
+    <EuiTableRow>
+      <EuiTableRowCell>React 19</EuiTableRowCell>
+      <EuiTableRowCell align="center">❌</EuiTableRowCell>
+      <EuiTableRowCell>
+        Not supported (plans to <Link href="https://github.com/elastic/eui/issues/8720">introduce support for React 19</Link>)
+      </EuiTableRowCell>
+    </EuiTableRow>
+    <EuiTableRow>
+      <EuiTableRowCell>Webpack</EuiTableRowCell>
+      <EuiTableRowCell align="center">✅</EuiTableRowCell>
+      <EuiTableRowCell>Fully supported</EuiTableRowCell>
+    </EuiTableRow>
+    <EuiTableRow>
+      <EuiTableRowCell>Vite</EuiTableRowCell>
+      <EuiTableRowCell align="center">⚠️</EuiTableRowCell>
+      <EuiTableRowCell>
+        Supported with caveats (<Link href="https://github.com/elastic/eui/issues/5463">details</Link>)
+      </EuiTableRowCell>
+    </EuiTableRow>
+    <EuiTableRow>
+      <EuiTableRowCell>Rollup</EuiTableRowCell>
+      <EuiTableRowCell align="center">⚠️</EuiTableRowCell>
+      <EuiTableRowCell>
+        Supported with caveats (<Link href="https://github.com/elastic/eui/issues/5463">details</Link>)
+      </EuiTableRowCell>
+    </EuiTableRow>
+    <EuiTableRow>
+      <EuiTableRowCell>esbuild</EuiTableRowCell>
+      <EuiTableRowCell align="center">⚠️</EuiTableRowCell>
+      <EuiTableRowCell>
+        Supported with caveats (<Link href="https://github.com/elastic/eui/issues/5463">details</Link>)
+      </EuiTableRowCell>
+    </EuiTableRow>
+    <EuiTableRow>
+      <EuiTableRowCell>Strict Mode</EuiTableRowCell>
+      <EuiTableRowCell align="center">❌</EuiTableRowCell>
+      <EuiTableRowCell>
+        Not supported (<Link href="https://github.com/elastic/eui/issues/7774">details</Link>)
+      </EuiTableRowCell>
+    </EuiTableRow>
+    <EuiTableRow>
+      <EuiTableRowCell>Server-side Rendering</EuiTableRowCell>
+      <EuiTableRowCell align="center">⚠️</EuiTableRowCell>
+      <EuiTableRowCell>
+        Supported with caveats (<Link href="https://github.com/elastic/eui/issues/5419">details</Link>)
+      </EuiTableRowCell>
+    </EuiTableRow>
+  </EuiTableBody>
+</EuiTable>
 
 If you have questions about your environment or run into issues, please open a [GitHub issue](https://github.com/elastic/eui/issues/new/choose) or start a [discussion](https://github.com/elastic/eui/discussions/new/choose).
 
