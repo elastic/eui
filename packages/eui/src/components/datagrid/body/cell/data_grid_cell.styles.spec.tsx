@@ -132,6 +132,7 @@ describe('Cell outline styles', () => {
           });
 
         cy.realPress('Enter');
+        cy.wait(50);
         getHeaderCell().then(($el) => {
           expect(getOutlineColor($el[0])).to.eq(EXPECTED_HOVER_COLOR);
         });
@@ -162,6 +163,7 @@ describe('Cell outline styles', () => {
           });
 
         cy.realPress('Enter');
+        cy.wait(50);
         getRowCell().then(($el) => {
           expect(getOutlineColor($el[0])).to.eq(EXPECTED_HOVER_COLOR);
         });
