@@ -25,42 +25,47 @@ import { EuiFlyoutContext } from './flyout_context';
 import { EuiFlyoutBody } from './flyout_body';
 import { EuiFocusTrap } from '../focus_trap';
 
-export type EuiFlyoutChildProps = FunctionComponent<
-  HTMLAttributes<HTMLDivElement> &
-    CommonProps & {
-      /**
-       * Called when the child panel's close button is clicked
-       */
-      onClose: (event: MouseEvent | TouchEvent | KeyboardEvent) => void;
-      /**
-       * Use to display a banner at the top of the child. It is suggested to use `EuiCallOut` for it.
-       */
-      banner?: ReactNode;
-      /**
-       * Hides the default close button. You must provide another close button somewhere within the child flyout.
-       * @default false
-       */
-      hideCloseButton?: boolean;
-      /**
-       * [Scrollable regions (or their children) should be focusable](https://dequeuniversity.com/rules/axe/4.0/scrollable-region-focusable)
-       * to allow keyboard users to scroll the region via arrow keys.
-       *
-       * By default, EuiFlyoutChild's scroll overflow wrapper sets a `tabIndex` of `0`.
-       * If you know your flyout child content already contains focusable children
-       * that satisfy keyboard accessibility requirements, you can use this prop
-       * to override this default.
-       */
-      scrollableTabIndex?: number;
-      /**
-       * Size of the child flyout panel.
-       * When the parent flyout is 'm', child is limited to 's'.
-       * @default 's'
-       */
-      size?: 's' | 'm';
-    }
->;
+// Define the actual props interface/type
+export interface EuiFlyoutChildProps
+  extends HTMLAttributes<HTMLDivElement>,
+    CommonProps {
+  /**
+   * Called when the child panel's close button is clicked
+   */
+  onClose: (event: MouseEvent | TouchEvent | KeyboardEvent) => void;
+  /**
+   * Use to display a banner at the top of the child. It is suggested to use `EuiCallOut` for it.
+   */
+  banner?: ReactNode;
+  /**
+   * Hides the default close button. You must provide another close button somewhere within the child flyout.
+   * @default false
+   */
+  hideCloseButton?: boolean;
+  /**
+   * [Scrollable regions (or their children) should be focusable](https://dequeuniversity.com/rules/axe/4.0/scrollable-region-focusable)
+   * to allow keyboard users to scroll the region via arrow keys.
+   *
+   * By default, EuiFlyoutChild's scroll overflow wrapper sets a `tabIndex` of `0`.
+   * If you know your flyout child content already contains focusable children
+   * that satisfy keyboard accessibility requirements, you can use this prop
+   * to override this default.
+   */
+  scrollableTabIndex?: number;
+  /**
+   * Size of the child flyout panel.
+   * When the parent flyout is 'm', child is limited to 's'.
+   * @default 's'
+   */
+  size?: 's' | 'm';
+  /**
+   * Children are implicitly part of FunctionComponent, but good to have if props type is standalone.
+   */
+  children?: ReactNode;
+}
 
-export const EuiFlyoutChild: EuiFlyoutChildProps = ({
+// Update the component to use this props type with FunctionComponent
+export const EuiFlyoutChild: FunctionComponent<EuiFlyoutChildProps> = ({
   children,
   className,
   banner,

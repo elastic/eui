@@ -30,7 +30,8 @@ interface EuiFlyoutChildManagerProps {
 
 /**
  * An intermediate component between EuiFlyout and EuiFlyoutChild.
- * This exists to remove responsibility of managing child flyout state from EuiFlyout.
+ * This removes the responsibility of managing child flyout state from EuiFlyout,
+ * especially since a child flyout might not exist.
  */
 export const EuiFlyoutChildManager: FunctionComponent<
   EuiFlyoutChildManagerProps
