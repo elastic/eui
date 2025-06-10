@@ -1,17 +1,31 @@
 ## Summary
 
 <!--
-Provide a detailed summary of your PR. Explain how you arrived at your solution. If it includes changes to UI elements include a screenshot or gif.
+Provide a detailed summary of your PR. What changed? Explain how you arrived at your solution.
 
 If this is your first PR in the EUI repo, please ensure you've fully read through our [contributing to EUI](https://github.com/elastic/eui/blob/main/wiki/contributing-to-eui#how-to-ensure-the-timely-review-of-pull-requests) wiki guide.
 -->
 
-## Related issue
+## Why are we making this change?
 
 <!--
-Generally, most PRs should have a related issue from the [public EUI repo](https://github.com/elastic/eui) that explain why we are making changes.
+Generally, most PRs should have a related issue from the [public EUI repo](https://github.com/elastic/eui) that explain **why** we are making changes.
 
-If this is a small change that does *not* have an issue associated with, please clearly explain *why* we are making this change. Our future selves will thank you.
+If this change does *not* have an issue associated with, or it is not clear in the issue, please clearly explain *why* we are making this change. This is valuable context for our changelogs.
+-->
+
+## Screenshots
+
+<!--
+If this change includes changes to UI, it is important to include screenshots or gif. This helps our users understand what changed when reviewing our changelogs.
+-->
+
+## Impact to users
+
+<!--
+How will this change impact EUI users? If it's a breaking change, what will they need to do to handle this change when upgrading? Take a moment to look at usage in Kibana and consider how many usages this will impact and note it here.
+
+Even if it is not a breaking change, how significant is the visual change? Is it a large enough visual change that we would want them advise them to test it?
 -->
 
 ## QA
