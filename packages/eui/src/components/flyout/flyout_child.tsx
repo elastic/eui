@@ -70,7 +70,6 @@ export const EuiFlyoutChild: EuiFlyoutChildProps = ({
   size = 's',
   ...rest
 }) => {
-  const themeContext = useEuiTheme();
   const flyoutContext = useContext(EuiFlyoutContext);
 
   if (!flyoutContext) {
@@ -79,7 +78,7 @@ export const EuiFlyoutChild: EuiFlyoutChildProps = ({
 
   const {
     setIsChildFlyoutOpen,
-    childLayoutMode = 'alongside', // Default to 'alongside' if not provided
+    childLayoutMode = 'alongside',
     parentFlyoutRef,
     size: parentSize,
   } = flyoutContext;
@@ -107,33 +106,19 @@ export const EuiFlyoutChild: EuiFlyoutChildProps = ({
       'When the parent EuiFlyout size is "m", the EuiFlyoutChild size cannot be "m". Please use size "s" for the EuiFlyoutChild.'
     );
   }
-  const effectiveSize = size;
 
-  const currentSideBySideVwWidth = effectiveSize === 's' ? '25vw' : '50vw';
+  const themeContext = useEuiTheme();
+
+  const effectiveSize = size;
+  const sideBySideWidth = effectiveSize === 's' ? '25vw' : '50vw';
 
   const styles = useMemo(() => {
-    return euiFlyoutChildStyles(themeContext, currentSideBySideVwWidth);
-  }, [themeContext, currentSideBySideVwWidth]);
-
-  const overflowCssStyles = [
-    styles.overflow.euiFlyoutChild__overflow,
-    banner ? styles.overflow.hasBanner : styles.overflow.noBanner,
-  ];
-
-  const classes = classNames('euiFlyoutChild', className);
+    return euiFlyoutChildStyles(themeContext, sideBySideWidth);
+  }, [themeContext, sideBySideWidth]);
 
   const handleClose = (event: MouseEvent | TouchEvent | KeyboardEvent) => {
     setIsChildFlyoutOpen?.(false); // Notify parent before calling onClose
     onClose(event);
-  };
-
-  const handleCloseButtonClick: React.MouseEventHandler<HTMLButtonElement> = (
-    event
-  ) => {
-    // We pass the React.MouseEvent to handleClose. It should be compatible
-    // enough with the native MouseEvent for the props.onClose callback.
-    // If stricter type checking is needed for onClose, this might need adjustment.
-    handleClose(event as unknown as MouseEvent); // Cast to base MouseEvent
   };
 
   const titleIdGenerated = useGeneratedHtmlId({
@@ -143,8 +128,6 @@ export const EuiFlyoutChild: EuiFlyoutChildProps = ({
 
   let flyoutTitleText: string | undefined;
   let hasDescribedByBody = false;
-  const flyoutWrapperRef = useRef<HTMLDivElement>(null);
-
   Children.forEach(children, (child) => {
     if (React.isValidElement(child)) {
       if ((child.type as any)?.displayName === 'EuiFlyoutHeader') {
@@ -210,6 +193,15 @@ export const EuiFlyoutChild: EuiFlyoutChildProps = ({
     ariaLabelledBy,
   ]);
 
+  const flyoutWrapperRef = useRef<HTMLDivElement>(null);
+
+  const overflowCssStyles = [
+    styles.overflow.euiFlyoutChild__overflow,
+    banner ? styles.overflow.hasBanner : styles.overflow.noBanner,
+  ];
+
+  const classes = classNames('euiFlyoutChild', className);
+
   return (
     <EuiFocusTrap
       returnFocus={() => {
@@ -254,7 +246,6 @@ export const EuiFlyoutChild: EuiFlyoutChildProps = ({
           <EuiFlyoutCloseButton
             className="euiFlyoutChild__closeButton"
             css={styles.euiFlyoutChild__closeButton}
-            onClick={handleCloseButtonClick} // Use wrapped, more specific handler
             onClose={handleClose}
             side="right"
             closeButtonPosition="inside"
@@ -275,7 +266,10 @@ export const EuiFlyoutChild: EuiFlyoutChildProps = ({
               {banner}
             </div>
           )}
-          <div className="euiFlyoutChild__overflowContent">
+          <div
+            className="euiFlyoutChild__overflowContent"
+            css={styles.euiFlyoutChild__overflowContent}
+          >
             {processedChildren}
           </div>
         </div>
