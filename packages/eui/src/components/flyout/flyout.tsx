@@ -47,7 +47,7 @@ import { EuiScreenReaderOnly } from '../accessibility';
 
 import { EuiFlyoutCloseButton } from './_flyout_close_button';
 import { euiFlyoutStyles } from './flyout.styles';
-import { EuiFlyoutContext } from './flyout_context';
+import { EuiFlyoutContext, EuiFlyoutContextValue } from './flyout_context';
 import { EuiFlyoutChild } from './flyout_child';
 
 export const TYPES = ['push', 'overlay'] as const;
@@ -210,22 +210,37 @@ export const EuiFlyout = forwardRef(
       | null
   ) => {
     const Element = as || defaultElement;
-    const { euiTheme } = useEuiTheme();
     const maskRef = useRef<HTMLDivElement>(null);
 
     // Ref for the main flyout element to pass to context
     const internalParentFlyoutRef = useRef<HTMLDivElement>(null);
 
-    // State for child flyout open status
-    const [isChildFlyoutOpen, setIsChildFlyoutOpen] = useState(false);
-    // State for window width
-    const [windowWidth, setWindowWidth] = useState(
-      typeof window !== 'undefined' ? window.innerWidth : Infinity
-    );
-    // State for child layout mode
-    const [childLayoutMode, setChildLayoutMode] = useState<
+    // NEW state in EuiFlyout to hold values from EuiFlyoutChildManager callbacks
+    const [actualIsChildFlyoutOpen, setActualIsChildFlyoutOpen] =
+      useState(false);
+    const [actualChildLayoutMode, setActualChildLayoutMode] = useState<
       'alongside' | 'stacked'
     >('alongside');
+
+    // Define baseContextValue unconditionally at the top level
+    const baseContextValue = useMemo<EuiFlyoutContextValue>(
+      () => ({
+        size: size as EuiFlyoutSize,
+        parentFlyoutRef: internalParentFlyoutRef,
+        isChildFlyoutOpen: actualIsChildFlyoutOpen,
+        setIsChildFlyoutOpen: () => {
+          // This is a placeholder for when no child manager is active.
+          // EuiFlyoutChild should only call this if EuiFlyoutChildManager is providing the context.
+        },
+        childLayoutMode: actualChildLayoutMode,
+      }),
+      [
+        size,
+        internalParentFlyoutRef,
+        actualIsChildFlyoutOpen,
+        actualChildLayoutMode,
+      ]
+    );
 
     // Check for child flyout
     const childFlyoutElement = React.Children.toArray(children).find(
@@ -359,68 +374,49 @@ export const EuiFlyout = forwardRef(
       childFlyoutSpecificClass = `euiFlyout--hasChild--${childSize}`;
     }
 
-    // Calculate stacking breakpoint value for child flyout
-    const stackingBreakpointValue = useMemo(() => {
-      if (!hasChildFlyout || !childFlyoutElement) return Infinity;
-
-      // Parent size is validated to 's' or 'm' if child exists
-      const parentSizeName = size as 's' | 'm';
-      const childSizeName = childFlyoutElement.props.size || 's';
-
-      let parentNumericValue = 0;
-      if (parentSizeName === 's') parentNumericValue = euiTheme.breakpoint.s;
-      else if (parentSizeName === 'm')
-        parentNumericValue = euiTheme.breakpoint.m;
-
-      let childNumericValue = 0;
-      if (childSizeName === 's') childNumericValue = euiTheme.breakpoint.s;
-      else if (childSizeName === 'm') childNumericValue = euiTheme.breakpoint.m;
-
-      return parentNumericValue + childNumericValue;
-    }, [hasChildFlyout, childFlyoutElement, size, euiTheme.breakpoint]);
-
-    // Effect to update windowWidth on resize
-    useEffect(() => {
-      if (!hasChildFlyout || typeof window === 'undefined') return;
-
-      const handleResize = () => {
-        setWindowWidth(window.innerWidth);
-      };
-
-      window.addEventListener('resize', handleResize);
-      handleResize(); // Initial call
-
-      return () => window.removeEventListener('resize', handleResize);
-    }, [hasChildFlyout]);
-
-    // Effect to update childLayoutMode based on windowWidth and stackingBreakpoint
-    useEffect(() => {
-      if (!hasChildFlyout) {
-        setChildLayoutMode('alongside'); // Default if no child
-        return;
-      }
-      if (windowWidth >= stackingBreakpointValue) {
-        setChildLayoutMode('alongside');
-      } else {
-        setChildLayoutMode('stacked');
-      }
-    }, [windowWidth, stackingBreakpointValue, hasChildFlyout]);
-
-    const flyoutLayoutClass = hasChildFlyout
-      ? `euiFlyout--hasChild--${childLayoutMode}`
-      : undefined;
+    // Determine what to render: direct children, or children wrapped by EuiFlyoutChildManager
+    let contentToRender;
+    if (hasChildFlyout && childFlyoutElement) {
+      contentToRender = (
+        <EuiFlyoutChildManager
+          parentDesignatedSize={size as 's' | 'm'} // Already validated
+          parentFlyoutRef={internalParentFlyoutRef}
+          childElement={childFlyoutElement}
+          childrenToRender={children}
+          reportIsChildOpen={setActualIsChildFlyoutOpen}
+          reportChildLayoutMode={setActualChildLayoutMode}
+        />
+      );
+    } else {
+      // No child flyout, provide a basic context using the unconditionally defined baseContextValue
+      contentToRender = (
+        <EuiFlyoutContext.Provider value={baseContextValue}>
+          {children}
+        </EuiFlyoutContext.Provider>
+      );
+    }
 
     const flyoutClasses = classnames(
       'euiFlyout',
       { 'euiFlyout--hasChild': hasChildFlyout },
       childFlyoutSpecificClass, // e.g. euiFlyout--hasChild--s
-      flyoutLayoutClass, // e.g. euiFlyout--hasChild--stacked
+      hasChildFlyout
+        ? `euiFlyout--hasChild--${actualChildLayoutMode}`
+        : undefined,
       className
     );
 
     /*
-     * If not disabled, automatically add fixed EuiHeaders as shards
-     * to EuiFlyout focus traps, to prevent focus fighting
+     * Trap focus even when `ownFocus={false}`, otherwise closing
+     * the flyout won't return focus to the originating button.
+     *
+     * Set `clickOutsideDisables={true}` when `ownFocus={false}`
+     * to allow non-keyboard users the ability to interact with
+     * elements outside the flyout.
+     *
+     * Set `onClickOutside={onClose}` when `ownFocus` and `type` are the defaults,
+     * or if `outsideClickCloses={true}` to close on clicks that target
+     * (both mousedown and mouseup) the overlay mask.
      */
     const flyoutToggle = useRef<Element | null>(document.activeElement);
     const [fixedHeaders, setFixedHeaders] = useState<HTMLDivElement[]>([]);
@@ -453,24 +449,6 @@ export const EuiFlyout = forwardRef(
       [_focusTrapProps, fixedHeaders]
     );
 
-    const contextValue = useMemo(
-      () => ({
-        size,
-        parentFlyoutRef: internalParentFlyoutRef,
-        isChildFlyoutOpen,
-        setIsChildFlyoutOpen,
-        childLayoutMode: hasChildFlyout ? childLayoutMode : undefined,
-      }),
-      [
-        size,
-        internalParentFlyoutRef,
-        isChildFlyoutOpen,
-        setIsChildFlyoutOpen,
-        childLayoutMode,
-        hasChildFlyout,
-      ]
-    );
-
     const closeButton = !hideCloseButton && (
       <EuiFlyoutCloseButton
         {...closeButtonProps}
@@ -480,16 +458,9 @@ export const EuiFlyout = forwardRef(
       />
     );
 
-    const content = (
-      <>
-        {closeButton}
-        <EuiFlyoutContext.Provider value={contextValue}>
-          {children}
-        </EuiFlyoutContext.Provider>
-      </>
-    );
-
-    // Display the flyout in a portal by default, or if it's defined as an overlay flyout
+    /*
+     * Provide meaningful screen reader instructions/details
+     */
     const hasOverlayMask = ownFocus && !isPushed;
     const descriptionId = useGeneratedHtmlId();
     const ariaDescribedBy = classnames(descriptionId, _ariaDescribedBy);
@@ -561,12 +532,12 @@ export const EuiFlyout = forwardRef(
       >
         <EuiWindowEvent event="keydown" handler={onKeyDown} />
         <EuiFocusTrap
-          disabled={isPushed || (ownFocus && isChildFlyoutOpen)}
+          disabled={isPushed || (ownFocus && actualIsChildFlyoutOpen)}
           scrollLock={hasOverlayMask}
           clickOutsideDisables={!ownFocus}
           onClickOutside={onClickOutside}
           returnFocus={() => {
-            if (!isChildFlyoutOpen && flyoutToggle.current) {
+            if (!actualIsChildFlyoutOpen && flyoutToggle.current) {
               (flyoutToggle.current as HTMLElement).focus();
               return false; // We've handled focus
             }
@@ -587,7 +558,8 @@ export const EuiFlyout = forwardRef(
             data-autofocus={!isPushed || undefined}
           >
             {!isPushed && screenReaderDescription}
-            {content}
+            {closeButton}
+            {contentToRender}
           </Element>
         </EuiFocusTrap>
       </EuiFlyoutWrapper>
@@ -601,6 +573,107 @@ export const EuiFlyout = forwardRef(
 ) => JSX.Element;
 // Recast to allow `displayName`
 (EuiFlyout as FunctionComponent).displayName = 'EuiFlyout';
+
+interface EuiFlyoutChildManagerProps {
+  parentDesignatedSize: 's' | 'm'; // Parent EuiFlyout's size (validated)
+  parentFlyoutRef: React.RefObject<HTMLDivElement>;
+  childElement: React.ReactElement<ComponentProps<typeof EuiFlyoutChild>>;
+  childrenToRender: ReactNode; // The original children passed to EuiFlyout
+  reportIsChildOpen: (isOpen: boolean) => void;
+  reportChildLayoutMode: (mode: 'alongside' | 'stacked') => void;
+}
+
+const EuiFlyoutChildManager: FunctionComponent<EuiFlyoutChildManagerProps> = ({
+  parentDesignatedSize,
+  parentFlyoutRef,
+  childElement,
+  childrenToRender,
+  reportIsChildOpen,
+  reportChildLayoutMode,
+}) => {
+  const { euiTheme } = useEuiTheme();
+
+  const [isChildFlyoutOpen, setIsChildFlyoutOpen] = useState(false);
+  const [windowWidth, setWindowWidth] = useState(
+    typeof window !== 'undefined' ? window.innerWidth : Infinity
+  );
+  const [childLayoutMode, setChildLayoutMode] = useState<
+    'alongside' | 'stacked'
+  >('alongside');
+
+  // Effect to update windowWidth on resize
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+
+    window.addEventListener('resize', handleResize);
+    handleResize(); // Initial call
+
+    return () => window.removeEventListener('resize', handleResize);
+  }, []); // Empty dependency array, runs once on mount
+
+  // Calculate stacking breakpoint value for child flyout
+  const stackingBreakpointValue = useMemo(() => {
+    const parentSizeName = parentDesignatedSize;
+    const childSizeName = childElement.props.size || 's';
+
+    let parentNumericValue = 0;
+    if (parentSizeName === 's') parentNumericValue = euiTheme.breakpoint.s;
+    else if (parentSizeName === 'm') parentNumericValue = euiTheme.breakpoint.m;
+    // Parent 'l' size is not allowed when child is present, so no need to check here
+
+    let childNumericValue = 0;
+    if (childSizeName === 's') childNumericValue = euiTheme.breakpoint.s;
+    else if (childSizeName === 'm') childNumericValue = euiTheme.breakpoint.m;
+
+    return parentNumericValue + childNumericValue;
+  }, [parentDesignatedSize, childElement.props.size, euiTheme.breakpoint]);
+
+  // Effect to update childLayoutMode based on windowWidth and stackingBreakpoint
+  useEffect(() => {
+    if (windowWidth >= stackingBreakpointValue) {
+      setChildLayoutMode('alongside');
+    } else {
+      setChildLayoutMode('stacked');
+    }
+  }, [windowWidth, stackingBreakpointValue]);
+
+  // Effect to report isChildFlyoutOpen changes to the parent EuiFlyout
+  useEffect(() => {
+    reportIsChildOpen(isChildFlyoutOpen);
+  }, [isChildFlyoutOpen, reportIsChildOpen]);
+
+  // Effect to report childLayoutMode changes to the parent EuiFlyout
+  useEffect(() => {
+    reportChildLayoutMode(childLayoutMode);
+  }, [childLayoutMode, reportChildLayoutMode]);
+
+  const contextValue = useMemo<EuiFlyoutContextValue>(
+    () => ({
+      size: parentDesignatedSize, // Context shares parent's original size
+      parentFlyoutRef,
+      isChildFlyoutOpen,
+      setIsChildFlyoutOpen,
+      childLayoutMode,
+    }),
+    [
+      parentDesignatedSize,
+      parentFlyoutRef,
+      isChildFlyoutOpen,
+      setIsChildFlyoutOpen,
+      childLayoutMode,
+    ]
+  );
+
+  return (
+    <EuiFlyoutContext.Provider value={contextValue}>
+      {childrenToRender}
+    </EuiFlyoutContext.Provider>
+  );
+};
 
 /**
  * Light wrapper for conditionally rendering portals or overlay masks:
