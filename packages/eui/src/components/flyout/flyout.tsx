@@ -466,7 +466,7 @@ export const EuiFlyout = forwardRef(
     if (hasChildFlyout && childFlyoutElement) {
       contentToRender = (
         <EuiFlyoutChildManager
-          parentDesignatedSize={size as 's' | 'm'}
+          parentSize={size as 's' | 'm'}
           parentFlyoutRef={internalParentFlyoutRef}
           childElement={childFlyoutElement}
           childrenToRender={children}

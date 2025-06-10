@@ -10,7 +10,7 @@ import { createContext, RefObject } from 'react';
 import { EuiFlyoutSize } from './flyout';
 
 export interface EuiFlyoutContextValue {
-  size?: EuiFlyoutSize | string | number;
+  parentSize?: EuiFlyoutSize | string | number;
   parentFlyoutRef?: RefObject<HTMLDivElement>;
   isChildFlyoutOpen?: boolean;
   setIsChildFlyoutOpen?: (isOpen: boolean) => void;

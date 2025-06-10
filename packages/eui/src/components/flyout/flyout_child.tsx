@@ -80,7 +80,7 @@ export const EuiFlyoutChild: EuiFlyoutChildProps = ({
     setIsChildFlyoutOpen,
     childLayoutMode = 'alongside',
     parentFlyoutRef,
-    size: parentSize,
+    parentSize,
   } = flyoutContext;
 
   useEffect(() => {
