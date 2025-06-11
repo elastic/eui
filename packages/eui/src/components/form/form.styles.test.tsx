@@ -148,7 +148,6 @@ describe('euiFormControlStyles', () => {
             --euiFormControlStateColor: #0B64DD;
             --euiFormControlStateHoverColor: #0B64DD;
             --euiFormControlStateWidth: 2px;
-
             
         position: relative;
         z-index: 1;
@@ -156,6 +155,7 @@ describe('euiFormControlStyles', () => {
         outline: var(--euiFormControlStateWidth) solid var(--euiFormControlStateColor);
         outline-offset: calc(-1 * var(--euiFormControlStateWidth));
 
+            
           ",
         "formWidth": "
             max-inline-size: 400px;
