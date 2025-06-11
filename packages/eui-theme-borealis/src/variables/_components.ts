@@ -117,13 +117,10 @@ const component_colors: _EuiThemeComponentColors = {
     ([borderBaseSubdued]) => borderBaseSubdued,
     ['colors.borderBaseSubdued']
   ),
+
   dataGridRowBackground: computed(
     ([backgroundBasePlain]) => backgroundBasePlain,
     ['colors.backgroundBasePlain']
-  ),
-  dataGridRowBackgroundStriped: computed(
-    ([backgroundBaseSubdued]) => backgroundBaseSubdued,
-    ['colors.backgroundBaseSubdued']
   ),
   dataGridRowBackgroundHover: computed(
     ([backgroundBaseInteractiveHover]) => backgroundBaseInteractiveHover,
@@ -137,6 +134,36 @@ const component_colors: _EuiThemeComponentColors = {
     ([backgroundBaseInteractiveSelectHover]) =>
       backgroundBaseInteractiveSelectHover,
     ['colors.backgroundBaseInteractiveSelectHover']
+  ),
+
+  dataGridRowStripesBackground: computed(
+    ([backgroundBasePlain]) => backgroundBasePlain,
+    ['colors.backgroundBasePlain']
+  ),
+  // "Legacy", same as dataGridRowStripesBackground
+  dataGridRowBackgroundStriped: computed(
+    ([backgroundBaseSubdued]) => backgroundBaseSubdued,
+    ['colors.backgroundBaseSubdued']
+  ),
+  dataGridRowStripesBackgroundHover: computed(
+    ([backgroundBasePlain]) => backgroundBasePlain,
+    ['colors.backgroundBasePlain']
+  ),
+  dataGridRowStripesBackgroundStriped: computed(
+    ([backgroundBaseSubdued]) => backgroundBaseSubdued,
+    ['colors.backgroundBaseSubdued']
+  ),
+  dataGridRowStripesBackgroundStripedHover: computed(
+    ([backgroundBaseSubdued]) => backgroundBaseSubdued,
+    ['colors.backgroundBaseSubdued']
+  ),
+  dataGridRowStripesBackgroundSelect: computed(
+    ([backgroundBaseInteractiveSelect]) => backgroundBaseInteractiveSelect,
+    ['colors.backgroundBaseInteractiveSelect']
+  ),
+  dataGridRowStripesBackgroundSelectHover: computed(
+    ([backgroundBaseInteractiveSelect]) => backgroundBaseInteractiveSelect,
+    ['colors.backgroundBaseInteractiveSelect']
   ),
 
   dragDropDraggingBackground: computed(

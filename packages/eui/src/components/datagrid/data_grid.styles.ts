@@ -75,10 +75,6 @@ export const euiDataGridStyles = (euiThemeContext: UseEuiTheme) => {
         background-color: ${euiTheme.components.dataGridRowBackground};
       }
 
-      *:where(&.euiDataGrid--stripes .euiDataGridRow--striped) {
-        background-color: ${euiTheme.components.dataGridRowBackgroundStriped};
-      }
-
       *:where(&.euiDataGrid--rowHoverHighlight .euiDataGridRow:hover) {
         background-color: ${euiTheme.components.dataGridRowBackgroundHover};
       }
@@ -95,6 +91,46 @@ export const euiDataGridStyles = (euiThemeContext: UseEuiTheme) => {
         ) {
         background-color: ${euiTheme.components
           .dataGridRowBackgroundSelectHover};
+      }
+
+      /* Stripes */
+
+      *:where(&.euiDataGrid--stripes .euiDataGridRow) {
+        background-color: ${euiTheme.components.dataGridRowStripesBackground};
+      }
+
+      *:where(&.euiDataGrid--stripes .euiDataGridRow--striped) {
+        background-color: ${euiTheme.components
+          .dataGridRowStripesBackgroundStriped};
+      }
+
+      *:where(
+          &.euiDataGrid--stripes.euiDataGrid--rowHoverHighlight
+            .euiDataGridRow:hover
+        ) {
+        background-color: ${euiTheme.components
+          .dataGridRowStripesBackgroundHover};
+      }
+
+      *:where(
+          &.euiDataGrid--stripes.euiDataGrid--rowHoverHighlight
+            .euiDataGridRow--striped:hover
+        ) {
+        background-color: ${euiTheme.components
+          .dataGridRowStripesBackgroundStripedHover};
+      }
+
+      *:where(&.euiDataGrid--stripes .euiDataGridRow--selected) {
+        background-color: ${euiTheme.components
+          .dataGridRowStripesBackgroundSelect};
+      }
+
+      *:where(
+          &.euiDataGrid--stripes.euiDataGrid--rowHoverHighlight
+            .euiDataGridRow--selected:hover
+        ) {
+        background-color: ${euiTheme.components
+          .dataGridRowStripesBackgroundSelectHover};
       }
 
       /* Hover colors are semitransparent and .euiDataGrid__content has
