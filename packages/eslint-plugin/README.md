@@ -128,24 +128,6 @@ function MyComponent() {
 
 It's worth pointing out that although the examples provided are specific to EUI components, this rule applies to all JSX elements.
 
-### `@elastic/eui/prefer-css-attributes-for-eui-components`
-
-This rule warns about the use of `style` attribute and encourages to replace it with `css` attribute. Using the `css` attribute ensures better integration with Emotion's styling capabilities.
-
-#### Example
-
-The following code:
-
-```jsx
-<EuiCode style={{ color: '#dd4040' }}>This is a test</EuiCode>
-```
-
-will raise an ESLint report and suggest replacing the `style` attribute with `css`:
-
-```jsx
-<EuiCode css={{ color: '#dd4040' }}>This is a test</EuiCode>
-```
-
 ## Testing
 
 ### Running unit tests
