@@ -356,13 +356,17 @@ export const euiFormControlFocusStyles = (euiThemeContext: UseEuiTheme) => {
       --euiFormControlStateColor: ${form.borderFocused};
       --euiFormControlStateHoverColor: ${form.borderFocused};
       --euiFormControlStateWidth: ${euiTheme.border.width.thick};
-
       ${euiFormControlHighlightBorderStyles}
+      ${highContrastModeStyles(euiThemeContext, {
+        forced: `
+          ${euiFormControlShowBackgroundLine(euiThemeContext, focusColor)}
+        `,
+      })}
     `
     : `
       --euiFormControlStateColor: ${focusColor};
       background-color: ${euiTheme.components.forms.backgroundFocused};
-      ${euiFormControlShowBackgroundUnderline(euiThemeContext, focusColor)}
+      ${euiFormControlShowBackgroundLine(euiThemeContext, focusColor)}
       outline: none; /* Remove all outlines and rely on our own bottom border gradient */
     `;
 };
@@ -388,11 +392,11 @@ export const euiFormControlInvalidStyles = (euiThemeContext: UseEuiTheme) => {
       };
       
       ${euiFormControlHighlightBorderStyles}
-      ${euiFormControlShowBackgroundUnderline(euiThemeContext, invalidColor)}
+      ${euiFormControlShowBackgroundLine(euiThemeContext, invalidColor)}
     `
     : `
       --euiFormControlStateColor: ${invalidColor};
-      ${euiFormControlShowBackgroundUnderline(euiThemeContext, invalidColor)}
+      ${euiFormControlShowBackgroundLine(euiThemeContext, invalidColor)}
     `;
 };
 
@@ -531,17 +535,17 @@ export const euiFormControlAutoFillStyles = (euiThemeContext: UseEuiTheme) => {
   `;
 };
 
-export const euiFormControlShowBackgroundUnderline = (
+export const euiFormControlShowBackgroundLine = (
   euiThemeContext: UseEuiTheme,
   color: string
 ) => {
-  const { euiTheme } = euiThemeContext;
+  const { euiTheme, highContrastMode } = euiThemeContext;
   const isRefreshVariant = isEuiThemeRefreshVariant(
     euiThemeContext,
     'formVariant'
   );
 
-  if (euiThemeContext.highContrastMode !== 'forced') {
+  if (highContrastMode !== 'forced') {
     return 'background-size: 100% 100%;';
   }
 
@@ -564,10 +568,6 @@ export const euiFormControlShowBackgroundUnderline = (
       )}) calc(100% - ${mathWithUnits(strokeWidth, (x) => x / 2)});
       background-position: ${euiTheme.border.width.thin};
       background-image: url("${refreshInlineSVG}");
-
-      &:hover {
-        background-image: none;
-      }
     `
     : `
     background-size: 100% ${stateUnderlineHeight};
