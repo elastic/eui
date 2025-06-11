@@ -8,7 +8,7 @@
 
 import { _EuiThemeVisColors } from '@elastic/eui-theme-common';
 
-import { shade, tint } from '../../../../services';
+import { shade, tint } from '../../../../services/color/manipulation';
 
 /**
  * NOTE: These were quick conversions of their Sass counterparts.
