@@ -907,6 +907,12 @@ When virtualization is on, **every row must be the same height** in order for th
 
 If `listProps.isVirtualized` is set to `false`, each row will fit its content. You can also remove truncation by setting `textWrap="wrap"` when virtualization is off. Note that while this is useful for dynamic options, it can also be computationally expensive as _all_ off-screen options will be rendered to the DOM. We do not recommend turning off virtualization for high numbers of options, but if you absolutely must do so, we suggest using methods such as async loading more options.
 
+:::warning Virtualization in testing environment
+
+In a testing environment, it might be necessary to set `listProps.isVirtualized` to `false` to ensure that all options are rendered.
+
+:::
+
 ### Custom content
 
 While it is best to stick to the `option.label, option.append, option.prepend` and `listProps.showIcons` props, you can pass a custom `renderOption` function which will pass back the single `option` object and the `searchValue` to use for highlighting.
