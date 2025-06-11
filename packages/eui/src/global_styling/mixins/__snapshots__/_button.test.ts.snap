@@ -32,9 +32,9 @@ exports[`useEuiButtonColorCSS base 1`] = `
   },
   "neutral": {
     "map": undefined,
-    "name": "ss04c5-displaysColorsMap-display-color",
+    "name": "1ynuoes-displaysColorsMap-display-color",
     "next": undefined,
-    "styles": "color:#626a75;background-color:#f2f5f9; ;;label:base-neutral;",
+    "styles": "color:#5f6a75;background-color:#f1f5f9; ;;label:base-neutral;",
     "toString": [Function],
   },
   "primary": {
@@ -127,12 +127,12 @@ exports[`useEuiButtonColorCSS empty 1`] = `
   },
   "neutral": {
     "map": undefined,
-    "name": "1i4ww3z-displaysColorsMap-display-color",
+    "name": "173vlas-displaysColorsMap-display-color",
     "next": undefined,
-    "styles": "color:#626a75;
+    "styles": "color:#5f6a75;
               &:focus,
               &:active {
-                background-color: rgba(190,207,227,0.1);
+                background-color: rgba(185,207,227,0.1);
               }
              ;;label:empty-neutral;",
     "toString": [Function],
@@ -232,9 +232,9 @@ exports[`useEuiButtonColorCSS fill 1`] = `
   },
   "neutral": {
     "map": undefined,
-    "name": "153oj0h-displaysColorsMap-display-color",
+    "name": "1s3b9cy-displaysColorsMap-display-color",
     "next": undefined,
-    "styles": "color:#000000;background-color:#BECFE3;outline-color:#000000;;;label:fill-neutral;",
+    "styles": "color:#000000;background-color:#B9CFE3;outline-color:#000000;;;label:fill-neutral;",
     "toString": [Function],
   },
   "primary": {
