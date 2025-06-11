@@ -352,9 +352,7 @@ export const EuiDataGrid = memo(
       bordersToClassMap[gridStyles.border!],
       headerToClassMap[gridStyles.header!],
       footerToClassMap[gridStyles.footer!],
-      // The striped version does not change the row color on hover
-      // TODO: check in Amsterdam, this would be breaking
-      rowHoverToClassMap[gridStyles.stripes! ? 'none' : gridStyles.rowHover!],
+      rowHoverToClassMap[gridStyles.rowHover!],
       cellPaddingsToClassMap[gridStyles.cellPadding!],
       {
         'euiDataGrid--stripes': gridStyles.stripes!,
