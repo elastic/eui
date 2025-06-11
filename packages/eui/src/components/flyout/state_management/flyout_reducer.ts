@@ -15,26 +15,31 @@ export const initialFlyoutState: FlyoutHistoryState = {
 
 // Helper to apply size constraints for flyout groups
 const applySizeConstraints = (group: FlyoutGroup): FlyoutGroup => {
-  const newConfig = { ...group.config };
-  let mainSize = newConfig.mainSize;
-  let childSize = newConfig.childSize;
+  const originalMainSize = group.config.mainSize;
+  const originalChildSize = group.config.childSize;
+  let newMainSize = originalMainSize;
+  let newChildSize = originalChildSize;
 
   if (group.isChildOpen) {
-    if (mainSize === 'l') {
-      mainSize = 'm'; // If main is 'l' with child, it must be converted to 'm'
-      childSize = 's'; // And child must be 's'
+    if (originalMainSize === 'l') {
+      newMainSize = 'm'; // If main is 'l' with child, it must be converted to 'm'
+      newChildSize = 's'; // And child must be 's'
+    } else if (originalMainSize === 'm' && originalChildSize !== 's') {
+      newChildSize = 's'; // If main is 'm' with child, child must be 's'
     }
-    if (mainSize === 'm' && childSize !== 's') {
-      childSize = 's'; // If main is 'm' with child, child must be 's'
-    }
+  }
+
+  // If sizes haven't changed, return the original group to preserve references
+  if (newMainSize === originalMainSize && newChildSize === originalChildSize) {
+    return group;
   }
 
   return {
     ...group,
     config: {
-      ...newConfig,
-      mainSize,
-      childSize,
+      ...group.config,
+      mainSize: newMainSize,
+      childSize: newChildSize,
     },
   };
 };
@@ -45,11 +50,13 @@ export function flyoutReducer(
 ): FlyoutHistoryState {
   switch (action.type) {
     case 'OPEN_MAIN_FLYOUT': {
-      const { mainSize, mainFlyoutProps, onUnmount } = action.payload;
+      const { mainSize, mainFlyoutProps, mainOnUnmount } = action.payload;
       const newHistory = [...state.history];
 
       if (state.activeFlyoutGroup) {
-        state.activeFlyoutGroup.onUnmount?.();
+        // When replacing a main flyout, call both its main and child (if any) onUnmount handlers
+        state.activeFlyoutGroup.mainOnUnmount?.();
+        state.activeFlyoutGroup.childOnUnmount?.();
         newHistory.push(state.activeFlyoutGroup);
       }
 
@@ -58,12 +65,12 @@ export function flyoutReducer(
         isChildOpen: false,
         config: {
           mainSize,
-          // Provide a default childSize, even if no child is initially open
-          childSize: 's', // Or derive from a global default if available
+          childSize: 's',
           mainFlyoutProps,
-          childFlyoutProps: {}, // Initialize childFlyoutProps
+          childFlyoutProps: {},
         },
-        onUnmount,
+        mainOnUnmount,
+        childOnUnmount: undefined,
       };
 
       return {
@@ -80,43 +87,81 @@ export function flyoutReducer(
         return state;
       }
 
-      const { childSize, childFlyoutProps, onUnmount } = action.payload;
-      const newHistory = [...state.history];
-
-      // Current active group's onUnmount is called before it's moved to history
-      state.activeFlyoutGroup.onUnmount?.();
-      newHistory.push(state.activeFlyoutGroup);
-
-      const newActiveGroup: FlyoutGroup = {
-        ...state.activeFlyoutGroup, // Inherit properties from current active group
+      const { childSize, childFlyoutProps, childOnUnmount } = action.payload;
+      const updatedActiveGroup: FlyoutGroup = {
+        ...state.activeFlyoutGroup,
         isChildOpen: true,
         config: {
           ...state.activeFlyoutGroup.config,
           childSize,
           childFlyoutProps,
         },
-        onUnmount, // New onUnmount for the state with child open
+        childOnUnmount,
       };
 
       return {
-        activeFlyoutGroup: applySizeConstraints(newActiveGroup),
-        history: newHistory,
+        history: state.history,
+        activeFlyoutGroup: applySizeConstraints(updatedActiveGroup),
+      };
+    }
+
+    case 'CLOSE_CHILD_FLYOUT': {
+      if (!state.activeFlyoutGroup || !state.activeFlyoutGroup.isChildOpen) {
+        console.warn(
+          'Cannot close child flyout: no child is open or no active group.'
+        );
+        return state;
+      }
+
+      state.activeFlyoutGroup.childOnUnmount?.();
+
+      const updatedActiveGroup: FlyoutGroup = {
+        ...state.activeFlyoutGroup,
+        isChildOpen: false,
+        config: {
+          ...state.activeFlyoutGroup.config,
+          childFlyoutProps: {},
+          childSize: state.activeFlyoutGroup.config.childSize,
+        },
+        childOnUnmount: undefined,
+      };
+
+      return {
+        history: state.history,
+        activeFlyoutGroup: applySizeConstraints(updatedActiveGroup),
       };
     }
 
     case 'CLOSE_CURRENT_FLYOUT': {
-      state.activeFlyoutGroup?.onUnmount?.();
+      if (!state.activeFlyoutGroup) return initialFlyoutState;
 
-      if (state.history.length > 0) {
-        const newHistory = [...state.history];
-        const previousGroup = newHistory.pop();
+      if (state.activeFlyoutGroup.isChildOpen) {
+        state.activeFlyoutGroup.childOnUnmount?.();
+        const groupWithChildClosed: FlyoutGroup = {
+          ...state.activeFlyoutGroup,
+          isChildOpen: false,
+          config: {
+            ...state.activeFlyoutGroup.config,
+            childFlyoutProps: {},
+          },
+          childOnUnmount: undefined,
+        };
         return {
-          activeFlyoutGroup: previousGroup || null,
-          history: newHistory,
+          history: state.history,
+          activeFlyoutGroup: applySizeConstraints(groupWithChildClosed),
         };
       } else {
-        // No history, so close everything
-        return initialFlyoutState;
+        state.activeFlyoutGroup.mainOnUnmount?.();
+        if (state.history.length > 0) {
+          const newHistory = [...state.history];
+          const previousGroup = newHistory.pop();
+          return {
+            activeFlyoutGroup: previousGroup || null,
+            history: newHistory,
+          };
+        } else {
+          return initialFlyoutState;
+        }
       }
     }
 
@@ -126,28 +171,30 @@ export function flyoutReducer(
         return state;
       }
 
-      const { configChanges, onUnmount } = action.payload;
+      const { configChanges, newMainOnUnmount, newChildOnUnmount } =
+        action.payload;
 
-      // Directly update the active group. No new history entry is created.
-      // The onUnmount of the *current* activeFlyoutGroup is NOT called here,
-      // as this is an in-place update, not a navigation away from it.
       const updatedActiveGroup: FlyoutGroup = {
         ...state.activeFlyoutGroup,
         config: {
           ...state.activeFlyoutGroup.config,
           ...configChanges,
         },
-        // If a new onUnmount is provided in the payload, it REPLACES the existing one on the active group.
-        // If not provided, the existing onUnmount is preserved.
-        onUnmount:
-          onUnmount !== undefined
-            ? onUnmount
-            : state.activeFlyoutGroup.onUnmount,
+        mainOnUnmount:
+          newMainOnUnmount !== undefined
+            ? newMainOnUnmount
+            : state.activeFlyoutGroup.mainOnUnmount,
+        childOnUnmount:
+          newChildOnUnmount !== undefined
+            ? newChildOnUnmount
+            : state.activeFlyoutGroup.childOnUnmount,
       };
 
+      const finalUpdatedActiveGroup = applySizeConstraints(updatedActiveGroup);
+
       return {
-        ...state, // Keep the existing history array
-        activeFlyoutGroup: applySizeConstraints(updatedActiveGroup),
+        ...state,
+        activeFlyoutGroup: finalUpdatedActiveGroup,
       };
     }
 

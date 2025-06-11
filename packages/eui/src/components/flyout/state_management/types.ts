@@ -27,7 +27,8 @@ export interface FlyoutGroup {
   isMainOpen: boolean; // Is the main flyout part of this state open?
   isChildOpen: boolean; // Is the child flyout part of this state open?
   config: FlyoutConfig; // Configuration for this specific state
-  onUnmount?: () => void; // Handler called when navigating away from this group
+  mainOnUnmount?: () => void; // For the main flyout portion of this group
+  childOnUnmount?: () => void; // For the child flyout portion, if isChildOpen is true
 }
 
 // The overall state managed by FlyoutManager, now with history.
@@ -44,7 +45,7 @@ export type FlyoutAction =
       payload: {
         mainSize: EuiFlyoutSize;
         mainFlyoutProps?: FlyoutConfig['mainFlyoutProps'];
-        onUnmount?: () => void; // onUnmount for this new main flyout state
+        mainOnUnmount?: () => void; // Renamed for clarity
       };
     }
   | {
@@ -52,17 +53,20 @@ export type FlyoutAction =
       payload: {
         childSize: 's' | 'm';
         childFlyoutProps?: FlyoutConfig['childFlyoutProps'];
-        onUnmount?: () => void; // onUnmount for this new main+child flyout state
+        childOnUnmount?: () => void; // Renamed for clarity, specific to child state
       };
     }
   // Closes the current flyout (child if open, then main). Triggers 'go back' logic.
   | { type: 'CLOSE_CURRENT_FLYOUT' }
+  // New action to specifically close an open child flyout without affecting history
+  | { type: 'CLOSE_CHILD_FLYOUT' }
   // Updates config of the active flyout group, creating a new history entry.
   | {
       type: 'UPDATE_ACTIVE_FLYOUT_CONFIG';
       payload: {
         configChanges: Partial<FlyoutConfig>; // Changes to apply to the active config
-        onUnmount?: () => void; // Optional new onUnmount for the updated state
+        newMainOnUnmount?: () => void; // Optional new onUnmount for the main part
+        newChildOnUnmount?: () => void; // Optional new onUnmount for the child part (if child is open)
       };
     }
   // Clears the history stack, does not affect the activeFlyoutGroup.

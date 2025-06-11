@@ -95,15 +95,9 @@ export const EuiFlyoutChild: FunctionComponent<EuiFlyoutChildProps> = ({
     };
   }, [setIsChildFlyoutOpen]);
 
-  let hasFlyoutBodyChild = false;
-  Children.forEach(children, (child) => {
-    if (React.isValidElement(child) && child.type === EuiFlyoutBody) {
-      hasFlyoutBodyChild = true;
-    }
-  });
-
-  if (!hasFlyoutBodyChild) {
-    console.error('EuiFlyoutChild must include an EuiFlyoutBody child.');
+  // Simplified validation: Check if any children are provided.
+  if (React.Children.count(children) === 0) {
+    console.warn('EuiFlyoutChild was rendered with no children!');
   }
 
   if (parentSize === 'm' && size === 'm') {

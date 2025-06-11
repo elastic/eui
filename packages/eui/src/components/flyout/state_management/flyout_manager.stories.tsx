@@ -62,9 +62,12 @@ const ShoppingCartContent: React.FC<ShoppingCartContentProps> = ({
       payload: {
         childSize: 's',
         childFlyoutProps: {
+          className: 'demoFlyoutChild',
           'aria-label': 'Item details',
           customData: { itemQuantity },
         },
+        childOnUnmount: () =>
+          console.log('Unmounted item details child flyout'),
       },
     });
   };
@@ -77,9 +80,12 @@ const ShoppingCartContent: React.FC<ShoppingCartContentProps> = ({
       payload: {
         mainSize: reviewFlyoutSize,
         mainFlyoutProps: {
+          ...activeFlyoutGroup.config.mainFlyoutProps,
           'aria-label': 'Review order',
           customData: { variant: 'review', itemQuantity },
         },
+        mainOnUnmount: () =>
+          console.log(`Unmounted review order flyout (${reviewFlyoutSize})`),
       },
     });
   };
@@ -234,14 +240,14 @@ const renderDemoFlyoutContent = (context: FlyoutRenderContext) => {
       return <ReviewOrderContent context={context} />;
     }
   } else if (context.flyoutType === 'child') {
-    // Assuming child is always 'itemDetails' for this demo
     return <ItemDetailsContent context={context} />;
   }
-  return (
-    <EuiText>
-      <p>Unknown flyout content</p>
-    </EuiText>
-  ); // Fallback
+
+  console.warn(
+    'renderDemoFlyoutContent: Unknown flyout type or scenario',
+    context
+  );
+  return null;
 };
 
 const FlyoutDemoApp: React.FC = () => {
@@ -254,28 +260,13 @@ const FlyoutDemoApp: React.FC = () => {
       payload: {
         mainSize: 'm',
         mainFlyoutProps: {
+          type: 'push',
+          pushMinBreakpoint: 'xs',
+          className: 'demoFlyoutMain',
           'aria-label': 'Shopping cart',
           customData: { variant: 'shoppingCart', itemQuantity: 1 },
         },
-        onUnmount: () => console.log(`Unmounted shopping cart flyout`),
-      },
-    });
-  };
-
-  const handleOpenChildFlyout = () => {
-    if (!activeFlyoutGroup || !activeFlyoutGroup.isMainOpen) return;
-    const childFlyoutSize = 's';
-    const itemQuantity =
-      activeFlyoutGroup.config.mainFlyoutProps?.customData?.itemQuantity || 0;
-    dispatch({
-      type: 'OPEN_CHILD_FLYOUT',
-      payload: {
-        childSize: childFlyoutSize,
-        childFlyoutProps: {
-          'aria-label': 'Item details',
-          customData: { itemQuantity },
-        },
-        onUnmount: () => console.log('Unmounted item details flyout'),
+        mainOnUnmount: () => console.log(`Unmounted shopping cart flyout`),
       },
     });
   };
@@ -296,17 +287,6 @@ const FlyoutDemoApp: React.FC = () => {
         fill
       >
         Open shopping cart
-      </EuiButton>
-
-      <EuiSpacer size="s" />
-
-      <EuiButton
-        onClick={handleOpenChildFlyout}
-        isDisabled={
-          !activeFlyoutGroup?.isMainOpen || activeFlyoutGroup?.isChildOpen
-        }
-      >
-        Open Item Details (Demo Control)
       </EuiButton>
 
       <EuiSpacer size="s" />
