@@ -6,18 +6,20 @@
  * Side Public License, v 1.
  */
 
-import React, {
-  createContext,
-  PropsWithChildren,
-  useContext,
-  useReducer,
-} from 'react';
+import React, { createContext, useContext, useReducer } from 'react';
+
+import { EuiFlyout, EuiFlyoutChild } from '../index';
 
 import { initialFlyoutState, flyoutReducer } from './flyout_reducer';
-import { FlyoutAction, FlyoutState } from './types';
+import {
+  FlyoutAction,
+  FlyoutHistoryState,
+  FlyoutRenderContext,
+  FlyoutManagerComponentProps,
+} from './types';
 
 interface FlyoutContextProps {
-  state: FlyoutState;
+  state: FlyoutHistoryState;
   dispatch: React.Dispatch<FlyoutAction>;
 }
 
@@ -31,14 +33,73 @@ export const useFlyout = () => {
   return context;
 };
 
-export const FlyoutManager: React.FC<PropsWithChildren<{}>> = ({
+export const FlyoutManager: React.FC<FlyoutManagerComponentProps> = ({
   children,
+  renderFlyoutContent,
 }) => {
   const [state, dispatch] = useReducer(flyoutReducer, initialFlyoutState);
+  const { activeFlyoutGroup } = state;
+
+  const handleClose = () => {
+    dispatch({ type: 'CLOSE_CURRENT_FLYOUT' });
+  };
+
+  let mainFlyoutContentNode: React.ReactNode = null;
+  let childFlyoutContentNode: React.ReactNode = null;
+
+  if (activeFlyoutGroup) {
+    const mainRenderContext: FlyoutRenderContext = {
+      flyoutSpecificProps: activeFlyoutGroup.config.mainFlyoutProps || {},
+      flyoutSize: activeFlyoutGroup.config.mainSize,
+      flyoutType: 'main',
+      dispatch,
+      activeFlyoutGroup,
+      onClose: handleClose,
+    };
+    mainFlyoutContentNode = renderFlyoutContent(mainRenderContext);
+
+    if (activeFlyoutGroup.isChildOpen) {
+      const childRenderContext: FlyoutRenderContext = {
+        flyoutSpecificProps: activeFlyoutGroup.config.childFlyoutProps || {},
+        flyoutSize: activeFlyoutGroup.config.childSize,
+        flyoutType: 'child',
+        dispatch,
+        activeFlyoutGroup,
+        onClose: handleClose,
+      };
+      childFlyoutContentNode = renderFlyoutContent(childRenderContext);
+    }
+  }
+
+  const config = activeFlyoutGroup?.config;
+
+  const { customData: _customDataMain, ...flyoutPropsMain } =
+    config?.mainFlyoutProps ?? {};
+  const { customData: _customDataChild, ...flyoutPropsChild } =
+    config?.childFlyoutProps ?? {};
 
   return (
     <FlyoutContext.Provider value={{ state, dispatch }}>
       {children}
+      {activeFlyoutGroup?.isMainOpen && (
+        <EuiFlyout
+          onClose={handleClose}
+          size={activeFlyoutGroup.config.mainSize}
+          ownFocus={!activeFlyoutGroup.isChildOpen}
+          {...flyoutPropsMain}
+        >
+          {mainFlyoutContentNode}
+          {activeFlyoutGroup.isChildOpen && childFlyoutContentNode && (
+            <EuiFlyoutChild
+              onClose={handleClose}
+              size={activeFlyoutGroup.config.childSize}
+              {...flyoutPropsChild}
+            >
+              {childFlyoutContentNode}
+            </EuiFlyoutChild>
+          )}
+        </EuiFlyout>
+      )}
     </FlyoutContext.Provider>
   );
 };

@@ -7,255 +7,345 @@
  */
 
 import { Meta, StoryFn } from '@storybook/react';
-import React, { PropsWithChildren, useCallback } from 'react';
+import React, { PropsWithChildren } from 'react';
 
 import {
   EuiButton,
-  EuiRadioGroup,
-  EuiRadioGroupOption,
   EuiSpacer,
-  EuiText,
-} from '../../index';
-import {
-  EuiFlyout,
-  EuiFlyoutChild,
+  EuiCodeBlock,
+  EuiTitle,
   EuiFlyoutBody,
   EuiFlyoutFooter,
   EuiFlyoutHeader,
-  EuiFlyoutSize,
-} from '../index';
+  EuiText,
+} from '../../index';
+
 import { FlyoutManager, useFlyout } from './flyout_manager';
+import { FlyoutRenderContext } from './types';
+
+interface ShoppingCartContentProps {
+  context: FlyoutRenderContext;
+}
+const ShoppingCartContent: React.FC<ShoppingCartContentProps> = ({
+  context,
+}) => {
+  const { dispatch, activeFlyoutGroup, onClose } = context;
+  const itemQuantity =
+    context.flyoutSpecificProps.customData?.itemQuantity || 0;
+
+  const handleUpdateQuantity = (delta: number) => {
+    if (
+      !activeFlyoutGroup ||
+      !activeFlyoutGroup.config.mainFlyoutProps?.customData
+    )
+      return;
+    const currentCustomData =
+      activeFlyoutGroup.config.mainFlyoutProps.customData;
+    const currentQuantity = currentCustomData.itemQuantity || 0;
+    const newQuantity = Math.max(0, currentQuantity + delta);
+    dispatch({
+      type: 'UPDATE_ACTIVE_FLYOUT_CONFIG',
+      payload: {
+        configChanges: {
+          mainFlyoutProps: {
+            ...activeFlyoutGroup.config.mainFlyoutProps,
+            customData: { ...currentCustomData, itemQuantity: newQuantity },
+          },
+        },
+      },
+    });
+  };
+
+  const handleOpenChildFlyout = () => {
+    dispatch({
+      type: 'OPEN_CHILD_FLYOUT',
+      payload: {
+        childSize: 's',
+        childFlyoutProps: {
+          'aria-label': 'Item details',
+          customData: { itemQuantity },
+        },
+      },
+    });
+  };
+
+  const handleProceedToReview = () => {
+    if (!activeFlyoutGroup || !activeFlyoutGroup.isMainOpen) return;
+    const reviewFlyoutSize = activeFlyoutGroup.config.mainSize || 'm';
+    dispatch({
+      type: 'OPEN_MAIN_FLYOUT',
+      payload: {
+        mainSize: reviewFlyoutSize,
+        mainFlyoutProps: {
+          'aria-label': 'Review order',
+          customData: { variant: 'review', itemQuantity },
+        },
+      },
+    });
+  };
+
+  return (
+    <>
+      <EuiFlyoutHeader hasBorder>
+        <EuiTitle size="m">
+          <h2 id="flyout-shopping-cart-title">
+            Shopping cart ({context.flyoutSize})
+          </h2>
+        </EuiTitle>
+      </EuiFlyoutHeader>
+      <EuiFlyoutBody>
+        <EuiText>
+          <p>Item: Flux Capacitor</p>
+        </EuiText>
+        <EuiSpacer />
+        <EuiText>Quantity: {itemQuantity}</EuiText>
+        <EuiButton
+          onClick={() => handleUpdateQuantity(-1)}
+          iconType="minusInCircle"
+          aria-label="Decrease quantity"
+          isDisabled={itemQuantity <= 0}
+        >
+          -1
+        </EuiButton>
+        <EuiButton
+          onClick={() => handleUpdateQuantity(1)}
+          iconType="plusInCircle"
+          aria-label="Increase quantity"
+        >
+          +1
+        </EuiButton>
+        <EuiSpacer />
+        <EuiButton
+          onClick={
+            activeFlyoutGroup?.isChildOpen ? onClose : handleOpenChildFlyout
+          }
+          isDisabled={!activeFlyoutGroup?.isMainOpen}
+        >
+          {activeFlyoutGroup?.isChildOpen
+            ? 'Close item details'
+            : 'View item details'}
+        </EuiButton>
+        <EuiSpacer />
+        <EuiButton
+          onClick={handleProceedToReview}
+          isDisabled={!activeFlyoutGroup?.isMainOpen || itemQuantity <= 0}
+          fill
+        >
+          Proceed to review
+        </EuiButton>
+      </EuiFlyoutBody>
+      <EuiFlyoutFooter>
+        <EuiButton onClick={onClose} color="danger">
+          {activeFlyoutGroup?.isChildOpen
+            ? 'Close details & Go back'
+            : 'Close/Go back'}
+        </EuiButton>
+      </EuiFlyoutFooter>
+    </>
+  );
+};
+
+interface ReviewOrderContentProps {
+  context: FlyoutRenderContext;
+}
+const ReviewOrderContent: React.FC<ReviewOrderContentProps> = ({ context }) => {
+  const { onClose } = context;
+  const itemQuantity =
+    context.flyoutSpecificProps.customData?.itemQuantity || 0;
+  return (
+    <>
+      <EuiFlyoutHeader hasBorder>
+        <EuiTitle size="m">
+          <h2 id="flyout-review-order-title">
+            Review order ({context.flyoutSize})
+          </h2>
+        </EuiTitle>
+      </EuiFlyoutHeader>
+      <EuiFlyoutBody>
+        <EuiText>
+          <h3>Review your order</h3>
+          <p>Item: Flux Capacitor</p>
+          <p>Quantity: {itemQuantity}</p>
+        </EuiText>
+        <EuiSpacer />
+        <EuiButton
+          onClick={() => console.log('Purchase confirmed!', { itemQuantity })}
+          fill
+          color="accent"
+        >
+          Confirm purchase
+        </EuiButton>
+      </EuiFlyoutBody>
+      <EuiFlyoutFooter>
+        <EuiButton onClick={onClose} color="danger">
+          Close/Go back
+        </EuiButton>
+      </EuiFlyoutFooter>
+    </>
+  );
+};
+
+interface ItemDetailsContentProps {
+  context: FlyoutRenderContext;
+}
+const ItemDetailsContent: React.FC<ItemDetailsContentProps> = ({ context }) => {
+  const { onClose } = context;
+  const itemQuantity =
+    context.flyoutSpecificProps.customData?.itemQuantity || 0;
+  return (
+    <>
+      <EuiFlyoutHeader hasBorder>
+        <EuiTitle size="m">
+          <h2 id="flyout-item-details-title">
+            Item details ({context.flyoutSize})
+          </h2>
+        </EuiTitle>
+      </EuiFlyoutHeader>
+      <EuiFlyoutBody>
+        <EuiText>
+          <p>
+            <strong>Item:</strong> Flux Capacitor
+          </p>
+          <p>
+            <strong>Selected quantity:</strong> {itemQuantity}
+          </p>
+          <p>
+            This amazing device makes time travel possible! Handle with care.
+          </p>
+        </EuiText>
+      </EuiFlyoutBody>
+      <EuiFlyoutFooter>
+        <EuiButton onClick={onClose} color="danger">
+          Close details
+        </EuiButton>
+      </EuiFlyoutFooter>
+    </>
+  );
+};
+
+const renderDemoFlyoutContent = (context: FlyoutRenderContext) => {
+  const variant = context.flyoutSpecificProps.customData?.variant;
+
+  if (context.flyoutType === 'main') {
+    if (variant === 'shoppingCart') {
+      return <ShoppingCartContent context={context} />;
+    }
+    if (variant === 'review') {
+      return <ReviewOrderContent context={context} />;
+    }
+  } else if (context.flyoutType === 'child') {
+    // Assuming child is always 'itemDetails' for this demo
+    return <ItemDetailsContent context={context} />;
+  }
+  return (
+    <EuiText>
+      <p>Unknown flyout content</p>
+    </EuiText>
+  ); // Fallback
+};
 
 const FlyoutDemoApp: React.FC = () => {
   const { state, dispatch } = useFlyout();
+  const { activeFlyoutGroup } = state;
 
-  const getMainFlyoutContent = (
-    currentMainSize: EuiFlyoutSize,
-    childSizeForButton: Extract<EuiFlyoutSize, 's' | 'm'>
-  ) => [
-    <EuiFlyoutHeader hasBorder key="main-header">
-      <h2 id="flyout-demo-main-title">Main flyout ({currentMainSize})</h2>
-    </EuiFlyoutHeader>,
-    <EuiFlyoutBody key="main-body">
-      <EuiText key="main-body-text">
-        <p>
-          Hello, <code>FlyoutDemoApp</code>!
-        </p>
-      </EuiText>
-      <EuiButton
-        key="main-body-open-child-button"
-        onClick={() =>
-          dispatch({
-            type: 'OPEN_CHILD_FLYOUT',
-            payload: {
-              childSize: childSizeForButton,
-            },
-          })
-        }
-        isDisabled={state.isChildOpen}
-      >
-        Open child flyout ({childSizeForButton})
-      </EuiButton>
-      <EuiButton
-        key="main-body-close-main-button"
-        onClick={() => dispatch({ type: 'CLOSE_MAIN_FLYOUT' })}
-        color="danger"
-      >
-        Close main flyout
-      </EuiButton>
-    </EuiFlyoutBody>,
-    <EuiFlyoutFooter key="main-footer">
-      <EuiText size="s" key="main-footer-text">
-        Main flyout footer from DemoApp
-      </EuiText>
-    </EuiFlyoutFooter>,
-  ];
-
-  const getChildFlyoutContent = (
-    currentChildSize: Extract<EuiFlyoutSize, 's' | 'm'>
-  ) => [
-    <EuiFlyoutHeader hasBorder key="child-header">
-      <h2 id="flyout-demo-child-title">Child flyout ({currentChildSize})</h2>
-    </EuiFlyoutHeader>,
-    <EuiFlyoutBody key="child-body">
-      <EuiText key="child-body-text">
-        <p>
-          This is the child flyout, controlled by the dispatcher. Its content is
-          defined in <code>FlyoutDemoApp</code>.
-        </p>
-      </EuiText>
-      <EuiButton
-        key="child-body-close-button"
-        onClick={() => dispatch({ type: 'CLOSE_CHILD_FLYOUT' })}
-      >
-        Close child flyout
-      </EuiButton>
-    </EuiFlyoutBody>,
-    <EuiFlyoutFooter key="child-footer">
-      <EuiText size="s" key="child-footer-text">
-        Child flyout footer from DemoApp
-      </EuiText>
-    </EuiFlyoutFooter>,
-  ];
-
-  const mainSizeOptions: EuiRadioGroupOption[] = [
-    { id: 'main-s', label: 'Small (s)' },
-    { id: 'main-m', label: 'Medium (m)' },
-    { id: 'main-l', label: 'Large (l)' },
-  ];
-
-  const childSizeOptions: EuiRadioGroupOption[] = [
-    {
-      id: 'child-s',
-      label: 'Small (s)',
-      disabled: state.config.mainSize === 'l',
-    },
-    {
-      id: 'child-m',
-      label: 'Medium (m)',
-      disabled: state.config.mainSize !== 's',
-    },
-  ];
-
-  const onChangeMainFlyout = useCallback(
-    (id: string) => {
-      const size = id.replace('main-', '') as EuiFlyoutSize;
-      dispatch({
-        type: 'SET_CONFIG_SIZES',
-        payload: {
-          mainSize: size,
+  const handleOpenMainFlyout = () => {
+    dispatch({
+      type: 'OPEN_MAIN_FLYOUT',
+      payload: {
+        mainSize: 'm',
+        mainFlyoutProps: {
+          'aria-label': 'Shopping cart',
+          customData: { variant: 'shoppingCart', itemQuantity: 1 },
         },
-      });
-    },
-    [dispatch]
-  );
+        onUnmount: () => console.log(`Unmounted shopping cart flyout`),
+      },
+    });
+  };
 
-  const onChangeChildFlyout = useCallback(
-    (id: string) => {
-      const size = id.replace('child-', '') as Extract<
-        EuiFlyoutSize,
-        's' | 'm'
-      >;
-      dispatch({
-        type: 'SET_CONFIG_SIZES',
-        payload: {
-          childSize: size,
+  const handleOpenChildFlyout = () => {
+    if (!activeFlyoutGroup || !activeFlyoutGroup.isMainOpen) return;
+    const childFlyoutSize = 's';
+    const itemQuantity =
+      activeFlyoutGroup.config.mainFlyoutProps?.customData?.itemQuantity || 0;
+    dispatch({
+      type: 'OPEN_CHILD_FLYOUT',
+      payload: {
+        childSize: childFlyoutSize,
+        childFlyoutProps: {
+          'aria-label': 'Item details',
+          customData: { itemQuantity },
         },
-      });
-    },
-    [dispatch]
-  );
+        onUnmount: () => console.log('Unmounted item details flyout'),
+      },
+    });
+  };
+
+  const handleCloseCurrent = () => {
+    dispatch({ type: 'CLOSE_CURRENT_FLYOUT' });
+  };
+
+  const handleClearHistory = () => {
+    dispatch({ type: 'CLEAR_HISTORY' });
+  };
 
   return (
-    <div>
-      <EuiText>
-        <p>Use the controls below to configure and open the flyouts.</p>
-      </EuiText>
-
-      <EuiSpacer />
-
-      <EuiRadioGroup
-        legend={{ children: 'Select main flyout size' }}
-        options={mainSizeOptions}
-        idSelected={`main-${state.config.mainSize || 'm'}`}
-        onChange={onChangeMainFlyout}
-        name="mainFlyoutSizeConfig"
-      />
-      <EuiSpacer />
-      <EuiRadioGroup
-        legend={{ children: 'Select child flyout size' }}
-        options={childSizeOptions}
-        idSelected={`child-${state.config.childSize || 's'}`}
-        onChange={onChangeChildFlyout}
-        name="childFlyoutSizeConfig"
-      />
-
-      <EuiSpacer />
-
+    <div style={{ minWidth: '300px' }}>
       <EuiButton
-        onClick={() =>
-          dispatch({
-            type: 'OPEN_MAIN_FLYOUT',
-            payload: {
-              mainSize: state.config.mainSize,
-            },
-          })
-        }
-        isDisabled={state.isMainOpen}
+        onClick={handleOpenMainFlyout}
+        isDisabled={!!activeFlyoutGroup?.isMainOpen}
         fill
       >
-        Open main flyout ({state.config.mainSize || 'm'})
+        Open shopping cart
       </EuiButton>
 
-      {state.isMainOpen && !state.isChildOpen && (
-        <EuiButton
-          onClick={() =>
-            dispatch({
-              type: 'OPEN_CHILD_FLYOUT',
-              payload: {
-                childSize: state.config.childSize,
-              },
-            })
-          }
-        >
-          Open child ({state.config.childSize || 's'})
-        </EuiButton>
-      )}
+      <EuiSpacer size="s" />
 
-      {state.isMainOpen && (
-        <EuiButton
-          onClick={() => dispatch({ type: 'CLOSE_MAIN_FLYOUT' })}
-          color="danger"
-        >
-          Close all flyouts
-        </EuiButton>
-      )}
+      <EuiButton
+        onClick={handleOpenChildFlyout}
+        isDisabled={
+          !activeFlyoutGroup?.isMainOpen || activeFlyoutGroup?.isChildOpen
+        }
+      >
+        Open Item Details (Demo Control)
+      </EuiButton>
+
+      <EuiSpacer size="s" />
+
+      <EuiButton
+        onClick={handleCloseCurrent}
+        isDisabled={!activeFlyoutGroup}
+        color="warning"
+      >
+        Close current / Go back (history items: {state.history.length})
+      </EuiButton>
+
+      <EuiSpacer size="s" />
+
+      <EuiButton
+        onClick={handleClearHistory}
+        isDisabled={state.history.length === 0}
+        color="danger"
+        iconType="trash"
+      >
+        Clear history
+      </EuiButton>
 
       <EuiSpacer />
 
-      <EuiText size="s">
-        <p>
-          <strong>Current state:</strong>
-          <pre>{JSON.stringify(state, null, 2)}</pre>
-        </p>
-      </EuiText>
+      <EuiTitle size="s">
+        <h3>Current state</h3>
+      </EuiTitle>
+      <EuiCodeBlock language="json" fontSize="s" paddingSize="s" isCopyable>
+        {JSON.stringify(state, null, 2)}
+      </EuiCodeBlock>
 
-      {state.isMainOpen && (
-        <EuiFlyout
-          onClose={() => dispatch({ type: 'CLOSE_MAIN_FLYOUT' })}
-          aria-labelledby="flyout-demo-main-title"
-          size={state.config.mainSize}
-          type="push"
-          ownFocus={false}
-          side="right"
-          closeButtonPosition="inside"
-          pushMinBreakpoint={
-            state.config.mainFlyoutProps?.pushMinBreakpoint || 'xs'
-          }
-          {...(state.config.mainFlyoutProps || {})}
-        >
-          {getMainFlyoutContent(
-            state.config.mainSize!,
-            state.config.childSize!
-          )}
-          {state.isChildOpen && (
-            <EuiFlyoutChild
-              onClose={() => dispatch({ type: 'CLOSE_CHILD_FLYOUT' })}
-              aria-labelledby="flyout-demo-child-title"
-              size={state.config.childSize}
-              {...(state.config.childFlyoutProps || {})}
-            >
-              {getChildFlyoutContent(state.config.childSize!)}
-            </EuiFlyoutChild>
-          )}
-        </EuiFlyout>
-      )}
+      {/* EuiFlyout and EuiFlyoutChild rendering is now handled by FlyoutManager */}
     </div>
   );
 };
 
 export default {
-  title: 'Layout/EuiFlyout/State Management',
+  title: 'Layout/EuiFlyout/State Management with History',
   component: FlyoutManager,
   parameters: {
     layout: 'centered',
@@ -264,11 +354,11 @@ export default {
 
 const Template: StoryFn<PropsWithChildren<{}>> = (args) => {
   return (
-    <FlyoutManager {...args}>
+    <FlyoutManager {...args} renderFlyoutContent={renderDemoFlyoutContent}>
       <FlyoutDemoApp />
     </FlyoutManager>
   );
 };
 
 export const Default = Template.bind({});
-Default.storyName = 'FlyoutManager provider and useFlyout hook';
+Default.storyName = 'FlyoutManager with History';

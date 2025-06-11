@@ -103,7 +103,7 @@ export const EuiFlyoutChild: FunctionComponent<EuiFlyoutChildProps> = ({
   });
 
   if (!hasFlyoutBodyChild) {
-    throw new Error('EuiFlyoutChild must include an EuiFlyoutBody child.');
+    console.error('EuiFlyoutChild must include an EuiFlyoutBody child.');
   }
 
   if (parentSize === 'm' && size === 'm') {
