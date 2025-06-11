@@ -13,10 +13,15 @@ import {
   euiCanAnimate,
   euiFontSize,
   euiTextTruncate,
+  highContrastModeStyles,
   logicalCSS,
   mathWithUnits,
 } from '../../../global_styling';
-import { euiFormControlStyles, euiFormVariables } from '../form.styles';
+import {
+  euiFormControlShowBackgroundLine,
+  euiFormControlStyles,
+  euiFormVariables,
+} from '../form.styles';
 
 export const euiFilePickerStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme, highContrastMode } = euiThemeContext;
@@ -29,16 +34,11 @@ export const euiFilePickerStyles = (euiThemeContext: UseEuiTheme) => {
   const formVariables = euiFormVariables(euiThemeContext);
   const { fontSize, lineHeight } = euiFontSize(euiThemeContext, 's');
 
-  const droppingStyles =
-    isRefreshVariant &&
-    `
-    background-color: ${euiTheme.components.forms.backgroundDropping}
-  `;
-
   return {
     euiFilePicker: css`
       --euiFormControlLeftIconsCount: 1; /* Manually account for .euiFilePicker__icon */
       position: relative;
+      border-radius: ${formVariables.controlBorderRadius};
 
       &:has(input:focus) {
         --euiFormControlStateColor: ${formVariables.borderFocused};
@@ -50,13 +50,30 @@ export const euiFilePickerStyles = (euiThemeContext: UseEuiTheme) => {
           : formVariables.borderHovered};
         --euiFormControlStateStyle: ${highContrastMode ? 'solid' : 'dashed'};
       }
+
+      &:focus-within {
+        ${highContrastModeStyles(euiThemeContext, {
+          forced: `
+              ${euiFormControlShowBackgroundLine(
+                euiThemeContext,
+                formVariables.borderFocused
+              )}
+            `,
+        })}
+      }
     `,
     isDroppingFile: css`
       --euiFormControlStateColor: ${isRefreshVariant
         ? euiTheme.colors.borderStrongSuccess
         : euiTheme.colors.primary};
 
-      ${droppingStyles}
+      ${isRefreshVariant &&
+      `  
+        --euiFormControlStateStyle: ${
+          highContrastMode === 'forced' ? 'solid' : 'dashed'
+        };
+        background-color: ${euiTheme.components.forms.backgroundDropping}
+      `}
     `,
     invalid: css`
       --euiFormControlStateColor: ${formVariables.borderInvalid};
@@ -64,6 +81,15 @@ export const euiFilePickerStyles = (euiThemeContext: UseEuiTheme) => {
       &:hover {
         --euiFormControlStateColor: ${formVariables.borderInvalidHovered};
       }
+
+      ${highContrastModeStyles(euiThemeContext, {
+        forced: `
+          ${euiFormControlShowBackgroundLine(
+            euiThemeContext,
+            formVariables.borderInvalid
+          )}
+        `,
+      })}
     `,
     hasFiles: css`
       --euiFormControlRightIconsCount: 1;
@@ -107,6 +133,12 @@ export const euiFilePickerStyles = (euiThemeContext: UseEuiTheme) => {
           & + .euiFilePicker__prompt {
             .euiFilePicker__promptText {
               text-decoration: ${isRefreshVariant ? '' : 'underline'};
+
+              ${highContrastModeStyles(euiThemeContext, {
+                forced: `
+                  text-decoration: underline;
+                `,
+              })}
             }
 
             .euiFilePicker__icon {
@@ -125,7 +157,12 @@ export const euiFilePickerStyles = (euiThemeContext: UseEuiTheme) => {
       color: ${euiTheme.colors.textParagraph};
       border: ${euiTheme.border.width.thick}
         var(--euiFormControlStateStyle, dashed)
-        var(--euiFormControlStateColor, ${euiTheme.border.color});
+        var(
+          --euiFormControlStateColor,
+          ${isRefreshVariant
+            ? formVariables.borderColor
+            : euiTheme.border.color}
+        );
 
       ${euiCanAnimate} {
         transition: border-color ${euiTheme.animation.fast} ease-in,
