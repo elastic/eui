@@ -1,3 +1,9 @@
+## [`v2.0.0`](https://github.com/elastic/eui/releases/v2.0.0)
+
+**Breaking changes**
+
+- Remove `prefer-css-prop-for-static-styles` rule because it produces too many warnings. Static code analysis cannot flag dynamic styles with confidence because it doesn't run the code to asses runtime values. We will explore runtime solutions. ([#8760](https://github.com/elastic/eui/pull/8760))
+
 ## [`v1.0.0`](https://github.com/elastic/eui/releases/v1.0.0)
 
 - Changed the `prefer-css-prop-for-static-styles` rule message (formerly `prefer-css-attribute-for-eui-components`) ([#8722](https://github.com/elastic/eui/pull/8722))
