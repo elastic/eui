@@ -12,12 +12,12 @@ import { EuiFlyoutChildProps } from '../flyout_child';
 interface FlyoutConfig {
   mainSize: EuiFlyoutSize;
   childSize: 's' | 'm';
-  mainFlyoutProps?: Partial<Omit<EuiFlyoutProps, 'onClose' | 'children'>> & {
+  mainFlyoutProps?: Partial<Omit<EuiFlyoutProps, 'children'>> & {
     customData?: any;
   };
-  childFlyoutProps?: Partial<
-    Omit<EuiFlyoutChildProps, 'onClose' | 'children'>
-  > & { customData?: any };
+  childFlyoutProps?: Partial<Omit<EuiFlyoutChildProps, 'children'>> & {
+    customData?: any;
+  };
 }
 
 export interface FlyoutGroup {
@@ -37,17 +37,17 @@ export type FlyoutAction =
   | {
       type: 'OPEN_MAIN_FLYOUT';
       payload: {
-        mainSize: EuiFlyoutSize;
-        mainFlyoutProps?: FlyoutConfig['mainFlyoutProps'];
-        mainOnUnmount?: () => void;
+        size: EuiFlyoutSize;
+        flyoutProps?: FlyoutConfig['mainFlyoutProps'];
+        onUnmount?: () => void;
       };
     }
   | {
       type: 'OPEN_CHILD_FLYOUT';
       payload: {
-        childSize: 's' | 'm';
-        childFlyoutProps?: FlyoutConfig['childFlyoutProps'];
-        childOnUnmount?: () => void;
+        size: 's' | 'm';
+        flyoutProps?: FlyoutConfig['childFlyoutProps'];
+        onUnmount?: () => void;
       };
     }
   | { type: 'CLOSE_CURRENT_FLYOUT' }
@@ -62,9 +62,9 @@ export type FlyoutAction =
     }
   | { type: 'CLEAR_HISTORY' };
 
-export interface FlyoutRenderContext {
+export interface FlyoutRenderContext<C = any> {
   flyoutSpecificProps: Partial<EuiFlyoutProps | EuiFlyoutChildProps> & {
-    customData?: any;
+    customData?: C;
   };
   flyoutSize: EuiFlyoutProps['size'] | EuiFlyoutChildProps['size'];
   flyoutType: 'main' | 'child';

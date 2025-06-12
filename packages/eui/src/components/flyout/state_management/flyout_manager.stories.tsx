@@ -23,12 +23,16 @@ import {
 import { FlyoutManager, useFlyout } from './flyout_manager';
 import { FlyoutRenderContext } from './types';
 
-interface ShoppingCartContentProps {
-  context: FlyoutRenderContext;
+interface CustomDataType {
+  itemQuantity: number;
+  selectedUi: 'shoppingCart' | 'review' | 'contactUs';
 }
-const ShoppingCartContent: React.FC<ShoppingCartContentProps> = ({
-  context,
-}) => {
+
+interface FlyoutContentProps {
+  context: FlyoutRenderContext<CustomDataType>;
+}
+
+const ShoppingCartContent: React.FC<FlyoutContentProps> = ({ context }) => {
   const { dispatch, activeFlyoutGroup, onClose } = context;
   const itemQuantity =
     context.flyoutSpecificProps.customData?.itemQuantity || 0;
@@ -60,14 +64,13 @@ const ShoppingCartContent: React.FC<ShoppingCartContentProps> = ({
     dispatch({
       type: 'OPEN_CHILD_FLYOUT',
       payload: {
-        childSize: 's',
-        childFlyoutProps: {
+        size: 's',
+        flyoutProps: {
           className: 'demoFlyoutChild',
           'aria-label': 'Item details',
           customData: { itemQuantity },
         },
-        childOnUnmount: () =>
-          console.log('Unmounted item details child flyout'),
+        onUnmount: () => console.log('Unmounted item details child flyout'),
       },
     });
   };
@@ -78,13 +81,13 @@ const ShoppingCartContent: React.FC<ShoppingCartContentProps> = ({
     dispatch({
       type: 'OPEN_MAIN_FLYOUT',
       payload: {
-        mainSize: reviewFlyoutSize,
-        mainFlyoutProps: {
+        size: reviewFlyoutSize,
+        flyoutProps: {
           ...activeFlyoutGroup.config.mainFlyoutProps,
           'aria-label': 'Review order',
-          customData: { variant: 'review', itemQuantity },
+          customData: { selectedUi: 'review', itemQuantity },
         },
-        mainOnUnmount: () =>
+        onUnmount: () =>
           console.log(`Unmounted review order flyout (${reviewFlyoutSize})`),
       },
     });
@@ -149,10 +152,7 @@ const ShoppingCartContent: React.FC<ShoppingCartContentProps> = ({
   );
 };
 
-interface ReviewOrderContentProps {
-  context: FlyoutRenderContext;
-}
-const ReviewOrderContent: React.FC<ReviewOrderContentProps> = ({ context }) => {
+const ReviewOrderContent: React.FC<FlyoutContentProps> = ({ context }) => {
   const { onClose } = context;
   const itemQuantity =
     context.flyoutSpecificProps.customData?.itemQuantity || 0;
@@ -187,10 +187,7 @@ const ReviewOrderContent: React.FC<ReviewOrderContentProps> = ({ context }) => {
   );
 };
 
-interface ItemDetailsContentProps {
-  context: FlyoutRenderContext;
-}
-const ItemDetailsContent: React.FC<ItemDetailsContentProps> = ({ context }) => {
+const ItemDetailsContent: React.FC<FlyoutContentProps> = ({ context }) => {
   const { onClose } = context;
   const itemQuantity =
     context.flyoutSpecificProps.customData?.itemQuantity || 0;
@@ -223,10 +220,7 @@ const ItemDetailsContent: React.FC<ItemDetailsContentProps> = ({ context }) => {
   );
 };
 
-interface ContactUsContentProps {
-  context: FlyoutRenderContext;
-}
-const ContactUsContent: React.FC<ContactUsContentProps> = ({ context }) => {
+const ContactUsContent: React.FC<FlyoutContentProps> = ({ context }) => {
   const { onClose } = context;
   return (
     <>
@@ -252,17 +246,19 @@ const ContactUsContent: React.FC<ContactUsContentProps> = ({ context }) => {
   );
 };
 
-const renderDemoFlyoutContent = (context: FlyoutRenderContext) => {
-  const variant = context.flyoutSpecificProps.customData?.variant;
+const renderDemoFlyoutContent = (
+  context: FlyoutRenderContext<CustomDataType>
+) => {
+  const selectedUi = context.flyoutSpecificProps.customData?.selectedUi;
 
   if (context.flyoutType === 'main') {
-    if (variant === 'shoppingCart') {
+    if (selectedUi === 'shoppingCart') {
       return <ShoppingCartContent context={context} />;
     }
-    if (variant === 'review') {
+    if (selectedUi === 'review') {
       return <ReviewOrderContent context={context} />;
     }
-    if (variant === 'contactUs') {
+    if (selectedUi === 'contactUs') {
       return <ContactUsContent context={context} />;
     }
   } else if (context.flyoutType === 'child') {
@@ -287,16 +283,19 @@ const FlyoutDemoApp: React.FC = () => {
     dispatch({
       type: 'OPEN_MAIN_FLYOUT',
       payload: {
-        mainSize: 'm',
-        mainFlyoutProps: {
+        size: 'm',
+        flyoutProps: {
           type: 'push',
           pushMinBreakpoint: 'xs',
           className: 'shoppingCartFlyoutMain',
           'aria-label': 'Shopping cart',
-          customData: { variant: 'shoppingCart', itemQuantity: 1 },
+          customData: {
+            selectedUi: 'shoppingCart',
+            itemQuantity: 1,
+          },
           onClose: () => setIsShoppingCartOpen(false),
         },
-        mainOnUnmount: () => console.log(`Unmounted shopping cart flyout`),
+        onUnmount: () => console.log(`Unmounted shopping cart flyout`),
       },
     });
     setIsShoppingCartOpen(true);
@@ -306,15 +305,15 @@ const FlyoutDemoApp: React.FC = () => {
     dispatch({
       type: 'OPEN_MAIN_FLYOUT',
       payload: {
-        mainSize: 's',
-        mainFlyoutProps: {
+        size: 's',
+        flyoutProps: {
           type: 'push',
           className: 'contactUsFlyoutMain',
           'aria-label': 'Contact Us',
-          customData: { variant: 'contactUs' },
+          customData: { selectedUi: 'contactUs' },
           onClose: () => setIsShoppingCartOpen(false),
         },
-        mainOnUnmount: () => console.log('Unmounted Contact Us flyout'),
+        onUnmount: () => console.log('Unmounted Contact Us flyout'),
       },
     });
     setIsContactUsOpen(true);

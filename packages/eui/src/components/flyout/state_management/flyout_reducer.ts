@@ -50,12 +50,14 @@ export function flyoutReducer(
 ): FlyoutHistoryState {
   switch (action.type) {
     case 'OPEN_MAIN_FLYOUT': {
-      const { mainSize, mainFlyoutProps, mainOnUnmount } = action.payload;
+      const {
+        size: mainSize,
+        flyoutProps: mainFlyoutProps,
+        onUnmount: mainOnUnmount,
+      } = action.payload;
       const newHistory = [...state.history];
 
       if (state.activeFlyoutGroup) {
-        state.activeFlyoutGroup.mainOnUnmount?.();
-        state.activeFlyoutGroup.childOnUnmount?.();
         newHistory.push(state.activeFlyoutGroup);
       }
 
@@ -86,7 +88,11 @@ export function flyoutReducer(
         return state;
       }
 
-      const { childSize, childFlyoutProps, childOnUnmount } = action.payload;
+      const {
+        size: childSize,
+        flyoutProps: childFlyoutProps,
+        onUnmount: childOnUnmount,
+      } = action.payload;
       const updatedActiveGroup: FlyoutGroup = {
         ...state.activeFlyoutGroup,
         isChildOpen: true,
@@ -112,6 +118,9 @@ export function flyoutReducer(
         return state;
       }
 
+      state.activeFlyoutGroup.config.childFlyoutProps?.onClose?.(
+        new KeyboardEvent('')
+      );
       state.activeFlyoutGroup.childOnUnmount?.();
 
       const updatedActiveGroup: FlyoutGroup = {
@@ -135,6 +144,9 @@ export function flyoutReducer(
       if (!state.activeFlyoutGroup) return initialFlyoutState;
 
       if (state.activeFlyoutGroup.isChildOpen) {
+        state.activeFlyoutGroup.config.childFlyoutProps?.onClose?.(
+          new KeyboardEvent('')
+        );
         state.activeFlyoutGroup.childOnUnmount?.();
         const groupWithChildClosed: FlyoutGroup = {
           ...state.activeFlyoutGroup,
@@ -150,6 +162,9 @@ export function flyoutReducer(
           activeFlyoutGroup: applySizeConstraints(groupWithChildClosed),
         };
       } else {
+        state.activeFlyoutGroup.config.mainFlyoutProps?.onClose?.(
+          new KeyboardEvent('')
+        );
         state.activeFlyoutGroup.mainOnUnmount?.();
         if (state.history.length > 0) {
           const newHistory = [...state.history];
