@@ -381,7 +381,7 @@
   "euiColorBackgroundBaseFormsControlDisabled": "#98A2B3",
   "euiColorBackgroundBaseInteractiveHover": "rgba(211,218,230,0.2)",
   "euiColorBackgroundBaseInteractiveSelect": "#f5fafd",
-  "euiColorBackgroundBaseInteractiveSelectHover": "#cce4f5",
+  "euiColorBackgroundBaseInteractiveSelectHover": "#cee0f8",
   "euiColorBackgroundBaseInteractiveOverlay": "rgba(0,0,0,0.5)",
   "euiColorBackgroundBaseSkeletonEdge": "#f0f2f6",
   "euiColorBackgroundBaseSkeletonMiddle": "#f6f8fa",
