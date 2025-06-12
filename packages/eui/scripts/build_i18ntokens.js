@@ -1,11 +1,10 @@
 const babel = require('@babel/core');
-const babelOptions = require('../../.babelrc');
+const babelOptions = require('../.babelrc');
 const fs = require('fs');
-const { promisify } = require('util');
 const { basename, join, relative } = require('path');
 const glob = require('glob');
 
-const rootDir = join(__dirname, '..', '..');
+const rootDir = join(__dirname, '..');
 const srcDir = join(rootDir, 'src');
 
 const tokenMappings = [];
