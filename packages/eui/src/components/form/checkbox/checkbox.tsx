@@ -13,6 +13,7 @@ import React, {
   InputHTMLAttributes,
   LabelHTMLAttributes,
   useCallback,
+  Ref,
 } from 'react';
 import classNames from 'classnames';
 
@@ -28,7 +29,7 @@ export interface EuiCheckboxProps
   id: string;
   checked?: boolean;
   onChange: ChangeEventHandler<HTMLInputElement>; // overriding to make it required
-  inputRef?: (element: HTMLInputElement) => void;
+  inputRef?: Ref<HTMLInputElement> | ((element: HTMLInputElement) => void);
   label?: ReactNode;
   disabled?: boolean;
   indeterminate?: boolean;
