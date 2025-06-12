@@ -7,7 +7,7 @@
  */
 
 import { Meta, StoryFn } from '@storybook/react';
-import React, { PropsWithChildren } from 'react';
+import React, { PropsWithChildren, useState } from 'react';
 
 import {
   EuiButton,
@@ -223,6 +223,35 @@ const ItemDetailsContent: React.FC<ItemDetailsContentProps> = ({ context }) => {
   );
 };
 
+interface ContactUsContentProps {
+  context: FlyoutRenderContext;
+}
+const ContactUsContent: React.FC<ContactUsContentProps> = ({ context }) => {
+  const { onClose } = context;
+  return (
+    <>
+      <EuiFlyoutHeader hasBorder>
+        <EuiTitle size="m">
+          <h2 id="flyout-contact-us-title">Contact Us</h2>
+        </EuiTitle>
+      </EuiFlyoutHeader>
+      <EuiFlyoutBody>
+        <EuiText>
+          <p>
+            If you have any questions, please reach out to us at
+            support@example.com.
+          </p>
+        </EuiText>
+      </EuiFlyoutBody>
+      <EuiFlyoutFooter>
+        <EuiButton onClick={onClose} color="primary">
+          Close
+        </EuiButton>
+      </EuiFlyoutFooter>
+    </>
+  );
+};
+
 const renderDemoFlyoutContent = (context: FlyoutRenderContext) => {
   const variant = context.flyoutSpecificProps.customData?.variant;
 
@@ -232,6 +261,9 @@ const renderDemoFlyoutContent = (context: FlyoutRenderContext) => {
     }
     if (variant === 'review') {
       return <ReviewOrderContent context={context} />;
+    }
+    if (variant === 'contactUs') {
+      return <ContactUsContent context={context} />;
     }
   } else if (context.flyoutType === 'child') {
     return <ItemDetailsContent context={context} />;
@@ -248,6 +280,9 @@ const FlyoutDemoApp: React.FC = () => {
   const { state, dispatch } = useFlyout();
   const { activeFlyoutGroup } = state;
 
+  const [isShoppingCartOpen, setIsShoppingCartOpen] = useState(false);
+  const [isContactUsOpen, setIsContactUsOpen] = useState(false);
+
   const handleOpenMainFlyout = () => {
     dispatch({
       type: 'OPEN_MAIN_FLYOUT',
@@ -256,13 +291,33 @@ const FlyoutDemoApp: React.FC = () => {
         mainFlyoutProps: {
           type: 'push',
           pushMinBreakpoint: 'xs',
-          className: 'demoFlyoutMain',
+          className: 'shoppingCartFlyoutMain',
           'aria-label': 'Shopping cart',
           customData: { variant: 'shoppingCart', itemQuantity: 1 },
+          onClose: () => setIsShoppingCartOpen(false),
         },
         mainOnUnmount: () => console.log(`Unmounted shopping cart flyout`),
       },
     });
+    setIsShoppingCartOpen(true);
+  };
+
+  const handleOpenContactUsFlyout = () => {
+    dispatch({
+      type: 'OPEN_MAIN_FLYOUT',
+      payload: {
+        mainSize: 's',
+        mainFlyoutProps: {
+          type: 'push',
+          className: 'contactUsFlyoutMain',
+          'aria-label': 'Contact Us',
+          customData: { variant: 'contactUs' },
+          onClose: () => setIsShoppingCartOpen(false),
+        },
+        mainOnUnmount: () => console.log('Unmounted Contact Us flyout'),
+      },
+    });
+    setIsContactUsOpen(true);
   };
 
   const handleCloseCurrent = () => {
@@ -277,10 +332,20 @@ const FlyoutDemoApp: React.FC = () => {
     <>
       <EuiButton
         onClick={handleOpenMainFlyout}
-        isDisabled={!!activeFlyoutGroup?.isMainOpen}
+        isDisabled={isShoppingCartOpen}
         fill
       >
         Open shopping cart
+      </EuiButton>
+
+      <EuiSpacer size="s" />
+
+      <EuiButton
+        onClick={handleOpenContactUsFlyout}
+        isDisabled={isContactUsOpen}
+        fill
+      >
+        Contact us
       </EuiButton>
 
       <EuiSpacer size="s" />
