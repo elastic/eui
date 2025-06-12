@@ -23,7 +23,7 @@ interface EuiFlyoutChildManagerProps {
   parentSize: 's' | 'm';
   parentFlyoutRef: React.RefObject<HTMLDivElement>;
   childElement: React.ReactElement<ComponentProps<typeof EuiFlyoutChild>>;
-  childrenToRender: ReactNode; // The original children passed to EuiFlyout
+  childrenToRender: ReactNode;
   reportIsChildOpen: (isOpen: boolean) => void;
   reportChildLayoutMode: (mode: 'alongside' | 'stacked') => void;
 }
@@ -62,10 +62,10 @@ export const EuiFlyoutChildManager: FunctionComponent<
     };
 
     window.addEventListener('resize', handleResize);
-    handleResize(); // Initial call
+    handleResize();
 
     return () => window.removeEventListener('resize', handleResize);
-  }, []); // Empty dependency array, runs once on mount
+  }, []);
 
   // Calculate stacking breakpoint value for child flyout.
   // Stacking breakpoint value is a sum of parent breakpoint value and child breakpoint value.

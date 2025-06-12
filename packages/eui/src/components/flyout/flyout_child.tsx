@@ -14,7 +14,7 @@ import React, {
   Children,
   useEffect,
   useMemo,
-  useRef, // Added for focus trap and ARIA logic
+  useRef,
 } from 'react';
 import classNames from 'classnames';
 import { CommonProps } from '../common';
@@ -25,7 +25,6 @@ import { EuiFlyoutContext } from './flyout_context';
 import { EuiFlyoutBody } from './flyout_body';
 import { EuiFocusTrap } from '../focus_trap';
 
-// Define the actual props interface/type
 export interface EuiFlyoutChildProps
   extends HTMLAttributes<HTMLDivElement>,
     CommonProps {
@@ -64,7 +63,6 @@ export interface EuiFlyoutChildProps
   children?: ReactNode;
 }
 
-// Update the component to use this props type with FunctionComponent
 export const EuiFlyoutChild: FunctionComponent<EuiFlyoutChildProps> = ({
   children,
   className,
@@ -95,7 +93,6 @@ export const EuiFlyoutChild: FunctionComponent<EuiFlyoutChildProps> = ({
     };
   }, [setIsChildFlyoutOpen]);
 
-  // Simplified validation: Check if any children are provided.
   if (React.Children.count(children) === 0) {
     console.warn('EuiFlyoutChild was rendered with no children!');
   }
@@ -107,7 +104,7 @@ export const EuiFlyoutChild: FunctionComponent<EuiFlyoutChildProps> = ({
   }
 
   const handleClose = (event: MouseEvent | TouchEvent | KeyboardEvent) => {
-    setIsChildFlyoutOpen?.(false); // Notify parent before calling onClose
+    setIsChildFlyoutOpen?.(false);
     onClose(event);
   };
 
@@ -202,8 +199,8 @@ export const EuiFlyoutChild: FunctionComponent<EuiFlyoutChildProps> = ({
         }
         return true;
       }}
-      shards={[]} // Child flyout specific shards, if any
-      disabled={false} // Child trap is active when child is open
+      shards={[]}
+      disabled={false}
     >
       <div
         ref={flyoutWrapperRef}
@@ -221,7 +218,7 @@ export const EuiFlyoutChild: FunctionComponent<EuiFlyoutChildProps> = ({
         aria-label={ariaLabel}
         aria-labelledby={ariaLabelledBy}
         aria-describedby={ariaDescribedBy}
-        tabIndex={-1} // Focus is managed by EuiFocusTrap
+        tabIndex={-1}
         {...rest}
       >
         {/* Fallback title for screen readers if a title was derived but not used for aria-labelledby

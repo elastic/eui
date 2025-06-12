@@ -94,9 +94,7 @@ const ShoppingCartContent: React.FC<ShoppingCartContentProps> = ({
     <>
       <EuiFlyoutHeader hasBorder>
         <EuiTitle size="m">
-          <h2 id="flyout-shopping-cart-title">
-            Shopping cart ({context.flyoutSize})
-          </h2>
+          <h2 id="flyout-shopping-cart-title">Shopping cart</h2>
         </EuiTitle>
       </EuiFlyoutHeader>
       <EuiFlyoutBody>
@@ -162,9 +160,7 @@ const ReviewOrderContent: React.FC<ReviewOrderContentProps> = ({ context }) => {
     <>
       <EuiFlyoutHeader hasBorder>
         <EuiTitle size="m">
-          <h2 id="flyout-review-order-title">
-            Review order ({context.flyoutSize})
-          </h2>
+          <h2 id="flyout-review-order-title">Review order</h2>
         </EuiTitle>
       </EuiFlyoutHeader>
       <EuiFlyoutBody>
@@ -202,9 +198,7 @@ const ItemDetailsContent: React.FC<ItemDetailsContentProps> = ({ context }) => {
     <>
       <EuiFlyoutHeader hasBorder>
         <EuiTitle size="m">
-          <h2 id="flyout-item-details-title">
-            Item details ({context.flyoutSize})
-          </h2>
+          <h2 id="flyout-item-details-title">Item details</h2>
         </EuiTitle>
       </EuiFlyoutHeader>
       <EuiFlyoutBody>
@@ -280,7 +274,7 @@ const FlyoutDemoApp: React.FC = () => {
   };
 
   return (
-    <div style={{ minWidth: '300px' }}>
+    <>
       <EuiButton
         onClick={handleOpenMainFlyout}
         isDisabled={!!activeFlyoutGroup?.isMainOpen}
@@ -318,9 +312,7 @@ const FlyoutDemoApp: React.FC = () => {
       <EuiCodeBlock language="json" fontSize="s" paddingSize="s" isCopyable>
         {JSON.stringify(state, null, 2)}
       </EuiCodeBlock>
-
-      {/* EuiFlyout and EuiFlyoutChild rendering is now handled by FlyoutManager */}
-    </div>
+    </>
   );
 };
 

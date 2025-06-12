@@ -54,7 +54,6 @@ export function flyoutReducer(
       const newHistory = [...state.history];
 
       if (state.activeFlyoutGroup) {
-        // When replacing a main flyout, call both its main and child (if any) onUnmount handlers
         state.activeFlyoutGroup.mainOnUnmount?.();
         state.activeFlyoutGroup.childOnUnmount?.();
         newHistory.push(state.activeFlyoutGroup);
