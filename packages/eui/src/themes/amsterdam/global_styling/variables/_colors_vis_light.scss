@@ -1,9 +1,14 @@
+// stylelint-disable color-no-hex
+
 @import './colors_vis';
 
-$euiColorVisAsTextLight0: '#006BB4' !default;
-$euiColorVisAsTextLight1: '#017D73' !default;
-$euiColorVisAsTextLight2: '#F5A700' !default;
-$euiColorVisAsTextLight3: '#BD271E' !default;
-$euiColorVisAsTextLight4: '#DD0A73' !default;
-$euiColorVisAsTextLight5: '#006BB4' !default; // duplicated to handle color amount difference between themes
-$euiColorVisAsTextLight6: '#017D73' !default;
+$euiColorVisText0: #017D73 !default;
+$euiColorVisText1: #006BB4 !default;
+$euiColorVisText2: #DD0A73 !default;
+$euiColorVisText3: #745A93 !default;
+$euiColorVisText4: #A2728B !default;
+$euiColorVisText5: #AB9946 !default;
+$euiColorVisText6: #94866D !default;
+$euiColorVisText7: #F5A700 !default;
+$euiColorVisText8: #885145 !default;
+$euiColorVisText9: #BD271E !default;

@@ -89,13 +89,16 @@ export const colorVisLight: _EuiThemeVisColors = {
   euiColorVisBehindText8: euiPaletteColorBlind.euiColorVis8.behindText,
   euiColorVisBehindText9: euiPaletteColorBlind.euiColorVis9.behindText,
 
-  euiColorVisAsTextLight0: '#006BB4',
-  euiColorVisAsTextLight1: '#017D73',
-  euiColorVisAsTextLight2: '#F5A700',
-  euiColorVisAsTextLight3: '#BD271E',
-  euiColorVisAsTextLight4: '#DD0A73',
-  euiColorVisAsTextLight5: '#006BB4', // duplicated to handle color amount difference between themes
-  euiColorVisAsTextLight6: '#017D73',
+  euiColorVisText0: '#017D73',
+  euiColorVisText1: '#006BB4',
+  euiColorVisText2: '#DD0A73',
+  euiColorVisText3: shade(euiPaletteColorBlind.euiColorVis3.graphic, 0.2), // #745A93
+  euiColorVisText4: shade(euiPaletteColorBlind.euiColorVis4.graphic, 0.2), // #A2728B
+  euiColorVisText5: shade(euiPaletteColorBlind.euiColorVis5.graphic, 0.2), // #AB9946
+  euiColorVisText6: shade(euiPaletteColorBlind.euiColorVis6.graphic, 0.2), // #94866D
+  euiColorVisText7: '#F5A700',
+  euiColorVisText8: shade(euiPaletteColorBlind.euiColorVis7.graphic, 0.2), // #885145
+  euiColorVisText9: '#BD271E',
 
   euiColorVisNeutral0: tint(euiPaletteColorBlind.euiColorVis1.graphic, 0.3),
   euiColorVisNeutral1: tint(euiPaletteColorBlind.euiColorVis1.graphic, 0.56),
