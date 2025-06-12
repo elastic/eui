@@ -321,36 +321,30 @@ export const border_colors: _EuiThemeBorderColors = {
   ),
 
   borderStrongPrimary: computed(
-    ([borderBasePrimary]) => borderBasePrimary,
-    ['colors.borderBasePrimary']
+    ([primary]) => primary, // no tint to match and keep previous token usage
+    ['colors.primary']
   ),
   borderStrongAccent: computed(
-    ([borderBaseAccent]) => borderBaseAccent,
-    ['colors.borderBaseAccent']
+    ([accent]) => tint(accent, 0.1),
+    ['colors.accent']
   ),
   borderStrongAccentSecondary: computed(
-    ([borderBaseAccentSecondary]) => borderBaseAccentSecondary,
-    ['colors.borderBaseAccentSecondary']
+    ([accentSeconday]) => tint(accentSeconday, 0.1),
+    ['colors.accentSeconday']
   ),
-  borderStrongNeutral: computed(
-    ([borderBaseNeutral]) => borderBaseNeutral,
-    ['colors.borderBaseNeutral']
-  ),
+  borderStrongNeutral: tint(severityColors.neutral, 0.1),
   borderStrongSuccess: computed(
-    ([borderBaseSuccess]) => borderBaseSuccess,
-    ['colors.borderBaseSuccess']
+    ([success]) => tint(success, 0.1),
+    ['colors.success']
   ),
   borderStrongWarning: computed(
-    ([borderBaseWarning]) => borderBaseWarning,
-    ['colors.borderBaseWarning']
+    ([warning]) => tint(warning, 0.1),
+    ['colors.warning']
   ),
-  borderStrongRisk: computed(
-    ([borderBaseRisk]) => borderBaseRisk,
-    ['colors.borderBaseRisk']
-  ),
+  borderStrongRisk: tint(severityColors.risk, 0.1),
   borderStrongDanger: computed(
-    ([borderBaseDanger]) => borderBaseDanger,
-    ['colors.borderBaseDanger']
+    ([danger]) => tint(danger, 0.1),
+    ['colors.danger']
   ),
 };
 
@@ -561,36 +555,30 @@ export const dark_border_colors: _EuiThemeBorderColors = {
   ),
 
   borderStrongPrimary: computed(
-    ([borderBasePrimary]) => borderBasePrimary,
-    ['colors.borderBasePrimary']
+    ([primary]) => primary, // no tint to match and keep previous token usage
+    ['colors.primary']
   ),
   borderStrongAccent: computed(
-    ([borderBaseAccent]) => borderBaseAccent,
-    ['colors.borderBaseAccent']
+    ([accent]) => tint(accent, 0.1),
+    ['colors.accent']
   ),
   borderStrongAccentSecondary: computed(
-    ([borderBaseAccentSecondary]) => borderBaseAccentSecondary,
-    ['colors.borderBaseAccentSecondary']
+    ([accentSeconday]) => tint(accentSeconday, 0.1),
+    ['colors.accentSeconday']
   ),
-  borderStrongNeutral: computed(
-    ([borderBaseNeutral]) => borderBaseNeutral,
-    ['colors.borderBaseNeutral']
-  ),
+  borderStrongNeutral: tint(severityColors.neutral, 0.1),
   borderStrongSuccess: computed(
-    ([borderBaseSuccess]) => borderBaseSuccess,
-    ['colors.borderBaseSuccess']
+    ([success]) => tint(success, 0.1),
+    ['colors.success']
   ),
   borderStrongWarning: computed(
-    ([borderBaseWarning]) => borderBaseWarning,
-    ['colors.borderBaseWarning']
+    ([warning]) => tint(warning, 0.1),
+    ['colors.warning']
   ),
-  borderStrongRisk: computed(
-    ([borderBaseRisk]) => borderBaseRisk,
-    ['colors.borderBaseRisk']
-  ),
+  borderStrongRisk: tint(severityColors.risk, 0.1),
   borderStrongDanger: computed(
-    ([borderBaseDanger]) => borderBaseDanger,
-    ['colors.borderBaseDanger']
+    ([danger]) => tint(danger, 0.1),
+    ['colors.danger']
   ),
 };
 
