@@ -75,6 +75,7 @@ export const EuiCheckableCard: FunctionComponent<EuiCheckableCardProps> = ({
 
   const { id } = rest;
   const labelEl = useRef<HTMLLabelElement>(null);
+  const inputEl = useRef<HTMLInputElement>(null);
   const classes = classNames('euiCheckableCard', className);
 
   let checkableElement;
@@ -88,14 +89,19 @@ export const EuiCheckableCard: FunctionComponent<EuiCheckableCardProps> = ({
     );
   } else {
     checkableElement = (
-      <EuiCheckbox checked={checked} disabled={disabled} {...rest} />
+      <EuiCheckbox
+        inputRef={inputEl}
+        checked={checked}
+        disabled={disabled}
+        {...rest}
+      />
     );
   }
 
   const labelClasses = classNames('euiCheckableCard__label');
 
-  const onChangeAffordance = () => {
-    if (labelEl.current) {
+  const onChangeAffordance = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (labelEl.current && e.target !== inputEl.current) {
       labelEl.current.click();
     }
   };
