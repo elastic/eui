@@ -317,7 +317,7 @@ const FlyoutDemoApp: React.FC = () => {
 };
 
 export default {
-  title: 'Layout/EuiFlyout/State Management with History',
+  title: 'Layout/EuiFlyout/EuiFlyoutChild',
   component: FlyoutManager,
   parameters: {
     layout: 'centered',
