@@ -62,7 +62,7 @@ const euiPaletteColorBlind = {
   },
 };
 
-export const colorVis: _EuiThemeVisColors = {
+export const colorVisLight: _EuiThemeVisColors = {
   euiColorVis0: euiPaletteColorBlind.euiColorVis0.graphic,
   euiColorVis1: euiPaletteColorBlind.euiColorVis1.graphic,
   euiColorVis2: euiPaletteColorBlind.euiColorVis2.graphic,
@@ -96,14 +96,6 @@ export const colorVis: _EuiThemeVisColors = {
   euiColorVisAsTextLight4: '#DD0A73',
   euiColorVisAsTextLight5: '#006BB4', // duplicated to handle color amount difference between themes
   euiColorVisAsTextLight6: '#017D73',
-
-  euiColorVisAsTextDark0: '#1BA9F5',
-  euiColorVisAsTextDark1: '#7DE2D1',
-  euiColorVisAsTextDark2: '#F990C0',
-  euiColorVisAsTextDark3: '#F66',
-  euiColorVisAsTextDark4: '#FFCE7A',
-  euiColorVisAsTextDark5: '#1BA9F5',
-  euiColorVisAsTextDark6: '#7DE2D1',
 
   euiColorVisNeutral0: tint(euiPaletteColorBlind.euiColorVis1.graphic, 0.3),
   euiColorVisNeutral1: tint(euiPaletteColorBlind.euiColorVis1.graphic, 0.56),

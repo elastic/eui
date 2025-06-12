@@ -47,7 +47,7 @@ const euiPaletteColorBlind = {
   },
 };
 
-export const colorVis: _EuiThemeVisColors = {
+export const colorVisLight: _EuiThemeVisColors = {
   euiColorVis0: euiPaletteColorBlind.euiColorVis0.graphic,
   euiColorVis1: euiPaletteColorBlind.euiColorVis1.graphic,
   euiColorVis2: euiPaletteColorBlind.euiColorVis2.graphic,
@@ -77,14 +77,6 @@ export const colorVis: _EuiThemeVisColors = {
   euiColorVisAsTextLight4: SEMANTIC_COLORS.warning100,
   euiColorVisAsTextLight5: SEMANTIC_COLORS.success100,
   euiColorVisAsTextLight6: SEMANTIC_COLORS.assistance100,
-
-  euiColorVisAsTextDark0: SEMANTIC_COLORS.accentSecondary60,
-  euiColorVisAsTextDark1: SEMANTIC_COLORS.primary60,
-  euiColorVisAsTextDark2: SEMANTIC_COLORS.accent60,
-  euiColorVisAsTextDark3: SEMANTIC_COLORS.danger60,
-  euiColorVisAsTextDark4: SEMANTIC_COLORS.warning60,
-  euiColorVisAsTextDark5: SEMANTIC_COLORS.success60,
-  euiColorVisAsTextDark6: SEMANTIC_COLORS.assistance60,
 
   euiColorVisNeutral0: SEMANTIC_COLORS.neutral60,
   euiColorVisNeutral1: SEMANTIC_COLORS.neutral30,

@@ -18,7 +18,8 @@ import {
   dark_border_colors,
 } from './colors/_colors_dark';
 import { border_colors } from './colors/_colors_light';
-import { colorVis } from './colors/_colors_vis';
+import { colorVisLight } from './colors/_colors_vis_light';
+import { colorVisDark } from './colors/_colors_vis_dark';
 import { buttons } from './_buttons';
 import { forms } from './_forms';
 
@@ -74,31 +75,31 @@ const component_colors: _EuiThemeComponentColors = {
     ([textParagraph]) => textParagraph,
     ['colors.textParagraph']
   ),
-  codeInlineColor: colorVis.euiColorVisAsTextLight6,
+  codeInlineColor: colorVisLight.euiColorVisAsTextLight6,
   codeCommentColor: computed(
     ([textSubdued]) => textSubdued,
     ['colors.textSubdued']
   ),
   codeSelectorColor: 'inherit',
-  codeStringColor: colorVis.euiColorVisAsTextLight2,
-  codeTagColor: colorVis.euiColorVisAsTextLight1,
-  codeNameColor: colorVis.euiColorVisAsTextLight1,
-  codeNumberColor: colorVis.euiColorVisAsTextLight0,
-  codeInlineCodeKeywordColor: colorVis.euiColorVisAsTextLight6,
-  codeKeywordColor: colorVis.euiColorVisAsTextLight1,
+  codeStringColor: colorVisLight.euiColorVisAsTextLight2,
+  codeTagColor: colorVisLight.euiColorVisAsTextLight1,
+  codeNameColor: colorVisLight.euiColorVisAsTextLight1,
+  codeNumberColor: colorVisLight.euiColorVisAsTextLight0,
+  codeInlineCodeKeywordColor: colorVisLight.euiColorVisAsTextLight6,
+  codeKeywordColor: colorVisLight.euiColorVisAsTextLight1,
   codeFunctionTitleColor: 'inherit',
-  codeTypeColor: colorVis.euiColorVisAsTextLight1,
+  codeTypeColor: colorVisLight.euiColorVisAsTextLight1,
   codeAttributeColor: 'inherit',
-  codeSymbolColor: colorVis.euiColorVisAsTextLight3,
+  codeSymbolColor: colorVisLight.euiColorVisAsTextLight3,
   codeParamsColor: 'inherit',
   codeMetaColor: computed(
     ([textSubdued]) => textSubdued,
     ['colors.textSubdued']
   ),
-  codeTitleColor: colorVis.euiColorVisAsTextLight4,
-  codeSectionColor: colorVis.euiColorVisAsTextLight3,
-  codeAdditionColor: colorVis.euiColorVisAsTextLight0,
-  codeDeletionColor: colorVis.euiColorVisAsTextLight3,
+  codeTitleColor: colorVisLight.euiColorVisAsTextLight4,
+  codeSectionColor: colorVisLight.euiColorVisAsTextLight3,
+  codeAdditionColor: colorVisLight.euiColorVisAsTextLight0,
+  codeDeletionColor: colorVisLight.euiColorVisAsTextLight3,
   codeSelectorClassColor: 'inherit',
   codeSelectorIdColor: 'inherit',
 
@@ -331,18 +332,18 @@ export const components: _EuiThemeComponents = {
 
     buttonGroupFocusColor: SEMANTIC_COLORS.plainLight,
 
-    codeInlineColor: colorVis.euiColorVisAsTextDark6,
-    codeStringColor: colorVis.euiColorVisAsTextDark2,
-    codeTagColor: colorVis.euiColorVisAsTextDark1,
-    codeNameColor: colorVis.euiColorVisAsTextDark1,
-    codeNumberColor: colorVis.euiColorVisAsTextDark0,
-    codeKeywordColor: colorVis.euiColorVisAsTextDark6,
-    codeTypeColor: colorVis.euiColorVisAsTextDark1,
-    codeSymbolColor: colorVis.euiColorVisAsTextDark3,
-    codeTitleColor: colorVis.euiColorVisAsTextDark4,
-    codeSectionColor: colorVis.euiColorVisAsTextDark3,
-    codeAdditionColor: colorVis.euiColorVisAsTextDark0,
-    codeDeletionColor: colorVis.euiColorVisAsTextDark3,
+    codeInlineColor: colorVisDark.euiColorVisAsTextDark6,
+    codeStringColor: colorVisDark.euiColorVisAsTextDark2,
+    codeTagColor: colorVisDark.euiColorVisAsTextDark1,
+    codeNameColor: colorVisDark.euiColorVisAsTextDark1,
+    codeNumberColor: colorVisDark.euiColorVisAsTextDark0,
+    codeKeywordColor: colorVisDark.euiColorVisAsTextDark6,
+    codeTypeColor: colorVisDark.euiColorVisAsTextDark1,
+    codeSymbolColor: colorVisDark.euiColorVisAsTextDark3,
+    codeTitleColor: colorVisDark.euiColorVisAsTextDark4,
+    codeSectionColor: colorVisDark.euiColorVisAsTextDark3,
+    codeAdditionColor: colorVisDark.euiColorVisAsTextDark0,
+    codeDeletionColor: colorVisDark.euiColorVisAsTextDark3,
 
     filterButtonBadgeBackgroundHover: SEMANTIC_COLORS.shade105,
 

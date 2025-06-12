@@ -11,7 +11,8 @@ import type { _EuiThemeColors } from '@elastic/eui-theme-common';
 import { SEMANTIC_COLORS } from './_semantic_colors';
 import { light_colors } from './_colors_light';
 import { dark_colors } from './_colors_dark';
-import { colorVis } from './_colors_vis';
+import { colorVisLight } from './_colors_vis_light';
+import { colorVisDark } from './_colors_vis_dark';
 import { severityColors } from './_colors_severity';
 
 export const colors: _EuiThemeColors = {
@@ -19,8 +20,13 @@ export const colors: _EuiThemeColors = {
   ink: SEMANTIC_COLORS.plainDark,
   plainLight: SEMANTIC_COLORS.plainLight,
   plainDark: SEMANTIC_COLORS.plainDark,
-  LIGHT: light_colors,
-  DARK: dark_colors,
-  vis: colorVis,
   severity: severityColors,
+  LIGHT: {
+    ...light_colors,
+    vis: colorVisLight,
+  },
+  DARK: {
+    ...dark_colors,
+    vis: colorVisDark,
+  },
 };
