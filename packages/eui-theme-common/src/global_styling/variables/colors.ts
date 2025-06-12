@@ -310,21 +310,16 @@ export type _EuiThemeVisColors = {
   /** @deprecated - temp token; used only during theme migration */
   euiColorVisBehindText9: string;
 
-  euiColorVisAsTextLight0: string;
-  euiColorVisAsTextLight1: string;
-  euiColorVisAsTextLight2: string;
-  euiColorVisAsTextLight3: string;
-  euiColorVisAsTextLight4: string;
-  euiColorVisAsTextLight5: string;
-  euiColorVisAsTextLight6: string;
-
-  euiColorVisAsTextDark0: string;
-  euiColorVisAsTextDark1: string;
-  euiColorVisAsTextDark2: string;
-  euiColorVisAsTextDark3: string;
-  euiColorVisAsTextDark4: string;
-  euiColorVisAsTextDark5: string;
-  euiColorVisAsTextDark6: string;
+  euiColorVisText0: string;
+  euiColorVisText1: string;
+  euiColorVisText2: string;
+  euiColorVisText3: string;
+  euiColorVisText4: string;
+  euiColorVisText5: string;
+  euiColorVisText6: string;
+  euiColorVisText7: string;
+  euiColorVisText8: string;
+  euiColorVisText9: string;
 
   euiColorVisNeutral0: string;
   euiColorVisNeutral1: string;

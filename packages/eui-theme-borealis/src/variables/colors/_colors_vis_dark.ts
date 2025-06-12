@@ -14,11 +14,14 @@ import { colorVisLight } from './_colors_vis_light';
 export const colorVisDark: _EuiThemeVisColors = {
   ...colorVisLight,
 
-  euiColorVisAsTextDark0: SEMANTIC_COLORS.accentSecondary60,
-  euiColorVisAsTextDark1: SEMANTIC_COLORS.primary60,
-  euiColorVisAsTextDark2: SEMANTIC_COLORS.accent60,
-  euiColorVisAsTextDark3: SEMANTIC_COLORS.danger60,
-  euiColorVisAsTextDark4: SEMANTIC_COLORS.warning60,
-  euiColorVisAsTextDark5: SEMANTIC_COLORS.success60,
-  euiColorVisAsTextDark6: SEMANTIC_COLORS.assistance60,
+  euiColorVisText0: SEMANTIC_COLORS.accentSecondary60,
+  euiColorVisText1: SEMANTIC_COLORS.accentSecondary30,
+  euiColorVisText2: SEMANTIC_COLORS.primary60,
+  euiColorVisText3: SEMANTIC_COLORS.primary30,
+  euiColorVisText4: SEMANTIC_COLORS.accent60,
+  euiColorVisText5: SEMANTIC_COLORS.accent30,
+  euiColorVisText6: SEMANTIC_COLORS.danger60,
+  euiColorVisText7: SEMANTIC_COLORS.danger30,
+  euiColorVisText8: SEMANTIC_COLORS.warning60,
+  euiColorVisText9: SEMANTIC_COLORS.warning30,
 };

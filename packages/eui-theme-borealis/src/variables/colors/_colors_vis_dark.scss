@@ -1,9 +1,11 @@
+// stylelint-disable color-no-hex
+
 @import './colors_vis';
 
-$euiColorVisAsTextDark0: #000000 !default;
-$euiColorVisAsTextDark1: #000000 !default;
-$euiColorVisAsTextDark2: #000000 !default;
-$euiColorVisAsTextDark3: #000000 !default;
-$euiColorVisAsTextDark4: #000000 !default;
-$euiColorVisAsTextDark5: #000000 !default;
-$euiColorVisAsTextDark6: #000000 !default;
+$euiColorVisText0: #16C5C0 !default;
+$euiColorVisText1: #A6EDEA !default;
+$euiColorVisText2: #61A2FF !default;
+$euiColorVisText3: #BFDBFF !default;
+$euiColorVisText4: #EE72A6 !default;
+$euiColorVisText5: #FFC7DB !default;
+$euiColorVisText6: #F6726A !default;
