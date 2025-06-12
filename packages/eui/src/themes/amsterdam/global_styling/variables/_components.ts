@@ -385,25 +385,24 @@ const component_colors: _EuiThemeComponentColors = {
   ),
 
   tableRowBackgroundHover: computed(
-    ([backgroundBaseInteractiveHover]) => backgroundBaseInteractiveHover,
-    ['colors.backgroundBaseInteractiveHover']
+    ([lightestShade]) => tint(lightestShade, 0.5),
+    ['colors.lightestShade']
   ),
   tableRowBackgroundSelected: computed(
-    ([backgroundBaseInteractiveSelect]) => backgroundBaseInteractiveSelect,
-    ['colors.backgroundBaseInteractiveSelect']
+    ([primary]) => tint(primary, 0.96),
+    ['colors.primary']
   ),
   tableRowBackgroundSelectedHover: computed(
-    ([backgroundBaseInteractiveSelectHover]) =>
-      backgroundBaseInteractiveSelectHover,
-    ['colors.backgroundBaseInteractiveSelectHover']
+    ([primary]) => tint(primary, 0.9),
+    ['colors.primary']
   ),
   tableRowInteractiveBackgroundHover: computed(
-    ([backgroundBaseInteractiveSelect]) => backgroundBaseInteractiveSelect,
-    ['colors.backgroundBaseInteractiveSelect']
+    ([primary]) => transparentize(primary, 0.05),
+    ['colors.primary']
   ),
   tableRowInteractiveBackgroundFocus: computed(
-    ([backgroundBaseInteractiveHover]) => backgroundBaseInteractiveHover,
-    ['colors.backgroundBaseInteractiveHover']
+    ([primary]) => transparentize(primary, 0.1),
+    ['colors.primary']
   ),
   tableCellSortableIconColor: computed(
     ([emptyShade, subduedText]) => {
@@ -562,6 +561,18 @@ export const components: _EuiThemeComponents = {
       ['colors.lightestShade']
     ),
 
+    tableRowBackgroundHover: computed(
+      ([lightestShade]) => lightestShade,
+      ['colors.lightestShade']
+    ),
+    tableRowBackgroundSelected: computed(
+      ([primary]) => shade(primary, 0.7),
+      ['colors.primary']
+    ),
+    tableRowBackgroundSelectedHover: computed(
+      ([primary]) => shade(primary, 0.75),
+      ['colors.primary']
+    ),
     tableCellSortableIconColor: computed(
       ([emptyShade, subduedText]) => {
         const color = shade(subduedText, 0.9);
