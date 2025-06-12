@@ -324,7 +324,10 @@ export const border_colors: _EuiThemeBorderColors = {
     ['colors.lightestShade']
   ),
 
-  borderStrongPrimary: computed(([primary]) => primary, ['colors.primary']),
+  borderStrongPrimary: computed(
+    ([borderBasePrimary]) => borderBasePrimary,
+    ['colors.borderBasePrimary']
+  ),
   borderStrongAccent: computed(
     ([borderBaseAccent]) => borderBaseAccent,
     ['colors.borderBaseAccent']
