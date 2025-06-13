@@ -198,7 +198,7 @@ import { SpecialColorsTable } from './special_colors_table';
 
 :::note Guidance
 
-Data visualization colors semantically tied to data visualizations and are not meant for use in other contexts. Do not use these colors in other contexts.
+Data visualization colors are semantically tied to data visualizations and are not meant for use in other contexts. Do not use these colors in other contexts.
 :::
 
 import { DataVisColorsTable, DataVisColorsBehindTextColorsTable, DataVisBackgroundColor } from './data_vis_colors_table';
@@ -211,6 +211,8 @@ import { DataVisColorsPreview } from './data_vis_colors_preview'
 
     The following colors are color-blind safe and should be used in categorically seried visualizations and graphics.
     They are meant to be contrasted against the value of <DataVisBackgroundColor /> for the current theme.
+
+    When using text labels with your data visualization use the related text tokens, e.g. `euiColorVisText0`.
 
     See the [Color Contrast](#contrast) section for a note about color contrast.
   </Example.Description>

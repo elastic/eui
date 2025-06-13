@@ -65,7 +65,7 @@ describe('euiPaletteForLightBackground', () => {
     const customColor = '#00ff00';
     const colors = {
       ...colorVis,
-      euiColorVisAsTextLight0: customColor,
+      euiColorVisText0: customColor,
     };
 
     const result = euiPaletteForLightBackground({
@@ -81,7 +81,7 @@ describe('euiPaletteForDarkBackground', () => {
     const customColor = '#00ff00';
     const colors = {
       ...colorVis,
-      euiColorVisAsTextDark0: customColor,
+      euiColorVisText0: customColor,
     };
 
     const result = euiPaletteForDarkBackground({
