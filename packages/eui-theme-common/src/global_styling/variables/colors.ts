@@ -192,6 +192,7 @@ export type _EuiThemeBackgroundColors = {
   backgroundBaseFormsControlDisabled: ColorModeSwitch;
   backgroundBaseInteractiveHover: ColorModeSwitch;
   backgroundBaseInteractiveSelect: ColorModeSwitch;
+  backgroundBaseInteractiveSelectHover: ColorModeSwitch;
   backgroundBaseInteractiveOverlay: ColorModeSwitch;
   backgroundBaseSkeletonEdge: ColorModeSwitch;
   backgroundBaseSkeletonMiddle: ColorModeSwitch;
@@ -275,6 +276,7 @@ export type _EuiThemeBorderColors = {
   borderStrongWarning: ColorModeSwitch;
   borderStrongRisk: ColorModeSwitch;
   borderStrongDanger: ColorModeSwitch;
+  borderStrongText: ColorModeSwitch;
 };
 
 export type _EuiThemeVisColors = {

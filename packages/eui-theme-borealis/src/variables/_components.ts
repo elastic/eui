@@ -117,15 +117,51 @@ const component_colors: _EuiThemeComponentColors = {
     ([borderBaseSubdued]) => borderBaseSubdued,
     ['colors.borderBaseSubdued']
   ),
-  dataGridRowBackgroundStriped: computed(
-    ([backgroundBaseSubdued]) => backgroundBaseSubdued,
-    ['colors.backgroundBaseSubdued']
+
+  dataGridRowBackground: computed(
+    ([backgroundBasePlain]) => backgroundBasePlain,
+    ['colors.backgroundBasePlain']
   ),
   dataGridRowBackgroundHover: computed(
     ([backgroundBaseInteractiveHover]) => backgroundBaseInteractiveHover,
     ['colors.backgroundBaseInteractiveHover']
   ),
   dataGridRowBackgroundSelect: computed(
+    ([backgroundBaseInteractiveSelect]) => backgroundBaseInteractiveSelect,
+    ['colors.backgroundBaseInteractiveSelect']
+  ),
+  dataGridRowBackgroundSelectHover: computed(
+    ([backgroundBaseInteractiveSelectHover]) =>
+      backgroundBaseInteractiveSelectHover,
+    ['colors.backgroundBaseInteractiveSelectHover']
+  ),
+
+  dataGridRowStripesBackground: computed(
+    ([backgroundBasePlain]) => backgroundBasePlain,
+    ['colors.backgroundBasePlain']
+  ),
+  // "Legacy", same as dataGridRowStripesBackground
+  dataGridRowBackgroundStriped: computed(
+    ([backgroundBaseSubdued]) => backgroundBaseSubdued,
+    ['colors.backgroundBaseSubdued']
+  ),
+  dataGridRowStripesBackgroundHover: computed(
+    ([backgroundBasePlain]) => backgroundBasePlain,
+    ['colors.backgroundBasePlain']
+  ),
+  dataGridRowStripesBackgroundStriped: computed(
+    ([backgroundBaseSubdued]) => backgroundBaseSubdued,
+    ['colors.backgroundBaseSubdued']
+  ),
+  dataGridRowStripesBackgroundStripedHover: computed(
+    ([backgroundBaseSubdued]) => backgroundBaseSubdued,
+    ['colors.backgroundBaseSubdued']
+  ),
+  dataGridRowStripesBackgroundSelect: computed(
+    ([backgroundBaseInteractiveSelect]) => backgroundBaseInteractiveSelect,
+    ['colors.backgroundBaseInteractiveSelect']
+  ),
+  dataGridRowStripesBackgroundSelectHover: computed(
     ([backgroundBaseInteractiveSelect]) => backgroundBaseInteractiveSelect,
     ['colors.backgroundBaseInteractiveSelect']
   ),
@@ -288,16 +324,17 @@ const component_colors: _EuiThemeComponentColors = {
     ['colors.backgroundBaseInteractiveSelect']
   ),
   tableRowBackgroundSelectedHover: computed(
-    ([backgroundBaseInteractiveSelect]) => backgroundBaseInteractiveSelect,
-    ['colors.backgroundBaseInteractiveSelect']
+    ([backgroundBaseInteractiveSelectHover]) =>
+      backgroundBaseInteractiveSelectHover,
+    ['colors.backgroundBaseInteractiveSelectHover']
   ),
   tableRowInteractiveBackgroundHover: computed(
     ([backgroundBaseInteractiveSelect]) => backgroundBaseInteractiveSelect,
     ['colors.backgroundBaseInteractiveSelect']
   ),
   tableRowInteractiveBackgroundFocus: computed(
-    ([backgroundBaseInteractiveSelect]) => backgroundBaseInteractiveSelect,
-    ['colors.backgroundBaseInteractiveSelect']
+    ([backgroundBaseInteractiveHover]) => backgroundBaseInteractiveHover,
+    ['colors.backgroundBaseInteractiveHover']
   ),
   tableCellSortableIconColor: computed(
     ([backgroundFilledText]) => backgroundFilledText,

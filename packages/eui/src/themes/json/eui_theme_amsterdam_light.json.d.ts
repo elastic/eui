@@ -382,6 +382,7 @@ declare module '@elastic/eui/dist/eui_theme_amsterdam_light.json' {
     euiColorBackgroundBaseFormsControlDisabled: string;
     euiColorBackgroundBaseInteractiveHover: string;
     euiColorBackgroundBaseInteractiveSelect: string;
+    euiColorBackgroundBaseInteractiveSelectHover: string;
     euiColorBackgroundBaseInteractiveOverlay: string;
     euiColorBackgroundBaseSkeletonEdge: string;
     euiColorBackgroundBaseSkeletonMiddle: string;
@@ -425,6 +426,7 @@ declare module '@elastic/eui/dist/eui_theme_amsterdam_light.json' {
     euiColorBorderStrongWarning: string;
     euiColorBorderStrongRisk: string;
     euiColorBorderStrongDanger: string;
+    euiColorBorderStrongText: string;
   };
   export default sassVariables;
 }

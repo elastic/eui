@@ -16,8 +16,8 @@ import {
 } from '../../../../global_styling';
 
 export const euiDataGridCellOutlineStyles = ({ euiTheme }: UseEuiTheme) => {
-  const focusColor = euiTheme.colors.primary;
-  const hoverColor = euiTheme.colors.darkShade;
+  const focusColor = euiTheme.colors.borderStrongPrimary;
+  const hoverColor = euiTheme.colors.borderStrongText;
   const outlineWidth = euiTheme.border.width.thick;
   const borderRadius = mathWithUnits(
     euiTheme.border.radius.medium,
