@@ -755,6 +755,7 @@ export class EuiComboBox<T> extends Component<
       optionMatcher,
       'aria-label': ariaLabel,
       'aria-labelledby': ariaLabelledby,
+      'aria-describedby': ariaDescribedby,
       ...rest
     } = this.props;
     const {
@@ -909,6 +910,7 @@ export class EuiComboBox<T> extends Component<
                     autoFocus={autoFocus}
                     aria-label={ariaLabel}
                     aria-labelledby={ariaLabelledby}
+                    aria-describedby={ariaDescribedby}
                   />
                 }
               >

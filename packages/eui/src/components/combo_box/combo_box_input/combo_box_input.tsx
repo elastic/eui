@@ -70,6 +70,7 @@ export interface EuiComboBoxInputProps<T> extends CommonProps {
   autoFocus?: boolean;
   'aria-label'?: string;
   'aria-labelledby'?: string;
+  'aria-describedby'?: string;
 }
 
 interface EuiComboBoxInputState {
@@ -249,6 +250,7 @@ export class EuiComboBoxInput<T> extends Component<
       autoFocus,
       'aria-label': ariaLabel,
       'aria-labelledby': ariaLabelledby,
+      'aria-describedby': ariaDescribedby,
     } = this.props;
 
     let removeOptionMessage: ReactNode;
@@ -378,6 +380,7 @@ export class EuiComboBoxInput<T> extends Component<
                     aria-expanded={isListOpen}
                     aria-label={ariaLabel}
                     aria-labelledby={ariaLabelledby}
+                    aria-describedby={ariaDescribedby}
                     aria-invalid={isInvalid}
                     aria-haspopup="listbox"
                     css={styles.euiComboBoxInput}
