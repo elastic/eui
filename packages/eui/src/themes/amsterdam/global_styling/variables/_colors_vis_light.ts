@@ -92,12 +92,27 @@ export const colorVisLight: _EuiThemeVisColors = {
   euiColorVisText0: '#017D73',
   euiColorVisText1: '#006BB4',
   euiColorVisText2: '#DD0A73',
-  euiColorVisText3: shade(euiPaletteColorBlind.euiColorVis3.graphic, 0.2), // #745A93
-  euiColorVisText4: shade(euiPaletteColorBlind.euiColorVis4.graphic, 0.2), // #A2728B
-  euiColorVisText5: shade(euiPaletteColorBlind.euiColorVis5.graphic, 0.2), // #AB9946
-  euiColorVisText6: shade(euiPaletteColorBlind.euiColorVis6.graphic, 0.2), // #94866D
+  euiColorVisText3: shade(
+    euiPaletteColorBlind.euiColorVis3.graphic,
+    0.2
+  ).toUpperCase(), // #745A93
+  euiColorVisText4: shade(
+    euiPaletteColorBlind.euiColorVis4.graphic,
+    0.2
+  ).toUpperCase(), // #A2728B
+  euiColorVisText5: shade(
+    euiPaletteColorBlind.euiColorVis5.graphic,
+    0.2
+  ).toUpperCase(), // #AB9946
+  euiColorVisText6: shade(
+    euiPaletteColorBlind.euiColorVis6.graphic,
+    0.2
+  ).toUpperCase(), // #94866D
   euiColorVisText7: '#F5A700',
-  euiColorVisText8: shade(euiPaletteColorBlind.euiColorVis7.graphic, 0.2), // #885145
+  euiColorVisText8: shade(
+    euiPaletteColorBlind.euiColorVis8.graphic,
+    0.2
+  ).toUpperCase(), // #885145
   euiColorVisText9: '#BD271E',
 
   euiColorVisNeutral0: tint(euiPaletteColorBlind.euiColorVis1.graphic, 0.3),

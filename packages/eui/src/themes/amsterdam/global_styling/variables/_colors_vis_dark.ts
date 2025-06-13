@@ -8,7 +8,7 @@
 
 import { _EuiThemeVisColors } from '@elastic/eui-theme-common';
 
-import { shade } from '../../../../services/color/manipulation';
+import { tint } from '../../../../services/color/manipulation';
 import { colorVisLight } from './_colors_vis_light';
 
 export const colorVisDark: _EuiThemeVisColors = {
@@ -17,11 +17,26 @@ export const colorVisDark: _EuiThemeVisColors = {
   euiColorVisText0: '#7DE2D1',
   euiColorVisText1: '#1BA9F5',
   euiColorVisText2: '#F990C0',
-  euiColorVisText3: shade(colorVisLight.euiColorVisBehindText3, 0.2), // '#BA9FDA',
-  euiColorVisText4: shade(colorVisLight.euiColorVisBehindText4, 0.2), // '#E9B8D2',
-  euiColorVisText5: shade(colorVisLight.euiColorVisBehindText5, 0.2), // '#F4E08C',
-  euiColorVisText6: shade(colorVisLight.euiColorVisBehindText6, 0.2), // '#DBCDB3',
+  euiColorVisText3: tint(
+    colorVisLight.euiColorVisBehindText3,
+    0.2
+  ).toUpperCase(), // '#BA9FDA',
+  euiColorVisText4: tint(
+    colorVisLight.euiColorVisBehindText4,
+    0.2
+  ).toUpperCase(), // '#E9B8D2',
+  euiColorVisText5: tint(
+    colorVisLight.euiColorVisBehindText5,
+    0.2
+  ).toUpperCase(), // '#F4E08C',
+  euiColorVisText6: tint(
+    colorVisLight.euiColorVisBehindText6,
+    0.2
+  ).toUpperCase(), // '#DBCDB3',
   euiColorVisText7: '#FFCE7A',
-  euiColorVisText8: shade(colorVisLight.euiColorVisBehindText8, 0.2), // '#D09689',
+  euiColorVisText8: tint(
+    colorVisLight.euiColorVisBehindText8,
+    0.2
+  ).toUpperCase(), // '#D09689',
   euiColorVisText9: '#F66',
 };
