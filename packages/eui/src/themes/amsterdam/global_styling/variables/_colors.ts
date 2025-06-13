@@ -320,32 +320,17 @@ export const border_colors: _EuiThemeBorderColors = {
     ['colors.lightestShade']
   ),
 
-  borderStrongPrimary: computed(
-    ([primary]) => primary, // no tint to match and keep previous token usage
-    ['colors.primary']
-  ),
-  borderStrongAccent: computed(
-    ([accent]) => tint(accent, 0.1),
-    ['colors.accent']
-  ),
+  borderStrongPrimary: computed(([primary]) => primary, ['colors.primary']),
+  borderStrongAccent: computed(([accent]) => accent, ['colors.accent']),
   borderStrongAccentSecondary: computed(
-    ([accentSeconday]) => tint(accentSeconday, 0.1),
+    ([accentSecondary]) => accentSecondary,
     ['colors.accentSeconday']
   ),
-  borderStrongNeutral: tint(severityColors.neutral, 0.1),
-  borderStrongSuccess: computed(
-    ([success]) => tint(success, 0.1),
-    ['colors.success']
-  ),
-  borderStrongWarning: computed(
-    ([warning]) => tint(warning, 0.1),
-    ['colors.warning']
-  ),
-  borderStrongRisk: tint(severityColors.risk, 0.1),
-  borderStrongDanger: computed(
-    ([danger]) => tint(danger, 0.1),
-    ['colors.danger']
-  ),
+  borderStrongNeutral: severityColors.neutral,
+  borderStrongSuccess: computed(([success]) => success, ['colors.success']),
+  borderStrongWarning: computed(([warning]) => warning, ['colors.warning']),
+  borderStrongRisk: severityColors.risk,
+  borderStrongDanger: computed(([danger]) => danger, ['colors.danger']),
 };
 
 export const light_colors: _EuiThemeColorsMode = {
@@ -554,32 +539,17 @@ export const dark_border_colors: _EuiThemeBorderColors = {
     ['colors.lightestShade']
   ),
 
-  borderStrongPrimary: computed(
-    ([primary]) => primary, // no tint to match and keep previous token usage
-    ['colors.primary']
-  ),
-  borderStrongAccent: computed(
-    ([accent]) => tint(accent, 0.1),
-    ['colors.accent']
-  ),
+  borderStrongPrimary: computed(([primary]) => primary, ['colors.primary']),
+  borderStrongAccent: computed(([accent]) => accent, ['colors.accent']),
   borderStrongAccentSecondary: computed(
-    ([accentSeconday]) => tint(accentSeconday, 0.1),
+    ([accentSecondary]) => accentSecondary,
     ['colors.accentSeconday']
   ),
-  borderStrongNeutral: tint(severityColors.neutral, 0.1),
-  borderStrongSuccess: computed(
-    ([success]) => tint(success, 0.1),
-    ['colors.success']
-  ),
-  borderStrongWarning: computed(
-    ([warning]) => tint(warning, 0.1),
-    ['colors.warning']
-  ),
+  borderStrongNeutral: severityColors.neutral,
+  borderStrongSuccess: computed(([success]) => success, ['colors.success']),
+  borderStrongWarning: computed(([warning]) => warning, ['colors.warning']),
   borderStrongRisk: tint(severityColors.risk, 0.1),
-  borderStrongDanger: computed(
-    ([danger]) => tint(danger, 0.1),
-    ['colors.danger']
-  ),
+  borderStrongDanger: computed(([danger]) => danger, ['colors.danger']),
 };
 
 export const dark_colors_ams: _EuiThemeColorsMode = {

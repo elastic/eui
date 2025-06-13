@@ -120,14 +120,14 @@ $euiColorBorderBaseFloating: $euiColorLightShade !default;
 $euiColorBorderBaseFormsColorSwatch: transparentize($euiColorFullShade, 0.1) !default;
 $euiColorBorderBaseFormsControl: tint($euiColorLightestShade, 0.31) !default;
 
-$euiColorBorderStrongPrimary: tint($euiColorPrimary, 0.1) !default;
-$euiColorBorderStrongAccent: tint($euiColorAccent, 0.1) !default;
-$euiColorBorderStrongAccentSecondary: tint($euiColorAccentSecondary, 0.1) !default;
-$euiColorBorderStrongNeutral: tint($euiColorSeverityNeutral, 0.1) !default;
-$euiColorBorderStrongSuccess: tint($euiColorSuccess, 0.1) !default;
-$euiColorBorderStrongWarning: tint($euiColorWarning, 0.1) !default;
-$euiColorBorderStrongRisk: tint($euiColorSeverityRisk, 0.1) !default;
-$euiColorBorderStrongDanger: tint($euiColorDanger, 0.1) !default;
+$euiColorBorderStrongPrimary: $euiColorPrimary !default;
+$euiColorBorderStrongAccent: $euiColorAccent !default;
+$euiColorBorderStrongAccentSecondary: $euiColorAccentSecondary !default;
+$euiColorBorderStrongNeutral: $euiColorSeverityNeutral !default;
+$euiColorBorderStrongSuccess: $euiColorSuccess !default;
+$euiColorBorderStrongWarning: $euiColorWarning !default;
+$euiColorBorderStrongRisk: $euiColorSeverityRisk !default;
+$euiColorBorderStrongDanger: $euiColorDanger !default;
 
 // Charts
 $euiColorChartLines: $euiColorLightShade !default;

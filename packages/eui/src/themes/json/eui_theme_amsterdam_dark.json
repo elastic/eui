@@ -417,11 +417,11 @@
   "euiColorBorderBaseFormsColorSwatch": "rgba(255,255,255,0.1)",
   "euiColorBorderBaseFormsControl": "#69696f",
   "euiColorBorderStrongPrimary": "#36A2EF",
-  "euiColorBorderStrongAccent": "#F79AC5",
-  "euiColorBorderStrongAccentSecondary": "#8AE1DC",
-  "euiColorBorderStrongNeutral": "#C0D4E6",
-  "euiColorBorderStrongSuccess": "#8AE1DC",
-  "euiColorBorderStrongWarning": "#F4D77F",
-  "euiColorBorderStrongRisk": "#DE9758",
-  "euiColorBorderStrongDanger": "#F97A73"
+  "euiColorBorderStrongAccent": "#F68FBE",
+  "euiColorBorderStrongAccentSecondary": "#7DDED8",
+  "euiColorBorderStrongNeutral": "#B9CFE3",
+  "euiColorBorderStrongSuccess": "#7DDED8",
+  "euiColorBorderStrongWarning": "#F3D371",
+  "euiColorBorderStrongRisk": "#DA8B45",
+  "euiColorBorderStrongDanger": "#F86B63"
 }
