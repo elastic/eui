@@ -8,13 +8,15 @@
 
 import { FlyoutAction, FlyoutHistoryState, FlyoutGroup } from './types';
 
-export const initialFlyoutState: FlyoutHistoryState = {
+export const initialFlyoutState: FlyoutHistoryState<any> = {
   activeFlyoutGroup: null,
   history: [],
 };
 
 // Helper to apply size constraints for flyout groups
-const applySizeConstraints = (group: FlyoutGroup): FlyoutGroup => {
+const applySizeConstraints = <FlyoutMeta>(
+  group: FlyoutGroup<FlyoutMeta>
+): FlyoutGroup<FlyoutMeta> => {
   const originalMainSize = group.config.mainSize;
   const originalChildSize = group.config.childSize;
   let newMainSize = originalMainSize;
@@ -44,10 +46,10 @@ const applySizeConstraints = (group: FlyoutGroup): FlyoutGroup => {
   };
 };
 
-export function flyoutReducer(
-  state: FlyoutHistoryState,
-  action: FlyoutAction
-): FlyoutHistoryState {
+export function flyoutReducer<FlyoutMeta>(
+  state: FlyoutHistoryState<FlyoutMeta>,
+  action: FlyoutAction<FlyoutMeta>
+): FlyoutHistoryState<FlyoutMeta> {
   switch (action.type) {
     case 'OPEN_MAIN_FLYOUT': {
       const {
@@ -61,7 +63,7 @@ export function flyoutReducer(
         newHistory.push(state.activeFlyoutGroup);
       }
 
-      const newActiveGroup: FlyoutGroup = {
+      const newActiveGroup: FlyoutGroup<FlyoutMeta> = {
         isMainOpen: true,
         isChildOpen: false,
         config: {
@@ -72,6 +74,10 @@ export function flyoutReducer(
         },
         mainOnUnmount,
         childOnUnmount: undefined,
+        meta: {
+          ...state.activeFlyoutGroup?.meta,
+          ...action.payload.meta,
+        },
       };
 
       return {
@@ -93,7 +99,7 @@ export function flyoutReducer(
         flyoutProps: childFlyoutProps,
         onUnmount: childOnUnmount,
       } = action.payload;
-      const updatedActiveGroup: FlyoutGroup = {
+      const updatedActiveGroup: FlyoutGroup<FlyoutMeta> = {
         ...state.activeFlyoutGroup,
         isChildOpen: true,
         config: {
@@ -102,6 +108,10 @@ export function flyoutReducer(
           childFlyoutProps,
         },
         childOnUnmount,
+        meta: {
+          ...state.activeFlyoutGroup.meta,
+          ...action.payload.meta,
+        },
       };
 
       return {
@@ -123,7 +133,7 @@ export function flyoutReducer(
       );
       state.activeFlyoutGroup.childOnUnmount?.();
 
-      const updatedActiveGroup: FlyoutGroup = {
+      const updatedActiveGroup: FlyoutGroup<FlyoutMeta> = {
         ...state.activeFlyoutGroup,
         isChildOpen: false,
         config: {
@@ -148,7 +158,7 @@ export function flyoutReducer(
           new KeyboardEvent('')
         );
         state.activeFlyoutGroup.childOnUnmount?.();
-        const groupWithChildClosed: FlyoutGroup = {
+        const groupWithChildClosed: FlyoutGroup<FlyoutMeta> = {
           ...state.activeFlyoutGroup,
           isChildOpen: false,
           config: {
@@ -188,7 +198,7 @@ export function flyoutReducer(
       const { configChanges, newMainOnUnmount, newChildOnUnmount } =
         action.payload;
 
-      const updatedActiveGroup: FlyoutGroup = {
+      const updatedActiveGroup: FlyoutGroup<FlyoutMeta> = {
         ...state.activeFlyoutGroup,
         config: {
           ...state.activeFlyoutGroup.config,

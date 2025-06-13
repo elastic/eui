@@ -22,75 +22,71 @@ import {
 
 import { FlyoutManager, useFlyout } from './flyout_manager';
 import { FlyoutRenderContext } from './types';
+import {
+  OpenChildFlyoutOptions,
+  OpenMainFlyoutOptions,
+  useEuiFlyoutApi,
+} from './use_eui_flyout';
 
-interface CustomDataType {
+interface ContentProps {
+  onCloseFlyout: () => void;
+}
+
+interface ContactUsContentProps extends ContentProps {}
+
+interface ECommerceContentProps extends ContentProps {
   itemQuantity: number;
-  selectedUi: 'shoppingCart' | 'review' | 'contactUs';
+}
+interface ShoppingCartContentProps extends ECommerceContentProps {
+  onQuantityChange: (delta: number) => void;
+  isChildOpen?: boolean;
+  isMainOpen?: boolean;
+}
+interface ReviewOrderContentProps extends ECommerceContentProps {}
+interface ItemDetailsContentProps extends ECommerceContentProps {}
+
+interface DemoAppMetaForContext {
+  selectedMainFlyoutKey?: 'shoppingCart' | 'reviewOrder' | 'contactUs';
+  selectedChildFlyoutKey?: 'itemDetails';
 }
 
-interface FlyoutContentProps {
-  context: FlyoutRenderContext<CustomDataType>;
-}
+const ShoppingCartContent: React.FC<ShoppingCartContentProps> = ({
+  itemQuantity,
+  onQuantityChange,
+  onCloseFlyout,
+  isChildOpen,
+  isMainOpen,
+}) => {
+  const { openChildFlyout, nextFlyout, closeFlyout } = useEuiFlyoutApi();
+  const { state } = useFlyout();
+  const { activeFlyoutGroup } = state;
 
-const ShoppingCartContent: React.FC<FlyoutContentProps> = ({ context }) => {
-  const { dispatch, activeFlyoutGroup, onClose } = context;
-  const itemQuantity =
-    context.flyoutSpecificProps.customData?.itemQuantity || 0;
-
-  const handleUpdateQuantity = (delta: number) => {
-    if (
-      !activeFlyoutGroup ||
-      !activeFlyoutGroup.config.mainFlyoutProps?.customData
-    )
-      return;
-    const currentCustomData =
-      activeFlyoutGroup.config.mainFlyoutProps.customData;
-    const currentQuantity = currentCustomData.itemQuantity || 0;
-    const newQuantity = Math.max(0, currentQuantity + delta);
-    dispatch({
-      type: 'UPDATE_ACTIVE_FLYOUT_CONFIG',
-      payload: {
-        configChanges: {
-          mainFlyoutProps: {
-            ...activeFlyoutGroup.config.mainFlyoutProps,
-            customData: { ...currentCustomData, itemQuantity: newQuantity },
-          },
-        },
+  const handleOpenChildDetails = () => {
+    const options: OpenChildFlyoutOptions<DemoAppMetaForContext> = {
+      size: 's',
+      meta: { selectedChildFlyoutKey: 'itemDetails' },
+      flyoutProps: {
+        className: 'demoFlyoutChild',
+        'aria-label': 'Item details',
       },
-    });
-  };
-
-  const handleOpenChildFlyout = () => {
-    dispatch({
-      type: 'OPEN_CHILD_FLYOUT',
-      payload: {
-        size: 's',
-        flyoutProps: {
-          className: 'demoFlyoutChild',
-          'aria-label': 'Item details',
-          customData: { itemQuantity },
-        },
-        onUnmount: () => console.log('Unmounted item details child flyout'),
-      },
-    });
+      onUnmount: () => console.log('Unmounted item details child flyout'),
+    };
+    openChildFlyout(options);
   };
 
   const handleProceedToReview = () => {
-    if (!activeFlyoutGroup || !activeFlyoutGroup.isMainOpen) return;
-    const reviewFlyoutSize = activeFlyoutGroup.config.mainSize || 'm';
-    dispatch({
-      type: 'OPEN_MAIN_FLYOUT',
-      payload: {
-        size: reviewFlyoutSize,
-        flyoutProps: {
-          ...activeFlyoutGroup.config.mainFlyoutProps,
-          'aria-label': 'Review order',
-          customData: { selectedUi: 'review', itemQuantity },
-        },
-        onUnmount: () =>
-          console.log(`Unmounted review order flyout (${reviewFlyoutSize})`),
+    const reviewFlyoutSize = activeFlyoutGroup?.config.mainSize || 'm';
+    const options: OpenMainFlyoutOptions<DemoAppMetaForContext> = {
+      size: reviewFlyoutSize,
+      meta: { selectedMainFlyoutKey: 'reviewOrder' },
+      flyoutProps: {
+        ...activeFlyoutGroup?.config.mainFlyoutProps,
+        'aria-label': 'Review order',
       },
-    });
+      onUnmount: () =>
+        console.log(`Unmounted review order flyout (${reviewFlyoutSize})`),
+    };
+    nextFlyout(options);
   };
 
   return (
@@ -107,7 +103,7 @@ const ShoppingCartContent: React.FC<FlyoutContentProps> = ({ context }) => {
         <EuiSpacer />
         <EuiText>Quantity: {itemQuantity}</EuiText>
         <EuiButton
-          onClick={() => handleUpdateQuantity(-1)}
+          onClick={() => onQuantityChange(-1)}
           iconType="minusInCircle"
           aria-label="Decrease quantity"
           isDisabled={itemQuantity <= 0}
@@ -115,7 +111,7 @@ const ShoppingCartContent: React.FC<FlyoutContentProps> = ({ context }) => {
           -1
         </EuiButton>
         <EuiButton
-          onClick={() => handleUpdateQuantity(1)}
+          onClick={() => onQuantityChange(1)}
           iconType="plusInCircle"
           aria-label="Increase quantity"
         >
@@ -123,39 +119,33 @@ const ShoppingCartContent: React.FC<FlyoutContentProps> = ({ context }) => {
         </EuiButton>
         <EuiSpacer />
         <EuiButton
-          onClick={
-            activeFlyoutGroup?.isChildOpen ? onClose : handleOpenChildFlyout
-          }
-          isDisabled={!activeFlyoutGroup?.isMainOpen}
+          onClick={isChildOpen ? closeFlyout : handleOpenChildDetails}
+          isDisabled={!isMainOpen}
         >
-          {activeFlyoutGroup?.isChildOpen
-            ? 'Close item details'
-            : 'View item details'}
+          {isChildOpen ? 'Close item details' : 'View item details'}
         </EuiButton>
         <EuiSpacer />
         <EuiButton
           onClick={handleProceedToReview}
-          isDisabled={!activeFlyoutGroup?.isMainOpen || itemQuantity <= 0}
+          isDisabled={!isMainOpen || itemQuantity <= 0}
           fill
         >
           Proceed to review
         </EuiButton>
       </EuiFlyoutBody>
       <EuiFlyoutFooter>
-        <EuiButton onClick={onClose} color="danger">
-          {activeFlyoutGroup?.isChildOpen
-            ? 'Close details & Go back'
-            : 'Close/Go back'}
+        <EuiButton onClick={onCloseFlyout} color="danger">
+          {isChildOpen ? 'Close details & Go back' : 'Close/Go back'}
         </EuiButton>
       </EuiFlyoutFooter>
     </>
   );
 };
 
-const ReviewOrderContent: React.FC<FlyoutContentProps> = ({ context }) => {
-  const { onClose } = context;
-  const itemQuantity =
-    context.flyoutSpecificProps.customData?.itemQuantity || 0;
+const ReviewOrderContent: React.FC<ReviewOrderContentProps> = ({
+  itemQuantity,
+  onCloseFlyout,
+}) => {
   return (
     <>
       <EuiFlyoutHeader hasBorder>
@@ -179,7 +169,7 @@ const ReviewOrderContent: React.FC<FlyoutContentProps> = ({ context }) => {
         </EuiButton>
       </EuiFlyoutBody>
       <EuiFlyoutFooter>
-        <EuiButton onClick={onClose} color="danger">
+        <EuiButton onClick={onCloseFlyout} color="danger">
           Close/Go back
         </EuiButton>
       </EuiFlyoutFooter>
@@ -187,10 +177,10 @@ const ReviewOrderContent: React.FC<FlyoutContentProps> = ({ context }) => {
   );
 };
 
-const ItemDetailsContent: React.FC<FlyoutContentProps> = ({ context }) => {
-  const { onClose } = context;
-  const itemQuantity =
-    context.flyoutSpecificProps.customData?.itemQuantity || 0;
+const ItemDetailsContent: React.FC<ItemDetailsContentProps> = ({
+  itemQuantity,
+  onCloseFlyout,
+}) => {
   return (
     <>
       <EuiFlyoutHeader hasBorder>
@@ -212,7 +202,7 @@ const ItemDetailsContent: React.FC<FlyoutContentProps> = ({ context }) => {
         </EuiText>
       </EuiFlyoutBody>
       <EuiFlyoutFooter>
-        <EuiButton onClick={onClose} color="danger">
+        <EuiButton onClick={onCloseFlyout} color="danger">
           Close details
         </EuiButton>
       </EuiFlyoutFooter>
@@ -220,8 +210,9 @@ const ItemDetailsContent: React.FC<FlyoutContentProps> = ({ context }) => {
   );
 };
 
-const ContactUsContent: React.FC<FlyoutContentProps> = ({ context }) => {
-  const { onClose } = context;
+const ContactUsContent: React.FC<ContactUsContentProps> = ({
+  onCloseFlyout,
+}) => {
   return (
     <>
       <EuiFlyoutHeader hasBorder>
@@ -238,7 +229,7 @@ const ContactUsContent: React.FC<FlyoutContentProps> = ({ context }) => {
         </EuiText>
       </EuiFlyoutBody>
       <EuiFlyoutFooter>
-        <EuiButton onClick={onClose} color="primary">
+        <EuiButton onClick={onCloseFlyout} color="primary">
           Close
         </EuiButton>
       </EuiFlyoutFooter>
@@ -246,92 +237,67 @@ const ContactUsContent: React.FC<FlyoutContentProps> = ({ context }) => {
   );
 };
 
-const renderDemoFlyoutContent = (
-  context: FlyoutRenderContext<CustomDataType>
-) => {
-  const selectedUi = context.flyoutSpecificProps.customData?.selectedUi;
+// Component for the main control buttons and state display
+const DemoAppControls: React.FC = () => {
+  const { openFlyout, closeFlyout, clearHistory, isFlyoutOpen, canGoBack } =
+    useEuiFlyoutApi();
+  const { state } = useFlyout(); // For displaying raw state and history length
 
-  if (context.flyoutType === 'main') {
-    if (selectedUi === 'shoppingCart') {
-      return <ShoppingCartContent context={context} />;
-    }
-    if (selectedUi === 'review') {
-      return <ReviewOrderContent context={context} />;
-    }
-    if (selectedUi === 'contactUs') {
-      return <ContactUsContent context={context} />;
-    }
-  } else if (context.flyoutType === 'child') {
-    return <ItemDetailsContent context={context} />;
-  }
+  const [
+    isShoppingCartFlyoutExplicitlyOpen,
+    setIsShoppingCartFlyoutExplicitlyOpen,
+  ] = useState(false);
+  const [isContactUsFlyoutExplicitlyOpen, setIsContactUsFlyoutExplicitlyOpen] =
+    useState(false);
 
-  console.warn(
-    'renderDemoFlyoutContent: Unknown flyout type or scenario',
-    context
-  );
-  return null;
-};
-
-const FlyoutDemoApp: React.FC = () => {
-  const { state, dispatch } = useFlyout();
-  const { activeFlyoutGroup } = state;
-
-  const [isShoppingCartOpen, setIsShoppingCartOpen] = useState(false);
-  const [isContactUsOpen, setIsContactUsOpen] = useState(false);
-
-  const handleOpenMainFlyout = () => {
-    dispatch({
-      type: 'OPEN_MAIN_FLYOUT',
-      payload: {
-        size: 'm',
-        flyoutProps: {
-          type: 'push',
-          pushMinBreakpoint: 'xs',
-          className: 'shoppingCartFlyoutMain',
-          'aria-label': 'Shopping cart',
-          customData: {
-            selectedUi: 'shoppingCart',
-            itemQuantity: 1,
-          },
-          onClose: () => setIsShoppingCartOpen(false),
+  const handleOpenShoppingCart = () => {
+    const options: OpenMainFlyoutOptions<DemoAppMetaForContext> = {
+      size: 'm',
+      meta: { selectedMainFlyoutKey: 'shoppingCart' },
+      flyoutProps: {
+        type: 'push',
+        pushMinBreakpoint: 'xs',
+        className: 'shoppingCartFlyoutMain',
+        'aria-label': 'Shopping cart',
+        onClose: (event) => {
+          console.log('Shopping cart onClose triggered', event);
+          setIsShoppingCartFlyoutExplicitlyOpen(false);
         },
-        onUnmount: () => console.log(`Unmounted shopping cart flyout`),
       },
-    });
-    setIsShoppingCartOpen(true);
+      onUnmount: () => console.log('Unmounted shopping cart flyout'),
+    };
+    openFlyout(options);
+    setIsShoppingCartFlyoutExplicitlyOpen(true);
   };
 
-  const handleOpenContactUsFlyout = () => {
-    dispatch({
-      type: 'OPEN_MAIN_FLYOUT',
-      payload: {
-        size: 's',
-        flyoutProps: {
-          type: 'push',
-          className: 'contactUsFlyoutMain',
-          'aria-label': 'Contact Us',
-          customData: { selectedUi: 'contactUs' },
-          onClose: () => setIsShoppingCartOpen(false),
+  const handleOpenContactUs = () => {
+    const options: OpenMainFlyoutOptions<DemoAppMetaForContext> = {
+      size: 's',
+      meta: { selectedMainFlyoutKey: 'contactUs' },
+      flyoutProps: {
+        type: 'push',
+        className: 'contactUsFlyoutMain',
+        'aria-label': 'Contact Us',
+        onClose: (event) => {
+          console.log('Contact Us onClose triggered', event);
+          setIsContactUsFlyoutExplicitlyOpen(false);
         },
-        onUnmount: () => console.log('Unmounted Contact Us flyout'),
       },
-    });
-    setIsContactUsOpen(true);
-  };
-
-  const handleCloseCurrent = () => {
-    dispatch({ type: 'CLOSE_CURRENT_FLYOUT' });
-  };
-
-  const handleClearHistory = () => {
-    dispatch({ type: 'CLEAR_HISTORY' });
+      onUnmount: () => console.log('Unmounted Contact Us flyout'),
+    };
+    openFlyout(options);
+    setIsContactUsFlyoutExplicitlyOpen(true);
   };
 
   return (
     <>
       <EuiButton
-        onClick={handleOpenMainFlyout}
-        isDisabled={isShoppingCartOpen}
+        onClick={handleOpenShoppingCart}
+        isDisabled={
+          isShoppingCartFlyoutExplicitlyOpen ||
+          isContactUsFlyoutExplicitlyOpen ||
+          isFlyoutOpen
+        }
         fill
       >
         Open shopping cart
@@ -340,8 +306,12 @@ const FlyoutDemoApp: React.FC = () => {
       <EuiSpacer size="s" />
 
       <EuiButton
-        onClick={handleOpenContactUsFlyout}
-        isDisabled={isContactUsOpen}
+        onClick={handleOpenContactUs}
+        isDisabled={
+          isShoppingCartFlyoutExplicitlyOpen ||
+          isContactUsFlyoutExplicitlyOpen ||
+          isFlyoutOpen
+        }
         fill
       >
         Contact us
@@ -349,18 +319,14 @@ const FlyoutDemoApp: React.FC = () => {
 
       <EuiSpacer size="s" />
 
-      <EuiButton
-        onClick={handleCloseCurrent}
-        isDisabled={!activeFlyoutGroup}
-        color="warning"
-      >
+      <EuiButton onClick={closeFlyout} isDisabled={!canGoBack} color="warning">
         Close current / Go back (history items: {state.history.length})
       </EuiButton>
 
       <EuiSpacer size="s" />
 
       <EuiButton
-        onClick={handleClearHistory}
+        onClick={clearHistory}
         isDisabled={state.history.length === 0}
         color="danger"
         iconType="trash"
@@ -380,6 +346,64 @@ const FlyoutDemoApp: React.FC = () => {
   );
 };
 
+const FlyoutDemoApp: React.FC = () => {
+  const [itemQuantity, setItemQuantity] = useState(1);
+
+  const handleQuantityChange = (delta: number) => {
+    setItemQuantity((prev) => Math.max(0, prev + delta));
+  };
+
+  const renderDemoFlyoutContent = (
+    context: FlyoutRenderContext<DemoAppMetaForContext>
+  ) => {
+    const { meta, onClose, activeFlyoutGroup: currentGroup } = context;
+
+    if (context.flyoutType === 'main') {
+      const { selectedMainFlyoutKey: flyoutKey } = meta || {};
+      if (flyoutKey === 'shoppingCart') {
+        return (
+          <ShoppingCartContent
+            itemQuantity={itemQuantity}
+            onQuantityChange={handleQuantityChange}
+            onCloseFlyout={onClose}
+            isChildOpen={currentGroup?.isChildOpen}
+            isMainOpen={currentGroup?.isMainOpen}
+          />
+        );
+      }
+      if (flyoutKey === 'reviewOrder') {
+        return (
+          <ReviewOrderContent
+            itemQuantity={itemQuantity}
+            onCloseFlyout={onClose}
+          />
+        );
+      }
+      if (flyoutKey === 'contactUs') {
+        return <ContactUsContent onCloseFlyout={onClose} />;
+      }
+    } else if (context.flyoutType === 'child') {
+      const { selectedChildFlyoutKey: flyoutKey } = meta || {};
+      if (flyoutKey === 'itemDetails') {
+        return (
+          <ItemDetailsContent
+            itemQuantity={itemQuantity}
+            onCloseFlyout={onClose}
+          />
+        );
+      }
+    }
+    console.warn('renderDemoFlyoutContent: Unknown flyout key', context);
+    return null;
+  };
+
+  return (
+    <FlyoutManager renderFlyoutContent={renderDemoFlyoutContent}>
+      <DemoAppControls />
+    </FlyoutManager>
+  );
+};
+
 export default {
   title: 'Layout/EuiFlyout/EuiFlyoutChild',
   component: FlyoutManager,
@@ -388,12 +412,8 @@ export default {
   },
 } as Meta<typeof FlyoutManager>;
 
-const Template: StoryFn<PropsWithChildren<{}>> = (args) => {
-  return (
-    <FlyoutManager {...args} renderFlyoutContent={renderDemoFlyoutContent}>
-      <FlyoutDemoApp />
-    </FlyoutManager>
-  );
+const Template: StoryFn<PropsWithChildren<{}>> = () => {
+  return <FlyoutDemoApp />;
 };
 
 export const Default = Template.bind({});

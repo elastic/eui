@@ -55,6 +55,7 @@ export const FlyoutManager: React.FC<FlyoutManagerComponentProps> = ({
       dispatch,
       activeFlyoutGroup,
       onClose: handleClose,
+      meta: activeFlyoutGroup.meta,
     };
     mainFlyoutContentNode = renderFlyoutContent(mainRenderContext);
 
@@ -66,6 +67,7 @@ export const FlyoutManager: React.FC<FlyoutManagerComponentProps> = ({
         dispatch,
         activeFlyoutGroup,
         onClose: handleClose,
+        meta: activeFlyoutGroup.meta,
       };
       childFlyoutContentNode = renderFlyoutContent(childRenderContext);
     }
@@ -73,10 +75,8 @@ export const FlyoutManager: React.FC<FlyoutManagerComponentProps> = ({
 
   const config = activeFlyoutGroup?.config;
 
-  const { customData: _customDataMain, ...flyoutPropsMain } =
-    config?.mainFlyoutProps ?? {};
-  const { customData: _customDataChild, ...flyoutPropsChild } =
-    config?.childFlyoutProps ?? {};
+  const flyoutPropsMain = config?.mainFlyoutProps || {};
+  const flyoutPropsChild = config?.childFlyoutProps || {};
 
   return (
     <FlyoutContext.Provider value={{ state, dispatch }}>
