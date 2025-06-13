@@ -19,7 +19,7 @@ import { CommonProps } from '../common';
 import { euiTabsStyles } from './tabs.styles';
 import { EuiTabsContext } from './tabs_context';
 
-export const SIZES = ['s', 'm', 'l', 'xl'] as const;
+export const SIZES = ['s', 'm', 'l'] as const;
 export type EuiTabsSizes = (typeof SIZES)[number];
 
 export type EuiTabsProps = HTMLAttributes<HTMLDivElement> &
@@ -40,7 +40,6 @@ export type EuiTabsProps = HTMLAttributes<HTMLDivElement> &
     bottomBorder?: boolean;
     /**
      * Sizes affect both font size and overall size.
-     * Only use the `xl` size when displayed as page titles.
      */
     size?: EuiTabsSizes;
   };

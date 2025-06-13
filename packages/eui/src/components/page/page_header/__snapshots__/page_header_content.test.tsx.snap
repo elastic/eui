@@ -552,7 +552,7 @@ exports[`EuiPageHeaderContent props tabs is rendered 1`] = `
         Tab 1
       </h1>
       <div
-        class="euiTabs emotion-euiTabs-xl"
+        class="euiTabs emotion-euiTabs-l"
         role="tablist"
       >
         <button
@@ -563,7 +563,7 @@ exports[`EuiPageHeaderContent props tabs is rendered 1`] = `
           type="button"
         >
           <span
-            class="euiTab__content eui-textTruncate emotion-euiTab__content-xl"
+            class="euiTab__content eui-textTruncate emotion-euiTab__content-l"
           >
             Tab 1
           </span>
@@ -576,7 +576,7 @@ exports[`EuiPageHeaderContent props tabs is rendered 1`] = `
           type="button"
         >
           <span
-            class="euiTab__content eui-textTruncate emotion-euiTab__content-xl"
+            class="euiTab__content eui-textTruncate emotion-euiTab__content-l"
           >
             Tab 2
           </span>
@@ -604,7 +604,7 @@ exports[`EuiPageHeaderContent props tabs is rendered with tabsProps 1`] = `
       </h1>
       <div
         aria-label="aria-label"
-        class="euiTabs testClass1 testClass2 emotion-euiTabs-xl-euiTestCss"
+        class="euiTabs testClass1 testClass2 emotion-euiTabs-l-euiTestCss"
         data-test-subj="test subject string"
         role="tablist"
       >
@@ -616,7 +616,7 @@ exports[`EuiPageHeaderContent props tabs is rendered with tabsProps 1`] = `
           type="button"
         >
           <span
-            class="euiTab__content eui-textTruncate emotion-euiTab__content-xl"
+            class="euiTab__content eui-textTruncate emotion-euiTab__content-l"
           >
             Tab 1
           </span>
@@ -629,7 +629,7 @@ exports[`EuiPageHeaderContent props tabs is rendered with tabsProps 1`] = `
           type="button"
         >
           <span
-            class="euiTab__content eui-textTruncate emotion-euiTab__content-xl"
+            class="euiTab__content eui-textTruncate emotion-euiTab__content-l"
           >
             Tab 2
           </span>
