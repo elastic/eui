@@ -63,6 +63,10 @@ export interface EuiFlyoutChildProps
   children?: ReactNode;
 }
 
+/**
+ * The child flyout is a panel that appears to the left of the parent flyout.
+ * It is only visible when the parent flyout is open.
+ */
 export const EuiFlyoutChild: FunctionComponent<EuiFlyoutChildProps> = ({
   children,
   className,
@@ -208,7 +212,7 @@ export const EuiFlyoutChild: FunctionComponent<EuiFlyoutChildProps> = ({
         css={[
           styles.euiFlyoutChild,
           size === 's' ? styles.s : styles.m,
-          childLayoutMode === 'alongside'
+          childLayoutMode === 'side-by-side'
             ? styles.sidePosition
             : styles.stackedPosition,
         ]}

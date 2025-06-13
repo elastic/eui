@@ -7,27 +7,33 @@
  */
 
 import { EuiFlyoutSize } from '../flyout';
-import { useFlyout } from './flyout_manager';
-import { FlyoutConfig } from './types';
+import { useEuiFlyout } from './flyout_manager';
+import { EuiManagedFlyoutConfig } from './types';
 
-export interface OpenMainFlyoutOptions<Meta> {
+export interface EuiOpenMainManagedFlyoutOptions<Meta> {
   size: EuiFlyoutSize;
-  flyoutProps?: FlyoutConfig['mainFlyoutProps'];
+  flyoutProps?: EuiManagedFlyoutConfig['mainFlyoutProps'];
   onUnmount?: () => void;
   meta: Meta;
 }
 
-export interface OpenChildFlyoutOptions<Meta> {
+export interface EuiOpenChildManagedFlyoutOptions<Meta> {
   size: 's' | 'm';
-  flyoutProps?: FlyoutConfig['childFlyoutProps'];
+  flyoutProps?: EuiManagedFlyoutConfig['childFlyoutProps'];
   onUnmount?: () => void;
   meta: Meta;
 }
 
+/**
+ * Hook for accessing the flyout API
+ *
+ * Usage:
+ * Wrap your app in the `<EuiFlyoutManager>` component, to access the flyout API
+ */
 export function useEuiFlyoutApi<Meta>() {
-  const { state, dispatch } = useFlyout();
+  const { state, dispatch } = useEuiFlyout();
 
-  const openFlyout = (options: OpenMainFlyoutOptions<Meta>) => {
+  const openFlyout = (options: EuiOpenMainManagedFlyoutOptions<Meta>) => {
     dispatch({
       type: 'OPEN_MAIN_FLYOUT',
       payload: options,
@@ -38,11 +44,11 @@ export function useEuiFlyoutApi<Meta>() {
     dispatch({ type: 'CLOSE_CURRENT_FLYOUT' });
   };
 
-  const nextFlyout = (options: OpenMainFlyoutOptions<Meta>) => {
+  const nextFlyout = (options: EuiOpenMainManagedFlyoutOptions<Meta>) => {
     openFlyout(options);
   };
 
-  const openChildFlyout = (options: OpenChildFlyoutOptions<Meta>) => {
+  const openChildFlyout = (options: EuiOpenChildManagedFlyoutOptions<Meta>) => {
     if (!state.activeFlyoutGroup || !state.activeFlyoutGroup.isMainOpen) {
       console.warn(
         'useEuiFlyoutApi: Cannot open child flyout when main flyout is not open.'

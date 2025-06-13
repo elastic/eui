@@ -20,11 +20,11 @@ import {
   EuiText,
 } from '../../index';
 
-import { FlyoutManager, useFlyout } from './flyout_manager';
-import { FlyoutRenderContext } from './types';
+import { EuiFlyoutManager, useEuiFlyout } from './flyout_manager';
+import { EuiManagedFlyoutRenderContext } from './types';
 import {
-  OpenChildFlyoutOptions,
-  OpenMainFlyoutOptions,
+  EuiOpenChildManagedFlyoutOptions,
+  EuiOpenMainManagedFlyoutOptions,
   useEuiFlyoutApi,
 } from './use_eui_flyout';
 
@@ -58,11 +58,11 @@ const ShoppingCartContent: React.FC<ShoppingCartContentProps> = ({
   isMainOpen,
 }) => {
   const { openChildFlyout, nextFlyout, closeFlyout } = useEuiFlyoutApi();
-  const { state } = useFlyout();
+  const { state } = useEuiFlyout();
   const { activeFlyoutGroup } = state;
 
   const handleOpenChildDetails = () => {
-    const options: OpenChildFlyoutOptions<DemoAppMetaForContext> = {
+    const options: EuiOpenChildManagedFlyoutOptions<DemoAppMetaForContext> = {
       size: 's',
       meta: { selectedChildFlyoutKey: 'itemDetails' },
       flyoutProps: {
@@ -76,7 +76,7 @@ const ShoppingCartContent: React.FC<ShoppingCartContentProps> = ({
 
   const handleProceedToReview = () => {
     const reviewFlyoutSize = activeFlyoutGroup?.config.mainSize || 'm';
-    const options: OpenMainFlyoutOptions<DemoAppMetaForContext> = {
+    const options: EuiOpenMainManagedFlyoutOptions<DemoAppMetaForContext> = {
       size: reviewFlyoutSize,
       meta: { selectedMainFlyoutKey: 'reviewOrder' },
       flyoutProps: {
@@ -241,7 +241,7 @@ const ContactUsContent: React.FC<ContactUsContentProps> = ({
 const DemoAppControls: React.FC = () => {
   const { openFlyout, closeFlyout, clearHistory, isFlyoutOpen, canGoBack } =
     useEuiFlyoutApi();
-  const { state } = useFlyout(); // For displaying raw state and history length
+  const { state } = useEuiFlyout(); // For displaying raw state and history length
 
   const [
     isShoppingCartFlyoutExplicitlyOpen,
@@ -251,7 +251,7 @@ const DemoAppControls: React.FC = () => {
     useState(false);
 
   const handleOpenShoppingCart = () => {
-    const options: OpenMainFlyoutOptions<DemoAppMetaForContext> = {
+    const options: EuiOpenMainManagedFlyoutOptions<DemoAppMetaForContext> = {
       size: 'm',
       meta: { selectedMainFlyoutKey: 'shoppingCart' },
       flyoutProps: {
@@ -271,11 +271,12 @@ const DemoAppControls: React.FC = () => {
   };
 
   const handleOpenContactUs = () => {
-    const options: OpenMainFlyoutOptions<DemoAppMetaForContext> = {
+    const options: EuiOpenMainManagedFlyoutOptions<DemoAppMetaForContext> = {
       size: 's',
       meta: { selectedMainFlyoutKey: 'contactUs' },
       flyoutProps: {
         type: 'push',
+        pushMinBreakpoint: 'xs',
         className: 'contactUsFlyoutMain',
         'aria-label': 'Contact Us',
         onClose: (event) => {
@@ -353,64 +354,77 @@ const FlyoutDemoApp: React.FC = () => {
     setItemQuantity((prev) => Math.max(0, prev + delta));
   };
 
-  const renderDemoFlyoutContent = (
-    context: FlyoutRenderContext<DemoAppMetaForContext>
+  // Render function for MAIN flyout content
+  const renderMainFlyoutContent = (
+    context: EuiManagedFlyoutRenderContext<DemoAppMetaForContext>
   ) => {
     const { meta, onClose, activeFlyoutGroup: currentGroup } = context;
+    const { selectedMainFlyoutKey: flyoutKey } = meta || {};
 
-    if (context.flyoutType === 'main') {
-      const { selectedMainFlyoutKey: flyoutKey } = meta || {};
-      if (flyoutKey === 'shoppingCart') {
-        return (
-          <ShoppingCartContent
-            itemQuantity={itemQuantity}
-            onQuantityChange={handleQuantityChange}
-            onCloseFlyout={onClose}
-            isChildOpen={currentGroup?.isChildOpen}
-            isMainOpen={currentGroup?.isMainOpen}
-          />
-        );
-      }
-      if (flyoutKey === 'reviewOrder') {
-        return (
-          <ReviewOrderContent
-            itemQuantity={itemQuantity}
-            onCloseFlyout={onClose}
-          />
-        );
-      }
-      if (flyoutKey === 'contactUs') {
-        return <ContactUsContent onCloseFlyout={onClose} />;
-      }
-    } else if (context.flyoutType === 'child') {
-      const { selectedChildFlyoutKey: flyoutKey } = meta || {};
-      if (flyoutKey === 'itemDetails') {
-        return (
-          <ItemDetailsContent
-            itemQuantity={itemQuantity}
-            onCloseFlyout={onClose}
-          />
-        );
-      }
+    if (flyoutKey === 'shoppingCart') {
+      return (
+        <ShoppingCartContent
+          itemQuantity={itemQuantity}
+          onQuantityChange={handleQuantityChange}
+          onCloseFlyout={onClose}
+          isChildOpen={currentGroup?.isChildOpen}
+          isMainOpen={currentGroup?.isMainOpen}
+        />
+      );
     }
-    console.warn('renderDemoFlyoutContent: Unknown flyout key', context);
+    if (flyoutKey === 'reviewOrder') {
+      return (
+        <ReviewOrderContent
+          itemQuantity={itemQuantity}
+          onCloseFlyout={onClose}
+        />
+      );
+    }
+    if (flyoutKey === 'contactUs') {
+      return <ContactUsContent onCloseFlyout={onClose} />;
+    }
+
+    console.warn('renderMainFlyoutContent: Unknown flyout key', meta);
+    return null;
+  };
+
+  // Render function for CHILD flyout content
+  const renderChildFlyoutContent = (
+    context: EuiManagedFlyoutRenderContext<DemoAppMetaForContext>
+  ) => {
+    const { meta, onClose } = context;
+    const { selectedChildFlyoutKey: flyoutKey } = meta || {};
+
+    if (flyoutKey === 'itemDetails') {
+      return (
+        <ItemDetailsContent
+          itemQuantity={itemQuantity}
+          onCloseFlyout={onClose}
+        />
+      );
+    }
+
+    console.warn('renderChildFlyoutContent: Unknown flyout key', meta);
     return null;
   };
 
   return (
-    <FlyoutManager renderFlyoutContent={renderDemoFlyoutContent}>
+    <EuiFlyoutManager
+      renderMainFlyoutContent={renderMainFlyoutContent}
+      renderChildFlyoutContent={renderChildFlyoutContent}
+    >
       <DemoAppControls />
-    </FlyoutManager>
+    </EuiFlyoutManager>
   );
 };
 
 export default {
   title: 'Layout/EuiFlyout/EuiFlyoutChild',
-  component: FlyoutManager,
+  component: EuiFlyoutManager,
   parameters: {
     layout: 'centered',
   },
-} as Meta<typeof FlyoutManager>;
+} as Meta<typeof EuiFlyoutManager>;
 
 const Template: StoryFn<PropsWithChildren<{}>> = () => {
   return <FlyoutDemoApp />;

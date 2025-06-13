@@ -25,13 +25,13 @@ interface EuiFlyoutChildManagerProps {
   childElement: React.ReactElement<ComponentProps<typeof EuiFlyoutChild>>;
   childrenToRender: ReactNode;
   reportIsChildOpen: (isOpen: boolean) => void;
-  reportChildLayoutMode: (mode: 'alongside' | 'stacked') => void;
+  reportChildLayoutMode: (mode: 'side-by-side' | 'stacked') => void;
 }
 
 /**
  * An intermediate component between EuiFlyout and EuiFlyoutChild.
- * This removes the responsibility of managing child flyout state from EuiFlyout,
- * especially since a child flyout might not exist.
+ * It is responsible for managing the state of the child flyout, and passing it to EuiFlyoutContext.
+ * It removes the responsibility of managing child flyout state from EuiFlyout, which is especially important there might not be a child flyout.
  */
 export const EuiFlyoutChildManager: FunctionComponent<
   EuiFlyoutChildManagerProps
@@ -50,8 +50,8 @@ export const EuiFlyoutChildManager: FunctionComponent<
     typeof window !== 'undefined' ? window.innerWidth : Infinity
   );
   const [childLayoutMode, setChildLayoutMode] = useState<
-    'alongside' | 'stacked'
-  >('alongside');
+    'side-by-side' | 'stacked'
+  >('side-by-side');
 
   // update windowWidth on resize
   useEffect(() => {
@@ -88,7 +88,7 @@ export const EuiFlyoutChildManager: FunctionComponent<
   // update childLayoutMode based on windowWidth and the calculated stackingBreakpoint
   useEffect(() => {
     if (windowWidth >= stackingBreakpointValue) {
-      setChildLayoutMode('alongside');
+      setChildLayoutMode('side-by-side');
     } else {
       setChildLayoutMode('stacked');
     }

@@ -6,17 +6,21 @@
  * Side Public License, v 1.
  */
 
-import { FlyoutAction, FlyoutHistoryState, FlyoutGroup } from './types';
+import {
+  EuiManagedFlyoutAction,
+  EuiManagedFlyoutHistoryState,
+  EuiManagedFlyoutGroup,
+} from './types';
 
-export const initialFlyoutState: FlyoutHistoryState<any> = {
+export const initialFlyoutState: EuiManagedFlyoutHistoryState<any> = {
   activeFlyoutGroup: null,
   history: [],
 };
 
 // Helper to apply size constraints for flyout groups
 const applySizeConstraints = <FlyoutMeta>(
-  group: FlyoutGroup<FlyoutMeta>
-): FlyoutGroup<FlyoutMeta> => {
+  group: EuiManagedFlyoutGroup<FlyoutMeta>
+): EuiManagedFlyoutGroup<FlyoutMeta> => {
   const originalMainSize = group.config.mainSize;
   const originalChildSize = group.config.childSize;
   let newMainSize = originalMainSize;
@@ -46,33 +50,33 @@ const applySizeConstraints = <FlyoutMeta>(
   };
 };
 
+/**
+ * Flyout reducer
+ * Controls state changes for flyout groups
+ */
 export function flyoutReducer<FlyoutMeta>(
-  state: FlyoutHistoryState<FlyoutMeta>,
-  action: FlyoutAction<FlyoutMeta>
-): FlyoutHistoryState<FlyoutMeta> {
+  state: EuiManagedFlyoutHistoryState<FlyoutMeta>,
+  action: EuiManagedFlyoutAction<FlyoutMeta>
+): EuiManagedFlyoutHistoryState<FlyoutMeta> {
   switch (action.type) {
     case 'OPEN_MAIN_FLYOUT': {
-      const {
-        size: mainSize,
-        flyoutProps: mainFlyoutProps,
-        onUnmount: mainOnUnmount,
-      } = action.payload;
+      const { size, flyoutProps, onUnmount } = action.payload;
       const newHistory = [...state.history];
 
       if (state.activeFlyoutGroup) {
         newHistory.push(state.activeFlyoutGroup);
       }
 
-      const newActiveGroup: FlyoutGroup<FlyoutMeta> = {
+      const newActiveGroup: EuiManagedFlyoutGroup<FlyoutMeta> = {
         isMainOpen: true,
         isChildOpen: false,
         config: {
-          mainSize,
+          mainSize: size,
           childSize: 's',
-          mainFlyoutProps,
+          mainFlyoutProps: flyoutProps,
           childFlyoutProps: {},
         },
-        mainOnUnmount,
+        mainOnUnmount: onUnmount,
         childOnUnmount: undefined,
         meta: {
           ...state.activeFlyoutGroup?.meta,
@@ -94,20 +98,16 @@ export function flyoutReducer<FlyoutMeta>(
         return state;
       }
 
-      const {
-        size: childSize,
-        flyoutProps: childFlyoutProps,
-        onUnmount: childOnUnmount,
-      } = action.payload;
-      const updatedActiveGroup: FlyoutGroup<FlyoutMeta> = {
+      const { size, flyoutProps, onUnmount } = action.payload;
+      const updatedActiveGroup: EuiManagedFlyoutGroup<FlyoutMeta> = {
         ...state.activeFlyoutGroup,
         isChildOpen: true,
         config: {
           ...state.activeFlyoutGroup.config,
-          childSize,
-          childFlyoutProps,
+          childSize: size,
+          childFlyoutProps: flyoutProps,
         },
-        childOnUnmount,
+        childOnUnmount: onUnmount,
         meta: {
           ...state.activeFlyoutGroup.meta,
           ...action.payload.meta,
@@ -133,7 +133,7 @@ export function flyoutReducer<FlyoutMeta>(
       );
       state.activeFlyoutGroup.childOnUnmount?.();
 
-      const updatedActiveGroup: FlyoutGroup<FlyoutMeta> = {
+      const updatedActiveGroup: EuiManagedFlyoutGroup<FlyoutMeta> = {
         ...state.activeFlyoutGroup,
         isChildOpen: false,
         config: {
@@ -158,7 +158,7 @@ export function flyoutReducer<FlyoutMeta>(
           new KeyboardEvent('')
         );
         state.activeFlyoutGroup.childOnUnmount?.();
-        const groupWithChildClosed: FlyoutGroup<FlyoutMeta> = {
+        const groupWithChildClosed: EuiManagedFlyoutGroup<FlyoutMeta> = {
           ...state.activeFlyoutGroup,
           isChildOpen: false,
           config: {
@@ -198,7 +198,7 @@ export function flyoutReducer<FlyoutMeta>(
       const { configChanges, newMainOnUnmount, newChildOnUnmount } =
         action.payload;
 
-      const updatedActiveGroup: FlyoutGroup<FlyoutMeta> = {
+      const updatedActiveGroup: EuiManagedFlyoutGroup<FlyoutMeta> = {
         ...state.activeFlyoutGroup,
         config: {
           ...state.activeFlyoutGroup.config,

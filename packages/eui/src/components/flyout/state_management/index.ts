@@ -6,18 +6,18 @@
  * Side Public License, v 1.
  */
 
-export { FlyoutManager, useFlyout } from './flyout_manager';
+export { EuiFlyoutManager, useEuiFlyout } from './flyout_manager';
 export { flyoutReducer, initialFlyoutState } from './flyout_reducer';
 export type {
-  FlyoutAction,
-  FlyoutConfig,
-  FlyoutGroup,
-  FlyoutHistoryState,
-  FlyoutRenderContext,
-  FlyoutManagerComponentProps,
+  EuiManagedFlyoutAction,
+  EuiManagedFlyoutConfig,
+  EuiManagedFlyoutGroup,
+  EuiManagedFlyoutHistoryState,
+  EuiManagedFlyoutRenderContext,
+  EuiFlyoutManagerComponentProps,
 } from './types';
 export {
   useEuiFlyoutApi,
-  type OpenMainFlyoutOptions,
-  type OpenChildFlyoutOptions,
+  type EuiOpenMainManagedFlyoutOptions,
+  type EuiOpenChildManagedFlyoutOptions,
 } from './use_eui_flyout';

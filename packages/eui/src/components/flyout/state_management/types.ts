@@ -9,28 +9,28 @@
 import { EuiFlyoutProps, EuiFlyoutSize } from '../flyout';
 import { EuiFlyoutChildProps } from '../flyout_child';
 
-export interface FlyoutConfig {
+export interface EuiManagedFlyoutConfig {
   mainSize: EuiFlyoutSize;
   childSize: 's' | 'm';
   mainFlyoutProps?: Partial<Omit<EuiFlyoutProps, 'children'>>;
   childFlyoutProps?: Partial<Omit<EuiFlyoutChildProps, 'children'>>;
 }
 
-export interface FlyoutGroup<FlyoutMeta> {
+export interface EuiManagedFlyoutGroup<FlyoutMeta> {
   isMainOpen: boolean;
   isChildOpen: boolean;
-  config: FlyoutConfig;
+  config: EuiManagedFlyoutConfig;
   mainOnUnmount?: () => void;
   childOnUnmount?: () => void;
   meta: FlyoutMeta;
 }
 
-export interface FlyoutHistoryState<FlyoutMeta = any> {
-  activeFlyoutGroup: FlyoutGroup<FlyoutMeta> | null;
-  history: Array<FlyoutGroup<FlyoutMeta>>;
+export interface EuiManagedFlyoutHistoryState<FlyoutMeta = any> {
+  activeFlyoutGroup: EuiManagedFlyoutGroup<FlyoutMeta> | null;
+  history: Array<EuiManagedFlyoutGroup<FlyoutMeta>>;
 }
 
-export type FlyoutAction<FlyoutMeta = any> =
+export type EuiManagedFlyoutAction<FlyoutMeta = any> =
   | {
       type: 'OPEN_MAIN_FLYOUT';
       payload: {
@@ -54,24 +54,29 @@ export type FlyoutAction<FlyoutMeta = any> =
   | {
       type: 'UPDATE_ACTIVE_FLYOUT_CONFIG';
       payload: {
-        configChanges: Partial<FlyoutConfig>;
+        configChanges: Partial<EuiManagedFlyoutConfig>;
         newMainOnUnmount?: () => void;
         newChildOnUnmount?: () => void;
       };
     }
   | { type: 'CLEAR_HISTORY' };
 
-export interface FlyoutRenderContext<FlyoutMeta = any> {
+export interface EuiManagedFlyoutRenderContext<FlyoutMeta = any> {
   flyoutSpecificProps: Partial<EuiFlyoutProps | EuiFlyoutChildProps>;
   flyoutSize: EuiFlyoutProps['size'] | EuiFlyoutChildProps['size'];
   flyoutType: 'main' | 'child';
-  dispatch: React.Dispatch<FlyoutAction<FlyoutMeta>>;
-  activeFlyoutGroup: FlyoutGroup<FlyoutMeta> | null;
+  dispatch: React.Dispatch<EuiManagedFlyoutAction<FlyoutMeta>>;
+  activeFlyoutGroup: EuiManagedFlyoutGroup<FlyoutMeta> | null;
   onClose: () => void;
   meta?: FlyoutMeta;
 }
 
-export interface FlyoutManagerComponentProps {
-  children?: React.ReactNode;
-  renderFlyoutContent: (context: FlyoutRenderContext) => React.ReactNode;
+export interface EuiFlyoutManagerComponentProps<FlyoutMeta = any> {
+  children: React.ReactNode;
+  renderMainFlyoutContent: (
+    context: EuiManagedFlyoutRenderContext<FlyoutMeta>
+  ) => React.ReactNode;
+  renderChildFlyoutContent?: (
+    context: EuiManagedFlyoutRenderContext<FlyoutMeta>
+  ) => React.ReactNode;
 }
