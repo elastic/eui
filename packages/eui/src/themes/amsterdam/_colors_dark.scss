@@ -126,7 +126,7 @@ $euiColorBorderStrongAccentSecondary: $euiColorAccentSecondary !default;
 $euiColorBorderStrongNeutral: $euiColorSeverityNeutral !default;
 $euiColorBorderStrongSuccess: $euiColorSuccess !default;
 $euiColorBorderStrongWarning: $euiColorWarning !default;
-$euiColorBorderStrongRisk: $euiColorSeverityRisk !default;
+$euiColorBorderStrongRisk: tint($euiColorSeverityRisk, 0.2) !default;
 $euiColorBorderStrongDanger: $euiColorDanger !default;
 
 // Charts

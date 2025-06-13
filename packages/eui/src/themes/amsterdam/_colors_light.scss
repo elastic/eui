@@ -123,7 +123,7 @@ $euiColorBorderBaseFormsControl: shade($euiColorLightestShade, 0.4) !default;
 $euiColorBorderStrongPrimary: $euiColorPrimary !default;
 $euiColorBorderStrongAccent: $euiColorAccent !default;
 $euiColorBorderStrongAccentSecondary: $euiColorAccentSecondary !default;
-$euiColorBorderStrongNeutral: $euiColorSeverityNeutral !default;
+$euiColorBorderStrongNeutral: shade($euiColorSeverityNeutral, 0.2) !default;
 $euiColorBorderStrongSuccess: $euiColorSuccess !default;
 $euiColorBorderStrongWarning: $euiColorWarning !default;
 $euiColorBorderStrongRisk: $euiColorSeverityRisk !default;

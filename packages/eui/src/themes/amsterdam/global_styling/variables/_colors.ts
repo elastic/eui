@@ -324,9 +324,9 @@ export const border_colors: _EuiThemeBorderColors = {
   borderStrongAccent: computed(([accent]) => accent, ['colors.accent']),
   borderStrongAccentSecondary: computed(
     ([accentSecondary]) => accentSecondary,
-    ['colors.accentSeconday']
+    ['colors.accentSecondary']
   ),
-  borderStrongNeutral: severityColors.neutral,
+  borderStrongNeutral: shade(severityColors.neutral, 0.2).toUpperCase(),
   borderStrongSuccess: computed(([success]) => success, ['colors.success']),
   borderStrongWarning: computed(([warning]) => warning, ['colors.warning']),
   borderStrongRisk: severityColors.risk,
@@ -543,12 +543,12 @@ export const dark_border_colors: _EuiThemeBorderColors = {
   borderStrongAccent: computed(([accent]) => accent, ['colors.accent']),
   borderStrongAccentSecondary: computed(
     ([accentSecondary]) => accentSecondary,
-    ['colors.accentSeconday']
+    ['colors.accentSecondary']
   ),
   borderStrongNeutral: severityColors.neutral,
   borderStrongSuccess: computed(([success]) => success, ['colors.success']),
   borderStrongWarning: computed(([warning]) => warning, ['colors.warning']),
-  borderStrongRisk: tint(severityColors.risk, 0.1),
+  borderStrongRisk: tint(severityColors.risk, 0.2).toUpperCase(),
   borderStrongDanger: computed(([danger]) => danger, ['colors.danger']),
 };
 
