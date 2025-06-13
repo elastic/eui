@@ -9,10 +9,6 @@ export const BorderColorsTable = () => {
       sampleType="swatch"
       colors={[
         {
-          value: euiTheme.colors.backgroundBasePrimary,
-          token: 'colors.backgroundBasePrimary',
-        },
-        {
           value: euiTheme.colors.borderBasePrimary,
           token: 'colors.borderBasePrimary',
         },
