@@ -376,9 +376,9 @@ export default () => (
 `EuiButtonIcon` requires an `aria-label` to express the meaning to screen readers.
 :::
 
-### Buttons as links
+### As link
 
-Use `EuiButton` for actions and EuiLink for text-based navigation. Buttons and links have different semantic and technical implications. Buttons accept `href` (renders as `<a>`) or `onClick` (renders as `<button>`). Using both simultaneously is generally not recommended.
+Use `EuiButton` for actions and `EuiLink` for text-based navigation. Buttons and links have different semantic and technical implications. Buttons accept `href` (renders as `<a>`) or `onClick` (renders as `<button>`). Using both simultaneously is generally not recommended.
 If you are creating a purely text-based link, like the one in the previous paragraph, use `EuiLink` instead.
 
 :::info Note
@@ -435,7 +435,7 @@ Buttons come in various colors, with `primary`, `text`, or `danger` being typica
 
 ### `Text` color variant
 
-Use text button color variants on action-heavy UIs to reduce visual noise. This variant has a **unique bordered appearance** for dense screens with many inputs, buttons, and tabular content, where shaded buttons would create visual clutter.
+Use `text` button color variants on action-heavy UIs to reduce visual noise. This variant has a **unique bordered appearance** for dense screens with many inputs, buttons, and tabular content, where shaded buttons would create visual clutter.
 
 ### Size
 
@@ -446,7 +446,46 @@ Extra small applies only to `EuiButtonEmpty` and `EuiButtonIcon`. Empty buttons 
 
 **Do not mix button sizes** within a group or row; maintain consistent height. Use **small buttons** in small containers, popovers, toasts, filter bars, and compressed forms for constrained spaces, not subjective design preferences. Use **extra small** buttons for supplementary information alongside actions or within forms (See guidelines for writing help content). They are also used within other EUI components.
 
+### Width
 
+Button width is generally **determined by content** (label, icon, padding). Icon-only buttons are smaller and **square**. EUI sets a **default minimum width** for consistency, which should be overridden rarely. Use `fullWidth` buttons primarily in narrow forms or for mobile responsiveness; use sparingly in larger desktop viewports.
+
+### Flush
+
+The `flush` property is available for `EuiButtonEmpty`. It removes padding, ensuring stricter alignment with surrounding content, especially at container edges where empty buttons might otherwise create a ragged line.
+
+```tsx interactive
+import React from 'react';
+
+import {
+  EuiButton,
+  EuiButtonEmpty,
+  EuiFlexGroup,
+  EuiFlexItem,
+  EuiHorizontalRule,
+  EuiPanel,
+  EuiTitle,
+} from '@elastic/eui';
+
+export default () => (
+  <EuiFlexGroup gutterSize="m" direction="row">
+    <EuiFlexItem css={{width: 240}} grow={false}>
+      <EuiPanel color="plain" hasBorder>
+        <EuiTitle size="xs"><h4>Title of panel</h4></EuiTitle>
+        <EuiHorizontalRule />
+        <EuiButtonEmpty flush="left">Flush left</EuiButtonEmpty>
+      </EuiPanel>
+    </EuiFlexItem>
+    <EuiFlexItem css={{width: 240}} grow={false}>
+      <EuiPanel css={{textAlign: "right"}} color="plain" hasBorder grow={false}>
+        <EuiButton size="s">Button</EuiButton>
+        <EuiHorizontalRule />
+        <EuiButtonEmpty flush="right">Flush right</EuiButtonEmpty>
+      </EuiPanel>
+    </EuiFlexItem>
+  </EuiFlexGroup>
+);
+```
 
 
 
@@ -490,3 +529,5 @@ export default () => {
 import docgen from '@elastic/eui-docgen/dist/components/button';
 
 <PropTable definition={docgen.EuiButton} />
+<PropTable definition={docgen.EuiButtonEmpty} />
+<PropTable definition={docgen.EuiButtonIcon} />
