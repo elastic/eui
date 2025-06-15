@@ -1,4 +1,8 @@
 ---
+id:
+slug: 
+title: Button
+description: Guidance for how to select button type, what props to use (color and size), whether to include an icon or not, what labels to use (e.g. Create vs Save), and when
 sidebar_position: 1
 sidebar_label: Button
 keywords: [EuiButton]
@@ -14,15 +18,13 @@ Buttons enable **user actions** and are crucial for forms, modals, toolbars, and
 
 Buttons offer various types, sizes, colors, and properties. The best combination depends on placement, prominence, and state. `EuiButton` is for primary and secondary actions, while `EuiButtonEmpty` is for tertiary or low-prominence actions.
 
+**[Doc Figma block TBD]**
+
 ## Button types
 
-### Default
+### Primary and secondary
 
-Default buttons are for **secondary** actions, balancing findability with visual noise. They have less prominence than primary CTA buttons and can be used alongside them.
-
-### Fill (Primary)
-
-Filled buttons are for **primary** actions. Only one primary action button should be visible per view to maintain its strong visual emphasis.
+By default, `EuiButton` has the `fill` property set to `false`. These buttons are typically used for **secondary actions**, striking a balance between visibility and visual noise. They are less prominent than primary buttons and can be used alongside them. **Primary actions (CTAs)** should be represented by filled buttons (`fill: true`). To preserve their strong visual emphasis, **only one primary action button** should be visible per view (see more on combining button variants [below](#combining-button-variants)).
 
 ```tsx interactive
 import React, { useState } from 'react';
@@ -30,7 +32,6 @@ import {
   EuiButton,
   EuiFlexGroup,
   EuiFlexItem,
-  EuiPanel,
   EuiSpacer,
   EuiSelect,
   EuiSwitch,
@@ -119,26 +120,35 @@ export default () => {
         </EuiFlexItem>
       </EuiFlexGroup>
       <EuiSpacer />
-      <EuiPanel className='plain' hasBorder css={{width: 400, maxWidth: '100%'}}>
-        <EuiButton
-          color={buttonColor}
-          disabled={disableButton}
-          fill={fillButton}
-          fullWidth={fullButton}
-          size={smallButton ? 's' : 'm'}
-          iconType={withIconButton ? 'discoverApp' : null}
-          onClick={() => {}}
-        >
-          {!withIconButton ? 'Button' : 'Open in Discover'}
-        </EuiButton>
-      </EuiPanel>
+      <EuiButton
+        color={buttonColor}
+        disabled={disableButton}
+        fill={fillButton}
+        fullWidth={fullButton}
+        size={smallButton ? 's' : 'm'}
+        iconType={withIconButton ? 'discoverApp' : null}
+        onClick={() => {}}
+      >
+        {!withIconButton ? 'Button' : 'Open in Discover'}
+      </EuiButton>
     </div>
   );
 };
 ```
+
+Icons can serve as an **addition to the text label** to emphasize actions, but should be used sparingly. Icons work best on labels for binary actions, such as "Create" and"'Delete", or final actions, such as "Save".
+<EuiFlexGroup gutterSize="m">
+  <Guideline type="do" text={` The arrow lets users know they still have more items to fill out. The check icon helps users understand that this is the final action.`}>
+    <EuiButton iconType="arrowRight" iconSide="right" fill>Continue</EuiButton>&nbsp;&nbsp;<EuiButton iconType="check" color="success" fill>Save and complete</EuiButton>
+  </Guideline>
+  <Guideline type="dont" text="Unnecessary icons often just distract. This is especially true when the icon is positioned on the right and is hard to interpret.">
+    <EuiButton iconType="indexOpen" iconSide="right" fill>Create index pattern</EuiButton>
+  </Guideline>
+</EuiFlexGroup>
+
 ### Empty
 
-Empty buttons are for **complementary (tertiary)** actions like close, cancel, filter, and refresh, which typically affect data presentation rather than modification. They reduce a button's visual importance and support `xs` size and the `flush` property for alignment (see Flush).
+Empty buttons are for **complementary (tertiary)** actions like close, cancel, filter, and refresh, which typically affect data presentation rather than modification. They reduce a button's visual importance and support `xs` [size](#size) and the [flush](#width-and-flush-property) property for alignment.
 
 ```tsx interactive
 import React from 'react';
@@ -186,16 +196,7 @@ export default () => (
 
 ### Icon
 
-`EuiButtonIcon` is an icon-only button. Use `display` and `size` props to match standard buttons. The default appearance is `xs`, empty. Use only for **common, intuitive** actions with immediately understood icons (e.g., trash can for delete). `Aria-label` is required for accessibility. Icon color inherits from the button's color property.
-
-<EuiFlexGroup gutterSize="m">
-  <Guideline type="do" text="Use icon buttons for universal actions that are easy to understand.">
-    <EuiButtonIcon size="s" iconType="pencil" aria-label="Edit" />&nbsp;&nbsp;&nbsp;&nbsp;<EuiButtonIcon size="s" iconType="expand" aria-label="Expand" />
-  </Guideline>
-  <Guideline type="dont" text="Icons alone in a standard button defeats the purpose of saving space.">
-    <EuiButton><EuiIcon type="pencil" aria-label="Edit" /></EuiButton>&nbsp;&nbsp;<EuiButton><EuiIcon type="expand" aria-label="Expand" /></EuiButton>
-  </Guideline>
-</EuiFlexGroup>
+`EuiButtonIcon` is an icon-only button. Use `display` and `size` props to match standard buttons. The default appearance is `xs`, empty. Use only for common, intuitive actions with **immediately understood icons** (e.g., trash can for delete). `Aria-label` is required for accessibility. Icon color inherits from the button's color property. Icon color is inherited from the button color property and, therefore, does not need to be set separately.
 
 ```tsx interactive
 import React, { useState } from 'react';
@@ -335,8 +336,6 @@ export default () => {
 };
 ```
 
-Icon color is inherited from the button color property and, therefore, does not need to be set separately.
-
 ```tsx interactive
 import React, { useState } from 'react';
 
@@ -376,25 +375,19 @@ export default () => (
 `EuiButtonIcon` requires an `aria-label` to express the meaning to screen readers.
 :::
 
-Icons can serve as a scanning aid in a text label, but keep to a minimum. Icons work best on labels for binary actions, for example, Create and Delete, and final actions, such as Save.
-
 <EuiFlexGroup gutterSize="m">
-  <Guideline type="do" text={`Use icons to emphasize actions. The arrow on the Continue button lets users know they still have more items to fill out. Using the word "complete" with a rare check icon helps users understand that this is the final action.`}>
-    <EuiButton iconType="arrowRight" iconSide="right" fill>Continue</EuiButton>&nbsp;&nbsp;<EuiButton iconType="check" color="success" fill>Save and complete</EuiButton>
+  <Guideline type="do" text="Use icon buttons for universal actions that are easy to understand.">
+    <EuiButtonIcon size="m" iconType="pencil" aria-label="Edit" />&nbsp;&nbsp;<EuiButtonIcon size="m" iconType="expand" aria-label="Expand" />
   </Guideline>
-  <Guideline type="dont" text="Unnecessary icons often distract from the text. This is especially true when the icon is positioned on the right, with a hard to interpret icon.">
-    <EuiButton iconType="indexOpen" iconSide="right" fill>Create index pattern</EuiButton>
+  <Guideline type="dont" text="Icons alone in a standard button look awkward and take too much space.">
+    <EuiButton><EuiIcon type="pencil" aria-label="Edit" /></EuiButton>&nbsp;&nbsp;<EuiButton><EuiIcon type="expand" aria-label="Expand" /></EuiButton>
   </Guideline>
 </EuiFlexGroup>
 
-### As link
+### Button as link
 
 Use `EuiButton` for actions and `EuiLink` for text-based navigation. Buttons and links have different semantic and technical implications. Buttons accept `href` (renders as `<a>`) or `onClick` (renders as `<button>`). Using both simultaneously is generally not recommended.
 If you are creating a purely text-based link, like the one in the previous paragraph, use `EuiLink` instead.
-
-:::info Note
-For more specific information on how to integrate EUI buttons with react-router, see this [wiki page](https://github.com/elastic/eui/blob/main/wiki/consuming-eui/react-router.md#how-react-router-works).
-:::
 
 ```tsx interactive
 import React, { Fragment } from 'react';
@@ -425,13 +418,17 @@ export default () => (
 );
 ```
 
+:::info Note
+For more specific information on how to integrate EUI buttons with react-router, see this [wiki page](https://github.com/elastic/eui/blob/main/wiki/consuming-eui/react-router.md#how-react-router-works).
+:::
+
 ## Style
 
 :::warning Warning
 Do not override button styles.
 :::
 
-Do not override EUI button styles. EUI provides properties to manage color, size, and state to cover various use cases, ensuring consistent interactions.
+EUI provides properties to manage color, size, and state to cover various use cases, ensuring consistent interactions.
 
 ### Color and semantic
 
@@ -455,13 +452,11 @@ Extra small applies only to `EuiButtonEmpty` and `EuiButtonIcon`. Empty buttons 
 
 ### Height
 
-**Do not mix button sizes** within a group or row; maintain consistent height. Use **small buttons** in small containers, popovers, toasts, filter bars, and compressed forms for constrained spaces, not subjective design preferences. Use **extra small** buttons for supplementary information alongside actions or within forms (See guidelines for writing help content). They are also used within other EUI components.
+**Do not mix button sizes** within a group or row; maintain consistent height. Use **small buttons** in small containers, popovers, toasts, filter bars, and compressed forms for constrained spaces, not subjective design preferences. Use **extra small** buttons for supplementary information alongside actions or within forms (see guidelines for writing help content). They are also used within other EUI components.
 
-### Width
+### Width and `flush` property
 
 Button width is generally **determined by content** (label, icon, padding). Icon-only buttons are smaller and **square**. EUI sets a **default minimum width** for consistency, which should be overridden rarely. Use `fullWidth` buttons primarily in narrow forms or for mobile responsiveness; use sparingly in larger desktop viewports.
-
-### Flush
 
 The `flush` property is available for `EuiButtonEmpty`. It removes padding, ensuring stricter alignment with surrounding content, especially at container edges where empty buttons might otherwise create a ragged line.
 
@@ -479,7 +474,7 @@ import {
 } from '@elastic/eui';
 
 export default () => (
-  <EuiFlexGroup gutterSize="m" direction="row">
+  <EuiFlexGroup gutterSize="s" direction="row">
     <EuiFlexItem css={{width: 240}} grow={false}>
       <EuiPanel color="plain" hasBorder>
         <EuiTitle size="xs"><h4>Title of panel</h4></EuiTitle>
@@ -503,6 +498,34 @@ export default () => (
 ### Disabled
 
 Show a button in a disabled state when the action **cannot be performed** due to permissions, licensing, or data issues (e.g., invalid input). Consider whether the user needs to know the button exists; showing it indicates potential actions, while hiding it may lead to unawareness. Only hide buttons when the action's potential is immaterial. Do not show disabled buttons if the user is unlikely to perform the action. All button types have the same disabled state.
+
+```tsx interactive
+import React, { useState } from 'react';
+import {
+  EuiButton,
+  EuiSpacer,
+  EuiSwitch,
+} from '@elastic/eui';
+
+export default () => {
+  const [disableButton, setDisableButton] = useState(true);
+
+  return(
+    <>
+      <EuiSwitch
+        compressed
+        label="Disabled"
+        checked={disableButton}
+        onChange={() => setDisableButton(!disableButton)}
+      />
+      <EuiSpacer />
+      <EuiButton disabled={disableButton} fill>
+        {!disableButton ? 'Button' : 'Disabled'}
+      </EuiButton>
+    </div>
+  );
+};
+```
 
 ### Loading
 
@@ -536,24 +559,24 @@ export default () => {
   );
 };
 ```
-## Labels (button text)
+## Button labels
 
 Button labels should **clearly indicate the action**, using action words and an object if context isn't clear (e.g., "Create dashboard"). Labels should **not exceed three words**; longer labels may be better as text links.
 
 ### **Preferred words**
 
-* **Add** X — Establishes a new relationship (e.g., "Add visualization"). Always followed by an object. Opposite: Remove.  
+* **Add X** — Establishes a new relationship (e.g., "Add visualization"). Always followed by an object. Opposite: Remove.  
 * **Cancel** — Stops an action without saving. Never red; always an empty button.  
-* **Create** X — Creates a new object (e.g., "Create pipeline"). Always followed by an object. Opposite: Delete.  
-* **Delete** N things — Permanently deletes data. Opposite: Create. Not to be confused with Remove.  
-* **Remove** X — Removes a relationship without permanently deleting data (e.g., "Remove visualization"). Opposite: Add.  
+* **Create X** — Creates a new object (e.g., "Create pipeline"). Always followed by an object. Opposite: Delete.  
+* **Delete N items** — Permanently deletes data. Opposite: Create. Not to be confused with Remove.  
+* **Remove X** — Removes a relationship without permanently deleting data (e.g., "Remove visualization"). Opposite: Add.  
 * **Save** / **Save and complete** — Carries out pending changes (e.g., "Save edits"). Can be green if final save action. Not to be confused with Add.
 
 ### **Words to be avoided**
 
 * **New** — Use ‘Add’ or ‘Create’.  
 * **Ok** — Use action-specific words.  
-* **Yes, No** — Use words that clearly explain the action.
+* **Yes / No** — Use words that clearly explain the action.
 
 ## Usage
 
@@ -562,7 +585,7 @@ Button labels should **clearly indicate the action**, using action words and an 
 Primary and secondary actions typically use `filled` and `default` styles, respectively. Display **one primary action button per layout** to signal its importance. Not every page requires a primary action button. Use default buttons for **secondary visual prominence**, less prominent than primary CTAs, but still visually distinct. They can be used in layouts without a CTA.
 
 <EuiFlexGroup gutterSize="m">
-  <Guideline type="do" text="Use only one filled button per layout. The primary action is the one you want the user to eventually complete.">
+  <Guideline type="do" text="Use only one filled button per layout — the one you want the user to eventually complete.">
     ![one primary button per page](./button_types.svg)
   </Guideline>
   <Guideline type="dont" text="Too many primary buttons will confuse the user.">
