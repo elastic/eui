@@ -272,8 +272,6 @@ export const EuiPageHeaderContent: FunctionComponent<
 
   let tabsNode;
   if (tabs) {
-    const tabsSize: EuiTabsProps['size'] = pageTitle ? 'l' : 'xl';
-
     const renderTabs = () => {
       return tabs.map((tab, index) => {
         const { label, ...tabRest } = tab;
@@ -302,7 +300,7 @@ export const EuiPageHeaderContent: FunctionComponent<
       <>
         {pageTitleNode && <EuiSpacer />}
         {screenReaderPageTitle}
-        <EuiTabs {...tabsProps} bottomBorder={false} size={tabsSize}>
+        <EuiTabs {...tabsProps} bottomBorder={false} size="l">
           {renderTabs()}
         </EuiTabs>
       </>
