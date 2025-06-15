@@ -10,11 +10,11 @@ import { EuiFlexGroup, EuiFlexItem, EuiButton, EuiButtonEmpty, EuiButtonIcon, Eu
 
 # Button
 
-Buttons enable user actions and are crucial for forms, modals, toolbars, and interactive pages. These guidelines detail their optimal configuration and placement.
-
-## Button types
+Buttons enable **user actions** and are crucial for forms, modals, toolbars, and interactive pages. These guidelines detail their optimal configuration and placement.
 
 Buttons offer various types, sizes, colors, and properties. The best combination depends on placement, prominence, and state. `EuiButton` is for primary and secondary actions, while `EuiButtonEmpty` is for tertiary or low-prominence actions.
+
+## Button types
 
 ### Default
 
@@ -376,6 +376,17 @@ export default () => (
 `EuiButtonIcon` requires an `aria-label` to express the meaning to screen readers.
 :::
 
+Icons can serve as a scanning aid in a text label, but keep to a minimum. Icons work best on labels for binary actions, for example, Create and Delete, and final actions, such as Save.
+
+<EuiFlexGroup gutterSize="m">
+  <Guideline type="do" text={`Use icons to emphasize actions. The arrow on the Continue button lets users know they still have more items to fill out. Using the word "complete" with a rare check icon helps users understand that this is the final action.`}>
+    <EuiButton iconType="arrowRight" iconSide="right" fill>Continue</EuiButton>&nbsp;&nbsp;<EuiButton iconType="check" color="success" fill>Save and complete</EuiButton>
+  </Guideline>
+  <Guideline type="dont" text="Unnecessary icons often distract from the text. This is especially true when the icon is positioned on the right, with a hard to interpret icon.">
+    <EuiButton iconType="indexOpen" iconSide="right" fill>Create index pattern</EuiButton>
+  </Guideline>
+</EuiFlexGroup>
+
 ### As link
 
 Use `EuiButton` for actions and `EuiLink` for text-based navigation. Buttons and links have different semantic and technical implications. Buttons accept `href` (renders as `<a>`) or `onClick` (renders as `<button>`). Using both simultaneously is generally not recommended.
@@ -550,8 +561,16 @@ Button labels should **clearly indicate the action**, using action words and an 
 
 Primary and secondary actions typically use `filled` and `default` styles, respectively. Display **one primary action button per layout** to signal its importance. Not every page requires a primary action button. Use default buttons for **secondary visual prominence**, less prominent than primary CTAs, but still visually distinct. They can be used in layouts without a CTA.
 
-Buttons adjacent to a primary CTA should be **tertiary**, presented as **
-empty** buttons. Tertiary actions are less consequential, exiting the flow or not changing data.
+<EuiFlexGroup gutterSize="m">
+  <Guideline type="do" text="Use only one filled button per layout. The primary action is the one you want the user to eventually complete.">
+    ![one primary button per page](./button_types.svg)
+  </Guideline>
+  <Guideline type="dont" text="Too many primary buttons will confuse the user.">
+    ![page without primary button](./button_types_bad.svg)
+  </Guideline>
+</EuiFlexGroup>
+
+Buttons adjacent to a primary CTA should be **tertiary**, presented as **empty** buttons. Tertiary actions are less consequential, exiting the flow or not changing data.
 
 **Do not use all three styles** in the same button group. When multiple actions are grouped, use either secondary (`default`) or tertiary (`EuiButtonEmpty`) styles. Avoid mixing simple/empty buttons with icon-only buttons in one row.
 
@@ -606,6 +625,17 @@ Place buttons **on the left** in unrestricted large-width spaces (page forms). C
   </Guideline>
   <Guideline type="dont" text="Put the actions far away from the content.">
     ![form buttons go on the left, not right](./button_right.svg)
+  </Guideline>
+</EuiFlexGroup>
+
+Button placement should always reflect the surrounding context. Place the primary action (e.g. Create) in the top-right corner **near the page title** when the view contains structured content. For empty states — where space is limited and the focus is on **guiding** the user — center-align both the title and the primary action.
+
+<EuiFlexGroup gutterSize="m">
+  <Guideline type="do" text="If the action is against the page title, place the primary button in the upper right.">
+    ![button placement in upper right](./button_table.svg)
+  </Guideline>
+  <Guideline type="do" text="Center-align the title and primary action when content is minimal and vertically constrained.">
+    ![center-aligned button](./button_empty.svg)
   </Guideline>
 </EuiFlexGroup>
 
@@ -809,7 +839,6 @@ The save button should be the **most dominant** action, consistent across contex
 **Consider if an icon is necessary**. Save buttons should be visually dominant, making an icon less necessary compared to other actions. Rely solely on the label to avoid inconsistency.
 
 Exceptions exist, such as the `EuiInlineEdit` component, which offers a save action without a label.
-
 
 ## Props
 
