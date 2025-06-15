@@ -584,7 +584,7 @@ Button labels should **clearly indicate the action**, using action words and an 
 
 Primary and secondary actions typically use `filled` and `default` styles, respectively. Display **one primary action button per layout** to signal its importance. Not every page requires a primary action button. Use default buttons for **secondary visual prominence**, less prominent than primary CTAs, but still visually distinct. They can be used in layouts without a CTA.
 
-<EuiFlexGroup gutterSize="m">
+<EuiFlexGroup>
   <Guideline type="do" text="Use only one filled button per layout — the one you want the user to eventually complete.">
     ![one primary button per page](./button_types.svg)
   </Guideline>
@@ -597,9 +597,9 @@ Buttons adjacent to a primary CTA should be **tertiary**, presented as **empty**
 
 **Do not use all three styles** in the same button group. When multiple actions are grouped, use either secondary (`default`) or tertiary (`EuiButtonEmpty`) styles. Avoid mixing simple/empty buttons with icon-only buttons in one row.
 
-<EuiFlexGroup gutterSize="m">
+<EuiFlexGroup>
   <Guideline type="do" text="Stick to the default pattern: a filled, primary button paired with an empty, but same-colored button.">
-    <EuiFlexGroup>
+    <EuiFlexGroup gutterSize="s">
       <EuiFlexItem grow={false}>
         <EuiButton fill>Save</EuiButton>
       </EuiFlexItem>
@@ -609,7 +609,7 @@ Buttons adjacent to a primary CTA should be **tertiary**, presented as **empty**
     </EuiFlexGroup>
   </Guideline>
   <Guideline type="dont" text="Readability suffers when multiple colors and sizes are used.">
-    <EuiFlexGroup>
+    <EuiFlexGroup gutterSize="s">
       <EuiFlexItem grow={false}>
         <EuiButton fill>Save</EuiButton>
       </EuiFlexItem>
@@ -749,7 +749,7 @@ import ContextMenu from './guidelines_context_menu';
 import BrowserOnly from '@docusaurus/BrowserOnly';
 ```
 
-<EuiFlexGroup gutterSize="m">
+<EuiFlexGroup>
   <Guideline type="do" text="Put multiple actions inside a menu triggered by a single rather than showing them separately.">
     {/* ContextMenu uses EuiPopover that's SSR-incompatible */}
     <BrowserOnly>
@@ -757,7 +757,7 @@ import BrowserOnly from '@docusaurus/BrowserOnly';
     </BrowserOnly>
   </Guideline>
   <Guideline type="dont" text="When there are many buttons, none matter.">
-    <EuiFlexGroup>
+    <EuiFlexGroup gutterSize="s">
       <EuiFlexItem grow={false}>
         <EuiButton iconType="copy">Copy</EuiButton>
       </EuiFlexItem>
@@ -797,6 +797,7 @@ export default () => {
       </EuiButton>
       &emsp;
       <EuiButtonIcon
+        size="s"
         title={toggle1On ? 'Play' : 'Pause'}
         aria-label={toggle1On ? 'Play' : 'Pause'}
         iconType={toggle1On ? 'play' : 'pause'}
@@ -839,7 +840,7 @@ export default () => {
         title="Autosave"
         iconType="save"
         aria-pressed={toggle3On}
-        color={toggle3On ? 'primary' : 'text'}
+        color={toggle3On ? 'success' : 'text'}
         onClick={() => {
           setToggle3On((isOn) => !isOn);
         }}
