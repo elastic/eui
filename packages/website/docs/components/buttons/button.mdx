@@ -487,13 +487,15 @@ export default () => (
 );
 ```
 
+## State
 
+### Disabled
 
+Show a button in a disabled state when the action **cannot be performed** due to permissions, licensing, or data issues (e.g., invalid input). Consider whether the user needs to know the button exists; showing it indicates potential actions, while hiding it may lead to unawareness. Only hide buttons when the action's potential is immaterial. Do not show disabled buttons if the user is unlikely to perform the action. All button types have the same disabled state.
 
+### Loading
 
-## Loading state
-
-Setting the `isLoading` prop to true will add the loading spinner or swap the existing icon for the loading spinner and set the button to disabled. It is good practice to also rename the button to "Loading…".
+Always consider the button loading state due to potential **performance slowdowns**. Set `isLoading` to `true` to display a loading spinner. Not handling this state can lead to extra clicks and user frustration. Setting isLoading to true adds a spinner or swaps an existing icon for one, and disables the button. Renaming the button to "Loading…" is good practice. All button types have the same loading state.
 
 ```tsx interactive
 import React, { useState } from 'react';
@@ -523,6 +525,291 @@ export default () => {
   );
 };
 ```
+## Labels (button text)
+
+Button labels should **clearly indicate the action**, using action words and an object if context isn't clear (e.g., "Create dashboard"). Labels should **not exceed three words**; longer labels may be better as text links.
+
+### **Preferred words**
+
+* **Add** X — Establishes a new relationship (e.g., "Add visualization"). Always followed by an object. Opposite: Remove.  
+* **Cancel** — Stops an action without saving. Never red; always an empty button.  
+* **Create** X — Creates a new object (e.g., "Create pipeline"). Always followed by an object. Opposite: Delete.  
+* **Delete** N things — Permanently deletes data. Opposite: Create. Not to be confused with Remove.  
+* **Remove** X — Removes a relationship without permanently deleting data (e.g., "Remove visualization"). Opposite: Add.  
+* **Save** / **Save and complete** — Carries out pending changes (e.g., "Save edits"). Can be green if final save action. Not to be confused with Add.
+
+### **Words to be avoided**
+
+* **New** — Use ‘Add’ or ‘Create’.  
+* **Ok** — Use action-specific words.  
+* **Yes, No** — Use words that clearly explain the action.
+
+## Usage
+
+### Combining button variants
+
+Primary and secondary actions typically use `filled` and `default` styles, respectively. Display **one primary action button per layout** to signal its importance. Not every page requires a primary action button. Use default buttons for **secondary visual prominence**, less prominent than primary CTAs, but still visually distinct. They can be used in layouts without a CTA.
+
+Buttons adjacent to a primary CTA should be **tertiary**, presented as **
+empty** buttons. Tertiary actions are less consequential, exiting the flow or not changing data.
+
+**Do not use all three styles** in the same button group. When multiple actions are grouped, use either secondary (`default`) or tertiary (`EuiButtonEmpty`) styles. Avoid mixing simple/empty buttons with icon-only buttons in one row.
+
+<EuiFlexGroup gutterSize="m">
+  <Guideline type="do" text="Stick to the default pattern: a filled, primary button paired with an empty, but same-colored button.">
+    <EuiFlexGroup>
+      <EuiFlexItem grow={false}>
+        <EuiButton fill>Save</EuiButton>
+      </EuiFlexItem>
+      <EuiFlexItem grow={false}>
+        <EuiButtonEmpty>Cancel</EuiButtonEmpty>
+      </EuiFlexItem>
+    </EuiFlexGroup>
+  </Guideline>
+  <Guideline type="dont" text="Readability suffers when multiple colors and sizes are used.">
+    <EuiFlexGroup>
+      <EuiFlexItem grow={false}>
+        <EuiButton fill>Save</EuiButton>
+      </EuiFlexItem>
+      <EuiFlexItem grow={false}>
+        <EuiButton>Cancel</EuiButton>
+      </EuiFlexItem>
+      <EuiFlexItem grow={false}>
+        <EuiButton color="danger" fill size="s">
+          Delete
+        </EuiButton>
+      </EuiFlexItem>
+    </EuiFlexGroup>
+  </Guideline>
+</EuiFlexGroup>
+
+Use `text` color for buttons on **visually dense** screens. This reduces visual noise and emphasizes key actions, especially when primary or secondary CTAs are present.
+
+### Placement and order
+
+Place buttons **on the right** in restricted-width containers (modals, popovers, bottom bars, flyouts). The user path is left-to-right, top-to-bottom, in a Z-shaped pattern. Place primary actions on the bottom right, where users finish scanning.
+
+<EuiFlexGroup gutterSize="m">
+  <Guideline type="do" text="Place the primary action on the bottom right with the secondary action on its left in modals.">
+    ![button placement in an input modal](./button_placement.svg)
+  </Guideline>
+  <Guideline type="do" text="Always use buttons positioned to the right in popovers.">
+    ![button placement in popovers](./button_popover.svg)
+  </Guideline>
+</EuiFlexGroup>
+
+Place buttons **on the left** in unrestricted large-width spaces (page forms). Content is typically anchored left, with a top-to-bottom, F-shaped scanning pattern. Place primary actions on the bottom left, where users finish scanning. In left-aligned layouts, the **primary button** is the leftmost. In right-aligned layouts, it is the rightmost.
+
+<EuiFlexGroup gutterSize="m">
+  <Guideline type="do" text="Put the primary action in the leftmost position so the user's eye never has to leave the one side.">
+    ![button placement in form](./button_left.svg)
+  </Guideline>
+  <Guideline type="dont" text="Put the actions far away from the content.">
+    ![form buttons go on the left, not right](./button_right.svg)
+  </Guideline>
+</EuiFlexGroup>
+
+### Split buttons
+
+EUI does not specifically support split buttons. Instead, use separate `EuiButton` and `EuiButtonIcon` components, matching their `display` and `size` props for consistency.
+
+```tsx interactive
+import React, { useState } from 'react';
+
+import {
+  EuiButton,
+  EuiButtonIcon,
+  EuiFlexGroup,
+  EuiFlexItem,
+  EuiContextMenuPanel,
+  EuiContextMenuItem,
+  EuiPopover,
+  useGeneratedHtmlId,
+} from '@elastic/eui';
+
+export default () => {
+  const [isPopoverOpen, setPopover] = useState(false);
+  const splitButtonPopoverId = useGeneratedHtmlId({
+    prefix: 'splitButtonPopover',
+  });
+
+  const onButtonClick = () => {
+    setPopover(!isPopoverOpen);
+  };
+
+  const closePopover = () => {
+    setPopover(false);
+  };
+
+  const items = [
+    <EuiContextMenuItem key="copy" icon="copy" onClick={closePopover}>
+      Copy
+    </EuiContextMenuItem>,
+    <EuiContextMenuItem key="edit" icon="pencil" onClick={closePopover}>
+      Edit
+    </EuiContextMenuItem>,
+    <EuiContextMenuItem key="share" icon="share" onClick={closePopover}>
+      Share
+    </EuiContextMenuItem>,
+  ];
+
+  return (
+    <>
+      <EuiFlexGroup responsive={false} gutterSize="xs" alignItems="center">
+        <EuiFlexItem grow={false}>
+          <EuiButton size="s" fill iconType="save">
+            Save
+          </EuiButton>
+        </EuiFlexItem>
+        <EuiFlexItem grow={false}>
+          <EuiPopover
+            id={splitButtonPopoverId}
+            button={
+              <EuiButtonIcon
+                display="fill"
+                size="s"
+                iconType="boxesVertical"
+                aria-label="More"
+                onClick={onButtonClick}
+              />
+            }
+            isOpen={isPopoverOpen}
+            closePopover={closePopover}
+            panelPaddingSize="none"
+            anchorPosition="downLeft"
+          >
+            <EuiContextMenuPanel size="s" items={items} />
+          </EuiPopover>
+        </EuiFlexItem>
+      </EuiFlexGroup>
+    </>
+  );
+};
+```
+
+### Popover buttons
+
+Combine multiple actions into a single button with a popover menu to reduce group size.
+
+```mdx-code-block
+import ContextMenu from './guidelines_context_menu';
+import BrowserOnly from '@docusaurus/BrowserOnly';
+```
+
+<EuiFlexGroup gutterSize="m">
+  <Guideline type="do" text="Put multiple actions inside a menu triggered by a single rather than showing them separately.">
+    {/* ContextMenu uses EuiPopover that's SSR-incompatible */}
+    <BrowserOnly>
+      {() => <ContextMenu />}
+    </BrowserOnly>
+  </Guideline>
+  <Guideline type="dont" text="When there are many buttons, none matter.">
+    <EuiFlexGroup>
+      <EuiFlexItem grow={false}>
+        <EuiButton iconType="copy">Copy</EuiButton>
+      </EuiFlexItem>
+      <EuiFlexItem grow={false}>
+        <EuiButton iconType="pencil">Edit</EuiButton>
+      </EuiFlexItem>
+      <EuiFlexItem grow={false}>
+        <EuiButton iconType="share">Share</EuiButton>
+      </EuiFlexItem>
+    </EuiFlexGroup>
+  </Guideline>
+</EuiFlexGroup>
+
+### Toggle buttons
+
+Create toggle buttons with `EuiButton`, `EuiButtonEmpty`, or `EuiButtonIcon` using state management for visual changes.
+
+If the button's readable text (children or `aria-label`) changes, no additional accessibility concern exists.
+
+```tsx interactive
+import React, { useState } from 'react';
+
+import { EuiButton, EuiButtonIcon } from '@elastic/eui';
+
+export default () => {
+  const [toggle0On, setToggle0On] = useState(false);
+  const [toggle1On, setToggle1On] = useState(true);
+
+  return (
+    <>
+      <EuiButton
+        onClick={() => {
+          setToggle0On((isOn) => !isOn);
+        }}
+      >
+        {toggle0On ? 'Toggled' : 'Toggle me'}
+      </EuiButton>
+      &emsp;
+      <EuiButtonIcon
+        title={toggle1On ? 'Play' : 'Pause'}
+        aria-label={toggle1On ? 'Play' : 'Pause'}
+        iconType={toggle1On ? 'play' : 'pause'}
+        onClick={() => {
+          setToggle1On((isOn) => !isOn);
+        }}
+      />
+    </>
+  );
+};
+```
+
+If only the **visual appearance** changes, add `aria-pressed` with a boolean for on/off states. All EUI button types provide an `isSelected` helper prop for this.
+
+```tsx interactive
+import React, { useState } from 'react';
+import { EuiButton, EuiButtonIcon } from '@elastic/eui';
+
+export default () => {
+  const [toggle2On, setToggle2On] = useState(true);
+  const [toggle3On, setToggle3On] = useState(false);
+
+  return (
+    <>
+      <EuiButton
+        isSelected={toggle2On}
+        fill={toggle2On}
+        iconType={toggle2On ? 'starFilledSpace' : 'starPlusEmpty'}
+        onClick={() => {
+          setToggle2On((isOn) => !isOn);
+        }}
+      >
+        Toggle me
+      </EuiButton>
+      &emsp;
+      <EuiButtonIcon
+        display={toggle3On ? 'base' : 'empty'}
+        size="m"
+        aria-label="Autosave"
+        title="Autosave"
+        iconType="save"
+        aria-pressed={toggle3On}
+        color={toggle3On ? 'primary' : 'text'}
+        onClick={() => {
+          setToggle3On((isOn) => !isOn);
+        }}
+      />
+    </>
+  );
+};
+```
+
+:::accessibility Accessibility
+Do not add `aria-pressed` or `isSelected` if the readable text changes.
+:::
+
+### Save button
+
+Save buttons are specific to CRUD operations. "Save" is recommended for **permanently** saving data, rather than "Update," "Create," or "Apply." Reserve "Apply" for temporary changes.
+
+The save button should be the **most dominant** action, consistent across contexts. Use the `fill` property and `primary` color variant, including a noun in the label (e.g., "Save dashboard").
+
+**Consider if an icon is necessary**. Save buttons should be visually dominant, making an icon less necessary compared to other actions. Rely solely on the label to avoid inconsistency.
+
+Exceptions exist, such as the `EuiInlineEdit` component, which offers a save action without a label.
+
 
 ## Props
 
