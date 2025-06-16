@@ -20,13 +20,15 @@ export const colors: _EuiThemeColors = {
   ink: SEMANTIC_COLORS.plainDark,
   plainLight: SEMANTIC_COLORS.plainLight,
   plainDark: SEMANTIC_COLORS.plainDark,
-  severity: severityColors,
+
   LIGHT: {
     ...light_colors,
     vis: colorVisLight,
+    severity: severityColors,
   },
   DARK: {
     ...dark_colors,
     vis: colorVisDark,
+    severity: severityColors,
   },
 };
