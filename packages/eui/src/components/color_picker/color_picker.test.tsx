@@ -11,10 +11,11 @@ import { fireEvent } from '@testing-library/react';
 import { requiredProps } from '../../test';
 import { shouldRenderCustomStyles } from '../../test/internal';
 import { render } from '../../test/rtl';
-
-import { VISUALIZATION_COLORS, keys } from '../../services';
+import { euiPaletteColorBlind, keys } from '../../services';
 
 import { EuiColorPicker } from './color_picker';
+
+const VISUALIZATION_COLORS = euiPaletteColorBlind();
 
 jest.mock('../portal', () => ({
   EuiPortal: ({ children }: { children: any }) => children,
