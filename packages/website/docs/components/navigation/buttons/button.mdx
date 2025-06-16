@@ -132,17 +132,6 @@ export default () => {
 };
 ```
 
-Icons can serve as an **addition to the text label** to emphasize actions, but should be used sparingly. Icons work best on labels for binary actions, such as "Create" and"'Delete", or final actions, such as "Save".
-
-<EuiFlexGroup gutterSize="m">
-  <Guideline type="do" text={` The arrow shows that there are more items to fill out, and the check icon indicates the final action.`}>
-    <EuiButton iconType="arrowRight" iconSide="right" fill>Continue</EuiButton>&nbsp;&nbsp;<EuiButton iconType="check" color="success" fill>Save and complete</EuiButton>
-  </Guideline>
-  <Guideline type="dont" text="Unnecessary icon just distracts the user, especially it is on the right and is hard to interpret.">
-    <EuiButton iconType="indexOpen" iconSide="right" fill>Create index pattern</EuiButton>
-  </Guideline>
-</EuiFlexGroup>
-
 ### Empty
 
 Empty buttons are for **complementary (tertiary)** actions like close, cancel, filter, and refresh, which typically affect data presentation rather than modification. They reduce a button's visual importance and support `xs` [size](#size) and the [flush](#flush-prop) property for alignment.
@@ -193,7 +182,7 @@ export default () => (
 
 ### Icon
 
-`EuiButtonIcon` is an icon-only button. Use `display` and `size` props to match standard buttons. The default appearance is `xs`, `empty`. Use only for common, intuitive actions with **immediately understood icons** (e.g., trash can for delete). `Aria-label` is required for accessibility. Icon color inherits from the button's color property. Icon color is inherited from the button color property and, therefore, does not need to be set separately.
+`EuiButtonIcon` is an **icon-only button**. Use `display` and `size` props to match standard buttons. The default appearance is `xs`, `empty`. Use only for common, intuitive actions with **immediately understood icons** (e.g., trash can for delete). `Aria-label` is required for accessibility. Icon color inherits from the button's color property. Icon color is inherited from the button color property and, therefore, does not need to be set separately.
 
 ```tsx interactive
 import React, { useState } from 'react';
@@ -652,6 +641,19 @@ Button labels should **clearly indicate the action**, using action words and an 
 * **Yes / No** — Use words that clearly explain the action.
 
 ## Usage
+
+### Additional icons
+
+Icons can serve as an **addition to the text label** to emphasize actions, but should be used sparingly. Icons work best on labels for binary actions, such as "Create" and"'Delete", or final actions, such as "Save".
+
+<EuiFlexGroup gutterSize="m">
+  <Guideline type="do" text={` The arrow shows that there are more items to fill out, and the check icon indicates the final action.`}>
+    <EuiButton iconType="arrowRight" iconSide="right" fill>Continue</EuiButton>&nbsp;&nbsp;<EuiButton iconType="check" color="success" fill>Save and complete</EuiButton>
+  </Guideline>
+  <Guideline type="dont" text="Unnecessary icon just distracts the user, especially it is on the right and is hard to interpret.">
+    <EuiButton iconType="indexOpen" iconSide="right" fill>Create index pattern</EuiButton>
+  </Guideline>
+</EuiFlexGroup>
 
 ### Combining buttons
 
