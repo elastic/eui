@@ -20,6 +20,7 @@ import { EuiFlexItem } from '../flex';
 
 import { EuiComboBoxOptionMatcher } from './types';
 import { EuiComboBox, EuiComboBoxProps } from './combo_box';
+import { EuiFormRow } from '../form';
 
 const options = [
   { label: 'Item 1' },
@@ -195,6 +196,18 @@ export const NestedOptionsGroups: Story = {
     autoFocus: true,
   },
   render: (args) => <StatefulComboBox {...args} />,
+};
+
+export const TESTING_EXAMPLE: Story = {
+  render: (args) => {
+    return (
+      <>
+        <EuiFormRow isInvalid error={['This is an error!']}>
+          <StatefulComboBox {...args} isInvalid />
+        </EuiFormRow>
+      </>
+    );
+  },
 };
 
 /**
