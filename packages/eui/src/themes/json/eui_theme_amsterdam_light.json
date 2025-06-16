@@ -416,12 +416,12 @@
   "euiColorBorderBaseFloating": "transparent",
   "euiColorBorderBaseFormsColorSwatch": "rgba(0,0,0,0.1)",
   "euiColorBorderBaseFormsControl": "#919296",
-  "euiColorBorderStrongPrimary": "#99c9eb",
-  "euiColorBorderStrongAccent": "#f9b8d6",
-  "euiColorBorderStrongAccentSecondary": "#99e5e1",
-  "euiColorBorderStrongNeutral": "#e5ecf4",
-  "euiColorBorderStrongSuccess": "#99e5e1",
-  "euiColorBorderStrongWarning": "#fedc72",
-  "euiColorBorderStrongRisk": "#e9b98f",
-  "euiColorBorderStrongDanger": "#e5a9a5"
+  "euiColorBorderStrongPrimary": "#0077CC",
+  "euiColorBorderStrongAccent": "#F04E98",
+  "euiColorBorderStrongAccentSecondary": "#00BFB3",
+  "euiColorBorderStrongNeutral": "#94A6B6",
+  "euiColorBorderStrongSuccess": "#00BFB3",
+  "euiColorBorderStrongWarning": "#FEC514",
+  "euiColorBorderStrongRisk": "#DA8B45",
+  "euiColorBorderStrongDanger": "#BD271E"
 }
