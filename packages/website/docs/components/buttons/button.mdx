@@ -133,6 +133,7 @@ export default () => {
 ```
 
 Icons can serve as an **addition to the text label** to emphasize actions, but should be used sparingly. Icons work best on labels for binary actions, such as "Create" and"'Delete", or final actions, such as "Save".
+
 <EuiFlexGroup gutterSize="m">
   <Guideline type="do" text={` The arrow shows that there are more items to fill out, and the check icon indicates the final action.`}>
     <EuiButton iconType="arrowRight" iconSide="right" fill>Continue</EuiButton>&nbsp;&nbsp;<EuiButton iconType="check" color="success" fill>Save and complete</EuiButton>
@@ -521,10 +522,10 @@ Button width is generally **determined by content** (label, icon, padding). [Ico
 
 <EuiFlexGroup>
   <Guideline type="do" text="Use full-width buttons in narrow forms.">
-    ![full width buttons](./button_login.svg)
+    ![full width buttons](img/button_login.svg)
   </Guideline>
   <Guideline type="dont" text="Don't make buttons unnecessary wide in larger viewports.">
-    ![full width buttons](./button_wide.svg)
+    ![full width buttons](img/button_wide.svg)
   </Guideline>
 </EuiFlexGroup>
 
@@ -594,7 +595,7 @@ export default () => {
       <EuiButton disabled={disableButton} fill>
         {!disableButton ? 'Button' : 'Disabled'}
       </EuiButton>
-    </div>
+    </>
   );
 };
 ```
@@ -652,16 +653,16 @@ Button labels should **clearly indicate the action**, using action words and an 
 
 ## Usage
 
-### Combining button variants
+### Combining buttons
 
 Primary and secondary actions typically use `filled` and `default` styles, respectively. Display **one primary action button per layout** to signal its importance. Not every page requires a primary action button. Use default buttons for **secondary visual prominence**, less prominent than primary CTAs, but still visually distinct. They can be used in layouts without a CTA.
 
 <EuiFlexGroup>
   <Guideline type="do" text="Use only one filled button per layout — the one you want the user to eventually complete.">
-    ![one primary button per page](./button_types.svg)
+    ![one primary button per page](img/button_types.svg)
   </Guideline>
   <Guideline type="dont" text="Too many primary buttons will confuse the user.">
-    ![page without primary button](./button_types_bad.svg)
+    ![page without primary button](img/button_types_bad.svg)
   </Guideline>
 </EuiFlexGroup>
 
@@ -697,16 +698,20 @@ Buttons adjacent to a primary CTA should be **tertiary**, presented as **empty**
 
 Use `text` color for buttons on **visually dense** screens. This reduces visual noise and emphasizes key actions, especially when primary or secondary CTAs are present.
 
+<Guideline type="do" text="Use text buttons to reduce visual noise on dense screens with multiple actions.">
+  ![button bar](img/button_bar.svg)
+</Guideline>
+
 ### Placement and order
 
 Place buttons **on the right** in restricted-width containers (modals, popovers, bottom bars, flyouts). The user path is left-to-right, top-to-bottom, in a Z-shaped pattern. Place primary actions on the bottom right, where users finish scanning.
 
 <EuiFlexGroup gutterSize="m">
   <Guideline type="do" text="Place the primary action on the bottom right with the secondary action on its left in modals.">
-    ![button placement in an input modal](./button_placement.svg)
+    ![button placement in an input modal](img/button_placement.svg)
   </Guideline>
   <Guideline type="do" text="Always use buttons positioned to the right in popovers.">
-    ![button placement in popovers](./button_popover.svg)
+    ![button placement in popovers](img/button_popover.svg)
   </Guideline>
 </EuiFlexGroup>
 
@@ -714,10 +719,10 @@ Place buttons **on the left** in unrestricted large-width spaces (page forms). C
 
 <EuiFlexGroup gutterSize="m">
   <Guideline type="do" text="Put the primary action in the leftmost position so the user's eye never has to leave the one side.">
-    ![button placement in form](./button_left.svg)
+    ![button placement in form](img/button_left.svg)
   </Guideline>
   <Guideline type="dont" text="Put the actions far away from the content.">
-    ![form buttons go on the left, not right](./button_right.svg)
+    ![form buttons go on the left, not right](img/button_right.svg)
   </Guideline>
 </EuiFlexGroup>
 
@@ -725,10 +730,10 @@ Button placement should always reflect the surrounding context. Place the primar
 
 <EuiFlexGroup gutterSize="m">
   <Guideline type="do" text="If the action is against the page title, place the primary button in the upper right.">
-    ![button placement in upper right](./button_table.svg)
+    ![button placement in upper right](img/button_table.svg)
   </Guideline>
   <Guideline type="do" text="Center-align the title and primary action when content is minimal and vertically constrained.">
-    ![center-aligned button](./button_empty.svg)
+    ![center-aligned button](img/button_empty.svg)
   </Guideline>
 </EuiFlexGroup>
 
@@ -841,11 +846,11 @@ import BrowserOnly from '@docusaurus/BrowserOnly';
   </Guideline>
 </EuiFlexGroup>
 
-### Toggle buttons
+### Toggle button
 
 Create toggle buttons with `EuiButton`, `EuiButtonEmpty`, or `EuiButtonIcon` using state management for visual changes.
 
-If the button's readable text (children or `aria-label`) changes, no additional accessibility concern exists.
+If the button's **readable text** (children or `aria-label`) changes when toggling the button, no additional accessibility concern exists.
 
 ```tsx interactive
 import React, { useState } from 'react';
@@ -928,11 +933,42 @@ Do not add `aria-pressed` or `isSelected` if the readable text changes.
 
 Save buttons are specific to CRUD operations. "Save" is recommended for **permanently** saving data, rather than "Update," "Create," or "Apply." Reserve "Apply" for temporary changes.
 
-The save button should be the **most dominant** action, consistent across contexts. Use the `fill` property and `primary` color variant, including a noun in the label (e.g., "Save dashboard").
+<EuiFlexGroup gutterSize="m">
+  <Guideline type="do" text="Place the primary action on the bottom right with the secondary action on its left in modals.">
+    ![button save](img/button_save.svg)
+  </Guideline>
+  <Guideline type="do" text="Always use buttons positioned to the right in popovers.">
+    ![button apply](img/button_apply.svg)
+  </Guideline>
+</EuiFlexGroup>
 
-**Consider if an icon is necessary**. Save buttons should be visually dominant, making an icon less necessary compared to other actions. Rely solely on the label to avoid inconsistency.
+The save button should be the **most dominant** action, consistent across contexts. Use the `fill` property and `primary` color variant, including a noun in the label (e.g., "Save dashboard"). An icon for "Save" button typically **is not needed**. Save buttons should be visually dominant, making an icon less necessary compared to other actions. Rely solely on the label to avoid inconsistency. Exceptions exist, such as the `EuiInlineEdit` component, which offers a save action without a label.
 
-Exceptions exist, such as the `EuiInlineEdit` component, which offers a save action without a label.
+<EuiFlexGroup>
+  <Guideline type="do" text="Save button is a clear dominant within a group of actions.">
+    <EuiFlexGroup gutterSize="s" justifyContent="flexEnd">
+      <EuiFlexItem grow={false} >
+        <EuiButtonEmpty>Tertiary</EuiButtonEmpty>
+      </EuiFlexItem>
+      <EuiFlexItem grow={false}>
+        <EuiButton>Secondary</EuiButton>
+      </EuiFlexItem>
+      <EuiFlexItem grow={false}>
+        <EuiButton fill>Save</EuiButton>
+      </EuiFlexItem>
+    </EuiFlexGroup>
+  </Guideline>
+  <Guideline type="dont" text="Even though there are only two buttons, 'Save' should still be the primary action.">
+    <EuiFlexGroup gutterSize="s" justifyContent="flexEnd">
+      <EuiFlexItem grow={false}>
+        <EuiButtonEmpty>Cancel</EuiButtonEmpty>
+      </EuiFlexItem>
+      <EuiFlexItem grow={false}>
+        <EuiButton>Apply</EuiButton>
+      </EuiFlexItem>
+    </EuiFlexGroup>
+  </Guideline>
+</EuiFlexGroup>
 
 ## Props
 
