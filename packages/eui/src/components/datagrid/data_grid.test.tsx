@@ -2645,5 +2645,8 @@ describe('EuiDataGrid', () => {
 
     fireEvent.click(button);
     expect(onFullScreenChange).toHaveBeenCalledWith(true);
+
+    fireEvent.click(button);
+    expect(onFullScreenChange).toHaveBeenCalledWith(false);
   });
 });
