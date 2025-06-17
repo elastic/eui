@@ -30,7 +30,8 @@ export const euiFormControlLayoutDelimitedStyles = (
 
   const form = euiFormVariables(euiThemeContext);
 
-  const invalidStyles = `
+  const invalidStyles = isRefreshVariant
+    ? `
     :not(.euiFormControlLayoutDelimited__input, .euiFormControlLayoutDelimited__delimiter) {
       ${euiFormControlInvalidStyles(euiThemeContext)}
     }
@@ -43,6 +44,9 @@ export const euiFormControlLayoutDelimitedStyles = (
     .euiFormControlLayoutDelimited__input {
       background-color: transparent;
     }
+  `
+    : `
+    ${euiFormControlInvalidStyles(euiThemeContext)};
   `;
 
   const readOnlyStyles = `
@@ -115,7 +119,7 @@ export const euiFormControlLayoutDelimitedStyles = (
           withBackgroundAnimation: false,
         }),
         `
-          ${isRefreshVariant && invalidStyles}
+          ${invalidStyles}
         `
       ),
       readOnly: css``,
