@@ -141,6 +141,7 @@ export const EuiDataGrid = memo(
       virtualizationOptions,
       renderCustomGridBody,
       renderCustomToolbar,
+      onFullScreenChange,
       ...rest
     } = props;
 
@@ -325,7 +326,7 @@ export const EuiDataGrid = memo(
       fullScreenSelector,
       handleGridKeyDown,
       fullScreenStyles,
-    } = useDataGridFullScreenSelector();
+    } = useDataGridFullScreenSelector(onFullScreenChange);
 
     /**
      * Expose certain internal APIs as ref to consumer

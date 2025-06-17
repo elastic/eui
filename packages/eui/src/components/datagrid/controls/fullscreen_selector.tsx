@@ -25,7 +25,9 @@ import { euiDataGridFullScreenStyles } from './fullscreen_selector.styles';
 
 const GRID_IS_FULLSCREEN_CLASSNAME = 'euiDataGrid__restrictBody';
 
-export const useDataGridFullScreenSelector = (): {
+export const useDataGridFullScreenSelector = (
+  onFullScreenChange?: (isFullScreen: boolean) => void
+): {
   isFullScreen: boolean;
   setIsFullScreen: (isFullScreen: boolean) => void;
   fullScreenSelector: ReactNode;
@@ -33,6 +35,13 @@ export const useDataGridFullScreenSelector = (): {
   fullScreenStyles: string;
 } => {
   const [isFullScreen, setIsFullScreen] = useState(false);
+
+  const toggleFullScreen = useCallback(() => {
+    setIsFullScreen((prevValue) => {
+      onFullScreenChange?.(!prevValue);
+      return !prevValue;
+    });
+  }, [onFullScreenChange]);
 
   const [fullScreenButton, fullScreenButtonActive] = useEuiI18n(
     [
@@ -61,12 +70,12 @@ export const useDataGridFullScreenSelector = (): {
           color="text"
           aria-pressed={isFullScreen}
           data-test-subj="dataGridFullScreenButton"
-          onClick={() => setIsFullScreen(!isFullScreen)}
+          onClick={toggleFullScreen}
           aria-label={isFullScreen ? fullScreenButtonActive : fullScreenButton}
         />
       </EuiToolTip>
     ),
-    [isFullScreen, fullScreenButton, fullScreenButtonActive]
+    [isFullScreen, fullScreenButtonActive, fullScreenButton, toggleFullScreen]
   );
 
   const handleGridKeyDown = useCallback(
@@ -76,11 +85,12 @@ export const useDataGridFullScreenSelector = (): {
           if (isFullScreen) {
             event.preventDefault();
             setIsFullScreen(false);
+            onFullScreenChange?.(false);
           }
           break;
       }
     },
-    [isFullScreen]
+    [isFullScreen, onFullScreenChange]
   );
 
   const styles = useEuiMemoizedStyles(euiDataGridFullScreenStyles);
