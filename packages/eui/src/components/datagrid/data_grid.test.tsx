@@ -2622,4 +2622,31 @@ describe('EuiDataGrid', () => {
       expect(component.render()).toMatchSnapshot();
     });
   });
+
+  it('calls onFullScreenChange when fullscreen button is clicked', () => {
+    const onFullScreenChange = jest.fn();
+    const { getByTestSubject } = render(
+      <EuiDataGrid
+        {...requiredProps}
+        columns={[{ id: 'A' }, { id: 'B' }]}
+        columnVisibility={{
+          visibleColumns: ['A', 'B'],
+          setVisibleColumns: () => {},
+        }}
+        rowCount={3}
+        renderCellValue={renderCellValueRowAndColumnCount}
+        toolbarVisibility={{ showFullScreenSelector: true }}
+        onFullScreenChange={onFullScreenChange}
+      />
+    );
+
+    const button = getByTestSubject('dataGridFullScreenButton');
+    expect(button).toBeInTheDocument();
+
+    fireEvent.click(button);
+    expect(onFullScreenChange).toHaveBeenCalledWith(true);
+
+    fireEvent.click(button);
+    expect(onFullScreenChange).toHaveBeenCalledWith(false);
+  });
 });

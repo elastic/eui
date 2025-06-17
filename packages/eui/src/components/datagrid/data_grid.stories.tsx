@@ -51,7 +51,10 @@ export const Playground: Story = {
   args: defaultStorybookArgs,
   render: (args: EuiDataGridProps) => <StatefulDataGrid {...args} />,
 };
-enableFunctionToggleControls<EuiDataGridProps>(Playground, ['onColumnResize']);
+enableFunctionToggleControls<EuiDataGridProps>(Playground, [
+  'onColumnResize',
+  'onFullScreenChange',
+]);
 
 export const Virtualization: Story = {
   parameters: {

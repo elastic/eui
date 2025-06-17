@@ -53,6 +53,7 @@ export const topLevelPropSnippets = {
   canDragAndDropColumns: true,
 }}`,
   onColumnResize: 'onColumnResize={({columnId, width}) => {}}',
+  onFullScreenChange: `onFullScreenChange={(isFullScreen) => {}}`,
   schemaDetectors: (
     <a href="../data-grid/schema-and-columns#schemas">
       See Schemas & columns for full details.
@@ -169,6 +170,8 @@ const propLinks = {
   toolbarVisibility: '../data-grid/toolbar#toolbar-visibility',
   minSizeForControls: '../data-grid/container-constraints',
   virtualizationOptions: '../data-grid/container-constraints#virtualization',
+  onFullScreenChange:
+    '../data-grid/toolbar/#EuiDataGridToolBarVisibilityOptions-prop-showFullScreenSelector',
 };
 
 export default () => (
