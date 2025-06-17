@@ -135,18 +135,18 @@ export const KibanaCollapsibleNavSolution: FunctionComponent<
       {isCollapsed && isPush ? (
         <>
           <EuiCollapsedNavPopover icon={icon} title={title} items={items} />
-          <EuiCollapsedNavPopover
+          {/* <EuiCollapsedNavPopover
             {...sharedPopoverProps}
             icon={solutionSwitcherIcon}
             title={solutionSolutionSwitcherTitle}
             items={[{ renderItem: () => solutionSwitcherContent }]}
             data-test-subj="kibanaSolutionSwitcherDocked"
-          />
+          /> */}
         </>
       ) : (
         <>
           {/* Using EuiInputPopover instead of EuiPopover mostly for the automatic width logic 🍝 */}
-          <EuiInputPopover
+          {/* <EuiInputPopover
             {...sharedPopoverProps}
             fullWidth={true}
             // Use the default EuiPopover focus trap, not the EuiInputPopover focus trap
@@ -177,7 +177,20 @@ export const KibanaCollapsibleNavSolution: FunctionComponent<
           >
             <EuiPopoverTitle>{solutionSolutionSwitcherTitle}</EuiPopoverTitle>
             {solutionSwitcherContent}
-          </EuiInputPopover>
+          </EuiInputPopover> */}
+          <EuiCollapsibleNavLink
+                css={styles.euiCollapsibleNavKibanaSolution__title}
+                onClick={() => setIsSolutionSwitcherOpen((isOpen) => !isOpen)}
+                isInteractive
+                isSelected={isSolutionSwitcherOpen}
+                data-test-subj="kibanaSolutionSwitcher"
+              >
+                <EuiIcon
+                  type={icon}
+                  css={styles.euiCollapsibleNavKibanaSolution__logo}
+                />
+                {title}
+              </EuiCollapsibleNavLink>
           <EuiCollapsibleNavSubItems
             items={items}
             role="group"
