@@ -36,7 +36,7 @@ export const useDataGridFullScreenSelector = (
 } => {
   const [isFullScreen, setIsFullScreen] = useState(false);
 
-  const triggerFullScreen = useCallback(() => {
+  const toggleFullScreen = useCallback(() => {
     setIsFullScreen((prevValue) => {
       onFullScreenChange?.(!prevValue);
       return !prevValue;
@@ -70,12 +70,12 @@ export const useDataGridFullScreenSelector = (
           color="text"
           aria-pressed={isFullScreen}
           data-test-subj="dataGridFullScreenButton"
-          onClick={triggerFullScreen}
+          onClick={toggleFullScreen}
           aria-label={isFullScreen ? fullScreenButtonActive : fullScreenButton}
         />
       </EuiToolTip>
     ),
-    [isFullScreen, fullScreenButtonActive, fullScreenButton, triggerFullScreen]
+    [isFullScreen, fullScreenButtonActive, fullScreenButton, toggleFullScreen]
   );
 
   const handleGridKeyDown = useCallback(
