@@ -191,10 +191,6 @@ const component_colors: _EuiThemeComponentColors = {
     ([emptyShade]) => emptyShade,
     ['colors.emptyShade']
   ),
-  dataGridRowBackgroundStriped: computed(
-    ([lightestShade]) => lightestShade,
-    ['colors.lightestShade']
-  ),
   dataGridRowStripesBackgroundHover: computed(
     ([highlight]) => highlight,
     ['colors.highlight']

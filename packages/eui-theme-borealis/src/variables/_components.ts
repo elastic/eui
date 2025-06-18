@@ -140,11 +140,6 @@ const component_colors: _EuiThemeComponentColors = {
     ([backgroundBasePlain]) => backgroundBasePlain,
     ['colors.backgroundBasePlain']
   ),
-  // "Legacy", same as dataGridRowStripesBackground
-  dataGridRowBackgroundStriped: computed(
-    ([backgroundBaseSubdued]) => backgroundBaseSubdued,
-    ['colors.backgroundBaseSubdued']
-  ),
   dataGridRowStripesBackgroundHover: computed(
     ([backgroundBasePlain]) => backgroundBasePlain,
     ['colors.backgroundBasePlain']
