@@ -194,6 +194,14 @@ export const EuiFlyoutChild: FunctionComponent<EuiFlyoutChildProps> = ({
     banner ? styles.overflow.hasBanner : styles.overflow.noBanner,
   ];
 
+  const flyoutChildCss = [
+    styles.euiFlyoutChild,
+    size === 's' ? styles.s : styles.m,
+    childLayoutMode === 'side-by-side'
+      ? styles.sidePosition
+      : styles.stackedPosition,
+  ];
+
   return (
     <EuiFocusTrap
       returnFocus={() => {
@@ -209,13 +217,7 @@ export const EuiFlyoutChild: FunctionComponent<EuiFlyoutChildProps> = ({
       <div
         ref={flyoutWrapperRef}
         className={classes}
-        css={[
-          styles.euiFlyoutChild,
-          size === 's' ? styles.s : styles.m,
-          childLayoutMode === 'side-by-side'
-            ? styles.sidePosition
-            : styles.stackedPosition,
-        ]}
+        css={flyoutChildCss}
         data-test-subj="euiFlyoutChild"
         role="dialog"
         aria-modal="true"

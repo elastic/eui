@@ -31,8 +31,6 @@ export const euiFlyoutChildStyles = (euiThemeContext: UseEuiTheme) => {
       ${logicalCSSWithFallback('overflow-y', 'hidden')}
       ${logicalCSS('height', '100%')}
       z-index: ${Number(euiTheme.levels.flyout) + 1};
-      transition: transform ${euiTheme.animation.normal} ease,
-        width ${euiTheme.animation.normal} ease;
       border-inline-start: ${euiTheme.border.thin};
     `,
 
@@ -65,7 +63,6 @@ export const euiFlyoutChildStyles = (euiThemeContext: UseEuiTheme) => {
     overflow: {
       overflow: css`
         flex-grow: 1;
-        ${logicalCSS('min-height', 0)}
         display: flex;
         flex-direction: column;
       `,
@@ -73,8 +70,6 @@ export const euiFlyoutChildStyles = (euiThemeContext: UseEuiTheme) => {
         display: flex;
         flex-direction: column;
         flex-grow: 1;
-        ${logicalCSS('min-height', 0)}
-        ${logicalCSS('width', '100%')}
         ${logicalCSS('overflow-x', 'auto')}
       `,
       noBanner: css`

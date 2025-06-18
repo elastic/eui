@@ -91,8 +91,6 @@ export const EuiFlyoutManager: React.FC<EuiFlyoutManagerComponentProps> = ({
       console.warn(
         'EuiFlyoutManager: A child flyout is open, but renderChildFlyoutContent was not provided.'
       );
-      // Optionally, you could close the child flyout here or render a default message.
-      // For now, it will render an empty child flyout if the main flyout is configured to show one.
     }
   }
 

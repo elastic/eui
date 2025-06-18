@@ -104,34 +104,28 @@ describe('EuiFlyoutChild', () => {
       <TestFlyoutWithChild initialMainOpen={true} initialChildOpen={true} />
     );
 
-    // Verify main and child flyouts are rendered
     const mainFlyout = screen.getByTestSubject('main-flyout');
     const childFlyout = screen.getByTestSubject('child-flyout');
 
     expect(mainFlyout).toBeInTheDocument();
     expect(childFlyout).toBeInTheDocument();
 
-    // Verify required ARIA attributes for accessibility
     expect(childFlyout).toHaveAttribute('role', 'dialog');
     expect(childFlyout).toHaveAttribute('aria-modal', 'true');
 
-    // Verify child flyout has a close button
     const childCloseButton = screen.getByTestSubject(
       'euiFlyoutChildCloseButton'
     );
     expect(childCloseButton).toBeInTheDocument();
 
-    // Verify child flyout has required content
     expect(screen.getByText('Child Flyout')).toBeInTheDocument();
     expect(screen.getByText('Child content')).toBeInTheDocument();
 
-    // Verify child buttons are rendered
     expect(screen.getByTestSubject('child-button-1')).toBeInTheDocument();
     expect(screen.getByTestSubject('child-button-2')).toBeInTheDocument();
   });
 
   test('throws error when used outside of EuiFlyout', () => {
-    // Mock console.error to prevent React error logging
     const originalConsoleError = console.error;
     console.error = jest.fn();
 
@@ -146,7 +140,6 @@ describe('EuiFlyoutChild', () => {
       );
     }).toThrow('EuiFlyoutChild must be used as a child of EuiFlyout');
 
-    // Restore console.error
     console.error = originalConsoleError;
   });
 
