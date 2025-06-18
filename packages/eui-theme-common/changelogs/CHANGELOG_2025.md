@@ -1,3 +1,9 @@
+## [`v1.2.1`](https://github.com/elastic/eui/releases/v1.2.1)
+
+**Bug fixes**
+
+- Fixed a wrong variable in `getComputed` theme function which prevented high contrast overrides from being applied ([#8742](https://github.com/elastic/eui/pull/8742))
+
 ## [`v1.2.0`](https://github.com/elastic/eui/releases/v1.2.0)
 
 - Added new tokens on `colors.vis`: ([#8725](https://github.com/elastic/eui/pull/8725))

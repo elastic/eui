@@ -1,3 +1,17 @@
+## [`v103.1.0`](https://github.com/elastic/eui/releases/v103.1.0)
+
+- Added `onFullScreenChange` prop to `EuiDataGrid` to handle changes when the component enters or exits fullscreen mode ([#8765](https://github.com/elastic/eui/pull/8765))
+
+**Bug fixes**
+
+- Fixed `onChange` being triggered twice when the checkbox in `EuiCheckableCard` is clicked ([#8786](https://github.com/elastic/eui/pull/8786))
+- Fixed a circular import on the legacy Amsterdam theme that would cause the theme usage to break ([#8780](https://github.com/elastic/eui/pull/8780))
+- Fixed high contrast theme token overrides not being applied ([#8742](https://github.com/elastic/eui/pull/8742))
+
+**Accessibility**
+
+- Fixed form errors not being read by screen readers for `EuiComboBox` inside of `EuiFormRow` ([#8798](https://github.com/elastic/eui/pull/8798))
+
 ## [`v103.0.0`](https://github.com/elastic/eui/releases/v103.0.0)
 
 - Replaced `question` icon glyph ([#8756](https://github.com/elastic/eui/pull/8756))
