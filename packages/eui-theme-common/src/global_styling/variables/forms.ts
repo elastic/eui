@@ -28,6 +28,7 @@ export type _EuiThemeFormColors = {
   borderInvalidHovered: ColorModeSwitch;
   borderAutofilled: ColorModeSwitch;
   borderAutofilledHovered: ColorModeSwitch;
+  clearButtonBackground: ColorModeSwitch;
   controlBorder: ColorModeSwitch;
   controlBorderSelected: ColorModeSwitch;
   controlBorderDisabled: ColorModeSwitch;

@@ -14,19 +14,15 @@ import { isEuiThemeRefreshVariant, UseEuiTheme } from '../../../services';
 export const EuiFormControlLayoutClearButtonStyles = (
   euiThemeContext: UseEuiTheme
 ) => {
-  const { euiTheme, colorMode, highContrastMode } = euiThemeContext;
+  const { euiTheme, highContrastMode } = euiThemeContext;
   const isRefreshVariant = isEuiThemeRefreshVariant(
     euiThemeContext,
     'formVariant'
   );
 
-  const backgroundColor = isRefreshVariant
-    ? highContrastMode
-      ? euiTheme.colors.darkShade
-      : euiTheme.colors.borderInteractiveFormsHoverPlain
-    : colorMode === 'DARK' || highContrastMode
+  const backgroundColor = highContrastMode
     ? euiTheme.colors.darkShade
-    : euiTheme.colors.mediumShade;
+    : euiTheme.components.forms.clearButtonBackground;
 
   return {
     euiFormControlLayoutClearButton: css`

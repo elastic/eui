@@ -66,6 +66,7 @@ const _forms = {
     ([borderStrongPrimary]) => borderStrongPrimary,
     ['colors.borderStrongPrimary']
   ),
+  clearButtonBackground: SEMANTIC_COLORS.shade60,
   controlBorder: computed(
     ([borderBaseFormsControl]) => borderBaseFormsControl,
     ['colors.borderBaseFormsControl']
@@ -100,6 +101,7 @@ const _forms = {
 
 const _dark_forms = {
   ..._forms,
+  clearButtonBackground: SEMANTIC_COLORS.shade90,
 };
 
 export const forms = {

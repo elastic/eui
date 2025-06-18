@@ -77,6 +77,10 @@ const _forms = {
     ([primaryText]) => transparentize(primaryText, 0.2),
     ['colors.primaryText']
   ),
+  clearButtonBackground: computed(
+    ([mediumShade]) => mediumShade,
+    ['colors.mediumShade']
+  ),
   controlBorder: computed(
     ([lightestShade]) => shade(lightestShade, 0.4),
     ['colors.lightestShade']
@@ -131,6 +135,10 @@ const _dark_forms = {
     ['colors.lightShade']
   ),
   border: computed(([ghost]) => transparentize(ghost, 0.1), ['colors.ghost']),
+  clearButtonBackground: computed(
+    ([darkShade]) => darkShade,
+    ['colors.darkShade']
+  ),
   controlBorder: computed(
     ([lightestShade]) => tint(lightestShade, 0.31),
     ['colors.lightestShade']
