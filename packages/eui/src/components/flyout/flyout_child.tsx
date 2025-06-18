@@ -83,12 +83,7 @@ export const EuiFlyoutChild: FunctionComponent<EuiFlyoutChildProps> = ({
     throw new Error('EuiFlyoutChild must be used as a child of EuiFlyout.');
   }
 
-  const {
-    setIsChildFlyoutOpen,
-    childLayoutMode = 'alongside',
-    parentFlyoutRef,
-    parentSize,
-  } = flyoutContext;
+  const { setIsChildFlyoutOpen, parentSize } = flyoutContext;
 
   useEffect(() => {
     setIsChildFlyoutOpen?.(true);
@@ -111,11 +106,6 @@ export const EuiFlyoutChild: FunctionComponent<EuiFlyoutChildProps> = ({
     setIsChildFlyoutOpen?.(false);
     onClose(event);
   };
-
-  const titleIdGenerated = useGeneratedHtmlId({
-    prefix: 'euiFlyoutChildTitle',
-  });
-  const bodyIdGenerated = useGeneratedHtmlId({ prefix: 'euiFlyoutChildBody' });
 
   let flyoutTitleText: string | undefined;
   let hasDescribedByBody = false;
@@ -147,6 +137,10 @@ export const EuiFlyoutChild: FunctionComponent<EuiFlyoutChildProps> = ({
     }
   });
 
+  const titleIdGenerated = useGeneratedHtmlId({
+    prefix: 'euiFlyoutChildTitle',
+  });
+  const bodyIdGenerated = useGeneratedHtmlId({ prefix: 'euiFlyoutChildBody' });
   const ariaLabelledBy = flyoutTitleText ? titleIdGenerated : undefined;
   const ariaDescribedBy = hasDescribedByBody ? bodyIdGenerated : undefined;
   // Use existing aria-label if provided, otherwise fallback if no labelledby can be derived
@@ -193,6 +187,8 @@ export const EuiFlyoutChild: FunctionComponent<EuiFlyoutChildProps> = ({
     styles.overflow.overflow,
     banner ? styles.overflow.hasBanner : styles.overflow.noBanner,
   ];
+
+  const { childLayoutMode, parentFlyoutRef } = flyoutContext;
 
   const flyoutChildCss = [
     styles.euiFlyoutChild,

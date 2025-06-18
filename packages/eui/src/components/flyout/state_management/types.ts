@@ -32,6 +32,14 @@ export interface EuiManagedFlyoutHistoryState<FlyoutMeta = unknown> {
 
 export type EuiManagedFlyoutAction<FlyoutMeta = unknown> =
   | {
+      type: 'UPDATE_ACTIVE_FLYOUT_CONFIG';
+      payload: {
+        configChanges: Partial<EuiManagedFlyoutConfig>;
+        newMainOnUnmount?: () => void;
+        newChildOnUnmount?: () => void;
+      };
+    }
+  | {
       type: 'OPEN_MAIN_FLYOUT';
       payload: {
         size: EuiFlyoutSize;
@@ -51,18 +59,10 @@ export type EuiManagedFlyoutAction<FlyoutMeta = unknown> =
     }
   | { type: 'GO_BACK' }
   | { type: 'CLOSE_CHILD_FLYOUT' }
-  | {
-      type: 'UPDATE_ACTIVE_FLYOUT_CONFIG';
-      payload: {
-        configChanges: Partial<EuiManagedFlyoutConfig>;
-        newMainOnUnmount?: () => void;
-        newChildOnUnmount?: () => void;
-      };
-    }
   | { type: 'CLEAR_HISTORY' };
 
 export interface EuiManagedFlyoutRenderContext<FlyoutMeta = unknown> {
-  flyoutSpecificProps: Partial<EuiFlyoutProps | EuiFlyoutChildProps>;
+  flyoutProps: Partial<EuiFlyoutProps | EuiFlyoutChildProps>;
   flyoutSize: EuiFlyoutProps['size'] | EuiFlyoutChildProps['size'];
   flyoutType: 'main' | 'child';
   dispatch: React.Dispatch<EuiManagedFlyoutAction<FlyoutMeta>>;

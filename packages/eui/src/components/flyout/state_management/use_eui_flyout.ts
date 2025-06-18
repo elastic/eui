@@ -7,7 +7,7 @@
  */
 
 import { EuiFlyoutSize } from '../flyout';
-import { useEuiFlyoutManager } from './flyout_manager';
+import { useEuiFlyoutContext } from './flyout_manager';
 import { EuiManagedFlyoutConfig } from './types';
 
 export interface EuiOpenMainManagedFlyoutOptions<Meta = unknown> {
@@ -26,12 +26,9 @@ export interface EuiOpenChildManagedFlyoutOptions<Meta = unknown> {
 
 /**
  * Hook for accessing the flyout API
- *
- * Usage:
- * Wrap your app in the `<EuiFlyoutManager>` component, to access the flyout API
  */
-export function useEuiFlyoutApi() {
-  const { state, dispatch } = useEuiFlyoutManager();
+export function useEuiFlyout() {
+  const { state, dispatch } = useEuiFlyoutContext();
 
   const openFlyout = (options: EuiOpenMainManagedFlyoutOptions) => {
     dispatch({

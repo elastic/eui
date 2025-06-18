@@ -20,12 +20,12 @@ import {
   EuiText,
 } from '../../index';
 
-import { EuiFlyoutManager, useEuiFlyoutManager } from './flyout_manager';
+import { EuiFlyoutManager, useEuiFlyoutContext } from './flyout_manager';
 import { EuiManagedFlyoutRenderContext } from './types';
 import {
   EuiOpenChildManagedFlyoutOptions,
   EuiOpenMainManagedFlyoutOptions,
-  useEuiFlyoutApi,
+  useEuiFlyout,
 } from './use_eui_flyout';
 
 interface ECommerceContentProps {
@@ -51,8 +51,8 @@ const ShoppingCartContent: React.FC<ShoppingCartContentProps> = ({
   isMainOpen,
 }) => {
   const { openChildFlyout, openFlyout, closeChildFlyout, clearHistory } =
-    useEuiFlyoutApi();
-  const { state } = useEuiFlyoutManager();
+    useEuiFlyout();
+  const { state } = useEuiFlyoutContext();
   const { activeFlyoutGroup } = state;
 
   const handleOpenChildDetails = () => {
@@ -138,7 +138,7 @@ const ShoppingCartContent: React.FC<ShoppingCartContentProps> = ({
 const ReviewOrderContent: React.FC<ReviewOrderContentProps> = ({
   itemQuantity,
 }) => {
-  const { goBack, clearHistory } = useEuiFlyoutApi();
+  const { goBack, clearHistory } = useEuiFlyout();
   const [orderConfirmed, setOrderConfirmed] = useState(false);
 
   return (
@@ -186,7 +186,7 @@ const ReviewOrderContent: React.FC<ReviewOrderContentProps> = ({
 const ItemDetailsContent: React.FC<ItemDetailsContentProps> = ({
   itemQuantity,
 }) => {
-  const { closeChildFlyout } = useEuiFlyoutApi();
+  const { closeChildFlyout } = useEuiFlyout();
   return (
     <>
       <EuiFlyoutHeader hasBorder>
@@ -225,8 +225,8 @@ const DemoAppControls: React.FC = () => {
     canGoBack,
     isChildFlyoutOpen,
     closeChildFlyout,
-  } = useEuiFlyoutApi();
-  const { state } = useEuiFlyoutManager(); // For displaying raw state and history length
+  } = useEuiFlyout();
+  const { state } = useEuiFlyoutContext(); // For displaying raw state and history length
 
   const handleOpenShoppingCart = () => {
     const options: EuiOpenMainManagedFlyoutOptions<DemoAppMetaForContext> = {

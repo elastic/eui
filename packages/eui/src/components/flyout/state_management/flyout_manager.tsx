@@ -25,7 +25,7 @@ interface FlyoutContextProps {
 
 const EuiFlyoutContext = createContext<FlyoutContextProps | null>(null);
 
-export const useEuiFlyoutManager = () => {
+export const useEuiFlyoutContext = () => {
   const context = useContext(EuiFlyoutContext);
   if (!context) {
     throw new Error('useFlyout must be used within a FlyoutManager');
@@ -64,7 +64,7 @@ export const EuiFlyoutManager: React.FC<EuiFlyoutManagerComponentProps> = ({
 
   if (activeFlyoutGroup) {
     const mainRenderContext: EuiManagedFlyoutRenderContext = {
-      flyoutSpecificProps: activeFlyoutGroup.config.mainFlyoutProps || {},
+      flyoutProps: activeFlyoutGroup.config.mainFlyoutProps || {},
       flyoutSize: activeFlyoutGroup.config.mainSize,
       flyoutType: 'main',
       dispatch,
@@ -77,7 +77,7 @@ export const EuiFlyoutManager: React.FC<EuiFlyoutManagerComponentProps> = ({
 
     if (activeFlyoutGroup.isChildOpen && renderChildFlyoutContent) {
       const childRenderContext: EuiManagedFlyoutRenderContext = {
-        flyoutSpecificProps: activeFlyoutGroup.config.childFlyoutProps || {},
+        flyoutProps: activeFlyoutGroup.config.childFlyoutProps || {},
         flyoutSize: activeFlyoutGroup.config.childSize,
         flyoutType: 'child',
         dispatch,
@@ -95,7 +95,6 @@ export const EuiFlyoutManager: React.FC<EuiFlyoutManagerComponentProps> = ({
   }
 
   const config = activeFlyoutGroup?.config;
-
   const flyoutPropsMain = config?.mainFlyoutProps || {};
   const flyoutPropsChild = config?.childFlyoutProps || {};
 
