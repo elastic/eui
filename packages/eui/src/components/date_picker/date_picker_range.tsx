@@ -95,6 +95,11 @@ export type EuiDatePickerRangeProps = CommonProps &
      * Triggered whenever the start or end controls are focused
      */
     onFocus?: FocusEventHandler<HTMLInputElement>;
+
+    /**
+     * If set to `true`, the delimeter and controls will be not be rendered
+     */
+    isQuickSelectOnly?: boolean;
   };
 
 export const EuiDatePickerRange: FunctionComponent<EuiDatePickerRangeProps> = ({
@@ -116,6 +121,7 @@ export const EuiDatePickerRange: FunctionComponent<EuiDatePickerRangeProps> = ({
   onBlur,
   append,
   prepend,
+  isQuickSelectOnly = false,
   ...rest
 }) => {
   // `fullWidth` and `compressed` should not affect inline datepickers (matches non-range behavior)
@@ -205,6 +211,7 @@ export const EuiDatePickerRange: FunctionComponent<EuiDatePickerRangeProps> = ({
   return (
     <span className={classes} css={cssStyles} {...rest}>
       <EuiFormControlLayoutDelimited
+        isQuickSelectOnly={isQuickSelectOnly}
         icon={icon}
         startControl={startControl}
         endControl={endControl}

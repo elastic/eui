@@ -595,15 +595,6 @@ export class EuiSuperDatePickerInternal extends Component<
       ],
     };
 
-    if (isQuickSelectOnly) {
-      return (
-        <EuiFormControlLayout
-          iconsPosition="static"
-          {...formControlLayoutProps}
-        />
-      );
-    }
-
     const isDisabledDisplay = isObject(isDisabled) && isDisabled?.display;
 
     if (
@@ -612,28 +603,30 @@ export class EuiSuperDatePickerInternal extends Component<
     ) {
       return (
         <EuiFormControlLayout {...formControlLayoutProps}>
-          <button
-            type="button"
-            css={styles.euiSuperDatePicker__prettyFormat}
-            className={classNames('euiSuperDatePicker__prettyFormat', {
-              'euiSuperDatePicker__prettyFormat--disabled': isDisabled,
-            })}
-            data-test-subj="superDatePickerShowDatesButton"
-            disabled={!!isDisabled}
-            onClick={this.hidePrettyDuration}
-            onFocus={onFocus}
-          >
-            {isDisabledDisplay ? (
-              isDisabled.display
-            ) : (
-              <PrettyDuration
-                timeFrom={start}
-                timeTo={end}
-                quickRanges={commonlyUsedRanges}
-                dateFormat={dateFormat}
-              />
-            )}
-          </button>
+          {!isQuickSelectOnly && (
+            <button
+              type="button"
+              css={styles.euiSuperDatePicker__prettyFormat}
+              className={classNames('euiSuperDatePicker__prettyFormat', {
+                'euiSuperDatePicker__prettyFormat--disabled': isDisabled,
+              })}
+              data-test-subj="superDatePickerShowDatesButton"
+              disabled={!!isDisabled}
+              onClick={this.hidePrettyDuration}
+              onFocus={onFocus}
+            >
+              {isDisabledDisplay ? (
+                isDisabled.display
+              ) : (
+                <PrettyDuration
+                  timeFrom={start}
+                  timeTo={end}
+                  quickRanges={commonlyUsedRanges}
+                  dateFormat={dateFormat}
+                />
+              )}
+            </button>
+          )}
         </EuiFormControlLayout>
       );
     }
@@ -655,6 +648,7 @@ export class EuiSuperDatePickerInternal extends Component<
         {({ locale: contextLocale }) => (
           <EuiDatePickerRange
             {...rangeProps}
+            isQuickSelectOnly={isQuickSelectOnly}
             css={rangeCssStyles}
             isCustom={true}
             iconType={false}
