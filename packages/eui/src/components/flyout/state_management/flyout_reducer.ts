@@ -12,7 +12,7 @@ import {
   EuiManagedFlyoutGroup,
 } from './types';
 
-export const initialFlyoutState: EuiManagedFlyoutHistoryState<any> = {
+export const initialFlyoutState: EuiManagedFlyoutHistoryState<unknown> = {
   activeFlyoutGroup: null,
   history: [],
 };
@@ -121,7 +121,6 @@ export function flyoutReducer<FlyoutMeta>(
     }
 
     case 'CLOSE_CHILD_FLYOUT': {
-      console.log('hello close child');
       if (!state.activeFlyoutGroup || !state.activeFlyoutGroup.isChildOpen) {
         console.warn(
           'Cannot close child flyout: no child is open or no active group.'
@@ -151,7 +150,8 @@ export function flyoutReducer<FlyoutMeta>(
     }
 
     case 'GO_BACK': {
-      if (!state.activeFlyoutGroup) return initialFlyoutState;
+      if (!state.activeFlyoutGroup)
+        return initialFlyoutState as EuiManagedFlyoutHistoryState<FlyoutMeta>;
 
       if (state.activeFlyoutGroup.isChildOpen) {
         state.activeFlyoutGroup.config.childFlyoutProps?.onClose?.(
@@ -184,7 +184,7 @@ export function flyoutReducer<FlyoutMeta>(
             history: newHistory,
           };
         } else {
-          return initialFlyoutState;
+          return initialFlyoutState as EuiManagedFlyoutHistoryState<FlyoutMeta>;
         }
       }
     }

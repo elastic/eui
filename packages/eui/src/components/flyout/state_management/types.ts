@@ -25,12 +25,12 @@ export interface EuiManagedFlyoutGroup<FlyoutMeta> {
   meta: FlyoutMeta;
 }
 
-export interface EuiManagedFlyoutHistoryState<FlyoutMeta = any> {
+export interface EuiManagedFlyoutHistoryState<FlyoutMeta = unknown> {
   activeFlyoutGroup: EuiManagedFlyoutGroup<FlyoutMeta> | null;
   history: Array<EuiManagedFlyoutGroup<FlyoutMeta>>;
 }
 
-export type EuiManagedFlyoutAction<FlyoutMeta = any> =
+export type EuiManagedFlyoutAction<FlyoutMeta = unknown> =
   | {
       type: 'OPEN_MAIN_FLYOUT';
       payload: {
@@ -61,7 +61,7 @@ export type EuiManagedFlyoutAction<FlyoutMeta = any> =
     }
   | { type: 'CLEAR_HISTORY' };
 
-export interface EuiManagedFlyoutRenderContext<FlyoutMeta = any> {
+export interface EuiManagedFlyoutRenderContext<FlyoutMeta = unknown> {
   flyoutSpecificProps: Partial<EuiFlyoutProps | EuiFlyoutChildProps>;
   flyoutSize: EuiFlyoutProps['size'] | EuiFlyoutChildProps['size'];
   flyoutType: 'main' | 'child';

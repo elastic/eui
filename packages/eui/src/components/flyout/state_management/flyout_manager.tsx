@@ -56,7 +56,6 @@ export const EuiFlyoutManager: React.FC<EuiFlyoutManagerComponentProps> = ({
   };
 
   const handleCloseChild = () => {
-    console.log('hello close child');
     dispatch({ type: 'CLOSE_CHILD_FLYOUT' });
   };
 
