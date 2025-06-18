@@ -71,10 +71,17 @@ export const Playground: Story = {
   // Several props need to be manually applied to the child EuiFieldText as well to render correctly
   render: ({ children, ...args }) => {
     const { readOnly, isDisabled, fullWidth, compressed } = args;
-    const childProps = { readOnly, isDisabled, fullWidth, compressed };
+    const childProps = {
+      readOnly,
+      isDisabled,
+      fullWidth,
+      compressed,
+      isInvalid: args.isInvalid,
+    };
     return (
       <EuiFormControlLayout {...args}>
         <EuiFieldText
+          type="text"
           aria-label="EuiFormControlLayout demo"
           controlOnly
           {...childProps}

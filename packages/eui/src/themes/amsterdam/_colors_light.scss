@@ -121,6 +121,9 @@ $euiColorBorderBaseFloating: 'transparent' !default;
 $euiColorBorderBaseFormsColorSwatch: transparentize($euiColorFullShade, 0.1) !default;
 $euiColorBorderBaseFormsControl: shade($euiColorLightestShade, 0.4) !default;
 
+$euiColorBorderInteractiveFormsHoverPlain: 'transparent' !default;
+$euiColorBorderInteractiveFormsHoverDanger: 'transparent' !default;
+
 $euiColorBorderStrongPrimary: $euiColorPrimary !default;
 $euiColorBorderStrongAccent: $euiColorAccent !default;
 $euiColorBorderStrongAccentSecondary: $euiColorAccentSecondary !default;

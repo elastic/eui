@@ -21,7 +21,7 @@ import {
   euiFormControlDefaultShadow,
   euiFormControlInvalidStyles,
   euiFormControlDisabledStyles,
-  euiFormControlShowBackgroundUnderline,
+  euiFormControlShowBackgroundLine,
 } from '../../form/form.styles';
 
 export const euiSuperDatePickerStyles = (euiThemeContext: UseEuiTheme) => {
@@ -159,7 +159,7 @@ export const euiSuperDatePickerStyles = (euiThemeContext: UseEuiTheme) => {
         .euiDatePopoverButton:focus,
         .euiPopover-isOpen .euiDatePopoverButton {
           --euiFormControlStateColor: ${euiTheme.colors.primary};
-          ${euiFormControlShowBackgroundUnderline(
+          ${euiFormControlShowBackgroundLine(
             euiThemeContext,
             euiTheme.colors.primary
           )}
@@ -198,7 +198,7 @@ export const euiSuperDatePickerStyles = (euiThemeContext: UseEuiTheme) => {
         .euiDatePopoverButton:focus,
         .euiPopover-isOpen .euiDatePopoverButton {
           --euiFormControlStateColor: ${euiTheme.colors.success};
-          ${euiFormControlShowBackgroundUnderline(
+          ${euiFormControlShowBackgroundLine(
             euiThemeContext,
             euiTheme.colors.success
           )}
