@@ -143,8 +143,7 @@ export const euiDataGridStyles = (euiThemeContext: UseEuiTheme) => {
         position: absolute;
         z-index: -1;
         pointer-events: none;
-        inline-size: 100%;
-        block-size: 100%;
+        inset: 0;
         background-color: ${euiTheme.components.dataGridRowBackground};
       }
     `,
