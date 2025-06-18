@@ -40,6 +40,7 @@ const _forms = {
     },
     ['colors.primary']
   ),
+  backgroundDropping: 'transparent',
   prependBackground: computed(
     ([lightShade]) => tint(lightShade, 0.5),
     ['colors.lightShade']
@@ -51,9 +52,34 @@ const _forms = {
     },
     ['colors.lightShade']
   ),
+  borderDisabled: computed(
+    ([lightShade]) => {
+      const color = darken(lightShade, 4);
+      return transparentize(color, 0.1);
+    },
+    ['colors.lightShade']
+  ),
+  borderFocused: computed(([primary]) => primary, ['colors.primary']),
+  borderInvalid: computed(([danger]) => danger, ['colors.danger']),
+  borderHovered: computed(
+    ([lightShade]) => {
+      const color = darken(lightShade, 4);
+      return transparentize(color, 0.1);
+    },
+    ['colors.lightShade']
+  ),
+  borderInvalidHovered: computed(([danger]) => danger, ['colors.danger']),
   borderAutofilled: computed(
     ([primaryText]) => transparentize(primaryText, 0.2),
     ['colors.primaryText']
+  ),
+  borderAutofilledHovered: computed(
+    ([primaryText]) => transparentize(primaryText, 0.2),
+    ['colors.primaryText']
+  ),
+  clearButtonBackground: computed(
+    ([mediumShade]) => mediumShade,
+    ['colors.mediumShade']
   ),
   controlBorder: computed(
     ([lightestShade]) => shade(lightestShade, 0.4),
@@ -109,6 +135,10 @@ const _dark_forms = {
     ['colors.lightShade']
   ),
   border: computed(([ghost]) => transparentize(ghost, 0.1), ['colors.ghost']),
+  clearButtonBackground: computed(
+    ([darkShade]) => darkShade,
+    ['colors.darkShade']
+  ),
   controlBorder: computed(
     ([lightestShade]) => tint(lightestShade, 0.31),
     ['colors.lightestShade']
