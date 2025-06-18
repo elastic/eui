@@ -68,24 +68,21 @@ export const euiFormControlLayoutStyles = (euiThemeContext: UseEuiTheme) => {
   `;
 
   const prependOnlyStyles = `
-      > :last-child {
+      > :first-child {
         ${logicalCSS('border-top-right-radius', 'inherit')}
         ${logicalCSS('border-bottom-right-radius', 'inherit')}
       }
   `;
 
   const appendOnlyStyles = `
-      > :first-child {
+      > :last-child {
         ${logicalCSS('border-top-left-radius', 'inherit')}
         ${logicalCSS('border-bottom-left-radius', 'inherit')}
       }
   `;
 
   return {
-    euiFormControlLayout: css`
-      position: relative;
-      z-index: 0;
-    `,
+    euiFormControlLayout: css``,
     // Skip the css`` on the default height to avoid generating a className
     uncompressed: `
       ${logicalCSS('height', form.controlHeight)}
@@ -224,7 +221,6 @@ export const euiFormControlLayoutSideNodeStyles = (
       ${buttons} {
         /* Override button hover/active transform */
         transform: none !important; /* stylelint-disable-line declaration-no-important */
-        line-height: 1; /* ensures correct vertical positioning of icons */
 
         /* Account for border around focusable children */
         &:focus-visible {
