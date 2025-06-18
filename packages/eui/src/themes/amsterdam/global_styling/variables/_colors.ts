@@ -335,10 +335,7 @@ export const border_colors: _EuiThemeBorderColors = {
   borderStrongWarning: computed(([warning]) => warning, ['colors.warning']),
   borderStrongRisk: severityColors.risk,
   borderStrongDanger: computed(([danger]) => danger, ['colors.danger']),
-  borderStrongText: computed(
-    ([darkShade]) => darkShade,
-    ['colors.darkShade']
-  )
+  borderStrongText: computed(([darkShade]) => darkShade, ['colors.darkShade']),
 };
 
 export const light_colors: _EuiThemeColorsMode = {
@@ -562,10 +559,7 @@ export const dark_border_colors: _EuiThemeBorderColors = {
   borderStrongWarning: computed(([warning]) => warning, ['colors.warning']),
   borderStrongRisk: tint(severityColors.risk, 0.2).toUpperCase(),
   borderStrongDanger: computed(([danger]) => danger, ['colors.danger']),
-  borderStrongText: computed(
-    ([darkShade]) => darkShade,
-    ['colors.darkShade']
-  )
+  borderStrongText: computed(([darkShade]) => darkShade, ['colors.darkShade']),
 };
 
 export const dark_colors_ams: _EuiThemeColorsMode = {
