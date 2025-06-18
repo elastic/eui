@@ -9,4 +9,4 @@ agents:
 steps:
   - label: ':docusaurus: Build and deploy documentation website'
     timeout_in_minutes: 90
-    command: .buildkite/scripts/pipelines/pipeline_deploy_new_docs.sh
+    command: .buildkite/scripts/pipelines/pipeline_deploy_docs.sh
