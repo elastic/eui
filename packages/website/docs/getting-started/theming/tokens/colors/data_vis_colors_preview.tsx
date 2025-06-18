@@ -16,3 +16,19 @@ export const DataVisColorsPreview = () => {
     </div>
   );
 };
+
+export const DataVisTextColorsPreview = () => {
+  const { euiTheme } = useEuiTheme();
+
+  return (
+    <div
+      css={css`
+        padding: ${euiTheme.size.s};
+        color: ${euiTheme.colors.vis.euiColorVisText0};
+        background-color: ${euiTheme.colors.plainLight};
+      `}
+    >
+      <strong>color: {euiTheme.colors.vis.euiColorVisText0}</strong>
+    </div>
+  );
+};

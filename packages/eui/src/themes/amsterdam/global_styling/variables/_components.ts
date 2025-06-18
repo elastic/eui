@@ -21,7 +21,7 @@ import { makeHighContrastColor } from '../../../../services/color/contrast';
 
 import { buttons } from './_buttons';
 import { forms } from './_forms';
-import { colorVis } from './_colors_vis';
+import { colorVisLight as colorVis } from './_colors_vis_light';
 
 const component_colors: _EuiThemeComponentColors = {
   badgeBackground: computed(

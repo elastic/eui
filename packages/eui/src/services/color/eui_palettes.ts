@@ -182,6 +182,8 @@ const _getVisColorsAsText = (
   }, [] as EuiPalette);
 
 /**
+ * @deprecated - use `euiColorVisText{NUMBER}` tokens directly
+ *
  * NOTE: This function is not pure. It relies on `EUI_VIS_COLOR_STORE` which is updated by the
  * EuiProvider on theme change. Ensure to recall the function on theme change or subscribe to the store.
  */
@@ -191,13 +193,15 @@ export const euiPaletteForLightBackground = function ({
   const visColors = colors ?? EUI_VIS_COLOR_STORE.visColors;
 
   const visColorsAsTextKeys = Object.keys(visColors).filter((color) =>
-    color.includes('AsTextLight')
+    color.includes('euiColorVisText')
   ) as Array<keyof typeof visColors>;
 
   return _getVisColorsAsText(visColors, visColorsAsTextKeys);
 };
 
 /**
+ * @deprecated - use `euiColorVisText{NUMBER}` tokens directly
+ *
  * NOTE: This function is not pure. It relies on `EUI_VIS_COLOR_STORE` which is updated by the
  * EuiProvider on theme change. Ensure to recall the function on theme change or subscribe to the store.
  */
@@ -207,7 +211,7 @@ export const euiPaletteForDarkBackground = function ({
   const visColors = colors ?? EUI_VIS_COLOR_STORE.visColors;
 
   const visColorsAsTextKeys = Object.keys(visColors).filter((color) =>
-    color.includes('AsTextDark')
+    color.includes('euiColorVisText')
   ) as Array<keyof typeof visColors>;
 
   return _getVisColorsAsText(visColors, visColorsAsTextKeys);
