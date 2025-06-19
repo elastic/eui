@@ -25,7 +25,7 @@ echo "Yarn version: $(yarn -v)"
 
 # GTM identifier
 analytics_vault="secret/ci/elastic-eui/analytics"
-export DOCS_GOOGLE_TAG_MANAGER_ID="$(retry 5 vault read -field=google_tag_manager_id \"${analytics_vault}\")"
+export DOCS_GOOGLE_TAG_MANAGER_ID="$(retry 5 vault read -field=google_tag_manager_id "${analytics_vault}")"
 
 # A pattern to recognize git tag names used for tagging actual releases with
 
