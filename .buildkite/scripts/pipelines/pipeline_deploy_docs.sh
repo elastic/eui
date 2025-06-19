@@ -23,6 +23,9 @@ echo "Yarn version: $(yarn -v)"
 #                      Configuration                       #
 ############################################################
 
+# Default to production deployment of Storybook
+export STORYBOOK_BASE_URL="https://eui.elastic.co/storybook"
+
 # GTM identifier
 analytics_vault="secret/ci/elastic-eui/analytics"
 export DOCS_GOOGLE_TAG_MANAGER_ID="$(retry 5 vault read -field=google_tag_manager_id "${analytics_vault}")"
@@ -39,6 +42,7 @@ copy_to_root_directory=false
 
 if is_pipeline_trigger_pull_request; then
   PR_SLUG="pr_${BUILDKITE_PULL_REQUEST}"
+  export STORYBOOK_BASE_URL="https://eui.elastic.co/${PR_SLUG}/storybook"
   bucket_directory="${PR_SLUG}/"
   echo "Detected a PR preview environment configuration. The built files will be copied to ${bucket_directory}"
 elif is_pipeline_trigger_tag; then
