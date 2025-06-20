@@ -7,6 +7,6 @@ agents:
   preemptible: false
 
 steps:
-  - label: ':docusaurus: Build and deploy documentation website'
+  - label: ':storybook: Build and deploy Storybook'
     timeout_in_minutes: 90
-    command: .buildkite/scripts/pipelines/pipeline_deploy_docs.sh
+    command: .buildkite/scripts/pipelines/pipeline_deploy_storybook.sh
