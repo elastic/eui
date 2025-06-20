@@ -18,7 +18,7 @@ exports[`EuiFilePicker is rendered 1`] = `
     <span
       aria-hidden="true"
       class="euiFilePicker__icon emotion-euiFilePicker__icon-large"
-      color="primary"
+      color="text"
       data-euiicon-type="importAction"
     />
     <span

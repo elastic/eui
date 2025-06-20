@@ -10,28 +10,54 @@ import { css } from '@emotion/react';
 import { euiShadowMedium } from '@elastic/eui-theme-common';
 
 import { logicalCSS } from '../../global_styling';
-import { UseEuiTheme } from '../../services';
+import { isEuiThemeRefreshVariant, UseEuiTheme } from '../../services';
+import { disableFormControlHoverStyles } from '../form/form.styles';
 
-export const euiDatePickerRangeStyles = {
-  euiDatePickerRange: css`
-    /* Needed for correct focus/invalid underline/linear-gradient styles */
-    .euiPopover,
-    .react-datepicker__input-container,
-    .euiDatePicker {
-      ${logicalCSS('height', '100%')}
-    }
+export const euiDatePickerRangeStyles = (euiThemeContext: UseEuiTheme) => {
+  const isRefreshVariant = isEuiThemeRefreshVariant(
+    euiThemeContext,
+    'formVariant'
+  );
 
-    /* Needed for the fullWidth prop: makes inputs take the whole available space */
-    .euiPopover {
-      flex: 1;
-    }
-  `,
+  const refreshStyles = `
+      .euiPopover:last-child {
+        ${logicalCSS('border-top-right-radius', 'inherit')}
+        ${logicalCSS('border-bottom-right-radius', 'inherit')}
+
+        * {
+          ${logicalCSS('border-top-right-radius', 'inherit')}
+          ${logicalCSS('border-bottom-right-radius', 'inherit')}
+        }
+      }
+    `;
+
+  return {
+    euiDatePickerRange: css`
+      /* Needed for correct focus/invalid underline/linear-gradient styles */
+      .euiPopover,
+      .react-datepicker__input-container,
+      .euiDatePicker {
+        ${logicalCSS('height', '100%')}
+      }
+
+      /* Needed for the fullWidth prop: makes inputs take the whole available space */
+      .euiPopover {
+        flex: 1;
+      }
+
+      ${isRefreshVariant && refreshStyles}
+    `,
+  };
 };
 
 export const euiDatePickerRangeInlineStyles = (
   euiThemeContext: UseEuiTheme
 ) => {
   const { euiTheme } = euiThemeContext;
+  const isRefreshVariant = isEuiThemeRefreshVariant(
+    euiThemeContext,
+    'formVariant'
+  );
 
   // Use a container query to stack date pickers vertically if the container is
   // not wide enough to fit both. We need a fn for this to render two width queries,
@@ -82,6 +108,13 @@ export const euiDatePickerRangeInlineStyles = (
           ${logicalCSS('height', 'auto')}
           ${logicalCSS('padding-bottom', euiTheme.size.s)}
         }
+
+        ${isRefreshVariant &&
+        `
+          &::after {
+            display: none;
+          }
+        `}
       }
 
       /* Make sure the inline date picker sets its absolute positioning based off the correct parent */
@@ -100,6 +133,17 @@ export const euiDatePickerRangeInlineStyles = (
         ${euiShadowMedium(euiThemeContext, {
           borderAllInHighContrastMode: true,
         })}
+
+        ${isRefreshVariant &&
+        `
+          /* the form layout is not part of the interactive behavior but rather a container in this variant  */
+          ${disableFormControlHoverStyles()}
+
+          .euiFormControlLayout__childrenWrapper {
+            box-shadow: none;
+            ${disableFormControlHoverStyles()}
+          }
+        `}
       }
     `,
 
