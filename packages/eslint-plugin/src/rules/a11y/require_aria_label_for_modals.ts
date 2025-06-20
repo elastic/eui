@@ -102,7 +102,7 @@ export const RequireAriaLabelForModals = ESLintUtils.RuleCreator.withoutDocs({
       '   const modalTitleId = useGeneratedHtmlId();',
       '   ...',
       '   <{{ component }}',
-      '     title="Descriptive title for the {{ component }}',
+      '     title="Descriptive title for the {{ component }}"',
       '     aria-labelledby={modalTitleId}',
       '     titleProps={{ id: modalTitleId }}',
       '     {...props} ',
