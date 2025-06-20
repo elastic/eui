@@ -11,9 +11,7 @@ import { CommonProps } from '../common';
 import { copyToClipboard } from '../../services';
 import { EuiToolTip, EuiToolTipProps } from '../tool_tip';
 
-export interface EuiCopyProps
-  extends CommonProps,
-    Partial<Omit<EuiToolTipProps, 'children'>> {
+export interface EuiCopyProps extends CommonProps {
   /**
    * Text that will be copied to clipboard when copy function is executed.
    */
@@ -32,6 +30,12 @@ export interface EuiCopyProps
    * Use your own logic to create the component that users interact with when triggering copy.
    */
   children(copy: () => void): ReactElement;
+  /**
+   * Optional props to pass to the EuiToolTip component.
+   */
+  tooltipProps?: Partial<
+    Omit<EuiToolTipProps, 'children' | 'content' | 'onMouseOut'>
+  >;
 }
 
 interface EuiCopyState {
@@ -67,8 +71,7 @@ export class EuiCopy extends Component<EuiCopyProps, EuiCopyState> {
   };
 
   render() {
-    const { children, textToCopy, beforeMessage, afterMessage, ...rest } =
-      this.props;
+    const { children, tooltipProps } = this.props;
 
     return (
       // See `src/components/tool_tip/tool_tip.js` for explanation of below eslint-disable
@@ -76,7 +79,7 @@ export class EuiCopy extends Component<EuiCopyProps, EuiCopyState> {
       <EuiToolTip
         content={this.state.tooltipText}
         onMouseOut={this.resetTooltipText}
-        {...rest}
+        {...tooltipProps}
       >
         {children(this.copy)}
       </EuiToolTip>

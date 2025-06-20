@@ -7,13 +7,33 @@
  */
 
 import React from 'react';
-import { shallow } from 'enzyme';
-import { render } from '../../test/rtl';
+import { fireEvent } from '@testing-library/react';
+import {
+  waitForEuiToolTipVisible,
+  waitForEuiToolTipHidden,
+  render,
+} from '../../test/rtl';
 import { requiredProps } from '../../test';
 
 import { EuiCopy } from './copy';
 
 describe('EuiCopy', () => {
+  const originalExecCommand = document.execCommand;
+
+  beforeAll(() => {
+    Object.defineProperty(document, 'execCommand', {
+      value: jest.fn(() => true),
+      writable: true,
+    });
+  });
+
+  afterAll(() => {
+    Object.defineProperty(document, 'execCommand', {
+      value: originalExecCommand,
+      writable: true,
+    });
+  });
+
   it('renders', () => {
     const { container } = render(
       <EuiCopy textToCopy="some text" {...requiredProps}>
@@ -24,23 +44,76 @@ describe('EuiCopy', () => {
   });
 
   describe('props', () => {
-    test('beforeMessage', () => {
-      const component = shallow(
-        <EuiCopy textToCopy="some text" beforeMessage="copy this">
-          {(copy) => <button onClick={copy}>Click to copy input text</button>}
+    it('beforeMessage', async () => {
+      const beforeMessage = 'copy this';
+      const { getByRole, getByText } = render(
+        <EuiCopy textToCopy="some text" beforeMessage={beforeMessage}>
+          {() => (
+            <button onMouseOver={() => {}} onFocus={() => {}}>
+              Click to copy input text
+            </button>
+          )}
         </EuiCopy>
       );
-      expect(component.state('tooltipText')).toBe('copy this');
+      // Simulate mouse over to show the tooltip
+      fireEvent.mouseOver(getByRole('button'));
+      await waitForEuiToolTipVisible();
+      // The beforeMessage should be shown in the tooltip
+      expect(getByText(beforeMessage)).toBeInTheDocument();
+      fireEvent.mouseOut(getByRole('button'));
+      await waitForEuiToolTipHidden();
     });
 
-    test('afterMessage', () => {
-      const component = shallow<EuiCopy>(
-        <EuiCopy textToCopy="some text" afterMessage="successfuly copied">
-          {(copy) => <button onClick={copy}>Click to copy input text</button>}
+    it('afterMessage', async () => {
+      const afterMessage = 'successfully copied';
+      const { getByRole, getByText } = render(
+        <EuiCopy textToCopy="some text" afterMessage={afterMessage}>
+          {(copy) => (
+            <button onClick={copy} onMouseOver={() => {}} onFocus={() => {}}>
+              Click to copy input text
+            </button>
+          )}
         </EuiCopy>
       );
-      const instance = component.instance();
-      expect(instance.props.afterMessage).toBe('successfuly copied');
+
+      // Simulate a click to copy the text
+      fireEvent.click(getByRole('button'));
+      fireEvent.mouseOver(getByRole('button'));
+      await waitForEuiToolTipVisible();
+      // The afterMessage should be shown after the copy action
+      expect(getByText(afterMessage)).toBeInTheDocument();
+      fireEvent.mouseOut(getByRole('button'));
+      await waitForEuiToolTipHidden();
+    });
+
+    it('tooltipProps', async () => {
+      const tooltipProps = {
+        'data-test-subj': 'customTooltip',
+        className: 'myTooltipClass',
+      };
+      const beforeMessage = 'copy this';
+      const { getByRole, getByTestSubject } = render(
+        <EuiCopy
+          textToCopy="some text"
+          beforeMessage={beforeMessage}
+          tooltipProps={tooltipProps}
+        >
+          {() => (
+            <button onMouseOver={() => {}} onFocus={() => {}}>
+              Click to copy input text
+            </button>
+          )}
+        </EuiCopy>
+      );
+      // Simulate mouse over to show the tooltip
+      fireEvent.mouseOver(getByRole('button'));
+      await waitForEuiToolTipVisible();
+      // The tooltip portalled, so search the global document
+      const tooltip = getByTestSubject('customTooltip');
+      expect(tooltip).toBeInTheDocument();
+      expect(tooltip?.className).toContain('myTooltipClass');
+      fireEvent.mouseOut(getByRole('button'));
+      await waitForEuiToolTipHidden();
     });
   });
 });
