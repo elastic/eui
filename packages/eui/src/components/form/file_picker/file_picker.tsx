@@ -286,6 +286,17 @@ export class EuiFilePickerClass extends Component<
                 <EuiProgress size="xs" color="accent" position="absolute" />
               );
 
+              // Currently this tenary is a little complex, it'll be simplified once we remove Amsterdam
+              const iconColor = isInvalid
+                ? 'danger'
+                : disabled
+                ? isRefreshVariant
+                  ? 'disabled'
+                  : 'subdued'
+                : isRefreshVariant
+                ? 'text'
+                : 'primary';
+
               return (
                 <div css={cssStyles} className={classes}>
                   <EuiValidatableControl isInvalid={isInvalid}>
@@ -315,17 +326,7 @@ export class EuiFilePickerClass extends Component<
                     <EuiIcon
                       css={iconStyles}
                       className="euiFilePicker__icon"
-                      color={
-                        isInvalid
-                          ? 'danger'
-                          : disabled
-                          ? isRefreshVariant
-                            ? 'disabled'
-                            : 'subdued'
-                          : isRefreshVariant
-                          ? 'text'
-                          : 'primary'
-                      }
+                      color={iconColor}
                       type={
                         isInvalid
                           ? 'alert'
