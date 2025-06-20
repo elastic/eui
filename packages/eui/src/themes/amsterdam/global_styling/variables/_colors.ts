@@ -608,13 +608,22 @@ export const dark_colors_ams: _EuiThemeColorsMode = {
  * FULL
  */
 
+const sharedColors = {
+  vis: colorVis,
+  severity: severityColors,
+};
+
 export const colors: _EuiThemeColors = {
   ghost: '#FFFFFF',
   ink: '#000000',
   plainLight: '#FFFFFF',
   plainDark: '#000000',
-  LIGHT: light_colors,
-  DARK: dark_colors_ams,
-  vis: colorVis,
-  severity: severityColors,
+  LIGHT: {
+    ...light_colors,
+    ...sharedColors,
+  },
+  DARK: {
+    ...dark_colors_ams,
+    ...sharedColors,
+  },
 };

@@ -14,13 +14,22 @@ import { dark_colors } from './_colors_dark';
 import { colorVis } from './_colors_vis';
 import { severityColors } from './_colors_severity';
 
+const sharedColors = {
+  vis: colorVis,
+  severity: severityColors,
+};
+
 export const colors: _EuiThemeColors = {
   ghost: SEMANTIC_COLORS.plainLight,
   ink: SEMANTIC_COLORS.plainDark,
   plainLight: SEMANTIC_COLORS.plainLight,
   plainDark: SEMANTIC_COLORS.plainDark,
-  LIGHT: light_colors,
-  DARK: dark_colors,
-  vis: colorVis,
-  severity: severityColors,
+  LIGHT: {
+    ...light_colors,
+    ...sharedColors,
+  },
+  DARK: {
+    ...dark_colors,
+    ...sharedColors,
+  },
 };

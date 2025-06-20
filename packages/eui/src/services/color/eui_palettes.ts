@@ -73,6 +73,8 @@ export type EuiPaletteColorBlindProps = EuiPaletteCommonProps &
   EuiPaletteRotationProps;
 
 /**
+ * For usage in React use the `useEuiPaletteColorBlind` hook instead.
+ *
  * NOTE: These functions rely on base vis colors of the theme which are provided via a global
  * singleton instance `EUI_VIS_COLOR_STORE` that's updated by the EuiProvider on theme change.
  * Make sure the function is recalled on theme change to retrieve theme-related colors.
@@ -149,6 +151,8 @@ export const euiPaletteColorBlind = ({
 };
 
 /**
+ * For usage in React use the `useEuiPaletteColorBlindBehindText` hook instead.
+ *
  * Color blind palette with text is meant for use when text is applied on top of the color.
  * It increases the brightness of the color to give the text more contrast.
  *
@@ -214,6 +218,8 @@ export const euiPaletteForDarkBackground = function ({
 };
 
 /**
+ * For usage in React use the `useEuiPaletteForStatus` hook instead.
+ *
  * NOTE: This function is not pure. It relies on `EUI_VIS_COLOR_STORE` which is updated by the
  * EuiProvider on theme change. Ensure to recall the function on theme change or subscribe to the store.
  */
@@ -251,6 +257,8 @@ export const euiPaletteForStatus = function (
 };
 
 /**
+ * For usage in React use the `useEuiPaletteForTemperature` hook instead.
+ *
  * NOTE: This function is not pure. It relies on `EUI_VIS_COLOR_STORE` which is updated by the
  * EuiProvider on theme change. Ensure to recall the function on theme change or subscribe to the store.
  */
@@ -297,6 +305,8 @@ export const euiPaletteForTemperature = function (
 };
 
 /**
+ * For usage in React use the `useEuiPaletteComplementary` hook instead.
+ *
  * NOTE: This function is not pure. It relies on `EUI_VIS_COLOR_STORE` which is updated by the
  * EuiProvider on theme change. Ensure to recall the function on theme change or subscribe to the store.
  */
@@ -324,6 +334,8 @@ export const euiPaletteComplementary = function (
 };
 
 /**
+ * For usage in React use the `useEuiPaletteRed` hook instead.
+ *
  * NOTE: This function is not pure. It relies on `EUI_VIS_COLOR_STORE` which is updated by the
  * EuiProvider on theme change. Ensure to recall the function on theme change or subscribe to the store.
  */
@@ -344,6 +356,8 @@ export const euiPaletteRed = function (
 };
 
 /**
+ * For usage in React use the `useEuiPaletteGreen` hook instead.
+ *
  * NOTE: This function is not pure. It relies on `EUI_VIS_COLOR_STORE` which is updated by the
  * EuiProvider on theme change. Ensure to recall the function on theme change or subscribe to the store.
  */
@@ -364,6 +378,8 @@ export const euiPaletteGreen = function (
 };
 
 /**
+ * For usage in React use the `useEuiPaletteSkyBlue` hook instead.
+ *
  * NOTE: This function is not pure. It relies on `EUI_VIS_COLOR_STORE` which is updated by the
  * EuiProvider on theme change. Ensure to recall the function on theme change or subscribe to the store.
  */
@@ -384,6 +400,8 @@ export const euiPaletteSkyBlue = function (
 };
 
 /**
+ * For usage in React use the `useEuiPaletteYellow` hook instead.
+ *
  * NOTE: This function is not pure. It relies on `EUI_VIS_COLOR_STORE` which is updated by the
  * EuiProvider on theme change. Ensure to recall the function on theme change or subscribe to the store.
  */
@@ -404,6 +422,8 @@ export const euiPaletteYellow = function (
 };
 
 /**
+ * For usage in React use the `useEuiPaletteOrange` hook instead.
+ *
  * NOTE: This function is not pure. It relies on `EUI_VIS_COLOR_STORE` which is updated by the
  * EuiProvider on theme change. Ensure to recall the function on theme change or subscribe to the store.
  */
@@ -424,6 +444,8 @@ export const euiPaletteOrange = function (
 };
 
 /**
+ * For usage in React use the `useEuiPaletteCool` hook instead.
+ *
  * NOTE: This function is not pure. It relies on `EUI_VIS_COLOR_STORE` which is updated by the
  * EuiProvider on theme change. Ensure to recall the function on theme change or subscribe to the store.
  */
@@ -452,6 +474,8 @@ export const euiPaletteCool = function (
 };
 
 /**
+ * For usage in React use the `useEuiPaletteWarm` hook instead.
+ *
  * NOTE: This function is not pure. It relies on `EUI_VIS_COLOR_STORE` which is updated by the
  * EuiProvider on theme change. Ensure to recall the function on theme change or subscribe to the store.
  */
@@ -476,6 +500,8 @@ export const euiPaletteWarm = function (
 };
 
 /**
+ * For usage in React use the `useEuiPaletteGray` hook instead.
+ *
  * NOTE: This function is not pure. It relies on `EUI_VIS_COLOR_STORE` which is updated by the
  * EuiProvider on theme change. Ensure to recall the function on theme change or subscribe to the store.
  */
