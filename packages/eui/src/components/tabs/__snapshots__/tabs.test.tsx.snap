@@ -84,27 +84,6 @@ exports[`EuiTabs props size s renders and passes down to EuiTab children 1`] = `
 </div>
 `;
 
-exports[`EuiTabs props size xl renders and passes down to EuiTab children 1`] = `
-<div
-  class="euiTabs emotion-euiTabs-xl-bottomBorder"
-  role="tablist"
->
-  <button
-    aria-selected="false"
-    class="euiTab emotion-euiTab"
-    role="tab"
-    tabindex="-1"
-    type="button"
-  >
-    <span
-      class="euiTab__content eui-textTruncate emotion-euiTab__content-xl"
-    >
-      Tab
-    </span>
-  </button>
-</div>
-`;
-
 exports[`EuiTabs renders 1`] = `
 <div
   aria-label="aria-label"
