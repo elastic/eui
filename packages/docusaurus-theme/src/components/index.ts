@@ -8,5 +8,4 @@
 
 export { createDemo, Demo, type DemoProps } from './demo';
 export { Guideline, GuidelineText } from './guideline';
-export { PropTable } from './prop_table';
 export { AppThemeContext, useAppTheme } from './theme_context';
