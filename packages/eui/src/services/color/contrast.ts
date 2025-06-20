@@ -104,3 +104,33 @@ export const makeDisabledContrastColor =
         }
   ) =>
     makeHighContrastColor(color, ratio)(themeOrBackground);
+
+    // packages/eui/src/services/color/contrast.ts
+
+
+/**
+ * Gets the contrast ratio between two colors.
+ * @param {string} textColor - The text color in hexadecimal format.
+ * @param {string} backgroundColor - The background color in hexadecimal format.
+ * @returns {number} - The contrast ratio.
+ */
+export const getColorContrast = (textColor: string, backgroundColor: string): number => {
+  return chroma.contrast(textColor, backgroundColor);
+};
+
+/**
+ * Warns if the contrast ratio is below a minimum threshold.
+ * @param {string} textColor - The text color.
+ * @param {string} backgroundColor - The background color.
+ * @param {number} wcagContrastMin - Minimum contrast ratio threshold.
+ */
+export const warnIfContrastBelowMin = (textColor: string, backgroundColor: string, wcagContrastMin: number): void => {
+  const contrastRatio = getColorContrast(textColor, backgroundColor);
+  if (contrastRatio < wcagContrastMin) {
+    console.warn(
+      `Warning: ${backgroundColor} background with ${textColor} text has a low contrast ratio of ${contrastRatio.toFixed(
+        2
+      )}. Should be above ${wcagContrastMin}.`
+    );
+  }
+};
