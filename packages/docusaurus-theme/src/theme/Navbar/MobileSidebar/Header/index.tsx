@@ -6,10 +6,12 @@ import NavbarLogo from '@theme-original/Navbar/Logo';
 import { EuiIcon, useEuiMemoizedStyles, UseEuiTheme } from '@elastic/eui';
 import { css } from '@emotion/react';
 import useIsBrowser from '@docusaurus/useIsBrowser';
-import euiVersions from '@site/static/versions.json';
 
-import { VersionSwitcher } from '../../../../components/version_switcher';
 import { ThemeSwitcher } from '../../../../components/theme_switcher';
+import {
+  VersionSwitcher,
+  VersionSwitcherProps,
+} from '../../../../components/version_switcher';
 
 const getStyles = ({ euiTheme }: UseEuiTheme) => ({
   sidebar: css`
@@ -55,16 +57,22 @@ function CloseButton() {
   );
 }
 
-export default function NavbarMobileSidebarHeader(): JSX.Element {
+type Props = {
+  versionSwitcherOptions?: VersionSwitcherProps;
+};
+
+export default function NavbarMobileSidebarHeader({
+  versionSwitcherOptions,
+}: Props): JSX.Element {
   const isBrowser = useIsBrowser();
   const styles = useEuiMemoizedStyles(getStyles);
-
-  const versions = euiVersions?.euiVersions ?? undefined;
 
   return (
     <div className="navbar-sidebar__brand" css={styles.sidebar}>
       <NavbarLogo />
-      {isBrowser && versions && <VersionSwitcher versions={versions} />}
+      {isBrowser && versionSwitcherOptions && (
+        <VersionSwitcher {...versionSwitcherOptions} />
+      )}
       {isBrowser && <ThemeSwitcher />}
       <NavbarColorModeToggle />
       <CloseButton />
