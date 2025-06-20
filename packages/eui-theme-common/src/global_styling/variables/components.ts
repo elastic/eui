@@ -32,6 +32,7 @@ export type _EuiThemeComponentColors = {
   codeBackground: ColorModeSwitch;
   codeBackgroundSelected: ColorModeSwitch;
   codeColor: ColorModeSwitch;
+  codeInlineBackground: ColorModeSwitch;
   codeInlineColor: ColorModeSwitch;
   codeCommentColor: ColorModeSwitch;
   codeSelectorColor: ColorModeSwitch;

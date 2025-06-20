@@ -74,6 +74,7 @@ const component_colors: _EuiThemeComponentColors = {
     ([textParagraph]) => textParagraph,
     ['colors.textParagraph']
   ),
+  codeInlineBackground: SEMANTIC_COLORS.shade15,
   codeInlineColor: colorVis.euiColorVisAsTextLight6,
   codeCommentColor: computed(
     ([textSubdued]) => textSubdued,
@@ -363,6 +364,7 @@ export const components: _EuiThemeComponents = {
 
     buttonGroupFocusColor: SEMANTIC_COLORS.plainLight,
 
+    codeInlineBackground: SEMANTIC_COLORS.shade135,
     codeInlineColor: colorVis.euiColorVisAsTextDark6,
     codeStringColor: colorVis.euiColorVisAsTextDark2,
     codeTagColor: colorVis.euiColorVisAsTextDark1,
