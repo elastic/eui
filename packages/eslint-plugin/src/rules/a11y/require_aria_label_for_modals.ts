@@ -24,7 +24,7 @@ const confirmModalComponents = ['EuiConfirmModal'];
 
 export const RequireAriaLabelForModals = ESLintUtils.RuleCreator.withoutDocs({
   create(context) {
-    function checkAttributes(node: TSESTree.JSXOpeningElement, componentName: string, messageId: 'modalComponentsAriaMissing' | 'confirmModalAriaMissing') {
+    function checkAttributes(node: TSESTree.JSXOpeningElement, componentName: string, messageId: 'modalAriaMissing' | 'confirmModalAriaMissing') {
       const hasAriaLabel = node.attributes.some(
         (attr) =>
           attr.type === 'JSXAttribute' &&
@@ -47,13 +47,12 @@ export const RequireAriaLabelForModals = ESLintUtils.RuleCreator.withoutDocs({
           node.name.type === 'JSXIdentifier'
         ) {
           if (modalComponents.includes(node.name.name)) {
-            checkAttributes(node, node.name.name, 'modalComponentsAriaMissing')
+            checkAttributes(node, node.name.name, 'modalAriaMissing')
           }
 
           if (confirmModalComponents.includes(node.name.name)) {
             checkAttributes(node, node.name.name, 'confirmModalAriaMissing')
           }
-
         }
         return
       },
@@ -66,7 +65,7 @@ export const RequireAriaLabelForModals = ESLintUtils.RuleCreator.withoutDocs({
     },
     schema: [],
     messages: {
-      modalComponentsAriaMissing: [
+      modalAriaMissing: [
         '{{ component }} must have either \'aria-label\' or \'aria-labelledby\' prop for accessibility.',
         '\n',
         'Option 1: Using \'aria-labelledby\' (preferred):',
@@ -89,28 +88,26 @@ export const RequireAriaLabelForModals = ESLintUtils.RuleCreator.withoutDocs({
         '\n',
         'Option 2: Using \'aria-label\':',
         '   <{{ component }} aria-label="Descriptive title for the {{ component }}" {...props} />',
-        '  ',
       ].join('\n'),
 
-    confirmModalAriaMissing: [
-      '{{ component }} must have either \'aria-label\' or \'aria-labelledby\' prop for accessibility.',
-      '\n',
-      'Option 1: Using \'aria-labelledby\' (preferred):',
-      '1. Import \'useGeneratedHtmlId\':',
-      '   import { useGeneratedHtmlId } from \'@elastic/eui\';',
-      '2. Update your component:',
-      '   const modalTitleId = useGeneratedHtmlId();',
-      '   ...',
-      '   <{{ component }}',
-      '     title="Descriptive title for the {{ component }}"',
-      '     aria-labelledby={modalTitleId}',
-      '     titleProps={{ id: modalTitleId }}',
-      '     {...props} ',
-      '   />',
-      '\n',
-      'Option 2: Using \'aria-label\':',
-      '   <{{ component }} aria-label="Descriptive title for the {{ component }}" {...props} />',
-      '  ',
+      confirmModalAriaMissing: [
+        '{{ component }} must have either \'aria-label\' or \'aria-labelledby\' prop for accessibility.',
+        '\n',
+        'Option 1: Using \'aria-labelledby\' (preferred):',
+        '1. Import \'useGeneratedHtmlId\':',
+        '   import { useGeneratedHtmlId } from \'@elastic/eui\';',
+        '2. Update your component:',
+        '   const modalTitleId = useGeneratedHtmlId();',
+        '   ...',
+        '   <{{ component }}',
+        '     title="Descriptive title for the {{ component }}"',
+        '     aria-labelledby={modalTitleId}',
+        '     titleProps={({id: modalTitleId })}',
+        '     {...props} ',
+        '   />',
+        '\n',
+        'Option 2: Using \'aria-label\':',
+        '   <{{ component }} aria-label="Descriptive title for the {{ component }}" {...props} />',
     ].join('\n')
     },
   },

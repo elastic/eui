@@ -78,7 +78,7 @@ ruleTester.run('require-aria-label-for-modals', RequireAriaLabelForModals, {
       languageOptions,
       errors: [
         {
-          messageId: 'modalComponentsAriaMissing',
+          messageId: 'modalAriaMissing',
           data: { component: 'EuiModal' },
         },
       ],
@@ -92,7 +92,7 @@ ruleTester.run('require-aria-label-for-modals', RequireAriaLabelForModals, {
       languageOptions,
       errors: [
         {
-          messageId: 'modalComponentsAriaMissing',
+          messageId: 'modalAriaMissing',
           data: { component: 'EuiFlyout' },
         },
       ],
