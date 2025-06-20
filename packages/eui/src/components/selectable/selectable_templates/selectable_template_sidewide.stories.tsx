@@ -92,7 +92,7 @@ const meta: Meta<EuiSelectableTemplateSitewideProps> = {
     },
   },
   args: {
-    theme: {
+    colorModes: {
       search: 'default',
       popover: 'default',
     },

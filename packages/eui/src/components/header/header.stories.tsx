@@ -151,7 +151,7 @@ export const DarkThemeWithSitewideSearch: Story = {
               isOpen: true,
               repositionOnScroll: true, // Necessary when placing search in a fixed component
             }}
-            theme={{
+            colorModes={{
               search: 'dark',
               popover: 'global',
             }}
@@ -481,7 +481,7 @@ const ElasticNavigationPatternExample = () => {
   const search = (
     <EuiSelectableTemplateSitewide
       options={[]}
-      theme={{
+      colorModes={{
         search: 'dark',
         popover: 'global',
       }}

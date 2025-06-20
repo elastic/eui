@@ -83,13 +83,13 @@ export type EuiSelectableTemplateSitewideProps = Partial<
   popoverButtonBreakpoints?: EuiBreakpointSize[];
 
   /**
-   * Manually sets a theme for the search input and popover. It supports the common `colorMode`
+   * Manually sets the color mode for the search input and popover. It supports the common `colorMode`
    * values: `light`, `dark`, `inverse` and additionally `default` and `global`.
    *
    * `default` applies the local (nearest) context `colorMode`.
    * `global` applies the global context `colorMode`
    */
-  theme?: {
+  colorModes?: {
     search: EuiSelectableTemplateSitewideTheme;
     popover: EuiSelectableTemplateSitewideTheme;
   };
@@ -109,7 +109,7 @@ export const EuiSelectableTemplateSitewide: FunctionComponent<
   isLoading,
   popoverButton,
   popoverButtonBreakpoints,
-  theme = { search: 'default', popover: 'default' },
+  colorModes = { search: 'default', popover: 'default' },
   ...rest
 }) => {
   const { colorMode } = useEuiTheme();
@@ -119,29 +119,29 @@ export const EuiSelectableTemplateSitewide: FunctionComponent<
     EuiNestedThemeContext
   );
 
-  const _searchTheme = theme?.search?.toLowerCase();
-  const _popoverTheme = theme?.popover?.toLowerCase();
+  const _searchColorMode = colorModes?.search?.toLowerCase();
+  const _popoverColorMode = colorModes?.popover?.toLowerCase();
 
-  const _searchColorMode = useMemo(() => {
+  const searchColorMode = useMemo(() => {
     const isStaticTheme = [
       COLOR_MODES_STANDARD.light.toLowerCase(),
       COLOR_MODES_STANDARD.dark.toLowerCase(),
-    ].includes(_searchTheme);
+    ].includes(_searchColorMode);
 
     return isStaticTheme
-      ? (_searchTheme as EuiThemeColorModeStandard)
-      : _searchTheme === 'inverse'
+      ? (_searchColorMode as EuiThemeColorModeStandard)
+      : _searchColorMode === 'inverse'
       ? colorMode === COLOR_MODES_STANDARD.dark
         ? COLOR_MODES_STANDARD.light
         : COLOR_MODES_STANDARD.dark
       : colorMode;
-  }, [colorMode, _searchTheme]);
+  }, [colorMode, _searchColorMode]);
 
-  const _popoverColorMode = useMemo(() => {
+  const popoverColorMode = useMemo(() => {
     const isStaticTheme = [
       COLOR_MODES_STANDARD.light.toLowerCase(),
       COLOR_MODES_STANDARD.dark.toLowerCase(),
-    ].includes(_popoverTheme);
+    ].includes(_popoverColorMode);
     const inverseColorMode =
       colorMode === COLOR_MODES_STANDARD.dark
         ? COLOR_MODES_STANDARD.light
@@ -153,13 +153,13 @@ export const EuiSelectableTemplateSitewide: FunctionComponent<
       : colorMode;
 
     return isStaticTheme
-      ? (_popoverTheme as EuiThemeColorModeStandard)
-      : _popoverTheme === 'inverse'
+      ? (_popoverColorMode as EuiThemeColorModeStandard)
+      : _popoverColorMode === 'inverse'
       ? inverseColorMode
-      : _popoverTheme === 'global'
+      : _popoverColorMode === 'global'
       ? globalColorMode
       : colorMode;
-  }, [hasDifferentColorFromGlobalTheme, colorMode, _popoverTheme]);
+  }, [hasDifferentColorFromGlobalTheme, colorMode, _popoverColorMode]);
 
   /**
    * i18n text
@@ -336,7 +336,7 @@ export const EuiSelectableTemplateSitewide: FunctionComponent<
       {(list, search) => {
         const _search =
           isRefreshVariant && !popoverTrigger ? (
-            <EuiThemeProvider colorMode={_searchColorMode}>
+            <EuiThemeProvider colorMode={searchColorMode}>
               {search}
             </EuiThemeProvider>
           ) : (
@@ -362,7 +362,7 @@ export const EuiSelectableTemplateSitewide: FunctionComponent<
         return isRefreshVariant ? (
           <EuiThemeProvider
             wrapperProps={{ cloneElement: true }}
-            colorMode={_popoverColorMode}
+            colorMode={popoverColorMode}
           >
             {popover}
           </EuiThemeProvider>
