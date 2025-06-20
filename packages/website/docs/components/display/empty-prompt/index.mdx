@@ -292,9 +292,9 @@ The following example shows the usage of the [EuiPageTemplate.EmptyPrompt](../..
 
 You can then tie multiple types of empty states together to create a seamless loading to empty or loading to error experience. The following example shows how to incorporate these states with [EuiPageTemplate.EmptyPrompt](../../templates/page-template/index.mdx#empty-pages-or-content).
 
-{/* Set `minHeight` to avoid jumps on the page as the state changes */}
+{/* setting a fixed `height` to avoid jumps on the page as the state changes */}
 <Demo previewWrapper={({ children }) => (
-  <div style={{ minHeight: 292 }}>{children}</div>
+  <div style={{ display: "flex", flexDirection: "column", height: 400 }}>{children}</div>
 )}>
   ```tsx
   import React, { useState, useEffect } from 'react';
@@ -362,7 +362,7 @@ You can then tie multiple types of empty states together to create a seamless lo
     }
 
     return (
-      <EuiPageTemplate minHeight={320}>
+      <EuiPageTemplate minHeight={400} grow={false}>
         <EuiPageTemplate.EmptyPrompt {...emptyPromptProps} />
       </EuiPageTemplate>
     );
