@@ -7,20 +7,20 @@
  */
 
 import {
-  EuiManagedFlyoutAction,
-  EuiManagedFlyoutHistoryState,
-  EuiManagedFlyoutGroup,
+  EuiFlyoutSessionAction,
+  EuiFlyoutSessionHistoryState,
+  EuiFlyoutSessionGroup,
 } from './types';
 
-export const initialFlyoutState: EuiManagedFlyoutHistoryState<unknown> = {
+export const initialFlyoutState: EuiFlyoutSessionHistoryState<unknown> = {
   activeFlyoutGroup: null,
   history: [],
 };
 
 // Helper to apply size constraints for flyout groups
 const applySizeConstraints = <FlyoutMeta>(
-  group: EuiManagedFlyoutGroup<FlyoutMeta>
-): EuiManagedFlyoutGroup<FlyoutMeta> => {
+  group: EuiFlyoutSessionGroup<FlyoutMeta>
+): EuiFlyoutSessionGroup<FlyoutMeta> => {
   const originalMainSize = group.config.mainSize;
   const originalChildSize = group.config.childSize;
   let newMainSize = originalMainSize;
@@ -55,9 +55,9 @@ const applySizeConstraints = <FlyoutMeta>(
  * Controls state changes for flyout groups
  */
 export function flyoutReducer<FlyoutMeta>(
-  state: EuiManagedFlyoutHistoryState<FlyoutMeta>,
-  action: EuiManagedFlyoutAction<FlyoutMeta>
-): EuiManagedFlyoutHistoryState<FlyoutMeta> {
+  state: EuiFlyoutSessionHistoryState<FlyoutMeta>,
+  action: EuiFlyoutSessionAction<FlyoutMeta>
+): EuiFlyoutSessionHistoryState<FlyoutMeta> {
   switch (action.type) {
     case 'OPEN_MAIN_FLYOUT': {
       const { size, flyoutProps, onUnmount } = action.payload;
@@ -67,7 +67,7 @@ export function flyoutReducer<FlyoutMeta>(
         newHistory.push(state.activeFlyoutGroup);
       }
 
-      const newActiveGroup: EuiManagedFlyoutGroup<FlyoutMeta> = {
+      const newActiveGroup: EuiFlyoutSessionGroup<FlyoutMeta> = {
         isMainOpen: true,
         isChildOpen: false,
         config: {
@@ -99,7 +99,7 @@ export function flyoutReducer<FlyoutMeta>(
       }
 
       const { size, flyoutProps, onUnmount } = action.payload;
-      const updatedActiveGroup: EuiManagedFlyoutGroup<FlyoutMeta> = {
+      const updatedActiveGroup: EuiFlyoutSessionGroup<FlyoutMeta> = {
         ...state.activeFlyoutGroup,
         isChildOpen: true,
         config: {
@@ -133,7 +133,7 @@ export function flyoutReducer<FlyoutMeta>(
       );
       state.activeFlyoutGroup.childOnUnmount?.();
 
-      const updatedActiveGroup: EuiManagedFlyoutGroup<FlyoutMeta> = {
+      const updatedActiveGroup: EuiFlyoutSessionGroup<FlyoutMeta> = {
         ...state.activeFlyoutGroup,
         isChildOpen: false,
         config: {
@@ -151,14 +151,14 @@ export function flyoutReducer<FlyoutMeta>(
 
     case 'GO_BACK': {
       if (!state.activeFlyoutGroup)
-        return initialFlyoutState as EuiManagedFlyoutHistoryState<FlyoutMeta>;
+        return initialFlyoutState as EuiFlyoutSessionHistoryState<FlyoutMeta>;
 
       if (state.activeFlyoutGroup.isChildOpen) {
         state.activeFlyoutGroup.config.childFlyoutProps?.onClose?.(
           new KeyboardEvent('')
         );
         state.activeFlyoutGroup.childOnUnmount?.();
-        const groupWithChildClosed: EuiManagedFlyoutGroup<FlyoutMeta> = {
+        const groupWithChildClosed: EuiFlyoutSessionGroup<FlyoutMeta> = {
           ...state.activeFlyoutGroup,
           isChildOpen: false,
           config: {
@@ -184,7 +184,7 @@ export function flyoutReducer<FlyoutMeta>(
             history: newHistory,
           };
         } else {
-          return initialFlyoutState as EuiManagedFlyoutHistoryState<FlyoutMeta>;
+          return initialFlyoutState as EuiFlyoutSessionHistoryState<FlyoutMeta>;
         }
       }
     }
@@ -198,7 +198,7 @@ export function flyoutReducer<FlyoutMeta>(
       const { configChanges, newMainOnUnmount, newChildOnUnmount } =
         action.payload;
 
-      const updatedActiveGroup: EuiManagedFlyoutGroup<FlyoutMeta> = {
+      const updatedActiveGroup: EuiFlyoutSessionGroup<FlyoutMeta> = {
         ...state.activeFlyoutGroup,
         config: {
           ...state.activeFlyoutGroup.config,

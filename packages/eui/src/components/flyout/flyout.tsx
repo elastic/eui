@@ -47,7 +47,7 @@ import { EuiScreenReaderOnly } from '../accessibility';
 import { EuiFlyoutCloseButton } from './_flyout_close_button';
 import { euiFlyoutStyles } from './flyout.styles';
 import { EuiFlyoutChild } from './flyout_child';
-import { EuiFlyoutChildManager } from './flyout_child_manager';
+import { EuiFlyoutChildProvider } from './flyout_child_manager';
 
 export const TYPES = ['push', 'overlay'] as const;
 type _EuiFlyoutType = (typeof TYPES)[number];
@@ -461,11 +461,11 @@ export const EuiFlyout = forwardRef(
       />
     );
 
-    // render content within EuiFlyoutChildManager if childFlyoutElement is present
+    // render content within EuiFlyoutChildProvider if childFlyoutElement is present
     let contentToRender: React.ReactElement;
     if (hasChildFlyout && childFlyoutElement) {
       contentToRender = (
-        <EuiFlyoutChildManager
+        <EuiFlyoutChildProvider
           parentSize={size as 's' | 'm'}
           parentFlyoutRef={internalParentFlyoutRef}
           childElement={childFlyoutElement}

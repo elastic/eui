@@ -19,7 +19,7 @@ import { useEuiTheme } from '../../services';
 import { EuiFlyoutContext, EuiFlyoutContextValue } from './flyout_context';
 import { EuiFlyoutChild } from './flyout_child';
 
-interface EuiFlyoutChildManagerProps {
+interface EuiFlyoutChildProviderProps {
   parentSize: 's' | 'm';
   parentFlyoutRef: React.RefObject<HTMLDivElement>;
   childElement: React.ReactElement<ComponentProps<typeof EuiFlyoutChild>>;
@@ -33,8 +33,8 @@ interface EuiFlyoutChildManagerProps {
  * It is responsible for managing the state of the child flyout, and passing it to EuiFlyoutContext.
  * It removes the responsibility of managing child flyout state from EuiFlyout, which is especially important there might not be a child flyout.
  */
-export const EuiFlyoutChildManager: FunctionComponent<
-  EuiFlyoutChildManagerProps
+export const EuiFlyoutChildProvider: FunctionComponent<
+  EuiFlyoutChildProviderProps
 > = ({
   parentSize,
   parentFlyoutRef,

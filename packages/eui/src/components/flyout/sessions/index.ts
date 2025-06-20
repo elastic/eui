@@ -7,7 +7,7 @@
  */
 
 export {
-  useEuiFlyout,
-  type EuiOpenMainManagedFlyoutOptions,
-  type EuiOpenChildManagedFlyoutOptions,
+  useEuiFlyoutSession,
+  type EuiFlyoutSessionOpenMainOptions,
+  type EuiFlyoutSessionOpenChildOptions,
 } from './use_eui_flyout';

@@ -12,42 +12,44 @@ import { EuiFlyout, EuiFlyoutChild } from '../index';
 
 import { initialFlyoutState, flyoutReducer } from './flyout_reducer';
 import {
-  EuiManagedFlyoutAction,
-  EuiManagedFlyoutHistoryState,
-  EuiManagedFlyoutRenderContext,
-  EuiFlyoutManagerComponentProps,
+  EuiFlyoutSessionAction,
+  EuiFlyoutSessionHistoryState,
+  EuiFlyoutSessionRenderContext,
+  EuiFlyoutSessionProviderComponentProps,
 } from './types';
 
-interface FlyoutContextProps {
-  state: EuiManagedFlyoutHistoryState;
-  dispatch: React.Dispatch<EuiManagedFlyoutAction>;
+interface FlyoutSessionContextProps {
+  state: EuiFlyoutSessionHistoryState;
+  dispatch: React.Dispatch<EuiFlyoutSessionAction>;
 }
 
-const EuiFlyoutContext = createContext<FlyoutContextProps | null>(null);
+const EuiFlyoutSessionContext = createContext<FlyoutSessionContextProps | null>(
+  null
+);
 
-export const useEuiFlyoutContext = () => {
-  const context = useContext(EuiFlyoutContext);
+export const useEuiFlyoutSessionContext = () => {
+  const context = useContext(EuiFlyoutSessionContext);
   if (!context) {
-    throw new Error('useFlyout must be used within a FlyoutManager');
+    throw new Error(
+      'useEuiFlyoutSessionContext must be used within a EuiFlyoutSessionProvider'
+    );
   }
   return context;
 };
 
 /**
- * FlyoutManager is a component that provides a context for Flyout components.
+ * FlyoutProvider is a component that provides a context for Flyout components.
  * It is used to manage the state of the Flyout and its child.
  * It also renders the Flyout and FlyoutChild components.
  *
- * @param children - The children of the FlyoutManager component.
+ * @param children - The children of the FlyoutProvider component.
  * @param renderMainFlyoutContent - A function that renders the content of the main Flyout.
  * @param renderChildFlyoutContent - A function that renders the content of the child Flyout.
- * @returns The FlyoutManager component.
+ * @returns The FlyoutProvider component.
  */
-export const EuiFlyoutManager: React.FC<EuiFlyoutManagerComponentProps> = ({
-  children,
-  renderMainFlyoutContent,
-  renderChildFlyoutContent,
-}) => {
+export const EuiFlyoutSessionProvider: React.FC<
+  EuiFlyoutSessionProviderComponentProps
+> = ({ children, renderMainFlyoutContent, renderChildFlyoutContent }) => {
   const [state, dispatch] = useReducer(flyoutReducer, initialFlyoutState);
   const { activeFlyoutGroup } = state;
 
@@ -63,7 +65,7 @@ export const EuiFlyoutManager: React.FC<EuiFlyoutManagerComponentProps> = ({
   let childFlyoutContentNode: React.ReactNode = null;
 
   if (activeFlyoutGroup) {
-    const mainRenderContext: EuiManagedFlyoutRenderContext = {
+    const mainRenderContext: EuiFlyoutSessionRenderContext = {
       flyoutProps: activeFlyoutGroup.config.mainFlyoutProps || {},
       flyoutSize: activeFlyoutGroup.config.mainSize,
       flyoutType: 'main',
@@ -76,7 +78,7 @@ export const EuiFlyoutManager: React.FC<EuiFlyoutManagerComponentProps> = ({
     mainFlyoutContentNode = renderMainFlyoutContent(mainRenderContext);
 
     if (activeFlyoutGroup.isChildOpen && renderChildFlyoutContent) {
-      const childRenderContext: EuiManagedFlyoutRenderContext = {
+      const childRenderContext: EuiFlyoutSessionRenderContext = {
         flyoutProps: activeFlyoutGroup.config.childFlyoutProps || {},
         flyoutSize: activeFlyoutGroup.config.childSize,
         flyoutType: 'child',
@@ -89,7 +91,7 @@ export const EuiFlyoutManager: React.FC<EuiFlyoutManagerComponentProps> = ({
       childFlyoutContentNode = renderChildFlyoutContent(childRenderContext);
     } else if (activeFlyoutGroup.isChildOpen && !renderChildFlyoutContent) {
       console.warn(
-        'EuiFlyoutManager: A child flyout is open, but renderChildFlyoutContent was not provided.'
+        'EuiFlyoutSessionProvider: A child flyout is open, but renderChildFlyoutContent was not provided.'
       );
     }
   }
@@ -99,7 +101,7 @@ export const EuiFlyoutManager: React.FC<EuiFlyoutManagerComponentProps> = ({
   const flyoutPropsChild = config?.childFlyoutProps || {};
 
   return (
-    <EuiFlyoutContext.Provider value={{ state, dispatch }}>
+    <EuiFlyoutSessionContext.Provider value={{ state, dispatch }}>
       {children}
       {activeFlyoutGroup?.isMainOpen && (
         <EuiFlyout
@@ -120,6 +122,6 @@ export const EuiFlyoutManager: React.FC<EuiFlyoutManagerComponentProps> = ({
           )}
         </EuiFlyout>
       )}
-    </EuiFlyoutContext.Provider>
+    </EuiFlyoutSessionContext.Provider>
   );
 };

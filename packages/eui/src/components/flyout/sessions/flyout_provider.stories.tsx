@@ -20,12 +20,15 @@ import {
   EuiText,
 } from '../../index';
 
-import { EuiFlyoutManager, useEuiFlyoutContext } from './flyout_manager';
-import { EuiManagedFlyoutRenderContext } from './types';
 import {
-  EuiOpenChildManagedFlyoutOptions,
-  EuiOpenMainManagedFlyoutOptions,
-  useEuiFlyout,
+  EuiFlyoutSessionProvider,
+  useEuiFlyoutSessionContext,
+} from './flyout_provider';
+import { EuiFlyoutSessionRenderContext } from './types';
+import {
+  EuiFlyoutSessionOpenChildOptions,
+  EuiFlyoutSessionOpenMainOptions,
+  useEuiFlyoutSession,
 } from './use_eui_flyout';
 
 interface ECommerceContentProps {
@@ -51,12 +54,12 @@ const ShoppingCartContent: React.FC<ShoppingCartContentProps> = ({
   isMainOpen,
 }) => {
   const { openChildFlyout, openFlyout, closeChildFlyout, clearHistory } =
-    useEuiFlyout();
-  const { state } = useEuiFlyoutContext();
+    useEuiFlyoutSession();
+  const { state } = useEuiFlyoutSessionContext();
   const { activeFlyoutGroup } = state;
 
   const handleOpenChildDetails = () => {
-    const options: EuiOpenChildManagedFlyoutOptions<DemoAppMetaForContext> = {
+    const options: EuiFlyoutSessionOpenChildOptions<DemoAppMetaForContext> = {
       size: 's',
       meta: { selectedChildFlyoutKey: 'itemDetails' },
       flyoutProps: {
@@ -70,7 +73,7 @@ const ShoppingCartContent: React.FC<ShoppingCartContentProps> = ({
 
   const handleProceedToReview = () => {
     const reviewFlyoutSize = activeFlyoutGroup?.config.mainSize || 'm';
-    const options: EuiOpenMainManagedFlyoutOptions<DemoAppMetaForContext> = {
+    const options: EuiFlyoutSessionOpenMainOptions<DemoAppMetaForContext> = {
       size: reviewFlyoutSize,
       meta: { selectedMainFlyoutKey: 'reviewOrder' },
       flyoutProps: {
@@ -138,7 +141,7 @@ const ShoppingCartContent: React.FC<ShoppingCartContentProps> = ({
 const ReviewOrderContent: React.FC<ReviewOrderContentProps> = ({
   itemQuantity,
 }) => {
-  const { goBack, clearHistory } = useEuiFlyout();
+  const { goBack, clearHistory } = useEuiFlyoutSession();
   const [orderConfirmed, setOrderConfirmed] = useState(false);
 
   return (
@@ -186,7 +189,7 @@ const ReviewOrderContent: React.FC<ReviewOrderContentProps> = ({
 const ItemDetailsContent: React.FC<ItemDetailsContentProps> = ({
   itemQuantity,
 }) => {
-  const { closeChildFlyout } = useEuiFlyout();
+  const { closeChildFlyout } = useEuiFlyoutSession();
   return (
     <>
       <EuiFlyoutHeader hasBorder>
@@ -225,11 +228,11 @@ const DemoAppControls: React.FC = () => {
     canGoBack,
     isChildFlyoutOpen,
     closeChildFlyout,
-  } = useEuiFlyout();
-  const { state } = useEuiFlyoutContext(); // For displaying raw state and history length
+  } = useEuiFlyoutSession();
+  const { state } = useEuiFlyoutSessionContext(); // For displaying raw state and history length
 
   const handleOpenShoppingCart = () => {
-    const options: EuiOpenMainManagedFlyoutOptions<DemoAppMetaForContext> = {
+    const options: EuiFlyoutSessionOpenMainOptions<DemoAppMetaForContext> = {
       size: 'm',
       meta: { selectedMainFlyoutKey: 'shoppingCart' },
       flyoutProps: {
@@ -288,7 +291,7 @@ const FlyoutDemoApp: React.FC = () => {
 
   // Render function for MAIN flyout content
   const renderMainFlyoutContent = (
-    context: EuiManagedFlyoutRenderContext<DemoAppMetaForContext>
+    context: EuiFlyoutSessionRenderContext<DemoAppMetaForContext>
   ) => {
     const { meta, activeFlyoutGroup } = context;
     const { selectedMainFlyoutKey: flyoutKey } = meta || {};
@@ -313,7 +316,7 @@ const FlyoutDemoApp: React.FC = () => {
 
   // Render function for CHILD flyout content
   const renderChildFlyoutContent = (
-    context: EuiManagedFlyoutRenderContext<DemoAppMetaForContext>
+    context: EuiFlyoutSessionRenderContext<DemoAppMetaForContext>
   ) => {
     const { meta } = context;
     const { selectedChildFlyoutKey: flyoutKey } = meta || {};
@@ -327,23 +330,23 @@ const FlyoutDemoApp: React.FC = () => {
   };
 
   return (
-    <EuiFlyoutManager
+    <EuiFlyoutSessionProvider
       renderMainFlyoutContent={renderMainFlyoutContent}
       renderChildFlyoutContent={renderChildFlyoutContent}
     >
       <DemoAppControls />
-    </EuiFlyoutManager>
+    </EuiFlyoutSessionProvider>
   );
 };
 
 export default {
   title: 'Layout/EuiFlyout/EuiFlyoutChild',
-  component: EuiFlyoutManager,
-} as Meta<typeof EuiFlyoutManager>;
+  component: EuiFlyoutSessionProvider,
+} as Meta<typeof EuiFlyoutSessionProvider>;
 
 const Template: StoryFn<PropsWithChildren<{}>> = () => {
   return <FlyoutDemoApp />;
 };
 
 export const Default = Template.bind({});
-Default.storyName = 'FlyoutManager with History';
+Default.storyName = 'FlyoutProvider with History';

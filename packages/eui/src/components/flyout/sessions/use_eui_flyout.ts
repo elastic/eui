@@ -7,19 +7,19 @@
  */
 
 import { EuiFlyoutSize } from '../flyout';
-import { useEuiFlyoutContext } from './flyout_manager';
-import { EuiManagedFlyoutConfig } from './types';
+import { useEuiFlyoutSessionContext } from './flyout_provider';
+import { EuiFlyoutSessionConfig } from './types';
 
-export interface EuiOpenMainManagedFlyoutOptions<Meta = unknown> {
+export interface EuiFlyoutSessionOpenMainOptions<Meta = unknown> {
   size: EuiFlyoutSize;
-  flyoutProps?: EuiManagedFlyoutConfig['mainFlyoutProps'];
+  flyoutProps?: EuiFlyoutSessionConfig['mainFlyoutProps'];
   onUnmount?: () => void;
   meta: Meta;
 }
 
-export interface EuiOpenChildManagedFlyoutOptions<Meta = unknown> {
+export interface EuiFlyoutSessionOpenChildOptions<Meta = unknown> {
   size: 's' | 'm';
-  flyoutProps?: EuiManagedFlyoutConfig['childFlyoutProps'];
+  flyoutProps?: EuiFlyoutSessionConfig['childFlyoutProps'];
   onUnmount?: () => void;
   meta: Meta;
 }
@@ -27,17 +27,17 @@ export interface EuiOpenChildManagedFlyoutOptions<Meta = unknown> {
 /**
  * Hook for accessing the flyout API
  */
-export function useEuiFlyout() {
-  const { state, dispatch } = useEuiFlyoutContext();
+export function useEuiFlyoutSession() {
+  const { state, dispatch } = useEuiFlyoutSessionContext();
 
-  const openFlyout = (options: EuiOpenMainManagedFlyoutOptions) => {
+  const openFlyout = (options: EuiFlyoutSessionOpenMainOptions) => {
     dispatch({
       type: 'OPEN_MAIN_FLYOUT',
       payload: options,
     });
   };
 
-  const openChildFlyout = (options: EuiOpenChildManagedFlyoutOptions) => {
+  const openChildFlyout = (options: EuiFlyoutSessionOpenChildOptions) => {
     if (!state.activeFlyoutGroup || !state.activeFlyoutGroup.isMainOpen) {
       console.warn(
         'useEuiFlyoutApi: Cannot open child flyout when main flyout is not open.'

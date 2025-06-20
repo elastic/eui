@@ -1,23 +1,21 @@
-# EUI Flyout State Management
+# EUI Flyout State Management (Flyout Sessions)
 
 EUI has a state management system for programmatically controlling flyouts. It provides a flexible way to open, close, and manage the content of flyouts from anywhere within a React component tree.
 
-This system is ideal for scenarios where flyouts need to be triggered by deep-nested components or when managing a sequence of flyouts (e.g., a main flyout that opens a child flyout).
+This system is ideal for scenarios flows involving sequence of flyouts (e.g., a main flyout that opens a child flyout, a main flyout opens a "next" flyout), otherwise known as a "flyout session".
 
----
+## `EuiFlyoutSessionProvider` API
 
-## `EuiFlyoutProvider` API
-
-The `EuiFlyoutProvider` is the core stateful component. You must wrap it around any components that need to use the `useEuiFlyout` hook.
+The `EuiFlyoutSessionProvider` is the core stateful component. You must wrap it around any components that need to use the `useEuiFlyoutSession` hook.
 
 ### Props
 
-*   **`renderMainFlyoutContent`**: `(context: EuiManagedFlyoutRenderContext<MetaType>) => ReactNode;`
-*   **`renderChildFlyoutContent`**: `(context: EuiManagedFlyoutRenderContext<MetaType>) => ReactNode;` (optional)
+*   **`renderMainFlyoutContent`**: `(flyoutContext: EuiFlyoutSessionRenderContext<MetaType>) => ReactNode;`
+*   **`renderChildFlyoutContent`**: `(flyoutContext: EuiFlyoutSessionRenderContext<MetaType>) => ReactNode;` (optional)
 
 ### The `flyoutContext` Object
 
-The `flyoutContext` object passed to your render prop functions is of type `EuiManagedFlyoutRenderContext<MetaType>` and contains the following useful properties:
+The `flyoutContext` object passed to your render prop functions is of type `EuiFlyoutSessionRenderContext<MetaType>` and contains the following useful properties:
 
 *   **`meta`**: `MetaType` - The arbitrary data object you passed into the `meta` property when calling `openFlyout` or `openChildFlyout`. This is a generic, allowing you to have type safety for your custom data.
 *   **`onCloseFlyout`**: `() => void` - A callback function that closes the current main flyout.
@@ -25,11 +23,9 @@ The `flyoutContext` object passed to your render prop functions is of type `EuiM
 *   **`flyoutSize`**: The size of the currently active flyout.
 *   **`flyoutType`**: `'main' | 'child'` - Indicates which flyout the render prop is being called for.
 
----
+## `useEuiFlyoutSession` Hook API
 
-## `useEuiFlyout` Hook API
-
-The `useEuiFlyout` hook is generic and can be typed to match the `meta` object you are working with (e.g., `useEuiFlyout<MyMetaType>()`).
+The `useEuiFlyoutSession` hook is generic and can be typed to match the `meta` object you are working with (e.g., `useEuiFlyoutSession<MyMetaType>()`).
 
 ### Methods
 
@@ -47,8 +43,6 @@ The hook also returns boolean flags representing the current state:
 *   `isChildFlyoutOpen`: `true` if a child flyout is currently open.
 *   `canGoBack`: `true` if there is a previous flyout in the history stack.
 
----
-
 ## Basic Usage Example
 
 Here is a complete example of how to set up and use the flyout state management system in TypeScript, including child flyouts.
@@ -57,13 +51,13 @@ Here is a complete example of how to set up and use the flyout state management 
 import React from 'react';
 import {
   EuiButton,
-  EuiFlyoutProvider,
-  useEuiFlyout,
-  EuiFlyoutHeader,
   EuiFlyoutBody,
-  EuiTitle,
+  EuiFlyoutHeader,
   EuiText,
-  EuiManagedFlyoutRenderContext,
+  EuiTitle,
+  EuiFlyoutSessionProvider,
+  EuiFlyoutSessionRenderContext,
+  useEuiFlyoutSession,
 } from '@elastic/eui';
 
 // Define a type for the custom data we'll pass in `meta`
@@ -75,7 +69,7 @@ interface FlyoutMeta {
 
 // 1. A component that uses the hook to open the initial flyout
 const MyComponent: React.FC = () => {
-  const { openFlyout, isFlyoutOpen } = useEuiFlyout<FlyoutMeta>();
+  const { openFlyout, isFlyoutOpen } = useEuiFlyoutSession<FlyoutMeta>();
 
   const handleClick = () => {
     openFlyout({
@@ -95,10 +89,10 @@ const MyComponent: React.FC = () => {
 const App: React.FC = () => {
   // 3. The render prop function for the main flyout.
   const renderMainFlyoutContent = (
-    flyoutContext: EuiManagedFlyoutRenderContext<FlyoutMeta>
+    flyoutContext: EuiFlyoutSessionRenderContext<FlyoutMeta>
   ) => {
     const { meta, onCloseFlyout } = flyoutContext;
-    const { openChildFlyout, isChildFlyoutOpen } = useEuiFlyout<FlyoutMeta>();
+    const { openChildFlyout, isChildFlyoutOpen } = useEuiFlyoutSession<FlyoutMeta>();
 
     const handleOpenChild = () => {
       openChildFlyout({
@@ -131,7 +125,7 @@ const App: React.FC = () => {
 
   // 4. The render prop function for the child flyout.
   const renderChildFlyoutContent = (
-    flyoutContext: EuiManagedFlyoutRenderContext<FlyoutMeta>
+    flyoutContext: EuiFlyoutSessionRenderContext<FlyoutMeta>
   ) => {
     const { meta, onCloseChildFlyout } = flyoutContext;
 
@@ -153,26 +147,12 @@ const App: React.FC = () => {
   };
 
   return (
-    <EuiFlyoutProvider
+    <EuiFlyoutSessionProvider
       renderMainFlyoutContent={renderMainFlyoutContent}
       renderChildFlyoutContent={renderChildFlyoutContent}
     >
       <MyComponent />
-    </EuiFlyoutProvider>
+    </EuiFlyoutSessionProvider>
   );
 };
 ```
-
----
-
-## Reducer Logic and Constraints
-
-The internal reducer for `EuiFlyoutProvider` enforces several constraints to ensure proper flyout behavior, especially when using child flyouts:
-
-*   If a child flyout is opened, the parent flyout's `side` prop is forced to `'right'`.
-*   If a child flyout is opened, the parent flyout's `closeButtonPosition` is forced to `'inside'`.
-*   Size constraints are applied:
-    *   The parent flyout can only be size `'s'` or `'m'` if a child is present.
-    *   The child flyout can only be size `'s'` if the parent is `'m'`.
-
-These constraints are handled automatically by the state management system.
