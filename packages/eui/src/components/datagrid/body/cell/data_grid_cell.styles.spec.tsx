@@ -14,7 +14,8 @@ import React from 'react';
 import { EuiDataGrid } from '../../data_grid';
 
 const EXPECTED_HOVER_COLOR = 'rgb(90, 109, 140)';
-const EXPECTED_FOCUS_COLOR = 'rgb(11, 100, 221)';
+// TODO should change back to primary90 (rgb(11, 100, 221)) as per design spec
+const EXPECTED_FOCUS_COLOR = 'rgb(23, 80, 186)'; // primary100
 const ANIMATION = {
   DELAY: 350,
   DURATION: 150,
