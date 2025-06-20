@@ -26,7 +26,7 @@ export const euiCodeStyles = (euiThemeContext: UseEuiTheme) => {
       font-family: ${euiTheme.font.familyCode};
       font-size: 0.9em; /* 1 */
       ${logicalShorthandCSS('padding', '0.2em 0.5em')} /* 1 */
-      background-color: ${codeSyntaxVariables.backgroundColor};
+      background-color: ${codeSyntaxVariables.inlineBackgroundColor};
       ${highContrastModeStyles(euiThemeContext, {
         forced: `
           border: ${euiTheme.border.thin};
