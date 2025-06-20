@@ -48,7 +48,9 @@ export const euiFilePickerStyles = (euiThemeContext: UseEuiTheme) => {
         --euiFormControlStateColor: ${highContrastMode
           ? euiTheme.border.color
           : formVariables.borderHovered};
-        --euiFormControlStateStyle: ${highContrastMode ? 'solid' : 'dashed'};
+        --euiFormControlStateStyle: ${highContrastMode && isRefreshVariant
+          ? 'solid'
+          : 'dashed'};
       }
 
       &:focus-within {
@@ -142,7 +144,7 @@ export const euiFilePickerStyles = (euiThemeContext: UseEuiTheme) => {
             }
 
             .euiFilePicker__icon {
-              transform: scale(1.1);
+              transform: scale(${isRefreshVariant ? 1.05 : 1.1});
             }
           }
         }
@@ -155,7 +157,9 @@ export const euiFilePickerStyles = (euiThemeContext: UseEuiTheme) => {
       line-height: 1; /* Vertically centers default display text */
       ${euiTextTruncate()}
       color: ${euiTheme.colors.textParagraph};
-      border: ${euiTheme.border.width.thick}
+      border: ${isRefreshVariant
+          ? euiTheme.border.width.thin
+          : euiTheme.border.width.thick}
         var(--euiFormControlStateStyle, dashed)
         var(
           --euiFormControlStateColor,
