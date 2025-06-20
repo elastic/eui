@@ -21,11 +21,14 @@ import { HrefOnClick } from './rules/href_or_on_click';
 import { NoRestrictedEuiImports } from './rules/no_restricted_eui_imports';
 import { NoCssColor } from './rules/no_css_color';
 
+import { RequireAriaLabelForModals } from './rules/a11y/require_aria_label_for_modals';
+
 const config = {
   rules: {
     'href-or-on-click': HrefOnClick,
     'no-restricted-eui-imports': NoRestrictedEuiImports,
     'no-css-color': NoCssColor,
+    'require-aria-label-for-modals': RequireAriaLabelForModals,
   },
   configs: {
     recommended: {
@@ -34,6 +37,7 @@ const config = {
         '@elastic/eui/href-or-on-click': 'warn',
         '@elastic/eui/no-restricted-eui-imports': 'warn',
         '@elastic/eui/no-css-color': 'warn',
+        '@elastic/eui/require-aria-label-for-modals': 'warn',
       },
     },
   },
