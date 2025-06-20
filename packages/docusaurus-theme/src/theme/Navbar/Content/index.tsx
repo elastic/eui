@@ -26,9 +26,11 @@ import {
   euiFormVariables,
   // @ts-ignore - reusing form styles as we don't have access to the plugin component yet
 } from '@elastic/eui/lib/components/form/form.styles';
-import euiVersions from '@site/static/versions.json';
 
-import { VersionSwitcher } from '../../../components/version_switcher';
+import {
+  VersionSwitcher,
+  VersionSwitcherProps,
+} from '../../../components/version_switcher';
 import { ThemeSwitcher } from '../../../components/theme_switcher';
 
 const DOCS_PATH = '/docs';
@@ -194,7 +196,13 @@ function NavbarContentLayout({
   );
 }
 
-export default function NavbarContent(): JSX.Element {
+type Props = {
+  versionSwitcherOptions?: VersionSwitcherProps;
+};
+
+export default function NavbarContent({
+  versionSwitcherOptions,
+}: Props): JSX.Element {
   const isBrowser = useIsBrowser();
   const mobileSidebar = useNavbarMobileSidebar();
   const location = useLocation();
@@ -204,7 +212,6 @@ export default function NavbarContent(): JSX.Element {
   const styles = useEuiMemoizedStyles(getStyles);
 
   const searchBarItem = items.find((item) => item.type === 'search');
-  const versions = euiVersions?.euiVersions ?? undefined;
   const isRoot = !location?.pathname.includes(DOCS_PATH);
 
   return (
@@ -219,7 +226,9 @@ export default function NavbarContent(): JSX.Element {
             {!mobileSidebar.disabled && <NavbarMobileSidebarToggle />}
             <NavbarLogo />
             <div css={styles.versionSwitcher}>
-              {isBrowser && versions && <VersionSwitcher versions={versions} />}
+              {isBrowser && versionSwitcherOptions && (
+                <VersionSwitcher {...versionSwitcherOptions} />
+              )}
             </div>
             <NavbarItems items={leftItems} />
           </>
