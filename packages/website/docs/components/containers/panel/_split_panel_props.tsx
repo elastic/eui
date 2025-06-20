@@ -1,4 +1,4 @@
-import { PropTable } from '@elastic/eui-docusaurus-theme/components';
+import { PropTable } from '@site/src/components';
 
 import docgen from '@elastic/eui-docgen/dist/components/panel/split_panel/split_panel.json';
 // Rename the component's generated displayName to match consumer usage
