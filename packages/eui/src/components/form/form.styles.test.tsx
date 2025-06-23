@@ -27,21 +27,21 @@ describe('euiFormVariables', () => {
     expect(result.current).toMatchInlineSnapshot(`
       {
         "animationTiming": "150ms ease-in",
-        "appendPrependBackground": "#ECF1F9",
-        "backgroundColor": "#FFFFFF",
-        "backgroundDisabledColor": "#ECF1F9",
-        "backgroundReadOnlyColor": "#ECF1F9",
-        "borderColor": "#CAD3E2",
-        "borderFocused": "#0B64DD",
-        "borderHovered": "#B4C1D5",
-        "borderInvalid": "#C61E25",
-        "borderInvalidHovered": "#DA3737",
-        "controlBorderRadius": "4px",
+        "appendPrependBackground": "#e9edf3",
+        "backgroundColor": "#f9fbfd",
+        "backgroundDisabledColor": "#eef1f7",
+        "backgroundReadOnlyColor": "#FFFFFF",
+        "borderColor": "rgba(32,38,47,0.1)",
+        "borderFocused": "#0077CC",
+        "borderHovered": "rgba(32,38,47,0.1)",
+        "borderInvalid": "#BD271E",
+        "borderInvalidHovered": "#BD271E",
+        "controlBorderRadius": "6px",
         "controlBoxShadow": "0 0 transparent",
         "controlCompressedBorderRadius": "4px",
         "controlCompressedHeight": "32px",
         "controlCompressedPadding": "8px",
-        "controlDisabledColor": "#CAD3E2",
+        "controlDisabledColor": "#D3DAE6",
         "controlHeight": "40px",
         "controlIconSize": {
           "l": "24px",
@@ -54,13 +54,13 @@ describe('euiFormVariables', () => {
         "controlLayoutGroupInputCompressedHeight": "30px",
         "controlLayoutGroupInputHeight": "38px",
         "controlPadding": "12px",
-        "controlPlaceholderText": "#798EAF",
+        "controlPlaceholderText": "#646a77",
         "iconAffordance": "24px",
-        "iconCompressedAffordance": "24px",
+        "iconCompressedAffordance": "18px",
         "maxWidth": "400px",
         "stateUnderlineHeight": "2px",
-        "textColor": "#1D2A3E",
-        "textColorDisabled": "#798EAF",
+        "textColor": "#343741",
+        "textColorDisabled": "#98A2B3",
       }
     `);
   });
@@ -70,8 +70,8 @@ describe('euiFormVariables', () => {
       wrapper: darkModeWrapper,
     });
     // Check custom dark-mode logic
-    expect(result.current.backgroundColor).toEqual('#0B1628');
-    expect(result.current.controlPlaceholderText).toEqual('#6A7FA0');
+    expect(result.current.backgroundColor).toEqual('#16171c');
+    expect(result.current.controlPlaceholderText).toEqual('#878b95');
   });
 });
 
@@ -82,21 +82,12 @@ describe('euiFormControlStyles', () => {
       {
         "autoFill": "
           &:-webkit-autofill {
-            -webkit-text-fill-color: #2B394F;
-            -webkit-box-shadow: inset 0 0 0 1px #BFDBFF, inset 0 0 0 100vw #E8F1FF;
+            -webkit-text-fill-color: #343741;
+            -webkit-box-shadow: inset 0 0 0 1px rgba(0,107,184,0.2), inset 0 0 0 100vw #f0f7fc;
 
             
-            &:hover,
-            &:focus {
-              -webkit-box-shadow: inset 0 0 0 1px #0B64DD, inset 0 0 0 100vw #E8F1FF;
-            }
-
             &:invalid {
-              -webkit-box-shadow: inset 0 0 0 1px #C61E25, inset 0 0 0 100vw #E8F1FF;
-
-              &:hover {
-                -webkit-box-shadow: inset 0 0 0 1px #DA3737, inset 0 0 0 100vw #E8F1FF;
-              }
+                -webkit-box-shadow: inset 0 0 0 1px #BD271E, inset 0 0 0 100vw #f0f7fc;
             }
           
           }
@@ -104,54 +95,44 @@ describe('euiFormControlStyles', () => {
         "compressed": "
             block-size: 32px;
             padding-block: 8px;
-            padding-inline-start: calc(8px + (24px * var(--euiFormControlLeftIconsCount, 0)));
-            padding-inline-end: calc(8px + (24px * var(--euiFormControlRightIconsCount, 0)));
+            padding-inline-start: calc(8px + (18px * var(--euiFormControlLeftIconsCount, 0)));
+            padding-inline-end: calc(8px + (18px * var(--euiFormControlRightIconsCount, 0)));
             border-radius: 4px;
           ",
         "disabled": "
-          color: #798EAF;
+          color: #98A2B3;
           /* Required for Safari */
-          -webkit-text-fill-color: #798EAF;
-          background-color: #ECF1F9;
+          -webkit-text-fill-color: #98A2B3;
+          background-color: #eef1f7;
           cursor: not-allowed;
           --euiFormControlStateColor: transparent;
 
-          
-            --euiFormControlStateHoverColor: transparent;
-            --euiFormControlStateColor: #CAD3E2;
-          
+          false
 
           
         &::-webkit-input-placeholder { 
-            color: #798EAF;
+            color: #98A2B3;
             opacity: 1;
            }
         &::-moz-placeholder { 
-            color: #798EAF;
+            color: #98A2B3;
             opacity: 1;
            }
         &:-moz-placeholder { 
-            color: #798EAF;
+            color: #98A2B3;
             opacity: 1;
            }
         &::placeholder { 
-            color: #798EAF;
+            color: #98A2B3;
             opacity: 1;
            }
 
         ",
         "focus": "
-            --euiFormControlStateColor: #0B64DD;
-            --euiFormControlStateHoverColor: #0B64DD;
-            --euiFormControlStateWidth: 2px;
-            
-        position: relative;
-        z-index: 1;
-        box-shadow: none;
-        outline: var(--euiFormControlStateWidth) solid var(--euiFormControlStateColor);
-        outline-offset: calc(-1 * var(--euiFormControlStateWidth));
-
-            
+            --euiFormControlStateColor: #0077CC;
+            background-color: #FFFFFF;
+            background-size: 100% 100%;
+            outline: none; /* Remove all outlines and rely on our own bottom border gradient */
           ",
         "formWidth": "
             max-inline-size: 400px;
@@ -164,41 +145,20 @@ describe('euiFormControlStyles', () => {
         "inGroup": "
             block-size: 100%;
             box-shadow: none;
-            border-radius: inherit;
+            border-radius: 0;
           ",
         "invalid": "
-            --euiFormControlStateColor: #C61E25;
-            --euiFormControlStateHoverColor: #DA3737;
-            --euiFormControlStateWidth: 1px;
-
-            
-        position: relative;
-        z-index: 1;
-        box-shadow: none;
-        outline: var(--euiFormControlStateWidth) solid var(--euiFormControlStateColor);
-        outline-offset: calc(-1 * var(--euiFormControlStateWidth));
-
+            --euiFormControlStateColor: #BD271E;
             background-size: 100% 100%;
           ",
         "readOnly": "
-          background-color: #ECF1F9;
+          background-color: #FFFFFF;
           cursor: default;
-          color: #1D2A3E;
-          -webkit-text-fill-color: #1D2A3E; /* Required for Safari */
+          color: #343741;
+          -webkit-text-fill-color: #343741; /* Required for Safari */
 
           
-            --euiFormControlStateColor: #CAD3E2;
-            --euiFormControlStateHoverColor: #CAD3E2;
-            --euiFormControlStateWidth: 1px;
-            /* keep the input below wrapper borders */
-            position: relative;
-            z-index: 0;
-            outline: none;
-            box-shadow: inset 0 0 0 var(--euiFormControlStateWidth) var(--euiFormControlStateColor);
-
-            .euiFormControlLayout__childrenWrapper[class*=inGroup] & {
-              box-shadow: none;
-            }
+            --euiFormControlStateColor: transparent;
             
           
         ",
@@ -206,45 +166,45 @@ describe('euiFormControlStyles', () => {
             
           font-family: 'Inter', BlinkMacSystemFont, Helvetica, Arial, sans-serif;
           font-size: 1.0000rem;
-          color: #1D2A3E;
+          color: #343741;
 
           
         &::-webkit-input-placeholder { 
-            color: #798EAF;
+            color: #646a77;
             opacity: 1;
            }
         &::-moz-placeholder { 
-            color: #798EAF;
+            color: #646a77;
             opacity: 1;
            }
         &:-moz-placeholder { 
-            color: #798EAF;
+            color: #646a77;
             opacity: 1;
            }
         &::placeholder { 
-            color: #798EAF;
+            color: #646a77;
             opacity: 1;
            }
 
         
             
-          --euiFormControlStateColor: #CAD3E2;
-            border: none;
-            box-shadow: inset 0 0 0 1px var(--euiFormControlStateColor);
-
-            
-          &:hover:not(:disabled, :focus, input[readonly], [class*="readOnly"]) {
-            --borderWidthBase: var(--euiFormControlStateWidth, 1px);
-            --borderWidth: var(--borderWidthBase);
-            --borderColor: var(--euiFormControlStateHoverColor, #B4C1D5);
-            position: relative;
-            z-index: 1;
-            outline: var(--borderWidth) solid var(--borderColor);
-            outline-offset: calc(-1 * var(--borderWidth));
+          border: none;
+            box-shadow: inset 0 0 0 1px rgba(32,38,47,0.1);
+          background-color: #f9fbfd;
+          background-repeat: no-repeat;
+            background-size: 0% 100%;
+            background-image: linear-gradient(to top,
+              var(--euiFormControlStateColor),
+              var(--euiFormControlStateColor) 2px,
+              transparent 2px,
+              transparent 100%
+            );
+          @media screen and (prefers-reduced-motion: no-preference) {
+            transition:
+              background-image 150ms ease-in,
+              background-size 150ms ease-in,
+              background-color 150ms ease-in;
           }
-          background-color: #FFFFFF;
-          
-          
         
           ",
         "uncompressed": "
@@ -252,7 +212,7 @@ describe('euiFormControlStyles', () => {
             padding-block: 12px;
             padding-inline-start: calc(12px + (24px * var(--euiFormControlLeftIconsCount, 0)));
             padding-inline-end: calc(12px + (24px * var(--euiFormControlRightIconsCount, 0)));
-            border-radius: 4px;
+            border-radius: 6px;
           ",
       }
     `);
@@ -272,40 +232,40 @@ describe('euiFormCustomControlStyles', () => {
                   
                   label: disabled;
                   cursor: not-allowed;
-                  background-color: #CAD3E2;
-                  border-color: #CAD3E2;
+                  background-color: #D3DAE6;
+                  border-color: #D3DAE6;
                 
-                  color: #798EAF;
+                  color: #69707D;
                 ",
             "shared": "
                   label: disabled;
                   cursor: not-allowed;
-                  background-color: #CAD3E2;
-                  border-color: #CAD3E2;
+                  background-color: #D3DAE6;
+                  border-color: #D3DAE6;
                 ",
             "unselected": "
                   
                   label: disabled;
                   cursor: not-allowed;
-                  background-color: #CAD3E2;
-                  border-color: #CAD3E2;
+                  background-color: #D3DAE6;
+                  border-color: #D3DAE6;
                 
-                  color: #CAD3E2;
+                  color: #D3DAE6;
                 ",
           },
           "enabled": {
             "selected": "
                 color: #FFFFFF;
-                background-color: #0B64DD;
-                border-color: #0B64DD;
+                background-color: #0077CC;
+                border-color: #0077CC;
               ",
             "unselected": "
                 color: transparent;
-                background-color: transparent;
-                border-color: #8E9FBC;
+                background-color: #FFFFFF;
+                border-color: #919296;
 
                 &:has(input:focus) {
-                  border-color: #0B64DD;
+                  border-color: #0077CC;
                 }
               ",
           },
@@ -320,7 +280,7 @@ describe('euiFormCustomControlStyles', () => {
               border: 1px solid transparent;
 
               &:has(input:focus-visible) {
-                outline: 2px solid #0B64DD;
+                outline: 2px solid #0077CC;
                 outline-offset: 2px;
               }
 
@@ -350,7 +310,7 @@ describe('euiFormCustomControlStyles', () => {
         "label": {
           "disabled": "
               cursor: not-allowed;
-              color: #798EAF;
+              color: #a2abba;
             ",
           "enabled": "
               cursor: pointer;
