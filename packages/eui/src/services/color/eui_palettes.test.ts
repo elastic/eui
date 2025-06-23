@@ -97,7 +97,7 @@ describe('euiPaletteForStatus', () => {
     const colors = colorVis;
     const resultLong = euiPaletteForStatus(6, { colors });
 
-    expect(resultLong[2]).toEqual('#c8e3b8');
+    expect(resultLong[2]).toEqual('#7fb783');
   });
 
   it('should return custom colors', () => {
@@ -118,7 +118,7 @@ describe('euiPaletteForTemperature', () => {
     const colors = colorVis;
     const resultLong = euiPaletteForTemperature(6, { colors });
 
-    expect(resultLong[2]).toEqual('#e8f1ff');
+    expect(resultLong[2]).toEqual('#ebeff5');
   });
 
   it('should return custom colors', () => {
@@ -139,7 +139,7 @@ describe('euiPaletteComplementary', () => {
     const colors = colorVis;
     const resultLong = euiPaletteComplementary(6, { colors });
 
-    expect(resultLong[2]).toEqual('#c4dcfd');
+    expect(resultLong[2]).toEqual('#cadbea');
   });
 
   it('should return custom colors', () => {
@@ -160,7 +160,7 @@ describe('euiPaletteRed', () => {
     const colors = colorVis;
     const resultLong = euiPaletteRed(6, { colors });
 
-    expect(resultLong[2]).toEqual('#feb7b0');
+    expect(resultLong[2]).toEqual('#eeab9c');
   });
 
   it('should return custom colors', () => {
@@ -181,7 +181,7 @@ describe('euiPaletteGreen', () => {
     const colors = colorVis;
     const resultLong = euiPaletteGreen(6, { colors });
 
-    expect(resultLong[2]).toEqual('#9fdfc6');
+    expect(resultLong[2]).toEqual('#9ac8bd');
   });
 
   it('should return custom colors', () => {
@@ -202,7 +202,7 @@ describe('euiPaletteSkyBlue', () => {
     const colors = colorVis;
     const resultLong = euiPaletteSkyBlue(6, { colors });
 
-    expect(resultLong[2]).toEqual('#a6d8ec');
+    expect(resultLong[2]).toEqual('#c8d8e9');
   });
 
   it('should return custom colors', () => {
@@ -223,7 +223,7 @@ describe('euiPaletteYellow', () => {
     const colors = colorVis;
     const resultLong = euiPaletteYellow(6, { colors });
 
-    expect(resultLong[2]).toEqual('#f9d290');
+    expect(resultLong[2]).toEqual('#decfa3');
   });
 
   it('should return custom colors', () => {
@@ -244,7 +244,7 @@ describe('euiPaletteOrange', () => {
     const colors = colorVis;
     const resultLong = euiPaletteOrange(6, { colors });
 
-    expect(resultLong[2]).toEqual('#ffc1a1');
+    expect(resultLong[2]).toEqual('#f3c4a0');
   });
 
   it('should return custom colors', () => {
@@ -265,7 +265,7 @@ describe('euiPaletteCool', () => {
     const colors = colorVis;
     const resultLong = euiPaletteCool(6, { colors });
 
-    expect(resultLong[2]).toEqual('#a8caff');
+    expect(resultLong[2]).toEqual('#a8bfda');
   });
 
   it('should return custom colors', () => {
@@ -286,7 +286,7 @@ describe('euiPaletteWarm', () => {
     const colors = colorVis;
     const resultLong = euiPaletteWarm(6, { colors });
 
-    expect(resultLong[2]).toEqual('#ffafa6');
+    expect(resultLong[2]).toEqual('#efb785');
   });
 
   it('should return custom colors', () => {
@@ -307,7 +307,7 @@ describe('euiPaletteGray', () => {
     const colors = colorVis;
     const resultLong = euiPaletteGray(6, { colors });
 
-    expect(resultLong[2]).toEqual('#7b8aa4');
+    expect(resultLong[2]).toEqual('#8e95a3');
   });
 
   it('should return custom colors', () => {
