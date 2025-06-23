@@ -1,3 +1,9 @@
+## [`v104.0.1`](https://github.com/elastic/eui/releases/v104.0.1)
+
+**Bug fixes**
+
+- Fixed a wrong path in the module declaration for the JSON token exports that would trigger typescript errors ([#8818](https://github.com/elastic/eui/pull/8818))
+
 ## [`v104.0.0`](https://github.com/elastic/eui/releases/v104.0.0)
 
 - Added data vis text color tokens: ([#8793](https://github.com/elastic/eui/pull/8793))
