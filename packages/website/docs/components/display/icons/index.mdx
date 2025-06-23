@@ -36,7 +36,7 @@ import { iconSizes, iconSizesText } from './icon_sizes';
     <EuiFlexGrid direction="row" columns={3}>
       {iconSizes.map((size, index) => (
         <EuiFlexItem key={size}>
-          <EuiCopy display="block" textToCopy={size} afterMessage={`${size} copied`}>
+          <EuiCopy textToCopy={size} afterMessage={`${size} copied`} tooltipProps={{ display: 'block' }}>
             {(copy) => (
               <EuiPanel hasShadow={false} hasBorder={false} onClick={copy} paddingSize="s">
                 <EuiIcon className="eui-alignMiddle" type="logoElasticsearch" size={size} /> &emsp;{' '}
@@ -69,7 +69,7 @@ import { iconColors } from './icon_colors.ts'
     <EuiFlexGrid direction="row" columns={3}>
       {iconColors.map((color) => (
         <EuiFlexItem key={color}>
-          <EuiCopy display="block" textToCopy={color} afterMessage={`${color} copied`}>
+          <EuiCopy textToCopy={color} afterMessage={`${color} copied`} tooltipProps={{ display: 'block' }}>
             {(copy) => {
               const panel = (
                 <EuiPanel hasShadow={false} hasBorder={false} onClick={copy} paddingSize="s">
@@ -107,7 +107,7 @@ import { iconTypes } from './icon_types';
     <EuiFlexGrid direction="row" columns={3}>
       {iconTypes.map((iconType) => (
         <EuiFlexItem key={iconType}>
-          <EuiCopy display="block" textToCopy={iconType} afterMessage={`${iconType} copied`}>
+          <EuiCopy textToCopy={iconType} afterMessage={`${iconType} copied`} tooltipProps={{ display: 'block' }}>
             {(copy) => (
               <EuiPanel hasShadow={false} hasBorder={false} onClick={copy} paddingSize="s">
                 <EuiIcon className="eui-alignMiddle" type={iconType} /> &emsp;{' '}
@@ -134,7 +134,7 @@ import { iconTypesEditor } from './icon_types_editor';
     <EuiFlexGrid direction="row" columns={3}>
       {iconTypes.map((iconType) => (
         <EuiFlexItem key={iconType}>
-          <EuiCopy display="block" textToCopy={iconType} afterMessage={`${iconType} copied`}>
+          <EuiCopy textToCopy={iconType} afterMessage={`${iconType} copied`} tooltipProps={{ display: 'block' }}>
             {(copy) => (
               <EuiPanel hasShadow={false} hasBorder={false} onClick={copy} paddingSize="s">
                 <EuiIcon className="eui-alignMiddle" type={iconType} /> &emsp;{' '}
@@ -196,7 +196,7 @@ import { iconTypesLogos } from './icon_types_logos';
           <EuiFlexGrid direction="row" columns={3}>
             {iconTypes.map((iconType) => (
               <EuiFlexItem key={iconType}>
-                <EuiCopy display="block" textToCopy={iconType} afterMessage={`${iconType} copied`}>
+                <EuiCopy textToCopy={iconType} afterMessage={`${iconType} copied`} tooltipProps={{ display: 'block' }}>
                   {(copy) => (
                     <EuiPanel hasShadow={false} hasBorder={false} onClick={copy} paddingSize="s" color="transparent">
                       <EuiIcon
@@ -237,7 +237,7 @@ import { iconTypesApps } from './icon_types_apps';
     <EuiFlexGrid direction="row" columns={3}>
       {iconTypes.map((iconType) => (
         <EuiFlexItem key={iconType}>
-          <EuiCopy display="block" textToCopy={iconType} afterMessage={`${iconType} copied`}>
+          <EuiCopy textToCopy={iconType} afterMessage={`${iconType} copied`} tooltipProps={{ display: 'block' }}>
             {(copy) => (
               <EuiPanel hasShadow={false} hasBorder={false} onClick={copy} paddingSize="s">
                 <EuiIcon className="eui-alignMiddle" type={iconType} size="xl" /> &emsp;{' '}
@@ -268,7 +268,7 @@ import { iconTypesML } from './icon_types_ml';
     <EuiFlexGrid direction="row" columns={3}>
       {iconTypes.map((iconType) => (
         <EuiFlexItem key={iconType}>
-          <EuiCopy display="block" textToCopy={iconType} afterMessage={`${iconType} copied`}>
+          <EuiCopy textToCopy={iconType} afterMessage={`${iconType} copied`} tooltipProps={{ display: 'block' }}>
             {(copy) => (
               <EuiPanel hasShadow={false} hasBorder={false} onClick={copy} paddingSize="s">
                 <EuiIcon className="eui-alignMiddle" type={iconType} size="xl" /> &emsp;{' '}
@@ -299,7 +299,7 @@ import { iconTypesTokens } from './icon_types_tokens';
     <EuiFlexGrid direction="row" columns={3}>
       {iconTypes.map((iconType) => (
         <EuiFlexItem key={iconType}>
-          <EuiCopy display="block" textToCopy={iconType} afterMessage={`${iconType} copied`}>
+          <EuiCopy textToCopy={iconType} afterMessage={`${iconType} copied`} tooltipProps={{ display: 'block' }}>
             {(copy) => (
               <EuiPanel hasShadow={false} hasBorder={false} onClick={copy} paddingSize="s">
                 <EuiToken className="eui-alignMiddle" iconType={iconType} /> &emsp;{' '}

@@ -24,7 +24,10 @@ export default () => {
   };
 
   const items = [
-    <EuiCopy textToCopy="Copied some text!" anchorClassName="eui-fullWidth">
+    <EuiCopy
+      textToCopy="Copied some text!"
+      tooltipProps={{ anchorClassName: 'eui-fullWidth' }}
+    >
       {(copy) => (
         <EuiContextMenuItem key="copy" icon="copy" onClick={copy} size="s">
           Copy
