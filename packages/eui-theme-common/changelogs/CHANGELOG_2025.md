@@ -1,3 +1,46 @@
+## [`v2.0.0`](https://github.com/elastic/eui/releases/v2.0.0)
+
+- Added type for tokens: ([#8793](https://github.com/elastic/eui/pull/8793))
+  - `colors.vis.euiColorVisText0`
+  - `colors.vis.euiColorVisText1`
+  - `colors.vis.euiColorVisText2`
+  - `colors.vis.euiColorVisText3`
+  - `colors.vis.euiColorVisText4`
+  - `colors.vis.euiColorVisText5`
+  - `colors.vis.euiColorVisText6`
+  - `colors.vis.euiColorVisText7`
+  - `colors.vis.euiColorVisText8`
+  - `colors.vis.euiColorVisText9`
+- Added types for ([#8769](https://github.com/elastic/eui/pull/8769))
+  - `colors.backgroundBaseInteractiveSelectHover`
+  - `colors.borderStrongText`
+  - `components.dataGridRowBackground`
+  - `components.dataGridRowBackgroundSelectHover`
+  - `components.dataGridRowStripesBackground`
+  - `components.dataGridRowStripesBackgroundHover`
+  - `components.dataGridRowStripesBackgroundStriped`
+  - `components.dataGridRowStripesBackgroundStripedHover`
+  - `components.dataGridRowStripesBackgroundSelect`
+  - `components.dataGridRowStripesBackgroundSelectHover`
+
+**Breaking changes**
+
+- Removed support for tokens: ([#8793](https://github.com/elastic/eui/pull/8793))
+  - `colors.vis.euiColorVisAsTextLight1`
+  - `colors.vis.euiColorVisAsTextLight0`
+  - `colors.vis.euiColorVisAsTextLight2`
+  - `colors.vis.euiColorVisAsTextLight3`
+  - `colors.vis.euiColorVisAsTextLight4`
+  - `colors.vis.euiColorVisAsTextLight5`
+  - `colors.vis.euiColorVisAsTextLight6`
+  - `colors.vis.euiColorVisAsTextDark1`
+  - `colors.vis.euiColorVisAsTextDark0`
+  - `colors.vis.euiColorVisAsTextDark2`
+  - `colors.vis.euiColorVisAsTextDark3`
+  - `colors.vis.euiColorVisAsTextDark4`
+  - `colors.vis.euiColorVisAsTextDark5`
+  - `colors.vis.euiColorVisAsTextDark6`
+
 ## [`v1.2.1`](https://github.com/elastic/eui/releases/v1.2.1)
 
 **Bug fixes**
