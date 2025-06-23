@@ -21,7 +21,7 @@ import { makeHighContrastColor } from '../../../../services/color/contrast';
 
 import { buttons } from './_buttons';
 import { forms } from './_forms';
-import { colorVis } from './_colors_vis';
+import { colorVisLight as colorVis } from './_colors_vis_light';
 
 const component_colors: _EuiThemeComponentColors = {
   badgeBackground: computed(
@@ -170,15 +170,44 @@ const component_colors: _EuiThemeComponentColors = {
     ([color]) => tint(color, 0.3),
     ['border.color']
   ),
-  dataGridRowBackgroundStriped: computed(
-    ([lightestShade]) => lightestShade,
-    ['colors.lightestShade']
+
+  dataGridRowBackground: computed(
+    ([emptyShade]) => emptyShade,
+    ['colors.emptyShade']
   ),
   dataGridRowBackgroundHover: computed(
     ([highlight]) => highlight,
     ['colors.highlight']
   ),
   dataGridRowBackgroundSelect: computed(
+    ([highlight]) => highlight,
+    ['colors.highlight']
+  ),
+  dataGridRowBackgroundSelectHover: computed(
+    ([highlight]) => highlight,
+    ['colors.highlight']
+  ),
+  dataGridRowStripesBackground: computed(
+    ([emptyShade]) => emptyShade,
+    ['colors.emptyShade']
+  ),
+  dataGridRowStripesBackgroundHover: computed(
+    ([highlight]) => highlight,
+    ['colors.highlight']
+  ),
+  dataGridRowStripesBackgroundStriped: computed(
+    ([lightestShade]) => lightestShade,
+    ['colors.lightestShade']
+  ),
+  dataGridRowStripesBackgroundStripedHover: computed(
+    ([highlight]) => highlight,
+    ['colors.highlight']
+  ),
+  dataGridRowStripesBackgroundSelect: computed(
+    ([highlight]) => highlight,
+    ['colors.highlight']
+  ),
+  dataGridRowStripesBackgroundSelectHover: computed(
     ([highlight]) => highlight,
     ['colors.highlight']
   ),

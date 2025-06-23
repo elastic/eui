@@ -30,7 +30,8 @@ import {
   makeHighContrastColor,
   makeDisabledContrastColor,
 } from '../../../../services/color/contrast';
-import { colorVis } from './_colors_vis';
+import { colorVisLight } from './_colors_vis_light';
+import { colorVisDark } from './_colors_vis_dark';
 import { severityColors } from './_colors_severity';
 
 /*
@@ -157,6 +158,10 @@ export const background_colors: _EuiThemeBackgroundColors = {
   ),
   backgroundBaseInteractiveSelect: computed(
     ([primary]) => tint(primary, 0.96),
+    ['colors.primary']
+  ),
+  backgroundBaseInteractiveSelectHover: computed(
+    ([primary]) => tint(primary, 0.8),
     ['colors.primary']
   ),
   backgroundBaseInteractiveOverlay: computed(
@@ -331,6 +336,7 @@ export const border_colors: _EuiThemeBorderColors = {
   borderStrongWarning: computed(([warning]) => warning, ['colors.warning']),
   borderStrongRisk: severityColors.risk,
   borderStrongDanger: computed(([danger]) => danger, ['colors.danger']),
+  borderStrongText: computed(([darkShade]) => darkShade, ['colors.darkShade']),
 };
 
 export const light_colors: _EuiThemeColorsMode = {
@@ -415,6 +421,10 @@ export const dark_background_colors: _EuiThemeBackgroundColors = {
   ),
   backgroundBaseInteractiveSelect: computed(
     ([primary]) => shade(primary, 0.7),
+    ['colors.primary']
+  ),
+  backgroundBaseInteractiveSelectHover: computed(
+    ([primary]) => shade(primary, 0.6),
     ['colors.primary']
   ),
   backgroundBaseInteractiveOverlay: computed(
@@ -550,6 +560,7 @@ export const dark_border_colors: _EuiThemeBorderColors = {
   borderStrongWarning: computed(([warning]) => warning, ['colors.warning']),
   borderStrongRisk: tint(severityColors.risk, 0.2).toUpperCase(),
   borderStrongDanger: computed(([danger]) => danger, ['colors.danger']),
+  borderStrongText: computed(([darkShade]) => darkShade, ['colors.darkShade']),
 };
 
 export const dark_colors_ams: _EuiThemeColorsMode = {
@@ -603,8 +614,13 @@ export const colors: _EuiThemeColors = {
   ink: '#000000',
   plainLight: '#FFFFFF',
   plainDark: '#000000',
-  LIGHT: light_colors,
-  DARK: dark_colors_ams,
-  vis: colorVis,
   severity: severityColors,
+  LIGHT: {
+    ...light_colors,
+    vis: colorVisLight,
+  },
+  DARK: {
+    ...dark_colors_ams,
+    vis: colorVisDark,
+  },
 };

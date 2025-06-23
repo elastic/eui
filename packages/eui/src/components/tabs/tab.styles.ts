@@ -99,12 +99,5 @@ export const euiTabContentStyles = (euiThemeContext: UseEuiTheme) => {
         (x, y) => x + y
       )};
     `,
-    xl: css`
-      font-size: ${euiFontSize(euiThemeContext, 'l').fontSize};
-      line-height: ${mathWithUnits(
-        [euiTheme.size.xxxl, euiTheme.size.s],
-        (x, y) => x + y
-      )};
-    `,
   };
 };

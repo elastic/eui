@@ -283,20 +283,16 @@ declare module '@elastic/eui/dist/eui_theme_amsterdam_dark.json' {
     euiColorVis7_behindText: string;
     euiColorVis8_behindText: string;
     euiColorVis9_behindText: string;
-    euiColorVisAsTextLight0: string;
-    euiColorVisAsTextLight1: string;
-    euiColorVisAsTextLight2: string;
-    euiColorVisAsTextLight3: string;
-    euiColorVisAsTextLight4: string;
-    euiColorVisAsTextLight5: string;
-    euiColorVisAsTextLight6: string;
-    euiColorVisAsTextDark0: string;
-    euiColorVisAsTextDark1: string;
-    euiColorVisAsTextDark2: string;
-    euiColorVisAsTextDark3: string;
-    euiColorVisAsTextDark4: string;
-    euiColorVisAsTextDark5: string;
-    euiColorVisAsTextDark6: string;
+    euiColorVisText0: string;
+    euiColorVisText1: string;
+    euiColorVisText2: string;
+    euiColorVisText3: string;
+    euiColorVisText4: string;
+    euiColorVisText5: string;
+    euiColorVisText6: string;
+    euiColorVisText7: string;
+    euiColorVisText8: string;
+    euiColorVisText9: string;
     euiColorVisSuccess0: string;
     euiColorVisSuccess1: string;
     euiColorVisWarning0: string;
@@ -382,6 +378,7 @@ declare module '@elastic/eui/dist/eui_theme_amsterdam_dark.json' {
     euiColorBackgroundBaseFormsControlDisabled: string;
     euiColorBackgroundBaseInteractiveHover: string;
     euiColorBackgroundBaseInteractiveSelect: string;
+    euiColorBackgroundBaseInteractiveSelectHover: string;
     euiColorBackgroundBaseInteractiveOverlay: string;
     euiColorBackgroundBaseSkeletonEdge: string;
     euiColorBackgroundBaseSkeletonMiddle: string;
@@ -425,6 +422,7 @@ declare module '@elastic/eui/dist/eui_theme_amsterdam_dark.json' {
     euiColorBorderStrongWarning: string;
     euiColorBorderStrongRisk: string;
     euiColorBorderStrongDanger: string;
+    euiColorBorderStrongText: string;
   };
   export default sassVariables;
 }

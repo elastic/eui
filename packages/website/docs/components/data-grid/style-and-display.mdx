@@ -173,17 +173,22 @@ export default () => {
       return new Set(data.map((_, index) => index));
     }
     return rowSelection;
-  }, new Set());
+  }, new Set([1]));
 
   const { euiTheme } = useEuiTheme();
+
   const rowStyles = useMemo(() => {
     return css`
       .euiDataGridRow--rowClassesDemo {
-        background-color: ${euiTheme.colors.highlight};
+        background-color: ${euiTheme.colors.backgroundLightWarning};
       }
 
       .euiDataGridRow--rowClassesDemoSelected {
-        background-color: ${euiTheme.focus.backgroundColor};
+        background-color: ${euiTheme.colors.backgroundBaseInteractiveSelect};
+
+        &:hover {
+          background-color: ${euiTheme.colors.backgroundBaseInteractiveSelectHover};
+        }
       }
     `;
   }, [euiTheme]);
@@ -210,13 +215,19 @@ export default () => {
         toolbarVisibility={{
           additionalControls: <SelectionButton />,
         }}
-        gridStyle={{ rowClasses, rowHover: 'none' }}
+        gridStyle={{ rowClasses }}
         css={rowStyles}
       />
     </SelectionContext.Provider>
   );
 };
 ```
+
+:::tip A `.euiDataGridRow--selected` CSS class is available
+
+It can be useful to style selected rows when using the `gridStyle.rowClasses` prop. It also provides styles for the hover state, when `rowHover` equals `highlight`.
+
+:::
 
 ## Row heights options
 

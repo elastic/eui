@@ -47,6 +47,7 @@ $euiColorBackgroundBaseFormsControlDisabled: $euiColorShade120 !default;
 
 $euiColorBackgroundBaseInteractiveHover: $euiColorPlainLightAlpha8 !default;
 $euiColorBackgroundBaseInteractiveSelect: $euiColorPrimary130 !default;
+$euiColorBackgroundBaseInteractiveSelectHover: $euiColorPrimary120 !default;
 $euiColorBackgroundBaseInteractiveOverlay: $euiColorShade120Alpha70 !default;
 $euiColorBackgroundBaseSkeletonEdge: $euiColorPlainLightAlpha16 !default;
 $euiColorBackgroundBaseSkeletonMiddle: $euiColorPlainLightAlpha8 !default;
@@ -128,6 +129,7 @@ $euiColorBorderStrongSuccess: $euiColorSuccess60 !default;
 $euiColorBorderStrongWarning: $euiColorWarning40 !default;
 $euiColorBorderStrongRisk: $euiColorRisk50 !default;
 $euiColorBorderStrongDanger: $euiColorDanger60 !default;
+$euiColorBorderStrongText: $euiColorShade60 !default;
 
 // Charts
 $euiColorChartLines: $euiColorShade85 !default;

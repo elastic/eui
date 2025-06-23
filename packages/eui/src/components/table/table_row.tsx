@@ -82,9 +82,9 @@ export const EuiTableRow: FunctionComponent<Props> = ({
     : [
         styles.euiTableRow,
         styles.desktop.desktop,
+        onClick && styles.desktop.clickable,
         isSelected && styles.desktop.selected,
         isExpandedRow && styles.desktop.expanded,
-        onClick && styles.desktop.clickable,
         isExpandedRow && hasSelection && styles.desktop.checkboxOffset,
       ];
 
