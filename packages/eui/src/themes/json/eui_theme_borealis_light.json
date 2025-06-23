@@ -377,6 +377,7 @@
   "euiColorBackgroundBaseFormsControlDisabled": "#CAD3E2",
   "euiColorBackgroundBaseInteractiveHover": "rgba(23,80,186, 0.04)",
   "euiColorBackgroundBaseInteractiveSelect": "#E8F1FF",
+  "euiColorBackgroundBaseInteractiveSelectHover": "#D9E8FF",
   "euiColorBackgroundBaseInteractiveOverlay": "rgba(72,89,117, 0.7)",
   "euiColorBackgroundBaseSkeletonEdge": "rgba(72,89,117, 0.16)",
   "euiColorBackgroundBaseSkeletonMiddle": "rgba(72,89,117, 0.04)",
@@ -419,5 +420,6 @@
   "euiColorBorderStrongSuccess": "#09724D",
   "euiColorBorderStrongWarning": "#825803",
   "euiColorBorderStrongRisk": "#9E3A16",
-  "euiColorBorderStrongDanger": "#A71627"
+  "euiColorBorderStrongDanger": "#A71627",
+  "euiColorBorderStrongText": "#5A6D8C"
 }
