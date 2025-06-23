@@ -1,3 +1,9 @@
+## [`v104.0.2`](https://github.com/elastic/eui/releases/v104.0.2)
+
+**Bug fixes**
+
+- Fixed missing JSON token exports for `euiColorBackgroundBaseInteractiveSelectHover` and `euiColorBorderStrongText` ([#8819](https://github.com/elastic/eui/pull/8819))
+
 ## [`v104.0.1`](https://github.com/elastic/eui/releases/v104.0.1)
 
 **Bug fixes**
