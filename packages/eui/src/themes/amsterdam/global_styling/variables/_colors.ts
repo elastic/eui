@@ -30,7 +30,8 @@ import {
   makeHighContrastColor,
   makeDisabledContrastColor,
 } from '../../../../services/color/contrast';
-import { colorVis } from './_colors_vis';
+import { colorVisLight } from './_colors_vis_light';
+import { colorVisDark } from './_colors_vis_dark';
 import { severityColors } from './_colors_severity';
 
 /*
@@ -613,8 +614,13 @@ export const colors: _EuiThemeColors = {
   ink: '#000000',
   plainLight: '#FFFFFF',
   plainDark: '#000000',
-  LIGHT: light_colors,
-  DARK: dark_colors_ams,
-  vis: colorVis,
   severity: severityColors,
+  LIGHT: {
+    ...light_colors,
+    vis: colorVisLight,
+  },
+  DARK: {
+    ...dark_colors_ams,
+    vis: colorVisDark,
+  },
 };

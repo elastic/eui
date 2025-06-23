@@ -198,7 +198,7 @@ import { SpecialColorsTable } from './special_colors_table';
 
 :::note Guidance
 
-Data visualization colors semantically tied to data visualizations and are not meant for use in other contexts. Do not use these colors in other contexts.
+Data visualization colors are semantically tied to data visualizations and are not meant for use in other contexts. Do not use these colors in other contexts.
 :::
 
 import { DataVisColorsTable, DataVisColorsBehindTextColorsTable, DataVisBackgroundColor } from './data_vis_colors_table';
@@ -211,6 +211,8 @@ import { DataVisColorsPreview } from './data_vis_colors_preview'
 
     The following colors are color-blind safe and should be used in categorically seried visualizations and graphics.
     They are meant to be contrasted against the value of <DataVisBackgroundColor /> for the current theme.
+
+    See the [Data visualization text colors](#dataVisText) section for a note about text colors.
 
     See the [Color Contrast](#contrast) section for a note about color contrast.
   </Example.Description>
@@ -263,12 +265,48 @@ import { SeverityColorsPreview } from './severity_colors_preview'
 
 <SeverityColorsTable />
 
+
+## Data visualization text colors {#dataVisText}
+
+:::note Guidance
+
+Data visualization text colors are semantically tied to data visualizations colors and are not meant for use in other contexts. 
+:::
+
+import { DataVisTextColorsTable } from './data_vis_colors_table';
+import { DataVisTextColorsPreview } from './data_vis_colors_preview'
+
+
+<Example>
+  <Example.Description>
+    ### `euiTheme.colors.vis[token]` <Badge color="hollow">token</Badge>
+
+    The following colors are special text colors that are directly related to the data visualization colors. In dark mode these colors 
+    equal the values of the regular data visualization colors and only differ in light mode to provide higher color contrasts. Their only purpose is to be used as possible 
+    text fallbacks for data visualization colors.
+  </Example.Description>
+  <Example.Preview>
+    <DataVisTextColorsPreview />
+  </Example.Preview>
+  <Example.Snippet>
+    ```
+    css`
+      color: ${euiTheme.colors.vis.euiColorVisText0};
+    `
+    ```
+  </Example.Snippet>
+</Example>
+
+<EuiSpacer />
+
+<DataVisTextColorsTable />
+<DataVisColorsBehindTextColorsTable />
+
 ## Contrast ratios and color modes {#contrast}
 
 Our Data visualization colors and Health and Severity colors prioritize visual clarity and aesthetic appeal over strict contrast compliance in light mode. **This means some colors may not meet WCAG contrast requirements against light backgrounds**, as lighter and more saturated tones help differentiate data and create a more visually engaging experience.
 
 However, in dark mode, all colors meet the minimum 3:1 contrast ratio, ensuring accessibility compliance. 
-
 
 import { EuiTable, EuiTableHeader, EuiTableHeaderCell, EuiTableRow, EuiTableRowCell } from '@elastic/eui';
 

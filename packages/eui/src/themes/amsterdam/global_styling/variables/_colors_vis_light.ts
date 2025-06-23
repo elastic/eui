@@ -62,7 +62,7 @@ const euiPaletteColorBlind = {
   },
 };
 
-export const colorVis: _EuiThemeVisColors = {
+export const colorVisLight: _EuiThemeVisColors = {
   euiColorVis0: euiPaletteColorBlind.euiColorVis0.graphic,
   euiColorVis1: euiPaletteColorBlind.euiColorVis1.graphic,
   euiColorVis2: euiPaletteColorBlind.euiColorVis2.graphic,
@@ -89,21 +89,31 @@ export const colorVis: _EuiThemeVisColors = {
   euiColorVisBehindText8: euiPaletteColorBlind.euiColorVis8.behindText,
   euiColorVisBehindText9: euiPaletteColorBlind.euiColorVis9.behindText,
 
-  euiColorVisAsTextLight0: '#006BB4',
-  euiColorVisAsTextLight1: '#017D73',
-  euiColorVisAsTextLight2: '#F5A700',
-  euiColorVisAsTextLight3: '#BD271E',
-  euiColorVisAsTextLight4: '#DD0A73',
-  euiColorVisAsTextLight5: '#006BB4', // duplicated to handle color amount difference between themes
-  euiColorVisAsTextLight6: '#017D73',
-
-  euiColorVisAsTextDark0: '#1BA9F5',
-  euiColorVisAsTextDark1: '#7DE2D1',
-  euiColorVisAsTextDark2: '#F990C0',
-  euiColorVisAsTextDark3: '#F66',
-  euiColorVisAsTextDark4: '#FFCE7A',
-  euiColorVisAsTextDark5: '#1BA9F5',
-  euiColorVisAsTextDark6: '#7DE2D1',
+  euiColorVisText0: '#017D73',
+  euiColorVisText1: '#006BB4',
+  euiColorVisText2: '#DD0A73',
+  euiColorVisText3: shade(
+    euiPaletteColorBlind.euiColorVis3.graphic,
+    0.2
+  ).toUpperCase(), // #745A93
+  euiColorVisText4: shade(
+    euiPaletteColorBlind.euiColorVis4.graphic,
+    0.2
+  ).toUpperCase(), // #A2728B
+  euiColorVisText5: shade(
+    euiPaletteColorBlind.euiColorVis5.graphic,
+    0.2
+  ).toUpperCase(), // #AB9946
+  euiColorVisText6: shade(
+    euiPaletteColorBlind.euiColorVis6.graphic,
+    0.2
+  ).toUpperCase(), // #94866D
+  euiColorVisText7: '#F5A700',
+  euiColorVisText8: shade(
+    euiPaletteColorBlind.euiColorVis8.graphic,
+    0.2
+  ).toUpperCase(), // #885145
+  euiColorVisText9: '#BD271E',
 
   euiColorVisNeutral0: tint(euiPaletteColorBlind.euiColorVis1.graphic, 0.3),
   euiColorVisNeutral1: tint(euiPaletteColorBlind.euiColorVis1.graphic, 0.56),

@@ -18,7 +18,6 @@ import {
   dark_border_colors,
 } from './colors/_colors_dark';
 import { border_colors } from './colors/_colors_light';
-import { colorVis } from './colors/_colors_vis';
 import { buttons } from './_buttons';
 import { forms } from './_forms';
 
@@ -74,31 +73,32 @@ const component_colors: _EuiThemeComponentColors = {
     ([textParagraph]) => textParagraph,
     ['colors.textParagraph']
   ),
-  codeInlineColor: colorVis.euiColorVisAsTextLight6,
+  codeInlineColor: SEMANTIC_COLORS.assistance100,
   codeCommentColor: computed(
     ([textSubdued]) => textSubdued,
     ['colors.textSubdued']
   ),
+
   codeSelectorColor: 'inherit',
-  codeStringColor: colorVis.euiColorVisAsTextLight2,
-  codeTagColor: colorVis.euiColorVisAsTextLight1,
-  codeNameColor: colorVis.euiColorVisAsTextLight1,
-  codeNumberColor: colorVis.euiColorVisAsTextLight0,
-  codeInlineCodeKeywordColor: colorVis.euiColorVisAsTextLight6,
-  codeKeywordColor: colorVis.euiColorVisAsTextLight1,
+  codeStringColor: SEMANTIC_COLORS.accent100,
+  codeTagColor: SEMANTIC_COLORS.primary100,
+  codeNameColor: SEMANTIC_COLORS.primary100,
+  codeNumberColor: SEMANTIC_COLORS.accentSecondary100,
+  codeInlineCodeKeywordColor: SEMANTIC_COLORS.assistance100,
+  codeKeywordColor: SEMANTIC_COLORS.primary100,
   codeFunctionTitleColor: 'inherit',
-  codeTypeColor: colorVis.euiColorVisAsTextLight1,
+  codeTypeColor: SEMANTIC_COLORS.primary100,
   codeAttributeColor: 'inherit',
-  codeSymbolColor: colorVis.euiColorVisAsTextLight3,
+  codeSymbolColor: SEMANTIC_COLORS.danger100,
   codeParamsColor: 'inherit',
   codeMetaColor: computed(
     ([textSubdued]) => textSubdued,
     ['colors.textSubdued']
   ),
-  codeTitleColor: colorVis.euiColorVisAsTextLight4,
-  codeSectionColor: colorVis.euiColorVisAsTextLight3,
-  codeAdditionColor: colorVis.euiColorVisAsTextLight0,
-  codeDeletionColor: colorVis.euiColorVisAsTextLight3,
+  codeTitleColor: SEMANTIC_COLORS.warning100,
+  codeSectionColor: SEMANTIC_COLORS.danger100,
+  codeAdditionColor: SEMANTIC_COLORS.accentSecondary100,
+  codeDeletionColor: SEMANTIC_COLORS.danger100,
   codeSelectorClassColor: 'inherit',
   codeSelectorIdColor: 'inherit',
 
@@ -363,18 +363,19 @@ export const components: _EuiThemeComponents = {
 
     buttonGroupFocusColor: SEMANTIC_COLORS.plainLight,
 
-    codeInlineColor: colorVis.euiColorVisAsTextDark6,
-    codeStringColor: colorVis.euiColorVisAsTextDark2,
-    codeTagColor: colorVis.euiColorVisAsTextDark1,
-    codeNameColor: colorVis.euiColorVisAsTextDark1,
-    codeNumberColor: colorVis.euiColorVisAsTextDark0,
-    codeKeywordColor: colorVis.euiColorVisAsTextDark6,
-    codeTypeColor: colorVis.euiColorVisAsTextDark1,
-    codeSymbolColor: colorVis.euiColorVisAsTextDark3,
-    codeTitleColor: colorVis.euiColorVisAsTextDark4,
-    codeSectionColor: colorVis.euiColorVisAsTextDark3,
-    codeAdditionColor: colorVis.euiColorVisAsTextDark0,
-    codeDeletionColor: colorVis.euiColorVisAsTextDark3,
+    codeInlineColor: SEMANTIC_COLORS.assistance60,
+    codeStringColor: SEMANTIC_COLORS.accent60,
+    codeTagColor: SEMANTIC_COLORS.primary60,
+    codeNameColor: SEMANTIC_COLORS.primary60,
+    codeNumberColor: SEMANTIC_COLORS.accentSecondary60,
+    codeInlineCodeKeywordColor: SEMANTIC_COLORS.assistance60,
+    codeKeywordColor: SEMANTIC_COLORS.assistance60,
+    codeTypeColor: SEMANTIC_COLORS.primary60,
+    codeSymbolColor: SEMANTIC_COLORS.danger60,
+    codeTitleColor: SEMANTIC_COLORS.warning60,
+    codeSectionColor: SEMANTIC_COLORS.danger60,
+    codeAdditionColor: SEMANTIC_COLORS.accentSecondary60,
+    codeDeletionColor: SEMANTIC_COLORS.danger60,
 
     filterButtonBadgeBackgroundHover: SEMANTIC_COLORS.shade105,
 

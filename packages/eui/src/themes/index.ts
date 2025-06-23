@@ -5,7 +5,10 @@
  * in compliance with, at your election, the Elastic License 2.0 or the Server
  * Side Public License, v 1.
  */
-export { colorVis } from './amsterdam/global_styling/variables/_colors_vis';
+import { colorVisLight } from './amsterdam/global_styling/variables/_colors_vis_light';
+import { colorVisDark } from './amsterdam/global_styling/variables/_colors_vis_dark';
+
+export { colorVisLight as colorVis, colorVisLight, colorVisDark };
 export type { EUI_THEME } from './themes';
 
 export { AMSTERDAM_NAME_KEY, EuiThemeAmsterdam } from './amsterdam/theme';
