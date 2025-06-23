@@ -91,6 +91,12 @@ const meta: Meta<EuiSelectableTemplateSitewideProps> = {
       },
     },
   },
+  args: {
+    colorModes: {
+      search: 'default',
+      popover: 'default',
+    },
+  },
 };
 
 export default meta;
