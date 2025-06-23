@@ -7,8 +7,8 @@
  */
 
 import { createContext } from 'react';
-import { EuiThemeBorealis } from '@elastic/eui-theme-borealis';
 
+import { EuiThemeAmsterdam } from '../../themes/amsterdam/theme';
 import {
   EuiThemeColorModeStandard,
   EuiThemeHighContrastMode,
@@ -21,7 +21,7 @@ import {
 import { DEFAULT_COLOR_MODE, getComputed } from './utils';
 
 export const DEFAULTS = {
-  system: EuiThemeBorealis,
+  system: EuiThemeAmsterdam,
   modifications: {},
   colorMode: DEFAULT_COLOR_MODE,
   highContrastMode: false as const,
