@@ -7,7 +7,7 @@
  */
 
 import { _EuiVisColorStore, EuiVisColorStore } from '@elastic/eui-theme-common';
-import { colorVis } from '@elastic/eui-theme-borealis';
+import { colorVisLight as colorVis } from '../../themes/amsterdam/global_styling/variables/_colors_vis_light';
 
 // initialsetup of Vis color storage with default colors
 export const EUI_VIS_COLOR_STORE: _EuiVisColorStore =
