@@ -29,7 +29,7 @@ exports[`SearchBar render - box 1`] = `
         </div>
         <input
           aria-label="aria-label"
-          class="euiFieldSearch testClass1 testClass2 emotion-euiFieldSearch-fullWidth-euiTestCss"
+          class="euiFieldSearch testClass1 testClass2 css-5woh-euiFieldSearch-fullWidth-euiTestCss"
           data-test-subj="test subject string"
           placeholder="find something..."
           type="search"
@@ -140,11 +140,11 @@ exports[`SearchBar render - provided query, filters 1`] = `
       class="euiFilterGroup emotion-euiFilterGroup-uncompressed"
     >
       <div
-        class="euiFilterButton__wrapper css-10m1aro-wrapper-hasToggle"
+        class="euiFilterButton__wrapper css-1mc0x02-wrapper-hasToggle"
       >
         <button
           aria-pressed="false"
-          class="euiButtonGroupButton euiFilterButton euiFilterButton-isToggle emotion-euiButtonDisplay-s-defaultMinWidth-euiButtonGroupButton-compressed-empty-text-euiFilterButton-toggle"
+          class="euiButtonGroupButton euiFilterButton emotion-euiButtonDisplay-s-defaultMinWidth-euiButtonGroupButton-compressed-empty-text-euiFilterButton-toggle"
           data-test-subj="filter-button_generated-id"
           type="button"
         >
@@ -165,12 +165,12 @@ exports[`SearchBar render - provided query, filters 1`] = `
         class="euiPopover emotion-euiPopover-inline-block"
       >
         <div
-          class="euiFilterButton__wrapper css-72u45h-wrapper"
+          class="euiFilterButton__wrapper css-1z01npq-wrapper"
         >
           <button
             aria-expanded="false"
             aria-label="Tag Selection"
-            class="euiButtonEmpty euiFilterButton emotion-euiButtonDisplay-euiButtonEmpty-m-empty-text-euiFilterButton-default"
+            class="euiButtonEmpty euiFilterButton emotion-euiButtonDisplay-euiButtonEmpty-m-empty-text-euiFilterButton"
             type="button"
           >
             <span
