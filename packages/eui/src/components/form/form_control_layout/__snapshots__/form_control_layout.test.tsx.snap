@@ -71,13 +71,13 @@ exports[`EuiFormControlLayout props compressed renders small-sized icon, clear b
         type="button"
       >
         <span
-          class="euiFormControlLayoutClearButton__icon emotion-euiFormControlLayoutClearButton__icon-m"
+          class="euiFormControlLayoutClearButton__icon emotion-euiFormControlLayoutClearButton__icon-s"
           data-euiicon-type="cross"
         />
       </button>
       <span
         aria-label="Loading"
-        class="euiLoadingSpinner emotion-euiLoadingSpinner-m"
+        class="euiLoadingSpinner emotion-euiLoadingSpinner-s"
         role="progressbar"
       />
     </div>

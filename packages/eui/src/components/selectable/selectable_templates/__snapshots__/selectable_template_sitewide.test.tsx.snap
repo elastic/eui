@@ -6,52 +6,48 @@ exports[`EuiSelectableTemplateSitewide is rendered 1`] = `
   data-test-subj="test subject string"
 >
   <div
-    class="euiPopover emotion-euiPopover-block-euiColorMode-LIGHT"
+    class="euiPopover emotion-euiPopover-block"
   >
-    <span
-      class="euiThemeProvider emotion-euiColorMode-LIGHT"
+    <div
+      class="euiFormControlLayout emotion-euiFormControlLayout-fullWidth"
     >
       <div
-        class="euiFormControlLayout emotion-euiFormControlLayout-fullWidth"
+        class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper"
+        style="--euiFormControlLeftIconsCount: 1;"
       >
         <div
-          class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper"
-          style="--euiFormControlLeftIconsCount: 1;"
+          class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-absolute-left"
         >
-          <div
-            class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-absolute-left"
+          <span
+            class="euiFormControlLayoutCustomIcon emotion-euiFormControlLayoutCustomIcon"
           >
             <span
-              class="euiFormControlLayoutCustomIcon emotion-euiFormControlLayoutCustomIcon"
-            >
-              <span
-                aria-hidden="true"
-                class="euiFormControlLayoutCustomIcon__icon"
-                data-euiicon-type="search"
-              />
-            </span>
-          </div>
-          <input
-            aria-activedescendant=""
-            aria-describedby="generated-id_instructions"
-            aria-haspopup="listbox"
-            aria-label="aria-label"
-            autocomplete="off"
-            class="euiFieldSearch euiSelectableSearch euiSelectableTemplateSitewide__search emotion-euiFieldSearch-fullWidth"
-            placeholder="Search for anything..."
-            type="search"
-            value=""
-          />
+              aria-hidden="true"
+              class="euiFormControlLayoutCustomIcon__icon"
+              data-euiicon-type="search"
+            />
+          </span>
         </div>
+        <input
+          aria-activedescendant=""
+          aria-describedby="generated-id_instructions"
+          aria-haspopup="listbox"
+          aria-label="aria-label"
+          autocomplete="off"
+          class="euiFieldSearch euiSelectableSearch euiSelectableTemplateSitewide__search emotion-euiFieldSearch-fullWidth"
+          placeholder="Search for anything..."
+          type="search"
+          value=""
+        />
       </div>
-      <p
-        class="emotion-euiScreenReaderOnly"
-        id="generated-id_instructions"
-      >
-         
-        Use the Up and Down arrow keys to move focus over options. Press Enter to select. Press Escape to collapse options.
-      </p>
-    </span>
+    </div>
+    <p
+      class="emotion-euiScreenReaderOnly"
+      id="generated-id_instructions"
+    >
+       
+      Use the Up and Down arrow keys to move focus over options. Press Enter to select. Press Escape to collapse options.
+    </p>
   </div>
 </div>
 `;
@@ -61,7 +57,7 @@ exports[`EuiSelectableTemplateSitewide props popoverButton is rendered 1`] = `
   class="euiSelectable euiSelectableTemplateSitewide emotion-euiSelectable-euiSelectableTemplateSitewide"
 >
   <div
-    class="euiPopover emotion-euiPopover-inline-block-euiColorMode-LIGHT"
+    class="euiPopover emotion-euiPopover-inline-block"
   >
     <span
       class="euiSelectableTemplateSitewide__popoverTrigger"
@@ -81,52 +77,48 @@ exports[`EuiSelectableTemplateSitewide props popoverFooter is rendered 1`] = `
   class="euiSelectable euiSelectableTemplateSitewide emotion-euiSelectable-euiSelectableTemplateSitewide"
 >
   <div
-    class="euiPopover emotion-euiPopover-block-euiColorMode-LIGHT"
+    class="euiPopover emotion-euiPopover-block"
   >
-    <span
-      class="euiThemeProvider emotion-euiColorMode-LIGHT"
+    <div
+      class="euiFormControlLayout emotion-euiFormControlLayout-fullWidth"
     >
       <div
-        class="euiFormControlLayout emotion-euiFormControlLayout-fullWidth"
+        class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper"
+        style="--euiFormControlLeftIconsCount: 1;"
       >
         <div
-          class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper"
-          style="--euiFormControlLeftIconsCount: 1;"
+          class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-absolute-left"
         >
-          <div
-            class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-absolute-left"
+          <span
+            class="euiFormControlLayoutCustomIcon emotion-euiFormControlLayoutCustomIcon"
           >
             <span
-              class="euiFormControlLayoutCustomIcon emotion-euiFormControlLayoutCustomIcon"
-            >
-              <span
-                aria-hidden="true"
-                class="euiFormControlLayoutCustomIcon__icon"
-                data-euiicon-type="search"
-              />
-            </span>
-          </div>
-          <input
-            aria-activedescendant=""
-            aria-describedby="generated-id_instructions"
-            aria-haspopup="listbox"
-            aria-label="Filter options"
-            autocomplete="off"
-            class="euiFieldSearch euiSelectableSearch euiSelectableTemplateSitewide__search emotion-euiFieldSearch-fullWidth"
-            placeholder="Search for anything..."
-            type="search"
-            value=""
-          />
+              aria-hidden="true"
+              class="euiFormControlLayoutCustomIcon__icon"
+              data-euiicon-type="search"
+            />
+          </span>
         </div>
+        <input
+          aria-activedescendant=""
+          aria-describedby="generated-id_instructions"
+          aria-haspopup="listbox"
+          aria-label="Filter options"
+          autocomplete="off"
+          class="euiFieldSearch euiSelectableSearch euiSelectableTemplateSitewide__search emotion-euiFieldSearch-fullWidth"
+          placeholder="Search for anything..."
+          type="search"
+          value=""
+        />
       </div>
-      <p
-        class="emotion-euiScreenReaderOnly"
-        id="generated-id_instructions"
-      >
-         
-        Use the Up and Down arrow keys to move focus over options. Press Enter to select. Press Escape to collapse options.
-      </p>
-    </span>
+    </div>
+    <p
+      class="emotion-euiScreenReaderOnly"
+      id="generated-id_instructions"
+    >
+       
+      Use the Up and Down arrow keys to move focus over options. Press Enter to select. Press Escape to collapse options.
+    </p>
   </div>
 </div>
 `;
@@ -136,52 +128,48 @@ exports[`EuiSelectableTemplateSitewide props popoverProps is rendered 1`] = `
   class="euiSelectable euiSelectableTemplateSitewide emotion-euiSelectable-euiSelectableTemplateSitewide"
 >
   <div
-    class="euiPopover customPopoverClass emotion-euiPopover-block-euiColorMode-LIGHT"
+    class="euiPopover customPopoverClass emotion-euiPopover-block"
   >
-    <span
-      class="euiThemeProvider emotion-euiColorMode-LIGHT"
+    <div
+      class="euiFormControlLayout emotion-euiFormControlLayout-fullWidth"
     >
       <div
-        class="euiFormControlLayout emotion-euiFormControlLayout-fullWidth"
+        class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper"
+        style="--euiFormControlLeftIconsCount: 1;"
       >
         <div
-          class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper"
-          style="--euiFormControlLeftIconsCount: 1;"
+          class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-absolute-left"
         >
-          <div
-            class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-absolute-left"
+          <span
+            class="euiFormControlLayoutCustomIcon emotion-euiFormControlLayoutCustomIcon"
           >
             <span
-              class="euiFormControlLayoutCustomIcon emotion-euiFormControlLayoutCustomIcon"
-            >
-              <span
-                aria-hidden="true"
-                class="euiFormControlLayoutCustomIcon__icon"
-                data-euiicon-type="search"
-              />
-            </span>
-          </div>
-          <input
-            aria-activedescendant=""
-            aria-describedby="generated-id_instructions"
-            aria-haspopup="listbox"
-            aria-label="Filter options"
-            autocomplete="off"
-            class="euiFieldSearch euiSelectableSearch euiSelectableTemplateSitewide__search emotion-euiFieldSearch-fullWidth"
-            placeholder="Search for anything..."
-            type="search"
-            value=""
-          />
+              aria-hidden="true"
+              class="euiFormControlLayoutCustomIcon__icon"
+              data-euiicon-type="search"
+            />
+          </span>
         </div>
+        <input
+          aria-activedescendant=""
+          aria-describedby="generated-id_instructions"
+          aria-haspopup="listbox"
+          aria-label="Filter options"
+          autocomplete="off"
+          class="euiFieldSearch euiSelectableSearch euiSelectableTemplateSitewide__search emotion-euiFieldSearch-fullWidth"
+          placeholder="Search for anything..."
+          type="search"
+          value=""
+        />
       </div>
-      <p
-        class="emotion-euiScreenReaderOnly"
-        id="generated-id_instructions"
-      >
-         
-        Use the Up and Down arrow keys to move focus over options. Press Enter to select. Press Escape to collapse options.
-      </p>
-    </span>
+    </div>
+    <p
+      class="emotion-euiScreenReaderOnly"
+      id="generated-id_instructions"
+    >
+       
+      Use the Up and Down arrow keys to move focus over options. Press Enter to select. Press Escape to collapse options.
+    </p>
   </div>
 </div>
 `;
@@ -191,52 +179,48 @@ exports[`EuiSelectableTemplateSitewide props popoverTitle is rendered 1`] = `
   class="euiSelectable euiSelectableTemplateSitewide emotion-euiSelectable-euiSelectableTemplateSitewide"
 >
   <div
-    class="euiPopover emotion-euiPopover-block-euiColorMode-LIGHT"
+    class="euiPopover emotion-euiPopover-block"
   >
-    <span
-      class="euiThemeProvider emotion-euiColorMode-LIGHT"
+    <div
+      class="euiFormControlLayout emotion-euiFormControlLayout-fullWidth"
     >
       <div
-        class="euiFormControlLayout emotion-euiFormControlLayout-fullWidth"
+        class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper"
+        style="--euiFormControlLeftIconsCount: 1;"
       >
         <div
-          class="euiFormControlLayout__childrenWrapper emotion-euiFormControlLayout__childrenWrapper"
-          style="--euiFormControlLeftIconsCount: 1;"
+          class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-absolute-left"
         >
-          <div
-            class="euiFormControlLayoutIcons emotion-euiFormControlLayoutIcons-absolute-left"
+          <span
+            class="euiFormControlLayoutCustomIcon emotion-euiFormControlLayoutCustomIcon"
           >
             <span
-              class="euiFormControlLayoutCustomIcon emotion-euiFormControlLayoutCustomIcon"
-            >
-              <span
-                aria-hidden="true"
-                class="euiFormControlLayoutCustomIcon__icon"
-                data-euiicon-type="search"
-              />
-            </span>
-          </div>
-          <input
-            aria-activedescendant=""
-            aria-describedby="generated-id_instructions"
-            aria-haspopup="listbox"
-            aria-label="Filter options"
-            autocomplete="off"
-            class="euiFieldSearch euiSelectableSearch euiSelectableTemplateSitewide__search emotion-euiFieldSearch-fullWidth"
-            placeholder="Search for anything..."
-            type="search"
-            value=""
-          />
+              aria-hidden="true"
+              class="euiFormControlLayoutCustomIcon__icon"
+              data-euiicon-type="search"
+            />
+          </span>
         </div>
+        <input
+          aria-activedescendant=""
+          aria-describedby="generated-id_instructions"
+          aria-haspopup="listbox"
+          aria-label="Filter options"
+          autocomplete="off"
+          class="euiFieldSearch euiSelectableSearch euiSelectableTemplateSitewide__search emotion-euiFieldSearch-fullWidth"
+          placeholder="Search for anything..."
+          type="search"
+          value=""
+        />
       </div>
-      <p
-        class="emotion-euiScreenReaderOnly"
-        id="generated-id_instructions"
-      >
-         
-        Use the Up and Down arrow keys to move focus over options. Press Enter to select. Press Escape to collapse options.
-      </p>
-    </span>
+    </div>
+    <p
+      class="emotion-euiScreenReaderOnly"
+      id="generated-id_instructions"
+    >
+       
+      Use the Up and Down arrow keys to move focus over options. Press Enter to select. Press Escape to collapse options.
+    </p>
   </div>
 </div>
 `;
