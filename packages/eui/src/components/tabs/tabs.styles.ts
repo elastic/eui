@@ -39,8 +39,5 @@ export const euiTabsStyles = (euiThemeContext: UseEuiTheme) => {
     l: css`
       gap: ${euiTheme.size.l};
     `,
-    xl: css`
-      gap: ${euiTheme.size.xl};
-    `,
   };
 };
