@@ -378,6 +378,7 @@ declare module '@elastic/eui/dist/eui_theme_borealis_dark.json' {
     euiColorBackgroundBaseFormsControlDisabled: string;
     euiColorBackgroundBaseInteractiveHover: string;
     euiColorBackgroundBaseInteractiveSelect: string;
+    euiColorBackgroundBaseInteractiveSelectHover: string;
     euiColorBackgroundBaseInteractiveOverlay: string;
     euiColorBackgroundBaseSkeletonEdge: string;
     euiColorBackgroundBaseSkeletonMiddle: string;
@@ -421,6 +422,7 @@ declare module '@elastic/eui/dist/eui_theme_borealis_dark.json' {
     euiColorBorderStrongWarning: string;
     euiColorBorderStrongRisk: string;
     euiColorBorderStrongDanger: string;
+    euiColorBorderStrongText: string;
   };
   export default sassVariables;
 }
