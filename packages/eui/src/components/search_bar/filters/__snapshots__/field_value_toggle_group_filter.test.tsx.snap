@@ -2,11 +2,11 @@
 
 exports[`TermToggleGroupFilter render - active 1`] = `
 <div
-  class="euiFilterButton__wrapper css-nbqv3o-wrapper-withNext-hasToggle"
+  class="euiFilterButton__wrapper css-1mc0x02-wrapper-hasToggle"
 >
   <button
     aria-pressed="true"
-    class="euiButtonGroupButton euiButtonGroupButton-isSelected euiFilterButton euiFilterButton-isSelected euiFilterButton-hasActiveFilters euiFilterButton-isToggle emotion-euiButtonDisplay-s-defaultMinWidth-euiButtonGroupButton-compressed-fill-text-euiFilterButton-hasActiveFilters-toggle"
+    class="euiButtonGroupButton euiButtonGroupButton-isSelected euiFilterButton euiFilterButton-isSelected euiFilterButton-hasActiveFilters emotion-euiButtonDisplay-s-defaultMinWidth-euiButtonGroupButton-compressed-fill-text-euiFilterButton-withNext-hasActiveFilters-toggle"
     data-test-subj="filter-button_generated-id"
     type="button"
   >
@@ -27,11 +27,11 @@ exports[`TermToggleGroupFilter render - active 1`] = `
 
 exports[`TermToggleGroupFilter render - active negated - custom negated name 1`] = `
 <div
-  class="euiFilterButton__wrapper css-nbqv3o-wrapper-withNext-hasToggle"
+  class="euiFilterButton__wrapper css-1mc0x02-wrapper-hasToggle"
 >
   <button
     aria-pressed="true"
-    class="euiButtonGroupButton euiButtonGroupButton-isSelected euiFilterButton euiFilterButton-isSelected euiFilterButton-hasActiveFilters euiFilterButton-isToggle emotion-euiButtonDisplay-s-defaultMinWidth-euiButtonGroupButton-compressed-fill-text-euiFilterButton-hasActiveFilters-toggle"
+    class="euiButtonGroupButton euiButtonGroupButton-isSelected euiFilterButton euiFilterButton-isSelected euiFilterButton-hasActiveFilters emotion-euiButtonDisplay-s-defaultMinWidth-euiButtonGroupButton-compressed-fill-text-euiFilterButton-withNext-hasActiveFilters-toggle"
     data-test-subj="filter-button_generated-id"
     type="button"
   >
@@ -52,11 +52,11 @@ exports[`TermToggleGroupFilter render - active negated - custom negated name 1`]
 
 exports[`TermToggleGroupFilter render - active negated 1`] = `
 <div
-  class="euiFilterButton__wrapper css-nbqv3o-wrapper-withNext-hasToggle"
+  class="euiFilterButton__wrapper css-1mc0x02-wrapper-hasToggle"
 >
   <button
     aria-pressed="true"
-    class="euiButtonGroupButton euiButtonGroupButton-isSelected euiFilterButton euiFilterButton-isSelected euiFilterButton-hasActiveFilters euiFilterButton-isToggle emotion-euiButtonDisplay-s-defaultMinWidth-euiButtonGroupButton-compressed-fill-text-euiFilterButton-hasActiveFilters-toggle"
+    class="euiButtonGroupButton euiButtonGroupButton-isSelected euiFilterButton euiFilterButton-isSelected euiFilterButton-hasActiveFilters emotion-euiButtonDisplay-s-defaultMinWidth-euiButtonGroupButton-compressed-fill-text-euiFilterButton-withNext-hasActiveFilters-toggle"
     data-test-subj="filter-button_generated-id"
     type="button"
   >
@@ -77,11 +77,11 @@ exports[`TermToggleGroupFilter render - active negated 1`] = `
 
 exports[`TermToggleGroupFilter renders 1`] = `
 <div
-  class="euiFilterButton__wrapper css-nbqv3o-wrapper-withNext-hasToggle"
+  class="euiFilterButton__wrapper css-1mc0x02-wrapper-hasToggle"
 >
   <button
     aria-pressed="false"
-    class="euiButtonGroupButton euiFilterButton euiFilterButton-isToggle emotion-euiButtonDisplay-s-defaultMinWidth-euiButtonGroupButton-compressed-empty-text-euiFilterButton-toggle"
+    class="euiButtonGroupButton euiFilterButton emotion-euiButtonDisplay-s-defaultMinWidth-euiButtonGroupButton-compressed-empty-text-euiFilterButton-withNext-toggle"
     data-test-subj="filter-button_generated-id"
     type="button"
   >

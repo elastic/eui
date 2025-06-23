@@ -2,11 +2,11 @@
 
 exports[`IsFilter render 1`] = `
 <div
-  class="euiFilterButton__wrapper css-10m1aro-wrapper-hasToggle"
+  class="euiFilterButton__wrapper css-1mc0x02-wrapper-hasToggle"
 >
   <button
     aria-pressed="false"
-    class="euiButtonGroupButton euiFilterButton euiFilterButton-isToggle emotion-euiButtonDisplay-s-defaultMinWidth-euiButtonGroupButton-compressed-empty-text-euiFilterButton-toggle"
+    class="euiButtonGroupButton euiFilterButton emotion-euiButtonDisplay-s-defaultMinWidth-euiButtonGroupButton-compressed-empty-text-euiFilterButton-toggle"
     data-test-subj="filter-button_generated-id"
     type="button"
   >
