@@ -28,9 +28,8 @@ const EuiFlyoutSessionContext = createContext<FlyoutSessionContextProps | null>(
 );
 
 /**
- * Accesses the context used internally by the EuiFlyoutSessionProvider.
- *
- * @internal
+ * Accesses the state data and dispatch function from the context of EuiFlyoutSessionProvider
+ * Use this if you need to debug the state or need direct access to the dispatch function, otherwise use useEuiFlyoutSession hook.
  */
 export const useEuiFlyoutSessionContext = () => {
   const context = useContext(EuiFlyoutSessionContext);

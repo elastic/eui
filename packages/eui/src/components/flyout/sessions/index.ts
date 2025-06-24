@@ -6,16 +6,19 @@
  * Side Public License, v 1.
  */
 
-export { EuiFlyoutSessionProvider } from './flyout_provider';
-
 export {
-  useEuiFlyoutSession,
-  type EuiFlyoutSessionOpenChildOptions,
-  type EuiFlyoutSessionOpenMainOptions,
-} from './use_eui_flyout';
+  EuiFlyoutSessionProvider,
+  useEuiFlyoutSessionContext,
+} from './flyout_provider';
 
 export type {
   EuiFlyoutSessionConfig,
   EuiFlyoutSessionProviderComponentProps,
   EuiFlyoutSessionRenderContext,
 } from './types';
+
+export {
+  useEuiFlyoutSession,
+  type EuiFlyoutSessionOpenChildOptions,
+  type EuiFlyoutSessionOpenMainOptions,
+} from './use_eui_flyout';
