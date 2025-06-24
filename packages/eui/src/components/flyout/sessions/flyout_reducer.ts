@@ -82,10 +82,12 @@ export function flyoutReducer<FlyoutMeta>(
         },
         mainOnUnmount: onUnmount,
         childOnUnmount: undefined,
-        meta: {
-          ...state.activeFlyoutGroup?.meta,
-          ...action.payload.meta,
-        },
+        meta:
+          action.payload.meta !== undefined
+            ? state.activeFlyoutGroup?.meta !== undefined
+              ? { ...state.activeFlyoutGroup.meta, ...action.payload.meta }
+              : action.payload.meta
+            : state.activeFlyoutGroup?.meta,
       };
 
       return {
@@ -112,10 +114,12 @@ export function flyoutReducer<FlyoutMeta>(
           childFlyoutProps: flyoutProps,
         },
         childOnUnmount: onUnmount,
-        meta: {
-          ...state.activeFlyoutGroup.meta,
-          ...action.payload.meta,
-        },
+        meta:
+          action.payload.meta !== undefined
+            ? state.activeFlyoutGroup.meta !== undefined
+              ? { ...state.activeFlyoutGroup.meta, ...action.payload.meta }
+              : action.payload.meta
+            : state.activeFlyoutGroup.meta,
       };
 
       return {

@@ -17,7 +17,7 @@ export interface EuiFlyoutSessionOpenMainOptions<Meta = unknown> {
   size: EuiFlyoutSize;
   flyoutProps?: EuiFlyoutSessionConfig['mainFlyoutProps'];
   onUnmount?: () => void;
-  meta: Meta;
+  meta?: Meta;
 }
 
 /**
@@ -27,7 +27,7 @@ export interface EuiFlyoutSessionOpenChildOptions<Meta = unknown> {
   size: 's' | 'm';
   flyoutProps?: EuiFlyoutSessionConfig['childFlyoutProps'];
   onUnmount?: () => void;
-  meta: Meta;
+  meta?: Meta;
 }
 
 /**

@@ -29,7 +29,7 @@ export interface EuiFlyoutSessionGroup<FlyoutMeta> {
   config: EuiFlyoutSessionConfig;
   mainOnUnmount?: () => void;
   childOnUnmount?: () => void;
-  meta: FlyoutMeta;
+  meta?: FlyoutMeta;
 }
 
 /**
@@ -56,7 +56,7 @@ export type EuiFlyoutSessionAction<FlyoutMeta = unknown> =
         size: EuiFlyoutSize;
         flyoutProps?: Partial<Omit<EuiFlyoutProps, 'children'>>;
         onUnmount?: () => void;
-        meta: FlyoutMeta;
+        meta?: FlyoutMeta;
       };
     }
   | {
@@ -65,7 +65,7 @@ export type EuiFlyoutSessionAction<FlyoutMeta = unknown> =
         size: 's' | 'm';
         flyoutProps?: Partial<Omit<EuiFlyoutChildProps, 'children'>>;
         onUnmount?: () => void;
-        meta: FlyoutMeta;
+        meta?: FlyoutMeta;
       };
     }
   | { type: 'GO_BACK' }
