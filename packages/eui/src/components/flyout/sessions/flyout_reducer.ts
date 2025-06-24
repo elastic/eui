@@ -128,6 +128,35 @@ export function flyoutReducer<FlyoutMeta>(
       };
     }
 
+    case 'OPEN_FLYOUT_GROUP': {
+      const { main, child, meta } = action.payload;
+      const newHistory = [...state.history];
+
+      if (state.activeFlyoutGroup) {
+        newHistory.push(state.activeFlyoutGroup);
+      }
+
+      // Create the new active group with both main and child flyouts open
+      const newActiveGroup: EuiFlyoutSessionGroup<FlyoutMeta> = {
+        isMainOpen: true,
+        isChildOpen: true,
+        config: {
+          mainSize: main.size,
+          childSize: child.size,
+          mainFlyoutProps: main.flyoutProps,
+          childFlyoutProps: child.flyoutProps,
+        },
+        mainOnUnmount: main.onUnmount,
+        childOnUnmount: child.onUnmount,
+        meta,
+      };
+
+      return {
+        activeFlyoutGroup: applySizeConstraints(newActiveGroup),
+        history: newHistory,
+      };
+    }
+
     case 'CLOSE_CHILD_FLYOUT': {
       if (!state.activeFlyoutGroup || !state.activeFlyoutGroup.isChildOpen) {
         console.warn(

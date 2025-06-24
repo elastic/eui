@@ -68,6 +68,22 @@ export type EuiFlyoutSessionAction<FlyoutMeta = unknown> =
         meta?: FlyoutMeta;
       };
     }
+  | {
+      type: 'OPEN_FLYOUT_GROUP';
+      payload: {
+        main: {
+          size: EuiFlyoutSize;
+          flyoutProps?: Partial<Omit<EuiFlyoutProps, 'children'>>;
+          onUnmount?: () => void;
+        };
+        child: {
+          size: 's' | 'm';
+          flyoutProps?: Partial<Omit<EuiFlyoutChildProps, 'children'>>;
+          onUnmount?: () => void;
+        };
+        meta?: FlyoutMeta;
+      };
+    }
   | { type: 'GO_BACK' }
   | { type: 'CLOSE_CHILD_FLYOUT' }
   | { type: 'CLEAR_HISTORY' };

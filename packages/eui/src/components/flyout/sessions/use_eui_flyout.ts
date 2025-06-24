@@ -31,6 +31,23 @@ export interface EuiFlyoutSessionOpenChildOptions<Meta = unknown> {
 }
 
 /**
+ * Options for opening both a main flyout and child flyout simultaneously
+ */
+export interface EuiFlyoutSessionOpenGroupOptions<Meta = unknown> {
+  main: {
+    size: EuiFlyoutSize;
+    flyoutProps?: EuiFlyoutSessionConfig['mainFlyoutProps'];
+    onUnmount?: () => void;
+  };
+  child: {
+    size: 's' | 'm';
+    flyoutProps?: EuiFlyoutSessionConfig['childFlyoutProps'];
+    onUnmount?: () => void;
+  };
+  meta?: Meta; // Shared meta for both flyouts
+}
+
+/**
  * Hook for accessing the flyout API
  */
 export function useEuiFlyoutSession() {
@@ -56,6 +73,25 @@ export function useEuiFlyoutSession() {
     });
   };
 
+  const openFlyoutGroup = (options: EuiFlyoutSessionOpenGroupOptions) => {
+    dispatch({
+      type: 'OPEN_FLYOUT_GROUP',
+      payload: {
+        main: {
+          size: options.main.size,
+          flyoutProps: options.main.flyoutProps,
+          onUnmount: options.main.onUnmount,
+        },
+        child: {
+          size: options.child.size,
+          flyoutProps: options.child.flyoutProps,
+          onUnmount: options.child.onUnmount,
+        },
+        meta: options.meta,
+      },
+    });
+  };
+
   const closeChildFlyout = () => {
     dispatch({ type: 'CLOSE_CHILD_FLYOUT' });
   };
@@ -77,6 +113,7 @@ export function useEuiFlyoutSession() {
   return {
     openFlyout,
     openChildFlyout,
+    openFlyoutGroup,
     closeChildFlyout,
     goBack,
     canGoBack,
