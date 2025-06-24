@@ -10,6 +10,9 @@ import { EuiFlyoutSize } from '../flyout';
 import { useEuiFlyoutSessionContext } from './flyout_provider';
 import { EuiFlyoutSessionConfig } from './types';
 
+/**
+ * Options that control a main flyout in a session
+ */
 export interface EuiFlyoutSessionOpenMainOptions<Meta = unknown> {
   size: EuiFlyoutSize;
   flyoutProps?: EuiFlyoutSessionConfig['mainFlyoutProps'];
@@ -17,6 +20,9 @@ export interface EuiFlyoutSessionOpenMainOptions<Meta = unknown> {
   meta: Meta;
 }
 
+/**
+ * Options that control a child flyout in a session
+ */
 export interface EuiFlyoutSessionOpenChildOptions<Meta = unknown> {
   size: 's' | 'm';
   flyoutProps?: EuiFlyoutSessionConfig['childFlyoutProps'];

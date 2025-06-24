@@ -18,10 +18,19 @@ export { EuiFlyoutFooter } from './flyout_footer';
 export type { EuiFlyoutHeaderProps } from './flyout_header';
 export { EuiFlyoutHeader } from './flyout_header';
 
-export type { EuiFlyoutChildProps } from './flyout_child';
-export { EuiFlyoutChild } from './flyout_child';
-
 export { euiFlyoutSlideInRight, euiFlyoutSlideInLeft } from './flyout.styles';
 
 export type { EuiFlyoutResizableProps } from './flyout_resizable';
 export { EuiFlyoutResizable } from './flyout_resizable';
+
+export { EuiFlyoutChild } from './flyout_child';
+export type { EuiFlyoutChildProps } from './flyout_child';
+
+export type {
+  EuiFlyoutSessionConfig,
+  EuiFlyoutSessionOpenChildOptions,
+  EuiFlyoutSessionOpenMainOptions,
+  EuiFlyoutSessionProviderComponentProps,
+  EuiFlyoutSessionRenderContext,
+} from './sessions';
+export { EuiFlyoutSessionProvider, useEuiFlyoutSession } from './sessions';

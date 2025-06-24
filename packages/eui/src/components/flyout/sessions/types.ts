@@ -9,6 +9,9 @@
 import { EuiFlyoutProps, EuiFlyoutSize } from '../flyout';
 import { EuiFlyoutChildProps } from '../flyout_child';
 
+/**
+ * Configuration used for setting display options for main and child flyouts in a session.
+ */
 export interface EuiFlyoutSessionConfig {
   mainSize: EuiFlyoutSize;
   childSize: 's' | 'm';
@@ -16,6 +19,10 @@ export interface EuiFlyoutSessionConfig {
   childFlyoutProps?: Partial<Omit<EuiFlyoutChildProps, 'children'>>;
 }
 
+/**
+ * A configuration user state for past and current main and child flyouts in a session
+ * @internal
+ */
 export interface EuiFlyoutSessionGroup<FlyoutMeta> {
   isMainOpen: boolean;
   isChildOpen: boolean;
@@ -25,6 +32,10 @@ export interface EuiFlyoutSessionGroup<FlyoutMeta> {
   meta: FlyoutMeta;
 }
 
+/**
+ * State used for tracking various EuiFlyoutSessionGroups
+ * @internal
+ */
 export interface EuiFlyoutSessionHistoryState<FlyoutMeta = unknown> {
   activeFlyoutGroup: EuiFlyoutSessionGroup<FlyoutMeta> | null;
   history: Array<EuiFlyoutSessionGroup<FlyoutMeta>>;
@@ -61,6 +72,9 @@ export type EuiFlyoutSessionAction<FlyoutMeta = unknown> =
   | { type: 'CLOSE_CHILD_FLYOUT' }
   | { type: 'CLEAR_HISTORY' };
 
+/**
+ * Flyout session context managed by `EuiFlyoutSessionProvider`, and passed to the `renderMainFlyoutContent` and `renderChildFlyoutContent` functions.
+ */
 export interface EuiFlyoutSessionRenderContext<FlyoutMeta = unknown> {
   flyoutProps: Partial<EuiFlyoutProps | EuiFlyoutChildProps>;
   flyoutSize: EuiFlyoutProps['size'] | EuiFlyoutChildProps['size'];
@@ -72,6 +86,9 @@ export interface EuiFlyoutSessionRenderContext<FlyoutMeta = unknown> {
   meta?: FlyoutMeta;
 }
 
+/**
+ * Props that can be passed to `EuiFlyoutSessionProvider` to render the main and child flyouts in a session.
+ */
 export interface EuiFlyoutSessionProviderComponentProps<FlyoutMeta = any> {
   children: React.ReactNode;
   renderMainFlyoutContent: (

@@ -12,6 +12,10 @@ import {
   EuiFlyoutSessionGroup,
 } from './types';
 
+/**
+ * Initial state for the flyout session
+ * @internal
+ */
 export const initialFlyoutState: EuiFlyoutSessionHistoryState<unknown> = {
   activeFlyoutGroup: null,
   history: [],

@@ -27,6 +27,11 @@ const EuiFlyoutSessionContext = createContext<FlyoutSessionContextProps | null>(
   null
 );
 
+/**
+ * Accesses the context used internally by the EuiFlyoutSessionProvider.
+ *
+ * @internal
+ */
 export const useEuiFlyoutSessionContext = () => {
   const context = useContext(EuiFlyoutSessionContext);
   if (!context) {

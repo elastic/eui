@@ -25,6 +25,9 @@ import { EuiFlyoutContext } from './flyout_context';
 import { EuiFlyoutBody } from './flyout_body';
 import { EuiFocusTrap } from '../focus_trap';
 
+/**
+ * Props used to render and configure the child flyout panel
+ */
 export interface EuiFlyoutChildProps
   extends HTMLAttributes<HTMLDivElement>,
     CommonProps {
