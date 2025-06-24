@@ -82,7 +82,10 @@ export const euiFormControlLayoutStyles = (euiThemeContext: UseEuiTheme) => {
   `;
 
   return {
-    euiFormControlLayout: css``,
+    euiFormControlLayout: css`
+      position: relative;
+      z-index: 0;
+    `,
     // Skip the css`` on the default height to avoid generating a className
     uncompressed: `
       ${logicalCSS('height', form.controlHeight)}
