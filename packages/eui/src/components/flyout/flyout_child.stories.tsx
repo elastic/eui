@@ -262,7 +262,6 @@ export const WithSmallMainLargeChlld: Story = {
 };
 
 export const CompleteExample: Story = {
-  name: 'With Header and Footer',
   render: ({ pushMinBreakpoint }) => {
     const CompleteExampleComponent = () => {
       const [isOpen, setIsOpen] = useState(false);
@@ -278,8 +277,9 @@ export const CompleteExample: Story = {
         <>
           <EuiText>
             <p>
-              This is the main page content for the Complete Example. Watch how
-              it behaves when the flyout type changes.
+              This is the main page content for the Complete Example. In the
+              Complete Example, both the parent and child flyout open at the
+              same time when you click the "Open flyouts" button.
             </p>
             <p>
               Duis aute irure dolor in reprehenderit in voluptate velit esse
@@ -297,7 +297,14 @@ export const CompleteExample: Story = {
             name="completeExampleFlyoutTypeToggle"
           />
           <EuiSpacer />
-          <EuiButton onClick={() => setIsOpen(true)}>Open flyout</EuiButton>
+          <EuiButton
+            onClick={() => {
+              setIsOpen(true);
+              setIsChildOpen(true);
+            }}
+          >
+            Open flyouts
+          </EuiButton>
           {isOpen && (
             <EuiFlyout
               onClose={() => setIsOpen(false)}
