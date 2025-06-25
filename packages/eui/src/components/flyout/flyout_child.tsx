@@ -154,7 +154,11 @@ export const EuiFlyoutChild: FunctionComponent<EuiFlyoutChildProps> = ({
   const processedChildren = useMemo(() => {
     return Children.map(children, (child) => {
       if (React.isValidElement(child)) {
-        if (child.type === EuiFlyoutBody && hasDescribedByBody) {
+        if (
+          (child.type === EuiFlyoutBody ||
+            (child.type as any)?.displayName === 'EuiFlyoutBody') &&
+          hasDescribedByBody
+        ) {
           return React.cloneElement(child as React.ReactElement<any>, {
             id: bodyIdGenerated,
           });
