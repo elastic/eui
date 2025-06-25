@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import { Meta, StoryFn } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react';
 import React, { PropsWithChildren, useState } from 'react';
 
 import {
@@ -30,6 +30,13 @@ import {
   EuiFlyoutSessionOpenMainOptions,
   useEuiFlyoutSession,
 } from './use_eui_flyout';
+
+const meta: Meta<typeof EuiFlyoutSessionProvider> = {
+  title: 'Layout/EuiFlyout/EuiFlyoutChild',
+  component: EuiFlyoutSessionProvider,
+};
+
+export default meta;
 
 interface ECommerceContentProps {
   itemQuantity: number;
@@ -282,7 +289,7 @@ const DemoAppControls: React.FC = () => {
   );
 };
 
-const FlyoutDemoApp: React.FC = () => {
+const WithHistoryApp: React.FC = () => {
   const [itemQuantity, setItemQuantity] = useState(1);
 
   const handleQuantityChange = (delta: number) => {
@@ -339,14 +346,9 @@ const FlyoutDemoApp: React.FC = () => {
   );
 };
 
-export default {
-  title: 'Layout/EuiFlyout/EuiFlyoutChild',
-  component: EuiFlyoutSessionProvider,
-} as Meta<typeof EuiFlyoutSessionProvider>;
-
-const Template: StoryFn<PropsWithChildren<{}>> = () => {
-  return <FlyoutDemoApp />;
+export const WithHistory: StoryObj<PropsWithChildren<{}>> = {
+  name: 'FlyoutProvider with History',
+  render: () => {
+    return <WithHistoryApp />;
+  },
 };
-
-export const Default = Template.bind({});
-Default.storyName = 'FlyoutProvider with History';
