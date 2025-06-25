@@ -30,21 +30,17 @@ export type EuiFormControlLayoutDelimitedProps =
     /**
      * Left side control
      */
-    startControl: ReactElement;
+    startControl?: ReactElement;
     /**
      * Right side control
      */
-    endControl: ReactElement;
+    endControl?: ReactElement;
     /**
      * The center content. Accepts a string to be wrapped in a subdued EuiText
      * or a single ReactElement
      */
     delimiter?: ReactNode;
     className?: string;
-    /**
-     * If set to `true`, the delimeter and controls will be not be rendered
-     */
-    isQuickSelectOnly?: boolean;
   };
 
 export const EuiFormControlLayoutDelimited: FunctionComponent<
@@ -55,7 +51,6 @@ export const EuiFormControlLayoutDelimited: FunctionComponent<
   delimiter,
   className,
   fullWidth: _fullWidth,
-  isQuickSelectOnly = false,
   ...rest
 }) => {
   const { defaultFullWidth } = useFormContext();
@@ -91,16 +86,12 @@ export const EuiFormControlLayoutDelimited: FunctionComponent<
       wrapperProps={{ ...rest.wrapperProps, css: wrapperStyles }}
     >
       <FormContext.Provider value={{ defaultFullWidth: fullWidth }}>
-        {!isQuickSelectOnly && (
-          <>
-            {addClassesToControl(startControl)}
-            <EuiFormControlDelimiter
-              delimiter={delimiter}
-              isInvalid={showInvalidState}
-            />
-            {addClassesToControl(endControl)}
-          </>
-        )}
+        {startControl && addClassesToControl(startControl)}
+        <EuiFormControlDelimiter
+          delimiter={delimiter}
+          isInvalid={showInvalidState}
+        />
+        {endControl && addClassesToControl(endControl)}
       </FormContext.Provider>
     </EuiFormControlLayout>
   );

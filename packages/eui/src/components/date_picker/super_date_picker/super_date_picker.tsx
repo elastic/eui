@@ -648,59 +648,63 @@ export class EuiSuperDatePickerInternal extends Component<
         {({ locale: contextLocale }) => (
           <EuiDatePickerRange
             {...rangeProps}
-            isQuickSelectOnly={isQuickSelectOnly}
             css={rangeCssStyles}
             isCustom={true}
             iconType={false}
+            delimiter={isQuickSelectOnly ? '' : undefined}
             startDateControl={
-              <EuiDatePopoverButton
-                css={styles.euiSuperDatePicker__rangeInput}
-                className="euiSuperDatePicker__startPopoverButton"
-                compressed={compressed}
-                position="start"
-                needsUpdating={hasChanged}
-                isInvalid={isInvalid}
-                isDisabled={!!isDisabled}
-                onChange={this.setStart}
-                value={start}
-                dateFormat={dateFormat}
-                utcOffset={utcOffset}
-                timeFormat={timeFormat}
-                locale={locale || contextLocale}
-                minDate={minDate}
-                maxDate={maxDate}
-                canRoundRelativeUnits={canRoundRelativeUnits}
-                isOpen={this.state.isStartDatePopoverOpen}
-                onPopoverToggle={this.onStartDatePopoverToggle}
-                onPopoverClose={this.onStartDatePopoverClose}
-                timeOptions={timeOptions}
-                buttonProps={{ onFocus }}
-              />
+              isQuickSelectOnly ? undefined : (
+                <EuiDatePopoverButton
+                  css={styles.euiSuperDatePicker__rangeInput}
+                  className="euiSuperDatePicker__startPopoverButton"
+                  compressed={compressed}
+                  position="start"
+                  needsUpdating={hasChanged}
+                  isInvalid={isInvalid}
+                  isDisabled={!!isDisabled}
+                  onChange={this.setStart}
+                  value={start}
+                  dateFormat={dateFormat}
+                  utcOffset={utcOffset}
+                  timeFormat={timeFormat}
+                  locale={locale || contextLocale}
+                  minDate={minDate}
+                  maxDate={maxDate}
+                  canRoundRelativeUnits={canRoundRelativeUnits}
+                  isOpen={this.state.isStartDatePopoverOpen}
+                  onPopoverToggle={this.onStartDatePopoverToggle}
+                  onPopoverClose={this.onStartDatePopoverClose}
+                  timeOptions={timeOptions}
+                  buttonProps={{ onFocus }}
+                />
+              )
             }
             endDateControl={
-              <EuiDatePopoverButton
-                css={styles.euiSuperDatePicker__rangeInput}
-                position="end"
-                compressed={compressed}
-                needsUpdating={hasChanged}
-                isInvalid={isInvalid}
-                isDisabled={!!isDisabled}
-                onChange={this.setEnd}
-                value={end}
-                dateFormat={dateFormat}
-                utcOffset={utcOffset}
-                timeFormat={timeFormat}
-                locale={locale || contextLocale}
-                minDate={minDate}
-                maxDate={maxDate}
-                canRoundRelativeUnits={canRoundRelativeUnits}
-                roundUp
-                isOpen={this.state.isEndDatePopoverOpen}
-                onPopoverToggle={this.onEndDatePopoverToggle}
-                onPopoverClose={this.onEndDatePopoverClose}
-                timeOptions={timeOptions}
-                buttonProps={{ onFocus }}
-              />
+              isQuickSelectOnly ? undefined : (
+                <EuiDatePopoverButton
+                  css={styles.euiSuperDatePicker__rangeInput}
+                  position="end"
+                  compressed={compressed}
+                  needsUpdating={hasChanged}
+                  isInvalid={isInvalid}
+                  isDisabled={!!isDisabled}
+                  onChange={this.setEnd}
+                  value={end}
+                  dateFormat={dateFormat}
+                  utcOffset={utcOffset}
+                  timeFormat={timeFormat}
+                  locale={locale || contextLocale}
+                  minDate={minDate}
+                  maxDate={maxDate}
+                  canRoundRelativeUnits={canRoundRelativeUnits}
+                  roundUp
+                  isOpen={this.state.isEndDatePopoverOpen}
+                  onPopoverToggle={this.onEndDatePopoverToggle}
+                  onPopoverClose={this.onEndDatePopoverClose}
+                  timeOptions={timeOptions}
+                  buttonProps={{ onFocus }}
+                />
+              )
             }
           />
         )}

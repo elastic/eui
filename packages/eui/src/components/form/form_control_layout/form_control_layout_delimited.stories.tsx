@@ -122,8 +122,10 @@ export const Playground: Story = {
     return (
       <EuiFormControlLayoutDelimited
         {...args}
-        startControl={cloneElement(startControl, clonedControlProps)}
-        endControl={cloneElement(endControl, clonedControlProps)}
+        startControl={
+          startControl && cloneElement(startControl, clonedControlProps)
+        }
+        endControl={endControl && cloneElement(endControl, clonedControlProps)}
       />
     );
   },
