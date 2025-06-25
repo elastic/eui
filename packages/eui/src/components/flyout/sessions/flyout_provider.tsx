@@ -117,7 +117,7 @@ export const EuiFlyoutSessionProvider: React.FC<
           {mainFlyoutContentNode}
           {activeFlyoutGroup.isChildOpen && childFlyoutContentNode && (
             <EuiFlyoutChild
-              onClose={handleClose}
+              onClose={handleCloseChild}
               size={activeFlyoutGroup.config.childSize}
               {...flyoutPropsChild}
             >
