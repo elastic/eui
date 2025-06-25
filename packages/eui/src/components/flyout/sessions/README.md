@@ -31,6 +31,7 @@ The `useEuiFlyoutSession` hook is generic and can be typed to match the `meta` o
 
 *   `openFlyout(options)`: Opens a new main flyout. If a flyout is already open, it adds the new one to a history stack.
 *   `openChildFlyout(options)`: Opens a new child flyout to the left of the main flyout.
+*   `openFlyoutGroup(options)`: Opens a group containing a main flyout and a child flyout.
 *   `closeFlyout()`: Closes the currently open main flyout. If there's a previous flyout in the history stack, it will be shown.
 *   `closeChildFlyout()`: Closes the currently open child flyout.
 *   `clearHistory()`: Closes all flyouts by clearing the history stack of all flyouts in the session.
@@ -45,113 +46,52 @@ The hook also returns boolean flags representing the current state:
 
 ## Basic Usage Example
 
-Here is a complete example of how to set up and use the flyout state management system in TypeScript, including child flyouts.
+Here is a simplified example of how to set up and use the flyout state management hook.
 
 ```tsx
 import React from 'react';
+
 import {
   EuiButton,
   EuiFlyoutBody,
-  EuiFlyoutHeader,
   EuiText,
-  EuiTitle,
   EuiFlyoutSessionProvider,
-  EuiFlyoutSessionRenderContext,
   useEuiFlyoutSession,
 } from '@elastic/eui';
 
-// Define a type for the custom data we'll pass in `meta`
-interface FlyoutMeta {
-  title: string;
-  userId?: string;
-  parentId?: string;
-}
+const FlyoutAppControls: React.FC = () => {
+  const { openFlyout, isFlyoutOpen } = useEuiFlyoutSession();
 
-// 1. A component that uses the hook to open the initial flyout
-const MyComponent: React.FC = () => {
-  const { openFlyout, isFlyoutOpen } = useEuiFlyoutSession<FlyoutMeta>();
-
-  const handleClick = () => {
+  const handleOpenFlyout = () => {
+    // Calling `openFlyout` again within the same `EuiFlyoutSessionProvider` instance
+    // will add the new flyout to the history stack.
     openFlyout({
       size: 'm',
-      meta: { title: 'User Details', userId: '42' },
     });
   };
 
   return (
-    <EuiButton onClick={handleClick} isDisabled={isFlyoutOpen}>
-      Show User Details
+    <EuiButton onClick={handleOpenFlyout} isDisabled={isFlyoutOpen} fill>
+      Open simple flyout
     </EuiButton>
   );
 };
 
-// 2. The main application component that sets up the provider
-const App: React.FC = () => {
-  // 3. The render prop function for the main flyout.
-  const renderMainFlyoutContent = (
-    flyoutContext: EuiFlyoutSessionRenderContext<FlyoutMeta>
-  ) => {
-    const { meta, onCloseFlyout } = flyoutContext;
-    const { openChildFlyout, isChildFlyoutOpen } = useEuiFlyoutSession<FlyoutMeta>();
-
-    const handleOpenChild = () => {
-      openChildFlyout({
-        size: 's',
-        meta: { title: 'User Preferences', parentId: meta.userId },
-      });
-    };
-
-    return (
-      <>
-        <EuiFlyoutHeader hasBorder>
-          <EuiTitle size="m">
-            <h2>{meta.title}</h2>
-          </EuiTitle>
-        </EuiFlyoutHeader>
-        <EuiFlyoutBody>
-          <EuiText>
-            <p>Details for user ID: {meta.userId}</p>
-          </EuiText>
-          <EuiButton onClick={handleOpenChild} isDisabled={isChildFlyoutOpen}>
-            Edit Preferences
-          </EuiButton>
-          <EuiButton onClick={onCloseFlyout} fill>
-            Close
-          </EuiButton>
-        </EuiFlyoutBody>
-      </>
-    );
-  };
-
-  // 4. The render prop function for the child flyout.
-  const renderChildFlyoutContent = (
-    flyoutContext: EuiFlyoutSessionRenderContext<FlyoutMeta>
-  ) => {
-    const { meta, onCloseChildFlyout } = flyoutContext;
-
-    return (
-      <>
-        <EuiFlyoutHeader hasBorder>
-          <EuiTitle size="s">
-            <h3>{meta.title}</h3>
-          </EuiTitle>
-        </EuiFlyoutHeader>
-        <EuiFlyoutBody>
-          <EuiText>
-            <p>Editing preferences for user {meta.parentId}.</p>
-          </EuiText>
-          <EuiButton onClick={onCloseChildFlyout}>Done</EuiButton>
-        </EuiFlyoutBody>
-      </>
-    );
-  };
+const FlyoutApp: React.FC = () => {
+  // The EuiFlyoutSessionRenderContext is passed to your render prop functions.
+  // This can contain a custom `meta` object (set in the `openFlyout` function call)
+  // which allows you to customize the content shown in the flyout.
+  const renderMainFlyoutContent = (context: EuiFlyoutSessionRenderContext) => (
+    <EuiFlyoutBody>
+      <EuiText>
+        <p>Simple flyout content</p>
+      </EuiText>
+    </EuiFlyoutBody>
+  );
 
   return (
-    <EuiFlyoutSessionProvider
-      renderMainFlyoutContent={renderMainFlyoutContent}
-      renderChildFlyoutContent={renderChildFlyoutContent}
-    >
-      <MyComponent />
+    <EuiFlyoutSessionProvider renderMainFlyoutContent={renderMainFlyoutContent}>
+      <FlyoutAppControls />
     </EuiFlyoutSessionProvider>
   );
 };
