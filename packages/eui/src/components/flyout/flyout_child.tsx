@@ -186,10 +186,6 @@ export const EuiFlyoutChild: FunctionComponent<EuiFlyoutChildProps> = ({
   const classes = classNames('euiFlyoutChild', className);
 
   const styles = useEuiMemoizedStyles(euiFlyoutChildStyles);
-  const overflowCssStyles = [
-    styles.overflow.overflow,
-    banner ? styles.overflow.hasBanner : styles.overflow.noBanner,
-  ];
 
   const { childLayoutMode, parentFlyoutRef } = flyoutContext;
 
@@ -248,7 +244,7 @@ export const EuiFlyoutChild: FunctionComponent<EuiFlyoutChildProps> = ({
         <div
           tabIndex={scrollableTabIndex}
           className="euiFlyoutChild__overflow"
-          css={overflowCssStyles}
+          css={styles.overflow.overflow}
         >
           {banner && (
             <div

@@ -11,8 +11,8 @@ import { UseEuiTheme } from '../../services';
 import {
   logicalCSS,
   logicalCSSWithFallback,
-  euiYScrollWithShadows,
   highContrastModeStyles,
+  euiYScroll,
 } from '../../global_styling';
 import { composeFlyoutSizing } from './flyout.styles';
 
@@ -65,18 +65,13 @@ export const euiFlyoutChildStyles = (euiThemeContext: UseEuiTheme) => {
         flex-grow: 1;
         display: flex;
         flex-direction: column;
+        ${euiYScroll(euiThemeContext)}
       `,
       wrapper: css`
         display: flex;
         flex-direction: column;
         flex-grow: 1;
         ${logicalCSS('overflow-x', 'auto')}
-      `,
-      noBanner: css`
-        ${euiYScrollWithShadows(euiThemeContext)}
-      `,
-      hasBanner: css`
-        ${euiYScrollWithShadows(euiThemeContext, { side: 'end' })}
       `,
     },
     banner: css`
