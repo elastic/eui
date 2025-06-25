@@ -7,17 +7,17 @@
  */
 
 import { Meta, StoryObj } from '@storybook/react';
-import React, { PropsWithChildren, useState } from 'react';
+import React, { useState } from 'react';
 
 import {
   EuiButton,
-  EuiSpacer,
   EuiCodeBlock,
-  EuiTitle,
   EuiFlyoutBody,
   EuiFlyoutFooter,
   EuiFlyoutHeader,
+  EuiSpacer,
   EuiText,
+  EuiTitle,
 } from '../../index';
 
 import {
@@ -26,8 +26,9 @@ import {
 } from './flyout_provider';
 import { EuiFlyoutSessionRenderContext } from './types';
 import {
-  EuiFlyoutSessionOpenChildOptions,
-  EuiFlyoutSessionOpenMainOptions,
+  type EuiFlyoutSessionOpenChildOptions,
+  type EuiFlyoutSessionOpenGroupOptions,
+  type EuiFlyoutSessionOpenMainOptions,
   useEuiFlyoutSession,
 } from './use_eui_flyout';
 
@@ -119,7 +120,7 @@ const ShoppingCartContent: React.FC<ShoppingCartContentProps> = ({
           isDisabled={itemQuantity <= 0}
         >
           -1
-        </EuiButton>{' '}
+        </EuiButton>
         <EuiButton
           onClick={() => onQuantityChange(1)}
           iconType="plusInCircle"
@@ -184,7 +185,7 @@ const ReviewOrderContent: React.FC<ReviewOrderContentProps> = ({
           <EuiButton onClick={goBack} color="danger">
             Go back
           </EuiButton>
-        )}{' '}
+        )}
         <EuiButton onClick={clearHistory} color="danger">
           Close
         </EuiButton>
@@ -346,9 +347,157 @@ const WithHistoryApp: React.FC = () => {
   );
 };
 
-export const WithHistory: StoryObj<PropsWithChildren<{}>> = {
+export const WithHistory = {
   name: 'FlyoutProvider with History',
   render: () => {
     return <WithHistoryApp />;
+  },
+};
+
+const GroupOpenerControls: React.FC = () => {
+  const { openFlyoutGroup, isFlyoutOpen, isChildFlyoutOpen, clearHistory } =
+    useEuiFlyoutSession();
+
+  const { state } = useEuiFlyoutSessionContext();
+
+  const handleOpenGroup = () => {
+    const options: EuiFlyoutSessionOpenGroupOptions = {
+      main: {
+        size: 'm',
+        flyoutProps: {
+          type: 'push',
+          pushMinBreakpoint: 'xs',
+          className: 'groupOpenerMainFlyout',
+          'aria-label': 'Main flyout',
+        },
+        onUnmount: () => console.log('Unmounted main flyout'),
+      },
+      child: {
+        size: 's',
+        flyoutProps: {
+          className: 'groupOpenerChildFlyout',
+          'aria-label': 'Child flyout',
+        },
+        onUnmount: () => console.log('Unmounted child flyout'),
+      },
+    };
+    openFlyoutGroup(options);
+  };
+
+  return (
+    <div>
+      <EuiTitle>
+        <h2>EuiFlyoutSession Group Opener Demo</h2>
+      </EuiTitle>
+      <EuiSpacer />
+      <EuiText>
+        <p>
+          This demo shows how to use the <code>openFlyoutGroup</code> function
+          to simultaneously open both main and child flyouts.
+        </p>
+      </EuiText>
+      <EuiSpacer />
+      <EuiButton
+        onClick={handleOpenGroup}
+        fill
+        color="primary"
+        iconType="folderOpen"
+        data-testid="openFlyoutGroupButton"
+        isDisabled={isFlyoutOpen || isChildFlyoutOpen}
+      >
+        Open flyouts
+      </EuiButton>
+      {(isFlyoutOpen || isChildFlyoutOpen) && (
+        <>
+          <EuiSpacer />
+          <EuiButton onClick={clearHistory} color="danger">
+            Close All Flyouts
+          </EuiButton>
+        </>
+      )}
+      <EuiSpacer size="s" />
+      <EuiCodeBlock language="json" paddingSize="s">
+        {JSON.stringify(state, null, 2)}
+      </EuiCodeBlock>
+    </div>
+  );
+};
+
+const WithGroupOpenerApp: React.FC = () => {
+  const MainFlyoutContent = () => {
+    const { clearHistory } = useEuiFlyoutSession();
+    return (
+      <>
+        <EuiFlyoutHeader hasBorder>
+          <EuiTitle size="m">
+            <h2 id="flyout-main-title">Main Flyout</h2>
+          </EuiTitle>
+        </EuiFlyoutHeader>
+        <EuiFlyoutBody>
+          <EuiText>
+            <p>
+              This is the main flyout content. It was opened simultaneously with
+              the child flyout using the <code>openFlyoutGroup</code> function.
+            </p>
+          </EuiText>
+        </EuiFlyoutBody>
+        <EuiFlyoutFooter>
+          <EuiButton onClick={clearHistory} color="danger">
+            Close All Flyouts
+          </EuiButton>
+        </EuiFlyoutFooter>
+      </>
+    );
+  };
+
+  const ChildFlyoutContent = () => {
+    const { closeChildFlyout } = useEuiFlyoutSession();
+    return (
+      <>
+        <EuiFlyoutHeader hasBorder>
+          <EuiTitle size="m">
+            <h2 id="flyout-child-title">Child Flyout</h2>
+          </EuiTitle>
+        </EuiFlyoutHeader>
+        <EuiFlyoutBody>
+          <EuiText>
+            <p>
+              This is the child flyout content. It was opened simultaneously
+              with the main flyout using the <code>openFlyoutGroup</code>
+              function.
+            </p>
+          </EuiText>
+        </EuiFlyoutBody>
+        <EuiFlyoutFooter>
+          <EuiButton onClick={closeChildFlyout} color="danger">
+            Close Child Only
+          </EuiButton>
+        </EuiFlyoutFooter>
+      </>
+    );
+  };
+
+  const renderMainFlyoutContent = () => {
+    return <MainFlyoutContent />;
+  };
+
+  const renderChildFlyoutContent = () => {
+    return <ChildFlyoutContent />;
+  };
+
+  return (
+    <EuiFlyoutSessionProvider
+      renderMainFlyoutContent={renderMainFlyoutContent}
+      renderChildFlyoutContent={renderChildFlyoutContent}
+    >
+      <GroupOpenerControls />
+    </EuiFlyoutSessionProvider>
+  );
+};
+
+export const WithGroupOpener: StoryObj = {
+  name: 'FlyoutProvider with Group Opener',
+  render: () => {
+    return <WithGroupOpenerApp />;
   },
 };
