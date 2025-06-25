@@ -462,7 +462,7 @@ export const EuiFlyout = forwardRef(
     );
 
     // render content within EuiFlyoutChildProvider if childFlyoutElement is present
-    let contentToRender: React.ReactElement;
+    let contentToRender: React.ReactElement = children;
     if (hasChildFlyout && childFlyoutElement) {
       contentToRender = (
         <EuiFlyoutChildProvider
@@ -474,8 +474,6 @@ export const EuiFlyout = forwardRef(
           reportChildLayoutMode={setChildLayoutMode}
         />
       );
-    } else {
-      contentToRender = children;
     }
 
     return (
