@@ -294,7 +294,7 @@ You can then tie multiple types of empty states together to create a seamless lo
 
 {/* setting a fixed `height` to avoid jumps on the page as the state changes */}
 <Demo previewWrapper={({ children }) => (
-  <div style={{ display: "flex", flexDirection: "column", height: 400 }}>{children}</div>
+  <div style={{ height: 460 }}>{children}</div>
 )}>
   ```tsx
   import React, { useState, useEffect } from 'react';
@@ -362,7 +362,7 @@ You can then tie multiple types of empty states together to create a seamless lo
     }
 
     return (
-      <EuiPageTemplate minHeight={400} grow={false}>
+      <EuiPageTemplate grow={false} css={css`section { max-height: 460px }`}>
         <EuiPageTemplate.EmptyPrompt {...emptyPromptProps} />
       </EuiPageTemplate>
     );
