@@ -78,6 +78,10 @@ const component_colors: _EuiThemeComponentColors = {
     ([lightestShade, text]) => makeHighContrastColor(text)(lightestShade),
     ['colors.lightestShade', 'colors.text']
   ),
+  codeInlineBackground: computed(
+    ([lightestShade]) => lightestShade,
+    ['colors.lightestShade']
+  ),
   codeInlineColor: computed(
     ([lightestShade]) =>
       makeHighContrastColor(colorVis.euiColorVis3)(lightestShade),

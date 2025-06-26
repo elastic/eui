@@ -25,6 +25,7 @@ export const euiCodeSyntaxVariables = (euiThemeContext: UseEuiTheme) => {
   return {
     backgroundColor,
     color,
+    inlineBackgroundColor: euiTheme.components.codeInlineBackground,
     inlineCodeColor: euiTheme.components.codeInlineColor,
     selectedBackgroundColor: euiTheme.components.codeBackgroundSelected,
     commentColor: euiTheme.components.codeCommentColor,
