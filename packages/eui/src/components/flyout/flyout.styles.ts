@@ -64,11 +64,7 @@ export const euiFlyoutStyles = (euiThemeContext: UseEuiTheme) => {
         outline: none;
       }
 
-      ${euiMaxBreakpoint(euiThemeContext, FLYOUT_BREAKPOINT)} {
-        /* 1. Leave only a small sliver exposed on small screens so users understand that this is not a new page
-           2. If a custom maxWidth is set, we need to override it. */
-        ${logicalCSS('max-width', '90vw !important')}
-      }
+      ${maxedFlyoutWidth(euiThemeContext)}
     `,
 
     // Flyout sizes
@@ -178,6 +174,12 @@ export const euiFlyoutStyles = (euiThemeContext: UseEuiTheme) => {
     },
   };
 };
+
+export const maxedFlyoutWidth = (euiThemeContext: UseEuiTheme) => `
+  ${euiMaxBreakpoint(euiThemeContext, FLYOUT_BREAKPOINT)} {
+    ${logicalCSS('max-width', '90vw !important')}
+  }
+`;
 
 export const composeFlyoutSizing = (
   euiThemeContext: UseEuiTheme,

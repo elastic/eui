@@ -14,7 +14,7 @@ import {
   highContrastModeStyles,
   euiYScroll,
 } from '../../global_styling';
-import { composeFlyoutSizing } from './flyout.styles';
+import { composeFlyoutSizing, maxedFlyoutWidth } from './flyout.styles';
 
 export const euiFlyoutChildStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
@@ -32,6 +32,8 @@ export const euiFlyoutChildStyles = (euiThemeContext: UseEuiTheme) => {
       ${logicalCSS('height', '100%')}
       z-index: ${Number(euiTheme.levels.flyout) + 1};
       border-inline-start: ${euiTheme.border.thin};
+
+      ${maxedFlyoutWidth(euiThemeContext)}
     `,
 
     // Position variants based on screen size
