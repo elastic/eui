@@ -323,18 +323,8 @@ const WithHistoryApp: React.FC = () => {
   };
 
   // Render function for CHILD flyout content
-  const renderChildFlyoutContent = (
-    context: EuiFlyoutSessionRenderContext<DemoAppMetaForContext>
-  ) => {
-    const { meta } = context;
-    const { selectedChildFlyoutKey: flyoutKey } = meta || {};
-
-    if (flyoutKey === 'itemDetails') {
-      return <ItemDetailsContent itemQuantity={itemQuantity} />;
-    }
-
-    console.warn('renderChildFlyoutContent: Unknown flyout key', meta);
-    return null;
+  const renderChildFlyoutContent = () => {
+    return <ItemDetailsContent itemQuantity={itemQuantity} />;
   };
 
   return (
