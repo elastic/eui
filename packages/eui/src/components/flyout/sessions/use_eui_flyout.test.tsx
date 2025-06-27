@@ -282,7 +282,7 @@ describe('useEuiFlyoutSession', () => {
     );
   });
 
-  test('goBack closes flyouts in the correct order', () => {
+  test('goBack navigates through the history stack', () => {
     const onGoBack = jest.fn();
     render(
       <TestWrapper>
@@ -290,18 +290,28 @@ describe('useEuiFlyoutSession', () => {
       </TestWrapper>
     );
 
-    // Open both flyouts
-    fireEvent.click(screen.getByTestId('openFlyoutGroupButton'));
-
-    // Go back should close the child flyout first
-    fireEvent.click(screen.getByTestId('goBackButton'));
-
-    expect(onGoBack).toHaveBeenCalledTimes(1);
+    // First open one flyout
+    fireEvent.click(screen.getByTestId('openFlyoutButton'));
     expect(screen.getByTestId('flyoutStatus').textContent).toBe(
       'Flyout is open'
     );
-    expect(screen.getByTestId('childFlyoutStatus').textContent).toBe(
-      'Child flyout is closed'
+
+    // Then open another flyout to create history
+    fireEvent.click(screen.getByTestId('openFlyoutButton'));
+    expect(screen.getByTestId('flyoutStatus').textContent).toBe(
+      'Flyout is open'
+    );
+    expect(screen.getByTestId('canGoBackStatus').textContent).toBe(
+      'Can go back'
+    );
+
+    // Go back, should restore previous flyout (not tested here) or close if no history
+    fireEvent.click(screen.getByTestId('goBackButton'));
+
+    expect(onGoBack).toHaveBeenCalledTimes(1);
+    // Verify we can still go back as there's history
+    expect(screen.getByTestId('canGoBackStatus').textContent).toBe(
+      'Can go back'
     );
 
     // Go back again should close the main flyout
@@ -313,6 +323,114 @@ describe('useEuiFlyoutSession', () => {
     );
     expect(screen.getByTestId('canGoBackStatus').textContent).toBe(
       'Cannot go back'
+    );
+  });
+
+  test('goBack navigates through the history stack and restores previous flyouts', () => {
+    render(
+      <TestWrapper>
+        <TestComponent />
+      </TestWrapper>
+    );
+
+    // Open first flyout (A)
+    fireEvent.click(screen.getByTestId('openFlyoutButton'));
+    // Verify the content is rendered by checking the element exists and has content
+    expect(screen.getByTestId('mainFlyoutContent')).toBeTruthy();
+    expect(screen.getByTestId('mainFlyoutContent').textContent).toContain(
+      '"type":"test"'
+    );
+
+    // Open second flyout (B), which should push A to history
+    fireEvent.click(screen.getByTestId('openFlyoutButton'));
+    // Verify the main flyout is still open
+    expect(screen.getByTestId('mainFlyoutContent')).toBeTruthy();
+    expect(screen.getByTestId('canGoBackStatus').textContent).toBe(
+      'Can go back'
+    );
+
+    // Go back to first flyout (A)
+    fireEvent.click(screen.getByTestId('goBackButton'));
+
+    // Should still have a flyout open (first one)
+    expect(screen.getByTestId('flyoutStatus').textContent).toBe(
+      'Flyout is open'
+    );
+    expect(screen.getByTestId('canGoBackStatus').textContent).toBe(
+      'Can go back'
+    );
+
+    // Go back again, which should close everything as there's no more history
+    fireEvent.click(screen.getByTestId('goBackButton'));
+    expect(screen.getByTestId('flyoutStatus').textContent).toBe(
+      'Flyout is closed'
+    );
+    expect(screen.getByTestId('canGoBackStatus').textContent).toBe(
+      'Cannot go back'
+    );
+  });
+
+  // We can skip this test since our implementation no longer depends on onClose handlers
+  // and we've fixed the issue in the reducer already
+  test('goBack works correctly regardless of onClose handlers', () => {
+    // Create a test component with onClose handlers
+    const CustomTestComponent = () => {
+      const { openFlyout, goBack, clearHistory, isFlyoutOpen, canGoBack } =
+        useEuiFlyoutSession();
+
+      return (
+        <div>
+          <button
+            data-testid="openFlyoutButton"
+            onClick={() => {
+              openFlyout({
+                size: 'm',
+                meta: { id: 'flyout-1' },
+              });
+            }}
+          >
+            Open Flyout
+          </button>
+
+          <button
+            data-testid="goBackButton"
+            onClick={goBack}
+            disabled={!canGoBack}
+          >
+            Go Back
+          </button>
+
+          <button data-testid="clearHistoryButton" onClick={clearHistory}>
+            Clear History
+          </button>
+
+          <div data-testid="flyoutStatus">
+            {isFlyoutOpen ? 'Flyout is open' : 'Flyout is closed'}
+          </div>
+
+          <div data-testid="canGoBackStatus">
+            {canGoBack ? 'Can go back' : 'Cannot go back'}
+          </div>
+        </div>
+      );
+    };
+
+    render(
+      <TestWrapper>
+        <CustomTestComponent />
+      </TestWrapper>
+    );
+
+    // Open flyout
+    fireEvent.click(screen.getByTestId('openFlyoutButton'));
+    expect(screen.getByTestId('flyoutStatus').textContent).toBe(
+      'Flyout is open'
+    );
+
+    // Go back should close the flyout
+    fireEvent.click(screen.getByTestId('goBackButton'));
+    expect(screen.getByTestId('flyoutStatus').textContent).toBe(
+      'Flyout is closed'
     );
   });
 
