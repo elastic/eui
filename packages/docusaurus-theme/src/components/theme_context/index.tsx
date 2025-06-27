@@ -7,9 +7,11 @@ import {
 } from 'react';
 import useIsBrowser from '@docusaurus/useIsBrowser';
 import createCache from '@emotion/cache';
+import { CacheProvider } from '@emotion/react';
 import {
   EUI_THEME,
   EuiProvider,
+  EuiScreenReaderOnly,
   EuiThemeAmsterdam,
   EuiThemeColorMode,
 } from '@elastic/eui';
@@ -55,6 +57,12 @@ Emotion style tags dev mode are in an expected order (global css before componen
 This only applies for @emotion/react css styles, @emotion/css styles are separate  */
 const cssCache = createCache({
   key: 'website-css',
+  prepend: false,
+});
+
+export const cssGlobalCache = createCache({
+  key: 'website-css',
+  prepend: true,
 });
 
 export const AppThemeContext = createContext<AppThemeContextData>(defaultState);
@@ -119,9 +127,12 @@ export const AppThemeProvider: FunctionComponent<PropsWithChildren> = ({
         colorMode={colorMode}
         theme={theme.provider}
         highContrastMode={highContrastMode}
-        cache={cssCache}
+        cache={{
+          default: cssCache,
+          global: cssGlobalCache,
+        }}
       >
-        {children}
+        <CacheProvider value={cssCache}>{children}</CacheProvider>
       </EuiProvider>
     </AppThemeContext.Provider>
   );
