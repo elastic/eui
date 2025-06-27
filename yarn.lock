@@ -7284,6 +7284,7 @@ __metadata:
     cross-env: "npm:^7.0.3"
     cspell: "npm:^8.17.5"
     docusaurus-lunr-search: "patch:docusaurus-lunr-search@npm%3A3.6.1#~/.yarn/patches/docusaurus-lunr-search-npm-3.6.1-9688befeb3.patch"
+    docusaurus-plugin-llms: "npm:^0.1.4"
     hast-util-is-element: "npm:1.1.0"
     lodash: "npm:^4.17.21"
     moment: "npm:^2.30.1"
@@ -19554,6 +19555,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"docusaurus-plugin-llms@npm:^0.1.4":
+  version: 0.1.4
+  resolution: "docusaurus-plugin-llms@npm:0.1.4"
+  dependencies:
+    gray-matter: "npm:^4.0.3"
+    minimatch: "npm:^9.0.3"
+  peerDependencies:
+    "@docusaurus/core": ^3.0.0
+  checksum: 10c0/af82adefb388ddf6b567ee0b22005089784d772c50f04e46ed20d6c9811d2cc268478820c784f7afd6a74c0a08f06ee06f9c591f9fdf82d3c1aa567045774608
+  languageName: node
+  linkType: hard
+
 "dom-accessibility-api@npm:^0.5.6, dom-accessibility-api@npm:^0.5.9":
   version: 0.5.14
   resolution: "dom-accessibility-api@npm:0.5.14"
@@ -29736,21 +29749,21 @@ __metadata:
   languageName: node
   linkType: hard
 
+"minimatch@npm:^9.0.3, minimatch@npm:^9.0.5":
+  version: 9.0.5
+  resolution: "minimatch@npm:9.0.5"
+  dependencies:
+    brace-expansion: "npm:^2.0.1"
+  checksum: 10c0/de96cf5e35bdf0eab3e2c853522f98ffbe9a36c37797778d2665231ec1f20a9447a7e567cb640901f89e4daaa95ae5d70c65a9e8aa2bb0019b6facbc3c0575ed
+  languageName: node
+  linkType: hard
+
 "minimatch@npm:^9.0.4":
   version: 9.0.4
   resolution: "minimatch@npm:9.0.4"
   dependencies:
     brace-expansion: "npm:^2.0.1"
   checksum: 10c0/2c16f21f50e64922864e560ff97c587d15fd491f65d92a677a344e970fe62aafdbeafe648965fa96d33c061b4d0eabfe0213466203dd793367e7f28658cf6414
-  languageName: node
-  linkType: hard
-
-"minimatch@npm:^9.0.5":
-  version: 9.0.5
-  resolution: "minimatch@npm:9.0.5"
-  dependencies:
-    brace-expansion: "npm:^2.0.1"
-  checksum: 10c0/de96cf5e35bdf0eab3e2c853522f98ffbe9a36c37797778d2665231ec1f20a9447a7e567cb640901f89e4daaa95ae5d70c65a9e8aa2bb0019b6facbc3c0575ed
   languageName: node
   linkType: hard
 
