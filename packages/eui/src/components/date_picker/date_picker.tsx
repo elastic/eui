@@ -213,7 +213,7 @@ export const EuiDatePicker: FunctionComponent<EuiDatePickerProps> = ({
 }) => {
   // Check for whether the passed `selected` moment date is valid
   const isInvalid =
-    _isInvalid || (selected?.isValid() === false ? true : undefined);
+    _isInvalid || (selected?.isValid?.() === false ? true : undefined);
 
   const styles = useEuiMemoizedStyles(euiDatePickerStyles);
   const cssStyles = [

@@ -6,10 +6,11 @@
  * Side Public License, v 1.
  */
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import moment from 'moment';
-import type { Meta, StoryObj } from '@storybook/react';
-import { expect, fireEvent } from '@storybook/test';
+import type { Meta, ReactRenderer, StoryObj } from '@storybook/react';
+import { expect, fireEvent, waitFor } from '@storybook/test';
+import type { PlayFunctionContext } from '@storybook/csf';
 import { within } from '../../../../.storybook/test';
 import { LOKI_SELECTORS } from '../../../../.storybook/loki';
 import { enableFunctionToggleControls } from '../../../../.storybook/utils';
@@ -21,6 +22,8 @@ import {
   EuiSuperDatePicker,
   EuiSuperDatePickerProps,
 } from './super_date_picker';
+import { EuiFieldText } from '../../form';
+import { EuiFlexGroup } from '../../flex';
 
 const meta: Meta<EuiSuperDatePickerProps> = {
   title: 'Forms/EuiSuperDatePicker/EuiSuperDatePicker',
@@ -123,6 +126,57 @@ function CustomPanel({ applyTime }: { applyTime?: ApplyTime }) {
     <EuiLink onClick={applyMyCustomTime}>Entire dataset timerange</EuiLink>
   );
 }
+
+export const QuickSelectOnly: Story = {
+  parameters: {
+    controls: {
+      include: ['isQuickSelectOnly'],
+    },
+    loki: { chromeSelector: LOKI_SELECTORS.portal },
+  },
+  args: {
+    start: '2025-01-01T00:00:00',
+    end: 'now',
+    isQuickSelectOnly: false,
+  },
+  render: function Render(args) {
+    const [isCollapsed, setCollapsed] = useState(
+      args.isQuickSelectOnly ?? false
+    );
+
+    useEffect(() => {
+      if (args.isQuickSelectOnly == null) return;
+
+      setCollapsed(args.isQuickSelectOnly);
+    }, [args.isQuickSelectOnly]);
+
+    return (
+      <EuiFlexGroup>
+        <EuiFieldText onFocus={() => setCollapsed(true)} />
+        <EuiSuperDatePicker
+          {...args}
+          isQuickSelectOnly={isCollapsed}
+          quickSelectButtonProps={{
+            onClick: () => setCollapsed(false),
+          }}
+        />
+      </EuiFlexGroup>
+    );
+  },
+  play: async ({ canvasElement }: PlayFunctionContext<ReactRenderer>) => {
+    const canvas = within(canvasElement);
+
+    await waitFor(async () => {
+      expect(
+        canvas.getByTestSubject('superDatePickerToggleQuickMenuButton')
+      ).toBeInTheDocument();
+    });
+
+    await fireEvent.click(
+      canvas.getByTestSubject('superDatePickerToggleQuickMenuButton')
+    );
+  },
+};
 
 /**
  * VRT only

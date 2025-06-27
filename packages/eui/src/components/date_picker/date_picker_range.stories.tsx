@@ -134,25 +134,28 @@ const StatefulPlayground = ({
   ...rest
 }: EuiDatePickerRangeProps) => {
   const [selectedStartDate, setSelectedStartDate] = useState<moment.Moment>(
-    startDateControl.props.selected
+    startDateControl?.props.selected ?? moment('01/01/1970')
   );
   const [selectedEndDate, setSelectedEndDate] = useState<moment.Moment>(
-    endDateControl.props.selected
+    endDateControl?.props.selected ?? moment('01/07/1970')
   );
 
-  const startControl = React.cloneElement(startDateControl, {
-    selected: selectedStartDate,
-    onChange: setSelectedStartDate,
-    startDate: selectedStartDate,
-    endDate: selectedEndDate,
-  });
-
-  const endControl = React.cloneElement(endDateControl, {
-    selected: selectedEndDate,
-    onChange: setSelectedEndDate,
-    startDate: selectedStartDate,
-    endDate: selectedEndDate,
-  });
+  const startControl =
+    startDateControl &&
+    React.cloneElement(startDateControl, {
+      selected: selectedStartDate,
+      onChange: setSelectedStartDate,
+      startDate: selectedStartDate,
+      endDate: selectedEndDate,
+    });
+  const endControl =
+    endDateControl &&
+    React.cloneElement(endDateControl, {
+      selected: selectedEndDate,
+      onChange: setSelectedEndDate,
+      startDate: selectedStartDate,
+      endDate: selectedEndDate,
+    });
 
   return (
     <EuiDatePickerRange

@@ -595,15 +595,6 @@ export class EuiSuperDatePickerInternal extends Component<
       ],
     };
 
-    if (isQuickSelectOnly) {
-      return (
-        <EuiFormControlLayout
-          iconsPosition="static"
-          {...formControlLayoutProps}
-        />
-      );
-    }
-
     const isDisabledDisplay = isObject(isDisabled) && isDisabled?.display;
 
     if (
@@ -612,28 +603,30 @@ export class EuiSuperDatePickerInternal extends Component<
     ) {
       return (
         <EuiFormControlLayout {...formControlLayoutProps}>
-          <button
-            type="button"
-            css={styles.euiSuperDatePicker__prettyFormat}
-            className={classNames('euiSuperDatePicker__prettyFormat', {
-              'euiSuperDatePicker__prettyFormat--disabled': isDisabled,
-            })}
-            data-test-subj="superDatePickerShowDatesButton"
-            disabled={!!isDisabled}
-            onClick={this.hidePrettyDuration}
-            onFocus={onFocus}
-          >
-            {isDisabledDisplay ? (
-              isDisabled.display
-            ) : (
-              <PrettyDuration
-                timeFrom={start}
-                timeTo={end}
-                quickRanges={commonlyUsedRanges}
-                dateFormat={dateFormat}
-              />
-            )}
-          </button>
+          {!isQuickSelectOnly && (
+            <button
+              type="button"
+              css={styles.euiSuperDatePicker__prettyFormat}
+              className={classNames('euiSuperDatePicker__prettyFormat', {
+                'euiSuperDatePicker__prettyFormat--disabled': isDisabled,
+              })}
+              data-test-subj="superDatePickerShowDatesButton"
+              disabled={!!isDisabled}
+              onClick={this.hidePrettyDuration}
+              onFocus={onFocus}
+            >
+              {isDisabledDisplay ? (
+                isDisabled.display
+              ) : (
+                <PrettyDuration
+                  timeFrom={start}
+                  timeTo={end}
+                  quickRanges={commonlyUsedRanges}
+                  dateFormat={dateFormat}
+                />
+              )}
+            </button>
+          )}
         </EuiFormControlLayout>
       );
     }
@@ -658,55 +651,60 @@ export class EuiSuperDatePickerInternal extends Component<
             css={rangeCssStyles}
             isCustom={true}
             iconType={false}
+            delimiter={isQuickSelectOnly ? '' : undefined}
             startDateControl={
-              <EuiDatePopoverButton
-                css={styles.euiSuperDatePicker__rangeInput}
-                className="euiSuperDatePicker__startPopoverButton"
-                compressed={compressed}
-                position="start"
-                needsUpdating={hasChanged}
-                isInvalid={isInvalid}
-                isDisabled={!!isDisabled}
-                onChange={this.setStart}
-                value={start}
-                dateFormat={dateFormat}
-                utcOffset={utcOffset}
-                timeFormat={timeFormat}
-                locale={locale || contextLocale}
-                minDate={minDate}
-                maxDate={maxDate}
-                canRoundRelativeUnits={canRoundRelativeUnits}
-                isOpen={this.state.isStartDatePopoverOpen}
-                onPopoverToggle={this.onStartDatePopoverToggle}
-                onPopoverClose={this.onStartDatePopoverClose}
-                timeOptions={timeOptions}
-                buttonProps={{ onFocus }}
-              />
+              isQuickSelectOnly ? undefined : (
+                <EuiDatePopoverButton
+                  css={styles.euiSuperDatePicker__rangeInput}
+                  className="euiSuperDatePicker__startPopoverButton"
+                  compressed={compressed}
+                  position="start"
+                  needsUpdating={hasChanged}
+                  isInvalid={isInvalid}
+                  isDisabled={!!isDisabled}
+                  onChange={this.setStart}
+                  value={start}
+                  dateFormat={dateFormat}
+                  utcOffset={utcOffset}
+                  timeFormat={timeFormat}
+                  locale={locale || contextLocale}
+                  minDate={minDate}
+                  maxDate={maxDate}
+                  canRoundRelativeUnits={canRoundRelativeUnits}
+                  isOpen={this.state.isStartDatePopoverOpen}
+                  onPopoverToggle={this.onStartDatePopoverToggle}
+                  onPopoverClose={this.onStartDatePopoverClose}
+                  timeOptions={timeOptions}
+                  buttonProps={{ onFocus }}
+                />
+              )
             }
             endDateControl={
-              <EuiDatePopoverButton
-                css={styles.euiSuperDatePicker__rangeInput}
-                position="end"
-                compressed={compressed}
-                needsUpdating={hasChanged}
-                isInvalid={isInvalid}
-                isDisabled={!!isDisabled}
-                onChange={this.setEnd}
-                value={end}
-                dateFormat={dateFormat}
-                utcOffset={utcOffset}
-                timeFormat={timeFormat}
-                locale={locale || contextLocale}
-                minDate={minDate}
-                maxDate={maxDate}
-                canRoundRelativeUnits={canRoundRelativeUnits}
-                roundUp
-                isOpen={this.state.isEndDatePopoverOpen}
-                onPopoverToggle={this.onEndDatePopoverToggle}
-                onPopoverClose={this.onEndDatePopoverClose}
-                timeOptions={timeOptions}
-                buttonProps={{ onFocus }}
-              />
+              isQuickSelectOnly ? undefined : (
+                <EuiDatePopoverButton
+                  css={styles.euiSuperDatePicker__rangeInput}
+                  position="end"
+                  compressed={compressed}
+                  needsUpdating={hasChanged}
+                  isInvalid={isInvalid}
+                  isDisabled={!!isDisabled}
+                  onChange={this.setEnd}
+                  value={end}
+                  dateFormat={dateFormat}
+                  utcOffset={utcOffset}
+                  timeFormat={timeFormat}
+                  locale={locale || contextLocale}
+                  minDate={minDate}
+                  maxDate={maxDate}
+                  canRoundRelativeUnits={canRoundRelativeUnits}
+                  roundUp
+                  isOpen={this.state.isEndDatePopoverOpen}
+                  onPopoverToggle={this.onEndDatePopoverToggle}
+                  onPopoverClose={this.onEndDatePopoverClose}
+                  timeOptions={timeOptions}
+                  buttonProps={{ onFocus }}
+                />
+              )
             }
           />
         )}

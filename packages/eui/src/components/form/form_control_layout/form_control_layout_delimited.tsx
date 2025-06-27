@@ -30,11 +30,11 @@ export type EuiFormControlLayoutDelimitedProps =
     /**
      * Left side control
      */
-    startControl: ReactElement;
+    startControl?: ReactElement;
     /**
      * Right side control
      */
-    endControl: ReactElement;
+    endControl?: ReactElement;
     /**
      * The center content. Accepts a string to be wrapped in a subdued EuiText
      * or a single ReactElement
@@ -86,12 +86,12 @@ export const EuiFormControlLayoutDelimited: FunctionComponent<
       wrapperProps={{ ...rest.wrapperProps, css: wrapperStyles }}
     >
       <FormContext.Provider value={{ defaultFullWidth: fullWidth }}>
-        {addClassesToControl(startControl)}
+        {startControl && addClassesToControl(startControl)}
         <EuiFormControlDelimiter
           delimiter={delimiter}
           isInvalid={showInvalidState}
         />
-        {addClassesToControl(endControl)}
+        {endControl && addClassesToControl(endControl)}
       </FormContext.Provider>
     </EuiFormControlLayout>
   );

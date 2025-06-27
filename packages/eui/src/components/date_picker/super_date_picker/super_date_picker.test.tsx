@@ -6,17 +6,19 @@
  * Side Public License, v 1.
  */
 
-import React from 'react';
-import { fireEvent } from '@testing-library/react';
-import { render } from '../../../test/rtl';
+import React, { useState } from 'react';
+import moment from 'moment';
+import { fireEvent, act } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+
+import { render, waitForEuiPopoverOpen } from '../../../test/rtl';
 import { requiredProps } from '../../../test';
 import { shouldRenderCustomStyles } from '../../../test/internal';
-
+import { EuiFieldText } from '../../form';
 import {
   EuiSuperDatePicker,
   EuiSuperDatePickerProps,
 } from './super_date_picker';
-import moment from 'moment';
 
 const noop = () => {};
 
@@ -253,6 +255,59 @@ describe('EuiSuperDatePicker', () => {
           <EuiSuperDatePicker onTimeChange={noop} isQuickSelectOnly />
         );
         expect(container.firstChild).toMatchSnapshot();
+      });
+
+      it('should open the quick select panel', async () => {
+        const Component = () => {
+          const [isCollapsed, setCollapsed] = useState(false);
+
+          return (
+            <>
+              <EuiFieldText
+                onFocus={() => setCollapsed(true)}
+                data-test-subj="euiFieldText"
+              />
+              <EuiSuperDatePicker
+                start="2025-01-01T00:00:00"
+                end="now"
+                onTimeChange={noop}
+                isQuickSelectOnly={isCollapsed}
+                quickSelectButtonProps={{
+                  onClick: () => setCollapsed(false),
+                  'data-test-subj': 'euiSuperDatePickerQuickSelectButton',
+                }}
+              />
+            </>
+          );
+        };
+        const { getByTestSubject } = render(<Component />);
+
+        const input = getByTestSubject('euiFieldText');
+        const quickSelectButton = getByTestSubject(
+          'euiSuperDatePickerQuickSelectButton'
+        );
+        const startDateButton = getByTestSubject(
+          'superDatePickerstartDatePopoverButton'
+        );
+
+        expect(startDateButton).toBeInTheDocument();
+
+        act(() => {
+          userEvent.click(input);
+        });
+
+        expect(input).toHaveFocus();
+        expect(startDateButton).not.toBeInTheDocument();
+
+        fireEvent.click(quickSelectButton);
+
+        await waitForEuiPopoverOpen();
+
+        expect(
+          getByTestSubject('superDatePickerQuickMenu')
+        ).toBeInTheDocument();
+
+        expect(document.querySelector('.euiPanel')).toHaveFocus();
       });
     });
 

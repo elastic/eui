@@ -42,6 +42,7 @@ export type EuiDatePickerRangeProps = CommonProps &
     | 'compressed'
     | 'prepend'
     | 'append'
+    | 'delimiter'
   > & {
     /**
      * Including any children will replace all innards with the provided children
@@ -51,12 +52,12 @@ export type EuiDatePickerRangeProps = CommonProps &
     /**
      * The end date `EuiDatePicker` element
      */
-    endDateControl: ReactElement;
+    endDateControl?: ReactElement;
 
     /**
      * The start date `EuiDatePicker` element
      */
-    startDateControl: ReactElement;
+    startDateControl?: ReactElement;
 
     /**
      * Pass either an icon type or set to `false` to remove icon entirely
@@ -116,6 +117,7 @@ export const EuiDatePickerRange: FunctionComponent<EuiDatePickerRangeProps> = ({
   onBlur,
   append,
   prepend,
+  delimiter,
   ...rest
 }) => {
   // `fullWidth` and `compressed` should not affect inline datepickers (matches non-range behavior)
@@ -130,8 +132,8 @@ export const EuiDatePickerRange: FunctionComponent<EuiDatePickerRangeProps> = ({
     : [
         inlineStyles.euiDatePickerRangeInline,
         // Determine the inline container query to use based on the width of the react-datepicker
-        startDateControl.props.showTimeSelect ||
-        endDateControl.props.showTimeSelect
+        startDateControl?.props.showTimeSelect ||
+        endDateControl?.props.showTimeSelect
           ? inlineStyles.responsiveWithTimeSelect
           : inlineStyles.responsive,
         shadow && inlineStyles.shadow,
@@ -141,58 +143,56 @@ export const EuiDatePickerRange: FunctionComponent<EuiDatePickerRangeProps> = ({
   let endControl = endDateControl;
 
   if (!isCustom) {
-    startControl = cloneElement(
-      startDateControl as ReactElement<EuiDatePickerProps>,
-      {
+    startControl =
+      startControl &&
+      cloneElement(startDateControl as ReactElement<EuiDatePickerProps>, {
         controlOnly: true,
         showIcon: false,
         inline,
         compressed,
         fullWidth,
         readOnly,
-        disabled: disabled || startDateControl.props.disabled,
-        isInvalid: isInvalid || startDateControl.props.isInvalid,
+        disabled: disabled || startDateControl?.props.disabled,
+        isInvalid: isInvalid || startDateControl?.props.isInvalid,
         className: classNames(
           'euiDatePickerRange__start',
-          startDateControl.props.className
+          startDateControl?.props.className
         ),
         onBlur: (event: FocusEvent<HTMLInputElement>) => {
-          startDateControl.props?.onBlur?.(event);
+          startDateControl?.props?.onBlur?.(event);
           onBlur?.(event);
         },
         onFocus: (event: FocusEvent<HTMLInputElement>) => {
-          startDateControl.props?.onFocus?.(event);
+          startDateControl?.props?.onFocus?.(event);
           onFocus?.(event);
         },
-      }
-    );
+      });
 
-    endControl = cloneElement(
-      endDateControl as ReactElement<EuiDatePickerProps>,
-      {
+    endControl =
+      endControl &&
+      cloneElement(endDateControl as ReactElement<EuiDatePickerProps>, {
         controlOnly: true,
         showIcon: false,
         inline,
         compressed,
         fullWidth,
         readOnly,
-        disabled: disabled || endDateControl.props.disabled,
-        isInvalid: isInvalid || endDateControl.props.isInvalid,
+        disabled: disabled || endDateControl?.props.disabled,
+        isInvalid: isInvalid || endDateControl?.props.isInvalid,
         popoverPlacement: 'downRight',
         className: classNames(
           'euiDatePickerRange__end',
-          endDateControl.props.className
+          endDateControl?.props.className
         ),
         onBlur: (event: FocusEvent<HTMLInputElement>) => {
-          endDateControl.props?.onBlur?.(event);
+          endDateControl?.props?.onBlur?.(event);
           onBlur?.(event);
         },
         onFocus: (event: FocusEvent<HTMLInputElement>) => {
-          endDateControl.props?.onFocus?.(event);
+          endDateControl?.props?.onFocus?.(event);
           onFocus?.(event);
         },
-      }
-    );
+      });
   }
 
   const icon = useMemo(() => {
@@ -205,6 +205,7 @@ export const EuiDatePickerRange: FunctionComponent<EuiDatePickerRangeProps> = ({
   return (
     <span className={classes} css={cssStyles} {...rest}>
       <EuiFormControlLayoutDelimited
+        delimiter={delimiter}
         icon={icon}
         startControl={startControl}
         endControl={endControl}
