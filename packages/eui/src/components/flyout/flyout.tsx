@@ -7,6 +7,7 @@
  */
 
 import React, {
+  ComponentProps,
   useEffect,
   useRef,
   useMemo,
@@ -45,6 +46,8 @@ import { EuiScreenReaderOnly } from '../accessibility';
 
 import { EuiFlyoutCloseButton } from './_flyout_close_button';
 import { euiFlyoutStyles } from './flyout.styles';
+import { EuiFlyoutChild } from './flyout_child';
+import { EuiFlyoutChildProvider } from './flyout_child_manager';
 
 export const TYPES = ['push', 'overlay'] as const;
 type _EuiFlyoutType = (typeof TYPES)[number];
@@ -182,7 +185,7 @@ export const EuiFlyout = forwardRef(
       as,
       hideCloseButton = false,
       closeButtonProps,
-      closeButtonPosition = 'inside',
+      closeButtonPosition: _closeButtonPosition = 'inside',
       onClose,
       ownFocus = true,
       side = 'right',
@@ -208,6 +211,54 @@ export const EuiFlyout = forwardRef(
     const Element = as || defaultElement;
     const maskRef = useRef<HTMLDivElement>(null);
 
+    // Ref for the main flyout element to pass to context
+    const internalParentFlyoutRef = useRef<HTMLDivElement>(null);
+
+    const [isChildFlyoutOpen, setIsChildFlyoutOpen] = useState(false);
+    const [childLayoutMode, setChildLayoutMode] = useState<
+      'side-by-side' | 'stacked'
+    >('side-by-side');
+
+    // Check for child flyout
+    const childFlyoutElement = React.Children.toArray(children).find(
+      (child) =>
+        React.isValidElement(child) &&
+        (child.type === EuiFlyoutChild ||
+          (child.type as any).displayName === 'EuiFlyoutChild')
+    ) as React.ReactElement<ComponentProps<typeof EuiFlyoutChild>> | undefined;
+
+    const hasChildFlyout = !!childFlyoutElement;
+
+    // Validate props, determine close button position and set child flyout classes
+    let closeButtonPosition: 'inside' | 'outside';
+    let childFlyoutClasses: string[] = [];
+    if (hasChildFlyout) {
+      if (side !== 'right') {
+        throw new Error(
+          'EuiFlyout: When an EuiFlyoutChild is present, the `side` prop of EuiFlyout must be "right".'
+        );
+      }
+      if (!isEuiFlyoutSizeNamed(size) || !['s', 'm'].includes(size)) {
+        throw new Error(
+          `EuiFlyout: When an EuiFlyoutChild is present, the \`size\` prop of EuiFlyout must be "s" or "m". Received "${size}".`
+        );
+      }
+      if (_closeButtonPosition !== 'inside') {
+        throw new Error(
+          'EuiFlyout: When an EuiFlyoutChild is present, the `closeButtonPosition` prop of EuiFlyout must be "inside".'
+        );
+      }
+
+      closeButtonPosition = 'inside';
+      childFlyoutClasses = [
+        'euiFlyout--hasChild',
+        `euiFlyout--hasChild--${childLayoutMode}`,
+        `euiFlyout--hasChild--${childFlyoutElement.props.size || 's'}`,
+      ];
+    } else {
+      closeButtonPosition = _closeButtonPosition;
+    }
+
     const windowIsLargeEnoughToPush =
       useIsWithinMinBreakpoint(pushMinBreakpoint);
     const isPushed = type === 'push' && windowIsLargeEnoughToPush;
@@ -219,7 +270,11 @@ export const EuiFlyout = forwardRef(
     const [resizeRef, setResizeRef] = useState<ComponentPropsWithRef<T> | null>(
       null
     );
-    const setRef = useCombinedRefs([setResizeRef, ref]);
+    const setRef = useCombinedRefs([
+      setResizeRef,
+      ref,
+      internalParentFlyoutRef,
+    ]);
     const { width } = useResizeObserver(isPushed ? resizeRef : null, 'width');
 
     useEffect(() => {
@@ -289,11 +344,19 @@ export const EuiFlyout = forwardRef(
       styles[side],
     ];
 
-    const classes = classnames('euiFlyout', className);
+    const classes = classnames('euiFlyout', ...childFlyoutClasses, className);
 
     /*
-     * If not disabled, automatically add fixed EuiHeaders as shards
-     * to EuiFlyout focus traps, to prevent focus fighting
+     * Trap focus even when `ownFocus={false}`, otherwise closing
+     * the flyout won't return focus to the originating button.
+     *
+     * Set `clickOutsideDisables={true}` when `ownFocus={false}`
+     * to allow non-keyboard users the ability to interact with
+     * elements outside the flyout.
+     *
+     * Set `onClickOutside={onClose}` when `ownFocus` and `type` are the defaults,
+     * or if `outsideClickCloses={true}` to close on clicks that target
+     * (both mousedown and mouseup) the overlay mask.
      */
     const flyoutToggle = useRef<Element | null>(document.activeElement);
     const [fixedHeaders, setFixedHeaders] = useState<HTMLDivElement[]>([]);
@@ -323,7 +386,7 @@ export const EuiFlyout = forwardRef(
         ..._focusTrapProps,
         shards: [...fixedHeaders, ...(_focusTrapProps?.shards || [])],
       }),
-      [fixedHeaders, _focusTrapProps]
+      [_focusTrapProps, fixedHeaders]
     );
 
     /*
@@ -389,6 +452,30 @@ export const EuiFlyout = forwardRef(
       [onClose, hasOverlayMask, outsideClickCloses]
     );
 
+    const closeButton = !hideCloseButton && (
+      <EuiFlyoutCloseButton
+        {...closeButtonProps}
+        onClose={onClose}
+        closeButtonPosition={closeButtonPosition}
+        side={side}
+      />
+    );
+
+    // render content within EuiFlyoutChildProvider if childFlyoutElement is present
+    let contentToRender: React.ReactElement = children;
+    if (hasChildFlyout && childFlyoutElement) {
+      contentToRender = (
+        <EuiFlyoutChildProvider
+          parentSize={size as 's' | 'm'}
+          parentFlyoutRef={internalParentFlyoutRef}
+          childElement={childFlyoutElement}
+          childrenToRender={children}
+          reportIsChildOpen={setIsChildFlyoutOpen}
+          reportChildLayoutMode={setChildLayoutMode}
+        />
+      );
+    }
+
     return (
       <EuiFlyoutWrapper
         hasOverlayMask={hasOverlayMask}
@@ -400,10 +487,17 @@ export const EuiFlyout = forwardRef(
       >
         <EuiWindowEvent event="keydown" handler={onKeyDown} />
         <EuiFocusTrap
-          disabled={isPushed}
+          disabled={isPushed || (ownFocus && isChildFlyoutOpen)}
           scrollLock={hasOverlayMask}
           clickOutsideDisables={!ownFocus}
           onClickOutside={onClickOutside}
+          returnFocus={() => {
+            if (!isChildFlyoutOpen && flyoutToggle.current) {
+              (flyoutToggle.current as HTMLElement).focus();
+              return false; // We've handled focus
+            }
+            return true;
+          }}
           {...focusTrapProps}
         >
           <Element
@@ -419,15 +513,8 @@ export const EuiFlyout = forwardRef(
             data-autofocus={!isPushed || undefined}
           >
             {!isPushed && screenReaderDescription}
-            {!hideCloseButton && onClose && (
-              <EuiFlyoutCloseButton
-                {...closeButtonProps}
-                onClose={onClose}
-                closeButtonPosition={closeButtonPosition}
-                side={side}
-              />
-            )}
-            {children}
+            {closeButton}
+            {contentToRender}
           </Element>
         </EuiFocusTrap>
       </EuiFlyoutWrapper>

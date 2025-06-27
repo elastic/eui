@@ -64,19 +64,24 @@ export const euiFlyoutStyles = (euiThemeContext: UseEuiTheme) => {
         outline: none;
       }
 
-      ${euiMaxBreakpoint(euiThemeContext, FLYOUT_BREAKPOINT)} {
-        /* 1. Leave only a small sliver exposed on small screens so users understand that this is not a new page
-           2. If a custom maxWidth is set, we need to override it. */
-        ${logicalCSS('max-width', '90vw !important')}
-      }
+      ${maxedFlyoutWidth(euiThemeContext)}
     `,
 
     // Flyout sizes
+    // When a child flyout is stacked on top of the parent, the parent flyout size will match the child flyout size
     s: css`
       ${composeFlyoutSizing(euiThemeContext, 's')}
+
+      &.euiFlyout--hasChild--stacked.euiFlyout--hasChild--m {
+        ${composeFlyoutSizing(euiThemeContext, 'm')}
+      }
     `,
     m: css`
       ${composeFlyoutSizing(euiThemeContext, 'm')}
+
+      &.euiFlyout--hasChild--stacked.euiFlyout--hasChild--s {
+        ${composeFlyoutSizing(euiThemeContext, 's')}
+      }
     `,
     l: css`
       ${composeFlyoutSizing(euiThemeContext, 'l')}
@@ -93,6 +98,10 @@ export const euiFlyoutStyles = (euiThemeContext: UseEuiTheme) => {
       ${euiCanAnimate} {
         animation: ${euiFlyoutSlideInRight} ${euiTheme.animation.normal}
           ${euiTheme.animation.resistance};
+      }
+
+      &.euiFlyout--hasChild {
+        clip-path: none;
       }
     `,
     // Left-side flyouts should only be used for navigation
@@ -166,7 +175,13 @@ export const euiFlyoutStyles = (euiThemeContext: UseEuiTheme) => {
   };
 };
 
-const composeFlyoutSizing = (
+export const maxedFlyoutWidth = (euiThemeContext: UseEuiTheme) => `
+  ${euiMaxBreakpoint(euiThemeContext, FLYOUT_BREAKPOINT)} {
+    ${logicalCSS('max-width', '90vw !important')}
+  }
+`;
+
+export const composeFlyoutSizing = (
   euiThemeContext: UseEuiTheme,
   size: EuiFlyoutSize
 ) => {
