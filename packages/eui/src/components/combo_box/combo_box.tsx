@@ -212,6 +212,7 @@ interface EuiComboBoxState<T> {
   hasFocus: boolean;
   isListOpen: boolean;
   matchingOptions: Array<EuiComboBoxOptionOption<T>>;
+  listOptions: Array<HTMLButtonElement | null>;
   searchValue: string;
 }
 
@@ -249,6 +250,7 @@ export class EuiComboBox<T> extends Component<
       showPrevSelected: Boolean(this.props.singleSelection),
       sortMatchesBy: this.props.sortMatchesBy,
     }),
+    listOptions: [],
     searchValue: initialSearchValue,
   };
 
@@ -269,6 +271,17 @@ export class EuiComboBox<T> extends Component<
   listRefInstance: RefInstance<HTMLDivElement> = null;
   listRefCallback: RefCallback<HTMLDivElement> = (ref) => {
     this.listRefInstance = ref;
+  };
+
+  setListOptions = (node: HTMLButtonElement | null, index: number) => {
+    this.setState(({ listOptions }) => {
+      const _listOptions = listOptions;
+      _listOptions[index] = node;
+
+      return {
+        listOptions: _listOptions,
+      };
+    });
   };
 
   openList = () => {
@@ -604,9 +617,10 @@ export class EuiComboBox<T> extends Component<
     if (singleSelection) {
       requestAnimationFrame(() => this.closeList());
     } else {
-      this.setState({
-        activeOptionIndex: this.state.matchingOptions.indexOf(addedOption),
-      });
+      this.setState(({ listOptions, matchingOptions }) => ({
+        listOptions: listOptions.slice(0, matchingOptions.length - 1),
+        activeOptionIndex: matchingOptions.indexOf(addedOption),
+      }));
     }
   };
 
@@ -809,6 +823,7 @@ export class EuiComboBox<T> extends Component<
               isCaseSensitive={isCaseSensitive}
               isLoading={isLoading}
               listRef={this.listRefCallback}
+              setListOptions={this.setListOptions}
               matchingOptions={matchingOptions}
               onCloseList={this.closeList}
               onCreateOption={onCreateOption}
@@ -876,7 +891,9 @@ export class EuiComboBox<T> extends Component<
                     compressed={compressed}
                     focusedOptionId={
                       this.hasActiveOption()
-                        ? this.rootId(`_option-${this.state.activeOptionIndex}`)
+                        ? this.state.listOptions[this.state.activeOptionIndex]
+                            ?.id ??
+                          this.rootId(`_option-${this.state.activeOptionIndex}`)
                         : undefined
                     }
                     fullWidth={fullWidth}

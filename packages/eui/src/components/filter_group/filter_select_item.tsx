@@ -28,6 +28,7 @@ export interface EuiFilterSelectItemProps
   isFocused?: boolean;
   toolTipContent?: EuiComboBoxOptionOption['toolTipContent'];
   toolTipProps?: EuiComboBoxOptionOption['toolTipProps'];
+  forwardRef?: (ref: HTMLButtonElement | null) => void;
 }
 
 const resolveIconAndColor = (checked?: FilterChecked) => {
@@ -65,6 +66,11 @@ export class EuiFilterSelectItemClass extends Component<
     hasFocus: false,
   };
 
+  setButtonRef = (node: HTMLButtonElement | null) => {
+    this.buttonRef = node;
+    this.props.forwardRef?.(node);
+  };
+
   focus = () => {
     if (this.buttonRef) {
       this.buttonRef.focus();
@@ -95,6 +101,7 @@ export class EuiFilterSelectItemClass extends Component<
       toolTipContent,
       toolTipProps,
       style,
+      forwardRef,
       ...rest
     } = this.props;
 
@@ -140,7 +147,7 @@ export class EuiFilterSelectItemClass extends Component<
 
     const optionItem = (
       <button
-        ref={(ref) => (this.buttonRef = ref)}
+        ref={this.setButtonRef}
         role="option"
         type="button"
         aria-selected={checked === 'on'}
