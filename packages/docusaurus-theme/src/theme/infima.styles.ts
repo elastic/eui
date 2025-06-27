@@ -330,8 +330,8 @@ export const getInfimaStyles = () => css`
   }
 
   html {
-    background-color: var(--ifm-background-color) !important;
-    color: var(--ifm-font-color-base) !important;
+    background-color: var(--ifm-background-color);
+    color: var(--ifm-font-color-base);
     color-scheme: var(--ifm-color-scheme);
     -webkit-font-smoothing: antialiased;
     -webkit-tap-highlight-color: transparent;

@@ -14,10 +14,10 @@ import {
 } from 'react';
 import Head from '@docusaurus/Head';
 import { Props } from '@theme/Root';
-import { css, Global } from '@emotion/react';
+import { CacheProvider, css, Global } from '@emotion/react';
 import { useEuiTheme } from '@elastic/eui';
 
-import { AppThemeProvider } from '../components/theme_context';
+import { AppThemeProvider, cssGlobalCache } from '../components/theme_context';
 import { getGlobalStyles } from './Root.styles';
 import { getResetStyles } from './reset.styles';
 import { getInfimaStyles } from './infima.styles';
@@ -57,7 +57,9 @@ const _Root: FunctionComponent<PropsWithChildren> = ({ children }) => {
           rel="stylesheet"
         />
       </Head>
-      <Global styles={[resetStyles, infimaStyles, globalStyles]} />
+      <CacheProvider value={cssGlobalCache}>
+        <Global styles={[resetStyles, infimaStyles, globalStyles]} />
+      </CacheProvider>
       <div style={!mounted ? { display: 'none' } : undefined} css={styles.root}>
         {children}
       </div>
