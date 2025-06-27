@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import moment from 'moment';
 import type { Meta, ReactRenderer, StoryObj } from '@storybook/react';
 import { expect, fireEvent, waitFor } from '@storybook/test';
@@ -129,14 +129,26 @@ function CustomPanel({ applyTime }: { applyTime?: ApplyTime }) {
 
 export const QuickSelectOnly: Story = {
   parameters: {
+    controls: {
+      include: ['isQuickSelectOnly'],
+    },
     loki: { chromeSelector: LOKI_SELECTORS.portal },
   },
   args: {
     start: '2025-01-01T00:00:00',
     end: 'now',
+    isQuickSelectOnly: false,
   },
   render: function Render(args) {
-    const [isCollapsed, setCollapsed] = useState(false);
+    const [isCollapsed, setCollapsed] = useState(
+      args.isQuickSelectOnly ?? false
+    );
+
+    useEffect(() => {
+      if (args.isQuickSelectOnly == null) return;
+
+      setCollapsed(args.isQuickSelectOnly);
+    }, [args.isQuickSelectOnly]);
 
     return (
       <EuiFlexGroup>
