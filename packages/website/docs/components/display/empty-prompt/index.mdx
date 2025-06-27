@@ -292,78 +292,83 @@ The following example shows the usage of the [EuiPageTemplate.EmptyPrompt](../..
 
 You can then tie multiple types of empty states together to create a seamless loading to empty or loading to error experience. The following example shows how to incorporate these states with [EuiPageTemplate.EmptyPrompt](../../templates/page-template/index.mdx#empty-pages-or-content).
 
-```tsx interactive
-import React, { useState, useEffect } from 'react';
-import {
-  EuiPageTemplate,
-  EuiLoadingLogo,
-  EuiButton,
-  EuiEmptyPromptProps,
-} from '@elastic/eui';
+{/* setting a fixed `height` to avoid jumps on the page as the state changes */}
+<Demo previewWrapper={({ children }) => (
+  <div style={{ height: 460 }}>{children}</div>
+)}>
+  ```tsx
+  import React, { useState, useEffect } from 'react';
+  import {
+    EuiPageTemplate,
+    EuiLoadingLogo,
+    EuiButton,
+    EuiEmptyPromptProps,
+  } from '@elastic/eui';
 
-export default () => {
-  const states = ['loading1', 'error', 'loading2', 'empty'];
+  export default () => {
+    const states = ['loading1', 'error', 'loading2', 'empty'];
 
-  const [currentState, setCurrentState] = useState(states[0]);
+    const [currentState, setCurrentState] = useState(states[0]);
 
-  const searchTimeout = setTimeout(() => {
-    // Cycle through the array of states
-    const index = states.indexOf(currentState);
-    setCurrentState(index < states.length - 1 ? states[index + 1] : states[0]);
-  }, 3000);
+    const searchTimeout = setTimeout(() => {
+      // Cycle through the array of states
+      const index = states.indexOf(currentState);
+      setCurrentState(index < states.length - 1 ? states[index + 1] : states[0]);
+    }, 3000);
 
-  useEffect(() => {
-    return () => {
-      clearTimeout(searchTimeout);
-    };
-  });
-
-  let emptyPromptProps: Partial<EuiEmptyPromptProps>;
-  switch (currentState) {
-    case 'error':
-      emptyPromptProps = {
-        color: 'danger',
-        iconType: 'error',
-        title: <h2>Unable to load your dashboards</h2>,
-        body: (
-          <p>
-            There was an error loading the Dashboard application. Contact your
-            administrator for help.
-          </p>
-        ),
+    useEffect(() => {
+      return () => {
+        clearTimeout(searchTimeout);
       };
-      break;
-    case 'empty':
-      emptyPromptProps = {
-        color: 'plain',
-        iconType: 'dashboardApp',
-        iconColor: 'default',
-        title: <h2>Dashboards</h2>,
-        body: <p>You don&apos;t have any dashboards yet.</p>,
-        actions: [
-          <EuiButton fill iconType="plusInCircleFilled">
-            Create new dashboard
-          </EuiButton>,
-        ],
-      };
-      break;
+    });
 
-    default:
-      emptyPromptProps = {
-        color: 'subdued',
-        icon: <EuiLoadingLogo logo="logoKibana" size="xl" />,
-        title: <h2>Loading Dashboards</h2>,
-      };
-      break;
-  }
+    let emptyPromptProps: Partial<EuiEmptyPromptProps>;
+    switch (currentState) {
+      case 'error':
+        emptyPromptProps = {
+          color: 'danger',
+          iconType: 'error',
+          title: <h2>Unable to load your dashboards</h2>,
+          body: (
+            <p>
+              There was an error loading the Dashboard application. Contact your
+              administrator for help.
+            </p>
+          ),
+        };
+        break;
+      case 'empty':
+        emptyPromptProps = {
+          color: 'plain',
+          iconType: 'dashboardApp',
+          iconColor: 'default',
+          title: <h2>Dashboards</h2>,
+          body: <p>You don&apos;t have any dashboards yet.</p>,
+          actions: [
+            <EuiButton fill iconType="plusInCircleFilled">
+              Create new dashboard
+            </EuiButton>,
+          ],
+        };
+        break;
 
-  return (
-    <EuiPageTemplate minHeight="0">
-      <EuiPageTemplate.EmptyPrompt {...emptyPromptProps} />
-    </EuiPageTemplate>
-  );
-};
-```
+      default:
+        emptyPromptProps = {
+          color: 'subdued',
+          icon: <EuiLoadingLogo logo="logoKibana" size="xl" />,
+          title: <h2>Loading Dashboards</h2>,
+        };
+        break;
+    }
+
+    return (
+      <EuiPageTemplate grow={false} css={css`section { max-height: 460px }`}>
+        <EuiPageTemplate.EmptyPrompt {...emptyPromptProps} />
+      </EuiPageTemplate>
+    );
+  };
+  ```
+</Demo>
 
 ## Guidelines
 
