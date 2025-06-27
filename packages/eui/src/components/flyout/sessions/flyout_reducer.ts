@@ -165,9 +165,6 @@ export function flyoutReducer<FlyoutMeta>(
         return state;
       }
 
-      state.activeFlyoutGroup.config.childFlyoutProps?.onClose?.(
-        new KeyboardEvent('')
-      );
       state.activeFlyoutGroup.childOnUnmount?.();
 
       const updatedActiveGroup: EuiFlyoutSessionGroup<FlyoutMeta> = {
@@ -191,38 +188,23 @@ export function flyoutReducer<FlyoutMeta>(
         return initialFlyoutState as EuiFlyoutSessionHistoryState<FlyoutMeta>;
 
       if (state.activeFlyoutGroup.isChildOpen) {
-        state.activeFlyoutGroup.config.childFlyoutProps?.onClose?.(
-          new KeyboardEvent('')
-        );
         state.activeFlyoutGroup.childOnUnmount?.();
-        const groupWithChildClosed: EuiFlyoutSessionGroup<FlyoutMeta> = {
-          ...state.activeFlyoutGroup,
-          isChildOpen: false,
-          config: {
-            ...state.activeFlyoutGroup.config,
-            childFlyoutProps: {},
-          },
-          childOnUnmount: undefined,
-        };
+      }
+
+      state.activeFlyoutGroup.mainOnUnmount?.();
+
+      // Restore from history or return to initial state
+      if (state.history.length > 0) {
+        const newHistory = [...state.history];
+        const previousGroup = newHistory.pop();
         return {
-          history: state.history,
-          activeFlyoutGroup: applySizeConstraints(groupWithChildClosed),
+          activeFlyoutGroup: previousGroup
+            ? applySizeConstraints(previousGroup)
+            : null,
+          history: newHistory,
         };
       } else {
-        state.activeFlyoutGroup.config.mainFlyoutProps?.onClose?.(
-          new KeyboardEvent('')
-        );
-        state.activeFlyoutGroup.mainOnUnmount?.();
-        if (state.history.length > 0) {
-          const newHistory = [...state.history];
-          const previousGroup = newHistory.pop();
-          return {
-            activeFlyoutGroup: previousGroup || null,
-            history: newHistory,
-          };
-        } else {
-          return initialFlyoutState as EuiFlyoutSessionHistoryState<FlyoutMeta>;
-        }
+        return initialFlyoutState as EuiFlyoutSessionHistoryState<FlyoutMeta>;
       }
     }
 
