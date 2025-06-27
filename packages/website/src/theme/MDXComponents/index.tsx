@@ -6,7 +6,10 @@
  * Side Public License, v 1.
  */
 
-export * from './display_toggles';
-export * from './example';
-export * from './prop_table';
-export * from './storybook_link';
+import MDXComponents from '@theme-original/MDXComponents';
+import { PropTable } from '@site/src/components';
+
+export default {
+  ...MDXComponents,
+  PropTable,
+};

@@ -11,7 +11,6 @@ import { Badge } from '../../components/badge';
 import { Icon } from '../../components/icon';
 import { FigmaEmbed } from '../../components/figma_embed';
 import { Demo, DemoSource } from '../../components/demo';
-import { PropTable } from '../../components/prop_table';
 import { ListItem } from './ListItem';
 import { Blockquote } from './Blockquote';
 import { Paragraph } from './Paragraph';
@@ -34,7 +33,6 @@ const MDXComponents = {
   Icon,
   Demo,
   DemoSource,
-  PropTable,
   Guideline,
   GuidelineText,
 };
