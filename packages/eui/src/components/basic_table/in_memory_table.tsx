@@ -75,7 +75,15 @@ type InMemoryTableProps<T extends object> = Omit<
   EuiBasicTableProps<T>,
   'pagination' | 'sorting' | 'noItemsMessage' | 'onChange'
 > & {
+  /**
+   * Message to display if table is empty
+   * @deprecated Use `noItemsMessage` instead.
+   */
   message?: ReactNode;
+  /**
+   * Message to display if table is empty
+   */
+  noItemsMessage?: ReactNode;
   /**
    * Configures {@link Search}.
    */
@@ -677,6 +685,7 @@ export class EuiInMemoryTable<T extends object = object> extends Component<
       columns,
       loading,
       message,
+      noItemsMessage,
       error,
       selection,
       compressed,
@@ -750,7 +759,7 @@ export class EuiInMemoryTable<T extends object = object> extends Component<
         onChange={this.onTableChange}
         error={error}
         loading={loading}
-        noItemsMessage={message}
+        noItemsMessage={noItemsMessage || message}
         tableLayout={tableLayout}
         compressed={compressed}
         itemIdToExpandedRowMap={itemIdToExpandedRowMap}

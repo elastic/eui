@@ -53,7 +53,7 @@ describe('EuiInMemoryTable', () => {
     expect(container.firstChild).toMatchSnapshot();
   });
 
-  test('with message', () => {
+  test('with noItemsMessage', () => {
     const props: EuiInMemoryTableProps<BasicItem> = {
       ...requiredProps,
       items: [],
@@ -64,14 +64,14 @@ describe('EuiInMemoryTable', () => {
           description: 'description',
         },
       ],
-      message: 'where my items at?',
+      noItemsMessage: 'where my items at?',
     };
     const { getByText } = render(<EuiInMemoryTable {...props} />);
 
     expect(getByText('where my items at?')).toBeTruthy();
   });
 
-  test('with message and loading', () => {
+  test('with noItemsMessage and loading', () => {
     const props: EuiInMemoryTableProps<BasicItem> = {
       ...requiredProps,
       items: [],
@@ -82,7 +82,7 @@ describe('EuiInMemoryTable', () => {
           description: 'description',
         },
       ],
-      message: 'Loading items....',
+      noItemsMessage: 'Loading items....',
       loading: true,
     };
     const { container } = render(<EuiInMemoryTable {...props} />);
@@ -136,10 +136,10 @@ describe('EuiInMemoryTable', () => {
     expect(getByText('expanded row content')).toBeTruthy();
   });
 
-  test('with items and message - expecting to show the items', () => {
+  test('with items and noItemsMessage - expecting to show the items', () => {
     const props: EuiInMemoryTableProps<BasicItem> = {
       ...requiredProps,
-      message: 'show me!',
+      noItemsMessage: 'show me!',
       items: [
         { id: '1', name: 'name1' },
         { id: '2', name: 'name2' },
@@ -1036,7 +1036,7 @@ describe('EuiInMemoryTable', () => {
           defaultQuery: 'No',
         },
         className: 'testTable',
-        message: <span className="customMessage">No items found!</span>,
+        noItemsMessage: <span className="customMessage">No items found!</span>,
       };
 
       const { container } = render(<EuiInMemoryTable {...props} />);
@@ -1080,7 +1080,7 @@ describe('EuiInMemoryTable', () => {
           defaultQuery: 'No',
         },
         className: 'testTable',
-        message: <span className="customMessage">No items found!</span>,
+        noItemsMessage: <span className="customMessage">No items found!</span>,
       };
 
       const { container: container2 } = render(

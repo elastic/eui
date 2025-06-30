@@ -30,7 +30,7 @@ const meta: Meta<EuiInMemoryTableProps> = {
     error: '',
     loading: false,
     // Set to strings for easier testing
-    message: '',
+    noItemsMessage: '',
     childrenBetween: '',
     // Inherited from EuiTable
     responsiveBreakpoint: 'm',
