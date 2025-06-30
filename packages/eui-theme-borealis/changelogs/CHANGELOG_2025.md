@@ -1,3 +1,7 @@
+## [`v3.1.0`](https://github.com/elastic/eui/releases/v3.1.0)
+
+- Added new component token `components.forms.codeInlineBackground` ([#8813](https://github.com/elastic/eui/pull/8813))
+
 ## [`v3.0.0`](https://github.com/elastic/eui/releases/v3.0.0)
 
 - Added data vis text color tokens: ([#8793](https://github.com/elastic/eui/pull/8793))

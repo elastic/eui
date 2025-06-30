@@ -1,3 +1,18 @@
+## [`v104.1.0`](https://github.com/elastic/eui/releases/v104.1.0)
+
+- Added new component token `components.forms.codeInlineBackground` ([#8813](https://github.com/elastic/eui/pull/8813))
+- Updated background color for `EuiCode` to use `components.forms.codeInlineBackground` ([#8813](https://github.com/elastic/eui/pull/8813))
+- Added `noItemsMessage` prop to `EuiInMemoryTable` ([#8812](https://github.com/elastic/eui/pull/8812))
+- Added prop `delimiter` on `EuiDatePickerRange` ([#8810](https://github.com/elastic/eui/pull/8810))
+
+**Bug fixes**
+
+- Fixed an issue with `EuiSuperDatePicker` where toggling `isQuickSelectOnly` would cause a full re-render when the selected range uses absolute dates ([#8810](https://github.com/elastic/eui/pull/8810))
+
+**Deprecations**
+
+- Deprecated `message` prop in `EuiInMemoryTable` in favor of `noItemsMessage` which is a more meaningful prop name; there are no functional changes ([#8812](https://github.com/elastic/eui/pull/8812))
+
 ## [`v104.0.2`](https://github.com/elastic/eui/releases/v104.0.2)
 
 **Bug fixes**

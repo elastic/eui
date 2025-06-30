@@ -1,3 +1,7 @@
+## [`v2.1.0`](https://github.com/elastic/eui/releases/v2.1.0)
+
+- Added type for `components.forms.codeInlineBackground` ([#8813](https://github.com/elastic/eui/pull/8813))
+
 ## [`v2.0.0`](https://github.com/elastic/eui/releases/v2.0.0)
 
 - Added type for tokens: ([#8793](https://github.com/elastic/eui/pull/8793))
