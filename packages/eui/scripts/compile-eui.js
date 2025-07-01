@@ -112,7 +112,7 @@ function compileLib() {
       },
     }
   );
-  glob('./test-env/**/*.testenv.js', undefined, (error, files) => {
+  glob.sync('./test-env/**/*.testenv.js', undefined, (error, files) => {
     files.forEach((file) => {
       const dir = path.dirname(file);
       const fileName = path.basename(file, '.js');
@@ -122,7 +122,7 @@ function compileLib() {
   });
 
   // Copy all JSON files to build outputs
-  glob('./src/**/*.json', undefined, (_error, files) => {
+  glob.sync('./src/**/*.json', undefined, (_error, files) => {
     const directories = new Set();
     files.forEach((file) => {
       const splitPath = file.split('/');
@@ -172,7 +172,7 @@ function compileLib() {
   );
 
   // Copy all SVG files to build outputs
-  glob('./src/components/**/*.svg', undefined, (error, files) => {
+  glob.sync('./src/components/**/*.svg', undefined, (error, files) => {
     const directories = new Set();
     files.forEach((file) => {
       const splitPath = file.split('/');
@@ -221,7 +221,7 @@ function compileBundle() {
       // dtsGenerator is unfortunately having massive issues with RTL type defs, so we're
       // temporarily defining manual `.d.ts` files and copying them to each compiled dir
       shell.mkdir('-p', `${dir}/rtl`);
-      glob('./src/test/rtl/**/*.d.ts', undefined, (error, files) => {
+      glob.sync('./src/test/rtl/**/*.d.ts', undefined, (error, files) => {
         files.forEach((file) => {
           const splitPath = file.split('/');
           const fileName = splitPath[splitPath.length - 1];
