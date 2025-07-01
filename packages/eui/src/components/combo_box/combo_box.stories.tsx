@@ -80,6 +80,31 @@ export const Playground: Story = {
   render: (args) => <StatefulComboBox {...args} />,
 };
 
+export const WithCustomOptionIds: Story = {
+  parameters: {
+    controls: {
+      include: ['options', 'selectedOptions', 'onChange'],
+    },
+    // This story is visually effectively the same as Playground
+    loki: { skip: true },
+  },
+  args: {
+    options: [
+      { id: 'item-1', label: 'Item 1' },
+      { id: 'item-2', label: 'Item 2' },
+      { id: 'item-3', label: 'Item 3' },
+      { id: 'item-4', label: 'Item 4', disabled: true },
+      { id: 'item-5', label: 'Item 5' },
+      { id: 'item-6', label: 'Item 6' },
+      { id: 'item-7', label: 'Item 7' },
+      { id: 'item-8', label: 'Item 8' },
+      { id: 'item-9', label: 'Item 9' },
+      { id: 'item-10', label: 'Item 10' },
+    ],
+  },
+  render: (args) => <StatefulComboBox {...args} />,
+};
+
 export const WithTooltip: Story = {
   parameters: {
     controls: {
