@@ -662,6 +662,154 @@ export default () => {
 };
 ```
 
+## Table row classes
+
+import { Example } from '@site/src/components';
+
+Specific rows can be highlighted or otherwise have custom styling passed to them via the `rowProps` prop. 
+It provides the current row data item as argument which can be used to add classes conditionally.
+
+<Example.Snippet>
+  ```tsx
+    <EuiBasicTable rowProps={(user: User) => ({
+      className: user.online ? 'euiTableRow--marked' : '',
+    })}  />
+  ```
+</Example.Snippet>
+
+:::tip There is a styling utility class available: `euiTableRow--marked`
+
+This class can be used to highlight rows. Use the `rowProps.className` prop to add the class to specific rows. 
+The utility class additionally defines hover styles.
+
+:::
+
+```tsx interactive
+import React from 'react';
+import {
+  formatDate,
+  EuiBasicTable,
+  EuiBasicTableColumn,
+  EuiTableFieldDataColumnType,
+  EuiLink,
+  EuiHealth,
+} from '@elastic/eui';
+import { faker } from '@faker-js/faker';
+
+type User = {
+  id: string;
+  firstName: string | null | undefined;
+  lastName: string;
+  github: string;
+  dateOfBirth: Date;
+  online: boolean;
+};
+
+const users: User[] = [];
+
+for (let i = 0; i < 5; i++) {
+  users.push({
+    id: faker.string.uuid(),
+    firstName: faker.person.firstName(),
+    lastName: faker.person.lastName(),
+    github: faker.internet.userName(),
+    dateOfBirth: faker.date.past(),
+    online: i === 0 ? true : faker.datatype.boolean(),
+  });
+}
+
+export default () => {
+  const columns: Array<EuiBasicTableColumn<User>> = [
+    {
+      field: 'firstName',
+      name: 'First Name',
+      'data-test-subj': 'firstNameCell',
+      mobileOptions: {
+        render: (user: User) => (
+          <>
+            {user.firstName} {user.lastName}
+          </>
+        ),
+        header: false,
+        truncateText: false,
+        enlarge: true,
+        width: '100%',
+      },
+    },
+    {
+      field: 'lastName',
+      name: 'Last Name',
+      truncateText: true,
+      mobileOptions: {
+        show: false,
+      },
+    },
+    {
+      field: 'github',
+      name: 'Github',
+      nameTooltip: {
+        content: 'Their mascot is the Octokitty'
+      },
+      render: (username: User['github']) => (
+        <EuiLink href="#" target="_blank">
+          {username}
+        </EuiLink>
+      ),
+      truncateText: true,
+    },
+    {
+      field: 'dateOfBirth',
+      name: 'Date of Birth',
+      dataType: 'date',
+      render: (dateOfBirth: User['dateOfBirth']) =>
+        formatDate(dateOfBirth, 'dobShort'),
+    },
+    {
+      field: 'online',
+      name: 'Online',
+      dataType: 'boolean',
+      render: (online: User['online']) => {
+        const color = online ? 'success' : 'danger';
+        const label = online ? 'Online' : 'Offline';
+        return <EuiHealth color={color}>{label}</EuiHealth>;
+      },
+    },
+  ];
+
+  const getRowProps = (user: User) => {
+    const { id } = user;
+    return {
+      className: user.online ? 'euiTableRow--marked' : ''
+    };
+  };
+
+  const getCellProps = (
+    user: User,
+    column: EuiTableFieldDataColumnType<User>
+  ) => {
+    const { id } = user;
+    const { field } = column;
+    return {
+      className: 'customCellClass',
+      'data-test-subj': `cell-${id}-${String(field)}`,
+      textOnly: true,
+    };
+  };
+
+  return (
+    <EuiBasicTable
+      tableCaption="Demo of EuiBasicTable"
+      responsiveBreakpoint={false}
+      items={users}
+      rowHeader="firstName"
+      columns={columns}
+      rowProps={getRowProps}
+      cellProps={getCellProps}
+    />
+  );
+};
+```
+
 ## Adding a footer to a table
 
 The following example shows how to add a footer to your table by adding `footer` to your column definitions. If one or more of your columns contains a `footer` definition, the footer area will be visible. By default, columns with no footer specified (undefined) will render an empty cell to preserve the table layout. Check out the [custom tables](./custom.mdx) page for more examples of how you can work with table footers in EUI.
