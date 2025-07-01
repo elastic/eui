@@ -212,7 +212,7 @@ interface EuiComboBoxState<T> {
   hasFocus: boolean;
   isListOpen: boolean;
   matchingOptions: Array<EuiComboBoxOptionOption<T>>;
-  listOptions: Array<HTMLButtonElement | null>;
+  listOptionRefs: Array<HTMLButtonElement | null>;
   searchValue: string;
 }
 
@@ -250,7 +250,7 @@ export class EuiComboBox<T> extends Component<
       showPrevSelected: Boolean(this.props.singleSelection),
       sortMatchesBy: this.props.sortMatchesBy,
     }),
-    listOptions: [],
+    listOptionRefs: [],
     searchValue: initialSearchValue,
   };
 
@@ -273,13 +273,13 @@ export class EuiComboBox<T> extends Component<
     this.listRefInstance = ref;
   };
 
-  setListOptions = (node: HTMLButtonElement | null, index: number) => {
-    this.setState(({ listOptions }) => {
-      const _listOptions = listOptions;
-      _listOptions[index] = node;
+  setListOptionRefs = (node: HTMLButtonElement | null, index: number) => {
+    this.setState(({ listOptionRefs }) => {
+      const _listOptionRefs = listOptionRefs;
+      _listOptionRefs[index] = node;
 
       return {
-        listOptions: _listOptions,
+        listOptionRefs: _listOptionRefs,
       };
     });
   };
@@ -617,8 +617,8 @@ export class EuiComboBox<T> extends Component<
     if (singleSelection) {
       requestAnimationFrame(() => this.closeList());
     } else {
-      this.setState(({ listOptions, matchingOptions }) => ({
-        listOptions: listOptions.slice(0, matchingOptions.length - 1),
+      this.setState(({ listOptionRefs, matchingOptions }) => ({
+        listOptionRefs: listOptionRefs.slice(0, matchingOptions.length - 1),
         activeOptionIndex: matchingOptions.indexOf(addedOption),
       }));
     }
@@ -823,7 +823,7 @@ export class EuiComboBox<T> extends Component<
               isCaseSensitive={isCaseSensitive}
               isLoading={isLoading}
               listRef={this.listRefCallback}
-              setListOptions={this.setListOptions}
+              setListOptionRefs={this.setListOptionRefs}
               matchingOptions={matchingOptions}
               onCloseList={this.closeList}
               onCreateOption={onCreateOption}
@@ -891,8 +891,9 @@ export class EuiComboBox<T> extends Component<
                     compressed={compressed}
                     focusedOptionId={
                       this.hasActiveOption()
-                        ? this.state.listOptions[this.state.activeOptionIndex]
-                            ?.id ??
+                        ? this.state.listOptionRefs[
+                            this.state.activeOptionIndex
+                          ]?.id ??
                           this.rootId(`_option-${this.state.activeOptionIndex}`)
                         : undefined
                     }
