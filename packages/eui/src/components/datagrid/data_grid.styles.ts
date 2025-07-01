@@ -16,6 +16,10 @@ import {
   mathWithUnits,
 } from '../../global_styling';
 import { highContrastModeStyles } from '../../global_styling/functions/high_contrast';
+import {
+  euiDataGridCellOutlineSelectors,
+  euiDataGridCellOutlineStyles,
+} from './body/cell/data_grid_cell.styles';
 
 export const euiDataGridVariables = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
@@ -47,6 +51,7 @@ export const euiDataGridStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme, highContrastMode } = euiThemeContext;
   const { cellPadding, lineHeight, fontSize } =
     euiDataGridVariables(euiThemeContext);
+  const { outline: outlineSelectors } = euiDataGridCellOutlineSelectors();
 
   const borderColors = {
     default: highContrastMode
@@ -79,11 +84,28 @@ export const euiDataGridStyles = (euiThemeContext: UseEuiTheme) => {
         background-color: ${euiTheme.components.dataGridRowBackgroundHover};
       }
 
-      /* The euiDataGridRow--selected class is not used internally,
-       * it's there for convenience, to be used by consumers */
+      /* The euiDataGridRow--selected and euiDataGridRow--marked classes are not used internally,
+       * they're there for convenience, to be used by consumers */
 
       *:where(& .euiDataGridRow--selected) {
         background-color: ${euiTheme.components.dataGridRowBackgroundSelect};
+      }
+
+      *:where(& .euiDataGridRow--marked) {
+        background-color: ${euiTheme.components.dataGridRowBackgroundMarked};
+
+        &:hover {
+          background-color: ${euiTheme.components
+            .dataGridRowBackgroundMarkedHover};
+        }
+
+        /* class duplication to ensure default styles are overriden based on specificity
+        (the marked style is loaded with the specific row styles here instead of the cell styles) */
+        .euiDataGridRowCell.euiDataGridRowCell {
+          ${outlineSelectors.marked} {
+            ${euiDataGridCellOutlineStyles(euiThemeContext).markedStyles}
+          }
+        }
       }
 
       *:where(
