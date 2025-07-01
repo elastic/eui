@@ -29,11 +29,13 @@ if is_pipeline_trigger_pull_request; then
   echo "Detected PR environment. Storybook will be deployed to ${bucket_directory}"
 elif is_pipeline_trigger_tag; then
   latest_release_tag_on_main=$(git describe --tags "$(git rev-list --branches=main --tags --max-count=1)")
+  bucket_directory="${BUILDKITE_TAG}/storybook/"
+  copy_to_root_storybook=false
   if [[ "${BUILDKITE_TAG}" == "${latest_release_tag_on_main}" ]]; then
-    bucket_directory="storybook/"
-    echo "Detected latest tagged release on main. Storybook will be deployed to root storybook/"
+    # Deploy to both root storybook/ and versioned subfolder
+    copy_to_root_storybook=true
+    echo "Detected latest tagged release on main. Storybook will be deployed to root storybook/ and ${bucket_directory}"
   else
-    bucket_directory="${BUILDKITE_TAG}/storybook/"
     echo "Detected tagged release. Storybook will be deployed to ${bucket_directory}"
   fi
 elif is_pipeline_trigger_branch "main"; then
@@ -78,11 +80,21 @@ echo "Beginning to copy built files to /${bucket_directory}"
 gcloud storage cp "${GCLOUD_CP_ARGS[@]}" packages/eui/storybook-static/* "gs://${GCLOUD_BUCKET_FULL}/${bucket_directory}"
 echo "Successfully copied files to /${bucket_directory}"
 
+if [[ "${copy_to_root_storybook}" == true ]]; then
+  echo "Also copying built files to root storybook/"
+  gcloud storage cp "${GCLOUD_CP_ARGS[@]}" packages/eui/storybook-static/* "gs://${GCLOUD_BUCKET_FULL}/storybook/"
+  echo "Successfully copied files to root storybook/"
+fi
+
 ############################################################
 #                      Step 5 - Notify                     #
 ############################################################
 
 published_storybook_url="https://eui.elastic.co/${bucket_directory}"
+
+if [[ "${copy_to_root_storybook}" == true ]]; then
+  published_storybook_url="https://eui.elastic.co/storybook/ (root) and https://eui.elastic.co/${bucket_directory}"
+fi
 
 # Add an annotation on top of the pipeline
 echo "Storybook deployed: ${published_storybook_url}" | buildkite-agent annotate --style "success" --context "storybook_deployed"
