@@ -413,6 +413,8 @@
   "euiColorBorderBaseFloating": "transparent",
   "euiColorBorderBaseFormsColorSwatch": "rgba(255,255,255,0.1)",
   "euiColorBorderBaseFormsControl": "#69696f",
+  "euiColorBorderInteractiveFormsHoverPlain": "transparent",
+  "euiColorBorderInteractiveFormsHoverDanger": "transparent",
   "euiColorBorderStrongPrimary": "#36A2EF",
   "euiColorBorderStrongAccent": "#F68FBE",
   "euiColorBorderStrongAccentSecondary": "#7DDED8",

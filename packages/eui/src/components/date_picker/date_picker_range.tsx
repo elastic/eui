@@ -26,7 +26,7 @@ import { CommonProps } from '../common';
 
 import { useEuiMemoizedStyles } from '../../services';
 import {
-  euiDatePickerRangeStyles as styles,
+  euiDatePickerRangeStyles,
   euiDatePickerRangeInlineStyles,
 } from './date_picker_range.styles';
 
@@ -126,6 +126,7 @@ export const EuiDatePickerRange: FunctionComponent<EuiDatePickerRangeProps> = ({
 
   const classes = classNames('euiDatePickerRange', className);
 
+  const styles = useEuiMemoizedStyles(euiDatePickerRangeStyles);
   const inlineStyles = useEuiMemoizedStyles(euiDatePickerRangeInlineStyles);
   const cssStyles = !inline
     ? styles.euiDatePickerRange
@@ -203,7 +204,7 @@ export const EuiDatePickerRange: FunctionComponent<EuiDatePickerRangeProps> = ({
   }, [iconType, inline]);
 
   return (
-    <span className={classes} css={cssStyles} {...rest}>
+    <div className={classes} css={cssStyles} {...rest}>
       <EuiFormControlLayoutDelimited
         delimiter={delimiter}
         icon={icon}
@@ -225,6 +226,6 @@ export const EuiDatePickerRange: FunctionComponent<EuiDatePickerRangeProps> = ({
             : inlineStyles.formLayout.noShadow)
         }
       />
-    </span>
+    </div>
   );
 };

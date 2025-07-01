@@ -764,7 +764,7 @@ exports[`EuiSuperDatePicker renders an EuiDatePickerRange 1`] = `
   class="euiSuperDatePicker testClass1 testClass2 emotion-euiSuperDatePicker-restricted-euiTestCss"
   data-test-subj="test subject string"
 >
-  <span
+  <div
     class="euiDatePickerRange emotion-euiDatePickerRange-euiSuperDatePicker__range-euiSuperDatePicker__formControlLayout-default"
   >
     <div
@@ -839,7 +839,7 @@ exports[`EuiSuperDatePicker renders an EuiDatePickerRange 1`] = `
         </div>
       </div>
     </div>
-  </span>
+  </div>
   <span
     class="euiToolTipAnchor emotion-euiToolTipAnchor-inlineBlock"
   >

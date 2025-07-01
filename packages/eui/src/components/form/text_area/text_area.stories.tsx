@@ -6,6 +6,7 @@
  * Side Public License, v 1.
  */
 
+import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 
 import {
@@ -13,6 +14,7 @@ import {
   enableFunctionToggleControls,
 } from '../../../../.storybook/utils';
 import { EuiTextArea, EuiTextAreaProps } from './text_area';
+import { EuiButtonIcon } from '../../button';
 
 const meta: Meta<EuiTextAreaProps> = {
   title: 'Forms/EuiTextArea',
@@ -53,4 +55,28 @@ export const IconShape: Story = {
       color: 'success',
     },
   },
+};
+
+export const Layers: Story = {
+  tags: ['vrt-only'],
+  render: (args) => (
+    <div
+      css={{
+        display: 'flex',
+        flexDirection: 'column',
+        position: 'relative',
+      }}
+    >
+      <EuiTextArea {...args} fullWidth autoFocus />
+      <div
+        css={({ euiTheme }) => ({
+          position: 'absolute',
+          right: euiTheme.size.s,
+          bottom: euiTheme.size.s,
+        })}
+      >
+        <EuiButtonIcon iconType="arrowRight" color="primary" display="base" />
+      </div>
+    </div>
+  ),
 };
