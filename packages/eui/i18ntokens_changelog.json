@@ -30,36 +30,6 @@
     ]
   },
   {
-    "version": "104.1.0",
-    "changes": [
-      {
-        "token": "euiSaturation.ariaLabel",
-        "changeType": "modified",
-        "value": "Select a color"
-      },
-      {
-        "token": "euiSaturation.roleDescription",
-        "changeType": "added",
-        "value": "HSV color mode saturation and value 2-axis slider."
-      },
-      {
-        "token": "euiHue.ariaValueText",
-        "changeType": "added",
-        "value": "Hue"
-      },
-      {
-        "token": "euiHue.ariaRoleDescription",
-        "changeType": "added",
-        "value": "Hue slider"
-      },
-      {
-        "token": "euiColorPicker.selectedColorLabel",
-        "changeType": "added",
-        "value": "Selected color"
-      }
-    ]
-  },
-  {
     "version": "98.2.0",
     "changes": [
       {
