@@ -1,14 +1,3 @@
-const fs = require('fs');
-const path = require('path');
-const { execSync } = require('child_process');
-
-const repoDir = path.resolve(__dirname, '..');
-const packagePath = path.resolve(repoDir, 'package.json');
-const tokensPath = path.resolve(repoDir, 'i18ntokens.json');
-const tokensChangelogPath = path.resolve(repoDir, 'i18ntokens_changelog.json');
-
-const { version: oldPackageVersion } = require(packagePath);
-
 function getTokenMap(tokenInstances) {
   // tokenInstances is the total set of tokens across all files
   // reduce those down to a mapping of token -> defString
@@ -16,7 +5,7 @@ function getTokenMap(tokenInstances) {
 
   for (let i = 0; i < tokenInstances.length; i++) {
     const { token, defString } = tokenInstances[i];
-    // we're assurred that overriding any `token` already encountered
+    // we're assured that overriding any `token` already encountered
     // has an identical `defString` as the token generation script otherwise fails
     tokenMap.set(token, defString);
   }
@@ -24,7 +13,7 @@ function getTokenMap(tokenInstances) {
   return tokenMap;
 }
 
-function getTokenChanges(oldTokenInstances, newTokenInstances) {
+export function getTokenChanges(oldTokenInstances, newTokenInstances) {
   // we're interested in added, modified, or deleted tokens
   // addition or removal of a token in a single file is uninteresting unless that instance represents the whole usage of the token
   const oldTokens = getTokenMap(oldTokenInstances);
@@ -68,33 +57,3 @@ function getTokenChanges(oldTokenInstances, newTokenInstances) {
 
   return changes;
 }
-
-async function getPreviousI18nTokens() {
-  const commitID = execSync(`git rev-parse v${oldPackageVersion}`)
-    .toString()
-    .trim();
-  const fileContents = execSync(`git cat-file blob ${commitID}:packages/eui/i18ntokens.json`)
-    .toString()
-    .trim();
-  return JSON.parse(fileContents);
-}
-
-async function main(newPackageVersion) {
-  // check for i18n token differences between the current file & the most recent EUI version
-  const originalTokens = await getPreviousI18nTokens();
-  const newTokens = require(tokensPath);
-
-  const changes = getTokenChanges(originalTokens, newTokens);
-
-  // it's possible that no meaningful changes occurred
-  if (changes.length > 0) {
-    const changeLog = require(tokensChangelogPath);
-    changeLog.unshift({
-      version: newPackageVersion,
-      changes,
-    });
-    fs.writeFileSync(tokensChangelogPath, JSON.stringify(changeLog, null, 2));
-  }
-}
-
-main();

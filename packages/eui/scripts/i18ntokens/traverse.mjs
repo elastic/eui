@@ -1,13 +1,7 @@
-const babel = require('@babel/core');
-const babelOptions = require('../.babelrc');
-const fs = require('fs');
-const { basename, join, relative } = require('path');
-const glob = require('glob');
-
-const rootDir = join(__dirname, '..');
-const srcDir = join(rootDir, 'src');
-
-const tokenMappings = [];
+import fs from 'node:fs/promises';
+import path from 'node:path';
+import babel from '@babel/core';
+import * as glob from 'glob';
 
 function getCodeForExpression(expressionNode) {
   return babel.transformFromAst(babel.types.program([
@@ -19,12 +13,11 @@ function getCodeForExpression(expressionNode) {
 
 function handleHookPath(path) {
   const symbols = [];
+  const args = path.node.arguments;
 
-  const arguments = path.node.arguments;
-
-  if (arguments[0].type === 'ArrayExpression' && arguments[1].type === 'ArrayExpression') {
-    const tokens = arguments[0].elements.map(({value}) => value);
-    const defaults = arguments[1].elements.map(({value}) => value);
+  if (args[0].type === 'ArrayExpression' && args[1].type === 'ArrayExpression') {
+    const tokens = args[0].elements.map(({value}) => value);
+    const defaults = args[1].elements.map(({value}) => value);
     const highlighting = 'string';
     tokens.forEach((token, i) => {
       symbols.push({
@@ -37,10 +30,10 @@ function handleHookPath(path) {
     return symbols;
   }
 
-  if (arguments[0].type !== 'StringLiteral') return symbols;
+  if (args[0].type !== 'StringLiteral') return symbols;
 
-  const token = arguments[0].value;
-  const defStringNode = arguments[1];
+  const token = args[0].value;
+  const defStringNode = args[1];
   let defString;
   let highlighting;
 
@@ -118,36 +111,33 @@ function handleJSXPath(path) {
   return symbols;
 }
 
-function traverseFile(filepath) {
-  const source = fs.readFileSync(filepath);
-  const ast = babel.parse(
-    source.toString(),
-    {
-      ...babelOptions,
-      filename: basename(filepath),
-      ast: true
-    }
-  );
+async function traverseFile(filePath, rootDir, babelConfig, mappings) {
+  const source = await fs.readFile(filePath, 'utf8');
+  const ast = await babel.parseAsync(source.toString(), {
+    ...babelConfig,
+    filename: path.basename(filePath),
+    ast: true,
+  });
 
   babel.traverse(
     ast,
     {
-      JSXOpeningElement(path) {
-        if (path.node.name.name === 'EuiI18n') {
-          const symbols = handleJSXPath(path);
+      JSXOpeningElement(nodePath) {
+        if (nodePath.node.name.name === 'EuiI18n') {
+          const symbols = handleJSXPath(nodePath);
           for (let i = 0; i < symbols.length; i++) {
-            tokenMappings.push(
-              { ...symbols[i], filepath: relative(rootDir, filepath) }
+            mappings.push(
+              { ...symbols[i], filepath: path.relative(rootDir, filePath) }
             );
           }
         }
       },
-      CallExpression(path) {
-        if (path.node.callee && path.node.callee.type === 'Identifier' && path.node.callee.name === 'useEuiI18n') {
-          const symbols = handleHookPath(path);
+      CallExpression(nodePath) {
+        if (nodePath.node.callee && nodePath.node.callee.type === 'Identifier' && nodePath.node.callee.name === 'useEuiI18n') {
+          const symbols = handleHookPath(nodePath);
           for (let i = 0; i < symbols.length; i++) {
-            tokenMappings.push(
-              { ...symbols[i], filepath: relative(rootDir, filepath) }
+            mappings.push(
+              { ...symbols[i], filepath: path.relative(rootDir, filePath) }
             );
           }
         }
@@ -156,43 +146,43 @@ function traverseFile(filepath) {
   );
 }
 
-const files = glob.sync(
-  '**/*.@(js|ts|tsx)',
-  { cwd: srcDir, realpath: true },
-).filter(filepath => {
-  if (filepath.endsWith('.d.ts')) return false;
-  if (filepath.endsWith('test.ts')) return false;
-  if (filepath.endsWith('test.tsx')) return false;
-  if (filepath.endsWith('test.js')) return false;
-  if (filepath.endsWith('.stories.tsx')) return false;
-  if (filepath.endsWith('.stories.ts')) return false;
+function validateMappings(mappings) {
+  const validatedMappings = {};
 
-  return true;
-});
-
-// extract tokens from source files
-files.forEach(filename => traverseFile(filename));
-
-// validate tokens
-tokenMappings.reduce(
-  (mappings, symbol) => {
-    const { token, defString } = symbol;
-
-    if (mappings.hasOwnProperty(token)) {
-      if (mappings[token] !== defString) {
-        console.error(`Token ${token} has two differing defaults:\n${defString}\n${mappings[token]}`);
-        process.exit(1);
+  for (const { token, defString } of mappings) {
+    if (Object.hasOwn(validatedMappings, token)) {
+      if (validatedMappings[token] !== defString) {
+        throw new Error(`Token ${token} has two differing defaults:\n${defString}\n${mappings[token]}`);
       }
     } else {
-      mappings[token] = defString;
+      validatedMappings[token] = defString;
     }
+  }
+}
 
-    return mappings;
-  },
-  {}
-);
+export async function generateMappings(rootDir, babelConfig) {
+  const srcDir = path.join(rootDir, 'src');
+  const files = glob.globIterate('**/*.@(js|ts|tsx)', {
+    cwd: srcDir,
+    realpath: true,
+    ignore: [
+      '**/*.d.ts',
+      '**/*.test.ts',
+      '**/*.test.tsx',
+      '**/*.test.js',
+      '**/*.stories.ts',
+      '**/*.stories.tsx',
+    ],
+  });
 
-fs.writeFileSync(
-  join(rootDir, 'i18ntokens.json'),
-  JSON.stringify(tokenMappings, null, 2)
-);
+  const mappings = [];
+
+  for await (const file of files) {
+    const fullPath = path.join(srcDir, file);
+    await traverseFile(fullPath, rootDir, babelConfig, mappings);
+  }
+
+  validateMappings(mappings);
+
+  return mappings;
+}
