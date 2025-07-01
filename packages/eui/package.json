@@ -201,7 +201,7 @@
     "findup": "^0.1.5",
     "fork-ts-checker-webpack-plugin": "^5.1.0",
     "get-port": "^5.1.1",
-    "glob": "^7.1.6",
+    "glob": "^11.0.3",
     "html-format": "^1.0.1",
     "html-webpack-plugin": "^5.5.0",
     "inquirer": "^9.1.4",
