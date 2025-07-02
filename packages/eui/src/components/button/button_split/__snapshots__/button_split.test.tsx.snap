@@ -1,0 +1,85 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiButtonSplit is rendered 1`] = `
+<span
+  class="euiButtonSplit testClass1 testClass2 emotion-euiButtonSplit-euiTestCss"
+>
+  <button
+    class="euiButton emotion-euiButtonDisplay-m-defaultMinWidth-base-primary-leftButton"
+    type="button"
+  >
+    <span
+      class="emotion-euiButtonDisplayContent"
+    >
+      <span
+        class="eui-textTruncate"
+      >
+        Main
+      </span>
+    </span>
+  </button>
+  <span
+    class="css-1w8iqkv-rightSpan"
+  >
+    <div
+      class="euiPopover emotion-euiPopover-inline-block"
+    >
+      <button
+        aria-label="More actions"
+        class="euiButtonIcon emotion-euiButtonIcon-xs-base-primary-iconButton"
+        type="button"
+      >
+        <span
+          aria-hidden="true"
+          class="euiButtonIcon__icon"
+          color="inherit"
+          data-euiicon-type="arrowDown"
+        />
+      </button>
+    </div>
+  </span>
+</span>
+`;
+
+exports[`EuiButtonSplit props renders with isDisabled 1`] = `
+<span
+  class="euiButtonSplit  emotion-euiButtonSplit"
+>
+  <button
+    class="euiButton emotion-euiButtonDisplay-m-defaultMinWidth-isDisabled-base-disabled-leftButton"
+    disabled=""
+    type="button"
+  >
+    <span
+      class="emotion-euiButtonDisplayContent"
+    >
+      <span
+        class="eui-textTruncate"
+      >
+        Main
+      </span>
+    </span>
+  </button>
+  <span
+    class="css-1w8iqkv-rightSpan"
+  >
+    <div
+      class="euiPopover emotion-euiPopover-inline-block"
+    >
+      <button
+        aria-label="More actions"
+        class="euiButtonIcon emotion-euiButtonIcon-xs-base-disabled-isDisabled-iconButton"
+        disabled=""
+        type="button"
+      >
+        <span
+          aria-hidden="true"
+          class="euiButtonIcon__icon"
+          color="inherit"
+          data-euiicon-type="arrowDown"
+        />
+      </button>
+    </div>
+  </span>
+</span>
+`;
