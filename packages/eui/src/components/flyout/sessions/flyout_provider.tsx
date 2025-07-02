@@ -21,6 +21,7 @@ import {
 interface FlyoutSessionContextProps {
   state: EuiFlyoutSessionHistoryState;
   dispatch: React.Dispatch<EuiFlyoutSessionAction>;
+  onUnmount?: EuiFlyoutSessionProviderComponentProps['onUnmount'];
 }
 
 const EuiFlyoutSessionContext = createContext<FlyoutSessionContextProps | null>(
@@ -53,7 +54,12 @@ export const useEuiFlyoutSessionContext = () => {
  */
 export const EuiFlyoutSessionProvider: React.FC<
   EuiFlyoutSessionProviderComponentProps
-> = ({ children, renderMainFlyoutContent, renderChildFlyoutContent }) => {
+> = ({
+  children,
+  renderMainFlyoutContent,
+  renderChildFlyoutContent,
+  onUnmount,
+}) => {
   const [state, dispatch] = useReducer(flyoutReducer, initialFlyoutState);
   const { activeFlyoutGroup } = state;
 
@@ -101,7 +107,7 @@ export const EuiFlyoutSessionProvider: React.FC<
   const flyoutPropsChild = config?.childFlyoutProps || {};
 
   return (
-    <EuiFlyoutSessionContext.Provider value={{ state, dispatch }}>
+    <EuiFlyoutSessionContext.Provider value={{ state, dispatch, onUnmount }}>
       {children}
       {activeFlyoutGroup?.isMainOpen && (
         <EuiFlyout

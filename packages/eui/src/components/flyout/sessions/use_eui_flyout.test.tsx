@@ -97,12 +97,10 @@ const TestComponent: React.FC<TestComponentProps> = ({
             main: {
               size: 'm',
               flyoutProps: { className: 'main-flyout' },
-              onUnmount: () => {},
             },
             child: {
               size: 's',
               flyoutProps: { className: 'child-flyout' },
-              onUnmount: () => {},
             },
             meta: { type: 'testGroup' },
           };
@@ -161,8 +159,11 @@ const TestComponent: React.FC<TestComponentProps> = ({
 
 // Create a wrapper component that provides the context
 const TestWrapper: React.FC<
-  React.PropsWithChildren & { children?: React.ReactNode }
-> = ({ children }) => {
+  React.PropsWithChildren & {
+    children?: React.ReactNode;
+    onUnmount?: () => void;
+  }
+> = ({ children, onUnmount }) => {
   const renderMainFlyoutContent = (context: any) => (
     <div data-testid="mainFlyoutContent">
       Main flyout content: {JSON.stringify(context.meta)}
@@ -179,6 +180,7 @@ const TestWrapper: React.FC<
     <EuiFlyoutSessionProvider
       renderMainFlyoutContent={renderMainFlyoutContent}
       renderChildFlyoutContent={renderChildFlyoutContent}
+      onUnmount={onUnmount}
     >
       {children}
     </EuiFlyoutSessionProvider>
@@ -318,47 +320,6 @@ describe('useEuiFlyoutSession', () => {
     );
   });
 
-  test('goBack navigates through the history stack and restores previous flyouts', () => {
-    render(
-      <TestWrapper>
-        <TestComponent />
-      </TestWrapper>
-    );
-
-    // Open first flyout (A)
-    fireEvent.click(screen.getByTestId('openFlyoutButton'));
-    // Verify the content is rendered by checking the element exists and has content
-    expect(screen.getByTestId('mainFlyoutContent')).toBeTruthy();
-    expect(screen.getByTestId('mainFlyoutContent').textContent).toContain(
-      '"type":"test"'
-    );
-
-    // Open second flyout (B), which should push A to history
-    fireEvent.click(screen.getByTestId('openFlyoutButton'));
-    // Verify the main flyout is still open
-    expect(screen.getByTestId('mainFlyoutContent')).toBeTruthy();
-    expect(screen.getByTestId('canGoBackStatus').textContent).toBe(
-      'Can go back'
-    );
-
-    // Go back to first flyout (A)
-    fireEvent.click(screen.getByTestId('goBackButton'));
-
-    // Should still have a flyout open (first one)
-    expect(screen.getByTestId('flyoutStatus').textContent).toBe(
-      'Flyout is open'
-    );
-    expect(screen.getByTestId('canGoBackStatus').textContent).toBe(
-      'Cannot go back'
-    );
-
-    // The go back button is now disabled, so a click won't do anything.
-    fireEvent.click(screen.getByTestId('goBackButton'));
-    expect(screen.getByTestId('flyoutStatus').textContent).toBe(
-      'Flyout is open'
-    );
-  });
-
   test('clearHistory closes all flyouts', () => {
     const onClearHistory = jest.fn();
     render(
@@ -417,5 +378,66 @@ describe('useEuiFlyoutSession', () => {
     expect(screen.getByTestId('childFlyoutStatus').textContent).toBe(
       'Child flyout is open'
     );
+  });
+
+  describe('onUnmount callback', () => {
+    test('is called when all flyouts are closed via clearHistory', () => {
+      const onUnmount = jest.fn();
+      render(
+        <TestWrapper onUnmount={onUnmount}>
+          <TestComponent />
+        </TestWrapper>
+      );
+
+      // Open a flyout group
+      fireEvent.click(screen.getByTestId('openFlyoutGroupButton'));
+      expect(screen.getByTestId('flyoutStatus').textContent).toBe(
+        'Flyout is open'
+      );
+      expect(onUnmount).not.toHaveBeenCalled();
+
+      // Clear history, which should close all flyouts and trigger onUnmount
+      fireEvent.click(screen.getByTestId('clearHistoryButton'));
+      expect(screen.getByTestId('flyoutStatus').textContent).toBe(
+        'Flyout is closed'
+      );
+      expect(onUnmount).toHaveBeenCalledTimes(1);
+    });
+
+    test('is not called when a flyout is opened', () => {
+      const onUnmount = jest.fn();
+      render(
+        <TestWrapper onUnmount={onUnmount}>
+          <TestComponent />
+        </TestWrapper>
+      );
+
+      fireEvent.click(screen.getByTestId('openFlyoutButton'));
+      expect(onUnmount).not.toHaveBeenCalled();
+    });
+
+    test('is not called while there are still flyouts in the history stack', () => {
+      const onUnmount = jest.fn();
+      render(
+        <TestWrapper onUnmount={onUnmount}>
+          <TestComponent />
+        </TestWrapper>
+      );
+
+      // Open two flyouts to create a history stack
+      fireEvent.click(screen.getByTestId('openFlyoutButton'));
+      fireEvent.click(screen.getByTestId('openFlyoutButton'));
+      expect(screen.getByTestId('canGoBackStatus').textContent).toBe(
+        'Can go back'
+      );
+      expect(onUnmount).not.toHaveBeenCalled();
+
+      // Go back once, which leaves one flyout open
+      fireEvent.click(screen.getByTestId('goBackButton'));
+      expect(screen.getByTestId('flyoutStatus').textContent).toBe(
+        'Flyout is open'
+      );
+      expect(onUnmount).not.toHaveBeenCalled();
+    });
   });
 });

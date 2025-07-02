@@ -27,8 +27,6 @@ export interface EuiFlyoutSessionGroup<FlyoutMeta> {
   isMainOpen: boolean;
   isChildOpen: boolean;
   config: EuiFlyoutSessionConfig;
-  mainOnUnmount?: () => void;
-  childOnUnmount?: () => void;
   meta?: FlyoutMeta;
 }
 
@@ -46,8 +44,6 @@ export type EuiFlyoutSessionAction<FlyoutMeta = unknown> =
       type: 'UPDATE_ACTIVE_FLYOUT_CONFIG';
       payload: {
         configChanges: Partial<EuiFlyoutSessionConfig>;
-        newMainOnUnmount?: () => void;
-        newChildOnUnmount?: () => void;
       };
     }
   | {
@@ -55,7 +51,6 @@ export type EuiFlyoutSessionAction<FlyoutMeta = unknown> =
       payload: {
         size: EuiFlyoutSize;
         flyoutProps?: Partial<Omit<EuiFlyoutProps, 'children'>>;
-        onUnmount?: () => void;
         meta?: FlyoutMeta;
       };
     }
@@ -64,7 +59,6 @@ export type EuiFlyoutSessionAction<FlyoutMeta = unknown> =
       payload: {
         size: 's' | 'm';
         flyoutProps?: Partial<Omit<EuiFlyoutChildProps, 'children'>>;
-        onUnmount?: () => void;
         meta?: FlyoutMeta;
       };
     }
@@ -74,12 +68,10 @@ export type EuiFlyoutSessionAction<FlyoutMeta = unknown> =
         main: {
           size: EuiFlyoutSize;
           flyoutProps?: Partial<Omit<EuiFlyoutProps, 'children'>>;
-          onUnmount?: () => void;
         };
         child: {
           size: 's' | 'm';
           flyoutProps?: Partial<Omit<EuiFlyoutChildProps, 'children'>>;
-          onUnmount?: () => void;
         };
         meta?: FlyoutMeta;
       };
@@ -105,6 +97,7 @@ export interface EuiFlyoutSessionRenderContext<FlyoutMeta = unknown> {
  */
 export interface EuiFlyoutSessionProviderComponentProps<FlyoutMeta = any> {
   children: React.ReactNode;
+  onUnmount?: () => void;
   renderMainFlyoutContent: (
     context: EuiFlyoutSessionRenderContext<FlyoutMeta>
   ) => React.ReactNode;
