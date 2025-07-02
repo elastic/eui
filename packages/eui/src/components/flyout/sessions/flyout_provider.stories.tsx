@@ -258,6 +258,13 @@ const WithHistoryAppControls: React.FC = () => {
     clearHistory,
   } = useEuiFlyoutSession();
 
+  const handleCloseOrGoBack = () => {
+    if (canGoBack) {
+      goBack();
+    } else {
+      clearHistory();
+    }
+  };
   const handleOpenShoppingCart = () => {
     const options: EuiFlyoutSessionOpenMainOptions<WithHistoryAppMeta> = {
       size: 'm',
@@ -297,7 +304,11 @@ const WithHistoryAppControls: React.FC = () => {
         Close child flyout
       </EuiButton>
       <EuiSpacer size="s" />
-      <EuiButton onClick={goBack} isDisabled={!canGoBack} color="warning">
+      <EuiButton
+        onClick={handleCloseOrGoBack}
+        isDisabled={!isFlyoutOpen}
+        color="warning"
+      >
         Close/Go back
       </EuiButton>
       <EuiSpacer size="s" />

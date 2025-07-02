@@ -97,8 +97,6 @@ export interface EuiFlyoutSessionRenderContext<FlyoutMeta = unknown> {
   flyoutType: 'main' | 'child';
   dispatch: React.Dispatch<EuiFlyoutSessionAction<FlyoutMeta>>;
   activeFlyoutGroup: EuiFlyoutSessionGroup<FlyoutMeta> | null;
-  onCloseFlyout: () => void;
-  onCloseChildFlyout: () => void;
   meta?: FlyoutMeta;
 }
 

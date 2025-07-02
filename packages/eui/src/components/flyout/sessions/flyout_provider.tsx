@@ -75,8 +75,6 @@ export const EuiFlyoutSessionProvider: React.FC<
       flyoutType: 'main',
       dispatch,
       activeFlyoutGroup,
-      onCloseFlyout: handleClose,
-      onCloseChildFlyout: handleCloseChild,
       meta: activeFlyoutGroup.meta,
     };
     mainFlyoutContentNode = renderMainFlyoutContent(mainRenderContext);
@@ -88,8 +86,6 @@ export const EuiFlyoutSessionProvider: React.FC<
         flyoutType: 'child',
         dispatch,
         activeFlyoutGroup,
-        onCloseFlyout: handleClose,
-        onCloseChildFlyout: handleCloseChild,
         meta: activeFlyoutGroup.meta,
       };
       childFlyoutContentNode = renderChildFlyoutContent(childRenderContext);

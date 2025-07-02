@@ -100,7 +100,7 @@ export function useEuiFlyoutSession() {
     dispatch({ type: 'GO_BACK' });
   };
 
-  const canGoBack = !!state.activeFlyoutGroup;
+  const canGoBack = !!state.history.length;
 
   const isFlyoutOpen = !!state.activeFlyoutGroup?.isMainOpen;
 
