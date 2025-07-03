@@ -27,12 +27,18 @@ type EuiFlyoutChildActualProps = ComponentProps<typeof EuiFlyoutChild>;
 
 type FlyoutChildStoryArgs = EuiFlyoutChildActualProps & {
   pushMinBreakpoint: EuiBreakpointSize;
+  maxSizeChild?: number;
 };
 
 const meta: Meta<FlyoutChildStoryArgs> = {
   title: 'Layout/EuiFlyout/EuiFlyoutChild',
   component: EuiFlyoutChild,
   argTypes: {
+    maxSizeChild: {
+      control: { type: 'number' },
+      description:
+        'Maximum width (in px) for the child flyout in side-by-side mode. Leave blank to fill available space.',
+    },
     size: {
       options: ['s', 'm', 'fill'],
       control: { type: 'radio' },
@@ -49,6 +55,7 @@ const meta: Meta<FlyoutChildStoryArgs> = {
     hideCloseButton: false,
     size: 's',
     pushMinBreakpoint: 'xs',
+    maxSizeChild: undefined,
   },
   parameters: {
     docs: {
@@ -86,6 +93,7 @@ interface StatefulFlyoutProps {
   showHeader?: boolean;
   showFooter?: boolean;
   pushMinBreakpoint?: EuiBreakpointSize;
+  maxSizeChild?: number;
 }
 
 type EuiFlyoutType = (typeof TYPES)[number];
@@ -100,6 +108,7 @@ const StatefulFlyout: React.FC<StatefulFlyoutProps> = ({
   showHeader = true,
   showFooter = true,
   pushMinBreakpoint = 'xs',
+  maxSizeChild,
 }) => {
   const [isMainOpen, setIsMainOpen] = useState(true);
   const [isChildOpen, setIsChildOpen] = useState(false);
@@ -187,7 +196,11 @@ const StatefulFlyout: React.FC<StatefulFlyoutProps> = ({
           )}
 
           {isChildOpen && (
-            <EuiFlyoutChild onClose={closeChild} size={childSize}>
+            <EuiFlyoutChild
+              onClose={closeChild}
+              size={childSize}
+              maxSize={maxSizeChild}
+            >
               {showHeader && (
                 <EuiFlyoutHeader hasBorder>
                   <EuiText>
@@ -271,6 +284,22 @@ export const WithSmallMainFillChild: Story = {
       mainSize="s"
       childSize="fill"
       pushMinBreakpoint={args.pushMinBreakpoint}
+      maxSizeChild={args.maxSizeChild}
+    />
+  ),
+};
+
+export const WithSmallMainFillToMaxChild: Story = {
+  name: 'Main Size: s, Child Size: fill to max',
+  args: {
+    maxSizeChild: 600,
+  },
+  render: (args) => (
+    <StatefulFlyout
+      mainSize="s"
+      childSize="fill"
+      pushMinBreakpoint={args.pushMinBreakpoint}
+      maxSizeChild={args.maxSizeChild}
     />
   ),
 };
