@@ -64,6 +64,12 @@ export const euiFlyoutStyles = (euiThemeContext: UseEuiTheme) => {
         outline: none;
       }
 
+      &.euiFlyout--hasChild--stacked.euiFlyout--hasChild--fill {
+        min-inline-size: 90vw;
+        inline-size: 90vw;
+        max-inline-size: 90vw;
+      }
+
       ${maxedFlyoutWidth(euiThemeContext)}
     `,
 

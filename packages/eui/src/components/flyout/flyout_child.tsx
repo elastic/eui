@@ -59,7 +59,13 @@ export interface EuiFlyoutChildProps
    * When the parent flyout is 'm', child is limited to 's'.
    * @default 's'
    */
-  size?: 's' | 'm';
+  /**
+   * Size of the child flyout panel.
+   * When the parent flyout is 'm', child is limited to 's'.
+   * 'fill' will take up the remaining space up to the max (90vw - parent size).
+   * @default 's'
+   */
+  size?: 's' | 'm' | 'fill';
   /**
    * Children are implicitly part of FunctionComponent, but good to have if props type is standalone.
    */
@@ -86,7 +92,8 @@ export const EuiFlyoutChild: FunctionComponent<EuiFlyoutChildProps> = ({
     throw new Error('EuiFlyoutChild must be used as a child of EuiFlyout.');
   }
 
-  const { setIsChildFlyoutOpen, parentSize } = flyoutContext;
+  const { setIsChildFlyoutOpen, parentSize, childLayoutMode, parentFlyoutRef } =
+    flyoutContext;
 
   useEffect(() => {
     setIsChildFlyoutOpen?.(true);
@@ -101,7 +108,7 @@ export const EuiFlyoutChild: FunctionComponent<EuiFlyoutChildProps> = ({
 
   if (parentSize === 'm' && size === 'm') {
     throw new Error(
-      'When the parent EuiFlyout size is "m", the EuiFlyoutChild size cannot be "m". Please use size "s" for the EuiFlyoutChild.'
+      'When the parent EuiFlyout size is "m", the EuiFlyoutChild size cannot be "m". Please use size "s" or "fill" for the EuiFlyoutChild.'
     );
   }
 
@@ -191,11 +198,25 @@ export const EuiFlyoutChild: FunctionComponent<EuiFlyoutChildProps> = ({
 
   const styles = useEuiMemoizedStyles(euiFlyoutChildStyles);
 
-  const { childLayoutMode, parentFlyoutRef } = flyoutContext;
+  // Calculate width for 'fill' option
+  let fillWidth: string | undefined;
+  if (size === 'fill') {
+    // Parent can only be 's' or 'm' for now
+    const parentWidths: Record<string, number> = { s: 25, m: 50 };
+    const parentVw =
+      parentSize && (parentSize === 's' || parentSize === 'm')
+        ? parentWidths[parentSize]
+        : 0;
+    fillWidth = `calc(90vw - ${parentVw}vw)`;
+  }
 
   const flyoutChildCss = [
     styles.euiFlyoutChild,
-    size === 's' ? styles.s : styles.m,
+    size === 'fill'
+      ? { width: fillWidth, maxWidth: '90vw' }
+      : size === 's'
+      ? styles.s
+      : styles.m,
     childLayoutMode === 'side-by-side'
       ? styles.sidePosition
       : styles.stackedPosition,

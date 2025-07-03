@@ -34,7 +34,7 @@ const meta: Meta<FlyoutChildStoryArgs> = {
   component: EuiFlyoutChild,
   argTypes: {
     size: {
-      options: ['s', 'm'],
+      options: ['s', 'm', 'fill'],
       control: { type: 'radio' },
     },
     pushMinBreakpoint: {
@@ -82,7 +82,7 @@ type Story = StoryObj<FlyoutChildStoryArgs>;
 
 interface StatefulFlyoutProps {
   mainSize?: 's' | 'm';
-  childSize?: 's' | 'm';
+  childSize?: 's' | 'm' | 'fill';
   showHeader?: boolean;
   showFooter?: boolean;
   pushMinBreakpoint?: EuiBreakpointSize;
@@ -200,8 +200,12 @@ const StatefulFlyout: React.FC<StatefulFlyoutProps> = ({
                   <p>This is the child flyout content.</p>
                   <p>Size restrictions apply:</p>
                   <ul>
-                    <li>When main panel is 's', child can be 's' or 'm'</li>
-                    <li>When main panel is 'm', child is limited to 's'</li>
+                    <li>
+                      When main panel is 's', child can be 's', 'm', or 'fill'
+                    </li>
+                    <li>
+                      When main panel is 'm', child is limited to 's' or 'fill'
+                    </li>
                   </ul>
                   <EuiSpacer />
                   <p>
@@ -255,6 +259,17 @@ export const WithSmallMainLargeChlld: Story = {
     <StatefulFlyout
       mainSize="s"
       childSize="m"
+      pushMinBreakpoint={args.pushMinBreakpoint}
+    />
+  ),
+};
+
+export const WithSmallMainFillChild: Story = {
+  name: 'Main Size: s, Child Size: fill',
+  render: (args) => (
+    <StatefulFlyout
+      mainSize="s"
+      childSize="fill"
       pushMinBreakpoint={args.pushMinBreakpoint}
     />
   ),

@@ -14,7 +14,7 @@ import { EuiFlyoutChildProps } from '../flyout_child';
  */
 export interface EuiFlyoutSessionConfig {
   mainSize: EuiFlyoutSize;
-  childSize: 's' | 'm';
+  childSize: 's' | 'm' | 'fill';
   mainFlyoutProps?: Partial<Omit<EuiFlyoutProps, 'children'>>;
   childFlyoutProps?: Partial<Omit<EuiFlyoutChildProps, 'children'>>;
 }
@@ -62,7 +62,7 @@ export type EuiFlyoutSessionAction<FlyoutMeta = unknown> =
   | {
       type: 'OPEN_CHILD_FLYOUT';
       payload: {
-        size: 's' | 'm';
+        size: 's' | 'm' | 'fill';
         flyoutProps?: Partial<Omit<EuiFlyoutChildProps, 'children'>>;
         onUnmount?: () => void;
         meta?: FlyoutMeta;
@@ -77,7 +77,7 @@ export type EuiFlyoutSessionAction<FlyoutMeta = unknown> =
           onUnmount?: () => void;
         };
         child: {
-          size: 's' | 'm';
+          size: 's' | 'm' | 'fill';
           flyoutProps?: Partial<Omit<EuiFlyoutChildProps, 'children'>>;
           onUnmount?: () => void;
         };
