@@ -88,7 +88,7 @@ export default meta;
 type Story = StoryObj<FlyoutChildStoryArgs>;
 
 interface StatefulFlyoutProps {
-  mainSize?: 's' | 'm';
+  mainSize?: 's' | 'm' | 'fill';
   childSize?: 's' | 'm' | 'fill';
   showHeader?: boolean;
   showFooter?: boolean;
@@ -161,6 +161,17 @@ const StatefulFlyout: React.FC<StatefulFlyoutProps> = ({
           size={mainSize}
           type={flyoutType}
           pushMinBreakpoint={pushMinBreakpoint}
+          maxSizeParent={
+            mainSize === 'fill'
+              ? childSize === 's'
+                ? 'calc(90vw - 25vw)'
+                : childSize === 'm'
+                ? 'calc(90vw - 50vw)'
+                : childSize === 'fill'
+                ? '0vw'
+                : undefined
+              : undefined
+          }
         >
           {showHeader && (
             <EuiFlyoutHeader hasBorder>
@@ -300,6 +311,17 @@ export const WithSmallMainFillToMaxChild: Story = {
       childSize="fill"
       pushMinBreakpoint={args.pushMinBreakpoint}
       maxSizeChild={args.maxSizeChild}
+    />
+  ),
+};
+
+export const WithFillMainSmallChild: Story = {
+  name: 'Main Size: fill, Child Size: s',
+  render: (args) => (
+    <StatefulFlyout
+      mainSize="fill"
+      childSize="s"
+      pushMinBreakpoint={args.pushMinBreakpoint}
     />
   ),
 };

@@ -89,6 +89,7 @@ export const EuiFlyoutChild: FunctionComponent<EuiFlyoutChildProps> = ({
   onClose,
   scrollableTabIndex = 0,
   size = 's',
+  maxSize,
   ...rest
 }) => {
   const flyoutContext = useContext(EuiFlyoutContext);
@@ -217,8 +218,8 @@ export const EuiFlyoutChild: FunctionComponent<EuiFlyoutChildProps> = ({
 
   // Build inline style for maxSize
   const maxWidthStyle: React.CSSProperties = {};
-  if (childLayoutMode !== 'stacked' && typeof rest.maxSize === 'number') {
-    maxWidthStyle.maxWidth = `${rest.maxSize}px`;
+  if (childLayoutMode !== 'stacked' && typeof maxSize === 'number') {
+    maxWidthStyle.maxWidth = `${maxSize}px`;
   }
 
   const flyoutChildCss = [

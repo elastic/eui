@@ -20,7 +20,7 @@ import { EuiFlyoutContext, EuiFlyoutContextValue } from './flyout_context';
 import { EuiFlyoutChild } from './flyout_child';
 
 interface EuiFlyoutChildProviderProps {
-  parentSize: 's' | 'm';
+  parentSize: 's' | 'm' | 'fill';
   parentFlyoutRef: React.RefObject<HTMLDivElement>;
   childElement: React.ReactElement<ComponentProps<typeof EuiFlyoutChild>>;
   childrenToRender: ReactNode;
