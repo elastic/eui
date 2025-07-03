@@ -192,7 +192,6 @@ export const typeToPathMap = {
   heatmap: 'heatmap',
   help: 'help',
   home: 'home',
-  iInCircle: 'info', // NOTE: To be deprecated in favor of `info`
   info: 'info',
   image: 'image',
   importAction: 'import',
@@ -360,7 +359,6 @@ export const typeToPathMap = {
   plusInSquare: 'plus_in_square',
   popout: 'popout',
   push: 'push',
-  questionInCircle: 'question', // NOTE: To be deprecated in favor of `question`
   question: 'question',
   quote: 'quote',
   readOnly: 'readOnly',
