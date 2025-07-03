@@ -12,6 +12,10 @@ import React, {
   ProgressHTMLAttributes,
   ReactNode,
   CSSProperties,
+  useState,
+  useRef,
+  useEffect,
+  MutableRefObject,
 } from 'react';
 import classNames from 'classnames';
 import { EuiI18n } from '../i18n';
@@ -20,6 +24,7 @@ import { CommonProps, ExclusiveUnion } from '../common';
 import { isNil } from '../../services/predicate';
 
 import { useEuiTheme, makeHighContrastColor } from '../../services';
+import { EuiScreenReaderOnly } from '../accessibility';
 import {
   euiProgressStyles,
   euiProgressDataStyles,
@@ -93,6 +98,9 @@ export const EuiProgress: FunctionComponent<
   labelProps,
   ...rest
 }) => {
+  const valueTextRef: MutableRefObject<HTMLSpanElement | null> = useRef(null);
+  const [innerValueText, setInnerValueText] = useState<string | undefined>();
+
   const determinate = !isNil(max);
   const isNamedColor = COLORS.includes(color as EuiProgressColor);
 
@@ -149,6 +157,10 @@ export const EuiProgress: FunctionComponent<
     valueRender = valueText;
   }
 
+  useEffect(() => {
+    setInnerValueText(valueTextRef.current?.textContent ?? '');
+  }, [label, valueRender, value]);
+
   // Because of a Firefox animation issue, indeterminate progress needs to not use <progress />.
   // See https://css-tricks.com/html5-progress-element/
 
@@ -166,6 +178,7 @@ export const EuiProgress: FunctionComponent<
                     {...labelProps}
                     className={labelClasses}
                     css={labelCssStyles}
+                    aria-hidden="true"
                   >
                     {label}
                   </span>
@@ -177,10 +190,14 @@ export const EuiProgress: FunctionComponent<
                 {(ref, innerText) => (
                   <span
                     title={innerText}
-                    ref={ref}
+                    ref={(node) => {
+                      valueTextRef.current = node;
+                      ref?.(node);
+                    }}
                     style={customTextColorStyles}
                     css={valueTextCssStyles}
                     className="euiProgress__valueText"
+                    aria-hidden="true"
                   >
                     {valueRender}
                   </span>
@@ -189,13 +206,21 @@ export const EuiProgress: FunctionComponent<
             )}
           </div>
         ) : undefined}
+        <EuiScreenReaderOnly>
+          <div aria-live="polite" aria-atomic="true">
+            <span>
+              {label && `${label} `}
+              {valueRender || value}
+            </span>
+          </div>
+        </EuiScreenReaderOnly>
         <progress
           css={cssStyles}
           className={classes}
           style={customColorStyles}
           max={max}
           value={value}
-          aria-hidden={label && valueText ? true : false}
+          aria-valuetext={innerValueText || undefined}
           {...(rest as ProgressHTMLAttributes<HTMLProgressElement>)}
         />
       </>
