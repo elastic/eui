@@ -85,7 +85,8 @@ export const DeterminateLoading: Story = {
     max: 100,
   },
   render: function Render(args) {
-    const { value, valueText } = args;
+    const { value, valueText, max } = args;
+    const maxValue = max ?? 100;
     const hasCustomValueText = valueText === 'steps';
 
     const [loading, setLoading] = useState<number>(
@@ -99,16 +100,28 @@ export const DeterminateLoading: Story = {
       undefined
     );
 
-    useEffect(() => {
-      if (loading >= 100 && intervalId !== null) {
-        clearInterval(intervalId);
+    const cleanInterval = (id: NodeJS.Timeout | undefined) => {
+      if (id !== undefined) {
+        clearInterval(id);
         setIntervalId(undefined);
       }
-    }, [intervalId, loading]);
+    };
+
+    useEffect(() => {
+      if (loading >= maxValue) {
+        cleanInterval(intervalId);
+      }
+    }, [intervalId, loading, maxValue]);
+
+    useEffect(() => {
+      return () => {
+        cleanInterval(intervalId);
+      };
+    }, []);
 
     const increment = () => {
       setLoading((prev: number) => {
-        if (prev >= 100) return 0;
+        if (prev >= maxValue) return 0;
 
         return prev + 10;
       });
@@ -137,6 +150,7 @@ export const DeterminateLoading: Story = {
           {/* casting due to ExclusiveUnion complexity */}
           <EuiProgress
             {...(args as typeof EuiProgress)}
+            max={maxValue}
             value={loading}
             valueText={
               hasCustomValueText ? `${loading} ${valueText}` : valueText
