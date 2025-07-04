@@ -191,6 +191,26 @@ const component_colors: _EuiThemeComponentColors = {
     ([highlight]) => highlight,
     ['colors.highlight']
   ),
+  dataGridRowBackgroundMarked: computed(
+    ([highlight]) => highlight,
+    ['colors.highlight']
+  ),
+  dataGridRowBackgroundMarkedHover: computed(
+    ([highlight]) => highlight,
+    ['colors.highlight']
+  ),
+  dataGridRowBorderActive: computed(
+    ([borderStrongPrimary]) => borderStrongPrimary,
+    ['colors.borderStrongPrimary']
+  ),
+  dataGridRowBorderHover: computed(
+    ([borderStrongText]) => borderStrongText,
+    ['colors.borderStrongText']
+  ),
+  dataGridRowBorderMarked: computed(
+    ([borderStrongPrimary]) => borderStrongPrimary,
+    ['colors.borderStrongPrimary']
+  ),
   dataGridRowStripesBackground: computed(
     ([emptyShade]) => emptyShade,
     ['colors.emptyShade']
@@ -403,6 +423,14 @@ const component_colors: _EuiThemeComponentColors = {
   tableRowInteractiveBackgroundFocus: computed(
     ([primary]) => transparentize(primary, 0.1),
     ['colors.primary']
+  ),
+  tableRowBackgroundMarked: computed(
+    ([highlight]) => highlight,
+    ['colors.highlight']
+  ),
+  tableRowBackgroundMarkedHover: computed(
+    ([highlight]) => highlight,
+    ['colors.highlight']
   ),
   tableCellSortableIconColor: computed(
     ([emptyShade, subduedText]) => {

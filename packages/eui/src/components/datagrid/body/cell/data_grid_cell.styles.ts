@@ -16,8 +16,9 @@ import {
 } from '../../../../global_styling';
 
 export const euiDataGridCellOutlineStyles = ({ euiTheme }: UseEuiTheme) => {
-  const focusColor = euiTheme.colors.borderStrongPrimary;
-  const hoverColor = euiTheme.colors.borderStrongText;
+  const focusColor = euiTheme.components.dataGridRowBorderActive;
+  const hoverColor = euiTheme.components.dataGridRowBorderHover;
+  const markedColor = euiTheme.components.dataGridRowBorderMarked;
   const outlineWidth = euiTheme.border.width.thick;
   const borderRadius = mathWithUnits(
     euiTheme.border.radius.medium,
@@ -53,6 +54,18 @@ export const euiDataGridCellOutlineStyles = ({ euiTheme }: UseEuiTheme) => {
         border-color: ${hoverColor};
       }
     `,
+    markedColor,
+    // marked styles are used in `data_grid.styles.ts`
+    markedStyles: `
+      &::after {
+        border-color: ${markedColor};
+      }
+
+      .euiDataGridRowCell__actions {
+        background-color: ${markedColor};
+        border-color: ${markedColor};
+      }
+    `,
   };
 };
 
@@ -84,6 +97,7 @@ export const euiDataGridCellOutlineSelectors = (parentSelector = '&') => {
       show: is(selectors(hover, focus, isOpen, isEntered)),
       hover: hoverNot(selectors(focus, focusWithin, isOpen)),
       focusTrapped: _(isEntered),
+      marked: is(selectors(focus, isOpen)),
     },
 
     actions: {
