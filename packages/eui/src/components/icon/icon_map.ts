@@ -190,7 +190,7 @@ export const typeToPathMap = {
   heart: 'heart',
   heartbeatApp: 'app_heartbeat',
   heatmap: 'heatmap',
-  help: 'help',
+  help: 'help', // NOTE: Might be deprecated later (not recommended in Kibana)
   home: 'home',
   info: 'info',
   image: 'image',
