@@ -12,6 +12,10 @@ import React, {
   ProgressHTMLAttributes,
   ReactNode,
   CSSProperties,
+  useState,
+  useRef,
+  useEffect,
+  MutableRefObject,
 } from 'react';
 import classNames from 'classnames';
 import { EuiI18n } from '../i18n';
@@ -20,6 +24,7 @@ import { CommonProps, ExclusiveUnion } from '../common';
 import { isNil } from '../../services/predicate';
 
 import { useEuiTheme, makeHighContrastColor } from '../../services';
+import { EuiScreenReaderOnly } from '../accessibility';
 import {
   euiProgressStyles,
   euiProgressDataStyles,
@@ -67,9 +72,15 @@ type Indeterminate = EuiProgressProps & HTMLAttributes<HTMLDivElement>;
 
 type Determinate = EuiProgressProps &
   Omit<ProgressHTMLAttributes<HTMLProgressElement>, 'max'> & {
+    /**
+     * When set, creates determinate progress with a value/max ratio
+     */
     max?: number;
-    /*
-     * If true, will render the percentage, otherwise pass a custom node
+    /**
+     * Displays custom text or percentage
+     * Pass `true` to display the percentage value
+     * Pass a ReactNode for custom text
+     * @default false
      */
     valueText?: boolean | ReactNode;
     label?: ReactNode;
@@ -93,6 +104,11 @@ export const EuiProgress: FunctionComponent<
   labelProps,
   ...rest
 }) => {
+  const valueTextRef: MutableRefObject<HTMLSpanElement | null> = useRef(null);
+  const labelRef: MutableRefObject<HTMLSpanElement | null> = useRef(null);
+  const [innerValueText, setInnerValueText] = useState<string | undefined>();
+  const [labelText, setLabelText] = useState<string | undefined>();
+
   const determinate = !isNil(max);
   const isNamedColor = COLORS.includes(color as EuiProgressColor);
 
@@ -149,6 +165,11 @@ export const EuiProgress: FunctionComponent<
     valueRender = valueText;
   }
 
+  useEffect(() => {
+    setInnerValueText(valueTextRef.current?.textContent ?? '');
+    setLabelText(labelRef.current?.textContent ?? '');
+  }, [label, valueRender, value]);
+
   // Because of a Firefox animation issue, indeterminate progress needs to not use <progress />.
   // See https://css-tricks.com/html5-progress-element/
 
@@ -162,10 +183,14 @@ export const EuiProgress: FunctionComponent<
                 {(ref, innerText) => (
                   <span
                     title={innerText}
-                    ref={ref}
+                    ref={(node) => {
+                      labelRef.current = node;
+                      ref?.(node);
+                    }}
                     {...labelProps}
                     className={labelClasses}
                     css={labelCssStyles}
+                    aria-hidden="true"
                   >
                     {label}
                   </span>
@@ -177,10 +202,14 @@ export const EuiProgress: FunctionComponent<
                 {(ref, innerText) => (
                   <span
                     title={innerText}
-                    ref={ref}
+                    ref={(node) => {
+                      valueTextRef.current = node;
+                      ref?.(node);
+                    }}
                     style={customTextColorStyles}
                     css={valueTextCssStyles}
                     className="euiProgress__valueText"
+                    aria-hidden="true"
                   >
                     {valueRender}
                   </span>
@@ -189,13 +218,22 @@ export const EuiProgress: FunctionComponent<
             )}
           </div>
         ) : undefined}
+        <EuiScreenReaderOnly>
+          <div aria-live="polite" aria-atomic="true">
+            <span>
+              {label && `${label} `}
+              {valueRender || value}
+            </span>
+          </div>
+        </EuiScreenReaderOnly>
         <progress
           css={cssStyles}
           className={classes}
           style={customColorStyles}
           max={max}
           value={value}
-          aria-hidden={label && valueText ? true : false}
+          aria-valuetext={innerValueText || undefined}
+          aria-label={labelText || undefined}
           {...(rest as ProgressHTMLAttributes<HTMLProgressElement>)}
         />
       </>
