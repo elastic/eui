@@ -17,11 +17,12 @@
   "scripts": {
     "start": "yarn storybook",
     "build:workspaces": "yarn workspaces foreach -Rti --from @elastic/eui-theme-common run build && yarn workspaces foreach -Rti --from @elastic/eui --exclude @elastic/eui --exclude @elastic/eui-theme-common run build",
-    "build": "node ./scripts/compile-i18n-strings.js && node ./scripts/compile-clean.js && node ./scripts/compile-eui.js && yarn compile-scss",
-    "build-pack": "yarn build && npm pack",
+    "build:clean": "rimraf dist lib es optimize test-env eui.d.ts",
+    "build:i18ntokens": "node ./scripts/build_i18ntokens.mjs",
+    "build:copy-assets": "node ./scripts/build_copy_assets.js",
+    "build": "yarn build:clean && yarn build:i18ntokens && node ./scripts/compile-eui.js && yarn build:copy-assets",
+    "build-pack": "yarn build && yarn pack",
     "compile-icons": "node ./scripts/compile-icons.js && prettier --write --loglevel=warn \"./src/components/icon/assets/**/*.tsx\"",
-    "compile-scss": "node ./scripts/compile-scss.js",
-    "extract-i18n-strings": "node ./scripts/babel/fetch-i18n-strings",
     "lint": "yarn tsc --noEmit && yarn lint-es && yarn lint-css-in-js && yarn lint-sass",
     "lint-fix": "yarn lint-es --fix && yarn lint-css-in-js --fix",
     "lint-es": "NODE_OPTIONS=--max-old-space-size=4096 eslint --cache \"src/**/*.{ts,tsx,js}\"",
@@ -43,7 +44,8 @@
     "release-rc": "node ./scripts/release.js --type=prerelease",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "pre-push": "yarn test-staged"
+    "pre-push": "yarn test-staged",
+    "prerelease": "node ./scripts/prerelease.mjs"
   },
   "repository": {
     "type": "git",
@@ -199,7 +201,7 @@
     "findup": "^0.1.5",
     "fork-ts-checker-webpack-plugin": "^5.1.0",
     "get-port": "^5.1.1",
-    "glob": "^7.1.6",
+    "glob": "^11.0.3",
     "html-format": "^1.0.1",
     "html-webpack-plugin": "^5.5.0",
     "inquirer": "^9.1.4",
