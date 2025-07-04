@@ -72,9 +72,15 @@ type Indeterminate = EuiProgressProps & HTMLAttributes<HTMLDivElement>;
 
 type Determinate = EuiProgressProps &
   Omit<ProgressHTMLAttributes<HTMLProgressElement>, 'max'> & {
+    /**
+     * When set, creates determinate progress with a value/max ratio
+     */
     max?: number;
-    /*
-     * If true, will render the percentage, otherwise pass a custom node
+    /**
+     * Displays custom text or percentage
+     * Pass `true` to display the percentage value
+     * Pass a ReactNode for custom text
+     * @default false
      */
     valueText?: boolean | ReactNode;
     label?: ReactNode;
