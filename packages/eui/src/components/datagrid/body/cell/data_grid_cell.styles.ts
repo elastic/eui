@@ -55,6 +55,7 @@ export const euiDataGridCellOutlineStyles = ({ euiTheme }: UseEuiTheme) => {
       }
     `,
     markedColor,
+    // marked styles are used in `data_grid.styles.ts`
     markedStyles: `
       &::after {
         border-color: ${markedColor};

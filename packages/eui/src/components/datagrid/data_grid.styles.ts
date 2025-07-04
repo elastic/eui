@@ -100,7 +100,7 @@ export const euiDataGridStyles = (euiThemeContext: UseEuiTheme) => {
         }
 
         /* class duplication to ensure default styles are overriden based on specificity
-        (the marked style is loaded with the specific row styles here instead of the cell styles) */
+        (marked styles are defined here instead of the cell styles due to the scope of the marked row class) */
         .euiDataGridRowCell.euiDataGridRowCell {
           ${outlineSelectors.marked} {
             ${euiDataGridCellOutlineStyles(euiThemeContext).markedStyles}
