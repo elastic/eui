@@ -105,7 +105,9 @@ export const EuiProgress: FunctionComponent<
   ...rest
 }) => {
   const valueTextRef: MutableRefObject<HTMLSpanElement | null> = useRef(null);
+  const labelRef: MutableRefObject<HTMLSpanElement | null> = useRef(null);
   const [innerValueText, setInnerValueText] = useState<string | undefined>();
+  const [labelText, setLabelText] = useState<string | undefined>();
 
   const determinate = !isNil(max);
   const isNamedColor = COLORS.includes(color as EuiProgressColor);
@@ -165,6 +167,7 @@ export const EuiProgress: FunctionComponent<
 
   useEffect(() => {
     setInnerValueText(valueTextRef.current?.textContent ?? '');
+    setLabelText(labelRef.current?.textContent ?? '');
   }, [label, valueRender, value]);
 
   // Because of a Firefox animation issue, indeterminate progress needs to not use <progress />.
@@ -180,7 +183,10 @@ export const EuiProgress: FunctionComponent<
                 {(ref, innerText) => (
                   <span
                     title={innerText}
-                    ref={ref}
+                    ref={(node) => {
+                      labelRef.current = node;
+                      ref?.(node);
+                    }}
                     {...labelProps}
                     className={labelClasses}
                     css={labelCssStyles}
@@ -227,6 +233,7 @@ export const EuiProgress: FunctionComponent<
           max={max}
           value={value}
           aria-valuetext={innerValueText || undefined}
+          aria-label={labelText || undefined}
           {...(rest as ProgressHTMLAttributes<HTMLProgressElement>)}
         />
       </>
