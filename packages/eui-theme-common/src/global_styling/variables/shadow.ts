@@ -46,7 +46,7 @@ export type _EuiThemeShadowLayer = {
 }
 
 export type _EuiThemeShadow = {
-  /** An array of shadows, 3 by spec */
+  /** An array of shadows, 3 by design */
   values: ColorModeSwitch<_EuiThemeShadowLayer[]>;
   /** Default direction of the shadow */
   down: CSSProperties['boxShadow'];
@@ -61,4 +61,6 @@ export type _EuiThemeShadows = {
   l: _EuiThemeShadow,
   xl: _EuiThemeShadow,
   xlHover: _EuiThemeShadow,
+  /** Not in the spec, defined only to support the legacy `euiShadowFlat` mixin */
+  flat?: _EuiThemeShadow,
 };
