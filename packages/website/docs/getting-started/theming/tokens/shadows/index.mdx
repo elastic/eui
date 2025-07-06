@@ -22,8 +22,6 @@ import { ShadowsTable } from './shadows_table';
 
 Shadows can only have two directions, up and down. By default shadows point down.
 
-TODO explain use cases?
-
 <ShadowsTable direction="up" />
 
 ## Hover state
@@ -36,4 +34,63 @@ Each shadowed surface, when interactive, follows a hover effect rule: it moves u
 - `l` hovered → `xl`
 - `xl` hovered → `xlHover`
 
-TODO simple demo
+```tsx interactive
+import React, { useState } from 'react';
+import { useEuiTheme, EuiSelect, EuiSpacer, EuiCodeBlock } from '@elastic/eui';
+
+type ShadowSize = 'xs' | 's' | 'm' | 'l' | 'xl';
+const hoverPairs = {
+  xs: ['xs', 's'],
+  s: ['s', 'm'],
+  m: ['m', 'l'],
+  l: ['l', 'xl'],
+  xl: ['xl', 'xlHover'],
+};
+
+export default () => {
+  const { euiTheme } = useEuiTheme();
+  const [selectedSize, setSelectedSize] = useState<ShadowSize>('m');
+  const selectedPair = hoverPairs[selectedSize];
+  const options = [
+    { value: 'xs', text: 'xs' },
+    { value: 's' , text: 's' },
+    { value: 'm' , text: 'm' },
+    { value: 'l' , text: 'l' },
+    { value: 'xl', text: 'xl' },
+  ];
+
+  const styles = css`
+    box-shadow: ${euiTheme.shadows[selectedPair[0]].down};
+    &:hover {
+      box-shadow: ${euiTheme.shadows[selectedPair[1]].down};
+    }
+    background-color: ${euiTheme.colors.backgroundBasePlain};
+    border-radius: ${euiTheme.border.radius.medium};
+  `
+  const stylesText = `
+const styles = css\`
+  box-shadow: \${euiTheme.shadows.${selectedPair[0]}.down\};
+  &:hover {
+    box-shadow: \${euiTheme.shadows.${selectedPair[1]}.down\};
+  }
+\`
+  `
+
+  return (
+    <>
+      <EuiCodeBlock css={styles} language="js">
+        {stylesText}
+      </EuiCodeBlock>
+      <EuiSpacer />
+      <EuiSelect
+        aria-label="Shadow Size" 
+        prepend="Size" 
+        compressed 
+        options={options}
+        value={selectedSize}
+        onChange={(e) => { setSelectedSize(e.target.value) }}
+      />
+    </>
+  );
+}
+```
