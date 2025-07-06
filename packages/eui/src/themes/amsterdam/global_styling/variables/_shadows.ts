@@ -7,7 +7,10 @@
  */
 
 import chroma from 'chroma-js';
-import { _EuiThemeShadows, _EuiThemeShadowLayer } from '../../../../global_styling/variables';
+import {
+  _EuiThemeShadows,
+  _EuiThemeShadowLayer,
+} from '../../../../global_styling/variables';
 import { computed } from '../../../../services/theme/utils';
 
 // in Amsterdam this is `color.shadow`, which computes to `ink` (#000)
@@ -443,15 +446,15 @@ export const shadows: _EuiThemeShadows = {
       ([values]) => formatMultipleBoxShadow(values, true),
       ['shadows.flat.values']
     ),
-  }
-}
+  },
+};
 
 /**
  * Format an array of shadow "objects" into a string for CSS.
  * The "up" direction is built by making the y offset from layers
  * two and three, negative.
  *
- * @param layers 
+ * @param layers
  * @param up - Modifies some values in order to get the "up" direction
  * @returns - A value for the CSS `box-shadow` property
  */
