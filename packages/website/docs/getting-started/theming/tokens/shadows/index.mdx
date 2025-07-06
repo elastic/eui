@@ -1,0 +1,39 @@
+---
+sidebar_position: 10
+---
+
+# Shadows
+
+There are 5 sizes of shadows. The first level of each shadow enhances contrast and remains consistent across all sizes.
+
+:::info In dark mode, shadows get an additional lighter border, to ensure they are visible
+:::
+
+```mdx-code-block
+import { ShadowsTable } from './shadows_table';
+```
+
+<ShadowsTable />
+
+:::warning Use `xlHover` exclusively as the hover state for size `xl`
+:::
+
+## Direction
+
+Shadows can only have two directions, up and down. By default shadows point down.
+
+TODO explain use cases?
+
+<ShadowsTable direction="up" />
+
+## Hover state
+
+Each shadowed surface, when interactive, follows a hover effect rule: it moves up one level. 
+
+- `xs` hovered → `s`
+- `s` hovered → `m`
+- `m` hovered → `l`
+- `l` hovered → `xl`
+- `xl` hovered → `xlHover`
+
+TODO simple demo
