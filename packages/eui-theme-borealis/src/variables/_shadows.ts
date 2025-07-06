@@ -399,8 +399,32 @@ export const shadows: _EuiThemeShadows = {
       ['shadows.xlHover.values']
     ),
   },
+  // Falls back to `xs` (defined only to support legacy `euiShadowFlat` mixin)
+  flat: {
+    values: {
+      LIGHT: [],
+      DARK: [],
+    },
+    down: computed(
+      ([values]) => formatMultipleBoxShadow(values),
+      ['shadows.xs.values']
+    ),
+    up: computed(
+      ([values]) => formatMultipleBoxShadow(values, true),
+      ['shadows.xs.values']
+    ),
+  }
 };
 
+/**
+ * Format an array of shadow "objects" into a string for CSS.
+ * The "up" direction is built by making the y offset from layers
+ * two and three, negative.
+ *
+ * @param layers 
+ * @param up - Modifies some values in order to get the "up" direction
+ * @returns - A value for the CSS `box-shadow` property
+ */
 function formatMultipleBoxShadow(
   layers: _EuiThemeShadowLayer[],
   up: boolean = false
