@@ -14,7 +14,7 @@ import {
 
 // Create a CSS color value using whose opacity is determined based
 // on either a light or dark theme. We use a multiplier
-// of 1 for light themes and 2.5 for dark themes
+// of 1 for light themes and 3.5 for dark themes
 export const getShadowColor = (
   color: string,
   opacity: number,
