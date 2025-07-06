@@ -136,6 +136,24 @@
   },
   "euiBreakpointKeys": "'xs', 's', 'm', 'l', 'xl'",
   "euiShadowColor": "#000000",
+  "euiShadows": {
+    "xs": "0px 0px 0px 1px hsl(216.67deg 29.51% 23.92%), 0px 1px 4px 0px hsl(0deg 0% 0% / 0.4), 0px 2px 8px 0px hsl(0deg 0% 0% / 0.24)",
+    "s": "0px 0px 0px 1px hsl(216.67deg 29.51% 23.92%), 0px 2px 7px 0px hsl(0deg 0% 0% / 0.46), 0px 4px 11px 0px hsl(0deg 0% 0% / 0.26)",
+    "m": "0px 0px 0px 1px hsl(216.67deg 29.51% 23.92%), 0px 3px 10px 0px hsl(0deg 0% 0% / 0.52), 0px 6px 14px 0px hsl(0deg 0% 0% / 0.28)",
+    "l": "0px 0px 0px 1px hsl(216.67deg 29.51% 23.92%), 0px 4px 13px 0px hsl(0deg 0% 0% / 0.58), 0px 8px 17px 0px hsl(0deg 0% 0% / 0.3)",
+    "xl": "0px 0px 0px 1px hsl(216.67deg 29.51% 23.92%), 0px 5px 16px 0px hsl(0deg 0% 0% / 0.64), 0px 10px 20px 0px hsl(0deg 0% 0% / 0.32)",
+    "xlHover": "0px 0px 0px 1px hsl(216.67deg 29.51% 23.92%), 0px 6px 19px 0px hsl(0deg 0% 0% / 0.7), 0px 12px 23px 0px hsl(0deg 0% 0% / 0.34)",
+    "flat": "0px 0px 0px 1px hsl(216.67deg 29.51% 23.92%), 0px 1px 4px 0px hsl(0deg 0% 0% / 0.4), 0px 2px 8px 0px hsl(0deg 0% 0% / 0.24)"
+  },
+  "euiShadowsUp": {
+    "xs": "0px 0px 0px 1px hsl(216.67deg 29.51% 23.92%), 0px -1px 4px 0px hsl(0deg 0% 0% / 0.4), 0px -2px 8px 0px hsl(0deg 0% 0% / 0.24)",
+    "s": "0px 0px 0px 1px hsl(216.67deg 29.51% 23.92%), 0px -2px 7px 0px hsl(0deg 0% 0% / 0.46), 0px -4px 11px 0px hsl(0deg 0% 0% / 0.26)",
+    "m": "0px 0px 0px 1px hsl(216.67deg 29.51% 23.92%), 0px -3px 10px 0px hsl(0deg 0% 0% / 0.52), 0px -6px 14px 0px hsl(0deg 0% 0% / 0.28)",
+    "l": "0px 0px 0px 1px hsl(216.67deg 29.51% 23.92%), 0px -4px 13px 0px hsl(0deg 0% 0% / 0.58), 0px -8px 17px 0px hsl(0deg 0% 0% / 0.3)",
+    "xl": "0px 0px 0px 1px hsl(216.67deg 29.51% 23.92%), 0px -5px 16px 0px hsl(0deg 0% 0% / 0.64), 0px -10px 20px 0px hsl(0deg 0% 0% / 0.32)",
+    "xlHover": "0px 0px 0px 1px hsl(216.67deg 29.51% 23.92%), 0px -6px 19px 0px hsl(0deg 0% 0% / 0.7), 0px -12px 23px 0px hsl(0deg 0% 0% / 0.34)",
+    "flat": "0px 0px 0px 1px hsl(216.67deg 29.51% 23.92%), 0px -1px 4px 0px hsl(0deg 0% 0% / 0.4), 0px -2px 8px 0px hsl(0deg 0% 0% / 0.24)"
+  },
   "euiSize": "16px",
   "euiSizeXS": "4px",
   "euiSizeS": "8px",
