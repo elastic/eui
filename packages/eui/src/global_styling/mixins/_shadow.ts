@@ -15,6 +15,7 @@ import {
   euiShadowMedium,
   euiShadowLarge,
   euiShadowXLarge,
+  euiShadowXLargeHover,
   type _EuiThemeShadowSize,
   type EuiShadowOptions,
 } from '@elastic/eui-theme-common';
@@ -30,17 +31,21 @@ export {
   euiShadowMedium,
   euiShadowLarge,
   euiShadowXLarge,
+  euiShadowXLargeHover,
 };
 
+/** @deprecated */
 export interface EuiShadowCustomColor {
   color?: string;
 }
 
+/** @deprecated */
 export const useEuiSlightShadowHover = (options?: EuiShadowOptions) => {
   const euiThemeContext = useEuiTheme();
   return euiSlightShadowHover(euiThemeContext, options);
 };
 
+/** @deprecated */
 export const useEuiShadowFlat = (options?: EuiShadowOptions) => {
   const euiThemeContext = useEuiTheme();
   return euiShadowFlat(euiThemeContext, options);
