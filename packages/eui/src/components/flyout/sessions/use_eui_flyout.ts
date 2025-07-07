@@ -13,6 +13,7 @@ import type {
   EuiFlyoutSessionOpenChildOptions,
   EuiFlyoutSessionOpenGroupOptions,
   EuiFlyoutSessionOpenMainOptions,
+  EuiFlyoutSessionOpenSystemOptions,
 } from './types';
 
 /**
@@ -33,6 +34,9 @@ export function useEuiFlyoutSession(): EuiFlyoutSessionApi {
     }
   }, [state.activeFlyoutGroup, onUnmount]);
 
+  /**
+   * Open a "plain" main flyout without an automatic top menu bar
+   */
   const openFlyout = (options: EuiFlyoutSessionOpenMainOptions) => {
     dispatch({
       type: 'OPEN_MAIN_FLYOUT',
@@ -40,6 +44,19 @@ export function useEuiFlyoutSession(): EuiFlyoutSessionApi {
     });
   };
 
+  /**
+   * Open a "system" main flyout, with an automatic top menu bar
+   */
+  const openSystemFlyout = (options: EuiFlyoutSessionOpenSystemOptions) => {
+    dispatch({
+      type: 'OPEN_SYSTEM_FLYOUT',
+      payload: options,
+    });
+  };
+
+  /**
+   * Open a "system" child flyout, with an automatic top menu bar
+   */
   const openChildFlyout = (options: EuiFlyoutSessionOpenChildOptions) => {
     if (!state.activeFlyoutGroup || !state.activeFlyoutGroup.isMainOpen) {
       console.warn(
@@ -53,6 +70,9 @@ export function useEuiFlyoutSession(): EuiFlyoutSessionApi {
     });
   };
 
+  /**
+   * Open a pair of system main and child flyouts
+   */
   const openFlyoutGroup = (options: EuiFlyoutSessionOpenGroupOptions) => {
     dispatch({
       type: 'OPEN_FLYOUT_GROUP',
@@ -80,6 +100,7 @@ export function useEuiFlyoutSession(): EuiFlyoutSessionApi {
 
   return {
     openFlyout,
+    openSystemFlyout,
     openChildFlyout,
     openFlyoutGroup,
     closeChildFlyout,

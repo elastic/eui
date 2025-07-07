@@ -68,7 +68,7 @@ export function flyoutReducer<FlyoutMeta>(
       const newHistory = [...state.history];
 
       if (state.activeFlyoutGroup) {
-        newHistory.push(state.activeFlyoutGroup);
+        newHistory.unshift(state.activeFlyoutGroup);
       }
 
       const newActiveGroup: EuiFlyoutSessionGroup<FlyoutMeta> = {
@@ -76,6 +76,33 @@ export function flyoutReducer<FlyoutMeta>(
         isChildOpen: false,
         config: {
           mainSize: size,
+          mainFlyoutProps: flyoutProps,
+        },
+        meta,
+      };
+
+      return {
+        activeFlyoutGroup: applySizeConstraints(newActiveGroup),
+        history: newHistory,
+      };
+    }
+
+    case 'OPEN_SYSTEM_FLYOUT': {
+      const { size, title, hideTitle, flyoutProps, meta } = action.payload; // EuiFlyoutSessionOpenSystemOptions
+      const newHistory = [...state.history];
+
+      if (state.activeFlyoutGroup) {
+        newHistory.unshift(state.activeFlyoutGroup);
+      }
+
+      const newActiveGroup: EuiFlyoutSessionGroup<FlyoutMeta> = {
+        isMainOpen: true,
+        isChildOpen: false,
+        config: {
+          isSystem: true,
+          mainSize: size,
+          mainTitle: title,
+          hideMainTitle: hideTitle,
           mainFlyoutProps: flyoutProps,
         },
         meta,
@@ -100,7 +127,8 @@ export function flyoutReducer<FlyoutMeta>(
         ...state.activeFlyoutGroup,
         isChildOpen: true,
         config: {
-          ...state.activeFlyoutGroup.config,
+          ...state.activeFlyoutGroup.config, // retain main flyout config
+          childTitle: action.payload.title,
           childSize: size,
           childFlyoutProps: flyoutProps,
         },
@@ -118,7 +146,7 @@ export function flyoutReducer<FlyoutMeta>(
       const newHistory = [...state.history];
 
       if (state.activeFlyoutGroup) {
-        newHistory.push(state.activeFlyoutGroup);
+        newHistory.unshift(state.activeFlyoutGroup);
       }
 
       // Create the new active group with both main and child flyouts open
@@ -126,7 +154,11 @@ export function flyoutReducer<FlyoutMeta>(
         isMainOpen: true,
         isChildOpen: true,
         config: {
+          isSystem: true,
           mainSize: main.size,
+          mainTitle: main.title,
+          hideMainTitle: main.hideTitle,
+          childTitle: child.title,
           childSize: child.size,
           mainFlyoutProps: main.flyoutProps,
           childFlyoutProps: child.flyoutProps,
@@ -163,6 +195,19 @@ export function flyoutReducer<FlyoutMeta>(
       };
     }
 
+    case 'GO_TO_HISTORY_ITEM': {
+      const { index } = action;
+      const targetGroup = state.history[index];
+      const newHistory = state.history.slice(index + 1);
+
+      return {
+        activeFlyoutGroup: targetGroup
+          ? applySizeConstraints(targetGroup)
+          : state.activeFlyoutGroup,
+        history: newHistory,
+      };
+    }
+
     case 'GO_BACK': {
       if (!state.activeFlyoutGroup)
         return initialFlyoutState as EuiFlyoutSessionHistoryState<FlyoutMeta>;
@@ -170,7 +215,7 @@ export function flyoutReducer<FlyoutMeta>(
       // Restore from history or return to initial state
       if (state.history.length > 0) {
         const newHistory = [...state.history];
-        const previousGroup = newHistory.pop();
+        const previousGroup = newHistory.shift();
         return {
           activeFlyoutGroup: previousGroup
             ? applySizeConstraints(previousGroup)
