@@ -99,43 +99,37 @@ export const PaletteWithStops: Story = {
 
 export const KitchenSink: Story = {
   tags: ['vrt-only'],
-  render: function Render() {
-    const { colorMode } = useEuiTheme();
+  render: () => (
+    <>
+      <EuiFlexGroup direction="column" gutterSize="m">
+        <Palettes />
+        <EuiSpacer />
 
-    return (
-      <>
-        <EuiFlexGroup direction="column" gutterSize="m">
-          <Palettes />
-          <EuiSpacer />
+        <Palettes size="m" />
+        <EuiSpacer />
 
-          <Palettes size="m" />
-          <EuiSpacer />
+        <Palettes type="gradient" size="m" />
+      </EuiFlexGroup>
+    </>
+  ),
+};
 
-          <EuiThemeProvider colorMode={colorMode === 'DARK' ? 'LIGHT' : 'DARK'}>
-            <EuiFlexGroup
-              direction="column"
-              gutterSize="m"
-              css={({ euiTheme }) => css`
-                padding-block: ${euiTheme.size.s};
-                background-color: ${euiTheme.colors.backgroundBasePlain};
-              `}
-            >
-              <Palettes size="m" />
-            </EuiFlexGroup>
-          </EuiThemeProvider>
-          <EuiSpacer />
-
-          <Palettes type="gradient" size="m" />
-        </EuiFlexGroup>
-      </>
-    );
-  },
+export const DarkMode: Story = {
+  ...KitchenSink,
+  tags: ['vrt-only'],
+  globals: { colorMode: 'dark' },
 };
 
 export const HighContrast: Story = {
   ...KitchenSink,
   tags: ['vrt-only'],
   globals: { highContrastMode: true },
+};
+
+export const HighContrastDarkMode: Story = {
+  ...KitchenSink,
+  tags: ['vrt-only'],
+  globals: { highContrastMode: true, colorMode: 'dark' },
 };
 
 const Palettes = (
