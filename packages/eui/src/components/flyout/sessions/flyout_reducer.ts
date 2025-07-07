@@ -210,6 +210,19 @@ export function flyoutReducer<FlyoutMeta>(
       };
     }
 
+    case 'GO_TO_HISTORY_ITEM': {
+      const { index } = action;
+      const newHistory = state.history.slice(0, index);
+      const targetGroup = state.history[index];
+
+      return {
+        activeFlyoutGroup: targetGroup
+          ? applySizeConstraints(targetGroup)
+          : state.activeFlyoutGroup,
+        history: newHistory,
+      };
+    }
+
     case 'GO_BACK': {
       if (!state.activeFlyoutGroup)
         return initialFlyoutState as EuiFlyoutSessionHistoryState<FlyoutMeta>;

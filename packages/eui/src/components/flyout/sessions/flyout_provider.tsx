@@ -149,8 +149,11 @@ export const EuiFlyoutSessionProvider: React.FC<
                   label={item.config.mainTitle}
                   size="s"
                   onClick={() => {
-                    // dispatch({ type: 'GO_TO_HISTORY_ITEM', index });
-                    console.log('FIXME');
+                    const originalIndex = state.history.length - 1 - index;
+                    dispatch({
+                      type: 'GO_TO_HISTORY_ITEM',
+                      index: originalIndex,
+                    });
                     setIsPopoverOpen(false);
                   }}
                 >

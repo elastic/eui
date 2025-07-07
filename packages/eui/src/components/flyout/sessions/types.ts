@@ -128,6 +128,7 @@ export type EuiFlyoutSessionAction<FlyoutMeta = unknown> =
       payload: EuiFlyoutSessionOpenGroupOptions<FlyoutMeta>;
     }
   | { type: 'GO_BACK' }
+  | { type: 'GO_TO_HISTORY_ITEM'; index: number }
   | { type: 'CLOSE_CHILD_FLYOUT' }
   | { type: 'CLOSE_SESSION' };
 
