@@ -68,14 +68,14 @@ export const euiFormControlLayoutStyles = (euiThemeContext: UseEuiTheme) => {
   `;
 
   const prependOnlyStyles = `
-      > :first-child {
+      > :last-child {
         ${logicalCSS('border-top-right-radius', 'inherit')}
         ${logicalCSS('border-bottom-right-radius', 'inherit')}
       }
   `;
 
   const appendOnlyStyles = `
-      > :last-child {
+      > :first-child {
         ${logicalCSS('border-top-left-radius', 'inherit')}
         ${logicalCSS('border-bottom-left-radius', 'inherit')}
       }
