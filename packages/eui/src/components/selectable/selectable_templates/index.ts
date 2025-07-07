@@ -7,7 +7,10 @@
  */
 
 export type { EuiSelectableTemplateSitewideProps } from './selectable_template_sitewide';
-export { EuiSelectableTemplateSitewide } from './selectable_template_sitewide';
+export {
+  type EuiSelectableTemplateSitewideTheme,
+  EuiSelectableTemplateSitewide,
+} from './selectable_template_sitewide';
 
 export type {
   EuiSelectableTemplateSitewideOption,

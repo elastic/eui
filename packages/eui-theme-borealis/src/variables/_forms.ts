@@ -6,6 +6,7 @@
  * Side Public License, v 1.
  */
 import { computed, mathWithUnits } from '@elastic/eui-theme-common';
+import { SEMANTIC_COLORS } from './colors/_semantic_colors';
 
 const _forms = {
   background: computed(
@@ -17,8 +18,8 @@ const _forms = {
     ['colors.backgroundBaseDisabled']
   ),
   backgroundReadOnly: computed(
-    ([backgroundBasePlain]) => backgroundBasePlain,
-    ['colors.backgroundBasePlain']
+    ([backgroundBaseDisabled]) => backgroundBaseDisabled,
+    ['colors.backgroundBaseDisabled']
   ),
   backgroundFocused: computed(
     ([backgroundBasePlain]) => backgroundBasePlain,
@@ -28,6 +29,7 @@ const _forms = {
     ([backgroundBasePrimary]) => backgroundBasePrimary,
     ['colors.backgroundBasePrimary']
   ),
+  backgroundDropping: SEMANTIC_COLORS.success70Alpha16,
   prependBackground: computed(
     ([backgroundBaseFormsPrepend]) => backgroundBaseFormsPrepend,
     ['colors.backgroundBaseFormsPrepend']
@@ -40,10 +42,31 @@ const _forms = {
     ([borderBaseDisabled]) => borderBaseDisabled,
     ['colors.borderBaseDisabled']
   ),
+  borderFocused: computed(
+    ([borderStrongPrimary]) => borderStrongPrimary,
+    ['colors.borderStrongPrimary']
+  ),
+  borderInvalid: computed(
+    ([borderStrongDanger]) => borderStrongDanger,
+    ['colors.borderStrongDanger']
+  ),
+  borderHovered: computed(
+    ([borderInteractiveFormsHoverPlain]) => borderInteractiveFormsHoverPlain,
+    ['colors.borderInteractiveFormsHoverPlain']
+  ),
+  borderInvalidHovered: computed(
+    ([borderInteractiveFormsHoverDanger]) => borderInteractiveFormsHoverDanger,
+    ['colors.borderInteractiveFormsHoverDanger']
+  ),
   borderAutofilled: computed(
     ([borderBasePrimary]) => borderBasePrimary,
     ['colors.borderBasePrimary']
   ),
+  borderAutofilledHovered: computed(
+    ([borderStrongPrimary]) => borderStrongPrimary,
+    ['colors.borderStrongPrimary']
+  ),
+  clearButtonBackground: SEMANTIC_COLORS.shade60,
   controlBorder: computed(
     ([borderBaseFormsControl]) => borderBaseFormsControl,
     ['colors.borderBaseFormsControl']
@@ -78,6 +101,7 @@ const _forms = {
 
 const _dark_forms = {
   ..._forms,
+  clearButtonBackground: SEMANTIC_COLORS.shade90,
 };
 
 export const forms = {

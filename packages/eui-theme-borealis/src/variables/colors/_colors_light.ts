@@ -39,7 +39,7 @@ export const brand_text_colors: _EuiThemeBrandTextColors = {
   primaryText: SEMANTIC_COLORS.primary100,
   accentText: SEMANTIC_COLORS.accent100,
   successText: SEMANTIC_COLORS.success100,
-  warningText: SEMANTIC_COLORS.warning110,
+  warningText: SEMANTIC_COLORS.warning100,
   dangerText: SEMANTIC_COLORS.danger100,
 
   /* New colors */
@@ -48,7 +48,7 @@ export const brand_text_colors: _EuiThemeBrandTextColors = {
   textAccentSecondary: SEMANTIC_COLORS.accentSecondary100,
   textNeutral: SEMANTIC_COLORS.neutral100,
   textSuccess: SEMANTIC_COLORS.success100,
-  textWarning: SEMANTIC_COLORS.warning110,
+  textWarning: SEMANTIC_COLORS.warning100,
   textRisk: SEMANTIC_COLORS.risk100,
   textDanger: SEMANTIC_COLORS.danger100,
 };
@@ -164,14 +164,17 @@ export const border_colors: _EuiThemeBorderColors = {
   borderBaseFormsColorSwatch: SEMANTIC_COLORS.shade100Alpha24,
   borderBaseFormsControl: SEMANTIC_COLORS.shade60,
 
-  borderStrongPrimary: SEMANTIC_COLORS.primary100,
-  borderStrongAccent: SEMANTIC_COLORS.accent100,
-  borderStrongAccentSecondary: SEMANTIC_COLORS.accentSecondary100,
-  borderStrongNeutral: SEMANTIC_COLORS.neutral100,
-  borderStrongSuccess: SEMANTIC_COLORS.success100,
-  borderStrongWarning: SEMANTIC_COLORS.warning100,
-  borderStrongRisk: SEMANTIC_COLORS.risk100,
-  borderStrongDanger: SEMANTIC_COLORS.danger100,
+  borderInteractiveFormsHoverPlain: SEMANTIC_COLORS.shade40,
+  borderInteractiveFormsHoverDanger: SEMANTIC_COLORS.danger80,
+
+  borderStrongPrimary: SEMANTIC_COLORS.primary90,
+  borderStrongAccent: SEMANTIC_COLORS.accent90,
+  borderStrongAccentSecondary: SEMANTIC_COLORS.accentSecondary90,
+  borderStrongNeutral: SEMANTIC_COLORS.neutral90,
+  borderStrongSuccess: SEMANTIC_COLORS.success90,
+  borderStrongWarning: SEMANTIC_COLORS.warning90,
+  borderStrongRisk: SEMANTIC_COLORS.risk90,
+  borderStrongDanger: SEMANTIC_COLORS.danger90,
   borderStrongText: SEMANTIC_COLORS.shade90,
 };
 
