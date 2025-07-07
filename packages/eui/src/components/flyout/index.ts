@@ -30,9 +30,13 @@ export type {
   EuiFlyoutSessionApi,
   EuiFlyoutSessionConfig,
   EuiFlyoutSessionOpenChildOptions,
-  EuiFlyoutSessionOpenMainOptions,
   EuiFlyoutSessionOpenGroupOptions,
+  EuiFlyoutSessionOpenMainOptions,
+  EuiFlyoutSessionOpenSystemOptions,
   EuiFlyoutSessionProviderComponentProps,
   EuiFlyoutSessionRenderContext,
 } from './sessions';
 export { EuiFlyoutSessionProvider, useEuiFlyoutSession } from './sessions';
+
+export type { EuiFlyoutMenuProps } from './flyout_menu';
+export { EuiFlyoutMenu } from './flyout_menu';

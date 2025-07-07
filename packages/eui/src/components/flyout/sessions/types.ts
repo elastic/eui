@@ -6,17 +6,24 @@
  * Side Public License, v 1.
  */
 
-import { EuiFlyoutProps, EuiFlyoutSize } from '../flyout';
-import { EuiFlyoutChildProps } from '../flyout_child';
+import type { EuiFlyoutProps, EuiFlyoutSize } from '../flyout';
+import type { EuiFlyoutChildProps } from '../flyout_child';
 
 /**
  * Configuration used for setting display options for main and child flyouts in a session.
  */
 export interface EuiFlyoutSessionConfig {
   mainSize: EuiFlyoutSize;
+  mainTitle?: string;
+  hideMainTitle?: boolean;
   childSize?: 's' | 'm';
+  childTitle?: string;
   mainFlyoutProps?: Partial<Omit<EuiFlyoutProps, 'children'>>;
   childFlyoutProps?: Partial<Omit<EuiFlyoutChildProps, 'children'>>;
+  /**
+   * Indicates if the flyout was opened with openSystemFlyout or openFlyout
+   */
+  isSystem?: boolean;
 }
 
 /**
@@ -31,12 +38,31 @@ export interface EuiFlyoutSessionOpenMainOptions<Meta = unknown> {
   meta?: Meta;
 }
 
+export interface EuiFlyoutSessionOpenSystemOptions<Meta = unknown> {
+  size: EuiFlyoutSize;
+  flyoutProps?: EuiFlyoutSessionConfig['mainFlyoutProps'];
+  /**
+   * Title to display in top menu bar and in the options of the history popover
+   */
+  title: string;
+  /**
+   * Allows title to be hidden from top menu bar. If this is true,
+   * the title will only be used for the history popover
+   */
+  hideTitle?: boolean;
+  /**
+   * Caller-defined data
+   */
+  meta?: Meta;
+}
+
 /**
  * Options that control a child flyout in a session
  */
 export interface EuiFlyoutSessionOpenChildOptions<Meta = unknown> {
   size: 's' | 'm';
   flyoutProps?: EuiFlyoutSessionConfig['childFlyoutProps'];
+  title: string;
   /**
    * Caller-defined data
    */
@@ -47,7 +73,7 @@ export interface EuiFlyoutSessionOpenChildOptions<Meta = unknown> {
  * Options for opening both a main flyout and child flyout simultaneously
  */
 export interface EuiFlyoutSessionOpenGroupOptions<Meta = unknown> {
-  main: EuiFlyoutSessionOpenMainOptions;
+  main: EuiFlyoutSessionOpenSystemOptions;
   child: EuiFlyoutSessionOpenChildOptions;
   /**
    * Caller-defined data
@@ -88,6 +114,10 @@ export type EuiFlyoutSessionAction<FlyoutMeta = unknown> =
   | {
       type: 'OPEN_MAIN_FLYOUT';
       payload: EuiFlyoutSessionOpenMainOptions<FlyoutMeta>;
+    }
+  | {
+      type: 'OPEN_SYSTEM_FLYOUT';
+      payload: EuiFlyoutSessionOpenSystemOptions<FlyoutMeta>;
     }
   | {
       type: 'OPEN_CHILD_FLYOUT';
