@@ -372,7 +372,7 @@ const ECommerceApp: React.FC = () => {
 };
 
 export const ECommerceWithHistory = {
-  name: 'openSystemFlyout: With advanced flyout props',
+  name: 'openSystemFlyout: Advanced flyout history management',
   render: () => {
     return <ECommerceApp />;
   },
@@ -483,7 +483,7 @@ const DeepHistoryAppControls: React.FC = () => {
         isDisabled={isFlyoutOpen}
         fill
       >
-        Open first system flyout
+        Begin flyout navigation
       </EuiButton>
       <EuiSpacer size="s" />
       <EuiTitle size="s">
@@ -523,7 +523,7 @@ const DeepHistoryApp: React.FC = () => {
 };
 
 export const DeepHistory = {
-  name: 'openSystemFlyout: With deep history',
+  name: 'openSystemFlyout: Deep history navigation',
   render: () => {
     return <DeepHistoryApp />;
   },

@@ -136,9 +136,10 @@ export const EuiFlyoutSessionProvider: React.FC<
           }
           isOpen={isPopoverOpen}
           closePopover={() => setIsPopoverOpen(false)}
+          panelPaddingSize="none"
           anchorPosition="downLeft"
         >
-          <EuiListGroup>
+          <EuiListGroup flush={true} gutterSize="none">
             {state.history
               .slice()
               .reverse()
@@ -146,6 +147,7 @@ export const EuiFlyoutSessionProvider: React.FC<
                 <EuiListGroupItem
                   key={index}
                   label={item.config.mainTitle}
+                  size="s"
                   onClick={() => {
                     // dispatch({ type: 'GO_TO_HISTORY_ITEM', index });
                     console.log('FIXME');
