@@ -68,7 +68,7 @@ export function flyoutReducer<FlyoutMeta>(
       const newHistory = [...state.history];
 
       if (state.activeFlyoutGroup) {
-        newHistory.push(state.activeFlyoutGroup);
+        newHistory.unshift(state.activeFlyoutGroup);
       }
 
       const newActiveGroup: EuiFlyoutSessionGroup<FlyoutMeta> = {
@@ -92,7 +92,7 @@ export function flyoutReducer<FlyoutMeta>(
       const newHistory = [...state.history];
 
       if (state.activeFlyoutGroup) {
-        newHistory.push(state.activeFlyoutGroup);
+        newHistory.unshift(state.activeFlyoutGroup);
       }
 
       const newActiveGroup: EuiFlyoutSessionGroup<FlyoutMeta> = {
@@ -156,7 +156,7 @@ export function flyoutReducer<FlyoutMeta>(
       const newHistory = [...state.history];
 
       if (state.activeFlyoutGroup) {
-        newHistory.push(state.activeFlyoutGroup);
+        newHistory.unshift(state.activeFlyoutGroup);
       }
 
       // Create the new active group with both main and child flyouts open
@@ -212,8 +212,8 @@ export function flyoutReducer<FlyoutMeta>(
 
     case 'GO_TO_HISTORY_ITEM': {
       const { index } = action;
-      const newHistory = state.history.slice(0, index);
       const targetGroup = state.history[index];
+      const newHistory = state.history.slice(index + 1);
 
       return {
         activeFlyoutGroup: targetGroup
@@ -230,7 +230,7 @@ export function flyoutReducer<FlyoutMeta>(
       // Restore from history or return to initial state
       if (state.history.length > 0) {
         const newHistory = [...state.history];
-        const previousGroup = newHistory.pop();
+        const previousGroup = newHistory.shift(); // Use shift to get the first item (most recent)
         return {
           activeFlyoutGroup: previousGroup
             ? applySizeConstraints(previousGroup)

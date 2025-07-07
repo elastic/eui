@@ -140,26 +140,19 @@ export const EuiFlyoutSessionProvider: React.FC<
           anchorPosition="downLeft"
         >
           <EuiListGroup flush={true} gutterSize="none">
-            {state.history
-              .slice()
-              .reverse()
-              .map((item, index) => (
-                <EuiListGroupItem
-                  key={index}
-                  label={item.config.mainTitle}
-                  size="s"
-                  onClick={() => {
-                    const originalIndex = state.history.length - 1 - index;
-                    dispatch({
-                      type: 'GO_TO_HISTORY_ITEM',
-                      index: originalIndex,
-                    });
-                    setIsPopoverOpen(false);
-                  }}
-                >
-                  {item.config.mainTitle}
-                </EuiListGroupItem>
-              ))}
+            {state.history.map((item, index) => (
+              <EuiListGroupItem
+                key={index}
+                label={item.config.mainTitle}
+                size="s"
+                onClick={() => {
+                  dispatch({ type: 'GO_TO_HISTORY_ITEM', index });
+                  setIsPopoverOpen(false);
+                }}
+              >
+                {item.config.mainTitle}
+              </EuiListGroupItem>
+            ))}
           </EuiListGroup>
         </EuiPopover>
       );
