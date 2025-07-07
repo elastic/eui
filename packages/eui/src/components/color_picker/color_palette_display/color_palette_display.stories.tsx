@@ -9,12 +9,10 @@
 import React, { useEffect, useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { VIS_COLOR_STORE_EVENTS } from '@elastic/eui-theme-common';
-import { css } from '@emotion/react';
 
 import {
   EUI_VIS_COLOR_STORE,
   euiPaletteColorBlind,
-  EuiThemeProvider,
   useEuiPaletteColorBlind,
   useEuiPaletteColorBlindBehindText,
   useEuiPaletteComplementary,
