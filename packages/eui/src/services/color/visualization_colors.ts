@@ -10,6 +10,8 @@
 // spots that need a large range of varied, qualitative colors.
 import { euiPaletteColorBlind } from '../../services/color/eui_palettes';
 
+/** @deprecated - use the data vis colors on `euiTheme.colors.vis` instead */
 export const VISUALIZATION_COLORS = euiPaletteColorBlind();
 
+/** @deprecated - use the data vis colors on `euiTheme.colors.vis` instead */
 export const DEFAULT_VISUALIZATION_COLOR = VISUALIZATION_COLORS[1];
