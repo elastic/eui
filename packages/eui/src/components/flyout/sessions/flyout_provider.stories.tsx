@@ -32,12 +32,6 @@ import {
   EuiFlyoutSessionOpenChildOptions,
   EuiFlyoutSessionOpenGroupOptions,
   EuiFlyoutSessionOpenMainOptions,
-  EuiFlyoutSessionRenderContext,
-} from './types';
-import type {
-  EuiFlyoutSessionOpenChildOptions,
-  EuiFlyoutSessionOpenGroupOptions,
-  EuiFlyoutSessionOpenMainOptions,
   EuiFlyoutSessionOpenSystemOptions,
   EuiFlyoutSessionRenderContext,
 } from './types';
@@ -509,7 +503,7 @@ const DeepHistoryApp: React.FC = () => {
   return (
     <>
       <EuiTitle>
-        <h2>Flyout System Advanced History Management</h2>
+        <h2>openSystemFlyout: Advanced History Management</h2>
       </EuiTitle>
       <EuiSpacer />
       <EuiFlyoutSessionProvider

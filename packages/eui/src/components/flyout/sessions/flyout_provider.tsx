@@ -6,18 +6,10 @@
  * Side Public License, v 1.
  */
 
-import React, { createContext, useContext, useReducer, useState } from 'react';
+import React, { createContext, useContext, useReducer } from 'react';
 
-import { EuiButtonIcon } from '../../button';
-import { EuiIcon } from '../../icon';
-import { EuiLink } from '../../link';
-import { EuiListGroup } from '../../list_group';
-import { EuiListGroupItem } from '../../list_group/list_group_item';
-import { EuiPopover } from '../../popover';
-import { EuiText } from '../../text';
-import { EuiFlyoutMenu, EuiFlyoutMenuProps } from '../flyout_menu';
+import { EuiFlyoutMenu } from '../flyout_menu';
 import { EuiFlyout, EuiFlyoutChild } from '../index';
-
 import { flyoutReducer, initialFlyoutState } from './flyout_reducer';
 import {
   EuiFlyoutSessionAction,
@@ -25,6 +17,7 @@ import {
   EuiFlyoutSessionProviderComponentProps,
   EuiFlyoutSessionRenderContext,
 } from './types';
+import { FlyoutSystemMenu } from './system_flyout_menu';
 
 interface FlyoutSessionContextProps {
   state: EuiFlyoutSessionHistoryState;
@@ -79,6 +72,14 @@ export const EuiFlyoutSessionProvider: React.FC<
     dispatch({ type: 'CLOSE_CHILD_FLYOUT' });
   };
 
+  const handleGoBack = () => {
+    dispatch({ type: 'GO_BACK' });
+  };
+
+  const handleGoToHistoryItem = (index: number) => {
+    dispatch({ type: 'GO_TO_HISTORY_ITEM', index });
+  };
+
   let mainFlyoutContentNode: React.ReactNode = null;
   let childFlyoutContentNode: React.ReactNode = null;
 
@@ -98,75 +99,6 @@ export const EuiFlyoutSessionProvider: React.FC<
     }
   }
 
-  /**
-   * Top flyout menu bar
-   * This automatically appears for "system flyouts" that were opened with `openSystemFlyout`,
-   * but not for "plain flyouts" (backwards compatible) that were opened with `openFlyout`
-   */
-  const SystemFlyoutMenu = (menuProps: EuiFlyoutMenuProps = {}) => {
-    const [isPopoverOpen, setIsPopoverOpen] = useState(false);
-
-    let backButton: React.ReactNode | undefined;
-    let historyPopover: React.ReactNode | undefined;
-
-    if (!!state.history.length) {
-      const handleGoBack = () => {
-        dispatch({ type: 'GO_BACK' });
-      };
-      const handlePopoverButtonClick = () => {
-        setIsPopoverOpen(!isPopoverOpen);
-      };
-
-      backButton = (
-        <EuiText size="s">
-          <EuiLink onClick={handleGoBack} color="text">
-            <EuiIcon type="editorUndo" /> Back
-          </EuiLink>
-        </EuiText>
-      );
-
-      historyPopover = (
-        <EuiPopover
-          button={
-            <EuiButtonIcon
-              iconType="arrowDown"
-              onClick={handlePopoverButtonClick}
-              aria-label="History"
-            />
-          }
-          isOpen={isPopoverOpen}
-          closePopover={() => setIsPopoverOpen(false)}
-          panelPaddingSize="none"
-          anchorPosition="downLeft"
-        >
-          <EuiListGroup flush={true} gutterSize="none">
-            {state.history.map((item, index) => (
-              <EuiListGroupItem
-                key={index}
-                label={item.config.mainTitle}
-                size="s"
-                onClick={() => {
-                  dispatch({ type: 'GO_TO_HISTORY_ITEM', index });
-                  setIsPopoverOpen(false);
-                }}
-              >
-                {item.config.mainTitle}
-              </EuiListGroupItem>
-            ))}
-          </EuiListGroup>
-        </EuiPopover>
-      );
-    }
-
-    return (
-      <EuiFlyoutMenu
-        backButton={backButton}
-        popover={historyPopover}
-        title={menuProps.title}
-      />
-    );
-  };
-
   const config = activeFlyoutGroup?.config;
   const flyoutPropsMain = config?.mainFlyoutProps || {};
   const flyoutPropsChild = config?.childFlyoutProps || {};
@@ -182,7 +114,10 @@ export const EuiFlyoutSessionProvider: React.FC<
           {...flyoutPropsMain}
         >
           {config?.isSystem && (
-            <SystemFlyoutMenu
+            <FlyoutSystemMenu
+              handleGoBack={handleGoBack}
+              handleGoToHistoryItem={handleGoToHistoryItem}
+              historyItems={state.history ?? []}
               {...{
                 title: !config?.hideMainTitle ? config?.mainTitle : undefined,
               }}
