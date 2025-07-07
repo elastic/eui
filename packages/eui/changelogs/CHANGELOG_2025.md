@@ -1,3 +1,27 @@
+## [`v105.0.0`](https://github.com/elastic/eui/releases/v105.0.0)
+
+- Added marked row styling via the classes `euiDataGridRow--marked` and `euiTableRow--marked` for `EuiDataGrid` and `EuiBasicTable`  ([#8834](https://github.com/elastic/eui/pull/8834))
+- Added component tokens: ([#8834](https://github.com/elastic/eui/pull/8834))
+  - `dataGridRowBackgroundMarked`
+  - `dataGridRowBackgroundMarkedHover`
+  - `dataGridRowBorderActive`
+  - `dataGridRowBorderHover`
+  - `dataGridRowBorderMarked`
+  - `tableRowBackgroundMarked`
+  - `tableRowBackgroundMarkedHover`
+- Added `EuiFlyoutChild` and `EuiFlyoutSessionProvider` ([#8771](https://github.com/elastic/eui/pull/8771))
+- Added `setListOptionRefs` prop on `EuiComboBoxList` ([#8829](https://github.com/elastic/eui/pull/8829))
+
+**Breaking changes**
+
+- Removed `iInCircle` icon (use `info` instead) ([#8841](https://github.com/elastic/eui/pull/8841))
+- Removed `questionInCircle` icon (use `question` instead) ([#8841](https://github.com/elastic/eui/pull/8841))
+
+**Accessibility**
+
+- Improved the experience of `EuiProgress` by ensuring that determinate updates are read out immediately to screen readers ([#8839](https://github.com/elastic/eui/pull/8839))
+- Fixed missing screen reader output for `EuiComboBox` with `options` that have custom `id` attributes ([#8829](https://github.com/elastic/eui/pull/8829))
+
 ## [`v104.1.0`](https://github.com/elastic/eui/releases/v104.1.0)
 
 - Added new component token `components.forms.codeInlineBackground` ([#8813](https://github.com/elastic/eui/pull/8813))

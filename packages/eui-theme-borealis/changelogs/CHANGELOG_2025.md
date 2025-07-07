@@ -1,3 +1,14 @@
+## [`v3.2.0`](https://github.com/elastic/eui/releases/v3.2.0)
+
+- Added component tokens: ([#8834](https://github.com/elastic/eui/pull/8834))
+  - `dataGridRowBackgroundMarked`
+  - `dataGridRowBackgroundMarkedHover`
+  - `dataGridRowBorderActive`
+  - `dataGridRowBorderHover`
+  - `dataGridRowBorderMarked`
+  - `tableRowBackgroundMarked`
+  - `tableRowBackgroundMarkedHover`
+
 ## [`v3.1.0`](https://github.com/elastic/eui/releases/v3.1.0)
 
 - Added new component token `components.forms.codeInlineBackground` ([#8813](https://github.com/elastic/eui/pull/8813))
