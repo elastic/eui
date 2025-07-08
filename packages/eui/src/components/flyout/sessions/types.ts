@@ -158,6 +158,7 @@ export interface EuiFlyoutSessionProviderComponentProps<FlyoutMeta = any> {
 }
 
 export interface EuiFlyoutSessionApi {
+  openSystemFlyout: (options: EuiFlyoutSessionOpenSystemOptions) => void;
   openFlyout: (options: EuiFlyoutSessionOpenMainOptions) => void;
   openChildFlyout: (options: EuiFlyoutSessionOpenChildOptions) => void;
   openFlyoutGroup: (options: EuiFlyoutSessionOpenGroupOptions) => void;

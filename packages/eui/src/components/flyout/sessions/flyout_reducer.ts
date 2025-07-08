@@ -230,7 +230,7 @@ export function flyoutReducer<FlyoutMeta>(
       // Restore from history or return to initial state
       if (state.history.length > 0) {
         const newHistory = [...state.history];
-        const previousGroup = newHistory.shift(); // Use shift to get the first item (most recent)
+        const previousGroup = newHistory.shift();
         return {
           activeFlyoutGroup: previousGroup
             ? applySizeConstraints(previousGroup)

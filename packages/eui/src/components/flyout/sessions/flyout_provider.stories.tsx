@@ -188,10 +188,15 @@ const ShoppingCartContent: React.FC<ShoppingCartContentProps> = ({
 const ReviewOrderContent: React.FC<ReviewOrderContentProps> = ({
   itemQuantity,
 }) => {
-  const { goBack, closeSession } = useEuiFlyoutSession();
+  const { closeSession } = useEuiFlyoutSession();
 
   return (
     <>
+      <EuiFlyoutHeader>
+        <EuiTitle size="m">
+          <h2 id="flyout-review-order-title">Review order</h2>
+        </EuiTitle>
+      </EuiFlyoutHeader>
       <EuiFlyoutBody>
         <EuiText>
           <p>Item: Flux Capacitor</p>
@@ -347,15 +352,15 @@ const ECommerceApp: React.FC = () => {
   };
 
   return (
-      <EuiFlyoutSessionProvider
-        renderMainFlyoutContent={renderMainFlyoutContent}
-        renderChildFlyoutContent={renderChildFlyoutContent}
+    <EuiFlyoutSessionProvider
+      renderMainFlyoutContent={renderMainFlyoutContent}
+      renderChildFlyoutContent={renderChildFlyoutContent}
       onUnmount={() => {
         loggerAction('All flyouts have been unmounted');
       }}
-      >
-        <ECommerceAppControls />
-      </EuiFlyoutSessionProvider>
+    >
+      <ECommerceAppControls />
+    </EuiFlyoutSessionProvider>
   );
 };
 
@@ -422,6 +427,11 @@ const DeepHistoryPage: React.FC<DeepHistoryAppMeta> = ({ page }) => {
 
   return (
     <>
+      <EuiFlyoutHeader>
+        <EuiTitle size="m">
+          <h2 id="flyout-review-order-title">Page {page}</h2>
+        </EuiTitle>
+      </EuiFlyoutHeader>
       <EuiFlyoutBody>
         {nextPage === '' ? (
           <>
@@ -515,8 +525,13 @@ const GroupOpenerControls: React.FC<{
   mainFlyoutType: 'push' | 'overlay';
   mainFlyoutSize: 's' | 'm';
 }> = ({ mainFlyoutType, mainFlyoutSize }) => {
-  const { openFlyoutGroup, isFlyoutOpen, isChildFlyoutOpen, closeChildFlyout, closeSession } =
-    useEuiFlyoutSession();
+  const {
+    openFlyoutGroup,
+    isFlyoutOpen,
+    isChildFlyoutOpen,
+    closeChildFlyout,
+    closeSession,
+  } = useEuiFlyoutSession();
   const { state } = useEuiFlyoutSessionContext(); // Use internal hook for displaying raw state
 
   const handleOpenGroup = () => {
@@ -560,17 +575,6 @@ const GroupOpenerControls: React.FC<{
 
   return (
     <>
-      <EuiTitle>
-        <h2>EuiFlyoutSession Group Opener</h2>
-      </EuiTitle>
-      <EuiSpacer />
-      <EuiText>
-        <p>
-          This demo shows how to use the <code>openFlyoutGroup</code> function
-          to simultaneously open both main and child flyouts.
-        </p>
-      </EuiText>
-      <EuiSpacer />
       <EuiButton
         onClick={handleOpenGroup}
         fill
