@@ -137,7 +137,7 @@ Ensures that form control components within `EuiFormRow` components have matchin
 
 ### `@elastic/eui/sr_output_disabled_tooltip`
 
-Ensures `disableScreenReaderOutput` is explicitly set when `EuiToolTip` content matches the trigger button's aria-label.
+Ensure `disableScreenReaderOutput` is set when `EuiToolTip` content matches `EuiButtonIcon` "aria-label".
 
 ## Testing
 
