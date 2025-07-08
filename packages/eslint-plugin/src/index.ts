@@ -22,6 +22,7 @@ import { NoRestrictedEuiImports } from './rules/no_restricted_eui_imports';
 import { NoCssColor } from './rules/no_css_color';
 
 import { RequireAriaLabelForModals } from './rules/a11y/require_aria_label_for_modals';
+import { ConsistentIsInvalidProps } from './rules/a11y/consistent_is_invalid_props';
 
 const config = {
   rules: {
@@ -29,6 +30,7 @@ const config = {
     'no-restricted-eui-imports': NoRestrictedEuiImports,
     'no-css-color': NoCssColor,
     'require-aria-label-for-modals': RequireAriaLabelForModals,
+    'consistent-is-invalid-props': ConsistentIsInvalidProps,
   },
   configs: {
     recommended: {
@@ -38,6 +40,7 @@ const config = {
         '@elastic/eui/no-restricted-eui-imports': 'warn',
         '@elastic/eui/no-css-color': 'warn',
         '@elastic/eui/require-aria-label-for-modals': 'warn',
+        '@elastic/eui/consistent-is-invalid-props': 'warn',
       },
     },
   },
