@@ -84,7 +84,6 @@ const ShoppingCartContent: React.FC<ShoppingCartContentProps> = ({
           closeChildFlyout(); // If we add an onClose handler to the child flyout, we have to call closeChildFlyout within it for the flyout to actually close
         },
       },
-      onUnmount: () => console.log('Unmounted item details child flyout'),
     };
     openChildFlyout(options);
   };
@@ -98,8 +97,6 @@ const ShoppingCartContent: React.FC<ShoppingCartContentProps> = ({
         ...config?.mainFlyoutProps,
         'aria-label': 'Review order',
       },
-      onUnmount: () =>
-        console.log(`Unmounted review order flyout (${reviewFlyoutSize})`),
     };
     openFlyout(options);
   };
@@ -258,6 +255,13 @@ const WithHistoryAppControls: React.FC = () => {
     clearHistory,
   } = useEuiFlyoutSession();
 
+  const handleCloseOrGoBack = () => {
+    if (canGoBack) {
+      goBack();
+    } else {
+      clearHistory();
+    }
+  };
   const handleOpenShoppingCart = () => {
     const options: EuiFlyoutSessionOpenMainOptions<WithHistoryAppMeta> = {
       size: 'm',
@@ -272,7 +276,6 @@ const WithHistoryAppControls: React.FC = () => {
           clearHistory(); // If we add an onClose handler to the main flyout, we have to call clearHistory within it for the flyout to actually close
         },
       },
-      onUnmount: () => console.log('Unmounted shopping cart flyout'),
     };
     openFlyout(options);
   };
@@ -297,7 +300,11 @@ const WithHistoryAppControls: React.FC = () => {
         Close child flyout
       </EuiButton>
       <EuiSpacer size="s" />
-      <EuiButton onClick={goBack} isDisabled={!canGoBack} color="warning">
+      <EuiButton
+        onClick={handleCloseOrGoBack}
+        isDisabled={!isFlyoutOpen}
+        color="warning"
+      >
         Close/Go back
       </EuiButton>
       <EuiSpacer size="s" />
@@ -351,6 +358,7 @@ const WithHistoryApp: React.FC = () => {
     <EuiFlyoutSessionProvider
       renderMainFlyoutContent={renderMainFlyoutContent}
       renderChildFlyoutContent={renderChildFlyoutContent}
+      onUnmount={() => console.log('All flyouts have been unmounted')}
     >
       <WithHistoryAppControls />
     </EuiFlyoutSessionProvider>
@@ -386,7 +394,6 @@ const GroupOpenerControls: React.FC = () => {
           className: 'groupOpenerMainFlyout',
           'aria-label': 'Main flyout',
         },
-        onUnmount: () => console.log('Unmounted main flyout'),
       },
       child: {
         size: 's',
@@ -394,7 +401,6 @@ const GroupOpenerControls: React.FC = () => {
           className: 'groupOpenerChildFlyout',
           'aria-label': 'Child flyout',
         },
-        onUnmount: () => console.log('Unmounted child flyout'),
       },
     };
     openFlyoutGroup(options);

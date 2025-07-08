@@ -6,6 +6,7 @@
  * Side Public License, v 1.
  */
 
+import { useEffect, useRef } from 'react';
 import { EuiFlyoutSize } from '../flyout';
 import { useEuiFlyoutSessionContext } from './flyout_provider';
 import { EuiFlyoutSessionConfig } from './types';
@@ -16,7 +17,6 @@ import { EuiFlyoutSessionConfig } from './types';
 export interface EuiFlyoutSessionOpenMainOptions<Meta = unknown> {
   size: EuiFlyoutSize;
   flyoutProps?: EuiFlyoutSessionConfig['mainFlyoutProps'];
-  onUnmount?: () => void;
   meta?: Meta;
 }
 
@@ -26,7 +26,6 @@ export interface EuiFlyoutSessionOpenMainOptions<Meta = unknown> {
 export interface EuiFlyoutSessionOpenChildOptions<Meta = unknown> {
   size: 's' | 'm';
   flyoutProps?: EuiFlyoutSessionConfig['childFlyoutProps'];
-  onUnmount?: () => void;
   meta?: Meta;
 }
 
@@ -37,21 +36,43 @@ export interface EuiFlyoutSessionOpenGroupOptions<Meta = unknown> {
   main: {
     size: EuiFlyoutSize;
     flyoutProps?: EuiFlyoutSessionConfig['mainFlyoutProps'];
-    onUnmount?: () => void;
   };
   child: {
     size: 's' | 'm';
     flyoutProps?: EuiFlyoutSessionConfig['childFlyoutProps'];
-    onUnmount?: () => void;
   };
   meta?: Meta; // Shared meta for both flyouts
 }
 
+export interface EuiFlyoutSessionApi {
+  openFlyout: (options: EuiFlyoutSessionOpenMainOptions) => void;
+  openChildFlyout: (options: EuiFlyoutSessionOpenChildOptions) => void;
+  openFlyoutGroup: (options: EuiFlyoutSessionOpenGroupOptions) => void;
+  closeChildFlyout: () => void;
+  goBack: () => void;
+  clearHistory: () => void;
+  isFlyoutOpen: boolean;
+  isChildFlyoutOpen: boolean;
+  canGoBack: boolean;
+}
+
 /**
  * Hook for accessing the flyout API
+ * @public
  */
-export function useEuiFlyoutSession() {
-  const { state, dispatch } = useEuiFlyoutSessionContext();
+export function useEuiFlyoutSession(): EuiFlyoutSessionApi {
+  const { state, dispatch, onUnmount } = useEuiFlyoutSessionContext();
+  const isInitialMount = useRef(true);
+
+  useEffect(() => {
+    // When there is no active flyout, we should call the onUnmount callback.
+    // Ensure this is not called on the initial render, only on subsequent state changes.
+    if (isInitialMount.current) {
+      isInitialMount.current = false;
+    } else if (state.activeFlyoutGroup === null) {
+      onUnmount?.();
+    }
+  }, [state.activeFlyoutGroup, onUnmount]);
 
   const openFlyout = (options: EuiFlyoutSessionOpenMainOptions) => {
     dispatch({
@@ -80,12 +101,10 @@ export function useEuiFlyoutSession() {
         main: {
           size: options.main.size,
           flyoutProps: options.main.flyoutProps,
-          onUnmount: options.main.onUnmount,
         },
         child: {
           size: options.child.size,
           flyoutProps: options.child.flyoutProps,
-          onUnmount: options.child.onUnmount,
         },
         meta: options.meta,
       },
@@ -100,15 +119,15 @@ export function useEuiFlyoutSession() {
     dispatch({ type: 'GO_BACK' });
   };
 
-  const canGoBack = !!state.activeFlyoutGroup;
+  const clearHistory = () => {
+    dispatch({ type: 'CLEAR_HISTORY' });
+  };
 
   const isFlyoutOpen = !!state.activeFlyoutGroup?.isMainOpen;
 
   const isChildFlyoutOpen = !!state.activeFlyoutGroup?.isChildOpen;
 
-  const clearHistory = () => {
-    dispatch({ type: 'CLEAR_HISTORY' });
-  };
+  const canGoBack = !!state.history.length;
 
   return {
     openFlyout,
@@ -116,9 +135,9 @@ export function useEuiFlyoutSession() {
     openFlyoutGroup,
     closeChildFlyout,
     goBack,
-    canGoBack,
+    clearHistory,
     isFlyoutOpen,
     isChildFlyoutOpen,
-    clearHistory,
+    canGoBack,
   };
 }
