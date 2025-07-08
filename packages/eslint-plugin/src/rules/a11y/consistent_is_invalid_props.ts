@@ -1,5 +1,24 @@
-import { type TSESTree, ESLintUtils } from '@typescript-eslint/utils';
+/*
+ * Licensed to Elasticsearch B.V. under one or more contributor
+ * license agreements. See the NOTICE file distributed with
+ * this work for additional information regarding copyright
+ * ownership. Elasticsearch B.V. licenses this file to you under
+ * the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
 
+import { type TSESTree, ESLintUtils } from '@typescript-eslint/utils';
+import { getAttrValue } from '../../utils/get_attr_value';
 const formControlComponent = 'EuiFormRow';
 
 const formControlChildComponents = [
@@ -10,38 +29,11 @@ const formControlChildComponents = [
   'EuiTextArea',
   'EuiFormControlLayoutDelimited',
   'SingleFieldSelect',
-  'EuiSelect'
+  'EuiSelect',
 ];
 
 export const ConsistentIsInvalidProps = ESLintUtils.RuleCreator.withoutDocs({
   create(context) {
-    function getAttrValue(attributes: TSESTree.JSXOpeningElement["attributes"], attrName: string): string | undefined {
-      const attr = attributes.find(
-        (attr): attr is TSESTree.JSXAttribute =>
-          attr.type === 'JSXAttribute' &&
-          attr.name.type === 'JSXIdentifier' &&
-          attr.name.name === attrName
-      );
-
-      if (!attr?.value) return undefined;
-
-      if (attr.value.type === 'Literal') {
-        return String(attr.value.value);
-      }
-
-      if (attr.value.type === 'JSXExpressionContainer') {
-        const expression = attr.value.expression;
-
-        if (expression.type === 'Literal') {
-          return String(expression.value);
-        }
-
-        return context.sourceCode.getText(expression);
-      }
-
-      return undefined;
-    }
-
     return {
       JSXElement(node) {
         const openingElement = node.openingElement;
@@ -54,8 +46,15 @@ export const ConsistentIsInvalidProps = ESLintUtils.RuleCreator.withoutDocs({
           return;
         }
 
-        const formRowIsInvalid = getAttrValue(openingElement.attributes, 'isInvalid');
-        if (formRowIsInvalid === undefined) return;
+        const formRowIsInvalid = getAttrValue(
+          context,
+          openingElement.attributes,
+          'isInvalid'
+        );
+
+        if (formRowIsInvalid === undefined) {
+          return;
+        }
 
         const childElement = node.children.find(
           (child): child is TSESTree.JSXElement =>
@@ -68,24 +67,34 @@ export const ConsistentIsInvalidProps = ESLintUtils.RuleCreator.withoutDocs({
           return;
         }
 
-        const childIsInvalid = getAttrValue(childElement.openingElement.attributes, 'isInvalid');
+        const childIsInvalid = getAttrValue(
+          context,
+          childElement.openingElement.attributes,
+          'isInvalid'
+        );
 
         if (childIsInvalid !== formRowIsInvalid) {
-          const componentName =   (childElement.openingElement.name as TSESTree.JSXIdentifier).name;
+          const componentName = (
+            childElement.openingElement.name as TSESTree.JSXIdentifier
+          ).name;
 
           context.report({
             node: childElement,
             messageId: 'inconsistentIsInvalid',
             fix: (fixer) => {
-              const childIsInvalidAttr = childElement.openingElement.attributes.find(
-                (attr): attr is TSESTree.JSXAttribute =>
-                  attr.type === 'JSXAttribute' &&
-                  attr.name.type === 'JSXIdentifier' &&
-                  attr.name.name === 'isInvalid'
-              );
+              const childIsInvalidAttr =
+                childElement.openingElement.attributes.find(
+                  (attr): attr is TSESTree.JSXAttribute =>
+                    attr.type === 'JSXAttribute' &&
+                    attr.name.type === 'JSXIdentifier' &&
+                    attr.name.name === 'isInvalid'
+                );
 
               if (childIsInvalidAttr) {
-                return fixer.replaceText(childIsInvalidAttr, `isInvalid={${formRowIsInvalid}}`);
+                return fixer.replaceText(
+                  childIsInvalidAttr,
+                  `isInvalid={${formRowIsInvalid}}`
+                );
               }
 
               const insertPosition = childElement.openingElement.name.range[1];
@@ -95,23 +104,25 @@ export const ConsistentIsInvalidProps = ESLintUtils.RuleCreator.withoutDocs({
                 ` isInvalid={${formRowIsInvalid}}`
               );
             },
-            data: { formControlComponent: formControlComponent, component: componentName},
+            data: {
+              formControlComponent: formControlComponent,
+              component: componentName,
+            },
           });
         }
-      }
+      },
     };
   },
   meta: {
     type: 'problem',
     docs: {
-      description: `Ensure {{component}} inherit "isInvalid" prop from parent {{formControlComponent}}`
+      description: `Ensure {{component}} inherit "isInvalid" prop from parent {{formControlComponent}}`,
     },
     fixable: 'code',
     schema: [],
     messages: {
-      inconsistentIsInvalid:
-        `{{component}} should have the same "isInvalid" prop value as its parent {{formControlComponent}}.`
-    }
+      inconsistentIsInvalid: `{{component}} should have the same "isInvalid" prop value as its parent {{formControlComponent}}.`,
+    },
   },
-  defaultOptions: []
+  defaultOptions: [],
 });
