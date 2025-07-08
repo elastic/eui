@@ -33,6 +33,7 @@ export type {
   EuiFlyoutSessionOpenGroupOptions,
   EuiFlyoutSessionOpenMainOptions,
   EuiFlyoutSessionOpenSystemOptions,
+  EuiFlyoutSessionOpenGroupOptions,
   EuiFlyoutSessionProviderComponentProps,
   EuiFlyoutSessionRenderContext,
 } from './sessions';
