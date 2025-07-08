@@ -46,7 +46,7 @@ export type EuiComponentDefaults = {
   EuiTable?: Pick<EuiTableProps, 'responsiveBreakpoint'>;
 
   /**
-   * Provide a global configuration for EuiFlyout's focus trap.
+   * Provide a global configuration for `EuiFlyout`s.
    * Defaults will be inherited by all `EuiFlyout`s.
    */
   EuiFlyout?: Pick<
