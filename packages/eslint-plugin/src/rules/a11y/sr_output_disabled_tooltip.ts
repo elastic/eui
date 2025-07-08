@@ -80,7 +80,7 @@ export const ScreenReaderOutputDisabledTooltip =
 
                 return fixer.insertTextAfterRange(
                   [insertPosition, insertPosition],
-                  ` disableScreenReaderOutput`
+                  ` ${disabledTooltipComponentProp}`
                 );
               },
               data: {
