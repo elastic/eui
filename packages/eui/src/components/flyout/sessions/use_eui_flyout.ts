@@ -46,6 +46,7 @@ export interface EuiFlyoutSessionOpenGroupOptions<Meta = unknown> {
 
 /**
  * Hook for accessing the flyout API
+ * @public
  */
 export function useEuiFlyoutSession() {
   const { state, dispatch, onUnmount } = useEuiFlyoutSessionContext();
