@@ -27,7 +27,7 @@ import {
   EuiFlyoutSessionProvider,
   useEuiFlyoutSessionContext,
 } from './flyout_provider';
-import {
+import type {
   EuiFlyoutSessionHistoryState,
   EuiFlyoutSessionOpenChildOptions,
   EuiFlyoutSessionOpenGroupOptions,
@@ -347,11 +347,6 @@ const ECommerceApp: React.FC = () => {
   };
 
   return (
-    <>
-      <EuiTitle>
-        <h2>openSystemFlyout: System Simple History Management</h2>
-      </EuiTitle>
-      <EuiSpacer />
       <EuiFlyoutSessionProvider
         renderMainFlyoutContent={renderMainFlyoutContent}
         renderChildFlyoutContent={renderChildFlyoutContent}
@@ -361,12 +356,11 @@ const ECommerceApp: React.FC = () => {
       >
         <ECommerceAppControls />
       </EuiFlyoutSessionProvider>
-    </>
   );
 };
 
-export const ECommerceWithHistory = {
-  name: 'openSystemFlyout: Advanced flyout history management',
+export const ECommerceWithHistory: StoryObj = {
+  name: 'Advanced Use Case',
   render: () => {
     return <ECommerceApp />;
   },
@@ -462,13 +456,12 @@ const DeepHistoryPage: React.FC<DeepHistoryAppMeta> = ({ page }) => {
 // Component for the main control buttons and state display
 const DeepHistoryAppControls: React.FC = () => {
   const { openSystemFlyout, isFlyoutOpen } = useEuiFlyoutSession();
+  const { state } = useEuiFlyoutSessionContext(); // Use internal hook for displaying raw state
 
   const handleOpenSystemFlyout = () => {
     const options = getHistorySystemFlyoutOptions('page01');
     openSystemFlyout(options);
   };
-
-  const { state } = useEuiFlyoutSessionContext(); // For displaying raw state and history length
 
   return (
     <>
@@ -479,13 +472,8 @@ const DeepHistoryAppControls: React.FC = () => {
       >
         Begin flyout navigation
       </EuiButton>
-      <EuiSpacer size="s" />
-      <EuiTitle size="s">
-        <h3>Current state</h3>
-      </EuiTitle>
-      <EuiCodeBlock language="json" fontSize="s" paddingSize="s">
-        {JSON.stringify(state, null, 2)}
-      </EuiCodeBlock>
+      <EuiSpacer />
+      <InternalState state={state} />
     </>
   );
 };
@@ -501,23 +489,17 @@ const DeepHistoryApp: React.FC = () => {
   };
 
   return (
-    <>
-      <EuiTitle>
-        <h2>openSystemFlyout: Advanced History Management</h2>
-      </EuiTitle>
-      <EuiSpacer />
-      <EuiFlyoutSessionProvider
-        renderMainFlyoutContent={renderMainFlyoutContent}
-        onUnmount={() => console.log('System flyouts have been unmounted')}
-      >
-        <DeepHistoryAppControls />
-      </EuiFlyoutSessionProvider>
-    </>
+    <EuiFlyoutSessionProvider
+      renderMainFlyoutContent={renderMainFlyoutContent}
+      onUnmount={() => console.log('System flyouts have been unmounted')}
+    >
+      <DeepHistoryAppControls />
+    </EuiFlyoutSessionProvider>
   );
 };
 
-export const DeepHistory = {
-  name: 'openSystemFlyout: Deep history navigation',
+export const DeepHistory: StoryObj = {
+  name: 'Deep History Navigation',
   render: () => {
     return <DeepHistoryApp />;
   },
@@ -533,13 +515,8 @@ const GroupOpenerControls: React.FC<{
   mainFlyoutType: 'push' | 'overlay';
   mainFlyoutSize: 's' | 'm';
 }> = ({ mainFlyoutType, mainFlyoutSize }) => {
-  const {
-    openFlyoutGroup,
-    isFlyoutOpen,
-    isChildFlyoutOpen,
-    closeSession,
-    closeChildFlyout,
-  } = useEuiFlyoutSession();
+  const { openFlyoutGroup, isFlyoutOpen, isChildFlyoutOpen, closeChildFlyout, closeSession } =
+    useEuiFlyoutSession();
   const { state } = useEuiFlyoutSessionContext(); // Use internal hook for displaying raw state
 
   const handleOpenGroup = () => {
