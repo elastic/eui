@@ -75,26 +75,14 @@ export const EuiFlyoutSessionProvider: React.FC<
   let childFlyoutContentNode: React.ReactNode = null;
 
   if (activeFlyoutGroup) {
-    const mainRenderContext: EuiFlyoutSessionRenderContext = {
-      flyoutProps: activeFlyoutGroup.config.mainFlyoutProps || {},
-      flyoutSize: activeFlyoutGroup.config.mainSize,
-      flyoutType: 'main',
-      dispatch,
+    const renderContext: EuiFlyoutSessionRenderContext = {
       activeFlyoutGroup,
       meta: activeFlyoutGroup.meta,
     };
-    mainFlyoutContentNode = renderMainFlyoutContent(mainRenderContext);
+    mainFlyoutContentNode = renderMainFlyoutContent(renderContext);
 
     if (activeFlyoutGroup.isChildOpen && renderChildFlyoutContent) {
-      const childRenderContext: EuiFlyoutSessionRenderContext = {
-        flyoutProps: activeFlyoutGroup.config.childFlyoutProps || {},
-        flyoutSize: activeFlyoutGroup.config.childSize,
-        flyoutType: 'child',
-        dispatch,
-        activeFlyoutGroup,
-        meta: activeFlyoutGroup.meta,
-      };
-      childFlyoutContentNode = renderChildFlyoutContent(childRenderContext);
+      childFlyoutContentNode = renderChildFlyoutContent(renderContext);
     } else if (activeFlyoutGroup.isChildOpen && !renderChildFlyoutContent) {
       console.warn(
         'EuiFlyoutSessionProvider: A child flyout is open, but renderChildFlyoutContent was not provided.'

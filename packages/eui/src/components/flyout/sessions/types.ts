@@ -84,10 +84,6 @@ export type EuiFlyoutSessionAction<FlyoutMeta = unknown> =
  * Flyout session context managed by `EuiFlyoutSessionProvider`, and passed to the `renderMainFlyoutContent` and `renderChildFlyoutContent` functions.
  */
 export interface EuiFlyoutSessionRenderContext<FlyoutMeta = unknown> {
-  flyoutProps: Partial<EuiFlyoutProps | EuiFlyoutChildProps>;
-  flyoutSize: EuiFlyoutProps['size'] | EuiFlyoutChildProps['size'];
-  flyoutType: 'main' | 'child';
-  dispatch: React.Dispatch<EuiFlyoutSessionAction<FlyoutMeta>>;
   activeFlyoutGroup: EuiFlyoutSessionGroup<FlyoutMeta> | null;
   meta?: FlyoutMeta;
 }

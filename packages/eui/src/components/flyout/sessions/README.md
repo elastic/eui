@@ -18,8 +18,7 @@ The `EuiFlyoutSessionProvider` is the core stateful component. You must wrap it 
 The `flyoutContext` object passed to your render prop functions is of type `EuiFlyoutSessionRenderContext<MetaType>` and contains the following useful properties:
 
 *   **`meta`**: `MetaType` - The arbitrary data object you passed into the `meta` property when calling `openFlyout` or `openChildFlyout`. This is a generic, allowing you to have type safety for your custom data.
-*   **`flyoutSize`**: The size of the currently active flyout.
-*   **`flyoutType`**: `'main' | 'child'` - Indicates which flyout the render prop is being called for.
+*   **`activeFlyoutGroup`**: `EuiFlyoutGroup` - The currently active flyout group.
 
 ## `useEuiFlyoutSession` Hook API
 
