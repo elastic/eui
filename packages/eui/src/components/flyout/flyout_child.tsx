@@ -60,6 +60,10 @@ export interface EuiFlyoutChildProps
    * @default 's'
    */
   size?: 's' | 'm';
+  /*
+   * The background of the child flyout can be optionally shaded. Use `shaded` to add the shading.
+   */
+  backgroundStyle?: 'shaded' | 'default';
   /**
    * Children are implicitly part of FunctionComponent, but good to have if props type is standalone.
    */
@@ -72,6 +76,7 @@ export interface EuiFlyoutChildProps
  */
 export const EuiFlyoutChild: FunctionComponent<EuiFlyoutChildProps> = ({
   children,
+  backgroundStyle = 'default',
   className,
   banner,
   hideCloseButton = false,
@@ -195,6 +200,9 @@ export const EuiFlyoutChild: FunctionComponent<EuiFlyoutChildProps> = ({
 
   const flyoutChildCss = [
     styles.euiFlyoutChild,
+    backgroundStyle === 'shaded'
+      ? styles.backgroundShaded
+      : styles.backgroundDefault,
     size === 's' ? styles.s : styles.m,
     childLayoutMode === 'side-by-side'
       ? styles.sidePosition
@@ -238,7 +246,6 @@ export const EuiFlyoutChild: FunctionComponent<EuiFlyoutChildProps> = ({
         {!hideCloseButton && (
           <EuiFlyoutCloseButton
             className="euiFlyoutChild__closeButton"
-            css={styles.closeButton}
             onClose={handleClose}
             side="right"
             closeButtonPosition="inside"
