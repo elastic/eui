@@ -135,6 +135,10 @@ Ensures that EUI modal components (`EuiModal`, `EuiFlyout`, `EuiConfirmModal`) h
 
 Ensures that form control components within `EuiFormRow` components have matching `isInvalid` prop values. This maintains consistent validation state between parent form rows and their child form controls, leading to a more predictable and accessible user experience.
 
+### `@elastic/eui/sr_output_disabled_tooltip`
+
+Ensures `disableScreenReaderOutput` is explicitly set when `EuiToolTip` content matches the trigger button's aria-label.
+
 ## Testing
 
 ### Running unit tests
