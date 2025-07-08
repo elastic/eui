@@ -15,7 +15,7 @@ const formControlChildComponents = [
 
 export const ConsistentIsInvalidProps = ESLintUtils.RuleCreator.withoutDocs({
   create(context) {
-    function getIsInvalidValue(attributes: TSESTree.JSXOpeningElement["attributes"], attrName: string): string | undefined {
+    function getAttrValue(attributes: TSESTree.JSXOpeningElement["attributes"], attrName: string): string | undefined {
       const attr = attributes.find(
         (attr): attr is TSESTree.JSXAttribute =>
           attr.type === 'JSXAttribute' &&
@@ -54,7 +54,7 @@ export const ConsistentIsInvalidProps = ESLintUtils.RuleCreator.withoutDocs({
           return;
         }
 
-        const formRowIsInvalid = getIsInvalidValue(openingElement.attributes, 'isInvalid');
+        const formRowIsInvalid = getAttrValue(openingElement.attributes, 'isInvalid');
         if (formRowIsInvalid === undefined) return;
 
         const childElement = node.children.find(
@@ -68,7 +68,7 @@ export const ConsistentIsInvalidProps = ESLintUtils.RuleCreator.withoutDocs({
           return;
         }
 
-        const childIsInvalid = getIsInvalidValue(childElement.openingElement.attributes, 'isInvalid');
+        const childIsInvalid = getAttrValue(childElement.openingElement.attributes, 'isInvalid');
 
         if (childIsInvalid !== formRowIsInvalid) {
           const componentName =   (childElement.openingElement.name as TSESTree.JSXIdentifier).name;
