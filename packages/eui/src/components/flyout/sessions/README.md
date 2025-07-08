@@ -29,8 +29,8 @@ The `useEuiFlyoutSession` hook is generic and can be typed to match the `meta` o
 *   `openFlyout(options: EuiFlyoutSessionOpenMainOptions<MetaType>)`: Opens a new main flyout. If a flyout is already open, it adds the new one to a history stack.
 *   `openChildFlyout(options: EuiFlyoutSessionOpenChildOptions<MetaType>)`: Opens a new child flyout to the left of the main flyout.
 *   `openFlyoutGroup(options: EuiFlyoutSessionOpenGroupOptions<MetaType>)`: Opens a group containing a main flyout and a child flyout.
-*   `goBack()`: If there's a previous flyout in the history stack, it will be shown.
 *   `closeChildFlyout()`: Closes the currently open child flyout.
+*   `goBack()`: If there's a previous flyout in the history stack, it will be shown.
 *   `clearHistory()`: Closes all flyouts by clearing the history stack of all flyouts in the session.
 
 ### State Values
@@ -81,11 +81,11 @@ const FlyoutApp: React.FC = () => {
   // The EuiFlyoutSessionRenderContext is passed to your render prop functions.
   // This can contain a custom `meta` object (set in the `openFlyout` function call)
   // which allows you to customize the content shown in the flyout.
-  const renderMainFlyoutContent = (context: EuiFlyoutSessionRenderContext<{ title: string }>) => (
+  const renderMainFlyoutContent = (flyoutContext: EuiFlyoutSessionRenderContext<{ title: string }>) => (
     <>
       <EuiFlyoutHeader hasBorder>
         <EuiTitle size="s">
-          <h2>{context.meta.title}</h2>
+          <h2>{flyoutContext.meta.title}</h2>
         </EuiTitle>
       </EuiFlyoutHeader>
       <EuiFlyoutBody>

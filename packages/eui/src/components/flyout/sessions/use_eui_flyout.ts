@@ -44,11 +44,23 @@ export interface EuiFlyoutSessionOpenGroupOptions<Meta = unknown> {
   meta?: Meta; // Shared meta for both flyouts
 }
 
+export interface EuiFlyoutSessionApi {
+  openFlyout: (options: EuiFlyoutSessionOpenMainOptions) => void;
+  openChildFlyout: (options: EuiFlyoutSessionOpenChildOptions) => void;
+  openFlyoutGroup: (options: EuiFlyoutSessionOpenGroupOptions) => void;
+  closeChildFlyout: () => void;
+  goBack: () => void;
+  clearHistory: () => void;
+  isFlyoutOpen: boolean;
+  isChildFlyoutOpen: boolean;
+  canGoBack: boolean;
+}
+
 /**
  * Hook for accessing the flyout API
  * @public
  */
-export function useEuiFlyoutSession() {
+export function useEuiFlyoutSession(): EuiFlyoutSessionApi {
   const { state, dispatch, onUnmount } = useEuiFlyoutSessionContext();
   const isInitialMount = useRef(true);
 
@@ -107,15 +119,15 @@ export function useEuiFlyoutSession() {
     dispatch({ type: 'GO_BACK' });
   };
 
-  const canGoBack = !!state.history.length;
+  const clearHistory = () => {
+    dispatch({ type: 'CLEAR_HISTORY' });
+  };
 
   const isFlyoutOpen = !!state.activeFlyoutGroup?.isMainOpen;
 
   const isChildFlyoutOpen = !!state.activeFlyoutGroup?.isChildOpen;
 
-  const clearHistory = () => {
-    dispatch({ type: 'CLEAR_HISTORY' });
-  };
+  const canGoBack = !!state.history.length;
 
   return {
     openFlyout,
@@ -123,9 +135,9 @@ export function useEuiFlyoutSession() {
     openFlyoutGroup,
     closeChildFlyout,
     goBack,
-    canGoBack,
+    clearHistory,
     isFlyoutOpen,
     isChildFlyoutOpen,
-    clearHistory,
+    canGoBack,
   };
 }
