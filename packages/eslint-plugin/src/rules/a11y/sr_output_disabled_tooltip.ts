@@ -13,6 +13,8 @@ const tooltipComponent = 'EuiToolTip';
 const disabledTooltipComponentProp = 'disableScreenReaderOutput';
 const buttonComponents = ['EuiButtonIcon'];
 
+const normalizeAttrString = (str?: string) => str?.trim().replace(/\s+/g, ' ');
+
 export const ScreenReaderOutputDisabledTooltip =
   ESLintUtils.RuleCreator.withoutDocs({
     create(context) {
@@ -64,8 +66,7 @@ export const ScreenReaderOutputDisabledTooltip =
           if (
             tooltipContent &&
             ariaLabel &&
-            tooltipContent === ariaLabel &&
-            !hasDisableScreenReader
+            normalizeAttrString(tooltipContent) === normalizeAttrString(ariaLabel)
           ) {
             const buttonElementName = (
               buttonElement.openingElement.name as TSESTree.JSXIdentifier
@@ -97,13 +98,13 @@ export const ScreenReaderOutputDisabledTooltip =
       type: 'problem',
       docs: {
         description:
-          'Ensure {{disabledTooltipComponentProp}} is set when {{tooltipComponent}} content matches {{buttonElementName}} "aria-label"',
+          'Ensure "{{disabledTooltipComponentProp}}" attribute is set when {{tooltipComponent}} content matches {{buttonElementName}} "aria-label"',
       },
       fixable: 'code',
       schema: [],
       messages: {
         requireDisableScreenReader:
-          'When {{tooltipComponent}} content matches {{buttonElementName}} "aria-label", add {{disabledTooltipComponentProp}} to prevent redundant announcements',
+          '{{tooltipComponent}} should include "{{disabledTooltipComponentProp}}" attribute when its content matches the "aria-label" of {{buttonElementName}} to avoid redundant announcements.',
       },
     },
     defaultOptions: [],
