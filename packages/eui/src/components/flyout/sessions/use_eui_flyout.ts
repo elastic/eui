@@ -7,54 +7,13 @@
  */
 
 import { useEffect, useRef } from 'react';
-import { EuiFlyoutSize } from '../flyout';
 import { useEuiFlyoutSessionContext } from './flyout_provider';
-import { EuiFlyoutSessionConfig } from './types';
-
-/**
- * Options that control a main flyout in a session
- */
-export interface EuiFlyoutSessionOpenMainOptions<Meta = unknown> {
-  size: EuiFlyoutSize;
-  flyoutProps?: EuiFlyoutSessionConfig['mainFlyoutProps'];
-  meta?: Meta;
-}
-
-/**
- * Options that control a child flyout in a session
- */
-export interface EuiFlyoutSessionOpenChildOptions<Meta = unknown> {
-  size: 's' | 'm';
-  flyoutProps?: EuiFlyoutSessionConfig['childFlyoutProps'];
-  meta?: Meta;
-}
-
-/**
- * Options for opening both a main flyout and child flyout simultaneously
- */
-export interface EuiFlyoutSessionOpenGroupOptions<Meta = unknown> {
-  main: {
-    size: EuiFlyoutSize;
-    flyoutProps?: EuiFlyoutSessionConfig['mainFlyoutProps'];
-  };
-  child: {
-    size: 's' | 'm';
-    flyoutProps?: EuiFlyoutSessionConfig['childFlyoutProps'];
-  };
-  meta?: Meta; // Shared meta for both flyouts
-}
-
-export interface EuiFlyoutSessionApi {
-  openFlyout: (options: EuiFlyoutSessionOpenMainOptions) => void;
-  openChildFlyout: (options: EuiFlyoutSessionOpenChildOptions) => void;
-  openFlyoutGroup: (options: EuiFlyoutSessionOpenGroupOptions) => void;
-  closeChildFlyout: () => void;
-  goBack: () => void;
-  clearHistory: () => void;
-  isFlyoutOpen: boolean;
-  isChildFlyoutOpen: boolean;
-  canGoBack: boolean;
-}
+import type {
+  EuiFlyoutSessionApi,
+  EuiFlyoutSessionOpenChildOptions,
+  EuiFlyoutSessionOpenGroupOptions,
+  EuiFlyoutSessionOpenMainOptions,
+} from './types';
 
 /**
  * Hook for accessing the flyout API

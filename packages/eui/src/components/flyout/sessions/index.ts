@@ -15,11 +15,9 @@ export type {
   EuiFlyoutSessionConfig,
   EuiFlyoutSessionProviderComponentProps,
   EuiFlyoutSessionRenderContext,
+  EuiFlyoutSessionOpenChildOptions,
+  EuiFlyoutSessionOpenMainOptions,
+  EuiFlyoutSessionApi,
 } from './types';
 
-export {
-  useEuiFlyoutSession,
-  type EuiFlyoutSessionOpenChildOptions,
-  type EuiFlyoutSessionOpenMainOptions,
-  type EuiFlyoutSessionApi,
-} from './use_eui_flyout';
+export { useEuiFlyoutSession } from './use_eui_flyout';

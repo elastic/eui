@@ -20,6 +20,42 @@ export interface EuiFlyoutSessionConfig {
 }
 
 /**
+ * Options that control a main flyout in a session
+ */
+export interface EuiFlyoutSessionOpenMainOptions<Meta = unknown> {
+  size: EuiFlyoutSize;
+  flyoutProps?: EuiFlyoutSessionConfig['mainFlyoutProps'];
+  /**
+   * Caller-defined data
+   */
+  meta?: Meta;
+}
+
+/**
+ * Options that control a child flyout in a session
+ */
+export interface EuiFlyoutSessionOpenChildOptions<Meta = unknown> {
+  size: 's' | 'm';
+  flyoutProps?: EuiFlyoutSessionConfig['childFlyoutProps'];
+  /**
+   * Caller-defined data
+   */
+  meta?: Meta;
+}
+
+/**
+ * Options for opening both a main flyout and child flyout simultaneously
+ */
+export interface EuiFlyoutSessionOpenGroupOptions<Meta = unknown> {
+  main: EuiFlyoutSessionOpenMainOptions;
+  child: EuiFlyoutSessionOpenChildOptions;
+  /**
+   * Caller-defined data
+   */
+  meta?: Meta; // Shared meta for both flyouts
+}
+
+/**
  * A configuration user state for past and current main and child flyouts in a session
  * @internal
  */
@@ -27,6 +63,9 @@ export interface EuiFlyoutSessionGroup<FlyoutMeta> {
   isMainOpen: boolean;
   isChildOpen: boolean;
   config: EuiFlyoutSessionConfig;
+  /**
+   * Caller-defined data
+   */
   meta?: FlyoutMeta;
 }
 
@@ -48,33 +87,15 @@ export type EuiFlyoutSessionAction<FlyoutMeta = unknown> =
     }
   | {
       type: 'OPEN_MAIN_FLYOUT';
-      payload: {
-        size: EuiFlyoutSize;
-        flyoutProps?: Partial<Omit<EuiFlyoutProps, 'children'>>;
-        meta?: FlyoutMeta;
-      };
+      payload: EuiFlyoutSessionOpenMainOptions<FlyoutMeta>;
     }
   | {
       type: 'OPEN_CHILD_FLYOUT';
-      payload: {
-        size: 's' | 'm';
-        flyoutProps?: Partial<Omit<EuiFlyoutChildProps, 'children'>>;
-        meta?: FlyoutMeta;
-      };
+      payload: EuiFlyoutSessionOpenChildOptions<FlyoutMeta>;
     }
   | {
       type: 'OPEN_FLYOUT_GROUP';
-      payload: {
-        main: {
-          size: EuiFlyoutSize;
-          flyoutProps?: Partial<Omit<EuiFlyoutProps, 'children'>>;
-        };
-        child: {
-          size: 's' | 'm';
-          flyoutProps?: Partial<Omit<EuiFlyoutChildProps, 'children'>>;
-        };
-        meta?: FlyoutMeta;
-      };
+      payload: EuiFlyoutSessionOpenGroupOptions<FlyoutMeta>;
     }
   | { type: 'GO_BACK' }
   | { type: 'CLOSE_CHILD_FLYOUT' }
@@ -85,6 +106,9 @@ export type EuiFlyoutSessionAction<FlyoutMeta = unknown> =
  */
 export interface EuiFlyoutSessionRenderContext<FlyoutMeta = unknown> {
   activeFlyoutGroup: EuiFlyoutSessionGroup<FlyoutMeta> | null;
+  /**
+   * Caller-defined data
+   */
   meta?: FlyoutMeta;
 }
 
@@ -100,4 +124,16 @@ export interface EuiFlyoutSessionProviderComponentProps<FlyoutMeta = any> {
   renderChildFlyoutContent?: (
     context: EuiFlyoutSessionRenderContext<FlyoutMeta>
   ) => React.ReactNode;
+}
+
+export interface EuiFlyoutSessionApi {
+  openFlyout: (options: EuiFlyoutSessionOpenMainOptions) => void;
+  openChildFlyout: (options: EuiFlyoutSessionOpenChildOptions) => void;
+  openFlyoutGroup: (options: EuiFlyoutSessionOpenGroupOptions) => void;
+  closeChildFlyout: () => void;
+  goBack: () => void;
+  clearHistory: () => void;
+  isFlyoutOpen: boolean;
+  isChildFlyoutOpen: boolean;
+  canGoBack: boolean;
 }
