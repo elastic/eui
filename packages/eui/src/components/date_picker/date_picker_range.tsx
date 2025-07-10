@@ -40,6 +40,7 @@ export type EuiDatePickerRangeProps = CommonProps &
     | 'readOnly'
     | 'fullWidth'
     | 'compressed'
+    | 'clear'
     | 'prepend'
     | 'append'
     | 'delimiter'
@@ -115,6 +116,7 @@ export const EuiDatePickerRange: FunctionComponent<EuiDatePickerRangeProps> = ({
   disabled,
   onFocus,
   onBlur,
+  clear,
   append,
   prepend,
   delimiter,
@@ -215,6 +217,7 @@ export const EuiDatePickerRange: FunctionComponent<EuiDatePickerRangeProps> = ({
         isDisabled={disabled}
         isInvalid={isInvalid}
         isLoading={isLoading}
+        clear={clear}
         append={inline ? undefined : append}
         prepend={inline ? undefined : prepend}
         css={
