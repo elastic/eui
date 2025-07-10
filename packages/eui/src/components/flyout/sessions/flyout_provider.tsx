@@ -64,7 +64,7 @@ export const EuiFlyoutSessionProvider: React.FC<
   const { activeFlyoutGroup } = state;
 
   const handleClose = () => {
-    dispatch({ type: 'CLEAR_HISTORY' });
+    dispatch({ type: 'CLOSE_SESSION' });
   };
 
   const handleCloseChild = () => {

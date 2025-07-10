@@ -96,7 +96,7 @@ const ShoppingCartContent: React.FC<ShoppingCartContentProps> = ({
     openFlyout,
     isChildFlyoutOpen,
     closeChildFlyout,
-    clearHistory,
+    closeSession,
   } = useEuiFlyoutSession();
 
   const handleOpenItemDetails = () => {
@@ -119,11 +119,12 @@ const ShoppingCartContent: React.FC<ShoppingCartContentProps> = ({
       size: 'm',
       meta: { ecommerceMainFlyoutKey: 'reviewOrder' },
       flyoutProps: {
+        type: 'push',
         className: 'reviewOrderFlyoutMain',
         'aria-label': 'Review order',
         onClose: () => {
           loggerAction('Review order onClose triggered');
-          clearHistory(); // If we add an onClose handler to the main flyout, we have to call clearHistory within it for the flyout to actually close
+          closeSession(); // If we add an onClose handler to the main flyout, we have to call closeSession within it for the flyout to actually close
         },
       },
     };
@@ -173,7 +174,7 @@ const ShoppingCartContent: React.FC<ShoppingCartContentProps> = ({
         </EuiButton>
       </EuiFlyoutBody>
       <EuiFlyoutFooter>
-        <EuiButton onClick={clearHistory} color="danger">
+        <EuiButton onClick={closeSession} color="danger">
           Close
         </EuiButton>
       </EuiFlyoutFooter>
@@ -184,7 +185,7 @@ const ShoppingCartContent: React.FC<ShoppingCartContentProps> = ({
 const ReviewOrderContent: React.FC<ReviewOrderContentProps> = ({
   itemQuantity,
 }) => {
-  const { goBack, clearHistory } = useEuiFlyoutSession();
+  const { goBack, closeSession } = useEuiFlyoutSession();
   const [orderConfirmed, setOrderConfirmed] = useState(false);
 
   return (
@@ -231,7 +232,7 @@ const ReviewOrderContent: React.FC<ReviewOrderContentProps> = ({
             Go back
           </EuiButton>
         )}{' '}
-        <EuiButton onClick={clearHistory} color="danger">
+        <EuiButton onClick={closeSession} color="danger">
           Close
         </EuiButton>
       </EuiFlyoutFooter>
@@ -281,7 +282,7 @@ const ECommerceAppControls: React.FC = () => {
     canGoBack,
     isChildFlyoutOpen,
     closeChildFlyout,
-    clearHistory,
+    closeSession,
   } = useEuiFlyoutSession();
   const { state } = useEuiFlyoutSessionContext(); // Use internal hook for displaying raw state
 
@@ -289,7 +290,7 @@ const ECommerceAppControls: React.FC = () => {
     if (canGoBack) {
       goBack();
     } else {
-      clearHistory();
+      closeSession();
     }
   };
   const handleOpenShoppingCart = () => {
@@ -303,7 +304,7 @@ const ECommerceAppControls: React.FC = () => {
         'aria-label': 'Shopping cart',
         onClose: (event) => {
           loggerAction('Shopping cart onClose triggered', event);
-          clearHistory(); // If we add an onClose handler to the main flyout, we have to call clearHistory within it for the flyout to actually close
+          closeSession(); // If we add an onClose handler to the main flyout, we have to call closeSession within it for the flyout to actually close
         },
       },
     };
@@ -410,7 +411,7 @@ const GroupOpenerControls: React.FC<{
     openFlyoutGroup,
     isFlyoutOpen,
     isChildFlyoutOpen,
-    clearHistory,
+    closeSession,
     closeChildFlyout,
   } = useEuiFlyoutSession();
   const { state } = useEuiFlyoutSessionContext(); // Use internal hook for displaying raw state
@@ -433,7 +434,7 @@ const GroupOpenerControls: React.FC<{
           'aria-label': 'Main flyout',
           onClose: () => {
             loggerAction('Group opener main flyout onClose triggered');
-            clearHistory();
+            closeSession();
           },
         },
       },
@@ -478,7 +479,7 @@ const GroupOpenerControls: React.FC<{
       {(isFlyoutOpen || isChildFlyoutOpen) && (
         <>
           <EuiSpacer />
-          <EuiButton onClick={clearHistory} color="danger">
+          <EuiButton onClick={closeSession} color="danger">
             Close All Flyouts
           </EuiButton>
         </>
@@ -505,7 +506,7 @@ const GroupOpenerApp: React.FC = () => {
   ];
 
   const MainFlyoutContent = () => {
-    const { clearHistory } = useEuiFlyoutSession();
+    const { closeSession } = useEuiFlyoutSession();
     return (
       <>
         <EuiFlyoutHeader hasBorder>
@@ -522,7 +523,7 @@ const GroupOpenerApp: React.FC = () => {
           </EuiText>
         </EuiFlyoutBody>
         <EuiFlyoutFooter>
-          <EuiButton onClick={clearHistory} color="danger">
+          <EuiButton onClick={closeSession} color="danger">
             Close All Flyouts
           </EuiButton>
         </EuiFlyoutFooter>
@@ -623,7 +624,7 @@ const BasicFlyoutControls: React.FC<{
   flyoutType: 'push' | 'overlay';
   mainFlyoutSize: 's' | 'm';
 }> = ({ flyoutType, mainFlyoutSize }) => {
-  const { openFlyout, isFlyoutOpen, isChildFlyoutOpen, clearHistory } =
+  const { openFlyout, isFlyoutOpen, isChildFlyoutOpen, closeSession } =
     useEuiFlyoutSession();
   const { state } = useEuiFlyoutSessionContext(); // Use internal hook for displaying raw state
 
@@ -633,7 +634,7 @@ const BasicFlyoutControls: React.FC<{
         type: flyoutType,
         onClose: () => {
           loggerAction('Basic flyout onClose triggered');
-          clearHistory();
+          closeSession();
         },
       },
       size: mainFlyoutSize,

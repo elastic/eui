@@ -78,8 +78,8 @@ export function useEuiFlyoutSession(): EuiFlyoutSessionApi {
     dispatch({ type: 'GO_BACK' });
   };
 
-  const clearHistory = () => {
-    dispatch({ type: 'CLEAR_HISTORY' });
+  const closeSession = () => {
+    dispatch({ type: 'CLOSE_SESSION' });
   };
 
   const isFlyoutOpen = !!state.activeFlyoutGroup?.isMainOpen;
@@ -94,7 +94,7 @@ export function useEuiFlyoutSession(): EuiFlyoutSessionApi {
     openFlyoutGroup,
     closeChildFlyout,
     goBack,
-    clearHistory,
+    closeSession,
     isFlyoutOpen,
     isChildFlyoutOpen,
     canGoBack,

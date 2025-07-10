@@ -218,8 +218,8 @@ export function flyoutReducer<FlyoutMeta>(
       };
     }
 
-    case 'CLEAR_HISTORY':
-      // Clear the history and remove the active group
+    case 'CLOSE_SESSION':
+      // Remove the active group and close the session
       return {
         activeFlyoutGroup: null,
         history: [],

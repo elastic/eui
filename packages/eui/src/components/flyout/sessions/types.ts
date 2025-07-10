@@ -99,7 +99,7 @@ export type EuiFlyoutSessionAction<FlyoutMeta = unknown> =
     }
   | { type: 'GO_BACK' }
   | { type: 'CLOSE_CHILD_FLYOUT' }
-  | { type: 'CLEAR_HISTORY' };
+  | { type: 'CLOSE_SESSION' };
 
 /**
  * Flyout session context managed by `EuiFlyoutSessionProvider`, and passed to the `renderMainFlyoutContent` and `renderChildFlyoutContent` functions.
@@ -132,7 +132,7 @@ export interface EuiFlyoutSessionApi {
   openFlyoutGroup: (options: EuiFlyoutSessionOpenGroupOptions) => void;
   closeChildFlyout: () => void;
   goBack: () => void;
-  clearHistory: () => void;
+  closeSession: () => void;
   isFlyoutOpen: boolean;
   isChildFlyoutOpen: boolean;
   canGoBack: boolean;
