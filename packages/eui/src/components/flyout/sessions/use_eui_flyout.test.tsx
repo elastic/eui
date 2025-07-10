@@ -10,12 +10,12 @@ import React from 'react';
 import { render, fireEvent, screen } from '@testing-library/react';
 
 import { EuiFlyoutSessionProvider } from './flyout_provider';
-import {
-  useEuiFlyoutSession,
+import type {
   EuiFlyoutSessionOpenMainOptions,
   EuiFlyoutSessionOpenChildOptions,
   EuiFlyoutSessionOpenGroupOptions,
-} from './use_eui_flyout';
+} from './types';
+import { useEuiFlyoutSession } from './use_eui_flyout';
 
 // Mock the flyout components for testing
 jest.mock('../flyout', () => ({
