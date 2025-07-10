@@ -128,6 +128,7 @@ exports[`EuiProgress has labelProps 1`] = `
     class="emotion-euiScreenReaderOnly"
   >
     <span>
+       
       150
     </span>
   </div>
@@ -148,7 +149,9 @@ exports[`EuiProgress has max 1`] = `
   aria-live="polite"
   class="emotion-euiScreenReaderOnly"
 >
-  <span />
+  <span>
+     
+  </span>
 </div>
 `;
 
@@ -186,7 +189,8 @@ exports[`EuiProgress has valueText and label 1`] = `
     class="emotion-euiScreenReaderOnly"
   >
     <span>
-      Label 
+      Label
+       
       150
     </span>
   </div>
@@ -208,6 +212,7 @@ exports[`EuiProgress is determinate 1`] = `
   class="emotion-euiScreenReaderOnly"
 >
   <span>
+     
     50
   </span>
 </div>
@@ -272,6 +277,7 @@ exports[`EuiProgress valueText is true 1`] = `
     class="emotion-euiScreenReaderOnly"
   >
     <span>
+       
       50%
     </span>
   </div>

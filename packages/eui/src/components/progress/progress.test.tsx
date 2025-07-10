@@ -80,6 +80,25 @@ describe('EuiProgress', () => {
     expect(container).toMatchSnapshot();
   });
 
+  test('handles node in label', () => {
+    const { container } = render(
+      <EuiProgress
+        label={<span>Label text</span>}
+        valueText={true}
+        value={50}
+        max={100}
+        {...requiredProps}
+      />
+    );
+
+    expect(container.querySelector('.euiProgress__label')).toHaveTextContent(
+      'Label text'
+    );
+    expect(container.querySelector('[aria-live]')).toHaveTextContent(
+      'Label text'
+    );
+  });
+
   test('has labelProps', () => {
     const { container } = render(
       <EuiProgress
