@@ -19,6 +19,7 @@ DOCKER_OPTIONS=(
   --env BUILDKITE_COMMIT
   --env BUILDKITE_JOB_ID
   --env BUILDKITE_MESSAGE
+  --env CI=true
   --user="$(id -u):$(id -g)"
   --volume="$(pwd):/app"
   --workdir=/app
