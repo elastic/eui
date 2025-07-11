@@ -116,13 +116,22 @@ yarn
 #                      Step 3 - Build                      #
 ############################################################
 
-# Pass base url to docusaurus. It must have a leading and trailing slash included.
-export DOCS_BASE_URL="/${bucket_directory}"
-
 # Build the website
 echo "+++ :yarn: Building @elastic/eui-website and its local dependencies"
 yarn workspace @elastic/eui-website build:workspaces
+
+echo "Building the website with ${bucket_directory} base path configuration"
+# Pass base url to docusaurus. It must have a leading and trailing slash included.
+export DOCS_BASE_URL="/${bucket_directory}"
 yarn workspace @elastic/eui-website build
+mv packages/website/build packages/website/build-default
+
+if [[ "${copy_to_root_directory}" == true ]]; then
+  echo "Building the website with / base path configuration"
+  export DOCS_BASE_URL="/"
+  yarn workspace @elastic/eui-website build
+  mv packages/website/build packages/website/build-root
+fi
 
 # Build Storybook
 echo "+++ :yarn: Building Storybook and @elastic/eui local dependencies"
@@ -130,7 +139,7 @@ yarn workspace @elastic/eui build:workspaces
 yarn workspace @elastic/eui build-storybook
 
 ############################################################
-#                    Step 4 - Deployment                   #
+#       Step 4 - Configure environment for deployment      #
 ############################################################
 
 echo "+++ Configuring environment for website deployment"
@@ -147,10 +156,25 @@ if [[ -z "${bucket_directory}" ]] && [[ "${copy_to_root_directory}" != true ]]; 
   exit 2
 fi
 
-# Deploy docs
+############################################################
+#                  Step 6 - Deploy website                 #
+############################################################
+
+# Deploy docs to default directory (pr_<X>, /v<X> or /next)
 echo "Beginning to copy built docs to /${bucket_directory}"
-gcloud storage cp "${GCLOUD_CP_ARGS[@]}" packages/website/build/* "gs://${GCLOUD_BUCKET_FULL}/${bucket_directory}"
+gcloud storage cp "${GCLOUD_CP_ARGS[@]}" packages/website/build-default/* "gs://${GCLOUD_BUCKET_FULL}/${bucket_directory}"
 echo "Successfully copied docs to /${bucket_directory}"
+
+# Deploy docs to root directory (/) if it's the latest release
+if [[ "${copy_to_root_directory}" == true ]]; then
+  echo "Beginning to copy built docs to /"
+  gcloud storage cp "${GCLOUD_CP_ARGS[@]}" packages/website/build-root/* "gs://${GCLOUD_BUCKET_FULL}/"
+  echo "Successfully copied docs to /"
+fi
+
+############################################################
+#                 Step 7 - Deploy Storybook                #
+############################################################
 
 # Deploy Storybook
 storybook_target_dir="${bucket_directory}storybook/"
@@ -158,21 +182,16 @@ echo "Beginning to copy Storybook to /${storybook_target_dir}"
 gcloud storage cp "${GCLOUD_CP_ARGS[@]}" packages/eui/storybook-static/* "gs://${GCLOUD_BUCKET_FULL}/${storybook_target_dir}"
 echo "Successfully copied Storybook to /${storybook_target_dir}"
 
+# Deploy Storybook to /storybook if it's the latest release
 if [[ "${copy_to_root_directory}" == true ]]; then
-  # Also copy docs to root
-  echo "Also copying built docs to the root directory /"
-  gcloud storage cp "${GCLOUD_CP_ARGS[@]}" packages/website/build/* "gs://${GCLOUD_BUCKET_FULL}/"
-  echo "Successfully copied docs to the root directory"
-  # Also copy Storybook to /storybook/
   echo "Also copying Storybook to /storybook/"
   gcloud storage cp "${GCLOUD_CP_ARGS[@]}" packages/eui/storybook-static/* "gs://${GCLOUD_BUCKET_FULL}/storybook/"
   echo "Successfully copied Storybook to /storybook/"
 fi
 
 ############################################################
-#                      Step 5 - Notify                     #
+#                      Step 8 - Notify                     #
 ############################################################
-
 
 published_website_url="https://eui.elastic.co/${bucket_directory}"
 published_storybook_url="https://eui.elastic.co/${bucket_directory}storybook/"
