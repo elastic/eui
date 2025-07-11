@@ -188,7 +188,8 @@ const ShoppingCartContent: React.FC<ShoppingCartContentProps> = ({
 const ReviewOrderContent: React.FC<ReviewOrderContentProps> = ({
   itemQuantity,
 }) => {
-  const { closeSession } = useEuiFlyoutSession();
+  const { goBack, closeSession } = useEuiFlyoutSession();
+  const [orderConfirmed, setOrderConfirmed] = useState(false);
 
   return (
     <>
@@ -199,15 +200,41 @@ const ReviewOrderContent: React.FC<ReviewOrderContentProps> = ({
       </EuiFlyoutHeader>
       <EuiFlyoutBody>
         <EuiText>
+          <h3>Review your order</h3>
           <p>Item: Flux Capacitor</p>
           <p>Quantity: {itemQuantity}</p>
         </EuiText>
         <EuiSpacer />
-        <EuiButton fill color="accent">
-          Confirm purchase
-        </EuiButton>
+        {orderConfirmed ? (
+          <EuiText>
+            <p>Order confirmed!</p>
+          </EuiText>
+        ) : (
+          <EuiButton
+            onClick={() => setOrderConfirmed(true)}
+            fill
+            color="accent"
+          >
+            Confirm purchase
+          </EuiButton>
+        )}
       </EuiFlyoutBody>
       <EuiFlyoutFooter>
+        {!orderConfirmed && (
+          <EuiButton
+            onClick={() => {
+              loggerAction('Go back button clicked');
+              goBack();
+              // Add a setTimeout to check the state a little after the action is dispatched
+              setTimeout(() => {
+                loggerAction('After goBack timeout check');
+              }, 100);
+            }}
+            color="danger"
+          >
+            Go back
+          </EuiButton>
+        )}{' '}
         <EuiButton onClick={closeSession} color="danger">
           Close
         </EuiButton>
@@ -220,7 +247,6 @@ const ItemDetailsContent: React.FC<ItemDetailsContentProps> = ({
   itemQuantity,
 }) => {
   const { closeChildFlyout } = useEuiFlyoutSession();
-
   return (
     <>
       <EuiFlyoutBody>
@@ -529,8 +555,8 @@ const GroupOpenerControls: React.FC<{
     openFlyoutGroup,
     isFlyoutOpen,
     isChildFlyoutOpen,
-    closeChildFlyout,
     closeSession,
+    closeChildFlyout,
   } = useEuiFlyoutSession();
   const { state } = useEuiFlyoutSessionContext(); // Use internal hook for displaying raw state
 
@@ -575,6 +601,17 @@ const GroupOpenerControls: React.FC<{
 
   return (
     <>
+      <EuiTitle>
+        <h2>EuiFlyoutSession Group Opener</h2>
+      </EuiTitle>
+      <EuiSpacer />
+      <EuiText>
+        <p>
+          This demo shows how to use the <code>openFlyoutGroup</code> function
+          to simultaneously open both main and child flyouts.
+        </p>
+      </EuiText>
+      <EuiSpacer />
       <EuiButton
         onClick={handleOpenGroup}
         fill
