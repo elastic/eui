@@ -4,7 +4,9 @@ sidebar_position: 1
 
 # Selection controls
 
-import { EuiIconTip } from '@elastic/eui';
+```mdx-code-block
+import { EuiIconTip, EuiTable, EuiTableRow, EuiTableHeader, EuiTableBody, EuiTableRowCell, EuiTableHeaderCell } from '@elastic/eui';
+```
 
 EUI currently offers over 4 ways to select an option from a list (6 including checkboxes and radios).
 
@@ -39,23 +41,112 @@ While it can get overwhelming figuring out which component to use, this page sho
 
 Below is a handy reference for comparing the selection components.
 
+```mdx-code-block
 export const tooltipProps = {
   anchorProps: { css: { position: 'absolute', marginBlockStart: -1 } },
   color: 'subdued',
 };
+```
 
-{/* TODO: Convert to basic table with borders */}
-
-| Feature | &emsp;[EuiSelect](./select.mdx)&emsp; | &emsp;[EuiSuperSelect](./super-select.mdx)&emsp; | &emsp;[EuiSelectable](./selectable.mdx)&emsp; | &emsp;[EuiComboBox](./combo-box.mdx)&emsp; |
-|:---|:---:|:---:|:---:|:---:|
-| Select a single option | ✅ | ✅ | ✅ | ✅ |
-| Select multiple options | ❌ | ❌ | ✅ | ✅ |
-| Accepts custom values from user input | ❌ | ❌ | ❌ | ✅ |
-| Option exclusion | ❌ | ❌ | ✅ | ❌ |
-| Customizable option display | ❌ | ✅ | ✅ | ✅ |
-| Customizable loading/error messages | ❌ | ❌ | ✅ | ❌ |
-| Searchable | ❌ <EuiIconTip type="info" content="Native select behavior will jump to options based on user typing" {...tooltipProps} /> | ❌ | ✅ | ✅ |
-| `disabled` state | ✅ <EuiIconTip type="info" content="Disables whole component" {...tooltipProps} /> | ✅ <EuiIconTip type="info" content="Disables individual option" {...tooltipProps} /> | ✅ <EuiIconTip type="info" content="Disables individual option" {...tooltipProps} /> | ✅ <EuiIconTip type="info" content="Disables whole component" {...tooltipProps} /> |
-| `readOnly` state | ❌ | ✅ | ❌ | ❌ |
-| Built in utility function for clearing user input | ❌ | ❌ | ✅ <EuiIconTip type="info" content="Clears search input" {...tooltipProps} /> | ✅ <EuiIconTip type="info" content="Clears all selections" {...tooltipProps} /> |
-| Supports virtualization | ❌ | ❌ | ✅ | ✅ |
+<EuiTable>
+  <EuiTableHeader>
+    <EuiTableHeaderCell>Feature</EuiTableHeaderCell>
+    <EuiTableHeaderCell align="center">[EuiSelect](./select.mdx)</EuiTableHeaderCell>
+    <EuiTableHeaderCell align="center">[EuiSuperSelect](./super-select.mdx)</EuiTableHeaderCell>
+    <EuiTableHeaderCell align="center">[EuiSelectable](./selectable.mdx)</EuiTableHeaderCell>
+    <EuiTableHeaderCell align="center">[EuiComboBox](./combo-box.mdx)</EuiTableHeaderCell>
+  </EuiTableHeader>
+  <EuiTableBody>
+    <EuiTableRow>
+      <EuiTableRowCell>Select a single option</EuiTableRowCell>
+      <EuiTableRowCell align="center">✅</EuiTableRowCell>
+      <EuiTableRowCell align="center">✅</EuiTableRowCell>
+      <EuiTableRowCell align="center">✅</EuiTableRowCell>
+      <EuiTableRowCell align="center">✅</EuiTableRowCell>
+    </EuiTableRow>
+    <EuiTableRow>
+      <EuiTableRowCell>Select multiple options</EuiTableRowCell>
+      <EuiTableRowCell align="center">❌</EuiTableRowCell>
+      <EuiTableRowCell align="center">❌</EuiTableRowCell>
+      <EuiTableRowCell align="center">✅</EuiTableRowCell>
+      <EuiTableRowCell align="center">✅</EuiTableRowCell>
+    </EuiTableRow>
+    <EuiTableRow>
+      <EuiTableRowCell>Accepts custom values from user input</EuiTableRowCell>
+      <EuiTableRowCell align="center">❌</EuiTableRowCell>
+      <EuiTableRowCell align="center">❌</EuiTableRowCell>
+      <EuiTableRowCell align="center">❌</EuiTableRowCell>
+      <EuiTableRowCell align="center">✅</EuiTableRowCell>
+    </EuiTableRow>
+    <EuiTableRow>
+      <EuiTableRowCell>Option exclusion</EuiTableRowCell>
+      <EuiTableRowCell align="center">❌</EuiTableRowCell>
+      <EuiTableRowCell align="center">❌</EuiTableRowCell>
+      <EuiTableRowCell align="center">✅</EuiTableRowCell>
+      <EuiTableRowCell align="center">❌</EuiTableRowCell>
+    </EuiTableRow>
+    <EuiTableRow>
+      <EuiTableRowCell>Customizable option display</EuiTableRowCell>
+      <EuiTableRowCell align="center">❌</EuiTableRowCell>
+      <EuiTableRowCell align="center">✅</EuiTableRowCell>
+      <EuiTableRowCell align="center">✅</EuiTableRowCell>
+      <EuiTableRowCell align="center">✅</EuiTableRowCell>
+    </EuiTableRow>
+    <EuiTableRow>
+      <EuiTableRowCell>Customizable loading/error messages</EuiTableRowCell>
+      <EuiTableRowCell align="center">❌</EuiTableRowCell>
+      <EuiTableRowCell align="center">❌</EuiTableRowCell>
+      <EuiTableRowCell align="center">✅</EuiTableRowCell>
+      <EuiTableRowCell align="center">❌</EuiTableRowCell>
+    </EuiTableRow>
+    <EuiTableRow>
+      <EuiTableRowCell>Searchable</EuiTableRowCell>
+      <EuiTableRowCell align="center">
+        ❌&nbsp;<EuiIconTip type="info" content="Native select behavior will jump to options based on user typing" {...tooltipProps} />
+      </EuiTableRowCell>
+      <EuiTableRowCell align="center">❌</EuiTableRowCell>
+      <EuiTableRowCell align="center">✅</EuiTableRowCell>
+      <EuiTableRowCell align="center">✅</EuiTableRowCell>
+    </EuiTableRow>
+    <EuiTableRow>
+      <EuiTableRowCell>`disabled` state</EuiTableRowCell>
+      <EuiTableRowCell align="center">
+        ✅&nbsp;<EuiIconTip type="info" content="Disables whole component" {...tooltipProps} />
+      </EuiTableRowCell>
+      <EuiTableRowCell align="center">
+        ✅&nbsp;<EuiIconTip type="info" content="Disables individual option" {...tooltipProps} />
+      </EuiTableRowCell>
+      <EuiTableRowCell align="center">
+        ✅&nbsp;<EuiIconTip type="info" content="Disables individual option" {...tooltipProps} />
+      </EuiTableRowCell>
+      <EuiTableRowCell align="center">
+        ✅&nbsp;<EuiIconTip type="info" content="Disables whole component" {...tooltipProps} />
+      </EuiTableRowCell>
+    </EuiTableRow>
+    <EuiTableRow>
+      <EuiTableRowCell>`readOnly` state</EuiTableRowCell>
+      <EuiTableRowCell align="center">❌</EuiTableRowCell>
+      <EuiTableRowCell align="center">✅</EuiTableRowCell>
+      <EuiTableRowCell align="center">❌</EuiTableRowCell>
+      <EuiTableRowCell align="center">❌</EuiTableRowCell>
+    </EuiTableRow>
+    <EuiTableRow>
+      <EuiTableRowCell>Built in utility function for clearing user input</EuiTableRowCell>
+      <EuiTableRowCell align="center">❌</EuiTableRowCell>
+      <EuiTableRowCell align="center">❌</EuiTableRowCell>
+      <EuiTableRowCell align="center">
+        ✅&nbsp;<EuiIconTip type="info" content="Clears search input" {...tooltipProps} />
+      </EuiTableRowCell>
+      <EuiTableRowCell align="center">
+        ✅&nbsp;<EuiIconTip type="info" content="Clears all selections" {...tooltipProps} />
+      </EuiTableRowCell>
+    </EuiTableRow>
+    <EuiTableRow>
+      <EuiTableRowCell>Supports virtualization</EuiTableRowCell>
+      <EuiTableRowCell align="center">❌</EuiTableRowCell>
+      <EuiTableRowCell align="center">❌</EuiTableRowCell>
+      <EuiTableRowCell align="center">✅</EuiTableRowCell>
+      <EuiTableRowCell align="center">✅</EuiTableRowCell>
+    </EuiTableRow>
+  </EuiTableBody>
+</EuiTable>

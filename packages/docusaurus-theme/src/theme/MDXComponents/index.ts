@@ -17,6 +17,12 @@ import { Blockquote } from './Blockquote';
 import { Paragraph } from './Paragraph';
 import { UnorderedList } from './UnorderedList';
 import { OrderedList } from './OrderedList';
+import { Table } from './Table';
+import { TableBody } from './TableBody';
+import { TableHeader } from './TableHeader';
+import { TableHeaderCell } from './TableHeaderCell';
+import { TableRow } from './TableRow';
+import { TableDataCell } from './TableDataCell';
 import { Guideline, GuidelineText } from '../../components';
 
 const MDXComponents = {
@@ -27,6 +33,14 @@ const MDXComponents = {
   ul: UnorderedList,
   ol: OrderedList,
   blockquote: Blockquote,
+
+  // Tables
+  table: Table,
+  tbody: TableBody,
+  thead: TableHeader,
+  tr: TableRow,
+  th: TableHeaderCell,
+  td: TableDataCell,
 
   // Custom components
   Badge,
