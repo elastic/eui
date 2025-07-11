@@ -382,6 +382,47 @@ export default () => {
 };
 ```
 
+### ColorModes
+
+**EuiSelectableTemplateSitewide** by default has the `colorMode` of the nearest **EuiThemeProvider** applied.
+If you want to override the this manually, you can pass a `colorModes` prop to the component. This allows you 
+to apply different color modes to the search and popover components.
+
+import { Example } from '@site/src/components';
+
+<Example.Snippet>
+  ```tsx
+  <EuiSelectableTemplateSitewide colorModes={{ search: 'default', popover: 'inverse' }} />
+  ```
+</Example.Snippet>
+
+```tsx interactive
+export default () => {
+  return (
+    <EuiSelectableTemplateSitewide
+      options={[
+        {
+          label: 'Welcome dashboards',
+          avatar: {
+            name: 'Default Space',
+          },
+          meta: [
+            {
+              text: 'Dashboard',
+              type: 'application',
+              highlightSearchString: true,
+            },
+          ],
+          url: 'welcome-dashboards',
+        },
+      ]}
+      colorModes={{ search: 'default', popover: 'inverse' }}
+    />
+  );
+};
+```
+
+
 ## Options
 
 The `options` are the most opinionated portion of the template. Their display is determined by the props passed in and extends the normal `EuiSelectable.option` type. All parts are optional with the exception of the label (A).
