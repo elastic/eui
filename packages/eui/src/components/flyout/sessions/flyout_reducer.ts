@@ -76,9 +76,7 @@ export function flyoutReducer<FlyoutMeta>(
         isChildOpen: false,
         config: {
           mainSize: size,
-          childSize: 's',
           mainFlyoutProps: flyoutProps,
-          childFlyoutProps: {},
         },
         meta:
           action.payload.meta !== undefined
