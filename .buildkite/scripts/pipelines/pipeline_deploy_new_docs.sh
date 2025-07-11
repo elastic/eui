@@ -87,11 +87,12 @@ if is_pipeline_trigger_pull_request; then
   echo "Detected a PR preview environment configuration. The built files will be copied to ${bucket_directory}"
 elif is_pipeline_trigger_tag; then
   latest_release_tag_on_main=$(git describe --tags "$(git rev-list --branches=main --tags --max-count=1)")
+  bucket_directory="${BUILDKITE_TAG}/"
+  copy_to_root_directory=false
   if [[ "${BUILDKITE_TAG}" == "${latest_release_tag_on_main}" ]]; then
-    # Deploy to root directory. No trailing slash here
-    bucket_directory=""
+    # Deploy to root directory and version subfolder
     copy_to_root_directory=true
-    echo "Detected a tagged release. The built files will be copied to the root directory"
+    echo "Detected the latest tagged release. The built files will be copied to the root directory and to ${bucket_directory}"
   else
     bucket_directory="${BUILDKITE_TAG}/"
     echo "Detected a tagged release. The built files will be copied to ${bucket_directory}"
@@ -115,15 +116,30 @@ yarn
 #                      Step 3 - Build                      #
 ############################################################
 
+# Build the website
 echo "+++ :yarn: Building @elastic/eui-website and its local dependencies"
+yarn workspace @elastic/eui-website build:workspaces
 
+echo "Building the website with ${bucket_directory} base path configuration"
 # Pass base url to docusaurus. It must have a leading and trailing slash included.
 export DOCS_BASE_URL="/${bucket_directory}"
+yarn workspace @elastic/eui-website build
+mv packages/website/build packages/website/build-default
 
-yarn workspace @elastic/eui-website run build:workspaces
+if [[ "${copy_to_root_directory}" == true ]]; then
+  echo "Building the website with / base path configuration"
+  export DOCS_BASE_URL="/"
+  yarn workspace @elastic/eui-website build
+  mv packages/website/build packages/website/build-root
+fi
+
+# Build Storybook
+echo "+++ :yarn: Building Storybook and @elastic/eui local dependencies"
+yarn workspace @elastic/eui build:workspaces
+yarn workspace @elastic/eui build-storybook
 
 ############################################################
-#                    Step 4 - Deployment                   #
+#       Step 4 - Configure environment for deployment      #
 ############################################################
 
 echo "+++ Configuring environment for website deployment"
@@ -132,7 +148,6 @@ gcloud auth activate-service-account --key-file <(echo "${GCE_ACCOUNT}")
 unset GCE_ACCOUNT
 
 # Copy files to the GCS bucket
-
 echo "+++ :bucket: Copying built files to the bucket"
 
 # additional protection layer in case bucket_directory is ever unset
@@ -141,18 +156,53 @@ if [[ -z "${bucket_directory}" ]] && [[ "${copy_to_root_directory}" != true ]]; 
   exit 2
 fi
 
-echo "Beginning to copy built files to /${bucket_directory}"
-gcloud storage cp "${GCLOUD_CP_ARGS[@]}" packages/website/build/* "gs://${GCLOUD_BUCKET_FULL}/${bucket_directory}"
-echo "Successfully copied files to /${bucket_directory}"
+############################################################
+#                  Step 6 - Deploy website                 #
+############################################################
+
+# Deploy docs to default directory (pr_<X>, /v<X> or /next)
+echo "Beginning to copy built docs to /${bucket_directory}"
+gcloud storage cp "${GCLOUD_CP_ARGS[@]}" packages/website/build-default/* "gs://${GCLOUD_BUCKET_FULL}/${bucket_directory}"
+echo "Successfully copied docs to /${bucket_directory}"
+
+# Deploy docs to root directory (/) if it's the latest release
+if [[ "${copy_to_root_directory}" == true ]]; then
+  echo "Beginning to copy built docs to /"
+  gcloud storage cp "${GCLOUD_CP_ARGS[@]}" packages/website/build-root/* "gs://${GCLOUD_BUCKET_FULL}/"
+  echo "Successfully copied docs to /"
+fi
 
 ############################################################
-#                      Step 5 - Notify                     #
+#                 Step 7 - Deploy Storybook                #
+############################################################
+
+# Deploy Storybook
+storybook_target_dir="${bucket_directory}storybook/"
+echo "Beginning to copy Storybook to /${storybook_target_dir}"
+gcloud storage cp "${GCLOUD_CP_ARGS[@]}" packages/eui/storybook-static/* "gs://${GCLOUD_BUCKET_FULL}/${storybook_target_dir}"
+echo "Successfully copied Storybook to /${storybook_target_dir}"
+
+# Deploy Storybook to /storybook if it's the latest release
+if [[ "${copy_to_root_directory}" == true ]]; then
+  echo "Also copying Storybook to /storybook/"
+  gcloud storage cp "${GCLOUD_CP_ARGS[@]}" packages/eui/storybook-static/* "gs://${GCLOUD_BUCKET_FULL}/storybook/"
+  echo "Successfully copied Storybook to /storybook/"
+fi
+
+############################################################
+#                      Step 8 - Notify                     #
 ############################################################
 
 published_website_url="https://eui.elastic.co/${bucket_directory}"
+published_storybook_url="https://eui.elastic.co/${bucket_directory}storybook/"
+
+if [[ "${copy_to_root_directory}" == true ]]; then
+  published_website_url="https://eui.elastic.co/ (root) and https://eui.elastic.co/${bucket_directory}"
+  published_storybook_url="https://eui.elastic.co/storybook/ (root) and https://eui.elastic.co/${bucket_directory}storybook/"
+fi
 
 # Add an annotation on top of the pipeline
-echo "New documentation website deployed: ${published_website_url}" | buildkite-agent annotate --style "success" --context "deployed"
+echo -e "New documentation website deployed: ${published_website_url}\nNew Storybook deployed: ${published_storybook_url}" | buildkite-agent annotate --style "success" --context "deployed"
 
 # Add an annotation in build status github comment
-echo "* [Documentation website](${published_website_url})" | buildkite-agent meta-data set pr_comment:docs_deployment_link:head
+echo -e "* [Documentation website](${published_website_url})\n* [Storybook](${published_storybook_url})" | buildkite-agent meta-data set pr_comment:docs_deployment_link:head
