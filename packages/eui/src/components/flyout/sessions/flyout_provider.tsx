@@ -8,15 +8,16 @@
 
 import React, { createContext, useContext, useReducer } from 'react';
 
+import { EuiFlyoutMenu } from '../flyout_menu';
 import { EuiFlyout, EuiFlyoutChild } from '../index';
-
-import { initialFlyoutState, flyoutReducer } from './flyout_reducer';
+import { flyoutReducer, initialFlyoutState } from './flyout_reducer';
 import {
   EuiFlyoutSessionAction,
   EuiFlyoutSessionHistoryState,
-  EuiFlyoutSessionRenderContext,
   EuiFlyoutSessionProviderComponentProps,
+  EuiFlyoutSessionRenderContext,
 } from './types';
+import { FlyoutSystemMenu } from './system_flyout_menu';
 
 interface FlyoutSessionContextProps {
   state: EuiFlyoutSessionHistoryState;
@@ -64,11 +65,19 @@ export const EuiFlyoutSessionProvider: React.FC<
   const { activeFlyoutGroup } = state;
 
   const handleClose = () => {
-    dispatch({ type: 'CLEAR_HISTORY' });
+    dispatch({ type: 'CLOSE_SESSION' });
   };
 
   const handleCloseChild = () => {
     dispatch({ type: 'CLOSE_CHILD_FLYOUT' });
+  };
+
+  const handleGoBack = () => {
+    dispatch({ type: 'GO_BACK' });
+  };
+
+  const handleGoToHistoryItem = (index: number) => {
+    dispatch({ type: 'GO_TO_HISTORY_ITEM', index });
   };
 
   let mainFlyoutContentNode: React.ReactNode = null;
@@ -100,17 +109,28 @@ export const EuiFlyoutSessionProvider: React.FC<
       {activeFlyoutGroup?.isMainOpen && (
         <EuiFlyout
           onClose={handleClose}
-          size={activeFlyoutGroup.config.mainSize}
+          size={config?.mainSize}
           ownFocus={!activeFlyoutGroup.isChildOpen}
           {...flyoutPropsMain}
         >
+          {config?.isSystem && (
+            <FlyoutSystemMenu
+              handleGoBack={handleGoBack}
+              handleGoToHistoryItem={handleGoToHistoryItem}
+              historyItems={state.history ?? []}
+              {...{
+                title: !config?.hideMainTitle ? config?.mainTitle : undefined,
+              }}
+            />
+          )}
           {mainFlyoutContentNode}
           {activeFlyoutGroup.isChildOpen && childFlyoutContentNode && (
             <EuiFlyoutChild
               onClose={handleCloseChild}
-              size={activeFlyoutGroup.config.childSize}
+              size={config?.childSize}
               {...flyoutPropsChild}
             >
+              <EuiFlyoutMenu title={config?.childTitle} />
               {childFlyoutContentNode}
             </EuiFlyoutChild>
           )}

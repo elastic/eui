@@ -7,54 +7,14 @@
  */
 
 import { useEffect, useRef } from 'react';
-import { EuiFlyoutSize } from '../flyout';
 import { useEuiFlyoutSessionContext } from './flyout_provider';
-import { EuiFlyoutSessionConfig } from './types';
-
-/**
- * Options that control a main flyout in a session
- */
-export interface EuiFlyoutSessionOpenMainOptions<Meta = unknown> {
-  size: EuiFlyoutSize;
-  flyoutProps?: EuiFlyoutSessionConfig['mainFlyoutProps'];
-  meta?: Meta;
-}
-
-/**
- * Options that control a child flyout in a session
- */
-export interface EuiFlyoutSessionOpenChildOptions<Meta = unknown> {
-  size: 's' | 'm';
-  flyoutProps?: EuiFlyoutSessionConfig['childFlyoutProps'];
-  meta?: Meta;
-}
-
-/**
- * Options for opening both a main flyout and child flyout simultaneously
- */
-export interface EuiFlyoutSessionOpenGroupOptions<Meta = unknown> {
-  main: {
-    size: EuiFlyoutSize;
-    flyoutProps?: EuiFlyoutSessionConfig['mainFlyoutProps'];
-  };
-  child: {
-    size: 's' | 'm';
-    flyoutProps?: EuiFlyoutSessionConfig['childFlyoutProps'];
-  };
-  meta?: Meta; // Shared meta for both flyouts
-}
-
-export interface EuiFlyoutSessionApi {
-  openFlyout: (options: EuiFlyoutSessionOpenMainOptions) => void;
-  openChildFlyout: (options: EuiFlyoutSessionOpenChildOptions) => void;
-  openFlyoutGroup: (options: EuiFlyoutSessionOpenGroupOptions) => void;
-  closeChildFlyout: () => void;
-  goBack: () => void;
-  clearHistory: () => void;
-  isFlyoutOpen: boolean;
-  isChildFlyoutOpen: boolean;
-  canGoBack: boolean;
-}
+import type {
+  EuiFlyoutSessionApi,
+  EuiFlyoutSessionOpenChildOptions,
+  EuiFlyoutSessionOpenGroupOptions,
+  EuiFlyoutSessionOpenMainOptions,
+  EuiFlyoutSessionOpenSystemOptions,
+} from './types';
 
 /**
  * Hook for accessing the flyout API
@@ -74,6 +34,9 @@ export function useEuiFlyoutSession(): EuiFlyoutSessionApi {
     }
   }, [state.activeFlyoutGroup, onUnmount]);
 
+  /**
+   * Open a "plain" main flyout without an automatic top menu bar
+   */
   const openFlyout = (options: EuiFlyoutSessionOpenMainOptions) => {
     dispatch({
       type: 'OPEN_MAIN_FLYOUT',
@@ -81,6 +44,19 @@ export function useEuiFlyoutSession(): EuiFlyoutSessionApi {
     });
   };
 
+  /**
+   * Open a "system" main flyout, with an automatic top menu bar
+   */
+  const openSystemFlyout = (options: EuiFlyoutSessionOpenSystemOptions) => {
+    dispatch({
+      type: 'OPEN_SYSTEM_FLYOUT',
+      payload: options,
+    });
+  };
+
+  /**
+   * Open a "system" child flyout, with an automatic top menu bar
+   */
   const openChildFlyout = (options: EuiFlyoutSessionOpenChildOptions) => {
     if (!state.activeFlyoutGroup || !state.activeFlyoutGroup.isMainOpen) {
       console.warn(
@@ -94,20 +70,13 @@ export function useEuiFlyoutSession(): EuiFlyoutSessionApi {
     });
   };
 
+  /**
+   * Open a pair of system main and child flyouts
+   */
   const openFlyoutGroup = (options: EuiFlyoutSessionOpenGroupOptions) => {
     dispatch({
       type: 'OPEN_FLYOUT_GROUP',
-      payload: {
-        main: {
-          size: options.main.size,
-          flyoutProps: options.main.flyoutProps,
-        },
-        child: {
-          size: options.child.size,
-          flyoutProps: options.child.flyoutProps,
-        },
-        meta: options.meta,
-      },
+      payload: options,
     });
   };
 
@@ -119,8 +88,8 @@ export function useEuiFlyoutSession(): EuiFlyoutSessionApi {
     dispatch({ type: 'GO_BACK' });
   };
 
-  const clearHistory = () => {
-    dispatch({ type: 'CLEAR_HISTORY' });
+  const closeSession = () => {
+    dispatch({ type: 'CLOSE_SESSION' });
   };
 
   const isFlyoutOpen = !!state.activeFlyoutGroup?.isMainOpen;
@@ -131,11 +100,12 @@ export function useEuiFlyoutSession(): EuiFlyoutSessionApi {
 
   return {
     openFlyout,
+    openSystemFlyout,
     openChildFlyout,
     openFlyoutGroup,
     closeChildFlyout,
     goBack,
-    clearHistory,
+    closeSession,
     isFlyoutOpen,
     isChildFlyoutOpen,
     canGoBack,
