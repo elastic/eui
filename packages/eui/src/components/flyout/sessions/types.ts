@@ -14,7 +14,7 @@ import { EuiFlyoutChildProps } from '../flyout_child';
  */
 export interface EuiFlyoutSessionConfig {
   mainSize: EuiFlyoutSize;
-  childSize: 's' | 'm';
+  childSize?: 's' | 'm';
   mainFlyoutProps?: Partial<Omit<EuiFlyoutProps, 'children'>>;
   childFlyoutProps?: Partial<Omit<EuiFlyoutChildProps, 'children'>>;
 }

@@ -64,7 +64,7 @@ export function flyoutReducer<FlyoutMeta>(
 ): EuiFlyoutSessionHistoryState<FlyoutMeta> {
   switch (action.type) {
     case 'OPEN_MAIN_FLYOUT': {
-      const { size, flyoutProps } = action.payload;
+      const { size, flyoutProps, meta } = action.payload;
       const newHistory = [...state.history];
 
       if (state.activeFlyoutGroup) {
@@ -76,16 +76,9 @@ export function flyoutReducer<FlyoutMeta>(
         isChildOpen: false,
         config: {
           mainSize: size,
-          childSize: 's',
           mainFlyoutProps: flyoutProps,
-          childFlyoutProps: {},
         },
-        meta:
-          action.payload.meta !== undefined
-            ? state.activeFlyoutGroup?.meta !== undefined
-              ? { ...state.activeFlyoutGroup.meta, ...action.payload.meta }
-              : action.payload.meta
-            : state.activeFlyoutGroup?.meta,
+        meta,
       };
 
       return {
@@ -102,7 +95,7 @@ export function flyoutReducer<FlyoutMeta>(
         return state;
       }
 
-      const { size, flyoutProps } = action.payload;
+      const { size, flyoutProps, meta } = action.payload;
       const updatedActiveGroup: EuiFlyoutSessionGroup<FlyoutMeta> = {
         ...state.activeFlyoutGroup,
         isChildOpen: true,
@@ -111,12 +104,7 @@ export function flyoutReducer<FlyoutMeta>(
           childSize: size,
           childFlyoutProps: flyoutProps,
         },
-        meta:
-          action.payload.meta !== undefined
-            ? state.activeFlyoutGroup.meta !== undefined
-              ? { ...state.activeFlyoutGroup.meta, ...action.payload.meta }
-              : action.payload.meta
-            : state.activeFlyoutGroup.meta,
+        meta,
       };
 
       return {

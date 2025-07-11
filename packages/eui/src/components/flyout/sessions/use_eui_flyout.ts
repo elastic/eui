@@ -56,17 +56,7 @@ export function useEuiFlyoutSession(): EuiFlyoutSessionApi {
   const openFlyoutGroup = (options: EuiFlyoutSessionOpenGroupOptions) => {
     dispatch({
       type: 'OPEN_FLYOUT_GROUP',
-      payload: {
-        main: {
-          size: options.main.size,
-          flyoutProps: options.main.flyoutProps,
-        },
-        child: {
-          size: options.child.size,
-          flyoutProps: options.child.flyoutProps,
-        },
-        meta: options.meta,
-      },
+      payload: options,
     });
   };
 

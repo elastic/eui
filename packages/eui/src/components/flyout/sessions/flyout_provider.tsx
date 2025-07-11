@@ -10,12 +10,12 @@ import React, { createContext, useContext, useReducer } from 'react';
 
 import { EuiFlyout, EuiFlyoutChild } from '../index';
 
-import { initialFlyoutState, flyoutReducer } from './flyout_reducer';
+import { flyoutReducer, initialFlyoutState } from './flyout_reducer';
 import {
   EuiFlyoutSessionAction,
   EuiFlyoutSessionHistoryState,
-  EuiFlyoutSessionRenderContext,
   EuiFlyoutSessionProviderComponentProps,
+  EuiFlyoutSessionRenderContext,
 } from './types';
 
 interface FlyoutSessionContextProps {
@@ -100,7 +100,7 @@ export const EuiFlyoutSessionProvider: React.FC<
       {activeFlyoutGroup?.isMainOpen && (
         <EuiFlyout
           onClose={handleClose}
-          size={activeFlyoutGroup.config.mainSize}
+          size={config?.mainSize}
           ownFocus={!activeFlyoutGroup.isChildOpen}
           {...flyoutPropsMain}
         >
@@ -108,7 +108,7 @@ export const EuiFlyoutSessionProvider: React.FC<
           {activeFlyoutGroup.isChildOpen && childFlyoutContentNode && (
             <EuiFlyoutChild
               onClose={handleCloseChild}
-              size={activeFlyoutGroup.config.childSize}
+              size={config?.childSize}
               {...flyoutPropsChild}
             >
               {childFlyoutContentNode}
