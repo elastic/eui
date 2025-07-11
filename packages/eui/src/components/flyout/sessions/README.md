@@ -31,7 +31,7 @@ The `useEuiFlyoutSession` hook is generic and can be typed to match the `meta` o
 *   `openFlyoutGroup(options: EuiFlyoutSessionOpenGroupOptions<MetaType>)`: Opens a group containing a main flyout and a child flyout.
 *   `closeChildFlyout()`: Closes the currently open child flyout.
 *   `goBack()`: If there's a previous flyout in the history stack, it will be shown.
-*   `clearHistory()`: Closes all flyouts by clearing the history stack of all flyouts in the session.
+*   `closeSession()`: Closes all flyouts by clearing the history stack of all flyouts in the session.
 
 ### State Values
 

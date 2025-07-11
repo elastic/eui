@@ -27,11 +27,12 @@ export { EuiFlyoutChild } from './flyout_child';
 export type { EuiFlyoutChildProps } from './flyout_child';
 
 export type {
+  EuiFlyoutSessionApi,
   EuiFlyoutSessionConfig,
   EuiFlyoutSessionOpenChildOptions,
   EuiFlyoutSessionOpenMainOptions,
+  EuiFlyoutSessionOpenGroupOptions,
   EuiFlyoutSessionProviderComponentProps,
   EuiFlyoutSessionRenderContext,
-  EuiFlyoutSessionApi,
 } from './sessions';
 export { EuiFlyoutSessionProvider, useEuiFlyoutSession } from './sessions';
