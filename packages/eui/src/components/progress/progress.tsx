@@ -19,7 +19,6 @@ import React, {
 } from 'react';
 import classNames from 'classnames';
 import { EuiI18n } from '../i18n';
-import { EuiInnerText } from '../inner_text';
 import { CommonProps, ExclusiveUnion } from '../common';
 import { isNil } from '../../services/predicate';
 
@@ -179,49 +178,37 @@ export const EuiProgress: FunctionComponent<
         {label || valueText ? (
           <div css={dataCssStyles} className="euiProgress__data">
             {label && (
-              <EuiInnerText>
-                {(ref, innerText) => (
-                  <span
-                    title={innerText}
-                    ref={(node) => {
-                      labelRef.current = node;
-                      ref?.(node);
-                    }}
-                    {...labelProps}
-                    className={labelClasses}
-                    css={labelCssStyles}
-                    aria-hidden="true"
-                  >
-                    {label}
-                  </span>
-                )}
-              </EuiInnerText>
+              <div
+                ref={(node) => {
+                  labelRef.current = node;
+                }}
+                {...labelProps}
+                className={labelClasses}
+                css={labelCssStyles}
+                aria-hidden="true"
+              >
+                {label}
+              </div>
             )}
             {valueRender && (
-              <EuiInnerText>
-                {(ref, innerText) => (
-                  <span
-                    title={innerText}
-                    ref={(node) => {
-                      valueTextRef.current = node;
-                      ref?.(node);
-                    }}
-                    style={customTextColorStyles}
-                    css={valueTextCssStyles}
-                    className="euiProgress__valueText"
-                    aria-hidden="true"
-                  >
-                    {valueRender}
-                  </span>
-                )}
-              </EuiInnerText>
+              <div
+                ref={(node) => {
+                  valueTextRef.current = node;
+                }}
+                style={customTextColorStyles}
+                css={valueTextCssStyles}
+                className="euiProgress__valueText"
+                aria-hidden="true"
+              >
+                {valueRender}
+              </div>
             )}
           </div>
         ) : undefined}
         <EuiScreenReaderOnly>
           <div aria-live="polite" aria-atomic="true">
             <span>
-              {label && `${label} `}
+              {label && <>{labelText} </>}
               {valueRender || value}
             </span>
           </div>
