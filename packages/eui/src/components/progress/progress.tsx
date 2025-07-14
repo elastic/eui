@@ -103,137 +103,137 @@ export const EuiProgress: FunctionComponent<
   labelProps,
   ...rest
 }) => {
-    const valueTextRef: MutableRefObject<HTMLSpanElement | null> = useRef(null);
-    const labelRef: MutableRefObject<HTMLSpanElement | null> = useRef(null);
-    const [innerValueText, setInnerValueText] = useState<string | undefined>();
-    const [labelText, setLabelText] = useState<string | undefined>();
+  const valueTextRef: MutableRefObject<HTMLSpanElement | null> = useRef(null);
+  const labelRef: MutableRefObject<HTMLSpanElement | null> = useRef(null);
+  const [innerValueText, setInnerValueText] = useState<string | undefined>();
+  const [labelText, setLabelText] = useState<string | undefined>();
 
-    const determinate = !isNil(max);
-    const isNamedColor = COLORS.includes(color as EuiProgressColor);
+  const determinate = !isNil(max);
+  const isNamedColor = COLORS.includes(color as EuiProgressColor);
 
-    const euiTheme = useEuiTheme();
-    const customColorStyles = !isNamedColor ? { color } : {};
-    const customTextColorStyles = !isNamedColor
-      ? { color: makeHighContrastColor(color)(euiTheme.euiTheme) }
-      : {};
+  const euiTheme = useEuiTheme();
+  const customColorStyles = !isNamedColor ? { color } : {};
+  const customTextColorStyles = !isNamedColor
+    ? { color: makeHighContrastColor(color)(euiTheme.euiTheme) }
+    : {};
 
-    const styles = euiProgressStyles(euiTheme, determinate);
-    const cssStyles = [
-      styles.euiProgress,
-      determinate && styles.native,
-      !determinate && styles.indeterminate,
-      styles[size],
-      styles[position],
-      isNamedColor ? styles[color as EuiProgressColor] : styles.customColor,
-    ];
+  const styles = euiProgressStyles(euiTheme, determinate);
+  const cssStyles = [
+    styles.euiProgress,
+    determinate && styles.native,
+    !determinate && styles.indeterminate,
+    styles[size],
+    styles[position],
+    isNamedColor ? styles[color as EuiProgressColor] : styles.customColor,
+  ];
 
-    const dataStyles = euiProgressDataStyles(euiTheme);
-    const dataCssStyles = [
-      dataStyles.euiProgress__data,
-      size === 'l' && dataStyles[size],
-    ];
-    const labelCssStyles = [
-      euiProgressLabelStyles.euiProgress__label,
-      labelProps?.css,
-    ];
-    const valueTextStyles = euiProgressValueTextStyles(euiTheme);
-    const valueTextCssStyles = [
-      valueTextStyles.euiProgress__valueText,
-      isNamedColor
-        ? valueTextStyles[color as EuiProgressColor]
-        : styles.customColor,
-    ];
+  const dataStyles = euiProgressDataStyles(euiTheme);
+  const dataCssStyles = [
+    dataStyles.euiProgress__data,
+    size === 'l' && dataStyles[size],
+  ];
+  const labelCssStyles = [
+    euiProgressLabelStyles.euiProgress__label,
+    labelProps?.css,
+  ];
+  const valueTextStyles = euiProgressValueTextStyles(euiTheme);
+  const valueTextCssStyles = [
+    valueTextStyles.euiProgress__valueText,
+    isNamedColor
+      ? valueTextStyles[color as EuiProgressColor]
+      : styles.customColor,
+  ];
 
-    const classes = classNames('euiProgress', className);
-    const labelClasses = classNames('euiProgress__label', labelProps?.className);
+  const classes = classNames('euiProgress', className);
+  const labelClasses = classNames('euiProgress__label', labelProps?.className);
 
-    let valueRender: ReactNode;
-    if (valueText === true) {
-      // valueText is true
-      valueRender = (
-        <EuiI18n
-          token="euiProgress.valueText"
-          default="{value}%"
-          values={{
-            value,
-          }}
-        />
-      );
-    } else if (valueText) {
-      // valueText exists
-      valueRender = valueText;
-    }
+  let valueRender: ReactNode;
+  if (valueText === true) {
+    // valueText is true
+    valueRender = (
+      <EuiI18n
+        token="euiProgress.valueText"
+        default="{value}%"
+        values={{
+          value,
+        }}
+      />
+    );
+  } else if (valueText) {
+    // valueText exists
+    valueRender = valueText;
+  }
 
-    useEffect(() => {
-      setInnerValueText(valueTextRef.current?.textContent ?? '');
-      setLabelText(labelRef.current?.textContent ?? '');
-    }, [label, valueRender, value]);
+  useEffect(() => {
+    setInnerValueText(valueTextRef.current?.textContent ?? '');
+    setLabelText(labelRef.current?.textContent ?? '');
+  }, [label, valueRender, value]);
 
-    // Because of a Firefox animation issue, indeterminate progress needs to not use <progress />.
-    // See https://css-tricks.com/html5-progress-element/
+  // Because of a Firefox animation issue, indeterminate progress needs to not use <progress />.
+  // See https://css-tricks.com/html5-progress-element/
 
-    if (determinate) {
-      return (
-        <>
-          {label || valueText ? (
-            <div css={dataCssStyles} className="euiProgress__data">
-              {label && (
-                <div
-                  ref={(node) => {
-                    labelRef.current = node;
-                  }}
-                  {...labelProps}
-                  className={labelClasses}
-                  css={labelCssStyles}
-                  aria-hidden="true"
-                >
-                  {label}
-                </div>
-              )}
-              {valueRender && (
-                <div
-                  ref={(node) => {
-                    valueTextRef.current = node;
-                  }}
-                  style={customTextColorStyles}
-                  css={valueTextCssStyles}
-                  className="euiProgress__valueText"
-                  aria-hidden="true"
-                >
-                  {valueRender}
-                </div>
-              )}
-            </div>
-          ) : undefined}
-          <EuiScreenReaderOnly>
-            <div aria-live="polite" aria-atomic="true">
-              <span>
-                {label && <>{label}</>}
-                {label && ' '}
-                {valueRender || value}
-              </span>
-            </div>
-          </EuiScreenReaderOnly>
-          <progress
-            css={cssStyles}
-            className={classes}
-            style={customColorStyles}
-            max={max}
-            value={value}
-            aria-valuetext={innerValueText || undefined}
-            aria-label={labelText || undefined}
-            {...(rest as ProgressHTMLAttributes<HTMLProgressElement>)}
-          />
-        </>
-      );
-    } else {
-      return (
-        <div
+  if (determinate) {
+    return (
+      <>
+        {label || valueText ? (
+          <div css={dataCssStyles} className="euiProgress__data">
+            {label && (
+              <div
+                ref={(node) => {
+                  labelRef.current = node;
+                }}
+                {...labelProps}
+                className={labelClasses}
+                css={labelCssStyles}
+                aria-hidden="true"
+              >
+                {label}
+              </div>
+            )}
+            {valueRender && (
+              <div
+                ref={(node) => {
+                  valueTextRef.current = node;
+                }}
+                style={customTextColorStyles}
+                css={valueTextCssStyles}
+                className="euiProgress__valueText"
+                aria-hidden="true"
+              >
+                {valueRender}
+              </div>
+            )}
+          </div>
+        ) : undefined}
+        <EuiScreenReaderOnly>
+          <div aria-live="polite" aria-atomic="true">
+            <span>
+              {label && <>{label}</>}
+              {label && ' '}
+              {valueRender || value}
+            </span>
+          </div>
+        </EuiScreenReaderOnly>
+        <progress
           css={cssStyles}
-          style={customColorStyles}
           className={classes}
-          {...(rest as HTMLAttributes<HTMLDivElement>)}
+          style={customColorStyles}
+          max={max}
+          value={value}
+          aria-valuetext={innerValueText || undefined}
+          aria-label={labelText || undefined}
+          {...(rest as ProgressHTMLAttributes<HTMLProgressElement>)}
         />
-      );
-    }
-  };
+      </>
+    );
+  } else {
+    return (
+      <div
+        css={cssStyles}
+        style={customColorStyles}
+        className={classes}
+        {...(rest as HTMLAttributes<HTMLDivElement>)}
+      />
+    );
+  }
+};
