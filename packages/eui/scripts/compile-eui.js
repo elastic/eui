@@ -229,19 +229,21 @@ async function compileBundle() {
   });
 
   for (const dir of destinationDirs) {
+    const relativeDir = path.relative(packageRootDir, dir);
+
     dtsGenerator({
       prefix: '',
       out: `${dir}/index.d.ts`,
       baseDir: path.resolve(__dirname, '..', 'src/test/'),
       files: ['index.ts'],
       resolveModuleId({ currentModuleId }) {
-        return `@elastic/eui/${dir}${
+        return `@elastic/eui/${relativeDir}${
           currentModuleId !== 'index' ? `/${currentModuleId}` : ''
         }`;
       },
       resolveModuleImport({ currentModuleId, importedModuleId }) {
         if (currentModuleId === 'index') {
-          return `@elastic/eui/${dir}/${importedModuleId.replace('./', '')}`;
+          return `@elastic/eui/${relativeDir}/${importedModuleId.replace('./', '')}`;
         }
         return null;
       },

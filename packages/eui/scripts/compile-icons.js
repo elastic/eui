@@ -20,7 +20,7 @@ const iconFiles = glob.sync('**/*.svg', { cwd: iconsDir, realpath: true });
 
 iconFiles.forEach((filePath) => {
   const fileName = path.basename(filePath, '.svg');
-  const svgSource = fs.readFileSync(filePath);
+  const svgSource = fs.readFileSync(path.join(iconsDir, filePath));
   const svgString = svgSource.toString();
 
   try {
