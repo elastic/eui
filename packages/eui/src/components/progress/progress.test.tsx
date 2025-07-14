@@ -81,9 +81,9 @@ describe('EuiProgress', () => {
   });
 
   test('handles node in label', () => {
-    const { container } = render(
+    const { container, getByTestSubject } = render(
       <EuiProgress
-        label={<span data-unique>Label text</span>}
+        label={<span data-test-subj="progress-label">Label text</span>}
         valueText={true}
         value={50}
         max={100}
@@ -91,7 +91,7 @@ describe('EuiProgress', () => {
       />
     );
 
-    const labelElement = container.querySelector('[data-unique]');
+    const labelElement = getByTestSubject('progress-label');
     expect(labelElement).toBeInTheDocument();
     expect(labelElement).toHaveTextContent('Label text');
     expect(container.querySelector('[aria-live]')).toHaveTextContent(
