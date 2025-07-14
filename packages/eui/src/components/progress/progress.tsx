@@ -208,8 +208,7 @@ export const EuiProgress: FunctionComponent<
         <EuiScreenReaderOnly>
           <div aria-live="polite" aria-atomic="true">
             <span>
-              {label && <>{labelText}</>}
-              {label && valueRender && ' '}
+              {label && <>{labelText} </>}
               {valueRender || value}
             </span>
           </div>
