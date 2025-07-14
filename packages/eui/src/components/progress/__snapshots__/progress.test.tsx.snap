@@ -114,13 +114,12 @@ exports[`EuiProgress has labelProps 1`] = `
   <div
     class="euiProgress__data emotion-euiProgress__data"
   >
-    <span
+    <div
       aria-hidden="true"
       class="euiProgress__valueText emotion-euiProgress__valueText-success"
-      title="150"
     >
       150
-    </span>
+    </div>
   </div>
   <div
     aria-atomic="true"
@@ -128,7 +127,6 @@ exports[`EuiProgress has labelProps 1`] = `
     class="emotion-euiScreenReaderOnly"
   >
     <span>
-       
       150
     </span>
   </div>
@@ -149,9 +147,7 @@ exports[`EuiProgress has max 1`] = `
   aria-live="polite"
   class="emotion-euiScreenReaderOnly"
 >
-  <span>
-     
-  </span>
+  <span />
 </div>
 `;
 
@@ -168,20 +164,18 @@ exports[`EuiProgress has valueText and label 1`] = `
   <div
     class="euiProgress__data emotion-euiProgress__data"
   >
-    <span
+    <div
       aria-hidden="true"
       class="euiProgress__label emotion-euiProgress__label"
-      title="Label"
     >
       Label
-    </span>
-    <span
+    </div>
+    <div
       aria-hidden="true"
       class="euiProgress__valueText emotion-euiProgress__valueText-success"
-      title="150"
     >
       150
-    </span>
+    </div>
   </div>
   <div
     aria-atomic="true"
@@ -212,7 +206,6 @@ exports[`EuiProgress is determinate 1`] = `
   class="emotion-euiScreenReaderOnly"
 >
   <span>
-     
     50
   </span>
 </div>
@@ -263,13 +256,12 @@ exports[`EuiProgress valueText is true 1`] = `
   <div
     class="euiProgress__data emotion-euiProgress__data"
   >
-    <span
+    <div
       aria-hidden="true"
       class="euiProgress__valueText emotion-euiProgress__valueText-success"
-      title="50%"
     >
       50%
-    </span>
+    </div>
   </div>
   <div
     aria-atomic="true"
@@ -277,7 +269,6 @@ exports[`EuiProgress valueText is true 1`] = `
     class="emotion-euiScreenReaderOnly"
   >
     <span>
-       
       50%
     </span>
   </div>
