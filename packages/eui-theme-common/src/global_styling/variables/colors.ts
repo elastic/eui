@@ -268,6 +268,9 @@ export type _EuiThemeBorderColors = {
   borderBaseFormsColorSwatch: ColorModeSwitch;
   borderBaseFormsControl: ColorModeSwitch;
 
+  borderInteractiveFormsHoverPlain: ColorModeSwitch;
+  borderInteractiveFormsHoverDanger: ColorModeSwitch;
+
   borderStrongPrimary: ColorModeSwitch;
   borderStrongAccent: ColorModeSwitch;
   borderStrongAccentSecondary: ColorModeSwitch;

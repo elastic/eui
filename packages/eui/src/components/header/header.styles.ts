@@ -10,7 +10,11 @@ import { css } from '@emotion/react';
 import { euiShadowXSmall } from '@elastic/eui-theme-common';
 
 import { logicalCSS } from '../../global_styling';
-import { UseEuiTheme, makeHighContrastColor } from '../../services';
+import {
+  UseEuiTheme,
+  isEuiThemeRefreshVariant,
+  makeHighContrastColor,
+} from '../../services';
 
 export const euiHeaderVariables = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
@@ -69,6 +73,10 @@ import { euiFormVariables } from '../form/form.styles';
 
 const euiHeaderDarkStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme, highContrastMode } = euiThemeContext;
+  const isRefreshVariant = isEuiThemeRefreshVariant(
+    euiThemeContext,
+    'formVariant'
+  );
   const { controlPlaceholderText } = euiFormVariables(euiThemeContext);
 
   const backgroundColor = euiTheme.components.headerDarkBackground;
@@ -83,37 +91,7 @@ const euiHeaderDarkStyles = (euiThemeContext: UseEuiTheme) => {
     )(backgroundColor),
   };
 
-  return `
-    background-color: ${backgroundColor};
-
-    .euiHeaderLogo__text,
-    .euiHeaderLink,
-    .euiHeaderSectionItemButton {
-      color: ${euiTheme.colors.ghost};
-    }
-
-    .euiHeaderLink-isActive {
-      color: ${makeHighContrastColor(euiTheme.colors.primary)(backgroundColor)};
-    }
-
-    .euiHeaderLogo,
-    .euiHeaderLink,
-    .euiHeaderSectionItemButton {
-      &:focus {
-        background-color: ${
-          euiTheme.components.headerDarkSectionItemBackgroundFocus
-        };
-      }
-    }
-
-    .euiHeaderSectionItemButton__notification--badge {
-      box-shadow: 0 0 0 ${euiTheme.border.width.thin} ${backgroundColor};
-    }
-
-    .euiHeaderSectionItemButton__notification--dot {
-      stroke: ${backgroundColor};
-    }
-
+  const formLayoutStyles = `
     .euiSelectableTemplateSitewide .euiFormControlLayout {
       background-color: transparent;
 
@@ -165,6 +143,40 @@ const euiHeaderDarkStyles = (euiThemeContext: UseEuiTheme) => {
           color: inherit;
         }
       }
+  }
+  `;
+
+  return `
+    background-color: ${backgroundColor};
+
+    .euiHeaderLogo__text,
+    .euiHeaderLink,
+    .euiHeaderSectionItemButton {
+      color: ${euiTheme.colors.ghost};
     }
+
+    .euiHeaderLink-isActive {
+      color: ${makeHighContrastColor(euiTheme.colors.primary)(backgroundColor)};
+    }
+
+    .euiHeaderLogo,
+    .euiHeaderLink,
+    .euiHeaderSectionItemButton {
+      &:focus {
+        background-color: ${
+          euiTheme.components.headerDarkSectionItemBackgroundFocus
+        };
+      }
+    }
+
+    .euiHeaderSectionItemButton__notification--badge {
+      box-shadow: 0 0 0 ${euiTheme.border.width.thin} ${backgroundColor};
+    }
+
+    .euiHeaderSectionItemButton__notification--dot {
+      stroke: ${backgroundColor};
+    }
+
+    ${!isRefreshVariant && formLayoutStyles} 
   `;
 };

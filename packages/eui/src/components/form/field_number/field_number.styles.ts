@@ -8,12 +8,32 @@
 
 import { css } from '@emotion/react';
 
-import { UseEuiTheme } from '../../../services';
+import { isEuiThemeRefreshVariant, UseEuiTheme } from '../../../services';
 import { euiFormControlStyles } from '../form.styles';
 
 export const euiFieldNumberStyles = (euiThemeContext: UseEuiTheme) => {
   const { colorMode } = euiThemeContext;
+  const isRefreshVariant = isEuiThemeRefreshVariant(
+    euiThemeContext,
+    'formVariant'
+  );
+
   const formStyles = euiFormControlStyles(euiThemeContext);
+
+  const invalidStyles = isRefreshVariant
+    ? `
+      &:is(:invalid, [aria-invalid='true']):not(
+        .euiFormControlLayoutDelimited__input, :focus
+      ) {
+          ${formStyles.invalid}
+        }
+    `
+    : `
+      /* Account for native validity detection as well via [aria-invalid="true"] */
+      &:is(:invalid, [aria-invalid='true']) {
+        ${formStyles.invalid}
+      }
+    `;
 
   return {
     euiFieldNumber: css`
@@ -22,10 +42,7 @@ export const euiFieldNumberStyles = (euiThemeContext: UseEuiTheme) => {
       /* Force the browser number stepper UI to follow EUI's light/dark mode */
       color-scheme: ${colorMode === 'DARK' ? 'dark' : 'light'};
 
-      /* Account for native validity detection as well via [aria-invalid="true"] */
-      &:is(:invalid, [aria-invalid='true']) {
-        ${formStyles.invalid}
-      }
+      ${invalidStyles}
 
       &:focus {
         ${formStyles.focus}

@@ -8,14 +8,19 @@
 
 import { css } from '@emotion/react';
 
-import { UseEuiTheme } from '../../services';
+import { isEuiThemeRefreshVariant, UseEuiTheme } from '../../services';
 import { logicalCSS } from '../../global_styling';
 import { euiMarkdownEditorVariables } from './markdown_editor.styles';
+import { euiFormControlInvalidStyles } from '../form/form.styles';
 
 export const euiMarkdownEditorDropZoneStyles = (
   euiThemeContext: UseEuiTheme
 ) => {
   const { euiTheme } = euiThemeContext;
+  const isRefreshVariant = isEuiThemeRefreshVariant(
+    euiThemeContext,
+    'formVariant'
+  );
   const { minHeight } = euiMarkdownEditorVariables(euiThemeContext);
 
   return {
@@ -28,22 +33,28 @@ export const euiMarkdownEditorDropZoneStyles = (
     isDragging: css`
       .euiMarkdownEditorFooter,
       .euiMarkdownEditorTextArea {
-        background-color: ${euiTheme.colors
-          .backgroundTransparentPrimary} !important; /* stylelint-disable-line declaration-no-important */
+        background-color: ${isRefreshVariant
+          ? euiTheme.colors.backgroundBasePrimary
+          : euiTheme.colors
+              .backgroundTransparentPrimary} !important; /* stylelint-disable-line declaration-no-important */
       }
     `,
     isDraggingError: css`
       .euiMarkdownEditorFooter,
       .euiMarkdownEditorTextArea {
-        background-color: ${euiTheme.colors
-          .backgroundTransparentDanger} !important; /* stylelint-disable-line declaration-no-important */
+        background-color: ${isRefreshVariant
+          ? euiTheme.colors.backgroundBaseDanger
+          : euiTheme.colors
+              .backgroundTransparentDanger} !important; /* stylelint-disable-line declaration-no-important */
       }
     `,
     hasError: css`
       .euiMarkdownEditorTextArea {
         /* stylelint-disable-next-line declaration-no-important */
-        --euiFormControlStateColor: ${euiTheme.colors.danger} !important;
+        --euiFormControlStateColor: ${euiTheme.colors.danger};
         background-size: 100% 100%;
+
+        ${isRefreshVariant && euiFormControlInvalidStyles(euiThemeContext)}
       }
     `,
     euiMarkdownEditorDropZone__input: css`
