@@ -7459,15 +7459,12 @@ __metadata:
     react-focus-on: "npm:^3.9.1"
     react-helmet: "npm:^6.1.0"
     react-is: "npm:^17.0.2"
-    react-redux: "npm:^7.2.1"
     react-refresh: "npm:^0.11.0"
     react-remove-scroll-bar: "npm:^2.3.4"
     react-router-dom: "npm:^5.3.4"
     react-view: "npm:^2.3.2"
     react-virtualized-auto-sizer: "npm:^1.0.24"
     react-window: "npm:^1.8.10"
-    redux: "npm:^4.0.5"
-    redux-thunk: "npm:^2.3.0"
     refractor: "npm:^3.6.0"
     rehype-raw: "npm:^5.1.0"
     rehype-react: "npm:^6.2.1"
@@ -35030,7 +35027,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-redux@npm:^7.2.1, react-redux@npm:^7.2.8":
+"react-redux@npm:^7.2.8":
   version: 7.2.9
   resolution: "react-redux@npm:7.2.9"
   dependencies:
@@ -35584,13 +35581,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"redux-thunk@npm:^2.3.0":
-  version: 2.3.0
-  resolution: "redux-thunk@npm:2.3.0"
-  checksum: 10c0/fbf342e56809240af5f41257eee0dbba1b8165b611a1dd96d6d2831f84046e30f037a7e90cbff5636cd6e053d53237c4ed3287403f2c6d28fa1ad26543d7a016
-  languageName: node
-  linkType: hard
-
 "redux-thunk@npm:^2.4.2":
   version: 2.4.2
   resolution: "redux-thunk@npm:2.4.2"
@@ -35609,7 +35599,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"redux@npm:^4.0.5, redux@npm:^4.2.1":
+"redux@npm:^4.2.1":
   version: 4.2.1
   resolution: "redux@npm:4.2.1"
   dependencies:
