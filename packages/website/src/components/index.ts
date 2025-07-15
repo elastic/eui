@@ -6,6 +6,7 @@
  * Side Public License, v 1.
  */
 
-export * from './example';
 export * from './display_toggles';
+export * from './example';
+export * from './prop_table';
 export * from './storybook_link';

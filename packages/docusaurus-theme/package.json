@@ -36,7 +36,6 @@
     "@docusaurus/utils-validation": "^3.7.0",
     "@elastic/datemath": "^5.0.3",
     "@elastic/eui": "workspace:^",
-    "@elastic/eui-docgen": "workspace:^",
     "@elastic/eui-theme-borealis": "workspace:^",
     "@emotion/css": "^11.11.2",
     "@emotion/react": "^11.11.4",

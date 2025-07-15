@@ -7,17 +7,21 @@
  */
 
 import OriginalMDXComponents from '@theme-init/MDXComponents';
-import { Badge } from '../../components/badge';
-import { Icon } from '../../components/icon';
-import { FigmaEmbed } from '../../components/figma_embed';
-import { Demo, DemoSource } from '../../components/demo';
-import { PropTable } from '../../components/prop_table';
+import {
+  Badge,
+  Demo,
+  DemoSource,
+  FigmaEmbed,
+  Guideline,
+  GuidelineText,
+  Icon,
+} from '../../components';
+
 import { ListItem } from './ListItem';
 import { Blockquote } from './Blockquote';
 import { Paragraph } from './Paragraph';
 import { UnorderedList } from './UnorderedList';
 import { OrderedList } from './OrderedList';
-import { Guideline, GuidelineText } from '../../components';
 
 const MDXComponents = {
   ...OriginalMDXComponents,
@@ -30,13 +34,12 @@ const MDXComponents = {
 
   // Custom components
   Badge,
-  FigmaEmbed,
-  Icon,
   Demo,
   DemoSource,
-  PropTable,
+  FigmaEmbed,
   Guideline,
   GuidelineText,
+  Icon,
 };
 
 export default MDXComponents;
