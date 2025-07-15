@@ -160,7 +160,6 @@
     "buildkite-test-collector": "^1.7.2",
     "chalk": "^4.1.0",
     "chokidar": "^3.4.2",
-    "circular-dependency-plugin": "^5.2.2",
     "core-js": "^3.6.5",
     "cross-env": "^7.0.2",
     "cssnano": "^4.1.10",

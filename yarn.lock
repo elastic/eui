@@ -7300,7 +7300,6 @@ __metadata:
     chalk: "npm:^4.1.0"
     chokidar: "npm:^3.4.2"
     chroma-js: "npm:^2.4.2"
-    circular-dependency-plugin: "npm:^5.2.2"
     classnames: "npm:^2.5.1"
     core-js: "npm:^3.6.5"
     cross-env: "npm:^7.0.2"
@@ -15860,15 +15859,6 @@ __metadata:
   version: 4.2.0
   resolution: "ci-info@npm:4.2.0"
   checksum: 10c0/37a2f4b6a213a5cf835890eb0241f0d5b022f6cfefde58a69e9af8e3a0e71e06d6ad7754b0d4efb9cd2613e58a7a33996d71b56b0d04242722e86666f3f3d058
-  languageName: node
-  linkType: hard
-
-"circular-dependency-plugin@npm:^5.2.2":
-  version: 5.2.2
-  resolution: "circular-dependency-plugin@npm:5.2.2"
-  peerDependencies:
-    webpack: ">=4.0.1"
-  checksum: 10c0/a2227a7d76c6110f818d364d280406d9dc79c99f7d18f7c643b0a72a2694399195e68ace32115b2bb2da6e53328fda0cadd4fa9535dd67c884567daa3e5a9560
   languageName: node
   linkType: hard
 
