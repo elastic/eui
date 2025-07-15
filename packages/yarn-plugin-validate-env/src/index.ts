@@ -12,14 +12,14 @@ import {
   ReportError,
   MessageName,
   formatUtils,
-  type Project,
-  type Plugin
+  type Plugin,
+  Hooks,
 } from '@yarnpkg/core';
 
 /**
  * Validate Node.js version and OS used
  */
-const validateProject = (project: Project) => {
+const validateProject: Hooks['validateProject'] = (project, report) => {
   const { cwd, configuration } = project;
   const nvmrcPath = path.resolve(cwd, '.nvmrc');
 
@@ -39,7 +39,14 @@ const validateProject = (project: Project) => {
       `Detected incorrect Node.js version ${process.version} instead of the expected v${expectedNodeVersion}. Please run "nvm install && nvm use" and try again.`,
       'red'
     );
-    throw new ReportError(MessageName.UNNAMED, message);
+
+    if (process.env.CI === 'true') {
+      // Report version mismatch but don't exit
+      // This is needed for Node.js version upgrades to still pass CI
+      report.reportWarning(MessageName.UNNAMED, message);
+    } else {
+      throw new ReportError(MessageName.UNNAMED, message);
+    }
   }
 
   if (process.platform === 'win32') {

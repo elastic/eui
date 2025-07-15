@@ -190,9 +190,8 @@ export const typeToPathMap = {
   heart: 'heart',
   heartbeatApp: 'app_heartbeat',
   heatmap: 'heatmap',
-  help: 'help',
+  help: 'help', // NOTE: Might be deprecated later (not recommended in Kibana)
   home: 'home',
-  iInCircle: 'info', // NOTE: To be deprecated in favor of `info`
   info: 'info',
   image: 'image',
   importAction: 'import',
@@ -360,7 +359,6 @@ export const typeToPathMap = {
   plusInSquare: 'plus_in_square',
   popout: 'popout',
   push: 'push',
-  questionInCircle: 'question', // NOTE: To be deprecated in favor of `question`
   question: 'question',
   quote: 'quote',
   readOnly: 'readOnly',

@@ -21,4 +21,5 @@ export {
   useEuiFlyoutSession,
   type EuiFlyoutSessionOpenChildOptions,
   type EuiFlyoutSessionOpenMainOptions,
+  type EuiFlyoutSessionApi,
 } from './use_eui_flyout';

@@ -48,14 +48,14 @@ export const euiSelectableTemplateSitewideStyles = (
       display: block;
       ${logicalCSS('margin-top', euiTheme.size.xs)}
       ${euiFontSize(euiThemeContext, 'xs')}
-      color: ${euiTheme.colors.subduedText};
+      color: ${euiTheme.colors.textSubdued};
     `,
 
     euiSelectableTemplateSitewide__optionMeta: css`
       &:not(:last-of-type)::after {
         content: '•';
         ${logicalCSS('margin-horizontal', euiTheme.size.xs)}
-        color: ${euiTheme.colors.subduedText};
+        color: ${euiTheme.colors.textSubdued};
       }
     `,
     metaTypes: {
@@ -78,5 +78,17 @@ export const euiSelectableTemplateSitewideStyles = (
         color: ${makeHighContrastColor(visColors[5])(euiTheme)};
       `,
     },
+  };
+};
+
+export const euiSelectableTemplateSitewidePopoverStyles = (
+  euiThemeContext: UseEuiTheme
+) => {
+  const { euiTheme } = euiThemeContext;
+
+  return {
+    euiSelectableTemplateSitewide__popover: css`
+      color: ${euiTheme.colors.textParagraph};
+    `,
   };
 };

@@ -32,5 +32,6 @@ export type {
   EuiFlyoutSessionOpenMainOptions,
   EuiFlyoutSessionProviderComponentProps,
   EuiFlyoutSessionRenderContext,
+  EuiFlyoutSessionApi,
 } from './sessions';
 export { EuiFlyoutSessionProvider, useEuiFlyoutSession } from './sessions';

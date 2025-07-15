@@ -9,7 +9,7 @@
 import { css } from '@emotion/react';
 import { euiShadowMedium } from '@elastic/eui-theme-common';
 
-import { UseEuiTheme } from '../../services';
+import { isEuiThemeRefreshVariant, UseEuiTheme } from '../../services';
 import { logicalCSS } from '../../global_styling';
 import {
   euiFormControlDisabledStyles,
@@ -20,6 +20,17 @@ import {
 
 export const euiDatePickerStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
+  const isRefreshVariant = isEuiThemeRefreshVariant(
+    euiThemeContext,
+    'formVariant'
+  );
+
+  const inlineStyles = `
+      /* removes form layout border */
+      &::after {
+        display: none;
+      }
+    `;
 
   return {
     euiDatePicker: css`
@@ -33,6 +44,8 @@ export const euiDatePickerStyles = (euiThemeContext: UseEuiTheme) => {
           ${logicalCSS('width', 'fit-content')}
           border: none;
           padding: 0;
+
+          ${isRefreshVariant && inlineStyles}
         }
 
         .euiFormControlLayout__childrenWrapper {

@@ -71,25 +71,25 @@ describe('EuiProgress', () => {
 
     it('displays correct progress values and labels', () => {
       cy.get(
-        'div[data-test-subj="cy-progress-1"] span.euiProgress__valueText'
+        'div[data-test-subj="cy-progress-1"] div.euiProgress__valueText'
       ).contains('0');
       cy.get(
-        'div[data-test-subj="cy-progress-2"] span.euiProgress__valueText'
+        'div[data-test-subj="cy-progress-2"] div.euiProgress__valueText'
       ).contains('33');
       cy.get(
-        'div[data-test-subj="cy-progress-3"] span.euiProgress__valueText'
+        'div[data-test-subj="cy-progress-3"] div.euiProgress__valueText'
       ).contains('66');
       cy.get(
-        'div[data-test-subj="cy-progress-4"] span.euiProgress__valueText'
+        'div[data-test-subj="cy-progress-4"] div.euiProgress__valueText'
       ).contains('100');
       cy.get(
-        'div[data-test-subj="cy-progress-5"] span.euiProgress__label'
+        'div[data-test-subj="cy-progress-5"] div.euiProgress__label'
       ).contains('Basic percentage');
       cy.get(
-        'div[data-test-subj="cy-progress-5"] span.euiProgress__valueText'
+        'div[data-test-subj="cy-progress-5"] div.euiProgress__valueText'
       ).contains('100');
       cy.get(
-        'div[data-test-subj="cy-progress-infinite"] span.euiProgress__valueText'
+        'div[data-test-subj="cy-progress-infinite"] div.euiProgress__valueText'
       ).should('not.exist');
     });
   });

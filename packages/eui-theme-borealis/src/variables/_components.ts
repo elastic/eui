@@ -136,6 +136,21 @@ const component_colors: _EuiThemeComponentColors = {
       backgroundBaseInteractiveSelectHover,
     ['colors.backgroundBaseInteractiveSelectHover']
   ),
+  dataGridRowBackgroundMarked: SEMANTIC_COLORS.warning10,
+  dataGridRowBackgroundMarkedHover: SEMANTIC_COLORS.warning20,
+
+  dataGridRowBorderActive: computed(
+    ([borderStrongPrimary]) => borderStrongPrimary,
+    ['colors.borderStrongPrimary']
+  ),
+  dataGridRowBorderHover: computed(
+    ([borderStrongText]) => borderStrongText,
+    ['colors.borderStrongText']
+  ),
+  dataGridRowBorderMarked: computed(
+    ([borderStrongWarning]) => borderStrongWarning,
+    ['colors.borderStrongWarning']
+  ),
 
   dataGridRowStripesBackground: computed(
     ([backgroundBasePlain]) => backgroundBasePlain,
@@ -332,6 +347,8 @@ const component_colors: _EuiThemeComponentColors = {
     ([backgroundBaseInteractiveHover]) => backgroundBaseInteractiveHover,
     ['colors.backgroundBaseInteractiveHover']
   ),
+  tableRowBackgroundMarked: SEMANTIC_COLORS.warning10,
+  tableRowBackgroundMarkedHover: SEMANTIC_COLORS.warning20,
   tableCellSortableIconColor: computed(
     ([backgroundFilledText]) => backgroundFilledText,
     ['colors.backgroundFilledText']
@@ -363,6 +380,9 @@ export const components: _EuiThemeComponents = {
     ...component_colors,
 
     buttonGroupFocusColor: SEMANTIC_COLORS.plainLight,
+
+    dataGridRowBackgroundMarked: SEMANTIC_COLORS.warning140,
+    dataGridRowBackgroundMarkedHover: SEMANTIC_COLORS.warning130,
 
     codeInlineBackground: SEMANTIC_COLORS.shade135,
     codeInlineColor: SEMANTIC_COLORS.assistance60,
@@ -405,5 +425,7 @@ export const components: _EuiThemeComponents = {
       ([backgroundBaseInteractiveHover]) => backgroundBaseInteractiveHover,
       ['colors.backgroundBaseInteractiveHover']
     ),
+    tableRowBackgroundMarked: SEMANTIC_COLORS.warning140,
+    tableRowBackgroundMarkedHover: SEMANTIC_COLORS.warning130,
   },
 };

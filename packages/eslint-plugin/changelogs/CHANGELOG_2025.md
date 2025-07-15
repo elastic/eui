@@ -1,3 +1,9 @@
+## [`v2.1.0`](https://github.com/elastic/eui/releases/v2.1.0)
+
+- Added new `sr_output_disabled_tooltip` rule. ([#8848](https://github.com/elastic/eui/pull/8848))
+- Added new `consistent-is-invalid-props` rule. ([#8843](https://github.com/elastic/eui/pull/8843))
+- Added new `require-aria-label-for-modals` rule. ([#8811](https://github.com/elastic/eui/pull/8811))
+
 ## [`v2.0.0`](https://github.com/elastic/eui/releases/v2.0.0)
 
 **Breaking changes**

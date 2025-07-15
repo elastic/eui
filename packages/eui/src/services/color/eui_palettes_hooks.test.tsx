@@ -25,11 +25,16 @@ import {
   useEuiPaletteYellow,
 } from './eui_palettes_hooks';
 import { euiPaletteCool, euiPaletteGray, euiPaletteWarm } from './eui_palettes';
+import { EuiThemeColorModeStandard } from '@elastic/eui-theme-common';
 
 // wrapper container to ensure hooks are rendered in specific test provider context
-const RenderContainer = ({ children }: PropsWithChildren) => (
-  <EuiProvider>{children}</EuiProvider>
-);
+const RenderContainer = ({
+  children,
+  ...rest
+}: PropsWithChildren & {
+  colorMode?: EuiThemeColorModeStandard;
+  highContrastMode?: boolean;
+}) => <EuiProvider {...rest}>{children}</EuiProvider>;
 
 describe('useEuiPaletteColorBlind', () => {
   it('should return default colors', () => {
@@ -48,6 +53,28 @@ describe('useEuiPaletteColorBlind', () => {
       colorVis.euiColorVis7,
       colorVis.euiColorVis8,
       colorVis.euiColorVis9,
+    ]);
+  });
+
+  it('should return high contrast mode colors in LIGHT mode', () => {
+    const Wrapper = (props: PropsWithChildren) => (
+      <RenderContainer {...props} colorMode="LIGHT" highContrastMode />
+    );
+    const { result } = renderHook(() => useEuiPaletteColorBlind(), {
+      wrapper: Wrapper,
+    });
+
+    expect(result.current).toEqual([
+      '#065B58',
+      '#009E99',
+      '#154399',
+      '#2476F0',
+      '#831652',
+      '#D13680',
+      '#7F1F27',
+      '#DA3737',
+      '#6A4906',
+      '#AD7E00',
     ]);
   });
 });

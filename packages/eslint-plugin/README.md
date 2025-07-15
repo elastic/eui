@@ -131,6 +131,13 @@ It's worth pointing out that although the examples provided are specific to EUI 
 
 Ensures that EUI modal components (`EuiModal`, `EuiFlyout`, `EuiConfirmModal`) have either an `aria-label` or `aria-labelledby` prop for accessibility. This helps screen reader users understand the purpose and content of modal dialogs.
 
+### `@elastic/eui/consistent-is-invalid-props`
+
+Ensures that form control components within `EuiFormRow` components have matching `isInvalid` prop values. This maintains consistent validation state between parent form rows and their child form controls, leading to a more predictable and accessible user experience.
+
+### `@elastic/eui/sr_output_disabled_tooltip`
+
+Ensures `disableScreenReaderOutput` is set when `EuiToolTip` content matches `EuiButtonIcon` "aria-label".
 
 ## Testing
 

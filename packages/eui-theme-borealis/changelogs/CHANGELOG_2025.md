@@ -1,3 +1,40 @@
+## [`v3.3.0`](https://github.com/elastic/eui/releases/v3.3.0)
+
+- Added high contrast mode specific color values for `colors.vis` and `colors.severity` tokens in light color mode ([#8800](https://github.com/elastic/eui/pull/8800))
+- Added semantic tokens:  ([#8767](https://github.com/elastic/eui/pull/8767))
+  - `colors.borderInteractiveFormsHoverPlain`
+  - `colors.borderInteractiveFormsHoverDanger`
+- Added component tokens: ([#8767](https://github.com/elastic/eui/pull/8767))
+  - `components.forms.backgroundDropping`
+  - `components.forms.borderFocused`
+  - `components.forms.borderInvalid`
+  - `components.forms.borderHovered`
+  - `components.forms.borderInvalidHovered`
+  - `components.forms.borderAutofilledHovered`
+  - `components.forms.clearButtonBackground`
+- Updated values for tokens: ([#8767](https://github.com/elastic/eui/pull/8767))
+  - `colors.textWarning`
+  - `colors.borderStrongPrimary`
+  - `colors.borderStrongAccent`
+  - `colors.borderStrongAccentSecondary`
+  - `colors.borderStrongNeutral`
+  - `colors.borderStrongSuccess`
+  - `colors.borderStrongWarning`
+  - `colors.borderStrongRisk`
+  - `colors.borderStrongDanger`
+  - `components.forms.backgroundReadOnly`
+
+## [`v3.2.0`](https://github.com/elastic/eui/releases/v3.2.0)
+
+- Added component tokens: ([#8834](https://github.com/elastic/eui/pull/8834))
+  - `dataGridRowBackgroundMarked`
+  - `dataGridRowBackgroundMarkedHover`
+  - `dataGridRowBorderActive`
+  - `dataGridRowBorderHover`
+  - `dataGridRowBorderMarked`
+  - `tableRowBackgroundMarked`
+  - `tableRowBackgroundMarkedHover`
+
 ## [`v3.1.0`](https://github.com/elastic/eui/releases/v3.1.0)
 
 - Added new component token `components.forms.codeInlineBackground` ([#8813](https://github.com/elastic/eui/pull/8813))
