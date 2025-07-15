@@ -64,6 +64,9 @@ export interface Node {
   /** Optional class to throw on the node
    */
   className?: string;
+  /** Optional styles
+   */
+  css?: CommonProps['css'];
   /** Function to call when the item is clicked.
    The open state of the item will always be toggled.
    */
@@ -327,6 +330,7 @@ export class EuiTreeViewClass extends Component<
                 key={buttonId + index}
                 id={buttonId}
                 className={node.className}
+                css={node.css}
                 buttonRef={(ref) => this.setButtonRef(ref, index)}
                 aria-controls={node.children ? wrappingId : undefined}
                 label={node.label}
