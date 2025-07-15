@@ -217,7 +217,6 @@
     "react-dom": "^18.2.0",
     "react-dom-16": "npm:react-dom@^16.14.0",
     "react-dom-17": "npm:react-dom@^17.0.2",
-    "react-refresh": "^0.11.0",
     "resolve": "^1.17.0",
     "rimraf": "^3.0.2",
     "sass": "^1.56.1",
