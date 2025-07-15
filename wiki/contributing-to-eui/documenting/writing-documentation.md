@@ -247,7 +247,16 @@ The story's `id` can be found in the URL. It's the part after `/index.html?path=
 
 ### Tables
 
-The preferred way to display content in tables is by leveraging [EuiBasicTable](https://eui.elastic.co/docs/components/tables/basic-tables) and not Markdown tables.
+There are two supported ways to create tables in MDX - using Markdown tables syntax or using the EUI table components
+like [`EuiTable`](https://eui.elastic.co/docs/components/tables/custom)
+or [`EuiBasicTable`](https://eui.elastic.co/docs/components/tables/basic):
+
+* **Markdown tables** syntax should only be used for simple, text-only tables. The Markdown representation of a table must
+    be easily readable.
+* **[EuiTable](https://eui.elastic.co/docs/components/tables/custom)** components should be used for longer
+    and more complex tables
+* **[EuiBasicTable](https://eui.elastic.co/docs/components/tables/basic)** should be used for multi-column tables,
+    when the data comes from JS objects or isn't easily readable when directly defined using MDX syntax.
 
 Just like with [partials](#partials), the code for the table can be separated in its own file and imported into the MDX document where it'll be displayed. For example:
 
