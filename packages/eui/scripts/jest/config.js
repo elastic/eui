@@ -85,7 +85,7 @@ const config = {
 if (reactVersion === '17') {
   config.moduleNameMapper[
     '^@testing-library/react((\\\\/.*)?)$'
-  ] = `@testing-library/react-16-17$1`;
+  ] = `@testing-library/react-17$1`;
   config.moduleNameMapper['^react((\\/.*)?)$'] = `react-${reactVersion}$1`;
 
   // This import override is here just to make jest module resolver happy.

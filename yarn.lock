@@ -7349,7 +7349,7 @@ __metadata:
     "@svgr/plugin-svgo": "npm:^8.0.1"
     "@testing-library/jest-dom": "npm:^5.16.3"
     "@testing-library/react": "npm:^14.0.0"
-    "@testing-library/react-16-17": "npm:@testing-library/react@^12.1.5"
+    "@testing-library/react-17": "npm:@testing-library/react@^12.1.5"
     "@testing-library/react-hooks": "npm:^7.0.2"
     "@testing-library/user-event": "npm:^13.5.0"
     "@types/cheerio": "npm:^0.22.31"
@@ -10427,7 +10427,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@testing-library/react-16-17@npm:@testing-library/react@^12.1.5":
+"@testing-library/react-17@npm:@testing-library/react@^12.1.5":
   version: 12.1.5
   resolution: "@testing-library/react@npm:12.1.5"
   dependencies:
