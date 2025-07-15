@@ -7332,7 +7332,6 @@ __metadata:
     findup: "npm:^0.1.5"
     get-port: "npm:^5.1.1"
     glob: "npm:^11.0.3"
-    html-format: "npm:^1.0.1"
     jest: "npm:^29.7.0"
     jest-cli: "npm:^29.7.0"
     jest-environment-jsdom: "npm:^29.7.0"
@@ -23440,13 +23439,6 @@ __metadata:
   version: 2.0.2
   resolution: "html-escaper@npm:2.0.2"
   checksum: 10c0/208e8a12de1a6569edbb14544f4567e6ce8ecc30b9394fcaa4e7bb1e60c12a7c9a1ed27e31290817157e8626f3a4f29e76c8747030822eb84a6abb15c255f0a0
-  languageName: node
-  linkType: hard
-
-"html-format@npm:^1.0.1":
-  version: 1.0.1
-  resolution: "html-format@npm:1.0.1"
-  checksum: 10c0/9e3d203e05e138a5814726f5767142b289770a369064a5710345e5753f7bb994db0d09067d0d4172539ee62c9179a39c942e094c63b061f0589d6476f43d1afc
   languageName: node
   linkType: hard
 
