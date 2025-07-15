@@ -1,6 +1,6 @@
 ## [`v106.0.0`](https://github.com/elastic/eui/releases/v106.0.0)
 
-- Added `theme` prop to `EuiSelectableTemplateSitewide` to support granular control over the applied `colorMode` for the search and popover components ([#8806](https://github.com/elastic/eui/pull/8806))
+- Added `colorModes` prop to `EuiSelectableTemplateSitewide` to support granular control over the applied `colorMode` for the search and popover components ([#8806](https://github.com/elastic/eui/pull/8806))
 - Added high contrast mode specific color values for `colors.vis` and `colors.severity` tokens in light color mode ([#8800](https://github.com/elastic/eui/pull/8800))
 - Added new `refresh` design for input styles on form picker components: ([#8778](https://github.com/elastic/eui/pull/8778))
   - `EuiComboBox`
