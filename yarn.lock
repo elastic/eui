@@ -7363,7 +7363,6 @@ __metadata:
     "@types/react": "npm:^18.2.14"
     "@types/react-dom": "npm:^18.2.6"
     "@types/react-is": "npm:^17.0.3"
-    "@types/react-router-dom": "npm:^5.3.3"
     "@types/react-window": "npm:^1.8.8"
     "@types/refractor": "npm:^3.4.0"
     "@types/stylis": "npm:^4.2.1"
@@ -7460,7 +7459,6 @@ __metadata:
     react-is: "npm:^17.0.2"
     react-refresh: "npm:^0.11.0"
     react-remove-scroll-bar: "npm:^2.3.4"
-    react-router-dom: "npm:^5.3.4"
     react-view: "npm:^2.3.2"
     react-virtualized-auto-sizer: "npm:^1.0.24"
     react-window: "npm:^1.8.10"
@@ -11442,7 +11440,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react-router-dom@npm:*, @types/react-router-dom@npm:^5.3.3":
+"@types/react-router-dom@npm:*":
   version: 5.3.3
   resolution: "@types/react-router-dom@npm:5.3.3"
   dependencies:
