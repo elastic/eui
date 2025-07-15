@@ -116,7 +116,6 @@
     "@faker-js/faker": "^8.0.2",
     "@loki/create-async-callback": "^0.35.0",
     "@loki/is-loki-running": "^0.35.0",
-    "@pmmmwh/react-refresh-webpack-plugin": "^0.5.3",
     "@storybook/addon-essentials": "^8.4.5",
     "@storybook/addon-interactions": "^8.4.5",
     "@storybook/addon-links": "^8.4.5",
