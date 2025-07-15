@@ -2,7 +2,7 @@ const jestConfig = require('jest-config');
 const getCacheDirectory = () => jestConfig.defaults.cacheDirectory;
 
 // Set REACT_VERSION env variable to latest if empty or invalid
-if (!['16', '17', '18'].includes(process.env.REACT_VERSION)) {
+if (!['17', '18'].includes(process.env.REACT_VERSION)) {
   process.env.REACT_VERSION = '18';
 }
 
@@ -82,7 +82,7 @@ const config = {
   testLocationInResults: true,
 };
 
-if (['16', '17'].includes(reactVersion)) {
+if (reactVersion === '17') {
   config.moduleNameMapper[
     '^@testing-library/react((\\\\/.*)?)$'
   ] = `@testing-library/react-16-17$1`;

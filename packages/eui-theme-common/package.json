@@ -59,8 +59,8 @@
   },
   "peerDependencies": {
     "@emotion/react": "11.x",
-    "react": "^16.12 || ^17.0 || ^18.0",
-    "react-dom": "^16.12 || ^17.0 || ^18.0"
+    "react": "^17.0 || ^18.0",
+    "react-dom": "^17.0 || ^18.0"
   },
   "main": "lib/cjs/index.js",
   "exports": {
