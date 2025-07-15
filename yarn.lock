@@ -7330,7 +7330,6 @@ __metadata:
     eslint-plugin-storybook: "npm:^0.9.0"
     expose-gc: "npm:^1.0.0"
     findup: "npm:^0.1.5"
-    get-port: "npm:^5.1.1"
     glob: "npm:^11.0.3"
     jest: "npm:^29.7.0"
     jest-cli: "npm:^29.7.0"
@@ -22008,13 +22007,6 @@ __metadata:
   version: 0.1.0
   resolution: "get-package-type@npm:0.1.0"
   checksum: 10c0/e34cdf447fdf1902a1f6d5af737eaadf606d2ee3518287abde8910e04159368c268568174b2e71102b87b26c2020486f126bfca9c4fb1ceb986ff99b52ecd1be
-  languageName: node
-  linkType: hard
-
-"get-port@npm:^5.1.1":
-  version: 5.1.1
-  resolution: "get-port@npm:5.1.1"
-  checksum: 10c0/2873877a469b24e6d5e0be490724a17edb39fafc795d1d662e7bea951ca649713b4a50117a473f9d162312cb0e946597bd0e049ed2f866e79e576e8e213d3d1c
   languageName: node
   linkType: hard
 
