@@ -221,7 +221,6 @@
     "rimraf": "^3.0.2",
     "sass": "^1.56.1",
     "shelljs": "^0.8.4",
-    "start-server-and-test": "^1.11.3",
     "storybook": "^8.4.5",
     "stylelint": "^15.7.0",
     "stylelint-config-prettier-scss": "^1.0.0",
