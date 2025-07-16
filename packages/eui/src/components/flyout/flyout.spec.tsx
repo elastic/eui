@@ -414,20 +414,26 @@ describe('EuiFlyout', () => {
         />
       );
 
-      cy.get(':root').cssVar(euiPushFlyoutOffsetInlineEnd).should('eq', null);
-      cy.get(':root').cssVar(euiPushFlyoutOffsetInlineStart).should('eq', null);
+      cy.get(':root').cssVar(euiPushFlyoutOffsetInlineEnd).should('not.exist');
+      cy.get(':root')
+        .cssVar(euiPushFlyoutOffsetInlineStart)
+        .should('not.exist');
 
       cy.get('[data-test-subj="flyoutSpecTrigger"]').click();
 
-      cy.get(':root').cssVar(euiPushFlyoutOffsetInlineStart).should('eq', null);
+      cy.get(':root')
+        .cssVar(euiPushFlyoutOffsetInlineStart)
+        .should('not.exist');
       cy.get(':root')
         .cssVar(euiPushFlyoutOffsetInlineEnd)
         .should('eq', '100px');
 
       cy.get('[data-test-subj="euiFlyoutCloseButton"]').click();
 
-      cy.get(':root').cssVar(euiPushFlyoutOffsetInlineEnd).should('eq', null);
-      cy.get(':root').cssVar(euiPushFlyoutOffsetInlineStart).should('eq', null);
+      cy.get(':root').cssVar(euiPushFlyoutOffsetInlineEnd).should('not.exist');
+      cy.get(':root')
+        .cssVar(euiPushFlyoutOffsetInlineStart)
+        .should('not.exist');
 
       cy.mount(
         <Flyout
@@ -444,7 +450,7 @@ describe('EuiFlyout', () => {
       cy.get(':root')
         .cssVar(euiPushFlyoutOffsetInlineStart)
         .should('eq', '100px');
-      cy.get(':root').cssVar(euiPushFlyoutOffsetInlineEnd).should('eq', null);
+      cy.get(':root').cssVar(euiPushFlyoutOffsetInlineEnd).should('not.exist');
     });
   });
 });
