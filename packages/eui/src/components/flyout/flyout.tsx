@@ -440,7 +440,7 @@ export const EuiFlyout = forwardRef(
             {focusTrapShards.length > 0 && (
               <EuiI18n
                 token="euiFlyout.screenReaderFocusTrapShards"
-                default="You can still continue tabbing through other page elements, such as headers, sidebars, or footers, in addition to the dialog."
+                default="You can still continue tabbing through other global page landmarks."
               />
             )}
           </p>
