@@ -55,6 +55,19 @@ const applySizeConstraints = <FlyoutMeta>(
 };
 
 /**
+ * Helper to merge meta objects from current state and incoming action
+ * @internal
+ */
+const mergeMeta = <FlyoutMeta>(
+  currentMeta: FlyoutMeta | undefined,
+  newMeta: FlyoutMeta | undefined
+): FlyoutMeta | undefined => {
+  if (newMeta === undefined) return currentMeta;
+  if (currentMeta === undefined) return newMeta;
+  return { ...currentMeta, ...newMeta };
+};
+
+/**
  * Flyout reducer
  * Controls state changes for flyout groups
  */
@@ -78,7 +91,7 @@ export function flyoutReducer<FlyoutMeta>(
           mainSize: size,
           mainFlyoutProps: flyoutProps,
         },
-        meta,
+        meta: mergeMeta(state.activeFlyoutGroup?.meta, meta),
       };
 
       return {
@@ -105,7 +118,7 @@ export function flyoutReducer<FlyoutMeta>(
           hideMainTitle: hideTitle,
           mainFlyoutProps: flyoutProps,
         },
-        meta,
+        meta: mergeMeta(state.activeFlyoutGroup?.meta, meta),
       };
 
       return {
@@ -122,17 +135,17 @@ export function flyoutReducer<FlyoutMeta>(
         return state;
       }
 
-      const { size, flyoutProps, meta } = action.payload;
+      const { size, flyoutProps, title, meta } = action.payload;
       const updatedActiveGroup: EuiFlyoutSessionGroup<FlyoutMeta> = {
         ...state.activeFlyoutGroup,
         isChildOpen: true,
         config: {
           ...state.activeFlyoutGroup.config, // retain main flyout config
-          childTitle: action.payload.title,
+          childTitle: title,
           childSize: size,
           childFlyoutProps: flyoutProps,
         },
-        meta,
+        meta: mergeMeta(state.activeFlyoutGroup?.meta, meta),
       };
 
       return {
@@ -163,7 +176,7 @@ export function flyoutReducer<FlyoutMeta>(
           mainFlyoutProps: main.flyoutProps,
           childFlyoutProps: child.flyoutProps,
         },
-        meta,
+        meta: mergeMeta(state.activeFlyoutGroup?.meta, meta),
       };
 
       return {
