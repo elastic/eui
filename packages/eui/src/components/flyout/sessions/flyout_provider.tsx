@@ -10,17 +10,18 @@ import React, { createContext, useContext, useReducer } from 'react';
 
 import { EuiFlyout, EuiFlyoutChild } from '../index';
 
-import { initialFlyoutState, flyoutReducer } from './flyout_reducer';
+import { flyoutReducer, initialFlyoutState } from './flyout_reducer';
 import {
   EuiFlyoutSessionAction,
   EuiFlyoutSessionHistoryState,
-  EuiFlyoutSessionRenderContext,
   EuiFlyoutSessionProviderComponentProps,
+  EuiFlyoutSessionRenderContext,
 } from './types';
 
 interface FlyoutSessionContextProps {
   state: EuiFlyoutSessionHistoryState;
   dispatch: React.Dispatch<EuiFlyoutSessionAction>;
+  onUnmount?: EuiFlyoutSessionProviderComponentProps['onUnmount'];
 }
 
 const EuiFlyoutSessionContext = createContext<FlyoutSessionContextProps | null>(
@@ -53,12 +54,17 @@ export const useEuiFlyoutSessionContext = () => {
  */
 export const EuiFlyoutSessionProvider: React.FC<
   EuiFlyoutSessionProviderComponentProps
-> = ({ children, renderMainFlyoutContent, renderChildFlyoutContent }) => {
+> = ({
+  children,
+  renderMainFlyoutContent,
+  renderChildFlyoutContent,
+  onUnmount,
+}) => {
   const [state, dispatch] = useReducer(flyoutReducer, initialFlyoutState);
   const { activeFlyoutGroup } = state;
 
   const handleClose = () => {
-    dispatch({ type: 'CLEAR_HISTORY' });
+    dispatch({ type: 'CLOSE_SESSION' });
   };
 
   const handleCloseChild = () => {
@@ -69,30 +75,14 @@ export const EuiFlyoutSessionProvider: React.FC<
   let childFlyoutContentNode: React.ReactNode = null;
 
   if (activeFlyoutGroup) {
-    const mainRenderContext: EuiFlyoutSessionRenderContext = {
-      flyoutProps: activeFlyoutGroup.config.mainFlyoutProps || {},
-      flyoutSize: activeFlyoutGroup.config.mainSize,
-      flyoutType: 'main',
-      dispatch,
+    const renderContext: EuiFlyoutSessionRenderContext = {
       activeFlyoutGroup,
-      onCloseFlyout: handleClose,
-      onCloseChildFlyout: handleCloseChild,
       meta: activeFlyoutGroup.meta,
     };
-    mainFlyoutContentNode = renderMainFlyoutContent(mainRenderContext);
+    mainFlyoutContentNode = renderMainFlyoutContent(renderContext);
 
     if (activeFlyoutGroup.isChildOpen && renderChildFlyoutContent) {
-      const childRenderContext: EuiFlyoutSessionRenderContext = {
-        flyoutProps: activeFlyoutGroup.config.childFlyoutProps || {},
-        flyoutSize: activeFlyoutGroup.config.childSize,
-        flyoutType: 'child',
-        dispatch,
-        activeFlyoutGroup,
-        onCloseFlyout: handleClose,
-        onCloseChildFlyout: handleCloseChild,
-        meta: activeFlyoutGroup.meta,
-      };
-      childFlyoutContentNode = renderChildFlyoutContent(childRenderContext);
+      childFlyoutContentNode = renderChildFlyoutContent(renderContext);
     } else if (activeFlyoutGroup.isChildOpen && !renderChildFlyoutContent) {
       console.warn(
         'EuiFlyoutSessionProvider: A child flyout is open, but renderChildFlyoutContent was not provided.'
@@ -105,12 +95,12 @@ export const EuiFlyoutSessionProvider: React.FC<
   const flyoutPropsChild = config?.childFlyoutProps || {};
 
   return (
-    <EuiFlyoutSessionContext.Provider value={{ state, dispatch }}>
+    <EuiFlyoutSessionContext.Provider value={{ state, dispatch, onUnmount }}>
       {children}
       {activeFlyoutGroup?.isMainOpen && (
         <EuiFlyout
           onClose={handleClose}
-          size={activeFlyoutGroup.config.mainSize}
+          size={config?.mainSize}
           ownFocus={!activeFlyoutGroup.isChildOpen}
           {...flyoutPropsMain}
         >
@@ -118,7 +108,7 @@ export const EuiFlyoutSessionProvider: React.FC<
           {activeFlyoutGroup.isChildOpen && childFlyoutContentNode && (
             <EuiFlyoutChild
               onClose={handleCloseChild}
-              size={activeFlyoutGroup.config.childSize}
+              size={config?.childSize}
               {...flyoutPropsChild}
             >
               {childFlyoutContentNode}

@@ -1,3 +1,65 @@
+## [`v106.0.0`](https://github.com/elastic/eui/releases/v106.0.0)
+
+- Added `colorModes` prop to `EuiSelectableTemplateSitewide` to support granular control over the applied `colorMode` for the search and popover components ([#8806](https://github.com/elastic/eui/pull/8806))
+- Added high contrast mode specific color values for `colors.vis` and `colors.severity` tokens in light color mode ([#8800](https://github.com/elastic/eui/pull/8800))
+- Added new `refresh` design for input styles on form picker components: ([#8778](https://github.com/elastic/eui/pull/8778))
+  - `EuiComboBox`
+  - `EuiFilePicker`
+  - `EuiDatePicker`
+  - `EuiSuperDatePicker`
+- Updated the font size of `xs` size `EuiButtonEmpty` to `14px` ([#8778](https://github.com/elastic/eui/pull/8778))
+- Added a new `backgroundStyle` prop to the `EuiFlyoutChild` component. ([#8847](https://github.com/elastic/eui/pull/8847))
+- Updates to `EuiFlyoutSessionProvider` ([#8846](https://github.com/elastic/eui/pull/8846))
+  * Remove the onUnmount callbacks from various flyout configurations
+  * Consolidate unmount behavior with a single onUnmount prop at the provider level.
+  * Removed onCloseFlyout and onCloseChildFlyout from the flyout render context.
+  * Fixed the canGoBack logic in packages/eui/src/components/flyout/sessions/use_eui_flyout.ts.
+- Added new `refresh` design for input styles and form layout components: ([#8767](https://github.com/elastic/eui/pull/8767))
+  - `EuiFieldText`
+  - `EuiFieldNumber`
+  - `EuiFieldPassword`
+  - `EuiFieldSearch`
+  - `EuiTextarea`
+  - `EuiSelect`
+  - `EuiSuperSelect`
+  - `EuiFormControlLayout`
+  - `EuiFormControlLayoutDelimited`
+  - `EuiFormControlLayoutIcons`
+  - `EuiFormLabel`
+  - `EuiFormErrorText`
+- Added semantic tokens:  ([#8767](https://github.com/elastic/eui/pull/8767))
+  - `colors.borderInteractiveFormsHoverPlain`
+  - `colors.borderInteractiveFormsHoverDanger`
+- Added component tokens: ([#8767](https://github.com/elastic/eui/pull/8767))
+  - `components.forms.backgroundDropping`
+  - `components.forms.borderFocused`
+  - `components.forms.borderInvalid`
+  - `components.forms.borderHovered`
+  - `components.forms.borderInvalidHovered`
+  - `components.forms.borderAutofilledHovered`
+  - `components.forms.clearButtonBackground`
+- Updated values for tokens: ([#8767](https://github.com/elastic/eui/pull/8767))
+  - `colors.textWarning`
+  - `colors.borderStrongPrimary`
+  - `colors.borderStrongAccent`
+  - `colors.borderStrongAccentSecondary`
+  - `colors.borderStrongNeutral`
+  - `colors.borderStrongSuccess`
+  - `colors.borderStrongWarning`
+  - `colors.borderStrongRisk`
+  - `colors.borderStrongDanger`
+  - `components.forms.backgroundReadOnly`
+
+**Bug fixes**
+
+- Fixed the screen reader output in `EuiProgress` when a node is passed in the `label` prop ([#8856](https://github.com/elastic/eui/pull/8856))
+- Removed unnecessary `title` attributes for `label` and `valueText` in `EuiProgress` ([#8856](https://github.com/elastic/eui/pull/8856))
+- Fixed wrong initialization options on `EUI_VIS_COLOR_STORE` which resulted in partially wrong initial color values for static `euiPalette{name}` functions (e.g. `euiPaletteForTemperature`) ([#8844](https://github.com/elastic/eui/pull/8844))
+
+**Breaking changes**
+
+- Removed custom style overrides for `EuiSelectableTemplateSitewide` search inside `EuiHeader` - Use the `colorModes` prop on `EuiSelectableTemplateSitewide` instead to control the color mode output. ([#8806](https://github.com/elastic/eui/pull/8806))
+
 ## [`v105.0.0`](https://github.com/elastic/eui/releases/v105.0.0)
 
 - Added marked row styling via the classes `euiDataGridRow--marked` and `euiTableRow--marked` for `EuiDataGrid` and `EuiBasicTable`  ([#8834](https://github.com/elastic/eui/pull/8834))

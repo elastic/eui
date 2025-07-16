@@ -14,9 +14,45 @@ import { EuiFlyoutChildProps } from '../flyout_child';
  */
 export interface EuiFlyoutSessionConfig {
   mainSize: EuiFlyoutSize;
-  childSize: 's' | 'm';
+  childSize?: 's' | 'm';
   mainFlyoutProps?: Partial<Omit<EuiFlyoutProps, 'children'>>;
   childFlyoutProps?: Partial<Omit<EuiFlyoutChildProps, 'children'>>;
+}
+
+/**
+ * Options that control a main flyout in a session
+ */
+export interface EuiFlyoutSessionOpenMainOptions<Meta = unknown> {
+  size: EuiFlyoutSize;
+  flyoutProps?: EuiFlyoutSessionConfig['mainFlyoutProps'];
+  /**
+   * Caller-defined data
+   */
+  meta?: Meta;
+}
+
+/**
+ * Options that control a child flyout in a session
+ */
+export interface EuiFlyoutSessionOpenChildOptions<Meta = unknown> {
+  size: 's' | 'm';
+  flyoutProps?: EuiFlyoutSessionConfig['childFlyoutProps'];
+  /**
+   * Caller-defined data
+   */
+  meta?: Meta;
+}
+
+/**
+ * Options for opening both a main flyout and child flyout simultaneously
+ */
+export interface EuiFlyoutSessionOpenGroupOptions<Meta = unknown> {
+  main: EuiFlyoutSessionOpenMainOptions;
+  child: EuiFlyoutSessionOpenChildOptions;
+  /**
+   * Caller-defined data
+   */
+  meta?: Meta; // Shared meta for both flyouts
 }
 
 /**
@@ -27,8 +63,9 @@ export interface EuiFlyoutSessionGroup<FlyoutMeta> {
   isMainOpen: boolean;
   isChildOpen: boolean;
   config: EuiFlyoutSessionConfig;
-  mainOnUnmount?: () => void;
-  childOnUnmount?: () => void;
+  /**
+   * Caller-defined data
+   */
   meta?: FlyoutMeta;
 }
 
@@ -46,59 +83,32 @@ export type EuiFlyoutSessionAction<FlyoutMeta = unknown> =
       type: 'UPDATE_ACTIVE_FLYOUT_CONFIG';
       payload: {
         configChanges: Partial<EuiFlyoutSessionConfig>;
-        newMainOnUnmount?: () => void;
-        newChildOnUnmount?: () => void;
       };
     }
   | {
       type: 'OPEN_MAIN_FLYOUT';
-      payload: {
-        size: EuiFlyoutSize;
-        flyoutProps?: Partial<Omit<EuiFlyoutProps, 'children'>>;
-        onUnmount?: () => void;
-        meta?: FlyoutMeta;
-      };
+      payload: EuiFlyoutSessionOpenMainOptions<FlyoutMeta>;
     }
   | {
       type: 'OPEN_CHILD_FLYOUT';
-      payload: {
-        size: 's' | 'm';
-        flyoutProps?: Partial<Omit<EuiFlyoutChildProps, 'children'>>;
-        onUnmount?: () => void;
-        meta?: FlyoutMeta;
-      };
+      payload: EuiFlyoutSessionOpenChildOptions<FlyoutMeta>;
     }
   | {
       type: 'OPEN_FLYOUT_GROUP';
-      payload: {
-        main: {
-          size: EuiFlyoutSize;
-          flyoutProps?: Partial<Omit<EuiFlyoutProps, 'children'>>;
-          onUnmount?: () => void;
-        };
-        child: {
-          size: 's' | 'm';
-          flyoutProps?: Partial<Omit<EuiFlyoutChildProps, 'children'>>;
-          onUnmount?: () => void;
-        };
-        meta?: FlyoutMeta;
-      };
+      payload: EuiFlyoutSessionOpenGroupOptions<FlyoutMeta>;
     }
   | { type: 'GO_BACK' }
   | { type: 'CLOSE_CHILD_FLYOUT' }
-  | { type: 'CLEAR_HISTORY' };
+  | { type: 'CLOSE_SESSION' };
 
 /**
  * Flyout session context managed by `EuiFlyoutSessionProvider`, and passed to the `renderMainFlyoutContent` and `renderChildFlyoutContent` functions.
  */
 export interface EuiFlyoutSessionRenderContext<FlyoutMeta = unknown> {
-  flyoutProps: Partial<EuiFlyoutProps | EuiFlyoutChildProps>;
-  flyoutSize: EuiFlyoutProps['size'] | EuiFlyoutChildProps['size'];
-  flyoutType: 'main' | 'child';
-  dispatch: React.Dispatch<EuiFlyoutSessionAction<FlyoutMeta>>;
   activeFlyoutGroup: EuiFlyoutSessionGroup<FlyoutMeta> | null;
-  onCloseFlyout: () => void;
-  onCloseChildFlyout: () => void;
+  /**
+   * Caller-defined data
+   */
   meta?: FlyoutMeta;
 }
 
@@ -107,10 +117,23 @@ export interface EuiFlyoutSessionRenderContext<FlyoutMeta = unknown> {
  */
 export interface EuiFlyoutSessionProviderComponentProps<FlyoutMeta = any> {
   children: React.ReactNode;
+  onUnmount?: () => void;
   renderMainFlyoutContent: (
     context: EuiFlyoutSessionRenderContext<FlyoutMeta>
   ) => React.ReactNode;
   renderChildFlyoutContent?: (
     context: EuiFlyoutSessionRenderContext<FlyoutMeta>
   ) => React.ReactNode;
+}
+
+export interface EuiFlyoutSessionApi {
+  openFlyout: (options: EuiFlyoutSessionOpenMainOptions) => void;
+  openChildFlyout: (options: EuiFlyoutSessionOpenChildOptions) => void;
+  openFlyoutGroup: (options: EuiFlyoutSessionOpenGroupOptions) => void;
+  closeChildFlyout: () => void;
+  goBack: () => void;
+  closeSession: () => void;
+  isFlyoutOpen: boolean;
+  isChildFlyoutOpen: boolean;
+  canGoBack: boolean;
 }

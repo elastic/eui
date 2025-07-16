@@ -64,7 +64,7 @@ export function flyoutReducer<FlyoutMeta>(
 ): EuiFlyoutSessionHistoryState<FlyoutMeta> {
   switch (action.type) {
     case 'OPEN_MAIN_FLYOUT': {
-      const { size, flyoutProps, onUnmount } = action.payload;
+      const { size, flyoutProps, meta } = action.payload;
       const newHistory = [...state.history];
 
       if (state.activeFlyoutGroup) {
@@ -76,18 +76,9 @@ export function flyoutReducer<FlyoutMeta>(
         isChildOpen: false,
         config: {
           mainSize: size,
-          childSize: 's',
           mainFlyoutProps: flyoutProps,
-          childFlyoutProps: {},
         },
-        mainOnUnmount: onUnmount,
-        childOnUnmount: undefined,
-        meta:
-          action.payload.meta !== undefined
-            ? state.activeFlyoutGroup?.meta !== undefined
-              ? { ...state.activeFlyoutGroup.meta, ...action.payload.meta }
-              : action.payload.meta
-            : state.activeFlyoutGroup?.meta,
+        meta,
       };
 
       return {
@@ -104,7 +95,7 @@ export function flyoutReducer<FlyoutMeta>(
         return state;
       }
 
-      const { size, flyoutProps, onUnmount } = action.payload;
+      const { size, flyoutProps, meta } = action.payload;
       const updatedActiveGroup: EuiFlyoutSessionGroup<FlyoutMeta> = {
         ...state.activeFlyoutGroup,
         isChildOpen: true,
@@ -113,13 +104,7 @@ export function flyoutReducer<FlyoutMeta>(
           childSize: size,
           childFlyoutProps: flyoutProps,
         },
-        childOnUnmount: onUnmount,
-        meta:
-          action.payload.meta !== undefined
-            ? state.activeFlyoutGroup.meta !== undefined
-              ? { ...state.activeFlyoutGroup.meta, ...action.payload.meta }
-              : action.payload.meta
-            : state.activeFlyoutGroup.meta,
+        meta,
       };
 
       return {
@@ -146,8 +131,6 @@ export function flyoutReducer<FlyoutMeta>(
           mainFlyoutProps: main.flyoutProps,
           childFlyoutProps: child.flyoutProps,
         },
-        mainOnUnmount: main.onUnmount,
-        childOnUnmount: child.onUnmount,
         meta,
       };
 
@@ -165,8 +148,6 @@ export function flyoutReducer<FlyoutMeta>(
         return state;
       }
 
-      state.activeFlyoutGroup.childOnUnmount?.();
-
       const updatedActiveGroup: EuiFlyoutSessionGroup<FlyoutMeta> = {
         ...state.activeFlyoutGroup,
         isChildOpen: false,
@@ -174,7 +155,6 @@ export function flyoutReducer<FlyoutMeta>(
           ...state.activeFlyoutGroup.config,
           childFlyoutProps: {},
         },
-        childOnUnmount: undefined,
       };
 
       return {
@@ -186,12 +166,6 @@ export function flyoutReducer<FlyoutMeta>(
     case 'GO_BACK': {
       if (!state.activeFlyoutGroup)
         return initialFlyoutState as EuiFlyoutSessionHistoryState<FlyoutMeta>;
-
-      if (state.activeFlyoutGroup.isChildOpen) {
-        state.activeFlyoutGroup.childOnUnmount?.();
-      }
-
-      state.activeFlyoutGroup.mainOnUnmount?.();
 
       // Restore from history or return to initial state
       if (state.history.length > 0) {
@@ -214,8 +188,7 @@ export function flyoutReducer<FlyoutMeta>(
         return state;
       }
 
-      const { configChanges, newMainOnUnmount, newChildOnUnmount } =
-        action.payload;
+      const { configChanges } = action.payload;
 
       const updatedActiveGroup: EuiFlyoutSessionGroup<FlyoutMeta> = {
         ...state.activeFlyoutGroup,
@@ -223,14 +196,6 @@ export function flyoutReducer<FlyoutMeta>(
           ...state.activeFlyoutGroup.config,
           ...configChanges,
         },
-        mainOnUnmount:
-          newMainOnUnmount !== undefined
-            ? newMainOnUnmount
-            : state.activeFlyoutGroup.mainOnUnmount,
-        childOnUnmount:
-          newChildOnUnmount !== undefined
-            ? newChildOnUnmount
-            : state.activeFlyoutGroup.childOnUnmount,
       };
 
       const finalUpdatedActiveGroup = applySizeConstraints(updatedActiveGroup);
@@ -241,8 +206,8 @@ export function flyoutReducer<FlyoutMeta>(
       };
     }
 
-    case 'CLEAR_HISTORY':
-      // Clear the history and remove the active group
+    case 'CLOSE_SESSION':
+      // Remove the active group and close the session
       return {
         activeFlyoutGroup: null,
         history: [],

@@ -18,10 +18,7 @@ The `EuiFlyoutSessionProvider` is the core stateful component. You must wrap it 
 The `flyoutContext` object passed to your render prop functions is of type `EuiFlyoutSessionRenderContext<MetaType>` and contains the following useful properties:
 
 *   **`meta`**: `MetaType` - The arbitrary data object you passed into the `meta` property when calling `openFlyout` or `openChildFlyout`. This is a generic, allowing you to have type safety for your custom data.
-*   **`onCloseFlyout`**: `() => void` - A callback function that closes the current main flyout.
-*   **`onCloseChildFlyout`**: `() => void` - A callback function that closes the current child flyout.
-*   **`flyoutSize`**: The size of the currently active flyout.
-*   **`flyoutType`**: `'main' | 'child'` - Indicates which flyout the render prop is being called for.
+*   **`activeFlyoutGroup`**: `EuiFlyoutSessionGroup` - The currently active flyout group.
 
 ## `useEuiFlyoutSession` Hook API
 
@@ -29,12 +26,12 @@ The `useEuiFlyoutSession` hook is generic and can be typed to match the `meta` o
 
 ### Methods
 
-*   `openFlyout(options)`: Opens a new main flyout. If a flyout is already open, it adds the new one to a history stack.
-*   `openChildFlyout(options)`: Opens a new child flyout to the left of the main flyout.
-*   `openFlyoutGroup(options)`: Opens a group containing a main flyout and a child flyout.
-*   `closeFlyout()`: Closes the currently open main flyout. If there's a previous flyout in the history stack, it will be shown.
+*   `openFlyout(options: EuiFlyoutSessionOpenMainOptions<MetaType>)`: Opens a new main flyout. If a flyout is already open, it adds the new one to a history stack.
+*   `openChildFlyout(options: EuiFlyoutSessionOpenChildOptions<MetaType>)`: Opens a new child flyout to the left of the main flyout.
+*   `openFlyoutGroup(options: EuiFlyoutSessionOpenGroupOptions<MetaType>)`: Opens a group containing a main flyout and a child flyout.
 *   `closeChildFlyout()`: Closes the currently open child flyout.
-*   `clearHistory()`: Closes all flyouts by clearing the history stack of all flyouts in the session.
+*   `goBack()`: If there's a previous flyout in the history stack, it will be shown.
+*   `closeSession()`: Closes all flyouts by clearing the history stack of all flyouts in the session.
 
 ### State Values
 
@@ -55,6 +52,8 @@ import {
   EuiButton,
   EuiFlyoutBody,
   EuiText,
+  EuiFlyoutHeader,
+  EuiTitle,
   EuiFlyoutSessionProvider,
   useEuiFlyoutSession,
 } from '@elastic/eui';
@@ -67,6 +66,7 @@ const FlyoutAppControls: React.FC = () => {
     // will add the new flyout to the history stack.
     openFlyout({
       size: 'm',
+      meta: { title: 'My Flyout' },
     });
   };
 
@@ -81,12 +81,19 @@ const FlyoutApp: React.FC = () => {
   // The EuiFlyoutSessionRenderContext is passed to your render prop functions.
   // This can contain a custom `meta` object (set in the `openFlyout` function call)
   // which allows you to customize the content shown in the flyout.
-  const renderMainFlyoutContent = (context: EuiFlyoutSessionRenderContext) => (
-    <EuiFlyoutBody>
-      <EuiText>
-        <p>Simple flyout content</p>
-      </EuiText>
-    </EuiFlyoutBody>
+  const renderMainFlyoutContent = (flyoutContext: EuiFlyoutSessionRenderContext<{ title: string }>) => (
+    <>
+      <EuiFlyoutHeader hasBorder>
+        <EuiTitle size="s">
+          <h2>{flyoutContext.meta.title}</h2>
+        </EuiTitle>
+      </EuiFlyoutHeader>
+      <EuiFlyoutBody>
+        <EuiText>
+          <p>Simple flyout content</p>
+        </EuiText>
+      </EuiFlyoutBody>
+    </>
   );
 
   return (

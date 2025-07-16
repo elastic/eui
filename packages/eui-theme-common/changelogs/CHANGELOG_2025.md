@@ -1,3 +1,21 @@
+## [`v3.0.0`](https://github.com/elastic/eui/releases/v3.0.0)
+
+- Added semantic tokens:  ([#8767](https://github.com/elastic/eui/pull/8767))
+  - `colors.borderInteractiveFormsHoverPlain`
+  - `colors.borderInteractiveFormsHoverDanger`
+- Added component tokens: ([#8767](https://github.com/elastic/eui/pull/8767))
+  - `components.forms.backgroundDropping`
+  - `components.forms.borderFocused`
+  - `components.forms.borderInvalid`
+  - `components.forms.borderHovered`
+  - `components.forms.borderInvalidHovered`
+  - `components.forms.borderAutofilledHovered`
+  - `components.forms.clearButtonBackground`
+
+**Breaking changes**
+
+- Updated `_EuiThemeColors` type to include `_EuiThemeVisColors` and `_EuiThemeSeverityColors` as `StrictColorModeSwitch` instead of static colors. This requires `vis` and `severity` keys to be defined as part of `LIGHT` and `DARK` color mode objects. ([#8800](https://github.com/elastic/eui/pull/8800))
+
 ## [`v2.2.0`](https://github.com/elastic/eui/releases/v2.2.0)
 
 - Added component token types: ([#8834](https://github.com/elastic/eui/pull/8834))

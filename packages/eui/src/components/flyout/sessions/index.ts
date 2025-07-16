@@ -12,13 +12,13 @@ export {
 } from './flyout_provider';
 
 export type {
+  EuiFlyoutSessionApi,
   EuiFlyoutSessionConfig,
+  EuiFlyoutSessionOpenChildOptions,
+  EuiFlyoutSessionOpenGroupOptions,
+  EuiFlyoutSessionOpenMainOptions,
   EuiFlyoutSessionProviderComponentProps,
   EuiFlyoutSessionRenderContext,
 } from './types';
 
-export {
-  useEuiFlyoutSession,
-  type EuiFlyoutSessionOpenChildOptions,
-  type EuiFlyoutSessionOpenMainOptions,
-} from './use_eui_flyout';
+export { useEuiFlyoutSession } from './use_eui_flyout';

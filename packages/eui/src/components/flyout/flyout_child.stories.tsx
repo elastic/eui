@@ -249,7 +249,7 @@ export const WithSmallMainSize: Story = {
   ),
 };
 
-export const WithSmallMainLargeChlld: Story = {
+export const WithSmallMainLargeChild: Story = {
   name: 'Main Size: s, Child Size: m',
   render: (args) => (
     <StatefulFlyout
@@ -258,4 +258,94 @@ export const WithSmallMainLargeChlld: Story = {
       pushMinBreakpoint={args.pushMinBreakpoint}
     />
   ),
+};
+
+const ChildBackgroundStylesFlyout = () => {
+  const [isMainOpen, setIsMainOpen] = useState(true);
+  const [isDefaultChildOpen, setIsDefaultChildOpen] = useState(true);
+  const [isShadedChildOpen, setIsShadedChildOpen] = useState(false);
+
+  const openDefaultChild = () => {
+    setIsDefaultChildOpen(true);
+    setIsShadedChildOpen(false);
+  };
+  const openShadedChild = () => {
+    setIsDefaultChildOpen(false);
+    setIsShadedChildOpen(true);
+  };
+
+  const closeMain = () => {
+    setIsMainOpen(false);
+    setIsDefaultChildOpen(false);
+    setIsShadedChildOpen(false);
+  };
+  const closeChild = () => {
+    setIsDefaultChildOpen(false);
+    setIsShadedChildOpen(false);
+  };
+
+  const ChildFlyoutContent = () => (
+    <EuiFlyoutBody>
+      <EuiText>
+        <p>
+          This is the child flyout content, with a{' '}
+          <b>{isShadedChildOpen ? 'shaded' : 'default'}</b> background.
+        </p>
+      </EuiText>
+    </EuiFlyoutBody>
+  );
+
+  return (
+    <>
+      <EuiText>
+        <EuiButton onClick={openDefaultChild} disabled={isDefaultChildOpen}>
+          Open flyout with <b>default</b> child background
+        </EuiButton>
+        <EuiSpacer />
+        <EuiButton onClick={openShadedChild} disabled={isShadedChildOpen}>
+          Open flyout with <b>shaded</b> child background
+        </EuiButton>
+      </EuiText>
+
+      {isMainOpen && (
+        <EuiFlyout
+          onClose={closeMain}
+          size="s"
+          type="push"
+          pushMinBreakpoint="xs"
+        >
+          <EuiFlyoutBody>
+            <EuiText>
+              <p>This is the main flyout content.</p>
+            </EuiText>
+            <EuiSpacer />
+          </EuiFlyoutBody>
+
+          {isDefaultChildOpen && (
+            <EuiFlyoutChild
+              onClose={closeChild}
+              size="s"
+              backgroundStyle="default"
+            >
+              <ChildFlyoutContent />
+            </EuiFlyoutChild>
+          )}
+          {isShadedChildOpen && (
+            <EuiFlyoutChild
+              onClose={closeChild}
+              size="s"
+              backgroundStyle="shaded"
+            >
+              <ChildFlyoutContent />
+            </EuiFlyoutChild>
+          )}
+        </EuiFlyout>
+      )}
+    </>
+  );
+};
+
+export const WithChildBackgroundStyles: Story = {
+  name: 'Child Background Styles',
+  render: () => <ChildBackgroundStylesFlyout />,
 };
