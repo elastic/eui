@@ -303,7 +303,7 @@ export const EuiFlyout = forwardRef(
           });
         };
       }
-    }, [isPushed, side, width]);
+    }, [isPushed, setGlobalCSSVariables, side, width]);
 
     /**
      * This class doesn't actually do anything by EUI, but is nice to add for consumers (JIC)

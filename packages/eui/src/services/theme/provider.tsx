@@ -272,7 +272,15 @@ export const EuiThemeProvider = <T extends {} = {}>({
   const [themeCSSVariables, _setThemeCSSVariables] = useState<CSSObject>();
   const setThemeCSSVariables = useCallback(
     (variables: CSSObject) =>
-      _setThemeCSSVariables((previous) => ({ ...previous, ...variables })),
+      _setThemeCSSVariables((previous) => {
+        const merged = { ...previous, ...variables };
+        Object.keys(merged).forEach((key) => {
+          if (merged[key] === null) {
+            delete merged[key];
+          }
+        });
+        return merged;
+      }),
     []
   );
 
