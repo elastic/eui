@@ -210,7 +210,7 @@ const ReviewOrderContent: React.FC<ReviewOrderContentProps> = ({
           onClick={() =>
             openSystemFlyout({
               title: 'Order confirmed',
-              size: 's',
+              size: 'm',
               flyoutProps: {
                 type: 'push',
                 className: 'orderConfirmedFlyout',
