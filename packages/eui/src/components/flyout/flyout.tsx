@@ -73,7 +73,7 @@ function isEuiFlyoutSizeNamed(value: any): value is EuiFlyoutSize {
 export const PADDING_SIZES = ['none', 's', 'm', 'l'] as const;
 export type _EuiFlyoutPaddingSize = (typeof PADDING_SIZES)[number];
 
-interface _EuiFlyoutProps {
+export interface _EuiFlyoutProps {
   onClose: (event: MouseEvent | TouchEvent | KeyboardEvent) => void;
   /**
    * Defines the width of the panel.
