@@ -1125,7 +1125,7 @@ exports[`EuiFlyout renders extra screen reader instructions when fixed EuiHeader
           >
             You are in a modal dialog. Press Escape or tap/click outside the dialog on the shadowed overlay to close.
              
-            You can still continue tabbing through the page headers in addition to the dialog.
+            You can still continue tabbing through other global page landmarks.
           </p>
           <button
             aria-label="Close this dialog"

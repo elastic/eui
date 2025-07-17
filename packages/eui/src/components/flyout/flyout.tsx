@@ -48,6 +48,7 @@ import { EuiFlyoutCloseButton } from './_flyout_close_button';
 import { euiFlyoutStyles } from './flyout.styles';
 import { EuiFlyoutChild } from './flyout_child';
 import { EuiFlyoutChildProvider } from './flyout_child_manager';
+import { usePropsWithComponentDefaults } from '../provider/component_defaults';
 
 export const TYPES = ['push', 'overlay'] as const;
 type _EuiFlyoutType = (typeof TYPES)[number];
@@ -162,6 +163,11 @@ interface _EuiFlyoutProps {
    * Set this to `false` if you need to disable this behavior for a specific reason.
    */
   includeFixedHeadersInFocusTrap?: boolean;
+
+  /**
+   * Specify additional css selectors to include in the focus trap.
+   */
+  includeSelectorInFocusTrap?: string[] | string;
 }
 
 const defaultElement = 'div';
@@ -179,7 +185,13 @@ export type EuiFlyoutProps<T extends ElementType = typeof defaultElement> =
 
 export const EuiFlyout = forwardRef(
   <T extends ElementType = typeof defaultElement>(
-    {
+    props: EuiFlyoutProps<T>,
+    ref:
+      | ((instance: ComponentPropsWithRef<T> | null) => void)
+      | MutableRefObject<ComponentPropsWithRef<T> | null>
+      | null
+  ) => {
+    const {
       className,
       children,
       as,
@@ -200,14 +212,11 @@ export const EuiFlyout = forwardRef(
       pushAnimation = false,
       focusTrapProps: _focusTrapProps,
       includeFixedHeadersInFocusTrap = true,
+      includeSelectorInFocusTrap,
       'aria-describedby': _ariaDescribedBy,
       ...rest
-    }: EuiFlyoutProps<T>,
-    ref:
-      | ((instance: ComponentPropsWithRef<T> | null) => void)
-      | MutableRefObject<ComponentPropsWithRef<T> | null>
-      | null
-  ) => {
+    } = usePropsWithComponentDefaults('EuiFlyout', props);
+
     const Element = as || defaultElement;
     const maskRef = useRef<HTMLDivElement>(null);
 
@@ -359,34 +368,51 @@ export const EuiFlyout = forwardRef(
      * (both mousedown and mouseup) the overlay mask.
      */
     const flyoutToggle = useRef<Element | null>(document.activeElement);
-    const [fixedHeaders, setFixedHeaders] = useState<HTMLDivElement[]>([]);
+    const [focusTrapShards, setFocusTrapShards] = useState<HTMLElement[]>([]);
+
+    const focusTrapSelectors = useMemo(() => {
+      let selectors: string[] = [];
+
+      if (includeSelectorInFocusTrap) {
+        selectors = Array.isArray(includeSelectorInFocusTrap)
+          ? includeSelectorInFocusTrap
+          : [includeSelectorInFocusTrap];
+      }
+
+      if (includeFixedHeadersInFocusTrap) {
+        selectors.push('.euiHeader[data-fixed-header]');
+      }
+
+      return selectors;
+    }, [includeSelectorInFocusTrap, includeFixedHeadersInFocusTrap]);
 
     useEffect(() => {
-      if (includeFixedHeadersInFocusTrap) {
-        const fixedHeaderEls = document.querySelectorAll<HTMLDivElement>(
-          '.euiHeader[data-fixed-header]'
+      if (focusTrapSelectors.length > 0) {
+        const shardsEls = focusTrapSelectors.flatMap((selector) =>
+          Array.from(document.querySelectorAll<HTMLElement>(selector))
         );
-        setFixedHeaders(Array.from(fixedHeaderEls));
 
-        // Flyouts that are toggled from fixed headers do not have working
+        setFocusTrapShards(Array.from(shardsEls));
+
+        // Flyouts that are toggled from shards do not have working
         // focus trap autoFocus, so we need to focus the flyout wrapper ourselves
-        fixedHeaderEls.forEach((header) => {
-          if (header.contains(flyoutToggle.current)) {
+        shardsEls.forEach((shard) => {
+          if (shard.contains(flyoutToggle.current)) {
             resizeRef?.focus();
           }
         });
       } else {
-        // Clear existing headers if necessary, e.g. switching to `false`
-        setFixedHeaders((headers) => (headers.length ? [] : headers));
+        // Clear existing shards if necessary, e.g. switching to `false`
+        setFocusTrapShards((shards) => (shards.length ? [] : shards));
       }
-    }, [includeFixedHeadersInFocusTrap, resizeRef]);
+    }, [focusTrapSelectors, resizeRef]);
 
     const focusTrapProps: EuiFlyoutProps['focusTrapProps'] = useMemo(
       () => ({
         ..._focusTrapProps,
-        shards: [...fixedHeaders, ...(_focusTrapProps?.shards || [])],
+        shards: [...focusTrapShards, ...(_focusTrapProps?.shards || [])],
       }),
-      [_focusTrapProps, fixedHeaders]
+      [_focusTrapProps, focusTrapShards]
     );
 
     /*
@@ -411,16 +437,16 @@ export const EuiFlyout = forwardRef(
                 default="You are in a non-modal dialog. To close the dialog, press Escape."
               />
             )}{' '}
-            {fixedHeaders.length > 0 && (
+            {focusTrapShards.length > 0 && (
               <EuiI18n
-                token="euiFlyout.screenReaderFixedHeaders"
-                default="You can still continue tabbing through the page headers in addition to the dialog."
+                token="euiFlyout.screenReaderFocusTrapShards"
+                default="You can still continue tabbing through other global page landmarks."
               />
             )}
           </p>
         </EuiScreenReaderOnly>
       ),
-      [hasOverlayMask, descriptionId, fixedHeaders.length]
+      [hasOverlayMask, descriptionId, focusTrapShards.length]
     );
 
     /*
