@@ -15,10 +15,11 @@ import React, {
   useEffect,
   useMemo,
   useRef,
+  useCallback,
 } from 'react';
 import classNames from 'classnames';
 import { CommonProps } from '../common';
-import { useEuiMemoizedStyles, useGeneratedHtmlId } from '../../services';
+import { keys, useEuiMemoizedStyles, useGeneratedHtmlId } from '../../services';
 import { euiFlyoutChildStyles } from './flyout_child.styles';
 import { EuiFlyoutCloseButton } from './_flyout_close_button';
 import { EuiFlyoutContext } from './flyout_context';
@@ -91,7 +92,7 @@ export const EuiFlyoutChild: FunctionComponent<EuiFlyoutChildProps> = ({
     throw new Error('EuiFlyoutChild must be used as a child of EuiFlyout.');
   }
 
-  const { setIsChildFlyoutOpen, parentSize } = flyoutContext;
+  const { isChildFlyoutOpen, setIsChildFlyoutOpen, parentSize } = flyoutContext;
 
   useEffect(() => {
     setIsChildFlyoutOpen?.(true);
@@ -209,6 +210,17 @@ export const EuiFlyoutChild: FunctionComponent<EuiFlyoutChildProps> = ({
       : styles.stackedPosition,
   ];
 
+  const onKeyDown = useCallback(
+    (event: React.KeyboardEvent<HTMLDivElement>) => {
+      if (isChildFlyoutOpen && event.key === keys.ESCAPE) {
+        event.preventDefault();
+        setIsChildFlyoutOpen?.(false);
+        onClose(event.nativeEvent);
+      }
+    },
+    [isChildFlyoutOpen, onClose, setIsChildFlyoutOpen]
+  );
+
   return (
     <EuiFocusTrap
       returnFocus={() => {
@@ -221,6 +233,7 @@ export const EuiFlyoutChild: FunctionComponent<EuiFlyoutChildProps> = ({
       shards={[]}
       disabled={false}
     >
+      {/* eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions */}
       <div
         ref={flyoutWrapperRef}
         className={classes}
@@ -232,6 +245,7 @@ export const EuiFlyoutChild: FunctionComponent<EuiFlyoutChildProps> = ({
         aria-labelledby={ariaLabelledBy}
         aria-describedby={ariaDescribedBy}
         tabIndex={-1}
+        onKeyDown={onKeyDown} // used as generic container event handler
         {...rest}
       >
         {/* Fallback title for screen readers if a title was derived but not used for aria-labelledby

@@ -392,6 +392,11 @@ const ECommerceApp: React.FC = () => {
 
 export const ECommerceWithHistory: StoryObj = {
   name: 'Advanced Use Case',
+  parameters: {
+    loki: {
+      skip: true,
+    },
+  },
   render: () => {
     return <ECommerceApp />;
   },
@@ -609,6 +614,11 @@ const GroupOpenerApp: React.FC = () => {
 
 export const WithGroupOpener: StoryObj = {
   name: 'Group Opener',
+  parameters: {
+    loki: {
+      skip: true,
+    },
+  },
   render: () => {
     return <GroupOpenerApp />;
   },

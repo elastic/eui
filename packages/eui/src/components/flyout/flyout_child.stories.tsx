@@ -142,9 +142,7 @@ const StatefulFlyout: React.FC<StatefulFlyoutProps> = ({
       />
       <EuiSpacer />
 
-      {!isMainOpen && (
-        <EuiButton onClick={openMain}>Open Main Flyout</EuiButton>
-      )}
+      <EuiButton onClick={openMain}>Open Main Flyout</EuiButton>
 
       {isMainOpen && (
         <EuiFlyout
