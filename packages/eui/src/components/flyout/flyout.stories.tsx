@@ -10,7 +10,14 @@ import React, { useRef, useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 
-import { EuiButton, EuiCallOut, EuiSpacer, EuiText, EuiTitle } from '../index';
+import {
+  EuiButton,
+  EuiCallOut,
+  // EuiComponentDefaultsProvider,
+  EuiSpacer,
+  EuiText,
+  EuiTitle,
+} from '../index';
 
 import {
   EuiFlyout,
@@ -68,6 +75,9 @@ const StatefulFlyout = (
   };
 
   return (
+    // <EuiComponentDefaultsProvider
+    //   componentDefaults={{ EuiFlyout: { managed: false } }}
+    // >
     <>
       <EuiButton size="s" onClick={() => handleToggle(!_isOpen)}>
         Toggle flyout
@@ -82,6 +92,7 @@ const StatefulFlyout = (
         />
       )}
     </>
+    // </EuiComponentDefaultsProvider>
   );
 };
 

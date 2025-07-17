@@ -33,6 +33,7 @@ import {
   EuiComponentDefaults,
   EuiComponentDefaultsProvider,
 } from './component_defaults';
+import { FlyoutManagerProvider } from '../flyout/managed/flyout_manager';
 
 const isEmotionCacheObject = (
   obj: EmotionCache | Object
@@ -164,7 +165,7 @@ export const EuiProvider = <T extends {} = {}>({
               </>
             )}
             <EuiComponentDefaultsProvider componentDefaults={componentDefaults}>
-              {children}
+              <FlyoutManagerProvider>{children}</FlyoutManagerProvider>
             </EuiComponentDefaultsProvider>
           </EuiThemeProvider>
         </EuiSystemDefaultsProvider>
