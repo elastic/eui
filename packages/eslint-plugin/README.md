@@ -141,7 +141,7 @@ Ensures `disableScreenReaderOutput` is set when `EuiToolTip` content matches `Eu
 
 ### `@elastic/eui/prefer_eui_icon_tip`
 
-Ensure `EuiIconTip` is used rather than `<EuiTooltip><EuiIcon /></EuiTooltip>`, as it provides better accessibility and improved support for assistive technologies.
+Ensure `EuiIconTip` is used rather than `<EuiToolTip><EuiIcon/></EuiToolTip>`, as it provides better accessibility and improved support for assistive technologies.
 
 ## Testing
 
