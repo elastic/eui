@@ -38,11 +38,12 @@ import { css } from '@emotion/react';
     <EuiTableHeaderCell>Details</EuiTableHeaderCell>
   </EuiTableHeader>
   <EuiTableBody>
+    <!-- TODO: Remove the React 16 row after 2025-10-15 or when it feels right -->
     <EuiTableRow>
       <EuiTableRowCell>React 16</EuiTableRowCell>
-      <EuiTableRowCell align="center">✅</EuiTableRowCell>
+      <EuiTableRowCell align="center">❌</EuiTableRowCell>
       <EuiTableRowCell>
-        Fully supported (plans to <Link href="https://github.com/elastic/eui/issues/8578">deprecate support for React 16</Link>)
+        Support ended with EUI v106.0.0. Please upgrade to a modern React version.
       </EuiTableRowCell>
     </EuiTableRow>
     <EuiTableRow>

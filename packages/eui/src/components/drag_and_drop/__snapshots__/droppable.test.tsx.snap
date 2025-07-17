@@ -1,51 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`[React 16] EuiDroppable renders 1`] = `
-<body>
-  <div
-    aria-atomic="true"
-    aria-live="assertive"
-    id="rfd-announcement-0"
-    style="position: absolute; width: 1px; height: 1px; margin: -1px; border: 0px; padding: 0px; overflow: hidden; clip-path: inset(100%);"
-  />
-  <div
-    aria-atomic="true"
-    aria-live="assertive"
-    id="rfd-announcement-1"
-    style="position: absolute; width: 1px; height: 1px; margin: -1px; border: 0px; padding: 0px; overflow: hidden; clip-path: inset(100%);"
-  />
-  <div>
-    <div
-      class="euiDroppable testClass1 testClass2 emotion-euiDroppable-noGrow-euiTestCss"
-      data-rfd-droppable-context-id="0"
-      data-rfd-droppable-id="testDroppable"
-      data-test-subj="test subject string"
-    >
-      <div />
-      <div
-        class="euiDroppable__placeholder"
-      />
-    </div>
-  </div>
-  <div
-    aria-atomic="true"
-    aria-live="assertive"
-    id="rfd-announcement-0"
-    style="position: absolute; width: 1px; height: 1px; margin: -1px; border: 0px; padding: 0px; overflow: hidden; clip-path: inset(100%);"
-  />
-  <div
-    id="rfd-hidden-text-0-hidden-text-0"
-    style="display: none;"
-  >
-    
-  Press space bar to start a drag.
-  When dragging you can use the arrow keys to move the item around and escape to cancel.
-  Some screen readers may require you to be in focus mode or to use your pass through key
-
-  </div>
-</body>
-`;
-
 exports[`[React 17] EuiDroppable renders 1`] = `
 <body>
   <div

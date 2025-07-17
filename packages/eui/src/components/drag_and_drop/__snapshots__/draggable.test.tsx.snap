@@ -1,36 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`[React 16] EuiDraggable renders 1`] = `
-<div
-  class="euiDroppable emotion-euiDroppable-noGrow"
-  data-rfd-droppable-context-id="2"
-  data-rfd-droppable-id="testDroppable"
-  data-test-subj="droppable"
->
-  <div
-    aria-describedby="rfd-hidden-text-2-hidden-text-6"
-    class="euiDraggable testClass1 testClass2 emotion-euiDraggable-euiTestCss"
-    data-rfd-drag-handle-context-id="2"
-    data-rfd-drag-handle-draggable-id="testDraggable"
-    data-rfd-draggable-context-id="2"
-    data-rfd-draggable-id="testDraggable"
-    data-test-subj="test subject string"
-    draggable="false"
-    role="button"
-    tabindex="0"
-  >
-    <div
-      class="euiDraggable__item emotion-euiDraggable__item"
-    >
-      Hello
-    </div>
-  </div>
-  <div
-    class="euiDroppable__placeholder"
-  />
-</div>
-`;
-
 exports[`[React 17] EuiDraggable renders 1`] = `
 <div
   class="euiDroppable emotion-euiDroppable-noGrow"

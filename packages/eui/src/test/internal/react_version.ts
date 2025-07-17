@@ -6,9 +6,9 @@
  * Side Public License, v 1.
  */
 
-export type ReactVersion = '16' | '17' | '18';
+export type ReactVersion = '17' | '18';
 
-export const SUPPORTED_REACT_VERSIONS: ReactVersion[] = ['16', '17', '18'];
+export const SUPPORTED_REACT_VERSIONS: ReactVersion[] = ['17', '18'];
 
 /**
  * Get major version of React that's currently used.

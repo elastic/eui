@@ -29,15 +29,6 @@ steps:
           automatic:
             - exit_status: '-1'
               limit: 1
-      - label: ':jest: TSX unit tests on React 16'
-        command: '.buildkite/scripts/pipelines/pipeline_test.sh'
-        env:
-          TEST_TYPE: 'unit:tsx:16'
-        timeout_in_minutes: 60
-        retry:
-          automatic:
-            - exit_status: '-1'
-              limit: 1
       - label: ':jest: TSX unit tests on React 17'
         command: '.buildkite/scripts/pipelines/pipeline_test.sh'
         env:
@@ -59,18 +50,6 @@ steps:
   - group: ':hammer: E2E component tests'
     key: 'e2e-tests'
     steps:
-      - label: ':cypress: Cypress tests on React 16'
-        command: '.buildkite/scripts/pipelines/pipeline_test.sh'
-        env:
-          TEST_TYPE: 'cypress:16'
-        artifact_paths:
-          - 'cypress/screenshots/**/*.png'
-          - 'cypress/videos/**/*.mp4'
-        timeout_in_minutes: 60
-        retry:
-          automatic:
-            - exit_status: '-1'
-              limit: 1
       - label: ':cypress: Cypress tests on React 17'
         command: '.buildkite/scripts/pipelines/pipeline_test.sh'
         env:
