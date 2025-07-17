@@ -531,13 +531,6 @@ export const EuiFlyout = forwardRef(
           scrollLock={hasOverlayMask}
           clickOutsideDisables={!ownFocus}
           onClickOutside={onClickOutside}
-          returnFocus={() => {
-            if (!isChildFlyoutOpen && flyoutToggle.current) {
-              (flyoutToggle.current as HTMLElement).focus();
-              return false; // We've handled focus
-            }
-            return true;
-          }}
           {...focusTrapProps}
         >
           <Element
