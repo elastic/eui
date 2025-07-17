@@ -6,8 +6,12 @@
  * Side Public License, v 1.
  */
 
-export type { EuiFlyoutProps, EuiFlyoutSize } from './flyout';
 export { EuiFlyout } from './flyout';
+export type { EuiFlyoutProps } from './flyout';
+
+// When props can be better aligned, we can switch to `managed`.
+// export { EuiFlyout } from './managed';
+// export type { EuiFlyoutProps } from './managed';
 
 export type { EuiFlyoutBodyProps } from './flyout_body';
 export { EuiFlyoutBody } from './flyout_body';

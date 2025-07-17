@@ -17,7 +17,7 @@ import React, {
 import type { EuiPortalProps } from '../../portal';
 import type { EuiFocusTrapProps } from '../../focus_trap';
 import type { EuiTablePaginationProps, EuiTableProps } from '../../table';
-import type { EuiFlyoutProps } from '../../flyout';
+import { EuiFlyoutProps } from '../../flyout';
 
 export type EuiComponentDefaults = {
   /**
@@ -51,7 +51,8 @@ export type EuiComponentDefaults = {
    */
   EuiFlyout?: Pick<
     EuiFlyoutProps,
-    'includeSelectorInFocusTrap' | 'includeFixedHeadersInFocusTrap'
+    | 'includeSelectorInFocusTrap'
+    | 'includeFixedHeadersInFocusTrap' /*| 'managed'*/
   >;
 };
 
