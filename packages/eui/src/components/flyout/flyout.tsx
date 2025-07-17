@@ -331,12 +331,12 @@ export const EuiFlyout = forwardRef(
      */
     const onKeyDown = useCallback(
       (event: KeyboardEvent) => {
-        if (!isPushed && event.key === keys.ESCAPE) {
+        if (!isPushed && event.key === keys.ESCAPE && !isChildFlyoutOpen) {
           event.preventDefault();
           onClose(event);
         }
       },
-      [onClose, isPushed]
+      [onClose, isPushed, isChildFlyoutOpen]
     );
 
     /**
