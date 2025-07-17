@@ -20,7 +20,6 @@ import { EuiSpacer } from '../spacer';
 import { EuiRadioGroup, EuiRadioGroupOption } from '../form';
 import { LOKI_SELECTORS } from '../../../.storybook/loki';
 import { EuiBreakpointSize } from '../../services';
-import { EuiFlyoutMenu } from './flyout_menu';
 
 const breakpointSizes: EuiBreakpointSize[] = ['xs', 's', 'm', 'l', 'xl'];
 
@@ -315,7 +314,6 @@ const ChildBackgroundStylesFlyout = () => {
           type="push"
           pushMinBreakpoint="xs"
         >
-          <EuiFlyoutMenu title="Main Flyout" />
           <EuiFlyoutBody>
             <EuiText>
               <p>This is the main flyout content.</p>
@@ -329,7 +327,6 @@ const ChildBackgroundStylesFlyout = () => {
               size="s"
               backgroundStyle="default"
             >
-              <EuiFlyoutMenu title="Child flyout: Default background style" />
               <ChildFlyoutContent />
             </EuiFlyoutChild>
           )}
@@ -339,7 +336,6 @@ const ChildBackgroundStylesFlyout = () => {
               size="s"
               backgroundStyle="shaded"
             >
-              <EuiFlyoutMenu title="Child flyout: Shaded background style" />
               <ChildFlyoutContent />
             </EuiFlyoutChild>
           )}
