@@ -56,12 +56,24 @@ Elastic engineers have the option to deploy a local EUI package in Kibana. To do
 #### Generate and link a local EUI package
 
 - Follow the steps above to create a local package of EUI using `yarn build-pack`
-- Copy the generated `.tgz` package file to the Kibana root
-- Point the `package.json` file in Kibana to that local file: `"@elastic/eui": "./elastic-eui-xx.x.x.tgz"`.
+- Copy the generated `.tgz` package file(s) to the Kibana root
+- Point the `package.json` file in Kibana to that local file: `"@elastic/eui": "file:./elastic-eui-xx.x.x.tgz"`.
+- Add `"@elastic/eui-theme-common"` to the `package.json` and point it either to the local package you copied, or add the published version that matches the version listed as a dependency in your local `@elastic/eui` package
+
+```bash
+# default release version, no local package for @elastic/eui-theme-common
+"@elastic/eui-theme-common": "3.0.0"
+
+# with local package added
+"@elastic/eui-theme-common": "file:./elastic_eui_theme_common_xx.x.x.tgz"
+
+```
+
 - Run `yarn kbn bootstrap`
 - Commit the changed files (`package.json`. `yarn.lock` and EUI `.tgz` package) and push your branch
 - Create a Kibana (draft) pull request
   - Kibana CI will run tests on this instance with your custom EUI package
+  - To ensure CI works correctly, you'll need to add `@elastic/eui-theme-common` to `packages/kbn-dependency-ownership/src/rule.ts` ([example](https://github.com/elastic/kibana/pull/227054/files)) and `src/dev/license_checker/config.ts` ([example](https://github.com/elastic/kibana/pull/227054/files#diff-373e937e773b0370ab1d28f3cf90251dcbd3cf95546f8c54b6bb6b1f999999dcR96))
 
 #### Deploy the custom EUI package
 
