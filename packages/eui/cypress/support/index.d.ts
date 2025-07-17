@@ -56,6 +56,12 @@ declare global {
        * @returns a chainable .then((string) => { doSomethingWith(string); })
        */
       selectAndCopy(selectorToCopy: string): Chainable<string>;
+
+      /*
+       * Get the value of a CSS variable from the element's computed styles.
+       * Params: variableName - the name of the CSS variable (e.g. '--euiColorPrimary')
+       */
+      cssVar(variableName: string): Chainable<string | null>;
     }
   }
 }

@@ -32,6 +32,7 @@ import {
   useIsWithinMinBreakpoint,
   useEuiMemoizedStyles,
   useGeneratedHtmlId,
+  useEuiThemeCSSVariables,
 } from '../../services';
 import { logicalStyle } from '../../global_styling';
 
@@ -217,6 +218,8 @@ export const EuiFlyout = forwardRef(
       ...rest
     } = usePropsWithComponentDefaults('EuiFlyout', props);
 
+    const { setGlobalCSSVariables } = useEuiThemeCSSVariables();
+
     const Element = as || defaultElement;
     const maskRef = useRef<HTMLDivElement>(null);
 
@@ -293,13 +296,24 @@ export const EuiFlyout = forwardRef(
       if (isPushed) {
         const paddingSide =
           side === 'left' ? 'paddingInlineStart' : 'paddingInlineEnd';
+        const cssVarName = `--euiPushFlyoutOffset${
+          side === 'left' ? 'InlineStart' : 'InlineEnd'
+        }`;
 
         document.body.style[paddingSide] = `${width}px`;
+
+        // EUI doesn't use this css variable, but it is useful for consumers
+        setGlobalCSSVariables({
+          [cssVarName]: `${width}px`,
+        });
         return () => {
           document.body.style[paddingSide] = '';
+          setGlobalCSSVariables({
+            [cssVarName]: null,
+          });
         };
       }
-    }, [isPushed, side, width]);
+    }, [isPushed, setGlobalCSSVariables, side, width]);
 
     /**
      * This class doesn't actually do anything by EUI, but is nice to add for consumers (JIC)
