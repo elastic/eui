@@ -139,6 +139,10 @@ Ensures that form control components within `EuiFormRow` components have matchin
 
 Ensures `disableScreenReaderOutput` is set when `EuiToolTip` content matches `EuiButtonIcon` "aria-label".
 
+### `@elastic/eui/prefer_eui_icon_tip`
+
+Ensure `EuiIconTip` is used rather than `<EuiTooltip><EuiIcon /></EuiTooltip>`, as it provides better accessibility and improved support for assistive technologies.
+
 ## Testing
 
 ### Running unit tests

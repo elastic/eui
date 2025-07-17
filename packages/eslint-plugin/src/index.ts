@@ -24,6 +24,7 @@ import { NoCssColor } from './rules/no_css_color';
 import { RequireAriaLabelForModals } from './rules/a11y/require_aria_label_for_modals';
 import { ConsistentIsInvalidProps } from './rules/a11y/consistent_is_invalid_props';
 import { ScreenReaderOutputDisabledTooltip } from './rules/a11y/sr_output_disabled_tooltip';
+import { PreferEuiIconTip } from './rules/a11y/prefer_eui_icon_tip';
 
 const config = {
   rules: {
@@ -33,6 +34,7 @@ const config = {
     'require-aria-label-for-modals': RequireAriaLabelForModals,
     'consistent-is-invalid-props': ConsistentIsInvalidProps,
     'sr_output_disabled_tooltip': ScreenReaderOutputDisabledTooltip,
+    'prefer_eui_icon_tip': PreferEuiIconTip,
   },
   configs: {
     recommended: {
@@ -44,6 +46,8 @@ const config = {
         '@elastic/eui/require-aria-label-for-modals': 'warn',
         '@elastic/eui/consistent-is-invalid-props': 'warn',
         '@elastic/eui/sr_output_disabled_tooltip': 'warn',
+        '@elastic/eui/no-css_color': 'warn',
+        '@elastic/eui/prefer_eui_icon_tip': 'warn',
       },
     },
   },
