@@ -100,7 +100,7 @@ export interface EuiShadowXLarge extends EuiShadowOptions {
 }
 export const euiShadowXLarge = (
   { euiTheme, highContrastMode }: UseEuiTheme,
-  options?: EuiShadowOptions
+  options?: EuiShadowXLarge
 ) => {
   if (highContrastMode) {
     return _highContrastBorder(euiTheme, options);
