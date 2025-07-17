@@ -58,7 +58,7 @@ Elastic engineers have the option to deploy a local EUI package in Kibana. To do
 - Follow the steps above to create a local package of EUI using `yarn build-pack`
 - Copy the generated `.tgz` package file(s) to the Kibana root
 - Point the `package.json` file in Kibana to that local file: `"@elastic/eui": "file:./elastic-eui-xx.x.x.tgz"`.
-- Add `"@elastic/eui-theme-common"` to the `package.json` and point it either to the local package you copied or add the release version that matches the version linked in your local eui package
+- Add `"@elastic/eui-theme-common"` to the `package.json` and point it either to the local package you copied, or add the published version that matches the version listed as a dependency in your local `@elastic/eui` package
 
 ```bash
 # default release version, no local package for @elastic/eui-theme-common
