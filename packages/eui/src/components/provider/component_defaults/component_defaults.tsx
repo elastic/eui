@@ -17,6 +17,7 @@ import React, {
 import type { EuiPortalProps } from '../../portal';
 import type { EuiFocusTrapProps } from '../../focus_trap';
 import type { EuiTablePaginationProps, EuiTableProps } from '../../table';
+// import { EuiFlyoutProps } from '../../flyout';
 
 export type EuiComponentDefaults = {
   /**
@@ -43,6 +44,8 @@ export type EuiComponentDefaults = {
    * Defaults will be inherited by all `EuiBasicTable`s and `EuiInMemoryTable`s.
    */
   EuiTable?: Pick<EuiTableProps, 'responsiveBreakpoint'>;
+  // If we export managed, we can enable
+  // EuiFlyout?: Pick<EuiFlyoutProps, 'managed'>;
 };
 
 // Declaring as a static const for reference integrity/reducing rerenders
