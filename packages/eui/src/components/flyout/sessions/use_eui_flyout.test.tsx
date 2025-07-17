@@ -10,12 +10,12 @@ import React from 'react';
 import { render, fireEvent, screen } from '@testing-library/react';
 
 import { EuiFlyoutSessionProvider } from './flyout_provider';
-import {
-  useEuiFlyoutSession,
+import type {
   EuiFlyoutSessionOpenMainOptions,
   EuiFlyoutSessionOpenChildOptions,
   EuiFlyoutSessionOpenGroupOptions,
-} from './use_eui_flyout';
+} from './types';
+import { useEuiFlyoutSession } from './use_eui_flyout';
 
 // Mock the flyout components for testing
 jest.mock('../flyout', () => ({
@@ -37,7 +37,7 @@ interface TestComponentProps {
   onOpenChildFlyout?: () => void;
   onOpenFlyoutGroup?: () => void;
   onGoBack?: () => void;
-  onClearHistory?: () => void;
+  onCloseSession?: () => void;
 }
 
 const TestComponent: React.FC<TestComponentProps> = ({
@@ -45,7 +45,7 @@ const TestComponent: React.FC<TestComponentProps> = ({
   onOpenChildFlyout,
   onOpenFlyoutGroup,
   onGoBack,
-  onClearHistory,
+  onCloseSession,
 }) => {
   const {
     openFlyout,
@@ -56,7 +56,7 @@ const TestComponent: React.FC<TestComponentProps> = ({
     isFlyoutOpen,
     isChildFlyoutOpen,
     canGoBack,
-    clearHistory,
+    closeSession,
   } = useEuiFlyoutSession();
 
   return (
@@ -133,13 +133,13 @@ const TestComponent: React.FC<TestComponentProps> = ({
       </button>
 
       <button
-        data-testid="clearHistoryButton"
+        data-testid="closeSessionButton"
         onClick={() => {
-          clearHistory();
-          if (onClearHistory) onClearHistory();
+          closeSession();
+          if (onCloseSession) onCloseSession();
         }}
       >
-        Clear History
+        Close Session
       </button>
 
       <div data-testid="flyoutStatus">
@@ -320,21 +320,21 @@ describe('useEuiFlyoutSession', () => {
     );
   });
 
-  test('clearHistory closes all flyouts', () => {
-    const onClearHistory = jest.fn();
+  test('closeSession closes all flyouts', () => {
+    const onCloseSession = jest.fn();
     render(
       <TestWrapper>
-        <TestComponent onClearHistory={onClearHistory} />
+        <TestComponent onCloseSession={onCloseSession} />
       </TestWrapper>
     );
 
     // Open both flyouts
     fireEvent.click(screen.getByTestId('openFlyoutGroupButton'));
 
-    // Clear history should close everything
-    fireEvent.click(screen.getByTestId('clearHistoryButton'));
+    // Close Session should close everything
+    fireEvent.click(screen.getByTestId('closeSessionButton'));
 
-    expect(onClearHistory).toHaveBeenCalledTimes(1);
+    expect(onCloseSession).toHaveBeenCalledTimes(1);
     expect(screen.getByTestId('flyoutStatus').textContent).toBe(
       'Flyout is closed'
     );
@@ -381,7 +381,7 @@ describe('useEuiFlyoutSession', () => {
   });
 
   describe('onUnmount callback', () => {
-    test('is called when all flyouts are closed via clearHistory', () => {
+    test('is called when all flyouts are closed via closeSession', () => {
       const onUnmount = jest.fn();
       render(
         <TestWrapper onUnmount={onUnmount}>
@@ -396,8 +396,8 @@ describe('useEuiFlyoutSession', () => {
       );
       expect(onUnmount).not.toHaveBeenCalled();
 
-      // Clear history, which should close all flyouts and trigger onUnmount
-      fireEvent.click(screen.getByTestId('clearHistoryButton'));
+      // Close Session, which should close all flyouts and trigger onUnmount
+      fireEvent.click(screen.getByTestId('closeSessionButton'));
       expect(screen.getByTestId('flyoutStatus').textContent).toBe(
         'Flyout is closed'
       );
