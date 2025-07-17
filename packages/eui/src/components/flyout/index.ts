@@ -35,7 +35,7 @@ export type {
   EuiFlyoutSessionOpenChildOptions,
   EuiFlyoutSessionOpenGroupOptions,
   EuiFlyoutSessionOpenMainOptions,
-  EuiFlyoutSessionOpenSystemOptions,
+  EuiFlyoutSessionOpenManagedOptions,
   EuiFlyoutSessionProviderComponentProps,
   EuiFlyoutSessionRenderContext,
 } from './sessions';

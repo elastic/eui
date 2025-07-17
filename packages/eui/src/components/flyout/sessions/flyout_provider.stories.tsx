@@ -32,7 +32,7 @@ import type {
   EuiFlyoutSessionOpenChildOptions,
   EuiFlyoutSessionOpenGroupOptions,
   EuiFlyoutSessionOpenMainOptions,
-  EuiFlyoutSessionOpenSystemOptions,
+  EuiFlyoutSessionOpenManagedOptions,
   EuiFlyoutSessionRenderContext,
   EuiFlyoutSessionGroup,
 } from './types';
@@ -95,7 +95,7 @@ const ShoppingCartContent: React.FC<ShoppingCartContentProps> = ({
 }) => {
   const {
     openChildFlyout,
-    openSystemFlyout,
+    openManagedFlyout,
     isChildFlyoutOpen,
     closeChildFlyout,
     closeSession,
@@ -118,7 +118,7 @@ const ShoppingCartContent: React.FC<ShoppingCartContentProps> = ({
   };
 
   const handleProceedToReview = () => {
-    const options: EuiFlyoutSessionOpenSystemOptions<ECommerceAppMeta> = {
+    const options: EuiFlyoutSessionOpenManagedOptions<ECommerceAppMeta> = {
       title: 'Review order',
       hideTitle: true, // title will only show in the history popover
       size: 'm',
@@ -133,7 +133,7 @@ const ShoppingCartContent: React.FC<ShoppingCartContentProps> = ({
         },
       },
     };
-    openSystemFlyout(options);
+    openManagedFlyout(options);
   };
 
   return (
@@ -190,7 +190,7 @@ const ShoppingCartContent: React.FC<ShoppingCartContentProps> = ({
 const ReviewOrderContent: React.FC<ReviewOrderContentProps> = ({
   itemQuantity,
 }) => {
-  const { goBack, openSystemFlyout, closeSession } = useEuiFlyoutSession();
+  const { goBack, openManagedFlyout, closeSession } = useEuiFlyoutSession();
 
   return (
     <>
@@ -208,7 +208,7 @@ const ReviewOrderContent: React.FC<ReviewOrderContentProps> = ({
         <EuiSpacer />
         <EuiButton
           onClick={() =>
-            openSystemFlyout({
+            openManagedFlyout({
               title: 'Order confirmed',
               size: 'm',
               flyoutProps: {
@@ -302,7 +302,7 @@ const OrderConfirmedContent: React.FC<OrderConfirmedContentProps> = ({
 // Component for the main control buttons and state display
 const ECommerceAppControls: React.FC = () => {
   const {
-    openSystemFlyout,
+    openManagedFlyout,
     goBack,
     isFlyoutOpen,
     canGoBack,
@@ -320,7 +320,7 @@ const ECommerceAppControls: React.FC = () => {
     }
   };
   const handleOpenShoppingCart = () => {
-    const options: EuiFlyoutSessionOpenSystemOptions<ECommerceAppMeta> = {
+    const options: EuiFlyoutSessionOpenManagedOptions<ECommerceAppMeta> = {
       title: 'Shopping cart',
       hideTitle: true, // title will only show in the history popover
       size: 'm',
@@ -336,7 +336,7 @@ const ECommerceAppControls: React.FC = () => {
         },
       },
     };
-    openSystemFlyout(options);
+    openManagedFlyout(options);
   };
 
   return (
@@ -460,9 +460,9 @@ interface DeepHistoryAppMeta {
   page: 'page01' | 'page02' | 'page03' | 'page04' | 'page05' | '';
 }
 
-const getHistorySystemFlyoutOptions = (
+const getHistoryManagedFlyoutOptions = (
   page: DeepHistoryAppMeta['page']
-): EuiFlyoutSessionOpenSystemOptions<DeepHistoryAppMeta> => {
+): EuiFlyoutSessionOpenManagedOptions<DeepHistoryAppMeta> => {
   return {
     title: page,
     size: 'm',
@@ -476,7 +476,7 @@ const getHistorySystemFlyoutOptions = (
 };
 
 const DeepHistoryPage: React.FC<DeepHistoryAppMeta> = ({ page }) => {
-  const { openSystemFlyout, closeSession } = useEuiFlyoutSession();
+  const { openManagedFlyout, closeSession } = useEuiFlyoutSession();
   const [nextPage, setNextPage] = useState<DeepHistoryAppMeta['page']>('');
 
   useEffect(() => {
@@ -500,8 +500,8 @@ const DeepHistoryPage: React.FC<DeepHistoryAppMeta> = ({ page }) => {
   }, [page]);
 
   const handleOpenNextFlyout = () => {
-    const options = getHistorySystemFlyoutOptions(nextPage);
-    openSystemFlyout(options);
+    const options = getHistoryManagedFlyoutOptions(nextPage);
+    openManagedFlyout(options);
   };
 
   return (
@@ -544,18 +544,18 @@ const DeepHistoryPage: React.FC<DeepHistoryAppMeta> = ({ page }) => {
 
 // Component for the main control buttons and state display
 const DeepHistoryAppControls: React.FC = () => {
-  const { openSystemFlyout, isFlyoutOpen } = useEuiFlyoutSession();
+  const { openManagedFlyout, isFlyoutOpen } = useEuiFlyoutSession();
   const { state } = useEuiFlyoutSessionContext(); // Use internal hook for displaying raw state
 
-  const handleOpenSystemFlyout = () => {
-    const options = getHistorySystemFlyoutOptions('page01');
-    openSystemFlyout(options);
+  const handleOpenManagedFlyout = () => {
+    const options = getHistoryManagedFlyoutOptions('page01');
+    openManagedFlyout(options);
   };
 
   return (
     <>
       <EuiButton
-        onClick={handleOpenSystemFlyout}
+        onClick={handleOpenManagedFlyout}
         isDisabled={isFlyoutOpen}
         fill
       >
@@ -580,7 +580,7 @@ const DeepHistoryApp: React.FC = () => {
   return (
     <EuiFlyoutSessionProvider
       renderMainFlyoutContent={renderMainFlyoutContent}
-      onUnmount={() => loggerAction('System flyouts have been unmounted')}
+      onUnmount={() => loggerAction('All flyouts have been unmounted')}
     >
       <DeepHistoryAppControls />
     </EuiFlyoutSessionProvider>

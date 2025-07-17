@@ -21,9 +21,9 @@ export interface EuiFlyoutSessionConfig {
   mainFlyoutProps?: Partial<Omit<EuiFlyoutProps, 'children'>>;
   childFlyoutProps?: Partial<Omit<EuiFlyoutChildProps, 'children'>>;
   /**
-   * Indicates if the flyout was opened with openSystemFlyout or openFlyout
+   * Indicates if the flyout was opened with openManagedFlyout or openFlyout
    */
-  isSystem?: boolean;
+  isManaged?: boolean;
 }
 
 /**
@@ -38,7 +38,7 @@ export interface EuiFlyoutSessionOpenMainOptions<Meta = unknown> {
   meta?: Meta;
 }
 
-export interface EuiFlyoutSessionOpenSystemOptions<Meta = unknown> {
+export interface EuiFlyoutSessionOpenManagedOptions<Meta = unknown> {
   size: EuiFlyoutSize;
   flyoutProps?: EuiFlyoutSessionConfig['mainFlyoutProps'];
   /**
@@ -73,7 +73,7 @@ export interface EuiFlyoutSessionOpenChildOptions<Meta = unknown> {
  * Options for opening both a main flyout and child flyout simultaneously
  */
 export interface EuiFlyoutSessionOpenGroupOptions<Meta = unknown> {
-  main: EuiFlyoutSessionOpenSystemOptions;
+  main: EuiFlyoutSessionOpenManagedOptions;
   child: EuiFlyoutSessionOpenChildOptions;
   /**
    * Caller-defined data
@@ -116,8 +116,8 @@ export type EuiFlyoutSessionAction<FlyoutMeta = unknown> =
       payload: EuiFlyoutSessionOpenMainOptions<FlyoutMeta>;
     }
   | {
-      type: 'OPEN_SYSTEM_FLYOUT';
-      payload: EuiFlyoutSessionOpenSystemOptions<FlyoutMeta>;
+      type: 'OPEN_MANAGED_FLYOUT';
+      payload: EuiFlyoutSessionOpenManagedOptions<FlyoutMeta>;
     }
   | {
       type: 'OPEN_CHILD_FLYOUT';
@@ -162,7 +162,7 @@ export interface EuiFlyoutSessionProviderComponentProps<FlyoutMeta = any> {
 }
 
 export interface EuiFlyoutSessionApi {
-  openSystemFlyout: (options: EuiFlyoutSessionOpenSystemOptions) => void;
+  openManagedFlyout: (options: EuiFlyoutSessionOpenManagedOptions) => void;
   openFlyout: (options: EuiFlyoutSessionOpenMainOptions) => void;
   openChildFlyout: (options: EuiFlyoutSessionOpenChildOptions) => void;
   openFlyoutGroup: (options: EuiFlyoutSessionOpenGroupOptions) => void;

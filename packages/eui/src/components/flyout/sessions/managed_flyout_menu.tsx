@@ -20,10 +20,10 @@ import { EuiFlyoutSessionGroup } from './types';
 
 /**
  * Top flyout menu bar
- * This automatically appears for "system flyouts" (those that were opened with `openSystemFlyout`),
+ * This automatically appears for "managed flyouts" (those that were opened with `openManagedFlyout`),
  * @internal
  */
-export const FlyoutSystemMenu = (
+export const ManagedFlyoutMenu = (
   props: Pick<EuiFlyoutMenuProps, 'title'> & {
     handleGoBack: () => void;
     handleGoToHistoryItem: (index: number) => void;

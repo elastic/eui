@@ -9,7 +9,7 @@
 import React from 'react';
 import { fireEvent } from '@testing-library/react';
 import { render } from '../../../test/rtl';
-import { FlyoutSystemMenu } from './system_flyout_menu';
+import { ManagedFlyoutMenu } from './managed_flyout_menu';
 import { EuiFlyoutSessionGroup } from './types';
 
 describe('FlyoutSystemMenu', () => {
@@ -28,7 +28,7 @@ describe('FlyoutSystemMenu', () => {
 
   it('renders with a title', () => {
     const { getByText } = render(
-      <FlyoutSystemMenu
+      <ManagedFlyoutMenu
         title="Test Title"
         historyItems={[]}
         handleGoBack={() => {}}
@@ -40,7 +40,7 @@ describe('FlyoutSystemMenu', () => {
 
   it('renders without a title', () => {
     const { queryByText } = render(
-      <FlyoutSystemMenu
+      <ManagedFlyoutMenu
         historyItems={[]}
         handleGoBack={() => {}}
         handleGoToHistoryItem={() => {}}
@@ -51,7 +51,7 @@ describe('FlyoutSystemMenu', () => {
 
   it('renders with back button and history popover when history items are present', () => {
     const { getByText, getByLabelText } = render(
-      <FlyoutSystemMenu
+      <ManagedFlyoutMenu
         historyItems={mockHistoryItems}
         handleGoBack={() => {}}
         handleGoToHistoryItem={() => {}}
@@ -64,7 +64,7 @@ describe('FlyoutSystemMenu', () => {
   it('calls handleGoBack when back button is clicked', () => {
     const handleGoBack = jest.fn();
     const { getByText } = render(
-      <FlyoutSystemMenu
+      <ManagedFlyoutMenu
         historyItems={mockHistoryItems}
         handleGoBack={handleGoBack}
         handleGoToHistoryItem={() => {}}
@@ -77,7 +77,7 @@ describe('FlyoutSystemMenu', () => {
   it('calls handleGoToHistoryItem when a history item is clicked', () => {
     const handleGoToHistoryItem = jest.fn();
     const { getByLabelText, getByText } = render(
-      <FlyoutSystemMenu
+      <ManagedFlyoutMenu
         historyItems={mockHistoryItems}
         handleGoBack={() => {}}
         handleGoToHistoryItem={handleGoToHistoryItem}

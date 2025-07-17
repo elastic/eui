@@ -13,7 +13,7 @@ import type {
   EuiFlyoutSessionOpenChildOptions,
   EuiFlyoutSessionOpenGroupOptions,
   EuiFlyoutSessionOpenMainOptions,
-  EuiFlyoutSessionOpenSystemOptions,
+  EuiFlyoutSessionOpenManagedOptions,
 } from './types';
 
 /**
@@ -45,17 +45,17 @@ export function useEuiFlyoutSession(): EuiFlyoutSessionApi {
   };
 
   /**
-   * Open a "system" main flyout, with an automatic top menu bar
+   * Open a "managed" main flyout, with an automatic top menu bar
    */
-  const openSystemFlyout = (options: EuiFlyoutSessionOpenSystemOptions) => {
+  const openManagedFlyout = (options: EuiFlyoutSessionOpenManagedOptions) => {
     dispatch({
-      type: 'OPEN_SYSTEM_FLYOUT',
+      type: 'OPEN_MANAGED_FLYOUT',
       payload: options,
     });
   };
 
   /**
-   * Open a "system" child flyout, with an automatic top menu bar
+   * Open a "managed" child flyout, with an automatic top menu bar
    */
   const openChildFlyout = (options: EuiFlyoutSessionOpenChildOptions) => {
     if (!state.activeFlyoutGroup || !state.activeFlyoutGroup.isMainOpen) {
@@ -71,7 +71,7 @@ export function useEuiFlyoutSession(): EuiFlyoutSessionApi {
   };
 
   /**
-   * Open a pair of system main and child flyouts
+   * Open a pair of managed main and child flyouts
    */
   const openFlyoutGroup = (options: EuiFlyoutSessionOpenGroupOptions) => {
     dispatch({
@@ -100,7 +100,7 @@ export function useEuiFlyoutSession(): EuiFlyoutSessionApi {
 
   return {
     openFlyout,
-    openSystemFlyout,
+    openManagedFlyout,
     openChildFlyout,
     openFlyoutGroup,
     closeChildFlyout,

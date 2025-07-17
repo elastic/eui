@@ -16,7 +16,7 @@ import React, {
 import { EuiFlyoutMenu } from '../flyout_menu';
 import { EuiFlyout, EuiFlyoutChild } from '../index';
 import { flyoutReducer, initialFlyoutState } from './flyout_reducer';
-import { FlyoutSystemMenu } from './system_flyout_menu';
+import { ManagedFlyoutMenu } from './managed_flyout_menu';
 import {
   EuiFlyoutSessionAction,
   EuiFlyoutSessionHistoryState,
@@ -144,8 +144,8 @@ export const EuiFlyoutSessionProvider: React.FC<
           ownFocus={!activeFlyoutGroup.isChildOpen}
           {...flyoutPropsMain}
         >
-          {config?.isSystem && (
-            <FlyoutSystemMenu
+          {config?.isManaged && (
+            <ManagedFlyoutMenu
               handleGoBack={handleGoBack}
               handleGoToHistoryItem={handleGoToHistoryItem}
               historyItems={state.history ?? []}

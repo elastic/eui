@@ -100,8 +100,8 @@ export function flyoutReducer<FlyoutMeta>(
       };
     }
 
-    case 'OPEN_SYSTEM_FLYOUT': {
-      const { size, title, hideTitle, flyoutProps, meta } = action.payload; // EuiFlyoutSessionOpenSystemOptions
+    case 'OPEN_MANAGED_FLYOUT': {
+      const { size, title, hideTitle, flyoutProps, meta } = action.payload; // EuiFlyoutSessionOpenManagedOptions
       const newHistory = [...state.history];
 
       if (state.activeFlyoutGroup) {
@@ -112,7 +112,7 @@ export function flyoutReducer<FlyoutMeta>(
         isMainOpen: true,
         isChildOpen: false,
         config: {
-          isSystem: true,
+          isManaged: true,
           mainSize: size,
           mainTitle: title,
           hideMainTitle: hideTitle,
@@ -167,7 +167,7 @@ export function flyoutReducer<FlyoutMeta>(
         isMainOpen: true,
         isChildOpen: true,
         config: {
-          isSystem: true,
+          isManaged: true,
           mainSize: main.size,
           mainTitle: main.title,
           hideMainTitle: main.hideTitle,
