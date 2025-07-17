@@ -8,28 +8,31 @@
 
 import React, { useRef, useEffect } from 'react';
 import {
-  EuiFlyout as EuiFlyoutUnmanaged,
-  _EuiFlyoutProps as EuiFlyoutUnmanagedProps,
+  EuiFlyout as EuiUnmanagedFlyout,
+  _EuiFlyoutProps as EuiUnmanagedFlyoutProps,
 } from '../flyout';
 import {
-  EuiFlyoutManaged,
-  EuiFlyoutManagedBaseProps,
+  EuiManagedFlyout,
+  EuiManagedFlyoutBaseProps,
 } from './eui_flyout_managed';
 // import { usePropsWithComponentDefaults } from '../../provider/component_defaults';
 import { htmlIdGenerator } from '../../../services';
-import { useCreateFlyoutRenderer, useIsFlyoutRendered } from './flyout_manager';
+import {
+  useCreateManagedFlyoutRenderer,
+  useIsManagedFlyoutRendered,
+} from './hooks';
 
 /**
  * Props for an unmanaged flyout. Used when `managed` is false or undefined.
  */
-interface UnmanagedProps extends EuiFlyoutUnmanagedProps {
+interface UnmanagedProps extends EuiUnmanagedFlyoutProps {
   managed?: false;
 }
 
 /**
  * Props for a managed flyout. Used when `managed` is true.
  */
-type ManagedProps = EuiFlyoutManagedBaseProps & {
+type ManagedProps = EuiManagedFlyoutBaseProps & {
   flyoutId?: string;
   managed?: true;
 };
@@ -43,7 +46,7 @@ export type EuiFlyoutProps = UnmanagedProps | ManagedProps;
  * Generates a unique managed flyout id, optionally namespaced by a provided id.
  */
 export const generateManagedFlyoutId = (id?: string) =>
-  htmlIdGenerator('euiFlyout')(id);
+  htmlIdGenerator('euiManagedFlyout')(id);
 
 /**
  * Type guard for managed flyout props.
@@ -53,9 +56,6 @@ export const generateManagedFlyoutId = (id?: string) =>
 // }
 
 /**
- * Internal component for rendering a managed flyout.
- */
-/**
  * Internal component for rendering a managed flyout. Handles registration and rendering
  * of the flyout instance in the flyout manager context.
  */
@@ -63,25 +63,26 @@ const InternalManagedFlyout = (props: ManagedProps) => {
   // Generate or reuse a flyout id for this managed instance
   const flyoutId = useRef(props.flyoutId || generateManagedFlyoutId());
   // Check if this flyout is already rendered in the tree
-  const isRendered = useIsFlyoutRendered();
+  const isRendered = useIsManagedFlyoutRendered();
 
   // Get a callback that will render this flyout when invoked
-  const createFlyoutRenderer = useCreateFlyoutRenderer({
+  const createManagedFlyoutRenderer = useCreateManagedFlyoutRenderer({
     id: flyoutId.current,
     onClose: props.onClose,
   });
 
   useEffect(() => {
-    // Only register the flyout if not already rendered
+    // Only create a renderer for the flyout if not already rendered
     if (!isRendered) {
-      flyoutId.current = createFlyoutRenderer(({ onClose, id: flyoutId }) => (
-        <EuiFlyoutManaged {...{ ...props, onClose, flyoutId }} />
-      ));
+      flyoutId.current = createManagedFlyoutRenderer(
+        ({ onClose, id: flyoutId }) => (
+          <EuiManagedFlyout {...{ ...props, onClose, flyoutId }} />
+        )
+      );
     }
-  }, [isRendered, props, createFlyoutRenderer]);
+  }, [isRendered, props, createManagedFlyoutRenderer]);
 
-  // Always render the managed flyout with its id
-  return <EuiFlyoutManaged {...{ ...props, flyoutId: flyoutId.current }} />;
+  return <EuiManagedFlyout {...{ ...props, flyoutId: flyoutId.current }} />;
 };
 
 /**
@@ -101,6 +102,6 @@ export const EuiFlyout = (initialProps: EuiFlyoutProps) => {
   if (managed) {
     return <InternalManagedFlyout {...props} />;
   } else {
-    return <EuiFlyoutUnmanaged {...props} />;
+    return <EuiUnmanagedFlyout {...props} />;
   }
 };

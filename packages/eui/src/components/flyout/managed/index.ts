@@ -6,5 +6,13 @@
  * Side Public License, v 1.
  */
 
-export { EuiFlyout } from './eui_flyout';
-export type { EuiFlyoutProps } from './eui_flyout';
+export { EuiFlyout, type EuiFlyoutProps } from './eui_flyout';
+
+export { ManagedFlyoutProvider } from './context';
+
+export {
+  useCreateManagedFlyoutRenderer,
+  useIsManagedFlyoutAdded,
+  useIsManagedFlyoutActive,
+  useIsManagedFlyoutRendered,
+} from './hooks';

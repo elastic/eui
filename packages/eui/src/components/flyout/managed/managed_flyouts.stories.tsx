@@ -20,10 +20,10 @@ import {
   EuiTitle,
 } from '../../index';
 import { EuiFlyout, EuiFlyoutProps } from './eui_flyout';
-import { useCreateFlyoutRenderer } from './flyout_manager';
+import { useCreateManagedFlyoutRenderer } from './hooks';
 
 const meta: Meta<typeof EuiFlyout> = {
-  title: 'Layout/EuiFlyout/EuiFlyoutManaged',
+  title: 'Layout/EuiFlyout/EuiManagedFlyout',
   component: EuiFlyout,
 };
 
@@ -41,12 +41,12 @@ interface ECommerceContentProps {
 
 /**
  *
- * The flyout system allows custom meta data to be provided by the consumer, in the "EuiFlyoutSessionOpen*Options"
- * interfaces. In the advanced use case, (WithHistoryApp), we're using metadata within the renderMainFlyoutContent
+ * The flyout system allows custom meta data to be provided by the consumer, in the "EuiManagedFlyoutSessionOpen*Options"
+ * interfaces. In the advanced use case, (WithHistoryApp), we're using metadata within the renderMainManagedFlyoutContent
  * function as a conditional to determine which component to render in the main flyout.
  */
 // interface WithHistoryAppMeta {
-//   ecommerceMainFlyoutKey?: 'shoppingCart' | 'reviewOrder';
+//   ecommerceMainManagedFlyoutKey?: 'shoppingCart' | 'reviewOrder';
 // }
 
 interface ShoppingCartContentProps
@@ -55,7 +55,7 @@ interface ShoppingCartContentProps
   onQuantityChange: (delta: number) => void;
 }
 
-const ShoppingCartFlyout: React.FC<ShoppingCartContentProps> = ({
+const ShoppingCartManagedFlyout: React.FC<ShoppingCartContentProps> = ({
   itemQuantity,
   onQuantityChange,
   onClose: onCloseProp,
@@ -67,11 +67,11 @@ const ShoppingCartFlyout: React.FC<ShoppingCartContentProps> = ({
     onCloseProp(event);
   };
 
-  const renderer = useCreateFlyoutRenderer();
+  const renderer = useCreateManagedFlyoutRenderer();
 
   const handleProceedToReview = () => {
     renderer((props) => (
-      <ReviewOrderFlyout {...props} itemQuantity={itemQuantity} />
+      <ReviewOrderManagedFlyout {...props} itemQuantity={itemQuantity} />
     ));
   };
 
@@ -121,7 +121,10 @@ const ShoppingCartFlyout: React.FC<ShoppingCartContentProps> = ({
         </EuiButton>
       </EuiFlyoutFooter>
       {isItemDetailsOpen && (
-        <ItemDetailsFlyout onClose={onClose} itemQuantity={itemQuantity} />
+        <ItemDetailsManagedFlyout
+          onClose={onClose}
+          itemQuantity={itemQuantity}
+        />
       )}
     </EuiFlyout>
   );
@@ -131,7 +134,7 @@ interface ReviewOrderContentProps
   extends ECommerceContentProps,
     Pick<EuiFlyoutProps, 'onClose'> {}
 
-const ReviewOrderFlyout: React.FC<ReviewOrderContentProps> = ({
+const ReviewOrderManagedFlyout: React.FC<ReviewOrderContentProps> = ({
   itemQuantity,
   ...props
 }) => {
@@ -189,7 +192,7 @@ interface ItemDetailsContentProps
   extends ECommerceContentProps,
     Pick<EuiFlyoutProps, 'onClose'> {}
 
-const ItemDetailsFlyout: React.FC<ItemDetailsContentProps> = ({
+const ItemDetailsManagedFlyout: React.FC<ItemDetailsContentProps> = ({
   itemQuantity,
   onClose,
 }) => {
@@ -238,7 +241,7 @@ const BasicExampleComponent = () => {
         </EuiButton>
       </EuiFlexGroup>
       {isShoppingCartOpen && (
-        <ShoppingCartFlyout
+        <ShoppingCartManagedFlyout
           onClose={() => setIsShoppingCartOpen(false)}
           onQuantityChange={(delta: number) =>
             setItemQuantity(itemQuantity + delta)
@@ -247,7 +250,7 @@ const BasicExampleComponent = () => {
         />
       )}
       {isReviewCartOpen && (
-        <ReviewOrderFlyout
+        <ReviewOrderManagedFlyout
           onClose={() => setIsReviewCartOpen(false)}
           itemQuantity={itemQuantity}
         />

@@ -9,9 +9,9 @@
 import React, { useEffect, useRef } from 'react';
 import {
   useFlyoutManager,
-  useIsRegistered,
-  useIsActive,
-} from './flyout_manager';
+  useIsManagedFlyoutAdded,
+  useIsManagedFlyoutActive,
+} from './hooks';
 import {
   EuiFlyout as EuiFlyoutMain,
   EuiFlyoutProps as EuiFlyoutMainProps,
@@ -35,42 +35,42 @@ interface ChildFlyoutProps extends EuiFlyoutChildProps {
 /**
  * Base props for a managed flyout (either main or child).
  */
-export type EuiFlyoutManagedBaseProps = MainFlyoutProps | ChildFlyoutProps;
+export type EuiManagedFlyoutBaseProps = MainFlyoutProps | ChildFlyoutProps;
 
 /**
- * Props for the EuiFlyoutManaged component.
+ * Props for the EuiManagedFlyout component.
  */
-type EuiFlyoutManagedProps = {
+export type EuiManagedFlyoutProps = {
   flyoutId: string;
-} & EuiFlyoutManagedBaseProps;
+} & EuiManagedFlyoutBaseProps;
 
 /**
  * Type guard for child flyout props.
  */
-function isChildFlyout(
-  props: EuiFlyoutManagedBaseProps
+function isChildManagedFlyout(
+  props: EuiManagedFlyoutBaseProps
 ): props is ChildFlyoutProps {
   return (props as any).level === 'child';
 }
 
 /**
- * EuiFlyoutManaged component. Handles registration, stacking, and lifecycle of a managed flyout.
+ * EuiManagedFlyout component. Handles registration, stacking, and lifecycle of a managed flyout.
  * Uses context to coordinate with the flyout manager.
  */
-export const EuiFlyoutManaged = (props: EuiFlyoutManagedProps) => {
-  const { addFlyout, closeFlyout } = useFlyoutManager();
+export const EuiManagedFlyout = (props: EuiManagedFlyoutProps) => {
+  const { addManagedFlyout, closeManagedFlyout } = useFlyoutManager();
   const isOpen = useRef(false);
 
   // Extract relevant props
   const { onClose, flyoutId } = props;
-  const isActive = useIsActive(flyoutId);
-  const isRegistered = useIsRegistered(flyoutId);
+  const isActive = useIsManagedFlyoutActive(flyoutId);
+  const isRegistered = useIsManagedFlyoutAdded(flyoutId);
 
   // Register the flyout on mount, unregister on unmount
   useEffect(() => {
-    addFlyout(flyoutId);
+    addManagedFlyout(flyoutId);
     return () => {
-      closeFlyout(flyoutId);
+      closeManagedFlyout(flyoutId);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [flyoutId]);
@@ -91,7 +91,7 @@ export const EuiFlyoutManaged = (props: EuiFlyoutManagedProps) => {
   }
 
   // Render a child or main flyout depending on props
-  if (isChildFlyout(props)) {
+  if (isChildManagedFlyout(props)) {
     return <EuiFlyoutChild {...props} />;
   } else {
     const { flyoutId, ...rest } = props;
