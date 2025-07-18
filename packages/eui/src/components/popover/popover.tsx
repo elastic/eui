@@ -406,6 +406,7 @@ export class EuiPopover extends Component<Props, State> {
     this.closingTransitionAnimationFrame = window.requestAnimationFrame(() => {
       this.setState({
         isOpening: true,
+        isClosing: false,
       });
     });
 

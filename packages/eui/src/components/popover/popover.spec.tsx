@@ -173,6 +173,48 @@ describe('EuiPopover', () => {
     });
   });
 
+  describe('toggle click behavior', () => {
+    it('closes the popover on outside click after multiple clicks on the trigger', () => {
+      cy.mount(
+        <PopoverComponent initialFocus="#test">
+          <button data-test-subj="popover-toggle">Test</button>
+        </PopoverComponent>
+      );
+
+      cy.get('[data-test-subj="togglePopover"]').click();
+      cy.get('[data-test-subj="togglePopover"]').click();
+      cy.get('[data-test-subj="togglePopover"]').click();
+      cy.get('[data-test-subj="togglePopover"]').click();
+      cy.get('[data-test-subj="togglePopover"]').click();
+
+      cy.get('[data-test-subj="popoverPanel"]').should('exist');
+
+      cy.get('body').click();
+
+      cy.get('[data-test-subj="popoverPanel"]').should('not.exist');
+    });
+
+    it('closes the popover on ESCAPE keypress after multiple clicks on the trigger', () => {
+      cy.mount(
+        <PopoverComponent initialFocus="#test">
+          <button data-test-subj="popover-toggle">Test</button>
+        </PopoverComponent>
+      );
+
+      cy.get('[data-test-subj="togglePopover"]').click();
+      cy.get('[data-test-subj="togglePopover"]').click();
+      cy.get('[data-test-subj="togglePopover"]').click();
+      cy.get('[data-test-subj="togglePopover"]').click();
+      cy.get('[data-test-subj="togglePopover"]').click();
+
+      cy.get('[data-test-subj="popoverPanel"]').should('exist');
+
+      cy.focused().type('{esc}');
+
+      cy.get('[data-test-subj="popoverPanel"]').should('not.exist');
+    });
+  });
+
   describe('repositionToCrossAxis', () => {
     beforeEach(() => {
       // Set a forced viewport with not enough room to render the popover vertically
