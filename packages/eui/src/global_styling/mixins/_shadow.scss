@@ -1,3 +1,5 @@
+// This is Amsterdam, re-exported in packages/eui/src/themes/amsterdam/global_styling/mixins/_index.scss
+
 @function shadowOpacity($opacity) {
   @if (lightness($euiColorTextParagraph) < 50) {
     @return $opacity * 1;

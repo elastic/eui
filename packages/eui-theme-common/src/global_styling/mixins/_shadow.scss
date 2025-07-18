@@ -1,3 +1,5 @@
+// Unused here, but leaving it 
+// to avoid a breaking change since this is public?
 @function shadowOpacity($opacity) {
   @if (lightness($euiColorTextParagraph) < 50) {
     @return $opacity * 1;
@@ -6,43 +8,65 @@
   }
 }
 
+@function _colorMode() {
+  @if (lightness($euiColorTextParagraph) < 50) {
+    @return 'light';
+  } @else {
+    @return 'dark';
+  }
+}
+
+// $color param is doing nothing
+
+// "xs"
 @mixin euiSlightShadow($color: $euiShadowColor) {
-  box-shadow:
-    0 .8px .8px rgba($color, shadowOpacity(.04)),
-    0 2.3px 2px rgba($color, shadowOpacity(.03));
+  @if _colorMode == 'light' {
+    box-shadow:
+      0px 0px 2px 0px hsl(216.67deg 29.51% 23.92% / 0.16),
+      0px 1px 4px 0px hsl(216.67deg 29.51% 23.92% / 0.06),
+      0px 2px 8px 0px hsl(216.67deg 29.51% 23.92% / 0.04);
+  } @else {
+    box-shadow:
+      0px 0px 0px 1px hsl(216.67deg 29.51% 23.92%),
+      0px 1px 4px 0px hsl(0deg 0% 0% / 0.4),
+      0px 2px 8px 0px hsl(0deg 0% 0% / 0.24);
+  }
 }
 
 @mixin euiBottomShadowSmall($color: $euiShadowColor) {
-  box-shadow:
-    0 .7px 1.4px rgba($color, shadowOpacity(.07)),
-    0 1.9px 4px rgba($color, shadowOpacity(.05)),
-    0 4.5px 10px rgba($color, shadowOpacity(.05));
+  @if _colorMode == 'light' {
+    box-shadow:
+      0px 0px 2px 0px hsl(216.67deg 29.51% 23.92% / 0.16),
+      0px 2px 7px 0px hsl(216.67deg 29.51% 23.92% / 0.08),
+      0px 4px 11px 0px hsl(216.67deg 29.51% 23.92% / 0.05);
+  } @else {
+    box-shadow:
+      0px 0px 0px 1px hsl(216.67deg 29.51% 23.92%),
+      0px 2px 7px 0px hsl(0deg 0% 0% / 0.46),
+      0px 4px 11px 0px hsl(0deg 0% 0% / 0.26);
+  }
 }
 
 @mixin euiBottomShadowMedium($color: $euiShadowColor) {
-  box-shadow:
-    0 .9px 4px -1px rgba($color, shadowOpacity(.08)),
-    0 2.6px 8px -1px rgba($color, shadowOpacity(.06)),
-    0 5.7px 12px -1px rgba($color, shadowOpacity(.05)),
-    0 15px 15px -1px rgba($color, shadowOpacity(.04));
+  @if _colorMode == 'light' {
+    box-shadow:
+      0px 0px 2px 0px hsl(216.67deg 29.51% 23.92% / 0.16),
+      0px 3px 10px 0px hsl(216.67deg 29.51% 23.92% / 0.1),
+      0px 6px 14px 0px hsl(216.67deg 29.51% 23.92% / 0.06);
+  } @else {
+    box-shadow:
+      0px 0px 0px 1px hsl(216.67deg 29.51% 23.92%),
+      0px 3px 10px 0px hsl(0deg 0% 0% / 0.52),
+      0px 6px 14px 0px hsl(0deg 0% 0% / 0.28);
+  }
 }
 
-// Similar to shadow medium but without the bottom depth. Useful for popovers
-// that drop UP rather than DOWN.
 @mixin euiBottomShadowFlat($color: $euiShadowColor) {
-  box-shadow:
-    0 0 .8px rgba($color, shadowOpacity(.06)),
-    0 0 2px rgba($color, shadowOpacity(.04)),
-    0 0 5px rgba($color, shadowOpacity(.04)),
-    0 0 17px rgba($color, shadowOpacity(.03));
+  @include euiSlightShadow($color);
 }
 
 @mixin euiBottomShadow($color: $euiShadowColor) {
-  box-shadow:
-    0 1px 5px rgba($color, shadowOpacity(.1)),
-    0 3.6px 13px rgba($color, shadowOpacity(.07)),
-    0 8.4px 23px rgba($color, shadowOpacity(.06)),
-    0 23px 35px rgba($color, shadowOpacity(.05));
+  @include euiBottomShadowMedium($color);
 }
 
 @mixin euiBottomShadowLarge(
@@ -51,17 +75,33 @@
   $reverse: false
 ) {
   @if ($reverse) {
-    box-shadow:
-      0 -2.7px 9px rgba($color, shadowOpacity(.13)),
-      0 -9.4px 24px rgba($color, shadowOpacity(.09)),
-      0 -21.8px 43px rgba($color, shadowOpacity(.08));
+    @if _colorMode == 'light' {
+      box-shadow:
+        0px 0px 2px 0px hsl(216.67deg 29.51% 23.92% / 0.16),
+        0px -4px 13px 0px hsl(216.67deg 29.51% 23.92% / 0.12),
+        0px -8px 17px 0px hsl(216.67deg 29.51% 23.92% / 0.07);
+    } @else {
+      box-shadow:
+        0px 0px 0px 1px hsl(216.67deg 29.51% 23.92%),
+        0px -4px 13px 0px hsl(0deg 0% 0% / 0.58),
+        0px -8px 17px 0px hsl(0deg 0% 0% / 0.3);
+    }
   } @else {
-    box-shadow:
-      0 2.7px 9px rgba($color, shadowOpacity(.13)),
-      0 9.4px 24px rgba($color, shadowOpacity(.09)),
-      0 21.8px 43px rgba($color, shadowOpacity(.08));
+    @if _colorMode == 'light' {
+      box-shadow:
+        0px 0px 2px 0px hsl(216.67deg 29.51% 23.92% / 0.16),
+        0px 4px 13px 0px hsl(216.67deg 29.51% 23.92% / 0.12),
+        0px 8px 17px 0px hsl(216.67deg 29.51% 23.92% / 0.07);
+    } @else {
+      box-shadow:
+        0px 0px 0px 1px hsl(216.67deg 29.51% 23.92%),
+        0px 4px 13px 0px hsl(0deg 0% 0% / 0.58),
+        0px 8px 17px 0px hsl(0deg 0% 0% / 0.3);
+    }
   }
 }
+
+// Not part of the Borealis shadow spec, used in scroll utilities
 
 // stylelint-disable color-named
 @mixin euiOverflowShadow($direction: 'y', $side: 'both') {
