@@ -7,7 +7,7 @@
  */
 
 import type { UseEuiTheme } from '../../services/theme/types';
-import { getShadowColor } from '../functions';
+import { boxShadowToFilterDropShadow } from '../functions';
 import { _EuiThemeShadowSize } from '../variables/shadow';
 
 export interface EuiShadowOptions {
@@ -56,25 +56,20 @@ export const euiShadowSmall = (
  * bottomShadowMedium
  */
 export const euiShadowMedium = (
-  { euiTheme, colorMode, highContrastMode }: UseEuiTheme,
+  { euiTheme, highContrastMode }: UseEuiTheme,
   options?: EuiShadowOptions
 ) => {
   if (highContrastMode) {
     return _highContrastBorder(euiTheme, options);
   }
   const direction = options?.direction ?? 'down';
-  const color = options?.color || euiTheme.colors.shadow;
+  const boxShadow = euiTheme.shadows.m[direction];
 
   if (options?.property === 'filter') {
-    // Using only one drop-shadow filter instead of multiple is more performant & prevents Safari bugs
-    return `filter: drop-shadow(0 5.7px 9px ${getShadowColor(
-      color,
-      0.2,
-      colorMode
-    )});`;
-  } else {
-    return `box-shadow: ${euiTheme.shadows.m[direction]};`;
+    return boxShadow ? boxShadowToFilterDropShadow(boxShadow) : '';
   }
+
+  return `box-shadow: ${boxShadow};`;
 };
 
 /**
@@ -152,7 +147,7 @@ export const euiShadowFlat = (
     return _highContrastBorder(euiTheme, options);
   }
   const direction = options?.direction ?? 'down';
-  const value = euiTheme.shadows.flat?.[direction] ?? euiTheme.shadows.xs[direction]
+  const value = euiTheme.shadows.flat?.[direction] ?? euiTheme.shadows.xs[direction];
 
   return `box-shadow: ${value};`;
 };
