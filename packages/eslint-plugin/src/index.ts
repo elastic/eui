@@ -47,7 +47,7 @@ const config = {
         '@elastic/eui/consistent-is-invalid-props': 'warn',
         '@elastic/eui/sr_output_disabled_tooltip': 'warn',
         '@elastic/eui/no-css_color': 'warn',
-        '@elastic/eui/prefer_eui_icon_tip': 'warn',
+        '@elastic/eui/prefer-eui-icon-tip': 'warn',
       },
     },
   },
