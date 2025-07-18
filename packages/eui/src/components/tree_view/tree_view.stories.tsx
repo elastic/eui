@@ -73,6 +73,7 @@ export const Playground: Story = {
                 label: "I'm a Bug",
                 id: 'item_bug',
                 icon: <EuiToken iconType="tokenEnum" />,
+                css: ({ euiTheme }) => `color: ${euiTheme.colors.textDanger}`,
               },
             ],
           },
