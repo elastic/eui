@@ -413,7 +413,7 @@ export const shadows: _EuiThemeShadows = {
       ([values]) => formatMultipleBoxShadow(values, true),
       ['shadows.xs.values']
     ),
-  }
+  },
 };
 
 /**
