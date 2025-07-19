@@ -452,7 +452,7 @@ export const shadows: _EuiThemeShadows = {
 /**
  * Format an array of shadow "objects" into a string for CSS.
  * The "up" direction is built by making the y offset from layers
- * two and three, negative.
+ * two and any subsequent layers, negative.
  *
  * @param layers
  * @param up - Modifies some values in order to get the "up" direction
