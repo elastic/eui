@@ -1,3 +1,20 @@
+## [`v106.1.0`](https://github.com/elastic/eui/releases/v106.1.0)
+
+- Added `--euiPushFlyoutOffsetInlineStart` and `--euiPushFlyoutOffsetInlineEnd` global CSS variables set by the `EuiFlyout` in `push` mode. ([#8872](https://github.com/elastic/eui/pull/8872))
+- Reduced the `min-width` for inputs in `EuiRange` and `EuiDualRange` ([#8866](https://github.com/elastic/eui/pull/8866))
+- Added `includeSelectorInFocusTrap` prop for `EuiFlyout` ([#8849](https://github.com/elastic/eui/pull/8849))
+- Added component defaults for `EuiFlyout` that include `includeSelectorInFocusTrap` and `includeFixedHeadersInFocusTrap` ([#8849](https://github.com/elastic/eui/pull/8849))
+
+**Bug fixes**
+
+- Fixed flaky manual return focus behavior on `EuiFlyout` by relying on `FocusTrap` returning focus instead ([#8878](https://github.com/elastic/eui/pull/8878))
+- Fixed `EuiFlyoutChild` closing its parent `EuiFlyout` on `Escape` keypress ([#8878](https://github.com/elastic/eui/pull/8878))
+- Fixed support for `css` key in items object passed to `EuiTreeView` ([#8864](https://github.com/elastic/eui/pull/8864))
+
+**Deprecations**
+
+- Deprecated support for React 16. Please update to a modern version of React or stay on EUI version 106.0.0 if you can't switch right now. ([#8868](https://github.com/elastic/eui/pull/8868))
+
 ## [`v106.0.0`](https://github.com/elastic/eui/releases/v106.0.0)
 
 - Added `colorModes` prop to `EuiSelectableTemplateSitewide` to support granular control over the applied `colorMode` for the search and popover components ([#8806](https://github.com/elastic/eui/pull/8806))
