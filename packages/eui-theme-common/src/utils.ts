@@ -474,13 +474,15 @@ export const getTokenName = (
  * The "up" direction is built by making the y offset from layers
  * two and any subsequent layers, negative.
  *
+ * @todo add a color space param to replace the hard-coded `hsl`
+ *
  * @param layers
  * @param up - Modifies some values in order to get the "up" direction
  * @returns - A value for the CSS `box-shadow` property
  */
 export function formatMultipleBoxShadow(
   layers: _EuiThemeShadowLayer[],
-  up: boolean = false,
+  up: boolean = false
 ) {
   /* prettier-ignore */
   const shadowLayers = layers.map((layer, i) => {
