@@ -33,8 +33,8 @@ const config = {
     'no-css-color': NoCssColor,
     'require-aria-label-for-modals': RequireAriaLabelForModals,
     'consistent-is-invalid-props': ConsistentIsInvalidProps,
-    'sr_output_disabled_tooltip': ScreenReaderOutputDisabledTooltip,
-    'prefer_eui_icon_tip': PreferEuiIconTip,
+    'sr-output-disabled-tooltip': ScreenReaderOutputDisabledTooltip,
+    'prefer-eui-icon-tip': PreferEuiIconTip,
   },
   configs: {
     recommended: {
@@ -45,7 +45,7 @@ const config = {
         '@elastic/eui/no-css-color': 'warn',
         '@elastic/eui/require-aria-label-for-modals': 'warn',
         '@elastic/eui/consistent-is-invalid-props': 'warn',
-        '@elastic/eui/sr_output_disabled_tooltip': 'warn',
+        '@elastic/eui/sr-output-disabled-tooltip': 'warn',
         '@elastic/eui/no-css_color': 'warn',
         '@elastic/eui/prefer-eui-icon-tip': 'warn',
       },
