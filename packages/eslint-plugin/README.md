@@ -135,9 +135,13 @@ Ensures that EUI modal components (`EuiModal`, `EuiFlyout`, `EuiConfirmModal`) h
 
 Ensures that form control components within `EuiFormRow` components have matching `isInvalid` prop values. This maintains consistent validation state between parent form rows and their child form controls, leading to a more predictable and accessible user experience.
 
-### `@elastic/eui/sr_output_disabled_tooltip`
+### `@elastic/eui/sr-output-disabled-tooltip`
 
 Ensures `disableScreenReaderOutput` is set when `EuiToolTip` content matches `EuiButtonIcon` "aria-label".
+
+### `@elastic/eui/prefer-eui-icon-tip`
+
+Ensure `EuiIconTip` is used rather than `<EuiToolTip><EuiIcon/></EuiToolTip>`, as it provides better accessibility and improved support for assistive technologies.
 
 ## Testing
 
