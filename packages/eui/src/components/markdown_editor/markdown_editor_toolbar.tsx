@@ -34,6 +34,9 @@ export type EuiMarkdownEditorToolbarProps = HTMLAttributes<HTMLDivElement> &
     viewMode: MARKDOWN_MODE;
     onClickPreview: MouseEventHandler<HTMLButtonElement>;
     uiPlugins: EuiMarkdownEditorUiPlugin[];
+    toolbarProps?: {
+      right?: React.ReactNode;
+    };
   };
 
 const boldItalicButtons = [
@@ -138,7 +141,14 @@ export const EuiMarkdownEditorToolbar = forwardRef<
   EuiMarkdownEditorToolbarProps
 >(
   (
-    { markdownActions, viewMode, onClickPreview, uiPlugins, selectedNode },
+    {
+      markdownActions,
+      viewMode,
+      onClickPreview,
+      uiPlugins,
+      selectedNode,
+      toolbarProps,
+    },
     ref: Ref<HTMLDivElement>
   ) => {
     const { openPluginEditor, readOnly } = useContext(EuiMarkdownContext);
@@ -239,35 +249,55 @@ export const EuiMarkdownEditorToolbar = forwardRef<
           ) : null}
         </div>
 
-        {isPreviewing ? (
-          <EuiButtonEmpty
-            data-test-subj="markdown_editor_edit_button"
-            iconType="code"
-            color="text"
-            size="s"
-            onClick={onClickPreview}
-            isDisabled={readOnly}
-          >
-            <EuiI18n token="euiMarkdownEditorToolbar.editor" default="Editor" />
-          </EuiButtonEmpty>
+        {toolbarProps?.right ? (
+          toolbarProps?.right
         ) : (
-          <EuiButtonEmpty
-            data-test-subj="markdown_editor_preview_button"
-            iconType="eye"
-            color="text"
-            size="s"
-            onClick={onClickPreview}
-            isDisabled={readOnly}
-          >
-            <EuiI18n
-              token="euiMarkdownEditorToolbar.previewMarkdown"
-              default="Preview"
-            />
-          </EuiButtonEmpty>
+          <PreviewEditorSwitch
+            isPreviewing={isPreviewing}
+            onClickPreview={onClickPreview}
+            readOnly={readOnly}
+          />
         )}
       </div>
     );
   }
 );
+
+const PreviewEditorSwitch = ({
+  isPreviewing,
+  onClickPreview,
+  readOnly,
+}: {
+  isPreviewing: boolean;
+  onClickPreview: MouseEventHandler<HTMLButtonElement>;
+  readOnly?: boolean;
+}) => {
+  return isPreviewing ? (
+    <EuiButtonEmpty
+      data-test-subj="markdown_editor_edit_button"
+      iconType="code"
+      color="text"
+      size="s"
+      onClick={onClickPreview}
+      isDisabled={readOnly}
+    >
+      <EuiI18n token="euiMarkdownEditorToolbar.editor" default="Editor" />
+    </EuiButtonEmpty>
+  ) : (
+    <EuiButtonEmpty
+      data-test-subj="markdown_editor_preview_button"
+      iconType="eye"
+      color="text"
+      size="s"
+      onClick={onClickPreview}
+      isDisabled={readOnly}
+    >
+      <EuiI18n
+        token="euiMarkdownEditorToolbar.previewMarkdown"
+        default="Preview"
+      />
+    </EuiButtonEmpty>
+  );
+};
 
 EuiMarkdownEditorToolbar.displayName = 'EuiMarkdownEditorToolbar';

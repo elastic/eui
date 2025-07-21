@@ -214,6 +214,7 @@ exports[`EuiMarkdownEditor is rendered 1`] = `
       />
       <div
         class="euiMarkdownEditorFooter emotion-euiMarkdownEditorFooter"
+        data-test-subj="euiMarkdownEditorFooter"
       >
         <div
           class="euiMarkdownEditorFooter__actions emotion-euiMarkdownEditorFooter__actions"
@@ -460,6 +461,7 @@ exports[`EuiMarkdownEditor props autoExpandPreview is rendered with false 1`] = 
       />
       <div
         class="euiMarkdownEditorFooter emotion-euiMarkdownEditorFooter"
+        data-test-subj="euiMarkdownEditorFooter"
       >
         <div
           class="euiMarkdownEditorFooter__actions emotion-euiMarkdownEditorFooter__actions"
@@ -706,6 +708,7 @@ exports[`EuiMarkdownEditor props height is rendered in full mode 1`] = `
       />
       <div
         class="euiMarkdownEditorFooter emotion-euiMarkdownEditorFooter"
+        data-test-subj="euiMarkdownEditorFooter"
       >
         <div
           class="euiMarkdownEditorFooter__actions emotion-euiMarkdownEditorFooter__actions"
@@ -952,6 +955,7 @@ exports[`EuiMarkdownEditor props height is rendered with a custom size 1`] = `
       />
       <div
         class="euiMarkdownEditorFooter emotion-euiMarkdownEditorFooter"
+        data-test-subj="euiMarkdownEditorFooter"
       >
         <div
           class="euiMarkdownEditorFooter__actions emotion-euiMarkdownEditorFooter__actions"
@@ -1198,6 +1202,7 @@ exports[`EuiMarkdownEditor props maxHeight is rendered with a custom size 1`] = 
       />
       <div
         class="euiMarkdownEditorFooter emotion-euiMarkdownEditorFooter"
+        data-test-subj="euiMarkdownEditorFooter"
       >
         <div
           class="euiMarkdownEditorFooter__actions emotion-euiMarkdownEditorFooter__actions"
@@ -1454,6 +1459,7 @@ exports[`EuiMarkdownEditor props readOnly is set to true 1`] = `
       />
       <div
         class="euiMarkdownEditorFooter emotion-euiMarkdownEditorFooter"
+        data-test-subj="euiMarkdownEditorFooter"
       >
         <div
           class="euiMarkdownEditorFooter__actions emotion-euiMarkdownEditorFooter__actions"

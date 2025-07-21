@@ -16,6 +16,7 @@ import React, {
   useCallback,
   useRef,
   forwardRef,
+  ReactNode,
 } from 'react';
 
 import unified, { PluggableList, Processor } from 'unified';
@@ -137,6 +138,14 @@ type CommonMarkdownEditorProps = Omit<
       EuiMarkdownFormatProps,
       'parsingPluginList' | 'processingPluginList' | 'children'
     >;
+    toolbarProps?: {
+      /** Renders a custom node instead of the default preview/editor switch on the right side of the toolbar */
+      right?: ReactNode;
+    };
+    footerProps?: {
+      /** Controls whether the footer is shown, defaults to `true` */
+      visibility?: boolean;
+    };
   };
 
 export type EuiMarkdownEditorProps = OneOf<
@@ -213,6 +222,8 @@ export const EuiMarkdownEditor = forwardRef<
       markdownFormatProps,
       placeholder,
       readOnly,
+      toolbarProps,
+      footerProps = { visibility: true },
       ...rest
     },
     ref
@@ -433,6 +444,7 @@ export const EuiMarkdownEditor = forwardRef<
             }
             viewMode={viewMode}
             uiPlugins={toolbarPlugins}
+            toolbarProps={toolbarProps}
           />
 
           {isPreviewing && (
@@ -481,6 +493,7 @@ export const EuiMarkdownEditor = forwardRef<
                   selectionEnd: newSelectionPoint,
                 });
               }}
+              footerProps={footerProps}
               uiPlugins={toolbarPlugins}
               errors={errors}
               hasUnacceptedItems={hasUnacceptedItems}
