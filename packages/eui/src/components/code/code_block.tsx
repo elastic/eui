@@ -293,6 +293,7 @@ export const EuiCodeBlock: FunctionComponent<EuiCodeBlockProps> = ({
       {isVirtualized ? (
         <EuiCodeBlockVirtualized
           data={data}
+          label={codeBlockLabelElement}
           rowHeight={fontSizeToRowHeightMap[fontSize]}
           overflowHeight={overflowHeight}
           preProps={preProps}
@@ -314,6 +315,7 @@ export const EuiCodeBlock: FunctionComponent<EuiCodeBlockProps> = ({
           {isVirtualized ? (
             <EuiCodeBlockVirtualized
               data={data}
+              label={codeBlockLabelElement}
               rowHeight={fontSizeToRowHeightMap.l}
               preProps={preFullscreenProps}
               codeProps={codeProps}
