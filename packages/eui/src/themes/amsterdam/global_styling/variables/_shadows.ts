@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import chroma from 'chroma-js';
+import { formatMultipleBoxShadow } from '@elastic/eui-theme-common';
 import {
   _EuiThemeShadows,
   _EuiThemeShadowLayer,
@@ -448,29 +448,3 @@ export const shadows: _EuiThemeShadows = {
     ),
   },
 };
-
-/**
- * Format an array of shadow "objects" into a string for CSS.
- * The "up" direction is built by making the y offset from layers
- * two and any subsequent layers, negative.
- *
- * @param layers
- * @param up - Modifies some values in order to get the "up" direction
- * @returns - A value for the CSS `box-shadow` property
- */
-function formatMultipleBoxShadow(
-  layers: _EuiThemeShadowLayer[],
-  up: boolean = false
-) {
-  /* prettier-ignore */
-  const shadowLayers = layers.map((layer, i) => {
-    const y = (up && i > 0) ? -layer.y : layer.y;
-    return `${layer.x}px ${y}px ${layer.blur}px ${layer.spread}px ${formatColor(layer.color, layer.opacity)}`;
-  });
-
-  return shadowLayers.join(', ');
-}
-
-function formatColor(value: string, opacity: number) {
-  return chroma(value).alpha(opacity).css('hsl');
-}

@@ -6,6 +6,7 @@
  * Side Public License, v 1.
  */
 
+import chroma from 'chroma-js';
 import {
   EuiThemeColorMode,
   EuiThemeColorModeInverse,
@@ -14,6 +15,7 @@ import {
   EuiThemeSystem,
   EuiThemeShape,
   EuiThemeComputed,
+  _EuiThemeShadowLayer,
   COLOR_MODES_STANDARD,
   COLOR_MODES_INVERSE,
   EuiThemeHighContrastMode,
@@ -466,3 +468,26 @@ export const getTokenName = (
 
   return `${prefix}${getCapitalized(colorName)}${_suffix}`;
 };
+
+/**
+ * Format an array of shadow "objects" into a string for CSS.
+ * The "up" direction is built by making the y offset from layers
+ * two and any subsequent layers, negative.
+ *
+ * @param layers
+ * @param up - Modifies some values in order to get the "up" direction
+ * @returns - A value for the CSS `box-shadow` property
+ */
+export function formatMultipleBoxShadow(
+  layers: _EuiThemeShadowLayer[],
+  up: boolean = false,
+) {
+  /* prettier-ignore */
+  const shadowLayers = layers.map((layer, i) => {
+    const y = (up && i > 0) ? -layer.y : layer.y;
+    const color = chroma(layer.color).alpha(layer.opacity).css('hsl');
+    return `${layer.x}px ${y}px ${layer.blur}px ${layer.spread}px ${color}`;
+  });
+
+  return shadowLayers.join(', ');
+}
