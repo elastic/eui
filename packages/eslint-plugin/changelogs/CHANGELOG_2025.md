@@ -1,3 +1,7 @@
+## [`v2.2.0`](https://github.com/elastic/eui/releases/v2.2.0)
+
+- Added new `prefer-eui-icon-tip` rule. ([#8877](https://github.com/elastic/eui/pull/8877))
+
 ## [`v2.1.0`](https://github.com/elastic/eui/releases/v2.1.0)
 
 - Added new `sr-output-disabled-tooltip` rule. ([#8848](https://github.com/elastic/eui/pull/8848))
