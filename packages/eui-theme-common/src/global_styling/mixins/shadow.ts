@@ -147,7 +147,8 @@ export const euiShadowFlat = (
     return _highContrastBorder(euiTheme, options);
   }
   const direction = options?.direction ?? 'down';
-  const value = euiTheme.shadows.flat?.[direction] ?? euiTheme.shadows.xs[direction];
+  const value =
+    euiTheme.shadows.flat?.[direction] ?? euiTheme.shadows.xs[direction];
 
   return `box-shadow: ${value};`;
 };

@@ -23,14 +23,14 @@ export const getShadowColor = (
   const themeOpacity =
     colorMode === COLOR_MODES_STANDARD.dark ? opacity * 3.5 : opacity * 1;
   return chroma(color).alpha(themeOpacity).css();
-}
+};
 
 /**
  * Converts a `box-shadow` string to a `filter: drop-shadow()` string.
- * 
+ *
  * @todo check whether this is actually needed in +2025, the original code replacing
  * box-shadow with filter: drop-shadow() had the following comment:
- * > Using only one drop-shadow filter instead of multiple is more 
+ * > Using only one drop-shadow filter instead of multiple is more
  * > performant & prevents Safari bugs
  *
  * @param boxShadow The `box-shadow` string to convert.
