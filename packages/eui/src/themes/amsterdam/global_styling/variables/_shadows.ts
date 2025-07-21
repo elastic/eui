@@ -7,10 +7,7 @@
  */
 
 import { formatMultipleBoxShadow } from '@elastic/eui-theme-common';
-import {
-  _EuiThemeShadows,
-  _EuiThemeShadowLayer,
-} from '../../../../global_styling/variables';
+import { _EuiThemeShadows } from '../../../../global_styling/variables';
 import { computed } from '../../../../services/theme/utils';
 
 // in Amsterdam this is `color.shadow`, which computes to `ink` (#000)
