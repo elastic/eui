@@ -34,9 +34,7 @@ export type EuiMarkdownEditorToolbarProps = HTMLAttributes<HTMLDivElement> &
     viewMode: MARKDOWN_MODE;
     onClickPreview: MouseEventHandler<HTMLButtonElement>;
     uiPlugins: EuiMarkdownEditorUiPlugin[];
-    toolbarProps?: {
-      right?: React.ReactNode;
-    };
+    right?: React.ReactNode;
   };
 
 const boldItalicButtons = [
@@ -147,7 +145,7 @@ export const EuiMarkdownEditorToolbar = forwardRef<
       onClickPreview,
       uiPlugins,
       selectedNode,
-      toolbarProps,
+      right,
     },
     ref: Ref<HTMLDivElement>
   ) => {
@@ -249,9 +247,7 @@ export const EuiMarkdownEditorToolbar = forwardRef<
           ) : null}
         </div>
 
-        {toolbarProps?.right ? (
-          toolbarProps?.right
-        ) : (
+        {right ?? (
           <PreviewEditorSwitch
             isPreviewing={isPreviewing}
             onClickPreview={onClickPreview}
@@ -272,30 +268,22 @@ const PreviewEditorSwitch = ({
   onClickPreview: MouseEventHandler<HTMLButtonElement>;
   readOnly?: boolean;
 }) => {
-  return isPreviewing ? (
+  return (
     <EuiButtonEmpty
-      data-test-subj="markdown_editor_edit_button"
-      iconType="code"
+      iconType={isPreviewing ? 'code' : 'eye'}
       color="text"
       size="s"
       onClick={onClickPreview}
       isDisabled={readOnly}
     >
-      <EuiI18n token="euiMarkdownEditorToolbar.editor" default="Editor" />
-    </EuiButtonEmpty>
-  ) : (
-    <EuiButtonEmpty
-      data-test-subj="markdown_editor_preview_button"
-      iconType="eye"
-      color="text"
-      size="s"
-      onClick={onClickPreview}
-      isDisabled={readOnly}
-    >
-      <EuiI18n
-        token="euiMarkdownEditorToolbar.previewMarkdown"
-        default="Preview"
-      />
+      {isPreviewing ? (
+        <EuiI18n token="euiMarkdownEditorToolbar.editor" default="Editor" />
+      ) : (
+        <EuiI18n
+          token="euiMarkdownEditorToolbar.previewMarkdown"
+          default="Preview"
+        />
+      )}
     </EuiButtonEmpty>
   );
 };

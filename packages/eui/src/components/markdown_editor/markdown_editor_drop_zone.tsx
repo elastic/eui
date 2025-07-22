@@ -38,7 +38,7 @@ interface EuiMarkdownEditorDropZoneProps extends PropsWithChildren {
   setHasUnacceptedItems: (hasUnacceptedItems: boolean) => void;
   setEditorFooterHeight: (height: number) => void;
   isEditing: boolean;
-  hideFooter?: boolean;
+  showFooter?: boolean;
 }
 
 const getUnacceptedItems = (
@@ -85,7 +85,7 @@ export const EuiMarkdownEditorDropZone: FunctionComponent<
     setHasUnacceptedItems,
     setEditorFooterHeight,
     isEditing,
-    hideFooter,
+    showFooter,
   } = props;
 
   const classes = classNames('euiMarkdownEditorDropZone');
@@ -219,7 +219,7 @@ export const EuiMarkdownEditorDropZone: FunctionComponent<
   return (
     <div {...rootProps} css={cssStyles} className={classes}>
       {children}
-      {!hideFooter && (
+      {showFooter && (
         <EuiMarkdownEditorFooter
           ref={setEditorFooterRef}
           uiPlugins={uiPlugins}

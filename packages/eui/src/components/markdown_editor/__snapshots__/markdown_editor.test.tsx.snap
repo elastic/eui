@@ -177,7 +177,6 @@ exports[`EuiMarkdownEditor is rendered 1`] = `
     </div>
     <button
       class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-s-empty-text"
-      data-test-subj="markdown_editor_preview_button"
       type="button"
     >
       <span
@@ -425,7 +424,6 @@ exports[`EuiMarkdownEditor props autoExpandPreview is rendered with false 1`] = 
     </div>
     <button
       class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-s-empty-text"
-      data-test-subj="markdown_editor_preview_button"
       type="button"
     >
       <span
@@ -672,7 +670,6 @@ exports[`EuiMarkdownEditor props height is rendered in full mode 1`] = `
     </div>
     <button
       class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-s-empty-text"
-      data-test-subj="markdown_editor_preview_button"
       type="button"
     >
       <span
@@ -919,7 +916,6 @@ exports[`EuiMarkdownEditor props height is rendered with a custom size 1`] = `
     </div>
     <button
       class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-s-empty-text"
-      data-test-subj="markdown_editor_preview_button"
       type="button"
     >
       <span
@@ -1166,7 +1162,6 @@ exports[`EuiMarkdownEditor props maxHeight is rendered with a custom size 1`] = 
     </div>
     <button
       class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-s-empty-text"
-      data-test-subj="markdown_editor_preview_button"
       type="button"
     >
       <span
@@ -1422,7 +1417,6 @@ exports[`EuiMarkdownEditor props readOnly is set to true 1`] = `
     </div>
     <button
       class="euiButtonEmpty emotion-euiButtonDisplay-euiButtonEmpty-s-empty-disabled-isDisabled"
-      data-test-subj="markdown_editor_preview_button"
       disabled=""
       type="button"
     >

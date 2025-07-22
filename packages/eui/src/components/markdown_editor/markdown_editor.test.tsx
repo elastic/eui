@@ -124,7 +124,7 @@ describe('EuiMarkdownEditor', () => {
   });
 
   test('is preview rendered', () => {
-    const { container, getByTestSubject } = render(
+    const { container, getByRole } = render(
       <EuiMarkdownEditor
         editorId="editorId"
         value="## Hello world"
@@ -132,7 +132,7 @@ describe('EuiMarkdownEditor', () => {
         {...requiredProps}
       />
     );
-    fireEvent.click(getByTestSubject('markdown_editor_preview_button'));
+    fireEvent.click(getByRole('button', { name: 'Preview' }));
     expect(
       container.querySelector('.euiText.euiMarkdownFormat')?.querySelector('h2')
     ).toHaveTextContent('Hello world');
@@ -408,7 +408,7 @@ describe('EuiMarkdownEditor', () => {
       ).toBeInTheDocument();
     });
   });
-  it('should show footer by default and hide when hideFooter is true', () => {
+  it('should show footer by default and hide when showFooter is false', () => {
     render(
       <EuiMarkdownEditor
         onChange={() => null}
@@ -425,7 +425,7 @@ describe('EuiMarkdownEditor', () => {
         onChange={() => null}
         value="markdown test"
         {...requiredProps}
-        hideFooter={true}
+        showFooter={false}
       />
     );
     expect(
