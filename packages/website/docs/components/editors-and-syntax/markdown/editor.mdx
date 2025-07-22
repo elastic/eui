@@ -16,6 +16,7 @@ Consider applying the `readOnly` prop to restrict editing during asynchronous su
 import React, { useCallback, useState } from 'react';
 import {
   EuiMarkdownEditor,
+  EuiMarkdownEditorHelpButton,
   EuiSpacer,
   EuiCodeBlock,
   EuiButton,
@@ -68,9 +69,14 @@ export default () => {
   }, []);
 
   const [isReadOnly, setIsReadOnly] = useState(false);
+  const [isToolbarRightCustom, setIsToolbarRightCustom] = useState(false);
 
-  const onChange = (e) => {
+  const onReadOnlyChange = (e) => {
     setIsReadOnly(e.target.checked);
+  };
+
+  const onToolbarRightCustomChange = (e) => {
+    setIsToolbarRightCustom(e.target.checked);
   };
 
   return (
@@ -86,15 +92,29 @@ export default () => {
         dropHandlers={dropHandlers}
         readOnly={isReadOnly}
         initialViewMode="viewing"
+        toolbarProps={{
+          right: isToolbarRightCustom ? EuiMarkdownEditorHelpButton : undefined
+        }}
       />
       <EuiSpacer size="s" />
       <EuiFlexGroup alignItems="center">
         <EuiFlexItem grow={true}>
-          <EuiSwitch
-            label="Read-only"
-            checked={isReadOnly}
-            onChange={onChange}
-          />
+          <EuiFlexGroup>
+            <EuiFlexItem>
+              <EuiSwitch
+                label="Read-only"
+                checked={isReadOnly}
+                onChange={onReadOnlyChange}
+              />
+            </EuiFlexItem>
+            <EuiFlexItem>
+              <EuiSwitch
+                label="Custom Toolbar Right Slot"
+                checked={isToolbarRightCustom}
+                onChange={onToolbarRightCustomChange}
+              />
+            </EuiFlexItem>
+          </EuiFlexGroup>
         </EuiFlexItem>
         <EuiFlexItem grow={false}>
           <EuiButton
