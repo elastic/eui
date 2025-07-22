@@ -1,3 +1,9 @@
+## [`v2.2.1`](https://github.com/elastic/eui/releases/v2.2.1)
+
+**Bug fixes**
+
+- Removed `no-css_color` entry which mapped to a duplicate `no-css-color` rule ([#8888](https://github.com/elastic/eui/pull/8888))
+
 ## [`v2.2.0`](https://github.com/elastic/eui/releases/v2.2.0)
 
 - Added new `prefer-eui-icon-tip` rule. ([#8877](https://github.com/elastic/eui/pull/8877))

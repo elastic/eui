@@ -46,7 +46,6 @@ const config = {
         '@elastic/eui/require-aria-label-for-modals': 'warn',
         '@elastic/eui/consistent-is-invalid-props': 'warn',
         '@elastic/eui/sr-output-disabled-tooltip': 'warn',
-        '@elastic/eui/no-css_color': 'warn',
         '@elastic/eui/prefer-eui-icon-tip': 'warn',
       },
     },
