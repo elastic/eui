@@ -408,7 +408,7 @@ describe('EuiMarkdownEditor', () => {
       ).toBeInTheDocument();
     });
   });
-  it('should show footer by default and hide when visibility is false', () => {
+  it('should show footer by default and hide when hideFooter is true', () => {
     render(
       <EuiMarkdownEditor
         onChange={() => null}
@@ -425,7 +425,7 @@ describe('EuiMarkdownEditor', () => {
         onChange={() => null}
         value="markdown test"
         {...requiredProps}
-        footerProps={{ visibility: false }}
+        hideFooter={true}
       />
     );
     expect(

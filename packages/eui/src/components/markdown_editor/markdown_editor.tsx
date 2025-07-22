@@ -142,10 +142,8 @@ type CommonMarkdownEditorProps = Omit<
       /** Renders a custom node instead of the default preview/editor switch on the right side of the toolbar */
       right?: ReactNode;
     };
-    footerProps?: {
-      /** Controls whether the footer is shown, defaults to `true` */
-      visibility?: boolean;
-    };
+    /** Controls whether the footer is shown */
+    hideFooter?: boolean;
   };
 
 export type EuiMarkdownEditorProps = OneOf<
@@ -223,7 +221,7 @@ export const EuiMarkdownEditor = forwardRef<
       placeholder,
       readOnly,
       toolbarProps,
-      footerProps = { visibility: true },
+      hideFooter,
       ...rest
     },
     ref
@@ -493,7 +491,7 @@ export const EuiMarkdownEditor = forwardRef<
                   selectionEnd: newSelectionPoint,
                 });
               }}
-              footerProps={footerProps}
+              hideFooter={hideFooter}
               uiPlugins={toolbarPlugins}
               errors={errors}
               hasUnacceptedItems={hasUnacceptedItems}
