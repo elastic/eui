@@ -98,12 +98,9 @@ describe('EuiFlexItem', () => {
     // that throw in a `useEffect`. Note: This only affects the test env, not prod
     // @see https://github.com/facebook/react/issues/25675#issuecomment-1363957941
     // TODO: Remove `testOnReactVersion` once the above bug is fixed
-    testOnReactVersion(['16', '17'])(
-      `invalid component types throw an error`,
-      () => {
-        // @ts-expect-error intentionally passing an invalid value
-        expect(() => render(<EuiFlexItem grow={11} />)).toThrow();
-      }
-    );
+    testOnReactVersion('17')(`invalid component types throw an error`, () => {
+      // @ts-expect-error intentionally passing an invalid value
+      expect(() => render(<EuiFlexItem grow={11} />)).toThrow();
+    });
   });
 });

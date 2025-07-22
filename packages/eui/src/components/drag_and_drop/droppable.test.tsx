@@ -24,7 +24,7 @@ describeByReactVersion('EuiDroppable', () => {
 
   afterEach(() => {
     // Resetting DND server context is only required in older versions of React
-    invokeOnReactVersion(['16', '17'], resetServerContext);
+    invokeOnReactVersion('17', resetServerContext);
   });
 
   shouldRenderCustomStyles(

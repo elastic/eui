@@ -64,7 +64,11 @@ export const EuiFlyoutChildProvider: FunctionComponent<
     window.addEventListener('resize', handleResize);
     handleResize();
 
-    return () => window.removeEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+      reportIsChildOpen?.(false);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // Calculate stacking breakpoint value for child flyout.

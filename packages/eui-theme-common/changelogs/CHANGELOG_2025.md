@@ -1,3 +1,9 @@
+## [`v3.1.0`](https://github.com/elastic/eui/releases/v3.1.0)
+
+**Deprecations**
+
+- Deprecated support for React 16. Please update to a modern version of React or stay on EUI version 106.0.0 if you can't switch right now. ([#8868](https://github.com/elastic/eui/pull/8868))
+
 ## [`v3.0.0`](https://github.com/elastic/eui/releases/v3.0.0)
 
 - Added semantic tokens:  ([#8767](https://github.com/elastic/eui/pull/8767))

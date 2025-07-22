@@ -8,7 +8,7 @@ steps:
     env:
       TEST_TYPE: 'lint'
     if: build.branch != "main" # This job is triggered by the combined test and deploy docs for every PR
-  
+
   - command: .buildkite/scripts/pipelines/pipeline_test.sh
     label: ":jest: TS unit tests"
     agents:
@@ -16,15 +16,7 @@ steps:
     env:
       TEST_TYPE: 'unit:ts'
     if: build.branch != "main"
-  
-  - command: .buildkite/scripts/pipelines/pipeline_test.sh
-    label: ":jest: TSX unit tests on React 16"
-    agents:
-      provider: "gcp"
-    env:
-      TEST_TYPE: 'unit:tsx:16'
-    if: build.branch != "main"
-  
+
   - command: .buildkite/scripts/pipelines/pipeline_test.sh
     label: ":jest: TSX unit tests on React 17"
     agents:
@@ -32,7 +24,7 @@ steps:
     env:
       TEST_TYPE: 'unit:tsx:17'
     if: build.branch != "main"
-  
+
   - command: .buildkite/scripts/pipelines/pipeline_test.sh
     label: ":jest: TSX unit tests on React 18"
     agents:
@@ -40,20 +32,7 @@ steps:
     env:
       TEST_TYPE: 'unit:tsx'
     if: build.branch != "main"
-  
-  - command: .buildkite/scripts/pipelines/pipeline_test.sh
-    label: ":cypress: Cypress tests on React 16"
-    agents:
-      provider: "gcp"
-    env:
-      TEST_TYPE: 'cypress:16'
-    if: build.branch != "main"
-    artifact_paths:
-      - "cypress/screenshots/**/*.png"
-      - "cypress/videos/**/*.mp4"
-    retry:
-      automatic: true
-  
+
   - command: .buildkite/scripts/pipelines/pipeline_test.sh
     label: ":cypress: Cypress tests on React 17"
     agents:
@@ -66,7 +45,7 @@ steps:
       - "cypress/videos/**/*.mp4"
     retry:
       automatic: true
-  
+
   - command: .buildkite/scripts/pipelines/pipeline_test.sh
     label: ":cypress: Cypress tests on React 18"
     agents:

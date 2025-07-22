@@ -88,7 +88,7 @@ describe('EuiOverlayMask', () => {
   // it while the component is still updating.
   // TODO: https://github.com/elastic/eui/issues/6998
   // Note - this needs to be the last test in the suite, otherwise subsequent overlay masks stop working
-  testOnReactVersion(['16', '17'])(
+  testOnReactVersion('17')(
     'throws if a non-string property value is passed',
     () => {
       // @ts-expect-error expected error

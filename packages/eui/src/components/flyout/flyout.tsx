@@ -340,12 +340,12 @@ export const EuiFlyout = forwardRef(
      */
     const onKeyDown = useCallback(
       (event: KeyboardEvent) => {
-        if (!isPushed && event.key === keys.ESCAPE) {
+        if (!isPushed && event.key === keys.ESCAPE && !isChildFlyoutOpen) {
           event.preventDefault();
           onClose(event);
         }
       },
-      [onClose, isPushed]
+      [onClose, isPushed, isChildFlyoutOpen]
     );
 
     /**
@@ -540,13 +540,6 @@ export const EuiFlyout = forwardRef(
           scrollLock={hasOverlayMask}
           clickOutsideDisables={!ownFocus}
           onClickOutside={onClickOutside}
-          returnFocus={() => {
-            if (!isChildFlyoutOpen && flyoutToggle.current) {
-              (flyoutToggle.current as HTMLElement).focus();
-              return false; // We've handled focus
-            }
-            return true;
-          }}
           {...focusTrapProps}
         >
           <Element

@@ -1,6 +1,6 @@
 {
   "name": "@elastic/eui-theme-common",
-  "version": "3.0.0",
+  "version": "3.1.0",
   "description": "EUI theme common",
   "license": "SEE LICENSE IN LICENSE.txt",
   "scripts": {
@@ -59,8 +59,8 @@
   },
   "peerDependencies": {
     "@emotion/react": "11.x",
-    "react": "^16.12 || ^17.0 || ^18.0",
-    "react-dom": "^16.12 || ^17.0 || ^18.0"
+    "react": "^17.0 || ^18.0",
+    "react-dom": "^17.0 || ^18.0"
   },
   "main": "lib/cjs/index.js",
   "exports": {
