@@ -84,9 +84,11 @@ After you have created a Kibana PR following the steps above, there are two ways
 - Add the labels `ci:cloud-deploy` and `ci:cloud-persist-deployment` on your PR and ensure the CI pipelines run by checking the "Click to trigger kibana-deploy-cloud-from-pr for this PR!" checkbox in the comment from **elasticmachine**
 - Once the pipelines are finished, **kibanamachine** will post a message with a link to the credentials on Buildkite, there you'll find a link to the deployment e.g. https://kibana-pr-228477.kb.us-west2.gcp.elastic-cloud.com and a command to get the credentials
 - Run the `vault` command to get the credentials in your terminal (if you never used the `vault` CLI, continue reading)
-- To use Hashicorp's `vault` CLI
-  - [Install the CLI](https://developer.hashicorp.com/vault/install), if you're on a Mac you can use [homebrew](https://brew.sh/)
-  - [Login for the Infra Vault (production)](https://docs.elastic.dev/vault/accessing)
+- To use HashiCorp's `vault` CLI
+  - [Install it](https://developer.hashicorp.com/vault/install), if you're on a Mac you can use [homebrew](https://brew.sh/)
+  - Login for the [Infra Vault (production)]((https://docs.elastic.dev/vault/accessing)) by running:
+    - `export VAULT_ADDR=https://secrets.elastic.co:8200`
+    - `vault login -method=oidc`
 
 ##### Using Kibana a la carte
 
