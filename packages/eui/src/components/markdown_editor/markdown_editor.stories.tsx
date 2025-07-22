@@ -78,6 +78,7 @@ export const CustomToolbarContent: Story = {
       right: (
         <EuiButton
           iconType="check"
+          size="s"
           onClick={() => action('onClick')('Validated!')}
         >
           Validate

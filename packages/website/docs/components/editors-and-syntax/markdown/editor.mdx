@@ -94,24 +94,24 @@ export default () => {
         initialViewMode="viewing"
         toolbarProps={{
           right: isToolbarRightCustom ? (
-            <EuiButton iconType="check" onClick={() => {}}>
+            <EuiButton iconType="check" size="s" onClick={() => {}}>
               Validate
             </EuiButton>
           ) : undefined,
         }}
       />
       <EuiSpacer size="s" />
-      <EuiFlexGroup alignItems="center">
+      <EuiFlexGroup alignItems="center" justifyContent="spaceBetween">
         <EuiFlexItem grow={true}>
           <EuiFlexGroup>
-            <EuiFlexItem>
+            <EuiFlexItem grow={false}>
               <EuiSwitch
                 label="Read-only"
                 checked={isReadOnly}
                 onChange={onReadOnlyChange}
               />
             </EuiFlexItem>
-            <EuiFlexItem>
+            <EuiFlexItem grow={false}>
               <EuiSwitch
                 label="Custom Toolbar Right Slot"
                 checked={isToolbarRightCustom}
