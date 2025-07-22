@@ -93,7 +93,11 @@ export default () => {
         readOnly={isReadOnly}
         initialViewMode="viewing"
         toolbarProps={{
-          right: isToolbarRightCustom ? EuiMarkdownEditorHelpButton : undefined
+          right: isToolbarRightCustom ? (
+            <EuiButton iconType="check" onClick={() => {}}>
+              Validate
+            </EuiButton>
+          ) : undefined,
         }}
       />
       <EuiSpacer size="s" />
