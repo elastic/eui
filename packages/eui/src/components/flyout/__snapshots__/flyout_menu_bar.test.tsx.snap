@@ -1,0 +1,340 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiFlyoutMenuBar actions renders action buttons 1`] = `
+<div
+  class="euiFlyoutMenuBar emotion-euiFlyoutMenuBar"
+>
+  <div
+    class="euiFlyoutMenuBar__content emotion-euiFlyoutMenuBar__content"
+  >
+    <h2
+      class="euiFlyoutMenuBar__title emotion-euiFlyoutMenuBar__title"
+    >
+      Test Title
+    </h2>
+  </div>
+  <div
+    class="euiFlyoutMenuBar__actions emotion-euiFlyoutMenuBar__actions"
+  >
+    <button
+      aria-label="Edit"
+      class="euiButtonIcon emotion-euiButtonIcon-xs-empty-text"
+      type="button"
+    >
+      <span
+        aria-hidden="true"
+        class="euiButtonIcon__icon"
+        color="inherit"
+        data-euiicon-type="pencil"
+      />
+    </button>
+    <button
+      aria-label="Share"
+      class="euiButtonIcon emotion-euiButtonIcon-xs-empty-text"
+      type="button"
+    >
+      <span
+        aria-hidden="true"
+        class="euiButtonIcon__icon"
+        color="inherit"
+        data-euiicon-type="share"
+      />
+    </button>
+    <button
+      aria-label="Close this dialog"
+      class="euiButtonIcon emotion-euiButtonIcon-xs-empty-text"
+      data-test-subj="euiFlyoutMenuBarCloseButton"
+      type="button"
+    >
+      <span
+        aria-hidden="true"
+        class="euiButtonIcon__icon"
+        color="inherit"
+        data-euiicon-type="cross"
+      />
+    </button>
+  </div>
+</div>
+`;
+
+exports[`EuiFlyoutMenuBar actions renders disabled action buttons 1`] = `
+<div
+  class="euiFlyoutMenuBar emotion-euiFlyoutMenuBar"
+>
+  <div
+    class="euiFlyoutMenuBar__content emotion-euiFlyoutMenuBar__content"
+  >
+    <h2
+      class="euiFlyoutMenuBar__title emotion-euiFlyoutMenuBar__title"
+    >
+      Test Title
+    </h2>
+  </div>
+  <div
+    class="euiFlyoutMenuBar__actions emotion-euiFlyoutMenuBar__actions"
+  >
+    <button
+      aria-label="Edit"
+      class="euiButtonIcon emotion-euiButtonIcon-xs-empty-disabled-isDisabled"
+      disabled=""
+      type="button"
+    >
+      <span
+        aria-hidden="true"
+        class="euiButtonIcon__icon"
+        color="inherit"
+        data-euiicon-type="pencil"
+      />
+    </button>
+    <button
+      aria-label="Close this dialog"
+      class="euiButtonIcon emotion-euiButtonIcon-xs-empty-text"
+      data-test-subj="euiFlyoutMenuBarCloseButton"
+      type="button"
+    >
+      <span
+        aria-hidden="true"
+        class="euiButtonIcon__icon"
+        color="inherit"
+        data-euiicon-type="cross"
+      />
+    </button>
+  </div>
+</div>
+`;
+
+exports[`EuiFlyoutMenuBar exactly 3 actions shows all 3 actions as buttons without overflow 1`] = `
+<div
+  class="euiFlyoutMenuBar emotion-euiFlyoutMenuBar"
+>
+  <div
+    class="euiFlyoutMenuBar__content emotion-euiFlyoutMenuBar__content"
+  >
+    <h2
+      class="euiFlyoutMenuBar__title emotion-euiFlyoutMenuBar__title"
+    >
+      Test Title
+    </h2>
+  </div>
+  <div
+    class="euiFlyoutMenuBar__actions emotion-euiFlyoutMenuBar__actions"
+  >
+    <button
+      aria-label="Edit"
+      class="euiButtonIcon emotion-euiButtonIcon-xs-empty-text"
+      type="button"
+    >
+      <span
+        aria-hidden="true"
+        class="euiButtonIcon__icon"
+        color="inherit"
+        data-euiicon-type="pencil"
+      />
+    </button>
+    <button
+      aria-label="Share"
+      class="euiButtonIcon emotion-euiButtonIcon-xs-empty-text"
+      type="button"
+    >
+      <span
+        aria-hidden="true"
+        class="euiButtonIcon__icon"
+        color="inherit"
+        data-euiicon-type="share"
+      />
+    </button>
+    <button
+      aria-label="Copy"
+      class="euiButtonIcon emotion-euiButtonIcon-xs-empty-text"
+      type="button"
+    >
+      <span
+        aria-hidden="true"
+        class="euiButtonIcon__icon"
+        color="inherit"
+        data-euiicon-type="copy"
+      />
+    </button>
+    <button
+      aria-label="Close this dialog"
+      class="euiButtonIcon emotion-euiButtonIcon-xs-empty-text"
+      data-test-subj="euiFlyoutMenuBarCloseButton"
+      type="button"
+    >
+      <span
+        aria-hidden="true"
+        class="euiButtonIcon__icon"
+        color="inherit"
+        data-euiicon-type="cross"
+      />
+    </button>
+  </div>
+</div>
+`;
+
+exports[`EuiFlyoutMenuBar is rendered 1`] = `
+<div
+  aria-label="aria-label"
+  class="euiFlyoutMenuBar testClass1 testClass2 emotion-euiFlyoutMenuBar-euiTestCss"
+  data-test-subj="test subject string"
+>
+  <div
+    class="euiFlyoutMenuBar__content emotion-euiFlyoutMenuBar__content"
+  />
+  <div
+    class="euiFlyoutMenuBar__actions emotion-euiFlyoutMenuBar__actions"
+  >
+    <button
+      aria-label="Close this dialog"
+      class="euiButtonIcon emotion-euiButtonIcon-xs-empty-text"
+      data-test-subj="euiFlyoutMenuBarCloseButton"
+      type="button"
+    >
+      <span
+        aria-hidden="true"
+        class="euiButtonIcon__icon"
+        color="inherit"
+        data-euiicon-type="cross"
+      />
+    </button>
+  </div>
+</div>
+`;
+
+exports[`EuiFlyoutMenuBar overflow menu shows overflow menu when more than 3 actions 1`] = `
+<div
+  class="euiFlyoutMenuBar emotion-euiFlyoutMenuBar"
+>
+  <div
+    class="euiFlyoutMenuBar__content emotion-euiFlyoutMenuBar__content"
+  >
+    <h2
+      class="euiFlyoutMenuBar__title emotion-euiFlyoutMenuBar__title"
+    >
+      Test Title
+    </h2>
+  </div>
+  <div
+    class="euiFlyoutMenuBar__actions emotion-euiFlyoutMenuBar__actions"
+  >
+    <button
+      aria-label="Edit"
+      class="euiButtonIcon emotion-euiButtonIcon-xs-empty-text"
+      type="button"
+    >
+      <span
+        aria-hidden="true"
+        class="euiButtonIcon__icon"
+        color="inherit"
+        data-euiicon-type="pencil"
+      />
+    </button>
+    <button
+      aria-label="Share"
+      class="euiButtonIcon emotion-euiButtonIcon-xs-empty-text"
+      type="button"
+    >
+      <span
+        aria-hidden="true"
+        class="euiButtonIcon__icon"
+        color="inherit"
+        data-euiicon-type="share"
+      />
+    </button>
+    <div
+      class="euiPopover emotion-euiPopover-inline-block"
+    >
+      <button
+        aria-label="More actions"
+        class="euiButtonIcon emotion-euiButtonIcon-xs-empty-text"
+        data-test-subj="euiFlyoutMenuBarOverflowButton"
+        type="button"
+      >
+        <span
+          aria-hidden="true"
+          class="euiButtonIcon__icon"
+          color="inherit"
+          data-euiicon-type="boxesVertical"
+        />
+      </button>
+    </div>
+    <button
+      aria-label="Close this dialog"
+      class="euiButtonIcon emotion-euiButtonIcon-xs-empty-text"
+      data-test-subj="euiFlyoutMenuBarCloseButton"
+      type="button"
+    >
+      <span
+        aria-hidden="true"
+        class="euiButtonIcon__icon"
+        color="inherit"
+        data-euiicon-type="cross"
+      />
+    </button>
+  </div>
+</div>
+`;
+
+exports[`EuiFlyoutMenuBar props children are rendered and take precedence over title 1`] = `
+<div
+  class="euiFlyoutMenuBar emotion-euiFlyoutMenuBar"
+>
+  <div
+    class="euiFlyoutMenuBar__content emotion-euiFlyoutMenuBar__content"
+  >
+    <span>
+      Custom Content
+    </span>
+  </div>
+  <div
+    class="euiFlyoutMenuBar__actions emotion-euiFlyoutMenuBar__actions"
+  >
+    <button
+      aria-label="Close this dialog"
+      class="euiButtonIcon emotion-euiButtonIcon-xs-empty-text"
+      data-test-subj="euiFlyoutMenuBarCloseButton"
+      type="button"
+    >
+      <span
+        aria-hidden="true"
+        class="euiButtonIcon__icon"
+        color="inherit"
+        data-euiicon-type="cross"
+      />
+    </button>
+  </div>
+</div>
+`;
+
+exports[`EuiFlyoutMenuBar props title is rendered 1`] = `
+<div
+  class="euiFlyoutMenuBar emotion-euiFlyoutMenuBar"
+>
+  <div
+    class="euiFlyoutMenuBar__content emotion-euiFlyoutMenuBar__content"
+  >
+    <h2
+      class="euiFlyoutMenuBar__title emotion-euiFlyoutMenuBar__title"
+    >
+      Test Title
+    </h2>
+  </div>
+  <div
+    class="euiFlyoutMenuBar__actions emotion-euiFlyoutMenuBar__actions"
+  >
+    <button
+      aria-label="Close this dialog"
+      class="euiButtonIcon emotion-euiButtonIcon-xs-empty-text"
+      data-test-subj="euiFlyoutMenuBarCloseButton"
+      type="button"
+    >
+      <span
+        aria-hidden="true"
+        class="euiButtonIcon__icon"
+        color="inherit"
+        data-euiicon-type="cross"
+      />
+    </button>
+  </div>
+</div>
+`;
