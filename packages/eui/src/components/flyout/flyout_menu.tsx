@@ -8,12 +8,12 @@
 
 import classNames from 'classnames';
 import React, { FunctionComponent, HTMLAttributes, useContext } from 'react';
-import { useGeneratedHtmlId } from '../../services';
+import { useEuiMemoizedStyles, useGeneratedHtmlId } from '../../services';
 import { CommonProps } from '../common';
 import { EuiFlexGroup, EuiFlexItem } from '../flex';
 import { EuiTitle } from '../title';
 import { EuiFlyoutCloseButton } from './_flyout_close_button';
-import { useEuiFlyoutMenuStyles } from './flyout_menu.styles';
+import { euiFlyoutMenuStyles } from './flyout_menu.styles';
 import { EuiFlyoutMenuContext } from './flyout_menu_context';
 
 export type EuiFlyoutMenuProps = CommonProps &
@@ -35,7 +35,7 @@ export const EuiFlyoutMenu: FunctionComponent<EuiFlyoutMenuProps> = ({
 }) => {
   const { onClose } = useContext(EuiFlyoutMenuContext);
 
-  const styles = useEuiFlyoutMenuStyles();
+  const styles = useEuiMemoizedStyles(euiFlyoutMenuStyles);
   const cssStyles = [styles.euiFlyoutMenu];
   const classes = classNames('euiFlyoutMenu', className);
   const titleId = useGeneratedHtmlId();

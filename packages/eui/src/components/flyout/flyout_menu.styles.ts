@@ -7,11 +7,10 @@
  */
 
 import { css } from '@emotion/react';
-import { useEuiTheme } from '../../services';
+import { UseEuiTheme } from '../../services';
 
-export const useEuiFlyoutMenuStyles = () => {
-  const { euiTheme } = useEuiTheme();
-
+export const euiFlyoutMenuStyles = (euiThemeContext: UseEuiTheme) => {
+  const { euiTheme } = euiThemeContext;
   return {
     euiFlyoutMenu: css`
       block-size: calc(${euiTheme.size.m} * 3.5);
