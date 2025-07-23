@@ -275,6 +275,11 @@ const PreviewEditorSwitch = ({
       size="s"
       onClick={onClickPreview}
       isDisabled={readOnly}
+      data-test-subj={
+        isPreviewing
+          ? 'markdown_editor_preview_button'
+          : 'markdown_editor_edit_button'
+      }
     >
       {isPreviewing ? (
         <EuiI18n token="euiMarkdownEditorToolbar.editor" default="Editor" />

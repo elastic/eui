@@ -6,7 +6,10 @@
  * Side Public License, v 1.
  */
 
-export type { EuiMarkdownEditorProps } from './markdown_editor';
+export type {
+  EuiMarkdownEditorProps,
+  EuiMarkdownEditorRef,
+} from './markdown_editor';
 export { EuiMarkdownEditor } from './markdown_editor';
 export { EuiMarkdownEditorHelpButton } from './markdown_editor_help_button';
 export {

@@ -172,7 +172,7 @@ const mergeRefs = (...refs: any[]) => {
   };
 };
 
-interface EuiMarkdownEditorRef {
+export interface EuiMarkdownEditorRef {
   textarea: HTMLTextAreaElement | null;
   replaceNode: ContextShape['replaceNode'];
 }
