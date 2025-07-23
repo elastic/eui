@@ -8,7 +8,7 @@
 
 import { Meta, StoryObj } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
-import React, { useState } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 
 import {
   EuiButton,
@@ -32,11 +32,12 @@ import type {
   EuiFlyoutSessionOpenChildOptions,
   EuiFlyoutSessionOpenGroupOptions,
   EuiFlyoutSessionOpenMainOptions,
+  EuiFlyoutSessionOpenManagedOptions,
   EuiFlyoutSessionRenderContext,
+  EuiFlyoutSessionGroup,
 } from './types';
 import { useEuiFlyoutSession } from './use_eui_flyout';
 
-// Create a single action logger instance to use throughout the file
 const loggerAction = action('flyout-session-log');
 
 const meta: Meta<typeof EuiFlyoutSessionProvider> = {
@@ -74,8 +75,9 @@ interface ECommerceContentProps {
 interface ShoppingCartContentProps extends ECommerceContentProps {
   onQuantityChange: (delta: number) => void;
 }
-interface ReviewOrderContentProps extends ECommerceContentProps {}
 interface ItemDetailsContentProps extends ECommerceContentProps {}
+interface ReviewOrderContentProps extends ECommerceContentProps {}
+interface OrderConfirmedContentProps extends ECommerceContentProps {}
 
 /**
  *
@@ -84,7 +86,7 @@ interface ItemDetailsContentProps extends ECommerceContentProps {}
  * function as a conditional to determine which component to render in the main flyout.
  */
 interface ECommerceAppMeta {
-  ecommerceMainFlyoutKey?: 'shoppingCart' | 'reviewOrder';
+  ecommerceMainFlyoutKey?: 'shoppingCart' | 'reviewOrder' | 'orderConfirmed';
 }
 
 const ShoppingCartContent: React.FC<ShoppingCartContentProps> = ({
@@ -93,7 +95,7 @@ const ShoppingCartContent: React.FC<ShoppingCartContentProps> = ({
 }) => {
   const {
     openChildFlyout,
-    openFlyout,
+    openManagedFlyout,
     isChildFlyoutOpen,
     closeChildFlyout,
     closeSession,
@@ -101,6 +103,7 @@ const ShoppingCartContent: React.FC<ShoppingCartContentProps> = ({
 
   const handleOpenItemDetails = () => {
     const options: EuiFlyoutSessionOpenChildOptions<ECommerceAppMeta> = {
+      title: 'Item details',
       size: 's',
       flyoutProps: {
         className: 'itemDetailsFlyoutChild',
@@ -115,7 +118,9 @@ const ShoppingCartContent: React.FC<ShoppingCartContentProps> = ({
   };
 
   const handleProceedToReview = () => {
-    const options: EuiFlyoutSessionOpenMainOptions<ECommerceAppMeta> = {
+    const options: EuiFlyoutSessionOpenManagedOptions<ECommerceAppMeta> = {
+      title: 'Review order',
+      hideTitle: true, // title will only show in the history popover
       size: 'm',
       meta: { ecommerceMainFlyoutKey: 'reviewOrder' },
       flyoutProps: {
@@ -128,12 +133,12 @@ const ShoppingCartContent: React.FC<ShoppingCartContentProps> = ({
         },
       },
     };
-    openFlyout(options);
+    openManagedFlyout(options);
   };
 
   return (
     <>
-      <EuiFlyoutHeader hasBorder>
+      <EuiFlyoutHeader>
         <EuiTitle size="m">
           <h2 id="flyout-shopping-cart-title">Shopping cart</h2>
         </EuiTitle>
@@ -185,12 +190,11 @@ const ShoppingCartContent: React.FC<ShoppingCartContentProps> = ({
 const ReviewOrderContent: React.FC<ReviewOrderContentProps> = ({
   itemQuantity,
 }) => {
-  const { goBack, closeSession } = useEuiFlyoutSession();
-  const [orderConfirmed, setOrderConfirmed] = useState(false);
+  const { goBack, openManagedFlyout, closeSession } = useEuiFlyoutSession();
 
   return (
     <>
-      <EuiFlyoutHeader hasBorder>
+      <EuiFlyoutHeader>
         <EuiTitle size="m">
           <h2 id="flyout-review-order-title">Review order</h2>
         </EuiTitle>
@@ -202,36 +206,39 @@ const ReviewOrderContent: React.FC<ReviewOrderContentProps> = ({
           <p>Quantity: {itemQuantity}</p>
         </EuiText>
         <EuiSpacer />
-        {orderConfirmed ? (
-          <EuiText>
-            <p>Order confirmed!</p>
-          </EuiText>
-        ) : (
-          <EuiButton
-            onClick={() => setOrderConfirmed(true)}
-            fill
-            color="accent"
-          >
-            Confirm purchase
-          </EuiButton>
-        )}
+        <EuiButton
+          onClick={() =>
+            openManagedFlyout({
+              title: 'Order confirmed',
+              size: 'm',
+              flyoutProps: {
+                type: 'push',
+                className: 'orderConfirmedFlyout',
+                'aria-label': 'Order confirmed',
+                onClose: () => {
+                  loggerAction('Order confirmed onClose triggered');
+                  closeSession(); // If we add an onClose handler to the main flyout, we have to call closeSession within it for the flyout to actually close
+                },
+              },
+              meta: { ecommerceMainFlyoutKey: 'orderConfirmed' },
+            })
+          }
+          fill
+          color="accent"
+        >
+          Confirm purchase
+        </EuiButton>
       </EuiFlyoutBody>
       <EuiFlyoutFooter>
-        {!orderConfirmed && (
-          <EuiButton
-            onClick={() => {
-              loggerAction('Go back button clicked');
-              goBack();
-              // Add a setTimeout to check the state a little after the action is dispatched
-              setTimeout(() => {
-                loggerAction('After goBack timeout check');
-              }, 100);
-            }}
-            color="danger"
-          >
-            Go back
-          </EuiButton>
-        )}{' '}
+        <EuiButton
+          onClick={() => {
+            loggerAction('Go back button clicked');
+            goBack();
+          }}
+          color="danger"
+        >
+          Go back
+        </EuiButton>{' '}
         <EuiButton onClick={closeSession} color="danger">
           Close
         </EuiButton>
@@ -246,11 +253,6 @@ const ItemDetailsContent: React.FC<ItemDetailsContentProps> = ({
   const { closeChildFlyout } = useEuiFlyoutSession();
   return (
     <>
-      <EuiFlyoutHeader hasBorder>
-        <EuiTitle size="m">
-          <h2 id="flyout-item-details-title">Item details</h2>
-        </EuiTitle>
-      </EuiFlyoutHeader>
       <EuiFlyoutBody>
         <EuiText>
           <p>
@@ -273,10 +275,34 @@ const ItemDetailsContent: React.FC<ItemDetailsContentProps> = ({
   );
 };
 
+const OrderConfirmedContent: React.FC<OrderConfirmedContentProps> = ({
+  itemQuantity,
+}) => {
+  const { closeSession } = useEuiFlyoutSession();
+  return (
+    <>
+      <EuiFlyoutBody>
+        <EuiText>
+          <h3>Order confirmed</h3>
+          <p>Item: Flux Capacitor</p>
+          <p>Quantity: {itemQuantity}</p>
+          <EuiSpacer />
+          <p>Your order has been confirmed. Check your email for details.</p>
+        </EuiText>
+      </EuiFlyoutBody>
+      <EuiFlyoutFooter>
+        <EuiButton onClick={closeSession} color="danger">
+          Close
+        </EuiButton>
+      </EuiFlyoutFooter>
+    </>
+  );
+};
+
 // Component for the main control buttons and state display
 const ECommerceAppControls: React.FC = () => {
   const {
-    openFlyout,
+    openManagedFlyout,
     goBack,
     isFlyoutOpen,
     canGoBack,
@@ -294,7 +320,9 @@ const ECommerceAppControls: React.FC = () => {
     }
   };
   const handleOpenShoppingCart = () => {
-    const options: EuiFlyoutSessionOpenMainOptions<ECommerceAppMeta> = {
+    const options: EuiFlyoutSessionOpenManagedOptions<ECommerceAppMeta> = {
+      title: 'Shopping cart',
+      hideTitle: true, // title will only show in the history popover
       size: 'm',
       meta: { ecommerceMainFlyoutKey: 'shoppingCart' },
       flyoutProps: {
@@ -308,7 +336,7 @@ const ECommerceAppControls: React.FC = () => {
         },
       },
     };
-    openFlyout(options);
+    openManagedFlyout(options);
   };
 
   return (
@@ -356,19 +384,24 @@ const ECommerceApp: React.FC = () => {
     const { meta } = context;
     const { ecommerceMainFlyoutKey } = meta || {};
 
-    if (ecommerceMainFlyoutKey === 'shoppingCart') {
-      return (
-        <ShoppingCartContent
-          itemQuantity={itemQuantity}
-          onQuantityChange={handleQuantityChange}
-        />
-      );
-    }
-    if (ecommerceMainFlyoutKey === 'reviewOrder') {
-      return <ReviewOrderContent itemQuantity={itemQuantity} />;
+    switch (ecommerceMainFlyoutKey) {
+      case 'orderConfirmed':
+        return <OrderConfirmedContent itemQuantity={itemQuantity} />;
+      case 'reviewOrder':
+        return <ReviewOrderContent itemQuantity={itemQuantity} />;
+      case 'shoppingCart':
+        return (
+          <ShoppingCartContent
+            itemQuantity={itemQuantity}
+            onQuantityChange={handleQuantityChange}
+          />
+        );
     }
 
-    loggerAction('renderMainFlyoutContent: Unknown flyout key', meta);
+    loggerAction(
+      'renderMainFlyoutContent: Unknown flyout key',
+      meta?.ecommerceMainFlyoutKey
+    );
     return null;
   };
 
@@ -377,10 +410,30 @@ const ECommerceApp: React.FC = () => {
     return <ItemDetailsContent itemQuantity={itemQuantity} />;
   };
 
+  const ecommerceHistoryFilter = useCallback(
+    (
+      history: EuiFlyoutSessionHistoryState<ECommerceAppMeta>['history'],
+      activeFlyoutGroup?: EuiFlyoutSessionGroup<ECommerceAppMeta> | null
+    ) => {
+      const isOrderConfirmationActive =
+        activeFlyoutGroup?.meta?.ecommerceMainFlyoutKey === 'orderConfirmed';
+
+      // If on order confirmation page, clear history to remove "Back" button
+      if (isOrderConfirmationActive) {
+        loggerAction('Clearing history');
+        return [];
+      }
+
+      return history;
+    },
+    []
+  );
+
   return (
     <EuiFlyoutSessionProvider
       renderMainFlyoutContent={renderMainFlyoutContent}
       renderChildFlyoutContent={renderChildFlyoutContent}
+      historyFilter={ecommerceHistoryFilter}
       onUnmount={() => {
         loggerAction('All flyouts have been unmounted');
       }}
@@ -399,6 +452,150 @@ export const ECommerceWithHistory: StoryObj = {
   },
   render: () => {
     return <ECommerceApp />;
+  },
+};
+
+/**
+ * --------------------------------------
+ * Deep History Example (advanced use case)
+ * --------------------------------------
+ */
+
+interface DeepHistoryAppMeta {
+  page: 'page01' | 'page02' | 'page03' | 'page04' | 'page05' | '';
+}
+
+const getHistoryManagedFlyoutOptions = (
+  page: DeepHistoryAppMeta['page']
+): EuiFlyoutSessionOpenManagedOptions<DeepHistoryAppMeta> => {
+  return {
+    title: page,
+    size: 'm',
+    meta: { page },
+    flyoutProps: {
+      type: 'push',
+      pushMinBreakpoint: 'xs',
+      'aria-label': page,
+    },
+  };
+};
+
+const DeepHistoryPage: React.FC<DeepHistoryAppMeta> = ({ page }) => {
+  const { openManagedFlyout, closeSession } = useEuiFlyoutSession();
+  const [nextPage, setNextPage] = useState<DeepHistoryAppMeta['page']>('');
+
+  useEffect(() => {
+    switch (page) {
+      case 'page01':
+        setNextPage('page02');
+        break;
+      case 'page02':
+        setNextPage('page03');
+        break;
+      case 'page03':
+        setNextPage('page04');
+        break;
+      case 'page04':
+        setNextPage('page05');
+        break;
+      case 'page05':
+        setNextPage('');
+        break;
+    }
+  }, [page]);
+
+  const handleOpenNextFlyout = () => {
+    const options = getHistoryManagedFlyoutOptions(nextPage);
+    openManagedFlyout(options);
+  };
+
+  return (
+    <>
+      <EuiFlyoutHeader>
+        <EuiTitle size="m">
+          <h2 id="flyout-review-order-title">Page {page}</h2>
+        </EuiTitle>
+      </EuiFlyoutHeader>
+      <EuiFlyoutBody>
+        {nextPage === '' ? (
+          <>
+            <EuiText>
+              <p>
+                This is the content for {page}.<br />
+                You have reached the end of the history.
+              </p>
+            </EuiText>
+          </>
+        ) : (
+          <>
+            <EuiText>
+              <p>This is the content for {page}.</p>
+            </EuiText>
+            <EuiSpacer />
+            <EuiButton onClick={handleOpenNextFlyout}>
+              Navigate to {nextPage}
+            </EuiButton>
+          </>
+        )}
+      </EuiFlyoutBody>
+      <EuiFlyoutFooter>
+        <EuiButton onClick={closeSession} color="danger">
+          Close
+        </EuiButton>
+      </EuiFlyoutFooter>
+    </>
+  );
+};
+
+// Component for the main control buttons and state display
+const DeepHistoryAppControls: React.FC = () => {
+  const { openManagedFlyout, isFlyoutOpen } = useEuiFlyoutSession();
+  const { state } = useEuiFlyoutSessionContext(); // Use internal hook for displaying raw state
+
+  const handleOpenManagedFlyout = () => {
+    const options = getHistoryManagedFlyoutOptions('page01');
+    openManagedFlyout(options);
+  };
+
+  return (
+    <>
+      <EuiButton
+        onClick={handleOpenManagedFlyout}
+        isDisabled={isFlyoutOpen}
+        fill
+      >
+        Begin flyout navigation
+      </EuiButton>
+      <EuiSpacer />
+      <InternalState state={state} />
+    </>
+  );
+};
+
+const DeepHistoryApp: React.FC = () => {
+  // Render function for MAIN flyout content
+  const renderMainFlyoutContent = (
+    context: EuiFlyoutSessionRenderContext<DeepHistoryAppMeta>
+  ) => {
+    const { meta } = context;
+    const { page } = meta || { page: 'page01' };
+    return <DeepHistoryPage page={page} />;
+  };
+
+  return (
+    <EuiFlyoutSessionProvider
+      renderMainFlyoutContent={renderMainFlyoutContent}
+      onUnmount={() => loggerAction('All flyouts have been unmounted')}
+    >
+      <DeepHistoryAppControls />
+    </EuiFlyoutSessionProvider>
+  );
+};
+
+export const DeepHistory: StoryObj = {
+  name: 'Deep History Navigation',
+  render: () => {
+    return <DeepHistoryApp />;
   },
 };
 
@@ -429,6 +626,7 @@ const GroupOpenerControls: React.FC<{
     }
     const options: EuiFlyoutSessionOpenGroupOptions = {
       main: {
+        title: 'Group opener, main flyout',
         size: mainFlyoutSize,
         flyoutProps: {
           type: mainFlyoutType,
@@ -444,6 +642,7 @@ const GroupOpenerControls: React.FC<{
         },
       },
       child: {
+        title: 'Group opener, child flyout',
         size: childFlyoutSize,
         flyoutProps: {
           className: 'groupOpenerChildFlyout',
@@ -514,11 +713,6 @@ const GroupOpenerApp: React.FC = () => {
     const { closeSession } = useEuiFlyoutSession();
     return (
       <>
-        <EuiFlyoutHeader hasBorder>
-          <EuiTitle size="m">
-            <h2 id="flyout-main-title">Main Flyout</h2>
-          </EuiTitle>
-        </EuiFlyoutHeader>
         <EuiFlyoutBody>
           <EuiText>
             <p>
@@ -540,11 +734,6 @@ const GroupOpenerApp: React.FC = () => {
     const { closeChildFlyout } = useEuiFlyoutSession();
     return (
       <>
-        <EuiFlyoutHeader hasBorder>
-          <EuiTitle size="m">
-            <h2 id="flyout-child-title">Child Flyout</h2>
-          </EuiTitle>
-        </EuiFlyoutHeader>
         <EuiFlyoutBody>
           <EuiText>
             <p>
