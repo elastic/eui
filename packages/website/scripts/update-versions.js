@@ -54,16 +54,21 @@ const updateVersions = async () => {
     // Write the updated JSON back to the file
     fs.writeFileSync(versionsFile, JSON.stringify(jsonData, null, 2));
 
-    // Stage the file for commit
-    exec(`git add ${versionsFile}`, (err) => {
-      if (err) {
-        throw new Error('Error staging the file:', err);
-      } else {
-        console.log('Version added and file staged successfully');
+    // Add and commit the file
+    exec(
+      `git add ${versionsFile} && git commit -m "chore: update versions.json [skip ci]"`,
+      (err) => {
+        if (err) {
+          console.error('Error committing the file:', err);
+          process.exit(1);
+        } else {
+          console.log('Version added and committed successfully');
+        }
       }
-    });
+    );
   } catch (error) {
-    throw new Error('Error updating versions:', err);
+    console.error('Error updating versions:', error);
+    process.exit(1);
   }
 };
 
