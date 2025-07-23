@@ -8,13 +8,11 @@
 
 import React, { useState } from 'react';
 
-import { EuiButtonIcon } from '../../button';
+import { EuiButtonEmpty, EuiButtonIcon } from '../../button';
 import { EuiIcon } from '../../icon';
-import { EuiLink } from '../../link';
 import { EuiListGroup } from '../../list_group';
 import { EuiListGroupItem } from '../../list_group/list_group_item';
 import { EuiPopover } from '../../popover';
-import { EuiText } from '../../text';
 import { EuiFlyoutMenu, EuiFlyoutMenuProps } from '../flyout_menu';
 import { EuiFlyoutSessionGroup } from './types';
 
@@ -42,11 +40,9 @@ export const ManagedFlyoutMenu = (
     };
 
     backButton = (
-      <EuiText size="s">
-        <EuiLink onClick={handleGoBack} color="text">
-          <EuiIcon type="editorUndo" /> Back
-        </EuiLink>
-      </EuiText>
+      <EuiButtonEmpty size="xs" onClick={handleGoBack} color="text">
+        <EuiIcon type="editorUndo" /> Back
+      </EuiButtonEmpty>
     );
 
     historyPopover = (
@@ -54,6 +50,7 @@ export const ManagedFlyoutMenu = (
         button={
           <EuiButtonIcon
             iconType="arrowDown"
+            color="text"
             onClick={handlePopoverButtonClick}
             aria-label="History"
           />

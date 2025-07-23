@@ -12,13 +12,21 @@ import { UseEuiTheme } from '../../services';
 export const euiFlyoutMenuStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
   return {
-    euiFlyoutMenu: css`
+    euiFlyoutMenu__container: css`
       block-size: calc(${euiTheme.size.m} * 3.5);
       flex-shrink: 0;
-      padding-block: ${euiTheme.size.m};
-      padding-inline: ${euiTheme.size.l};
+      padding-block: ${euiTheme.size.s};
+      padding-inline: ${euiTheme.size.s};
       border-block-end: ${euiTheme.border.width.thin} solid
         ${euiTheme.border.color};
+      padding-block-start: calc(${euiTheme.size.m} * 0.8);
+
+      .euiTitle {
+        padding-inline: ${euiTheme.size.s};
+      }
+    `,
+    euiFlyoutMenu__spacer: css`
+      padding-inline: ${euiTheme.size.m};
     `,
   };
 };

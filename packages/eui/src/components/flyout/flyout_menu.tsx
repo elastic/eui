@@ -36,7 +36,6 @@ export const EuiFlyoutMenu: FunctionComponent<EuiFlyoutMenuProps> = ({
   const { onClose } = useContext(EuiFlyoutMenuContext);
 
   const styles = useEuiMemoizedStyles(euiFlyoutMenuStyles);
-  const cssStyles = [styles.euiFlyoutMenu];
   const classes = classNames('euiFlyoutMenu', className);
   const titleId = useGeneratedHtmlId();
 
@@ -65,28 +64,21 @@ export const EuiFlyoutMenu: FunctionComponent<EuiFlyoutMenuProps> = ({
   }
 
   return (
-    <div className={classes} css={cssStyles} {...rest}>
+    <div className={classes} css={styles.euiFlyoutMenu__container} {...rest}>
       <EuiFlexGroup
         alignItems="center"
         justifyContent="spaceBetween"
         gutterSize="none"
         responsive={false}
       >
-        <EuiFlexItem>
-          <EuiFlexGroup
-            alignItems="center"
-            gutterSize="m"
-            responsive={false}
-            wrap
-          >
-            {backButton && <EuiFlexItem grow={false}>{backButton}</EuiFlexItem>}
-            {popover && <EuiFlexItem grow={false}>{popover}</EuiFlexItem>}
-            {titleNode && <EuiFlexItem grow={false}>{titleNode}</EuiFlexItem>}
-            {children && <EuiFlexItem grow={false}>{children}</EuiFlexItem>}
-          </EuiFlexGroup>
-        </EuiFlexItem>
-        {closeButton && <EuiFlexItem grow={false}>{closeButton}</EuiFlexItem>}
+        {backButton && <EuiFlexItem grow={false}>{backButton}</EuiFlexItem>}
+        {popover && <EuiFlexItem grow={false}>{popover}</EuiFlexItem>}
+        {titleNode && <EuiFlexItem grow={false}>{titleNode}</EuiFlexItem>}
+        <EuiFlexItem grow={true}></EuiFlexItem>
+        {children && <EuiFlexItem grow={false}>{children}</EuiFlexItem>}
+        <EuiFlexItem grow={false} css={styles.euiFlyoutMenu__spacer} />
       </EuiFlexGroup>
+      {closeButton}
     </div>
   );
 };
