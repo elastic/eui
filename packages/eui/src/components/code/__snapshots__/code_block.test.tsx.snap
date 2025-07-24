@@ -23,6 +23,7 @@ exports[`EuiCodeBlock Virtualization renders a virtualized code block 1`] = `
       <div
         class="emotion-euiScreenReaderOnly"
       >
+        aria-label, 
         text code block:
       </div>
       <span
@@ -33,7 +34,6 @@ exports[`EuiCodeBlock Virtualization renders a virtualized code block 1`] = `
         ✄𐘗
       </span>
       <code
-        aria-label="aria-label"
         class="euiCodeBlock__code emotion-euiCodeBlock__code-isVirtualized"
         data-code-language="text"
         data-test-subj="test subject string"
@@ -92,6 +92,7 @@ exports[`EuiCodeBlock renders a code block 1`] = `
     <div
       class="emotion-euiScreenReaderOnly"
     >
+      aria-label, 
       text code block:
     </div>
     <span
@@ -102,7 +103,6 @@ exports[`EuiCodeBlock renders a code block 1`] = `
       ✄𐘗
     </span>
     <code
-      aria-label="aria-label"
       class="euiCodeBlock__code emotion-euiCodeBlock__code"
       data-code-language="text"
       data-test-subj="test subject string"
