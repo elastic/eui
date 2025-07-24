@@ -14,6 +14,7 @@ import { shouldRenderCustomStyles } from '../../test/internal';
 
 import { EuiHeader } from '../header';
 import { EuiFlyout, SIZES, PADDING_SIZES, SIDES } from './flyout';
+import { EuiProvider } from '../provider';
 
 jest.mock('../overlay_mask', () => ({
   EuiOverlayMask: ({ headerZindexLocation, maskRef, ...props }: any) => (
@@ -51,10 +52,7 @@ describe('EuiFlyout', () => {
 
     expect(baseElement).toMatchSnapshot();
     expect(
-      queryByText(
-        'You can still continue tabbing through the page headers in addition to the dialog.',
-        { exact: false }
-      )
+      queryByText('You can still continue tabbing through', { exact: false })
     ).toBeTruthy();
 
     // Should not shard or render instructions when `includeFixedHeadersInFocusTrap={false}
@@ -65,10 +63,28 @@ describe('EuiFlyout', () => {
       </>
     );
     expect(
-      queryByText('You can still continue tabbing through the page headers', {
+      queryByText('You can still continue tabbing through', {
         exact: false,
       })
     ).toBeFalsy();
+  });
+
+  it('renders extra screen reader instructions when specified selector exists on the page', () => {
+    const { queryByText } = render(
+      <>
+        <div data-custom-sidebar />
+        <EuiFlyout
+          {...requiredProps}
+          onClose={() => {}}
+          includeSelectorInFocusTrap={'[data-custom-sidebar]'}
+          includeFixedHeadersInFocusTrap={false}
+        />
+      </>
+    );
+
+    expect(
+      queryByText('You can still continue tabbing through', { exact: false })
+    ).toBeTruthy();
   });
 
   it('allows setting custom aria-describedby attributes', () => {
@@ -306,6 +322,52 @@ describe('EuiFlyout', () => {
         expect(add).toHaveBeenCalledTimes(1);
         expect(remove).not.toHaveBeenCalled();
       });
+    });
+  });
+
+  describe('component defaults', () => {
+    test('includeSelectorInFocusTrap', () => {
+      const { queryByText } = render(
+        <EuiProvider
+          componentDefaults={{
+            EuiFlyout: {
+              includeSelectorInFocusTrap: ['[data-custom-sidebar]'],
+            },
+          }}
+        >
+          <div data-custom-sidebar />
+          <EuiFlyout {...requiredProps} onClose={() => {}} />
+        </EuiProvider>,
+        {
+          wrapper: undefined,
+        }
+      );
+
+      expect(
+        queryByText('You can still continue tabbing through', { exact: false })
+      ).toBeTruthy();
+    });
+
+    test('includeFixedHeadersInFocusTrap', () => {
+      const { queryByText } = render(
+        <EuiProvider
+          componentDefaults={{
+            EuiFlyout: {
+              includeFixedHeadersInFocusTrap: false,
+            },
+          }}
+        >
+          <EuiHeader position="fixed" />
+          <EuiFlyout {...requiredProps} onClose={() => {}} />
+        </EuiProvider>,
+        {
+          wrapper: undefined,
+        }
+      );
+
+      expect(
+        queryByText('You can still continue tabbing through', { exact: false })
+      ).not.toBeTruthy();
     });
   });
 });

@@ -64,6 +64,11 @@ export type _EuiThemeComponentColors = {
   dataGridRowBackgroundHover: ColorModeSwitch;
   dataGridRowBackgroundSelect: ColorModeSwitch;
   dataGridRowBackgroundSelectHover: ColorModeSwitch;
+  dataGridRowBackgroundMarked: ColorModeSwitch;
+  dataGridRowBackgroundMarkedHover: ColorModeSwitch;
+  dataGridRowBorderActive: ColorModeSwitch;
+  dataGridRowBorderHover: ColorModeSwitch;
+  dataGridRowBorderMarked: ColorModeSwitch;
   dataGridRowStripesBackground: ColorModeSwitch;
   dataGridRowStripesBackgroundHover: ColorModeSwitch;
   dataGridRowStripesBackgroundStriped: ColorModeSwitch;
@@ -136,6 +141,8 @@ export type _EuiThemeComponentColors = {
   tableRowBackgroundSelectedHover: ColorModeSwitch;
   tableRowInteractiveBackgroundHover: ColorModeSwitch;
   tableRowInteractiveBackgroundFocus: ColorModeSwitch;
+  tableRowBackgroundMarked: ColorModeSwitch;
+  tableRowBackgroundMarkedHover: ColorModeSwitch;
   tableCellSortableIconColor: ColorModeSwitch;
 
   tooltipBackground: ColorModeSwitch;

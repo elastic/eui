@@ -975,6 +975,32 @@ import ResizableFlyout from './_flyout_resizable.mdx';
 
 <ResizableFlyout />
 
+### Child flyout (Beta)
+
+:::info Note
+This component is still in beta and may change in the future.
+:::
+
+Use `EuiFlyoutChild` to create a nested flyout that aligns to the left edge of a parent `EuiFlyout`. On smaller screens, the child flyout stacks above the parent.
+
+```tsx
+<EuiFlyout>
+  <EuiFlyoutHeader>Parent header</EuiFlyoutHeader>
+  <EuiFlyoutBody>Parent body</EuiFlyoutBody>
+  <EuiFlyoutFooter>Parent footer</EuiFlyoutFooter>
+
+  <EuiFlyoutChild>
+    <EuiFlyoutHeader>Child header</EuiFlyoutHeader>
+    <EuiFlyoutBody>Child body</EuiFlyoutBody>
+    <EuiFlyoutFooter>Child footer</EuiFlyoutFooter>
+  </EuiFlyoutChild>
+</EuiFlyout>
+```
+
+The `EuiFlyoutChild` must include an `EuiFlyoutBody` child and can only be used within a parent `EuiFlyout`. When present, the parent flyout's `side` prop will be forced to `"right"` and the close button to `"inside"`. Size options are also limited - parent flyouts can only be `s` or `m`, and if the parent is `m`, the child must be `s`.
+
+Both parent and child flyouts use `role="dialog"` and `aria-modal="true"` for accessibility. Focus is managed automatically between them, with the child flyout taking focus when open and returning focus to the parent when closed.
+
 ## Props
 
 import docgen from '@elastic/eui-docgen/dist/components/flyout';
@@ -989,3 +1015,5 @@ import flyoutDocgen from '@elastic/eui-docgen/dist/components/flyout/flyout.json
 <PropTable definition={docgen.EuiFlyoutHeader} />
 
 <PropTable definition={docgen.EuiFlyoutResizable} />
+
+<PropTable definition={docgen.EuiFlyoutChild} />

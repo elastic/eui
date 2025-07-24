@@ -41,6 +41,7 @@ export const euiThemeBorealis: EuiThemeShape = {
     hasGlobalFocusColor: true,
     hasVisColorAdjustment: false,
     buttonVariant: 'refresh',
+    formVariant: 'refresh',
   },
   overrides,
 };

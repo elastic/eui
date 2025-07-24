@@ -14,9 +14,9 @@ const alias = {};
 const reactVersion = process.env.REACT_VERSION || '18';
 
 // Setup module aliasing when we're testing an older React version
-if (['16', '17'].includes(reactVersion)) {
-  alias.react = `react-${reactVersion}`;
-  alias['react-dom'] = `react-dom-${reactVersion}`;
+if (reactVersion === '17') {
+  alias.react = `react-17`;
+  alias['react-dom'] = `react-dom-17`;
 }
 
 module.exports = {

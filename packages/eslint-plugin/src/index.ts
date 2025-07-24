@@ -22,6 +22,9 @@ import { NoRestrictedEuiImports } from './rules/no_restricted_eui_imports';
 import { NoCssColor } from './rules/no_css_color';
 
 import { RequireAriaLabelForModals } from './rules/a11y/require_aria_label_for_modals';
+import { ConsistentIsInvalidProps } from './rules/a11y/consistent_is_invalid_props';
+import { ScreenReaderOutputDisabledTooltip } from './rules/a11y/sr_output_disabled_tooltip';
+import { PreferEuiIconTip } from './rules/a11y/prefer_eui_icon_tip';
 
 const config = {
   rules: {
@@ -29,6 +32,9 @@ const config = {
     'no-restricted-eui-imports': NoRestrictedEuiImports,
     'no-css-color': NoCssColor,
     'require-aria-label-for-modals': RequireAriaLabelForModals,
+    'consistent-is-invalid-props': ConsistentIsInvalidProps,
+    'sr-output-disabled-tooltip': ScreenReaderOutputDisabledTooltip,
+    'prefer-eui-icon-tip': PreferEuiIconTip,
   },
   configs: {
     recommended: {
@@ -38,6 +44,9 @@ const config = {
         '@elastic/eui/no-restricted-eui-imports': 'warn',
         '@elastic/eui/no-css-color': 'warn',
         '@elastic/eui/require-aria-label-for-modals': 'warn',
+        '@elastic/eui/consistent-is-invalid-props': 'warn',
+        '@elastic/eui/sr-output-disabled-tooltip': 'warn',
+        '@elastic/eui/prefer-eui-icon-tip': 'warn',
       },
     },
   },

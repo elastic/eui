@@ -24,14 +24,26 @@ export const euiTableRowStyles = (euiThemeContext: UseEuiTheme) => {
   const { cellContentPadding, mobileSizes, checkboxSize } =
     euiTableVariables(euiThemeContext);
 
+  const markedStyles = `
+    :where(&.euiTableRow--marked):hover {
+      background-color: ${rowColors.marked.hover};
+    }
+  `;
+
   return {
-    euiTableRow: css``,
+    euiTableRow: css`
+      :where(&.euiTableRow--marked) {
+        background-color: ${rowColors.marked.background};
+      }
+    `,
 
     desktop: {
       desktop: css`
         &:hover {
           background-color: ${rowColors.hover};
         }
+
+        ${markedStyles}
       `,
       expanded: css`
         background-color: ${rowColors.hover};
@@ -43,6 +55,8 @@ export const euiTableRowStyles = (euiThemeContext: UseEuiTheme) => {
           cursor: pointer;
         }
 
+        ${markedStyles}
+
         &:focus {
           background-color: ${rowColors.clickable.focus};
         }
@@ -50,7 +64,7 @@ export const euiTableRowStyles = (euiThemeContext: UseEuiTheme) => {
       selected: css`
         &,
         & + .euiTableRow-isExpandedRow {
-          background-color: ${rowColors.selected.color};
+          background-color: ${rowColors.selected.background};
         }
 
         &:hover,
@@ -96,7 +110,7 @@ export const euiTableRowStyles = (euiThemeContext: UseEuiTheme) => {
       selected: css`
         &,
         & + .euiTableRow-isExpandedRow {
-          background-color: ${rowColors.selected.color};
+          background-color: ${rowColors.selected.background};
         }
       `,
       /**
@@ -179,11 +193,15 @@ const _expandedRowAnimation = ({ euiTheme }: UseEuiTheme) => {
 const _rowColorVariables = ({ euiTheme }: UseEuiTheme) => ({
   hover: euiTheme.components.tableRowBackgroundHover,
   selected: {
-    color: euiTheme.components.tableRowBackgroundSelected,
+    background: euiTheme.components.tableRowBackgroundSelected,
     hover: euiTheme.components.tableRowBackgroundSelectedHover,
   },
   clickable: {
     hover: euiTheme.components.tableRowInteractiveBackgroundHover,
     focus: euiTheme.components.tableRowInteractiveBackgroundFocus,
+  },
+  marked: {
+    background: euiTheme.components.tableRowBackgroundMarked,
+    hover: euiTheme.components.tableRowBackgroundMarkedHover,
   },
 });

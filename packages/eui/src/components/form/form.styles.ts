@@ -6,7 +6,11 @@
  * Side Public License, v 1.
  */
 
-import { UseEuiTheme, makeHighContrastColor } from '../../services';
+import {
+  UseEuiTheme,
+  isEuiThemeRefreshVariant,
+  makeHighContrastColor,
+} from '../../services';
 import {
   logicalCSS,
   mathWithUnits,
@@ -23,6 +27,11 @@ export const euiFormMaxWidth = ({ euiTheme }: UseEuiTheme) =>
 
 export const euiFormVariables = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme, highContrastMode } = euiThemeContext;
+  const isRefreshVariant = isEuiThemeRefreshVariant(
+    euiThemeContext,
+    'formVariant'
+  );
+
   const backgroundColor = highContrastMode
     ? euiTheme.colors.emptyShade
     : euiTheme.components.forms.background;
@@ -36,10 +45,15 @@ export const euiFormVariables = (euiThemeContext: UseEuiTheme) => {
     controlCompressedHeight: controlCompressedHeight,
     controlPadding: euiTheme.size.m,
     controlCompressedPadding: euiTheme.size.s,
-    controlBorderRadius: euiTheme.border.radius.medium,
+    controlBorderRadius: isRefreshVariant
+      ? euiTheme.border.radius.small
+      : euiTheme.border.radius.medium,
     controlCompressedBorderRadius: euiTheme.border.radius.small,
     iconAffordance: mathWithUnits(euiTheme.size.base, (x) => x * 1.5),
-    iconCompressedAffordance: mathWithUnits(euiTheme.size.m, (x) => x * 1.5),
+    iconCompressedAffordance: mathWithUnits(
+      isRefreshVariant ? euiTheme.size.base : euiTheme.size.m,
+      (x) => x * 1.5
+    ),
     stateUnderlineHeight: highContrastMode
       ? mathWithUnits(euiTheme.border.width.thick, (x) => x * 2)
       : euiTheme.border.width.thick,
@@ -54,11 +68,19 @@ export const euiFormVariables = (euiThemeContext: UseEuiTheme) => {
     borderColor: highContrastMode
       ? euiTheme.border.color
       : euiTheme.components.forms.border,
+    borderHovered: euiTheme.components.forms.borderHovered,
+    borderFocused: euiTheme.components.forms.borderFocused,
+    borderInvalid: euiTheme.components.forms.borderInvalid,
+    borderInvalidHovered: euiTheme.components.forms.borderInvalidHovered,
     controlDisabledColor: euiTheme.components.forms.controlBackgroundDisabled,
     controlBoxShadow: '0 0 transparent',
-    controlPlaceholderText: makeHighContrastColor(euiTheme.colors.textSubdued)(
-      backgroundColor
-    ),
+    controlPlaceholderText: isRefreshVariant
+      ? highContrastMode
+        ? makeHighContrastColor(euiTheme.components.forms.colorDisabled)(
+            backgroundColor
+          )
+        : euiTheme.components.forms.colorDisabled
+      : makeHighContrastColor(euiTheme.colors.textSubdued)(backgroundColor),
     appendPrependBackground: euiTheme.components.forms.prependBackground,
   };
 
@@ -90,7 +112,14 @@ export const euiFormVariables = (euiThemeContext: UseEuiTheme) => {
   };
 };
 
+const formControlLayoutWrapperSelector =
+  '.euiFormControlLayout__childrenWrapper';
+
 export const euiFormControlStyles = (euiThemeContext: UseEuiTheme) => {
+  const isRefreshVariant = isEuiThemeRefreshVariant(
+    euiThemeContext,
+    'formVariant'
+  );
   const form = euiFormVariables(euiThemeContext);
 
   return {
@@ -134,7 +163,7 @@ export const euiFormControlStyles = (euiThemeContext: UseEuiTheme) => {
         none: 'box-shadow: none;',
         preferred: 'border: none;',
       })}
-      border-radius: 0;
+      border-radius: ${isRefreshVariant ? 'inherit' : '0'};
     `,
 
     // Widths
@@ -188,17 +217,33 @@ export const euiFormControlDefaultShadow = (
   } = {}
 ) => {
   const { euiTheme } = euiThemeContext;
+  const isRefreshVariant = isEuiThemeRefreshVariant(
+    euiThemeContext,
+    'formVariant'
+  );
   const form = euiFormVariables(euiThemeContext);
 
   const border = highContrastModeStyles(euiThemeContext, {
     // We use inset box-shadow instead of border to skip extra height calculations
-    none: `
+    none: isRefreshVariant
+      ? `
+      --euiFormControlStateColor: ${form.borderColor};
+      border: none;
+      box-shadow: inset 0 0 0 ${
+        euiTheme.border.width.thin
+      } var(--euiFormControlStateColor);
+
+      ${euiFormControlHoverStyles(euiThemeContext)}
+    `
+      : `
       border: none;
       box-shadow: inset 0 0 0 ${euiTheme.border.width.thin} ${form.borderColor};
     `,
     // In high contrast mode, this doesn't matter - we need to prioritize visibility
     preferred: `
       border: ${euiTheme.border.width.thin} solid ${euiTheme.border.color};
+
+      ${euiFormControlHoverStyles(euiThemeContext)}
     `,
   });
 
@@ -207,16 +252,25 @@ export const euiFormControlDefaultShadow = (
   `.trim();
 
   const backgroundGradient = highContrastModeStyles(euiThemeContext, {
-    none: `
+    none: !isRefreshVariant
+      ? `
       background-repeat: no-repeat;
       background-size: 0% 100%;
       background-image: linear-gradient(to top,
         var(--euiFormControlStateColor),
-        var(--euiFormControlStateColor) ${form.stateUnderlineHeight},
+        var(--euiFormControlStateColor) ${
+          isRefreshVariant
+            ? mathWithUnits(
+                [euiTheme.border.width.thick, euiTheme.border.width.thin],
+                (x, y) => x + y // account for pseudo element border
+              )
+            : form.stateUnderlineHeight
+        },
         transparent ${form.stateUnderlineHeight},
         transparent 100%
       );
-    `,
+    `
+      : '',
     // Windows high contrast mode overrides/hides background gradients - we'll need another approach
     forced: `
       background-repeat: no-repeat;
@@ -226,14 +280,16 @@ export const euiFormControlDefaultShadow = (
     `,
   });
 
-  const backgroundAnimation = `
+  const backgroundAnimation = !isRefreshVariant
+    ? `
     ${euiCanAnimate} {
       transition:
         background-image ${form.animationTiming},
         background-size ${form.animationTiming},
         background-color ${form.animationTiming};
     }
-  `.trim();
+  `.trim()
+    : '';
 
   return `
     ${withBorder ? border : ''}
@@ -243,29 +299,118 @@ export const euiFormControlDefaultShadow = (
   `;
 };
 
-export const euiFormControlFocusStyles = (euiThemeContext: UseEuiTheme) => {
-  const { euiTheme } = euiThemeContext;
-  const focusColor = euiTheme.colors.primary;
+const hoverSelector =
+  '&:hover:not(:disabled, :focus, input[readonly], [class*="readOnly"])';
+
+export const disableFormControlHoverStyles = () => `
+  ${hoverSelector} {
+    outline: none;
+  }
+`;
+
+export const euiFormControlHoverStyles = (euiThemeContext: UseEuiTheme) => {
+  const { euiTheme, highContrastMode } = euiThemeContext;
+  const form = euiFormVariables(euiThemeContext);
 
   return `
-    --euiFormControlStateColor: ${focusColor};
-    background-color: ${euiTheme.components.forms.backgroundFocused};
-    ${euiFormControlShowBackgroundUnderline(euiThemeContext, focusColor)}
-    outline: none; /* Remove all outlines and rely on our own bottom border gradient */
+    ${hoverSelector} {
+      --borderWidthBase: var(--euiFormControlStateWidth, ${
+        euiTheme.border.width.thin
+      });
+      --borderWidth: ${
+        highContrastMode
+          ? euiTheme.border.width.thick
+          : 'var(--borderWidthBase)'
+      };
+      --borderColor: var(--euiFormControlStateHoverColor, ${
+        highContrastMode ? euiTheme.border.color : form.borderHovered
+      });
+      position: relative;
+      z-index: 1;
+      outline: var(--borderWidth) solid var(--borderColor);
+      outline-offset: calc(-1 * var(--borderWidth));
+    }
   `;
+};
+
+export const euiFormControlHighlightBorderStyles = `
+  position: relative;
+  z-index: 1;
+  box-shadow: none;
+  outline: var(--euiFormControlStateWidth) solid var(--euiFormControlStateColor);
+  outline-offset: calc(-1 * var(--euiFormControlStateWidth));
+`;
+
+export const euiFormControlFocusStyles = (euiThemeContext: UseEuiTheme) => {
+  const { euiTheme } = euiThemeContext;
+  const isRefreshVariant = isEuiThemeRefreshVariant(
+    euiThemeContext,
+    'formVariant'
+  );
+
+  const form = euiFormVariables(euiThemeContext);
+  const focusColor = euiTheme.colors.primary;
+
+  return isRefreshVariant
+    ? `
+      --euiFormControlStateColor: ${form.borderFocused};
+      --euiFormControlStateHoverColor: ${form.borderFocused};
+      --euiFormControlStateWidth: ${euiTheme.border.width.thick};
+      ${euiFormControlHighlightBorderStyles}
+      ${highContrastModeStyles(euiThemeContext, {
+        forced: `
+          ${euiFormControlShowBackgroundLine(euiThemeContext, focusColor)}
+        `,
+      })}
+    `
+    : `
+      --euiFormControlStateColor: ${focusColor};
+      background-color: ${euiTheme.components.forms.backgroundFocused};
+      ${euiFormControlShowBackgroundLine(euiThemeContext, focusColor)}
+      outline: none; /* Remove all outlines and rely on our own bottom border gradient */
+    `;
 };
 
 export const euiFormControlInvalidStyles = (euiThemeContext: UseEuiTheme) => {
-  const { euiTheme } = euiThemeContext;
+  const { euiTheme, highContrastMode } = euiThemeContext;
+  const isRefreshVariant = isEuiThemeRefreshVariant(
+    euiThemeContext,
+    'formVariant'
+  );
+
+  const form = euiFormVariables(euiThemeContext);
   const invalidColor = euiTheme.colors.danger;
-  return `
-    --euiFormControlStateColor: ${invalidColor};
-    ${euiFormControlShowBackgroundUnderline(euiThemeContext, invalidColor)}
-  `;
+
+  return isRefreshVariant
+    ? `
+      --euiFormControlStateColor: ${form.borderInvalid};
+      --euiFormControlStateHoverColor: ${form.borderInvalidHovered};
+      --euiFormControlStateWidth: ${
+        highContrastMode === 'preferred'
+          ? euiTheme.border.width.thick
+          : euiTheme.border.width.thin
+      };
+      
+      ${euiFormControlHighlightBorderStyles}
+      ${euiFormControlShowBackgroundLine(euiThemeContext, invalidColor)}
+    `
+    : `
+      --euiFormControlStateColor: ${invalidColor};
+      ${euiFormControlShowBackgroundLine(euiThemeContext, invalidColor)}
+    `;
 };
 
 export const euiFormControlDisabledStyles = (euiThemeContext: UseEuiTheme) => {
+  const isRefreshVariant = isEuiThemeRefreshVariant(
+    euiThemeContext,
+    'formVariant'
+  );
   const form = euiFormVariables(euiThemeContext);
+
+  const refreshVariantStyles = `
+      --euiFormControlStateHoverColor: transparent;
+      --euiFormControlStateColor: ${form.borderColor};
+    `;
 
   return `
     color: ${form.textColorDisabled};
@@ -275,6 +420,8 @@ export const euiFormControlDisabledStyles = (euiThemeContext: UseEuiTheme) => {
     cursor: not-allowed;
     --euiFormControlStateColor: transparent;
 
+    ${isRefreshVariant && refreshVariantStyles}
+
     ${euiPlaceholderPerBrowser(`
       color: ${form.textColorDisabled};
       opacity: 1;
@@ -283,23 +430,57 @@ export const euiFormControlDisabledStyles = (euiThemeContext: UseEuiTheme) => {
 };
 
 export const euiFormControlReadOnlyStyles = (euiThemeContext: UseEuiTheme) => {
+  const { euiTheme } = euiThemeContext;
+  const isRefreshVariant = isEuiThemeRefreshVariant(
+    euiThemeContext,
+    'formVariant'
+  );
+
   const form = euiFormVariables(euiThemeContext);
 
+  const styles = isRefreshVariant
+    ? `
+      --euiFormControlStateColor: ${form.borderColor};
+      --euiFormControlStateHoverColor: ${form.borderColor};
+      --euiFormControlStateWidth: ${euiTheme.border.width.thin};
+      /* keep the input below wrapper borders */
+      position: relative;
+      z-index: 0;
+      outline: none;
+      box-shadow: inset 0 0 0 var(--euiFormControlStateWidth) var(--euiFormControlStateColor);
+
+      ${formControlLayoutWrapperSelector}[class*=inGroup] & {
+        box-shadow: none;
+      }
+      ${highContrastModeStyles(euiThemeContext, {
+        preferred: 'box-shadow: none;',
+      })}
+    `
+    : `
+      --euiFormControlStateColor: transparent;
+      ${highContrastModeStyles(euiThemeContext, {
+        forced: 'background-image: none;',
+      })}
+    `;
+
   return `
+    background-color: ${form.backgroundReadOnlyColor};
     cursor: default;
     color: ${form.textColor};
     -webkit-text-fill-color: ${form.textColor}; /* Required for Safari */
 
-    background-color: ${form.backgroundReadOnlyColor};
-    --euiFormControlStateColor: transparent;
-    ${highContrastModeStyles(euiThemeContext, {
-      forced: 'background-image: none;',
-    })}
+    ${styles}
   `;
 };
 
 export const euiFormControlAutoFillStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
+  const isRefreshVariant = isEuiThemeRefreshVariant(
+    euiThemeContext,
+    'formVariant'
+  );
+
+  const form = euiFormVariables(euiThemeContext);
 
   // Make the text color slightly less prominent than the default colors.text
   const textColor = euiTheme.colors.darkestShade;
@@ -312,9 +493,36 @@ export const euiFormControlAutoFillStyles = (euiThemeContext: UseEuiTheme) => {
   // Re-create the border, since the above webkit box shadow overrides the default border box-shadow
   // + change the border color to match states, since the underline background gradient no longer works
   const borderColor = euiTheme.components.forms.borderAutofilled;
-  const invalidBorder = euiTheme.colors.danger;
+  const borderHovered = euiTheme.components.forms.borderAutofilledHovered;
+  const borderInvalid = form.borderInvalid;
+  const borderInvalidHovered = form.borderInvalidHovered;
   const borderShadow = (color: string) =>
     `inset 0 0 0 ${euiTheme.border.width.thin} ${color}`;
+
+  const interactiveStyles = isRefreshVariant
+    ? `
+      &:hover,
+      &:focus {
+        -webkit-box-shadow: ${borderShadow(borderHovered)}, ${backgroundShadow};
+      }
+
+      &:invalid {
+        -webkit-box-shadow: ${borderShadow(borderInvalid)}, ${backgroundShadow};
+
+        &:hover {
+          -webkit-box-shadow: ${borderShadow(
+            borderInvalidHovered
+          )}, ${backgroundShadow};
+        }
+      }
+    `
+    : `
+      &:invalid {
+          -webkit-box-shadow: ${borderShadow(
+            borderInvalid
+          )}, ${backgroundShadow};
+      }
+    `;
 
   // These styles only apply/override Chrome/webkit browsers - Firefox does not set autofill styles
   return `
@@ -322,29 +530,46 @@ export const euiFormControlAutoFillStyles = (euiThemeContext: UseEuiTheme) => {
       -webkit-text-fill-color: ${textColor};
       -webkit-box-shadow: ${borderShadow(borderColor)}, ${backgroundShadow};
 
-      &:invalid {
-        -webkit-box-shadow: ${borderShadow(invalidBorder)}, ${backgroundShadow};
-      }
+      ${interactiveStyles}
     }
   `;
 };
 
-export const euiFormControlShowBackgroundUnderline = (
+export const euiFormControlShowBackgroundLine = (
   euiThemeContext: UseEuiTheme,
   color: string
 ) => {
-  if (euiThemeContext.highContrastMode !== 'forced') {
+  const { euiTheme, highContrastMode } = euiThemeContext;
+  const isRefreshVariant = isEuiThemeRefreshVariant(
+    euiThemeContext,
+    'formVariant'
+  );
+
+  if (highContrastMode !== 'forced') {
     return 'background-size: 100% 100%;';
   }
+
+  const { stateUnderlineHeight } = euiFormVariables(euiThemeContext);
 
   // Windows high contrast themes ignore all background-images that aren't url-based,
   // so to restore the linear-gradient that provides important visual information, we're
   // using a static inline SVG workaround
   const fill = encodeURIComponent(color);
-  const inlineSVG = `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='100%25' height='100%25' fill='${fill}' /%3E%3C/svg%3E`;
+  const strokeWidth = stateUnderlineHeight ?? '4px';
 
-  const { stateUnderlineHeight } = euiFormVariables(euiThemeContext);
-  return `
+  const inlineSVG = `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='100%25' height='100%25' fill='${fill}' /%3E%3C/svg%3E`;
+  const refreshInlineSVG = `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='100%25' height='100%25' style='fill:transparent;stroke-width:${strokeWidth};stroke:${fill}' /%3E%3C/svg%3E`;
+
+  return isRefreshVariant
+    ? `
+      background-size: calc(100% - ${mathWithUnits(
+        strokeWidth,
+        (x) => x / 2
+      )}) calc(100% - ${mathWithUnits(strokeWidth, (x) => x / 2)});
+      background-position: ${euiTheme.border.width.thin};
+      background-image: url("${refreshInlineSVG}");
+    `
+    : `
     background-size: 100% ${stateUnderlineHeight};
     background-image: url("${inlineSVG}");
   `;

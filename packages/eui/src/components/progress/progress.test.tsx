@@ -80,6 +80,41 @@ describe('EuiProgress', () => {
     expect(container).toMatchSnapshot();
   });
 
+  test('handles node in label', () => {
+    const { container, getByTestSubject } = render(
+      <EuiProgress
+        label={<span data-test-subj="progress-label">Label text</span>}
+        valueText={true}
+        value={50}
+        max={100}
+        {...requiredProps}
+      />
+    );
+
+    const labelElement = getByTestSubject('progress-label');
+    expect(labelElement).toBeInTheDocument();
+    expect(labelElement).toHaveTextContent('Label text');
+    expect(container.querySelector('[aria-live]')).toHaveTextContent(
+      'Label text'
+    );
+  });
+
+  test('has screen reader only output', () => {
+    const { container } = render(
+      <EuiProgress
+        label={<span>Label text</span>}
+        valueText={true}
+        value={50}
+        max={100}
+        {...requiredProps}
+      />
+    );
+
+    expect(container.querySelector('[aria-live]')?.innerHTML).toBe(
+      '<span>Label text 50%</span>'
+    );
+  });
+
   test('has labelProps', () => {
     const { container } = render(
       <EuiProgress

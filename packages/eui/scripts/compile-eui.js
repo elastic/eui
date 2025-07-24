@@ -3,8 +3,11 @@ const chalk = require('chalk');
 const shell = require('shelljs');
 const path = require('path');
 const glob = require('glob');
-const fs = require('fs');
+const fs = require('fs/promises');
 const dtsGenerator = require('dts-generator').default;
+
+const packageRootDir = path.resolve(__dirname, '..');
+const srcDir = path.join(packageRootDir, 'src');
 
 const IGNORE_BUILD = ['**/webpack.config.js', '**/*.d.ts'];
 const IGNORE_TESTS = [
@@ -29,7 +32,83 @@ const IGNORE_TESTENV = [
 ];
 const IGNORE_PACKAGES = ['**/react-datepicker/test/**/*.js'];
 
-function compileLib() {
+async function renameTestEnvFiles() {
+  const files = glob.globIterate('test-env/**/*.testenv.js', {
+    cwd: packageRootDir,
+    realpath: true,
+  });
+
+  let count = 0;
+  for await (const filePath of files) {
+    const fullPath = path.join(packageRootDir, filePath);
+
+    const dir = path.dirname(fullPath);
+    const fileName = path.basename(fullPath, '.js');
+    const targetName = fileName.replace('.testenv', '');
+
+    await fs.rename(fullPath, path.join(dir, `${targetName}.js`));
+    count++;
+  }
+
+  console.log(`Successfully renamed ${count} testenv files`);
+}
+
+async function copyFilesToDestinationDirs(files, destinationDirs) {
+  let count = 0;
+  for await (const filePath of files) {
+    const fullPath = path.join(srcDir, filePath);
+
+    for (const destinationDir of destinationDirs) {
+      const destPath = path.join(destinationDir, filePath);
+      const destDir = path.dirname(destPath);
+
+      // Attempt to create a directory if it doesn't exist yet
+      await fs.mkdir(destDir, { recursive: true });
+
+      await fs.copyFile(fullPath, destPath);
+    }
+    count++;
+  }
+
+  return count;
+}
+
+async function copyJsonFiles() {
+  const files = glob.globIterate('**/*.json', {
+    cwd: srcDir,
+    realpath: true,
+  });
+
+  const destinationDirs = [
+    'es',
+    'optimize/es',
+    'optimize/lib',
+    'lib',
+    'test-env',
+  ].map((dir) => path.join(packageRootDir, dir));
+
+  const count = await copyFilesToDestinationDirs(files, destinationDirs);
+
+  console.log(`Successfully copied ${count} JSON files from src/ to es/, optimize/es, optimize/lib, lib/ and test-env/`);
+}
+
+async function copySvgFiles() {
+  const files = glob.globIterate('components/**/*.svg', {
+    cwd: srcDir,
+    realpath: true,
+  });
+
+  const destinationDirs = [
+    'optimize/lib',
+    'lib',
+  ].map((dir) => path.join(packageRootDir, dir));
+
+  const count = await copyFilesToDestinationDirs(files, destinationDirs);
+
+  console.log(`Successfully copied ${count} SVG files from src/ to lib/ and optimize/lib/`);
+}
+
+async function compileLib() {
   shell.mkdir('-p', 'lib/services', 'lib/test');
 
   console.log('Compiling src/ to es/, lib/, optimize/, and test-env/');
@@ -112,40 +191,9 @@ function compileLib() {
       },
     }
   );
-  glob('./test-env/**/*.testenv.js', undefined, (error, files) => {
-    files.forEach((file) => {
-      const dir = path.dirname(file);
-      const fileName = path.basename(file, '.js');
-      const targetName = fileName.replace('.testenv', '');
-      fs.renameSync(file, path.join(dir, `${targetName}.js`));
-    });
-  });
 
-  // Copy all JSON files to build outputs
-  glob('./src/**/*.json', undefined, (_error, files) => {
-    const directories = new Set();
-    files.forEach((file) => {
-      const splitPath = file.split('/');
-      const basePath = splitPath.slice(2, splitPath.length - 1).join('/');
-      directories.add(`es/${basePath}`);
-      directories.add(`optimize/es/${basePath}`);
-      directories.add(`lib/${basePath}`);
-      directories.add(`optimize/lib/${basePath}`);
-      directories.add(`test-env/${basePath}`);
-    });
-
-    directories.forEach((dir) => shell.mkdir('-p', dir));
-
-    files.forEach((file) => {
-      const splitPath = file.split('/');
-      const basePath = splitPath.slice(2, splitPath.length).join('/');
-      shell.cp('-f', `${file}`, `es/${basePath}`);
-      shell.cp('-f', `${file}`, `optimize/es/${basePath}`);
-      shell.cp('-f', `${file}`, `lib/${basePath}`);
-      shell.cp('-f', `${file}`, `optimize/lib/${basePath}`);
-      shell.cp('-f', `${file}`, `test-env/${basePath}`);
-    });
-  });
+  await renameTestEnvFiles();
+  await copyJsonFiles();
 
   console.log(chalk.green('✔ Finished compiling src/'));
 
@@ -158,80 +206,64 @@ function compileLib() {
   execSync('tsc --noEmit -p tsconfig-builttypes.json', { stdio: 'inherit' });
   console.log(chalk.green('✔ Finished generating definitions'));
 
-  // Also copy over SVGs. Babel has a --copy-files option but that brings over
-  // all kinds of things we don't want into the lib folder.
-  shell.mkdir(
-    '-p',
-    'lib/components/icon/svgs',
-    'lib/components/icon/svgs/tokens'
-  );
-  shell.mkdir(
-    '-p',
-    'optimize/lib/components/icon/svgs',
-    'optimize/lib/components/icon/svgs/tokens'
-  );
-
-  // Copy all SVG files to build outputs
-  glob('./src/components/**/*.svg', undefined, (error, files) => {
-    const directories = new Set();
-    files.forEach((file) => {
-      const splitPath = file.split('/');
-      const basePath = splitPath.slice(2, splitPath.length - 1).join('/');
-      directories.add(`lib/${basePath}`);
-      directories.add(`optimize/lib/${basePath}`);
-    });
-
-    directories.forEach((dir) => shell.mkdir('-p', dir));
-
-    files.forEach((file) => {
-      const splitPath = file.split('/');
-      const basePath = splitPath.slice(2, splitPath.length).join('/');
-      shell.cp('-f', `${file}`, `lib/${basePath}`);
-      shell.cp('-f', `${file}`, `optimize/lib/${basePath}`);
-    });
-
-    console.log(chalk.green('✔ Finished copying SVGs'));
-  });
+  await copySvgFiles();
 }
 
-function compileBundle() {
-  shell.mkdir('-p', 'dist');
+async function compileBundle() {
+  const distDir = path.join(packageRootDir, 'dist');
+
+  await fs.mkdir(distDir);
 
   console.log('Building test utils .d.ts files...');
-  ['lib/test', 'optimize/lib/test', 'es/test', 'optimize/es/test'].forEach(
-    (dir) => {
-      dtsGenerator({
-        prefix: '',
-        out: `${dir}/index.d.ts`,
-        baseDir: path.resolve(__dirname, '..', 'src/test/'),
-        files: ['index.ts'],
-        resolveModuleId({ currentModuleId }) {
-          return `@elastic/eui/${dir}${
-            currentModuleId !== 'index' ? `/${currentModuleId}` : ''
-          }`;
-        },
-        resolveModuleImport({ currentModuleId, importedModuleId }) {
-          if (currentModuleId === 'index') {
-            return `@elastic/eui/${dir}/${importedModuleId.replace('./', '')}`;
-          }
-          return null;
-        },
-      });
 
-      // dtsGenerator is unfortunately having massive issues with RTL type defs, so we're
-      // temporarily defining manual `.d.ts` files and copying them to each compiled dir
-      shell.mkdir('-p', `${dir}/rtl`);
-      glob('./src/test/rtl/**/*.d.ts', undefined, (error, files) => {
-        files.forEach((file) => {
-          const splitPath = file.split('/');
-          const fileName = splitPath[splitPath.length - 1];
-          shell.cp('-f', `${file}`, `${dir}/rtl/${fileName}`);
-        });
-      });
+  const destinationDirs = [
+    'lib/test',
+    'es/test',
+    'optimize/lib/test',
+    'optimize/es/test',
+  ].map((dir) => path.join(packageRootDir, dir));
+
+  const testRtlDTSFiles = new glob.Glob('test/rtl/**/*.d.ts', {
+    cwd: srcDir,
+    realpath: true,
+  });
+
+  for (const dir of destinationDirs) {
+    const relativeDir = path.relative(packageRootDir, dir);
+
+    dtsGenerator({
+      prefix: '',
+      out: `${dir}/index.d.ts`,
+      baseDir: path.resolve(__dirname, '..', 'src/test/'),
+      files: ['index.ts'],
+      resolveModuleId({ currentModuleId }) {
+        return `@elastic/eui/${relativeDir}${
+          currentModuleId !== 'index' ? `/${currentModuleId}` : ''
+        }`;
+      },
+      resolveModuleImport({ currentModuleId, importedModuleId }) {
+        if (currentModuleId === 'index') {
+          return `@elastic/eui/${relativeDir}/${importedModuleId.replace('./', '')}`;
+        }
+        return null;
+      },
+    });
+
+    await fs.mkdir(path.join(dir, 'rtl'), { recursive: true });
+
+    for await (const filePath of testRtlDTSFiles) {
+      const fullPath = path.join(srcDir, filePath);
+      const baseName = path.basename(filePath);
+      await fs.copyFile(fullPath, path.join(dir, 'rtl', baseName));
     }
-  );
+  }
+
   console.log(chalk.green('✔ Finished test utils files'));
 }
 
-compileLib();
-compileBundle();
+async function compile() {
+  await compileLib();
+  await compileBundle();
+}
+
+compile();

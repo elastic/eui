@@ -114,16 +114,25 @@ exports[`EuiProgress has labelProps 1`] = `
   <div
     class="euiProgress__data emotion-euiProgress__data"
   >
-    <span
+    <div
+      aria-hidden="true"
       class="euiProgress__valueText emotion-euiProgress__valueText-success"
-      title="150"
     >
+      150
+    </div>
+  </div>
+  <div
+    aria-atomic="true"
+    aria-live="polite"
+    class="emotion-euiScreenReaderOnly"
+  >
+    <span>
       150
     </span>
   </div>
   <progress
-    aria-hidden="false"
     aria-label="aria-label"
+    aria-valuetext="150"
     class="euiProgress testClass1 testClass2 emotion-euiProgress-native-m-static-success-euiTestCss"
     data-test-subj="test subject string"
     max="100"
@@ -133,13 +142,13 @@ exports[`EuiProgress has labelProps 1`] = `
 `;
 
 exports[`EuiProgress has max 1`] = `
-<progress
-  aria-hidden="false"
-  aria-label="aria-label"
-  class="euiProgress testClass1 testClass2 emotion-euiProgress-native-m-static-success-euiTestCss"
-  data-test-subj="test subject string"
-  max="100"
-/>
+<div
+  aria-atomic="true"
+  aria-live="polite"
+  class="emotion-euiScreenReaderOnly"
+>
+  <span />
+</div>
 `;
 
 exports[`EuiProgress has value 1`] = `
@@ -155,22 +164,33 @@ exports[`EuiProgress has valueText and label 1`] = `
   <div
     class="euiProgress__data emotion-euiProgress__data"
   >
-    <span
+    <div
+      aria-hidden="true"
       class="euiProgress__label emotion-euiProgress__label"
-      title="Label"
     >
       Label
-    </span>
-    <span
+    </div>
+    <div
+      aria-hidden="true"
       class="euiProgress__valueText emotion-euiProgress__valueText-success"
-      title="150"
     >
+      150
+    </div>
+  </div>
+  <div
+    aria-atomic="true"
+    aria-live="polite"
+    class="emotion-euiScreenReaderOnly"
+  >
+    <span>
+      Label
+       
       150
     </span>
   </div>
   <progress
-    aria-hidden="true"
     aria-label="aria-label"
+    aria-valuetext="150"
     class="euiProgress testClass1 testClass2 emotion-euiProgress-native-m-static-success-euiTestCss"
     data-test-subj="test subject string"
     max="100"
@@ -180,14 +200,15 @@ exports[`EuiProgress has valueText and label 1`] = `
 `;
 
 exports[`EuiProgress is determinate 1`] = `
-<progress
-  aria-hidden="false"
-  aria-label="aria-label"
-  class="euiProgress testClass1 testClass2 emotion-euiProgress-native-m-static-success-euiTestCss"
-  data-test-subj="test subject string"
-  max="100"
-  value="50"
-/>
+<div
+  aria-atomic="true"
+  aria-live="polite"
+  class="emotion-euiScreenReaderOnly"
+>
+  <span>
+    50
+  </span>
+</div>
 `;
 
 exports[`EuiProgress is indeterminate 1`] = `
@@ -235,16 +256,25 @@ exports[`EuiProgress valueText is true 1`] = `
   <div
     class="euiProgress__data emotion-euiProgress__data"
   >
-    <span
+    <div
+      aria-hidden="true"
       class="euiProgress__valueText emotion-euiProgress__valueText-success"
-      title="50%"
     >
+      50%
+    </div>
+  </div>
+  <div
+    aria-atomic="true"
+    aria-live="polite"
+    class="emotion-euiScreenReaderOnly"
+  >
+    <span>
       50%
     </span>
   </div>
   <progress
-    aria-hidden="false"
     aria-label="aria-label"
+    aria-valuetext="50%"
     class="euiProgress testClass1 testClass2 emotion-euiProgress-native-m-static-success-euiTestCss"
     data-test-subj="test subject string"
     max="100"

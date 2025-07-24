@@ -65,6 +65,7 @@ export type EuiComboBoxOptionsListProps<T> = CommonProps & {
   isCaseSensitive?: boolean;
   isLoading?: boolean;
   listRef: RefCallback<HTMLDivElement>;
+  setListOptionRefs: (ref: HTMLButtonElement | null, index: number) => void;
   matchingOptions: Array<EuiComboBoxOptionOption<T>>;
   onCloseList: (event: Event) => void;
   onCreateOption?: (
@@ -168,6 +169,7 @@ export class EuiComboBoxOptionsList<T> extends Component<
       searchValue,
       rootId,
       matchingOptions,
+      setListOptionRefs,
     } = this.props;
 
     const optionIndex = matchingOptions.indexOf(option);
@@ -220,6 +222,7 @@ export class EuiComboBoxOptionsList<T> extends Component<
         title={label}
         aria-setsize={matchingOptions.length}
         aria-posinset={optionIndex + 1}
+        forwardRef={(ref) => setListOptionRefs(ref, index)}
         {...rest}
       >
         <span className="euiComboBoxOption__contentWrapper">
@@ -337,6 +340,7 @@ export class EuiComboBoxOptionsList<T> extends Component<
       delimiter,
       truncationProps,
       listboxAriaLabel,
+      setListOptionRefs,
       ...rest
     } = this.props;
 

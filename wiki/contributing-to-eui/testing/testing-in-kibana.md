@@ -56,18 +56,40 @@ Elastic engineers have the option to deploy a local EUI package in Kibana. To do
 #### Generate and link a local EUI package
 
 - Follow the steps above to create a local package of EUI using `yarn build-pack`
-- Copy the generated `.tgz` package file to the Kibana root
-- Point the `package.json` file in Kibana to that local file: `"@elastic/eui": "./elastic-eui-xx.x.x.tgz"`.
+- Copy the generated `.tgz` package file(s) to the Kibana root
+- Point the `package.json` file in Kibana to that local file: `"@elastic/eui": "file:./elastic-eui-xx.x.x.tgz"`.
+- Add `"@elastic/eui-theme-common"` to the `package.json` and point it either to the local package you copied, or add the published version that matches the version listed as a dependency in your local `@elastic/eui` package
+
+```bash
+# default release version, no local package for @elastic/eui-theme-common
+"@elastic/eui-theme-common": "3.0.0"
+
+# with local package added
+"@elastic/eui-theme-common": "file:./elastic_eui_theme_common_xx.x.x.tgz"
+
+```
+
 - Run `yarn kbn bootstrap`
 - Commit the changed files (`package.json`. `yarn.lock` and EUI `.tgz` package) and push your branch
 - Create a Kibana (draft) pull request
   - Kibana CI will run tests on this instance with your custom EUI package
+  - To ensure CI works correctly, you'll need to add `@elastic/eui-theme-common` to `packages/kbn-dependency-ownership/src/rule.ts` ([example](https://github.com/elastic/kibana/pull/227054/files)) and `src/dev/license_checker/config.ts` ([example](https://github.com/elastic/kibana/pull/227054/files#diff-373e937e773b0370ab1d28f3cf90251dcbd3cf95546f8c54b6bb6b1f999999dcR96))
 
 #### Deploy the custom EUI package
 
-There are two ways you can deploy your local EUI package in Kibana.
+After you have created a Kibana PR following the steps above, there are two ways you can deploy your local EUI package in Kibana.
 
-1. add the labels `ci:cloud-deploy` and `ci:cloud-persist-deployment` on your PR and ensure the CI pipelines run 
-  - after the pipelines finish the "Build" information will have a link to the cloud deployment and access information ([vault access](https://docs.elastic.dev/vault/infra-vault/accessing) is required)
-2. use [Kibana-a-la-carte](https://kibana-a-la-carte.kbndev.co/) to deploy your PR
+##### Using labels
 
+- Add the labels `ci:cloud-deploy` and `ci:cloud-persist-deployment` on your PR and ensure the CI pipelines run by checking the "Click to trigger kibana-deploy-cloud-from-pr for this PR!" checkbox in the comment from **elasticmachine**
+- Once the pipelines are finished, **kibanamachine** will post a message with a link to the credentials on Buildkite, there you'll find a link to the deployment e.g. https://kibana-pr-228477.kb.us-west2.gcp.elastic-cloud.com and a command to get the credentials
+- Run the `vault` command to get the credentials in your terminal (if you never used the `vault` CLI, continue reading)
+- To use HashiCorp's `vault` CLI
+  - [Install it](https://developer.hashicorp.com/vault/install), if you're on a Mac you can use [homebrew](https://brew.sh/)
+  - Login for the [Infra Vault (production)]((https://docs.elastic.dev/vault/accessing)) by running:
+    - `export VAULT_ADDR=https://secrets.elastic.co:8200`
+    - `vault login -method=oidc`
+
+##### Using Kibana a la carte
+
+Follow the instructions in [Kibana a la carte](https://kibana-a-la-carte.kbndev.co/) to deploy your PR.

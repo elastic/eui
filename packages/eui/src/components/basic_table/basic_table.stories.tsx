@@ -76,7 +76,7 @@ for (let i = 0; i < 5; i++) {
     id: i + 1,
     firstName: faker.person.firstName(),
     lastName: faker.person.lastName(),
-    online: faker.datatype.boolean(),
+    online: i === 0 ? true : faker.datatype.boolean(),
     location: {
       city: faker.location.city(),
       country: faker.location.country(),
@@ -244,6 +244,29 @@ export const Playground: Story = {
     },
     onChange: (criteria: CriteriaWithPagination<User>) =>
       action('onChange')(criteria),
+  },
+  render: (args: EuiBasicTableProps<User>) => <StatefulPlayground {...args} />,
+};
+
+export const MarkedRow: Story = {
+  ...Playground,
+  parameters: {
+    codeSnippet: {
+      snippet: `
+      <EuiBasicTable rowProps={(user: User) => ({
+        className: user.online ? 'euiTableRow--marked' : '',
+      })}  />`,
+    },
+    controls: {
+      include: ['rowProps', 'columns', 'items'],
+    },
+  },
+  args: {
+    ...Playground.args,
+    rowProps: (user: User) => ({
+      className: user.online ? 'euiTableRow--marked' : '',
+      onClick: () => {},
+    }),
   },
   render: (args: EuiBasicTableProps<User>) => <StatefulPlayground {...args} />,
 };

@@ -62,6 +62,32 @@ export const Playground: Story = {
 };
 enableFunctionToggleControls(Playground, ['onChange']);
 
+export const MarkedRow: Story = {
+  parameters: {
+    codeSnippet: {
+      snippet: `
+        <EuiDataGrid gridStyle={{
+          rowClasses: {
+            1: 'euiDataGridRow--marked',
+          },
+        }} />
+      `,
+    },
+    controls: { sort: 'none' },
+  },
+  args: {
+    ...Playground.args,
+    stripes: false,
+    rowClasses: {
+      1: 'euiDataGridRow--marked',
+    },
+  },
+  render: (gridStyle: EuiDataGridStyle) => (
+    <StatefulDataGrid {...storyArgs} gridStyle={gridStyle} />
+  ),
+};
+enableFunctionToggleControls(MarkedRow, ['onChange']);
+
 /**
  * VRT only
  */

@@ -7,7 +7,7 @@
  */
 
 import React from 'react';
-import { fireEvent } from '@testing-library/react';
+import { cleanup, fireEvent } from '@testing-library/react';
 import { shouldRenderCustomStyles } from '../../test/internal';
 import { requiredProps } from '../../test/required_props';
 import { render, screen } from '../../test/rtl';
@@ -124,7 +124,7 @@ describe('EuiMarkdownEditor', () => {
   });
 
   test('is preview rendered', () => {
-    const { container, getByTestSubject } = render(
+    const { container, getByRole } = render(
       <EuiMarkdownEditor
         editorId="editorId"
         value="## Hello world"
@@ -132,14 +132,14 @@ describe('EuiMarkdownEditor', () => {
         {...requiredProps}
       />
     );
-    fireEvent.click(getByTestSubject('markdown_editor_preview_button'));
+    fireEvent.click(getByRole('button', { name: 'Preview' }));
     expect(
       container.querySelector('.euiText.euiMarkdownFormat')?.querySelector('h2')
     ).toHaveTextContent('Hello world');
   });
 
   test('modal with help syntax is rendered', () => {
-    const { baseElement, getByLabelText } = render(
+    const { baseElement } = render(
       <EuiMarkdownEditor
         editorId="editorId"
         value=""
@@ -149,7 +149,7 @@ describe('EuiMarkdownEditor', () => {
     );
     expect(baseElement.querySelector('.euiModal')).not.toBeInTheDocument();
 
-    fireEvent.click(getByLabelText('Show markdown help'));
+    fireEvent.click(screen.getByLabelText('Show markdown help'));
 
     expect(baseElement.querySelector('.euiModal')).toBeInTheDocument();
   });
@@ -158,7 +158,7 @@ describe('EuiMarkdownEditor', () => {
     const { parsingPlugins, processingPlugins, uiPlugins } =
       getDefaultEuiMarkdownPlugins({ exclude: ['tooltip'] });
 
-    const { baseElement, getByLabelText } = render(
+    const { baseElement } = render(
       <EuiMarkdownEditor
         editorId="editorId"
         value=""
@@ -169,7 +169,7 @@ describe('EuiMarkdownEditor', () => {
         {...requiredProps}
       />
     );
-    fireEvent.click(getByLabelText('Show markdown help'));
+    fireEvent.click(screen.getByLabelText('Show markdown help'));
 
     expect(baseElement.querySelector('.euiModal')).not.toBeInTheDocument();
     expect(baseElement.querySelector('.euiPopover')).toBeInTheDocument();
@@ -182,12 +182,13 @@ describe('EuiMarkdownEditor', () => {
       onChange: jest.fn(),
     };
 
-    const { getByTestSubject } = render(
-      <EuiMarkdownEditor {...testProps} {...requiredProps} />
-    );
+    render(<EuiMarkdownEditor {...testProps} {...requiredProps} />);
 
     const event = { target: { value: 'sometext' } };
-    fireEvent.change(getByTestSubject('euiMarkdownEditorTextArea'), event);
+    fireEvent.change(
+      screen.getByTestSubject('euiMarkdownEditorTextArea'),
+      event
+    );
 
     expect(testProps.onChange).toHaveBeenCalledTimes(1);
     expect(testProps.onChange).toHaveBeenLastCalledWith(event.target.value);
@@ -239,11 +240,9 @@ describe('EuiMarkdownEditor', () => {
         errors: testMessage,
       };
 
-      const { getByLabelText } = render(
-        <EuiMarkdownEditor {...testProps} {...requiredProps} />
-      );
+      render(<EuiMarkdownEditor {...testProps} {...requiredProps} />);
 
-      expect(getByLabelText('Show errors')).toBeInTheDocument();
+      expect(screen.getByLabelText('Show errors')).toBeInTheDocument();
     });
 
     test('does not render error if error messages are empty', () => {
@@ -254,11 +253,9 @@ describe('EuiMarkdownEditor', () => {
         errors: [],
       };
 
-      const { queryByTestSubject } = render(
-        <EuiMarkdownEditor {...testProps} {...requiredProps} />
-      );
+      render(<EuiMarkdownEditor {...testProps} {...requiredProps} />);
 
-      expect(queryByTestSubject('Show errors')).not.toBeInTheDocument();
+      expect(screen.queryByTestSubject('Show errors')).not.toBeInTheDocument();
     });
   });
 
@@ -286,11 +283,9 @@ describe('EuiMarkdownEditor', () => {
     document.execCommand = execCommandMock;
 
     beforeEach(() => {
-      const { getByTestSubject } = render(
-        <EuiMarkdownEditor {...testProps} {...requiredProps} />
-      );
+      render(<EuiMarkdownEditor {...testProps} {...requiredProps} />);
 
-      const textarea = getByTestSubject(
+      const textarea = screen.getByTestSubject(
         'euiMarkdownEditorTextArea'
       ) as HTMLTextAreaElement;
       textarea.setSelectionRange(0, 5);
@@ -379,5 +374,62 @@ describe('EuiMarkdownEditor', () => {
         `!{tooltip[${testProps.value}]()}`
       );
     });
+  });
+  describe('toolbar props', () => {
+    it('shows the custom toolbar component when passed', () => {
+      const CustomToolbarComponent = () => <div>Custom toolbar</div>;
+      render(
+        <EuiMarkdownEditor
+          onChange={() => null}
+          value="markdown test"
+          {...requiredProps}
+          toolbarProps={{ right: <CustomToolbarComponent /> }}
+        />
+      );
+      expect(screen.getByText('Custom toolbar')).toBeInTheDocument();
+      expect(
+        screen.queryByRole('button', { name: 'Preview' })
+      ).not.toBeInTheDocument();
+      cleanup();
+      render(
+        <EuiMarkdownEditor
+          onChange={() => null}
+          value="markdown test"
+          {...requiredProps}
+        />
+      );
+      expect(screen.queryByText('Custom toolbar')).not.toBeInTheDocument();
+      expect(
+        screen.getByRole('button', { name: 'Preview' })
+      ).toBeInTheDocument();
+      fireEvent.click(screen.getByRole('button', { name: 'Preview' }));
+      expect(
+        screen.getByRole('button', { name: 'Editor' })
+      ).toBeInTheDocument();
+    });
+  });
+  it('should show footer by default and hide when showFooter is false', () => {
+    render(
+      <EuiMarkdownEditor
+        onChange={() => null}
+        value="markdown test"
+        {...requiredProps}
+      />
+    );
+    expect(
+      screen.getByTestSubject('euiMarkdownEditorFooter')
+    ).toBeInTheDocument();
+    cleanup();
+    render(
+      <EuiMarkdownEditor
+        onChange={() => null}
+        value="markdown test"
+        {...requiredProps}
+        showFooter={false}
+      />
+    );
+    expect(
+      screen.queryByTestSubject('euiMarkdownEditorFooter')
+    ).not.toBeInTheDocument();
   });
 });

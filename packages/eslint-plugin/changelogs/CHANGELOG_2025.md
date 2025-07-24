@@ -1,3 +1,19 @@
+## [`v2.2.1`](https://github.com/elastic/eui/releases/v2.2.1)
+
+**Bug fixes**
+
+- Removed `no-css_color` entry which mapped to a duplicate `no-css-color` rule ([#8888](https://github.com/elastic/eui/pull/8888))
+
+## [`v2.2.0`](https://github.com/elastic/eui/releases/v2.2.0)
+
+- Added new `prefer-eui-icon-tip` rule. ([#8877](https://github.com/elastic/eui/pull/8877))
+
+## [`v2.1.0`](https://github.com/elastic/eui/releases/v2.1.0)
+
+- Added new `sr-output-disabled-tooltip` rule. ([#8848](https://github.com/elastic/eui/pull/8848))
+- Added new `consistent-is-invalid-props` rule. ([#8843](https://github.com/elastic/eui/pull/8843))
+- Added new `require-aria-label-for-modals` rule. ([#8811](https://github.com/elastic/eui/pull/8811))
+
 ## [`v2.0.0`](https://github.com/elastic/eui/releases/v2.0.0)
 
 **Breaking changes**

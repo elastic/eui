@@ -135,6 +135,7 @@ export const EuiCodeBlock: FunctionComponent<EuiCodeBlockProps> = ({
   overflowHeight,
   isVirtualized: _isVirtualized,
   lineNumbers = false,
+  'aria-label': ariaLabel,
   ...rest
 }) => {
   const euiTheme = useEuiTheme();
@@ -278,7 +279,10 @@ export const EuiCodeBlock: FunctionComponent<EuiCodeBlockProps> = ({
     <>
       {tabularCopyMarkers.hiddenNoCopyBoundary}
       <EuiScreenReaderOnly>
-        <div>{codeBlockLabel}</div>
+        <div>
+          {ariaLabel ? `${ariaLabel}, ` : undefined}
+          {codeBlockLabel}
+        </div>
       </EuiScreenReaderOnly>
       {tabularCopyMarkers.hiddenNoCopyBoundary}
     </>
@@ -293,6 +297,7 @@ export const EuiCodeBlock: FunctionComponent<EuiCodeBlockProps> = ({
       {isVirtualized ? (
         <EuiCodeBlockVirtualized
           data={data}
+          label={codeBlockLabelElement}
           rowHeight={fontSizeToRowHeightMap[fontSize]}
           overflowHeight={overflowHeight}
           preProps={preProps}
@@ -314,6 +319,7 @@ export const EuiCodeBlock: FunctionComponent<EuiCodeBlockProps> = ({
           {isVirtualized ? (
             <EuiCodeBlockVirtualized
               data={data}
+              label={codeBlockLabelElement}
               rowHeight={fontSizeToRowHeightMap.l}
               preProps={preFullscreenProps}
               codeProps={codeProps}

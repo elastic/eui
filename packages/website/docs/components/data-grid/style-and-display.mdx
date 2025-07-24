@@ -66,8 +66,9 @@ const data = Array.from({ length: 5 }).map(() => ({
   account: faker.finance.accountNumber(),
 }));
 
-const DEMO_ROW = 2;
-data[DEMO_ROW].account = 'OVERDUE';
+const MARKED_ROW = 2;
+const SELECTED_ROW = 3;
+data[MARKED_ROW].account = 'OVERDUE';
 
 /**
  * Selection
@@ -179,10 +180,6 @@ export default () => {
 
   const rowStyles = useMemo(() => {
     return css`
-      .euiDataGridRow--rowClassesDemo {
-        background-color: ${euiTheme.colors.backgroundLightWarning};
-      }
-
       .euiDataGridRow--rowClassesDemoSelected {
         background-color: ${euiTheme.colors.backgroundBaseInteractiveSelect};
 
@@ -195,7 +192,8 @@ export default () => {
 
   const rowClasses = useMemo(() => {
     const rowClasses = {
-      [DEMO_ROW]: 'euiDataGridRow--rowClassesDemo',
+      [MARKED_ROW]: 'euiDataGridRow--marked',
+      [SELECTED_ROW]: 'euiDataGridRow--selected',
     };
     rowSelection[0].forEach((rowIndex) => {
       rowClasses[rowIndex] = 'euiDataGridRow--rowClassesDemoSelected';
@@ -223,9 +221,10 @@ export default () => {
 };
 ```
 
-:::tip A `.euiDataGridRow--selected` CSS class is available
+:::tip There are styling utility classes available: `euiDataGridRow--marked` and `euiDataGridRow--selected`
 
-It can be useful to style selected rows when using the `gridStyle.rowClasses` prop. It also provides styles for the hover state, when `rowHover` equals `highlight`.
+These classes can be useful to highlight rows either as selected or marked (highlighted). Use the `gridStyle.rowClasses` prop to add the classes to specific rows. 
+Both utility classes additionally define hover styles when `rowHover` equals `highlight`.
 
 :::
 

@@ -399,4 +399,58 @@ describe('EuiFlyout', () => {
       cy.focused().should('have.class', 'euiFlyout');
     });
   });
+
+  describe('css variables', () => {
+    const euiPushFlyoutOffsetInlineEnd = '--euiPushFlyoutOffsetInlineEnd';
+    const euiPushFlyoutOffsetInlineStart = '--euiPushFlyoutOffsetInlineStart';
+
+    it('sets the correct css variables for the flyout', () => {
+      cy.mount(
+        <Flyout
+          type="push"
+          hasTrigger={true}
+          pushMinBreakpoint={'xs'}
+          size={'100px'}
+        />
+      );
+
+      cy.get(':root').cssVar(euiPushFlyoutOffsetInlineEnd).should('not.exist');
+      cy.get(':root')
+        .cssVar(euiPushFlyoutOffsetInlineStart)
+        .should('not.exist');
+
+      cy.get('[data-test-subj="flyoutSpecTrigger"]').click();
+
+      cy.get(':root')
+        .cssVar(euiPushFlyoutOffsetInlineStart)
+        .should('not.exist');
+      cy.get(':root')
+        .cssVar(euiPushFlyoutOffsetInlineEnd)
+        .should('eq', '100px');
+
+      cy.get('[data-test-subj="euiFlyoutCloseButton"]').click();
+
+      cy.get(':root').cssVar(euiPushFlyoutOffsetInlineEnd).should('not.exist');
+      cy.get(':root')
+        .cssVar(euiPushFlyoutOffsetInlineStart)
+        .should('not.exist');
+
+      cy.mount(
+        <Flyout
+          type="push"
+          hasTrigger={true}
+          pushMinBreakpoint={'xs'}
+          size={'100px'}
+          side={'left'}
+        />
+      );
+
+      cy.get('[data-test-subj="flyoutSpecTrigger"]').click();
+
+      cy.get(':root')
+        .cssVar(euiPushFlyoutOffsetInlineStart)
+        .should('eq', '100px');
+      cy.get(':root').cssVar(euiPushFlyoutOffsetInlineEnd).should('not.exist');
+    });
+  });
 });

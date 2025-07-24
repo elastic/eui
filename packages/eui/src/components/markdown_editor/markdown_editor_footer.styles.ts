@@ -35,12 +35,6 @@ export const euiMarkdownEditorFooterStyles = (euiThemeContext: UseEuiTheme) => {
     euiMarkdownEditorFooter__uploadError: css`
       border-radius: ${borderRadius};
     `,
-    // Override the default button icon width size
-    euiMarkdownEditorFooter__helpButton: css`
-      .euiIcon {
-        ${logicalCSS('width', '26px')}
-      }
-    `,
     euiMarkdownEditorFooter__popover: css`
       ${logicalCSS('width', '300px')}
     `,
