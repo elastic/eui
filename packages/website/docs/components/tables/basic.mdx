@@ -1,16 +1,17 @@
 ---
 sidebar_position: 1
 keywords: [EuiBasicTable]
+description: 'EuiBasicTable is a high-level component that provides a consistent way to display and manage table data.'
 ---
 
 # Basic tables
 
-**EuiBasicTable** is an opinionated high level component that standardizes both display and injection. At its most simple it only accepts two properties:
+**EuiBasicTable** is a high-level component that provides a consistent way to display and manage table data. At its simplest, it requires only two properties:
 
-*   `items` are an array of objects that should be displayed in the table; one item per row. The exact item data that will be rendered in each cell in these rows is determined by the `columns` property. You can define `rowProps` and `cellProps` props which can either be objects or functions that return objects. The returned objects will be applied as props to the rendered rows and row cells, respectively.
-*   `columns` defines what columns the table has and how to extract item data to display each cell in each row.
+- `items` - an array of objects to display in the table, with one item per row. The `columns` property determines what data gets shown in each cell. You can use `rowProps` and `cellProps` to customize the appearance of rows and cells by passing objects or functions that return objects.
+- `columns` - defines the table columns and how to extract data from each item to display in the cells.
 
-This example shows the most basic form of the **EuiBasicTable**. It is configured with the required `items` and `columns` properties, with certain display configurations per-column:
+This example shows the basic **EuiBasicTable** setup with the required `items` and `columns` properties and some display options for each column:
 
 ```tsx interactive
 import React from 'react';
@@ -140,20 +141,20 @@ export default () => {
 };
 ```
 
-In the above example, some columns displayed the value as-is (e.g. `firstName` and `lastName` fields). Other columns customized the display of the data before it was injected. This customization can be done in two (non-mutual exclusive) ways:
+In the above example, some columns display the value as-is (like `firstName` and `lastName`). Other columns customize how the data appears before displaying it. You can customize the display in two ways (and you can use both):
 
-- Provide a hint about the type of data (e.g. the "Date of Birth" column indicates that the data it shows is of type `date`). Providing data type hints will cause built-in display components to be adjusted (e.g. numbers will become right aligned, like in Excel).
-- Provide a `render` function that given the value (and the item as a second argument) returns the React node that should be displayed as the content of the cell. This can be as simple as formatting values (e.g. the "Date of Birth" column), to utilizing more complex React components (e.g. the "Online" and "Github" columns).
-  - **Note:** the basic table will treat any cells that use a `render` function as being `textOnly: false`. This may cause unnecessary word breaks. Apply `textOnly: true` to ensure it breaks properly.
+- **Data type hints** - Tell the table what type of data you're showing (like the "Date of Birth" column using `date` type). This automatically adjusts built-in display components (for example, numbers become right-aligned, like in Excel).
+- **Custom render function** - Provide a `render` function that takes the value (and the item as a second argument) and returns the React component to display in the cell. This can be simple formatting (like the "Date of Birth" column) or complex React components (like the "Online" and "Github" columns).
+  - **Note:** The basic table treats cells with a `render` function as `textOnly: false` by default, which may cause unwanted line breaks. Set `textOnly: true` to ensure proper text wrapping.
 
-If a column name needs a longer description, an icon with a tooltip can be used. This can be done using the `columns.nameTooltip` property. This approach ensures that the icon remains visible even if the text gets truncated, unlike manually using a React node for `columns.name`.
-If the column header cell is sortable, the tooltip will be applied to the cell itself rather than the icon to ensure accessibility.
+If a column name needs a longer description, you can add an icon with a tooltip using the `columns.nameTooltip` property. This keeps the icon visible even if the text gets cut off, which is better than manually adding a React node to `columns.name`.
+If the column header is sortable, the tooltip applies to the entire cell instead of just the icon for better accessibility.
 
 ## Row selection
 
-The following example shows how to configure row selection via the `selection` property. For uncontrolled usage, where selection changes are determined entirely by the user, you can set items to be selected initially by passing an array of items to `selection.initialSelected`. You can also use `selected.onSelectionChange` to track or respond to the items that users select.
+The following example shows how to set up row selection using the `selection` property. For automatic selection handling, where users control what gets selected, you can set initially selected items using `selection.initialSelected`. Use `selection.onSelectionChange` to track or respond to user selections.
 
-To completely control table selection, use `selection.selected` instead (which requires passing `selected.onSelectionChange`). This can be useful if you want to handle table selections based on user interaction with another part of the UI.
+For complete control over table selection, use `selection.selected` instead (this requires `selection.onSelectionChange`). This is useful when you want to handle selections based on user interactions with other parts of your UI.
 
 import BasicTableSelection from './table_selection';
 
@@ -161,13 +162,13 @@ import BasicTableSelection from './table_selection';
 
 ## Row actions
 
-The following example demonstrates "actions" columns. These are special columns where you define per-row, item level actions. The most basic action you might define is a type `button` or `icon` though you can always make your own custom actions as well.
+The following example shows "action" columns - special columns where you define actions for each row. The most basic actions are `button` or `icon` types, but you can also create custom actions.
 
-Actions enforce some strict UI/UX guidelines:
+Actions follow these UI/UX rules:
 
-*   There can only be up to 2 actions visible per row. When more than two actions are defined, the first 2 `isPrimary` actions will stay visible, an ellipses icon button will hold all actions in a single popover.
-*   Actions change opacity when user hovers over the row with the mouse. When more than 2 actions are supplied, only the ellipses icon button stays visible at all times.
-*   When one or more table row(s) are selected, all item actions are disabled. Users should be expected to use some bulk action outside the individual table rows instead.
+- Only 2 actions can be visible per row. When you define more than two actions, the first 2 `isPrimary` actions stay visible, and all actions appear in a popover triggered by an ellipsis button.
+- Actions become semi-transparent when you hover over the row. With more than 2 actions, only the ellipsis button stays visible at all times.
+- When one or more rows are selected, all individual actions are disabled. Users should use bulk actions outside the table instead.
 
 ```tsx interactive
 import React, { useState, useMemo } from 'react';
@@ -478,7 +479,7 @@ export default () => {
 
 ## Expanding rows
 
-You can expand rows by passing in a `itemIdToExpandedRowMap` prop which will contain the content you want rendered inside the expanded row. When building out your table manually (not using EuiBasicTable), you will also need to add the prop `isExpandedRow` to the row that will be revealed.
+You can expand rows by providing an `itemIdToExpandedRowMap` prop with the content you want to show inside the expanded row. When building your table manually (not using EuiBasicTable), you'll also need to add the `isExpandedRow` prop to the row that will be revealed.
 
 ```tsx interactive
 import React, { useState, ReactNode } from 'react';
@@ -666,8 +667,8 @@ export default () => {
 
 import { Example } from '@site/src/components';
 
-Specific rows can be highlighted or otherwise have custom styling passed to them via the `rowProps` prop. 
-It provides the current row data item as argument which can be used to add classes conditionally.
+You can highlight specific rows or apply custom styling using the `rowProps` prop. 
+It receives the current row data item as an argument, which you can use to add classes conditionally.
 
 <Example.Snippet>
   ```tsx
@@ -677,11 +678,10 @@ It provides the current row data item as argument which can be used to add class
   ```
 </Example.Snippet>
 
-:::tip There is a styling utility class available: `euiTableRow--marked`
+:::tip There's a styling utility class available: `euiTableRow--marked`
 
-This class can be used to highlight rows. Use the `rowProps.className` prop to add the class to specific rows. 
-The utility class additionally defines hover styles.
-
+This class highlights rows. Use the `rowProps.className` prop to add the class to specific rows. 
+The utility class also includes hover styles.
 :::
 
 ```tsx interactive
@@ -812,7 +812,7 @@ export default () => {
 
 ## Adding a footer to a table
 
-The following example shows how to add a footer to your table by adding `footer` to your column definitions. If one or more of your columns contains a `footer` definition, the footer area will be visible. By default, columns with no footer specified (undefined) will render an empty cell to preserve the table layout. Check out the [custom tables](./custom.mdx) page for more examples of how you can work with table footers in EUI.
+The following example shows how to add a footer to your table by adding `footer` to your column definitions. If one or more columns have a `footer` definition, the footer area will appear. By default, columns without a footer (undefined) will show an empty cell to keep the table layout consistent. Check out the [custom tables](./custom.mdx) page for more examples of working with table footers in EUI.
 
 ```tsx interactive
 import React, { useState } from 'react';
@@ -927,9 +927,9 @@ export default () => {
 
 ## Table layout
 
-**EuiBasicTable** has a fixed layout by default. You can change it to `auto` using the `tableLayout` prop. Note that setting `tableLayout` to `auto` prevents the `truncateText` prop from working properly. If you want to set different columns widths while still being able to use `truncateText`, set the width of each column using the `width` prop.
+**EuiBasicTable** uses a fixed layout by default. You can change it to `auto` using the `tableLayout` prop. Note that setting `tableLayout` to `auto` prevents the `truncateText` prop from working properly. If you want to set different column widths while still using `truncateText`, set the width of each column using the `width` prop.
 
-You can also set the vertical alignment (`valign`) at the column level which will affect the cell contents for that entire column excluding the header and footer.
+You can also set the vertical alignment (`valign`) at the column level, which affects the cell contents for that entire column (excluding the header and footer).
 
 ```tsx interactive
 import React, { useState } from 'react';
@@ -1153,11 +1153,11 @@ export default () => {
 
 ## Responsive tables
 
-Tables will be mobile-responsive by default, breaking down each row into its own card section and individually displaying each table header above the cell contents. The default breakpoint at which the table will responsively shift into cards is the [`m` window size](../../../getting-started/theming/tokens/breakpoints/index.mdx), which can be customized with the `responsiveBreakpoint` prop (e.g., `responsiveBreakpoint="s"`).
+Tables are mobile-responsive by default, breaking down each row into its own card section and showing each table header above the cell contents. The default breakpoint where the table switches to cards is the [`m` window size](../../../getting-started/theming/tokens/breakpoints/index.mdx), which you can customize with the `responsiveBreakpoint` prop (like `responsiveBreakpoint="s"`).
 
-To never render your table responsively (e.g. for tables with very few columns), you may set `responsiveBreakpoint={false}`. Inversely, if you always want your table to render in a mobile-friendly manner, pass `true`. The below example table switches between `true/false` for quick/easy preview between mobile and desktop table UIs at all breakpoints.
+To never make your table responsive (for tables with very few columns), set `responsiveBreakpoint={false}`. To always render your table in a mobile-friendly way, pass `true`. The example below switches between `true/false` for easy preview of mobile and desktop table layouts at all breakpoints.
 
-To customize your cell's appearance/rendering in mobile vs. desktop view, use the `mobileOptions` configuration. This object can be passed to each column item in **EuiBasicTable** or to **EuiTableRowCell** directly. See the "Snippet" tab in the below example, or the "Props" tab for a full list of configuration options.
+To customize how your cells look in mobile vs. desktop view, use the `mobileOptions` configuration. You can pass this object to each column item in **EuiBasicTable** or to **EuiTableRowCell** directly. See the "Snippet" tab in the example below, or the "Props" tab for all configuration options.
 
 ```tsx interactive
 import React, { useState } from 'react';
@@ -1370,17 +1370,17 @@ export default () => {
 
 ## Manual pagination and sorting
 
-**EuiBasicTable**'s `pagination` and `sorting` properties _only_ affect the UI displayed on the table (e.g. rendering sorting arrows or pagination numbers). They do not actually handle showing paginated or sorting your `items` data.
+**EuiBasicTable**'s `pagination` and `sorting` properties _only_ control the UI displayed on the table (like showing sorting arrows or pagination numbers). They don't actually handle paginating or sorting your `items` data.
 
-This is primarily useful for large amounts of API-based data, where storing or sorting all rows in-memory would pose significant performance issues. Your API backend should then asynchronously handle sorting/filtering/caching your data.
+This is mainly useful for large amounts of API-based data, where storing or sorting all rows in memory would cause performance problems. Your API backend should handle sorting, filtering, and caching your data asynchronously.
 
 :::tip
-For non-asynchronous and smaller datasets use-cases (in the hundreds or less), we recommend using [EuiInMemoryTable](./in-memory.mdx), which automatically handles pagination, sorting, and searching in-memory.
+For smaller datasets (hundreds of items or less) that don't use APIs, we recommend using [EuiInMemoryTable](./in-memory.mdx), which automatically handles pagination, sorting, and searching in memory.
 :::
 
 ### Pagination
 
-The following example shows how to configure pagination via the `pagination` property.
+The following example shows how to set up pagination using the `pagination` property.
 
 ```tsx interactive
 import React, { useState } from 'react';
@@ -1569,7 +1569,7 @@ export default () => {
 
 ### Sorting
 
-The following example shows how to configure column sorting via the `sorting` property and flagging the sortable columns as `sortable: true`. To enable the default sorting ability for **every** column, pass `enableAllColumns: true` to the `sorting` prop. If you don't want the user to have control over the sort you can pass `readOnly: true` to the `sorting` prop or per column.
+The following example shows how to set up column sorting using the `sorting` property and marking sortable columns with `sortable: true`. To enable default sorting for **every** column, pass `enableAllColumns: true` to the `sorting` prop. If you don't want users to control the sort, you can pass `readOnly: true` to the `sorting` prop or to individual columns.
 
 ```tsx interactive
 import React, { useState } from 'react';
