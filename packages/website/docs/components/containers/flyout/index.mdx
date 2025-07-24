@@ -603,6 +603,213 @@ export default () => {
 
 ```
 
+### Menu bar
+
+Use `EuiFlyoutMenuBar` to display actions at the top of a flyout. The menu bar provides a close button on the right and supports optional, custom action buttons. When using `EuiFlyoutMenuBar`, the parent `EuiFlyout` must have `hideCloseButton={true}` to prevent duplicate close buttons.
+
+```tsx interactive
+import React, { useState } from 'react';
+import {
+  EuiFlyout,
+  EuiFlyoutMenuBar,
+  EuiFlyoutBody,
+  EuiButton,
+  EuiText,
+  EuiIcon,
+  EuiFlexGroup,
+  EuiFlexItem,
+} from '@elastic/eui';
+
+export default () => {
+  const [isFlyoutVisible, setIsFlyoutVisible] = useState(false);
+
+  const closeFlyout = () => setIsFlyoutVisible(false);
+  const showFlyout = () => setIsFlyoutVisible(true);
+
+  let flyout;
+
+  if (isFlyoutVisible) {
+    flyout = (
+      <EuiFlyout onClose={closeFlyout} hideCloseButton>
+        <EuiFlyoutMenuBar
+          title="Document Settings"
+          onClose={closeFlyout}
+          actions={[
+            {
+              key: 'edit',
+              iconType: 'pencil',
+              'aria-label': 'Edit document',
+              onClick: () => alert('Edit clicked'),
+            },
+            {
+              key: 'share',
+              iconType: 'share',
+              'aria-label': 'Share document',
+              onClick: () => alert('Share clicked'),
+            },
+          ]}
+        />
+        <EuiFlyoutBody>
+          <EuiText>
+            <p>
+              This flyout uses EuiFlyoutMenuBar with a title and action buttons.
+              Notice how the parent EuiFlyout has hideCloseButton=true.
+            </p>
+          </EuiText>
+        </EuiFlyoutBody>
+      </EuiFlyout>
+    );
+  }
+
+  return (
+    <div>
+      <EuiButton onClick={showFlyout}>Show flyout with menu bar</EuiButton>
+      {flyout}
+    </div>
+  );
+};
+```
+
+The menu bar can display either a simple title string or custom React content on the left side.
+
+```tsx interactive
+import React, { useState } from 'react';
+import {
+  EuiFlyout,
+  EuiFlyoutMenuBar,
+  EuiFlyoutBody,
+  EuiButton,
+  EuiText,
+  EuiIcon,
+  EuiFlexGroup,
+  EuiFlexItem,
+} from '@elastic/eui';
+
+export default () => {
+  const [isFlyoutVisible, setIsFlyoutVisible] = useState(false);
+
+  const closeFlyout = () => setIsFlyoutVisible(false);
+  const showFlyout = () => setIsFlyoutVisible(true);
+
+  let flyout;
+
+  if (isFlyoutVisible) {
+    flyout = (
+      <EuiFlyout onClose={closeFlyout} hideCloseButton>
+        <EuiFlyoutMenuBar onClose={closeFlyout}>
+          <EuiFlexGroup alignItems="center" gutterSize="s" responsive={false}>
+            <EuiFlexItem grow={false}>
+              <EuiIcon type="alert" color="warning" />
+            </EuiFlexItem>
+            <EuiFlexItem>
+              <strong>Custom Content with Icon</strong>
+            </EuiFlexItem>
+          </EuiFlexGroup>
+        </EuiFlyoutMenuBar>
+        <EuiFlyoutBody>
+          <EuiText>
+            <p>
+              This flyout uses custom React content in the menu bar instead of a simple title.
+            </p>
+          </EuiText>
+        </EuiFlyoutBody>
+      </EuiFlyout>
+    );
+  }
+
+  return (
+    <div>
+      <EuiButton onClick={showFlyout}>Show flyout with custom menu bar content</EuiButton>
+      {flyout}
+    </div>
+  );
+};
+```
+
+If more than three actions are provided, the first two are shown as buttons and the rest are accessible via an overflow menu. If exactly three actions are provided, all are shown as buttons.
+
+```tsx interactive
+import React, { useState } from 'react';
+import {
+  EuiFlyout,
+  EuiFlyoutMenuBar,
+  EuiFlyoutBody,
+  EuiButton,
+  EuiText,
+} from '@elastic/eui';
+
+export default () => {
+  const [isFlyoutVisible, setIsFlyoutVisible] = useState(false);
+
+  const closeFlyout = () => setIsFlyoutVisible(false);
+  const showFlyout = () => setIsFlyoutVisible(true);
+
+  const manyActions = [
+    {
+      key: 'edit',
+      iconType: 'pencil',
+      'aria-label': 'Edit',
+      onClick: () => alert('Edit clicked'),
+    },
+    {
+      key: 'share',
+      iconType: 'share',
+      'aria-label': 'Share',
+      onClick: () => alert('Share clicked'),
+    },
+    {
+      key: 'copy',
+      iconType: 'copy',
+      'aria-label': 'Copy',
+      onClick: () => alert('Copy clicked'),
+    },
+    {
+      key: 'download',
+      iconType: 'download',
+      'aria-label': 'Download',
+      onClick: () => alert('Download clicked'),
+    },
+    {
+      key: 'delete',
+      iconType: 'trash',
+      'aria-label': 'Delete',
+      onClick: () => alert('Delete clicked'),
+      disabled: true,
+    },
+  ];
+
+  let flyout;
+
+  if (isFlyoutVisible) {
+    flyout = (
+      <EuiFlyout onClose={closeFlyout} hideCloseButton>
+        <EuiFlyoutMenuBar
+          title="Many Actions (Overflow Menu)"
+          onClose={closeFlyout}
+          actions={manyActions}
+        />
+        <EuiFlyoutBody>
+          <EuiText>
+            <p>
+              This flyout has more than 3 actions, so the first 2 are shown as buttons
+              and the rest are in an overflow menu. Notice the disabled state is preserved
+              in the overflow menu.
+            </p>
+          </EuiText>
+        </EuiFlyoutBody>
+      </EuiFlyout>
+    );
+  }
+
+  return (
+    <div>
+      <EuiButton onClick={showFlyout}>Show flyout with overflow menu</EuiButton>
+      {flyout}
+    </div>
+  );
+};
+```
+
 ### Banners
 
 To highlight some information at the top of a flyout, you can pass an [EuiCallOut](../../display/callout.mdx) to the `banner` prop available in **EuiFlyoutBody** and its layout will adjust appropriately.
@@ -1017,3 +1224,5 @@ import flyoutDocgen from '@elastic/eui-docgen/dist/components/flyout/flyout.json
 <PropTable definition={docgen.EuiFlyoutResizable} />
 
 <PropTable definition={docgen.EuiFlyoutChild} />
+
+<PropTable definition={docgen.EuiFlyoutMenuBar} />
