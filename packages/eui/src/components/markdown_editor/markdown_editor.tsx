@@ -17,7 +17,6 @@ import React, {
   useRef,
   forwardRef,
 } from 'react';
-
 import unified, { PluggableList, Processor } from 'unified';
 import { VFileMessage } from 'vfile-message';
 import classNames from 'classnames';
@@ -28,7 +27,10 @@ import { EuiModal } from '../modal';
 import { EuiResizeObserver } from '../observer/resize_observer';
 
 import MarkdownActions, { insertText } from './markdown_actions';
-import { EuiMarkdownEditorToolbar } from './markdown_editor_toolbar';
+import {
+  EuiMarkdownEditorToolbar,
+  EuiMarkdownEditorToolbarProps,
+} from './markdown_editor_toolbar';
 import {
   EuiMarkdownEditorTextArea,
   EuiMarkdownEditorTextAreaProps,
@@ -137,6 +139,14 @@ type CommonMarkdownEditorProps = Omit<
       EuiMarkdownFormatProps,
       'parsingPluginList' | 'processingPluginList' | 'children'
     >;
+    /**
+     * Props to customize the toolbar. `right` replaces the default preview/editor toggle with custom content.
+     */
+    toolbarProps?: {
+      right?: EuiMarkdownEditorToolbarProps['right'];
+    };
+    /** Controls whether the footer is shown */
+    showFooter?: boolean;
   };
 
 export type EuiMarkdownEditorProps = OneOf<
@@ -162,7 +172,7 @@ const mergeRefs = (...refs: any[]) => {
   };
 };
 
-interface EuiMarkdownEditorRef {
+export interface EuiMarkdownEditorRef {
   textarea: HTMLTextAreaElement | null;
   replaceNode: ContextShape['replaceNode'];
 }
@@ -213,6 +223,8 @@ export const EuiMarkdownEditor = forwardRef<
       markdownFormatProps,
       placeholder,
       readOnly,
+      toolbarProps,
+      showFooter = true,
       ...rest
     },
     ref
@@ -433,6 +445,7 @@ export const EuiMarkdownEditor = forwardRef<
             }
             viewMode={viewMode}
             uiPlugins={toolbarPlugins}
+            {...toolbarProps}
           />
 
           {isPreviewing && (
@@ -481,6 +494,7 @@ export const EuiMarkdownEditor = forwardRef<
                   selectionEnd: newSelectionPoint,
                 });
               }}
+              showFooter={showFooter}
               uiPlugins={toolbarPlugins}
               errors={errors}
               hasUnacceptedItems={hasUnacceptedItems}
