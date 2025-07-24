@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { HTMLAttributes, forwardRef, useMemo } from 'react';
+import React, { HTMLAttributes, ReactNode, forwardRef, useMemo } from 'react';
 import { FixedSizeList, ListChildComponentProps } from 'react-window';
 import { RefractorNode } from 'refractor';
 import { logicalStyles } from '../../global_styling';
@@ -19,12 +19,14 @@ import { nodeToHtml } from './utils';
 
 export const EuiCodeBlockVirtualized = ({
   data,
+  label,
   rowHeight,
   overflowHeight,
   preProps,
   codeProps,
 }: {
   data: RefractorNode[];
+  label: ReactNode;
   rowHeight: number;
   overflowHeight?: number | string;
   preProps: HTMLAttributes<HTMLPreElement>;
@@ -32,10 +34,13 @@ export const EuiCodeBlockVirtualized = ({
 }) => {
   const VirtualizedOuterElement = useMemo(
     () =>
-      forwardRef<any, any>(({ style, ...props }, ref) => (
-        <pre style={logicalStyles(style)} {...props} ref={ref} {...preProps} />
+      forwardRef<any, any>(({ style, children, ...props }, ref) => (
+        <pre style={logicalStyles(style)} {...props} ref={ref} {...preProps}>
+          {label}
+          {children}
+        </pre>
       )),
-    [preProps]
+    [preProps, label]
   );
 
   const VirtualizedInnerElement = useMemo(

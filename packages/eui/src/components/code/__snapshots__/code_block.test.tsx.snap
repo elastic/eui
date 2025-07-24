@@ -13,8 +13,27 @@ exports[`EuiCodeBlock Virtualization renders a virtualized code block 1`] = `
       style="position: relative; block-size: 600px; inline-size: 600px; overflow: auto; will-change: transform; direction: ltr;"
       tabindex="0"
     >
+      <span
+        aria-hidden="true"
+        class="euiScreenReaderOnly"
+        data-tabular-copy-marker="no-copy"
+      >
+        ✄𐘗
+      </span>
+      <div
+        class="emotion-euiScreenReaderOnly"
+      >
+        aria-label, 
+        text code block:
+      </div>
+      <span
+        aria-hidden="true"
+        class="euiScreenReaderOnly"
+        data-tabular-copy-marker="no-copy"
+      >
+        ✄𐘗
+      </span>
       <code
-        aria-label="aria-label"
         class="euiCodeBlock__code emotion-euiCodeBlock__code-isVirtualized"
         data-code-language="text"
         data-test-subj="test subject string"
@@ -73,6 +92,7 @@ exports[`EuiCodeBlock renders a code block 1`] = `
     <div
       class="emotion-euiScreenReaderOnly"
     >
+      aria-label, 
       text code block:
     </div>
     <span
@@ -83,7 +103,6 @@ exports[`EuiCodeBlock renders a code block 1`] = `
       ✄𐘗
     </span>
     <code
-      aria-label="aria-label"
       class="euiCodeBlock__code emotion-euiCodeBlock__code"
       data-code-language="text"
       data-test-subj="test subject string"
