@@ -5,11 +5,13 @@ keywords: [EuiSelect]
 
 # Basic select
 
+```mdx-code-block
 import EuiFormRowCallout from '../layouts/_form_row_callout.mdx';
+```
 
-<EuiFormRowCallout />
+**EuiSelect** is a simple dropdown component that allows users to select a single option from a list. It renders a native HTML `<select>` element.
 
-This component renders a native HTML `<select>` element. Use **EuiSelect** to allow users to choose from a list of 7 to 12 options. When there are less than 7 options consider using a [EuiRadioGroup](./checkboxes-and-radios/index.mdx#radio-group).
+Use **EuiSelect** to allow users to choose from a list of 7 to 12 options. When there are less than 7 options consider using a [EuiRadioGroup](./checkboxes-and-radios/index.mdx#radio-group). For more details on which selection component to use, see the [Component comparison](./overview.mdx).
 
 ```tsx interactive
 import React, { useState } from 'react';
@@ -44,6 +46,8 @@ export default () => {
   );
 };
 ```
+
+<EuiFormRowCallout />
 
 ## Props
 
