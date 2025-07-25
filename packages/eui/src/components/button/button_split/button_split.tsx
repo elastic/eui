@@ -6,11 +6,12 @@
  * Side Public License, v 1.
  */
 
-import React, { useState } from 'react';
+import React, { FunctionComponent, useState } from 'react';
 import { euiButtonSplitStyles } from './button_split.styles';
 import { EuiButton, EuiButtonPropsForButton, EuiButtonProps } from '../button';
 import { EuiButtonIcon, EuiButtonIconProps } from '../button_icon/button_icon';
 import { EuiPopover, EuiPopoverProps } from '../../popover';
+import classNames from 'classnames';
 
 export interface EuiButtonSplitProps {
   /** Shared color for both the main button and icon button */
@@ -41,10 +42,12 @@ export interface EuiButtonSplitProps {
   panelPaddingSize?: EuiPopoverProps['panelPaddingSize'];
 }
 
-export const EuiButtonSplit: React.FC<EuiButtonSplitProps> = ({
+export type EuiButtonSplitPropsForButton = EuiButtonSplitProps;
+
+export const EuiButtonSplit: FunctionComponent<EuiButtonSplitProps> = ({
   color,
   fill,
-  size,
+  size = 'm',
   isDisabled,
   buttonProps,
   iconButtonProps,
@@ -60,7 +63,7 @@ export const EuiButtonSplit: React.FC<EuiButtonSplitProps> = ({
 
   return (
     <span
-      className={`euiButtonSplit ${className}`}
+      className={classNames('euiButtonSplit', className)}
       style={style}
       css={styles.euiButtonSplit}
     >

@@ -26,7 +26,7 @@ exports[`EuiButtonSplit is rendered 1`] = `
     >
       <button
         aria-label="More actions"
-        class="euiButtonIcon emotion-euiButtonIcon-xs-base-primary-iconButton"
+        class="euiButtonIcon emotion-euiButtonIcon-m-base-primary-iconButton"
         type="button"
       >
         <span
@@ -43,7 +43,7 @@ exports[`EuiButtonSplit is rendered 1`] = `
 
 exports[`EuiButtonSplit props renders with isDisabled 1`] = `
 <span
-  class="euiButtonSplit  emotion-euiButtonSplit"
+  class="euiButtonSplit emotion-euiButtonSplit"
 >
   <button
     class="euiButton emotion-euiButtonDisplay-m-defaultMinWidth-isDisabled-base-disabled-leftButton"
@@ -68,7 +68,7 @@ exports[`EuiButtonSplit props renders with isDisabled 1`] = `
     >
       <button
         aria-label="More actions"
-        class="euiButtonIcon emotion-euiButtonIcon-xs-base-disabled-isDisabled-iconButton"
+        class="euiButtonIcon emotion-euiButtonIcon-m-base-disabled-isDisabled-iconButton"
         disabled=""
         type="button"
       >
