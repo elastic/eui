@@ -7,7 +7,7 @@ keywords: [EuiButton]
 ---
 
 ```mdx-code-block
-import { EuiFlexGroup, EuiFlexItem, EuiButton, EuiButtonEmpty, EuiButtonIcon, EuiIcon, EuiTable, EuiTableBody, EuiTableHeader, EuiTableHeaderCell, EuiTableRow, EuiTableRowCell } from '@elastic/eui';
+import { EuiFlexGroup, EuiFlexItem, EuiButton, EuiButtonEmpty, EuiButtonIcon, EuiButtonSplit, EuiIcon, EuiTable, EuiTableBody, EuiTableHeader, EuiTableHeaderCell, EuiTableRow, EuiTableRowCell } from '@elastic/eui';
 ```
 
 # Button
@@ -178,6 +178,94 @@ export default () => (
     </EuiFlexItem>
   </EuiFlexGroup>
 );
+```
+
+### Split
+
+Split buttons combine a **primary action** with a dropdown menu of additional actions. The main button performs the most common action, while the dropdown arrow provides access to related secondary actions. This pattern is ideal when you have one primary action that users perform frequently, along with several related alternatives.
+
+```tsx interactive
+import React from 'react';
+
+import {
+  EuiButtonSplit,
+  EuiContextMenuItem,
+  EuiFlexGroup,
+  EuiFlexItem,
+} from '@elastic/eui';
+
+export default () => {
+  const onPrimaryClick = () => {
+    console.log('Primary action clicked');
+  };
+
+  const popoverMenu = (closePopover) => [
+    <EuiContextMenuItem key="save-as" icon="save" onClick={closePopover}>
+      Save as...
+    </EuiContextMenuItem>,
+    <EuiContextMenuItem key="export" icon="export" onClick={closePopover}>
+      Export
+    </EuiContextMenuItem>,
+    <EuiContextMenuItem key="share" icon="share" onClick={closePopover}>
+      Share
+    </EuiContextMenuItem>,
+  ];
+
+  return (
+    <EuiFlexGroup
+      wrap={true}
+      gutterSize="s"
+      alignItems="center"
+    >
+      <EuiFlexItem grow={false}>
+        <EuiButtonSplit
+          color="primary"
+          buttonProps={{
+            children: 'Save',
+            onClick: onPrimaryClick,
+          }}
+          iconButtonProps={{
+            'aria-label': 'Open menu',
+            iconType: 'arrowDown',
+          }}
+          popoverMenu={popoverMenu}
+        />
+      </EuiFlexItem>
+
+      <EuiFlexItem grow={false}>
+        <EuiButtonSplit
+          color="primary"
+          fill
+          buttonProps={{
+            children: 'Save (filled)',
+            onClick: onPrimaryClick,
+          }}
+          iconButtonProps={{
+            'aria-label': 'Open menu',
+            iconType: 'arrowDown',
+          }}
+          popoverMenu={popoverMenu}
+        />
+      </EuiFlexItem>
+
+      <EuiFlexItem grow={false}>
+        <EuiButtonSplit
+          color="primary"
+          size="s"
+          buttonProps={{
+            children: 'Save (small)',
+            onClick: onPrimaryClick,
+          }}
+          iconButtonProps={{
+            'aria-label': 'Open menu',
+            iconType: 'arrowDown',
+          }}
+          popoverMenu={popoverMenu}
+        />
+      </EuiFlexItem>
+    </EuiFlexGroup>
+  );
+};
 ```
 
 ### Icon
@@ -739,84 +827,6 @@ Button placement should always reflect the surrounding context. Place the primar
   </Guideline>
 </EuiFlexGroup>
 
-### Split buttons
-
-EUI does not specifically support split buttons. Instead, use separate `EuiButton` and `EuiButtonIcon` components, matching their `display` and `size` props for consistency.
-
-```tsx interactive
-import React, { useState } from 'react';
-
-import {
-  EuiButton,
-  EuiButtonIcon,
-  EuiFlexGroup,
-  EuiFlexItem,
-  EuiContextMenuPanel,
-  EuiContextMenuItem,
-  EuiPopover,
-  useGeneratedHtmlId,
-} from '@elastic/eui';
-
-export default () => {
-  const [isPopoverOpen, setPopover] = useState(false);
-  const splitButtonPopoverId = useGeneratedHtmlId({
-    prefix: 'splitButtonPopover',
-  });
-
-  const onButtonClick = () => {
-    setPopover(!isPopoverOpen);
-  };
-
-  const closePopover = () => {
-    setPopover(false);
-  };
-
-  const items = [
-    <EuiContextMenuItem key="copy" icon="copy" onClick={closePopover}>
-      Copy
-    </EuiContextMenuItem>,
-    <EuiContextMenuItem key="edit" icon="pencil" onClick={closePopover}>
-      Edit
-    </EuiContextMenuItem>,
-    <EuiContextMenuItem key="share" icon="share" onClick={closePopover}>
-      Share
-    </EuiContextMenuItem>,
-  ];
-
-  return (
-    <>
-      <EuiFlexGroup responsive={false} gutterSize="xs" alignItems="center">
-        <EuiFlexItem grow={false}>
-          <EuiButton size="s" fill iconType="save">
-            Save
-          </EuiButton>
-        </EuiFlexItem>
-        <EuiFlexItem grow={false}>
-          <EuiPopover
-            id={splitButtonPopoverId}
-            button={
-              <EuiButtonIcon
-                display="fill"
-                size="s"
-                iconType="boxesVertical"
-                aria-label="More"
-                onClick={onButtonClick}
-              />
-            }
-            isOpen={isPopoverOpen}
-            closePopover={closePopover}
-            panelPaddingSize="none"
-            anchorPosition="downLeft"
-          >
-            <EuiContextMenuPanel size="s" items={items} />
-          </EuiPopover>
-        </EuiFlexItem>
-      </EuiFlexGroup>
-    </>
-  );
-};
-```
-
 ### Popover buttons
 
 Combine multiple actions into a single button with a popover menu to reduce group size.
@@ -978,4 +988,5 @@ import docgen from '@elastic/eui-docgen/dist/components/button';
 
 <PropTable definition={docgen.EuiButton} />
 <PropTable definition={docgen.EuiButtonEmpty} />
+<PropTable definition={docgen.EuiButtonSplit} />
 <PropTable definition={docgen.EuiButtonIcon} />
