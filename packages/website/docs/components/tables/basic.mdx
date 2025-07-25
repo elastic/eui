@@ -1572,7 +1572,7 @@ export default () => {
 The following example shows how to set up column sorting using the `sorting` property and marking sortable columns with `sortable: true`. To enable default sorting for **every** column, pass `enableAllColumns: true` to the `sorting` prop. If you don't want users to control the sort, you can pass `readOnly: true` to the `sorting` prop or to individual columns.
 
 :::warning Unique identifiers required for sorting
-When using sorting with **EuiBasicTable**, make sure each row has a unique identifier. Duplicate identifiers can cause sorting to display incorrect results, such as showing fewer items than expected. Ensure your data has unique `id` values.
+When using sorting with **EuiBasicTable**, make sure each row has a unique identifier by passing unique `id` values. Duplicate identifiers can cause sorting to display incorrect results, such as showing fewer items than expected. Ensure your data has unique `id` values.
 :::
 
 ```tsx interactive
