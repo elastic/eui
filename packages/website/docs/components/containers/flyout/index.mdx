@@ -1039,6 +1039,25 @@ The `EuiFlyoutChild` must include an `EuiFlyoutBody` child and can only be used 
 
 Both parent and child flyouts use `role="dialog"` and `aria-modal="true"` for accessibility. Focus is managed automatically between them, with the child flyout taking focus when open and returning focus to the parent when closed.
 
+### Flyout menu (Beta)
+
+:::info Note
+This component is still in beta and may change in the future.
+:::
+
+Use `EuiFlyoutChild` to create a nested flyout that aligns to the left edge of a parent `EuiFlyout`. On smaller screens, the child flyout stacks above the parent.
+
+```tsx
+<EuiFlyout>
+  <EuiFlyoutMenu>
+    Hi mom
+  </EuiFlyoutMenu>
+  <EuiFlyoutHeader>Parent header</EuiFlyoutHeader>
+  <EuiFlyoutBody>Parent body</EuiFlyoutBody>
+  <EuiFlyoutFooter>Parent footer</EuiFlyoutFooter>
+</EuiFlyout>
+```
+
 ## Props
 
 import docgen from '@elastic/eui-docgen/dist/components/flyout';
