@@ -6,17 +6,25 @@ keywords: [EuiModal, EuiModalBody, EuiModalFooter, EuiModalHeader, EuiModalHeade
 
 # Modal
 
-A modal works best for focusing users' attention on a **short** amount of content and getting them to make a decision, such as a [confirmation](#confirm-modal). Use it to temporarily interrupt a user’s current task and block interactions to the content below it.
+A modal is best for focusing the user's attention on a **small** amount of content and prompting a decision, such as a [confirmation](#confirm-modal). Use it to temporarily interrupt the current task and block interaction with the content below.
 
-If your modal content is more complex, or requires considerable time to complete, consider using an [EuiFlyout](../flyout/index.mdx) instead.
+Each **EuiModal** needs a specific set of nested child components. You can omit some if needed, but do not change their order.
 
-Each **EuiModal** requires a specific set of nested child components. They can be omitted if necessary, but the order cannot be changed or interrupted.
+:::tip Modal vs flyout
+
+If your modal content is complex or takes a long time to complete, consider using an [EuiFlyout](../flyout/index.mdx) instead.
+:::
 
 ## Components
 
 ### Default
 
-Modals come a wrapping **EuiOverlayMask** to obscure the content beneath, but unlike flyouts, modals cannot be dismissed by clicking on the overlay mask. This is inline with our [modal usage guidelines](#guidelines) which requires there to be a primary action button, even if that button simply closes the modal.
+Modals use an **EuiOverlayMask** to obscure content beneath.
+
+:::warning Modals **can't** be dismissed by clicking outside
+
+Unlike flyouts, modals can't be dismissed by clicking on the mask. This follows our [modal usage guidelines](#guidelines), which require a primary action button, even if it just closes the modal.
+:::
 
 ```tsx interactive
 import React, { useState } from 'react';
