@@ -6,11 +6,17 @@
  * Side Public License, v 1.
  */
 
-import React, { createContext, useContext, useReducer } from 'react';
+import React, {
+  createContext,
+  useContext,
+  useReducer,
+  useCallback,
+} from 'react';
 
+import { EuiFlyoutMenu } from '../flyout_menu';
 import { EuiFlyout, EuiFlyoutChild } from '../index';
-
 import { flyoutReducer, initialFlyoutState } from './flyout_reducer';
+import { ManagedFlyoutMenu } from './managed_flyout_menu';
 import {
   EuiFlyoutSessionAction,
   EuiFlyoutSessionHistoryState,
@@ -22,6 +28,7 @@ interface FlyoutSessionContextProps {
   state: EuiFlyoutSessionHistoryState;
   dispatch: React.Dispatch<EuiFlyoutSessionAction>;
   onUnmount?: EuiFlyoutSessionProviderComponentProps['onUnmount'];
+  historyFilter: EuiFlyoutSessionProviderComponentProps['historyFilter'];
 }
 
 const EuiFlyoutSessionContext = createContext<FlyoutSessionContextProps | null>(
@@ -58,9 +65,32 @@ export const EuiFlyoutSessionProvider: React.FC<
   children,
   renderMainFlyoutContent,
   renderChildFlyoutContent,
+  historyFilter,
   onUnmount,
 }) => {
-  const [state, dispatch] = useReducer(flyoutReducer, initialFlyoutState);
+  const wrappedReducer = useCallback(
+    (
+      state: EuiFlyoutSessionHistoryState<any>,
+      action: EuiFlyoutSessionAction<any>
+    ) => {
+      const nextState = flyoutReducer(state, action);
+
+      if (!historyFilter) return nextState;
+
+      const filteredHistory = historyFilter(
+        nextState.history || [],
+        nextState.activeFlyoutGroup
+      );
+
+      return {
+        ...nextState,
+        history: filteredHistory,
+      };
+    },
+    [historyFilter]
+  );
+
+  const [state, dispatch] = useReducer(wrappedReducer, initialFlyoutState);
   const { activeFlyoutGroup } = state;
 
   const handleClose = () => {
@@ -69,6 +99,14 @@ export const EuiFlyoutSessionProvider: React.FC<
 
   const handleCloseChild = () => {
     dispatch({ type: 'CLOSE_CHILD_FLYOUT' });
+  };
+
+  const handleGoBack = () => {
+    dispatch({ type: 'GO_BACK' });
+  };
+
+  const handleGoToHistoryItem = (index: number) => {
+    dispatch({ type: 'GO_TO_HISTORY_ITEM', index });
   };
 
   let mainFlyoutContentNode: React.ReactNode = null;
@@ -95,7 +133,9 @@ export const EuiFlyoutSessionProvider: React.FC<
   const flyoutPropsChild = config?.childFlyoutProps || {};
 
   return (
-    <EuiFlyoutSessionContext.Provider value={{ state, dispatch, onUnmount }}>
+    <EuiFlyoutSessionContext.Provider
+      value={{ state, dispatch, historyFilter, onUnmount }}
+    >
       {children}
       {activeFlyoutGroup?.isMainOpen && (
         <EuiFlyout
@@ -104,6 +144,16 @@ export const EuiFlyoutSessionProvider: React.FC<
           ownFocus={!activeFlyoutGroup.isChildOpen}
           {...flyoutPropsMain}
         >
+          {config?.isManaged && (
+            <ManagedFlyoutMenu
+              handleGoBack={handleGoBack}
+              handleGoToHistoryItem={handleGoToHistoryItem}
+              historyItems={state.history ?? []}
+              {...{
+                title: !config?.hideMainTitle ? config?.mainTitle : undefined,
+              }}
+            />
+          )}
           {mainFlyoutContentNode}
           {activeFlyoutGroup.isChildOpen && childFlyoutContentNode && (
             <EuiFlyoutChild
@@ -111,6 +161,7 @@ export const EuiFlyoutSessionProvider: React.FC<
               size={config?.childSize}
               {...flyoutPropsChild}
             >
+              <EuiFlyoutMenu title={config?.childTitle} />
               {childFlyoutContentNode}
             </EuiFlyoutChild>
           )}
