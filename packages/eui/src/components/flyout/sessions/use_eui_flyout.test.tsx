@@ -6,14 +6,14 @@
  * Side Public License, v 1.
  */
 
+import { fireEvent, render, screen } from '@testing-library/react';
 import React from 'react';
-import { render, fireEvent, screen } from '@testing-library/react';
 
 import { EuiFlyoutSessionProvider } from './flyout_provider';
 import type {
-  EuiFlyoutSessionOpenMainOptions,
   EuiFlyoutSessionOpenChildOptions,
   EuiFlyoutSessionOpenGroupOptions,
+  EuiFlyoutSessionOpenMainOptions,
 } from './types';
 import { useEuiFlyoutSession } from './use_eui_flyout';
 
@@ -79,6 +79,7 @@ const TestComponent: React.FC<TestComponentProps> = ({
         data-testid="openChildFlyoutButton"
         onClick={() => {
           const options: EuiFlyoutSessionOpenChildOptions = {
+            title: 'Child flyout',
             size: 's',
             meta: { type: 'testChild' },
           };
@@ -95,10 +96,12 @@ const TestComponent: React.FC<TestComponentProps> = ({
         onClick={() => {
           const options: EuiFlyoutSessionOpenGroupOptions = {
             main: {
+              title: 'Main flyout',
               size: 'm',
               flyoutProps: { className: 'main-flyout' },
             },
             child: {
+              title: 'Child flyout',
               size: 's',
               flyoutProps: { className: 'child-flyout' },
             },
