@@ -6,8 +6,12 @@
  * Side Public License, v 1.
  */
 
-export type { EuiFlyoutProps, EuiFlyoutSize } from './flyout';
 export { EuiFlyout } from './flyout';
+export type { EuiFlyoutProps } from './flyout';
+
+// When props can be better aligned, we can switch to `managed`.
+// export { EuiFlyout } from './managed';
+// export type { EuiFlyoutProps } from './managed';
 
 export type { EuiFlyoutBodyProps } from './flyout_body';
 export { EuiFlyoutBody } from './flyout_body';
@@ -26,12 +30,16 @@ export { EuiFlyoutResizable } from './flyout_resizable';
 export { EuiFlyoutChild } from './flyout_child';
 export type { EuiFlyoutChildProps } from './flyout_child';
 
+export type { EuiFlyoutMenuProps } from './flyout_menu';
+export { EuiFlyoutMenu } from './flyout_menu';
+
 export type {
   EuiFlyoutSessionApi,
   EuiFlyoutSessionConfig,
   EuiFlyoutSessionOpenChildOptions,
-  EuiFlyoutSessionOpenMainOptions,
   EuiFlyoutSessionOpenGroupOptions,
+  EuiFlyoutSessionOpenMainOptions,
+  EuiFlyoutSessionOpenManagedOptions,
   EuiFlyoutSessionProviderComponentProps,
   EuiFlyoutSessionRenderContext,
 } from './sessions';
