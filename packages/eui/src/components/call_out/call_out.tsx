@@ -19,6 +19,7 @@ import { EuiPanel } from '../panel';
 import { EuiSpacer } from '../spacer';
 import { EuiTitle } from '../title';
 import { EuiI18n } from '../i18n';
+import { EuiLiveAnnouncer } from '../accessibility/live_announcer';
 
 import { euiCallOutStyles, euiCallOutHeaderStyles } from './call_out.styles';
 
@@ -51,6 +52,13 @@ export type EuiCallOutProps = CommonProps &
      * removing the callout or other actions.
      */
     onDismiss?: () => void;
+    /**
+     * Enables the content to be read by screen readers on mount.
+     * Use this for callouts that are shown based on a user action.
+     *
+     * @default false
+     */
+    announceOnMount?: boolean;
   };
 
 export const EuiCallOut = forwardRef<HTMLDivElement, EuiCallOutProps>(
@@ -64,6 +72,7 @@ export const EuiCallOut = forwardRef<HTMLDivElement, EuiCallOutProps>(
       className,
       heading = 'p',
       onDismiss,
+      announceOnMount = false,
       ...rest
     },
     ref
@@ -170,6 +179,12 @@ export const EuiCallOut = forwardRef<HTMLDivElement, EuiCallOutProps>(
             </>
           )
         }
+        {announceOnMount && (title || children) && (
+          <EuiLiveAnnouncer clearAfterMs={2000}>
+            {title && `${title}, `}
+            {children}
+          </EuiLiveAnnouncer>
+        )}
       </EuiPanel>
     );
   }

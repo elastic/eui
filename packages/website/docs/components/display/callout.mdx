@@ -241,6 +241,44 @@ export default () => {
 };
 ```
 
+### Screen reader announcements
+
+`EuiCallOut` supports announcing its content to screen readers when it first appears using the `announceOnMount` prop. 
+When enabled, the callout's title and content will be announced via an `aria-live` region. The announcement will be cleared after 2 seconds 
+to prevent duplicate DOM content but screen readers will continue reading the message even after it's cleared.
+
+Generally you won't need this prop when a callout is rendered on initial page load, as screen readers will encounter the content during normal page navigation.
+Use `announceOnMount` when the callout appears as the result of a user action or contains information that needs immediate attention.
+
+
+```tsx interactive
+import React, { useState } from 'react';
+import { EuiCallOut, EuiButton, EuiSpacer } from '@elastic/eui';
+
+export default () => {
+  const [isShown, setIsShown] = useState(false);
+
+  return (
+    <>
+      <EuiButton onClick={() => setIsShown(!isShown)}>
+        {isShown ? 'Hide' : 'Show'} callout
+      </EuiButton>
+      <EuiSpacer />
+      {isShown && (
+        <EuiCallOut
+          title="Important notification!"
+          color="accent"
+          announceOnMount
+        >
+          <p>This content will be announced to screen readers when it appears.</p>
+        </EuiCallOut>
+      )}
+    </>
+  );
+};
+```
+
+
 ## Guidelines
 
 **Keep these guidelines in mind:**
