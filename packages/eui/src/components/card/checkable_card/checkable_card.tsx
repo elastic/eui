@@ -14,7 +14,7 @@ import React, {
   useState,
 } from 'react';
 import classNames from 'classnames';
-import { FocusableElement, tabbable } from 'tabbable';
+import { tabbable } from 'tabbable';
 
 import {
   EuiRadio,
@@ -87,14 +87,13 @@ export const EuiCheckableCard: FunctionComponent<EuiCheckableCardProps> = ({
 
   const classes = classNames('euiCheckableCard', className);
 
-  const [interactiveChildren, setInteractiveChildren] = useState<
-    FocusableElement[]
-  >([]);
+  const [hasInteractiveChildren, setHasInteractiveChildren] = useState(false);
 
   useEffect(() => {
-    setInteractiveChildren(
-      childrenEl.current ? tabbable(childrenEl.current) : []
-    );
+    const interactiveElements = childrenEl.current
+      ? tabbable(childrenEl.current)
+      : [];
+    setHasInteractiveChildren(interactiveElements.length > 0);
   }, [children, childrenEl]);
 
   let checkableElement;
@@ -125,7 +124,7 @@ export const EuiCheckableCard: FunctionComponent<EuiCheckableCardProps> = ({
   };
 
   const onChildrenClick = () => {
-    if (interactiveChildren.length > 0) return;
+    if (hasInteractiveChildren) return;
     labelEl.current?.click();
   };
 
@@ -166,9 +165,7 @@ export const EuiCheckableCard: FunctionComponent<EuiCheckableCardProps> = ({
             onClick={disabled ? undefined : onChildrenClick}
             style={{
               cursor:
-                !disabled && interactiveChildren.length === 0
-                  ? 'pointer'
-                  : undefined,
+                !disabled && !hasInteractiveChildren ? 'pointer' : undefined,
             }}
           >
             {children}
