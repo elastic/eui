@@ -6,8 +6,15 @@
  * Side Public License, v 1.
  */
 
-import React, { FunctionComponent, ReactNode, useRef } from 'react';
+import React, {
+  FunctionComponent,
+  ReactNode,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 import classNames from 'classnames';
+import { tabbable } from 'tabbable';
 
 import {
   EuiRadio,
@@ -76,7 +83,18 @@ export const EuiCheckableCard: FunctionComponent<EuiCheckableCardProps> = ({
   const { id } = rest;
   const labelEl = useRef<HTMLLabelElement>(null);
   const inputEl = useRef<HTMLInputElement>(null);
+  const childrenWrapperEl = useRef<HTMLDivElement>(null);
+
   const classes = classNames('euiCheckableCard', className);
+
+  const [hasInteractiveChildren, setHasInteractiveChildren] = useState(false);
+
+  useEffect(() => {
+    const interactiveElements = childrenWrapperEl.current
+      ? tabbable(childrenWrapperEl.current)
+      : [];
+    setHasInteractiveChildren(interactiveElements.length > 0);
+  }, [children, childrenWrapperEl]);
 
   let checkableElement;
   if (checkableType === 'radio') {
@@ -101,9 +119,13 @@ export const EuiCheckableCard: FunctionComponent<EuiCheckableCardProps> = ({
   const labelClasses = classNames('euiCheckableCard__label');
 
   const onChangeAffordance = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (labelEl.current && e.target !== inputEl.current) {
-      labelEl.current.click();
-    }
+    if (!labelEl.current || e.target === inputEl.current) return;
+    labelEl.current.click();
+  };
+
+  const onChildrenClick = () => {
+    if (hasInteractiveChildren) return;
+    labelEl.current?.click();
   };
 
   return (
@@ -136,9 +158,15 @@ export const EuiCheckableCard: FunctionComponent<EuiCheckableCardProps> = ({
         </label>
         {children && (
           <div
+            ref={childrenWrapperEl}
             id={`${id}-details`}
             className="euiCheckableCard__children"
             css={childStyles}
+            onClick={disabled ? undefined : onChildrenClick}
+            style={{
+              cursor:
+                !disabled && !hasInteractiveChildren ? 'pointer' : undefined,
+            }}
           >
             {children}
           </div>

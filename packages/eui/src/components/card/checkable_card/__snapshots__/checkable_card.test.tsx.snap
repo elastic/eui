@@ -120,6 +120,7 @@ exports[`EuiCheckableCard renders children 1`] = `
     <div
       class="euiCheckableCard__children emotion-euiCheckableCard__children"
       id="id-details"
+      style="cursor: pointer;"
     >
       Child
     </div>
