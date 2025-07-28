@@ -1,5 +1,73 @@
 [
   {
+    "version": "106.1.0",
+    "changes": [
+      {
+        "token": "euiMarkdownEditorFooter.showMarkdownHelp",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiMarkdownEditorFooter.syntaxTitle",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiMarkdownEditorFooter.mdSyntaxLink",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiMarkdownEditorFooter.syntaxModalDescriptionPrefix",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiMarkdownEditorFooter.syntaxModalDescriptionSuffix",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiMarkdownEditorFooter.closeButton",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiMarkdownEditorFooter.syntaxPopoverDescription",
+        "changeType": "deleted"
+      },
+      {
+        "token": "euiMarkdownEditorHelpButton.mdSyntaxLink",
+        "changeType": "added",
+        "value": "GitHub flavored markdown"
+      },
+      {
+        "token": "euiMarkdownEditorHelpButton.syntaxTitle",
+        "changeType": "added",
+        "value": "Syntax help"
+      },
+      {
+        "token": "euiMarkdownEditorHelpButton.showMarkdownHelp",
+        "changeType": "added",
+        "value": "Show markdown help"
+      },
+      {
+        "token": "euiMarkdownEditorHelpButton.syntaxModalDescriptionPrefix",
+        "changeType": "added",
+        "value": "This editor uses"
+      },
+      {
+        "token": "euiMarkdownEditorHelpButton.syntaxModalDescriptionSuffix",
+        "changeType": "added",
+        "value": "You can also utilize these additional syntax plugins to add rich content to your text."
+      },
+      {
+        "token": "euiMarkdownEditorHelpButton.closeButton",
+        "changeType": "added",
+        "value": "Close"
+      },
+      {
+        "token": "euiMarkdownEditorHelpButton.syntaxPopoverDescription",
+        "changeType": "added",
+        "value": "This editor uses"
+      }
+    ]
+  },
+  {
     "version": "106.0.0",
     "changes": [
       {
