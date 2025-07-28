@@ -1,3 +1,16 @@
+## [`v106.2.0`](https://github.com/elastic/eui/releases/v106.2.0)
+
+- Enhanced `EuiCheckableCard` to make non-interactive children clickable for card selection ([#8907](https://github.com/elastic/eui/pull/8907))
+- Added `showFooter` and `toolbarProps.right` props to `EuiMarkdownEditor` for more flexible layout control. ([#8889](https://github.com/elastic/eui/pull/8889)) ([#8889](https://github.com/elastic/eui/pull/8889))
+
+**Bug fixes**
+
+- Fixed `EuiPopover` not closing on outside click after multiple fast clicks on the trigger element ([#8882](https://github.com/elastic/eui/pull/8882))
+
+**Accessibility**
+
+- Added accessible labels to virtualized `EuiCodeBlock` ([#8887](https://github.com/elastic/eui/pull/8887))
+
 ## [`v106.1.0`](https://github.com/elastic/eui/releases/v106.1.0)
 
 - Added `--euiPushFlyoutOffsetInlineStart` and `--euiPushFlyoutOffsetInlineEnd` global CSS variables set by the `EuiFlyout` in `push` mode. ([#8872](https://github.com/elastic/eui/pull/8872))
