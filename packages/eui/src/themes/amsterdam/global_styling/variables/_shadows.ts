@@ -10,7 +10,6 @@ import {
   formatMultipleBoxShadow,
   _EuiThemeShadows,
   type _EuiThemeShadowPrimitives,
-  _EuiThemeShadowSize,
 } from '@elastic/eui-theme-common';
 
 // in Amsterdam this is `color.shadow`, which computes to `ink` (#000)
