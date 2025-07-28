@@ -31,7 +31,7 @@ export const _EuiShadowSizesDescriptions: Record<_EuiThemeShadowSize, string> =
     l: 'Primary shadow used in most cases to add visible depth.',
     xl: 'Very large shadows used for large portalled style containers like modals and flyouts.',
     xlHover:
-      'Special size to be used exclusively as hovered state for the `xl` size',
+      'Special size to be used exclusively as hovered state for the `xl` size.',
   };
 
 export interface _EuiThemeShadowCustomColor {
@@ -39,6 +39,27 @@ export interface _EuiThemeShadowCustomColor {
   property?: 'box-shadow' | 'filter';
   borderAllInHighContrastMode?: boolean;
 }
+
+export type _EuiThemeShadow = {
+  /** Default direction of the shadow */
+  down: ColorModeSwitch<CSSProperties['boxShadow']>;
+  /** Reverse direction */
+  up: ColorModeSwitch<CSSProperties['boxShadow']>;
+};
+
+export type _EuiThemeShadows = {
+  xs: _EuiThemeShadow;
+  s: _EuiThemeShadow;
+  m: _EuiThemeShadow;
+  l: _EuiThemeShadow;
+  xl: _EuiThemeShadow;
+  hover: {
+    base: _EuiThemeShadow;
+    xl: _EuiThemeShadow;
+  };
+  /** Not in the spec, defined only to support the legacy `euiShadowFlat` mixin */
+  flat?: _EuiThemeShadow;
+};
 
 /**
  * Represents a single shadow
@@ -53,22 +74,17 @@ export type _EuiThemeShadowLayer = {
   spread: number;
 };
 
-export type _EuiThemeShadow = {
-  /** An array of shadows, 3 by design */
-  values: ColorModeSwitch<_EuiThemeShadowLayer[]>;
-  /** Default direction of the shadow */
-  down: CSSProperties['boxShadow'];
-  /** Reverse direction */
-  up: CSSProperties['boxShadow'];
+export type _EuiThemeShadowPrimitive = {
+  light: _EuiThemeShadowLayer[];
+  dark: _EuiThemeShadowLayer[];
 };
 
-export type _EuiThemeShadows = {
-  xs: _EuiThemeShadow;
-  s: _EuiThemeShadow;
-  m: _EuiThemeShadow;
-  l: _EuiThemeShadow;
-  xl: _EuiThemeShadow;
-  xlHover: _EuiThemeShadow;
-  /** Not in the spec, defined only to support the legacy `euiShadowFlat` mixin */
-  flat?: _EuiThemeShadow;
+export type _EuiThemeShadowPrimitives = {
+  xs: _EuiThemeShadowPrimitive;
+  s: _EuiThemeShadowPrimitive;
+  m: _EuiThemeShadowPrimitive;
+  l: _EuiThemeShadowPrimitive;
+  xl: _EuiThemeShadowPrimitive;
+  xxl: _EuiThemeShadowPrimitive;
+  flat: _EuiThemeShadowPrimitive;
 };

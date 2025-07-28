@@ -7,411 +7,475 @@
  */
 
 import {
-  computed,
   formatMultipleBoxShadow,
   type _EuiThemeShadows,
-  type _EuiThemeShadowLayer,
+  type _EuiThemeShadowPrimitives,
 } from '@elastic/eui-theme-common';
 import { SEMANTIC_COLORS } from './colors/_semantic_colors';
 
-export const shadows: _EuiThemeShadows = {
+/**
+ * This structure holds "primitives" (or actual design tokens as they
+ * would be stored in a design token repository).
+ * Not exposing them in the theme object is intentional.
+ * The term "primitive" seems appropriate but may change.
+ */
+export const shadowPrimitives: _EuiThemeShadowPrimitives = {
   xs: {
-    values: {
-      LIGHT: [
-        {
-          color: SEMANTIC_COLORS.shade120,
-          opacity: 0.16,
-          x: 0,
-          y: 0,
-          blur: 2,
-          spread: 0,
-        },
-        {
-          color: SEMANTIC_COLORS.shade120,
-          opacity: 0.06,
-          x: 0,
-          y: 1,
-          blur: 4,
-          spread: 0,
-        },
-        {
-          color: SEMANTIC_COLORS.shade120,
-          opacity: 0.04,
-          x: 0,
-          y: 2,
-          blur: 8,
-          spread: 0,
-        },
-      ],
-      DARK: [
-        {
-          color: SEMANTIC_COLORS.shade120,
-          opacity: 1,
-          x: 0,
-          y: 0,
-          blur: 0,
-          spread: 1,
-        },
-        {
-          color: '#000',
-          opacity: 0.4,
-          x: 0,
-          y: 1,
-          blur: 4,
-          spread: 0,
-        },
-        {
-          color: '#000',
-          opacity: 0.24,
-          x: 0,
-          y: 2,
-          blur: 8,
-          spread: 0,
-        },
-      ],
-    },
-    down: computed(
-      ([values]) => formatMultipleBoxShadow(values),
-      ['shadows.xs.values']
-    ),
-    up: computed(
-      ([values]) => formatMultipleBoxShadow(values, true),
-      ['shadows.xs.values']
-    ),
+    light: [
+      {
+        color: SEMANTIC_COLORS.shade120,
+        opacity: 0.16,
+        x: 0,
+        y: 0,
+        blur: 2,
+        spread: 0,
+      },
+      {
+        color: SEMANTIC_COLORS.shade120,
+        opacity: 0.06,
+        x: 0,
+        y: 1,
+        blur: 4,
+        spread: 0,
+      },
+      {
+        color: SEMANTIC_COLORS.shade120,
+        opacity: 0.04,
+        x: 0,
+        y: 2,
+        blur: 8,
+        spread: 0,
+      },
+    ],
+    dark: [
+      {
+        color: SEMANTIC_COLORS.shade120,
+        opacity: 1,
+        x: 0,
+        y: 0,
+        blur: 0,
+        spread: 1,
+      },
+      {
+        color: '#000',
+        opacity: 0.4,
+        x: 0,
+        y: 1,
+        blur: 4,
+        spread: 0,
+      },
+      {
+        color: '#000',
+        opacity: 0.24,
+        x: 0,
+        y: 2,
+        blur: 8,
+        spread: 0,
+      },
+    ],
   },
   s: {
-    values: {
-      LIGHT: [
-        {
-          color: SEMANTIC_COLORS.shade120,
-          opacity: 0.16,
-          x: 0,
-          y: 0,
-          blur: 2,
-          spread: 0,
-        },
-        {
-          color: SEMANTIC_COLORS.shade120,
-          opacity: 0.08,
-          x: 0,
-          y: 2,
-          blur: 7,
-          spread: 0,
-        },
-        {
-          color: SEMANTIC_COLORS.shade120,
-          opacity: 0.05,
-          x: 0,
-          y: 4,
-          blur: 11,
-          spread: 0,
-        },
-      ],
-      DARK: [
-        {
-          color: SEMANTIC_COLORS.shade120,
-          opacity: 1,
-          x: 0,
-          y: 0,
-          blur: 0,
-          spread: 1,
-        },
-        {
-          color: '#000',
-          opacity: 0.46,
-          x: 0,
-          y: 2,
-          blur: 7,
-          spread: 0,
-        },
-        {
-          color: '#000',
-          opacity: 0.26,
-          x: 0,
-          y: 4,
-          blur: 11,
-          spread: 0,
-        },
-      ],
-    },
-    down: computed(
-      ([values]) => formatMultipleBoxShadow(values),
-      ['shadows.s.values']
-    ),
-    up: computed(
-      ([values]) => formatMultipleBoxShadow(values, true),
-      ['shadows.s.values']
-    ),
+    light: [
+      {
+        color: SEMANTIC_COLORS.shade120,
+        opacity: 0.16,
+        x: 0,
+        y: 0,
+        blur: 2,
+        spread: 0,
+      },
+      {
+        color: SEMANTIC_COLORS.shade120,
+        opacity: 0.08,
+        x: 0,
+        y: 2,
+        blur: 7,
+        spread: 0,
+      },
+      {
+        color: SEMANTIC_COLORS.shade120,
+        opacity: 0.05,
+        x: 0,
+        y: 4,
+        blur: 11,
+        spread: 0,
+      },
+    ],
+    dark: [
+      {
+        color: SEMANTIC_COLORS.shade120,
+        opacity: 1,
+        x: 0,
+        y: 0,
+        blur: 0,
+        spread: 1,
+      },
+      {
+        color: '#000',
+        opacity: 0.46,
+        x: 0,
+        y: 2,
+        blur: 7,
+        spread: 0,
+      },
+      {
+        color: '#000',
+        opacity: 0.26,
+        x: 0,
+        y: 4,
+        blur: 11,
+        spread: 0,
+      },
+    ],
   },
   m: {
-    values: {
-      LIGHT: [
-        {
-          color: SEMANTIC_COLORS.shade120,
-          opacity: 0.16,
-          x: 0,
-          y: 0,
-          blur: 2,
-          spread: 0,
-        },
-        {
-          color: SEMANTIC_COLORS.shade120,
-          opacity: 0.1,
-          x: 0,
-          y: 3,
-          blur: 10,
-          spread: 0,
-        },
-        {
-          color: SEMANTIC_COLORS.shade120,
-          opacity: 0.06,
-          x: 0,
-          y: 6,
-          blur: 14,
-          spread: 0,
-        },
-      ],
-      DARK: [
-        {
-          color: SEMANTIC_COLORS.shade120,
-          opacity: 1,
-          x: 0,
-          y: 0,
-          blur: 0,
-          spread: 1,
-        },
-        {
-          color: '#000',
-          opacity: 0.52,
-          x: 0,
-          y: 3,
-          blur: 10,
-          spread: 0,
-        },
-        {
-          color: '#000',
-          opacity: 0.28,
-          x: 0,
-          y: 6,
-          blur: 14,
-          spread: 0,
-        },
-      ],
-    },
-    down: computed(
-      ([values]) => formatMultipleBoxShadow(values),
-      ['shadows.m.values']
-    ),
-    up: computed(
-      ([values]) => formatMultipleBoxShadow(values, true),
-      ['shadows.m.values']
-    ),
+    light: [
+      {
+        color: SEMANTIC_COLORS.shade120,
+        opacity: 0.16,
+        x: 0,
+        y: 0,
+        blur: 2,
+        spread: 0,
+      },
+      {
+        color: SEMANTIC_COLORS.shade120,
+        opacity: 0.1,
+        x: 0,
+        y: 3,
+        blur: 10,
+        spread: 0,
+      },
+      {
+        color: SEMANTIC_COLORS.shade120,
+        opacity: 0.06,
+        x: 0,
+        y: 6,
+        blur: 14,
+        spread: 0,
+      },
+    ],
+    dark: [
+      {
+        color: SEMANTIC_COLORS.shade120,
+        opacity: 1,
+        x: 0,
+        y: 0,
+        blur: 0,
+        spread: 1,
+      },
+      {
+        color: '#000',
+        opacity: 0.52,
+        x: 0,
+        y: 3,
+        blur: 10,
+        spread: 0,
+      },
+      {
+        color: '#000',
+        opacity: 0.28,
+        x: 0,
+        y: 6,
+        blur: 14,
+        spread: 0,
+      },
+    ],
   },
   l: {
-    values: {
-      LIGHT: [
-        {
-          color: SEMANTIC_COLORS.shade120,
-          opacity: 0.16,
-          x: 0,
-          y: 0,
-          blur: 2,
-          spread: 0,
-        },
-        {
-          color: SEMANTIC_COLORS.shade120,
-          opacity: 0.12,
-          x: 0,
-          y: 4,
-          blur: 13,
-          spread: 0,
-        },
-        {
-          color: SEMANTIC_COLORS.shade120,
-          opacity: 0.07,
-          x: 0,
-          y: 8,
-          blur: 17,
-          spread: 0,
-        },
-      ],
-      DARK: [
-        {
-          color: SEMANTIC_COLORS.shade120,
-          opacity: 1,
-          x: 0,
-          y: 0,
-          blur: 0,
-          spread: 1,
-        },
-        {
-          color: '#000',
-          opacity: 0.58,
-          x: 0,
-          y: 4,
-          blur: 13,
-          spread: 0,
-        },
-        {
-          color: '#000',
-          opacity: 0.3,
-          x: 0,
-          y: 8,
-          blur: 17,
-          spread: 0,
-        },
-      ],
-    },
-    down: computed(
-      ([values]) => formatMultipleBoxShadow(values),
-      ['shadows.l.values']
-    ),
-    up: computed(
-      ([values]) => formatMultipleBoxShadow(values, true),
-      ['shadows.l.values']
-    ),
+    light: [
+      {
+        color: SEMANTIC_COLORS.shade120,
+        opacity: 0.16,
+        x: 0,
+        y: 0,
+        blur: 2,
+        spread: 0,
+      },
+      {
+        color: SEMANTIC_COLORS.shade120,
+        opacity: 0.12,
+        x: 0,
+        y: 4,
+        blur: 13,
+        spread: 0,
+      },
+      {
+        color: SEMANTIC_COLORS.shade120,
+        opacity: 0.07,
+        x: 0,
+        y: 8,
+        blur: 17,
+        spread: 0,
+      },
+    ],
+    dark: [
+      {
+        color: SEMANTIC_COLORS.shade120,
+        opacity: 1,
+        x: 0,
+        y: 0,
+        blur: 0,
+        spread: 1,
+      },
+      {
+        color: '#000',
+        opacity: 0.58,
+        x: 0,
+        y: 4,
+        blur: 13,
+        spread: 0,
+      },
+      {
+        color: '#000',
+        opacity: 0.3,
+        x: 0,
+        y: 8,
+        blur: 17,
+        spread: 0,
+      },
+    ],
   },
   xl: {
-    values: {
-      LIGHT: [
-        {
-          color: SEMANTIC_COLORS.shade120,
-          opacity: 0.16,
-          x: 0,
-          y: 0,
-          blur: 2,
-          spread: 0,
-        },
-        {
-          color: SEMANTIC_COLORS.shade120,
-          opacity: 0.14,
-          x: 0,
-          y: 5,
-          blur: 16,
-          spread: 0,
-        },
-        {
-          color: SEMANTIC_COLORS.shade120,
-          opacity: 0.08,
-          x: 0,
-          y: 10,
-          blur: 20,
-          spread: 0,
-        },
-      ],
-      DARK: [
-        {
-          color: SEMANTIC_COLORS.shade120,
-          opacity: 1,
-          x: 0,
-          y: 0,
-          blur: 0,
-          spread: 1,
-        },
-        {
-          color: '#000',
-          opacity: 0.64,
-          x: 0,
-          y: 5,
-          blur: 16,
-          spread: 0,
-        },
-        {
-          color: '#000',
-          opacity: 0.32,
-          x: 0,
-          y: 10,
-          blur: 20,
-          spread: 0,
-        },
-      ],
-    },
-    down: computed(
-      ([values]) => formatMultipleBoxShadow(values),
-      ['shadows.xl.values']
-    ),
-    up: computed(
-      ([values]) => formatMultipleBoxShadow(values, true),
-      ['shadows.xl.values']
-    ),
+    light: [
+      {
+        color: SEMANTIC_COLORS.shade120,
+        opacity: 0.16,
+        x: 0,
+        y: 0,
+        blur: 2,
+        spread: 0,
+      },
+      {
+        color: SEMANTIC_COLORS.shade120,
+        opacity: 0.14,
+        x: 0,
+        y: 5,
+        blur: 16,
+        spread: 0,
+      },
+      {
+        color: SEMANTIC_COLORS.shade120,
+        opacity: 0.08,
+        x: 0,
+        y: 10,
+        blur: 20,
+        spread: 0,
+      },
+    ],
+    dark: [
+      {
+        color: SEMANTIC_COLORS.shade120,
+        opacity: 1,
+        x: 0,
+        y: 0,
+        blur: 0,
+        spread: 1,
+      },
+      {
+        color: '#000',
+        opacity: 0.64,
+        x: 0,
+        y: 5,
+        blur: 16,
+        spread: 0,
+      },
+      {
+        color: '#000',
+        opacity: 0.32,
+        x: 0,
+        y: 10,
+        blur: 20,
+        spread: 0,
+      },
+    ],
   },
-  xlHover: {
-    values: {
-      LIGHT: [
-        {
-          color: SEMANTIC_COLORS.shade120,
-          opacity: 0.16,
-          x: 0,
-          y: 0,
-          blur: 2,
-          spread: 0,
-        },
-        {
-          color: SEMANTIC_COLORS.shade120,
-          opacity: 0.16,
-          x: 0,
-          y: 6,
-          blur: 19,
-          spread: 0,
-        },
-        {
-          color: SEMANTIC_COLORS.shade120,
-          opacity: 0.09,
-          x: 0,
-          y: 12,
-          blur: 23,
-          spread: 0,
-        },
-      ],
-      DARK: [
-        {
-          color: SEMANTIC_COLORS.shade120,
-          opacity: 1,
-          x: 0,
-          y: 0,
-          blur: 0,
-          spread: 1,
-        },
-        {
-          color: '#000',
-          opacity: 0.7,
-          x: 0,
-          y: 6,
-          blur: 19,
-          spread: 0,
-        },
-        {
-          color: '#000',
-          opacity: 0.34,
-          x: 0,
-          y: 12,
-          blur: 23,
-          spread: 0,
-        },
-      ],
+  xxl: {
+    light: [
+      {
+        color: SEMANTIC_COLORS.shade120,
+        opacity: 0.16,
+        x: 0,
+        y: 0,
+        blur: 2,
+        spread: 0,
+      },
+      {
+        color: SEMANTIC_COLORS.shade120,
+        opacity: 0.16,
+        x: 0,
+        y: 6,
+        blur: 19,
+        spread: 0,
+      },
+      {
+        color: SEMANTIC_COLORS.shade120,
+        opacity: 0.09,
+        x: 0,
+        y: 12,
+        blur: 23,
+        spread: 0,
+      },
+    ],
+    dark: [
+      {
+        color: SEMANTIC_COLORS.shade120,
+        opacity: 1,
+        x: 0,
+        y: 0,
+        blur: 0,
+        spread: 1,
+      },
+      {
+        color: '#000',
+        opacity: 0.7,
+        x: 0,
+        y: 6,
+        blur: 19,
+        spread: 0,
+      },
+      {
+        color: '#000',
+        opacity: 0.34,
+        x: 0,
+        y: 12,
+        blur: 23,
+        spread: 0,
+      },
+    ],
+  },
+  flat: {
+    light: [],
+    dark: [],
+  }
+};
+
+export const shadows: _EuiThemeShadows = {
+  xs: {
+    down: {
+      LIGHT: formatMultipleBoxShadow(shadowPrimitives.xs.light),
+      DARK: formatMultipleBoxShadow(shadowPrimitives.xs.dark, {
+        colorMode: 'DARK',
+      }),
     },
-    down: computed(
-      ([values]) => formatMultipleBoxShadow(values),
-      ['shadows.xlHover.values']
-    ),
-    up: computed(
-      ([values]) => formatMultipleBoxShadow(values, true),
-      ['shadows.xlHover.values']
-    ),
+    up: {
+      LIGHT: formatMultipleBoxShadow(shadowPrimitives.xs.light, { up: true }),
+      DARK: formatMultipleBoxShadow(shadowPrimitives.xs.dark, {
+        up: true,
+        colorMode: 'DARK',
+      }),
+    },
+  },
+  s: {
+    down: {
+      LIGHT: formatMultipleBoxShadow(shadowPrimitives.s.light),
+      DARK: formatMultipleBoxShadow(shadowPrimitives.s.dark, {
+        colorMode: 'DARK',
+      }),
+    },
+    up: {
+      LIGHT: formatMultipleBoxShadow(shadowPrimitives.s.light, { up: true }),
+      DARK: formatMultipleBoxShadow(shadowPrimitives.s.dark, {
+        up: true,
+        colorMode: 'DARK',
+      }),
+    },
+  },
+  m: {
+    down: {
+      LIGHT: formatMultipleBoxShadow(shadowPrimitives.m.light),
+      DARK: formatMultipleBoxShadow(shadowPrimitives.m.dark, {
+        colorMode: 'DARK',
+      }),
+    },
+    up: {
+      LIGHT: formatMultipleBoxShadow(shadowPrimitives.m.light, { up: true }),
+      DARK: formatMultipleBoxShadow(shadowPrimitives.m.dark, {
+        up: true,
+        colorMode: 'DARK',
+      }),
+    },
+  },
+  l: {
+    down: {
+      LIGHT: formatMultipleBoxShadow(shadowPrimitives.l.light),
+      DARK: formatMultipleBoxShadow(shadowPrimitives.l.dark, {
+        colorMode: 'DARK',
+      }),
+    },
+    up: {
+      LIGHT: formatMultipleBoxShadow(shadowPrimitives.l.light, { up: true }),
+      DARK: formatMultipleBoxShadow(shadowPrimitives.l.dark, {
+        up: true,
+        colorMode: 'DARK',
+      }),
+    },
+  },
+  xl: {
+    down: {
+      LIGHT: formatMultipleBoxShadow(shadowPrimitives.xl.light),
+      DARK: formatMultipleBoxShadow(shadowPrimitives.xl.dark, {
+        colorMode: 'DARK',
+      }),
+    },
+    up: {
+      LIGHT: formatMultipleBoxShadow(shadowPrimitives.xl.light, { up: true }),
+      DARK: formatMultipleBoxShadow(shadowPrimitives.xl.dark, {
+        up: true,
+        colorMode: 'DARK',
+      }),
+    },
+  },
+  hover: {
+    base: {
+      down: {
+        LIGHT: formatMultipleBoxShadow(shadowPrimitives.s.light.slice(1)),
+        DARK: formatMultipleBoxShadow(shadowPrimitives.s.dark.slice(1), {
+          colorMode: 'DARK',
+        }),
+      },
+      up: {
+        LIGHT: formatMultipleBoxShadow(shadowPrimitives.s.light.slice(1), {
+          up: true,
+        }),
+        DARK: formatMultipleBoxShadow(shadowPrimitives.s.dark.slice(1), {
+          up: true,
+          colorMode: 'DARK',
+        }),
+      },
+    },
+    xl: {
+      down: {
+        LIGHT: formatMultipleBoxShadow(shadowPrimitives.xxl.light),
+        DARK: formatMultipleBoxShadow(shadowPrimitives.xxl.dark, {
+          colorMode: 'DARK',
+        }),
+      },
+      up: {
+        LIGHT: formatMultipleBoxShadow(shadowPrimitives.xxl.light, {
+          up: true,
+        }),
+        DARK: formatMultipleBoxShadow(shadowPrimitives.xxl.dark, {
+          up: true,
+          colorMode: 'DARK',
+        }),
+      },
+    },
   },
   // Falls back to `xs` (defined only to support legacy `euiShadowFlat` mixin)
   flat: {
-    values: {
-      LIGHT: [],
-      DARK: [],
+    down: {
+      LIGHT: formatMultipleBoxShadow(shadowPrimitives.xs.light),
+      DARK: formatMultipleBoxShadow(shadowPrimitives.xs.dark, {
+        colorMode: 'DARK',
+      }),
     },
-    down: computed(
-      ([values]) => formatMultipleBoxShadow(values),
-      ['shadows.xs.values']
-    ),
-    up: computed(
-      ([values]) => formatMultipleBoxShadow(values, true),
-      ['shadows.xs.values']
-    ),
+    up: {
+      LIGHT: formatMultipleBoxShadow(shadowPrimitives.xs.light, { up: true }),
+      DARK: formatMultipleBoxShadow(shadowPrimitives.xs.dark, {
+        up: true,
+        colorMode: 'DARK',
+      }),
+    },
   },
 };

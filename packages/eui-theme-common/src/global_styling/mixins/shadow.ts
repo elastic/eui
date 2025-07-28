@@ -102,7 +102,7 @@ export const euiShadowXLarge = (
   }
   const direction = options?.direction ?? 'down';
 
-  return `box-shadow: ${euiTheme.shadows.xlHover[direction]};`;
+  return `box-shadow: ${euiTheme.shadows.hover.xl[direction]};`;
 };
 
 export const euiShadowXLargeHover = (
@@ -115,7 +115,7 @@ export const euiShadowXLargeHover = (
   const reverse = options?.reverse ?? false;
   const direction = options?.direction ?? reverse ? 'up' : 'down';
 
-  return `box-shadow: ${euiTheme.shadows.xlHover[direction]};`;
+  return `box-shadow: ${euiTheme.shadows.hover.xl[direction]};`;
 };
 
 /**
@@ -131,6 +131,22 @@ export const euiSlightShadowHover = (
   const direction = options?.direction ?? 'down';
 
   return `box-shadow: ${euiTheme.shadows.s[direction]};`;
+};
+
+/**
+ * Special size to be used exclusively in hover states
+ * of bordered panels.
+ */
+export const euiShadowHover = (
+  { euiTheme, highContrastMode }: UseEuiTheme,
+  options?: EuiShadowOptions
+) => {
+  if (highContrastMode) {
+    return _highContrastBorder(euiTheme, options);
+  }
+  const direction = options?.direction ?? 'down';
+
+  return `box-shadow: ${euiTheme.shadows.hover.base[direction]};`;
 };
 
 /**
@@ -155,7 +171,7 @@ export const euiShadowFlat = (
 
 export const euiShadow = (
   euiThemeContext: UseEuiTheme,
-  size: _EuiThemeShadowSize = 'l',
+  size: _EuiThemeShadowSize | 'hover' = 'l',
   options?: EuiShadowOptions
 ) => {
   if (euiThemeContext.highContrastMode) {
@@ -175,6 +191,8 @@ export const euiShadow = (
       return euiShadowXLarge(euiThemeContext, options);
     case 'xlHover':
       return euiShadowXLargeHover(euiThemeContext, options);
+    case 'hover':
+      return euiShadowHover(euiThemeContext, options);
 
     default:
       console.warn('Please provide a valid size option to useEuiShadow');

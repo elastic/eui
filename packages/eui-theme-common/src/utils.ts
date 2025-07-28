@@ -474,21 +474,37 @@ export const getTokenName = (
  * The "up" direction is built by making the y offset from layers
  * two and any subsequent layers, negative.
  *
+ * It will add `inset` to the first layer when color mode is "DARK"
+ * and `spread` is 1, to ensure the dark mode-only floating border
+ * is rendered inside the container to match the position of the
+ * regular panel border (implemented with a pseudo element).
+ *
  * @todo add a color space param to replace the hard-coded `hsl`
  *
  * @param layers
- * @param up - Modifies some values in order to get the "up" direction
+ * @param options
+ * @param options.up - Modifies some values in order to get the "up" direction
+ * @param options.colorMode
  * @returns - A value for the CSS `box-shadow` property
  */
 export function formatMultipleBoxShadow(
   layers: _EuiThemeShadowLayer[],
-  up: boolean = false
+  options?: {
+    up?: boolean;
+    colorMode?: EuiThemeColorModeStandard;
+  }
 ) {
+  if (layers.length === 0) {
+    return 'none';
+  }
+
+  const { up, colorMode = 'LIGHT' } = options ?? {};
   /* prettier-ignore */
   const shadowLayers = layers.map((layer, i) => {
     const y = (up && i > 0) ? -layer.y : layer.y;
     const color = chroma(layer.color).alpha(layer.opacity).css('hsl');
-    return `${layer.x}px ${y}px ${layer.blur}px ${layer.spread}px ${color}`;
+    const inset = layer.spread === 1 && colorMode === 'DARK' && i === 0 ? 'inset ' : '';
+    return `${inset}${layer.x}px ${y}px ${layer.blur}px ${layer.spread}px ${color}`;
   });
 
   return shadowLayers.join(', ');
