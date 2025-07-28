@@ -83,18 +83,18 @@ export const EuiCheckableCard: FunctionComponent<EuiCheckableCardProps> = ({
   const { id } = rest;
   const labelEl = useRef<HTMLLabelElement>(null);
   const inputEl = useRef<HTMLInputElement>(null);
-  const childrenEl = useRef<HTMLDivElement>(null);
+  const childrenWrapperEl = useRef<HTMLDivElement>(null);
 
   const classes = classNames('euiCheckableCard', className);
 
   const [hasInteractiveChildren, setHasInteractiveChildren] = useState(false);
 
   useEffect(() => {
-    const interactiveElements = childrenEl.current
-      ? tabbable(childrenEl.current)
+    const interactiveElements = childrenWrapperEl.current
+      ? tabbable(childrenWrapperEl.current)
       : [];
     setHasInteractiveChildren(interactiveElements.length > 0);
-  }, [children, childrenEl]);
+  }, [children, childrenWrapperEl]);
 
   let checkableElement;
   if (checkableType === 'radio') {
@@ -158,7 +158,7 @@ export const EuiCheckableCard: FunctionComponent<EuiCheckableCardProps> = ({
         </label>
         {children && (
           <div
-            ref={childrenEl}
+            ref={childrenWrapperEl}
             id={`${id}-details`}
             className="euiCheckableCard__children"
             css={childStyles}
