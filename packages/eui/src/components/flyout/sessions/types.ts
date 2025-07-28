@@ -16,7 +16,7 @@ export interface EuiFlyoutSessionConfig {
   mainSize: EuiFlyoutSize;
   mainTitle?: string;
   hideMainTitle?: boolean;
-  childSize?: 's' | 'm';
+  childSize: 's' | 'm' | 'fill';
   childTitle?: string;
   mainFlyoutProps?: Partial<Omit<EuiFlyoutProps, 'children'>>;
   childFlyoutProps?: Partial<Omit<EuiFlyoutChildProps, 'children'>>;
@@ -60,7 +60,7 @@ export interface EuiFlyoutSessionOpenManagedOptions<Meta = unknown> {
  * Options that control a child flyout in a session
  */
 export interface EuiFlyoutSessionOpenChildOptions<Meta = unknown> {
-  size: 's' | 'm';
+  size: 's' | 'm' | 'fill';
   flyoutProps?: EuiFlyoutSessionConfig['childFlyoutProps'];
   title: string;
   /**

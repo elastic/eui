@@ -35,6 +35,11 @@ export interface EuiFlyoutChildProps
   extends HTMLAttributes<HTMLDivElement>,
     CommonProps {
   /**
+   * Optionally set a maximum width (in pixels) for the child flyout panel. If provided, this overrides the default max width.
+   */
+  maxSize?: number;
+
+  /**
    * Called when the child panel's close button is clicked
    */
   onClose: (event: MouseEvent | TouchEvent | KeyboardEvent) => void;
@@ -60,9 +65,10 @@ export interface EuiFlyoutChildProps
   /**
    * Size of the child flyout panel.
    * When the parent flyout is 'm', child is limited to 's'.
+   * 'fill' will take up the remaining space up to the max (90vw - parent size).
    * @default 's'
    */
-  size?: 's' | 'm';
+  size?: 's' | 'm' | 'fill';
   /*
    * The background of the child flyout can be optionally shaded. Use `shaded` to add the shading.
    */
@@ -86,6 +92,7 @@ export const EuiFlyoutChild: FunctionComponent<EuiFlyoutChildProps> = ({
   onClose,
   scrollableTabIndex = 0,
   size = 's',
+  maxSize,
   ...rest
 }) => {
   const flyoutContext = useContext(EuiFlyoutContext);
@@ -94,7 +101,13 @@ export const EuiFlyoutChild: FunctionComponent<EuiFlyoutChildProps> = ({
     throw new Error('EuiFlyoutChild must be used as a child of EuiFlyout.');
   }
 
-  const { isChildFlyoutOpen, setIsChildFlyoutOpen, parentSize } = flyoutContext;
+  const {
+    isChildFlyoutOpen,
+    setIsChildFlyoutOpen,
+    parentSize,
+    childLayoutMode,
+    parentFlyoutRef,
+  } = flyoutContext;
 
   useEffect(() => {
     setIsChildFlyoutOpen?.(true);
@@ -109,7 +122,7 @@ export const EuiFlyoutChild: FunctionComponent<EuiFlyoutChildProps> = ({
 
   if (parentSize === 'm' && size === 'm') {
     throw new Error(
-      'When the parent EuiFlyout size is "m", the EuiFlyoutChild size cannot be "m". Please use size "s" for the EuiFlyoutChild.'
+      'When the parent EuiFlyout size is "m", the EuiFlyoutChild size cannot be "m". Please use size "s" or "fill" for the EuiFlyoutChild.'
     );
   }
 
@@ -207,14 +220,34 @@ export const EuiFlyoutChild: FunctionComponent<EuiFlyoutChildProps> = ({
 
   const styles = useEuiMemoizedStyles(euiFlyoutChildStyles);
 
-  const { childLayoutMode, parentFlyoutRef } = flyoutContext;
+  // Calculate width for 'fill' option
+  let fillWidth: string | undefined;
+  if (size === 'fill') {
+    // Parent can only be 's' or 'm' for now
+    const parentWidths: Record<string, number> = { s: 25, m: 50 };
+    const parentVw =
+      parentSize && (parentSize === 's' || parentSize === 'm')
+        ? parentWidths[parentSize]
+        : 0;
+    fillWidth = `calc(90vw - ${parentVw}vw)`;
+  }
+
+  // Build inline style for maxSize
+  const maxWidthStyle: React.CSSProperties = {};
+  if (childLayoutMode !== 'stacked' && typeof maxSize === 'number') {
+    maxWidthStyle.maxWidth = `${maxSize}px`;
+  }
 
   const flyoutChildCss = [
     styles.euiFlyoutChild,
     backgroundStyle === 'shaded'
       ? styles.backgroundShaded
       : styles.backgroundDefault,
-    size === 's' ? styles.s : styles.m,
+    size === 'fill'
+      ? { width: fillWidth, maxWidth: '90vw', ...maxWidthStyle }
+      : size === 's'
+      ? { ...styles.s, ...maxWidthStyle }
+      : { ...styles.m, ...maxWidthStyle },
     childLayoutMode === 'side-by-side'
       ? styles.sidePosition
       : styles.stackedPosition,

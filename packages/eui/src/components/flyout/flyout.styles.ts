@@ -64,7 +64,18 @@ export const euiFlyoutStyles = (euiThemeContext: UseEuiTheme) => {
         outline: none;
       }
 
+      &.euiFlyout--hasChild--stacked.euiFlyout--hasChild--fill {
+        min-inline-size: 90vw;
+        inline-size: 90vw;
+        max-inline-size: 90vw;
+      }
+
       ${maxedFlyoutWidth(euiThemeContext)}
+    `,
+    fill: css`
+      inline-size: 90vw;
+      max-inline-size: 90vw;
+      min-inline-size: 0;
     `,
 
     // Flyout sizes
@@ -207,6 +218,12 @@ export const composeFlyoutSizing = (
       min: `${Math.round(euiTheme.breakpoint.m * 0.9)}px`, // 1.
       width: '75vw',
       max: `${euiTheme.breakpoint.l}px`,
+    },
+
+    fill: {
+      min: `${Math.round(euiTheme.breakpoint.xl * 0.9)}px`,
+      width: '90vw',
+      max: '90vw',
     },
   };
 
