@@ -82,10 +82,9 @@ interface _EuiFlyoutProps {
    */
   size?: EuiFlyoutSize | CSSProperties['width'];
   /**
-   * Optionally set a maximum width (in pixels or CSS value) for the parent flyout panel when size is 'fill'.
-   * This prop is named maxSizeParent to mirror the child prop maxSizeChild.
+   * Optionally set a maximum width (in pixels or CSS value) for the parent when the parent size is 'fill'.
    */
-  maxSizeParent?: number | string;
+  maxFillSize?: number | string;
   /**
    * Sets the max-width of the panel,
    * set to `true` to use the default size,
@@ -212,7 +211,7 @@ export const EuiFlyout = forwardRef(
       size = 'm',
       paddingSize = 'l',
       maxWidth = false,
-      maxSizeParent,
+      maxFillSize: maxSizeParent,
       style,
       maskProps,
       type = 'overlay',

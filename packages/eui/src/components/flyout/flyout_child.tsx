@@ -35,9 +35,9 @@ export interface EuiFlyoutChildProps
   extends HTMLAttributes<HTMLDivElement>,
     CommonProps {
   /**
-   * Optionally set a maximum width (in pixels) for the child flyout panel. If provided, this overrides the default max width.
+   * Optionally set a maximum width (in pixels or CSS value) for the child when the parent size is 'fill'.
    */
-  maxSize?: number;
+  maxFillSize?: number;
 
   /**
    * Called when the child panel's close button is clicked
@@ -92,7 +92,7 @@ export const EuiFlyoutChild: FunctionComponent<EuiFlyoutChildProps> = ({
   onClose,
   scrollableTabIndex = 0,
   size = 's',
-  maxSize,
+  maxFillSize: maxSizeChild,
   ...rest
 }) => {
   const flyoutContext = useContext(EuiFlyoutContext);
@@ -234,8 +234,8 @@ export const EuiFlyoutChild: FunctionComponent<EuiFlyoutChildProps> = ({
 
   // Build inline style for maxSize
   const maxWidthStyle: React.CSSProperties = {};
-  if (childLayoutMode !== 'stacked' && typeof maxSize === 'number') {
-    maxWidthStyle.maxWidth = `${maxSize}px`;
+  if (childLayoutMode !== 'stacked' && typeof maxSizeChild === 'number') {
+    maxWidthStyle.maxWidth = `${maxSizeChild}px`;
   }
 
   const flyoutChildCss = [
