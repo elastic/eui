@@ -41,6 +41,10 @@ export const boxShadowToFilterDropShadow = (boxShadow: string) => {
     .split(/,(?![^(]*\))/) // split by comma, but not inside parentheses
     .map((shadow) => {
       shadow = shadow.trim();
+      // remove `inset`, not supported by drop-shadow
+      if (shadow.startsWith('inset ')) {
+        shadow = shadow.slice(6);
+      }
       // can be complex (hsl, rgb, etc.), used AI for this
       const colorMatch = shadow.match(
         /(hsl|rgb)a?\(.*\)|#[0-9a-fA-F]{3,8}|[a-zA-Z]+$/
