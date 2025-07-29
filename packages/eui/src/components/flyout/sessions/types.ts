@@ -16,7 +16,7 @@ export interface EuiFlyoutSessionConfig {
   mainSize: EuiFlyoutSize;
   mainTitle?: string;
   hideMainTitle?: boolean;
-  childSize: 's' | 'm' | 'fill';
+  childSize?: 's' | 'm' | 'fill';
   childTitle?: string;
   mainFlyoutProps?: Partial<Omit<EuiFlyoutProps, 'children'>>;
   childFlyoutProps?: Partial<Omit<EuiFlyoutChildProps, 'children'>>;
