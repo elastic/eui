@@ -87,17 +87,12 @@ export const euiDataGridStyles = (euiThemeContext: UseEuiTheme) => {
       /* The euiDataGridRow--selected and euiDataGridRow--marked classes are not used internally,
        * they're there for convenience, to be used by consumers */
 
-      *:where(& .euiDataGridRow--selected) {
+      *:where(&:not(.euiDataGrid--stripes) .euiDataGridRow--selected) {
         background-color: ${euiTheme.components.dataGridRowBackgroundSelect};
       }
 
       *:where(& .euiDataGridRow--marked) {
         background-color: ${euiTheme.components.dataGridRowBackgroundMarked};
-
-        &:hover {
-          background-color: ${euiTheme.components
-            .dataGridRowBackgroundMarkedHover};
-        }
 
         /* class duplication to ensure default styles are overriden based on specificity
         (marked styles are defined here instead of the cell styles due to the scope of the marked row class) */
@@ -105,6 +100,13 @@ export const euiDataGridStyles = (euiThemeContext: UseEuiTheme) => {
           ${outlineSelectors.marked} {
             ${euiDataGridCellOutlineStyles(euiThemeContext).markedStyles}
           }
+        }
+      }
+
+      *:where(&:not(.euiDataGrid--stripes) .euiDataGridRow--marked) {
+        &:hover {
+          background-color: ${euiTheme.components
+            .dataGridRowBackgroundMarkedHover};
         }
       }
 
@@ -145,6 +147,10 @@ export const euiDataGridStyles = (euiThemeContext: UseEuiTheme) => {
       *:where(&.euiDataGrid--stripes .euiDataGridRow--selected) {
         background-color: ${euiTheme.components
           .dataGridRowStripesBackgroundSelect};
+      }
+
+      *:where(&.euiDataGrid--stripes .euiDataGridRow--marked) {
+        background-color: ${euiTheme.components.dataGridRowBackgroundMarked};
       }
 
       *:where(
