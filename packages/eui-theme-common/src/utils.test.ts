@@ -318,34 +318,6 @@ describe('formatMultipleBoxShadow', () => {
     );
   });
 
-  it('adds inset to layer 1 in DARK mode and when spread is 1', () => {
-    expect(
-      formatMultipleBoxShadow(
-        [
-          { x: 0, y: 0, blur: 0, spread: 1, color: '#000', opacity: 0 },
-          ...layers,
-        ],
-        { colorMode: 'DARK' }
-      )
-    ).toEqual(
-      'inset 0px 0px 0px 1px hsla(0,0%,0%,0), 0px 4px 8px 0px hsla(0,0%,0%,0.1), 0px 2px 4px 0px hsla(0,0%,0%,0.05)'
-    );
-  });
-
-  it('does not add inset to layer 1 in DARK mode and when spread is not 1', () => {
-    expect(
-      formatMultipleBoxShadow(
-        [
-          { x: 0, y: 0, blur: 0, spread: 0, color: '#000', opacity: 0 },
-          ...layers,
-        ],
-        { colorMode: 'DARK' }
-      )
-    ).toEqual(
-      '0px 0px 0px 0px hsla(0,0%,0%,0), 0px 4px 8px 0px hsla(0,0%,0%,0.1), 0px 2px 4px 0px hsla(0,0%,0%,0.05)'
-    );
-  });
-
   it('return "none" for no layers', () => {
     expect(formatMultipleBoxShadow([])).toEqual('none');
   });

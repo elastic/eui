@@ -36,7 +36,7 @@ export const euiHeaderStyles = (euiThemeContext: UseEuiTheme) => {
       justify-content: space-between;
       ${logicalCSS('height', height)}
       ${logicalCSS('padding-horizontal', padding)}
-      ${logicalCSS('border-bottom', euiTheme.border.thin)}
+      
       ${euiShadowXSmall(euiThemeContext)}
     `,
     // Position

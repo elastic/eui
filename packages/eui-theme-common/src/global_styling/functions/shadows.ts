@@ -42,7 +42,6 @@ export const boxShadowToFilterDropShadow = (boxShadow: string) => {
     .map((shadow) => {
       shadow = shadow.trim();
       // remove `inset`, not supported by drop-shadow
-      // TODO probably removing the entire "layer" would be cleaner
       if (shadow.startsWith('inset ')) {
         shadow = shadow.slice(6);
       }

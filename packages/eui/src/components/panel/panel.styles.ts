@@ -33,7 +33,12 @@ export const euiPanelBorderStyles = (
       /* ensure to keep on top of flush content */
       z-index: 0;
       inset: 0;
-      border: ${euiTheme.border.width.thin} solid ${borderColor};
+      /* using 'box-shadow' instead of 'border' so that the border
+         matches the floating border included in shadows for DARK mode,
+         again so that bordered and shadowed panels have the exact same size 
+         - but this is problematic because box-shadow is not part of the box model 
+         (drawn outside of the element's layout) and it could eventually be cut off */
+      box-shadow: 0 0 0 ${euiTheme.border.width.thin} ${borderColor};
       border-radius: inherit;
       pointer-events: none;
     }

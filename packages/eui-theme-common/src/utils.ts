@@ -484,27 +484,24 @@ export const getTokenName = (
  * @param layers
  * @param options
  * @param options.up - Modifies some values in order to get the "up" direction
- * @param options.colorMode
  * @returns - A value for the CSS `box-shadow` property
  */
 export function formatMultipleBoxShadow(
   layers: _EuiThemeShadowLayer[],
   options?: {
     up?: boolean;
-    colorMode?: EuiThemeColorModeStandard;
   }
 ) {
   if (layers.length === 0) {
     return 'none';
   }
 
-  const { up, colorMode = 'LIGHT' } = options ?? {};
+  const { up } = options ?? {};
   /* prettier-ignore */
   const shadowLayers = layers.map((layer, i) => {
     const y = (up && i > 0) ? -layer.y : layer.y;
     const color = chroma(layer.color).alpha(layer.opacity).css('hsl');
-    const inset = layer.spread === 1 && colorMode === 'DARK' && i === 0 ? 'inset ' : '';
-    return `${inset}${layer.x}px ${y}px ${layer.blur}px ${layer.spread}px ${color}`;
+    return `${layer.x}px ${y}px ${layer.blur}px ${layer.spread}px ${color}`;
   });
 
   return shadowLayers.join(', ');
