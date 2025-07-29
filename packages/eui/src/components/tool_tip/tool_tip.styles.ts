@@ -68,7 +68,9 @@ export const euiToolTipStyles = (euiThemeContext: UseEuiTheme) => {
 
       position: absolute;
 
-      ${euiPanelBorderStyles(euiThemeContext)}
+      ${euiPanelBorderStyles(euiThemeContext, {
+        borderColor: euiTheme.colors.borderBaseFloating,
+      })}
 
       [class*='euiHorizontalRule'] {
         background-color: ${euiToolTipBorderColor(euiTheme)};

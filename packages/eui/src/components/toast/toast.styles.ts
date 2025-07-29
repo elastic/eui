@@ -17,7 +17,6 @@ import {
 } from '../../global_styling/functions/high_contrast';
 import { UseEuiTheme } from '../../services';
 import { euiTitle } from '../title/title.styles';
-import { euiPanelBorderStyles } from '../panel/panel.styles';
 
 export const euiToastStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme, highContrastMode } = euiThemeContext;
@@ -51,8 +50,6 @@ export const euiToastStyles = (euiThemeContext: UseEuiTheme) => {
       ${logicalCSS('width', '100%')}
 
       ${euiTextBreakWord()} /* Prevent long lines from overflowing */
-
-      ${euiPanelBorderStyles(euiThemeContext)}
 
       &:hover,
       &:focus {
