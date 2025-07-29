@@ -37,7 +37,7 @@ export interface EuiFlyoutChildProps
   /**
    * Optionally set a maximum width (in pixels or CSS value) for the child when the parent size is 'fill'.
    */
-  maxFillSize?: number;
+  maxWidth?: number;
 
   /**
    * Called when the child panel's close button is clicked
@@ -92,7 +92,7 @@ export const EuiFlyoutChild: FunctionComponent<EuiFlyoutChildProps> = ({
   onClose,
   scrollableTabIndex = 0,
   size = 's',
-  maxFillSize: maxSizeChild,
+  maxWidth: maxSizeChild,
   ...rest
 }) => {
   const flyoutContext = useContext(EuiFlyoutContext);

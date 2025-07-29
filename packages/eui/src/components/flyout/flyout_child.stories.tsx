@@ -6,56 +6,117 @@
  * Side Public License, v 1.
  */
 
-import React, { useState, ComponentProps } from 'react';
+import { actions } from '@storybook/addon-actions';
 import type { Meta, StoryObj } from '@storybook/react';
+import React, { useState } from 'react';
 
+import { LOKI_SELECTORS } from '../../../.storybook/loki';
+import { EuiBreakpointSize } from '../../services';
 import { EuiButton } from '../button';
+import { EuiSpacer } from '../spacer';
+import { EuiText } from '../text';
 import { EuiFlyout, TYPES } from './flyout';
 import { EuiFlyoutBody } from './flyout_body';
 import { EuiFlyoutChild } from './flyout_child';
-import { EuiFlyoutHeader } from './flyout_header';
 import { EuiFlyoutFooter } from './flyout_footer';
-import { EuiText } from '../text';
-import { EuiSpacer } from '../spacer';
-import { EuiRadioGroup, EuiRadioGroupOption } from '../form';
-import { LOKI_SELECTORS } from '../../../.storybook/loki';
-import { EuiBreakpointSize } from '../../services';
+import { EuiFlyoutHeader } from './flyout_header';
+import { EuiFlyoutMenu } from './flyout_menu';
+
+type EuiFlyoutType = (typeof TYPES)[number];
 
 const breakpointSizes: EuiBreakpointSize[] = ['xs', 's', 'm', 'l', 'xl'];
 
-type EuiFlyoutChildActualProps = ComponentProps<typeof EuiFlyoutChild>;
+const playgroundActions = actions('log');
 
-type FlyoutChildStoryArgs = EuiFlyoutChildActualProps & {
+interface FlyoutChildStoryArgs {
+  parentSize?: 's' | 'm';
+  childSize?: 's' | 'm' | 'fill';
+  childBackgroundStyle?: 'default' | 'shaded';
+  parentFlyoutType: EuiFlyoutType;
   pushMinBreakpoint: EuiBreakpointSize;
-  maxFillSize?: number;
-};
+  parentMaxWidth?: number;
+  childMaxWidth?: number;
+  scrollableTabIndex?: number;
+  hideCloseButton?: boolean;
+  showMenu?: boolean;
+
+  // These are needed for compatibility, but can not be set from the storybook UI
+  backgroundStyle?: 'default' | 'shaded';
+  banner?: React.ReactNode;
+  children?: React.ReactNode;
+  maxWidth?: number;
+  onClose: (event: MouseEvent | KeyboardEvent | TouchEvent) => void;
+  size?: 's' | 'm' | 'fill';
+}
 
 const meta: Meta<FlyoutChildStoryArgs> = {
   title: 'Layout/EuiFlyout/EuiFlyoutChild',
   component: EuiFlyoutChild,
   argTypes: {
-    maxFillSize: {
-      control: { type: 'number' },
+    parentSize: {
+      options: ['s', 'm'],
+      control: { type: 'radio' },
       description:
-        'Maximum width (in px) for the child flyout in side-by-side mode. Leave blank to fill available space.',
+        'The size of the parent flyout. If `m`, the child must be `s` or `fill`. If `s`, the child can be `s`, `m`, or `fill`.',
     },
-    size: {
+    childSize: {
       options: ['s', 'm', 'fill'],
       control: { type: 'radio' },
+      description:
+        'The size of the child flyout. If the parent is `s`, the child can be `s`, `m`, or `fill`. If the parent is `m`, the child can only be `s` or `fill`.',
+    },
+    parentMaxWidth: {
+      control: { type: 'number' },
+      description:
+        'The maximum width of the parent flyout. Can be set to limit the width of the parent flyout.',
+    },
+    childMaxWidth: {
+      control: { type: 'number' },
+      description:
+        'The maximum width of the child flyout. Can be set to limit the width of the child flyout.',
+    },
+    parentFlyoutType: {
+      options: TYPES,
+      control: { type: 'radio' },
+      description: 'The type of the parent flyout. Only `push` is supported.',
+    },
+    childBackgroundStyle: {
+      options: ['default', 'shaded'],
+      control: { type: 'radio' },
+      description:
+        'The background style of the child flyout. Defaults to `default`.',
     },
     pushMinBreakpoint: {
       options: breakpointSizes,
       control: { type: 'select' },
       description:
-        'Breakpoint at which the parent EuiFlyout (if type=`push`) will start pushing content. `xs` makes it always push.',
+        'Breakpoint at which the parent flyout (if `type="push"`) will convert to an overlay flyout. Defaults to `xs`.',
     },
+    showMenu: {
+      control: { type: 'boolean' },
+      description:
+        'Whether to show the top flyout menu bar. If `false`, an `EuiFlyoutHeader` will not be rendered instead.',
+    },
+
+    // use "childBackgroundStyle" instead
+    backgroundStyle: { table: { disable: true } },
+    // use "mainSize" and "childSize" instead
+    size: { table: { disable: true } },
+    // use "parentMaxWidth" and "childMaxWidth" instead
+    maxWidth: { table: { disable: true } },
+    onClose: { table: { disable: true } },
+    banner: { table: { disable: true } },
+    children: { table: { disable: true } },
   },
   args: {
-    scrollableTabIndex: 0,
-    hideCloseButton: false,
-    size: 's',
+    parentSize: 'm',
+    childSize: 's',
+    childBackgroundStyle: 'default',
+    parentFlyoutType: 'push',
+    showMenu: true,
+    parentMaxWidth: undefined,
+    childMaxWidth: undefined,
     pushMinBreakpoint: 'xs',
-    maxFillSize: undefined,
   },
   parameters: {
     docs: {
@@ -72,8 +133,13 @@ A child panel component that can be nested within an EuiFlyout.
 - EuiFlyoutChild can only be used as a direct child of EuiFlyout
 - EuiFlyoutChild must include an EuiFlyoutBody child component
 - When a flyout includes a child panel:
-  - The main flyout size is limited to 's' or 'm' (not 'l')
-  - If the main flyout is 'm', then the child flyout is limited to 's'
+  - The main flyout size is limited to 's', 'm', or 'fill'
+    - If the main flyout is 's', then the child flyout can be 's', 'm', or 'fill'
+    - If the main flyout is 'm', then the child flyout can only be 's' or 'fill'
+  - The child flyout size is limited to 's', 'm', or 'fill'
+    - If the child flyout is 's', then the main flyout can be 's', 'm', or 'fill'
+    - If the child flyout is 'm', then the main flyout can only be 's' or 'fill'
+    - If the child flyout is 'fill', then the main flyout can be 's' or 'm'
   - Custom pixel sizes are not allowed when using a child flyout
         `,
       },
@@ -87,44 +153,34 @@ A child panel component that can be nested within an EuiFlyout.
 export default meta;
 type Story = StoryObj<FlyoutChildStoryArgs>;
 
-interface StatefulFlyoutProps {
-  mainSize?: 's' | 'm';
-  childSize?: 's' | 'm' | 'fill';
-  showHeader?: boolean;
-  showFooter?: boolean;
-  pushMinBreakpoint?: EuiBreakpointSize;
-  maxFillSize?: number;
-}
-
-type EuiFlyoutType = (typeof TYPES)[number];
-
 /**
  * A shared helper component used to demo management of internal state. It keeps internal state of
  * the selected flyout type (overlay/push) and the open/closed state of child flyout.
  */
-const StatefulFlyout: React.FC<StatefulFlyoutProps> = ({
-  mainSize = 'm',
+const StatefulFlyout: React.FC<FlyoutChildStoryArgs> = ({
+  parentSize: mainSize = 'm',
   childSize = 's',
-  showHeader = true,
-  showFooter = true,
+  childBackgroundStyle = 'default',
+  parentFlyoutType = 'push',
   pushMinBreakpoint = 'xs',
+  parentMaxWidth,
+  childMaxWidth,
+  ...args
 }) => {
   const [isMainOpen, setIsMainOpen] = useState(true);
   const [isChildOpen, setIsChildOpen] = useState(false);
-  const [flyoutType, setFlyoutType] = useState<EuiFlyoutType>('overlay');
 
   const openMain = () => setIsMainOpen(true);
   const closeMain = () => {
     setIsMainOpen(false);
     setIsChildOpen(false);
+    playgroundActions.log('Parent flyout closed');
   };
   const openChild = () => setIsChildOpen(true);
-  const closeChild = () => setIsChildOpen(false);
-
-  const typeRadios: EuiRadioGroupOption[] = [
-    { id: 'overlay', label: 'Overlay' },
-    { id: 'push', label: 'Push' },
-  ];
+  const closeChild = () => {
+    setIsChildOpen(false);
+    playgroundActions.log('Child flyout closed');
+  };
 
   return (
     <>
@@ -140,26 +196,20 @@ const StatefulFlyout: React.FC<StatefulFlyoutProps> = ({
           aliquip ex ea commodo consequat.
         </p>
       </EuiText>
-      <EuiSpacer />
-      <EuiRadioGroup
-        options={typeRadios}
-        idSelected={flyoutType}
-        onChange={(id) => setFlyoutType(id as EuiFlyoutType)}
-        legend={{ children: 'Main flyout type' }}
-        name="statefulFlyoutTypeToggle"
-      />
-      <EuiSpacer />
-
+      <EuiSpacer size="l" />
       <EuiButton onClick={openMain}>Open Main Flyout</EuiButton>
 
       {isMainOpen && (
         <EuiFlyout
           onClose={closeMain}
           size={mainSize}
-          type={flyoutType}
+          type={parentFlyoutType}
           pushMinBreakpoint={pushMinBreakpoint}
+          maxWidth={parentMaxWidth}
         >
-          {showHeader && (
+          {args.showMenu ? (
+            <EuiFlyoutMenu title={`Main Flyout Menu (${mainSize})`} />
+          ) : (
             <EuiFlyoutHeader hasBorder>
               <EuiText>
                 <h2>Main Flyout ({mainSize})</h2>
@@ -184,17 +234,23 @@ const StatefulFlyout: React.FC<StatefulFlyoutProps> = ({
               <EuiButton onClick={closeChild}>Close child panel</EuiButton>
             )}
           </EuiFlyoutBody>
-          {showFooter && (
-            <EuiFlyoutFooter>
-              <EuiText>
-                <p>Main flyout footer</p>
-              </EuiText>
-            </EuiFlyoutFooter>
-          )}
+          <EuiFlyoutFooter>
+            <EuiText>
+              <p>Main flyout footer</p>
+            </EuiText>
+          </EuiFlyoutFooter>
 
           {isChildOpen && (
-            <EuiFlyoutChild onClose={closeChild} size={childSize}>
-              {showHeader && (
+            <EuiFlyoutChild
+              onClose={closeChild}
+              size={childSize}
+              backgroundStyle={childBackgroundStyle}
+              maxWidth={childMaxWidth}
+              scrollableTabIndex={args.scrollableTabIndex}
+            >
+              {args.showMenu ? (
+                <EuiFlyoutMenu title={`Child Flyout Menu (${childSize})`} />
+              ) : (
                 <EuiFlyoutHeader hasBorder>
                   <EuiText>
                     <h2>Child Flyout ({childSize})</h2>
@@ -222,242 +278,11 @@ const StatefulFlyout: React.FC<StatefulFlyoutProps> = ({
                   </p>
                 </EuiText>
               </EuiFlyoutBody>
-              {showFooter && (
-                <EuiFlyoutFooter>
-                  <EuiText>
-                    <p>Child flyout footer</p>
-                  </EuiText>
-                </EuiFlyoutFooter>
-              )}
-            </EuiFlyoutChild>
-          )}
-        </EuiFlyout>
-      )}
-    </>
-  );
-};
-
-export const WithMediumMainSize: Story = {
-  name: 'Main Size: m, Child Size: s',
-  render: (args) => (
-    <StatefulFlyout
-      mainSize="m"
-      childSize="s"
-      pushMinBreakpoint={args.pushMinBreakpoint}
-    />
-  ),
-};
-
-export const WithSmallMainSize: Story = {
-  name: 'Main Size: s, Child Size: s',
-  render: (args) => (
-    <StatefulFlyout
-      mainSize="s"
-      childSize="s"
-      pushMinBreakpoint={args.pushMinBreakpoint}
-    />
-  ),
-};
-
-export const WithSmallMainLargeChild: Story = {
-  name: 'Main Size: s, Child Size: m',
-  render: (args) => (
-    <StatefulFlyout
-      mainSize="s"
-      childSize="m"
-      pushMinBreakpoint={args.pushMinBreakpoint}
-    />
-  ),
-};
-
-const ChildBackgroundStylesFlyout = () => {
-  const [isMainOpen, setIsMainOpen] = useState(true);
-  const [isDefaultChildOpen, setIsDefaultChildOpen] = useState(true);
-  const [isShadedChildOpen, setIsShadedChildOpen] = useState(false);
-
-  const openDefaultChild = () => {
-    setIsDefaultChildOpen(true);
-    setIsShadedChildOpen(false);
-  };
-  const openShadedChild = () => {
-    setIsDefaultChildOpen(false);
-    setIsShadedChildOpen(true);
-  };
-
-  const closeMain = () => {
-    setIsMainOpen(false);
-    setIsDefaultChildOpen(false);
-    setIsShadedChildOpen(false);
-  };
-  const closeChild = () => {
-    setIsDefaultChildOpen(false);
-    setIsShadedChildOpen(false);
-  };
-
-  const ChildFlyoutContent = () => (
-    <EuiFlyoutBody>
-      <EuiText>
-        <p>
-          This is the child flyout content, with a{' '}
-          <b>{isShadedChildOpen ? 'shaded' : 'default'}</b> background.
-        </p>
-      </EuiText>
-    </EuiFlyoutBody>
-  );
-
-  return (
-    <>
-      <EuiText>
-        <EuiButton onClick={openDefaultChild} disabled={isDefaultChildOpen}>
-          Open flyout with <b>default</b> child background
-        </EuiButton>
-        <EuiSpacer />
-        <EuiButton onClick={openShadedChild} disabled={isShadedChildOpen}>
-          Open flyout with <b>shaded</b> child background
-        </EuiButton>
-      </EuiText>
-
-      {isMainOpen && (
-        <EuiFlyout
-          onClose={closeMain}
-          size="s"
-          type="push"
-          pushMinBreakpoint="xs"
-        >
-          <EuiFlyoutBody>
-            <EuiText>
-              <p>This is the main flyout content.</p>
-            </EuiText>
-            <EuiSpacer />
-          </EuiFlyoutBody>
-
-          {isDefaultChildOpen && (
-            <EuiFlyoutChild
-              onClose={closeChild}
-              size="s"
-              backgroundStyle="default"
-            >
-              <ChildFlyoutContent />
-            </EuiFlyoutChild>
-          )}
-          {isShadedChildOpen && (
-            <EuiFlyoutChild
-              onClose={closeChild}
-              size="s"
-              backgroundStyle="shaded"
-            >
-              <ChildFlyoutContent />
-            </EuiFlyoutChild>
-          )}
-        </EuiFlyout>
-      )}
-    </>
-  );
-};
-
-export const WithChildBackgroundStyles: Story = {
-  name: 'Child Background Styles',
-  render: () => <ChildBackgroundStylesFlyout />,
-};
-
-/**
- * A flyout with parent or child panel that fills the available space.
- */
-const FilledChildFlyout: React.FC<StatefulFlyoutProps> = ({
-  pushMinBreakpoint = 'xs',
-  maxFillSize = undefined,
-}) => {
-  // allow opening and closing the main flyout and child panel
-  const [isMainOpen, setIsMainOpen] = useState(true);
-  const [isChildOpen, setIsChildOpen] = useState(false);
-
-  const openMain = () => setIsMainOpen(true);
-  const closeMain = () => {
-    setIsMainOpen(false);
-    setIsChildOpen(false);
-  };
-  const openChild = () => setIsChildOpen(true);
-  const closeChild = () => setIsChildOpen(false);
-
-  const [mainSize, setMainSize] = useState<'s' | 'm'>('s');
-  const toggleMainSize = (size: 's' | 'm') => {
-    // close panels if changing size
-    if (isMainOpen && size !== mainSize) {
-      closeMain();
-      closeChild();
-    }
-    setMainSize(size);
-  };
-
-  // allow toggling between push and overlay types
-  const [isPush, setIsPush] = useState(true);
-  const toggleFlyoutType = () => {
-    setIsPush((prev) => !prev);
-  };
-  const flyoutType = isPush ? 'push' : 'overlay';
-
-  return (
-    <>
-      <EuiText>
-        <p>This is the main page content.</p>
-      </EuiText>
-      <EuiSpacer />
-      <EuiRadioGroup
-        options={[
-          { id: 's', label: 'Main size: s' },
-          { id: 'm', label: 'Main size: m' },
-        ]}
-        idSelected={mainSize}
-        onChange={(id) => toggleMainSize(id as 's' | 'm')}
-        legend={{ children: 'Main flyout size' }}
-        name="filledFlyoutSizeToggle"
-      />
-      <EuiSpacer />
-      <EuiRadioGroup
-        options={[
-          { id: 'push', label: 'Push' },
-          { id: 'overlay', label: 'Overlay' },
-        ]}
-        idSelected={flyoutType}
-        onChange={toggleFlyoutType}
-        legend={{ children: 'Main flyout type' }}
-        name="filledFlyoutTypeToggle"
-      />
-      <EuiSpacer />
-      <EuiButton onClick={openMain} disabled={isMainOpen}>
-        Open Main Flyout
-      </EuiButton>
-
-      {isMainOpen && (
-        <EuiFlyout
-          onClose={closeMain}
-          size={mainSize}
-          type={flyoutType}
-          pushMinBreakpoint={pushMinBreakpoint}
-        >
-          <EuiFlyoutBody>
-            <EuiText>
-              <p>This is the main flyout content.</p>
-            </EuiText>
-            <EuiSpacer />
-            {!isChildOpen ? (
-              <EuiButton onClick={openChild}>Open child panel</EuiButton>
-            ) : (
-              <EuiButton onClick={closeChild}>Close child panel</EuiButton>
-            )}
-          </EuiFlyoutBody>
-
-          {isChildOpen && (
-            <EuiFlyoutChild
-              onClose={closeChild}
-              size="fill"
-              maxFillSize={maxFillSize}
-            >
-              <EuiFlyoutBody>
+              <EuiFlyoutFooter>
                 <EuiText>
-                  <p>This is the child flyout content.</p>
+                  <p>Child flyout footer</p>
                 </EuiText>
-              </EuiFlyoutBody>
+              </EuiFlyoutFooter>
             </EuiFlyoutChild>
           )}
         </EuiFlyout>
@@ -466,12 +291,7 @@ const FilledChildFlyout: React.FC<StatefulFlyoutProps> = ({
   );
 };
 
-export const WithFillChild: Story = {
-  name: 'Fill Mode',
-  render: (args) => (
-    <FilledChildFlyout
-      pushMinBreakpoint={args.pushMinBreakpoint}
-      maxFillSize={args.maxFillSize}
-    />
-  ),
+export const FlyoutChildDemo: Story = {
+  name: 'Playground',
+  render: (args) => <StatefulFlyout {...args} />,
 };
