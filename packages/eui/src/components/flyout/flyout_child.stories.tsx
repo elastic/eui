@@ -8,7 +8,7 @@
 
 import { actions } from '@storybook/addon-actions';
 import type { Meta, StoryObj } from '@storybook/react';
-import React, { useState } from 'react';
+import React, { useState, ComponentProps } from 'react';
 
 import { LOKI_SELECTORS } from '../../../.storybook/loki';
 import { EuiBreakpointSize } from '../../services';
@@ -22,13 +22,21 @@ import { EuiFlyoutFooter } from './flyout_footer';
 import { EuiFlyoutHeader } from './flyout_header';
 import { EuiFlyoutMenu } from './flyout_menu';
 
+type EuiFlyoutChildActualProps = Pick<
+  ComponentProps<typeof EuiFlyoutChild>,
+  | 'onClose'
+  | 'size'
+  | 'backgroundStyle'
+  | 'maxWidth'
+  | 'hideCloseButton'
+  | 'scrollableTabIndex'
+  | 'banner'
+  | 'children'
+>;
+
 type EuiFlyoutType = (typeof TYPES)[number];
 
-const breakpointSizes: EuiBreakpointSize[] = ['xs', 's', 'm', 'l', 'xl'];
-
-const playgroundActions = actions('log');
-
-interface FlyoutChildStoryArgs {
+interface FlyoutChildStoryArgs extends EuiFlyoutChildActualProps {
   parentSize?: 's' | 'm';
   childSize?: 's' | 'm' | 'fill';
   childBackgroundStyle?: 'default' | 'shaded';
@@ -36,18 +44,12 @@ interface FlyoutChildStoryArgs {
   pushMinBreakpoint: EuiBreakpointSize;
   parentMaxWidth?: number;
   childMaxWidth?: number;
-  scrollableTabIndex?: number;
-  hideCloseButton?: boolean;
   showMenu?: boolean;
-
-  // These are needed for compatibility, but can not be set from the storybook UI
-  backgroundStyle?: 'default' | 'shaded';
-  banner?: React.ReactNode;
-  children?: React.ReactNode;
-  maxWidth?: number;
-  onClose: (event: MouseEvent | KeyboardEvent | TouchEvent) => void;
-  size?: 's' | 'm' | 'fill';
 }
+
+const breakpointSizes: EuiBreakpointSize[] = ['xs', 's', 'm', 'l', 'xl'];
+
+const playgroundActions = actions('log');
 
 const meta: Meta<FlyoutChildStoryArgs> = {
   title: 'Layout/EuiFlyout/EuiFlyoutChild',
@@ -106,6 +108,8 @@ const meta: Meta<FlyoutChildStoryArgs> = {
     maxWidth: { table: { disable: true } },
     onClose: { table: { disable: true } },
     banner: { table: { disable: true } },
+    hideCloseButton: { table: { disable: true } },
+    scrollableTabIndex: { table: { disable: true } },
     children: { table: { disable: true } },
   },
   args: {
