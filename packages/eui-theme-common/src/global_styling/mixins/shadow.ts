@@ -7,17 +7,14 @@
  */
 
 import type { UseEuiTheme } from '../../services/theme/types';
-import { boxShadowToFilterDropShadow } from '../functions';
 import { _EuiThemeShadowSize } from '../variables/shadow';
 
 export interface EuiShadowOptions {
-  /** @deprecated */
+  /** @deprecated - has no effect */
   color?: string;
   /** @default `down` */
   direction?: 'down' | 'up';
-  /**
-   * Note: not supported by all shadow utilities.
-   */
+  /** @deprecated - has no effect */
   property?: 'box-shadow' | 'filter';
   borderAllInHighContrastMode?: boolean;
 }
@@ -64,10 +61,6 @@ export const euiShadowMedium = (
   }
   const direction = options?.direction ?? 'down';
   const boxShadow = euiTheme.shadows.m[direction];
-
-  if (options?.property === 'filter') {
-    return boxShadow ? boxShadowToFilterDropShadow(boxShadow) : '';
-  }
 
   return `box-shadow: ${boxShadow};`;
 };
