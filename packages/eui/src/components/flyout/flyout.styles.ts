@@ -72,11 +72,6 @@ export const euiFlyoutStyles = (euiThemeContext: UseEuiTheme) => {
 
       ${maxedFlyoutWidth(euiThemeContext)}
     `,
-    fill: css`
-      inline-size: 90vw;
-      max-inline-size: 90vw;
-      min-inline-size: 0;
-    `,
 
     // Flyout sizes
     // When a child flyout is stacked on top of the parent, the parent flyout size will match the child flyout size
@@ -218,12 +213,6 @@ export const composeFlyoutSizing = (
       min: `${Math.round(euiTheme.breakpoint.m * 0.9)}px`, // 1.
       width: '75vw',
       max: `${euiTheme.breakpoint.l}px`,
-    },
-
-    fill: {
-      min: `${Math.round(euiTheme.breakpoint.xl * 0.9)}px`,
-      width: '90vw',
-      max: '90vw',
     },
   };
 

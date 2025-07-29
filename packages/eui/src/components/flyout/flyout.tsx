@@ -59,7 +59,7 @@ type _EuiFlyoutType = (typeof TYPES)[number];
 export const SIDES = ['left', 'right'] as const;
 export type _EuiFlyoutSide = (typeof SIDES)[number];
 
-export const SIZES = ['s', 'm', 'l', 'fill'] as const;
+export const SIZES = ['s', 'm', 'l'] as const;
 export type EuiFlyoutSize = (typeof SIZES)[number];
 
 /**
@@ -77,14 +77,10 @@ interface _EuiFlyoutProps {
   onClose: (event: MouseEvent | TouchEvent | KeyboardEvent) => void;
   /**
    * Defines the width of the panel.
-   * Pass a predefined size of `s | m | l | fill`, or pass any number/string compatible with the CSS `width` attribute
+   * Pass a predefined size of `s | m | l`, or pass any number/string compatible with the CSS `width` attribute
    * @default m
    */
   size?: EuiFlyoutSize | CSSProperties['width'];
-  /**
-   * Optionally set a maximum width (in pixels or CSS value) for the parent when the parent size is 'fill'.
-   */
-  maxFillSize?: number | string;
   /**
    * Sets the max-width of the panel,
    * set to `true` to use the default size,
@@ -211,7 +207,6 @@ export const EuiFlyout = forwardRef(
       size = 'm',
       paddingSize = 'l',
       maxWidth = false,
-      maxFillSize: maxSizeParent,
       style,
       maskProps,
       type = 'overlay',
@@ -264,9 +259,9 @@ export const EuiFlyout = forwardRef(
           'EuiFlyout: When an EuiFlyoutChild is present, the `side` prop of EuiFlyout must be "right".'
         );
       }
-      if (!isEuiFlyoutSizeNamed(size) || !['s', 'm', 'fill'].includes(size)) {
+      if (!isEuiFlyoutSizeNamed(size) || !['s', 'm'].includes(size)) {
         throw new Error(
-          `EuiFlyout: When an EuiFlyoutChild is present, the \`size\` prop of EuiFlyout must be "s", "m", or "fill". Received "${size}".`
+          `EuiFlyout: When an EuiFlyoutChild is present, the \`size\` prop of EuiFlyout must be "s" or "m". Received "${size}".`
         );
       }
       if (_closeButtonPosition !== 'inside') {
@@ -274,21 +269,7 @@ export const EuiFlyout = forwardRef(
           'EuiFlyout: When an EuiFlyoutChild is present, the `closeButtonPosition` prop of EuiFlyout must be "inside".'
         );
       }
-      // Prevent both parent and child from being 'fill'
-      if (size === 'fill' && childFlyoutElement.props.size === 'fill') {
-        throw new Error(
-          'EuiFlyout: Both parent and child cannot have size="fill" at the same time. Only one may be "fill".'
-        );
-      }
-      // When parent is fill, only allow child size s or m
-      if (
-        size === 'fill' &&
-        !['s', 'm'].includes(childFlyoutElement.props.size || 's')
-      ) {
-        throw new Error(
-          'EuiFlyout: When parent size is "fill", child size must be "s" or "m".'
-        );
-      }
+
       closeButtonPosition = 'inside';
       childFlyoutClasses = [
         'euiFlyout--hasChild',
@@ -371,39 +352,23 @@ export const EuiFlyout = forwardRef(
      * Set inline styles
      */
     const inlineStyles = useMemo(() => {
-      // For 'fill', set width to 90vw and allow optional maxSizeParent
-      if (isEuiFlyoutSizeNamed(size) && size === 'fill') {
-        const fillStyles: React.CSSProperties = {
-          width: '90vw',
-          maxWidth: '90vw',
-        };
-        if (typeof maxSizeParent === 'number') {
-          fillStyles.maxWidth = `${maxSizeParent}px`;
-        } else if (typeof maxSizeParent === 'string') {
-          fillStyles.maxWidth = maxSizeParent;
-        }
-        return {
-          ...style,
-          ...fillStyles,
-        };
-      }
       const widthStyle =
         !isEuiFlyoutSizeNamed(size) && logicalStyle('width', size);
       const maxWidthStyle =
         typeof maxWidth !== 'boolean' && logicalStyle('max-width', maxWidth);
+
       return {
         ...style,
         ...widthStyle,
         ...maxWidthStyle,
       };
-    }, [style, maxSizeParent, size, maxWidth]);
+    }, [style, maxWidth, size]);
 
     const styles = useEuiMemoizedStyles(euiFlyoutStyles);
     const cssStyles = [
       styles.euiFlyout,
       styles.paddingSizes[paddingSize],
       isEuiFlyoutSizeNamed(size) && styles[size],
-      isEuiFlyoutSizeNamed(size) && size === 'fill' && styles.fill,
       maxWidth === false && styles.noMaxWidth,
       isPushed ? styles.push.push : styles.overlay.overlay,
       isPushed ? styles.push[side] : styles.overlay[side],

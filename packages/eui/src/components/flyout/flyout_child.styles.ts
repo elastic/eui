@@ -7,17 +7,20 @@
  */
 
 import { css } from '@emotion/react';
-import { UseEuiTheme } from '../../services';
 import {
+  euiYScroll,
+  highContrastModeStyles,
   logicalCSS,
   logicalCSSWithFallback,
-  highContrastModeStyles,
-  euiYScroll,
+  mathWithUnits,
 } from '../../global_styling';
+import { UseEuiTheme } from '../../services';
+import { euiFormMaxWidth } from '../form/form.styles';
 import { composeFlyoutSizing, maxedFlyoutWidth } from './flyout.styles';
 
 export const euiFlyoutChildStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
+  const formMaxWidth = euiFormMaxWidth(euiThemeContext);
   return {
     // Base styles for the child flyout
     euiFlyoutChild: css`
@@ -61,8 +64,20 @@ export const euiFlyoutChildStyles = (euiThemeContext: UseEuiTheme) => {
       ${composeFlyoutSizing(euiThemeContext, 'm')}
     `,
 
+    fill: {
+      base: css`
+        max-inline-size: 90vw;
+      `,
+      parentS: css`
+        ${logicalCSSWithFallback(
+          'width',
+          `calc(90vw - max(25vw, ${Math.round(euiTheme.breakpoint.m * 0.5)}px))`
+        )};
+      `,
+    },
+
     overflow: {
-      overflow: css`
+      base: css`
         flex-grow: 1;
         display: flex;
         flex-direction: column;

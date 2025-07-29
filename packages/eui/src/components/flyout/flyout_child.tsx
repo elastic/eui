@@ -220,18 +220,6 @@ export const EuiFlyoutChild: FunctionComponent<EuiFlyoutChildProps> = ({
 
   const styles = useEuiMemoizedStyles(euiFlyoutChildStyles);
 
-  // Calculate width for 'fill' option
-  let fillWidth: string | undefined;
-  if (size === 'fill') {
-    // Parent can only be 's' or 'm' for now
-    const parentWidths: Record<string, number> = { s: 25, m: 50 };
-    const parentVw =
-      parentSize && (parentSize === 's' || parentSize === 'm')
-        ? parentWidths[parentSize]
-        : 0;
-    fillWidth = `calc(90vw - ${parentVw}vw)`;
-  }
-
   // Build inline style for maxSize
   const maxWidthStyle: React.CSSProperties = {};
   if (childLayoutMode !== 'stacked' && typeof maxSizeChild === 'number') {
@@ -243,11 +231,8 @@ export const EuiFlyoutChild: FunctionComponent<EuiFlyoutChildProps> = ({
     backgroundStyle === 'shaded'
       ? styles.backgroundShaded
       : styles.backgroundDefault,
-    size === 'fill'
-      ? { width: fillWidth, maxWidth: '90vw', ...maxWidthStyle }
-      : size === 's'
-      ? { ...styles.s, ...maxWidthStyle }
-      : { ...styles.m, ...maxWidthStyle },
+    size === 'fill' && styles.fill.base,
+    size === 'fill' && parentSize === 's' && styles.fill.parentS,
     childLayoutMode === 'side-by-side'
       ? styles.sidePosition
       : styles.stackedPosition,
@@ -312,7 +297,7 @@ export const EuiFlyoutChild: FunctionComponent<EuiFlyoutChildProps> = ({
         <div
           tabIndex={scrollableTabIndex}
           className="euiFlyoutChild__overflow"
-          css={styles.overflow.overflow}
+          css={styles.overflow.base}
         >
           {banner && (
             <div
