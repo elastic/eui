@@ -12,19 +12,36 @@ const shadowTypes: _EuiThemeShadowSize[] = [
   'm',
   'l',
   'xl',
-  'xlHover',
 ];
 
 export const ShadowsTable = ({ direction = "down" }) => {
   const { euiTheme } = useEuiTheme();
+  const items = shadowTypes.map((type) => ({
+    id: type,
+    token: `shadows.${type}.${direction}`,
+    value: euiTheme.shadows[type]![direction],
+  }))
+
+  // while testing!
+  items.push({
+    id: 'flat',
+    token: `shadows.flat.${direction}`,
+    value: euiTheme.shadows.flat![direction],
+  })
+  items.push({
+    id: 'hover.base',
+    token: `shadows.hover.base.${direction}`,
+    value: euiTheme.shadows.hover.base![direction],
+  })
+  items.push({
+    id: 'hover.xl',
+    token: `shadows.hover.xl.${direction}`,
+    value: euiTheme.shadows.hover.xl![direction],
+  })
 
   return (
     <ThemeValuesTable
-      items={shadowTypes.map((type) => ({
-        id: type,
-        token: `shadows.${type}.${direction}`,
-        value: euiTheme.shadows[type]![direction],
-      }))}
+      items={items}
       render={(item) => (
         <EuiColorPickerSwatch
           showToolTip={false}
