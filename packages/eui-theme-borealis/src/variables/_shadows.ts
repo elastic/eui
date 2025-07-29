@@ -347,7 +347,7 @@ export const shadowPrimitives: _EuiThemeShadowPrimitives = {
   flat: {
     light: [],
     dark: [],
-  }
+  },
 };
 
 export const shadows: _EuiThemeShadows = {
