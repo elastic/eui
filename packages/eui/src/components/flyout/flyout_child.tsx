@@ -231,11 +231,8 @@ export const EuiFlyoutChild: FunctionComponent<EuiFlyoutChildProps> = ({
     backgroundStyle === 'shaded'
       ? styles.backgroundShaded
       : styles.backgroundDefault,
-    size === 's' && styles.s,
-    size === 'm' && styles.m,
-    size === 'fill' && styles.fill.base,
-    size === 'fill' && parentSize === 's' && styles.fill.parentS,
-    size === 'fill' && parentSize === 'm' && styles.fill.parentM,
+    (size === 's' || size === 'm') && styles[size],
+    size === 'fill' && styles.fillWithParent[parentSize as 's' | 'm'],
     childLayoutMode === 'side-by-side'
       ? styles.sidePosition
       : styles.stackedPosition,

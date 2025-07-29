@@ -64,17 +64,16 @@ export const euiFlyoutChildStyles = (euiThemeContext: UseEuiTheme) => {
       ${composeFlyoutSizing(euiThemeContext, 'm')}
     `,
 
-    fill: {
-      base: css`
+    fillWithParent: {
+      s: css`
         max-inline-size: 90vw;
-      `,
-      parentS: css`
         ${logicalCSSWithFallback(
           'width',
           `calc(90vw - max(25vw, ${Math.round(euiTheme.breakpoint.m * 0.5)}px))`
         )};
       `,
-      parentM: css`
+      m: css`
+        max-inline-size: 90vw;
         ${logicalCSSWithFallback(
           'width',
           `calc(90vw - max(50vw, ${mathWithUnits(
