@@ -59,7 +59,9 @@ export const euiPopoverPanelStyles = (euiThemeContext: UseEuiTheme) => {
         transition: ${opacityTransition}, ${transformTransition};
       }
 
-      ${euiPanelBorderStyles(euiThemeContext)}
+      ${euiPanelBorderStyles(euiThemeContext, {
+        borderColor: euiTheme.colors.borderBaseFloating,
+      })}
 
       &:focus {
         outline-offset: 0;

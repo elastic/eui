@@ -21,41 +21,28 @@ export const euiPanelBorderStyles = (
   euiThemeContext: UseEuiTheme,
   options?: {
     borderColor?: string;
-    hasFloatingBorder?: boolean;
   }
 ) => {
-  const { euiTheme, colorMode } = euiThemeContext;
-  const { borderColor, hasFloatingBorder = true } = options ?? {};
+  const { euiTheme } = euiThemeContext;
+  const { borderColor = euiTheme.border.color } = options ?? {};
 
-  /* TODO: remove `hasFloatingBorder` and `hasVisibleBorder` and once Amsterdam is removed
-   euiTheme.colors.borderBaseFloating is enough then */
-  const hasVisibleBorder = hasFloatingBorder && colorMode === 'DARK';
-
-  return highContrastModeStyles(euiThemeContext, {
-    none: `
-      /* Using a pseudo element for the border instead of floating border only 
-      because the transparent border might otherwise be visible with arbitrary 
-      full-width/height content in light mode. */
-      &::after {
-        content: '';
-        position: absolute;
-        /* ensure to keep on top of flush content */
-        z-index: 0;
-        inset: 0;
-        border: ${euiTheme.border.width.thin} solid
-          ${
-            borderColor ?? hasVisibleBorder
-              ? euiTheme.border.color
-              : euiTheme.colors.borderBaseFloating
-          };
-        border-radius: inherit;
-        pointer-events: none;
-      }
-    `,
-    preferred: `
-      border: ${euiTheme.border.thin};
-    `,
-  });
+  return /*css*/ `
+    &::after {
+      content: '';
+      position: absolute;
+      /* ensure to keep on top of flush content */
+      z-index: 0;
+      inset: 0;
+      /* using 'box-shadow' instead of 'border' so that the border
+         matches the floating border included in shadows for DARK mode,
+         again so that bordered and shadowed panels have the exact same size 
+         - but this is problematic because box-shadow is not part of the box model 
+         (drawn outside of the element's layout) and it could eventually be cut off */
+      box-shadow: 0 0 0 ${euiTheme.border.width.thin} ${borderColor};
+      border-radius: inherit;
+      pointer-events: none;
+    }
+  `;
 };
 
 export const euiPanelStyles = (euiThemeContext: UseEuiTheme) => {
@@ -74,17 +61,10 @@ export const euiPanelStyles = (euiThemeContext: UseEuiTheme) => {
 
     hasShadow: css`
       ${euiShadow(euiThemeContext, 'm')}
-
-      ${euiPanelBorderStyles(euiThemeContext, {
-        hasFloatingBorder: false,
-      })}
     `,
 
     hasBorder: css`
-      ${euiPanelBorderStyles(euiThemeContext, {
-        borderColor: euiTheme.border.color,
-        hasFloatingBorder: false,
-      })}
+      ${euiPanelBorderStyles(euiThemeContext)}
     `,
 
     radius: {

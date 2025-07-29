@@ -45,7 +45,7 @@ export const euiFlyoutSlideInLeft = keyframes`
 `;
 
 export const euiFlyoutStyles = (euiThemeContext: UseEuiTheme) => {
-  const { euiTheme, colorMode } = euiThemeContext;
+  const { euiTheme } = euiThemeContext;
 
   return {
     euiFlyout: css`
@@ -127,16 +127,10 @@ export const euiFlyoutStyles = (euiThemeContext: UseEuiTheme) => {
         }
       `,
       left: css`
-        border-inline-end: ${colorMode === 'DARK'
-          ? `${euiTheme.border.width.thin} solid
-          ${euiTheme.colors.borderBaseFloating}`
-          : 'none'};
+        border-inline-end: none;
       `,
       right: css`
-        border-inline-start: ${colorMode === 'DARK'
-          ? `${euiTheme.border.width.thin} solid
-          ${euiTheme.colors.borderBaseFloating}`
-          : 'none'};
+        border-inline-start: none;
       `,
     },
     push: {
