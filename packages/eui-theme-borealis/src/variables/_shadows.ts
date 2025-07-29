@@ -354,75 +354,60 @@ export const shadows: _EuiThemeShadows = {
   xs: {
     down: {
       LIGHT: formatMultipleBoxShadow(shadowPrimitives.xs.light),
-      DARK: formatMultipleBoxShadow(shadowPrimitives.xs.dark, {
-        colorMode: 'DARK',
-      }),
+      DARK: formatMultipleBoxShadow(shadowPrimitives.xs.dark),
     },
     up: {
       LIGHT: formatMultipleBoxShadow(shadowPrimitives.xs.light, { up: true }),
       DARK: formatMultipleBoxShadow(shadowPrimitives.xs.dark, {
         up: true,
-        colorMode: 'DARK',
       }),
     },
   },
   s: {
     down: {
       LIGHT: formatMultipleBoxShadow(shadowPrimitives.s.light),
-      DARK: formatMultipleBoxShadow(shadowPrimitives.s.dark, {
-        colorMode: 'DARK',
-      }),
+      DARK: formatMultipleBoxShadow(shadowPrimitives.s.dark),
     },
     up: {
       LIGHT: formatMultipleBoxShadow(shadowPrimitives.s.light, { up: true }),
       DARK: formatMultipleBoxShadow(shadowPrimitives.s.dark, {
         up: true,
-        colorMode: 'DARK',
       }),
     },
   },
   m: {
     down: {
       LIGHT: formatMultipleBoxShadow(shadowPrimitives.m.light),
-      DARK: formatMultipleBoxShadow(shadowPrimitives.m.dark, {
-        colorMode: 'DARK',
-      }),
+      DARK: formatMultipleBoxShadow(shadowPrimitives.m.dark),
     },
     up: {
       LIGHT: formatMultipleBoxShadow(shadowPrimitives.m.light, { up: true }),
       DARK: formatMultipleBoxShadow(shadowPrimitives.m.dark, {
         up: true,
-        colorMode: 'DARK',
       }),
     },
   },
   l: {
     down: {
       LIGHT: formatMultipleBoxShadow(shadowPrimitives.l.light),
-      DARK: formatMultipleBoxShadow(shadowPrimitives.l.dark, {
-        colorMode: 'DARK',
-      }),
+      DARK: formatMultipleBoxShadow(shadowPrimitives.l.dark),
     },
     up: {
       LIGHT: formatMultipleBoxShadow(shadowPrimitives.l.light, { up: true }),
       DARK: formatMultipleBoxShadow(shadowPrimitives.l.dark, {
         up: true,
-        colorMode: 'DARK',
       }),
     },
   },
   xl: {
     down: {
       LIGHT: formatMultipleBoxShadow(shadowPrimitives.xl.light),
-      DARK: formatMultipleBoxShadow(shadowPrimitives.xl.dark, {
-        colorMode: 'DARK',
-      }),
+      DARK: formatMultipleBoxShadow(shadowPrimitives.xl.dark),
     },
     up: {
       LIGHT: formatMultipleBoxShadow(shadowPrimitives.xl.light, { up: true }),
       DARK: formatMultipleBoxShadow(shadowPrimitives.xl.dark, {
         up: true,
-        colorMode: 'DARK',
       }),
     },
   },
@@ -430,9 +415,7 @@ export const shadows: _EuiThemeShadows = {
     base: {
       down: {
         LIGHT: formatMultipleBoxShadow(shadowPrimitives.s.light.slice(1)),
-        DARK: formatMultipleBoxShadow(shadowPrimitives.s.dark.slice(1), {
-          colorMode: 'DARK',
-        }),
+        DARK: formatMultipleBoxShadow(shadowPrimitives.s.dark.slice(1)),
       },
       up: {
         LIGHT: formatMultipleBoxShadow(shadowPrimitives.s.light.slice(1), {
@@ -440,16 +423,13 @@ export const shadows: _EuiThemeShadows = {
         }),
         DARK: formatMultipleBoxShadow(shadowPrimitives.s.dark.slice(1), {
           up: true,
-          colorMode: 'DARK',
         }),
       },
     },
     xl: {
       down: {
         LIGHT: formatMultipleBoxShadow(shadowPrimitives.xxl.light),
-        DARK: formatMultipleBoxShadow(shadowPrimitives.xxl.dark, {
-          colorMode: 'DARK',
-        }),
+        DARK: formatMultipleBoxShadow(shadowPrimitives.xxl.dark),
       },
       up: {
         LIGHT: formatMultipleBoxShadow(shadowPrimitives.xxl.light, {
@@ -457,7 +437,6 @@ export const shadows: _EuiThemeShadows = {
         }),
         DARK: formatMultipleBoxShadow(shadowPrimitives.xxl.dark, {
           up: true,
-          colorMode: 'DARK',
         }),
       },
     },
@@ -466,15 +445,12 @@ export const shadows: _EuiThemeShadows = {
   flat: {
     down: {
       LIGHT: formatMultipleBoxShadow(shadowPrimitives.xs.light),
-      DARK: formatMultipleBoxShadow(shadowPrimitives.xs.dark, {
-        colorMode: 'DARK',
-      }),
+      DARK: formatMultipleBoxShadow(shadowPrimitives.xs.dark),
     },
     up: {
       LIGHT: formatMultipleBoxShadow(shadowPrimitives.xs.light, { up: true }),
       DARK: formatMultipleBoxShadow(shadowPrimitives.xs.dark, {
         up: true,
-        colorMode: 'DARK',
       }),
     },
   },
