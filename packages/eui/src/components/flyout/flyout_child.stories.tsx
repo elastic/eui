@@ -108,7 +108,6 @@ const StatefulFlyout: React.FC<StatefulFlyoutProps> = ({
   showHeader = true,
   showFooter = true,
   pushMinBreakpoint = 'xs',
-  maxFillSize,
 }) => {
   const [isMainOpen, setIsMainOpen] = useState(true);
   const [isChildOpen, setIsChildOpen] = useState(false);
@@ -194,11 +193,7 @@ const StatefulFlyout: React.FC<StatefulFlyoutProps> = ({
           )}
 
           {isChildOpen && (
-            <EuiFlyoutChild
-              onClose={closeChild}
-              size={childSize}
-              maxFillSize={maxFillSize}
-            >
+            <EuiFlyoutChild onClose={closeChild} size={childSize}>
               {showHeader && (
                 <EuiFlyoutHeader hasBorder>
                   <EuiText>
@@ -365,28 +360,118 @@ export const WithChildBackgroundStyles: Story = {
   render: () => <ChildBackgroundStylesFlyout />,
 };
 
-export const WithSmallMainFillChild: Story = {
-  name: 'Main Size: s, Child Size: fill',
-  render: (args) => (
-    <StatefulFlyout
-      mainSize="s"
-      childSize="fill"
-      pushMinBreakpoint={args.pushMinBreakpoint}
-    />
-  ),
+/**
+ * A flyout with parent or child panel that fills the available space.
+ */
+const FilledChildFlyout: React.FC<StatefulFlyoutProps> = ({
+  pushMinBreakpoint = 'xs',
+  maxFillSize = undefined,
+}) => {
+  // allow opening and closing the main flyout and child panel
+  const [isMainOpen, setIsMainOpen] = useState(true);
+  const [isChildOpen, setIsChildOpen] = useState(false);
+
+  const openMain = () => setIsMainOpen(true);
+  const closeMain = () => {
+    setIsMainOpen(false);
+    setIsChildOpen(false);
+  };
+  const openChild = () => setIsChildOpen(true);
+  const closeChild = () => setIsChildOpen(false);
+
+  const [mainSize, setMainSize] = useState<'s' | 'm'>('s');
+  const toggleMainSize = (size: 's' | 'm') => {
+    // close panels if changing size
+    if (isMainOpen && size !== mainSize) {
+      closeMain();
+      closeChild();
+    }
+    setMainSize(size);
+  };
+
+  // allow toggling between push and overlay types
+  const [isPush, setIsPush] = useState(true);
+  const toggleFlyoutType = () => {
+    setIsPush((prev) => !prev);
+  };
+  const flyoutType = isPush ? 'push' : 'overlay';
+
+  return (
+    <>
+      <EuiText>
+        <p>This is the main page content.</p>
+      </EuiText>
+      <EuiSpacer />
+      <EuiRadioGroup
+        options={[
+          { id: 's', label: 'Main size: s' },
+          { id: 'm', label: 'Main size: m' },
+        ]}
+        idSelected={mainSize}
+        onChange={(id) => toggleMainSize(id as 's' | 'm')}
+        legend={{ children: 'Main flyout size' }}
+        name="filledFlyoutSizeToggle"
+      />
+      <EuiSpacer />
+      <EuiRadioGroup
+        options={[
+          { id: 'push', label: 'Push' },
+          { id: 'overlay', label: 'Overlay' },
+        ]}
+        idSelected={flyoutType}
+        onChange={toggleFlyoutType}
+        legend={{ children: 'Main flyout type' }}
+        name="filledFlyoutTypeToggle"
+      />
+      <EuiSpacer />
+      <EuiButton onClick={openMain} disabled={isMainOpen}>
+        Open Main Flyout
+      </EuiButton>
+
+      {isMainOpen && (
+        <EuiFlyout
+          onClose={closeMain}
+          size={mainSize}
+          type={flyoutType}
+          pushMinBreakpoint={pushMinBreakpoint}
+        >
+          <EuiFlyoutBody>
+            <EuiText>
+              <p>This is the main flyout content.</p>
+            </EuiText>
+            <EuiSpacer />
+            {!isChildOpen ? (
+              <EuiButton onClick={openChild}>Open child panel</EuiButton>
+            ) : (
+              <EuiButton onClick={closeChild}>Close child panel</EuiButton>
+            )}
+          </EuiFlyoutBody>
+
+          {isChildOpen && (
+            <EuiFlyoutChild
+              onClose={closeChild}
+              size="fill"
+              maxFillSize={maxFillSize}
+            >
+              <EuiFlyoutBody>
+                <EuiText>
+                  <p>This is the child flyout content.</p>
+                </EuiText>
+              </EuiFlyoutBody>
+            </EuiFlyoutChild>
+          )}
+        </EuiFlyout>
+      )}
+    </>
+  );
 };
 
-export const WithSmallMainFillToMaxChild: Story = {
-  name: 'Main Size: s, Child Size: fill to max',
-  args: {
-    maxFillSize: 1200,
-  },
+export const WithFillChild: Story = {
+  name: 'Fill Mode',
   render: (args) => (
-    <StatefulFlyout
-      mainSize="s"
-      childSize="fill"
-      maxFillSize={args.maxFillSize}
+    <FilledChildFlyout
       pushMinBreakpoint={args.pushMinBreakpoint}
+      maxFillSize={args.maxFillSize}
     />
   ),
 };

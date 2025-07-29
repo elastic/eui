@@ -74,6 +74,15 @@ export const euiFlyoutChildStyles = (euiThemeContext: UseEuiTheme) => {
           `calc(90vw - max(25vw, ${Math.round(euiTheme.breakpoint.m * 0.5)}px))`
         )};
       `,
+      parentM: css`
+        ${logicalCSSWithFallback(
+          'width',
+          `calc(90vw - max(50vw, ${mathWithUnits(
+            formMaxWidth,
+            (x) => x + 24
+          )}))`
+        )};
+      `,
     },
 
     overflow: {
