@@ -19,6 +19,7 @@
 
 import { type TSESTree, ESLintUtils } from '@typescript-eslint/utils';
 import { getAttrValue } from '../../utils/get_attr_value';
+import { isAttrsEqual } from "../../utils/is_attrs_equal";
 const formControlComponent = 'EuiFormRow';
 
 const formControlChildComponents = [
@@ -73,7 +74,7 @@ export const ConsistentIsInvalidProps = ESLintUtils.RuleCreator.withoutDocs({
           'isInvalid'
         );
 
-        if (childIsInvalid !== formRowIsInvalid) {
+        if (!isAttrsEqual(childIsInvalid,formRowIsInvalid)) {
           const componentName = (
             childElement.openingElement.name as TSESTree.JSXIdentifier
           ).name;
