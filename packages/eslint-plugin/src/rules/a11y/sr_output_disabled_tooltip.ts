@@ -8,7 +8,7 @@
 
 import { type TSESTree, ESLintUtils } from '@typescript-eslint/utils';
 import { getAttrValue } from '../../utils/get_attr_value';
-import { isAttrsEqual } from '../../utils/is_attrs_equal';
+import { areAttrsEqual } from '../../utils/are_attrs_equal';
 
 const tooltipComponent = 'EuiToolTip';
 const disabledTooltipComponentProp = 'disableScreenReaderOutput';
@@ -65,7 +65,7 @@ export const ScreenReaderOutputDisabledTooltip =
           if (
             tooltipContent &&
             ariaLabel &&
-            isAttrsEqual(tooltipContent,ariaLabel)
+            areAttrsEqual(tooltipContent, ariaLabel)
           ) {
             const buttonElementName = (
               buttonElement.openingElement.name as TSESTree.JSXIdentifier

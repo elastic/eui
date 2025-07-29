@@ -19,14 +19,7 @@
 
 const normalizeAttrString = (str?: string) => str?.trim().replace(/\s+/g, ' ');
 
-export const isAttrsEqual = (...strings: Array<string | undefined>): boolean => {
-  if (strings.length < 2) return true;
-
-  const normalizedStrings = strings.map(normalizeAttrString);
-  const firstValue = normalizedStrings[0];
-
-  return normalizedStrings.every((value) => {
-    if (value === undefined && firstValue === undefined) return true;
-    return value === firstValue;
-  });
+export const areAttrsEqual = (...strings: Array<string | undefined>): boolean => {
+  const [first, ...rest] = strings.map(normalizeAttrString);
+  return rest.every((s) => s === first);
 };
