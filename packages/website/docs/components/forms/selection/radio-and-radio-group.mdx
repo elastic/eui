@@ -1,16 +1,147 @@
-# Guidelines
+---
+sidebar_position: 7
+keywords: [EuiRadio, EuiRadioGroup]
+---
 
-import {
-  EuiFlexGrid,
-  EuiFormRow,
-  EuiRadioGroup,
-  EuiCheckboxGroup,
-  EuiSwitch,
-  EuiBasicTable,
-  useEuiTheme,
-} from '@elastic/eui';
+# Radio and Radio group
 
-## Checkbox and radio button labels
+```mdx-code-block
+import { EuiFlexGrid, EuiRadioGroup } from '@elastic/eui';
+```
+
+Radios are are ideal for allowing users to select options among a small list of options, or to [switch settings on/off](./switch.mdx). For longer lists of options, consider using [dropdown selection](./overview.mdx) components.
+
+## Radio
+
+This component renders a basic HTML `<input type="radio">` element. Use radio buttons to allow users to choose one option out of a list. They are ideal for a list of more than 2 options, and usually no more than 6 options.
+
+When creating a list, each input should have the same `name` to ensure a group is established. This way when you select a radio button in that group, the other options are automatically deselected.
+
+Make sure to pass a `label` to ensure a larger clickable area and ensure that screen readers will read out the label when the user is focused on the input.
+
+```tsx interactive
+import React, { useState } from 'react';
+import { EuiRadio, EuiSpacer, useGeneratedHtmlId } from '@elastic/eui';
+
+export default () => {
+  const [checked, setChecked] = useState(false);
+
+  const basicRadioButtonId = useGeneratedHtmlId({ prefix: 'basicRadioButton' });
+  const disabledRadioButtonId = useGeneratedHtmlId({
+    prefix: 'disabledRadioButton',
+  });
+  const compressedRadioButtonId = useGeneratedHtmlId({
+    prefix: 'compressedRadioButton',
+  });
+
+  const onChange = (e) => {
+    setChecked(e.target.checked);
+  };
+
+  return (
+    <>
+      <EuiRadio
+        id={basicRadioButtonId}
+        label="I am a radio"
+        checked={checked}
+        onChange={(e) => onChange(e)}
+      />
+
+      <EuiSpacer size="m" />
+
+      <EuiRadio
+        id={disabledRadioButtonId}
+        label="I am a disabled radio"
+        checked={checked}
+        onChange={(e) => onChange(e)}
+        disabled
+      />
+
+      <EuiSpacer size="m" />
+
+      <EuiRadio
+        id={compressedRadioButtonId}
+        label="I am a compressed radio"
+        checked={checked}
+        onChange={(e) => onChange(e)}
+        compressed
+      />
+    </>
+  );
+};
+```
+
+## Radio group
+
+Use a **EuiRadioGroup** when you want to generate a group of radio buttons by passing an array of `options` with an `id` and`label` for each object. Pass a single `name` property to define the group. For more details on which selection component to use, see the [Component comparison](./overview.mdx).
+
+When the individual labels for each radio do not provide a sufficient description, pass a `legend` to the group.
+
+```tsx interactive
+import React, { useState } from 'react';
+import { EuiRadioGroup, useGeneratedHtmlId } from '@elastic/eui';
+
+export default () => {
+  const radioGroupItemId__1 = useGeneratedHtmlId({
+    prefix: 'radioGroupItem',
+    suffix: 'first',
+  });
+  const radioGroupItemId__2 = useGeneratedHtmlId({
+    prefix: 'radioGroupItem',
+    suffix: 'second',
+  });
+  const radioGroupItemId__3 = useGeneratedHtmlId({
+    prefix: 'radioGroupItem',
+    suffix: 'third',
+  });
+
+  const radios = [
+    {
+      id: radioGroupItemId__1,
+      label: 'Option one',
+    },
+    {
+      id: radioGroupItemId__2,
+      label: 'Option two is checked by default',
+    },
+    {
+      id: radioGroupItemId__3,
+      label: 'Option three is disabled',
+      disabled: true,
+    },
+  ];
+
+  const [radioIdSelected, setRadioIdSelected] = useState(radioGroupItemId__2);
+
+  const onChange = (optionId) => {
+    setRadioIdSelected(optionId);
+  };
+
+  return (
+    /* DisplayToggles wrapper for Docs only */
+    <DisplayToggles
+      canLoading={false}
+      canReadOnly={false}
+      canInvalid={false}
+      canFullWidth={false}
+    >
+      <EuiRadioGroup
+        options={radios}
+        idSelected={radioIdSelected}
+        onChange={(id) => onChange(id)}
+        name="radio group"
+        legend={{
+          children: <span>This is a legend for a radio group</span>,
+        }}
+      />
+    </DisplayToggles>
+  );
+};
+```
+
+## Usage
+
+### Labels
 
 A label should be succinct, short, and descriptive with one to two words. This way users can quickly scan the available options.
 
@@ -68,7 +199,7 @@ Use sentence case (capitalize the first word).
 
 <EuiFlexGrid columns={2}>
   <Guideline type="do" text="Sentence case makes titles easier to read.">
-    <EuiCheckboxGroup
+    <EuiRadioGroup
       options={[
         { id: 'sentence_case_do_one', label: 'Read access' },
         { id: 'sentence_case_do_two', label: 'Write access' },
@@ -80,7 +211,7 @@ Use sentence case (capitalize the first word).
     />
   </Guideline>
   <Guideline type="dont" text="Title case can feel more cluttered.">
-    <EuiCheckboxGroup
+    <EuiRadioGroup
       options={[
         { id: 'sentence_case_dont_one', label: 'Read Access' },
         { id: 'sentence_case_dont_two', label: 'Write Access' },
@@ -97,7 +228,7 @@ Use consistent label structures for options within the same group.
 
 <EuiFlexGrid columns={2}>
   <Guideline type="do" text="Use sentences only or fragments only.">
-    <EuiCheckboxGroup
+    <EuiRadioGroup
       legend={{ children: 'Data to ship' }}
       options={[
         { id: 'group_title_do_one', label: 'Logs' },
@@ -108,7 +239,7 @@ Use consistent label structures for options within the same group.
     />
   </Guideline>
   <Guideline type="dont" text="Mix label structure within the same group of options.">
-    <EuiCheckboxGroup
+    <EuiRadioGroup
       legend={{ children: 'Data to ship' }}
       options={[
         { id: 'group_title_dont_one', label: 'Use Logs' },
@@ -142,100 +273,13 @@ Use consistent label structures for options within the same group.
   </Guideline>
 </EuiFlexGrid>
 
-## Switch labels
-
-The label should be static, action-oriented, and describe the feature. Avoid verbs that are less conversational such as "enable" unless they are your only option.
-
-<EuiFlexGrid columns={2}>
-  <Guideline type="do" text="Use a static noun describing the setting to turn on or off.">
-    <EuiSwitch
-      checked={false}
-      onChange={() => {}}
-      label="Malware protection"
-    />
-  </Guideline>
-  <Guideline type="dont" text='Start with statements such as "If true" or "If enabled".'>
-    <EuiSwitch
-      checked={false}
-      onChange={() => {}}
-      label="If enabled, uses malware protection"
-    />
-  </Guideline>
-  <Guideline type="do" text='If relevant, start with a verb ("Use A", "Show B") and add help text to provide more info.'>
-    <EuiFormRow helpText="Rollover when an index is 30 days old or reaches 50 gigabytes.">
-      <EuiSwitch
-        checked={false}
-        onChange={() => {}}
-        label="Use recommended defaults"
-      />
-    </EuiFormRow>
-  </Guideline>
-  <Guideline type="dont" text="Use only a verb. Generic verbs alone make options unclear.">
-    <EuiSwitch checked={false} onChange={() => {}} label="Enable" />
-  </Guideline>
-</EuiFlexGrid>
-
-Use past tense only when labelling a list of previously created items, like in a table header.
-
-export const MockTableCell = () => {
-  const { euiTheme } = useEuiTheme();
-  return (
-    <div
-      style={{
-        blockSize: euiTheme.size.s,
-        inlineSize: euiTheme.base * 7,
-        borderRadius: euiTheme.border.radius.small,
-        backgroundColor: euiTheme.colors.lightestShade,
-      }}
-      role="presentation"
-    />
-  );
-};
-
-<EuiFlexGrid columns={2}>
-  <Guideline type="do" text="In a list of already created items, use the past tense.">
-    <EuiBasicTable
-      responsiveBreakpoint={false}
-      columns={[
-        {
-          field: 'enabled',
-          name: 'Enabled',
-          render: (enabled) => (
-            <EuiSwitch
-              checked={enabled}
-              onChange={() => {}}
-              compressed
-              showLabel={false}
-              label="Enabled"
-            />
-          ),
-        },
-        { name: <MockTableCell />, render: () => <MockTableCell /> },
-        { name: <MockTableCell />, render: () => <MockTableCell /> },
-      ]}
-      items={[
-        { id: '1', enabled: true },
-        { id: '2', enabled: false },
-      ]}
-      tableLayout="auto"
-    />
-  </Guideline>
-  <Guideline type="dont" text="Change the label to represent the current state of the switch.">
-    <EuiSwitch
-      checked={true}
-      onChange={() => {}}
-      label="Log enabled"
-    />
-  </Guideline>
-</EuiFlexGrid>
-
-## Legends
+### Legends
 
 For groups of options, add a legend that gives meaning to the options. Legends appear like a title.
 
 <EuiFlexGrid columns={2}>
   <Guideline type="do" text="Use nouns that describe the choices to make.">
-    <EuiCheckboxGroup
+    <EuiRadioGroup
       legend={{ children: 'Data to ship' }}
       options={[
         { id: 'group_title_do_one', label: 'Logs' },
@@ -246,7 +290,7 @@ For groups of options, add a legend that gives meaning to the options. Legends a
     />
   </Guideline>
   <Guideline type="dont" text="Repeat choices or use the title as instructions.">
-    <EuiCheckboxGroup
+    <EuiRadioGroup
       legend={{ children: 'Data to ship' }}
       options={[
         { id: 'group_title_dont_one', label: 'Logs' },
@@ -257,3 +301,10 @@ For groups of options, add a legend that gives meaning to the options. Legends a
     />
   </Guideline>
 </EuiFlexGrid>
+
+## Props
+
+import docgen from '@elastic/eui-docgen/dist/components/form';
+
+<PropTable definition={docgen.EuiRadio} />
+<PropTable definition={docgen.EuiRadioGroup} />
