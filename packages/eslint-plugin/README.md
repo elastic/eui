@@ -143,6 +143,10 @@ Ensures `disableScreenReaderOutput` is set when `EuiToolTip` content matches `Eu
 
 Ensure `EuiIconTip` is used rather than `<EuiToolTip><EuiIcon/></EuiToolTip>`, as it provides better accessibility and improved support for assistive technologies.
 
+### `@elastic/eui/no-unnamed-radio-group`
+
+Ensure that all radio input components (`EuiRadio`, `EuiRadioGroup`) have a `name` attribute. The `name` attribute is required for radio inputs to be grouped correctly, allowing users to select only one option from a set. Without a `name`, radios may not behave as expected and can cause accessibility issues for assistive technologies.
+
 ## Testing
 
 ### Running unit tests
