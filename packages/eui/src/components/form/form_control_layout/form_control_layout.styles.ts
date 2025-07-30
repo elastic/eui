@@ -224,7 +224,6 @@ export const euiFormControlLayoutSideNodeStyles = (
       ${buttons} {
         /* Override button hover/active transform */
         transform: none !important; /* stylelint-disable-line declaration-no-important */
-        line-height: 1; /* ensures correct vertical positioning of icons */
 
         /* Account for border around focusable children */
         &:focus-visible {
