@@ -37,14 +37,14 @@ type EuiFlyoutChildActualProps = Pick<
 type EuiFlyoutType = (typeof TYPES)[number];
 
 interface FlyoutChildStoryArgs extends EuiFlyoutChildActualProps {
-  parentSize?: 's' | 'm';
+  mainSize?: 's' | 'm';
   childSize?: 's' | 'm' | 'fill';
   childBackgroundStyle?: 'default' | 'shaded';
-  parentFlyoutType: EuiFlyoutType;
+  mainFlyoutType: EuiFlyoutType;
   pushMinBreakpoint: EuiBreakpointSize;
-  parentMaxWidth?: number;
+  mainMaxWidth?: number;
   childMaxWidth?: number;
-  showMenu?: boolean;
+  showTopMenu?: boolean;
 }
 
 const breakpointSizes: EuiBreakpointSize[] = ['xs', 's', 'm', 'l', 'xl'];
@@ -55,46 +55,43 @@ const meta: Meta<FlyoutChildStoryArgs> = {
   title: 'Layout/EuiFlyout/EuiFlyoutChild',
   component: EuiFlyoutChild,
   argTypes: {
-    parentSize: {
+    mainSize: {
       options: ['s', 'm'],
       control: { type: 'radio' },
       description:
-        'The size of the parent flyout. If `m`, the child must be `s` or `fill`. If `s`, the child can be `s`, `m`, or `fill`.',
+        'The size of the main (parent) flyout. If `m`, the child must be `s` or `fill`. If `s`, the child can be `s`, `m`, or `fill`.',
     },
     childSize: {
       options: ['s', 'm', 'fill'],
       control: { type: 'radio' },
       description:
-        'The size of the child flyout. If the parent is `s`, the child can be `s`, `m`, or `fill`. If the parent is `m`, the child can only be `s` or `fill`.',
+        'The size of the child flyout. If the main is `s`, the child can be `s`, `m`, or `fill`. If the main is `m`, the child can only be `s` or `fill`.',
     },
-    parentMaxWidth: {
+    mainMaxWidth: {
       control: { type: 'number' },
-      description:
-        'The maximum width of the parent flyout. Can be set to limit the width of the parent flyout.',
+      description: 'The maximum width of the main flyout.',
     },
     childMaxWidth: {
       control: { type: 'number' },
-      description:
-        'The maximum width of the child flyout. Can be set to limit the width of the child flyout.',
+      description: 'The maximum width of the child flyout.',
     },
-    parentFlyoutType: {
+    mainFlyoutType: {
       options: TYPES,
       control: { type: 'radio' },
-      description: 'The type of the parent flyout. Only `push` is supported.',
+      description: 'The type of the main flyout..',
     },
     childBackgroundStyle: {
       options: ['default', 'shaded'],
       control: { type: 'radio' },
-      description:
-        'The background style of the child flyout. Defaults to `default`.',
+      description: 'The background style of the child flyout.',
     },
     pushMinBreakpoint: {
       options: breakpointSizes,
       control: { type: 'select' },
       description:
-        'Breakpoint at which the parent flyout (if `type="push"`) will convert to an overlay flyout. Defaults to `xs`.',
+        'Breakpoint at which the main flyout (if `type="push"`) will convert to an overlay flyout. Defaults to `xs`.',
     },
-    showMenu: {
+    showTopMenu: {
       control: { type: 'boolean' },
       description:
         'Whether to show the top flyout menu bar. If `false`, an `EuiFlyoutHeader` will not be rendered instead.',
@@ -104,8 +101,9 @@ const meta: Meta<FlyoutChildStoryArgs> = {
     backgroundStyle: { table: { disable: true } },
     // use "mainSize" and "childSize" instead
     size: { table: { disable: true } },
-    // use "parentMaxWidth" and "childMaxWidth" instead
+    // use "mainMaxWidth" and "childMaxWidth" instead
     maxWidth: { table: { disable: true } },
+    // props below this line are not configurable in the playground
     onClose: { table: { disable: true } },
     banner: { table: { disable: true } },
     hideCloseButton: { table: { disable: true } },
@@ -113,14 +111,14 @@ const meta: Meta<FlyoutChildStoryArgs> = {
     children: { table: { disable: true } },
   },
   args: {
-    parentSize: 'm',
+    mainSize: 'm',
     childSize: 's',
     childBackgroundStyle: 'default',
-    parentFlyoutType: 'push',
-    showMenu: true,
-    parentMaxWidth: undefined,
-    childMaxWidth: undefined,
+    mainFlyoutType: 'push',
     pushMinBreakpoint: 'xs',
+    showTopMenu: true,
+    scrollableTabIndex: 0,
+    hideCloseButton: false, // FIXME: not implemented in EuiFlyoutChild or EuiFlyoutMenu
   },
   parameters: {
     docs: {
@@ -162,13 +160,14 @@ type Story = StoryObj<FlyoutChildStoryArgs>;
  * the selected flyout type (overlay/push) and the open/closed state of child flyout.
  */
 const StatefulFlyout: React.FC<FlyoutChildStoryArgs> = ({
-  parentSize: mainSize = 'm',
-  childSize = 's',
-  childBackgroundStyle = 'default',
-  parentFlyoutType = 'push',
-  pushMinBreakpoint = 'xs',
-  parentMaxWidth,
+  mainSize,
+  childSize,
+  childBackgroundStyle,
+  mainFlyoutType,
+  pushMinBreakpoint,
+  mainMaxWidth,
   childMaxWidth,
+  showTopMenu,
   ...args
 }) => {
   const [isMainOpen, setIsMainOpen] = useState(true);
@@ -207,14 +206,15 @@ const StatefulFlyout: React.FC<FlyoutChildStoryArgs> = ({
         <EuiFlyout
           onClose={closeMain}
           size={mainSize}
-          type={parentFlyoutType}
+          type={mainFlyoutType}
           pushMinBreakpoint={pushMinBreakpoint}
-          maxWidth={parentMaxWidth}
+          maxWidth={mainMaxWidth}
+          hideCloseButton={args.hideCloseButton}
         >
-          {args.showMenu ? (
+          {showTopMenu ? (
             <EuiFlyoutMenu title={`Main Flyout Menu (${mainSize})`} />
           ) : (
-            <EuiFlyoutHeader hasBorder>
+            <EuiFlyoutHeader>
               <EuiText>
                 <h2>Main Flyout ({mainSize})</h2>
               </EuiText>
@@ -250,12 +250,13 @@ const StatefulFlyout: React.FC<FlyoutChildStoryArgs> = ({
               size={childSize}
               backgroundStyle={childBackgroundStyle}
               maxWidth={childMaxWidth}
+              hideCloseButton={args.hideCloseButton}
               scrollableTabIndex={args.scrollableTabIndex}
             >
-              {args.showMenu ? (
+              {showTopMenu ? (
                 <EuiFlyoutMenu title={`Child Flyout Menu (${childSize})`} />
               ) : (
-                <EuiFlyoutHeader hasBorder>
+                <EuiFlyoutHeader>
                   <EuiText>
                     <h2>Child Flyout ({childSize})</h2>
                   </EuiText>
