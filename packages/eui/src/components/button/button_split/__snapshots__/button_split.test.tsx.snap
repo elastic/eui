@@ -83,3 +83,126 @@ exports[`EuiButtonSplit props renders with isDisabled 1`] = `
   </span>
 </span>
 `;
+
+exports[`EuiButtonSplit props text color styling renders non-text color with fill=false (has margin, has left border) 1`] = `
+<span
+  class="euiButtonSplit emotion-euiButtonSplit"
+>
+  <button
+    class="euiButton emotion-euiButtonDisplay-m-defaultMinWidth-base-primary-leftButton"
+    type="button"
+  >
+    <span
+      class="emotion-euiButtonDisplayContent"
+    >
+      <span
+        class="eui-textTruncate"
+      >
+        Main
+      </span>
+    </span>
+  </button>
+  <span
+    class="css-1w8iqkv-rightSpan"
+  >
+    <div
+      class="euiPopover emotion-euiPopover-inline-block"
+    >
+      <button
+        aria-label="More actions"
+        class="euiButtonIcon emotion-euiButtonIcon-m-base-primary-iconButton"
+        type="button"
+      >
+        <span
+          aria-hidden="true"
+          class="euiButtonIcon__icon"
+          color="inherit"
+          data-euiicon-type="arrowDown"
+        />
+      </button>
+    </div>
+  </span>
+</span>
+`;
+
+exports[`EuiButtonSplit props text color styling renders text color with fill=false (no margin, no left border) 1`] = `
+<span
+  class="euiButtonSplit emotion-euiButtonSplit"
+>
+  <button
+    class="euiButton emotion-euiButtonDisplay-m-defaultMinWidth-base-text-leftButton"
+    type="button"
+  >
+    <span
+      class="emotion-euiButtonDisplayContent"
+    >
+      <span
+        class="eui-textTruncate"
+      >
+        Main
+      </span>
+    </span>
+  </button>
+  <span
+    class="css-1akurmu-rightSpan"
+  >
+    <div
+      class="euiPopover emotion-euiPopover-inline-block"
+    >
+      <button
+        aria-label="More actions"
+        class="euiButtonIcon emotion-euiButtonIcon-m-base-text-iconButton"
+        type="button"
+      >
+        <span
+          aria-hidden="true"
+          class="euiButtonIcon__icon"
+          color="inherit"
+          data-euiicon-type="arrowDown"
+        />
+      </button>
+    </div>
+  </span>
+</span>
+`;
+
+exports[`EuiButtonSplit props text color styling renders text color with fill=true (has margin, has left border) 1`] = `
+<span
+  class="euiButtonSplit emotion-euiButtonSplit"
+>
+  <button
+    class="euiButton emotion-euiButtonDisplay-m-defaultMinWidth-fill-text-leftButton"
+    type="button"
+  >
+    <span
+      class="emotion-euiButtonDisplayContent"
+    >
+      <span
+        class="eui-textTruncate"
+      >
+        Main
+      </span>
+    </span>
+  </button>
+  <span
+    class="css-1w8iqkv-rightSpan"
+  >
+    <div
+      class="euiPopover emotion-euiPopover-inline-block"
+    >
+      <button
+        aria-label="More actions"
+        class="euiButtonIcon emotion-euiButtonIcon-m-fill-text-iconButton"
+        type="button"
+      >
+        <span
+          aria-hidden="true"
+          class="euiButtonIcon__icon"
+          color="inherit"
+          data-euiicon-type="arrowDown"
+        />
+      </button>
+    </div>
+  </span>
+</span>
+`;

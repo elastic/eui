@@ -19,15 +19,17 @@ export const euiButtonSplitStyles = () => {
       ${logicalCSS('border-top-right-radius', '0 !important')}
       ${logicalCSS('border-bottom-right-radius', '0 !important')}
     `,
-    rightSpan: (color: string) => css`
+    rightSpan: (color: string, fill?: boolean) => css`
       display: flex;
       align-items: stretch;
-      ${color !== 'text' ? 'margin-left: 1px;' : ''}
+      ${color !== 'text' || fill ? 'margin-left: 1px;' : ''}
     `,
-    iconButton: (color: string) => css`
+    iconButton: (color: string, fill?: boolean) => css`
       ${logicalCSS('border-top-left-radius', '0 !important')}
       ${logicalCSS('border-bottom-left-radius', '0 !important')}
-      ${color === 'text' ? logicalCSS('border-left', 'none !important') : ''}
+      ${color === 'text' && !fill
+        ? logicalCSS('border-left', 'none !important')
+        : ''}
     `,
   };
 };

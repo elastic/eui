@@ -119,5 +119,46 @@ describe('EuiButtonSplit', () => {
       fireEvent.click(getByText('Main'));
       expect(onClick).toHaveBeenCalled();
     });
+
+    describe('text color styling', () => {
+      it('renders text color with fill=false (no margin, no left border)', () => {
+        const { container } = render(
+          <EuiButtonSplit
+            color="text"
+            fill={false}
+            buttonProps={defaultButtonProps}
+            iconButtonProps={defaultIconButtonProps}
+            popoverMenu={popoverMenu}
+          />
+        );
+        expect(container.firstChild).toMatchSnapshot();
+      });
+
+      it('renders text color with fill=true (has margin, has left border)', () => {
+        const { container } = render(
+          <EuiButtonSplit
+            color="text"
+            fill={true}
+            buttonProps={defaultButtonProps}
+            iconButtonProps={defaultIconButtonProps}
+            popoverMenu={popoverMenu}
+          />
+        );
+        expect(container.firstChild).toMatchSnapshot();
+      });
+
+      it('renders non-text color with fill=false (has margin, has left border)', () => {
+        const { container } = render(
+          <EuiButtonSplit
+            color="primary"
+            fill={false}
+            buttonProps={defaultButtonProps}
+            iconButtonProps={defaultIconButtonProps}
+            popoverMenu={popoverMenu}
+          />
+        );
+        expect(container.firstChild).toMatchSnapshot();
+      });
+    });
   });
 });

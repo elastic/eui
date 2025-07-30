@@ -75,7 +75,7 @@ export const EuiButtonSplit: FunctionComponent<EuiButtonSplitProps> = ({
         isDisabled={isDisabled}
         css={styles.leftButton}
       />
-      <span css={styles.rightSpan(color ?? 'primary')}>
+      <span css={styles.rightSpan(color ?? 'primary', fill)}>
         <EuiPopover
           button={
             <EuiButtonIcon
@@ -85,7 +85,7 @@ export const EuiButtonSplit: FunctionComponent<EuiButtonSplitProps> = ({
               size={size}
               isDisabled={isDisabled}
               onClick={onButtonClick}
-              css={styles.iconButton(color ?? 'primary')}
+              css={styles.iconButton(color ?? 'primary', fill)}
             />
           }
           isOpen={isPopoverOpen}
