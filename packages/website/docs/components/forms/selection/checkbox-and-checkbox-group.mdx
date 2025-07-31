@@ -1,0 +1,332 @@
+---
+sidebar_position: 6
+keywords: [EuiCheckbox, EuiCheckboxGroup]
+---
+
+# Checkbox and Checkbox group
+
+```mdx-code-block
+import { EuiFlexGrid, EuiCheckboxGroup } from '@elastic/eui';
+```
+
+Checkboxes are ideal for allowing users to select options among a small list of options, or to [switch settings on/off](./switch.mdx). For longer lists of options, consider using [dropdown selection](./overview.mdx) components.
+
+## Checkbox
+
+This component renders a basic HTML `<input type="checkbox">` element. Use checkboxes to allow users to select multiple options from a list.
+
+Use the `checked` prop to handle the checked and unchecked state. You can also use the `indeterminate` prop to set an indeterminate state. This state is commonly used in hierarchical checkboxes to indicate that only some of the checkbox's descendants are checked.
+
+Make sure to pass a `label` to ensure a larger clickable area and ensure that screen readers will read out the label when the user is focused on the input.
+
+```tsx interactive
+import React, { useState } from 'react';
+import { EuiCheckbox, EuiSpacer, useGeneratedHtmlId } from '@elastic/eui';
+
+export default () => {
+  const [checked, setChecked] = useState(false);
+  const [indeterminate, setindeterminate] = useState(true);
+
+  const basicCheckboxId = useGeneratedHtmlId({ prefix: 'basicCheckbox' });
+  const indeterminateCheckboxId = useGeneratedHtmlId({
+    prefix: 'indeterminateCheckbox',
+  });
+  const disabledCheckboxId = useGeneratedHtmlId({ prefix: 'disabledCheckbox' });
+  const compressedCheckboxId = useGeneratedHtmlId({
+    prefix: 'compressedCheckbox',
+  });
+
+  const onChange = (e) => {
+    setChecked(e.target.checked);
+  };
+
+  const onChangeIndeterminate = () => {
+    setindeterminate(!indeterminate);
+  };
+
+  return (
+    <>
+      <EuiCheckbox
+        id={basicCheckboxId}
+        label="I am a checkbox"
+        checked={checked}
+        onChange={(e) => onChange(e)}
+      />
+
+      <EuiSpacer size="m" />
+
+      <EuiCheckbox
+        id={indeterminateCheckboxId}
+        label="I am an indeterminate checkbox"
+        indeterminate={indeterminate}
+        onChange={() => onChangeIndeterminate()}
+      />
+
+      <EuiSpacer size="m" />
+
+      <EuiCheckbox
+        id={disabledCheckboxId}
+        label="I am a disabled checkbox"
+        checked={checked}
+        onChange={(e) => onChange(e)}
+        disabled
+      />
+
+      <EuiSpacer size="m" />
+
+      <EuiCheckbox
+        id={compressedCheckboxId}
+        label="I am a readonly checkbox"
+        checked={checked}
+        onChange={() => {}}
+        readOnly
+      />
+    </>
+  );
+};
+```
+
+## Checkbox group
+
+Use a **EuiCheckboxGroup** when you want to generate a group of checkboxes by passing an array of `options` with an `id` and `label` for each object. Use the `idToSelectedMap` to indicate the IDs of the selected items. For more details on which selection component to use, see the [Component comparison](./overview.mdx).
+
+When the individual labels for each radio do not provide a sufficient description, pass a `legend` to the group.
+
+Use the `compressed` prop to tighten up the spacing between checkbox rows.
+
+```tsx interactive
+import React, { useState } from 'react';
+import { EuiCheckboxGroup, useGeneratedHtmlId } from '@elastic/eui';
+
+export default () => {
+  const checkboxGroupItemId__1 = useGeneratedHtmlId({
+    prefix: 'checkboxGroupItem',
+    suffix: 'first',
+  });
+  const checkboxGroupItemId__2 = useGeneratedHtmlId({
+    prefix: 'checkboxGroupItem',
+    suffix: 'second',
+  });
+  const checkboxGroupItemId__3 = useGeneratedHtmlId({
+    prefix: 'checkboxGroupItem',
+    suffix: 'third',
+  });
+
+  const checkboxes = [
+    {
+      id: checkboxGroupItemId__1,
+      label: 'Option one',
+      'data-test-sub': 'dts_test',
+    },
+    {
+      id: checkboxGroupItemId__2,
+      label: 'Option two is checked by default',
+      className: 'classNameTest',
+    },
+    {
+      id: checkboxGroupItemId__3,
+      label: 'Option three is disabled',
+      disabled: true,
+    },
+  ];
+  const [checkboxIdToSelectedMap, setCheckboxIdToSelectedMap] = useState({
+    [checkboxGroupItemId__2]: true,
+  });
+
+  const onChange = (optionId) => {
+    const newCheckboxIdToSelectedMap = {
+      ...checkboxIdToSelectedMap,
+      ...{
+        [optionId]: !checkboxIdToSelectedMap[optionId],
+      },
+    };
+    setCheckboxIdToSelectedMap(newCheckboxIdToSelectedMap);
+  };
+
+  return (
+    /* DisplayToggles wrapper for Docs only */
+    <DisplayToggles
+      canLoading={false}
+      canReadOnly={false}
+      canInvalid={false}
+      canFullWidth={false}
+    >
+      <EuiCheckboxGroup
+        options={checkboxes}
+        idToSelectedMap={checkboxIdToSelectedMap}
+        onChange={(id) => onChange(id)}
+      />
+    </DisplayToggles>
+  );
+};
+```
+
+## Usage
+
+### Labels
+
+A label should be succinct, short, and descriptive with one to two words. This way users can quickly scan the available options.
+
+<EuiFlexGrid columns={2}>
+  <Guideline type="do" text="Use one to two descriptive words.">
+    <EuiCheckboxGroup
+      options={[
+        { id: 'easy_scan_do_one', label: 'Canceled' },
+        { id: 'easy_scan_do_two', label: 'In progress' },
+        { id: 'easy_scan_do_three', label: 'On hold' },
+        { id: 'easy_scan_do_four', label: 'Resolved' },
+      ]}
+      onChange={() => {}}
+    />
+  </Guideline>
+  <Guideline type="dont" text="Repeat the same words. They make labels difficult to scan.">
+    <EuiCheckboxGroup
+      options={[
+        { id: 'easy_scan_dont_one', label: 'Case is canceled' },
+        { id: 'easy_scan_dont_two', label: 'Case is in progress' },
+        { id: 'easy_scan_dont_three', label: 'Case is on hold' },
+        { id: 'easy_scan_dont_four', label: 'Case is resolved' },
+      ]}
+      onChange={() => {}}
+    />
+  </Guideline>
+</EuiFlexGrid>
+
+Use positive and active wording.
+
+<EuiFlexGrid columns={2}>
+  <Guideline type="do" text="Tell users what happens when the selection control is on.">
+    <EuiCheckboxGroup
+      options={[
+        { id: 'positive_do_one', label: 'Use logs' },
+        { id: 'positive_do_two', label: 'Use metrics' },
+      ]}
+      idSelected="positive_do_one"
+      onChange={() => {}}
+    />
+  </Guideline>
+  <Guideline type="dont" text="Use negatives. They're unnatural and confusing.">
+    <EuiCheckboxGroup
+      options={[
+        { id: 'positive_dont_one', label: 'Do not include logs' },
+        { id: 'positive_dont_two', label: 'Do not include metrics' },
+      ]}
+      idSelected="positive_dont_one"
+      onChange={() => {}}
+    />
+  </Guideline>
+</EuiFlexGrid>
+
+Use sentence case (capitalize the first word).
+
+<EuiFlexGrid columns={2}>
+  <Guideline type="do" text="Sentence case makes titles easier to read.">
+    <EuiCheckboxGroup
+      options={[
+        { id: 'sentence_case_do_one', label: 'Read access' },
+        { id: 'sentence_case_do_two', label: 'Write access' },
+        { id: 'sentence_case_do_three', label: 'Create access' },
+        { id: 'sentence_case_do_four', label: 'Delete access' },
+      ]}
+      idToSelectedMap={{ sentence_case_do_one: true }}
+      onChange={() => {}}
+    />
+  </Guideline>
+  <Guideline type="dont" text="Title case can feel more cluttered.">
+    <EuiCheckboxGroup
+      options={[
+        { id: 'sentence_case_dont_one', label: 'Read Access' },
+        { id: 'sentence_case_dont_two', label: 'Write Access' },
+        { id: 'sentence_case_dont_three', label: 'Create Access' },
+        { id: 'sentence_case_dont_four', label: 'Delete Access' },
+      ]}
+      idToSelectedMap={{ sentence_case_dont_one: true }}
+      onChange={() => {}}
+    />
+  </Guideline>
+</EuiFlexGrid>
+
+Use consistent label structures for options within the same group.
+
+<EuiFlexGrid columns={2}>
+  <Guideline type="do" text="Use sentences only or fragments only.">
+    <EuiCheckboxGroup
+      legend={{ children: 'Data to ship' }}
+      options={[
+        { id: 'group_title_do_one', label: 'Logs' },
+        { id: 'group_title_do_two', label: 'Metric' },
+      ]}
+      idToSelectedMap={{ group_title_do_one: true }}
+      onChange={() => {}}
+    />
+  </Guideline>
+  <Guideline type="dont" text="Mix label structure within the same group of options.">
+    <EuiCheckboxGroup
+      legend={{ children: 'Data to ship' }}
+      options={[
+        { id: 'group_title_dont_one', label: 'Use Logs' },
+        { id: 'group_title_dont_two', label: 'Metric' },
+      ]}
+      idToSelectedMap={{ group_title_dont_one: true }}
+      onChange={() => {}}
+    />
+  </Guideline>
+  <Guideline type="do" text="Start all with a verb, all with a noun, or all with a number.">
+    <EuiCheckboxGroup
+      legend={{ children: 'Availability zones' }}
+      options={[
+        { id: 'consistent_do_one', label: '1 zone' },
+        { id: 'consistent_do_two', label: '2 zones' },
+        { id: 'consistent_do_three', label: '3 zones' },
+      ]}
+      onChange={() => {}}
+    />
+  </Guideline>
+  <Guideline type="dont" text="Use ending punctuation. Exception: Question marks can be used if they add clarity.">
+    <EuiCheckboxGroup
+      legend={{ children: 'Availability zones' }}
+      options={[
+        { id: 'consistent_dont_one', label: 'One zone' },
+        { id: 'consistent_dont_two', label: '2 zones.' },
+        { id: 'consistent_dont_three', label: '3 zones' },
+      ]}
+      onChange={() => {}}
+    />
+  </Guideline>
+</EuiFlexGrid>
+
+### Legends
+
+For groups of options, add a legend that gives meaning to the options. Legends appear like a title.
+
+<EuiFlexGrid columns={2}>
+  <Guideline type="do" text="Use nouns that describe the choices to make.">
+    <EuiCheckboxGroup
+      legend={{ children: 'Data to ship' }}
+      options={[
+        { id: 'group_title_do_one', label: 'Logs' },
+        { id: 'group_title_do_two', label: 'Metrics' },
+      ]}
+      onChange={() => {}}
+      idToSelectedMap={{ group_title_do_one: true }}
+    />
+  </Guideline>
+  <Guideline type="dont" text="Repeat choices or use the title as instructions.">
+    <EuiCheckboxGroup
+      legend={{ children: 'Data to ship' }}
+      options={[
+        { id: 'group_title_dont_one', label: 'Logs' },
+        { id: 'group_title_dont_two', label: 'Metrics' },
+      ]}
+      onChange={() => {}}
+      idToSelectedMap={{ group_title_dont_one: true }}
+    />
+  </Guideline>
+</EuiFlexGrid>
+
+## Props
+
+import docgen from '@elastic/eui-docgen/dist/components/form';
+
+<PropTable definition={docgen.EuiCheckbox} />
+<PropTable definition={docgen.EuiCheckboxGroup} />
