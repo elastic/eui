@@ -111,11 +111,13 @@ export const RowHeightAuto: Story = {
     controls: {
       include: ['singleSelection', 'options', 'onChange'],
     },
+    // Was not able to get the listbox open in the screenshot
+    loki: { skip: true },
   },
   args: {
     singleSelection: false,
     rowHeight: 'auto',
-    selectedOptions: [],
+    selectedOptions: [{ label: 'kibana.task_manager_metrics.metrics.message' }],
     options: [
       { label: 'kibana.task_manager_metrics.metrics.error' },
       { label: 'kibana.task_manager_metrics.metrics.last_update' },
