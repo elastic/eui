@@ -16,7 +16,7 @@ import {
 } from '../../global_styling';
 import { UseEuiTheme } from '../../services';
 import { euiFormMaxWidth } from '../form/form.styles';
-import { composeFlyoutSizing, maxedFlyoutWidth } from './flyout.styles';
+import { composeFlyoutSizing, maxedFlyoutWidth } from './flyout_shared.styles';
 
 export const euiFlyoutChildStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
@@ -72,10 +72,15 @@ export const euiFlyoutChildStyles = (euiThemeContext: UseEuiTheme) => {
       ${composeFlyoutSizing(euiThemeContext, 'm')}
     `,
 
+    fill: css`
+      ${logicalCSS('min-width', '90vw')};
+      ${logicalCSS('width', '90vw')};
+      ${logicalCSS('max-width', '90vw')};
+    `,
+
     fillWithParent: {
       s: css`
         max-inline-size: 90vw;
-        /* FIXME: not for stacked layouts */
         ${logicalCSSWithFallback(
           'width',
           `calc(90vw - max(25vw, ${Math.round(euiTheme.breakpoint.m * 0.5)}px))`
@@ -83,7 +88,6 @@ export const euiFlyoutChildStyles = (euiThemeContext: UseEuiTheme) => {
       `,
       m: css`
         max-inline-size: 90vw;
-        /* FIXME: not for stacked layouts */
         ${logicalCSSWithFallback(
           'width',
           `calc(90vw - max(50vw, ${mathWithUnits(

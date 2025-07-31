@@ -9,18 +9,10 @@
 import { css, keyframes } from '@emotion/react';
 import { euiShadowXLarge } from '@elastic/eui-theme-common';
 
-import { _EuiFlyoutPaddingSize, EuiFlyoutSize } from './flyout';
-import {
-  euiCanAnimate,
-  euiMaxBreakpoint,
-  euiMinBreakpoint,
-  logicalCSS,
-  mathWithUnits,
-} from '../../global_styling';
+import { _EuiFlyoutPaddingSize } from './flyout';
+import { euiCanAnimate, logicalCSS, mathWithUnits } from '../../global_styling';
 import { UseEuiTheme } from '../../services';
-import { euiFormMaxWidth } from '../form/form.styles';
-
-export const FLYOUT_BREAKPOINT = 'm' as const;
+import { composeFlyoutSizing, maxedFlyoutWidth } from './flyout_shared.styles';
 
 export const euiFlyoutSlideInRight = keyframes`
   0% {
@@ -179,61 +171,6 @@ export const euiFlyoutStyles = (euiThemeContext: UseEuiTheme) => {
       `,
     },
   };
-};
-
-export const maxedFlyoutWidth = (euiThemeContext: UseEuiTheme) => `
-  ${euiMaxBreakpoint(euiThemeContext, FLYOUT_BREAKPOINT)} {
-    ${logicalCSS('max-width', '90vw !important')}
-  }
-`;
-
-export const composeFlyoutSizing = (
-  euiThemeContext: UseEuiTheme,
-  size: EuiFlyoutSize | 'fill'
-) => {
-  const euiTheme = euiThemeContext.euiTheme;
-  const formMaxWidth = euiFormMaxWidth(euiThemeContext);
-
-  // 1. Calculating the minimum width based on the screen takeover breakpoint
-  const flyoutSizes = {
-    s: {
-      min: `${Math.round(euiTheme.breakpoint.m * 0.5)}px`, // 1.
-      width: '25vw',
-      max: `${Math.round(euiTheme.breakpoint.s * 0.7)}px`,
-    },
-
-    m: {
-      // Calculated for forms plus padding
-      min: `${mathWithUnits(formMaxWidth, (x) => x + 24)}`,
-      width: '50vw',
-      max: `${euiTheme.breakpoint.m}px`,
-    },
-
-    l: {
-      min: `${Math.round(euiTheme.breakpoint.m * 0.9)}px`, // 1.
-      width: '75vw',
-      max: `${euiTheme.breakpoint.l}px`,
-    },
-
-    fill: {
-      min: '90vw',
-      width: '90vw',
-      max: '90vw',
-    },
-  };
-
-  return `
-    ${logicalCSS('max-width', flyoutSizes[size].max)}
-
-    ${euiMaxBreakpoint(euiThemeContext, FLYOUT_BREAKPOINT)} {
-      ${logicalCSS('min-width', 0)}
-      ${logicalCSS('width', flyoutSizes[size].min)}
-    }
-    ${euiMinBreakpoint(euiThemeContext, FLYOUT_BREAKPOINT)} {
-      ${logicalCSS('min-width', flyoutSizes[size].min)}
-      ${logicalCSS('width', flyoutSizes[size].width)}
-    }
-  `;
 };
 
 const composeFlyoutPadding = (

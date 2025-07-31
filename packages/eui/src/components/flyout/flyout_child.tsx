@@ -239,12 +239,15 @@ export const EuiFlyoutChild: FunctionComponent<EuiFlyoutChildProps> = ({
     backgroundStyle === 'shaded'
       ? styles.backgroundShaded
       : styles.backgroundDefault,
+    maxWidth === false && styles.noMaxWidth,
     (size === 's' || size === 'm') && styles[size],
-    size === 'fill' && styles.fillWithParent[parentSize as 's' | 'm'],
     childLayoutMode === 'side-by-side'
       ? styles.sidePosition
       : styles.stackedPosition,
-    maxWidth === false && styles.noMaxWidth,
+    size === 'fill' &&
+      childLayoutMode === 'side-by-side' &&
+      styles.fillWithParent[parentSize as 's' | 'm'], // fill mode when parent is side-by-side
+    size === 'fill' && childLayoutMode === 'stacked' && styles.fill, // fill mode when parent is stacked under
   ];
 
   const onKeyDown = useCallback(
