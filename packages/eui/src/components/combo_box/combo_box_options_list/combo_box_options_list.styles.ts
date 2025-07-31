@@ -14,7 +14,6 @@ import {
   mathWithUnits,
   euiScrollBarStyles,
   euiTextBreakWord,
-  euiTextTruncate,
 } from '../../../global_styling';
 import { euiTitle } from '../../title/title.styles';
 
@@ -46,7 +45,6 @@ export const euiComboBoxOptionListStyles = (euiThemeContext: UseEuiTheme) => {
       .euiComboBoxOption__content {
         flex: 1;
         text-align: start;
-        ${euiTextTruncate()}
       }
 
       .euiComboBoxOption__emptyStateText {
@@ -71,6 +69,14 @@ export const euiComboBoxOptionListStyles = (euiThemeContext: UseEuiTheme) => {
         )}
         ${logicalCSS('padding-bottom', euiTheme.size.xs)}
         ${euiTitle(euiThemeContext, 'xxxs')}
+      }
+    `,
+
+    hasRowHeightAuto: css`
+      overflow-block: auto;
+
+      .euiComboBoxOption__contentWrapper {
+        align-items: flex-start;
       }
     `,
 
