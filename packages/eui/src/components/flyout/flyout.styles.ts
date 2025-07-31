@@ -64,10 +64,6 @@ export const euiFlyoutStyles = (euiThemeContext: UseEuiTheme) => {
         outline: none;
       }
 
-      &.euiFlyout--hasChild--stacked.euiFlyout--hasChild--fill {
-        ${composeFlyoutSizing(euiThemeContext, 'fill')}
-      }
-
       ${maxedFlyoutWidth(euiThemeContext)}
     `,
 
@@ -79,10 +75,6 @@ export const euiFlyoutStyles = (euiThemeContext: UseEuiTheme) => {
      */
     s: css`
       ${composeFlyoutSizing(euiThemeContext, 's')}
-
-      &.euiFlyout--hasChild--stacked.euiFlyout--hasChild--m {
-        ${composeFlyoutSizing(euiThemeContext, 'm')}
-      }
     `,
     m: css`
       ${composeFlyoutSizing(euiThemeContext, 'm')}

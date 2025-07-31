@@ -55,8 +55,6 @@ export const euiFlyoutChildStyles = (euiThemeContext: UseEuiTheme) => {
       transform: translateX(-100%);
     `,
     stackedPosition: css`
-      inset-inline-end: 0;
-      inline-size: 100%;
     `,
 
     s: css`
