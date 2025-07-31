@@ -54,7 +54,9 @@ export const euiFlyoutChildStyles = (euiThemeContext: UseEuiTheme) => {
     sidePosition: css`
       transform: translateX(-100%);
     `,
+    // FIXME: should be positioned directly over the parent flyout, without changing its width
     stackedPosition: css`
+      transform: translateX(-100%);
     `,
 
     s: css`
