@@ -533,11 +533,8 @@ export class EuiComboBoxOptionsList<T> extends Component<
                     <this.ListRow
                       data={matchingOptions}
                       index={index}
+                      key={index} // same as FixedSizeList's default
                       style={{}}
-                      key={
-                        matchingOptions[index].id ??
-                        matchingOptions[index].label
-                      }
                     />
                   ))}
                 </div>
