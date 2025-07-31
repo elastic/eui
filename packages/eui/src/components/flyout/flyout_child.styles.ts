@@ -60,13 +60,16 @@ export const euiFlyoutChildStyles = (euiThemeContext: UseEuiTheme) => {
       /* FIXME Debug */
       border-block-start: 50px solid magenta;
     `,
+    // FIXME: no hardcoding
+    // FIXME: do these break if parent has maxWidth prop?
     stackedPositionWithParent: {
       s: css`
-        /* FIXME no hardcode */
+        /* FIXME not sure why this works */
         margin-inline-start: 383px;
       `,
       m: css`
-        /* nothing needed? */
+        /* FIXME totally broken */
+        margin-inline-start: 729px;
       `,
     },
 
