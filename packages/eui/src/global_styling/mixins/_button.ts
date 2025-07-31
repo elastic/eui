@@ -394,7 +394,7 @@ export const euiButtonSizeMap = (euiThemeContext: UseEuiTheme) => {
       minWidth: euiTheme.base * (isRefreshVariant ? 6 : 7),
       height: euiTheme.size.l,
       radius: euiTheme.border.radius.small,
-      fontScale: isRefreshVariant ? ('s' as const) : ('xs' as const),
+      fontScale: 'xs' as const,
     },
     s: {
       minWidth: euiTheme.base * (isRefreshVariant ? 6 : 7),
