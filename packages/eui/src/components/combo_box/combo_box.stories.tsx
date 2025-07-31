@@ -20,6 +20,7 @@ import { EuiFlexItem } from '../flex';
 
 import { EuiComboBoxOptionMatcher } from './types';
 import { EuiComboBox, EuiComboBoxProps } from './combo_box';
+import { EuiHighlight } from '../highlight';
 
 const options = [
   { label: 'Item 1' },
@@ -101,6 +102,66 @@ export const WithCustomOptionIds: Story = {
       { id: 'item-9', label: 'Item 9' },
       { id: 'item-10', label: 'Item 10' },
     ],
+  },
+  render: (args) => <StatefulComboBox {...args} />,
+};
+
+export const RowHeightAuto: Story = {
+  parameters: {
+    controls: {
+      include: ['singleSelection', 'options', 'onChange'],
+    },
+  },
+  args: {
+    singleSelection: false,
+    rowHeight: 'auto',
+    selectedOptions: [],
+    options: [
+      { label: 'kibana.task_manager_metrics.metrics.error' },
+      { label: 'kibana.task_manager_metrics.metrics.last_update' },
+      { label: 'kibana.task_manager_metrics.metrics.message' },
+      {
+        label:
+          'kibana.task_manager_metrics.metrics.task_overdue.value.by_type.insolence',
+      },
+      {
+        label:
+          'kibana.task_manager_metrics.metrics.task_overdue.value.by_type.nudge',
+      },
+      {
+        label:
+          'kibana.task_manager_metrics.metrics.task_overdue.value.by_type.advancement',
+      },
+      {
+        label:
+          'kibana.task_manager_metrics.metrics.task_overdue.value.by_type.outlaw',
+      },
+      {
+        label:
+          'kibana.task_manager_metrics.metrics.task_overdue.value.by_type.representation',
+      },
+      {
+        label:
+          'kibana.task_manager_metrics.metrics.task_overdue.value.by_type.tomb',
+      },
+      {
+        label:
+          'kibana.task_manager_metrics.metrics.task_overdue.value.by_type.march',
+      },
+      { label: 'kibana.task_manager_metrics.metrics.task_claim.timestamp' },
+      {
+        label: 'kibana.task_manager_metrics.metrics.task_claim.value.duration',
+      },
+      { label: 'kibana.task_manager_metrics.metrics.task_claim.value.success' },
+      { label: 'kibana.task_manager_metrics.metrics.task_claim.value.total' },
+    ],
+    renderOption: (option, searchValue) => {
+      return (
+        <EuiHighlight search={searchValue} style={{ wordBreak: 'break-word' }}>
+          {option.label}
+        </EuiHighlight>
+      );
+    },
   },
   render: (args) => <StatefulComboBox {...args} />,
 };
