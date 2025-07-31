@@ -159,6 +159,8 @@ declare module '@elastic/eui-theme-borealis/lib/eui_theme_borealis_light.json' {
     euiFontFamily: string;
     euiCodeFontFamily: string;
     euiFontFeatureSettings: string;
+    euiLetterSpacing: string;
+    euiTitleLetterSpacing: string;
     euiTextScale: string;
     euiFontSize: string;
     euiFontSizeXS: string;
