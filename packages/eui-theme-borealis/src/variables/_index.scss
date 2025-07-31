@@ -4,11 +4,12 @@
 // package instead of the common one 
 
 @import 'node_modules/@elastic/eui-theme-common/src/global_styling/variables/size';
+@import 'node_modules/@elastic/eui-theme-common/src/global_styling/variables/responsive';
+@import 'node_modules/@elastic/eui-theme-common/src/global_styling/variables/typography';
+
 // borders are used in the common package, to define them on theme level we require the size variables first
 @import 'borders';
-@import 'node_modules/@elastic/eui-theme-common/src/global_styling/variables/index';
 @import 'states';
-
 @import './colors/colors_severity';
 @import 'form';
 @import 'page';
