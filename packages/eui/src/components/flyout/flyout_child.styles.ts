@@ -39,6 +39,10 @@ export const euiFlyoutChildStyles = (euiThemeContext: UseEuiTheme) => {
       ${maxedFlyoutWidth(euiThemeContext)}
     `,
 
+    noMaxWidth: css`
+      ${logicalCSS('max-width', 'none')}
+    `,
+
     backgroundDefault: css`
       background: ${euiTheme.colors.backgroundBasePlain};
     `,

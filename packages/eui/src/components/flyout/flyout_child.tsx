@@ -18,6 +18,7 @@ import React, {
   useCallback,
 } from 'react';
 import classNames from 'classnames';
+import { logicalStyle } from '../../global_styling';
 import { CommonProps } from '../common';
 import { keys, useEuiMemoizedStyles, useGeneratedHtmlId } from '../../services';
 import { euiFlyoutChildStyles } from './flyout_child.styles';
@@ -35,9 +36,10 @@ export interface EuiFlyoutChildProps
   extends HTMLAttributes<HTMLDivElement>,
     CommonProps {
   /**
-   * Optionally set a maximum width (in pixels or CSS value) for the child when the parent size is 'fill'.
+   * Sets the max-width of the child flyout panel.
+   * See `maxWidth` from EuiFlyoutProps for more details.
    */
-  maxWidth?: number;
+  maxWidth?: boolean | number | string;
 
   /**
    * Called when the child panel's close button is clicked
@@ -92,7 +94,7 @@ export const EuiFlyoutChild: FunctionComponent<EuiFlyoutChildProps> = ({
   onClose,
   scrollableTabIndex = 0,
   size = 's',
-  maxWidth: maxSizeChild,
+  maxWidth = false,
   ...rest
 }) => {
   const flyoutContext = useContext(EuiFlyoutContext);
@@ -220,13 +222,19 @@ export const EuiFlyoutChild: FunctionComponent<EuiFlyoutChildProps> = ({
 
   const styles = useEuiMemoizedStyles(euiFlyoutChildStyles);
 
-  // Build inline style for maxSize
-  const maxWidthStyle: React.CSSProperties = {};
-  if (childLayoutMode !== 'stacked' && typeof maxSizeChild === 'number') {
-    maxWidthStyle.maxWidth = `${maxSizeChild}px`;
-  }
+  /**
+   * Set inline styles
+   */
+  const inlineStyles = useMemo(() => {
+    const maxWidthStyle =
+      typeof maxWidth !== 'boolean' && logicalStyle('max-width', maxWidth);
 
-  const flyoutChildCss = [
+    return {
+      ...maxWidthStyle,
+    };
+  }, [maxWidth]);
+
+  const cssStyles = [
     styles.euiFlyoutChild,
     backgroundStyle === 'shaded'
       ? styles.backgroundShaded
@@ -236,7 +244,7 @@ export const EuiFlyoutChild: FunctionComponent<EuiFlyoutChildProps> = ({
     childLayoutMode === 'side-by-side'
       ? styles.sidePosition
       : styles.stackedPosition,
-    { ...maxWidthStyle },
+    maxWidth === false && styles.noMaxWidth,
   ];
 
   const onKeyDown = useCallback(
@@ -266,7 +274,8 @@ export const EuiFlyoutChild: FunctionComponent<EuiFlyoutChildProps> = ({
       <div
         ref={flyoutWrapperRef}
         className={classes}
-        css={flyoutChildCss}
+        css={cssStyles}
+        style={inlineStyles}
         data-test-subj="euiFlyoutChild"
         role="dialog"
         aria-modal="true"
