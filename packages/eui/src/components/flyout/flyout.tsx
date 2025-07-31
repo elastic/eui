@@ -52,23 +52,13 @@ import { EuiFlyoutMenuContext } from './flyout_menu_context';
 import { EuiFlyoutMenu } from './flyout_menu';
 import { EuiFlyoutChildProvider } from './flyout_child_manager';
 import { usePropsWithComponentDefaults } from '../provider/component_defaults';
+import { EuiFlyoutSize, isEuiFlyoutSizeNamed } from './flyout_shared.styles';
 
 export const TYPES = ['push', 'overlay'] as const;
 type _EuiFlyoutType = (typeof TYPES)[number];
 
 export const SIDES = ['left', 'right'] as const;
 export type _EuiFlyoutSide = (typeof SIDES)[number];
-
-export const SIZES = ['s', 'm', 'l'] as const;
-export type EuiFlyoutSize = (typeof SIZES)[number];
-
-/**
- * Custom type checker for named flyout sizes since the prop
- * `size` can also be CSSProperties['width'] (string | number)
- */
-function isEuiFlyoutSizeNamed(value: any): value is EuiFlyoutSize {
-  return SIZES.includes(value as any);
-}
 
 export const PADDING_SIZES = ['none', 's', 'm', 'l'] as const;
 export type _EuiFlyoutPaddingSize = (typeof PADDING_SIZES)[number];

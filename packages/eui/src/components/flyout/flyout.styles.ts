@@ -9,18 +9,10 @@
 import { css, keyframes } from '@emotion/react';
 import { euiShadowXLarge } from '@elastic/eui-theme-common';
 
-import { _EuiFlyoutPaddingSize, EuiFlyoutSize } from './flyout';
-import {
-  euiCanAnimate,
-  euiMaxBreakpoint,
-  euiMinBreakpoint,
-  logicalCSS,
-  mathWithUnits,
-} from '../../global_styling';
+import { _EuiFlyoutPaddingSize } from './flyout';
+import { euiCanAnimate, logicalCSS, mathWithUnits } from '../../global_styling';
 import { UseEuiTheme } from '../../services';
-import { euiFormMaxWidth } from '../form/form.styles';
-
-export const FLYOUT_BREAKPOINT = 'm' as const;
+import { composeFlyoutSizing, maxedFlyoutWidth } from './flyout_shared.styles';
 
 export const euiFlyoutSlideInRight = keyframes`
   0% {
@@ -67,8 +59,12 @@ export const euiFlyoutStyles = (euiThemeContext: UseEuiTheme) => {
       ${maxedFlyoutWidth(euiThemeContext)}
     `,
 
-    // Flyout sizes
-    // When a child flyout is stacked on top of the parent, the parent flyout size will match the child flyout size
+    /**
+     * Flyout sizes
+     *
+     * When a child flyout is stacked on top of the parent/main, the main flyout size updates to fill the space required by the child.
+     * FIXME: this pattern causes a child flyout to "push" the page content in a stacked layout where they otherwise shouldn't. Child flyouts should always overlay.
+     */
     s: css`
       ${composeFlyoutSizing(euiThemeContext, 's')}
 
@@ -80,6 +76,7 @@ export const euiFlyoutStyles = (euiThemeContext: UseEuiTheme) => {
       ${composeFlyoutSizing(euiThemeContext, 'm')}
 
       &.euiFlyout--hasChild--stacked.euiFlyout--hasChild--s {
+        /* when a size "s" child flyout is stacked on top of a size "m" parent, the parent flyout size is lowered to match the child. */
         ${composeFlyoutSizing(euiThemeContext, 's')}
       }
     `,
@@ -173,55 +170,6 @@ export const euiFlyoutStyles = (euiThemeContext: UseEuiTheme) => {
       `,
     },
   };
-};
-
-export const maxedFlyoutWidth = (euiThemeContext: UseEuiTheme) => `
-  ${euiMaxBreakpoint(euiThemeContext, FLYOUT_BREAKPOINT)} {
-    ${logicalCSS('max-width', '90vw !important')}
-  }
-`;
-
-export const composeFlyoutSizing = (
-  euiThemeContext: UseEuiTheme,
-  size: EuiFlyoutSize
-) => {
-  const euiTheme = euiThemeContext.euiTheme;
-  const formMaxWidth = euiFormMaxWidth(euiThemeContext);
-
-  // 1. Calculating the minimum width based on the screen takeover breakpoint
-  const flyoutSizes = {
-    s: {
-      min: `${Math.round(euiTheme.breakpoint.m * 0.5)}px`, // 1.
-      width: '25vw',
-      max: `${Math.round(euiTheme.breakpoint.s * 0.7)}px`,
-    },
-
-    m: {
-      // Calculated for forms plus padding
-      min: `${mathWithUnits(formMaxWidth, (x) => x + 24)}`,
-      width: '50vw',
-      max: `${euiTheme.breakpoint.m}px`,
-    },
-
-    l: {
-      min: `${Math.round(euiTheme.breakpoint.m * 0.9)}px`, // 1.
-      width: '75vw',
-      max: `${euiTheme.breakpoint.l}px`,
-    },
-  };
-
-  return `
-    ${logicalCSS('max-width', flyoutSizes[size].max)}
-
-    ${euiMaxBreakpoint(euiThemeContext, FLYOUT_BREAKPOINT)} {
-      ${logicalCSS('min-width', 0)}
-      ${logicalCSS('width', flyoutSizes[size].min)}
-    }
-    ${euiMinBreakpoint(euiThemeContext, FLYOUT_BREAKPOINT)} {
-      ${logicalCSS('min-width', flyoutSizes[size].min)}
-      ${logicalCSS('width', flyoutSizes[size].width)}
-    }
-  `;
 };
 
 const composeFlyoutPadding = (

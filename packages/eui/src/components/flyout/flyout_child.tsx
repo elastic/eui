@@ -18,6 +18,7 @@ import React, {
   useCallback,
 } from 'react';
 import classNames from 'classnames';
+import { logicalStyle } from '../../global_styling';
 import { CommonProps } from '../common';
 import { keys, useEuiMemoizedStyles, useGeneratedHtmlId } from '../../services';
 import { euiFlyoutChildStyles } from './flyout_child.styles';
@@ -27,6 +28,7 @@ import { EuiFlyoutBody } from './flyout_body';
 import { EuiFlyoutMenu } from './flyout_menu';
 import { EuiFlyoutMenuContext } from './flyout_menu_context';
 import { EuiFocusTrap } from '../focus_trap';
+import { isEuiFlyoutSizeNamed } from './flyout_shared.styles';
 
 /**
  * Props used to render and configure the child flyout panel
@@ -34,6 +36,12 @@ import { EuiFocusTrap } from '../focus_trap';
 export interface EuiFlyoutChildProps
   extends HTMLAttributes<HTMLDivElement>,
     CommonProps {
+  /**
+   * Sets the max-width of the child flyout panel.
+   * See `maxWidth` from EuiFlyoutProps for more details.
+   */
+  maxWidth?: boolean | number | string;
+
   /**
    * Called when the child panel's close button is clicked
    */
@@ -86,6 +94,7 @@ export const EuiFlyoutChild: FunctionComponent<EuiFlyoutChildProps> = ({
   onClose,
   scrollableTabIndex = 0,
   size = 's',
+  maxWidth = false,
   ...rest
 }) => {
   const flyoutContext = useContext(EuiFlyoutContext);
@@ -94,7 +103,13 @@ export const EuiFlyoutChild: FunctionComponent<EuiFlyoutChildProps> = ({
     throw new Error('EuiFlyoutChild must be used as a child of EuiFlyout.');
   }
 
-  const { isChildFlyoutOpen, setIsChildFlyoutOpen, parentSize } = flyoutContext;
+  const {
+    isChildFlyoutOpen,
+    setIsChildFlyoutOpen,
+    parentSize,
+    childLayoutMode,
+    parentFlyoutRef,
+  } = flyoutContext;
 
   useEffect(() => {
     setIsChildFlyoutOpen?.(true);
@@ -207,14 +222,28 @@ export const EuiFlyoutChild: FunctionComponent<EuiFlyoutChildProps> = ({
 
   const styles = useEuiMemoizedStyles(euiFlyoutChildStyles);
 
-  const { childLayoutMode, parentFlyoutRef } = flyoutContext;
+  /**
+   * Set inline styles
+   */
+  const inlineStyles = useMemo(() => {
+    const widthStyle =
+      !isEuiFlyoutSizeNamed(size) && logicalStyle('width', size);
+    const maxWidthStyle =
+      typeof maxWidth !== 'boolean' && logicalStyle('max-width', maxWidth);
 
-  const flyoutChildCss = [
+    return {
+      ...widthStyle,
+      ...maxWidthStyle,
+    };
+  }, [maxWidth, size]);
+
+  const cssStyles = [
     styles.euiFlyoutChild,
     backgroundStyle === 'shaded'
       ? styles.backgroundShaded
       : styles.backgroundDefault,
-    size === 's' ? styles.s : styles.m,
+    maxWidth === false && styles.noMaxWidth,
+    (size === 's' || size === 'm') && styles[size],
     childLayoutMode === 'side-by-side'
       ? styles.sidePosition
       : styles.stackedPosition,
@@ -247,7 +276,8 @@ export const EuiFlyoutChild: FunctionComponent<EuiFlyoutChildProps> = ({
       <div
         ref={flyoutWrapperRef}
         className={classes}
-        css={flyoutChildCss}
+        css={cssStyles}
+        style={inlineStyles}
         data-test-subj="euiFlyoutChild"
         role="dialog"
         aria-modal="true"
