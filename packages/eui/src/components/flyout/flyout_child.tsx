@@ -18,6 +18,7 @@ import React, {
   useCallback,
 } from 'react';
 import classNames from 'classnames';
+import { logicalStyle } from '../../global_styling';
 import { CommonProps } from '../common';
 import { keys, useEuiMemoizedStyles, useGeneratedHtmlId } from '../../services';
 import { euiFlyoutChildStyles } from './flyout_child.styles';
@@ -34,6 +35,12 @@ import { EuiFocusTrap } from '../focus_trap';
 export interface EuiFlyoutChildProps
   extends HTMLAttributes<HTMLDivElement>,
     CommonProps {
+  /**
+   * Sets the max-width of the child flyout panel.
+   * See `maxWidth` from EuiFlyoutProps for more details.
+   */
+  maxWidth?: boolean | number | string;
+
   /**
    * Called when the child panel's close button is clicked
    */
@@ -60,9 +67,10 @@ export interface EuiFlyoutChildProps
   /**
    * Size of the child flyout panel.
    * When the parent flyout is 'm', child is limited to 's'.
+   * 'fill' will take up the remaining space up to the max (90vw - parent size).
    * @default 's'
    */
-  size?: 's' | 'm';
+  size?: 's' | 'm' | 'fill';
   /*
    * The background of the child flyout can be optionally shaded. Use `shaded` to add the shading.
    */
@@ -86,6 +94,7 @@ export const EuiFlyoutChild: FunctionComponent<EuiFlyoutChildProps> = ({
   onClose,
   scrollableTabIndex = 0,
   size = 's',
+  maxWidth = false,
   ...rest
 }) => {
   const flyoutContext = useContext(EuiFlyoutContext);
@@ -94,7 +103,13 @@ export const EuiFlyoutChild: FunctionComponent<EuiFlyoutChildProps> = ({
     throw new Error('EuiFlyoutChild must be used as a child of EuiFlyout.');
   }
 
-  const { isChildFlyoutOpen, setIsChildFlyoutOpen, parentSize } = flyoutContext;
+  const {
+    isChildFlyoutOpen,
+    setIsChildFlyoutOpen,
+    parentSize,
+    childLayoutMode,
+    parentFlyoutRef,
+  } = flyoutContext;
 
   useEffect(() => {
     setIsChildFlyoutOpen?.(true);
@@ -109,7 +124,7 @@ export const EuiFlyoutChild: FunctionComponent<EuiFlyoutChildProps> = ({
 
   if (parentSize === 'm' && size === 'm') {
     throw new Error(
-      'When the parent EuiFlyout size is "m", the EuiFlyoutChild size cannot be "m". Please use size "s" for the EuiFlyoutChild.'
+      'When the parent EuiFlyout size is "m", the EuiFlyoutChild size cannot be "m". Please use size "s" or "fill" for the EuiFlyoutChild.'
     );
   }
 
@@ -207,17 +222,34 @@ export const EuiFlyoutChild: FunctionComponent<EuiFlyoutChildProps> = ({
 
   const styles = useEuiMemoizedStyles(euiFlyoutChildStyles);
 
-  const { childLayoutMode, parentFlyoutRef } = flyoutContext;
+  /**
+   * Set inline styles
+   */
+  const inlineStyles = useMemo(() => {
+    const maxWidthStyle =
+      typeof maxWidth !== 'boolean' && logicalStyle('max-width', maxWidth);
 
-  const flyoutChildCss = [
+    return {
+      ...maxWidthStyle,
+    };
+  }, [maxWidth]);
+
+  const cssStyles = [
     styles.euiFlyoutChild,
     backgroundStyle === 'shaded'
       ? styles.backgroundShaded
       : styles.backgroundDefault,
-    size === 's' ? styles.s : styles.m,
+    maxWidth === false && styles.noMaxWidth,
+    (size === 's' || size === 'm') && styles[size],
     childLayoutMode === 'side-by-side'
       ? styles.sidePosition
       : styles.stackedPosition,
+    childLayoutMode === 'stacked' &&
+      styles.stackedPositionWithParent[parentSize as 's' | 'm'],
+    size === 'fill' &&
+      childLayoutMode === 'side-by-side' &&
+      styles.fillWithParent[parentSize as 's' | 'm'], // fill mode when parent is side-by-side
+    size === 'fill' && childLayoutMode === 'stacked' && styles.fill, // fill mode when parent is stacked under
   ];
 
   const onKeyDown = useCallback(
@@ -247,7 +279,8 @@ export const EuiFlyoutChild: FunctionComponent<EuiFlyoutChildProps> = ({
       <div
         ref={flyoutWrapperRef}
         className={classes}
-        css={flyoutChildCss}
+        css={cssStyles}
+        style={inlineStyles}
         data-test-subj="euiFlyoutChild"
         role="dialog"
         aria-modal="true"
@@ -279,7 +312,7 @@ export const EuiFlyoutChild: FunctionComponent<EuiFlyoutChildProps> = ({
         <div
           tabIndex={scrollableTabIndex}
           className="euiFlyoutChild__overflow"
-          css={styles.overflow.overflow}
+          css={styles.overflow.base}
         >
           {banner && (
             <div

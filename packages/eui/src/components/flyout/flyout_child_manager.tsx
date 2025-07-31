@@ -20,7 +20,7 @@ import { EuiFlyoutContext, EuiFlyoutContextValue } from './flyout_context';
 import { EuiFlyoutChild } from './flyout_child';
 
 interface EuiFlyoutChildProviderProps {
-  parentSize: 's' | 'm';
+  parentSize: 's' | 'm' | 'fill';
   parentFlyoutRef: React.RefObject<HTMLDivElement>;
   childElement: React.ReactElement<ComponentProps<typeof EuiFlyoutChild>>;
   childrenToRender: ReactNode;
@@ -84,7 +84,8 @@ export const EuiFlyoutChildProvider: FunctionComponent<
 
     let childNumericValue = 0;
     if (childSizeName === 's') childNumericValue = euiTheme.breakpoint.s;
-    else if (childSizeName === 'm') childNumericValue = euiTheme.breakpoint.m;
+    else if (childSizeName === 'm' || childSizeName === 'fill')
+      childNumericValue = euiTheme.breakpoint.m;
 
     return parentNumericValue + childNumericValue;
   }, [parentSize, childElement.props.size, euiTheme.breakpoint]);

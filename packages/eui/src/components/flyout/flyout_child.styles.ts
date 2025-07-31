@@ -7,17 +7,20 @@
  */
 
 import { css } from '@emotion/react';
-import { UseEuiTheme } from '../../services';
 import {
+  euiYScroll,
+  highContrastModeStyles,
   logicalCSS,
   logicalCSSWithFallback,
-  highContrastModeStyles,
-  euiYScroll,
+  mathWithUnits,
 } from '../../global_styling';
-import { composeFlyoutSizing, maxedFlyoutWidth } from './flyout.styles';
+import { UseEuiTheme } from '../../services';
+import { euiFormMaxWidth } from '../form/form.styles';
+import { composeFlyoutSizing, maxedFlyoutWidth } from './flyout_shared.styles';
 
 export const euiFlyoutChildStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
+  const formMaxWidth = euiFormMaxWidth(euiThemeContext);
   return {
     // Base styles for the child flyout
     euiFlyoutChild: css`
@@ -31,8 +34,13 @@ export const euiFlyoutChildStyles = (euiThemeContext: UseEuiTheme) => {
       ${logicalCSS('height', '100%')}
       z-index: ${Number(euiTheme.levels.flyout) + 1};
       border-inline-start: ${euiTheme.border.thin};
+      border-inline-end: ${euiTheme.border.thin};
 
       ${maxedFlyoutWidth(euiThemeContext)}
+    `,
+
+    noMaxWidth: css`
+      ${logicalCSS('max-width', 'none')}
     `,
 
     backgroundDefault: css`
@@ -45,13 +53,23 @@ export const euiFlyoutChildStyles = (euiThemeContext: UseEuiTheme) => {
     // Position variants based on screen size
     sidePosition: css`
       transform: translateX(-100%);
-      border-inline-end: ${euiTheme.border.thin};
     `,
     stackedPosition: css`
-      inset-inline-end: 0;
-      inline-size: 100%;
-      border-block-end: ${euiTheme.border.thin};
+      /* FIXME not sure why this is needed for stacked layout */
+      transform: translateX(-100%);
     `,
+    // FIXME: no hardcoding
+    // FIXME: do these break if parent has maxWidth prop?
+    stackedPositionWithParent: {
+      s: css`
+        /* FIXME not sure why this works */
+        margin-inline-start: 383px;
+      `,
+      m: css`
+        /* FIXME totally broken */
+        margin-inline-start: 729px;
+      `,
+    },
 
     s: css`
       ${composeFlyoutSizing(euiThemeContext, 's')}
@@ -61,8 +79,34 @@ export const euiFlyoutChildStyles = (euiThemeContext: UseEuiTheme) => {
       ${composeFlyoutSizing(euiThemeContext, 'm')}
     `,
 
+    fill: css`
+      ${logicalCSS('min-width', '90vw')};
+      ${logicalCSS('width', '90vw')};
+      ${logicalCSS('max-width', '90vw')};
+    `,
+
+    fillWithParent: {
+      s: css`
+        max-inline-size: 90vw;
+        ${logicalCSSWithFallback(
+          'width',
+          `calc(90vw - max(25vw, ${Math.round(euiTheme.breakpoint.m * 0.5)}px))`
+        )};
+      `,
+      m: css`
+        max-inline-size: 90vw;
+        ${logicalCSSWithFallback(
+          'width',
+          `calc(90vw - max(50vw, ${mathWithUnits(
+            formMaxWidth,
+            (x) => x + 24
+          )}))`
+        )};
+      `,
+    },
+
     overflow: {
-      overflow: css`
+      base: css`
         flex-grow: 1;
         display: flex;
         flex-direction: column;
