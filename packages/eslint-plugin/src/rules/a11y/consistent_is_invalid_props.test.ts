@@ -48,6 +48,18 @@ ruleTester.run('consistent-is-invalid-props', ConsistentIsInvalidProps, {
     {
       code: dedent`
         const MyComponent = () => (
+          <EuiFormRow isInvalid={
+            true &&
+            Boolean(Date.now())}>
+            <EuiFieldText isInvalid={true && Boolean(Date.now())} />
+          </EuiFormRow>
+        )
+      `,
+      languageOptions,
+    },
+    {
+      code: dedent`
+        const MyComponent = () => (
           <EuiFormRow isInvalid={true && Boolean(Date.now())}>
             <EuiFieldText isInvalid={true && Boolean(Date.now())} />
           </EuiFormRow>
