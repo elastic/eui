@@ -56,11 +56,6 @@ export const euiFlyoutStyles = (euiThemeContext: UseEuiTheme) => {
         outline: none;
       }
 
-      /* FIXME Debug */
-      &.euiFlyout--hasChild--stacked {
-        border-block-start: 50px solid cyan;
-      }
-
       ${maxedFlyoutWidth(euiThemeContext)}
     `,
 

@@ -57,8 +57,6 @@ export const euiFlyoutChildStyles = (euiThemeContext: UseEuiTheme) => {
     stackedPosition: css`
       /* FIXME not sure why this is needed for stacked layout */
       transform: translateX(-100%);
-      /* FIXME Debug */
-      border-block-start: 50px solid magenta;
     `,
     // FIXME: no hardcoding
     // FIXME: do these break if parent has maxWidth prop?
