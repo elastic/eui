@@ -56,7 +56,12 @@ export const euiFlyoutChildStyles = (euiThemeContext: UseEuiTheme) => {
     `,
     // FIXME: should be positioned directly over the parent flyout, without changing its width
     stackedPosition: css`
+      /* FIXME is this needed? */
       transform: translateX(-100%);
+      /* FIXME */
+      margin-inline-start: 383px;
+      /* FIXME Debug */
+      border-block-start: 50px solid magenta;
     `,
 
     s: css`
@@ -70,6 +75,7 @@ export const euiFlyoutChildStyles = (euiThemeContext: UseEuiTheme) => {
     fillWithParent: {
       s: css`
         max-inline-size: 90vw;
+        /* FIXME: not for stacked layouts */
         ${logicalCSSWithFallback(
           'width',
           `calc(90vw - max(25vw, ${Math.round(euiTheme.breakpoint.m * 0.5)}px))`
@@ -77,6 +83,7 @@ export const euiFlyoutChildStyles = (euiThemeContext: UseEuiTheme) => {
       `,
       m: css`
         max-inline-size: 90vw;
+        /* FIXME: not for stacked layouts */
         ${logicalCSSWithFallback(
           'width',
           `calc(90vw - max(50vw, ${mathWithUnits(

@@ -85,6 +85,7 @@ export const euiFlyoutStyles = (euiThemeContext: UseEuiTheme) => {
       ${composeFlyoutSizing(euiThemeContext, 'm')}
 
       &.euiFlyout--hasChild--stacked.euiFlyout--hasChild--s {
+        /* when a size "s" child flyout is stacked on top of a size "m" parent, the parent flyout size is lowered to match the child. */
         ${composeFlyoutSizing(euiThemeContext, 's')}
       }
     `,
