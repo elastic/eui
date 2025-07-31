@@ -78,6 +78,8 @@ export const euiComboBoxOptionListStyles = (euiThemeContext: UseEuiTheme) => {
       .euiComboBoxOption__contentWrapper {
         align-items: flex-start;
       }
+
+      ${euiScrollBarStyles(euiThemeContext)}
     `,
 
     euiComboBoxOptionList__virtualization: css`
