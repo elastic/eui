@@ -244,6 +244,8 @@ export const EuiFlyoutChild: FunctionComponent<EuiFlyoutChildProps> = ({
     childLayoutMode === 'side-by-side'
       ? styles.sidePosition
       : styles.stackedPosition,
+    childLayoutMode === 'stacked' &&
+      styles.stackedPositionWithParent[parentSize as 's' | 'm'],
     size === 'fill' &&
       childLayoutMode === 'side-by-side' &&
       styles.fillWithParent[parentSize as 's' | 'm'], // fill mode when parent is side-by-side

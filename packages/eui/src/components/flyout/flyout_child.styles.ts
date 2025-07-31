@@ -54,15 +54,21 @@ export const euiFlyoutChildStyles = (euiThemeContext: UseEuiTheme) => {
     sidePosition: css`
       transform: translateX(-100%);
     `,
-    // FIXME: should be positioned directly over the parent flyout, without changing its width
     stackedPosition: css`
-      /* FIXME is this needed? */
+      /* FIXME not sure why this is needed for stacked layout */
       transform: translateX(-100%);
-      /* FIXME */
-      margin-inline-start: 383px;
       /* FIXME Debug */
       border-block-start: 50px solid magenta;
     `,
+    stackedPositionWithParent: {
+      s: css`
+        /* FIXME no hardcode */
+        margin-inline-start: 383px;
+      `,
+      m: css`
+        /* nothing needed? */
+      `,
+    },
 
     s: css`
       ${composeFlyoutSizing(euiThemeContext, 's')}
