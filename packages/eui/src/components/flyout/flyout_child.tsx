@@ -242,8 +242,8 @@ export const EuiFlyoutChild: FunctionComponent<EuiFlyoutChildProps> = ({
     backgroundStyle === 'shaded'
       ? styles.backgroundShaded
       : styles.backgroundDefault,
-    maxWidth === false && styles.noMaxWidth,
-    (size === 's' || size === 'm') && styles[size],
+    isEuiFlyoutSizeNamed(size) && styles[size],
+    maxWidth === false && styles.noMaxWidth, // This must come after styles[size],
     childLayoutMode === 'side-by-side'
       ? styles.sidePosition
       : styles.stackedPosition,

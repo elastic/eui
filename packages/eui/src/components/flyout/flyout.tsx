@@ -359,7 +359,7 @@ export const EuiFlyout = forwardRef(
       styles.euiFlyout,
       styles.paddingSizes[paddingSize],
       isEuiFlyoutSizeNamed(size) && styles[size],
-      maxWidth === false && styles.noMaxWidth,
+      maxWidth === false && styles.noMaxWidth, // This must come after styles[size],
       isPushed ? styles.push.push : styles.overlay.overlay,
       isPushed ? styles.push[side] : styles.overlay[side],
       isPushed && !pushAnimation && styles.push.noAnimation,
