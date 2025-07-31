@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EuiLiveAnnouncer renders screen reader content when active 1`] = `
+<div
+  aria-atomic="true"
+  aria-live="polite"
+  class="emotion-euiScreenReaderOnly"
+  role="status"
+>
+  You have new notifications.
+</div>
+`;
