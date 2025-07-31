@@ -65,16 +65,18 @@ export const euiFlyoutStyles = (euiThemeContext: UseEuiTheme) => {
       }
 
       &.euiFlyout--hasChild--stacked.euiFlyout--hasChild--fill {
-        min-inline-size: 90vw;
-        inline-size: 90vw;
-        max-inline-size: 90vw;
+        ${composeFlyoutSizing(euiThemeContext, 'fill')}
       }
 
       ${maxedFlyoutWidth(euiThemeContext)}
     `,
 
-    // Flyout sizes
-    // When a child flyout is stacked on top of the parent, the parent flyout size will match the child flyout size
+    /**
+     * Flyout sizes
+     *
+     * When a child flyout is stacked on top of the parent, the parent flyout size updates to fill the space required by the child.
+     * FIXME: make sure that effect does not cause a child flyout to "push" the page content. Child flyouts should always overlay.
+     */
     s: css`
       ${composeFlyoutSizing(euiThemeContext, 's')}
 
@@ -189,7 +191,7 @@ export const maxedFlyoutWidth = (euiThemeContext: UseEuiTheme) => `
 
 export const composeFlyoutSizing = (
   euiThemeContext: UseEuiTheme,
-  size: EuiFlyoutSize
+  size: EuiFlyoutSize | 'fill'
 ) => {
   const euiTheme = euiThemeContext.euiTheme;
   const formMaxWidth = euiFormMaxWidth(euiThemeContext);
@@ -213,6 +215,12 @@ export const composeFlyoutSizing = (
       min: `${Math.round(euiTheme.breakpoint.m * 0.9)}px`, // 1.
       width: '75vw',
       max: `${euiTheme.breakpoint.l}px`,
+    },
+
+    fill: {
+      min: '90vw',
+      width: '90vw',
+      max: '90vw',
     },
   };
 
