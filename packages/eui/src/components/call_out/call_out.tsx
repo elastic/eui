@@ -180,7 +180,7 @@ export const EuiCallOut = forwardRef<HTMLDivElement, EuiCallOutProps>(
           )
         }
         {announceOnMount && (title || children) && (
-          <EuiLiveAnnouncer clearAfterMs={2000}>
+          <EuiLiveAnnouncer>
             {title && `${title}, `}
             {children}
           </EuiLiveAnnouncer>
