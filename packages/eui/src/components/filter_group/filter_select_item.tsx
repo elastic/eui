@@ -91,6 +91,14 @@ export class EuiFilterSelectItemClass extends Component<
     return this.state.hasFocus;
   };
 
+  componentDidUpdate(
+    prevProps: Readonly<WithEuiThemeProps<{}> & EuiFilterSelectItemProps>
+  ) {
+    if (this.props.isFocused && !prevProps.isFocused) {
+      this.buttonRef?.scrollIntoView?.({ block: 'nearest' });
+    }
+  }
+
   render() {
     const {
       theme,
