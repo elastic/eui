@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React from 'react';
+import React, { ElementType } from 'react';
 import {
   EuiFlyoutComponent,
   type EuiFlyoutComponentProps,
@@ -21,9 +21,10 @@ import {
 export type { EuiFlyoutSize } from './flyout.component';
 export { SIDES, PADDING_SIZES, SIZES, TYPES } from './flyout.component';
 
-export interface EuiFlyoutProps extends EuiFlyoutComponentProps {
+export type EuiFlyoutProps<T extends ElementType = 'div' | 'nav'> = Omit<EuiFlyoutComponentProps<T>, 'as'> & {
   session?: boolean;
-}
+  as?: T;
+};
 
 export const EuiFlyout = ({ session, ...props }: EuiFlyoutProps) => {
   const hasActiveSession = useIsSessionActive();
@@ -31,12 +32,12 @@ export const EuiFlyout = ({ session, ...props }: EuiFlyoutProps) => {
 
   // If session={true}, or there is an active session and the flyout is not a child of a session, render EuiMainFlyout.
   if (session === true || (hasActiveSession && !isInManagedFlyoutContext)) {
-    return <EuiFlyoutMain {...props} />;
+    return <EuiFlyoutMain {...(props as any)} as={props.as as 'div'} />;
   }
 
   // Else if this flyout is a child of a session AND within a managed flyout context, render EuiChildFlyout.
   if (hasActiveSession && isInManagedFlyoutContext) {
-    return <EuiFlyoutChild {...props} />;
+    return <EuiFlyoutChild {...(props as any)} as={props.as as 'div'} />;
   }
 
   // TODO: if resizeable={true}, render EuiResizableFlyout.
