@@ -130,10 +130,6 @@ describe('euiFormControlStyles', () => {
             color: #798EAF;
             opacity: 1;
            }
-        &:-ms-input-placeholder { 
-            color: #798EAF;
-            opacity: 1;
-           }
         &:-moz-placeholder { 
             color: #798EAF;
             opacity: 1;
@@ -174,7 +170,7 @@ describe('euiFormControlStyles', () => {
             --euiFormControlStateColor: #C61E25;
             --euiFormControlStateHoverColor: #DA3737;
             --euiFormControlStateWidth: 1px;
-            
+
             
         position: relative;
         z-index: 1;
@@ -218,10 +214,6 @@ describe('euiFormControlStyles', () => {
             opacity: 1;
            }
         &::-moz-placeholder { 
-            color: #798EAF;
-            opacity: 1;
-           }
-        &:-ms-input-placeholder { 
             color: #798EAF;
             opacity: 1;
            }

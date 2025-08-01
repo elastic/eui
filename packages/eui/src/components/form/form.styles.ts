@@ -390,7 +390,7 @@ export const euiFormControlInvalidStyles = (euiThemeContext: UseEuiTheme) => {
           ? euiTheme.border.width.thick
           : euiTheme.border.width.thin
       };
-      
+
       ${euiFormControlHighlightBorderStyles}
       ${euiFormControlShowBackgroundLine(euiThemeContext, invalidColor)}
     `
@@ -578,7 +578,6 @@ export const euiFormControlShowBackgroundLine = (
 const euiPlaceholderPerBrowser = (content: string) => `
   &::-webkit-input-placeholder { ${content} }
   &::-moz-placeholder { ${content} }
-  &:-ms-input-placeholder { ${content} }
   &:-moz-placeholder { ${content} }
   &::placeholder { ${content} }
 `;

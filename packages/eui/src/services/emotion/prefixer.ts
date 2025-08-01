@@ -42,53 +42,145 @@ export const euiStylisPrefixer = (element: Element) => {
 
 const prefix = (value: Element['value'], length: Element['length']): string => {
   switch (hash(value, length)) {
-    /**
+    /************************************************************
      * `-webkit` prefixes
+     ************************************************************/
+
+    /**
+     * user-select
+     * Safari needs the -webkit prefix as of August 2025
+     * @see https://caniuse.com/mdn-css_properties_user-select
      */
-    // user-select - https://caniuse.com/mdn-css_properties_user-select - needed by Safari
     case 4246:
-    // text-decoration - https://caniuse.com/text-decoration - iOS Safari is the main one that needs this
+
+    /**
+     * text-decoration
+     * iOS Safari needs the -webkit prefix as of August 2025
+     * @see https://caniuse.com/text-decoration
+     */
     case 5572:
-    // text-size-adjust - https://caniuse.com/text-size-adjust - iOS Safari
+
+    /**
+     * text-size-adjust
+     * iOS Safari needs the -webkit prefix as of August 2025
+     * @see https://caniuse.com/text-size-adjust
+     */
     case 2756:
-    // box-decoration-break - https://caniuse.com/css-boxdecorationbreak - Chrome & Safari
+
+    /**
+     * box-decoration-break
+     * Safari needs the -webkit prefix as of August 2025
+     * @see https://caniuse.com/css-boxdecorationbreak
+     */
     case 3005:
-    // mask, mask-image, mask-(mode|clip|size), mask-(repeat|origin), mask-position, mask-composite - Chrome
+
+    /**
+     * mask, mask-image, mask-(mode|clip|size), mask-(repeat|origin), mask-position, mask-composite
+     * @see https://caniuse.com/css-masks
+     * TODO: Remove as this is natively supported since November 2023
+     */
     case 6391:
     case 5879:
     case 5623:
     case 6135:
     case 4599:
     case 4855:
-    // print-color-adjust - https://caniuse.com/css-color-adjust - Chrome
+
+    /**
+     * print-color-adjust
+     * Chromium-based browsers need the -webkit prefix as of August 2025
+     * @see https://caniuse.com/css-color-adjust
+     */
     case 2282:
       return WEBKIT + value + value;
 
-    // background-clip - https://caniuse.com/background-clip-text - Chrome, only for `text` value
+    /**
+     * background-clip
+     * @see https://caniuse.com/background-clip-text
+     * TODO: Remove as this is natively supported since November 2023
+     */
     case 4215:
       if (~indexof(value, 'text')) {
         return WEBKIT + value + value;
       }
 
-    /**
+    /************************************************************
      * Intrinsic/extrinsic sizing value prefixes
-     * `stretch` alternatives needed by Chrome & Firefox - https://caniuse.com/intrinsic-width
+     ************************************************************/
+
+    /**
+     * width
+     * @see https://caniuse.com/intrinsic-width
      */
-    // (min|max)?(width|height|inline-size|block-size)
     case 8116:
+
+    /**
+     * height
+     * @see https://caniuse.com/intrinsic-width
+     */
     case 7059:
+
+    /**
+     * inline-size
+     * @see https://caniuse.com/intrinsic-width
+     */
     case 5753:
+
+    /**
+     * block-size
+     * @see https://caniuse.com/intrinsic-width
+     */
     case 5535:
+
+    /**
+     * min-width
+     * @see https://caniuse.com/intrinsic-width
+     */
     case 5445:
+
+    /**
+     * min-height
+     * @see https://caniuse.com/intrinsic-width
+     */
     case 5701:
+
+    /**
+     * min-inline-size
+     * @see https://caniuse.com/intrinsic-width
+     */
     case 4933:
+
+    /**
+     * min-block-size
+     * @see https://caniuse.com/intrinsic-width
+     */
     case 4677:
+
+    /**
+     * max-width
+     * @see https://caniuse.com/intrinsic-width
+     */
     case 5533:
+
+    /**
+     * max-height
+     * @see https://caniuse.com/intrinsic-width
+     */
     case 5789:
+
+    /**
+     * max-inline-size
+     * @see https://caniuse.com/intrinsic-width
+     */
     case 5021:
+
+    /**
+     * max-block-size
+     * @see https://caniuse.com/intrinsic-width
+     */
     case 4765:
       // stretch, max-content, min-content, fill-available
-      if (strlen(value) - 1 - length > 6)
+      if (strlen(value) - 1 - length > 6) {
         switch (charat(value, length + 1)) {
           // (f)ill-available
           case 102:
@@ -113,6 +205,7 @@ const prefix = (value: Element['value'], length: Element['length']): string => {
               );
             }
         }
+      }
       break;
   }
 
