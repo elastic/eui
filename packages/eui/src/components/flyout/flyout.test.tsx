@@ -14,7 +14,7 @@ import { shouldRenderCustomStyles } from '../../test/internal';
 
 import { EuiHeader } from '../header';
 import { EuiFlyout, PADDING_SIZES, SIDES } from './flyout';
-import { SIZES } from './types';
+import { SIZES } from './flyout_shared.styles';
 import { EuiProvider } from '../provider';
 
 jest.mock('../overlay_mask', () => ({

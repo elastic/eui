@@ -8,7 +8,7 @@
 
 import type { EuiFlyoutProps } from '../flyout';
 import type { EuiFlyoutChildProps } from '../flyout_child';
-import type { EuiFlyoutSize } from '../types';
+import type { EuiFlyoutSize } from '../flyout_shared.styles';
 
 /**
  * Configuration used for setting display options for main and child flyouts in a session.

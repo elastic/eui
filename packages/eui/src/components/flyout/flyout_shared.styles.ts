@@ -14,7 +14,9 @@ import {
 } from '../../global_styling';
 import { UseEuiTheme } from '../../services';
 import { euiFormMaxWidth } from '../form/form.styles';
-import { type EuiFlyoutSize, SIZES } from './types';
+
+export const SIZES = ['s', 'm', 'l'] as const;
+export type EuiFlyoutSize = (typeof SIZES)[number];
 
 /**
  * Custom type checker for named flyout sizes since the prop

@@ -29,7 +29,7 @@ export type { EuiFlyoutChildProps } from './flyout_child';
 export type { EuiFlyoutMenuProps } from './flyout_menu';
 export { EuiFlyoutMenu } from './flyout_menu';
 
-export type { EuiFlyoutSize } from './types';
+export type { EuiFlyoutSize } from './flyout_shared.styles';
 
 export type {
   EuiFlyoutSessionApi,
