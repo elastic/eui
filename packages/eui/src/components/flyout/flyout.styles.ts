@@ -9,7 +9,8 @@
 import { css, keyframes } from '@emotion/react';
 import { euiShadowXLarge } from '@elastic/eui-theme-common';
 
-import { _EuiFlyoutPaddingSize, EuiFlyoutSize } from './flyout';
+import { EuiFlyoutSize } from './flyout';
+import { _EuiFlyoutPaddingSize } from './flyout.component';
 import {
   euiCanAnimate,
   euiMaxBreakpoint,
