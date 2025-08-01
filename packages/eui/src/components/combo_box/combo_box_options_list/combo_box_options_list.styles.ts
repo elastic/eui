@@ -71,9 +71,9 @@ export const euiComboBoxOptionListStyles = (euiThemeContext: UseEuiTheme) => {
         ${euiTitle(euiThemeContext, 'xxxs')}
       }
     `,
-
+    /* eslint-disable local/css-logical-properties */
     hasRowHeightAuto: css`
-      overflow-block: auto;
+      overflow-y: auto;
 
       .euiComboBoxOption__contentWrapper {
         align-items: flex-start;
@@ -81,6 +81,7 @@ export const euiComboBoxOptionListStyles = (euiThemeContext: UseEuiTheme) => {
 
       ${euiScrollBarStyles(euiThemeContext)}
     `,
+    /* eslint-enable local/css-logical-properties */
 
     euiComboBoxOptionList__virtualization: css`
       ${euiScrollBarStyles(euiThemeContext)}
