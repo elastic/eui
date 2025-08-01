@@ -1,0 +1,362 @@
+/*
+ * Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
+ * or more contributor license agreements. Licensed under the Elastic License
+ * 2.0 and the Server Side Public License, v 1; you may not use this file except
+ * in compliance with, at your election, the Elastic License 2.0 or the Server
+ * Side Public License, v 1.
+ */
+
+import { Meta, StoryObj } from '@storybook/react';
+import React, { useState } from 'react';
+
+import {
+  EuiButton,
+  EuiCode,
+  EuiCodeBlock,
+  EuiDescriptionList,
+  EuiDescriptionListDescription,
+  EuiDescriptionListTitle,
+  EuiFlexGroup,
+  EuiFlexItem,
+  EuiFlyoutBody,
+  EuiFlyoutFooter,
+  EuiFlyoutHeader,
+  EuiSpacer,
+  EuiText,
+  EuiTitle,
+} from '../../index';
+import { EuiFlyout, EuiFlyoutProps } from '../flyout';
+import { useFlyoutManager } from './flyout_manager';
+
+const meta: Meta<typeof EuiFlyout> = {
+  title: 'Layout/EuiFlyout/Flyout Manager',
+  component: EuiFlyout,
+};
+
+export default meta;
+
+interface ECommerceContentProps {
+  itemQuantity: number;
+}
+
+interface ShoppingCartProps
+  extends ECommerceContentProps,
+    Pick<EuiFlyoutProps, 'onClose'> {
+  onQuantityChange: (delta: number) => void;
+}
+
+const ShoppingCartFlyout = ({
+  itemQuantity,
+  onQuantityChange,
+  onClose,
+}: ShoppingCartProps) => {
+  const [isItemDetailsOpen, setIsItemDetailsOpen] = useState(false);
+  const [isReviewCartOpen, setIsReviewCartOpen] = useState(false);
+
+  return (
+    <EuiFlyout
+      session={true}
+      id="shopping-cart-flyout"
+      {...{ onClose }}
+      ownFocus={false}
+    >
+      <EuiFlyoutHeader hasBorder>
+        <EuiTitle size="m">
+          <h2 id="flyout-shopping-cart-title">Shopping cart</h2>
+        </EuiTitle>
+      </EuiFlyoutHeader>
+      <EuiFlyoutBody>
+        <EuiText>
+          <p>Item: Flux Capacitor</p>
+        </EuiText>
+        <EuiButton onClick={() => setIsItemDetailsOpen(!isItemDetailsOpen)}>
+          {isItemDetailsOpen ? 'Close item details' : 'View item details'}
+        </EuiButton>
+        <EuiSpacer />
+        <EuiText>Quantity: {itemQuantity}</EuiText>
+        <EuiButton
+          onClick={() => onQuantityChange(-1)}
+          iconType="minusInCircle"
+          aria-label="Decrease quantity"
+          isDisabled={itemQuantity <= 0}
+        >
+          -1
+        </EuiButton>{' '}
+        <EuiButton
+          onClick={() => onQuantityChange(1)}
+          iconType="plusInCircle"
+          aria-label="Increase quantity"
+        >
+          +1
+        </EuiButton>
+        <EuiSpacer />
+        <EuiButton
+          onClick={() => setIsReviewCartOpen(true)}
+          isDisabled={itemQuantity <= 0}
+          fill
+        >
+          {isReviewCartOpen ? 'Close review' : 'Proceed to review'}
+        </EuiButton>
+        {isItemDetailsOpen && (
+          <ItemDetailsFlyout
+            onClose={() => setIsItemDetailsOpen(false)}
+            itemQuantity={itemQuantity}
+          />
+        )}
+        {isReviewCartOpen && (
+          <>
+            <ReviewOrderFlyout
+              onClose={() => setIsReviewCartOpen(false)}
+              itemQuantity={itemQuantity}
+            />
+          </>
+        )}
+      </EuiFlyoutBody>
+      <EuiFlyoutFooter>
+        <EuiButton
+          onClick={(e: React.MouseEvent<HTMLButtonElement>) =>
+            onClose(e.nativeEvent)
+          }
+          color="danger"
+        >
+          Close
+        </EuiButton>
+      </EuiFlyoutFooter>
+    </EuiFlyout>
+  );
+};
+
+interface ReviewOrderProps
+  extends ECommerceContentProps,
+    Pick<EuiFlyoutProps, 'onClose'> {}
+
+const ReviewOrderFlyout = ({ itemQuantity, ...props }: ReviewOrderProps) => {
+  console.log('RENDERING REVIEW ORDER FLYOUT');
+  const [orderConfirmed, setOrderConfirmed] = useState(false);
+
+  return (
+    <EuiFlyout
+      session={true}
+      id="review-order-flyout"
+      ownFocus={false}
+      {...props}
+    >
+      <EuiFlyoutHeader hasBorder>
+        <EuiTitle size="m">
+          <h2 id="flyout-review-order-title">Review order</h2>
+        </EuiTitle>
+      </EuiFlyoutHeader>
+      <EuiFlyoutBody>
+        <EuiText>
+          <h3>Review your order</h3>
+          <p>Item: Flux Capacitor</p>
+          <p>Quantity: {itemQuantity}</p>
+        </EuiText>
+        <EuiSpacer />
+        {orderConfirmed ? (
+          <EuiText>
+            <p>Order confirmed!</p>
+          </EuiText>
+        ) : (
+          <EuiButton
+            onClick={() => setOrderConfirmed(true)}
+            fill
+            color="accent"
+          >
+            Confirm purchase
+          </EuiButton>
+        )}
+      </EuiFlyoutBody>
+      <EuiFlyoutFooter>
+        {!orderConfirmed && (
+          <EuiButton
+            onClick={() => {
+              console.log('Go back button clicked');
+              // goBack();
+            }}
+            color="danger"
+          >
+            Go back
+          </EuiButton>
+        )}{' '}
+        <EuiButton
+          onClick={(e: React.MouseEvent<HTMLButtonElement>) =>
+            props.onClose(e.nativeEvent)
+          }
+          color="danger"
+        >
+          Close
+        </EuiButton>
+      </EuiFlyoutFooter>
+    </EuiFlyout>
+  );
+};
+
+interface ItemDetailsProps
+  extends ECommerceContentProps,
+    Pick<EuiFlyoutProps, 'onClose'> {}
+
+const ItemDetailsFlyout = ({ onClose, itemQuantity }: ItemDetailsProps) => {
+  return (
+    <EuiFlyout
+      id="item-details-flyout"
+      onClose={onClose}
+      ownFocus={false}
+      size="s"
+    >
+      <EuiFlyoutHeader hasBorder>
+        <EuiTitle size="m">
+          <h2 id="flyout-item-details-title">Item details</h2>
+        </EuiTitle>
+      </EuiFlyoutHeader>
+      <EuiFlyoutBody>
+        <EuiText>
+          <p>
+            <strong>Item:</strong> Flux Capacitor
+          </p>
+          <p>
+            <strong>Selected quantity:</strong> {itemQuantity}
+          </p>
+          <p>
+            This amazing device makes time travel possible! Handle with care.
+          </p>
+        </EuiText>
+      </EuiFlyoutBody>
+      <EuiFlyoutFooter>
+        <EuiButton
+          onClick={(e: React.MouseEvent<HTMLButtonElement>) =>
+            onClose(e.nativeEvent)
+          }
+          color="danger"
+        >
+          Close details
+        </EuiButton>
+      </EuiFlyoutFooter>
+    </EuiFlyout>
+  );
+};
+
+const BasicExampleComponent = () => {
+  const [isShoppingCartOpen, setIsShoppingCartOpen] = useState(false);
+  const [isReviewCartOpen, setIsReviewCartOpen] = useState(false);
+  const [isItemDetailsOpen, setIsItemDetailsOpen] = useState(false);
+  const [itemQuantity, setItemQuantity] = useState(1);
+  const { state } = useFlyoutManager();
+
+  return (
+    <>
+      <EuiFlexGroup direction="column">
+        <EuiFlexItem>
+          <EuiFlexGroup>
+            <EuiButton onClick={() => setIsShoppingCartOpen(true)}>
+              Shopping cart
+            </EuiButton>
+            <EuiButton onClick={() => setIsReviewCartOpen(true)}>
+              Review order
+            </EuiButton>
+            <EuiButton onClick={() => setIsItemDetailsOpen(true)}>
+              Item details
+            </EuiButton>
+          </EuiFlexGroup>
+        </EuiFlexItem>
+        <EuiFlexItem>
+          <EuiFlexGroup>
+            <EuiFlexItem>
+              <EuiDescriptionList>
+                <EuiDescriptionListTitle>Shopping cart</EuiDescriptionListTitle>
+                <EuiDescriptionListDescription>
+                  This flyout always starts a new session,{' '}
+                  <EuiCode>{`session={true}`}</EuiCode>.
+                </EuiDescriptionListDescription>
+                <EuiDescriptionListTitle>Review order</EuiDescriptionListTitle>
+                <EuiDescriptionListDescription>
+                  This flyout always starts a new session,{' '}
+                  <EuiCode>{`session={true}`}</EuiCode>.
+                  <EuiSpacer size="xs" />
+                  It is rendered by the button above, but also from within the
+                  Shopping Cart flyout.
+                </EuiDescriptionListDescription>
+                <EuiDescriptionListTitle>Item details</EuiDescriptionListTitle>
+                <EuiDescriptionListDescription>
+                  This flyout is a regular flyout.
+                  <EuiSpacer size="xs" />
+                  It is rendered by the button above, but also from within the
+                  Shopping Cart flyout.
+                  <EuiSpacer size="xs" />
+                  If rendered from <strong>here</strong>, and{' '}
+                  <strong>no</strong> session is active, it is rendered as a{' '}
+                  <strong>regular</strong> flyout.
+                  <EuiSpacer size="xs" />
+                  If rendered from <strong>here</strong>, and a session{' '}
+                  <strong>is</strong> active, it is rendered as a new{' '}
+                  <EuiCode>main</EuiCode> flyout as a new session.
+                  <EuiSpacer size="xs" />
+                  If rendered from <strong>within</strong> the Shopping Cart
+                  flyout, it will be rendered as a <EuiCode>child</EuiCode>{' '}
+                  flyout.
+                </EuiDescriptionListDescription>
+              </EuiDescriptionList>
+            </EuiFlexItem>
+            <EuiFlexItem>
+              <EuiText>
+                <p>
+                  This example demonstrates the different ways a flyout can be
+                  rendered.
+                  <EuiSpacer size="m" />
+                  The <EuiCode>session</EuiCode> prop is used to control whether
+                  a flyout is rendered as a new session.
+                  <EuiSpacer size="m" />
+                  The determination of whether a flyout is rendered as a{' '}
+                  <EuiCode>main</EuiCode> or <EuiCode>child</EuiCode> flyout is
+                  based on the presence of an active session, <em>and</em> if
+                  the flyout is rendered from within a managed flyout.
+                  <EuiSpacer size="m" />
+                  This change means the relationship between the main and child
+                  flyout, as well as the history of which main flyouts have been
+                  opened, are <strong>implicitly derived</strong> from the React
+                  structure.
+                  <EuiSpacer size="m" />
+                  So from a DX perspective, no one need wonder if they should
+                  create a <EuiCode>MainFlyout</EuiCode> or
+                  <EuiCode>ChildFlyout</EuiCode>, or check what may already be
+                  open... the way its structured and the{' '}
+                  <EuiCode>session</EuiCode> prop handle it all.
+                </p>
+              </EuiText>
+            </EuiFlexItem>
+          </EuiFlexGroup>
+        </EuiFlexItem>
+        <EuiFlexItem>
+          <EuiCodeBlock language="json">
+            {JSON.stringify(state, null, 2)}
+          </EuiCodeBlock>
+        </EuiFlexItem>
+      </EuiFlexGroup>
+      {isShoppingCartOpen && (
+        <ShoppingCartFlyout
+          onClose={() => setIsShoppingCartOpen(false)}
+          onQuantityChange={(delta: number) =>
+            setItemQuantity(itemQuantity + delta)
+          }
+          itemQuantity={itemQuantity}
+        />
+      )}
+      {isReviewCartOpen && (
+        <ReviewOrderFlyout
+          onClose={() => setIsReviewCartOpen(false)}
+          itemQuantity={itemQuantity}
+        />
+      )}
+      {isItemDetailsOpen && (
+        <ItemDetailsFlyout
+          onClose={() => setIsItemDetailsOpen(false)}
+          itemQuantity={itemQuantity}
+        />
+      )}
+    </>
+  );
+};
+
+export const BasicExample: StoryObj<typeof EuiFlyout> = {
+  render: () => <BasicExampleComponent />,
+};
