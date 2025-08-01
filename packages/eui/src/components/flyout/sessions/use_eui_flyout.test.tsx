@@ -22,7 +22,6 @@ jest.mock('../flyout', () => ({
   EuiFlyout: ({ children }: { children: React.ReactNode }) => (
     <div data-testid="euiFlyout">{children}</div>
   ),
-  EuiFlyoutSize: { s: 's', m: 'm', l: 'l' },
 }));
 
 jest.mock('../flyout_child', () => ({

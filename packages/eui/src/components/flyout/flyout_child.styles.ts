@@ -7,14 +7,14 @@
  */
 
 import { css } from '@emotion/react';
-import { UseEuiTheme } from '../../services';
 import {
+  euiYScroll,
+  highContrastModeStyles,
   logicalCSS,
   logicalCSSWithFallback,
-  highContrastModeStyles,
-  euiYScroll,
 } from '../../global_styling';
-import { composeFlyoutSizing, maxedFlyoutWidth } from './flyout.styles';
+import { UseEuiTheme } from '../../services';
+import { composeFlyoutSizing, maxedFlyoutWidth } from './flyout_shared.styles';
 
 export const euiFlyoutChildStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
@@ -31,8 +31,13 @@ export const euiFlyoutChildStyles = (euiThemeContext: UseEuiTheme) => {
       ${logicalCSS('height', '100%')}
       z-index: ${Number(euiTheme.levels.flyout) + 1};
       border-inline-start: ${euiTheme.border.thin};
+      border-inline-end: ${euiTheme.border.thin};
 
       ${maxedFlyoutWidth(euiThemeContext)}
+    `,
+
+    noMaxWidth: css`
+      ${logicalCSS('max-width', 'none')}
     `,
 
     backgroundDefault: css`
@@ -45,12 +50,10 @@ export const euiFlyoutChildStyles = (euiThemeContext: UseEuiTheme) => {
     // Position variants based on screen size
     sidePosition: css`
       transform: translateX(-100%);
-      border-inline-end: ${euiTheme.border.thin};
     `,
     stackedPosition: css`
       inset-inline-end: 0;
       inline-size: 100%;
-      border-block-end: ${euiTheme.border.thin};
     `,
 
     s: css`
