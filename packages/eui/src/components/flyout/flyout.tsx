@@ -21,26 +21,32 @@ import {
 export type { EuiFlyoutSize } from './flyout.component';
 export { SIDES, PADDING_SIZES, SIZES, TYPES } from './flyout.component';
 
-export type EuiFlyoutProps<T extends ElementType = 'div' | 'nav'> = Omit<EuiFlyoutComponentProps<T>, 'as'> & {
+export type EuiFlyoutProps<T extends ElementType = 'div' | 'nav'> = Omit<
+  EuiFlyoutComponentProps<T>,
+  'as'
+> & {
   session?: boolean;
   as?: T;
 };
 
-export const EuiFlyout = ({ session, ...props }: EuiFlyoutProps) => {
+// Type for session components that expect a fixed 'div' element
+type SessionFlyoutProps = Omit<EuiFlyoutComponentProps<'div'>, 'as'>;
+
+export const EuiFlyout = ({ session, as, ...props }: EuiFlyoutProps) => {
   const hasActiveSession = useIsSessionActive();
   const isInManagedFlyoutContext = useIsManagedFlyoutContext();
 
   // If session={true}, or there is an active session and the flyout is not a child of a session, render EuiMainFlyout.
   if (session === true || (hasActiveSession && !isInManagedFlyoutContext)) {
-    return <EuiFlyoutMain {...(props as any)} as={props.as as 'div'} />;
+    return <EuiFlyoutMain {...(props as SessionFlyoutProps)} as="div" />;
   }
 
   // Else if this flyout is a child of a session AND within a managed flyout context, render EuiChildFlyout.
   if (hasActiveSession && isInManagedFlyoutContext) {
-    return <EuiFlyoutChild {...(props as any)} as={props.as as 'div'} />;
+    return <EuiFlyoutChild {...(props as SessionFlyoutProps)} as="div" />;
   }
 
   // TODO: if resizeable={true}, render EuiResizableFlyout.
 
-  return <EuiFlyoutComponent {...props} />;
+  return <EuiFlyoutComponent {...props} as={as} />;
 };
