@@ -52,7 +52,8 @@ import { EuiFlyoutMenuContext } from './flyout_menu_context';
 import { EuiFlyoutMenu } from './flyout_menu';
 import { EuiFlyoutChildProvider } from './flyout_child_manager';
 import { usePropsWithComponentDefaults } from '../provider/component_defaults';
-import { EuiFlyoutSize, isEuiFlyoutSizeNamed } from './flyout_shared.styles';
+import { isEuiFlyoutSizeNamed } from './flyout_shared.styles';
+import type { EuiFlyoutSize } from './types';
 
 export const TYPES = ['push', 'overlay'] as const;
 type _EuiFlyoutType = (typeof TYPES)[number];

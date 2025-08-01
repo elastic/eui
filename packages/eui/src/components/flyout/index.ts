@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-export type { EuiFlyoutProps, EuiFlyoutSize } from './flyout';
+export type { EuiFlyoutProps } from './flyout';
 export { EuiFlyout } from './flyout';
 
 export type { EuiFlyoutBodyProps } from './flyout_body';
@@ -28,6 +28,8 @@ export type { EuiFlyoutChildProps } from './flyout_child';
 
 export type { EuiFlyoutMenuProps } from './flyout_menu';
 export { EuiFlyoutMenu } from './flyout_menu';
+
+export type { EuiFlyoutSize } from './types';
 
 export type {
   EuiFlyoutSessionApi,

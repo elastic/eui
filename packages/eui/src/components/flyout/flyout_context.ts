@@ -7,7 +7,7 @@
  */
 
 import { createContext, RefObject } from 'react';
-import { EuiFlyoutSize } from './flyout';
+import type { EuiFlyoutSize } from './types';
 
 /**
  * Context shared between the main and child flyouts

@@ -13,7 +13,8 @@ import { requiredProps, takeMountedSnapshot } from '../../test';
 import { shouldRenderCustomStyles } from '../../test/internal';
 
 import { EuiHeader } from '../header';
-import { EuiFlyout, SIZES, PADDING_SIZES, SIDES } from './flyout';
+import { EuiFlyout, PADDING_SIZES, SIDES } from './flyout';
+import { SIZES } from './types';
 import { EuiProvider } from '../provider';
 
 jest.mock('../overlay_mask', () => ({

@@ -6,8 +6,9 @@
  * Side Public License, v 1.
  */
 
-import type { EuiFlyoutProps, EuiFlyoutSize } from '../flyout';
+import type { EuiFlyoutProps } from '../flyout';
 import type { EuiFlyoutChildProps } from '../flyout_child';
+import type { EuiFlyoutSize } from '../types';
 
 /**
  * Configuration used for setting display options for main and child flyouts in a session.

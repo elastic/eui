@@ -16,7 +16,7 @@ import {
 } from '../../global_styling';
 import { UseEuiTheme } from '../../services';
 
-import { FLYOUT_BREAKPOINT } from './flyout.styles';
+import { FLYOUT_BREAKPOINT } from './flyout_shared.styles';
 
 export const euiFlyoutCloseButtonStyles = (euiThemeContext: UseEuiTheme) => {
   const euiTheme = euiThemeContext.euiTheme;
