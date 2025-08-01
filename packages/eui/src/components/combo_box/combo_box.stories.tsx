@@ -20,6 +20,7 @@ import { EuiFlexItem } from '../flex';
 
 import { EuiComboBoxOptionMatcher } from './types';
 import { EuiComboBox, EuiComboBoxProps } from './combo_box';
+import { EuiHighlight } from '../highlight';
 
 const options = [
   { label: 'Item 1' },
@@ -103,6 +104,86 @@ export const WithCustomOptionIds: Story = {
     ],
   },
   render: (args) => <StatefulComboBox {...args} />,
+};
+
+export const RowHeightAuto: Story = {
+  parameters: {
+    controls: {
+      include: ['rowHeight', 'singleSelection', 'options', 'onChange'],
+    },
+    loki: {
+      chromeSelector: LOKI_SELECTORS.portal,
+    },
+  },
+  args: {
+    autoFocus: true,
+    singleSelection: false,
+    rowHeight: 'auto',
+    selectedOptions: [
+      { label: 'elastic.task_manager_metrics.metrics.message' },
+    ],
+    options: [
+      { label: 'elastic.task_manager_metrics.metrics.error' },
+      { label: 'elastic.task_manager_metrics.metrics.last_update' },
+      { label: 'elastic.task_manager_metrics.metrics.message' },
+      {
+        label:
+          'elastic.task_manager_metrics.metrics.task_overdue.value.by_type.insolence',
+      },
+      {
+        label:
+          'elastic.task_manager_metrics.metrics.task_overdue.value.by_type.nudge',
+      },
+      {
+        label:
+          'elastic.task_manager_metrics.metrics.task_overdue.value.by_type.advancement',
+      },
+      {
+        label:
+          'elastic.task_manager_metrics.metrics.task_overdue.value.by_type.outlaw',
+      },
+      {
+        label:
+          'elastic.task_manager_metrics.metrics.task_overdue.value.by_type.representation',
+      },
+      {
+        label:
+          'elastic.task_manager_metrics.metrics.task_overdue.value.by_type.tomb',
+      },
+      {
+        label:
+          'elastic.task_manager_metrics.metrics.task_overdue.value.by_type.march',
+      },
+      { label: 'elastic.task_manager_metrics.metrics.task_claim.timestamp' },
+      {
+        label: 'elastic.task_manager_metrics.metrics.task_claim.value.duration',
+      },
+      {
+        label: 'elastic.task_manager_metrics.metrics.task_claim.value.success',
+      },
+      { label: 'elastic.task_manager_metrics.metrics.task_claim.value.total' },
+    ],
+    renderOption: (option, searchValue) => {
+      return (
+        <EuiHighlight search={searchValue} style={{ wordBreak: 'break-word' }}>
+          {option.label}
+        </EuiHighlight>
+      );
+    },
+  },
+  render: (args) => <StatefulComboBox {...args} />,
+  play: lokiPlayDecorator(async (context) => {
+    const { bodyElement, step } = context;
+
+    const canvas = within(bodyElement);
+
+    await step('open listbox', async () => {
+      await userEvent.click(canvas.getByRole('combobox'));
+      await waitFor(() => {
+        expect(canvas.getByRole('listbox')).toBeVisible();
+      });
+    });
+  }),
 };
 
 export const WithTooltip: Story = {

@@ -26,6 +26,7 @@ export interface EuiFilterSelectItemProps
   checked?: FilterChecked;
   showIcons?: boolean;
   isFocused?: boolean;
+  truncateContent?: boolean;
   toolTipContent?: EuiComboBoxOptionOption['toolTipContent'];
   toolTipProps?: EuiComboBoxOptionOption['toolTipProps'];
   forwardRef?: (ref: HTMLButtonElement | null) => void;
@@ -57,6 +58,7 @@ export class EuiFilterSelectItemClass extends Component<
 > {
   static defaultProps = {
     showIcons: true,
+    truncateContent: true,
   };
 
   buttonRef: HTMLButtonElement | null = null;
@@ -89,6 +91,14 @@ export class EuiFilterSelectItemClass extends Component<
     return this.state.hasFocus;
   };
 
+  componentDidUpdate(
+    prevProps: Readonly<WithEuiThemeProps<{}> & EuiFilterSelectItemProps>
+  ) {
+    if (this.props.isFocused && !prevProps.isFocused) {
+      this.buttonRef?.scrollIntoView?.({ block: 'nearest' });
+    }
+  }
+
   render() {
     const {
       theme,
@@ -101,6 +111,7 @@ export class EuiFilterSelectItemClass extends Component<
       toolTipContent,
       toolTipProps,
       style,
+      truncateContent,
       forwardRef,
       ...rest
     } = this.props;
@@ -166,7 +177,10 @@ export class EuiFilterSelectItemClass extends Component<
         >
           {iconNode}
           <EuiFlexItem
-            className="euiFilterSelectItem__content eui-textTruncate"
+            className={classNames(
+              'euiFilterSelectItem__content',
+              this.props.truncateContent && 'eui-textTruncate'
+            )}
             component="span"
           >
             {children}
