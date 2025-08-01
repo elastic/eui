@@ -20,12 +20,12 @@ import {
   useIsWithinMinBreakpoint,
   useCombinedRefs,
 } from '../../services';
-import { EuiFlyout, EuiFlyoutProps } from '../flyout';
+import { EuiFlyoutComponent, EuiFlyoutComponentProps } from '../flyout';
 import { euiCollapsibleNavStyles } from './collapsible_nav.styles';
 
 // Extend all the flyout props except `onClose` because we handle this internally
 export type EuiCollapsibleNavProps = Omit<
-  EuiFlyoutProps<'nav' | 'div'>,
+  EuiFlyoutComponentProps<'nav' | 'div'>,
   'type' | 'pushBreakpoint'
 > & {
   /**
@@ -43,7 +43,7 @@ export type EuiCollapsibleNavProps = Omit<
   /**
    * Named breakpoint (`xs` through `xl`) for customizing the minimum window width to enable docking
    */
-  dockedBreakpoint?: EuiFlyoutProps['pushMinBreakpoint'];
+  dockedBreakpoint?: EuiFlyoutComponentProps['pushMinBreakpoint'];
   /**
    * Button for controlling visible state of the nav
    */
@@ -80,7 +80,7 @@ export const EuiCollapsibleNav: FunctionComponent<EuiCollapsibleNavProps> = ({
   });
   const buttonRef = useRef();
   const combinedButtonRef = useCombinedRefs([button?.props.ref, buttonRef]);
-  const focusTrapProps: EuiFlyoutProps['focusTrapProps'] = {
+  const focusTrapProps: EuiFlyoutComponentProps['focusTrapProps'] = {
     ..._focusTrapProps,
     shards: [buttonRef, ...(_focusTrapProps.shards || [])],
   };
@@ -114,7 +114,7 @@ export const EuiCollapsibleNav: FunctionComponent<EuiCollapsibleNavProps> = ({
         });
 
   const flyout = (
-    <EuiFlyout
+    <EuiFlyoutComponent
       id={flyoutID}
       css={cssStyles}
       className={classes}
@@ -134,7 +134,7 @@ export const EuiCollapsibleNav: FunctionComponent<EuiCollapsibleNavProps> = ({
       pushMinBreakpoint={dockedBreakpoint}
     >
       {children}
-    </EuiFlyout>
+    </EuiFlyoutComponent>
   );
 
   return (

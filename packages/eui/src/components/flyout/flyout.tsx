@@ -18,8 +18,18 @@ import {
   useIsManagedFlyoutContext,
 } from './manager';
 
-export type { EuiFlyoutSize } from './flyout.component';
-export { SIDES, PADDING_SIZES, SIZES, TYPES } from './flyout.component';
+export type {
+  EuiFlyoutSize,
+  _EuiFlyoutPaddingSize,
+  _EuiFlyoutSide,
+} from './flyout.component';
+export {
+  SIDES,
+  PADDING_SIZES,
+  SIZES,
+  TYPES,
+  EuiFlyoutComponent,
+} from './flyout.component';
 
 export type EuiFlyoutProps<T extends ElementType = 'div' | 'nav'> = Omit<
   EuiFlyoutComponentProps<T>,

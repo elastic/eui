@@ -26,7 +26,10 @@ import {
 } from '../../services';
 
 import { CommonProps } from '../common';
-import { EuiFlyout, EuiFlyoutProps } from '../flyout';
+import {
+  EuiFlyoutComponent as EuiFlyout,
+  EuiFlyoutComponentProps as EuiFlyoutProps,
+} from '../flyout';
 import { useEuiI18n } from '../i18n';
 import { euiHeaderVariables } from '../header/header.styles';
 
