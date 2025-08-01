@@ -215,7 +215,7 @@ const disableInteractives = (cell: HTMLElement) => {
   const interactives = tabbable(cell);
   interactives.forEach((element) => {
     element.setAttribute('data-euigrid-tab-managed', 'true');
-    element.setAttribute('tabIndex', '-1');
+    element.setAttribute('tabindex', '-1');
   });
   return interactives;
 };
@@ -223,7 +223,7 @@ const disableInteractives = (cell: HTMLElement) => {
 const enableAndFocusInteractives = (cell: HTMLElement) => {
   const interactives = cell.querySelectorAll('[data-euigrid-tab-managed]');
   interactives.forEach((element, i) => {
-    element.setAttribute('tabIndex', '0');
+    element.setAttribute('tabindex', '0');
     // focus the first element only if we're on the cell and not inside of it
     if (i === 0 && !cell.contains(document.activeElement)) {
       (element as HTMLElement).focus();
