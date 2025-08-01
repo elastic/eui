@@ -20,6 +20,7 @@ import { keys, useGeneratedHtmlId } from '../../../../services';
 import { isDOMNode } from '../../../../utils';
 import { EuiFocusTrap } from '../../../focus_trap';
 import { EuiI18n } from '../../../i18n';
+import { EuiLiveAnnouncer } from '../../../accessibility';
 
 /**
  * This internal utility component is used by all cells, both header and body/footer cells.
@@ -203,6 +204,15 @@ export const FocusTrappedChildren: FunctionComponent<
           />
         )}
       </p>
+      <EuiLiveAnnouncer clearAfterMs={1000}>
+        {isCellEntered && (
+          <EuiI18n
+            // eslint-disable-next-line local/i18n
+            token="euiDataGridCell.focusTrapEnteredExitPrompt"
+            default="Press the Escape key to exit the cell."
+          />
+        )}
+      </EuiLiveAnnouncer>
     </EuiFocusTrap>
   );
 };
