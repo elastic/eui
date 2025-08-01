@@ -137,13 +137,7 @@ export class EuiComboBoxOptionsList<T> extends Component<
     ...rest
   }) => {
     return (
-      <div
-        {...rest}
-        aria-label={this.props.listboxAriaLabel}
-        id={this.props.rootId('listbox')}
-        role="listbox"
-        tabIndex="0"
-      >
+      <div {...rest} {...this.getListInnerElementProps()}>
         {children}
       </div>
     );
@@ -255,6 +249,15 @@ export class EuiComboBoxOptionsList<T> extends Component<
         </span>
       </EuiFilterSelectItem>
     );
+  };
+
+  getListInnerElementProps = () => {
+    return {
+      'aria-label': this.props.listboxAriaLabel,
+      id: this.props.rootId('listbox'),
+      role: 'listbox',
+      tabIndex: 0,
+    };
   };
 
   optionWidth: number | undefined;
@@ -523,12 +526,7 @@ export class EuiComboBoxOptionsList<T> extends Component<
                   {emptyStateContent}
                 </EuiText>
               ) : rowHeight === 'auto' ? (
-                <div
-                  aria-label={this.props.listboxAriaLabel}
-                  id={this.props.rootId('listbox')}
-                  role="listbox"
-                  tabIndex={0}
-                >
+                <div {...this.getListInnerElementProps()}>
                   {matchingOptions.map((_, index) => (
                     <this.ListRow
                       data={matchingOptions}
