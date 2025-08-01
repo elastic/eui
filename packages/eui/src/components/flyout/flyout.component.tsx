@@ -5,7 +5,9 @@
  * in compliance with, at your election, the Elastic License 2.0 or the Server
  * Side Public License, v 1.
  */
+
 /* eslint-disable local/i18n */
+
 import React, {
   useEffect,
   useRef,
@@ -31,6 +33,7 @@ import {
   useIsWithinMinBreakpoint,
   useEuiMemoizedStyles,
   useGeneratedHtmlId,
+  useEuiThemeCSSVariables,
 } from '../../services';
 import { logicalStyle } from '../../global_styling';
 
@@ -67,7 +70,7 @@ function isEuiFlyoutSizeNamed(value: any): value is EuiFlyoutSize {
 export const PADDING_SIZES = ['none', 's', 'm', 'l'] as const;
 export type _EuiFlyoutPaddingSize = (typeof PADDING_SIZES)[number];
 
-export interface _EuiFlyoutComponentProps {
+interface _EuiFlyoutComponentProps {
   onClose: (event: MouseEvent | TouchEvent | KeyboardEvent) => void;
   /**
    * Defines the width of the panel.
@@ -215,8 +218,13 @@ export const EuiFlyoutComponent = forwardRef(
       ...rest
     } = usePropsWithComponentDefaults('EuiFlyout', props);
 
+    const { setGlobalCSSVariables } = useEuiThemeCSSVariables();
+
     const Element = as || defaultElement;
     const maskRef = useRef<HTMLDivElement>(null);
+
+    // Ref for the main flyout element to pass to context
+    const internalParentFlyoutRef = useRef<HTMLDivElement>(null);
 
     const windowIsLargeEnoughToPush =
       useIsWithinMinBreakpoint(pushMinBreakpoint);
@@ -229,7 +237,11 @@ export const EuiFlyoutComponent = forwardRef(
     const [resizeRef, setResizeRef] = useState<ComponentPropsWithRef<T> | null>(
       null
     );
-    const setRef = useCombinedRefs([setResizeRef, ref]);
+    const setRef = useCombinedRefs([
+      setResizeRef,
+      ref,
+      internalParentFlyoutRef,
+    ]);
     const { width } = useResizeObserver(isPushed ? resizeRef : null, 'width');
 
     useEffect(() => {
@@ -239,13 +251,24 @@ export const EuiFlyoutComponent = forwardRef(
       if (isPushed) {
         const paddingSide =
           side === 'left' ? 'paddingInlineStart' : 'paddingInlineEnd';
+        const cssVarName = `--euiPushFlyoutOffset${
+          side === 'left' ? 'InlineStart' : 'InlineEnd'
+        }`;
 
         document.body.style[paddingSide] = `${width}px`;
+
+        // EUI doesn't use this css variable, but it is useful for consumers
+        setGlobalCSSVariables({
+          [cssVarName]: `${width}px`,
+        });
         return () => {
           document.body.style[paddingSide] = '';
+          setGlobalCSSVariables({
+            [cssVarName]: null,
+          });
         };
       }
-    }, [isPushed, side, width]);
+    }, [isPushed, setGlobalCSSVariables, side, width]);
 
     /**
      * This class doesn't actually do anything by EUI, but is nice to add for consumers (JIC)
@@ -302,38 +325,63 @@ export const EuiFlyoutComponent = forwardRef(
     const classes = classnames('euiFlyout', className);
 
     /*
-     * If not disabled, automatically add fixed EuiHeaders as shards
-     * to EuiFlyout focus traps, to prevent focus fighting
+     * Trap focus even when `ownFocus={false}`, otherwise closing
+     * the flyout won't return focus to the originating button.
+     *
+     * Set `clickOutsideDisables={true}` when `ownFocus={false}`
+     * to allow non-keyboard users the ability to interact with
+     * elements outside the flyout.
+     *
+     * Set `onClickOutside={onClose}` when `ownFocus` and `type` are the defaults,
+     * or if `outsideClickCloses={true}` to close on clicks that target
+     * (both mousedown and mouseup) the overlay mask.
      */
     const flyoutToggle = useRef<Element | null>(document.activeElement);
-    const [fixedHeaders, setFixedHeaders] = useState<HTMLDivElement[]>([]);
+    const [focusTrapShards, setFocusTrapShards] = useState<HTMLElement[]>([]);
+
+    const focusTrapSelectors = useMemo(() => {
+      let selectors: string[] = [];
+
+      if (includeSelectorInFocusTrap) {
+        selectors = Array.isArray(includeSelectorInFocusTrap)
+          ? includeSelectorInFocusTrap
+          : [includeSelectorInFocusTrap];
+      }
+
+      if (includeFixedHeadersInFocusTrap) {
+        selectors.push('.euiHeader[data-fixed-header]');
+      }
+
+      return selectors;
+    }, [includeSelectorInFocusTrap, includeFixedHeadersInFocusTrap]);
 
     useEffect(() => {
-      if (includeFixedHeadersInFocusTrap) {
-        const fixedHeaderEls = document.querySelectorAll<HTMLDivElement>(
-          '.euiHeader[data-fixed-header]'
+      if (focusTrapSelectors.length > 0) {
+        const shardsEls = focusTrapSelectors.flatMap((selector) =>
+          Array.from(document.querySelectorAll<HTMLElement>(selector))
         );
-        setFixedHeaders(Array.from(fixedHeaderEls));
 
-        // Flyouts that are toggled from fixed headers do not have working
+        setFocusTrapShards(Array.from(shardsEls));
+
+        // Flyouts that are toggled from shards do not have working
         // focus trap autoFocus, so we need to focus the flyout wrapper ourselves
-        fixedHeaderEls.forEach((header) => {
-          if (header.contains(flyoutToggle.current)) {
+        shardsEls.forEach((shard) => {
+          if (shard.contains(flyoutToggle.current)) {
             resizeRef?.focus();
           }
         });
       } else {
-        // Clear existing headers if necessary, e.g. switching to `false`
-        setFixedHeaders((headers) => (headers.length ? [] : headers));
+        // Clear existing shards if necessary, e.g. switching to `false`
+        setFocusTrapShards((shards) => (shards.length ? [] : shards));
       }
-    }, [includeFixedHeadersInFocusTrap, resizeRef]);
+    }, [focusTrapSelectors, resizeRef]);
 
     const focusTrapProps: EuiFlyoutComponentProps['focusTrapProps'] = useMemo(
       () => ({
         ..._focusTrapProps,
-        shards: [...fixedHeaders, ...(_focusTrapProps?.shards || [])],
+        shards: [...focusTrapShards, ...(_focusTrapProps?.shards || [])],
       }),
-      [fixedHeaders, _focusTrapProps]
+      [_focusTrapProps, focusTrapShards]
     );
 
     /*
@@ -358,16 +406,16 @@ export const EuiFlyoutComponent = forwardRef(
                 default="You are in a non-modal dialog. To close the dialog, press Escape."
               />
             )}{' '}
-            {fixedHeaders.length > 0 && (
+            {focusTrapShards.length > 0 && (
               <EuiI18n
-                token="euiFlyout.screenReaderFixedHeaders"
-                default="You can still continue tabbing through the page headers in addition to the dialog."
+                token="euiFlyout.screenReaderFocusTrapShards"
+                default="You can still continue tabbing through other global page landmarks."
               />
             )}
           </p>
         </EuiScreenReaderOnly>
       ),
-      [hasOverlayMask, descriptionId, fixedHeaders.length]
+      [hasOverlayMask, descriptionId, focusTrapShards.length]
     );
 
     /*

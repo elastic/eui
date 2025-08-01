@@ -19,7 +19,10 @@ import { keys, useCombinedRefs, useEuiMemoizedStyles } from '../../services';
 import { EuiResizableButton } from '../resizable_container';
 import { getPosition } from '../resizable_container/helpers';
 
-import { EuiFlyout, EuiFlyoutProps } from './flyout';
+import {
+  EuiFlyoutComponent as EuiFlyout,
+  EuiFlyoutComponentProps as EuiFlyoutProps,
+} from './flyout.component';
 import { euiFlyoutResizableButtonStyles } from './flyout_resizable.styles';
 
 export type EuiFlyoutResizableProps = {
