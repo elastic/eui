@@ -80,8 +80,6 @@ export const euiRangeTrackPerBrowser = (content: string) => {
   return `
     &::-webkit-slider-runnable-track { ${content}; }
     &::-moz-range-track { ${content}; }
-    &::-ms-fill-lower {${content}; }
-    &::-ms-fill-upper { ${content}; }
   `;
 };
 
@@ -156,7 +154,6 @@ export const euiRangeThumbPerBrowser = (content: string) => {
   return `
     &::-webkit-slider-thumb { ${content}; }
     &::-moz-range-thumb { ${content}; }
-    &::-ms-thumb {${content}; }
   `;
 };
 
