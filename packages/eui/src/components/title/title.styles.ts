@@ -26,6 +26,7 @@ type EuiThemeTitle = {
   lineHeight: CSSProperties['lineHeight'];
   fontWeight: CSSProperties['fontWeight'];
   color: CSSProperties['color'];
+  letterSpacing?: CSSProperties['letterSpacing'];
 };
 
 export const euiTitle = (
@@ -45,14 +46,21 @@ export const euiTitle = (
     l: 'xxl',
   };
 
+  // Use bold weight for smaller title sizes, semiBold for larger sizes
+  const isSmallTitle = scale === 'xxxs' || scale === 'xxs' || scale === 'xs';
+  const titleWeight = isSmallTitle ? 'bold' : euiTheme.font.title.weight;
+
   return {
     ...euiFontSize(
       euiThemeContext,
       titleScaleToFontSizeScaleMap[scale],
       options
     ),
-    fontWeight: euiTheme.font.weight[euiTheme.font.title.weight],
+    fontWeight: euiTheme.font.weight[titleWeight],
     color: euiTheme.colors.textHeading,
+    ...(euiTheme.font.title.letterSpacing && {
+      letterSpacing: `${euiTheme.font.title.letterSpacing}px`,
+    }),
   };
 };
 
