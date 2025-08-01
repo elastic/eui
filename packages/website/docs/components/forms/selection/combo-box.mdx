@@ -933,13 +933,17 @@ export default () => {
 
 ```
 
-:::warning Setting `rowHeight` to `auto` will cause truncation to be completely disabled
+:::info Setting `rowHeight` to `auto` will cause truncation to be completely disabled
 
 :::
 
 ## Multiple lines
 
 Only in the rare case you need text to wrap onto multiple lines instead of being truncated, you can set the `⁠rowHeight` prop to `⁠auto`. This will disable virtualization for the options list. When virtualization is disabled, highlighting will function as expected, but text truncation properties will be ignored.
+
+:::warning Disabling virtualization can have an impact on **performance** with large lists
+
+:::
 
 ```tsx interactive
 import React, { useState } from 'react';
