@@ -199,7 +199,9 @@ const StatefulFlyout: React.FC<FlyoutChildStoryArgs> = ({
         </p>
       </EuiText>
       <EuiSpacer size="l" />
-      <EuiButton onClick={openMain}>Open Main Flyout</EuiButton>
+      <EuiButton onClick={openMain} disabled={isMainOpen}>
+        Open Main Flyout
+      </EuiButton>
 
       {isMainOpen && (
         <EuiFlyout
