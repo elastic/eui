@@ -6,5 +6,12 @@
  * Side Public License, v 1.
  */
 
-export { EuiFlyoutMain, type EuiFlyoutMainProps } from './flyout_main';
-export { EuiFlyoutChild, type EuiFlyoutChildProps } from './flyout_child';
+import React from 'react';
+import { EuiFlyoutComponentProps } from '../flyout.component';
+import { EuiManagedFlyout } from './flyout_managed';
+
+export interface EuiFlyoutMainProps extends EuiFlyoutComponentProps {}
+
+export function EuiFlyoutMain(props: EuiFlyoutMainProps) {
+  return <EuiManagedFlyout {...props} />;
+}

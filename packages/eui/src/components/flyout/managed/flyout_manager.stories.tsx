@@ -19,54 +19,40 @@ import {
   EuiText,
   EuiTitle,
 } from '../../index';
-import { EuiFlyout, EuiFlyoutProps } from './eui_flyout';
-import { useCreateManagedFlyoutRenderer } from './hooks';
+import { EuiFlyout, EuiFlyoutProps } from '../flyout';
 
 const meta: Meta<typeof EuiFlyout> = {
-  title: 'Layout/EuiFlyout/EuiManagedFlyout',
+  title: 'Layout/EuiFlyout/Flyout Manager',
   component: EuiFlyout,
 };
 
 export default meta;
 
-/**
- * ---------------------------------------------------
- * Ecommerce Shopping Cart Example (advanced use case)
- * ---------------------------------------------------
- */
-
 interface ECommerceContentProps {
   itemQuantity: number;
 }
 
-interface ShoppingCartContentProps
+interface ShoppingCartProps
   extends ECommerceContentProps,
     Pick<EuiFlyoutProps, 'onClose'> {
   onQuantityChange: (delta: number) => void;
 }
 
-const ShoppingCartManagedFlyout: React.FC<ShoppingCartContentProps> = ({
+const ShoppingCartFlyout = ({
   itemQuantity,
   onQuantityChange,
   onClose: onCloseProp,
-}) => {
+}: ShoppingCartProps) => {
+  console.log('RENDERING SHOPPING CART FLYOUT');
   const [isItemDetailsOpen, setIsItemDetailsOpen] = useState(false);
+  const [isReviewCartOpen, setIsReviewCartOpen] = useState(false);
 
   const onClose: typeof onCloseProp = (event) => {
-    setIsItemDetailsOpen(false);
     onCloseProp(event);
   };
 
-  const renderer = useCreateManagedFlyoutRenderer();
-
-  const handleProceedToReview = () => {
-    renderer((props) => (
-      <ReviewOrderManagedFlyout {...props} itemQuantity={itemQuantity} />
-    ));
-  };
-
   return (
-    <EuiFlyout managed={true} level="main" {...{ onClose }}>
+    <EuiFlyout session={true} id="shopping-cart-flyout" {...{ onClose }}>
       <EuiFlyoutHeader hasBorder>
         <EuiTitle size="m">
           <h2 id="flyout-shopping-cart-title">Shopping cart</h2>
@@ -98,12 +84,20 @@ const ShoppingCartManagedFlyout: React.FC<ShoppingCartContentProps> = ({
         </EuiButton>
         <EuiSpacer />
         <EuiButton
-          onClick={handleProceedToReview}
+          onClick={() => setIsReviewCartOpen(true)}
           isDisabled={itemQuantity <= 0}
           fill
         >
-          Proceed to review
+          {isReviewCartOpen ? 'Close review' : 'Proceed to review'}
         </EuiButton>
+        {isItemDetailsOpen && (
+          <ItemDetailsFlyout onClose={onClose} itemQuantity={itemQuantity} />
+        )}
+        {isReviewCartOpen && (
+          <>
+            <ReviewOrderFlyout onClose={onClose} itemQuantity={itemQuantity} />
+          </>
+        )}
       </EuiFlyoutBody>
       <EuiFlyoutFooter>
         <EuiButton
@@ -115,28 +109,20 @@ const ShoppingCartManagedFlyout: React.FC<ShoppingCartContentProps> = ({
           Close
         </EuiButton>
       </EuiFlyoutFooter>
-      {isItemDetailsOpen && (
-        <ItemDetailsManagedFlyout
-          onClose={onClose}
-          itemQuantity={itemQuantity}
-        />
-      )}
     </EuiFlyout>
   );
 };
 
-interface ReviewOrderContentProps
+interface ReviewOrderProps
   extends ECommerceContentProps,
     Pick<EuiFlyoutProps, 'onClose'> {}
 
-const ReviewOrderManagedFlyout: React.FC<ReviewOrderContentProps> = ({
-  itemQuantity,
-  ...props
-}) => {
+const ReviewOrderFlyout = ({ itemQuantity, ...props }: ReviewOrderProps) => {
+  console.log('RENDERING REVIEW ORDER FLYOUT');
   const [orderConfirmed, setOrderConfirmed] = useState(false);
 
   return (
-    <EuiFlyout managed={true} level="main" {...props}>
+    <EuiFlyout session={true} id="review-order-flyout" {...props}>
       <EuiFlyoutHeader hasBorder>
         <EuiTitle size="m">
           <h2 id="flyout-review-order-title">Review order</h2>
@@ -188,16 +174,13 @@ const ReviewOrderManagedFlyout: React.FC<ReviewOrderContentProps> = ({
   );
 };
 
-interface ItemDetailsContentProps
+interface ItemDetailsProps
   extends ECommerceContentProps,
     Pick<EuiFlyoutProps, 'onClose'> {}
 
-const ItemDetailsManagedFlyout: React.FC<ItemDetailsContentProps> = ({
-  itemQuantity,
-  onClose,
-}) => {
+const ItemDetailsFlyout = ({ onClose, itemQuantity }: ItemDetailsProps) => {
   return (
-    <EuiFlyout managed={true} level="child" onClose={onClose}>
+    <EuiFlyout id="item-details-flyout" onClose={onClose}>
       <EuiFlyoutHeader hasBorder>
         <EuiTitle size="m">
           <h2 id="flyout-item-details-title">Item details</h2>
@@ -233,6 +216,7 @@ const ItemDetailsManagedFlyout: React.FC<ItemDetailsContentProps> = ({
 const BasicExampleComponent = () => {
   const [isShoppingCartOpen, setIsShoppingCartOpen] = useState(false);
   const [isReviewCartOpen, setIsReviewCartOpen] = useState(false);
+  const [isItemDetailsOpen, setIsItemDetailsOpen] = useState(false);
   const [itemQuantity, setItemQuantity] = useState(1);
 
   return (
@@ -244,9 +228,13 @@ const BasicExampleComponent = () => {
         <EuiButton onClick={() => setIsReviewCartOpen(true)}>
           Review order
         </EuiButton>
+        <EuiButton onClick={() => setIsItemDetailsOpen(true)}>
+          Item details
+        </EuiButton>
       </EuiFlexGroup>
+      <EuiSpacer />
       {isShoppingCartOpen && (
-        <ShoppingCartManagedFlyout
+        <ShoppingCartFlyout
           onClose={() => setIsShoppingCartOpen(false)}
           onQuantityChange={(delta: number) =>
             setItemQuantity(itemQuantity + delta)
@@ -255,8 +243,14 @@ const BasicExampleComponent = () => {
         />
       )}
       {isReviewCartOpen && (
-        <ReviewOrderManagedFlyout
+        <ReviewOrderFlyout
           onClose={() => setIsReviewCartOpen(false)}
+          itemQuantity={itemQuantity}
+        />
+      )}
+      {isItemDetailsOpen && (
+        <ItemDetailsFlyout
+          onClose={() => setIsItemDetailsOpen(false)}
           itemQuantity={itemQuantity}
         />
       )}
