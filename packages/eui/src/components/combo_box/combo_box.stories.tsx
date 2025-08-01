@@ -109,53 +109,59 @@ export const WithCustomOptionIds: Story = {
 export const RowHeightAuto: Story = {
   parameters: {
     controls: {
-      include: ['singleSelection', 'options', 'onChange'],
+      include: ['rowHeight', 'singleSelection', 'options', 'onChange'],
     },
-    // Was not able to get the listbox open in the screenshot
-    loki: { skip: true },
+    loki: {
+      chromeSelector: LOKI_SELECTORS.portal,
+    },
   },
   args: {
+    autoFocus: true,
     singleSelection: false,
     rowHeight: 'auto',
-    selectedOptions: [{ label: 'kibana.task_manager_metrics.metrics.message' }],
+    selectedOptions: [
+      { label: 'elastic.task_manager_metrics.metrics.message' },
+    ],
     options: [
-      { label: 'kibana.task_manager_metrics.metrics.error' },
-      { label: 'kibana.task_manager_metrics.metrics.last_update' },
-      { label: 'kibana.task_manager_metrics.metrics.message' },
+      { label: 'elastic.task_manager_metrics.metrics.error' },
+      { label: 'elastic.task_manager_metrics.metrics.last_update' },
+      { label: 'elastic.task_manager_metrics.metrics.message' },
       {
         label:
-          'kibana.task_manager_metrics.metrics.task_overdue.value.by_type.insolence',
-      },
-      {
-        label:
-          'kibana.task_manager_metrics.metrics.task_overdue.value.by_type.nudge',
+          'elastic.task_manager_metrics.metrics.task_overdue.value.by_type.insolence',
       },
       {
         label:
-          'kibana.task_manager_metrics.metrics.task_overdue.value.by_type.advancement',
+          'elastic.task_manager_metrics.metrics.task_overdue.value.by_type.nudge',
       },
       {
         label:
-          'kibana.task_manager_metrics.metrics.task_overdue.value.by_type.outlaw',
+          'elastic.task_manager_metrics.metrics.task_overdue.value.by_type.advancement',
       },
       {
         label:
-          'kibana.task_manager_metrics.metrics.task_overdue.value.by_type.representation',
+          'elastic.task_manager_metrics.metrics.task_overdue.value.by_type.outlaw',
       },
       {
         label:
-          'kibana.task_manager_metrics.metrics.task_overdue.value.by_type.tomb',
+          'elastic.task_manager_metrics.metrics.task_overdue.value.by_type.representation',
       },
       {
         label:
-          'kibana.task_manager_metrics.metrics.task_overdue.value.by_type.march',
+          'elastic.task_manager_metrics.metrics.task_overdue.value.by_type.tomb',
       },
-      { label: 'kibana.task_manager_metrics.metrics.task_claim.timestamp' },
       {
-        label: 'kibana.task_manager_metrics.metrics.task_claim.value.duration',
+        label:
+          'elastic.task_manager_metrics.metrics.task_overdue.value.by_type.march',
       },
-      { label: 'kibana.task_manager_metrics.metrics.task_claim.value.success' },
-      { label: 'kibana.task_manager_metrics.metrics.task_claim.value.total' },
+      { label: 'elastic.task_manager_metrics.metrics.task_claim.timestamp' },
+      {
+        label: 'elastic.task_manager_metrics.metrics.task_claim.value.duration',
+      },
+      {
+        label: 'elastic.task_manager_metrics.metrics.task_claim.value.success',
+      },
+      { label: 'elastic.task_manager_metrics.metrics.task_claim.value.total' },
     ],
     renderOption: (option, searchValue) => {
       return (
@@ -166,6 +172,21 @@ export const RowHeightAuto: Story = {
     },
   },
   render: (args) => <StatefulComboBox {...args} />,
+  play: lokiPlayDecorator(async (context) => {
+    const { bodyElement, step } = context;
+
+    const canvas = within(bodyElement);
+
+    await step(
+      'open listbox',
+      async () => {
+        await userEvent.click(canvas.getByRole('combobox'));
+        await waitFor(() => {
+          expect(canvas.getByRole('listbox')).toBeVisible();
+        });
+      }
+    );
+  }),
 };
 
 export const WithTooltip: Story = {
