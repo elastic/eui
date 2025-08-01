@@ -24,6 +24,8 @@ import { euiFlyoutChildStyles } from './flyout_child.styles';
 import { EuiFlyoutCloseButton } from './_flyout_close_button';
 import { EuiFlyoutContext } from './flyout_context';
 import { EuiFlyoutBody } from './flyout_body';
+import { EuiFlyoutMenu } from './flyout_menu';
+import { EuiFlyoutMenuContext } from './flyout_menu_context';
 import { EuiFocusTrap } from '../focus_trap';
 
 /**
@@ -118,8 +120,16 @@ export const EuiFlyoutChild: FunctionComponent<EuiFlyoutChildProps> = ({
 
   let flyoutTitleText: string | undefined;
   let hasDescribedByBody = false;
+  let hasFlyoutMenu = false;
   Children.forEach(children, (child) => {
     if (React.isValidElement(child)) {
+      if (
+        child.type === EuiFlyoutMenu ||
+        (child.type as any).displayName === 'EuiFlyoutMenu'
+      ) {
+        hasFlyoutMenu = true;
+      }
+
       if ((child.type as any)?.displayName === 'EuiFlyoutHeader') {
         // Attempt to extract string content from header for ARIA
         const headerChildren = child.props.children;
@@ -257,7 +267,7 @@ export const EuiFlyoutChild: FunctionComponent<EuiFlyoutChildProps> = ({
             {flyoutTitleText}
           </h2>
         )}
-        {!hideCloseButton && (
+        {!hideCloseButton && !hasFlyoutMenu && (
           <EuiFlyoutCloseButton
             className="euiFlyoutChild__closeButton"
             onClose={handleClose}
@@ -284,7 +294,9 @@ export const EuiFlyoutChild: FunctionComponent<EuiFlyoutChildProps> = ({
             className="euiFlyoutChild__overflowContent"
             css={styles.overflow.wrapper}
           >
-            {processedChildren}
+            <EuiFlyoutMenuContext.Provider value={{ onClose }}>
+              {processedChildren}
+            </EuiFlyoutMenuContext.Provider>
           </div>
         </div>
       </div>
