@@ -177,15 +177,12 @@ export const RowHeightAuto: Story = {
 
     const canvas = within(bodyElement);
 
-    await step(
-      'open listbox',
-      async () => {
-        await userEvent.click(canvas.getByRole('combobox'));
-        await waitFor(() => {
-          expect(canvas.getByRole('listbox')).toBeVisible();
-        });
-      }
-    );
+    await step('open listbox', async () => {
+      await userEvent.click(canvas.getByRole('combobox'));
+      await waitFor(() => {
+        expect(canvas.getByRole('listbox')).toBeVisible();
+      });
+    });
   }),
 };
 
