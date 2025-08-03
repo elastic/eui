@@ -228,6 +228,8 @@ export class EuiComboBoxOptionsList<T> extends Component<
             classNamePrefix="euiComboBoxOption"
             marginSize="s"
           >
+            {/* Note for possible future refactor: `eui-textTruncate` here
+            is redundant beacuse it's already applied in EuiFilterSelectItem */}
             <span
               className={classNames(
                 'euiComboBoxOption__content',

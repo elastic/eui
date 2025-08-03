@@ -941,7 +941,7 @@ export default () => {
 
 Only in the rare case you need text to wrap onto multiple lines instead of being truncated, you can set the `⁠rowHeight` prop to `⁠auto`. This will disable virtualization for the options list. When virtualization is disabled, highlighting will function as expected, but text truncation properties will be ignored.
 
-:::warning Disabling virtualization can have an impact on **performance** with large lists
+:::warning Disabling virtualization has an impact on **performance** with large lists due to all list elements being rendered to the DOM
 
 :::
 

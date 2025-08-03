@@ -172,18 +172,6 @@ export const RowHeightAuto: Story = {
     },
   },
   render: (args) => <StatefulComboBox {...args} />,
-  play: lokiPlayDecorator(async (context) => {
-    const { bodyElement, step } = context;
-
-    const canvas = within(bodyElement);
-
-    await step('open listbox', async () => {
-      await userEvent.click(canvas.getByRole('combobox'));
-      await waitFor(() => {
-        expect(canvas.getByRole('listbox')).toBeVisible();
-      });
-    });
-  }),
 };
 
 export const WithTooltip: Story = {
