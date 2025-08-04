@@ -155,7 +155,7 @@ exports[`EuiComboBox renders the options list dropdown 1`] = `
             data-focus-lock-disabled="disabled"
           >
             <div
-              class="euiComboBoxOptionsList emotion-euiComboBoxOptionList"
+              class="euiComboBoxOptionsList emotion-euiComboBoxOptionList-render"
               data-test-subj="comboBoxOptionsList alsoGetsAppliedToOptionsList-optionsList"
             >
               <div
@@ -191,7 +191,7 @@ exports[`EuiComboBox renders the options list dropdown 1`] = `
                           class="euiComboBoxOption__contentWrapper"
                         >
                           <span
-                            class="euiComboBoxOption__content"
+                            class="euiComboBoxOption__content eui-textTruncate"
                           >
                             Titan
                           </span>
@@ -220,7 +220,7 @@ exports[`EuiComboBox renders the options list dropdown 1`] = `
                           class="euiComboBoxOption__contentWrapper"
                         >
                           <span
-                            class="euiComboBoxOption__content"
+                            class="euiComboBoxOption__content eui-textTruncate"
                           >
                             Enceladus
                           </span>
@@ -249,7 +249,7 @@ exports[`EuiComboBox renders the options list dropdown 1`] = `
                           class="euiComboBoxOption__contentWrapper"
                         >
                           <span
-                            class="euiComboBoxOption__content"
+                            class="euiComboBoxOption__content eui-textTruncate"
                           >
                             Mimas
                           </span>
@@ -278,7 +278,7 @@ exports[`EuiComboBox renders the options list dropdown 1`] = `
                           class="euiComboBoxOption__contentWrapper"
                         >
                           <span
-                            class="euiComboBoxOption__content"
+                            class="euiComboBoxOption__content eui-textTruncate"
                           >
                             Dione
                           </span>
@@ -307,7 +307,7 @@ exports[`EuiComboBox renders the options list dropdown 1`] = `
                           class="euiComboBoxOption__contentWrapper"
                         >
                           <span
-                            class="euiComboBoxOption__content"
+                            class="euiComboBoxOption__content eui-textTruncate"
                           >
                             Iapetus
                           </span>
@@ -336,7 +336,7 @@ exports[`EuiComboBox renders the options list dropdown 1`] = `
                           class="euiComboBoxOption__contentWrapper"
                         >
                           <span
-                            class="euiComboBoxOption__content"
+                            class="euiComboBoxOption__content eui-textTruncate"
                           >
                             Phoebe
                           </span>
@@ -365,7 +365,7 @@ exports[`EuiComboBox renders the options list dropdown 1`] = `
                           class="euiComboBoxOption__contentWrapper"
                         >
                           <span
-                            class="euiComboBoxOption__content"
+                            class="euiComboBoxOption__content eui-textTruncate"
                           >
                             Rhea
                           </span>
@@ -394,7 +394,7 @@ exports[`EuiComboBox renders the options list dropdown 1`] = `
                           class="euiComboBoxOption__contentWrapper"
                         >
                           <span
-                            class="euiComboBoxOption__content"
+                            class="euiComboBoxOption__content eui-textTruncate"
                           >
                             Pandora is one of Saturn's moons, named for a Titaness of Greek mythology
                           </span>
@@ -423,7 +423,7 @@ exports[`EuiComboBox renders the options list dropdown 1`] = `
                           class="euiComboBoxOption__contentWrapper"
                         >
                           <span
-                            class="euiComboBoxOption__content"
+                            class="euiComboBoxOption__content eui-textTruncate"
                           >
                             Tethys
                           </span>
