@@ -16,7 +16,7 @@ import { useCurrentMainFlyout, useFlyoutWidth } from './flyout_manager';
 export interface EuiFlyoutChildProps
   extends Omit<
     EuiFlyoutComponentProps,
-    'closeButtonPosition' | 'side' | 'type'
+    'closeButtonPosition' | 'hideCloseButton' | 'side' | 'type'
   > {
   backgroundStyle?: 'default' | 'shaded';
 }
