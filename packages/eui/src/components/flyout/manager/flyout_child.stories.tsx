@@ -10,17 +10,17 @@ import { actions } from '@storybook/addon-actions';
 import type { Meta, StoryObj } from '@storybook/react';
 import React, { useState } from 'react';
 
-import { LOKI_SELECTORS } from '../../../.storybook/loki';
-import { EuiBreakpointSize } from '../../services';
-import { EuiButton } from '../button';
-import { EuiSpacer } from '../spacer';
-import { EuiText } from '../text';
-import { TYPES } from './flyout';
-import { EuiFlyoutBody } from './flyout_body';
-import { EuiFlyoutChild, EuiFlyoutChildProps, EuiFlyoutMain } from './manager';
-import { EuiFlyoutFooter } from './flyout_footer';
-import { EuiFlyoutHeader } from './flyout_header';
-import { EuiFlyoutMenu } from './flyout_menu';
+import { LOKI_SELECTORS } from '../../../../.storybook/loki';
+import { EuiBreakpointSize } from '../../../services';
+import { EuiButton } from '../../button';
+import { EuiSpacer } from '../../spacer';
+import { EuiText } from '../../text';
+import { TYPES } from '../flyout';
+import { EuiFlyoutBody } from '../flyout_body';
+import { EuiFlyoutFooter } from '../flyout_footer';
+import { EuiFlyoutHeader } from '../flyout_header';
+import { EuiFlyoutMenu } from '../flyout_menu';
+import { EuiFlyoutChild, EuiFlyoutChildProps, EuiFlyoutMain } from './';
 
 type EuiFlyoutChildActualProps = Pick<
   EuiFlyoutChildProps,

@@ -26,8 +26,5 @@ export { euiFlyoutSlideInRight, euiFlyoutSlideInLeft } from './flyout.styles';
 export type { EuiFlyoutResizableProps } from './flyout_resizable';
 export { EuiFlyoutResizable } from './flyout_resizable';
 
-export { EuiFlyoutChild } from './flyout_child';
-export type { EuiFlyoutChildProps } from './flyout_child';
-
 export type { EuiFlyoutMenuProps } from './flyout_menu';
 export { EuiFlyoutMenu } from './flyout_menu';
