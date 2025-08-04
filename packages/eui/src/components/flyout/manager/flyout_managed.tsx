@@ -19,6 +19,7 @@ import {
 import { useEuiMemoizedStyles } from '../../../services';
 import { useResizeObserver } from '../../observer/resize_observer';
 import { euiManagedFlyoutStyles } from './flyout.styles';
+import { EuiFlyoutMenuContext } from '../flyout_menu_context';
 
 export interface EuiManagedFlyoutProps extends EuiFlyoutComponentProps {
   level: 'main' | 'child';
@@ -70,16 +71,18 @@ export const EuiManagedFlyout = ({
 
   return (
     <EuiManagedFlyoutContext.Provider value={true}>
-      <EuiFlyoutComponent
-        ref={flyoutRef}
-        data-managed-flyout={true}
-        data-managed-flyout-level={level}
-        data-managed-flyout-active={isActive}
-        id={componentIdRef.current}
-        onClose={onClose}
-        css={[styles.managedFlyout, customCss]}
-        {...props}
-      />
+      <EuiFlyoutMenuContext.Provider value={{ onClose }}>
+        <EuiFlyoutComponent
+          ref={flyoutRef}
+          data-managed-flyout={true}
+          data-managed-flyout-level={level}
+          data-managed-flyout-active={isActive}
+          id={componentIdRef.current}
+          onClose={onClose}
+          css={[styles.managedFlyout, customCss]}
+          {...props}
+        />
+      </EuiFlyoutMenuContext.Provider>
     </EuiManagedFlyoutContext.Provider>
   );
 };
