@@ -70,7 +70,7 @@ export type EuiHeaderLinksProps = CommonProps &
 export const EuiHeaderLinks: FunctionComponent<EuiHeaderLinksProps> = ({
   children,
   className,
-  gutterSize = 's',
+  gutterSize = 'xs',
   popoverBreakpoints = ['xs', 's'],
   popoverButtonProps,
   popoverProps,

@@ -22,7 +22,7 @@ const meta: Meta<EuiHeaderLinksProps> = {
   component: EuiHeaderLinks,
   args: {
     // Component defaults
-    gutterSize: 's',
+    gutterSize: 'xs',
     popoverBreakpoints: ['xs', 's'],
   },
   // Required to capture mobile popover

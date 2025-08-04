@@ -45,6 +45,10 @@ export const euiHeaderSectionItemButtonStyles = (
       text-align: center;
       padding: 0;
       font-size: 0; /* Aligns icons better vertically */
+      ${logicalCSS(
+        'margin-right',
+        euiTheme.size.s
+      )} /* 8px spacing between buttons */
 
       ${euiMaxBreakpoint(euiThemeContext, 's')} {
         ${logicalSizeCSS(euiTheme.size.xl)}/* Keep consistent size on mobile */
