@@ -7,15 +7,41 @@
  */
 
 import React from 'react';
+import { useEuiMemoizedStyles } from '../../../services';
 import { EuiFlyoutComponentProps } from '../flyout.component';
+import { euiManagedFlyoutStyles } from './flyout.styles';
 import { EuiManagedFlyout } from './flyout_managed';
 import { useCurrentMainFlyout, useFlyoutWidth } from './flyout_manager';
 
-export interface EuiFlyoutChildProps extends EuiFlyoutComponentProps {}
+export interface EuiFlyoutChildProps
+  extends Omit<
+    EuiFlyoutComponentProps,
+    'closeButtonPosition' | 'side' | 'type'
+  > {
+  backgroundStyle?: 'default' | 'shaded';
+}
 
-export function EuiFlyoutChild(props: EuiFlyoutChildProps) {
+export function EuiFlyoutChild({
+  css: customCss,
+  backgroundStyle,
+  ...props
+}: EuiFlyoutChildProps) {
+  const styles = useEuiMemoizedStyles(euiManagedFlyoutStyles);
+
   const width = useFlyoutWidth(useCurrentMainFlyout()?.flyoutId);
 
   const style = width ? { right: width } : {};
-  return <EuiManagedFlyout style={style} level="child" {...props} />;
+  return (
+    <EuiManagedFlyout
+      style={style}
+      level="child"
+      {...props}
+      css={[
+        backgroundStyle === 'shaded'
+          ? styles.backgroundShaded
+          : styles.backgroundDefault,
+        customCss,
+      ]}
+    />
+  );
 }
