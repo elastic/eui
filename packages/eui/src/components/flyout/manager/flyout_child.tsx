@@ -36,6 +36,8 @@ export function EuiFlyoutChild({
       style={style}
       level="child"
       {...props}
+      type="overlay"
+      ownFocus={false}
       css={[
         backgroundStyle === 'shaded'
           ? styles.backgroundShaded
