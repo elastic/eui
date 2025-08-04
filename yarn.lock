@@ -7293,6 +7293,7 @@ __metadata:
     react-dom: "npm:^18.0.0"
     react-element-to-jsx-string: "npm:^15.0.0"
     react-window: "npm:^1.8.11"
+    typedoc: "npm:^0.28.5"
     typescript: "npm:~5.5.4"
   languageName: unknown
   linkType: soft
@@ -39887,6 +39888,23 @@ __metadata:
   bin:
     typedoc: bin/typedoc
   checksum: 10c0/5c7f4019da81e8b0869e4757b3d74c001dc021be381c5716a14212fbf63ad81bcfc470e040b7eac132603447c367019d5acab323d1b358b040979f1f56fe6393
+  languageName: node
+  linkType: hard
+
+"typedoc@npm:^0.28.5":
+  version: 0.28.5
+  resolution: "typedoc@npm:0.28.5"
+  dependencies:
+    "@gerrit0/mini-shiki": "npm:^3.2.2"
+    lunr: "npm:^2.3.9"
+    markdown-it: "npm:^14.1.0"
+    minimatch: "npm:^9.0.5"
+    yaml: "npm:^2.7.1"
+  peerDependencies:
+    typescript: 5.0.x || 5.1.x || 5.2.x || 5.3.x || 5.4.x || 5.5.x || 5.6.x || 5.7.x || 5.8.x
+  bin:
+    typedoc: bin/typedoc
+  checksum: 10c0/fc8235dbe8f14da24fdb088467b01887b3f1375b27d5caf0276ae405f03aa1f523e94aea52fe8ce1a3d477ae9e3f4f69fdc28614275445a828a77db88784e6ce
   languageName: node
   linkType: hard
 

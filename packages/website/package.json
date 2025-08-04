@@ -46,7 +46,8 @@
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-element-to-jsx-string": "^15.0.0",
-    "react-window": "^1.8.11"
+    "react-window": "^1.8.11",
+    "typedoc": "^0.28.5"
   },
   "devDependencies": {
     "@babel/preset-react": "^7.24.7",
