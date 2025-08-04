@@ -68,10 +68,6 @@ export const EuiManagedFlyout = ({
     }
   }, [flyoutId, level, isActive, width, setFlyoutWidth]);
 
-  // TODO: need a variable to track if a child flyout is active
-
-  // TODO: need a variable to track if the layout should be "side-by-side" or "stacked"
-
   return (
     <EuiManagedFlyoutContext.Provider value={true}>
       <EuiFlyoutComponent

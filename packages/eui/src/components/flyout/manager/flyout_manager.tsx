@@ -256,6 +256,10 @@ export function useFlyoutManagerReducer(
     []
   );
 
+  // TODO: need a variable to track if a child flyout is active
+
+  // TODO: need a variable to track if the layout should be "side-by-side" or "stacked"
+
   return {
     state,
     dispatch,
