@@ -62,7 +62,7 @@ exports[`EuiHeaderLinks is rendered 1`] = `
   data-test-subj="test subject string"
 >
   <div
-    class="euiHeaderLinks__list emotion-euiHeaderLinks__list-s-EuiHeaderLinks"
+    class="euiHeaderLinks__list emotion-euiHeaderLinks__list-xs-EuiHeaderLinks"
   />
 </nav>
 `;
