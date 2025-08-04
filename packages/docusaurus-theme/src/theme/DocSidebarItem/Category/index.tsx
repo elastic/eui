@@ -1,3 +1,11 @@
+/*
+ * Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
+ * or more contributor license agreements. Licensed under the Elastic License
+ * 2.0 and the Server Side Public License, v 1; you may not use this file except
+ * in compliance with, at your election, the Elastic License 2.0 or the Server
+ * Side Public License, v 1.
+ */
+
 import { type ComponentProps, useEffect, useMemo, JSX } from 'react';
 import clsx from 'clsx';
 import { css, Interpolation, Theme } from '@emotion/react';
@@ -18,8 +26,9 @@ import Link from '@docusaurus/Link';
 import { translate } from '@docusaurus/Translate';
 import useIsBrowser from '@docusaurus/useIsBrowser';
 import type { Props } from '@theme-original/DocSidebarItem/Category';
-import DocSidebarItems from '../../DocSidebarItems';
 import { EuiIcon, useEuiMemoizedStyles, UseEuiTheme } from '@elastic/eui';
+
+import DocSidebarItems from '../../DocSidebarItems';
 
 const getStyles = ({ euiTheme }: UseEuiTheme) => ({
   listItem: css`
