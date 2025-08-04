@@ -8,7 +8,10 @@
 
 import type { UseEuiTheme } from '../../services/theme/types';
 import { boxShadowToFilterDropShadow } from '../functions';
-import { _EuiThemeShadowSize } from '../variables/shadow';
+import {
+  _EuiThemeShadowHoverSize,
+  _EuiThemeShadowSize,
+} from '../variables/shadow';
 import { BorderDirection, euiBorderStyles } from './borders';
 
 export interface EuiShadowOptions {
@@ -132,23 +135,6 @@ export const euiShadowXLarge = (
   });
 };
 
-export const euiShadowXLargeHover = (
-  euiThemeContext: UseEuiTheme,
-  options?: EuiShadowXLarge
-) => {
-  const { euiTheme, highContrastMode } = euiThemeContext;
-
-  if (highContrastMode) {
-    return _highContrastBorder(euiThemeContext, options);
-  }
-  const reverse = options?.reverse ?? false;
-  const direction = options?.direction ?? reverse ? 'up' : 'down';
-
-  return _shadowStyles(euiThemeContext, euiTheme.shadows.hover.xl[direction], {
-    border: options?.border,
-  });
-};
-
 /**
  * flat shadow
  * @deprecated - use euiShadowHover instead
@@ -167,30 +153,6 @@ export const euiSlightShadowHover = (
   return _shadowStyles(euiThemeContext, euiTheme.shadows.s[direction], {
     border: options?.border,
   });
-};
-
-/**
- * Special hover to be used exclusively in hover states
- * of bordered panels.
- */
-export const euiShadowHover = (
-  euiThemeContext: UseEuiTheme,
-  options?: EuiShadowOptions
-) => {
-  const { euiTheme, highContrastMode } = euiThemeContext;
-
-  if (highContrastMode) {
-    return _highContrastBorder(euiThemeContext, options);
-  }
-  const direction = options?.direction ?? 'down';
-
-  return _shadowStyles(
-    euiThemeContext,
-    euiTheme.shadows.hover.base[direction],
-    {
-      border: options?.border,
-    }
-  );
 };
 
 /**
@@ -241,6 +203,58 @@ export const euiShadow = (
       console.warn('Please provide a valid size option to useEuiShadow');
       return '';
   }
+};
+
+/** Hover shadows */
+export const euiShadowHover = (
+  euiThemeContext: UseEuiTheme,
+  size: _EuiThemeShadowSize | 'base' = 'base',
+  options?: EuiShadowOptions
+) => {
+  if (euiThemeContext.highContrastMode) {
+    return _highContrastBorder(euiThemeContext, options);
+  }
+
+  switch (size) {
+    case 'base':
+      return _euiShadowHover(euiThemeContext, 'base', options);
+    case 'xs':
+      return _euiShadowHover(euiThemeContext, 's', options);
+    case 's':
+      return _euiShadowHover(euiThemeContext, 'm', options);
+    case 'm':
+      return _euiShadowHover(euiThemeContext, 'l', options);
+    case 'l':
+      return _euiShadowHover(euiThemeContext, 'xl', options);
+    case 'xl':
+      return _euiShadowHover(euiThemeContext, 'xxl', options);
+    default:
+      console.warn('Please provide a valid size option to useEuiShadow');
+      return '';
+  }
+};
+
+const _euiShadowHover = (
+  euiThemeContext: UseEuiTheme,
+  size: _EuiThemeShadowHoverSize | 'base' = 'l',
+  options?: EuiShadowOptions
+) => {
+  const { euiTheme, highContrastMode } = euiThemeContext;
+
+  if (highContrastMode) {
+    return _highContrastBorder(euiThemeContext, options);
+  }
+  const direction = options?.direction ?? 'down';
+  const shadow =
+    size === 'base'
+      ? euiTheme.shadows.hover.base[direction]
+      : size === 'xxl'
+      ? euiTheme.shadows.hover.xl[direction]
+      : euiTheme.shadows[size][direction];
+
+  return _shadowStyles(euiThemeContext, shadow, {
+    border: options?.border,
+  });
 };
 
 /**

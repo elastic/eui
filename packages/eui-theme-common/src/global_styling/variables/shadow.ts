@@ -10,8 +10,11 @@ import { CSSProperties } from 'react';
 import { ColorModeSwitch } from '../../services/theme/types';
 
 export const EuiThemeShadowSizes = ['xs', 's', 'm', 'l', 'xl'] as const;
-
 export type _EuiThemeShadowSize = (typeof EuiThemeShadowSizes)[number];
+
+export const EuiThemeShadowHoverSizes = ['s', 'm', 'l', 'xl', 'xxl'] as const;
+export type _EuiThemeShadowHoverSize =
+  (typeof EuiThemeShadowHoverSizes)[number];
 
 /**
  * Shadow t-shirt sizes descriptions
