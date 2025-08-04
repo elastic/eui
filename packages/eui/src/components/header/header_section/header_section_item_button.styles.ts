@@ -16,12 +16,9 @@ import {
   euiMaxBreakpoint,
 } from '../../../global_styling';
 
-import { euiHeaderVariables } from '../header.styles';
-
 export const euiHeaderSectionItemButtonStyles = (
   euiThemeContext: UseEuiTheme
 ) => {
-  const { childHeight } = euiHeaderVariables(euiThemeContext);
   const { euiTheme } = euiThemeContext;
   const isRefreshVariant = isEuiThemeRefreshVariant(
     euiThemeContext,
@@ -39,17 +36,18 @@ export const euiHeaderSectionItemButtonStyles = (
   return {
     euiHeaderSectionItemButton: css`
       position: relative; /* For positioning the notification */
-      ${logicalCSS('height', childHeight)}
-      ${logicalCSS('min-width', childHeight)}
-      ${logicalCSS('padding-horizontal', euiTheme.size.s)}
+      ${logicalSizeCSS(
+        euiTheme.size.xl
+      )} /* Same size as EUI small icon buttons (32x32px) */
+      display: flex;
+      align-items: center;
+      justify-content: center;
       text-align: center;
+      padding: 0;
       font-size: 0; /* Aligns icons better vertically */
 
       ${euiMaxBreakpoint(euiThemeContext, 's')} {
-        ${logicalCSS(
-          'min-width',
-          mathWithUnits(childHeight, (x) => x * 0.75)
-        )}
+        ${logicalSizeCSS(euiTheme.size.xl)}/* Keep consistent size on mobile */
       }
     `,
     euiHeaderSectionItemButton__content: css`
