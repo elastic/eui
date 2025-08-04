@@ -31,15 +31,3 @@ export type { EuiFlyoutChildProps } from './flyout_child';
 
 export type { EuiFlyoutMenuProps } from './flyout_menu';
 export { EuiFlyoutMenu } from './flyout_menu';
-
-export type {
-  EuiFlyoutSessionApi,
-  EuiFlyoutSessionConfig,
-  EuiFlyoutSessionOpenChildOptions,
-  EuiFlyoutSessionOpenGroupOptions,
-  EuiFlyoutSessionOpenMainOptions,
-  EuiFlyoutSessionOpenManagedOptions,
-  EuiFlyoutSessionProviderComponentProps,
-  EuiFlyoutSessionRenderContext,
-} from './sessions';
-export { EuiFlyoutSessionProvider, useEuiFlyoutSession } from './sessions';
