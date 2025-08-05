@@ -23,7 +23,6 @@
   // Each prefix must be its own content block
   &::-webkit-input-placeholder { @content; opacity: 1; }
   &::-moz-placeholder { @content; opacity: 1; }
-  &:-ms-input-placeholder { @content; opacity: 1; }
   &:-moz-placeholder { @content; opacity: 1; }
   &::placeholder { @content; opacity: 1; }
 }

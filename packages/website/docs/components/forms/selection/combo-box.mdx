@@ -933,6 +933,54 @@ export default () => {
 
 ```
 
+:::info Setting `rowHeight` to `auto` will cause truncation to be completely disabled
+
+:::
+
+## Multiple lines
+
+Only in the rare case you need text to wrap onto multiple lines instead of being truncated, you can set the `⁠rowHeight` prop to `⁠auto`. This will disable virtualization for the options list. When virtualization is disabled, highlighting will function as expected, but text truncation properties will be ignored.
+
+:::warning Disabling virtualization has an impact on **performance** with large lists due to all list elements being rendered to the DOM
+
+:::
+
+```tsx interactive
+import React, { useState } from 'react';
+import { EuiComboBox } from '@elastic/eui';
+
+const options = [
+  { label: 'Nam vestibulum, arcu quis gravida tempus, nunc nibh rhoncus tellus' },
+  { label: 'Aliquam placerat augue at dolor interdum, et sodales dui consectetur' },
+  { label: 'Aenean in scelerisque ligula, nec scelerisque metus' },
+  { label: 'Donec iaculis varius massa, ac scelerisque velit facilisis nec' },
+  { label: 'Nulla varius urna lorem, et suscipit nisi scelerisque sed' },
+  { label: 'Phasellus scelerisque laoreet neque, non malesuada neque maximus sed' },
+  { label: 'Maecenas felis eros, mattis eget augue in, euismod tristique arcu' },
+  { label: 'Aliquam ac tristique tortor, commodo rhoncus turpis' },
+];
+
+export default () => {
+  const [selectedOptions, setSelected] = useState([]);
+
+  const onChange = (selectedOptions) => {
+    setSelected(selectedOptions);
+  };
+
+  return (
+    <EuiComboBox
+      aria-label="Accessible screen reader label"
+      placeholder="Long text options onto multiple lines"
+      rowHeight="auto"
+      options={options}
+      selectedOptions={selectedOptions}
+      onChange={onChange}
+    />
+  );
+};
+
+```
+
 ## Groups
 
 You can group options together. The group labels _won’t_ match against the search value.
