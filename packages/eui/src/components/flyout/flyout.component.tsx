@@ -15,6 +15,7 @@ import React, {
   useCallback,
   useState,
   forwardRef,
+  useContext,
   ComponentPropsWithRef,
   CSSProperties,
   ElementType,
@@ -35,6 +36,7 @@ import {
   useGeneratedHtmlId,
   useEuiThemeCSSVariables,
 } from '../../services';
+import { useCurrentSession, EuiManagedFlyoutContext } from '../flyout/manager';
 import { logicalStyle } from '../../global_styling';
 
 import { CommonProps, PropsOfElement } from '../common';
@@ -215,6 +217,7 @@ export const EuiFlyoutComponent = forwardRef(
       includeFixedHeadersInFocusTrap = true,
       includeSelectorInFocusTrap,
       'aria-describedby': _ariaDescribedBy,
+      id,
       ...rest
     } = usePropsWithComponentDefaults('EuiFlyout', props);
 
@@ -281,17 +284,43 @@ export const EuiFlyoutComponent = forwardRef(
       };
     }, []);
 
+    const currentSession = useCurrentSession();
+    const isInManagedContext = useContext(EuiManagedFlyoutContext);
+    const hasChildFlyout = currentSession?.child != null;
+    const isChildFlyout =
+      isInManagedContext && hasChildFlyout && currentSession?.child === id;
+
+    const shouldCloseOnEscape = useMemo(() => {
+      // Regular flyout - always close on ESC
+      if (!isInManagedContext) {
+        return true;
+      }
+
+      // Managed flyout with no child - close on ESC
+      if (!hasChildFlyout) {
+        return true;
+      }
+
+      // Child flyout - close on ESC
+      if (isChildFlyout) {
+        return true;
+      }
+
+      // Main flyout with child flyout - don't close on ESC
+      return false;
+    }, [isInManagedContext, hasChildFlyout, isChildFlyout]);
+
     /**
-     * ESC key closes flyout (always?)
+     * ESC key closes flyout based on flyout hierarchy rules
      */
     const onKeyDown = useCallback(
       (event: KeyboardEvent) => {
-        if (!isPushed && event.key === keys.ESCAPE) {
+        if (!isPushed && event.key === keys.ESCAPE && shouldCloseOnEscape) {
           event.preventDefault();
           onClose(event);
         }
       },
-      [onClose, isPushed]
+      [onClose, isPushed, shouldCloseOnEscape]
     );
 
     /**

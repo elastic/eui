@@ -9,16 +9,18 @@
 export { EuiFlyoutChild, type EuiFlyoutChildProps } from './flyout_child';
 export { EuiFlyoutMain, type EuiFlyoutMainProps } from './flyout_main';
 export {
-  EuiFlyoutManager,
-  useFlyoutManager,
-  useIsFlyoutActive,
-  useIsSessionActive,
-  useIsManagedFlyoutContext,
-  useFlyoutWidth,
   addFlyout,
   closeFlyout,
+  EuiFlyoutManager,
+  EuiManagedFlyoutContext,
   setActiveFlyout,
   setFlyoutWidth,
+  useCurrentSession,
+  useFlyoutManager,
+  useFlyoutWidth,
+  useIsFlyoutActive,
+  useIsManagedFlyoutContext,
+  useIsSessionActive,
   type EuiFlyoutManagerState,
   type EuiManagedFlyoutState,
 } from './flyout_manager';
