@@ -65,43 +65,28 @@ export const EuiManagedFlyout = ({
 
   // Validate size and add flyout
   useEffect(() => {
-    const sizeString = size
-      ? typeof size === 'number'
-        ? size.toString()
-        : size
-      : undefined;
+    // Validate that managed flyouts use named sizes (s, m, l)
+    const sizeTypeError = validateManagedFlyoutSize(size, flyoutId, level);
+    if (sizeTypeError) {
+      throw new Error(createValidationErrorMessage(sizeTypeError));
+    }
 
-    if (sizeString) {
-      // Validate that managed flyouts use named sizes (s, m, l)
-      const sizeTypeError = validateManagedFlyoutSize(
-        sizeString,
-        flyoutId,
-        level
-      );
-      if (sizeTypeError) {
-        throw new Error(createValidationErrorMessage(sizeTypeError));
-      }
-
-      // For child flyouts, validate parent-child combinations
-      if (
-        level === 'child' &&
-        parentSize &&
-        isNamedSize(sizeString) &&
-        isNamedSize(parentSize)
-      ) {
-        const combinationError = validateSizeCombination(
-          parentSize,
-          sizeString
-        );
-        if (combinationError) {
-          combinationError.flyoutId = flyoutId;
-          combinationError.level = level;
-          throw new Error(createValidationErrorMessage(combinationError));
-        }
+    // For child flyouts, validate parent-child combinations
+    if (
+      level === 'child' &&
+      parentSize &&
+      isNamedSize(size) &&
+      isNamedSize(parentSize)
+    ) {
+      const combinationError = validateSizeCombination(parentSize, size);
+      if (combinationError) {
+        combinationError.flyoutId = flyoutId;
+        combinationError.level = level;
+        throw new Error(createValidationErrorMessage(combinationError));
       }
     }
 
-    addFlyout(flyoutId, level, sizeString);
+    addFlyout(flyoutId, level, size as string);
     return () => {
       closeFlyout(flyoutId);
     };
