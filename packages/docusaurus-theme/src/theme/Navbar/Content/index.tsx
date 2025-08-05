@@ -36,7 +36,6 @@ const DOCS_PATH = '/docs';
 const placeHolderStyles = (content: string) => `
   &::-webkit-input-placeholder { ${content} }
   &::-moz-placeholder { ${content} }
-  &:-ms-input-placeholder { ${content} }
   &:-moz-placeholder { ${content} }
   &::placeholder { ${content} }
 `;
@@ -209,8 +208,8 @@ export default function NavbarContent(): JSX.Element {
 
   return (
     <>
-      {/* adding search styles globally to ensure they are available for usage on 
-      homepage as well without duplication. NOTE: swizzle/wrap does not work for 
+      {/* adding search styles globally to ensure they are available for usage on
+      homepage as well without duplication. NOTE: swizzle/wrap does not work for
       the plugin SearchBar component */}
       <Global styles={styles.search} />
       <NavbarContentLayout

@@ -7,9 +7,9 @@
  */
 
 import React from 'react';
-import { fireEvent } from '@testing-library/react';
+import { act, fireEvent } from '@testing-library/react';
 import { requiredProps } from '../../test/required_props';
-import { render } from '../../test/rtl';
+import { render, screen } from '../../test/rtl';
 
 import { EuiCallOut, COLORS, HEADINGS } from './call_out';
 
@@ -63,12 +63,60 @@ describe('EuiCallOut', () => {
 
     test('onDismiss', () => {
       const onDismiss = jest.fn();
-      const { getByTestSubject } = render(
-        <EuiCallOut onDismiss={onDismiss}>Content</EuiCallOut>
-      );
+      render(<EuiCallOut onDismiss={onDismiss}>Content</EuiCallOut>);
 
-      fireEvent.click(getByTestSubject('euiDismissCalloutButton'));
+      fireEvent.click(screen.getByTestSubject('euiDismissCalloutButton'));
       expect(onDismiss).toHaveBeenCalledTimes(1);
+    });
+
+    describe('announceOnMount', () => {
+      jest.useFakeTimers();
+
+      afterEach(() => {
+        jest.clearAllTimers();
+      });
+
+      it('announces the callout content in an aria-live region when announceOnMount is true', () => {
+        render(
+          <EuiCallOut announceOnMount title="Announcement title">
+            Announcement content
+          </EuiCallOut>
+        );
+
+        act(() => {
+          jest.advanceTimersByTime(50);
+        });
+
+        // The live region should exist and contain the announcement
+        const liveRegion = screen.getByRole('status');
+        expect(liveRegion).toHaveTextContent(
+          'Announcement title, Announcement content'
+        );
+      });
+
+      it('clears the announcement after 2000ms', () => {
+        render(
+          <EuiCallOut announceOnMount title="Announcement title">
+            Announcement content
+          </EuiCallOut>
+        );
+
+        act(() => {
+          jest.advanceTimersByTime(50);
+        });
+
+        // The live region should exist and contain the announcement
+        const liveRegion = screen.getByRole('status');
+        expect(liveRegion).toHaveTextContent(
+          'Announcement title, Announcement content'
+        );
+
+        act(() => {
+          jest.advanceTimersByTime(2000);
+        });
+
+        expect(liveRegion).toHaveTextContent('');
+      });
     });
   });
 });

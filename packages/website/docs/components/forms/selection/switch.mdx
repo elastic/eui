@@ -1,0 +1,193 @@
+---
+sidebar_position: 8
+keywords: [EuiSwitch]
+---
+
+# Switch
+
+```mdx-code-block
+import { EuiBasicTable, EuiFlexGrid, EuiFormRow, EuiSwitch, useEuiTheme } from '@elastic/eui';
+```
+
+An **EuiSwitch** can be substituted for an **EuiCheckbox** when the semantics of the label dictate a true on/off state.
+
+```tsx interactive
+import React, { useState } from 'react';
+import { EuiSwitch } from '@elastic/eui';
+
+export default () => {
+  const [checked, setChecked] = useState(false);
+
+  const onChange = (e) => {
+    setChecked(e.target.checked);
+  };
+
+  return (
+    /* DisplayToggles wrapper for Docs only */
+    <DisplayToggles
+      canReadOnly={false}
+      canLoading={false}
+      canInvalid={false}
+      canFullWidth={false}
+    >
+      <EuiSwitch
+        label="Malware protection"
+        checked={checked}
+        onChange={(e) => onChange(e)}
+      />
+    </DisplayToggles>
+  );
+};
+```
+
+Make sure to pass a `label` to ensure a larger clickable area and ensure that screen readers will read out the label when the user is focused on the input.
+
+If the switch is described in some other manner, like when using an [EuiFormRow](../layouts/row.mdx), you can eliminate the visible label with `showLabel={false}` or use it to further describe the state.
+
+:::accessibility Accessibility requirement
+When providing the state as the label, you'll need to provide an `aria-describedby` with the label's `id` to associate it with the switch.
+:::
+
+```tsx interactive
+import React, { useState } from 'react';
+import { EuiSwitch, EuiFormRow, useGeneratedHtmlId } from '@elastic/eui';
+
+export default () => {
+  const [checked1, setChecked1] = useState(false);
+  const [checked2, setChecked2] = useState(false);
+  const toggleTextSwitchId = useGeneratedHtmlId({ prefix: 'toggleTextSwitch' });
+
+  const onChange1 = (e: {
+    target: { checked: React.SetStateAction<boolean> };
+  }) => {
+    setChecked1(e.target.checked);
+  };
+
+  const onChange2 = (e: {
+    target: { checked: React.SetStateAction<boolean> };
+  }) => {
+    setChecked2(e.target.checked);
+  };
+
+  return (
+    <>
+      <EuiFormRow display="columnCompressed" label="Autoscaling">
+        <EuiSwitch
+          showLabel={false}
+          label="Autoscaling"
+          checked={checked1}
+          onChange={onChange1}
+          compressed
+        />
+      </EuiFormRow>
+      <EuiFormRow
+        display="columnCompressed"
+        label={<span id={toggleTextSwitchId}>Show something</span>}
+      >
+        <EuiSwitch
+          label={checked2 ? 'on' : 'off'}
+          checked={checked2}
+          onChange={onChange2}
+          aria-describedby={toggleTextSwitchId}
+          compressed
+        />
+      </EuiFormRow>
+    </>
+  );
+};
+```
+
+## Usage
+
+### Labels
+
+The label should be static, action-oriented, and describe the feature. Avoid verbs that are less conversational such as "enable" unless they are your only option.
+
+<EuiFlexGrid columns={2}>
+  <Guideline type="do" text="Use a static noun describing the setting to turn on or off.">
+    <EuiSwitch
+      checked={false}
+      onChange={() => {}}
+      label="Malware protection"
+    />
+  </Guideline>
+  <Guideline type="dont" text='Start with statements such as "If true" or "If enabled".'>
+    <EuiSwitch
+      checked={false}
+      onChange={() => {}}
+      label="If enabled, uses malware protection"
+    />
+  </Guideline>
+  <Guideline type="do" text='If relevant, start with a verb ("Use A", "Show B") and add help text to provide more info.'>
+    <EuiFormRow helpText="Rollover when an index is 30 days old or reaches 50 gigabytes.">
+      <EuiSwitch
+        checked={false}
+        onChange={() => {}}
+        label="Use recommended defaults"
+      />
+    </EuiFormRow>
+  </Guideline>
+  <Guideline type="dont" text="Use only a verb. Generic verbs alone make options unclear.">
+    <EuiSwitch checked={false} onChange={() => {}} label="Enable" />
+  </Guideline>
+</EuiFlexGrid>
+
+Use past tense only when labelling a list of previously created items, like in a table header.
+
+export const MockTableCell = () => {
+  const { euiTheme } = useEuiTheme();
+  return (
+    <div
+      style={{
+        blockSize: euiTheme.size.s,
+        inlineSize: euiTheme.base * 7,
+        borderRadius: euiTheme.border.radius.small,
+        backgroundColor: euiTheme.colors.lightestShade,
+      }}
+      role="presentation"
+    />
+  );
+};
+
+<EuiFlexGrid columns={2}>
+  <Guideline type="do" text="In a list of already created items, use the past tense.">
+    <EuiBasicTable
+      responsiveBreakpoint={false}
+      columns={[
+        {
+          field: 'enabled',
+          name: 'Enabled',
+          render: (enabled) => (
+            <EuiSwitch
+              checked={enabled}
+              onChange={() => {}}
+              compressed
+              showLabel={false}
+              label="Enabled"
+            />
+          ),
+        },
+        { name: <MockTableCell />, render: () => <MockTableCell /> },
+        { name: <MockTableCell />, render: () => <MockTableCell /> },
+      ]}
+      items={[
+        { id: '1', enabled: true },
+        { id: '2', enabled: false },
+      ]}
+      tableLayout="auto"
+    />
+  </Guideline>
+  <Guideline type="dont" text="Change the label to represent the current state of the switch.">
+    <EuiSwitch
+      checked={true}
+      onChange={() => {}}
+      label="Log enabled"
+    />
+  </Guideline>
+</EuiFlexGrid>
+
+## Props
+
+import docgen from '@elastic/eui-docgen/dist/components/form';
+
+<PropTable definition={docgen.EuiSwitch} />
