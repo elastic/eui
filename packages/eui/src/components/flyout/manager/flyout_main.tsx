@@ -15,7 +15,7 @@ export interface EuiFlyoutMainProps extends EuiFlyoutComponentProps {}
 export function EuiFlyoutMain(props: EuiFlyoutMainProps) {
   // TODO:
   // - if there is a child flyout:
-  //   - hide the left-hand shadow
+  //   - hide the left-hand shadow (NOTE: the left hand shadow only appears if the main flyout type="overlay" and ownFocus={false})
   //   - set ownFocus to false
   return <EuiManagedFlyout level="main" {...props} />;
 }
