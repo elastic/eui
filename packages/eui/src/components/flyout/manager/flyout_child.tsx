@@ -27,10 +27,9 @@ export function EuiFlyoutChild({
   ...props
 }: EuiFlyoutChildProps) {
   const styles = useEuiMemoizedStyles(euiManagedFlyoutStyles);
-
   const width = useFlyoutWidth(useCurrentMainFlyout()?.flyoutId);
-
   const style = width ? { right: width } : {};
+
   return (
     <EuiManagedFlyout
       style={style}

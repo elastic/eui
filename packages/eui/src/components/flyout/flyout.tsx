@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { ElementType } from 'react';
+import React, { ElementType, useRef } from 'react';
 import {
   EuiFlyoutComponent,
   type EuiFlyoutComponentProps,
@@ -22,14 +22,16 @@ export type {
   EuiFlyoutSize,
   _EuiFlyoutPaddingSize,
   _EuiFlyoutSide,
-} from './flyout.component';
+} from './const';
+
 export {
-  SIDES,
-  PADDING_SIZES,
-  SIZES,
-  TYPES,
-  EuiFlyoutComponent,
-} from './flyout.component';
+  FLYOUT_SIDES,
+  FLYOUT_PADDING_SIZES,
+  FLYOUT_SIZES,
+  FLYOUT_TYPES,
+} from './const';
+
+export { EuiFlyoutComponent } from './flyout.component';
 
 export type EuiFlyoutProps<T extends ElementType = 'div' | 'nav'> = Omit<
   EuiFlyoutComponentProps<T>,
@@ -42,21 +44,45 @@ export type EuiFlyoutProps<T extends ElementType = 'div' | 'nav'> = Omit<
 // Type for session components that expect a fixed 'div' element
 type SessionFlyoutProps = Omit<EuiFlyoutComponentProps<'div'>, 'as'>;
 
-export const EuiFlyout = ({ session, as, ...props }: EuiFlyoutProps) => {
+export const EuiFlyout = ({
+  session,
+  as,
+  onClose,
+  ...props
+}: EuiFlyoutProps) => {
   const hasActiveSession = useIsSessionActive();
+  const isUnmanagedFlyout = useRef(false);
   const isInManagedFlyoutContext = useIsManagedFlyoutContext();
 
   // If session={true}, or there is an active session and the flyout is not a child of a session, render EuiMainFlyout.
   if (session === true || (hasActiveSession && !isInManagedFlyoutContext)) {
-    return <EuiFlyoutMain {...(props as SessionFlyoutProps)} as="div" />;
+    if (isUnmanagedFlyout.current) {
+      // TODO: We need to find a better way to handle the missing event.
+      onClose?.({} as any);
+      return null;
+    }
+    return (
+      <EuiFlyoutMain
+        {...(props as SessionFlyoutProps)}
+        onClose={onClose}
+        as="div"
+      />
+    );
   }
 
   // Else if this flyout is a child of a session AND within a managed flyout context, render EuiChildFlyout.
   if (hasActiveSession && isInManagedFlyoutContext) {
-    return <EuiFlyoutChild {...(props as SessionFlyoutProps)} as="div" />;
+    return (
+      <EuiFlyoutChild
+        {...(props as SessionFlyoutProps)}
+        onClose={onClose}
+        as="div"
+      />
+    );
   }
 
   // TODO: if resizeable={true}, render EuiResizableFlyout.
 
-  return <EuiFlyoutComponent {...props} as={as} />;
+  isUnmanagedFlyout.current = true;
+  return <EuiFlyoutComponent {...props} onClose={onClose} as={as} />;
 };

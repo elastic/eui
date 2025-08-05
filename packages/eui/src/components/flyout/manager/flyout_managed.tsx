@@ -6,13 +6,13 @@
  * Side Public License, v 1.
  */
 
-import React, { useEffect, useId, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import {
   EuiFlyoutComponent,
   EuiFlyoutComponentProps,
 } from '../flyout.component';
 import {
-  useFlyoutManager,
+  useFlyoutManager as _useFlyoutManager,
   useIsFlyoutActive,
   EuiManagedFlyoutContext,
   useParentFlyoutSize,
@@ -27,10 +27,19 @@ import {
   createValidationErrorMessage,
   isNamedSize,
 } from './flyout_validation';
+import { useFlyoutId } from './hooks';
 
 export interface EuiManagedFlyoutProps extends EuiFlyoutComponentProps {
   level: 'main' | 'child';
 }
+
+const useFlyoutManager = () => {
+  const context = _useFlyoutManager();
+  if (!context) {
+    throw new Error('EuiManagedFlyout must be used within an EuiFlyoutManager');
+  }
+  return context;
+};
 
 // The persistent component that renders in the provider
 export const EuiManagedFlyout = ({
@@ -41,13 +50,15 @@ export const EuiManagedFlyout = ({
   css: customCss,
   ...props
 }: EuiManagedFlyoutProps) => {
-  const defaultId = useId();
-  const componentIdRef = useRef<string>(id || `persistent-${defaultId}`);
-  const flyoutId = componentIdRef.current;
+  const flyoutId = useFlyoutId(id);
   const flyoutRef = useRef<HTMLDivElement>(null);
+  const [activeState, setActiveState] = useState<
+    'opening' | 'active' | 'inactive' | 'returning' | 'closing'
+  >('opening');
+
+  const { addFlyout, closeFlyout, setFlyoutWidth } = useFlyoutManager();
 
   const isActive = useIsFlyoutActive(flyoutId);
-  const { addFlyout, closeFlyout, setFlyoutWidth } = useFlyoutManager();
   const parentSize = useParentFlyoutSize(flyoutId);
 
   const styles = useEuiMemoizedStyles(euiManagedFlyoutStyles);
@@ -97,6 +108,7 @@ export const EuiManagedFlyout = ({
   }, [size, flyoutId, level, parentSize, addFlyout, closeFlyout]);
 
   // Track width changes for main flyouts
+  // TODO: @clintandrewhall move to EuiMainFlyout.
   const { width } = useResizeObserver(
     level === 'main' && isActive ? flyoutRef.current : null,
     'width'
@@ -114,17 +126,36 @@ export const EuiManagedFlyout = ({
     }
   }, [flyoutId, level, isActive, width, setFlyoutWidth]);
 
+  const handleAnimationEnd = () => {
+    if (activeState === 'opening' || activeState === 'returning') {
+      setActiveState('active');
+    } else if (activeState === 'closing') {
+      setActiveState('inactive');
+    }
+  };
+
+  useEffect(() => {
+    if (!isActive && activeState === 'active') {
+      setActiveState('closing');
+    } else if (isActive && activeState === 'inactive') {
+      setActiveState('returning');
+    }
+  }, [isActive, activeState]);
+
+  // TODO: need a variable to track if the layout should be "side-by-side" or "stacked"
+
   return (
     <EuiManagedFlyoutContext.Provider value={true}>
       <EuiFlyoutMenuContext.Provider value={{ onClose }}>
         <EuiFlyoutComponent
+          id={flyoutId}
           ref={flyoutRef}
           data-managed-flyout={true}
           data-managed-flyout-level={level}
-          data-managed-flyout-active={isActive}
-          id={componentIdRef.current}
+          data-managed-flyout-active={activeState}
           onClose={onClose}
           css={[styles.managedFlyout, customCss]}
+          onAnimationEnd={handleAnimationEnd}
           size={size}
           {...props}
         />

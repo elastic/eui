@@ -7,7 +7,7 @@
  */
 
 import { css, keyframes } from '@emotion/react';
-import { euiCanAnimate } from '../../../global_styling';
+import { euiCanAnimate, logicalCSS } from '../../../global_styling';
 import { UseEuiTheme } from '../../../services';
 
 // Animation for moving flyout backwards in 3D space (z-axis) when inactive
@@ -18,7 +18,7 @@ const euiFlyoutSlideBack3D = keyframes`
     opacity: 1;
   }
   to {
-    transform: translateZ(-500px) translateX(100%) scale(0.5);
+    transform: translateZ(-1500px) translateX(calc(100vw - 100%)) scale(0.5);
     filter: blur(3px);
     opacity: 0.6;
   }
@@ -27,7 +27,7 @@ const euiFlyoutSlideBack3D = keyframes`
 // Animation for bringing flyout forward from 3D space when transitioning to active
 const euiFlyoutSlideForward3D = keyframes`
   from {
-    transform: translateZ(-500px) translateX(100%) scale(0.5);
+    transform: translateZ(-500px) translateX(calc(100vw - 100%)) scale(0.85);
     filter: blur(3px);
     opacity: 0.6;
   }
@@ -48,7 +48,7 @@ export const euiManagedFlyoutStyles = (euiThemeContext: UseEuiTheme) => {
       transform-style: preserve-3d;
 
       /* When flyout is inactive, animate backwards in 3D space */
-      &[data-managed-flyout-active='false'] {
+      &[data-managed-flyout-active='closing'] {
         ${euiCanAnimate} {
           animation: ${euiFlyoutSlideBack3D} ${euiTheme.animation.extraSlow}
             ${euiTheme.animation.resistance} forwards;
@@ -57,9 +57,28 @@ export const euiManagedFlyoutStyles = (euiThemeContext: UseEuiTheme) => {
       }
 
       /* When flyout is active, ensure it's on top and interactive */
-      &[data-managed-flyout-active='true'] {
+      &[data-managed-flyout-active='returning'] {
+        animation: ${euiFlyoutSlideForward3D} ${euiTheme.animation.normal}
+          ${euiTheme.animation.resistance} forwards;
+      }
+
+      /* When flyout is active, ensure it's on top and interactive */
+      &[data-managed-flyout-active='active'],
+      &[data-managed-flyout-active='opening'] {
         z-index: ${parseInt(euiTheme.levels.flyout as string) + 1};
         pointer-events: auto;
+      }
+
+      /* When flyout is active, ensure it's on top and interactive */
+      &[data-managed-flyout-active='active'],
+      &[data-managed-flyout-active='inactive'],
+      &[data-overlay-mask-has-rendered='true'] {
+        animation: none;
+        opacity: 1;
+      }
+
+      &[data-managed-flyout-active='inactive'] {
+        ${logicalCSS('left', '100vw')}
       }
     `,
     // TODO: make this work eventually

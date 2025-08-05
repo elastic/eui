@@ -54,12 +54,7 @@ const ShoppingCartFlyout = ({
   const [isReviewCartOpen, setIsReviewCartOpen] = useState(false);
 
   return (
-    <EuiFlyout
-      session={true}
-      id="shopping-cart-flyout"
-      {...{ onClose }}
-      ownFocus={false}
-    >
+    <EuiFlyout session={true} id="shopping-cart-flyout" {...{ onClose }}>
       <EuiFlyoutHeader hasBorder>
         <EuiTitle size="m">
           <h2 id="flyout-shopping-cart-title">Shopping cart</h2>
@@ -131,7 +126,6 @@ interface ReviewOrderProps
     Pick<EuiFlyoutProps, 'onClose'> {}
 
 const ReviewOrderFlyout = ({ itemQuantity, ...props }: ReviewOrderProps) => {
-  console.log('RENDERING REVIEW ORDER FLYOUT');
   const [orderConfirmed, setOrderConfirmed] = useState(false);
 
   return (
@@ -241,7 +235,7 @@ const BasicExampleComponent = () => {
   const [isReviewCartOpen, setIsReviewCartOpen] = useState(false);
   const [isItemDetailsOpen, setIsItemDetailsOpen] = useState(false);
   const [itemQuantity, setItemQuantity] = useState(1);
-  const { state } = useFlyoutManager();
+  const context = useFlyoutManager();
 
   return (
     <>
@@ -298,8 +292,12 @@ const BasicExampleComponent = () => {
               </EuiDescriptionList>
             </EuiFlexItem>
             <EuiFlexItem>
-              <EuiText>
-                <p>
+              <EuiTitle size="xs">
+                <h2>Summary</h2>
+              </EuiTitle>
+              <EuiSpacer size="s" />
+              <EuiText size="s">
+                <div>
                   This example demonstrates the different ways a flyout can be
                   rendered.
                   <EuiSpacer size="m" />
@@ -321,14 +319,14 @@ const BasicExampleComponent = () => {
                   <EuiCode>ChildFlyout</EuiCode>, or check what may already be
                   open... the way its structured and the{' '}
                   <EuiCode>session</EuiCode> prop handle it all.
-                </p>
+                </div>
               </EuiText>
             </EuiFlexItem>
           </EuiFlexGroup>
         </EuiFlexItem>
         <EuiFlexItem>
           <EuiCodeBlock language="json">
-            {JSON.stringify(state, null, 2)}
+            {JSON.stringify(context?.state, null, 2)}
           </EuiCodeBlock>
         </EuiFlexItem>
       </EuiFlexGroup>

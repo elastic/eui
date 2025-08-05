@@ -24,6 +24,7 @@ import {
   EuiFlyoutComponentProps as EuiFlyoutProps,
 } from './flyout.component';
 import { euiFlyoutResizableButtonStyles } from './flyout_resizable.styles';
+import { DEFAULT_SIDE, DEFAULT_TYPE } from './const';
 
 export type EuiFlyoutResizableProps = {
   maxWidth?: number;
@@ -41,8 +42,8 @@ export const EuiFlyoutResizable = forwardRef(
       maxWidth,
       minWidth = 200,
       onResize,
-      side = 'right',
-      type = 'overlay',
+      side = DEFAULT_SIDE,
+      type = DEFAULT_TYPE,
       ownFocus = true,
       children,
       ...rest

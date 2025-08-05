@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import { EuiFlyoutSize, SIZES } from '../flyout.component';
+import { EuiFlyoutSize, FLYOUT_SIZES } from '../const';
 
 /**
  * Business rules for flyout sizes:
@@ -27,7 +27,7 @@ export interface FlyoutSizeValidationError {
  * Checks if a size is a named size (s, m, l)
  */
 export function isNamedSize(size: any): size is EuiFlyoutSize {
-  return SIZES.includes(size as EuiFlyoutSize);
+  return FLYOUT_SIZES.includes(size as EuiFlyoutSize);
 }
 
 /**

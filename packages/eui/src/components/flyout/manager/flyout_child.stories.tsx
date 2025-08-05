@@ -15,7 +15,7 @@ import { EuiBreakpointSize } from '../../../services';
 import { EuiButton } from '../../button';
 import { EuiSpacer } from '../../spacer';
 import { EuiText } from '../../text';
-import { TYPES } from '../flyout';
+import { FLYOUT_TYPES } from '../flyout';
 import { EuiFlyoutBody } from '../flyout_body';
 import { EuiFlyoutFooter } from '../flyout_footer';
 import { EuiFlyoutMenu } from '../flyout_menu';
@@ -40,7 +40,7 @@ type EuiFlyoutChildActualProps = Pick<
   | 'style'
 >;
 
-type EuiFlyoutType = (typeof TYPES)[number];
+type EuiFlyoutType = (typeof FLYOUT_TYPES)[number];
 
 interface FlyoutChildStoryArgs extends EuiFlyoutChildActualProps {
   mainSize?: 's' | 'm';
@@ -85,7 +85,7 @@ const meta: Meta<FlyoutChildStoryArgs> = {
         'The size of the main (parent) flyout. If `m`, the child must be `s`. If `s`, the child can be `s`, or `m`.',
     },
     mainFlyoutType: {
-      options: TYPES,
+      options: FLYOUT_TYPES,
       control: { type: 'radio' },
       description: 'The type of the main flyout..',
     },

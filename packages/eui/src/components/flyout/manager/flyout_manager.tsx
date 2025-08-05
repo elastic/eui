@@ -274,15 +274,8 @@ export function useFlyoutManagerReducer(
   };
 }
 
-export function useFlyoutManager(): FlyoutManagerContextType {
-  const context = useContext(EuiFlyoutManagerContext);
-
-  if (!context) {
-    throw new Error('useFlyoutManager must be used within an EuiFlyoutManager');
-  }
-
-  return context;
-}
+export const useFlyoutManager = (): FlyoutManagerContextType | null =>
+  useContext(EuiFlyoutManagerContext);
 
 // Update EuiFlyoutManager to use the reducer
 export const EuiFlyoutManager = ({
@@ -300,16 +293,24 @@ export const EuiFlyoutManager = ({
 };
 
 export const useIsFlyoutActive = (flyoutId: string) => {
-  const { state } = useFlyoutManager();
-  const currentSession = state.sessions[state.sessions.length - 1];
+  const context = useFlyoutManager();
+
+  if (!context) return false;
+
+  const currentSession =
+    context?.state.sessions[context.state.sessions.length - 1];
   return (
     currentSession?.main === flyoutId || currentSession?.child === flyoutId
   );
 };
 
 export const useIsSessionActive = () => {
-  const { state } = useFlyoutManager();
-  return state.sessions.length > 0;
+  const context = useFlyoutManager();
+  if (!context) {
+    return false;
+  }
+
+  return context.state.sessions.length > 0;
 };
 
 export const useIsManagedFlyoutContext = () => {
@@ -317,19 +318,36 @@ export const useIsManagedFlyoutContext = () => {
 };
 
 export const useCurrentSession = () => {
-  const { state } = useFlyoutManager();
-  return state.sessions[state.sessions.length - 1] || null;
+  const context = useFlyoutManager();
+
+  if (!context) {
+    return null;
+  }
+
+  return context.state.sessions[context.state.sessions.length - 1] || null;
 };
 
 export const useCurrentMainFlyout = () => {
-  const { state } = useFlyoutManager();
-  const mainFlyoutId = useCurrentSession()?.main;
-  return state.flyouts.find((flyout) => flyout.flyoutId === mainFlyoutId);
+  const context = useFlyoutManager();
+  const currentSession = useCurrentSession();
+
+  if (!context || !currentSession) {
+    return null;
+  }
+
+  const mainFlyoutId = currentSession.main;
+
+  return context.state.flyouts.find(
+    (flyout) => flyout.flyoutId === mainFlyoutId
+  );
 };
 
 export const useFlyoutWidth = (flyoutId?: string | null) => {
-  const { state } = useFlyoutManager();
-  const flyout = state.flyouts.find((f) => f.flyoutId === flyoutId);
+  const context = useFlyoutManager();
+  if (!context) {
+    return null;
+  }
+  const flyout = context.state.flyouts.find((f) => f.flyoutId === flyoutId);
   return flyout?.width;
 };
 
@@ -337,14 +355,32 @@ export const useFlyoutWidth = (flyoutId?: string | null) => {
  * Hook to get the size of a parent flyout for validation purposes
  */
 export const useParentFlyoutSize = (childFlyoutId: string) => {
-  const { state } = useFlyoutManager();
-  const currentSession = state.sessions.find(
+  const context = useFlyoutManager();
+
+  if (!context) {
+    return undefined;
+  }
+
+  const currentSession = context.state.sessions.find(
     (session) => session.child === childFlyoutId
   );
-  if (!currentSession) return undefined;
 
-  const parentFlyout = state.flyouts.find(
+  if (!currentSession) {
+    return undefined;
+  }
+
+  const parentFlyout = context.state.flyouts.find(
     (f) => f.flyoutId === currentSession.main
   );
+
   return parentFlyout?.size;
+};
+export const useHasChildFlyout = (flyoutId: string) => {
+  const currentSession = useCurrentSession();
+
+  if (!currentSession) {
+    return false;
+  }
+
+  return currentSession.child === flyoutId;
 };

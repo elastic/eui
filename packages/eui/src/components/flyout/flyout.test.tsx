@@ -15,9 +15,9 @@ import { shouldRenderCustomStyles } from '../../test/internal';
 import { EuiHeader } from '../header';
 import {
   EuiFlyoutComponent as EuiFlyout,
-  SIZES,
-  PADDING_SIZES,
-  SIDES,
+  FLYOUT_PADDING_SIZES,
+  FLYOUT_SIDES,
+  FLYOUT_SIZES,
 } from './flyout';
 import { EuiProvider } from '../provider';
 
@@ -149,7 +149,7 @@ describe('EuiFlyout', () => {
     });
 
     describe('sides', () => {
-      SIDES.forEach((side) => {
+      FLYOUT_SIDES.forEach((side) => {
         it(`${side} is rendered`, () => {
           const component = mount(<EuiFlyout onClose={() => {}} side={side} />);
 
@@ -200,7 +200,7 @@ describe('EuiFlyout', () => {
     });
 
     describe('size', () => {
-      SIZES.forEach((size) => {
+      FLYOUT_SIZES.forEach((size) => {
         it(`${size} is rendered`, () => {
           const component = mount(<EuiFlyout onClose={() => {}} size={size} />);
 
@@ -220,7 +220,7 @@ describe('EuiFlyout', () => {
     });
 
     describe('paddingSize', () => {
-      PADDING_SIZES.forEach((paddingSize) => {
+      FLYOUT_PADDING_SIZES.forEach((paddingSize) => {
         it(`${paddingSize} is rendered`, () => {
           const component = mount(
             <EuiFlyout onClose={() => {}} paddingSize={paddingSize} />

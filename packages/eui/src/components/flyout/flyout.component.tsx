@@ -31,7 +31,6 @@ import {
   EuiWindowEvent,
   useCombinedRefs,
   EuiBreakpointSize,
-  useIsWithinMinBreakpoint,
   useEuiMemoizedStyles,
   useGeneratedHtmlId,
   useEuiThemeCSSVariables,
@@ -51,26 +50,19 @@ import { EuiScreenReaderOnly } from '../accessibility';
 import { EuiFlyoutCloseButton } from './_flyout_close_button';
 import { euiFlyoutStyles } from './flyout.styles';
 import { usePropsWithComponentDefaults } from '../provider/component_defaults';
-
-export const TYPES = ['push', 'overlay'] as const;
-type _EuiFlyoutType = (typeof TYPES)[number];
-
-export const SIDES = ['left', 'right'] as const;
-export type _EuiFlyoutSide = (typeof SIDES)[number];
-
-export const SIZES = ['s', 'm', 'l'] as const;
-export type EuiFlyoutSize = (typeof SIZES)[number];
-
-/**
- * Custom type checker for named flyout sizes since the prop
- * `size` can also be CSSProperties['width'] (string | number)
- */
-function isEuiFlyoutSizeNamed(value: any): value is EuiFlyoutSize {
-  return SIZES.includes(value as any);
-}
-
-export const PADDING_SIZES = ['none', 's', 'm', 'l'] as const;
-export type _EuiFlyoutPaddingSize = (typeof PADDING_SIZES)[number];
+import {
+  _EuiFlyoutPaddingSize,
+  _EuiFlyoutSide,
+  _EuiFlyoutType,
+  DEFAULT_PADDING_SIZE,
+  DEFAULT_PUSH_MIN_BREAKPOINT,
+  DEFAULT_SIDE,
+  DEFAULT_SIZE,
+  DEFAULT_TYPE,
+  EuiFlyoutSize,
+  isEuiFlyoutSizeNamed,
+} from './const';
+import { useIsPushed } from './hooks';
 
 interface _EuiFlyoutComponentProps {
   onClose: (event: MouseEvent | TouchEvent | KeyboardEvent) => void;
@@ -203,15 +195,15 @@ export const EuiFlyoutComponent = forwardRef(
       closeButtonPosition = 'inside',
       onClose,
       ownFocus = true,
-      side = 'right',
-      size = 'm',
-      paddingSize = 'l',
+      side = DEFAULT_SIDE,
+      size = DEFAULT_SIZE,
+      paddingSize = DEFAULT_PADDING_SIZE,
       maxWidth = false,
       style,
       maskProps,
-      type = 'overlay',
+      type = DEFAULT_TYPE,
       outsideClickCloses,
-      pushMinBreakpoint = 'l',
+      pushMinBreakpoint = DEFAULT_PUSH_MIN_BREAKPOINT,
       pushAnimation = false,
       focusTrapProps: _focusTrapProps,
       includeFixedHeadersInFocusTrap = true,
@@ -228,10 +220,7 @@ export const EuiFlyoutComponent = forwardRef(
 
     // Ref for the main flyout element to pass to context
     const internalParentFlyoutRef = useRef<HTMLDivElement>(null);
-
-    const windowIsLargeEnoughToPush =
-      useIsWithinMinBreakpoint(pushMinBreakpoint);
-    const isPushed = type === 'push' && windowIsLargeEnoughToPush;
+    const isPushed = useIsPushed({ type, pushMinBreakpoint });
 
     /**
      * Setting up the refs on the actual flyout element in order to
@@ -498,6 +487,7 @@ export const EuiFlyoutComponent = forwardRef(
             css={cssStyles}
             style={inlineStyles}
             ref={setRef}
+            id={id}
             {...(rest as ComponentPropsWithRef<T>)}
             role={!isPushed ? 'dialog' : rest.role}
             aria-modal={!isPushed || undefined}
@@ -541,9 +531,25 @@ const EuiFlyoutComponentWrapper: FunctionComponent<{
   maskProps: EuiFlyoutComponentProps['maskProps'];
   isPortalled: boolean;
 }> = ({ children, hasOverlayMask, maskProps, isPortalled }) => {
+  const hasRendered = useRef(false);
+
+  useEffect(() => {
+    hasRendered.current = true;
+  }, []);
+
+  const cssStyles = useMemo(() => {
+    return {
+      animation: hasRendered.current ? 'none' : undefined,
+    };
+  }, []);
+
   if (hasOverlayMask) {
     return (
-      <EuiOverlayMask headerZindexLocation="below" {...maskProps}>
+      <EuiOverlayMask
+        headerZindexLocation="below"
+        css={cssStyles}
+        {...maskProps}
+      >
         {children}
       </EuiOverlayMask>
     );

@@ -7,15 +7,46 @@
  */
 
 import React from 'react';
+
 import { EuiFlyoutComponentProps } from '../flyout.component';
 import { EuiManagedFlyout } from './flyout_managed';
+import { useHasChildFlyout } from './flyout_manager';
+import { useFlyoutId } from './hooks';
+import { euiMainFlyoutStyles } from './flyout_main.styles';
+import { useEuiMemoizedStyles } from '../../../services';
+import {
+  DEFAULT_PUSH_MIN_BREAKPOINT,
+  DEFAULT_SIDE,
+  DEFAULT_TYPE,
+} from '../const';
+import { useIsPushed } from '../hooks';
 
 export interface EuiFlyoutMainProps extends EuiFlyoutComponentProps {}
 
-export function EuiFlyoutMain(props: EuiFlyoutMainProps) {
-  // TODO:
-  // - if there is a child flyout:
-  //   - hide the left-hand shadow (NOTE: the left hand shadow only appears if the main flyout type="overlay" and ownFocus={false})
-  //   - set ownFocus to false
-  return <EuiManagedFlyout level="main" {...props} />;
+export function EuiFlyoutMain({
+  id,
+  ownFocus: ownFocusProp,
+  pushMinBreakpoint = DEFAULT_PUSH_MIN_BREAKPOINT,
+  type = DEFAULT_TYPE,
+  side = DEFAULT_SIDE,
+  ...props
+}: EuiFlyoutMainProps) {
+  const flyoutId = useFlyoutId(id);
+  const hasChildFlyout = useHasChildFlyout(flyoutId);
+  const styles = useEuiMemoizedStyles(euiMainFlyoutStyles);
+  const isPushed = useIsPushed({ type, pushMinBreakpoint });
+
+  const ownFocus = hasChildFlyout ? false : ownFocusProp;
+  const cssStyles = [
+    hasChildFlyout && !isPushed && styles.hasChildFlyout[side],
+  ];
+
+  return (
+    <EuiManagedFlyout
+      id={flyoutId}
+      css={cssStyles}
+      level="main"
+      {...{ ...props, ownFocus, pushMinBreakpoint, type, side }}
+    />
+  );
 }
