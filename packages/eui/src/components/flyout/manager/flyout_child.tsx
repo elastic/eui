@@ -11,7 +11,11 @@ import { useEuiMemoizedStyles } from '../../../services';
 import { EuiFlyoutComponentProps } from '../flyout.component';
 import { euiManagedFlyoutStyles } from './flyout.styles';
 import { EuiManagedFlyout } from './flyout_managed';
-import { useCurrentMainFlyout, useFlyoutWidth } from './flyout_manager';
+import {
+  useCurrentMainFlyout,
+  useFlyoutLayoutMode,
+  useFlyoutWidth,
+} from './flyout_manager';
 
 export interface EuiFlyoutChildProps
   extends Omit<
@@ -27,8 +31,13 @@ export function EuiFlyoutChild({
   ...props
 }: EuiFlyoutChildProps) {
   const styles = useEuiMemoizedStyles(euiManagedFlyoutStyles);
-  const width = useFlyoutWidth(useCurrentMainFlyout()?.flyoutId);
-  const style = width ? { right: width } : {};
+  const mainWidth = useFlyoutWidth(useCurrentMainFlyout()?.flyoutId);
+  const { layoutMode } = useFlyoutLayoutMode();
+
+  let style: { right?: number } = {};
+  if (mainWidth && layoutMode === 'side-by-side') {
+    style = { right: mainWidth };
+  }
 
   return (
     <EuiManagedFlyout

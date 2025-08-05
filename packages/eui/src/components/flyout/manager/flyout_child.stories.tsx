@@ -20,6 +20,7 @@ import { EuiFlyoutBody } from '../flyout_body';
 import { EuiFlyoutFooter } from '../flyout_footer';
 import { EuiFlyoutMenu } from '../flyout_menu';
 import { EuiFlyoutChild, EuiFlyoutChildProps, EuiFlyoutMain } from './';
+import { useFlyoutLayoutMode } from './flyout_manager';
 
 type EuiFlyoutChildActualProps = Pick<
   EuiFlyoutChildProps,
@@ -205,12 +206,17 @@ const StatefulFlyout: React.FC<FlyoutChildStoryArgs> = ({
     playgroundActions.log('Child flyout closed');
   };
 
+  const { layoutMode } = useFlyoutLayoutMode();
+
   return (
     <>
       <EuiText>
         <p>
           This is the main page content. Watch how it behaves when the flyout
           type changes.
+        </p>
+        <p>
+          <strong>Current layout mode: {layoutMode}</strong>
         </p>
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do

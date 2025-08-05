@@ -6,7 +6,8 @@
  * Side Public License, v 1.
  */
 
-import React, { createContext, useContext } from 'react';
+import React, { createContext, useContext, useState, useEffect } from 'react';
+import { useEuiTheme } from '../../../services';
 
 export interface EuiManagedFlyoutState {
   flyoutId: string;
@@ -24,12 +25,14 @@ export interface EuiFlyoutManagerState {
   sessions: FlyoutSession[];
   flyouts: EuiManagedFlyoutState[];
   dispatch: (action: Action) => void;
+  layoutMode: 'side-by-side' | 'stacked';
 }
 
 const initialState: EuiFlyoutManagerState = {
   sessions: [],
   flyouts: [],
   dispatch: () => {},
+  layoutMode: 'side-by-side',
 };
 
 type FlyoutManagerContextType = ReturnType<typeof useFlyoutManagerReducer>;
@@ -51,6 +54,7 @@ const ACTION_ADD = `${EUI_FLYOUT_PREFIX}/add` as const;
 const ACTION_CLOSE = `${EUI_FLYOUT_PREFIX}/close` as const;
 const ACTION_SET_ACTIVE = `${EUI_FLYOUT_PREFIX}/setActive` as const;
 const ACTION_SET_WIDTH = `${EUI_FLYOUT_PREFIX}/setWidth` as const;
+const ACTION_SET_LAYOUT_MODE = `${EUI_FLYOUT_PREFIX}/setLayoutMode` as const;
 
 interface AddFlyoutAction extends BaseAction {
   type: typeof ACTION_ADD;
@@ -75,11 +79,17 @@ interface SetWidthAction extends BaseAction {
   width: number;
 }
 
+interface SetLayoutModeAction extends BaseAction {
+  type: typeof ACTION_SET_LAYOUT_MODE;
+  layoutMode: 'side-by-side' | 'stacked';
+}
+
 type Action =
   | AddFlyoutAction
   | CloseFlyoutAction
   | SetActiveFlyoutAction
-  | SetWidthAction;
+  | SetWidthAction
+  | SetLayoutModeAction;
 
 function flyoutManagerReducer(
   state: EuiFlyoutManagerState = initialState,
@@ -198,6 +208,11 @@ function flyoutManagerReducer(
         flyouts: updatedFlyouts,
       };
     }
+    case ACTION_SET_LAYOUT_MODE:
+      return {
+        ...state,
+        layoutMode: action.layoutMode,
+      };
     default:
       return state;
   }
@@ -235,6 +250,13 @@ export const setFlyoutWidth = (
   width,
 });
 
+export const setLayoutModeAction = (
+  layoutMode: 'side-by-side' | 'stacked'
+): SetLayoutModeAction => ({
+  type: ACTION_SET_LAYOUT_MODE,
+  layoutMode,
+});
+
 // React hook for local reducer usage
 export function useFlyoutManagerReducer(
   initial: EuiFlyoutManagerState = initialState
@@ -259,10 +281,6 @@ export function useFlyoutManagerReducer(
       dispatch(setFlyoutWidth(flyoutId, width)),
     []
   );
-
-  // TODO: need a variable to track if a child flyout is active
-
-  // TODO: need a variable to track if the layout should be "side-by-side" or "stacked"
 
   return {
     state,
@@ -342,6 +360,21 @@ export const useCurrentMainFlyout = () => {
   );
 };
 
+export const useCurrentChildFlyout = () => {
+  const context = useFlyoutManager();
+  const currentSession = useCurrentSession();
+
+  if (!context || !currentSession || !currentSession.child) {
+    return null;
+  }
+
+  const childFlyoutId = currentSession.child;
+
+  return context.state.flyouts.find(
+    (flyout) => flyout.flyoutId === childFlyoutId
+  );
+};
+
 export const useFlyoutWidth = (flyoutId?: string | null) => {
   const context = useFlyoutManager();
   if (!context) {
@@ -375,6 +408,7 @@ export const useParentFlyoutSize = (childFlyoutId: string) => {
 
   return parentFlyout?.size;
 };
+
 export const useHasChildFlyout = (flyoutId: string) => {
   const currentSession = useCurrentSession();
 
@@ -383,4 +417,134 @@ export const useHasChildFlyout = (flyoutId: string) => {
   }
 
   return currentSession.child === flyoutId;
+};
+
+/**
+ * Helper function to convert size to width using theme breakpoints
+ */
+const getWidthFromSize = (size: string | number, euiTheme: any): number => {
+  if (typeof size === 'number') {
+    return size;
+  }
+
+  if (typeof size === 'string') {
+    // Try to parse as number (assumes px)
+    const parsed = parseInt(size, 10);
+    if (!isNaN(parsed)) {
+      return parsed;
+    }
+
+    // Handle named sizes
+    if (size === 's') {
+      return euiTheme.breakpoint.s;
+    } else if (size === 'm') {
+      return euiTheme.breakpoint.m;
+    } else if (size === 'l') {
+      return euiTheme.breakpoint.l;
+    }
+  }
+
+  // Default fallback
+  return 0;
+};
+
+/**
+ * Hook to handle responsive layout mode for managed flyouts
+ */
+export const useFlyoutLayoutMode = () => {
+  const context = useFlyoutManager();
+  const setLayoutMode = React.useCallback(
+    (layoutMode: 'side-by-side' | 'stacked') => {
+      if (context?.dispatch) {
+        context.dispatch(setLayoutModeAction(layoutMode));
+      }
+    },
+    [context]
+  );
+
+  const [windowWidth, setWindowWidth] = useState(
+    typeof window !== 'undefined' ? window.innerWidth : Infinity
+  );
+
+  // Update window width on resize
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+
+    window.addEventListener('resize', handleResize);
+    handleResize();
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
+  const { euiTheme } = useEuiTheme();
+
+  // Get current session and flyout IDs
+  const currentSession = useCurrentSession();
+  const parentFlyoutId = currentSession?.main;
+  const childFlyoutId = currentSession?.child;
+
+  // Get current flyouts for size information
+  const parentFlyout = useCurrentMainFlyout();
+  const childFlyout = useCurrentChildFlyout();
+
+  // Get actual widths using the helper
+  const parentWidth = useFlyoutWidth(parentFlyoutId);
+  const childWidth = useFlyoutWidth(childFlyoutId);
+
+  // Calculate stacking breakpoint and update layout mode
+  useEffect(() => {
+    if (!context) return;
+
+    if (!childFlyoutId) {
+      setLayoutMode('side-by-side');
+      return;
+    }
+
+    // If we have actual widths, use them; otherwise fall back to size-based calculation
+    let parentWidthValue = parentWidth;
+    let childWidthValue = childWidth;
+
+    // Fall back to size-based calculation if widths are not available
+    if (!parentWidthValue && parentFlyout?.size) {
+      parentWidthValue = getWidthFromSize(parentFlyout.size, euiTheme);
+    }
+    if (!childWidthValue && childFlyout?.size) {
+      childWidthValue = getWidthFromSize(childFlyout.size, euiTheme);
+    }
+
+    if (!parentWidthValue || !childWidthValue) {
+      setLayoutMode('side-by-side');
+      return;
+    }
+
+    const combinedWidth = parentWidthValue + childWidthValue;
+    const combinedWidthPercentage = (combinedWidth / windowWidth) * 100;
+
+    // Apply the 90% rule: if combined widths are 90% or more of viewport, use stacked layout
+    const newLayoutMode =
+      combinedWidthPercentage >= 90 ? 'stacked' : 'side-by-side';
+
+    setLayoutMode(newLayoutMode);
+  }, [
+    windowWidth,
+    context,
+    setLayoutMode,
+    parentWidth,
+    childWidth,
+    childFlyoutId,
+    parentFlyout?.size,
+    childFlyout?.size,
+    euiTheme,
+  ]);
+
+  return {
+    layoutMode: context?.state.layoutMode || 'side-by-side',
+    setLayoutMode,
+  };
 };

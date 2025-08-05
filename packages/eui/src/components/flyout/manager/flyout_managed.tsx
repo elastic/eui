@@ -16,6 +16,8 @@ import {
   useIsFlyoutActive,
   EuiManagedFlyoutContext,
   useParentFlyoutSize,
+  useFlyoutLayoutMode,
+  useCurrentChildFlyout,
 } from './flyout_manager';
 import { useEuiMemoizedStyles } from '../../../services';
 import { useResizeObserver } from '../../observer/resize_observer';
@@ -60,6 +62,9 @@ export const EuiManagedFlyout = ({
 
   const isActive = useIsFlyoutActive(flyoutId);
   const parentSize = useParentFlyoutSize(flyoutId);
+
+  // Get layout mode for responsive behavior
+  const { layoutMode } = useFlyoutLayoutMode();
 
   const styles = useEuiMemoizedStyles(euiManagedFlyoutStyles);
 
@@ -127,7 +132,12 @@ export const EuiManagedFlyout = ({
     }
   }, [isActive, activeState]);
 
-  // TODO: need a variable to track if the layout should be "side-by-side" or "stacked"
+  const childFlyout = useCurrentChildFlyout();
+  const childSize = childFlyout?.size as 's' | 'm' | undefined;
+
+  if (layoutMode === 'stacked' && childSize === 's') {
+    size = 's'; // Force main size to 's' if in stacked mode and child size is 's'
+  }
 
   return (
     <EuiManagedFlyoutContext.Provider value={true}>
@@ -138,6 +148,7 @@ export const EuiManagedFlyout = ({
           data-managed-flyout={true}
           data-managed-flyout-level={level}
           data-managed-flyout-active={activeState}
+          data-layout-mode={layoutMode}
           onClose={onClose}
           css={[styles.managedFlyout, customCss]}
           onAnimationEnd={handleAnimationEnd}

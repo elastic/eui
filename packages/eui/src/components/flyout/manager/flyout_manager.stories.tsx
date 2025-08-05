@@ -54,7 +54,12 @@ const ShoppingCartFlyout = ({
   const [isReviewCartOpen, setIsReviewCartOpen] = useState(false);
 
   return (
-    <EuiFlyout session={true} id="shopping-cart-flyout" {...{ onClose }}>
+    <EuiFlyout
+      session={true}
+      id="shopping-cart-flyout"
+      size="m"
+      {...{ onClose }}
+    >
       <EuiFlyoutHeader hasBorder>
         <EuiTitle size="m">
           <h2 id="flyout-shopping-cart-title">Shopping cart</h2>
@@ -133,6 +138,7 @@ const ReviewOrderFlyout = ({ itemQuantity, ...props }: ReviewOrderProps) => {
       session={true}
       id="review-order-flyout"
       ownFocus={false}
+      size="m"
       {...props}
     >
       <EuiFlyoutHeader hasBorder>
