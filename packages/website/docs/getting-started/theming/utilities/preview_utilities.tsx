@@ -18,7 +18,7 @@ import {
   euiFontSizeFromScale,
   euiLineHeightFromBaseline,
   euiTextShift,
-} from '@elastic/eui/src/global_styling';
+} from '@elastic/eui';
 
 const maxWidth = 300;
 const longLink =
