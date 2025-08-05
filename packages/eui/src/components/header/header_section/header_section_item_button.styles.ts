@@ -27,11 +27,11 @@ export const euiHeaderSectionItemButtonStyles = (
 
   const dotSize = euiTheme.size.base;
   const dotOffset = isRefreshVariant
-    ? mathWithUnits(dotSize, (x) => x * -0.5)
-    : 0;
+    ? mathWithUnits(dotSize, (x) => x * -0.3)
+    : '-15%';
   const badgeOffset = isRefreshVariant
-    ? mathWithUnits(euiTheme.size.s, (x) => x * -0.5)
-    : '9%';
+    ? mathWithUnits(euiTheme.size.s, (x) => x * 0.06)
+    : '0';
 
   return {
     euiHeaderSectionItemButton: css`
@@ -63,17 +63,18 @@ export const euiHeaderSectionItemButtonStyles = (
         position: absolute;
       `,
       dot: css`
-        ${logicalCSS('top', 0)}
+        ${logicalCSS('top', dotOffset)}
         ${logicalCSS('right', dotOffset)}
         stroke: ${euiTheme.colors.emptyShade};
 
         ${euiMaxBreakpoint(euiThemeContext, 's')} {
           ${logicalSizeCSS(dotSize)}
-          ${logicalCSS('top', '9%')}
+          ${logicalCSS('top', '-4%')}
+          ${logicalCSS('right', '-4%')}
         }
       `,
       badge: css`
-        ${logicalCSS('top', '9%')}
+        ${logicalCSS('top', badgeOffset)}
         ${logicalCSS('right', badgeOffset)}
         box-shadow: 0 0 0 ${euiTheme.border.width.thin} ${euiTheme.colors
           .emptyShade};
