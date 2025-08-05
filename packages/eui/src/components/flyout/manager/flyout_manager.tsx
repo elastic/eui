@@ -12,6 +12,7 @@ export interface EuiManagedFlyoutState {
   flyoutId: string;
   level: 'main' | 'child';
   width?: number;
+  size?: string;
 }
 
 export interface FlyoutSession {
@@ -55,6 +56,7 @@ interface AddFlyoutAction extends BaseAction {
   type: typeof ACTION_ADD;
   flyoutId: string;
   level: 'main' | 'child';
+  size?: string;
 }
 
 interface CloseFlyoutAction extends BaseAction {
@@ -85,12 +87,12 @@ function flyoutManagerReducer(
 ): EuiFlyoutManagerState {
   switch (action.type) {
     case ACTION_ADD:
-      const { flyoutId, level } = action;
+      const { flyoutId, level, size } = action;
       if (state.flyouts.some((f) => f.flyoutId === flyoutId)) {
         return state;
       }
 
-      const newFlyouts = [...state.flyouts, { level, flyoutId }];
+      const newFlyouts = [...state.flyouts, { level, flyoutId, size }];
 
       if (level === 'main') {
         // Create a new session with this main flyout
@@ -203,11 +205,13 @@ function flyoutManagerReducer(
 
 export const addFlyout = (
   flyoutId: string,
-  level: 'main' | 'child' = 'main'
+  level: 'main' | 'child' = 'main',
+  size?: string
 ): AddFlyoutAction => ({
   type: ACTION_ADD,
   flyoutId,
   level,
+  size,
 });
 
 export const closeFlyout = (flyoutId: string): CloseFlyoutAction => ({
@@ -238,8 +242,8 @@ export function useFlyoutManagerReducer(
   const [state, dispatch] = React.useReducer(flyoutManagerReducer, initial);
 
   const add = React.useCallback(
-    (flyoutId: string, level: 'main' | 'child' = 'main') =>
-      dispatch(addFlyout(flyoutId, level)),
+    (flyoutId: string, level: 'main' | 'child' = 'main', size?: string) =>
+      dispatch(addFlyout(flyoutId, level, size)),
     []
   );
   const close = React.useCallback(
@@ -325,6 +329,22 @@ export const useCurrentMainFlyout = () => {
 
 export const useFlyoutWidth = (flyoutId?: string | null) => {
   const { state } = useFlyoutManager();
-  const flyout = state.flyouts.find((flyout) => flyout.flyoutId === flyoutId);
+  const flyout = state.flyouts.find((f) => f.flyoutId === flyoutId);
   return flyout?.width;
+};
+
+/**
+ * Hook to get the size of a parent flyout for validation purposes
+ */
+export const useParentFlyoutSize = (childFlyoutId: string) => {
+  const { state } = useFlyoutManager();
+  const currentSession = state.sessions.find(
+    (session) => session.child === childFlyoutId
+  );
+  if (!currentSession) return undefined;
+
+  const parentFlyout = state.flyouts.find(
+    (f) => f.flyoutId === currentSession.main
+  );
+  return parentFlyout?.size;
 };

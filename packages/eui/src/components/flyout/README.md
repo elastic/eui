@@ -48,7 +48,13 @@ Renders child flyouts within a session:
 - **Width Integration**: Uses main flyout width for positioning
 
 ### `src/components/flyout/manager/flyout_managed.tsx`
-The managed flyout wrapper that integrates with the flyout manager system, handling registration and lifecycle management.
+The managed flyout wrapper that integrates with the flyout manager system, handling registration and lifecycle management. Includes size validation for managed flyouts according to business rules.
+
+### `src/components/flyout/manager/flyout_validation.ts`
+Validation utilities for flyout size business rules:
+- **Named Size Validation**: Managed flyouts must use named sizes (s, m, l)
+- **Size Combination Rules**: Parent and child can't both be 'm', parent can't be 'l' with child
+- **Error Handling**: Comprehensive error messages for invalid configurations
 
 ### `src/components/flyout/manager/index.ts`
 Exports all manager-related components and utilities for easy importing.
@@ -124,8 +130,9 @@ The EUI provider that includes `EuiFlyoutManager` in its component tree, ensurin
 - **Accessibility**: Full keyboard navigation, screen reader support, focus management with sophisticated ESC key handling
 - **Responsive Design**: Adaptive behavior based on screen size and breakpoints
 - **Theme Integration**: Seamless integration with EUI's theming system
-- **Type Safety**: Comprehensive TypeScript support with proper prop typing
+- **Type Safety**: Comprehensive TypeScript support with proper prop typing and validation
 - **Performance**: Optimized rendering with proper cleanup and memory management
+- **Size Validation**: Business rule enforcement for flyout size combinations and managed flyout constraints
 
 ## TODOs
 
@@ -149,8 +156,8 @@ The EUI provider that includes `EuiFlyoutManager` in its component tree, ensurin
 - **State Management Complexity**: The session management system has complex state transitions that could lead to inconsistent UI states
 - **Missing Error Boundaries**: No error handling for flyout rendering failures or state corruption
 - **Type Safety Issues**: 
-  - `isEuiFlyoutSizeNamed` function uses `any` type instead of proper type guards
-  - Incomplete props validation in `EuiFlyoutChildProps`
+  - ~~`isEuiFlyoutSizeNamed` function uses `any` type instead of proper type guards~~ ✅ **RESOLVED**: Created proper type guards in `flyout_validation.ts`
+  - ~~Incomplete props validation in `EuiFlyoutChildProps`~~ ✅ **RESOLVED**: Added comprehensive size validation system
 - **Unclear Session Logic**: The complex session routing logic in `flyout.tsx` (lines 40-50) is difficult to understand and maintain
 - **Incomplete Integration**: Resizable flyout functionality exists but is not integrated into main routing logic
 - **Missing Cleanup**: Focus references and event listeners are not properly cleaned up
