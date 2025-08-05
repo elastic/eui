@@ -5,8 +5,11 @@ sidebar_label: Typography
 
 # Typography utilities
 
+```mdx-code-block
+import { css } from '@emotion/react';
 import { Example } from '@site/src/components';
-import { EuiSpacer } from '@elastic/eui';
+import { EuiCallOut, EuiCode, EuiSpacer, EuiText } from '@elastic/eui';
+```
 
 ## Alignment
 
@@ -73,7 +76,9 @@ import { EuiSpacer } from '@elastic/eui';
 
 ## Wrapping
 
+```mdx-code-block
 import { WrappingTextTruncateFnPreview } from './preview_utilities';
+```
 
 <Example>
   <Example.Description>
@@ -100,7 +105,9 @@ import { WrappingTextTruncateFnPreview } from './preview_utilities';
 
 <EuiSpacer />
 
+```mdx-code-block
 import { WrappingTextTruncatePreview } from './preview_utilities';
+```
 
 <Example>
   <Example.Description>
@@ -148,7 +155,9 @@ import { WrappingTextBreakWordFnPreview } from './preview_utilities';
 
 <EuiSpacer />
 
+```mdx-code-block
 import { WrappingTextBreakWordPreview } from './preview_utilities';
+```
 
 <Example>
   <Example.Description>
@@ -171,7 +180,9 @@ import { WrappingTextBreakWordPreview } from './preview_utilities';
 
 <EuiSpacer />
 
+```mdx-code-block
 import { WrappingTextNoWrapPreview } from './preview_utilities';
+```
 
 <Example>
   <Example.Description>
@@ -194,7 +205,9 @@ import { WrappingTextNoWrapPreview } from './preview_utilities';
 
 <EuiSpacer />
 
+```mdx-code-block
 import { WrappingTextBreakAllPreview } from './preview_utilities';
+```
 
 <Example>
   <Example.Description>
@@ -217,7 +230,9 @@ import { WrappingTextBreakAllPreview } from './preview_utilities';
 
 <EuiSpacer />
 
+```mdx-code-block
 import { WrappingTextBreakNormalPreview } from './preview_utilities';
+```
 
 <Example>
   <Example.Description>
@@ -240,7 +255,9 @@ import { WrappingTextBreakNormalPreview } from './preview_utilities';
 
 ## Numbers
 
+```mdx-code-block
 import { NumbersFormatFnPreview } from './preview_utilities';
+```
 
 <Example>
   <Example.Description>
@@ -263,7 +280,9 @@ import { NumbersFormatFnPreview } from './preview_utilities';
 
 <EuiSpacer />
 
+```mdx-code-block
 import { NumbersFormatPreview } from './preview_utilities';
+```
 
 <Example>
   <Example.Description>
@@ -286,7 +305,9 @@ import { NumbersFormatPreview } from './preview_utilities';
 
 ## Color
 
+```mdx-code-block
 import { ColorInheritPreview } from './preview_utilities';
+```
 
 <Example>
   <Example.Description>
@@ -305,6 +326,94 @@ import { ColorInheritPreview } from './preview_utilities';
     <EuiTextColor color="danger">
       <EuiCode className="eui-textInheritColor">I am danger code</EuiCode>
     </EuiTextColor>
+    ```
+  </Example.Snippet>
+</Example>
+
+## Size
+
+```mdx-code-block
+import { FontSizeFromScaleFnPreview } from './preview_utilities';
+```
+
+<Example>
+  <Example.Description>
+    ### `euiFontSizeFromScale(scale, euiTheme, options?)` <Badge color="hollow">function</Badge>
+
+    Calculates font-size values using the theme's scale system for consistent typography.
+
+    Accepts a scale key (`'xxxs'`, `'xxs'`, `'xs'`, `'s'`, `'m'`, `'l'`, `'xl'`, `'xxl'`), the `euiTheme` object, and optional parameters for unit or custom scaling.
+
+  </Example.Description>
+  <Example.Preview>
+    <FontSizeFromScaleFnPreview />
+  </Example.Preview>
+  <Example.Snippet>
+    ```tsx
+    css`
+      font-size: ${euiFontSizeFromScale('m', euiTheme)};
+    `
+    ```
+  </Example.Snippet>
+</Example>
+
+<EuiSpacer />
+
+```mdx-code-block
+import { LineHeightFromBaselineFnPreview } from './preview_utilities';
+```
+
+<Example>
+  <Example.Description>
+    ### `euiLineHeightFromBaseline(scale, euiTheme, options?)` <Badge color="hollow">function</Badge>
+
+    Calculates line-height values aligned to the baseline grid for consistent vertical rhythm.
+
+    Uses the same scale system as `euiFontSizeFromScale` and automatically adjusts to maintain baseline alignment.
+
+  </Example.Description>
+  <Example.Preview>
+    <LineHeightFromBaselineFnPreview />
+  </Example.Preview>
+  <Example.Snippet>
+    ```tsx
+    css`
+      line-height: ${euiLineHeightFromBaseline('m', euiTheme)};
+    `
+    ```
+  </Example.Snippet>
+</Example>
+
+<EuiSpacer />
+
+```mdx-code-block
+import { TextShiftFnPreview } from './preview_utilities';
+```
+
+<Example>
+  <Example.Description>
+    ### `euiTextShift(fontWeight?, attribute?, euiTheme)` <Badge color="hollow">function</Badge>
+
+    Prevents layout shift when changing font-weight on hover or focus. Creates an invisible pseudo-element to reserve space for the bold weight.
+
+    Useful for interactive text that changes weight on state changes.
+
+    <EuiCallOut iconType="warning" color="warning" title={<EuiText css={css`display: inline;`}>Remember to pass <EuiCode>data-text</EuiCode> attribute!</EuiText>}>
+      This is important for <EuiCode>euiTextShift</EuiCode> to work correctly.
+    </EuiCallOut>
+
+  </Example.Description>
+  <Example.Preview>
+    <TextShiftFnPreview />
+  </Example.Preview>
+  <Example.Snippet>
+    ```tsx
+    css`
+      ${euiTextShift('bold', 'data-text', euiTheme)}
+      &:hover {
+        font-weight: ${euiTheme.font.weight.bold};
+      }
+    `
     ```
   </Example.Snippet>
 </Example>
