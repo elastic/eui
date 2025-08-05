@@ -22,7 +22,7 @@ export const euiHeaderVariables = (euiThemeContext: UseEuiTheme) => {
   return {
     height: euiTheme.size.xxxl,
     childHeight: euiTheme.size.xxl,
-    padding: euiTheme.size.s,
+    padding: euiTheme.size.m,
   };
 };
 

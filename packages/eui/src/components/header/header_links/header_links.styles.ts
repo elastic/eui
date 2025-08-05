@@ -20,7 +20,6 @@ export const euiHeaderLinksStyles = ({ euiTheme }: UseEuiTheme) => {
       white-space: nowrap;
       display: flex;
       align-items: center;
-      ${logicalCSS('margin-right', euiTheme.size.s)}
     `,
     gutterSizes: {
       xxs: css`

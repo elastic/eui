@@ -10,6 +10,7 @@ import React, { FunctionComponent, HTMLAttributes } from 'react';
 import classNames from 'classnames';
 
 import { CommonProps } from '../../common';
+import { useEuiMemoizedStyles } from '../../../services';
 
 import { euiHeaderSectionStyles } from './header_section.styles';
 
@@ -26,7 +27,7 @@ export const EuiHeaderSection: FunctionComponent<EuiHeaderSectionProps> = ({
   grow = false,
   ...rest
 }) => {
-  const styles = euiHeaderSectionStyles();
+  const styles = useEuiMemoizedStyles(euiHeaderSectionStyles);
   const cssStyles = [
     styles.euiHeaderSection,
     grow && styles.grow,
