@@ -7,7 +7,7 @@ The main flyout component that serves as the entry point for all flyout function
 - **Session flyouts**: When `session={true}` or within an active session, renders `EuiFlyoutMain`
 - **Child flyouts**: When within a managed flyout context, renders `EuiFlyoutChild`
 - **Standard flyouts**: Default behavior renders `EuiFlyoutComponent`
-- **Resizable flyouts**: TODO - will render `EuiResizableFlyout` when `resizable={true}` (currently not implemented in routing logic)
+- **Resizable flyouts**: `EuiFlyoutResizable` component exists but is not integrated into main routing logic
 
 ### `src/components/flyout/flyout.component.tsx`
 The core flyout implementation with comprehensive functionality:
@@ -17,6 +17,7 @@ The core flyout implementation with comprehensive functionality:
 - **Styling**: Dynamic width handling, responsive behavior, theme integration
 - **Portal/Overlay**: Conditional portal rendering and overlay mask management
 - **Session Logic**: Complex routing logic that determines flyout type based on session state and managed context
+- **Responsive Behavior**: Adaptive layout switching for managed flyouts based on viewport width and flyout size combinations
 
 ### `src/components/flyout/flyout.styles.ts`
 Contains the emotion-based styling for the flyout component, including:
@@ -36,6 +37,7 @@ The central state management system for flyout sessions:
 - **State Reducer**: Handles flyout lifecycle (add, close, set active, set width)
 - **Hooks**: Provides utilities like `useIsSessionActive`, `useCurrentSession`, `useFlyoutWidth`
 - **Actions**: `addFlyout`, `closeFlyout`, `setActiveFlyout`, `setFlyoutWidth`
+- **Responsive Layout**: `useFlyoutLayoutMode` hook manages responsive behavior for managed flyouts with 90% viewport width rule for switching between `side-by-side` and `stacked` layouts
 
 ### `src/components/flyout/manager/flyout_main.tsx`
 Renders the primary flyout in a session. Currently a simple wrapper around `EuiManagedFlyout` with `level="main"`. TODO items include handling child flyout presence and adjusting focus/shadow behavior.
@@ -128,7 +130,7 @@ The EUI provider that includes `EuiFlyoutManager` in its component tree, ensurin
 
 - **Session Management**: Multi-level flyout sessions with main/child relationships
 - **Accessibility**: Full keyboard navigation, screen reader support, focus management with sophisticated ESC key handling
-- **Responsive Design**: Adaptive behavior based on screen size and breakpoints
+- **Responsive Design**: Adaptive behavior based on screen size and breakpoints with intelligent layout switching for managed flyouts (side-by-side vs stacked) when combined flyout widths exceed 90% of viewport
 - **Theme Integration**: Seamless integration with EUI's theming system
 - **Type Safety**: Comprehensive TypeScript support with proper prop typing and validation
 - **Performance**: Optimized rendering with proper cleanup and memory management
@@ -145,7 +147,6 @@ The EUI provider that includes `EuiFlyoutManager` in its component tree, ensurin
 
 ### Accessibility Issues
 
-- **Complex ESC Key Logic**: ~~The keyboard handling logic around line 300 is overly complex and could lead to inconsistent behavior across different flyout states~~ ✅ **RESOLVED**: Simplified ESC key logic with dedicated `shouldCloseOnEscape` function for better maintainability and testability
 - **Focus Trap Edge Cases**: The focus trap logic with shards could fail if DOM elements are removed or changed during flyout lifecycle
 - **Missing Error Recovery**: No fallback behavior when focus management fails
 - **Inconsistent Keyboard Navigation**: Different flyout types may have different keyboard behavior patterns
@@ -155,9 +156,6 @@ The EUI provider that includes `EuiFlyoutManager` in its component tree, ensurin
 - **Tight Coupling**: The flyout system is tightly coupled to the provider system, making it difficult to use standalone
 - **State Management Complexity**: The session management system has complex state transitions that could lead to inconsistent UI states
 - **Missing Error Boundaries**: No error handling for flyout rendering failures or state corruption
-- **Type Safety Issues**: 
-  - ~~`isEuiFlyoutSizeNamed` function uses `any` type instead of proper type guards~~ ✅ **RESOLVED**: Created proper type guards in `flyout_validation.ts`
-  - ~~Incomplete props validation in `EuiFlyoutChildProps`~~ ✅ **RESOLVED**: Added comprehensive size validation system
 - **Unclear Session Logic**: The complex session routing logic in `flyout.tsx` (lines 40-50) is difficult to understand and maintain
 - **Incomplete Integration**: Resizable flyout functionality exists but is not integrated into main routing logic
 - **Missing Cleanup**: Focus references and event listeners are not properly cleaned up
