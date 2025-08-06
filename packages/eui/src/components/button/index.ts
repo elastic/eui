@@ -13,6 +13,12 @@ export type { EuiButtonEmptyProps, EuiButtonEmptySizes } from './button_empty';
 export { EuiButtonEmpty } from './button_empty';
 
 export type {
+  EuiButtonSplitProps,
+  EuiButtonSplitPropsForButton,
+} from './button_split';
+export { EuiButtonSplit } from './button_split';
+
+export type {
   EuiButtonIconProps,
   EuiButtonIconPropsForButton,
 } from './button_icon';
