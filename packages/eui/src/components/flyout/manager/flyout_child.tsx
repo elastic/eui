@@ -8,9 +8,8 @@
 
 import React from 'react';
 import { useEuiMemoizedStyles } from '../../../services';
-import { EuiFlyoutComponentProps } from '../flyout.component';
-import { euiManagedFlyoutStyles } from './flyout.styles';
-import { EuiManagedFlyout } from './flyout_managed';
+import { euiChildFlyoutStyles } from './flyout_child.styles';
+import { EuiManagedFlyout, type EuiManagedFlyoutProps } from './flyout_managed';
 import {
   useCurrentMainFlyout,
   useFlyoutLayoutMode,
@@ -19,8 +18,8 @@ import {
 
 export interface EuiFlyoutChildProps
   extends Omit<
-    EuiFlyoutComponentProps,
-    'closeButtonPosition' | 'hideCloseButton' | 'side' | 'type'
+    EuiManagedFlyoutProps,
+    'closeButtonPosition' | 'hideCloseButton' | 'side' | 'type' | 'level'
   > {
   backgroundStyle?: 'default' | 'shaded';
 }
@@ -30,7 +29,7 @@ export function EuiFlyoutChild({
   backgroundStyle,
   ...props
 }: EuiFlyoutChildProps) {
-  const styles = useEuiMemoizedStyles(euiManagedFlyoutStyles);
+  const styles = useEuiMemoizedStyles(euiChildFlyoutStyles);
   const mainWidth = useFlyoutWidth(useCurrentMainFlyout()?.flyoutId);
   const { layoutMode } = useFlyoutLayoutMode();
 

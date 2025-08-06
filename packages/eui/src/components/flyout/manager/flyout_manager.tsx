@@ -416,7 +416,7 @@ export const useHasChildFlyout = (flyoutId: string) => {
     return false;
   }
 
-  return currentSession.child === flyoutId;
+  return currentSession.main === flyoutId && currentSession.child;
 };
 
 /**

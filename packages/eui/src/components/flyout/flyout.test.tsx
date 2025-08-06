@@ -14,7 +14,7 @@ import { shouldRenderCustomStyles } from '../../test/internal';
 
 import { EuiHeader } from '../header';
 import {
-  EuiFlyoutComponent as EuiFlyout,
+  EuiFlyout,
   FLYOUT_PADDING_SIZES,
   FLYOUT_SIDES,
   FLYOUT_SIZES,

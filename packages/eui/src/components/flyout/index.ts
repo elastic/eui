@@ -9,9 +9,6 @@
 export type { EuiFlyoutProps, EuiFlyoutSize } from './flyout';
 export { EuiFlyout } from './flyout';
 
-export type { EuiFlyoutComponentProps } from './flyout.component';
-export { EuiFlyoutComponent } from './flyout.component';
-
 export type { EuiFlyoutBodyProps } from './flyout_body';
 export { EuiFlyoutBody } from './flyout_body';
 

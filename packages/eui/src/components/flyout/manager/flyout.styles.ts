@@ -86,13 +86,5 @@ export const euiManagedFlyoutStyles = (euiThemeContext: UseEuiTheme) => {
       animation: ${euiFlyoutSlideForward3D} ${euiTheme.animation.normal}
         ${euiTheme.animation.resistance} forwards;
     `,
-    backgroundDefault: css`
-      /* Default background for flyouts */
-      background: ${euiTheme.colors.backgroundBasePlain};
-    `,
-    backgroundShaded: css`
-      /* Shaded background for child flyouts */
-      background: ${euiTheme.colors.backgroundBaseSubdued};
-    `,
   };
 };

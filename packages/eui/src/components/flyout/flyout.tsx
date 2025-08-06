@@ -53,6 +53,7 @@ export const EuiFlyout = ({
   const hasActiveSession = useIsSessionActive();
   const isUnmanagedFlyout = useRef(false);
   const isInManagedFlyoutContext = useIsManagedFlyoutContext();
+  // debugger;
 
   // If session={true}, or there is an active session and the flyout is not a child of a session, render EuiMainFlyout.
   if (session === true || (hasActiveSession && !isInManagedFlyoutContext)) {

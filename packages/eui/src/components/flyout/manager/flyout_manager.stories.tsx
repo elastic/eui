@@ -22,6 +22,7 @@ import {
   EuiFlyoutFooter,
   EuiFlyoutHeader,
   EuiSpacer,
+  EuiSwitch,
   EuiText,
   EuiTitle,
 } from '../../index';
@@ -41,7 +42,7 @@ interface ECommerceContentProps {
 
 interface ShoppingCartProps
   extends ECommerceContentProps,
-    Pick<EuiFlyoutProps, 'onClose'> {
+    Pick<EuiFlyoutProps, 'onClose' | 'ownFocus'> {
   onQuantityChange: (delta: number) => void;
 }
 
@@ -49,6 +50,7 @@ const ShoppingCartFlyout = ({
   itemQuantity,
   onQuantityChange,
   onClose,
+  ownFocus,
 }: ShoppingCartProps) => {
   const [isItemDetailsOpen, setIsItemDetailsOpen] = useState(false);
   const [isReviewCartOpen, setIsReviewCartOpen] = useState(false);
@@ -58,6 +60,7 @@ const ShoppingCartFlyout = ({
       session={true}
       id="shopping-cart-flyout"
       size="m"
+      ownFocus={ownFocus}
       {...{ onClose }}
     >
       <EuiFlyoutHeader hasBorder>
@@ -237,6 +240,7 @@ const ItemDetailsFlyout = ({ onClose, itemQuantity }: ItemDetailsProps) => {
 };
 
 const BasicExampleComponent = () => {
+  const [shoppingCartOwnFocus, setShoppingCartOwnFocus] = useState(false);
   const [isShoppingCartOpen, setIsShoppingCartOpen] = useState(false);
   const [isReviewCartOpen, setIsReviewCartOpen] = useState(false);
   const [isItemDetailsOpen, setIsItemDetailsOpen] = useState(false);
@@ -262,78 +266,127 @@ const BasicExampleComponent = () => {
         <EuiFlexItem>
           <EuiFlexGroup>
             <EuiFlexItem>
-              <EuiDescriptionList>
-                <EuiDescriptionListTitle>Shopping cart</EuiDescriptionListTitle>
-                <EuiDescriptionListDescription>
-                  This flyout always starts a new session,{' '}
-                  <EuiCode>{`session={true}`}</EuiCode>.
-                </EuiDescriptionListDescription>
-                <EuiDescriptionListTitle>Review order</EuiDescriptionListTitle>
-                <EuiDescriptionListDescription>
-                  This flyout always starts a new session,{' '}
-                  <EuiCode>{`session={true}`}</EuiCode>.
-                  <EuiSpacer size="xs" />
-                  It is rendered by the button above, but also from within the
-                  Shopping Cart flyout.
-                </EuiDescriptionListDescription>
-                <EuiDescriptionListTitle>Item details</EuiDescriptionListTitle>
-                <EuiDescriptionListDescription>
-                  This flyout is a regular flyout.
-                  <EuiSpacer size="xs" />
-                  It is rendered by the button above, but also from within the
-                  Shopping Cart flyout.
-                  <EuiSpacer size="xs" />
-                  If rendered from <strong>here</strong>, and{' '}
-                  <strong>no</strong> session is active, it is rendered as a{' '}
-                  <strong>regular</strong> flyout.
-                  <EuiSpacer size="xs" />
-                  If rendered from <strong>here</strong>, and a session{' '}
-                  <strong>is</strong> active, it is rendered as a new{' '}
-                  <EuiCode>main</EuiCode> flyout as a new session.
-                  <EuiSpacer size="xs" />
-                  If rendered from <strong>within</strong> the Shopping Cart
-                  flyout, it will be rendered as a <EuiCode>child</EuiCode>{' '}
-                  flyout.
-                </EuiDescriptionListDescription>
-              </EuiDescriptionList>
+              <EuiFlexGroup direction="column">
+                <EuiFlexItem>
+                  <EuiTitle size="s">
+                    <h2>Flyouts</h2>
+                  </EuiTitle>
+                  <EuiSpacer size="m" />
+                  <EuiDescriptionList>
+                    <EuiDescriptionListTitle>
+                      Shopping cart
+                    </EuiDescriptionListTitle>
+                    <EuiDescriptionListDescription>
+                      This flyout always starts a new session,{' '}
+                      <EuiCode>{`session={true}`}</EuiCode>.
+                    </EuiDescriptionListDescription>
+                    <EuiDescriptionListTitle>
+                      Review order
+                    </EuiDescriptionListTitle>
+                    <EuiDescriptionListDescription>
+                      This flyout always starts a new session,{' '}
+                      <EuiCode>{`session={true}`}</EuiCode>.
+                      <EuiSpacer size="xs" />
+                      It is rendered by the button above, but also from within
+                      the Shopping Cart flyout.
+                    </EuiDescriptionListDescription>
+                    <EuiDescriptionListTitle>
+                      Item details
+                    </EuiDescriptionListTitle>
+                    <EuiDescriptionListDescription>
+                      This flyout is a regular flyout.
+                      <EuiSpacer size="xs" />
+                      It is rendered by the button above, but also from within
+                      the Shopping Cart flyout.
+                      <EuiSpacer size="xs" />
+                      If rendered from <strong>here</strong>, and{' '}
+                      <strong>no</strong> session is active, it is rendered as a{' '}
+                      <strong>regular</strong> flyout.
+                      <EuiSpacer size="xs" />
+                      If rendered from <strong>here</strong>, and a session{' '}
+                      <strong>is</strong> active, it is rendered as a new{' '}
+                      <EuiCode>main</EuiCode> flyout as a new session.
+                      <EuiSpacer size="xs" />
+                      If rendered from <strong>within</strong> the Shopping Cart
+                      flyout, it will be rendered as a <EuiCode>child</EuiCode>{' '}
+                      flyout.
+                    </EuiDescriptionListDescription>
+                  </EuiDescriptionList>
+                </EuiFlexItem>
+                <EuiFlexItem>
+                  <EuiTitle size="s">
+                    <h2>Current State</h2>
+                  </EuiTitle>
+                  <EuiCodeBlock language="json">
+                    {JSON.stringify(context?.state, null, 2)}
+                  </EuiCodeBlock>
+                </EuiFlexItem>
+              </EuiFlexGroup>
             </EuiFlexItem>
             <EuiFlexItem>
-              <EuiTitle size="xs">
-                <h2>Summary</h2>
-              </EuiTitle>
-              <EuiSpacer size="s" />
-              <EuiText size="s">
-                <div>
-                  This example demonstrates the different ways a flyout can be
-                  rendered.
+              <EuiFlexGroup direction="column">
+                <EuiFlexItem>
+                  <EuiTitle size="s">
+                    <h2>Summary</h2>
+                  </EuiTitle>
                   <EuiSpacer size="m" />
-                  The <EuiCode>session</EuiCode> prop is used to control whether
-                  a flyout is rendered as a new session.
+                  <EuiText size="s">
+                    <div>
+                      This example demonstrates the different ways a flyout can
+                      be rendered.
+                      <EuiSpacer size="m" />
+                      The <EuiCode>session</EuiCode> prop is used to control
+                      whether a flyout is rendered as a new session.
+                      <EuiSpacer size="m" />
+                      The determination of whether a flyout is rendered as a{' '}
+                      <EuiCode>main</EuiCode> or <EuiCode>child</EuiCode> flyout
+                      is based on the presence of an active session,{' '}
+                      <em>and</em> if the flyout is rendered from within a
+                      managed flyout.
+                      <EuiSpacer size="m" />
+                      This change means the relationship between the main and
+                      child flyout, as well as the history of which main flyouts
+                      have been opened, are <strong>
+                        implicitly derived
+                      </strong>{' '}
+                      from the React structure.
+                      <EuiSpacer size="m" />
+                      So from a DX perspective, no one need wonder if they
+                      should create a <EuiCode>MainFlyout</EuiCode> or
+                      <EuiCode>ChildFlyout</EuiCode>, or check what may already
+                      be open... the way its structured and the{' '}
+                      <EuiCode>session</EuiCode> prop handle it all.
+                    </div>
+                  </EuiText>
+                </EuiFlexItem>
+                <EuiFlexItem>
+                  <EuiTitle size="s">
+                    <h2>Known issues</h2>
+                  </EuiTitle>
                   <EuiSpacer size="m" />
-                  The determination of whether a flyout is rendered as a{' '}
-                  <EuiCode>main</EuiCode> or <EuiCode>child</EuiCode> flyout is
-                  based on the presence of an active session, <em>and</em> if
-                  the flyout is rendered from within a managed flyout.
-                  <EuiSpacer size="m" />
-                  This change means the relationship between the main and child
-                  flyout, as well as the history of which main flyouts have been
-                  opened, are <strong>implicitly derived</strong> from the React
-                  structure.
-                  <EuiSpacer size="m" />
-                  So from a DX perspective, no one need wonder if they should
-                  create a <EuiCode>MainFlyout</EuiCode> or
-                  <EuiCode>ChildFlyout</EuiCode>, or check what may already be
-                  open... the way its structured and the{' '}
-                  <EuiCode>session</EuiCode> prop handle it all.
-                </div>
-              </EuiText>
+                  <EuiDescriptionList>
+                    <EuiDescriptionListTitle>Animation</EuiDescriptionListTitle>
+                    <EuiDescriptionListDescription>
+                      If a main flyout is opened with{' '}
+                      <EuiCode>{`ownFocus={true}`}</EuiCode>, the animation will
+                      break.
+                      <EuiSpacer size="s" />
+                      This is because the flyout is remounted, and the animation
+                      is not properly applied.
+                      <EuiSpacer size="s" />
+                      <EuiSwitch
+                        label="Shopping cart ownFocus"
+                        checked={shoppingCartOwnFocus}
+                        onChange={(e) =>
+                          setShoppingCartOwnFocus(e.target.checked)
+                        }
+                      />
+                    </EuiDescriptionListDescription>
+                  </EuiDescriptionList>
+                </EuiFlexItem>
+              </EuiFlexGroup>
             </EuiFlexItem>
           </EuiFlexGroup>
-        </EuiFlexItem>
-        <EuiFlexItem>
-          <EuiCodeBlock language="json">
-            {JSON.stringify(context?.state, null, 2)}
-          </EuiCodeBlock>
         </EuiFlexItem>
       </EuiFlexGroup>
       {isShoppingCartOpen && (
@@ -343,6 +396,7 @@ const BasicExampleComponent = () => {
             setItemQuantity(itemQuantity + delta)
           }
           itemQuantity={itemQuantity}
+          ownFocus={shoppingCartOwnFocus}
         />
       )}
       {isReviewCartOpen && (

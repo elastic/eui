@@ -537,17 +537,16 @@ const EuiFlyoutComponentWrapper: FunctionComponent<{
     hasRendered.current = true;
   }, []);
 
-  const cssStyles = useMemo(() => {
-    return {
-      animation: hasRendered.current ? 'none' : undefined,
-    };
-  }, []);
-
+  // TODO: @tkajtoch - this is causing all kinds of issues with animations if a
+  // main flyout is opened with ownFocus={true}.  Since the logic is to _change_
+  // ownFocus to false if a child is rendered, the component remounts, spinning all
+  // of the animations into a tailspin.  One option would be to flat-out _hide_ this
+  // mask. :shrug:
   if (hasOverlayMask) {
     return (
       <EuiOverlayMask
         headerZindexLocation="below"
-        css={cssStyles}
+        style={hasRendered.current ? 'animation: none !important' : ''}
         {...maskProps}
       >
         {children}

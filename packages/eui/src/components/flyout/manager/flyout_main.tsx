@@ -8,8 +8,7 @@
 
 import React from 'react';
 
-import { EuiFlyoutComponentProps } from '../flyout.component';
-import { EuiManagedFlyout } from './flyout_managed';
+import { EuiManagedFlyout, type EuiManagedFlyoutProps } from './flyout_managed';
 import { useHasChildFlyout } from './flyout_manager';
 import { useFlyoutId } from './hooks';
 import { euiMainFlyoutStyles } from './flyout_main.styles';
@@ -21,7 +20,7 @@ import {
 } from '../const';
 import { useIsPushed } from '../hooks';
 
-export interface EuiFlyoutMainProps extends EuiFlyoutComponentProps {}
+export type EuiFlyoutMainProps = Omit<EuiManagedFlyoutProps, 'level'>;
 
 export function EuiFlyoutMain({
   id,
