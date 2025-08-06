@@ -45,10 +45,6 @@ export const euiHeaderSectionItemButtonStyles = (
       text-align: center;
       padding: 0;
       font-size: 0; /* Aligns icons better vertically */
-
-      ${euiMaxBreakpoint(euiThemeContext, 's')} {
-        ${logicalSizeCSS(euiTheme.size.xl)}/* Keep consistent size on mobile */
-      }
     `,
     euiHeaderSectionItemButton__content: css`
       /* This element is a span and we're changing the display because inline elements can’t take a transform */
