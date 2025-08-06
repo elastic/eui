@@ -42,11 +42,6 @@ export function EuiFlyoutMain({
 
   const style: React.CSSProperties = {};
 
-  // TODO: support "fill" mode
-
-  // Visual distinction for the position of the main flyout
-  style.borderTop = '11px solid cyan';
-
   return (
     <EuiManagedFlyout
       id={flyoutId}

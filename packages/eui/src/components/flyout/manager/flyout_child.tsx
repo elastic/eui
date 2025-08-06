@@ -41,10 +41,6 @@ export function EuiFlyoutChild({
     style = { zIndex: Number(euiTheme.levels.flyout) + 2 };
   }
 
-  // Visual distinction for the position of the child flyout
-  style.borderTop = '10px solid magenta';
-  style.marginTop = '10px';
-
   return (
     <EuiManagedFlyout
       {...props}
