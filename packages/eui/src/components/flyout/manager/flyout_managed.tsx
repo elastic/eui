@@ -17,7 +17,6 @@ import {
   EuiManagedFlyoutContext,
   useParentFlyoutSize,
   useFlyoutLayoutMode,
-  // useCurrentChildFlyout,
 } from './flyout_manager';
 import { useEuiMemoizedStyles } from '../../../services';
 import { useResizeObserver } from '../../observer/resize_observer';
@@ -130,23 +129,6 @@ export const EuiManagedFlyout = ({
       setActiveState('returning');
     }
   }, [isActive, activeState]);
-
-  // TODO: @tsullivan This is a bug.
-  //
-  // If the layout mode switches to 'stacked' and the main flyout switches to size 's',
-  // it's width brings the combined width _below_ the 90% threshold.  This causes an
-  // infinite loop in the browser at certain widths.
-
-  /*
-
-  const childFlyout = useCurrentChildFlyout();
-  const childSize = childFlyout?.size as 's' | 'm' | undefined;
-
-  if (layoutMode === 'stacked' && childSize === 's') {
-    size = 's'; // Force main size to 's' if in stacked mode and child size is 's'
-  }
-
-  */
 
   return (
     <EuiManagedFlyoutContext.Provider value={true}>
