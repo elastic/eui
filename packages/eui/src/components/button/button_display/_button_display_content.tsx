@@ -97,12 +97,15 @@ export const EuiButtonDisplayContent: FunctionComponent<
   const doNotRenderTextWrapper = textProps === false;
   const renderTextWrapper = (isText || textProps) && !doNotRenderTextWrapper;
 
+  const textWrapperCss = [styles.content, textProps && textProps.css];
+
   return (
     <span css={styles.euiButtonDisplayContent} {...contentProps}>
       {iconSide === 'left' && icon}
       {renderTextWrapper ? (
         <span
           {...textProps}
+          css={textWrapperCss}
           className={classNames('eui-textTruncate', textProps?.className)}
         >
           {children}
