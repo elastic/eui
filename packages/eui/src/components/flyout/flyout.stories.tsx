@@ -75,9 +75,9 @@ const StatefulFlyout = (
       {_isOpen && (
         <EuiFlyout
           {...props}
-          onClose={(...args) => {
+          onClose={() => {
             handleToggle(false);
-            onClose(...args);
+            onClose();
           }}
         />
       )}

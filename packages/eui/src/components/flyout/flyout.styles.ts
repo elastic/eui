@@ -9,7 +9,7 @@
 import { css, keyframes } from '@emotion/react';
 import { euiShadowXLarge } from '@elastic/eui-theme-common';
 
-import { _EuiFlyoutPaddingSize, EuiFlyoutSize } from './flyout';
+import { _EuiFlyoutPaddingSize, EuiFlyoutSize } from './const';
 import {
   euiCanAnimate,
   euiMaxBreakpoint,
@@ -97,7 +97,9 @@ export const euiFlyoutStyles = (euiThemeContext: UseEuiTheme) => {
 
       ${euiCanAnimate} {
         animation: ${euiFlyoutSlideInRight} ${euiTheme.animation.normal}
-          ${euiTheme.animation.resistance};
+          ${euiTheme.animation.resistance} forwards;
+        animation-fill-mode: forwards;
+        animation-iteration-count: 1;
       }
 
       &.euiFlyout--hasChild {
@@ -111,7 +113,9 @@ export const euiFlyoutStyles = (euiThemeContext: UseEuiTheme) => {
 
       ${euiCanAnimate} {
         animation: ${euiFlyoutSlideInLeft} ${euiTheme.animation.normal}
-          ${euiTheme.animation.resistance};
+          ${euiTheme.animation.resistance} forwards;
+        animation-fill-mode: forwards;
+        animation-iteration-count: 1;
       }
     `,
 
