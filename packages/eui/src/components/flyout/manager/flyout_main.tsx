@@ -40,11 +40,19 @@ export function EuiFlyoutMain({
     hasChildFlyout && !isPushed && styles.hasChildFlyout[side],
   ];
 
+  const style: React.CSSProperties = {};
+
+  // TODO: support "fill" mode
+
+  // Visual distinction for the position of the main flyout
+  style.borderTop = '11px solid cyan';
+
   return (
     <EuiManagedFlyout
       id={flyoutId}
-      css={cssStyles}
       level="main"
+      style={style}
+      css={cssStyles}
       {...{ ...props, ownFocus, pushMinBreakpoint, type, side }}
     />
   );

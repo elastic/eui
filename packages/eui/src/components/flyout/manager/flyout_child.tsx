@@ -34,12 +34,16 @@ export function EuiFlyoutChild({
   const mainWidth = useFlyoutWidth(useCurrentMainFlyout()?.flyoutId);
   const layoutMode = useFlyoutLayoutMode();
 
-  let style: { right?: number; zIndex?: number } = {};
+  let style: React.CSSProperties = {};
   if (mainWidth && layoutMode === 'side-by-side') {
     style = { right: mainWidth };
   } else if (layoutMode === 'stacked') {
     style = { zIndex: Number(euiTheme.levels.flyout) + 2 };
   }
+
+  // Visual distinction for the position of the child flyout
+  style.borderTop = '10px solid magenta';
+  style.marginTop = '10px';
 
   return (
     <EuiManagedFlyout
