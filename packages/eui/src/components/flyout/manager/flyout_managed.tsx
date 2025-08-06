@@ -42,6 +42,15 @@ const useFlyoutManager = () => {
   return context;
 };
 
+type ActiveState =
+  | 'opening'
+  | 'active'
+  | 'inactive'
+  | 'backgrounding'
+  | 'backgrounded'
+  | 'returning'
+  | 'closing';
+
 // The persistent component that renders in the provider
 export const EuiManagedFlyout = ({
   id,
@@ -53,9 +62,7 @@ export const EuiManagedFlyout = ({
 }: EuiManagedFlyoutProps) => {
   const flyoutId = useFlyoutId(id);
   const flyoutRef = useRef<HTMLDivElement>(null);
-  const [activeState, setActiveState] = useState<
-    'opening' | 'active' | 'inactive' | 'returning' | 'closing'
-  >('opening');
+  const [activeState, setActiveState] = useState<ActiveState>('opening');
 
   const { addFlyout, closeFlyout, setFlyoutWidth } = useFlyoutManager();
 
@@ -114,14 +121,18 @@ export const EuiManagedFlyout = ({
     }
   }, [flyoutId, level, isActive, width, setFlyoutWidth]);
 
+  // Handle onAnimationEnd events to transition states
   const handleAnimationEnd = () => {
     if (activeState === 'opening' || activeState === 'returning') {
       setActiveState('active');
     } else if (activeState === 'closing') {
       setActiveState('inactive');
+    } else if (activeState === 'backgrounding') {
+      setActiveState('backgrounded');
     }
   };
 
+  // Handle state transitions based on isActive prop
   useEffect(() => {
     if (!isActive && activeState === 'active') {
       setActiveState('closing');
@@ -129,6 +140,25 @@ export const EuiManagedFlyout = ({
       setActiveState('returning');
     }
   }, [isActive, activeState]);
+
+  const layoutModeRef = useRef(layoutMode);
+
+  // Handle layout mode changes and adjust active state accordingly
+  useEffect(() => {
+    if (layoutModeRef.current === layoutMode || level !== 'main' || !isActive) {
+      return;
+    }
+
+    if (layoutMode === 'stacked' && activeState === 'active') {
+      setActiveState('backgrounding');
+    } else if (
+      layoutMode === 'side-by-side' &&
+      activeState === 'backgrounded'
+    ) {
+      setActiveState('returning');
+    }
+    layoutModeRef.current = layoutMode;
+  }, [level, layoutMode, activeState, flyoutId, isActive]);
 
   return (
     <EuiManagedFlyoutContext.Provider value={true}>

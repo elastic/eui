@@ -48,7 +48,8 @@ export const euiManagedFlyoutStyles = (euiThemeContext: UseEuiTheme) => {
       transform-style: preserve-3d;
 
       /* When flyout is inactive, animate backwards in 3D space */
-      &[data-managed-flyout-active='closing'] {
+      &[data-managed-flyout-active='closing'],
+      &[data-managed-flyout-active='backgrounding'] {
         ${euiCanAnimate} {
           animation: ${euiFlyoutSlideBack3D} ${euiTheme.animation.extraSlow}
             ${euiTheme.animation.resistance} forwards;
@@ -77,7 +78,8 @@ export const euiManagedFlyoutStyles = (euiThemeContext: UseEuiTheme) => {
         opacity: 1;
       }
 
-      &[data-managed-flyout-active='inactive'] {
+      &[data-managed-flyout-active='inactive'],
+      &[data-managed-flyout-active='backgrounded'] {
         ${logicalCSS('left', '100vw')}
       }
     `,
