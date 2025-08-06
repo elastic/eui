@@ -121,7 +121,7 @@ export const EuiManagedFlyout = ({
     }
   }, [flyoutId, level, isActive, width, setFlyoutWidth]);
 
-  // Handle onAnimationEnd events to transition states
+  // Handle onAnimationEnd events when the flyout finishes opening or closing
   const handleAnimationEnd = () => {
     if (activeState === 'opening' || activeState === 'returning') {
       setActiveState('active');
@@ -132,28 +132,44 @@ export const EuiManagedFlyout = ({
     }
   };
 
-  // Handle state transitions based on isActive prop
+  const layoutModeRef = useRef(layoutMode);
+  const activeStateRef = useRef(activeState);
+
+  // Update ref when activeState changes
   useEffect(() => {
-    if (!isActive && activeState === 'active') {
+    activeStateRef.current = activeState;
+  }, [activeState]);
+
+  // Handle isActive changes when flyout needs to be opened or closed
+  useEffect(() => {
+    const currentActiveState = activeStateRef.current;
+
+    if (!isActive && currentActiveState === 'active') {
       setActiveState('closing');
-    } else if (isActive && activeState === 'inactive') {
+    } else if (isActive && currentActiveState === 'inactive') {
       setActiveState('returning');
     }
-  }, [isActive, activeState]);
+  }, [isActive, flyoutId]);
 
-  const layoutModeRef = useRef(layoutMode);
-
-  // Handle layout mode changes and adjust active state accordingly
+  // Handle layout mode changes, when the side-by-side or stacked mode changes
   useEffect(() => {
     if (layoutModeRef.current === layoutMode || level !== 'main' || !isActive) {
       return;
     }
 
-    if (layoutMode === 'stacked' && activeState === 'active') {
-      setActiveState('backgrounding');
+    const currentActiveState = activeStateRef.current;
+
+    if (layoutMode === 'stacked' && currentActiveState === 'active') {
+      // Delay backgrounding to allow child flyout animations to complete
+      const timeoutId = setTimeout(() => {
+        setActiveState('backgrounding');
+      }, 100); // Small delay to allow child animations to start
+
+      return () => clearTimeout(timeoutId);
     } else if (
       layoutMode === 'side-by-side' &&
-      activeState === 'backgrounded'
+      (currentActiveState === 'backgrounded' ||
+        currentActiveState === 'backgrounding')
     ) {
       setActiveState('returning');
     }
