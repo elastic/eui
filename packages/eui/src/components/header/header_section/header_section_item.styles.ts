@@ -8,11 +8,7 @@
 
 import { css } from '@emotion/react';
 
-import { UseEuiTheme } from '../../../services';
-
-export const euiHeaderSectionItemStyles = (euiThemeContext: UseEuiTheme) => {
-  // No theme variables needed after style cleanup
-
+export const euiHeaderSectionItemStyles = () => {
   return {
     euiHeaderSectionItem: css`
       position: relative;
