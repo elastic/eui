@@ -206,7 +206,7 @@ const StatefulFlyout: React.FC<FlyoutChildStoryArgs> = ({
     playgroundActions.log('Child flyout closed');
   };
 
-  const { layoutMode } = useFlyoutLayoutMode();
+  const layoutMode = useFlyoutLayoutMode();
 
   return (
     <>

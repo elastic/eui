@@ -17,11 +17,11 @@ import {
   EuiManagedFlyoutContext,
   useParentFlyoutSize,
   useFlyoutLayoutMode,
-  useCurrentChildFlyout,
+  // useCurrentChildFlyout,
 } from './flyout_manager';
 import { useEuiMemoizedStyles } from '../../../services';
 import { useResizeObserver } from '../../observer/resize_observer';
-import { euiManagedFlyoutStyles } from './flyout.styles';
+import { euiManagedFlyoutStyles } from './flyout_managed.styles';
 import { EuiFlyoutMenuContext } from '../flyout_menu_context';
 import {
   validateManagedFlyoutSize,
@@ -64,7 +64,7 @@ export const EuiManagedFlyout = ({
   const parentSize = useParentFlyoutSize(flyoutId);
 
   // Get layout mode for responsive behavior
-  const { layoutMode } = useFlyoutLayoutMode();
+  const layoutMode = useFlyoutLayoutMode();
 
   const styles = useEuiMemoizedStyles(euiManagedFlyoutStyles);
 
@@ -97,10 +97,9 @@ export const EuiManagedFlyout = ({
     };
   }, [size, flyoutId, level, parentSize, addFlyout, closeFlyout]);
 
-  // Track width changes for main flyouts
-  // TODO: @clintandrewhall move to EuiMainFlyout.
+  // Track width changes for flyouts
   const { width } = useResizeObserver(
-    level === 'main' && isActive ? flyoutRef.current : null,
+    isActive ? flyoutRef.current : null,
     'width'
   );
 
@@ -111,7 +110,7 @@ export const EuiManagedFlyout = ({
 
   // Update width in manager state when it changes
   useEffect(() => {
-    if (level === 'main' && isActive && width) {
+    if (isActive && width) {
       setFlyoutWidth(flyoutId, width);
     }
   }, [flyoutId, level, isActive, width, setFlyoutWidth]);
@@ -132,12 +131,22 @@ export const EuiManagedFlyout = ({
     }
   }, [isActive, activeState]);
 
+  // TODO: @tsullivan This is a bug.
+  //
+  // If the layout mode switches to 'stacked' and the main flyout switches to size 's',
+  // it's width brings the combined width _below_ the 90% threshold.  This causes an
+  // infinite loop in the browser at certain widths.
+
+  /*
+
   const childFlyout = useCurrentChildFlyout();
   const childSize = childFlyout?.size as 's' | 'm' | undefined;
 
   if (layoutMode === 'stacked' && childSize === 's') {
     size = 's'; // Force main size to 's' if in stacked mode and child size is 's'
   }
+
+  */
 
   return (
     <EuiManagedFlyoutContext.Provider value={true}>

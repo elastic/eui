@@ -2,9 +2,7 @@
 
 exports[`EuiCollapsibleNav close button can be hidden 1`] = `
 <div>
-  <div
-    class="emotion-EuiFlyoutComponentWrapper"
-  >
+  <div>
     <div
       data-focus-guard="true"
       style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
@@ -58,9 +56,7 @@ exports[`EuiCollapsibleNav does not render if isOpen is false 1`] = `<div />`;
 
 exports[`EuiCollapsibleNav is rendered 1`] = `
 <div>
-  <div
-    class="emotion-EuiFlyoutComponentWrapper"
-  >
+  <div>
     <div
       data-focus-guard="true"
       style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
@@ -169,9 +165,7 @@ exports[`EuiCollapsibleNav props button 1`] = `
     aria-expanded="true"
     aria-pressed="true"
   />
-  <div
-    class="emotion-EuiFlyoutComponentWrapper"
-  >
+  <div>
     <div
       data-focus-guard="true"
       style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
@@ -223,9 +217,7 @@ exports[`EuiCollapsibleNav props button 1`] = `
 
 exports[`EuiCollapsibleNav props dockedBreakpoint 1`] = `
 <div>
-  <div
-    class="emotion-EuiFlyoutComponentWrapper"
-  >
+  <div>
     <div
       data-focus-guard="true"
       style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
@@ -301,9 +293,7 @@ exports[`EuiCollapsibleNav props isDocked 1`] = `
 
 exports[`EuiCollapsibleNav props onClose 1`] = `
 <div>
-  <div
-    class="emotion-EuiFlyoutComponentWrapper"
-  >
+  <div>
     <div
       data-focus-guard="true"
       style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"
@@ -384,9 +374,7 @@ exports[`EuiCollapsibleNav props showButtonIfDocked 1`] = `
 
 exports[`EuiCollapsibleNav props size 1`] = `
 <div>
-  <div
-    class="emotion-EuiFlyoutComponentWrapper"
-  >
+  <div>
     <div
       data-focus-guard="true"
       style="width: 1px; height: 0px; padding: 0px; overflow: hidden; position: fixed; top: 1px; left: 1px;"

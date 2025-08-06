@@ -174,12 +174,11 @@ type Props<T extends ElementType> = CommonProps & {
 } & _EuiFlyoutComponentProps &
   Omit<PropsOfElement<T>, keyof _EuiFlyoutComponentProps>;
 
-export type EuiFlyoutComponentProps<
-  T extends ElementType = typeof defaultElement
-> = Props<T> & Omit<ComponentPropsWithRef<T>, keyof Props<T>>;
+export type EuiFlyoutComponentProps<T extends ElementType = 'div' | 'nav'> =
+  Props<T> & Omit<ComponentPropsWithRef<T>, keyof Props<T>>;
 
 export const EuiFlyoutComponent = forwardRef(
-  <T extends ElementType = typeof defaultElement>(
+  <T extends ElementType = 'div' | 'nav'>(
     props: EuiFlyoutComponentProps<T>,
     ref:
       | ((instance: ComponentPropsWithRef<T> | null) => void)
@@ -513,7 +512,7 @@ export const EuiFlyoutComponent = forwardRef(
   // React.forwardRef interferes with the inferred element type
   // Casting to ensure correct element prop type checking for `as`
   // e.g., `href` is not on a `div`
-) as <T extends ElementType = typeof defaultElement>(
+) as <T extends ElementType = 'div' | 'nav'>(
   props: EuiFlyoutComponentProps<T>
 ) => JSX.Element;
 // Recast to allow `displayName`
@@ -531,12 +530,6 @@ const EuiFlyoutComponentWrapper: FunctionComponent<{
   maskProps: EuiFlyoutComponentProps['maskProps'];
   isPortalled: boolean;
 }> = ({ children, hasOverlayMask, maskProps, isPortalled }) => {
-  const hasRendered = useRef(false);
-
-  useEffect(() => {
-    hasRendered.current = true;
-  }, []);
-
   // TODO: @tkajtoch - this is causing all kinds of issues with animations if a
   // main flyout is opened with ownFocus={true}.  Since the logic is to _change_
   // ownFocus to false if a child is rendered, the component remounts, spinning all
@@ -544,11 +537,7 @@ const EuiFlyoutComponentWrapper: FunctionComponent<{
   // mask. :shrug:
   if (hasOverlayMask) {
     return (
-      <EuiOverlayMask
-        headerZindexLocation="below"
-        style={hasRendered.current ? 'animation: none !important' : ''}
-        {...maskProps}
-      >
+      <EuiOverlayMask headerZindexLocation="below" {...maskProps}>
         {children}
       </EuiOverlayMask>
     );

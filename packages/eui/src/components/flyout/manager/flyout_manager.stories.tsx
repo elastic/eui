@@ -201,12 +201,7 @@ interface ItemDetailsProps
 
 const ItemDetailsFlyout = ({ onClose, itemQuantity }: ItemDetailsProps) => {
   return (
-    <EuiFlyout
-      id="item-details-flyout"
-      onClose={onClose}
-      ownFocus={false}
-      size="s"
-    >
+    <EuiFlyout id="item-details-flyout" onClose={onClose} size="s">
       <EuiFlyoutHeader hasBorder>
         <EuiTitle size="m">
           <h2 id="flyout-item-details-title">Item details</h2>
@@ -381,6 +376,20 @@ const BasicExampleComponent = () => {
                           setShoppingCartOwnFocus(e.target.checked)
                         }
                       />
+                    </EuiDescriptionListDescription>
+                    <EuiDescriptionListTitle>
+                      Stacked mode
+                    </EuiDescriptionListTitle>
+                    <EuiDescriptionListDescription>
+                      If the combined width of the main and child flyouts is
+                      less than 90% of the viewport width, the layout mode will
+                      switch to 'stacked'.
+                      <EuiSpacer size="s" />
+                      Unfortunately, switching the layout mode to 'stacked'
+                      causes the main flyout to switch to size 's'. This reduces
+                      the overall width of the combined flyouts, which can cause
+                      the combined width to be below the 90% threshold. This
+                      causes an infinite resize loop in the browser.
                     </EuiDescriptionListDescription>
                   </EuiDescriptionList>
                 </EuiFlexItem>

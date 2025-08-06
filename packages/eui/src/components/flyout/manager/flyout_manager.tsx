@@ -250,7 +250,7 @@ export const setFlyoutWidth = (
   width,
 });
 
-export const setLayoutModeAction = (
+export const setLayoutMode = (
   layoutMode: 'side-by-side' | 'stacked'
 ): SetLayoutModeAction => ({
   type: ACTION_SET_LAYOUT_MODE,
@@ -305,9 +305,18 @@ export const EuiFlyoutManager = ({
 
   return (
     <EuiFlyoutManagerContext.Provider value={api}>
-      {children}
+      <EuiFlyoutManagerContainer>{children}</EuiFlyoutManagerContainer>
     </EuiFlyoutManagerContext.Provider>
   );
+};
+
+const EuiFlyoutManagerContainer = ({
+  children,
+}: {
+  children: React.ReactNode;
+}) => {
+  useApplyFlyoutLayoutMode();
+  return <>{children}</>;
 };
 
 export const useIsFlyoutActive = (flyoutId: string) => {
@@ -451,12 +460,12 @@ const getWidthFromSize = (size: string | number, euiTheme: any): number => {
 /**
  * Hook to handle responsive layout mode for managed flyouts
  */
-export const useFlyoutLayoutMode = () => {
+const useApplyFlyoutLayoutMode = () => {
   const context = useFlyoutManager();
-  const setLayoutMode = React.useCallback(
+  const setMode = React.useCallback(
     (layoutMode: 'side-by-side' | 'stacked') => {
       if (context?.dispatch) {
-        context.dispatch(setLayoutModeAction(layoutMode));
+        context.dispatch(setLayoutMode(layoutMode));
       }
     },
     [context]
@@ -499,10 +508,16 @@ export const useFlyoutLayoutMode = () => {
 
   // Calculate stacking breakpoint and update layout mode
   useEffect(() => {
-    if (!context) return;
+    if (!context) {
+      return;
+    }
+
+    const currentLayoutMode = context.state.layoutMode;
 
     if (!childFlyoutId) {
-      setLayoutMode('side-by-side');
+      if (currentLayoutMode !== 'side-by-side') {
+        setMode('side-by-side');
+      }
       return;
     }
 
@@ -519,7 +534,9 @@ export const useFlyoutLayoutMode = () => {
     }
 
     if (!parentWidthValue || !childWidthValue) {
-      setLayoutMode('side-by-side');
+      if (currentLayoutMode !== 'side-by-side') {
+        setMode('side-by-side');
+      }
       return;
     }
 
@@ -530,21 +547,23 @@ export const useFlyoutLayoutMode = () => {
     const newLayoutMode =
       combinedWidthPercentage >= 90 ? 'stacked' : 'side-by-side';
 
-    setLayoutMode(newLayoutMode);
+    if (currentLayoutMode !== newLayoutMode) {
+      setMode(newLayoutMode);
+    }
   }, [
     windowWidth,
     context,
-    setLayoutMode,
     parentWidth,
+    setMode,
     childWidth,
     childFlyoutId,
     parentFlyout?.size,
     childFlyout?.size,
     euiTheme,
   ]);
+};
 
-  return {
-    layoutMode: context?.state.layoutMode || 'side-by-side',
-    setLayoutMode,
-  };
+export const useFlyoutLayoutMode = () => {
+  const context = useFlyoutManager();
+  return context?.state.layoutMode || 'side-by-side';
 };

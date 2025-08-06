@@ -7,7 +7,7 @@
  */
 
 import React from 'react';
-import { useEuiMemoizedStyles } from '../../../services';
+import { useEuiMemoizedStyles, useEuiTheme } from '../../../services';
 import { euiChildFlyoutStyles } from './flyout_child.styles';
 import { EuiManagedFlyout, type EuiManagedFlyoutProps } from './flyout_managed';
 import {
@@ -29,20 +29,23 @@ export function EuiFlyoutChild({
   backgroundStyle,
   ...props
 }: EuiFlyoutChildProps) {
+  const { euiTheme } = useEuiTheme();
   const styles = useEuiMemoizedStyles(euiChildFlyoutStyles);
   const mainWidth = useFlyoutWidth(useCurrentMainFlyout()?.flyoutId);
-  const { layoutMode } = useFlyoutLayoutMode();
+  const layoutMode = useFlyoutLayoutMode();
 
-  let style: { right?: number } = {};
+  let style: { right?: number; zIndex?: number } = {};
   if (mainWidth && layoutMode === 'side-by-side') {
     style = { right: mainWidth };
+  } else if (layoutMode === 'stacked') {
+    style = { zIndex: Number(euiTheme.levels.flyout) + 2 };
   }
 
   return (
     <EuiManagedFlyout
+      {...props}
       style={style}
       level="child"
-      {...props}
       type="overlay"
       ownFocus={false}
       css={[
