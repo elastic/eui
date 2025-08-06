@@ -53,6 +53,14 @@ ruleTester.run('require-aria-label-for-modals', RequireAriaLabelForModals, {
     {
       code: dedent`
         module.export = () => (
+          <EuiFlyoutResizable aria-labelledby="modalTitleId" />
+        )
+      `,
+      languageOptions,
+    },
+    {
+      code: dedent`
+        module.export = () => (
           <EuiConfirmModal aria-label="Confirm action" />
         )
       `,
@@ -94,6 +102,20 @@ ruleTester.run('require-aria-label-for-modals', RequireAriaLabelForModals, {
         {
           messageId: 'modalAriaMissing',
           data: { component: 'EuiFlyout' },
+        },
+      ],
+    },
+    {
+      code: dedent`
+        module.export = () => (
+          <EuiFlyoutResizable title="Some title" />
+        )
+      `,
+      languageOptions,
+      errors: [
+        {
+          messageId: 'modalAriaMissing',
+          data: { component: 'EuiFlyoutResizable' },
         },
       ],
     },
