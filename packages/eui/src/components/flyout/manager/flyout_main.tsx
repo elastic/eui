@@ -24,7 +24,6 @@ export type EuiFlyoutMainProps = Omit<EuiManagedFlyoutProps, 'level'>;
 
 export function EuiFlyoutMain({
   id,
-  ownFocus: ownFocusProp,
   pushMinBreakpoint = DEFAULT_PUSH_MIN_BREAKPOINT,
   type = DEFAULT_TYPE,
   side = DEFAULT_SIDE,
@@ -35,7 +34,6 @@ export function EuiFlyoutMain({
   const styles = useEuiMemoizedStyles(euiMainFlyoutStyles);
   const isPushed = useIsPushed({ type, pushMinBreakpoint });
 
-  const ownFocus = hasChildFlyout ? false : ownFocusProp;
   const cssStyles = [
     hasChildFlyout && !isPushed && styles.hasChildFlyout[side],
   ];
@@ -48,7 +46,7 @@ export function EuiFlyoutMain({
       level="main"
       style={style}
       css={cssStyles}
-      {...{ ...props, ownFocus, pushMinBreakpoint, type, side }}
+      {...{ ...props, pushMinBreakpoint, type, side }}
     />
   );
 }
