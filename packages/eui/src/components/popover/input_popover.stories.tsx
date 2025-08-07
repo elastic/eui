@@ -17,6 +17,8 @@ import {
 import { LOKI_SELECTORS } from '../../../.storybook/loki';
 import { EuiFieldText } from '../form';
 import { EuiInputPopover, EuiInputPopoverProps } from './input_popover';
+import { css } from '@emotion/react';
+import { EuiButton } from '../button';
 
 const meta: Meta<EuiInputPopoverProps> = {
   title: 'Layout/EuiInputPopover',
@@ -130,5 +132,39 @@ export const AnchorPosition: Story = {
     <div css={{ display: 'flex', justifyContent: 'center' }}>
       <StatefulInputPopover {...args} />
     </div>
+  ),
+};
+
+export const InteractiveChildren: Story = {
+  parameters: {
+    controls: { include: ['ownFocus', 'disableFocusTrap'] },
+  },
+  args: {
+    isOpen: true,
+    ownFocus: true,
+    disableFocusTrap: false,
+    input: (
+      <EuiFieldText
+        placeholder="Focus me to toggle an input popover"
+        aria-label="Popover attached to input element"
+      />
+    ),
+  },
+  render: (args) => (
+    <>
+      <StatefulInputPopover {...args}>
+        <div
+          css={({ euiTheme }) => css`
+            display: flex;
+            flex-direction: column;
+            gap: ${euiTheme.size.s};
+          `}
+        >
+          <EuiButton>First button</EuiButton>
+          <EuiButton>Second button</EuiButton>
+          <EuiButton>Third button</EuiButton>
+        </div>
+      </StatefulInputPopover>
+    </>
   ),
 };

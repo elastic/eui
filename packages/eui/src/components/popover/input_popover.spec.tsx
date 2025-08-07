@@ -177,6 +177,22 @@ describe('EuiPopover', () => {
 
         cy.get('[data-popover-panel]').should('not.exist');
       });
+
+      it('does not close the popover when users Shift+Tab from the last item in the popover', () => {
+        cy.mount(
+          <StatefulInputPopover>
+            <button data-test-subj="one">one</button>
+            <button data-test-subj="two">two</button>
+          </StatefulInputPopover>
+        );
+
+        cy.focused().invoke('attr', 'data-test-subj').should('eq', 'one');
+        cy.realPress('Tab');
+        cy.focused().invoke('attr', 'data-test-subj').should('eq', 'two');
+        cy.realPress(['Shift', 'Tab']);
+        cy.focused().invoke('attr', 'data-test-subj').should('eq', 'one');
+        cy.get('[data-popover-panel]').should('exist');
+      });
     });
 
     describe('with focus trap disabled', () => {
