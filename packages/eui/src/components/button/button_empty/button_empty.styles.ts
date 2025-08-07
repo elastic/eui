@@ -16,6 +16,7 @@ import {
   highContrastModeStyles,
 } from '../../../global_styling';
 import { euiButtonDisplayStyles } from '../button_display/_button_display.styles';
+import { EuiButtonDisplaySizes } from '../button_display/_button_display';
 
 export const euiButtonEmptyStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
@@ -54,13 +55,32 @@ export const euiButtonEmptyStyles = (euiThemeContext: UseEuiTheme) => {
           `,
         })}
       }
+
+      .euiButtonEmpty__content {
+        gap: ${euiTheme.size.s};
+        
+      }
+
+      .euiButtonEmpty__text {
+        /* unset default EuiButtonDisplayContent text pagging */
+        padding: 0;
+      }
   `;
+
+  const _buttonSize = (sizeKey: EuiButtonDisplaySizes) => {
+    const paddingStyles = !isRefreshVariant
+      ? css`
+          ${logicalShorthandCSS('padding', `0 ${euiTheme.size.s}`)}
+        `
+      : undefined;
+
+    return [displayStyles[sizeKey], paddingStyles];
+  };
 
   return {
     euiButtonEmpty: css`
       ${displayStyles.euiButtonDisplay}
-      ${logicalShorthandCSS('padding', `0 ${euiTheme.size.s}`)}
-      
+
       /* Change the easing, quickness to not bounce so lighter backgrounds don't flash */
       ${euiCanAnimate} {
         transition-timing-function: ease-in;
@@ -69,16 +89,9 @@ export const euiButtonEmptyStyles = (euiThemeContext: UseEuiTheme) => {
     `,
     isDisabled: displayStyles.isDisabled,
     // Sizes
-    xs: displayStyles.xs,
-    s: displayStyles.s,
-    // uses array here to prevent adding duplicate "m" classname partial
-    m: [
-      displayStyles.m,
-      isRefreshVariant &&
-        `
-        ${logicalCSS('padding-horizontal', euiTheme.size.m)}
-      `,
-    ],
+    xs: _buttonSize('xs'),
+    s: _buttonSize('s'),
+    m: _buttonSize('m'),
     // Flush sides
     flush: css`
       padding-inline: 0;

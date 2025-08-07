@@ -10,11 +10,13 @@ import { css } from '@emotion/react';
 
 import { isEuiThemeRefreshVariant, UseEuiTheme } from '../../../services';
 import {
+  euiButtonSizeMap,
   euiTextTruncate,
   logicalCSS,
   mathWithUnits,
 } from '../../../global_styling';
 import { highContrastModeStyles } from '../../../global_styling/functions/high_contrast';
+import { type EuiButtonDisplaySizes } from '../../button/button_display/_button_display';
 
 import { euiFormVariables } from '../form.styles';
 
@@ -167,6 +169,7 @@ export const euiFormControlLayoutSideNodeStyles = (
   );
 
   const form = euiFormVariables(euiThemeContext);
+  const buttonSizes = euiButtonSizeMap(euiThemeContext);
 
   const uncompressedHeight = mathWithUnits(
     [form.controlHeight, euiTheme.border.width.thin],
@@ -209,6 +212,23 @@ export const euiFormControlLayoutSideNodeStyles = (
     }
   `;
 
+  const _buttonPadding = (size: EuiButtonDisplaySizes) =>
+    isRefreshVariant
+      ? `${logicalCSS('padding-horizontal', buttonSizes[size].padding)}`
+      : '';
+
+  const buttonIconStyles = `
+    &:first-child {
+      ${logicalCSS('border-top-right-radius', '0')}
+      ${logicalCSS('border-bottom-right-radius', '0')}
+    }
+
+    &:last-child {
+      ${logicalCSS('border-top-left-radius', '0')}
+      ${logicalCSS('border-bottom-left-radius', '0')}
+    }
+  `;
+
   return {
     euiFormControlLayout__side: css`
       ${logicalCSS('height', '100%')}
@@ -240,7 +260,6 @@ export const euiFormControlLayoutSideNodeStyles = (
 
       /* Account for button padding when spacing children */
       /* Second > * selector accounts for buttons inside popover & tooltip wrappers */
-
       &:not(:has(> ${buttons}:first-child, > *:first-child > ${buttons})) {
         ${logicalCSS('padding-left', euiTheme.size.s)}
       }
@@ -266,18 +285,38 @@ export const euiFormControlLayoutSideNodeStyles = (
       })
     ),
     uncompressed: `
+      &:not(:has(> ${buttons}:first-child, > *:first-child > ${buttons})) {
+        ${logicalCSS(
+          'padding-left',
+          isRefreshVariant ? euiTheme.size.m : euiTheme.size.s
+        )}
+      }
+
+      &:not(:has(> ${buttons}:last-child, > *:last-child > ${buttons})) {
+        ${logicalCSS(
+          'padding-right',
+          isRefreshVariant ? euiTheme.size.m : euiTheme.size.s
+        )}
+      }
+
       ${text} {
-        ${logicalCSS('padding-horizontal', euiTheme.size.xs)}
+       ${logicalCSS('padding-horizontal', euiTheme.size.xs)}
         line-height: ${uncompressedHeight};
       }
 
       ${buttons} {
         ${logicalCSS('height', uncompressedHeight)}
+        ${_buttonPadding('m')}
       }
 
       .euiButtonIcon {
         flex-shrink: 0;
-        ${logicalCSS('width', euiTheme.size.xl)}
+        ${logicalCSS(
+          'width',
+          isRefreshVariant ? uncompressedHeight : euiTheme.size.xl
+        )}
+
+        ${isRefreshVariant && buttonIconStyles}
       }
     `,
     compressed: css`
@@ -288,11 +327,17 @@ export const euiFormControlLayoutSideNodeStyles = (
 
       ${buttons} {
         ${logicalCSS('height', compressedHeight)}
+        ${_buttonPadding('s')}
       }
 
       .euiButtonIcon {
         flex-shrink: 0;
-        ${logicalCSS('width', euiTheme.size.xl)}
+        ${logicalCSS(
+          'width',
+          isRefreshVariant ? compressedHeight : euiTheme.size.xl
+        )}
+
+        ${isRefreshVariant && buttonIconStyles}
       }
     `,
   };

@@ -11,7 +11,7 @@ exports[`EuiButtonDisplay renders 1`] = `
     class="emotion-euiButtonDisplayContent"
   >
     <span
-      class="eui-textTruncate"
+      class="eui-textTruncate css-13ifi6d-m"
     >
       Content
     </span>

@@ -393,18 +393,23 @@ export const euiButtonSizeMap = (euiThemeContext: UseEuiTheme) => {
     xs: {
       minWidth: euiTheme.base * (isRefreshVariant ? 6 : 7),
       height: euiTheme.size.l,
+      padding: isRefreshVariant
+        ? mathWithUnits(euiTheme.size.m, (x) => x / 2)
+        : euiTheme.size.m,
       radius: euiTheme.border.radius.small,
       fontScale: 'xs' as const,
     },
     s: {
       minWidth: euiTheme.base * (isRefreshVariant ? 6 : 7),
       height: euiTheme.size.xl,
+      padding: isRefreshVariant ? euiTheme.size.s : euiTheme.size.m,
       radius: euiTheme.border.radius.small,
       fontScale: 's' as const,
     },
     m: {
       minWidth: euiTheme.base * 7,
       height: euiTheme.size.xxl,
+      padding: euiTheme.size.m,
       radius: isRefreshVariant
         ? euiTheme.border.radius.small
         : euiTheme.border.radius.medium,

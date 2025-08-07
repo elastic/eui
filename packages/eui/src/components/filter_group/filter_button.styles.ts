@@ -305,6 +305,8 @@ export const euiFilterButtonChildStyles = (euiThemeContext: UseEuiTheme) => {
       euiFilterButton__text: css`
         ${euiTextShift('bold', 'data-text', euiTheme)}
         ${euiTextTruncate()}
+        ${isRefreshVariant &&
+        `${logicalCSS('padding-horizontal', euiTheme.size.xs)}`}
       `,
       hasNotification: css`
         ${logicalCSS(

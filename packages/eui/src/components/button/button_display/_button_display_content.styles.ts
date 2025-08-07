@@ -30,9 +30,20 @@ export const euiButtonDisplayContentStyles = (euiThemeContext: UseEuiTheme) => {
       justify-content: center;
       align-items: center;
       vertical-align: middle;
-      gap: ${euiTheme.size.s};
+      gap: ${isRefreshVariant ? euiTheme.size.xs : euiTheme.size.s};
 
       ${isRefreshVariant && refreshVariantStyles}
     `,
+    content: {
+      xs: css`
+        ${logicalCSS('padding-horizontal', euiTheme.size.xxs)}
+      `,
+      s: css`
+        ${logicalCSS('padding-horizontal', euiTheme.size.xs)}
+      `,
+      m: css`
+        ${logicalCSS('padding-horizontal', euiTheme.size.xs)}
+      `,
+    },
   };
 };

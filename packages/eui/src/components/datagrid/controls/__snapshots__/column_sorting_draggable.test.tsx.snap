@@ -93,7 +93,7 @@ exports[`EuiDataGridColumnSortingDraggable [React 17] renders an EuiDraggable co
               class="emotion-euiButtonDisplayContent-euiButtonGroupButton__content-compressed"
             >
               <span
-                class="eui-textTruncate emotion-euiButtonGroupButton__text"
+                class="eui-textTruncate css-12o88cr-s-euiButtonGroupButton__text"
                 data-text="Low-High"
               >
                 Low-High
@@ -111,7 +111,7 @@ exports[`EuiDataGridColumnSortingDraggable [React 17] renders an EuiDraggable co
               class="emotion-euiButtonDisplayContent-euiButtonGroupButton__content-compressed"
             >
               <span
-                class="eui-textTruncate emotion-euiButtonGroupButton__text"
+                class="eui-textTruncate css-12o88cr-s-euiButtonGroupButton__text"
                 data-text="High-Low"
               >
                 High-Low
@@ -233,7 +233,7 @@ exports[`EuiDataGridColumnSortingDraggable [React 18] renders an EuiDraggable co
               class="emotion-euiButtonDisplayContent-euiButtonGroupButton__content-compressed"
             >
               <span
-                class="eui-textTruncate emotion-euiButtonGroupButton__text"
+                class="eui-textTruncate css-12o88cr-s-euiButtonGroupButton__text"
                 data-text="Low-High"
               >
                 Low-High
@@ -251,7 +251,7 @@ exports[`EuiDataGridColumnSortingDraggable [React 18] renders an EuiDraggable co
               class="emotion-euiButtonDisplayContent-euiButtonGroupButton__content-compressed"
             >
               <span
-                class="eui-textTruncate emotion-euiButtonGroupButton__text"
+                class="eui-textTruncate css-12o88cr-s-euiButtonGroupButton__text"
                 data-text="High-Low"
               >
                 High-Low

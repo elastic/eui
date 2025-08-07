@@ -19,7 +19,7 @@ exports[`EuiInlineEditText isReadOnly 1`] = `
       class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
     >
       <span
-        class="eui-textTruncate euiButtonEmpty__text"
+        class="eui-textTruncate euiButtonEmpty__text css-13ifi6d-m"
       >
         <div
           class="euiText eui-textTruncate emotion-euiText-m"
@@ -53,7 +53,7 @@ exports[`EuiInlineEditText renders 1`] = `
       class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
     >
       <span
-        class="eui-textTruncate euiButtonEmpty__text"
+        class="eui-textTruncate euiButtonEmpty__text css-13ifi6d-m"
       >
         <div
           class="euiText eui-textTruncate emotion-euiText-m"
@@ -93,7 +93,7 @@ exports[`EuiInlineEditText text sizes renders m 1`] = `
       class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
     >
       <span
-        class="eui-textTruncate euiButtonEmpty__text"
+        class="eui-textTruncate euiButtonEmpty__text css-13ifi6d-m"
       >
         <div
           class="euiText eui-textTruncate emotion-euiText-m"
@@ -133,7 +133,7 @@ exports[`EuiInlineEditText text sizes renders s 1`] = `
       class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
     >
       <span
-        class="eui-textTruncate euiButtonEmpty__text"
+        class="eui-textTruncate euiButtonEmpty__text css-1ryezsz-s"
       >
         <div
           class="euiText eui-textTruncate emotion-euiText-s"
@@ -173,7 +173,7 @@ exports[`EuiInlineEditText text sizes renders xs 1`] = `
       class="euiButtonEmpty__content emotion-euiButtonDisplayContent"
     >
       <span
-        class="eui-textTruncate euiButtonEmpty__text"
+        class="eui-textTruncate euiButtonEmpty__text css-1ryezsz-s"
       >
         <div
           class="euiText eui-textTruncate emotion-euiText-xs"

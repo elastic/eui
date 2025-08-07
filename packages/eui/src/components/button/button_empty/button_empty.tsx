@@ -150,6 +150,7 @@ export const EuiButtonEmpty: FunctionComponent<EuiButtonEmptyProps> = ({
 
   const innerNode = (
     <EuiButtonDisplayContent
+      size={size}
       isDisabled={isDisabled}
       isLoading={isLoading}
       iconType={iconType}

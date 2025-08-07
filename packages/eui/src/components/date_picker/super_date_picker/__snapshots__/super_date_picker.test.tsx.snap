@@ -25,7 +25,7 @@ exports[`EuiSuperDatePicker props accepts data-test-subj and passes to EuiFormCo
             class="euiButtonEmpty__content emotion-euiButtonDisplayContent-euiQuickSelectPopoverButton__content"
           >
             <span
-              class="eui-textTruncate euiButtonEmpty__text"
+              class="eui-textTruncate euiButtonEmpty__text css-1shwb46-xs"
             >
               <span
                 data-euiicon-type="calendar"
@@ -98,7 +98,7 @@ exports[`EuiSuperDatePicker props compressed is rendered 1`] = `
             class="euiButtonEmpty__content emotion-euiButtonDisplayContent-euiQuickSelectPopoverButton__content"
           >
             <span
-              class="eui-textTruncate euiButtonEmpty__text"
+              class="eui-textTruncate euiButtonEmpty__text css-1shwb46-xs"
             >
               <span
                 data-euiicon-type="calendar"
@@ -172,7 +172,7 @@ exports[`EuiSuperDatePicker props isAutoRefreshOnly is rendered 1`] = `
               data-euiicon-type="timeRefresh"
             />
             <span
-              class="eui-textTruncate euiButtonEmpty__text"
+              class="eui-textTruncate euiButtonEmpty__text css-1ryezsz-s"
             >
               <strong>
                 <small>
@@ -226,7 +226,7 @@ exports[`EuiSuperDatePicker props isAutoRefreshOnly passes required props 1`] = 
               data-euiicon-type="timeRefresh"
             />
             <span
-              class="eui-textTruncate euiButtonEmpty__text"
+              class="eui-textTruncate euiButtonEmpty__text css-1ryezsz-s"
             >
               <strong>
                 <small>
@@ -294,7 +294,7 @@ exports[`EuiSuperDatePicker props isDisabled true 1`] = `
             class="euiButtonEmpty__content emotion-euiButtonDisplayContent-euiQuickSelectPopoverButton__content"
           >
             <span
-              class="eui-textTruncate euiButtonEmpty__text"
+              class="eui-textTruncate euiButtonEmpty__text css-1shwb46-xs"
             >
               <span
                 data-euiicon-type="calendar"
@@ -369,7 +369,7 @@ exports[`EuiSuperDatePicker props isQuickSelectOnly is rendered 1`] = `
             class="euiButtonEmpty__content emotion-euiButtonDisplayContent-euiQuickSelectPopoverButton__content"
           >
             <span
-              class="eui-textTruncate euiButtonEmpty__text"
+              class="eui-textTruncate euiButtonEmpty__text css-1shwb46-xs"
             >
               <span
                 data-euiicon-type="calendar"
@@ -434,7 +434,7 @@ exports[`EuiSuperDatePicker props showUpdateButton can be false 1`] = `
             class="euiButtonEmpty__content emotion-euiButtonDisplayContent-euiQuickSelectPopoverButton__content"
           >
             <span
-              class="eui-textTruncate euiButtonEmpty__text"
+              class="eui-textTruncate euiButtonEmpty__text css-1shwb46-xs"
             >
               <span
                 data-euiicon-type="calendar"
@@ -487,7 +487,7 @@ exports[`EuiSuperDatePicker props showUpdateButton can be iconOnly 1`] = `
             class="euiButtonEmpty__content emotion-euiButtonDisplayContent-euiQuickSelectPopoverButton__content"
           >
             <span
-              class="eui-textTruncate euiButtonEmpty__text"
+              class="eui-textTruncate euiButtonEmpty__text css-1shwb46-xs"
             >
               <span
                 data-euiicon-type="calendar"
@@ -529,7 +529,7 @@ exports[`EuiSuperDatePicker props showUpdateButton can be iconOnly 1`] = `
           data-euiicon-type="refresh"
         />
         <span
-          class="eui-textTruncate euiScreenReaderOnly"
+          class="eui-textTruncate euiScreenReaderOnly css-13ifi6d-m"
         >
           Refresh
         </span>
@@ -563,7 +563,7 @@ exports[`EuiSuperDatePicker props width can be auto 1`] = `
             class="euiButtonEmpty__content emotion-euiButtonDisplayContent-euiQuickSelectPopoverButton__content"
           >
             <span
-              class="eui-textTruncate euiButtonEmpty__text"
+              class="eui-textTruncate euiButtonEmpty__text css-1shwb46-xs"
             >
               <span
                 data-euiicon-type="calendar"
@@ -636,7 +636,7 @@ exports[`EuiSuperDatePicker props width can be full 1`] = `
             class="euiButtonEmpty__content emotion-euiButtonDisplayContent-euiQuickSelectPopoverButton__content"
           >
             <span
-              class="eui-textTruncate euiButtonEmpty__text"
+              class="eui-textTruncate euiButtonEmpty__text css-1shwb46-xs"
             >
               <span
                 data-euiicon-type="calendar"
@@ -710,7 +710,7 @@ exports[`EuiSuperDatePicker renders 1`] = `
             class="euiButtonEmpty__content emotion-euiButtonDisplayContent-euiQuickSelectPopoverButton__content"
           >
             <span
-              class="eui-textTruncate euiButtonEmpty__text"
+              class="eui-textTruncate euiButtonEmpty__text css-1shwb46-xs"
             >
               <span
                 data-euiicon-type="calendar"
@@ -787,7 +787,7 @@ exports[`EuiSuperDatePicker renders an EuiDatePickerRange 1`] = `
               class="euiButtonEmpty__content emotion-euiButtonDisplayContent-euiQuickSelectPopoverButton__content"
             >
               <span
-                class="eui-textTruncate euiButtonEmpty__text"
+                class="eui-textTruncate euiButtonEmpty__text css-1shwb46-xs"
               >
                 <span
                   data-euiicon-type="calendar"

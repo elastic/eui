@@ -28,7 +28,7 @@ exports[`EuiButtonGroup button props buttonSize compressed is rendered for multi
           data-euiicon-type="bolt"
         />
         <span
-          class="eui-textTruncate emotion-euiButtonGroupButton__text"
+          class="eui-textTruncate css-12o88cr-s-euiButtonGroupButton__text"
           data-text="Option one"
         >
           Option one
@@ -50,7 +50,7 @@ exports[`EuiButtonGroup button props buttonSize compressed is rendered for multi
           data-euiicon-type="bolt"
         />
         <span
-          class="eui-textTruncate emotion-euiButtonGroupButton__text"
+          class="eui-textTruncate css-12o88cr-s-euiButtonGroupButton__text"
           data-text="Option two"
         >
           Option two
@@ -69,7 +69,7 @@ exports[`EuiButtonGroup button props buttonSize compressed is rendered for multi
         class="emotion-euiButtonDisplayContent-euiButtonGroupButton__content-compressed"
       >
         <span
-          class="eui-textTruncate emotion-euiButtonGroupButton__text"
+          class="eui-textTruncate css-12o88cr-s-euiButtonGroupButton__text"
           data-text="Option three"
         >
           Option three
@@ -108,7 +108,7 @@ exports[`EuiButtonGroup button props buttonSize compressed is rendered for singl
           data-euiicon-type="bolt"
         />
         <span
-          class="eui-textTruncate emotion-euiButtonGroupButton__text"
+          class="eui-textTruncate css-12o88cr-s-euiButtonGroupButton__text"
           data-text="Option one"
         >
           Option one
@@ -130,7 +130,7 @@ exports[`EuiButtonGroup button props buttonSize compressed is rendered for singl
           data-euiicon-type="bolt"
         />
         <span
-          class="eui-textTruncate emotion-euiButtonGroupButton__text"
+          class="eui-textTruncate css-12o88cr-s-euiButtonGroupButton__text"
           data-text="Option two"
         >
           Option two
@@ -149,7 +149,7 @@ exports[`EuiButtonGroup button props buttonSize compressed is rendered for singl
         class="emotion-euiButtonDisplayContent-euiButtonGroupButton__content-compressed"
       >
         <span
-          class="eui-textTruncate emotion-euiButtonGroupButton__text"
+          class="eui-textTruncate css-12o88cr-s-euiButtonGroupButton__text"
           data-text="Option three"
         >
           Option three
@@ -188,7 +188,7 @@ exports[`EuiButtonGroup button props buttonSize m is rendered for multi 1`] = `
           data-euiicon-type="bolt"
         />
         <span
-          class="eui-textTruncate emotion-euiButtonGroupButton__text"
+          class="eui-textTruncate css-qhrhuv-m-euiButtonGroupButton__text"
           data-text="Option one"
         >
           Option one
@@ -210,7 +210,7 @@ exports[`EuiButtonGroup button props buttonSize m is rendered for multi 1`] = `
           data-euiicon-type="bolt"
         />
         <span
-          class="eui-textTruncate emotion-euiButtonGroupButton__text"
+          class="eui-textTruncate css-qhrhuv-m-euiButtonGroupButton__text"
           data-text="Option two"
         >
           Option two
@@ -229,7 +229,7 @@ exports[`EuiButtonGroup button props buttonSize m is rendered for multi 1`] = `
         class="emotion-euiButtonDisplayContent-euiButtonGroupButton__content"
       >
         <span
-          class="eui-textTruncate emotion-euiButtonGroupButton__text"
+          class="eui-textTruncate css-qhrhuv-m-euiButtonGroupButton__text"
           data-text="Option three"
         >
           Option three
@@ -268,7 +268,7 @@ exports[`EuiButtonGroup button props buttonSize m is rendered for single 1`] = `
           data-euiicon-type="bolt"
         />
         <span
-          class="eui-textTruncate emotion-euiButtonGroupButton__text"
+          class="eui-textTruncate css-qhrhuv-m-euiButtonGroupButton__text"
           data-text="Option one"
         >
           Option one
@@ -290,7 +290,7 @@ exports[`EuiButtonGroup button props buttonSize m is rendered for single 1`] = `
           data-euiicon-type="bolt"
         />
         <span
-          class="eui-textTruncate emotion-euiButtonGroupButton__text"
+          class="eui-textTruncate css-qhrhuv-m-euiButtonGroupButton__text"
           data-text="Option two"
         >
           Option two
@@ -309,7 +309,7 @@ exports[`EuiButtonGroup button props buttonSize m is rendered for single 1`] = `
         class="emotion-euiButtonDisplayContent-euiButtonGroupButton__content"
       >
         <span
-          class="eui-textTruncate emotion-euiButtonGroupButton__text"
+          class="eui-textTruncate css-qhrhuv-m-euiButtonGroupButton__text"
           data-text="Option three"
         >
           Option three
@@ -348,7 +348,7 @@ exports[`EuiButtonGroup button props buttonSize s is rendered for multi 1`] = `
           data-euiicon-type="bolt"
         />
         <span
-          class="eui-textTruncate emotion-euiButtonGroupButton__text"
+          class="eui-textTruncate css-12o88cr-s-euiButtonGroupButton__text"
           data-text="Option one"
         >
           Option one
@@ -370,7 +370,7 @@ exports[`EuiButtonGroup button props buttonSize s is rendered for multi 1`] = `
           data-euiicon-type="bolt"
         />
         <span
-          class="eui-textTruncate emotion-euiButtonGroupButton__text"
+          class="eui-textTruncate css-12o88cr-s-euiButtonGroupButton__text"
           data-text="Option two"
         >
           Option two
@@ -389,7 +389,7 @@ exports[`EuiButtonGroup button props buttonSize s is rendered for multi 1`] = `
         class="emotion-euiButtonDisplayContent-euiButtonGroupButton__content"
       >
         <span
-          class="eui-textTruncate emotion-euiButtonGroupButton__text"
+          class="eui-textTruncate css-12o88cr-s-euiButtonGroupButton__text"
           data-text="Option three"
         >
           Option three
@@ -428,7 +428,7 @@ exports[`EuiButtonGroup button props buttonSize s is rendered for single 1`] = `
           data-euiicon-type="bolt"
         />
         <span
-          class="eui-textTruncate emotion-euiButtonGroupButton__text"
+          class="eui-textTruncate css-12o88cr-s-euiButtonGroupButton__text"
           data-text="Option one"
         >
           Option one
@@ -450,7 +450,7 @@ exports[`EuiButtonGroup button props buttonSize s is rendered for single 1`] = `
           data-euiicon-type="bolt"
         />
         <span
-          class="eui-textTruncate emotion-euiButtonGroupButton__text"
+          class="eui-textTruncate css-12o88cr-s-euiButtonGroupButton__text"
           data-text="Option two"
         >
           Option two
@@ -469,7 +469,7 @@ exports[`EuiButtonGroup button props buttonSize s is rendered for single 1`] = `
         class="emotion-euiButtonDisplayContent-euiButtonGroupButton__content"
       >
         <span
-          class="eui-textTruncate emotion-euiButtonGroupButton__text"
+          class="eui-textTruncate css-12o88cr-s-euiButtonGroupButton__text"
           data-text="Option three"
         >
           Option three
@@ -508,7 +508,7 @@ exports[`EuiButtonGroup button props color accent is rendered for multi 1`] = `
           data-euiicon-type="bolt"
         />
         <span
-          class="eui-textTruncate emotion-euiButtonGroupButton__text"
+          class="eui-textTruncate css-12o88cr-s-euiButtonGroupButton__text"
           data-text="Option one"
         >
           Option one
@@ -530,7 +530,7 @@ exports[`EuiButtonGroup button props color accent is rendered for multi 1`] = `
           data-euiicon-type="bolt"
         />
         <span
-          class="eui-textTruncate emotion-euiButtonGroupButton__text"
+          class="eui-textTruncate css-12o88cr-s-euiButtonGroupButton__text"
           data-text="Option two"
         >
           Option two
@@ -549,7 +549,7 @@ exports[`EuiButtonGroup button props color accent is rendered for multi 1`] = `
         class="emotion-euiButtonDisplayContent-euiButtonGroupButton__content"
       >
         <span
-          class="eui-textTruncate emotion-euiButtonGroupButton__text"
+          class="eui-textTruncate css-12o88cr-s-euiButtonGroupButton__text"
           data-text="Option three"
         >
           Option three
@@ -588,7 +588,7 @@ exports[`EuiButtonGroup button props color accent is rendered for single 1`] = `
           data-euiicon-type="bolt"
         />
         <span
-          class="eui-textTruncate emotion-euiButtonGroupButton__text"
+          class="eui-textTruncate css-12o88cr-s-euiButtonGroupButton__text"
           data-text="Option one"
         >
           Option one
@@ -610,7 +610,7 @@ exports[`EuiButtonGroup button props color accent is rendered for single 1`] = `
           data-euiicon-type="bolt"
         />
         <span
-          class="eui-textTruncate emotion-euiButtonGroupButton__text"
+          class="eui-textTruncate css-12o88cr-s-euiButtonGroupButton__text"
           data-text="Option two"
         >
           Option two
@@ -629,7 +629,7 @@ exports[`EuiButtonGroup button props color accent is rendered for single 1`] = `
         class="emotion-euiButtonDisplayContent-euiButtonGroupButton__content"
       >
         <span
-          class="eui-textTruncate emotion-euiButtonGroupButton__text"
+          class="eui-textTruncate css-12o88cr-s-euiButtonGroupButton__text"
           data-text="Option three"
         >
           Option three
@@ -668,7 +668,7 @@ exports[`EuiButtonGroup button props color accentSecondary is rendered for multi
           data-euiicon-type="bolt"
         />
         <span
-          class="eui-textTruncate emotion-euiButtonGroupButton__text"
+          class="eui-textTruncate css-12o88cr-s-euiButtonGroupButton__text"
           data-text="Option one"
         >
           Option one
@@ -690,7 +690,7 @@ exports[`EuiButtonGroup button props color accentSecondary is rendered for multi
           data-euiicon-type="bolt"
         />
         <span
-          class="eui-textTruncate emotion-euiButtonGroupButton__text"
+          class="eui-textTruncate css-12o88cr-s-euiButtonGroupButton__text"
           data-text="Option two"
         >
           Option two
@@ -709,7 +709,7 @@ exports[`EuiButtonGroup button props color accentSecondary is rendered for multi
         class="emotion-euiButtonDisplayContent-euiButtonGroupButton__content"
       >
         <span
-          class="eui-textTruncate emotion-euiButtonGroupButton__text"
+          class="eui-textTruncate css-12o88cr-s-euiButtonGroupButton__text"
           data-text="Option three"
         >
           Option three
@@ -748,7 +748,7 @@ exports[`EuiButtonGroup button props color accentSecondary is rendered for singl
           data-euiicon-type="bolt"
         />
         <span
-          class="eui-textTruncate emotion-euiButtonGroupButton__text"
+          class="eui-textTruncate css-12o88cr-s-euiButtonGroupButton__text"
           data-text="Option one"
         >
           Option one
@@ -770,7 +770,7 @@ exports[`EuiButtonGroup button props color accentSecondary is rendered for singl
           data-euiicon-type="bolt"
         />
         <span
-          class="eui-textTruncate emotion-euiButtonGroupButton__text"
+          class="eui-textTruncate css-12o88cr-s-euiButtonGroupButton__text"
           data-text="Option two"
         >
           Option two
@@ -789,7 +789,7 @@ exports[`EuiButtonGroup button props color accentSecondary is rendered for singl
         class="emotion-euiButtonDisplayContent-euiButtonGroupButton__content"
       >
         <span
-          class="eui-textTruncate emotion-euiButtonGroupButton__text"
+          class="eui-textTruncate css-12o88cr-s-euiButtonGroupButton__text"
           data-text="Option three"
         >
           Option three
@@ -828,7 +828,7 @@ exports[`EuiButtonGroup button props color danger is rendered for multi 1`] = `
           data-euiicon-type="bolt"
         />
         <span
-          class="eui-textTruncate emotion-euiButtonGroupButton__text"
+          class="eui-textTruncate css-12o88cr-s-euiButtonGroupButton__text"
           data-text="Option one"
         >
           Option one
@@ -850,7 +850,7 @@ exports[`EuiButtonGroup button props color danger is rendered for multi 1`] = `
           data-euiicon-type="bolt"
         />
         <span
-          class="eui-textTruncate emotion-euiButtonGroupButton__text"
+          class="eui-textTruncate css-12o88cr-s-euiButtonGroupButton__text"
           data-text="Option two"
         >
           Option two
@@ -869,7 +869,7 @@ exports[`EuiButtonGroup button props color danger is rendered for multi 1`] = `
         class="emotion-euiButtonDisplayContent-euiButtonGroupButton__content"
       >
         <span
-          class="eui-textTruncate emotion-euiButtonGroupButton__text"
+          class="eui-textTruncate css-12o88cr-s-euiButtonGroupButton__text"
           data-text="Option three"
         >
           Option three
@@ -908,7 +908,7 @@ exports[`EuiButtonGroup button props color danger is rendered for single 1`] = `
           data-euiicon-type="bolt"
         />
         <span
-          class="eui-textTruncate emotion-euiButtonGroupButton__text"
+          class="eui-textTruncate css-12o88cr-s-euiButtonGroupButton__text"
           data-text="Option one"
         >
           Option one
@@ -930,7 +930,7 @@ exports[`EuiButtonGroup button props color danger is rendered for single 1`] = `
           data-euiicon-type="bolt"
         />
         <span
-          class="eui-textTruncate emotion-euiButtonGroupButton__text"
+          class="eui-textTruncate css-12o88cr-s-euiButtonGroupButton__text"
           data-text="Option two"
         >
           Option two
@@ -949,7 +949,7 @@ exports[`EuiButtonGroup button props color danger is rendered for single 1`] = `
         class="emotion-euiButtonDisplayContent-euiButtonGroupButton__content"
       >
         <span
-          class="eui-textTruncate emotion-euiButtonGroupButton__text"
+          class="eui-textTruncate css-12o88cr-s-euiButtonGroupButton__text"
           data-text="Option three"
         >
           Option three
@@ -988,7 +988,7 @@ exports[`EuiButtonGroup button props color primary is rendered for multi 1`] = `
           data-euiicon-type="bolt"
         />
         <span
-          class="eui-textTruncate emotion-euiButtonGroupButton__text"
+          class="eui-textTruncate css-12o88cr-s-euiButtonGroupButton__text"
           data-text="Option one"
         >
           Option one
@@ -1010,7 +1010,7 @@ exports[`EuiButtonGroup button props color primary is rendered for multi 1`] = `
           data-euiicon-type="bolt"
         />
         <span
-          class="eui-textTruncate emotion-euiButtonGroupButton__text"
+          class="eui-textTruncate css-12o88cr-s-euiButtonGroupButton__text"
           data-text="Option two"
         >
           Option two
@@ -1029,7 +1029,7 @@ exports[`EuiButtonGroup button props color primary is rendered for multi 1`] = `
         class="emotion-euiButtonDisplayContent-euiButtonGroupButton__content"
       >
         <span
-          class="eui-textTruncate emotion-euiButtonGroupButton__text"
+          class="eui-textTruncate css-12o88cr-s-euiButtonGroupButton__text"
           data-text="Option three"
         >
           Option three
@@ -1068,7 +1068,7 @@ exports[`EuiButtonGroup button props color primary is rendered for single 1`] = 
           data-euiicon-type="bolt"
         />
         <span
-          class="eui-textTruncate emotion-euiButtonGroupButton__text"
+          class="eui-textTruncate css-12o88cr-s-euiButtonGroupButton__text"
           data-text="Option one"
         >
           Option one
@@ -1090,7 +1090,7 @@ exports[`EuiButtonGroup button props color primary is rendered for single 1`] = 
           data-euiicon-type="bolt"
         />
         <span
-          class="eui-textTruncate emotion-euiButtonGroupButton__text"
+          class="eui-textTruncate css-12o88cr-s-euiButtonGroupButton__text"
           data-text="Option two"
         >
           Option two
@@ -1109,7 +1109,7 @@ exports[`EuiButtonGroup button props color primary is rendered for single 1`] = 
         class="emotion-euiButtonDisplayContent-euiButtonGroupButton__content"
       >
         <span
-          class="eui-textTruncate emotion-euiButtonGroupButton__text"
+          class="eui-textTruncate css-12o88cr-s-euiButtonGroupButton__text"
           data-text="Option three"
         >
           Option three
@@ -1148,7 +1148,7 @@ exports[`EuiButtonGroup button props color success is rendered for multi 1`] = `
           data-euiicon-type="bolt"
         />
         <span
-          class="eui-textTruncate emotion-euiButtonGroupButton__text"
+          class="eui-textTruncate css-12o88cr-s-euiButtonGroupButton__text"
           data-text="Option one"
         >
           Option one
@@ -1170,7 +1170,7 @@ exports[`EuiButtonGroup button props color success is rendered for multi 1`] = `
           data-euiicon-type="bolt"
         />
         <span
-          class="eui-textTruncate emotion-euiButtonGroupButton__text"
+          class="eui-textTruncate css-12o88cr-s-euiButtonGroupButton__text"
           data-text="Option two"
         >
           Option two
@@ -1189,7 +1189,7 @@ exports[`EuiButtonGroup button props color success is rendered for multi 1`] = `
         class="emotion-euiButtonDisplayContent-euiButtonGroupButton__content"
       >
         <span
-          class="eui-textTruncate emotion-euiButtonGroupButton__text"
+          class="eui-textTruncate css-12o88cr-s-euiButtonGroupButton__text"
           data-text="Option three"
         >
           Option three
@@ -1228,7 +1228,7 @@ exports[`EuiButtonGroup button props color success is rendered for single 1`] = 
           data-euiicon-type="bolt"
         />
         <span
-          class="eui-textTruncate emotion-euiButtonGroupButton__text"
+          class="eui-textTruncate css-12o88cr-s-euiButtonGroupButton__text"
           data-text="Option one"
         >
           Option one
@@ -1250,7 +1250,7 @@ exports[`EuiButtonGroup button props color success is rendered for single 1`] = 
           data-euiicon-type="bolt"
         />
         <span
-          class="eui-textTruncate emotion-euiButtonGroupButton__text"
+          class="eui-textTruncate css-12o88cr-s-euiButtonGroupButton__text"
           data-text="Option two"
         >
           Option two
@@ -1269,7 +1269,7 @@ exports[`EuiButtonGroup button props color success is rendered for single 1`] = 
         class="emotion-euiButtonDisplayContent-euiButtonGroupButton__content"
       >
         <span
-          class="eui-textTruncate emotion-euiButtonGroupButton__text"
+          class="eui-textTruncate css-12o88cr-s-euiButtonGroupButton__text"
           data-text="Option three"
         >
           Option three
@@ -1308,7 +1308,7 @@ exports[`EuiButtonGroup button props color text is rendered for multi 1`] = `
           data-euiicon-type="bolt"
         />
         <span
-          class="eui-textTruncate emotion-euiButtonGroupButton__text"
+          class="eui-textTruncate css-12o88cr-s-euiButtonGroupButton__text"
           data-text="Option one"
         >
           Option one
@@ -1330,7 +1330,7 @@ exports[`EuiButtonGroup button props color text is rendered for multi 1`] = `
           data-euiicon-type="bolt"
         />
         <span
-          class="eui-textTruncate emotion-euiButtonGroupButton__text"
+          class="eui-textTruncate css-12o88cr-s-euiButtonGroupButton__text"
           data-text="Option two"
         >
           Option two
@@ -1349,7 +1349,7 @@ exports[`EuiButtonGroup button props color text is rendered for multi 1`] = `
         class="emotion-euiButtonDisplayContent-euiButtonGroupButton__content"
       >
         <span
-          class="eui-textTruncate emotion-euiButtonGroupButton__text"
+          class="eui-textTruncate css-12o88cr-s-euiButtonGroupButton__text"
           data-text="Option three"
         >
           Option three
@@ -1388,7 +1388,7 @@ exports[`EuiButtonGroup button props color text is rendered for single 1`] = `
           data-euiicon-type="bolt"
         />
         <span
-          class="eui-textTruncate emotion-euiButtonGroupButton__text"
+          class="eui-textTruncate css-12o88cr-s-euiButtonGroupButton__text"
           data-text="Option one"
         >
           Option one
@@ -1410,7 +1410,7 @@ exports[`EuiButtonGroup button props color text is rendered for single 1`] = `
           data-euiicon-type="bolt"
         />
         <span
-          class="eui-textTruncate emotion-euiButtonGroupButton__text"
+          class="eui-textTruncate css-12o88cr-s-euiButtonGroupButton__text"
           data-text="Option two"
         >
           Option two
@@ -1429,7 +1429,7 @@ exports[`EuiButtonGroup button props color text is rendered for single 1`] = `
         class="emotion-euiButtonDisplayContent-euiButtonGroupButton__content"
       >
         <span
-          class="eui-textTruncate emotion-euiButtonGroupButton__text"
+          class="eui-textTruncate css-12o88cr-s-euiButtonGroupButton__text"
           data-text="Option three"
         >
           Option three
@@ -1468,7 +1468,7 @@ exports[`EuiButtonGroup button props color warning is rendered for multi 1`] = `
           data-euiicon-type="bolt"
         />
         <span
-          class="eui-textTruncate emotion-euiButtonGroupButton__text"
+          class="eui-textTruncate css-12o88cr-s-euiButtonGroupButton__text"
           data-text="Option one"
         >
           Option one
@@ -1490,7 +1490,7 @@ exports[`EuiButtonGroup button props color warning is rendered for multi 1`] = `
           data-euiicon-type="bolt"
         />
         <span
-          class="eui-textTruncate emotion-euiButtonGroupButton__text"
+          class="eui-textTruncate css-12o88cr-s-euiButtonGroupButton__text"
           data-text="Option two"
         >
           Option two
@@ -1509,7 +1509,7 @@ exports[`EuiButtonGroup button props color warning is rendered for multi 1`] = `
         class="emotion-euiButtonDisplayContent-euiButtonGroupButton__content"
       >
         <span
-          class="eui-textTruncate emotion-euiButtonGroupButton__text"
+          class="eui-textTruncate css-12o88cr-s-euiButtonGroupButton__text"
           data-text="Option three"
         >
           Option three
@@ -1548,7 +1548,7 @@ exports[`EuiButtonGroup button props color warning is rendered for single 1`] = 
           data-euiicon-type="bolt"
         />
         <span
-          class="eui-textTruncate emotion-euiButtonGroupButton__text"
+          class="eui-textTruncate css-12o88cr-s-euiButtonGroupButton__text"
           data-text="Option one"
         >
           Option one
@@ -1570,7 +1570,7 @@ exports[`EuiButtonGroup button props color warning is rendered for single 1`] = 
           data-euiicon-type="bolt"
         />
         <span
-          class="eui-textTruncate emotion-euiButtonGroupButton__text"
+          class="eui-textTruncate css-12o88cr-s-euiButtonGroupButton__text"
           data-text="Option two"
         >
           Option two
@@ -1589,7 +1589,7 @@ exports[`EuiButtonGroup button props color warning is rendered for single 1`] = 
         class="emotion-euiButtonDisplayContent-euiButtonGroupButton__content"
       >
         <span
-          class="eui-textTruncate emotion-euiButtonGroupButton__text"
+          class="eui-textTruncate css-12o88cr-s-euiButtonGroupButton__text"
           data-text="Option three"
         >
           Option three
@@ -1630,7 +1630,7 @@ exports[`EuiButtonGroup button props isDisabled is rendered for multi 1`] = `
           data-euiicon-type="bolt"
         />
         <span
-          class="eui-textTruncate emotion-euiButtonGroupButton__text"
+          class="eui-textTruncate css-12o88cr-s-euiButtonGroupButton__text"
           data-text="Option one"
         >
           Option one
@@ -1653,7 +1653,7 @@ exports[`EuiButtonGroup button props isDisabled is rendered for multi 1`] = `
           data-euiicon-type="bolt"
         />
         <span
-          class="eui-textTruncate emotion-euiButtonGroupButton__text"
+          class="eui-textTruncate css-12o88cr-s-euiButtonGroupButton__text"
           data-text="Option two"
         >
           Option two
@@ -1672,7 +1672,7 @@ exports[`EuiButtonGroup button props isDisabled is rendered for multi 1`] = `
         class="emotion-euiButtonDisplayContent-euiButtonGroupButton__content"
       >
         <span
-          class="eui-textTruncate emotion-euiButtonGroupButton__text"
+          class="eui-textTruncate css-12o88cr-s-euiButtonGroupButton__text"
           data-text="Option three"
         >
           Option three
@@ -1713,7 +1713,7 @@ exports[`EuiButtonGroup button props isDisabled is rendered for single 1`] = `
           data-euiicon-type="bolt"
         />
         <span
-          class="eui-textTruncate emotion-euiButtonGroupButton__text"
+          class="eui-textTruncate css-12o88cr-s-euiButtonGroupButton__text"
           data-text="Option one"
         >
           Option one
@@ -1736,7 +1736,7 @@ exports[`EuiButtonGroup button props isDisabled is rendered for single 1`] = `
           data-euiicon-type="bolt"
         />
         <span
-          class="eui-textTruncate emotion-euiButtonGroupButton__text"
+          class="eui-textTruncate css-12o88cr-s-euiButtonGroupButton__text"
           data-text="Option two"
         >
           Option two
@@ -1755,7 +1755,7 @@ exports[`EuiButtonGroup button props isDisabled is rendered for single 1`] = `
         class="emotion-euiButtonDisplayContent-euiButtonGroupButton__content"
       >
         <span
-          class="eui-textTruncate emotion-euiButtonGroupButton__text"
+          class="eui-textTruncate css-12o88cr-s-euiButtonGroupButton__text"
           data-text="Option three"
         >
           Option three
@@ -1794,7 +1794,7 @@ exports[`EuiButtonGroup button props isFullWidth is rendered for multi 1`] = `
           data-euiicon-type="bolt"
         />
         <span
-          class="eui-textTruncate emotion-euiButtonGroupButton__text"
+          class="eui-textTruncate css-12o88cr-s-euiButtonGroupButton__text"
           data-text="Option one"
         >
           Option one
@@ -1816,7 +1816,7 @@ exports[`EuiButtonGroup button props isFullWidth is rendered for multi 1`] = `
           data-euiicon-type="bolt"
         />
         <span
-          class="eui-textTruncate emotion-euiButtonGroupButton__text"
+          class="eui-textTruncate css-12o88cr-s-euiButtonGroupButton__text"
           data-text="Option two"
         >
           Option two
@@ -1835,7 +1835,7 @@ exports[`EuiButtonGroup button props isFullWidth is rendered for multi 1`] = `
         class="emotion-euiButtonDisplayContent-euiButtonGroupButton__content"
       >
         <span
-          class="eui-textTruncate emotion-euiButtonGroupButton__text"
+          class="eui-textTruncate css-12o88cr-s-euiButtonGroupButton__text"
           data-text="Option three"
         >
           Option three
@@ -1874,7 +1874,7 @@ exports[`EuiButtonGroup button props isFullWidth is rendered for single 1`] = `
           data-euiicon-type="bolt"
         />
         <span
-          class="eui-textTruncate emotion-euiButtonGroupButton__text"
+          class="eui-textTruncate css-12o88cr-s-euiButtonGroupButton__text"
           data-text="Option one"
         >
           Option one
@@ -1896,7 +1896,7 @@ exports[`EuiButtonGroup button props isFullWidth is rendered for single 1`] = `
           data-euiicon-type="bolt"
         />
         <span
-          class="eui-textTruncate emotion-euiButtonGroupButton__text"
+          class="eui-textTruncate css-12o88cr-s-euiButtonGroupButton__text"
           data-text="Option two"
         >
           Option two
@@ -1915,7 +1915,7 @@ exports[`EuiButtonGroup button props isFullWidth is rendered for single 1`] = `
         class="emotion-euiButtonDisplayContent-euiButtonGroupButton__content"
       >
         <span
-          class="eui-textTruncate emotion-euiButtonGroupButton__text"
+          class="eui-textTruncate css-12o88cr-s-euiButtonGroupButton__text"
           data-text="Option three"
         >
           Option three
@@ -1954,7 +1954,7 @@ exports[`EuiButtonGroup button props isIconOnly is rendered for multi 1`] = `
           data-euiicon-type="bolt"
         />
         <span
-          class="eui-textTruncate emotion-euiButtonGroupButton__iconOnly"
+          class="eui-textTruncate css-lby7nx-s-euiButtonGroupButton__iconOnly"
           data-text="Option one"
         >
           Option one
@@ -1976,7 +1976,7 @@ exports[`EuiButtonGroup button props isIconOnly is rendered for multi 1`] = `
           data-euiicon-type="bolt"
         />
         <span
-          class="eui-textTruncate emotion-euiButtonGroupButton__iconOnly"
+          class="eui-textTruncate css-lby7nx-s-euiButtonGroupButton__iconOnly"
           data-text="Option two"
         >
           Option two
@@ -1995,7 +1995,7 @@ exports[`EuiButtonGroup button props isIconOnly is rendered for multi 1`] = `
         class="emotion-euiButtonDisplayContent-euiButtonGroupButton__content"
       >
         <span
-          class="eui-textTruncate emotion-euiButtonGroupButton__iconOnly"
+          class="eui-textTruncate css-lby7nx-s-euiButtonGroupButton__iconOnly"
           data-text="Option three"
         >
           Option three
@@ -2034,7 +2034,7 @@ exports[`EuiButtonGroup button props isIconOnly is rendered for single 1`] = `
           data-euiicon-type="bolt"
         />
         <span
-          class="eui-textTruncate emotion-euiButtonGroupButton__iconOnly"
+          class="eui-textTruncate css-lby7nx-s-euiButtonGroupButton__iconOnly"
           data-text="Option one"
         >
           Option one
@@ -2056,7 +2056,7 @@ exports[`EuiButtonGroup button props isIconOnly is rendered for single 1`] = `
           data-euiicon-type="bolt"
         />
         <span
-          class="eui-textTruncate emotion-euiButtonGroupButton__iconOnly"
+          class="eui-textTruncate css-lby7nx-s-euiButtonGroupButton__iconOnly"
           data-text="Option two"
         >
           Option two
@@ -2075,7 +2075,7 @@ exports[`EuiButtonGroup button props isIconOnly is rendered for single 1`] = `
         class="emotion-euiButtonDisplayContent-euiButtonGroupButton__content"
       >
         <span
-          class="eui-textTruncate emotion-euiButtonGroupButton__iconOnly"
+          class="eui-textTruncate css-lby7nx-s-euiButtonGroupButton__iconOnly"
           data-text="Option three"
         >
           Option three
@@ -2114,7 +2114,7 @@ exports[`EuiButtonGroup type="multi" idToSelectedMap 1`] = `
           data-euiicon-type="bolt"
         />
         <span
-          class="eui-textTruncate emotion-euiButtonGroupButton__text"
+          class="eui-textTruncate css-12o88cr-s-euiButtonGroupButton__text"
           data-text="Option one"
         >
           Option one
@@ -2136,7 +2136,7 @@ exports[`EuiButtonGroup type="multi" idToSelectedMap 1`] = `
           data-euiicon-type="bolt"
         />
         <span
-          class="eui-textTruncate emotion-euiButtonGroupButton__text"
+          class="eui-textTruncate css-12o88cr-s-euiButtonGroupButton__text"
           data-text="Option two"
         >
           Option two
@@ -2155,7 +2155,7 @@ exports[`EuiButtonGroup type="multi" idToSelectedMap 1`] = `
         class="emotion-euiButtonDisplayContent-euiButtonGroupButton__content"
       >
         <span
-          class="eui-textTruncate emotion-euiButtonGroupButton__text"
+          class="eui-textTruncate css-12o88cr-s-euiButtonGroupButton__text"
           data-text="Option three"
         >
           Option three
@@ -2196,7 +2196,7 @@ exports[`EuiButtonGroup type="multi" renders 1`] = `
           data-euiicon-type="bolt"
         />
         <span
-          class="eui-textTruncate emotion-euiButtonGroupButton__text"
+          class="eui-textTruncate css-12o88cr-s-euiButtonGroupButton__text"
           data-text="Option one"
         >
           Option one
@@ -2218,7 +2218,7 @@ exports[`EuiButtonGroup type="multi" renders 1`] = `
           data-euiicon-type="bolt"
         />
         <span
-          class="eui-textTruncate emotion-euiButtonGroupButton__text"
+          class="eui-textTruncate css-12o88cr-s-euiButtonGroupButton__text"
           data-text="Option two"
         >
           Option two
@@ -2237,7 +2237,7 @@ exports[`EuiButtonGroup type="multi" renders 1`] = `
         class="emotion-euiButtonDisplayContent-euiButtonGroupButton__content"
       >
         <span
-          class="eui-textTruncate emotion-euiButtonGroupButton__text"
+          class="eui-textTruncate css-12o88cr-s-euiButtonGroupButton__text"
           data-text="Option three"
         >
           Option three
@@ -2276,7 +2276,7 @@ exports[`EuiButtonGroup type="single" idSelected 1`] = `
           data-euiicon-type="bolt"
         />
         <span
-          class="eui-textTruncate emotion-euiButtonGroupButton__text"
+          class="eui-textTruncate css-12o88cr-s-euiButtonGroupButton__text"
           data-text="Option one"
         >
           Option one
@@ -2298,7 +2298,7 @@ exports[`EuiButtonGroup type="single" idSelected 1`] = `
           data-euiicon-type="bolt"
         />
         <span
-          class="eui-textTruncate emotion-euiButtonGroupButton__text"
+          class="eui-textTruncate css-12o88cr-s-euiButtonGroupButton__text"
           data-text="Option two"
         >
           Option two
@@ -2317,7 +2317,7 @@ exports[`EuiButtonGroup type="single" idSelected 1`] = `
         class="emotion-euiButtonDisplayContent-euiButtonGroupButton__content"
       >
         <span
-          class="eui-textTruncate emotion-euiButtonGroupButton__text"
+          class="eui-textTruncate css-12o88cr-s-euiButtonGroupButton__text"
           data-text="Option three"
         >
           Option three
@@ -2358,7 +2358,7 @@ exports[`EuiButtonGroup type="single" renders 1`] = `
           data-euiicon-type="bolt"
         />
         <span
-          class="eui-textTruncate emotion-euiButtonGroupButton__text"
+          class="eui-textTruncate css-12o88cr-s-euiButtonGroupButton__text"
           data-text="Option one"
         >
           Option one
@@ -2380,7 +2380,7 @@ exports[`EuiButtonGroup type="single" renders 1`] = `
           data-euiicon-type="bolt"
         />
         <span
-          class="eui-textTruncate emotion-euiButtonGroupButton__text"
+          class="eui-textTruncate css-12o88cr-s-euiButtonGroupButton__text"
           data-text="Option two"
         >
           Option two
@@ -2399,7 +2399,7 @@ exports[`EuiButtonGroup type="single" renders 1`] = `
         class="emotion-euiButtonDisplayContent-euiButtonGroupButton__content"
       >
         <span
-          class="eui-textTruncate emotion-euiButtonGroupButton__text"
+          class="eui-textTruncate css-12o88cr-s-euiButtonGroupButton__text"
           data-text="Option three"
         >
           Option three
