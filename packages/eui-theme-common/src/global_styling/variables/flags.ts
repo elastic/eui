@@ -9,6 +9,7 @@
 export type EuiThemeVariantFlags = {
   buttonVariant: 'classic' | 'refresh';
   formVariant: 'classic' | 'refresh';
+  shadowVariant: 'classic' | 'refresh';
 };
 
 /**
