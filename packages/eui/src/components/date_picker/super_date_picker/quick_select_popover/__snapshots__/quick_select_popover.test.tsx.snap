@@ -425,7 +425,7 @@ exports[`EuiQuickSelectPopover is rendered 1`] = `
       class="euiButtonEmpty__content emotion-euiButtonDisplayContent-euiQuickSelectPopoverButton__content"
     >
       <span
-        class="eui-textTruncate euiButtonEmpty__text"
+        class="eui-textTruncate euiButtonEmpty__text css-143lqr-content"
       >
         <span
           data-euiicon-type="calendar"

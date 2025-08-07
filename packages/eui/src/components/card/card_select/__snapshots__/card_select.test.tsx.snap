@@ -43,7 +43,7 @@ exports[`EuiCardSelect props can override text 1`] = `
     class="emotion-euiButtonDisplayContent"
   >
     <span
-      class="eui-textTruncate"
+      class="eui-textTruncate css-143lqr-content"
     >
       Custom text
     </span>
