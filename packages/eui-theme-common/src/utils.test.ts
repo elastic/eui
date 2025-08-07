@@ -17,6 +17,7 @@ import {
   buildTheme,
   mergeDeep,
   getTokenName,
+  formatMultipleBoxShadow,
 } from './utils';
 
 describe('isInverseColorMode', () => {
@@ -290,5 +291,39 @@ describe('getTokenName', () => {
     expect(getTokenName('backgroundBase', 'primary', 'hovered')).toEqual(
       'backgroundBasePrimaryHovered'
     );
+  });
+});
+
+describe('formatMultipleBoxShadow', () => {
+  const layers = [
+    { x: 0, y: 4, blur: 8, spread: 0, opacity: 0.1 },
+    { x: 0, y: 2, blur: 4, spread: 0, opacity: 0.05 },
+  ];
+  const options = {
+    color: '#000000',
+  };
+
+  it('returns a valid CSS box-shadow value', () => {
+    expect(formatMultipleBoxShadow(layers, options)).toEqual(
+      '0px 4px 8px 0px hsla(0,0%,0%,0.1), 0px 2px 4px 0px hsla(0,0%,0%,0.05)'
+    );
+  });
+
+  it('handles a single layer', () => {
+    expect(formatMultipleBoxShadow([layers[0]], options)).toEqual(
+      '0px 4px 8px 0px hsla(0,0%,0%,0.1)'
+    );
+  });
+
+  it('formats the "up" variant', () => {
+    expect(
+      formatMultipleBoxShadow(layers, { ...options, direction: 'up' })
+    ).toEqual(
+      '0px 4px 8px 0px hsla(0,0%,0%,0.1), 0px -2px 4px 0px hsla(0,0%,0%,0.05)'
+    );
+  });
+
+  it('return "none" for no layers', () => {
+    expect(formatMultipleBoxShadow([], options)).toEqual('none');
   });
 });
