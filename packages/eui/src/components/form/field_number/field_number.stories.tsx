@@ -13,6 +13,10 @@ import {
 } from '../../../../.storybook/utils';
 
 import { EuiFieldNumber, EuiFieldNumberProps } from './field_number';
+import React, { ChangeEventHandler, useState } from 'react';
+import { EuiForm } from '../form';
+import { EuiFormRow } from '../form_row';
+import { EuiText } from '../../text';
 
 const meta: Meta<EuiFieldNumberProps> = {
   title: 'Forms/EuiFieldNumber',
@@ -89,3 +93,55 @@ moveStorybookControlsToCategory(IconShape, [
   'prepend',
   'append',
 ]);
+
+const FieldNumberValidationComponent = () => {
+  const [value1, setValue1] = useState('5');
+  const [value2, setValue2] = useState('4');
+
+  const onChange1: ChangeEventHandler<HTMLInputElement> = (e) => {
+    const newValue = e.target.value;
+    setValue1(newValue);
+  };
+
+  const onChange2: ChangeEventHandler<HTMLInputElement> = (e) => {
+    const newValue = e.target.value;
+    setValue2(newValue);
+  };
+
+  const isValue2GreaterThanValue1 = value2 > value1;
+
+  return (
+    <EuiForm component="form">
+      <EuiFormRow label="value 1">
+        <EuiFieldNumber
+          placeholder="Placeholder text"
+          value={value1}
+          min={1}
+          onChange={onChange1}
+          aria-label="Use aria labels when no actual label is in use"
+        />
+      </EuiFormRow>
+
+      <EuiFormRow isInvalid={isValue2GreaterThanValue1} label="value 2">
+        <>
+          <EuiFieldNumber
+            isInvalid={isValue2GreaterThanValue1}
+            placeholder="Placeholder text"
+            value={value2}
+            onChange={onChange2}
+            aria-label="Use aria labels when no actual label is in use"
+          />
+          {isValue2GreaterThanValue1 && (
+            <EuiText color="danger" size="s">
+              value2 should be smaller than value1
+            </EuiText>
+          )}
+        </>
+      </EuiFormRow>
+    </EuiForm>
+  );
+};
+
+export const FieldNumberValidation: Story = {
+  render: () => <FieldNumberValidationComponent />,
+};
