@@ -1,0 +1,32 @@
+# Performance
+
+The main task of Emotion is parsing stylesheets defined in JavaScript
+and injecting them into DOM, so that the browser can properly style elements.
+Emotion is _really good_ at doing that and handles many
+optimizations by default, so you don't have to think about it.
+It can't predict every scenario, though, and there are a few things you
+should do to ensure styles are injected and referenced efficiently.
+
+## Dynamic styles
+
+Dynamic styles, or more precisely, styles that change dynamically based
+on external factors like props or browser events (e.g., scrolling),
+are probably the biggest factor when it comes to performance.
+It can be completely fine to rely on values like the above if you follow
+a few rules.
+
+:::note
+Most importantly, you should pay close attention to how and where you declare
+`css` template literals to reduce recomputation.
+:::
+
+### Where should I declare my styles?
+
+You should always declare `css` template literals outside components
+and other blocks of code that might get executed more than once within
+the runtime of the app.
+
+`css` style declarations must be pure. If your style changes based
+on an external value (e.g., a button variant prop), the style must be declared
+as a pure function, meaning for given input the function must return
+the same output.
