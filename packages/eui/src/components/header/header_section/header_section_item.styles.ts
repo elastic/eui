@@ -8,21 +8,12 @@
 
 import { css } from '@emotion/react';
 
-import { UseEuiTheme } from '../../../services';
-import { logicalCSS, euiMaxBreakpoint } from '../../../global_styling';
-
-export const euiHeaderSectionItemStyles = (euiThemeContext: UseEuiTheme) => {
-  const { euiTheme } = euiThemeContext;
-
+export const euiHeaderSectionItemStyles = () => {
   return {
     euiHeaderSectionItem: css`
       position: relative;
       display: flex;
       align-items: center;
-
-      ${euiMaxBreakpoint(euiThemeContext, 's')} {
-        ${logicalCSS('min-width', euiTheme.size.xl)}
-      }
     `,
   };
 };

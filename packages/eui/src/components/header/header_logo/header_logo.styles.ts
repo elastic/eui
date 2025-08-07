@@ -23,15 +23,9 @@ export const euiHeaderLogoStyles = (euiThemeContext: UseEuiTheme) => {
       position: relative;
       ${logicalCSS('height', childHeight)}
       line-height: ${childHeight};
-      ${logicalCSS('min-width', childHeight)}
-      padding-inline: ${euiTheme.size.s};
       display: inline-flex;
       align-items: center;
       white-space: nowrap;
-
-      ${euiBreakpoint(euiThemeContext, ['xs'])} {
-        ${logicalCSS('padding-left', euiTheme.size.xs)}
-      }
     `,
     euiHeaderLogo__text: css`
       ${euiTitle(euiThemeContext, 'xxs')}

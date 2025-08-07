@@ -16,12 +16,9 @@ import {
   euiMaxBreakpoint,
 } from '../../../global_styling';
 
-import { euiHeaderVariables } from '../header.styles';
-
 export const euiHeaderSectionItemButtonStyles = (
   euiThemeContext: UseEuiTheme
 ) => {
-  const { childHeight } = euiHeaderVariables(euiThemeContext);
   const { euiTheme } = euiThemeContext;
   const isRefreshVariant = isEuiThemeRefreshVariant(
     euiThemeContext,
@@ -30,27 +27,24 @@ export const euiHeaderSectionItemButtonStyles = (
 
   const dotSize = euiTheme.size.base;
   const dotOffset = isRefreshVariant
-    ? mathWithUnits(dotSize, (x) => x * -0.5)
-    : 0;
+    ? mathWithUnits(dotSize, (x) => x * -0.3)
+    : '-15%';
   const badgeOffset = isRefreshVariant
-    ? mathWithUnits(euiTheme.size.s, (x) => x * -0.5)
-    : '9%';
+    ? mathWithUnits(euiTheme.size.s, (x) => x * 0.06)
+    : '0';
 
   return {
     euiHeaderSectionItemButton: css`
       position: relative; /* For positioning the notification */
-      ${logicalCSS('height', childHeight)}
-      ${logicalCSS('min-width', childHeight)}
-      ${logicalCSS('padding-horizontal', euiTheme.size.s)}
+      ${logicalSizeCSS(
+        euiTheme.size.xl
+      )} /* Same size as EUI small icon buttons (32x32px) */
+      display: flex;
+      align-items: center;
+      justify-content: center;
       text-align: center;
+      padding: 0;
       font-size: 0; /* Aligns icons better vertically */
-
-      ${euiMaxBreakpoint(euiThemeContext, 's')} {
-        ${logicalCSS(
-          'min-width',
-          mathWithUnits(childHeight, (x) => x * 0.75)
-        )}
-      }
     `,
     euiHeaderSectionItemButton__content: css`
       /* This element is a span and we're changing the display because inline elements can’t take a transform */
@@ -61,17 +55,18 @@ export const euiHeaderSectionItemButtonStyles = (
         position: absolute;
       `,
       dot: css`
-        ${logicalCSS('top', 0)}
+        ${logicalCSS('top', dotOffset)}
         ${logicalCSS('right', dotOffset)}
         stroke: ${euiTheme.colors.emptyShade};
 
         ${euiMaxBreakpoint(euiThemeContext, 's')} {
           ${logicalSizeCSS(dotSize)}
-          ${logicalCSS('top', '9%')}
+          ${logicalCSS('top', '-4%')}
+          ${logicalCSS('right', '-4%')}
         }
       `,
       badge: css`
-        ${logicalCSS('top', '9%')}
+        ${logicalCSS('top', badgeOffset)}
         ${logicalCSS('right', badgeOffset)}
         box-shadow: 0 0 0 ${euiTheme.border.width.thin} ${euiTheme.colors
           .emptyShade};
