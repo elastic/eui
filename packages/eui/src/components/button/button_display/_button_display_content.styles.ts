@@ -34,11 +34,16 @@ export const euiButtonDisplayContentStyles = (euiThemeContext: UseEuiTheme) => {
 
       ${isRefreshVariant && refreshVariantStyles}
     `,
-    content: css`
-      ${isRefreshVariant &&
-      `
+    content: {
+      xs: css`
+        ${logicalCSS('padding-horizontal', euiTheme.size.xxs)}
+      `,
+      s: css`
         ${logicalCSS('padding-horizontal', euiTheme.size.xs)}
-      `}
-    `,
+      `,
+      m: css`
+        ${logicalCSS('padding-horizontal', euiTheme.size.xs)}
+      `,
+    },
   };
 };

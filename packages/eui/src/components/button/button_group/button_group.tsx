@@ -28,7 +28,7 @@ import {
 } from './button_group.styles';
 
 export interface EuiButtonGroupOptionProps
-  extends EuiButtonDisplayContentProps,
+  extends Omit<EuiButtonDisplayContentProps, 'size'>,
     CommonProps {
   /**
    * Each option must have a unique `id` for maintaining selection
