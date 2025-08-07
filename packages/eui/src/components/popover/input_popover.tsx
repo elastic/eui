@@ -153,7 +153,8 @@ export const EuiInputPopover: FunctionComponent<EuiInputPopoverProps> = ({
           const tabbingFromLastItemInPopover =
             document.activeElement === tabbableItems[tabbableItems.length - 1];
 
-          if (tabbingFromLastItemInPopover) {
+          // Only close if Tab (not Shift+Tab) is pressed from the last item
+          if (tabbingFromLastItemInPopover && !event.shiftKey) {
             closePopover();
           }
         }
