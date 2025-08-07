@@ -132,7 +132,7 @@ export const EuiFieldNumber: FunctionComponent<EuiFieldNumberProps> = (
     if (_inputRef.current) {
       checkNativeValidity(_inputRef.current);
     }
-  }, [value, min, max, step, checkNativeValidity]);
+  }, [isInvalid, value, min, max, step, checkNativeValidity]);
 
   const classes = classNames('euiFieldNumber', className, {
     'euiFieldNumber-isLoading': isLoading,
