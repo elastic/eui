@@ -7,6 +7,7 @@
  */
 
 import React, { useRef, useEffect } from 'react';
+import { css } from '@emotion/react';
 import type { Meta, StoryObj, ReactRenderer } from '@storybook/react';
 import type { PlayFunctionContext } from '@storybook/csf';
 import { expect, fireEvent, waitFor } from '@storybook/test';
@@ -15,7 +16,7 @@ import { within } from '../../../.storybook/test';
 import { enableFunctionToggleControls } from '../../../.storybook/utils';
 
 import { EuiButtonIcon } from '../button';
-import { EuiToolTip } from '../tool_tip';
+import { EuiIconTip, EuiToolTip } from '../tool_tip';
 
 import {
   StatefulDataGrid,
@@ -71,16 +72,34 @@ export const Virtualization: Story = {
   render: (args: EuiDataGridProps) => <StatefulDataGrid {...args} />,
 };
 
-const CustomHeaderCell = ({ title }: { title: string }) => (
+const CustomHeaderCell = ({
+  title,
+  tooltipAnchorType = 'button',
+}: {
+  title: string;
+  tooltipAnchorType?: 'button' | 'icon';
+}) => (
   <>
     <span>{title}</span>
-    <EuiToolTip content="tooltip content">
-      <EuiButtonIcon
-        iconType="question"
-        aria-label="Additional information"
-        color="primary"
+    {tooltipAnchorType === 'icon' ? (
+      <EuiIconTip
+        type="question"
+        content="tooltip content"
+        anchorProps={{
+          css: ({ euiTheme }) => css`
+            margin-inline-start: ${euiTheme.size.s};
+          `,
+        }}
       />
-    </EuiToolTip>
+    ) : (
+      <EuiToolTip content="tooltip content">
+        <EuiButtonIcon
+          iconType="question"
+          aria-label="Additional information"
+          color="text"
+        />
+      </EuiToolTip>
+    )}
   </>
 );
 
@@ -116,7 +135,7 @@ export const CustomHeaderContent: Story = {
       },
       {
         id: 'email',
-        display: <CustomHeaderCell title="Email" />,
+        display: <CustomHeaderCell title="Email" tooltipAnchorType="icon" />,
         initialWidth: 130,
         cellActions: [
           ({ rowIndex, Component }: EuiDataGridColumnCellActionProps) => {
