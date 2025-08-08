@@ -115,6 +115,7 @@ export const EuiModal: FunctionComponent<EuiModalProps> = ({
           aria-modal={true}
           {...rest}
         >
+          {children}
           <EuiI18n
             token="euiModal.closeModal"
             default="Closes this modal window"
@@ -130,7 +131,6 @@ export const EuiModal: FunctionComponent<EuiModalProps> = ({
               />
             )}
           </EuiI18n>
-          {children}
         </div>
       </EuiFocusTrap>
     </EuiOverlayMask>
