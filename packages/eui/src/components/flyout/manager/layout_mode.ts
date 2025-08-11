@@ -8,7 +8,6 @@
 
 import React, { useEffect, useState } from 'react';
 import { useEuiTheme } from '../../../services';
-import type { EuiThemeComputed } from '../../../services/theme';
 import { setLayoutMode } from './actions';
 import {
   useCurrentChildFlyout,
@@ -29,7 +28,7 @@ export const useApplyFlyoutLayoutMode = () => {
   const context = useFlyoutManager();
   const setMode = React.useCallback(
     (layoutMode: EuiFlyoutLayoutMode) => {
-      if (context?.dispatch) {
+      if (context?.dispatch && layoutMode !== context.state.layoutMode) {
         context.dispatch(setLayoutMode(layoutMode));
       }
     },
@@ -41,11 +40,20 @@ export const useApplyFlyoutLayoutMode = () => {
   );
 
   useEffect(() => {
-    if (typeof window === 'undefined') return;
-    const handleResize = () => setWindowWidth(window.innerWidth);
+    if (typeof window === 'undefined') {
+      return;
+    }
+
+    let rafId = 0;
+    const handleResize = () => {
+      if (rafId) cancelAnimationFrame(rafId);
+      rafId = requestAnimationFrame(() => setWindowWidth(window.innerWidth));
+    };
     window.addEventListener('resize', handleResize);
-    handleResize();
-    return () => window.removeEventListener('resize', handleResize);
+    return () => {
+      if (rafId) cancelAnimationFrame(rafId);
+      window.removeEventListener('resize', handleResize);
+    };
   }, []);
 
   const { euiTheme } = useEuiTheme();
@@ -61,9 +69,28 @@ export const useApplyFlyoutLayoutMode = () => {
   const childWidth = useFlyoutWidth(childFlyoutId);
 
   useEffect(() => {
-    if (!context) return;
+    if (!context) {
+      return;
+    }
 
     const currentLayoutMode = context.state.layoutMode;
+
+    // Thresholds to prevent thrashing near the breakpoint.
+    const THRESHOLD_TO_SIDE_BY_SIDE = 85;
+    const THRESHOLD_TO_STACKED = 95;
+
+    // If the window is too small, set the mode to stacked.
+    //
+    // The value is based on the maximum width of a flyout in
+    // `composeFlyoutSizing` in `flyout.styles.ts` multiplied
+    // by 2 (open flyouts side-by-side).
+    if (windowWidth < Math.round(euiTheme.breakpoint.s * 1.4)) {
+      if (currentLayoutMode !== LAYOUT_MODE_STACKED) {
+        setMode(LAYOUT_MODE_STACKED);
+      }
+      return;
+    }
+
     if (!childFlyoutId) {
       if (currentLayoutMode !== LAYOUT_MODE_SIDE_BY_SIDE)
         setMode(LAYOUT_MODE_SIDE_BY_SIDE);
@@ -74,10 +101,11 @@ export const useApplyFlyoutLayoutMode = () => {
     let childWidthValue = childWidth;
 
     if (!parentWidthValue && parentFlyout?.size) {
-      parentWidthValue = getWidthFromSize(parentFlyout.size, euiTheme);
+      parentWidthValue = getWidthFromSize(parentFlyout.size);
     }
+
     if (!childWidthValue && childFlyout?.size) {
-      childWidthValue = getWidthFromSize(childFlyout.size, euiTheme);
+      childWidthValue = getWidthFromSize(childFlyout.size);
     }
 
     if (!parentWidthValue || !childWidthValue) {
@@ -88,11 +116,23 @@ export const useApplyFlyoutLayoutMode = () => {
 
     const combinedWidth = parentWidthValue + childWidthValue;
     const combinedWidthPercentage = (combinedWidth / windowWidth) * 100;
-    const newLayoutMode =
-      combinedWidthPercentage >= 90
-        ? LAYOUT_MODE_STACKED
-        : LAYOUT_MODE_SIDE_BY_SIDE;
-    if (currentLayoutMode !== newLayoutMode) setMode(newLayoutMode);
+    let newLayoutMode: EuiFlyoutLayoutMode;
+
+    if (currentLayoutMode === LAYOUT_MODE_STACKED) {
+      newLayoutMode =
+        combinedWidthPercentage <= THRESHOLD_TO_SIDE_BY_SIDE
+          ? LAYOUT_MODE_SIDE_BY_SIDE
+          : LAYOUT_MODE_STACKED;
+    } else {
+      newLayoutMode =
+        combinedWidthPercentage >= THRESHOLD_TO_STACKED
+          ? LAYOUT_MODE_STACKED
+          : LAYOUT_MODE_SIDE_BY_SIDE;
+    }
+
+    if (currentLayoutMode !== newLayoutMode) {
+      setMode(newLayoutMode);
+    }
   }, [
     windowWidth,
     context,
@@ -107,10 +147,7 @@ export const useApplyFlyoutLayoutMode = () => {
 };
 
 /** Convert a flyout `size` value to a pixel width using theme breakpoints. */
-export const getWidthFromSize = (
-  size: string | number,
-  euiTheme: EuiThemeComputed
-): number => {
+export const getWidthFromSize = (size: string | number): number => {
   if (typeof size === 'number') {
     return size;
   }
@@ -122,13 +159,14 @@ export const getWidthFromSize = (
       return parsed;
     }
 
+    // Size is a function of a percentage of `vw`, defined in `composeFlyoutSizing` in `flyout.styles.ts`
     switch (size) {
       case 's':
-        return euiTheme.breakpoint.s;
+        return Math.round(window.innerWidth * 0.25);
       case 'm':
-        return euiTheme.breakpoint.m;
+        return Math.round(window.innerWidth * 0.5);
       case 'l':
-        return euiTheme.breakpoint.l;
+        return Math.round(window.innerWidth * 0.75);
       default:
         break;
     }

@@ -19,8 +19,7 @@ import { UseEuiTheme } from '../../../services';
 export const euiMainFlyoutStyles = (euiThemeContext: UseEuiTheme) => {
   const {
     euiTheme: {
-      colors: { borderBaseSubdued },
-      border: { width: thin },
+      border: { thin },
     },
   } = euiThemeContext;
 
@@ -28,11 +27,11 @@ export const euiMainFlyoutStyles = (euiThemeContext: UseEuiTheme) => {
     hasChildFlyout: {
       left: css`
         box-shadow: none;
-        border-inline-end: ${thin} solid ${borderBaseSubdued};
+        border-inline-end: ${thin};
       `,
       right: css`
         box-shadow: none;
-        border-inline-start: ${thin} solid ${borderBaseSubdued};
+        border-inline-start: ${thin};
       `,
     },
   };

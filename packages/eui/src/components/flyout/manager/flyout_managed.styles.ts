@@ -10,7 +10,6 @@ import { css, keyframes } from '@emotion/react';
 import { euiCanAnimate, logicalCSS } from '../../../global_styling';
 import { UseEuiTheme } from '../../../services';
 import {
-  PROPERTY_FLYOUT,
   PROPERTY_STAGE,
   STAGE_ACTIVE,
   STAGE_BACKGROUNDED,
@@ -67,7 +66,7 @@ export const euiManagedFlyoutStyles = (euiThemeContext: UseEuiTheme) => {
       transform-style: preserve-3d;
 
       /* When flyout is inactive, animate backwards in 3D space */
-      &[${PROPERTY_FLYOUT}='${STAGE_CLOSING}'],
+      &[${PROPERTY_STAGE}='${STAGE_CLOSING}'],
       &[${PROPERTY_STAGE}='${STAGE_BACKGROUNDING}'] {
         ${euiCanAnimate} {
           animation: ${euiFlyoutSlideBack3D} ${euiTheme.animation.extraSlow}
@@ -91,8 +90,7 @@ export const euiManagedFlyoutStyles = (euiThemeContext: UseEuiTheme) => {
 
       /* When flyout is active, ensure it's on top and interactive */
       &[${PROPERTY_STAGE}='${STAGE_ACTIVE}'],
-      &[${PROPERTY_STAGE}='${STAGE_INACTIVE}'],
-      &[data-overlay-mask-has-rendered='true'] {
+      &[${PROPERTY_STAGE}='${STAGE_INACTIVE}'] {
         animation: none;
         opacity: 1;
       }

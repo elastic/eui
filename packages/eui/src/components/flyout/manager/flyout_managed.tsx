@@ -5,8 +5,7 @@
  * in compliance with, at your election, the Elastic License 2.0 or the Server
  * Side Public License, v 1.
  */
-
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import {
   EuiFlyoutComponent,
   EuiFlyoutComponentProps,
@@ -29,24 +28,15 @@ import {
   isNamedSize,
 } from './validation';
 import {
-  LAYOUT_MODE_SIDE_BY_SIDE,
-  LAYOUT_MODE_STACKED,
   LEVEL_CHILD,
-  LEVEL_MAIN,
   PROPERTY_FLYOUT,
   PROPERTY_LAYOUT_MODE,
   PROPERTY_LEVEL,
   PROPERTY_STAGE,
-  STAGE_ACTIVE,
-  STAGE_BACKGROUNDED,
-  STAGE_BACKGROUNDING,
-  STAGE_CLOSING,
-  STAGE_INACTIVE,
-  STAGE_OPENING,
-  STAGE_RETURNING,
 } from './const';
 import { EuiFlyoutIsManagedProvider } from './context';
-import { EuiFlyoutActiveState, EuiFlyoutLevel } from './types';
+import { EuiFlyoutLevel } from './types';
+import { useFlyoutActiveState } from './active_state';
 
 /**
  * Props for `EuiManagedFlyout`, the internal persistent flyout used by
@@ -82,8 +72,6 @@ export const EuiManagedFlyout = ({
 }: EuiManagedFlyoutProps) => {
   const flyoutId = useFlyoutId(id);
   const flyoutRef = useRef<HTMLDivElement>(null);
-  const [activeState, setActiveState] =
-    useState<EuiFlyoutActiveState>(STAGE_OPENING);
 
   const { addFlyout, closeFlyout, setFlyoutWidth } = useFlyoutManager();
 
@@ -142,67 +130,10 @@ export const EuiManagedFlyout = ({
     }
   }, [flyoutId, level, isActive, width, setFlyoutWidth]);
 
-  // Handle onAnimationEnd events when the flyout finishes opening or closing
-  const onAnimationEnd = () => {
-    if (activeState === STAGE_OPENING || activeState === STAGE_RETURNING) {
-      setActiveState(STAGE_ACTIVE);
-    } else if (activeState === STAGE_CLOSING) {
-      setActiveState(STAGE_INACTIVE);
-    } else if (activeState === STAGE_BACKGROUNDING) {
-      setActiveState(STAGE_BACKGROUNDED);
-    }
-  };
-
-  const layoutModeRef = useRef(layoutMode);
-  const activeStateRef = useRef(activeState);
-
-  // Update ref when activeState changes
-  useEffect(() => {
-    activeStateRef.current = activeState;
-  }, [activeState]);
-
-  // Handle isActive changes when flyout needs to be opened or closed
-  useEffect(() => {
-    const currentActiveState = activeStateRef.current;
-
-    if (!isActive && currentActiveState === STAGE_ACTIVE) {
-      setActiveState(STAGE_CLOSING);
-    } else if (isActive && currentActiveState === STAGE_INACTIVE) {
-      setActiveState(STAGE_RETURNING);
-    }
-  }, [isActive, flyoutId]);
-
-  // Handle layout mode changes, when the side-by-side or stacked mode changes
-  useEffect(() => {
-    if (
-      layoutModeRef.current === layoutMode ||
-      level !== LEVEL_MAIN ||
-      !isActive
-    ) {
-      return;
-    }
-
-    const currentActiveState = activeStateRef.current;
-
-    if (
-      layoutMode === LAYOUT_MODE_STACKED &&
-      currentActiveState === STAGE_ACTIVE
-    ) {
-      // Delay backgrounding to allow child flyout animations to complete
-      const timeoutId = setTimeout(() => {
-        setActiveState(STAGE_BACKGROUNDING);
-      }, 100); // Small delay to allow child animations to start
-
-      return () => clearTimeout(timeoutId);
-    } else if (
-      layoutMode === LAYOUT_MODE_SIDE_BY_SIDE &&
-      (currentActiveState === STAGE_BACKGROUNDED ||
-        currentActiveState === STAGE_BACKGROUNDING)
-    ) {
-      setActiveState(STAGE_RETURNING);
-    }
-    layoutModeRef.current = layoutMode;
-  }, [level, layoutMode, activeState, flyoutId, isActive]);
+  const { activeState, onAnimationEnd } = useFlyoutActiveState({
+    flyoutId,
+    level,
+  });
 
   return (
     <EuiFlyoutIsManagedProvider isManaged={true}>
