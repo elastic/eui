@@ -40,7 +40,7 @@ The central state management system for flyout sessions:
 - **Responsive Layout**: `useFlyoutLayoutMode` hook manages responsive behavior for managed flyouts with 90% viewport width rule for switching between `side-by-side` and `stacked` layouts
 
 ### `src/components/flyout/manager/flyout_main.tsx`
-Renders the primary flyout in a session. Currently a simple wrapper around `EuiManagedFlyout` with `level="main"`. TODO items include handling child flyout presence and adjusting focus/shadow behavior.
+Renders the primary flyout in a session. Currently a simple wrapper around `EuiManagedFlyout` with `session={true}`. TODO items include handling child flyout presence and adjusting focus/shadow behavior.
 
 ### `src/components/flyout/manager/flyout_child.tsx`
 Renders child flyouts within a session:

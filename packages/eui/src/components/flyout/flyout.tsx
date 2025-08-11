@@ -6,11 +6,14 @@
  * Side Public License, v 1.
  */
 
-import React, { ElementType, useRef, forwardRef } from 'react';
+import React, { useRef, forwardRef, ElementType } from 'react';
+import { usePropsWithComponentDefaults } from '../provider/component_defaults';
+
 import {
   EuiFlyoutComponent,
   type EuiFlyoutComponentProps,
 } from './flyout.component';
+
 import {
   EuiFlyoutChild,
   EuiFlyoutMain,
@@ -31,8 +34,6 @@ export {
   FLYOUT_TYPES,
 } from './const';
 
-export { EuiFlyoutComponent } from './flyout.component';
-
 export type EuiFlyoutProps<T extends ElementType = 'div' | 'nav'> = Omit<
   EuiFlyoutComponentProps<T>,
   'as'
@@ -44,7 +45,11 @@ export type EuiFlyoutProps<T extends ElementType = 'div' | 'nav'> = Omit<
 export const EuiFlyout = forwardRef<
   HTMLDivElement | HTMLElement,
   EuiFlyoutProps<'div' | 'nav'>
->(({ session, as, onClose, ...props }, ref) => {
+>((props, ref) => {
+  const { session, as, onClose, ...rest } = usePropsWithComponentDefaults(
+    'EuiFlyout',
+    props
+  );
   const hasActiveSession = useIsSessionActive();
   const isUnmanagedFlyout = useRef(false);
   const isInManagedFlyout = useIsInManagedFlyout();
@@ -56,17 +61,17 @@ export const EuiFlyout = forwardRef<
       onClose?.({} as any);
       return null;
     }
-    return <EuiFlyoutMain {...props} onClose={onClose} as="div" />;
+    return <EuiFlyoutMain {...rest} onClose={onClose} as="div" />;
   }
 
   // Else if this flyout is a child of a session AND within a managed flyout context, render EuiChildFlyout.
   if (hasActiveSession && isInManagedFlyout) {
-    return <EuiFlyoutChild {...props} onClose={onClose} as="div" />;
+    return <EuiFlyoutChild {...rest} onClose={onClose} as="div" />;
   }
 
   // TODO: if resizeable={true}, render EuiResizableFlyout.
 
   isUnmanagedFlyout.current = true;
-  return <EuiFlyoutComponent {...props} onClose={onClose} as={as} ref={ref} />;
+  return <EuiFlyoutComponent {...rest} onClose={onClose} as={as} ref={ref} />;
 });
 EuiFlyout.displayName = 'EuiFlyout';
