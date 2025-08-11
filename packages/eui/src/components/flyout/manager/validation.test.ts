@@ -13,7 +13,7 @@ import {
   validateFlyoutSize,
   createValidationErrorMessage,
   FlyoutSizeValidationError,
-} from './flyout_validation';
+} from './validation';
 
 describe('Flyout Size Validation', () => {
   describe('isNamedSize', () => {

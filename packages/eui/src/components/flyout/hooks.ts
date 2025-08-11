@@ -11,6 +11,10 @@ import { EuiFlyoutProps } from './flyout';
 import { usePropsWithComponentDefaults } from '../provider/component_defaults';
 import { DEFAULT_PUSH_MIN_BREAKPOINT, DEFAULT_TYPE } from './const';
 
+/**
+ * Determines if a flyout should be rendered in a "pushed" state based on its
+ * configuration and the current window size.
+ */
 export const useIsPushed = (
   props: Pick<EuiFlyoutProps, 'type' | 'pushMinBreakpoint'>
 ) => {

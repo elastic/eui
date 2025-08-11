@@ -7,6 +7,9 @@
  */
 
 import { EuiFlyoutSize, FLYOUT_SIZES } from '../const';
+import { EuiFlyoutComponentProps } from '../flyout.component';
+import { LEVEL_CHILD } from './const';
+import { EuiFlyoutLevel } from './types';
 
 /**
  * Business rules for flyout sizes:
@@ -19,14 +22,14 @@ export interface FlyoutSizeValidationError {
   type: 'INVALID_SIZE_TYPE' | 'INVALID_SIZE_COMBINATION';
   message: string;
   flyoutId?: string;
-  level?: 'main' | 'child';
+  level?: EuiFlyoutLevel;
   size?: string; // Allow any string for error reporting
 }
 
 /**
  * Checks if a size is a named size (s, m, l)
  */
-export function isNamedSize(size: any): size is EuiFlyoutSize {
+export function isNamedSize(size: unknown): size is EuiFlyoutSize {
   return FLYOUT_SIZES.includes(size as EuiFlyoutSize);
 }
 
@@ -34,9 +37,9 @@ export function isNamedSize(size: any): size is EuiFlyoutSize {
  * Validates that a managed flyout only uses named sizes
  */
 export function validateManagedFlyoutSize(
-  size: any,
+  size: EuiFlyoutComponentProps['size'],
   flyoutId: string,
-  level: 'main' | 'child'
+  level: EuiFlyoutLevel
 ): FlyoutSizeValidationError | null {
   if (!isNamedSize(size)) {
     return {
@@ -44,7 +47,7 @@ export function validateManagedFlyoutSize(
       message: `Managed flyouts must use named sizes (s, m, l). Received: ${size}`,
       flyoutId,
       level,
-      size,
+      size: `${size}`,
     };
   }
   return null;
@@ -82,9 +85,9 @@ export function validateSizeCombination(
  * Comprehensive validation for flyout size rules
  */
 export function validateFlyoutSize(
-  size: any,
+  size: EuiFlyoutComponentProps['size'],
   flyoutId: string,
-  level: 'main' | 'child',
+  level: EuiFlyoutLevel,
   parentSize?: EuiFlyoutSize
 ): FlyoutSizeValidationError | null {
   // First validate that managed flyouts use named sizes
@@ -94,7 +97,7 @@ export function validateFlyoutSize(
   }
 
   // If this is a child flyout and we have parent size, validate combination
-  if (level === 'child' && parentSize && isNamedSize(size)) {
+  if (level === LEVEL_CHILD && parentSize && isNamedSize(size)) {
     const combinationError = validateSizeCombination(parentSize, size);
     if (combinationError) {
       combinationError.flyoutId = flyoutId;

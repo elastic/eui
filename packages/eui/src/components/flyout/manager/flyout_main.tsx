@@ -9,8 +9,7 @@
 import React from 'react';
 
 import { EuiManagedFlyout, type EuiManagedFlyoutProps } from './flyout_managed';
-import { useHasChildFlyout } from './flyout_manager';
-import { useFlyoutId } from './hooks';
+import { useHasChildFlyout, useFlyoutId } from './hooks';
 import { euiMainFlyoutStyles } from './flyout_main.styles';
 import { useEuiMemoizedStyles } from '../../../services';
 import {
@@ -19,9 +18,18 @@ import {
   DEFAULT_TYPE,
 } from '../const';
 import { useIsPushed } from '../hooks';
+import { LEVEL_MAIN } from './const';
 
+/**
+ * Props for `EuiFlyoutMain`, the primary managed flyout component.
+ * The `level` prop is fixed internally to `main` and is therefore omitted.
+ */
 export type EuiFlyoutMainProps = Omit<EuiManagedFlyoutProps, 'level'>;
 
+/**
+ * Managed main flyout. Handles ID management, child-flyout styling,
+ * and push/overlay behavior based on provided props.
+ */
 export function EuiFlyoutMain({
   id,
   pushMinBreakpoint = DEFAULT_PUSH_MIN_BREAKPOINT,
@@ -43,7 +51,7 @@ export function EuiFlyoutMain({
   return (
     <EuiManagedFlyout
       id={flyoutId}
-      level="main"
+      level={LEVEL_MAIN}
       style={style}
       css={cssStyles}
       {...{ ...props, pushMinBreakpoint, type, side }}

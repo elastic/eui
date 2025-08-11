@@ -9,20 +9,30 @@
 import { css } from '@emotion/react';
 import { UseEuiTheme } from '../../../services';
 
+/**
+ * Emotion styles for the main (parent) managed flyout.
+ * Adds subtle borders when a child flyout is present, depending on side.
+ *
+ * Returns an object with:
+ * - `hasChildFlyout.left` and `.right`: border styles to separate from child.
+ */
 export const euiMainFlyoutStyles = (euiThemeContext: UseEuiTheme) => {
-  const { euiTheme } = euiThemeContext;
+  const {
+    euiTheme: {
+      colors: { borderBaseSubdued },
+      border: { width: thin },
+    },
+  } = euiThemeContext;
 
   return {
     hasChildFlyout: {
       left: css`
         box-shadow: none;
-        border-inline-end: ${euiTheme.border.width.thin} solid
-          ${euiTheme.colors.borderBaseSubdued};
+        border-inline-end: ${thin} solid ${borderBaseSubdued};
       `,
       right: css`
         box-shadow: none;
-        border-inline-start: ${euiTheme.border.width.thin} solid
-          ${euiTheme.colors.borderBaseSubdued};
+        border-inline-start: ${thin} solid ${borderBaseSubdued};
       `,
     },
   };

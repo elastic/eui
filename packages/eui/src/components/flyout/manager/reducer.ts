@@ -1,0 +1,152 @@
+/*
+ * Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
+ * or more contributor license agreements. Licensed under the Elastic License
+ * 2.0 and the Server Side Public License, v 1; you may not use this file except
+ * in compliance with, at your election, the Elastic License 2.0 or the Server
+ * Side Public License, v 1.
+ */
+
+import {
+  ACTION_ADD,
+  ACTION_CLOSE,
+  ACTION_SET_ACTIVE,
+  ACTION_SET_LAYOUT_MODE,
+  ACTION_SET_WIDTH,
+  Action,
+} from './actions';
+import { LAYOUT_MODE_SIDE_BY_SIDE, LEVEL_MAIN } from './const';
+import { EuiFlyoutManagerState, FlyoutSession } from './types';
+
+/**
+ * Default flyout manager state used to initialize the reducer.
+ */
+export const initialState: EuiFlyoutManagerState = {
+  sessions: [],
+  flyouts: [],
+  layoutMode: LAYOUT_MODE_SIDE_BY_SIDE,
+};
+
+/**
+ * Reducer handling all flyout manager actions and state transitions.
+ */
+export function flyoutManagerReducer(
+  state: EuiFlyoutManagerState = initialState,
+  action: Action
+): EuiFlyoutManagerState {
+  switch (action.type) {
+    // Register a flyout.
+    // - Ignore duplicates by `flyoutId`.
+    // - For a `main` flyout, start a new session { main, child: null }.
+    // - For a `child` flyout, attach it to the most recent session; if no
+    //   session exists, do nothing (invalid child without a parent).
+    case ACTION_ADD: {
+      const { flyoutId, level, size } = action;
+
+      if (state.flyouts.some((f) => f.flyoutId === flyoutId)) {
+        return state;
+      }
+
+      const newFlyouts = [...state.flyouts, { level, flyoutId, size }];
+
+      if (level === LEVEL_MAIN) {
+        const newSession: FlyoutSession = { main: flyoutId, child: null };
+        return {
+          ...state,
+          sessions: [...state.sessions, newSession],
+          flyouts: newFlyouts,
+        };
+      }
+
+      if (state.sessions.length === 0) {
+        return state;
+      }
+
+      const updatedSessions = [...state.sessions];
+      const currentSessionIndex = updatedSessions.length - 1;
+
+      updatedSessions[currentSessionIndex] = {
+        ...updatedSessions[currentSessionIndex],
+        child: flyoutId,
+      };
+
+      return { ...state, sessions: updatedSessions, flyouts: newFlyouts };
+    }
+
+    // Unregister a flyout and update sessions accordingly.
+    // - When closing a `main` flyout, drop its entire session.
+    // - When closing a `child` flyout, clear the child pointer on the most
+    //   recent session if it matches.
+    case ACTION_CLOSE: {
+      const removedFlyout = state.flyouts.find(
+        (f) => f.flyoutId === action.flyoutId
+      );
+
+      const newFlyouts = state.flyouts.filter(
+        (f) => f.flyoutId !== action.flyoutId
+      );
+
+      if (!removedFlyout) {
+        return state;
+      }
+
+      if (removedFlyout.level === LEVEL_MAIN) {
+        const newSessions = state.sessions.filter(
+          (session) => session.main !== action.flyoutId
+        );
+        return { ...state, sessions: newSessions, flyouts: newFlyouts };
+      }
+
+      if (state.sessions.length === 0) {
+        return { ...state, flyouts: newFlyouts };
+      }
+
+      const updatedSessions = [...state.sessions];
+      const currentSessionIndex = updatedSessions.length - 1;
+
+      if (updatedSessions[currentSessionIndex].child === action.flyoutId) {
+        updatedSessions[currentSessionIndex] = {
+          ...updatedSessions[currentSessionIndex],
+          child: null,
+        };
+      }
+
+      return { ...state, sessions: updatedSessions, flyouts: newFlyouts };
+    }
+
+    // Mark the provided flyout ID as the active child for the latest session.
+    case ACTION_SET_ACTIVE: {
+      // No-op when no session exists.
+      if (state.sessions.length === 0) {
+        return state;
+      }
+
+      const updatedSessions = [...state.sessions];
+      const currentSessionIndex = updatedSessions.length - 1;
+
+      updatedSessions[currentSessionIndex] = {
+        ...updatedSessions[currentSessionIndex],
+        child: action.flyoutId,
+      };
+
+      return { ...state, sessions: updatedSessions };
+    }
+
+    // Persist a flyout's measured width (px). Used for responsive layout
+    // calculations, e.g., deciding stacked vs side-by-side.
+    case ACTION_SET_WIDTH: {
+      const { flyoutId, width } = action;
+      const updatedFlyouts = state.flyouts.map((flyout) =>
+        flyout.flyoutId === flyoutId ? { ...flyout, width } : flyout
+      );
+      return { ...state, flyouts: updatedFlyouts };
+    }
+
+    // Switch global layout mode for managed flyouts.
+    case ACTION_SET_LAYOUT_MODE: {
+      return { ...state, layoutMode: action.layoutMode };
+    }
+
+    default:
+      return state;
+  }
+}

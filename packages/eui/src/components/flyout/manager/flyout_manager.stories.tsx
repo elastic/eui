@@ -25,9 +25,9 @@ import {
   EuiSwitch,
   EuiText,
   EuiTitle,
-} from '../../index';
+} from '../..';
 import { EuiFlyout, EuiFlyoutProps } from '../flyout';
-import { useFlyoutManager } from './flyout_manager';
+import { useFlyoutManager } from './hooks';
 
 const meta: Meta<typeof EuiFlyout> = {
   title: 'Layout/EuiFlyout/Flyout Manager',

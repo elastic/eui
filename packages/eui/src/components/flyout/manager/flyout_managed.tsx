@@ -14,10 +14,10 @@ import {
 import {
   useFlyoutManager as _useFlyoutManager,
   useIsFlyoutActive,
-  EuiManagedFlyoutContext,
   useParentFlyoutSize,
   useFlyoutLayoutMode,
-} from './flyout_manager';
+  useFlyoutId,
+} from './hooks';
 import { useEuiMemoizedStyles } from '../../../services';
 import { useResizeObserver } from '../../observer/resize_observer';
 import { euiManagedFlyoutStyles } from './flyout_managed.styles';
@@ -27,11 +27,34 @@ import {
   validateSizeCombination,
   createValidationErrorMessage,
   isNamedSize,
-} from './flyout_validation';
-import { useFlyoutId } from './hooks';
+} from './validation';
+import {
+  LAYOUT_MODE_SIDE_BY_SIDE,
+  LAYOUT_MODE_STACKED,
+  LEVEL_CHILD,
+  LEVEL_MAIN,
+  PROPERTY_FLYOUT,
+  PROPERTY_LAYOUT_MODE,
+  PROPERTY_LEVEL,
+  PROPERTY_STAGE,
+  STAGE_ACTIVE,
+  STAGE_BACKGROUNDED,
+  STAGE_BACKGROUNDING,
+  STAGE_CLOSING,
+  STAGE_INACTIVE,
+  STAGE_OPENING,
+  STAGE_RETURNING,
+} from './const';
+import { EuiFlyoutIsManagedProvider } from './context';
+import { EuiFlyoutActiveState, EuiFlyoutLevel } from './types';
 
+/**
+ * Props for `EuiManagedFlyout`, the internal persistent flyout used by
+ * the manager. Extends base flyout props and requires a `level` to
+ * distinguish `main` vs `child` behavior.
+ */
 export interface EuiManagedFlyoutProps extends EuiFlyoutComponentProps {
-  level: 'main' | 'child';
+  level: EuiFlyoutLevel;
 }
 
 const useFlyoutManager = () => {
@@ -42,16 +65,13 @@ const useFlyoutManager = () => {
   return context;
 };
 
-type ActiveState =
-  | 'opening'
-  | 'active'
-  | 'inactive'
-  | 'backgrounding'
-  | 'backgrounded'
-  | 'returning'
-  | 'closing';
-
-// The persistent component that renders in the provider
+/**
+ * Persistent managed flyout rendered inside the provider. Handles:
+ * - registration/unregistration with the manager
+ * - size validation and parent/child size compatibility
+ * - width tracking for responsive layouts
+ * - lifecycle stage transitions and data attributes for styling
+ */
 export const EuiManagedFlyout = ({
   id,
   onClose: onCloseProp,
@@ -62,7 +82,8 @@ export const EuiManagedFlyout = ({
 }: EuiManagedFlyoutProps) => {
   const flyoutId = useFlyoutId(id);
   const flyoutRef = useRef<HTMLDivElement>(null);
-  const [activeState, setActiveState] = useState<ActiveState>('opening');
+  const [activeState, setActiveState] =
+    useState<EuiFlyoutActiveState>(STAGE_OPENING);
 
   const { addFlyout, closeFlyout, setFlyoutWidth } = useFlyoutManager();
 
@@ -84,7 +105,7 @@ export const EuiManagedFlyout = ({
 
     // For child flyouts, validate parent-child combinations
     if (
-      level === 'child' &&
+      level === LEVEL_CHILD &&
       parentSize &&
       isNamedSize(size) &&
       isNamedSize(parentSize)
@@ -122,13 +143,13 @@ export const EuiManagedFlyout = ({
   }, [flyoutId, level, isActive, width, setFlyoutWidth]);
 
   // Handle onAnimationEnd events when the flyout finishes opening or closing
-  const handleAnimationEnd = () => {
-    if (activeState === 'opening' || activeState === 'returning') {
-      setActiveState('active');
-    } else if (activeState === 'closing') {
-      setActiveState('inactive');
-    } else if (activeState === 'backgrounding') {
-      setActiveState('backgrounded');
+  const onAnimationEnd = () => {
+    if (activeState === STAGE_OPENING || activeState === STAGE_RETURNING) {
+      setActiveState(STAGE_ACTIVE);
+    } else if (activeState === STAGE_CLOSING) {
+      setActiveState(STAGE_INACTIVE);
+    } else if (activeState === STAGE_BACKGROUNDING) {
+      setActiveState(STAGE_BACKGROUNDED);
     }
   };
 
@@ -144,55 +165,64 @@ export const EuiManagedFlyout = ({
   useEffect(() => {
     const currentActiveState = activeStateRef.current;
 
-    if (!isActive && currentActiveState === 'active') {
-      setActiveState('closing');
-    } else if (isActive && currentActiveState === 'inactive') {
-      setActiveState('returning');
+    if (!isActive && currentActiveState === STAGE_ACTIVE) {
+      setActiveState(STAGE_CLOSING);
+    } else if (isActive && currentActiveState === STAGE_INACTIVE) {
+      setActiveState(STAGE_RETURNING);
     }
   }, [isActive, flyoutId]);
 
   // Handle layout mode changes, when the side-by-side or stacked mode changes
   useEffect(() => {
-    if (layoutModeRef.current === layoutMode || level !== 'main' || !isActive) {
+    if (
+      layoutModeRef.current === layoutMode ||
+      level !== LEVEL_MAIN ||
+      !isActive
+    ) {
       return;
     }
 
     const currentActiveState = activeStateRef.current;
 
-    if (layoutMode === 'stacked' && currentActiveState === 'active') {
+    if (
+      layoutMode === LAYOUT_MODE_STACKED &&
+      currentActiveState === STAGE_ACTIVE
+    ) {
       // Delay backgrounding to allow child flyout animations to complete
       const timeoutId = setTimeout(() => {
-        setActiveState('backgrounding');
+        setActiveState(STAGE_BACKGROUNDING);
       }, 100); // Small delay to allow child animations to start
 
       return () => clearTimeout(timeoutId);
     } else if (
-      layoutMode === 'side-by-side' &&
-      (currentActiveState === 'backgrounded' ||
-        currentActiveState === 'backgrounding')
+      layoutMode === LAYOUT_MODE_SIDE_BY_SIDE &&
+      (currentActiveState === STAGE_BACKGROUNDED ||
+        currentActiveState === STAGE_BACKGROUNDING)
     ) {
-      setActiveState('returning');
+      setActiveState(STAGE_RETURNING);
     }
     layoutModeRef.current = layoutMode;
   }, [level, layoutMode, activeState, flyoutId, isActive]);
 
   return (
-    <EuiManagedFlyoutContext.Provider value={true}>
+    <EuiFlyoutIsManagedProvider isManaged={true}>
       <EuiFlyoutMenuContext.Provider value={{ onClose }}>
         <EuiFlyoutComponent
           id={flyoutId}
           ref={flyoutRef}
-          data-managed-flyout={true}
-          data-managed-flyout-level={level}
-          data-managed-flyout-active={activeState}
-          data-layout-mode={layoutMode}
-          onClose={onClose}
           css={[styles.managedFlyout, customCss]}
-          onAnimationEnd={handleAnimationEnd}
-          size={size}
-          {...props}
+          {...{
+            ...props,
+            onClose,
+            size,
+            onAnimationEnd,
+            [PROPERTY_FLYOUT]: true,
+            [PROPERTY_STAGE]: activeState,
+            [PROPERTY_LAYOUT_MODE]: layoutMode,
+            [PROPERTY_LEVEL]: level,
+          }}
         />
       </EuiFlyoutMenuContext.Provider>
-    </EuiManagedFlyoutContext.Provider>
+    </EuiFlyoutIsManagedProvider>
   );
 };

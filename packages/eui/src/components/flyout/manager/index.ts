@@ -6,21 +6,42 @@
  * Side Public License, v 1.
  */
 
-export { EuiFlyoutChild, type EuiFlyoutChildProps } from './flyout_child';
-export { EuiFlyoutMain, type EuiFlyoutMainProps } from './flyout_main';
+/**
+ * Convenience re-exports of bound action creators for external usage.
+ */
 export {
-  addFlyout,
-  closeFlyout,
-  EuiFlyoutManager,
-  EuiManagedFlyoutContext,
-  setActiveFlyout,
-  setFlyoutWidth,
+  addFlyout as addFlyoutAction,
+  closeFlyout as closeFlyoutAction,
+  setActiveFlyout as setActiveFlyoutAction,
+  setFlyoutWidth as setFlyoutWidthAction,
+} from './actions';
+
+/** Reducer and default state for the flyout manager. */
+export { flyoutManagerReducer, initialState } from './reducer';
+
+/** Provider component exposing the Flyout Manager API via context. */
+export { EuiFlyoutManager } from './provider';
+
+/**
+ * Hooks for reading manager state and derived information.
+ */
+/**
+ * Selectors and derived state hooks for managed flyouts.
+ */
+export {
+  useCurrentChildFlyout,
+  useCurrentMainFlyout,
   useCurrentSession,
+  useFlyoutId,
+  useFlyoutLayoutMode,
   useFlyoutManager,
   useFlyoutWidth,
+  useHasChildFlyout,
   useIsFlyoutActive,
-  useIsManagedFlyoutContext,
+  useIsInManagedFlyout,
   useIsSessionActive,
-  type EuiFlyoutManagerState,
-  type EuiManagedFlyoutState,
-} from './flyout_manager';
+  useParentFlyoutSize,
+} from './hooks';
+
+export { EuiFlyoutChild, type EuiFlyoutChildProps } from './flyout_child';
+export { EuiFlyoutMain, type EuiFlyoutMainProps } from './flyout_main';

@@ -9,17 +9,29 @@
 import { css } from '@emotion/react';
 import { UseEuiTheme } from '../../../services';
 
+/**
+ * Emotion styles for child flyouts.
+ * Provides background variants coordinated with the EUI theme.
+ *
+ * Returns an object with the following CSS snippets:
+ * - `backgroundDefault`: plain background
+ * - `backgroundShaded`: subdued background used to de-emphasize child content
+ */
 export const euiChildFlyoutStyles = (euiThemeContext: UseEuiTheme) => {
-  const { euiTheme } = euiThemeContext;
+  const {
+    euiTheme: {
+      colors: { backgroundBasePlain, backgroundBaseSubdued },
+    },
+  } = euiThemeContext;
 
   return {
     backgroundDefault: css`
       /* Default background for flyouts */
-      background: ${euiTheme.colors.backgroundBasePlain};
+      background: ${backgroundBasePlain};
     `,
     backgroundShaded: css`
       /* Shaded background for child flyouts */
-      background: ${euiTheme.colors.backgroundBaseSubdued};
+      background: ${backgroundBaseSubdued};
     `,
   };
 };

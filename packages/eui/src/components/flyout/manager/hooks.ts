@@ -6,10 +6,84 @@
  * Side Public License, v 1.
  */
 
-import { useId, useRef } from 'react';
+import React, { useId, useRef } from 'react';
+import { flyoutManagerReducer, initialState } from './reducer';
+import {
+  addFlyout as addFlyoutAction,
+  closeFlyout as closeFlyoutAction,
+  setActiveFlyout as setActiveFlyoutAction,
+  setFlyoutWidth as setFlyoutWidthAction,
+} from './actions';
+import {
+  type EuiFlyoutLevel,
+  type EuiFlyoutManagerState,
+  type FlyoutManagerApi,
+} from './types';
+import { EuiFlyoutManagerContext } from './provider';
+import { LEVEL_MAIN } from './const';
 
+export {
+  useIsFlyoutActive,
+  useIsSessionActive,
+  useCurrentSession,
+  useCurrentMainFlyout,
+  useCurrentChildFlyout,
+  useFlyoutWidth,
+  useParentFlyoutSize,
+  useHasChildFlyout,
+} from './selectors';
+
+export { useFlyoutLayoutMode } from './layout_mode';
+
+export { useIsInManagedFlyout } from './context';
+
+/**
+ * Hook that provides the flyout manager reducer and bound action creators.
+ * Accepts an optional initial state (mainly for tests or custom setups).
+ */
+export function useFlyoutManagerReducer(
+  initial: EuiFlyoutManagerState = initialState
+): FlyoutManagerApi {
+  const [state, dispatch] = React.useReducer(flyoutManagerReducer, initial);
+
+  const addFlyout = React.useCallback(
+    (flyoutId: string, level: EuiFlyoutLevel = LEVEL_MAIN, size?: string) =>
+      dispatch(addFlyoutAction(flyoutId, level, size)),
+    []
+  );
+  const closeFlyout = React.useCallback(
+    (flyoutId: string) => dispatch(closeFlyoutAction(flyoutId)),
+    []
+  );
+  const setActiveFlyout = React.useCallback(
+    (flyoutId: string | null) => dispatch(setActiveFlyoutAction(flyoutId)),
+    []
+  );
+  const setFlyoutWidth = React.useCallback(
+    (flyoutId: string, width: number) =>
+      dispatch(setFlyoutWidthAction(flyoutId, width)),
+    []
+  );
+
+  return {
+    state,
+    dispatch,
+    addFlyout,
+    closeFlyout,
+    setActiveFlyout,
+    setFlyoutWidth,
+  };
+}
+
+/** Access the flyout manager context (state and actions). */
+export const useFlyoutManager = () => React.useContext(EuiFlyoutManagerContext);
+
+/**
+ * Stable flyout ID utility. Uses the passed `id` if provided, otherwise
+ * generates a deterministic ID for the component's lifetime.
+ */
 export const useFlyoutId = (id?: string) => {
   const defaultId = useId();
-  const componentIdRef = useRef<string>(id || `persistent-${defaultId}`);
+  const componentIdRef = useRef<string>(id || `flyout-${defaultId}`);
   return componentIdRef.current;
 };

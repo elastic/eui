@@ -15,7 +15,6 @@ import React, {
   useCallback,
   useState,
   forwardRef,
-  useContext,
   ComponentPropsWithRef,
   CSSProperties,
   ElementType,
@@ -35,7 +34,7 @@ import {
   useGeneratedHtmlId,
   useEuiThemeCSSVariables,
 } from '../../services';
-import { useCurrentSession, EuiManagedFlyoutContext } from '../flyout/manager';
+import { useCurrentSession, useIsInManagedFlyout } from './manager';
 import { logicalStyle } from '../../global_styling';
 
 import { CommonProps, PropsOfElement } from '../common';
@@ -273,7 +272,7 @@ export const EuiFlyoutComponent = forwardRef(
     }, []);
 
     const currentSession = useCurrentSession();
-    const isInManagedContext = useContext(EuiManagedFlyoutContext);
+    const isInManagedContext = useIsInManagedFlyout();
     const hasChildFlyout = currentSession?.child != null;
     const isChildFlyout =
       isInManagedContext && hasChildFlyout && currentSession?.child === id;

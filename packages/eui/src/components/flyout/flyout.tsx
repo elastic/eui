@@ -15,7 +15,7 @@ import {
   EuiFlyoutChild,
   EuiFlyoutMain,
   useIsSessionActive,
-  useIsManagedFlyoutContext,
+  useIsInManagedFlyout,
 } from './manager';
 
 export type {
@@ -47,10 +47,10 @@ export const EuiFlyout = forwardRef<
 >(({ session, as, onClose, ...props }, ref) => {
   const hasActiveSession = useIsSessionActive();
   const isUnmanagedFlyout = useRef(false);
-  const isInManagedFlyoutContext = useIsManagedFlyoutContext();
+  const isInManagedFlyout = useIsInManagedFlyout();
 
   // If session={true}, or there is an active session and the flyout is not a child of a session, render EuiMainFlyout.
-  if (session === true || (hasActiveSession && !isInManagedFlyoutContext)) {
+  if (session === true || (hasActiveSession && !isInManagedFlyout)) {
     if (isUnmanagedFlyout.current) {
       // TODO: @tkajtoch - We need to find a better way to handle the missing event.
       onClose?.({} as any);
@@ -60,7 +60,7 @@ export const EuiFlyout = forwardRef<
   }
 
   // Else if this flyout is a child of a session AND within a managed flyout context, render EuiChildFlyout.
-  if (hasActiveSession && isInManagedFlyoutContext) {
+  if (hasActiveSession && isInManagedFlyout) {
     return <EuiFlyoutChild {...props} onClose={onClose} as="div" />;
   }
 

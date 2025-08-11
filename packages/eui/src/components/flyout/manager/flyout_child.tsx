@@ -14,8 +14,20 @@ import {
   useCurrentMainFlyout,
   useFlyoutLayoutMode,
   useFlyoutWidth,
-} from './flyout_manager';
+} from './hooks';
+import {
+  LAYOUT_MODE_SIDE_BY_SIDE,
+  LAYOUT_MODE_STACKED,
+  LEVEL_CHILD,
+} from './const';
 
+/**
+ * Props for `EuiFlyoutChild`, a managed child flyout that pairs with a main flyout.
+ *
+ * Notes:
+ * - `type`, `side`, and `level` are fixed by the component and thus omitted.
+ * - `backgroundStyle` toggles between default and shaded backgrounds.
+ */
 export interface EuiFlyoutChildProps
   extends Omit<
     EuiManagedFlyoutProps,
@@ -24,6 +36,11 @@ export interface EuiFlyoutChildProps
   backgroundStyle?: 'default' | 'shaded';
 }
 
+/**
+ * Managed child flyout that renders alongside or stacked over the main flyout,
+ * depending on the current layout mode. Handles background styling and required
+ * managed flyout props.
+ */
 export function EuiFlyoutChild({
   css: customCss,
   backgroundStyle,
@@ -35,9 +52,9 @@ export function EuiFlyoutChild({
   const layoutMode = useFlyoutLayoutMode();
 
   let style: React.CSSProperties = {};
-  if (mainWidth && layoutMode === 'side-by-side') {
+  if (mainWidth && layoutMode === LAYOUT_MODE_SIDE_BY_SIDE) {
     style = { right: mainWidth };
-  } else if (layoutMode === 'stacked') {
+  } else if (layoutMode === LAYOUT_MODE_STACKED) {
     style = { zIndex: Number(euiTheme.levels.flyout) + 2 };
   }
 
@@ -45,7 +62,7 @@ export function EuiFlyoutChild({
     <EuiManagedFlyout
       {...props}
       style={style}
-      level="child"
+      level={LEVEL_CHILD}
       type="overlay"
       ownFocus={false}
       css={[

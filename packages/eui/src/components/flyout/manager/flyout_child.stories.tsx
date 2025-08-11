@@ -19,8 +19,9 @@ import { FLYOUT_TYPES } from '../flyout';
 import { EuiFlyoutBody } from '../flyout_body';
 import { EuiFlyoutFooter } from '../flyout_footer';
 import { EuiFlyoutMenu } from '../flyout_menu';
-import { EuiFlyoutChild, EuiFlyoutChildProps, EuiFlyoutMain } from './';
-import { useFlyoutLayoutMode } from './flyout_manager';
+import { EuiFlyoutChild, EuiFlyoutChildProps } from './flyout_child';
+import { EuiFlyoutMain } from './flyout_main';
+import { useFlyoutLayoutMode } from './hooks';
 
 type EuiFlyoutChildActualProps = Pick<
   EuiFlyoutChildProps,

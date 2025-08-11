@@ -9,6 +9,17 @@
 import { css, keyframes } from '@emotion/react';
 import { euiCanAnimate, logicalCSS } from '../../../global_styling';
 import { UseEuiTheme } from '../../../services';
+import {
+  PROPERTY_FLYOUT,
+  PROPERTY_STAGE,
+  STAGE_ACTIVE,
+  STAGE_BACKGROUNDED,
+  STAGE_BACKGROUNDING,
+  STAGE_CLOSING,
+  STAGE_INACTIVE,
+  STAGE_OPENING,
+  STAGE_RETURNING,
+} from './const';
 
 // Animation for moving flyout backwards in 3D space (z-axis) when inactive
 const euiFlyoutSlideBack3D = keyframes`
@@ -38,6 +49,14 @@ const euiFlyoutSlideForward3D = keyframes`
   }
 `;
 
+/**
+ * Emotion styles for managed flyouts.
+ * Provides base 3D context and animations tied to managed flyout stages
+ * via data attributes. Returns:
+ * - `managedFlyout`: core styles reacting to stage attributes (opening, active,
+ *   backgrounding, returning, closing, etc.)
+ * - `becomesActive`: helper animation for future/conditional use
+ */
 export const euiManagedFlyoutStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
 
@@ -48,8 +67,8 @@ export const euiManagedFlyoutStyles = (euiThemeContext: UseEuiTheme) => {
       transform-style: preserve-3d;
 
       /* When flyout is inactive, animate backwards in 3D space */
-      &[data-managed-flyout-active='closing'],
-      &[data-managed-flyout-active='backgrounding'] {
+      &[${PROPERTY_FLYOUT}='${STAGE_CLOSING}'],
+      &[${PROPERTY_STAGE}='${STAGE_BACKGROUNDING}'] {
         ${euiCanAnimate} {
           animation: ${euiFlyoutSlideBack3D} ${euiTheme.animation.extraSlow}
             ${euiTheme.animation.resistance} forwards;
@@ -58,28 +77,28 @@ export const euiManagedFlyoutStyles = (euiThemeContext: UseEuiTheme) => {
       }
 
       /* When flyout is active, ensure it's on top and interactive */
-      &[data-managed-flyout-active='returning'] {
+      &[${PROPERTY_STAGE}='${STAGE_RETURNING}'] {
         animation: ${euiFlyoutSlideForward3D} ${euiTheme.animation.normal}
           ${euiTheme.animation.resistance} forwards;
       }
 
       /* When flyout is active, ensure it's on top and interactive */
-      &[data-managed-flyout-active='active'],
-      &[data-managed-flyout-active='opening'] {
+      &[${PROPERTY_STAGE}='${STAGE_ACTIVE}'],
+      &[${PROPERTY_STAGE}='${STAGE_OPENING}'] {
         z-index: ${parseInt(euiTheme.levels.flyout as string) + 1};
         pointer-events: auto;
       }
 
       /* When flyout is active, ensure it's on top and interactive */
-      &[data-managed-flyout-active='active'],
-      &[data-managed-flyout-active='inactive'],
+      &[${PROPERTY_STAGE}='${STAGE_ACTIVE}'],
+      &[${PROPERTY_STAGE}='${STAGE_INACTIVE}'],
       &[data-overlay-mask-has-rendered='true'] {
         animation: none;
         opacity: 1;
       }
 
-      &[data-managed-flyout-active='inactive'],
-      &[data-managed-flyout-active='backgrounded'] {
+      &[${PROPERTY_STAGE}='${STAGE_INACTIVE}'],
+      &[${PROPERTY_STAGE}='${STAGE_BACKGROUNDED}'] {
         ${logicalCSS('left', '100vw')}
       }
     `,
