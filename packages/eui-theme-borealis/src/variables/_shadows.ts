@@ -453,19 +453,19 @@ const shadowsDark = {
   },
   hover: {
     base: {
-      down: formatMultipleBoxShadow(shadowPrimitives.s.dark, {
+      down: formatMultipleBoxShadow(shadowPrimitives.s.dark.slice(1), {
         color: shadowColorsDark.colors.base,
       }),
-      up: formatMultipleBoxShadow(shadowPrimitives.s.dark, {
+      up: formatMultipleBoxShadow(shadowPrimitives.s.dark.slice(1), {
         direction: 'up',
         color: shadowColorsDark.colors.base,
       }),
     },
     xl: {
-      down: formatMultipleBoxShadow(shadowPrimitives.xxl.dark, {
+      down: formatMultipleBoxShadow(shadowPrimitives.xxl.dark.slice(1), {
         color: shadowColorsDark.colors.base,
       }),
-      up: formatMultipleBoxShadow(shadowPrimitives.xxl.dark, {
+      up: formatMultipleBoxShadow(shadowPrimitives.xxl.dark.slice(1), {
         direction: 'up',
         color: shadowColorsDark.colors.base,
       }),
