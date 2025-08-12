@@ -149,3 +149,9 @@ export const Playground: Story = {
     },
   },
 };
+
+export const DarkMode: Story = {
+  ...Playground,
+  tags: ['vrt-only'],
+  globals: { colorMode: 'dark' },
+};

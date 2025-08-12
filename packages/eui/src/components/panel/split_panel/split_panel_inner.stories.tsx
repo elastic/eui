@@ -44,3 +44,19 @@ export const SplitPanelInner: Story = {
     </EuiSplitPanel.Outer>
   ),
 };
+
+export const SplitPanelInnerDark: Story = {
+  tags: ['vrt-only'],
+  globals: { colorMode: 'dark' },
+  render: ({ ...args }) => (
+    <EuiSplitPanel.Outer css={{ blockSize: '100vh' }}>
+      <EuiSplitPanel.Inner {...args}>Top panel</EuiSplitPanel.Inner>
+      <EuiSplitPanel.Inner {...args} color="subdued" grow>
+        Middle panel (with uncontrollable color and grow for contrast)
+      </EuiSplitPanel.Inner>
+      <EuiSplitPanel.Inner {...args}>
+        Controllable bottom panel
+      </EuiSplitPanel.Inner>
+    </EuiSplitPanel.Outer>
+  ),
+};
