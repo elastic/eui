@@ -265,7 +265,7 @@ const _euiShadowHover = (
 
 const _highContrastBorder = (
   euiThemeContext: UseEuiTheme,
-  { border, borderAllInHighContrastMode }: EuiShadowOptions = {}
+  { border = 'all', borderAllInHighContrastMode }: EuiShadowOptions = {}
 ) => {
   const { euiTheme } = euiThemeContext;
 
