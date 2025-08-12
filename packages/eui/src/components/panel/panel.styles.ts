@@ -7,7 +7,7 @@
  */
 
 import { css } from '@emotion/react';
-import { euiShadow } from '@elastic/eui-theme-common';
+import { euiShadow, euiShadowHover } from '@elastic/eui-theme-common';
 
 import { UseEuiTheme } from '../../services';
 import {
@@ -33,24 +33,13 @@ export const euiPanelBorderStyles = (
 
   return highContrastModeStyles(euiThemeContext, {
     none: `
-      /* Using a pseudo element for the border instead of floating border only 
-      because the transparent border might otherwise be visible with arbitrary 
-      full-width/height content in light mode. */
-      &::after {
-        content: '';
-        position: absolute;
-        /* ensure to keep on top of flush content */
-        z-index: 0;
-        inset: 0;
-        border: ${euiTheme.border.width.thin} solid
-          ${
-            borderColor ?? hasVisibleBorder
-              ? euiTheme.border.color
-              : euiTheme.colors.borderBaseFloating
-          };
-        border-radius: inherit;
-        pointer-events: none;
-      }
+      border: ${
+        borderColor ?? hasVisibleBorder
+          ? `${euiTheme.border.width.thin} solid ${euiTheme.border.color}`
+          : colorMode === 'DARK'
+          ? `${euiTheme.border.width.thin} solid ${euiTheme.colors.borderBaseFloating}`
+          : 'none'
+      };  
     `,
     preferred: `
       border: ${euiTheme.border.thin};
@@ -81,10 +70,7 @@ export const euiPanelStyles = (euiThemeContext: UseEuiTheme) => {
     `,
 
     hasBorder: css`
-      ${euiPanelBorderStyles(euiThemeContext, {
-        borderColor: euiTheme.border.color,
-        hasFloatingBorder: false,
-      })}
+      border: ${euiTheme.border.thin};
     `,
 
     radius: {
@@ -113,7 +99,7 @@ export const euiPanelStyles = (euiThemeContext: UseEuiTheme) => {
       &:hover,
       &:focus {
         ${highContrastModeStyles(euiThemeContext, {
-          none: euiShadow(euiThemeContext, 'l'),
+          none: euiShadowHover(euiThemeContext, 'l'),
           // Windows high contrast themes ignore box-shadows - use a filter workaround instead
           preferred: `
             &:not(.euiPanel--transparent) {
