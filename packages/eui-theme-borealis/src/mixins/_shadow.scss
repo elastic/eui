@@ -1,0 +1,131 @@
+@function shadowOpacity($opacity) {
+  @if (lightness($euiColorTextParagraph) < 50) {
+    @return $opacity * 1;
+  } @else {
+    @return $opacity * 2.5;
+  }
+}
+
+@function _colorMode() {
+  @if (lightness($euiColorTextParagraph) < 50) {
+    @return 'light';
+  } @else {
+    @return 'dark';
+  }
+}
+
+// "xs"
+@mixin euiSlightShadow($color: $euiShadowColor) {
+  @if _colorMode() == 'light' {
+    box-shadow:
+      0px 0px 2px 0px hsl(from $euiShadowColor h s l / 0.16),
+      0px 1px 4px 0px hsl(from $euiShadowColor h s l / 0.06),
+      0px 2px 8px 0px hsl(from $euiShadowColor h s l / 0.04);
+  } @else {
+    box-shadow:
+      0px 1px 4px 0px hsl(from $euiShadowColor h s l / 0.4),
+      0px 2px 8px 0px hsl(from $euiShadowColor h s l/ 0.24);
+  }
+}
+
+@mixin euiBottomShadowSmall($color: $euiShadowColor) {
+  @if _colorMode == 'light' {
+    box-shadow:
+      0px 0px 2px 0px hsl(from $euiShadowColor h s l / 0.16),
+      0px 2px 7px 0px hsl(from $euiShadowColor h s l / 0.08),
+      0px 4px 11px 0px hsl(from $euiShadowColor h s l / 0.05);
+  } @else {
+    box-shadow:
+      0px 2px 7px 0px hsl(from $euiShadowColor h s l / 0.46),
+      0px 4px 11px 0px hsl(from $euiShadowColor h s l / 0.26);
+  }
+}
+
+@mixin euiBottomShadowMedium($color: $euiShadowColor) {
+  @if _colorMode == 'light' {
+    box-shadow:
+      0px 0px 2px 0px hsl(from $euiShadowColor h s l / 0.16),
+      0px 3px 10px 0px hsl(from $euiShadowColor h s l / 0.1),
+      0px 6px 14px 0px hsl(from $euiShadowColor h s l / 0.06);
+  } @else {
+    box-shadow:
+      0px 3px 10px 0px hsl(from $euiShadowColor h s l / 0.52),
+      0px 6px 14px 0px hsl(from $euiShadowColor h s l / 0.28);
+  }
+}
+
+@mixin euiBottomShadowFlat($color: $euiShadowColor) {
+  @include euiSlightShadow($color);
+}
+
+@mixin euiBottomShadow($color: $euiShadowColor) {
+  @include euiBottomShadowMedium($color);
+}
+
+@mixin euiBottomShadowLarge(
+  $color: $euiShadowColor,
+  $opacity: 0,
+  $reverse: false
+) {
+  @if ($reverse) {
+    @if _colorMode == 'light' {
+      box-shadow:
+        0px 0px 2px 0px hsl(from $euiShadowColor h s l / 0.16),
+        0px -4px 13px 0px hsl(from $euiShadowColor h s l / 0.12),
+        0px -8px 17px 0px hsl(from $euiShadowColor h s l / 0.07);
+    } @else {
+      box-shadow:
+        0px -4px 13px 0px hsl(from $euiShadowColor h s l / 0.58),
+        0px -8px 17px 0px hsl(from $euiShadowColor h s l / 0.3);
+    }
+  } @else {
+    @if _colorMode == 'light' {
+      box-shadow:
+        0px 0px 2px 0px hsl(from $euiShadowColor h s l / 0.16),
+        0px 4px 13px 0px hsl(from $euiShadowColor h s l / 0.12),
+        0px 8px 17px 0px hsl(from $euiShadowColor h s l / 0.07);
+    } @else {
+      box-shadow:
+        0px 4px 13px 0px hsl(from $euiShadowColor h s l / 0.58),
+        0px 8px 17px 0px hsl(from $euiShadowColor h s l / 0.3);
+    }
+  }
+}
+
+// Not part of the Borealis shadow spec, used in scroll utilities
+
+// stylelint-disable color-named
+@mixin euiOverflowShadow($direction: 'y', $side: 'both') {
+  $hideHeight: $euiScrollBarCornerThin * 1.25;
+  $gradient: null;
+  $gradientStart:
+    transparentize(red, .9) 0%,
+    transparentize(red, 0) $hideHeight;
+  $gradientEnd:
+    transparentize(red, 0) calc(100% - #{$hideHeight}),
+    transparentize(red, .9) 100%;
+  @if ($side == 'both' or $side == 'start' or $side == 'end') {
+    @if ($side == 'both') {
+      $gradient: $gradientStart, $gradientEnd;
+    } @else if ($side == 'start') {
+      $gradient: $gradientStart;
+    } @else {
+      $gradient: $gradientEnd;
+    }
+  } @else {
+    @warn "euiOverflowShadow() expects side to be 'both', 'start' or 'end' but got '#{$side}'";
+  }
+
+  @if ($direction == 'y') {
+    mask-image: linear-gradient(to bottom, #{$gradient});
+  } @else if ($direction == 'x') {
+    mask-image: linear-gradient(to right, #{$gradient});
+  } @else {
+    @warn "euiOverflowShadow() expects direction to be 'y' or 'x' but got '#{$direction}'";
+  }
+
+  // Chrome+Edge has a very bizarre edge case bug where `mask-image` stops working
+  // This workaround forces a stacking context on the scrolling container, which
+  // hopefully addresses the bug. @see https://github.com/elastic/eui/pull/7855
+  transform: translateZ(0);
+}
