@@ -21,12 +21,6 @@ export const PROPERTY_FLYOUT = `${PREFIX}`;
 export const PROPERTY_LEVEL = `${PREFIX}-level`;
 
 /**
- * Data attribute representing the flyout's lifecycle stage
- * (e.g., `opening`, `active`, `closing`).
- */
-export const PROPERTY_STAGE = `${PREFIX}-stage`;
-
-/**
  * Data attribute representing how multiple flyouts are laid out
  * (`side-by-side` or `stacked`).
  */

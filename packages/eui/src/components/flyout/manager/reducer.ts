@@ -12,10 +12,15 @@ import {
   ACTION_SET_ACTIVE,
   ACTION_SET_LAYOUT_MODE,
   ACTION_SET_WIDTH,
+  ACTION_SET_ACTIVITY_STAGE,
   Action,
 } from './actions';
-import { LAYOUT_MODE_SIDE_BY_SIDE, LEVEL_MAIN } from './const';
-import { EuiFlyoutManagerState, FlyoutSession } from './types';
+import { LAYOUT_MODE_SIDE_BY_SIDE, LEVEL_MAIN, STAGE_OPENING } from './const';
+import {
+  EuiFlyoutManagerState,
+  FlyoutSession,
+  EuiManagedFlyoutState,
+} from './types';
 
 /**
  * Default flyout manager state used to initialize the reducer.
@@ -46,7 +51,16 @@ export function flyoutManagerReducer(
         return state;
       }
 
-      const newFlyouts = [...state.flyouts, { level, flyoutId, size }];
+      const newFlyoutState: EuiManagedFlyoutState = {
+        level,
+        flyoutId,
+        size,
+        activityStage: STAGE_OPENING,
+      };
+      const newFlyouts: EuiManagedFlyoutState[] = [
+        ...state.flyouts,
+        newFlyoutState,
+      ];
 
       if (level === LEVEL_MAIN) {
         const newSession: FlyoutSession = { main: flyoutId, child: null };
@@ -144,6 +158,17 @@ export function flyoutManagerReducer(
     // Switch global layout mode for managed flyouts.
     case ACTION_SET_LAYOUT_MODE: {
       return { ...state, layoutMode: action.layoutMode };
+    }
+
+    // Update a flyout's activity stage in state
+    case ACTION_SET_ACTIVITY_STAGE: {
+      const { flyoutId } = action;
+      const updatedFlyouts = state.flyouts.map((flyout) =>
+        flyout.flyoutId === flyoutId
+          ? { ...flyout, activityStage: action.activityStage }
+          : flyout
+      );
+      return { ...state, flyouts: updatedFlyouts };
     }
 
     default:

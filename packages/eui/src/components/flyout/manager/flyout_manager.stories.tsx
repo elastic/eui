@@ -28,6 +28,7 @@ import {
 } from '../..';
 import { EuiFlyout, EuiFlyoutProps } from '../flyout';
 import { useFlyoutManager } from './hooks';
+import { _EuiFlyoutSide, DEFAULT_SIDE, FLYOUT_SIDES } from '../const';
 
 const meta: Meta<typeof EuiFlyout> = {
   title: 'Layout/EuiFlyout/Flyout Manager',
@@ -42,7 +43,7 @@ interface ECommerceContentProps {
 
 interface ShoppingCartProps
   extends ECommerceContentProps,
-    Pick<EuiFlyoutProps, 'onClose' | 'ownFocus'> {
+    Pick<EuiFlyoutProps, 'onClose' | 'ownFocus' | 'side'> {
   onQuantityChange: (delta: number) => void;
 }
 
@@ -51,9 +52,11 @@ const ShoppingCartFlyout = ({
   onQuantityChange,
   onClose,
   ownFocus,
+  side,
 }: ShoppingCartProps) => {
   const [isItemDetailsOpen, setIsItemDetailsOpen] = useState(false);
   const [isReviewCartOpen, setIsReviewCartOpen] = useState(false);
+  console.log('shopping cart side', side);
 
   return (
     <EuiFlyout
@@ -61,6 +64,7 @@ const ShoppingCartFlyout = ({
       id="shopping-cart-flyout"
       size="m"
       ownFocus={ownFocus}
+      side={side}
       {...{ onClose }}
     >
       <EuiFlyoutHeader hasBorder>
@@ -104,6 +108,7 @@ const ShoppingCartFlyout = ({
           <ItemDetailsFlyout
             onClose={() => setIsItemDetailsOpen(false)}
             itemQuantity={itemQuantity}
+            side={side}
           />
         )}
         {isReviewCartOpen && (
@@ -111,6 +116,7 @@ const ShoppingCartFlyout = ({
             <ReviewOrderFlyout
               onClose={() => setIsReviewCartOpen(false)}
               itemQuantity={itemQuantity}
+              side={side}
             />
           </>
         )}
@@ -131,17 +137,22 @@ const ShoppingCartFlyout = ({
 
 interface ReviewOrderProps
   extends ECommerceContentProps,
-    Pick<EuiFlyoutProps, 'onClose'> {}
+    Pick<EuiFlyoutProps, 'onClose' | 'side'> {}
 
-const ReviewOrderFlyout = ({ itemQuantity, ...props }: ReviewOrderProps) => {
+const ReviewOrderFlyout = ({
+  itemQuantity,
+  side,
+  ...props
+}: ReviewOrderProps) => {
   const [orderConfirmed, setOrderConfirmed] = useState(false);
-
+  console.log('review order side', side);
   return (
     <EuiFlyout
       session={true}
       id="review-order-flyout"
       ownFocus={false}
       size="m"
+      side={side}
       {...props}
     >
       <EuiFlyoutHeader hasBorder>
@@ -197,11 +208,17 @@ const ReviewOrderFlyout = ({ itemQuantity, ...props }: ReviewOrderProps) => {
 
 interface ItemDetailsProps
   extends ECommerceContentProps,
-    Pick<EuiFlyoutProps, 'onClose'> {}
+    Pick<EuiFlyoutProps, 'onClose' | 'id' | 'side'> {}
 
-const ItemDetailsFlyout = ({ onClose, itemQuantity }: ItemDetailsProps) => {
+const ItemDetailsFlyout = ({
+  onClose,
+  itemQuantity,
+  id = 'item-details-flyout',
+  side = DEFAULT_SIDE,
+}: ItemDetailsProps) => {
+  console.log('item details side', side);
   return (
-    <EuiFlyout id="item-details-flyout" onClose={onClose} size="s">
+    <EuiFlyout id={id} onClose={onClose} size="s" side={side}>
       <EuiFlyoutHeader hasBorder>
         <EuiTitle size="m">
           <h2 id="flyout-item-details-title">Item details</h2>
@@ -234,7 +251,11 @@ const ItemDetailsFlyout = ({ onClose, itemQuantity }: ItemDetailsProps) => {
   );
 };
 
-const BasicExampleComponent = () => {
+const BasicExampleComponent = ({
+  side = DEFAULT_SIDE,
+}: {
+  side?: _EuiFlyoutSide;
+}) => {
   const [shoppingCartOwnFocus, setShoppingCartOwnFocus] = useState(false);
   const [isShoppingCartOpen, setIsShoppingCartOpen] = useState(false);
   const [isReviewCartOpen, setIsReviewCartOpen] = useState(false);
@@ -394,18 +415,22 @@ const BasicExampleComponent = () => {
           }
           itemQuantity={itemQuantity}
           ownFocus={shoppingCartOwnFocus}
+          side={side}
         />
       )}
       {isReviewCartOpen && (
         <ReviewOrderFlyout
           onClose={() => setIsReviewCartOpen(false)}
           itemQuantity={itemQuantity}
+          side={side}
         />
       )}
       {isItemDetailsOpen && (
         <ItemDetailsFlyout
+          id="shopping-cart-item-details-flyout"
           onClose={() => setIsItemDetailsOpen(false)}
           itemQuantity={itemQuantity}
+          side={side}
         />
       )}
     </>
@@ -413,5 +438,14 @@ const BasicExampleComponent = () => {
 };
 
 export const BasicExample: StoryObj<typeof EuiFlyout> = {
-  render: () => <BasicExampleComponent />,
+  render: (args) => <BasicExampleComponent {...args} />,
+  args: {
+    side: 'right',
+  },
+  argTypes: {
+    side: {
+      control: 'radio',
+      options: FLYOUT_SIDES,
+    },
+  },
 };

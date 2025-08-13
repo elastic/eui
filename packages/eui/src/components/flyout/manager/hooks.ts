@@ -24,7 +24,7 @@ import { LEVEL_MAIN } from './const';
 
 export {
   useIsFlyoutActive,
-  useIsSessionActive,
+  useHasActiveSession,
   useCurrentSession,
   useCurrentMainFlyout,
   useCurrentChildFlyout,
@@ -36,6 +36,9 @@ export {
 export { useFlyoutLayoutMode } from './layout_mode';
 
 export { useIsInManagedFlyout } from './context';
+
+// Convenience selector for a flyout's activity stage
+export type { EuiFlyoutActivityStage } from './types';
 
 /**
  * Hook that provides the flyout manager reducer and bound action creators.

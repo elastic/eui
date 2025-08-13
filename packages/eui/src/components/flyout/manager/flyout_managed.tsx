@@ -32,11 +32,10 @@ import {
   PROPERTY_FLYOUT,
   PROPERTY_LAYOUT_MODE,
   PROPERTY_LEVEL,
-  PROPERTY_STAGE,
 } from './const';
 import { EuiFlyoutIsManagedProvider } from './context';
 import { EuiFlyoutLevel } from './types';
-import { useFlyoutActiveState } from './active_state';
+import { useFlyoutActivityStage } from './activity_stage';
 
 /**
  * Props for `EuiManagedFlyout`, the internal persistent flyout used by
@@ -87,6 +86,7 @@ export const EuiManagedFlyout = ({
   useEffect(() => {
     // Validate that managed flyouts use named sizes (s, m, l)
     const sizeTypeError = validateManagedFlyoutSize(size, flyoutId, level);
+
     if (sizeTypeError) {
       throw new Error(createValidationErrorMessage(sizeTypeError));
     }
@@ -130,7 +130,7 @@ export const EuiManagedFlyout = ({
     }
   }, [flyoutId, level, isActive, width, setFlyoutWidth]);
 
-  const { activeState, onAnimationEnd } = useFlyoutActiveState({
+  const { activityStage, onAnimationEnd } = useFlyoutActivityStage({
     flyoutId,
     level,
   });
@@ -141,14 +141,17 @@ export const EuiManagedFlyout = ({
         <EuiFlyoutComponent
           id={flyoutId}
           ref={flyoutRef}
-          css={[styles.managedFlyout, customCss]}
+          css={[
+            styles.managedFlyout,
+            customCss,
+            styles.stage(activityStage, props.side),
+          ]}
           {...{
             ...props,
             onClose,
             size,
             onAnimationEnd,
             [PROPERTY_FLYOUT]: true,
-            [PROPERTY_STAGE]: activeState,
             [PROPERTY_LAYOUT_MODE]: layoutMode,
             [PROPERTY_LEVEL]: level,
           }}

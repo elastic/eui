@@ -20,6 +20,7 @@ import {
   LAYOUT_MODE_STACKED,
   LEVEL_CHILD,
 } from './const';
+import { DEFAULT_SIDE } from '../const';
 
 /**
  * Props for `EuiFlyoutChild`, a managed child flyout that pairs with a main flyout.
@@ -31,7 +32,7 @@ import {
 export interface EuiFlyoutChildProps
   extends Omit<
     EuiManagedFlyoutProps,
-    'closeButtonPosition' | 'hideCloseButton' | 'side' | 'type' | 'level'
+    'closeButtonPosition' | 'hideCloseButton' | 'type' | 'level'
   > {
   backgroundStyle?: 'default' | 'shaded';
 }
@@ -44,6 +45,7 @@ export interface EuiFlyoutChildProps
 export function EuiFlyoutChild({
   css: customCss,
   backgroundStyle,
+  side = DEFAULT_SIDE,
   ...props
 }: EuiFlyoutChildProps) {
   const { euiTheme } = useEuiTheme();
@@ -53,7 +55,7 @@ export function EuiFlyoutChild({
 
   let style: React.CSSProperties = {};
   if (mainWidth && layoutMode === LAYOUT_MODE_SIDE_BY_SIDE) {
-    style = { right: mainWidth };
+    style = { [side]: mainWidth };
   } else if (layoutMode === LAYOUT_MODE_STACKED) {
     style = { zIndex: Number(euiTheme.levels.flyout) + 2 };
   }
@@ -65,6 +67,7 @@ export function EuiFlyoutChild({
       level={LEVEL_CHILD}
       type="overlay"
       ownFocus={false}
+      side={side}
       css={[
         backgroundStyle === 'shaded'
           ? styles.backgroundShaded

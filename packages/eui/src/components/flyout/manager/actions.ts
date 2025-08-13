@@ -7,7 +7,11 @@
  */
 
 import { LEVEL_MAIN } from './const';
-import { EuiFlyoutLevel, EuiFlyoutLayoutMode } from './types';
+import {
+  EuiFlyoutActivityStage,
+  EuiFlyoutLevel,
+  EuiFlyoutLayoutMode,
+} from './types';
 
 const PREFIX = 'eui/flyoutManager' as const;
 
@@ -25,6 +29,8 @@ export const ACTION_SET_ACTIVE = `${PREFIX}/setActive` as const;
 export const ACTION_SET_WIDTH = `${PREFIX}/setWidth` as const;
 /** Dispatched to switch layout mode between `side-by-side` and `stacked`. */
 export const ACTION_SET_LAYOUT_MODE = `${PREFIX}/setLayoutMode` as const;
+/** Dispatched to update a flyout's activity stage (e.g., opening -> active). */
+export const ACTION_SET_ACTIVITY_STAGE = `${PREFIX}/setActivityStage` as const;
 
 /**
  * Add a flyout to manager state. The manager will create or update
@@ -62,13 +68,21 @@ export interface SetLayoutModeAction extends BaseAction {
   layoutMode: EuiFlyoutLayoutMode;
 }
 
+/** Set a specific flyout's activity stage. */
+export interface SetActivityStageAction extends BaseAction {
+  type: typeof ACTION_SET_ACTIVITY_STAGE;
+  flyoutId: string;
+  activityStage: EuiFlyoutActivityStage;
+}
+
 /** Union of all flyout manager actions. */
 export type Action =
   | AddFlyoutAction
   | CloseFlyoutAction
   | SetActiveFlyoutAction
   | SetWidthAction
-  | SetLayoutModeAction;
+  | SetLayoutModeAction
+  | SetActivityStageAction;
 
 /**
  * Register a flyout with the manager.
@@ -116,4 +130,14 @@ export const setLayoutMode = (
 ): SetLayoutModeAction => ({
   type: ACTION_SET_LAYOUT_MODE,
   layoutMode,
+});
+
+/** Update a flyout's activity stage. */
+export const setActivityStage = (
+  flyoutId: string,
+  activityStage: EuiFlyoutActivityStage
+): SetActivityStageAction => ({
+  type: ACTION_SET_ACTIVITY_STAGE,
+  flyoutId,
+  activityStage,
 });

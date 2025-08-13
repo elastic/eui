@@ -30,7 +30,7 @@ export type EuiFlyoutLayoutMode =
 
 export type EuiFlyoutLevel = typeof LEVEL_MAIN | typeof LEVEL_CHILD;
 
-export type EuiFlyoutActiveState =
+export type EuiFlyoutActivityStage =
   | typeof STAGE_OPENING
   | typeof STAGE_ACTIVE
   | typeof STAGE_INACTIVE
@@ -44,6 +44,7 @@ export interface EuiManagedFlyoutState {
   level: EuiFlyoutLevel;
   width?: number;
   size?: string;
+  activityStage?: EuiFlyoutActivityStage;
 }
 
 export interface FlyoutSession {

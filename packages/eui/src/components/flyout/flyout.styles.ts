@@ -10,11 +10,7 @@ import { css, keyframes } from '@emotion/react';
 import { euiShadowXLarge } from '@elastic/eui-theme-common';
 
 import { _EuiFlyoutPaddingSize, EuiFlyoutSize } from './const';
-import {
-  PROPERTY_FLYOUT,
-  PROPERTY_STAGE,
-  STAGE_OPENING,
-} from './manager/const';
+import { PROPERTY_FLYOUT } from './manager/const';
 import {
   euiCanAnimate,
   euiMaxBreakpoint,
@@ -110,16 +106,6 @@ export const euiFlyoutStyles = (euiThemeContext: UseEuiTheme) => {
         }
       }
 
-      /* Managed flyouts: only play slide-in when stage is 'opening' */
-      &[${PROPERTY_FLYOUT}][${PROPERTY_STAGE}='${STAGE_OPENING}'] {
-        ${euiCanAnimate} {
-          animation: ${euiFlyoutSlideInRight} ${euiTheme.animation.normal}
-            ${euiTheme.animation.resistance} forwards;
-          animation-fill-mode: forwards;
-          animation-iteration-count: 1;
-        }
-      }
-
       &.euiFlyout--hasChild {
         clip-path: none;
       }
@@ -131,16 +117,6 @@ export const euiFlyoutStyles = (euiThemeContext: UseEuiTheme) => {
 
       /* Unmanaged flyouts: always play initial opening animation */
       &:not([${PROPERTY_FLYOUT}]) {
-        ${euiCanAnimate} {
-          animation: ${euiFlyoutSlideInLeft} ${euiTheme.animation.normal}
-            ${euiTheme.animation.resistance} forwards;
-          animation-fill-mode: forwards;
-          animation-iteration-count: 1;
-        }
-      }
-
-      /* Managed flyouts: only play slide-in when stage is 'opening' */
-      &[${PROPERTY_FLYOUT}][${PROPERTY_STAGE}='${STAGE_OPENING}'] {
         ${euiCanAnimate} {
           animation: ${euiFlyoutSlideInLeft} ${euiTheme.animation.normal}
             ${euiTheme.animation.resistance} forwards;

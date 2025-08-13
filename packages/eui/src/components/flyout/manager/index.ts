@@ -14,6 +14,7 @@ export {
   closeFlyout as closeFlyoutAction,
   setActiveFlyout as setActiveFlyoutAction,
   setFlyoutWidth as setFlyoutWidthAction,
+  setActivityStage as setActivityStageAction,
 } from './actions';
 
 /** Reducer and default state for the flyout manager. */
@@ -39,7 +40,7 @@ export {
   useHasChildFlyout,
   useIsFlyoutActive,
   useIsInManagedFlyout,
-  useIsSessionActive,
+  useHasActiveSession,
   useParentFlyoutSize,
 } from './hooks';
 

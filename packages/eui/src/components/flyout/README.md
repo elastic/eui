@@ -35,7 +35,7 @@ The central state management system for flyout sessions:
 - **Context Provider**: `EuiFlyoutManager` provides global flyout state
 - **Session Management**: Tracks main and child flyout relationships with complex state transitions
 - **State Reducer**: Handles flyout lifecycle (add, close, set active, set width)
-- **Hooks**: Provides utilities like `useIsSessionActive`, `useCurrentSession`, `useFlyoutWidth`
+- **Hooks**: Provides utilities like `useHasActiveSession`, `useCurrentSession`, `useFlyoutWidth`
 - **Actions**: `addFlyout`, `closeFlyout`, `setActiveFlyout`, `setFlyoutWidth`
 - **Responsive Layout**: `useFlyoutLayoutMode` hook manages responsive behavior for managed flyouts with 90% viewport width rule for switching between `side-by-side` and `stacked` layouts
 

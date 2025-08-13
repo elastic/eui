@@ -10,7 +10,6 @@ import { css, keyframes } from '@emotion/react';
 import { euiCanAnimate, logicalCSS } from '../../../global_styling';
 import { UseEuiTheme } from '../../../services';
 import {
-  PROPERTY_STAGE,
   STAGE_ACTIVE,
   STAGE_BACKGROUNDED,
   STAGE_BACKGROUNDING,
@@ -19,91 +18,125 @@ import {
   STAGE_OPENING,
   STAGE_RETURNING,
 } from './const';
-
-// Animation for moving flyout backwards in 3D space (z-axis) when inactive
-const euiFlyoutSlideBack3D = keyframes`
-  from {
-    transform: translateZ(0) translateX(0) scale(1);
-    filter: blur(0px);
-    opacity: 1;
-  }
-  to {
-    transform: translateZ(-1500px) translateX(calc(100vw - 100%)) scale(0.5);
-    filter: blur(3px);
-    opacity: 0.6;
-  }
-`;
-
-// Animation for bringing flyout forward from 3D space when transitioning to active
-const euiFlyoutSlideForward3D = keyframes`
-  from {
-    transform: translateZ(-500px) translateX(calc(100vw - 100%)) scale(0.85);
-    filter: blur(3px);
-    opacity: 0.6;
-  }
-  to {
-    transform: translateZ(0) translateX(0) scale(1);
-    filter: blur(0px);
-    opacity: 1;
-  }
-`;
+import { euiFlyoutSlideInLeft, euiFlyoutSlideInRight } from '../flyout.styles';
+import { _EuiFlyoutSide, DEFAULT_SIDE } from '../const';
+import { EuiFlyoutActivityStage } from './types';
 
 /**
  * Emotion styles for managed flyouts.
  * Provides base 3D context and animations tied to managed flyout stages
- * via data attributes. Returns:
- * - `managedFlyout`: core styles reacting to stage attributes (opening, active,
- *   backgrounding, returning, closing, etc.)
- * - `becomesActive`: helper animation for future/conditional use
+ * via data attributes.
  */
 export const euiManagedFlyoutStyles = (euiThemeContext: UseEuiTheme) => {
   const { euiTheme } = euiThemeContext;
 
   return {
-    managedFlyout: css`
-      /* Base 3D context for all managed flyouts */
-      perspective: 1000px;
-      transform-style: preserve-3d;
+    stage: (
+      activeStage: EuiFlyoutActivityStage,
+      side: _EuiFlyoutSide = DEFAULT_SIDE
+    ) => {
+      // Animation for moving flyout backwards in 3D space (z-axis) when inactive
+      const euiFlyoutSlideBack3D = keyframes`
+        from {
+          transform: translateZ(0) translateX(0) scale(1);
+          filter: blur(0px);
+          opacity: 1;
+        }
+        to {
+          transform: translateZ(-1500px) translateX(${
+            side === 'left' ? 'calc(-100vw - 100%)' : 'calc(100vw + 100%)'
+          }) scale(0.5);
+          filter: blur(3px);
+          opacity: 0.6;
+        }
+      `;
 
-      /* When flyout is inactive, animate backwards in 3D space */
-      &[${PROPERTY_STAGE}='${STAGE_CLOSING}'],
-      &[${PROPERTY_STAGE}='${STAGE_BACKGROUNDING}'] {
+      // Animation for bringing flyout forward from 3D space when transitioning to active
+      const euiFlyoutSlideForward3D = keyframes`
+        from {
+          transform: translateZ(-500px) translateX(${
+            side === 'left' ? 'calc(-100vw - 100%)' : 'calc(100vw + 100%)'
+          }) scale(0.85);
+          filter: blur(3px);
+          opacity: 0.6;
+        }
+        to {
+          transform: translateZ(0) translateX(0) scale(1);
+          filter: blur(0px);
+          opacity: 1;
+        }
+      `;
+      // When flyout is becoming inactive, animate backwards in 3D space
+      const inactiveTransition = css`
         ${euiCanAnimate} {
           animation: ${euiFlyoutSlideBack3D} ${euiTheme.animation.extraSlow}
             ${euiTheme.animation.resistance} forwards;
           pointer-events: none;
         }
-      }
+      `;
 
-      /* When flyout is active, ensure it's on top and interactive */
-      &[${PROPERTY_STAGE}='${STAGE_RETURNING}'] {
-        animation: ${euiFlyoutSlideForward3D} ${euiTheme.animation.normal}
-          ${euiTheme.animation.resistance} forwards;
-      }
+      // When flyout is becoming active from a backgrounded state, animate forward in 3D space
+      const returningTransition = css`
+        ${euiCanAnimate} {
+          animation: ${euiFlyoutSlideForward3D} ${euiTheme.animation.normal}
+            ${euiTheme.animation.resistance} forwards;
+        }
+      `;
 
-      /* When flyout is active, ensure it's on top and interactive */
-      &[${PROPERTY_STAGE}='${STAGE_ACTIVE}'],
-      &[${PROPERTY_STAGE}='${STAGE_OPENING}'] {
+      const openingTransition = css`
+        ${euiCanAnimate} {
+          animation: ${side === 'left'
+              ? euiFlyoutSlideInLeft
+              : euiFlyoutSlideInRight}
+            ${euiTheme.animation.normal} ${euiTheme.animation.resistance}
+            forwards;
+        }
+      `;
+
+      const noTransition = css`
+        ${euiCanAnimate} {
+          animation: none;
+          opacity: 1;
+        }
+      `;
+
+      const activeFlyout = css`
         z-index: ${parseInt(euiTheme.levels.flyout as string) + 1};
         pointer-events: auto;
-      }
+      `;
 
-      /* When flyout is active, ensure it's on top and interactive */
-      &[${PROPERTY_STAGE}='${STAGE_ACTIVE}'],
-      &[${PROPERTY_STAGE}='${STAGE_INACTIVE}'] {
-        animation: none;
-        opacity: 1;
-      }
+      const inactiveFlyout = css`
+        ${side === 'left'
+          ? logicalCSS('right', '100vw')
+          : logicalCSS('left', '100vw')}
+        transform: translateX(${side === 'left'
+          ? 'calc(-100vw - 100%)'
+          : 'calc(100vw + 100%)'});
+      `;
 
-      &[${PROPERTY_STAGE}='${STAGE_INACTIVE}'],
-      &[${PROPERTY_STAGE}='${STAGE_BACKGROUNDED}'] {
-        ${logicalCSS('left', '100vw')}
+      switch (activeStage) {
+        case STAGE_OPENING:
+          return [activeFlyout, openingTransition];
+
+        case STAGE_ACTIVE:
+          return [activeFlyout, noTransition];
+
+        case STAGE_CLOSING:
+        case STAGE_BACKGROUNDING:
+          return [inactiveTransition];
+
+        case STAGE_INACTIVE:
+        case STAGE_BACKGROUNDED:
+          return [inactiveFlyout, noTransition];
+
+        case STAGE_RETURNING:
+          return [activeFlyout, returningTransition];
       }
-    `,
-    // TODO: make this work eventually
-    becomesActive: css`
-      animation: ${euiFlyoutSlideForward3D} ${euiTheme.animation.normal}
-        ${euiTheme.animation.resistance} forwards;
+    },
+    managedFlyout: css`
+      /* Base 3D context for all managed flyouts */
+      perspective: 1000px;
+      transform-style: preserve-3d;
     `,
   };
 };

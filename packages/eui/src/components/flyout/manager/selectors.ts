@@ -8,24 +8,33 @@
 
 import { useFlyoutManager } from './provider';
 
+export const useSession = (flyoutId?: string | null) => {
+  const context = useFlyoutManager();
+  if (!context) return null;
+  return (
+    context.state.sessions.find(
+      (s) => s.main === flyoutId || s.child === flyoutId
+    ) || null
+  );
+};
+
+/** True when any managed flyout session is currently active. */
+export const useHasActiveSession = () => !!useCurrentSession();
+
 /** True if the given `flyoutId` is the main or child flyout in the latest session. */
 export const useIsFlyoutActive = (flyoutId: string) => {
-  const context = useFlyoutManager();
-  if (!context) {
-    return false;
-  }
-  const currentSession =
-    context.state.sessions[context.state.sessions.length - 1];
+  const currentSession = useCurrentSession();
   return (
     currentSession?.main === flyoutId || currentSession?.child === flyoutId
   );
 };
 
-/** True when any managed flyout session is currently active. */
-export const useIsSessionActive = () => {
+export const useFlyout = (flyoutId?: string | null) => {
   const context = useFlyoutManager();
-  if (!context) return false;
-  return context.state.sessions.length > 0;
+  if (!context || !flyoutId) {
+    return null;
+  }
+  return context.state.flyouts.find((f) => f.flyoutId === flyoutId) || null;
 };
 
 /** The most recent flyout session or `null` if none. */
@@ -37,53 +46,31 @@ export const useCurrentSession = () => {
 
 /** The registered state of the current session's main flyout, if present. */
 export const useCurrentMainFlyout = () => {
-  const context = useFlyoutManager();
   const currentSession = useCurrentSession();
-  if (!context || !currentSession) return null;
-  const mainFlyoutId = currentSession.main;
-  return (
-    context.state.flyouts.find((flyout) => flyout.flyoutId === mainFlyoutId) ||
-    null
-  );
+  const mainFlyoutId = currentSession?.main;
+  return useFlyout(mainFlyoutId);
 };
 
 /** The registered state of the current session's child flyout, if present. */
 export const useCurrentChildFlyout = () => {
-  const context = useFlyoutManager();
   const currentSession = useCurrentSession();
-  if (!context || !currentSession || !currentSession.child) return null;
-  const childFlyoutId = currentSession.child;
-  return (
-    context.state.flyouts.find((flyout) => flyout.flyoutId === childFlyoutId) ||
-    null
-  );
+  const childFlyoutId = currentSession?.child;
+  return useFlyout(childFlyoutId);
 };
 
 /** The measured width (px) of the specified flyout, or `null` if unknown. */
-export const useFlyoutWidth = (flyoutId?: string | null) => {
-  const context = useFlyoutManager();
-  if (!context) return null;
-  const flyout = context.state.flyouts.find((f) => f.flyoutId === flyoutId);
-  return flyout?.width;
-};
+export const useFlyoutWidth = (flyoutId?: string | null) =>
+  useFlyout(flyoutId)?.width;
 
 /** The configured size of the parent (main) flyout for a given child flyout ID. */
 export const useParentFlyoutSize = (childFlyoutId: string) => {
-  const context = useFlyoutManager();
-  if (!context) return undefined;
-  const currentSession = context.state.sessions.find(
-    (session) => session.child === childFlyoutId
-  );
-  if (!currentSession) return undefined;
-  const parentFlyout = context.state.flyouts.find(
-    (f) => f.flyoutId === currentSession.main
-  );
+  const session = useSession(childFlyoutId);
+  const parentFlyout = useFlyout(session?.main);
   return parentFlyout?.size;
 };
 
 /** True if the provided `flyoutId` is the main flyout and it currently has a child. */
 export const useHasChildFlyout = (flyoutId: string) => {
-  const currentSession = useCurrentSession();
-  if (!currentSession) return false;
-  return currentSession.main === flyoutId && Boolean(currentSession.child);
+  const session = useSession(flyoutId);
+  return !!session?.child;
 };

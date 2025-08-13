@@ -17,7 +17,7 @@ import {
 import {
   EuiFlyoutChild,
   EuiFlyoutMain,
-  useIsSessionActive,
+  useHasActiveSession,
   useIsInManagedFlyout,
 } from './manager';
 
@@ -50,7 +50,7 @@ export const EuiFlyout = forwardRef<
     'EuiFlyout',
     props
   );
-  const hasActiveSession = useIsSessionActive();
+  const hasActiveSession = useHasActiveSession();
   const isUnmanagedFlyout = useRef(false);
   const isInManagedFlyout = useIsInManagedFlyout();
 
