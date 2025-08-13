@@ -19,7 +19,7 @@
 
 import { TSESTree, ESLintUtils } from '@typescript-eslint/utils';
 
-const modalComponents = ['EuiModal', 'EuiFlyout'];
+const modalComponents = ['EuiModal', 'EuiFlyout', 'EuiFlyoutResizable'];
 const confirmModalComponents = ['EuiConfirmModal'];
 
 export const RequireAriaLabelForModals = ESLintUtils.RuleCreator.withoutDocs({

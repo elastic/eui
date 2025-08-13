@@ -1,3 +1,24 @@
+## [`v106.3.0`](https://github.com/elastic/eui/releases/v106.3.0)
+
+- Added thumbUp and thumbDown icons ([#8937](https://github.com/elastic/eui/pull/8937))
+- Removed obsolete IE-specific CSS properties ([#8940](https://github.com/elastic/eui/pull/8940))
+- Updated `EuiComboBox` to allow multiline options by disabling virtualization (`rowHeight="auto"`) ([#8934](https://github.com/elastic/eui/pull/8934))
+
+**Bug fixes**
+
+- Fixed interactive content in header cells on `EuiDataGrid` not being correctly removed from the tab order ([#8938](https://github.com/elastic/eui/pull/8938))
+- Fixed an issue where the validity state of `EuiFieldNumber` did not update when the `isInvalid` prop value changed ([#8952](https://github.com/elastic/eui/pull/8952))
+- Reverted a font-size change for `xs` buttons back to `12px` ([#8930](https://github.com/elastic/eui/pull/8930))
+- Fixed unexpected results for the SCSS function `lineHeightFromBaseline` ([#8922](https://github.com/elastic/eui/pull/8922))
+- Fixed `euiDataGridRow--selected` not applying on `EuiDataGrid` whith `stripes={true}` ([#8925](https://github.com/elastic/eui/pull/8925))
+- Fixed `euiDataGridRow--marked` and `euiDataGridRow--selected` applying hover styling on `EuiDataGrid` when `stripes={true}` ([#8925](https://github.com/elastic/eui/pull/8925))
+
+**Accessibility**
+
+- Added a screen reader help text for entered interactive cells of `EuiDataGrid` to provide information about exiting cells ([#8938](https://github.com/elastic/eui/pull/8938))
+- Added a new beta `EuiLiveAnnouncer` component which supports `aria-live` announcements on mount ([#8916](https://github.com/elastic/eui/pull/8916))
+- Added `announceOnMount` prop on `EuiCallOut` to support announcing its content on mount ([#8916](https://github.com/elastic/eui/pull/8916))
+
 ## [`v106.2.0`](https://github.com/elastic/eui/releases/v106.2.0)
 
 - Enhanced `EuiCheckableCard` to make non-interactive children clickable for card selection ([#8907](https://github.com/elastic/eui/pull/8907))
