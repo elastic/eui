@@ -135,6 +135,28 @@ export const EuiInputPopover: FunctionComponent<EuiInputPopoverProps> = ({
 
   const panelPropsOnKeyDown = props.panelProps?.onKeyDown;
 
+  const handleTabNavigation = useCallback(
+    (e: KeyboardEvent<HTMLDivElement>) => {
+      const tabbableItems = tabbable(e.currentTarget).filter(
+        (el) => !el.hasAttribute('data-focus-guard')
+      );
+      if (!tabbableItems.length) return;
+
+      const tabbingFromFirstItemInPopover =
+        document.activeElement === tabbableItems[0];
+      const tabbingFromLastItemInPopover =
+        document.activeElement === tabbableItems[tabbableItems.length - 1];
+
+      if (
+        (tabbingFromFirstItemInPopover && e.shiftKey) ||
+        (tabbingFromLastItemInPopover && !e.shiftKey)
+      ) {
+        closePopover();
+      }
+    },
+    [closePopover]
+  );
+
   const onKeyDown = useCallback(
     (event: KeyboardEvent<HTMLDivElement>) => {
       panelPropsOnKeyDown?.(event);
@@ -142,25 +164,16 @@ export const EuiInputPopover: FunctionComponent<EuiInputPopoverProps> = ({
       if (event.key === keys.TAB) {
         if (disableFocusTrap) {
           if (!ownFocus) {
-            closePopover();
+            handleTabNavigation(event);
           }
         } else {
-          const tabbableItems = tabbable(event.currentTarget).filter(
-            (el) => !el.hasAttribute('data-focus-guard')
-          );
-          if (!tabbableItems.length) return;
-
-          const tabbingFromLastItemInPopover =
-            document.activeElement === tabbableItems[tabbableItems.length - 1];
-
-          // Only close if Tab (not Shift+Tab) is pressed from the last item
-          if (tabbingFromLastItemInPopover && !event.shiftKey) {
-            closePopover();
+          if (!ownFocus) {
+            handleTabNavigation(event);
           }
         }
       }
     },
-    [disableFocusTrap, ownFocus, closePopover, panelPropsOnKeyDown]
+    [disableFocusTrap, ownFocus, panelPropsOnKeyDown, handleTabNavigation]
   );
 
   /**
