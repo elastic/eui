@@ -8,16 +8,48 @@
 
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
+import { css } from '@emotion/react';
 
 import { hideStorybookControls } from '../../../../.storybook/utils';
 import { EuiButton } from '../../button';
 import { EuiCallOut } from '../../call_out';
 import { EuiTitle } from '../../title';
-import { EuiPageHeaderSection } from './page_header_section';
+import { EuiFlexGroup, EuiFlexItem } from '../../flex';
+import { EuiBreadcrumbs } from '../../breadcrumbs';
+import { EuiIcon } from '../../icon';
+import { EuiSpacer } from '../../spacer';
+import { EuiTab, EuiTabs } from '../../tabs';
+import { EuiText } from '../../text';
+
 import {
   EuiPageHeaderContent,
   EuiPageHeaderContentProps,
 } from './page_header_content';
+
+const tabs = [
+  {
+    label: 'Tab 1',
+    isSelected: true,
+  },
+  {
+    label: 'Tab 2',
+  },
+];
+
+const breadcrumbs = [
+  {
+    text: 'Breadcrumb 1',
+    href: '#',
+  },
+  {
+    text: 'Breadcrumb 2',
+    href: '#',
+  },
+  {
+    text: 'Current',
+    href: '#',
+  },
+];
 
 const meta: Meta<EuiPageHeaderContentProps> = {
   title: 'Layout/EuiPage/EuiPageHeader/EuiPageHeaderContent',
@@ -34,6 +66,10 @@ const meta: Meta<EuiPageHeaderContentProps> = {
     responsive: {
       control: 'select',
       options: [true, false, 'reverse'],
+    },
+    restrictWidth: {
+      control: 'select',
+      options: [true, false, 500, 900, 1800, '25%', '50%', '75%'],
     },
   },
   args: {
@@ -60,55 +96,65 @@ export const Playground: Story = {
       <EuiButton fill>Add something</EuiButton>,
       <EuiButton>Do something</EuiButton>,
     ],
-    tabs: [
-      {
-        label: 'Tab 1',
-        isSelected: true,
-      },
-      {
-        label: 'Tab 2',
-      },
-    ],
-    breadcrumbs: [
-      {
-        text: 'Breadcrumb 1',
-        href: '#',
-      },
-      {
-        text: 'Breadcrumb 2',
-        href: '#',
-      },
-      {
-        text: 'Current',
-        href: '#',
-      },
-    ],
+    tabs,
+    breadcrumbs,
   },
 };
 
 export const LegacyChildrenOnly: Story = {
   parameters: {
     controls: {
-      include: ['alignItems', 'responsive', 'bottomBorder', 'paddingSize'],
+      include: [
+        'alignItems',
+        'responsive',
+        'bottomBorder',
+        'paddingSize',
+        'restrictWidth',
+      ],
     },
   },
   args: {
     children: (
-      <>
-        <EuiPageHeaderSection>
-          <EuiTitle size="l">
-            <h1>Page title</h1>
-          </EuiTitle>
-        </EuiPageHeaderSection>
-        <EuiPageHeaderSection>
-          <EuiButton
-            fill
-            size="s" // Better demonstrates alignItems
+      <EuiFlexGroup direction="column" gutterSize="s">
+        <EuiBreadcrumbs breadcrumbs={breadcrumbs} />
+        <EuiFlexGroup alignItems="stretch">
+          <EuiFlexItem>
+            <EuiFlexGroup>
+              <EuiFlexGroup gutterSize="m" alignItems="center">
+                <EuiIcon type="logoKibana" size="original" />
+                <EuiTitle size="l">
+                  <h1>Page title</h1>
+                </EuiTitle>
+              </EuiFlexGroup>
+            </EuiFlexGroup>
+            <EuiSpacer size="l" />
+            <EuiText size="m">Example of a description.</EuiText>
+            <EuiSpacer size="l" />
+            <EuiCallOut
+              size="s"
+              iconType="info"
+              title="Example of custom children"
+            />
+          </EuiFlexItem>
+          <EuiFlexGroup
+            gutterSize="m"
+            responsive={false}
+            wrap
+            css={css`
+              flex: 0 1 auto;
+            `}
           >
-            Add something
-          </EuiButton>
-        </EuiPageHeaderSection>
-      </>
+            <EuiButton fill>Add something</EuiButton>
+            <EuiButton>Do something</EuiButton>
+          </EuiFlexGroup>
+        </EuiFlexGroup>
+        <EuiSpacer size="s" />
+        <EuiTabs size="l">
+          {tabs.map((tab) => (
+            <EuiTab isSelected={tab.isSelected}>{tab.label}</EuiTab>
+          ))}
+        </EuiTabs>
+      </EuiFlexGroup>
     ),
   },
 };
