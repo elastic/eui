@@ -25,3 +25,14 @@ export { EuiFlyoutResizable } from './flyout_resizable';
 
 export type { EuiFlyoutMenuProps } from './flyout_menu';
 export { EuiFlyoutMenu } from './flyout_menu';
+
+// Manager-based flyout system exports
+export type {
+  EuiFlyoutChildProps,
+  EuiFlyoutMainProps,
+  EuiFlyoutChild,
+  EuiFlyoutMain,
+  EuiFlyoutManager,
+  useIsInManagedFlyout,
+  useHasActiveSession,
+} from './manager';
