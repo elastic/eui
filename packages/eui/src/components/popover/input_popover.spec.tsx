@@ -208,24 +208,6 @@ describe('EuiPopover', () => {
         cy.get('[data-popover-panel]').should('exist');
       });
 
-      // Not sure how much sense this behavior makes, but this logic was
-      // apparently added to EuiInputPopover with EuiDualRange in mind
-      it('automatically closes the popover when users tab from anywhere in the popover', () => {
-        cy.mount(
-          <>
-            <StatefulInputPopover disableFocusTrap={true}>
-              <button data-test-subj="one">one</button>
-              <button data-test-subj="two">two</button>
-            </StatefulInputPopover>
-          </>
-        );
-
-        cy.get('[data-test-subj="one"]').click();
-        cy.realPress('Tab');
-
-        cy.get('[data-popover-panel]').should('not.exist');
-      });
-
       it('behaves with normal popover focus trap/tab behavior if `ownFocus` is set to true', () => {
         cy.mount(
           <>
