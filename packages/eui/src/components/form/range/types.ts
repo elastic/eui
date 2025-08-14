@@ -131,6 +131,7 @@ export interface _SharedRangeInputProps {
     | 'isOpen'
     | 'closePopover'
     | 'disableFocusTrap'
+    | 'ownFocus'
     | 'popoverScreenReaderText'
     | 'fullWidth'
   >;
