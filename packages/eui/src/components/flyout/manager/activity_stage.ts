@@ -52,10 +52,9 @@ export const useFlyoutActivityStage = (
   const layoutMode = useFlyoutLayoutMode();
   const context = useFlyoutManager();
 
-  const activityStage: EuiFlyoutActivityStage = (context?.state.flyouts.find(
-    (f) => f.flyoutId === flyoutId
-  )?.activityStage ||
-    (isActive ? STAGE_ACTIVE : STAGE_OPENING)) as EuiFlyoutActivityStage;
+  const activityStage: EuiFlyoutActivityStage =
+    context?.state.flyouts.find((f) => f.flyoutId === flyoutId)
+      ?.activityStage || (isActive ? STAGE_ACTIVE : STAGE_OPENING);
 
   // Layout mode transitions that affect main flyout behavior
   const activityStageRef = useRef<EuiFlyoutActivityStage>(activityStage);
