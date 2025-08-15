@@ -1,4 +1,12 @@
-import { useMemo, useState } from 'react';
+/*
+ * Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
+ * or more contributor license agreements. Licensed under the Elastic License
+ * 2.0 and the Server Side Public License, v 1; you may not use this file except
+ * in compliance with, at your election, the Elastic License 2.0 or the Server
+ * Side Public License, v 1.
+ */
+
+import { ComponentProps, useState } from 'react';
 import { css } from '@emotion/react';
 import { FixedSizeList } from 'react-window';
 import {
@@ -29,21 +37,48 @@ const getStyles = (euiThemeContext: UseEuiTheme) => {
   };
 };
 
+/**
+ * Addresses NVDA pronunciation issue
+ */
 const pronounceVersion = (version: string) => {
-  return `version ${version.replaceAll('.', ' point ')}`; // NVDA pronounciation issue
+  return `version ${version.replaceAll('.', ' point ')}`;
 };
 
-const PREV_DOCS_URL = 'https://eui.elastic.co';
-
-type Props = {
+export type VersionSwitcherProps = {
+  /**
+   * Aria label for the version switcher popover
+   */
+  ariaLabel: string;
+  /*
+   * The current version of the documentation
+   */
+  currentVersion: string;
+  /**
+   * Extra action to be displayed in the version switcher
+   */
+  extraAction?: (
+    version?: string
+  ) => ComponentProps<typeof EuiListGroupItem>['extraAction'];
+  /**
+   * URL to the previous version of the documentation
+   * E.g. https://eui.elastic.co
+   */
+  previousVersionUrl?: string;
+  /**
+   * List of available versions to switch to
+   */
   versions: string[];
 };
 
-export const VersionSwitcher = ({ versions }: Props) => {
+export const VersionSwitcher = ({
+  ariaLabel,
+  currentVersion,
+  extraAction,
+  previousVersionUrl,
+  versions,
+}: VersionSwitcherProps) => {
   const [isPopoverOpen, setPopoverOpen] = useState(false);
   const styles = useEuiMemoizedStyles(getStyles);
-
-  const currentVersion = versions[0]!;
 
   if (!versions) return null;
 
@@ -70,7 +105,7 @@ export const VersionSwitcher = ({ versions }: Props) => {
       button={button}
       repositionOnScroll
       panelPaddingSize="xs"
-      aria-label="EUI version list"
+      aria-label={ariaLabel}
     >
       <FixedSizeList
         className="eui-yScroll"
@@ -85,7 +120,9 @@ export const VersionSwitcher = ({ versions }: Props) => {
           const isCurrentVersion = version === currentVersion;
           const screenReaderVersion = pronounceVersion(version!);
 
-          const url = isCurrentVersion ? '/' : `${PREV_DOCS_URL}/v${version}/`;
+          const url = isCurrentVersion
+            ? '/'
+            : `${previousVersionUrl}/v${version}/`;
 
           return (
             <EuiListGroupItem
@@ -97,15 +134,7 @@ export const VersionSwitcher = ({ versions }: Props) => {
               href={url}
               isActive={isCurrentVersion}
               color={isCurrentVersion ? 'primary' : 'text'}
-              extraAction={{
-                'aria-label': `View release notes for ${screenReaderVersion}`,
-                title: `View release ${version}`,
-                iconType: 'package',
-                iconSize: 's',
-                // @ts-ignore - this is valid
-                href: `https://github.com/elastic/eui/releases/tag/v${version}`,
-                target: '_blank',
-              }}
+              extraAction={extraAction?.(version)}
             />
           );
         }}
