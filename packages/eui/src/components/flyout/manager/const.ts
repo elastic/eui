@@ -9,9 +9,7 @@
 const PREFIX = 'data-managed-flyout';
 
 /**
- * Data attribute applied to a managed flyout element.
- * The value reflects the current stage/state of the flyout.
- * Example: `<div data-managed-flyout="active" />`
+ * Data attribute applied to a managed flyout element to help identify it as a managed flyout.
  */
 export const PROPERTY_FLYOUT = `${PREFIX}`;
 
@@ -26,9 +24,9 @@ export const PROPERTY_LEVEL = `${PREFIX}-level`;
  */
 export const PROPERTY_LAYOUT_MODE = `${PREFIX}-layout-mode`;
 
-/** Side-by-side layout mode where child flyouts render adjacent to the main flyout. */
-export const LAYOUT_MODE_STACKED = 'stacked';
 /** Stacked layout mode where child flyouts overlay on top of the main flyout. */
+export const LAYOUT_MODE_STACKED = 'stacked';
+/** Side-by-side layout mode where child flyouts render adjacent to the main flyout. */
 export const LAYOUT_MODE_SIDE_BY_SIDE = 'side-by-side';
 
 /** The primary (parent) flyout in a session. */

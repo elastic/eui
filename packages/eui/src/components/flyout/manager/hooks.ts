@@ -6,7 +6,7 @@
  * Side Public License, v 1.
  */
 
-import React, { useId, useRef } from 'react';
+import { useCallback, useContext, useId, useReducer, useRef } from 'react';
 import { flyoutManagerReducer, initialState } from './reducer';
 import {
   addFlyout as addFlyoutAction,
@@ -47,22 +47,22 @@ export type { EuiFlyoutActivityStage } from './types';
 export function useFlyoutManagerReducer(
   initial: EuiFlyoutManagerState = initialState
 ): FlyoutManagerApi {
-  const [state, dispatch] = React.useReducer(flyoutManagerReducer, initial);
+  const [state, dispatch] = useReducer(flyoutManagerReducer, initial);
 
-  const addFlyout = React.useCallback(
+  const addFlyout = useCallback(
     (flyoutId: string, level: EuiFlyoutLevel = LEVEL_MAIN, size?: string) =>
       dispatch(addFlyoutAction(flyoutId, level, size)),
     []
   );
-  const closeFlyout = React.useCallback(
+  const closeFlyout = useCallback(
     (flyoutId: string) => dispatch(closeFlyoutAction(flyoutId)),
     []
   );
-  const setActiveFlyout = React.useCallback(
+  const setActiveFlyout = useCallback(
     (flyoutId: string | null) => dispatch(setActiveFlyoutAction(flyoutId)),
     []
   );
-  const setFlyoutWidth = React.useCallback(
+  const setFlyoutWidth = useCallback(
     (flyoutId: string, width: number) =>
       dispatch(setFlyoutWidthAction(flyoutId, width)),
     []
@@ -79,7 +79,7 @@ export function useFlyoutManagerReducer(
 }
 
 /** Access the flyout manager context (state and actions). */
-export const useFlyoutManager = () => React.useContext(EuiFlyoutManagerContext);
+export const useFlyoutManager = () => useContext(EuiFlyoutManagerContext);
 
 /**
  * Stable flyout ID utility. Uses the passed `id` if provided, otherwise

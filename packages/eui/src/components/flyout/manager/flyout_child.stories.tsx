@@ -138,30 +138,6 @@ const meta: Meta<FlyoutChildStoryArgs> = {
     showFooter: true,
   },
   parameters: {
-    docs: {
-      description: {
-        component: `
-## EuiFlyoutChild
-A child panel component that can be nested within an EuiFlyout.
-
-### Responsive behavior
-- On larger screens (>= medium breakpoint), the child panel appears side-by-side with the main flyout
-- On smaller screens (< medium breakpoint), the child panel stacks on top of the main flyout
-
-### Restrictions
-- EuiFlyoutChild can only be used as a direct child of EuiFlyout
-- EuiFlyoutChild must include an EuiFlyoutBody child component
-- When a flyout includes a child panel:
-  - The main flyout size is limited to 's', or 'm'
-    - If the main flyout is 's', then the child flyout can be 's', or 'm'
-    - If the main flyout is 'm', then the child flyout can only be 's'
-  - The child flyout size is limited to 's', or 'm'
-    - If the child flyout is 's', then the main flyout can be 's', or 'm'
-    - If the child flyout is 'm', then the main flyout can only be 's'
-  - Custom pixel sizes are not allowed when using a child flyout
-        `,
-      },
-    },
     loki: {
       chromeSelector: LOKI_SELECTORS.portal,
     },

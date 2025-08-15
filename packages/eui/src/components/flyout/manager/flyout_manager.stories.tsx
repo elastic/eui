@@ -20,7 +20,7 @@ import {
   EuiFlexItem,
   EuiFlyoutBody,
   EuiFlyoutFooter,
-  EuiFlyoutHeader,
+  EuiFlyoutMenu,
   EuiSpacer,
   EuiSwitch,
   EuiText,
@@ -56,7 +56,6 @@ const ShoppingCartFlyout = ({
 }: ShoppingCartProps) => {
   const [isItemDetailsOpen, setIsItemDetailsOpen] = useState(false);
   const [isReviewCartOpen, setIsReviewCartOpen] = useState(false);
-  console.log('shopping cart side', side);
 
   return (
     <EuiFlyout
@@ -67,11 +66,7 @@ const ShoppingCartFlyout = ({
       side={side}
       {...{ onClose }}
     >
-      <EuiFlyoutHeader hasBorder>
-        <EuiTitle size="m">
-          <h2 id="flyout-shopping-cart-title">Shopping cart</h2>
-        </EuiTitle>
-      </EuiFlyoutHeader>
+      <EuiFlyoutMenu title="Shopping cart" />
       <EuiFlyoutBody>
         <EuiText>
           <p>Item: Flux Capacitor</p>
@@ -145,7 +140,7 @@ const ReviewOrderFlyout = ({
   ...props
 }: ReviewOrderProps) => {
   const [orderConfirmed, setOrderConfirmed] = useState(false);
-  console.log('review order side', side);
+
   return (
     <EuiFlyout
       session={true}
@@ -155,11 +150,7 @@ const ReviewOrderFlyout = ({
       side={side}
       {...props}
     >
-      <EuiFlyoutHeader hasBorder>
-        <EuiTitle size="m">
-          <h2 id="flyout-review-order-title">Review order</h2>
-        </EuiTitle>
-      </EuiFlyoutHeader>
+      <EuiFlyoutMenu title="Review order" />
       <EuiFlyoutBody>
         <EuiText>
           <h3>Review your order</h3>
@@ -216,14 +207,9 @@ const ItemDetailsFlyout = ({
   id = 'item-details-flyout',
   side = DEFAULT_SIDE,
 }: ItemDetailsProps) => {
-  console.log('item details side', side);
   return (
     <EuiFlyout id={id} onClose={onClose} size="s" side={side}>
-      <EuiFlyoutHeader hasBorder>
-        <EuiTitle size="m">
-          <h2 id="flyout-item-details-title">Item details</h2>
-        </EuiTitle>
-      </EuiFlyoutHeader>
+      <EuiFlyoutMenu title="Item details" />
       <EuiFlyoutBody>
         <EuiText>
           <p>

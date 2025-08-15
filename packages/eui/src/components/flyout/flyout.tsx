@@ -54,7 +54,14 @@ export const EuiFlyout = forwardRef<
   const isUnmanagedFlyout = useRef(false);
   const isInManagedFlyout = useIsInManagedFlyout();
 
-  // If session={true}, or there is an active session and the flyout is not a child of a session, render EuiMainFlyout.
+  /*
+   * Flyout routing logic
+   * 1. Main Flyout: When session={true} OR when there's an active session and this flyout
+   *    is rendered outside of a managed flyout context.
+   * 2. Child Flyout: When there's an active session AND this flyout IS rendered within a
+   *    managed flyout context.
+   * 3. Standard Flyout: Default fallback when neither condition is met.
+   */
   if (session === true || (hasActiveSession && !isInManagedFlyout)) {
     if (isUnmanagedFlyout.current) {
       // TODO: @tkajtoch - We need to find a better way to handle the missing event.

@@ -60,9 +60,9 @@ export const useFlyoutActivityStage = (
   const activityStageRef = useRef<EuiFlyoutActivityStage>(activityStage);
 
   useEffect(() => {
-    activityStageRef.current = (context?.state.flyouts.find(
-      (f) => f.flyoutId === flyoutId
-    )?.activityStage || activityStage) as EuiFlyoutActivityStage;
+    activityStageRef.current =
+      context?.state.flyouts.find((f) => f.flyoutId === flyoutId)
+        ?.activityStage || activityStage;
   }, [context, flyoutId, activityStage]);
 
   const onAnimationEnd = useCallback(() => {
