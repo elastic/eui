@@ -83,7 +83,7 @@ describe('EuiTab', () => {
 
     test('append is rendered', () => {
       const { container } = render(
-        <EuiTab onClick={() => {}} prepend="Append">
+        <EuiTab onClick={() => {}} append="Append">
           children
         </EuiTab>
       );
