@@ -7,7 +7,7 @@
  */
 
 import React from 'react';
-import { mount } from 'enzyme';
+import { fireEvent } from '@testing-library/react';
 import { shouldRenderCustomStyles } from '../../test/internal';
 import { requiredProps } from '../../test/required_props';
 import { render } from '../../test/rtl';
@@ -173,7 +173,7 @@ describe('EuiExpression', () => {
     describe('onClick', () => {
       it('is called when the button is clicked', () => {
         const handler = jest.fn();
-        const component = mount(
+        const { getByRole } = render(
           <EuiExpression
             description="the answer is"
             value="42"
@@ -182,8 +182,8 @@ describe('EuiExpression', () => {
             {...requiredProps}
           />
         );
-        component.find('button').simulate('click');
-        expect(handler.mock.calls.length).toEqual(1);
+        fireEvent.click(getByRole('button'));
+        expect(handler).toHaveBeenCalledTimes(1);
       });
     });
   });
