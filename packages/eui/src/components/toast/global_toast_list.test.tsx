@@ -8,9 +8,8 @@
 
 import React from 'react';
 import { act, fireEvent } from '@testing-library/react';
-import { mount } from 'enzyme';
-import { requiredProps, findTestSubject } from '../../test';
-import { render } from '../../test/rtl';
+import { requiredProps } from '../../test';
+import { render, within } from '../../test/rtl';
 
 import {
   EuiGlobalToastList,
@@ -104,7 +103,7 @@ describe('EuiGlobalToastList', () => {
     describe('dismissToast', () => {
       test('is called when a toast is clicked', () => {
         const dismissToastSpy = jest.fn();
-        const component = mount(
+        const { getByTestSubject } = render(
           <EuiGlobalToastList
             toasts={[
               {
@@ -117,9 +116,9 @@ describe('EuiGlobalToastList', () => {
           />
         );
 
-        const toastB = findTestSubject(component, 'b');
-        const closeButton = findTestSubject(toastB, 'toastCloseButton');
-        closeButton.simulate('click');
+        const toastB = getByTestSubject('b');
+        const closeButton = within(toastB).getByTestSubject('toastCloseButton');
+        fireEvent.click(closeButton);
 
         act(() => {
           jest.advanceTimersByTime(TOAST_FADE_OUT_MS - 1);
@@ -134,7 +133,7 @@ describe('EuiGlobalToastList', () => {
       test('is called when the toast lifetime elapses', () => {
         const TOAST_LIFE_TIME_MS = 5;
         const dismissToastSpy = jest.fn();
-        mount(
+        render(
           <EuiGlobalToastList
             toasts={[
               {
@@ -161,7 +160,7 @@ describe('EuiGlobalToastList', () => {
         const TOAST_LIFE_TIME_MS = 10;
         const TOAST_LIFE_TIME_MS_OVERRIDE = 100;
         const dismissToastSpy = jest.fn();
-        mount(
+        render(
           <EuiGlobalToastList
             toasts={[
               {
