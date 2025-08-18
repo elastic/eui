@@ -7,7 +7,7 @@
  */
 
 import React from 'react';
-import { mount } from 'enzyme';
+import { fireEvent } from '@testing-library/react';
 import { requiredProps } from '../../test/required_props';
 import { shouldRenderCustomStyles } from '../../test/internal';
 import { render } from '../../test/rtl';
@@ -82,23 +82,23 @@ describe('EuiStepHorizontal', () => {
       test('is called when clicked', () => {
         const onClickHandler = jest.fn();
 
-        const component = mount(
+        const { getByRole } = render(
           <EuiStepHorizontal step={1} onClick={onClickHandler} />
         );
 
-        component.find('button').simulate('click');
-        expect(onClickHandler.mock.calls.length).toEqual(1);
+        fireEvent.click(getByRole('button'));
+        expect(onClickHandler).toHaveBeenCalledTimes(1);
       });
 
       test("isn't called when clicked if it's disabled", () => {
         const onClickHandler = jest.fn();
 
-        const component = mount(
+        const { getByRole } = render(
           <EuiStepHorizontal disabled step={1} onClick={onClickHandler} />
         );
 
-        component.find('button').simulate('click');
-        expect(onClickHandler.mock.calls.length).toEqual(0);
+        fireEvent.click(getByRole('button'));
+        expect(onClickHandler).not.toHaveBeenCalled();
       });
     });
   });
