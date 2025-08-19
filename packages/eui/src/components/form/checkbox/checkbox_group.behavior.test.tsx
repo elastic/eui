@@ -7,7 +7,8 @@
  */
 
 import React from 'react';
-import { mount } from 'enzyme';
+import { fireEvent } from '@testing-library/react';
+import { render } from '../../../test/rtl';
 
 import { EuiCheckboxGroup } from './checkbox_group';
 
@@ -17,7 +18,7 @@ import { EuiCheckboxGroup } from './checkbox_group';
 describe('EuiCheckboxGroup behavior', () => {
   test('id is bound to onChange', () => {
     const onChangeHandler = jest.fn();
-    const component = mount(
+    const { getByRole } = render(
       <EuiCheckboxGroup
         options={[{ id: '1', label: 'kibana', disabled: false }]}
         idToSelectedMap={{
@@ -27,8 +28,11 @@ describe('EuiCheckboxGroup behavior', () => {
       />
     );
 
-    component.find('input[type="checkbox"]').simulate('change');
+    fireEvent.click(getByRole('checkbox'));
     expect(onChangeHandler).toHaveBeenCalledTimes(1);
-    expect(onChangeHandler.mock.calls[0][0]).toBe('1');
+    expect(onChangeHandler).toHaveBeenCalledWith(
+      '1',
+      expect.anything() // SyntheticBaseEvent
+    );
   });
 });
