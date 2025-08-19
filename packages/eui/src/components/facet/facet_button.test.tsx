@@ -7,7 +7,7 @@
  */
 
 import React from 'react';
-import { mount } from 'enzyme';
+import { fireEvent } from '@testing-library/react';
 import { requiredProps } from '../../test';
 import { shouldRenderCustomStyles } from '../../test/internal';
 import { render } from '../../test/rtl';
@@ -86,11 +86,11 @@ describe('EuiFacetButton', () => {
     describe('onClick', () => {
       it('supports onClick', () => {
         const handler = jest.fn();
-        const component = mount(
+        const { getByRole } = render(
           <EuiFacetButton onClick={handler}>Content</EuiFacetButton>
         );
-        component.find('button').simulate('click');
-        expect(handler.mock.calls.length).toEqual(1);
+        fireEvent.click(getByRole('button'));
+        expect(handler).toHaveBeenCalledTimes(1);
       });
     });
   });

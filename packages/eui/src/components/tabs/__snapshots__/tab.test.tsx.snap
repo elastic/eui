@@ -9,14 +9,14 @@ exports[`EuiTab props append is rendered 1`] = `
   type="button"
 >
   <span
-    class="euiTab__prepend"
-  >
-    Append
-  </span>
-  <span
     class="euiTab__content eui-textTruncate emotion-euiTab__content-m"
   >
     children
+  </span>
+  <span
+    class="euiTab__append"
+  >
+    Append
   </span>
 </button>
 `;
