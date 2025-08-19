@@ -105,7 +105,9 @@ describe('EuiFlyout', () => {
 
   describe('props', () => {
     test('hideCloseButton', () => {
-      const { baseElement } = render(<EuiFlyout onClose={() => {}} hideCloseButton />);
+      const { baseElement } = render(
+        <EuiFlyout onClose={() => {}} hideCloseButton />
+      );
 
       expect(baseElement).toMatchSnapshot();
     });
@@ -127,7 +129,9 @@ describe('EuiFlyout', () => {
     });
 
     test('accepts div props', () => {
-      const { baseElement } = render(<EuiFlyout onClose={() => {}} id="imaflyout" />);
+      const { baseElement } = render(
+        <EuiFlyout onClose={() => {}} id="imaflyout" />
+      );
 
       expect(baseElement).toMatchSnapshot();
     });
@@ -135,7 +139,9 @@ describe('EuiFlyout', () => {
     describe('sides', () => {
       SIDES.forEach((side) => {
         it(`${side} is rendered`, () => {
-          const { baseElement } = render(<EuiFlyout onClose={() => {}} side={side} />);
+          const { baseElement } = render(
+            <EuiFlyout onClose={() => {}} side={side} />
+          );
 
           expect(baseElement).toMatchSnapshot();
         });
@@ -182,14 +188,18 @@ describe('EuiFlyout', () => {
     describe('size', () => {
       SIZES.forEach((size) => {
         it(`${size} is rendered`, () => {
-          const { baseElement } = render(<EuiFlyout onClose={() => {}} size={size} />);
+          const { baseElement } = render(
+            <EuiFlyout onClose={() => {}} size={size} />
+          );
 
           expect(baseElement).toMatchSnapshot();
         });
       });
 
       it('accepts custom number', () => {
-        const { baseElement } = render(<EuiFlyout onClose={() => {}} size={500} />);
+        const { baseElement } = render(
+          <EuiFlyout onClose={() => {}} size={500} />
+        );
 
         expect(baseElement).toMatchSnapshot();
       });
