@@ -27,6 +27,10 @@ const interactiveComponents = [
   'EuiSelect',
   'EuiSelectWithWidth',
   'EuiSuperSelect',
+  'EuiPagination',
+  'EuiTreeView',
+  'EuiBreadcrumbs',
+
 ];
 
 const wrappingComponents = ['EuiFormRow'];
@@ -47,10 +51,10 @@ export const NoUnnamedInteractiveElement = ESLintUtils.RuleCreator.withoutDocs({
               ancestor.openingElement &&
               ancestor.openingElement.name.type === 'JSXIdentifier' &&
               wrappingComponents.includes(ancestor.openingElement.name.name)
-          );
-          if (parent) {
+          ) as import('@typescript-eslint/utils').TSESTree.JSXElement | undefined;
+          if (parent && parent.openingElement && parent.openingElement.name.type === 'JSXIdentifier') {
             const hasA11yProp = parent.openingElement.attributes.some(
-              (attr) =>
+              (attr: any) =>
                 attr.type === 'JSXAttribute' &&
                 attr.name.type === 'JSXIdentifier' &&
                 a11yProps.includes(attr.name.name)
@@ -61,9 +65,16 @@ export const NoUnnamedInteractiveElement = ESLintUtils.RuleCreator.withoutDocs({
               messageId: 'missingA11y',
               data: { component: parent.openingElement.name.name },
               fix(fixer) {
+                let name = '';
+                if (parent.openingElement.name.type === 'JSXIdentifier') {
+                  name = parent.openingElement.name.name;
+                } else if (parent.openingElement.name.type === 'JSXMemberExpression') {
+                  // For member expressions, fallback to string '[MemberExpression]'
+                  name = '[MemberExpression]';
+                }
                 return fixer.insertTextAfter(
                   parent.openingElement.name,
-                  ` aria-label="${parent.openingElement.name.name}"`
+                  ` aria-label="${name}"`
                 );
               },
             });
@@ -72,7 +83,7 @@ export const NoUnnamedInteractiveElement = ESLintUtils.RuleCreator.withoutDocs({
 
           // Check props on the interactive element itself
           const hasA11yProp = node.attributes.some(
-            (attr) =>
+            (attr: any) =>
               attr.type === 'JSXAttribute' &&
               attr.name.type === 'JSXIdentifier' &&
               a11yProps.includes(attr.name.name)
@@ -83,9 +94,15 @@ export const NoUnnamedInteractiveElement = ESLintUtils.RuleCreator.withoutDocs({
             messageId: 'missingA11y',
             data: { component: node.name.name },
             fix(fixer) {
+              let name = '';
+              if (node.name.type === 'JSXIdentifier') {
+                name = node.name.name;
+              } else if (node.name.type === 'JSXMemberExpression') {
+                name = '[MemberExpression]';
+              }
               return fixer.insertTextAfter(
                 node.name,
-                ` aria-label="${node.name.name}"`
+                ` aria-label="${name}"`
               );
             },
           });
