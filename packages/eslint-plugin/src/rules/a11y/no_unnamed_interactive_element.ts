@@ -17,7 +17,8 @@
  * under the License.
  */
 
-import { ESLintUtils } from '@typescript-eslint/utils';
+
+import { ESLintUtils, type TSESTree } from '@typescript-eslint/utils';
 
 const interactiveComponents = [
   'EuiBetaBadge',
@@ -30,97 +31,90 @@ const interactiveComponents = [
   'EuiPagination',
   'EuiTreeView',
   'EuiBreadcrumbs',
+] as const;
 
-];
+const wrappingComponents = ['EuiFormRow'] as const;
+const a11yProps = ['aria-label', 'aria-labelledby', 'label'] as const;
 
-const wrappingComponents = ['EuiFormRow'];
-const a11yProps = ['aria-label', 'aria-labelledby', 'label'];
+type JSXOpeningElement = TSESTree.JSXOpeningElement;
+
+function hasSpread(attrs: JSXOpeningElement['attributes']): boolean {
+  return attrs.some((a) => a.type === 'JSXSpreadAttribute');
+}
+
+function hasA11yProp(attrs: JSXOpeningElement['attributes']): boolean {
+  return attrs.some(
+    (attr): attr is TSESTree.JSXAttribute =>
+      attr.type === 'JSXAttribute' &&
+      attr.name.type === 'JSXIdentifier' &&
+      a11yProps.includes(attr.name.name as (typeof a11yProps)[number]),
+  );
+}
+
+function getReadableComponentName(name: JSXOpeningElement['name']): string {
+  return name.type === 'JSXIdentifier' ? name.name : 'this component';
+}
 
 export const NoUnnamedInteractiveElement = ESLintUtils.RuleCreator.withoutDocs({
-  create(context) {
-    return {
-      JSXOpeningElement(node) {
-        if (
-          node.name.type === 'JSXIdentifier' &&
-          interactiveComponents.includes(node.name.name)
-        ) {
-          // Check if wrapped in a wrapping component
-          const parent = context.getAncestors().reverse().find(
-            (ancestor) =>
-              ancestor.type === 'JSXElement' &&
-              ancestor.openingElement &&
-              ancestor.openingElement.name.type === 'JSXIdentifier' &&
-              wrappingComponents.includes(ancestor.openingElement.name.name)
-          ) as import('@typescript-eslint/utils').TSESTree.JSXElement | undefined;
-          if (parent && parent.openingElement && parent.openingElement.name.type === 'JSXIdentifier') {
-            const hasA11yProp = parent.openingElement.attributes.some(
-              (attr: any) =>
-                attr.type === 'JSXAttribute' &&
-                attr.name.type === 'JSXIdentifier' &&
-                a11yProps.includes(attr.name.name)
-            );
-            if (hasA11yProp) return;
-            context.report({
-              node: parent.openingElement,
-              messageId: 'missingA11y',
-              data: { component: parent.openingElement.name.name },
-              fix(fixer) {
-                let name = '';
-                if (parent.openingElement.name.type === 'JSXIdentifier') {
-                  name = parent.openingElement.name.name;
-                } else if (parent.openingElement.name.type === 'JSXMemberExpression') {
-                  // For member expressions, fallback to string '[MemberExpression]'
-                  name = '[MemberExpression]';
-                }
-                return fixer.insertTextAfter(
-                  parent.openingElement.name,
-                  ` aria-label="${name}"`
-                );
-              },
-            });
-            return;
-          }
-
-          // Check props on the interactive element itself
-          const hasA11yProp = node.attributes.some(
-            (attr: any) =>
-              attr.type === 'JSXAttribute' &&
-              attr.name.type === 'JSXIdentifier' &&
-              a11yProps.includes(attr.name.name)
-          );
-          if (hasA11yProp) return;
-          context.report({
-            node,
-            messageId: 'missingA11y',
-            data: { component: node.name.name },
-            fix(fixer) {
-              let name = '';
-              if (node.name.type === 'JSXIdentifier') {
-                name = node.name.name;
-              } else if (node.name.type === 'JSXMemberExpression') {
-                name = '[MemberExpression]';
-              }
-              return fixer.insertTextAfter(
-                node.name,
-                ` aria-label="${name}"`
-              );
-            },
-          });
-        }
-      },
-    };
-  },
   meta: {
     type: 'suggestion',
-    docs: {
-      description:
-        'Ensure interactive EUI components have an accessible name via aria-label, aria-labelledby, or label.',
-    },
+    hasSuggestions: false, 
     schema: [],
     messages: {
       missingA11y:
-        '{{ component }} should have a `aria-label` for accessibility.',
+        '{{component}} should have an accessible name via `aria-label`, `aria-labelledby`, or `label`.',
     },
   },
   defaultOptions: [],
+  create(context) {
+    const sourceCode = context.sourceCode; 
+
+    return {
+      JSXOpeningElement(node) {
+       
+        if (node.name.type !== 'JSXIdentifier') return;
+
+        const isInteractive = interactiveComponents.includes(
+          node.name.name as (typeof interactiveComponents)[number],
+        );
+        if (!isInteractive) return;
+
+        
+        if (hasSpread(node.attributes) || hasA11yProp(node.attributes)) return;
+
+      
+        const ancestors = sourceCode.getAncestors(node);
+        const wrapper = [...ancestors]
+          .reverse()
+          .find(
+            (a): a is TSESTree.JSXElement =>
+              a.type === 'JSXElement' &&
+              a.openingElement.name.type === 'JSXIdentifier' &&
+              wrappingComponents.includes(
+                a.openingElement.name.name as (typeof wrappingComponents)[number],
+              ),
+          );
+
+        if (wrapper) {
+          const open = wrapper.openingElement;
+          
+          if (!hasSpread(open.attributes) && !hasA11yProp(open.attributes)) {
+            context.report({
+              node: open,
+              messageId: 'missingA11y',
+              data: { component: getReadableComponentName(open.name) },
+            });
+          }
+          return;
+        }
+
+        
+        context.report({
+          node,
+          messageId: 'missingA11y',
+          data: { component: getReadableComponentName(node.name) },
+        });
+      },
+    };
+  },
 });

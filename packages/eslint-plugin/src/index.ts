@@ -53,8 +53,7 @@ const config = {
         '@elastic/eui/sr-output-disabled-tooltip': 'warn',
         '@elastic/eui/prefer-eui-icon-tip': 'warn',
         '@elastic/eui/no-unnamed-radio-group': 'warn',
-
-        
+        '@elastic/eui/no-unnamed-interactive-element': 'warn',      
       },
     },
   },
