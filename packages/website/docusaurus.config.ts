@@ -94,6 +94,21 @@ const config: Config = {
         },
       },
     ],
+    [
+      'docusaurus-plugin-llms',
+      {
+        // source: https://github.com/rachfop/docusaurus-plugin-llms?tab=readme-ov-file#configuration-options
+        generateLLMsTxt: true,
+        generateLLMsFullTxt: true,
+        docsDir: 'docs',
+        // ignoreFiles: ['dataviz/*', 'content/*', 'patterns/*'],
+        title: 'Elastic UI documentation',
+        description: 'Complete reference documentation for Elastic UI',
+        includeBlog: false,
+        // includeOrder: ['getting-started/*', 'components/*', 'utilities/*'],
+        // includeUnmatchedLast: false,
+      },
+    ],
   ],
 
   themeConfig: {
