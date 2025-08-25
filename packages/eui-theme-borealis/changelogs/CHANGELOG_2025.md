@@ -1,3 +1,9 @@
+## [`v3.3.2`](https://github.com/elastic/eui/releases/v3.3.2)
+
+**Bug fixes**
+
+- Fixed the syntax of the SCSS variable `$euiColorTransparent` to ensure a valid value ([#8966](https://github.com/elastic/eui/pull/8966))
+
 ## [`v3.3.1`](https://github.com/elastic/eui/releases/v3.3.1)
 
 **Bug fixes**

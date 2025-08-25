@@ -1,3 +1,16 @@
+## [`v106.4.0`](https://github.com/elastic/eui/releases/v106.4.0)
+
+- Added prop `focusTrapProps` on `EuiModal` ([#8945](https://github.com/elastic/eui/pull/8945))
+
+**Bug fixes**
+
+- Fixed the syntax of the SCSS variable `$euiColorTransparent` to ensure a valid value ([#8966](https://github.com/elastic/eui/pull/8966))
+- Fixed `restrictWidth` not applying to `EuiPageHeaderContent` when only `children` are used as content ([#8965](https://github.com/elastic/eui/pull/8965))
+
+**Accessibility**
+
+- Fixed an issue where pressing Shift + Tab on the last tabbable element inside `EuiInputPopover` popover would close the popover unexpectedly ([#8950](https://github.com/elastic/eui/pull/8950))
+
 ## [`v106.3.0`](https://github.com/elastic/eui/releases/v106.3.0)
 
 - Added thumbUp and thumbDown icons ([#8937](https://github.com/elastic/eui/pull/8937))
