@@ -1,3 +1,9 @@
+:::warning Legacy component
+
+**EuiConfirmModal** is a legacy wrapper component. For new implementations, we recommend using the [Modal dialogs pattern](/docs/patterns/feedback-overlays/modal-dialogs) which provides more flexibility and better accessibility.
+
+:::
+
 Use the **EuiConfirmModal** to ask the user to confirm a decision. It is a contextual wrapper around **EuiModal** that provides some helpful props for filling in common modal pieces. By default, the button color indicates a positive or neutral action. Change the `buttonColor` property to `danger` to indicate a destructive action.
 
 ```tsx interactive
@@ -75,6 +81,44 @@ export default () => {
   );
 };
 ```
+
+## Migration to Modal dialogs pattern
+
+If you're currently using `EuiConfirmModal`, consider migrating to the [Modal dialogs pattern](/docs/patterns/feedback-overlays/modal-dialogs) for better flexibility and consistency:
+
+```tsx
+// Before: EuiConfirmModal
+<EuiConfirmModal
+  title="Delete item"
+  onCancel={onCancel}
+  onConfirm={onConfirm}
+  cancelButtonText="Cancel"
+  confirmButtonText="Delete"
+  buttonColor="danger"
+>
+  Are you sure you want to delete this item?
+</EuiConfirmModal>
+
+// After: Modal dialogs pattern
+<EuiModal onClose={onCancel} role="alertdialog">
+  <EuiModalHeader>
+    <EuiModalHeaderTitle>Delete item</EuiModalHeaderTitle>
+  </EuiModalHeader>
+  <EuiModalBody>
+    <EuiText>
+      <p>Are you sure you want to delete this item?</p>
+    </EuiText>
+  </EuiModalBody>
+  <EuiModalFooter>
+    <EuiButtonEmpty onClick={onCancel}>Cancel</EuiButtonEmpty>
+    <EuiButton onClick={onConfirm} fill color="danger">
+      Delete
+    </EuiButton>
+  </EuiModalFooter>
+</EuiModal>
+```
+
+The pattern approach gives you more control over the modal structure, better accessibility, and consistent styling with your design tokens.
 
 #### Loading and disabling confirm button
 

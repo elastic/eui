@@ -4,7 +4,13 @@ keywords: [EuiFlyout, EuiFlyoutBody, EuiFlyoutHeader, EuiFlyoutFooter]
 
 # Flyout
 
-**EuiFlyout** is a fixed position panel that pops in from the side of the window. It should be used to reveal more detailed contextual information or to provide complex forms without losing the user's current state. It is a good alternative to [modals](../modal/index.mdx) when the action is not transient.
+**EuiFlyout** is a low-level atom that provides a fixed position panel that pops in from the side of the window. It is designed to be a flexible foundation upon which more complex flyout patterns can be built.
+
+:::tip Looking for usage guidance?
+
+For task-oriented recipes like details flyouts, edit/settings forms, and push vs overlay variants, see the [Flyouts pattern](/docs/patterns/navigation/flyouts).
+
+:::
 
 Like modals, you control the visibility of the flyout using your own state management, but **EuiFlyout** requires an `onClose` handler for it's internal dismiss buttons.
 

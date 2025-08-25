@@ -4,6 +4,12 @@ keywords: [EuiStat]
 
 # Stat
 
+:::warning Legacy component
+
+**EuiStat** is a legacy wrapper component. For new implementations, we recommend using the [Stat blocks pattern](/docs/patterns/layouts/stat-blocks) which provides more flexibility and better accessibility.
+
+:::
+
 **EuiStat** can be used to display prominent text or number values. It consists of `title`and `description` elements with several visual styling properties (examples below).
 
 ```tsx interactive
@@ -307,6 +313,30 @@ export default () => {
   );
 };
 ```
+
+## Migration to Stat blocks pattern
+
+If you're currently using `EuiStat`, consider migrating to the [Stat blocks pattern](/docs/patterns/layouts/stat-blocks) for better flexibility and consistency:
+
+```tsx
+// Before: EuiStat
+<EuiStat
+  title="1,245"
+  description="Active users"
+/>
+
+// After: Stat blocks pattern
+<EuiPanel paddingSize="m">
+  <EuiTitle size="l">
+    <h2>1,245</h2>
+  </EuiTitle>
+  <EuiText size="s" color="subdued">
+    Active users
+  </EuiText>
+</EuiPanel>
+```
+
+The pattern approach gives you more control over styling, layout, and accessibility while maintaining consistency with other EUI components.
 
 ## Props
 

@@ -1,0 +1,309 @@
+---
+title: Stat blocks
+sidebar_position: 2
+---
+
+```mdx-code-block
+import React from 'react';
+import {
+  EuiPanel,
+  EuiTitle,
+  EuiText,
+  EuiIcon,
+  EuiBadge,
+  EuiFlexGroup,
+  EuiFlexItem,
+} from '@elastic/eui';
+```
+
+Stat blocks are compact displays for KPIs and metrics that provide quick insights at a glance. They work well both as standalone elements and in organized grids for dashboard-style layouts.
+
+## When to use
+
+- **Displaying KPIs** like user counts, revenue, or performance metrics
+- **Dashboard layouts** where multiple metrics need to be compared
+- **Quick insights** that need to be scannable and accessible
+- **Trend indicators** showing changes over time
+
+## When not to use
+
+- **Detailed data analysis** (use tables or charts instead)
+- **Complex interactions** (use interactive components)
+- **Long-form content** (use page layouts)
+- **Primary navigation** (use navigation components)
+
+## Anatomy
+
+A stat block consists of these elements:
+
+- **Container**: EuiPanel (optional surface)
+- **Value**: EuiTitle with the primary metric
+- **Label**: EuiText describing what the metric represents
+- **Context**: Optional trend indicators, units, or supporting text
+- **Layout**: EuiFlexGroup for organizing multiple stats
+
+## Variants
+
+### Basic stat
+
+A simple stat block with a value and label.
+
+```tsx interactive
+import React from 'react';
+import {
+  EuiPanel,
+  EuiTitle,
+  EuiText,
+  EuiFlexGroup,
+  EuiFlexItem,
+} from '@elastic/eui';
+
+export default () => (
+  <EuiFlexGroup gutterSize="m">
+    <EuiFlexItem grow={false}>
+      <EuiPanel paddingSize="m">
+        <EuiTitle size="l">
+          <h2>1,245</h2>
+        </EuiTitle>
+        <EuiText size="s" color="subdued">
+          Active users
+        </EuiText>
+      </EuiPanel>
+    </EuiFlexItem>
+  </EuiFlexGroup>
+);
+```
+
+### Stat with trend
+
+A stat block that includes trend information with an icon and context.
+
+```tsx interactive
+import React from 'react';
+import {
+  EuiPanel,
+  EuiTitle,
+  EuiText,
+  EuiIcon,
+  EuiFlexGroup,
+  EuiFlexItem,
+} from '@elastic/eui';
+
+export default () => (
+  <EuiFlexGroup gutterSize="m">
+    <EuiFlexItem grow={false}>
+      <EuiPanel paddingSize="m">
+        <EuiTitle size="l">
+          <h2>+24%</h2>
+        </EuiTitle>
+        <EuiFlexGroup alignItems="center" gutterSize="s">
+          <EuiFlexItem grow={false}>
+            <EuiIcon type="sortUp" color="success" />
+          </EuiFlexItem>
+          <EuiFlexItem grow={false}>
+            <EuiText size="s" color="subdued">
+              vs last week
+            </EuiText>
+          </EuiFlexItem>
+        </EuiFlexGroup>
+      </EuiPanel>
+    </EuiFlexItem>
+  </EuiFlexGroup>
+);
+```
+
+### Stat grid
+
+Multiple stat blocks organized in a responsive grid layout.
+
+```tsx interactive
+import React from 'react';
+import {
+  EuiPanel,
+  EuiTitle,
+  EuiText,
+  EuiFlexGroup,
+  EuiFlexItem,
+} from '@elastic/eui';
+
+export default () => (
+  <EuiFlexGroup gutterSize="m">
+    <EuiFlexItem>
+      <EuiPanel paddingSize="m">
+        <EuiTitle size="l">
+          <h2>32</h2>
+        </EuiTitle>
+        <EuiText size="s" color="subdued">
+          Alerts
+        </EuiText>
+      </EuiPanel>
+    </EuiFlexItem>
+    <EuiFlexItem>
+      <EuiPanel paddingSize="m">
+        <EuiTitle size="l">
+          <h2>4.2k</h2>
+        </EuiTitle>
+        <EuiText size="s" color="subdued">
+          Sessions
+        </EuiText>
+      </EuiPanel>
+    </EuiFlexItem>
+    <EuiFlexItem>
+      <EuiPanel paddingSize="m">
+        <EuiTitle size="l">
+          <h2>1.8s</h2>
+        </EuiTitle>
+        <EuiText size="s" color="subdued">
+          Avg response time
+        </EuiText>
+      </EuiPanel>
+    </EuiFlexItem>
+    <EuiFlexItem>
+      <EuiPanel paddingSize="m">
+        <EuiTitle size="l">
+          <h2>98%</h2>
+        </EuiTitle>
+        <EuiText size="s" color="subdued">
+          Uptime
+        </EuiText>
+      </EuiPanel>
+    </EuiFlexItem>
+  </EuiFlexGroup>
+);
+```
+
+### Stat with negative trend
+
+A stat block showing a negative trend with appropriate styling.
+
+```tsx interactive
+import React from 'react';
+import {
+  EuiPanel,
+  EuiTitle,
+  EuiText,
+  EuiIcon,
+  EuiFlexGroup,
+  EuiFlexItem,
+} from '@elastic/eui';
+
+export default () => (
+  <EuiFlexGroup gutterSize="m">
+    <EuiFlexItem grow={false}>
+      <EuiPanel paddingSize="m">
+        <EuiTitle size="l">
+          <h2>-12%</h2>
+        </EuiTitle>
+        <EuiFlexGroup alignItems="center" gutterSize="s">
+          <EuiFlexItem grow={false}>
+            <EuiIcon type="sortDown" color="danger" />
+          </EuiFlexItem>
+          <EuiFlexItem grow={false}>
+            <EuiText size="s" color="subdued">
+              vs last month
+            </EuiText>
+          </EuiFlexItem>
+        </EuiFlexGroup>
+      </EuiPanel>
+    </EuiFlexItem>
+  </EuiFlexGroup>
+);
+```
+
+
+
+## Behavior
+
+### Responsive layout
+
+- Stats stack vertically on narrow screens
+- Use EuiFlexGroup for equal-width layouts
+- Consider responsive breakpoints for grid columns
+
+
+### Value formatting
+
+- Right-align numbers in grids for better scannability
+- Truncate large values (e.g., 12.3k instead of 12,300)
+- Use consistent decimal places for similar metrics
+- Consider locale-specific number formatting
+
+### Trend indicators
+
+- Always pair color with an icon or label
+- Use consistent color coding (success/danger for trends)
+- Provide context for what the trend represents
+
+## Accessibility
+
+### Screen reader support
+
+- Provide descriptive labels: "Active users: 1,245"
+- Add aria-label for trends: "24% increase vs last week"
+- Ensure proper heading hierarchy with EuiTitle
+
+### Color and contrast
+
+- Maintain sufficient color contrast ratios
+- Don't rely on color alone to convey meaning
+- Use icons and labels to reinforce color-coded information
+
+### Keyboard navigation
+
+- Ensure all interactive elements are keyboard accessible
+- Provide clear focus indicators
+- Use semantic HTML elements
+
+## Design tokens
+
+Use these tokens for consistent stat block styling:
+
+- **Surface**: `euiColorEmptyShade` for the background
+- **Typography**: `euiFontSizeXL` or `euiFontSizeL` for values, `euiFontSizeS` for labels
+- **Spacing**: `euiSizeM` for padding between elements
+- **Colors**: `euiColorSuccess` for positive trends, `euiColorDanger` for negative trends
+- **Border radius**: `euiBorderRadiusM` for rounded corners
+
+## Do's and Don'ts
+
+### ✅ Do
+
+- Keep labels short and descriptive
+- Align values across a row for easy comparison
+- Pair trend colors with icons or labels
+- Use consistent formatting for similar metrics
+- Provide context for what the metric represents
+- Consider responsive behavior on smaller screens
+
+### ❌ Don't
+
+- Cram multiple KPIs into a single stat block
+- Rely on color alone to convey meaning
+- Use overly long labels that break the layout
+- Mix different units or formats in the same grid
+- Use stat blocks for detailed data analysis
+- Forget to provide context for trends or changes
+
+## Migration from EuiStat
+
+If you're currently using `EuiStat`, consider migrating to this pattern for better flexibility and consistency:
+
+```tsx
+// Before: EuiStat
+<EuiStat
+  title="1,245"
+  description="Active users"
+/>
+
+// After: Stat blocks pattern
+<EuiPanel paddingSize="m">
+  <EuiTitle size="l">
+    <h2>1,245</h2>
+  </EuiTitle>
+  <EuiText size="s" color="subdued">
+    Active users
+  </EuiText>
+</EuiPanel>
+```
+
+The pattern approach gives you more control over styling, layout, and accessibility while maintaining consistency with other EUI components.

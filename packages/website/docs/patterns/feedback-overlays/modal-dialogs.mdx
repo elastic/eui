@@ -1,0 +1,488 @@
+---
+title: Modal dialogs
+sidebar_position: 1
+---
+
+```mdx-code-block
+import React, { useState } from 'react';
+import {
+  EuiModal,
+  EuiModalHeader,
+  EuiModalHeaderTitle,
+  EuiModalBody,
+  EuiModalFooter,
+  EuiButton,
+  EuiButtonEmpty,
+  EuiText,
+  EuiFieldText,
+  EuiFormRow,
+  EuiCheckbox,
+  EuiSpacer,
+  EuiPanel,
+  EuiFlexGroup,
+  EuiFlexItem,
+  EuiIcon,
+  EuiTitle,
+  useGeneratedHtmlId,
+} from '@elastic/eui';
+```
+
+Modal dialogs are task-oriented overlays that interrupt the user's workflow to gather input or confirm an action. They provide focused, single-purpose interactions that require immediate attention.
+
+## When to use
+
+- **Confirming actions** that have consequences (save, delete, publish)
+- **Gathering simple input** that's required to continue (rename, settings)
+- **Presenting critical information** that requires acknowledgment
+- **Making binary decisions** with clear outcomes
+
+## When not to use
+
+- **Complex multi-step workflows** (use a form or wizard instead)
+- **Large amounts of content** (use a flyout or page)
+- **Frequent, low-stakes interactions** (use inline editing or tooltips)
+- **Navigation between sections** (use tabs or breadcrumbs)
+
+## Anatomy
+
+<EuiPanel color="subdued" paddingSize="l" hasShadow={false}>
+  <EuiFlexGroup gutterSize="l" alignItems="flexStart">
+    <EuiFlexItem grow={false}>
+      <EuiPanel style={{ maxWidth: 480 }} paddingSize="none">
+        <EuiModalHeader>
+          <EuiModalHeaderTitle>
+            <EuiTitle size="m">
+              <h2>Title sets the context</h2>
+            </EuiTitle>
+          </EuiModalHeaderTitle>
+        </EuiModalHeader>
+        
+        <EuiModalBody>
+          <EuiText>
+            <p>
+              Message explains the action and its consequences. Keep it concise 
+              and actionable.
+            </p>
+          </EuiText>
+        </EuiModalBody>
+        
+        <EuiModalFooter>
+          <EuiButtonEmpty>Cancel</EuiButtonEmpty>
+          <EuiButton fill>Confirm</EuiButton>
+        </EuiModalFooter>
+      </EuiPanel>
+    </EuiFlexItem>
+    
+    <EuiFlexItem>
+      <EuiText size="s">
+        <h4>Structure</h4>
+        <ul>
+          <li><strong>Title:</strong> Clear, sentence-case, indicates the action</li>
+          <li><strong>Message:</strong> Explains what will happen and why</li>
+          <li><strong>Actions:</strong> Right-aligned, primary action is filled</li>
+        </ul>
+        
+        <EuiSpacer size="m" />
+        
+        <h4>Behavior</h4>
+        <ul>
+          <li>Focus trapped within modal</li>
+          <li>ESC key closes (except destructive)</li>
+          <li>Click outside doesn't close</li>
+          <li>Primary action button receives initial focus</li>
+        </ul>
+      </EuiText>
+    </EuiFlexItem>
+  </EuiFlexGroup>
+</EuiPanel>
+
+## Confirmation dialog
+
+Use for neutral actions that require user confirmation but aren't destructive.
+
+```tsx interactive
+import React, { useState } from 'react';
+import {
+  EuiButton,
+  EuiModal,
+  EuiModalHeader,
+  EuiModalHeaderTitle,
+  EuiModalBody,
+  EuiModalFooter,
+  EuiButtonEmpty,
+  EuiText,
+  useGeneratedHtmlId,
+} from '@elastic/eui';
+
+export default () => {
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const closeModal = () => setIsModalVisible(false);
+  const showModal = () => setIsModalVisible(true);
+
+  const handleConfirm = async () => {
+    setIsLoading(true);
+    // Simulate async operation
+    await new Promise(resolve => setTimeout(resolve, 1000));
+    setIsLoading(false);
+    closeModal();
+  };
+
+  const modalTitleId = useGeneratedHtmlId();
+
+  return (
+    <>
+      <EuiButton onClick={showModal}>Save dashboard</EuiButton>
+
+      {isModalVisible && (
+        <EuiModal aria-labelledby={modalTitleId} onClose={closeModal}>
+          <EuiModalHeader>
+            <EuiModalHeaderTitle id={modalTitleId}>
+              Save dashboard
+            </EuiModalHeaderTitle>
+          </EuiModalHeader>
+
+          <EuiModalBody>
+            <EuiText>
+              <p>
+                This will save your current dashboard configuration. Any unsaved 
+                changes will be preserved.
+              </p>
+            </EuiText>
+          </EuiModalBody>
+
+          <EuiModalFooter>
+            <EuiButtonEmpty onClick={closeModal}>
+              Cancel
+            </EuiButtonEmpty>
+            <EuiButton onClick={handleConfirm} fill isLoading={isLoading}>
+              Save
+            </EuiButton>
+          </EuiModalFooter>
+        </EuiModal>
+      )}
+    </>
+  );
+};
+```
+
+## Destructive confirmation
+
+Use for actions that permanently delete or remove data. These dialogs use `role="alertdialog"` and cannot be dismissed with ESC.
+
+```tsx interactive
+import React, { useState } from 'react';
+import {
+  EuiButton,
+  EuiModal,
+  EuiModalHeader,
+  EuiModalHeaderTitle,
+  EuiModalBody,
+  EuiModalFooter,
+  EuiButtonEmpty,
+  EuiText,
+  useGeneratedHtmlId,
+} from '@elastic/eui';
+
+export default () => {
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const closeModal = () => setIsModalVisible(false);
+  const showModal = () => setIsModalVisible(true);
+
+  const handleDelete = async () => {
+    setIsLoading(true);
+    // Simulate async operation
+    await new Promise(resolve => setTimeout(resolve, 1000));
+    setIsLoading(false);
+    closeModal();
+  };
+
+  const modalTitleId = useGeneratedHtmlId();
+
+  return (
+    <>
+      <EuiButton color="danger" onClick={showModal}>
+        Delete index
+      </EuiButton>
+
+      {isModalVisible && (
+        <EuiModal 
+          aria-labelledby={modalTitleId} 
+          onClose={closeModal}
+          role="alertdialog"
+        >
+          <EuiModalHeader>
+            <EuiModalHeaderTitle id={modalTitleId}>
+              Delete index
+            </EuiModalHeaderTitle>
+          </EuiModalHeader>
+
+          <EuiModalBody>
+            <EuiText>
+              <p>
+                This action cannot be undone. This will permanently delete the 
+                <strong> logs-2024.01</strong> index and all of its data.
+              </p>
+            </EuiText>
+          </EuiModalBody>
+
+          <EuiModalFooter>
+            <EuiButtonEmpty onClick={closeModal}>
+              Cancel
+            </EuiButtonEmpty>
+            <EuiButton 
+              onClick={handleDelete} 
+              fill 
+              color="danger"
+              isLoading={isLoading}
+            >
+              Delete index
+            </EuiButton>
+          </EuiModalFooter>
+        </EuiModal>
+      )}
+    </>
+  );
+};
+```
+
+## Decision dialog with input
+
+Use when you need to gather simple input as part of the confirmation process.
+
+```tsx interactive
+import React, { useState } from 'react';
+import {
+  EuiButton,
+  EuiModal,
+  EuiModalHeader,
+  EuiModalHeaderTitle,
+  EuiModalBody,
+  EuiModalFooter,
+  EuiButtonEmpty,
+  EuiText,
+  EuiFieldText,
+  EuiFormRow,
+  EuiCheckbox,
+  EuiSpacer,
+  useGeneratedHtmlId,
+} from '@elastic/eui';
+
+export default () => {
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [name, setName] = useState('');
+  const [includeData, setIncludeData] = useState(false);
+
+  const closeModal = () => {
+    setIsModalVisible(false);
+    setName('');
+    setIncludeData(false);
+  };
+  
+  const showModal = () => setIsModalVisible(true);
+
+  const handleConfirm = async () => {
+    if (!name.trim()) return;
+    
+    setIsLoading(true);
+    // Simulate async operation
+    await new Promise(resolve => setTimeout(resolve, 1000));
+    setIsLoading(false);
+    closeModal();
+  };
+
+  const modalTitleId = useGeneratedHtmlId();
+
+  return (
+    <>
+      <EuiButton onClick={showModal}>Rename dashboard</EuiButton>
+
+      {isModalVisible && (
+        <EuiModal aria-labelledby={modalTitleId} onClose={closeModal}>
+          <EuiModalHeader>
+            <EuiModalHeaderTitle id={modalTitleId}>
+              Rename dashboard
+            </EuiModalHeaderTitle>
+          </EuiModalHeader>
+
+          <EuiModalBody>
+            <EuiText>
+              <p>
+                Enter a new name for your dashboard. This will update the title 
+                across all views.
+              </p>
+            </EuiText>
+            
+            <EuiSpacer size="m" />
+            
+            <EuiFormRow label="Dashboard name" isInvalid={!name.trim()}>
+              <EuiFieldText
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                placeholder="Enter dashboard name"
+                isInvalid={!name.trim()}
+              />
+            </EuiFormRow>
+            
+            <EuiSpacer size="s" />
+            
+            <EuiCheckbox
+              id="include-data"
+              label="Include saved searches and visualizations"
+              checked={includeData}
+              onChange={(e) => setIncludeData(e.target.checked)}
+            />
+          </EuiModalBody>
+
+          <EuiModalFooter>
+            <EuiButtonEmpty onClick={closeModal}>
+              Cancel
+            </EuiButtonEmpty>
+            <EuiButton 
+              onClick={handleConfirm} 
+              fill 
+              isLoading={isLoading}
+              isDisabled={!name.trim()}
+            >
+              Rename
+            </EuiButton>
+          </EuiModalFooter>
+        </EuiModal>
+      )}
+    </>
+  );
+};
+```
+
+## Behavior and states
+
+### Focus management
+- **Initial focus:** Primary action button receives focus when modal opens
+- **Focus trap:** Tab navigation is contained within the modal
+- **Return focus:** When modal closes, focus returns to the triggering element
+
+### Keyboard interactions
+- **ESC key:** Closes modal (except destructive dialogs with `role="alertdialog"`)
+- **Tab:** Navigates between focusable elements within modal
+- **Enter/Space:** Activates buttons and form controls
+
+### Loading states
+- **Async actions:** Show loading state on primary button during operations
+- **Disable actions:** Prevent multiple submissions during loading
+- **Error handling:** Provide clear error messages and recovery options
+
+## Accessibility
+
+### ARIA attributes
+- **`role="dialog"`:** Standard modal dialogs
+- **`role="alertdialog"`:** Destructive actions that require immediate attention
+- **`aria-labelledby`:** Links modal to its title
+- **`aria-modal="true"`:** Indicates this is a modal dialog
+
+### Screen reader considerations
+- **Announcement:** Screen readers announce the modal title when it opens
+- **Focus indication:** Clear focus indicators for keyboard navigation
+- **Action descriptions:** Use descriptive button text that explains the action
+
+### Color and contrast
+- **Destructive actions:** Use danger color tokens for delete/remove actions
+- **Success actions:** Use success color tokens for positive confirmations
+- **Neutral actions:** Use primary color tokens for standard confirmations
+
+## Design tokens
+
+### Colors
+- **Background:** `euiTheme.colors.emptyShade`
+- **Border:** `euiTheme.colors.borderBaseFloating`
+- **Text:** `euiTheme.colors.text`
+- **Primary button:** `euiTheme.colors.primary`
+- **Danger button:** `euiTheme.colors.danger`
+
+### Spacing
+- **Header padding:** `euiTheme.size.l`
+- **Body padding:** `euiTheme.size.l`
+- **Footer padding:** `euiTheme.size.m`
+- **Button spacing:** `euiTheme.size.s`
+
+### Shadows and borders
+- **Modal shadow:** `euiShadowXLarge`
+- **Border radius:** `euiTheme.border.radius.medium`
+- **Border width:** `euiTheme.border.width.thin`
+
+## Do's and Don'ts
+
+<EuiFlexGroup gutterSize="l">
+  <EuiFlexItem>
+    <EuiPanel color="success" paddingSize="m">
+      <EuiText size="s">
+        <h4>✅ Do</h4>
+        <ul>
+          <li>Use clear, action-oriented titles</li>
+          <li>Explain consequences in the message</li>
+          <li>Use descriptive button labels</li>
+          <li>Provide a clear cancel option</li>
+          <li>Handle loading and error states</li>
+          <li>Use appropriate ARIA roles</li>
+        </ul>
+      </EuiText>
+    </EuiPanel>
+  </EuiFlexItem>
+  
+  <EuiFlexItem>
+    <EuiPanel color="danger" paddingSize="m">
+      <EuiText size="s">
+        <h4>❌ Don't</h4>
+        <ul>
+          <li>Use vague or generic titles</li>
+          <li>Hide important consequences</li>
+          <li>Use unclear button labels</li>
+          <li>Remove the cancel option</li>
+          <li>Ignore loading states</li>
+          <li>Use wrong ARIA roles</li>
+        </ul>
+      </EuiText>
+    </EuiPanel>
+  </EuiFlexItem>
+</EuiFlexGroup>
+
+## Migration from EuiConfirmModal
+
+If you're currently using `EuiConfirmModal`, consider migrating to this pattern for better flexibility and consistency:
+
+```tsx
+// Before: EuiConfirmModal
+<EuiConfirmModal
+  title="Delete item"
+  onCancel={onCancel}
+  onConfirm={onConfirm}
+  cancelButtonText="Cancel"
+  confirmButtonText="Delete"
+  buttonColor="danger"
+>
+  Are you sure you want to delete this item?
+</EuiConfirmModal>
+
+// After: Modal dialogs pattern
+<EuiModal onClose={onCancel} role="alertdialog">
+  <EuiModalHeader>
+    <EuiModalHeaderTitle>Delete item</EuiModalHeaderTitle>
+  </EuiModalHeader>
+  <EuiModalBody>
+    <EuiText>
+      <p>Are you sure you want to delete this item?</p>
+    </EuiText>
+  </EuiModalBody>
+  <EuiModalFooter>
+    <EuiButtonEmpty onClick={onCancel}>Cancel</EuiButtonEmpty>
+    <EuiButton onClick={onConfirm} fill color="danger">
+      Delete
+    </EuiButton>
+  </EuiModalFooter>
+</EuiModal>
+```
+
+The pattern approach gives you more control over the modal structure, better accessibility, and consistent styling with your design tokens.

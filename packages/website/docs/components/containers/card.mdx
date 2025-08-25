@@ -4,6 +4,12 @@ keywords: [EuiCard, EuiCheckableCard]
 
 # Card
 
+:::warning Legacy component
+
+**EuiCard** is a legacy wrapper component. For new implementations, we recommend using the [Card layouts pattern](/docs/patterns/layouts/card-layouts) which provides more flexibility and better accessibility.
+
+:::
+
 **EuiCard** is a content-oriented component built on top of [EuiPanel](../containers/panel/index.mdx). Be sure to check out the [guidelines for properly nesting panels](../containers/panel/index.mdx#nesting-panels).
 
 ## Component
@@ -636,6 +642,33 @@ export default () => (
   </EuiFlexGrid>
 );
 ```
+
+## Migration to Card layouts pattern
+
+If you're currently using `EuiCard`, consider migrating to the [Card layouts pattern](/docs/patterns/layouts/card-layouts) for better flexibility and consistency:
+
+```tsx
+// Before: EuiCard
+<EuiCard
+  title="Get started"
+  description="Connect your first data source."
+  footer={<EuiButton>Connect data</EuiButton>}
+/>
+
+// After: Card pattern
+<EuiPanel paddingSize="m">
+  <EuiTitle size="s">
+    <h3>Get started</h3>
+  </EuiTitle>
+  <EuiText size="s" color="subdued">
+    Connect your first data source.
+  </EuiText>
+  <EuiSpacer size="m" />
+  <EuiButton>Connect data</EuiButton>
+</EuiPanel>
+```
+
+The pattern approach gives you more control over the card structure, better accessibility, and consistent styling with your design tokens.
 
 ## Props
 

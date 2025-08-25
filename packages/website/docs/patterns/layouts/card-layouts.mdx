@@ -1,0 +1,330 @@
+---
+title: Card layouts
+sidebar_position: 1
+---
+
+```mdx-code-block
+import React from 'react';
+import {
+  EuiPanel,
+  EuiTitle,
+  EuiText,
+  EuiButton,
+  EuiButtonEmpty,
+  EuiIcon,
+  EuiSpacer,
+  EuiImage,
+  EuiFlexGroup,
+  EuiFlexItem,
+} from '@elastic/eui';
+```
+
+Card layouts are versatile containers for previewing resources, settings, or destinations. They provide small, scannable units that work well in grids and help users quickly understand and interact with content.
+
+## When to use
+
+- **Preview resources** like dashboards, reports, or data sources
+- **Settings or destinations** that users can navigate to
+- **Small scannable units** in a grid layout
+- **Quick actions** that need visual context
+
+## When not to use
+
+- **Long-form content** (use page layout instead)
+- **Complex editing workflows** (use flyout or dedicated page)
+- **Dense data presentation** (use tables or lists)
+- **Primary navigation** (use navigation components)
+
+## Anatomy
+
+Cards are composed of these elements:
+
+- **Container**: EuiPanel provides the base structure
+- **Media** (optional): EuiImage, EuiIcon, or other visual elements
+- **Title**: EuiTitle for the primary heading
+- **Text**: EuiText for descriptive content
+- **Actions**: EuiButton, EuiButtonEmpty, or EuiLink for interactions
+
+## Basic card
+
+A simple card with title, description, and a single action.
+
+```tsx interactive
+import React from 'react';
+import {
+  EuiPanel,
+  EuiTitle,
+  EuiText,
+  EuiButton,
+  EuiSpacer,
+} from '@elastic/eui';
+
+export default () => (
+  <EuiPanel paddingSize="m">
+    <EuiTitle size="s">
+      <h3>Get started</h3>
+    </EuiTitle>
+    <EuiSpacer size="s" />
+    <EuiText size="s" color="subdued">
+      Connect your first data source to see dashboards.
+    </EuiText>
+    <EuiSpacer size="m" />
+    <EuiButton>Connect data</EuiButton>
+  </EuiPanel>
+);
+```
+
+## Media card
+
+A card with an icon or image to provide visual context.
+
+```tsx interactive
+import React from 'react';
+import {
+  EuiPanel,
+  EuiTitle,
+  EuiText,
+  EuiButtonEmpty,
+  EuiIcon,
+  EuiSpacer,
+} from '@elastic/eui';
+
+export default () => (
+  <EuiPanel paddingSize="m">
+    <EuiIcon type="logoElastic" size="xl" />
+    <EuiSpacer size="m" />
+    <EuiTitle size="s">
+      <h3>Elasticsearch</h3>
+    </EuiTitle>
+    <EuiText size="s" color="subdued">
+      Search and analyze your data.
+    </EuiText>
+    <EuiSpacer size="m" />
+    {/* Replace with actual URL in your implementation */}
+    <EuiButtonEmpty flush href="javascript:void(0)">Learn more</EuiButtonEmpty>
+  </EuiPanel>
+);
+```
+
+## Clickable card
+
+A card where the entire surface is clickable. Use `element="button"` for proper semantics and focus management.
+
+```tsx interactive
+import React from 'react';
+import {
+  EuiPanel,
+  EuiTitle,
+  EuiText,
+} from '@elastic/eui';
+
+export default () => (
+  <EuiPanel
+    hasShadow
+    onClick={() => {}}
+    element="button"
+    style={{ width: '100%', textAlign: 'left' }}
+  >
+    <EuiTitle size="s">
+      <h3>Create monitor</h3>
+    </EuiTitle>
+    <EuiText size="s" color="subdued">
+      Track uptime & alerts
+    </EuiText>
+  </EuiPanel>
+);
+```
+
+## Action card
+
+A card with multiple action buttons or links.
+
+```tsx interactive
+import React from 'react';
+import {
+  EuiPanel,
+  EuiTitle,
+  EuiText,
+  EuiButton,
+  EuiButtonEmpty,
+  EuiSpacer,
+  EuiFlexGroup,
+  EuiFlexItem,
+} from '@elastic/eui';
+
+export default () => (
+  <EuiPanel paddingSize="m">
+    <EuiTitle size="s">
+      <h3>Dashboard settings</h3>
+    </EuiTitle>
+    <EuiText size="s" color="subdued">
+      Configure your dashboard preferences and sharing options.
+    </EuiText>
+    <EuiSpacer size="m" />
+    <EuiFlexGroup gutterSize="s">
+      <EuiFlexItem grow={false}>
+        <EuiButton size="s">Save changes</EuiButton>
+      </EuiFlexItem>
+      <EuiFlexItem grow={false}>
+        <EuiButtonEmpty size="s">Cancel</EuiButtonEmpty>
+      </EuiFlexItem>
+    </EuiFlexGroup>
+  </EuiPanel>
+);
+```
+
+## Grid layout
+
+Cards work well in responsive grids. Use EuiFlexGroup for equal-height layouts.
+
+```tsx interactive
+import React from 'react';
+import {
+  EuiPanel,
+  EuiTitle,
+  EuiText,
+  EuiButtonEmpty,
+  EuiIcon,
+  EuiSpacer,
+  EuiFlexGroup,
+  EuiFlexItem,
+} from '@elastic/eui';
+
+export default () => (
+  <EuiFlexGroup gutterSize="m">
+    <EuiFlexItem>
+      <EuiPanel paddingSize="m" style={{ height: '100%' }}>
+        <EuiIcon type="logoElastic" size="xl" />
+        <EuiSpacer size="m" />
+        <EuiTitle size="s">
+          <h3>Elasticsearch</h3>
+        </EuiTitle>
+        <EuiText size="s" color="subdued">
+          Search and analyze your data.
+        </EuiText>
+        <EuiSpacer size="m" />
+        {/* Replace with actual URL in your implementation */}
+        <EuiButtonEmpty flush href="javascript:void(0)">Learn more</EuiButtonEmpty>
+      </EuiPanel>
+    </EuiFlexItem>
+    <EuiFlexItem>
+      <EuiPanel paddingSize="m" style={{ height: '100%' }}>
+        <EuiIcon type="logoKibana" size="xl" />
+        <EuiSpacer size="m" />
+        <EuiTitle size="s">
+          <h3>Kibana</h3>
+        </EuiTitle>
+        <EuiText size="s" color="subdued">
+          Visualize and explore your data.
+        </EuiText>
+        <EuiSpacer size="m" />
+        {/* Replace with actual URL in your implementation */}
+        <EuiButtonEmpty flush href="javascript:void(0)">Learn more</EuiButtonEmpty>
+      </EuiPanel>
+    </EuiFlexItem>
+    <EuiFlexItem>
+      <EuiPanel paddingSize="m" style={{ height: '100%' }}>
+        <EuiIcon type="logoBeats" size="xl" />
+        <EuiSpacer size="m" />
+        <EuiTitle size="s">
+          <h3>Beats</h3>
+        </EuiTitle>
+        <EuiText size="s" color="subdued">
+          Lightweight data shippers.
+        </EuiText>
+        <EuiSpacer size="m" />
+        {/* Replace with actual URL in your implementation */}
+        <EuiButtonEmpty flush href="javascript:void(0)">Learn more</EuiButtonEmpty>
+      </EuiPanel>
+    </EuiFlexItem>
+  </EuiFlexGroup>
+);
+```
+
+## Behavior
+
+### Interaction models
+
+Choose one interaction model per card:
+
+- **Whole-card clickable**: Use `element="button"` on EuiPanel for proper semantics
+- **Button actions**: Use EuiButton or EuiButtonEmpty for specific actions
+- **Never both**: Avoid mixing whole-card clicks with button actions
+
+### Responsive behavior
+
+- Cards stack vertically on smaller screens
+- Use EuiFlexGroup for equal-height layouts
+- Consider responsive breakpoints for grid columns
+
+## Accessibility
+
+### Clickable cards
+
+- Use `element="button"` on EuiPanel for proper button semantics
+- Provide accessible names through titles or aria-label
+- Ensure 44×44px minimum touch targets
+- Support keyboard navigation and focus management
+
+### Action buttons
+
+- Use descriptive button text
+- Ensure sufficient color contrast
+- Provide clear visual feedback for interactions
+
+## Design tokens
+
+Use these tokens for consistent card styling:
+
+- **Surface**: `euiColorEmptyShade` for the background
+- **Border radius**: `euiBorderRadiusM` for rounded corners
+- **Shadow**: `euiShadowM` for subtle elevation, `euiShadowL` for emphasis
+- **Padding**: `euiSizeM` for consistent spacing
+- **Typography**: `euiFontSizeM` for body text, `euiFontWeightSemiBold` for titles
+
+## Do's and Don'ts
+
+### ✅ Do
+
+- Use one interaction model only (whole card OR buttons)
+- Keep titles short and descriptive
+- Clamp body text to maintain consistent heights
+- Use consistent padding and spacing
+- Ensure equal heights in grid layouts
+- Provide clear visual hierarchy
+
+### ❌ Don't
+
+- Nest multiple primary actions in a single card
+- Rely on hover color alone for interactive elements
+- Mix whole-card clicks with button actions
+- Use cards for long-form content
+- Overcrowd cards with too much information
+- Use inconsistent spacing or typography
+
+## Migration from EuiCard
+
+If you're currently using `EuiCard`, consider migrating to this pattern for better flexibility and consistency:
+
+```tsx
+// Before: EuiCard
+<EuiCard
+  title="Get started"
+  description="Connect your first data source."
+  footer={<EuiButton>Connect data</EuiButton>}
+/>
+
+// After: Card pattern
+<EuiPanel paddingSize="m">
+  <EuiTitle size="s">
+    <h3>Get started</h3>
+  </EuiTitle>
+  <EuiText size="s" color="subdued">
+    Connect your first data source.
+  </EuiText>
+  <EuiSpacer size="m" />
+  <EuiButton>Connect data</EuiButton>
+</EuiPanel>
+```
+
+The pattern approach gives you more control over the card structure, better accessibility, and consistent styling with your design tokens.

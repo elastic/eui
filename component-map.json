@@ -1,0 +1,427 @@
+{
+  "euiAccessibility": {
+    "name": "EuiAccessibility",
+    "docsUrl": "https://eui.elastic.co/docs/components/utilities/accessibility/",
+    "storybookUrl": null
+  },
+  "euiAccordion": {
+    "name": "EuiAccordion",
+    "docsUrl": "https://eui.elastic.co/docs/components/utilities/accordion/",
+    "storybookUrl": "https://eui.elastic.co/storybook/?path=layout-euiaccordion--playground"
+  },
+  "euiAspectRatio": {
+    "name": "EuiAspectRatio",
+    "docsUrl": "https://eui.elastic.co/docs/components/utilities/aspect-ratio/",
+    "storybookUrl": "https://eui.elastic.co/storybook/?path=display-euiaspectratio--playground"
+  },
+  "euiAutoSizer": {
+    "name": "EuiAutoSizer",
+    "docsUrl": "https://eui.elastic.co/docs/components/utilities/auto-sizer/",
+    "storybookUrl": "https://eui.elastic.co/storybook/?path=utilities-euiautosizer--playground"
+  },
+  "euiAvatar": {
+    "name": "EuiAvatar",
+    "docsUrl": "https://eui.elastic.co/docs/components/display/avatar/",
+    "storybookUrl": "https://eui.elastic.co/storybook/?path=display-euiavatar--playground"
+  },
+  "euiBadge": {
+    "name": "EuiBadge",
+    "docsUrl": "https://eui.elastic.co/docs/components/display/badge/",
+    "storybookUrl": "https://eui.elastic.co/storybook/?path=display-euibadge-euibadge--playground"
+  },
+  "euiBasicTable": {
+    "name": "EuiBasicTable",
+    "docsUrl": "https://eui.elastic.co/docs/components/tables/basic-table/",
+    "storybookUrl": "https://eui.elastic.co/storybook/?path=tabular-content-euibasictable--playground"
+  },
+  "euiBeacon": {
+    "name": "EuiBeacon",
+    "docsUrl": "https://eui.elastic.co/docs/components/utilities/beacon/",
+    "storybookUrl": "https://eui.elastic.co/storybook/?path=utilities-euibeacon--playground"
+  },
+  "euiBottomBar": {
+    "name": "EuiBottomBar",
+    "docsUrl": "https://eui.elastic.co/docs/components/layout/bottom-bar/",
+    "storybookUrl": "https://eui.elastic.co/storybook/?path=layout-euibottombar--playground"
+  },
+  "euiBreadcrumbs": {
+    "name": "EuiBreadcrumbs",
+    "docsUrl": "https://eui.elastic.co/docs/components/navigation/breadcrumbs/",
+    "storybookUrl": "https://eui.elastic.co/storybook/?path=navigation-euibreadcrumbs--playground"
+  },
+  "euiButton": {
+    "name": "EuiButton",
+    "docsUrl": "https://eui.elastic.co/docs/components/navigation/buttons/button/",
+    "storybookUrl": "https://eui.elastic.co/storybook/?path=navigation-euibutton--playground"
+  },
+  "euiCallOut": {
+    "name": "EuiCallOut",
+    "docsUrl": "https://eui.elastic.co/docs/components/display/call-out/",
+    "storybookUrl": "https://eui.elastic.co/storybook/?path=display-euicallout--playground"
+  },
+  "euiCard": {
+    "name": "EuiCard",
+    "docsUrl": "https://eui.elastic.co/docs/components/layout/card/",
+    "storybookUrl": "https://eui.elastic.co/storybook/?path=display-euicard--playground"
+  },
+  "euiCode": {
+    "name": "EuiCode",
+    "docsUrl": "https://eui.elastic.co/docs/components/editors-and-syntax/code/",
+    "storybookUrl": "https://eui.elastic.co/storybook/?path=editors--syntax-euicode--playground"
+  },
+  "euiCollapsibleNav": {
+    "name": "EuiCollapsibleNav",
+    "docsUrl": "https://eui.elastic.co/docs/components/navigation/collapsible-nav/",
+    "storybookUrl": "https://eui.elastic.co/storybook/?path=navigation-euicollapsiblenav-euicollapsiblenav--playground"
+  },
+  "euiCollapsibleNavBeta": {
+    "name": "EuiCollapsibleNavBeta",
+    "docsUrl": "https://eui.elastic.co/docs/components/navigation/collapsible-nav/",
+    "storybookUrl": "https://eui.elastic.co/storybook/?path=navigation-euicollapsiblenav-beta-euicollapsiblenavbeta--playground"
+  },
+  "euiColorPicker": {
+    "name": "EuiColorPicker",
+    "docsUrl": "https://eui.elastic.co/docs/components/forms/color-picker/",
+    "storybookUrl": "https://eui.elastic.co/storybook/?path=forms-euicolorpicker-euicolorpicker--playground"
+  },
+  "euiComboBox": {
+    "name": "EuiComboBox",
+    "docsUrl": "https://eui.elastic.co/docs/components/forms/combo-box/",
+    "storybookUrl": "https://eui.elastic.co/storybook/?path=forms-euicombobox--playground"
+  },
+  "euiCommentList": {
+    "name": "EuiCommentList",
+    "docsUrl": null,
+    "storybookUrl": "https://eui.elastic.co/storybook/?path=display-euicomment-euicomment--playground"
+  },
+  "euiContext": {
+    "name": "EuiContext",
+    "docsUrl": null,
+    "storybookUrl": "https://eui.elastic.co/storybook/?path=utilities-euicontext--playground"
+  },
+  "euiContextMenu": {
+    "name": "EuiContextMenu",
+    "docsUrl": "https://eui.elastic.co/docs/components/navigation/context-menu/",
+    "storybookUrl": "https://eui.elastic.co/storybook/?path=navigation-euicontextmenu-euicontextmenu--playground"
+  },
+  "euiCopy": {
+    "name": "EuiCopy",
+    "docsUrl": "https://eui.elastic.co/docs/components/utilities/copy/",
+    "storybookUrl": "https://eui.elastic.co/storybook/?path=utilities-euicopy--playground"
+  },
+  "euiDatagrid": {
+    "name": "EuiDatagrid",
+    "docsUrl": "https://eui.elastic.co/docs/components/data-grid/data-grid/",
+    "storybookUrl": "https://eui.elastic.co/storybook/?path=tabular-content-euidatagrid--playground"
+  },
+  "euiDatePicker": {
+    "name": "EuiDatePicker",
+    "docsUrl": "https://eui.elastic.co/docs/components/forms/date-picker/",
+    "storybookUrl": "https://eui.elastic.co/storybook/?path=forms-euidatepicker--playground"
+  },
+  "euiDelayHide": {
+    "name": "EuiDelayHide",
+    "docsUrl": "https://eui.elastic.co/docs/components/utilities/delay-hide/",
+    "storybookUrl": "https://eui.elastic.co/storybook/?path=utilities-euidelayhide--playground"
+  },
+  "euiDelayRender": {
+    "name": "EuiDelayRender",
+    "docsUrl": "https://eui.elastic.co/docs/components/utilities/delay-render/",
+    "storybookUrl": "https://eui.elastic.co/storybook/?path=utilities-euidelayrender--playground"
+  },
+  "euiDescriptionList": {
+    "name": "EuiDescriptionList",
+    "docsUrl": "https://eui.elastic.co/docs/components/utilities/description-list/",
+    "storybookUrl": "https://eui.elastic.co/storybook/?path=display-euidescriptionlist--playground"
+  },
+  "euiDragAndDrop": {
+    "name": "EuiDragAndDrop",
+    "docsUrl": "https://eui.elastic.co/docs/components/utilities/drag-and-drop/",
+    "storybookUrl": "https://eui.elastic.co/storybook/?path=display-euidragdropcontext--playground"
+  },
+  "euiEmptyPrompt": {
+    "name": "EuiEmptyPrompt",
+    "docsUrl": "https://eui.elastic.co/docs/components/display/empty-prompt/",
+    "storybookUrl": "https://eui.elastic.co/storybook/?path=display-euiemptyprompt--playground"
+  },
+  "euiErrorBoundary": {
+    "name": "EuiErrorBoundary",
+    "docsUrl": "https://eui.elastic.co/docs/components/utilities/error-boundary/",
+    "storybookUrl": "https://eui.elastic.co/storybook/?path=utilities-euierrorboundary--playground"
+  },
+  "euiExpression": {
+    "name": "EuiExpression",
+    "docsUrl": "https://eui.elastic.co/docs/components/utilities/expression/",
+    "storybookUrl": "https://eui.elastic.co/storybook/?path=forms-euiexpression--playground"
+  },
+  "euiFacet": {
+    "name": "EuiFacet",
+    "docsUrl": "https://eui.elastic.co/docs/components/navigation/facet/",
+    "storybookUrl": "https://eui.elastic.co/storybook/?path=navigation-euifacetbutton--playground"
+  },
+  "euiFilterGroup": {
+    "name": "EuiFilterGroup",
+    "docsUrl": "https://eui.elastic.co/docs/components/forms/filter-group/",
+    "storybookUrl": "https://eui.elastic.co/storybook/?path=forms-euifilterbutton--playground"
+  },
+  "euiFlex": {
+    "name": "EuiFlex",
+    "docsUrl": "https://eui.elastic.co/docs/components/layout/flex/",
+    "storybookUrl": "https://eui.elastic.co/storybook/?path=layout-euiflexgrid--playground"
+  },
+  "euiFlyout": {
+    "name": "EuiFlyout",
+    "docsUrl": "https://eui.elastic.co/docs/components/layout/flyout/",
+    "storybookUrl": "https://eui.elastic.co/storybook/?path=layout-euiflyout-euiflyout--playground"
+  },
+  "euiFocusTrap": {
+    "name": "EuiFocusTrap",
+    "docsUrl": "https://eui.elastic.co/docs/components/utilities/focus-trap/",
+    "storybookUrl": "https://eui.elastic.co/storybook/?path=utilities-euifocustrap--playground"
+  },
+  "euiForm": {
+    "name": "EuiForm",
+    "docsUrl": "https://eui.elastic.co/docs/components/forms/form/",
+    "storybookUrl": "https://eui.elastic.co/storybook/?path=forms-euiform--playground"
+  },
+  "euiHeader": {
+    "name": "EuiHeader",
+    "docsUrl": "https://eui.elastic.co/docs/components/layout/header/",
+    "storybookUrl": "https://eui.elastic.co/storybook/?path=layout-euiheader-euiheader--playground"
+  },
+  "euiHealth": {
+    "name": "EuiHealth",
+    "docsUrl": "https://eui.elastic.co/docs/components/display/health/",
+    "storybookUrl": "https://eui.elastic.co/storybook/?path=display-euihealth--playground"
+  },
+  "euiHighlight": {
+    "name": "EuiHighlight",
+    "docsUrl": "https://eui.elastic.co/docs/components/display/highlight/",
+    "storybookUrl": "https://eui.elastic.co/storybook/?path=utilities-euihighlight--playground"
+  },
+  "euiHorizontalRule": {
+    "name": "EuiHorizontalRule",
+    "docsUrl": "https://eui.elastic.co/docs/components/utilities/horizontal-rule/",
+    "storybookUrl": "https://eui.elastic.co/storybook/?path=layout-euihorizontalrule--playground"
+  },
+  "euiI18n": {
+    "name": "EuiI18n",
+    "docsUrl": "https://eui.elastic.co/docs/components/utilities/i18n/",
+    "storybookUrl": "https://eui.elastic.co/storybook/?path=utilities-euii18n--playground"
+  },
+  "euiIcon": {
+    "name": "EuiIcon",
+    "docsUrl": "https://eui.elastic.co/docs/components/display/icon/",
+    "storybookUrl": "https://eui.elastic.co/storybook/?path=display-euiicon--playground"
+  },
+  "euiImage": {
+    "name": "EuiImage",
+    "docsUrl": "https://eui.elastic.co/docs/components/display/image/",
+    "storybookUrl": "https://eui.elastic.co/storybook/?path=display-euiimage--playground"
+  },
+  "euiInlineEdit": {
+    "name": "EuiInlineEdit",
+    "docsUrl": "https://eui.elastic.co/docs/components/forms/inline-edit/",
+    "storybookUrl": "https://eui.elastic.co/storybook/?path=forms-euiinlineedittext--playground"
+  },
+  "euiInnerText": {
+    "name": "EuiInnerText",
+    "docsUrl": "https://eui.elastic.co/docs/components/utilities/inner-text/",
+    "storybookUrl": "https://eui.elastic.co/storybook/?path=utilities-euiinnertext--playground"
+  },
+  "euiKeyPadMenu": {
+    "name": "EuiKeyPadMenu",
+    "docsUrl": "https://eui.elastic.co/docs/components/forms/key-pad-menu/",
+    "storybookUrl": "https://eui.elastic.co/storybook/?path=navigation-euikeypadmenu-euikeypadmenu--playground"
+  },
+  "euiLink": {
+    "name": "EuiLink",
+    "docsUrl": "https://eui.elastic.co/docs/components/navigation/link/",
+    "storybookUrl": "https://eui.elastic.co/storybook/?path=navigation-euilink--playground"
+  },
+  "euiListGroup": {
+    "name": "EuiListGroup",
+    "docsUrl": "https://eui.elastic.co/docs/components/utilities/list-group/",
+    "storybookUrl": "https://eui.elastic.co/storybook/?path=display-euilistgroup-euilistgroup--playground"
+  },
+  "euiLoading": {
+    "name": "EuiLoading",
+    "docsUrl": "https://eui.elastic.co/docs/components/utilities/loading/",
+    "storybookUrl": "https://eui.elastic.co/storybook/?path=display-euiloadingchart--playground"
+  },
+  "euiMark": {
+    "name": "EuiMark",
+    "docsUrl": "https://eui.elastic.co/docs/components/display/mark/",
+    "storybookUrl": "https://eui.elastic.co/storybook/?path=utilities-euimark--playground"
+  },
+  "euiMarkdownEditor": {
+    "name": "EuiMarkdownEditor",
+    "docsUrl": "https://eui.elastic.co/docs/components/editors-and-syntax/markdown-editor/",
+    "storybookUrl": "https://eui.elastic.co/storybook/?path=editors--syntax-euimarkdowneditor--playground"
+  },
+  "euiModal": {
+    "name": "EuiModal",
+    "docsUrl": "https://eui.elastic.co/docs/components/layout/modal/",
+    "storybookUrl": "https://eui.elastic.co/storybook/?path=layout-euiconfirmmodal--playground"
+  },
+  "euiObserver": {
+    "name": "EuiObserver",
+    "docsUrl": "https://eui.elastic.co/docs/components/utilities/observer/",
+    "storybookUrl": null
+  },
+  "euiOutsideClickDetector": {
+    "name": "EuiOutsideClickDetector",
+    "docsUrl": "https://eui.elastic.co/docs/components/utilities/outside-click-detector/",
+    "storybookUrl": "https://eui.elastic.co/storybook/?path=utilities-euioutsideclickdetector--playground"
+  },
+  "euiOverlayMask": {
+    "name": "EuiOverlayMask",
+    "docsUrl": "https://eui.elastic.co/docs/components/utilities/overlay-mask/",
+    "storybookUrl": "https://eui.elastic.co/storybook/?path=utilities-euioverlaymask--playground"
+  },
+  "euiPage": {
+    "name": "EuiPage",
+    "docsUrl": "https://eui.elastic.co/docs/components/layout/page/",
+    "storybookUrl": "https://eui.elastic.co/storybook/?path=layout-euipage-euipage--playground"
+  },
+  "euiPageTemplate": {
+    "name": "EuiPageTemplate",
+    "docsUrl": "https://eui.elastic.co/docs/components/templates/page-template/",
+    "storybookUrl": "https://eui.elastic.co/storybook/?path=templates-euipagetemplate--playground"
+  },
+  "euiPagination": {
+    "name": "EuiPagination",
+    "docsUrl": "https://eui.elastic.co/docs/components/navigation/pagination/",
+    "storybookUrl": "https://eui.elastic.co/storybook/?path=navigation-euipagination-euipagination--playground"
+  },
+  "euiPanel": {
+    "name": "EuiPanel",
+    "docsUrl": "https://eui.elastic.co/docs/components/layout/panel/",
+    "storybookUrl": "https://eui.elastic.co/storybook/?path=layout-euipanel--playground"
+  },
+  "euiPopover": {
+    "name": "EuiPopover",
+    "docsUrl": "https://eui.elastic.co/docs/components/layout/popover/",
+    "storybookUrl": "https://eui.elastic.co/storybook/?path=layout-euiinputpopover--playground"
+  },
+  "euiPortal": {
+    "name": "EuiPortal",
+    "docsUrl": "https://eui.elastic.co/docs/components/utilities/portal/",
+    "storybookUrl": "https://eui.elastic.co/storybook/?path=utilities-euiportal--playground"
+  },
+  "euiProgress": {
+    "name": "EuiProgress",
+    "docsUrl": "https://eui.elastic.co/docs/components/display/progress/",
+    "storybookUrl": "https://eui.elastic.co/storybook/?path=display-euiprogress--playground"
+  },
+  "euiProvider": {
+    "name": "EuiProvider",
+    "docsUrl": "https://eui.elastic.co/docs/components/utilities/provider/",
+    "storybookUrl": "https://eui.elastic.co/storybook/?path=theming-euiprovider--playground"
+  },
+  "euiResizableContainer": {
+    "name": "EuiResizableContainer",
+    "docsUrl": "https://eui.elastic.co/docs/components/layout/resizable-container/",
+    "storybookUrl": "https://eui.elastic.co/storybook/?path=layout-euiresizablecontainer-subcomponents-euiresizablebutton--playground"
+  },
+  "euiResponsive": {
+    "name": "EuiResponsive",
+    "docsUrl": "https://eui.elastic.co/docs/components/layout/responsive/",
+    "storybookUrl": "https://eui.elastic.co/storybook/?path=utilities-euihidefor--playground"
+  },
+  "euiSearchBar": {
+    "name": "EuiSearchBar",
+    "docsUrl": "https://eui.elastic.co/docs/components/forms/search-bar/",
+    "storybookUrl": "https://eui.elastic.co/storybook/?path=forms-euisearchbar-euisearchbar--playground"
+  },
+  "euiSelectable": {
+    "name": "EuiSelectable",
+    "docsUrl": "https://eui.elastic.co/docs/components/forms/selectable/",
+    "storybookUrl": "https://eui.elastic.co/storybook/?path=forms-euiselectable--playground"
+  },
+  "euiSideNav": {
+    "name": "EuiSideNav",
+    "docsUrl": "https://eui.elastic.co/docs/components/navigation/side-nav/",
+    "storybookUrl": "https://eui.elastic.co/storybook/?path=navigation-euisidenav--playground"
+  },
+  "euiSkeleton": {
+    "name": "EuiSkeleton",
+    "docsUrl": "https://eui.elastic.co/docs/components/display/skeleton/",
+    "storybookUrl": "https://eui.elastic.co/storybook/?path=display-euiskeletonloading-euiskeletoncircle--playground"
+  },
+  "euiSpacer": {
+    "name": "EuiSpacer",
+    "docsUrl": "https://eui.elastic.co/docs/components/layout/spacer/",
+    "storybookUrl": "https://eui.elastic.co/storybook/?path=layout-euispacer--playground"
+  },
+  "euiStat": {
+    "name": "EuiStat",
+    "docsUrl": "https://eui.elastic.co/docs/components/display/stat/",
+    "storybookUrl": "https://eui.elastic.co/storybook/?path=display-euistat--playground"
+  },
+  "euiSteps": {
+    "name": "EuiSteps",
+    "docsUrl": "https://eui.elastic.co/docs/components/navigation/steps/",
+    "storybookUrl": "https://eui.elastic.co/storybook/?path=navigation-euisteps-euisteps-euistep--playground"
+  },
+  "euiTable": {
+    "name": "EuiTable",
+    "docsUrl": "https://eui.elastic.co/docs/components/tables/table/",
+    "storybookUrl": "https://eui.elastic.co/storybook/?path=tabular-content-euitable-euitable--playground"
+  },
+  "euiTabs": {
+    "name": "EuiTabs",
+    "docsUrl": null,
+    "storybookUrl": "https://eui.elastic.co/storybook/?path=navigation-euitabs-euitab--playground"
+  },
+  "euiText": {
+    "name": "EuiText",
+    "docsUrl": "https://eui.elastic.co/docs/components/display/text/",
+    "storybookUrl": "https://eui.elastic.co/storybook/?path=display-euitext-euitext--playground"
+  },
+  "euiTextDiff": {
+    "name": "EuiTextDiff",
+    "docsUrl": "https://eui.elastic.co/docs/components/utilities/text-diff/",
+    "storybookUrl": "https://eui.elastic.co/storybook/?path=utilities-useeuitextdiff--playground"
+  },
+  "euiTextTruncate": {
+    "name": "EuiTextTruncate",
+    "docsUrl": "https://eui.elastic.co/docs/components/utilities/text-truncate/",
+    "storybookUrl": "https://eui.elastic.co/storybook/?path=utilities-euitextblocktruncate--playground"
+  },
+  "euiTimeline": {
+    "name": "EuiTimeline",
+    "docsUrl": "https://eui.elastic.co/docs/components/display/timeline/",
+    "storybookUrl": "https://eui.elastic.co/storybook/?path=display-euitimeline-euitimeline--playground"
+  },
+  "euiTitle": {
+    "name": "EuiTitle",
+    "docsUrl": "https://eui.elastic.co/docs/components/display/title/",
+    "storybookUrl": "https://eui.elastic.co/storybook/?path=display-euititle--playground"
+  },
+  "euiToast": {
+    "name": "EuiToast",
+    "docsUrl": "https://eui.elastic.co/docs/components/display/toast/",
+    "storybookUrl": "https://eui.elastic.co/storybook/?path=hello-from-toast--playground"
+  },
+  "euiToken": {
+    "name": "EuiToken",
+    "docsUrl": "https://eui.elastic.co/docs/components/utilities/token/",
+    "storybookUrl": "https://eui.elastic.co/storybook/?path=display-euitoken--playground"
+  },
+  "euiToolTip": {
+    "name": "EuiToolTip",
+    "docsUrl": "https://eui.elastic.co/docs/components/layout/tool-tip/",
+    "storybookUrl": "https://eui.elastic.co/storybook/?path=display-euiicontip--playground"
+  },
+  "euiTour": {
+    "name": "EuiTour",
+    "docsUrl": "https://eui.elastic.co/docs/components/utilities/tour/",
+    "storybookUrl": "https://eui.elastic.co/storybook/?path=display-euitour-euitour--playground"
+  },
+  "euiTreeView": {
+    "name": "EuiTreeView",
+    "docsUrl": "https://eui.elastic.co/docs/components/navigation/tree-view/",
+    "storybookUrl": "https://eui.elastic.co/storybook/?path=navigation-euitreeview-euitreeview--playground"
+  }
+}

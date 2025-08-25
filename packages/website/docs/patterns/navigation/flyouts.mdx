@@ -1,0 +1,442 @@
+---
+title: Flyouts
+sidebar_position: 1
+---
+
+```mdx-code-block
+import React, { useState } from 'react';
+import {
+  EuiFlyout,
+  EuiFlyoutHeader,
+  EuiFlyoutBody,
+  EuiFlyoutFooter,
+  EuiTitle,
+  EuiText,
+  EuiButton,
+  EuiButtonEmpty,
+  EuiFieldText,
+  EuiFormRow,
+  EuiFlexGroup,
+  EuiFlexItem,
+  EuiSpacer,
+  EuiIcon,
+  EuiBadge,
+  EuiPanel,
+  useGeneratedHtmlId,
+} from '@elastic/eui';
+```
+
+Flyouts are non-blocking containers for secondary tasks or context that allow users to inspect details or make quick edits without leaving the current page. They provide focused interactions while maintaining visibility of the underlying page context.
+
+## When to use
+
+- **Quick edits or inspections** that don't justify full page navigation
+- **Tasks where users benefit** from seeing the page context behind the flyout
+- **Secondary flows** that should not block the page (non-modal)
+- **Persistent panels** that adjust the page layout (push type)
+
+## When not to use
+
+- **Simple confirmations** → use [Modal dialogs pattern](/docs/patterns/feedback-overlays/modal-dialogs)
+- **Long or complex workflows** → use a dedicated page or wizard
+- **Critical/destructive decisions** → use a modal dialog
+
+## Anatomy
+
+```
+┌─────────────────────────────────┐
+│ EuiFlyoutHeader (hasBorder)     │
+│ ┌─────────────────────────────┐ │
+│ │ Title + optional subtext    │ │
+│ └─────────────────────────────┘ │
+├─────────────────────────────────┤
+│ EuiFlyoutBody                   │
+│ ┌─────────────────────────────┐ │
+│ │ Content (scrollable)        │ │
+│ │ • Details, forms, lists     │ │
+│ │ • Multi-step content        │ │
+│ └─────────────────────────────┘ │
+├─────────────────────────────────┤
+│ EuiFlyoutFooter (optional)      │
+│ ┌─────────────────────────────┐ │
+│ │ Actions (Cancel, Save, etc.)│ │
+│ └─────────────────────────────┘ │
+└─────────────────────────────────┘
+```
+
+## Variants
+
+### Details flyout (overlay)
+
+Use for read-only information with light actions. The overlay type keeps the page context visible.
+
+```tsx interactive
+import React, { useState } from 'react';
+import {
+  EuiFlyout,
+  EuiFlyoutHeader,
+  EuiFlyoutBody,
+  EuiFlyoutFooter,
+  EuiTitle,
+  EuiText,
+  EuiButton,
+  EuiButtonEmpty,
+  EuiFlexGroup,
+  EuiFlexItem,
+  EuiSpacer,
+  EuiIcon,
+  EuiBadge,
+  EuiPanel,
+  useGeneratedHtmlId,
+} from '@elastic/eui';
+
+export default () => {
+  const [isFlyoutVisible, setIsFlyoutVisible] = useState(false);
+  const flyoutTitleId = useGeneratedHtmlId();
+
+  const closeFlyout = () => setIsFlyoutVisible(false);
+
+  return (
+    <>
+      <EuiButton onClick={() => setIsFlyoutVisible(true)}>
+        View host details
+      </EuiButton>
+
+      {isFlyoutVisible && (
+        <EuiFlyout 
+          onClose={closeFlyout} 
+          size="m" 
+          type="overlay"
+          aria-labelledby={flyoutTitleId}
+        >
+          <EuiFlyoutHeader hasBorder>
+            <EuiTitle size="m">
+              <h2 id={flyoutTitleId}>Host: apm-server-01</h2>
+            </EuiTitle>
+            <EuiText size="s" color="subdued">
+              Last seen 2m ago
+            </EuiText>
+          </EuiFlyoutHeader>
+
+          <EuiFlyoutBody>
+            <EuiPanel paddingSize="m" hasBorder>
+              <EuiFlexGroup alignItems="center" gutterSize="s">
+                <EuiFlexItem grow={false}>
+                  <EuiIcon type="check" color="success" />
+                </EuiFlexItem>
+                <EuiFlexItem>
+                  <EuiText size="s">
+                    <strong>Status:</strong> Healthy
+                  </EuiText>
+                </EuiFlexItem>
+                <EuiFlexItem grow={false}>
+                  <EuiBadge color="success">Online</EuiBadge>
+                </EuiFlexItem>
+              </EuiFlexGroup>
+            </EuiPanel>
+
+            <EuiSpacer size="m" />
+
+            <EuiPanel paddingSize="m" hasBorder>
+              <EuiTitle size="xs">
+                <h3>System information</h3>
+              </EuiTitle>
+              <EuiSpacer size="s" />
+              <EuiText size="s">
+                <p><strong>IP:</strong> 192.168.1.100</p>
+                <p><strong>OS:</strong> Ubuntu 20.04 LTS</p>
+                <p><strong>Memory:</strong> 8GB</p>
+                <p><strong>CPU:</strong> 4 cores</p>
+              </EuiText>
+            </EuiPanel>
+          </EuiFlyoutBody>
+
+          <EuiFlyoutFooter>
+            <EuiFlexGroup justifyContent="flexEnd" gutterSize="s">
+              <EuiFlexItem grow={false}>
+                <EuiButtonEmpty onClick={closeFlyout}>
+                  Close
+                </EuiButtonEmpty>
+              </EuiFlexItem>
+              <EuiFlexItem grow={false}>
+                <EuiButton fill>
+                  Edit settings
+                </EuiButton>
+              </EuiFlexItem>
+            </EuiFlexGroup>
+          </EuiFlyoutFooter>
+        </EuiFlyout>
+      )}
+    </>
+  );
+};
+```
+
+### Edit/settings flyout (dirty guard)
+
+Use for short forms with apply/cancel actions. Include unsaved changes protection.
+
+```tsx interactive
+import React, { useState } from 'react';
+import {
+  EuiFlyout,
+  EuiFlyoutHeader,
+  EuiFlyoutBody,
+  EuiFlyoutFooter,
+  EuiTitle,
+  EuiText,
+  EuiButton,
+  EuiButtonEmpty,
+  EuiFieldText,
+  EuiFormRow,
+  EuiFlexGroup,
+  EuiFlexItem,
+  EuiSpacer,
+  useGeneratedHtmlId,
+} from '@elastic/eui';
+
+export default () => {
+  const [isFlyoutVisible, setIsFlyoutVisible] = useState(false);
+  const [name, setName] = useState('apm-server-01');
+  const [isDirty, setIsDirty] = useState(false);
+  const [isSaving, setIsSaving] = useState(false);
+  const flyoutTitleId = useGeneratedHtmlId();
+
+  const closeFlyout = () => {
+    if (isDirty) {
+      // Show confirmation dialog for unsaved changes
+      if (window.confirm('You have unsaved changes. Are you sure you want to close?')) {
+        setIsFlyoutVisible(false);
+        setIsDirty(false);
+      }
+    } else {
+      setIsFlyoutVisible(false);
+    }
+  };
+
+  const handleNameChange = (e) => {
+    setName(e.target.value);
+    setIsDirty(true);
+  };
+
+  const handleSave = async () => {
+    setIsSaving(true);
+    // Simulate API call
+    await new Promise(resolve => setTimeout(resolve, 1000));
+    setIsSaving(false);
+    setIsDirty(false);
+    setIsFlyoutVisible(false);
+  };
+
+  return (
+    <>
+      <EuiButton onClick={() => setIsFlyoutVisible(true)}>
+        Edit settings
+      </EuiButton>
+
+      {isFlyoutVisible && (
+        <EuiFlyout 
+          onClose={closeFlyout} 
+          size="s" 
+          type="overlay"
+          ownFocus
+          aria-labelledby={flyoutTitleId}
+        >
+          <EuiFlyoutHeader hasBorder>
+            <EuiTitle size="m">
+              <h2 id={flyoutTitleId}>Edit settings</h2>
+            </EuiTitle>
+          </EuiFlyoutHeader>
+
+          <EuiFlyoutBody>
+            <EuiFormRow label="Host name">
+              <EuiFieldText
+                autoFocus
+                value={name}
+                onChange={handleNameChange}
+                placeholder="Enter host name"
+              />
+            </EuiFormRow>
+
+            <EuiSpacer size="m" />
+
+            <EuiFormRow label="Description">
+              <EuiFieldText
+                placeholder="Optional description"
+              />
+            </EuiFormRow>
+          </EuiFlyoutBody>
+
+          <EuiFlyoutFooter>
+            <EuiFlexGroup justifyContent="flexEnd" gutterSize="s">
+              <EuiFlexItem grow={false}>
+                <EuiButtonEmpty onClick={closeFlyout}>
+                  Cancel
+                </EuiButtonEmpty>
+              </EuiFlexItem>
+              <EuiFlexItem grow={false}>
+                <EuiButton 
+                  onClick={handleSave} 
+                  isLoading={isSaving}
+                  fill
+                >
+                  Save
+                </EuiButton>
+              </EuiFlexItem>
+            </EuiFlexGroup>
+          </EuiFlyoutFooter>
+        </EuiFlyout>
+      )}
+    </>
+  );
+};
+```
+
+### Push flyout
+
+Use for persistent panels that adjust the page layout. Common for filters, navigation, or settings panels.
+
+```tsx interactive
+import React, { useState } from 'react';
+import {
+  EuiFlyout,
+  EuiFlyoutHeader,
+  EuiFlyoutBody,
+  EuiTitle,
+  EuiText,
+  EuiButton,
+  EuiSpacer,
+  EuiPanel,
+  useGeneratedHtmlId,
+} from '@elastic/eui';
+
+export default () => {
+  const [isFlyoutVisible, setIsFlyoutVisible] = useState(false);
+  const flyoutTitleId = useGeneratedHtmlId();
+
+  const closeFlyout = () => setIsFlyoutVisible(false);
+
+  return (
+    <>
+      <EuiButton onClick={() => setIsFlyoutVisible(true)}>
+        Show filters
+      </EuiButton>
+
+      {isFlyoutVisible && (
+        <EuiFlyout 
+          onClose={closeFlyout} 
+          size="s" 
+          type="push"
+          aria-labelledby={flyoutTitleId}
+        >
+          <EuiFlyoutHeader hasBorder>
+            <EuiTitle size="m">
+              <h2 id={flyoutTitleId}>Filters</h2>
+            </EuiTitle>
+          </EuiFlyoutHeader>
+
+          <EuiFlyoutBody>
+            <EuiPanel paddingSize="m" hasBorder>
+              <EuiText size="s">
+                <p>Filter controls would go here.</p>
+                <p>This push flyout adjusts the page layout.</p>
+              </EuiText>
+            </EuiPanel>
+
+            <EuiSpacer size="m" />
+
+            <EuiPanel paddingSize="m" hasBorder>
+              <EuiText size="s">
+                <p>Additional filter sections...</p>
+              </EuiText>
+            </EuiPanel>
+          </EuiFlyoutBody>
+        </EuiFlyout>
+      )}
+    </>
+  );
+};
+```
+
+## Behavior & states
+
+### Open/close
+- **ESC key** closes the flyout (unless unsaved changes guard is active)
+- **Mask click** closes for read-only flyouts
+- **Dirty forms** should confirm before closing
+
+### Focus management
+- **Initial focus** goes to primary input (edit flyouts) or first link (details flyouts)
+- **Focus trap** keeps focus within the flyout
+- **Focus restoration** returns to trigger element on close
+
+### Mobile behavior
+- **Full-width** slide-in on mobile devices
+- **Hide background scroll** to prevent interaction with page content
+- **Touch-friendly** target sizes (44×44px minimum)
+
+### Push vs overlay
+- **Push type**: Page content shifts to accommodate the flyout (persistent panels)
+- **Overlay type**: Flyout appears on top of page content (transient tasks)
+
+### Footer actions
+- **Primary action** on the right (Save, Apply, etc.)
+- **Secondary action** on the left (Cancel, Close, etc.)
+- **Disable during async** operations (loading states)
+- **Show inline errors** above footer when needed
+
+## Accessibility
+
+### Roles and labels
+- Use `role="dialog"` with accessible name via header title or `aria-label`
+- Provide descriptive titles that explain the flyout's purpose
+- Include context in subtext when helpful
+
+### Focus management
+- Maintain focus trap within the flyout
+- Restore focus to trigger element on close
+- Ensure logical tab order through content
+
+### Target sizes
+- Maintain 44×44px minimum target sizes for interactive elements
+- Provide sufficient spacing between clickable elements
+
+### Color and contrast
+- Don't rely on color alone for status or meaning
+- Ensure sufficient color contrast for all text and interactive elements
+- Use icons and labels to reinforce meaning
+
+## Design tokens
+
+### Surface and layout
+- **Surface**: `euiColorEmptyShade` (theme surface token)
+- **Width**: `euiSize*` tokens or fixed pixel values
+- **Shadow**: `euiShadowXL` for overlay, subtler for push
+- **Z-index**: Flyout layer token
+
+### Spacing
+- **Header padding**: `euiSizeM`
+- **Body padding**: `euiSizeM`
+- **Footer padding**: `euiSizeM`
+- **Content spacing**: `euiSizeS` to `euiSizeL`
+
+### Typography
+- **Header title**: `euiFontSizeM`, `euiFontWeightBold`
+- **Subtext**: `euiFontSizeS`, `euiColorSubduedText`
+- **Body text**: `euiFontSizeS` to `euiFontSizeM`
+
+## Do / Don't
+
+### ✅ Do
+- Keep titles concise; use subtext for additional context
+- Guard unsaved changes before closing edit flyouts
+- Keep forms short; defer long workflows to dedicated pages
+- Use appropriate flyout size for content (s/m/l)
+- Provide clear action labels in footers
+
+### ❌ Don't
+- Show destructive confirmations inside flyouts (use Modal dialogs)
+- Mix whole-panel clicks with inline buttons
+- Rely on overlay close for dirty state management
+- Create flyouts that are too wide or too tall for the content
+- Use flyouts for simple confirmations or alerts
