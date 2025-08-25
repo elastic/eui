@@ -19,7 +19,7 @@ export const FLYOUT_SIDES = ['left', 'right'] as const;
 export type _EuiFlyoutSide = (typeof FLYOUT_SIDES)[number];
 
 /** Allowed named flyout sizes used by the manager. */
-export const FLYOUT_SIZES = ['s', 'm', 'l'] as const;
+export const FLYOUT_SIZES = ['s', 'm', 'l', 'fill'] as const;
 /** Type representing a supported named flyout size. */
 export type EuiFlyoutSize = (typeof FLYOUT_SIZES)[number];
 
