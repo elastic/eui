@@ -62,7 +62,7 @@ const breakpointSizes: EuiBreakpointSize[] = ['xs', 's', 'm', 'l', 'xl'];
 const playgroundActions = actions('log');
 
 const meta: Meta<FlyoutChildStoryArgs> = {
-  title: 'Layout/EuiFlyout/EuiFlyoutChild',
+  title: 'Layout/EuiFlyout/Flyout Manager',
   component: EuiFlyoutChild,
   argTypes: {
     childSize: {
