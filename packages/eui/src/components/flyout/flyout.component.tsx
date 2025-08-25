@@ -34,7 +34,14 @@ import {
   useGeneratedHtmlId,
   useEuiThemeCSSVariables,
 } from '../../services';
-import { useCurrentSession, useIsInManagedFlyout } from './manager';
+import {
+  useCurrentSession,
+  useIsInManagedFlyout,
+  useFlyoutLayoutMode,
+  useFlyoutId,
+  useFlyoutWidth,
+  getWidthFromSize,
+} from './manager';
 import { logicalStyle } from '../../global_styling';
 
 import { CommonProps, PropsOfElement } from '../common';
@@ -273,6 +280,38 @@ export const EuiFlyoutComponent = forwardRef(
 
     const currentSession = useCurrentSession();
     const isInManagedContext = useIsInManagedFlyout();
+
+    // Get flyout manager context for dynamic width calculation
+    const flyoutId = useFlyoutId(id);
+    const layoutMode = useFlyoutLayoutMode();
+
+    // Memoize flyout identification and relationships to prevent race conditions
+    const flyoutIdentity = useMemo(() => {
+      if (!flyoutId || !currentSession) {
+        return {
+          isMainFlyout: false,
+          siblingFlyoutId: null,
+          hasValidSession: false,
+          sessionForWidth: null,
+        };
+      }
+
+      const siblingFlyoutId =
+        currentSession.main === flyoutId
+          ? currentSession.child
+          : currentSession.main;
+
+      return {
+        siblingFlyoutId,
+        hasValidSession: true,
+        sessionForWidth: currentSession,
+      };
+    }, [flyoutId, currentSession]);
+
+    // Destructure for easier use
+    const { siblingFlyoutId, hasValidSession, sessionForWidth } =
+      flyoutIdentity;
+
     const hasChildFlyout = currentSession?.child != null;
     const isChildFlyout =
       isInManagedContext && hasChildFlyout && currentSession?.child === id;
@@ -310,21 +349,103 @@ export const EuiFlyoutComponent = forwardRef(
       [onClose, isPushed, shouldCloseOnEscape]
     );
 
+    const siblingFlyoutWidth = useFlyoutWidth(siblingFlyoutId);
+
     /**
      * Set inline styles
      */
     const inlineStyles = useMemo(() => {
-      const widthStyle =
-        !isEuiFlyoutSizeNamed(size) && logicalStyle('width', size);
-      const maxWidthStyle =
-        typeof maxWidth !== 'boolean' && logicalStyle('max-width', maxWidth);
+      let widthStyle;
 
-      return {
+      if (
+        size === 'fill' &&
+        layoutMode === 'side-by-side' &&
+        hasValidSession &&
+        siblingFlyoutId
+      ) {
+        // Dynamic width calculation for fill + side-by-side
+        const siblingWidth =
+          siblingFlyoutWidth ||
+          getWidthFromSize(
+            sessionForWidth?.main === flyoutId
+              ? sessionForWidth?.child
+                ? 's'
+                : 0 // If this is main, get child size (default to 's' if unknown)
+              : sessionForWidth?.main
+              ? 'm'
+              : 0 // If this is child, get main size (default to 'm' if unknown)
+          );
+
+        if (siblingWidth > 0) {
+          const calculatedWidth = `calc(90vw - ${siblingWidth}px)`;
+          widthStyle = logicalStyle('width', calculatedWidth);
+        }
+      } else if (!isEuiFlyoutSizeNamed(size)) {
+        // Handle custom width values
+        widthStyle = logicalStyle('width', size);
+      }
+
+      // Handle maxWidth prop - this should override base CSS sizing
+      let maxWidthStyle;
+      let widthOverrideStyle;
+      let minWidthOverrideStyle;
+
+      if (typeof maxWidth !== 'boolean') {
+        // When maxWidth is provided, it should take precedence over base CSS sizing
+        maxWidthStyle = logicalStyle('max-width', maxWidth);
+
+        // For fill size flyouts, we need to override both min-width and width
+        // to ensure the maxWidth constraint is respected
+        if (size === 'fill') {
+          minWidthOverrideStyle = logicalStyle('min-width', 0);
+          widthOverrideStyle = logicalStyle('width', 'auto');
+        }
+      }
+
+      // Add min-width override for fill size to allow dynamic width calculation
+      let minWidthStyle;
+      let maxWidthOverrideStyle;
+
+      if (
+        size === 'fill' &&
+        layoutMode === 'side-by-side' &&
+        siblingFlyoutId &&
+        widthStyle // If we have a dynamic width, we need to override min-width
+      ) {
+        minWidthStyle = logicalStyle('min-width', 0);
+
+        // Override max-width when viewport is below the FLYOUT_BREAKPOINT (768px)
+        // to prevent the CSS 'max-width: 90vw !important' from clamping our dynamic width
+        const viewportWidth = window.innerWidth;
+        const flyoutBreakpoint = 768; // FLYOUT_BREAKPOINT = 'm' = 768px
+
+        if (viewportWidth < flyoutBreakpoint) {
+          maxWidthOverrideStyle = logicalStyle('max-width', 'none');
+        }
+      }
+
+      const finalStyles = {
         ...style,
         ...widthStyle,
+        ...minWidthStyle,
+        ...maxWidthOverrideStyle,
         ...maxWidthStyle,
+        ...widthOverrideStyle,
+        ...minWidthOverrideStyle,
       };
-    }, [style, maxWidth, size]);
+
+      return finalStyles;
+    }, [
+      style,
+      maxWidth,
+      size,
+      flyoutId,
+      hasValidSession,
+      sessionForWidth,
+      layoutMode,
+      siblingFlyoutId,
+      siblingFlyoutWidth,
+    ]);
 
     const styles = useEuiMemoizedStyles(euiFlyoutStyles);
     const cssStyles = [

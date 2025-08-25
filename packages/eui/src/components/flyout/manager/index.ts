@@ -46,3 +46,6 @@ export {
 
 export { EuiFlyoutChild, type EuiFlyoutChildProps } from './flyout_child';
 export { EuiFlyoutMain, type EuiFlyoutMainProps } from './flyout_main';
+
+/** Utility functions for flyout sizing and layout. */
+export { getWidthFromSize } from './layout_mode';

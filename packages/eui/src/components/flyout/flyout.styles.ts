@@ -87,6 +87,9 @@ export const euiFlyoutStyles = (euiThemeContext: UseEuiTheme) => {
     l: css`
       ${composeFlyoutSizing(euiThemeContext, 'l')}
     `,
+    fill: css`
+      ${composeFlyoutSizing(euiThemeContext, 'fill')}
+    `,
     noMaxWidth: css`
       ${logicalCSS('max-width', 'none')}
     `,
@@ -218,6 +221,14 @@ export const composeFlyoutSizing = (
       min: `${Math.round(euiTheme.breakpoint.m * 0.9)}px`, // 1.
       width: '75vw',
       max: `${euiTheme.breakpoint.l}px`,
+    },
+
+    // NOTE: These styles are for the flyout system when the layout mode is stacked.
+    // Side-by-side flyouts are handled in @flyout.component.tsx using inline styles.
+    fill: {
+      min: '90vw',
+      width: '90vw',
+      max: '90vw',
     },
   };
 
