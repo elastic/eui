@@ -9,6 +9,8 @@
 import React, { HTMLAttributes, FunctionComponent, useMemo } from 'react';
 import { CommonProps, ExclusiveUnion } from '../common';
 import classNames from 'classnames';
+import { warnIfContrastBelowMin, wcagContrastMin } from '../../services/color/contrast';
+
 
 import {
   isColorDark,
@@ -170,6 +172,7 @@ export const EuiAvatar: FunctionComponent<EuiAvatarProps> = ({
       const textColor = isColorDark(...hexToRgb(assignedColor))
         ? '#FFFFFF'
         : '#000000';
+  warnIfContrastBelowMin(textColor, assignedColor, wcagContrastMin);
 
       return {
         backgroundColor: assignedColor,
@@ -177,6 +180,7 @@ export const EuiAvatar: FunctionComponent<EuiAvatarProps> = ({
       };
     }
   }, [imageUrl, color, isNamedColor, name.length, visColors]);
+  
 
   const highContrastBorder = useMemo(
     // Render a border since background-colors are ignored in Windows forced contrast themes
