@@ -16,9 +16,13 @@ import {
 import { EuiSkeletonText } from '../skeleton';
 import { EuiButton } from '../button';
 import { EuiText } from '../text';
+import { PAGE_DIRECTIONS } from './outer/page_outer';
+import { EuiFlexGroup, EuiFlexItem } from '../flex';
+import { EuiSpacer } from '../spacer';
+import { EuiIcon } from '../icon';
+import { EuiTitle } from '../title';
 
 import { EuiPageTemplate, EuiPageTemplateProps } from './page_template';
-import { PAGE_DIRECTIONS } from './outer/page_outer';
 
 const headerContent = (
   <EuiPageTemplate.Header
@@ -29,6 +33,31 @@ const headerContent = (
     tabs={[{ label: 'Tab 1', isSelected: true }, { label: 'Tab 2' }]}
   />
 );
+
+const customHeaderContent = (
+  <EuiPageTemplate.Header>
+    <EuiFlexGroup>
+      <EuiFlexItem>
+        <EuiFlexGroup>
+          <EuiFlexItem grow={2}>
+            <EuiFlexGroup gutterSize="m">
+              <EuiIcon type="logoKibana" size="original" />
+              <EuiTitle size="l">
+                <h1>Page Title</h1>
+              </EuiTitle>
+            </EuiFlexGroup>
+          </EuiFlexItem>
+          <EuiFlexItem grow={false}>
+            <EuiButton>Button</EuiButton>
+          </EuiFlexItem>
+        </EuiFlexGroup>
+        <EuiSpacer size="l" />
+        <EuiText size="m">Example of a description.</EuiText>
+      </EuiFlexItem>
+    </EuiFlexGroup>
+  </EuiPageTemplate.Header>
+);
+
 const sectionContent = (
   <>
     <EuiPageTemplate.Section grow={false}>
@@ -47,6 +76,7 @@ const sectionContent = (
     </EuiPageTemplate.Section>
   </>
 );
+
 const sidebarContent = (
   <EuiPageTemplate.Sidebar>
     <EuiSkeletonText lines={10} contentAriaLabel="Page sidebar example text" />
@@ -128,6 +158,7 @@ export const Playground: Story = {
         'Without header',
         'Without bottom bar',
         'With empty prompt content',
+        'With custom header content',
       ],
       mapping: {
         'With everything': [
@@ -145,6 +176,7 @@ export const Playground: Story = {
           emptyPromptContent,
           bottomBarContent,
         ],
+        'With custom header content': [customHeaderContent, sectionContent],
       },
     },
   },
