@@ -11,10 +11,9 @@ import { action } from '@storybook/addon-actions';
 import React, { useState } from 'react';
 import { EuiButton, EuiButtonIcon } from '../button';
 import { EuiText } from '../text';
-import { EuiFlyout } from './flyout';
 import { EuiFlyoutBody } from './flyout_body';
-import { EuiFlyoutChild } from './flyout_child';
 import { EuiFlyoutMenu } from './flyout_menu';
+import { EuiFlyoutChild, EuiFlyoutMain } from './manager';
 
 const meta: Meta = {
   title: 'Layout/EuiFlyout/EuiFlyoutMenu',
@@ -37,12 +36,14 @@ const MenuBarFlyout = () => {
     <>
       <EuiButton onClick={openFlyout}>Open flyout</EuiButton>
       {isOpen && (
-        <EuiFlyout onClose={closeFlyout}>
-          <EuiFlyoutMenu title="Main menu bar" />
-          <EuiFlyoutBody>
-            <EuiText>Main flyout content.</EuiText>
-          </EuiFlyoutBody>
-          <EuiFlyoutChild onClose={closeFlyout}>
+        <>
+          <EuiFlyoutMain onClose={closeFlyout} size="m">
+            <EuiFlyoutMenu title="Main menu bar" />
+            <EuiFlyoutBody>
+              <EuiText>Main flyout content.</EuiText>
+            </EuiFlyoutBody>
+          </EuiFlyoutMain>
+          <EuiFlyoutChild onClose={closeFlyout} size="s">
             <EuiFlyoutMenu title="Child menu bar">
               <EuiButtonIcon
                 iconType="gear"
@@ -56,7 +57,7 @@ const MenuBarFlyout = () => {
               <EuiText>Child with custom action in the menu bar.</EuiText>
             </EuiFlyoutBody>
           </EuiFlyoutChild>
-        </EuiFlyout>
+        </>
       )}
     </>
   );

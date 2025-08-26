@@ -9,12 +9,18 @@
 import { css, keyframes } from '@emotion/react';
 import { euiShadowXLarge } from '@elastic/eui-theme-common';
 
-import { _EuiFlyoutPaddingSize, EuiFlyoutSize } from './flyout';
+import {
+  _EuiFlyoutPaddingSize,
+  EuiFlyoutSize,
+  isEuiFlyoutSizeNamed,
+} from './const';
+import { PROPERTY_FLYOUT } from './manager/const';
 import {
   euiCanAnimate,
   euiMaxBreakpoint,
   euiMinBreakpoint,
   logicalCSS,
+  logicalStyles,
   mathWithUnits,
 } from '../../global_styling';
 import { UseEuiTheme } from '../../services';
@@ -86,6 +92,9 @@ export const euiFlyoutStyles = (euiThemeContext: UseEuiTheme) => {
     l: css`
       ${composeFlyoutSizing(euiThemeContext, 'l')}
     `,
+    fill: css`
+      ${composeFlyoutSizing(euiThemeContext, 'fill')}
+    `,
     noMaxWidth: css`
       ${logicalCSS('max-width', 'none')}
     `,
@@ -95,9 +104,14 @@ export const euiFlyoutStyles = (euiThemeContext: UseEuiTheme) => {
       clip-path: polygon(-50% 0, 100% 0, 100% 100%, -50% 100%);
       ${logicalCSS('right', 0)}
 
-      ${euiCanAnimate} {
-        animation: ${euiFlyoutSlideInRight} ${euiTheme.animation.normal}
-          ${euiTheme.animation.resistance};
+      /* Unmanaged flyouts: always play initial opening animation */
+      &:not([${PROPERTY_FLYOUT}]) {
+        ${euiCanAnimate} {
+          animation: ${euiFlyoutSlideInRight} ${euiTheme.animation.normal}
+            ${euiTheme.animation.resistance} forwards;
+          animation-fill-mode: forwards;
+          animation-iteration-count: 1;
+        }
       }
 
       &.euiFlyout--hasChild {
@@ -109,9 +123,14 @@ export const euiFlyoutStyles = (euiThemeContext: UseEuiTheme) => {
       ${logicalCSS('left', 0)}
       clip-path: polygon(0 0, 150% 0, 150% 100%, 0 100%);
 
-      ${euiCanAnimate} {
-        animation: ${euiFlyoutSlideInLeft} ${euiTheme.animation.normal}
-          ${euiTheme.animation.resistance};
+      /* Unmanaged flyouts: always play initial opening animation */
+      &:not([${PROPERTY_FLYOUT}]) {
+        ${euiCanAnimate} {
+          animation: ${euiFlyoutSlideInLeft} ${euiTheme.animation.normal}
+            ${euiTheme.animation.resistance} forwards;
+          animation-fill-mode: forwards;
+          animation-iteration-count: 1;
+        }
       }
     `,
 
@@ -208,6 +227,14 @@ export const composeFlyoutSizing = (
       width: '75vw',
       max: `${euiTheme.breakpoint.l}px`,
     },
+
+    // NOTE: These styles are for the flyout system when the layout mode is stacked.
+    // Side-by-side flyouts are handled in @flyout.component.tsx using inline styles.
+    fill: {
+      min: '90vw',
+      width: '90vw',
+      max: '90vw',
+    },
   };
 
   return `
@@ -269,4 +296,122 @@ const composeFlyoutPadding = (
       padding: ${footerPaddingSizes[paddingSize]};
     }
   `;
+};
+
+/**
+ * Calculates dynamic width for fill-size flyouts in side-by-side layout
+ */
+export const calculateDynamicWidth = (
+  siblingWidth: number,
+  viewportWidth: number = window.innerWidth
+): React.CSSProperties => {
+  const calculatedWidth = `calc(90vw - ${siblingWidth}px)`;
+
+  return logicalStyles({
+    width: calculatedWidth,
+    minWidth: '0',
+    // Override max-width on mobile to prevent CSS clamping
+    ...(viewportWidth < 768 && { maxWidth: 'none' }),
+  });
+};
+
+/**
+ * Handles maxWidth prop overrides to ensure they take precedence over base CSS
+ */
+export const composeMaxWidthOverrides = (
+  maxWidth: boolean | number | string | undefined,
+  size: EuiFlyoutSize | string | number
+): React.CSSProperties => {
+  if (typeof maxWidth === 'boolean') {
+    return {};
+  }
+
+  const overrides: React.CSSProperties = {
+    maxWidth,
+  };
+
+  // For fill size flyouts, we need to override min-width to allow dynamic sizing
+  if (size === 'fill') {
+    overrides.minWidth = '0';
+
+    // When maxWidth is provided for fill flyouts, we need to override the CSS rule
+    // that sets min-inline-size: 90vw. We calculate min(maxWidth, 90vw) to ensure
+    // the flyout respects both constraints and doesn't get stuck at 90vw minimum.
+    if (maxWidth) {
+      const maxWidthWithUnits =
+        typeof maxWidth === 'number' ? `${maxWidth}px` : maxWidth;
+      overrides.minWidth = `min(${maxWidthWithUnits}, 90vw)`;
+    }
+  }
+
+  return logicalStyles(overrides);
+};
+
+/**
+ * Composes all inline styles for a flyout based on its configuration
+ */
+export const composeFlyoutInlineStyles = (
+  size: EuiFlyoutSize | string | number,
+  layoutMode: 'side-by-side' | 'stacked',
+  siblingFlyoutId: string | null,
+  siblingFlyoutWidth: number | null,
+  maxWidth: boolean | number | string | undefined
+): React.CSSProperties => {
+  // Handle custom width values (non-named sizes)
+  const customWidthStyles = !isEuiFlyoutSizeNamed(size)
+    ? logicalStyles({ width: size as string })
+    : {};
+
+  // Handle dynamic width calculation for fill size in side-by-side mode
+  const dynamicStyles =
+    size === 'fill' &&
+    layoutMode === 'side-by-side' &&
+    siblingFlyoutId &&
+    siblingFlyoutWidth
+      ? calculateDynamicWidth(siblingFlyoutWidth)
+      : {};
+
+  // Handle maxWidth prop overrides
+  const maxWidthOverrides = composeMaxWidthOverrides(maxWidth, size);
+
+  // Always apply maxWidth when provided, even if we can't do dynamic calculation yet
+  let finalMaxWidth = maxWidthOverrides.maxWidth;
+  if (typeof maxWidth === 'string' || typeof maxWidth === 'number') {
+    finalMaxWidth = maxWidth as string;
+  }
+
+  // Enhance with dynamic calculation when all conditions are met
+  if (
+    finalMaxWidth &&
+    size === 'fill' &&
+    layoutMode === 'side-by-side' &&
+    siblingFlyoutId &&
+    siblingFlyoutWidth &&
+    dynamicStyles.width
+  ) {
+    // Apply maxWidth as a min() function with the dynamic calculation
+    // This ensures we respect both the maxWidth constraint and the dynamic width
+    const dynamicWidth = dynamicStyles.width as string;
+
+    // Ensure maxWidth has proper units for the min() function
+    const maxWidthWithUnits =
+      typeof maxWidth === 'number' ? `${maxWidth}px` : maxWidth;
+    finalMaxWidth = `min(${maxWidthWithUnits}, ${dynamicWidth})`;
+  }
+
+  // For fill flyouts with maxWidth but no sibling (stacked mode or main flyout),
+  // we need to ensure the minWidth override is applied to override the CSS rule
+  const minWidthOverride =
+    size === 'fill' && maxWidth && !siblingFlyoutId
+      ? { minWidth: maxWidthOverrides.minWidth }
+      : {};
+
+  const finalStyles = {
+    ...customWidthStyles,
+    ...dynamicStyles,
+    ...minWidthOverride,
+    ...(finalMaxWidth ? { maxWidth: finalMaxWidth } : maxWidthOverrides),
+  };
+
+  return logicalStyles(finalStyles);
 };
