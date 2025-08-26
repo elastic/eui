@@ -361,23 +361,7 @@ export const EuiFlyoutComponent = forwardRef(
         maxWidth
       );
 
-      // Convert the style object to logical CSS properties
-      const logicalStyles: React.CSSProperties = {};
-
-      if (composedStyles.width) {
-        logicalStyles.inlineSize = composedStyles.width;
-      }
-      if (composedStyles.minWidth) {
-        logicalStyles.minInlineSize = composedStyles.minWidth;
-      }
-      if (composedStyles.maxWidth) {
-        logicalStyles.maxInlineSize = composedStyles.maxWidth;
-      }
-
-      return {
-        ...style,
-        ...logicalStyles,
-      };
+      return { ...style, ...composedStyles };
     }, [
       style,
       size,
