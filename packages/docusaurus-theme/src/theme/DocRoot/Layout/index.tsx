@@ -1,3 +1,11 @@
+/*
+ * Copyright Elasticsearch B.V. and/or licensed to Elasticsearch B.V. under one
+ * or more contributor license agreements. Licensed under the Elastic License
+ * 2.0 and the Server Side Public License, v 1; you may not use this file except
+ * in compliance with, at your election, the Elastic License 2.0 or the Server
+ * Side Public License, v 1.
+ */
+
 import { useEffect, useState, JSX } from 'react';
 import { css } from '@emotion/react';
 import { useDocsSidebar } from '@docusaurus/plugin-content-docs/client';
@@ -37,7 +45,7 @@ export default function DocRootLayout({ children }: Props): JSX.Element {
     if (window.location.hash) {
       setTimeout(() => {
         const element = document.getElementById(
-          window.location.hash.substring(1),
+          window.location.hash.substring(1)
         );
         element?.scrollIntoView(true);
       }, 100);
