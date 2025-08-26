@@ -13,6 +13,7 @@ import React, { useState } from 'react';
 import { LOKI_SELECTORS } from '../../../../.storybook/loki';
 import { EuiBreakpointSize } from '../../../services';
 import { EuiButton } from '../../button';
+import { EuiCode } from '../../code';
 import { EuiSpacer } from '../../spacer';
 import { EuiText } from '../../text';
 import { FLYOUT_TYPES } from '../flyout';
@@ -126,10 +127,10 @@ const meta: Meta<FlyoutChildStoryArgs> = {
     style: { table: { disable: true } },
   },
   args: {
-    mainSize: 'm',
-    childSize: 'fill',
+    mainSize: 'fill',
+    childSize: 'm',
     childBackgroundStyle: 'default',
-    mainFlyoutType: 'push',
+    mainFlyoutType: 'overlay',
     outsideClickCloses: false,
     ownFocus: true, // Depends on `mainFlyoutType=overlay`
     paddingSize: 'm',
@@ -190,10 +191,19 @@ const FillModeExampleComponent: React.FC<FlyoutChildStoryArgs> = ({
           <strong>Current layout mode: {layoutMode}</strong>
         </p>
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat.
+          Fill sizing rules: When a flyout has <EuiCode>size="fill"</EuiCode>,
+          it automatically expands to fill available space.
+          <ul>
+            <li>
+              In side-by-side mode, it calculates width as{' '}
+              <EuiCode>calc(90vw - siblingWidth)</EuiCode>.
+            </li>
+            <li>
+              With maxWidth prop, it applies{' '}
+              <EuiCode>min(maxWidth, calc(90vw - siblingWidth))</EuiCode> to
+              respect both constraints.
+            </li>
+          </ul>
         </p>
       </EuiText>
 
