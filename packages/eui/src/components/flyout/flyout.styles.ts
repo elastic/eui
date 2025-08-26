@@ -9,7 +9,11 @@
 import { css, keyframes } from '@emotion/react';
 import { euiShadowXLarge } from '@elastic/eui-theme-common';
 
-import { _EuiFlyoutPaddingSize, EuiFlyoutSize } from './const';
+import {
+  _EuiFlyoutPaddingSize,
+  EuiFlyoutSize,
+  isEuiFlyoutSizeNamed,
+} from './const';
 import { PROPERTY_FLYOUT } from './manager/const';
 import {
   euiCanAnimate,
@@ -291,4 +295,81 @@ const composeFlyoutPadding = (
       padding: ${footerPaddingSizes[paddingSize]};
     }
   `;
+};
+
+/**
+ * Calculates dynamic width for fill-size flyouts in side-by-side layout
+ */
+export const calculateDynamicWidth = (
+  siblingWidth: number,
+  viewportWidth: number = window.innerWidth
+): React.CSSProperties => {
+  const calculatedWidth = `calc(90vw - ${siblingWidth}px)`;
+
+  return {
+    width: calculatedWidth,
+    minWidth: '0',
+    // Override max-width on mobile to prevent CSS clamping
+    ...(viewportWidth < 768 && { maxWidth: 'none' }),
+  };
+};
+
+/**
+ * Handles maxWidth prop overrides to ensure they take precedence over base CSS
+ */
+export const composeMaxWidthOverrides = (
+  maxWidth: boolean | number | string | undefined,
+  size: EuiFlyoutSize | string | number
+): React.CSSProperties => {
+  if (typeof maxWidth === 'boolean') {
+    return {};
+  }
+
+  const overrides: React.CSSProperties = {
+    maxWidth: maxWidth as string,
+  };
+
+  // For fill size flyouts, we need to override both min-width and width
+  // to ensure the maxWidth constraint is respected over base CSS
+  if (size === 'fill') {
+    overrides.minWidth = '0';
+    overrides.width = 'auto';
+  }
+
+  return overrides;
+};
+
+/**
+ * Composes all inline styles for a flyout based on its configuration
+ */
+export const composeFlyoutInlineStyles = (
+  size: EuiFlyoutSize | string | number,
+  layoutMode: 'side-by-side' | 'stacked',
+  siblingFlyoutId: string | null,
+  siblingFlyoutWidth: number | null,
+  maxWidth: boolean | number | string | undefined
+): React.CSSProperties => {
+  // Handle custom width values (non-named sizes)
+  const customWidthStyles = !isEuiFlyoutSizeNamed(size)
+    ? { width: size as string }
+    : {};
+
+  // Handle dynamic width calculation for fill size in side-by-side mode
+  const dynamicStyles =
+    size === 'fill' &&
+    layoutMode === 'side-by-side' &&
+    siblingFlyoutId &&
+    siblingFlyoutWidth
+      ? calculateDynamicWidth(siblingFlyoutWidth)
+      : {};
+
+  // Handle maxWidth prop overrides
+  const maxWidthOverrides = composeMaxWidthOverrides(maxWidth, size);
+
+  // Compose all styles using spread operator
+  return {
+    ...customWidthStyles,
+    ...dynamicStyles,
+    ...maxWidthOverrides,
+  };
 };
