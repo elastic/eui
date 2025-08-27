@@ -7,7 +7,6 @@
  */
 
 import React from 'react';
-import { mount } from 'enzyme';
 import { PADDING_SIZES } from '../../../global_styling';
 import { shouldRenderCustomStyles } from '../../../test/internal';
 import { requiredProps } from '../../../test/required_props';
@@ -48,42 +47,43 @@ describe('EuiPageSidebar', () => {
 
   describe('inline styles', () => {
     it('updates correctly when `sticky` is not set', () => {
-      const component = mount(<EuiPageSidebar data-test-subj="sidebar" />);
+      const { getByTestSubject, rerender } = render(
+        <EuiPageSidebar data-test-subj="sidebar" />
+      );
+      expect(getByTestSubject('sidebar')).toHaveStyle({
+        minInlineSize: '248px',
+      });
 
-      expect(
-        component.find('[data-test-subj="sidebar"]').last().prop('style')
-      ).toEqual({ minInlineSize: 248 });
+      rerender(<EuiPageSidebar data-test-subj="sidebar" minWidth={100} />);
 
-      component.setProps({ minWidth: 100 });
-      component.update();
-
-      expect(
-        component.find('[data-test-subj="sidebar"]').last().prop('style')
-      ).toEqual({ minInlineSize: 100 });
+      expect(getByTestSubject('sidebar')).toHaveStyle({
+        minInlineSize: '100px',
+      });
     });
 
     it('updates correctly when `sticky` is set', () => {
-      const component = mount(
+      const { getByTestSubject, rerender } = render(
         <EuiPageSidebar sticky data-test-subj="sidebar" />
       );
       const expectedStyles = {
         insetBlockStart: 'var(--euiFixedHeadersOffset, 0)',
         maxBlockSize: 'calc(100vh - var(--euiFixedHeadersOffset, 0))',
-        minInlineSize: 248,
+        minInlineSize: '248px',
       };
 
-      expect(
-        component.find('[data-test-subj="sidebar"]').last().prop('style')
-      ).toEqual(expectedStyles);
+      expect(getByTestSubject('sidebar')).toHaveStyle(expectedStyles);
 
-      component.setProps({ style: { color: 'red' } });
-      component.update();
+      rerender(
+        <EuiPageSidebar
+          sticky
+          data-test-subj="sidebar"
+          style={{ color: 'red' }}
+        />
+      );
 
-      expect(
-        component.find('[data-test-subj="sidebar"]').last().prop('style')
-      ).toEqual({
-        color: 'red',
+      expect(getByTestSubject('sidebar')).toHaveStyle({
         ...expectedStyles,
+        color: 'rgb(255, 0, 0)', // "red" gets converted to rgb()
       });
     });
   });

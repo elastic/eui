@@ -8,8 +8,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { act } from '@testing-library/react';
-import { mount } from 'enzyme';
-import { findTestSubject, requiredProps } from '../../test';
+import { requiredProps } from '../../test';
 import { render } from '../../test/rtl';
 
 import { useInnerText, EuiInnerText } from './inner_text';
@@ -22,7 +21,7 @@ describe('useInnerText', () => {
       [ref] = useInnerText();
       return <span />;
     };
-    mount(<App />);
+    render(<App />);
 
     expect(ref).toBeInstanceOf(Function);
   });
@@ -35,7 +34,7 @@ describe('useInnerText', () => {
       [ref, innerText] = useInnerText();
       return <span ref={ref}>{text}</span>;
     };
-    mount(<App />);
+    render(<App />);
 
     expect(innerText).toEqual(text);
   });
@@ -48,7 +47,7 @@ describe('useInnerText', () => {
       [, innerText] = useInnerText(fallback);
       return <span>{text}</span>;
     };
-    mount(<App />);
+    render(<App />);
 
     expect(innerText).toEqual(fallback);
   });
@@ -81,7 +80,7 @@ describe('useInnerText', () => {
         </div>
       );
     };
-    mount(<App />);
+    render(<App />);
 
     expect(innerText).toEqual(first);
 
@@ -113,7 +112,7 @@ describe('useInnerText', () => {
         </div>
       );
     };
-    mount(<App />);
+    render(<App />);
 
     expect(innerText).toEqual(first);
 
@@ -142,7 +141,7 @@ describe('EuiInnerText', () => {
 
   test('uses innerText', () => {
     const text = 'Test';
-    const component = mount(
+    const { getByTestSubject } = render(
       <EuiInnerText {...requiredProps}>
         {(ref, innerText) => (
           <span ref={ref} title={innerText} data-test-subj="span">
@@ -152,14 +151,14 @@ describe('EuiInnerText', () => {
       </EuiInnerText>
     );
 
-    const span = findTestSubject(component, 'span');
-    expect(span.props().title).toBe(text);
+    const span = getByTestSubject('span');
+    expect(span.title).toBe(text);
   });
 
   test('accepts fallback prop', () => {
     const text = 'Test';
     const fallback = 'Fallback';
-    const component = mount(
+    const { getByTestSubject } = render(
       <EuiInnerText {...requiredProps} fallback={fallback}>
         {(_, innerText) => (
           <span title={innerText} data-test-subj="span">
@@ -169,12 +168,12 @@ describe('EuiInnerText', () => {
       </EuiInnerText>
     );
 
-    const span = findTestSubject(component, 'span');
-    expect(span.props().title).toBe(fallback);
+    const span = getByTestSubject('span');
+    expect(span.title).toBe(fallback);
   });
 
   test('works with wrapper and interspersed DOM elements', () => {
-    const component = mount(
+    const { getByTestSubject } = render(
       <EuiInnerText {...requiredProps}>
         {(ref, innerText) => (
           <span ref={ref} title={innerText} data-test-subj="span">
@@ -193,7 +192,7 @@ describe('EuiInnerText', () => {
       </EuiInnerText>
     );
 
-    const span = findTestSubject(component, 'span');
-    expect(span.props().title).toBe('I can still read this');
+    const span = getByTestSubject('span');
+    expect(span.title).toBe('I can still read this');
   });
 });

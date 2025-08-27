@@ -7,7 +7,6 @@
  */
 
 import React from 'react';
-import { mount } from 'enzyme';
 import { fireEvent } from '@testing-library/react';
 import { render } from '../../../test/rtl';
 
@@ -34,7 +33,7 @@ describe('EuiDataGridBodyVirtualized', () => {
   });
 
   it('renders leading columns, trailing columns, and footer rows', () => {
-    const component = mount(
+    const { container, getAllByTestSubject } = render(
       <EuiDataGridBodyVirtualized
         {...dataGridBodyProps}
         leadingControlColumns={[
@@ -57,13 +56,17 @@ describe('EuiDataGridBodyVirtualized', () => {
         renderFooterCellValue={() => <footer data-test-subj="footer" />}
       />
     );
-    expect(component.find('Cell')).toHaveLength(4);
-    expect(component.find('[data-test-subj="footer"]')).toHaveLength(2);
+    expect(
+      container.querySelectorAll(
+        '.euiDataGridRowCell:not(.euiDataGridFooterCell)'
+      )
+    ).toHaveLength(4);
+    expect(getAllByTestSubject('footer')).toHaveLength(2);
   });
 
   it('passes some virtualization options to the underlying react-window grid', () => {
     const onItemsRendered = jest.fn();
-    const component = mount(
+    const { container } = render(
       <EuiDataGridBodyVirtualized
         {...dataGridBodyProps}
         virtualizationOptions={{
@@ -73,7 +76,7 @@ describe('EuiDataGridBodyVirtualized', () => {
         }}
       />
     );
-    expect(component.find('.test').exists()).toBe(true);
+    expect(container.querySelector('.test')).toBeInTheDocument();
     expect(onItemsRendered).toHaveBeenCalled();
   });
 
