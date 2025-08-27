@@ -137,6 +137,42 @@ declare module '@elastic/eui-theme-borealis/lib/eui_theme_borealis_light.json' {
     };
     euiBreakpointKeys: string;
     euiShadowColor: string;
+    euiShadows: {
+      xs: {
+        down: string;
+        up: string;
+      };
+      s: {
+        down: string;
+        up: string;
+      };
+      m: {
+        down: string;
+        up: string;
+      };
+      l: {
+        down: string;
+        up: string;
+      };
+      xl: {
+        down: string;
+        up: string;
+      };
+      hover: {
+        base: {
+          down: string;
+          up: string;
+        };
+        xl: {
+          down: string;
+          up: string;
+        };
+      };
+      flat: {
+        down: string;
+        up: string;
+      };
+    };
     euiSize: string;
     euiSizeXS: string;
     euiSizeS: string;

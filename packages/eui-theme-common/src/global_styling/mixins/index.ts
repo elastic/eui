@@ -7,3 +7,4 @@
  */
 
 export * from './shadow';
+export * from './borders';

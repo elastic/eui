@@ -136,6 +136,42 @@
   },
   "euiBreakpointKeys": "'xs', 's', 'm', 'l', 'xl'",
   "euiShadowColor": "#000000",
+  "euiShadows": {
+    "xs": {
+      "down": "0px 0.8px 0.8px 0px hsla(0,0%,0%,0.04), 0px 2.3px 2px 0px hsla(0,0%,0%,0.03)",
+      "up": "0px 0.8px 0.8px 0px hsla(0,0%,0%,0.04), 0px -2.3px 2px 0px hsla(0,0%,0%,0.03)"
+    },
+    "s": {
+      "down": "0px 0.7px 1.4px 0px hsla(0,0%,0%,0.07), 0px 1.9px 4px 0px hsla(0,0%,0%,0.05), 0px 4.5px 10px 0px hsla(0,0%,0%,0.05)",
+      "up": "0px 0.7px 1.4px 0px hsla(0,0%,0%,0.07), 0px -1.9px 4px 0px hsla(0,0%,0%,0.05), 0px -4.5px 10px 0px hsla(0,0%,0%,0.05)"
+    },
+    "m": {
+      "down": "0px 0.9px 4px 0px hsla(0,0%,0%,0.08), 0px 2.6px 8px 0px hsla(0,0%,0%,0.06), 0px 5.7px 12px 0px hsla(0,0%,0%,0.05), 0px 15px 15px 0px hsla(0,0%,0%,0.04)",
+      "up": "0px 0.9px 4px 0px hsla(0,0%,0%,0.08), 0px -2.6px 8px 0px hsla(0,0%,0%,0.06), 0px -5.7px 12px 0px hsla(0,0%,0%,0.05), 0px -15px 15px 0px hsla(0,0%,0%,0.04)"
+    },
+    "l": {
+      "down": "0px 1px 5px 0px hsla(0,0%,0%,0.1), 0px 3.6px 13px 0px hsla(0,0%,0%,0.07), 0px 8.4px 23px 0px hsla(0,0%,0%,0.06), 0px 23px 35px 0px hsla(0,0%,0%,0.05)",
+      "up": "0px 1px 5px 0px hsla(0,0%,0%,0.1), 0px -3.6px 13px 0px hsla(0,0%,0%,0.07), 0px -8.4px 23px 0px hsla(0,0%,0%,0.06), 0px -23px 35px 0px hsla(0,0%,0%,0.05)"
+    },
+    "xl": {
+      "down": "0px 2.7px 9px 0px hsla(0,0%,0%,0.13), 0px 9.4px 24px 0px hsla(0,0%,0%,0.09), 0px 21.8px 43px 0px hsla(0,0%,0%,0.08)",
+      "up": "0px 2.7px 9px 0px hsla(0,0%,0%,0.13), 0px -9.4px 24px 0px hsla(0,0%,0%,0.09), 0px -21.8px 43px 0px hsla(0,0%,0%,0.08)"
+   },
+    "hover": {
+      "base": {
+        "down": "0px 1.9px 4px 0px hsla(0,0%,0%,0.05), 0px 4.5px 10px 0px hsla(0,0%,0%,0.05)",
+        "up": "0px 1.9px 4px 0px hsla(0,0%,0%,0.05), 0px -4.5px 10px 0px hsla(0,0%,0%,0.05)"
+      },
+      "xl": {
+        "down": "none",
+        "up": "none"
+      }
+    },
+    "flat": {
+      "down": "0px 0px 0.8px 0px hsla(0,0%,0%,0.06), 0px 0px 2px 0px hsla(0,0%,0%,0.04), 0px 0px 5px 0px hsla(0,0%,0%,0.04), 0px 0px 17px 0px hsla(0,0%,0%,0.03)",
+      "up": "0px 0px 0.8px 0px hsla(0,0%,0%,0.06), 0px 0px 2px 0px hsla(0,0%,0%,0.04), 0px 0px 5px 0px hsla(0,0%,0%,0.04), 0px 0px 17px 0px hsla(0,0%,0%,0.03)"
+    }
+  },
   "euiSize": "16px",
   "euiSizeXS": "4px",
   "euiSizeS": "8px",

@@ -136,6 +136,42 @@
   },
   "euiBreakpointKeys": "'xs', 's', 'm', 'l', 'xl'",
   "euiShadowColor": "#000000",
+  "euiShadows": {
+    "xs": {
+      "down": "0px 1px 4px 0px hsla(0,0%,0%,0.4), 0px 2px 8px 0px hsla(0,0%,0%,0.24)",
+      "up": "0px 1px 4px 0px hsla(0,0%,0%,0.4), 0px -2px 8px 0px hsla(0,0%,0%,0.24)"
+    },
+    "s":{
+      "down": "0px 2px 7px 0px hsla(0,0%,0%,0.46), 0px 4px 11px 0px hsla(0,0%,0%,0.26)",
+      "up": "0px 2px 7px 0px hsla(0,0%,0%,0.46), 0px -4px 11px 0px hsla(0,0%,0%,0.26)"
+    },
+    "m": {
+      "down": "0px 3px 10px 0px hsla(0,0%,0%,0.52), 0px 6px 14px 0px hsla(0,0%,0%,0.28)",
+      "up": "0px 3px 10px 0px hsla(0,0%,0%,0.52), 0px -6px 14px 0px hsla(0,0%,0%,0.28)"
+    },
+    "l": {
+      "down": "0px 4px 13px 0px hsla(0,0%,0%,0.58), 0px 8px 17px 0px hsla(0,0%,0%,0.3)",
+      "up": "0px 4px 13px 0px hsla(0,0%,0%,0.58), 0px -8px 17px 0px hsla(0,0%,0%,0.3)"
+    },
+    "xl": {
+      "down": "0px 5px 16px 0px hsla(0,0%,0%,0.64), 0px 10px 20px 0px hsla(0,0%,0%,0.32)",
+      "up": "0px 5px 16px 0px hsla(0,0%,0%,0.64), 0px -10px 20px 0px hsla(0,0%,0%,0.32)"
+    },
+    "hover": {
+      "base": {
+        "down": "0px 2px 7px 0px hsla(0,0%,0%,0.46), 0px 4px 11px 0px hsla(0,0%,0%,0.26)",
+        "up": "0px -2px 7px 0px hsla(0,0%,0%,0.46), 0px -4px 11px 0px hsla(0,0%,0%,0.26)"
+      },
+      "xl": {
+        "down": "0px 6px 19px 0px hsla(0,0%,0%,0.7), 0px 12px 23px 0px hsla(0,0%,0%,0.34)",
+        "up": "0px -6px 19px 0px hsla(0,0%,0%,0.7), 0px -12px 23px 0px hsla(0,0%,0%,0.34)"
+      }
+    },
+    "flat": {
+      "down": "0px 1px 4px 0px hsla(0,0%,0%,0.4), 0px 2px 8px 0px hsla(0,0%,0%,0.24)",
+      "up": "0px 1px 4px 0px hsla(0,0%,0%,0.4), 0px -2px 8px 0px hsla(0,0%,0%,0.24)"
+    }
+  },
   "euiSize": "16px",
   "euiSizeXS": "4px",
   "euiSizeS": "8px",

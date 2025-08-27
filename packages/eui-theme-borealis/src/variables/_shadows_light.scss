@@ -1,0 +1,20 @@
+// Shadows
+$euiShadowColor: $euiColorShade120 !default;
+
+$euiShadowDownXS: 0px 0px 2px 0px hsl(from $euiShadowColor h s l /  0.16), 0px 1px 4px 0px hsl(from $euiShadowColor h s l / 0.06), 0px 2px 8px 0px hsl(from $euiShadowColor h s l / 0.04);
+$euiShadowDownS: 0px 0px 2px 0px hsl(from $euiShadowColor h s l / 0.16), 0px 2px 7px 0px hsl(from $euiShadowColor h s l / 0.08), 0px 4px 11px 0px hsl(from $euiShadowColor h s l / 0.05);
+$euiShadowDownM: 0px 0px 2px 0px hsl(from $euiShadowColor h s l / 0.16), 0px 3px 10px 0px hsl(from $euiShadowColor h s l / 0.1), 0px 6px 14px 0px hsl(from $euiShadowColor h s l / 0.06);
+$euiShadowDownL: 0px 0px 2px 0px hsl(from $euiShadowColor h s l / 0.16), 0px 4px 13px 0px hsl(from $euiShadowColor h s l / 0.12), 0px 8px 17px 0px hsl(from $euiShadowColor h s l / 0.07);
+$euiShadowDownXL: 0px 0px 2px 0px hsl(from $euiShadowColor h s l / 0.16), 0px 5px 16px 0px hsl(from $euiShadowColor h s l / 0.14), 0px 10px 20px 0px hsl(from $euiShadowColor h s l / 0.08);
+
+$euiShadowUpXS: 0px 0px 2px 0px hsl(from $euiShadowColor h s l / 0.16), 0px -1px 4px 0px hsl(from $euiShadowColor h s l / 0.06), 0px -2px 8px 0px hsl(from $euiShadowColor h s l / 0.04);
+$euiShadowUpS: 0px 0px 2px 0px hsl(from $euiShadowColor h s l / 0.16), 0px -2px 7px 0px hsl(from $euiShadowColor h s l / 0.08), 0px -4px 11px 0px hsl(from $euiShadowColor h s l / 0.05);
+$euiShadowUpM: 0px 0px 2px 0px hsl(from $euiShadowColor h s l / 0.16), 0px -3px 10px 0px hsl(from $euiShadowColor h s l / 0.1), 0px -6px 14px 0px hsl(from $euiShadowColor h s l / 0.06);
+$euiShadowUpL: 0px 0px 2px 0px hsl(from $euiShadowColor h s l / 0.16), 0px -4px 13px 0px hsl(from $euiShadowColor h s l / 0.12), 0px -8px 17px 0px hsl(from $euiShadowColor h s l / 0.07);
+$euiShadowUpXL: 0px 0px 2px 0px hsl(from $euiShadowColor h s l / 0.16), 0px -5px 16px 0px hsl(from $euiShadowColor h s l / 0.14), 0px -10px 20px 0px hsl(from $euiShadowColor h s l / 0.08);
+
+$euiShadowHoverDown: 0px 0px 2px 0px hsla(from $euiShadowColor h s l / 0.16), 0px 2px 7px 0px hsla(from $euiShadowColor h s l / 0.08), 0px 4px 11px 0px hsla(from $euiShadowColor h s l / 0.05);
+$euiShadowHoverXLDown: 0px 0px 2px 0px hsl(from $euiShadowColor h s l/ 0.16), 0px 6px 19px 0px hsl(from $euiShadowColor h s l / 0.16), 0px 12px 23px 0px hsl(from $euiShadowColor h s l / 0.09);
+
+$euiShadowHoverUp: 0px 0px 2px 0px hsla(from $euiShadowColor h s l / 0.16), 0px -2px 7px 0px hsla(from $euiShadowColor h s l / 0.08), 0px -4px 11px 0px hsla(from $euiShadowColor h s l / 0.05);
+$euiShadowHoverXLUp: 0px 0px 2px 0px hsl(from $euiShadowColor h s l/ 0.16), 0px -6px 19px 0px hsl(from $euiShadowColor h s l / 0.16), 0px -12px 23px 0px hsl(from $euiShadowColor h s l / 0.09);

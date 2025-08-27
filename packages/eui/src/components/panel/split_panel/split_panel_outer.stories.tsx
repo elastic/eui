@@ -35,6 +35,19 @@ export const SplitPanelOuter: Story = {
   ),
 };
 
+export const SplitPanelOuterDark: Story = {
+  tags: ['vrt-only'],
+  globals: { colorMode: 'dark' },
+  render: ({ ...args }) => (
+    <EuiSplitPanel.Outer {...args}>
+      <EuiSplitPanel.Inner>Top or left panel</EuiSplitPanel.Inner>
+      <EuiSplitPanel.Inner color="subdued">
+        Bottom or right panel
+      </EuiSplitPanel.Inner>
+    </EuiSplitPanel.Outer>
+  ),
+};
+
 export const HighContrast: Story = {
   tags: ['vrt-only'],
   globals: { highContrastMode: true },

@@ -36,7 +36,7 @@ exports[`EuiCollapsibleNavBeta renders 1`] = `
     >
       <nav
         aria-label="aria-label"
-        class="euiFlyout euiCollapsibleNav euiCollapsibleNavBeta testClass1 testClass2 emotion-euiFlyout-none-noMaxWidth-push-left-noAnimation-left-euiCollapsibleNavBeta-left-isPush-euiTestCss"
+        class="euiFlyout euiCollapsibleNav euiCollapsibleNavBeta testClass1 testClass2 emotion-euiFlyout-none-noMaxWidth-push-left-noAnimation-left-euiCollapsibleNavBeta-isPush-left-euiTestCss"
         data-test-subj="nav"
         id="generated-id_euiCollapsibleNav"
         style="inline-size: 248px;"
@@ -89,7 +89,7 @@ exports[`EuiCollapsibleNavBeta renders initialIsCollapsed 1`] = `
     >
       <nav
         aria-label="Site menu"
-        class="euiFlyout euiCollapsibleNav euiCollapsibleNavBeta emotion-euiFlyout-none-noMaxWidth-push-left-noAnimation-left-euiCollapsibleNavBeta-left-isPush-isPushCollapsed"
+        class="euiFlyout euiCollapsibleNav euiCollapsibleNavBeta emotion-euiFlyout-none-noMaxWidth-push-left-noAnimation-left-euiCollapsibleNavBeta-isPush-left-isPushCollapsed"
         data-test-subj="nav"
         id="generated-id_euiCollapsibleNav"
         style="inline-size: 48px;"
