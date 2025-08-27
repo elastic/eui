@@ -7,7 +7,7 @@
  */
 
 import React, { ReactNode } from 'react';
-import { mount } from 'enzyme';
+import { render } from '../../test/rtl';
 import { EuiContext } from '../context';
 import { EuiI18n, useEuiI18n } from './i18n';
 
@@ -21,21 +21,22 @@ describe('EuiI18n', () => {
   describe('default rendering', () => {
     describe('rendering to dom', () => {
       it('renders a basic string to the dom', () => {
-        const component = mount(
+        const { container } = render(
           <EuiI18n token="test" default="This is a basic string." />
         );
-        expect(component).toMatchSnapshot();
+        expect(container).toHaveTextContent('This is a basic string');
       });
 
       it('renders a string with placeholders to the dom', () => {
-        const component = mount(
+        const { container } = render(
           <EuiI18n
             token="test"
             default="This is a {type} with {special}."
             values={{ type: 'string', special: 'values' }}
           />
         );
-        expect(component).toMatchSnapshot();
+
+        expect(container).toHaveTextContent('This is a string with values.');
       });
 
       it('calls a function and renders the result to the dom', () => {
@@ -43,34 +44,36 @@ describe('EuiI18n', () => {
         const renderCallback = jest.fn(
           ({ type, special }) => `This is a ${type} with ${special}.`
         );
-        const component = mount(
+        const { container } = render(
           <EuiI18n token="test" default={renderCallback} values={values} />
         );
-        expect(component).toMatchSnapshot();
 
+        expect(container).toHaveTextContent('This is a callback with values');
         expect(renderCallback).toHaveBeenCalledWith(values);
       });
 
       it('renders when value is null', () => {
-        const component = mount(
+        const { container } = render(
           <EuiI18n token="test" default="{arg}" values={{ arg: null }} />
         );
-        expect(component).toMatchSnapshot();
+        expect(container).toHaveTextContent('');
       });
     });
 
     describe('render prop with single token', () => {
       it('renders render prop result to the dom', () => {
-        const component = mount(
+        const { container } = render(
           <EuiI18n token="test" default="This is a basic string.">
             {(result: ReactNode) => `A nifty thing: ${result}`}
           </EuiI18n>
         );
-        expect(component).toMatchSnapshot();
+        expect(container).toHaveTextContent(
+          'A nifty thing: This is a basic string.'
+        );
       });
 
       it('renders render prop result with placeholders to the dom', () => {
-        const component = mount(
+        const { container } = render(
           <EuiI18n
             token="test"
             default="This is a {type} with {special}."
@@ -79,7 +82,9 @@ describe('EuiI18n', () => {
             {(result: ReactNode) => `Here's something cool: ${result}`}
           </EuiI18n>
         );
-        expect(component).toMatchSnapshot();
+        expect(container).toHaveTextContent(
+          `Here's something cool: This is a string with values.`
+        );
       });
 
       it('calls a function and renders render prop result to the dom', () => {
@@ -87,20 +92,22 @@ describe('EuiI18n', () => {
         const renderCallback = jest.fn(
           ({ type, special }) => `This is a ${type} with ${special}.`
         );
-        const component = mount(
+        const { container } = render(
           <EuiI18n token="test" default={renderCallback} values={values}>
             {(result: string) => `Here's something neat: ${result}`}
           </EuiI18n>
         );
-        expect(component).toMatchSnapshot();
 
+        expect(container).toHaveTextContent(
+          `Here's something neat: This is a callback with values.`
+        );
         expect(renderCallback).toHaveBeenCalledWith(values);
       });
     });
 
     describe('render prop with multiple tokens', () => {
       it('renders basic strings to the dom', () => {
-        const component = mount(
+        const { getByTestSubject } = render(
           <EuiI18n
             tokens={['test1', 'test2']}
             defaults={[
@@ -109,17 +116,21 @@ describe('EuiI18n', () => {
             ]}
           >
             {([one, two]: ReactNode[]) => (
-              <div>
+              <div data-test-subj="inner-div">
                 {one} {two}
               </div>
             )}
           </EuiI18n>
         );
-        expect(component).toMatchSnapshot();
+        const innerDiv = getByTestSubject('inner-div');
+        expect(innerDiv).toBeInTheDocument();
+        expect(innerDiv).toHaveTextContent(
+          'This is the first basic string. This is the second basic string.'
+        );
       });
 
       it('renders strings with placeholders to the dom', () => {
-        const component = mount(
+        const { getByTestSubject } = render(
           <EuiI18n
             tokens={['test1', 'test2']}
             defaults={[
@@ -129,13 +140,18 @@ describe('EuiI18n', () => {
             values={{ placeholder: 'value' }}
           >
             {([one, two]: ReactNode[]) => (
-              <div>
+              <div data-test-subj="inner-div">
                 {one} {two}
               </div>
             )}
           </EuiI18n>
         );
-        expect(component).toMatchSnapshot();
+
+        const innerDiv = getByTestSubject('inner-div');
+        expect(innerDiv).toBeInTheDocument();
+        expect(innerDiv).toHaveTextContent(
+          'This is the first basic string. This is the a second string with a value.'
+        );
       });
     });
   });
@@ -143,16 +159,16 @@ describe('EuiI18n', () => {
   describe('reading values from context', () => {
     describe('rendering to dom', () => {
       it('renders a mapped basic string to the dom', () => {
-        const component = mount(
+        const { container } = render(
           <EuiContext i18n={{ mapping: { test: 'An overridden string.' } }}>
             <EuiI18n token="test" default="This is a basic string." />
           </EuiContext>
         );
-        expect(component).toMatchSnapshot();
+        expect(container).toHaveTextContent('An overridden string.');
       });
 
       it('renders a mapped string with placeholders to the dom', () => {
-        const component = mount(
+        const { container } = render(
           <EuiContext
             i18n={{
               mapping: { test: 'An overridden {type} with {special}.' },
@@ -165,7 +181,9 @@ describe('EuiI18n', () => {
             />
           </EuiContext>
         );
-        expect(component).toMatchSnapshot();
+        expect(container).toHaveTextContent(
+          'An overridden string with values.'
+        );
       });
 
       it('calls a mapped function and renders the result to the dom', () => {
@@ -173,31 +191,35 @@ describe('EuiI18n', () => {
         const renderCallback = jest.fn(
           ({ type, special }) => `This is a mapped ${type} with ${special}.`
         );
-        const component = mount(
+        const { container } = render(
           <EuiContext i18n={{ mapping: { test: renderCallback } }}>
             <EuiI18n token="test" default={() => ''} values={values} />
           </EuiContext>
         );
-        expect(component).toMatchSnapshot();
 
+        expect(container).toHaveTextContent(
+          'This is a mapped callback with values.'
+        );
         expect(renderCallback).toHaveBeenCalledWith(values);
       });
     });
 
     describe('render prop with single token', () => {
       it('renders mapped render prop result to the dom', () => {
-        const component = mount(
+        const { container } = render(
           <EuiContext i18n={{ mapping: { test: 'An overridden string.' } }}>
             <EuiI18n token="test" default="This is a basic string.">
               {(result: ReactNode) => `A nifty thing: ${result}`}
             </EuiI18n>
           </EuiContext>
         );
-        expect(component).toMatchSnapshot();
+        expect(container).toHaveTextContent(
+          'A nifty thing: An overridden string.'
+        );
       });
 
       it('renders mapped render prop result with placeholders to the dom', () => {
-        const component = mount(
+        const { container } = render(
           <EuiContext
             i18n={{
               mapping: { test: 'An overridden {type} with {special}.' },
@@ -212,7 +234,9 @@ describe('EuiI18n', () => {
             </EuiI18n>
           </EuiContext>
         );
-        expect(component).toMatchSnapshot();
+        expect(container).toHaveTextContent(
+          `Here's something cool: An overridden string with values.`
+        );
       });
 
       it('calls a mapped function and renders render prop result to the dom', () => {
@@ -220,14 +244,16 @@ describe('EuiI18n', () => {
         const renderCallback = jest.fn(
           ({ type, special }) => `This is a ${type} with ${special}.`
         );
-        const component = mount(
+        const { container } = render(
           <EuiContext i18n={{ mapping: { test: renderCallback } }}>
             <EuiI18n token="test" default={renderCallback} values={values}>
               {(result: ReactNode) => `Here's something neat: ${result}`}
             </EuiI18n>
           </EuiContext>
         );
-        expect(component).toMatchSnapshot();
+        expect(container).toHaveTextContent(
+          `Here's something neat: This is a callback with values.`
+        );
 
         expect(renderCallback).toHaveBeenCalledWith(values);
       });
@@ -243,7 +269,7 @@ describe('EuiI18n', () => {
           ]}
         >
           {([one, two]: ReactNode[]) => (
-            <div>
+            <div data-test-subj="inner-div">
               {one} {two}
             </div>
           )}
@@ -255,16 +281,18 @@ describe('EuiI18n', () => {
       };
 
       it('renders mapped render prop result to the dom', () => {
-        const component = mount(
+        const { container } = render(
           <EuiContext i18n={{ mapping: multipleTokensMapping }}>
             {multipleTokens}
           </EuiContext>
         );
-        expect(component).toMatchSnapshot();
+        expect(container).toHaveTextContent(
+          'This is the first mapped value. This is the second mapped value.'
+        );
       });
 
       it('uses the mapping function if one is provided', () => {
-        const component = mount(
+        const { container } = render(
           <EuiContext
             i18n={{
               mapping: multipleTokensMapping,
@@ -274,14 +302,16 @@ describe('EuiI18n', () => {
             {multipleTokens}
           </EuiContext>
         );
-        expect(component).toMatchSnapshot();
+        expect(container).toHaveTextContent(
+          'THIS IS THE FIRST BASIC STRING. THIS IS THE SECOND BASIC STRING.'
+        );
         expect(mockMappingFunc).toHaveBeenCalledTimes(2);
       });
     });
 
     describe('mappingFunc', () => {
       it('calls the mapping function with the source string', () => {
-        const component = mount(
+        const { getByLabelText } = render(
           <EuiContext
             i18n={{
               mapping: {
@@ -295,7 +325,8 @@ describe('EuiI18n', () => {
             </EuiI18n>
           </EuiContext>
         );
-        expect(component).toMatchSnapshot();
+        const label = getByLabelText('THIS IS THE BASIC STRING.');
+        expect(label).toHaveTextContent('THIS IS THE BASIC STRING.');
         expect(mockMappingFunc).toHaveBeenCalledTimes(1);
       });
     });
@@ -306,10 +337,12 @@ describe('EuiI18n', () => {
       it('handles single token without values', () => {
         const Component = () => {
           const value = useEuiI18n('token', 'placeholder');
-          return <p>{value}</p>;
+          return <p data-test-subj="element">{value}</p>;
         };
-        const component = mount(<Component />);
-        expect(component).toMatchSnapshot();
+        const { getByTestSubject } = render(<Component />);
+        const element = getByTestSubject('element');
+        expect(element).toBeInTheDocument();
+        expect(element).toHaveTextContent('placeholder');
       });
 
       it('handles single token with values', () => {
@@ -318,10 +351,12 @@ describe('EuiI18n', () => {
             first: 'apples',
             second: 'aardvarks',
           });
-          return <p>{value}</p>;
+          return <p data-test-subj="element">{value}</p>;
         };
-        const component = mount(<Component />);
-        expect(component).toMatchSnapshot();
+        const { getByTestSubject } = render(<Component />);
+        const element = getByTestSubject('element');
+        expect(element).toBeInTheDocument();
+        expect(element).toHaveTextContent('first apples, then aardvarks');
       });
 
       it('handles multiple tokens', () => {
@@ -331,14 +366,18 @@ describe('EuiI18n', () => {
             ['the first placeholder', 'the second placeholder']
           );
           return (
-            <p>
+            <p data-test-subj="element">
               <span>{first}</span>
               <span>{second}</span>
             </p>
           );
         };
-        const component = mount(<Component />);
-        expect(component).toMatchSnapshot();
+        const { getByTestSubject } = render(<Component />);
+        const element = getByTestSubject('element');
+        expect(element).toBeInTheDocument();
+        expect(element).toHaveTextContent(
+          'the first placeholderthe second placeholder'
+        );
       });
 
       it('calls a function that returns JSX and renders the result to the dom', () => {
@@ -351,9 +390,9 @@ describe('EuiI18n', () => {
         const Component = () => (
           <div>{useEuiI18n('test', renderCallback, values)}</div>
         );
-        const component = mount(<Component />);
-        expect(component).toMatchSnapshot();
+        const { container } = render(<Component />);
 
+        expect(container).toHaveTextContent('This is a callback with values.');
         expect(renderCallback).toHaveBeenCalledWith(values);
       });
 
@@ -366,13 +405,13 @@ describe('EuiI18n', () => {
           <div>{useEuiI18n('test', renderCallback, values)}</div>
         );
 
-        const component = mount(
+        const { container } = render(
           <EuiContext i18n={{ mappingFunc: mockMappingFunc }}>
             <Component />
           </EuiContext>
         );
 
-        expect(component).toMatchSnapshot();
+        expect(container).toHaveTextContent('THIS IS A CALLBACK WITH VALUES');
         expect(renderCallback).toHaveBeenCalledWith(values);
         expect(mockMappingFunc).toHaveBeenCalledTimes(1);
       });
@@ -385,7 +424,7 @@ describe('EuiI18n', () => {
         const value = useEuiI18n('token', 'placeholder');
         return <p>{value}</p>;
       };
-      const component = mount(
+      const { container } = render(
         <EuiContext
           i18n={{
             mapping: {
@@ -396,7 +435,7 @@ describe('EuiI18n', () => {
           <Component />
         </EuiContext>
       );
-      expect(component).toMatchSnapshot();
+      expect(container).toHaveTextContent('This is the mapped value.');
     });
 
     it('handles single token with values', () => {
@@ -407,7 +446,7 @@ describe('EuiI18n', () => {
         });
         return <p>{value}</p>;
       };
-      const component = mount(
+      const { container } = render(
         <EuiContext
           i18n={{
             mapping: {
@@ -418,7 +457,9 @@ describe('EuiI18n', () => {
           <Component />
         </EuiContext>
       );
-      expect(component).toMatchSnapshot();
+      expect(container).toHaveTextContent(
+        'In reverse order: aardvarks, then apples'
+      );
     });
 
     it('handles multiple tokens', () => {
@@ -428,13 +469,13 @@ describe('EuiI18n', () => {
           ['the first placeholder', 'the second placeholder']
         );
         return (
-          <p>
+          <p data-test-subj="element">
             <span>{first}</span>
             <span>{second}</span>
           </p>
         );
       };
-      const component = mount(
+      const { getByTestSubject } = render(
         <EuiContext
           i18n={{
             mapping: {
@@ -446,7 +487,9 @@ describe('EuiI18n', () => {
           <Component />
         </EuiContext>
       );
-      expect(component).toMatchSnapshot();
+      const element = getByTestSubject('element');
+      expect(element).toBeInTheDocument();
+      expect(element).toHaveTextContent('first valuesecond value');
     });
 
     describe('mappingFunc', () => {
@@ -455,7 +498,7 @@ describe('EuiI18n', () => {
           const value = useEuiI18n('test1', 'placeholder');
           return <div aria-label={value}>{value}</div>;
         };
-        const component = mount(
+        const { container } = render(
           <EuiContext
             i18n={{
               mapping: {
@@ -467,7 +510,7 @@ describe('EuiI18n', () => {
             <Component />
           </EuiContext>
         );
-        expect(component).toMatchSnapshot();
+        expect(container).toHaveTextContent('PLACEHOLDER');
       });
     });
 
@@ -479,7 +522,7 @@ describe('EuiI18n', () => {
           });
           return <section>{value}</section>;
         };
-        const component = mount(
+        const { container } = render(
           <EuiContext
             i18n={{
               render: (children) => () => <div>{children}</div>,
@@ -488,7 +531,7 @@ describe('EuiI18n', () => {
             <Component />
           </EuiContext>
         );
-        expect(component).toMatchSnapshot();
+        expect(container).toHaveTextContent('placeholder inside');
       });
     });
   });
